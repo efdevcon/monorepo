@@ -1,0 +1,1781 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,600"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10600
+			},
+			"text": " My talk will be about what's next for the gas station network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,600",
+				"to": "00:00:18,260"
+			},
+			"offsets": {
+				"from": 10600,
+				"to": 18260
+			},
+			"text": " And I am Laura's Siri, the CEO of Tabuki, and the problems that we're working on are"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,260",
+				"to": "00:00:24,400"
+			},
+			"offsets": {
+				"from": 18260,
+				"to": 24400
+			},
+			"text": " removing roadblocks to the mass adoption of decentralized finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,400",
+				"to": "00:00:28,200"
+			},
+			"offsets": {
+				"from": 24400,
+				"to": 28200
+			},
+			"text": " And the gas station network is an important part of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,200",
+				"to": "00:00:35,440"
+			},
+			"offsets": {
+				"from": 28200,
+				"to": 35440
+			},
+			"text": " So, when do we get to mass adoption?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,440",
+				"to": "00:00:41,040"
+			},
+			"offsets": {
+				"from": 35440,
+				"to": 41040
+			},
+			"text": " We think that we're going to have to figure out how do we create the type of familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,040",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 41040,
+				"to": 48000
+			},
+			"text": " experiences that provide the ease of use of Web2."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:56,840"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 56840
+			},
+			"text": " But if we're going to be putting life savings of people at risk, then we also have to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,840",
+				"to": "00:00:59,080"
+			},
+			"offsets": {
+				"from": 56840,
+				"to": 59080
+			},
+			"text": " it secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,080",
+				"to": "00:01:04,800"
+			},
+			"offsets": {
+				"from": 59080,
+				"to": 64800
+			},
+			"text": " And it's best if we figure out how to do that in a way that doesn't compromise on the decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,800",
+				"to": "00:01:07,240"
+			},
+			"offsets": {
+				"from": 64800,
+				"to": 67240
+			},
+			"text": " security of Web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,240",
+				"to": "00:01:14,640"
+			},
+			"offsets": {
+				"from": 67240,
+				"to": 74640
+			},
+			"text": " So we want to get the Web3, but with an experience that's very familiar and it's sort of a -- you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,640",
+				"to": "00:01:21,040"
+			},
+			"offsets": {
+				"from": 74640,
+				"to": 81040
+			},
+			"text": " don't really have to know what's going on behind the scenes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,040",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 81040,
+				"to": 88000
+			},
+			"text": " So the next step is clearing the path to mass adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:32,760"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 92760
+			},
+			"text": " And we have like three phases for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,760",
+				"to": "00:01:39,480"
+			},
+			"offsets": {
+				"from": 92760,
+				"to": 99480
+			},
+			"text": " The first one, creating the gas station network essentially allows users to interact with"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,480",
+				"to": "00:01:47,680"
+			},
+			"offsets": {
+				"from": 99480,
+				"to": 107680
+			},
+			"text": " the Ethereum blockchain without needing to worry about having to pay gas for transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,680",
+				"to": "00:01:48,760"
+			},
+			"offsets": {
+				"from": 107680,
+				"to": 108760
+			},
+			"text": " We abstract that away."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,760",
+				"to": "00:01:52,680"
+			},
+			"offsets": {
+				"from": 108760,
+				"to": 112680
+			},
+			"text": " So it's like we're creating this toll-free road for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,680",
+				"to": "00:01:56,280"
+			},
+			"offsets": {
+				"from": 112680,
+				"to": 116280
+			},
+			"text": " And this is something we deployed live on Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,280",
+				"to": "00:02:04,320"
+			},
+			"offsets": {
+				"from": 116280,
+				"to": 124320
+			},
+			"text": " But it right now requires support of the GSN, the support of the GSN more logic inside the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,320",
+				"to": "00:02:08,240"
+			},
+			"offsets": {
+				"from": 124320,
+				"to": 128240
+			},
+			"text": " contract that's the ones that benefit from the GSN."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,240",
+				"to": "00:02:15,640"
+			},
+			"offsets": {
+				"from": 128240,
+				"to": 135640
+			},
+			"text": " So the next step, which hopefully I'll have time to demo quickly here, is the GSN sponsor"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,640",
+				"to": "00:02:21,520"
+			},
+			"offsets": {
+				"from": 135640,
+				"to": 141520
+			},
+			"text": " model that allows us to extend this toll-free road."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,520",
+				"to": "00:02:27,800"
+			},
+			"offsets": {
+				"from": 141520,
+				"to": 147800
+			},
+			"text": " So it can interact with any contract, including contracts that have already been deployed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,800",
+				"to": "00:02:36,960"
+			},
+			"offsets": {
+				"from": 147800,
+				"to": 156960
+			},
+			"text": " which are the big contracts right now that are getting some usage like the MakerDAO contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,960",
+				"to": "00:02:42,280"
+			},
+			"offsets": {
+				"from": 156960,
+				"to": 162280
+			},
+			"text": " Otherwise if we don't figure out how to do this, then adoption for this new standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,280",
+				"to": "00:02:46,760"
+			},
+			"offsets": {
+				"from": 162280,
+				"to": 166760
+			},
+			"text": " would be dramatically slowed down because we would have to wait until everybody redeploys"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,760",
+				"to": "00:02:48,800"
+			},
+			"offsets": {
+				"from": 166760,
+				"to": 168800
+			},
+			"text": " their contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,800",
+				"to": "00:02:55,680"
+			},
+			"offsets": {
+				"from": 168800,
+				"to": 175680
+			},
+			"text": " Now what's interesting is that we figured out how to extend the GSN to existing contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,680",
+				"to": "00:03:02,440"
+			},
+			"offsets": {
+				"from": 175680,
+				"to": 182440
+			},
+			"text": " in a way that also allows us to solve one of the cybersecurity issues that are also road"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,440",
+				"to": "00:03:03,720"
+			},
+			"offsets": {
+				"from": 182440,
+				"to": 183720
+			},
+			"text": " block to mass adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,720",
+				"to": "00:03:10,280"
+			},
+			"offsets": {
+				"from": 183720,
+				"to": 190280
+			},
+			"text": " So right now, if you want to benefit from decentralization, you need to deal with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,280",
+				"to": "00:03:16,160"
+			},
+			"offsets": {
+				"from": 190280,
+				"to": 196160
+			},
+			"text": " complications of not only having to pay for gas, but also understanding key management"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,160",
+				"to": "00:03:21,640"
+			},
+			"offsets": {
+				"from": 196160,
+				"to": 201640
+			},
+			"text": " and worrying about the security of your devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,640",
+				"to": "00:03:27,240"
+			},
+			"offsets": {
+				"from": 201640,
+				"to": 207240
+			},
+			"text": " And we think it's possible to create a new standard where that is not a concern."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,240",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 207240,
+				"to": 217000
+			},
+			"text": " And we have this as a working POC right now that's going through security validation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:44,480"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 224480
+			},
+			"text": " And the goal is to establish a wide alliance of support so everyone can benefit from this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,480",
+				"to": "00:03:49,120"
+			},
+			"offsets": {
+				"from": 224480,
+				"to": 229120
+			},
+			"text": " And you don't have to be a crypto nerd or a cybersecurity expert to use all this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,120",
+				"to": "00:03:54,440"
+			},
+			"offsets": {
+				"from": 229120,
+				"to": 234440
+			},
+			"text": " So essentially, the users in the system are creating their interacting directly with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,440",
+				"to": "00:03:58,240"
+			},
+			"offsets": {
+				"from": 234440,
+				"to": 238240
+			},
+			"text": " gas station network and then they're being routed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,240",
+				"to": "00:04:02,600"
+			},
+			"offsets": {
+				"from": 238240,
+				"to": 242600
+			},
+			"text": " Their gas fees are being paid through GSN sponsors."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,600",
+				"to": "00:04:06,560"
+			},
+			"offsets": {
+				"from": 242600,
+				"to": 246560
+			},
+			"text": " This could be infrastructure providers like Infura that now get to monetize all their"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,560",
+				"to": "00:04:07,720"
+			},
+			"offsets": {
+				"from": 246560,
+				"to": 247720
+			},
+			"text": " traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,720",
+				"to": "00:04:18,240"
+			},
+			"offsets": {
+				"from": 247720,
+				"to": 258240
+			},
+			"text": " It could be wallet providers or it could be smart contract protocols like MakerDAU."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,240",
+				"to": "00:04:25,040"
+			},
+			"offsets": {
+				"from": 258240,
+				"to": 265040
+			},
+			"text": " And the demo I'll be showing will be a collaboration that we have with MakerDAU that allows gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,040",
+				"to": "00:04:26,960"
+			},
+			"offsets": {
+				"from": 265040,
+				"to": 266960
+			},
+			"text": " to be paid and died."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,960",
+				"to": "00:04:34,760"
+			},
+			"offsets": {
+				"from": 266960,
+				"to": 274760
+			},
+			"text": " And this would work in principle with any token that has a Uniswap, ETH trading pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,760",
+				"to": "00:04:43,840"
+			},
+			"offsets": {
+				"from": 274760,
+				"to": 283840
+			},
+			"text": " So then you're routing through the GSN and then the sponsors are paying for the gas and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,840",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 283840,
+				"to": 286000
+			},
+			"text": " they might be charging you and Fiat."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:49,080"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 289080
+			},
+			"text": " And to get this to work, you have to represent the user on chain somehow."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,080",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 289080,
+				"to": 292000
+			},
+			"text": " This is where the sponsored user vehicles come in."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:59,960"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 299960
+			},
+			"text": " Essentially, we're putting everybody on this toll-free road by creating this proxy account"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,960",
+				"to": "00:05:06,760"
+			},
+			"offsets": {
+				"from": 299960,
+				"to": 306760
+			},
+			"text": " for them that they interact with everything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,760",
+				"to": "00:05:12,320"
+			},
+			"offsets": {
+				"from": 306760,
+				"to": 312320
+			},
+			"text": " Every other contract, there's an opportunity there to introduce some neat features."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,320",
+				"to": "00:05:16,600"
+			},
+			"offsets": {
+				"from": 312320,
+				"to": 316600
+			},
+			"text": " So the gas station network is done and the sponsored user vehicles are something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,600",
+				"to": "00:05:17,600"
+			},
+			"offsets": {
+				"from": 316600,
+				"to": 317600
+			},
+			"text": " we're working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,600",
+				"to": "00:05:19,840"
+			},
+			"offsets": {
+				"from": 317600,
+				"to": 319840
+			},
+			"text": " So just a quick recap."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,840",
+				"to": "00:05:22,920"
+			},
+			"offsets": {
+				"from": 319840,
+				"to": 322920
+			},
+			"text": " DAP onboarding was a mess before the gas station network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,920",
+				"to": "00:05:30,960"
+			},
+			"offsets": {
+				"from": 322920,
+				"to": 330960
+			},
+			"text": " It took us a month to KYC, link our bank account to an exchange and get ETH to pay for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,960",
+				"to": "00:05:32,480"
+			},
+			"offsets": {
+				"from": 330960,
+				"to": 332480
+			},
+			"text": " first transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,480",
+				"to": "00:05:37,640"
+			},
+			"offsets": {
+				"from": 332480,
+				"to": 337640
+			},
+			"text": " And many users that would be a good fit for the ecosystem don't even have a bank account."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,640",
+				"to": "00:05:42,840"
+			},
+			"offsets": {
+				"from": 337640,
+				"to": 342840
+			},
+			"text": " So if we're talking about banking in the unbanked, that's a major roadblock."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,840",
+				"to": "00:05:46,800"
+			},
+			"offsets": {
+				"from": 342840,
+				"to": 346800
+			},
+			"text": " Many parts of the world, people don't have access to bank accounts, so it would be hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,800",
+				"to": "00:05:48,720"
+			},
+			"offsets": {
+				"from": 346800,
+				"to": 348720
+			},
+			"text": " for them to get ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,720",
+				"to": "00:05:50,800"
+			},
+			"offsets": {
+				"from": 348720,
+				"to": 350800
+			},
+			"text": " So the gas station network, it's very direct."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,800",
+				"to": "00:05:53,960"
+			},
+			"offsets": {
+				"from": 350800,
+				"to": 353960
+			},
+			"text": " Essentially, it's a web to experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,960",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 353960,
+				"to": 359000
+			},
+			"text": " You don't even -- if you don't need ETH, you don't need a wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:04,480"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 364480
+			},
+			"text": " And this is something that is now working live on Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,480",
+				"to": "00:06:08,160"
+			},
+			"offsets": {
+				"from": 364480,
+				"to": 368160
+			},
+			"text": " And our partners have helped us get to that point."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,160",
+				"to": "00:06:14,760"
+			},
+			"offsets": {
+				"from": 368160,
+				"to": 374760
+			},
+			"text": " So the Ethereum Foundation, Consensus, MakerDAO, provided grants, opens up and then security"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,760",
+				"to": "00:06:15,760"
+			},
+			"offsets": {
+				"from": 374760,
+				"to": 375760
+			},
+			"text": " auditing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,760",
+				"to": "00:06:18,080"
+			},
+			"offsets": {
+				"from": 375760,
+				"to": 378080
+			},
+			"text": " Portis have done a lot of the UX work."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,080",
+				"to": "00:06:25,120"
+			},
+			"offsets": {
+				"from": 378080,
+				"to": 385120
+			},
+			"text": " And we have these great demos with burner wallet, thanks to Austin Griffith."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,120",
+				"to": "00:06:29,480"
+			},
+			"offsets": {
+				"from": 385120,
+				"to": 389480
+			},
+			"text": " So quickly running out of time here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,480",
+				"to": "00:06:33,160"
+			},
+			"offsets": {
+				"from": 389480,
+				"to": 393160
+			},
+			"text": " So with the gas station network, instead of interacting directly with Ethereum, you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,160",
+				"to": "00:06:38,520"
+			},
+			"offsets": {
+				"from": 393160,
+				"to": 398520
+			},
+			"text": " be interacting with relays that then routes to GSN or contracts, but then that limits you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,520",
+				"to": "00:06:41,400"
+			},
+			"offsets": {
+				"from": 398520,
+				"to": 401400
+			},
+			"text": " only to contracts that have support for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,400",
+				"to": "00:06:48,920"
+			},
+			"offsets": {
+				"from": 401400,
+				"to": 408920
+			},
+			"text": " So the next step is baking all of the logic for working with the GSN and to a separate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,920",
+				"to": "00:06:51,320"
+			},
+			"offsets": {
+				"from": 408920,
+				"to": 411320
+			},
+			"text": " GSN sponsor contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,320",
+				"to": "00:06:57,160"
+			},
+			"offsets": {
+				"from": 411320,
+				"to": 417160
+			},
+			"text": " And then this contract can route your request to any contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,160",
+				"to": "00:07:02,520"
+			},
+			"offsets": {
+				"from": 417160,
+				"to": 422520
+			},
+			"text": " But because the user is not actually represented on chain, they don't necessarily even have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,520",
+				"to": "00:07:09,080"
+			},
+			"offsets": {
+				"from": 422520,
+				"to": 429080
+			},
+			"text": " a wallet, you need to create an on chain representation for them, which is the user vehicle that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,080",
+				"to": "00:07:12,520"
+			},
+			"offsets": {
+				"from": 429080,
+				"to": 432520
+			},
+			"text": " I've been speaking with, just to keep with the road metaphor."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,520",
+				"to": "00:07:15,280"
+			},
+			"offsets": {
+				"from": 432520,
+				"to": 435280
+			},
+			"text": " And then there, that's an opportunity."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,280",
+				"to": "00:07:20,200"
+			},
+			"offsets": {
+				"from": 435280,
+				"to": 440200
+			},
+			"text": " So the GSN sponsor that allows us to create business models for wallets and infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,200",
+				"to": "00:07:25,800"
+			},
+			"offsets": {
+				"from": 440200,
+				"to": 445800
+			},
+			"text": " providers that currently maybe are trying to figure out their options."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,800",
+				"to": "00:07:31,600"
+			},
+			"offsets": {
+				"from": 445800,
+				"to": 451600
+			},
+			"text": " And essentially this is a way of allowing wallets to charge a small transaction fee in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,600",
+				"to": "00:07:33,120"
+			},
+			"offsets": {
+				"from": 451600,
+				"to": 453120
+			},
+			"text": " a way that actually adds value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,120",
+				"to": "00:07:40,640"
+			},
+			"offsets": {
+				"from": 453120,
+				"to": 460640
+			},
+			"text": " So you could do something like sell your users $5 worth of gas for like $6, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,640",
+				"to": "00:07:43,880"
+			},
+			"offsets": {
+				"from": 460640,
+				"to": 463880
+			},
+			"text": " And you don't even have to KYC and AML them because you're not sending them ETH, you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,880",
+				"to": "00:07:46,560"
+			},
+			"offsets": {
+				"from": 463880,
+				"to": 466560
+			},
+			"text": " just paying for their gas behind the scenes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,560",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 466560,
+				"to": 469000
+			},
+			"text": " So that should make it a lot easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:52,240"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 472240
+			},
+			"text": " And the DAPs can decide to subsidize their users as part of the onboarding cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,240",
+				"to": "00:07:54,160"
+			},
+			"offsets": {
+				"from": 472240,
+				"to": 474160
+			},
+			"text": " So that's also an option."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,160",
+				"to": "00:07:58,720"
+			},
+			"offsets": {
+				"from": 474160,
+				"to": 478720
+			},
+			"text": " And what's nice is it also solves a key problem in getting decentralized privacy mixers to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,720",
+				"to": "00:08:01,240"
+			},
+			"offsets": {
+				"from": 478720,
+				"to": 481240
+			},
+			"text": " work."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,240",
+				"to": "00:08:05,080"
+			},
+			"offsets": {
+				"from": 481240,
+				"to": 485080
+			},
+			"text": " And you have the problem, how do you withdraw from a decentralized privacy mixer if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,080",
+				"to": "00:08:06,560"
+			},
+			"offsets": {
+				"from": 485080,
+				"to": 486560
+			},
+			"text": " don't have an ETH?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,560",
+				"to": "00:08:10,920"
+			},
+			"offsets": {
+				"from": 486560,
+				"to": 490920
+			},
+			"text": " So it looks like we have time for a quick demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,920",
+				"to": "00:08:16,880"
+			},
+			"offsets": {
+				"from": 490920,
+				"to": 496880
+			},
+			"text": " And this is a collaboration with MakerDAU and essentially changing the MakerDAU contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,880",
+				"to": "00:08:18,480"
+			},
+			"offsets": {
+				"from": 496880,
+				"to": 498480
+			},
+			"text": " is too hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,480",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 498480,
+				"to": 508000
+			},
+			"text": " But if we bake all the logic for paying for the gas in ETH, in die, for example, we don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:29,760"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 509760
+			},
+			"text": " have to change the contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,760",
+				"to": "00:08:34,160"
+			},
+			"offsets": {
+				"from": 509760,
+				"to": 514160
+			},
+			"text": " So you might want to do this because it's inconvenient to have to maintain a separate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,160",
+				"to": "00:08:36,080"
+			},
+			"offsets": {
+				"from": 514160,
+				"to": 516080
+			},
+			"text": " balance in an ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,080",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 516080,
+				"to": 522000
+			},
+			"text": " If you already have die and you have uniswap support for it, why not just figure out a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:45,800"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 525800
+			},
+			"text": " way to take care of that, which is what we've done."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,800",
+				"to": "00:08:51,960"
+			},
+			"offsets": {
+				"from": 525800,
+				"to": 531960
+			},
+			"text": " So essentially you have this specialized die sponsor and you're committing to paying for"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,960",
+				"to": "00:08:58,840"
+			},
+			"offsets": {
+				"from": 531960,
+				"to": 538840
+			},
+			"text": " your gas in die and it takes your die and it swaps it out for ETH, it pays for the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,840",
+				"to": "00:09:01,240"
+			},
+			"offsets": {
+				"from": 538840,
+				"to": 541240
+			},
+			"text": " and gives you the remainder."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,240",
+				"to": "00:09:04,760"
+			},
+			"offsets": {
+				"from": 541240,
+				"to": 544760
+			},
+			"text": " And I think I have exactly time to do a demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,760",
+				"to": "00:09:05,960"
+			},
+			"offsets": {
+				"from": 544760,
+				"to": 545960
+			},
+			"text": " Hopefully this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,960",
+				"to": "00:09:10,400"
+			},
+			"offsets": {
+				"from": 545960,
+				"to": 550400
+			},
+			"text": " This is not a given."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,400",
+				"to": "00:09:11,400"
+			},
+			"offsets": {
+				"from": 550400,
+				"to": 551400
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,400",
+				"to": "00:09:15,680"
+			},
+			"offsets": {
+				"from": 551400,
+				"to": 555680
+			},
+			"text": " So this is an Etherless wallet demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,680",
+				"to": "00:09:18,560"
+			},
+			"offsets": {
+				"from": 555680,
+				"to": 558560
+			},
+			"text": " It is right now I'm going to be doing this on Rinkaby because it's going to be very hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,560",
+				"to": "00:09:23,400"
+			},
+			"offsets": {
+				"from": 558560,
+				"to": 563400
+			},
+			"text": " to do this on Mainnet right now with the demand on Shane."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,400",
+				"to": "00:09:24,840"
+			},
+			"offsets": {
+				"from": 563400,
+				"to": 564840
+			},
+			"text": " So there's no ETH here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,840",
+				"to": "00:09:25,840"
+			},
+			"offsets": {
+				"from": 564840,
+				"to": 565840
+			},
+			"text": " There's no tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,840",
+				"to": "00:09:32,120"
+			},
+			"offsets": {
+				"from": 565840,
+				"to": 572120
+			},
+			"text": " This is just a signing account and we wouldn't necessarily even need MetaMask to do the signing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,120",
+				"to": "00:09:35,920"
+			},
+			"offsets": {
+				"from": 572120,
+				"to": 575920
+			},
+			"text": " We could bake the logic into some other part of the application but this is convenient"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,920",
+				"to": "00:09:37,440"
+			},
+			"offsets": {
+				"from": 575920,
+				"to": 577440
+			},
+			"text": " for demo purposes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,440",
+				"to": "00:09:44,520"
+			},
+			"offsets": {
+				"from": 577440,
+				"to": 584520
+			},
+			"text": " And then I'm going to be transferring to this other wallet, which also doesn't have ETH,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,520",
+				"to": "00:09:52,160"
+			},
+			"offsets": {
+				"from": 584520,
+				"to": 592160
+			},
+			"text": " and I'm going to be transferring one basic attention token."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,160",
+				"to": "00:09:54,600"
+			},
+			"offsets": {
+				"from": 592160,
+				"to": 594600
+			},
+			"text": " So one bat."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,600",
+				"to": "00:09:57,360"
+			},
+			"offsets": {
+				"from": 594600,
+				"to": 597360
+			},
+			"text": " And the fees will be paid for in die."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,360",
+				"to": "00:10:00,760"
+			},
+			"offsets": {
+				"from": 597360,
+				"to": 600760
+			},
+			"text": " So this is a real transaction right now on the Rinkaby testnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,760",
+				"to": "00:10:03,920"
+			},
+			"offsets": {
+				"from": 600760,
+				"to": 603920
+			},
+			"text": " MetaMask asks me to sign the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,920",
+				"to": "00:10:06,640"
+			},
+			"offsets": {
+				"from": 603920,
+				"to": 606640
+			},
+			"text": " I don't have any ETH so it's just a signing function."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,640",
+				"to": "00:10:09,560"
+			},
+			"offsets": {
+				"from": 606640,
+				"to": 609560
+			},
+			"text": " Already ran out of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,560",
+				"to": "00:10:12,320"
+			},
+			"offsets": {
+				"from": 609560,
+				"to": 612320
+			},
+			"text": " And I won't wait for this to mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,320",
+				"to": "00:10:15,640"
+			},
+			"offsets": {
+				"from": 612320,
+				"to": 615640
+			},
+			"text": " I'll show you what this looks like when it is mined."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,640",
+				"to": "00:10:19,400"
+			},
+			"offsets": {
+				"from": 615640,
+				"to": 619400
+			},
+			"text": " So essentially the transaction is not coming from the user because user doesn't necessarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,400",
+				"to": "00:10:21,080"
+			},
+			"offsets": {
+				"from": 619400,
+				"to": 621080
+			},
+			"text": " have anything on Shane."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,080",
+				"to": "00:10:26,760"
+			},
+			"offsets": {
+				"from": 621080,
+				"to": 626760
+			},
+			"text": " It's actually coming from one of the GSN relays and then that's being routed to another part"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,760",
+				"to": "00:10:30,480"
+			},
+			"offsets": {
+				"from": 626760,
+				"to": 630480
+			},
+			"text": " of the relay hub contract, which is part of the GSN."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,480",
+				"to": "00:10:37,760"
+			},
+			"offsets": {
+				"from": 630480,
+				"to": 637760
+			},
+			"text": " Then if you see down below here, then the user is paying for the gas, like sending the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,760",
+				"to": "00:10:43,920"
+			},
+			"offsets": {
+				"from": 637760,
+				"to": 643920
+			},
+			"text": " GSN die sponsor $1.4 as a maximum gas prepayment."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,920",
+				"to": "00:10:45,560"
+			},
+			"offsets": {
+				"from": 643920,
+				"to": 645560
+			},
+			"text": " And we actually transfer the bat."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,560",
+				"to": "00:10:47,840"
+			},
+			"offsets": {
+				"from": 645560,
+				"to": 647840
+			},
+			"text": " And then it turns out the transaction was a lot cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,840",
+				"to": "00:10:51,040"
+			},
+			"offsets": {
+				"from": 647840,
+				"to": 651040
+			},
+			"text": " It just cost $0.09."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,040",
+				"to": "00:10:53,520"
+			},
+			"offsets": {
+				"from": 651040,
+				"to": 653520
+			},
+			"text": " So we charge a transaction fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,520",
+				"to": "00:10:57,600"
+			},
+			"offsets": {
+				"from": 653520,
+				"to": 657600
+			},
+			"text": " We give the user $1.29 back."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,600",
+				"to": "00:11:03,200"
+			},
+			"offsets": {
+				"from": 657600,
+				"to": 663200
+			},
+			"text": " And we swap out $0.15 for ETH to pay all the participants in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,200",
+				"to": "00:11:04,200"
+			},
+			"offsets": {
+				"from": 663200,
+				"to": 664200
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,200",
+				"to": "00:11:05,480"
+			},
+			"offsets": {
+				"from": 664200,
+				"to": 665480
+			},
+			"text": " It just works."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,480",
+				"to": "00:11:08,880"
+			},
+			"offsets": {
+				"from": 665480,
+				"to": 668880
+			},
+			"text": " And maybe, yeah, the transfer was complete."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,880",
+				"to": "00:11:12,560"
+			},
+			"offsets": {
+				"from": 668880,
+				"to": 672560
+			},
+			"text": " We have a transaction and a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,560",
+				"to": "00:11:15,280"
+			},
+			"offsets": {
+				"from": 672560,
+				"to": 675280
+			},
+			"text": " No ETH was involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,280",
+				"to": "00:11:17,600"
+			},
+			"offsets": {
+				"from": 675280,
+				"to": 677600
+			},
+			"text": " Everything was paid for in die."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,600",
+				"to": "00:11:20,680"
+			},
+			"offsets": {
+				"from": 677600,
+				"to": 680680
+			},
+			"text": " And imagine we could just do this from a browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,680",
+				"to": "00:11:21,680"
+			},
+			"offsets": {
+				"from": 680680,
+				"to": 681680
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,680",
+				"to": "00:11:22,680"
+			},
+			"offsets": {
+				"from": 681680,
+				"to": 682680
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,680",
+				"to": "00:11:26,680"
+			},
+			"offsets": {
+				"from": 682680,
+				"to": 686680
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,680",
+				"to": "00:11:36,680"
+			},
+			"offsets": {
+				"from": 686680,
+				"to": 696680
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,680",
+				"to": "00:11:46,680"
+			},
+			"offsets": {
+				"from": 696680,
+				"to": 706680
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,680",
+				"to": "00:11:56,680"
+			},
+			"offsets": {
+				"from": 706680,
+				"to": 716680
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,680",
+				"to": "00:12:06,680"
+			},
+			"offsets": {
+				"from": 716680,
+				"to": 726680
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

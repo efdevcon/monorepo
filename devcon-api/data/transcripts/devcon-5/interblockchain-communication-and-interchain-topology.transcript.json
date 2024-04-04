@@ -1,0 +1,1803 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:09,440"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 9440
+			},
+			"text": " I'm Chris. I work for Tendermint Research and I'm going to talk a bit about and I'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,440",
+				"to": "00:00:13,160"
+			},
+			"offsets": {
+				"from": 9440,
+				"to": 13160
+			},
+			"text": " explain what the terms mean. Don't worry. Inter-blockchain communication and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,160",
+				"to": "00:00:19,320"
+			},
+			"offsets": {
+				"from": 13160,
+				"to": 19320
+			},
+			"text": " topology of the interchange. The polycentric interchange is already here. Let's unpack"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,320",
+				"to": "00:00:26,760"
+			},
+			"offsets": {
+				"from": 19320,
+				"to": 26760
+			},
+			"text": " this. In the past few years, we've seen what I like to call a Cambrian explosion of blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,760",
+				"to": "00:00:31,880"
+			},
+			"offsets": {
+				"from": 26760,
+				"to": 31880
+			},
+			"text": " It's continuing. Even more, several new protocols were announced at this event. One hypothesis"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,880",
+				"to": "00:00:38,320"
+			},
+			"offsets": {
+				"from": 31880,
+				"to": 38320
+			},
+			"text": " says that these blockchains will be selected out and slowly converge to a few single"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,320",
+				"to": "00:00:43,200"
+			},
+			"offsets": {
+				"from": 38320,
+				"to": 43200
+			},
+			"text": " ledgers, which handle all of the state transitions, all of the currency transactions, all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,200",
+				"to": "00:00:50,520"
+			},
+			"offsets": {
+				"from": 43200,
+				"to": 50520
+			},
+			"text": " the future complex decentralized financial protocols, etc. Perhaps. But another hypothesis"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,520",
+				"to": "00:00:55,720"
+			},
+			"offsets": {
+				"from": 50520,
+				"to": 55720
+			},
+			"text": " says that the interchange will continue to branch outwards, that new protocols will continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,720",
+				"to": "00:01:00,760"
+			},
+			"offsets": {
+				"from": 55720,
+				"to": 60760
+			},
+			"text": " to be built, which can specialize on different sorts of use cases, that new assets will continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,760",
+				"to": "00:01:05,640"
+			},
+			"offsets": {
+				"from": 60760,
+				"to": 65640
+			},
+			"text": " to come into existence, that assets and protocols will perhaps dissociate somewhat where an"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,640",
+				"to": "00:01:10,920"
+			},
+			"offsets": {
+				"from": 65640,
+				"to": 70920
+			},
+			"text": " asset can retain its logical identity while living on a different and perhaps improved"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,920",
+				"to": "00:01:17,440"
+			},
+			"offsets": {
+				"from": 70920,
+				"to": 77440
+			},
+			"text": " protocol. That's what I mean by the interchange. This set of ledgers fulfilling a set of different"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,440",
+				"to": "00:01:29,560"
+			},
+			"offsets": {
+				"from": 77440,
+				"to": 89560
+			},
+			"text": " use cases. Why might we want this? There are a lot of advantages to having separate blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,560",
+				"to": "00:01:35,520"
+			},
+			"offsets": {
+				"from": 89560,
+				"to": 95520
+			},
+			"text": " as opposed to a few single ones. One advantage is versatility. Different protocols can focus"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,520",
+				"to": "00:01:40,800"
+			},
+			"offsets": {
+				"from": 95520,
+				"to": 100800
+			},
+			"text": " on different use cases. They can optimize their state machines, optimize their educational"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,800",
+				"to": "00:01:46,160"
+			},
+			"offsets": {
+				"from": 100800,
+				"to": 106160
+			},
+			"text": " materials, focus their community, focus their onboarding, focus their user experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,160",
+				"to": "00:01:52,440"
+			},
+			"offsets": {
+				"from": 106160,
+				"to": 112440
+			},
+			"text": " and solving certain specific problems really well as opposed to solving a lot of problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,440",
+				"to": "00:01:59,760"
+			},
+			"offsets": {
+				"from": 112440,
+				"to": 119760
+			},
+			"text": " That's so great. This applies not only to the case of simply building a protocol, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,760",
+				"to": "00:02:05,800"
+			},
+			"offsets": {
+				"from": 119760,
+				"to": 125800
+			},
+			"text": " also to the case of governing it over time. If a single protocol has to cater to a wide"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,800",
+				"to": "00:02:11,280"
+			},
+			"offsets": {
+				"from": 125800,
+				"to": 131280
+			},
+			"text": " diversity of use cases, all of the interests of different users who probably want different"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,280",
+				"to": "00:02:15,720"
+			},
+			"offsets": {
+				"from": 131280,
+				"to": 135720
+			},
+			"text": " things and for whom the protocol moving in different directions would be better or worse"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,720",
+				"to": "00:02:21,320"
+			},
+			"offsets": {
+				"from": 135720,
+				"to": 141320
+			},
+			"text": " at different times, have a hard time agreeing on how to change a protocol over time. That"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,320",
+				"to": "00:02:26,080"
+			},
+			"offsets": {
+				"from": 141320,
+				"to": 146080
+			},
+			"text": " becomes much easier if a use case is more focused. If they can choose to focus their"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,080",
+				"to": "00:02:30,080"
+			},
+			"offsets": {
+				"from": 146080,
+				"to": 150080
+			},
+			"text": " particular protocol and solving one particular problem and if they need a new problem, build"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,080",
+				"to": "00:02:36,640"
+			},
+			"offsets": {
+				"from": 150080,
+				"to": 156640
+			},
+			"text": " a new protocol. Another thing which I think is really important and sometimes under emphasized"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,640",
+				"to": "00:02:43,440"
+			},
+			"offsets": {
+				"from": 156640,
+				"to": 163440
+			},
+			"text": " is minimizing exit costs of distributed ledgers. Right now, many of us, I think, would consider"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,440",
+				"to": "00:02:48,040"
+			},
+			"offsets": {
+				"from": 163440,
+				"to": 168040
+			},
+			"text": " the exit costs of centralized platforms, particularly those which control information to be too"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,040",
+				"to": "00:02:52,880"
+			},
+			"offsets": {
+				"from": 168040,
+				"to": 172880
+			},
+			"text": " high. One of the reason the exit costs of Facebook or Twitter or Google Suite are so"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,880",
+				"to": "00:03:00,320"
+			},
+			"offsets": {
+				"from": 172880,
+				"to": 180320
+			},
+			"text": " high is that there's no possible interoperability. If someone builds a web client which allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,320",
+				"to": "00:03:05,720"
+			},
+			"offsets": {
+				"from": 180320,
+				"to": 185720
+			},
+			"text": " you to access your Gmail data, Google will sue them or shut it down or prevent API access."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,720",
+				"to": "00:03:10,120"
+			},
+			"offsets": {
+				"from": 185720,
+				"to": 190120
+			},
+			"text": " I think we should have the same concern and the same desire to minimize exit costs for"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,120",
+				"to": "00:03:18,800"
+			},
+			"offsets": {
+				"from": 190120,
+				"to": 198800
+			},
+			"text": " ledgers. That means continued asset interoperability. Hard forks can be contentious when they necessarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,800",
+				"to": "00:03:23,720"
+			},
+			"offsets": {
+				"from": 198800,
+				"to": 203720
+			},
+			"text": " diverge when it's not possible for users to continue to use both protocols at once."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,720",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 203720,
+				"to": 210000
+			},
+			"text": " But if hard forks could instead be reconstered under a new mechanism where two different versions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:35,120"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 215120
+			},
+			"text": " of a protocol can continue over time, then people could use one version, retain their"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,120",
+				"to": "00:03:39,320"
+			},
+			"offsets": {
+				"from": 215120,
+				"to": 219320
+			},
+			"text": " asset, other people could choose to switch the new version and retain the same logical"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,320",
+				"to": "00:03:45,320"
+			},
+			"offsets": {
+				"from": 219320,
+				"to": 225320
+			},
+			"text": " continuity moving their assets to and from the original protocol. But in order to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,320",
+				"to": "00:03:50,080"
+			},
+			"offsets": {
+				"from": 225320,
+				"to": 230080
+			},
+			"text": " all of this, we need to wait for these different blockchains in the interchange to talk to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,080",
+				"to": "00:03:56,320"
+			},
+			"offsets": {
+				"from": 230080,
+				"to": 236320
+			},
+			"text": " one another. This way or a way that we've been developing is IBC inter-blockchain communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,320",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 236320,
+				"to": 245000
+			},
+			"text": " IBC is a messaging protocol for the interchange, a general messaging protocol. Let's go back"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:13,160"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 253160
+			},
+			"text": " in time. A few decades to the early Internet when some similar problems were being solved."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,160",
+				"to": "00:04:16,760"
+			},
+			"offsets": {
+				"from": 253160,
+				"to": 256760
+			},
+			"text": " Different machines and often different sort of localized clusters and machines existed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,760",
+				"to": "00:04:22,400"
+			},
+			"offsets": {
+				"from": 256760,
+				"to": 262400
+			},
+			"text": " in different places around the world, particularly in ARPANET, around CERN, in universities in"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,400",
+				"to": "00:04:26,640"
+			},
+			"offsets": {
+				"from": 262400,
+				"to": 266640
+			},
+			"text": " the United States and in Europe and later across the world. And those computers needed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,640",
+				"to": "00:04:31,640"
+			},
+			"offsets": {
+				"from": 266640,
+				"to": 271640
+			},
+			"text": " a way to talk to each other. This was obvious. Many people built protocols to allow these"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,640",
+				"to": "00:04:36,720"
+			},
+			"offsets": {
+				"from": 271640,
+				"to": 276720
+			},
+			"text": " computers to talk to each other. And some of them I listed on this slide. So we'll have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,720",
+				"to": "00:04:44,560"
+			},
+			"offsets": {
+				"from": 276720,
+				"to": 284560
+			},
+			"text": " a quick quiz. Raise your hand and keep it up if you've heard of XNS. Not too many. Apple"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,560",
+				"to": "00:04:55,080"
+			},
+			"offsets": {
+				"from": 284560,
+				"to": 295080
+			},
+			"text": " Talk. A few. ChaosNet. IPX, SPX. IP. Should be just about everyone. If you came to this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,080",
+				"to": "00:05:01,120"
+			},
+			"offsets": {
+				"from": 295080,
+				"to": 301120
+			},
+			"text": " conference, you bought a ticket using the Internet protocol almost certainly. Why? Why"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,120",
+				"to": "00:05:05,880"
+			},
+			"offsets": {
+				"from": 301120,
+				"to": 305880
+			},
+			"text": " were, what, four of these protocols? There were tons more, which I didn't bother to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,880",
+				"to": "00:05:11,840"
+			},
+			"offsets": {
+				"from": 305880,
+				"to": 311840
+			},
+			"text": " list. Why were four of these protocols unsuccessful in connecting all of the computers? Well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,840",
+				"to": "00:05:17,400"
+			},
+			"offsets": {
+				"from": 311840,
+				"to": 317400
+			},
+			"text": " one was. Think there are a few reasons. One is that the Internet protocol was quite general."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,400",
+				"to": "00:05:23,080"
+			},
+			"offsets": {
+				"from": 317400,
+				"to": 323080
+			},
+			"text": " It wasn't specific to a manufacturer or specific to somewhat closed hardware like Apple Talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,080",
+				"to": "00:05:27,600"
+			},
+			"offsets": {
+				"from": 323080,
+				"to": 327600
+			},
+			"text": " It didn't rely on particular network cards. It wasn't encumbered by patents. It was something"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,600",
+				"to": "00:05:33,200"
+			},
+			"offsets": {
+				"from": 327600,
+				"to": 333200
+			},
+			"text": " where anyone could read the open source protocol standard or what was open source in that time"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,200",
+				"to": "00:05:37,720"
+			},
+			"offsets": {
+				"from": 333200,
+				"to": 337720
+			},
+			"text": " and implement their own hardware which supported it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,720",
+				"to": "00:05:44,040"
+			},
+			"offsets": {
+				"from": 337720,
+				"to": 344040
+			},
+			"text": " Protocols like some of these and especially IP are non-contentous. The Internet protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,040",
+				"to": "00:05:48,320"
+			},
+			"offsets": {
+				"from": 344040,
+				"to": 348320
+			},
+			"text": " has a monopoly. There are no other Internet protocols. But it's a beneficial monopoly"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,320",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 348320,
+				"to": 354000
+			},
+			"text": " or benevolent monopoly because using the Internet protocol doesn't prevent anyone from supporting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:58,400"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 358400
+			},
+			"text": " other protocols, it doesn't lock them into a particular token, a particular infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,400",
+				"to": "00:06:03,080"
+			},
+			"offsets": {
+				"from": 358400,
+				"to": 363080
+			},
+			"text": " They just speak this particular language at the edge where they connect to other computers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,080",
+				"to": "00:06:09,520"
+			},
+			"offsets": {
+				"from": 363080,
+				"to": 369520
+			},
+			"text": " We need something similar for blockchains. What does this mean? In the context of blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,520",
+				"to": "00:06:17,040"
+			},
+			"offsets": {
+				"from": 369520,
+				"to": 377040
+			},
+			"text": " interoperability, how do we build this kind of protocol which can fulfill this non-contentous"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,040",
+				"to": "00:06:23,360"
+			},
+			"offsets": {
+				"from": 377040,
+				"to": 383360
+			},
+			"text": " global standard requirement? One needs to be modular. This communications protocol needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,360",
+				"to": "00:06:28,360"
+			},
+			"offsets": {
+				"from": 383360,
+				"to": 388360
+			},
+			"text": " to abstract over the different methods for verifying state of other blockchains. It needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,360",
+				"to": "00:06:35,920"
+			},
+			"offsets": {
+				"from": 388360,
+				"to": 395920
+			},
+			"text": " to create a standard such that blockchains can check the other blockchain's sent messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,920",
+				"to": "00:06:40,680"
+			},
+			"offsets": {
+				"from": 395920,
+				"to": 400680
+			},
+			"text": " Two needs to be local. The stands in contrast to a lot of sharding protocols, which are"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,680",
+				"to": "00:06:45,240"
+			},
+			"offsets": {
+				"from": 400680,
+				"to": 405240
+			},
+			"text": " interesting, it's all the different problem. But sharding protocols tend to require a global"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,240",
+				"to": "00:06:51,440"
+			},
+			"offsets": {
+				"from": 405240,
+				"to": 411440
+			},
+			"text": " topological view. They require that one entity in the set of chains, usually a root chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,440",
+				"to": "00:06:55,080"
+			},
+			"offsets": {
+				"from": 411440,
+				"to": 415080
+			},
+			"text": " or root shard, it's called different things. But one entity in the set of chains has a"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,080",
+				"to": "00:06:59,200"
+			},
+			"offsets": {
+				"from": 415080,
+				"to": 419200
+			},
+			"text": " view at all times of what the other shards are, what they're doing, it knows some sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,200",
+				"to": "00:07:03,640"
+			},
+			"offsets": {
+				"from": 419200,
+				"to": 423640
+			},
+			"text": " of assignment and it can reason about the security properties of that system because"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,640",
+				"to": "00:07:09,680"
+			},
+			"offsets": {
+				"from": 423640,
+				"to": 429680
+			},
+			"text": " it knows what the topology is. For IBC, we don't want to require this. We want to allow"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,680",
+				"to": "00:07:16,080"
+			},
+			"offsets": {
+				"from": 429680,
+				"to": 436080
+			},
+			"text": " the topology to exist amorphously as something that no chain in the system, no chain in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,080",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 436080,
+				"to": 441000
+			},
+			"text": " interchange has to know or reason about in order to use the protocol safely. That's what"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:26,360"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 446360
+			},
+			"text": " we need to do by locality. And finally, this messaging protocol that we create needs to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,360",
+				"to": "00:07:31,400"
+			},
+			"offsets": {
+				"from": 446360,
+				"to": 451400
+			},
+			"text": " be composable. People need to be able to reason about the security properties of simply sending"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,400",
+				"to": "00:07:35,480"
+			},
+			"offsets": {
+				"from": 451400,
+				"to": 455480
+			},
+			"text": " messages and receiving messages just like you could reason about how you send and receive"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,480",
+				"to": "00:07:39,480"
+			},
+			"offsets": {
+				"from": 455480,
+				"to": 459480
+			},
+			"text": " an TCP/IP and then using those properties they need to be able to reason about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,480",
+				"to": "00:07:44,320"
+			},
+			"offsets": {
+				"from": 459480,
+				"to": 464320
+			},
+			"text": " just all properties of complex systems which use those simple components. That's what we"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,320",
+				"to": "00:07:52,720"
+			},
+			"offsets": {
+				"from": 464320,
+				"to": 472720
+			},
+			"text": " mean by composability. To do this, we've built a layered protocol similar to the OSI model"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,720",
+				"to": "00:07:58,960"
+			},
+			"offsets": {
+				"from": 472720,
+				"to": 478960
+			},
+			"text": " of IP. The first set of layers is called the tau or I like to call it, the tau of IBC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,960",
+				"to": "00:08:04,280"
+			},
+			"offsets": {
+				"from": 478960,
+				"to": 484280
+			},
+			"text": " transport, authentication and ordering. The tau of IBC handles getting data physically"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,280",
+				"to": "00:08:08,760"
+			},
+			"offsets": {
+				"from": 484280,
+				"to": 488760
+			},
+			"text": " using off chain processes we call relayers from one blockchain to another or one ledger"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,760",
+				"to": "00:08:14,280"
+			},
+			"offsets": {
+				"from": 488760,
+				"to": 494280
+			},
+			"text": " to another. It handles authentication, creating a standard for how different ledgers can authenticate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,280",
+				"to": "00:08:19,720"
+			},
+			"offsets": {
+				"from": 494280,
+				"to": 499720
+			},
+			"text": " summaries of each other's consensus processes and use those summaries to check that particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,720",
+				"to": "00:08:25,360"
+			},
+			"offsets": {
+				"from": 499720,
+				"to": 505360
+			},
+			"text": " packets were sent or received or not. And it handles ordering, getting packets when desired"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,360",
+				"to": "00:08:33,160"
+			},
+			"offsets": {
+				"from": 505360,
+				"to": 513160
+			},
+			"text": " to the destination in order and exactly in order. I'll have to summarize briefly over"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,160",
+				"to": "00:08:38,720"
+			},
+			"offsets": {
+				"from": 513160,
+				"to": 518720
+			},
+			"text": " this protocol stack so I think I will just use a picture. Consider an IBC packet between"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,720",
+				"to": "00:08:45,080"
+			},
+			"offsets": {
+				"from": 518720,
+				"to": 525080
+			},
+			"text": " two chains. In the protocol as written at the moment, we have this entity called a module"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,080",
+				"to": "00:08:50,240"
+			},
+			"offsets": {
+				"from": 525080,
+				"to": 530240
+			},
+			"text": " which you can understand as being an independent unit of execution running at a ledger. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,240",
+				"to": "00:08:54,760"
+			},
+			"offsets": {
+				"from": 530240,
+				"to": 534760
+			},
+			"text": " this will map to different particular abstractions and different blockchains in the case of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,760",
+				"to": "00:08:59,560"
+			},
+			"offsets": {
+				"from": 534760,
+				"to": 539560
+			},
+			"text": " It will map to a smart contract. In the case of the Cosmos SDK, we call it just a module."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,560",
+				"to": "00:09:04,120"
+			},
+			"offsets": {
+				"from": 539560,
+				"to": 544120
+			},
+			"text": " In the case of substrate, I think it's also called modules or packages or something. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,120",
+				"to": "00:09:11,880"
+			},
+			"offsets": {
+				"from": 544120,
+				"to": 551880
+			},
+			"text": " the concept is the same. So a module on blockchain A will send an IBC packet. That's number one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,880",
+				"to": "00:09:15,880"
+			},
+			"offsets": {
+				"from": 551880,
+				"to": 555880
+			},
+			"text": " It will head to number two, the IBC module which will interpret that packet to determine"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,880",
+				"to": "00:09:20,760"
+			},
+			"offsets": {
+				"from": 555880,
+				"to": 560760
+			},
+			"text": " how to route it. The IBC module will then store it in state. The consensus algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,760",
+				"to": "00:09:28,200"
+			},
+			"offsets": {
+				"from": 560760,
+				"to": 568200
+			},
+			"text": " of blockchain A, that's three, will then commit that transaction, commit to a state route."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,200",
+				"to": "00:09:34,200"
+			},
+			"offsets": {
+				"from": 568200,
+				"to": 574200
+			},
+			"text": " A relay, that's number five. We'll watch blockchain A figure out that an outgoing packet has been"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,200",
+				"to": "00:09:39,680"
+			},
+			"offsets": {
+				"from": 574200,
+				"to": 579680
+			},
+			"text": " sent, then send it onwards in an incoming transaction to blockchain B. When the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,680",
+				"to": "00:09:44,040"
+			},
+			"offsets": {
+				"from": 579680,
+				"to": 584040
+			},
+			"text": " is accepted on blockchain B, that's number seven. The packet will be routed to the IBC"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,040",
+				"to": "00:09:48,360"
+			},
+			"offsets": {
+				"from": 584040,
+				"to": 588360
+			},
+			"text": " module number eight on blockchain B. And the IBC module on blockchain B will parse that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,360",
+				"to": "00:09:52,960"
+			},
+			"offsets": {
+				"from": 588360,
+				"to": 592960
+			},
+			"text": " packet decipher it, determine where it needs to go, and send it on to module B. So all"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,960",
+				"to": "00:09:57,760"
+			},
+			"offsets": {
+				"from": 592960,
+				"to": 597760
+			},
+			"text": " of the packets and packet receive time out handling all of the basic primitives we build"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,760",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 597760,
+				"to": 604000
+			},
+			"text": " in IBC, follow this structure. And the key part that I would emphasize is that it's quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 610000
+			},
+			"text": " generic. The blockchains and modules need to have the ability to verify each other's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:15,640"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 615640
+			},
+			"text": " state. But otherwise, the trust model between these two modules, module A and module B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,640",
+				"to": "00:10:20,400"
+			},
+			"offsets": {
+				"from": 615640,
+				"to": 620400
+			},
+			"text": " is similar to the trust model between two ethereum smart contracts. Module A doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,400",
+				"to": "00:10:24,440"
+			},
+			"offsets": {
+				"from": 620400,
+				"to": 624440
+			},
+			"text": " need to reason about any of the other modules running on blockchain A. Module B doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,440",
+				"to": "00:10:29,480"
+			},
+			"offsets": {
+				"from": 624440,
+				"to": 629480
+			},
+			"text": " need to reason about any of the other modules running on blockchain B or blockchain A. They"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,480",
+				"to": "00:10:33,960"
+			},
+			"offsets": {
+				"from": 629480,
+				"to": 633960
+			},
+			"text": " can simply, once they establish this secure communications channel between each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,960",
+				"to": "00:10:38,080"
+			},
+			"offsets": {
+				"from": 633960,
+				"to": 638080
+			},
+			"text": " send and receive packets and reason about this local system. Everything contained on"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,080",
+				"to": "00:10:42,040"
+			},
+			"offsets": {
+				"from": 638080,
+				"to": 642040
+			},
+			"text": " this diagram is sufficient. The understanding of it is sufficient to reason about the security"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,040",
+				"to": "00:10:53,680"
+			},
+			"offsets": {
+				"from": 642040,
+				"to": 653680
+			},
+			"text": " of IBC. What needs to come next, we're calling the application layer. This is a little analogous"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,680",
+				"to": "00:11:02,480"
+			},
+			"offsets": {
+				"from": 653680,
+				"to": 662480
+			},
+			"text": " to ERC standards in Ethereum, standards for call data. We've built IBC to be payload agnostic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,480",
+				"to": "00:11:08,960"
+			},
+			"offsets": {
+				"from": 662480,
+				"to": 668960
+			},
+			"text": " such that when packets are relayed, sent around, verified, handled and timeouts by the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,960",
+				"to": "00:11:13,160"
+			},
+			"offsets": {
+				"from": 668960,
+				"to": 673160
+			},
+			"text": " the protocol implementations don't need to understand what the data in those packets"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,160",
+				"to": "00:11:17,960"
+			},
+			"offsets": {
+				"from": 673160,
+				"to": 677960
+			},
+			"text": " mean. That only needs to be understood at the edges, needs to be understood by the module,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,960",
+				"to": "00:11:22,120"
+			},
+			"offsets": {
+				"from": 677960,
+				"to": 682120
+			},
+			"text": " sending or receiving these packets, dealing with how they should be interpreted and what"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,120",
+				"to": "00:11:30,040"
+			},
+			"offsets": {
+				"from": 682120,
+				"to": 690040
+			},
+			"text": " the semantics of particular packet data are. In order to standardize this across the ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,040",
+				"to": "00:11:34,840"
+			},
+			"offsets": {
+				"from": 690040,
+				"to": 694840
+			},
+			"text": " again, in a non-contentious fashion, we will need a set of application layer packet encoding"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,840",
+				"to": "00:11:39,600"
+			},
+			"offsets": {
+				"from": 694840,
+				"to": 699600
+			},
+			"text": " and semantic standards. Some of these can probably build off. Some of the work with Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,600",
+				"to": "00:11:44,920"
+			},
+			"offsets": {
+				"from": 699600,
+				"to": 704920
+			},
+			"text": " is done with ERC standards for call data between contracts. We hope to collaborate as"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,920",
+				"to": "00:11:56,400"
+			},
+			"offsets": {
+				"from": 704920,
+				"to": 716400
+			},
+			"text": " much as possible. Some of them will probably be different. We'll be opening up different"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,400",
+				"to": "00:12:02,960"
+			},
+			"offsets": {
+				"from": 716400,
+				"to": 722960
+			},
+			"text": " use cases in things like cross-chain account abstraction, which someone recently submitted"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,960",
+				"to": "00:12:08,800"
+			},
+			"offsets": {
+				"from": 722960,
+				"to": 728800
+			},
+			"text": " a pull request for to the IBC spec repository, which allows an account on one chain to control"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,800",
+				"to": "00:12:13,760"
+			},
+			"offsets": {
+				"from": 728800,
+				"to": 733760
+			},
+			"text": " the actions to send transactions on behalf of an account on another chain through IBC. Simple"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,760",
+				"to": "00:12:21,320"
+			},
+			"offsets": {
+				"from": 733760,
+				"to": 741320
+			},
+			"text": " use cases between two blockchains. You need to account for supply. More complex use cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,320",
+				"to": "00:12:27,560"
+			},
+			"offsets": {
+				"from": 741320,
+				"to": 747560
+			},
+			"text": " we expect will emerge over time, including things that look like sharding but are architecturally"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,560",
+				"to": "00:12:33,160"
+			},
+			"offsets": {
+				"from": 747560,
+				"to": 753160
+			},
+			"text": " a little different. If you have mutually comprehensible VMs on two different chains, you can relay"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,160",
+				"to": "00:12:39,840"
+			},
+			"offsets": {
+				"from": 753160,
+				"to": 759840
+			},
+			"text": " code between them through IBC. You could use this along the side, an algorithm for determining"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,840",
+				"to": "00:12:44,160"
+			},
+			"offsets": {
+				"from": 759840,
+				"to": 764160
+			},
+			"text": " how to relay code over time, maybe some sort of load balancing. You could use this to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,160",
+				"to": "00:12:48,920"
+			},
+			"offsets": {
+				"from": 764160,
+				"to": 768920
+			},
+			"text": " protocols which look like sharding, but they still have this local security reasoning."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,920",
+				"to": "00:12:53,840"
+			},
+			"offsets": {
+				"from": 768920,
+				"to": 773840
+			},
+			"text": " You only need to reason about the blockchains. You're directly talking to over IBC. No one"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,840",
+				"to": "00:12:59,560"
+			},
+			"offsets": {
+				"from": 773840,
+				"to": 779560
+			},
+			"text": " needs to reason about the topology of the whole network. All of this work is online."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,560",
+				"to": "00:13:06,200"
+			},
+			"offsets": {
+				"from": 779560,
+				"to": 786200
+			},
+			"text": " You can find it at github.com/cosmos/ics. We recently released released candidate four"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,200",
+				"to": "00:13:12,360"
+			},
+			"offsets": {
+				"from": 786200,
+				"to": 792360
+			},
+			"text": " of the IBC spec. I would stress that it's not done. We are waiting on a few auditors"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,360",
+				"to": "00:13:16,640"
+			},
+			"offsets": {
+				"from": 792360,
+				"to": 796640
+			},
+			"text": " to get back to us and of course welcome any feedback or questions trying to test with"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,640",
+				"to": "00:13:22,440"
+			},
+			"offsets": {
+				"from": 796640,
+				"to": 802440
+			},
+			"text": " several possible blockchains which aim to utilize IBC. But it is definitely in a state"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,440",
+				"to": "00:13:26,280"
+			},
+			"offsets": {
+				"from": 802440,
+				"to": 806280
+			},
+			"text": " where you can read it and understand what we're trying to achieve with this protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,280",
+				"to": "00:13:32,280"
+			},
+			"offsets": {
+				"from": 806280,
+				"to": 812280
+			},
+			"text": " why it fulfills, that design criteria of modularity, locality and composability, and how you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,280",
+				"to": "00:13:41,280"
+			},
+			"offsets": {
+				"from": 812280,
+				"to": 821280
+			},
+			"text": " get involved and help. So please do. You found a star. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,280",
+				"to": "00:13:44,280"
+			},
+			"offsets": {
+				"from": 821280,
+				"to": 824280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,280",
+				"to": "00:13:46,280"
+			},
+			"offsets": {
+				"from": 824280,
+				"to": 826280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,280",
+				"to": "00:13:48,280"
+			},
+			"offsets": {
+				"from": 826280,
+				"to": 828280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,280",
+				"to": "00:13:50,280"
+			},
+			"offsets": {
+				"from": 828280,
+				"to": 830280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,280",
+				"to": "00:13:52,280"
+			},
+			"offsets": {
+				"from": 830280,
+				"to": 832280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,280",
+				"to": "00:13:54,280"
+			},
+			"offsets": {
+				"from": 832280,
+				"to": 834280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,280",
+				"to": "00:13:56,280"
+			},
+			"offsets": {
+				"from": 834280,
+				"to": 836280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,280",
+				"to": "00:13:58,280"
+			},
+			"offsets": {
+				"from": 836280,
+				"to": 838280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,280",
+				"to": "00:14:00,280"
+			},
+			"offsets": {
+				"from": 838280,
+				"to": 840280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,280",
+				"to": "00:14:02,280"
+			},
+			"offsets": {
+				"from": 840280,
+				"to": 842280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,280",
+				"to": "00:14:04,280"
+			},
+			"offsets": {
+				"from": 842280,
+				"to": 844280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,280",
+				"to": "00:14:06,280"
+			},
+			"offsets": {
+				"from": 844280,
+				"to": 846280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,280",
+				"to": "00:14:08,280"
+			},
+			"offsets": {
+				"from": 846280,
+				"to": 848280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,280",
+				"to": "00:14:10,280"
+			},
+			"offsets": {
+				"from": 848280,
+				"to": 850280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,280",
+				"to": "00:14:12,280"
+			},
+			"offsets": {
+				"from": 850280,
+				"to": 852280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,280",
+				"to": "00:14:14,280"
+			},
+			"offsets": {
+				"from": 852280,
+				"to": 854280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,280",
+				"to": "00:14:16,280"
+			},
+			"offsets": {
+				"from": 854280,
+				"to": 856280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,280",
+				"to": "00:14:45,280"
+			},
+			"offsets": {
+				"from": 856280,
+				"to": 885280
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

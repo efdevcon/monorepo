@@ -1,0 +1,4113 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,840"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2840
+			},
+			"text": " For those of you who don't know, my name is Catherine Wu."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,840",
+				"to": "00:00:06,440"
+			},
+			"offsets": {
+				"from": 2840,
+				"to": 6440
+			},
+			"text": " I work for Massari, or a New York-based company,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,440",
+				"to": "00:00:09,280"
+			},
+			"offsets": {
+				"from": 6440,
+				"to": 9280
+			},
+			"text": " that our mission is to provide more transparency"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,280",
+				"to": "00:00:12,480"
+			},
+			"offsets": {
+				"from": 9280,
+				"to": 12480
+			},
+			"text": " into the crypto asset industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,480",
+				"to": "00:00:15,640"
+			},
+			"offsets": {
+				"from": 12480,
+				"to": 15640
+			},
+			"text": " And I am a US lawyer by training."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,640",
+				"to": "00:00:17,960"
+			},
+			"offsets": {
+				"from": 15640,
+				"to": 17960
+			},
+			"text": " I don't practice law, but I do spend a lot of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,960",
+				"to": "00:00:21,960"
+			},
+			"offsets": {
+				"from": 17960,
+				"to": 21960
+			},
+			"text": " thinking about the intersection between law and technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,960",
+				"to": "00:00:23,800"
+			},
+			"offsets": {
+				"from": 21960,
+				"to": 23800
+			},
+			"text": " and also politics."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,800",
+				"to": "00:00:26,480"
+			},
+			"offsets": {
+				"from": 23800,
+				"to": 26480
+			},
+			"text": " So this is an issue that's pretty near and dear to my heart."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,480",
+				"to": "00:00:29,280"
+			},
+			"offsets": {
+				"from": 26480,
+				"to": 29280
+			},
+			"text": " So yeah, so without further ado,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,280",
+				"to": "00:00:31,560"
+			},
+			"offsets": {
+				"from": 29280,
+				"to": 31560
+			},
+			"text": " I'm here today to discuss a topic really"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,560",
+				"to": "00:00:33,560"
+			},
+			"offsets": {
+				"from": 31560,
+				"to": 33560
+			},
+			"text": " that I think would be a little hard to cover"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,560",
+				"to": "00:00:36,800"
+			},
+			"offsets": {
+				"from": 33560,
+				"to": 36800
+			},
+			"text": " in the next 20 minutes, but is nonetheless relevant"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,800",
+				"to": "00:00:39,160"
+			},
+			"offsets": {
+				"from": 36800,
+				"to": 39160
+			},
+			"text": " to a lot of discussions that's been happening,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,160",
+				"to": "00:00:43,280"
+			},
+			"offsets": {
+				"from": 39160,
+				"to": 43280
+			},
+			"text": " both at DevCon and also in the broader crypto ecosystem thus"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,280",
+				"to": "00:00:44,040"
+			},
+			"offsets": {
+				"from": 43280,
+				"to": 44040
+			},
+			"text": " far."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,040",
+				"to": "00:00:48,600"
+			},
+			"offsets": {
+				"from": 44040,
+				"to": 48600
+			},
+			"text": " So let's start with a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,600",
+				"to": "00:00:51,840"
+			},
+			"offsets": {
+				"from": 48600,
+				"to": 51840
+			},
+			"text": " As we think about the future of the crypto space, about web"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,840",
+				"to": "00:00:55,040"
+			},
+			"offsets": {
+				"from": 51840,
+				"to": 55040
+			},
+			"text": " three, about crypto's impact on society,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,040",
+				"to": "00:00:57,120"
+			},
+			"offsets": {
+				"from": 55040,
+				"to": 57120
+			},
+			"text": " I think sometimes it helps to bring the discussion back"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,120",
+				"to": "00:01:01,600"
+			},
+			"offsets": {
+				"from": 57120,
+				"to": 61600
+			},
+			"text": " to basics and think about two questions, which is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,600",
+				"to": "00:01:04,880"
+			},
+			"offsets": {
+				"from": 61600,
+				"to": 64880
+			},
+			"text": " what is it about the current state of the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,880",
+				"to": "00:01:08,480"
+			},
+			"offsets": {
+				"from": 64880,
+				"to": 68480
+			},
+			"text": " and its governance structure do we want to change?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,480",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 68480,
+				"to": 72000
+			},
+			"text": " And secondly, does it need to be changed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:14,880"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 74880
+			},
+			"text": " So my goal, of course, is not to present an answer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,880",
+				"to": "00:01:17,760"
+			},
+			"offsets": {
+				"from": 74880,
+				"to": 77760
+			},
+			"text": " to the above questions, but to develop a framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,760",
+				"to": "00:01:19,760"
+			},
+			"offsets": {
+				"from": 77760,
+				"to": 79760
+			},
+			"text": " and hopefully provide a little bit more nuance"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,760",
+				"to": "00:01:23,480"
+			},
+			"offsets": {
+				"from": 79760,
+				"to": 83480
+			},
+			"text": " into this context that I think can be quite polarizing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,480",
+				"to": "00:01:28,560"
+			},
+			"offsets": {
+				"from": 83480,
+				"to": 88560
+			},
+			"text": " at times, especially online, on Twitter and other forums."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,560",
+				"to": "00:01:30,560"
+			},
+			"offsets": {
+				"from": 88560,
+				"to": 90560
+			},
+			"text": " So with that, here's where I want to kick off"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,560",
+				"to": "00:01:33,400"
+			},
+			"offsets": {
+				"from": 90560,
+				"to": 93400
+			},
+			"text": " the discussion, which is to look at the history,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,400",
+				"to": "00:01:37,720"
+			},
+			"offsets": {
+				"from": 93400,
+				"to": 97720
+			},
+			"text": " the formation, and the evolution of public international law."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,720",
+				"to": "00:01:42,800"
+			},
+			"offsets": {
+				"from": 97720,
+				"to": 102800
+			},
+			"text": " So international law consists of the framework and infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,800",
+				"to": "00:01:45,920"
+			},
+			"offsets": {
+				"from": 102800,
+				"to": 105920
+			},
+			"text": " in which the foreign affairs of states are conducted."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,920",
+				"to": "00:01:50,560"
+			},
+			"offsets": {
+				"from": 105920,
+				"to": 110560
+			},
+			"text": " So that includes the institutions, forms, and procedures"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,560",
+				"to": "00:01:53,240"
+			},
+			"offsets": {
+				"from": 110560,
+				"to": 113240
+			},
+			"text": " for daily activity, the assumptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,240",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 113240,
+				"to": 117000
+			},
+			"text": " on which our society has founded,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:01:59,560"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 119560
+			},
+			"text": " concepts which permeate through those societies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,560",
+				"to": "00:02:02,160"
+			},
+			"offsets": {
+				"from": 119560,
+				"to": 122160
+			},
+			"text": " and the various relations between the society's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,160",
+				"to": "00:02:04,800"
+			},
+			"offsets": {
+				"from": 122160,
+				"to": 124800
+			},
+			"text": " individual members."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,800",
+				"to": "00:02:08,440"
+			},
+			"offsets": {
+				"from": 124800,
+				"to": 128440
+			},
+			"text": " And the infrastructure for all of those agreed upon"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,440",
+				"to": "00:02:12,520"
+			},
+			"offsets": {
+				"from": 128440,
+				"to": 132520
+			},
+			"text": " assumptions and practices, commitments, expectations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,520",
+				"to": "00:02:14,960"
+			},
+			"offsets": {
+				"from": 132520,
+				"to": 134960
+			},
+			"text": " and reliance is all kind of under the umbrella"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,960",
+				"to": "00:02:16,440"
+			},
+			"offsets": {
+				"from": 134960,
+				"to": 136440
+			},
+			"text": " of international law."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,440",
+				"to": "00:02:19,240"
+			},
+			"offsets": {
+				"from": 136440,
+				"to": 139240
+			},
+			"text": " And this is important, I think, to crypto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,240",
+				"to": "00:02:21,960"
+			},
+			"offsets": {
+				"from": 139240,
+				"to": 141960
+			},
+			"text": " because the crypto community is also a global community."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,960",
+				"to": "00:02:23,560"
+			},
+			"offsets": {
+				"from": 141960,
+				"to": 143560
+			},
+			"text": " And I think there are some parallels you can draw"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,560",
+				"to": "00:02:28,160"
+			},
+			"offsets": {
+				"from": 143560,
+				"to": 148160
+			},
+			"text": " between nation states and also various actors in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,160",
+				"to": "00:02:30,520"
+			},
+			"offsets": {
+				"from": 148160,
+				"to": 150520
+			},
+			"text": " So I'm glad I actually went after Santiago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,520",
+				"to": "00:02:32,960"
+			},
+			"offsets": {
+				"from": 150520,
+				"to": 152960
+			},
+			"text": " because I loved the discussion that he provided,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,960",
+				"to": "00:02:35,720"
+			},
+			"offsets": {
+				"from": 152960,
+				"to": 155720
+			},
+			"text": " specifically some of the context that I want to start with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,720",
+				"to": "00:02:37,720"
+			},
+			"offsets": {
+				"from": 155720,
+				"to": 157720
+			},
+			"text": " which when we think about the 30-year war"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,720",
+				"to": "00:02:41,680"
+			},
+			"offsets": {
+				"from": 157720,
+				"to": 161680
+			},
+			"text": " and what ended it, the Treaty of Westphalia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,680",
+				"to": "00:02:44,320"
+			},
+			"offsets": {
+				"from": 161680,
+				"to": 164320
+			},
+			"text": " two important things resulted from that treaty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,320",
+				"to": "00:02:45,960"
+			},
+			"offsets": {
+				"from": 164320,
+				"to": 165960
+			},
+			"text": " which he went to a little bit earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,960",
+				"to": "00:02:49,320"
+			},
+			"offsets": {
+				"from": 165960,
+				"to": 169320
+			},
+			"text": " But first, it's the birth of the modern state"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,320",
+				"to": "00:02:51,960"
+			},
+			"offsets": {
+				"from": 169320,
+				"to": 171960
+			},
+			"text": " from international relations perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,960",
+				"to": "00:02:54,760"
+			},
+			"offsets": {
+				"from": 171960,
+				"to": 174760
+			},
+			"text": " So it became clear that the primary origin"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,760",
+				"to": "00:02:57,600"
+			},
+			"offsets": {
+				"from": 174760,
+				"to": 177600
+			},
+			"text": " of international discourse was the nation state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,600",
+				"to": "00:03:01,440"
+			},
+			"offsets": {
+				"from": 177600,
+				"to": 181440
+			},
+			"text": " And the nation state was also defined in a critical way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,440",
+				"to": "00:03:03,960"
+			},
+			"offsets": {
+				"from": 181440,
+				"to": 183960
+			},
+			"text": " which is that the state is sovereign."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,960",
+				"to": "00:03:07,160"
+			},
+			"offsets": {
+				"from": 183960,
+				"to": 187160
+			},
+			"text": " So what happens in the border of the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,160",
+				"to": "00:03:10,160"
+			},
+			"offsets": {
+				"from": 187160,
+				"to": 190160
+			},
+			"text": " is subject to the control of that state and that state only."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,160",
+				"to": "00:03:12,400"
+			},
+			"offsets": {
+				"from": 190160,
+				"to": 192400
+			},
+			"text": " And secondly, it gave rise to the notion"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,400",
+				"to": "00:03:14,800"
+			},
+			"offsets": {
+				"from": 192400,
+				"to": 194800
+			},
+			"text": " of the sovereign equality of the states."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,800",
+				"to": "00:03:18,440"
+			},
+			"offsets": {
+				"from": 194800,
+				"to": 198440
+			},
+			"text": " So this means that, in theory, no matter the realities"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,440",
+				"to": "00:03:21,840"
+			},
+			"offsets": {
+				"from": 198440,
+				"to": 201840
+			},
+			"text": " of economic disparity, that in the eyes of the law,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,840",
+				"to": "00:03:24,640"
+			},
+			"offsets": {
+				"from": 201840,
+				"to": 204640
+			},
+			"text": " all states are considered or understood to be equal."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,640",
+				"to": "00:03:29,200"
+			},
+			"offsets": {
+				"from": 204640,
+				"to": 209200
+			},
+			"text": " So no state has greater power to sit in judgment over another."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,200",
+				"to": "00:03:32,440"
+			},
+			"offsets": {
+				"from": 209200,
+				"to": 212440
+			},
+			"text": " So this treaty created sovereign states in theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,440",
+				"to": "00:03:34,640"
+			},
+			"offsets": {
+				"from": 212440,
+				"to": 214640
+			},
+			"text": " And from there on out, customary law,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,640",
+				"to": "00:03:36,720"
+			},
+			"offsets": {
+				"from": 214640,
+				"to": 216720
+			},
+			"text": " which is the practice that's reinforced both"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,720",
+				"to": "00:03:40,160"
+			},
+			"offsets": {
+				"from": 216720,
+				"to": 220160
+			},
+			"text": " through actual practice and common understanding"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,160",
+				"to": "00:03:43,680"
+			},
+			"offsets": {
+				"from": 220160,
+				"to": 223680
+			},
+			"text": " of the international community, developed very fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,680",
+				"to": "00:03:46,520"
+			},
+			"offsets": {
+				"from": 223680,
+				"to": 226520
+			},
+			"text": " So customary law is sort of one way"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,520",
+				"to": "00:03:49,920"
+			},
+			"offsets": {
+				"from": 226520,
+				"to": 229920
+			},
+			"text": " in which international law derives this authority from."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,920",
+				"to": "00:03:51,400"
+			},
+			"offsets": {
+				"from": 229920,
+				"to": 231400
+			},
+			"text": " But of course, the question, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,400",
+				"to": "00:03:55,160"
+			},
+			"offsets": {
+				"from": 231400,
+				"to": 235160
+			},
+			"text": " is how exactly does international law on a global scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,160",
+				"to": "00:03:56,680"
+			},
+			"offsets": {
+				"from": 235160,
+				"to": 236680
+			},
+			"text": " even gets enforced?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,680",
+				"to": "00:03:58,200"
+			},
+			"offsets": {
+				"from": 236680,
+				"to": 238200
+			},
+			"text": " So there are two ways, generally speaking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,200",
+				"to": "00:04:00,080"
+			},
+			"offsets": {
+				"from": 238200,
+				"to": 240080
+			},
+			"text": " when it comes to enforcement mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,080",
+				"to": "00:04:02,840"
+			},
+			"offsets": {
+				"from": 240080,
+				"to": 242840
+			},
+			"text": " So the first enforcement mechanisms"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,840",
+				"to": "00:04:05,680"
+			},
+			"offsets": {
+				"from": 242840,
+				"to": 245680
+			},
+			"text": " are pretty clear-cut when it's considered to be vertical."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,680",
+				"to": "00:04:07,360"
+			},
+			"offsets": {
+				"from": 245680,
+				"to": 247360
+			},
+			"text": " So if you take the US, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,360",
+				"to": "00:04:11,320"
+			},
+			"offsets": {
+				"from": 247360,
+				"to": 251320
+			},
+			"text": " so US Congress can impose a rule or a law or a regulation that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,320",
+				"to": "00:04:13,280"
+			},
+			"offsets": {
+				"from": 251320,
+				"to": 253280
+			},
+			"text": " says insider trading is illegal."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,280",
+				"to": "00:04:14,560"
+			},
+			"offsets": {
+				"from": 253280,
+				"to": 254560
+			},
+			"text": " So once they impose that, the law"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,560",
+				"to": "00:04:17,160"
+			},
+			"offsets": {
+				"from": 254560,
+				"to": 257160
+			},
+			"text": " doesn't reinforce about the relevant government regulators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,160",
+				"to": "00:04:20,320"
+			},
+			"offsets": {
+				"from": 257160,
+				"to": 260320
+			},
+			"text": " like the SEC and DOJ, which we've heard plenty about."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,320",
+				"to": "00:04:23,320"
+			},
+			"offsets": {
+				"from": 260320,
+				"to": 263320
+			},
+			"text": " So they have harsh penalties for non-compliance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,320",
+				"to": "00:04:25,280"
+			},
+			"offsets": {
+				"from": 263320,
+				"to": 265280
+			},
+			"text": " And as a result, the individual traders"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,280",
+				"to": "00:04:27,800"
+			},
+			"offsets": {
+				"from": 265280,
+				"to": 267800
+			},
+			"text": " have an incentive to comply with the law"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,800",
+				"to": "00:04:30,880"
+			},
+			"offsets": {
+				"from": 267800,
+				"to": 270880
+			},
+			"text": " and avoid the sort of risks associated with trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,880",
+				"to": "00:04:34,200"
+			},
+			"offsets": {
+				"from": 270880,
+				"to": 274200
+			},
+			"text": " based on material and non-public information."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,200",
+				"to": "00:04:38,960"
+			},
+			"offsets": {
+				"from": 274200,
+				"to": 278960
+			},
+			"text": " Of course, the challenge arises when governance is horizontal."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,960",
+				"to": "00:04:40,960"
+			},
+			"offsets": {
+				"from": 278960,
+				"to": 280960
+			},
+			"text": " So for example, though we have the framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,960",
+				"to": "00:04:43,240"
+			},
+			"offsets": {
+				"from": 280960,
+				"to": 283240
+			},
+			"text": " for international human rights law,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,240",
+				"to": "00:04:45,920"
+			},
+			"offsets": {
+				"from": 283240,
+				"to": 285920
+			},
+			"text": " human rights violations persists around the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,920",
+				"to": "00:04:48,640"
+			},
+			"offsets": {
+				"from": 285920,
+				"to": 288640
+			},
+			"text": " We continue to see gross violations and disregard"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,640",
+				"to": "00:04:51,080"
+			},
+			"offsets": {
+				"from": 288640,
+				"to": 291080
+			},
+			"text": " for basic human rights that are being perpetrated"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,080",
+				"to": "00:04:52,960"
+			},
+			"offsets": {
+				"from": 291080,
+				"to": 292960
+			},
+			"text": " by individuals, by governments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,960",
+				"to": "00:04:55,160"
+			},
+			"offsets": {
+				"from": 292960,
+				"to": 295160
+			},
+			"text": " and by international organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,160",
+				"to": "00:04:57,880"
+			},
+			"offsets": {
+				"from": 295160,
+				"to": 297880
+			},
+			"text": " So here we're faced with the biggest challenge"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,880",
+				"to": "00:05:00,920"
+			},
+			"offsets": {
+				"from": 297880,
+				"to": 300920
+			},
+			"text": " in international law, which is that it's not real,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,920",
+				"to": "00:05:05,440"
+			},
+			"offsets": {
+				"from": 300920,
+				"to": 305440
+			},
+			"text": " or rather how does it get reinforced, or enforced."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,440",
+				"to": "00:05:09,240"
+			},
+			"offsets": {
+				"from": 305440,
+				"to": 309240
+			},
+			"text": " International law does not have like a central lawmaker,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,240",
+				"to": "00:05:11,480"
+			},
+			"offsets": {
+				"from": 309240,
+				"to": 311480
+			},
+			"text": " because we don't have a world police force"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,480",
+				"to": "00:05:12,680"
+			},
+			"offsets": {
+				"from": 311480,
+				"to": 312680
+			},
+			"text": " or a world government."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,680",
+				"to": "00:05:15,880"
+			},
+			"offsets": {
+				"from": 312680,
+				"to": 315880
+			},
+			"text": " And so there's no mandatory vertical governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,880",
+				"to": "00:05:17,080"
+			},
+			"offsets": {
+				"from": 315880,
+				"to": 317080
+			},
+			"text": " in this instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,080",
+				"to": "00:05:20,760"
+			},
+			"offsets": {
+				"from": 317080,
+				"to": 320760
+			},
+			"text": " So there are some scholars out there"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,760",
+				"to": "00:05:23,560"
+			},
+			"offsets": {
+				"from": 320760,
+				"to": 323560
+			},
+			"text": " who are very, very skeptical about international law,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,560",
+				"to": "00:05:26,040"
+			},
+			"offsets": {
+				"from": 323560,
+				"to": 326040
+			},
+			"text": " and they think that the reason why international law"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,040",
+				"to": "00:05:29,080"
+			},
+			"offsets": {
+				"from": 326040,
+				"to": 329080
+			},
+			"text": " doesn't work is because there's an absence"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,080",
+				"to": "00:05:31,600"
+			},
+			"offsets": {
+				"from": 329080,
+				"to": 331600
+			},
+			"text": " of a comprehensive judicial system"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,600",
+				"to": "00:05:35,280"
+			},
+			"offsets": {
+				"from": 331600,
+				"to": 335280
+			},
+			"text": " with compulsory jurisdiction to settle these disputes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,280",
+				"to": "00:05:37,520"
+			},
+			"offsets": {
+				"from": 335280,
+				"to": 337520
+			},
+			"text": " and the absence of a central executive"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,520",
+				"to": "00:05:41,320"
+			},
+			"offsets": {
+				"from": 337520,
+				"to": 341320
+			},
+			"text": " to enforce compliance with judicial system decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,320",
+				"to": "00:05:43,080"
+			},
+			"offsets": {
+				"from": 341320,
+				"to": 343080
+			},
+			"text": " And I actually disagree with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,080",
+				"to": "00:05:45,880"
+			},
+			"offsets": {
+				"from": 343080,
+				"to": 345880
+			},
+			"text": " You know, I think that the emphasis on global courts"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,880",
+				"to": "00:05:48,840"
+			},
+			"offsets": {
+				"from": 345880,
+				"to": 348840
+			},
+			"text": " or a global police force is quite misleading."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,840",
+				"to": "00:05:51,480"
+			},
+			"offsets": {
+				"from": 348840,
+				"to": 351480
+			},
+			"text": " In fact, you know, when you look at the reality of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,480",
+				"to": "00:05:53,520"
+			},
+			"offsets": {
+				"from": 351480,
+				"to": 353520
+			},
+			"text": " international law derives its binding force"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,520",
+				"to": "00:05:57,440"
+			},
+			"offsets": {
+				"from": 353520,
+				"to": 357440
+			},
+			"text": " from sources other than courts, other than police forces."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,440",
+				"to": "00:05:59,120"
+			},
+			"offsets": {
+				"from": 357440,
+				"to": 359120
+			},
+			"text": " States comply with international law"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,120",
+				"to": "00:06:00,720"
+			},
+			"offsets": {
+				"from": 359120,
+				"to": 360720
+			},
+			"text": " out of a number of reasons,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,720",
+				"to": "00:06:04,760"
+			},
+			"offsets": {
+				"from": 360720,
+				"to": 364760
+			},
+			"text": " but a strong one is out of this expectation of reciprocity"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,760",
+				"to": "00:06:07,560"
+			},
+			"offsets": {
+				"from": 364760,
+				"to": 367560
+			},
+			"text": " or re-etaliation if they don't comply,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,560",
+				"to": "00:06:09,880"
+			},
+			"offsets": {
+				"from": 367560,
+				"to": 369880
+			},
+			"text": " or generally out of a belief that a law"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,880",
+				"to": "00:06:13,560"
+			},
+			"offsets": {
+				"from": 369880,
+				"to": 373560
+			},
+			"text": " is morally legitimate and therefore ought to be obeyed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,560",
+				"to": "00:06:16,480"
+			},
+			"offsets": {
+				"from": 373560,
+				"to": 376480
+			},
+			"text": " And so for example, you know, effective sanctions exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,480",
+				"to": "00:06:18,880"
+			},
+			"offsets": {
+				"from": 376480,
+				"to": 378880
+			},
+			"text": " without the need for centralized adjudication"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,880",
+				"to": "00:06:20,840"
+			},
+			"offsets": {
+				"from": 378880,
+				"to": 380840
+			},
+			"text": " or enforcement agencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,840",
+				"to": "00:06:26,240"
+			},
+			"offsets": {
+				"from": 380840,
+				"to": 386240
+			},
+			"text": " But you know, mostly I want to point to the formation"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,240",
+				"to": "00:06:29,440"
+			},
+			"offsets": {
+				"from": 386240,
+				"to": 389440
+			},
+			"text": " of customary international law, which is, like I said earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,440",
+				"to": "00:06:32,640"
+			},
+			"offsets": {
+				"from": 389440,
+				"to": 392640
+			},
+			"text": " the practice of, you know, this is a practice"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,640",
+				"to": "00:06:35,880"
+			},
+			"offsets": {
+				"from": 392640,
+				"to": 395880
+			},
+			"text": " that's reinforced both through a consistent practice"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,880",
+				"to": "00:06:39,720"
+			},
+			"offsets": {
+				"from": 395880,
+				"to": 399720
+			},
+			"text": " and B, common understanding of the international community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,720",
+				"to": "00:06:41,600"
+			},
+			"offsets": {
+				"from": 399720,
+				"to": 401600
+			},
+			"text": " which remains a highly effective one."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,600",
+				"to": "00:06:43,200"
+			},
+			"offsets": {
+				"from": 401600,
+				"to": 403200
+			},
+			"text": " So for the record, I'm not addressing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,200",
+				"to": "00:06:46,240"
+			},
+			"offsets": {
+				"from": 403200,
+				"to": 406240
+			},
+			"text": " like other sources of international, like treaties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,240",
+				"to": "00:06:47,600"
+			},
+			"offsets": {
+				"from": 406240,
+				"to": 407600
+			},
+			"text": " which are kind of more like contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,600",
+				"to": "00:06:49,720"
+			},
+			"offsets": {
+				"from": 407600,
+				"to": 409720
+			},
+			"text": " or written agreements, but rather,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,720",
+				"to": "00:06:51,480"
+			},
+			"offsets": {
+				"from": 409720,
+				"to": 411480
+			},
+			"text": " customary international law are formed"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,480",
+				"to": "00:06:54,200"
+			},
+			"offsets": {
+				"from": 411480,
+				"to": 414200
+			},
+			"text": " from a general and consistent practice of states"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,200",
+				"to": "00:06:57,120"
+			},
+			"offsets": {
+				"from": 414200,
+				"to": 417120
+			},
+			"text": " that is followed by states out of a sense of obligation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,120",
+				"to": "00:06:59,480"
+			},
+			"offsets": {
+				"from": 417120,
+				"to": 419480
+			},
+			"text": " so thinking like what the right thing to do is."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,480",
+				"to": "00:07:01,320"
+			},
+			"offsets": {
+				"from": 419480,
+				"to": 421320
+			},
+			"text": " And that sense of obligation is called"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,320",
+				"to": "00:07:03,840"
+			},
+			"offsets": {
+				"from": 421320,
+				"to": 423840
+			},
+			"text": " opinion geros in like legal terms."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,840",
+				"to": "00:07:07,200"
+			},
+			"offsets": {
+				"from": 423840,
+				"to": 427200
+			},
+			"text": " So examples of that include diplomatic immunity, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,200",
+				"to": "00:07:09,880"
+			},
+			"offsets": {
+				"from": 427200,
+				"to": 429880
+			},
+			"text": " It's agreement and it's consensus among members"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,880",
+				"to": "00:07:12,520"
+			},
+			"offsets": {
+				"from": 429880,
+				"to": 432520
+			},
+			"text": " and states first, and then the establishment"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,520",
+				"to": "00:07:14,440"
+			},
+			"offsets": {
+				"from": 432520,
+				"to": 434440
+			},
+			"text": " of government laws second."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,440",
+				"to": "00:07:16,760"
+			},
+			"offsets": {
+				"from": 434440,
+				"to": 436760
+			},
+			"text": " So, you know, I think a lot of people typically assume"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,760",
+				"to": "00:07:19,400"
+			},
+			"offsets": {
+				"from": 436760,
+				"to": 439400
+			},
+			"text": " that the only binding force or rules are made"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,400",
+				"to": "00:07:23,200"
+			},
+			"offsets": {
+				"from": 439400,
+				"to": 443200
+			},
+			"text": " by legislative and courts, and we tend to forget that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,200",
+				"to": "00:07:26,440"
+			},
+			"offsets": {
+				"from": 443200,
+				"to": 446440
+			},
+			"text": " honestly, you know, law can also be made by a consent"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,440",
+				"to": "00:07:29,080"
+			},
+			"offsets": {
+				"from": 446440,
+				"to": 449080
+			},
+			"text": " that comes from a community of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,080",
+				"to": "00:07:32,560"
+			},
+			"offsets": {
+				"from": 449080,
+				"to": 452560
+			},
+			"text": " without any formal enactment by government entities."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,560",
+				"to": "00:07:35,200"
+			},
+			"offsets": {
+				"from": 452560,
+				"to": 455200
+			},
+			"text": " And in fact, you know, such customs or practices"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,200",
+				"to": "00:07:37,180"
+			},
+			"offsets": {
+				"from": 455200,
+				"to": 457180
+			},
+			"text": " are not even written down sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,180",
+				"to": "00:07:39,040"
+			},
+			"offsets": {
+				"from": 457180,
+				"to": 459040
+			},
+			"text": " So, you know, as an example, we can think"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,040",
+				"to": "00:07:40,500"
+			},
+			"offsets": {
+				"from": 459040,
+				"to": 460500
+			},
+			"text": " of like industry practices, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,500",
+				"to": "00:07:41,960"
+			},
+			"offsets": {
+				"from": 460500,
+				"to": 461960
+			},
+			"text": " Like let's take this out of the nation state"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,960",
+				"to": "00:07:43,480"
+			},
+			"offsets": {
+				"from": 461960,
+				"to": 463480
+			},
+			"text": " for a minute and listening about sports"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,480",
+				"to": "00:07:45,340"
+			},
+			"offsets": {
+				"from": 463480,
+				"to": 465340
+			},
+			"text": " and general like sportsmanship."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,340",
+				"to": "00:07:48,520"
+			},
+			"offsets": {
+				"from": 465340,
+				"to": 468520
+			},
+			"text": " There was a couple of years ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,520",
+				"to": "00:07:51,040"
+			},
+			"offsets": {
+				"from": 468520,
+				"to": 471040
+			},
+			"text": " so when we're talking about like US football,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,040",
+				"to": "00:07:52,600"
+			},
+			"offsets": {
+				"from": 471040,
+				"to": 472600
+			},
+			"text": " I'm not gonna name the team, but, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,600",
+				"to": "00:07:54,360"
+			},
+			"offsets": {
+				"from": 472600,
+				"to": 474360
+			},
+			"text": " there was one US team that was kind of going around"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,360",
+				"to": "00:07:57,600"
+			},
+			"offsets": {
+				"from": 474360,
+				"to": 477600
+			},
+			"text": " and like recording other teams and their practices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,600",
+				"to": "00:07:59,440"
+			},
+			"offsets": {
+				"from": 477600,
+				"to": 479440
+			},
+			"text": " which is not a rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,440",
+				"to": "00:08:02,800"
+			},
+			"offsets": {
+				"from": 479440,
+				"to": 482800
+			},
+			"text": " There's no rule like by the NFL that says you can't do that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,800",
+				"to": "00:08:04,800"
+			},
+			"offsets": {
+				"from": 482800,
+				"to": 484800
+			},
+			"text": " but it's generally understood that you shouldn't do that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,800",
+				"to": "00:08:06,520"
+			},
+			"offsets": {
+				"from": 484800,
+				"to": 486520
+			},
+			"text": " 'cause it's not the right thing to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,520",
+				"to": "00:08:08,140"
+			},
+			"offsets": {
+				"from": 486520,
+				"to": 488140
+			},
+			"text": " Of course, you know, after they started doing that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,140",
+				"to": "00:08:10,940"
+			},
+			"offsets": {
+				"from": 488140,
+				"to": 490940
+			},
+			"text": " I think eventually the NFL then imposed, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,940",
+				"to": "00:08:12,740"
+			},
+			"offsets": {
+				"from": 490940,
+				"to": 492740
+			},
+			"text": " kind of made that like a, okay, you can't do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,740",
+				"to": "00:08:14,300"
+			},
+			"offsets": {
+				"from": 492740,
+				"to": 494300
+			},
+			"text": " to another team."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,300",
+				"to": "00:08:16,420"
+			},
+			"offsets": {
+				"from": 494300,
+				"to": 496420
+			},
+			"text": " But, you know, like to bring that back to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,420",
+				"to": "00:08:18,340"
+			},
+			"offsets": {
+				"from": 496420,
+				"to": 498340
+			},
+			"text": " that's sort of accepted that you don't do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,340",
+				"to": "00:08:21,140"
+			},
+			"offsets": {
+				"from": 498340,
+				"to": 501140
+			},
+			"text": " and teams traditionally have not done this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,140",
+				"to": "00:08:24,460"
+			},
+			"offsets": {
+				"from": 501140,
+				"to": 504460
+			},
+			"text": " And because of this behavior and that's consistent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,460",
+				"to": "00:08:26,260"
+			},
+			"offsets": {
+				"from": 504460,
+				"to": 506260
+			},
+			"text": " it then gets codified later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,260",
+				"to": "00:08:28,700"
+			},
+			"offsets": {
+				"from": 506260,
+				"to": 508700
+			},
+			"text": " And so, you know, like going back to international law,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,700",
+				"to": "00:08:31,100"
+			},
+			"offsets": {
+				"from": 508700,
+				"to": 511100
+			},
+			"text": " like ultimately customary international law"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,100",
+				"to": "00:08:33,820"
+			},
+			"offsets": {
+				"from": 511100,
+				"to": 513820
+			},
+			"text": " is a signal source of both strength and flexibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,820",
+				"to": "00:08:35,860"
+			},
+			"offsets": {
+				"from": 513820,
+				"to": 515860
+			},
+			"text": " for international law."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,860",
+				"to": "00:08:38,780"
+			},
+			"offsets": {
+				"from": 515860,
+				"to": 518780
+			},
+			"text": " And it allows international actors to develop rules"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,780",
+				"to": "00:08:41,520"
+			},
+			"offsets": {
+				"from": 518780,
+				"to": 521520
+			},
+			"text": " for behavior that are sort of informally"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,520",
+				"to": "00:08:44,320"
+			},
+			"offsets": {
+				"from": 521520,
+				"to": 524320
+			},
+			"text": " without the need to resort to a formal lawmaking"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,320",
+				"to": "00:08:47,640"
+			},
+			"offsets": {
+				"from": 524320,
+				"to": 527640
+			},
+			"text": " with a central, a lawmaker with a central body."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,640",
+				"to": "00:08:50,620"
+			},
+			"offsets": {
+				"from": 527640,
+				"to": 530620
+			},
+			"text": " So, what's an example of a consistent practice"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,620",
+				"to": "00:08:53,460"
+			},
+			"offsets": {
+				"from": 530620,
+				"to": 533460
+			},
+			"text": " and common understanding from the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,460",
+				"to": "00:08:55,560"
+			},
+			"offsets": {
+				"from": 533460,
+				"to": 535560
+			},
+			"text": " that we can bring in the crypto space?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,560",
+				"to": "00:08:58,080"
+			},
+			"offsets": {
+				"from": 535560,
+				"to": 538080
+			},
+			"text": " Well, I think first we need standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,080",
+				"to": "00:09:00,560"
+			},
+			"offsets": {
+				"from": 538080,
+				"to": 540560
+			},
+			"text": " So, you know, there's something that I read one time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,560",
+				"to": "00:09:03,460"
+			},
+			"offsets": {
+				"from": 540560,
+				"to": 543460
+			},
+			"text": " which emphasizes the importance of values."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,460",
+				"to": "00:09:06,340"
+			},
+			"offsets": {
+				"from": 543460,
+				"to": 546340
+			},
+			"text": " So, you know, it's possible, or it might be possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,340",
+				"to": "00:09:08,900"
+			},
+			"offsets": {
+				"from": 546340,
+				"to": 548900
+			},
+			"text": " for two equally effective governance systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,900",
+				"to": "00:09:13,580"
+			},
+			"offsets": {
+				"from": 548900,
+				"to": 553580
+			},
+			"text": " to complete, to compete by internalizing different values."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,580",
+				"to": "00:09:16,740"
+			},
+			"offsets": {
+				"from": 553580,
+				"to": 556740
+			},
+			"text": " So, you know, one could perhaps embrace diversity"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,740",
+				"to": "00:09:19,460"
+			},
+			"offsets": {
+				"from": 556740,
+				"to": 559460
+			},
+			"text": " and openness at the cost of some efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,460",
+				"to": "00:09:22,180"
+			},
+			"offsets": {
+				"from": 559460,
+				"to": 562180
+			},
+			"text": " And the other could be optimized for efficiency,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,180",
+				"to": "00:09:24,180"
+			},
+			"offsets": {
+				"from": 562180,
+				"to": 564180
+			},
+			"text": " but for a more sort of like homogeneous set"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,180",
+				"to": "00:09:25,740"
+			},
+			"offsets": {
+				"from": 564180,
+				"to": 565740
+			},
+			"text": " of users and interests."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,740",
+				"to": "00:09:27,940"
+			},
+			"offsets": {
+				"from": 565740,
+				"to": 567940
+			},
+			"text": " So, whether, you know, it's the crypto industry"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,940",
+				"to": "00:09:30,260"
+			},
+			"offsets": {
+				"from": 567940,
+				"to": 570260
+			},
+			"text": " working out a global taxonomy that makes sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,260",
+				"to": "00:09:32,700"
+			},
+			"offsets": {
+				"from": 570260,
+				"to": 572700
+			},
+			"text": " or standardizing the very sort of minimal amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,700",
+				"to": "00:09:35,940"
+			},
+			"offsets": {
+				"from": 572700,
+				"to": 575940
+			},
+			"text": " of disclosures that should be demanded from token projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,940",
+				"to": "00:09:38,700"
+			},
+			"offsets": {
+				"from": 575940,
+				"to": 578700
+			},
+			"text": " whether it's before or after the token sale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,700",
+				"to": "00:09:40,660"
+			},
+			"offsets": {
+				"from": 578700,
+				"to": 580660
+			},
+			"text": " it's about figuring out the values"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,660",
+				"to": "00:09:44,620"
+			},
+			"offsets": {
+				"from": 580660,
+				"to": 584620
+			},
+			"text": " that the community agrees on and pushing those forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,620",
+				"to": "00:09:46,140"
+			},
+			"offsets": {
+				"from": 584620,
+				"to": 586140
+			},
+			"text": " You know, so, bringing this back"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,140",
+				"to": "00:09:49,180"
+			},
+			"offsets": {
+				"from": 586140,
+				"to": 589180
+			},
+			"text": " to the earlier criticisms of international law,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,180",
+				"to": "00:09:51,780"
+			},
+			"offsets": {
+				"from": 589180,
+				"to": 591780
+			},
+			"text": " you know, personally, I think the critics are asking"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,780",
+				"to": "00:09:53,500"
+			},
+			"offsets": {
+				"from": 591780,
+				"to": 593500
+			},
+			"text": " the wrong questions at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,500",
+				"to": "00:09:56,500"
+			},
+			"offsets": {
+				"from": 593500,
+				"to": 596500
+			},
+			"text": " You know, what matters is not whether international law"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,500",
+				"to": "00:09:59,660"
+			},
+			"offsets": {
+				"from": 596500,
+				"to": 599660
+			},
+			"text": " has the exact same legislative, judicial,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,660",
+				"to": "00:10:03,420"
+			},
+			"offsets": {
+				"from": 599660,
+				"to": 603420
+			},
+			"text": " and executive branches that domestic states do internally."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,420",
+				"to": "00:10:06,700"
+			},
+			"offsets": {
+				"from": 603420,
+				"to": 606700
+			},
+			"text": " What matters is whether international law is reflected"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,700",
+				"to": "00:10:09,060"
+			},
+			"offsets": {
+				"from": 606700,
+				"to": 609060
+			},
+			"text": " in the behavior of the states."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,060",
+				"to": "00:10:10,500"
+			},
+			"offsets": {
+				"from": 609060,
+				"to": 610500
+			},
+			"text": " So, you know, it's not whether or not"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,500",
+				"to": "00:10:12,060"
+			},
+			"offsets": {
+				"from": 610500,
+				"to": 612060
+			},
+			"text": " there's a formal judiciary."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,060",
+				"to": "00:10:14,180"
+			},
+			"offsets": {
+				"from": 612060,
+				"to": 614180
+			},
+			"text": " Instead, it's whether disputes are resolved"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,180",
+				"to": "00:10:17,100"
+			},
+			"offsets": {
+				"from": 614180,
+				"to": 617100
+			},
+			"text": " in an orderly, peaceful fashion in accordance"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,100",
+				"to": "00:10:19,540"
+			},
+			"offsets": {
+				"from": 617100,
+				"to": 619540
+			},
+			"text": " with international law, which they mostly are."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,540",
+				"to": "00:10:22,060"
+			},
+			"offsets": {
+				"from": 619540,
+				"to": 622060
+			},
+			"text": " And more importantly, it's not whether about, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,060",
+				"to": "00:10:24,060"
+			},
+			"offsets": {
+				"from": 622060,
+				"to": 624060
+			},
+			"text": " if the law is enforceable or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,060",
+				"to": "00:10:27,500"
+			},
+			"offsets": {
+				"from": 624060,
+				"to": 627500
+			},
+			"text": " The question is whether or not it's de facto being observed"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,500",
+				"to": "00:10:30,740"
+			},
+			"offsets": {
+				"from": 627500,
+				"to": 630740
+			},
+			"text": " and whether it influences the behavior of the states."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,740",
+				"to": "00:10:33,700"
+			},
+			"offsets": {
+				"from": 630740,
+				"to": 633700
+			},
+			"text": " So, nations have generally accepted important limitations"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,700",
+				"to": "00:10:35,140"
+			},
+			"offsets": {
+				"from": 633700,
+				"to": 635140
+			},
+			"text": " on their sovereignty."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,140",
+				"to": "00:10:38,620"
+			},
+			"offsets": {
+				"from": 635140,
+				"to": 638620
+			},
+			"text": " And the result is substantial order that we live in today."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,620",
+				"to": "00:10:41,620"
+			},
+			"offsets": {
+				"from": 638620,
+				"to": 641620
+			},
+			"text": " It's not perfect, it's not optimal, but it's substantial."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,620",
+				"to": "00:10:44,060"
+			},
+			"offsets": {
+				"from": 641620,
+				"to": 644060
+			},
+			"text": " And it's, you know, it works well enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,060",
+				"to": "00:10:45,260"
+			},
+			"offsets": {
+				"from": 644060,
+				"to": 645260
+			},
+			"text": " for you and I to be here today"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,260",
+				"to": "00:10:49,180"
+			},
+			"offsets": {
+				"from": 645260,
+				"to": 649180
+			},
+			"text": " and like, you know, just have the day-to-day workout fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,180",
+				"to": "00:10:51,140"
+			},
+			"offsets": {
+				"from": 649180,
+				"to": 651140
+			},
+			"text": " And so, you know, in reality, I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,140",
+				"to": "00:10:54,580"
+			},
+			"offsets": {
+				"from": 651140,
+				"to": 654580
+			},
+			"text": " the actual international system is a hybrid of two theories."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,580",
+				"to": "00:10:58,420"
+			},
+			"offsets": {
+				"from": 654580,
+				"to": 658420
+			},
+			"text": " One, norms that are formed by treaty and two by consent."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,420",
+				"to": "00:11:00,540"
+			},
+			"offsets": {
+				"from": 658420,
+				"to": 660540
+			},
+			"text": " And so, therefore, the actual international system"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,540",
+				"to": "00:11:03,780"
+			},
+			"offsets": {
+				"from": 660540,
+				"to": 663780
+			},
+			"text": " is a compromise point between those two theories."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,780",
+				"to": "00:11:06,700"
+			},
+			"offsets": {
+				"from": 663780,
+				"to": 666700
+			},
+			"text": " Now, over the kind of, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,700",
+				"to": "00:11:09,180"
+			},
+			"offsets": {
+				"from": 666700,
+				"to": 669180
+			},
+			"text": " just being online over the past, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,180",
+				"to": "00:11:12,620"
+			},
+			"offsets": {
+				"from": 669180,
+				"to": 672620
+			},
+			"text": " year and half being crypto, I overhear conversations"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,620",
+				"to": "00:11:14,820"
+			},
+			"offsets": {
+				"from": 672620,
+				"to": 674820
+			},
+			"text": " that often go something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,820",
+				"to": "00:11:17,460"
+			},
+			"offsets": {
+				"from": 674820,
+				"to": 677460
+			},
+			"text": " We don't give a damn about governments and their laws"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,460",
+				"to": "00:11:19,060"
+			},
+			"offsets": {
+				"from": 677460,
+				"to": 679060
+			},
+			"text": " because we're building web three."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,220",
+				"to": "00:11:22,820"
+			},
+			"offsets": {
+				"from": 680220,
+				"to": 682820
+			},
+			"text": " So, to me, I think that's sort of a misunderstanding"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,820",
+				"to": "00:11:25,740"
+			},
+			"offsets": {
+				"from": 682820,
+				"to": 685740
+			},
+			"text": " of what we're really striving to work towards, you know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,740",
+				"to": "00:11:28,460"
+			},
+			"offsets": {
+				"from": 685740,
+				"to": 688460
+			},
+			"text": " What we're trying to work towards in this space specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,460",
+				"to": "00:11:31,420"
+			},
+			"offsets": {
+				"from": 688460,
+				"to": 691420
+			},
+			"text": " is, you know, we're trying to empower sovereign equality"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,420",
+				"to": "00:11:32,740"
+			},
+			"offsets": {
+				"from": 691420,
+				"to": 692740
+			},
+			"text": " in individuals."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,740",
+				"to": "00:11:35,980"
+			},
+			"offsets": {
+				"from": 692740,
+				"to": 695980
+			},
+			"text": " It's about creative incentives for human cooperation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,980",
+				"to": "00:11:37,820"
+			},
+			"offsets": {
+				"from": 695980,
+				"to": 697820
+			},
+			"text": " and it's about creating good citizenship"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,820",
+				"to": "00:11:39,740"
+			},
+			"offsets": {
+				"from": 697820,
+				"to": 699740
+			},
+			"text": " among the global community."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,740",
+				"to": "00:11:43,180"
+			},
+			"offsets": {
+				"from": 699740,
+				"to": 703180
+			},
+			"text": " Ultimately, governance is a bottom-up approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,180",
+				"to": "00:11:46,740"
+			},
+			"offsets": {
+				"from": 703180,
+				"to": 706740
+			},
+			"text": " Goals in value go hand-in-hand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,740",
+				"to": "00:11:49,780"
+			},
+			"offsets": {
+				"from": 706740,
+				"to": 709780
+			},
+			"text": " but are created from ongoing community consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,780",
+				"to": "00:11:51,580"
+			},
+			"offsets": {
+				"from": 709780,
+				"to": 711580
+			},
+			"text": " more than predefined rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,580",
+				"to": "00:11:54,060"
+			},
+			"offsets": {
+				"from": 711580,
+				"to": 714060
+			},
+			"text": " And, you know, technology may ultimately move"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,060",
+				"to": "00:11:56,820"
+			},
+			"offsets": {
+				"from": 714060,
+				"to": 716820
+			},
+			"text": " the discussion forward and give us a framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,820",
+				"to": "00:12:00,220"
+			},
+			"offsets": {
+				"from": 716820,
+				"to": 720220
+			},
+			"text": " to build upon, but governance is not a ground zero issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,220",
+				"to": "00:12:03,060"
+			},
+			"offsets": {
+				"from": 720220,
+				"to": 723060
+			},
+			"text": " And at the end of the day, it's about human behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,060",
+				"to": "00:12:06,340"
+			},
+			"offsets": {
+				"from": 723060,
+				"to": 726340
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,340",
+				"to": "00:12:07,540"
+			},
+			"offsets": {
+				"from": 726340,
+				"to": 727540
+			},
+			"text": " Thanks, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,540",
+				"to": "00:12:08,460"
+			},
+			"offsets": {
+				"from": 727540,
+				"to": 728460
+			},
+			"text": " You can find me."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,460",
+				"to": "00:12:10,220"
+			},
+			"offsets": {
+				"from": 728460,
+				"to": 730220
+			},
+			"text": " That's my Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,220",
+				"to": "00:12:11,220"
+			},
+			"offsets": {
+				"from": 730220,
+				"to": 731220
+			},
+			"text": " And for Vasari."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,220",
+				"to": "00:12:14,340"
+			},
+			"offsets": {
+				"from": 731220,
+				"to": 734340
+			},
+			"text": " - All righty."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,340",
+				"to": "00:12:17,180"
+			},
+			"offsets": {
+				"from": 734340,
+				"to": 737180
+			},
+			"text": " Yeah, we have time for one or two questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,180",
+				"to": "00:12:19,500"
+			},
+			"offsets": {
+				"from": 737180,
+				"to": 739500
+			},
+			"text": " Does anybody have a question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,380",
+				"to": "00:12:22,620"
+			},
+			"offsets": {
+				"from": 740380,
+				"to": 742620
+			},
+			"text": " Looking, looking, looking again, I have--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,620",
+				"to": "00:12:23,460"
+			},
+			"offsets": {
+				"from": 742620,
+				"to": 743460
+			},
+			"text": " Oh!"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,460",
+				"to": "00:12:26,300"
+			},
+			"offsets": {
+				"from": 743460,
+				"to": 746300
+			},
+			"text": " - Hey, Catherine, thanks for the awesome talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,300",
+				"to": "00:12:27,380"
+			},
+			"offsets": {
+				"from": 746300,
+				"to": 747380
+			},
+			"text": " It just struck me a moment ago"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,380",
+				"to": "00:12:29,700"
+			},
+			"offsets": {
+				"from": 747380,
+				"to": 749700
+			},
+			"text": " as you were describing international law"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,700",
+				"to": "00:12:35,260"
+			},
+			"offsets": {
+				"from": 749700,
+				"to": 755260
+			},
+			"text": " that there are some parallels with--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,260",
+				"to": "00:12:36,340"
+			},
+			"offsets": {
+				"from": 755260,
+				"to": 756340
+			},
+			"text": " Sorry, this is way out there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,340",
+				"to": "00:12:38,820"
+			},
+			"offsets": {
+				"from": 756340,
+				"to": 758820
+			},
+			"text": " but like the way the different blockchains are governed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,820",
+				"to": "00:12:39,660"
+			},
+			"offsets": {
+				"from": 758820,
+				"to": 759660
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,660",
+				"to": "00:12:40,820"
+			},
+			"offsets": {
+				"from": 759660,
+				"to": 760820
+			},
+			"text": " And like systems like Polkadot that are being built"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,820",
+				"to": "00:12:42,300"
+			},
+			"offsets": {
+				"from": 760820,
+				"to": 762300
+			},
+			"text": " that are saying, \"Hey, each chain can go off"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,300",
+				"to": "00:12:44,020"
+			},
+			"offsets": {
+				"from": 762300,
+				"to": 764020
+			},
+			"text": " \"and do its own thing and can have its own rules,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,020",
+				"to": "00:12:45,780"
+			},
+			"offsets": {
+				"from": 764020,
+				"to": 765780
+			},
+			"text": " \"its own governance on chain.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,780",
+				"to": "00:12:47,260"
+			},
+			"offsets": {
+				"from": 765780,
+				"to": 767260
+			},
+			"text": " But then there's some sort of central system"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,260",
+				"to": "00:12:48,780"
+			},
+			"offsets": {
+				"from": 767260,
+				"to": 768780
+			},
+			"text": " where they coordinate and they're so higher level"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,780",
+				"to": "00:12:51,140"
+			},
+			"offsets": {
+				"from": 768780,
+				"to": 771140
+			},
+			"text": " they can communicate in some level of invariance."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,140",
+				"to": "00:12:52,700"
+			},
+			"offsets": {
+				"from": 771140,
+				"to": 772700
+			},
+			"text": " I'm just wondering if you've ever thought about that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,700",
+				"to": "00:12:53,820"
+			},
+			"offsets": {
+				"from": 772700,
+				"to": 773820
+			},
+			"text": " and if there's anything we can learn"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,820",
+				"to": "00:12:56,180"
+			},
+			"offsets": {
+				"from": 773820,
+				"to": 776180
+			},
+			"text": " from international law in building these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,180",
+				"to": "00:12:58,860"
+			},
+			"offsets": {
+				"from": 776180,
+				"to": 778860
+			},
+			"text": " - Yeah, I mean, I think ultimately what I'm trying to say here"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,860",
+				"to": "00:13:01,300"
+			},
+			"offsets": {
+				"from": 778860,
+				"to": 781300
+			},
+			"text": " is just sort of like when we're looking to rebuild"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,300",
+				"to": "00:13:03,300"
+			},
+			"offsets": {
+				"from": 781300,
+				"to": 783300
+			},
+			"text": " any sort of governance systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,300",
+				"to": "00:13:05,820"
+			},
+			"offsets": {
+				"from": 783300,
+				"to": 785820
+			},
+			"text": " let's not totally disregard history, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,820",
+				"to": "00:13:08,420"
+			},
+			"offsets": {
+				"from": 785820,
+				"to": 788420
+			},
+			"text": " And so, and I wanted to mention this earlier today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,420",
+				"to": "00:13:09,740"
+			},
+			"offsets": {
+				"from": 788420,
+				"to": 789740
+			},
+			"text": " didn't have quite the time to get to it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,740",
+				"to": "00:13:11,820"
+			},
+			"offsets": {
+				"from": 789740,
+				"to": 791820
+			},
+			"text": " but if you look at the UN, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,820",
+				"to": "00:13:13,820"
+			},
+			"offsets": {
+				"from": 791820,
+				"to": 793820
+			},
+			"text": " I think the UN is a good example of a body of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,820",
+				"to": "00:13:15,940"
+			},
+			"offsets": {
+				"from": 793820,
+				"to": 795940
+			},
+			"text": " or 200 plus countries that's come together"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,940",
+				"to": "00:13:17,300"
+			},
+			"offsets": {
+				"from": 795940,
+				"to": 797300
+			},
+			"text": " voluntarily signed an agreement,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,300",
+				"to": "00:13:19,340"
+			},
+			"offsets": {
+				"from": 797300,
+				"to": 799340
+			},
+			"text": " and that's fantastic in theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,340",
+				"to": "00:13:20,900"
+			},
+			"offsets": {
+				"from": 799340,
+				"to": 800900
+			},
+			"text": " But when you really look at, like, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,900",
+				"to": "00:13:22,380"
+			},
+			"offsets": {
+				"from": 800900,
+				"to": 802380
+			},
+			"text": " the UN Security Council,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,380",
+				"to": "00:13:24,980"
+			},
+			"offsets": {
+				"from": 802380,
+				"to": 804980
+			},
+			"text": " that's ultimately five members that decide everything, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,980",
+				"to": "00:13:27,500"
+			},
+			"offsets": {
+				"from": 804980,
+				"to": 807500
+			},
+			"text": " And that, so the UN is a member,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,500",
+				"to": "00:13:29,940"
+			},
+			"offsets": {
+				"from": 807500,
+				"to": 809940
+			},
+			"text": " it's supposed to be 200 equal members together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,940",
+				"to": "00:13:33,500"
+			},
+			"offsets": {
+				"from": 809940,
+				"to": 813500
+			},
+			"text": " but then you have five who centralize all of the power."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,500",
+				"to": "00:13:38,180"
+			},
+			"offsets": {
+				"from": 813500,
+				"to": 818180
+			},
+			"text": " And so that's an example of a centralized decision-making body"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,180",
+				"to": "00:13:40,100"
+			},
+			"offsets": {
+				"from": 818180,
+				"to": 820100
+			},
+			"text": " that maybe isn't for the best interests of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,100",
+				"to": "00:13:43,100"
+			},
+			"offsets": {
+				"from": 820100,
+				"to": 823100
+			},
+			"text": " 'cause we all know how gridlock they can get."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,100",
+				"to": "00:13:44,900"
+			},
+			"offsets": {
+				"from": 823100,
+				"to": 824900
+			},
+			"text": " I don't know if that answers your question, but."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,300",
+				"to": "00:13:49,180"
+			},
+			"offsets": {
+				"from": 826300,
+				"to": 829180
+			},
+			"text": " - So, like, going back to what you were describing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,180",
+				"to": "00:13:52,100"
+			},
+			"offsets": {
+				"from": 829180,
+				"to": 832100
+			},
+			"text": " on, I guess, like, horizontal versus vertical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,100",
+				"to": "00:13:54,180"
+			},
+			"offsets": {
+				"from": 832100,
+				"to": 834180
+			},
+			"text": " would you say that currently, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,180",
+				"to": "00:13:57,100"
+			},
+			"offsets": {
+				"from": 834180,
+				"to": 837100
+			},
+			"text": " customary international law is, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,100",
+				"to": "00:13:59,620"
+			},
+			"offsets": {
+				"from": 837100,
+				"to": 839620
+			},
+			"text": " very, or somewhat similar to how, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,620",
+				"to": "00:14:02,340"
+			},
+			"offsets": {
+				"from": 839620,
+				"to": 842340
+			},
+			"text": " self-regulating, like, like, SROs work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,340",
+				"to": "00:14:06,380"
+			},
+			"offsets": {
+				"from": 842340,
+				"to": 846380
+			},
+			"text": " in that there's, like, a body of institutions or businesses"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,380",
+				"to": "00:14:09,020"
+			},
+			"offsets": {
+				"from": 846380,
+				"to": 849020
+			},
+			"text": " or what have you, that basically just kind of, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,020",
+				"to": "00:14:11,100"
+			},
+			"offsets": {
+				"from": 849020,
+				"to": 851100
+			},
+			"text": " make sure that, for the sake of, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,100",
+				"to": "00:14:13,500"
+			},
+			"offsets": {
+				"from": 851100,
+				"to": 853500
+			},
+			"text": " not having to, like, bring in, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,500",
+				"to": "00:14:15,660"
+			},
+			"offsets": {
+				"from": 853500,
+				"to": 855660
+			},
+			"text": " some vertical, like, watchdog,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,660",
+				"to": "00:14:17,380"
+			},
+			"offsets": {
+				"from": 855660,
+				"to": 857380
+			},
+			"text": " they kind of just kind of, like, police one another"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,380",
+				"to": "00:14:20,300"
+			},
+			"offsets": {
+				"from": 857380,
+				"to": 860300
+			},
+			"text": " and make sure that there aren't, like, bad actors."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,300",
+				"to": "00:14:21,860"
+			},
+			"offsets": {
+				"from": 860300,
+				"to": 861860
+			},
+			"text": " - Yeah, no, that's a great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,860",
+				"to": "00:14:24,100"
+			},
+			"offsets": {
+				"from": 861860,
+				"to": 864100
+			},
+			"text": " I think, ultimately, like, the point I bring up"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,100",
+				"to": "00:14:25,620"
+			},
+			"offsets": {
+				"from": 864100,
+				"to": 865620
+			},
+			"text": " with customary international law is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,620",
+				"to": "00:14:27,140"
+			},
+			"offsets": {
+				"from": 865620,
+				"to": 867140
+			},
+			"text": " it's very, like, dialogue-focused,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,140",
+				"to": "00:14:28,300"
+			},
+			"offsets": {
+				"from": 867140,
+				"to": 868300
+			},
+			"text": " and it's very sort of, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,300",
+				"to": "00:14:31,180"
+			},
+			"offsets": {
+				"from": 868300,
+				"to": 871180
+			},
+			"text": " you put out the standards among yourselves first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,180",
+				"to": "00:14:32,940"
+			},
+			"offsets": {
+				"from": 871180,
+				"to": 872940
+			},
+			"text": " and then that gets codified, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,940",
+				"to": "00:14:34,100"
+			},
+			"offsets": {
+				"from": 872940,
+				"to": 874100
+			},
+			"text": " So when you're thinking about, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,100",
+				"to": "00:14:36,100"
+			},
+			"offsets": {
+				"from": 874100,
+				"to": 876100
+			},
+			"text": " how do you regulate the crypto industry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,100",
+				"to": "00:14:37,820"
+			},
+			"offsets": {
+				"from": 876100,
+				"to": 877820
+			},
+			"text": " like, how does I even start with?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,820",
+				"to": "00:14:40,180"
+			},
+			"offsets": {
+				"from": 877820,
+				"to": 880180
+			},
+			"text": " Let's start with, like I said earlier, standards, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,180",
+				"to": "00:14:42,460"
+			},
+			"offsets": {
+				"from": 880180,
+				"to": 882460
+			},
+			"text": " Like, what, so, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,460",
+				"to": "00:14:44,460"
+			},
+			"offsets": {
+				"from": 882460,
+				"to": 884460
+			},
+			"text": " Masari is part of this initiative called"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,460",
+				"to": "00:14:46,260"
+			},
+			"offsets": {
+				"from": 884460,
+				"to": 886260
+			},
+			"text": " Global Digital Finance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,260",
+				"to": "00:14:48,260"
+			},
+			"offsets": {
+				"from": 886260,
+				"to": 888260
+			},
+			"text": " and we had a huge debate recently over"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,260",
+				"to": "00:14:50,620"
+			},
+			"offsets": {
+				"from": 888260,
+				"to": 890620
+			},
+			"text": " what does it even mean to be an investor, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,620",
+				"to": "00:14:52,740"
+			},
+			"offsets": {
+				"from": 890620,
+				"to": 892740
+			},
+			"text": " Are you talking about investor people who are using"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,740",
+				"to": "00:14:54,220"
+			},
+			"offsets": {
+				"from": 892740,
+				"to": 894220
+			},
+			"text": " or buying tokens for speculative use?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,220",
+				"to": "00:14:55,660"
+			},
+			"offsets": {
+				"from": 894220,
+				"to": 895660
+			},
+			"text": " Are you talking about people who are using this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,660",
+				"to": "00:14:56,940"
+			},
+			"offsets": {
+				"from": 895660,
+				"to": 896940
+			},
+			"text": " Are you talking about, I mean, could miners"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,940",
+				"to": "00:14:57,980"
+			},
+			"offsets": {
+				"from": 896940,
+				"to": 897980
+			},
+			"text": " technically be a user?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,980",
+				"to": "00:15:00,460"
+			},
+			"offsets": {
+				"from": 897980,
+				"to": 900460
+			},
+			"text": " I mean, it's just, they're so, it's, like, very convoluted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,460",
+				"to": "00:15:02,300"
+			},
+			"offsets": {
+				"from": 900460,
+				"to": 902300
+			},
+			"text": " and, like, as an industry, we can't even agree"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,300",
+				"to": "00:15:04,060"
+			},
+			"offsets": {
+				"from": 902300,
+				"to": 904060
+			},
+			"text": " on, like, what these different standards are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,060",
+				"to": "00:15:06,180"
+			},
+			"offsets": {
+				"from": 904060,
+				"to": 906180
+			},
+			"text": " like, what best practices are."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,180",
+				"to": "00:15:08,700"
+			},
+			"offsets": {
+				"from": 906180,
+				"to": 908700
+			},
+			"text": " That gets hard for, ultimately, everyone to, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,700",
+				"to": "00:15:10,180"
+			},
+			"offsets": {
+				"from": 908700,
+				"to": 910180
+			},
+			"text": " want to follow the same set of rules,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,180",
+				"to": "00:15:12,900"
+			},
+			"offsets": {
+				"from": 910180,
+				"to": 912900
+			},
+			"text": " because definitions are all different."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,900",
+				"to": "00:15:16,020"
+			},
+			"offsets": {
+				"from": 912900,
+				"to": 916020
+			},
+			"text": " So, you know, tying it back to, like, dialogue"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,020",
+				"to": "00:15:18,820"
+			},
+			"offsets": {
+				"from": 916020,
+				"to": 918820
+			},
+			"text": " and conversations and community consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,820",
+				"to": "00:15:20,020"
+			},
+			"offsets": {
+				"from": 918820,
+				"to": 920020
+			},
+			"text": " I think that's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,020",
+				"to": "00:15:21,980"
+			},
+			"offsets": {
+				"from": 920020,
+				"to": 921980
+			},
+			"text": " Like, dialogue is important, and we're still very early,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,980",
+				"to": "00:15:23,900"
+			},
+			"offsets": {
+				"from": 921980,
+				"to": 923900
+			},
+			"text": " and I think that, like, that's really important"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,900",
+				"to": "00:15:25,300"
+			},
+			"offsets": {
+				"from": 923900,
+				"to": 925300
+			},
+			"text": " to be having right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,300",
+				"to": "00:15:27,540"
+			},
+			"offsets": {
+				"from": 925300,
+				"to": 927540
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,540",
+				"to": "00:15:29,540"
+			},
+			"offsets": {
+				"from": 927540,
+				"to": 929540
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,540",
+				"to": "00:15:31,540"
+			},
+			"offsets": {
+				"from": 929540,
+				"to": 931540
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,540",
+				"to": "00:15:33,540"
+			},
+			"offsets": {
+				"from": 931540,
+				"to": 933540
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,540",
+				"to": "00:15:35,540"
+			},
+			"offsets": {
+				"from": 933540,
+				"to": 935540
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,540",
+				"to": "00:15:37,540"
+			},
+			"offsets": {
+				"from": 935540,
+				"to": 937540
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,540",
+				"to": "00:15:39,540"
+			},
+			"offsets": {
+				"from": 937540,
+				"to": 939540
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,540",
+				"to": "00:15:41,540"
+			},
+			"offsets": {
+				"from": 939540,
+				"to": 941540
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,540",
+				"to": "00:15:43,540"
+			},
+			"offsets": {
+				"from": 941540,
+				"to": 943540
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,540",
+				"to": "00:15:53,540"
+			},
+			"offsets": {
+				"from": 943540,
+				"to": 953540
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,540",
+				"to": "00:16:22,540"
+			},
+			"offsets": {
+				"from": 953540,
+				"to": 982540
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

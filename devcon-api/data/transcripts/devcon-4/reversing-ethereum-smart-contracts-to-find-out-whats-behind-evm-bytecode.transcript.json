@@ -1,0 +1,1693 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:08,580"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 8580
+			},
+			"text": " >> Thank you everyone. Just a quick question. How many of you come from the IT world, IT"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,580",
+				"to": "00:00:15,780"
+			},
+			"offsets": {
+				"from": 8580,
+				"to": 15780
+			},
+			"text": " security world? Okay. So some of you already know what is reversing and what is useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,780",
+				"to": "00:00:21,320"
+			},
+			"offsets": {
+				"from": 15780,
+				"to": 21320
+			},
+			"text": " So I will try to make it simple for the other. And the purpose of today is to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,320",
+				"to": "00:00:26,040"
+			},
+			"offsets": {
+				"from": 21320,
+				"to": 26040
+			},
+			"text": " what's behind the EVM bad code, typically the bad codes that will be stored on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,040",
+				"to": "00:00:34,040"
+			},
+			"offsets": {
+				"from": 26040,
+				"to": 34040
+			},
+			"text": " blockchain and to help you to understand like family security tool works actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,040",
+				"to": "00:00:41,840"
+			},
+			"offsets": {
+				"from": 34040,
+				"to": 41840
+			},
+			"text": " So I'm Patrick. I'm a security researcher and typically my relation with blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,840",
+				"to": "00:00:49,600"
+			},
+			"offsets": {
+				"from": 41840,
+				"to": 49600
+			},
+			"text": " come because I was doing like blockchain transaction tracking and stuff like that. And for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,600",
+				"to": "00:00:57,480"
+			},
+			"offsets": {
+				"from": 49600,
+				"to": 57480
+			},
+			"text": " present I was I needed to analyze bad code like self-destruct, bad code and transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,480",
+				"to": "00:01:07,040"
+			},
+			"offsets": {
+				"from": 57480,
+				"to": 67040
+			},
+			"text": " etc. So that's why I start actually my project that is called Octopus. So it's a security"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,040",
+				"to": "00:01:15,600"
+			},
+			"offsets": {
+				"from": 67040,
+				"to": 75600
+			},
+			"text": " analysis framework. Typically I support EVM of course but I also support some other like"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,600",
+				"to": "00:01:24,160"
+			},
+			"offsets": {
+				"from": 75600,
+				"to": 84160
+			},
+			"text": " platform like EOS and NEO. So if you want to take a look at the bad code or the smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,160",
+				"to": "00:01:31,520"
+			},
+			"offsets": {
+				"from": 84160,
+				"to": 91520
+			},
+			"text": " contract of NEO and EOS could be a good occasion and let's start. So we're going to I will"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,520",
+				"to": "00:01:37,920"
+			},
+			"offsets": {
+				"from": 91520,
+				"to": 97920
+			},
+			"text": " do a quick introduction and after that I will talk to you about the control flow graph and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,920",
+				"to": "00:01:44,360"
+			},
+			"offsets": {
+				"from": 97920,
+				"to": 104360
+			},
+			"text": " why we need to use reversing at some point and as a developer point of view why you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,360",
+				"to": "00:01:52,880"
+			},
+			"offsets": {
+				"from": 104360,
+				"to": 112880
+			},
+			"text": " need to use reversing. So typically reversing engineering will be really simple for smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,880",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 112880,
+				"to": 119000
+			},
+			"text": " contract. The purpose is you have the EVM bad code and you want to translate it to EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:07,560"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 127560
+			},
+			"text": " assembly and the reversing of smart contract typically will be the analysis of this EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,560",
+				"to": "00:02:15,440"
+			},
+			"offsets": {
+				"from": 127560,
+				"to": 135440
+			},
+			"text": " assembly. So if you take a look at the bad code you can have like I mean two type of EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,440",
+				"to": "00:02:21,920"
+			},
+			"offsets": {
+				"from": 135440,
+				"to": 141920
+			},
+			"text": " bad code. The first one will be like this big one with a loader code. It's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,920",
+				"to": "00:02:28,600"
+			},
+			"offsets": {
+				"from": 141920,
+				"to": 148600
+			},
+			"text": " the loader code that will push the runtime code into the blockchain. Typically this shame"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,600",
+				"to": "00:02:35,520"
+			},
+			"offsets": {
+				"from": 148600,
+				"to": 155520
+			},
+			"text": " will be present if you take a look at the contract creation transaction and if you took"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,520",
+				"to": "00:02:40,800"
+			},
+			"offsets": {
+				"from": 155520,
+				"to": 160800
+			},
+			"text": " a look at the input data. So in that case is you will get the loader code and we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,800",
+				"to": "00:02:47,760"
+			},
+			"offsets": {
+				"from": 160800,
+				"to": 167760
+			},
+			"text": " more interesting about the runtime code that will be the final code of your smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,760",
+				"to": "00:02:56,080"
+			},
+			"offsets": {
+				"from": 167760,
+				"to": 176080
+			},
+			"text": " So this code will run into the EVM I will not spend too much time on that and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,080",
+				"to": "00:03:04,120"
+			},
+			"offsets": {
+				"from": 176080,
+				"to": 184120
+			},
+			"text": " So first step we need to disassemble the bad code so pretty simple maybe some of you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,120",
+				"to": "00:03:09,040"
+			},
+			"offsets": {
+				"from": 184120,
+				"to": 189040
+			},
+			"text": " already saw the like the opcode tool from Eiterscan and it's typically what he does."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,040",
+				"to": "00:03:15,600"
+			},
+			"offsets": {
+				"from": 189040,
+				"to": 195600
+			},
+			"text": " It's like a disassemble, a bad disassemble and the way it works, the disassembling in"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,600",
+				"to": "00:03:24,160"
+			},
+			"offsets": {
+				"from": 195600,
+				"to": 204160
+			},
+			"text": " general you will need to have like a correlation between the opcode and the EVM instruction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,160",
+				"to": "00:03:31,400"
+			},
+			"offsets": {
+				"from": 204160,
+				"to": 211400
+			},
+			"text": " So it's typically you just take the EVM instruction set and you do the matching and that's work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,400",
+				"to": "00:03:37,080"
+			},
+			"offsets": {
+				"from": 211400,
+				"to": 217080
+			},
+			"text": " The more tricky part will be about the control photograph. So for those who don't like use"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,080",
+				"to": "00:03:44,600"
+			},
+			"offsets": {
+				"from": 217080,
+				"to": 224600
+			},
+			"text": " tool like binary ninja, ID, etc. Typically a control photograph is like a graphical representation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,600",
+				"to": "00:03:50,080"
+			},
+			"offsets": {
+				"from": 224600,
+				"to": 230080
+			},
+			"text": " of your program logic. So typically if you have an if, else, etc. you can directly identify"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,080",
+				"to": "00:03:56,560"
+			},
+			"offsets": {
+				"from": 230080,
+				"to": 236560
+			},
+			"text": " it based on the representation, graphical representation and most of the time you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,560",
+				"to": "00:04:05,200"
+			},
+			"offsets": {
+				"from": 236560,
+				"to": 245200
+			},
+			"text": " need to actually in every case you will need to create block or nodes and edges so connection"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,200",
+				"to": "00:04:12,600"
+			},
+			"offsets": {
+				"from": 245200,
+				"to": 252600
+			},
+			"text": " between those blocks. So for that you have some instructions that are really like critical"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,600",
+				"to": "00:04:20,760"
+			},
+			"offsets": {
+				"from": 252600,
+				"to": 260760
+			},
+			"text": " and that help you to recreate the CFG. This one are the two first ones are the jumps of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,760",
+				"to": "00:04:29,600"
+			},
+			"offsets": {
+				"from": 260760,
+				"to": 269600
+			},
+			"text": " course so it will help you to create the edges and the other one will help you to do the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,600",
+				"to": "00:04:37,800"
+			},
+			"offsets": {
+				"from": 269600,
+				"to": 277800
+			},
+			"text": " composition of your like in line EVM assembly into basic blocks. So to simplify will look"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,800",
+				"to": "00:04:44,500"
+			},
+			"offsets": {
+				"from": 277800,
+				"to": 284500
+			},
+			"text": " like that before after and the next step is to do the connection between these basic"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,500",
+				"to": "00:04:53,340"
+			},
+			"offsets": {
+				"from": 284500,
+				"to": 293340
+			},
+			"text": " blocks. So if we take like a basic idea that could be I want to do static analysis and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,340",
+				"to": "00:05:00,260"
+			},
+			"offsets": {
+				"from": 293340,
+				"to": 300260
+			},
+			"text": " I will just check if the instruction before jump is a passion section that will push the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,260",
+				"to": "00:05:06,380"
+			},
+			"offsets": {
+				"from": 300260,
+				"to": 306380
+			},
+			"text": " jump target of that into the stack. It could work actually it will work for potentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,380",
+				"to": "00:05:15,120"
+			},
+			"offsets": {
+				"from": 306380,
+				"to": 315120
+			},
+			"text": " 50, 60% of the time but at some point you will get some issue and typically it will come"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,120",
+				"to": "00:05:22,120"
+			},
+			"offsets": {
+				"from": 315120,
+				"to": 322120
+			},
+			"text": " when you have a stack operation. So typically in these cases you have one basic block you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,120",
+				"to": "00:05:28,740"
+			},
+			"offsets": {
+				"from": 322120,
+				"to": 328740
+			},
+			"text": " have no push on it and you have a jump. So if you don't know the value on top of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,740",
+				"to": "00:05:35,600"
+			},
+			"offsets": {
+				"from": 328740,
+				"to": 335600
+			},
+			"text": " stack you are not able to determine which will be the jump target of that. So there"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,600",
+				"to": "00:05:44,880"
+			},
+			"offsets": {
+				"from": 335600,
+				"to": 344880
+			},
+			"text": " is multiple techniques to simplify that and like help us to recreate the CFG. The first"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,880",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 344880,
+				"to": 355000
+			},
+			"text": " one that I used is you do like a dynamic analysis with a stack evaluation. So before you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:06:03,300"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 363300
+			},
+			"text": " this graph with some often block typically. So this block have not been like cold during"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,300",
+				"to": "00:06:11,140"
+			},
+			"offsets": {
+				"from": 363300,
+				"to": 371140
+			},
+			"text": " my like emulation of the graph but if like if I do just static analysis like there is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,140",
+				"to": "00:06:20,140"
+			},
+			"offsets": {
+				"from": 371140,
+				"to": 380140
+			},
+			"text": " a push to an jump those basic block will not be assigned to the graph. And in case of stack"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,140",
+				"to": "00:06:29,500"
+			},
+			"offsets": {
+				"from": 380140,
+				"to": 389500
+			},
+			"text": " evaluation it is largely better because in these cases I am able to place this block"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,500",
+				"to": "00:06:42,140"
+			},
+			"offsets": {
+				"from": 389500,
+				"to": 402140
+			},
+			"text": " to another graph, another pass into the graph. Also the graph look largely better. So once"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,140",
+				"to": "00:06:51,580"
+			},
+			"offsets": {
+				"from": 402140,
+				"to": 411580
+			},
+			"text": " you have done that actually a good thing to do is to identify which basic block assign"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,580",
+				"to": "00:06:58,300"
+			},
+			"offsets": {
+				"from": 411580,
+				"to": 418300
+			},
+			"text": " all the basic block to the function. So if you take back this graph you will see that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,300",
+				"to": "00:07:07,140"
+			},
+			"offsets": {
+				"from": 418300,
+				"to": 427140
+			},
+			"text": " there is a typical pattern for a switch and actually this switch in EVM bad code is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,140",
+				"to": "00:07:12,100"
+			},
+			"offsets": {
+				"from": 427140,
+				"to": 432100
+			},
+			"text": " dispatcher function. So typically the way it works the dispatcher function will be the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,100",
+				"to": "00:07:18,260"
+			},
+			"offsets": {
+				"from": 432100,
+				"to": 438260
+			},
+			"text": " on-track point of the smart contract and depending of the first four byte of the transaction payload"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,260",
+				"to": "00:07:25,820"
+			},
+			"offsets": {
+				"from": 438260,
+				"to": 445820
+			},
+			"text": " that is called the method ID you will go to one pass or another. So in this example typically"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,820",
+				"to": "00:07:33,540"
+			},
+			"offsets": {
+				"from": 445820,
+				"to": 453540
+			},
+			"text": " you will get two different method ID so you can identify them pretty quickly with this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,540",
+				"to": "00:07:40,220"
+			},
+			"offsets": {
+				"from": 453540,
+				"to": 460220
+			},
+			"text": " typical pattern so you have a push for of the function ash or method ID which check if"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,220",
+				"to": "00:07:50,220"
+			},
+			"offsets": {
+				"from": 460220,
+				"to": 470220
+			},
+			"text": " it is the same values and the first four byte of the transaction and if it is my bad and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,220",
+				"to": "00:07:56,060"
+			},
+			"offsets": {
+				"from": 470220,
+				"to": 476060
+			},
+			"text": " if it is okay you will do a push to so the of the function of set and you will jump to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,060",
+				"to": "00:08:09,980"
+			},
+			"offsets": {
+				"from": 476060,
+				"to": 489980
+			},
+			"text": " it. Okay so that is the dispatching function and using that you are able to use the function"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,980",
+				"to": "00:08:16,660"
+			},
+			"offsets": {
+				"from": 489980,
+				"to": 496660
+			},
+			"text": " data mine and find all the basic block as I said to this function. So in this example"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,660",
+				"to": "00:08:23,340"
+			},
+			"offsets": {
+				"from": 496660,
+				"to": 503340
+			},
+			"text": " you will get like seven different function that is callable and you are able to do so"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,340",
+				"to": "00:08:31,140"
+			},
+			"offsets": {
+				"from": 503340,
+				"to": 511140
+			},
+			"text": " because you are doing analysis directly on the dispatcher function. Having the function"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,140",
+				"to": "00:08:37,540"
+			},
+			"offsets": {
+				"from": 511140,
+				"to": 517540
+			},
+			"text": " is really cool but it is even better if we have the name of the function. So typically"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,540",
+				"to": "00:08:45,540"
+			},
+			"offsets": {
+				"from": 517540,
+				"to": 525540
+			},
+			"text": " the name is not stored into the EVM bytecode. The way you can recover it is by using the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,540",
+				"to": "00:08:53,460"
+			},
+			"offsets": {
+				"from": 525540,
+				"to": 533460
+			},
+			"text": " four byte identifier so the method ID. The fact is the method ID are compute based on"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,460",
+				"to": "00:09:03,060"
+			},
+			"offsets": {
+				"from": 533460,
+				"to": 543060
+			},
+			"text": " the function name text. So typically if you have a transaction with the method ID typically"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,060",
+				"to": "00:09:14,780"
+			},
+			"offsets": {
+				"from": 543060,
+				"to": 554780
+			},
+			"text": " you will get this transaction you have this ash this method ID. And if you use like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,780",
+				"to": "00:09:21,340"
+			},
+			"offsets": {
+				"from": 554780,
+				"to": 561340
+			},
+			"text": " function signature reverse look at database you will get the matching between the signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,340",
+				"to": "00:09:30,820"
+			},
+			"offsets": {
+				"from": 561340,
+				"to": 570820
+			},
+			"text": " and the function name text. So the most famous one is four byte that directory that is perfectly"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,820",
+				"to": "00:09:36,620"
+			},
+			"offsets": {
+				"from": 570820,
+				"to": 576620
+			},
+			"text": " and there is a lot of inputs on it so really good to use. And you will see that depending"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,620",
+				"to": "00:09:44,900"
+			},
+			"offsets": {
+				"from": 576620,
+				"to": 584900
+			},
+			"text": " of the text signature you will get the byte signature. So using that you are able to recover"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,900",
+				"to": "00:09:50,940"
+			},
+			"offsets": {
+				"from": 584900,
+				"to": 590940
+			},
+			"text": " the name. So in this example it is actually the greater smart contract. So you get the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,940",
+				"to": "00:09:58,980"
+			},
+			"offsets": {
+				"from": 590940,
+				"to": 598980
+			},
+			"text": " grid and kill function. But you can also use this technique this rock-a-varing technique"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,980",
+				"to": "00:10:05,300"
+			},
+			"offsets": {
+				"from": 598980,
+				"to": 605300
+			},
+			"text": " in order to get an information about the arguments of the function. So typically in this example"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,300",
+				"to": "00:10:11,620"
+			},
+			"offsets": {
+				"from": 605300,
+				"to": 611620
+			},
+			"text": " you have a distributed tokens and in the first case you have like an array of unsigned integer"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,620",
+				"to": "00:10:16,780"
+			},
+			"offsets": {
+				"from": 611620,
+				"to": 616780
+			},
+			"text": " and in the second case you have just an unsigned integer. And you can see that the signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,780",
+				"to": "00:10:25,820"
+			},
+			"offsets": {
+				"from": 616780,
+				"to": 625820
+			},
+			"text": " are different. Quick question of that you can have a collision for the function signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,820",
+				"to": "00:10:34,060"
+			},
+			"offsets": {
+				"from": 625820,
+				"to": 634060
+			},
+			"text": " So in this case you the best way to find out which function signature is the good one."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,060",
+				"to": "00:10:41,100"
+			},
+			"offsets": {
+				"from": 634060,
+				"to": 641100
+			},
+			"text": " It is to check if you have like cold data load up in the function that will mean that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,100",
+				"to": "00:10:47,980"
+			},
+			"offsets": {
+				"from": 641100,
+				"to": 647980
+			},
+			"text": " you have arguments and you can pretty well define all many arguments and which type of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,980",
+				"to": "00:10:58,140"
+			},
+			"offsets": {
+				"from": 647980,
+				"to": 658140
+			},
+			"text": " arguments using this way. So why using reversing? So there is actually multiple way and multiple"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,140",
+				"to": "00:11:05,340"
+			},
+			"offsets": {
+				"from": 658140,
+				"to": 665340
+			},
+			"text": " reason. I have at least like four of them. There is many other but it is just to give"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,340",
+				"to": "00:11:11,780"
+			},
+			"offsets": {
+				"from": 665340,
+				"to": 671780
+			},
+			"text": " you an idea and give you some like appetite about this subject. So if you are a user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,780",
+				"to": "00:11:18,460"
+			},
+			"offsets": {
+				"from": 671780,
+				"to": 678460
+			},
+			"text": " a typical user of the e-turn collection, you potentially want to do some reversing if the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,460",
+				"to": "00:11:25,580"
+			},
+			"offsets": {
+				"from": 678460,
+				"to": 685580
+			},
+			"text": " source code is not available. So the reason for that is when you create a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,580",
+				"to": "00:11:32,900"
+			},
+			"offsets": {
+				"from": 685580,
+				"to": 692900
+			},
+			"text": " the source code is not monetary so you can create a smart contract just by sending the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,900",
+				"to": "00:11:41,340"
+			},
+			"offsets": {
+				"from": 692900,
+				"to": 701340
+			},
+			"text": " bytecode and it is typically what crypto-creates have done. So in crypto-creates you have like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,340",
+				"to": "00:11:52,140"
+			},
+			"offsets": {
+				"from": 701340,
+				"to": 712140
+			},
+			"text": " four solidities source code and in the crypto-creates core you have a call to the gen science contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,140",
+				"to": "00:12:00,300"
+			},
+			"offsets": {
+				"from": 712140,
+				"to": 720300
+			},
+			"text": " and more specifically the mix gen's function. And actually this solidities source code is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,300",
+				"to": "00:12:05,980"
+			},
+			"offsets": {
+				"from": 720300,
+				"to": 725980
+			},
+			"text": " not available on the data. There is only the three of the one and the reason for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,980",
+				"to": "00:12:10,340"
+			},
+			"offsets": {
+				"from": 725980,
+				"to": 730340
+			},
+			"text": " is because it is all the like the mutation of the gen of the key keys so they don't want"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,340",
+				"to": "00:12:18,980"
+			},
+			"offsets": {
+				"from": 730340,
+				"to": 738980
+			},
+			"text": " it to be like public and they don't want it to be analyzed at some point. But the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,980",
+				"to": "00:12:24,940"
+			},
+			"offsets": {
+				"from": 738980,
+				"to": 744940
+			},
+			"text": " start to take a look at that. So the first step they do is they start to do like the thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,940",
+				"to": "00:12:35,620"
+			},
+			"offsets": {
+				"from": 744940,
+				"to": 755620
+			},
+			"text": " between Genome DNA and some people and actually no IT security people start to do the reverse"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,620",
+				"to": "00:12:43,260"
+			},
+			"offsets": {
+				"from": 755620,
+				"to": 763260
+			},
+			"text": " and analyze of this smart contract. So there is some block post really interesting about"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,260",
+				"to": "00:12:52,740"
+			},
+			"offsets": {
+				"from": 763260,
+				"to": 772740
+			},
+			"text": " that and there also like write an equivalent of the like the logic into Python or in other"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,740",
+				"to": "00:12:58,700"
+			},
+			"offsets": {
+				"from": 772740,
+				"to": 778700
+			},
+			"text": " language so you can directly try it using command line tool. So it's really really cool"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,700",
+				"to": "00:13:05,940"
+			},
+			"offsets": {
+				"from": 778700,
+				"to": 785940
+			},
+			"text": " and typical application of that. Another reason as a company of course you have security"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,940",
+				"to": "00:13:15,740"
+			},
+			"offsets": {
+				"from": 785940,
+				"to": 795740
+			},
+			"text": " audit but I will talk about that later. Another reason could be by code optimization. How"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,740",
+				"to": "00:13:25,180"
+			},
+			"offsets": {
+				"from": 795740,
+				"to": 805180
+			},
+			"text": " many of you think that the EVM bytecode is optimized? Okay, so good. I don't know if"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,180",
+				"to": "00:13:30,980"
+			},
+			"offsets": {
+				"from": 805180,
+				"to": 810980
+			},
+			"text": " some of you seen this tweet from Ryan from Trailbeats and actually he found out that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,980",
+				"to": "00:13:37,780"
+			},
+			"offsets": {
+				"from": 810980,
+				"to": 817780
+			},
+			"text": " at some point in the blockchain a lot of smart contract use exponentization to calculate"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,780",
+				"to": "00:13:44,180"
+			},
+			"offsets": {
+				"from": 817780,
+				"to": 824180
+			},
+			"text": " the value one. So the fact is exponentization costs 10 gas so that means a lot of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,180",
+				"to": "00:13:55,420"
+			},
+			"offsets": {
+				"from": 824180,
+				"to": 835420
+			},
+			"text": " spend gas for nothing. And even more if the argument of the exponentization instruction"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,420",
+				"to": "00:14:03,180"
+			},
+			"offsets": {
+				"from": 835420,
+				"to": 843180
+			},
+			"text": " are constant you can directly simplify it by your push like really simple and if one"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,180",
+				"to": "00:14:15,100"
+			},
+			"offsets": {
+				"from": 843180,
+				"to": 855100
+			},
+			"text": " of the arguments are zero or one you can calculate directly the value at the compilation or directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,100",
+				"to": "00:14:23,780"
+			},
+			"offsets": {
+				"from": 855100,
+				"to": 863780
+			},
+			"text": " modified by the runtime variable. So it's more specific cases but it works pretty well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,780",
+				"to": "00:14:32,460"
+			},
+			"offsets": {
+				"from": 863780,
+				"to": 872460
+			},
+			"text": " And Martin from the etram foundation do some tests but this supposition and reproduce this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,460",
+				"to": "00:14:42,540"
+			},
+			"offsets": {
+				"from": 872460,
+				"to": 882540
+			},
+			"text": " on 16 random blocks and if I note that 73% of all the exponentization in vocation could"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,540",
+				"to": "00:14:49,540"
+			},
+			"offsets": {
+				"from": 882540,
+				"to": 889540
+			},
+			"text": " be simplified and could be optimized. So it's not, it's not to be something actually. I"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,540",
+				"to": "00:14:55,540"
+			},
+			"offsets": {
+				"from": 889540,
+				"to": 895540
+			},
+			"text": " don't know if there is some modification directly on the solidity compiler to fix that or potentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,540",
+				"to": "00:15:00,700"
+			},
+			"offsets": {
+				"from": 895540,
+				"to": 900700
+			},
+			"text": " if you use the optimize flag do it change something. I don't know. Don't take the time"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,700",
+				"to": "00:15:09,500"
+			},
+			"offsets": {
+				"from": 900700,
+				"to": 909500
+			},
+			"text": " to check it out but definitely we potentially need to say to the solidity there is some"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,500",
+				"to": "00:15:16,460"
+			},
+			"offsets": {
+				"from": 909500,
+				"to": 916460
+			},
+			"text": " optimization to do on this part. Another reason that is more famous is typically"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,460",
+				"to": "00:15:22,620"
+			},
+			"offsets": {
+				"from": 916460,
+				"to": 922620
+			},
+			"text": " security-addies, bargaining, vulnerability research and the fact is I don't know if some"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,620",
+				"to": "00:15:29,980"
+			},
+			"offsets": {
+				"from": 922620,
+				"to": 929980
+			},
+			"text": " of you use one of these tools. I'm pretty sure some of you does. And typically do still"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,980",
+				"to": "00:15:38,940"
+			},
+			"offsets": {
+				"from": 929980,
+				"to": 938940
+			},
+			"text": " use directly the EVM bytecode in order to do their analysis. So the reason for that and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,940",
+				"to": "00:15:45,540"
+			},
+			"offsets": {
+				"from": 938940,
+				"to": 945540
+			},
+			"text": " most of them use like pattern matching detection for vulnerability but the reason for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,540",
+				"to": "00:15:55,060"
+			},
+			"offsets": {
+				"from": 945540,
+				"to": 955060
+			},
+			"text": " is the EVM bytecode will be what is done on the blockchain. And for the moment, I don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,060",
+				"to": "00:16:01,660"
+			},
+			"offsets": {
+				"from": 955060,
+				"to": 961660
+			},
+			"text": " remember if there is some vulnerability related directly to solidity. I mean directly to like"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,660",
+				"to": "00:16:10,060"
+			},
+			"offsets": {
+				"from": 961660,
+				"to": 970060
+			},
+			"text": " solidity implement bug into the code but potentially it could be detected in this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,060",
+				"to": "00:16:17,980"
+			},
+			"offsets": {
+				"from": 970060,
+				"to": 977980
+			},
+			"text": " And the last reason that is for me why I start looking at smart contract is for everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,980",
+				"to": "00:16:25,540"
+			},
+			"offsets": {
+				"from": 977980,
+				"to": 985540
+			},
+			"text": " related to transaction tracking and analysis of smart contract interaction from like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,540",
+				"to": "00:16:31,420"
+			},
+			"offsets": {
+				"from": 985540,
+				"to": 991420
+			},
+			"text": " 20-telegence point of view like a sweet actor, like malware or etcetera that will use smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,420",
+				"to": "00:16:41,420"
+			},
+			"offsets": {
+				"from": 991420,
+				"to": 1001420
+			},
+			"text": " contract in a term in order to move their money without being detected at least. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,420",
+				"to": "00:16:49,100"
+			},
+			"offsets": {
+				"from": 1001420,
+				"to": 1009100
+			},
+			"text": " a typical case is also the techniques that have been used by Jay from Trevid just before"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,100",
+				"to": "00:16:55,940"
+			},
+			"offsets": {
+				"from": 1009100,
+				"to": 1015940
+			},
+			"text": " me is to do some smart contract analysis. So if you have a smart contract exactly this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,940",
+				"to": "00:17:03,140"
+			},
+			"offsets": {
+				"from": 1015940,
+				"to": 1023140
+			},
+			"text": " right, you go on Ettorscan and you will see that. So at this point you are disappointing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,140",
+				"to": "00:17:08,380"
+			},
+			"offsets": {
+				"from": 1023140,
+				"to": 1028380
+			},
+			"text": " But the fact is as I told you the smart contract bytecode and the runtime code is available"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,380",
+				"to": "00:17:17,740"
+			},
+			"offsets": {
+				"from": 1028380,
+				"to": 1037740
+			},
+			"text": " directly into the smart contract creation input. So if you just take a look at this transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,740",
+				"to": "00:17:22,980"
+			},
+			"offsets": {
+				"from": 1037740,
+				"to": 1042980
+			},
+			"text": " you will get the load or code and the runtime code. You just need to cut the load or code"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,980",
+				"to": "00:17:33,100"
+			},
+			"offsets": {
+				"from": 1042980,
+				"to": 1053100
+			},
+			"text": " and it's okay. You get your smart contract bytecode back. So that's all for me. I hope"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,100",
+				"to": "00:17:37,580"
+			},
+			"offsets": {
+				"from": 1053100,
+				"to": 1057580
+			},
+			"text": " you have learned something and I give you some appetite to learn about the event bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,580",
+				"to": "00:17:46,580"
+			},
+			"offsets": {
+				"from": 1057580,
+				"to": 1066580
+			},
+			"text": " I encourage you deeply to participate into the creation and the community behind the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,580",
+				"to": "00:17:55,260"
+			},
+			"offsets": {
+				"from": 1066580,
+				"to": 1075260
+			},
+			"text": " dual stool that are really good. And also if you want to see some other of my talk like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,260",
+				"to": "00:18:00,900"
+			},
+			"offsets": {
+				"from": 1075260,
+				"to": 1080900
+			},
+			"text": " more specifically about reversing in general. But I also don't know talk recently about"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,900",
+				"to": "00:18:07,700"
+			},
+			"offsets": {
+				"from": 1080900,
+				"to": 1087700
+			},
+			"text": " the analysis of the implementation of the L.O. world from parity technology. So potentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,700",
+				"to": "00:18:14,180"
+			},
+			"offsets": {
+				"from": 1087700,
+				"to": 1094180
+			},
+			"text": " some of you if you are interested in it was them or them you could get some interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,180",
+				"to": "00:18:19,980"
+			},
+			"offsets": {
+				"from": 1094180,
+				"to": 1099980
+			},
+			"text": " And I have done a workshop recently about like creating pattern to detect some type"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,980",
+				"to": "00:18:25,220"
+			},
+			"offsets": {
+				"from": 1099980,
+				"to": 1105220
+			},
+			"text": " of vulnerability. So everything is available directly on the link. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,220",
+				"to": "00:18:28,220"
+			},
+			"offsets": {
+				"from": 1105220,
+				"to": 1108220
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,220",
+				"to": "00:18:35,220"
+			},
+			"offsets": {
+				"from": 1108220,
+				"to": 1115220
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,220",
+				"to": "00:18:42,220"
+			},
+			"offsets": {
+				"from": 1115220,
+				"to": 1122220
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,220",
+				"to": "00:18:49,220"
+			},
+			"offsets": {
+				"from": 1122220,
+				"to": 1129220
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,220",
+				"to": "00:18:56,220"
+			},
+			"offsets": {
+				"from": 1129220,
+				"to": 1136220
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,220",
+				"to": "00:19:25,220"
+			},
+			"offsets": {
+				"from": 1136220,
+				"to": 1165220
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

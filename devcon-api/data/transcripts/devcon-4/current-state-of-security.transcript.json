@@ -1,0 +1,3662 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,840"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7840
+			},
+			"text": " >> All right. Hey, everybody. Welcome to the end of day two now for DevCon. Thanks for sticking"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,840",
+				"to": "00:00:14,240"
+			},
+			"offsets": {
+				"from": 7840,
+				"to": 14240
+			},
+			"text": " in out with us. We're going to have a conversation about current state of security and Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,240",
+				"to": "00:00:21,040"
+			},
+			"offsets": {
+				"from": 14240,
+				"to": 21040
+			},
+			"text": " We're going to do about 25, 20, 25 minutes of questions here, and then we'll take some questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,040",
+				"to": "00:00:26,720"
+			},
+			"offsets": {
+				"from": 21040,
+				"to": 26720
+			},
+			"text": " from the crowd. So first, I guess maybe we'll introduce ourselves. If you guys want to go down"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,720",
+				"to": "00:00:30,080"
+			},
+			"offsets": {
+				"from": 26720,
+				"to": 30080
+			},
+			"text": " the line, I'm just saying who you are and what you're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,080",
+				"to": "00:00:38,320"
+			},
+			"offsets": {
+				"from": 30080,
+				"to": 38320
+			},
+			"text": " All right. I'm Martin Holstinz-Landa, and I work as the security lead for the Ethereum Foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,320",
+				"to": "00:00:47,760"
+			},
+			"offsets": {
+				"from": 38320,
+				"to": 47760
+			},
+			"text": " and also work at Geth Development. I'm Phil Diane. I'm at Cornell University in IC3. I'm a"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,760",
+				"to": "00:00:54,160"
+			},
+			"offsets": {
+				"from": 47760,
+				"to": 54160
+			},
+			"text": " PhD student working on smart contract security. I'm Matthew DeFrante. I'm the founder of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,160",
+				"to": "00:01:00,720"
+			},
+			"offsets": {
+				"from": 54160,
+				"to": 60720
+			},
+			"text": " C.C.A. Labs, Ethereum-focused auditing firm, and also a cartographer by implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,720",
+				"to": "00:01:03,360"
+			},
+			"offsets": {
+				"from": 60720,
+				"to": 63360
+			},
+			"text": " I do -- cartography-related things on the side."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,360",
+				"to": "00:01:10,080"
+			},
+			"offsets": {
+				"from": 63360,
+				"to": 70080
+			},
+			"text": " I'm Moralean, founding member of Consensus Diligence and a smart contract auditor."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,080",
+				"to": "00:01:16,800"
+			},
+			"offsets": {
+				"from": 70080,
+				"to": 76800
+			},
+			"text": " Hey, I'm Dan Guido, the co-founder and CEO of Trail of Bits, software security research development"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,800",
+				"to": "00:01:23,520"
+			},
+			"offsets": {
+				"from": 76800,
+				"to": 83520
+			},
+			"text": " firm. Awesome. Thanks, guys. So we're going to start it off with the softball. What's the biggest"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,520",
+				"to": "00:01:25,520"
+			},
+			"offsets": {
+				"from": 83520,
+				"to": 85520
+			},
+			"text": " change in Ethereum security in the last year?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,520",
+				"to": "00:01:33,520"
+			},
+			"offsets": {
+				"from": 85520,
+				"to": 93520
+			},
+			"text": " So I'll take it first. Yeah, go for it. I think there's been a couple of things I've noticed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,520",
+				"to": "00:01:39,360"
+			},
+			"offsets": {
+				"from": 93520,
+				"to": 99360
+			},
+			"text": " The first is that the Solidity compiler itself is a little bit less on fire today than it was"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,360",
+				"to": "00:01:44,720"
+			},
+			"offsets": {
+				"from": 99360,
+				"to": 104720
+			},
+			"text": " a year ago. There are certain patterns that we had implemented in our own static analysis tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,720",
+				"to": "00:01:49,280"
+			},
+			"offsets": {
+				"from": 104720,
+				"to": 109280
+			},
+			"text": " that have been deprecated because the compiler now checks for those issues. Things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,080",
+				"to": "00:01:54,720"
+			},
+			"offsets": {
+				"from": 110080,
+				"to": 114720
+			},
+			"text": " the constructor being the same name as the contract and having divergences of those two"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,720",
+				"to": "00:02:00,800"
+			},
+			"offsets": {
+				"from": 114720,
+				"to": 120800
+			},
+			"text": " allowing you to exploit uninitialized contracts and variables within them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,800",
+				"to": "00:02:07,280"
+			},
+			"offsets": {
+				"from": 120800,
+				"to": 127280
+			},
+			"text": " Another thing that I think is pretty unique is that a lot of the less serious people have dropped"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,280",
+				"to": "00:02:13,040"
+			},
+			"offsets": {
+				"from": 127280,
+				"to": 133040
+			},
+			"text": " out of the community. So the post-ICO kind of field of people that are left now are a lot more"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,040",
+				"to": "00:02:18,560"
+			},
+			"offsets": {
+				"from": 133040,
+				"to": 138560
+			},
+			"text": " serious about developing applications that work. And I think that shift in culture -- thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,560",
+				"to": "00:02:24,720"
+			},
+			"offsets": {
+				"from": 138560,
+				"to": 144720
+			},
+			"text": " That shift in culture has led to much better code. And the last thing is I think that today"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,720",
+				"to": "00:02:29,200"
+			},
+			"offsets": {
+				"from": 144720,
+				"to": 149200
+			},
+			"text": " we have substantially better tools so that if you care to write good code, you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,200",
+				"to": "00:02:35,120"
+			},
+			"offsets": {
+				"from": 149200,
+				"to": 155120
+			},
+			"text": " Things from my company, Slither, Bantacore, Akidna, things from everyone else on this"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,120",
+				"to": "00:02:40,560"
+			},
+			"offsets": {
+				"from": 155120,
+				"to": 160560
+			},
+			"text": " panel of experts here have demonstrably improved the code that I've seen from our clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,560",
+				"to": "00:02:51,840"
+			},
+			"offsets": {
+				"from": 160560,
+				"to": 171840
+			},
+			"text": " >> There you go. >> Yes, I was going to say that a year ago when we were in Mexico,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,840",
+				"to": "00:02:58,080"
+			},
+			"offsets": {
+				"from": 171840,
+				"to": 178080
+			},
+			"text": " there wasn't much of a security community. And that's something which I feel has really taken"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,080",
+				"to": "00:03:05,920"
+			},
+			"offsets": {
+				"from": 178080,
+				"to": 185920
+			},
+			"text": " off in the last maybe half a year. And most of the people who were interested in security"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,720",
+				"to": "00:03:14,240"
+			},
+			"offsets": {
+				"from": 186720,
+				"to": 194240
+			},
+			"text": " came from the Ethereum space and really were Ethereum enthusiasts who were also interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,240",
+				"to": "00:03:19,920"
+			},
+			"offsets": {
+				"from": 194240,
+				"to": 199920
+			},
+			"text": " in security. And now I think we're seeing a kind of large influx from traditional security"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,920",
+				"to": "00:03:27,760"
+			},
+			"offsets": {
+				"from": 199920,
+				"to": 207760
+			},
+			"text": " into the space. And that really changes things. >> Yeah, to speak to what Martin just said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,760",
+				"to": "00:03:34,480"
+			},
+			"offsets": {
+				"from": 207760,
+				"to": 214480
+			},
+			"text": " sort of recently I attended an academic conference using X18. And they had actually an entire session"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,480",
+				"to": "00:03:39,120"
+			},
+			"offsets": {
+				"from": 214480,
+				"to": 219120
+			},
+			"text": " on smart contract security which had I think around four talks that were Ethereum related."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,120",
+				"to": "00:03:42,880"
+			},
+			"offsets": {
+				"from": 219120,
+				"to": 222880
+			},
+			"text": " And that's a community that's completely outside of this space. Those are people who normally would"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,880",
+				"to": "00:03:47,760"
+			},
+			"offsets": {
+				"from": 222880,
+				"to": 227760
+			},
+			"text": " not be working on these tools. So definitely a lot of outside people have come in. And we've also"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,760",
+				"to": "00:03:51,760"
+			},
+			"offsets": {
+				"from": 227760,
+				"to": 231760
+			},
+			"text": " seen sort of the people who are already in the space start producing artifacts. So we've seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,760",
+				"to": "00:03:56,640"
+			},
+			"offsets": {
+				"from": 231760,
+				"to": 236640
+			},
+			"text": " the first set of formally verified contracts. We've seen smoother processes for like engaging that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,640",
+				"to": "00:04:01,280"
+			},
+			"offsets": {
+				"from": 236640,
+				"to": 241280
+			},
+			"text": " And just a lot of improvement across the board I think kind of everything is a little bit less"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,280",
+				"to": "00:04:05,760"
+			},
+			"offsets": {
+				"from": 241280,
+				"to": 245760
+			},
+			"text": " on fire than it was a year or two ago. >> Still on, they've stopped adding tires to the fire."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,760",
+				"to": "00:04:11,840"
+			},
+			"offsets": {
+				"from": 245760,
+				"to": 251840
+			},
+			"text": " >> Yeah, it's still on fire. But. >> Yeah, I think sort of what everyone else has said. I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,840",
+				"to": "00:04:18,560"
+			},
+			"offsets": {
+				"from": 251840,
+				"to": 258560
+			},
+			"text": " really like not only has the security community grown, there's been massive increased awareness"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,560",
+				"to": "00:04:24,400"
+			},
+			"offsets": {
+				"from": 258560,
+				"to": 264400
+			},
+			"text": " and security issues. I think most exchanges now require a security audit of some sort before"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,400",
+				"to": "00:04:29,520"
+			},
+			"offsets": {
+				"from": 264400,
+				"to": 269520
+			},
+			"text": " they interact with projects which is surprisingly shockingly that wasn't the case always."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,520",
+				"to": "00:04:37,440"
+			},
+			"offsets": {
+				"from": 269520,
+				"to": 277440
+			},
+			"text": " Right? There's more awareness generally that before you go live and you need a security audit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,440",
+				"to": "00:04:46,800"
+			},
+			"offsets": {
+				"from": 277440,
+				"to": 286800
+			},
+			"text": " there's the best practices that need to be followed. So we're playing a bit less fast and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,800",
+				"to": "00:04:55,120"
+			},
+			"offsets": {
+				"from": 286800,
+				"to": 295120
+			},
+			"text": " loose and more realizing that if you write a smart contract that may hold even if you don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,120",
+				"to": "00:05:00,640"
+			},
+			"offsets": {
+				"from": 295120,
+				"to": 300640
+			},
+			"text": " intend to, many millions of dollars and you don't want to be directly or indirectly responsible for"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,640",
+				"to": "00:05:06,720"
+			},
+			"offsets": {
+				"from": 300640,
+				"to": 306720
+			},
+			"text": " a loss of that. >> It's hard to go after all these guys and have something original to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,720",
+				"to": "00:05:13,280"
+			},
+			"offsets": {
+				"from": 306720,
+				"to": 313280
+			},
+			"text": " So tools, it's been an explosion and I just want to call out like Zeppelin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,280",
+				"to": "00:05:19,680"
+			},
+			"offsets": {
+				"from": 313280,
+				"to": 319680
+			},
+			"text": " chain security, trailer bits really like coming on hard in last year has really like stepped"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,680",
+				"to": "00:05:26,560"
+			},
+			"offsets": {
+				"from": 319680,
+				"to": 326560
+			},
+			"text": " everybody's game up and then like Bernard and Mithril within consensus are kind of going crazy"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,560",
+				"to": "00:05:32,480"
+			},
+			"offsets": {
+				"from": 326560,
+				"to": 332480
+			},
+			"text": " in a good fun way. And then I think like maybe the thing that I've heard more conversation about"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,480",
+				"to": "00:05:39,520"
+			},
+			"offsets": {
+				"from": 332480,
+				"to": 339520
+			},
+			"text": " recently is like the awareness of incentives and how crypto economic mechanisms themselves can"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,520",
+				"to": "00:05:46,080"
+			},
+			"offsets": {
+				"from": 339520,
+				"to": 346080
+			},
+			"text": " actually contribute to security in like one way is just like automated deterministic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,040",
+				"to": "00:05:50,720"
+			},
+			"offsets": {
+				"from": 347040,
+				"to": 350720
+			},
+			"text": " non subjective bounties that pay out when you break the thing. I think that's amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,720",
+				"to": "00:05:58,800"
+			},
+			"offsets": {
+				"from": 350720,
+				"to": 358800
+			},
+			"text": " >> Cool. So next one, compared to securing traditional systems, how do the economic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,800",
+				"to": "00:06:01,920"
+			},
+			"offsets": {
+				"from": 358800,
+				"to": 361920
+			},
+			"text": " properties of smart contracts change how you approach their security?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,920",
+				"to": "00:06:10,320"
+			},
+			"offsets": {
+				"from": 361920,
+				"to": 370320
+			},
+			"text": " >> Okay, well, so I'm going to like what I think is one way that we're tackling that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,320",
+				"to": "00:06:15,920"
+			},
+			"offsets": {
+				"from": 370320,
+				"to": 375920
+			},
+			"text": " actually through actually creating like incentives for coordination within the security community."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,920",
+				"to": "00:06:22,720"
+			},
+			"offsets": {
+				"from": 375920,
+				"to": 382720
+			},
+			"text": " So our PanVala project is a set of incentives that bring people together developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,720",
+				"to": "00:06:29,120"
+			},
+			"offsets": {
+				"from": 382720,
+				"to": 389120
+			},
+			"text": " auditors to try to establish clarity around what is a safe contract to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,120",
+				"to": "00:06:35,600"
+			},
+			"offsets": {
+				"from": 389120,
+				"to": 395600
+			},
+			"text": " And if you're interested in that, we recently put a video of the process for seeking consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,600",
+				"to": "00:06:40,960"
+			},
+			"offsets": {
+				"from": 395600,
+				"to": 400960
+			},
+			"text": " around that. I'll tweet it after and we'd love to get your feedback on it. And I've we have got"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,960",
+				"to": "00:06:46,800"
+			},
+			"offsets": {
+				"from": 400960,
+				"to": 406800
+			},
+			"text": " some already and I'm looking forward to more. >> Who's --"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,800",
+				"to": "00:06:57,200"
+			},
+			"offsets": {
+				"from": 406800,
+				"to": 417200
+			},
+			"text": " >> I think one of the big distinctions is the irreversibility and the transparency of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,200",
+				"to": "00:07:04,640"
+			},
+			"offsets": {
+				"from": 417200,
+				"to": 424640
+			},
+			"text": " smart contract environment versus the traditional security domain. You can usually treat traditional"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,640",
+				"to": "00:07:10,800"
+			},
+			"offsets": {
+				"from": 424640,
+				"to": 430800
+			},
+			"text": " security almost like insurance. It's often less costly to just fix the issue after the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,800",
+				"to": "00:07:17,360"
+			},
+			"offsets": {
+				"from": 430800,
+				"to": 437360
+			},
+			"text": " then to prepare for it. Or you have safeguards or abilities that you just don't have in smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,360",
+				"to": "00:07:21,520"
+			},
+			"offsets": {
+				"from": 437360,
+				"to": 441520
+			},
+			"text": " contracts where somebody drains their contract. I mean, it's over. There's no recourse."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,520",
+				"to": "00:07:30,400"
+			},
+			"offsets": {
+				"from": 441520,
+				"to": 450400
+			},
+			"text": " So -- and I think like it's -- a lot of people say, hey, look, smart contracts just never going"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,400",
+				"to": "00:07:34,800"
+			},
+			"offsets": {
+				"from": 450400,
+				"to": 454800
+			},
+			"text": " to work because look at all the exploits that have happened. But I don't think it's a smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,800",
+				"to": "00:07:38,960"
+			},
+			"offsets": {
+				"from": 454800,
+				"to": 458960
+			},
+			"text": " contract thing. I think it's -- well, of course, it's a new space and it's a bit hard to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,080",
+				"to": "00:07:44,880"
+			},
+			"offsets": {
+				"from": 460080,
+				"to": 464880
+			},
+			"text": " have a good security framework in such an asset space. But I think this is a problem that exists"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,880",
+				"to": "00:07:50,720"
+			},
+			"offsets": {
+				"from": 464880,
+				"to": 470720
+			},
+			"text": " in all software and it's just far more clear in the smart contract space. And damages are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,720",
+				"to": "00:07:56,160"
+			},
+			"offsets": {
+				"from": 470720,
+				"to": 476160
+			},
+			"text": " irreversible. So it's more -- it's not that smart contracts are necessarily hard. They're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,160",
+				"to": "00:08:00,320"
+			},
+			"offsets": {
+				"from": 476160,
+				"to": 480320
+			},
+			"text": " hard in a different way. But I would say the level of difficulties is similar to other domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,320",
+				"to": "00:08:05,440"
+			},
+			"offsets": {
+				"from": 480320,
+				"to": 485440
+			},
+			"text": " It's just that if you're bad, if you don't do -- you're due diligence, you don't follow the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,440",
+				"to": "00:08:11,840"
+			},
+			"offsets": {
+				"from": 485440,
+				"to": 491840
+			},
+			"text": " right process. There is no hiding behind, like a firewall or a closed guard. And there's no -- oh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,840",
+				"to": "00:08:17,520"
+			},
+			"offsets": {
+				"from": 491840,
+				"to": 497520
+			},
+			"text": " I'll report it if I have to. It's just there for the world. And so all mistakes are very clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,520",
+				"to": "00:08:22,080"
+			},
+			"offsets": {
+				"from": 497520,
+				"to": 502080
+			},
+			"text": " So it seems like there's more. But, you know, like there's -- banks have lost far more than"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,080",
+				"to": "00:08:29,200"
+			},
+			"offsets": {
+				"from": 502080,
+				"to": 509200
+			},
+			"text": " smart contracts to the date. Yeah. So I think for me, economics sort of has a dual nature here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,200",
+				"to": "00:08:33,600"
+			},
+			"offsets": {
+				"from": 509200,
+				"to": 513600
+			},
+			"text": " In one way, it's very helpful in securing these systems. So something like just knowing the value"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,600",
+				"to": "00:08:38,320"
+			},
+			"offsets": {
+				"from": 513600,
+				"to": 518320
+			},
+			"text": " of the system you're securing is not something that you can do in sort of classical systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,320",
+				"to": "00:08:43,760"
+			},
+			"offsets": {
+				"from": 518320,
+				"to": 523760
+			},
+			"text": " Like what is the value of a power plant's ethernet system? Or what is the value of an election"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,760",
+				"to": "00:08:48,080"
+			},
+			"offsets": {
+				"from": 523760,
+				"to": 528080
+			},
+			"text": " system for a county or something like that? So it makes some kinds of security analysis much"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,080",
+				"to": "00:08:52,480"
+			},
+			"offsets": {
+				"from": 528080,
+				"to": 532480
+			},
+			"text": " easier. On the other hand, because a lot of the security assumptions we have to make to show that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,480",
+				"to": "00:08:57,200"
+			},
+			"offsets": {
+				"from": 532480,
+				"to": 537200
+			},
+			"text": " these systems are secure are themselves economic. It also sort of brings security into this realm"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,200",
+				"to": "00:09:02,240"
+			},
+			"offsets": {
+				"from": 537200,
+				"to": 542240
+			},
+			"text": " of economics, which is much more subjective and nebulous, where like even two economists might"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,240",
+				"to": "00:09:07,920"
+			},
+			"offsets": {
+				"from": 542240,
+				"to": 547920
+			},
+			"text": " not agree on basic definitions or basic principles. So I think we're going to see a lot of subjective"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,920",
+				"to": "00:09:13,280"
+			},
+			"offsets": {
+				"from": 547920,
+				"to": 553280
+			},
+			"text": " security sort of develop as the space starts to differentiate itself from traditional systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,280",
+				"to": "00:09:18,880"
+			},
+			"offsets": {
+				"from": 553280,
+				"to": 558880
+			},
+			"text": " And I kind of look forward to that. Also on a personal note, the economic nature of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,880",
+				"to": "00:09:23,520"
+			},
+			"offsets": {
+				"from": 558880,
+				"to": 563520
+			},
+			"text": " systems kind of keeps me up at night. So I don't know about you guys, but when I'm doing an audit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,520",
+				"to": "00:09:28,960"
+			},
+			"offsets": {
+				"from": 563520,
+				"to": 568960
+			},
+			"text": " I'm, you know, I'm worried about that a lot more than, yeah, motivating exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,960",
+				"to": "00:09:36,880"
+			},
+			"offsets": {
+				"from": 568960,
+				"to": 576880
+			},
+			"text": " Yeah, that's kind of really what you should, you should be awake at night because of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,880",
+				"to": "00:09:42,560"
+			},
+			"offsets": {
+				"from": 576880,
+				"to": 582560
+			},
+			"text": " Because, I mean, if you come from traditional IT security, you're trying to find vulnerabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,560",
+				"to": "00:09:49,120"
+			},
+			"offsets": {
+				"from": 582560,
+				"to": 589120
+			},
+			"text": " and you might find, you know, like cross-site scripting, some SQL injection, some data leakage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,120",
+				"to": "00:09:55,440"
+			},
+			"offsets": {
+				"from": 589120,
+				"to": 595440
+			},
+			"text": " You can take money even maybe sometimes from one account and do something. But the stakes are so"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,440",
+				"to": "00:10:02,800"
+			},
+			"offsets": {
+				"from": 595440,
+				"to": 602800
+			},
+			"text": " much higher here. And it's like someone can randomly make a contract, which all of a sudden has"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,800",
+				"to": "00:10:11,040"
+			},
+			"offsets": {
+				"from": 602800,
+				"to": 611040
+			},
+			"text": " millions of dollars. And we need to kind of realize that these stakes are so much higher,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,040",
+				"to": "00:10:15,680"
+			},
+			"offsets": {
+				"from": 611040,
+				"to": 615680
+			},
+			"text": " so easily in this system, which is just natively deals with currency stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,680",
+				"to": "00:10:22,560"
+			},
+			"offsets": {
+				"from": 615680,
+				"to": 622560
+			},
+			"text": " I'll keep my answer brief. I think the one side of Atlantic note to back up Phil's point is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,560",
+				"to": "00:10:27,360"
+			},
+			"offsets": {
+				"from": 622560,
+				"to": 627360
+			},
+			"text": " spank chain bug that came out just a few weeks ago where the blog post described, hey, we didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,360",
+				"to": "00:10:31,600"
+			},
+			"offsets": {
+				"from": 627360,
+				"to": 631600
+			},
+			"text": " do an audit of this because it would have cost more than the value held in the contract itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,600",
+				"to": "00:10:37,040"
+			},
+			"offsets": {
+				"from": 631600,
+				"to": 637040
+			},
+			"text": " That's not something you can really do with a classical system. And I totally agree with Phil's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,040",
+				"to": "00:10:42,080"
+			},
+			"offsets": {
+				"from": 637040,
+				"to": 642080
+			},
+			"text": " point there that this is something completely unique about the field that we're in. So I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,080",
+				"to": "00:10:47,520"
+			},
+			"offsets": {
+				"from": 642080,
+				"to": 647520
+			},
+			"text": " that's the biggest difference I could point to. Yeah, cool. And so actually Dan, we were having"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,520",
+				"to": "00:10:54,560"
+			},
+			"offsets": {
+				"from": 647520,
+				"to": 654560
+			},
+			"text": " this conversation the other day about bug bounties and whether they're a good practice or using"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,560",
+				"to": "00:11:01,440"
+			},
+			"offsets": {
+				"from": 654560,
+				"to": 661440
+			},
+			"text": " tools to find repeatable bugs. Do you want to launch into that? Yeah, sure. So I think the concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,440",
+				"to": "00:11:08,480"
+			},
+			"offsets": {
+				"from": 661440,
+				"to": 668480
+			},
+			"text": " of bug bounties makes sense if all you want to get from an auditor is a list of bugs. If that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,480",
+				"to": "00:11:13,200"
+			},
+			"offsets": {
+				"from": 668480,
+				"to": 673200
+			},
+			"text": " all you're expecting to receive from hiring anybody on stage here to review your project as a list"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,200",
+				"to": "00:11:18,080"
+			},
+			"offsets": {
+				"from": 673200,
+				"to": 678080
+			},
+			"text": " of bugs, then sure, bug bounty makes sense. I wouldn't think that any of us expect to only provide that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,080",
+				"to": "00:11:24,160"
+			},
+			"offsets": {
+				"from": 678080,
+				"to": 684160
+			},
+			"text": " as a service. The second really big issue here, and really you should be upset if you've hired"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,160",
+				"to": "00:11:28,640"
+			},
+			"offsets": {
+				"from": 684160,
+				"to": 688640
+			},
+			"text": " someone like one of us up here and that's all you get. That's not the service that you should get"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,640",
+				"to": "00:11:33,600"
+			},
+			"offsets": {
+				"from": 688640,
+				"to": 693600
+			},
+			"text": " in order to end up eventually getting secure code. The second thing is you don't know how to measure"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,600",
+				"to": "00:11:38,800"
+			},
+			"offsets": {
+				"from": 693600,
+				"to": 698800
+			},
+			"text": " the output of having that bug bounty. So what did you receive? Like did enough people look at it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,800",
+				"to": "00:11:43,360"
+			},
+			"offsets": {
+				"from": 698800,
+				"to": 703360
+			},
+			"text": " how much code coverage was gained, did they inspect it for the issues you actually care about, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,360",
+				"to": "00:11:49,120"
+			},
+			"offsets": {
+				"from": 703360,
+				"to": 709120
+			},
+			"text": " have no idea. A lot of this has to do with just a lack of talent in the industry. Like people at"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,120",
+				"to": "00:11:53,600"
+			},
+			"offsets": {
+				"from": 709120,
+				"to": 713600
+			},
+			"text": " Trail of Bits have done bug bounties before and the way that we do it is we spend about 10 minutes"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,600",
+				"to": "00:11:57,680"
+			},
+			"offsets": {
+				"from": 713600,
+				"to": 717680
+			},
+			"text": " to just scan over the code by hand, run our slither static analyzer on it, and if it doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,680",
+				"to": "00:12:02,560"
+			},
+			"offsets": {
+				"from": 717680,
+				"to": 722560
+			},
+			"text": " find anything, we move on. The smartest people in the space are not doing bug bounties because we"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,560",
+				"to": "00:12:08,800"
+			},
+			"offsets": {
+				"from": 722560,
+				"to": 728800
+			},
+			"text": " have better things, more impactful things to do to improve the ecosystem itself, like build tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,800",
+				"to": "00:12:13,600"
+			},
+			"offsets": {
+				"from": 728800,
+				"to": 733600
+			},
+			"text": " and do research than to spend it all on bug bounties. So I think that a lot of people in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,600",
+				"to": "00:12:18,640"
+			},
+			"offsets": {
+				"from": 733600,
+				"to": 738640
+			},
+			"text": " community have been misled about the efficacy of what bug bounties actually can accomplish."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,640",
+				"to": "00:12:22,960"
+			},
+			"offsets": {
+				"from": 738640,
+				"to": 742960
+			},
+			"text": " So if you really need security guidance, you really should be talking to a smart human that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,960",
+				"to": "00:12:27,680"
+			},
+			"offsets": {
+				"from": 742960,
+				"to": 747680
+			},
+			"text": " can reason about security properties of your system, and the bug bounty thing is just a secondary"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,680",
+				"to": "00:12:32,400"
+			},
+			"offsets": {
+				"from": 747680,
+				"to": 752400
+			},
+			"text": " kind of cover your ass type deal, which sure you could have, you could not have, but it's not the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,400",
+				"to": "00:12:36,800"
+			},
+			"offsets": {
+				"from": 752400,
+				"to": 756800
+			},
+			"text": " first place you start, and it doesn't cover nearly as many bases as people think it does."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,800",
+				"to": "00:12:48,080"
+			},
+			"offsets": {
+				"from": 756800,
+				"to": 768080
+			},
+			"text": " I agree. I don't have anything to add. I'll let you show it. I agree that the efficacy of bug"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,080",
+				"to": "00:12:55,120"
+			},
+			"offsets": {
+				"from": 768080,
+				"to": 775120
+			},
+			"text": " bounties is dubious in certain circumstances. I think like if you have, like the contract is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,120",
+				"to": "00:13:00,800"
+			},
+			"offsets": {
+				"from": 775120,
+				"to": 780800
+			},
+			"text": " bug bounty in a lot of cases, if you have a monetary compensation for being ethical, that's like"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,800",
+				"to": "00:13:09,680"
+			},
+			"offsets": {
+				"from": 780800,
+				"to": 789680
+			},
+			"text": " an auxiliary incentive. If really the people who go around looking at contracts and testing if"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,680",
+				"to": "00:13:17,360"
+			},
+			"offsets": {
+				"from": 789680,
+				"to": 797360
+			},
+			"text": " they're vulnerable randomly, generally, unless you're one of those hacker one types, those are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,360",
+				"to": "00:13:22,720"
+			},
+			"offsets": {
+				"from": 797360,
+				"to": 802720
+			},
+			"text": " the people who are going to report the bug bounty to you. There's many other ways to profit besides"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,720",
+				"to": "00:13:28,560"
+			},
+			"offsets": {
+				"from": 802720,
+				"to": 808560
+			},
+			"text": " reporting it to the, you know, responsibility to the company. And, you know, like an echo"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,560",
+				"to": "00:13:35,040"
+			},
+			"offsets": {
+				"from": 808560,
+				"to": 815040
+			},
+			"text": " this statement that you shouldn't really just be looking for lists of bugs or vulnerabilities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,040",
+				"to": "00:13:39,600"
+			},
+			"offsets": {
+				"from": 815040,
+				"to": 819600
+			},
+			"text": " like how many vulnerabilities did this guy find? It shouldn't be the metric for quality security"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,600",
+				"to": "00:13:45,120"
+			},
+			"offsets": {
+				"from": 819600,
+				"to": 825120
+			},
+			"text": " audit. It should be, are we informed now to make better decisions in the future? Have we gotten"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,120",
+				"to": "00:13:50,080"
+			},
+			"offsets": {
+				"from": 825120,
+				"to": 830080
+			},
+			"text": " comments on improving our process such that, you know, we don't make fragile code, we don't get"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,080",
+				"to": "00:13:56,080"
+			},
+			"offsets": {
+				"from": 830080,
+				"to": 836080
+			},
+			"text": " into bad situations in the future. I think realistically, both in this industry and outside,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,080",
+				"to": "00:14:01,040"
+			},
+			"offsets": {
+				"from": 836080,
+				"to": 841040
+			},
+			"text": " if possible, it's always best to hire a security person internally, right? Like, so much should be"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,040",
+				"to": "00:14:06,160"
+			},
+			"offsets": {
+				"from": 841040,
+				"to": 846160
+			},
+			"text": " with you every step of the way. Security is not like an afterthought, it's not like a thing at"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,160",
+				"to": "00:14:11,760"
+			},
+			"offsets": {
+				"from": 846160,
+				"to": 851760
+			},
+			"text": " the end of the process, it's part of the process of creating software. And really, in the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,760",
+				"to": "00:14:17,680"
+			},
+			"offsets": {
+				"from": 851760,
+				"to": 857680
+			},
+			"text": " space, you know, this is very evident, but I hope that, you know, like even the traditional industry"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,680",
+				"to": "00:14:23,760"
+			},
+			"offsets": {
+				"from": 857680,
+				"to": 863760
+			},
+			"text": " starts to think more this way. So I agree with most of what's been said so far. I do think Dan was"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,760",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 863760,
+				"to": 870000
+			},
+			"text": " maybe a little too negative on bug bounties. So the way I see bug bounties is that it's obviously"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:35,920"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 875920
+			},
+			"text": " not a sort of substitute for doing your homework. So it's your job as a company to ensure that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,920",
+				"to": "00:14:39,680"
+			},
+			"offsets": {
+				"from": 875920,
+				"to": 879680
+			},
+			"text": " hire the right people to have input into your code, that you hire external people as well as"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,680",
+				"to": "00:14:44,480"
+			},
+			"offsets": {
+				"from": 879680,
+				"to": 884480
+			},
+			"text": " yourselves, that you run security processes and engage in critical review of your software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,480",
+				"to": "00:14:48,560"
+			},
+			"offsets": {
+				"from": 884480,
+				"to": 888560
+			},
+			"text": " that you understand the limitations of the people you're hiring, because while all of us are"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,560",
+				"to": "00:14:52,320"
+			},
+			"offsets": {
+				"from": 888560,
+				"to": 892320
+			},
+			"text": " competent security professionals, we're humans who have like a certain amount of hours in the day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,320",
+				"to": "00:14:57,680"
+			},
+			"offsets": {
+				"from": 892320,
+				"to": 897680
+			},
+			"text": " and we all focus on different aspects of security. So it's your job to ensure you hire a diversity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,680",
+				"to": "00:15:02,160"
+			},
+			"offsets": {
+				"from": 897680,
+				"to": 902160
+			},
+			"text": " of opinions and skill sets to sort of inform you about how to proceed with your code. But at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,160",
+				"to": "00:15:06,400"
+			},
+			"offsets": {
+				"from": 902160,
+				"to": 906400
+			},
+			"text": " same time, if you don't have a bug bounty, you're sort of skewing the incentives for anyone who"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,400",
+				"to": "00:15:11,040"
+			},
+			"offsets": {
+				"from": 906400,
+				"to": 911040
+			},
+			"text": " eventually finds a vulnerability in your program. So you want to have something to sort of offer"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,040",
+				"to": "00:15:14,800"
+			},
+			"offsets": {
+				"from": 911040,
+				"to": 914800
+			},
+			"text": " somebody who does find that vulnerability to stop them from just taking it to the chain or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,800",
+				"to": "00:15:19,840"
+			},
+			"offsets": {
+				"from": 914800,
+				"to": 919840
+			},
+			"text": " like that. So I think from an economic security perspective, bug bounties are sort of necessary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,840",
+				"to": "00:15:26,800"
+			},
+			"offsets": {
+				"from": 919840,
+				"to": 926800
+			},
+			"text": " but not sufficient. Just to respond to that, I agree with everything you said. And I think that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,800",
+				"to": "00:15:30,800"
+			},
+			"offsets": {
+				"from": 926800,
+				"to": 930800
+			},
+			"text": " if you don't have an easy way to report bugs that are discovered in your application after it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,800",
+				"to": "00:15:36,320"
+			},
+			"offsets": {
+				"from": 930800,
+				"to": 936320
+			},
+			"text": " been deployed, you're making a huge mistake. We have a little wiki that like talks about some"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,320",
+				"to": "00:15:40,400"
+			},
+			"offsets": {
+				"from": 936320,
+				"to": 940400
+			},
+			"text": " easy things you can do to make it easier to communicate with your project. I believe it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,400",
+				"to": "00:15:46,080"
+			},
+			"offsets": {
+				"from": 940400,
+				"to": 946080
+			},
+			"text": " called blockchain security contacts so that if any security researcher does find a bug in your code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,080",
+				"to": "00:15:51,200"
+			},
+			"offsets": {
+				"from": 946080,
+				"to": 951200
+			},
+			"text": " they can actually communicate it to you. So don't neglect that, but yes, you're completely correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,200",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 951200,
+				"to": 960000
+			},
+			"text": " Yeah, I just echo what Phil said. I'm all for bug bounties, but not exclusive or security work."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:05,040"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 965040
+			},
+			"text": " Same thing, I don't think it should be the only security that's done. I mean, there should be like"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,040",
+				"to": "00:16:12,320"
+			},
+			"offsets": {
+				"from": 965040,
+				"to": 972320
+			},
+			"text": " a process that makes your development more secure. There should be someone in-house."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,320",
+				"to": "00:16:17,200"
+			},
+			"offsets": {
+				"from": 972320,
+				"to": 977200
+			},
+			"text": " There should be a formal audit or three. And then there should probably be a bug bounty"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,200",
+				"to": "00:16:20,160"
+			},
+			"offsets": {
+				"from": 977200,
+				"to": 980160
+			},
+			"text": " like across it all. I just think we've been sort of like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,160",
+				"to": "00:16:25,280"
+			},
+			"offsets": {
+				"from": 980160,
+				"to": 985280
+			},
+			"text": " false equivalency. There's like two in audit. Don't do a bounty instead of an audit and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,280",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 985280,
+				"to": 990000
+			},
+			"text": " run a bounty so that somebody has a reason to report it to you. They're separate things."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,600",
+				"to": "00:16:37,360"
+			},
+			"offsets": {
+				"from": 991600,
+				"to": 997360
+			},
+			"text": " All right, next one is what advice would you give someone who's interested in becoming more"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,360",
+				"to": "00:16:43,920"
+			},
+			"offsets": {
+				"from": 997360,
+				"to": 1003920
+			},
+			"text": " involved in smart contract security? Where would they start? So my answer to that would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,920",
+				"to": "00:16:50,880"
+			},
+			"offsets": {
+				"from": 1003920,
+				"to": 1010880
+			},
+			"text": " because that's the way I came into smart contract security, to learn the intricate details and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,880",
+				"to": "00:16:59,120"
+			},
+			"offsets": {
+				"from": 1010880,
+				"to": 1019120
+			},
+			"text": " integrate the mechanics of the EVM and execution of transaction from the bottom up."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,240",
+				"to": "00:17:02,320"
+			},
+			"offsets": {
+				"from": 1020240,
+				"to": 1022320
+			},
+			"text": " That would be my first advice, kind of."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,320",
+				"to": "00:17:09,120"
+			},
+			"offsets": {
+				"from": 1022320,
+				"to": 1029120
+			},
+			"text": " Yeah, that's definitely great advice. I would also say look at past security failures and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,120",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1029120,
+				"to": 1034000
+			},
+			"text": " replicate them yourself. So you should be able to pull off something like the DAU hack. You should"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:18,240"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1038240
+			},
+			"text": " be able to understand how to exploit various people's coding error. And you should try it by"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,240",
+				"to": "00:17:21,760"
+			},
+			"offsets": {
+				"from": 1038240,
+				"to": 1041760
+			},
+			"text": " example. And then once you're sort of done doing that and you feel comfortable that you're at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,760",
+				"to": "00:17:26,400"
+			},
+			"offsets": {
+				"from": 1041760,
+				"to": 1046400
+			},
+			"text": " state of the art, maybe try finding something new. Even if it's not a very high severity thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,400",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1046400,
+				"to": 1050000
+			},
+			"text": " find something that people haven't thought of yet in some edge case. And whether that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:33,360"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1053360
+			},
+			"text": " takes you three months or six months, sort of at the end of that process, you'll probably know a"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,360",
+				"to": "00:17:39,680"
+			},
+			"offsets": {
+				"from": 1053360,
+				"to": 1059680
+			},
+			"text": " lot more about the EVM and smart contracts. Yeah, I agree with both of those statements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,680",
+				"to": "00:17:44,800"
+			},
+			"offsets": {
+				"from": 1059680,
+				"to": 1064800
+			},
+			"text": " especially the intricate details part. Like most security issues come from misplaced assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,800",
+				"to": "00:17:50,160"
+			},
+			"offsets": {
+				"from": 1064800,
+				"to": 1070160
+			},
+			"text": " So you have this black box and it has a set of properties that you feel comfortable with."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,160",
+				"to": "00:17:56,480"
+			},
+			"offsets": {
+				"from": 1070160,
+				"to": 1076480
+			},
+			"text": " Or that someone else has told you those are the properties. And it's a telephone game."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,360",
+				"to": "00:18:01,040"
+			},
+			"offsets": {
+				"from": 1077360,
+				"to": 1081040
+			},
+			"text": " Depending on how far away the person that originally actually made the thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,040",
+				"to": "00:18:06,080"
+			},
+			"offsets": {
+				"from": 1081040,
+				"to": 1086080
+			},
+			"text": " how many levels are on between you and that person, it's likely that you're understanding"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,080",
+				"to": "00:18:10,560"
+			},
+			"offsets": {
+				"from": 1086080,
+				"to": 1090560
+			},
+			"text": " of that black box that's twisted. And then you write code that has a bad understanding and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,560",
+				"to": "00:18:16,800"
+			},
+			"offsets": {
+				"from": 1090560,
+				"to": 1096800
+			},
+			"text": " mislead the next person. And then it just builds up over and over. So the more you can open black"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,800",
+				"to": "00:18:21,200"
+			},
+			"offsets": {
+				"from": 1096800,
+				"to": 1101200
+			},
+			"text": " boxes and say, this is how that really works. This is where that interacts. The less prone you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,200",
+				"to": "00:18:27,120"
+			},
+			"offsets": {
+				"from": 1101200,
+				"to": 1107120
+			},
+			"text": " are to security mistakes. And also just try to be a good developer and write anti-fragile code."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:34,240"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1114240
+			},
+			"text": " One of the recent Bitcoin go bugs is a perfect example of that. When you write a function that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,240",
+				"to": "00:18:41,040"
+			},
+			"offsets": {
+				"from": 1114240,
+				"to": 1121040
+			},
+			"text": " seems like it makes a check, the name misleads it into making you think that it makes a check,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,040",
+				"to": "00:18:45,920"
+			},
+			"offsets": {
+				"from": 1121040,
+				"to": 1125920
+			},
+			"text": " like the file it's in whatever. And so somebody will say, oh, fine, that makes that check and I"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,920",
+				"to": "00:18:50,640"
+			},
+			"offsets": {
+				"from": 1125920,
+				"to": 1130640
+			},
+			"text": " don't have to check it in the container function. And then you get infinite money being printed."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,640",
+				"to": "00:18:56,640"
+			},
+			"offsets": {
+				"from": 1130640,
+				"to": 1136640
+			},
+			"text": " So you'd be really careful about your assumptions. Just cultivate that mindset of awareness. That's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,640",
+				"to": "00:18:59,520"
+			},
+			"offsets": {
+				"from": 1136640,
+				"to": 1139520
+			},
+			"text": " how you become good at security."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,520",
+				"to": "00:19:08,320"
+			},
+			"offsets": {
+				"from": 1139520,
+				"to": 1148320
+			},
+			"text": " I guess take it a bit different direction. I'd say contribute. Like learn by doing. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,320",
+				"to": "00:19:14,800"
+			},
+			"offsets": {
+				"from": 1148320,
+				"to": 1154800
+			},
+			"text": " like participate in bounties, which are like not that bad, we agreed. And like run the tools on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,800",
+				"to": "00:19:19,600"
+			},
+			"offsets": {
+				"from": 1154800,
+				"to": 1159600
+			},
+			"text": " contracts before we do so that maybe you'll like get a list of things and make some money. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,600",
+				"to": "00:19:24,960"
+			},
+			"offsets": {
+				"from": 1159600,
+				"to": 1164960
+			},
+			"text": " then you'll feel great. And then you'll do more. And then you can start contributing to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,960",
+				"to": "00:19:30,960"
+			},
+			"offsets": {
+				"from": 1164960,
+				"to": 1170960
+			},
+			"text": " like documentation. Our best practices would be great. Or like Dan's not so smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,960",
+				"to": "00:19:37,600"
+			},
+			"offsets": {
+				"from": 1170960,
+				"to": 1177600
+			},
+			"text": " As well as our smart contract weakness classification registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,600",
+				"to": "00:19:43,440"
+			},
+			"offsets": {
+				"from": 1177600,
+				"to": 1183440
+			},
+			"text": " Like you know, and then teach other people. Like that's how I would go about doing it and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,440",
+				"to": "00:19:46,240"
+			},
+			"offsets": {
+				"from": 1183440,
+				"to": 1186240
+			},
+			"text": " show up at these things and ask good questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,240",
+				"to": "00:19:51,520"
+			},
+			"offsets": {
+				"from": 1186240,
+				"to": 1191520
+			},
+			"text": " So I think it kind of depends on what you want to get out of working with the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,520",
+				"to": "00:19:57,200"
+			},
+			"offsets": {
+				"from": 1191520,
+				"to": 1197200
+			},
+			"text": " Like are you someone that wants to go like stun hack and flex on Twitter about it? Are you a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,200",
+				"to": "00:20:01,440"
+			},
+			"offsets": {
+				"from": 1197200,
+				"to": 1201440
+			},
+			"text": " researcher that wants to build tools? Or are you a developer that needs to secure your code?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,440",
+				"to": "00:20:05,280"
+			},
+			"offsets": {
+				"from": 1201440,
+				"to": 1205280
+			},
+			"text": " And with each of those different constraints, there's probably a different pathway to learn"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,280",
+				"to": "00:20:11,760"
+			},
+			"offsets": {
+				"from": 1205280,
+				"to": 1211760
+			},
+			"text": " what you need. I think that each of those starts with two things. And first to Martin's point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,760",
+				"to": "00:20:15,120"
+			},
+			"offsets": {
+				"from": 1211760,
+				"to": 1215120
+			},
+			"text": " you have to learn the lower level details of all the languages and tools that you're working with."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:22,080"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1222080
+			},
+			"text": " And the second is that you should review what's already been done. We tried to do our best to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,080",
+				"to": "00:20:27,440"
+			},
+			"offsets": {
+				"from": 1222080,
+				"to": 1227440
+			},
+			"text": " make a compendium of that with the awesome Ethereum security list. Just a few links and places where"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,440",
+				"to": "00:20:32,400"
+			},
+			"offsets": {
+				"from": 1227440,
+				"to": 1232400
+			},
+			"text": " we think people can start off to learn. But it's really important to keep in mind what your goals are."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,400",
+				"to": "00:20:37,680"
+			},
+			"offsets": {
+				"from": 1232400,
+				"to": 1237680
+			},
+			"text": " Because you know, you want to spend the least time to get the most effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,680",
+				"to": "00:20:44,080"
+			},
+			"offsets": {
+				"from": 1237680,
+				"to": 1244080
+			},
+			"text": " Cool. So I think we might actually go to the crowd now. If anybody has any questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,080",
+				"to": "00:20:48,720"
+			},
+			"offsets": {
+				"from": 1244080,
+				"to": 1248720
+			},
+			"text": " we have Mike's down here on either side of the stage. If you want to come down. I've got more"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,720",
+				"to": "00:20:54,080"
+			},
+			"offsets": {
+				"from": 1248720,
+				"to": 1254080
+			},
+			"text": " questions to ask, but I might turn it to you. Anyone else with the mic here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,080",
+				"to": "00:21:07,760"
+			},
+			"offsets": {
+				"from": 1254080,
+				"to": 1267760
+			},
+			"text": " Hi. I was making some notes. My name is Mitri. I'm CEO and co-founder of Cyber Security"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,760",
+				"to": "00:21:14,560"
+			},
+			"offsets": {
+				"from": 1267760,
+				"to": 1274560
+			},
+			"text": " Consulting Company, Haken. I've made about 70 audits for the last nine months. And we are all"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,560",
+				"to": "00:21:22,960"
+			},
+			"offsets": {
+				"from": 1274560,
+				"to": 1282960
+			},
+			"text": " based in Ukraine. So what I made notice that you were saying that people from traditional"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,960",
+				"to": "00:21:29,920"
+			},
+			"offsets": {
+				"from": 1282960,
+				"to": 1289920
+			},
+			"text": " cybersecurity companies entering the industry, yes. And I totally agree that the bug bounty is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,920",
+				"to": "00:21:37,920"
+			},
+			"offsets": {
+				"from": 1289920,
+				"to": 1297920
+			},
+			"text": " not enough. But my comment is that it's like the traditional people. Like I'm eight years"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,920",
+				"to": "00:21:44,720"
+			},
+			"offsets": {
+				"from": 1297920,
+				"to": 1304720
+			},
+			"text": " below it. Like what we want, we want to have a methodology and guideline. Like what needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,720",
+				"to": "00:21:51,520"
+			},
+			"offsets": {
+				"from": 1304720,
+				"to": 1311520
+			},
+			"text": " done in order to be sure that the audit was done correctly. And I think that this is what is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,520",
+				"to": "00:21:58,640"
+			},
+			"offsets": {
+				"from": 1311520,
+				"to": 1318640
+			},
+			"text": " missing so far in this industry. Yes, the weakness classification work is great, but there are still"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,640",
+				"to": "00:22:04,400"
+			},
+			"offsets": {
+				"from": 1318640,
+				"to": 1324400
+			},
+			"text": " like so many things need to be done. Like there are two ways how you can do the methodologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,400",
+				"to": "00:22:09,680"
+			},
+			"offsets": {
+				"from": 1324400,
+				"to": 1329680
+			},
+			"text": " The principle-based approach, like what are the risks and how to cover them. Or the second is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,680",
+				"to": "00:22:18,240"
+			},
+			"offsets": {
+				"from": 1329680,
+				"to": 1338240
+			},
+			"text": " checklists. What test needs to be done. So my question is like how do you see what is the right"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,240",
+				"to": "00:22:25,200"
+			},
+			"offsets": {
+				"from": 1338240,
+				"to": 1345200
+			},
+			"text": " roadmap to create this methodology? Who is leading this process? And like I want to underline. I"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,200",
+				"to": "00:22:29,520"
+			},
+			"offsets": {
+				"from": 1345200,
+				"to": 1349520
+			},
+			"text": " think this is one of the most important things right now that needs to be done in this industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,520",
+				"to": "00:22:36,400"
+			},
+			"offsets": {
+				"from": 1349520,
+				"to": 1356400
+			},
+			"text": " Thank you. >> Sure. I'll fill that one. Yeah. So we do have a community called"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,400",
+				"to": "00:22:41,280"
+			},
+			"offsets": {
+				"from": 1356400,
+				"to": 1361280
+			},
+			"text": " eSecurity, which is a community that I weed. And out of that, we have a number of working groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,280",
+				"to": "00:22:47,440"
+			},
+			"offsets": {
+				"from": 1361280,
+				"to": 1367440
+			},
+			"text": " So there's actually a working group for developer guidelines. And as well as"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,440",
+				"to": "00:22:54,320"
+			},
+			"offsets": {
+				"from": 1367440,
+				"to": 1374320
+			},
+			"text": " auditor guidelines or assessment guidelines. So the smart contract alliance is one of the groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,120",
+				"to": "00:23:01,040"
+			},
+			"offsets": {
+				"from": 1375120,
+				"to": 1381040
+			},
+			"text": " And security is making the developer guidelines. So I encourage you to reach out and get involved"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,040",
+				"to": "00:23:04,720"
+			},
+			"offsets": {
+				"from": 1381040,
+				"to": 1384720
+			},
+			"text": " in those groups because they are open. If you want to hit me up on telegram, I can add you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,720",
+				"to": "00:23:11,200"
+			},
+			"offsets": {
+				"from": 1384720,
+				"to": 1391200
+			},
+			"text": " the correct channels. You're in the group. Cool. Awesome. Yeah, has anybody else has anything on that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,200",
+				"to": "00:23:17,360"
+			},
+			"offsets": {
+				"from": 1391200,
+				"to": 1397360
+			},
+			"text": " >> Yeah. So I would caution against trusting any formal checklist or process too much. Because"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,360",
+				"to": "00:23:22,160"
+			},
+			"offsets": {
+				"from": 1397360,
+				"to": 1402160
+			},
+			"text": " the entire sort of point of an attacker in the security world is that they understand your"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,160",
+				"to": "00:23:26,000"
+			},
+			"offsets": {
+				"from": 1402160,
+				"to": 1406000
+			},
+			"text": " assumptions and try to violate them. So that checklist could actually lead to sort of blind"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,000",
+				"to": "00:23:30,560"
+			},
+			"offsets": {
+				"from": 1406000,
+				"to": 1410560
+			},
+			"text": " spots in your process as well. So what I would say is that any sort of halfway competent person"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,560",
+				"to": "00:23:34,880"
+			},
+			"offsets": {
+				"from": 1410560,
+				"to": 1414880
+			},
+			"text": " you hire to take a look at your contract should sort of know subjectively like as a human being,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,880",
+				"to": "00:23:39,520"
+			},
+			"offsets": {
+				"from": 1414880,
+				"to": 1419520
+			},
+			"text": " like where are my blind spots? What have I looked at? What have I not? What state of the art stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,520",
+				"to": "00:23:42,880"
+			},
+			"offsets": {
+				"from": 1419520,
+				"to": 1422880
+			},
+			"text": " have I done? What state of the art stuff have I not done? And they should actually inform you"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,880",
+				"to": "00:23:47,840"
+			},
+			"offsets": {
+				"from": 1422880,
+				"to": 1427840
+			},
+			"text": " about that as part of the process. And having someone internal who also understands the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,840",
+				"to": "00:23:54,880"
+			},
+			"offsets": {
+				"from": 1427840,
+				"to": 1434880
+			},
+			"text": " of the art could help you with that too. >> Yeah. Sorry. I just like to add that. I think checklists"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,880",
+				"to": "00:24:02,000"
+			},
+			"offsets": {
+				"from": 1434880,
+				"to": 1442000
+			},
+			"text": " are great, but they're not for auditors. Therefore, developers to kind of check why they write in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,000",
+				"to": "00:24:09,280"
+			},
+			"offsets": {
+				"from": 1442000,
+				"to": 1449280
+			},
+			"text": " code. But the auditor shouldn't have to rely on those or use those extensively. >> Yeah, I will"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,280",
+				"to": "00:24:14,480"
+			},
+			"offsets": {
+				"from": 1449280,
+				"to": 1454480
+			},
+			"text": " add those. The developer and assessment guidelines are more framework for like as I enter into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,480",
+				"to": "00:24:18,400"
+			},
+			"offsets": {
+				"from": 1454480,
+				"to": 1458400
+			},
+			"text": " product, like as a developer, what are the steps I'm going to go through so that I have a consistent"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,400",
+				"to": "00:24:24,480"
+			},
+			"offsets": {
+				"from": 1458400,
+				"to": 1464480
+			},
+			"text": " product to then hand over to an auditor when they receive it. So it's not just like a bunch of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,480",
+				"to": "00:24:32,160"
+			},
+			"offsets": {
+				"from": 1464480,
+				"to": 1472160
+			},
+			"text": " files. And on the assessment side, okay, what are we going to be delivering back to the client"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,160",
+				"to": "00:24:37,200"
+			},
+			"offsets": {
+				"from": 1472160,
+				"to": 1477200
+			},
+			"text": " so that the process is a little bit more, there's some expectations on what you give and receive."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,400",
+				"to": "00:24:47,840"
+			},
+			"offsets": {
+				"from": 1480400,
+				"to": 1487840
+			},
+			"text": " Somebody else over here? >> I would like to ask you about security in a future proof of stake,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,840",
+				"to": "00:24:54,560"
+			},
+			"offsets": {
+				"from": 1487840,
+				"to": 1494560
+			},
+			"text": " actually security of validators. And because basically issue is that what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,560",
+				"to": "00:25:00,800"
+			},
+			"offsets": {
+				"from": 1494560,
+				"to": 1500800
+			},
+			"text": " imagine that I am validator, I will put like 1,000 of ether in my wallet. And I will register the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,800",
+				"to": "00:25:07,920"
+			},
+			"offsets": {
+				"from": 1500800,
+				"to": 1507920
+			},
+			"text": " wallet for staking, right? I will register with my private key. What happened if I'm signing"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,920",
+				"to": "00:25:12,480"
+			},
+			"offsets": {
+				"from": 1507920,
+				"to": 1512480
+			},
+			"text": " blog with the same key in the network and let's say that someone will take my note,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,480",
+				"to": "00:25:18,960"
+			},
+			"offsets": {
+				"from": 1512480,
+				"to": 1518960
+			},
+			"text": " can he actually use the same private key to register my note and actually take my stake?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,960",
+				"to": "00:25:25,600"
+			},
+			"offsets": {
+				"from": 1518960,
+				"to": 1525600
+			},
+			"text": " My question is how can I secure my stake in the future proposal? I'm trying to find it but"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,600",
+				"to": "00:25:32,640"
+			},
+			"offsets": {
+				"from": 1525600,
+				"to": 1532640
+			},
+			"text": " did you get it? >> Can I rephrase it? Because I'm not sure. And I'm no"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,640",
+				"to": "00:25:39,200"
+			},
+			"offsets": {
+				"from": 1532640,
+				"to": 1539200
+			},
+			"text": " proof of stake expert. But what I think you're asking is the same as for proof of authority"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,200",
+				"to": "00:25:46,320"
+			},
+			"offsets": {
+				"from": 1539200,
+				"to": 1546320
+			},
+			"text": " chains where the actual ceiling requires the presence of the private key in the node. >> Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,320",
+				"to": "00:25:54,800"
+			},
+			"offsets": {
+				"from": 1546320,
+				"to": 1554800
+			},
+			"text": " >> And yes, that is the case. So you will actually have a network node which contains a private"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,800",
+				"to": "00:26:02,000"
+			},
+			"offsets": {
+				"from": 1554800,
+				"to": 1562000
+			},
+			"text": " key or private secret. Alternatively, I can talk to back end to get something sealed."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,640",
+				"to": "00:26:08,640"
+			},
+			"offsets": {
+				"from": 1562640,
+				"to": 1568640
+			},
+			"text": " >> Is there actually any solution how to do it? >> Actually, there is a solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,640",
+				"to": "00:26:19,200"
+			},
+			"offsets": {
+				"from": 1568640,
+				"to": 1579200
+			},
+			"text": " There are different ways to do it. One thing is that I've been working like the last year"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,200",
+				"to": "00:26:23,920"
+			},
+			"offsets": {
+				"from": 1579200,
+				"to": 1583920
+			},
+			"text": " building something called clay. It's in the go theorem repo. It's an account management tool"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,920",
+				"to": "00:26:34,720"
+			},
+			"offsets": {
+				"from": 1583920,
+				"to": 1594720
+			},
+			"text": " which can also do signing for a click blocks which is a proof of authority chain type. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,720",
+				"to": "00:26:44,960"
+			},
+			"offsets": {
+				"from": 1594720,
+				"to": 1604960
+			},
+			"text": " there are solutions but it's not production ready, I guess. >> So from my conversations I've had"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,960",
+				"to": "00:26:49,200"
+			},
+			"offsets": {
+				"from": 1604960,
+				"to": 1609200
+			},
+			"text": " with the CASPER people and it's kind of hard to nail down because the spec is so constantly"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,200",
+				"to": "00:26:53,520"
+			},
+			"offsets": {
+				"from": 1609200,
+				"to": 1613520
+			},
+			"text": " evolving. It would certainly be possible to have a separate key for signing proof of stake"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,520",
+				"to": "00:26:58,640"
+			},
+			"offsets": {
+				"from": 1613520,
+				"to": 1618640
+			},
+			"text": " messages for moving funds. And then essentially what you would do is delegate to that key and"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,640",
+				"to": "00:27:03,200"
+			},
+			"offsets": {
+				"from": 1618640,
+				"to": 1623200
+			},
+			"text": " that key would put you at risk in the way it could get your funds slashed if someone misbehaved on"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,200",
+				"to": "00:27:07,840"
+			},
+			"offsets": {
+				"from": 1623200,
+				"to": 1627840
+			},
+			"text": " your behalf. But maybe the protocol only allows funds to be slashed so quickly so you can still"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,840",
+				"to": "00:27:12,320"
+			},
+			"offsets": {
+				"from": 1627840,
+				"to": 1632320
+			},
+			"text": " sort of get some guarantees by maintaining some sort of cold storage. And I'm not sure if that"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,320",
+				"to": "00:27:16,800"
+			},
+			"offsets": {
+				"from": 1632320,
+				"to": 1636800
+			},
+			"text": " will make it into the final protocol. I think preliminary discussions I've had suggested that"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,800",
+				"to": "00:27:21,600"
+			},
+			"offsets": {
+				"from": 1636800,
+				"to": 1641600
+			},
+			"text": " it might, it's kind of an engineering detail but in theory that's sort of one way to mitigate against"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,600",
+				"to": "00:27:26,720"
+			},
+			"offsets": {
+				"from": 1641600,
+				"to": 1646720
+			},
+			"text": " those risks also. >> I'll just say that if people have detailed technical questions they'd like to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,720",
+				"to": "00:27:30,400"
+			},
+			"offsets": {
+				"from": 1646720,
+				"to": 1650400
+			},
+			"text": " get answered by security experts. They should join some of the communities that Kevin mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,400",
+				"to": "00:27:36,160"
+			},
+			"offsets": {
+				"from": 1650400,
+				"to": 1656160
+			},
+			"text": " before. And then personally Trail of Bits has open office hours. We were on every other week"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,160",
+				"to": "00:27:41,680"
+			},
+			"offsets": {
+				"from": 1656160,
+				"to": 1661680
+			},
+			"text": " where people can just engage with us and pepper us with questions like that one and get sophisticated"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,680",
+				"to": "00:27:47,200"
+			},
+			"offsets": {
+				"from": 1661680,
+				"to": 1667200
+			},
+			"text": " answers back. >> Cool. So we've got about two minutes left. Let's come back over to the side."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,200",
+				"to": "00:27:52,640"
+			},
+			"offsets": {
+				"from": 1667200,
+				"to": 1672640
+			},
+			"text": " >> Hi. What should be added or changed to the standard development process to enhance security"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,640",
+				"to": "00:27:58,560"
+			},
+			"offsets": {
+				"from": 1672640,
+				"to": 1678560
+			},
+			"text": " so it's built in and enhanced as much as possible during development, not including the external"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,560",
+				"to": "00:28:05,760"
+			},
+			"offsets": {
+				"from": 1678560,
+				"to": 1685760
+			},
+			"text": " audits and things like that? >> Yeah, I feel like this is a chance for all of us to plug our tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,760",
+				"to": "00:28:10,720"
+			},
+			"offsets": {
+				"from": 1685760,
+				"to": 1690720
+			},
+			"text": " here. Yeah, in general I think trying to work out what are the properties that your code is"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,720",
+				"to": "00:28:14,720"
+			},
+			"offsets": {
+				"from": 1690720,
+				"to": 1694720
+			},
+			"text": " supposed to have and the invariance that you don't think should ever be violated about it"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,720",
+				"to": "00:28:21,040"
+			},
+			"offsets": {
+				"from": 1694720,
+				"to": 1701040
+			},
+			"text": " are kind of a good first step. We have a wealth of tools available now. We mentioned in 2018"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,040",
+				"to": "00:28:26,000"
+			},
+			"offsets": {
+				"from": 1701040,
+				"to": 1706000
+			},
+			"text": " that we did now of last year we have static analyzers that pick out examples of incorrect code."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,000",
+				"to": "00:28:31,040"
+			},
+			"offsets": {
+				"from": 1706000,
+				"to": 1711040
+			},
+			"text": " But we also have tools that allow you to prove properties about your own code. So like at a"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:31,040",
+				"to": "00:28:35,600"
+			},
+			"offsets": {
+				"from": 1711040,
+				"to": 1715600
+			},
+			"text": " basic level you should be running static analysis tools and bug finding tools like slither or"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:35,600",
+				"to": "00:28:41,280"
+			},
+			"offsets": {
+				"from": 1715600,
+				"to": 1721280
+			},
+			"text": " mythril early on in the development cycle. You should be thinking about what kinds of properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,280",
+				"to": "00:28:46,160"
+			},
+			"offsets": {
+				"from": 1721280,
+				"to": 1726160
+			},
+			"text": " the spec or invariance that you like your code to hold and then using tools like a kidney,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,160",
+				"to": "00:28:51,200"
+			},
+			"offsets": {
+				"from": 1726160,
+				"to": 1731200
+			},
+			"text": " manticore or K to prove that those properties hold for all the cases you think they do."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:51,200",
+				"to": "00:28:59,520"
+			},
+			"offsets": {
+				"from": 1731200,
+				"to": 1739520
+			},
+			"text": " And then you should be engaging with experts to think in an adversarial fashion about how the"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,520",
+				"to": "00:29:03,200"
+			},
+			"offsets": {
+				"from": 1739520,
+				"to": 1743200
+			},
+			"text": " environment that you're executing in can affect that contract. So like whether you can be front"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,200",
+				"to": "00:29:12,560"
+			},
+			"offsets": {
+				"from": 1743200,
+				"to": 1752560
+			},
+			"text": " run or not. And then also whether there are ways for people to work within your system"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:12,560",
+				"to": "00:29:19,120"
+			},
+			"offsets": {
+				"from": 1752560,
+				"to": 1759120
+			},
+			"text": " to collect tokens or incentives and produce suboptimal results and eventually just degrade"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,120",
+				"to": "00:29:23,840"
+			},
+			"offsets": {
+				"from": 1759120,
+				"to": 1763840
+			},
+			"text": " the effectiveness of whatever the decentralized system it is that you've created. Those are"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,840",
+				"to": "00:29:28,080"
+			},
+			"offsets": {
+				"from": 1763840,
+				"to": 1768080
+			},
+			"text": " some things that I think I would think about if you want to end up with a good product at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,960",
+				"to": "00:29:34,160"
+			},
+			"offsets": {
+				"from": 1768960,
+				"to": 1774160
+			},
+			"text": " Write a damn spec please because otherwise we can have no way to understand what you think"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:34,160",
+				"to": "00:29:39,120"
+			},
+			"offsets": {
+				"from": 1774160,
+				"to": 1779120
+			},
+			"text": " you're building. So write a spec and make it as formal as possible. Yeah. Yeah I'll say again"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:39,120",
+				"to": "00:29:43,280"
+			},
+			"offsets": {
+				"from": 1779120,
+				"to": 1783280
+			},
+			"text": " write a spec, write a lot of specs, write specs every time your code changes and also"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,280",
+				"to": "00:29:48,480"
+			},
+			"offsets": {
+				"from": 1783280,
+				"to": 1788480
+			},
+			"text": " code review with each other. Make sure everyone's on the same page about what your code does."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:48,480",
+				"to": "00:29:52,880"
+			},
+			"offsets": {
+				"from": 1788480,
+				"to": 1792880
+			},
+			"text": " The huge amounts of security issues come from the fact that just people are not on the same page."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,280",
+				"to": "00:30:02,400"
+			},
+			"offsets": {
+				"from": 1795280,
+				"to": 1802400
+			},
+			"text": " Yeah so, mythril, mythril, mythril, mythril. You should run it. You should also run his."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:02,400",
+				"to": "00:30:08,080"
+			},
+			"offsets": {
+				"from": 1802400,
+				"to": 1808080
+			},
+			"text": " Run a linter. I really like solium and like if you if it's enforcing like some reasonable code"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,080",
+				"to": "00:30:14,800"
+			},
+			"offsets": {
+				"from": 1808080,
+				"to": 1814800
+			},
+			"text": " style that goes much further than you might think. Write a lot of tests ideally write a spec and"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,800",
+				"to": "00:30:22,640"
+			},
+			"offsets": {
+				"from": 1814800,
+				"to": 1822640
+			},
+			"text": " then write tests and then write the code that does the thing. Yeah that's I don't have anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:22,640",
+				"to": "00:30:26,800"
+			},
+			"offsets": {
+				"from": 1822640,
+				"to": 1826800
+			},
+			"text": " to add at this time. Awesome and that is all the time we have. So thank you all for being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:26,800",
+				"to": "00:30:35,440"
+			},
+			"offsets": {
+				"from": 1826800,
+				"to": 1835440
+			},
+			"text": " I think we're gonna have Hudson come back out and close this out. Thanks guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:35,600",
+				"to": "00:30:36,160"
+			},
+			"offsets": {
+				"from": 1835600,
+				"to": 1836160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:36,160",
+				"to": "00:30:38,160"
+			},
+			"offsets": {
+				"from": 1836160,
+				"to": 1838160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:38,160",
+				"to": "00:30:40,160"
+			},
+			"offsets": {
+				"from": 1838160,
+				"to": 1840160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:40,160",
+				"to": "00:30:42,160"
+			},
+			"offsets": {
+				"from": 1840160,
+				"to": 1842160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:42,160",
+				"to": "00:30:44,160"
+			},
+			"offsets": {
+				"from": 1842160,
+				"to": 1844160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:44,160",
+				"to": "00:30:46,160"
+			},
+			"offsets": {
+				"from": 1844160,
+				"to": 1846160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:46,160",
+				"to": "00:30:48,160"
+			},
+			"offsets": {
+				"from": 1846160,
+				"to": 1848160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:48,160",
+				"to": "00:30:50,160"
+			},
+			"offsets": {
+				"from": 1848160,
+				"to": 1850160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:50,160",
+				"to": "00:30:52,160"
+			},
+			"offsets": {
+				"from": 1850160,
+				"to": 1852160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:52,160",
+				"to": "00:30:54,160"
+			},
+			"offsets": {
+				"from": 1852160,
+				"to": 1854160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:54,160",
+				"to": "00:30:56,160"
+			},
+			"offsets": {
+				"from": 1854160,
+				"to": 1856160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:56,160",
+				"to": "00:30:58,160"
+			},
+			"offsets": {
+				"from": 1856160,
+				"to": 1858160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:58,160",
+				"to": "00:31:00,160"
+			},
+			"offsets": {
+				"from": 1858160,
+				"to": 1860160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:00,160",
+				"to": "00:31:02,160"
+			},
+			"offsets": {
+				"from": 1860160,
+				"to": 1862160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:02,160",
+				"to": "00:31:31,160"
+			},
+			"offsets": {
+				"from": 1862160,
+				"to": 1891160
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

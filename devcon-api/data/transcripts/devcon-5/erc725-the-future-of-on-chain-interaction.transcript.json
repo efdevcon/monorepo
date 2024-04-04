@@ -1,0 +1,2518 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 20000
+			},
+			"text": " This is the UX breakout room and it's all about like you know how do we do blockchain easier and better."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 25000
+			},
+			"text": " I think I will go quickly through the slides because it's not complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 29000
+			},
+			"text": " I guess most people will get the problem definitely."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 35000
+			},
+			"text": " So we have obviously, I will start with two statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 42000
+			},
+			"text": " Statement one is I think 2019 is the year of Web3 UX."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 48000
+			},
+			"text": " That's mostly the questions we had so far in the last year and in the last few months."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 51000
+			},
+			"text": " How can we make this Web3 easier and better?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 61000
+			},
+			"text": " A lot of actually solutions already try it out but it doesn't really unify in a very common thing people use and to make it better."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 70000
+			},
+			"text": " The other thing is I guess, that's my assumption is that next year actually we will see the first application that will be used by the mainstream"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 77000
+			},
+			"text": " where blockchain might not be even in the forefront and it will not be about blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 83000
+			},
+			"text": " We want some cool app also, cool thing to do and by the way you also use blockchain to some degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 94000
+			},
+			"text": " The big problems we have with blockchain UX or the Web3 UX is maybe I should start shortly about my background."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 100000
+			},
+			"text": " Everybody knows my background here or who does not."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 110000
+			},
+			"text": " Okay, so quickly I actually been part of the theme foundation since 2015."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 114000
+			},
+			"text": " I joined in January 2015, have built the miss browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 120000
+			},
+			"text": " The new people have not heard about that but back in the day it was the first December app browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 123000
+			},
+			"text": " We kind of coined that term DApp."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 134000
+			},
+			"text": " The Ethereum wallet was one application within this miss browser and I have worked on Web3js, kind of like the JavaScript library, I guess most of you use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 143000
+			},
+			"text": " That is the library kind of like, we defined like the first way of how you interact with smart contracts and on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 152000
+			},
+			"text": " And I guess Web3js is one of the first tools that made like building on blockchain rather easy and more fun to do I hope."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 162000
+			},
+			"text": " So my kind of like bigger work besides like being in the Web3 team since a long time actually was the 1.0 build which was recently developed released."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 167000
+			},
+			"text": " So I have kind of like, you know, came up with this API to make it the way how it is and I hope it's intuitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 169000
+			},
+			"text": " Say yes it is intuitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 175000
+			},
+			"text": " Or better than before. It's an improvement, let's say it's an improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 185000
+			},
+			"text": " So the big problem actually, so okay, there is also an ESG20 which I proposed 2015."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 190000
+			},
+			"text": " That's kind of like what the non tech people know."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 195000
+			},
+			"text": " And also something which I will be speaking today which is ESG75."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 201000
+			},
+			"text": " So big problems for on-chain is obviously that this is probably one of the biggest ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 208000
+			},
+			"text": " You want to do a cool app with users blockchain and the first thing people encounter is gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 217000
+			},
+			"text": " And especially even if you come from the blockchain or Bitcoin community non-ethereium, you totally puzzle what that even means."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 230000
+			},
+			"text": " It's gas and extra token and now if the gas token actually people think it's a token so what is gas and most of the people don't know why they now need something called ether just to do something in a blockchain based app."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 236000
+			},
+			"text": " And the other big problem is everything is stored on keys today."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 246000
+			},
+			"text": " So the way of how we interact with the blockchain is we generate a private key or we have a private key in some order and this one signs a transaction and we send it to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 259000
+			},
+			"text": " The problem with this is we are dealing here with the lowest level component of how you can interact with a blockchain and we store all our assets and our things on that lowest level tool or access point."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 263000
+			},
+			"text": " By doing that we run in a few problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 266000
+			},
+			"text": " You have to back them up."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 276000
+			},
+			"text": " You have to actually ask your user to create a very secure backup which in today's terms means writing down words on paper people don't have."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 283000
+			},
+			"text": " So we forced them to make screenshots and storing an iCloud which is the worst form of safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 286000
+			},
+			"text": " Just in case we have a bit more security."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 297000
+			},
+			"text": " The problem is you make people go through hurdles and complications at the time where they don't even care or no one knows if they ever want to use yet in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 303000
+			},
+			"text": " So you end up with basically a lot of like drops out in this point of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 315000
+			},
+			"text": " So only the tough ones really like once invest or do something in this app will go through this lecture process and you end up with many apps, many backup keys and you somehow have to manage them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 318000
+			},
+			"text": " Guess what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 325000
+			},
+			"text": " Maybe in case we have some value in the future on that and it actually happened a lot of times."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 333000
+			},
+			"text": " I think of crypto kippies who have thought that this would be worth anything until it did."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 342000
+			},
+			"text": " So E2 75 initially was in 2017 or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 353000
+			},
+			"text": " The idea, okay how can we make basically an on-chain account or a back then I call it on-chain identity until the whole identity community like back splashed on the account to call it identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 371000
+			},
+			"text": " And basically to actually unify this whole thing of like how I manage better my account on-chain and how could I have an account which can receive actually information and this led to the ES75 proposal which was in 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 390000
+			},
+			"text": " In 2017 October actually and another thing called 734 it was rather complex but I think what it did is it was for the first time showing of how can I make a smart product based account with some sort of key management logic and some sort of claims I can attach to this account"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 395000
+			},
+			"text": " and you kind of showed the full picture of how can this look like in smart language."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 400000
+			},
+			"text": " It spurred on kind of like activated the whole discussion around identity blockchain and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 411000
+			},
+			"text": " Even though there were predecessors like you poured in others who did that before me I kind of like proposed this out of the feeling of you know how to urge to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 419000
+			},
+			"text": " Like I had also the urge to propose ES20 in a more public place rather than this wiki page which we had before."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 425000
+			},
+			"text": " And you know it kind of like was at the right timing at the time and it stirred this discussion."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 440000
+			},
+			"text": " So out of this came you know people say oh great definitely standard we should all use it and the oring product poll or guys launched the alliance around it and then we had a telecom channel and a lot of people joined this alliance"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 451000
+			},
+			"text": " and kind of everybody like cuddled around the standard but not really developed it further or actually started to use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 461000
+			},
+			"text": " So one thing is having a standard the other thing is having an alliance for a standard but the actually important thing is having people use it you know and make sense of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 479000
+			},
+			"text": " There are also problems especially with the earlier version of 7.5 is that it's very complex and it is very specific also in how you do key management and how you do certain things and that kind of led a little bit to I would say a stifled"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 495000
+			},
+			"text": " progress or speed of like adopting it. So we had some discussions with people there and we came up with ES 7.5 actually Taylor came to me and said hey here I have some ideas and let's talk about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 514000
+			},
+			"text": " And that kind of led to the ES 7 version 5 version 2 and the interesting thing about this is it completely made it simple and I think you know if one thing is key to success for a standard it is simplicity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 529000
+			},
+			"text": " So ES 20 was kind of the reason why it was simple to use and ES 20 and ES 7.5 version 2 in my opinion is also key of why it could be very successful because it's so simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 541000
+			},
+			"text": " So in the fact that what it does you know it's like okay this is a smart contract which has an owner and there's like some key value store in there and there's a generic execute function so it's actually not a lot of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 549000
+			},
+			"text": " Text to you is actually important because that allows you to do a lot of things on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 568000
+			},
+			"text": " So but in its core essence what is ES 7.5 and not forget there's more to standardize on top of that so it's not a all in one goal solution but it is a very key piece because it is the core piece of pay on chain account."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 572000
+			},
+			"text": " So basically we store everything currently on keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 580000
+			},
+			"text": " If we replace this by a smart counter based account we can add a few properties which we didn't have before."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 594000
+			},
+			"text": " And one is obviously I can use my account from different places which is exactly right now the problem so we all end up having metamasked, maybe having some ledger, maybe having some other 5 apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 608000
+			},
+			"text": " And what happens we all use different accounts and all of them have different amounts of ether or assets and all of them and some we don't even know that anymore that we have and we tend to basically not use our on chain accounts often."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 623000
+			},
+			"text": " You basically have one account per app which can be useful but can be very hard to manage especially when it comes around dealing with different type of games or wanting to access your account in different places."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 631000
+			},
+			"text": " So the smart counter based account basically allows you to manage it because it has this owner address."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 640000
+			},
+			"text": " So owner means that there's one address that can control this account and this one address could obviously be a simple key."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 646000
+			},
+			"text": " It could be a very simple private key which could be even the first one you generate in your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 661000
+			},
+			"text": " So think of application starts it generates a key under the hood this key does not need to be safe because it is a throwaway key you just use initially and the moment you get more value to it you can make it more secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 674000
+			},
+			"text": " So you could even think of taking this key and send it via email as a backup process so that in case you lose the app or the phone in the next few days you can easily re-incensiate your previous account."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 682000
+			},
+			"text": " I mean if we think about it we use email to date for we saw a setting our password all the time right that's our security measure we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 687000
+			},
+			"text": " So email is soon if you have access to emails you have access to everybody's accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 692000
+			},
+			"text": " The email is the user name and the way to reset the password that's already a funny thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 701000
+			},
+			"text": " So that's the security measure we have so why not sending a private key or some kind of generated link or so directly to the email."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 712000
+			},
+			"text": " The moment you get actually value on your account or you use it more often for something then you can actually attach a multi-sick and have that multi-sick being the control of the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 724000
+			},
+			"text": " And that multi-sick could be agnostic safe it could be a complex permission contract that allows certain parties to do certain things through the 7 to 5 account and others not."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 730000
+			},
+			"text": " So think of like you are a company and the 7 to 5 is your company's official address."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 749000
+			},
+			"text": " If you have a permission contract where the intern can actually talk through the official address but only can talk to certain accounts or certain smart contracts and call only certain functions you can have your intern use the official account without any kind of security loss."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 752000
+			},
+			"text": " Or it could be just a simple multi-sick."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 765000
+			},
+			"text": " On top of this this allows also social recovery schemes and whatever else because whatever we come up with better ways of managing keys we can attach to the same existing account or to multiple of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 782000
+			},
+			"text": " The important thing also is we can have meta-transactions, we can use the gas station network or other relay services within those key manager accounts and suddenly completely hide the fact that there is a fee to be paid."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 802000
+			},
+			"text": " The future of blockchain should be the way of how the web tool works today meaning the application developers or the company who does it should pay for the usage at least to some degree until there is a way to recoup the payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 812000
+			},
+			"text": " Today nobody is paying for servers or applications and still we just download and reuse them all the time. It should be the same with web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 817000
+			},
+			"text": " The relay transaction service is actually the key piece to make it easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:43,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 823000
+			},
+			"text": " But this allows a lot more things so this in the first instance creates a managing account."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 823000,
+				"to": 834000
+			},
+			"text": " So now I only have one key but I have a key or an account that I can manage in all kinds of ways and we can invent a lot of new things and how we manage those."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 840000
+			},
+			"text": " But I can also attach information to it and that's what this key value store is for."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 845000
+			},
+			"text": " So the key value store is by 32 and bytes as value."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 851000
+			},
+			"text": " This means we can come up with all kinds of things that we allow to attach to such an account."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 858000
+			},
+			"text": " And this can be completely random things of links to reputation systems or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 868000
+			},
+			"text": " And if it's something you could simply attach an avatar to this account to make it somewhat cool and identify the company's logo or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 883000
+			},
+			"text": " But you can also link to all kinds of other off chain more identifiable data that you don't want to reveal on chain but it somehow should be referenced and linked to this public identity or this public account you have here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 888000
+			},
+			"text": " And whatever you come up with, you know, batches, reputation systems, link tokens, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 895000
+			},
+			"text": " I mean you can just on this address have a lot of NFTs sitting or batches, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 901000
+			},
+			"text": " But you can also link to an extra reputation system sitting in another smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 908000
+			},
+			"text": " That allows a lot of flexibility and because there's so many more things we don't know what is coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 911000
+			},
+			"text": " Having a key value store really allows for all kinds of new things."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 918000
+			},
+			"text": " We don't need to think about everything right now and having to find these five things you can do on an on chain account."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 921000
+			},
+			"text": " It's an open ended system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 924000
+			},
+			"text": " Yeah, that's the point."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 928000
+			},
+			"text": " So that actually creates a manageable verified account."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 934000
+			},
+			"text": " So using this as the default and the beauty here is you can start out with a key in your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 947000
+			},
+			"text": " The moment somebody purchase something or doesn't actually somehow creates value or money spend, you can on the fly just create an account for him where this key is the owner."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 952000
+			},
+			"text": " The beauty is that now this person could actually take this account and take it into another application."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 956000
+			},
+			"text": " So we all start to use the same default account standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 965000
+			},
+			"text": " You can take your account across all of these different applications and it's a lot more manageable and a lot more easy to interact with on chain things."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 967000
+			},
+			"text": " So that can be rather cheap to deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 975000
+			},
+			"text": " I mean, either transactions 21,000 gas, 32,000 for deploying a library that can be as cheap as you can get."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 980000
+			},
+			"text": " And it's basically a long-lasting manageable account."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 990000
+			},
+			"text": " And because it's a smart contract and smart contracts can't talk to other smart contracts, that's the big, big magic thing which I guess a lot of people outside of the team space has not fully understood."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 997000
+			},
+			"text": " Why Ethereum is awesome and the EVM in fact is because of that fact that you can talk to other smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1003000
+			},
+			"text": " That kind of makes your on-chain account the actor on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1011000
+			},
+			"text": " This means for other systems outside it's the same like before. If a key is talking to you or a smart contract, you don't care."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1023000
+			},
+			"text": " In fact, here you can even check the smart contract, read some information, you need maybe some verification or maybe some attached claims you somehow need and do something with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1032000
+			},
+			"text": " So, message sender, you know, that's what all, it doesn't necessarily need to be your person. This could be one account you use."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1036000
+			},
+			"text": " You can have 50 if you want to. I guess we end up with just a few."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1049000
+			},
+			"text": " But you can use them for different personas. You don't necessarily need to upload your picture and then go to the government and put a proof on your on-chain account and just to prove that this is your account and then go everybody show everybody what you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1055000
+			},
+			"text": " But one of the biggest pieces in our society is actually transparency."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1060000
+			},
+			"text": " We are on Twitter and on Facebook and all of these platforms because we want to express ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:49,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1069000
+			},
+			"text": " So that expression needs an identity you can actually or an account can actually take around which you can write."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1069000,
+				"to": 1075000
+			},
+			"text": " You can take care of whatever is on there is what you really want to put out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1081000
+			},
+			"text": " And 7.5 can be there. Also for companies, also for organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1093000
+			},
+			"text": " Technically speaking, the Ethereum Foundation should have a 75 account and not the Ethereum multi-sick from three years ago being in the official address which you all look at."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1099000
+			},
+			"text": " So it's your on-chain account and it should be your gateway to the decentralized world."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1124000
+			},
+			"text": " And if you want to do identity then you'd rather look into off-chain solutions like Verifiable Claims, double three-seater, scrape work on that and there's a lot of projects like three-corks and identity and new port and YOLO COM which are working on making these kind of real world identities work which are not necessarily on the blockchain or only have like slight pieces on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1134000
+			},
+			"text": " So what we have done is this, the ESSI-7.5 Alliance. Obviously that's the official or current implementation of the 7.5 version 2 as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1144000
+			},
+			"text": " There's always a issue where we discussed currently the main thing we are doing on the screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:08,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1148000
+			},
+			"text": " So the standard scenario, so I'm working on this project Luxo."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,000",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1148000,
+				"to": 1154000
+			},
+			"text": " So this is a blockchain for the new credit economies, how we call it, or for the lifestyle space."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1164000
+			},
+			"text": " One important thing here is this is a crowd of people who does not know tech nor want to understand blockchain but they might want to create tokens or own things physically individual."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1169000
+			},
+			"text": " So you need to make it easy for them to direct with the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1179000
+			},
+			"text": " So we are developing and iterating on standard scenarios means like different standards like 7.5, like digital certificates and others."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:45,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1185000
+			},
+			"text": " We are kind of like trying things out, you know, how this could work in a whole flow together, how it can own tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,000",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1185000,
+				"to": 1190000
+			},
+			"text": " There's a new standard we proposed which is the lowest one."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1198000
+			},
+			"text": " It's actually a universal receiver standard that probably is a whole discussion itself but we have in very short we have this problem of many tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:02,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1202000
+			},
+			"text": " We have these tokens implementing different type of receiver functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1202000,
+				"to": 1204000
+			},
+			"text": " So 7.7 has token received."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1209000
+			},
+			"text": " Here's a 2.2.3 has I think also something with token fallback function or whatever I call."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1212000
+			},
+			"text": " So everybody has different function names."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1219000
+			},
+			"text": " If I want to have a generic account like 7.5, I run into the problem that I have to implement at least like 5 different functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1231000
+			},
+			"text": " To receive different type of tokens or NFTs, if we use a universal receiver, basically one common function name that has a type and some data you pass with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1243000
+			},
+			"text": " you can be able to receive everything, even future assets because you could upgrade either this part that receives stuff or just let your interface deal with whatever you received."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1249000
+			},
+			"text": " So the universal receiver is a very incremental piece in an on-chain account for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1252000
+			},
+			"text": " That's something we proposed in our standards repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:20:55,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1255000
+			},
+			"text": " We call it like so standards process LSP."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1255000,
+				"to": 1260000
+			},
+			"text": " So that's very much like the EFP repository just that it's..."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:02,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1262000
+			},
+			"text": " Oh no, my statement."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1262000,
+				"to": 1266000
+			},
+			"text": " Oh, your password."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:07,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1267000
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,000",
+				"to": "00:21:25,000"
+			},
+			"offsets": {
+				"from": 1272000,
+				"to": 1285000
+			},
+			"text": " So the only difference is that it's the blockchain around this lifestyle arena, so we can discuss in a more calm space and it's not already so totally busy with a lot of competing standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,000",
+				"to": "00:21:34,000"
+			},
+			"offsets": {
+				"from": 1285000,
+				"to": 1294000
+			},
+			"text": " We are in these standards more, everybody has the better standards and we don't talk anymore about more complex interaction models."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1294000,
+				"to": 1303000
+			},
+			"text": " And the thing about the standard scenario and also the LSPs we promote here is that we think not only about the individual standards but how this works in concert."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1308000
+			},
+			"text": " You know, how can I make sure that I can easily read a portfolio of a given address?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:54,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1314000
+			},
+			"text": " How tokens and direct identities, how identities can receive for example different tokens including future ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,000",
+				"to": "00:22:03,000"
+			},
+			"offsets": {
+				"from": 1314000,
+				"to": 1323000
+			},
+			"text": " So there's a lot of things we should think more about how stuff works together and not just everybody comes up with their standard and now we have one little more building block."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,000",
+				"to": "00:22:13,000"
+			},
+			"offsets": {
+				"from": 1323000,
+				"to": 1333000
+			},
+			"text": " But five of them, you know, and then they all don't work together and accounts reading tokens from some of us who are complicated, totally hacky."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1333000,
+				"to": 1338000
+			},
+			"text": " So we want to have composability means we need standards that kind of fit together."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:21,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1341000
+			},
+			"text": " There's already a question here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,000",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1341000,
+				"to": 1342000
+			},
+			"text": " Please, let me add."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:31,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1351000
+			},
+			"text": " And it's just an idea for the RCC to verify that we get a real world application and we post it as a town."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,000",
+				"to": "00:22:38,000"
+			},
+			"offsets": {
+				"from": 1351000,
+				"to": 1358000
+			},
+			"text": " And then people solve the technical problem to like build a real world thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1358000,
+				"to": 1363000
+			},
+			"text": " And the other thing I'm asking about, what about doing the library?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:45,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1365000
+			},
+			"text": " I don't know how it's going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,000",
+				"to": "00:22:54,000"
+			},
+			"offsets": {
+				"from": 1365000,
+				"to": 1374000
+			},
+			"text": " I don't know how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,000",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1374000,
+				"to": 1388000
+			},
+			"text": " I don't know how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:32,000"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1412000
+			},
+			"text": " I don't know how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,000",
+				"to": "00:23:42,000"
+			},
+			"offsets": {
+				"from": 1412000,
+				"to": 1422000
+			},
+			"text": " I don't know how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,000",
+				"to": "00:23:49,000"
+			},
+			"offsets": {
+				"from": 1422000,
+				"to": 1429000
+			},
+			"text": " I don't know how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1429000,
+				"to": 1440000
+			},
+			"text": " You're talking about how can other people contribute with different pieces or how do you have a..."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:18,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1458000
+			},
+			"text": " I don't know how to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,000",
+				"to": "00:24:26,000"
+			},
+			"offsets": {
+				"from": 1458000,
+				"to": 1466000
+			},
+			"text": " So if you want to attach information like this, it always belongs into the set data to keep values tall."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,000",
+				"to": "00:24:32,000"
+			},
+			"offsets": {
+				"from": 1466000,
+				"to": 1472000
+			},
+			"text": " If you want to have email verification, you always have to think about if this is your on-chain account."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,000",
+				"to": "00:24:37,000"
+			},
+			"offsets": {
+				"from": 1472000,
+				"to": 1477000
+			},
+			"text": " So you have to teach your user of what they should and shouldn't do."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,000",
+				"to": "00:24:42,000"
+			},
+			"offsets": {
+				"from": 1477000,
+				"to": 1482000
+			},
+			"text": " For example, through interfaces we know that when we post something in Instagram, it's pretty public."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1482000,
+				"to": 1485000
+			},
+			"text": " So people are not posting their private naked pictures."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:49,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1489000
+			},
+			"text": " So here we have to treat it the same. You're posting it on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,000",
+				"to": "00:24:52,000"
+			},
+			"offsets": {
+				"from": 1489000,
+				"to": 1492000
+			},
+			"text": " So it could potentially be read by people."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,000",
+				"to": "00:24:59,000"
+			},
+			"offsets": {
+				"from": 1492000,
+				"to": 1499000
+			},
+			"text": " So also making sure that what you put, that this is a public persona you're creating here versus maybe your private persona."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,000",
+				"to": "00:25:08,000"
+			},
+			"offsets": {
+				"from": 1499000,
+				"to": 1508000
+			},
+			"text": " If you want to verify your email address, then I guess there's a service which should verify that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,000",
+				"to": "00:25:18,000"
+			},
+			"offsets": {
+				"from": 1508000,
+				"to": 1518000
+			},
+			"text": " And you could simply attach a signed message into one of the key values store which says, \"Okay, we checked the email and that's what you would do.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,000",
+				"to": "00:25:27,000"
+			},
+			"offsets": {
+				"from": 1518000,
+				"to": 1527000
+			},
+			"text": " I mean, either this or some kind of like registry which does a verification, some of your service could be an extra smart conduct with just verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,000",
+				"to": "00:25:32,000"
+			},
+			"offsets": {
+				"from": 1527000,
+				"to": 1532000
+			},
+			"text": " And then in the key value store you simply link to that registry. That could be another way."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,000",
+				"to": "00:25:39,000"
+			},
+			"offsets": {
+				"from": 1532000,
+				"to": 1539000
+			},
+			"text": " So the beauty of this key value store is it can contain data on its own, but it could be also simply referencing other places to go look."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,000",
+				"to": "00:25:44,000"
+			},
+			"offsets": {
+				"from": 1539000,
+				"to": 1544000
+			},
+			"text": " And if we send out as these processes, we exactly know what to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,000",
+				"to": "00:25:49,000"
+			},
+			"offsets": {
+				"from": 1544000,
+				"to": 1549000
+			},
+			"text": " And as each key value store we define can be very different."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,000",
+				"to": "00:25:55,000"
+			},
+			"offsets": {
+				"from": 1549000,
+				"to": 1555000
+			},
+			"text": " We can come up with a lot of cool things to build a top-of-an-on-chain account. That's the beauty of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,000",
+				"to": "00:25:56,000"
+			},
+			"offsets": {
+				"from": 1555000,
+				"to": 1556000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,000",
+				"to": "00:25:59,000"
+			},
+			"offsets": {
+				"from": 1556000,
+				"to": 1559000
+			},
+			"text": " Yeah, there's a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,000",
+				"to": "00:26:07,000"
+			},
+			"offsets": {
+				"from": 1559000,
+				"to": 1567000
+			},
+			"text": " So before you're talking about using 734 to access the controller contract and send to files to proxy contracts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,000",
+				"to": "00:26:08,000"
+			},
+			"offsets": {
+				"from": 1567000,
+				"to": 1568000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,000",
+				"to": "00:26:11,000"
+			},
+			"offsets": {
+				"from": 1568000,
+				"to": 1571000
+			},
+			"text": " For this presentation you're more saying, \"Okay, we can use like say no to save.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,000",
+				"to": "00:26:12,000"
+			},
+			"offsets": {
+				"from": 1571000,
+				"to": 1572000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,000",
+				"to": "00:26:20,000"
+			},
+			"offsets": {
+				"from": 1572000,
+				"to": 1580000
+			},
+			"text": " But I guess my question is, what would be the advantage when you 725 instead of just having a no to save you both proxy and controller contracts, which is still on chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,000",
+				"to": "00:26:24,000"
+			},
+			"offsets": {
+				"from": 1580000,
+				"to": 1584000
+			},
+			"text": " Because you can upgrade your key management."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,000",
+				"to": "00:26:26,000"
+			},
+			"offsets": {
+				"from": 1584000,
+				"to": 1586000
+			},
+			"text": " But you could also upgrade the no to save."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,000",
+				"to": "00:26:29,000"
+			},
+			"offsets": {
+				"from": 1586000,
+				"to": 1589000
+			},
+			"text": " I mean, you can build it that it's all in one contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,000",
+				"to": "00:26:31,000"
+			},
+			"offsets": {
+				"from": 1589000,
+				"to": 1591000
+			},
+			"text": " You can put some of the owner address could be itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,000",
+				"to": "00:26:49,000"
+			},
+			"offsets": {
+				"from": 1591000,
+				"to": 1609000
+			},
+			"text": " You could make an up, I mean actually Hatredyan from the sooner wallet, build exactly a 7 to 5 upgradeable contract where you basically have one address, which contains the key values store and owner, and then additional management keys systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,000",
+				"to": "00:26:51,000"
+			},
+			"offsets": {
+				"from": 1609000,
+				"to": 1611000
+			},
+			"text": " You can build it as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,000",
+				"to": "00:26:56,000"
+			},
+			"offsets": {
+				"from": 1611000,
+				"to": 1616000
+			},
+			"text": " On the end, your wallet only needs, or your interface only needs to know, that's the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,000",
+				"to": "00:27:03,000"
+			},
+			"offsets": {
+				"from": 1616000,
+				"to": 1623000
+			},
+			"text": " That's the owner, either it's the same address or it's a different address and then it has to look at what standard this is, what kind of key manager thing it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,000",
+				"to": "00:27:05,000"
+			},
+			"offsets": {
+				"from": 1623000,
+				"to": 1625000
+			},
+			"text": " So you can do it with that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,000",
+				"to": "00:27:07,000"
+			},
+			"offsets": {
+				"from": 1625000,
+				"to": 1627000
+			},
+			"text": " And then you can interact with this account."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,000",
+				"to": "00:27:13,000"
+			},
+			"offsets": {
+				"from": 1627000,
+				"to": 1633000
+			},
+			"text": " And the symbols form is just the key, which you have in your wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,000",
+				"to": "00:27:15,000"
+			},
+			"offsets": {
+				"from": 1633000,
+				"to": 1635000
+			},
+			"text": " But yeah, it could be in the same account."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,000",
+				"to": "00:27:24,000"
+			},
+			"offsets": {
+				"from": 1635000,
+				"to": 1644000
+			},
+			"text": " I think keeping it separate makes a lot of sense because what I see is happening as you have, and I know that time is up, just to keep it short."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:24,000",
+				"to": "00:27:32,000"
+			},
+			"offsets": {
+				"from": 1644000,
+				"to": 1652000
+			},
+			"text": " This permanent account in the 75 is probably something we want to keep for a while and use it in maybe some games or whatever else."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,000",
+				"to": "00:27:35,000"
+			},
+			"offsets": {
+				"from": 1652000,
+				"to": 1655000
+			},
+			"text": " So it's a permanent thing we want to be secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,000",
+				"to": "00:27:38,000"
+			},
+			"offsets": {
+				"from": 1655000,
+				"to": 1658000
+			},
+			"text": " The key manager is maybe something we can upgrade over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,000",
+				"to": "00:27:42,000"
+			},
+			"offsets": {
+				"from": 1658000,
+				"to": 1662000
+			},
+			"text": " So having this in a separate smart contract keeps the risk lower."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,000",
+				"to": "00:27:53,000"
+			},
+			"offsets": {
+				"from": 1662000,
+				"to": 1673000
+			},
+			"text": " For example, the universal receiver contract, the contract which knows how to deal with stuff you receive, should also be a separate module because I assume people will upgrade that very frequently."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,000",
+				"to": "00:27:59,000"
+			},
+			"offsets": {
+				"from": 1673000,
+				"to": 1679000
+			},
+			"text": " And if you all package one account, then suddenly all of this code can ride into the same slots."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,000",
+				"to": "00:28:02,000"
+			},
+			"offsets": {
+				"from": 1679000,
+				"to": 1682000
+			},
+			"text": " Potentially overriding all of the important stuff you have in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,000",
+				"to": "00:28:09,000"
+			},
+			"offsets": {
+				"from": 1682000,
+				"to": 1689000
+			},
+			"text": " So keeping this in separate addresses, which cannot really do things on the other side, makes it more safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,000",
+				"to": "00:28:18,000"
+			},
+			"offsets": {
+				"from": 1689000,
+				"to": 1698000
+			},
+			"text": " I mean, I assume there will be a future where people go to websites and say, \"Hey, download this new universal receiver contract because now it's both low blah blah blah blah.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,000",
+				"to": "00:28:22,000"
+			},
+			"offsets": {
+				"from": 1698000,
+				"to": 1702000
+			},
+			"text": " And then you just go ahead and upgrade your account with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,000",
+				"to": "00:28:28,000"
+			},
+			"offsets": {
+				"from": 1702000,
+				"to": 1708000
+			},
+			"text": " And if this would be the same account, it could maybe just move your assets around or overwrite your storage values."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,000",
+				"to": "00:28:36,000"
+			},
+			"offsets": {
+				"from": 1708000,
+				"to": 1716000
+			},
+			"text": " Like this is the worst thing I can do is notify you in the face wrong, with a wrong lock or something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:36,000",
+				"to": "00:28:39,000"
+			},
+			"offsets": {
+				"from": 1716000,
+				"to": 1719000
+			},
+			"text": " I think that's it. Time's up. Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,000",
+				"to": "00:28:41,000"
+			},
+			"offsets": {
+				"from": 1719000,
+				"to": 1721000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,000",
+				"to": "00:28:56,000"
+			},
+			"offsets": {
+				"from": 1721000,
+				"to": 1736000
+			},
+			"text": " [Music]"
+		}
+	]
+}

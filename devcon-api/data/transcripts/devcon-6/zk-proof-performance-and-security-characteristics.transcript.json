@@ -1,0 +1,3046 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,360"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17360
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,360",
+				"to": "00:00:26,560"
+			},
+			"offsets": {
+				"from": 17360,
+				"to": 26560
+			},
+			"text": " Hi everyone, welcome back. So our next speaker is Brian Wilkes and he'll be comparing the performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,560",
+				"to": "00:00:33,600"
+			},
+			"offsets": {
+				"from": 26560,
+				"to": 33600
+			},
+			"text": " and security characteristics of some zero knowledge proofs that are commonly deployed in the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,600",
+				"to": "00:00:37,680"
+			},
+			"offsets": {
+				"from": 33600,
+				"to": 37680
+			},
+			"text": " ecosystem. So Brian?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,680",
+				"to": "00:00:43,760"
+			},
+			"offsets": {
+				"from": 37680,
+				"to": 43760
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,760",
+				"to": "00:00:52,400"
+			},
+			"offsets": {
+				"from": 43760,
+				"to": 52400
+			},
+			"text": " Hello, wow that's loud. So who are my data scientists in the room? Raise hands. Very few."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,280",
+				"to": "00:01:00,480"
+			},
+			"offsets": {
+				"from": 53280,
+				"to": 60480
+			},
+			"text": " Devs, devs out there? Lots of devs? Nice? Investors? Dejens? Yes? Put it down."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,480",
+				"to": "00:01:08,800"
+			},
+			"offsets": {
+				"from": 60480,
+				"to": 68800
+			},
+			"text": " How about expertise? Who's a beginner in zero knowledge? Just got the basics. Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,800",
+				"to": "00:01:12,800"
+			},
+			"offsets": {
+				"from": 68800,
+				"to": 72800
+			},
+			"text": " Who knows what's going on but has not written a circuit before?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,800",
+				"to": "00:01:20,320"
+			},
+			"offsets": {
+				"from": 72800,
+				"to": 80320
+			},
+			"text": " Who's a true ZK expert? No, there's a ton about ZK. You. Perfect. All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,200",
+				"to": "00:01:27,120"
+			},
+			"offsets": {
+				"from": 81200,
+				"to": 87120
+			},
+			"text": " Well, thanks for having me. My name is Brian. I am a grantee with the Ethereum Foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,120",
+				"to": "00:01:33,040"
+			},
+			"offsets": {
+				"from": 87120,
+				"to": 93040
+			},
+			"text": " Privacy Scaling Exploration Team. So today I'm going to be talking about ZK-proof performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,040",
+				"to": "00:01:39,120"
+			},
+			"offsets": {
+				"from": 93040,
+				"to": 99120
+			},
+			"text": " and security characteristics. So what's in the docket for the day?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,120",
+				"to": "00:01:46,160"
+			},
+			"offsets": {
+				"from": 99120,
+				"to": 106160
+			},
+			"text": " Search for you to go over some background. So we'll just give some background on what ZKPs are."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,880",
+				"to": "00:01:51,440"
+			},
+			"offsets": {
+				"from": 106880,
+				"to": 111440
+			},
+			"text": " Try and work through what they actually mean for on-chain data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,440",
+				"to": "00:01:55,760"
+			},
+			"offsets": {
+				"from": 111440,
+				"to": 115760
+			},
+			"text": " Then we're going to look at how to actually find those on zero knowledge proofs and verifiers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,760",
+				"to": "00:02:01,760"
+			},
+			"offsets": {
+				"from": 115760,
+				"to": 121760
+			},
+			"text": " on circuits on and off-chain. Then we'll look at some of the characteristics behind those"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,760",
+				"to": "00:02:10,480"
+			},
+			"offsets": {
+				"from": 121760,
+				"to": 130480
+			},
+			"text": " and what they mean. So unfortunately, Waldo's not going to be with us today so this is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,480",
+				"to": "00:02:15,760"
+			},
+			"offsets": {
+				"from": 130480,
+				"to": 135760
+			},
+			"text": " second best piece of art I've ever done so I hope you appreciated everyone. So what are ZKPs"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,760",
+				"to": "00:02:20,880"
+			},
+			"offsets": {
+				"from": 135760,
+				"to": 140880
+			},
+			"text": " of our high level first? We'll go through this quick and then move on. But we have Alice. Alice"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,880",
+				"to": "00:02:28,480"
+			},
+			"offsets": {
+				"from": 140880,
+				"to": 148480
+			},
+			"text": " wants a drink. She's a prover. We have Bob. Bob is the bartender, he's a verifier. Alice does not"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,480",
+				"to": "00:02:34,160"
+			},
+			"offsets": {
+				"from": 148480,
+				"to": 154160
+			},
+			"text": " want to give all of her information to Bob. So therefore, she can put in her birthday."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,160",
+				"to": "00:02:39,760"
+			},
+			"offsets": {
+				"from": 154160,
+				"to": 159760
+			},
+			"text": " The circuit will output a proof. Bob can verify that proof is correct that she's old enough to drink"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,320",
+				"to": "00:02:50,320"
+			},
+			"offsets": {
+				"from": 160320,
+				"to": 170320
+			},
+			"text": " and the survey so will flow. So what's important for this is you have a prover, you have inputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,320",
+				"to": "00:02:55,920"
+			},
+			"offsets": {
+				"from": 170320,
+				"to": 175920
+			},
+			"text": " you have the circuit itself, you have the proof popping out, and then Bob decides if it's true or"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,920",
+				"to": "00:03:02,960"
+			},
+			"offsets": {
+				"from": 175920,
+				"to": 182960
+			},
+			"text": " false and then doesn't action based on whether that verification is true. So why do we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,960",
+				"to": "00:03:08,240"
+			},
+			"offsets": {
+				"from": 182960,
+				"to": 188240
+			},
+			"text": " zero knowledge proofs in Ethereum? So the first thing that we struggle with is scalability. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,360",
+				"to": "00:03:15,920"
+			},
+			"offsets": {
+				"from": 189360,
+				"to": 195920
+			},
+			"text": " right now we can do about on main chain 13 transactions per second and we really need to get into that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,920",
+				"to": "00:03:22,480"
+			},
+			"offsets": {
+				"from": 195920,
+				"to": 202480
+			},
+			"text": " 13K transactions per second if not significantly higher to get into the visa range. So how is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,480",
+				"to": "00:03:27,920"
+			},
+			"offsets": {
+				"from": 202480,
+				"to": 207920
+			},
+			"text": " your knowledge proofs help us? They can separate, they can take fully separate chains and they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,920",
+				"to": "00:03:34,960"
+			},
+			"offsets": {
+				"from": 207920,
+				"to": 214960
+			},
+			"text": " impart the full security of Ethereum to those chains. So privacy as well is something that's a hotbed"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,960",
+				"to": "00:03:41,040"
+			},
+			"offsets": {
+				"from": 214960,
+				"to": 221040
+			},
+			"text": " issue to me. Ethereum is public. If you're a data scientist, as a few of you are, you can go online"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,040",
+				"to": "00:03:46,640"
+			},
+			"offsets": {
+				"from": 221040,
+				"to": 226640
+			},
+			"text": " or you can go on Ethereum and see anyone, everyone ever does. So I don't want to live in a world"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,640",
+				"to": "00:03:51,760"
+			},
+			"offsets": {
+				"from": 226640,
+				"to": 231760
+			},
+			"text": " where you have scalability and everything sits on that platform without having the privacy behind"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,760",
+				"to": "00:03:57,520"
+			},
+			"offsets": {
+				"from": 231760,
+				"to": 237520
+			},
+			"text": " it. So let's talk about on chain. So this is what it looks like. You have your layer two blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,520",
+				"to": "00:04:03,920"
+			},
+			"offsets": {
+				"from": 237520,
+				"to": 243920
+			},
+			"text": " here. So they have the blocks going, you aggregate some of the transactions together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,480",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 244480,
+				"to": 250000
+			},
+			"text": " then you batch them into a ZK circuit. So you take those transactions, they go into the circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:16,320"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 256320
+			},
+			"text": " the circuit produces a proof. This is all off chain. So then you have your Ethereum main chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,320",
+				"to": "00:04:22,640"
+			},
+			"offsets": {
+				"from": 256320,
+				"to": 262640
+			},
+			"text": " on where things are expensive. So you're able to take your proof and post that to the verifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,640",
+				"to": "00:04:29,280"
+			},
+			"offsets": {
+				"from": 262640,
+				"to": 269280
+			},
+			"text": " smart contract and then the layer two states source of truth can get updated. So that's what"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,280",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 269280,
+				"to": 274000
+			},
+			"text": " happens with the scalability side of things. Now let's talk privacy. It's very similar. I won't"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:39,280"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 279280
+			},
+			"text": " have reveals for you. I'll just go right to it. There's a secret. There's the ZK circuit. You"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,280",
+				"to": "00:04:45,280"
+			},
+			"offsets": {
+				"from": 279280,
+				"to": 285280
+			},
+			"text": " put the secret through. It produces a proof. And then that proof goes on chain to the verifier smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,280",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 285280,
+				"to": 290000
+			},
+			"text": " contract and funds are released. So that's very similar. That's going to be your mixers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:55,200"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 295200
+			},
+			"text": " your chain of caches, different things. What's important for both of these two is that you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,200",
+				"to": "00:05:00,560"
+			},
+			"offsets": {
+				"from": 295200,
+				"to": 300560
+			},
+			"text": " off chain and on chain. And on chain is where the verifier in the proof gets posted."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,560",
+				"to": "00:05:05,760"
+			},
+			"offsets": {
+				"from": 300560,
+				"to": 305760
+			},
+			"text": " And off chain is where the circuit and the proofs are. So this is the best piece of artwork I've"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,760",
+				"to": "00:05:12,400"
+			},
+			"offsets": {
+				"from": 305760,
+				"to": 312400
+			},
+			"text": " ever done. So appreciate it while you can. So let's find some ZK proofs on chain and figure out where"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,400",
+				"to": "00:05:18,320"
+			},
+			"offsets": {
+				"from": 312400,
+				"to": 318320
+			},
+			"text": " they're at. This is called the search for verifiers. So why are we searching for verifiers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,320",
+				"to": "00:05:24,720"
+			},
+			"offsets": {
+				"from": 318320,
+				"to": 324720
+			},
+			"text": " The important characteristics of a zero knowledge proof are in the circuit. So the circuit is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,720",
+				"to": "00:05:29,120"
+			},
+			"offsets": {
+				"from": 324720,
+				"to": 329120
+			},
+			"text": " to generate, they're going to have the different characteristics that are important to us. Let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,120",
+				"to": "00:05:37,120"
+			},
+			"offsets": {
+				"from": 329120,
+				"to": 337120
+			},
+			"text": " look at a particular ZK sync transaction flow, for instance. So between September 26th and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,120",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 337120,
+				"to": 348000
+			},
+			"text": " September 20th and September 26th, there were 2,170 blocks, 265,000 transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:55,840"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 355840
+			},
+			"text": " which were batched together into 214 inputs, proofs brought on chain. So what you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,840",
+				"to": "00:06:05,840"
+			},
+			"offsets": {
+				"from": 355840,
+				"to": 365840
+			},
+			"text": " the ZK circuit did not change, but those inputs and the proofs did. So each circuit has a unique"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,840",
+				"to": "00:06:10,880"
+			},
+			"offsets": {
+				"from": 365840,
+				"to": 370880
+			},
+			"text": " verifier on chain. So for each circuit or circuit systems, they have their own unique verifier that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,880",
+				"to": "00:06:17,280"
+			},
+			"offsets": {
+				"from": 370880,
+				"to": 377280
+			},
+			"text": " there. And if you want to know about circuits and you want to use on chain data, you need to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,280",
+				"to": "00:06:23,920"
+			},
+			"offsets": {
+				"from": 377280,
+				"to": 383920
+			},
+			"text": " through the verifier. So going through the verifier, you use the L1 on chain data. So let's talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,920",
+				"to": "00:06:30,080"
+			},
+			"offsets": {
+				"from": 383920,
+				"to": 390080
+			},
+			"text": " how to find verifiers. So the first section is, if you guys haven't used BigQuery from Google,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,080",
+				"to": "00:06:35,600"
+			},
+			"offsets": {
+				"from": 390080,
+				"to": 395600
+			},
+			"text": " I highly recommend it. It's a great tool. It allows you to search through lots more data than"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,600",
+				"to": "00:06:41,680"
+			},
+			"offsets": {
+				"from": 395600,
+				"to": 401680
+			},
+			"text": " things like Dune do, as much as I love Dune. So different queries that time out within 30"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,680",
+				"to": "00:06:47,840"
+			},
+			"offsets": {
+				"from": 401680,
+				"to": 407840
+			},
+			"text": " minutes for Dune will go in about two seconds for BigQuery. So check it out. The three tables that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,840",
+				"to": "00:06:56,080"
+			},
+			"offsets": {
+				"from": 407840,
+				"to": 416080
+			},
+			"text": " I used for this project were contracts, traces, and transactions. Since you're almost all devs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,080",
+				"to": "00:07:01,520"
+			},
+			"offsets": {
+				"from": 416080,
+				"to": 421520
+			},
+			"text": " I won't go over traces versus transactions, but the start versus the end of things. So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,520",
+				"to": "00:07:08,880"
+			},
+			"offsets": {
+				"from": 421520,
+				"to": 428880
+			},
+			"text": " okay. So the first way to try and search through bytecode is to go for constants. Constance will"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,880",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 428880,
+				"to": 434000
+			},
+			"text": " show up in bytecode as a big hex. So if you can get a big enough number that's unique enough for"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:18,320"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 438320
+			},
+			"text": " what you're looking for, you can take that and search with very simple SQL queries"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,320",
+				"to": "00:07:24,480"
+			},
+			"offsets": {
+				"from": 438320,
+				"to": 444480
+			},
+			"text": " in through the bytecode. So this is both a big and unique value. It's the finite field."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,480",
+				"to": "00:07:30,560"
+			},
+			"offsets": {
+				"from": 444480,
+				"to": 450560
+			},
+			"text": " So the finite field is the range at which you modulate over when you're doing different"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,560",
+				"to": "00:07:36,480"
+			},
+			"offsets": {
+				"from": 450560,
+				"to": 456480
+			},
+			"text": " cryptographic things for Xar knowledge. So this is it in hex form. It's massive. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,480",
+				"to": "00:07:41,360"
+			},
+			"offsets": {
+				"from": 456480,
+				"to": 461360
+			},
+			"text": " the first way that I looked through the data was to search for this finite field."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,400",
+				"to": "00:07:47,280"
+			},
+			"offsets": {
+				"from": 462400,
+				"to": 467280
+			},
+			"text": " Unfortunately, it didn't exactly give me a lot of verifiers. So it gave me a lot of different"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,280",
+				"to": "00:07:54,080"
+			},
+			"offsets": {
+				"from": 467280,
+				"to": 474080
+			},
+			"text": " noise. There's 558 contracts that have the finite field constant. And after checking every"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,080",
+				"to": "00:07:59,440"
+			},
+			"offsets": {
+				"from": 474080,
+				"to": 479440
+			},
+			"text": " one of them manually, most of them were not verifiers. So I moved on to trying to get into"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,440",
+				"to": "00:08:04,480"
+			},
+			"offsets": {
+				"from": 479440,
+				"to": 484480
+			},
+			"text": " method IDs. So the second tool that I think is really important, and apparently it's new,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,480",
+				"to": "00:08:12,080"
+			},
+			"offsets": {
+				"from": 484480,
+				"to": 492080
+			},
+			"text": " according to Etherscan, is the transaction decoder. So the transaction decoder, what it does,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,320",
+				"to": "00:08:16,080"
+			},
+			"offsets": {
+				"from": 492320,
+				"to": 496080
+			},
+			"text": " if you look through it, is if you go through and look at a transaction, it will tell you the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,080",
+				"to": "00:08:22,720"
+			},
+			"offsets": {
+				"from": 496080,
+				"to": 502720
+			},
+			"text": " exact flow of what happened through that transaction. So looking at this here is another ZK sync example."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,720",
+				"to": "00:08:32,720"
+			},
+			"offsets": {
+				"from": 502720,
+				"to": 512720
+			},
+			"text": " First, it proves the blocks after going through some proxies. Then in the verifier contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,720",
+				"to": "00:08:40,240"
+			},
+			"offsets": {
+				"from": 512720,
+				"to": 520240
+			},
+			"text": " it calls a function called verify aggregate block proof. So after doing some modular"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,240",
+				"to": "00:08:46,400"
+			},
+			"offsets": {
+				"from": 520240,
+				"to": 526400
+			},
+			"text": " addition down below, it outputs true, and the state gets updated. So method IDs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,400",
+				"to": "00:08:52,400"
+			},
+			"offsets": {
+				"from": 526400,
+				"to": 532400
+			},
+			"text": " The method IDs are the first 10 characters or 4 bytes that come through with any input or"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,400",
+				"to": "00:08:58,800"
+			},
+			"offsets": {
+				"from": 532400,
+				"to": 538800
+			},
+			"text": " transaction call for traces or transactions. So just going through them briefly, you can see that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,800",
+				"to": "00:09:05,200"
+			},
+			"offsets": {
+				"from": 538800,
+				"to": 545200
+			},
+			"text": " this function here is for Starkware, and it's a fry verifier. So this is what is actually verifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,200",
+				"to": "00:09:11,120"
+			},
+			"offsets": {
+				"from": 545200,
+				"to": 551120
+			},
+			"text": " the proofs. So if you want to know what the method ID is for this particular function here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,120",
+				"to": "00:09:19,120"
+			},
+			"offsets": {
+				"from": 551120,
+				"to": 559120
+			},
+			"text": " then you take out all the chaff, if you will, from inside, and then you run the KKAC256,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,120",
+				"to": "00:09:29,280"
+			},
+			"offsets": {
+				"from": 559120,
+				"to": 569280
+			},
+			"text": " and you take the first 4 bytes plus the indicator that it's hacked. So that there, the OXE85A6A28,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,280",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569280,
+				"to": 574000
+			},
+			"text": " is the method ID. It will be the first 10 characters in any call that when you look through the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:40,320"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 580320
+			},
+			"text": " So a great resource, again, I like to show the resources that I get to use. The 4 byte"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,320",
+				"to": "00:09:46,560"
+			},
+			"offsets": {
+				"from": 580320,
+				"to": 586560
+			},
+			"text": " dot directory is fantastic. You can input any method ID, and it will tell you what the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,560",
+				"to": "00:09:54,080"
+			},
+			"offsets": {
+				"from": 586560,
+				"to": 594080
+			},
+			"text": " text signature for what it should be is. So now what do we find? Essentially, there's about 65"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,080",
+				"to": "00:09:59,600"
+			},
+			"offsets": {
+				"from": 594080,
+				"to": 599600
+			},
+			"text": " confirmed verifiers on mainchain. Now, there's probably a few more, maybe 30 more that are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,600",
+				"to": "00:10:07,920"
+			},
+			"offsets": {
+				"from": 599600,
+				"to": 607920
+			},
+			"text": " verified public contracts. So in those 65 confirmed verifiers have done over 600,000 verifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,920",
+				"to": "00:10:17,200"
+			},
+			"offsets": {
+				"from": 607920,
+				"to": 617200
+			},
+			"text": " So of those, there are about 16 that are active still. That's active according to me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,200",
+				"to": "00:10:21,520"
+			},
+			"offsets": {
+				"from": 617200,
+				"to": 621520
+			},
+			"text": " and some of them are very minor projects. If you're trying to squint, it's because I made it small,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,520",
+				"to": "00:10:28,640"
+			},
+			"offsets": {
+				"from": 621520,
+				"to": 628640
+			},
+			"text": " so you'd have to go on the GitHub at some point. So sorry. I was surprised by how few verifiers"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,640",
+				"to": "00:10:33,760"
+			},
+			"offsets": {
+				"from": 628640,
+				"to": 633760
+			},
+			"text": " that are actually on mainchain. But moving on to the characteristics. So we'll look at proving"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,760",
+				"to": "00:10:39,200"
+			},
+			"offsets": {
+				"from": 633760,
+				"to": 639200
+			},
+			"text": " systems. So you're proving systems here that are actually being verified on mainchain. You have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,200",
+				"to": "00:10:44,480"
+			},
+			"offsets": {
+				"from": 639200,
+				"to": 644480
+			},
+			"text": " your classics. I'm sure you guys have all heard of these, but you're Groth 16 from 2016. That runs"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,480",
+				"to": "00:10:50,960"
+			},
+			"offsets": {
+				"from": 644480,
+				"to": 650960
+			},
+			"text": " your tornado cache, your Hermes, your Lupring, and a bunch of other different privacy functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,960",
+				"to": "00:10:57,600"
+			},
+			"offsets": {
+				"from": 650960,
+				"to": 657600
+			},
+			"text": " You have PLonk, which is Aztec Connect, ZK Sync. Then you have Turbo PLonk, which is the original Aztec."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,480",
+				"to": "00:11:03,120"
+			},
+			"offsets": {
+				"from": 658480,
+				"to": 663120
+			},
+			"text": " Aztec Connect uses Turbo PLonk before it gets on chain, but then it uses PLonk on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,120",
+				"to": "00:11:08,880"
+			},
+			"offsets": {
+				"from": 663120,
+				"to": 668880
+			},
+			"text": " if that makes any sense. Then you have Halo 2, which is coming out, ZKache uses it. And then also,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,880",
+				"to": "00:11:15,120"
+			},
+			"offsets": {
+				"from": 668880,
+				"to": 675120
+			},
+			"text": " the scroll is going to deploy with it. Most people I talk to are really moving towards that Halo 2"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,120",
+				"to": "00:11:20,720"
+			},
+			"offsets": {
+				"from": 675120,
+				"to": 680720
+			},
+			"text": " move. It seems like it's a really good proving system. So it's not on mainchain yet that I've"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,720",
+				"to": "00:11:26,880"
+			},
+			"offsets": {
+				"from": 680720,
+				"to": 686880
+			},
+			"text": " seen. So then you have your Starks, and that includes all your Starquare projects. So Starks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,880",
+				"to": "00:11:35,680"
+			},
+			"offsets": {
+				"from": 686880,
+				"to": 695680
+			},
+			"text": " versus Snarks. Snarks. It's a synced, non-interactive argument of knowledge. And then there's Starks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,680",
+				"to": "00:11:41,440"
+			},
+			"offsets": {
+				"from": 695680,
+				"to": 701440
+			},
+			"text": " which are scalable, transparent arguments of knowledge. And the major difference between the two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,440",
+				"to": "00:11:48,240"
+			},
+			"offsets": {
+				"from": 701440,
+				"to": 708240
+			},
+			"text": " there's a bunch of them. These are the base level for what happens. But quantum computing is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,240",
+				"to": "00:11:54,080"
+			},
+			"offsets": {
+				"from": 708240,
+				"to": 714080
+			},
+			"text": " probably going to be able to take down Starks, but Starks will probably be resistant to it. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,040",
+				"to": "00:12:00,800"
+			},
+			"offsets": {
+				"from": 715040,
+				"to": 720800
+			},
+			"text": " what is quantum computing? When will it come? I have no idea. But if it does, this will happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,800",
+				"to": "00:12:08,400"
+			},
+			"offsets": {
+				"from": 720800,
+				"to": 728400
+			},
+			"text": " So looking at these different proving systems, you have Groth 16, which is in blue, really taking"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,400",
+				"to": "00:12:14,480"
+			},
+			"offsets": {
+				"from": 728400,
+				"to": 734480
+			},
+			"text": " off. That's on the back of Tornado Cash as well as Loopering. And then you have down below,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,480",
+				"to": "00:12:19,360"
+			},
+			"offsets": {
+				"from": 734480,
+				"to": 739360
+			},
+			"text": " you have your Starks/Fries that are coming through. Those are the Starquare projects. They"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,360",
+				"to": "00:12:26,960"
+			},
+			"offsets": {
+				"from": 739360,
+				"to": 746960
+			},
+			"text": " have really taken off. DYDX posts a lot of data to chain often. And then you have your plonks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,960",
+				"to": "00:12:31,840"
+			},
+			"offsets": {
+				"from": 746960,
+				"to": 751840
+			},
+			"text": " and unknowns are probably plonks. But I wasn't quite confident enough to say that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,840",
+				"to": "00:12:39,120"
+			},
+			"offsets": {
+				"from": 751840,
+				"to": 759120
+			},
+			"text": " Okay, let's talk about trusted setups. So a trusted setup is where on the elliptic curve,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,120",
+				"to": "00:12:46,480"
+			},
+			"offsets": {
+				"from": 759120,
+				"to": 766480
+			},
+			"text": " you should evaluate the different ZK proof. So it's kind of an agreement in a spot that a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,480",
+				"to": "00:12:51,840"
+			},
+			"offsets": {
+				"from": 766480,
+				"to": 771840
+			},
+			"text": " prover and a verifier can kind of verify through what that snorke is going to look like. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,840",
+				"to": "00:12:56,240"
+			},
+			"offsets": {
+				"from": 771840,
+				"to": 776240
+			},
+			"text": " I like to think of it like a trust fall. How many people have done trust falls before in their life?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,240",
+				"to": "00:13:02,960"
+			},
+			"offsets": {
+				"from": 776240,
+				"to": 782960
+			},
+			"text": " A couple? Yeah, it's scary. So you get up there on a big standing and then you fall backwards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,960",
+				"to": "00:13:07,760"
+			},
+			"offsets": {
+				"from": 782960,
+				"to": 787760
+			},
+			"text": " and as long as one strong person below you is there to catch you, then you should be good. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,760",
+				"to": "00:13:13,840"
+			},
+			"offsets": {
+				"from": 787760,
+				"to": 793840
+			},
+			"text": " as long as the trusted setup is kind of similar. If everybody's toxic waste gets collected together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,840",
+				"to": "00:13:19,040"
+			},
+			"offsets": {
+				"from": 793840,
+				"to": 799040
+			},
+			"text": " if everyone gives their secret out, it doesn't want to catch you or is distracted, then the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,040",
+				"to": "00:13:26,080"
+			},
+			"offsets": {
+				"from": 799040,
+				"to": 806080
+			},
+			"text": " snorke can be -- then the trusted setup will not work, and someone will be able to write proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,080",
+				"to": "00:13:31,280"
+			},
+			"offsets": {
+				"from": 806080,
+				"to": 811280
+			},
+			"text": " that will be false positives, and they'll be able to take money from you, if that makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,280",
+				"to": "00:13:39,200"
+			},
+			"offsets": {
+				"from": 811280,
+				"to": 819200
+			},
+			"text": " So this requires one honest participant from the MPC ceremony. I also like to think of it like"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,200",
+				"to": "00:13:43,120"
+			},
+			"offsets": {
+				"from": 819200,
+				"to": 823120
+			},
+			"text": " Thanos. If you have enough infinity stones, if you have them all, you can destroy the proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,120",
+				"to": "00:13:50,320"
+			},
+			"offsets": {
+				"from": 823120,
+				"to": 830320
+			},
+			"text": " and it'll be good. So bad, actually. Okay, so what are the trusted setups? We have"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,320",
+				"to": "00:13:58,400"
+			},
+			"offsets": {
+				"from": 830320,
+				"to": 838400
+			},
+			"text": " GRAH-16 over there on the end. It has a two-phase trusted setup. Then the universal"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,400",
+				"to": "00:14:04,880"
+			},
+			"offsets": {
+				"from": 838400,
+				"to": 844880
+			},
+			"text": " setups came in, and that's a plonk and turbo-plonk. That only requires one. So whereas GRAH-16"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,880",
+				"to": "00:14:13,040"
+			},
+			"offsets": {
+				"from": 844880,
+				"to": 853040
+			},
+			"text": " needs a new ZK circuit or needs a new trusted ceremony for each circuit that it produces."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,920",
+				"to": "00:14:20,320"
+			},
+			"offsets": {
+				"from": 853920,
+				"to": 860320
+			},
+			"text": " Plonk and turbo-plonk have a universal setup, and that allows them to only have one total"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,320",
+				"to": "00:14:24,720"
+			},
+			"offsets": {
+				"from": 860320,
+				"to": 864720
+			},
+			"text": " ceremony. So if anyone here wanted to create a plonk, you could use the universal ceremony"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,720",
+				"to": "00:14:29,360"
+			},
+			"offsets": {
+				"from": 864720,
+				"to": 869360
+			},
+			"text": " that's already been created, and already been done. And then you have Halo 2 and Starks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,360",
+				"to": "00:14:34,080"
+			},
+			"offsets": {
+				"from": 869360,
+				"to": 874080
+			},
+			"text": " They do not require trusted setups. So that's obviously you want the least amount of trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,080",
+				"to": "00:14:40,960"
+			},
+			"offsets": {
+				"from": 874080,
+				"to": 880960
+			},
+			"text": " setups as you can. So moving on, on the actual projects themselves, you have -- GRAH-16s are"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,960",
+				"to": "00:14:46,480"
+			},
+			"offsets": {
+				"from": 880960,
+				"to": 886480
+			},
+			"text": " looping, polygon Hermes. They're withdrawal, and then train-o-cash. Those are the major ones"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,480",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 886480,
+				"to": 892000
+			},
+			"text": " that are currently being in operation. So the number -- these are trusted setups. They used"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:58,480"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 898480
+			},
+			"text": " a perpetual powers of tau, which is basically an on-chain step one for the different"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,480",
+				"to": "00:15:04,480"
+			},
+			"offsets": {
+				"from": 898480,
+				"to": 904480
+			},
+			"text": " trusted setups. Then they had a step two. That step two, these are the number of participants"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,480",
+				"to": "00:15:08,880"
+			},
+			"offsets": {
+				"from": 904480,
+				"to": 908880
+			},
+			"text": " that were in those ceremonies. So if you can get to 16 people from the looping that did it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,880",
+				"to": "00:15:14,080"
+			},
+			"offsets": {
+				"from": 908880,
+				"to": 914080
+			},
+			"text": " if they all compromised, then that will not be a valid justice setup. Then those funds will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,080",
+				"to": "00:15:21,040"
+			},
+			"offsets": {
+				"from": 914080,
+				"to": 921040
+			},
+			"text": " able to be taken. So you have 16 for looping. You have six participants in the polygon Hermes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,040",
+				"to": "00:15:29,920"
+			},
+			"offsets": {
+				"from": 921040,
+				"to": 929920
+			},
+			"text": " Then train-o-cash had a whopping 1,114. Moving on to plonks. So like I said, you only need one"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,920",
+				"to": "00:15:34,560"
+			},
+			"offsets": {
+				"from": 929920,
+				"to": 934560
+			},
+			"text": " trusted setup ceremony to be correct, and then anyone can use it. So they're all using the Aztec"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,560",
+				"to": "00:15:40,400"
+			},
+			"offsets": {
+				"from": 934560,
+				"to": 940400
+			},
+			"text": " plonk universal setup. All these you can see, as the stations on GitHub to see how they worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,400",
+				"to": "00:15:48,560"
+			},
+			"offsets": {
+				"from": 940400,
+				"to": 948560
+			},
+			"text": " But they had 176 participants in that. So that's all your zk-sank, yer zk-space, Aztec connect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,560",
+				"to": "00:15:55,360"
+			},
+			"offsets": {
+				"from": 948560,
+				"to": 955360
+			},
+			"text": " Aztec all the way down the line. Then you have your Starks, which do not have any trusted setups."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,360",
+				"to": "00:16:00,800"
+			},
+			"offsets": {
+				"from": 955360,
+				"to": 960800
+			},
+			"text": " We'll stop by recursion. This is the other major thing that people are looking for for"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,800",
+				"to": "00:16:06,880"
+			},
+			"offsets": {
+				"from": 960800,
+				"to": 966880
+			},
+			"text": " performance. So as you go through performance, recursion is the ability to take a big computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,880",
+				"to": "00:16:11,520"
+			},
+			"offsets": {
+				"from": 966880,
+				"to": 971520
+			},
+			"text": " and break it up into a bunch of little ones and do them together and then recursively prove back"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,520",
+				"to": "00:16:18,640"
+			},
+			"offsets": {
+				"from": 971520,
+				"to": 978640
+			},
+			"text": " to the top. So what this allows you to do is parallelization of proof generation. So you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,640",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 978640,
+				"to": 984000
+			},
+			"text": " decentralize and have a bunch of provers doing this in parallel. So get out your Azics because"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:29,520"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 989520
+			},
+			"text": " you just got rid of them for the merge. And then it also lets you do proof chaining. So you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,520",
+				"to": "00:16:35,760"
+			},
+			"offsets": {
+				"from": 989520,
+				"to": 995760
+			},
+			"text": " have the output of one proof be the input for the next proof. So what provides recursion?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,760",
+				"to": "00:16:40,000"
+			},
+			"offsets": {
+				"from": 995760,
+				"to": 1000000
+			},
+			"text": " Pretty much everything but growth 16 is now doing recursion and they're doing it in better"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,000",
+				"to": "00:16:46,080"
+			},
+			"offsets": {
+				"from": 1000000,
+				"to": 1006080
+			},
+			"text": " ways, I guess, as you move forward. So that was the other--why would anyone use growth 16 if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,080",
+				"to": "00:16:52,240"
+			},
+			"offsets": {
+				"from": 1006080,
+				"to": 1012240
+			},
+			"text": " can't do recursion and you have a big trust setup? It's faster and it's cheaper to verify. So it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,240",
+				"to": "00:16:56,640"
+			},
+			"offsets": {
+				"from": 1012240,
+				"to": 1016640
+			},
+			"text": " the OG, it's been there for a long time, but people are moving on because of those two problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,640",
+				"to": "00:17:05,200"
+			},
+			"offsets": {
+				"from": 1016640,
+				"to": 1025200
+			},
+			"text": " mostly. So now I guess we can talk about my favorite topic which is data availability as a data scientist."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,200",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1025200,
+				"to": 1034000
+			},
+			"text": " So we'll talk--this is going to be about L1s and L2s. So for the purists out there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:18,960"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1038960
+			},
+			"text": " L2s would only be roll-ups but I'll use both back and forth. So zkVillidiums."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,960",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1038960,
+				"to": 1044000
+			},
+			"text": " Villidiums, they have their state root is on the bridge contract and then they have their state"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:29,120"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1049120
+			},
+			"text": " reconstruction that's off-chain. It goes through a data availability committee to go on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,120",
+				"to": "00:17:33,040"
+			},
+			"offsets": {
+				"from": 1049120,
+				"to": 1053040
+			},
+			"text": " to be able to make it so you have that data but it is permissioned on that side of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,040",
+				"to": "00:17:39,040"
+			},
+			"offsets": {
+				"from": 1053040,
+				"to": 1059040
+			},
+			"text": " Then the alternative, which is in supposed to be gold, it kind of looks like bronze so forget that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,040",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1059040,
+				"to": 1066000
+			},
+			"text": " is you have your state reconstruction and your state root for the zk roll-ups down on the bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:52,080"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1072080
+			},
+			"text": " roll-up or down on the bridge contract. So that allows you to always have that data to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,080",
+				"to": "00:17:58,640"
+			},
+			"offsets": {
+				"from": 1072080,
+				"to": 1078640
+			},
+			"text": " generate a proof in case you do escape. So why would you do a villidium over a roll-up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,640",
+				"to": "00:18:03,920"
+			},
+			"offsets": {
+				"from": 1078640,
+				"to": 1083920
+			},
+			"text": " It's many more transactions per second. So your IMXs and your different star-x projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,920",
+				"to": "00:18:11,520"
+			},
+			"offsets": {
+				"from": 1083920,
+				"to": 1091520
+			},
+			"text": " are able to be a lot cheaper. So move forward. Let's look at your villidiums that are currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,520",
+				"to": "00:18:18,800"
+			},
+			"offsets": {
+				"from": 1091520,
+				"to": 1098800
+			},
+			"text": " operating. You have star-x which is immutable x. You have rhinify, so rare, apex. Other ones"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,800",
+				"to": "00:18:25,520"
+			},
+			"offsets": {
+				"from": 1098800,
+				"to": 1105520
+			},
+			"text": " that are coming out. You have zk porter coming out from zk-sync. Then your roll-ups, I'll run"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,520",
+				"to": "00:18:32,400"
+			},
+			"offsets": {
+				"from": 1105520,
+				"to": 1112400
+			},
+			"text": " through these because you guys probably all know them. But you have dlydx, loop ring, zk-sync v1,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,400",
+				"to": "00:18:42,400"
+			},
+			"offsets": {
+				"from": 1112400,
+				"to": 1122400
+			},
+			"text": " uzk-space, stock net. So I'll pause for the camera. Then moving on, there's a couple more"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,400",
+				"to": "00:18:48,240"
+			},
+			"offsets": {
+				"from": 1122400,
+				"to": 1128240
+			},
+			"text": " that are the newer ones that are coming up for roll-ups that are exciting. You have zk-sync v2"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,720",
+				"to": "00:18:55,520"
+			},
+			"offsets": {
+				"from": 1128720,
+				"to": 1135520
+			},
+			"text": " which I think is under 30 days now, which is exciting to mainnet. You have scroll, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,520",
+				"to": "00:19:03,520"
+			},
+			"offsets": {
+				"from": 1135520,
+				"to": 1143520
+			},
+			"text": " going for a higher level of EVM compatibility. Then let's see what's next. Then you have all"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,520",
+				"to": "00:19:08,960"
+			},
+			"offsets": {
+				"from": 1143520,
+				"to": 1148960
+			},
+			"text": " of Polygon's projects, which are all exciting in their own right. So let's talk about what it"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,960",
+				"to": "00:19:15,680"
+			},
+			"offsets": {
+				"from": 1148960,
+				"to": 1155680
+			},
+			"text": " means to be a roll-up. So everyone talks constantly about how the full security of Ethereum is being"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,680",
+				"to": "00:19:21,280"
+			},
+			"offsets": {
+				"from": 1155680,
+				"to": 1161280
+			},
+			"text": " inherited by these roll-ups. So what does it mean to have the full security of Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,280",
+				"to": "00:19:29,040"
+			},
+			"offsets": {
+				"from": 1161280,
+				"to": 1169040
+			},
+			"text": " You need to have the right to be able to force exit from that chain. So if you have, on your"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,040",
+				"to": "00:19:35,600"
+			},
+			"offsets": {
+				"from": 1169040,
+				"to": 1175600
+			},
+			"text": " layer two, if they have decided to be against you, you need to be able to submit your transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,600",
+				"to": "00:19:40,240"
+			},
+			"offsets": {
+				"from": 1175600,
+				"to": 1180240
+			},
+			"text": " directly on layer one to the Ethereum bridge contract and get your funds. So right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,240",
+				"to": "00:19:45,120"
+			},
+			"offsets": {
+				"from": 1180240,
+				"to": 1185120
+			},
+			"text": " you have your happy user down here that's from Walmart. It's kind of creepy actually, the more"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,120",
+				"to": "00:19:51,280"
+			},
+			"offsets": {
+				"from": 1185120,
+				"to": 1191280
+			},
+			"text": " you look at it, so don't stare at it too long, that the transaction goes to this. The happy"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,280",
+				"to": "00:19:56,320"
+			},
+			"offsets": {
+				"from": 1191280,
+				"to": 1196320
+			},
+			"text": " sequencers here, they put the transaction into the layer two. Those transactions are"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,320",
+				"to": "00:20:02,160"
+			},
+			"offsets": {
+				"from": 1196320,
+				"to": 1202160
+			},
+			"text": " batched into the zk circuit. It produces the proof and it goes to the Ethereum bridge contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,160",
+				"to": "00:20:09,600"
+			},
+			"offsets": {
+				"from": 1202160,
+				"to": 1209600
+			},
+			"text": " as we talked about before. So this is how it's supposed to function. So let's say that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,600",
+				"to": "00:20:17,040"
+			},
+			"offsets": {
+				"from": 1209600,
+				"to": 1217040
+			},
+			"text": " sequencers become evil and start smoking cigars. You get unhappy. So your transactions can't make"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,040",
+				"to": "00:20:25,120"
+			},
+			"offsets": {
+				"from": 1217040,
+				"to": 1225120
+			},
+			"text": " it to layer two and your funds are frozen. So what do you do? You take your transaction and you go"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,120",
+				"to": "00:20:30,160"
+			},
+			"offsets": {
+				"from": 1225120,
+				"to": 1230160
+			},
+			"text": " directly onto layer one to the bridge contract. So when you take your layer two transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,160",
+				"to": "00:20:35,840"
+			},
+			"offsets": {
+				"from": 1230160,
+				"to": 1235840
+			},
+			"text": " you go directly to it, then the validators have a certain amount of time to actually include"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,840",
+				"to": "00:20:41,600"
+			},
+			"offsets": {
+				"from": 1235840,
+				"to": 1241600
+			},
+			"text": " your transaction into the layer two. So usually it's between seven and 14 days."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,600",
+				"to": "00:20:49,840"
+			},
+			"offsets": {
+				"from": 1241600,
+				"to": 1249840
+			},
+			"text": " So if they don't do it within that amount of time, then hell freezes over and the chain freezes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,840",
+				"to": "00:20:57,760"
+			},
+			"offsets": {
+				"from": 1249840,
+				"to": 1257760
+			},
+			"text": " So your layer two cannot update state on layer one and the zero knowledge circuit, then you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,760",
+				"to": "00:21:04,240"
+			},
+			"offsets": {
+				"from": 1257760,
+				"to": 1264240
+			},
+			"text": " as a user, can produce a proof from the circuit, then that proof will provide you the ability to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,240",
+				"to": "00:21:12,080"
+			},
+			"offsets": {
+				"from": 1264240,
+				"to": 1272080
+			},
+			"text": " get your funds back. So it sounds great, but it's also kind of difficult. How does the average user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,080",
+				"to": "00:21:18,640"
+			},
+			"offsets": {
+				"from": 1272080,
+				"to": 1278640
+			},
+			"text": " especially when these proofs are off-chain and sometimes proprietary, how do you generate that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,640",
+				"to": "00:21:26,720"
+			},
+			"offsets": {
+				"from": 1278640,
+				"to": 1286720
+			},
+			"text": " proof? There's a few things that you have to really do to inherit full Ethereum security."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,720",
+				"to": "00:21:33,280"
+			},
+			"offsets": {
+				"from": 1286720,
+				"to": 1293280
+			},
+			"text": " So let's go through them. You have to have the available data on layer one. So if you don't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,280",
+				"to": "00:21:38,560"
+			},
+			"offsets": {
+				"from": 1293280,
+				"to": 1298560
+			},
+			"text": " that available data, then you can't reconstruct the state proof, and therefore you won't be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,560",
+				"to": "00:21:45,360"
+			},
+			"offsets": {
+				"from": 1298560,
+				"to": 1305360
+			},
+			"text": " properly get your funds back from the L1 contract. Secondly, you need to have functional"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,360",
+				"to": "00:21:51,920"
+			},
+			"offsets": {
+				"from": 1305360,
+				"to": 1311920
+			},
+			"text": " and accessible force exits. So those force exits have to be in code and they have to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,920",
+				"to": "00:21:55,920"
+			},
+			"offsets": {
+				"from": 1311920,
+				"to": 1315920
+			},
+			"text": " accessible for the average person. They need to be able to generate those proofs. They need to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,920",
+				"to": "00:22:03,600"
+			},
+			"offsets": {
+				"from": 1315920,
+				"to": 1323600
+			},
+			"text": " able to take that data and pull and directly send it to that L1 contract. That for a lot of devs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,600",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1323600,
+				"to": 1330000
+			},
+			"text": " it's not a big deal that the front ends are all centralized, but we need to centralize front ends"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:17,760"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1337760
+			},
+			"text": " to allow people to escape in the case of one of the sequencers going evil. So then thirdly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,760",
+				"to": "00:22:23,680"
+			},
+			"offsets": {
+				"from": 1337760,
+				"to": 1343680
+			},
+			"text": " you need time delays for the L1 contracts. So if the layer one contracts aren't have time delays,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,680",
+				"to": "00:22:29,440"
+			},
+			"offsets": {
+				"from": 1343680,
+				"to": 1349440
+			},
+			"text": " or if they're immutable, then it gives people the chance to actually exit from that layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,440",
+				"to": "00:22:35,600"
+			},
+			"offsets": {
+				"from": 1349440,
+				"to": 1355600
+			},
+			"text": " But if they don't have time delays, then they can just change the contract and everyone's funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,600",
+				"to": "00:22:44,240"
+			},
+			"offsets": {
+				"from": 1355600,
+				"to": 1364240
+			},
+			"text": " will be frozen from there. So then last is, this is a nuanced one, but the amount of money that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,240",
+				"to": "00:22:52,400"
+			},
+			"offsets": {
+				"from": 1364240,
+				"to": 1372400
+			},
+			"text": " can secure from L1 is really based upon the amount of locked funds on layer one. So if everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,400",
+				"to": "00:22:56,800"
+			},
+			"offsets": {
+				"from": 1372400,
+				"to": 1376800
+			},
+			"text": " forces exits, then the layer one contract, which is the bridge contract with all the assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,800",
+				"to": "00:23:02,240"
+			},
+			"offsets": {
+				"from": 1376800,
+				"to": 1382240
+			},
+			"text": " they will impart all their assets to the people. But if there's more total locked value above on"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,240",
+				"to": "00:23:09,440"
+			},
+			"offsets": {
+				"from": 1382240,
+				"to": 1389440
+			},
+			"text": " layer two, then somebody's going to be out of lock. So the best way to think about this is a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,440",
+				"to": "00:23:14,880"
+			},
+			"offsets": {
+				"from": 1389440,
+				"to": 1394880
+			},
+			"text": " the L2s are starting to get traction with direct transfers to them. They might even have their own"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,880",
+				"to": "00:23:20,480"
+			},
+			"offsets": {
+				"from": 1394880,
+				"to": 1400480
+			},
+			"text": " state from different contracts and native dumb tokens. If you have a native token on an L2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,280",
+				"to": "00:23:26,400"
+			},
+			"offsets": {
+				"from": 1401280,
+				"to": 1406400
+			},
+			"text": " and you don't have assets backing it up on the layer one bridge contract, then the ability for"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,400",
+				"to": "00:23:32,000"
+			},
+			"offsets": {
+				"from": 1406400,
+				"to": 1412000
+			},
+			"text": " you to inherit Ethereum security and take your assets off isn't there. So it's really important"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,000",
+				"to": "00:23:40,160"
+			},
+			"offsets": {
+				"from": 1412000,
+				"to": 1420160
+			},
+			"text": " that as we move forward that any state that is native to the L2 is known for that risk that it has."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,160",
+				"to": "00:23:47,920"
+			},
+			"offsets": {
+				"from": 1420160,
+				"to": 1427920
+			},
+			"text": " Now, let's get into, I guess this is the end of my talk, so I'm going to try and implore you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,920",
+				"to": "00:23:53,280"
+			},
+			"offsets": {
+				"from": 1427920,
+				"to": 1433280
+			},
+			"text": " get into the data directly. Don't be like Waldo and be sad because other people tell you what's true"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,280",
+				"to": "00:23:59,760"
+			},
+			"offsets": {
+				"from": 1433280,
+				"to": 1439760
+			},
+			"text": " and what's not. So we have, I tell you, I'm very impressed with these projects. I think you guys"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,760",
+				"to": "00:24:05,600"
+			},
+			"offsets": {
+				"from": 1439760,
+				"to": 1445600
+			},
+			"text": " should all check them out. They're all open. You have BigQuery, you have Dune. The Dune's getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,600",
+				"to": "00:24:10,640"
+			},
+			"offsets": {
+				"from": 1445600,
+				"to": 1450640
+			},
+			"text": " better and better. And then the BigQuery is a public database that has all the Ethereum layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,640",
+				"to": "00:24:15,920"
+			},
+			"offsets": {
+				"from": 1450640,
+				"to": 1455920
+			},
+			"text": " one posted there. They'll give you $300 credits to go on query through it. And you can really"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,560",
+				"to": "00:24:25,840"
+			},
+			"offsets": {
+				"from": 1456560,
+				"to": 1465840
+			},
+			"text": " differentiate yourself, especially as a data scientist. You have the project that I actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,840",
+				"to": "00:24:30,960"
+			},
+			"offsets": {
+				"from": 1465840,
+				"to": 1470960
+			},
+			"text": " completed. Please check it out on just the QR code for it. I'll have it at the end too, so if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,960",
+				"to": "00:24:36,880"
+			},
+			"offsets": {
+				"from": 1470960,
+				"to": 1476880
+			},
+			"text": " miss it, it's no big deal. But please go check out the data tables, all the SQL queries, any of"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,880",
+				"to": "00:24:41,680"
+			},
+			"offsets": {
+				"from": 1476880,
+				"to": 1481680
+			},
+			"text": " the different things. Please feel free to let me know what I screwed up and it'll be good."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,720",
+				"to": "00:24:47,520"
+			},
+			"offsets": {
+				"from": 1482720,
+				"to": 1487520
+			},
+			"text": " And then L2beat is just such a great resource. I'm sure everyone's heard of them and I'm sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,520",
+				"to": "00:24:53,360"
+			},
+			"offsets": {
+				"from": 1487520,
+				"to": 1493360
+			},
+			"text": " you've been to their booth yesterday. But they categorized a lot of risks and a lot of specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,360",
+				"to": "00:24:58,160"
+			},
+			"offsets": {
+				"from": 1493360,
+				"to": 1498160
+			},
+			"text": " things happening within these different projects. And I just can't recommend them enough to check"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,160",
+				"to": "00:25:03,120"
+			},
+			"offsets": {
+				"from": 1498160,
+				"to": 1503120
+			},
+			"text": " them out. They're doing bridges now too, which is exciting. And then the layer 2s. I haven't got"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,120",
+				"to": "00:25:08,480"
+			},
+			"offsets": {
+				"from": 1503120,
+				"to": 1508480
+			},
+			"text": " to the data on layer 2s. So it would be really great for everyone to check out the different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,480",
+				"to": "00:25:13,920"
+			},
+			"offsets": {
+				"from": 1508480,
+				"to": 1513920
+			},
+			"text": " but we're going to a different layer, modular blockchain, where you have layer 1s, layer 2s,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,920",
+				"to": "00:25:18,880"
+			},
+			"offsets": {
+				"from": 1513920,
+				"to": 1518880
+			},
+			"text": " and layer 3s. And these layer 3s are going to be deployed on layer 2s. And the privacy things"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,880",
+				"to": "00:25:25,760"
+			},
+			"offsets": {
+				"from": 1518880,
+				"to": 1525760
+			},
+			"text": " already are for like semaphore. So I highly recommend that I really like to see somebody"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,760",
+				"to": "00:25:31,680"
+			},
+			"offsets": {
+				"from": 1525760,
+				"to": 1531680
+			},
+			"text": " check out layer 2s and be able to do the same data type projects for that. So I have some thank"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,680",
+				"to": "00:25:38,640"
+			},
+			"offsets": {
+				"from": 1531680,
+				"to": 1538640
+			},
+			"text": " yous I'd like to get ahead of. So I'd like to thank the DailyGlay Discord channel and podcast"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,640",
+				"to": "00:25:42,880"
+			},
+			"offsets": {
+				"from": 1538640,
+				"to": 1542880
+			},
+			"text": " for being so great. That's my favorite Discord channel there is. If you need studs, no things."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,880",
+				"to": "00:25:49,440"
+			},
+			"offsets": {
+				"from": 1542880,
+				"to": 1549440
+			},
+			"text": " There's so many helpful people. There's the Zero Knowledge podcast. It's so good for all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,440",
+				"to": "00:25:54,560"
+			},
+			"offsets": {
+				"from": 1549440,
+				"to": 1554560
+			},
+			"text": " new pressing things. I highly recommend them as well. L2beat. I'll show them again."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,560",
+				"to": "00:26:01,360"
+			},
+			"offsets": {
+				"from": 1554560,
+				"to": 1561360
+			},
+			"text": " And then the Ethereum Foundation Privacy Scaling Exploration Team. That's not their symbol, but I"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,360",
+				"to": "00:26:05,120"
+			},
+			"offsets": {
+				"from": 1561360,
+				"to": 1565120
+			},
+			"text": " think that their new logo for DevCon is really cool. So I put it up there."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,120",
+				"to": "00:26:10,000"
+			},
+			"offsets": {
+				"from": 1565120,
+				"to": 1570000
+			},
+			"text": " And then I'd like to thank Justin Martin for all of his help in getting me into this."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,000",
+				"to": "00:26:15,120"
+			},
+			"offsets": {
+				"from": 1570000,
+				"to": 1575120
+			},
+			"text": " And I'd also like to thank Mark for all your help getting me through this stuff and"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,120",
+				"to": "00:26:20,320"
+			},
+			"offsets": {
+				"from": 1575120,
+				"to": 1580320
+			},
+			"text": " really brainstorming through it all and trying to get through all those issues. So I got. Thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,320",
+				"to": "00:26:30,640"
+			},
+			"offsets": {
+				"from": 1580320,
+				"to": 1590640
+			},
+			"text": " very much. I will take quite... Yes, please. I'm sure. Yeah, I don't have a mic for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,600",
+				"to": "00:26:33,920"
+			},
+			"offsets": {
+				"from": 1591600,
+				"to": 1593920
+			},
+			"text": " Unless you're really loud, and then you can just go for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,920",
+				"to": "00:26:43,520"
+			},
+			"offsets": {
+				"from": 1593920,
+				"to": 1603520
+			},
+			"text": " I was wondering if you comment a little bit more on the security considerations when dealing"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,520",
+				"to": "00:26:47,760"
+			},
+			"offsets": {
+				"from": 1603520,
+				"to": 1607760
+			},
+			"text": " with native assets on L2s. Like I get that you can't withdraw the funds on the L1, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,760",
+				"to": "00:26:53,280"
+			},
+			"offsets": {
+				"from": 1607760,
+				"to": 1613280
+			},
+			"text": " can you double spend or can be validated like forge a balance or things like that given the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,280",
+				"to": "00:26:58,480"
+			},
+			"offsets": {
+				"from": 1613280,
+				"to": 1618480
+			},
+			"text": " stage rolled up? No, I don't think that those are concerns to do double spend some things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,480",
+				"to": "00:27:04,320"
+			},
+			"offsets": {
+				"from": 1618480,
+				"to": 1624320
+			},
+			"text": " but I do think because your state is... The state source of truth is really sitting on layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,320",
+				"to": "00:27:09,760"
+			},
+			"offsets": {
+				"from": 1624320,
+				"to": 1629760
+			},
+			"text": " So you're not going to be able to... One of the reasons they do some of the delays and things I"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,760",
+				"to": "00:27:15,040"
+			},
+			"offsets": {
+				"from": 1629760,
+				"to": 1635040
+			},
+			"text": " believe is to stop double spend from happening, but the... And that's why they freeze the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,040",
+				"to": "00:27:21,760"
+			},
+			"offsets": {
+				"from": 1635040,
+				"to": 1641760
+			},
+			"text": " route on layer ones. But I don't think that... If you understand... I won't go back over the ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,760",
+				"to": "00:27:27,520"
+			},
+			"offsets": {
+				"from": 1641760,
+				"to": 1647520
+			},
+			"text": " of... But if you have tokens that are here and the values more there than on the bridge contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,520",
+				"to": "00:27:30,560"
+			},
+			"offsets": {
+				"from": 1647520,
+				"to": 1650560
+			},
+			"text": " then you won't be able to get your money back off of that. So that makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,560",
+				"to": "00:27:37,120"
+			},
+			"offsets": {
+				"from": 1650560,
+				"to": 1657120
+			},
+			"text": " Hello. When you're talking about state on layer one, have you heard any thoughts in regards to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,120",
+				"to": "00:27:46,080"
+			},
+			"offsets": {
+				"from": 1657120,
+				"to": 1666080
+			},
+			"text": " upcoming state expiry? Not yet, but I would love to hear your thoughts on it some point."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:46,080",
+				"to": "00:27:52,000"
+			},
+			"offsets": {
+				"from": 1666080,
+				"to": 1672000
+			},
+			"text": " I'm kind of practical on the side of things as far as what that should look like and what"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,000",
+				"to": "00:27:56,960"
+			},
+			"offsets": {
+				"from": 1672000,
+				"to": 1676960
+			},
+			"text": " you're looking for, even. Yeah, please. Go ahead. Sorry. Yeah, I don't have any particular thoughts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,960",
+				"to": "00:28:04,320"
+			},
+			"offsets": {
+				"from": 1676960,
+				"to": 1684320
+			},
+			"text": " just that I think current plans are to expire state after a year or so, and then you'd need"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,320",
+				"to": "00:28:10,800"
+			},
+			"offsets": {
+				"from": 1684320,
+				"to": 1690800
+			},
+			"text": " some other way to get the state. My understanding is there will be... I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,800",
+				"to": "00:28:14,320"
+			},
+			"offsets": {
+				"from": 1690800,
+				"to": 1694320
+			},
+			"text": " there are knowledge proofs that we'll be able to construct that and prove that that's true."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,320",
+				"to": "00:28:19,120"
+			},
+			"offsets": {
+				"from": 1694320,
+				"to": 1699120
+			},
+			"text": " But then you'll also have... So you're kind of using the same different technology, but I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:19,120",
+				"to": "00:28:22,000"
+			},
+			"offsets": {
+				"from": 1699120,
+				"to": 1702000
+			},
+			"text": " going to speak too out of turn on what I don't know it's on about. It's a great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,000",
+				"to": "00:28:25,040"
+			},
+			"offsets": {
+				"from": 1702000,
+				"to": 1705040
+			},
+			"text": " I'll definitely... I can look into it and get in touch with you about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:25,040",
+				"to": "00:28:35,040"
+			},
+			"offsets": {
+				"from": 1705040,
+				"to": 1715040
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:35,040",
+				"to": "00:29:04,040"
+			},
+			"offsets": {
+				"from": 1715040,
+				"to": 1744040
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

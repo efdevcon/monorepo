@@ -1,0 +1,3717 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 19000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 20000
+			},
+			"text": " >> Hello to everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 23000
+			},
+			"text": " Thank you for having me here today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 24000
+			},
+			"text": " My name is Thomas Bertani."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 26000
+			},
+			"text": " I'm the CEO of Oracle Eyes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 28000
+			},
+			"text": " During this presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 32000
+			},
+			"text": " I will start with a brief recap of the Oracle problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 36000
+			},
+			"text": " and how Oracle Eyes is trying to solve it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 40000
+			},
+			"text": " And I will do a deep dive on the authenticity proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 45000
+			},
+			"text": " and on how we could verify them on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 49000
+			},
+			"text": " So we've already seen in the previous presentations what it means"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 52000
+			},
+			"text": " the Oracle problem really is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 55000
+			},
+			"text": " So we know that in decentralized networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 59000
+			},
+			"text": " like on Ethereum, it's really complicated to reach out"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 64000
+			},
+			"text": " to external data, to data which we find in different contexts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 66000
+			},
+			"text": " like, for example, on the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 69000
+			},
+			"text": " But in general, this is something we want because of decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 73000
+			},
+			"text": " applications to have value, because those applications might"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 77000
+			},
+			"text": " depend on external real-world data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 82000
+			},
+			"text": " So it's important to define those three different entities"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 86000
+			},
+			"text": " as in different Oracle models than others."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 88000
+			},
+			"text": " Some of those are merged."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 92000
+			},
+			"text": " So specifically, we know that the data is the --"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 97000
+			},
+			"text": " any piece of code that requires the external data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 100000
+			},
+			"text": " Then we have the Oracle and the data source."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 103000
+			},
+			"text": " The data source is not necessarily the same party"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 105000
+			},
+			"text": " as the Oracle itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 108000
+			},
+			"text": " It's easy to define the Oracle as the Oracle is the party"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 111000
+			},
+			"text": " that sends the data to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 115000
+			},
+			"text": " But the data source might as well be a different party"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 116000
+			},
+			"text": " than the Oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 119000
+			},
+			"text": " So we have seen in the TomSar Reuters presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 122000
+			},
+			"text": " a model where basically the data source and the Oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 124000
+			},
+			"text": " are the same entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 128000
+			},
+			"text": " But in general, what we want is be able to reach out to any"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 131000
+			},
+			"text": " external data sources without having the data sources to adapt"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 132000
+			},
+			"text": " to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 135000
+			},
+			"text": " This is because there are so many external data sources"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 139000
+			},
+			"text": " available on the Internet that is quite unlikely that in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 142000
+			},
+			"text": " short term they will adapt to the blockchain, they will start"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 147000
+			},
+			"text": " signing the data and sending it wherever we need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 151000
+			},
+			"text": " So the Oracleize solution is basically the one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 153000
+			},
+			"text": " intermediating."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 156000
+			},
+			"text": " So ironically, we could say that Oracleize is a new type"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 161000
+			},
+			"text": " of intermediary in a word that is trying to get rid of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 165000
+			},
+			"text": " So we see on one side web APIs, so any possible existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 168000
+			},
+			"text": " data source and on the other blockchains in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 172000
+			},
+			"text": " So Oracleize stays in the middle and tries to make the two"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 176000
+			},
+			"text": " different words communicate, so different contexts to communicate"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 177000
+			},
+			"text": " and exchange data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 181000
+			},
+			"text": " So this is what we call a data transport layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 185000
+			},
+			"text": " We have seen a lot in previous presentation the problem of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 188000
+			},
+			"text": " trust, so of course having a new intermediary implies some"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 191000
+			},
+			"text": " trust lines that we have to open."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 194000
+			},
+			"text": " We don't want to trust a small startup of 10 people, so this"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 199000
+			},
+			"text": " is why we add to provide some kind of authenticity proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 202000
+			},
+			"text": " So a proof of the fact that the data we are sending to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 206000
+			},
+			"text": " blockchain application is indeed authentic, as reported by the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 210000
+			},
+			"text": " external data source and not tampered with by the intermediary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 212000
+			},
+			"text": " which is Oracleize in that case."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 216000
+			},
+			"text": " So in order to do that, we send the blockchain not just the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 220000
+			},
+			"text": " result that comes from the external data source, but also the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 222000
+			},
+			"text": " so-called authenticity proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 226000
+			},
+			"text": " So authenticity proofs are a very generic concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 230000
+			},
+			"text": " What we want to get is just some kind of evidence of the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 234000
+			},
+			"text": " that the data fetching from the external data source is indeed"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 236000
+			},
+			"text": " honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 240000
+			},
+			"text": " We want to know that the operator is behaving honestly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 244000
+			},
+			"text": " This is trivial when the data source signs the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " Unfortunately, there are so many different standards and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 252000
+			},
+			"text": " proposals to sign data on the internet that pretty much none"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 254000
+			},
+			"text": " of them is being widely used."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 258000
+			},
+			"text": " Hopefully, this will be solved in the future years, but in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 262000
+			},
+			"text": " meantime, we know already that some data sources made a choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 266000
+			},
+			"text": " So, for example, there is an IETF proposal that is being"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 270000
+			},
+			"text": " discussed for several years, which is being called the KVH HTTP"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 275000
+			},
+			"text": " signatures, which is at its 70th iteration now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 279000
+			},
+			"text": " This is one possible way to sign the data for the data source."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 282000
+			},
+			"text": " There are already several data sources signing the data in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 286000
+			},
+			"text": " way, Oracleize supports it, so it means that if the data source"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 290000
+			},
+			"text": " you choose is signing the data in this way, you can leverage the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 295000
+			},
+			"text": " Oracleize data transport layer and connect this API to your smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 298000
+			},
+			"text": " contract application straight away."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 302000
+			},
+			"text": " But in general, Web APIs do not sign the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 304000
+			},
+			"text": " And this is why we need to leverage different techniques."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 309000
+			},
+			"text": " We have seen what Chainlink does with the towncrier project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 311000
+			},
+			"text": " which is based on Intel SGX."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 315000
+			},
+			"text": " This is one possible technology which we can use, so trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 317000
+			},
+			"text": " computing by Intel SGX."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 321000
+			},
+			"text": " But there are many other techniques that can be used."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 324000
+			},
+			"text": " Oracleize at the moment is using some sandboxing techniques which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 328000
+			},
+			"text": " are backed by software guarantees, such as TLS notary, and some"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 333000
+			},
+			"text": " others that are backed by hardware techniques like Intel SGX,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 338000
+			},
+			"text": " or the Qualcomm TE, Ledger Nano S attestation that we have seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 342000
+			},
+			"text": " yesterday here with Nicholas from Ledger and many others."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 346000
+			},
+			"text": " So basically, there are many different ways we can give this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 349000
+			},
+			"text": " kind of evidence and this kind of proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 353000
+			},
+			"text": " And what Oracleize is doing is not using a single technology to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 354000
+			},
+			"text": " do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 357000
+			},
+			"text": " As we will see in a minute, we believe that that will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 360000
+			},
+			"text": " quite a weak architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 364000
+			},
+			"text": " So basically what we have said is that when the data source does"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 368000
+			},
+			"text": " not sign the data, then we need to use a different technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 370000
+			},
+			"text": " But which one do you choose?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 374000
+			},
+			"text": " Well, this is a complicated question because every time we"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 377000
+			},
+			"text": " use a technology, we are really trusting the attestator."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 382000
+			},
+			"text": " So the attestator is basically whoever designed the technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 384000
+			},
+			"text": " whoever is providing the technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 386000
+			},
+			"text": " So think about the Intel SGX case."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 389000
+			},
+			"text": " So on paper, Intel SGX is very safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 392000
+			},
+			"text": " For sure, it's one of the most interesting and flexible"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 395000
+			},
+			"text": " technologies for trusted computing that we have available on"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 396000
+			},
+			"text": " the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 401000
+			},
+			"text": " But at the end of the day, we need to trust Intel because we cannot"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 406000
+			},
+			"text": " verify in our homes if the chip, for example, if the CPU package"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 409000
+			},
+			"text": " is really doing what it is supposed to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 413000
+			},
+			"text": " We cannot really know if the signature coming from the attestation"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 417000
+			},
+			"text": " of the devices is done correctly, as intended."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 421000
+			},
+			"text": " And in general, every time we use one of those technology, we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 422000
+			},
+			"text": " always trusting somebody."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 426000
+			},
+			"text": " So even in the case of the ledger proof, for example, we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 427000
+			},
+			"text": " trusting ledger."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 430000
+			},
+			"text": " In the case of the Android proof, we are trusting Qualcomm and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 431000
+			},
+			"text": " Google, for sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 435000
+			},
+			"text": " So basically, by using those technologies to prove the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 439000
+			},
+			"text": " authenticity of the data, we are not really giving out a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 441000
+			},
+			"text": " trustless solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 445000
+			},
+			"text": " We are simply shifting the trust from the central operator, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 449000
+			},
+			"text": " in that case is localized, a small startup that we do not"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 453000
+			},
+			"text": " want to trust, to parties that have something more at stake,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 455000
+			},
+			"text": " that have a strong reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 461000
+			},
+			"text": " Of course, if this is all we have, this will be quite weak and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 462000
+			},
+			"text": " disappointing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 466000
+			},
+			"text": " As if the solution for the Oracle problem is to trust a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 470000
+			},
+			"text": " party, then we could simply go to that company and ask them to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 472000
+			},
+			"text": " run the Oracle service."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 476000
+			},
+			"text": " This will be exactly the same open trust line, and it will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 478000
+			},
+			"text": " much more efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 481000
+			},
+			"text": " However, the blockchain was not designed to move the trust away"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 484000
+			},
+			"text": " to a single central company, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 486000
+			},
+			"text": " Or we will not be here today."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 489000
+			},
+			"text": " So by using different technologies, we can spread the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 493000
+			},
+			"text": " trust and get more than one proof back in that claim."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 497000
+			},
+			"text": " So if we use all the technology we see here, for example, we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 502000
+			},
+			"text": " trusting four different companies, which in order to provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 508000
+			},
+			"text": " valid proofs, backed by tamper with data, they will need to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 511000
+			},
+			"text": " well, basically they will need to lie all at the same time in"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 514000
+			},
+			"text": " the same way, which is quite unlikely."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 517000
+			},
+			"text": " So basically, all we are doing here is moving the trust away to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 521000
+			},
+			"text": " different parties by using their technology, but without asking"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 524000
+			},
+			"text": " them to run the service."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 529000
+			},
+			"text": " Something that we get asked quite often is, wait, why don't we"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 533000
+			},
+			"text": " just ask those companies to come together in a consortium and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 535000
+			},
+			"text": " to provide this as a service?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 538000
+			},
+			"text": " They could simply sign the data in a multi-sig fashion."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 540000
+			},
+			"text": " This will be trivially doable."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 544000
+			},
+			"text": " And this will be much easier, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:07,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 547000
+			},
+			"text": " Well, if they come together in a consortium, this is quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 547000,
+				"to": 551000
+			},
+			"text": " weak, because by doing that, they would show to the world that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 555000
+			},
+			"text": " they have an agreement, and if they have an agreement, the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 559000
+			},
+			"text": " of the different proofs is much weaker, as they basically show"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 562000
+			},
+			"text": " that they are willing to cooperate."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 565000
+			},
+			"text": " So this is why it's much better to have an independent party,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 568000
+			},
+			"text": " which is different from all these different technology providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 571000
+			},
+			"text": " that runs the service."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 575000
+			},
+			"text": " So basically, what Oracleize is doing is putting in the Oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 579000
+			},
+			"text": "ize engine, which is one physical box that we designed, all"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 582000
+			},
+			"text": " these different technologies, all these different trusted computing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 586000
+			},
+			"text": " techniques, so that we can provide different layers, different"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 591000
+			},
+			"text": " levels of proofs, and provide this as a service to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 596000
+			},
+			"text": " This is something that today we are managing with a distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 599000
+			},
+			"text": " network, so this is something we fully manage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 604000
+			},
+			"text": " So as we have just seen, thanks to the authenticity proofs, we do"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 608000
+			},
+			"text": " not need to trust Oracleize, but we need to trust all these"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 610000
+			},
+			"text": " different investigators."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 613000
+			},
+			"text": " So the only risk of the central operator of the Oracleize"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 618000
+			},
+			"text": " service is basically the service to stop running, so bad quality"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 622000
+			},
+			"text": " of service, or maybe censorship, or many other of these problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 626000
+			},
+			"text": " This is why we are working towards a new possibility, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 630000
+			},
+			"text": " basically delegating the management of the Oracleize engine"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 634000
+			},
+			"text": " machines to any interested parties that might be willing to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 637000
+			},
+			"text": " contribute to maintaining the service running."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 641000
+			},
+			"text": " So this is something that will basically move away the governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 646000
+			},
+			"text": " of the maintainers of the service from Oracleize to a different"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 648000
+			},
+			"text": " entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 652000
+			},
+			"text": " The rest of the presentation is around authenticity proofs, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 656000
+			},
+			"text": " I want to dive into the verifications of those proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 658000
+			},
+			"text": " So what you see here is the network monitor."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 662000
+			},
+			"text": " This is a web-based tool that anybody can use to verify off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 664000
+			},
+			"text": " the authenticity of the proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 667000
+			},
+			"text": " Unfortunately, this means that once you have a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 670000
+			},
+			"text": " like this, which wants to reach out to a web API like Crypto"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 674000
+			},
+			"text": " Compare, you specify the proof you want, like Oracleize,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 676000
+			},
+			"text": " that proof, proof type TLS notary."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 679000
+			},
+			"text": " So here we are saying we want a TLS notary proof, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 684000
+			},
+			"text": " software backed and based on the trust with Amazon."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 689000
+			},
+			"text": " And we want proof storage, APFS, so actually we will not get back"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 695000
+			},
+			"text": " to the raw proof, which will be quite big, but just the APFS"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 697000
+			},
+			"text": " multi-ash of the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 700000
+			},
+			"text": " So as a consequence, it means that it's not possible to verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 705000
+			},
+			"text": " with a contract like this, the validity of the proof on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 708000
+			},
+			"text": " contract once it receives the callback function."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 712000
+			},
+			"text": " So this is something that is not ideal because basically Oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 716000
+			},
+			"text": "ize could potentially send back a wrong proof and you will just"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 718000
+			},
+			"text": " notice afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 722000
+			},
+			"text": " So basically, we want to see that anybody can check for the last"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 726000
+			},
+			"text": " two years and all, all the 300,000 proofs we have sent on"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 729000
+			},
+			"text": " chain, and you will see that there is none which at the moment"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 732000
+			},
+			"text": " is not passing unless there was one while it was on stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 736000
+			},
+			"text": " But in general, what we want is a stronger guarantee where"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 740000
+			},
+			"text": " basically the authenticity proofs can be verified by the receiving"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 741000
+			},
+			"text": " contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 745000
+			},
+			"text": " So let's see what the authenticity proof contains, first of all."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 749000
+			},
+			"text": " This really depends on the sandboxing technique being used,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 753000
+			},
+			"text": " because different techniques need different verification steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 757000
+			},
+			"text": " However, they are all basically a collection of signatures and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 760000
+			},
+			"text": " data to verify some kind of attestation, some kind of claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 763000
+			},
+			"text": " coming from the attestator."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 768000
+			},
+			"text": " Still, those proofs are general purpose, so they have nothing to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 770000
+			},
+			"text": " do with the blockchain in their format."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 773000
+			},
+			"text": " We are investigating use cases also outside the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 776000
+			},
+			"text": " space, and they are self-contained."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 779000
+			},
+			"text": " So it means that once you have the proof, you should be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 782000
+			},
+			"text": " extract the full message from the proof itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 786000
+			},
+			"text": " There should be nothing outside the proof that you need to verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 789000
+			},
+			"text": " the validity of the proof itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 793000
+			},
+			"text": " However, given that nature of the proof, they might be quite big"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 796000
+			},
+			"text": " depending on the data you are trying to fetch from the external"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 797000
+			},
+			"text": " data source."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 800000
+			},
+			"text": " So this is why we cannot send them every time on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 803000
+			},
+			"text": " because it will be a very high cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 806000
+			},
+			"text": " Well, given the gas limit, of course, this is something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 810000
+			},
+			"text": " is not possible above certain sizes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 813000
+			},
+			"text": " Some of the interesting proofs that we have designed, such as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 817000
+			},
+			"text": " ledger proof for the random data source, and the native proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 820000
+			},
+			"text": " like the ones where the data source signs the data, are"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 822000
+			},
+			"text": " trivially verifiable on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 826000
+			},
+			"text": " So this is, for example, a very short piece of code which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 828000
+			},
+			"text": " verifies native proofs on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 832000
+			},
+			"text": " As we expect, this is nothing really complicated, but we see"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 833000
+			},
+			"text": " there are different steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 836000
+			},
+			"text": " Like, we need to check that the answer is fresh, that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 840000
+			},
+			"text": " authentic, and that there is integrity of the proof and other"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 842000
+			},
+			"text": " steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 846000
+			},
+			"text": " For the ledger proof, it's even more complicated because we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 850000
+			},
+			"text": " checking basically that the trusted computing device is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 854000
+			},
+			"text": " really executing the correct code that we expected to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 855000
+			},
+			"text": " executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 857000
+			},
+			"text": " So you see in the code that there is, for example, a code"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 861000
+			},
+			"text": " that is the edge of the code being executed, which being open"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 864000
+			},
+			"text": " source, you can verify yourself of chain once."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 867000
+			},
+			"text": " There is the public key of ledger, which is the one sign the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 869000
+			},
+			"text": " attestation claim, and much more."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 874000
+			},
+			"text": " Both these are already working on chain, and the cost is quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 879000
+			},
+			"text": " reasonable, so it's around the 50,000 gas, 60,000 gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 883000
+			},
+			"text": " But for bigger proofs where we have bigger messages, it might"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 885000
+			},
+			"text": " not be possible to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 890000
+			},
+			"text": " So in those cases, we have to think of something different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 892000
+			},
+			"text": " and this is what the proof shield is."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 897000
+			},
+			"text": " So the proof shield is basically a new concept where we take the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 901000
+			},
+			"text": " same trust model that we explained before, we use exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 904000
+			},
+			"text": " the same technology to reduce the complexity of the proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 907000
+			},
+			"text": " verification down to a single signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 911000
+			},
+			"text": " So basically, this is a different application running on"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 915000
+			},
+			"text": " the trusted computing devices or on other sign-sign boxing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 919000
+			},
+			"text": " techniques that we are using, so that the complexity of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 923000
+			},
+			"text": " proof, the row proof we had before, is the input of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 924000
+			},
+			"text": " software."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 927000
+			},
+			"text": " And the output is a simple signature which we can easily"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 931000
+			},
+			"text": " verify on the blockchain from the calling smart contract, like"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 933000
+			},
+			"text": " with native proofs or with the ledger proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 937000
+			},
+			"text": " So in this case, it means that the receiving contract receives"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 940000
+			},
+			"text": " not the row proof, but the proof shield proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 944000
+			},
+			"text": " So it's a different problem we solve, but when we keep the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 948000
+			},
+			"text": " open trust line, the security model doesn't really change."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 953000
+			},
+			"text": " So for example, if we have TLS notary proof, which is based at"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 957000
+			},
+			"text": " the end of the day, given its nature to an open trust line"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 962000
+			},
+			"text": " with Amazon Web Service, well, if we somehow leverage a fully"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 966000
+			},
+			"text": " locked down, provable machine running on Amazon Web Service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 970000
+			},
+			"text": " which converts this proof to a single signature, then we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 974000
+			},
+			"text": " still trusting Amazon for that transformation, and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 978000
+			},
+			"text": " on-chain verification becomes possible, though."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 980000
+			},
+			"text": " So this is something we have very tendency."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 983000
+			},
+			"text": " It's quite modular and portable architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 985000
+			},
+			"text": " It can run in different contexts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 987000
+			},
+			"text": " It will be open sourced very soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 990000
+			},
+			"text": " It supports basically all the existing proofs provided by"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 991000
+			},
+			"text": " Oracleize."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 994000
+			},
+			"text": " So you could potentially use, I don't know, like"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 998000
+			},
+			"text": " a ledger device to run the proof shield to verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:40,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1000000
+			},
+			"text": " an Android proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 1000000,
+				"to": 1003000
+			},
+			"text": " But of course, in that case, you open a new additional trust line."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1006000
+			},
+			"text": " So the optimal case is one to use exactly the same technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:50,000"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1010000
+			},
+			"text": " And the first prototype will be released on test nets"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1010000,
+				"to": 1012000
+			},
+			"text": " before the end of year."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1016000
+			},
+			"text": " And the first implementation will be based on as a ball as app."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1020000
+			},
+			"text": " So basically it's running on a ledger device."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1024000
+			},
+			"text": " And the verification costs, again, are in the 50, 60,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1025000
+			},
+			"text": " gas range."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1029000
+			},
+			"text": " And it can be reduced even more so that basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1033000
+			},
+			"text": " the transaction verification itself, so the signature showing"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1037000
+			},
+			"text": " that the transaction is coming from a given sender, it can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1039000
+			},
+			"text": " already the verification step."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1042000
+			},
+			"text": " So in a version two of the proof shield, we will be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1045000
+			},
+			"text": " reduce down the cost of the proof shield proof verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1049000
+			},
+			"text": " to basically zero, so that it's also already compatible with"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1053000
+			},
+			"text": " already deployed contract, which now are several hundreds"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1055000
+			},
+			"text": " on the main chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1060000
+			},
+			"text": " So so far, we are the most widely used Oracle service on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1066000
+			},
+			"text": " We have sent 300,000 over 300,000 queries on the mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1070000
+			},
+			"text": " And today the range is typically between one and 5,000 transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1072000
+			},
+			"text": " per day on the mainnet only."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1076000
+			},
+			"text": " We have integrations also with other blockchains, as you can see here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1080000
+			},
+			"text": " But Ethereum is where we started from and where most of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1082000
+			},
+			"text": " usage at the moment comes from."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1086000
+			},
+			"text": " We are using different technologies and attestation techniques,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1089000
+			},
+			"text": " and this is something that we still have in the working system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1091000
+			},
+			"text": " continues the research problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1094000
+			},
+			"text": " So these are the things we have in the working for the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1098000
+			},
+			"text": " So basically we will facilitate with Stargate the use in"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1102000
+			},
+			"text": " private chains and for in-memory executions and simulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1105000
+			},
+			"text": " The proof shield, I've already talked about testament to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1109000
+			},
+			"text": " deployment and the person to that we have in the workings."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1113000
+			},
+			"text": " And new tainty stip proofs, the reduced centralization points"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1117000
+			},
+			"text": " of the operator, so of us, of our service via the delegation of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1120000
+			},
+			"text": " the management machines to external nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1125000
+			},
+			"text": " And tomorrow downstairs in the breakout hall at 3.45pm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1130000
+			},
+			"text": " I will do a deep dive around the Oracleize Off-chain computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1133000
+			},
+			"text": " And I will show you something which is quite interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1138000
+			},
+			"text": " or the using of the same technologies and the same trust model"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:02,000"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1142000
+			},
+			"text": " to execute off-chain any piece of code and send on change"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1142000,
+				"to": 1146000
+			},
+			"text": " as a result also for non-deterministic pieces of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:08,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1148000
+			},
+			"text": " Thank you for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1148000,
+				"to": 1158000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:20,240"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1160240
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

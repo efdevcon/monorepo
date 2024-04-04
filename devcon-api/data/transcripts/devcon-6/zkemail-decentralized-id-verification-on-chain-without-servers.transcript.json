@@ -1,0 +1,3288 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,760"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11760
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,760",
+				"to": "00:00:16,440"
+			},
+			"offsets": {
+				"from": 11760,
+				"to": 16440
+			},
+			"text": " We are going to start with a quick demo because the Wi-Fi here is not fast enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,440",
+				"to": "00:00:20,080"
+			},
+			"offsets": {
+				"from": 16440,
+				"to": 20080
+			},
+			"text": " So we're running this remotely and so we're going to begin that right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,080",
+				"to": "00:00:22,800"
+			},
+			"offsets": {
+				"from": 20080,
+				"to": 22800
+			},
+			"text": " >> Yeah. So we have a UI build up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,800",
+				"to": "00:00:26,440"
+			},
+			"offsets": {
+				"from": 22800,
+				"to": 26440
+			},
+			"text": " It's pretty primitive, but the idea is that we know ZK is not efficient now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,440",
+				"to": "00:00:28,720"
+			},
+			"offsets": {
+				"from": 26440,
+				"to": 28720
+			},
+			"text": " so it's going to take a couple of minutes to run this proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,720",
+				"to": "00:00:30,280"
+			},
+			"offsets": {
+				"from": 28720,
+				"to": 30280
+			},
+			"text": " So hopefully it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,280",
+				"to": "00:00:33,400"
+			},
+			"offsets": {
+				"from": 30280,
+				"to": 33400
+			},
+			"text": " I don't know if this Internet is going to, oh, it did click nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,400",
+				"to": "00:00:38,720"
+			},
+			"offsets": {
+				"from": 33400,
+				"to": 38720
+			},
+			"text": " So we're going to let this proof run and then we'll come back to it some point later and see if it's generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,720",
+				"to": "00:00:41,320"
+			},
+			"offsets": {
+				"from": 38720,
+				"to": 41320
+			},
+			"text": " >> We'll explain everything that we just did."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,320",
+				"to": "00:00:43,640"
+			},
+			"offsets": {
+				"from": 41320,
+				"to": 43640
+			},
+			"text": " >> But yeah, I'm some pretty."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,640",
+				"to": "00:00:47,720"
+			},
+			"offsets": {
+				"from": 43640,
+				"to": 47720
+			},
+			"text": " I've been hacking with UXPARK for the last couple of months on the knowledge proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,720",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 47720,
+				"to": 54000
+			},
+			"text": " >> I'm Aush. I'm also hacked with UXPARK for a while and now I help run for Sony Labs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:57,760"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 57760
+			},
+			"text": " >> Yeah. I want to say this project has a lot of people behind it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,760",
+				"to": "00:01:00,400"
+			},
+			"offsets": {
+				"from": 57760,
+				"to": 60400
+			},
+			"text": " We've used a work from a lot of open source libraries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,400",
+				"to": "00:01:03,160"
+			},
+			"offsets": {
+				"from": 60400,
+				"to": 63160
+			},
+			"text": " a lot of people who've helped us behind the scenes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,160",
+				"to": "00:01:05,600"
+			},
+			"offsets": {
+				"from": 63160,
+				"to": 65600
+			},
+			"text": " These are some of the names who are also in the crowd,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,600",
+				"to": "00:01:08,880"
+			},
+			"offsets": {
+				"from": 65600,
+				"to": 68880
+			},
+			"text": " but we can't mention all of them. So thank you to everyone again."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,880",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 68880,
+				"to": 75000
+			},
+			"text": " >> So today we're going to talk about trustless email verification on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:17,800"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 77800
+			},
+			"text": " It's trustless in the sense that we don't run our own server,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,800",
+				"to": "00:01:20,080"
+			},
+			"offsets": {
+				"from": 77800,
+				"to": 80080
+			},
+			"text": " so we don't see any of your private data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,080",
+				"to": "00:01:22,560"
+			},
+			"offsets": {
+				"from": 80080,
+				"to": 82560
+			},
+			"text": " But at the same time, we are trusting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,560",
+				"to": "00:01:25,560"
+			},
+			"offsets": {
+				"from": 82560,
+				"to": 85560
+			},
+			"text": " because this is a intra-properily protocol between Web2 and Web3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,560",
+				"to": "00:01:29,560"
+			},
+			"offsets": {
+				"from": 85560,
+				"to": 89560
+			},
+			"text": " we are trusting mail servers and DNS to be operating as they should."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,560",
+				"to": "00:01:33,960"
+			},
+			"offsets": {
+				"from": 89560,
+				"to": 93960
+			},
+			"text": " But we do not operate any of our own infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,960",
+				"to": "00:01:37,400"
+			},
+			"offsets": {
+				"from": 93960,
+				"to": 97400
+			},
+			"text": " So what exactly is proof of email or a ZK email?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,400",
+				"to": "00:01:39,200"
+			},
+			"offsets": {
+				"from": 97400,
+				"to": 99200
+			},
+			"text": " Well, every time you receive an email,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,200",
+				"to": "00:01:42,760"
+			},
+			"offsets": {
+				"from": 99200,
+				"to": 102760
+			},
+			"text": " you have to know that it came from the source that it claims to be coming from."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,760",
+				"to": "00:01:45,840"
+			},
+			"offsets": {
+				"from": 102760,
+				"to": 105840
+			},
+			"text": " And so one might imagine a great way to do this is signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,840",
+				"to": "00:01:50,280"
+			},
+			"offsets": {
+				"from": 105840,
+				"to": 110280
+			},
+			"text": " So what they effectively do is every email you receive is RSA signed"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,280",
+				"to": "00:01:55,520"
+			},
+			"offsets": {
+				"from": 110280,
+				"to": 115520
+			},
+			"text": " with a SHA-256 of the from address, the true address, the subject, and a body hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,520",
+				"to": "00:02:04,160"
+			},
+			"offsets": {
+				"from": 115520,
+				"to": 124160
+			},
+			"text": " Along with, and this entire hash is RSA signed with the key belonging to the email mail server domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,160",
+				"to": "00:02:11,160"
+			},
+			"offsets": {
+				"from": 124160,
+				"to": 131160
+			},
+			"text": " So you can imagine that if a user provides this header or the signature of an email,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,160",
+				"to": "00:02:14,360"
+			},
+			"offsets": {
+				"from": 131160,
+				"to": 134360
+			},
+			"text": " then, and we verify it in zero knowledge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,360",
+				"to": "00:02:18,680"
+			},
+			"offsets": {
+				"from": 134360,
+				"to": 138680
+			},
+			"text": " then no one, including the mail server or a keystroke tracker on someone's computer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,680",
+				"to": "00:02:21,440"
+			},
+			"offsets": {
+				"from": 138680,
+				"to": 141440
+			},
+			"text": " can verify that someone is using this protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,440",
+				"to": "00:02:25,480"
+			},
+			"offsets": {
+				"from": 141440,
+				"to": 145480
+			},
+			"text": " There's some small email quirks, not everything works like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,480",
+				"to": "00:02:28,960"
+			},
+			"offsets": {
+				"from": 145480,
+				"to": 148960
+			},
+			"text": " Gmail doesn't sign self-emails and didn't even do this till 2016."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,960",
+				"to": "00:02:32,280"
+			},
+			"offsets": {
+				"from": 148960,
+				"to": 152280
+			},
+			"text": " Hotmail doesn't include it to a field."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,280",
+				"to": "00:02:37,040"
+			},
+			"offsets": {
+				"from": 152280,
+				"to": 157040
+			},
+			"text": " And mail servers have slightly different bit keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,040",
+				"to": "00:02:41,920"
+			},
+			"offsets": {
+				"from": 157040,
+				"to": 161920
+			},
+			"text": " So the specific demo that we have prepared today is trust us Twitter verification on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,920",
+				"to": "00:02:44,680"
+			},
+			"offsets": {
+				"from": 161920,
+				"to": 164680
+			},
+			"text": " The way it works is you get a Twitter reset password,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,680",
+				"to": "00:02:50,600"
+			},
+			"offsets": {
+				"from": 164680,
+				"to": 170600
+			},
+			"text": " a Twitter reset email into your email from Twitter.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,600",
+				"to": "00:02:53,520"
+			},
+			"offsets": {
+				"from": 170600,
+				"to": 173520
+			},
+			"text": " We then create a ZK proof of this email."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,520",
+				"to": "00:02:56,480"
+			},
+			"offsets": {
+				"from": 173520,
+				"to": 176480
+			},
+			"text": " We effectively reveal only the sender domain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,480",
+				"to": "00:02:59,320"
+			},
+			"offsets": {
+				"from": 176480,
+				"to": 179320
+			},
+			"text": " which is something like verify Twitter.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,320",
+				"to": "00:03:03,480"
+			},
+			"offsets": {
+				"from": 179320,
+				"to": 183480
+			},
+			"text": " The RSA modulus, which would be from the DNS record of Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,480",
+				"to": "00:03:06,720"
+			},
+			"offsets": {
+				"from": 183480,
+				"to": 186720
+			},
+			"text": " and the masked email body, which only has in zero knowledge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,720",
+				"to": "00:03:10,120"
+			},
+			"offsets": {
+				"from": 186720,
+				"to": 190120
+			},
+			"text": " the specific keys that we want to release."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,120",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 190120,
+				"to": 196000
+			},
+			"text": " So like in this case, it would be for example that says this email was meant for use G right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 202000
+			},
+			"text": " So we could kind of use that to extract that part and use that as the username."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:27,760"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 207760
+			},
+			"text": " The things we want to keep private are all the information that does not relate to what the user wants to release."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,760",
+				"to": "00:03:30,760"
+			},
+			"offsets": {
+				"from": 207760,
+				"to": 210760
+			},
+			"text": " That is specifically the entire DKIM signature would de-anonymise them"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,760",
+				"to": "00:03:32,600"
+			},
+			"offsets": {
+				"from": 210760,
+				"to": 212600
+			},
+			"text": " because the mail server would know who they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,600",
+				"to": "00:03:39,240"
+			},
+			"offsets": {
+				"from": 212600,
+				"to": 219240
+			},
+			"text": " The length of the pre-hatch message data or general lengths that we pass around to ensure that computation is efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,240",
+				"to": "00:03:44,600"
+			},
+			"offsets": {
+				"from": 219240,
+				"to": 224600
+			},
+			"text": " And all of the raw data, so the raw message data, the raw sender data, the identities that everyone involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,600",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 224600,
+				"to": 229000
+			},
+			"text": " In the circuit, what we do is we check that DKIM signature that we showed you earlier verifies."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:52,160"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 232160
+			},
+			"text": " The shot hashes verify, the RSA signature is verified."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,160",
+				"to": "00:03:56,120"
+			},
+			"offsets": {
+				"from": 232160,
+				"to": 236120
+			},
+			"text": " And that all the text is well structured in the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,120",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 236120,
+				"to": 239000
+			},
+			"text": " And this requires a little bit of reg X parsing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:02,760"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 242760
+			},
+			"text": " Finally, in the smart contract, we verify all the things that are either very expensive to do in a snark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,760",
+				"to": "00:04:05,320"
+			},
+			"offsets": {
+				"from": 242760,
+				"to": 245320
+			},
+			"text": " or have to be done on a decentralized layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,320",
+				"to": "00:04:09,200"
+			},
+			"offsets": {
+				"from": 245320,
+				"to": 249200
+			},
+			"text": " So things like verifying the sender domain is actually the sender domain that people trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,200",
+				"to": "00:04:12,840"
+			},
+			"offsets": {
+				"from": 249200,
+				"to": 252840
+			},
+			"text": " And verifying the claim to RSA key is an RSA key that people trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,840",
+				"to": "00:04:17,720"
+			},
+			"offsets": {
+				"from": 252840,
+				"to": 257720
+			},
+			"text": " Let me go see if the demo is done."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,720",
+				"to": "00:04:18,720"
+			},
+			"offsets": {
+				"from": 257720,
+				"to": 258720
+			},
+			"text": " So it's still going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,720",
+				"to": "00:04:21,280"
+			},
+			"offsets": {
+				"from": 258720,
+				"to": 261280
+			},
+			"text": " So I'll just talk about some of the innovations that we did."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,280",
+				"to": "00:04:24,120"
+			},
+			"offsets": {
+				"from": 261280,
+				"to": 264120
+			},
+			"text": " So obviously, one of the things you noticed was reg X."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,120",
+				"to": "00:04:28,200"
+			},
+			"offsets": {
+				"from": 264120,
+				"to": 268200
+			},
+			"text": " And we also had to do a bunch of Shout-o 56 inside the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,200",
+				"to": "00:04:35,080"
+			},
+			"offsets": {
+				"from": 268200,
+				"to": 275080
+			},
+			"text": " Now, since we want this to run in the browser, obviously, we don't want people to have to send their email to a private server that we own."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,080",
+				"to": "00:04:36,080"
+			},
+			"offsets": {
+				"from": 275080,
+				"to": 276080
+			},
+			"text": " And then we run the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,080",
+				"to": "00:04:39,200"
+			},
+			"offsets": {
+				"from": 276080,
+				"to": 279200
+			},
+			"text": " So everything has to be run in the browser, which means it has to be very efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,200",
+				"to": "00:04:44,280"
+			},
+			"offsets": {
+				"from": 279200,
+				"to": 284280
+			},
+			"text": " So we had to use some tricks to make sure our proof runs within a reasonable amount of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,280",
+				"to": "00:04:46,720"
+			},
+			"offsets": {
+				"from": 284280,
+				"to": 286720
+			},
+			"text": " So one of the things was Shout-o 56 hashing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,720",
+				"to": "00:04:48,720"
+			},
+			"offsets": {
+				"from": 286720,
+				"to": 288720
+			},
+			"text": " So we have this really long email body."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,720",
+				"to": "00:04:52,240"
+			},
+			"offsets": {
+				"from": 288720,
+				"to": 292240
+			},
+			"text": " Let's say the one that Twitter sends us is 16 kilobytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,240",
+				"to": "00:04:54,880"
+			},
+			"offsets": {
+				"from": 292240,
+				"to": 294880
+			},
+			"text": " And if we try to just hash that entire thing in--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,880",
+				"to": "00:04:57,880"
+			},
+			"offsets": {
+				"from": 294880,
+				"to": 297880
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,880",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 297880,
+				"to": 300000
+			},
+			"text": " It'll take millions of constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:06,600"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 306600
+			},
+			"text": " So what we realized was we could only take the part of the message body that contains the username we want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,600",
+				"to": "00:05:09,800"
+			},
+			"offsets": {
+				"from": 306600,
+				"to": 309800
+			},
+			"text": " which is, for example, the Twitter username, which is at the end of the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,800",
+				"to": "00:05:13,600"
+			},
+			"offsets": {
+				"from": 309800,
+				"to": 313600
+			},
+			"text": " And we can only do that part of the hash inside the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,600",
+				"to": "00:05:19,120"
+			},
+			"offsets": {
+				"from": 313600,
+				"to": 319120
+			},
+			"text": " And we can hash the first, like, let's say, 10,000 bytes of the message outside the circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,120",
+				"to": "00:05:20,880"
+			},
+			"offsets": {
+				"from": 319120,
+				"to": 320880
+			},
+			"text": " and pass it as a private input."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,880",
+				"to": "00:05:28,160"
+			},
+			"offsets": {
+				"from": 320880,
+				"to": 328160
+			},
+			"text": " Now, this doesn't really break any security guarantees since we still check that the final hash is equal to whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,160",
+				"to": "00:05:29,800"
+			},
+			"offsets": {
+				"from": 328160,
+				"to": 329800
+			},
+			"text": " is signed by the mail server."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,800",
+				"to": "00:05:34,280"
+			},
+			"offsets": {
+				"from": 329800,
+				"to": 334280
+			},
+			"text": " And if you could break this, then you would basically be calculating a preimage for the hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,280",
+				"to": "00:05:39,200"
+			},
+			"offsets": {
+				"from": 334280,
+				"to": 339200
+			},
+			"text": " So it's the same security properties, but we don't have to do as many computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,200",
+				"to": "00:05:41,760"
+			},
+			"offsets": {
+				"from": 339200,
+				"to": 341760
+			},
+			"text": " The other one is obviously verifying regex."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,760",
+				"to": "00:05:47,520"
+			},
+			"offsets": {
+				"from": 341760,
+				"to": 347520
+			},
+			"text": " So email headers and email protocol is a very tricky thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,520",
+				"to": "00:05:48,640"
+			},
+			"offsets": {
+				"from": 347520,
+				"to": 348640
+			},
+			"text": " I didn't even see this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,640",
+				"to": "00:05:51,680"
+			},
+			"offsets": {
+				"from": 348640,
+				"to": 351680
+			},
+			"text": " So email is a very tricky thing, where it can be in many different orders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,680",
+				"to": "00:05:53,320"
+			},
+			"offsets": {
+				"from": 351680,
+				"to": 353320
+			},
+			"text": " and there's no specific structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,320",
+				"to": "00:05:58,080"
+			},
+			"offsets": {
+				"from": 353320,
+				"to": 358080
+			},
+			"text": " So it's hard to verify that within a snark and just using if else checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,080",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 358080,
+				"to": 362000
+			},
+			"text": " And obviously, the first thing that comes to mind is when you try to pass an email address"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:03,240"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 363240
+			},
+			"text": " is to use a regex."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,240",
+				"to": "00:06:06,760"
+			},
+			"offsets": {
+				"from": 363240,
+				"to": 366760
+			},
+			"text": " So that's the most simplest thing that would provide more security."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,760",
+				"to": "00:06:11,160"
+			},
+			"offsets": {
+				"from": 366760,
+				"to": 371160
+			},
+			"text": " But there's no obvious way to do a regex inside a snark in an efficient way."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,160",
+				"to": "00:06:17,960"
+			},
+			"offsets": {
+				"from": 371160,
+				"to": 377960
+			},
+			"text": " So the thing we used was there's a way to convert all regexes into deterministic finite automata,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,960",
+				"to": "00:06:19,720"
+			},
+			"offsets": {
+				"from": 377960,
+				"to": 379720
+			},
+			"text": " which is basically like a graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,720",
+				"to": "00:06:23,280"
+			},
+			"offsets": {
+				"from": 379720,
+				"to": 383280
+			},
+			"text": " And it's kind of like automata graph and you traverse the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,280",
+				"to": "00:06:26,360"
+			},
+			"offsets": {
+				"from": 383280,
+				"to": 386360
+			},
+			"text": " So for example, each edge has kind of like a letter with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,360",
+				"to": "00:06:28,920"
+			},
+			"offsets": {
+				"from": 386360,
+				"to": 388920
+			},
+			"text": " So if the letter is h, then you go from one to two."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,920",
+				"to": "00:06:31,720"
+			},
+			"offsets": {
+				"from": 388920,
+				"to": 391720
+			},
+			"text": " And if there's an e after that, then you go from two to three."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,720",
+				"to": "00:06:37,400"
+			},
+			"offsets": {
+				"from": 391720,
+				"to": 397400
+			},
+			"text": " And obviously, at any point, if a letter doesn't exist, then you kind of fail,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,400",
+				"to": "00:06:39,480"
+			},
+			"offsets": {
+				"from": 397400,
+				"to": 399480
+			},
+			"text": " and you just go back to the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,480",
+				"to": "00:06:44,400"
+			},
+			"offsets": {
+				"from": 399480,
+				"to": 404400
+			},
+			"text": " So in this case, if we get to the last state, which is 12, then we accept."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,400",
+				"to": "00:06:47,760"
+			},
+			"offsets": {
+				"from": 404400,
+				"to": 407760
+			},
+			"text": " So this is obviously like a very simple regex for Hello World."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,760",
+				"to": "00:06:52,520"
+			},
+			"offsets": {
+				"from": 407760,
+				"to": 412520
+			},
+			"text": " But we can kind of build a more complicated regex, which is for like checking an email header."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,520",
+				"to": "00:06:56,800"
+			},
+			"offsets": {
+				"from": 412520,
+				"to": 416800
+			},
+			"text": " So for example, checking that there's a two and a from, and it is like valid according"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,800",
+				"to": "00:06:59,160"
+			},
+			"offsets": {
+				"from": 416800,
+				"to": 419160
+			},
+			"text": " to the SMTP protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,160",
+				"to": "00:07:01,960"
+			},
+			"offsets": {
+				"from": 419160,
+				"to": 421960
+			},
+			"text": " And we can kind of check that and make sure everything matches."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,960",
+				"to": "00:07:06,640"
+			},
+			"offsets": {
+				"from": 421960,
+				"to": 426640
+			},
+			"text": " So and using this also, we can kind of use regex like what is it called?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,640",
+				"to": "00:07:09,320"
+			},
+			"offsets": {
+				"from": 426640,
+				"to": 429320
+			},
+			"text": " Catch groups or something like that to reveal what we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,320",
+				"to": "00:07:12,120"
+			},
+			"offsets": {
+				"from": 429320,
+				"to": 432120
+			},
+			"text": " So in case we just want to reveal the domain, which is in this case, you know, it's parked."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,120",
+				"to": "00:07:15,400"
+			},
+			"offsets": {
+				"from": 432120,
+				"to": 435400
+			},
+			"text": " But in demo, we want to reveal the Twitter.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,400",
+				"to": "00:07:17,320"
+			},
+			"offsets": {
+				"from": 435400,
+				"to": 437320
+			},
+			"text": " So we'll see how that happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,320",
+				"to": "00:07:20,840"
+			},
+			"offsets": {
+				"from": 437320,
+				"to": 440840
+			},
+			"text": " So the regex for this thing is like a huge graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,840",
+				"to": "00:07:23,680"
+			},
+			"offsets": {
+				"from": 440840,
+				"to": 443680
+			},
+			"text": " So obviously, I'm not manually coding that in Silicon."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,680",
+				"to": "00:07:26,720"
+			},
+			"offsets": {
+				"from": 443680,
+				"to": 446720
+			},
+			"text": " So we did some tricks to like automatically generate Python, uh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,720",
+				"to": "00:07:29,760"
+			},
+			"offsets": {
+				"from": 446720,
+				"to": 449760
+			},
+			"text": " Silicon code, uh, given like a graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,760",
+				"to": "00:07:32,320"
+			},
+			"offsets": {
+				"from": 449760,
+				"to": 452320
+			},
+			"text": " And you can see in that slide on the right side."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,320",
+				"to": "00:07:32,680"
+			},
+			"offsets": {
+				"from": 452320,
+				"to": 452680
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,680",
+				"to": "00:07:34,320"
+			},
+			"offsets": {
+				"from": 452680,
+				"to": 454320
+			},
+			"text": " Auto generated, so come code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,320",
+				"to": "00:07:36,320"
+			},
+			"offsets": {
+				"from": 454320,
+				"to": 456320
+			},
+			"text": " Uh, it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,320",
+				"to": "00:07:38,880"
+			},
+			"offsets": {
+				"from": 456320,
+				"to": 458880
+			},
+			"text": " I don't know how it works, but it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,880",
+				"to": "00:07:40,320"
+			},
+			"offsets": {
+				"from": 458880,
+				"to": 460320
+			},
+			"text": " Um, all right, let's go back to the demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,320",
+				"to": "00:07:41,960"
+			},
+			"offsets": {
+				"from": 460320,
+				"to": 461960
+			},
+			"text": " Hopefully it's done."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,960",
+				"to": "00:07:43,840"
+			},
+			"offsets": {
+				"from": 461960,
+				"to": 463840
+			},
+			"text": " Oh, no, I have to type my password on screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,840",
+				"to": "00:07:47,280"
+			},
+			"offsets": {
+				"from": 463840,
+				"to": 467280
+			},
+			"text": " All right, maybe we don't do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,280",
+				"to": "00:07:50,880"
+			},
+			"offsets": {
+				"from": 467280,
+				"to": 470880
+			},
+			"text": " I still have a like kind of like a video showing the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,880",
+				"to": "00:07:55,680"
+			},
+			"offsets": {
+				"from": 470880,
+				"to": 475680
+			},
+			"text": " Um, because trust me, is this is this is exactly what happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,680",
+				"to": "00:07:59,240"
+			},
+			"offsets": {
+				"from": 475680,
+				"to": 479240
+			},
+			"text": " So after we go through all of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,240",
+				"to": "00:08:02,880"
+			},
+			"offsets": {
+				"from": 479240,
+				"to": 482880
+			},
+			"text": " Okay, I'll type my password if you guys believe it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,880",
+				"to": "00:08:03,800"
+			},
+			"offsets": {
+				"from": 482880,
+				"to": 483800
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,800",
+				"to": "00:08:05,200"
+			},
+			"offsets": {
+				"from": 483800,
+				"to": 485200
+			},
+			"text": " Uh, but maybe at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,200",
+				"to": "00:08:08,520"
+			},
+			"offsets": {
+				"from": 485200,
+				"to": 488520
+			},
+			"text": " So anyways, as you can see, the proof got generated at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,520",
+				"to": "00:08:12,520"
+			},
+			"offsets": {
+				"from": 488520,
+				"to": 492520
+			},
+			"text": " And this proof is obviously something you can send to the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,520",
+				"to": "00:08:17,280"
+			},
+			"offsets": {
+				"from": 492520,
+				"to": 497280
+			},
+			"text": " And it also gave some, some extra data, which is like the public data that we're talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,280",
+				"to": "00:08:19,920"
+			},
+			"offsets": {
+				"from": 497280,
+				"to": 499920
+			},
+			"text": " So I'll just let this play here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,920",
+				"to": "00:08:26,280"
+			},
+			"offsets": {
+				"from": 499920,
+				"to": 506280
+			},
+			"text": " Uh, if this, so as you can see, like we have all the extra data massed out and only the things we want to show."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,280",
+				"to": "00:08:29,520"
+			},
+			"offsets": {
+				"from": 506280,
+				"to": 509520
+			},
+			"text": " So like, for example, Twitter.com to Gmail.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,520",
+				"to": "00:08:34,120"
+			},
+			"offsets": {
+				"from": 509520,
+				"to": 514120
+			},
+			"text": " And then if we go down to the end, we have the username, which is our usage is username from the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,120",
+				"to": "00:08:38,360"
+			},
+			"offsets": {
+				"from": 514120,
+				"to": 518360
+			},
+			"text": " So, uh, those are the things that only the public input from the circuit and everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,360",
+				"to": "00:08:39,360"
+			},
+			"offsets": {
+				"from": 518360,
+				"to": 519360
+			},
+			"text": " in its remains private."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,360",
+				"to": "00:08:44,120"
+			},
+			"offsets": {
+				"from": 519360,
+				"to": 524120
+			},
+			"text": " And since all of this was verified using a proof, you can kind of, uh, if you submit this to a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,120",
+				"to": "00:08:49,040"
+			},
+			"offsets": {
+				"from": 524120,
+				"to": 529040
+			},
+			"text": " you can verify that this was indeed actually something that happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,040",
+				"to": "00:08:53,960"
+			},
+			"offsets": {
+				"from": 529040,
+				"to": 533960
+			},
+			"text": " So some precaution of this technology before we dive into specific use cases are that this"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,960",
+				"to": "00:08:56,960"
+			},
+			"offsets": {
+				"from": 533960,
+				"to": 536960
+			},
+			"text": " enables a tragedy of the commons on institutional reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,960",
+				"to": "00:09:01,320"
+			},
+			"offsets": {
+				"from": 536960,
+				"to": 541320
+			},
+			"text": " Now, what this means is that using the email, you can prove, process, that you're part of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,320",
+				"to": "00:09:05,680"
+			},
+			"offsets": {
+				"from": 541320,
+				"to": 545680
+			},
+			"text": " some organization and post or act on behalf of the organization without spending your"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,680",
+				"to": "00:09:07,920"
+			},
+			"offsets": {
+				"from": 545680,
+				"to": 547920
+			},
+			"text": " own personal reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,920",
+				"to": "00:09:13,320"
+			},
+			"offsets": {
+				"from": 547920,
+				"to": 553320
+			},
+			"text": " And as a result, for the first time, effectively ever, you can spend institutional reputation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,320",
+				"to": "00:09:16,760"
+			},
+			"offsets": {
+				"from": 553320,
+				"to": 556760
+			},
+			"text": " and have no cost to yourself and no account, personal accountability."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,760",
+				"to": "00:09:19,280"
+			},
+			"offsets": {
+				"from": 556760,
+				"to": 559280
+			},
+			"text": " Um, it is quite dangerous."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,280",
+				"to": "00:09:24,400"
+			},
+			"offsets": {
+				"from": 559280,
+				"to": 564400
+			},
+			"text": " And so we do think it's important to have something like ZK nullifiers or different"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,400",
+				"to": "00:09:29,080"
+			},
+			"offsets": {
+				"from": 564400,
+				"to": 569080
+			},
+			"text": " mitigations to think about how to release this technology safely, uh, so that we don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,080",
+				"to": "00:09:32,800"
+			},
+			"offsets": {
+				"from": 569080,
+				"to": 572800
+			},
+			"text": " enable this, uh, degenerate spiral."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,800",
+				"to": "00:09:36,600"
+			},
+			"offsets": {
+				"from": 572800,
+				"to": 576600
+			},
+			"text": " One second thing to think about is liability."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,600",
+				"to": "00:09:40,960"
+			},
+			"offsets": {
+				"from": 576600,
+				"to": 580960
+			},
+			"text": " It can be argued that you want to be able to argue at some point in time that you, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,960",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 580960,
+				"to": 583000
+			},
+			"text": " can deny that you sent an email."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:45,760"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 585760
+			},
+			"text": " And so the way that a lot of mail servers do this is every year or six months they'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,760",
+				"to": "00:09:48,920"
+			},
+			"offsets": {
+				"from": 585760,
+				"to": 588920
+			},
+			"text": " rotate their mail server keys and release their past keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,920",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 588920,
+				"to": 592000
+			},
+			"text": " And some of them will even release the past secret keys, meaning that if you can email"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:55,280"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 595280
+			},
+			"text": " more than a year old, that someone could have easily forged it using that secret key that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,280",
+				"to": "00:09:56,440"
+			},
+			"offsets": {
+				"from": 595280,
+				"to": 596440
+			},
+			"text": " was released."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,440",
+				"to": "00:10:01,520"
+			},
+			"offsets": {
+				"from": 596440,
+				"to": 601520
+			},
+			"text": " And so this poses problems both for the scheme, but also is a good question of do we want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,520",
+				"to": "00:10:04,960"
+			},
+			"offsets": {
+				"from": 601520,
+				"to": 604960
+			},
+			"text": " enable and encourage this or do we think that this is something that we should hold"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,960",
+				"to": "00:10:08,560"
+			},
+			"offsets": {
+				"from": 604960,
+				"to": 608560
+			},
+			"text": " people accountable to for a long period of time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,560",
+				"to": "00:10:12,320"
+			},
+			"offsets": {
+				"from": 608560,
+				"to": 612320
+			},
+			"text": " And finally, one interesting thing is that if we want a nullifier that is something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,320",
+				"to": "00:10:16,400"
+			},
+			"offsets": {
+				"from": 612320,
+				"to": 616400
+			},
+			"text": " would avoid people from claiming again and again and again their identity on chain or"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,400",
+				"to": "00:10:21,800"
+			},
+			"offsets": {
+				"from": 616400,
+				"to": 621800
+			},
+			"text": " possibly selling this identity even, then we have to allow a nullifier which is derived"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,800",
+				"to": "00:10:23,160"
+			},
+			"offsets": {
+				"from": 621800,
+				"to": 623160
+			},
+			"text": " from the information in the email."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,160",
+				"to": "00:10:26,720"
+			},
+			"offsets": {
+				"from": 623160,
+				"to": 626720
+			},
+			"text": " But this would allow the sending mail server to de-anonymize someone."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,720",
+				"to": "00:10:30,400"
+			},
+			"offsets": {
+				"from": 626720,
+				"to": 630400
+			},
+			"text": " And so there's a trade-off here where you can either have uniqueness and anonymity or"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,400",
+				"to": "00:10:36,520"
+			},
+			"offsets": {
+				"from": 630400,
+				"to": 636520
+			},
+			"text": " you can have the mail server able to de-anonymize the people who are interacting with the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,520",
+				"to": "00:10:39,960"
+			},
+			"offsets": {
+				"from": 636520,
+				"to": 639960
+			},
+			"text": " So I'm going to talk about a couple of different applications you can build that require no"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,960",
+				"to": "00:10:42,560"
+			},
+			"offsets": {
+				"from": 639960,
+				"to": 642560
+			},
+			"text": " server."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,560",
+				"to": "00:10:44,800"
+			},
+			"offsets": {
+				"from": 642560,
+				"to": 644800
+			},
+			"text": " You can build something like proof of personhood."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,800",
+				"to": "00:10:48,120"
+			},
+			"offsets": {
+				"from": 644800,
+				"to": 648120
+			},
+			"text": " And one way you could do this is you can verify in zero knowledge that someone received"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,120",
+				"to": "00:10:52,160"
+			},
+			"offsets": {
+				"from": 648120,
+				"to": 652160
+			},
+			"text": " an email from a KYC provider that checked their KYC, but you don't reveal any of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,160",
+				"to": "00:10:55,960"
+			},
+			"offsets": {
+				"from": 652160,
+				"to": 655960
+			},
+			"text": " information about their personal information or the KYC information."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,960",
+				"to": "00:11:02,280"
+			},
+			"offsets": {
+				"from": 655960,
+				"to": 662280
+			},
+			"text": " And thus you can prove that someone was an individual human but not reveal who they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,280",
+				"to": "00:11:08,040"
+			},
+			"offsets": {
+				"from": 662280,
+				"to": 668040
+			},
+			"text": " You can do something like have Ederus Snowden release the NSA emails on chain and prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,040",
+				"to": "00:11:13,400"
+			},
+			"offsets": {
+				"from": 668040,
+				"to": 673400
+			},
+			"text": " that they came from the NSA but not that he was Ederus Snowden."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,400",
+				"to": "00:11:16,920"
+			},
+			"offsets": {
+				"from": 673400,
+				"to": 676920
+			},
+			"text": " You can do something like proof of company where you prove that you work at a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,920",
+				"to": "00:11:21,360"
+			},
+			"offsets": {
+				"from": 676920,
+				"to": 681360
+			},
+			"text": " company or a certain domain and you mask out all the rest of the information enabling something"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,360",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 681360,
+				"to": 685000
+			},
+			"text": " like ZK Glast or ZK Blind."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:26,240"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 686240
+			},
+			"text": " You can do oracles."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,240",
+				"to": "00:11:31,440"
+			},
+			"offsets": {
+				"from": 686240,
+				"to": 691440
+			},
+			"text": " If oracles send emails to you with information say price fees or any other information that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,440",
+				"to": "00:11:36,880"
+			},
+			"offsets": {
+				"from": 691440,
+				"to": 696880
+			},
+			"text": " you want on chain, you can simply verify these email headers on chain and not have any centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,880",
+				"to": "00:11:41,320"
+			},
+			"offsets": {
+				"from": 696880,
+				"to": 701320
+			},
+			"text": " server that you trust or a decentralized network of verifies that you have to trust to accurately"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,320",
+				"to": "00:11:44,200"
+			},
+			"offsets": {
+				"from": 701320,
+				"to": 704200
+			},
+			"text": " represent this data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,200",
+				"to": "00:11:49,440"
+			},
+			"offsets": {
+				"from": 704200,
+				"to": 709440
+			},
+			"text": " I can keep going on and on, but you can imagine that any data that you can have in an email,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,440",
+				"to": "00:11:50,840"
+			},
+			"offsets": {
+				"from": 709440,
+				"to": 710840
+			},
+			"text": " you can verify on chain using this primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,840",
+				"to": "00:11:54,080"
+			},
+			"offsets": {
+				"from": 710840,
+				"to": 714080
+			},
+			"text": " This is extremely powerful for decentralized and anonymous applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,080",
+				"to": "00:11:58,320"
+			},
+			"offsets": {
+				"from": 714080,
+				"to": 718320
+			},
+			"text": " I mean, things are going to enable a whole new era of ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,320",
+				"to": "00:12:02,740"
+			},
+			"offsets": {
+				"from": 718320,
+				"to": 722740
+			},
+			"text": " Proof of residence you can do by proving, for instance, you have a gas bill or a water"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,740",
+				"to": "00:12:07,320"
+			},
+			"offsets": {
+				"from": 722740,
+				"to": 727320
+			},
+			"text": " bill, the oracles, the glass door."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,320",
+				"to": "00:12:10,920"
+			},
+			"offsets": {
+				"from": 727320,
+				"to": 730920
+			},
+			"text": " The number of anonymous groups you can create is also quite unlimited."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,920",
+				"to": "00:12:14,800"
+			},
+			"offsets": {
+				"from": 730920,
+				"to": 734800
+			},
+			"text": " You can prove, for instance, groups of people who have 10 million Twitter followers or people"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,800",
+				"to": "00:12:18,200"
+			},
+			"offsets": {
+				"from": 734800,
+				"to": 738200
+			},
+			"text": " you can prove that you made some call option in Robinhood that went really well."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,200",
+				"to": "00:12:23,600"
+			},
+			"offsets": {
+				"from": 738200,
+				"to": 743600
+			},
+			"text": " You can prove that you have some dollar bill bank account, dollar bills in your Chase account"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,600",
+				"to": "00:12:26,200"
+			},
+			"offsets": {
+				"from": 743600,
+				"to": 746200
+			},
+			"text": " because Chase actually sends your balance to you in plain text if you request it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,200",
+				"to": "00:12:29,480"
+			},
+			"offsets": {
+				"from": 746200,
+				"to": 749480
+			},
+			"text": " I just want to point out one thing is like right now, the one thing we have to rely on"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,480",
+				"to": "00:12:30,480"
+			},
+			"offsets": {
+				"from": 749480,
+				"to": 750480
+			},
+			"text": " is DNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,480",
+				"to": "00:12:37,400"
+			},
+			"offsets": {
+				"from": 750480,
+				"to": 757400
+			},
+			"text": " So either we hard code the DNS keys in the DNS in the contract or we get it from chainlink."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,400",
+				"to": "00:12:41,360"
+			},
+			"offsets": {
+				"from": 757400,
+				"to": 761360
+			},
+			"text": " Now, if only we had something called DNS sec, which had actually taken over because we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,360",
+				"to": "00:12:45,600"
+			},
+			"offsets": {
+				"from": 761360,
+				"to": 765600
+			},
+			"text": " have actually done all of this in a contract because we could have just verified the certificate"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,600",
+				"to": "00:12:49,520"
+			},
+			"offsets": {
+				"from": 765600,
+				"to": 769520
+			},
+			"text": " like to the root trust, but unfortunately, nobody ended up using DNS sec."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,520",
+				"to": "00:12:53,560"
+			},
+			"offsets": {
+				"from": 769520,
+				"to": 773560
+			},
+			"text": " So we can't do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,560",
+				"to": "00:12:58,560"
+			},
+			"offsets": {
+				"from": 773560,
+				"to": 778560
+			},
+			"text": " So if you're interested in any of these primitives, we're working on them at Persona Labs and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,560",
+				"to": "00:13:02,040"
+			},
+			"offsets": {
+				"from": 778560,
+				"to": 782040
+			},
+			"text": " we do a lot of people reached out and were able to help us or were interested in talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,040",
+				"to": "00:13:03,040"
+			},
+			"offsets": {
+				"from": 782040,
+				"to": 783040
+			},
+			"text": " more."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,040",
+				"to": "00:13:05,640"
+			},
+			"offsets": {
+				"from": 783040,
+				"to": 785640
+			},
+			"text": " We think this is a very fascinating, interesting space and it's going to rapidly change how"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,640",
+				"to": "00:13:10,080"
+			},
+			"offsets": {
+				"from": 785640,
+				"to": 790080
+			},
+			"text": " we think about decentralized identity over the next year or two."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,080",
+				"to": "00:13:15,280"
+			},
+			"offsets": {
+				"from": 790080,
+				"to": 795280
+			},
+			"text": " If you want to see more updates about Proof of Email, it's not live here, but eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,280",
+				"to": "00:13:16,280"
+			},
+			"offsets": {
+				"from": 795280,
+				"to": 796280
+			},
+			"text": " Eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,280",
+				"to": "00:13:20,400"
+			},
+			"offsets": {
+				"from": 796280,
+				"to": 800400
+			},
+			"text": " If you want to see more updates about Proof of Email including our website or open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,400",
+				"to": "00:13:26,240"
+			},
+			"offsets": {
+				"from": 800400,
+				"to": 806240
+			},
+			"text": " code and experiments as we release them, we recommend following us on Proof of Email."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,240",
+				"to": "00:13:30,480"
+			},
+			"offsets": {
+				"from": 806240,
+				"to": 810480
+			},
+			"text": " And our front end where you can generate your own email and your own ZK proof from an email"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,480",
+				"to": "00:13:34,040"
+			},
+			"offsets": {
+				"from": 810480,
+				"to": 814040
+			},
+			"text": " is live at zkemail.xyz."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,040",
+				"to": "00:13:38,160"
+			},
+			"offsets": {
+				"from": 814040,
+				"to": 818160
+			},
+			"text": " The user flow is you have to go through these four steps, but you'll notice that there is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,160",
+				"to": "00:13:41,480"
+			},
+			"offsets": {
+				"from": 818160,
+				"to": 821480
+			},
+			"text": " no sending to server involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,480",
+				"to": "00:13:45,080"
+			},
+			"offsets": {
+				"from": 821480,
+				"to": 825080
+			},
+			"text": " And we had a great brainstorming session in the morning in which we got a ton of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,080",
+				"to": "00:13:46,080"
+			},
+			"offsets": {
+				"from": 825080,
+				"to": 826080
+			},
+			"text": " ideas together."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,080",
+				"to": "00:13:48,800"
+			},
+			"offsets": {
+				"from": 826080,
+				"to": 828800
+			},
+			"text": " So kudos to all the people who came to the morning session and helped us come up with"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,800",
+				"to": "00:13:50,800"
+			},
+			"offsets": {
+				"from": 828800,
+				"to": 830800
+			},
+			"text": " the ideas that you saw earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,800",
+				"to": "00:13:51,800"
+			},
+			"offsets": {
+				"from": 830800,
+				"to": 831800
+			},
+			"text": " Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,800",
+				"to": "00:13:54,400"
+			},
+			"offsets": {
+				"from": 831800,
+				"to": 834400
+			},
+			"text": " Thank you so much and we'll take any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,400",
+				"to": "00:13:55,400"
+			},
+			"offsets": {
+				"from": 834400,
+				"to": 835400
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,400",
+				"to": "00:14:01,160"
+			},
+			"offsets": {
+				"from": 835400,
+				"to": 841160
+			},
+			"text": " Do we have any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,160",
+				"to": "00:14:11,840"
+			},
+			"offsets": {
+				"from": 841160,
+				"to": 851840
+			},
+			"text": " So, the NSA example is cool because it's like, oh, Edward Snowden could have done this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,840",
+				"to": "00:14:13,720"
+			},
+			"offsets": {
+				"from": 851840,
+				"to": 853720
+			},
+			"text": " without revealing his identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,720",
+				"to": "00:14:17,520"
+			},
+			"offsets": {
+				"from": 853720,
+				"to": 857520
+			},
+			"text": " But on the flip side, a Russian spy within the NSA could also just reveal all of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,520",
+				"to": "00:14:20,480"
+			},
+			"offsets": {
+				"from": 857520,
+				"to": 860480
+			},
+			"text": " NSA's information and never reveal who they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,480",
+				"to": "00:14:24,880"
+			},
+			"offsets": {
+				"from": 860480,
+				"to": 864880
+			},
+			"text": " How are you guys thinking about how to prevent stuff like this from happening?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,880",
+				"to": "00:14:26,680"
+			},
+			"offsets": {
+				"from": 864880,
+				"to": 866680
+			},
+			"text": " Or what safeguards can we build?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,680",
+				"to": "00:14:30,120"
+			},
+			"offsets": {
+				"from": 866680,
+				"to": 870120
+			},
+			"text": " Yeah, this is a great question and this kind of comes back to the tragedy of the comments"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,120",
+				"to": "00:14:31,400"
+			},
+			"offsets": {
+				"from": 870120,
+				"to": 871400
+			},
+			"text": " point that we brought up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,400",
+				"to": "00:14:37,440"
+			},
+			"offsets": {
+				"from": 871400,
+				"to": 877440
+			},
+			"text": " I think part of this is that you have to enable some amount of accountability ideally"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,440",
+				"to": "00:14:38,440"
+			},
+			"offsets": {
+				"from": 877440,
+				"to": 878440
+			},
+			"text": " in these situations."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,440",
+				"to": "00:14:43,840"
+			},
+			"offsets": {
+				"from": 878440,
+				"to": 883840
+			},
+			"text": " And this can come in the form of, say, upvotes and downvotes, or if you have, say, an nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,840",
+				"to": "00:14:47,800"
+			},
+			"offsets": {
+				"from": 883840,
+				"to": 887800
+			},
+			"text": " associated with a certain account, an address, and this account gets a certain number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,800",
+				"to": "00:14:51,080"
+			},
+			"offsets": {
+				"from": 887800,
+				"to": 891080
+			},
+			"text": " downvotes, then you can hide this from feeds that are being shown to users."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,080",
+				"to": "00:14:54,760"
+			},
+			"offsets": {
+				"from": 891080,
+				"to": 894760
+			},
+			"text": " So although the data will forever be immutable on chain from the respective of users who"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,760",
+				"to": "00:14:59,640"
+			},
+			"offsets": {
+				"from": 894760,
+				"to": 899640
+			},
+			"text": " might benefit from this or get harmed by this, you can at least do your best to shield them"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,640",
+				"to": "00:15:00,640"
+			},
+			"offsets": {
+				"from": 899640,
+				"to": 900640
+			},
+			"text": " from it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,640",
+				"to": "00:15:04,480"
+			},
+			"offsets": {
+				"from": 900640,
+				"to": 904480
+			},
+			"text": " But part of it is that it might be very difficult to solve these problems and it requires a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,480",
+				"to": "00:15:06,800"
+			},
+			"offsets": {
+				"from": 904480,
+				"to": 906800
+			},
+			"text": " lot of thought to think about how to do this very carefully."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,800",
+				"to": "00:15:08,800"
+			},
+			"offsets": {
+				"from": 906800,
+				"to": 908800
+			},
+			"text": " That's a great question, though."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,800",
+				"to": "00:15:10,800"
+			},
+			"offsets": {
+				"from": 908800,
+				"to": 910800
+			},
+			"text": " Was there one over here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,800",
+				"to": "00:15:14,360"
+			},
+			"offsets": {
+				"from": 910800,
+				"to": 914360
+			},
+			"text": " Okay, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,360",
+				"to": "00:15:18,760"
+			},
+			"offsets": {
+				"from": 914360,
+				"to": 918760
+			},
+			"text": " I'm from Unipus and finally somebody discovered the emails."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,760",
+				"to": "00:15:25,360"
+			},
+			"offsets": {
+				"from": 918760,
+				"to": 925360
+			},
+			"text": " We're also using emails as a proof of ownership of the smart controller."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,360",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 925360,
+				"to": 930000
+			},
+			"text": " And my question is, how is the cost of the DKP on chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:35,160"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 935160
+			},
+			"text": " Like, you know, you have to verify ISD signatures, you have to verify the key proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,160",
+				"to": "00:15:37,200"
+			},
+			"offsets": {
+				"from": 935160,
+				"to": 937200
+			},
+			"text": " So we are building the same solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,200",
+				"to": "00:15:39,800"
+			},
+			"offsets": {
+				"from": 937200,
+				"to": 939800
+			},
+			"text": " So I wonder what's your benchmark now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,800",
+				"to": "00:15:46,760"
+			},
+			"offsets": {
+				"from": 939800,
+				"to": 946760
+			},
+			"text": " So right now, since we are hard-coding the DNS keys, we don't actually have to verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,760",
+				"to": "00:15:47,960"
+			},
+			"offsets": {
+				"from": 946760,
+				"to": 947960
+			},
+			"text": " any signatures on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,960",
+				"to": "00:15:51,880"
+			},
+			"offsets": {
+				"from": 947960,
+				"to": 951880
+			},
+			"text": " So the only thing we verify is obviously the verification of the ZK proof, which is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,880",
+				"to": "00:15:53,200"
+			},
+			"offsets": {
+				"from": 951880,
+				"to": 953200
+			},
+			"text": " Gros 16 proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,200",
+				"to": "00:15:56,080"
+			},
+			"offsets": {
+				"from": 953200,
+				"to": 956080
+			},
+			"text": " And usually that takes about, I think, like 400, 500k gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,080",
+				"to": "00:15:57,080"
+			},
+			"offsets": {
+				"from": 956080,
+				"to": 957080
+			},
+			"text": " It's a constant-time thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,080",
+				"to": "00:15:58,080"
+			},
+			"offsets": {
+				"from": 957080,
+				"to": 958080
+			},
+			"text": " Yeah, 400k, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,080",
+				"to": "00:15:59,080"
+			},
+			"offsets": {
+				"from": 958080,
+				"to": 959080
+			},
+			"text": " Yeah, 400k gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,080",
+				"to": "00:16:02,120"
+			},
+			"offsets": {
+				"from": 959080,
+				"to": 962120
+			},
+			"text": " It's including the RSA verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,120",
+				"to": "00:16:03,120"
+			},
+			"offsets": {
+				"from": 962120,
+				"to": 963120
+			},
+			"text": " Which RSA verification?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,120",
+				"to": "00:16:05,520"
+			},
+			"offsets": {
+				"from": 963120,
+				"to": 965520
+			},
+			"text": " You have to verify the DKM signature, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,520",
+				"to": "00:16:06,520"
+			},
+			"offsets": {
+				"from": 965520,
+				"to": 966520
+			},
+			"text": " It's RSA signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,520",
+				"to": "00:16:08,840"
+			},
+			"offsets": {
+				"from": 966520,
+				"to": 968840
+			},
+			"text": " Oh, that's verified already inside the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,840",
+				"to": "00:16:12,000"
+			},
+			"offsets": {
+				"from": 968840,
+				"to": 972000
+			},
+			"text": " But why you have to put the DKM publicly on chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,000",
+				"to": "00:16:18,920"
+			},
+			"offsets": {
+				"from": 972000,
+				"to": 978920
+			},
+			"text": " Because then anybody could just take any random, like RSA key and just use that to sign their"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,920",
+				"to": "00:16:19,920"
+			},
+			"offsets": {
+				"from": 978920,
+				"to": 979920
+			},
+			"text": " own header."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,920",
+				"to": "00:16:22,280"
+			},
+			"offsets": {
+				"from": 979920,
+				"to": 982280
+			},
+			"text": " And so it's just like a DPKI, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,280",
+				"to": "00:16:23,760"
+			},
+			"offsets": {
+				"from": 982280,
+				"to": 983760
+			},
+			"text": " Availability purpose?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,760",
+				"to": "00:16:24,760"
+			},
+			"offsets": {
+				"from": 983760,
+				"to": 984760
+			},
+			"text": " So what do you say?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,760",
+				"to": "00:16:27,320"
+			},
+			"offsets": {
+				"from": 984760,
+				"to": 987320
+			},
+			"text": " DPKI is centralized publicly infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,320",
+				"to": "00:16:31,800"
+			},
+			"offsets": {
+				"from": 987320,
+				"to": 991800
+			},
+			"text": " It means you just put the publicly on chain to like, others can verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,800",
+				"to": "00:16:32,800"
+			},
+			"offsets": {
+				"from": 991800,
+				"to": 992800
+			},
+			"text": " Yeah, yeah, exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,800",
+				"to": "00:16:35,800"
+			},
+			"offsets": {
+				"from": 992800,
+				"to": 995800
+			},
+			"text": " And the contract also, you know, it's like, you know, it's like, you know, it's like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,800",
+				"to": "00:16:40,800"
+			},
+			"offsets": {
+				"from": 995800,
+				"to": 1000800
+			},
+			"text": " \"others can verify.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,800",
+				"to": "00:16:43,800"
+			},
+			"offsets": {
+				"from": 1000800,
+				"to": 1003800
+			},
+			"text": " Yeah, yeah, exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,800",
+				"to": "00:16:44,800"
+			},
+			"offsets": {
+				"from": 1003800,
+				"to": 1004800
+			},
+			"text": " And the contract also--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,800",
+				"to": "00:16:47,800"
+			},
+			"offsets": {
+				"from": 1004800,
+				"to": 1007800
+			},
+			"text": " We can verify with a simple HTTP request, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,800",
+				"to": "00:16:52,800"
+			},
+			"offsets": {
+				"from": 1007800,
+				"to": 1012800
+			},
+			"text": " Yeah, so like, our front end just makes a DNS request to just check that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,800",
+				"to": "00:16:53,800"
+			},
+			"offsets": {
+				"from": 1012800,
+				"to": 1013800
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,800",
+				"to": "00:16:55,800"
+			},
+			"offsets": {
+				"from": 1013800,
+				"to": 1015800
+			},
+			"text": " Yeah, but like on the smart contract, we have to hard code it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,800",
+				"to": "00:16:58,800"
+			},
+			"offsets": {
+				"from": 1015800,
+				"to": 1018800
+			},
+			"text": " Or we could use a chain link or a call to fetch the DNS as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,800",
+				"to": "00:16:59,800"
+			},
+			"offsets": {
+				"from": 1018800,
+				"to": 1019800
+			},
+			"text": " Okay, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,800",
+				"to": "00:17:00,800"
+			},
+			"offsets": {
+				"from": 1019800,
+				"to": 1020800
+			},
+			"text": " So I won't take too much time."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,800",
+				"to": "00:17:01,800"
+			},
+			"offsets": {
+				"from": 1020800,
+				"to": 1021800
+			},
+			"text": " We can talk later."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,800",
+				"to": "00:17:02,800"
+			},
+			"offsets": {
+				"from": 1021800,
+				"to": 1022800
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,800",
+				"to": "00:17:07,800"
+			},
+			"offsets": {
+				"from": 1022800,
+				"to": 1027800
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,800",
+				"to": "00:17:09,800"
+			},
+			"offsets": {
+				"from": 1027800,
+				"to": 1029800
+			},
+			"text": " [ ]"
+		}
+	]
+}

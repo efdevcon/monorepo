@@ -1,0 +1,3189 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,280"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6280
+			},
+			"text": " So I'm Alex Vondesunde and I want to talk about the big UX problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,280",
+				"to": "00:00:13,200"
+			},
+			"offsets": {
+				"from": 6280,
+				"to": 13200
+			},
+			"text": " And I think UX is important to talk about UX because the UX is as important as scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,200",
+				"to": "00:00:17,520"
+			},
+			"offsets": {
+				"from": 13200,
+				"to": 17520
+			},
+			"text": " There's no point in having a blockchain that can handle a billion transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,520",
+				"to": "00:00:21,040"
+			},
+			"offsets": {
+				"from": 17520,
+				"to": 21040
+			},
+			"text": " if your apps can't reach half a billion users, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,040",
+				"to": "00:00:24,480"
+			},
+			"offsets": {
+				"from": 21040,
+				"to": 24480
+			},
+			"text": " So that's why it's so important to pay attention to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,480",
+				"to": "00:00:31,120"
+			},
+			"offsets": {
+				"from": 24480,
+				"to": 31120
+			},
+			"text": " Now, before I was in Ethereum, I was just in the startup world, I founded startups, failed at most of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,120",
+				"to": "00:00:36,680"
+			},
+			"offsets": {
+				"from": 31120,
+				"to": 36680
+			},
+			"text": " And we learned a lot of metrics that we keep our eyes on when we are in the startup world."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,680",
+				"to": "00:00:42,920"
+			},
+			"offsets": {
+				"from": 36680,
+				"to": 42920
+			},
+			"text": " Things like the K-factor, virality, SEO, and we don't talk about those here"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,920",
+				"to": "00:00:46,480"
+			},
+			"offsets": {
+				"from": 42920,
+				"to": 46480
+			},
+			"text": " because it seems that we sort of work in a different level, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,480",
+				"to": "00:00:48,440"
+			},
+			"offsets": {
+				"from": 46480,
+				"to": 48440
+			},
+			"text": " Those rules don't apply to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,440",
+				"to": "00:00:50,080"
+			},
+			"offsets": {
+				"from": 48440,
+				"to": 50080
+			},
+			"text": " But that's not true, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,080",
+				"to": "00:00:54,080"
+			},
+			"offsets": {
+				"from": 50080,
+				"to": 54080
+			},
+			"text": " We are in the same game and we need to pay attention to things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,080",
+				"to": "00:00:55,080"
+			},
+			"offsets": {
+				"from": 54080,
+				"to": 55080
+			},
+			"text": " this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,080",
+				"to": "00:01:00,280"
+			},
+			"offsets": {
+				"from": 55080,
+				"to": 60280
+			},
+			"text": " This is the equation that I used to spend my days looking at."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,280",
+				"to": "00:01:06,480"
+			},
+			"offsets": {
+				"from": 60280,
+				"to": 66480
+			},
+			"text": " It's basically, it's also called the K-factor and it's a virality measure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,480",
+				"to": "00:01:12,680"
+			},
+			"offsets": {
+				"from": 66480,
+				"to": 72680
+			},
+			"text": " Basically, what you're doing is every time your user is exposed to your app in any way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,680",
+				"to": "00:01:15,480"
+			},
+			"offsets": {
+				"from": 72680,
+				"to": 75480
+			},
+			"text": " there's a chance that they might actually pay attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,480",
+				"to": "00:01:18,680"
+			},
+			"offsets": {
+				"from": 75480,
+				"to": 78680
+			},
+			"text": " If they do, there's a chance that they might want to sign up."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,680",
+				"to": "00:01:23,480"
+			},
+			"offsets": {
+				"from": 78680,
+				"to": 83480
+			},
+			"text": " There's a chance that they might complete the sign up process, that they might download the app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,480",
+				"to": "00:01:31,480"
+			},
+			"offsets": {
+				"from": 83480,
+				"to": 91480
+			},
+			"text": " and after a bunch of steps, they might share some content to, let's say, 10 or 30 friends."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,480",
+				"to": "00:01:32,920"
+			},
+			"offsets": {
+				"from": 91480,
+				"to": 92920
+			},
+			"text": " So here's the basic thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,920",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 92920,
+				"to": 95000
+			},
+			"text": " Multiply all those factors."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:40,160"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 100160
+			},
+			"text": " If it's above one, then your app is going to go through exponential growth."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,160",
+				"to": "00:01:44,400"
+			},
+			"offsets": {
+				"from": 100160,
+				"to": 104400
+			},
+			"text": " If it's slightly below one, then your app is dying."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,400",
+				"to": "00:01:50,600"
+			},
+			"offsets": {
+				"from": 104400,
+				"to": 110600
+			},
+			"text": " And being paid attention to that is the life or death of your app because if for every"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,600",
+				"to": "00:01:55,200"
+			},
+			"offsets": {
+				"from": 110600,
+				"to": 115200
+			},
+			"text": " user you're losing more users, then it means that you need to put more money to attract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,200",
+				"to": "00:01:57,880"
+			},
+			"offsets": {
+				"from": 115200,
+				"to": 117880
+			},
+			"text": " more users and that doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,880",
+				"to": "00:02:00,120"
+			},
+			"offsets": {
+				"from": 117880,
+				"to": 120120
+			},
+			"text": " How does it work for your app?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,120",
+				"to": "00:02:02,240"
+			},
+			"offsets": {
+				"from": 120120,
+				"to": 122240
+			},
+			"text": " For any other app, it looks terrible."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,240",
+				"to": "00:02:06,640"
+			},
+			"offsets": {
+				"from": 122240,
+				"to": 126640
+			},
+			"text": " It looks something like this where you go, \"Oh, a crypto kitty, that's interesting.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,640",
+				"to": "00:02:11,800"
+			},
+			"offsets": {
+				"from": 126640,
+				"to": 131800
+			},
+			"text": " And then the user has to go into a whole rabbit hole where they need to really quicky"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,800",
+				"to": "00:02:16,400"
+			},
+			"offsets": {
+				"from": 131800,
+				"to": 136400
+			},
+			"text": " PDF for Ethereum and at some point they are taking a selfie with their passport so they"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,400",
+				"to": "00:02:21,760"
+			},
+			"offsets": {
+				"from": 136400,
+				"to": 141760
+			},
+			"text": " can get a coin base account so they can get validated in three months."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,760",
+				"to": "00:02:22,760"
+			},
+			"offsets": {
+				"from": 141760,
+				"to": 142760
+			},
+			"text": " That's crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,760",
+				"to": "00:02:24,920"
+			},
+			"offsets": {
+				"from": 142760,
+				"to": 144920
+			},
+			"text": " No normal app would do that to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,920",
+				"to": "00:02:31,320"
+			},
+			"offsets": {
+				"from": 144920,
+				"to": 151320
+			},
+			"text": " And that's why outside of us, outside of us, the viral factor, it's zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,320",
+				"to": "00:02:33,560"
+			},
+			"offsets": {
+				"from": 151320,
+				"to": 153560
+			},
+			"text": " It's not like zero.9, which is bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,560",
+				"to": "00:02:34,560"
+			},
+			"offsets": {
+				"from": 153560,
+				"to": 154560
+			},
+			"text": " It's zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,560",
+				"to": "00:02:42,560"
+			},
+			"offsets": {
+				"from": 154560,
+				"to": 162560
+			},
+			"text": " I mean, we've had more ICOs last year than we have more daily active users anywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,560",
+				"to": "00:02:46,240"
+			},
+			"offsets": {
+				"from": 162560,
+				"to": 166240
+			},
+			"text": " And that's sort of the point."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,240",
+				"to": "00:02:58,600"
+			},
+			"offsets": {
+				"from": 166240,
+				"to": 178600
+			},
+			"text": " The point is that if you want to reach something else than us, the tech enthusiasts, those"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,600",
+				"to": "00:03:02,720"
+			},
+			"offsets": {
+				"from": 178600,
+				"to": 182720
+			},
+			"text": " who go to tech conferences, we need to reach normal people."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,720",
+				"to": "00:03:06,920"
+			},
+			"offsets": {
+				"from": 182720,
+				"to": 186920
+			},
+			"text": " I'm not getting the thing here, but it's going there, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,920",
+				"to": "00:03:09,320"
+			},
+			"offsets": {
+				"from": 186920,
+				"to": 189320
+			},
+			"text": " And what do normal people want?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,320",
+				"to": "00:03:13,560"
+			},
+			"offsets": {
+				"from": 189320,
+				"to": 193560
+			},
+			"text": " Normal people, they don't like average users, the medical average users, they don't care"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,560",
+				"to": "00:03:17,920"
+			},
+			"offsets": {
+				"from": 193560,
+				"to": 197920
+			},
+			"text": " about it, they don't care about your token, your ICO, your CAI, you see."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,920",
+				"to": "00:03:20,920"
+			},
+			"offsets": {
+				"from": 197920,
+				"to": 200920
+			},
+			"text": " They just want a username, they just want to use an email."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,920",
+				"to": "00:03:24,160"
+			},
+			"offsets": {
+				"from": 200920,
+				"to": 204160
+			},
+			"text": " If they're going to buy something, why can't they use a credit card?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,160",
+				"to": "00:03:27,560"
+			},
+			"offsets": {
+				"from": 204160,
+				"to": 207560
+			},
+			"text": " They don't understand why they can't use a credit card."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,560",
+				"to": "00:03:29,040"
+			},
+			"offsets": {
+				"from": 207560,
+				"to": 209040
+			},
+			"text": " And here's another thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,040",
+				"to": "00:03:36,280"
+			},
+			"offsets": {
+				"from": 209040,
+				"to": 216280
+			},
+			"text": " Your users sort of expect to be able to use multiple devices with the same account."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,280",
+				"to": "00:03:40,840"
+			},
+			"offsets": {
+				"from": 216280,
+				"to": 220840
+			},
+			"text": " And that's something that he takes for granted and it's super hard for us to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,840",
+				"to": "00:03:42,800"
+			},
+			"offsets": {
+				"from": 220840,
+				"to": 222800
+			},
+			"text": " How do we solve that problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,800",
+				"to": "00:03:47,800"
+			},
+			"offsets": {
+				"from": 222800,
+				"to": 227800
+			},
+			"text": " The first attempt we try it is every time you download a new app, you create a new original"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,800",
+				"to": "00:03:53,240"
+			},
+			"offsets": {
+				"from": 227800,
+				"to": 233240
+			},
+			"text": " account, you write down a new seed phrase, you have to move it to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,240",
+				"to": "00:03:58,840"
+			},
+			"offsets": {
+				"from": 233240,
+				"to": 238840
+			},
+			"text": " And if you want to use the same account, let's say, and then you install it in your iPad,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,840",
+				"to": "00:04:03,040"
+			},
+			"offsets": {
+				"from": 238840,
+				"to": 243040
+			},
+			"text": " then you have to do the same process and pay to make the transaction so you can use both"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,040",
+				"to": "00:04:05,640"
+			},
+			"offsets": {
+				"from": 243040,
+				"to": 245640
+			},
+			"text": " your iPad and it's crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,640",
+				"to": "00:04:10,480"
+			},
+			"offsets": {
+				"from": 245640,
+				"to": 250480
+			},
+			"text": " Then we move to an even worse solution, which is let's type your private key everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,480",
+				"to": "00:04:11,480"
+			},
+			"offsets": {
+				"from": 250480,
+				"to": 251480
+			},
+			"text": " Oh, it's here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,480",
+				"to": "00:04:14,200"
+			},
+			"offsets": {
+				"from": 251480,
+				"to": 254200
+			},
+			"text": " And I mean, there are bad solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,200",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 254200,
+				"to": 260000
+			},
+			"text": " There are solutions that are so bad that they create a scam industry so big that Elon"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:23,320"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 263320
+			},
+			"text": " Musk goes on Twitter and complains about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,320",
+				"to": "00:04:27,920"
+			},
+			"offsets": {
+				"from": 263320,
+				"to": 267920
+			},
+			"text": " And I'm very happy that we are sort of getting out of this phase where we ask people to type"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,920",
+				"to": "00:04:32,960"
+			},
+			"offsets": {
+				"from": 267920,
+				"to": 272960
+			},
+			"text": " their private key or the seed phrase in order to log into the app."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,960",
+				"to": "00:04:38,840"
+			},
+			"offsets": {
+				"from": 272960,
+				"to": 278840
+			},
+			"text": " But we are going into, I'm seeing a few other startups that are trying to solve the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,840",
+				"to": "00:04:45,520"
+			},
+			"offsets": {
+				"from": 278840,
+				"to": 285520
+			},
+			"text": " with a wonderful interface, with a username, an email, you go to the server, it's super"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,520",
+				"to": "00:04:51,920"
+			},
+			"offsets": {
+				"from": 285520,
+				"to": 291920
+			},
+			"text": " slick, it's beautiful, and I'm better, a few people like in the room that are working"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,920",
+				"to": "00:04:53,680"
+			},
+			"offsets": {
+				"from": 291920,
+				"to": 293680
+			},
+			"text": " on the solution right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,680",
+				"to": "00:05:00,560"
+			},
+			"offsets": {
+				"from": 293680,
+				"to": 300560
+			},
+			"text": " And if you are, please stop because if you succeed, here's the thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,560",
+				"to": "00:05:06,920"
+			},
+			"offsets": {
+				"from": 300560,
+				"to": 306920
+			},
+			"text": " If you succeed doing that, we all fail because I'm not building, we are not talking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,920",
+				"to": "00:05:10,840"
+			},
+			"offsets": {
+				"from": 306920,
+				"to": 310840
+			},
+			"text": " decentralization for you to build the next Facebook connect."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,840",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 310840,
+				"to": 315000
+			},
+			"text": " Because that's what I'm describing is just Facebook connect for Ethereum where you keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:16,920"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 316920
+			},
+			"text": " all the private data with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,920",
+				"to": "00:05:19,680"
+			},
+			"offsets": {
+				"from": 316920,
+				"to": 319680
+			},
+			"text": " And we cannot accept that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,680",
+				"to": "00:05:21,760"
+			},
+			"offsets": {
+				"from": 319680,
+				"to": 321760
+			},
+			"text": " We don't want that to be the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,760",
+				"to": "00:05:22,880"
+			},
+			"offsets": {
+				"from": 321760,
+				"to": 322880
+			},
+			"text": " And I think we can do better."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,880",
+				"to": "00:05:26,680"
+			},
+			"offsets": {
+				"from": 322880,
+				"to": 326680
+			},
+			"text": " And how I think we can do better is this thing I'm calling universal against."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,680",
+				"to": "00:05:32,440"
+			},
+			"offsets": {
+				"from": 326680,
+				"to": 332440
+			},
+			"text": " It's not a single service, it's not a single website, it's an architecture that I hope"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,440",
+				"to": "00:05:35,920"
+			},
+			"offsets": {
+				"from": 332440,
+				"to": 335920
+			},
+			"text": " a lot of, that any app can introduce."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,920",
+				"to": "00:05:37,920"
+			},
+			"offsets": {
+				"from": 335920,
+				"to": 337920
+			},
+			"text": " And here how it looks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,920",
+				"to": "00:05:43,440"
+			},
+			"offsets": {
+				"from": 337920,
+				"to": 343440
+			},
+			"text": " This is all like live code running, I'm just recording it just because it's easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,440",
+				"to": "00:05:49,360"
+			},
+			"offsets": {
+				"from": 343440,
+				"to": 349360
+			},
+			"text": " The idea is that it's just like a website where you click and you type your name."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,360",
+				"to": "00:05:50,360"
+			},
+			"offsets": {
+				"from": 349360,
+				"to": 350360
+			},
+			"text": " That's all you need to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,360",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 350360,
+				"to": 354000
+			},
+			"text": " And I even like show you multiple user names that you can pick, sort of like you can pick"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:55,600"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 355600
+			},
+			"text": " multiple emails."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,600",
+				"to": "00:05:57,880"
+			},
+			"offsets": {
+				"from": 355600,
+				"to": 357880
+			},
+			"text": " And when you do, you're logged in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,880",
+				"to": "00:05:58,880"
+			},
+			"offsets": {
+				"from": 357880,
+				"to": 358880
+			},
+			"text": " And here's a nice thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,880",
+				"to": "00:06:01,040"
+			},
+			"offsets": {
+				"from": 358880,
+				"to": 361040
+			},
+			"text": " When you're logged in, I'm giving you stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,040",
+				"to": "00:06:03,760"
+			},
+			"offsets": {
+				"from": 361040,
+				"to": 363760
+			},
+			"text": " I create some tokens, I'm giving you tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,760",
+				"to": "00:06:07,680"
+			},
+			"offsets": {
+				"from": 363760,
+				"to": 367680
+			},
+			"text": " The idea being it's gamification, another word we don't use a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,680",
+				"to": "00:06:12,840"
+			},
+			"offsets": {
+				"from": 367680,
+				"to": 372840
+			},
+			"text": " The idea being that every time you do something, a few actions will cost tokens, other actions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,840",
+				"to": "00:06:14,440"
+			},
+			"offsets": {
+				"from": 372840,
+				"to": 374440
+			},
+			"text": " will get you tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,440",
+				"to": "00:06:17,340"
+			},
+			"offsets": {
+				"from": 374440,
+				"to": 377340
+			},
+			"text": " So you're incentivizing the user to do the right things."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,340",
+				"to": "00:06:22,720"
+			},
+			"offsets": {
+				"from": 377340,
+				"to": 382720
+			},
+			"text": " One of those right things is when you create a new user name, you get a bunch of tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,720",
+				"to": "00:06:24,320"
+			},
+			"offsets": {
+				"from": 382720,
+				"to": 384320
+			},
+			"text": " And here's the app, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,320",
+				"to": "00:06:27,920"
+			},
+			"offsets": {
+				"from": 384320,
+				"to": 387920
+			},
+			"text": " The app, you can see the tokens called click."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,920",
+				"to": "00:06:34,320"
+			},
+			"offsets": {
+				"from": 387920,
+				"to": 394320
+			},
+			"text": " And it's just a single, there's a header and there's a single button and that button is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,320",
+				"to": "00:06:36,060"
+			},
+			"offsets": {
+				"from": 394320,
+				"to": 396060
+			},
+			"text": " tied to a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,060",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 396060,
+				"to": 400000
+			},
+			"text": " When you click that button, it costs you one token, exactly one token."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:41,360"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 401360
+			},
+			"text": " Forget gas free is an et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,360",
+				"to": "00:06:42,760"
+			},
+			"offsets": {
+				"from": 401360,
+				"to": 402760
+			},
+			"text": " It just costs you one token."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,760",
+				"to": "00:06:48,240"
+			},
+			"offsets": {
+				"from": 402760,
+				"to": 408240
+			},
+			"text": " And when you click it, you can see that your name is down there on a list of people who"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,240",
+				"to": "00:06:49,400"
+			},
+			"offsets": {
+				"from": 408240,
+				"to": 409400
+			},
+			"text": " press the button."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,400",
+				"to": "00:06:50,400"
+			},
+			"offsets": {
+				"from": 409400,
+				"to": 410400
+			},
+			"text": " The app does nothing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,400",
+				"to": "00:06:53,040"
+			},
+			"offsets": {
+				"from": 410400,
+				"to": 413040
+			},
+			"text": " You just click it and it says you click the button."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,040",
+				"to": "00:06:59,120"
+			},
+			"offsets": {
+				"from": 413040,
+				"to": 419120
+			},
+			"text": " The interesting thing is that you just interacted with a smart contract the first time on a normal"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,120",
+				"to": "00:07:02,960"
+			},
+			"offsets": {
+				"from": 419120,
+				"to": 422960
+			},
+			"text": " browser without having to download anything to sign up anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,960",
+				"to": "00:07:10,520"
+			},
+			"offsets": {
+				"from": 422960,
+				"to": 430520
+			},
+			"text": " And for the smart contract itself, it sounds like you are just a normal with you in an account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,520",
+				"to": "00:07:12,520"
+			},
+			"offsets": {
+				"from": 430520,
+				"to": 432520
+			},
+			"text": " Okay, but it sounds weird, Alex."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,520",
+				"to": "00:07:13,920"
+			},
+			"offsets": {
+				"from": 432520,
+				"to": 433920
+			},
+			"text": " There's no password, there's no nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,920",
+				"to": "00:07:17,480"
+			},
+			"offsets": {
+				"from": 433920,
+				"to": 437480
+			},
+			"text": " How do I even sign up with an iPhone, let's say?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,480",
+				"to": "00:07:18,920"
+			},
+			"offsets": {
+				"from": 437480,
+				"to": 438920
+			},
+			"text": " Here's how you do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,920",
+				"to": "00:07:21,600"
+			},
+			"offsets": {
+				"from": 438920,
+				"to": 441600
+			},
+			"text": " You just type your name."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,600",
+				"to": "00:07:22,600"
+			},
+			"offsets": {
+				"from": 441600,
+				"to": 442600
+			},
+			"text": " What's your, like you say?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,600",
+				"to": "00:07:23,600"
+			},
+			"offsets": {
+				"from": 442600,
+				"to": 443600
+			},
+			"text": " Look, I'm Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,600",
+				"to": "00:07:28,040"
+			},
+			"offsets": {
+				"from": 443600,
+				"to": 448040
+			},
+			"text": " And the nice thing is that once I can detect that you are Bob, I can see, look, Bob already"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,040",
+				"to": "00:07:29,040"
+			},
+			"offsets": {
+				"from": 448040,
+				"to": 449040
+			},
+			"text": " exists."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,040",
+				"to": "00:07:32,520"
+			},
+			"offsets": {
+				"from": 449040,
+				"to": 452520
+			},
+			"text": " So instead of creating a new username, I'm going to connect you with Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,520",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 452520,
+				"to": 456000
+			},
+			"text": " And when you click connect to you with Bob, I will receive a portion of the notification"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:37,160"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 457160
+			},
+			"text": " on my browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,160",
+				"to": "00:07:40,440"
+			},
+			"offsets": {
+				"from": 457160,
+				"to": 460440
+			},
+			"text": " And I'm going to click there and say, yeah, that's me."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,440",
+				"to": "00:07:46,600"
+			},
+			"offsets": {
+				"from": 460440,
+				"to": 466600
+			},
+			"text": " That the person that was trying to connect on an iPhone, on this IP, on that time, that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,600",
+				"to": "00:07:48,160"
+			},
+			"offsets": {
+				"from": 466600,
+				"to": 468160
+			},
+			"text": " me, you can accept it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,160",
+				"to": "00:07:54,080"
+			},
+			"offsets": {
+				"from": 468160,
+				"to": 474080
+			},
+			"text": " And when you accept it, what happens is that both your devices will be synchronized."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,080",
+				"to": "00:08:00,800"
+			},
+			"offsets": {
+				"from": 474080,
+				"to": 480800
+			},
+			"text": " And you'll be able to see soon that on the top there, there's like your, your, your,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,800",
+				"to": "00:08:01,800"
+			},
+			"offsets": {
+				"from": 480800,
+				"to": 481800
+			},
+			"text": " oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,800",
+				"to": "00:08:04,160"
+			},
+			"offsets": {
+				"from": 481800,
+				"to": 484160
+			},
+			"text": " And you just get more tokens because you add a new device."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,160",
+				"to": "00:08:09,400"
+			},
+			"offsets": {
+				"from": 484160,
+				"to": 489400
+			},
+			"text": " And you can see it's the same address, the same icon, because from the point of view of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,400",
+				"to": "00:08:13,160"
+			},
+			"offsets": {
+				"from": 489400,
+				"to": 493160
+			},
+			"text": " the app, you are using the same material account."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,160",
+				"to": "00:08:16,120"
+			},
+			"offsets": {
+				"from": 493160,
+				"to": 496120
+			},
+			"text": " And whatever you do in one side, it will reflect to the other, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,120",
+				"to": "00:08:18,920"
+			},
+			"offsets": {
+				"from": 496120,
+				"to": 498920
+			},
+			"text": " So if I click on the phone, it will click on the desktop."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,920",
+				"to": "00:08:21,560"
+			},
+			"offsets": {
+				"from": 498920,
+				"to": 501560
+			},
+			"text": " If I click on the desktop, it clicks on the phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,560",
+				"to": "00:08:23,800"
+			},
+			"offsets": {
+				"from": 501560,
+				"to": 503800
+			},
+			"text": " And here's another thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,800",
+				"to": "00:08:26,320"
+			},
+			"offsets": {
+				"from": 503800,
+				"to": 506320
+			},
+			"text": " The phone itself is not a master key."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,320",
+				"to": "00:08:30,960"
+			},
+			"offsets": {
+				"from": 506320,
+				"to": 510960
+			},
+			"text": " I'm not doing this thing where you do something on the desktop and then you have to approve"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,960",
+				"to": "00:08:33,200"
+			},
+			"offsets": {
+				"from": 510960,
+				"to": 513200
+			},
+			"text": " in your master phone device."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,200",
+				"to": "00:08:39,880"
+			},
+			"offsets": {
+				"from": 513200,
+				"to": 519880
+			},
+			"text": " Now every device you, every device you add, every new app you add can be an approval or"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,880",
+				"to": "00:08:42,720"
+			},
+			"offsets": {
+				"from": 519880,
+				"to": 522720
+			},
+			"text": " a signer for the other apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,720",
+				"to": "00:08:46,720"
+			},
+			"offsets": {
+				"from": 522720,
+				"to": 526720
+			},
+			"text": " Which are really great because you can have multiple devices, multiple apps, everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,720",
+				"to": "00:08:48,320"
+			},
+			"offsets": {
+				"from": 526720,
+				"to": 528320
+			},
+			"text": " using the same username."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,320",
+				"to": "00:08:50,600"
+			},
+			"offsets": {
+				"from": 528320,
+				"to": 530600
+			},
+			"text": " But what if, like, if I lose all my devices?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,600",
+				"to": "00:08:55,560"
+			},
+			"offsets": {
+				"from": 530600,
+				"to": 535560
+			},
+			"text": " Well, if you lose all your devices, we can do something extra where I can create a new"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,560",
+				"to": "00:08:56,560"
+			},
+			"offsets": {
+				"from": 535560,
+				"to": 536560
+			},
+			"text": " code for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,560",
+				"to": "00:08:57,720"
+			},
+			"offsets": {
+				"from": 536560,
+				"to": 537720
+			},
+			"text": " I'm not just going to go very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,720",
+				"to": "00:09:00,920"
+			},
+			"offsets": {
+				"from": 537720,
+				"to": 540920
+			},
+			"text": " The idea is just you click, you generate some codes on the, on the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,920",
+				"to": "00:09:02,840"
+			},
+			"offsets": {
+				"from": 540920,
+				"to": 542840
+			},
+			"text": " I'm not actually backing up the keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,840",
+				"to": "00:09:07,880"
+			},
+			"offsets": {
+				"from": 542840,
+				"to": 547880
+			},
+			"text": " I'm just generating new codes on the browser, which you'll be able to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,880",
+				"to": "00:09:08,880"
+			},
+			"offsets": {
+				"from": 547880,
+				"to": 548880
+			},
+			"text": " That's the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,880",
+				"to": "00:09:09,880"
+			},
+			"offsets": {
+				"from": 548880,
+				"to": 549880
+			},
+			"text": " You can print it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,880",
+				"to": "00:09:12,120"
+			},
+			"offsets": {
+				"from": 549880,
+				"to": 552120
+			},
+			"text": " And then maybe you cut it, cut them out."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,120",
+				"to": "00:09:15,800"
+			},
+			"offsets": {
+				"from": 552120,
+				"to": 555800
+			},
+			"text": " Pick them one year safe, one year mom's house, the other if you're lawyers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,800",
+				"to": "00:09:16,800"
+			},
+			"offsets": {
+				"from": 555800,
+				"to": 556800
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,800",
+				"to": "00:09:18,560"
+			},
+			"offsets": {
+				"from": 556800,
+				"to": 558560
+			},
+			"text": " Maybe laminate them if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,560",
+				"to": "00:09:24,320"
+			},
+			"offsets": {
+				"from": 558560,
+				"to": 564320
+			},
+			"text": " But the idea being, if you lose all your devices, you can still have access to it via"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,320",
+				"to": "00:09:27,960"
+			},
+			"offsets": {
+				"from": 564320,
+				"to": 567960
+			},
+			"text": " this recovery code, which is sort of very easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,960",
+				"to": "00:09:30,160"
+			},
+			"offsets": {
+				"from": 567960,
+				"to": 570160
+			},
+			"text": " And how do you sort of, same?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,160",
+				"to": "00:09:34,400"
+			},
+			"offsets": {
+				"from": 570160,
+				"to": 574400
+			},
+			"text": " And when you click the backup code, we have, like, this three-step security thing where"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,400",
+				"to": "00:09:37,440"
+			},
+			"offsets": {
+				"from": 574400,
+				"to": 577440
+			},
+			"text": " every time you do something you like, you get more tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,440",
+				"to": "00:09:43,840"
+			},
+			"offsets": {
+				"from": 577440,
+				"to": 583840
+			},
+			"text": " And bling, you just got your latest thing checked out, so you're super safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,840",
+				"to": "00:09:46,400"
+			},
+			"offsets": {
+				"from": 583840,
+				"to": 586400
+			},
+			"text": " How do you do the recovery then?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,400",
+				"to": "00:09:47,400"
+			},
+			"offsets": {
+				"from": 586400,
+				"to": 587400
+			},
+			"text": " Just same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,400",
+				"to": "00:09:49,120"
+			},
+			"offsets": {
+				"from": 587400,
+				"to": 589120
+			},
+			"text": " Let's say you lost all your tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,120",
+				"to": "00:09:51,480"
+			},
+			"offsets": {
+				"from": 589120,
+				"to": 591480
+			},
+			"text": " Go on the website, type \"I am Bob.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,480",
+				"to": "00:09:54,720"
+			},
+			"offsets": {
+				"from": 591480,
+				"to": 594720
+			},
+			"text": " And instead of clicking connect, notice that there is a recover button."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,720",
+				"to": "00:09:58,400"
+			},
+			"offsets": {
+				"from": 594720,
+				"to": 598400
+			},
+			"text": " On the recover button, you just type one of those codes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,400",
+				"to": "00:10:03,560"
+			},
+			"offsets": {
+				"from": 598400,
+				"to": 603560
+			},
+			"text": " And I'm actually typing it instead of just copy-pasting it to show you it's not something"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,560",
+				"to": "00:10:08,040"
+			},
+			"offsets": {
+				"from": 603560,
+				"to": 608040
+			},
+			"text": " as complex that you need to actually have a QR code or a digital file."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,040",
+				"to": "00:10:09,960"
+			},
+			"offsets": {
+				"from": 608040,
+				"to": 609960
+			},
+			"text": " It's something that you can actually write."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,960",
+				"to": "00:10:13,600"
+			},
+			"offsets": {
+				"from": 609960,
+				"to": 613600
+			},
+			"text": " You might be able to remember it because it sounds like a Star Wars planet, but it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,600",
+				"to": "00:10:16,840"
+			},
+			"offsets": {
+				"from": 613600,
+				"to": 616840
+			},
+			"text": " more, it's not memorable, but it's writable."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,840",
+				"to": "00:10:20,920"
+			},
+			"offsets": {
+				"from": 616840,
+				"to": 620920
+			},
+			"text": " You can write that down in a piece of paper somewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,920",
+				"to": "00:10:23,440"
+			},
+			"offsets": {
+				"from": 620920,
+				"to": 623440
+			},
+			"text": " And when you do, you're logged in."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,440",
+				"to": "00:10:27,600"
+			},
+			"offsets": {
+				"from": 623440,
+				"to": 627600
+			},
+			"text": " Notice something that I was able to log in in multiple devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,600",
+				"to": "00:10:30,360"
+			},
+			"offsets": {
+				"from": 627600,
+				"to": 630360
+			},
+			"text": " I have a paper wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,360",
+				"to": "00:10:32,280"
+			},
+			"offsets": {
+				"from": 630360,
+				"to": 632280
+			},
+			"text": " I have shown you a bunch of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,280",
+				"to": "00:10:35,400"
+			},
+			"offsets": {
+				"from": 632280,
+				"to": 635400
+			},
+			"text": " Here are the things I did not show you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,400",
+				"to": "00:10:40,480"
+			},
+			"offsets": {
+				"from": 635400,
+				"to": 640480
+			},
+			"text": " No mention of it or no hack strings, no passwords, no QR codes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,480",
+				"to": "00:10:41,920"
+			},
+			"offsets": {
+				"from": 640480,
+				"to": 641920
+			},
+			"text": " Increment of security."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,920",
+				"to": "00:10:45,760"
+			},
+			"offsets": {
+				"from": 641920,
+				"to": 645760
+			},
+			"text": " It means that the first time the user logged in into the app, he can immediately start"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,760",
+				"to": "00:10:47,200"
+			},
+			"offsets": {
+				"from": 645760,
+				"to": 647200
+			},
+			"text": " playing with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,200",
+				"to": "00:10:53,040"
+			},
+			"offsets": {
+				"from": 647200,
+				"to": 653040
+			},
+			"text": " Only after sometimes some value has passed, I tell them, \"Hey, you should probably download"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,040",
+				"to": "00:10:55,040"
+			},
+			"offsets": {
+				"from": 653040,
+				"to": 655040
+			},
+			"text": " the smart phone.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,040",
+				"to": "00:10:59,240"
+			},
+			"offsets": {
+				"from": 655040,
+				"to": 659240
+			},
+			"text": " Maybe after a few months, maybe after they have a lot of value, maybe you encourage them"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,240",
+				"to": "00:11:02,240"
+			},
+			"offsets": {
+				"from": 659240,
+				"to": 662240
+			},
+			"text": " to print and download the codes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,240",
+				"to": "00:11:07,480"
+			},
+			"offsets": {
+				"from": 662240,
+				"to": 667480
+			},
+			"text": " And the user just deployed a multi-factor, self-sovereign, smart, counter-cogonal identity, and they"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,480",
+				"to": "00:11:08,640"
+			},
+			"offsets": {
+				"from": 667480,
+				"to": 668640
+			},
+			"text": " didn't even notice."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,640",
+				"to": "00:11:13,480"
+			},
+			"offsets": {
+				"from": 668640,
+				"to": 673480
+			},
+			"text": " The thing is, we are tricking users into using modusig."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,480",
+				"to": "00:11:17,720"
+			},
+			"offsets": {
+				"from": 673480,
+				"to": 677720
+			},
+			"text": " Modusig is a complicated, complex thing that only advanced developers do, and instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,720",
+				"to": "00:11:20,920"
+			},
+			"offsets": {
+				"from": 677720,
+				"to": 680920
+			},
+			"text": " I'm tricking them into using it without realizing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,920",
+				"to": "00:11:23,080"
+			},
+			"offsets": {
+				"from": 680920,
+				"to": 683080
+			},
+			"text": " So what's the magic we are doing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,080",
+				"to": "00:11:26,760"
+			},
+			"offsets": {
+				"from": 683080,
+				"to": 686760
+			},
+			"text": " The first thing is that every app has its own private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,760",
+				"to": "00:11:29,640"
+			},
+			"offsets": {
+				"from": 686760,
+				"to": 689640
+			},
+			"text": " Generate the private key as we already do with apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,640",
+				"to": "00:11:34,600"
+			},
+			"offsets": {
+				"from": 689640,
+				"to": 694600
+			},
+			"text": " The difference here is that don't try to back it up, don't try to take it out of the device,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,600",
+				"to": "00:11:38,800"
+			},
+			"offsets": {
+				"from": 694600,
+				"to": 698800
+			},
+			"text": " don't keep any money or anything on that private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,800",
+				"to": "00:11:45,920"
+			},
+			"offsets": {
+				"from": 698800,
+				"to": 705920
+			},
+			"text": " Instead, use that private key to sign a message, telling a smart contract to do something."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,920",
+				"to": "00:11:49,040"
+			},
+			"offsets": {
+				"from": 705920,
+				"to": 709040
+			},
+			"text": " We call those messages meta-transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,040",
+				"to": "00:11:53,800"
+			},
+			"offsets": {
+				"from": 709040,
+				"to": 713800
+			},
+			"text": " You probably saw this word, you probably seen this meta-cartel thing going around."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,800",
+				"to": "00:11:54,800"
+			},
+			"offsets": {
+				"from": 713800,
+				"to": 714800
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,800",
+				"to": "00:12:00,960"
+			},
+			"offsets": {
+				"from": 714800,
+				"to": 720960
+			},
+			"text": " But a meta-transaction is a sign message telling a smart contract to do something."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,960",
+				"to": "00:12:05,200"
+			},
+			"offsets": {
+				"from": 720960,
+				"to": 725200
+			},
+			"text": " And how do you do something if you don't have itter on that device?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,200",
+				"to": "00:12:06,200"
+			},
+			"offsets": {
+				"from": 725200,
+				"to": 726200
+			},
+			"text": " You have a relayer."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,200",
+				"to": "00:12:07,680"
+			},
+			"offsets": {
+				"from": 726200,
+				"to": 727680
+			},
+			"text": " Who's a relayer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,680",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 727680,
+				"to": 731000
+			},
+			"text": " Anyone with itter, an internet connection can be a relayer."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:12,640"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 732640
+			},
+			"text": " You can set a relayer for your app."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,640",
+				"to": "00:12:17,240"
+			},
+			"offsets": {
+				"from": 732640,
+				"to": 737240
+			},
+			"text": " You can have a relayer for a -- you can create a relayer, a decentralized relayer network"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,240",
+				"to": "00:12:18,440"
+			},
+			"offsets": {
+				"from": 737240,
+				"to": 738440
+			},
+			"text": " on Whisper."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,440",
+				"to": "00:12:24,240"
+			},
+			"offsets": {
+				"from": 738440,
+				"to": 744240
+			},
+			"text": " The idea is that the relayer, someone who takes that message, pays the gas cost to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,240",
+				"to": "00:12:27,760"
+			},
+			"offsets": {
+				"from": 744240,
+				"to": 747760
+			},
+			"text": " publish it to the blockchain, and then the contract does something."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,760",
+				"to": "00:12:30,520"
+			},
+			"offsets": {
+				"from": 747760,
+				"to": 750520
+			},
+			"text": " But why would someone pay that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,520",
+				"to": "00:12:35,480"
+			},
+			"offsets": {
+				"from": 750520,
+				"to": 755480
+			},
+			"text": " Because the smart contract, because it's smart, can pay back the relayer."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,480",
+				"to": "00:12:40,200"
+			},
+			"offsets": {
+				"from": 755480,
+				"to": 760200
+			},
+			"text": " It can pay back even depending on how much get they spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,200",
+				"to": "00:12:44,360"
+			},
+			"offsets": {
+				"from": 760200,
+				"to": 764360
+			},
+			"text": " So what you're basically saying sign a message is saying, look, I'm willing to pay, let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,360",
+				"to": "00:12:50,120"
+			},
+			"offsets": {
+				"from": 764360,
+				"to": 770120
+			},
+			"text": " say, one die or three status tokens for someone to deploy that message for someone."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,120",
+				"to": "00:12:54,880"
+			},
+			"offsets": {
+				"from": 770120,
+				"to": 774880
+			},
+			"text": " Now anyone in the relayer that we can look at that and say, hey, I think I can probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,880",
+				"to": "00:12:56,360"
+			},
+			"offsets": {
+				"from": 774880,
+				"to": 776360
+			},
+			"text": " deploy that for less than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,360",
+				"to": "00:13:00,440"
+			},
+			"offsets": {
+				"from": 776360,
+				"to": 780440
+			},
+			"text": " So I'm taking that, I'm getting that money."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,440",
+				"to": "00:13:05,120"
+			},
+			"offsets": {
+				"from": 780440,
+				"to": 785120
+			},
+			"text": " If you need extra recovery keys, make an extra backup for it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,120",
+				"to": "00:13:07,160"
+			},
+			"offsets": {
+				"from": 785120,
+				"to": 787160
+			},
+			"text": " Don't do a backup of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,160",
+				"to": "00:13:11,320"
+			},
+			"offsets": {
+				"from": 787160,
+				"to": 791320
+			},
+			"text": " Just do an extra one, the advantage being, because it's a smart contract, you can add"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,320",
+				"to": "00:13:12,320"
+			},
+			"offsets": {
+				"from": 791320,
+				"to": 792320
+			},
+			"text": " conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,320",
+				"to": "00:13:17,640"
+			},
+			"offsets": {
+				"from": 792320,
+				"to": 797640
+			},
+			"text": " Let's say you can only do a recovery key after the contract has been inactive, or maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,640",
+				"to": "00:13:21,640"
+			},
+			"offsets": {
+				"from": 797640,
+				"to": 801640
+			},
+			"text": " you need to have five trusted friends who be able to do a recovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,640",
+				"to": "00:13:25,560"
+			},
+			"offsets": {
+				"from": 801640,
+				"to": 805560
+			},
+			"text": " You can be creative on whatever you want to do, because it's a smart contract that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,560",
+				"to": "00:13:26,560"
+			},
+			"offsets": {
+				"from": 805560,
+				"to": 806560
+			},
+			"text": " doing the recovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,560",
+				"to": "00:13:29,440"
+			},
+			"offsets": {
+				"from": 806560,
+				"to": 809440
+			},
+			"text": " It's not about just recovering a single key."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,440",
+				"to": "00:13:32,440"
+			},
+			"offsets": {
+				"from": 809440,
+				"to": 812440
+			},
+			"text": " And we have something very cool also."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,440",
+				"to": "00:13:34,200"
+			},
+			"offsets": {
+				"from": 812440,
+				"to": 814200
+			},
+			"text": " They're called counterfactual contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,200",
+				"to": "00:13:41,720"
+			},
+			"offsets": {
+				"from": 814200,
+				"to": 821720
+			},
+			"text": " I hate the name, but basically it's a deterministic contract address, which is the idea that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,720",
+				"to": "00:13:46,040"
+			},
+			"offsets": {
+				"from": 821720,
+				"to": 826040
+			},
+			"text": " already have the contract address before you deploy it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,040",
+				"to": "00:13:48,680"
+			},
+			"offsets": {
+				"from": 826040,
+				"to": 828680
+			},
+			"text": " That means that you can already send funds to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,680",
+				"to": "00:13:53,120"
+			},
+			"offsets": {
+				"from": 828680,
+				"to": 833120
+			},
+			"text": " You can send tokens or either to the contract address before you deploy it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,120",
+				"to": "00:13:58,480"
+			},
+			"offsets": {
+				"from": 833120,
+				"to": 838480
+			},
+			"text": " It means that you can pretend for your users that his account is live until they pay it"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,480",
+				"to": "00:14:00,680"
+			},
+			"offsets": {
+				"from": 838480,
+				"to": 840680
+			},
+			"text": " and then you deploy the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,680",
+				"to": "00:14:05,440"
+			},
+			"offsets": {
+				"from": 840680,
+				"to": 845440
+			},
+			"text": " And because it works on multiple chains, you can deploy it on a test net or on a side"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,440",
+				"to": "00:14:10,840"
+			},
+			"offsets": {
+				"from": 845440,
+				"to": 850840
+			},
+			"text": " chain and only move it to the main chain after the user has passed some sort of tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,840",
+				"to": "00:14:11,840"
+			},
+			"offsets": {
+				"from": 850840,
+				"to": 851840
+			},
+			"text": " showed, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,840",
+				"to": "00:14:15,560"
+			},
+			"offsets": {
+				"from": 851840,
+				"to": 855560
+			},
+			"text": " I'm still looking for a better name for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,560",
+				"to": "00:14:19,080"
+			},
+			"offsets": {
+				"from": 855560,
+				"to": 859080
+			},
+			"text": " So another cool thing, authorization terms per key."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,080",
+				"to": "00:14:20,960"
+			},
+			"offsets": {
+				"from": 859080,
+				"to": 860960
+			},
+			"text": " Not every key is the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,960",
+				"to": "00:14:23,640"
+			},
+			"offsets": {
+				"from": 860960,
+				"to": 863640
+			},
+			"text": " Not every key is as safe as the other browser keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,640",
+				"to": "00:14:25,680"
+			},
+			"offsets": {
+				"from": 863640,
+				"to": 865680
+			},
+			"text": " They're not as safe as other keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,680",
+				"to": "00:14:28,920"
+			},
+			"offsets": {
+				"from": 865680,
+				"to": 868920
+			},
+			"text": " So one of the things you can do is that some keys can add transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,920",
+				"to": "00:14:30,880"
+			},
+			"offsets": {
+				"from": 868920,
+				"to": 870880
+			},
+			"text": " Other keys cannot add transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,880",
+				"to": "00:14:33,000"
+			},
+			"offsets": {
+				"from": 870880,
+				"to": 873000
+			},
+			"text": " Things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,000",
+				"to": "00:14:34,280"
+			},
+			"offsets": {
+				"from": 873000,
+				"to": 874280
+			},
+			"text": " It's better for users."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,280",
+				"to": "00:14:40,800"
+			},
+			"offsets": {
+				"from": 874280,
+				"to": 880800
+			},
+			"text": " It's better for apps because every time you install a new app, you have more security and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,800",
+				"to": "00:14:48,360"
+			},
+			"offsets": {
+				"from": 880800,
+				"to": 888360
+			},
+			"text": " you have cross-compatible user names, users only eater, and that means you can have more"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,360",
+				"to": "00:14:49,640"
+			},
+			"offsets": {
+				"from": 888360,
+				"to": 889640
+			},
+			"text": " open business models."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,640",
+				"to": "00:14:56,320"
+			},
+			"offsets": {
+				"from": 889640,
+				"to": 896320
+			},
+			"text": " For instance, you can have a subscription model where the user just goes in and you pay"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,320",
+				"to": "00:15:01,480"
+			},
+			"offsets": {
+				"from": 896320,
+				"to": 901480
+			},
+			"text": " his transactions for free and then you just ask, you have a credit card system where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,480",
+				"to": "00:15:05,040"
+			},
+			"offsets": {
+				"from": 901480,
+				"to": 905040
+			},
+			"text": " just charge them five months per day."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,040",
+				"to": "00:15:08,280"
+			},
+			"offsets": {
+				"from": 905040,
+				"to": 908280
+			},
+			"text": " So we have less than five minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,280",
+				"to": "00:15:15,160"
+			},
+			"offsets": {
+				"from": 908280,
+				"to": 915160
+			},
+			"text": " So we had a very quick thing here, but I think we are going to-- can we do it in two minutes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,160",
+				"to": "00:15:16,160"
+			},
+			"offsets": {
+				"from": 915160,
+				"to": 916160
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,160",
+				"to": "00:15:17,160"
+			},
+			"offsets": {
+				"from": 916160,
+				"to": 917160
+			},
+			"text": " Just two minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,160",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 917160,
+				"to": 921000
+			},
+			"text": " Wanted to show you how simple the API we build is."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:25,240"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 925240
+			},
+			"text": " So to start using universal logins, all you need to do is to create SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,240",
+				"to": "00:15:31,680"
+			},
+			"offsets": {
+				"from": 925240,
+				"to": 931680
+			},
+			"text": " SDK has just two parameters, the address of Relayer and the address of the Web Free Note."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,680",
+				"to": "00:15:34,160"
+			},
+			"offsets": {
+				"from": 931680,
+				"to": 934160
+			},
+			"text": " Then you just want command to create an identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,160",
+				"to": "00:15:40,720"
+			},
+			"offsets": {
+				"from": 934160,
+				"to": 940720
+			},
+			"text": " You just specify the name of the identity, ENS name of the identity, and you have a private"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,720",
+				"to": "00:15:43,600"
+			},
+			"offsets": {
+				"from": 940720,
+				"to": 943600
+			},
+			"text": " key and identity address as a return."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,600",
+				"to": "00:15:48,720"
+			},
+			"offsets": {
+				"from": 943600,
+				"to": 948720
+			},
+			"text": " And bam, you can send your transaction which looks pretty much the same as any term transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,720",
+				"to": "00:15:51,720"
+			},
+			"offsets": {
+				"from": 948720,
+				"to": 951720
+			},
+			"text": " with this extra gas token parameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,720",
+				"to": "00:15:54,160"
+			},
+			"offsets": {
+				"from": 951720,
+				"to": 954160
+			},
+			"text": " So we can say, pay in something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,160",
+				"to": "00:15:55,880"
+			},
+			"offsets": {
+				"from": 954160,
+				"to": 955880
+			},
+			"text": " Either Anna, I think we're running out on."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,880",
+				"to": "00:15:57,440"
+			},
+			"offsets": {
+				"from": 955880,
+				"to": 957440
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,440",
+				"to": "00:15:58,440"
+			},
+			"offsets": {
+				"from": 957440,
+				"to": 958440
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,440",
+				"to": "00:16:00,800"
+			},
+			"offsets": {
+				"from": 958440,
+				"to": 960800
+			},
+			"text": " Now, here's the thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,800",
+				"to": "00:16:04,880"
+			},
+			"offsets": {
+				"from": 960800,
+				"to": 964880
+			},
+			"text": " I don't want here for us to build the best onboarding experience on the Web."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,880",
+				"to": "00:16:10,240"
+			},
+			"offsets": {
+				"from": 964880,
+				"to": 970240
+			},
+			"text": " I think we can use the Ethereum technology to build the best onboarding experience anywhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,240",
+				"to": "00:16:14,560"
+			},
+			"offsets": {
+				"from": 970240,
+				"to": 974560
+			},
+			"text": " because there's no passwords and you are in control of your own identity, you are in"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,560",
+				"to": "00:16:18,640"
+			},
+			"offsets": {
+				"from": 974560,
+				"to": 978640
+			},
+			"text": " control of your own funds, which is something we don't find in Facebook."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,640",
+				"to": "00:16:22,800"
+			},
+			"offsets": {
+				"from": 978640,
+				"to": 982800
+			},
+			"text": " The final thing with the layer, I would like to thank the Kijung Community Fund on F-RISE."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,800",
+				"to": "00:16:27,160"
+			},
+			"offsets": {
+				"from": 982800,
+				"to": 987160
+			},
+			"text": " They have a generous grant that was made this work possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,160",
+				"to": "00:16:30,760"
+			},
+			"offsets": {
+				"from": 987160,
+				"to": 990760
+			},
+			"text": " And of course, the TUN Foundation has been supporting all the crazy stuff I do."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,760",
+				"to": "00:16:31,760"
+			},
+			"offsets": {
+				"from": 990760,
+				"to": 991760
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,760",
+				"to": "00:16:32,760"
+			},
+			"offsets": {
+				"from": 991760,
+				"to": 992760
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,760",
+				"to": "00:16:33,760"
+			},
+			"offsets": {
+				"from": 992760,
+				"to": 993760
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,760",
+				"to": "00:16:34,760"
+			},
+			"offsets": {
+				"from": 993760,
+				"to": 994760
+			},
+			"text": " Bye-bye."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,760",
+				"to": "00:16:35,760"
+			},
+			"offsets": {
+				"from": 994760,
+				"to": 995760
+			},
+			"text": " Bye-bye."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,760",
+				"to": "00:16:36,760"
+			},
+			"offsets": {
+				"from": 995760,
+				"to": 996760
+			},
+			"text": " Bye-bye."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,760",
+				"to": "00:16:37,760"
+			},
+			"offsets": {
+				"from": 996760,
+				"to": 997760
+			},
+			"text": " Bye-bye."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,760",
+				"to": "00:16:38,760"
+			},
+			"offsets": {
+				"from": 997760,
+				"to": 998760
+			},
+			"text": " Bye-bye."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,760",
+				"to": "00:16:39,760"
+			},
+			"offsets": {
+				"from": 998760,
+				"to": 999760
+			},
+			"text": " Bye-bye."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,760",
+				"to": "00:16:40,760"
+			},
+			"offsets": {
+				"from": 999760,
+				"to": 1000760
+			},
+			"text": " Bye-bye."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,760",
+				"to": "00:17:07,040"
+			},
+			"offsets": {
+				"from": 1000760,
+				"to": 1027040
+			},
+			"text": " Bye-bye."
+		}
+	]
+}

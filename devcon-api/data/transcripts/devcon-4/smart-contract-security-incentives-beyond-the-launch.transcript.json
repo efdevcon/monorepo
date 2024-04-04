@@ -1,0 +1,4113 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,660"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6660
+			},
+			"text": " Hey, everyone. I'm Phil Diane, and I'm a PhD student at Cornell Tech and IC3, and I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,660",
+				"to": "00:00:10,480"
+			},
+			"offsets": {
+				"from": 6660,
+				"to": 10480
+			},
+			"text": " going to be talking about smart contract security incentives beyond the launch."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,480",
+				"to": "00:00:14,520"
+			},
+			"offsets": {
+				"from": 10480,
+				"to": 14520
+			},
+			"text": " So let's just get right into it. What is security? Recently, I was lucky enough to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,520",
+				"to": "00:00:18,400"
+			},
+			"offsets": {
+				"from": 14520,
+				"to": 18400
+			},
+			"text": " attend this fascinating talk at the Usenix Security Summit, which is a gathering of professionals"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,400",
+				"to": "00:00:23,520"
+			},
+			"offsets": {
+				"from": 18400,
+				"to": 23520
+			},
+			"text": " and academics by James Michens from Harvard University. So I know the title is long, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,520",
+				"to": "00:00:26,680"
+			},
+			"offsets": {
+				"from": 23520,
+				"to": 26680
+			},
+			"text": " if you Google James Michens, you can find this talk. And I'm actually going to steal"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,680",
+				"to": "00:00:31,640"
+			},
+			"offsets": {
+				"from": 26680,
+				"to": 31640
+			},
+			"text": " all his philosophical insights from my talk. So sort of classically, when we define security"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,640",
+				"to": "00:00:37,280"
+			},
+			"offsets": {
+				"from": 31640,
+				"to": 37280
+			},
+			"text": " as a community, we've looked at historically this Cartesian product between people, programs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,280",
+				"to": "00:00:42,520"
+			},
+			"offsets": {
+				"from": 37280,
+				"to": 42520
+			},
+			"text": " and computational resources. This was originally motivated by wanting to make statements like"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,520",
+				"to": "00:00:46,840"
+			},
+			"offsets": {
+				"from": 42520,
+				"to": 46840
+			},
+			"text": " Piotr, who is on the other side of the Iron Curtain in his bed, cannot use the login"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,840",
+				"to": "00:00:51,520"
+			},
+			"offsets": {
+				"from": 46840,
+				"to": 51520
+			},
+			"text": " demon to access the US government arpinate. And this definition sort of naturally has"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,520",
+				"to": "00:00:56,560"
+			},
+			"offsets": {
+				"from": 51520,
+				"to": 56560
+			},
+			"text": " been adopted by the blockchain space and extends to this space, saying things like Piotr, who's"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,560",
+				"to": "00:01:02,080"
+			},
+			"offsets": {
+				"from": 56560,
+				"to": 62080
+			},
+			"text": " the Dow hacker, cannot use re-entrancy to access my tokens, or can't use overflow to access"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,080",
+				"to": "00:01:06,600"
+			},
+			"offsets": {
+				"from": 62080,
+				"to": 66600
+			},
+			"text": " my tokens or self-destruct. So in the last two years, we've gotten a lot right with"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,600",
+				"to": "00:01:10,520"
+			},
+			"offsets": {
+				"from": 66600,
+				"to": 70520
+			},
+			"text": " regards to this notion of security. So two years ago, it was sort of the eve of the Dow"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,520",
+				"to": "00:01:14,480"
+			},
+			"offsets": {
+				"from": 70520,
+				"to": 74480
+			},
+			"text": " hack, and it still wasn't even clear whether we would be able to build secure smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,480",
+				"to": "00:01:19,480"
+			},
+			"offsets": {
+				"from": 74480,
+				"to": 79480
+			},
+			"text": " at all. Since then, we've seen sort of this blossoming of projects, many of whom are talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,480",
+				"to": "00:01:25,880"
+			},
+			"offsets": {
+				"from": 79480,
+				"to": 85880
+			},
+			"text": " here, including hydroprojects, secureify, mythril, new languages like Viper, the K framework,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,880",
+				"to": "00:01:30,680"
+			},
+			"offsets": {
+				"from": 85880,
+				"to": 90680
+			},
+			"text": " say hi to the runtime verification booth, and Manticore and many more. And we've also"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,680",
+				"to": "00:01:36,360"
+			},
+			"offsets": {
+				"from": 90680,
+				"to": 96360
+			},
+			"text": " seen a wide, wide variety of publications about smart contract security, smart contract formal"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,360",
+				"to": "00:01:41,960"
+			},
+			"offsets": {
+				"from": 96360,
+				"to": 101960
+			},
+			"text": " verification, and more. So unlike two years ago, we have a range of tools, a robust audit"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,960",
+				"to": "00:01:47,360"
+			},
+			"offsets": {
+				"from": 101960,
+				"to": 107360
+			},
+			"text": " community and a robust culture, a deep toolkit of formal methods, much better testing practices"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,360",
+				"to": "00:01:51,480"
+			},
+			"offsets": {
+				"from": 107360,
+				"to": 111480
+			},
+			"text": " and higher standards. Now, that's not to say we're perfect, but we've been substantially"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,480",
+				"to": "00:01:56,320"
+			},
+			"offsets": {
+				"from": 111480,
+				"to": 116320
+			},
+			"text": " successful at optimizing for this notion of Cartesian product security. So let's keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,320",
+				"to": "00:02:01,600"
+			},
+			"offsets": {
+				"from": 116320,
+				"to": 121600
+			},
+			"text": " calm and give ourselves a pat on the back. All right, great. And that concludes the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,600",
+				"to": "00:02:06,960"
+			},
+			"offsets": {
+				"from": 121600,
+				"to": 126960
+			},
+			"text": " Thank you guys very much. I'm just kidding, because that would be ignoring the dumpster"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,960",
+				"to": "00:02:12,120"
+			},
+			"offsets": {
+				"from": 126960,
+				"to": 132120
+			},
+			"text": " fire in the corner, and that is the way ICO incentives are set up to create a security"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,120",
+				"to": "00:02:16,760"
+			},
+			"offsets": {
+				"from": 132120,
+				"to": 136760
+			},
+			"text": " culture in this space. So up until now, most community attention and audit attention has"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,760",
+				"to": "00:02:22,480"
+			},
+			"offsets": {
+				"from": 136760,
+				"to": 142480
+			},
+			"text": " focused on tokens, ICOs, and other form of launch once walk away contracts. So these"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,480",
+				"to": "00:02:25,840"
+			},
+			"offsets": {
+				"from": 142480,
+				"to": 145840
+			},
+			"text": " are contracts that you stand up, they start running, and then they're not upgradable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,840",
+				"to": "00:02:29,840"
+			},
+			"offsets": {
+				"from": 145840,
+				"to": 149840
+			},
+			"text": " so you kind of take your hands off and let them run themselves. So this is great for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,840",
+				"to": "00:02:35,320"
+			},
+			"offsets": {
+				"from": 149840,
+				"to": 155320
+			},
+			"text": " some sort of business purposes, but unfortunately, it creates this sort of vicious cycle of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,320",
+				"to": "00:02:39,840"
+			},
+			"offsets": {
+				"from": 155320,
+				"to": 159840
+			},
+			"text": " incentives. So you launch your token, it goes to the moon, you pat yourself on the back,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,840",
+				"to": "00:02:44,800"
+			},
+			"offsets": {
+				"from": 159840,
+				"to": 164800
+			},
+			"text": " if you're Dan Larimer, maybe you restart that whole process a few times. And what does"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,800",
+				"to": "00:02:48,600"
+			},
+			"offsets": {
+				"from": 164800,
+				"to": 168600
+			},
+			"text": " that give you? So what it gives you is a lack of in-house security experience at many"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,600",
+				"to": "00:02:51,840"
+			},
+			"offsets": {
+				"from": 168600,
+				"to": 171840
+			},
+			"text": " of these projects, because you sort of don't need to engage in continual development and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,840",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 171840,
+				"to": 177000
+			},
+			"text": " continual security processes. It gives a big desire for rubber stamp audits to sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:01,160"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 181160
+			},
+			"text": " of approve something for a strict production deadline, sign off on it, and defer that risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,160",
+				"to": "00:03:05,120"
+			},
+			"offsets": {
+				"from": 181160,
+				"to": 185120
+			},
+			"text": " sort of onto someone else. And it gives zero incentive to set up the kind of security"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,120",
+				"to": "00:03:09,120"
+			},
+			"offsets": {
+				"from": 185120,
+				"to": 189120
+			},
+			"text": " lifecycle processes we have in this space. So I'm going to go back to James Mickens, who"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,120",
+				"to": "00:03:13,960"
+			},
+			"offsets": {
+				"from": 189120,
+				"to": 193960
+			},
+			"text": " argued that for the broader security community, as a whole, we need a more holistic view of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,960",
+				"to": "00:03:18,360"
+			},
+			"offsets": {
+				"from": 193960,
+				"to": 198360
+			},
+			"text": " security. And that really the high level goal of computer security when you break it down"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,360",
+				"to": "00:03:22,560"
+			},
+			"offsets": {
+				"from": 198360,
+				"to": 202560
+			},
+			"text": " is to ensure that the systems we're building will do the right thing even in the presence"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,560",
+				"to": "00:03:27,280"
+			},
+			"offsets": {
+				"from": 202560,
+				"to": 207280
+			},
+			"text": " of malicious inputs. Now you might say, what is the right thing? Is the right thing that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,280",
+				"to": "00:03:31,200"
+			},
+			"offsets": {
+				"from": 207280,
+				"to": 211200
+			},
+			"text": " what these Cartesian things we've been talking about before? And actually, these are too"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,200",
+				"to": "00:03:36,400"
+			},
+			"offsets": {
+				"from": 211200,
+				"to": 216400
+			},
+			"text": " simple in a world where technology sort of pervades and impacts every aspect of our lives."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,400",
+				"to": "00:03:39,840"
+			},
+			"offsets": {
+				"from": 216400,
+				"to": 219840
+			},
+			"text": " It's no longer sufficient to just ask, can someone access a resource, can someone steal"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,840",
+				"to": "00:03:44,440"
+			},
+			"offsets": {
+				"from": 219840,
+				"to": 224440
+			},
+			"text": " my tokens? We have to ask, as a security community, what guarantees do we want these systems to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,440",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 224440,
+				"to": 230000
+			},
+			"text": " provide their users? And we have to reason about broader and more nebulous moral questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:54,160"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 234160
+			},
+			"text": " So for example, should a particular action be possible from a moral perspective? And"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,160",
+				"to": "00:04:00,440"
+			},
+			"offsets": {
+				"from": 234160,
+				"to": 240440
+			},
+			"text": " if so, how do we get socially beneficial outcomes out of our systems? So in a nutshell, basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,440",
+				"to": "00:04:06,280"
+			},
+			"offsets": {
+				"from": 240440,
+				"to": 246280
+			},
+			"text": " the role of security is to separate the good from the inscrutable. So a good system, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,280",
+				"to": "00:04:11,520"
+			},
+			"offsets": {
+				"from": 246280,
+				"to": 251520
+			},
+			"text": " a system that does what users expect. It leads to socially good outcomes. And it fails in"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,520",
+				"to": "00:04:16,760"
+			},
+			"offsets": {
+				"from": 251520,
+				"to": 256760
+			},
+			"text": " known and predictable ways that the user is aware of before they engage with the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,760",
+				"to": "00:04:21,680"
+			},
+			"offsets": {
+				"from": 256760,
+				"to": 261680
+			},
+			"text": " And inscrutable systems are systems that often violate the expectations of their users. They"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,680",
+				"to": "00:04:26,080"
+			},
+			"offsets": {
+				"from": 261680,
+				"to": 266080
+			},
+			"text": " lead to socially negative or socially morally bad outcomes. And they fail in unpredictable"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,080",
+				"to": "00:04:31,080"
+			},
+			"offsets": {
+				"from": 266080,
+				"to": 271080
+			},
+			"text": " and surprising and often catastrophic ways. So as a security community, how do we separate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,080",
+				"to": "00:04:35,160"
+			},
+			"offsets": {
+				"from": 271080,
+				"to": 275160
+			},
+			"text": " these two kinds of systems? Well, we sort of lean on this rich culture and this rich"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,160",
+				"to": "00:04:40,880"
+			},
+			"offsets": {
+				"from": 275160,
+				"to": 280880
+			},
+			"text": " tradition and this rich history of extensive modeling, formal modeling and proofs, field"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,880",
+				"to": "00:04:45,520"
+			},
+			"offsets": {
+				"from": 280880,
+				"to": 285520
+			},
+			"text": " data, philosophical reflections and reviews on the type of modeling and the type of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,520",
+				"to": "00:04:49,520"
+			},
+			"offsets": {
+				"from": 285520,
+				"to": 289520
+			},
+			"text": " we're using and whether that's actually getting us the type of security we really want, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,520",
+				"to": "00:04:52,920"
+			},
+			"offsets": {
+				"from": 289520,
+				"to": 292920
+			},
+			"text": " experience from all of you guys, people in the industry, people who are actually building"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,920",
+				"to": "00:04:58,800"
+			},
+			"offsets": {
+				"from": 292920,
+				"to": 298800
+			},
+			"text": " things and are on the ground every day, talking to users and putting these systems into production."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,800",
+				"to": "00:05:04,040"
+			},
+			"offsets": {
+				"from": 298800,
+				"to": 304040
+			},
+			"text": " So you might say, Phil, I saw you use the poo emoji instead of inscrutable. And I actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,040",
+				"to": "00:05:08,440"
+			},
+			"offsets": {
+				"from": 304040,
+				"to": 308440
+			},
+			"text": " blamed Twitter for everything in this talk. So I ran two polls about this talk. If you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,440",
+				"to": "00:05:12,280"
+			},
+			"offsets": {
+				"from": 308440,
+				"to": 312280
+			},
+			"text": " hate the talk, what you should probably do is follow me on Twitter after and vote in"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,280",
+				"to": "00:05:16,200"
+			},
+			"offsets": {
+				"from": 312280,
+				"to": 316200
+			},
+			"text": " the next poll and maybe you'll like the next one more. And if you did vote in the poll,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,200",
+				"to": "00:05:21,440"
+			},
+			"offsets": {
+				"from": 316200,
+				"to": 321440
+			},
+			"text": " then it's all your fault, I guess. So this is the main thesis of my talk and this is sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,440",
+				"to": "00:05:24,600"
+			},
+			"offsets": {
+				"from": 321440,
+				"to": 324600
+			},
+			"text": " of what we're going to be focusing on for the rest of the talk. And that is the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,600",
+				"to": "00:05:29,720"
+			},
+			"offsets": {
+				"from": 324600,
+				"to": 329720
+			},
+			"text": " that we simply don't understand how to build principled, secure, smart contract systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,720",
+				"to": "00:05:35,240"
+			},
+			"offsets": {
+				"from": 329720,
+				"to": 335240
+			},
+			"text": " at all yet. So this is not a -- it's a little bit of a doing loom talk, but it's not completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,240",
+				"to": "00:05:39,440"
+			},
+			"offsets": {
+				"from": 335240,
+				"to": 339440
+			},
+			"text": " hopeless. We are sort of moving in the right direction and there is, you know, quite a"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,440",
+				"to": "00:05:43,560"
+			},
+			"offsets": {
+				"from": 339440,
+				"to": 343560
+			},
+			"text": " chance that we will be able to eventually understand how to build these systems. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,560",
+				"to": "00:05:47,720"
+			},
+			"offsets": {
+				"from": 343560,
+				"to": 347720
+			},
+			"text": " right now we do not. So I'm going to say that again, we simply don't understand how to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,720",
+				"to": "00:05:52,080"
+			},
+			"offsets": {
+				"from": 347720,
+				"to": 352080
+			},
+			"text": " principled and secure smart contract systems yet. And I'm going to prove this in three"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,080",
+				"to": "00:05:56,640"
+			},
+			"offsets": {
+				"from": 352080,
+				"to": 356640
+			},
+			"text": " lemmas. So the first one I'm going to show that many decks are inscrutable. We do not"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,640",
+				"to": "00:06:01,320"
+			},
+			"offsets": {
+				"from": 356640,
+				"to": 361320
+			},
+			"text": " understand how to build a secure decks for our users right now as a community from sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,320",
+				"to": "00:06:07,160"
+			},
+			"offsets": {
+				"from": 361320,
+				"to": 367160
+			},
+			"text": " of a theoretically optimal and an academic standpoint, as well as from a practical standpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,160",
+				"to": "00:06:11,720"
+			},
+			"offsets": {
+				"from": 367160,
+				"to": 371720
+			},
+			"text": " I'm going to talk about why on-chain voting is also inscrutable. So we don't understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,720",
+				"to": "00:06:16,440"
+			},
+			"offsets": {
+				"from": 371720,
+				"to": 376440
+			},
+			"text": " how to build a good on-chain voting system. This implies that building anything more"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,440",
+				"to": "00:06:20,520"
+			},
+			"offsets": {
+				"from": 376440,
+				"to": 380520
+			},
+			"text": " complex, especially when you're using one of these two pieces somewhere in your system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,520",
+				"to": "00:06:24,640"
+			},
+			"offsets": {
+				"from": 380520,
+				"to": 384640
+			},
+			"text": " is also going to lead to something that's inscrutable. And so these three lemmas together"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,640",
+				"to": "00:06:28,280"
+			},
+			"offsets": {
+				"from": 384640,
+				"to": 388280
+			},
+			"text": " are going to prove that we just don't know how to build even the simplest mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,280",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 388280,
+				"to": 392000
+			},
+			"text": " And then I'm going to talk about why this is sort of threatening to Ethereum as a whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:35,920"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 395920
+			},
+			"text": " and the security of Ethereum as a whole, as well as what we can do about it. So let me"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,920",
+				"to": "00:06:40,160"
+			},
+			"offsets": {
+				"from": 395920,
+				"to": 400160
+			},
+			"text": " tell you a story. There's this fascinating book called Flash Boys, which is sort of about"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,160",
+				"to": "00:06:45,520"
+			},
+			"offsets": {
+				"from": 400160,
+				"to": 405520
+			},
+			"text": " this band of traders on Wall Street who figured out that by sort of cutting down the latency"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,520",
+				"to": "00:06:50,320"
+			},
+			"offsets": {
+				"from": 405520,
+				"to": 410320
+			},
+			"text": " people we're using by a little bit and getting access to sort of very quick market in efficiencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,320",
+				"to": "00:06:55,240"
+			},
+			"offsets": {
+				"from": 410320,
+				"to": 415240
+			},
+			"text": " that were momentary. In a continuous market you could actually profit systematically and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,240",
+				"to": "00:06:59,720"
+			},
+			"offsets": {
+				"from": 415240,
+				"to": 419720
+			},
+			"text": " extract mechanical rent out of the market itself, regardless of sort of how the market"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,720",
+				"to": "00:07:04,040"
+			},
+			"offsets": {
+				"from": 419720,
+				"to": 424040
+			},
+			"text": " was moving or what users actually wanted to trade. So it's a fascinating book. And I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,040",
+				"to": "00:07:08,680"
+			},
+			"offsets": {
+				"from": 424040,
+				"to": 428680
+			},
+			"text": " going to tell you the story of Flash Boys 2.0, which is a very similar story to that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,680",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 428680,
+				"to": 435000
+			},
+			"text": " but on the Ethereum network. So who are the Flash Boys 2.0? Well it's Yoon Shili and Xion Zhao"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:18,880"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 438880
+			},
+			"text": " who are primarily responsible for the initial work of coding and operating the trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,880",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 438880,
+				"to": 443000
+			},
+			"text": " bot that I'm going to be talking about. As well as myself, Lauren's bride and bak,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:29,760"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 449760
+			},
+			"text": " Ido Bentov, Ari Jules, Tyler Kelle and Raphael Pass. And these are all affiliated with Cornell"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,760",
+				"to": "00:07:35,480"
+			},
+			"offsets": {
+				"from": 449760,
+				"to": 455480
+			},
+			"text": " or Cornell Tech. So Lauren's and Tyler are actually here at this conference. I highly"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,480",
+				"to": "00:07:38,840"
+			},
+			"offsets": {
+				"from": 455480,
+				"to": 458840
+			},
+			"text": " suggest you find them and talk to them about this work. And they're also giving a talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,840",
+				"to": "00:07:44,400"
+			},
+			"offsets": {
+				"from": 458840,
+				"to": 464400
+			},
+			"text": " tomorrow on one potential mitigating solution to this kind of problem. So this story starts"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,400",
+				"to": "00:07:49,360"
+			},
+			"offsets": {
+				"from": 464400,
+				"to": 469360
+			},
+			"text": " on August 13, 2017 when we published this blog post about the cost of decentralization in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,360",
+				"to": "00:07:54,480"
+			},
+			"offsets": {
+				"from": 469360,
+				"to": 474480
+			},
+			"text": " zero X and Etherdelta. This was over a year ago. And what we said in that blog post is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,480",
+				"to": "00:07:59,240"
+			},
+			"offsets": {
+				"from": 474480,
+				"to": 479240
+			},
+			"text": " that decentralized exchange leaves users vulnerable to minor front-running. That means if a user"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,240",
+				"to": "00:08:04,800"
+			},
+			"offsets": {
+				"from": 479240,
+				"to": 484800
+			},
+			"text": " comes and puts in an order on a decentralized exchange, a minor can see that and can, with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,800",
+				"to": "00:08:08,960"
+			},
+			"offsets": {
+				"from": 484800,
+				"to": 488960
+			},
+			"text": " guaranteed profit essentially, insert their own transactions on either side of that order"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,960",
+				"to": "00:08:13,360"
+			},
+			"offsets": {
+				"from": 488960,
+				"to": 493360
+			},
+			"text": " to sandwich that order. This is something that's frowned on in regular markets if you're doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,360",
+				"to": "00:08:17,720"
+			},
+			"offsets": {
+				"from": 493360,
+				"to": 497720
+			},
+			"text": " activity like this, either the market design will try to design to make sure you can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,720",
+				"to": "00:08:21,800"
+			},
+			"offsets": {
+				"from": 497720,
+				"to": 501800
+			},
+			"text": " do that, or you'll get banned from whoever broke your trading through or whatever. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,800",
+				"to": "00:08:26,040"
+			},
+			"offsets": {
+				"from": 501800,
+				"to": 506040
+			},
+			"text": " in on-chain systems, this is very prevalent. And not only that, but it actually gets worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,040",
+				"to": "00:08:29,800"
+			},
+			"offsets": {
+				"from": 506040,
+				"to": 509800
+			},
+			"text": " So many of the systems we've built now have slow cancellation, which means that because"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,800",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 509800,
+				"to": 513000
+			},
+			"text": " an order is sitting on the blockchain and you have to bring your cancellation to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:37,760"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 517760
+			},
+			"text": " blockchain, by the time you go to cancel your order, if the price has changed, essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,760",
+				"to": "00:08:41,800"
+			},
+			"offsets": {
+				"from": 517760,
+				"to": 521800
+			},
+			"text": " that's a juicy order for minors to come take quickly before you're able to cancel it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,800",
+				"to": "00:08:45,440"
+			},
+			"offsets": {
+				"from": 521800,
+				"to": 525440
+			},
+			"text": " And you're just going to waste the gas price of your cancellation. There's also an issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,440",
+				"to": "00:08:49,160"
+			},
+			"offsets": {
+				"from": 525440,
+				"to": 529160
+			},
+			"text": " of high gas costs for competing transactions. So multiple transactions trying to take a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,160",
+				"to": "00:08:53,600"
+			},
+			"offsets": {
+				"from": 529160,
+				"to": 533600
+			},
+			"text": " juicy order that's on the blockchain, essentially engage in this bidding war on gas to see who"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,600",
+				"to": "00:08:58,520"
+			},
+			"offsets": {
+				"from": 533600,
+				"to": 538520
+			},
+			"text": " can get mined first by the minors and who can get that transaction. So zero X followed"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,520",
+				"to": "00:09:02,720"
+			},
+			"offsets": {
+				"from": 538520,
+				"to": 542720
+			},
+			"text": " this up later with a nice article about front-running, griefing, and the perils of virtual"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,720",
+				"to": "00:09:06,280"
+			},
+			"offsets": {
+				"from": 542720,
+				"to": 546280
+			},
+			"text": " settlement on the blockchain, where they sort of describe this process of minor front-running"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,280",
+				"to": "00:09:11,760"
+			},
+			"offsets": {
+				"from": 546280,
+				"to": 551760
+			},
+			"text": " and how minors insert their own transactions when assembling these blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,760",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 551760,
+				"to": 555000
+			},
+			"text": " Now you might say, Phil, you're in your ivory tower over there talking about this, but we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:19,840"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 559840
+			},
+			"text": " building real systems. That's not actually the case, so we practice what we preach."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,840",
+				"to": "00:09:26,960"
+			},
+			"offsets": {
+				"from": 559840,
+				"to": 566960
+			},
+			"text": " So we actually ran the numbers on this in the 24 hours on August 11, 2017. And on that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,960",
+				"to": "00:09:33,160"
+			},
+			"offsets": {
+				"from": 566960,
+				"to": 573160
+			},
+			"text": " day, you could have made approximately $4,500, or approximately $1.6 million a year, front-running"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,160",
+				"to": "00:09:37,440"
+			},
+			"offsets": {
+				"from": 573160,
+				"to": 577440
+			},
+			"text": " Ether Delta alone. So remember, this was before sort of the rise of many DEXs that came out"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,440",
+				"to": "00:09:42,840"
+			},
+			"offsets": {
+				"from": 577440,
+				"to": 582840
+			},
+			"text": " shortly after this work, as well as before many of the users started using these DEXs"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,840",
+				"to": "00:09:47,040"
+			},
+			"offsets": {
+				"from": 582840,
+				"to": 587040
+			},
+			"text": " with better UIs. So it's likely these numbers are actually much worse today. We also ran"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,040",
+				"to": "00:09:51,160"
+			},
+			"offsets": {
+				"from": 587040,
+				"to": 591160
+			},
+			"text": " an arbitrage bot and observed our own success rate of actually taking these opportunities"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,160",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 591160,
+				"to": 600000
+			},
+			"text": " at 58.3%, which applied approximately $2,500 a day in profit, or 8.32 each a day, in 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:06,520"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 606520
+			},
+			"text": " And of course, the reactions we got look something like this. Spoiler alert, we didn't. And so"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,520",
+				"to": "00:10:10,760"
+			},
+			"offsets": {
+				"from": 606520,
+				"to": 610760
+			},
+			"text": " quick warning, the next few slides contain preliminary data. I'm a big believer of sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,760",
+				"to": "00:10:14,240"
+			},
+			"offsets": {
+				"from": 610760,
+				"to": 614240
+			},
+			"text": " of doing science in the open and showing you guys what we have as soon as we have a form"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,240",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 614240,
+				"to": 618000
+			},
+			"text": " that we can show it to you in. So take this data with a grain of salt and sort of watch"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:21,400"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 621400
+			},
+			"text": " out on my Twitter for when I sort of tweet that this is finalized and you can really"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,400",
+				"to": "00:10:24,840"
+			},
+			"offsets": {
+				"from": 621400,
+				"to": 624840
+			},
+			"text": " have confidence in this data. And we're also going to be releasing it and open sourcing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,840",
+				"to": "00:10:29,520"
+			},
+			"offsets": {
+				"from": 624840,
+				"to": 629520
+			},
+			"text": " everything I talk about today for peer review within the next month or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,520",
+				"to": "00:10:33,600"
+			},
+			"offsets": {
+				"from": 629520,
+				"to": 633600
+			},
+			"text": " So quantifying the front-running problem. So between around blocks, 3.87 million and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,600",
+				"to": "00:10:39,440"
+			},
+			"offsets": {
+				"from": 633600,
+				"to": 639440
+			},
+			"text": " around blocks, 6.6 million, which was I think a week or two ago, we saw around 2,500,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,440",
+				"to": "00:10:44,960"
+			},
+			"offsets": {
+				"from": 639440,
+				"to": 644960
+			},
+			"text": " of these programmatic arbitrage bot transactions, which is about 30% of all blocks on the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,960",
+				"to": "00:10:49,920"
+			},
+			"offsets": {
+				"from": 644960,
+				"to": 649920
+			},
+			"text": " in that time containing such a transaction. We also saw 21 trillion total Guey bid in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,920",
+				"to": "00:10:56,240"
+			},
+			"offsets": {
+				"from": 649920,
+				"to": 656240
+			},
+			"text": " the network for the gas to pay for these transactions, which paid for $989 billion, or sorry, bid"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,240",
+				"to": "00:11:00,880"
+			},
+			"offsets": {
+				"from": 656240,
+				"to": 660880
+			},
+			"text": " at $989 billion, the transaction could potentially use less than it bid. And that's equivalent"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,880",
+				"to": "00:11:05,440"
+			},
+			"offsets": {
+				"from": 660880,
+				"to": 665440
+			},
+			"text": " to about 120,000 full blocks of gas. So you can see this is already happening actively"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,440",
+				"to": "00:11:10,240"
+			},
+			"offsets": {
+				"from": 665440,
+				"to": 670240
+			},
+			"text": " on the system today. Now let's sort of zoom in a little bit and look at the graphical"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,240",
+				"to": "00:11:13,840"
+			},
+			"offsets": {
+				"from": 670240,
+				"to": 673840
+			},
+			"text": " data of what this market looks like. So that purple line over there is the date we published"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,840",
+				"to": "00:11:18,320"
+			},
+			"offsets": {
+				"from": 673840,
+				"to": 678320
+			},
+			"text": " the post. You can see before that it was maybe us trading around and experimenting a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,320",
+				"to": "00:11:24,080"
+			},
+			"offsets": {
+				"from": 678320,
+				"to": 684080
+			},
+			"text": " in one bot. And shortly after that, sort of this rapid professionalized economy rose up"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,080",
+				"to": "00:11:29,120"
+			},
+			"offsets": {
+				"from": 684080,
+				"to": 689120
+			},
+			"text": " taking these arbitrage opportunities often competitively. So the way you should read this graph is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,120",
+				"to": "00:11:36,880"
+			},
+			"offsets": {
+				"from": 689120,
+				"to": 696880
+			},
+			"text": " top line of the top graph is the Guey bid, including failures. And what that means is we"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,880",
+				"to": "00:11:40,800"
+			},
+			"offsets": {
+				"from": 696880,
+				"to": 700800
+			},
+			"text": " include transactions that didn't necessarily successfully arbitrage things. And we're using a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,800",
+				"to": "00:11:45,680"
+			},
+			"offsets": {
+				"from": 700800,
+				"to": 705680
+			},
+			"text": " pretty loose heuristic, which might accidentally identify transactions that are trading programmatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,680",
+				"to": "00:11:49,680"
+			},
+			"offsets": {
+				"from": 705680,
+				"to": 709680
+			},
+			"text": " through DEXIS for other reasons. So we're looking through that data manually and just validating"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,680",
+				"to": "00:11:53,280"
+			},
+			"offsets": {
+				"from": 709680,
+				"to": 713280
+			},
+			"text": " it, take this with a grain of salt right now. But approximately this is what the shape of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,280",
+				"to": "00:11:58,080"
+			},
+			"offsets": {
+				"from": 713280,
+				"to": 718080
+			},
+			"text": " market looks like. And the way you should read this is essentially we chunked up time into"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,080",
+				"to": "00:12:02,080"
+			},
+			"offsets": {
+				"from": 718080,
+				"to": 722080
+			},
+			"text": " 10,000 block intervals and just looked at how much gas and Guey was being used in each of those"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,080",
+				"to": "00:12:06,400"
+			},
+			"offsets": {
+				"from": 722080,
+				"to": 726400
+			},
+			"text": " 10,000 block intervals. So it's not actually a moving average, sorry for that misleading label."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,400",
+				"to": "00:12:11,840"
+			},
+			"offsets": {
+				"from": 726400,
+				"to": 731840
+			},
+			"text": " But if you see, for example, the bottom line, 15 billion gas, that means in those 10,000 blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,840",
+				"to": "00:12:17,920"
+			},
+			"offsets": {
+				"from": 731840,
+				"to": 737920
+			},
+			"text": " 15 billion total gas was sort of bid, which means 1.5 million gas per block was demanded by these"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,920",
+				"to": "00:12:23,360"
+			},
+			"offsets": {
+				"from": 737920,
+				"to": 743360
+			},
+			"text": " arbitrageers. The lower two lines show the successful arbitrage rates. And these are"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,360",
+				"to": "00:12:26,800"
+			},
+			"offsets": {
+				"from": 743360,
+				"to": 746800
+			},
+			"text": " transactions which actually manage to execute trades on a DEX programmatically through other"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,800",
+				"to": "00:12:35,440"
+			},
+			"offsets": {
+				"from": 746800,
+				"to": 755440
+			},
+			"text": " smart contracts. And the bottom red line is the gas used and the top is the Guey bid. So again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,440",
+				"to": "00:12:39,760"
+			},
+			"offsets": {
+				"from": 755440,
+				"to": 759760
+			},
+			"text": " the Guey bid is the price you offer to pay and the gas uses the price you pay. So you can see this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,760",
+				"to": "00:12:44,080"
+			},
+			"offsets": {
+				"from": 759760,
+				"to": 764080
+			},
+			"text": " market has sort of been steadily increasing slowly in gas, but decreasing in the amount of gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,080",
+				"to": "00:12:48,720"
+			},
+			"offsets": {
+				"from": 764080,
+				"to": 768720
+			},
+			"text": " it's burning for two reasons. Number one, the general gas market has cooled off a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,720",
+				"to": "00:12:52,720"
+			},
+			"offsets": {
+				"from": 768720,
+				"to": 772720
+			},
+			"text": " since that sort of spike right after our blog post. And another one, users are actually making"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,720",
+				"to": "00:12:57,200"
+			},
+			"offsets": {
+				"from": 772720,
+				"to": 777200
+			},
+			"text": " smaller and smaller trades on these DEXs as they hit the mainstream, which means the average size"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,200",
+				"to": "00:13:02,800"
+			},
+			"offsets": {
+				"from": 777200,
+				"to": 782800
+			},
+			"text": " of the opportunity is decreasing over time. So we went and actually measured this market in much"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,800",
+				"to": "00:13:07,120"
+			},
+			"offsets": {
+				"from": 782800,
+				"to": 787120
+			},
+			"text": " more detailed because we wanted to know how are these bots that are doing this actually competing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,120",
+				"to": "00:13:12,080"
+			},
+			"offsets": {
+				"from": 787120,
+				"to": 792080
+			},
+			"text": " What does it take to be competitive in this market? So we deployed eight nodes with 256 peers each"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,080",
+				"to": "00:13:15,920"
+			},
+			"offsets": {
+				"from": 792080,
+				"to": 795920
+			},
+			"text": " deeply paired with the Ethereum network. Geo distributed this across three different server"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,920",
+				"to": "00:13:21,280"
+			},
+			"offsets": {
+				"from": 795920,
+				"to": 801280
+			},
+			"text": " providers in South and North America, Europe and Asia. We collected 215 million observations"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,280",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 801280,
+				"to": 806000
+			},
+			"text": " over a period of about a month and a half. And what an observation is, is essentially every time"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:30,640"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 810640
+			},
+			"text": " a peer sent us an arbitrage transaction, we record the precise time we saw it, synchronized to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,640",
+				"to": "00:13:36,320"
+			},
+			"offsets": {
+				"from": 810640,
+				"to": 816320
+			},
+			"text": " microsecond as well as which peer related and things like that. And the goal was to eventually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,320",
+				"to": "00:13:40,480"
+			},
+			"offsets": {
+				"from": 816320,
+				"to": 820480
+			},
+			"text": " sort of geo-locate these bots, ask where in the world are the latency advantage strongest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,480",
+				"to": "00:13:44,560"
+			},
+			"offsets": {
+				"from": 820480,
+				"to": 824560
+			},
+			"text": " as well as understand their operation and the dynamics between them and collect precise timing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,560",
+				"to": "00:13:49,120"
+			},
+			"offsets": {
+				"from": 824560,
+				"to": 829120
+			},
+			"text": " data on these auctions. So what did we see when we did that? This is what a typical competition"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,120",
+				"to": "00:13:53,680"
+			},
+			"offsets": {
+				"from": 829120,
+				"to": 833680
+			},
+			"text": " between two bots trying to take a profitable opportunity looks like. The graph is showing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,680",
+				"to": "00:13:58,080"
+			},
+			"offsets": {
+				"from": 833680,
+				"to": 838080
+			},
+			"text": " bids over time. So on the right is time passing. You can see the auction ends about two and a half"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,080",
+				"to": "00:14:02,880"
+			},
+			"offsets": {
+				"from": 838080,
+				"to": 842880
+			},
+			"text": " seconds after it starts. And the Y axis is sort of the gas price these bots are bidding for these"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,880",
+				"to": "00:14:07,360"
+			},
+			"offsets": {
+				"from": 842880,
+				"to": 847360
+			},
+			"text": " opportunities. So you can see two things. Number one, the bids are happening very fast. Many bids in"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,360",
+				"to": "00:14:12,160"
+			},
+			"offsets": {
+				"from": 847360,
+				"to": 852160
+			},
+			"text": " two minutes. And also the green dot is the bot that eventually won and the red dot is the one that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,160",
+				"to": "00:14:16,320"
+			},
+			"offsets": {
+				"from": 852160,
+				"to": 856320
+			},
+			"text": " got mined and paid the fees but didn't get the opportunity. So how does this game work? Well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,320",
+				"to": "00:14:20,320"
+			},
+			"offsets": {
+				"from": 856320,
+				"to": 860320
+			},
+			"text": " at some point in time, some random orange line will drop on this graph. And that orange line is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,320",
+				"to": "00:14:24,480"
+			},
+			"offsets": {
+				"from": 860320,
+				"to": 864480
+			},
+			"text": " when the block template was formed by the pool mining the block. And when the pool that eventually"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,480",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 864480,
+				"to": 868000
+			},
+			"text": " is going to mine, the successful block forms that template and includes those transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 872000
+			},
+			"text": " the two transactions that at that point in time have paid the highest price will be included."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:35,520"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 875520
+			},
+			"text": " So in that case, it's those two. In this case, it would be those two and the guy on the right would"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,520",
+				"to": "00:14:39,520"
+			},
+			"offsets": {
+				"from": 875520,
+				"to": 879520
+			},
+			"text": " win and the guy on the left would lose. So this actually induces a latency war because whoever sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,520",
+				"to": "00:14:44,160"
+			},
+			"offsets": {
+				"from": 879520,
+				"to": 884160
+			},
+			"text": " of had the last word in this back and forth is the most likely to win the market. And it actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,160",
+				"to": "00:14:48,320"
+			},
+			"offsets": {
+				"from": 884160,
+				"to": 888320
+			},
+			"text": " gets even weirder than that. So here is an example of an auction in which the winner and the loser"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,320",
+				"to": "00:14:52,560"
+			},
+			"offsets": {
+				"from": 888320,
+				"to": 892560
+			},
+			"text": " happened right at the start of the auction. And the bots kept bidding afterwards even though the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,560",
+				"to": "00:14:57,040"
+			},
+			"offsets": {
+				"from": 892560,
+				"to": 897040
+			},
+			"text": " winner and loser were already locked in. So why did this happen? This happened because sort of in"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,040",
+				"to": "00:15:00,880"
+			},
+			"offsets": {
+				"from": 897040,
+				"to": 900880
+			},
+			"text": " the network, there's this difference between when this orange line drops that sort of locks in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,880",
+				"to": "00:15:06,400"
+			},
+			"offsets": {
+				"from": 900880,
+				"to": 906400
+			},
+			"text": " auction results. And when this red line drops that actually finds the solution to the block on an"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,400",
+				"to": "00:15:11,280"
+			},
+			"offsets": {
+				"from": 906400,
+				"to": 911280
+			},
+			"text": " ASIC and distributes it to the rest of the network. So by making the distance between these orange"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,280",
+				"to": "00:15:15,360"
+			},
+			"offsets": {
+				"from": 911280,
+				"to": 915360
+			},
+			"text": " and red lines smaller, the pool could have taken a later bid and potentially profited a lot more"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,360",
+				"to": "00:15:19,200"
+			},
+			"offsets": {
+				"from": 915360,
+				"to": 919200
+			},
+			"text": " from this auction than it did. But instead, the pool was a little bit inefficient. It took about"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,200",
+				"to": "00:15:25,040"
+			},
+			"offsets": {
+				"from": 919200,
+				"to": 925040
+			},
+			"text": " seven seconds without refreshing its block and it lost out on a few fees as a result."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,080",
+				"to": "00:15:30,960"
+			},
+			"offsets": {
+				"from": 926080,
+				"to": 930960
+			},
+			"text": " So I'm going to claim that the transparency in this mechanism is a lie because when you read the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,960",
+				"to": "00:15:35,520"
+			},
+			"offsets": {
+				"from": 930960,
+				"to": 935520
+			},
+			"text": " Etherdelta smart contract or the zero X smart contract, it doesn't imply this game at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,520",
+				"to": "00:15:39,760"
+			},
+			"offsets": {
+				"from": 935520,
+				"to": 939760
+			},
+			"text": " But the real game people are playing on these networks from a game theoretic perspective is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,760",
+				"to": "00:15:43,920"
+			},
+			"offsets": {
+				"from": 939760,
+				"to": 943920
+			},
+			"text": " continuous time. It's imperfect information because you don't know when that orange line is going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,920",
+				"to": "00:15:49,920"
+			},
+			"offsets": {
+				"from": 943920,
+				"to": 949920
+			},
+			"text": " drop. It's all pay because even losing bots pay gas for attempted execution. It's probabilistic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,920",
+				"to": "00:15:54,320"
+			},
+			"offsets": {
+				"from": 949920,
+				"to": 954320
+			},
+			"text": " both in execution and duration. And it's rate limited because you can only send out transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,320",
+				"to": "00:16:00,720"
+			},
+			"offsets": {
+				"from": 954320,
+				"to": 960720
+			},
+			"text": " so fast on the Ethereum network. So this gives these bots a wide range of angles to optimize on to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,720",
+				"to": "00:16:05,200"
+			},
+			"offsets": {
+				"from": 960720,
+				"to": 965200
+			},
+			"text": " be more profitable at taking these opportunities. So our conclusion in the blog was to recommend"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,200",
+				"to": "00:16:08,880"
+			},
+			"offsets": {
+				"from": 965200,
+				"to": 968880
+			},
+			"text": " the centralized order book and say essentially there's a fundamental trade-off between who can"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,880",
+				"to": "00:16:13,440"
+			},
+			"offsets": {
+				"from": 968880,
+				"to": 973440
+			},
+			"text": " front-run you. Either you have an exchange operator who can front-run you if they do the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,440",
+				"to": "00:16:17,840"
+			},
+			"offsets": {
+				"from": 973440,
+				"to": 977840
+			},
+			"text": " routing and matching for your orders, or you have some sort of peer-to-peer network or blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,840",
+				"to": "00:16:21,920"
+			},
+			"offsets": {
+				"from": 977840,
+				"to": 981920
+			},
+			"text": " involved in your routing and your orders, at which point someone in an advantageous position on that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,920",
+				"to": "00:16:26,880"
+			},
+			"offsets": {
+				"from": 981920,
+				"to": 986880
+			},
+			"text": " network could potentially have information asymmetry advantages that lead to mechanical rent."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,880",
+				"to": "00:16:30,560"
+			},
+			"offsets": {
+				"from": 986880,
+				"to": 990560
+			},
+			"text": " And we prove that this is sort of fundamental no matter what kind of global peer-to-peer marketplace"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,560",
+				"to": "00:16:37,760"
+			},
+			"offsets": {
+				"from": 990560,
+				"to": 997760
+			},
+			"text": " you build. So just centralize it, maybe it will fix it, we don't know. All right, so the real"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,760",
+				"to": "00:16:42,720"
+			},
+			"offsets": {
+				"from": 997760,
+				"to": 1002720
+			},
+			"text": " competition here again is on latency, connectivity, etc., just like traditional HFT, just like Flash"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,720",
+				"to": "00:16:49,520"
+			},
+			"offsets": {
+				"from": 1002720,
+				"to": 1009520
+			},
+			"text": " Boys, etc. And the transparency is a lie because what we have on chain is actually not all the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,520",
+				"to": "00:16:52,960"
+			},
+			"offsets": {
+				"from": 1009520,
+				"to": 1012960
+			},
+			"text": " So of all the data I just showed you in the auctions, only one or two of those transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,960",
+				"to": "00:16:56,480"
+			},
+			"offsets": {
+				"from": 1012960,
+				"to": 1016480
+			},
+			"text": " even makes it to the chain or even makes it to Etherscan because most of them just get replaced"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,480",
+				"to": "00:17:01,040"
+			},
+			"offsets": {
+				"from": 1016480,
+				"to": 1021040
+			},
+			"text": " so quickly that no one in the network sees them. So sort of under this surface mechanism that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,040",
+				"to": "00:17:05,760"
+			},
+			"offsets": {
+				"from": 1021040,
+				"to": 1025760
+			},
+			"text": " we're building that looks simple, we have this iceberg of sort of bot strategies and interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,760",
+				"to": "00:17:10,880"
+			},
+			"offsets": {
+				"from": 1025760,
+				"to": 1030880
+			},
+			"text": " bots and weird liquidity pools, backroom channels of influence, and potential black swan events if"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,880",
+				"to": "00:17:16,240"
+			},
+			"offsets": {
+				"from": 1030880,
+				"to": 1036240
+			},
+			"text": " these things behave poorly. So there's actually a lot of complexity that still remains out of line."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,240",
+				"to": "00:17:19,760"
+			},
+			"offsets": {
+				"from": 1036240,
+				"to": 1039760
+			},
+			"text": " It's not enough to just say, \"Oh, we're making the trades more transparent and therefore we've,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,760",
+				"to": "00:17:23,360"
+			},
+			"offsets": {
+				"from": 1039760,
+				"to": 1043360
+			},
+			"text": " this is bringing our users more security.\" That is absolutely not necessarily the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,360",
+				"to": "00:17:27,600"
+			},
+			"offsets": {
+				"from": 1043360,
+				"to": 1047600
+			},
+			"text": " So now you might be saying to me, \"Phil, isn't that just an efficient market? Isn't that just how"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,600",
+				"to": "00:17:33,040"
+			},
+			"offsets": {
+				"from": 1047600,
+				"to": 1053040
+			},
+			"text": " the world works?\" So let's talk about user experience in this brave new world of DEXs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,040",
+				"to": "00:17:38,240"
+			},
+			"offsets": {
+				"from": 1053040,
+				"to": 1058240
+			},
+			"text": " So here's a user who says, \"Would you have the heart to return 24 East to my address?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,240",
+				"to": "00:17:42,800"
+			},
+			"offsets": {
+				"from": 1058240,
+				"to": 1062800
+			},
+			"text": " I am a stay-at-home parent and day trade to keep my family above water. In your heart, you know this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,800",
+				"to": "00:17:51,600"
+			},
+			"offsets": {
+				"from": 1062800,
+				"to": 1071600
+			},
+			"text": " isn't right.\" Here's another one. \"I have faith in you, man. Faith in you, man. Please send my"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,600",
+				"to": "00:17:55,280"
+			},
+			"offsets": {
+				"from": 1071600,
+				"to": 1075280
+			},
+			"text": " money back.\" So these are users who went to cancel their order and were immediately front run by"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,280",
+				"to": "00:18:00,880"
+			},
+			"offsets": {
+				"from": 1075280,
+				"to": 1080880
+			},
+			"text": " these bots who sort of detected a fat finger and essentially took all their money. And here's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,880",
+				"to": "00:18:04,960"
+			},
+			"offsets": {
+				"from": 1080880,
+				"to": 1084960
+			},
+			"text": " another one. \"Please, please, please, this was an accident. I did not mean to make this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,960",
+				"to": "00:18:09,840"
+			},
+			"offsets": {
+				"from": 1084960,
+				"to": 1089840
+			},
+			"text": " Please, can we reverse this? Please be kind and karma will be kind for you too. I'm a single parent"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,840",
+				"to": "00:18:14,480"
+			},
+			"offsets": {
+				"from": 1089840,
+				"to": 1094480
+			},
+			"text": " trying to make ends meet at a job I hate. Please have some mercy.\" And Benjamin Hoffman goes on to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,480",
+				"to": "00:18:21,040"
+			},
+			"offsets": {
+				"from": 1094480,
+				"to": 1101040
+			},
+			"text": " write again, \"It's all I have. Please have some mercy.\" Or there's Alfie here who says, \"Please, please,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,040",
+				"to": "00:18:25,600"
+			},
+			"offsets": {
+				"from": 1101040,
+				"to": 1105600
+			},
+			"text": " please return at least one ETH. I give you the rest willingly if God ever asked you. I really"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,600",
+				"to": "00:18:31,040"
+			},
+			"offsets": {
+				"from": 1105600,
+				"to": 1111040
+			},
+			"text": " needed to continue my education. I might need to sell my car to pay.\" And last but not least,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,040",
+				"to": "00:18:35,920"
+			},
+			"offsets": {
+				"from": 1111040,
+				"to": 1115920
+			},
+			"text": " you have Rajesh Kumar here who says, \"Sir, this was an error order. This is all of my village rupee"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,920",
+				"to": "00:18:42,080"
+			},
+			"offsets": {
+				"from": 1115920,
+				"to": 1122080
+			},
+			"text": " I trade for them. If I do not receive back ETH, I will be in the intrac-- in scrutability, sir."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,080",
+				"to": "00:18:47,200"
+			},
+			"offsets": {
+				"from": 1122080,
+				"to": 1127200
+			},
+			"text": " Please.\" So you can see that this is something that's really impacting real users today, these"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,200",
+				"to": "00:18:51,200"
+			},
+			"offsets": {
+				"from": 1127200,
+				"to": 1131200
+			},
+			"text": " issues that we pointed out in 2017 and that most of the projects in this space just went on to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,200",
+				"to": "00:18:55,200"
+			},
+			"offsets": {
+				"from": 1131200,
+				"to": 1135200
+			},
+			"text": " ignore and launch anyway. And there are hundreds of these comments on the Etherscan comments of all"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,200",
+				"to": "00:18:58,960"
+			},
+			"offsets": {
+				"from": 1135200,
+				"to": 1138960
+			},
+			"text": " these trading bots that we've sort of found. So I encourage you to go look for yourself after the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,960",
+				"to": "00:19:06,560"
+			},
+			"offsets": {
+				"from": 1138960,
+				"to": 1146560
+			},
+			"text": " talk. And of course, we have a few comments like this. \"LOL, making people pay for their fat fingers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,560",
+				"to": "00:19:12,800"
+			},
+			"offsets": {
+				"from": 1146560,
+				"to": 1152800
+			},
+			"text": " how do you do this? Tell me your secret sauce.\" So the conclusion is we don't understand existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,800",
+				"to": "00:19:16,720"
+			},
+			"offsets": {
+				"from": 1152800,
+				"to": 1156720
+			},
+			"text": " decks designs or sort of how these will behave in the eventual game theoretic equilibrium of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,720",
+				"to": "00:19:21,840"
+			},
+			"offsets": {
+				"from": 1156720,
+				"to": 1161840
+			},
+			"text": " systems. And while we're sitting here in decadence at these conferences, going to parties, and enjoying"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,840",
+				"to": "00:19:26,320"
+			},
+			"offsets": {
+				"from": 1161840,
+				"to": 1166320
+			},
+			"text": " popping the champagne, real users are losing money on the systems we've built and it's having real"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,320",
+				"to": "00:19:30,720"
+			},
+			"offsets": {
+				"from": 1166320,
+				"to": 1170720
+			},
+			"text": " world impact on them. And unfortunately, a lot of the reaction in the space, a lot of the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,720",
+				"to": "00:19:35,840"
+			},
+			"offsets": {
+				"from": 1170720,
+				"to": 1175840
+			},
+			"text": " kind of looks like this. So instead, let's learn from history. We can look at a wide variety of work"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,840",
+				"to": "00:19:39,120"
+			},
+			"offsets": {
+				"from": 1175840,
+				"to": 1179120
+			},
+			"text": " on this kind of high frequency trading and market design. This is a recent paper I highly"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,120",
+				"to": "00:19:43,600"
+			},
+			"offsets": {
+				"from": 1179120,
+				"to": 1183600
+			},
+			"text": " recommend by Buddhist, Kranton, and Shim, which sort of says that these opportunities and mechanical"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,600",
+				"to": "00:19:49,680"
+			},
+			"offsets": {
+				"from": 1183600,
+				"to": 1189680
+			},
+			"text": " rents are fundamental inside continuous markets. And it's not just healthy competition because it"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,680",
+				"to": "00:19:55,520"
+			},
+			"offsets": {
+				"from": 1189680,
+				"to": 1195520
+			},
+			"text": " creates an arms race that induces mechanically a prisoner's dilemma and charges a liquidity tax"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,520",
+				"to": "00:19:59,840"
+			},
+			"offsets": {
+				"from": 1195520,
+				"to": 1199840
+			},
+			"text": " on the system that's paid by all of its users. And this actually gets worse with the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,840",
+				"to": "00:20:03,920"
+			},
+			"offsets": {
+				"from": 1199840,
+				"to": 1203920
+			},
+			"text": " So let's imagine we're a miner for a second. We have these transactions on decks as we're getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,920",
+				"to": "00:20:10,240"
+			},
+			"offsets": {
+				"from": 1203920,
+				"to": 1210240
+			},
+			"text": " fees F1, F2, F3. If we insert our own transactions here, suddenly we have F1, F2, F3 plus the profit"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,240",
+				"to": "00:20:14,480"
+			},
+			"offsets": {
+				"from": 1210240,
+				"to": 1214480
+			},
+			"text": " from the first transaction plus the profit from the second transaction. Or maybe we can switch"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,480",
+				"to": "00:20:18,880"
+			},
+			"offsets": {
+				"from": 1214480,
+				"to": 1218880
+			},
+			"text": " the order of transactions one and two, and then we get P3 and P4 instead, and that's actually more."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,880",
+				"to": "00:20:23,680"
+			},
+			"offsets": {
+				"from": 1218880,
+				"to": 1223680
+			},
+			"text": " So figuring out the optimal ordering and insertions here is actually an optimization problem that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,680",
+				"to": "00:20:28,480"
+			},
+			"offsets": {
+				"from": 1223680,
+				"to": 1228480
+			},
+			"text": " provably undecidable with Turing complete transactions and NP-Hard without, which makes it a substantial"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,480",
+				"to": "00:20:33,600"
+			},
+			"offsets": {
+				"from": 1228480,
+				"to": 1233600
+			},
+			"text": " vector for miner competition. Not only that, but in the long-term iterated game equilibrium,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,600",
+				"to": "00:20:38,240"
+			},
+			"offsets": {
+				"from": 1233600,
+				"to": 1238240
+			},
+			"text": " miners can out-compete non-mining arbitrage bots for these ordering opportunities and are"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,240",
+				"to": "00:20:42,480"
+			},
+			"offsets": {
+				"from": 1238240,
+				"to": 1242480
+			},
+			"text": " incentivized to sort of minimize those orange and red differences we were talking about earlier"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,480",
+				"to": "00:20:46,320"
+			},
+			"offsets": {
+				"from": 1242480,
+				"to": 1246320
+			},
+			"text": " in absurd levels to milliseconds or lower. If they don't do this, they just won't be competitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,320",
+				"to": "00:20:50,880"
+			},
+			"offsets": {
+				"from": 1246320,
+				"to": 1250880
+			},
+			"text": " with miners who are, and they'll be driven out of the system. So what you get is huge opportunities"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,880",
+				"to": "00:20:55,680"
+			},
+			"offsets": {
+				"from": 1250880,
+				"to": 1255680
+			},
+			"text": " that lead to reorgs, orphaning, selfish mining, fee estimator errors. We've seen this already"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,680",
+				"to": "00:21:00,720"
+			},
+			"offsets": {
+				"from": 1255680,
+				"to": 1260720
+			},
+			"text": " with systems like PowerH3D, and you get mining that's dominated by a small set of high-frequency"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,720",
+				"to": "00:21:05,520"
+			},
+			"offsets": {
+				"from": 1260720,
+				"to": 1265520
+			},
+			"text": " trading firms using proprietary relay and optimization networks just like we have on Wall Street."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,520",
+				"to": "00:21:10,400"
+			},
+			"offsets": {
+				"from": 1265520,
+				"to": 1270400
+			},
+			"text": " But not only that, these guys will also be powerful players in governance. So you can't have a system"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,400",
+				"to": "00:21:14,480"
+			},
+			"offsets": {
+				"from": 1270400,
+				"to": 1274480
+			},
+			"text": " that's full of intractable mechanisms that we don't understand that still secure. All right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,480",
+				"to": "00:21:18,080"
+			},
+			"offsets": {
+				"from": 1274480,
+				"to": 1278080
+			},
+			"text": " I'm going to talk about another simple mechanism here on-chain voting. So this is the one using the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,080",
+				"to": "00:21:23,040"
+			},
+			"offsets": {
+				"from": 1278080,
+				"to": 1283040
+			},
+			"text": " Ethereum example documentation, and we have two posts about this as well on hacking distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,040",
+				"to": "00:21:27,760"
+			},
+			"offsets": {
+				"from": 1283040,
+				"to": 1287760
+			},
+			"text": " and also my personal website, talking about how on-chain voting is open to trustless frictionless"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,760",
+				"to": "00:21:32,160"
+			},
+			"offsets": {
+				"from": 1287760,
+				"to": 1292160
+			},
+			"text": " bribery. It does not satisfy the classic properties and security literature of coercion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,160",
+				"to": "00:21:36,160"
+			},
+			"offsets": {
+				"from": 1292160,
+				"to": 1296160
+			},
+			"text": " resistance, receipt freedom, all these things people have been studying for over 30 years now"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,160",
+				"to": "00:21:40,880"
+			},
+			"offsets": {
+				"from": 1296160,
+				"to": 1300880
+			},
+			"text": " for real elections. We also released a vote buying mechanism for a carbon vote that you can use to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,880",
+				"to": "00:21:45,120"
+			},
+			"offsets": {
+				"from": 1300880,
+				"to": 1305120
+			},
+			"text": " publicly buy people's votes on that platform. And we described a new construction called the Dark"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,120",
+				"to": "00:21:49,200"
+			},
+			"offsets": {
+				"from": 1305120,
+				"to": 1309200
+			},
+			"text": " Dow, which is sort of this trustless hidden cartel that operates in trusted hardware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,200",
+				"to": "00:21:52,880"
+			},
+			"offsets": {
+				"from": 1309200,
+				"to": 1312880
+			},
+			"text": " where I can buy your vote. You don't have to give me control of your funds or anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,880",
+				"to": "00:21:57,840"
+			},
+			"offsets": {
+				"from": 1312880,
+				"to": 1317840
+			},
+			"text": " I'm only buying your vote for a specific vote, and you can tell how I'm going to buy it. And nobody"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,840",
+				"to": "00:22:02,480"
+			},
+			"offsets": {
+				"from": 1317840,
+				"to": 1322480
+			},
+			"text": " in the system can tell whose votes are bought, whose votes are sold, or how much money is even"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,480",
+				"to": "00:22:06,640"
+			},
+			"offsets": {
+				"from": 1322480,
+				"to": 1326640
+			},
+			"text": " bought or sold at any given time. So this can undermine the legitimacy of the process even"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,640",
+				"to": "00:22:10,560"
+			},
+			"offsets": {
+				"from": 1326640,
+				"to": 1330560
+			},
+			"text": " without having any money in it, because it's cryptographically there's simply no way to know"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,560",
+				"to": "00:22:14,400"
+			},
+			"offsets": {
+				"from": 1330560,
+				"to": 1334400
+			},
+			"text": " how far this attack has advanced. So I encourage you to check the details of that scheme in our"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,400",
+				"to": "00:22:20,480"
+			},
+			"offsets": {
+				"from": 1334400,
+				"to": 1340480
+			},
+			"text": " post. The conclusion is that we don't actually understand voting. Dark Dow can also be used in"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,480",
+				"to": "00:22:24,800"
+			},
+			"offsets": {
+				"from": 1340480,
+				"to": 1344800
+			},
+			"text": " other mechanisms in our space. So any sort of Nash equilibrium incentive model you set up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,800",
+				"to": "00:22:30,080"
+			},
+			"offsets": {
+				"from": 1344800,
+				"to": 1350080
+			},
+			"text": " you can modify using a Dark Dow by paying users to behave in a conditional way. And this motivates"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,080",
+				"to": "00:22:34,880"
+			},
+			"offsets": {
+				"from": 1350080,
+				"to": 1354880
+			},
+			"text": " the bribing attacker model, it motivates cooperative game theory, and it motivates using much stronger"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,880",
+				"to": "00:22:39,040"
+			},
+			"offsets": {
+				"from": 1354880,
+				"to": 1359040
+			},
+			"text": " models than we've been using for security in the blockchain space. And actually you can use the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,040",
+				"to": "00:22:43,440"
+			},
+			"offsets": {
+				"from": 1359040,
+				"to": 1363440
+			},
+			"text": " Dark Dow even to attack consensus itself, because proof of stake and proof of work are just a form"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,440",
+				"to": "00:22:49,120"
+			},
+			"offsets": {
+				"from": 1363440,
+				"to": 1369120
+			},
+			"text": " of voting. So I can pay you to censor someone or do a 51% attack or whatnot. So the conclusion is"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,120",
+				"to": "00:22:54,640"
+			},
+			"offsets": {
+				"from": 1369120,
+				"to": 1374640
+			},
+			"text": " that on-chain voting is inscrutable. So what about more complex mechanisms? This is a picture"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,640",
+				"to": "00:22:59,440"
+			},
+			"offsets": {
+				"from": 1374640,
+				"to": 1379440
+			},
+			"text": " from documentation a little bit old, a little bit outdated, but from a real project in the space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,440",
+				"to": "00:23:03,440"
+			},
+			"offsets": {
+				"from": 1379440,
+				"to": 1383440
+			},
+			"text": " and this is a more up-to-date version of that same picture. So as you can see, we're building"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,440",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1383440,
+				"to": 1388000
+			},
+			"text": " incredibly complex interacting mechanisms with a multitude of components, and we're looking at"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:12,080"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1392080
+			},
+			"text": " it and saying, well, it works because it works, right? But if you zoom into something like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,080",
+				"to": "00:23:18,480"
+			},
+			"offsets": {
+				"from": 1392080,
+				"to": 1398480
+			},
+			"text": " you see that, but one small piece of this sort of like mess of interactions is an admin multi-sig"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,480",
+				"to": "00:23:22,080"
+			},
+			"offsets": {
+				"from": 1398480,
+				"to": 1402080
+			},
+			"text": " that's eventually going to be replaced with something like on-chain voting. So again here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,080",
+				"to": "00:23:26,800"
+			},
+			"offsets": {
+				"from": 1402080,
+				"to": 1406800
+			},
+			"text": " because this on-chain voting feeds back into every single aspect of the security of these systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,800",
+				"to": "00:23:30,960"
+			},
+			"offsets": {
+				"from": 1406800,
+				"to": 1410960
+			},
+			"text": " and we simply don't even know how to build on-chain voting that's secure and incentive compatible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,960",
+				"to": "00:23:34,800"
+			},
+			"offsets": {
+				"from": 1410960,
+				"to": 1414800
+			},
+			"text": " how can we possibly build something like this that's incentive compatible? We simply don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,800",
+				"to": "00:23:41,760"
+			},
+			"offsets": {
+				"from": 1414800,
+				"to": 1421760
+			},
+			"text": " understand how to do that yet. So the conclusion is that any more complex mechanisms or any"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,760",
+				"to": "00:23:46,880"
+			},
+			"offsets": {
+				"from": 1421760,
+				"to": 1426880
+			},
+			"text": " form of sort of substantial complexity is inscrutable. And a corollary there is that we should stop"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,880",
+				"to": "00:23:51,040"
+			},
+			"offsets": {
+				"from": 1426880,
+				"to": 1431040
+			},
+			"text": " hyping these things up and stop selling them to regular users because we don't understand what"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,040",
+				"to": "00:23:54,720"
+			},
+			"offsets": {
+				"from": 1431040,
+				"to": 1434720
+			},
+			"text": " they are, we don't understand how to build them, we understand that they work because they work"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,720",
+				"to": "00:23:59,360"
+			},
+			"offsets": {
+				"from": 1434720,
+				"to": 1439360
+			},
+			"text": " so far, but they're not necessarily more transparent and they're not necessarily better. So when you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,360",
+				"to": "00:24:03,200"
+			},
+			"offsets": {
+				"from": 1439360,
+				"to": 1443200
+			},
+			"text": " selling this to normal people and saying there's no risk here, you're doing them a great to service."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,200",
+				"to": "00:24:08,480"
+			},
+			"offsets": {
+				"from": 1443200,
+				"to": 1448480
+			},
+			"text": " All right, so why did we get here? I'm going to kick it back to James Mickens who has this sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,480",
+				"to": "00:24:12,400"
+			},
+			"offsets": {
+				"from": 1448480,
+				"to": 1452400
+			},
+			"text": " scathing critique of the technology industry in that talk that I suggest that you all watch."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,400",
+				"to": "00:24:18,800"
+			},
+			"offsets": {
+				"from": 1452400,
+				"to": 1458800
+			},
+			"text": " And we got here because often technology assume that technology is value neutral. So that means"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,800",
+				"to": "00:24:23,280"
+			},
+			"offsets": {
+				"from": 1458800,
+				"to": 1463280
+			},
+			"text": " that you deploy a technology and that automatically leads to good outcomes for everyone. So new kinds"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,280",
+				"to": "00:24:27,360"
+			},
+			"offsets": {
+				"from": 1463280,
+				"to": 1467360
+			},
+			"text": " of technology should just be developed and deployed as quickly as possible without taking some any"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,360",
+				"to": "00:24:31,600"
+			},
+			"offsets": {
+				"from": 1467360,
+				"to": 1471600
+			},
+			"text": " time to reflect on a general idea of how the technology works or how it will develop or what"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,600",
+				"to": "00:24:36,400"
+			},
+			"offsets": {
+				"from": 1471600,
+				"to": 1476400
+			},
+			"text": " the social impact of deploying these technologies in the widespread fashion will be. And this belief"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,400",
+				"to": "00:24:40,480"
+			},
+			"offsets": {
+				"from": 1476400,
+				"to": 1480480
+			},
+			"text": " sort of comes with the idea that history is uninteresting because the past has nothing to teach us."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,480",
+				"to": "00:24:44,400"
+			},
+			"offsets": {
+				"from": 1480480,
+				"to": 1484400
+			},
+			"text": " So because we're reinventing everything anyway, so we might as well not look back at old academic"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,400",
+				"to": "00:24:49,760"
+			},
+			"offsets": {
+				"from": 1484400,
+				"to": 1489760
+			},
+			"text": " work from 30 years ago or any of that because they don't understand us today. And this is a very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,760",
+				"to": "00:24:55,600"
+			},
+			"offsets": {
+				"from": 1489760,
+				"to": 1495600
+			},
+			"text": " very flawed culture that cryptocurrency is inheriting while existing in decadence. So we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,600",
+				"to": "00:24:59,280"
+			},
+			"offsets": {
+				"from": 1495600,
+				"to": 1499280
+			},
+			"text": " throwing our hands up and saying these mechanisms are more transparent. So what we've built is sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,280",
+				"to": "00:25:04,880"
+			},
+			"offsets": {
+				"from": 1499280,
+				"to": 1504880
+			},
+			"text": " of enough. But as we said before, that's even that is actually a lie. And we can't afford to become"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,880",
+				"to": "00:25:09,200"
+			},
+			"offsets": {
+				"from": 1504880,
+				"to": 1509200
+			},
+			"text": " detached as a community from these security outcomes in this fashion. Because if we do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,200",
+				"to": "00:25:12,720"
+			},
+			"offsets": {
+				"from": 1509200,
+				"to": 1512720
+			},
+			"text": " what's going to happen is that we're poised to just reinvent the same systems that we're telling"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,720",
+				"to": "00:25:17,360"
+			},
+			"offsets": {
+				"from": 1512720,
+				"to": 1517360
+			},
+			"text": " people we're going to escape. And we're poised to reinforce the same power corridors that exist in"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,360",
+				"to": "00:25:22,240"
+			},
+			"offsets": {
+				"from": 1517360,
+				"to": 1522240
+			},
+			"text": " the world today. At which point, sort of all of this that we've done here has just been a way to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,240",
+				"to": "00:25:27,440"
+			},
+			"offsets": {
+				"from": 1522240,
+				"to": 1527440
+			},
+			"text": " fund some like burning man-style parties. And so we're really, really just not learning enough from"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,440",
+				"to": "00:25:32,160"
+			},
+			"offsets": {
+				"from": 1527440,
+				"to": 1532160
+			},
+			"text": " our mistakes in this process. But we have a chance to turn it around. So here's the happy part of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,160",
+				"to": "00:25:36,800"
+			},
+			"offsets": {
+				"from": 1532160,
+				"to": 1536800
+			},
+			"text": " talk. Let's break out of technological determinism and let's be more skeptical. Let's learn from"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,800",
+				"to": "00:25:40,960"
+			},
+			"offsets": {
+				"from": 1536800,
+				"to": 1540960
+			},
+			"text": " history. Let's do our homework and let's listen to people who criticize our systems in principled"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,960",
+				"to": "00:25:46,800"
+			},
+			"offsets": {
+				"from": 1540960,
+				"to": 1546800
+			},
+			"text": " and smart ways. And let's start today. So announcing an early preview of FrontRun.me, which is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,800",
+				"to": "00:25:51,120"
+			},
+			"offsets": {
+				"from": 1546800,
+				"to": 1551120
+			},
+			"text": " little dashboard that we've built where you can view a small subset of the data we've talked about"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,120",
+				"to": "00:25:55,280"
+			},
+			"offsets": {
+				"from": 1551120,
+				"to": 1555280
+			},
+			"text": " today. So you can see sort of a view of the day's auctions and see how these arbitrages are competing"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,280",
+				"to": "00:25:59,440"
+			},
+			"offsets": {
+				"from": 1555280,
+				"to": 1559440
+			},
+			"text": " against each other. Sort of have some insight into their dynamics. You can drill down into"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,440",
+				"to": "00:26:04,960"
+			},
+			"offsets": {
+				"from": 1559440,
+				"to": 1564960
+			},
+			"text": " individual auctions and sort of see data about them, including the price they've bid, the bidder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,960",
+				"to": "00:26:10,320"
+			},
+			"offsets": {
+				"from": 1564960,
+				"to": 1570320
+			},
+			"text": " you know, what the gas limit is, how much gas they actually paid, etc. And you can also go to a"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,320",
+				"to": "00:26:14,160"
+			},
+			"offsets": {
+				"from": 1570320,
+				"to": 1574160
+			},
+			"text": " sort of a strategy breakdown which graphs things like the bot's latency against themselves and"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,160",
+				"to": "00:26:17,840"
+			},
+			"offsets": {
+				"from": 1574160,
+				"to": 1577840
+			},
+			"text": " against other players in the market, as well as what strategies they're using in this auction in"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,840",
+				"to": "00:26:23,600"
+			},
+			"offsets": {
+				"from": 1577840,
+				"to": 1583600
+			},
+			"text": " terms of raises and things like that. So this is super preliminary data. There are some known bugs"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,600",
+				"to": "00:26:27,520"
+			},
+			"offsets": {
+				"from": 1583600,
+				"to": 1587520
+			},
+			"text": " in the software, but I just want to release it for you guys to sort of get an idea of the story we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,520",
+				"to": "00:26:32,320"
+			},
+			"offsets": {
+				"from": 1587520,
+				"to": 1592320
+			},
+			"text": " going to tell here. So what are we going to do next? We're going to integrate much more data into"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,320",
+				"to": "00:26:37,360"
+			},
+			"offsets": {
+				"from": 1592320,
+				"to": 1597360
+			},
+			"text": " FrontRun.me. So of that, hundreds of gigabytes of data that we've talked about, maybe only 1% is"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,360",
+				"to": "00:26:41,840"
+			},
+			"offsets": {
+				"from": 1597360,
+				"to": 1601840
+			},
+			"text": " currently integrated into that dashboard. So we really only have the tip of the iceberg. We're also"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,840",
+				"to": "00:26:46,640"
+			},
+			"offsets": {
+				"from": 1601840,
+				"to": 1606640
+			},
+			"text": " going to do things like geolocation studies and more. We also have robust game theory that's currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,640",
+				"to": "00:26:51,360"
+			},
+			"offsets": {
+				"from": 1606640,
+				"to": 1611360
+			},
+			"text": " sort of being formalized and finalized behind how these markets actually work and what users can"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,360",
+				"to": "00:26:55,440"
+			},
+			"offsets": {
+				"from": 1611360,
+				"to": 1615440
+			},
+			"text": " actually expect from these systems, validated by the data that we're experimentally collecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,440",
+				"to": "00:26:59,440"
+			},
+			"offsets": {
+				"from": 1615440,
+				"to": 1619440
+			},
+			"text": " here on FrontRun.me. And we're going to do the same for blockchain voting over the next year. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,440",
+				"to": "00:27:03,520"
+			},
+			"offsets": {
+				"from": 1619440,
+				"to": 1623520
+			},
+			"text": " we're going to create attacks on existing protocols that we're actually going to implement and deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,520",
+				"to": "00:27:07,680"
+			},
+			"offsets": {
+				"from": 1623520,
+				"to": 1627680
+			},
+			"text": " And we're also going to build schemes that have rigorous and provable security and sort of outline"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,680",
+				"to": "00:27:12,400"
+			},
+			"offsets": {
+				"from": 1627680,
+				"to": 1632400
+			},
+			"text": " the contours of when these schemes are appropriate to be deployed and when not. So let me say that"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,400",
+				"to": "00:27:17,440"
+			},
+			"offsets": {
+				"from": 1632400,
+				"to": 1637440
+			},
+			"text": " as a community, we have a chance here to set a positive example and get out of the poop emoji and"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:17,440",
+				"to": "00:27:21,360"
+			},
+			"offsets": {
+				"from": 1637440,
+				"to": 1641360
+			},
+			"text": " into this world of sunshine and rainbows that we're all promising everyone will exist someday."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,040",
+				"to": "00:27:27,040"
+			},
+			"offsets": {
+				"from": 1643040,
+				"to": 1647040
+			},
+			"text": " Alright, that's pretty much all I have. Thank you guys so much for coming and listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,040",
+				"to": "00:27:32,160"
+			},
+			"offsets": {
+				"from": 1647040,
+				"to": 1652160
+			},
+			"text": " If you're interested to know more, you can visit my website at pdyan.com. Follow me on Twitter at"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,160",
+				"to": "00:27:38,240"
+			},
+			"offsets": {
+				"from": 1652160,
+				"to": 1658240
+			},
+			"text": " PhilDyan. There's also ProjectChicago.io. So ProjectChicago aims to study resource markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,240",
+				"to": "00:27:43,760"
+			},
+			"offsets": {
+				"from": 1658240,
+				"to": 1663760
+			},
+			"text": " in Ethereum and things like fee markets, etc. And actually this is a part of ProjectChicago"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,760",
+				"to": "00:27:48,080"
+			},
+			"offsets": {
+				"from": 1663760,
+				"to": 1668080
+			},
+			"text": " because you can't really understand fee markets at all without understanding these additional"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:48,080",
+				"to": "00:27:52,000"
+			},
+			"offsets": {
+				"from": 1668080,
+				"to": 1672000
+			},
+			"text": " ordering fees that are introduced by smart contract systems like Ethereum and these"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,000",
+				"to": "00:27:56,160"
+			},
+			"offsets": {
+				"from": 1672000,
+				"to": 1676160
+			},
+			"text": " arbitrage auctions that we've sort of talked about today. I'm also part of this cryptocurrency"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,160",
+				"to": "00:28:01,600"
+			},
+			"offsets": {
+				"from": 1676160,
+				"to": 1681600
+			},
+			"text": " research initiative called IC3 at nitsy3.org. So a bunch of us are here, come say hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,600",
+				"to": "00:28:08,240"
+			},
+			"offsets": {
+				"from": 1681600,
+				"to": 1688240
+			},
+			"text": " And a company for formal verification called runtime verification, they are in my opinion the best"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,240",
+				"to": "00:28:13,200"
+			},
+			"offsets": {
+				"from": 1688240,
+				"to": 1693200
+			},
+			"text": " at this Cartesian product security we talked about on the first few slides. And thank you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,200",
+				"to": "00:28:16,800"
+			},
+			"offsets": {
+				"from": 1693200,
+				"to": 1696800
+			},
+			"text": " the Ethereum Community and Foundation for always supporting our independent research."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,800",
+				"to": "00:28:21,840"
+			},
+			"offsets": {
+				"from": 1696800,
+				"to": 1701840
+			},
+			"text": " Thank you to the NSF for supporting me and our whole lab through grants. And thank you to all"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,840",
+				"to": "00:28:27,920"
+			},
+			"offsets": {
+				"from": 1701840,
+				"to": 1707920
+			},
+			"text": " our industry partners for amazing conversations, support, insight from events and more. And of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,920",
+				"to": "00:28:32,720"
+			},
+			"offsets": {
+				"from": 1707920,
+				"to": 1712720
+			},
+			"text": " all this work has at least five or six co-authors on it. It wouldn't be possible without them."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:32,720",
+				"to": "00:28:38,720"
+			},
+			"offsets": {
+				"from": 1712720,
+				"to": 1718720
+			},
+			"text": " And my sincere thanks go out to them. Unfortunately, I don't think I have time to take questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:38,720",
+				"to": "00:28:43,600"
+			},
+			"offsets": {
+				"from": 1718720,
+				"to": 1723600
+			},
+			"text": " but you can find me on Twitter or after the talk in the hallway and I'm happy to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,600",
+				"to": "00:28:49,040"
+			},
+			"offsets": {
+				"from": 1723600,
+				"to": 1729040
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:49,040",
+				"to": "00:28:53,040"
+			},
+			"offsets": {
+				"from": 1729040,
+				"to": 1733040
+			},
+			"text": " Thanks guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:53,040",
+				"to": "00:29:03,040"
+			},
+			"offsets": {
+				"from": 1733040,
+				"to": 1743040
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,040",
+				"to": "00:29:13,040"
+			},
+			"offsets": {
+				"from": 1743040,
+				"to": 1753040
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:13,040",
+				"to": "00:29:23,040"
+			},
+			"offsets": {
+				"from": 1753040,
+				"to": 1763040
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

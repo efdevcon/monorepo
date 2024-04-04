@@ -1,0 +1,3244 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,260"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7260
+			},
+			"text": " Yeah, hello everyone. I'm Robert. I work primarily on a project called polka dot, but I work a lot with"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,260",
+				"to": "00:00:12,620"
+			},
+			"offsets": {
+				"from": 7260,
+				"to": 12620
+			},
+			"text": " parody technologies. I'll be talking today about parody technologies work on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,620",
+				"to": "00:00:17,380"
+			},
+			"offsets": {
+				"from": 12620,
+				"to": 17380
+			},
+			"text": " On not Shasper very sorry on serenity"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,380",
+				"to": "00:00:22,220"
+			},
+			"offsets": {
+				"from": 17380,
+				"to": 22220
+			},
+			"text": " Basically what we've been doing so far"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,220",
+				"to": "00:00:25,020"
+			},
+			"offsets": {
+				"from": 22220,
+				"to": 25020
+			},
+			"text": " We're building it on this platform called substrate first"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,020",
+				"to": "00:00:30,800"
+			},
+			"offsets": {
+				"from": 25020,
+				"to": 30800
+			},
+			"text": " I'm gonna go into what that is a little bit of background on on sharding on Casper on serenity"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,800",
+				"to": "00:00:37,100"
+			},
+			"offsets": {
+				"from": 30800,
+				"to": 37100
+			},
+			"text": " Vitalik and Justin and the others can explain that way better than I can so I'm sure you've seen their talks as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,100",
+				"to": "00:00:43,220"
+			},
+			"offsets": {
+				"from": 37100,
+				"to": 43220
+			},
+			"text": " And then basically dive into what we're what we've been doing what we are doing in the future and what we're doing now on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,220",
+				"to": "00:00:45,860"
+			},
+			"offsets": {
+				"from": 43220,
+				"to": 45860
+			},
+			"text": " building out all of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,860",
+				"to": "00:00:51,480"
+			},
+			"offsets": {
+				"from": 45860,
+				"to": 51480
+			},
+			"text": " So a lot of you might have heard recently there's been some buzz about parody substrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,300",
+				"to": "00:00:55,560"
+			},
+			"offsets": {
+				"from": 52300,
+				"to": 55560
+			},
+			"text": " So what parody fundamentally is is a blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,560",
+				"to": "00:01:00,920"
+			},
+			"offsets": {
+				"from": 55560,
+				"to": 60920
+			},
+			"text": " Development outfit like we're we're a group that's built a lot of different nodes for a lot of different chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,920",
+				"to": "00:01:04,100"
+			},
+			"offsets": {
+				"from": 60920,
+				"to": 64100
+			},
+			"text": " So the best known one is the parody theorem node. It's the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,100",
+				"to": "00:01:12,440"
+			},
+			"offsets": {
+				"from": 64100,
+				"to": 72440
+			},
+			"text": " Other than the go with theorem client. It's the most widely used ethereum node. It's used by infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,440",
+				"to": "00:01:15,580"
+			},
+			"offsets": {
+				"from": 72440,
+				"to": 75580
+			},
+			"text": " It's used as a light client. It's used in a lot of different ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,580",
+				"to": "00:01:20,220"
+			},
+			"offsets": {
+				"from": 75580,
+				"to": 80220
+			},
+			"text": " It's not just in a theorem node. It supports all kinds of different consensus algorithms and stuff as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,540",
+				"to": "00:01:23,100"
+			},
+			"offsets": {
+				"from": 80540,
+				"to": 83100
+			},
+			"text": " We've done a Bitcoin implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,100",
+				"to": "00:01:26,580"
+			},
+			"offsets": {
+				"from": 83100,
+				"to": 86580
+			},
+			"text": " Recently announced is that this is soon going to be also"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,580",
+				"to": "00:01:33,180"
+			},
+			"offsets": {
+				"from": 86580,
+				"to": 93180
+			},
+			"text": " Modified somewhat into the first alternative zcash implementation. So we're we're a blockchain development outfit"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,180",
+				"to": "00:01:37,820"
+			},
+			"offsets": {
+				"from": 93180,
+				"to": 97820
+			},
+			"text": " and at some point we realize like we've been writing these nodes and we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,820",
+				"to": "00:01:44,780"
+			},
+			"offsets": {
+				"from": 97820,
+				"to": 104780
+			},
+			"text": " Duplicating a lot of the same work over and over again. So stuff like synchronization peer-to-peer networking"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,780",
+				"to": "00:01:46,380"
+			},
+			"offsets": {
+				"from": 104780,
+				"to": 106380
+			},
+			"text": " database"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,380",
+				"to": "00:01:47,980"
+			},
+			"offsets": {
+				"from": 106380,
+				"to": 107980
+			},
+			"text": " Merkel trees"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,980",
+				"to": "00:01:52,660"
+			},
+			"offsets": {
+				"from": 107980,
+				"to": 112660
+			},
+			"text": " Light client algorithms that kind of thing. It's actually a lot of infrastructure that you have to build around"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,660",
+				"to": "00:01:58,140"
+			},
+			"offsets": {
+				"from": 112660,
+				"to": 118140
+			},
+			"text": " Ultimately what you really care about as a blockchain developer, which is the state transition system that you're putting together"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,140",
+				"to": "00:02:03,020"
+			},
+			"offsets": {
+				"from": 118140,
+				"to": 123020
+			},
+			"text": " So that's basically what parody substrate is. It's something like a blockchain in a box that you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,020",
+				"to": "00:02:07,740"
+			},
+			"offsets": {
+				"from": 123020,
+				"to": 127740
+			},
+			"text": " Build a chain with it. It's something that's going to be useful for for side chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,740",
+				"to": "00:02:13,140"
+			},
+			"offsets": {
+				"from": 127740,
+				"to": 133140
+			},
+			"text": " And we're also using it in a bunch of our own projects like to build polka dot for example and as well to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,420",
+				"to": "00:02:18,300"
+			},
+			"offsets": {
+				"from": 133420,
+				"to": 138300
+			},
+			"text": " The Ethereum 2.0 client. So the way that substrate works basically is you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,300",
+				"to": "00:02:23,100"
+			},
+			"offsets": {
+				"from": 138300,
+				"to": 143100
+			},
+			"text": " LibP2P networking although you could swap that out for something like devP2P"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,100",
+				"to": "00:02:28,940"
+			},
+			"offsets": {
+				"from": 143100,
+				"to": 148940
+			},
+			"text": " My understanding is that Ethereum 2.0 is heavily leaning towards libP2P right now. So that's what I'll talk about for the moment"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,940",
+				"to": "00:02:31,380"
+			},
+			"offsets": {
+				"from": 148940,
+				"to": 151380
+			},
+			"text": " LibP2P"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,380",
+				"to": "00:02:38,500"
+			},
+			"offsets": {
+				"from": 151380,
+				"to": 158500
+			},
+			"text": " Networking that lets you run a consensus process that does agreement over state transitions that are encoded in web assembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,500",
+				"to": "00:02:41,940"
+			},
+			"offsets": {
+				"from": 158500,
+				"to": 161940
+			},
+			"text": " That we call the run time. So the run time is the actual work of the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,460",
+				"to": "00:02:46,700"
+			},
+			"offsets": {
+				"from": 162460,
+				"to": 166700
+			},
+			"text": " And this is something that we've designed so that you can upgrade it on the fly for a theorem to a panoy"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,700",
+				"to": "00:02:48,700"
+			},
+			"offsets": {
+				"from": 166700,
+				"to": 168700
+			},
+			"text": " That's not really a feature that you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,700",
+				"to": "00:02:55,980"
+			},
+			"offsets": {
+				"from": 168700,
+				"to": 175980
+			},
+			"text": " So, you know, you don't need it to be web assembly. It could actually be native code in this case, but substrates general model is around"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,980",
+				"to": "00:03:01,140"
+			},
+			"offsets": {
+				"from": 175980,
+				"to": 181140
+			},
+			"text": " Web assembly state transitions where the state transition logic itself can be upgraded"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,140",
+				"to": "00:03:08,420"
+			},
+			"offsets": {
+				"from": 181140,
+				"to": 188420
+			},
+			"text": " And that's going to be composed maybe of many different reusable components or modules like governance or slashing staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,420",
+				"to": "00:03:11,020"
+			},
+			"offsets": {
+				"from": 188420,
+				"to": 191020
+			},
+			"text": " For polka dot we wrote one for para chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,220",
+				"to": "00:03:16,380"
+			},
+			"offsets": {
+				"from": 192220,
+				"to": 196380
+			},
+			"text": " And for smart contracts and that sort of thing for a theorem 2.0"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,380",
+				"to": "00:03:20,940"
+			},
+			"offsets": {
+				"from": 196380,
+				"to": 200940
+			},
+			"text": " We've basically written a runtime from scratch because the beacon chain implementation is very"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,940",
+				"to": "00:03:23,740"
+			},
+			"offsets": {
+				"from": 200940,
+				"to": 203740
+			},
+			"text": " very unique"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,740",
+				"to": "00:03:28,580"
+			},
+			"offsets": {
+				"from": 203740,
+				"to": 208580
+			},
+			"text": " So what's up shit gives you is a abstract block format"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,580",
+				"to": "00:03:29,940"
+			},
+			"offsets": {
+				"from": 208580,
+				"to": 209940
+			},
+			"text": " It's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,940",
+				"to": "00:03:36,460"
+			},
+			"offsets": {
+				"from": 209940,
+				"to": 216460
+			},
+			"text": " agnostic as to what kind of backing database you use so it could be like a key value store in base 16 a miracle patricia tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,460",
+				"to": "00:03:38,260"
+			},
+			"offsets": {
+				"from": 216460,
+				"to": 218260
+			},
+			"text": " It could be a binary"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,260",
+				"to": "00:03:42,700"
+			},
+			"offsets": {
+				"from": 218260,
+				"to": 222700
+			},
+			"text": " Mercle tree it could be something like just a key value store column"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,700",
+				"to": "00:03:47,820"
+			},
+			"offsets": {
+				"from": 222700,
+				"to": 227820
+			},
+			"text": " That's not cryptivac cryptographically committed to if you were writing something like a UTxO base chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,820",
+				"to": "00:03:54,580"
+			},
+			"offsets": {
+				"from": 227820,
+				"to": 234580
+			},
+			"text": " At its core basically all you have to do to write a chain and block in in substrate is put together a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,580",
+				"to": "00:04:02,500"
+			},
+			"offsets": {
+				"from": 234580,
+				"to": 242500
+			},
+			"text": " implementation of function execute blocks that takes in a blob of data and it tells you was that a good block with the with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,500",
+				"to": "00:04:04,500"
+			},
+			"offsets": {
+				"from": 242500,
+				"to": 244500
+			},
+			"text": " backing database"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,780",
+				"to": "00:04:10,340"
+			},
+			"offsets": {
+				"from": 244780,
+				"to": 250340
+			},
+			"text": " So that's basically what we've done and it's got some extensible networking and other utilities as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,340",
+				"to": "00:04:16,740"
+			},
+			"offsets": {
+				"from": 250340,
+				"to": 256740
+			},
+			"text": " so one big part of what we're doing is pluggable consensus so that was a feature of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,740",
+				"to": "00:04:20,940"
+			},
+			"offsets": {
+				"from": 256740,
+				"to": 260940
+			},
+			"text": " Parity Ethereum for a while to support proof of work as well proof of authority"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,940",
+				"to": "00:04:24,980"
+			},
+			"offsets": {
+				"from": 260940,
+				"to": 264980
+			},
+			"text": " And a contracting system around that but for substrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,980",
+				"to": "00:04:32,620"
+			},
+			"offsets": {
+				"from": 264980,
+				"to": 272620
+			},
+			"text": " We've come up with a pretty nice set of abstractions that lets us do a lot of different complex things in substrate like we've we've done"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,380",
+				"to": "00:04:40,960"
+			},
+			"offsets": {
+				"from": 273380,
+				"to": 280960
+			},
+			"text": " Roto-Dendron, which is a instant finality protocol. That's derived from PBFT. We've got grandpa and orand which are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,960",
+				"to": "00:04:47,600"
+			},
+			"offsets": {
+				"from": 280960,
+				"to": 287600
+			},
+			"text": " Hybrid consensus together. It's something like Casper FFG in the hybrid model. You could do Casper FFG as well with this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,600",
+				"to": "00:04:53,340"
+			},
+			"offsets": {
+				"from": 287600,
+				"to": 293340
+			},
+			"text": " You could also do stuff like Ava that a Emin was just talking about fairly easily in this model"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,340",
+				"to": "00:04:59,900"
+			},
+			"offsets": {
+				"from": 293340,
+				"to": 299900
+			},
+			"text": " So it's very very extensible in that sense and what you get is hot swappable consensus is one feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,900",
+				"to": "00:05:03,380"
+			},
+			"offsets": {
+				"from": 299900,
+				"to": 303380
+			},
+			"text": " We've talked about where essentially you can move between consensus algorithms"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,380",
+				"to": "00:05:09,980"
+			},
+			"offsets": {
+				"from": 303380,
+				"to": 309980
+			},
+			"text": " For example, if you deploy your chain right now with some relatively simplistic longest chain rule"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,980",
+				"to": "00:05:15,060"
+			},
+			"offsets": {
+				"from": 309980,
+				"to": 315060
+			},
+			"text": " Then you could upgrade it to something else and actually fork the chain onto another system a"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,060",
+				"to": "00:05:20,060"
+			},
+			"offsets": {
+				"from": 315060,
+				"to": 320060
+			},
+			"text": " Hot swappable state transition function. I'm not gonna go through all of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,060",
+				"to": "00:05:24,860"
+			},
+			"offsets": {
+				"from": 320060,
+				"to": 324860
+			},
+			"text": " But one of the ones that I do really want to stress is that it's got a light client from day one"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,020",
+				"to": "00:05:30,540"
+			},
+			"offsets": {
+				"from": 326020,
+				"to": 330540
+			},
+			"text": " I'm one of the few people who's written a light client for Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,540",
+				"to": "00:05:35,940"
+			},
+			"offsets": {
+				"from": 330540,
+				"to": 335940
+			},
+			"text": " I can tell you that adding that onto a blockchain node after the fact is awful"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,940",
+				"to": "00:05:37,900"
+			},
+			"offsets": {
+				"from": 335940,
+				"to": 337900
+			},
+			"text": " It is a lot of work"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,900",
+				"to": "00:05:42,900"
+			},
+			"offsets": {
+				"from": 337900,
+				"to": 342900
+			},
+			"text": " So having that supported from day one having networking protocols for it from day one"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,900",
+				"to": "00:05:47,180"
+			},
+			"offsets": {
+				"from": 342900,
+				"to": 347180
+			},
+			"text": " Is really really important to make sure that you can actually have light client infrastructure in the end"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,180",
+				"to": "00:05:54,780"
+			},
+			"offsets": {
+				"from": 347180,
+				"to": 354780
+			},
+			"text": " Of course, there's things like the module library and if you want to plug into something like polka dot that is that's supported as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,500",
+				"to": "00:06:02,900"
+			},
+			"offsets": {
+				"from": 355500,
+				"to": 362900
+			},
+			"text": " But to get more to the direct point and the question on the forefront of a lot of your minds with this conference is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,900",
+				"to": "00:06:05,460"
+			},
+			"offsets": {
+				"from": 362900,
+				"to": 365460
+			},
+			"text": " Ethereum basically needs to scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,460",
+				"to": "00:06:14,700"
+			},
+			"offsets": {
+				"from": 365460,
+				"to": 374700
+			},
+			"text": " So the EVM can't process the proof of work consensus the EVM can't process enough transactions for the uses that we're already seeing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,700",
+				"to": "00:06:19,260"
+			},
+			"offsets": {
+				"from": 374700,
+				"to": 379260
+			},
+			"text": " That's just the case"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,260",
+				"to": "00:06:26,180"
+			},
+			"offsets": {
+				"from": 379260,
+				"to": 386180
+			},
+			"text": " Sidechains and bridges which Björn talked about a bit earlier on the main stage are a temporary solution to this problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,180",
+				"to": "00:06:28,180"
+			},
+			"offsets": {
+				"from": 386180,
+				"to": 388180
+			},
+			"text": " But they only mitigate it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,180",
+				"to": "00:06:35,980"
+			},
+			"offsets": {
+				"from": 388180,
+				"to": 395980
+			},
+			"text": " At some point even if you have a ton of side chains and a ton of bridges you're sort of fragmenting the ecosystem which isn't ideal and also"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,980",
+				"to": "00:06:38,820"
+			},
+			"offsets": {
+				"from": 395980,
+				"to": 398820
+			},
+			"text": " you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,820",
+				"to": "00:06:45,140"
+			},
+			"offsets": {
+				"from": 398820,
+				"to": 405140
+			},
+			"text": " Just delaying the scaling issues because at some point you won't be able to get all those bridge notifications onto the chain as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,020",
+				"to": "00:06:48,940"
+			},
+			"offsets": {
+				"from": 406020,
+				"to": 408940
+			},
+			"text": " So you really need a root level chain that's scaling so"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,940",
+				"to": "00:06:51,580"
+			},
+			"offsets": {
+				"from": 408940,
+				"to": 411580
+			},
+			"text": " the solution proposed by"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,580",
+				"to": "00:06:56,500"
+			},
+			"offsets": {
+				"from": 411580,
+				"to": 416500
+			},
+			"text": " The Ethereum research team is serenity ethereum 2.0"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,500",
+				"to": "00:06:59,180"
+			},
+			"offsets": {
+				"from": 416500,
+				"to": 419180
+			},
+			"text": " So this is this is a name that's been around for a while"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,180",
+				"to": "00:07:06,500"
+			},
+			"offsets": {
+				"from": 419180,
+				"to": 426500
+			},
+			"text": " I mean serenity has been on the ethereum roadmaps for years the exact feature said that it's encompassing is just being nailed down now"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,500",
+				"to": "00:07:09,860"
+			},
+			"offsets": {
+				"from": 426500,
+				"to": 429860
+			},
+			"text": " So the spec is about 60% complete now"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,860",
+				"to": "00:07:11,780"
+			},
+			"offsets": {
+				"from": 429860,
+				"to": 431780
+			},
+			"text": " It doesn't cover everything like block authorship"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,060",
+				"to": "00:07:17,540"
+			},
+			"offsets": {
+				"from": 432060,
+				"to": 437540
+			},
+			"text": " but it does get the core of the state transition system validator shuffling changing validator dynasties and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,540",
+				"to": "00:07:22,620"
+			},
+			"offsets": {
+				"from": 437540,
+				"to": 442620
+			},
+			"text": " Collecting attestations and that sort of thing so"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,620",
+				"to": "00:07:25,740"
+			},
+			"offsets": {
+				"from": 442620,
+				"to": 445740
+			},
+			"text": " the main piece of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,740",
+				"to": "00:07:27,260"
+			},
+			"offsets": {
+				"from": 445740,
+				"to": 447260
+			},
+			"text": " the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,260",
+				"to": "00:07:32,060"
+			},
+			"offsets": {
+				"from": 447260,
+				"to": 452060
+			},
+			"text": " Sharding design is a beacon chain and this is what we're building on substrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,060",
+				"to": "00:07:36,460"
+			},
+			"offsets": {
+				"from": 452060,
+				"to": 456460
+			},
+			"text": " So it's sort of a shard coordinator it manages proof of stake validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,460",
+				"to": "00:07:41,860"
+			},
+			"offsets": {
+				"from": 456460,
+				"to": 461860
+			},
+			"text": " It ad blocks adds blocks to the chain it finalizes them it gets cross links from shards"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,860",
+				"to": "00:07:45,380"
+			},
+			"offsets": {
+				"from": 461860,
+				"to": 465380
+			},
+			"text": " Which are attested to by committees of validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,380",
+				"to": "00:07:51,900"
+			},
+			"offsets": {
+				"from": 465380,
+				"to": 471900
+			},
+			"text": " So all the validators will be split up into small committees each committee being assigned to a specific shard for a period of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,900",
+				"to": "00:07:55,820"
+			},
+			"offsets": {
+				"from": 471900,
+				"to": 475820
+			},
+			"text": " The assignment is done by a randomness beacon, which is what it's called a beacon chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,820",
+				"to": "00:07:57,980"
+			},
+			"offsets": {
+				"from": 475820,
+				"to": 477980
+			},
+			"text": " and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,980",
+				"to": "00:08:01,420"
+			},
+			"offsets": {
+				"from": 477980,
+				"to": 481420
+			},
+			"text": " Basically these guys just attest to blocks that exist on shards"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,420",
+				"to": "00:08:05,900"
+			},
+			"offsets": {
+				"from": 481420,
+				"to": 485900
+			},
+			"text": " It operates as a proof of stake chain the validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,900",
+				"to": "00:08:12,380"
+			},
+			"offsets": {
+				"from": 486900,
+				"to": 492380
+			},
+			"text": " might take turns proposing blocks which would be finalized by CASPER FFG"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,380",
+				"to": "00:08:16,820"
+			},
+			"offsets": {
+				"from": 492380,
+				"to": 496820
+			},
+			"text": " So CASPER FFG is one of the CASPER's that's floating around"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,820",
+				"to": "00:08:25,500"
+			},
+			"offsets": {
+				"from": 496820,
+				"to": 505500
+			},
+			"text": " It's basically just a finality gadget. So the term finality gadget is a bit nebulous, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,500",
+				"to": "00:08:33,940"
+			},
+			"offsets": {
+				"from": 505500,
+				"to": 513940
+			},
+			"text": " It's essentially part of a hybrid consensus process where you have a probabilistic consensus algorithm adding blocks to the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,140",
+				"to": "00:08:38,300"
+			},
+			"offsets": {
+				"from": 514140,
+				"to": 518300
+			},
+			"text": " And then you have finality gadget adding accountable safety onto that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,300",
+				"to": "00:08:42,660"
+			},
+			"offsets": {
+				"from": 518300,
+				"to": 522660
+			},
+			"text": " So then if blocks that are finalized by the gadget are reverted you get this process called"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,660",
+				"to": "00:08:48,820"
+			},
+			"offsets": {
+				"from": 522660,
+				"to": 528820
+			},
+			"text": " Accountable safety which means you can identify who acted in reverting those blocks and punish them"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,820",
+				"to": "00:08:53,300"
+			},
+			"offsets": {
+				"from": 528820,
+				"to": 533300
+			},
+			"text": " So CASPER FFG does that by voting on checkpoints every end blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,300",
+				"to": "00:08:58,020"
+			},
+			"offsets": {
+				"from": 533300,
+				"to": 538020
+			},
+			"text": " And if you get two checkpoints in a row that gets super majority support you've finalized a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,020",
+				"to": "00:09:03,140"
+			},
+			"offsets": {
+				"from": 538020,
+				"to": 543140
+			},
+			"text": " It influences the fork choice rule in sharding of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,620",
+				"to": "00:09:05,620"
+			},
+			"offsets": {
+				"from": 543620,
+				"to": 545620
+			},
+			"text": " block production system as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,620",
+				"to": "00:09:13,060"
+			},
+			"offsets": {
+				"from": 545620,
+				"to": 553060
+			},
+			"text": " The cool thing about CASPER FFG is that you get information on chain about which blocks have been finalized and the slashing conditions are really really simple"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,060",
+				"to": "00:09:21,820"
+			},
+			"offsets": {
+				"from": 553060,
+				"to": 561820
+			},
+			"text": " So this is sort of a diagram from the sharding website of what the CASPER FFG fork choice rule is doing so you have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,820",
+				"to": "00:09:27,380"
+			},
+			"offsets": {
+				"from": 561820,
+				"to": 567380
+			},
+			"text": " You have some checkpoints which are getting closer and closer to being justified"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,380",
+				"to": "00:09:32,820"
+			},
+			"offsets": {
+				"from": 567380,
+				"to": 572820
+			},
+			"text": " Like you always must follow the most recently justified checkpoint, but then you also look at which messages people are"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,220",
+				"to": "00:09:40,900"
+			},
+			"offsets": {
+				"from": 573220,
+				"to": 580900
+			},
+			"text": " Passing around on unjustified checkpoints and use that to influence your your your target block on the main chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,900",
+				"to": "00:09:48,060"
+			},
+			"offsets": {
+				"from": 580900,
+				"to": 588060
+			},
+			"text": " So shards are basically free standing chains. They're secured by their own consensus algorithm. They're typically proof of stake"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,060",
+				"to": "00:09:54,900"
+			},
+			"offsets": {
+				"from": 588060,
+				"to": 594900
+			},
+			"text": " And they're linked to the beacon chain via these cross links these attested two statements that make their way onto the beacon chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,900",
+				"to": "00:10:00,420"
+			},
+			"offsets": {
+				"from": 594900,
+				"to": 600420
+			},
+			"text": " So to look a bit at this diagram that we got from"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,460",
+				"to": "00:10:04,420"
+			},
+			"offsets": {
+				"from": 601460,
+				"to": 604420
+			},
+			"text": " seaway and Ben Ejukton we"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,420",
+				"to": "00:10:10,820"
+			},
+			"offsets": {
+				"from": 604420,
+				"to": 610820
+			},
+			"text": " Can see that the the architecture of sharding looks something like this so the proof of work main chain is the anchor layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,820",
+				"to": "00:10:14,820"
+			},
+			"offsets": {
+				"from": 610820,
+				"to": 614820
+			},
+			"text": " This is actually like the ethereum 1.0 chain. It's got this one directional"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,820",
+				"to": "00:10:23,580"
+			},
+			"offsets": {
+				"from": 614820,
+				"to": 623580
+			},
+			"text": " Lock-up stuff where you can basically lock up your ether on the existing chain move it over to the the beacon chain and then get the beacon chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,580",
+				"to": "00:10:26,500"
+			},
+			"offsets": {
+				"from": 623580,
+				"to": 626500
+			},
+			"text": " tokens for for participating as a validator there"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,500",
+				"to": "00:10:30,460"
+			},
+			"offsets": {
+				"from": 626500,
+				"to": 630460
+			},
+			"text": " Other than that, it's not particularly relevant"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,220",
+				"to": "00:10:35,940"
+			},
+			"offsets": {
+				"from": 631220,
+				"to": 635940
+			},
+			"text": " The beacon chain is doing this random speaking stuff coordinating between validator sets and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,940",
+				"to": "00:10:40,780"
+			},
+			"offsets": {
+				"from": 635940,
+				"to": 640780
+			},
+			"text": " The shard chains are actually doing computations with a web assembly virtual machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,780",
+				"to": "00:10:44,020"
+			},
+			"offsets": {
+				"from": 640780,
+				"to": 644020
+			},
+			"text": " So now I'll get into the the part of basically our"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,020",
+				"to": "00:10:48,060"
+			},
+			"offsets": {
+				"from": 644020,
+				"to": 648060
+			},
+			"text": " implementation progress like where where are we with that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,060",
+				"to": "00:10:51,900"
+			},
+			"offsets": {
+				"from": 648060,
+				"to": 651900
+			},
+			"text": " So I'll first I'll zoom back in time"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,900",
+				"to": "00:10:57,940"
+			},
+			"offsets": {
+				"from": 651900,
+				"to": 657940
+			},
+			"text": " Originally there was a plan to have a hard fork in ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,540",
+				"to": "00:11:01,220"
+			},
+			"offsets": {
+				"from": 658540,
+				"to": 661220
+			},
+			"text": " to to implement CASPER FFG to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,220",
+				"to": "00:11:06,260"
+			},
+			"offsets": {
+				"from": 661220,
+				"to": 666260
+			},
+			"text": " to hard fork the ethereum main chain that we're using now and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,260",
+				"to": "00:11:11,420"
+			},
+			"offsets": {
+				"from": 666260,
+				"to": 671420
+			},
+			"text": " Make a CASPER FFG hybrid consensus model with the proof of work that's going on there"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,420",
+				"to": "00:11:14,460"
+			},
+			"offsets": {
+				"from": 671420,
+				"to": 674460
+			},
+			"text": " So we the first step that we took towards sharding"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,460",
+				"to": "00:11:17,300"
+			},
+			"offsets": {
+				"from": 674460,
+				"to": 677300
+			},
+			"text": " Shortly after the tie tie one summit"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,300",
+				"to": "00:11:22,900"
+			},
+			"offsets": {
+				"from": 677300,
+				"to": 682900
+			},
+			"text": " Was to do this implementation so that's been closed because this plan has been abandoned"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,100",
+				"to": "00:11:29,620"
+			},
+			"offsets": {
+				"from": 683100,
+				"to": 689620
+			},
+			"text": " But we did this work we spun up a test net and we showed that it was at least in a proof of concept stage"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,620",
+				"to": "00:11:35,140"
+			},
+			"offsets": {
+				"from": 689620,
+				"to": 695140
+			},
+			"text": " So now that the the plan has pivoted somewhat to incorporate this beacon chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,140",
+				"to": "00:11:42,020"
+			},
+			"offsets": {
+				"from": 695140,
+				"to": 702020
+			},
+			"text": " Architecture and we are doing parody tech slash Shasper is the repository"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,020",
+				"to": "00:11:46,820"
+			},
+			"offsets": {
+				"from": 702020,
+				"to": 706820
+			},
+			"text": " So the developer who's been doing most of the work on this is a guy called way time from China"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,620",
+				"to": "00:11:54,780"
+			},
+			"offsets": {
+				"from": 708620,
+				"to": 714780
+			},
+			"text": " We've the rest of the substrate team has been contributing bits and pieces through architecture and plugable consensus and that sort of thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,780",
+				"to": "00:12:00,900"
+			},
+			"offsets": {
+				"from": 714780,
+				"to": 720900
+			},
+			"text": " Basically, this is a repository that contains more or less everything that's spec'd out in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,900",
+				"to": "00:12:03,780"
+			},
+			"offsets": {
+				"from": 720900,
+				"to": 723780
+			},
+			"text": " state transition aspect of the beacon chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,780",
+				"to": "00:12:11,620"
+			},
+			"offsets": {
+				"from": 723780,
+				"to": 731620
+			},
+			"text": " block authorship etc. Still to do but as those parts are further spec'd out those will be added so"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,020",
+				"to": "00:12:19,020"
+			},
+			"offsets": {
+				"from": 732020,
+				"to": 739020
+			},
+			"text": " Most of it exists as a runtime that piece of web assembly code that actually processes the logic of the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,020",
+				"to": "00:12:24,220"
+			},
+			"offsets": {
+				"from": 739020,
+				"to": 744220
+			},
+			"text": " So what this is is processing new attestations"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,220",
+				"to": "00:12:28,740"
+			},
+			"offsets": {
+				"from": 744220,
+				"to": 748740
+			},
+			"text": " Crystalizing them handling new validator set changes and that sort of thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,740",
+				"to": "00:12:32,580"
+			},
+			"offsets": {
+				"from": 748740,
+				"to": 752580
+			},
+			"text": " substrates native block formats are a bit different than"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,580",
+				"to": "00:12:39,980"
+			},
+			"offsets": {
+				"from": 752580,
+				"to": 759980
+			},
+			"text": " the ones that the beacon chain uses so the beacon chain will have fields like the randau reveal or a pin to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,460",
+				"to": "00:12:43,240"
+			},
+			"offsets": {
+				"from": 760460,
+				"to": 763240
+			},
+			"text": " Proof of work chain the anchor layer that it's attached to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,240",
+				"to": "00:12:49,820"
+			},
+			"offsets": {
+				"from": 763240,
+				"to": 769820
+			},
+			"text": " But substrates native block formats don't really have that stuff. So we use an adapter. So basically on disk"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,820",
+				"to": "00:12:54,220"
+			},
+			"offsets": {
+				"from": 769820,
+				"to": 774220
+			},
+			"text": " we've got a like one one set of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,220",
+				"to": "00:13:03,700"
+			},
+			"offsets": {
+				"from": 774220,
+				"to": 783700
+			},
+			"text": " block types which are the substrate block types where these extra values are encoded as extrinsics and on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,140",
+				"to": "00:13:10,540"
+			},
+			"offsets": {
+				"from": 785140,
+				"to": 790540
+			},
+			"text": " On the networking layer we've we've transformed them into Shasper or serenity blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,540",
+				"to": "00:13:16,660"
+			},
+			"offsets": {
+				"from": 790540,
+				"to": 796660
+			},
+			"text": " So that when you communicate with other nodes like those perhaps built by prismatic labs or or lighthouse"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,660",
+				"to": "00:13:21,540"
+			},
+			"offsets": {
+				"from": 796660,
+				"to": 801540
+			},
+			"text": " That they're all using the same block format, but actually under the hood. It's using a different block format"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,540",
+				"to": "00:13:26,620"
+			},
+			"offsets": {
+				"from": 801540,
+				"to": 806620
+			},
+			"text": " Ethereum 2.0 is very likely to use libp2p for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,620",
+				"to": "00:13:29,340"
+			},
+			"offsets": {
+				"from": 806620,
+				"to": 809340
+			},
+			"text": " networking so substrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,340",
+				"to": "00:13:36,140"
+			},
+			"offsets": {
+				"from": 809340,
+				"to": 816140
+			},
+			"text": " Has been using libp2p from day one at parity we even did well to wind back a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,140",
+				"to": "00:13:42,100"
+			},
+			"offsets": {
+				"from": 816140,
+				"to": 822100
+			},
+			"text": " Libp2p is a set of networking libraries first designed built and described by protocol labs of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,100",
+				"to": "00:13:46,020"
+			},
+			"offsets": {
+				"from": 822100,
+				"to": 826020
+			},
+			"text": " IPFS and filecoin so this is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,020",
+				"to": "00:13:51,460"
+			},
+			"offsets": {
+				"from": 826020,
+				"to": 831460
+			},
+			"text": " Intended to be a set of cross platform and future-proof networking libraries at parity"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,460",
+				"to": "00:13:57,700"
+			},
+			"offsets": {
+				"from": 831460,
+				"to": 837700
+			},
+			"text": " We did an implementation of those in rust and we've given that back to to open source and we're in the process of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,660",
+				"to": "00:14:00,660"
+			},
+			"offsets": {
+				"from": 838660,
+				"to": 840660
+			},
+			"text": " moving that over to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,660",
+				"to": "00:14:05,540"
+			},
+			"offsets": {
+				"from": 840660,
+				"to": 845540
+			},
+			"text": " Parity Ethereum as well so that parity theorem can use libp2p as a backing network"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,540",
+				"to": "00:14:09,820"
+			},
+			"offsets": {
+				"from": 845540,
+				"to": 849820
+			},
+			"text": " But we're also building substrate out with libp2p as first-class networking"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,820",
+				"to": "00:14:17,820"
+			},
+			"offsets": {
+				"from": 849820,
+				"to": 857820
+			},
+			"text": " So the next steps like what's what's next in the implementation side of things for a theorem 2.0 for us?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,820",
+				"to": "00:14:20,980"
+			},
+			"offsets": {
+				"from": 857820,
+				"to": 860980
+			},
+			"text": " we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,980",
+				"to": "00:14:27,260"
+			},
+			"offsets": {
+				"from": 860980,
+				"to": 867260
+			},
+			"text": " Going to see this through parity is 100% committed to finishing the ethereum 2.0 implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,380",
+				"to": "00:14:29,380"
+			},
+			"offsets": {
+				"from": 867380,
+				"to": 869380
+			},
+			"text": " Thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,380",
+				"to": "00:14:35,140"
+			},
+			"offsets": {
+				"from": 869380,
+				"to": 875140
+			},
+			"text": " So"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,140",
+				"to": "00:14:41,420"
+			},
+			"offsets": {
+				"from": 875140,
+				"to": 881420
+			},
+			"text": " The next step will be basically better pluggable consensus so we've now just in the past few days"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,420",
+				"to": "00:14:47,380"
+			},
+			"offsets": {
+				"from": 881420,
+				"to": 887380
+			},
+			"text": " Merged the commits into substrate that generalized the consensus framework. I think I've got a picture of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,380",
+				"to": "00:14:51,500"
+			},
+			"offsets": {
+				"from": 887380,
+				"to": 891500
+			},
+			"text": " So we've merged this this pull request. You've got a few more coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,980",
+				"to": "00:14:57,940"
+			},
+			"offsets": {
+				"from": 891980,
+				"to": 897940
+			},
+			"text": " What's next is basically to implement CASper FFG on substrate start to do that block authorship work"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,940",
+				"to": "00:15:04,780"
+			},
+			"offsets": {
+				"from": 897940,
+				"to": 904780
+			},
+			"text": " So that not just processing the blocks is done on our on our Shasparepo, but actually authoring them as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,780",
+				"to": "00:15:09,340"
+			},
+			"offsets": {
+				"from": 904780,
+				"to": 909340
+			},
+			"text": " One other thing that we'll need is multi tree support"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,340",
+				"to": "00:15:15,500"
+			},
+			"offsets": {
+				"from": 909340,
+				"to": 915500
+			},
+			"text": " So the validator set might grow pretty large right now. It's just stored in this SSZ"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,500",
+				"to": "00:15:20,860"
+			},
+			"offsets": {
+				"from": 915500,
+				"to": 920860
+			},
+			"text": " serialization simple simple serialization format that's described in the sharding spec"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,620",
+				"to": "00:15:29,220"
+			},
+			"offsets": {
+				"from": 921620,
+				"to": 929220
+			},
+			"text": " But if the validator set is large enough and continues to to grow dynamically then you would need to probably encode it in some kind of tree structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,220",
+				"to": "00:15:31,940"
+			},
+			"offsets": {
+				"from": 929220,
+				"to": 931940
+			},
+			"text": " so this is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,940",
+				"to": "00:15:33,940"
+			},
+			"offsets": {
+				"from": 931940,
+				"to": 933940
+			},
+			"text": " feature where basically rather than having a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,940",
+				"to": "00:15:37,300"
+			},
+			"offsets": {
+				"from": 933940,
+				"to": 937300
+			},
+			"text": " single storage root in the substrate header you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,300",
+				"to": "00:15:46,020"
+			},
+			"offsets": {
+				"from": 937300,
+				"to": 946020
+			},
+			"text": " One that references a few others, but it's also a valuable feature for for example building and ethereum 1.0 client on"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,660",
+				"to": "00:15:54,780"
+			},
+			"offsets": {
+				"from": 946660,
+				"to": 954780
+			},
+			"text": " substrate because this is roughly the same model that you would use for the accounts tree versus account storage trees in ethereum 1.0"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,780",
+				"to": "00:16:00,660"
+			},
+			"offsets": {
+				"from": 954780,
+				"to": 960660
+			},
+			"text": " So one possible application of that could be to probably fairly easily put together a light client in substrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,660",
+				"to": "00:16:05,260"
+			},
+			"offsets": {
+				"from": 960660,
+				"to": 965260
+			},
+			"text": " For ethereum 1.0 or for ethereum 2.0 shard chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,260",
+				"to": "00:16:08,860"
+			},
+			"offsets": {
+				"from": 965260,
+				"to": 968860
+			},
+			"text": " So I guess I'll conclude it there"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,860",
+				"to": "00:16:12,700"
+			},
+			"offsets": {
+				"from": 968860,
+				"to": 972700
+			},
+			"text": " Get substrate give it a try"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,780",
+				"to": "00:16:18,340"
+			},
+			"offsets": {
+				"from": 973780,
+				"to": 978340
+			},
+			"text": " Continue to follow what's going on with the parodies ethereum 2.0 work"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,340",
+				"to": "00:16:23,260"
+			},
+			"offsets": {
+				"from": 978340,
+				"to": 983260
+			},
+			"text": " We're doing it a bit quietly in the background, but slowly plugging away at it"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,260",
+				"to": "00:16:25,100"
+			},
+			"offsets": {
+				"from": 983260,
+				"to": 985100
+			},
+			"text": " as"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,100",
+				"to": "00:16:27,620"
+			},
+			"offsets": {
+				"from": 985100,
+				"to": 987620
+			},
+			"text": " The specs solidify we really intend to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,620",
+				"to": "00:16:31,260"
+			},
+			"offsets": {
+				"from": 987620,
+				"to": 991260
+			},
+			"text": " Keep it up to date keep our code up to date with what the specs are saying"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,260",
+				"to": "00:16:35,420"
+			},
+			"offsets": {
+				"from": 991260,
+				"to": 995420
+			},
+			"text": " So that we're always on the ball with with the sharding stuff. Thank you very much"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,420",
+				"to": "00:16:42,820"
+			},
+			"offsets": {
+				"from": 995420,
+				"to": 1002820
+			},
+			"text": " We have time for a few questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,700",
+				"to": "00:16:48,500"
+			},
+			"offsets": {
+				"from": 1003700,
+				"to": 1008500
+			},
+			"text": " Hi, thank you very much my question is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,500",
+				"to": "00:16:56,620"
+			},
+			"offsets": {
+				"from": 1008500,
+				"to": 1016620
+			},
+			"text": " Is there could you maybe elaborate a little bit about the crystallite states like in what form are they happening?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,620",
+				"to": "00:16:59,340"
+			},
+			"offsets": {
+				"from": 1016620,
+				"to": 1019340
+			},
+			"text": " And if it's kind of the benchmarks that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,340",
+				"to": "00:17:08,260"
+			},
+			"offsets": {
+				"from": 1019340,
+				"to": 1028260
+			},
+			"text": " You haven't proof of stake and like yeah if this benchmarks are something centralized or is done in a decentralized way"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,100",
+				"to": "00:17:13,580"
+			},
+			"offsets": {
+				"from": 1029100,
+				"to": 1033580
+			},
+			"text": " Yeah, so benchmarking the the crystallized state is the question"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,580",
+				"to": "00:17:19,140"
+			},
+			"offsets": {
+				"from": 1033580,
+				"to": 1039140
+			},
+			"text": " So the crystallized state is just something from the sharding specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,140",
+				"to": "00:17:25,540"
+			},
+			"offsets": {
+				"from": 1039140,
+				"to": 1045540
+			},
+			"text": " So basically the state of the chain is split into two parts you have the active state and the crystallized state"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,540",
+				"to": "00:17:29,100"
+			},
+			"offsets": {
+				"from": 1045540,
+				"to": 1049100
+			},
+			"text": " So the active state contains sort of attestations"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,100",
+				"to": "00:17:35,380"
+			},
+			"offsets": {
+				"from": 1049100,
+				"to": 1055380
+			},
+			"text": " That have not been processed yet and the crystallized state stores attestations that have been processed and checked"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,460",
+				"to": "00:17:42,100"
+			},
+			"offsets": {
+				"from": 1056460,
+				"to": 1062100
+			},
+			"text": " And and as well like what the head of all the shards are that sort of thing as well as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,100",
+				"to": "00:17:44,300"
+			},
+			"offsets": {
+				"from": 1062100,
+				"to": 1064300
+			},
+			"text": " validator set"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,300",
+				"to": "00:17:46,980"
+			},
+			"offsets": {
+				"from": 1064300,
+				"to": 1066980
+			},
+			"text": " We haven't benchmarked it yet. It's a bit early stage for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,980",
+				"to": "00:17:51,100"
+			},
+			"offsets": {
+				"from": 1066980,
+				"to": 1071100
+			},
+			"text": " I mean there's not really much to benchmark until you have something like block authorship going"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,100",
+				"to": "00:17:58,100"
+			},
+			"offsets": {
+				"from": 1071100,
+				"to": 1078100
+			},
+			"text": " But you know as soon as you have a chain up you would start to see maybe how many transactions you can process"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,100",
+				"to": "00:18:00,700"
+			},
+			"offsets": {
+				"from": 1078100,
+				"to": 1080700
+			},
+			"text": " But right now is sort of the stage more for experimentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,700",
+				"to": "00:18:03,540"
+			},
+			"offsets": {
+				"from": 1080700,
+				"to": 1083540
+			},
+			"text": " like there aren't even really"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,020",
+				"to": "00:18:10,180"
+			},
+			"offsets": {
+				"from": 1084020,
+				"to": 1090180
+			},
+			"text": " None of the beacon chain implementations are really at the stage where you could attach shards to them yet"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,180",
+				"to": "00:18:14,420"
+			},
+			"offsets": {
+				"from": 1090180,
+				"to": 1094420
+			},
+			"text": " So I don't think benchmarking sharding makes that much sense until you actually have shards"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,420",
+				"to": "00:18:19,540"
+			},
+			"offsets": {
+				"from": 1094420,
+				"to": 1099540
+			},
+			"text": " You said that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,540",
+				"to": "00:18:23,780"
+			},
+			"offsets": {
+				"from": 1099540,
+				"to": 1103780
+			},
+			"text": " Substrate works with the beacon chain, but does it work with the shard chains as well?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,780",
+				"to": "00:18:25,620"
+			},
+			"offsets": {
+				"from": 1103780,
+				"to": 1105620
+			},
+			"text": " Yeah, exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,620",
+				"to": "00:18:29,100"
+			},
+			"offsets": {
+				"from": 1105620,
+				"to": 1109100
+			},
+			"text": " So you could you could use substrate to write the beacon chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,100",
+				"to": "00:18:34,780"
+			},
+			"offsets": {
+				"from": 1109100,
+				"to": 1114780
+			},
+			"text": " Which is what we're doing now and you could also use it to write the shard chains like those are most likely going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,780",
+				"to": "00:18:37,340"
+			},
+			"offsets": {
+				"from": 1114780,
+				"to": 1117340
+			},
+			"text": " Proof of stake chains on their own that are running"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,340",
+				"to": "00:18:39,860"
+			},
+			"offsets": {
+				"from": 1117340,
+				"to": 1119860
+			},
+			"text": " Ewasm as the state transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,860",
+				"to": "00:18:45,580"
+			},
+			"offsets": {
+				"from": 1119860,
+				"to": 1125580
+			},
+			"text": " From the perspective of the beacon chain the chain the the shard chains are just blobs of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,580",
+				"to": "00:18:47,700"
+			},
+			"offsets": {
+				"from": 1125580,
+				"to": 1127700
+			},
+			"text": " So we sort of step aside from that problem for now"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,700",
+				"to": "00:18:52,660"
+			},
+			"offsets": {
+				"from": 1127700,
+				"to": 1132660
+			},
+			"text": " But you could definitely write in a theorem to point out client for the shard chains in substrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,660",
+				"to": "00:18:55,340"
+			},
+			"offsets": {
+				"from": 1132660,
+				"to": 1135340
+			},
+			"text": " And in fact, that's what we will be doing as one of the next steps"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,500",
+				"to": "00:19:03,620"
+			},
+			"offsets": {
+				"from": 1137500,
+				"to": 1143620
+			},
+			"text": " So do you have any plans to upgrade some of the the other products you support like you know the Bitcoin the zcash one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,620",
+				"to": "00:19:08,380"
+			},
+			"offsets": {
+				"from": 1143620,
+				"to": 1148380
+			},
+			"text": " You just announced the Ethereum 1.0 with substrate once it's up and running and ready to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,380",
+				"to": "00:19:11,860"
+			},
+			"offsets": {
+				"from": 1148380,
+				"to": 1151860
+			},
+			"text": " Yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,860",
+				"to": "00:19:17,020"
+			},
+			"offsets": {
+				"from": 1151860,
+				"to": 1157020
+			},
+			"text": " So so it's it's quite possible that you could do a Bitcoin implementation on substrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,020",
+				"to": "00:19:19,980"
+			},
+			"offsets": {
+				"from": 1157020,
+				"to": 1159980
+			},
+			"text": " I think with the existing products like parody Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,980",
+				"to": "00:19:26,660"
+			},
+			"offsets": {
+				"from": 1159980,
+				"to": 1166660
+			},
+			"text": " Particular with parody Ethereum. There's a lot of extra code around it like things like warp sink and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,780",
+				"to": "00:19:31,780"
+			},
+			"offsets": {
+				"from": 1166780,
+				"to": 1171780
+			},
+			"text": " The light client protocol and stuff like that. That's a bit different than the way substrate looks at things"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,780",
+				"to": "00:19:41,340"
+			},
+			"offsets": {
+				"from": 1171780,
+				"to": 1181340
+			},
+			"text": " So just with that amount of like three years of code porting that all over to substrate would be a bit too much work"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,340",
+				"to": "00:19:44,380"
+			},
+			"offsets": {
+				"from": 1181340,
+				"to": 1184380
+			},
+			"text": " Probably you could definitely write in the theorem client in substrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,380",
+				"to": "00:19:48,300"
+			},
+			"offsets": {
+				"from": 1184380,
+				"to": 1188300
+			},
+			"text": " But it's unlikely that the parody of theorem code base would migrate over to substrate in the near future"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,300",
+				"to": "00:19:53,660"
+			},
+			"offsets": {
+				"from": 1188300,
+				"to": 1193660
+			},
+			"text": " The Bitcoin client is a lot less complex simply because Bitcoin is a lot less complex"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,140",
+				"to": "00:20:01,180"
+			},
+			"offsets": {
+				"from": 1194140,
+				"to": 1201180
+			},
+			"text": " So I think it's very possible to do a at the very least a UTXO based chain on substrate where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,180",
+				"to": "00:20:09,340"
+			},
+			"offsets": {
+				"from": 1201180,
+				"to": 1209340
+			},
+			"text": " Execute Bitcoin scripts transactions. The question at that point is really just optimization like it's it's for sure possible to optimize a substrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,340",
+				"to": "00:20:12,700"
+			},
+			"offsets": {
+				"from": 1209340,
+				"to": 1212700
+			},
+			"text": " node to get to the level of like a specialized Bitcoin node"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,700",
+				"to": "00:20:16,820"
+			},
+			"offsets": {
+				"from": 1212700,
+				"to": 1216820
+			},
+			"text": " But that would just at this point be duplicating efforts since we've already written one"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,820",
+				"to": "00:20:19,420"
+			},
+			"offsets": {
+				"from": 1216820,
+				"to": 1219420
+			},
+			"text": " I think substrate sort of at its niche is more"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,980",
+				"to": "00:20:27,860"
+			},
+			"offsets": {
+				"from": 1219980,
+				"to": 1227860
+			},
+			"text": " focused on less migrating over existing blockchain products because then people have already done all those pieces of work that substrate is supposed to save you from duplicating and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,860",
+				"to": "00:20:33,900"
+			},
+			"offsets": {
+				"from": 1227860,
+				"to": 1233900
+			},
+			"text": " Rather focus more towards like new blockchain products to get people off the ground a bit faster"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,900",
+				"to": "00:20:40,420"
+			},
+			"offsets": {
+				"from": 1233900,
+				"to": 1240420
+			},
+			"text": " Like we found it to be immensely useful for the charting stuff way wrote up the state transition in like two weeks"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,420",
+				"to": "00:20:44,980"
+			},
+			"offsets": {
+				"from": 1240420,
+				"to": 1244980
+			},
+			"text": " Which you would think is you know if someone told you that beforehand you would think that that's impossible"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,700",
+				"to": "00:20:51,180"
+			},
+			"offsets": {
+				"from": 1245700,
+				"to": 1251180
+			},
+			"text": " But managed to do it just because all of this stuff was completely taken away from developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,180",
+				"to": "00:21:00,060"
+			},
+			"offsets": {
+				"from": 1251180,
+				"to": 1260060
+			},
+			"text": " Are you using gRPC for the interface API or gRPC? Yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,060",
+				"to": "00:21:05,060"
+			},
+			"offsets": {
+				"from": 1260060,
+				"to": 1265060
+			},
+			"text": " Is there a representation of that because I think I'm actually not familiar with with G.R"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,060",
+				"to": "00:21:10,780"
+			},
+			"offsets": {
+				"from": 1265060,
+				"to": 1270780
+			},
+			"text": " We are using JSON RPC like there's some JSON RPC methods, but I'm not familiar with gRPC"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,780",
+				"to": "00:21:12,980"
+			},
+			"offsets": {
+				"from": 1270780,
+				"to": 1272980
+			},
+			"text": " Okay, it's just a Google's"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,980",
+				"to": "00:21:17,060"
+			},
+			"offsets": {
+				"from": 1272980,
+				"to": 1277060
+			},
+			"text": " I think just a Google library. I gotcha the go versions use it"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,060",
+				"to": "00:21:24,980"
+			},
+			"offsets": {
+				"from": 1277060,
+				"to": 1284980
+			},
+			"text": " Okay, okay, so like that's like a JSON RPC server. Yeah, no, so we've we've written like parody has written our own"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,980",
+				"to": "00:21:29,860"
+			},
+			"offsets": {
+				"from": 1284980,
+				"to": 1289860
+			},
+			"text": " JSON RPC library and rust actually the guy who wrote most of it is sitting right behind you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,860",
+				"to": "00:21:33,700"
+			},
+			"offsets": {
+				"from": 1289860,
+				"to": 1293700
+			},
+			"text": " Talk to him but"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,700",
+				"to": "00:21:40,740"
+			},
+			"offsets": {
+				"from": 1293700,
+				"to": 1300740
+			},
+			"text": " Yeah, so a lot of this stuff doesn't exist in rust yet when we started to use rust like these libraries like"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,980",
+				"to": "00:21:44,980"
+			},
+			"offsets": {
+				"from": 1300980,
+				"to": 1304980
+			},
+			"text": " We had to write a lot of them ourselves so mostly our own code"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,980",
+				"to": "00:21:55,940"
+			},
+			"offsets": {
+				"from": 1304980,
+				"to": 1315940
+			},
+			"text": " Just another one I'll top my head you mentioned alternative networking protocols is I2P in any sort of plans or anything like that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,940",
+				"to": "00:21:58,660"
+			},
+			"offsets": {
+				"from": 1315940,
+				"to": 1318660
+			},
+			"text": " I2P what's I2P?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,660",
+				"to": "00:22:08,700"
+			},
+			"offsets": {
+				"from": 1318660,
+				"to": 1328700
+			},
+			"text": " Sorry say the game for the Mike. Cauvery furmaneros was to have additional privacy guarantees over P2P. Okay. Yeah, I don't see why not"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,500",
+				"to": "00:22:12,380"
+			},
+			"offsets": {
+				"from": 1329500,
+				"to": 1332380
+			},
+			"text": " Basically what none of the code that uses networking"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,380",
+				"to": "00:22:16,220"
+			},
+			"offsets": {
+				"from": 1332380,
+				"to": 1336220
+			},
+			"text": " Assumes anything about the networking protocol that's being used"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,220",
+				"to": "00:22:21,500"
+			},
+			"offsets": {
+				"from": 1336220,
+				"to": 1341500
+			},
+			"text": " So it's fairly generic like usually at least in the consensus algorithm stuff for the block propagation stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,500",
+				"to": "00:22:27,340"
+			},
+			"offsets": {
+				"from": 1341500,
+				"to": 1347340
+			},
+			"text": " It's like you have a stream of incoming messages and a stream of outgoing messages on some topic or some peer-to-peer connection"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,340",
+				"to": "00:22:29,340"
+			},
+			"offsets": {
+				"from": 1347340,
+				"to": 1349340
+			},
+			"text": " So it doesn't really matter what you're using for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,340",
+				"to": "00:22:31,700"
+			},
+			"offsets": {
+				"from": 1349340,
+				"to": 1351700
+			},
+			"text": " Lib2P is one option and that's the one that we've coded up"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,700",
+				"to": "00:22:38,220"
+			},
+			"offsets": {
+				"from": 1351700,
+				"to": 1358220
+			},
+			"text": " But it shouldn't be too hard if you have like an I2P library that you can link into rust or do an implementation of that in rust"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,380",
+				"to": "00:22:40,380"
+			},
+			"offsets": {
+				"from": 1358380,
+				"to": 1360380
+			},
+			"text": " To slot that in as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,380",
+				"to": "00:22:44,660"
+			},
+			"offsets": {
+				"from": 1360380,
+				"to": 1364660
+			},
+			"text": " We're not probably going to do an implementation of that ourselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,660",
+				"to": "00:22:49,580"
+			},
+			"offsets": {
+				"from": 1364660,
+				"to": 1369580
+			},
+			"text": " But it's an open-source project and that kind of contribution is the stuff that we actually really want to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,580",
+				"to": "00:22:55,780"
+			},
+			"offsets": {
+				"from": 1369580,
+				"to": 1375780
+			},
+			"text": " So if there were to be a pull request open to implement I2P support and substrate we would definitely review it and merge it"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,780",
+				"to": "00:22:59,340"
+			},
+			"offsets": {
+				"from": 1375780,
+				"to": 1379340
+			},
+			"text": " Yeah, we'll do"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,340",
+				"to": "00:23:00,900"
+			},
+			"offsets": {
+				"from": 1379340,
+				"to": 1380900
+			},
+			"text": " All right"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,900",
+				"to": "00:23:02,900"
+			},
+			"offsets": {
+				"from": 1380900,
+				"to": 1382900
+			},
+			"text": " That about wraps it up for this room"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,900",
+				"to": "00:23:07,940"
+			},
+			"offsets": {
+				"from": 1382900,
+				"to": 1387940
+			},
+			"text": " I'm Cory Petty from the Bitcoin podcast and status and there's still some more stuff on the main stage. So thanks guys"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,940",
+				"to": "00:23:09,940"
+			},
+			"offsets": {
+				"from": 1387940,
+				"to": 1389940
+			},
+			"text": " *applause*"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,940",
+				"to": "00:23:11,940"
+			},
+			"offsets": {
+				"from": 1389940,
+				"to": 1391940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,940",
+				"to": "00:23:13,940"
+			},
+			"offsets": {
+				"from": 1391940,
+				"to": 1393940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,940",
+				"to": "00:23:15,940"
+			},
+			"offsets": {
+				"from": 1393940,
+				"to": 1395940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,940",
+				"to": "00:23:17,940"
+			},
+			"offsets": {
+				"from": 1395940,
+				"to": 1397940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,940",
+				"to": "00:23:19,940"
+			},
+			"offsets": {
+				"from": 1397940,
+				"to": 1399940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,940",
+				"to": "00:23:21,940"
+			},
+			"offsets": {
+				"from": 1399940,
+				"to": 1401940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,940",
+				"to": "00:23:23,940"
+			},
+			"offsets": {
+				"from": 1401940,
+				"to": 1403940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,940",
+				"to": "00:23:25,940"
+			},
+			"offsets": {
+				"from": 1403940,
+				"to": 1405940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,940",
+				"to": "00:23:27,940"
+			},
+			"offsets": {
+				"from": 1405940,
+				"to": 1407940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,940",
+				"to": "00:23:29,940"
+			},
+			"offsets": {
+				"from": 1407940,
+				"to": 1409940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,940",
+				"to": "00:23:31,940"
+			},
+			"offsets": {
+				"from": 1409940,
+				"to": 1411940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,940",
+				"to": "00:23:33,940"
+			},
+			"offsets": {
+				"from": 1411940,
+				"to": 1413940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,940",
+				"to": "00:23:35,940"
+			},
+			"offsets": {
+				"from": 1413940,
+				"to": 1415940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,940",
+				"to": "00:23:37,940"
+			},
+			"offsets": {
+				"from": 1415940,
+				"to": 1417940
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,940",
+				"to": "00:24:06,940"
+			},
+			"offsets": {
+				"from": 1417940,
+				"to": 1446940
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

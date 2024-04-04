@@ -1,0 +1,1429 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12240
+			},
+			"text": " >> Hi, everyone. I'm Aixaou from research team. Today, my talk is about toward the eastern"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,240",
+				"to": "00:00:21,320"
+			},
+			"offsets": {
+				"from": 12240,
+				"to": 21320
+			},
+			"text": " 2.0 shining universe. And also, before it's complete and delivered, there is a gap between"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,320",
+				"to": "00:00:37,200"
+			},
+			"offsets": {
+				"from": 21320,
+				"to": 37200
+			},
+			"text": " now and the end game. So what we should build for it? So this is the well-known Israel roadmap"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,200",
+				"to": "00:00:43,680"
+			},
+			"offsets": {
+				"from": 37200,
+				"to": 43680
+			},
+			"text": " that I don't need to go through again. The outline is quite simple. All the spaces have"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,680",
+				"to": "00:00:55,640"
+			},
+			"offsets": {
+				"from": 43680,
+				"to": 55640
+			},
+			"text": " its own goals. And however, we found the design to production. It's actually like this. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,640",
+				"to": "00:01:08,480"
+			},
+			"offsets": {
+				"from": 55640,
+				"to": 68480
+			},
+			"text": " in practical, it's like a twisted highway, layered by layers, and connected. So the current"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,480",
+				"to": "00:01:20,920"
+			},
+			"offsets": {
+				"from": 68480,
+				"to": 80920
+			},
+			"text": " approach is much better than the early shining and cast per design, like in 2017. And where"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,920",
+				"to": "00:01:27,640"
+			},
+			"offsets": {
+				"from": 80920,
+				"to": 87640
+			},
+			"text": " there were no beacon chain between the East One chain and East Two chain. And the shining"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,640",
+				"to": "00:01:33,960"
+			},
+			"offsets": {
+				"from": 87640,
+				"to": 93960
+			},
+			"text": " chains are actually, they were depending on the East One chain. But however, even with"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,960",
+				"to": "00:01:42,720"
+			},
+			"offsets": {
+				"from": 93960,
+				"to": 102720
+			},
+			"text": " the beacon chain, we still have to convert the backward compatible issues for it. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,720",
+				"to": "00:02:02,880"
+			},
+			"offsets": {
+				"from": 102720,
+				"to": 122880
+			},
+			"text": " for the design areas, sometimes it's vertical and sometimes it's horizontal. And that I"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,880",
+				"to": "00:02:10,400"
+			},
+			"offsets": {
+				"from": 122880,
+				"to": 130400
+			},
+			"text": " recall that back in 2017, research team has received some feedback from the community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,400",
+				"to": "00:02:19,640"
+			},
+			"offsets": {
+				"from": 130400,
+				"to": 139640
+			},
+			"text": " from the client teams that we should have more incrementalism in the design philosophy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,640",
+				"to": "00:02:31,320"
+			},
+			"offsets": {
+				"from": 139640,
+				"to": 151320
+			},
+			"text": " That is to add more, to add many small incremental steps, step-by-step changes instead of a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,320",
+				"to": "00:02:39,880"
+			},
+			"offsets": {
+				"from": 151320,
+				"to": 159880
+			},
+			"text": " large sounder drones. To compare this to different strategies, and for example, when"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,880",
+				"to": "00:02:50,360"
+			},
+			"offsets": {
+				"from": 159880,
+				"to": 170360
+			},
+			"text": " we are building a city with incremental strategy, we should start from the base construction"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,360",
+				"to": "00:02:58,840"
+			},
+			"offsets": {
+				"from": 170360,
+				"to": 178840
+			},
+			"text": " and then build the small houses. And then nearby the small houses, we build the higher"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,840",
+				"to": "00:03:08,440"
+			},
+			"offsets": {
+				"from": 178840,
+				"to": 188440
+			},
+			"text": " buildings. That's the incremental thing it looks like. And for the sounder plan, with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,440",
+				"to": "00:03:15,600"
+			},
+			"offsets": {
+				"from": 188440,
+				"to": 195600
+			},
+			"text": " the sounder implementation, we will draw the blueprint very, very carefully and start"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,600",
+				"to": "00:03:27,240"
+			},
+			"offsets": {
+				"from": 195600,
+				"to": 207240
+			},
+			"text": " to construct. And suddenly the castle just landed. So I'd say that current approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,240",
+				"to": "00:03:46,480"
+			},
+			"offsets": {
+				"from": 207240,
+				"to": 226480
+			},
+			"text": " in East"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,480",
+				"to": "00:03:55,840"
+			},
+			"offsets": {
+				"from": 226480,
+				"to": 235840
+			},
+			"text": " ‑‑ this advantage of the incremental design is that to ‑‑ in the part of you, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,840",
+				"to": "00:04:05,200"
+			},
+			"offsets": {
+				"from": 235840,
+				"to": 245200
+			},
+			"text": " can see that in my way sometimes to build the face and faces. And there's also the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,200",
+				"to": "00:04:12,440"
+			},
+			"offsets": {
+				"from": 245200,
+				"to": 252440
+			},
+			"text": " beakole fallacy thing. You can see the stack of beakole. It has a very, very good sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,440",
+				"to": "00:04:21,200"
+			},
+			"offsets": {
+				"from": 252440,
+				"to": 261200
+			},
+			"text": " of the smell. But with a very limited eye sign. So it's possible the prey is just in front"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,200",
+				"to": "00:04:27,240"
+			},
+			"offsets": {
+				"from": 261200,
+				"to": 267240
+			},
+			"text": " of them, but it's downwind. So they can see the prey even if the prey is very close to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,240",
+				"to": "00:04:37,920"
+			},
+			"offsets": {
+				"from": 267240,
+				"to": 277920
+			},
+			"text": " it. So it's that in the political design. So let's quiet, we usually have to go back"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,920",
+				"to": "00:04:50,960"
+			},
+			"offsets": {
+				"from": 277920,
+				"to": 290960
+			},
+			"text": " and forth and to fix problems that are hiding somewhere. Okay. So that's it. And I organized"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,960",
+				"to": "00:04:59,200"
+			},
+			"offsets": {
+				"from": 290960,
+				"to": 299200
+			},
+			"text": " survey recently. The survey was for the incident community and especially the developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,200",
+				"to": "00:05:09,280"
+			},
+			"offsets": {
+				"from": 299200,
+				"to": 309280
+			},
+			"text": " And one of the question is what core chain properties or functionalities do we ‑‑ sorry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,280",
+				"to": "00:05:19,800"
+			},
+			"offsets": {
+				"from": 309280,
+				"to": 319800
+			},
+			"text": " do you want to see implemented in E2O or E2 1.x? So we got about 69 people answer this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,800",
+				"to": "00:05:32,960"
+			},
+			"offsets": {
+				"from": 319800,
+				"to": 332960
+			},
+			"text": " question. And I categorized them with some simple text. And the top three wishes, there"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,960",
+				"to": "00:05:43,360"
+			},
+			"offsets": {
+				"from": 332960,
+				"to": 343360
+			},
+			"text": " are scalability, proof of stake and the guess and free model improvement. Those three different"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,360",
+				"to": "00:05:54,560"
+			},
+			"offsets": {
+				"from": 343360,
+				"to": 354560
+			},
+			"text": " requirements. But in some point they are overlapping. Sorry. They are all overlapping"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,560",
+				"to": "00:06:04,240"
+			},
+			"offsets": {
+				"from": 354560,
+				"to": 364240
+			},
+			"text": " in the E2O design map. So I select some of the topics based on the top wishes today to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,240",
+				"to": "00:06:17,200"
+			},
+			"offsets": {
+				"from": 364240,
+				"to": 377200
+			},
+			"text": " introduce to you. And these three topics include the abstract and the stacking and aggregation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,200",
+				"to": "00:06:28,320"
+			},
+			"offsets": {
+				"from": 377200,
+				"to": 388320
+			},
+			"text": " And some significant changes that will help him in the E2O charting universe. So the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,320",
+				"to": "00:06:36,720"
+			},
+			"offsets": {
+				"from": 388320,
+				"to": 396720
+			},
+			"text": " one is the layer one account abstract. So it has been discussed in the E2O and X as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,720",
+				"to": "00:06:50,160"
+			},
+			"offsets": {
+				"from": 396720,
+				"to": 410160
+			},
+			"text": " that in the abstract account model, all contracts are for world contracts. So there's no OO"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,160",
+				"to": "00:07:02,520"
+			},
+			"offsets": {
+				"from": 410160,
+				"to": 422520
+			},
+			"text": " chart. One is the ‑‑ we only abstract the signature. And another one is we do full"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,520",
+				"to": "00:07:14,600"
+			},
+			"offsets": {
+				"from": 422520,
+				"to": 434600
+			},
+			"text": " abstraction, include the nouns, guess and payment. And ‑‑ sorry. And with the guaranteed"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,600",
+				"to": "00:07:26,360"
+			},
+			"offsets": {
+				"from": 434600,
+				"to": 446360
+			},
+			"text": " transactions. And also if we got into the E2Es, we will have ‑‑ each E can have its"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,360",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 446360,
+				"to": 456000
+			},
+			"text": " own different execution environments. And also, each environment can have different account"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:50,440"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 470440
+			},
+			"text": " abstract models inside it. So it's very flexible and very easy to plug into each other. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,440",
+				"to": "00:07:59,800"
+			},
+			"offsets": {
+				"from": 470440,
+				"to": 479800
+			},
+			"text": " another topic I want to talk about is the IP 1559. It's the free market model change"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,800",
+				"to": "00:08:08,480"
+			},
+			"offsets": {
+				"from": 479800,
+				"to": 488480
+			},
+			"text": " created by metallic and airy corner. And so in the skin, we will have dynamic best free"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,480",
+				"to": "00:08:16,480"
+			},
+			"offsets": {
+				"from": 488480,
+				"to": 496480
+			},
+			"text": " value. And this value is addressed by the utilization rate. So if the utilization rate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,480",
+				"to": "00:08:28,640"
+			},
+			"offsets": {
+				"from": 496480,
+				"to": 508640
+			},
+			"text": " is over 50%, this spatial variable will increase. And if ‑‑ sorry. If the utilization rate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,640",
+				"to": "00:08:41,240"
+			},
+			"offsets": {
+				"from": 508640,
+				"to": 521240
+			},
+			"text": " is under 50%, this value will be decreased. So since it's updated automatically, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,240",
+				"to": "00:08:49,600"
+			},
+			"offsets": {
+				"from": 521240,
+				"to": 529600
+			},
+			"text": " allowed the user doesn't have to do more work on this. The wallet service can help to define"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,600",
+				"to": "00:09:00,680"
+			},
+			"offsets": {
+				"from": 529600,
+				"to": 540680
+			},
+			"text": " the fair, free for users. So it actually makes a lot of U.S. better than the current state"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,680",
+				"to": "00:09:10,480"
+			},
+			"offsets": {
+				"from": 540680,
+				"to": 550480
+			},
+			"text": " crawl. And also the best free is always burnt. This design is to prevent the minus or the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,480",
+				"to": "00:09:18,920"
+			},
+			"offsets": {
+				"from": 550480,
+				"to": 558920
+			},
+			"text": " processor from manipulating the free in order to extract more free from the user. So generally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,920",
+				"to": "00:09:29,120"
+			},
+			"offsets": {
+				"from": 558920,
+				"to": 569120
+			},
+			"text": " it will be a more fair model land state crawl. And before talking about the second, I want"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,120",
+				"to": "00:09:37,280"
+			},
+			"offsets": {
+				"from": 569120,
+				"to": 577280
+			},
+			"text": " to mention the CASPER FGG again. So CASPER FGG is the finality tool for finality protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,280",
+				"to": "00:09:47,200"
+			},
+			"offsets": {
+				"from": 577280,
+				"to": 587200
+			},
+			"text": " for the S2O. So the very danger, the duty of the data has three steps. One is to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,200",
+				"to": "00:09:54,640"
+			},
+			"offsets": {
+				"from": 587200,
+				"to": 594640
+			},
+			"text": " deposit to the S1 deposit contract. And the second one is when the block has enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,640",
+				"to": "00:10:06,800"
+			},
+			"offsets": {
+				"from": 594640,
+				"to": 606800
+			},
+			"text": " as to vote for the current epoch, the current checkpoints. And if the checkpoint got enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,800",
+				"to": "00:10:17,440"
+			},
+			"offsets": {
+				"from": 606800,
+				"to": 617440
+			},
+			"text": " votes, we call that this checkpoint is justified. And also if the checkpoint is ‑‑ if the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,440",
+				"to": "00:10:30,640"
+			},
+			"offsets": {
+				"from": 617440,
+				"to": 630640
+			},
+			"text": " checkpoint has to justify a descendants, we call this block or this checkpoint is got finalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,640",
+				"to": "00:10:42,560"
+			},
+			"offsets": {
+				"from": 630640,
+				"to": 642560
+			},
+			"text": " So that's the basic of a data duty. And we also know that the misbehave data, they will"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,560",
+				"to": "00:11:02,560"
+			},
+			"offsets": {
+				"from": 642560,
+				"to": 662560
+			},
+			"text": " get slashed. So what is slashed? It will be the doctor that is from the protocol. So after"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,560",
+				"to": "00:11:10,080"
+			},
+			"offsets": {
+				"from": 662560,
+				"to": 670080
+			},
+			"text": " migrating to the full proof of stake system, it will introduce a new economic model. So calling"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,080",
+				"to": "00:11:17,120"
+			},
+			"offsets": {
+				"from": 670080,
+				"to": 677120
+			},
+			"text": " wires from consensus has been working on this economic models for a while. And the model is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,120",
+				"to": "00:11:25,840"
+			},
+			"offsets": {
+				"from": 677120,
+				"to": 685840
+			},
+			"text": " based on the current foreign state. I encourage people, especially the economist, to take a look"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,840",
+				"to": "00:11:34,960"
+			},
+			"offsets": {
+				"from": 685840,
+				"to": 694960
+			},
+			"text": " at his work and give feedback from the economic side. So similar to the mic pool, we can explain"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,960",
+				"to": "00:11:41,840"
+			},
+			"offsets": {
+				"from": 694960,
+				"to": 701840
+			},
+			"text": " that there will be a stake pool in the future. And if the validator are not on life for a while,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,840",
+				"to": "00:11:50,880"
+			},
+			"offsets": {
+				"from": 701840,
+				"to": 710880
+			},
+			"text": " and they can't finalize any checkpoints, so they will be penalized as well. So based on that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,880",
+				"to": "00:11:58,960"
+			},
+			"offsets": {
+				"from": 710880,
+				"to": 718960
+			},
+			"text": " it's very important to have stable networking environments for the proof of stake regulators."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,080",
+				"to": "00:12:12,320"
+			},
+			"offsets": {
+				"from": 722080,
+				"to": 732320
+			},
+			"text": " And the next topic is about the network latency. So this message are the most overhead of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,320",
+				"to": "00:12:19,760"
+			},
+			"offsets": {
+				"from": 732320,
+				"to": 739760
+			},
+			"text": " sharding network, including the attestations, which is the vote between the big and chain and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,760",
+				"to": "00:12:28,080"
+			},
+			"offsets": {
+				"from": 739760,
+				"to": 748080
+			},
+			"text": " the shard chains. And the second one is the transactions. So the transactions only in the sharding"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,080",
+				"to": "00:12:35,200"
+			},
+			"offsets": {
+				"from": 748080,
+				"to": 755200
+			},
+			"text": " network. And also there are blocks, including the beacon block of there and also the shard blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,200",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 755200,
+				"to": 766000
+			},
+			"text": " So, and we have closings. So the shard block will point to the beacon block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:52,160"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 772160
+			},
+			"text": " and the beacon block would refer to the shard block sometimes. That's called the crosslink."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,960",
+				"to": "00:13:00,880"
+			},
+			"offsets": {
+				"from": 772960,
+				"to": 780880
+			},
+			"text": " So the crosslink is included in the attestation data per shard chain, and then got included in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,880",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 780880,
+				"to": 790000
+			},
+			"text": " the beacon chain. So also the shard chain has its own subnet, this very clear, but sometimes the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:22,800"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 802800
+			},
+			"text": " crossshot networking communication is frequent. So with the latest issue to make, we have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,800",
+				"to": "00:13:32,240"
+			},
+			"offsets": {
+				"from": 802800,
+				"to": 812240
+			},
+			"text": " 4 million validators, 64 start plus epoch, and 6 seconds beacon block time. And we will lead to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,240",
+				"to": "00:13:43,760"
+			},
+			"offsets": {
+				"from": 812240,
+				"to": 823760
+			},
+			"text": " 64,000 individual signature on the beacon chain. But the news is that this individual signature can"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,760",
+				"to": "00:13:58,640"
+			},
+			"offsets": {
+				"from": 823760,
+				"to": 838640
+			},
+			"text": " be aggregate into the smaller SH. And in the sharding network side, we have 64 kilobytes block data"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,640",
+				"to": "00:14:08,720"
+			},
+			"offsets": {
+				"from": 838640,
+				"to": 848720
+			},
+			"text": " cap capacity, and 3 seconds shard block start time. And it will lead to about like 21 kilobytes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,360",
+				"to": "00:14:20,480"
+			},
+			"offsets": {
+				"from": 849360,
+				"to": 860480
+			},
+			"text": " per seconds in per shot. So let's go ahead here. And about the networking layers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,480",
+				"to": "00:14:35,120"
+			},
+			"offsets": {
+				"from": 860480,
+				"to": 875120
+			},
+			"text": " it's to use the P2P based networking protocol. So under the networking layer, it's the pure"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,120",
+				"to": "00:14:41,680"
+			},
+			"offsets": {
+				"from": 875120,
+				"to": 881680
+			},
+			"text": " connection. So the pure connection, it depends on the pure discovery protocol which you are using."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,680",
+				"to": "00:14:56,480"
+			},
+			"offsets": {
+				"from": 881680,
+				"to": 896480
+			},
+			"text": " And the true business logic is the message is broadcasting with the publish and subscribe system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,840",
+				"to": "00:15:05,680"
+			},
+			"offsets": {
+				"from": 897840,
+				"to": 905680
+			},
+			"text": " So we use the gossip sub protocol to broadcast the subnet messages inside the shard chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,680",
+				"to": "00:15:19,680"
+			},
+			"offsets": {
+				"from": 905680,
+				"to": 919680
+			},
+			"text": " So yeah, but imagine that if we have like 10, 1,064 shard chains and about 4 million"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,680",
+				"to": "00:15:28,640"
+			},
+			"offsets": {
+				"from": 919680,
+				"to": 928640
+			},
+			"text": " display data, it will be very large. And also we have to think about the peer-to-peer network"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,640",
+				"to": "00:15:36,240"
+			},
+			"offsets": {
+				"from": 928640,
+				"to": 936240
+			},
+			"text": " topologies. So there are three possible cases which is the structured type of topologies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,240",
+				"to": "00:15:43,200"
+			},
+			"offsets": {
+				"from": 936240,
+				"to": 943200
+			},
+			"text": " and also the unstructured topologies. And that includes the flooding gossip and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,760",
+				"to": "00:15:50,480"
+			},
+			"offsets": {
+				"from": 943760,
+				"to": 950480
+			},
+			"text": " dynamic and random work. So the gossip sub is included in this category. And also it's possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,480",
+				"to": "00:15:57,040"
+			},
+			"offsets": {
+				"from": 950480,
+				"to": 957040
+			},
+			"text": " to have to combine the structured and structured topologies into the hybrid model."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,040",
+				"to": "00:16:11,200"
+			},
+			"offsets": {
+				"from": 957040,
+				"to": 971200
+			},
+			"text": " So this is an example of how can we implement it simply. So in this simple model, the validators are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,960",
+				"to": "00:16:20,080"
+			},
+			"offsets": {
+				"from": 972960,
+				"to": 980080
+			},
+			"text": " they can broadcast the message inside the shard by using the gossip sub protocol. And only the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,080",
+				"to": "00:16:32,240"
+			},
+			"offsets": {
+				"from": 980080,
+				"to": 992240
+			},
+			"text": " proposal of the given shard will not only have to collect all the signatures for the given shard."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,960",
+				"to": "00:16:47,440"
+			},
+			"offsets": {
+				"from": 992960,
+				"to": 1007440
+			},
+			"text": " So the overhead only inside the subnet and only the validators, only the proposals have to exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,440",
+				"to": "00:16:56,160"
+			},
+			"offsets": {
+				"from": 1007440,
+				"to": 1016160
+			},
+			"text": " the aggregated signatures. This simple model has two counts, which is losing the data privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,880",
+				"to": "00:17:06,240"
+			},
+			"offsets": {
+				"from": 1016880,
+				"to": 1026240
+			},
+			"text": " And other nodes can need to trust the list purposes. And if the proposal doesn't do their work well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,240",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1026240,
+				"to": 1034000
+			},
+			"text": " then the rest of the validators will lose the reward from it. So it's too easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:22,800"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1042800
+			},
+			"text": " Another one is implemented by consensus research team. It's called handle."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,600",
+				"to": "00:17:31,680"
+			},
+			"offsets": {
+				"from": 1043600,
+				"to": 1051680
+			},
+			"text": " Handle allows the aggregation of thousands of signatures just under a second. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,680",
+				"to": "00:17:39,920"
+			},
+			"offsets": {
+				"from": 1051680,
+				"to": 1059920
+			},
+			"text": " organized, it's done by organizing the connection in labels. So it's more like a structured design."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,920",
+				"to": "00:17:47,440"
+			},
+			"offsets": {
+				"from": 1059920,
+				"to": 1067440
+			},
+			"text": " It's doing well, but we also need to think more about how can we utilize the hybrid model more"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,440",
+				"to": "00:18:03,120"
+			},
+			"offsets": {
+				"from": 1067440,
+				"to": 1083120
+			},
+			"text": " efficiently. So it's always a collect but rate work. So I think Justin just mentioned about that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,120",
+				"to": "00:18:10,320"
+			},
+			"offsets": {
+				"from": 1083120,
+				"to": 1090320
+			},
+			"text": " very well. And I'm going to highlight again. So we have the EIP, E-su research and magicians,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,880",
+				"to": "00:18:17,360"
+			},
+			"offsets": {
+				"from": 1090880,
+				"to": 1097360
+			},
+			"text": " and it's too spake. There's another side that you can find more deeper knowledge from it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,360",
+				"to": "00:18:25,360"
+			},
+			"offsets": {
+				"from": 1097360,
+				"to": 1105360
+			},
+			"text": " And also there's a bounty initiated by Justin. And you can get five EIPs if you have found any bug"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,360",
+				"to": "00:18:35,440"
+			},
+			"offsets": {
+				"from": 1105360,
+				"to": 1115440
+			},
+			"text": " from the current BKNCHN spake. And finally, I want to say that even we are facing how the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,240",
+				"to": "00:18:43,520"
+			},
+			"offsets": {
+				"from": 1116240,
+				"to": 1123520
+			},
+			"text": " BKNCHN protocol is almost there are some optimizations that Kainteens are working on. And generally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,520",
+				"to": "00:18:53,440"
+			},
+			"offsets": {
+				"from": 1123520,
+				"to": 1133440
+			},
+			"text": " I'm optimistic of what's happening and exciting about how can we solve this problem in the next few"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,440",
+				"to": "00:19:02,960"
+			},
+			"offsets": {
+				"from": 1133440,
+				"to": 1142960
+			},
+			"text": " stages. And okay, so it's, I'm co-hosting breakout with tomorrow morning. And if you are interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,960",
+				"to": "00:19:11,200"
+			},
+			"offsets": {
+				"from": 1142960,
+				"to": 1151200
+			},
+			"text": " in knowing more about how the developer experience looks like in the phase one, phase two stage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,200",
+				"to": "00:19:18,160"
+			},
+			"offsets": {
+				"from": 1151200,
+				"to": 1158160
+			},
+			"text": " please come with us and join the breakout station. And if you want to know more about"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,160",
+				"to": "00:19:26,400"
+			},
+			"offsets": {
+				"from": 1158160,
+				"to": 1166400
+			},
+			"text": " these two discussions, there's a chance that if you travel next to, after the Japan tool, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,400",
+				"to": "00:19:31,680"
+			},
+			"offsets": {
+				"from": 1166400,
+				"to": 1171680
+			},
+			"text": " you can come to Taiwan, there's a conference called Crossing and just typing Crossing.type."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,680",
+				"to": "00:19:38,880"
+			},
+			"offsets": {
+				"from": 1171680,
+				"to": 1178880
+			},
+			"text": " Okay, that's those side credits. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,880",
+				"to": "00:19:40,880"
+			},
+			"offsets": {
+				"from": 1178880,
+				"to": 1180880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,880",
+				"to": "00:19:42,880"
+			},
+			"offsets": {
+				"from": 1180880,
+				"to": 1182880
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,880",
+				"to": "00:19:44,880"
+			},
+			"offsets": {
+				"from": 1182880,
+				"to": 1184880
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,880",
+				"to": "00:19:46,880"
+			},
+			"offsets": {
+				"from": 1184880,
+				"to": 1186880
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,880",
+				"to": "00:19:48,880"
+			},
+			"offsets": {
+				"from": 1186880,
+				"to": 1188880
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,880",
+				"to": "00:19:50,880"
+			},
+			"offsets": {
+				"from": 1188880,
+				"to": 1190880
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,880",
+				"to": "00:19:52,880"
+			},
+			"offsets": {
+				"from": 1190880,
+				"to": 1192880
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,880",
+				"to": "00:19:54,880"
+			},
+			"offsets": {
+				"from": 1192880,
+				"to": 1194880
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,880",
+				"to": "00:19:56,880"
+			},
+			"offsets": {
+				"from": 1194880,
+				"to": 1196880
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,880",
+				"to": "00:20:14,880"
+			},
+			"offsets": {
+				"from": 1196880,
+				"to": 1214880
+			},
+			"text": " [Music]"
+		}
+	]
+}

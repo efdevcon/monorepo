@@ -1,0 +1,5477 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:13,400"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 13400
+			},
+			"text": " Hi, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,400",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 13400,
+				"to": 15000
+			},
+			"text": " I'm Kumavis."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,480"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17480
+			},
+			"text": " I founded Metamask with Dan Finley,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,480",
+				"to": "00:00:21,320"
+			},
+			"offsets": {
+				"from": 17480,
+				"to": 21320
+			},
+			"text": " and now I run the security research team at Metamask."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,320",
+				"to": "00:00:25,160"
+			},
+			"offsets": {
+				"from": 21320,
+				"to": 25160
+			},
+			"text": " Today's talk is, \"The Attacker is Inside.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,160",
+				"to": "00:00:28,360"
+			},
+			"offsets": {
+				"from": 25160,
+				"to": 28360
+			},
+			"text": " JavaScript, supply chain security, and love mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,360",
+				"to": "00:00:29,160"
+			},
+			"offsets": {
+				"from": 28360,
+				"to": 29160
+			},
+			"text": " So yeah, love mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,160",
+				"to": "00:00:31,880"
+			},
+			"offsets": {
+				"from": 29160,
+				"to": 31880
+			},
+			"text": " This is what I've been spending the past couple years working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,880",
+				"to": "00:00:34,680"
+			},
+			"offsets": {
+				"from": 31880,
+				"to": 34680
+			},
+			"text": " First and foremost, it is a set of security tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,680",
+				"to": "00:00:37,640"
+			},
+			"offsets": {
+				"from": 34680,
+				"to": 37640
+			},
+			"text": " for any JavaScript application to mitigate"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,640",
+				"to": "00:00:39,960"
+			},
+			"offsets": {
+				"from": 37640,
+				"to": 39960
+			},
+			"text": " software supply chain risks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,960",
+				"to": "00:00:41,640"
+			},
+			"offsets": {
+				"from": 39960,
+				"to": 41640
+			},
+			"text": " So what is the software supply chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,640",
+				"to": "00:00:44,280"
+			},
+			"offsets": {
+				"from": 41640,
+				"to": 44280
+			},
+			"text": " It's everything that touches an application"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,280",
+				"to": "00:00:46,280"
+			},
+			"offsets": {
+				"from": 44280,
+				"to": 46280
+			},
+			"text": " or plays a role in its development."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,280",
+				"to": "00:00:48,400"
+			},
+			"offsets": {
+				"from": 46280,
+				"to": 48400
+			},
+			"text": " Sonotype has this cool website."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,400",
+				"to": "00:00:51,600"
+			},
+			"offsets": {
+				"from": 48400,
+				"to": 51600
+			},
+			"text": " It's a timeline of supply chain attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,600",
+				"to": "00:00:54,160"
+			},
+			"offsets": {
+				"from": 51600,
+				"to": 54160
+			},
+			"text": " And you can scroll through it and see how many they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,160",
+				"to": "00:00:57,200"
+			},
+			"offsets": {
+				"from": 54160,
+				"to": 57200
+			},
+			"text": " And a lot of them are from Python and Rust,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,200",
+				"to": "00:00:59,800"
+			},
+			"offsets": {
+				"from": 57200,
+				"to": 59800
+			},
+			"text": " but a good 50% are from MPM."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,800",
+				"to": "00:01:02,280"
+			},
+			"offsets": {
+				"from": 59800,
+				"to": 62280
+			},
+			"text": " They're from the JavaScript ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,280",
+				"to": "00:01:06,800"
+			},
+			"offsets": {
+				"from": 62280,
+				"to": 66800
+			},
+			"text": " So why is JavaScript supply chain targeted so frequently?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,800",
+				"to": "00:01:09,760"
+			},
+			"offsets": {
+				"from": 66800,
+				"to": 69760
+			},
+			"text": " Primarily because it's really popular."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,760",
+				"to": "00:01:13,080"
+			},
+			"offsets": {
+				"from": 69760,
+				"to": 73080
+			},
+			"text": " This is from the Stack Overflow user survey."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,080",
+				"to": "00:01:16,960"
+			},
+			"offsets": {
+				"from": 73080,
+				"to": 76960
+			},
+			"text": " And for self-described professional developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,960",
+				"to": "00:01:18,520"
+			},
+			"offsets": {
+				"from": 76960,
+				"to": 78520
+			},
+			"text": " JavaScript's way at the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,520",
+				"to": "00:01:21,880"
+			},
+			"offsets": {
+				"from": 78520,
+				"to": 81880
+			},
+			"text": " And there's tight script in Node.js not far behind."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,880",
+				"to": "00:01:24,200"
+			},
+			"offsets": {
+				"from": 81880,
+				"to": 84200
+			},
+			"text": " So when we're talking about JavaScript supply chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,200",
+				"to": "00:01:26,720"
+			},
+			"offsets": {
+				"from": 84200,
+				"to": 86720
+			},
+			"text": " we're primarily talking about MPM dependencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,720",
+				"to": "00:01:28,600"
+			},
+			"offsets": {
+				"from": 86720,
+				"to": 88600
+			},
+			"text": " So this is your apps dependencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,600",
+				"to": "00:01:30,120"
+			},
+			"offsets": {
+				"from": 88600,
+				"to": 90120
+			},
+			"text": " your dependencies dependencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,120",
+				"to": "00:01:31,760"
+			},
+			"offsets": {
+				"from": 90120,
+				"to": 91760
+			},
+			"text": " your build systems dependencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,760",
+				"to": "00:01:33,520"
+			},
+			"offsets": {
+				"from": 91760,
+				"to": 93520
+			},
+			"text": " any other tools you might be using."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,520",
+				"to": "00:01:35,920"
+			},
+			"offsets": {
+				"from": 93520,
+				"to": 95920
+			},
+			"text": " You might think that these are your dependencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,920",
+				"to": "00:01:39,760"
+			},
+			"offsets": {
+				"from": 95920,
+				"to": 99760
+			},
+			"text": " just the dependencies listed in package.json in your app."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,760",
+				"to": "00:01:43,920"
+			},
+			"offsets": {
+				"from": 99760,
+				"to": 103920
+			},
+			"text": " But that's just like an inner ring around your application"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,920",
+				"to": "00:01:48,760"
+			},
+			"offsets": {
+				"from": 103920,
+				"to": 108760
+			},
+			"text": " in part of a constellation of your whole dependency graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,760",
+				"to": "00:01:51,280"
+			},
+			"offsets": {
+				"from": 108760,
+				"to": 111280
+			},
+			"text": " So that's why there's so many node modules"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,280",
+				"to": "00:01:53,080"
+			},
+			"offsets": {
+				"from": 111280,
+				"to": 113080
+			},
+			"text": " in the node modules directory."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,080",
+				"to": "00:01:55,480"
+			},
+			"offsets": {
+				"from": 113080,
+				"to": 115480
+			},
+			"text": " Okay, so to understand what it looks like"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,480",
+				"to": "00:01:59,120"
+			},
+			"offsets": {
+				"from": 115480,
+				"to": 119120
+			},
+			"text": " when it goes wrong, let's look at the copay wallet hack."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,120",
+				"to": "00:02:02,640"
+			},
+			"offsets": {
+				"from": 119120,
+				"to": 122640
+			},
+			"text": " Copay wallet was a Bitcoin wallet by BitPay."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,640",
+				"to": "00:02:06,640"
+			},
+			"offsets": {
+				"from": 122640,
+				"to": 126640
+			},
+			"text": " And this is my primary case study for designing Lava Mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,640",
+				"to": "00:02:11,080"
+			},
+			"offsets": {
+				"from": 126640,
+				"to": 131080
+			},
+			"text": " So at the time, the end of 2018, the copay wallet hack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,080",
+				"to": "00:02:13,400"
+			},
+			"offsets": {
+				"from": 131080,
+				"to": 133400
+			},
+			"text": " also known as the event stream incident,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,400",
+				"to": "00:02:15,020"
+			},
+			"offsets": {
+				"from": 133400,
+				"to": 135020
+			},
+			"text": " made a lot of news."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,020",
+				"to": "00:02:18,960"
+			},
+			"offsets": {
+				"from": 135020,
+				"to": 138960
+			},
+			"text": " An attacker got control of a dependency"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,960",
+				"to": "00:02:22,080"
+			},
+			"offsets": {
+				"from": 138960,
+				"to": 142080
+			},
+			"text": " that was used in a Bitcoin wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,080",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 142080,
+				"to": 145000
+			},
+			"text": " deployed a targeted attack against that wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:28,600"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 148600
+			},
+			"text": " And stole private keys and digital assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,600",
+				"to": "00:02:30,080"
+			},
+			"offsets": {
+				"from": 148600,
+				"to": 150080
+			},
+			"text": " from the users of that wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,080",
+				"to": "00:02:33,680"
+			},
+			"offsets": {
+				"from": 150080,
+				"to": 153680
+			},
+			"text": " And it was, I think, three versions of the wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,680",
+				"to": "00:02:35,640"
+			},
+			"offsets": {
+				"from": 153680,
+				"to": 155640
+			},
+			"text": " that had the attack and it were published."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,640",
+				"to": "00:02:38,800"
+			},
+			"offsets": {
+				"from": 155640,
+				"to": 158800
+			},
+			"text": " So they didn't even know it was in there for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,800",
+				"to": "00:02:41,480"
+			},
+			"offsets": {
+				"from": 158800,
+				"to": 161480
+			},
+			"text": " Okay, so let's look at the build pipeline"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,480",
+				"to": "00:02:43,880"
+			},
+			"offsets": {
+				"from": 161480,
+				"to": 163880
+			},
+			"text": " to understand how it got in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,880",
+				"to": "00:02:46,200"
+			},
+			"offsets": {
+				"from": 163880,
+				"to": 166200
+			},
+			"text": " Now, so this is a non-custodial wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,200",
+				"to": "00:02:48,800"
+			},
+			"offsets": {
+				"from": 166200,
+				"to": 168800
+			},
+			"text": " so the keys are in the users application only,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,800",
+				"to": "00:02:51,200"
+			},
+			"offsets": {
+				"from": 168800,
+				"to": 171200
+			},
+			"text": " they're not on the server or something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,200",
+				"to": "00:02:53,800"
+			},
+			"offsets": {
+				"from": 171200,
+				"to": 173800
+			},
+			"text": " So the attack happened here at runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,800",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 173800,
+				"to": 175000
+			},
+			"text": " That's where the secrets were,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:57,120"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 177120
+			},
+			"text": " that's where the private keys were."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,120",
+				"to": "00:03:00,400"
+			},
+			"offsets": {
+				"from": 177120,
+				"to": 180400
+			},
+			"text": " But the evil dependency wasn't even part"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,400",
+				"to": "00:03:02,400"
+			},
+			"offsets": {
+				"from": 180400,
+				"to": 182400
+			},
+			"text": " of the front end application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,400",
+				"to": "00:03:04,920"
+			},
+			"offsets": {
+				"from": 182400,
+				"to": 184920
+			},
+			"text": " it was part of their build system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,920",
+				"to": "00:03:07,360"
+			},
+			"offsets": {
+				"from": 184920,
+				"to": 187360
+			},
+			"text": " So it actually entered in here"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,360",
+				"to": "00:03:09,720"
+			},
+			"offsets": {
+				"from": 187360,
+				"to": 189720
+			},
+			"text": " and then it went on the disk during build time"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,720",
+				"to": "00:03:13,800"
+			},
+			"offsets": {
+				"from": 189720,
+				"to": 193800
+			},
+			"text": " and modified a dependency that ended up in the web app."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,800",
+				"to": "00:03:17,360"
+			},
+			"offsets": {
+				"from": 193800,
+				"to": 197360
+			},
+			"text": " But it, oop, sorry, it could have also happened here"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,360",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 197360,
+				"to": 199000
+			},
+			"text": " at the dependency in the stole time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:22,540"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 202540
+			},
+			"text": " MPM has lifecycle scripts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,540",
+				"to": "00:03:24,040"
+			},
+			"offsets": {
+				"from": 202540,
+				"to": 204040
+			},
+			"text": " so after you install a package,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,040",
+				"to": "00:03:27,960"
+			},
+			"offsets": {
+				"from": 204040,
+				"to": 207960
+			},
+			"text": " it gets a chance to just run any command on your computer"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,960",
+				"to": "00:03:30,760"
+			},
+			"offsets": {
+				"from": 207960,
+				"to": 210760
+			},
+			"text": " to finish up its install process or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,760",
+				"to": "00:03:33,480"
+			},
+			"offsets": {
+				"from": 210760,
+				"to": 213480
+			},
+			"text": " So Jackson Palmer of Dogecoin said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,480",
+				"to": "00:03:36,720"
+			},
+			"offsets": {
+				"from": 213480,
+				"to": 216720
+			},
+			"text": " BitPay essentially trusted all the upstream developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,720",
+				"to": "00:03:39,800"
+			},
+			"offsets": {
+				"from": 216720,
+				"to": 219800
+			},
+			"text": " to never inject malicious code into their wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,800",
+				"to": "00:03:43,080"
+			},
+			"offsets": {
+				"from": 219800,
+				"to": 223080
+			},
+			"text": " Upstream developers being the dependency developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,080",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 223080,
+				"to": 224000
+			},
+			"text": " in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:46,560"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 226560
+			},
+			"text": " And yeah, he's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,560",
+				"to": "00:03:49,900"
+			},
+			"offsets": {
+				"from": 226560,
+				"to": 229900
+			},
+			"text": " And it sounds pretty scary when you say it in these terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,900",
+				"to": "00:03:54,900"
+			},
+			"offsets": {
+				"from": 229900,
+				"to": 234900
+			},
+			"text": " and was BitPay being particularly unsafe."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,900",
+				"to": "00:03:59,440"
+			},
+			"offsets": {
+				"from": 234900,
+				"to": 239440
+			},
+			"text": " Well, this is how we make all JavaScript applications today"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,440",
+				"to": "00:04:03,640"
+			},
+			"offsets": {
+				"from": 239440,
+				"to": 243640
+			},
+			"text": " and most wallets, not Metamask."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,640",
+				"to": "00:04:05,120"
+			},
+			"offsets": {
+				"from": 243640,
+				"to": 245120
+			},
+			"text": " So when this attack happened,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,120",
+				"to": "00:04:07,640"
+			},
+			"offsets": {
+				"from": 245120,
+				"to": 247640
+			},
+			"text": " there was all this discussion, how do we fix this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,640",
+				"to": "00:04:09,600"
+			},
+			"offsets": {
+				"from": 247640,
+				"to": 249600
+			},
+			"text": " Should we never use dependencies?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,600",
+				"to": "00:04:12,800"
+			},
+			"offsets": {
+				"from": 249600,
+				"to": 252800
+			},
+			"text": " What are we giving up on the open source and collaboration?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,800",
+				"to": "00:04:14,600"
+			},
+			"offsets": {
+				"from": 252800,
+				"to": 254600
+			},
+			"text": " What about don't roll your own crypto?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,600",
+				"to": "00:04:16,560"
+			},
+			"offsets": {
+				"from": 254600,
+				"to": 256560
+			},
+			"text": " Like, how does that fit in?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,560",
+				"to": "00:04:18,880"
+			},
+			"offsets": {
+				"from": 256560,
+				"to": 258880
+			},
+			"text": " Audit all your dependencies always?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,880",
+				"to": "00:04:20,620"
+			},
+			"offsets": {
+				"from": 258880,
+				"to": 260620
+			},
+			"text": " Yeah, that's a great idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,620",
+				"to": "00:04:22,660"
+			},
+			"offsets": {
+				"from": 260620,
+				"to": 262660
+			},
+			"text": " but how many dependencies do you have?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,660",
+				"to": "00:04:25,060"
+			},
+			"offsets": {
+				"from": 262660,
+				"to": 265060
+			},
+			"text": " Hundreds, thousands, tens of thousands?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,060",
+				"to": "00:04:26,380"
+			},
+			"offsets": {
+				"from": 265060,
+				"to": 266380
+			},
+			"text": " And when you need to make a change,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,380",
+				"to": "00:04:29,900"
+			},
+			"offsets": {
+				"from": 266380,
+				"to": 269900
+			},
+			"text": " are you gonna be able to wait and re-aud it all those things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,900",
+				"to": "00:04:31,260"
+			},
+			"offsets": {
+				"from": 269900,
+				"to": 271260
+			},
+			"text": " So is there nothing else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,260",
+				"to": "00:04:32,460"
+			},
+			"offsets": {
+				"from": 271260,
+				"to": 272460
+			},
+			"text": " What else do we have here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,460",
+				"to": "00:04:34,980"
+			},
+			"offsets": {
+				"from": 272460,
+				"to": 274980
+			},
+			"text": " So around this time, I met Agoric"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,980",
+				"to": "00:04:37,180"
+			},
+			"offsets": {
+				"from": 274980,
+				"to": 277180
+			},
+			"text": " and learned of their Indo-GS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,180",
+				"to": "00:04:39,700"
+			},
+			"offsets": {
+				"from": 277180,
+				"to": 279700
+			},
+			"text": " hardened JavaScript tool set."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,700",
+				"to": "00:04:43,380"
+			},
+			"offsets": {
+				"from": 279700,
+				"to": 283380
+			},
+			"text": " So these are tools for working with untrusted JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,380",
+				"to": "00:04:46,900"
+			},
+			"offsets": {
+				"from": 283380,
+				"to": 286900
+			},
+			"text": " And in the core of it, they have this package called SAS."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,900",
+				"to": "00:04:49,120"
+			},
+			"offsets": {
+				"from": 286900,
+				"to": 289120
+			},
+			"text": " And it gives you a couple things for dealing with"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,120",
+				"to": "00:04:50,360"
+			},
+			"offsets": {
+				"from": 289120,
+				"to": 290360
+			},
+			"text": " untrusted JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,360",
+				"to": "00:04:52,960"
+			},
+			"offsets": {
+				"from": 290360,
+				"to": 292960
+			},
+			"text": " So there's a couple things about JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,960",
+				"to": "00:04:54,880"
+			},
+			"offsets": {
+				"from": 292960,
+				"to": 294880
+			},
+			"text": " that make it easy to attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,880",
+				"to": "00:04:57,840"
+			},
+			"offsets": {
+				"from": 294880,
+				"to": 297840
+			},
+			"text": " One is everything is mutable by default,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,840",
+				"to": "00:05:00,120"
+			},
+			"offsets": {
+				"from": 297840,
+				"to": 300120
+			},
+			"text": " all the built-in functionality and everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,120",
+				"to": "00:05:03,760"
+			},
+			"offsets": {
+				"from": 300120,
+				"to": 303760
+			},
+			"text": " So you can just go in and modify array, prototype, and map"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,760",
+				"to": "00:05:06,780"
+			},
+			"offsets": {
+				"from": 303760,
+				"to": 306780
+			},
+			"text": " and change the way JavaScript works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,780",
+				"to": "00:05:10,080"
+			},
+			"offsets": {
+				"from": 306780,
+				"to": 310080
+			},
+			"text": " This can also give you access to objects that are being used,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,080",
+				"to": "00:05:12,600"
+			},
+			"offsets": {
+				"from": 310080,
+				"to": 312600
+			},
+			"text": " like on the complete other side of the application"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,600",
+				"to": "00:05:14,440"
+			},
+			"offsets": {
+				"from": 312600,
+				"to": 314440
+			},
+			"text": " of where you got your attack in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,440",
+				"to": "00:05:16,980"
+			},
+			"offsets": {
+				"from": 314440,
+				"to": 316980
+			},
+			"text": " So you wanna lock this down."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,980",
+				"to": "00:05:20,420"
+			},
+			"offsets": {
+				"from": 316980,
+				"to": 320420
+			},
+			"text": " And conveniently, SAS provides a function called Lockdown"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,420",
+				"to": "00:05:21,700"
+			},
+			"offsets": {
+				"from": 320420,
+				"to": 321700
+			},
+			"text": " that does exactly this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,700",
+				"to": "00:05:23,820"
+			},
+			"offsets": {
+				"from": 321700,
+				"to": 323820
+			},
+			"text": " By calling Lockdown, you're doing what's shown here"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,820",
+				"to": "00:05:25,100"
+			},
+			"offsets": {
+				"from": 323820,
+				"to": 325100
+			},
+			"text": " at the bottom of the screen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,100",
+				"to": "00:05:28,260"
+			},
+			"offsets": {
+				"from": 325100,
+				"to": 328260
+			},
+			"text": " basically calling object freeze on all the prototypes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,260",
+				"to": "00:05:30,620"
+			},
+			"offsets": {
+				"from": 328260,
+				"to": 330620
+			},
+			"text": " all the built-in parts of JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,620",
+				"to": "00:05:32,060"
+			},
+			"offsets": {
+				"from": 330620,
+				"to": 332060
+			},
+			"text": " Okay, that was simple enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,060",
+				"to": "00:05:35,820"
+			},
+			"offsets": {
+				"from": 332060,
+				"to": 335820
+			},
+			"text": " All right, there's this other problem called ambient authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,820",
+				"to": "00:05:39,740"
+			},
+			"offsets": {
+				"from": 335820,
+				"to": 339740
+			},
+			"text": " This means simply by being able to run some JavaScript,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,740",
+				"to": "00:05:43,860"
+			},
+			"offsets": {
+				"from": 339740,
+				"to": 343860
+			},
+			"text": " you get access to all the powers of that platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,860",
+				"to": "00:05:46,460"
+			},
+			"offsets": {
+				"from": 343860,
+				"to": 346460
+			},
+			"text": " Network access or disk access."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,460",
+				"to": "00:05:49,180"
+			},
+			"offsets": {
+				"from": 346460,
+				"to": 349180
+			},
+			"text": " So say I have some little package."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,180",
+				"to": "00:05:53,720"
+			},
+			"offsets": {
+				"from": 349180,
+				"to": 353720
+			},
+			"text": " I'm an attacker, I've gotten a hold of sub package"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,720",
+				"to": "00:05:56,260"
+			},
+			"offsets": {
+				"from": 353720,
+				"to": 356260
+			},
+			"text": " that's deployed in my victim's code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,260",
+				"to": "00:05:57,800"
+			},
+			"offsets": {
+				"from": 356260,
+				"to": 357800
+			},
+			"text": " Now this package doesn't do very much,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,800",
+				"to": "00:05:59,580"
+			},
+			"offsets": {
+				"from": 357800,
+				"to": 359580
+			},
+			"text": " it's just formatting strings."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,580",
+				"to": "00:06:01,460"
+			},
+			"offsets": {
+				"from": 359580,
+				"to": 361460
+			},
+			"text": " But because of ambient authority,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,460",
+				"to": "00:06:04,200"
+			},
+			"offsets": {
+				"from": 361460,
+				"to": 364200
+			},
+			"text": " I have access to fetch, to network access,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,200",
+				"to": "00:06:06,040"
+			},
+			"offsets": {
+				"from": 364200,
+				"to": 366040
+			},
+			"text": " I have access to environment variables"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,040",
+				"to": "00:06:08,540"
+			},
+			"offsets": {
+				"from": 366040,
+				"to": 368540
+			},
+			"text": " and I can send them home to my evil layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,540",
+				"to": "00:06:11,880"
+			},
+			"offsets": {
+				"from": 368540,
+				"to": 371880
+			},
+			"text": " And maybe there's some API keys or something in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,880",
+				"to": "00:06:16,720"
+			},
+			"offsets": {
+				"from": 371880,
+				"to": 376720
+			},
+			"text": " So just because I get to provide a little bit of code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,720",
+				"to": "00:06:19,800"
+			},
+			"offsets": {
+				"from": 376720,
+				"to": 379800
+			},
+			"text": " I get to have all powers of the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,800",
+				"to": "00:06:21,280"
+			},
+			"offsets": {
+				"from": 379800,
+				"to": 381280
+			},
+			"text": " And that's quite dangerous."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,280",
+				"to": "00:06:24,480"
+			},
+			"offsets": {
+				"from": 381280,
+				"to": 384480
+			},
+			"text": " So Cess provides this notion of a compartment."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,480",
+				"to": "00:06:26,720"
+			},
+			"offsets": {
+				"from": 384480,
+				"to": 386720
+			},
+			"text": " It puts a little container around the JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,720",
+				"to": "00:06:31,720"
+			},
+			"offsets": {
+				"from": 386720,
+				"to": 391720
+			},
+			"text": " and limits access to what that code can touch or modify."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,720",
+				"to": "00:06:34,400"
+			},
+			"offsets": {
+				"from": 391720,
+				"to": 394400
+			},
+			"text": " So for example, if I have some code"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,400",
+				"to": "00:06:37,680"
+			},
+			"offsets": {
+				"from": 394400,
+				"to": 397680
+			},
+			"text": " that needs to make a network request"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,680",
+				"to": "00:06:39,800"
+			},
+			"offsets": {
+				"from": 397680,
+				"to": 399800
+			},
+			"text": " and it needs to know the current location"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,800",
+				"to": "00:06:42,440"
+			},
+			"offsets": {
+				"from": 399800,
+				"to": 402440
+			},
+			"text": " of the web app and the web browser or something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,440",
+				"to": "00:06:44,240"
+			},
+			"offsets": {
+				"from": 402440,
+				"to": 404240
+			},
+			"text": " I can give it just those things"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,240",
+				"to": "00:06:46,200"
+			},
+			"offsets": {
+				"from": 404240,
+				"to": 406200
+			},
+			"text": " and not give it disk access"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,200",
+				"to": "00:06:49,280"
+			},
+			"offsets": {
+				"from": 406200,
+				"to": 409280
+			},
+			"text": " or other powerful features of the web browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,280",
+				"to": "00:06:51,040"
+			},
+			"offsets": {
+				"from": 409280,
+				"to": 411040
+			},
+			"text": " And then I can run my code in here"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,040",
+				"to": "00:06:53,320"
+			},
+			"offsets": {
+				"from": 411040,
+				"to": 413320
+			},
+			"text": " and it will only get access to those things"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,320",
+				"to": "00:06:56,280"
+			},
+			"offsets": {
+				"from": 413320,
+				"to": 416280
+			},
+			"text": " as well as the basic JavaScript functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,280",
+				"to": "00:06:58,120"
+			},
+			"offsets": {
+				"from": 416280,
+				"to": 418120
+			},
+			"text": " You don't need to know the internals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,120",
+				"to": "00:07:00,200"
+			},
+			"offsets": {
+				"from": 418120,
+				"to": 420200
+			},
+			"text": " but I think it's really fascinating."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,200",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 420200,
+				"to": 422000
+			},
+			"text": " And I've been working with JavaScript for a long time"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:03,360"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 423360
+			},
+			"text": " before I saw how this works"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,360",
+				"to": "00:07:05,240"
+			},
+			"offsets": {
+				"from": 423360,
+				"to": 425240
+			},
+			"text": " and I didn't think it was possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,240",
+				"to": "00:07:06,560"
+			},
+			"offsets": {
+				"from": 425240,
+				"to": 426560
+			},
+			"text": " So let's take a look."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,560",
+				"to": "00:07:09,560"
+			},
+			"offsets": {
+				"from": 426560,
+				"to": 429560
+			},
+			"text": " It relies on two weird parts of JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,560",
+				"to": "00:07:11,360"
+			},
+			"offsets": {
+				"from": 429560,
+				"to": 431360
+			},
+			"text": " that you may not be familiar with."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,360",
+				"to": "00:07:13,560"
+			},
+			"offsets": {
+				"from": 431360,
+				"to": 433560
+			},
+			"text": " One is the width statement."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,560",
+				"to": "00:07:15,840"
+			},
+			"offsets": {
+				"from": 433560,
+				"to": 435840
+			},
+			"text": " With the width statement, first you have an object,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,840",
+				"to": "00:07:17,560"
+			},
+			"offsets": {
+				"from": 435840,
+				"to": 437560
+			},
+			"text": " it has some properties on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,560",
+				"to": "00:07:19,680"
+			},
+			"offsets": {
+				"from": 437560,
+				"to": 439680
+			},
+			"text": " And you have the width keyword"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,680",
+				"to": "00:07:22,840"
+			},
+			"offsets": {
+				"from": 439680,
+				"to": 442840
+			},
+			"text": " and then you put the object as the target of the width keyword."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,840",
+				"to": "00:07:24,120"
+			},
+			"offsets": {
+				"from": 442840,
+				"to": 444120
+			},
+			"text": " Then you have this block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,120",
+				"to": "00:07:27,040"
+			},
+			"offsets": {
+				"from": 444120,
+				"to": 447040
+			},
+			"text": " Inside the block, all the properties on the object"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,040",
+				"to": "00:07:30,200"
+			},
+			"offsets": {
+				"from": 447040,
+				"to": 450200
+			},
+			"text": " can be accessed as if they were variables in scope."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,200",
+				"to": "00:07:31,040"
+			},
+			"offsets": {
+				"from": 450200,
+				"to": 451040
+			},
+			"text": " Well, there it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,040",
+				"to": "00:07:32,040"
+			},
+			"offsets": {
+				"from": 451040,
+				"to": 452040
+			},
+			"text": " It's not particularly interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,040",
+				"to": "00:07:34,320"
+			},
+			"offsets": {
+				"from": 452040,
+				"to": 454320
+			},
+			"text": " but that's what the width statement does."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,320",
+				"to": "00:07:36,400"
+			},
+			"offsets": {
+				"from": 454320,
+				"to": 456400
+			},
+			"text": " The next piece is the proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,400",
+				"to": "00:07:39,560"
+			},
+			"offsets": {
+				"from": 456400,
+				"to": 459560
+			},
+			"text": " If you're familiar with getters and setter properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,560",
+				"to": "00:07:41,440"
+			},
+			"offsets": {
+				"from": 459560,
+				"to": 461440
+			},
+			"text": " it's like that for the whole object"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,440",
+				"to": "00:07:43,520"
+			},
+			"offsets": {
+				"from": 461440,
+				"to": 463520
+			},
+			"text": " and any operation on that object."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,520",
+				"to": "00:07:47,560"
+			},
+			"offsets": {
+				"from": 463520,
+				"to": 467560
+			},
+			"text": " You get various handlers to intercept what those things do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,560",
+				"to": "00:07:50,080"
+			},
+			"offsets": {
+				"from": 467560,
+				"to": 470080
+			},
+			"text": " Now, by combining these two things"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,080",
+				"to": "00:07:53,120"
+			},
+			"offsets": {
+				"from": 470080,
+				"to": 473120
+			},
+			"text": " with the width statement and then a proxy in here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,120",
+				"to": "00:07:56,760"
+			},
+			"offsets": {
+				"from": 473120,
+				"to": 476760
+			},
+			"text": " we control all the scope access inside this block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,760",
+				"to": "00:07:58,520"
+			},
+			"offsets": {
+				"from": 476760,
+				"to": 478520
+			},
+			"text": " So you have your untrusted code here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,520",
+				"to": "00:08:01,800"
+			},
+			"offsets": {
+				"from": 478520,
+				"to": 481800
+			},
+			"text": " It's trying to get network access with fetch."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,800",
+				"to": "00:08:03,280"
+			},
+			"offsets": {
+				"from": 481800,
+				"to": 483280
+			},
+			"text": " It'll look it up here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,280",
+				"to": "00:08:05,440"
+			},
+			"offsets": {
+				"from": 483280,
+				"to": 485440
+			},
+			"text": " It'll go to the proxy and it'll say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,440",
+				"to": "00:08:10,440"
+			},
+			"offsets": {
+				"from": 485440,
+				"to": 490440
+			},
+			"text": " do you have fetch and your proxy can throw a reference error,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,440",
+				"to": "00:08:12,840"
+			},
+			"offsets": {
+				"from": 490440,
+				"to": 492840
+			},
+			"text": " return undefined, whatever you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,840",
+				"to": "00:08:14,520"
+			},
+			"offsets": {
+				"from": 492840,
+				"to": 494520
+			},
+			"text": " but it can block that lookup."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,520",
+				"to": "00:08:18,120"
+			},
+			"offsets": {
+				"from": 494520,
+				"to": 498120
+			},
+			"text": " Another way to write this, which is easier to audit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,120",
+				"to": "00:08:19,760"
+			},
+			"offsets": {
+				"from": 498120,
+				"to": 499760
+			},
+			"text": " it may be easier to think about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,760",
+				"to": "00:08:21,560"
+			},
+			"offsets": {
+				"from": 499760,
+				"to": 501560
+			},
+			"text": " is with two statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,560",
+				"to": "00:08:23,440"
+			},
+			"offsets": {
+				"from": 501560,
+				"to": 503440
+			},
+			"text": " One here, the inner one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,440",
+				"to": "00:08:25,280"
+			},
+			"offsets": {
+				"from": 503440,
+				"to": 505280
+			},
+			"text": " you put the untrusted code here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,280",
+				"to": "00:08:26,960"
+			},
+			"offsets": {
+				"from": 505280,
+				"to": 506960
+			},
+			"text": " it's trying to look up fetch."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,960",
+				"to": "00:08:29,480"
+			},
+			"offsets": {
+				"from": 506960,
+				"to": 509480
+			},
+			"text": " It'll look up inside this object first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,480",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 509480,
+				"to": 512000
+			},
+			"text": " and that's the object we gave to the compartment"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:34,040"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 514040
+			},
+			"text": " when we said you should have access to these things"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,040",
+				"to": "00:08:35,280"
+			},
+			"offsets": {
+				"from": 514040,
+				"to": 515280
+			},
+			"text": " and these things only."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,280",
+				"to": "00:08:37,520"
+			},
+			"offsets": {
+				"from": 515280,
+				"to": 517520
+			},
+			"text": " If it's in there, it'll just get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,520",
+				"to": "00:08:39,560"
+			},
+			"offsets": {
+				"from": 517520,
+				"to": 519560
+			},
+			"text": " It'll get whatever value you gave it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,560",
+				"to": "00:08:42,320"
+			},
+			"offsets": {
+				"from": 519560,
+				"to": 522320
+			},
+			"text": " If it's not in there, it'll go up to the scope terminator"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,320",
+				"to": "00:08:44,840"
+			},
+			"offsets": {
+				"from": 522320,
+				"to": 524840
+			},
+			"text": " and that thing just always says, no, you don't get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,840",
+				"to": "00:08:47,240"
+			},
+			"offsets": {
+				"from": 524840,
+				"to": 527240
+			},
+			"text": " There's a couple more things you need to make it safe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,240",
+				"to": "00:08:49,400"
+			},
+			"offsets": {
+				"from": 527240,
+				"to": 529400
+			},
+			"text": " but you don't really need to think about the implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,400",
+				"to": "00:08:51,920"
+			},
+			"offsets": {
+				"from": 529400,
+				"to": 531920
+			},
+			"text": " You can just use this API."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,920",
+				"to": "00:08:55,600"
+			},
+			"offsets": {
+				"from": 531920,
+				"to": 535600
+			},
+			"text": " Okay, so Cess gives us lockdown and compartment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,600",
+				"to": "00:08:58,400"
+			},
+			"offsets": {
+				"from": 535600,
+				"to": 538400
+			},
+			"text": " and I compose these in Lava mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,400",
+				"to": "00:09:02,040"
+			},
+			"offsets": {
+				"from": 538400,
+				"to": 542040
+			},
+			"text": " Lava mode wraps packages inside of compartments"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,040",
+				"to": "00:09:05,080"
+			},
+			"offsets": {
+				"from": 542040,
+				"to": 545080
+			},
+			"text": " and only gives them what they need to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,080",
+				"to": "00:09:08,200"
+			},
+			"offsets": {
+				"from": 545080,
+				"to": 548200
+			},
+			"text": " So that little string formatting package we had before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,200",
+				"to": "00:09:09,880"
+			},
+			"offsets": {
+				"from": 548200,
+				"to": 549880
+			},
+			"text": " it won't have access to network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,880",
+				"to": "00:09:11,920"
+			},
+			"offsets": {
+				"from": 549880,
+				"to": 551920
+			},
+			"text": " and it won't have access to disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,920",
+				"to": "00:09:14,280"
+			},
+			"offsets": {
+				"from": 551920,
+				"to": 554280
+			},
+			"text": " Another powerful features."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,280",
+				"to": "00:09:16,520"
+			},
+			"offsets": {
+				"from": 554280,
+				"to": 556520
+			},
+			"text": " How you use it, sorry, it's a little small,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,520",
+				"to": "00:09:17,840"
+			},
+			"offsets": {
+				"from": 556520,
+				"to": 557840
+			},
+			"text": " it's kind of like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,840",
+				"to": "00:09:21,200"
+			},
+			"offsets": {
+				"from": 557840,
+				"to": 561200
+			},
+			"text": " Previously, you might run node index for your little server."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,200",
+				"to": "00:09:22,960"
+			},
+			"offsets": {
+				"from": 561200,
+				"to": 562960
+			},
+			"text": " You replace that with Lava mode index,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,960",
+				"to": "00:09:26,640"
+			},
+			"offsets": {
+				"from": 562960,
+				"to": 566640
+			},
+			"text": " but first, you put this right auto policy API"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,640",
+				"to": "00:09:28,960"
+			},
+			"offsets": {
+				"from": 566640,
+				"to": 568960
+			},
+			"text": " and that will generate a policy file"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,960",
+				"to": "00:09:31,400"
+			},
+			"offsets": {
+				"from": 568960,
+				"to": 571400
+			},
+			"text": " of what the packages are allowed to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,400",
+				"to": "00:09:35,120"
+			},
+			"offsets": {
+				"from": 571400,
+				"to": 575120
+			},
+			"text": " And then you just replace node with Lava mode"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,120",
+				"to": "00:09:38,040"
+			},
+			"offsets": {
+				"from": 575120,
+				"to": 578040
+			},
+			"text": " and run normally, and it will run time"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,040",
+				"to": "00:09:40,640"
+			},
+			"offsets": {
+				"from": 578040,
+				"to": 580640
+			},
+			"text": " and force those packages only get what they need."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,640",
+				"to": "00:09:42,320"
+			},
+			"offsets": {
+				"from": 580640,
+				"to": 582320
+			},
+			"text": " The policy looks something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,320",
+				"to": "00:09:44,640"
+			},
+			"offsets": {
+				"from": 582320,
+				"to": 584640
+			},
+			"text": " This is a policy for one package."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,640",
+				"to": "00:09:46,680"
+			},
+			"offsets": {
+				"from": 584640,
+				"to": 586680
+			},
+			"text": " You'll have a bunch of them in your policy file."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,680",
+				"to": "00:09:49,120"
+			},
+			"offsets": {
+				"from": 586680,
+				"to": 589120
+			},
+			"text": " This is all automatically generated"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,120",
+				"to": "00:09:51,720"
+			},
+			"offsets": {
+				"from": 589120,
+				"to": 591720
+			},
+			"text": " and it works 99% of the time"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,720",
+				"to": "00:09:54,200"
+			},
+			"offsets": {
+				"from": 591720,
+				"to": 594200
+			},
+			"text": " without any additional changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,200",
+				"to": "00:09:56,920"
+			},
+			"offsets": {
+				"from": 594200,
+				"to": 596920
+			},
+			"text": " Here in the built-in, these are built-in packages"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,920",
+				"to": "00:09:58,360"
+			},
+			"offsets": {
+				"from": 596920,
+				"to": 598360
+			},
+			"text": " provided from node."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,360",
+				"to": "00:10:00,680"
+			},
+			"offsets": {
+				"from": 598360,
+				"to": 600680
+			},
+			"text": " We're giving them just exactly what they need."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,680",
+				"to": "00:10:03,640"
+			},
+			"offsets": {
+				"from": 600680,
+				"to": 603640
+			},
+			"text": " For example, we're giving it just read access"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,640",
+				"to": "00:10:07,400"
+			},
+			"offsets": {
+				"from": 603640,
+				"to": 607400
+			},
+			"text": " from the file system and not write access or anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,400",
+				"to": "00:10:09,880"
+			},
+			"offsets": {
+				"from": 607400,
+				"to": 609880
+			},
+			"text": " Also giving some global variable access"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,880",
+				"to": "00:10:12,600"
+			},
+			"offsets": {
+				"from": 609880,
+				"to": 612600
+			},
+			"text": " and they're only allowed to import these packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,600",
+				"to": "00:10:13,760"
+			},
+			"offsets": {
+				"from": 612600,
+				"to": 613760
+			},
+			"text": " So that's just an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,760",
+				"to": "00:10:17,840"
+			},
+			"offsets": {
+				"from": 613760,
+				"to": 617840
+			},
+			"text": " But in order to help you review your policy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,840",
+				"to": "00:10:19,800"
+			},
+			"offsets": {
+				"from": 617840,
+				"to": 619800
+			},
+			"text": " we have this visualization dashboard."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,800",
+				"to": "00:10:24,520"
+			},
+			"offsets": {
+				"from": 619800,
+				"to": 624520
+			},
+			"text": " So there's the list of your dependencies on the left"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,520",
+				"to": "00:10:27,040"
+			},
+			"offsets": {
+				"from": 624520,
+				"to": 627040
+			},
+			"text": " and a graph of your dependencies on the right."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,040",
+				"to": "00:10:29,840"
+			},
+			"offsets": {
+				"from": 627040,
+				"to": 629840
+			},
+			"text": " The purple node is our application here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,840",
+				"to": "00:10:31,280"
+			},
+			"offsets": {
+				"from": 629840,
+				"to": 631280
+			},
+			"text": " our example application."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,280",
+				"to": "00:10:34,760"
+			},
+			"offsets": {
+				"from": 631280,
+				"to": 634760
+			},
+			"text": " And then all this graph coming out of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,760",
+				"to": "00:10:37,800"
+			},
+			"offsets": {
+				"from": 634760,
+				"to": 637800
+			},
+			"text": " are all the dependencies and the transitive dependencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,800",
+				"to": "00:10:42,800"
+			},
+			"offsets": {
+				"from": 637800,
+				"to": 642800
+			},
+			"text": " And you can dig in and take a look at what these packages are"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,800",
+				"to": "00:10:45,280"
+			},
+			"offsets": {
+				"from": 642800,
+				"to": 645280
+			},
+			"text": " and what their policy is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,280",
+				"to": "00:10:49,440"
+			},
+			"offsets": {
+				"from": 645280,
+				"to": 649440
+			},
+			"text": " And the point of this is to help you prioritize"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,440",
+				"to": "00:10:52,880"
+			},
+			"offsets": {
+				"from": 649440,
+				"to": 652880
+			},
+			"text": " the auditing of your dependencies and review your policy."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,880",
+				"to": "00:10:55,320"
+			},
+			"offsets": {
+				"from": 652880,
+				"to": 655320
+			},
+			"text": " 'Cause remember, without Lava Mode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,320",
+				"to": "00:10:57,680"
+			},
+			"offsets": {
+				"from": 655320,
+				"to": 657680
+			},
+			"text": " this is what your app looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,680",
+				"to": "00:11:01,840"
+			},
+			"offsets": {
+				"from": 657680,
+				"to": 661840
+			},
+			"text": " Every single package is maximally dangerous."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,840",
+				"to": "00:11:04,880"
+			},
+			"offsets": {
+				"from": 661840,
+				"to": 664880
+			},
+			"text": " Whereas with Lava Mode, we know that some of these are safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,880",
+				"to": "00:11:06,720"
+			},
+			"offsets": {
+				"from": 664880,
+				"to": 666720
+			},
+			"text": " All these green ones, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,720",
+				"to": "00:11:09,440"
+			},
+			"offsets": {
+				"from": 666720,
+				"to": 669440
+			},
+			"text": " are not importing any globals or any built-ins."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,440",
+				"to": "00:11:13,040"
+			},
+			"offsets": {
+				"from": 669440,
+				"to": 673040
+			},
+			"text": " They're only composing other packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,040",
+				"to": "00:11:15,760"
+			},
+			"offsets": {
+				"from": 673040,
+				"to": 675760
+			},
+			"text": " This was a static version in case the internet didn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,760",
+				"to": "00:11:18,240"
+			},
+			"offsets": {
+				"from": 675760,
+				"to": 678240
+			},
+			"text": " Okay, so here's the build pipeline again."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,240",
+				"to": "00:11:20,520"
+			},
+			"offsets": {
+				"from": 678240,
+				"to": 680520
+			},
+			"text": " Install time, build time, and run time"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,520",
+				"to": "00:11:22,500"
+			},
+			"offsets": {
+				"from": 680520,
+				"to": 682500
+			},
+			"text": " on your users' machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,500",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 682500,
+				"to": 687000
+			},
+			"text": " So we have in Lava Mode tools for each of these steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:30,800"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 690800
+			},
+			"text": " For depth install, you have Lava Mode allow scripts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,800",
+				"to": "00:11:34,160"
+			},
+			"offsets": {
+				"from": 690800,
+				"to": 694160
+			},
+			"text": " This will prevent all these dependencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,160",
+				"to": "00:11:36,760"
+			},
+			"offsets": {
+				"from": 694160,
+				"to": 696760
+			},
+			"text": " from being able to run a random command on your computer"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,760",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 696760,
+				"to": 698000
+			},
+			"text": " when you install them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:40,320"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 700320
+			},
+			"text": " And then you can opt into just the ones you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,320",
+				"to": "00:11:43,200"
+			},
+			"offsets": {
+				"from": 700320,
+				"to": 703200
+			},
+			"text": " At build time, you wanna run your build process"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,200",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 703200,
+				"to": 708000
+			},
+			"text": " in Lava Mode node, and you wanna add to your build process"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:50,040"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 710040
+			},
+			"text": " a plugin for your bundler."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,040",
+				"to": "00:11:51,560"
+			},
+			"offsets": {
+				"from": 710040,
+				"to": 711560
+			},
+			"text": " So we have one for browserify,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,560",
+				"to": "00:11:54,160"
+			},
+			"offsets": {
+				"from": 711560,
+				"to": 714160
+			},
+			"text": " we're working on one for webpack, for React Native,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,160",
+				"to": "00:11:56,640"
+			},
+			"offsets": {
+				"from": 714160,
+				"to": 716640
+			},
+			"text": " and SWC suite."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,640",
+				"to": "00:11:58,880"
+			},
+			"offsets": {
+				"from": 716640,
+				"to": 718880
+			},
+			"text": " So this is in production in MetaMask."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,880",
+				"to": "00:12:00,920"
+			},
+			"offsets": {
+				"from": 718880,
+				"to": 720920
+			},
+			"text": " We're protecting tens of millions of users now."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,920",
+				"to": "00:12:04,120"
+			},
+			"offsets": {
+				"from": 720920,
+				"to": 724120
+			},
+			"text": " So we know this can scale, you can use it too."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,120",
+				"to": "00:12:06,200"
+			},
+			"offsets": {
+				"from": 724120,
+				"to": 726200
+			},
+			"text": " But we do need your help, it's open source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,200",
+				"to": "00:12:07,840"
+			},
+			"offsets": {
+				"from": 726200,
+				"to": 727840
+			},
+			"text": " it's free, it's out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,840",
+				"to": "00:12:11,720"
+			},
+			"offsets": {
+				"from": 727840,
+				"to": 731720
+			},
+			"text": " Find it on GitHub, try it out, let us know if it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,720",
+				"to": "00:12:13,560"
+			},
+			"offsets": {
+				"from": 731720,
+				"to": 733560
+			},
+			"text": " If you run into a bug, open an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,560",
+				"to": "00:12:16,680"
+			},
+			"offsets": {
+				"from": 733560,
+				"to": 736680
+			},
+			"text": " If we don't have a plugin for your bundler, let us know."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,680",
+				"to": "00:12:19,320"
+			},
+			"offsets": {
+				"from": 736680,
+				"to": 739320
+			},
+			"text": " And maybe you can help us with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,320",
+				"to": "00:12:21,200"
+			},
+			"offsets": {
+				"from": 739320,
+				"to": 741200
+			},
+			"text": " Okay, thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,200",
+				"to": "00:12:22,560"
+			},
+			"offsets": {
+				"from": 741200,
+				"to": 742560
+			},
+			"text": " This has been Lava Mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,660",
+				"to": "00:12:28,060"
+			},
+			"offsets": {
+				"from": 744660,
+				"to": 748060
+			},
+			"text": " - Thank you, does anyone have any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,060",
+				"to": "00:12:32,180"
+			},
+			"offsets": {
+				"from": 748060,
+				"to": 752180
+			},
+			"text": " - So I actually worked at BitPay on a different team."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,180",
+				"to": "00:12:33,020"
+			},
+			"offsets": {
+				"from": 752180,
+				"to": 753020
+			},
+			"text": " - Oh cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,020",
+				"to": "00:12:37,060"
+			},
+			"offsets": {
+				"from": 753020,
+				"to": 757060
+			},
+			"text": " - It's overlapping the time of the copay hack."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,060",
+				"to": "00:12:40,740"
+			},
+			"offsets": {
+				"from": 757060,
+				"to": 760740
+			},
+			"text": " And yeah, like you said, it's not necessarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,740",
+				"to": "00:12:42,540"
+			},
+			"offsets": {
+				"from": 760740,
+				"to": 762540
+			},
+			"text": " that that company had bad processes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,540",
+				"to": "00:12:44,300"
+			},
+			"offsets": {
+				"from": 762540,
+				"to": 764300
+			},
+			"text": " it's sort of that the whole ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,300",
+				"to": "00:12:46,060"
+			},
+			"offsets": {
+				"from": 764300,
+				"to": 766060
+			},
+			"text": " doesn't really have a good solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,060",
+				"to": "00:12:50,700"
+			},
+			"offsets": {
+				"from": 766060,
+				"to": 770700
+			},
+			"text": " Since that time, not only at that company"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,100",
+				"to": "00:12:55,460"
+			},
+			"offsets": {
+				"from": 772100,
+				"to": 775460
+			},
+			"text": " did no one really talk about Lava, I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,460",
+				"to": "00:12:58,820"
+			},
+			"offsets": {
+				"from": 775460,
+				"to": 778820
+			},
+			"text": " I brought it up because I was aware of it at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,820",
+				"to": "00:13:02,260"
+			},
+			"offsets": {
+				"from": 778820,
+				"to": 782260
+			},
+			"text": " But externally, any side projects I've been on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,260",
+				"to": "00:13:05,420"
+			},
+			"offsets": {
+				"from": 782260,
+				"to": 785420
+			},
+			"text": " I've really never had anyone propose using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,420",
+				"to": "00:13:10,420"
+			},
+			"offsets": {
+				"from": 785420,
+				"to": 790420
+			},
+			"text": " So do you think there's something not at the technical level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,420",
+				"to": "00:13:13,380"
+			},
+			"offsets": {
+				"from": 790420,
+				"to": 793380
+			},
+			"text": " but at the social level that we should be doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,380",
+				"to": "00:13:16,580"
+			},
+			"offsets": {
+				"from": 793380,
+				"to": 796580
+			},
+			"text": " to make this a more common part of stacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,580",
+				"to": "00:13:20,780"
+			},
+			"offsets": {
+				"from": 796580,
+				"to": 800780
+			},
+			"text": " either across the board or when we're working on applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,780",
+				"to": "00:13:22,860"
+			},
+			"offsets": {
+				"from": 800780,
+				"to": 802860
+			},
+			"text": " that deal with private keys specifically?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,860",
+				"to": "00:13:24,020"
+			},
+			"offsets": {
+				"from": 802860,
+				"to": 804020
+			},
+			"text": " - Yeah, great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,020",
+				"to": "00:13:27,860"
+			},
+			"offsets": {
+				"from": 804020,
+				"to": 807860
+			},
+			"text": " So what processes should we put in place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,860",
+				"to": "00:13:29,540"
+			},
+			"offsets": {
+				"from": 807860,
+				"to": 809540
+			},
+			"text": " what tools are out there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,540",
+				"to": "00:13:31,500"
+			},
+			"offsets": {
+				"from": 809540,
+				"to": 811500
+			},
+			"text": " There's a lot of projects that are working"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,500",
+				"to": "00:13:35,500"
+			},
+			"offsets": {
+				"from": 811500,
+				"to": 815500
+			},
+			"text": " on preventative measures like CI flows that warn you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,500",
+				"to": "00:13:38,740"
+			},
+			"offsets": {
+				"from": 815500,
+				"to": 818740
+			},
+			"text": " if there's known vulnerabilities or some code scanning"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,740",
+				"to": "00:13:41,540"
+			},
+			"offsets": {
+				"from": 818740,
+				"to": 821540
+			},
+			"text": " to see if there's something funny looking like Evow."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,540",
+				"to": "00:13:43,300"
+			},
+			"offsets": {
+				"from": 821540,
+				"to": 823300
+			},
+			"text": " And those are great and fantastic"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,300",
+				"to": "00:13:45,220"
+			},
+			"offsets": {
+				"from": 823300,
+				"to": 825220
+			},
+			"text": " and you can use them in conjunction here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,220",
+				"to": "00:13:48,340"
+			},
+			"offsets": {
+				"from": 825220,
+				"to": 828340
+			},
+			"text": " Like one example is socket.dev."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,340",
+				"to": "00:13:50,540"
+			},
+			"offsets": {
+				"from": 828340,
+				"to": 830540
+			},
+			"text": " That's a friend's company and they're doing great scanning"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,540",
+				"to": "00:13:52,940"
+			},
+			"offsets": {
+				"from": 830540,
+				"to": 832940
+			},
+			"text": " work, but it's all preventative at the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,940",
+				"to": "00:13:56,140"
+			},
+			"offsets": {
+				"from": 832940,
+				"to": 836140
+			},
+			"text": " That's not the way the security of your operating system"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,140",
+				"to": "00:13:56,980"
+			},
+			"offsets": {
+				"from": 836140,
+				"to": 836980
+			},
+			"text": " works, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,980",
+				"to": "00:14:00,340"
+			},
+			"offsets": {
+				"from": 836980,
+				"to": 840340
+			},
+			"text": " It's making sure that all your applications are safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,340",
+				"to": "00:14:02,820"
+			},
+			"offsets": {
+				"from": 840340,
+				"to": 842820
+			},
+			"text": " I mean, I was very surprised that no one else"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,820",
+				"to": "00:14:04,900"
+			},
+			"offsets": {
+				"from": 842820,
+				"to": 844900
+			},
+			"text": " was working on runtime protections."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,900",
+				"to": "00:14:09,140"
+			},
+			"offsets": {
+				"from": 844900,
+				"to": 849140
+			},
+			"text": " Besides the AlgoRic folks which we partner on building"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,140",
+				"to": "00:14:12,900"
+			},
+			"offsets": {
+				"from": 849140,
+				"to": 852900
+			},
+			"text": " lava mode, yeah, I think more people need to just know"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,900",
+				"to": "00:14:14,500"
+			},
+			"offsets": {
+				"from": 852900,
+				"to": 854500
+			},
+			"text": " that there's a solution that exists"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,500",
+				"to": "00:14:17,100"
+			},
+			"offsets": {
+				"from": 854500,
+				"to": 857100
+			},
+			"text": " and you can actually do something about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,100",
+				"to": "00:14:20,500"
+			},
+			"offsets": {
+				"from": 857100,
+				"to": 860500
+			},
+			"text": " - Hi, so I had a question about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,500",
+				"to": "00:14:21,860"
+			},
+			"offsets": {
+				"from": 860500,
+				"to": 861860
+			},
+			"text": " auto policy generation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,860",
+				"to": "00:14:23,620"
+			},
+			"offsets": {
+				"from": 861860,
+				"to": 863620
+			},
+			"text": " Can you explain the logic behind that a little bit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,620",
+				"to": "00:14:28,620"
+			},
+			"offsets": {
+				"from": 863620,
+				"to": 868620
+			},
+			"text": " - Yeah, so we are using static analysis here"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,620",
+				"to": "00:14:32,140"
+			},
+			"offsets": {
+				"from": 868620,
+				"to": 872140
+			},
+			"text": " for convenience and not for the security layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,140",
+				"to": "00:14:36,140"
+			},
+			"offsets": {
+				"from": 872140,
+				"to": 876140
+			},
+			"text": " Static analysis can be faulty, it'll miss things"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,140",
+				"to": "00:14:38,260"
+			},
+			"offsets": {
+				"from": 876140,
+				"to": 878260
+			},
+			"text": " and it's generally imperfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,260",
+				"to": "00:14:41,100"
+			},
+			"offsets": {
+				"from": 878260,
+				"to": 881100
+			},
+			"text": " But here we use it to generate the policy"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,100",
+				"to": "00:14:42,940"
+			},
+			"offsets": {
+				"from": 881100,
+				"to": 882940
+			},
+			"text": " so you don't have to write it all by hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,940",
+				"to": "00:14:46,420"
+			},
+			"offsets": {
+				"from": 882940,
+				"to": 886420
+			},
+			"text": " And then we enforce it with the lava mode kernel"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,420",
+				"to": "00:14:48,780"
+			},
+			"offsets": {
+				"from": 886420,
+				"to": 888780
+			},
+			"text": " which is not relying on static analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,780",
+				"to": "00:14:51,100"
+			},
+			"offsets": {
+				"from": 888780,
+				"to": 891100
+			},
+			"text": " But yeah, basically what it's doing is you give it"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,100",
+				"to": "00:14:54,500"
+			},
+			"offsets": {
+				"from": 891100,
+				"to": 894500
+			},
+			"text": " your entry point, it's walking through all the requires"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,500",
+				"to": "00:14:56,980"
+			},
+			"offsets": {
+				"from": 894500,
+				"to": 896980
+			},
+			"text": " and imports and walking through your graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,980",
+				"to": "00:15:00,980"
+			},
+			"offsets": {
+				"from": 896980,
+				"to": 900980
+			},
+			"text": " It's, you know, converts the code to an AST."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,980",
+				"to": "00:15:04,300"
+			},
+			"offsets": {
+				"from": 900980,
+				"to": 904300
+			},
+			"text": " It looks and analyzes it for references."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,300",
+				"to": "00:15:06,060"
+			},
+			"offsets": {
+				"from": 904300,
+				"to": 906060
+			},
+			"text": " Cs when there's global references,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,060",
+				"to": "00:15:09,820"
+			},
+			"offsets": {
+				"from": 906060,
+				"to": 909820
+			},
+			"text": " Cs when there's imports and it'll actually follow"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,820",
+				"to": "00:15:11,660"
+			},
+			"offsets": {
+				"from": 909820,
+				"to": 911660
+			},
+			"text": " the imports to where they're used"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,660",
+				"to": "00:15:14,620"
+			},
+			"offsets": {
+				"from": 911660,
+				"to": 914620
+			},
+			"text": " so it can give you just the minimal things that you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,620",
+				"to": "00:15:18,740"
+			},
+			"offsets": {
+				"from": 914620,
+				"to": 918740
+			},
+			"text": " Like only using the read power of the file system"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,740",
+				"to": "00:15:21,060"
+			},
+			"offsets": {
+				"from": 918740,
+				"to": 921060
+			},
+			"text": " instead of the write power, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,060",
+				"to": "00:15:22,780"
+			},
+			"offsets": {
+				"from": 921060,
+				"to": 922780
+			},
+			"text": " - I was wondering if you can talk a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,780",
+				"to": "00:15:25,620"
+			},
+			"offsets": {
+				"from": 922780,
+				"to": 925620
+			},
+			"text": " about like limitations of lava mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,620",
+				"to": "00:15:28,260"
+			},
+			"offsets": {
+				"from": 925620,
+				"to": 928260
+			},
+			"text": " Specifically like if, even if you grant access"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,260",
+				"to": "00:15:30,740"
+			},
+			"offsets": {
+				"from": 928260,
+				"to": 930740
+			},
+			"text": " to like a specific function or feature to a package,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,740",
+				"to": "00:15:32,820"
+			},
+			"offsets": {
+				"from": 930740,
+				"to": 932820
+			},
+			"text": " like they can still, I guess, use that feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,820",
+				"to": "00:15:34,340"
+			},
+			"offsets": {
+				"from": 932820,
+				"to": 934340
+			},
+			"text": " in a malicious way."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,340",
+				"to": "00:15:36,460"
+			},
+			"offsets": {
+				"from": 934340,
+				"to": 936460
+			},
+			"text": " Yeah, I was wondering like what else we should watch out"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,460",
+				"to": "00:15:38,220"
+			},
+			"offsets": {
+				"from": 936460,
+				"to": 938220
+			},
+			"text": " for even if we use lava mode?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,220",
+				"to": "00:15:39,700"
+			},
+			"offsets": {
+				"from": 938220,
+				"to": 939700
+			},
+			"text": " - Yeah, absolutely."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,700",
+				"to": "00:15:42,940"
+			},
+			"offsets": {
+				"from": 939700,
+				"to": 942940
+			},
+			"text": " So it will look at your modules, lava mode"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,940",
+				"to": "00:15:45,540"
+			},
+			"offsets": {
+				"from": 942940,
+				"to": 945540
+			},
+			"text": " will look at your modules and generate a policy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,540",
+				"to": "00:15:48,860"
+			},
+			"offsets": {
+				"from": 945540,
+				"to": 948860
+			},
+			"text": " And if it sees that, you know, network access is used there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,860",
+				"to": "00:15:50,540"
+			},
+			"offsets": {
+				"from": 948860,
+				"to": 950540
+			},
+			"text": " it'll put that in the policy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,540",
+				"to": "00:15:51,700"
+			},
+			"offsets": {
+				"from": 950540,
+				"to": 951700
+			},
+			"text": " But if it's something that's not supposed"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,700",
+				"to": "00:15:56,020"
+			},
+			"offsets": {
+				"from": 951700,
+				"to": 956020
+			},
+			"text": " to have network access, then we rely on the user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,020",
+				"to": "00:15:58,140"
+			},
+			"offsets": {
+				"from": 956020,
+				"to": 958140
+			},
+			"text": " the security engineer to catch that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,140",
+				"to": "00:16:01,380"
+			},
+			"offsets": {
+				"from": 958140,
+				"to": 961380
+			},
+			"text": " Now, it's most likely you don't have a supply chain attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,380",
+				"to": "00:16:04,540"
+			},
+			"offsets": {
+				"from": 961380,
+				"to": 964540
+			},
+			"text": " in your app right now, but you might have one in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,540",
+				"to": "00:16:07,940"
+			},
+			"offsets": {
+				"from": 964540,
+				"to": 967940
+			},
+			"text": " So every time you change your dependencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,940",
+				"to": "00:16:10,460"
+			},
+			"offsets": {
+				"from": 967940,
+				"to": 970460
+			},
+			"text": " you can just run that thing, generate a new policy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,460",
+				"to": "00:16:12,460"
+			},
+			"offsets": {
+				"from": 970460,
+				"to": 972460
+			},
+			"text": " and you'll see the diff of your policy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,460",
+				"to": "00:16:14,660"
+			},
+			"offsets": {
+				"from": 972460,
+				"to": 974660
+			},
+			"text": " and that's a lot less to review."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,660",
+				"to": "00:16:17,660"
+			},
+			"offsets": {
+				"from": 974660,
+				"to": 977660
+			},
+			"text": " - Some other things, there is a slight performance impact"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,660",
+				"to": "00:16:22,220"
+			},
+			"offsets": {
+				"from": 977660,
+				"to": 982220
+			},
+			"text": " for compute, but if you're relying on network or disk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,220",
+				"to": "00:16:24,980"
+			},
+			"offsets": {
+				"from": 982220,
+				"to": 984980
+			},
+			"text": " which is usually what you're bound when you're computing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,980",
+				"to": "00:16:26,580"
+			},
+			"offsets": {
+				"from": 984980,
+				"to": 986580
+			},
+			"text": " then it doesn't make a difference for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,580",
+				"to": "00:16:28,580"
+			},
+			"offsets": {
+				"from": 986580,
+				"to": 988580
+			},
+			"text": " - It is very cool how you solve the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,580",
+				"to": "00:16:32,940"
+			},
+			"offsets": {
+				"from": 988580,
+				"to": 992940
+			},
+			"text": " with running in secure code with the width and the proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,940",
+				"to": "00:16:35,420"
+			},
+			"offsets": {
+				"from": 992940,
+				"to": 995420
+			},
+			"text": " And I was wondering if there is any difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,420",
+				"to": "00:16:38,580"
+			},
+			"offsets": {
+				"from": 995420,
+				"to": 998580
+			},
+			"text": " with doing it with a web worker?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,580",
+				"to": "00:16:43,580"
+			},
+			"offsets": {
+				"from": 998580,
+				"to": 1003580
+			},
+			"text": " - A web worker, yeah, you can use iFrames and web workers"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,580",
+				"to": "00:16:49,180"
+			},
+			"offsets": {
+				"from": 1004580,
+				"to": 1009180
+			},
+			"text": " and you can use in on Node.js, you can use the VM package."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,180",
+				"to": "00:16:54,580"
+			},
+			"offsets": {
+				"from": 1009180,
+				"to": 1014580
+			},
+			"text": " But what those create are what we call realms."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,580",
+				"to": "00:16:56,220"
+			},
+			"offsets": {
+				"from": 1014580,
+				"to": 1016220
+			},
+			"text": " So you actually have a slide for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,220",
+				"to": "00:16:59,100"
+			},
+			"offsets": {
+				"from": 1016220,
+				"to": 1019100
+			},
+			"text": " It does work, but it's not very good"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,100",
+				"to": "00:17:01,140"
+			},
+			"offsets": {
+				"from": 1019100,
+				"to": 1021140
+			},
+			"text": " for backwards compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,140",
+				"to": "00:17:04,180"
+			},
+			"offsets": {
+				"from": 1021140,
+				"to": 1024180
+			},
+			"text": " Yes, when you use, oh, I'm not up on the screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,180",
+				"to": "00:17:06,980"
+			},
+			"offsets": {
+				"from": 1024180,
+				"to": 1026980
+			},
+			"text": " We have a lot of jargon when we're talking about this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,980",
+				"to": "00:17:09,100"
+			},
+			"offsets": {
+				"from": 1026980,
+				"to": 1029100
+			},
+			"text": " JavaScript language security stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,100",
+				"to": "00:17:12,900"
+			},
+			"offsets": {
+				"from": 1029100,
+				"to": 1032900
+			},
+			"text": " but we use this term realm to refer to like a window frame."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,900",
+				"to": "00:17:15,100"
+			},
+			"offsets": {
+				"from": 1032900,
+				"to": 1035100
+			},
+			"text": " And so an iFrame is another realm."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,100",
+				"to": "00:17:18,700"
+			},
+			"offsets": {
+				"from": 1035100,
+				"to": 1038700
+			},
+			"text": " And they're different in a couple of subtle ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,700",
+				"to": "00:17:22,460"
+			},
+			"offsets": {
+				"from": 1038700,
+				"to": 1042460
+			},
+			"text": " One is inside of the VM or the iFrame or the web worker,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,460",
+				"to": "00:17:27,420"
+			},
+			"offsets": {
+				"from": 1042460,
+				"to": 1047420
+			},
+			"text": " capital A array is not the same as the capital A array"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,420",
+				"to": "00:17:28,660"
+			},
+			"offsets": {
+				"from": 1047420,
+				"to": 1048660
+			},
+			"text": " on the outside."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,660",
+				"to": "00:17:32,620"
+			},
+			"offsets": {
+				"from": 1048660,
+				"to": 1052620
+			},
+			"text": " We call this problem the identity discontinuity problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,620",
+				"to": "00:17:35,220"
+			},
+			"offsets": {
+				"from": 1052620,
+				"to": 1055220
+			},
+			"text": " And it breaks things like instance of."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,220",
+				"to": "00:17:38,700"
+			},
+			"offsets": {
+				"from": 1055220,
+				"to": 1058700
+			},
+			"text": " So an array from the inside is not an instance"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,700",
+				"to": "00:17:40,140"
+			},
+			"offsets": {
+				"from": 1058700,
+				"to": 1060140
+			},
+			"text": " of array on the outside."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,140",
+				"to": "00:17:44,740"
+			},
+			"offsets": {
+				"from": 1060140,
+				"to": 1064740
+			},
+			"text": " And so this is fine, you can deal with this problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,740",
+				"to": "00:17:48,140"
+			},
+			"offsets": {
+				"from": 1064740,
+				"to": 1068140
+			},
+			"text": " but it is really bad for backwards compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,140",
+				"to": "00:17:52,340"
+			},
+			"offsets": {
+				"from": 1068140,
+				"to": 1072340
+			},
+			"text": " And that was a primary requirement for a lava mode"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,340",
+				"to": "00:17:55,620"
+			},
+			"offsets": {
+				"from": 1072340,
+				"to": 1075620
+			},
+			"text": " because this was not put into manifest from the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,620",
+				"to": "00:17:57,900"
+			},
+			"offsets": {
+				"from": 1075620,
+				"to": 1077900
+			},
+			"text": " I built it afterwards and rewriting the app"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,900",
+				"to": "00:17:59,620"
+			},
+			"offsets": {
+				"from": 1077900,
+				"to": 1079620
+			},
+			"text": " from scratch was not an option."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,620",
+				"to": "00:18:04,620"
+			},
+			"offsets": {
+				"from": 1079620,
+				"to": 1084620
+			},
+			"text": " - Currently there is a proposal to in ECMA TC32, 39, sorry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,620",
+				"to": "00:18:09,540"
+			},
+			"offsets": {
+				"from": 1084620,
+				"to": 1089540
+			},
+			"text": " to introduce compartments natively in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,540",
+				"to": "00:18:12,380"
+			},
+			"offsets": {
+				"from": 1089540,
+				"to": 1092380
+			},
+			"text": " I would like to know if you guys are behind that proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,380",
+				"to": "00:18:14,820"
+			},
+			"offsets": {
+				"from": 1092380,
+				"to": 1094820
+			},
+			"text": " and what do you think about the current state?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,820",
+				"to": "00:18:15,900"
+			},
+			"offsets": {
+				"from": 1094820,
+				"to": 1095900
+			},
+			"text": " - Yeah, great."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,900",
+				"to": "00:18:18,300"
+			},
+			"offsets": {
+				"from": 1095900,
+				"to": 1098300
+			},
+			"text": " So yeah, we're trying to take some of the things"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,300",
+				"to": "00:18:21,260"
+			},
+			"offsets": {
+				"from": 1098300,
+				"to": 1101260
+			},
+			"text": " that we built here like the compartment API"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,260",
+				"to": "00:18:22,740"
+			},
+			"offsets": {
+				"from": 1101260,
+				"to": 1102740
+			},
+			"text": " and actually get it standardized"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,740",
+				"to": "00:18:26,060"
+			},
+			"offsets": {
+				"from": 1102740,
+				"to": 1106060
+			},
+			"text": " into the JavaScript language at the TC39"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,060",
+				"to": "00:18:27,980"
+			},
+			"offsets": {
+				"from": 1106060,
+				"to": 1107980
+			},
+			"text": " JavaScript standards body."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,980",
+				"to": "00:18:30,580"
+			},
+			"offsets": {
+				"from": 1107980,
+				"to": 1110580
+			},
+			"text": " I'm not up to date on what the status is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,580",
+				"to": "00:18:35,100"
+			},
+			"offsets": {
+				"from": 1110580,
+				"to": 1115100
+			},
+			"text": " but it seems to be finding its way in via the loader API"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,100",
+				"to": "00:18:36,700"
+			},
+			"offsets": {
+				"from": 1115100,
+				"to": 1116700
+			},
+			"text": " so that when you load modules,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,700",
+				"to": "00:18:39,340"
+			},
+			"offsets": {
+				"from": 1116700,
+				"to": 1119340
+			},
+			"text": " you load them in a special compartment."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,340",
+				"to": "00:18:40,380"
+			},
+			"offsets": {
+				"from": 1119340,
+				"to": 1120380
+			},
+			"text": " - Thanks for your talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,380",
+				"to": "00:18:45,380"
+			},
+			"offsets": {
+				"from": 1120380,
+				"to": 1125380
+			},
+			"text": " I would like to ask if you can share some supply chain attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,380",
+				"to": "00:18:48,180"
+			},
+			"offsets": {
+				"from": 1125380,
+				"to": 1128180
+			},
+			"text": " that might have actually been detected at MetaMask"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,180",
+				"to": "00:18:49,580"
+			},
+			"offsets": {
+				"from": 1128180,
+				"to": 1129580
+			},
+			"text": " since you started using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,580",
+				"to": "00:18:50,620"
+			},
+			"offsets": {
+				"from": 1129580,
+				"to": 1130620
+			},
+			"text": " - Oh, great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,620",
+				"to": "00:18:53,820"
+			},
+			"offsets": {
+				"from": 1130620,
+				"to": 1133820
+			},
+			"text": " We have not detected any supply chain attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,820",
+				"to": "00:18:57,940"
+			},
+			"offsets": {
+				"from": 1133820,
+				"to": 1137940
+			},
+			"text": " The day-to-day battles at MetaMask are primarily fishing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,940",
+				"to": "00:19:00,620"
+			},
+			"offsets": {
+				"from": 1137940,
+				"to": 1140620
+			},
+			"text": " but the problem with the supply chain attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,620",
+				"to": "00:19:04,860"
+			},
+			"offsets": {
+				"from": 1140620,
+				"to": 1144860
+			},
+			"text": " is even if it's more rare, less common,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,860",
+				"to": "00:19:06,780"
+			},
+			"offsets": {
+				"from": 1144860,
+				"to": 1146780
+			},
+			"text": " it could take down the whole wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,780",
+				"to": "00:19:11,780"
+			},
+			"offsets": {
+				"from": 1146780,
+				"to": 1151780
+			},
+			"text": " and that's why this protective system is so important."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,780",
+				"to": "00:19:15,300"
+			},
+			"offsets": {
+				"from": 1151780,
+				"to": 1155300
+			},
+			"text": " - I think we have time for another question."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,300",
+				"to": "00:19:18,620"
+			},
+			"offsets": {
+				"from": 1155300,
+				"to": 1158620
+			},
+			"text": " - Yeah, my name is Rohan and I'm a rare frontorean swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,620",
+				"to": "00:19:22,220"
+			},
+			"offsets": {
+				"from": 1158620,
+				"to": 1162220
+			},
+			"text": " My question for you is, why not use quick GIS"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,220",
+				"to": "00:19:27,220"
+			},
+			"offsets": {
+				"from": 1162220,
+				"to": 1167220
+			},
+			"text": " with a WASAM engines instead of the CES from Agorik?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,220",
+				"to": "00:19:33,260"
+			},
+			"offsets": {
+				"from": 1167220,
+				"to": 1173260
+			},
+			"text": " - Were you asking about WASAM modules?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,260",
+				"to": "00:19:34,780"
+			},
+			"offsets": {
+				"from": 1173260,
+				"to": 1174780
+			},
+			"text": " - Yeah, why not use quick GIS"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,780",
+				"to": "00:19:37,500"
+			},
+			"offsets": {
+				"from": 1174780,
+				"to": 1177500
+			},
+			"text": " or any WASAM engine compatibility?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,500",
+				"to": "00:19:38,820"
+			},
+			"offsets": {
+				"from": 1177500,
+				"to": 1178820
+			},
+			"text": " - I didn't catch the whole question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,820",
+				"to": "00:19:43,820"
+			},
+			"offsets": {
+				"from": 1178820,
+				"to": 1183820
+			},
+			"text": " but WASAM modules have been designed to be sort of self-contained"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,820",
+				"to": "00:19:46,460"
+			},
+			"offsets": {
+				"from": 1183820,
+				"to": 1186460
+			},
+			"text": " and not have ambient authority,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,460",
+				"to": "00:19:50,060"
+			},
+			"offsets": {
+				"from": 1186460,
+				"to": 1190060
+			},
+			"text": " not have access by default to network and disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,060",
+				"to": "00:19:51,580"
+			},
+			"offsets": {
+				"from": 1190060,
+				"to": 1191580
+			},
+			"text": " So that is fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,580",
+				"to": "00:19:54,500"
+			},
+			"offsets": {
+				"from": 1191580,
+				"to": 1194500
+			},
+			"text": " I'm so glad they designed those things that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,500",
+				"to": "00:19:58,060"
+			},
+			"offsets": {
+				"from": 1194500,
+				"to": 1198060
+			},
+			"text": " - Blockchain companies use some WASAM engines"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,060",
+				"to": "00:20:00,980"
+			},
+			"offsets": {
+				"from": 1198060,
+				"to": 1200980
+			},
+			"text": " that have some special add-ons"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,980",
+				"to": "00:20:04,020"
+			},
+			"offsets": {
+				"from": 1200980,
+				"to": 1204020
+			},
+			"text": " that you can enable a networking and fight system access."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,020",
+				"to": "00:20:07,140"
+			},
+			"offsets": {
+				"from": 1205020,
+				"to": 1207140
+			},
+			"text": " - Sorry, I couldn't understand the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,140",
+				"to": "00:20:10,540"
+			},
+			"offsets": {
+				"from": 1207140,
+				"to": 1210540
+			},
+			"text": " - Sorry, so there are WASAM engines in the market"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,540",
+				"to": "00:20:13,500"
+			},
+			"offsets": {
+				"from": 1210540,
+				"to": 1213500
+			},
+			"text": " that support add-ons that give you the connection"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,500",
+				"to": "00:20:17,020"
+			},
+			"offsets": {
+				"from": 1213500,
+				"to": 1217020
+			},
+			"text": " to TensorFlow, fight system and networking."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,020",
+				"to": "00:20:18,900"
+			},
+			"offsets": {
+				"from": 1217020,
+				"to": 1218900
+			},
+			"text": " - I heard some cool things like TensorFlow in there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,900",
+				"to": "00:20:20,940"
+			},
+			"offsets": {
+				"from": 1218900,
+				"to": 1220940
+			},
+			"text": " but I still can't make out the whole question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,940",
+				"to": "00:20:23,660"
+			},
+			"offsets": {
+				"from": 1220940,
+				"to": 1223660
+			},
+			"text": " Maybe you could ask someone next to you to repeat it"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,660",
+				"to": "00:20:26,060"
+			},
+			"offsets": {
+				"from": 1223660,
+				"to": 1226060
+			},
+			"text": " for whatever reason I'm not able to hear it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,060",
+				"to": "00:20:28,940"
+			},
+			"offsets": {
+				"from": 1226060,
+				"to": 1228940
+			},
+			"text": " - I don't know if I'm going to go about your question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,940",
+				"to": "00:20:30,180"
+			},
+			"offsets": {
+				"from": 1228940,
+				"to": 1230180
+			},
+			"text": " but I'm a bit closer."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,180",
+				"to": "00:20:35,180"
+			},
+			"offsets": {
+				"from": 1230180,
+				"to": 1235180
+			},
+			"text": " So he was asking about inside WASAM or the WASAM connections,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,180",
+				"to": "00:20:38,620"
+			},
+			"offsets": {
+				"from": 1235180,
+				"to": 1238620
+			},
+			"text": " are there any content connections to TensorFlow"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,620",
+				"to": "00:20:40,060"
+			},
+			"offsets": {
+				"from": 1238620,
+				"to": 1240060
+			},
+			"text": " or what's the last one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,060",
+				"to": "00:20:42,220"
+			},
+			"offsets": {
+				"from": 1240060,
+				"to": 1242220
+			},
+			"text": " File system or networking?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,220",
+				"to": "00:20:43,660"
+			},
+			"offsets": {
+				"from": 1242220,
+				"to": 1243660
+			},
+			"text": " All three."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,660",
+				"to": "00:20:44,740"
+			},
+			"offsets": {
+				"from": 1243660,
+				"to": 1244740
+			},
+			"text": " - Oh, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,740",
+				"to": "00:20:47,700"
+			},
+			"offsets": {
+				"from": 1244740,
+				"to": 1247700
+			},
+			"text": " Okay, so how do WASAM modules connect to the powers"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,700",
+				"to": "00:20:49,980"
+			},
+			"offsets": {
+				"from": 1247700,
+				"to": 1249980
+			},
+			"text": " they need like disk access and network access?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,980",
+				"to": "00:20:51,220"
+			},
+			"offsets": {
+				"from": 1249980,
+				"to": 1251220
+			},
+			"text": " Great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,220",
+				"to": "00:20:53,500"
+			},
+			"offsets": {
+				"from": 1251220,
+				"to": 1253500
+			},
+			"text": " So much like with the compartments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,500",
+				"to": "00:20:56,820"
+			},
+			"offsets": {
+				"from": 1253500,
+				"to": 1256820
+			},
+			"text": " you have to pass them in and make them accessible"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,820",
+				"to": "00:20:59,220"
+			},
+			"offsets": {
+				"from": 1256820,
+				"to": 1259220
+			},
+			"text": " on the like foreign function list"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,220",
+				"to": "00:21:01,180"
+			},
+			"offsets": {
+				"from": 1259220,
+				"to": 1261180
+			},
+			"text": " that you expose to the WASAM."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,180",
+				"to": "00:21:03,620"
+			},
+			"offsets": {
+				"from": 1261180,
+				"to": 1263620
+			},
+			"text": " I'm not a WASAM expert, so I can't answer perfectly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,620",
+				"to": "00:21:06,780"
+			},
+			"offsets": {
+				"from": 1263620,
+				"to": 1266780
+			},
+			"text": " but you do have to go in and put them there."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,780",
+				"to": "00:21:08,260"
+			},
+			"offsets": {
+				"from": 1266780,
+				"to": 1268260
+			},
+			"text": " They don't get it by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,260",
+				"to": "00:21:11,540"
+			},
+			"offsets": {
+				"from": 1268260,
+				"to": 1271540
+			},
+			"text": " - I have a follow up question."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,540",
+				"to": "00:21:13,100"
+			},
+			"offsets": {
+				"from": 1271540,
+				"to": 1273100
+			},
+			"text": " Well, not directly rated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,100",
+				"to": "00:21:15,940"
+			},
+			"offsets": {
+				"from": 1273100,
+				"to": 1275940
+			},
+			"text": " but we were hacking on snaps over the weekend"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,940",
+				"to": "00:21:20,660"
+			},
+			"offsets": {
+				"from": 1275940,
+				"to": 1280660
+			},
+			"text": " and I was just wondering like the interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,660",
+				"to": "00:21:23,060"
+			},
+			"offsets": {
+				"from": 1280660,
+				"to": 1283060
+			},
+			"text": " in which lava mode interacts with SES"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,060",
+				"to": "00:21:25,580"
+			},
+			"offsets": {
+				"from": 1283060,
+				"to": 1285580
+			},
+			"text": " and that JavaScript engine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,580",
+				"to": "00:21:28,620"
+			},
+			"offsets": {
+				"from": 1285580,
+				"to": 1288620
+			},
+			"text": " because no, I mean just on the high level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,620",
+				"to": "00:21:30,940"
+			},
+			"offsets": {
+				"from": 1288620,
+				"to": 1290940
+			},
+			"text": " I was having a hard time differentiating"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,940",
+				"to": "00:21:34,220"
+			},
+			"offsets": {
+				"from": 1290940,
+				"to": 1294220
+			},
+			"text": " where lava mode ended and SES started."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,220",
+				"to": "00:21:36,700"
+			},
+			"offsets": {
+				"from": 1294220,
+				"to": 1296700
+			},
+			"text": " - Yeah, great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,700",
+				"to": "00:21:41,900"
+			},
+			"offsets": {
+				"from": 1296700,
+				"to": 1301900
+			},
+			"text": " So we have these compartments from SES."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,900",
+				"to": "00:21:45,140"
+			},
+			"offsets": {
+				"from": 1301900,
+				"to": 1305140
+			},
+			"text": " SES is giving us primarily lockdown and compartments."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,140",
+				"to": "00:21:47,980"
+			},
+			"offsets": {
+				"from": 1305140,
+				"to": 1307980
+			},
+			"text": " There's a few other features I didn't cover today."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,980",
+				"to": "00:21:50,300"
+			},
+			"offsets": {
+				"from": 1307980,
+				"to": 1310300
+			},
+			"text": " And then I in lava mode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,300",
+				"to": "00:21:52,740"
+			},
+			"offsets": {
+				"from": 1310300,
+				"to": 1312740
+			},
+			"text": " compose those by putting the compartments"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,740",
+				"to": "00:21:54,100"
+			},
+			"offsets": {
+				"from": 1312740,
+				"to": 1314100
+			},
+			"text": " around the packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,100",
+				"to": "00:21:56,180"
+			},
+			"offsets": {
+				"from": 1314100,
+				"to": 1316180
+			},
+			"text": " You also mentioned MetaMask snaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,180",
+				"to": "00:21:58,260"
+			},
+			"offsets": {
+				"from": 1316180,
+				"to": 1318260
+			},
+			"text": " This is a plugin system we're building"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,260",
+				"to": "00:22:00,700"
+			},
+			"offsets": {
+				"from": 1318260,
+				"to": 1320700
+			},
+			"text": " for MetaMask to extend the functionality"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,700",
+				"to": "00:22:03,540"
+			},
+			"offsets": {
+				"from": 1320700,
+				"to": 1323540
+			},
+			"text": " and create new user experiences for MetaMask."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,540",
+				"to": "00:22:07,780"
+			},
+			"offsets": {
+				"from": 1323540,
+				"to": 1327780
+			},
+			"text": " But because we're putting outside code inside the wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,780",
+				"to": "00:22:09,260"
+			},
+			"offsets": {
+				"from": 1327780,
+				"to": 1329260
+			},
+			"text": " we have to make sure it's safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,260",
+				"to": "00:22:12,140"
+			},
+			"offsets": {
+				"from": 1329260,
+				"to": 1332140
+			},
+			"text": " And so we're also using SES compartments"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,140",
+				"to": "00:22:13,900"
+			},
+			"offsets": {
+				"from": 1332140,
+				"to": 1333900
+			},
+			"text": " to limit their powers like"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,900",
+				"to": "00:22:16,460"
+			},
+			"offsets": {
+				"from": 1333900,
+				"to": 1336460
+			},
+			"text": " Libidin network access, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,460",
+				"to": "00:22:17,300"
+			},
+			"offsets": {
+				"from": 1336460,
+				"to": 1337300
+			},
+			"text": " Thank you so much. - Absolutely."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,300",
+				"to": "00:22:18,300"
+			},
+			"offsets": {
+				"from": 1337300,
+				"to": 1338300
+			},
+			"text": " (audience applauds)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,300",
+				"to": "00:22:19,140"
+			},
+			"offsets": {
+				"from": 1338300,
+				"to": 1339140
+			},
+			"text": " - Yeah, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,140",
+				"to": "00:22:22,140"
+			},
+			"offsets": {
+				"from": 1339140,
+				"to": 1342140
+			},
+			"text": " (audience applauds)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,140",
+				"to": "00:22:24,980"
+			},
+			"offsets": {
+				"from": 1342140,
+				"to": 1344980
+			},
+			"text": " (buzzer buzzes)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,980",
+				"to": "00:22:29,980"
+			},
+			"offsets": {
+				"from": 1344980,
+				"to": 1349980
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,1913 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 19000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:22,080"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 22080
+			},
+			"text": " >> So, hello ladies and gentlemen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,080",
+				"to": "00:00:28,080"
+			},
+			"offsets": {
+				"from": 22080,
+				"to": 28080
+			},
+			"text": " I'm here today to share my, our experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,080",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 28080,
+				"to": 32000
+			},
+			"text": " on creating the pluggable crypto, crypto provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:38,400"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 38400
+			},
+			"text": " for Ethereum nodes and which we used in Master Chain Project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,400",
+				"to": "00:00:40,580"
+			},
+			"offsets": {
+				"from": 38400,
+				"to": 40580
+			},
+			"text": " So, who we are?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,580",
+				"to": "00:00:42,880"
+			},
+			"offsets": {
+				"from": 40580,
+				"to": 42880
+			},
+			"text": " I'm Mitri Boschko."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,880",
+				"to": "00:00:47,280"
+			},
+			"offsets": {
+				"from": 42880,
+				"to": 47280
+			},
+			"text": " I'm the Cryptocore Developer at Master Chain Project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,280",
+				"to": "00:00:50,080"
+			},
+			"offsets": {
+				"from": 47280,
+				"to": 50080
+			},
+			"text": " And the one man who I want to introduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,080",
+				"to": "00:00:56,560"
+			},
+			"offsets": {
+				"from": 50080,
+				"to": 56560
+			},
+			"text": " who unfortunately couldn't come here to this great conference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,920",
+				"to": "00:01:00,840"
+			},
+			"offsets": {
+				"from": 56920,
+				"to": 60840
+			},
+			"text": " it's Alexei Truschechif and he's Master Chain Architect."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,840",
+				"to": "00:01:03,660"
+			},
+			"offsets": {
+				"from": 60840,
+				"to": 63660
+			},
+			"text": " So, what is Master Chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,660",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 63660,
+				"to": 71000
+			},
+			"text": " Master Chain is a Russian national platform for storing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:15,460"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 75460
+			},
+			"text": " and exchanging financial data based on blockchain technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,460",
+				"to": "00:01:21,640"
+			},
+			"offsets": {
+				"from": 75460,
+				"to": 81640
+			},
+			"text": " So, the two key words in this definition is national and blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,640",
+				"to": "00:01:26,320"
+			},
+			"offsets": {
+				"from": 81640,
+				"to": 86320
+			},
+			"text": " So, we've choose the public Ethereum protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,720",
+				"to": "00:01:29,840"
+			},
+			"offsets": {
+				"from": 86720,
+				"to": 89840
+			},
+			"text": " for as a basis for Master Chain Project."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,840",
+				"to": "00:01:31,360"
+			},
+			"offsets": {
+				"from": 89840,
+				"to": 91360
+			},
+			"text": " Why we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,360",
+				"to": "00:01:37,640"
+			},
+			"offsets": {
+				"from": 91360,
+				"to": 97640
+			},
+			"text": " Because the first Ethereum protocol have a large experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,640",
+				"to": "00:01:38,640"
+			},
+			"offsets": {
+				"from": 97640,
+				"to": 98640
+			},
+			"text": " with work and a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,640",
+				"to": "00:01:43,360"
+			},
+			"offsets": {
+				"from": 98640,
+				"to": 103360
+			},
+			"text": " Of course, it has supports, it has a smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,360",
+				"to": "00:01:49,760"
+			},
+			"offsets": {
+				"from": 103360,
+				"to": 109760
+			},
+			"text": " And it has a big community, it had a big community"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,760",
+				"to": "00:01:53,180"
+			},
+			"offsets": {
+				"from": 109760,
+				"to": 113180
+			},
+			"text": " and has big community and this community is gross"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,180",
+				"to": "00:01:55,880"
+			},
+			"offsets": {
+				"from": 113180,
+				"to": 115880
+			},
+			"text": " and solves many, many new issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,880",
+				"to": "00:01:59,920"
+			},
+			"offsets": {
+				"from": 115880,
+				"to": 119920
+			},
+			"text": " So, this platform wouldn't be abandoned."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,920",
+				"to": "00:02:02,560"
+			},
+			"offsets": {
+				"from": 119920,
+				"to": 122560
+			},
+			"text": " So, what is Master Chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,560",
+				"to": "00:02:06,080"
+			},
+			"offsets": {
+				"from": 122560,
+				"to": 126080
+			},
+			"text": " It's a fork, it's a fork of public Ethereum protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,080",
+				"to": "00:02:09,800"
+			},
+			"offsets": {
+				"from": 126080,
+				"to": 129800
+			},
+			"text": " It also supports, of course, smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,800",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 129800,
+				"to": 136000
+			},
+			"text": " And the main difference is it based on ghost crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:19,520"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 139520
+			},
+			"text": " Ghost crypto stands for government standards crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,520",
+				"to": "00:02:24,520"
+			},
+			"offsets": {
+				"from": 139520,
+				"to": 144520
+			},
+			"text": " It is the main standard in Russian Federation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,520",
+				"to": "00:02:25,880"
+			},
+			"offsets": {
+				"from": 144520,
+				"to": 145880
+			},
+			"text": " for all cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,880",
+				"to": "00:02:30,960"
+			},
+			"offsets": {
+				"from": 145880,
+				"to": 150960
+			},
+			"text": " If you're interested, you could just read the white paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,960",
+				"to": "00:02:32,360"
+			},
+			"offsets": {
+				"from": 150960,
+				"to": 152360
+			},
+			"text": " for Master Chain Project."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,360",
+				"to": "00:02:39,160"
+			},
+			"offsets": {
+				"from": 152360,
+				"to": 159160
+			},
+			"text": " This link is for this white paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,160",
+				"to": "00:02:43,840"
+			},
+			"offsets": {
+				"from": 159160,
+				"to": 163840
+			},
+			"text": " So, why we have to use the custom cryptography?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,840",
+				"to": "00:02:48,600"
+			},
+			"offsets": {
+				"from": 163840,
+				"to": 168600
+			},
+			"text": " The second and the first and the main,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,600",
+				"to": "00:02:52,920"
+			},
+			"offsets": {
+				"from": 168600,
+				"to": 172920
+			},
+			"text": " it is because only government standards crypto algorithms"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,920",
+				"to": "00:02:54,480"
+			},
+			"offsets": {
+				"from": 172920,
+				"to": 174480
+			},
+			"text": " have legal power."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,480",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 174480,
+				"to": 177000
+			},
+			"text": " So, if you want to build any system"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:00,040"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 180040
+			},
+			"text": " which involves any kind of cryptography,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,040",
+				"to": "00:03:03,840"
+			},
+			"offsets": {
+				"from": 180040,
+				"to": 183840
+			},
+			"text": " your cryptography in Russian Federation should be the ghost."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,840",
+				"to": "00:03:07,960"
+			},
+			"offsets": {
+				"from": 183840,
+				"to": 187960
+			},
+			"text": " And not just only your own implementation of ghost."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,960",
+				"to": "00:03:14,840"
+			},
+			"offsets": {
+				"from": 187960,
+				"to": 194840
+			},
+			"text": " It has to be certified by Russian federal security services."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,840",
+				"to": "00:03:21,320"
+			},
+			"offsets": {
+				"from": 194840,
+				"to": 201320
+			},
+			"text": " Not only your, not only, not even your only step"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,080",
+				"to": "00:03:27,080"
+			},
+			"offsets": {
+				"from": 202080,
+				"to": 207080
+			},
+			"text": " or your solution has to be certified by FSB yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,080",
+				"to": "00:03:33,520"
+			},
+			"offsets": {
+				"from": 207080,
+				"to": 213520
+			},
+			"text": " But cryptography is definitely that kind,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,520",
+				"to": "00:03:36,520"
+			},
+			"offsets": {
+				"from": 213520,
+				"to": 216520
+			},
+			"text": " what you need to certify in Russian Federation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,520",
+				"to": "00:03:43,040"
+			},
+			"offsets": {
+				"from": 216520,
+				"to": 223040
+			},
+			"text": " So, there are only few, only certified crypto service providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,040",
+				"to": "00:03:44,040"
+			},
+			"offsets": {
+				"from": 223040,
+				"to": 224040
+			},
+			"text": " have to be used."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,040",
+				"to": "00:03:50,360"
+			},
+			"offsets": {
+				"from": 224040,
+				"to": 230360
+			},
+			"text": " And you can say, \"Whoa, I can implement the ghost myself"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,360",
+				"to": "00:03:52,240"
+			},
+			"offsets": {
+				"from": 230360,
+				"to": 232240
+			},
+			"text": " and get, and certify it.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,240",
+				"to": "00:03:53,240"
+			},
+			"offsets": {
+				"from": 232240,
+				"to": 233240
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,240",
+				"to": "00:03:57,840"
+			},
+			"offsets": {
+				"from": 233240,
+				"to": 237840
+			},
+			"text": " You could probably do that, but it's extremely, extremely difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,840",
+				"to": "00:04:00,600"
+			},
+			"offsets": {
+				"from": 237840,
+				"to": 240600
+			},
+			"text": " That's why only a few vendors of CSPs"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,600",
+				"to": "00:04:03,280"
+			},
+			"offsets": {
+				"from": 240600,
+				"to": 243280
+			},
+			"text": " are presented in the market, in the Russian market."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,280",
+				"to": "00:04:10,720"
+			},
+			"offsets": {
+				"from": 243280,
+				"to": 250720
+			},
+			"text": " So, we used for our project is crypto proud CSP for zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,720",
+				"to": "00:04:16,360"
+			},
+			"offsets": {
+				"from": 250720,
+				"to": 256360
+			},
+			"text": " And what's the main difference?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,360",
+				"to": "00:04:20,360"
+			},
+			"offsets": {
+				"from": 256360,
+				"to": 260360
+			},
+			"text": " What does a ghost crypto algorithm's family consists?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,360",
+				"to": "00:04:24,720"
+			},
+			"offsets": {
+				"from": 260360,
+				"to": 264720
+			},
+			"text": " The first one is the hash function."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,720",
+				"to": "00:04:31,360"
+			},
+			"offsets": {
+				"from": 264720,
+				"to": 271360
+			},
+			"text": " The hash function is ghost R34, 11, 212."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,360",
+				"to": "00:04:35,440"
+			},
+			"offsets": {
+				"from": 271360,
+				"to": 275440
+			},
+			"text": " It calls Stribbok, calls for Slavic God."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,440",
+				"to": "00:04:41,280"
+			},
+			"offsets": {
+				"from": 275440,
+				"to": 281280
+			},
+			"text": " And it has two modes, 256 bits and 512 bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,800",
+				"to": "00:04:47,600"
+			},
+			"offsets": {
+				"from": 281800,
+				"to": 287600
+			},
+			"text": " But in our project Masterchain, we used only 256 bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,600",
+				"to": "00:04:54,480"
+			},
+			"offsets": {
+				"from": 287600,
+				"to": 294480
+			},
+			"text": " So, the second is the, it's a DC algorithms for digital signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,480",
+				"to": "00:04:59,280"
+			},
+			"offsets": {
+				"from": 294480,
+				"to": 299280
+			},
+			"text": " It calls ghost R34, 10, 2012,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,280",
+				"to": "00:05:01,480"
+			},
+			"offsets": {
+				"from": 299280,
+				"to": 301480
+			},
+			"text": " and it doesn't have the specific nickname."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,480",
+				"to": "00:05:10,800"
+			},
+			"offsets": {
+				"from": 301480,
+				"to": 310800
+			},
+			"text": " It supports 256 bit curves and 512 bit curves."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,480",
+				"to": "00:05:14,280"
+			},
+			"offsets": {
+				"from": 311480,
+				"to": 314280
+			},
+			"text": " With different param sets for each curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,280",
+				"to": "00:05:19,200"
+			},
+			"offsets": {
+				"from": 314280,
+				"to": 319200
+			},
+			"text": " So, we used 256 bit curve with the param set A."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,200",
+				"to": "00:05:23,640"
+			},
+			"offsets": {
+				"from": 319200,
+				"to": 323640
+			},
+			"text": " Also, it has a symmetric K-blocked cipher."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,640",
+				"to": "00:05:34,080"
+			},
+			"offsets": {
+				"from": 323640,
+				"to": 334080
+			},
+			"text": " Still running, ghost 24, 147 developed in 1989, in 1989."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,080",
+				"to": "00:05:35,280"
+			},
+			"offsets": {
+				"from": 334080,
+				"to": 335280
+			},
+			"text": " It calls Magma."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,120",
+				"to": "00:05:44,640"
+			},
+			"offsets": {
+				"from": 336120,
+				"to": 344640
+			},
+			"text": " There is a new modern algorithm which were built in 2015."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,640",
+				"to": "00:05:50,120"
+			},
+			"offsets": {
+				"from": 344640,
+				"to": 350120
+			},
+			"text": " It calls Kuznacik, but he still doesn't have the certified implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,120",
+				"to": "00:05:51,840"
+			},
+			"offsets": {
+				"from": 350120,
+				"to": 351840
+			},
+			"text": " So, we couldn't use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,840",
+				"to": "00:05:59,840"
+			},
+			"offsets": {
+				"from": 351840,
+				"to": 359840
+			},
+			"text": " And the last operation, it's the bunch, it's several operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,840",
+				"to": "00:06:04,480"
+			},
+			"offsets": {
+				"from": 359840,
+				"to": 364480
+			},
+			"text": " for transport security, the Diffie-Hellman's heme."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,880",
+				"to": "00:06:10,040"
+			},
+			"offsets": {
+				"from": 364880,
+				"to": 370040
+			},
+			"text": " And it works with, it's a DC ghost algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,040",
+				"to": "00:06:13,560"
+			},
+			"offsets": {
+				"from": 370040,
+				"to": 373560
+			},
+			"text": " and with symmetric K-blocked cipher with Magma."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,560",
+				"to": "00:06:21,280"
+			},
+			"offsets": {
+				"from": 373560,
+				"to": 381280
+			},
+			"text": " And in crypto-prod CSP, there is a certified implementation of TLS protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,280",
+				"to": "00:06:28,600"
+			},
+			"offsets": {
+				"from": 381280,
+				"to": 388600
+			},
+			"text": " So, we've decided to choose this one for our project."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,480",
+				"to": "00:06:37,600"
+			},
+			"offsets": {
+				"from": 389480,
+				"to": 397600
+			},
+			"text": " So, what was Ethereum crypto undercover before we started?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,600",
+				"to": "00:06:43,040"
+			},
+			"offsets": {
+				"from": 397600,
+				"to": 403040
+			},
+			"text": " We started at version 115."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,040",
+				"to": "00:06:50,680"
+			},
+			"offsets": {
+				"from": 403040,
+				"to": 410680
+			},
+			"text": " And it looks like it was a big mess because there were crypto module,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,680",
+				"to": "00:06:57,280"
+			},
+			"offsets": {
+				"from": 410680,
+				"to": 417280
+			},
+			"text": " which had a wrapper for crypto hashes, for its ADC, AC's implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,280",
+				"to": "00:07:05,720"
+			},
+			"offsets": {
+				"from": 417280,
+				"to": 425720
+			},
+			"text": " and for implementation of KerfSecP256K1, built for Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,720",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 425720,
+				"to": 431000
+			},
+			"text": " And it wraps all those functions in one crypto module."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:17,160"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 437160
+			},
+			"text": " But suddenly, there were redundant calls from P2P communication system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,160",
+				"to": "00:07:23,600"
+			},
+			"offsets": {
+				"from": 437160,
+				"to": 443600
+			},
+			"text": " from mining system, from EVM directly calls to those functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,600",
+				"to": "00:07:27,120"
+			},
+			"offsets": {
+				"from": 443600,
+				"to": 447120
+			},
+			"text": " So, we decided to redesign it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,800",
+				"to": "00:07:31,120"
+			},
+			"offsets": {
+				"from": 447800,
+				"to": 451120
+			},
+			"text": " We've built a single crypto adapter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,120",
+				"to": "00:07:37,920"
+			},
+			"offsets": {
+				"from": 451120,
+				"to": 457920
+			},
+			"text": " which were transparent for all business logic, nodes business logic calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,920",
+				"to": "00:07:45,360"
+			},
+			"offsets": {
+				"from": 457920,
+				"to": 465360
+			},
+			"text": " This crypto adapter have unified calls to a wrapper interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,360",
+				"to": "00:07:55,200"
+			},
+			"offsets": {
+				"from": 465360,
+				"to": 475200
+			},
+			"text": " And each library like CSP wrapper, like Ghost R wrapper or any other wrapper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,200",
+				"to": "00:07:57,400"
+			},
+			"offsets": {
+				"from": 475200,
+				"to": 477400
+			},
+			"text": " you can write here by your own."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,400",
+				"to": "00:08:11,920"
+			},
+			"offsets": {
+				"from": 477400,
+				"to": 491920
+			},
+			"text": " So, each of this wrapper implements this wrapper interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,920",
+				"to": "00:08:15,440"
+			},
+			"offsets": {
+				"from": 491920,
+				"to": 495440
+			},
+			"text": " and wraps the exactly library."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,440",
+				"to": "00:08:20,800"
+			},
+			"offsets": {
+				"from": 495440,
+				"to": 500800
+			},
+			"text": " So, first, we've choose the open source Ghost R,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,800",
+				"to": "00:08:28,400"
+			},
+			"offsets": {
+				"from": 500800,
+				"to": 508400
+			},
+			"text": " so we can just test that all functions that were present in the original theorem"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,400",
+				"to": "00:08:32,440"
+			},
+			"offsets": {
+				"from": 508400,
+				"to": 512440
+			},
+			"text": " are switchable to the new cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,440",
+				"to": "00:08:39,800"
+			},
+			"offsets": {
+				"from": 512440,
+				"to": 519800
+			},
+			"text": " So, and then after that, we've built that CSP wrapper for third-party library"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,800",
+				"to": "00:08:42,520"
+			},
+			"offsets": {
+				"from": 519800,
+				"to": 522520
+			},
+			"text": " crypto prod CSP, which is a black box for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,520",
+				"to": "00:08:48,800"
+			},
+			"offsets": {
+				"from": 522520,
+				"to": 528800
+			},
+			"text": " And this theme is kind of work very good."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,120",
+				"to": "00:08:54,680"
+			},
+			"offsets": {
+				"from": 530120,
+				"to": 534680
+			},
+			"text": " So, and it builds like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,680",
+				"to": "00:08:58,880"
+			},
+			"offsets": {
+				"from": 534680,
+				"to": 538880
+			},
+			"text": " so you can implement your own crypto wrapper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,880",
+				"to": "00:09:03,560"
+			},
+			"offsets": {
+				"from": 538880,
+				"to": 543560
+			},
+			"text": " which would wrap your own crypto library."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,560",
+				"to": "00:09:08,240"
+			},
+			"offsets": {
+				"from": 543560,
+				"to": 548240
+			},
+			"text": " In fact, you can do the mix mode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,240",
+				"to": "00:09:13,680"
+			},
+			"offsets": {
+				"from": 548240,
+				"to": 553680
+			},
+			"text": " use the NIST cryptography or ghost cryptography in the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,400",
+				"to": "00:09:21,200"
+			},
+			"offsets": {
+				"from": 555400,
+				"to": 561200
+			},
+			"text": " So, what have exactly we switched to from an theorem to a master chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,200",
+				"to": "00:09:24,840"
+			},
+			"offsets": {
+				"from": 561200,
+				"to": 564840
+			},
+			"text": " The three types of hashes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,840",
+				"to": "00:09:32,840"
+			},
+			"offsets": {
+				"from": 564840,
+				"to": 572840
+			},
+			"text": " sharp 256, sharp three, into modes to 256 bits and 512 bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,840",
+				"to": "00:09:34,480"
+			},
+			"offsets": {
+				"from": 572840,
+				"to": 574480
+			},
+			"text": " We switched it to three bulk."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,480",
+				"to": "00:09:42,680"
+			},
+			"offsets": {
+				"from": 574480,
+				"to": 582680
+			},
+			"text": " It's a DC and set P 256K1, we've switched to ghost city, say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:46,600"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 586600
+			},
+			"text": " with the 256-bit curve with ParamSet A."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,600",
+				"to": "00:09:51,400"
+			},
+			"offsets": {
+				"from": 586600,
+				"to": 591400
+			},
+			"text": " And we've redeveloped the Ikri-Carver function."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,400",
+				"to": "00:09:56,960"
+			},
+			"offsets": {
+				"from": 591400,
+				"to": 596960
+			},
+			"text": " I will tell you a bit more later on the next slide about this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,960",
+				"to": "00:10:04,480"
+			},
+			"offsets": {
+				"from": 596960,
+				"to": 604480
+			},
+			"text": " but we've implemented the compressed signature for ghost, ghost algorithm family."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,480",
+				"to": "00:10:08,280"
+			},
+			"offsets": {
+				"from": 604480,
+				"to": 608280
+			},
+			"text": " So, Ikri-Carver works now very good."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,280",
+				"to": "00:10:11,280"
+			},
+			"offsets": {
+				"from": 608280,
+				"to": 611280
+			},
+			"text": " It recovers the pub key from compressed signature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,640",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 611640,
+				"to": 619000
+			},
+			"text": " but then you have to verify it with the certified verification function from the CSP."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:31,400"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 631400
+			},
+			"text": " So, it also works with 256-bit curves with ParamSet A on master chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,400",
+				"to": "00:10:35,520"
+			},
+			"offsets": {
+				"from": 631400,
+				"to": 635520
+			},
+			"text": " The symmetric cryptography,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,400",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 636400,
+				"to": 643000
+			},
+			"text": " which were used in error peaks encryption between the communication of two nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:45,600"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 645600
+			},
+			"text": " It was As."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,600",
+				"to": "00:10:55,640"
+			},
+			"offsets": {
+				"from": 645600,
+				"to": 655640
+			},
+			"text": " It switched to Magma, symmetric ciphers with 256-bit K"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,640",
+				"to": "00:10:59,360"
+			},
+			"offsets": {
+				"from": 655640,
+				"to": 659360
+			},
+			"text": " and block size of 64-bits for Magma,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,360",
+				"to": "00:11:03,720"
+			},
+			"offsets": {
+				"from": 659360,
+				"to": 663720
+			},
+			"text": " switched from 124-bits from As."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,520",
+				"to": "00:11:12,600"
+			},
+			"offsets": {
+				"from": 664520,
+				"to": 672600
+			},
+			"text": " And, of course, we've read out of error peaks encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,600",
+				"to": "00:11:19,520"
+			},
+			"offsets": {
+				"from": 672600,
+				"to": 679520
+			},
+			"text": " Why that? As I thought, as I said, if you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,520",
+				"to": "00:11:27,880"
+			},
+			"offsets": {
+				"from": 679520,
+				"to": 687880
+			},
+			"text": " certified implementation of one part of any cryptographic function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,880",
+				"to": "00:11:31,720"
+			},
+			"offsets": {
+				"from": 687880,
+				"to": 691720
+			},
+			"text": " it doesn't mean that the whole solution are certified by itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,480",
+				"to": "00:11:36,080"
+			},
+			"offsets": {
+				"from": 692480,
+				"to": 696080
+			},
+			"text": " So, that's why we have two ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,080",
+				"to": "00:11:40,840"
+			},
+			"offsets": {
+				"from": 696080,
+				"to": 700840
+			},
+			"text": " The first way is trying to certify in FSB,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,840",
+				"to": "00:11:43,160"
+			},
+			"offsets": {
+				"from": 700840,
+				"to": 703160
+			},
+			"text": " the whole error peaks encryption protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,160",
+				"to": "00:11:48,120"
+			},
+			"offsets": {
+				"from": 703160,
+				"to": 708120
+			},
+			"text": " or just switched it to certified TLA-S."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,120",
+				"to": "00:11:51,360"
+			},
+			"offsets": {
+				"from": 708120,
+				"to": 711360
+			},
+			"text": " So, we've choose the second one."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,360",
+				"to": "00:11:57,800"
+			},
+			"offsets": {
+				"from": 711360,
+				"to": 717800
+			},
+			"text": " And the Ethereum protocol in communication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,840",
+				"to": "00:12:00,400"
+			},
+			"offsets": {
+				"from": 717840,
+				"to": 720400
+			},
+			"text": " LPE, is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,400",
+				"to": "00:12:06,600"
+			},
+			"offsets": {
+				"from": 720400,
+				"to": 726600
+			},
+			"text": " So, we just switched the encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,600",
+				"to": "00:12:13,200"
+			},
+			"offsets": {
+				"from": 726600,
+				"to": 733200
+			},
+			"text": " Anything which is going through are stands like in the original theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,200",
+				"to": "00:12:16,880"
+			},
+			"offsets": {
+				"from": 733200,
+				"to": 736880
+			},
+			"text": " So, about compressed signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,880",
+				"to": "00:12:21,880"
+			},
+			"offsets": {
+				"from": 736880,
+				"to": 741880
+			},
+			"text": " Because of the different algebra,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,880",
+				"to": "00:12:26,680"
+			},
+			"offsets": {
+				"from": 741880,
+				"to": 746680
+			},
+			"text": " when you're working with the curves in Gauss standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,320",
+				"to": "00:12:32,120"
+			},
+			"offsets": {
+				"from": 747320,
+				"to": 752120
+			},
+			"text": " we have to reproduce compressed signature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,120",
+				"to": "00:12:38,240"
+			},
+			"offsets": {
+				"from": 752120,
+				"to": 758240
+			},
+			"text": " which was used in NIST curves in Bitcoin and in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,240",
+				"to": "00:12:40,840"
+			},
+			"offsets": {
+				"from": 758240,
+				"to": 760840
+			},
+			"text": " So, we did find a way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,840",
+				"to": "00:12:46,400"
+			},
+			"offsets": {
+				"from": 760840,
+				"to": 766400
+			},
+			"text": " But it was something interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,400",
+				"to": "00:12:52,320"
+			},
+			"offsets": {
+				"from": 766400,
+				"to": 772320
+			},
+			"text": " because a recover function was created without modification of original certified CSP."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,720",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 772720,
+				"to": 780000
+			},
+			"text": " But that's why we have to call the verification function on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 787000
+			},
+			"text": " So, first of all, you're going to restore the pop key from the compressed signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:17,120"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 797120
+			},
+			"text": " And then you have to give the verification function the original signature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,120",
+				"to": "00:13:18,920"
+			},
+			"offsets": {
+				"from": 797120,
+				"to": 798920
+			},
+			"text": " and the restored pop key."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,920",
+				"to": "00:13:22,600"
+			},
+			"offsets": {
+				"from": 798920,
+				"to": 802600
+			},
+			"text": " So, that solution would be certified."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,240",
+				"to": "00:13:29,160"
+			},
+			"offsets": {
+				"from": 803240,
+				"to": 809160
+			},
+			"text": " And the last one, we've implemented NodeSwiteList as a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,160",
+				"to": "00:13:33,280"
+			},
+			"offsets": {
+				"from": 809160,
+				"to": 813280
+			},
+			"text": " for authorized communication and for authorized mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,280",
+				"to": "00:13:41,080"
+			},
+			"offsets": {
+				"from": 813280,
+				"to": 821080
+			},
+			"text": " It was a requirement for the intake association."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,080",
+				"to": "00:13:46,040"
+			},
+			"offsets": {
+				"from": 821080,
+				"to": 826040
+			},
+			"text": " So, crypto-grittants,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,040",
+				"to": "00:13:51,520"
+			},
+			"offsets": {
+				"from": 826040,
+				"to": 831520
+			},
+			"text": " complaint with these requirements can be used with our crypto adapter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,520",
+				"to": "00:13:53,720"
+			},
+			"offsets": {
+				"from": 831520,
+				"to": 833720
+			},
+			"text": " transparently for the rest of Ethereum logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,720",
+				"to": "00:14:00,320"
+			},
+			"offsets": {
+				"from": 833720,
+				"to": 840320
+			},
+			"text": " And again, the hash function into 156 bit modes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,320",
+				"to": "00:14:07,040"
+			},
+			"offsets": {
+				"from": 840320,
+				"to": 847040
+			},
+			"text": " It's CDSA in 256 bit curves."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,040",
+				"to": "00:14:13,040"
+			},
+			"offsets": {
+				"from": 847040,
+				"to": 853040
+			},
+			"text": " Your compressed signature support with 256 bit curves."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,600",
+				"to": "00:14:25,120"
+			},
+			"offsets": {
+				"from": 853600,
+				"to": 865120
+			},
+			"text": " And symmetric block cipher with key with 256 bits and block size 128 or 64 bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,120",
+				"to": "00:14:31,720"
+			},
+			"offsets": {
+				"from": 865120,
+				"to": 871720
+			},
+			"text": " And if you implement your own TLS protocol, you should do it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,720",
+				"to": "00:14:41,560"
+			},
+			"offsets": {
+				"from": 871720,
+				"to": 881560
+			},
+			"text": " because you cannot communicate with nodes in MasterChain without this implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,320",
+				"to": "00:14:50,040"
+			},
+			"offsets": {
+				"from": 883320,
+				"to": 890040
+			},
+			"text": " So, I was glad to talk about some cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,040",
+				"to": "00:14:56,440"
+			},
+			"offsets": {
+				"from": 890040,
+				"to": 896440
+			},
+			"text": " So, you can ask some questions for me right after this presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,440",
+				"to": "00:14:57,800"
+			},
+			"offsets": {
+				"from": 896440,
+				"to": 897800
+			},
+			"text": " Have a nice day."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,800",
+				"to": "00:15:04,800"
+			},
+			"offsets": {
+				"from": 897800,
+				"to": 904800
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,800",
+				"to": "00:15:07,540"
+			},
+			"offsets": {
+				"from": 904800,
+				"to": 907540
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

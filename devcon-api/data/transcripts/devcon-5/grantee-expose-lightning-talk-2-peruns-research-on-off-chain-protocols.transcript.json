@@ -1,0 +1,1836 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6000
+			},
+			"text": " >> Hi, everyone. I am from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 6000,
+				"to": 11000
+			},
+			"text": " Peroon of chain labs and I want to take this chance today to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 17000
+			},
+			"text": " present what we have been working on in the last few years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " Who we are, we are two teams of applied"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 25000
+			},
+			"text": " cryptography researchers in darmstadt, Germany and varshel"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 30000
+			},
+			"text": " and we provide cryptographic protocols and proofs but our"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 35000
+			},
+			"text": " focus, our goal is how we can use smart contracts to scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 40000
+			},
+			"text": " blockchain. In particular, I want to present to you today three"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 43000
+			},
+			"text": " protocols that we have been working on. The first one you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 47000
+			},
+			"text": " might have heard about is called Peroon and extensions where"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 51000
+			},
+			"text": " we try to build a framework for state channels. The second one"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 56000
+			},
+			"text": " is called fair swap where we try to build smart contracts to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 60000
+			},
+			"text": " build a fair exchange protocol and the last one is a very"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 64000
+			},
+			"text": " recent one called fast kitten where we use trusted execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 68000
+			},
+			"text": " environments to build secure private smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 73000
+			},
+			"text": " execution. So let's start with the first one, Peroon and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 77000
+			},
+			"text": " extensions. Smart or state channels is an extension of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 81000
+			},
+			"text": " payment channels and most of you will have heard about payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 85000
+			},
+			"text": " channels and the ideas to get rid of this very long duration and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 89000
+			},
+			"text": " costly single payments on the blockchain and encapsulate them"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 94000
+			},
+			"text": " into a channel which is secured by a channel contract on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 98000
+			},
+			"text": " And this allows us to make off chain direct payments between"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 102000
+			},
+			"text": " two participants really fast without additional costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 107000
+			},
+			"text": " And our goal here is to take these existing payment channels"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 111000
+			},
+			"text": " and make them more powerful. And we did this in three lines"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 116000
+			},
+			"text": " of work and the main component that we use is the observation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 121000
+			},
+			"text": " that we can put contracts that we can put on chain also in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 125000
+			},
+			"text": " state channels. And not just one, we can put multiple contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 130000
+			},
+			"text": " into a state channel. And this is a nice observation because if"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 134000
+			},
+			"text": " we can do this, then we can also put a channel contract into a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 137000
+			},
+			"text": " channel. And this is really nice when we want to connect more"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 141000
+			},
+			"text": " than two players. In this case, for example, we have Alice"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 144000
+			},
+			"text": " in Ingrid who have a channel and Ingrid and Bob who also have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 147000
+			},
+			"text": " channel. And in both of these channels we now put a channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 151000
+			},
+			"text": " contract which opens a new virtual channel between Alice"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 154000
+			},
+			"text": " and Bob. And this is really nice because for opening this"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157000
+			},
+			"text": " channel we don't have to go on chain but this completely happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 161000
+			},
+			"text": " off chain. We can also update this and close this off chain and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 166000
+			},
+			"text": " use it as much as we want. Again, we can also open contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 171000
+			},
+			"text": " inside the virtual channel as many as we want. And the third"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 175000
+			},
+			"text": " extension that we very recently published is that we can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 179000
+			},
+			"text": " connect more than two people. We can connect end parties by"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 184000
+			},
+			"text": " putting an end party contract into channels. And these end party"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 189000
+			},
+			"text": " channels also provide the same properties as a direct or"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 194000
+			},
+			"text": " virtual channel. But enough about channels. I have two more"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 198000
+			},
+			"text": " proposals to talk about. The second one was Fairswap. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 202000
+			},
+			"text": " Fairswap tackles the problem of Fairs change which is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 208000
+			},
+			"text": " hard to solve without a blockchain. Classical examples when you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 212000
+			},
+			"text": " have a seller and a buyer and a seller has a file X and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 216000
+			},
+			"text": " buyer is willing to pay for this file. But only if it's the right"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 221000
+			},
+			"text": " one which is here measured over is hash. So very naive"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 225000
+			},
+			"text": " solution is we just take a contract, buyer submits the coins,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 228000
+			},
+			"text": " seller submits the money and then the contract verifies hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " correct or hash incorrect. But this is actually really expensive"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 237000
+			},
+			"text": " when we talk about large files about giga or megabytes. So we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 241000
+			},
+			"text": " propose a new protocol called Fairswap where we encrypt the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 244000
+			},
+			"text": " file and not send it to the contract but directly send it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " to the buyer. In the first message, this is happening directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 252000
+			},
+			"text": " between seller and buyer so no on-chain communication. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 255000
+			},
+			"text": " buyer cannot see the file at this point because it's encrypted"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 259000
+			},
+			"text": " and it's missing the key. So it locks the coins which will make"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 263000
+			},
+			"text": " the seller submit the key and then the buyer can decrypt the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 267000
+			},
+			"text": " file to actually look into it and verify if it's correct or not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 271000
+			},
+			"text": " correct. And in case it's not correct, it sends a proof of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 275000
+			},
+			"text": " misbehavior to the smart contract which the smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 279000
+			},
+			"text": " the judge in this case will verify. So the goal here is to keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 283000
+			},
+			"text": " this piece of information as small as possible, ideally"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 287000
+			},
+			"text": " independent from the size of the overall file. And how we did"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 292000
+			},
+			"text": " this is by splitting up the file in many small chunks and the hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 296000
+			},
+			"text": " that verifies its correctness is actually a local hash. So the hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 301000
+			},
+			"text": " root of the local tree is used to verify if the file is correct"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 306000
+			},
+			"text": " or not correct. So in this case we have a very nice scenario"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 310000
+			},
+			"text": " because Alice and Bob, if they disagree about correctness of this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 314000
+			},
+			"text": " can actually limit the disagreement to a single element of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 319000
+			},
+			"text": " this tree. So either the last element is wrong or a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 323000
+			},
+			"text": " evaluation of this hash tree is wrong. And in this case they only"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 327000
+			},
+			"text": " have to send a single element, a single chunk of the file which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 331000
+			},
+			"text": " the judge has done to verify. And this can be done really cheaply."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 336000
+			},
+			"text": " We measured it around half a year ago where it was like $2"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 340000
+			},
+			"text": " independent from the file size. So you could send an arbitrary"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 344000
+			},
+			"text": " large file and this complaint was taking a constant amount of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 350000
+			},
+			"text": " fees. And we also evaluate the security. This is something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 353000
+			},
+			"text": " we take a lot of effort in, formally modeling and verifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 357000
+			},
+			"text": " security of our protocols. In this case we ensure that it's fair."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 362000
+			},
+			"text": " So atomic exchange of payment and file. We also want to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 368000
+			},
+			"text": " that it's sound. So the buyer has to guarantee that if he gets"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " a wrong file he can always generate a proof of misbehavior and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 376000
+			},
+			"text": " will always be accepted. And the unfortunability property is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 379000
+			},
+			"text": " really important such that the buyer cannot come up with a wrong"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 383000
+			},
+			"text": " proof of misbehavior claiming the buyer misbehaved even though he"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 387000
+			},
+			"text": " didn't. And we prove all of these properties formally in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 392000
+			},
+			"text": " paper. We also worked on some extensions of this. The most"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 396000
+			},
+			"text": " important one is that I was basically explaining one example"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 399000
+			},
+			"text": " with the file and the hash. This also works for generic"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 404000
+			},
+			"text": " witnesses and circuits. So it's very powerful. Can use arbitrary"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 410000
+			},
+			"text": " programs or can verify arbitrary programs. We also have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 414000
+			},
+			"text": " interactive and non-interactive version of this dispute of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 418000
+			},
+			"text": " proof of misbehavior. And the non-interactive is nice because"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 424000
+			},
+			"text": " we have five interactions with the contract and that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 427000
+			},
+			"text": " And the interactive dispute has many more interactions with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 431000
+			},
+			"text": " contract but we have fee fairness. So we have the guarantee that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 434000
+			},
+			"text": " all of these transaction fees that have to be paid for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 438000
+			},
+			"text": " dispute will only be carried by the cheating party. So an honest"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 441000
+			},
+			"text": " party doesn't really care how long it takes or how expensive it"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 448000
+			},
+			"text": " is. It will always get reimbursed. Now to the last of three things"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 451000
+			},
+			"text": " that I wanted to present today which is called FastKit. In"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 455000
+			},
+			"text": " FastKiten we use a building block which is called a trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 460000
+			},
+			"text": " execution environment. TEE or trusted hardware. Where"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 465000
+			},
+			"text": " this piece of hardware is trusted to run the code we give it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 471000
+			},
+			"text": " no one can influence this execution. But of course while this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 475000
+			},
+			"text": " piece of hardware is trusted the person that runs it is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 480000
+			},
+			"text": " trusted. So we have this operator who is in charge of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 485000
+			},
+			"text": " giving -- feeding information to the TEE and forwarding its output."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 489000
+			},
+			"text": " So it can stop the TEE. It can stop forwarding its messages but"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 493000
+			},
+			"text": " it can never lie about the computation inside the TEE and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 498000
+			},
+			"text": " it cannot influence the computation. So we use this building"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 503000
+			},
+			"text": " block which is quite common now in cryptography and try to run"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 509000
+			},
+			"text": " smart contracts inside this piece of hardware. What we get from"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 513000
+			},
+			"text": " this is actually a really powerful protocol because we can run a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 517000
+			},
+			"text": " contract independent of size of chain. We have very high"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 521000
+			},
+			"text": " guarantees. We can protect against malicious parties and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 525000
+			},
+			"text": " operator. We can uniquely attribute faults in case someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 529000
+			},
+			"text": " misbehaves and also this protocol is so simple that we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 534000
+			},
+			"text": " actually build it on bitcoin. Okay, so how does it work? We have"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 538000
+			},
+			"text": " this TEE here and the operator and all of the parties. So they"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 542000
+			},
+			"text": " want to play a poker game now which means we load a poker game"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 548000
+			},
+			"text": " and we load a poker game. So we have this piece of hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 552000
+			},
+			"text": " The party is a test. This TEE, so they know that this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 556000
+			},
+			"text": " actually trusted hardware and running the right code. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 560000
+			},
+			"text": " then the operator depots it's security, penalty deposit and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 564000
+			},
+			"text": " all of the parties lock the coins for the game. Then we start."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 567000
+			},
+			"text": " And at this point we don't need the blockchain. We just run"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 571000
+			},
+			"text": " everything off chain. So the parties send their inputs to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 576000
+			},
+			"text": " the operator cannot see the inputs. And the TEE also sends an"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 580000
+			},
+			"text": " encrypted output back to the parties. So the operator has no"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 584000
+			},
+			"text": " idea of what's actually happening. And also the parties"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 588000
+			},
+			"text": " don't see each other's inputs. This is also a nice feature with"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 591000
+			},
+			"text": " Ethereum doesn't have right now and it's really hard to build in"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 596000
+			},
+			"text": " smart contracts but is given for free in this setup. So now the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 601000
+			},
+			"text": " parties can actually see who won and get their money back from"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 605000
+			},
+			"text": " the TEE which means the TEE outputs a transaction saying"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 609000
+			},
+			"text": " here Alice and Charlie get all the coins. Of course we still have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 613000
+			},
+			"text": " to protect against all this power that the operator has. So in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 617000
+			},
+			"text": " case it misbehaves we actually have to wait for a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 620000
+			},
+			"text": " time out and then the parties get refunded their money. But the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 624000
+			},
+			"text": " operator lost his security deposit which is, well, really"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 629000
+			},
+			"text": " painful for him. So to summarize over all of these three works is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 633000
+			},
+			"text": " a very interesting observation that smart contracts are really"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 637000
+			},
+			"text": " powerful tools that we can use to ensure security and that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 642000
+			},
+			"text": " also use to build more scalable protocols. And our goal here is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 646000
+			},
+			"text": " to really provide cryptographic models and proofs with all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 650000
+			},
+			"text": " these protocols and really show that they satisfy cryptographic"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 654000
+			},
+			"text": " security. So if you want to learn more about this feel free to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 656000
+			},
+			"text": " talk to me here at DevCon. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 660000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 664000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 668000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 672000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 676000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 680000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 684000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 688000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 692000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 721000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

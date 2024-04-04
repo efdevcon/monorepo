@@ -1,0 +1,2287 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:09,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 9880
+			},
+			"text": " So we're going to go ahead and get started. I'm going to be very, very brief. I'm Paul"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,880",
+				"to": "00:00:14,440"
+			},
+			"offsets": {
+				"from": 9880,
+				"to": 14440
+			},
+			"text": " Brody. I'm the global blockchain leader at EY. And before I hand this over to the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,440",
+				"to": "00:00:19,520"
+			},
+			"offsets": {
+				"from": 14440,
+				"to": 19520
+			},
+			"text": " who actually know what they're doing, I just want to kind of give you two pieces of information"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,520",
+				"to": "00:00:25,760"
+			},
+			"offsets": {
+				"from": 19520,
+				"to": 25760
+			},
+			"text": " that might be useful for your background. Number one, a little bit about EY, right? EY"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,760",
+				"to": "00:00:32,120"
+			},
+			"offsets": {
+				"from": 25760,
+				"to": 32120
+			},
+			"text": " is all in on the Ethereum ecosystem, right? Everything that we do, all of our applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,120",
+				"to": "00:00:37,400"
+			},
+			"offsets": {
+				"from": 32120,
+				"to": 37400
+			},
+			"text": " that we develop in blockchain are developed in the Ethereum ecosystem. They run on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,400",
+				"to": "00:00:43,640"
+			},
+			"offsets": {
+				"from": 37400,
+				"to": 43640
+			},
+			"text": " private solutions. They run in Quorum. And most importantly, from a strategic standpoint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,640",
+				"to": "00:00:49,160"
+			},
+			"offsets": {
+				"from": 43640,
+				"to": 49160
+			},
+			"text": " everything we do is focused in the long run towards making it possible for enterprises"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,160",
+				"to": "00:00:53,880"
+			},
+			"offsets": {
+				"from": 49160,
+				"to": 53880
+			},
+			"text": " to use the public mainnet. Now, why do we believe enterprises should use the public"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,880",
+				"to": "00:01:01,320"
+			},
+			"offsets": {
+				"from": 53880,
+				"to": 61320
+			},
+			"text": " mainnet? This is item number two. We believe that blockchains will be the biggest transformational"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,320",
+				"to": "00:01:08,440"
+			},
+			"offsets": {
+				"from": 61320,
+				"to": 68440
+			},
+			"text": " technology for enterprises since ERP. So ERP got enterprises to coordinate internally."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,440",
+				"to": "00:01:13,760"
+			},
+			"offsets": {
+				"from": 68440,
+				"to": 73760
+			},
+			"text": " Blockchain is a tool that's going to allow networks of companies, entire business ecosystems"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,760",
+				"to": "00:01:19,200"
+			},
+			"offsets": {
+				"from": 73760,
+				"to": 79200
+			},
+			"text": " to transact seamlessly with each other to build complex supply chains with a very low overhead"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,200",
+				"to": "00:01:24,200"
+			},
+			"offsets": {
+				"from": 79200,
+				"to": 84200
+			},
+			"text": " and incredibly high efficiency. But, and this is the important thing, none of this matters"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,200",
+				"to": "00:01:30,240"
+			},
+			"offsets": {
+				"from": 84200,
+				"to": 90240
+			},
+			"text": " and it will never happen if we don't have incredibly high standards of security and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,240",
+				"to": "00:01:34,800"
+			},
+			"offsets": {
+				"from": 90240,
+				"to": 94800
+			},
+			"text": " privacy for public blockchains, right? No corporation, no enterprise is going to sign"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,800",
+				"to": "00:01:39,520"
+			},
+			"offsets": {
+				"from": 94800,
+				"to": 99520
+			},
+			"text": " up for anything if they know that their competition can see what they're buying or how much they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,520",
+				"to": "00:01:46,360"
+			},
+			"offsets": {
+				"from": 99520,
+				"to": 106360
+			},
+			"text": " paying or where it's going. So nightfall is all about our efforts to start to make that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,360",
+				"to": "00:01:49,880"
+			},
+			"offsets": {
+				"from": 106360,
+				"to": 109880
+			},
+			"text": " possible and it fits in with a lot of the other work we're doing, whether it's audit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,880",
+				"to": "00:01:54,480"
+			},
+			"offsets": {
+				"from": 109880,
+				"to": 114480
+			},
+			"text": " security tools or regulatory compliance. And without any further ado, I'm going to hand"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,480",
+				"to": "00:01:59,320"
+			},
+			"offsets": {
+				"from": 114480,
+				"to": 119320
+			},
+			"text": " it over to the brilliant nightfall team. Michael."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,320",
+				"to": "00:02:06,080"
+			},
+			"offsets": {
+				"from": 119320,
+				"to": 126080
+			},
+			"text": " Thanks, Paul. So, yeah, what we're going to do is we're going to quickly go over what"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,080",
+				"to": "00:02:10,760"
+			},
+			"offsets": {
+				"from": 126080,
+				"to": 130760
+			},
+			"text": " nightfall is. Paul's covered why we're doing this. We're going to cover the high level"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,760",
+				"to": "00:02:16,640"
+			},
+			"offsets": {
+				"from": 130760,
+				"to": 136640
+			},
+			"text": " architecture, how people can use nightfall to build on top of their applications and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,640",
+				"to": "00:02:23,760"
+			},
+			"offsets": {
+				"from": 136640,
+				"to": 143760
+			},
+			"text": " you, Seth, are going to cover an exciting new piece of work we're doing on batching."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,760",
+				"to": "00:02:28,600"
+			},
+			"offsets": {
+				"from": 143760,
+				"to": 148600
+			},
+			"text": " So, yeah, public blockchain is great. We can all agree with that. But the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,600",
+				"to": "00:02:36,240"
+			},
+			"offsets": {
+				"from": 148600,
+				"to": 156240
+			},
+			"text": " data is public. Whereas businesses, they need transactional privacy, okay, as Paul mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,240",
+				"to": "00:02:40,960"
+			},
+			"offsets": {
+				"from": 156240,
+				"to": 160960
+			},
+			"text": " And that's why we built nightfall. So, what kind of privacy does nightfall enable at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,960",
+				"to": "00:02:47,920"
+			},
+			"offsets": {
+				"from": 160960,
+				"to": 167920
+			},
+			"text": " moment? Well, it enables privacy of ERC 20 contracts and ERC 721 contracts. So, you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,920",
+				"to": "00:02:52,920"
+			},
+			"offsets": {
+				"from": 167920,
+				"to": 172920
+			},
+			"text": " fungible and non-fungible tokens already deployed contracts, people who own those tokens to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,920",
+				"to": "00:02:58,960"
+			},
+			"offsets": {
+				"from": 172920,
+				"to": 178960
+			},
+			"text": " make their tokens private and they can hide the content being sent, so for ERC 721, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,960",
+				"to": "00:03:05,560"
+			},
+			"offsets": {
+				"from": 178960,
+				"to": 185560
+			},
+			"text": " asset or for ERC 20, they can hide the value being sent. They can also hide the recipient."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,560",
+				"to": "00:03:11,120"
+			},
+			"offsets": {
+				"from": 185560,
+				"to": 191120
+			},
+			"text": " So the person being sent the money will be hidden and won't be known. Okay? And really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,120",
+				"to": "00:03:15,640"
+			},
+			"offsets": {
+				"from": 191120,
+				"to": 195640
+			},
+			"text": " importantly, what we're most excited about is that this is completely open source in"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,640",
+				"to": "00:03:19,840"
+			},
+			"offsets": {
+				"from": 195640,
+				"to": 199840
+			},
+			"text": " the public domain. So, we've released all this because we believe the best way to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,840",
+				"to": "00:03:25,520"
+			},
+			"offsets": {
+				"from": 199840,
+				"to": 205520
+			},
+			"text": " businesses to that stage to using the public mainnet is to contribute and to work with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,520",
+				"to": "00:03:31,680"
+			},
+			"offsets": {
+				"from": 205520,
+				"to": 211680
+			},
+			"text": " the community to get these tools as good as possible. So, we're inviting everyone to come"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,680",
+				"to": "00:03:37,040"
+			},
+			"offsets": {
+				"from": 211680,
+				"to": 217040
+			},
+			"text": " look at the repo, contributions are welcome and let's talk and we'll talk about what we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,040",
+				"to": "00:03:41,320"
+			},
+			"offsets": {
+				"from": 217040,
+				"to": 221320
+			},
+			"text": " planning on doing next. If anyone has any good ideas, get in touch, open issues, open"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,320",
+				"to": "00:03:52,240"
+			},
+			"offsets": {
+				"from": 221320,
+				"to": 232240
+			},
+			"text": " PRs on GitHub, we really encourage that. So, at its core, nightfall has six sub protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,240",
+				"to": "00:04:00,400"
+			},
+			"offsets": {
+				"from": 232240,
+				"to": 240400
+			},
+			"text": " So it does mint, transfer and burn of standard ERC 20 and ERC 721 token contracts. So, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,400",
+				"to": "00:04:07,400"
+			},
+			"offsets": {
+				"from": 240400,
+				"to": 247400
+			},
+			"text": " mint does is it takes your ERC 20 or 721 token and mints it as an equivalent token commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,400",
+				"to": "00:04:14,840"
+			},
+			"offsets": {
+				"from": 247400,
+				"to": 254840
+			},
+			"text": " that holds the same value as a tangible token of ERC 20 or the same token ID as the ERC 721."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,840",
+				"to": "00:04:19,600"
+			},
+			"offsets": {
+				"from": 254840,
+				"to": 259600
+			},
+			"text": " These token commitments can later be used to transfer within various parties to transact"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,600",
+				"to": "00:04:25,160"
+			},
+			"offsets": {
+				"from": 259600,
+				"to": 265160
+			},
+			"text": " confidentially as well as anonymously. And burn lets you do the opposite of mint which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,160",
+				"to": "00:04:31,080"
+			},
+			"offsets": {
+				"from": 265160,
+				"to": 271080
+			},
+			"text": " takes these token commitments and burns them to give you back an equivalent ERC 20 or"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,080",
+				"to": "00:04:44,480"
+			},
+			"offsets": {
+				"from": 271080,
+				"to": 284480
+			},
+			"text": " 721 that is held in escrow. It's released on burn. At a very high level, nightfall looks"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,480",
+				"to": "00:04:51,240"
+			},
+			"offsets": {
+				"from": 284480,
+				"to": 291240
+			},
+			"text": " like this. So, if you would like to do a mint or a transfer or a burn of a token or a token"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,240",
+				"to": "00:04:57,840"
+			},
+			"offsets": {
+				"from": 291240,
+				"to": 297840
+			},
+			"text": " commitment, you have to generate a proof, a ZK proof off chain and it's done in your"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,840",
+				"to": "00:05:04,120"
+			},
+			"offsets": {
+				"from": 297840,
+				"to": 304120
+			},
+			"text": " local server. But also, your local server also holds the private information that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,120",
+				"to": "00:05:11,400"
+			},
+			"offsets": {
+				"from": 304120,
+				"to": 311400
+			},
+			"text": " required to do these trans-proof generation as well. But the off-chain server now will"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,400",
+				"to": "00:05:17,560"
+			},
+			"offsets": {
+				"from": 311400,
+				"to": 317560
+			},
+			"text": " have to interact with something called a shield contract to make these proofs happen on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,560",
+				"to": "00:05:22,440"
+			},
+			"offsets": {
+				"from": 317560,
+				"to": 322440
+			},
+			"text": " Shield contract acts as an interface. It does multiple jobs but it also talks to various"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,440",
+				"to": "00:05:30,200"
+			},
+			"offsets": {
+				"from": 322440,
+				"to": 330200
+			},
+			"text": " kinds of contracts. Most importantly being the ERC 20 and ERC 721 standard contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,200",
+				"to": "00:05:35,280"
+			},
+			"offsets": {
+				"from": 330200,
+				"to": 335280
+			},
+			"text": " So when you'd like to mint or transfer or burn, what you would have to do is create"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,280",
+				"to": "00:05:41,960"
+			},
+			"offsets": {
+				"from": 335280,
+				"to": 341960
+			},
+			"text": " a proof off-chain, give it to the shield contract. Shield contract will then on mint escrow your"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,960",
+				"to": "00:05:48,320"
+			},
+			"offsets": {
+				"from": 341960,
+				"to": 348320
+			},
+			"text": " token or on burn, release your token. But it uses these various functions within the shield"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,320",
+				"to": "00:05:54,160"
+			},
+			"offsets": {
+				"from": 348320,
+				"to": 354160
+			},
+			"text": " contract in order to do that. These functions, in written themselves, actually take the proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,160",
+				"to": "00:05:58,780"
+			},
+			"offsets": {
+				"from": 354160,
+				"to": 358780
+			},
+			"text": " that is required along with the public inputs that is required to verify this proof. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,780",
+				"to": "00:06:03,400"
+			},
+			"offsets": {
+				"from": 358780,
+				"to": 363400
+			},
+			"text": " shield contract will then call a verifier contract and the verifier function within the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,400",
+				"to": "00:06:10,160"
+			},
+			"offsets": {
+				"from": 363400,
+				"to": 370160
+			},
+			"text": " verifier contract to verify these proofs. On a successful verification, it adds these token"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,160",
+				"to": "00:06:15,200"
+			},
+			"offsets": {
+				"from": 370160,
+				"to": 375200
+			},
+			"text": " commitments into the token commitment's market tree. There are two important data structures"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,200",
+				"to": "00:06:19,920"
+			},
+			"offsets": {
+				"from": 375200,
+				"to": 379920
+			},
+			"text": " in the shield contract. One being the market tree that holds a list of all the commitments"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,920",
+				"to": "00:06:24,800"
+			},
+			"offsets": {
+				"from": 379920,
+				"to": 384800
+			},
+			"text": " created and the other being a nullifier which holds a list of all the commitments that have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,800",
+				"to": "00:06:30,640"
+			},
+			"offsets": {
+				"from": 384800,
+				"to": 390640
+			},
+			"text": " been spent. In such a way that you can't associate a commitment with its nullifier or whichever"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,640",
+				"to": "00:06:35,280"
+			},
+			"offsets": {
+				"from": 390640,
+				"to": 395280
+			},
+			"text": " has been spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,280",
+				"to": "00:06:42,760"
+			},
+			"offsets": {
+				"from": 395280,
+				"to": 402760
+			},
+			"text": " So if we take a look deeper into how the process works for first an ERC721 token, first let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,760",
+				"to": "00:06:49,800"
+			},
+			"offsets": {
+				"from": 402760,
+				"to": 409800
+			},
+			"text": " suppose Alice, a user of an ERC contract, owns a token T. She wants to make this private."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,800",
+				"to": "00:06:54,440"
+			},
+			"offsets": {
+				"from": 409800,
+				"to": 414440
+			},
+			"text": " She wants to start doing transactions under zero knowledge. So she will invoke the mint"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,440",
+				"to": "00:06:58,680"
+			},
+			"offsets": {
+				"from": 414440,
+				"to": 418680
+			},
+			"text": " function which nightfall exposes and that will first give the shield contract custody"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,680",
+				"to": "00:07:04,520"
+			},
+			"offsets": {
+				"from": 418680,
+				"to": 424520
+			},
+			"text": " of her token. And Alice will also say here is a commitment which hides the token, hides"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,520",
+				"to": "00:07:10,160"
+			},
+			"offsets": {
+				"from": 424520,
+				"to": 430160
+			},
+			"text": " the underlying details of the asset and binds Alice as the owner of the asset. And all people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,160",
+				"to": "00:07:12,840"
+			},
+			"offsets": {
+				"from": 430160,
+				"to": 432840
+			},
+			"text": " all other observers of the blockchain will see is just a random number. They won't be"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,840",
+				"to": "00:07:19,920"
+			},
+			"offsets": {
+				"from": 432840,
+				"to": 439920
+			},
+			"text": " able to interpret thereafter what these commitments meant. So thereafter, every transfer is private."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,920",
+				"to": "00:07:24,600"
+			},
+			"offsets": {
+				"from": 439920,
+				"to": 444600
+			},
+			"text": " No one knows who has sent what to whom. So we get that privacy that businesses need. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,600",
+				"to": "00:07:28,880"
+			},
+			"offsets": {
+				"from": 444600,
+				"to": 448880
+			},
+			"text": " crucially, the Merkle tree within the shield contract, the leaves of which hold all these"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,880",
+				"to": "00:07:35,760"
+			},
+			"offsets": {
+				"from": 448880,
+				"to": 455760
+			},
+			"text": " tokens, we've made big. So we've given a huge anonymity set of about 4 billion. So that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,760",
+				"to": "00:07:42,800"
+			},
+			"offsets": {
+				"from": 455760,
+				"to": 462800
+			},
+			"text": " a 32 deep Merkle tree. So it's really important. And again, people can transfer, transfer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,800",
+				"to": "00:07:46,600"
+			},
+			"offsets": {
+				"from": 462800,
+				"to": 466600
+			},
+			"text": " no one learns who has sent what to whom while these commitments are being sent within the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,600",
+				"to": "00:07:51,520"
+			},
+			"offsets": {
+				"from": 466600,
+				"to": 471520
+			},
+			"text": " shield contract. If at some point in the future someone wants to burn their token, i.e. make"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,520",
+				"to": "00:07:56,320"
+			},
+			"offsets": {
+				"from": 471520,
+				"to": 476320
+			},
+			"text": " it public again, do something else with it. They can do so. They can call the burn function"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,320",
+				"to": "00:08:02,880"
+			},
+			"offsets": {
+				"from": 476320,
+				"to": 482880
+			},
+			"text": " and it exposes that now Bob owns T, the token. Similar thing for ERC 20 tokens. So if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,880",
+				"to": "00:08:08,280"
+			},
+			"offsets": {
+				"from": 482880,
+				"to": 488280
+			},
+			"text": " have already deployed an ERC 20 contract, your users can use a shield contract to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,280",
+				"to": "00:08:13,880"
+			},
+			"offsets": {
+				"from": 488280,
+				"to": 493880
+			},
+			"text": " those tokens private. So again, Alice owns some value and she gives the shield contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,880",
+				"to": "00:08:19,320"
+			},
+			"offsets": {
+				"from": 493880,
+				"to": 499320
+			},
+			"text": " custody of that value in tokens, it mints the commitment. And because of the non-fungibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,320",
+				"to": "00:08:23,400"
+			},
+			"offsets": {
+				"from": 499320,
+				"to": 503400
+			},
+			"text": " of putting, making a commitment, it's like putting money in an envelope. So then we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,400",
+				"to": "00:08:30,040"
+			},
+			"offsets": {
+				"from": 503400,
+				"to": 510040
+			},
+			"text": " to do similar to Zcashher 2 in 2 out approach where Alice takes two of her tokens, transfers"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,040",
+				"to": "00:08:34,720"
+			},
+			"offsets": {
+				"from": 510040,
+				"to": 514720
+			},
+			"text": " one of them to a recipient and she gets the other in change. And similarly, no one learns"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,720",
+				"to": "00:08:39,800"
+			},
+			"offsets": {
+				"from": 514720,
+				"to": 519800
+			},
+			"text": " who is sending what to whom in this process. And finally, if someone wants to retrieve"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,800",
+				"to": "00:08:46,400"
+			},
+			"offsets": {
+				"from": 519800,
+				"to": 526400
+			},
+			"text": " their token, they can do so at the end. Now, there have been a lot of talks on ZK Snark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,400",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 526400,
+				"to": 529000
+			},
+			"text": " so we're not going to go into much detail on how they work. There was a really great"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:54,800"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 534800
+			},
+			"text": " track yesterday on how they work. But crucially, an ordinary computation on the EVM, you pass"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,800",
+				"to": "00:08:59,160"
+			},
+			"offsets": {
+				"from": 534800,
+				"to": 539160
+			},
+			"text": " inputs to the computation and it's done on the EVM. All the inputs are public. But some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,160",
+				"to": "00:09:03,600"
+			},
+			"offsets": {
+				"from": 539160,
+				"to": 543600
+			},
+			"text": " of our inputs we want to be private, such as our secret key, what the asset is, who we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,600",
+				"to": "00:09:09,720"
+			},
+			"offsets": {
+				"from": 543600,
+				"to": 549720
+			},
+			"text": " are. And so what we can do is we can generate a proof. And we pass that proof to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,720",
+				"to": "00:09:14,280"
+			},
+			"offsets": {
+				"from": 549720,
+				"to": 554280
+			},
+			"text": " And a proof just looks like random gibberish numbers to outside observers. But crucially"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,280",
+				"to": "00:09:18,960"
+			},
+			"offsets": {
+				"from": 554280,
+				"to": 558960
+			},
+			"text": " through ZK Snark, these can be verified as true on the blockchain and we can verify that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,960",
+				"to": "00:09:23,920"
+			},
+			"offsets": {
+				"from": 558960,
+				"to": 563920
+			},
+			"text": " this person does indeed own a token and has the right to transfer it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,920",
+				"to": "00:09:31,560"
+			},
+			"offsets": {
+				"from": 563920,
+				"to": 571560
+			},
+			"text": " Okay. So the architecture of the NITLE application itself looks like this. The entire application"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,560",
+				"to": "00:09:37,560"
+			},
+			"offsets": {
+				"from": 571560,
+				"to": 577560
+			},
+			"text": " is dark-right and it's a microservices-based architecture. At a very high level, you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,560",
+				"to": "00:09:43,440"
+			},
+			"offsets": {
+				"from": 577560,
+				"to": 583440
+			},
+			"text": " APGateware microservice, which acts as an authentication as well as an orchestration layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,440",
+				"to": "00:09:50,400"
+			},
+			"offsets": {
+				"from": 583440,
+				"to": 590400
+			},
+			"text": " which in turn speaks to the downstream microservices being off-chain ZKP accounts and database."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,400",
+				"to": "00:09:56,800"
+			},
+			"offsets": {
+				"from": 590400,
+				"to": 596800
+			},
+			"text": " What off-chain microservices lets you do is talk to various parties, off-chain without"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,800",
+				"to": "00:10:03,400"
+			},
+			"offsets": {
+				"from": 596800,
+				"to": 603400
+			},
+			"text": " no information being recorded on such as a TEM communication. And the kind of information"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,400",
+				"to": "00:10:07,560"
+			},
+			"offsets": {
+				"from": 603400,
+				"to": 607560
+			},
+			"text": " that you'd like to transfer off-chain is the private information that you'd like to keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,560",
+				"to": "00:10:13,600"
+			},
+			"offsets": {
+				"from": 607560,
+				"to": 613600
+			},
+			"text": " from being visible on Ethereum. But for example, a recipient of a token has to know in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,600",
+				"to": "00:10:19,240"
+			},
+			"offsets": {
+				"from": 613600,
+				"to": 619240
+			},
+			"text": " to access his token commitment. So that kind of information you communicate off-chain using"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,240",
+				"to": "00:10:26,200"
+			},
+			"offsets": {
+				"from": 619240,
+				"to": 626200
+			},
+			"text": " swarm part of the Ethereum stack. And accounts microservice lets you create accounts on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,200",
+				"to": "00:10:31,600"
+			},
+			"offsets": {
+				"from": 626200,
+				"to": 631600
+			},
+			"text": " fly, Ethereum accounts, standard accounts, in order to do mint, print or transfer as"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,600",
+				"to": "00:10:39,120"
+			},
+			"offsets": {
+				"from": 631600,
+				"to": 639120
+			},
+			"text": " and when required. The database microservice talks to MongoDB database and it stores both"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,120",
+				"to": "00:10:43,680"
+			},
+			"offsets": {
+				"from": 639120,
+				"to": 643680
+			},
+			"text": " public and private information that you're using in your proof generation and in your"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,680",
+				"to": "00:10:49,400"
+			},
+			"offsets": {
+				"from": 643680,
+				"to": 649400
+			},
+			"text": " verification for various transactions. This will be user-specific information that you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,400",
+				"to": "00:10:56,960"
+			},
+			"offsets": {
+				"from": 649400,
+				"to": 656960
+			},
+			"text": " storing in MongoDB. I'll talk about ZKP in a second, but all of these microservices can"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,960",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 656960,
+				"to": 662000
+			},
+			"text": " then be exposed to whatever sort of front-end interface you like. Nightful currently has"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:07,400"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 667400
+			},
+			"text": " a UE that you can use for demonstration purposes. You can also scrape that and integrate it"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,400",
+				"to": "00:11:15,720"
+			},
+			"offsets": {
+				"from": 667400,
+				"to": 675720
+			},
+			"text": " with an IoT sensor device or an ERP or another web app as you require. Going a bit more detail"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,720",
+				"to": "00:11:24,680"
+			},
+			"offsets": {
+				"from": 675720,
+				"to": 684680
+			},
+			"text": " into ZKP, it has two components that it talks to at its core. Firstly, the Zocrates container."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,680",
+				"to": "00:11:33,320"
+			},
+			"offsets": {
+				"from": 684680,
+				"to": 693320
+			},
+			"text": " Zocrates is an incredible tool that abstracts away the generation of proofs for ZKS. It"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,320",
+				"to": "00:11:38,480"
+			},
+			"offsets": {
+				"from": 693320,
+				"to": 698480
+			},
+			"text": " abstracts away the proving and verification key generation, exporting verifier and verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,480",
+				"to": "00:11:43,720"
+			},
+			"offsets": {
+				"from": 698480,
+				"to": 703720
+			},
+			"text": " off-chain. And it is also quite up to date on the latest happenings within the zero-knowledge"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,720",
+				"to": "00:11:48,080"
+			},
+			"offsets": {
+				"from": 703720,
+				"to": 708080
+			},
+			"text": " world as in the various proof systems that are coming up or the various hashes that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,080",
+				"to": "00:11:56,040"
+			},
+			"offsets": {
+				"from": 708080,
+				"to": 716040
+			},
+			"text": " people using today. So we use Zocrates to create these various proofs of minstrans for and burn."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,040",
+				"to": "00:12:01,840"
+			},
+			"offsets": {
+				"from": 716040,
+				"to": 721840
+			},
+			"text": " And we then have to send these proofs onto the blockchain using a -- we use a getth node"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,840",
+				"to": "00:12:06,960"
+			},
+			"offsets": {
+				"from": 721840,
+				"to": 726960
+			},
+			"text": " for this for the moment. And the getth node talks to Shield Contract and Shield Contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,960",
+				"to": "00:12:13,120"
+			},
+			"offsets": {
+				"from": 726960,
+				"to": 733120
+			},
+			"text": " interacts with the other complementary contracts that we talked to. All of this logic, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,120",
+				"to": "00:12:19,960"
+			},
+			"offsets": {
+				"from": 733120,
+				"to": 739960
+			},
+			"text": " is orchestrated with Node.js controller code which exposes a REST API that the rest of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,960",
+				"to": "00:12:27,360"
+			},
+			"offsets": {
+				"from": 739960,
+				"to": 747360
+			},
+			"text": " our microservices can consume. But ZKP microservice by itself can be used to do most of what"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,360",
+				"to": "00:12:35,280"
+			},
+			"offsets": {
+				"from": 747360,
+				"to": 755280
+			},
+			"text": " Mints Burn and Transfer does today. >> So what next for Nightfall? So we have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,280",
+				"to": "00:12:39,880"
+			},
+			"offsets": {
+				"from": 755280,
+				"to": 759880
+			},
+			"text": " roadmap here. So we're looking to build more developer tools. If anyone has any needs or"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,880",
+				"to": "00:12:43,720"
+			},
+			"offsets": {
+				"from": 759880,
+				"to": 763720
+			},
+			"text": " ideas or they've looked at the Nightfall repo and think something can be made better, please"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,720",
+				"to": "00:12:48,320"
+			},
+			"offsets": {
+				"from": 763720,
+				"to": 768320
+			},
+			"text": " get in touch. We're always trying to make it better. One of our primary goals is to reduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,320",
+				"to": "00:12:53,680"
+			},
+			"offsets": {
+				"from": 768320,
+				"to": 773680
+			},
+			"text": " the cost of private transactions. And you're going to talk about batching. So we've made"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,680",
+				"to": "00:12:57,800"
+			},
+			"offsets": {
+				"from": 773680,
+				"to": 777800
+			},
+			"text": " some leaps and bounds on that. We're also going to chip away at the smart contract logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,800",
+				"to": "00:13:01,600"
+			},
+			"offsets": {
+				"from": 777800,
+				"to": 781600
+			},
+			"text": " to reduce the gas cost there. And we're also going to take a look at the verification scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,600",
+				"to": "00:13:05,320"
+			},
+			"offsets": {
+				"from": 781600,
+				"to": 785320
+			},
+			"text": " to see if we can use a more gas efficient one. We're also going to look at making the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,320",
+				"to": "00:13:10,040"
+			},
+			"offsets": {
+				"from": 785320,
+				"to": 790040
+			},
+			"text": " transaction anonymous through relayers. So if there are any people knowing about relayers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,040",
+				"to": "00:13:16,040"
+			},
+			"offsets": {
+				"from": 790040,
+				"to": 796040
+			},
+			"text": " please get in touch. We'll look at that. And also we'll look at the trusted setup. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,040",
+				"to": "00:13:19,600"
+			},
+			"offsets": {
+				"from": 796040,
+				"to": 799600
+			},
+			"text": " there are some new schemes coming out at the moment that get rid of the nature of a trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,600",
+				"to": "00:13:28,600"
+			},
+			"offsets": {
+				"from": 799600,
+				"to": 808600
+			},
+			"text": " setup that are becoming more efficient. >> So, okay, so one of these, one more point"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,600",
+				"to": "00:13:33,360"
+			},
+			"offsets": {
+				"from": 808600,
+				"to": 813360
+			},
+			"text": " I've been working on is prove batching. So as you may know, the verification is quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,360",
+				"to": "00:13:41,920"
+			},
+			"offsets": {
+				"from": 813360,
+				"to": 821920
+			},
+			"text": " costly. So we developed a prototype to do the batching. So the most generic and practical"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,920",
+				"to": "00:13:46,400"
+			},
+			"offsets": {
+				"from": 821920,
+				"to": 826400
+			},
+			"text": " way to do batching for the time being is to do it via proof composition. Now, as you create"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,400",
+				"to": "00:13:53,360"
+			},
+			"offsets": {
+				"from": 826400,
+				"to": 833360
+			},
+			"text": " a proof that verifies another proof or the many others proofs. So it was introduced in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,360",
+				"to": "00:14:00,280"
+			},
+			"offsets": {
+				"from": 833360,
+				"to": 840280
+			},
+			"text": " this paper about proof carrying data. But there's a gap between the theory and the implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,280",
+				"to": "00:14:06,640"
+			},
+			"offsets": {
+				"from": 840280,
+				"to": 846640
+			},
+			"text": " because the problem is there is a mismatch arithmetic when you want to do a proof that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,640",
+				"to": "00:14:10,640"
+			},
+			"offsets": {
+				"from": 846640,
+				"to": 850640
+			},
+			"text": " generate a proof because the arithmetic of generation of the proof is not the same as"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,640",
+				"to": "00:14:15,920"
+			},
+			"offsets": {
+				"from": 850640,
+				"to": 855920
+			},
+			"text": " the verification of the proof. So in this paper they have introduced this cycle of elliptic"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,920",
+				"to": "00:14:24,960"
+			},
+			"offsets": {
+				"from": 855920,
+				"to": 864960
+			},
+			"text": " curves. So namely, MNT for MNT sex curves. So mostly in this research branch we know"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,960",
+				"to": "00:14:31,200"
+			},
+			"offsets": {
+				"from": 864960,
+				"to": 871200
+			},
+			"text": " mostly negative results about this. We cannot find for example cycles, whether for example"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,200",
+				"to": "00:14:37,600"
+			},
+			"offsets": {
+				"from": 871200,
+				"to": 877600
+			},
+			"text": " BN family using ethereum or free man family, we cannot find composite order cycles of elliptic"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,600",
+				"to": "00:14:45,640"
+			},
+			"offsets": {
+				"from": 877600,
+				"to": 885640
+			},
+			"text": " curves. So we have only this MNT for MNT cycles. And the problem with this cycle is that so"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,640",
+				"to": "00:14:53,400"
+			},
+			"offsets": {
+				"from": 885640,
+				"to": 893400
+			},
+			"text": " they have an in-between degree 4 and 6. So that makes the security low. So to solve this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,400",
+				"to": "00:14:59,280"
+			},
+			"offsets": {
+				"from": 893400,
+				"to": 899280
+			},
+			"text": " problem there are two solutions. Whether you have to increase the size of the film. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,280",
+				"to": "00:15:07,760"
+			},
+			"offsets": {
+				"from": 899280,
+				"to": 907760
+			},
+			"text": " this is like the variants MNT for 753 and MNT sex 753 used by CODA. So this comes with"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,760",
+				"to": "00:15:15,160"
+			},
+			"offsets": {
+				"from": 907760,
+				"to": 915160
+			},
+			"text": " a trader. So you have high security but slower batching. Or the other approach in parallel"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,160",
+				"to": "00:15:22,240"
+			},
+			"offsets": {
+				"from": 915160,
+				"to": 922240
+			},
+			"text": " was introduced in Zexi paper which is maybe you need only one recursion, a bounded recursion"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,240",
+				"to": "00:15:30,200"
+			},
+			"offsets": {
+				"from": 922240,
+				"to": 930200
+			},
+			"text": " and then you can find good security curves. But then also the outer curve is low. So there"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,200",
+				"to": "00:15:37,080"
+			},
+			"offsets": {
+				"from": 930200,
+				"to": 937080
+			},
+			"text": " is some trade tradeoffs. And so our protocol we have developed is somewhat in-between. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,080",
+				"to": "00:15:43,360"
+			},
+			"offsets": {
+				"from": 937080,
+				"to": 943360
+			},
+			"text": " we took the advantage of this fast cycle of MNT for MNT sex. And we do the batching over"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,360",
+				"to": "00:15:49,920"
+			},
+			"offsets": {
+				"from": 943360,
+				"to": 949920
+			},
+			"text": " this MNT for MNT sex. So as long as you want. And then so you do it off chain. So you do"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,920",
+				"to": "00:15:54,360"
+			},
+			"offsets": {
+				"from": 949920,
+				"to": 954360
+			},
+			"text": " not care much about the security. And if it is not unacceptable security for the time"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,360",
+				"to": "00:16:01,280"
+			},
+			"offsets": {
+				"from": 954360,
+				"to": 961280
+			},
+			"text": " being. But then in the last composition we created a new curve we call pendulum. So via"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,280",
+				"to": "00:16:07,680"
+			},
+			"offsets": {
+				"from": 961280,
+				"to": 967680
+			},
+			"text": " cox-pinch method. And we push this last proof that has good security into the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,680",
+				"to": "00:16:12,560"
+			},
+			"offsets": {
+				"from": 967680,
+				"to": 972560
+			},
+			"text": " So this creates some sort of graph. So we call the pendulum graph. So you have curves"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,560",
+				"to": "00:16:18,560"
+			},
+			"offsets": {
+				"from": 972560,
+				"to": 978560
+			},
+			"text": " in vertices and edges. So those mathematical equations there is the subgroup although the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,560",
+				"to": "00:16:24,480"
+			},
+			"offsets": {
+				"from": 978560,
+				"to": 984480
+			},
+			"text": " one elliptical is equal to the characteristic of the other one and vice versa. So we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,480",
+				"to": "00:16:32,880"
+			},
+			"offsets": {
+				"from": 984480,
+				"to": 992880
+			},
+			"text": " batching post two by two. So we restrict issuers to submit post on MNT sex. And then we do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,880",
+				"to": "00:16:42,720"
+			},
+			"offsets": {
+				"from": 992880,
+				"to": 1002720
+			},
+			"text": " recursion until we find a last proof. And then we do a final composition over this pendulum"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,720",
+				"to": "00:16:48,800"
+			},
+			"offsets": {
+				"from": 1002720,
+				"to": 1008800
+			},
+			"text": " curve that we push into the blockchain. So we have tried to do everything in ZOCRATIS so"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,800",
+				"to": "00:16:55,520"
+			},
+			"offsets": {
+				"from": 1008800,
+				"to": 1015520
+			},
+			"text": " that the community can use it. So we have added some nice features into ZOCRATIS. For"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,520",
+				"to": "00:17:00,720"
+			},
+			"offsets": {
+				"from": 1015520,
+				"to": 1020720
+			},
+			"text": " instance, so everything is public by the way. So we have published this this morning. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,720",
+				"to": "00:17:06,960"
+			},
+			"offsets": {
+				"from": 1020720,
+				"to": 1026960
+			},
+			"text": " for instance in ZOCRATIS now you can do ZOCRATIS verify. So we have common line verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,960",
+				"to": "00:17:15,200"
+			},
+			"offsets": {
+				"from": 1026960,
+				"to": 1035200
+			},
+			"text": " in ZOCRATIS. So we changed how ZOCRATIS was built. And we made ZOCRATIS generic over the curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,200",
+				"to": "00:17:21,120"
+			},
+			"offsets": {
+				"from": 1035200,
+				"to": 1041120
+			},
+			"text": " So ZOCRATIS for now allows you to generate post only on R&B curve. And now you can generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,120",
+				"to": "00:17:27,760"
+			},
+			"offsets": {
+				"from": 1041120,
+				"to": 1047760
+			},
+			"text": " in MNTs for MNT sex or any other curve that you have in your back end. So and we've also developed"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,760",
+				"to": "00:17:35,200"
+			},
+			"offsets": {
+				"from": 1047760,
+				"to": 1055200
+			},
+			"text": " this gadget of aggregation. So we, our work relies also on on blue jones, so credits to blue jones"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,200",
+				"to": "00:17:41,120"
+			},
+			"offsets": {
+				"from": 1055200,
+				"to": 1061120
+			},
+			"text": " for this as well. So we put everything into ZOCRATIS and we we published our"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,120",
+				"to": "00:17:49,680"
+			},
+			"offsets": {
+				"from": 1061120,
+				"to": 1069680
+			},
+			"text": " repos. But so yeah, the problem with that is we cannot go MNT for the time being. And EY vision"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,680",
+				"to": "00:17:57,920"
+			},
+			"offsets": {
+				"from": 1069680,
+				"to": 1077920
+			},
+			"text": " is to go MNTs. So we are waiting for the community decision on EIP 1962. So if it goes in Istanbul,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,920",
+				"to": "00:18:04,640"
+			},
+			"offsets": {
+				"from": 1077920,
+				"to": 1084640
+			},
+			"text": " we can have so pre-complies of our pendulum curve and we can do this on the MNT."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,640",
+				"to": "00:18:12,960"
+			},
+			"offsets": {
+				"from": 1084640,
+				"to": 1092960
+			},
+			"text": " So and finally, so this batching protocol was developed in another project called"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,960",
+				"to": "00:18:21,440"
+			},
+			"offsets": {
+				"from": 1092960,
+				"to": 1101440
+			},
+			"text": " French Kiss and Derniton. So this is a private swap. So that relies on ZK Snack's proof batching."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,440",
+				"to": "00:18:28,080"
+			},
+			"offsets": {
+				"from": 1101440,
+				"to": 1108080
+			},
+			"text": " So in in NITROL now you can have you can do transfer. Now you can do transfers in both ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,080",
+				"to": "00:18:34,400"
+			},
+			"offsets": {
+				"from": 1108080,
+				"to": 1114400
+			},
+			"text": " So it is a swap and you will have three proofs. So one of the first transfer is the second of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,400",
+				"to": "00:18:40,880"
+			},
+			"offsets": {
+				"from": 1114400,
+				"to": 1120880
+			},
+			"text": " other transfer and one matching ZK Snack proof and we aggregate those three proofs and we push"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,880",
+				"to": "00:18:48,080"
+			},
+			"offsets": {
+				"from": 1120880,
+				"to": 1128080
+			},
+			"text": " to the sheet contracts only one proof that verifies them all. So the the reports are public."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,080",
+				"to": "00:18:57,920"
+			},
+			"offsets": {
+				"from": 1128080,
+				"to": 1137920
+			},
+			"text": " Any contribution is welcome. So here are the links and so I think that that's it for me. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,920",
+				"to": "00:19:01,360"
+			},
+			"offsets": {
+				"from": 1137920,
+				"to": 1141360
+			},
+			"text": " So if you have any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,360",
+				"to": "00:19:03,360"
+			},
+			"offsets": {
+				"from": 1141360,
+				"to": 1143360
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,360",
+				"to": "00:19:05,360"
+			},
+			"offsets": {
+				"from": 1143360,
+				"to": 1145360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,360",
+				"to": "00:19:07,360"
+			},
+			"offsets": {
+				"from": 1145360,
+				"to": 1147360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,360",
+				"to": "00:19:09,360"
+			},
+			"offsets": {
+				"from": 1147360,
+				"to": 1149360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,360",
+				"to": "00:19:11,360"
+			},
+			"offsets": {
+				"from": 1149360,
+				"to": 1151360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,360",
+				"to": "00:19:13,360"
+			},
+			"offsets": {
+				"from": 1151360,
+				"to": 1153360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,360",
+				"to": "00:19:15,360"
+			},
+			"offsets": {
+				"from": 1153360,
+				"to": 1155360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,360",
+				"to": "00:19:17,360"
+			},
+			"offsets": {
+				"from": 1155360,
+				"to": 1157360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,360",
+				"to": "00:19:19,360"
+			},
+			"offsets": {
+				"from": 1157360,
+				"to": 1159360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,360",
+				"to": "00:19:21,360"
+			},
+			"offsets": {
+				"from": 1159360,
+				"to": 1161360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,360",
+				"to": "00:19:23,360"
+			},
+			"offsets": {
+				"from": 1161360,
+				"to": 1163360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,360",
+				"to": "00:19:25,360"
+			},
+			"offsets": {
+				"from": 1163360,
+				"to": 1165360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,360",
+				"to": "00:19:27,360"
+			},
+			"offsets": {
+				"from": 1165360,
+				"to": 1167360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,360",
+				"to": "00:19:29,360"
+			},
+			"offsets": {
+				"from": 1167360,
+				"to": 1169360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,360",
+				"to": "00:19:31,360"
+			},
+			"offsets": {
+				"from": 1169360,
+				"to": 1171360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,360",
+				"to": "00:19:33,360"
+			},
+			"offsets": {
+				"from": 1171360,
+				"to": 1173360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,360",
+				"to": "00:20:02,360"
+			},
+			"offsets": {
+				"from": 1173360,
+				"to": 1202360
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

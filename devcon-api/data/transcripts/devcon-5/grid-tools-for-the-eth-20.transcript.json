@@ -1,0 +1,461 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 13000
+			},
+			"text": " Alright, thanks for being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 17000
+			},
+			"text": " Let's start building UIs for Ethereum 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " Briefly, my name is Mark."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 22000
+			},
+			"text": " This is my dog helping me pack for this trip."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 27000
+			},
+			"text": " And most recently, I have been working on a private code of Ethereum Grid."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 30000
+			},
+			"text": " Grid is a desktop application."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 38000
+			},
+			"text": " It helps you discover, download, configure, and run various Ethereum clients and tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 48000
+			},
+			"text": " In this example, we've got a guest running here, a couple clicks to configure it, and a click to start it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 53000
+			},
+			"text": " In the case of the client, you can see some syncing status up there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 58000
+			},
+			"text": " And we further extended the platform to include Grid apps so that you can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 64000
+			},
+			"text": " and curated interfaces to get more insight into these tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 74000
+			},
+			"text": " So here, we've got a simple RPC tester that you can hit your actual client with RPC commands and see what the results are."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 84000
+			},
+			"text": " So, my thesis here today is that Grid is a powerful platform for developer onboarding and tooling and education."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 91000
+			},
+			"text": " And there's no reason that we can't add a 3.0 clients into this mix."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 98000
+			},
+			"text": " So, there's a few unique user experience challenges that we need to consider"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 104000
+			},
+			"text": " when adding these platforms or adding these clients to our platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 107000
+			},
+			"text": " The first, of course, is onboarding and education."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 112000
+			},
+			"text": " Users now have a new batch of questions that they are going to be asking."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 121000
+			},
+			"text": " That is what is sticking, what is group of stick, how do I do it, how do I get paid, what happens if I'm penalized, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 131000
+			},
+			"text": " Today, well, in this feature where envisioning, sticking comes in one flavor and that is 32.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 142000
+			},
+			"text": " So, there's no reason that a UI can't properly scale this experience if you so have the funds to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 153000
+			},
+			"text": " A 3.0 client is broken into two binaries. So, you have an e-kin node and a validator client."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 165000
+			},
+			"text": " A UI can help users mix and match these pieces you can turn on the other while using the same validator client."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 168000
+			},
+			"text": " And we'll take a look at that in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 175000
+			},
+			"text": " So, we're going to go to the prototype stage within the grid platform, but here's a look at some of our ideas so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 182000
+			},
+			"text": " As you've seen in the get the example, any plug-in that says we call them can be turned on with the toggle of a switch."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 187000
+			},
+			"text": " Here we've got a validator that represents a cluster."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 194000
+			},
+			"text": " And that just loops right in your operating system, essentially grid loops in your tool, are there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 207000
+			},
+			"text": " And if your e-kin node, for example, has some instability, it's as easy as a couple clicks to switch to another one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 223000
+			},
+			"text": " And the real takeaway here is that the developer does not have to install an entire new developer environment to switch over from one client to another or run through a whole new batch of documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 228000
+			},
+			"text": " And it doesn't mean to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " So, these are some earlier ideas, some takeaways."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 236000
+			},
+			"text": " We don't have a relationship yet with all the 2.0 client teams."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 244000
+			},
+			"text": " If you're representing any of those teams here today, we would love to talk to you and get your wish list for what a UI could look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 250000
+			},
+			"text": " Otherwise, try out a grid and come say hello, I've got stickers and magnets to hand it up and show."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 251000
+			},
+			"text": " Thanks very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 254000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 269000
+			},
+			"text": " [Music]"
+		}
+	]
+}

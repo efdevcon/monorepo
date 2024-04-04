@@ -1,0 +1,2023 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 20000
+			},
+			"text": " So today I'm going to be presenting on two projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 24000
+			},
+			"text": " I'm going to try and get this done in 15 minutes, so it's a lot, so bear with me."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 29000
+			},
+			"text": " It's going to be wave fund, which is crowdfunding, centralized crowdfunding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 33000
+			},
+			"text": " and it's going to be boardroom, which is decentralized governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 36000
+			},
+			"text": " So what is wave fund?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 39000
+			},
+			"text": " So wave fund, I can break it down into two things really simply."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 43000
+			},
+			"text": " It's crowdfunding, and it's digital asset issuance, and it's all done on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 47000
+			},
+			"text": " Ethereum. So when we think about digital assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 51000
+			},
+			"text": " we can think about equity, rebates, financial instruments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 56000
+			},
+			"text": " loyalty points, discounts, products, coupons."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 63000
+			},
+			"text": " And it feels a lot like Kickstarter, and I'm sure a lot of you have used"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 65000
+			},
+			"text": " Kickstarter, you've used things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 69000
+			},
+			"text": " Wave fund is designed to feel like that, but it runs completely on smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 75000
+			},
+			"text": " contracts, at a fraction of the cost, and can do a lot more."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 81000
+			},
+			"text": " So this is the wave fund version one kind of discovery interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 84000
+			},
+			"text": " So this is the interface you're going to see when you're looking through"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 87000
+			},
+			"text": " campaigns, trying to figure out what you want to contribute to."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 90000
+			},
+			"text": " It's very much like Kickstarter, but everything's an ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 96000
+			},
+			"text": " You can see here this is the interface to actually donate to a campaign."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 99000
+			},
+			"text": " So you can see there's some critical differences."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 102000
+			},
+			"text": " The funds are an ether, and as well we have at the bottom there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 106000
+			},
+			"text": " tokens issued. So when people contribute, you can do this really"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 111000
+			},
+			"text": " cool thing where you'll get secure issuance of tokens back to the person"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 116000
+			},
+			"text": " you contributed. So this creates a very, very interesting system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 122000
+			},
+			"text": " So what is it technically? It's the most simple DAP design there is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 126000
+			},
+			"text": " It's one smart contract and one UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 132000
+			},
+			"text": " And I like to think of it as having a lot more meaning than code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 136000
+			},
+			"text": " and it's much bigger than you think it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 141000
+			},
+			"text": " So an interesting element to this is I like to see it as rebuilding the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 147000
+			},
+			"text": " one-to-one relationship. So there's no VC firms, there's no lawyers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 151000
+			},
+			"text": " there's no management, there's no middlemen, there's no payment processors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 154000
+			},
+			"text": " no banks, and there's a lot less transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 158000
+			},
+			"text": " It is between the investor and the company."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 165000
+			},
+			"text": " Just you and your money. And when we think about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 169000
+			},
+			"text": " investors are now incentivized to use and promote the product."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 175000
+			},
+			"text": " So this is kind of a second idea as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 178000
+			},
+			"text": " When you invest in these products, you're now incentivized to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 181000
+			},
+			"text": " okay, I'm going to go out and I'm going to actually use them, I'm going to sell them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 185000
+			},
+			"text": " I'm going to promote them. This changes the dynamic for your"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 190000
+			},
+			"text": " investors and for your customers. So an example that I like to bring up"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 195000
+			},
+			"text": " is the coffee shop example. So imagine you kind of walked in the streets"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 199000
+			},
+			"text": " and there's a coffee shop you really like and they're trying to raise some money."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 204000
+			},
+			"text": " So with a conventional crowdfunding campaign, they'd raise money and it just sits there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 208000
+			},
+			"text": " With equity crowdfunding, particularly decentralized crowdfunding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 213000
+			},
+			"text": " the relationship changes. You walk into the coffee shop and you say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 218000
+			},
+			"text": " okay, you know, I've donated to your campaign, I have verifiable evidence"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 221000
+			},
+			"text": " that's written into the blockchain that not only my contributor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 224000
+			},
+			"text": " but I have so many shares of this coffee shop."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 229000
+			},
+			"text": " Now all of a sudden the relationship's taken a completely different turn."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 234000
+			},
+			"text": " This may mean I can make decisions in this coffee shop, I can maybe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 238000
+			},
+			"text": " maybe next month I decide what coffee they're going to bring in."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 241000
+			},
+			"text": " Now I'm also invested in whether they do well or they don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 247000
+			},
+			"text": " So I'm going to start promoting their business and creating a really sort of dynamic relationship."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 250000
+			},
+			"text": " This is something we just haven't had before."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 255000
+			},
+			"text": " So it's not VC, it's not venture capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 261000
+			},
+			"text": " It catalyzes your user base. And this is something that's kind of related to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 266000
+			},
+			"text": " equity crowdfunding in general, but with a theory, it really does take a different turn."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 272000
+			},
+			"text": " So we own the shares of what we use and this is just coming back to that one idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 277000
+			},
+			"text": " And this means more power for the everyday consumer and the everyday investor."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 286000
+			},
+			"text": " So, you know, you're going to start seeing ownership of various roles and businesses"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 291000
+			},
+			"text": " by everyday people and it's going to happen at an alarmingly fast rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 297000
+			},
+			"text": " And it all comes back to this other idea which is we're going to govern what we own."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 302000
+			},
+			"text": " So, and thus govern what we use."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 306000
+			},
+			"text": " Okay, so how do we feel about this so far?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 310000
+			},
+			"text": " Are we good? Everyone's? Yeah? All right. Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 314000
+			},
+			"text": " All right. So second thing is we're raising money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 317000
+			},
+			"text": " we're building a user base. This solves a big problem in business."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 321000
+			},
+			"text": " It's just getting users, getting customers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 327000
+			},
+			"text": " And I like to think of this as well, offering high finance to everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 332000
+			},
+			"text": " So financial services that were once available to massive corporations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 335000
+			},
+			"text": " you need tons of lawyers, you need all this sort of infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 338000
+			},
+			"text": " Now we're just giving that to everybody. We're giving that to the coffee shop."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 342000
+			},
+			"text": " We're giving that to your neighbor down the street."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 345000
+			},
+			"text": " Everyone will get access to these services."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 350000
+			},
+			"text": " Having a built-in user base lowers your risk because now you have customers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 356000
+			},
+			"text": " And when we think about funding, I like to think about it as free speech."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 361000
+			},
+			"text": " And so I like to think of WayFund as being not only an investment platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 365000
+			},
+			"text": " but also a freedom of speech platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 370000
+			},
+			"text": " So another interesting aspect is that the shares that will be raised on WayFund"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 374000
+			},
+			"text": " will be a standardized token. And that means that they'll be immediately"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 377000
+			},
+			"text": " tradable on decentralized exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 381000
+			},
+			"text": " So this creates sort of a very interesting dynamic."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 387000
+			},
+			"text": " And I think it's really interesting to think about what if the two billion"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 393000
+			},
+			"text": " that Kickstarter raised over their years of business was financialized?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 399000
+			},
+			"text": " What if that was equity shares? What if that was digital assets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 403000
+			},
+			"text": " How much more money would that have generated in business if it just didn't sit there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 407000
+			},
+			"text": " It would have tripled, quadrupled."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 411000
+			},
+			"text": " So this is just an interesting thought to think about."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 415000
+			},
+			"text": " The contractual design patterns are fairly simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 418000
+			},
+			"text": " WayFund's designed in a way that's just outwardly extensible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 422000
+			},
+			"text": " It's a very, very simple contract. It's less than 100 lines of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 426000
+			},
+			"text": " This can talk with more complex controllers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 429000
+			},
+			"text": " And those controllers can then talk to tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 434000
+			},
+			"text": " So this creates sort of an interesting design chain that's completely modular"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 437000
+			},
+			"text": " and very extensible."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 439000
+			},
+			"text": " So two challenges with WayFund."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 444000
+			},
+			"text": " We can think about social readiness and jurisdictional regulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 449000
+			},
+			"text": " And to get into these just a little bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 454000
+			},
+			"text": " social readiness, just adoption of Ether and adoption of this sort of new paradigm"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 457000
+			},
+			"text": " of thinking, this new technology, and as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 463000
+			},
+			"text": " it's a very traditional regulation just needing to catch up to this sort of new paradigm of thought."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 468000
+			},
+			"text": " So addressing these two challenges, we can think about educating the populace,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 473000
+			},
+			"text": " the social evolution, and also just support from government and business in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 477000
+			},
+			"text": " And there's a lot of different interesting ways this is happening already,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 481000
+			},
+			"text": " but the Jobs Act, which is kind of freeing up equity crowdfunding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 486000
+			},
+			"text": " and also non-US regulators."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 488000
+			},
+			"text": " So how do we make sure these projects don't fail?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 492000
+			},
+			"text": " This is another kind of critical aspect of the whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 495000
+			},
+			"text": " You're going to raise money on WayFund."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 500000
+			},
+			"text": " You're going to raise money in decentralized crowdfunding, but how do we make sure it doesn't fail?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 505000
+			},
+			"text": " This is when the second project that I'm working on comes in, called Boardroom."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 515000
+			},
+			"text": " So the idea here is that you'll deploy a board and then go out and you're going to raise capital for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 520000
+			},
+			"text": " The beneficiary of the campaign can actually be a contract and that can be a board."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 524000
+			},
+			"text": " And this is where you'll have a sort of dynamic voting process come into play,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 529000
+			},
+			"text": " and you're going to have just some really interesting dynamics happening"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 533000
+			},
+			"text": " where orgs will just pop up and then funds will be raised for it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 538000
+			},
+			"text": " and the equity raised will actually have decision-making power in the organization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 542000
+			},
+			"text": " and this will all happen in a contractual space."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 546000
+			},
+			"text": " So let's get into a little bit of a boardroom walkthrough."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 551000
+			},
+			"text": " I have five minutes, so I'll try and get into it as best I can."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 556000
+			},
+			"text": " So this is the opening of Boardroom, and it's the first public showing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 558000
+			},
+			"text": " So yay."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 560000
+			},
+			"text": " Whoo! Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 571000
+			},
+			"text": " So what you're seeing here is a visualization of a board, and this is Pied Piper."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 578000
+			},
+			"text": " And so here we're just seeing some basic membership and proposals and these sorts of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 585000
+			},
+			"text": " So a board is just a boardroom, and these boards, is just a single contract on the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 592000
+			},
+			"text": " It's representing the boardroom structure, and this can be used to create a complex governance structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 598000
+			},
+			"text": " that can help in allocating funds, holding membership and doing kind of very complex proposal systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 606000
+			},
+			"text": " So here we're just seeing a basic dashboard, some details about the board, the address, the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 608000
+			},
+			"text": " We'll go into proposals."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 612000
+			},
+			"text": " So actually before proposals, let's go into membership."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 620000
+			},
+			"text": " So here we're seeing just some members of the board, and each member can only join through proposals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 625000
+			},
+			"text": " so it's all proposal-based, and it all needs to be through the Democratic gateway of the board."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 634000
+			},
+			"text": " When we talk about proposals, they're statically typed, which means that you can't have a board member"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 642000
+			},
+			"text": " try and cheat another by having a proposal that does one thing but then kind of does another actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 645000
+			},
+			"text": " So here's just some types if you can see that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 652000
+			},
+			"text": " You can see allocating funds from the board's budget, adding and removing members, electing chairs, subcommittees."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 658000
+			},
+			"text": " You're basically going to get everything you want out of a company structure simulated in a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 660000
+			},
+			"text": " and within the boardroom UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 666000
+			},
+			"text": " And as well, we're building boardroom to be completely extensible, both in configuration hooks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 673000
+			},
+			"text": " and also the proposals can outwardly talk to other contracts, which creates a whole sort of unlimited amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 676000
+			},
+			"text": " of interesting use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 682000
+			},
+			"text": " Think about creating proposals that move tokens around or equity."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 686000
+			},
+			"text": " Think about complex voting structures that are based on tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 692000
+			},
+			"text": " So this is the sort of bread and butter of boardroom, and it all comes back to the one philosophy of just"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 697000
+			},
+			"text": " simulating a governance structure in a contract on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 701000
+			},
+			"text": " So with each proposal you can see here, there's just some various details."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 709000
+			},
+			"text": " Proposals have a certain kind of structure that allows for sort of rigid data type, just five different ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 712000
+			},
+			"text": " So here you can see just some proposals that have been executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 714000
+			},
+			"text": " So this is adding early to the board."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 717000
+			},
+			"text": " This is sending funds from the board."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 719000
+			},
+			"text": " It's a very simple interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 726000
+			},
+			"text": " And we saw a little earlier that there was something like this, I believe Andreas did something like this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 728000
+			},
+			"text": " with tokens and boards."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 733000
+			},
+			"text": " I think a big thing about boardroom is that there's a lot of data to visualize with governance structures"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 734000
+			},
+			"text": " and contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 739000
+			},
+			"text": " And so you really do need a dedicated UI to handle that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 743000
+			},
+			"text": " And there's just a lot of information to kind of go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 751000
+			},
+			"text": " So between the two, I'm just going to pop back to my presentation real fast, because I'm apparently out of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 756000
+			},
+			"text": " So what's...oh, okay, we'll go right through then."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 760000
+			},
+			"text": " Okay, I will be quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 763000
+			},
+			"text": " So this is just some organizing innovation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 764000
+			},
+			"text": " Okay, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 766000
+			},
+			"text": " What's next for boardroom, Wayfund."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 767000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 771000
+			},
+			"text": " Total world domination, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 779000
+			},
+			"text": " So for Wayfunds, we're going to have a lot more decentralized file storage integration, or distributed file storage integration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 783000
+			},
+			"text": " IPFS, et cetera, complex token controllers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 787000
+			},
+			"text": " We're going to have a new UI, and we're going to put that on the test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 793000
+			},
+			"text": " With boardroom, we're going to get into some really interesting custom voting structures, dynamic membership,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 800000
+			},
+			"text": " middleware, which is kind of outward, extensible tech that'll help bridge boardroom to other services."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 803000
+			},
+			"text": " New UI, and then release that on the Ethereum test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 808000
+			},
+			"text": " Here's just some new screenshots of the new UI, which you're seeing for the first time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 811000
+			},
+			"text": " It's all cleaned up and nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 816000
+			},
+			"text": " And if you have any questions, I'll be floating around with this shirt on, most likely."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 822000
+			},
+			"text": " And wow, that started a little rigid, but I think I kind of moved up a little bit as I went along."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 830000
+			},
+			"text": " Thanks for bearing with me, and I hope this kind of made sense, and it was a little lighter today, or with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 832000
+			},
+			"text": " So thanks, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 847000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 849000
+			},
+			"text": " [ ]"
+		}
+	]
+}

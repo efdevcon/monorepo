@@ -1,0 +1,5642 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,440"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2440
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,440",
+				"to": "00:00:17,440"
+			},
+			"offsets": {
+				"from": 2440,
+				"to": 17440
+			},
+			"text": " Hello, hello, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,440",
+				"to": "00:00:19,640"
+			},
+			"offsets": {
+				"from": 17440,
+				"to": 19640
+			},
+			"text": " So looking forward to the next talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,640",
+				"to": "00:00:22,320"
+			},
+			"offsets": {
+				"from": 19640,
+				"to": 22320
+			},
+			"text": " Who is here for ZKPs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,320",
+				"to": "00:00:26,320"
+			},
+			"offsets": {
+				"from": 22320,
+				"to": 26320
+			},
+			"text": " Who thinks ZKPs are the greatest things"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,320",
+				"to": "00:00:30,280"
+			},
+			"offsets": {
+				"from": 26320,
+				"to": 30280
+			},
+			"text": " that blockchains ever enabled in the space in terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,280",
+				"to": "00:00:31,520"
+			},
+			"offsets": {
+				"from": 30280,
+				"to": 31520
+			},
+			"text": " of getting it funded?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,520",
+				"to": "00:00:34,640"
+			},
+			"offsets": {
+				"from": 31520,
+				"to": 34640
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,640",
+				"to": "00:00:37,080"
+			},
+			"offsets": {
+				"from": 34640,
+				"to": 37080
+			},
+			"text": " All right, that's just my personal opinion, though."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,080",
+				"to": "00:00:39,440"
+			},
+			"offsets": {
+				"from": 37080,
+				"to": 39440
+			},
+			"text": " But I think ZKPs are actually the nice thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,440",
+				"to": "00:00:41,880"
+			},
+			"offsets": {
+				"from": 39440,
+				"to": 41880
+			},
+			"text": " that nobody expected coming from cryptocurrencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,880",
+				"to": "00:00:44,040"
+			},
+			"offsets": {
+				"from": 41880,
+				"to": 44040
+			},
+			"text": " but they still happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,040",
+				"to": "00:00:48,200"
+			},
+			"offsets": {
+				"from": 44040,
+				"to": 48200
+			},
+			"text": " So next up, we have Henry de valance, the founder of Penumbra."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,200",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 48200,
+				"to": 52000
+			},
+			"text": " And he's going to be talking about their experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:55,920"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 55920
+			},
+			"text": " of building a privacy-- oh, this just disappeared in front"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,920",
+				"to": "00:00:58,240"
+			},
+			"offsets": {
+				"from": 55920,
+				"to": 58240
+			},
+			"text": " of my eyes, because the talk is starting now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,240",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 58240,
+				"to": 62000
+			},
+			"text": " But Henry's building a privacy person"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:04,600"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 64600
+			},
+			"text": " of index using ZKPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,600",
+				"to": "00:01:06,720"
+			},
+			"offsets": {
+				"from": 64600,
+				"to": 66720
+			},
+			"text": " So please put your hands together for Henry."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,720",
+				"to": "00:01:10,760"
+			},
+			"offsets": {
+				"from": 66720,
+				"to": 70760
+			},
+			"text": " All right, yeah, well, great to see everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,760",
+				"to": "00:01:13,360"
+			},
+			"offsets": {
+				"from": 70760,
+				"to": 73360
+			},
+			"text": " So I'm going to be giving a talk about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,360",
+				"to": "00:01:14,880"
+			},
+			"offsets": {
+				"from": 73360,
+				"to": 74880
+			},
+			"text": " to build a private dex."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,880",
+				"to": "00:01:19,080"
+			},
+			"offsets": {
+				"from": 74880,
+				"to": 79080
+			},
+			"text": " However, just as a pre-warning, if you're really interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,080",
+				"to": "00:01:23,120"
+			},
+			"offsets": {
+				"from": 79080,
+				"to": 83120
+			},
+			"text": " in all of the sort of details of ZK proofs that actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,120",
+				"to": "00:01:24,840"
+			},
+			"offsets": {
+				"from": 83120,
+				"to": 84840
+			},
+			"text": " won't be covered in the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,840",
+				"to": "00:01:27,520"
+			},
+			"offsets": {
+				"from": 84840,
+				"to": 87520
+			},
+			"text": " And the reason is that I think part"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,520",
+				"to": "00:01:33,160"
+			},
+			"offsets": {
+				"from": 87520,
+				"to": 93160
+			},
+			"text": " of the problem with deploying ZKPs for privacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,160",
+				"to": "00:01:35,240"
+			},
+			"offsets": {
+				"from": 93160,
+				"to": 95240
+			},
+			"text": " rather than just for scalability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,240",
+				"to": "00:01:38,920"
+			},
+			"offsets": {
+				"from": 95240,
+				"to": 98920
+			},
+			"text": " is that there's some interesting and fundamental challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,920",
+				"to": "00:01:40,360"
+			},
+			"offsets": {
+				"from": 98920,
+				"to": 100360
+			},
+			"text": " in the state model."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,360",
+				"to": "00:01:43,240"
+			},
+			"offsets": {
+				"from": 100360,
+				"to": 103240
+			},
+			"text": " So that's actually sort of the whole summary of the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,240",
+				"to": "00:01:48,240"
+			},
+			"offsets": {
+				"from": 103240,
+				"to": 108240
+			},
+			"text": " So to get started for context--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,240",
+				"to": "00:01:50,960"
+			},
+			"offsets": {
+				"from": 108240,
+				"to": 110960
+			},
+			"text": " so I'm working on a project called Penemra."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,960",
+				"to": "00:01:54,680"
+			},
+			"offsets": {
+				"from": 110960,
+				"to": 114680
+			},
+			"text": " What that is is a private proof of stake L1."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,680",
+				"to": "00:01:58,440"
+			},
+			"offsets": {
+				"from": 114680,
+				"to": 118440
+			},
+			"text": " Inside of that L1, we have an interchange shielded pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,440",
+				"to": "00:02:01,200"
+			},
+			"offsets": {
+				"from": 118440,
+				"to": 121200
+			},
+			"text": " So you can take any IBC compatible asset,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,200",
+				"to": "00:02:05,120"
+			},
+			"offsets": {
+				"from": 121200,
+				"to": 125120
+			},
+			"text": " move it into this chain, and that's the privacy boundary."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,120",
+				"to": "00:02:08,480"
+			},
+			"offsets": {
+				"from": 125120,
+				"to": 128480
+			},
+			"text": " So as it moves in, it's recorded in this shielded pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,480",
+				"to": "00:02:10,480"
+			},
+			"offsets": {
+				"from": 128480,
+				"to": 130480
+			},
+			"text": " And the cool feature that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,480",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 130480,
+				"to": 134000
+			},
+			"text": " is this private dex that's integrated with that shielded"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:18,520"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 138520
+			},
+			"text": " pool on top of that privacy preserving base layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,520",
+				"to": "00:02:23,040"
+			},
+			"offsets": {
+				"from": 138520,
+				"to": 143040
+			},
+			"text": " However, I'm not sort of here to just"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,040",
+				"to": "00:02:24,400"
+			},
+			"offsets": {
+				"from": 143040,
+				"to": 144400
+			},
+			"text": " show the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,400",
+				"to": "00:02:26,600"
+			},
+			"offsets": {
+				"from": 144400,
+				"to": 146600
+			},
+			"text": " I'm here to talk about the kind of technical aspects."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,600",
+				"to": "00:02:28,840"
+			},
+			"offsets": {
+				"from": 146600,
+				"to": 148840
+			},
+			"text": " And specifically, what are the challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,840",
+				"to": "00:02:31,280"
+			},
+			"offsets": {
+				"from": 148840,
+				"to": 151280
+			},
+			"text": " to actually building this system?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,280",
+				"to": "00:02:35,560"
+			},
+			"offsets": {
+				"from": 151280,
+				"to": 155560
+			},
+			"text": " So the first challenge is-- oh, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,560",
+				"to": "00:02:39,160"
+			},
+			"offsets": {
+				"from": 155560,
+				"to": 159160
+			},
+			"text": " Just as a bit of motivation, why do we actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,160",
+				"to": "00:02:44,520"
+			},
+			"offsets": {
+				"from": 159160,
+				"to": 164520
+			},
+			"text": " care about having a private dex in the first place?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,520",
+				"to": "00:02:47,640"
+			},
+			"offsets": {
+				"from": 164520,
+				"to": 167640
+			},
+			"text": " The thought is that every market is also"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,640",
+				"to": "00:02:48,960"
+			},
+			"offsets": {
+				"from": 167640,
+				"to": 168960
+			},
+			"text": " a market in information."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,960",
+				"to": "00:02:51,240"
+			},
+			"offsets": {
+				"from": 168960,
+				"to": 171240
+			},
+			"text": " When we talk about price discovery, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,240",
+				"to": "00:02:53,920"
+			},
+			"offsets": {
+				"from": 171240,
+				"to": 173920
+			},
+			"text": " you can think of that as being a kind of decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,920",
+				"to": "00:02:56,760"
+			},
+			"offsets": {
+				"from": 173920,
+				"to": 176760
+			},
+			"text": " computational process that, as a side effect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,760",
+				"to": "00:03:00,200"
+			},
+			"offsets": {
+				"from": 176760,
+				"to": 180200
+			},
+			"text": " produces some information about prices."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,200",
+				"to": "00:03:05,040"
+			},
+			"offsets": {
+				"from": 180200,
+				"to": 185040
+			},
+			"text": " But that means that information leaks are value leaks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,040",
+				"to": "00:03:08,840"
+			},
+			"offsets": {
+				"from": 185040,
+				"to": 188840
+			},
+			"text": " When people talk about MEV and have these dashboards of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,840",
+				"to": "00:03:11,360"
+			},
+			"offsets": {
+				"from": 188840,
+				"to": 191360
+			},
+			"text": " here's how much value is extracted from people"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,360",
+				"to": "00:03:13,080"
+			},
+			"offsets": {
+				"from": 191360,
+				"to": 193080
+			},
+			"text": " who are trying to do trading, really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,080",
+				"to": "00:03:16,600"
+			},
+			"offsets": {
+				"from": 193080,
+				"to": 196600
+			},
+			"text": " that's just the first order symptom of this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,600",
+				"to": "00:03:21,840"
+			},
+			"offsets": {
+				"from": 196600,
+				"to": 201840
+			},
+			"text": " It's not-- even if you fixed MEV in some way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,840",
+				"to": "00:03:25,720"
+			},
+			"offsets": {
+				"from": 201840,
+				"to": 205720
+			},
+			"text": " you still have the problem that you're leaking information"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,720",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 205720,
+				"to": 209000
+			},
+			"text": " about what trades you're doing, what trades your account has"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:32,160"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 212160
+			},
+			"text": " done, your entire history of your whole trading strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,160",
+				"to": "00:03:34,520"
+			},
+			"offsets": {
+				"from": 212160,
+				"to": 214520
+			},
+			"text": " All of that information is valuable, too."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,520",
+				"to": "00:03:36,920"
+			},
+			"offsets": {
+				"from": 214520,
+				"to": 216920
+			},
+			"text": " It's just harder to make a dashboard of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,920",
+				"to": "00:03:40,880"
+			},
+			"offsets": {
+				"from": 216920,
+				"to": 220880
+			},
+			"text": " So the thought here is that privacy is a really interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,880",
+				"to": "00:03:46,120"
+			},
+			"offsets": {
+				"from": 220880,
+				"to": 226120
+			},
+			"text": " thing for trading, because trading is a context where"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,120",
+				"to": "00:03:49,960"
+			},
+			"offsets": {
+				"from": 226120,
+				"to": 229960
+			},
+			"text": " having privacy allows you to unlock greater capital efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,960",
+				"to": "00:03:52,880"
+			},
+			"offsets": {
+				"from": 229960,
+				"to": 232880
+			},
+			"text": " And as somebody who's really interested in privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,880",
+				"to": "00:03:57,320"
+			},
+			"offsets": {
+				"from": 232880,
+				"to": 237320
+			},
+			"text": " for its own sake as a value as a human right, et cetera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,320",
+				"to": "00:04:02,360"
+			},
+			"offsets": {
+				"from": 237320,
+				"to": 242360
+			},
+			"text": " this is a really interesting and exciting opportunity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,360",
+				"to": "00:04:04,360"
+			},
+			"offsets": {
+				"from": 242360,
+				"to": 244360
+			},
+			"text": " because it means that there's the potential"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,360",
+				"to": "00:04:06,560"
+			},
+			"offsets": {
+				"from": 244360,
+				"to": 246560
+			},
+			"text": " to build a private product that can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,560",
+				"to": "00:04:10,680"
+			},
+			"offsets": {
+				"from": 246560,
+				"to": 250680
+			},
+			"text": " outcompete the non-private ones because it's private."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,680",
+				"to": "00:04:12,920"
+			},
+			"offsets": {
+				"from": 250680,
+				"to": 252920
+			},
+			"text": " So we get out of this mode of, oh, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,920",
+				"to": "00:04:15,680"
+			},
+			"offsets": {
+				"from": 252920,
+				"to": 255680
+			},
+			"text": " we'll have people accept all these trade-offs"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,680",
+				"to": "00:04:17,080"
+			},
+			"offsets": {
+				"from": 255680,
+				"to": 257080
+			},
+			"text": " to use the private thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,080",
+				"to": "00:04:19,160"
+			},
+			"offsets": {
+				"from": 257080,
+				"to": 259160
+			},
+			"text": " No, we're going to build something that's better"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,160",
+				"to": "00:04:20,520"
+			},
+			"offsets": {
+				"from": 259160,
+				"to": 260520
+			},
+			"text": " because it's private."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,520",
+				"to": "00:04:24,240"
+			},
+			"offsets": {
+				"from": 260520,
+				"to": 264240
+			},
+			"text": " So right, et cetera is going to talk about the challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,240",
+				"to": "00:04:27,400"
+			},
+			"offsets": {
+				"from": 264240,
+				"to": 267400
+			},
+			"text": " And the first challenge, which is the most fundamental,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,400",
+				"to": "00:04:29,640"
+			},
+			"offsets": {
+				"from": 267400,
+				"to": 269640
+			},
+			"text": " is actually the state model."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,640",
+				"to": "00:04:33,120"
+			},
+			"offsets": {
+				"from": 269640,
+				"to": 273120
+			},
+			"text": " So if we consider a transparent chain, like Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,120",
+				"to": "00:04:37,320"
+			},
+			"offsets": {
+				"from": 273120,
+				"to": 277320
+			},
+			"text": " the paradigm of that state is global mutable state."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,320",
+				"to": "00:04:39,560"
+			},
+			"offsets": {
+				"from": 277320,
+				"to": 279560
+			},
+			"text": " There's like one big Ethereum state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,560",
+				"to": "00:04:42,200"
+			},
+			"offsets": {
+				"from": 279560,
+				"to": 282200
+			},
+			"text": " and every transaction is applied sequentially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,200",
+				"to": "00:04:44,920"
+			},
+			"offsets": {
+				"from": 282200,
+				"to": 284920
+			},
+			"text": " and it can do whatever mutation to that state."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,920",
+				"to": "00:04:47,040"
+			},
+			"offsets": {
+				"from": 284920,
+				"to": 287040
+			},
+			"text": " And as it's doing that mutation, effectively,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,040",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 287040,
+				"to": 290000
+			},
+			"text": " it's taking a global lock over the whole state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:52,160"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 292160
+			},
+			"text": " doing some changes, then you do the next transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,160",
+				"to": "00:04:53,400"
+			},
+			"offsets": {
+				"from": 292160,
+				"to": 293400
+			},
+			"text": " and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,400",
+				"to": "00:04:57,960"
+			},
+			"offsets": {
+				"from": 293400,
+				"to": 297960
+			},
+			"text": " But in order to have a shielded chain where the user state"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,960",
+				"to": "00:05:00,680"
+			},
+			"offsets": {
+				"from": 297960,
+				"to": 300680
+			},
+			"text": " is not public information, we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,680",
+				"to": "00:05:04,640"
+			},
+			"offsets": {
+				"from": 300680,
+				"to": 304640
+			},
+			"text": " to change the state model to a model of immutable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,640",
+				"to": "00:05:06,040"
+			},
+			"offsets": {
+				"from": 304640,
+				"to": 306040
+			},
+			"text": " composable state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,040",
+				"to": "00:05:08,080"
+			},
+			"offsets": {
+				"from": 306040,
+				"to": 308080
+			},
+			"text": " This is actually kind of like, historically speaking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,080",
+				"to": "00:05:11,880"
+			},
+			"offsets": {
+				"from": 308080,
+				"to": 311880
+			},
+			"text": " this is sort of rewinding to a Bitcoin style sort of UTXO"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,880",
+				"to": "00:05:12,720"
+			},
+			"offsets": {
+				"from": 311880,
+				"to": 312720
+			},
+			"text": " model."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,720",
+				"to": "00:05:17,720"
+			},
+			"offsets": {
+				"from": 312720,
+				"to": 317720
+			},
+			"text": " But I think UTXO is a little bit of a loaded, like, baggage"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,720",
+				"to": "00:05:18,480"
+			},
+			"offsets": {
+				"from": 317720,
+				"to": 318480
+			},
+			"text": " laden term."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,480",
+				"to": "00:05:21,880"
+			},
+			"offsets": {
+				"from": 318480,
+				"to": 321880
+			},
+			"text": " So I prefer just having this idea of a state fragment."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,880",
+				"to": "00:05:24,840"
+			},
+			"offsets": {
+				"from": 321880,
+				"to": 324840
+			},
+			"text": " And instead of having one big global state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,840",
+				"to": "00:05:27,160"
+			},
+			"offsets": {
+				"from": 324840,
+				"to": 327160
+			},
+			"text": " we're going to have a tree of state fragments, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,160",
+				"to": "00:05:28,240"
+			},
+			"offsets": {
+				"from": 327160,
+				"to": 328240
+			},
+			"text": " are immutable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,240",
+				"to": "00:05:31,880"
+			},
+			"offsets": {
+				"from": 328240,
+				"to": 331880
+			},
+			"text": " And each transaction is going to consume some state fragments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,880",
+				"to": "00:05:34,320"
+			},
+			"offsets": {
+				"from": 331880,
+				"to": 334320
+			},
+			"text": " produce some new ones, and put those,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,320",
+				"to": "00:05:36,720"
+			},
+			"offsets": {
+				"from": 334320,
+				"to": 336720
+			},
+			"text": " append those into this tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,720",
+				"to": "00:05:38,600"
+			},
+			"offsets": {
+				"from": 336720,
+				"to": 338600
+			},
+			"text": " The reason that we want to do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,600",
+				"to": "00:05:41,560"
+			},
+			"offsets": {
+				"from": 338600,
+				"to": 341560
+			},
+			"text": " is that that way we can make the state transitions private."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,560",
+				"to": "00:05:44,800"
+			},
+			"offsets": {
+				"from": 341560,
+				"to": 344800
+			},
+			"text": " And the move to do that is you replace all of those state"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,800",
+				"to": "00:05:48,880"
+			},
+			"offsets": {
+				"from": 344800,
+				"to": 348880
+			},
+			"text": " fragments with cryptographic commitments to states."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,880",
+				"to": "00:05:53,400"
+			},
+			"offsets": {
+				"from": 348880,
+				"to": 353400
+			},
+			"text": " And then in your transaction, rather than explicitly declaring"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,400",
+				"to": "00:05:56,800"
+			},
+			"offsets": {
+				"from": 353400,
+				"to": 356800
+			},
+			"text": " the plaintext values of those state fragments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,800",
+				"to": "00:05:59,760"
+			},
+			"offsets": {
+				"from": 356800,
+				"to": 359760
+			},
+			"text": " you can just have a zk proof that the state transition was"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,760",
+				"to": "00:06:02,280"
+			},
+			"offsets": {
+				"from": 359760,
+				"to": 362280
+			},
+			"text": " valid and here are the commitments to the new states"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,280",
+				"to": "00:06:03,320"
+			},
+			"offsets": {
+				"from": 362280,
+				"to": 363320
+			},
+			"text": " that I produced."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,320",
+				"to": "00:06:04,520"
+			},
+			"offsets": {
+				"from": 363320,
+				"to": 364520
+			},
+			"text": " OK, so this is all cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,520",
+				"to": "00:06:08,480"
+			},
+			"offsets": {
+				"from": 364520,
+				"to": 368480
+			},
+			"text": " And that's why everybody's using private blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,480",
+				"to": "00:06:09,440"
+			},
+			"offsets": {
+				"from": 368480,
+				"to": 369440
+			},
+			"text": " all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,440",
+				"to": "00:06:10,160"
+			},
+			"offsets": {
+				"from": 369440,
+				"to": 370160
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,160",
+				"to": "00:06:11,120"
+			},
+			"offsets": {
+				"from": 370160,
+				"to": 371120
+			},
+			"text": " Why is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,120",
+				"to": "00:06:13,120"
+			},
+			"offsets": {
+				"from": 371120,
+				"to": 373120
+			},
+			"text": " Because that diagram isn't quite right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,120",
+				"to": "00:06:15,320"
+			},
+			"offsets": {
+				"from": 373120,
+				"to": 375320
+			},
+			"text": " In fact, what you're submitting to the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,320",
+				"to": "00:06:20,800"
+			},
+			"offsets": {
+				"from": 375320,
+				"to": 380800
+			},
+			"text": " is this zk proof, pi, that represents the state transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,800",
+				"to": "00:06:22,360"
+			},
+			"offsets": {
+				"from": 380800,
+				"to": 382360
+			},
+			"text": " But what we've actually done is we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,360",
+				"to": "00:06:24,720"
+			},
+			"offsets": {
+				"from": 382360,
+				"to": 384720
+			},
+			"text": " moved all of the execution off chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,720",
+				"to": "00:06:27,680"
+			},
+			"offsets": {
+				"from": 384720,
+				"to": 387680
+			},
+			"text": " along with moving all the user data off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,680",
+				"to": "00:06:30,240"
+			},
+			"offsets": {
+				"from": 387680,
+				"to": 390240
+			},
+			"text": " But now we don't really have any way"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,240",
+				"to": "00:06:32,600"
+			},
+			"offsets": {
+				"from": 390240,
+				"to": 392600
+			},
+			"text": " to access any shared state."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,600",
+				"to": "00:06:35,360"
+			},
+			"offsets": {
+				"from": 392600,
+				"to": 395360
+			},
+			"text": " Because when somebody's submitting their transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,360",
+				"to": "00:06:40,760"
+			},
+			"offsets": {
+				"from": 395360,
+				"to": 400760
+			},
+			"text": " effectively, every transaction is its own little micro-rollup."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,760",
+				"to": "00:06:43,360"
+			},
+			"offsets": {
+				"from": 400760,
+				"to": 403360
+			},
+			"text": " And what I would claim is that the key problem here"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,360",
+				"to": "00:06:45,920"
+			},
+			"offsets": {
+				"from": 403360,
+				"to": 405920
+			},
+			"text": " is one of early versus late binding."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,920",
+				"to": "00:06:51,600"
+			},
+			"offsets": {
+				"from": 405920,
+				"to": 411600
+			},
+			"text": " So what we have in this zk model is early binding."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,600",
+				"to": "00:06:56,760"
+			},
+			"offsets": {
+				"from": 411600,
+				"to": 416760
+			},
+			"text": " Every transaction has to have this fully sealed, complete state"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,760",
+				"to": "00:06:57,880"
+			},
+			"offsets": {
+				"from": 416760,
+				"to": 417880
+			},
+			"text": " transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,880",
+				"to": "00:07:00,560"
+			},
+			"offsets": {
+				"from": 417880,
+				"to": 420560
+			},
+			"text": " But that's not actually what we generally want."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,560",
+				"to": "00:07:04,280"
+			},
+			"offsets": {
+				"from": 420560,
+				"to": 424280
+			},
+			"text": " If you make a trade on Uniswap, you're not going to sign over--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,280",
+				"to": "00:07:07,640"
+			},
+			"offsets": {
+				"from": 424280,
+				"to": 427640
+			},
+			"text": " here's the exact state of the uni reserves of this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,640",
+				"to": "00:07:09,680"
+			},
+			"offsets": {
+				"from": 427640,
+				"to": 429680
+			},
+			"text": " Here's the exact outputs that I'll get."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,680",
+				"to": "00:07:12,240"
+			},
+			"offsets": {
+				"from": 429680,
+				"to": 432240
+			},
+			"text": " Because the only way that you could do that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,240",
+				"to": "00:07:15,120"
+			},
+			"offsets": {
+				"from": 432240,
+				"to": 435120
+			},
+			"text": " is by sort of having the entire world stop"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,120",
+				"to": "00:07:18,360"
+			},
+			"offsets": {
+				"from": 435120,
+				"to": 438360
+			},
+			"text": " while you submit your transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,360",
+				"to": "00:07:20,240"
+			},
+			"offsets": {
+				"from": 438360,
+				"to": 440240
+			},
+			"text": " What we want is the ability to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,240",
+				"to": "00:07:23,400"
+			},
+			"offsets": {
+				"from": 440240,
+				"to": 443400
+			},
+			"text": " a partially filled transaction where"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,400",
+				"to": "00:07:25,280"
+			},
+			"offsets": {
+				"from": 443400,
+				"to": 445280
+			},
+			"text": " we can have some placeholder values where"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,280",
+				"to": "00:07:28,360"
+			},
+			"offsets": {
+				"from": 445280,
+				"to": 448360
+			},
+			"text": " when the transaction's executed, the shared state"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,360",
+				"to": "00:07:30,200"
+			},
+			"offsets": {
+				"from": 448360,
+				"to": 450200
+			},
+			"text": " is going to go in that spot."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,200",
+				"to": "00:07:33,400"
+			},
+			"offsets": {
+				"from": 450200,
+				"to": 453400
+			},
+			"text": " And then it'll determine some outputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,400",
+				"to": "00:07:39,200"
+			},
+			"offsets": {
+				"from": 453400,
+				"to": 459200
+			},
+			"text": " So in order to make this work with the sort of zk model"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,200",
+				"to": "00:07:42,440"
+			},
+			"offsets": {
+				"from": 459200,
+				"to": 462440
+			},
+			"text": " where we're keeping all of the user data off chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,440",
+				"to": "00:07:44,760"
+			},
+			"offsets": {
+				"from": 462440,
+				"to": 464760
+			},
+			"text": " we need to have some better concurrency model"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,760",
+				"to": "00:07:46,560"
+			},
+			"offsets": {
+				"from": 464760,
+				"to": 466560
+			},
+			"text": " for shared state."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,560",
+				"to": "00:07:49,720"
+			},
+			"offsets": {
+				"from": 466560,
+				"to": 469720
+			},
+			"text": " Fundamentally, the problem is that if you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,720",
+				"to": "00:07:52,160"
+			},
+			"offsets": {
+				"from": 469720,
+				"to": 472160
+			},
+			"text": " doing this off chain execution, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,160",
+				"to": "00:07:55,880"
+			},
+			"offsets": {
+				"from": 472160,
+				"to": 475880
+			},
+			"text": " need to have some kind of exclusive control over the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,880",
+				"to": "00:07:57,640"
+			},
+			"offsets": {
+				"from": 475880,
+				"to": 477640
+			},
+			"text": " that you're executing on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,640",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 477640,
+				"to": 481000
+			},
+			"text": " And you can start with the kind of, oh, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:05,280"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 485280
+			},
+			"text": " we'll take a big global lock and you can make the locks smaller."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,280",
+				"to": "00:08:08,680"
+			},
+			"offsets": {
+				"from": 485280,
+				"to": 488680
+			},
+			"text": " But the more interesting idea, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,680",
+				"to": "00:08:12,040"
+			},
+			"offsets": {
+				"from": 488680,
+				"to": 492040
+			},
+			"text": " is what if we try to model concurrency with message"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,040",
+				"to": "00:08:14,080"
+			},
+			"offsets": {
+				"from": 492040,
+				"to": 494080
+			},
+			"text": " passing rather than locking?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,080",
+				"to": "00:08:15,680"
+			},
+			"offsets": {
+				"from": 494080,
+				"to": 495680
+			},
+			"text": " If you look outside of blockchains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,680",
+				"to": "00:08:18,560"
+			},
+			"offsets": {
+				"from": 495680,
+				"to": 498560
+			},
+			"text": " it's just kind of like normal high performance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,560",
+				"to": "00:08:22,640"
+			},
+			"offsets": {
+				"from": 498560,
+				"to": 502640
+			},
+			"text": " high concurrency software systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,640",
+				"to": "00:08:24,920"
+			},
+			"offsets": {
+				"from": 502640,
+				"to": 504920
+			},
+			"text": " you can do better by having finer locking."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,920",
+				"to": "00:08:27,720"
+			},
+			"offsets": {
+				"from": 504920,
+				"to": 507720
+			},
+			"text": " But a cleaner and more scalable approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,720",
+				"to": "00:08:31,920"
+			},
+			"offsets": {
+				"from": 507720,
+				"to": 511920
+			},
+			"text": " is to have different parts of the system executing independently"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,920",
+				"to": "00:08:34,720"
+			},
+			"offsets": {
+				"from": 511920,
+				"to": 514720
+			},
+			"text": " with their own state and passing messages back and forth"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,720",
+				"to": "00:08:35,840"
+			},
+			"offsets": {
+				"from": 514720,
+				"to": 515840
+			},
+			"text": " to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,840",
+				"to": "00:08:38,920"
+			},
+			"offsets": {
+				"from": 515840,
+				"to": 518920
+			},
+			"text": " So what would that look like in the context of trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,920",
+				"to": "00:08:41,520"
+			},
+			"offsets": {
+				"from": 518920,
+				"to": 521520
+			},
+			"text": " to build a privacy-preserving chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,520",
+				"to": "00:08:44,480"
+			},
+			"offsets": {
+				"from": 521520,
+				"to": 524480
+			},
+			"text": " Well, we could try to think of this kind of actor model"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,480",
+				"to": "00:08:49,440"
+			},
+			"offsets": {
+				"from": 524480,
+				"to": 529440
+			},
+			"text": " for chains, where a transaction, rather than synchronously"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,440",
+				"to": "00:08:53,240"
+			},
+			"offsets": {
+				"from": 529440,
+				"to": 533240
+			},
+			"text": " doing a contract call, where it locks some state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,240",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 533240,
+				"to": 537000
+			},
+			"text": " does some execution and then finishes and releases the lock,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:08:58,320"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 538320
+			},
+			"text": " we could say that a transaction is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,320",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 538320,
+				"to": 541000
+			},
+			"text": " going to pass a message to a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:04,480"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 544480
+			},
+			"text": " And now we're going to have each contract execute once"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,480",
+				"to": "00:09:07,240"
+			},
+			"offsets": {
+				"from": 544480,
+				"to": 547240
+			},
+			"text": " per block, but as it executes, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,240",
+				"to": "00:09:09,800"
+			},
+			"offsets": {
+				"from": 547240,
+				"to": 549800
+			},
+			"text": " going to receive the set of all of the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,800",
+				"to": "00:09:11,840"
+			},
+			"offsets": {
+				"from": 549800,
+				"to": 551840
+			},
+			"text": " that any transaction passed to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,840",
+				"to": "00:09:13,840"
+			},
+			"offsets": {
+				"from": 551840,
+				"to": 553840
+			},
+			"text": " And it can process those all in a batch."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,840",
+				"to": "00:09:17,920"
+			},
+			"offsets": {
+				"from": 553840,
+				"to": 557920
+			},
+			"text": " And depending on the specifics of that contract logic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,920",
+				"to": "00:09:21,440"
+			},
+			"offsets": {
+				"from": 557920,
+				"to": 561440
+			},
+			"text": " in some cases, you could combine all of those messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,440",
+				"to": "00:09:25,080"
+			},
+			"offsets": {
+				"from": 561440,
+				"to": 565080
+			},
+			"text": " into one, like you could do a batch swap, which I'll get to later"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,080",
+				"to": "00:09:26,200"
+			},
+			"offsets": {
+				"from": 565080,
+				"to": 566200
+			},
+			"text": " on in the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,200",
+				"to": "00:09:29,160"
+			},
+			"offsets": {
+				"from": 566200,
+				"to": 569160
+			},
+			"text": " But also you could imagine, say, like an auction protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,160",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 569160,
+				"to": 573000
+			},
+			"text": " that orders these messages by the bit amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:34,720"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 574720
+			},
+			"text": " And the key thing is that you're not"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,720",
+				"to": "00:09:38,480"
+			},
+			"offsets": {
+				"from": 574720,
+				"to": 578480
+			},
+			"text": " doing any execution at a higher time resolution"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,480",
+				"to": "00:09:43,320"
+			},
+			"offsets": {
+				"from": 578480,
+				"to": 583320
+			},
+			"text": " than is actually provided by the underlying consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,320",
+				"to": "00:09:45,440"
+			},
+			"offsets": {
+				"from": 583320,
+				"to": 585440
+			},
+			"text": " When people talk about transaction ordering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,440",
+				"to": "00:09:48,760"
+			},
+			"offsets": {
+				"from": 585440,
+				"to": 588760
+			},
+			"text": " a lot of the problems arise from this mismatch"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,760",
+				"to": "00:09:52,160"
+			},
+			"offsets": {
+				"from": 588760,
+				"to": 592160
+			},
+			"text": " between the economic mechanism in the contract, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,160",
+				"to": "00:09:55,480"
+			},
+			"offsets": {
+				"from": 592160,
+				"to": 595480
+			},
+			"text": " is trying to execute at this sort of faster than consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,480",
+				"to": "00:09:59,760"
+			},
+			"offsets": {
+				"from": 595480,
+				"to": 599760
+			},
+			"text": " speed, and the actual consensus ordering guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,760",
+				"to": "00:10:02,120"
+			},
+			"offsets": {
+				"from": 599760,
+				"to": 602120
+			},
+			"text": " that are provided by the blockchain, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,120",
+				"to": "00:10:03,800"
+			},
+			"offsets": {
+				"from": 602120,
+				"to": 603800
+			},
+			"text": " happen block by block."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,800",
+				"to": "00:10:07,440"
+			},
+			"offsets": {
+				"from": 603800,
+				"to": 607440
+			},
+			"text": " Like if you're agreeing on transactions in batches,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,440",
+				"to": "00:10:12,080"
+			},
+			"offsets": {
+				"from": 607440,
+				"to": 612080
+			},
+			"text": " like maybe you should also be executing them in batches."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,080",
+				"to": "00:10:16,360"
+			},
+			"offsets": {
+				"from": 612080,
+				"to": 616360
+			},
+			"text": " And on the other hand, our per user state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,360",
+				"to": "00:10:20,880"
+			},
+			"offsets": {
+				"from": 616360,
+				"to": 620880
+			},
+			"text": " we can still have this sort of off-chain execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,880",
+				"to": "00:10:24,160"
+			},
+			"offsets": {
+				"from": 620880,
+				"to": 624160
+			},
+			"text": " But now the execution is going to be asynchronous, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,160",
+				"to": "00:10:28,680"
+			},
+			"offsets": {
+				"from": 624160,
+				"to": 628680
+			},
+			"text": " When I consume my state and I pass a message to a contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,680",
+				"to": "00:10:31,320"
+			},
+			"offsets": {
+				"from": 628680,
+				"to": 631320
+			},
+			"text": " I can't compute my outputs yet because I haven't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,320",
+				"to": "00:10:32,800"
+			},
+			"offsets": {
+				"from": 631320,
+				"to": 632800
+			},
+			"text": " got a message back."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,800",
+				"to": "00:10:38,880"
+			},
+			"offsets": {
+				"from": 632800,
+				"to": 638880
+			},
+			"text": " So I need to somehow record this sort of intermediate future"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,880",
+				"to": "00:10:41,920"
+			},
+			"offsets": {
+				"from": 638880,
+				"to": 641920
+			},
+			"text": " that represents the eventual results of the computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,920",
+				"to": "00:10:43,320"
+			},
+			"offsets": {
+				"from": 641920,
+				"to": 643320
+			},
+			"text": " that I'm going to be doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,320",
+				"to": "00:10:47,080"
+			},
+			"offsets": {
+				"from": 643320,
+				"to": 647080
+			},
+			"text": " But I can do all of the computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,080",
+				"to": "00:10:50,600"
+			},
+			"offsets": {
+				"from": 647080,
+				"to": 650600
+			},
+			"text": " that is only touching a particular user's state"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,600",
+				"to": "00:10:54,600"
+			},
+			"offsets": {
+				"from": 650600,
+				"to": 654600
+			},
+			"text": " can happen off-chain privately in ZK."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,600",
+				"to": "00:10:56,720"
+			},
+			"offsets": {
+				"from": 654600,
+				"to": 656720
+			},
+			"text": " So the really interesting thing about this model"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,720",
+				"to": "00:10:59,080"
+			},
+			"offsets": {
+				"from": 656720,
+				"to": 659080
+			},
+			"text": " is that it actually simultaneously"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,080",
+				"to": "00:11:02,640"
+			},
+			"offsets": {
+				"from": 659080,
+				"to": 662640
+			},
+			"text": " unlocks both scalability and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,640",
+				"to": "00:11:05,840"
+			},
+			"offsets": {
+				"from": 662640,
+				"to": 665840
+			},
+			"text": " Because all of the data that doesn't need to be having"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,840",
+				"to": "00:11:08,480"
+			},
+			"offsets": {
+				"from": 665840,
+				"to": 668480
+			},
+			"text": " any shared execution is happening--"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,480",
+				"to": "00:11:13,880"
+			},
+			"offsets": {
+				"from": 668480,
+				"to": 673880
+			},
+			"text": " that execution is happening on each individual user's client."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,880",
+				"to": "00:11:18,960"
+			},
+			"offsets": {
+				"from": 673880,
+				"to": 678960
+			},
+			"text": " And the on-chain data is limited to the minimum shared"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,960",
+				"to": "00:11:20,200"
+			},
+			"offsets": {
+				"from": 678960,
+				"to": 680200
+			},
+			"text": " computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,200",
+				"to": "00:11:22,640"
+			},
+			"offsets": {
+				"from": 680200,
+				"to": 682640
+			},
+			"text": " And it's executing in a batch so you can potentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,640",
+				"to": "00:11:24,800"
+			},
+			"offsets": {
+				"from": 682640,
+				"to": 684800
+			},
+			"text": " have a much more efficient implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,800",
+				"to": "00:11:29,600"
+			},
+			"offsets": {
+				"from": 684800,
+				"to": 689600
+			},
+			"text": " So to see how this works in a diagram, which I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,600",
+				"to": "00:11:31,640"
+			},
+			"offsets": {
+				"from": 689600,
+				"to": 691640
+			},
+			"text": " it might be a little bit more clear,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,640",
+				"to": "00:11:36,080"
+			},
+			"offsets": {
+				"from": 691640,
+				"to": 696080
+			},
+			"text": " we're going to start off with our first--"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,080",
+				"to": "00:11:38,320"
+			},
+			"offsets": {
+				"from": 696080,
+				"to": 698320
+			},
+			"text": " somebody's preparing a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,320",
+				"to": "00:11:41,760"
+			},
+			"offsets": {
+				"from": 698320,
+				"to": 701760
+			},
+			"text": " They're going to perform a state transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,760",
+				"to": "00:11:45,880"
+			},
+			"offsets": {
+				"from": 701760,
+				"to": 705880
+			},
+			"text": " and produce a ZK proof of it with their private inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,880",
+				"to": "00:11:49,160"
+			},
+			"offsets": {
+				"from": 705880,
+				"to": 709160
+			},
+			"text": " And that transaction is going to send a message out"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,160",
+				"to": "00:11:52,280"
+			},
+			"offsets": {
+				"from": 709160,
+				"to": 712280
+			},
+			"text": " to this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,280",
+				"to": "00:11:56,280"
+			},
+			"offsets": {
+				"from": 712280,
+				"to": 716280
+			},
+			"text": " What it's going to record as the output of that initial"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,280",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 716280,
+				"to": 720000
+			},
+			"text": " transaction is actually a privately minted state"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:04,680"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 724680
+			},
+			"text": " NFT, which commits to the future"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,680",
+				"to": "00:12:08,840"
+			},
+			"offsets": {
+				"from": 724680,
+				"to": 728840
+			},
+			"text": " that this computation is supposed to be representing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,840",
+				"to": "00:12:10,920"
+			},
+			"offsets": {
+				"from": 728840,
+				"to": 730920
+			},
+			"text": " So now this user has this--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,920",
+				"to": "00:12:14,040"
+			},
+			"offsets": {
+				"from": 730920,
+				"to": 734040
+			},
+			"text": " in this diagram, the diamond is this NFT"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,040",
+				"to": "00:12:16,360"
+			},
+			"offsets": {
+				"from": 734040,
+				"to": 736360
+			},
+			"text": " that records the kind of intermediate state"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,360",
+				"to": "00:12:19,280"
+			},
+			"offsets": {
+				"from": 736360,
+				"to": 739280
+			},
+			"text": " of their per user computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,280",
+				"to": "00:12:21,200"
+			},
+			"offsets": {
+				"from": 739280,
+				"to": 741200
+			},
+			"text": " After they send that all out to the chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,200",
+				"to": "00:12:23,560"
+			},
+			"offsets": {
+				"from": 741200,
+				"to": 743560
+			},
+			"text": " it's included in a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,560",
+				"to": "00:12:26,160"
+			},
+			"offsets": {
+				"from": 743560,
+				"to": 746160
+			},
+			"text": " Chain is going to send a message back by publishing data"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,160",
+				"to": "00:12:27,760"
+			},
+			"offsets": {
+				"from": 746160,
+				"to": 747760
+			},
+			"text": " to the chain-- or the contract is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,760",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 747760,
+				"to": 750000
+			},
+			"text": " going to send a message back by publishing the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:31,200"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 751200
+			},
+			"text": " to the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,200",
+				"to": "00:12:34,480"
+			},
+			"offsets": {
+				"from": 751200,
+				"to": 754480
+			},
+			"text": " And we take that message from the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,480",
+				"to": "00:12:38,040"
+			},
+			"offsets": {
+				"from": 754480,
+				"to": 758040
+			},
+			"text": " combine it with our intermediate execution state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,040",
+				"to": "00:12:40,280"
+			},
+			"offsets": {
+				"from": 758040,
+				"to": 760280
+			},
+			"text": " we're going to burn that state."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,280",
+				"to": "00:12:44,360"
+			},
+			"offsets": {
+				"from": 760280,
+				"to": 764360
+			},
+			"text": " And inside of this ZK proof, we can now"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,360",
+				"to": "00:12:47,040"
+			},
+			"offsets": {
+				"from": 764360,
+				"to": 767040
+			},
+			"text": " prove that we've modeled the correct future"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,040",
+				"to": "00:12:50,720"
+			},
+			"offsets": {
+				"from": 767040,
+				"to": 770720
+			},
+			"text": " with the correct same input values"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,720",
+				"to": "00:12:53,560"
+			},
+			"offsets": {
+				"from": 770720,
+				"to": 773560
+			},
+			"text": " that we had committed to in the first transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,560",
+				"to": "00:12:56,520"
+			},
+			"offsets": {
+				"from": 773560,
+				"to": 776520
+			},
+			"text": " And now we can privately mint some outputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,520",
+				"to": "00:12:59,600"
+			},
+			"offsets": {
+				"from": 776520,
+				"to": 779600
+			},
+			"text": " So this is this sort of big picture diagram"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,600",
+				"to": "00:13:07,800"
+			},
+			"offsets": {
+				"from": 779600,
+				"to": 787800
+			},
+			"text": " of how this sort of async, ZK execution can work in principle."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,800",
+				"to": "00:13:10,960"
+			},
+			"offsets": {
+				"from": 787800,
+				"to": 790960
+			},
+			"text": " And we'll get to a concrete example of how that works out"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,960",
+				"to": "00:13:13,480"
+			},
+			"offsets": {
+				"from": 790960,
+				"to": 793480
+			},
+			"text": " for the case of doing batch swaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,480",
+				"to": "00:13:17,440"
+			},
+			"offsets": {
+				"from": 793480,
+				"to": 797440
+			},
+			"text": " But before that, I just want to get into this second challenge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,440",
+				"to": "00:13:21,760"
+			},
+			"offsets": {
+				"from": 797440,
+				"to": 801760
+			},
+			"text": " which is once you have an idea of, OK, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,760",
+				"to": "00:13:23,240"
+			},
+			"offsets": {
+				"from": 801760,
+				"to": 803240
+			},
+			"text": " have maybe a workable state model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,240",
+				"to": "00:13:25,800"
+			},
+			"offsets": {
+				"from": 803240,
+				"to": 805800
+			},
+			"text": " but what is the privacy model?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,800",
+				"to": "00:13:31,080"
+			},
+			"offsets": {
+				"from": 805800,
+				"to": 811080
+			},
+			"text": " And the claim here is that basically every useful blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,080",
+				"to": "00:13:34,200"
+			},
+			"offsets": {
+				"from": 811080,
+				"to": 814200
+			},
+			"text": " revolves around public shared state."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,200",
+				"to": "00:13:36,280"
+			},
+			"offsets": {
+				"from": 814200,
+				"to": 816280
+			},
+			"text": " That's why, for instance, Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,280",
+				"to": "00:13:38,840"
+			},
+			"offsets": {
+				"from": 816280,
+				"to": 818840
+			},
+			"text": " is valuable because it has everybody's state in it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,840",
+				"to": "00:13:41,200"
+			},
+			"offsets": {
+				"from": 818840,
+				"to": 821200
+			},
+			"text": " and it's all there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,200",
+				"to": "00:13:44,600"
+			},
+			"offsets": {
+				"from": 821200,
+				"to": 824600
+			},
+			"text": " So the idea of, oh, well, we're going to just make everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,600",
+				"to": "00:13:47,640"
+			},
+			"offsets": {
+				"from": 824600,
+				"to": 827640
+			},
+			"text": " private, and everything will be completely private,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,640",
+				"to": "00:13:50,440"
+			},
+			"offsets": {
+				"from": 827640,
+				"to": 830440
+			},
+			"text": " doesn't actually work, because, in fact, the reason"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,440",
+				"to": "00:13:53,200"
+			},
+			"offsets": {
+				"from": 830440,
+				"to": 833200
+			},
+			"text": " that we're using the coordination tool"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,200",
+				"to": "00:13:54,800"
+			},
+			"offsets": {
+				"from": 833200,
+				"to": 834800
+			},
+			"text": " is so that we can coordinate."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,800",
+				"to": "00:13:57,160"
+			},
+			"offsets": {
+				"from": 834800,
+				"to": 837160
+			},
+			"text": " Nobody wants to use a market where they have no idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,160",
+				"to": "00:14:00,680"
+			},
+			"offsets": {
+				"from": 837160,
+				"to": 840680
+			},
+			"text": " what the liquidity is, or what prices they might get,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,680",
+				"to": "00:14:04,920"
+			},
+			"offsets": {
+				"from": 840680,
+				"to": 844920
+			},
+			"text": " or what the volume is."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,920",
+				"to": "00:14:12,480"
+			},
+			"offsets": {
+				"from": 844920,
+				"to": 852480
+			},
+			"text": " And all of the big breakout successes of useful contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,480",
+				"to": "00:14:15,880"
+			},
+			"offsets": {
+				"from": 852480,
+				"to": 855880
+			},
+			"text": " have the contracts of public shared state"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,880",
+				"to": "00:14:18,360"
+			},
+			"offsets": {
+				"from": 855880,
+				"to": 858360
+			},
+			"text": " acting as this kind of universal counterparty."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,360",
+				"to": "00:14:21,320"
+			},
+			"offsets": {
+				"from": 858360,
+				"to": 861320
+			},
+			"text": " So you don't need to go and find some person to interact with."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,320",
+				"to": "00:14:23,080"
+			},
+			"offsets": {
+				"from": 861320,
+				"to": 863080
+			},
+			"text": " You can just interact with the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,080",
+				"to": "00:14:25,120"
+			},
+			"offsets": {
+				"from": 863080,
+				"to": 865120
+			},
+			"text": " So we need to have public shared state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,120",
+				"to": "00:14:27,120"
+			},
+			"offsets": {
+				"from": 865120,
+				"to": 867120
+			},
+			"text": " but maybe we want it to be private."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,120",
+				"to": "00:14:30,240"
+			},
+			"offsets": {
+				"from": 867120,
+				"to": 870240
+			},
+			"text": " So what does that mean exactly?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,240",
+				"to": "00:14:34,320"
+			},
+			"offsets": {
+				"from": 870240,
+				"to": 874320
+			},
+			"text": " The question is, how do you allow private interaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,320",
+				"to": "00:14:37,560"
+			},
+			"offsets": {
+				"from": 874320,
+				"to": 877560
+			},
+			"text": " with public shared state?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,560",
+				"to": "00:14:40,920"
+			},
+			"offsets": {
+				"from": 877560,
+				"to": 880920
+			},
+			"text": " We want to have some kind of notion"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,920",
+				"to": "00:14:45,320"
+			},
+			"offsets": {
+				"from": 880920,
+				"to": 885320
+			},
+			"text": " where the individual user's transactions have privacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,320",
+				"to": "00:14:48,240"
+			},
+			"offsets": {
+				"from": 885320,
+				"to": 888240
+			},
+			"text": " but all of the aggregate state of the chain--"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,240",
+				"to": "00:14:50,720"
+			},
+			"offsets": {
+				"from": 888240,
+				"to": 890720
+			},
+			"text": " all of the aggregate market data is public,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,720",
+				"to": "00:14:53,200"
+			},
+			"offsets": {
+				"from": 890720,
+				"to": 893200
+			},
+			"text": " but the individual user's trades are not."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,200",
+				"to": "00:14:56,440"
+			},
+			"offsets": {
+				"from": 893200,
+				"to": 896440
+			},
+			"text": " So here's two basic strategies of how you could have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,440",
+				"to": "00:14:58,840"
+			},
+			"offsets": {
+				"from": 896440,
+				"to": 898840
+			},
+			"text": " private interaction with public state."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,840",
+				"to": "00:15:03,440"
+			},
+			"offsets": {
+				"from": 898840,
+				"to": 903440
+			},
+			"text": " One is splitting flows, and the other is batching flows."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,440",
+				"to": "00:15:06,840"
+			},
+			"offsets": {
+				"from": 903440,
+				"to": 906840
+			},
+			"text": " When I say flow, the reason I use that word"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,840",
+				"to": "00:15:13,080"
+			},
+			"offsets": {
+				"from": 906840,
+				"to": 913080
+			},
+			"text": " is that I think of value being in different pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,080",
+				"to": "00:15:14,920"
+			},
+			"offsets": {
+				"from": 913080,
+				"to": 914920
+			},
+			"text": " of the chain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,920",
+				"to": "00:15:16,240"
+			},
+			"offsets": {
+				"from": 914920,
+				"to": 916240
+			},
+			"text": " And as people do things, you're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,240",
+				"to": "00:15:19,600"
+			},
+			"offsets": {
+				"from": 916240,
+				"to": 919600
+			},
+			"text": " to have flows of value between different portions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,600",
+				"to": "00:15:20,880"
+			},
+			"offsets": {
+				"from": 919600,
+				"to": 920880
+			},
+			"text": " of the chain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,880",
+				"to": "00:15:22,440"
+			},
+			"offsets": {
+				"from": 920880,
+				"to": 922440
+			},
+			"text": " And we want to have some kind of system"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,440",
+				"to": "00:15:27,360"
+			},
+			"offsets": {
+				"from": 922440,
+				"to": 927360
+			},
+			"text": " where people can have privacy about what their contribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,360",
+				"to": "00:15:29,920"
+			},
+			"offsets": {
+				"from": 927360,
+				"to": 929920
+			},
+			"text": " to that specific flow is, but still"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,920",
+				"to": "00:15:36,520"
+			},
+			"offsets": {
+				"from": 929920,
+				"to": 936520
+			},
+			"text": " have a sort of overall transparent aggregate."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,520",
+				"to": "00:15:41,040"
+			},
+			"offsets": {
+				"from": 936520,
+				"to": 941040
+			},
+			"text": " So looking at these two in turn, for splitting flows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,040",
+				"to": "00:15:42,920"
+			},
+			"offsets": {
+				"from": 941040,
+				"to": 942920
+			},
+			"text": " the idea is that we're going to start off"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,920",
+				"to": "00:15:45,720"
+			},
+			"offsets": {
+				"from": 942920,
+				"to": 945720
+			},
+			"text": " with some user's value."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,720",
+				"to": "00:15:47,920"
+			},
+			"offsets": {
+				"from": 945720,
+				"to": 947920
+			},
+			"text": " Maybe this is an amount that they want to trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,920",
+				"to": "00:15:50,720"
+			},
+			"offsets": {
+				"from": 947920,
+				"to": 950720
+			},
+			"text": " They can split that into randomized sub-emounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,720",
+				"to": "00:15:53,720"
+			},
+			"offsets": {
+				"from": 950720,
+				"to": 953720
+			},
+			"text": " and then reveal each of those sub-emounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,720",
+				"to": "00:15:59,760"
+			},
+			"offsets": {
+				"from": 953720,
+				"to": 959760
+			},
+			"text": " in distinct transactions, and then reunify them later."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,760",
+				"to": "00:16:04,360"
+			},
+			"offsets": {
+				"from": 959760,
+				"to": 964360
+			},
+			"text": " So this method only works if you have a shielded base layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,360",
+				"to": "00:16:06,360"
+			},
+			"offsets": {
+				"from": 964360,
+				"to": 966360
+			},
+			"text": " If you have a transparent base layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,360",
+				"to": "00:16:09,440"
+			},
+			"offsets": {
+				"from": 966360,
+				"to": 969440
+			},
+			"text": " then this is trivially broken because you just look"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,440",
+				"to": "00:16:12,680"
+			},
+			"offsets": {
+				"from": 969440,
+				"to": 972680
+			},
+			"text": " at what the account was, and then you can see what it did."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,680",
+				"to": "00:16:14,680"
+			},
+			"offsets": {
+				"from": 972680,
+				"to": 974680
+			},
+			"text": " But if everything else is private,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,680",
+				"to": "00:16:17,520"
+			},
+			"offsets": {
+				"from": 974680,
+				"to": 977520
+			},
+			"text": " and you're only revealing, here is a specific amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,520",
+				"to": "00:16:19,560"
+			},
+			"offsets": {
+				"from": 977520,
+				"to": 979560
+			},
+			"text": " that I'm sending to this part of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,560",
+				"to": "00:16:23,840"
+			},
+			"offsets": {
+				"from": 979560,
+				"to": 983840
+			},
+			"text": " Like this is a public delegation amount to some validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,840",
+				"to": "00:16:28,760"
+			},
+			"offsets": {
+				"from": 983840,
+				"to": 988760
+			},
+			"text": " This is like an amount in one sort of randomized sub-trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,760",
+				"to": "00:16:30,320"
+			},
+			"offsets": {
+				"from": 988760,
+				"to": 990320
+			},
+			"text": " This might be OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,320",
+				"to": "00:16:34,440"
+			},
+			"offsets": {
+				"from": 990320,
+				"to": 994440
+			},
+			"text": " And it's a fairly practical and simple thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,440",
+				"to": "00:16:36,760"
+			},
+			"offsets": {
+				"from": 994440,
+				"to": 996760
+			},
+			"text": " However, it's not really ideal."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,760",
+				"to": "00:16:40,600"
+			},
+			"offsets": {
+				"from": 996760,
+				"to": 1000600
+			},
+			"text": " So the other strategy, which is more interesting and more"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,600",
+				"to": "00:16:43,200"
+			},
+			"offsets": {
+				"from": 1000600,
+				"to": 1003200
+			},
+			"text": " cool, is this idea of batching flows."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,200",
+				"to": "00:16:44,400"
+			},
+			"offsets": {
+				"from": 1003200,
+				"to": 1004400
+			},
+			"text": " So if we know that we're already going"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,400",
+				"to": "00:16:48,640"
+			},
+			"offsets": {
+				"from": 1004400,
+				"to": 1008640
+			},
+			"text": " to be processing the contract state in batches,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,640",
+				"to": "00:16:52,400"
+			},
+			"offsets": {
+				"from": 1008640,
+				"to": 1012400
+			},
+			"text": " it would be nice to have a way to batch up flows."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,400",
+				"to": "00:16:54,760"
+			},
+			"offsets": {
+				"from": 1012400,
+				"to": 1014760
+			},
+			"text": " We do this using a construction that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,760",
+				"to": "00:16:58,760"
+			},
+			"offsets": {
+				"from": 1014760,
+				"to": 1018760
+			},
+			"text": " calling flow encryption, which is effectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,760",
+				"to": "00:17:02,760"
+			},
+			"offsets": {
+				"from": 1018760,
+				"to": 1022760
+			},
+			"text": " additively homomorphic threshold encryption"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,760",
+				"to": "00:17:05,640"
+			},
+			"offsets": {
+				"from": 1022760,
+				"to": 1025640
+			},
+			"text": " with sort of end-to-end verifiability."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,640",
+				"to": "00:17:08,200"
+			},
+			"offsets": {
+				"from": 1025640,
+				"to": 1028200
+			},
+			"text": " Once you've tacked on six different properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,200",
+				"to": "00:17:11,040"
+			},
+			"offsets": {
+				"from": 1028200,
+				"to": 1031040
+			},
+			"text": " you might as well give it a distinct name."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,040",
+				"to": "00:17:14,160"
+			},
+			"offsets": {
+				"from": 1031040,
+				"to": 1034160
+			},
+			"text": " But the idea is that each individual user"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,160",
+				"to": "00:17:18,320"
+			},
+			"offsets": {
+				"from": 1034160,
+				"to": 1038320
+			},
+			"text": " with their distinct contribution to this flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,320",
+				"to": "00:17:24,360"
+			},
+			"offsets": {
+				"from": 1038320,
+				"to": 1044360
+			},
+			"text": " can encrypt an integer amount, include that in their transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,360",
+				"to": "00:17:28,360"
+			},
+			"offsets": {
+				"from": 1044360,
+				"to": 1048360
+			},
+			"text": " and then the validators can sum up those encryptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,360",
+				"to": "00:17:31,480"
+			},
+			"offsets": {
+				"from": 1048360,
+				"to": 1051480
+			},
+			"text": " and decrypt only a batch total."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,480",
+				"to": "00:17:33,400"
+			},
+			"offsets": {
+				"from": 1051480,
+				"to": 1053400
+			},
+			"text": " So there's the batch total."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,400",
+				"to": "00:17:36,040"
+			},
+			"offsets": {
+				"from": 1053400,
+				"to": 1056040
+			},
+			"text": " And the idea is that now you can use that as the input"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,040",
+				"to": "00:17:38,440"
+			},
+			"offsets": {
+				"from": 1056040,
+				"to": 1058440
+			},
+			"text": " to some public on-chain computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,440",
+				"to": "00:17:42,200"
+			},
+			"offsets": {
+				"from": 1058440,
+				"to": 1062200
+			},
+			"text": " but still have long-term privacy for individual transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,200",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1062200,
+				"to": 1065000
+			},
+			"text": " As long as the batch size is big enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:50,120"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1070120
+			},
+			"text": " As an example, if you're trying to have a delegated proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,120",
+				"to": "00:17:53,480"
+			},
+			"offsets": {
+				"from": 1070120,
+				"to": 1073480
+			},
+			"text": " of stake system, you could make it so that, oh, the validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,480",
+				"to": "00:17:56,360"
+			},
+			"offsets": {
+				"from": 1073480,
+				"to": 1076360
+			},
+			"text": " weights will change in each epoch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,360",
+				"to": "00:18:00,320"
+			},
+			"offsets": {
+				"from": 1076360,
+				"to": 1080320
+			},
+			"text": " and will just sum up all of the delegations or undelligations"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,320",
+				"to": "00:18:05,160"
+			},
+			"offsets": {
+				"from": 1080320,
+				"to": 1085160
+			},
+			"text": " in each epoch and only reveal the net change."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,160",
+				"to": "00:18:08,520"
+			},
+			"offsets": {
+				"from": 1085160,
+				"to": 1088520
+			},
+			"text": " So these are sort of the two pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,520",
+				"to": "00:18:14,520"
+			},
+			"offsets": {
+				"from": 1088520,
+				"to": 1094520
+			},
+			"text": " Let's see how this works out as a concrete worked example, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,520",
+				"to": "00:18:19,400"
+			},
+			"offsets": {
+				"from": 1094520,
+				"to": 1099400
+			},
+			"text": " is doing sealed input batch swaps on Penumbra."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,400",
+				"to": "00:18:22,480"
+			},
+			"offsets": {
+				"from": 1099400,
+				"to": 1102480
+			},
+			"text": " So looking first at the private state part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,480",
+				"to": "00:18:25,560"
+			},
+			"offsets": {
+				"from": 1102480,
+				"to": 1105560
+			},
+			"text": " remember that we have this model where we explicitly segment"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,560",
+				"to": "00:18:31,280"
+			},
+			"offsets": {
+				"from": 1105560,
+				"to": 1111280
+			},
+			"text": " away the per user private state from the shared public state."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,280",
+				"to": "00:18:32,880"
+			},
+			"offsets": {
+				"from": 1111280,
+				"to": 1112880
+			},
+			"text": " We're going to start off with, OK, here's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,880",
+				"to": "00:18:37,800"
+			},
+			"offsets": {
+				"from": 1112880,
+				"to": 1117800
+			},
+			"text": " the private input for this trade that a user wants to make."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,800",
+				"to": "00:18:40,480"
+			},
+			"offsets": {
+				"from": 1117800,
+				"to": 1120480
+			},
+			"text": " They're going to encrypt that input,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,480",
+				"to": "00:18:42,600"
+			},
+			"offsets": {
+				"from": 1120480,
+				"to": 1122600
+			},
+			"text": " include that in their transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,600",
+				"to": "00:18:45,840"
+			},
+			"offsets": {
+				"from": 1122600,
+				"to": 1125840
+			},
+			"text": " The rest of the transaction is totally shielded"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,840",
+				"to": "00:18:48,120"
+			},
+			"offsets": {
+				"from": 1125840,
+				"to": 1128120
+			},
+			"text": " because we have this shielded base layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,120",
+				"to": "00:18:51,160"
+			},
+			"offsets": {
+				"from": 1128120,
+				"to": 1131160
+			},
+			"text": " So there's no public accounts or any other metadata"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,160",
+				"to": "00:18:53,200"
+			},
+			"offsets": {
+				"from": 1131160,
+				"to": 1133200
+			},
+			"text": " in the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,200",
+				"to": "00:18:57,840"
+			},
+			"offsets": {
+				"from": 1133200,
+				"to": 1137840
+			},
+			"text": " And what they'll mint in that swap transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,840",
+				"to": "00:19:04,760"
+			},
+			"offsets": {
+				"from": 1137840,
+				"to": 1144760
+			},
+			"text": " is a swap NFT, where the asset ID of that NFT"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,760",
+				"to": "00:19:08,800"
+			},
+			"offsets": {
+				"from": 1144760,
+				"to": 1148800
+			},
+			"text": " is a snark friendly hash of their input trade amounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,800",
+				"to": "00:19:11,840"
+			},
+			"offsets": {
+				"from": 1148800,
+				"to": 1151840
+			},
+			"text": " the trading pair, the address that they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,840",
+				"to": "00:19:16,800"
+			},
+			"offsets": {
+				"from": 1151840,
+				"to": 1156800
+			},
+			"text": " going to mint the funds to, some prepaid fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,800",
+				"to": "00:19:20,080"
+			},
+			"offsets": {
+				"from": 1156800,
+				"to": 1160080
+			},
+			"text": " And as this transaction that they submitted"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,080",
+				"to": "00:19:23,280"
+			},
+			"offsets": {
+				"from": 1160080,
+				"to": 1163280
+			},
+			"text": " is included in a block, it gets batched together"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,280",
+				"to": "00:19:25,480"
+			},
+			"offsets": {
+				"from": 1163280,
+				"to": 1165480
+			},
+			"text": " with the others."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,480",
+				"to": "00:19:30,480"
+			},
+			"offsets": {
+				"from": 1165480,
+				"to": 1170480
+			},
+			"text": " You cryptid, you send that into the dex engine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,480",
+				"to": "00:19:32,800"
+			},
+			"offsets": {
+				"from": 1170480,
+				"to": 1172800
+			},
+			"text": " which resolves all of the trade intent"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,800",
+				"to": "00:19:36,480"
+			},
+			"offsets": {
+				"from": 1172800,
+				"to": 1176480
+			},
+			"text": " and publishes the output data into the chain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,480",
+				"to": "00:19:40,560"
+			},
+			"offsets": {
+				"from": 1176480,
+				"to": 1180560
+			},
+			"text": " And now that user can consume their swap NFT, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,560",
+				"to": "00:19:44,320"
+			},
+			"offsets": {
+				"from": 1180560,
+				"to": 1184320
+			},
+			"text": " remember is modeling this sort of future that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,320",
+				"to": "00:19:47,280"
+			},
+			"offsets": {
+				"from": 1184320,
+				"to": 1187280
+			},
+			"text": " resolves eventually to their swap outputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,280",
+				"to": "00:19:52,760"
+			},
+			"offsets": {
+				"from": 1187280,
+				"to": 1192760
+			},
+			"text": " and produce a proof that uses these public back swap data"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,760",
+				"to": "00:19:54,720"
+			},
+			"offsets": {
+				"from": 1192760,
+				"to": 1194720
+			},
+			"text": " as a public input."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,720",
+				"to": "00:19:58,160"
+			},
+			"offsets": {
+				"from": 1194720,
+				"to": 1198160
+			},
+			"text": " And their swap NFT is a private input"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,160",
+				"to": "00:20:01,280"
+			},
+			"offsets": {
+				"from": 1198160,
+				"to": 1201280
+			},
+			"text": " to privately mint their correct prorata"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,280",
+				"to": "00:20:04,560"
+			},
+			"offsets": {
+				"from": 1201280,
+				"to": 1204560
+			},
+			"text": " share of the batch swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,560",
+				"to": "00:20:09,840"
+			},
+			"offsets": {
+				"from": 1204560,
+				"to": 1209840
+			},
+			"text": " And so that means that that individual user's output"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,840",
+				"to": "00:20:12,200"
+			},
+			"offsets": {
+				"from": 1209840,
+				"to": 1212200
+			},
+			"text": " can be minted completely privately."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,200",
+				"to": "00:20:19,360"
+			},
+			"offsets": {
+				"from": 1212200,
+				"to": 1219360
+			},
+			"text": " And as long as you have sufficient volume in the batch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,360",
+				"to": "00:20:22,680"
+			},
+			"offsets": {
+				"from": 1219360,
+				"to": 1222680
+			},
+			"text": " you can get long-term privacy for individual users' trade"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,680",
+				"to": "00:20:23,440"
+			},
+			"offsets": {
+				"from": 1222680,
+				"to": 1223440
+			},
+			"text": " amounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,440",
+				"to": "00:20:27,160"
+			},
+			"offsets": {
+				"from": 1223440,
+				"to": 1227160
+			},
+			"text": " Now, if you're on, say, like a thinly traded pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,160",
+				"to": "00:20:29,440"
+			},
+			"offsets": {
+				"from": 1227160,
+				"to": 1229440
+			},
+			"text": " maybe you end up in a batch size of one."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,440",
+				"to": "00:20:33,360"
+			},
+			"offsets": {
+				"from": 1229440,
+				"to": 1233360
+			},
+			"text": " But in that case, you can use this sort of randomized splitting"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,360",
+				"to": "00:20:35,440"
+			},
+			"offsets": {
+				"from": 1233360,
+				"to": 1235440
+			},
+			"text": " technique that I mentioned earlier"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,440",
+				"to": "00:20:38,880"
+			},
+			"offsets": {
+				"from": 1235440,
+				"to": 1238880
+			},
+			"text": " to make effectively a kind of like randomized T-wop"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,880",
+				"to": "00:20:41,240"
+			},
+			"offsets": {
+				"from": 1238880,
+				"to": 1241240
+			},
+			"text": " of your trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,240",
+				"to": "00:20:44,800"
+			},
+			"offsets": {
+				"from": 1241240,
+				"to": 1244800
+			},
+			"text": " So zooming out of the private state part"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,800",
+				"to": "00:20:48,960"
+			},
+			"offsets": {
+				"from": 1244800,
+				"to": 1248960
+			},
+			"text": " to how this works on the public state side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,960",
+				"to": "00:20:54,240"
+			},
+			"offsets": {
+				"from": 1248960,
+				"to": 1254240
+			},
+			"text": " we have all of these swap transactions that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,240",
+				"to": "00:20:56,320"
+			},
+			"offsets": {
+				"from": 1254240,
+				"to": 1256320
+			},
+			"text": " have been included in the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,320",
+				"to": "00:20:59,240"
+			},
+			"offsets": {
+				"from": 1256320,
+				"to": 1259240
+			},
+			"text": " We have the dex engine, group all of those inputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,240",
+				"to": "00:21:00,440"
+			},
+			"offsets": {
+				"from": 1259240,
+				"to": 1260440
+			},
+			"text": " by pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,440",
+				"to": "00:21:02,520"
+			},
+			"offsets": {
+				"from": 1260440,
+				"to": 1262520
+			},
+			"text": " We do this batching and decryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,520",
+				"to": "00:21:09,440"
+			},
+			"offsets": {
+				"from": 1262520,
+				"to": 1269440
+			},
+			"text": " But now, at this point, we don't just have a single swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,440",
+				"to": "00:21:11,560"
+			},
+			"offsets": {
+				"from": 1269440,
+				"to": 1271560
+			},
+			"text": " We don't just have a single swap transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,560",
+				"to": "00:21:12,880"
+			},
+			"offsets": {
+				"from": 1271560,
+				"to": 1272880
+			},
+			"text": " on a single pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,880",
+				"to": "00:21:15,320"
+			},
+			"offsets": {
+				"from": 1272880,
+				"to": 1275320
+			},
+			"text": " We have a complete picture of here's"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,320",
+				"to": "00:21:21,400"
+			},
+			"offsets": {
+				"from": 1275320,
+				"to": 1281400
+			},
+			"text": " all the trading intent for the entire chain in this block."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,400",
+				"to": "00:21:25,320"
+			},
+			"offsets": {
+				"from": 1281400,
+				"to": 1285320
+			},
+			"text": " And we also know that we only have to run the dex engine"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,320",
+				"to": "00:21:30,280"
+			},
+			"offsets": {
+				"from": 1285320,
+				"to": 1290280
+			},
+			"text": " once per block, because we're in this batch computation model."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,280",
+				"to": "00:21:32,040"
+			},
+			"offsets": {
+				"from": 1290280,
+				"to": 1292040
+			},
+			"text": " So that means that we can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,040",
+				"to": "00:21:37,040"
+			},
+			"offsets": {
+				"from": 1292040,
+				"to": 1297040
+			},
+			"text": " be considerably more sophisticated in how we resolve"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,040",
+				"to": "00:21:38,240"
+			},
+			"offsets": {
+				"from": 1297040,
+				"to": 1298240
+			},
+			"text": " these trades."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,240",
+				"to": "00:21:41,760"
+			},
+			"offsets": {
+				"from": 1298240,
+				"to": 1301760
+			},
+			"text": " We can load up the entire liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,760",
+				"to": "00:21:44,480"
+			},
+			"offsets": {
+				"from": 1301760,
+				"to": 1304480
+			},
+			"text": " graph of all of the assets on the chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,480",
+				"to": "00:21:48,760"
+			},
+			"offsets": {
+				"from": 1304480,
+				"to": 1308760
+			},
+			"text": " sort of put the trade intent into the correct spots"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,760",
+				"to": "00:21:54,360"
+			},
+			"offsets": {
+				"from": 1308760,
+				"to": 1314360
+			},
+			"text": " on that graph, and then compute some optimal resolution"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,360",
+				"to": "00:21:57,680"
+			},
+			"offsets": {
+				"from": 1314360,
+				"to": 1317680
+			},
+			"text": " of all of these trades simultaneously."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,680",
+				"to": "00:22:00,560"
+			},
+			"offsets": {
+				"from": 1317680,
+				"to": 1320560
+			},
+			"text": " So you can do some kind of global resolution"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,560",
+				"to": "00:22:04,080"
+			},
+			"offsets": {
+				"from": 1320560,
+				"to": 1324080
+			},
+			"text": " of the trading intent, do optimal arbitrage."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,080",
+				"to": "00:22:06,920"
+			},
+			"offsets": {
+				"from": 1324080,
+				"to": 1326920
+			},
+			"text": " And this is computationally tractable"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,920",
+				"to": "00:22:10,640"
+			},
+			"offsets": {
+				"from": 1326920,
+				"to": 1330640
+			},
+			"text": " to do just like in consensus, because you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,640",
+				"to": "00:22:13,120"
+			},
+			"offsets": {
+				"from": 1330640,
+				"to": 1333120
+			},
+			"text": " that you're only doing this once per block."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,120",
+				"to": "00:22:16,720"
+			},
+			"offsets": {
+				"from": 1333120,
+				"to": 1336720
+			},
+			"text": " So you end up in a model where, rather than sort of having"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,720",
+				"to": "00:22:20,240"
+			},
+			"offsets": {
+				"from": 1336720,
+				"to": 1340240
+			},
+			"text": " to call each contract potentially like thousands"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,240",
+				"to": "00:22:23,320"
+			},
+			"offsets": {
+				"from": 1340240,
+				"to": 1343320
+			},
+			"text": " of times a block, you just know that the chain is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,320",
+				"to": "00:22:28,040"
+			},
+			"offsets": {
+				"from": 1343320,
+				"to": 1348040
+			},
+			"text": " to step in discrete time from one set of consistent prices"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,040",
+				"to": "00:22:30,080"
+			},
+			"offsets": {
+				"from": 1348040,
+				"to": 1350080
+			},
+			"text": " to a new set of consistent prices."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,080",
+				"to": "00:22:34,520"
+			},
+			"offsets": {
+				"from": 1350080,
+				"to": 1354520
+			},
+			"text": " You can handle all of the newly added or removed liquidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,520",
+				"to": "00:22:36,080"
+			},
+			"offsets": {
+				"from": 1354520,
+				"to": 1356080
+			},
+			"text": " also in a bashed way, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,080",
+				"to": "00:22:39,640"
+			},
+			"offsets": {
+				"from": 1356080,
+				"to": 1359640
+			},
+			"text": " So you first add all of the newly created liquidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,640",
+				"to": "00:22:42,040"
+			},
+			"offsets": {
+				"from": 1359640,
+				"to": 1362040
+			},
+			"text": " then you resolve all of the trading intent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,040",
+				"to": "00:22:45,400"
+			},
+			"offsets": {
+				"from": 1362040,
+				"to": 1365400
+			},
+			"text": " then you orb all the prices to be consistent with each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,400",
+				"to": "00:22:48,320"
+			},
+			"offsets": {
+				"from": 1365400,
+				"to": 1368320
+			},
+			"text": " then you close all the closed positions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,320",
+				"to": "00:22:50,080"
+			},
+			"offsets": {
+				"from": 1368320,
+				"to": 1370080
+			},
+			"text": " And this also lets you, as a side effect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,080",
+				"to": "00:22:54,840"
+			},
+			"offsets": {
+				"from": 1370080,
+				"to": 1374840
+			},
+			"text": " have like single block, jit liquidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,840",
+				"to": "00:22:56,520"
+			},
+			"offsets": {
+				"from": 1374840,
+				"to": 1376520
+			},
+			"text": " with the kind of like batch semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,520",
+				"to": "00:22:59,200"
+			},
+			"offsets": {
+				"from": 1376520,
+				"to": 1379200
+			},
+			"text": " So there's a lot of really interesting pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,200",
+				"to": "00:23:04,280"
+			},
+			"offsets": {
+				"from": 1379200,
+				"to": 1384280
+			},
+			"text": " of market design that get unlocked by this model."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,280",
+				"to": "00:23:07,160"
+			},
+			"offsets": {
+				"from": 1384280,
+				"to": 1387160
+			},
+			"text": " So that's basically the content of the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,160",
+				"to": "00:23:11,040"
+			},
+			"offsets": {
+				"from": 1387160,
+				"to": 1391040
+			},
+			"text": " If you want to play with this, we have some weekly test nets"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,040",
+				"to": "00:23:13,400"
+			},
+			"offsets": {
+				"from": 1391040,
+				"to": 1393400
+			},
+			"text": " that you can play around with."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,400",
+				"to": "00:23:16,120"
+			},
+			"offsets": {
+				"from": 1393400,
+				"to": 1396120
+			},
+			"text": " Here's a bunch of links."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,120",
+				"to": "00:23:20,440"
+			},
+			"offsets": {
+				"from": 1396120,
+				"to": 1400440
+			},
+			"text": " So far, the big last piece to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,440",
+				"to": "00:23:22,320"
+			},
+			"offsets": {
+				"from": 1400440,
+				"to": 1402320
+			},
+			"text": " is the actual dex engine."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,320",
+				"to": "00:23:26,840"
+			},
+			"offsets": {
+				"from": 1402320,
+				"to": 1406840
+			},
+			"text": " But we have a toy AMM that you can do these shielded swaps"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,840",
+				"to": "00:23:29,280"
+			},
+			"offsets": {
+				"from": 1406840,
+				"to": 1409280
+			},
+			"text": " against on our test app."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,280",
+				"to": "00:23:30,320"
+			},
+			"offsets": {
+				"from": 1409280,
+				"to": 1410320
+			},
+			"text": " So that's a talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,320",
+				"to": "00:23:33,400"
+			},
+			"offsets": {
+				"from": 1410320,
+				"to": 1413400
+			},
+			"text": " If anybody has any questions, I'd be getting into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,400",
+				"to": "00:23:36,400"
+			},
+			"offsets": {
+				"from": 1413400,
+				"to": 1416400
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,400",
+				"to": "00:23:44,760"
+			},
+			"offsets": {
+				"from": 1416400,
+				"to": 1424760
+			},
+			"text": " Just wait for the mic, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,760",
+				"to": "00:23:46,360"
+			},
+			"offsets": {
+				"from": 1424760,
+				"to": 1426360
+			},
+			"text": " I'll run to you with the mic."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,360",
+				"to": "00:23:52,040"
+			},
+			"offsets": {
+				"from": 1426360,
+				"to": 1432040
+			},
+			"text": " Thanks for the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,040",
+				"to": "00:23:53,560"
+			},
+			"offsets": {
+				"from": 1432040,
+				"to": 1433560
+			},
+			"text": " Just curious."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,560",
+				"to": "00:23:56,680"
+			},
+			"offsets": {
+				"from": 1433560,
+				"to": 1436680
+			},
+			"text": " So have you found a tight bound for how much of a loss"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,680",
+				"to": "00:23:58,680"
+			},
+			"offsets": {
+				"from": 1436680,
+				"to": 1438680
+			},
+			"text": " you have when you provide batching?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,680",
+				"to": "00:24:02,280"
+			},
+			"offsets": {
+				"from": 1438680,
+				"to": 1442280
+			},
+			"text": " Because if it's a constant function market maker--"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,280",
+				"to": "00:24:04,440"
+			},
+			"offsets": {
+				"from": 1442280,
+				"to": 1444440
+			},
+			"text": " There's a loss in what sense?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,440",
+				"to": "00:24:05,920"
+			},
+			"offsets": {
+				"from": 1444440,
+				"to": 1445920
+			},
+			"text": " So you're going to get an average."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,920",
+				"to": "00:24:08,560"
+			},
+			"offsets": {
+				"from": 1445920,
+				"to": 1448560
+			},
+			"text": " You're smoothing it out, in that sense of speaking."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,560",
+				"to": "00:24:09,840"
+			},
+			"offsets": {
+				"from": 1448560,
+				"to": 1449840
+			},
+			"text": " So you can actually have a spike."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,840",
+				"to": "00:24:12,360"
+			},
+			"offsets": {
+				"from": 1449840,
+				"to": 1452360
+			},
+			"text": " In a block, you're just averaging."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,360",
+				"to": "00:24:13,920"
+			},
+			"offsets": {
+				"from": 1452360,
+				"to": 1453920
+			},
+			"text": " So have you done any analysis?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,920",
+				"to": "00:24:16,480"
+			},
+			"offsets": {
+				"from": 1453920,
+				"to": 1456480
+			},
+			"text": " I did some analysis, so I'm curious if you have done that."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,480",
+				"to": "00:24:18,720"
+			},
+			"offsets": {
+				"from": 1456480,
+				"to": 1458720
+			},
+			"text": " So I guess the question that I have"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,720",
+				"to": "00:24:21,160"
+			},
+			"offsets": {
+				"from": 1458720,
+				"to": 1461160
+			},
+			"text": " is a loss relative to what, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,160",
+				"to": "00:24:22,520"
+			},
+			"offsets": {
+				"from": 1461160,
+				"to": 1462520
+			},
+			"text": " Assuming no private."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,520",
+				"to": "00:24:23,760"
+			},
+			"offsets": {
+				"from": 1462520,
+				"to": 1463760
+			},
+			"text": " So two worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,760",
+				"to": "00:24:25,560"
+			},
+			"offsets": {
+				"from": 1463760,
+				"to": 1465560
+			},
+			"text": " Same block private versus non-private."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,560",
+				"to": "00:24:31,600"
+			},
+			"offsets": {
+				"from": 1465560,
+				"to": 1471600
+			},
+			"text": " I'm-- no."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,600",
+				"to": "00:24:32,600"
+			},
+			"offsets": {
+				"from": 1471600,
+				"to": 1472600
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,600",
+				"to": "00:24:37,960"
+			},
+			"offsets": {
+				"from": 1472600,
+				"to": 1477960
+			},
+			"text": " Do we have more questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,960",
+				"to": "00:24:38,480"
+			},
+			"offsets": {
+				"from": 1477960,
+				"to": 1478480
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,480",
+				"to": "00:24:39,920"
+			},
+			"offsets": {
+				"from": 1478480,
+				"to": 1479920
+			},
+			"text": " There are-- I'm not sure who was first."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,920",
+				"to": "00:24:40,420"
+			},
+			"offsets": {
+				"from": 1479920,
+				"to": 1480420
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,520",
+				"to": "00:24:44,160"
+			},
+			"offsets": {
+				"from": 1483520,
+				"to": 1484160
+			},
+			"text": " Just a quick one."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,160",
+				"to": "00:24:45,280"
+			},
+			"offsets": {
+				"from": 1484160,
+				"to": 1485280
+			},
+			"text": " Thanks very much for the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,280",
+				"to": "00:24:50,920"
+			},
+			"offsets": {
+				"from": 1485280,
+				"to": 1490920
+			},
+			"text": " This is fantastic to hear and to get this content."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,920",
+				"to": "00:24:54,320"
+			},
+			"offsets": {
+				"from": 1490920,
+				"to": 1494320
+			},
+			"text": " My quick question-- on reverts the whole batch reverts."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,320",
+				"to": "00:24:54,820"
+			},
+			"offsets": {
+				"from": 1494320,
+				"to": 1494820
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,820",
+				"to": "00:24:58,880"
+			},
+			"offsets": {
+				"from": 1494820,
+				"to": 1498880
+			},
+			"text": " Sorry, I missed the on reverts the whole batch reverts."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,880",
+				"to": "00:25:00,560"
+			},
+			"offsets": {
+				"from": 1498880,
+				"to": 1500560
+			},
+			"text": " If a transaction reverts."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,560",
+				"to": "00:25:01,060"
+			},
+			"offsets": {
+				"from": 1500560,
+				"to": 1501060
+			},
+			"text": " Oh."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,060",
+				"to": "00:25:02,520"
+			},
+			"offsets": {
+				"from": 1501060,
+				"to": 1502520
+			},
+			"text": " If a transaction is not valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,520",
+				"to": "00:25:02,880"
+			},
+			"offsets": {
+				"from": 1502520,
+				"to": 1502880
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,880",
+				"to": "00:25:06,200"
+			},
+			"offsets": {
+				"from": 1502880,
+				"to": 1506200
+			},
+			"text": " So it's possible, for instance, that someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,200",
+				"to": "00:25:10,360"
+			},
+			"offsets": {
+				"from": 1506200,
+				"to": 1510360
+			},
+			"text": " could submit a transaction that, say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,360",
+				"to": "00:25:12,480"
+			},
+			"offsets": {
+				"from": 1510360,
+				"to": 1512480
+			},
+			"text": " they submit a trade for a trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,480",
+				"to": "00:25:16,760"
+			},
+			"offsets": {
+				"from": 1512480,
+				"to": 1516760
+			},
+			"text": " pair that doesn't have any liquidity on it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,760",
+				"to": "00:25:19,600"
+			},
+			"offsets": {
+				"from": 1516760,
+				"to": 1519600
+			},
+			"text": " So one of the outcomes of the batch swap"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,600",
+				"to": "00:25:21,960"
+			},
+			"offsets": {
+				"from": 1519600,
+				"to": 1521960
+			},
+			"text": " is that the trade can fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,960",
+				"to": "00:25:24,640"
+			},
+			"offsets": {
+				"from": 1521960,
+				"to": 1524640
+			},
+			"text": " And in that case, rather than having people privately"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,640",
+				"to": "00:25:28,480"
+			},
+			"offsets": {
+				"from": 1524640,
+				"to": 1528480
+			},
+			"text": " mint their prorata share of the outputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,480",
+				"to": "00:25:31,160"
+			},
+			"offsets": {
+				"from": 1528480,
+				"to": 1531160
+			},
+			"text": " they privately mint their prorata share of the inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,160",
+				"to": "00:25:32,880"
+			},
+			"offsets": {
+				"from": 1531160,
+				"to": 1532880
+			},
+			"text": " They get their funds back."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,880",
+				"to": "00:25:36,540"
+			},
+			"offsets": {
+				"from": 1532880,
+				"to": 1536540
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,540",
+				"to": "00:25:38,400"
+			},
+			"offsets": {
+				"from": 1536540,
+				"to": 1538400
+			},
+			"text": " So the whole batch goes at once."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,400",
+				"to": "00:25:41,240"
+			},
+			"offsets": {
+				"from": 1538400,
+				"to": 1541240
+			},
+			"text": " So technically, I guess you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,240",
+				"to": "00:25:45,600"
+			},
+			"offsets": {
+				"from": 1541240,
+				"to": 1545600
+			},
+			"text": " have some kind of griefing attack where someone is continually"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,600",
+				"to": "00:25:49,520"
+			},
+			"offsets": {
+				"from": 1545600,
+				"to": 1549520
+			},
+			"text": " locking up capital in trying to prevent other people"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,520",
+				"to": "00:25:53,120"
+			},
+			"offsets": {
+				"from": 1549520,
+				"to": 1553120
+			},
+			"text": " from trading by submitting a giant whale trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,120",
+				"to": "00:25:55,920"
+			},
+			"offsets": {
+				"from": 1553120,
+				"to": 1555920
+			},
+			"text": " But they can't actually do that without running the risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,920",
+				"to": "00:25:58,720"
+			},
+			"offsets": {
+				"from": 1555920,
+				"to": 1558720
+			},
+			"text": " that someone will provide liquidity at a bad price."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,720",
+				"to": "00:26:00,520"
+			},
+			"offsets": {
+				"from": 1558720,
+				"to": 1560520
+			},
+			"text": " So I think it's probably not a big deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:00,520",
+				"to": "00:26:03,780"
+			},
+			"offsets": {
+				"from": 1560520,
+				"to": 1563780
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,780",
+				"to": "00:26:04,480"
+			},
+			"offsets": {
+				"from": 1563780,
+				"to": 1564480
+			},
+			"text": " The time is off."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,480",
+				"to": "00:26:08,400"
+			},
+			"offsets": {
+				"from": 1564480,
+				"to": 1568400
+			},
+			"text": " Well, one more round of applause for Henry, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,400",
+				"to": "00:26:10,400"
+			},
+			"offsets": {
+				"from": 1568400,
+				"to": 1570400
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,400",
+				"to": "00:26:12,360"
+			},
+			"offsets": {
+				"from": 1570400,
+				"to": 1572360
+			},
+			"text": " Thank you, Henry."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,360",
+				"to": "00:26:14,360"
+			},
+			"offsets": {
+				"from": 1572360,
+				"to": 1574360
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,360",
+				"to": "00:26:16,360"
+			},
+			"offsets": {
+				"from": 1574360,
+				"to": 1576360
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,360",
+				"to": "00:26:18,360"
+			},
+			"offsets": {
+				"from": 1576360,
+				"to": 1578360
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,360",
+				"to": "00:26:20,360"
+			},
+			"offsets": {
+				"from": 1578360,
+				"to": 1580360
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,360",
+				"to": "00:26:25,360"
+			},
+			"offsets": {
+				"from": 1580360,
+				"to": 1585360
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

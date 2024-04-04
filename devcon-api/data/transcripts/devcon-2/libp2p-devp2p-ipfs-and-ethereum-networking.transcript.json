@@ -1,0 +1,2573 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,440"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2440
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,440",
+				"to": "00:00:19,640"
+			},
+			"offsets": {
+				"from": 2440,
+				"to": 19640
+			},
+			"text": " Hi, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,640",
+				"to": "00:00:21,640"
+			},
+			"offsets": {
+				"from": 19640,
+				"to": 21640
+			},
+			"text": " I'm David, and I work for Protocol Labs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,640",
+				"to": "00:00:24,080"
+			},
+			"offsets": {
+				"from": 21640,
+				"to": 24080
+			},
+			"text": " I'm a software engineer responsible and focused"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,080",
+				"to": "00:00:27,640"
+			},
+			"offsets": {
+				"from": 24080,
+				"to": 27640
+			},
+			"text": " on the JS IPFS and the Leap U2P projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,640",
+				"to": "00:00:28,960"
+			},
+			"offsets": {
+				"from": 27640,
+				"to": 28960
+			},
+			"text": " Throughout this amazing conference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,960",
+				"to": "00:00:31,640"
+			},
+			"offsets": {
+				"from": 28960,
+				"to": 31640
+			},
+			"text": " we have been seeing a lot of technologies and solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,640",
+				"to": "00:00:33,720"
+			},
+			"offsets": {
+				"from": 31640,
+				"to": 33720
+			},
+			"text": " to build decentralized applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,720",
+				"to": "00:00:37,240"
+			},
+			"offsets": {
+				"from": 33720,
+				"to": 37240
+			},
+			"text": " pushing the boundaries to a complete distributed scenarios."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,240",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 37240,
+				"to": 41000
+			},
+			"text": " However, something that hasn't been covered as much"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:43,200"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 43200
+			},
+			"text": " is the networking level."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,200",
+				"to": "00:00:46,320"
+			},
+			"offsets": {
+				"from": 43200,
+				"to": 46320
+			},
+			"text": " It is required to do a lot of magic--"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,320",
+				"to": "00:00:48,680"
+			},
+			"offsets": {
+				"from": 46320,
+				"to": 48680
+			},
+			"text": " I might even dare to say black magic--"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,680",
+				"to": "00:00:51,880"
+			},
+			"offsets": {
+				"from": 48680,
+				"to": 51880
+			},
+			"text": " to be able to do this peer-to-peer applications work"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,880",
+				"to": "00:00:54,400"
+			},
+			"offsets": {
+				"from": 51880,
+				"to": 54400
+			},
+			"text": " in the infrastructure that we have today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,400",
+				"to": "00:00:58,440"
+			},
+			"offsets": {
+				"from": 54400,
+				"to": 58440
+			},
+			"text": " Things like nuts, firewalls."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,440",
+				"to": "00:01:01,960"
+			},
+			"offsets": {
+				"from": 58440,
+				"to": 61960
+			},
+			"text": " Lack of connectivity, completely offline scenarios,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,960",
+				"to": "00:01:04,120"
+			},
+			"offsets": {
+				"from": 61960,
+				"to": 64120
+			},
+			"text": " sensor networks are some of the problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,120",
+				"to": "00:01:06,920"
+			},
+			"offsets": {
+				"from": 64120,
+				"to": 66920
+			},
+			"text": " that we peer-to-peer software developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,920",
+				"to": "00:01:08,960"
+			},
+			"offsets": {
+				"from": 66920,
+				"to": 68960
+			},
+			"text": " have to overcome in order to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,960",
+				"to": "00:01:11,080"
+			},
+			"offsets": {
+				"from": 68960,
+				"to": 71080
+			},
+			"text": " these decentralized applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,080",
+				"to": "00:01:16,640"
+			},
+			"offsets": {
+				"from": 71080,
+				"to": 76640
+			},
+			"text": " And it is not by chance that both IPFS and Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,640",
+				"to": "00:01:19,640"
+			},
+			"offsets": {
+				"from": 76640,
+				"to": 79640
+			},
+			"text": " have built fully mature networking stacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,640",
+				"to": "00:01:22,640"
+			},
+			"offsets": {
+				"from": 79640,
+				"to": 82640
+			},
+			"text": " from the ground up to solve these challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,640",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 82640,
+				"to": 86000
+			},
+			"text": " Leap U2P for the case of IPFS and deaf peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:27,680"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 87680
+			},
+			"text": " for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,680",
+				"to": "00:01:30,360"
+			},
+			"offsets": {
+				"from": 87680,
+				"to": 90360
+			},
+			"text": " And this is simply because there was no transport"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,360",
+				"to": "00:01:33,880"
+			},
+			"offsets": {
+				"from": 90360,
+				"to": 93880
+			},
+			"text": " in the network that offered the primitives that IPFS"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,880",
+				"to": "00:01:35,080"
+			},
+			"offsets": {
+				"from": 93880,
+				"to": 95080
+			},
+			"text": " and Ethereum needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,080",
+				"to": "00:01:37,560"
+			},
+			"offsets": {
+				"from": 95080,
+				"to": 97560
+			},
+			"text": " Things like authentication and encryption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,560",
+				"to": "00:01:39,880"
+			},
+			"offsets": {
+				"from": 97560,
+				"to": 99880
+			},
+			"text": " being able to cope with several network topologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,880",
+				"to": "00:01:43,400"
+			},
+			"offsets": {
+				"from": 99880,
+				"to": 103400
+			},
+			"text": " in several different scenarios, are some of the challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,400",
+				"to": "00:01:47,720"
+			},
+			"offsets": {
+				"from": 103400,
+				"to": 107720
+			},
+			"text": " that we must overcome and face when we are building these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,720",
+				"to": "00:01:51,160"
+			},
+			"offsets": {
+				"from": 107720,
+				"to": 111160
+			},
+			"text": " However, there is a key, small key difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,160",
+				"to": "00:01:53,880"
+			},
+			"offsets": {
+				"from": 111160,
+				"to": 113880
+			},
+			"text": " between the designs of these networking stacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,880",
+				"to": "00:01:56,360"
+			},
+			"offsets": {
+				"from": 113880,
+				"to": 116360
+			},
+			"text": " Leap U2P is modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,360",
+				"to": "00:01:58,360"
+			},
+			"offsets": {
+				"from": 116360,
+				"to": 118360
+			},
+			"text": " This modularity gives us the ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,360",
+				"to": "00:02:02,400"
+			},
+			"offsets": {
+				"from": 118360,
+				"to": 122400
+			},
+			"text": " to increase our reach in terms of devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,400",
+				"to": "00:02:05,480"
+			},
+			"offsets": {
+				"from": 122400,
+				"to": 125480
+			},
+			"text": " by using the capabilities that the system has to offer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,480",
+				"to": "00:02:08,120"
+			},
+			"offsets": {
+				"from": 125480,
+				"to": 128120
+			},
+			"text": " Every single module in Leap U2P"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,120",
+				"to": "00:02:11,960"
+			},
+			"offsets": {
+				"from": 128120,
+				"to": 131960
+			},
+			"text": " exposes a well-defined interface for peer discovery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,960",
+				"to": "00:02:13,840"
+			},
+			"offsets": {
+				"from": 131960,
+				"to": 133840
+			},
+			"text": " for routing, for transports,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,840",
+				"to": "00:02:16,600"
+			},
+			"offsets": {
+				"from": 133840,
+				"to": 136600
+			},
+			"text": " stream-mootiplexing, encryption, you name it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,600",
+				"to": "00:02:20,440"
+			},
+			"offsets": {
+				"from": 136600,
+				"to": 140440
+			},
+			"text": " And we can pick the components that we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,440",
+				"to": "00:02:23,280"
+			},
+			"offsets": {
+				"from": 140440,
+				"to": 143280
+			},
+			"text": " and bake our Leap U2P solution for the device"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,280",
+				"to": "00:02:24,760"
+			},
+			"offsets": {
+				"from": 143280,
+				"to": 144760
+			},
+			"text": " that we want to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,760",
+				"to": "00:02:27,520"
+			},
+			"offsets": {
+				"from": 144760,
+				"to": 147520
+			},
+			"text": " This modularity gives us the opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,520",
+				"to": "00:02:31,680"
+			},
+			"offsets": {
+				"from": 147520,
+				"to": 151680
+			},
+			"text": " to keep our primitives for authenticated process"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,680",
+				"to": "00:02:32,840"
+			},
+			"offsets": {
+				"from": 151680,
+				"to": 152840
+			},
+			"text": " addressing in fact."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,840",
+				"to": "00:02:34,640"
+			},
+			"offsets": {
+				"from": 152840,
+				"to": 154640
+			},
+			"text": " It is a very powerful construct to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,640",
+				"to": "00:02:38,280"
+			},
+			"offsets": {
+				"from": 154640,
+				"to": 158280
+			},
+			"text": " able to address any other process in the network just"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,280",
+				"to": "00:02:41,520"
+			},
+			"offsets": {
+				"from": 158280,
+				"to": 161520
+			},
+			"text": " by a public key so that we can find the process in the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,520",
+				"to": "00:02:43,920"
+			},
+			"offsets": {
+				"from": 161520,
+				"to": 163920
+			},
+			"text": " and not only dial to it, but also make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,920",
+				"to": "00:02:46,640"
+			},
+			"offsets": {
+				"from": 163920,
+				"to": 166640
+			},
+			"text": " that we are talking with the right endpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,640",
+				"to": "00:02:50,840"
+			},
+			"offsets": {
+				"from": 166640,
+				"to": 170840
+			},
+			"text": " So this means that we can go from the traditional physical"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,840",
+				"to": "00:02:53,720"
+			},
+			"offsets": {
+				"from": 170840,
+				"to": 173720
+			},
+			"text": " network to a super-connected graph"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,720",
+				"to": "00:02:59,920"
+			},
+			"offsets": {
+				"from": 173720,
+				"to": 179920
+			},
+			"text": " with a physical and virtual overlay"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,920",
+				"to": "00:03:02,880"
+			},
+			"offsets": {
+				"from": 179920,
+				"to": 182880
+			},
+			"text": " that is not bound by the capabilities of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,880",
+				"to": "00:03:05,320"
+			},
+			"offsets": {
+				"from": 182880,
+				"to": 185320
+			},
+			"text": " We can use things like Bluetooth to create some"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,320",
+				"to": "00:03:06,400"
+			},
+			"offsets": {
+				"from": 185320,
+				"to": 186400
+			},
+			"text": " of these channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,400",
+				"to": "00:03:08,920"
+			},
+			"offsets": {
+				"from": 186400,
+				"to": 188920
+			},
+			"text": " Even radio or audio can be transports."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,920",
+				"to": "00:03:11,120"
+			},
+			"offsets": {
+				"from": 188920,
+				"to": 191120
+			},
+			"text": " We can upgrade unreliable channels"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,120",
+				"to": "00:03:14,280"
+			},
+			"offsets": {
+				"from": 191120,
+				"to": 194280
+			},
+			"text": " to become reliable with reliable ability upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,280",
+				"to": "00:03:17,920"
+			},
+			"offsets": {
+				"from": 194280,
+				"to": 197920
+			},
+			"text": " We can encrypt any channel that we want with Saca.io, TLS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,920",
+				"to": "00:03:20,200"
+			},
+			"offsets": {
+				"from": 197920,
+				"to": 200200
+			},
+			"text": " KerfCP, and others."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,200",
+				"to": "00:03:23,440"
+			},
+			"offsets": {
+				"from": 200200,
+				"to": 203440
+			},
+			"text": " And this means that we can also enter in the ecosystems"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,440",
+				"to": "00:03:26,320"
+			},
+			"offsets": {
+				"from": 203440,
+				"to": 206320
+			},
+			"text": " that don't have the full networking"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,320",
+				"to": "00:03:28,800"
+			},
+			"offsets": {
+				"from": 206320,
+				"to": 208800
+			},
+			"text": " stacks that we are typically used to."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,800",
+				"to": "00:03:32,640"
+			},
+			"offsets": {
+				"from": 208800,
+				"to": 212640
+			},
+			"text": " Huge cases for this is, for example, the browser, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,640",
+				"to": "00:03:36,680"
+			},
+			"offsets": {
+				"from": 212640,
+				"to": 216680
+			},
+			"text": " is constrained to just have WebSockets, HTTP, and WebRTC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,680",
+				"to": "00:03:38,960"
+			},
+			"offsets": {
+				"from": 216680,
+				"to": 218960
+			},
+			"text": " or internet of things devices that sometimes don't even"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,960",
+				"to": "00:03:40,080"
+			},
+			"offsets": {
+				"from": 218960,
+				"to": 220080
+			},
+			"text": " have TCP stacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,080",
+				"to": "00:03:45,080"
+			},
+			"offsets": {
+				"from": 220080,
+				"to": 225080
+			},
+			"text": " You have to rely on some radio protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,080",
+				"to": "00:03:48,720"
+			},
+			"offsets": {
+				"from": 225080,
+				"to": 228720
+			},
+			"text": " in order to be able to dial out of that device."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,720",
+				"to": "00:03:52,960"
+			},
+			"offsets": {
+				"from": 228720,
+				"to": 232960
+			},
+			"text": " For example, one very good example of all"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,960",
+				"to": "00:03:56,520"
+			},
+			"offsets": {
+				"from": 232960,
+				"to": 236520
+			},
+			"text": " VPNPPSO plug-able is that our friends from OpenBazaar"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,520",
+				"to": "00:04:01,280"
+			},
+			"offsets": {
+				"from": 236520,
+				"to": 241280
+			},
+			"text": " needed and wanted to have a Tor transport for their use."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,280",
+				"to": "00:04:04,600"
+			},
+			"offsets": {
+				"from": 241280,
+				"to": 244600
+			},
+			"text": " And all they needed to do was to create a Tor transport that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,600",
+				"to": "00:04:07,720"
+			},
+			"offsets": {
+				"from": 244600,
+				"to": 247720
+			},
+			"text": " fulfills the same interface as the other transports"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,720",
+				"to": "00:04:10,760"
+			},
+			"offsets": {
+				"from": 247720,
+				"to": 250760
+			},
+			"text": " on VPNP to peer, and they can just plug it right in."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,760",
+				"to": "00:04:13,280"
+			},
+			"offsets": {
+				"from": 250760,
+				"to": 253280
+			},
+			"text": " And once that is done, every other application"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,280",
+				"to": "00:04:15,640"
+			},
+			"offsets": {
+				"from": 253280,
+				"to": 255640
+			},
+			"text": " that wants to use that transport can just bring it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,640",
+				"to": "00:04:18,280"
+			},
+			"offsets": {
+				"from": 255640,
+				"to": 258280
+			},
+			"text": " And you don't have to change anything from the code"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,280",
+				"to": "00:04:20,200"
+			},
+			"offsets": {
+				"from": 258280,
+				"to": 260200
+			},
+			"text": " base of your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,200",
+				"to": "00:04:22,400"
+			},
+			"offsets": {
+				"from": 260200,
+				"to": 262400
+			},
+			"text": " The primitives stay the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,400",
+				"to": "00:04:23,400"
+			},
+			"offsets": {
+				"from": 262400,
+				"to": 263400
+			},
+			"text": " It is really powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,400",
+				"to": "00:04:25,880"
+			},
+			"offsets": {
+				"from": 263400,
+				"to": 265880
+			},
+			"text": " Think, like having fully tuned notes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,880",
+				"to": "00:04:28,640"
+			},
+			"offsets": {
+				"from": 265880,
+				"to": 268640
+			},
+			"text": " running in every single device with no limitations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,640",
+				"to": "00:04:37,600"
+			},
+			"offsets": {
+				"from": 268640,
+				"to": 277600
+			},
+			"text": " So we think, and we see deaf peer-to-peer and live peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,600",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 277600,
+				"to": 280000
+			},
+			"text": " being able to converge and to join efforts"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:44,560"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 284560
+			},
+			"text": " to make a much better ecosystem for the community that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,560",
+				"to": "00:04:46,520"
+			},
+			"offsets": {
+				"from": 284560,
+				"to": 286520
+			},
+			"text": " uses these network stacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,520",
+				"to": "00:04:49,320"
+			},
+			"offsets": {
+				"from": 286520,
+				"to": 289320
+			},
+			"text": " Their future peer offers a lot of primitives that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,320",
+				"to": "00:04:52,360"
+			},
+			"offsets": {
+				"from": 289320,
+				"to": 292360
+			},
+			"text": " can augment this ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,360",
+				"to": "00:04:57,680"
+			},
+			"offsets": {
+				"from": 292360,
+				"to": 297680
+			},
+			"text": " And since we already did the work, as one mentioned earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,680",
+				"to": "00:04:59,920"
+			},
+			"offsets": {
+				"from": 297680,
+				"to": 299920
+			},
+			"text": " of getting IPFS running on the browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,920",
+				"to": "00:05:03,080"
+			},
+			"offsets": {
+				"from": 299920,
+				"to": 303080
+			},
+			"text": " we kind of went ahead and asked ourselves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,080",
+				"to": "00:05:05,760"
+			},
+			"offsets": {
+				"from": 303080,
+				"to": 305760
+			},
+			"text": " what would we have to do in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,760",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 305760,
+				"to": 310000
+			},
+			"text": " to get any 2M nodes running on the browser?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:16,120"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 316120
+			},
+			"text": " So I'll just show-- we started hacking something."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,120",
+				"to": "00:05:19,480"
+			},
+			"offsets": {
+				"from": 316120,
+				"to": 319480
+			},
+			"text": " It is very-- in the beginning, a very early stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,480",
+				"to": "00:05:21,880"
+			},
+			"offsets": {
+				"from": 319480,
+				"to": 321880
+			},
+			"text": " It's a humble beginning, but we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,880",
+				"to": "00:05:24,680"
+			},
+			"offsets": {
+				"from": 321880,
+				"to": 324680
+			},
+			"text": " to show you the progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,680",
+				"to": "00:05:27,200"
+			},
+			"offsets": {
+				"from": 324680,
+				"to": 327200
+			},
+			"text": " I have two demos for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,200",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 327200,
+				"to": 332000
+			},
+			"text": " So looking for the demo one."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:34,840"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 334840
+			},
+			"text": " So the first challenge is really getting the Ethereum VM"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,840",
+				"to": "00:05:36,440"
+			},
+			"offsets": {
+				"from": 334840,
+				"to": 336440
+			},
+			"text": " working on the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,440",
+				"to": "00:05:39,320"
+			},
+			"offsets": {
+				"from": 336440,
+				"to": 339320
+			},
+			"text": " Here, basically, you might be familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,320",
+				"to": "00:05:42,080"
+			},
+			"offsets": {
+				"from": 339320,
+				"to": 342080
+			},
+			"text": " with a standard setup of getting a browser app."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,080",
+				"to": "00:05:44,400"
+			},
+			"offsets": {
+				"from": 342080,
+				"to": 344400
+			},
+			"text": " Nowadays, running on the browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,400",
+				"to": "00:05:47,360"
+			},
+			"offsets": {
+				"from": 344400,
+				"to": 347360
+			},
+			"text": " you have to basically transpile everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,360",
+				"to": "00:05:50,960"
+			},
+			"offsets": {
+				"from": 347360,
+				"to": 350960
+			},
+			"text": " And then once it's transpiled, we can load it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,960",
+				"to": "00:05:52,640"
+			},
+			"offsets": {
+				"from": 350960,
+				"to": 352640
+			},
+			"text": " And we prepared this really nice rush board,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,640",
+				"to": "00:05:54,080"
+			},
+			"offsets": {
+				"from": 352640,
+				"to": 354080
+			},
+			"text": " so you can see what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,080",
+				"to": "00:05:55,400"
+			},
+			"offsets": {
+				"from": 354080,
+				"to": 355400
+			},
+			"text": " And here, we are going to get--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,400",
+				"to": "00:05:57,200"
+			},
+			"offsets": {
+				"from": 355400,
+				"to": 357200
+			},
+			"text": " like, simulate the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,200",
+				"to": "00:05:58,560"
+			},
+			"offsets": {
+				"from": 357200,
+				"to": 358560
+			},
+			"text": " We are going to create some blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,560",
+				"to": "00:06:01,920"
+			},
+			"offsets": {
+				"from": 358560,
+				"to": 361920
+			},
+			"text": " and we are going to process them through the Ethereum VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,920",
+				"to": "00:06:05,840"
+			},
+			"offsets": {
+				"from": 361920,
+				"to": 365840
+			},
+			"text": " There is always-- since these operations are very CPU-intensive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,840",
+				"to": "00:06:08,200"
+			},
+			"offsets": {
+				"from": 365840,
+				"to": 368200
+			},
+			"text": " it takes a little bit to warm up, but once it's there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,200",
+				"to": "00:06:09,800"
+			},
+			"offsets": {
+				"from": 368200,
+				"to": 369800
+			},
+			"text": " you can just run it, rest of the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,800",
+				"to": "00:06:14,680"
+			},
+			"offsets": {
+				"from": 369800,
+				"to": 374680
+			},
+			"text": " You can see we get Ethereum VM on the browser running blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,680",
+				"to": "00:06:15,880"
+			},
+			"offsets": {
+				"from": 374680,
+				"to": 375880
+			},
+			"text": " from the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,880",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 375880,
+				"to": 377000
+			},
+			"text": " But there is more."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:20,240"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 380240
+			},
+			"text": " So now I'm opening another tab, and I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,240",
+				"to": "00:06:23,600"
+			},
+			"offsets": {
+				"from": 380240,
+				"to": 383600
+			},
+			"text": " basically connecting to the other peer that was opened before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,600",
+				"to": "00:06:25,320"
+			},
+			"offsets": {
+				"from": 383600,
+				"to": 385320
+			},
+			"text": " and I'm connecting these two browser tabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,320",
+				"to": "00:06:27,760"
+			},
+			"offsets": {
+				"from": 385320,
+				"to": 387760
+			},
+			"text": " So instead of generating blocks, I'm just"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,760",
+				"to": "00:06:30,520"
+			},
+			"offsets": {
+				"from": 387760,
+				"to": 390520
+			},
+			"text": " going to ask that peer to give me the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,520",
+				"to": "00:06:31,840"
+			},
+			"offsets": {
+				"from": 390520,
+				"to": 391840
+			},
+			"text": " So it happens seamlessly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,840",
+				"to": "00:06:34,280"
+			},
+			"offsets": {
+				"from": 391840,
+				"to": 394280
+			},
+			"text": " Like I just said, dial to this other peer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,280",
+				"to": "00:06:37,960"
+			},
+			"offsets": {
+				"from": 394280,
+				"to": 397960
+			},
+			"text": " It found the peer and fetched the blocks from that network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,960",
+				"to": "00:06:41,640"
+			},
+			"offsets": {
+				"from": 397960,
+				"to": 401640
+			},
+			"text": " So we can get the Ethereum VM running on the browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,640",
+				"to": "00:06:43,320"
+			},
+			"offsets": {
+				"from": 401640,
+				"to": 403320
+			},
+			"text": " and finding blocks from other nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,320",
+				"to": "00:06:45,760"
+			},
+			"offsets": {
+				"from": 403320,
+				"to": 405760
+			},
+			"text": " This is pretty exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,760",
+				"to": "00:06:46,480"
+			},
+			"offsets": {
+				"from": 405760,
+				"to": 406480
+			},
+			"text": " But there is more."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,480",
+				"to": "00:06:48,400"
+			},
+			"offsets": {
+				"from": 406480,
+				"to": 408400
+			},
+			"text": " So you can see I can pop more nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,400",
+				"to": "00:06:50,800"
+			},
+			"offsets": {
+				"from": 408400,
+				"to": 410800
+			},
+			"text": " and I can define each other very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,800",
+				"to": "00:06:52,720"
+			},
+			"offsets": {
+				"from": 410800,
+				"to": 412720
+			},
+			"text": " But now, the real interesting demo"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,720",
+				"to": "00:06:56,640"
+			},
+			"offsets": {
+				"from": 412720,
+				"to": 416640
+			},
+			"text": " is, can we get these browser nodes connecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,640",
+				"to": "00:06:59,360"
+			},
+			"offsets": {
+				"from": 416640,
+				"to": 419360
+			},
+			"text": " to the real Ethereum network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,360",
+				"to": "00:07:00,200"
+			},
+			"offsets": {
+				"from": 419360,
+				"to": 420200
+			},
+			"text": " Let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,200",
+				"to": "00:07:00,640"
+			},
+			"offsets": {
+				"from": 420200,
+				"to": 420640
+			},
+			"text": " They must do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,640",
+				"to": "00:07:01,560"
+			},
+			"offsets": {
+				"from": 420640,
+				"to": 421560
+			},
+			"text": " Are you already playing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,560",
+				"to": "00:07:02,280"
+			},
+			"offsets": {
+				"from": 421560,
+				"to": 422280
+			},
+			"text": " Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,280",
+				"to": "00:07:06,320"
+			},
+			"offsets": {
+				"from": 422280,
+				"to": 426320
+			},
+			"text": " OK, so same dance, getting the application to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,320",
+				"to": "00:07:08,760"
+			},
+			"offsets": {
+				"from": 426320,
+				"to": 428760
+			},
+			"text": " But here we are doing something extra."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,760",
+				"to": "00:07:10,840"
+			},
+			"offsets": {
+				"from": 428760,
+				"to": 430840
+			},
+			"text": " We are going to run a Go Ethereum node"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,840",
+				"to": "00:07:12,640"
+			},
+			"offsets": {
+				"from": 430840,
+				"to": 432640
+			},
+			"text": " patched with a leap year to peer."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,640",
+				"to": "00:07:17,120"
+			},
+			"offsets": {
+				"from": 432640,
+				"to": 437120
+			},
+			"text": " So it does an address in the leap year to peer ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,120",
+				"to": "00:07:19,280"
+			},
+			"offsets": {
+				"from": 437120,
+				"to": 439280
+			},
+			"text": " And now instead of simulating the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,280",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 439280,
+				"to": 442000
+			},
+			"text": " I'm just going to dial to that Go Ethereum node"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:23,280"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 443280
+			},
+			"text": " and fetch the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,280",
+				"to": "00:07:25,400"
+			},
+			"offsets": {
+				"from": 443280,
+				"to": 445400
+			},
+			"text": " Like basically, I'm using this Go Ethereum node"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,400",
+				"to": "00:07:27,800"
+			},
+			"offsets": {
+				"from": 445400,
+				"to": 447800
+			},
+			"text": " that was augmented with leap year to peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,800",
+				"to": "00:07:30,040"
+			},
+			"offsets": {
+				"from": 447800,
+				"to": 450040
+			},
+			"text": " to connect to the rest of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,040",
+				"to": "00:07:33,400"
+			},
+			"offsets": {
+				"from": 450040,
+				"to": 453400
+			},
+			"text": " Again, the generating the genesis block down"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,400",
+				"to": "00:07:34,640"
+			},
+			"offsets": {
+				"from": 453400,
+				"to": 454640
+			},
+			"text": " takes a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,640",
+				"to": "00:07:37,040"
+			},
+			"offsets": {
+				"from": 454640,
+				"to": 457040
+			},
+			"text": " This can be greatly improved, especially with the recent work"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,040",
+				"to": "00:07:40,120"
+			},
+			"offsets": {
+				"from": 457040,
+				"to": 460120
+			},
+			"text": " from Martin on Elasm, I'm sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,120",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 460120,
+				"to": 463000
+			},
+			"text": " But once that's there, we'll start receiving all of these blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:46,600"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 466600
+			},
+			"text": " There you go."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,600",
+				"to": "00:07:49,680"
+			},
+			"offsets": {
+				"from": 466600,
+				"to": 469680
+			},
+			"text": " And you can see, this is fetching from the real live network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,680",
+				"to": "00:07:51,920"
+			},
+			"offsets": {
+				"from": 469680,
+				"to": 471920
+			},
+			"text": " It's pulling all the blocks into the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,920",
+				"to": "00:07:54,920"
+			},
+			"offsets": {
+				"from": 471920,
+				"to": 474920
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,920",
+				"to": "00:08:00,800"
+			},
+			"offsets": {
+				"from": 474920,
+				"to": 480800
+			},
+			"text": " Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,800",
+				"to": "00:08:04,040"
+			},
+			"offsets": {
+				"from": 480800,
+				"to": 484040
+			},
+			"text": " So let me explain in the graph what--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,040",
+				"to": "00:08:05,960"
+			},
+			"offsets": {
+				"from": 484040,
+				"to": 485960
+			},
+			"text": " and it keeps going."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,960",
+				"to": "00:08:06,680"
+			},
+			"offsets": {
+				"from": 485960,
+				"to": 486680
+			},
+			"text": " It might take a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,680",
+				"to": "00:08:08,880"
+			},
+			"offsets": {
+				"from": 486680,
+				"to": 488880
+			},
+			"text": " If you have downloaded the blockchain before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,880",
+				"to": "00:08:09,640"
+			},
+			"offsets": {
+				"from": 488880,
+				"to": 489640
+			},
+			"text": " you might know that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,640",
+				"to": "00:08:10,640"
+			},
+			"offsets": {
+				"from": 489640,
+				"to": 490640
+			},
+			"text": " Can we go back to the slides?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,640",
+				"to": "00:08:23,440"
+			},
+			"offsets": {
+				"from": 490640,
+				"to": 503440
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,440",
+				"to": "00:08:23,800"
+			},
+			"offsets": {
+				"from": 503440,
+				"to": 503800
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,800",
+				"to": "00:08:27,680"
+			},
+			"offsets": {
+				"from": 503800,
+				"to": 507680
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,680",
+				"to": "00:08:28,720"
+			},
+			"offsets": {
+				"from": 507680,
+				"to": 508720
+			},
+			"text": " So what is happening?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,720",
+				"to": "00:08:30,920"
+			},
+			"offsets": {
+				"from": 508720,
+				"to": 510920
+			},
+			"text": " So we know we have the Ethereum network that already"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,920",
+				"to": "00:08:34,440"
+			},
+			"offsets": {
+				"from": 510920,
+				"to": 514440
+			},
+			"text": " exists and we're all connected through their peer to peer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,440",
+				"to": "00:08:37,680"
+			},
+			"offsets": {
+				"from": 514440,
+				"to": 517680
+			},
+			"text": " And then we added this Go Ethereum node"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,680",
+				"to": "00:08:41,360"
+			},
+			"offsets": {
+				"from": 517680,
+				"to": 521360
+			},
+			"text": " patched with leap year to peer so that it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,360",
+				"to": "00:08:43,840"
+			},
+			"offsets": {
+				"from": 521360,
+				"to": 523840
+			},
+			"text": " does like a presence on the leap to peer network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,840",
+				"to": "00:08:49,680"
+			},
+			"offsets": {
+				"from": 523840,
+				"to": 529680
+			},
+			"text": " And then we throw the Node.js node running leap to peer as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,680",
+				"to": "00:08:53,080"
+			},
+			"offsets": {
+				"from": 529680,
+				"to": 533080
+			},
+			"text": " And then we have our browser that connects to this Node.js"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,080",
+				"to": "00:08:55,720"
+			},
+			"offsets": {
+				"from": 533080,
+				"to": 535720
+			},
+			"text": " node that connects to the rest of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,720",
+				"to": "00:09:00,200"
+			},
+			"offsets": {
+				"from": 535720,
+				"to": 540200
+			},
+			"text": " to the other Go.js node, the Go.js node."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,200",
+				"to": "00:09:01,280"
+			},
+			"offsets": {
+				"from": 540200,
+				"to": 541280
+			},
+			"text": " The Go Ethereum node."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,280",
+				"to": "00:09:03,560"
+			},
+			"offsets": {
+				"from": 541280,
+				"to": 543560
+			},
+			"text": " So you can see we're already using multiple transports here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,560",
+				"to": "00:09:06,600"
+			},
+			"offsets": {
+				"from": 543560,
+				"to": 546600
+			},
+			"text": " I'm using TCP to connect Go between Node"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,600",
+				"to": "00:09:10,480"
+			},
+			"offsets": {
+				"from": 546600,
+				"to": 550480
+			},
+			"text": " and then I'm using WebSockets from nodes to the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,480",
+				"to": "00:09:13,520"
+			},
+			"offsets": {
+				"from": 550480,
+				"to": 553520
+			},
+			"text": " Next up, I can connect several browsers together."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,520",
+				"to": "00:09:16,320"
+			},
+			"offsets": {
+				"from": 553520,
+				"to": 556320
+			},
+			"text": " So what I'm going to do is just use WebRTC, the peer to peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,320",
+				"to": "00:09:17,880"
+			},
+			"offsets": {
+				"from": 556320,
+				"to": 557880
+			},
+			"text": " transport of the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,880",
+				"to": "00:09:19,640"
+			},
+			"offsets": {
+				"from": 557880,
+				"to": 559640
+			},
+			"text": " And just to add it on top, what I can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,640",
+				"to": "00:09:22,920"
+			},
+			"offsets": {
+				"from": 559640,
+				"to": 562920
+			},
+			"text": " is I can connect the browser again to the Go Ethereum node."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,920",
+				"to": "00:09:27,520"
+			},
+			"offsets": {
+				"from": 562920,
+				"to": 567520
+			},
+			"text": " And this way, any browser that has common transport"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,520",
+				"to": "00:09:31,360"
+			},
+			"offsets": {
+				"from": 567520,
+				"to": 571360
+			},
+			"text": " can dial to another node that supports WebPu to peer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,360",
+				"to": "00:09:32,560"
+			},
+			"offsets": {
+				"from": 571360,
+				"to": 572560
+			},
+			"text": " This is pretty exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,560",
+				"to": "00:09:36,040"
+			},
+			"offsets": {
+				"from": 572560,
+				"to": 576040
+			},
+			"text": " This means we can have finally Ethereum in the browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,040",
+				"to": "00:09:37,480"
+			},
+			"offsets": {
+				"from": 576040,
+				"to": 577480
+			},
+			"text": " running full Ethereum nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,480",
+				"to": "00:09:38,680"
+			},
+			"offsets": {
+				"from": 577480,
+				"to": 578680
+			},
+			"text": " And it's just not under the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,680",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 578680,
+				"to": 581000
+			},
+			"text": " It's basically any device with any network capabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:43,640"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 583640
+			},
+			"text": " The network is not the problem anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,640",
+				"to": "00:09:46,280"
+			},
+			"offsets": {
+				"from": 583640,
+				"to": 586280
+			},
+			"text": " I want to give a huge shout out to Martin"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,280",
+				"to": "00:09:48,800"
+			},
+			"offsets": {
+				"from": 586280,
+				"to": 588800
+			},
+			"text": " because Martin basically did all of the magic of getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,800",
+				"to": "00:09:50,640"
+			},
+			"offsets": {
+				"from": 588800,
+				"to": 590640
+			},
+			"text": " Ethereum running on the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,640",
+				"to": "00:09:53,120"
+			},
+			"offsets": {
+				"from": 590640,
+				"to": 593120
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,120",
+				"to": "00:09:54,120"
+			},
+			"offsets": {
+				"from": 593120,
+				"to": 594120
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,120",
+				"to": "00:09:59,960"
+			},
+			"offsets": {
+				"from": 594120,
+				"to": 599960
+			},
+			"text": " I just had to plug the wires together."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,960",
+				"to": "00:10:01,360"
+			},
+			"offsets": {
+				"from": 599960,
+				"to": 601360
+			},
+			"text": " That was easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,360",
+				"to": "00:10:03,120"
+			},
+			"offsets": {
+				"from": 601360,
+				"to": 603120
+			},
+			"text": " Thank you so much for all the help."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,120",
+				"to": "00:10:06,680"
+			},
+			"offsets": {
+				"from": 603120,
+				"to": 606680
+			},
+			"text": " And what you've seen here was basically a couple of nights"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,680",
+				"to": "00:10:07,280"
+			},
+			"offsets": {
+				"from": 606680,
+				"to": 607280
+			},
+			"text": " hacking."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,280",
+				"to": "00:10:08,880"
+			},
+			"offsets": {
+				"from": 607280,
+				"to": 608880
+			},
+			"text": " It was actually very impressive."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,880",
+				"to": "00:10:12,440"
+			},
+			"offsets": {
+				"from": 608880,
+				"to": 612440
+			},
+			"text": " It was so easy to attach WebPu to peer to Go Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,440",
+				"to": "00:10:14,520"
+			},
+			"offsets": {
+				"from": 612440,
+				"to": 614520
+			},
+			"text": " and to bring the blocks to the browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,520",
+				"to": "00:10:16,760"
+			},
+			"offsets": {
+				"from": 614520,
+				"to": 616760
+			},
+			"text": " and run them on the Ethereum GSBM."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,760",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 616760,
+				"to": 618000
+			},
+			"text": " It's pretty exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:21,920"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 621920
+			},
+			"text": " So we will continue to pursue this endeavor."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,920",
+				"to": "00:10:24,720"
+			},
+			"offsets": {
+				"from": 621920,
+				"to": 624720
+			},
+			"text": " You can follow the development on the WebPu to peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,720",
+				"to": "00:10:29,040"
+			},
+			"offsets": {
+				"from": 624720,
+				"to": 629040
+			},
+			"text": " organization on GitHub, the WebPu to peer development"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,040",
+				"to": "00:10:30,160"
+			},
+			"offsets": {
+				"from": 629040,
+				"to": 630160
+			},
+			"text": " on the Ethereum org."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,160",
+				"to": "00:10:33,360"
+			},
+			"offsets": {
+				"from": 630160,
+				"to": 633360
+			},
+			"text": " And you can check all of those examples, all the demo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,360",
+				"to": "00:10:36,160"
+			},
+			"offsets": {
+				"from": 633360,
+				"to": 636160
+			},
+			"text": " on a repo called JS Ethereum WebPu to peer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,160",
+				"to": "00:10:38,440"
+			},
+			"offsets": {
+				"from": 636160,
+				"to": 638440
+			},
+			"text": " I can post the links after you're in Twitter"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,440",
+				"to": "00:10:40,080"
+			},
+			"offsets": {
+				"from": 638440,
+				"to": 640080
+			},
+			"text": " if someone is interested to check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,080",
+				"to": "00:10:41,080"
+			},
+			"offsets": {
+				"from": 640080,
+				"to": 641080
+			},
+			"text": " That's awesome, David."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,080",
+				"to": "00:10:42,600"
+			},
+			"offsets": {
+				"from": 641080,
+				"to": 642600
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,600",
+				"to": "00:10:43,400"
+			},
+			"offsets": {
+				"from": 642600,
+				"to": 643400
+			},
+			"text": " Thank you, Tom."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,400",
+				"to": "00:10:46,080"
+			},
+			"offsets": {
+				"from": 643400,
+				"to": 646080
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,080",
+				"to": "00:10:48,660"
+			},
+			"offsets": {
+				"from": 646080,
+				"to": 648660
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,660",
+				"to": "00:10:51,240"
+			},
+			"offsets": {
+				"from": 648660,
+				"to": 651240
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

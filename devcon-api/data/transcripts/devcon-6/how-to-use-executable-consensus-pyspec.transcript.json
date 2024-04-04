@@ -1,0 +1,1451 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,580"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2580
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,580",
+				"to": "00:00:15,300"
+			},
+			"offsets": {
+				"from": 2580,
+				"to": 15300
+			},
+			"text": " - Hello everyone, I'm Shauwie."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,300",
+				"to": "00:00:18,560"
+			},
+			"offsets": {
+				"from": 15300,
+				"to": 18560
+			},
+			"text": " I work at Eastern Foundation Consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,560",
+				"to": "00:00:19,960"
+			},
+			"offsets": {
+				"from": 18560,
+				"to": 19960
+			},
+			"text": " a risk-inditing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,960",
+				"to": "00:00:23,760"
+			},
+			"offsets": {
+				"from": 19960,
+				"to": 23760
+			},
+			"text": " So this is a lightning talk of the consensus Pysbake."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,760",
+				"to": "00:00:28,080"
+			},
+			"offsets": {
+				"from": 23760,
+				"to": 28080
+			},
+			"text": " So you can find the code base with this URL"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,080",
+				"to": "00:00:33,080"
+			},
+			"offsets": {
+				"from": 28080,
+				"to": 33080
+			},
+			"text": " or QR code, and this is a CC0 open source Python project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,080",
+				"to": "00:00:37,520"
+			},
+			"offsets": {
+				"from": 33080,
+				"to": 37520
+			},
+			"text": " Now we have like more than 100 contributors so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,520",
+				"to": "00:00:41,080"
+			},
+			"offsets": {
+				"from": 37520,
+				"to": 41080
+			},
+			"text": " And most of them are actually Ethereum core deaths."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,080",
+				"to": "00:00:43,720"
+			},
+			"offsets": {
+				"from": 41080,
+				"to": 43720
+			},
+			"text": " And thank you for your contributions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,720",
+				"to": "00:00:48,720"
+			},
+			"offsets": {
+				"from": 43720,
+				"to": 48720
+			},
+			"text": " Okay, so this project has three main processes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,720",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 48720,
+				"to": 54000
+			},
+			"text": " So first, this is the center of Ethereum core consensus space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,800",
+				"to": "00:01:00,800"
+			},
+			"offsets": {
+				"from": 55800,
+				"to": 60800
+			},
+			"text": " And second, it is also a executable verifiable Python program"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,800",
+				"to": "00:01:07,920"
+			},
+			"offsets": {
+				"from": 60800,
+				"to": 67920
+			},
+			"text": " that you can use it to run the consensus logic with."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,920",
+				"to": "00:01:12,920"
+			},
+			"offsets": {
+				"from": 67920,
+				"to": 72920
+			},
+			"text": " And the third, it's also our test factor generators"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,920",
+				"to": "00:01:17,960"
+			},
+			"offsets": {
+				"from": 72920,
+				"to": 77960
+			},
+			"text": " for the CL clients, the consensus layer clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,960",
+				"to": "00:01:20,520"
+			},
+			"offsets": {
+				"from": 77960,
+				"to": 80520
+			},
+			"text": " to test their implementations with."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,520",
+				"to": "00:01:24,320"
+			},
+			"offsets": {
+				"from": 80520,
+				"to": 84320
+			},
+			"text": " And so if there's a new features"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,320",
+				"to": "00:01:26,680"
+			},
+			"offsets": {
+				"from": 84320,
+				"to": 86680
+			},
+			"text": " that we are thinking about to apply it"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,680",
+				"to": "00:01:31,440"
+			},
+			"offsets": {
+				"from": 86680,
+				"to": 91440
+			},
+			"text": " in the consensus side, like the beacon chain side."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,440",
+				"to": "00:01:36,440"
+			},
+			"offsets": {
+				"from": 91440,
+				"to": 96440
+			},
+			"text": " So you might try to prototype it with the markdown files"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,440",
+				"to": "00:01:38,920"
+			},
+			"offsets": {
+				"from": 96440,
+				"to": 98920
+			},
+			"text": " that I will introduce later."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,920",
+				"to": "00:01:42,760"
+			},
+			"offsets": {
+				"from": 98920,
+				"to": 102760
+			},
+			"text": " And we implement it in markdown files"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,760",
+				"to": "00:01:44,920"
+			},
+			"offsets": {
+				"from": 102760,
+				"to": 104920
+			},
+			"text": " and we'll do the test."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,920",
+				"to": "00:01:48,120"
+			},
+			"offsets": {
+				"from": 104920,
+				"to": 108120
+			},
+			"text": " And the test vectors would be generated"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,120",
+				"to": "00:01:52,200"
+			},
+			"offsets": {
+				"from": 108120,
+				"to": 112200
+			},
+			"text": " with the Python progress test case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,200",
+				"to": "00:01:55,920"
+			},
+			"offsets": {
+				"from": 112200,
+				"to": 115920
+			},
+			"text": " like the pi test if you have used Python before."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,920",
+				"to": "00:02:00,120"
+			},
+			"offsets": {
+				"from": 115920,
+				"to": 120120
+			},
+			"text": " And for clientings, they can download the test vectors"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,120",
+				"to": "00:02:02,440"
+			},
+			"offsets": {
+				"from": 120120,
+				"to": 122440
+			},
+			"text": " to test their implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,440",
+				"to": "00:02:06,400"
+			},
+			"offsets": {
+				"from": 122440,
+				"to": 126400
+			},
+			"text": " So if you understand this process, you can see that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,400",
+				"to": "00:02:11,160"
+			},
+			"offsets": {
+				"from": 126400,
+				"to": 131160
+			},
+			"text": " oh sorry, the spec is now important"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,160",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 131160,
+				"to": 136000
+			},
+			"text": " and unique component in the whole CLR and D process."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 141000
+			},
+			"text": " And it also helps us to find some very basic box"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 145000
+			},
+			"text": " that before clientings started to program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:27,480"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 147480
+			},
+			"text": " to actually prototype and test it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,480",
+				"to": "00:02:33,640"
+			},
+			"offsets": {
+				"from": 147480,
+				"to": 153640
+			},
+			"text": " Also, it helps clientings to sync with the core specs"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,640",
+				"to": "00:02:35,480"
+			},
+			"offsets": {
+				"from": 153640,
+				"to": 155480
+			},
+			"text": " more efficiently."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,480",
+				"to": "00:02:39,720"
+			},
+			"offsets": {
+				"from": 155480,
+				"to": 159720
+			},
+			"text": " The reason why we chose Python instead of other language"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,720",
+				"to": "00:02:43,200"
+			},
+			"offsets": {
+				"from": 159720,
+				"to": 163200
+			},
+			"text": " was that because it's probably, I think Python is probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,200",
+				"to": "00:02:46,680"
+			},
+			"offsets": {
+				"from": 163200,
+				"to": 166680
+			},
+			"text": " the most readable programming language"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,680",
+				"to": "00:02:48,560"
+			},
+			"offsets": {
+				"from": 166680,
+				"to": 168560
+			},
+			"text": " for most developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,560",
+				"to": "00:02:52,160"
+			},
+			"offsets": {
+				"from": 168560,
+				"to": 172160
+			},
+			"text": " Like, you can say, like, Python just should or could."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,160",
+				"to": "00:02:54,400"
+			},
+			"offsets": {
+				"from": 172160,
+				"to": 174400
+			},
+			"text": " Okay, now let's see how to read it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,400",
+				"to": "00:02:56,560"
+			},
+			"offsets": {
+				"from": 174400,
+				"to": 176560
+			},
+			"text": " Oh, I shouldn't stand it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,560",
+				"to": "00:03:00,160"
+			},
+			"offsets": {
+				"from": 176560,
+				"to": 180160
+			},
+			"text": " So this is the specs folders."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,160",
+				"to": "00:03:05,160"
+			},
+			"offsets": {
+				"from": 180160,
+				"to": 185160
+			},
+			"text": " And here you can see some, the blue ones are the main name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,160",
+				"to": "00:03:08,960"
+			},
+			"offsets": {
+				"from": 185160,
+				"to": 188960
+			},
+			"text": " how folks that already be implied."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,960",
+				"to": "00:03:13,960"
+			},
+			"offsets": {
+				"from": 188960,
+				"to": 193960
+			},
+			"text": " And the yellow, green parts are the working progress features."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,200",
+				"to": "00:03:19,480"
+			},
+			"offsets": {
+				"from": 195200,
+				"to": 199480
+			},
+			"text": " So inside one of the directory, you can find that the specs"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,480",
+				"to": "00:03:23,080"
+			},
+			"offsets": {
+				"from": 199480,
+				"to": 203080
+			},
+			"text": " are actually written in the Markdown files."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,080",
+				"to": "00:03:27,520"
+			},
+			"offsets": {
+				"from": 203080,
+				"to": 207520
+			},
+			"text": " The most important entry might be the beacon chain spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,520",
+				"to": "00:03:32,520"
+			},
+			"offsets": {
+				"from": 207520,
+				"to": 212520
+			},
+			"text": " And it's also like, for choice or P2P interface in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,520",
+				"to": "00:03:37,440"
+			},
+			"offsets": {
+				"from": 212520,
+				"to": 217440
+			},
+			"text": " And we can define the constants and configurations"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,440",
+				"to": "00:03:41,960"
+			},
+			"offsets": {
+				"from": 217440,
+				"to": 221960
+			},
+			"text": " just like you are writing Markdown in the tables."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,960",
+				"to": "00:03:45,160"
+			},
+			"offsets": {
+				"from": 221960,
+				"to": 225160
+			},
+			"text": " So it looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,160",
+				"to": "00:03:50,160"
+			},
+			"offsets": {
+				"from": 225160,
+				"to": 230160
+			},
+			"text": " And we also defined the classes, the SSE containers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,160",
+				"to": "00:03:54,800"
+			},
+			"offsets": {
+				"from": 230160,
+				"to": 234800
+			},
+			"text": " So listed objects are for the consensus objects"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,800",
+				"to": "00:03:59,160"
+			},
+			"offsets": {
+				"from": 234800,
+				"to": 239160
+			},
+			"text": " because we use it to do the serialization"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,160",
+				"to": "00:04:01,560"
+			},
+			"offsets": {
+				"from": 239160,
+				"to": 241560
+			},
+			"text": " in the consensus object."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,560",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 241560,
+				"to": 245000
+			},
+			"text": " So this is the example of the state transition functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 250000
+			},
+			"text": " We can just write down the Python functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:14,800"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 254800
+			},
+			"text": " in the code block of in the Markdown files."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,800",
+				"to": "00:04:18,680"
+			},
+			"offsets": {
+				"from": 254800,
+				"to": 258680
+			},
+			"text": " And also you can see there are some assertions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,680",
+				"to": "00:04:23,680"
+			},
+			"offsets": {
+				"from": 258680,
+				"to": 263680
+			},
+			"text": " So if the input is, if the assertion throws and exceptions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,680",
+				"to": "00:04:29,040"
+			},
+			"offsets": {
+				"from": 263680,
+				"to": 269040
+			},
+			"text": " then we could say that, okay, the input is invalid"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,040",
+				"to": "00:04:31,280"
+			},
+			"offsets": {
+				"from": 269040,
+				"to": 271280
+			},
+			"text": " because it doesn't pass the test."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,280",
+				"to": "00:04:33,240"
+			},
+			"offsets": {
+				"from": 271280,
+				"to": 273240
+			},
+			"text": " Okay, there are some more useful links for you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,240",
+				"to": "00:04:36,040"
+			},
+			"offsets": {
+				"from": 273240,
+				"to": 276040
+			},
+			"text": " to understand more about the spec itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,040",
+				"to": "00:04:41,040"
+			},
+			"offsets": {
+				"from": 276040,
+				"to": 281040
+			},
+			"text": " And also, so this is a L, I so call it L in the PySpake"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:45,880"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 285880
+			},
+			"text": " in the setup.py file."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,880",
+				"to": "00:04:51,040"
+			},
+			"offsets": {
+				"from": 285880,
+				"to": 291040
+			},
+			"text": " So it is the program that helps us to parse the Markdown files"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,040",
+				"to": "00:04:54,400"
+			},
+			"offsets": {
+				"from": 291040,
+				"to": 294400
+			},
+			"text": " and convert them into a Python program."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,400",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 294400,
+				"to": 299000
+			},
+			"text": " And so the readers, they don't have to read in the.py file."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:00,720"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 300720
+			},
+			"text": " They can just read the Markdown files,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,720",
+				"to": "00:05:02,560"
+			},
+			"offsets": {
+				"from": 300720,
+				"to": 302560
+			},
+			"text": " which are more readable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,560",
+				"to": "00:05:07,640"
+			},
+			"offsets": {
+				"from": 302560,
+				"to": 307640
+			},
+			"text": " No, it's an example of, so if the phase zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,640",
+				"to": "00:05:12,280"
+			},
+			"offsets": {
+				"from": 307640,
+				"to": 312280
+			},
+			"text": " is the base layer of all consensus space."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,280",
+				"to": "00:05:14,560"
+			},
+			"offsets": {
+				"from": 312280,
+				"to": 314560
+			},
+			"text": " And out here, if you want to understand out here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,560",
+				"to": "00:05:19,560"
+			},
+			"offsets": {
+				"from": 314560,
+				"to": 319560
+			},
+			"text": " you have to merge, extend the phase zero space"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,560",
+				"to": "00:05:23,600"
+			},
+			"offsets": {
+				"from": 319560,
+				"to": 323600
+			},
+			"text": " and the new features in the out here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,600",
+				"to": "00:05:29,040"
+			},
+			"offsets": {
+				"from": 323600,
+				"to": 329040
+			},
+			"text": " And as well, the bad tricks, they have to merge three of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,040",
+				"to": "00:05:33,200"
+			},
+			"offsets": {
+				"from": 329040,
+				"to": 333200
+			},
+			"text": " So I have one means to have to do how to use PySpake."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,200",
+				"to": "00:05:37,120"
+			},
+			"offsets": {
+				"from": 333200,
+				"to": 337120
+			},
+			"text": " And so installation is easy, just install from PyPI"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,120",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 337120,
+				"to": 340000
+			},
+			"text": " or from source code with this command."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:44,120"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 344120
+			},
+			"text": " Okay, this is a very basic Hello World example."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,120",
+				"to": "00:05:47,640"
+			},
+			"offsets": {
+				"from": 344120,
+				"to": 347640
+			},
+			"text": " And this is an example to, you can just write Hello World"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,640",
+				"to": "00:05:50,840"
+			},
+			"offsets": {
+				"from": 347640,
+				"to": 350840
+			},
+			"text": " into the gravity of the beacon block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,840",
+				"to": "00:05:54,520"
+			},
+			"offsets": {
+				"from": 350840,
+				"to": 354520
+			},
+			"text": " And in the first slide, you can import the whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,520",
+				"to": "00:05:59,520"
+			},
+			"offsets": {
+				"from": 354520,
+				"to": 359520
+			},
+			"text": " many bad tricks specs, we need it to spec like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,520",
+				"to": "00:06:05,160"
+			},
+			"offsets": {
+				"from": 359520,
+				"to": 365160
+			},
+			"text": " You can use it as a playground and see the example code"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,160",
+				"to": "00:06:07,700"
+			},
+			"offsets": {
+				"from": 365160,
+				"to": 367700
+			},
+			"text": " in PySpake to try to play with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,840",
+				"to": "00:06:13,760"
+			},
+			"offsets": {
+				"from": 368840,
+				"to": 373760
+			},
+			"text": " Okay, this is how to write your first PySpake test case."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,760",
+				"to": "00:06:18,240"
+			},
+			"offsets": {
+				"from": 373760,
+				"to": 378240
+			},
+			"text": " Okay, you can, there are already some existing helper functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,240",
+				"to": "00:06:21,880"
+			},
+			"offsets": {
+				"from": 378240,
+				"to": 381880
+			},
+			"text": " to help you to prepare the beacon block"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,880",
+				"to": "00:06:26,040"
+			},
+			"offsets": {
+				"from": 381880,
+				"to": 386040
+			},
+			"text": " or to manipulate the beacon state with."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,040",
+				"to": "00:06:28,680"
+			},
+			"offsets": {
+				"from": 386040,
+				"to": 388680
+			},
+			"text": " And there are some assertions here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,680",
+				"to": "00:06:33,680"
+			},
+			"offsets": {
+				"from": 388680,
+				"to": 393680
+			},
+			"text": " these are for us to set our test scores of this test case."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,680",
+				"to": "00:06:37,560"
+			},
+			"offsets": {
+				"from": 393680,
+				"to": 397560
+			},
+			"text": " And important part is here, like you can see"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,560",
+				"to": "00:06:41,200"
+			},
+			"offsets": {
+				"from": 397560,
+				"to": 401200
+			},
+			"text": " there are some yout, Py some yout comments."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,200",
+				"to": "00:06:46,200"
+			},
+			"offsets": {
+				"from": 401200,
+				"to": 406200
+			},
+			"text": " It is us to force to output the test vectors."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,200",
+				"to": "00:06:51,440"
+			},
+			"offsets": {
+				"from": 406200,
+				"to": 411440
+			},
+			"text": " For example, this one, we output the pre-state"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,440",
+				"to": "00:06:56,440"
+			},
+			"offsets": {
+				"from": 411440,
+				"to": 416440
+			},
+			"text": " and the side beacon blocks and the post-state."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,440",
+				"to": "00:06:58,640"
+			},
+			"offsets": {
+				"from": 416440,
+				"to": 418640
+			},
+			"text": " So output file will be there"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,640",
+				"to": "00:07:03,400"
+			},
+			"offsets": {
+				"from": 418640,
+				"to": 423400
+			},
+			"text": " and this is a pure function for the cliente is to test with."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,400",
+				"to": "00:07:05,640"
+			},
+			"offsets": {
+				"from": 423400,
+				"to": 425640
+			},
+			"text": " Okay, documents, if you want to see more documents,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,640",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 425640,
+				"to": 427000
+			},
+			"text": " you can see the URLs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,680",
+				"to": "00:07:10,720"
+			},
+			"offsets": {
+				"from": 427680,
+				"to": 430720
+			},
+			"text": " And okay, so this is the most important page actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,720",
+				"to": "00:07:13,440"
+			},
+			"offsets": {
+				"from": 430720,
+				"to": 433440
+			},
+			"text": " So how to contribute with PySpake?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,440",
+				"to": "00:07:17,960"
+			},
+			"offsets": {
+				"from": 433440,
+				"to": 437960
+			},
+			"text": " If you are interested in helping with consensus layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,960",
+				"to": "00:07:20,840"
+			},
+			"offsets": {
+				"from": 437960,
+				"to": 440840
+			},
+			"text": " and I think PySpake is a really good start"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,840",
+				"to": "00:07:23,640"
+			},
+			"offsets": {
+				"from": 440840,
+				"to": 443640
+			},
+			"text": " to learn and contribute with."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,640",
+				"to": "00:07:25,600"
+			},
+			"offsets": {
+				"from": 443640,
+				"to": 445600
+			},
+			"text": " And there's some different labels"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,600",
+				"to": "00:07:27,960"
+			},
+			"offsets": {
+				"from": 445600,
+				"to": 447960
+			},
+			"text": " that you can participate in."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,960",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 447960,
+				"to": 452000
+			},
+			"text": " And you can do it from just fixing a little typo"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:35,560"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 455560
+			},
+			"text": " or to submitting a bug report."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,560",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 455560,
+				"to": 460000
+			},
+			"text": " And if it's got a step, I think the app will be happy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:42,600"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 462600
+			},
+			"text": " to give you the rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,600",
+				"to": "00:07:46,840"
+			},
+			"offsets": {
+				"from": 462600,
+				"to": 466840
+			},
+			"text": " Okay, and we also have a looking for some in-house"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,840",
+				"to": "00:07:50,120"
+			},
+			"offsets": {
+				"from": 466840,
+				"to": 470120
+			},
+			"text": " resource for PySpake in foundations."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,120",
+				"to": "00:07:52,720"
+			},
+			"offsets": {
+				"from": 470120,
+				"to": 472720
+			},
+			"text": " So if you are interested in it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,720",
+				"to": "00:07:54,080"
+			},
+			"offsets": {
+				"from": 472720,
+				"to": 474080
+			},
+			"text": " feel free to reach out to me"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,080",
+				"to": "00:07:57,600"
+			},
+			"offsets": {
+				"from": 474080,
+				"to": 477600
+			},
+			"text": " or if you want to participate or have any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,600",
+				"to": "00:07:59,080"
+			},
+			"offsets": {
+				"from": 477600,
+				"to": 479080
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,080",
+				"to": "00:08:00,160"
+			},
+			"offsets": {
+				"from": 479080,
+				"to": 480160
+			},
+			"text": " - Thank you, Sean."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,160",
+				"to": "00:08:02,320"
+			},
+			"offsets": {
+				"from": 480160,
+				"to": 482320
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,320",
+				"to": "00:08:04,320"
+			},
+			"offsets": {
+				"from": 482320,
+				"to": 484320
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,320",
+				"to": "00:08:06,320"
+			},
+			"offsets": {
+				"from": 484320,
+				"to": 486320
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,320",
+				"to": "00:08:08,320"
+			},
+			"offsets": {
+				"from": 486320,
+				"to": 488320
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,320",
+				"to": "00:08:37,320"
+			},
+			"offsets": {
+				"from": 488320,
+				"to": 517320
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,2507 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 20000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 40000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 43000
+			},
+			"text": " >> Okay. So, hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 44000
+			},
+			"text": " My name is Augusto."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 47000
+			},
+			"text": " I have been working with the Reding Project for the past two years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 52000
+			},
+			"text": " And today I'm going to present to you guys what we have done for the past year"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 54000
+			},
+			"text": " and what is included in developer preview."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 56000
+			},
+			"text": " So, for those of you that doesn't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 60000
+			},
+			"text": " Reding is an scalability solution that we have built for Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 64000
+			},
+			"text": " and it can be scaled to a bit of million transactions per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 67000
+			},
+			"text": " Okay? So, I'm going to give you a quick agenda of my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 70000
+			},
+			"text": " This is going to be split in two parts, and the first ten minutes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 75000
+			},
+			"text": " I'm going to talk about Reding, and the second half, for the last ten minutes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 77000
+			},
+			"text": " we're going to talk about the micro-rediting."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 81000
+			},
+			"text": " So, for the Reding, we're going to talk about the Reding APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 86000
+			},
+			"text": " Reding is exposing an HTTP RESTful API so that you guys can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 88000
+			},
+			"text": " to build applications on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 92000
+			},
+			"text": " And the goal of my presentation today is to explain to all of you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 94000
+			},
+			"text": " how you can use Reding to build apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 100000
+			},
+			"text": " And to that regard, we're going to talk about how can you join the Reding Network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 103000
+			},
+			"text": " Once you have joined the Reding Network, how can you make transfers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 107000
+			},
+			"text": " and how can you react to transfers that you know it has received?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 109000
+			},
+			"text": " So, that's agenda."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 111000
+			},
+			"text": " So, first things first, the setup phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 113000
+			},
+			"text": " So, Reding is an open-source project."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 117000
+			},
+			"text": " We have it available on the GitHub, and under the release pages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 121000
+			},
+			"text": " we have an app image that any of you guys can use in Cloud Reding."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 125000
+			},
+			"text": " It's an executable, you can just download and start running in your machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 128000
+			},
+			"text": " Right now, Reding only works on Linux."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 132000
+			},
+			"text": " We are fixing some issues with Mac OS in a week in the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 136000
+			},
+			"text": " In the next release, you should be able to use Reding on Mac OS 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 139000
+			},
+			"text": " For the moment, we don't support Windows."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 143000
+			},
+			"text": " And also, I once pointed out that Reding is not an Ethereum node."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 147000
+			},
+			"text": " Reding is a separate process that communicates with an Ethereum node."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 151000
+			},
+			"text": " So, to use Reding, you will also need an Ethereum node running on the machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 153000
+			},
+			"text": " that you're working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 158000
+			},
+			"text": " And for that, for the Reding process to communicate with the Ethereum node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 161000
+			},
+			"text": " you will need to enable JSON RPC because that's the current interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 163000
+			},
+			"text": " that we use to communicate."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 168000
+			},
+			"text": " So, once you have this setup, then let's decide how to talk about how to use Reding."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 171000
+			},
+			"text": " So, the first thing that you want to do once you have Reding installed"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 173000
+			},
+			"text": " is to connect to the Reding network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 179000
+			},
+			"text": " And the Reding network in the Reding process, we have two APIs to connect to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 181000
+			},
+			"text": " The first one that I'm going to present to you guys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 183000
+			},
+			"text": " it's the endpoint for connections."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 189000
+			},
+			"text": " This is an automatic way of setting up channels that Reding is going to manage for you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 195000
+			},
+			"text": " And the goal of this endpoint is for you guys to configure Reding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 201000
+			},
+			"text": " telling how much Reding should use to manage and open channels with the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 206000
+			},
+			"text": " So, our goal is to never start using the tokens for that count that's configured with Reding"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 209000
+			},
+			"text": " without the user permission, and you need to use that endpoint"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 211000
+			},
+			"text": " telling us how much funds do you want to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 216000
+			},
+			"text": " Once you have used the endpoint, Reding knows which funds you want to use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 219000
+			},
+			"text": " how much of it you're allowing Reding to use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 222000
+			},
+			"text": " and then Reding will manage channels for you on your behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 225000
+			},
+			"text": " So, that's the automatic channel management."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 229000
+			},
+			"text": " You can use it with the put verb in the API1 connections endpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 233000
+			},
+			"text": " If you don't want to use the automatic management, you can open channels by hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 237000
+			},
+			"text": " That's done by the put verb in the channels endpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 241000
+			},
+			"text": " And that's basically the same thing, but you're going to manage the channels on your own."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 244000
+			},
+			"text": " You just specify everything that you want to use in the JSON"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " that's going to be sent to the server, and the Reding will use the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 250000
+			},
+			"text": " that you provide to it to open channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 253000
+			},
+			"text": " So, everything like the token address, the amount of funds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 257000
+			},
+			"text": " the target node that you're connecting to, it's defined by you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 261000
+			},
+			"text": " So, these are the two APIs for connecting to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 265000
+			},
+			"text": " Once you have connected to a network, you have channels available to be managed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 271000
+			},
+			"text": " The way that you can manage the channels open with Reding is by using the patch keyword,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 274000
+			},
+			"text": " the patch verb for the HTTP."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 277000
+			},
+			"text": " And you can then patch the current status of your channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 282000
+			},
+			"text": " and increase the deposit if you want to have more funds to make more transfers"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 285000
+			},
+			"text": " or you can change the state of the channel by closing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 290000
+			},
+			"text": " Once you close the channel, Reding will automatically wait for the settlement period."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 293000
+			},
+			"text": " That's the period that we have for dispute resolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 298000
+			},
+			"text": " And once the dispute is over, Reding will withdraw your tokens from the channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 303000
+			},
+			"text": " using the proofs that was available by both of the parties in the channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 308000
+			},
+			"text": " So, that's everything that we need to know on how to connect to the Reding network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 311000
+			},
+			"text": " And once you have connected to the Reding network and you have channels opened,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 313000
+			},
+			"text": " you can make transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 318000
+			},
+			"text": " So, to make transfers, you can use the post-verb with the transfers end point"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 322000
+			},
+			"text": " and that end point is going to expose you guys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 325000
+			},
+			"text": " #TimeLock mediated transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 328000
+			},
+			"text": " #TimeLock are a nice abstraction that we can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 332000
+			},
+			"text": " and that makes for a concealable and an expirable transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 338000
+			},
+			"text": " So, that's the best kind of transfers that we have that expose the nicest error model"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 341000
+			},
+			"text": " for people to build applications on top."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 347000
+			},
+			"text": " For making transfers, there is an important detail that Reding is not part of your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 350000
+			},
+			"text": " Reding is a server that's running on a computer that you're going to communicate"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 352000
+			},
+			"text": " through REST APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 357000
+			},
+			"text": " You need to provide some knowledge or some application-specific data to Reding"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 361000
+			},
+			"text": " so that both of the nodes, the ones that's paying, the ones that's receiving the payment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 363000
+			},
+			"text": " know what the payment is regarding to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 366000
+			},
+			"text": " So, let's assume that you're building an e-commerce application"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 368000
+			},
+			"text": " or something that needs to make a payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " For the e-commerce application, you can give an edging fire to a cart"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 374000
+			},
+			"text": " and use that identifier as part of the transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 381000
+			},
+			"text": " So, that's the way that a declined application can tell the note that's being paid"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 383000
+			},
+			"text": " and what the payment is about."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 387000
+			},
+			"text": " Currently, we don't allow, in the current version of the API,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 390000
+			},
+			"text": " to send arbitrary data that may change in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 392000
+			},
+			"text": " That's just the current transport that we have available."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 397000
+			},
+			"text": " Okay, so once you've made transfers, that's two parts of the agenda."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 401000
+			},
+			"text": " The last thing that you want to do is react to receiving payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 403000
+			},
+			"text": " for the Reding network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 406000
+			},
+			"text": " And that can be done by pulling for events in the Reding node."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 410000
+			},
+			"text": " We are just providing a simple API for the moment with pulling in the future view."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 415000
+			},
+			"text": " We will add maybe long pulling or different transport that can push events for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 420000
+			},
+			"text": " But the way that you can react to payments is by watching for the event transfer received."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 425000
+			},
+			"text": " That event is emitted every time that you receive a payment and then you can react to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 431000
+			},
+			"text": " And that event will have the identifier and the token and the amount of the transfer that you received."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 437000
+			},
+			"text": " So, that's everything that you need to know about the endpoints available in Reding."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 442000
+			},
+			"text": " And with that, you can build applications on top of it that make payments using the Reding network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 447000
+			},
+			"text": " So, if you want your test, Reding, we currently are doing a developer preview."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 451000
+			},
+			"text": " So, it's not available on the mainnet, it's only available on the Robson test network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 456000
+			},
+			"text": " And on the Robson test network, we have deployed all the Reding smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 458000
+			},
+			"text": " and including the Reding test token."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 463000
+			},
+			"text": " And with the Reding test token, we have made available a mint method"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 469000
+			},
+			"text": " that you can use to maintain yourself some test tokens and use that test token to make payments in the test network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 475000
+			},
+			"text": " So, once you have used the Reding test token to get yourself some tokens in the test network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 477000
+			},
+			"text": " you can connect to some nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 480000
+			},
+			"text": " And here is a node that you may try to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 485000
+			},
+			"text": " We have made it, it's a programable node that's just going to reply to the transfers that you make to it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 490000
+			},
+			"text": " with a transfer of the same amount and same token in the case of the Reding test token."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 496000
+			},
+			"text": " And if you want to connect to the test network using the automatic connection endpoint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 502000
+			},
+			"text": " we have made available a test network with 100 Reding nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 505000
+			},
+			"text": " So, when you use the automatic connection management,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 510000
+			},
+			"text": " you're probably going to connect to one of the nodes and everything is going to work as expected."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 516000
+			},
+			"text": " So, these details, I'm not going to focus too much on them, they are all available in documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 521000
+			},
+			"text": " And as an example of an application built on top of Reding, we have built the web UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 526000
+			},
+			"text": " So, the web UI is one of the UIs that we have available for the Reding project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 531000
+			},
+			"text": " and the web UI is available in our source code that you can just find in the UI folder"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 536000
+			},
+			"text": " and that it's built using these endpoints that I have showed you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 539000
+			},
+			"text": " So, that's everything that I have to show you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 543000
+			},
+			"text": " That's how you need to know to build applications on top of Reding."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 548000
+			},
+			"text": " And if you want more additional details on the format of the JSON files,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 552000
+			},
+			"text": " the response and the different verbs are different endpoints that we have available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 556000
+			},
+			"text": " you can go to the Reding network with the docs and we have much more information there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 563000
+			},
+			"text": " including how to deploy your own tokens and use a different test network if you don't want to use the Rops and Test network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 569000
+			},
+			"text": " So, with that, I'm just going to leave for Loredenum that's going to talk about micro-railing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 574000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 580000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 587000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 593000
+			},
+			"text": " Hello. I'm Loredenum, one of the developers that contributed to micro-railing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 600000
+			},
+			"text": " I'm going to tell you today what is micro-railing for what you can use it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 607000
+			},
+			"text": " and I'll also show you a small live demo of a token-fueled robot."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 610000
+			},
+			"text": " So, what is micro-railing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 616000
+			},
+			"text": " Micro-railing is a robust off-chain payment channel framework,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 620000
+			},
+			"text": " and it's easy to use off-the-shelf."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 633000
+			},
+			"text": " It is good for 80% of the use cases that someone can think of when they are thinking of using Raiden for their own service or business."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 642000
+			},
+			"text": " It is a unidirectional many-to-one implementation, which means we don't need to think about routing issues"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 650000
+			},
+			"text": " and incentivizing fees for users who have open channels and want to share them with others."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 658000
+			},
+			"text": " This is why we have off-chain transactions that are fast and free."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 662000
+			},
+			"text": " Micro-railing is available now on the COVID test net,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 669000
+			},
+			"text": " and will be available on the main net by the end of November, which is by the end of this month."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 672000
+			},
+			"text": " So, what can you build with micro-railing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 677000
+			},
+			"text": " For human consumption, the most straightforward use case is paper use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 685000
+			},
+			"text": " and we already have two demos, one with a fortune cookie paywall that is online now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 693000
+			},
+			"text": " and an unpleasant alternate world where you pay for Wikipedia."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 701000
+			},
+			"text": " But the most interesting use case is the machine-to-machine micro-payments that you can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 710000
+			},
+			"text": " So, basically, if you have an API that you want to monetize, you can use micro-railing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 714000
+			},
+			"text": " From utilities to data storage to scheduled API queries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 724000
+			},
+			"text": " and we already have a machine-to-machine demo where we query the price of Ether in US dollars each second."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 732000
+			},
+			"text": " And you can see the entire lifecycle of a channel from opening to depositing new tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 736000
+			},
+			"text": " to closing it, and also see the off-chain micro-payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 740000
+			},
+			"text": " How are they created and received?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 745000
+			},
+			"text": " And now for the live demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 750000
+			},
+			"text": " I want you to bear with me a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 759000
+			},
+			"text": " So, this is Robo, and I hope there's a camera."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 772000
+			},
+			"text": " Robo has his own Ethereum address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 777000
+			},
+			"text": " and he uses micro-railing to be paid in tokens for his work."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 780000
+			},
+			"text": " We already have an account here with Robo."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 785000
+			},
+			"text": " This is the JavaScript client, and we used Node-Reds for this dashboard."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 790000
+			},
+			"text": " And we can see that we already have an open channel with a deposit of 50 tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 799000
+			},
+			"text": " and a channel balance of two tokens, which means that we already paid Robo two tokens for his services."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 806000
+			},
+			"text": " We have a remote control for him, and the buttons for forward back, right, left, back left, and back right"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 811000
+			},
+			"text": " are connected to a micro-payment endpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 821000
+			},
+			"text": " This is the micro-rated server, and we can see that the JavaScript client has signed a balance proof for us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 830000
+			},
+			"text": " and that instantly the micro-rated server has received that payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 836000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 844000
+			},
+			"text": " Sorry, I don't have enough time to show you everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 848000
+			},
+			"text": " You can see that the balance has increased with every press of the button."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 853000
+			},
+			"text": " You can, of course, do this by timing the robot or measuring the distance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 861000
+			},
+			"text": " but this was, I mean, we implemented this very, very fast in a couple of days,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 866000
+			},
+			"text": " and it's not that complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 878000
+			},
+			"text": " Okay. What we can do when we remain without tokens is go to our account and deposit more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 880000
+			},
+			"text": " and this is an on-chain transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 886000
+			},
+			"text": " So what you've seen until now are off-chain micro-payments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 894000
+			},
+			"text": " and to verify this, we can go to Etherscan and see that the transaction will be included in the box shortly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 903000
+			},
+			"text": " and we can also see the micro-rated server registering the event for depositing new tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 910000
+			},
+			"text": " Of course, when we've finished everything with Robo, we can close the channel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 921000
+			},
+			"text": " and again, we can verify in Etherscan that this is an on-chain transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 928000
+			},
+			"text": " and the micro-rated server has also received this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 939000
+			},
+			"text": " Okay. Going back to the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 945000
+			},
+			"text": " The code for this, for the examples are in the micro-rated repositories,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 952000
+			},
+			"text": " under micro-rated and micro-rated examples, and for the robot, the token-hungry car,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 960000
+			},
+			"text": " we will link it in the readme, but for now, the JSON for setting up the Node-RED dashboard"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 968000
+			},
+			"text": " is in one of my personal repositories. So to recap a bit, you can open a channel on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:12,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 972000
+			},
+			"text": " You can deposit tokens on-chain. You can close a channel on-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 972000,
+				"to": 979000
+			},
+			"text": " but the essence of micro-rated are the micro-payments that are done off-chain, fast, and free,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 985000
+			},
+			"text": " between opening and closing a channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:29,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 989000
+			},
+			"text": " I'll try to make it fast, a simple explanation of how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 989000,
+				"to": 993000
+			},
+			"text": " The sender and the receiver both keep copies of the channel data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 999000
+			},
+			"text": " which is receiver and sender Ethereum addresses, the block number at which the channel has been created,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1004000
+			},
+			"text": " and the current balance, because we've seen that the balance increases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1013000
+			},
+			"text": " so it's the last status. And also the receiver has the last balance proof received from the sender."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1020000
+			},
+			"text": " What is the last balance proof? It's basically a message signed by the sender,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1025000
+			},
+			"text": " which contains the current balance, the block number, and the receiver's address."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1033000
+			},
+			"text": " The micro-payment works like this. The sender sends all this data along with his signature to the receiver."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1040000
+			},
+			"text": " The receiver provides the resource and also saves this signed balance proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1051000
+			},
+			"text": " We also support the ERC 223 in work standard, along with the ERC 24, opening a channel and the positing tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1059000
+			},
+			"text": " because the ERC 223 offers us the possibility of consuming less gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1065000
+			},
+			"text": " because we only do one transaction instead of two for approving and opening a channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1071000
+			},
+			"text": " I'm going to skip this very fast. Maybe tell you a little bit about closing a channel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1075000
+			},
+			"text": " and we can do this. We can find ourselves in three states."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1084000
+			},
+			"text": " One is a cooperative close, which is the best-case scenario, when the sender queries the receiver for a closing signature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1091000
+			},
+			"text": " and then closes the channel himself by providing his balance signature and the receiver's closing signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1099000
+			},
+			"text": " And everything is well and good. If anything goes wrong, we have a challenge period where the channel can be closed by the receiver"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1104000
+			},
+			"text": " by providing that last balance proof saved."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1115000
+			},
+			"text": " In conclusion, micro-written is ready to use. It is the go-to solution for frequent, fast, and free ERC 2-N2 token-based off-chain micro-payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1122000
+			},
+			"text": " on the Ethereum blockchain. And don't forget, robots also want crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1127000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1129000
+			},
+			"text": " Thank you, Laura, Donna."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1137000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1149000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1151000
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

@@ -1,0 +1,516 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,280"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3280
+			},
+			"text": " Hello, my name is Haykom."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,280",
+				"to": "00:00:08,960"
+			},
+			"offsets": {
+				"from": 3280,
+				"to": 8960
+			},
+			"text": " I'm a software engineer at SLOCAT and now I want to show you PIT."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,960",
+				"to": "00:00:16,720"
+			},
+			"offsets": {
+				"from": 8960,
+				"to": 16720
+			},
+			"text": " PIT helps us at SLOCAT to understand and to document smart contract architectures."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,720",
+				"to": "00:00:24,040"
+			},
+			"offsets": {
+				"from": 16720,
+				"to": 24040
+			},
+			"text": " PIT either accepts solidity files or it will file JSON files as input."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,040",
+				"to": "00:00:29,800"
+			},
+			"offsets": {
+				"from": 24040,
+				"to": 29800
+			},
+			"text": " I'm now loading the contracts of the NHD Web Origin project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,800",
+				"to": "00:00:34,520"
+			},
+			"offsets": {
+				"from": 29800,
+				"to": 34520
+			},
+			"text": " This takes a few seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,520",
+				"to": "00:00:39,280"
+			},
+			"offsets": {
+				"from": 34520,
+				"to": 39280
+			},
+			"text": " Now on the left side you can see the files I just loaded and on the right side you see"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,280",
+				"to": "00:00:45,480"
+			},
+			"offsets": {
+				"from": 39280,
+				"to": 45480
+			},
+			"text": " the inheritance structure of these contracts and you also see the enumerations and swaps"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,480",
+				"to": "00:00:48,520"
+			},
+			"offsets": {
+				"from": 45480,
+				"to": 48520
+			},
+			"text": " which are defined in these contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,520",
+				"to": "00:00:51,360"
+			},
+			"offsets": {
+				"from": 48520,
+				"to": 51360
+			},
+			"text": " So now I'm selecting one contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,360",
+				"to": "00:00:57,680"
+			},
+			"offsets": {
+				"from": 51360,
+				"to": 57680
+			},
+			"text": " As you can see this contract inherits from asset logic and it defines the enumerations"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,680",
+				"to": "00:01:00,680"
+			},
+			"offsets": {
+				"from": 57680,
+				"to": 60680
+			},
+			"text": " asset type and compliance."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,680",
+				"to": "00:01:04,640"
+			},
+			"offsets": {
+				"from": 60680,
+				"to": 64640
+			},
+			"text": " On the left side you can see the inspector view."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,640",
+				"to": "00:01:08,120"
+			},
+			"offsets": {
+				"from": 64640,
+				"to": 68120
+			},
+			"text": " At first you see the name of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,120",
+				"to": "00:01:13,720"
+			},
+			"offsets": {
+				"from": 68120,
+				"to": 73720
+			},
+			"text": " Then you see a documentation label which is derived from the documentation annotations"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,720",
+				"to": "00:01:16,520"
+			},
+			"offsets": {
+				"from": 73720,
+				"to": 76520
+			},
+			"text": " in the source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,520",
+				"to": "00:01:20,760"
+			},
+			"offsets": {
+				"from": 76520,
+				"to": 80760
+			},
+			"text": " This contract has two inherited state variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,760",
+				"to": "00:01:26,120"
+			},
+			"offsets": {
+				"from": 80760,
+				"to": 86120
+			},
+			"text": " If this contract is deployed on a chain and you have injected Web3 object you can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,120",
+				"to": "00:01:34,280"
+			},
+			"offsets": {
+				"from": 86120,
+				"to": 94280
+			},
+			"text": " see the content which is on the chain of these state variables here and here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,280",
+				"to": "00:01:41,120"
+			},
+			"offsets": {
+				"from": 94280,
+				"to": 101120
+			},
+			"text": " The next thing you can see is the list of all the functions also inherited ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,120",
+				"to": "00:01:43,080"
+			},
+			"offsets": {
+				"from": 101120,
+				"to": 103080
+			},
+			"text": " I'm now selecting one function."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,080",
+				"to": "00:01:44,960"
+			},
+			"offsets": {
+				"from": 103080,
+				"to": 104960
+			},
+			"text": " At first you see the function name."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,960",
+				"to": "00:01:49,880"
+			},
+			"offsets": {
+				"from": 104960,
+				"to": 109880
+			},
+			"text": " Then you see the modifiers and another documentation tag."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,880",
+				"to": "00:01:55,160"
+			},
+			"offsets": {
+				"from": 109880,
+				"to": 115160
+			},
+			"text": " You also see the parameter, the input parameter and several output parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,160",
+				"to": "00:02:00,400"
+			},
+			"offsets": {
+				"from": 115160,
+				"to": 120400
+			},
+			"text": " Again, if you have injected Web3 object you can also call this function."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,400",
+				"to": "00:02:06,560"
+			},
+			"offsets": {
+				"from": 120400,
+				"to": 126560
+			},
+			"text": " Yeah, now here you can see the return values."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,560",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 126560,
+				"to": 132000
+			},
+			"text": " Then you also have a list of the modifiers which are defined in this contract also with"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:14,840"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 134840
+			},
+			"text": " the parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,840",
+				"to": "00:02:19,400"
+			},
+			"offsets": {
+				"from": 134840,
+				"to": 139400
+			},
+			"text": " The next thing is the list of the events which are defined in this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,400",
+				"to": "00:02:25,160"
+			},
+			"offsets": {
+				"from": 139400,
+				"to": 145160
+			},
+			"text": " It's also possible to now process through the trigger events on this chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,160",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 145160,
+				"to": 152000
+			},
+			"text": " In this case I want to have all the events from the first to the last block."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:34,960"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 154960
+			},
+			"text": " Now I'm getting these events."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,960",
+				"to": "00:02:40,960"
+			},
+			"offsets": {
+				"from": 154960,
+				"to": 160960
+			},
+			"text": " On the left column you can always see the block number and then you can see the parameters"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,960",
+				"to": "00:02:43,200"
+			},
+			"offsets": {
+				"from": 160960,
+				"to": 163200
+			},
+			"text": " of this event."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,200",
+				"to": "00:02:48,840"
+			},
+			"offsets": {
+				"from": 163200,
+				"to": 168840
+			},
+			"text": " There's also a raw view where you can see additional information."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,840",
+				"to": "00:02:54,920"
+			},
+			"offsets": {
+				"from": 168840,
+				"to": 174920
+			},
+			"text": " This can help if you want to debug some smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,920",
+				"to": "00:03:00,120"
+			},
+			"offsets": {
+				"from": 174920,
+				"to": 180120
+			},
+			"text": " Besides the inheritance view you can also see a references view."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,120",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 180120,
+				"to": 188000
+			},
+			"text": " In this view you can see which contract references another contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 189000
+			},
+			"text": " That's already it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:10,400"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 190400
+			},
+			"text": " And yeah, no, rest up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,400",
+				"to": "00:03:14,400"
+			},
+			"offsets": {
+				"from": 190400,
+				"to": 194400
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,400",
+				"to": "00:03:24,400"
+			},
+			"offsets": {
+				"from": 194400,
+				"to": 204400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,400",
+				"to": "00:03:34,400"
+			},
+			"offsets": {
+				"from": 204400,
+				"to": 214400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,400",
+				"to": "00:03:44,400"
+			},
+			"offsets": {
+				"from": 214400,
+				"to": 224400
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

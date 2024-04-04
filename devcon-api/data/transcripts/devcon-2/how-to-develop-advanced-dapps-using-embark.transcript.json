@@ -1,0 +1,3035 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,440"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2440
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,440",
+				"to": "00:00:19,120"
+			},
+			"offsets": {
+				"from": 2440,
+				"to": 19120
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,120",
+				"to": "00:00:20,680"
+			},
+			"offsets": {
+				"from": 19120,
+				"to": 20680
+			},
+			"text": " So my name is Yuri."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,680",
+				"to": "00:00:24,280"
+			},
+			"offsets": {
+				"from": 20680,
+				"to": 24280
+			},
+			"text": " I'm a developer from Montreal, Canada."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,280",
+				"to": "00:00:28,960"
+			},
+			"offsets": {
+				"from": 24280,
+				"to": 28960
+			},
+			"text": " I'm the author of Embark, as well as some other projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,960",
+				"to": "00:00:32,520"
+			},
+			"offsets": {
+				"from": 28960,
+				"to": 32520
+			},
+			"text": " More recently, Transaction Relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,520",
+				"to": "00:00:36,040"
+			},
+			"offsets": {
+				"from": 32520,
+				"to": 36040
+			},
+			"text": " You might know me in Reddit as an Iliumcraft."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,040",
+				"to": "00:00:39,960"
+			},
+			"offsets": {
+				"from": 36040,
+				"to": 39960
+			},
+			"text": " So today I'm going to talk about Embark 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,960",
+				"to": "00:00:46,640"
+			},
+			"offsets": {
+				"from": 39960,
+				"to": 46640
+			},
+			"text": " And so Embark was the first framework for Ethereum Dapps."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,640",
+				"to": "00:00:51,760"
+			},
+			"offsets": {
+				"from": 46640,
+				"to": 51760
+			},
+			"text": " And to get some background on some of the features,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,760",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 51760,
+				"to": 55000
+			},
+			"text": " so it's compatible with any build pipeline."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:57,320"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 57320
+			},
+			"text": " You can use it with grants or meet your--"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,320",
+				"to": "00:01:00,480"
+			},
+			"offsets": {
+				"from": 57320,
+				"to": 60480
+			},
+			"text": " or whatever pipeline you're used to."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,480",
+				"to": "00:01:04,120"
+			},
+			"offsets": {
+				"from": 60480,
+				"to": 64120
+			},
+			"text": " Embark 2 will come with its own pipeline"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,120",
+				"to": "00:01:07,160"
+			},
+			"offsets": {
+				"from": 64120,
+				"to": 67160
+			},
+			"text": " for convenience purposes for development."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,160",
+				"to": "00:01:10,920"
+			},
+			"offsets": {
+				"from": 67160,
+				"to": 70920
+			},
+			"text": " But you will still be able to use it with any pipeline."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,920",
+				"to": "00:01:15,920"
+			},
+			"offsets": {
+				"from": 70920,
+				"to": 75920
+			},
+			"text": " It also supports-- you can test your contracts using JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,920",
+				"to": "00:01:18,840"
+			},
+			"offsets": {
+				"from": 75920,
+				"to": 78840
+			},
+			"text": " It also keeps track of the contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,840",
+				"to": "00:01:21,160"
+			},
+			"offsets": {
+				"from": 78840,
+				"to": 81160
+			},
+			"text": " that have already been deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,160",
+				"to": "00:01:23,320"
+			},
+			"offsets": {
+				"from": 81160,
+				"to": 83320
+			},
+			"text": " And it's smart about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,320",
+				"to": "00:01:26,440"
+			},
+			"offsets": {
+				"from": 83320,
+				"to": 86440
+			},
+			"text": " So you can even refactor a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,440",
+				"to": "00:01:30,480"
+			},
+			"offsets": {
+				"from": 86440,
+				"to": 90480
+			},
+			"text": " And so long you don't change something that affects"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,480",
+				"to": "00:01:33,800"
+			},
+			"offsets": {
+				"from": 90480,
+				"to": 93800
+			},
+			"text": " the external of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,800",
+				"to": "00:01:35,520"
+			},
+			"offsets": {
+				"from": 93800,
+				"to": 95520
+			},
+			"text": " You want to deploy again."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,520",
+				"to": "00:01:38,840"
+			},
+			"offsets": {
+				"from": 95520,
+				"to": 98840
+			},
+			"text": " So you can refactor, say, an internal variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,840",
+				"to": "00:01:40,520"
+			},
+			"offsets": {
+				"from": 98840,
+				"to": 100520
+			},
+			"text": " You can change the name."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,520",
+				"to": "00:01:43,320"
+			},
+			"offsets": {
+				"from": 100520,
+				"to": 103320
+			},
+			"text": " It will not redeploy because you haven't really changed anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,320",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 103320,
+				"to": 106000
+			},
+			"text": " But if you change, say, a public variable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:49,840"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 109840
+			},
+			"text": " then it will redeploy because there's a code change."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,840",
+				"to": "00:01:52,200"
+			},
+			"offsets": {
+				"from": 109840,
+				"to": 112200
+			},
+			"text": " You can also manage different changes with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,200",
+				"to": "00:01:54,680"
+			},
+			"offsets": {
+				"from": 112200,
+				"to": 114680
+			},
+			"text": " You can deploy to a development change."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,680",
+				"to": "00:01:57,360"
+			},
+			"offsets": {
+				"from": 114680,
+				"to": 117360
+			},
+			"text": " You can devote to the production chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,360",
+				"to": "00:02:01,240"
+			},
+			"offsets": {
+				"from": 117360,
+				"to": 121240
+			},
+			"text": " And you can also use both Solidity and Serpent."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,240",
+				"to": "00:02:03,800"
+			},
+			"offsets": {
+				"from": 121240,
+				"to": 123800
+			},
+			"text": " You can use either of them or you can even"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,800",
+				"to": "00:02:06,720"
+			},
+			"offsets": {
+				"from": 123800,
+				"to": 126720
+			},
+			"text": " use both of them at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,720",
+				"to": "00:02:10,600"
+			},
+			"offsets": {
+				"from": 126720,
+				"to": 130600
+			},
+			"text": " So another thing that Embark is pretty good at"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,600",
+				"to": "00:02:14,240"
+			},
+			"offsets": {
+				"from": 130600,
+				"to": 134240
+			},
+			"text": " is dealing with multiple contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,240",
+				"to": "00:02:16,640"
+			},
+			"offsets": {
+				"from": 134240,
+				"to": 136640
+			},
+			"text": " that are dependent on each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,640",
+				"to": "00:02:20,840"
+			},
+			"offsets": {
+				"from": 136640,
+				"to": 140840
+			},
+			"text": " So to give some example of this--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,840",
+				"to": "00:02:23,360"
+			},
+			"offsets": {
+				"from": 140840,
+				"to": 143360
+			},
+			"text": " so let's say that you have three contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,360",
+				"to": "00:02:26,040"
+			},
+			"offsets": {
+				"from": 143360,
+				"to": 146040
+			},
+			"text": " and they each depend on each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,040",
+				"to": "00:02:28,360"
+			},
+			"offsets": {
+				"from": 146040,
+				"to": 148360
+			},
+			"text": " So in this case, you need a token to be deployed first"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,360",
+				"to": "00:02:29,840"
+			},
+			"offsets": {
+				"from": 148360,
+				"to": 149840
+			},
+			"text": " and then deploy the DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,840",
+				"to": "00:02:31,480"
+			},
+			"offsets": {
+				"from": 149840,
+				"to": 151480
+			},
+			"text": " And once that's deployed, you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,480",
+				"to": "00:02:33,960"
+			},
+			"offsets": {
+				"from": 151480,
+				"to": 153960
+			},
+			"text": " to deploy the liquid democracy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,960",
+				"to": "00:02:37,720"
+			},
+			"offsets": {
+				"from": 153960,
+				"to": 157720
+			},
+			"text": " So in that case, you can specify a configuration"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,720",
+				"to": "00:02:43,640"
+			},
+			"offsets": {
+				"from": 157720,
+				"to": 163640
+			},
+			"text": " file that on the DAO you say, OK, $ign token."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,640",
+				"to": "00:02:49,120"
+			},
+			"offsets": {
+				"from": 163640,
+				"to": 169120
+			},
+			"text": " And that will tell Embark that, OK, this contract is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,120",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 169120,
+				"to": 171000
+			},
+			"text": " dependent on the token."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:53,520"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 173520
+			},
+			"text": " And I need first to deploy the token"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,520",
+				"to": "00:02:57,320"
+			},
+			"offsets": {
+				"from": 173520,
+				"to": 177320
+			},
+			"text": " and then pass the address to the DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,320",
+				"to": "00:03:00,480"
+			},
+			"offsets": {
+				"from": 177320,
+				"to": 180480
+			},
+			"text": " And you can have a galaxy or a NAT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,480",
+				"to": "00:03:03,560"
+			},
+			"offsets": {
+				"from": 180480,
+				"to": 183560
+			},
+			"text": " if you want to call it, of contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,560",
+				"to": "00:03:04,680"
+			},
+			"offsets": {
+				"from": 183560,
+				"to": 184680
+			},
+			"text": " each depend on each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,680",
+				"to": "00:03:07,320"
+			},
+			"offsets": {
+				"from": 184680,
+				"to": 187320
+			},
+			"text": " And Embark will determine what is the right order"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,320",
+				"to": "00:03:10,800"
+			},
+			"offsets": {
+				"from": 187320,
+				"to": 190800
+			},
+			"text": " to deploy the contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,800",
+				"to": "00:03:13,200"
+			},
+			"offsets": {
+				"from": 190800,
+				"to": 193200
+			},
+			"text": " You can also have contract instances."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,200",
+				"to": "00:03:17,520"
+			},
+			"offsets": {
+				"from": 193200,
+				"to": 197520
+			},
+			"text": " So this is a case that you have a sort of factory kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,520",
+				"to": "00:03:20,520"
+			},
+			"offsets": {
+				"from": 197520,
+				"to": 200520
+			},
+			"text": " of contract that has all the main functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,520",
+				"to": "00:03:23,600"
+			},
+			"offsets": {
+				"from": 200520,
+				"to": 203600
+			},
+			"text": " But then you have an argument that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,600",
+				"to": "00:03:25,680"
+			},
+			"offsets": {
+				"from": 203600,
+				"to": 205680
+			},
+			"text": " specifies a particular change."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,680",
+				"to": "00:03:29,080"
+			},
+			"offsets": {
+				"from": 205680,
+				"to": 209080
+			},
+			"text": " So in this example, let's say you have a packed token contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,080",
+				"to": "00:03:31,840"
+			},
+			"offsets": {
+				"from": 209080,
+				"to": 211840
+			},
+			"text": " But then you want to deploy two contracts, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,840",
+				"to": "00:03:34,840"
+			},
+			"offsets": {
+				"from": 211840,
+				"to": 214840
+			},
+			"text": " is a USD token and a Euro token."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,840",
+				"to": "00:03:38,800"
+			},
+			"offsets": {
+				"from": 214840,
+				"to": 218800
+			},
+			"text": " So in that case, you can specify instance of packed token."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,800",
+				"to": "00:03:41,320"
+			},
+			"offsets": {
+				"from": 218800,
+				"to": 221320
+			},
+			"text": " So it knows what is the parent contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,320",
+				"to": "00:03:43,560"
+			},
+			"offsets": {
+				"from": 221320,
+				"to": 223560
+			},
+			"text": " And then you see here in the arguments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,560",
+				"to": "00:03:46,720"
+			},
+			"offsets": {
+				"from": 223560,
+				"to": 226720
+			},
+			"text": " you have request oracle USD.json."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,720",
+				"to": "00:03:50,600"
+			},
+			"offsets": {
+				"from": 226720,
+				"to": 230600
+			},
+			"text": " So imagine you're calling Oracle like Oracle-ize."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,600",
+				"to": "00:03:53,960"
+			},
+			"offsets": {
+				"from": 230600,
+				"to": 233960
+			},
+			"text": " And so the two differences in arguments"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,960",
+				"to": "00:03:58,040"
+			},
+			"offsets": {
+				"from": 233960,
+				"to": 238040
+			},
+			"text": " is what will make the contracts be different."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,040",
+				"to": "00:04:01,080"
+			},
+			"offsets": {
+				"from": 238040,
+				"to": 241080
+			},
+			"text": " And also, if you are using--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,080",
+				"to": "00:04:03,080"
+			},
+			"offsets": {
+				"from": 241080,
+				"to": 243080
+			},
+			"text": " you can also interact with the existing contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,080",
+				"to": "00:04:08,200"
+			},
+			"offsets": {
+				"from": 243080,
+				"to": 248200
+			},
+			"text": " So let's say you're interacting with the DGS contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,200",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 248200,
+				"to": 250000
+			},
+			"text": " Then you can specify the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:13,680"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 253680
+			},
+			"text": " And Embark will just use that address."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,680",
+				"to": "00:04:17,400"
+			},
+			"offsets": {
+				"from": 253680,
+				"to": 257400
+			},
+			"text": " And it's also a support for deployment"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,400",
+				"to": "00:04:23,120"
+			},
+			"offsets": {
+				"from": 257400,
+				"to": 263120
+			},
+			"text": " commands that their executors wants the contract is deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,120",
+				"to": "00:04:26,320"
+			},
+			"offsets": {
+				"from": 263120,
+				"to": 266320
+			},
+			"text": " So in this case, I have an account manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,320",
+				"to": "00:04:29,080"
+			},
+			"offsets": {
+				"from": 266320,
+				"to": 269080
+			},
+			"text": " I want to manage my gold tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,080",
+				"to": "00:04:33,320"
+			},
+			"offsets": {
+				"from": 269080,
+				"to": 273320
+			},
+			"text": " And on deploy, then I transfer from myself a thousand tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,320",
+				"to": "00:04:37,680"
+			},
+			"offsets": {
+				"from": 273320,
+				"to": 277680
+			},
+			"text": " to the recently deployed contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,680",
+				"to": "00:04:44,280"
+			},
+			"offsets": {
+				"from": 277680,
+				"to": 284280
+			},
+			"text": " Now, Embark, so as a new set of goals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,280",
+				"to": "00:04:50,360"
+			},
+			"offsets": {
+				"from": 284280,
+				"to": 290360
+			},
+			"text": " the goal is in Embark 1 was to provide good deployment tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,360",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 290360,
+				"to": 294000
+			},
+			"text": " for this kind of complex contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:57,400"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 297400
+			},
+			"text": " Now, Embark 2 will focus a bit more on the client side"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,400",
+				"to": "00:05:01,640"
+			},
+			"offsets": {
+				"from": 297400,
+				"to": 301640
+			},
+			"text": " and focus more in integrations with storage layers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,640",
+				"to": "00:05:07,520"
+			},
+			"offsets": {
+				"from": 301640,
+				"to": 307520
+			},
+			"text": " such as Swarm and communication layers, such as Whisper."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,520",
+				"to": "00:05:11,960"
+			},
+			"offsets": {
+				"from": 307520,
+				"to": 311960
+			},
+			"text": " And as well as providing easier ways to distribute applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,960",
+				"to": "00:05:18,480"
+			},
+			"offsets": {
+				"from": 311960,
+				"to": 318480
+			},
+			"text": " So Embark 2 is actually was redone from scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,480",
+				"to": "00:05:20,840"
+			},
+			"offsets": {
+				"from": 318480,
+				"to": 320840
+			},
+			"text": " By default, it comes with this dashboard."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,840",
+				"to": "00:05:23,160"
+			},
+			"offsets": {
+				"from": 320840,
+				"to": 323160
+			},
+			"text": " You can actually override this if you don't want to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,160",
+				"to": "00:05:25,080"
+			},
+			"offsets": {
+				"from": 323160,
+				"to": 325080
+			},
+			"text": " if you want the old log."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,080",
+				"to": "00:05:29,200"
+			},
+			"offsets": {
+				"from": 325080,
+				"to": 329200
+			},
+			"text": " I just found that the look could be very confusing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,200",
+				"to": "00:05:30,600"
+			},
+			"offsets": {
+				"from": 329200,
+				"to": 330600
+			},
+			"text": " if you're dealing with a lot of contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,600",
+				"to": "00:05:33,320"
+			},
+			"offsets": {
+				"from": 330600,
+				"to": 333320
+			},
+			"text": " because it was hard to know exactly what"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,320",
+				"to": "00:05:35,920"
+			},
+			"offsets": {
+				"from": 333320,
+				"to": 335920
+			},
+			"text": " was the status of different contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,920",
+				"to": "00:05:37,640"
+			},
+			"offsets": {
+				"from": 335920,
+				"to": 337640
+			},
+			"text": " So I did this dashboard."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,640",
+				"to": "00:05:43,440"
+			},
+			"offsets": {
+				"from": 337640,
+				"to": 343440
+			},
+			"text": " So it tells, for example, does this section that says, OK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,440",
+				"to": "00:05:45,120"
+			},
+			"offsets": {
+				"from": 343440,
+				"to": 345120
+			},
+			"text": " the particular contracts, you can see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,120",
+				"to": "00:05:46,240"
+			},
+			"offsets": {
+				"from": 345120,
+				"to": 346240
+			},
+			"text": " have they been deployed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,240",
+				"to": "00:05:47,360"
+			},
+			"offsets": {
+				"from": 346240,
+				"to": 347360
+			},
+			"text": " Where are they?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,360",
+				"to": "00:05:48,280"
+			},
+			"offsets": {
+				"from": 347360,
+				"to": 348280
+			},
+			"text": " Was there an error?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,280",
+				"to": "00:05:48,960"
+			},
+			"offsets": {
+				"from": 348280,
+				"to": 348960
+			},
+			"text": " What is there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,960",
+				"to": "00:05:51,560"
+			},
+			"offsets": {
+				"from": 348960,
+				"to": 351560
+			},
+			"text": " Or is it still deploying?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,560",
+				"to": "00:05:54,920"
+			},
+			"offsets": {
+				"from": 351560,
+				"to": 354920
+			},
+			"text": " There's another section that you have the current chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,920",
+				"to": "00:05:55,600"
+			},
+			"offsets": {
+				"from": 354920,
+				"to": 355600
+			},
+			"text": " that you're using."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,600",
+				"to": "00:05:57,680"
+			},
+			"offsets": {
+				"from": 355600,
+				"to": 357680
+			},
+			"text": " In this case, the development chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,680",
+				"to": "00:05:59,320"
+			},
+			"offsets": {
+				"from": 357680,
+				"to": 359320
+			},
+			"text": " What Embark is doing right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,320",
+				"to": "00:06:01,120"
+			},
+			"offsets": {
+				"from": 359320,
+				"to": 361120
+			},
+			"text": " And available services."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,120",
+				"to": "00:06:03,800"
+			},
+			"offsets": {
+				"from": 361120,
+				"to": 363800
+			},
+			"text": " So let's say if your DAP was using IPFS and IPFS"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,800",
+				"to": "00:06:07,560"
+			},
+			"offsets": {
+				"from": 363800,
+				"to": 367560
+			},
+			"text": " was unavailable, it would show up red here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,560",
+				"to": "00:06:11,920"
+			},
+			"offsets": {
+				"from": 367560,
+				"to": 371920
+			},
+			"text": " And it finally also comes with a console."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,920",
+				"to": "00:06:15,200"
+			},
+			"offsets": {
+				"from": 371920,
+				"to": 375200
+			},
+			"text": " So you can use that console to interact"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,200",
+				"to": "00:06:18,080"
+			},
+			"offsets": {
+				"from": 375200,
+				"to": 378080
+			},
+			"text": " with existing contracts or to tell Embark"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,080",
+				"to": "00:06:22,600"
+			},
+			"offsets": {
+				"from": 378080,
+				"to": 382600
+			},
+			"text": " to do something like redeploying another contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,600",
+				"to": "00:06:26,760"
+			},
+			"offsets": {
+				"from": 382600,
+				"to": 386760
+			},
+			"text": " or add another account, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,760",
+				"to": "00:06:30,480"
+			},
+			"offsets": {
+				"from": 386760,
+				"to": 390480
+			},
+			"text": " Embark 2 also introduces a client-side library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,480",
+				"to": "00:06:33,120"
+			},
+			"offsets": {
+				"from": 390480,
+				"to": 393120
+			},
+			"text": " which is called Embark GS."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,120",
+				"to": "00:06:38,080"
+			},
+			"offsets": {
+				"from": 393120,
+				"to": 398080
+			},
+			"text": " So that library is meant to aid the developers interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,080",
+				"to": "00:06:39,240"
+			},
+			"offsets": {
+				"from": 398080,
+				"to": 399240
+			},
+			"text": " with contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,240",
+				"to": "00:06:40,960"
+			},
+			"offsets": {
+				"from": 399240,
+				"to": 400960
+			},
+			"text": " It makes things a bit more simpler."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,960",
+				"to": "00:06:44,680"
+			},
+			"offsets": {
+				"from": 400960,
+				"to": 404680
+			},
+			"text": " And also provides APIs to abstract interaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,680",
+				"to": "00:06:48,680"
+			},
+			"offsets": {
+				"from": 404680,
+				"to": 408680
+			},
+			"text": " with those layers, such as storage and communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,680",
+				"to": "00:06:53,840"
+			},
+			"offsets": {
+				"from": 408680,
+				"to": 413840
+			},
+			"text": " So you can easily switch the technology if you need to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,840",
+				"to": "00:06:55,800"
+			},
+			"offsets": {
+				"from": 413840,
+				"to": 415800
+			},
+			"text": " because different technologies generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,800",
+				"to": "00:06:57,840"
+			},
+			"offsets": {
+				"from": 415800,
+				"to": 417840
+			},
+			"text": " have different trade-offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,840",
+				"to": "00:07:01,360"
+			},
+			"offsets": {
+				"from": 417840,
+				"to": 421360
+			},
+			"text": " And your DAP might have different needs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,360",
+				"to": "00:07:03,840"
+			},
+			"offsets": {
+				"from": 421360,
+				"to": 423840
+			},
+			"text": " depending on what you want to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,840",
+				"to": "00:07:11,040"
+			},
+			"offsets": {
+				"from": 423840,
+				"to": 431040
+			},
+			"text": " So the library introduces promises, which is long overdue."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,040",
+				"to": "00:07:15,440"
+			},
+			"offsets": {
+				"from": 431040,
+				"to": 435440
+			},
+			"text": " It also introduces name parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,440",
+				"to": "00:07:18,880"
+			},
+			"offsets": {
+				"from": 435440,
+				"to": 438880
+			},
+			"text": " So you can still pass a list of arguments if you want to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,880",
+				"to": "00:07:23,400"
+			},
+			"offsets": {
+				"from": 438880,
+				"to": 443400
+			},
+			"text": " but you can also specify the name of the argument."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,400",
+				"to": "00:07:30,120"
+			},
+			"offsets": {
+				"from": 443400,
+				"to": 450120
+			},
+			"text": " Another thing it does also is that it actually automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,120",
+				"to": "00:07:33,880"
+			},
+			"offsets": {
+				"from": 450120,
+				"to": 453880
+			},
+			"text": " calculates the gas cost and puts that in the call."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,880",
+				"to": "00:07:37,960"
+			},
+			"offsets": {
+				"from": 453880,
+				"to": 457960
+			},
+			"text": " So because it sometimes happens if you're working in a method"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,960",
+				"to": "00:07:40,520"
+			},
+			"offsets": {
+				"from": 457960,
+				"to": 460520
+			},
+			"text": " and it changes, it suddenly becomes very complex"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,520",
+				"to": "00:07:43,440"
+			},
+			"offsets": {
+				"from": 460520,
+				"to": 463440
+			},
+			"text": " and it just stops working because it didn't have enough gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,440",
+				"to": "00:07:46,400"
+			},
+			"offsets": {
+				"from": 463440,
+				"to": 466400
+			},
+			"text": " So Embark tries to take care of this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,400",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 466400,
+				"to": 468000
+			},
+			"text": " so it doesn't happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:52,720"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 472720
+			},
+			"text": " It does some-- it also tends to do some automatic type"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,720",
+				"to": "00:07:54,400"
+			},
+			"offsets": {
+				"from": 472720,
+				"to": 474400
+			},
+			"text": " of conversion."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,400",
+				"to": "00:07:58,840"
+			},
+			"offsets": {
+				"from": 474400,
+				"to": 478840
+			},
+			"text": " So if you have a big int, it will just do a two number."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,840",
+				"to": "00:08:02,560"
+			},
+			"offsets": {
+				"from": 478840,
+				"to": 482560
+			},
+			"text": " If you have, say, an X that was supposed to be a string,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,560",
+				"to": "00:08:04,760"
+			},
+			"offsets": {
+				"from": 482560,
+				"to": 484760
+			},
+			"text": " it will also convert it to a string."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,760",
+				"to": "00:08:06,480"
+			},
+			"offsets": {
+				"from": 484760,
+				"to": 486480
+			},
+			"text": " This is also configurable because it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,480",
+				"to": "00:08:10,960"
+			},
+			"offsets": {
+				"from": 486480,
+				"to": 490960
+			},
+			"text": " might have different use cases, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,960",
+				"to": "00:08:13,680"
+			},
+			"offsets": {
+				"from": 490960,
+				"to": 493680
+			},
+			"text": " And it also does the same thing with struct."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,680",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 493680,
+				"to": 497000
+			},
+			"text": " Usually if you call a struct, it will return you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:19,320"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 499320
+			},
+			"text": " a list of the parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,320",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 499320,
+				"to": 503000
+			},
+			"text": " And if you change the order, it will also affect that order."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:26,560"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 506560
+			},
+			"text": " So now it just converts automatically to a Nash."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,560",
+				"to": "00:08:28,680"
+			},
+			"offsets": {
+				"from": 506560,
+				"to": 508680
+			},
+			"text": " So you can just convert it by, say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,680",
+				"to": "00:08:33,120"
+			},
+			"offsets": {
+				"from": 508680,
+				"to": 513120
+			},
+			"text": " you can refer to it as dot-outer instead of position 0"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,120",
+				"to": "00:08:35,800"
+			},
+			"offsets": {
+				"from": 513120,
+				"to": 515800
+			},
+			"text": " to get the outer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,800",
+				"to": "00:08:38,880"
+			},
+			"offsets": {
+				"from": 515800,
+				"to": 518880
+			},
+			"text": " And it also supports client-side deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,880",
+				"to": "00:08:44,080"
+			},
+			"offsets": {
+				"from": 518880,
+				"to": 524080
+			},
+			"text": " So you can devote the contract on Embark, just like you do now."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,080",
+				"to": "00:08:47,880"
+			},
+			"offsets": {
+				"from": 524080,
+				"to": 527880
+			},
+			"text": " But you can make it available on the client side."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,880",
+				"to": "00:08:51,560"
+			},
+			"offsets": {
+				"from": 527880,
+				"to": 531560
+			},
+			"text": " So you can dynamically deploy contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,560",
+				"to": "00:08:53,120"
+			},
+			"offsets": {
+				"from": 531560,
+				"to": 533120
+			},
+			"text": " There are certain type of applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,120",
+				"to": "00:08:56,360"
+			},
+			"offsets": {
+				"from": 533120,
+				"to": 536360
+			},
+			"text": " that require that sort of functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,360",
+				"to": "00:08:59,440"
+			},
+			"offsets": {
+				"from": 536360,
+				"to": 539440
+			},
+			"text": " There are very dynamic dabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,440",
+				"to": "00:09:04,360"
+			},
+			"offsets": {
+				"from": 539440,
+				"to": 544360
+			},
+			"text": " Example, if you wanted to do a fun dab, like create your own token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,360",
+				"to": "00:09:05,960"
+			},
+			"offsets": {
+				"from": 544360,
+				"to": 545960
+			},
+			"text": " you would use this sort of functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,960",
+				"to": "00:09:07,920"
+			},
+			"offsets": {
+				"from": 545960,
+				"to": 547920
+			},
+			"text": " So you would have a form."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,920",
+				"to": "00:09:10,120"
+			},
+			"offsets": {
+				"from": 547920,
+				"to": 550120
+			},
+			"text": " The user would put the name with the token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,120",
+				"to": "00:09:12,360"
+			},
+			"offsets": {
+				"from": 550120,
+				"to": 552360
+			},
+			"text": " some parameters like the supply."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,360",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 552360,
+				"to": 555000
+			},
+			"text": " And then that's the command that pretty much"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:18,040"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 558040
+			},
+			"text": " would run on the client side."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,040",
+				"to": "00:09:22,800"
+			},
+			"offsets": {
+				"from": 558040,
+				"to": 562800
+			},
+			"text": " Now for the communication layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,800",
+				"to": "00:09:30,240"
+			},
+			"offsets": {
+				"from": 562800,
+				"to": 570240
+			},
+			"text": " So Embark tries to provide an abstraction on that layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,240",
+				"to": "00:09:32,960"
+			},
+			"offsets": {
+				"from": 570240,
+				"to": 572960
+			},
+			"text": " And you can see here an example that, OK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,960",
+				"to": "00:09:35,480"
+			},
+			"offsets": {
+				"from": 572960,
+				"to": 575480
+			},
+			"text": " put Embark.js messages, send message."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,480",
+				"to": "00:09:38,240"
+			},
+			"offsets": {
+				"from": 575480,
+				"to": 578240
+			},
+			"text": " You send that on a certain channel with certain data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,240",
+				"to": "00:09:42,040"
+			},
+			"offsets": {
+				"from": 578240,
+				"to": 582040
+			},
+			"text": " And then you listen on that topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,040",
+				"to": "00:09:46,400"
+			},
+			"offsets": {
+				"from": 582040,
+				"to": 586400
+			},
+			"text": " So that's useful to make dabs, to make it with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,400",
+				"to": "00:09:47,840"
+			},
+			"offsets": {
+				"from": 586400,
+				"to": 587840
+			},
+			"text": " If you're familiar with Whisper, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,840",
+				"to": "00:09:52,720"
+			},
+			"offsets": {
+				"from": 587840,
+				"to": 592720
+			},
+			"text": " can see this is actually pretty similar to the Whisper"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,720",
+				"to": "00:09:54,960"
+			},
+			"offsets": {
+				"from": 592720,
+				"to": 594960
+			},
+			"text": " API."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,960",
+				"to": "00:09:58,080"
+			},
+			"offsets": {
+				"from": 594960,
+				"to": 598080
+			},
+			"text": " And so the reason that you would use this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,080",
+				"to": "00:10:02,160"
+			},
+			"offsets": {
+				"from": 598080,
+				"to": 602160
+			},
+			"text": " is because this way you can focus on behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,160",
+				"to": "00:10:04,240"
+			},
+			"offsets": {
+				"from": 602160,
+				"to": 604240
+			},
+			"text": " and not in implementation details,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,240",
+				"to": "00:10:05,880"
+			},
+			"offsets": {
+				"from": 604240,
+				"to": 605880
+			},
+			"text": " especially because if you want to try out"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,880",
+				"to": "00:10:08,240"
+			},
+			"offsets": {
+				"from": 605880,
+				"to": 608240
+			},
+			"text": " with different technologies, the implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,240",
+				"to": "00:10:09,840"
+			},
+			"offsets": {
+				"from": 608240,
+				"to": 609840
+			},
+			"text": " would be different."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,840",
+				"to": "00:10:13,440"
+			},
+			"offsets": {
+				"from": 609840,
+				"to": 613440
+			},
+			"text": " And this way you just worry about the behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,440",
+				"to": "00:10:17,560"
+			},
+			"offsets": {
+				"from": 613440,
+				"to": 617560
+			},
+			"text": " You don't need to worry about the actual details underneath."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,560",
+				"to": "00:10:21,160"
+			},
+			"offsets": {
+				"from": 617560,
+				"to": 621160
+			},
+			"text": " So if you change your technology, you don't need to change"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,160",
+				"to": "00:10:23,200"
+			},
+			"offsets": {
+				"from": 621160,
+				"to": 623200
+			},
+			"text": " your code a little bit again."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,200",
+				"to": "00:10:26,920"
+			},
+			"offsets": {
+				"from": 623200,
+				"to": 626920
+			},
+			"text": " So it does provide functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,920",
+				"to": "00:10:32,120"
+			},
+			"offsets": {
+				"from": 626920,
+				"to": 632120
+			},
+			"text": " And you can just choose the provider that you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,120",
+				"to": "00:10:35,680"
+			},
+			"offsets": {
+				"from": 632120,
+				"to": 635680
+			},
+			"text": " So Embark 2 will support this three providers, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,680",
+				"to": "00:10:40,560"
+			},
+			"offsets": {
+				"from": 635680,
+				"to": 640560
+			},
+			"text": " is Whisper, a contract for the messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,560",
+				"to": "00:10:45,720"
+			},
+			"offsets": {
+				"from": 640560,
+				"to": 645720
+			},
+			"text": " Kind of replicates this kind of channel functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,720",
+				"to": "00:10:47,640"
+			},
+			"offsets": {
+				"from": 645720,
+				"to": 647640
+			},
+			"text": " And also it will support Telash."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,320",
+				"to": "00:10:53,280"
+			},
+			"offsets": {
+				"from": 650320,
+				"to": 653280
+			},
+			"text": " Now, regarding for storage, it does a similar type"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,280",
+				"to": "00:10:54,760"
+			},
+			"offsets": {
+				"from": 653280,
+				"to": 654760
+			},
+			"text": " of abstraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,760",
+				"to": "00:10:57,400"
+			},
+			"offsets": {
+				"from": 654760,
+				"to": 657400
+			},
+			"text": " So you can just say, OK, I want to save text."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,400",
+				"to": "00:11:00,880"
+			},
+			"offsets": {
+				"from": 657400,
+				"to": 660880
+			},
+			"text": " And then I get a particular identifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,880",
+				"to": "00:11:05,120"
+			},
+			"offsets": {
+				"from": 660880,
+				"to": 665120
+			},
+			"text": " It's usually a Nash in case of IPFS, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,120",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 665120,
+				"to": 667000
+			},
+			"text": " And then when you pass it to Ash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:12,240"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 672240
+			},
+			"text": " you will get back the data that you requested."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,240",
+				"to": "00:11:18,280"
+			},
+			"offsets": {
+				"from": 672240,
+				"to": 678280
+			},
+			"text": " And it also abstracts the functionality to upload files."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,280",
+				"to": "00:11:23,040"
+			},
+			"offsets": {
+				"from": 678280,
+				"to": 683040
+			},
+			"text": " So for some of this example, if you have this HTML input,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,040",
+				"to": "00:11:25,320"
+			},
+			"offsets": {
+				"from": 683040,
+				"to": 685320
+			},
+			"text": " you can just pass it to DOM element."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,320",
+				"to": "00:11:27,920"
+			},
+			"offsets": {
+				"from": 685320,
+				"to": 687920
+			},
+			"text": " And it will just take care of taking the file,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,920",
+				"to": "00:11:30,960"
+			},
+			"offsets": {
+				"from": 687920,
+				"to": 690960
+			},
+			"text": " doing what it needs, and it will upload the file."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,960",
+				"to": "00:11:33,280"
+			},
+			"offsets": {
+				"from": 690960,
+				"to": 693280
+			},
+			"text": " It's pretty useful because different technologies actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,280",
+				"to": "00:11:35,840"
+			},
+			"offsets": {
+				"from": 693280,
+				"to": 695840
+			},
+			"text": " have slightly different ways that actually deal"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,840",
+				"to": "00:11:39,040"
+			},
+			"offsets": {
+				"from": 695840,
+				"to": 699040
+			},
+			"text": " with the files and upload them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,040",
+				"to": "00:11:41,120"
+			},
+			"offsets": {
+				"from": 699040,
+				"to": 701120
+			},
+			"text": " So if you just use this, you don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,120",
+				"to": "00:11:42,920"
+			},
+			"offsets": {
+				"from": 701120,
+				"to": 702920
+			},
+			"text": " need to worry about all those details."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,920",
+				"to": "00:11:46,200"
+			},
+			"offsets": {
+				"from": 702920,
+				"to": 706200
+			},
+			"text": " And then again, you can just do get URL Ash."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,200",
+				"to": "00:11:52,960"
+			},
+			"offsets": {
+				"from": 706200,
+				"to": 712960
+			},
+			"text": " And you get the URL that will point to the content of that file."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,960",
+				"to": "00:11:55,960"
+			},
+			"offsets": {
+				"from": 712960,
+				"to": 715960
+			},
+			"text": " So this is pretty useful for if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,960",
+				"to": "00:12:01,080"
+			},
+			"offsets": {
+				"from": 715960,
+				"to": 721080
+			},
+			"text": " want to upload cat pictures or profile pics or so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,080",
+				"to": "00:12:04,160"
+			},
+			"offsets": {
+				"from": 721080,
+				"to": 724160
+			},
+			"text": " And just like before, you can also choose a provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,160",
+				"to": "00:12:06,840"
+			},
+			"offsets": {
+				"from": 724160,
+				"to": 726840
+			},
+			"text": " You can choose a configuration."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,840",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 726840,
+				"to": 731000
+			},
+			"text": " Default for now will be IPFS, mostly because that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:13,760"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 733760
+			},
+			"text": " what I was actually working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,760",
+				"to": "00:12:17,680"
+			},
+			"offsets": {
+				"from": 733760,
+				"to": 737680
+			},
+			"text": " But the default will later be swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,680",
+				"to": "00:12:22,960"
+			},
+			"offsets": {
+				"from": 737680,
+				"to": 742960
+			},
+			"text": " And so there's actually five providers supported."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,960",
+				"to": "00:12:27,560"
+			},
+			"offsets": {
+				"from": 742960,
+				"to": 747560
+			},
+			"text": " The first three are swarm IPFS and storage contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,560",
+				"to": "00:12:30,600"
+			},
+			"offsets": {
+				"from": 747560,
+				"to": 750600
+			},
+			"text": " And again, there's different trade-offs to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,600",
+				"to": "00:12:34,240"
+			},
+			"offsets": {
+				"from": 750600,
+				"to": 754240
+			},
+			"text": " You might actually want to store something on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,240",
+				"to": "00:12:36,600"
+			},
+			"offsets": {
+				"from": 754240,
+				"to": 756600
+			},
+			"text": " which in this case will use a pre-deployed contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,600",
+				"to": "00:12:37,720"
+			},
+			"offsets": {
+				"from": 756600,
+				"to": 757720
+			},
+			"text": " to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,720",
+				"to": "00:12:40,120"
+			},
+			"offsets": {
+				"from": 757720,
+				"to": 760120
+			},
+			"text": " It's very expensive, but there are use cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,120",
+				"to": "00:12:43,440"
+			},
+			"offsets": {
+				"from": 760120,
+				"to": 763440
+			},
+			"text": " that might actually be worth it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,440",
+				"to": "00:12:47,960"
+			},
+			"offsets": {
+				"from": 763440,
+				"to": 767960
+			},
+			"text": " There will also be supported for made safe and storage-y."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,960",
+				"to": "00:12:56,240"
+			},
+			"offsets": {
+				"from": 767960,
+				"to": 776240
+			},
+			"text": " So regarding not that distribution--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,240",
+				"to": "00:12:58,320"
+			},
+			"offsets": {
+				"from": 776240,
+				"to": 778320
+			},
+			"text": " so in part right now, there's two ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,320",
+				"to": "00:13:02,080"
+			},
+			"offsets": {
+				"from": 778320,
+				"to": 782080
+			},
+			"text": " you can distribute your DAP would embark."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,080",
+				"to": "00:13:04,200"
+			},
+			"offsets": {
+				"from": 782080,
+				"to": 784200
+			},
+			"text": " One is that you do embark build."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,200",
+				"to": "00:13:07,720"
+			},
+			"offsets": {
+				"from": 784200,
+				"to": 787720
+			},
+			"text": " And it will create a directory that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,720",
+				"to": "00:13:10,720"
+			},
+			"offsets": {
+				"from": 787720,
+				"to": 790720
+			},
+			"text": " has all your DAP all the needed files."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,720",
+				"to": "00:13:12,840"
+			},
+			"offsets": {
+				"from": 790720,
+				"to": 792840
+			},
+			"text": " And you can just copy paste it and put it"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,840",
+				"to": "00:13:14,920"
+			},
+			"offsets": {
+				"from": 792840,
+				"to": 794920
+			},
+			"text": " on your web server, for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,920",
+				"to": "00:13:20,400"
+			},
+			"offsets": {
+				"from": 794920,
+				"to": 800400
+			},
+			"text": " Or you can also do embark deploy IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,400",
+				"to": "00:13:22,080"
+			},
+			"offsets": {
+				"from": 800400,
+				"to": 802080
+			},
+			"text": " And this command, where it does it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,080",
+				"to": "00:13:23,640"
+			},
+			"offsets": {
+				"from": 802080,
+				"to": 803640
+			},
+			"text": " is that it deploys your contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,640",
+				"to": "00:13:25,680"
+			},
+			"offsets": {
+				"from": 803640,
+				"to": 805680
+			},
+			"text": " if they are not already deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,680",
+				"to": "00:13:31,360"
+			},
+			"offsets": {
+				"from": 805680,
+				"to": 811360
+			},
+			"text": " Builds your app and uploads your DAP to IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,360",
+				"to": "00:13:35,800"
+			},
+			"offsets": {
+				"from": 811360,
+				"to": 815800
+			},
+			"text": " And then it shows you, OK, it will be available in this URL"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,800",
+				"to": "00:13:37,240"
+			},
+			"offsets": {
+				"from": 815800,
+				"to": 817240
+			},
+			"text": " or this URL."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,240",
+				"to": "00:13:40,240"
+			},
+			"offsets": {
+				"from": 817240,
+				"to": 820240
+			},
+			"text": " In that case, it's a gateway."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,240",
+				"to": "00:13:42,320"
+			},
+			"offsets": {
+				"from": 820240,
+				"to": 822320
+			},
+			"text": " So that's why I was supporting the part one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,320",
+				"to": "00:13:45,640"
+			},
+			"offsets": {
+				"from": 822320,
+				"to": 825640
+			},
+			"text": " In part two, we'll support swarm IPFS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,640",
+				"to": "00:13:50,720"
+			},
+			"offsets": {
+				"from": 825640,
+				"to": 830720
+			},
+			"text": " made safe, and stored as decentralized storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,720",
+				"to": "00:13:53,880"
+			},
+			"offsets": {
+				"from": 830720,
+				"to": 833880
+			},
+			"text": " for distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,880",
+				"to": "00:13:59,200"
+			},
+			"offsets": {
+				"from": 833880,
+				"to": 839200
+			},
+			"text": " So finally, the other way that the embark was also"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,200",
+				"to": "00:14:03,160"
+			},
+			"offsets": {
+				"from": 839200,
+				"to": 843160
+			},
+			"text": " support that distribution would be as a desktop app."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,160",
+				"to": "00:14:06,200"
+			},
+			"offsets": {
+				"from": 843160,
+				"to": 846200
+			},
+			"text": " So it will have a command that will automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,200",
+				"to": "00:14:11,560"
+			},
+			"offsets": {
+				"from": 846200,
+				"to": 851560
+			},
+			"text": " create a full desktop app with the DAP for Windows Linux"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,560",
+				"to": "00:14:14,160"
+			},
+			"offsets": {
+				"from": 851560,
+				"to": 854160
+			},
+			"text": " and Mac."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,160",
+				"to": "00:14:17,080"
+			},
+			"offsets": {
+				"from": 854160,
+				"to": 857080
+			},
+			"text": " It will also include the binaries that are necessary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,080",
+				"to": "00:14:20,080"
+			},
+			"offsets": {
+				"from": 857080,
+				"to": 860080
+			},
+			"text": " depending on the configuration that you choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,080",
+				"to": "00:14:23,040"
+			},
+			"offsets": {
+				"from": 860080,
+				"to": 863040
+			},
+			"text": " So in this case, if you distribute the app this way"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,040",
+				"to": "00:14:26,160"
+			},
+			"offsets": {
+				"from": 863040,
+				"to": 866160
+			},
+			"text": " and your app uses say IPFS, you don't need to worry"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,160",
+				"to": "00:14:28,880"
+			},
+			"offsets": {
+				"from": 866160,
+				"to": 868880
+			},
+			"text": " if your customer or user has IPFS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,880",
+				"to": "00:14:31,840"
+			},
+			"offsets": {
+				"from": 868880,
+				"to": 871840
+			},
+			"text": " because if it doesn't, then the app"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,840",
+				"to": "00:14:34,040"
+			},
+			"offsets": {
+				"from": 871840,
+				"to": 874040
+			},
+			"text": " will use the binary that comes included with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,040",
+				"to": "00:14:38,640"
+			},
+			"offsets": {
+				"from": 874040,
+				"to": 878640
+			},
+			"text": " All right, then."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,640",
+				"to": "00:14:39,160"
+			},
+			"offsets": {
+				"from": 878640,
+				"to": 879160
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,160",
+				"to": "00:14:43,160"
+			},
+			"offsets": {
+				"from": 879160,
+				"to": 883160
+			},
+			"text": " More information you can find it in GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,160",
+				"to": "00:14:46,920"
+			},
+			"offsets": {
+				"from": 883160,
+				"to": 886920
+			},
+			"text": " If you are passionate about DAP development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,920",
+				"to": "00:14:50,520"
+			},
+			"offsets": {
+				"from": 886920,
+				"to": 890520
+			},
+			"text": " please join us at our GitHub channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,520",
+				"to": "00:14:53,680"
+			},
+			"offsets": {
+				"from": 890520,
+				"to": 893680
+			},
+			"text": " Thank you very much for your time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,680",
+				"to": "00:14:54,920"
+			},
+			"offsets": {
+				"from": 893680,
+				"to": 894920
+			},
+			"text": " Thank you, Harry."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,920",
+				"to": "00:14:57,360"
+			},
+			"offsets": {
+				"from": 894920,
+				"to": 897360
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,360",
+				"to": "00:15:00,360"
+			},
+			"offsets": {
+				"from": 897360,
+				"to": 900360
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,360",
+				"to": "00:15:02,940"
+			},
+			"offsets": {
+				"from": 900360,
+				"to": 902940
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,940",
+				"to": "00:15:05,520"
+			},
+			"offsets": {
+				"from": 902940,
+				"to": 905520
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

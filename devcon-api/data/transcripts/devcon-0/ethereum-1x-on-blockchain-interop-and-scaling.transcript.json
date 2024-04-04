@@ -1,0 +1,4465 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 19000
+			},
+			"text": " So welcome to Day Number 4 of DEF CON."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 22000
+			},
+			"text": " We use zero-indexing here, we're a civilized company."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 24000
+			},
+			"text": " Um..."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 25000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 27000
+			},
+			"text": " No, the first day was Day Zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 30000
+			},
+			"text": " [Laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 36000
+			},
+			"text": " So today we're going to be talking about scaling and interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 40000
+			},
+			"text": " Well today in general we're going to be talking about Ethereum 1.1 and Ethereum 2.0"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 45000
+			},
+			"text": " and the general blockchain protocol related stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 49000
+			},
+			"text": " So first presentation we have is on scaling and interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 55000
+			},
+			"text": " So I guess to start off first of all what is scalability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 57000
+			},
+			"text": " do we want out of scalability?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 58000
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 63000
+			},
+			"text": " So in an ordinary blockchain like how is that every node processes every transaction and updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 66000
+			},
+			"text": " Every full node anyways, it's a process of every transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 72000
+			},
+			"text": " And so the scalability system is kind of limited by the fact that every node needs to do everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 77000
+			},
+			"text": " So what we want to do is relax that assumption, but still have the properties of consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 85000
+			},
+			"text": " like non-repidiation, like source authentication, contract calls, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 89000
+			},
+			"text": " And so scalability solutions are kind of trying to make it to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 95000
+			},
+			"text": " Not every node processes every transaction, but we still have security in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 102000
+			},
+			"text": " So, you know, right now with just for statistics right now, Bitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 107000
+			},
+			"text": " we're, you know, one transaction per second, MasterCard processes 2000 transactions a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 115000
+			},
+			"text": " If Bitcoin goes up to that level, then we'll basically have full nodes processing about 1 gigabyte every 3 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 119000
+			},
+			"text": " So, you know, not exactly sustainable for any kind of normal computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 121000
+			},
+			"text": " So we'll have 10 full nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 128000
+			},
+			"text": " Yeah, 10 full nodes and they'll probably won't be run by watching that in one coin based on what we run by Amazon and Google."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 133000
+			},
+			"text": " You know, people seem to consider it as being more evil than good local companies."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 138000
+			},
+			"text": " So, yeah, what we want is we want is that we basically want a system that work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 145000
+			},
+			"text": " we, you know, as Dominique Williams from Pebble put it, we want a system that works by scaling out and not by scaling up."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 151000
+			},
+			"text": " So instead of making these big, instead of making the system continue working by having full nodes be more and more powerful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 158000
+			},
+			"text": " you figure out some way for it to work even if no single node processes more than a small portion of all the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 163000
+			},
+			"text": " Another way you can see that is sort of just stacking blocks on top of themselves in one chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 168000
+			},
+			"text": " We hope to maybe have like another architecture or not all blocks go in the same chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 174000
+			},
+			"text": " So, so right now what we have as far as scalability goes is the scale up approach, which is, you know, we have like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 180000
+			},
+			"text": " we say, okay, the blockchain is going to grow a little big, but we're going to make sure that like clients can still be secure and that kind of works."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 191000
+			},
+			"text": " Until, of course, it gets way, until, of course, the whole thing just gets way too big and, and it might not even be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 197000
+			},
+			"text": " like it might not even be possible for a single node to process all of crypto transactions and people potentially might want to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 203000
+			},
+			"text": " especially if we're here, start thinking about crypto not just as a payment system, but also for all of these daps."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 208000
+			},
+			"text": " And also for like, you know, not just people, but also for programs and their hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 212000
+			},
+			"text": " So there's basically three broad classes of scalability approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 224000
+			},
+			"text": " There's building on top, kind of scaling one chain by starting this state space and having multiple, multiple blockchains and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 227000
+			},
+			"text": " interfacing them to gain some of the properties of one blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 236000
+			},
+			"text": " So we're just going to kind of go through them and talk about kind of the state of that, of research on those topics and what the trade-offs are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 239000
+			},
+			"text": " maybe with the disadvantages and advantages of each purchase."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 242000
+			},
+			"text": " So as far as scaling on top, the top, whatever way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 253000
+			},
+			"text": " So the idea with building on top is basically, you know, keep the blockchain exactly as it is, but we try and figure out some lease for as much stuff as possible to happen off the chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 257000
+			},
+			"text": " but still be secured by the chain in the long term and some fashion."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 267000
+			},
+			"text": " So this is one of the first practical examples, as well, I guess, micro payment channels is actually one that you don't even need Ethereum for."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 269000
+			},
+			"text": " You can do it on plain old Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 278000
+			},
+			"text": " And the way that works is you create, there is a special two-party protocol that you can use to create a sort of, what it's called, a micro payment channel going from A to B."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 282000
+			},
+			"text": " And the idea is there's a sort of two-party protocol for updating the channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 290000
+			},
+			"text": " So the channel starts off containing some quantity of Bitcoin, let's say 1 BTC, and A initiates the channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 295000
+			},
+			"text": " It starts off with A, you know, A puts a Bitcoin into the channel, which starts off giving the entire Bitcoin back to A."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 304000
+			},
+			"text": " And then there's this sort of off-chain update protocol for the channel updates, let's say 0.99 to 8.01 to B, 0.98 to 8.02 to B and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 311000
+			},
+			"text": " And the idea is you have a network with a bunch of these channels, and if you want to make a payment to just sort of fly the pathway through all the channels,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 319000
+			},
+			"text": " update all the channels along the way, and use the blockchain all the way for a conventional settlement when a channel fills up."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 321000
+			},
+			"text": " Probabilistic payments?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 327000
+			},
+			"text": " Yeah, so probabilistic payments basically work right, okay, say for example for a file-souring application."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 337000
+			},
+			"text": " Instead of making a payment on the blockchain for every file transfer that you do, every uploader, every download, what you do is make a payment with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 345000
+			},
+			"text": " with some probability so that the people still have the same expected return from the sharing of those files, but you don't put as many things in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 352000
+			},
+			"text": " Kind of the issue of that is that it increases volatility of the return, but over time it should kind of be the same, and there's much less stuff in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 356000
+			},
+			"text": " And just as a, so those two approaches work for payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 364000
+			},
+			"text": " A third, there's also an, an, a third category, which is this idea of off-chain auditable challenge response computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 377000
+			},
+			"text": " So just as an example of that, there's, in some cases there's going to be a lot of computations that need to have the security of the blockchain, but, which might be too expensive to do on the blockchain itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 387000
+			},
+			"text": " So what, and so the property here is, so the data is, the data involved in the computation doesn't mean it's not necessarily too large, but the computations are very large."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 414000
+			},
+			"text": " So zero knowledge proofs, one example, so something like, you know, verifying, verifying skip takes six milliseconds inside of, inside of C or C++ might end up taking, you know, 60 milliseconds in general Ethereum, JIT, the, um, another exam, uh, truth coin, and it's actually another really good example because what they need to do is they base, you know, truth coin is like this decentralized work where they like does sort of shell and coin like stuff, but for many, that's up to many decisions at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 426000
+			},
+			"text": " And the way it works is, you actually does that, it uses these matrix algorithms to try and figure out who sort of which voters are more sort of globally compliant with the entire consensus so they can reward them more."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 434000
+			},
+			"text": " In order to, and doing that matrix math, as you know, takes a little bit of operations, which, you know, for very large matrices is pretty expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 446000
+			},
+			"text": " Yeah, so basically the idea there is that the blockchain acts as a something for punishing these oracles, if they don't come up with the right result, then you can basically check it on the blockchain and like a move of a security process in them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 450000
+			},
+			"text": " And if they do, then you don't need to do anything and the computation happened off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 457000
+			},
+			"text": " So basically on chain everyone does everything and so you don't really need that for when things go wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 465000
+			},
+			"text": " Yeah, so by default, by default you trust, but you have some period during which anyone can challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 474000
+			},
+			"text": " If someone audits them, they find something wrong, they can sort of pull the computation down to the blockchain and if that ends up being wrong, security deposit is lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 475000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 478000
+			},
+			"text": " So we're going to move to, I think, starting?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 479000
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 480000
+			},
+			"text": " So, sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 489000
+			},
+			"text": " So one idea for blockchain scaling is to take kind of one blockchain and take this state space and split it up into subspaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 503000
+			},
+			"text": " Still have the same digital asset on all the subspaces and have a protocol for moving, finally doing contract calls between the subspaces as well as a protocol for making sure that all subspaces have enough nodes in order to non-adduce any faulty state transitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 512000
+			},
+			"text": " So the general sort of intuition is that if you can have making a new pad."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 516000
+			},
+			"text": " So the intuition is you have a bunch of substates."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 523000
+			},
+			"text": " You can think of them as being vertices and they're arranged in some kind of dense graph structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 528000
+			},
+			"text": " So we talked a bit about graphs yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 532000
+			},
+			"text": " Then you have a sort of header chain in the middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 539000
+			},
+			"text": " And so the idea is that if you are a minor on this kind of system, what you're actually doing is you're mining an edge."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 552000
+			},
+			"text": " So when you mine an edge, what it means is that you can process transactions that happen inside of here, your processing transactions that happen inside of here, and you're also processing the movements of messages going from here to here and from here to here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 564000
+			},
+			"text": " So let's say if you have a sort of multi-chain DAP or if you would, that has some state in this little bit sector and some state in this little sector, then it sends out the message and the message gets stored in the outbox here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 569000
+			},
+			"text": " Eventually someone mines this edge, when someone mines this edge, it gets kicked out of the outbox here, it gets moved to the outbox here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 574000
+			},
+			"text": " When it mines this edge, it gets moved from the outbox here and the outbox here and eventually sort of makes this way over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 589000
+			},
+			"text": " And then for the header chain here, the idea is that basically all of these sort of mined edges all make their way into the header chain and the header chain just sort of maintains the global order of the entire thing just by keeping track of all the headers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 606000
+			},
+			"text": " And so the reason that the header chain is really important for this type of architecture is that because everyone uses the same digital asset, if you were to have say one of these substates not really coordinating with the other ones, you'd have one substate that has much lower security than the other ones,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 615000
+			},
+			"text": " and then you would basically by introducing a multi-state transition in that substate impact all the other ones because they're all using the same digital asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 628000
+			},
+			"text": " So the fact that everyone shares some piece of consensus is important because that's what you use to make sure that kind of all your checks to make sure that you don't have insecure substates occurs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 640000
+			},
+			"text": " So we call this kind of a fragility problem. If something goes wrong one substate and not every node is processing everything, so for any given node's perspective, you'll never know 100% that something didn't go wrong in one of the substates that you didn't process."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 643000
+			},
+			"text": " What you can do is kind of challenge response protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 660000
+			},
+			"text": " So that's the first approach. So the idea behind challenge response protocols is that if you think about a block, a block you have a header, then you have some set of transactions, and then you have a stage three over here, then there's some subset, there's going to be some subset of state nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 676000
+			},
+			"text": " that the block ended up modifying while processing each one of these transactions. So we realize is that if a block is invalid, then what that means is, first of all, it could be just be that the block is badly formatted, which is just very obvious to detect."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 694000
+			},
+			"text": " But it could also mean that one of these transactions at some point has some state transition that's invalid. And so the idea is that if an attacker makes some kind of a block on one chain, and that block is invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 712000
+			},
+			"text": " So first off, the block is actually invalid, then what you can do, what some good guys can do is they can basically provide a Mergle tree proof of the exact set of changes that without transaction was supposed to make, and people can see that the changes that the attacker made are not the same as the changes that the attacker was supposed to make."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 732000
+			},
+			"text": " Now the other problem of course is, well, what if the attacker just publishes a block, but does not publish all of the data. So that's going to be very obvious to people on that chain. But the problem is if the data is not there, then there's no way to come up with a direct proof that it's invalid because there's just sort of no data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 747000
+			},
+			"text": " Like theoretically, theoretically, if Bill Gates turned out to be generous and give the attacker $100 million, there could theoretically be something legitimate that happens to give the attacker $100 million. But if the attacker doesn't supply the data, then there's sort of no way to know."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 749000
+			},
+			"text": " So that's where a challenge response comes in."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 759000
+			},
+			"text": " The idea would be that if you issue a challenge of some particular state transition and the response that we're providing, that you kind of would assume that that state transition is not valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 770000
+			},
+			"text": " But kind of the issue with that is that you basically require people to be given these challenges of looking for where it went wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 779000
+			},
+			"text": " So if there's no cheating, then there's no incentive to do that. So kind of an actually really good thing that there's a non-zero amount of invalid state transitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 790000
+			},
+			"text": " That's one problem. The other problem is this sort of fragility issue, which is that if an attacker deloses the network, then the default state is for blocks to get processed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 797000
+			},
+			"text": " And therefore, you know, broad blocks might end up surviving whatever the entire challenge period is without getting challenged, even if there's actually something wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 804000
+			},
+			"text": " And then if you have an invalid transition that's only discovered much later than the effects of that transition, it'd have propagated to many, many things."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 811000
+			},
+			"text": " And, you know, we might have to roll back 100,000 blocks if you want to kind of fix that. So that's kind of like the bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 818000
+			},
+			"text": " Yeah. So somewhat more stable algorithm for dealing with this problem is this jury selection approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 834000
+			},
+			"text": " So I gave a behind jury selection, you know, that let's say that, okay, I'm on this edge, then what the header changes, so then what the protocol says is, okay, from every, from, from randomly from all of these, all of these little sub states together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 840000
+			},
+			"text": " I'm going to randomly select, you know, 200 nodes based on weighted by stake. So this is a proof of state mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 848000
+			},
+			"text": " There's actually no way to translate it into a proof of work period time, which is actually, by the way, another reason why proof of state is superior."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 860000
+			},
+			"text": " But, so the idea is you weighted by stake, you randomly choose some 200 nodes, and those two, and basically a majority of those 200 nodes have to sign on the sign for the blocks validity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 869000
+			},
+			"text": " And the way that those 200 nodes know if the block is valid, because, you know, there might be a node from here, and that node might not be able to track over the state at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 880000
+			},
+			"text": " The way you do that is that the voter provides the block, you know, the state root transactions, but, you know, right now in Ethereum, over the network, the thing that gets sent is block header plus transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 889000
+			},
+			"text": " But here the thing that's going to get sent is block header plus transactions plus the, whatever subset of the state ends up being manipulated during that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 894000
+			},
+			"text": " And then this whole chunk by itself can be validated even by someone who has no primary information at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 902000
+			},
+			"text": " And kind of theoretically that has like no cheating in the natural movement, because basically like watching a channel response on every block."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 916000
+			},
+			"text": " Kind of, yeah, so the, like, the idea is you have, in order for an attacker to be able to successfully cheat on this thing, just purely by statistics, the attacker has to have something like, you know, 30 or 40% of the entire, in the entire active state in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 930000
+			},
+			"text": " So you have sort of the benefit of, you know, only 200 nodes validating each block, but without the cost of their only being sort of 200 nodes protecting the system because every node is like statistically protecting the system, even though it's not actually protecting every age, every time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 941000
+			},
+			"text": " Yeah, so we have like a probabilistic rather than deterministic guarantee, but it's still quite good because you can increase the number of nodes required, and that will make the amount of state required to attack it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 948000
+			},
+			"text": " Yeah, basically the probability of the thing scoring up is like, is it negatively exponential in the number of nodes involved?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 953000
+			},
+			"text": " Yeah, so that's going to be the one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 962000
+			},
+			"text": " So that's the sort of, so the last thing was the hybrid keyword approach is, need a protocol for growing and shrinking the thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 970000
+			},
+			"text": " So, you know, you could fix it, you could just fix it to 12 dimensions and say, okay, there's 4,096 substates, but the problem is that, you know, what happened, first of all, initially, that for example, you know, you're going to have to have a problem with the number of nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 977000
+			},
+			"text": " And initially that 4,096 might be way too sparse, but, and then eventually it might not end up not being enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 982000
+			},
+			"text": " And so you need, one thing that needs to be figured out is some kind of mechanism for growing the graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 987000
+			},
+			"text": " So one option is to just, you know, if it gets big enough, then eventually you add a dimension."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 999000
+			},
+			"text": " So then if you're, if you just sort of keep on adding dimensions, the choice that you have is, first of all, when you add a new dimension, do you just, do you make the new cubes empty by default and sort of just using set of mechanisms to sort of, to try and subsidize new people?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1003000
+			},
+			"text": " Being on those cubes instead of one other, or on those vertices instead of one other vertices?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1012000
+			},
+			"text": " Or you could wait for each substate to have twice as many nodes as necessary as each one is 2 and basically add another dimension to the hierarchy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1018000
+			},
+			"text": " Yeah, yeah. So the choice is, you know, if you start a new one empty or do you actually try and split them in half?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1024000
+			},
+			"text": " Um, problem with split, so splitting them in half, see feels more elegant in an automatic in some respects."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1043000
+			},
+			"text": " The problem with it is that you might have daps that, you know, work very tightly connected, but now they suddenly much less connected, and so their gas costs suddenly go way way up, which is kind of annoying for if you're, if the cause, because the contracts are kind of stupid autonomous agents and the, you know, figuring out how to deal with the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1044000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1044000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1046000
+			},
+			"text": " So we're going to move to multi-chain solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1047000
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1058000
+			},
+			"text": " So the idea with multi-chain solution is that instead of taking kind of one consensus group with one digital asset and try to split it without losing the properties of it, what we do is we take many consensus groups with many different assets and try to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1062000
+			},
+			"text": " cooperate them in order to gain some of the properties of scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1065000
+			},
+			"text": " So basically there's different types of interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1076000
+			},
+			"text": " You can have this type of interoperability called, uh, atomic interoperability, um, which is basically based on this cheer-knoll and primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1100000
+			},
+			"text": " Um, which is, this is kind of really great idea where, oh no, you'd basically make a contract on the chains that says if, uh, x such that the hash of x is equal to some y that's in the contract is provided."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1106000
+			},
+			"text": " Uh, then you would do something."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1118000
+			},
+			"text": " And then otherwise, if some time passes, then do something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:52,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1132000
+			},
+			"text": " So the idea is that, um, so Alice involved wanted to exchange tokens between the two blockchain, uh, and they kind of know each other and they know that they want to do this, but they don't trust each other so much that like you could, you would just send."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,000",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1132000,
+				"to": 1138000
+			},
+			"text": " Alice would just send Bob to all these on her chain and then kind of trust that Bob would send her back to all these on the other chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1149000
+			},
+			"text": " Um, this kind of forces either both trades to go through, um, or neither. So the way it works is basically Alice made a contract that says if the preimage of sahaj is provided, then send money to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:13,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1153000
+			},
+			"text": " Uh, and she makes a hash so she knows the preimage."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1153000,
+				"to": 1158000
+			},
+			"text": " Otherwise, if some amount of time passes, it'll send the money back to myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1166000
+			},
+			"text": " And then Bob will see this contract and make another contract on Bob's chain, chain B, um, and do use the same hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1174000
+			},
+			"text": " He didn't have the preimage, send money to Alice if that preimage is provided, and otherwise it'll send money back to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1181000
+			},
+			"text": " So basically what will happen is if Alice wants to trade to go through, she'll provide the preimage of the hash to entertain her funds on Bob's chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1186000
+			},
+			"text": " And then Bob will therefore have the preimage of the hash and be able to take his funds on Alice's chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1203000
+			},
+			"text": " So basically without having to, either the consensus groups do kind of any SBB proofs of the other consensus groups, we were able to do kind of functionality that will only happen on one if it happens on the other by using this kind of common secret,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1206000
+			},
+			"text": " that if it is provided some functionality in the contract is unlocked."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1210000
+			},
+			"text": " So this type of interoperability is called atomic interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1214000,
+				"to": 1221000
+			},
+			"text": " So the other kind of interoperability is the protocol level interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1229000
+			},
+			"text": " So the difference is the atomic level interoperability, the things that you're trying to do is trying to mediate sort of cross chain interactions between users."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:37,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1237000
+			},
+			"text": " So decentralized exchange is one example of all the more potential like cross chain operations where something happens on this chain only, if something happens on that chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1237000,
+				"to": 1252000
+			},
+			"text": " So a protocol level interoperability where you would have some kind of protocol that actually needs to get services from the other chain as a protocol on the board."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1266000
+			},
+			"text": " So one example of that is let's say that you would have some kind of, you have Ethereum on Ethereum, you have a contract, and that contract tries to get it done."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1277000
+			},
+			"text": " So the contract is basically a stable coin and it tries to use a contract for different interest rate target mechanism to try and keep a dollar value of one."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,000",
+				"to": "00:21:25,000"
+			},
+			"offsets": {
+				"from": 1277000,
+				"to": 1285000
+			},
+			"text": " Problem is it has no idea what the exchange rate of a dollar to whatever to its volatile coin is."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,000",
+				"to": "00:21:32,000"
+			},
+			"offsets": {
+				"from": 1285000,
+				"to": 1292000
+			},
+			"text": " So what it does is first of all, it would maintain an internal decentralized exchange to figure out the exchange rate of its own volatile coin to Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1292000,
+				"to": 1295000
+			},
+			"text": " And then you need the exchange rate of Ether to the US dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:53,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1313000
+			},
+			"text": " But the situation is let's say that you have over here you have truth coin and truth coin just happens to be a decentralized oracle because it's to be decentralized oracle network and it has a much larger set of users to vote so it has more security."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1313000,
+				"to": 1319000
+			},
+			"text": " So this what this have over here might want to ask truth coin what is the price of Ether and US dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:06,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1326000
+			},
+			"text": " And the idea is that this chain needs to have a way of sort of directly asking this chain some question."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,000",
+				"to": "00:22:17,000"
+			},
+			"offsets": {
+				"from": 1326000,
+				"to": 1337000
+			},
+			"text": " So the way that you generally do that is you would have the Ethereum here maintain basically a light, actually maintain internally inside the chain a light client of truth coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,000",
+				"to": "00:22:33,000"
+			},
+			"offsets": {
+				"from": 1337000,
+				"to": 1353000
+			},
+			"text": " And then in truth coin you would have some active set of voters that are just continuously voting on the question of what's the value of Ether and dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1353000,
+				"to": 1364000
+			},
+			"text": " Then if the truth coin blockchain records some particular results then a light client protocol of their light client protocol can determine what the result is."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1375000
+			},
+			"text": " So the result would be stored in the state tree and then basically the light client protocol would ask some node to provide a mercury proof of what is the value of a dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:23:07,000"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1387000
+			},
+			"text": " And this work in this mercury inside of transactions data the light client protocol would reward whoever provides the proof and then that's how it would know what the value of Ether to what Ether to what's all or is."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,000",
+				"to": "00:23:16,000"
+			},
+			"offsets": {
+				"from": 1387000,
+				"to": 1396000
+			},
+			"text": " And then the other thing that you can do is that based on who provided it who set the transaction or other based on."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,000",
+				"to": "00:23:26,000"
+			},
+			"offsets": {
+				"from": 1396000,
+				"to": 1406000
+			},
+			"text": " So the other thing you can do is you can also peek into the truth coin blockchain you can determine who contributed to this particular vote and then you can give them Ethereum assets inside of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,000",
+				"to": "00:23:35,000"
+			},
+			"offsets": {
+				"from": 1406000,
+				"to": 1415000
+			},
+			"text": " So you're just you're sort of buying services from truth coin users inside of Ethereum and you're also getting back this truthful feed of what the result is."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,000",
+				"to": "00:23:40,000"
+			},
+			"offsets": {
+				"from": 1415000,
+				"to": 1420000
+			},
+			"text": " And then given the results the data would be able to do whatever it is to do with the price of the dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,000",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1420000,
+				"to": 1435000
+			},
+			"text": " So that's kind of the example of some protocol level interoperability where you would build in an Ethereum contract an SPB client of some other chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1440000
+			},
+			"text": " So that people on the theory will be able to know some facts about people on another chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:11,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1451000
+			},
+			"text": " But if you wanted to have chains actually share security you'd need to build that in on the protocol level where not just kind of nodes you know what these subcontracts are doing we know what it is but the actual consensus level protocol would know."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,000",
+				"to": "00:24:29,000"
+			},
+			"offsets": {
+				"from": 1451000,
+				"to": 1469000
+			},
+			"text": " So the idea with protocol level security sharing is that you would build the consensus of another chain into your own chain consensus so that you can for example buy checkpoints by time stamps by you could use another chain services in order to."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1469000,
+				"to": 1485000
+			},
+			"text": " So the general idea was sharing security I think is more is more that let's say you have 10 chains chain C1 through C10 each one of those chains has 500 has 500 users and 500 million dollars of capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:57,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1497000
+			},
+			"text": " The problem is how do you make each if you just do a small machine approach by default if you know if the whole thing has $5 billion of capital then birth the whole system has $5 million of capital then if you have more applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,000",
+				"to": "00:25:04,000"
+			},
+			"offsets": {
+				"from": 1497000,
+				"to": 1504000
+			},
+			"text": " If you go from 10 to 100 then each of them is down to $50 million of capital each other is down to $15 million worth of security and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,000",
+				"to": "00:25:15,000"
+			},
+			"offsets": {
+				"from": 1504000,
+				"to": 1515000
+			},
+			"text": " So problem is how do you have chains that are only processed by a few but you know that are only processed by relatively few nodes without having this problem in each chain we have a small amount of security."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,000",
+				"to": "00:25:28,000"
+			},
+			"offsets": {
+				"from": 1515000,
+				"to": 1528000
+			},
+			"text": " But also so one thing that we have mentioned yet with the benefits of multi-chain scaling is that if a chain is compromised it won't necessarily affect other chains as much."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,000",
+				"to": "00:25:38,000"
+			},
+			"offsets": {
+				"from": 1528000,
+				"to": 1538000
+			},
+			"text": " So and you can provide chains that services are changed at a given level of security which means that at lower cost to some users who don't need as much security on that chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,000",
+				"to": "00:25:45,000"
+			},
+			"offsets": {
+				"from": 1538000,
+				"to": 1545000
+			},
+			"text": " So what you can if you want to provide a lower cost it still has high security what you can do is basically buy security from other chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1545000,
+				"to": 1561000
+			},
+			"text": " And so and to do that you basically need to interoperate your chain with the other chain on the protocol level and basically have kind of light clients and full clients agree that they will use some checkpoint on some other chain in order to authenticate the point of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:18,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1578000
+			},
+			"text": " So the general so challenge response is your selection we already just we already discussed those in the context of hypercube in the context of a multi chain actually the whole challenge response and my thing is not nearly as good as your selection so probably talk more about how your selection works in multi chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,000",
+				"to": "00:26:32,000"
+			},
+			"offsets": {
+				"from": 1578000,
+				"to": 1592000
+			},
+			"text": " So the idea is you would have a big a chain and then on that chain you would have some you would have this kind of you know showing going consensus thing and you would have and you have a and you have a bunch of users that have some that you know that participate in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,000",
+				"to": "00:26:35,000"
+			},
+			"offsets": {
+				"from": 1592000,
+				"to": 1595000
+			},
+			"text": " And by participating we basically just mean having a security deposit on here."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,000",
+				"to": "00:26:44,000"
+			},
+			"offsets": {
+				"from": 1595000,
+				"to": 1604000
+			},
+			"text": " Then you have some you know some chain X and that chain X wants to have wants to leverage this will contract for security because X isn't big enough by itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,000",
+				"to": "00:26:55,000"
+			},
+			"offsets": {
+				"from": 1604000,
+				"to": 1615000
+			},
+			"text": " So what it would do is basically this is this consensus contract it's kind of like truth coin it's this decentralized of showing points that massively multi showing coin type oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,000",
+				"to": "00:27:01,000"
+			},
+			"offsets": {
+				"from": 1615000,
+				"to": 1621000
+			},
+			"text": " So that's the thing that it's voting on is it's voting on the first."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,000",
+				"to": "00:27:11,000"
+			},
+			"offsets": {
+				"from": 1621000,
+				"to": 1631000
+			},
+			"text": " So what it provides is it provides a block and the block provides you know state it's got a state route it's got transactions and it's also got a timestamp."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,000",
+				"to": "00:27:16,000"
+			},
+			"offsets": {
+				"from": 1631000,
+				"to": 1636000
+			},
+			"text": " And it's and from the transaction tree you know it's got a miracle tree here and it's got a miracle tree here."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,000",
+				"to": "00:27:37,000"
+			},
+			"offsets": {
+				"from": 1636000,
+				"to": 1657000
+			},
+			"text": " So the question that this thing is voting on is it will take is all take the and of three things number one is the does the time the does the timestamp on the block equal to the actual time number and number two is number two is that available."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,000",
+				"to": "00:27:54,000"
+			},
+			"offsets": {
+				"from": 1657000,
+				"to": 1674000
+			},
+			"text": " So, by is that available do we mean if you descend from the work route is is your data floating around somewhere in the network corresponding to all of the all of the leaves of this going all the way down on the bottom level."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,000",
+				"to": "00:28:07,000"
+			},
+			"offsets": {
+				"from": 1674000,
+				"to": 1687000
+			},
+			"text": " So the idea is that this big this big thing uses it votes on this statement is did the block come at the right time at the time that it said that it came out and is and does the block have data available."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,000",
+				"to": "00:28:18,000"
+			},
+			"offsets": {
+				"from": 1687000,
+				"to": 1698000
+			},
+			"text": " And so then what you have is you would have you would have a trustworthy trustworthy source of blocks that have data available and they came at a particular time."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,000",
+				"to": "00:28:30,000"
+			},
+			"offsets": {
+				"from": 1698000,
+				"to": 1710000
+			},
+			"text": " So given that if you assume that that mechanism is trustworthy then it turns out consensus becomes trivial because your consensus algorithm basically is that if you imagine blocks that are at some particular height."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,000",
+				"to": "00:28:40,000"
+			},
+			"offsets": {
+				"from": 1710000,
+				"to": 1720000
+			},
+			"text": " Your algorithm is a block at a block at a particular height is only valid if it is the first block at if it is the first valid block at that height."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,000",
+				"to": "00:28:46,000"
+			},
+			"offsets": {
+				"from": 1720000,
+				"to": 1726000
+			},
+			"text": " So, if it's over here and then some new one comes along this one I'm actually gets rejected even if it eventually grows longer."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,000",
+				"to": "00:28:53,000"
+			},
+			"offsets": {
+				"from": 1726000,
+				"to": 1733000
+			},
+			"text": " And the way that you defend that is you well the way that you determine the way you sort of make this work is that first of all you know that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:53,000",
+				"to": "00:29:06,000"
+			},
+			"offsets": {
+				"from": 1733000,
+				"to": 1746000
+			},
+			"text": " So the way you determine the time is by checking the work all to see if it's time stamp matter if to see what the time stamp is the way that you the way that you determine validity is first of all if the data is not available when you see it's invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:06,000",
+				"to": "00:29:17,000"
+			},
+			"offsets": {
+				"from": 1746000,
+				"to": 1757000
+			},
+			"text": " Now it could be that the data is available but the block is invalid but then because the data is available anyone can audit the block and anyone can come up with a more go to proof that it's invalid if it is invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:17,000",
+				"to": "00:29:22,000"
+			},
+			"offsets": {
+				"from": 1757000,
+				"to": 1762000
+			},
+			"text": " And so this is kind of like full client security this does like all of the security is so watching."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:22,000",
+				"to": "00:29:28,000"
+			},
+			"offsets": {
+				"from": 1762000,
+				"to": 1768000
+			},
+			"text": " One thing to note is that full clients and light clients have different amount of information that they can use to authenticate different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,000",
+				"to": "00:29:40,000"
+			},
+			"offsets": {
+				"from": 1768000,
+				"to": 1780000
+			},
+			"text": " So that you could if you have security for full clients, not for light clients, then you can do something kind of much less than this in order to help the light clients find the authentic chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,000",
+				"to": "00:29:54,000"
+			},
+			"offsets": {
+				"from": 1780000,
+				"to": 1794000
+			},
+			"text": " So, basically one thing that's important for all the change solutions in my view and this is kind of like my vision for a theory of 2.0 is that we would have like one light client protocol, at least for all of these chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:54,000",
+				"to": "00:30:10,000"
+			},
+			"offsets": {
+				"from": 1794000,
+				"to": 1810000
+			},
+			"text": " And so for example, if we had if we had some chain that's kind of secure as far as all the full clients are concerned but the light clients can't tell whether some fork came later or not because there's no proof of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:10,000",
+				"to": "00:30:14,000"
+			},
+			"offsets": {
+				"from": 1810000,
+				"to": 1814000
+			},
+			"text": " What you what you could do is basically have the people on this chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,000",
+				"to": "00:30:28,000"
+			},
+			"offsets": {
+				"from": 1814000,
+				"to": 1828000
+			},
+			"text": " And whenever there's a fork or every so often buy a checkpoint from a shelling coin game on another chain, which would basically instead of going on this block and chain the timestamp, it would basically just ask, you know, what is the consensus block 1000 blocks ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:28,000",
+				"to": "00:30:40,000"
+			},
+			"offsets": {
+				"from": 1828000,
+				"to": 1840000
+			},
+			"text": " Because, you know, that's kind of longer than the fork length and then so basically it and then the light clients who are on who somehow managed to get on here can find a checkpoint on this one, which you can then use to authenticate the current state there."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:40,000",
+				"to": "00:30:53,000"
+			},
+			"offsets": {
+				"from": 1840000,
+				"to": 1853000
+			},
+			"text": " And this kind of model, we can make like a tree of checkpoints so that like clients who only has one or a handful of checkpoints could authenticate the current state of other chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:53,000",
+				"to": "00:30:59,000"
+			},
+			"offsets": {
+				"from": 1853000,
+				"to": 1859000
+			},
+			"text": " And even though if those chains are secure for full clients just by themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:59,000",
+				"to": "00:31:07,000"
+			},
+			"offsets": {
+				"from": 1859000,
+				"to": 1867000
+			},
+			"text": " Yeah, so the point is here is there's a bit of a trade off between to what extent do you support white clients and what level of standardization do you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:07,000",
+				"to": "00:31:17,000"
+			},
+			"offsets": {
+				"from": 1867000,
+				"to": 1877000
+			},
+			"text": " So the nice thing about this kind of data availability protocol is that here you actually need to standardize almost nothing for all these chains this year security."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:17,000",
+				"to": "00:31:23,000"
+			},
+			"offsets": {
+				"from": 1877000,
+				"to": 1883000
+			},
+			"text": " The only thing that you need to standardize is the Mercotree protocol because you need to have a way of voting on data availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:23,000",
+				"to": "00:31:30,000"
+			},
+			"offsets": {
+				"from": 1883000,
+				"to": 1890000
+			},
+			"text": " Everything else is potentially completely open like this could this might, you know, you're not standardizing whether you're using group of worker group of state."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:30,000",
+				"to": "00:31:38,000"
+			},
+			"offsets": {
+				"from": 1890000,
+				"to": 1898000
+			},
+			"text": " You're not standardizing whether it's whether you're using ghost or not or some other mechanism, you're not standardizing any kind of state transition rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:38,000",
+				"to": "00:31:45,000"
+			},
+			"offsets": {
+				"from": 1898000,
+				"to": 1905000
+			},
+			"text": " But if he wants to go into supporting, you know, more sort of like client functionality, then you might need to end up standardizing more things like checkpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:45,000",
+				"to": "00:31:59,000"
+			},
+			"offsets": {
+				"from": 1905000,
+				"to": 1919000
+			},
+			"text": " Yeah, so for example, if you wanted like kind of ultimate like client functionality, what you would do is have all of the chains be EVM and have a consensus hardware than be it embedded in EVM code so that all the like ones can just use EVM to authenticate the standard state transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:59,000",
+				"to": "00:32:02,000"
+			},
+			"offsets": {
+				"from": 1919000,
+				"to": 1922000
+			},
+			"text": " And authenticate kind of anything that they need."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:02,000",
+				"to": "00:32:09,000"
+			},
+			"offsets": {
+				"from": 1922000,
+				"to": 1929000
+			},
+			"text": " And basically that makes their code base smaller than say if they had to interoperate between chains that have different programs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,000",
+				"to": "00:32:14,000"
+			},
+			"offsets": {
+				"from": 1929000,
+				"to": 1934000
+			},
+			"text": " You have a like client to interoperate Bitcoin and some other chain who can't have services from both."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:14,000",
+				"to": "00:32:22,000"
+			},
+			"offsets": {
+				"from": 1934000,
+				"to": 1942000
+			},
+			"text": " It will be more code than if Bitcoin is EVM because they know it just could kind of use the same code base to authenticate transitions on both chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:22,000",
+				"to": "00:32:27,000"
+			},
+			"offsets": {
+				"from": 1942000,
+				"to": 1947000
+			},
+			"text": " So the more you standardize the more like how you find that you can be."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:27,000",
+				"to": "00:32:30,000"
+			},
+			"offsets": {
+				"from": 1947000,
+				"to": 1950000
+			},
+			"text": " I'm going to just read it already."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:30,000",
+				"to": "00:32:37,000"
+			},
+			"offsets": {
+				"from": 1950000,
+				"to": 1957000
+			},
+			"text": " Yeah, so I guess the last points here, first of all, as idea of checkpointing."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:37,000",
+				"to": "00:32:51,000"
+			},
+			"offsets": {
+				"from": 1957000,
+				"to": 1971000
+			},
+			"text": " And so the question is, in this multi chain context, can we come up with some kind of like client protocol that allows proof of state clients to still be secure or distill securely determine the state of some of the current state of separate states."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:51,000",
+				"to": "00:32:55,000"
+			},
+			"offsets": {
+				"from": 1971000,
+				"to": 1975000
+			},
+			"text": " Or chain ideally with a very low amount of information."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:55,000",
+				"to": "00:32:57,000"
+			},
+			"offsets": {
+				"from": 1975000,
+				"to": 1977000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:57,000",
+				"to": "00:33:01,000"
+			},
+			"offsets": {
+				"from": 1977000,
+				"to": 1981000
+			},
+			"text": " So something else that we haven't talked about yet is."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:01,000",
+				"to": "00:33:19,000"
+			},
+			"offsets": {
+				"from": 1981000,
+				"to": 1999000
+			},
+			"text": " So, like one, one cool idea is that you might be able to use not the checkpoint between the chains at the protocol level to satisfy the, to do the like line protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:19,000",
+				"to": "00:33:28,000"
+			},
+			"offsets": {
+				"from": 1999000,
+				"to": 2008000
+			},
+			"text": " But actually the interface chain that's on top actually have we ever say so basically if we want to do atomic interoperability between two chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:28,000",
+				"to": "00:33:31,000"
+			},
+			"offsets": {
+				"from": 2008000,
+				"to": 2011000
+			},
+			"text": " So basically those two chains have the channel and."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:31,000",
+				"to": "00:33:45,000"
+			},
+			"offsets": {
+				"from": 2011000,
+				"to": 2025000
+			},
+			"text": " What you can do is you can make a third consensus that consensus group that includes is basically a side change for both of those consensus groups and that can be used to pair up different people who want to do interoperability using this channel and primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:45,000",
+				"to": "00:34:03,000"
+			},
+			"offsets": {
+				"from": 2025000,
+				"to": 2043000
+			},
+			"text": " So I'm basically thinking and hoping that we can use the exchange here to help like clients figure out where to go because like clients are going to in a multi chain context will probably not keep their tokens on all of these chains you keep your tokens on a small number of chains, which are more liquid more stable."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:03,000",
+				"to": "00:34:08,000"
+			},
+			"offsets": {
+				"from": 2043000,
+				"to": 2048000
+			},
+			"text": " And then you kind of sell them for the tokens that you need in order to purchase services from some chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:08,000",
+				"to": "00:34:20,000"
+			},
+			"offsets": {
+				"from": 2048000,
+				"to": 2060000
+			},
+			"text": " And you have to go through an exchange to do that anyway so you need to authenticate that exchange and so then you might be able to use that exchange which is moving on the protocol level in order to authenticate which fork on these chains to choose as a light client."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:20,000",
+				"to": "00:34:34,000"
+			},
+			"offsets": {
+				"from": 2060000,
+				"to": 2074000
+			},
+			"text": " So basically if we build pro if we build interoperability kind of on top using atomic atomic interoperability it's less fragile than if you were to extend one of these consensus to include the other one because if this chain died."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,000",
+				"to": "00:34:44,000"
+			},
+			"offsets": {
+				"from": 2074000,
+				"to": 2084000
+			},
+			"text": " In this case it wouldn't affect this chain this chain doesn't know about this chain it just knows about some to know on contracts that it has on itself and it doesn't know what what chain that's interoperating."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:44,000",
+				"to": "00:34:55,000"
+			},
+			"offsets": {
+				"from": 2084000,
+				"to": 2095000
+			},
+			"text": " But if this chain's consensus was actually extended to that change consensus and this chain died this team now have to switch from buying services from this chain buying services from another chain, which is kind of a whole other problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:55,000",
+				"to": "00:35:11,000"
+			},
+			"offsets": {
+				"from": 2095000,
+				"to": 2111000
+			},
+			"text": " So the way to handle that kind of thought of is if you don't have contract creation on kind of the M chain and all the contracts are in the genesis block then to change with exactly the same contracts in the genesis block are going to be providing the same service and so you would be able to switch from asking"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:11,000",
+				"to": "00:35:17,000"
+			},
+			"offsets": {
+				"from": 2111000,
+				"to": 2117000
+			},
+			"text": " a service chain to another chain that has the same contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:17,000",
+				"to": "00:35:30,000"
+			},
+			"offsets": {
+				"from": 2117000,
+				"to": 2130000
+			},
+			"text": " So another paradigm with this multi chain stuff is that instead of having kind of a theorem like general purpose change and have a theorem like application specific change or basically only some contracts will be there and will create contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:30,000",
+				"to": "00:35:44,000"
+			},
+			"offsets": {
+				"from": 2130000,
+				"to": 2144000
+			},
+			"text": " And the idea with the application specific changes that basically you know if you know that your application doesn't mean any more interoperability with anything else, then you could have consensus groups just around those contracts and you don't need to have the same consensus group to all these other contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:44,000",
+				"to": "00:35:49,000"
+			},
+			"offsets": {
+				"from": 2144000,
+				"to": 2149000
+			},
+			"text": " Yeah, I think that's basically all we want to discuss are questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:49,000",
+				"to": "00:35:50,000"
+			},
+			"offsets": {
+				"from": 2149000,
+				"to": 2150000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:50,000",
+				"to": "00:35:58,760"
+			},
+			"offsets": {
+				"from": 2150000,
+				"to": 2158760
+			},
+			"text": " So in the very important special case where the state is just they're not going to be able to get the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:58,760",
+				"to": "00:36:07,000"
+			},
+			"offsets": {
+				"from": 2158760,
+				"to": 2167000
+			},
+			"text": " contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:07,000",
+				"to": "00:36:22,000"
+			},
+			"offsets": {
+				"from": 2167000,
+				"to": 2182000
+			},
+			"text": " Okay, so in the very important special case where the state is just a bunch of account balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:22,000",
+				"to": "00:36:43,000"
+			},
+			"offsets": {
+				"from": 2182000,
+				"to": 2203000
+			},
+			"text": " There's a common and real idea to for scalability is that instead of atomic transactions which take you know some value from here and credit some other account use split these transactions into into it and then the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:43,000",
+				"to": "00:36:54,000"
+			},
+			"offsets": {
+				"from": 2203000,
+				"to": 2214000
+			},
+			"text": " And whatever service needs, needs providing in exchange for this transfer, you make it only conditional on the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:54,000",
+				"to": "00:37:01,000"
+			},
+			"offsets": {
+				"from": 2214000,
+				"to": 2221000
+			},
+			"text": " And you settled the the transaction the credit transactions later when you have time."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:01,000",
+				"to": "00:37:15,000"
+			},
+			"offsets": {
+				"from": 2221000,
+				"to": 2235000
+			},
+			"text": " And this way you can do interoperability between different chains because on one change if you compartmentalized by accounts, then you can basically generate the transactions as fast as you need to."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:15,000",
+				"to": "00:37:33,000"
+			},
+			"offsets": {
+				"from": 2235000,
+				"to": 2253000
+			},
+			"text": " And then you can do the device and the genius side one of the genius ideas of Bitcoin, which I think didn't receive as much attention is that what they did is that they put together the credit and to debit but the other way around."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:33,000",
+				"to": "00:37:51,000"
+			},
+			"offsets": {
+				"from": 2253000,
+				"to": 2271000
+			},
+			"text": " So it's not atomic in the sense that the something is taken from here and the deposit is there, but the other way around that they noticed that you don't need the you don't need the credit transaction before you actually want to spend that amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:51,000",
+				"to": "00:38:01,000"
+			},
+			"offsets": {
+				"from": 2271000,
+				"to": 2281000
+			},
+			"text": " So what a Bitcoin transaction actually does is that it deposits the amount and immediately takes it away."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:01,000",
+				"to": "00:38:09,000"
+			},
+			"offsets": {
+				"from": 2281000,
+				"to": 2289000
+			},
+			"text": " So they don't even have the explicit balance state. So in the Bitcoin network you don't have in the state you don't have the specific balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:09,000",
+				"to": "00:38:23,000"
+			},
+			"offsets": {
+				"from": 2289000,
+				"to": 2303000
+			},
+			"text": " And I think that in in Ethereum since the balances are part of the state, maybe we should consider, you know, splitting up transactions that modify more than one variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:23,000",
+				"to": "00:38:36,000"
+			},
+			"offsets": {
+				"from": 2303000,
+				"to": 2316000
+			},
+			"text": " In particular in case of transfers, they modified two balances to split them up into two transactions and make one transaction condition on the balance and make the other transaction condition one be successful."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:36,000",
+				"to": "00:38:55,000"
+			},
+			"offsets": {
+				"from": 2316000,
+				"to": 2335000
+			},
+			"text": " So that is kind of what the atomic protocol does and basically make sure that one transaction can only go through a failure or can go through, but it does it without requiring any information from one instance of this group, any other instance of this group except for it's pre-emerge or hash, which is kind of more lightweight than having this chain check if some transaction one throw in the other chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:55,000",
+				"to": "00:39:00,000"
+			},
+			"offsets": {
+				"from": 2335000,
+				"to": 2340000
+			},
+			"text": " because all you need to know is whether or not some hash is to be identified."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:00,000",
+				"to": "00:39:21,000"
+			},
+			"offsets": {
+				"from": 2340000,
+				"to": 2361000
+			},
+			"text": " But that's interactive, but here you can carry the proof with you. So basically if you have a successful deposit, a successful debit on one chain, if it gets confirmed, it's a finite package on information that you can carry away and you can present it at that chain and it gets deposited without it."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:21,000",
+				"to": "00:39:31,000"
+			},
+			"offsets": {
+				"from": 2361000,
+				"to": 2371000
+			},
+			"text": " So that's either a sub protocol level or a protocol level thing. That's more likely sort of interesting, still a sharding type approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:31,000",
+				"to": "00:39:36,000"
+			},
+			"offsets": {
+				"from": 2371000,
+				"to": 2376000
+			},
+			"text": " But you can do that also by extending consensus between chains. Yeah, you could."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:36,000",
+				"to": "00:39:40,000"
+			},
+			"offsets": {
+				"from": 2376000,
+				"to": 2380000
+			},
+			"text": " Yeah, so it fits more in the single chain paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:40,000",
+				"to": "00:39:58,000"
+			},
+			"offsets": {
+				"from": 2380000,
+				"to": 2398000
+			},
+			"text": " Yeah, so it's a sharding approach it has, I guess a similar properties, not a sharding approach is the main issue of course is that what if you have, what if you have a debit somewhere and then you use that as a proof to generate a credit twice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:58,000",
+				"to": "00:40:02,000"
+			},
+			"offsets": {
+				"from": 2398000,
+				"to": 2402000
+			},
+			"text": " or what if you know what if you know what the most value is, so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:02,000",
+				"to": "00:40:18,000"
+			},
+			"offsets": {
+				"from": 2402000,
+				"to": 2418000
+			},
+			"text": " But that's a little bit quite good. So if you want, if you want to debit twice using the same, you want to credit twice using the same debit transactions, the, you know, the debits of that target account, they're on that chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:18,000",
+				"to": "00:40:28,000"
+			},
+			"offsets": {
+				"from": 2418000,
+				"to": 2428000
+			},
+			"text": " So you prevent double deposits and there you prevent double withdrawals instead of, you know, globally."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:28,000",
+				"to": "00:40:34,000"
+			},
+			"offsets": {
+				"from": 2428000,
+				"to": 2434000
+			},
+			"text": " Right, the one thing double, double spans you prevent double withdrawals and double."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:34,000",
+				"to": "00:40:40,000"
+			},
+			"offsets": {
+				"from": 2434000,
+				"to": 2440000
+			},
+			"text": " So what if I, what if on some local chain, I mean, what's wrong with an idea, we double spend double strong locally."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:40,000",
+				"to": "00:40:50,000"
+			},
+			"offsets": {
+				"from": 2440000,
+				"to": 2450000
+			},
+			"text": " Well, for, sorry, we haven't talked about portions. Yeah, the force always basically do you having to wait for interoperability functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:50,000",
+				"to": "00:40:54,000"
+			},
+			"offsets": {
+				"from": 2450000,
+				"to": 2454000
+			},
+			"text": " Because, you know, anything we roll back and forth. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:54,000",
+				"to": "00:41:02,000"
+			},
+			"offsets": {
+				"from": 2454000,
+				"to": 2462000
+			},
+			"text": " So that's why, not having non-forming chains if they're possible would really help interoperability solutions and watching scale solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:02,000",
+				"to": "00:41:16,000"
+			},
+			"offsets": {
+				"from": 2462000,
+				"to": 2476000
+			},
+			"text": " One thing that I haven't mentioned yet, which I really like to mention is this idea that one of the things that are probably helpful for thinking about blockchain scaling is that it's, so the client is serving the user and the client uses chains to serve the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:16,000",
+				"to": "00:41:28,000"
+			},
+			"offsets": {
+				"from": 2476000,
+				"to": 2488000
+			},
+			"text": " It's not that the client is serving the chain. And so if a user has a consensus group here, I think they would prefer to not have SPV groups of some other consensus group."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:28,000",
+				"to": "00:41:32,000"
+			},
+			"offsets": {
+				"from": 2488000,
+				"to": 2492000
+			},
+			"text": " They're not interested in being detected into their consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:32,000",
+				"to": "00:41:47,000"
+			},
+			"offsets": {
+				"from": 2492000,
+				"to": 2507000
+			},
+			"text": " And that's kind of why I prefer this idea of atomic level kind of interoperability on top rather than interoperability in protocol because it kind of lets the client have more specific narrow consensus that it's keeping."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:47,000",
+				"to": "00:41:57,000"
+			},
+			"offsets": {
+				"from": 2507000,
+				"to": 2517000
+			},
+			"text": " And it is kind of more restricted. There's less you can do if you don't have this kind of proof of information about what happened in other chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:57,000",
+				"to": "00:42:06,000"
+			},
+			"offsets": {
+				"from": 2517000,
+				"to": 2526000
+			},
+			"text": " But the insight is basically that clients can get SPV groups of lower chains without having to get them from one chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:06,000",
+				"to": "00:42:12,000"
+			},
+			"offsets": {
+				"from": 2526000,
+				"to": 2532000
+			},
+			"text": " Right. So any client that's looking at both chains will know whether something might throw on the other chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:12,000",
+				"to": "00:42:19,000"
+			},
+			"offsets": {
+				"from": 2532000,
+				"to": 2539000
+			},
+			"text": " But that doesn't mean that you necessarily need to force every client that's on one chain to know about what happened on the other chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:19,000",
+				"to": "00:42:26,000"
+			},
+			"offsets": {
+				"from": 2539000,
+				"to": 2546000
+			},
+			"text": " So the idea of these interoperability kind of interface chains that know about both chains is that those clients that are watching are both chains can form."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:26,000",
+				"to": "00:42:34,000"
+			},
+			"offsets": {
+				"from": 2546000,
+				"to": 2554000
+			},
+			"text": " But everyone can do this group in order to interoperate these two chains without actually injecting information from the consensus into other consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:34,000",
+				"to": "00:42:39,000"
+			},
+			"offsets": {
+				"from": 2554000,
+				"to": 2559000
+			},
+			"text": " which I kind of regard as inconsiderate unless it's necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:39,000",
+				"to": "00:42:47,000"
+			},
+			"offsets": {
+				"from": 2559000,
+				"to": 2567000
+			},
+			"text": " And how many dealers are great at that particular and might have been a block stream to a packing stuff, which you haven't talked about yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:47,000",
+				"to": "00:42:48,000"
+			},
+			"offsets": {
+				"from": 2567000,
+				"to": 2568000
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:48,000",
+				"to": "00:42:53,000"
+			},
+			"offsets": {
+				"from": 2568000,
+				"to": 2573000
+			},
+			"text": " Is that a side chain discussion supposed to be a leader?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:53,000",
+				"to": "00:42:55,000"
+			},
+			"offsets": {
+				"from": 2573000,
+				"to": 2575000
+			},
+			"text": " Oh, is that a talk?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:55,000",
+				"to": "00:42:56,000"
+			},
+			"offsets": {
+				"from": 2575000,
+				"to": 2576000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:56,000",
+				"to": "00:42:57,000"
+			},
+			"offsets": {
+				"from": 2576000,
+				"to": 2577000
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:57,000",
+				"to": "00:42:58,000"
+			},
+			"offsets": {
+				"from": 2577000,
+				"to": 2578000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:58,000",
+				"to": "00:43:05,000"
+			},
+			"offsets": {
+				"from": 2578000,
+				"to": 2585000
+			},
+			"text": " How do you see the greater migration path from Ethereum 1.0 to 2.0, specifically regards to original blockchain and--"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:05,000",
+				"to": "00:43:13,000"
+			},
+			"offsets": {
+				"from": 2585000,
+				"to": 2593000
+			},
+			"text": " Ethereum 2-- so for 1.0 to 1.1, first of all, 1.1 is just going to be some moderate things like for those state and event trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:13,000",
+				"to": "00:43:25,000"
+			},
+			"offsets": {
+				"from": 2593000,
+				"to": 2605000
+			},
+			"text": " For that, the approach is to have a sort of a negative sum of voting on protocol upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:25,000",
+				"to": "00:43:31,000"
+			},
+			"offsets": {
+				"from": 2605000,
+				"to": 2611000
+			},
+			"text": " So it's not going to be a minor based mechanism because it's not going to be a minor's interest to keep proof of work forever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:31,000",
+				"to": "00:43:39,000"
+			},
+			"offsets": {
+				"from": 2611000,
+				"to": 2619000
+			},
+			"text": " but something stakeholder driven where if you have your coins in a contract that has a state of storage at some particular key course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:39,000",
+				"to": "00:43:44,000"
+			},
+			"offsets": {
+				"from": 2619000,
+				"to": 2624000
+			},
+			"text": " or a spot to some particular value, then you're basically voting for the protocol to get upgraded."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:44,000",
+				"to": "00:43:52,000"
+			},
+			"offsets": {
+				"from": 2624000,
+				"to": 2632000
+			},
+			"text": " And once there's some majority in paper that upgrades, then the idea is that the original chain will sort of suicide after some particular amount of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:52,000",
+				"to": "00:43:56,000"
+			},
+			"offsets": {
+				"from": 2632000,
+				"to": 2636000
+			},
+			"text": " So all blocks after what number, say 1.3 million, will just be invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:56,000",
+				"to": "00:44:03,000"
+			},
+			"offsets": {
+				"from": 2636000,
+				"to": 2643000
+			},
+			"text": " And the new chain, the coins would have time to download a new coin, and then you would support the new chain of batching."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:03,000",
+				"to": "00:44:08,000"
+			},
+			"offsets": {
+				"from": 2643000,
+				"to": 2648000
+			},
+			"text": " So that would work for Ethereum going from 1.0 to 1.1, and 2.0 if we're using starting."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:08,000",
+				"to": "00:44:09,000"
+			},
+			"offsets": {
+				"from": 2648000,
+				"to": 2649000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:09,000",
+				"to": "00:44:10,000"
+			},
+			"offsets": {
+				"from": 2649000,
+				"to": 2650000
+			},
+			"text": " But if we're using multi-chain--"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:10,000",
+				"to": "00:44:12,000"
+			},
+			"offsets": {
+				"from": 2650000,
+				"to": 2652000
+			},
+			"text": " Well, if we're using multi-chain, we're up to a Ethereum 1.1."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:12,000",
+				"to": "00:44:17,000"
+			},
+			"offsets": {
+				"from": 2652000,
+				"to": 2657000
+			},
+			"text": " We'll be, if you're in 2.0, the only difference between 1.1 and 2.0 will be just a set of tools for--"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:17,000",
+				"to": "00:44:25,000"
+			},
+			"offsets": {
+				"from": 2657000,
+				"to": 2665000
+			},
+			"text": " Yeah, and also kind of the client protocol or what client protocol that you serve all these chains or providers as one chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:25,000",
+				"to": "00:44:33,000"
+			},
+			"offsets": {
+				"from": 2665000,
+				"to": 2673000
+			},
+			"text": " So then basically, if that's the direction that we're going, then Ethereum 2.0 is kind of an interface layer between all these blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:33,000",
+				"to": "00:44:39,000"
+			},
+			"offsets": {
+				"from": 2673000,
+				"to": 2679000
+			},
+			"text": " You kind of imagine if the Ms. Browser let you buy the services from a whole host of chains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:39,000",
+				"to": "00:44:49,000"
+			},
+			"offsets": {
+				"from": 2679000,
+				"to": 2689000
+			},
+			"text": " or if most of those chains are actually allocation specific, as in some doc, rather than being this kind of general purpose name where you kind of play with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:49,000",
+				"to": "00:44:51,000"
+			},
+			"offsets": {
+				"from": 2689000,
+				"to": 2691000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:51,000",
+				"to": "00:45:01,000"
+			},
+			"offsets": {
+				"from": 2691000,
+				"to": 2701000
+			},
+			"text": " So is the chain sharding and the atomic-- is that the atomic whole chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:01,000",
+				"to": "00:45:05,000"
+			},
+			"offsets": {
+				"from": 2701000,
+				"to": 2705000
+			},
+			"text": " Are those two--"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:05,000",
+				"to": "00:45:08,000"
+			},
+			"offsets": {
+				"from": 2705000,
+				"to": 2708000
+			},
+			"text": " There's sort of competing approaches, I would say."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:08,000",
+				"to": "00:45:11,000"
+			},
+			"offsets": {
+				"from": 2708000,
+				"to": 2711000
+			},
+			"text": " Can you-- did you have both?"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:11,000",
+				"to": "00:45:12,000"
+			},
+			"offsets": {
+				"from": 2711000,
+				"to": 2712000
+			},
+			"text": " Yeah, you could."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:12,000",
+				"to": "00:45:18,000"
+			},
+			"offsets": {
+				"from": 2712000,
+				"to": 2718000
+			},
+			"text": " Because you have the sharded chain, but then use this for--"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:18,000",
+				"to": "00:45:19,000"
+			},
+			"offsets": {
+				"from": 2718000,
+				"to": 2719000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:19,000",
+				"to": "00:45:21,000"
+			},
+			"offsets": {
+				"from": 2719000,
+				"to": 2721000
+			},
+			"text": " Is it--"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:21,000",
+				"to": "00:45:23,000"
+			},
+			"offsets": {
+				"from": 2721000,
+				"to": 2723000
+			},
+			"text": " Is it a mirab thing? Yes, you could."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:23,000",
+				"to": "00:45:24,000"
+			},
+			"offsets": {
+				"from": 2723000,
+				"to": 2724000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:24,000",
+				"to": "00:45:25,000"
+			},
+			"offsets": {
+				"from": 2724000,
+				"to": 2725000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:25,000",
+				"to": "00:45:42,000"
+			},
+			"offsets": {
+				"from": 2725000,
+				"to": 2742000
+			},
+			"text": " And I think that that might be a good idea, because if clients are going to want to keep their digital assets in some stable token, then we're probably going to want them to do a lot of transactions on the chain where they hold their tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:42,000",
+				"to": "00:45:43,000"
+			},
+			"offsets": {
+				"from": 2742000,
+				"to": 2743000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:43,000",
+				"to": "00:45:58,000"
+			},
+			"offsets": {
+				"from": 2743000,
+				"to": 2758000
+			},
+			"text": " If we want to have a stable currency across the entire system, the other approach is that we don't necessarily need the units to be actually transferable, we just need a whole bunch of stable coins, and we need to make the stable coins all to our-- get the same standard, and then it'll just be an exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:58,000",
+				"to": "00:46:02,000"
+			},
+			"offsets": {
+				"from": 2758000,
+				"to": 2762000
+			},
+			"text": " It'll be a floating exchange rate, but later a floating exchange rate will just always happen to be one."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:02,000",
+				"to": "00:46:06,000"
+			},
+			"offsets": {
+				"from": 2762000,
+				"to": 2766000
+			},
+			"text": " But then sometimes we'll kind of have to have any more stable nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:06,000",
+				"to": "00:46:07,000"
+			},
+			"offsets": {
+				"from": 2766000,
+				"to": 2767000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:07,000",
+				"to": "00:46:10,000"
+			},
+			"offsets": {
+				"from": 2767000,
+				"to": 2770000
+			},
+			"text": " And so people will tend to keep their money on those."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:10,000",
+				"to": "00:46:11,000"
+			},
+			"offsets": {
+				"from": 2770000,
+				"to": 2771000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:11,000",
+				"to": "00:46:17,000"
+			},
+			"offsets": {
+				"from": 2771000,
+				"to": 2777000
+			},
+			"text": " Because most of my clients don't want to be exposed to speculating on the success of some dot they just want to be using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:17,000",
+				"to": "00:46:19,000"
+			},
+			"offsets": {
+				"from": 2777000,
+				"to": 2779000
+			},
+			"text": " And so they can--"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:19,000",
+				"to": "00:46:27,000"
+			},
+			"offsets": {
+				"from": 2779000,
+				"to": 2787000
+			},
+			"text": " Another nice thing about the common trend that we have in the mention is that you can pay for a contract call or some functionality on another chain using fees on one chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:27,000",
+				"to": "00:46:38,000"
+			},
+			"offsets": {
+				"from": 2787000,
+				"to": 2798000
+			},
+			"text": " So basically, you know, someone would see that you want to call some contract and then be like, yeah, okay, I want tokens on the chain that you're paying on, and then they're on the contract for you and exchange for those tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:38,000",
+				"to": "00:46:49,000"
+			},
+			"offsets": {
+				"from": 2798000,
+				"to": 2809000
+			},
+			"text": " So you might not actually need to change to buy tokens on some daps, chain or use the daps and you could just pay for it on your chain and have the contract happen on the daps chain, which is kind of neat."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:49,000",
+				"to": "00:46:55,000"
+			},
+			"offsets": {
+				"from": 2809000,
+				"to": 2815000
+			},
+			"text": " Can people running on a chain with a common buy that's there this way?"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:55,000",
+				"to": "00:47:00,000"
+			},
+			"offsets": {
+				"from": 2815000,
+				"to": 2820000
+			},
+			"text": " Basically, they didn't have to interact with your chain as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:00,000",
+				"to": "00:47:05,000"
+			},
+			"offsets": {
+				"from": 2820000,
+				"to": 2825000
+			},
+			"text": " They would just have to--the clients would have to watch it. The consensus wouldn't necessarily have to."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:05,000",
+				"to": "00:47:08,000"
+			},
+			"offsets": {
+				"from": 2825000,
+				"to": 2828000
+			},
+			"text": " So only the clients that are providing a service would have to watch it."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:08,000",
+				"to": "00:47:13,000"
+			},
+			"offsets": {
+				"from": 2828000,
+				"to": 2833000
+			},
+			"text": " Basically, because they have to get the hash value on the provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:13,000",
+				"to": "00:47:19,000"
+			},
+			"offsets": {
+				"from": 2833000,
+				"to": 2839000
+			},
+			"text": " But they have to want your chain's currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:19,000",
+				"to": "00:47:20,000"
+			},
+			"offsets": {
+				"from": 2839000,
+				"to": 2840000
+			},
+			"text": " That's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:20,000",
+				"to": "00:47:38,000"
+			},
+			"offsets": {
+				"from": 2840000,
+				"to": 2858000
+			},
+			"text": " Or you can even do something more primitive, for example, if you form a special contract where as soon as that deposit in the right amount, then a new chain is started where, you know, there's no mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:38,000",
+				"to": "00:47:50,000"
+			},
+			"offsets": {
+				"from": 2858000,
+				"to": 2870000
+			},
+			"text": " You're just using the deposit and you can only unlock that contract in the original chain if all the tokens are destroyed in the first chain, in the small chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:50,000",
+				"to": "00:47:53,000"
+			},
+			"offsets": {
+				"from": 2870000,
+				"to": 2873000
+			},
+			"text": " And how would that other chain know about that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:53,000",
+				"to": "00:47:55,000"
+			},
+			"offsets": {
+				"from": 2873000,
+				"to": 2875000
+			},
+			"text": " Well, there's a proof that you can--"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:55,000",
+				"to": "00:47:56,000"
+			},
+			"offsets": {
+				"from": 2875000,
+				"to": 2876000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:56,000",
+				"to": "00:47:59,000"
+			},
+			"offsets": {
+				"from": 2876000,
+				"to": 2879000
+			},
+			"text": " And then you don't have to wait for confirmations."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:59,000",
+				"to": "00:48:00,000"
+			},
+			"offsets": {
+				"from": 2879000,
+				"to": 2880000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:00,000",
+				"to": "00:48:01,000"
+			},
+			"offsets": {
+				"from": 2880000,
+				"to": 2881000
+			},
+			"text": " That's not right."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:01,000",
+				"to": "00:48:03,000"
+			},
+			"offsets": {
+				"from": 2881000,
+				"to": 2883000
+			},
+			"text": " Which is okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:07,000",
+				"to": "00:48:10,000"
+			},
+			"offsets": {
+				"from": 2887000,
+				"to": 2890000
+			},
+			"text": " So I'm not sure that's necessarily more primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:10,000",
+				"to": "00:48:12,000"
+			},
+			"offsets": {
+				"from": 2890000,
+				"to": 2892000
+			},
+			"text": " It seems a little bit more sophisticated."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:12,000",
+				"to": "00:48:18,000"
+			},
+			"offsets": {
+				"from": 2892000,
+				"to": 2898000
+			},
+			"text": " Well, it doesn't require any exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:18,000",
+				"to": "00:48:21,000"
+			},
+			"offsets": {
+				"from": 2898000,
+				"to": 2901000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:21,000",
+				"to": "00:48:28,000"
+			},
+			"offsets": {
+				"from": 2901000,
+				"to": 2908000
+			},
+			"text": " This kind of approach is nice because it's also a way of doing cross-chain exchange without ever having actual--"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:28,000",
+				"to": "00:48:35,000"
+			},
+			"offsets": {
+				"from": 2908000,
+				"to": 2915000
+			},
+			"text": " Well, basically, without ever actually having an exchange of different tokens that are-- that's across different chains at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:35,000",
+				"to": "00:48:41,000"
+			},
+			"offsets": {
+				"from": 2915000,
+				"to": 2921000
+			},
+			"text": " As you can expect on-chain exchange to be very efficient, but then interchange stuff will probably have higher fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:41,000",
+				"to": "00:48:42,000"
+			},
+			"offsets": {
+				"from": 2921000,
+				"to": 2922000
+			},
+			"text": " But here it's between the same currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:42,000",
+				"to": "00:48:43,000"
+			},
+			"offsets": {
+				"from": 2922000,
+				"to": 2923000
+			},
+			"text": " Here it's the same currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:43,000",
+				"to": "00:48:50,000"
+			},
+			"offsets": {
+				"from": 2923000,
+				"to": 2930000
+			},
+			"text": " So because the rate will always be like 1, then the spread will probably be very low."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:50,000",
+				"to": "00:48:52,000"
+			},
+			"offsets": {
+				"from": 2930000,
+				"to": 2932000
+			},
+			"text": " So you should see the same currency in the delicious?"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:52,000",
+				"to": "00:48:52,000"
+			},
+			"offsets": {
+				"from": 2932000,
+				"to": 2932000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:52,000",
+				"to": "00:48:53,000"
+			},
+			"offsets": {
+				"from": 2932000,
+				"to": 2933000
+			},
+			"text": " Well, no."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:53,000",
+				"to": "00:48:54,000"
+			},
+			"offsets": {
+				"from": 2933000,
+				"to": 2934000
+			},
+			"text": " So I'm saying you have A here."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:54,000",
+				"to": "00:48:55,000"
+			},
+			"offsets": {
+				"from": 2934000,
+				"to": 2935000
+			},
+			"text": " You have B here."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:55,000",
+				"to": "00:48:56,000"
+			},
+			"offsets": {
+				"from": 2935000,
+				"to": 2936000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:56,000",
+				"to": "00:48:57,000"
+			},
+			"offsets": {
+				"from": 2936000,
+				"to": 2937000
+			},
+			"text": " And you have A here."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:57,000",
+				"to": "00:49:00,000"
+			},
+			"offsets": {
+				"from": 2937000,
+				"to": 2940000
+			},
+			"text": " Exchange between these two is just on-chain, so it's very efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:00,000",
+				"to": "00:49:06,000"
+			},
+			"offsets": {
+				"from": 2940000,
+				"to": 2946000
+			},
+			"text": " Here the exchange rate is always 1, so there's a-- there's an opportunity for like very low risk arbitrage and same here."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:06,000",
+				"to": "00:49:07,000"
+			},
+			"offsets": {
+				"from": 2946000,
+				"to": 2947000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:07,000",
+				"to": "00:49:11,000"
+			},
+			"offsets": {
+				"from": 2947000,
+				"to": 2951000
+			},
+			"text": " Another thing you can do is just do-- have security problems in matching here."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:11,000",
+				"to": "00:49:18,000"
+			},
+			"offsets": {
+				"from": 2951000,
+				"to": 2958000
+			},
+			"text": " And basically require people to be online when they do the exchange so you can do atomic elections here rather than paying transactions here."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:18,000",
+				"to": "00:49:20,000"
+			},
+			"offsets": {
+				"from": 2958000,
+				"to": 2960000
+			},
+			"text": " What do you do security problems for everything you have to do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:20,000",
+				"to": "00:49:21,000"
+			},
+			"offsets": {
+				"from": 2960000,
+				"to": 2961000
+			},
+			"text": " Yeah, you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:21,000",
+				"to": "00:49:25,000"
+			},
+			"offsets": {
+				"from": 2961000,
+				"to": 2965000
+			},
+			"text": " So security problems are the best because it lets you make an actual equilibrium."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:25,000",
+				"to": "00:49:30,000"
+			},
+			"offsets": {
+				"from": 2965000,
+				"to": 2970000
+			},
+			"text": " But it's wrong because you can basically say that if you TV it from an inter-detectable way, your security policy goes away."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:30,000",
+				"to": "00:49:31,000"
+			},
+			"offsets": {
+				"from": 2970000,
+				"to": 2971000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:31,000",
+				"to": "00:49:34,000"
+			},
+			"offsets": {
+				"from": 2971000,
+				"to": 2974000
+			},
+			"text": " Interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:34,000",
+				"to": "00:49:38,000"
+			},
+			"offsets": {
+				"from": 2974000,
+				"to": 2978000
+			},
+			"text": " And we'll probably talk about that during an approved state panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:38,000",
+				"to": "00:49:39,000"
+			},
+			"offsets": {
+				"from": 2978000,
+				"to": 2979000
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:39,000",
+				"to": "00:49:40,000"
+			},
+			"offsets": {
+				"from": 2979000,
+				"to": 2980000
+			},
+			"text": " Definitely."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:40,000",
+				"to": "00:49:41,000"
+			},
+			"offsets": {
+				"from": 2980000,
+				"to": 2981000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:41,000",
+				"to": "00:49:43,000"
+			},
+			"offsets": {
+				"from": 2981000,
+				"to": 2983000
+			},
+			"text": " Anything else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:43,000",
+				"to": "00:49:44,000"
+			},
+			"offsets": {
+				"from": 2983000,
+				"to": 2984000
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:44,000",
+				"to": "00:49:45,000"
+			},
+			"offsets": {
+				"from": 2984000,
+				"to": 2985000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:45,000",
+				"to": "00:49:52,000"
+			},
+			"offsets": {
+				"from": 2985000,
+				"to": 2992000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:53,000",
+				"to": "00:49:54,000"
+			},
+			"offsets": {
+				"from": 2993000,
+				"to": 2994000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:54,000",
+				"to": "00:50:01,000"
+			},
+			"offsets": {
+				"from": 2994000,
+				"to": 3001000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:01,000",
+				"to": "00:50:08,000"
+			},
+			"offsets": {
+				"from": 3001000,
+				"to": 3008000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:08,000",
+				"to": "00:50:15,000"
+			},
+			"offsets": {
+				"from": 3008000,
+				"to": 3015000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:15,000",
+				"to": "00:50:22,000"
+			},
+			"offsets": {
+				"from": 3015000,
+				"to": 3022000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:22,000",
+				"to": "00:50:29,000"
+			},
+			"offsets": {
+				"from": 3022000,
+				"to": 3029000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:29,000",
+				"to": "00:50:36,000"
+			},
+			"offsets": {
+				"from": 3029000,
+				"to": 3036000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:36,000",
+				"to": "00:50:55,000"
+			},
+			"offsets": {
+				"from": 3036000,
+				"to": 3055000
+			},
+			"text": " [silence]"
+		}
+	]
+}

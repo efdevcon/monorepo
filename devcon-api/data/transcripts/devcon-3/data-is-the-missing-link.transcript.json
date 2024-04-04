@@ -1,0 +1,2969 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,600"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18600
+			},
+			"text": " >> Good afternoon, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,600",
+				"to": "00:00:22,300"
+			},
+			"offsets": {
+				"from": 18600,
+				"to": 22300
+			},
+			"text": " My name is Sam Chadwick, and I'm in the innovation team"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,300",
+				"to": "00:00:25,400"
+			},
+			"offsets": {
+				"from": 22300,
+				"to": 25400
+			},
+			"text": " at Thomson Reuters, and I'm accompanied by Tim Nugent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,400",
+				"to": "00:00:28,120"
+			},
+			"offsets": {
+				"from": 25400,
+				"to": 28120
+			},
+			"text": " who is in our research and development team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,300",
+				"to": "00:00:31,780"
+			},
+			"offsets": {
+				"from": 29300,
+				"to": 31780
+			},
+			"text": " And we thought we'd spend today talking about some"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,780",
+				"to": "00:00:33,740"
+			},
+			"offsets": {
+				"from": 31780,
+				"to": 33740
+			},
+			"text": " of the things that Thomson Reuters has been doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,740",
+				"to": "00:00:37,580"
+			},
+			"offsets": {
+				"from": 33740,
+				"to": 37580
+			},
+			"text": " over the last two years in the Ethereum space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,580",
+				"to": "00:00:42,100"
+			},
+			"offsets": {
+				"from": 37580,
+				"to": 42100
+			},
+			"text": " But we thought we'd start because over the last couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,100",
+				"to": "00:00:45,500"
+			},
+			"offsets": {
+				"from": 42100,
+				"to": 45500
+			},
+			"text": " of days I've realized that not a lot of you know what --"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,500",
+				"to": "00:00:47,520"
+			},
+			"offsets": {
+				"from": 45500,
+				"to": 47520
+			},
+			"text": " or who Thomson Reuters are."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,520",
+				"to": "00:00:53,740"
+			},
+			"offsets": {
+				"from": 47520,
+				"to": 53740
+			},
+			"text": " We are famous for our Reuters news agency that delivers news"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,740",
+				"to": "00:00:56,720"
+			},
+			"offsets": {
+				"from": 53740,
+				"to": 56720
+			},
+			"text": " to over a billion people around the planet every day."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,520",
+				"to": "00:01:00,760"
+			},
+			"offsets": {
+				"from": 57520,
+				"to": 60760
+			},
+			"text": " But what you may not be aware of is that the majority"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,760",
+				"to": "00:01:03,840"
+			},
+			"offsets": {
+				"from": 60760,
+				"to": 63840
+			},
+			"text": " of our business comes from three business units"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,840",
+				"to": "00:01:07,120"
+			},
+			"offsets": {
+				"from": 63840,
+				"to": 67120
+			},
+			"text": " where we are a trusted information provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,120",
+				"to": "00:01:10,520"
+			},
+			"offsets": {
+				"from": 67120,
+				"to": 70520
+			},
+			"text": " for professional services across financial"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,520",
+				"to": "00:01:12,240"
+			},
+			"offsets": {
+				"from": 70520,
+				"to": 72240
+			},
+			"text": " and risk tax and accounting and legal."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,240",
+				"to": "00:01:17,880"
+			},
+			"offsets": {
+				"from": 72240,
+				"to": 77880
+			},
+			"text": " So our journey here started a couple of years ago"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,880",
+				"to": "00:01:23,620"
+			},
+			"offsets": {
+				"from": 77880,
+				"to": 83620
+			},
+			"text": " because I'm based in Zug, which as you port mentioned has been"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,620",
+				"to": "00:01:25,260"
+			},
+			"offsets": {
+				"from": 83620,
+				"to": 85260
+			},
+			"text": " coined as crypto valley now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,940",
+				"to": "00:01:31,500"
+			},
+			"offsets": {
+				"from": 85940,
+				"to": 91500
+			},
+			"text": " And I'd gone back to study a degree at Oxford"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,500",
+				"to": "00:01:34,240"
+			},
+			"offsets": {
+				"from": 91500,
+				"to": 94240
+			},
+			"text": " and was hunting for a dissertation topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,240",
+				"to": "00:01:40,540"
+			},
+			"offsets": {
+				"from": 94240,
+				"to": 100540
+			},
+			"text": " And Vitalix paper came out and a lot of the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,540",
+				"to": "00:01:42,780"
+			},
+			"offsets": {
+				"from": 100540,
+				"to": 102780
+			},
+			"text": " or media were picking it up saying, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,780",
+				"to": "00:01:45,500"
+			},
+			"offsets": {
+				"from": 102780,
+				"to": 105500
+			},
+			"text": " this is going to disrupt the financial services tremendously."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,500",
+				"to": "00:01:48,900"
+			},
+			"offsets": {
+				"from": 105500,
+				"to": 108900
+			},
+			"text": " And given that a large proportion of our revenue comes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,900",
+				"to": "00:01:50,440"
+			},
+			"offsets": {
+				"from": 108900,
+				"to": 110440
+			},
+			"text": " from the financial services business,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,440",
+				"to": "00:01:53,500"
+			},
+			"offsets": {
+				"from": 110440,
+				"to": 113500
+			},
+			"text": " the question was, well, how's that going to impact us?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,360",
+				"to": "00:01:58,400"
+			},
+			"offsets": {
+				"from": 114360,
+				"to": 118400
+			},
+			"text": " So, of course, not knowing where Ethereum was based,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,400",
+				"to": "00:01:59,720"
+			},
+			"offsets": {
+				"from": 118400,
+				"to": 119720
+			},
+			"text": " I reached out to Vitalix."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,720",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 119720,
+				"to": 123000
+			},
+			"text": " These were the days before he was famous."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:06,420"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 126420
+			},
+			"text": " So he was very happy to answer my email, fortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,420",
+				"to": "00:02:08,800"
+			},
+			"offsets": {
+				"from": 126420,
+				"to": 128800
+			},
+			"text": " And we met up for a coffee in Zug."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,800",
+				"to": "00:02:12,540"
+			},
+			"offsets": {
+				"from": 128800,
+				"to": 132540
+			},
+			"text": " I had no idea that he lived two kilometers down the road from me."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,540",
+				"to": "00:02:18,360"
+			},
+			"offsets": {
+				"from": 132540,
+				"to": 138360
+			},
+			"text": " He more or less said, very quickly, you guys need to be an oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,360",
+				"to": "00:02:22,040"
+			},
+			"offsets": {
+				"from": 138360,
+				"to": 142040
+			},
+			"text": " The financial services industry trusts you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,040",
+				"to": "00:02:23,880"
+			},
+			"offsets": {
+				"from": 142040,
+				"to": 143880
+			},
+			"text": " You're an information provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,440",
+				"to": "00:02:27,640"
+			},
+			"offsets": {
+				"from": 144440,
+				"to": 147640
+			},
+			"text": " And we need to bring those capabilities to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,640",
+				"to": "00:02:30,200"
+			},
+			"offsets": {
+				"from": 147640,
+				"to": 150200
+			},
+			"text": " So the journey really started there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,200",
+				"to": "00:02:34,080"
+			},
+			"offsets": {
+				"from": 150200,
+				"to": 154080
+			},
+			"text": " And as I was looking at the space, the question became,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,080",
+				"to": "00:02:37,560"
+			},
+			"offsets": {
+				"from": 154080,
+				"to": 157560
+			},
+			"text": " so what part of financial services is likely"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,560",
+				"to": "00:02:38,820"
+			},
+			"offsets": {
+				"from": 157560,
+				"to": 158820
+			},
+			"text": " to get impacted first?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,820",
+				"to": "00:02:43,600"
+			},
+			"offsets": {
+				"from": 158820,
+				"to": 163600
+			},
+			"text": " So we put together a model that we call the 3-V's model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,600",
+				"to": "00:02:46,520"
+			},
+			"offsets": {
+				"from": 163600,
+				"to": 166520
+			},
+			"text": " volume, value, and venue."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,520",
+				"to": "00:02:50,440"
+			},
+			"offsets": {
+				"from": 166520,
+				"to": 170440
+			},
+			"text": " You can't see the venue access that's going in and out of the page."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,060",
+				"to": "00:02:56,220"
+			},
+			"offsets": {
+				"from": 171060,
+				"to": 176220
+			},
+			"text": " But it's essentially the difference between centralized and decentralized venues."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,220",
+				"to": "00:03:00,220"
+			},
+			"offsets": {
+				"from": 176220,
+				"to": 180220
+			},
+			"text": " But on the axes that I've decided to talk about today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,220",
+				"to": "00:03:05,700"
+			},
+			"offsets": {
+				"from": 180220,
+				"to": 185700
+			},
+			"text": " you've got value on the y-axis and volume of transactions on the x-axis."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,700",
+				"to": "00:03:10,780"
+			},
+			"offsets": {
+				"from": 185700,
+				"to": 190780
+			},
+			"text": " So if you look at the top right corner, so this is the global capital segment."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,780",
+				"to": "00:03:15,180"
+			},
+			"offsets": {
+				"from": 190780,
+				"to": 195180
+			},
+			"text": " Foreign exchange, public equity exchanges, government bonds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,180",
+				"to": "00:03:19,340"
+			},
+			"offsets": {
+				"from": 195180,
+				"to": 199340
+			},
+			"text": " These are incredibly sophisticated markets today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,780",
+				"to": "00:03:22,020"
+			},
+			"offsets": {
+				"from": 199780,
+				"to": 202020
+			},
+			"text": " decades worth of improvements."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,020",
+				"to": "00:03:24,940"
+			},
+			"offsets": {
+				"from": 202020,
+				"to": 204940
+			},
+			"text": " Yes, people point at them and say they work inefficiently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,940",
+				"to": "00:03:31,100"
+			},
+			"offsets": {
+				"from": 204940,
+				"to": 211100
+			},
+			"text": " but actually the time and effort it's going to take to migrate those industries"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,100",
+				"to": "00:03:32,900"
+			},
+			"offsets": {
+				"from": 211100,
+				"to": 212900
+			},
+			"text": " and those markets is quite considerable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,900",
+				"to": "00:03:35,380"
+			},
+			"offsets": {
+				"from": 212900,
+				"to": 215380
+			},
+			"text": " So we're not saying it won't happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,380",
+				"to": "00:03:39,260"
+			},
+			"offsets": {
+				"from": 215380,
+				"to": 219260
+			},
+			"text": " We're just saying that probably that won't be the place where it starts first."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,260",
+				"to": "00:03:43,860"
+			},
+			"offsets": {
+				"from": 219260,
+				"to": 223860
+			},
+			"text": " So if you go to the opposite end, this is the retail space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,860",
+				"to": "00:03:47,260"
+			},
+			"offsets": {
+				"from": 223860,
+				"to": 227260
+			},
+			"text": " peer-to-peer lending, music royalties, gambling."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,820",
+				"to": "00:03:52,380"
+			},
+			"offsets": {
+				"from": 228820,
+				"to": 232380
+			},
+			"text": " You've seen a lot of startups starting to attack this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,380",
+				"to": "00:03:55,460"
+			},
+			"offsets": {
+				"from": 232380,
+				"to": 235460
+			},
+			"text": " It's really interesting. There's a lot of activity here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,460",
+				"to": "00:03:58,460"
+			},
+			"offsets": {
+				"from": 235460,
+				"to": 238460
+			},
+			"text": " It's not really a space for Thomson Reuters."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,460",
+				"to": "00:04:00,220"
+			},
+			"offsets": {
+				"from": 238460,
+				"to": 240220
+			},
+			"text": " It's not one that we play in today."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,220",
+				"to": "00:04:03,900"
+			},
+			"offsets": {
+				"from": 240220,
+				"to": 243900
+			},
+			"text": " So in the bottom right, you've got the machine age."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,900",
+				"to": "00:04:10,300"
+			},
+			"offsets": {
+				"from": 243900,
+				"to": 250300
+			},
+			"text": " And this, I think, will be a huge opportunity for blockchain technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,300",
+				"to": "00:04:14,460"
+			},
+			"offsets": {
+				"from": 250300,
+				"to": 254460
+			},
+			"text": " Internet of Things, we're already seeing companies like Golem"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,460",
+				"to": "00:04:17,180"
+			},
+			"offsets": {
+				"from": 254460,
+				"to": 257180
+			},
+			"text": " with distributed computation and I Exec downstairs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,900",
+				"to": "00:04:20,540"
+			},
+			"offsets": {
+				"from": 257900,
+				"to": 260540
+			},
+			"text": " So for us, we felt this was a bit early."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,540",
+				"to": "00:04:24,780"
+			},
+			"offsets": {
+				"from": 260540,
+				"to": 264780
+			},
+			"text": " We started doing this analysis, as I mentioned, almost two years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,780",
+				"to": "00:04:28,780"
+			},
+			"offsets": {
+				"from": 264780,
+				"to": 268780
+			},
+			"text": " So the question became, what about this last segment?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,780",
+				"to": "00:04:34,460"
+			},
+			"offsets": {
+				"from": 268780,
+				"to": 274460
+			},
+			"text": " These are the big ticket items, high-value, low-volume transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,460",
+				"to": "00:04:38,620"
+			},
+			"offsets": {
+				"from": 274460,
+				"to": 278620
+			},
+			"text": " venture capital, private equity over the counter-derivative, syndicated loans."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,620",
+				"to": "00:04:41,980"
+			},
+			"offsets": {
+				"from": 278620,
+				"to": 281980
+			},
+			"text": " This was where we decided to focus our effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,980",
+				"to": "00:04:46,140"
+			},
+			"offsets": {
+				"from": 281980,
+				"to": 286140
+			},
+			"text": " This was the markets, these are the markets that we believe were going to move first."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,620",
+				"to": "00:04:50,460"
+			},
+			"offsets": {
+				"from": 287620,
+				"to": 290460
+			},
+			"text": " So having sat down with Vitalik and him having told me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,460",
+				"to": "00:04:52,180"
+			},
+			"offsets": {
+				"from": 290460,
+				"to": 292180
+			},
+			"text": " \"Well, we really need an oracle.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,180",
+				"to": "00:04:54,780"
+			},
+			"offsets": {
+				"from": 292180,
+				"to": 294780
+			},
+			"text": " I thought that rather than just believe him outright,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,780",
+				"to": "00:04:58,980"
+			},
+			"offsets": {
+				"from": 294780,
+				"to": 298980
+			},
+			"text": " let's have a think about what data would be needed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,980",
+				"to": "00:05:01,460"
+			},
+			"offsets": {
+				"from": 298980,
+				"to": 301460
+			},
+			"text": " from an off-chain provider like us."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,460",
+				"to": "00:05:05,300"
+			},
+			"offsets": {
+				"from": 301460,
+				"to": 305300
+			},
+			"text": " So looking at the conditional transaction dependencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,300",
+				"to": "00:05:08,620"
+			},
+			"offsets": {
+				"from": 305300,
+				"to": 308620
+			},
+			"text": " you can obviously create lots of smart contract opportunities"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,620",
+				"to": "00:05:10,860"
+			},
+			"offsets": {
+				"from": 308620,
+				"to": 310860
+			},
+			"text": " using on-chain data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,860",
+				"to": "00:05:13,020"
+			},
+			"offsets": {
+				"from": 310860,
+				"to": 313020
+			},
+			"text": " It doesn't really need an oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,020",
+				"to": "00:05:15,220"
+			},
+			"offsets": {
+				"from": 313020,
+				"to": 315220
+			},
+			"text": " The data is already there that you can reference."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,380",
+				"to": "00:05:20,140"
+			},
+			"offsets": {
+				"from": 316380,
+				"to": 320140
+			},
+			"text": " But as we looked more and more, we realised that he was indeed right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,140",
+				"to": "00:05:22,420"
+			},
+			"offsets": {
+				"from": 320140,
+				"to": 322420
+			},
+			"text": " which you probably shouldn't have doubted him."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,420",
+				"to": "00:05:29,180"
+			},
+			"offsets": {
+				"from": 322420,
+				"to": 329180
+			},
+			"text": " And the majority of opportunities are actually those that require off-chain data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,180",
+				"to": "00:05:34,140"
+			},
+			"offsets": {
+				"from": 329180,
+				"to": 334140
+			},
+			"text": " And I think in the last two years, since we did this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,140",
+				"to": "00:05:38,300"
+			},
+			"offsets": {
+				"from": 334140,
+				"to": 338300
+			},
+			"text": " that hypothesis has been validated over and over."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,300",
+				"to": "00:05:42,300"
+			},
+			"offsets": {
+				"from": 338300,
+				"to": 342300
+			},
+			"text": " So we looked at all of these and thought,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,580",
+				"to": "00:05:48,060"
+			},
+			"offsets": {
+				"from": 342580,
+				"to": 348060
+			},
+			"text": " \"You know, the probably the space to start is benchmarked and values for derivatives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,060",
+				"to": "00:05:53,460"
+			},
+			"offsets": {
+				"from": 348060,
+				"to": 353460
+			},
+			"text": " given that that fell squarely into that top left quadrant from the previous slide.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,460",
+				"to": "00:05:58,540"
+			},
+			"offsets": {
+				"from": 353460,
+				"to": 358540
+			},
+			"text": " So we created a capability that we've called Block 1IQ."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,540",
+				"to": "00:06:02,660"
+			},
+			"offsets": {
+				"from": 358540,
+				"to": 362660
+			},
+			"text": " Block 1IQ is an oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,660",
+				"to": "00:06:06,900"
+			},
+			"offsets": {
+				"from": 362660,
+				"to": 366900
+			},
+			"text": " It's in beta, but it's live and it works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,900",
+				"to": "00:06:09,900"
+			},
+			"offsets": {
+				"from": 366900,
+				"to": 369900
+			},
+			"text": " and it's compatible with both quarter and Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,060",
+				"to": "00:06:16,980"
+			},
+			"offsets": {
+				"from": 371060,
+				"to": 376980
+			},
+			"text": " We've been talking with the JP Morgan guys about extending compatibility to Quorum as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,980",
+				"to": "00:06:19,540"
+			},
+			"offsets": {
+				"from": 376980,
+				"to": 379540
+			},
+			"text": " but that shouldn't be very much effort at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,540",
+				"to": "00:06:23,980"
+			},
+			"offsets": {
+				"from": 379540,
+				"to": 383980
+			},
+			"text": " And the data sets we've started with, the share prices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,980",
+				"to": "00:06:29,580"
+			},
+			"offsets": {
+				"from": 383980,
+				"to": 389580
+			},
+			"text": " so public exchange equity data, foreign exchange data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,580",
+				"to": "00:06:33,740"
+			},
+			"offsets": {
+				"from": 389580,
+				"to": 393740
+			},
+			"text": " corporate actions, which are things like mergers, buybacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,740",
+				"to": "00:06:38,100"
+			},
+			"offsets": {
+				"from": 393740,
+				"to": 398100
+			},
+			"text": " stocks, splits, dividends, coupons, anything where there's a change."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,180",
+				"to": "00:06:45,340"
+			},
+			"offsets": {
+				"from": 399180,
+				"to": 405340
+			},
+			"text": " Cryptocurrency rates from our partner company, crypto compare,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,340",
+				"to": "00:06:48,180"
+			},
+			"offsets": {
+				"from": 405340,
+				"to": 408180
+			},
+			"text": " financial benchmarks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,180",
+				"to": "00:06:53,140"
+			},
+			"offsets": {
+				"from": 408180,
+				"to": 413140
+			},
+			"text": " So these are things like LIBOR rates that are a lot of the derivatives around the world today reference."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,140",
+				"to": "00:06:57,340"
+			},
+			"offsets": {
+				"from": 413140,
+				"to": 417340
+			},
+			"text": " And then the knowledge graph, which I might discuss now, but I'll come back to you later."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,340",
+				"to": "00:07:04,620"
+			},
+			"offsets": {
+				"from": 417340,
+				"to": 424620
+			},
+			"text": " So the problem facing us was slightly different to some of the other oracle players"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,620",
+				"to": "00:07:06,660"
+			},
+			"offsets": {
+				"from": 424620,
+				"to": 426660
+			},
+			"text": " that are following us later today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,300",
+				"to": "00:07:10,180"
+			},
+			"offsets": {
+				"from": 427300,
+				"to": 430180
+			},
+			"text": " in that they needed to create trust first."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,180",
+				"to": "00:07:13,060"
+			},
+			"offsets": {
+				"from": 430180,
+				"to": 433060
+			},
+			"text": " But customers already trust us."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,060",
+				"to": "00:07:18,180"
+			},
+			"offsets": {
+				"from": 433060,
+				"to": 438180
+			},
+			"text": " We're the trusted information provider for the majority of the financial services industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,180",
+				"to": "00:07:21,300"
+			},
+			"offsets": {
+				"from": 438180,
+				"to": 441300
+			},
+			"text": " So our problem was slightly different."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,300",
+				"to": "00:07:27,180"
+			},
+			"offsets": {
+				"from": 441300,
+				"to": 447180
+			},
+			"text": " It's been around enabling the Ethereum community with high quality trusted data."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,180",
+				"to": "00:07:30,540"
+			},
+			"offsets": {
+				"from": 447180,
+				"to": 450540
+			},
+			"text": " So this is the place we've chosen to start."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,380",
+				"to": "00:07:38,500"
+			},
+			"offsets": {
+				"from": 451380,
+				"to": 458500
+			},
+			"text": " We can only support today non-production POCs, run on private ledgers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,500",
+				"to": "00:07:41,780"
+			},
+			"offsets": {
+				"from": 458500,
+				"to": 461780
+			},
+			"text": " I know this is a limitation, we're working on this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,780",
+				"to": "00:07:47,580"
+			},
+			"offsets": {
+				"from": 461780,
+				"to": 467580
+			},
+			"text": " but a majority of the problems for us reside around content licensing barriers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,580",
+				"to": "00:07:52,940"
+			},
+			"offsets": {
+				"from": 467580,
+				"to": 472940
+			},
+			"text": " So when you look at Block 1IQ,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,940",
+				"to": "00:07:56,980"
+			},
+			"offsets": {
+				"from": 472940,
+				"to": 476980
+			},
+			"text": " we ask for you to think about creating a consortium,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,260",
+				"to": "00:08:03,340"
+			},
+			"offsets": {
+				"from": 477260,
+				"to": 483340
+			},
+			"text": " a group of organizations that are going to use this as opposed to just reaching out to try and kick the tires."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,340",
+				"to": "00:08:06,740"
+			},
+			"offsets": {
+				"from": 483340,
+				"to": 486740
+			},
+			"text": " And I should add that it's free."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,740",
+				"to": "00:08:09,340"
+			},
+			"offsets": {
+				"from": 486740,
+				"to": 489340
+			},
+			"text": " We're not charging anything for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,340",
+				"to": "00:08:12,700"
+			},
+			"offsets": {
+				"from": 489340,
+				"to": 492700
+			},
+			"text": " We want to enable you guys to see what you can do with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,700",
+				"to": "00:08:18,100"
+			},
+			"offsets": {
+				"from": 492700,
+				"to": 498100
+			},
+			"text": " So with that, I'm going to hand over Tim, who's going to show you a bit more about the capabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,500",
+				"to": "00:08:27,940"
+			},
+			"offsets": {
+				"from": 506500,
+				"to": 507940
+			},
+			"text": " Right, thank you, Sam."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,940",
+				"to": "00:08:33,780"
+			},
+			"offsets": {
+				"from": 507940,
+				"to": 513780
+			},
+			"text": " So this is essentially the landing page for Block 1IQ at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,780",
+				"to": "00:08:38,740"
+			},
+			"offsets": {
+				"from": 513780,
+				"to": 518740
+			},
+			"text": " So if you visit this site, you can download some architectural schemes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,740",
+				"to": "00:08:42,660"
+			},
+			"offsets": {
+				"from": 518740,
+				"to": 522660
+			},
+			"text": " APIs, documentation and some other downloads."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,660",
+				"to": "00:08:47,020"
+			},
+			"offsets": {
+				"from": 522660,
+				"to": 527020
+			},
+			"text": " And actually, and so this is the Thompson Reuters developer community website."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,020",
+				"to": "00:08:50,860"
+			},
+			"offsets": {
+				"from": 527020,
+				"to": 530860
+			},
+			"text": " And if you click around, actually, there's some links to some other APIs that we offer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,900",
+				"to": "00:08:56,740"
+			},
+			"offsets": {
+				"from": 530900,
+				"to": 536740
+			},
+			"text": " So last year, I demonstrated another offering, something called Block 1ID,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,740",
+				"to": "00:09:00,220"
+			},
+			"offsets": {
+				"from": 536740,
+				"to": 540220
+			},
+			"text": " which is essentially an identity resolution system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,220",
+				"to": "00:09:03,940"
+			},
+			"offsets": {
+				"from": 540220,
+				"to": 543940
+			},
+			"text": " which connects Ethereum addresses with OAuth 2 credentials."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,940",
+				"to": "00:09:05,980"
+			},
+			"offsets": {
+				"from": 543940,
+				"to": 545980
+			},
+			"text": " So if you click around, you can also find that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,980",
+				"to": "00:09:08,340"
+			},
+			"offsets": {
+				"from": 545980,
+				"to": 548340
+			},
+			"text": " So have a look around this website."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,340",
+				"to": "00:09:10,780"
+			},
+			"offsets": {
+				"from": 548340,
+				"to": 550780
+			},
+			"text": " When you're ready to sign up, you'll be faced with this page."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,780",
+				"to": "00:09:15,380"
+			},
+			"offsets": {
+				"from": 550780,
+				"to": 555380
+			},
+			"text": " We ask that you sign up to certain terms and conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,900",
+				"to": "00:09:21,180"
+			},
+			"offsets": {
+				"from": 555900,
+				"to": 561180
+			},
+			"text": " Most of the data that you will have access to is proprietary, and in many cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,180",
+				"to": "00:09:23,420"
+			},
+			"offsets": {
+				"from": 561180,
+				"to": 563420
+			},
+			"text": " we license it from third parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,420",
+				"to": "00:09:29,140"
+			},
+			"offsets": {
+				"from": 563420,
+				"to": 569140
+			},
+			"text": " So fill in all the details, tell us a little bit about your project and your plans."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,140",
+				"to": "00:09:32,780"
+			},
+			"offsets": {
+				"from": 569140,
+				"to": 572780
+			},
+			"text": " And when you click submit, I think Sam will get a notification."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,780",
+				"to": "00:09:36,340"
+			},
+			"offsets": {
+				"from": 572780,
+				"to": 576340
+			},
+			"text": " There'll be some legal documentation that may need to be attended to."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,340",
+				"to": "00:09:42,940"
+			},
+			"offsets": {
+				"from": 576340,
+				"to": 582940
+			},
+			"text": " If everything goes through, you will receive access and they log into our self-serve system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,660",
+				"to": "00:09:46,540"
+			},
+			"offsets": {
+				"from": 584660,
+				"to": 586540
+			},
+			"text": " So this is our self-serve system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,540",
+				"to": "00:09:48,140"
+			},
+			"offsets": {
+				"from": 586540,
+				"to": 588140
+			},
+			"text": " It's very much a work in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,140",
+				"to": "00:09:53,580"
+			},
+			"offsets": {
+				"from": 588140,
+				"to": 593580
+			},
+			"text": " But this allows us to do some sort of onboarding and whitelisting of your contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,580",
+				"to": "00:09:59,020"
+			},
+			"offsets": {
+				"from": 593580,
+				"to": 599020
+			},
+			"text": " So very simply, just to add a few users, you can do that here by adding names,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,020",
+				"to": "00:10:03,980"
+			},
+			"offsets": {
+				"from": 599020,
+				"to": 603980
+			},
+			"text": " emails, and setting whether they are a user or an admin, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,980",
+				"to": "00:10:09,700"
+			},
+			"offsets": {
+				"from": 603980,
+				"to": 609700
+			},
+			"text": " Do that, and then you click through, you get to this bit where you can configure your deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,700",
+				"to": "00:10:14,500"
+			},
+			"offsets": {
+				"from": 609700,
+				"to": 614500
+			},
+			"text": " So I think, as Sam mentioned, this service is only available for private chains at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,500",
+				"to": "00:10:17,860"
+			},
+			"offsets": {
+				"from": 614500,
+				"to": 617860
+			},
+			"text": " So put in your deployment name, other details, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,860",
+				"to": "00:10:21,380"
+			},
+			"offsets": {
+				"from": 617860,
+				"to": 621380
+			},
+			"text": " RPC host, RPC port, a default account."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,380",
+				"to": "00:10:26,420"
+			},
+			"offsets": {
+				"from": 621380,
+				"to": 626420
+			},
+			"text": " Click through, and you can see what the configuration looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,420",
+				"to": "00:10:29,740"
+			},
+			"offsets": {
+				"from": 626420,
+				"to": 629740
+			},
+			"text": " Now, from this page, it gets a bit more interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,740",
+				"to": "00:10:32,940"
+			},
+			"offsets": {
+				"from": 629740,
+				"to": 632940
+			},
+			"text": " If you hit the orange button, this allows you to add a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,940",
+				"to": "00:10:38,860"
+			},
+			"offsets": {
+				"from": 632940,
+				"to": 638860
+			},
+			"text": " So say you have a trade contract, you can click on that button, put in the address of that contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,860",
+				"to": "00:10:43,300"
+			},
+			"offsets": {
+				"from": 638860,
+				"to": 643300
+			},
+			"text": " And what essentially happens here is that address is being whitelisted with our service."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,300",
+				"to": "00:10:49,580"
+			},
+			"offsets": {
+				"from": 643300,
+				"to": 649580
+			},
+			"text": " So our Oracle contract will see that the request for data has come from a whitelisted contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,580",
+				"to": "00:10:54,180"
+			},
+			"offsets": {
+				"from": 649580,
+				"to": 654180
+			},
+			"text": " And as long as it's on that whitelist, we will be able to send data back to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,180",
+				"to": "00:10:58,420"
+			},
+			"offsets": {
+				"from": 654180,
+				"to": 658420
+			},
+			"text": " You can also click on the contracts button, and you can see the list of the contracts you've added,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,420",
+				"to": "00:11:00,340"
+			},
+			"offsets": {
+				"from": 658420,
+				"to": 660340
+			},
+			"text": " and you can edit that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,340",
+				"to": "00:11:04,060"
+			},
+			"offsets": {
+				"from": 660340,
+				"to": 664060
+			},
+			"text": " Once you've set that up, the Oracle contract address will also be visible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,060",
+				"to": "00:11:07,460"
+			},
+			"offsets": {
+				"from": 664060,
+				"to": 667460
+			},
+			"text": " so you will know the address to hit with your requests."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,460",
+				"to": "00:11:12,380"
+			},
+			"offsets": {
+				"from": 667460,
+				"to": 672380
+			},
+			"text": " There's also a little test interface, so you can test requesting and receiving data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,380",
+				"to": "00:11:16,900"
+			},
+			"offsets": {
+				"from": 672380,
+				"to": 676900
+			},
+			"text": " So we've got a very small sample of the different requests you can make."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,900",
+				"to": "00:11:21,860"
+			},
+			"offsets": {
+				"from": 676900,
+				"to": 681860
+			},
+			"text": " So end of day prices, intraday, interest rates, cryptocurrency rates."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,860",
+				"to": "00:11:28,780"
+			},
+			"offsets": {
+				"from": 681860,
+				"to": 688780
+			},
+			"text": " So select your symbol from the dropdown, hit submit, and a block later, the data will come back."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,780",
+				"to": "00:11:31,780"
+			},
+			"offsets": {
+				"from": 688780,
+				"to": 691780
+			},
+			"text": " And here it's simply represented as a JSON object."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,780",
+				"to": "00:11:37,300"
+			},
+			"offsets": {
+				"from": 691780,
+				"to": 697300
+			},
+			"text": " If you go and look at our API, you can be quite selective with exactly what you request,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,300",
+				"to": "00:11:44,100"
+			},
+			"offsets": {
+				"from": 697300,
+				"to": 704100
+			},
+			"text": " and exactly what is returned, and you can tailor that to the needs of your smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,100",
+				"to": "00:11:46,780"
+			},
+			"offsets": {
+				"from": 704100,
+				"to": 706780
+			},
+			"text": " So that's pretty much the self-service, quite straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,780",
+				"to": "00:11:52,140"
+			},
+			"offsets": {
+				"from": 706780,
+				"to": 712140
+			},
+			"text": " On our roadmap is to provide an API, which we'll expose most of this functionality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,140",
+				"to": "00:12:01,460"
+			},
+			"offsets": {
+				"from": 712140,
+				"to": 721460
+			},
+			"text": " such that registering smart contracts with Oracle will be done quickly off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,460",
+				"to": "00:12:06,460"
+			},
+			"offsets": {
+				"from": 721460,
+				"to": 726460
+			},
+			"text": " So just to make this a little bit more tangible, a couple of examples of some assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,460",
+				"to": "00:12:10,980"
+			},
+			"offsets": {
+				"from": 726460,
+				"to": 730980
+			},
+			"text": " that we've modeled to demonstrate interactivity with Oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,980",
+				"to": "00:12:14,900"
+			},
+			"offsets": {
+				"from": 730980,
+				"to": 734900
+			},
+			"text": " So this is an equity swap contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,900",
+				"to": "00:12:18,980"
+			},
+			"offsets": {
+				"from": 734900,
+				"to": 738980
+			},
+			"text": " It essentially has two legs, an interest rate leg and an equity leg."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,980",
+				"to": "00:12:21,740"
+			},
+			"offsets": {
+				"from": 738980,
+				"to": 741740
+			},
+			"text": " So there are two streams of payment here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,740",
+				"to": "00:12:23,660"
+			},
+			"offsets": {
+				"from": 741740,
+				"to": 743660
+			},
+			"text": " One is based on the performance of an equity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,660",
+				"to": "00:12:29,140"
+			},
+			"offsets": {
+				"from": 743660,
+				"to": 749140
+			},
+			"text": " So here the S&P 500 or an equity index, as the case may be, and on the other leg,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,140",
+				"to": "00:12:33,620"
+			},
+			"offsets": {
+				"from": 749140,
+				"to": 753620
+			},
+			"text": " it's typically based on an interest rate, which in this case is LIBOR."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,620",
+				"to": "00:12:38,900"
+			},
+			"offsets": {
+				"from": 753620,
+				"to": 758900
+			},
+			"text": " So when the contract is instantiated by either party A or party B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,900",
+				"to": "00:12:42,260"
+			},
+			"offsets": {
+				"from": 758900,
+				"to": 762260
+			},
+			"text": " at the moment the request to the Oracle was made on-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,260",
+				"to": "00:12:47,100"
+			},
+			"offsets": {
+				"from": 762260,
+				"to": 767100
+			},
+			"text": " but we're adapting our functionality so that could be made by a signed message off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,100",
+				"to": "00:12:50,580"
+			},
+			"offsets": {
+				"from": 767100,
+				"to": 770580
+			},
+			"text": " But at the point of instantiation, a request is sent to our Oracle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,580",
+				"to": "00:12:56,740"
+			},
+			"offsets": {
+				"from": 770580,
+				"to": 776740
+			},
+			"text": " and in this case it will request two symbols, the S&P 500, SPX, and also LIBOR."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,740",
+				"to": "00:13:00,860"
+			},
+			"offsets": {
+				"from": 776740,
+				"to": 780860
+			},
+			"text": " And you can configure how regularly you want the response data to come back."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,860",
+				"to": "00:13:06,020"
+			},
+			"offsets": {
+				"from": 780860,
+				"to": 786020
+			},
+			"text": " It could be an end of day or it could be at a single point in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,020",
+				"to": "00:13:08,620"
+			},
+			"offsets": {
+				"from": 786020,
+				"to": 788620
+			},
+			"text": " So when the state was delivered by our Oracle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,620",
+				"to": "00:13:12,380"
+			},
+			"offsets": {
+				"from": 788620,
+				"to": 792380
+			},
+			"text": " the two values, the SPX and LIBOR are updated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,380",
+				"to": "00:13:15,900"
+			},
+			"offsets": {
+				"from": 792380,
+				"to": 795900
+			},
+			"text": " and these values are used to calculate the value of the two legs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,900",
+				"to": "00:13:20,740"
+			},
+			"offsets": {
+				"from": 795900,
+				"to": 800740
+			},
+			"text": " So with the equity leg, this will be based on the notional,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,740",
+				"to": "00:13:24,260"
+			},
+			"offsets": {
+				"from": 800740,
+				"to": 804260
+			},
+			"text": " which is a trade parameter you can see in the bottom left-hand corner,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,260",
+				"to": "00:13:29,300"
+			},
+			"offsets": {
+				"from": 804260,
+				"to": 809300
+			},
+			"text": " and it will be the notional multiplied by the percentage change in the S&P 500."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,300",
+				"to": "00:13:34,020"
+			},
+			"offsets": {
+				"from": 809300,
+				"to": 814020
+			},
+			"text": " For the interest rate leg that is essentially LIBOR plus basis points,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,020",
+				"to": "00:13:37,180"
+			},
+			"offsets": {
+				"from": 814020,
+				"to": 817180
+			},
+			"text": " which is another one of these trade parameters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,180",
+				"to": "00:13:40,940"
+			},
+			"offsets": {
+				"from": 817180,
+				"to": 820940
+			},
+			"text": " and the tenor here is essentially the duration of the trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,940",
+				"to": "00:13:46,300"
+			},
+			"offsets": {
+				"from": 820940,
+				"to": 826300
+			},
+			"text": " So using the values from our Oracle, the value of these two legs can be calculated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,300",
+				"to": "00:13:50,100"
+			},
+			"offsets": {
+				"from": 826300,
+				"to": 830100
+			},
+			"text": " and here we have a very simple ERC-20 settlement."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,100",
+				"to": "00:13:54,860"
+			},
+			"offsets": {
+				"from": 830100,
+				"to": 834860
+			},
+			"text": " So you can see how the prices that arrive from our Oracle further down the line"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,860",
+				"to": "00:13:58,300"
+			},
+			"offsets": {
+				"from": 834860,
+				"to": 838300
+			},
+			"text": " drive the movement of these tokens to settle these two legs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,300",
+				"to": "00:14:01,300"
+			},
+			"offsets": {
+				"from": 838300,
+				"to": 841300
+			},
+			"text": " Slightly more elaborate one here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,300",
+				"to": "00:14:05,300"
+			},
+			"offsets": {
+				"from": 841300,
+				"to": 845300
+			},
+			"text": " So this is an ERC-20 token basket."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,300",
+				"to": "00:14:11,300"
+			},
+			"offsets": {
+				"from": 845300,
+				"to": 851300
+			},
+			"text": " So this might be an actively managed contract or basket of ERC-20 tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,300",
+				"to": "00:14:13,300"
+			},
+			"offsets": {
+				"from": 851300,
+				"to": 853300
+			},
+			"text": " So at the bottom left you have a manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,300",
+				"to": "00:14:17,300"
+			},
+			"offsets": {
+				"from": 853300,
+				"to": 857300
+			},
+			"text": " The manager will assign weights to the tokens held within the basket."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,300",
+				"to": "00:14:22,300"
+			},
+			"offsets": {
+				"from": 857300,
+				"to": 862300
+			},
+			"text": " At the point of assigning these weights, this request is sent on-chain or off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,300",
+				"to": "00:14:27,300"
+			},
+			"offsets": {
+				"from": 862300,
+				"to": 867300
+			},
+			"text": " to our Oracle, saying essentially this contract requests the price,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,300",
+				"to": "00:14:30,300"
+			},
+			"offsets": {
+				"from": 867300,
+				"to": 870300
+			},
+			"text": " and the values of the specific tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,300",
+				"to": "00:14:35,300"
+			},
+			"offsets": {
+				"from": 870300,
+				"to": 875300
+			},
+			"text": " So these tokens and other cryptocurrency values come from crypto-comparas Sam mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,300",
+				"to": "00:14:42,300"
+			},
+			"offsets": {
+				"from": 875300,
+				"to": 882300
+			},
+			"text": " When those values arrive, those values are used in combination with the allocations"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,300",
+				"to": "00:14:45,300"
+			},
+			"offsets": {
+				"from": 882300,
+				"to": 885300
+			},
+			"text": " that are currently held to call this evaluation function."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,300",
+				"to": "00:14:48,300"
+			},
+			"offsets": {
+				"from": 885300,
+				"to": 888300
+			},
+			"text": " And using this evaluation function, we can come up with a"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,300",
+				"to": "00:14:52,300"
+			},
+			"offsets": {
+				"from": 888300,
+				"to": 892300
+			},
+			"text": " we can calculate a value for the overall token basket."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,300",
+				"to": "00:14:56,300"
+			},
+			"offsets": {
+				"from": 892300,
+				"to": 896300
+			},
+			"text": " Depending on performance, whether things go well or go badly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,300",
+				"to": "00:15:00,300"
+			},
+			"offsets": {
+				"from": 896300,
+				"to": 900300
+			},
+			"text": " those who are these parties, ABC, down at the bottom can either invest or withdraw,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,300",
+				"to": "00:15:06,300"
+			},
+			"offsets": {
+				"from": 900300,
+				"to": 906300
+			},
+			"text": " Ether, and depending on that investment, using a hook out to your favourite"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,300",
+				"to": "00:15:14,300"
+			},
+			"offsets": {
+				"from": 906300,
+				"to": 914300
+			},
+			"text": " decentralized exchange protocol, tokens can either be purchased or sold to keep the allocation in check."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,300",
+				"to": "00:15:16,300"
+			},
+			"offsets": {
+				"from": 914300,
+				"to": 916300
+			},
+			"text": " Right, so that's it from me."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,300",
+				"to": "00:15:21,300"
+			},
+			"offsets": {
+				"from": 916300,
+				"to": 921300
+			},
+			"text": " I will pass back to Sam who will talk about some of our learnings from these experiences"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,300",
+				"to": "00:15:25,300"
+			},
+			"offsets": {
+				"from": 921300,
+				"to": 925300
+			},
+			"text": " and also a little bit about our future roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,300",
+				"to": "00:15:29,300"
+			},
+			"offsets": {
+				"from": 925300,
+				"to": 929300
+			},
+			"text": " Great, thanks Tim."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,300",
+				"to": "00:15:36,300"
+			},
+			"offsets": {
+				"from": 929300,
+				"to": 936300
+			},
+			"text": " So as you mentioned, I think going through this over the last couple of years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,300",
+				"to": "00:15:42,300"
+			},
+			"offsets": {
+				"from": 936300,
+				"to": 942300
+			},
+			"text": " Tim was here this time last year, or in Shanghai, rather, talking about Block 1ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,300",
+				"to": "00:15:49,300"
+			},
+			"offsets": {
+				"from": 942300,
+				"to": 949300
+			},
+			"text": " And this was one of the biggest learning points as we set forward into looking at how we make our content available."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,300",
+				"to": "00:15:54,300"
+			},
+			"offsets": {
+				"from": 949300,
+				"to": 954300
+			},
+			"text": " And for those of you that weren't here last year, this is Block 1ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,300",
+				"to": "00:15:59,300"
+			},
+			"offsets": {
+				"from": 954300,
+				"to": 959300
+			},
+			"text": " It was a capability that we had to create in order to honour the content licensing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,300",
+				"to": "00:16:04,300"
+			},
+			"offsets": {
+				"from": 959300,
+				"to": 964300
+			},
+			"text": " and permissioning arrangements that we're responsible for as we distribute content"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,300",
+				"to": "00:16:09,300"
+			},
+			"offsets": {
+				"from": 964300,
+				"to": 969300
+			},
+			"text": " that we aggregate through to the ultimate consumer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,300",
+				"to": "00:16:21,300"
+			},
+			"offsets": {
+				"from": 969300,
+				"to": 981300
+			},
+			"text": " Block 1ID is essentially an address mapping service, so slightly different to some of the other identity capabilities that you've heard from."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,300",
+				"to": "00:16:26,300"
+			},
+			"offsets": {
+				"from": 981300,
+				"to": 986300
+			},
+			"text": " But it means that we can take an OAuth address, like Google, Twitter, LinkedIn,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,300",
+				"to": "00:16:29,300"
+			},
+			"offsets": {
+				"from": 986300,
+				"to": 989300
+			},
+			"text": " and map it to an Ethereum address."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,300",
+				"to": "00:16:36,300"
+			},
+			"offsets": {
+				"from": 989300,
+				"to": 996300
+			},
+			"text": " And therefore, we know and DAP developers know when a user is returning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,300",
+				"to": "00:16:41,300"
+			},
+			"offsets": {
+				"from": 996300,
+				"to": 1001300
+			},
+			"text": " that they are through a pop-up ask to authenticate themselves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,300",
+				"to": "00:16:48,300"
+			},
+			"offsets": {
+				"from": 1001300,
+				"to": 1008300
+			},
+			"text": " and then you know that that's the same user coming back, even if they have different Ethereum addresses that they're using."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,300",
+				"to": "00:16:56,300"
+			},
+			"offsets": {
+				"from": 1008300,
+				"to": 1016300
+			},
+			"text": " So this was the first step. It was around identity of users in order to honour content licensing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,300",
+				"to": "00:17:01,300"
+			},
+			"offsets": {
+				"from": 1016300,
+				"to": 1021300
+			},
+			"text": " The second learning point was around identifiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,300",
+				"to": "00:17:10,300"
+			},
+			"offsets": {
+				"from": 1021300,
+				"to": 1030300
+			},
+			"text": " So if I asked you what the ticker symbol C stands for today, then you would be right if you answered Citigroup."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,300",
+				"to": "00:17:17,300"
+			},
+			"offsets": {
+				"from": 1030300,
+				"to": 1037300
+			},
+			"text": " But if I had answered that same question in 1998, the answer would have been Chrysler."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,300",
+				"to": "00:17:23,300"
+			},
+			"offsets": {
+				"from": 1037300,
+				"to": 1043300
+			},
+			"text": " And the problem is that these tickers across the financial services industry get recycled."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,300",
+				"to": "00:17:28,300"
+			},
+			"offsets": {
+				"from": 1043300,
+				"to": 1048300
+			},
+			"text": " And if you're writing smart contracts using these, that's an absolute nightmare,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,300",
+				"to": "00:17:30,300"
+			},
+			"offsets": {
+				"from": 1048300,
+				"to": 1050300
+			},
+			"text": " because you can't change your smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,300",
+				"to": "00:17:35,300"
+			},
+			"offsets": {
+				"from": 1050300,
+				"to": 1055300
+			},
+			"text": " So we created an open capability. It's called a PermID."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,300",
+				"to": "00:17:39,300"
+			},
+			"offsets": {
+				"from": 1055300,
+				"to": 1059300
+			},
+			"text": " And you can all access it today at PermID.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,300",
+				"to": "00:17:43,300"
+			},
+			"offsets": {
+				"from": 1059300,
+				"to": 1063300
+			},
+			"text": " It essentially creates permanent identifiers for entities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,300",
+				"to": "00:17:49,300"
+			},
+			"offsets": {
+				"from": 1063300,
+				"to": 1069300
+			},
+			"text": " which means you can always reference that number and always have confidence that it's going to return the information that you require,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,300",
+				"to": "00:17:53,300"
+			},
+			"offsets": {
+				"from": 1069300,
+				"to": 1073300
+			},
+			"text": " even if the industry symbols are recycled."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,300",
+				"to": "00:17:57,300"
+			},
+			"offsets": {
+				"from": 1073300,
+				"to": 1077300
+			},
+			"text": " So take a look at PermID.org. It doesn't have to be blockchain related."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,300",
+				"to": "00:18:03,300"
+			},
+			"offsets": {
+				"from": 1077300,
+				"to": 1083300
+			},
+			"text": " This is open and works for everything, and it's available under a Creative Commons license."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,300",
+				"to": "00:18:07,300"
+			},
+			"offsets": {
+				"from": 1083300,
+				"to": 1087300
+			},
+			"text": " So I'll finish in the last minute with what's next."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,300",
+				"to": "00:18:14,300"
+			},
+			"offsets": {
+				"from": 1087300,
+				"to": 1094300
+			},
+			"text": " So firstly, we're looking to expand data coverage. I mentioned a few earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,300",
+				"to": "00:18:17,300"
+			},
+			"offsets": {
+				"from": 1094300,
+				"to": 1097300
+			},
+			"text": " but we're already having organizations come to us now and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,300",
+				"to": "00:18:23,300"
+			},
+			"offsets": {
+				"from": 1097300,
+				"to": 1103300
+			},
+			"text": " \"Can you please add electricity prices, natural gas prices, other commodities information?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,300",
+				"to": "00:18:26,300"
+			},
+			"offsets": {
+				"from": 1103300,
+				"to": 1106300
+			},
+			"text": " We've had an interest in supply chain in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,300",
+				"to": "00:18:34,300"
+			},
+			"offsets": {
+				"from": 1106300,
+				"to": 1114300
+			},
+			"text": " And so as my request out to you, or my first request out to you, is if you have needs for other content sets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,300",
+				"to": "00:18:38,300"
+			},
+			"offsets": {
+				"from": 1114300,
+				"to": 1118300
+			},
+			"text": " come and talk to us. It's not limited to what we've shown in this first beta."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,300",
+				"to": "00:18:41,300"
+			},
+			"offsets": {
+				"from": 1118300,
+				"to": 1121300
+			},
+			"text": " That was just a place to start."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,300",
+				"to": "00:18:47,300"
+			},
+			"offsets": {
+				"from": 1121300,
+				"to": 1127300
+			},
+			"text": " And secondly, we have a capability called KYC as a service."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,300",
+				"to": "00:18:49,300"
+			},
+			"offsets": {
+				"from": 1127300,
+				"to": 1129300
+			},
+			"text": " We do this for all the banks already."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,300",
+				"to": "00:18:57,300"
+			},
+			"offsets": {
+				"from": 1129300,
+				"to": 1137300
+			},
+			"text": " And one of our hypotheses is, can we be a KYC service for investors, for initial coin offerings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,300",
+				"to": "00:19:00,300"
+			},
+			"offsets": {
+				"from": 1137300,
+				"to": 1140300
+			},
+			"text": " for advisors, for law firms?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,300",
+				"to": "00:19:07,300"
+			},
+			"offsets": {
+				"from": 1140300,
+				"to": 1147300
+			},
+			"text": " Can you take advantage of the capabilities that we have that we would traditionally use in banks"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,300",
+				"to": "00:19:14,300"
+			},
+			"offsets": {
+				"from": 1147300,
+				"to": 1154300
+			},
+			"text": " and use those same capabilities and data and information in your identity activities?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,300",
+				"to": "00:19:18,300"
+			},
+			"offsets": {
+				"from": 1154300,
+				"to": 1158300
+			},
+			"text": " So if you think that's appealing, please come and talk to me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,300",
+				"to": "00:19:21,300"
+			},
+			"offsets": {
+				"from": 1158300,
+				"to": 1161300
+			},
+			"text": " because that's something that we're thinking about working on right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,300",
+				"to": "00:19:34,300"
+			},
+			"offsets": {
+				"from": 1161300,
+				"to": 1174300
+			},
+			"text": " [Music]"
+		}
+	]
+}

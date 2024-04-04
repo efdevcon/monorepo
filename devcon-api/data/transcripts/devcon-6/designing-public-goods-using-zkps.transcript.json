@@ -1,0 +1,1770 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13240
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,240",
+				"to": "00:00:24,800"
+			},
+			"offsets": {
+				"from": 13240,
+				"to": 24800
+			},
+			"text": " Our team is about, is a growing team a bit over 60 people now and there are six of us who make up the Design and Communications team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,800",
+				"to": "00:00:35,040"
+			},
+			"offsets": {
+				"from": 24800,
+				"to": 35040
+			},
+			"text": " We all work really closely with our devs and have weekly meetings to facilitate remote collaboration on CK apps and protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,040",
+				"to": "00:00:40,840"
+			},
+			"offsets": {
+				"from": 35040,
+				"to": 40840
+			},
+			"text": " And we use design to align teammates from various technical backgrounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,840",
+				"to": "00:00:50,400"
+			},
+			"offsets": {
+				"from": 40840,
+				"to": 50400
+			},
+			"text": " Creating this common understanding internally allows us to communicate the value of our open source protocols and apps to the ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,400",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 50400,
+				"to": 56000
+			},
+			"text": " so that you, our community can dream up and build your own CK products."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:05,600"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 65600
+			},
+			"text": " When I started working with PSC, Designing Public Goods, it took me some time to wrap my head around the idea of not designing for profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,600",
+				"to": "00:01:13,400"
+			},
+			"offsets": {
+				"from": 65600,
+				"to": 73400
+			},
+			"text": " Because almost all of my previous design experience involved aligning UX strategy with business goals."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,400",
+				"to": "00:01:26,600"
+			},
+			"offsets": {
+				"from": 73400,
+				"to": 86600
+			},
+			"text": " It was a big mental shift to move from designing to increase sales or signups to designing to attract participants who can use what we have built to build their own thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,600",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 86600,
+				"to": 97000
+			},
+			"text": " On my team, designers, developers, writers, product owners were all using Design as a tool to make the unfamiliar familiar."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:43,800"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 103800
+			},
+			"text": " In this presentation, I'll start by addressing the value of designing for privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,800",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 103800,
+				"to": 115000
+			},
+			"text": " Share some design challenges, highlight a few CK apps, discuss the ways design can be used to facilitate conversation and touch on mental models."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 127000
+			},
+			"text": " The PSC, we're building privacy and anonymity infrastructure using zero knowledge proofs so that you can choose how much of your identity you want to expose"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 132000
+			},
+			"text": " when going about interacting with others on the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 147000
+			},
+			"text": " Put simply, zero knowledge or CK proof is a method by which one party can prove to another party that something is true without revealing anything besides the fact that it is true."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 156000
+			},
+			"text": " We call our zero knowledge protocols and apps public goods because they're open source and free for anyone to build with or use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 171000
+			},
+			"text": " I believe that we need to design for privacy so that we can evolve beyond our current challenges, understand our material more deeply, involve more people as collaborative, co-creative participants,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 178000
+			},
+			"text": " and in turn, fortify privacy solutions with greater anonymity sets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 189000
+			},
+			"text": " So, yes, privacy resources are difficult to opt into. True user experience for these apps has a lot of room for improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 200000
+			},
+			"text": " Sure, the material is abstract and complex. And to some of us, zero knowledge feels like incomprehensible witchcraft."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 207000
+			},
+			"text": " But design can help people from any technical background make sense of the things that they don't understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 214000
+			},
+			"text": " The only way to create better, more usable interfaces is by exploring and iterating our work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 222000
+			},
+			"text": " We're only at the very beginning. There are many design cycles in our future, which to me is super exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 228000
+			},
+			"text": " The design process is a hands-on way for anyone to learn."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 243000
+			},
+			"text": " On my team, contributors from all kinds of backgrounds are finding alignment by cycling through phases of discovery, problem definition, prototyping, and testing together."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 250000
+			},
+			"text": " When the abstract can become something physical, concepts can sink in and inspire the next cycle."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 257000
+			},
+			"text": " The more that we understand the protocols that we're working with, the easier time we will have communicating their value."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 267000
+			},
+			"text": " More and more people are understanding how our information is collected and how our data is used to influence our thoughts and actions, but they're apathetic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 275000
+			},
+			"text": " Imagine if by default we had privacy and anonymity online."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 286000
+			},
+			"text": " If people could make an informed decision to opt out, they wouldn't be saying, \"Well, they have all my data anyway. What can I do?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 303000
+			},
+			"text": " Instead of creating extractive applications that use users, we can choose to design participatory environments where people consent to how much personal information they reveal about themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 316000
+			},
+			"text": " Although there may not be a high demand for zero knowledge public goods or products yet, I believe the more that we design, the more people will come to understand the magic of ZK and want to use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 320000
+			},
+			"text": " We're still in really early stages of research and design."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 332000
+			},
+			"text": " The experiences we create will become more usable, more accessible, the more cycles that we go through, and the more people that we can talk to about their experiences."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 347000
+			},
+			"text": " This part's really cool to me. The better the experiences are, the more participants there will be, which will result in larger sets of anonymous participants and increased privacy for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 355000
+			},
+			"text": " If this material still feels conceptual and you're wondering what an experience with zero knowledge would be like, here's a relevant example."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 367000
+			},
+			"text": " Say you want to anonymously share feedback about this event with the event organizers, but in order to do so, you have to prove that you attended the event."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 383000
+			},
+			"text": " An app built with ZK could allow you to prove that you did in fact attend the event without revealing who you are, giving you the opportunity to truly share feedback anonymously."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 392000
+			},
+			"text": " Can you think of other instances where you might want to prove that something is true without revealing additional personal information?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 401000
+			},
+			"text": " A few other ones I've also heard are speaking out against systems of power and engaging in conversation and discourse."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 409000
+			},
+			"text": " So a lot of our protocols have the potential to structure or manage anonymous or private environments for these purposes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 416000
+			},
+			"text": " There are plenty of challenges that arise when designing ZK apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 425000
+			},
+			"text": " We like to use how might we questions to help us explore problem spaces without immediately jumping to solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 428000
+			},
+			"text": " So I'd like to share some of those with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 433000
+			},
+			"text": " Some of our challenges reframed us how might we statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 438000
+			},
+			"text": " How might we balance approachability and transparency."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 446000
+			},
+			"text": " An ever present challenge that we're facing is deciding how much information to share in our apps and other resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 461000
+			},
+			"text": " We want to be transparent and help curious individuals learn more about ZK products while they're using them, but we also want to avoid overwhelm and cognitive overload."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 470000
+			},
+			"text": " Here's some screenshots from our ZK O'Prew private wallet. This is a browser extension."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 478000
+			},
+			"text": " My teammate beyond her came up with these designs and I included them because I think they're a really nice example of progressive disclosure"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 489000
+			},
+			"text": " where users land on the primary screen that's on the left and they just see the tokens in their wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 506000
+			},
+			"text": " When they want to get more information about a specific token, they can click the chevron to open up the secondary window where you see more information about the transactions and also the full functions of that app."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 511000
+			},
+			"text": " How might we give users the freedom to choose how much they reveal about themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 520000
+			},
+			"text": " Because ZK apps give us anonymous identities, it's up to us to preserve or break the level of anonymity that we start with."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 526000
+			},
+			"text": " When we're anonymous, our identity is unknown, but our actions are public."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 532000
+			},
+			"text": " Trails of actions we have taken can be clues to our real identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 541000
+			},
+			"text": " ZK apps can expose you to the idea of controlling how much you reveal or when you reveal it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 555000
+			},
+			"text": " In one of our applications, uni-rep social, this user in the screenshot the user is about to post to the feed of an anonymous social app."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 572000
+			},
+			"text": " You can see that they have 30 rep and you can see that before they post, five points are required to post and they can choose from three different personas."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 586000
+			},
+			"text": " They can also choose on a sliding scale how much of their rep they want to display."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 600000
+			},
+			"text": " Giving people that opportunity to decide how much to reveal about the reputation they have."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 609000
+			},
+			"text": " And that's like a cool way to show people making a decision about how they want to appear in this group."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 621000
+			},
+			"text": " A lot of people ask me why I would ever design apps where people can be anonymous online because they feel that non-environment are often hostile."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 638000
+			},
+			"text": " And I would argue that anonymity can also create places where everyone has an equal voice and they're not limited by potential judgments that they might experience if their identity was revealed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 646000
+			},
+			"text": " However, an interesting way to create trust is by creating groups where everyone has to prove that they belong."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 657000
+			},
+			"text": " And if they qualify to join a group, they can trust that everyone else who qualified also had to go through the same qualification process."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 681000
+			},
+			"text": " This project that we've worked on interrupt is a good example of bridging reputation from centralized applications to your on chain identity to be able to prove that you qualify for a certain group with other people."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 693000
+			},
+			"text": " So in this example, the person qualifies to be a Twitter gold member because they have a certain number of followers and they can join."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 698000
+			},
+			"text": " How might we represent identity in communities of anonymous individuals?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 710000
+			},
+			"text": " If a non-environment are not all going to necessarily have profile picks and user bias, what will the identities look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 714000
+			},
+			"text": " It's fun to think of the different ways things could be represented."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 717000
+			},
+			"text": " Like, will handles always be the same?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 718000
+			},
+			"text": " Will they change?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 725000
+			},
+			"text": " If they change, how often could handles instead be tied to reputation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 729000
+			},
+			"text": " My teammates, Tukino created Skitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 744000
+			},
+			"text": " This is a social app where people have the option to decide how they want to be displayed by username, by their ENS address, or saying that they're a member of a group."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 748000
+			},
+			"text": " So you can see at the top of this screenshot, like a TAS member posted."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 757000
+			},
+			"text": " That's someone who signed up for our temporary anonymous zone downstairs, so you guys should all check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 769000
+			},
+			"text": " And then they were able to take their identity from that app and use it in Skitter and say, \"Yeah, I'm a non, but I'm also associated with this group.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 779000
+			},
+			"text": " And another clever thing I think Tukino came up with was saying, \"A Twitter user with 500+ followers said XYZ."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 784000
+			},
+			"text": " But what gets us to the point of creating designs that address these \"hell my waste\" statements?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 796000
+			},
+			"text": " I believe it's environments that foster collaboration and discovery and processes that facilitate conversation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 813000
+			},
+			"text": " As much as design is about creating objects or interfaces that people can interact with, it's also about creating containers where people from different technical backgrounds can explore ideas and find alignment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 820000
+			},
+			"text": " We create containers for conversation by frequently hosting workshops in digital whiteboards."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 833000
+			},
+			"text": " It's in these workshops that people from different technical backgrounds can develop common language and create bridges between their domains of understanding."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 838000
+			},
+			"text": " Here's an example from one of our FIC Jam files."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 857000
+			},
+			"text": " I am obsessed with the digital whiteboards. I feel like it's so cool to allow people to support their words with markers, sticky notes, shapes, cursor gestures, or chat bubbles."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 865000
+			},
+			"text": " It's way more comfy spending time with unknowns when everyone can visualize a discussion."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 880000
+			},
+			"text": " I've noticed that when a group of people are all looking at the same thing on their different screens and wherever they are in the world, it's easier to identify misunderstandings."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 890000
+			},
+			"text": " With the visual aids in this created environment, there's less room to miss what someone said or to not understand what they mean."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 898000
+			},
+			"text": " We've been hosting a bunch of workshops, and so I wanted to share with you some principles that have helped us lead successful ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 909000
+			},
+			"text": " We're opening our workshops to teammates from various backgrounds, different technical backgrounds, and experience levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 918000
+			},
+			"text": " We offer people multiple ways to contribute because you need to think about different personality types, different technical circumstances."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 925000
+			},
+			"text": " Not every workshop should just be people verbally exchanging ideas with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 932000
+			},
+			"text": " There needs to be times that aside for writing or drawing as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 951000
+			},
+			"text": " We also make sure we always have a dedicated notes taker, and before we synthesize results at the end of the workshop, we preserve what we had, like the workshop results, because you don't want to have one or two people synthesize and be left with the bias of their synthesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 966000
+			},
+			"text": " For workshops that involve a lot of people and have a tight time limit, I highly suggest collaborating with someone else as a co-host, and like time box yourselves, and have a dress rehearsal."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 976000
+			},
+			"text": " I encourage anyone to explore using digital whiteboards in this way and watch how it gets people thinking and talking through challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 985000
+			},
+			"text": " For us, we've learned a lot about some of our protocols like ZK-Apprew, Semaphore, and UniRUP through these digital whiteboard sessions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 993000
+			},
+			"text": " No matter how low-fi visuals help us move from abstraction to something concrete."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 997000
+			},
+			"text": " Translating a protocol into an approachable user interface takes time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1005000
+			},
+			"text": " It takes time because our initial means to understanding what a protocol can do usually starts with documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1016000
+			},
+			"text": " This kind of writing reflects an implementation model necessary for development because it reflects the technology back to the reader."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1027000
+			},
+			"text": " When we begin designing, we can create other kinds of models to better understand protocols that instead reflect familiarity back to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1038000
+			},
+			"text": " Represented models reflect the designer's vision because they know some stuff about the protocol, and mental models reflect the user's understanding."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1042000
+			},
+			"text": " They know nothing about the protocol most likely."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1050000
+			},
+			"text": " I really like this chart for visualizing the difference. It's adapted from the book about face."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:37,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1057000
+			},
+			"text": " There's five shapes on this scale. Can you identify any of the shapes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1057000,
+				"to": 1060000
+			},
+			"text": " I heard circle."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1067000
+			},
+			"text": " While we might, some of us might be able to identify the potato."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1071000
+			},
+			"text": " Most of us are going to identify the circle."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1081000
+			},
+			"text": " It's a representation of how users' mental models take recognizable shapes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1096000
+			},
+			"text": " However, the closer we get to the other side of that scale, the model that reflects technology, it's a less recognizable form, or at least one that we are probably not going to agree on what is called."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1106000
+			},
+			"text": " A really interesting aspect of this is that developers on my team encounter a similar journey when they create programmable cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1115000
+			},
+			"text": " They start with mathematical proofs, which they abstract into simple and familiar code."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1125000
+			},
+			"text": " Both developers and designers on our team are on this similar journey, transforming abstraction into something familiar and usable."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1129000
+			},
+			"text": " Let me give you an example of how this plays out."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1133000
+			},
+			"text": " Back to some screenshots of uni-rep social."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:19:02,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1142000
+			},
+			"text": " I could describe this with an implementation model and say that uni-rep social was built with 2zk protocols, uni-rep and semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1142000,
+				"to": 1150000
+			},
+			"text": " When you register, a tester will give you three epoch keys and a set number of reputation points."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1160000
+			},
+			"text": " You can give positive reputation points to content that you like and give negative reputation points to content that you don't like."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1179000
+			},
+			"text": " At the end of every epoch, a user state transition occurs, where the positive and negative reputation points are recalculated and your epoch keys are swapped for three new ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1186000
+			},
+			"text": " That might have made sense to some of you, but for me, when I first heard this, it made literally no sense at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1198000
+			},
+			"text": " The language is niche and uncommon, but I do understand it now, but it's only because we created mental models to understand it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1205000
+			},
+			"text": " We could have trained ourselves to learn the system vocabulary, but instead we came up with a new way to describe the app."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1215000
+			},
+			"text": " By asking ourselves questions like, \"What does this remind me of? What do I know that is similar to this?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:23,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1223000
+			},
+			"text": " If we want to create usable zk products, we cannot ask people to just get used to a machine's language."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1223000,
+				"to": 1231000
+			},
+			"text": " We have to put time into deepening our understanding so that we can create approachable applications that mirror the familiar."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:42,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1242000
+			},
+			"text": " Let's try this again. What if I said, \"Unirep Social is a place to build communities based on ideas rather than identities?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,000",
+				"to": "00:20:48,000"
+			},
+			"offsets": {
+				"from": 1242000,
+				"to": 1248000
+			},
+			"text": " If you sign up for the app, you get three personas and 30 rep to interact with other users."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,000",
+				"to": "00:20:54,000"
+			},
+			"offsets": {
+				"from": 1248000,
+				"to": 1254000
+			},
+			"text": " Rep is like points or currency. It's needed to post in common."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,000",
+				"to": "00:21:01,000"
+			},
+			"offsets": {
+				"from": 1254000,
+				"to": 1261000
+			},
+			"text": " It's also used to boost the content that you like and squash the content that you don't like."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,000",
+				"to": "00:21:13,000"
+			},
+			"offsets": {
+				"from": 1261000,
+				"to": 1273000
+			},
+			"text": " Every cycle, about one week, you receive three new personas and your rep total is calculated based on what you have used and what you received from other members."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1273000,
+				"to": 1279000
+			},
+			"text": " You must have a positive amount of rep to interact with the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:29,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1289000
+			},
+			"text": " I think that that was probably more accessible, but the thing to point out is that it's not a user's mental model."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1289000,
+				"to": 1295000
+			},
+			"text": " We're still not at that stage. It's a design team's represented model."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:47,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1307000
+			},
+			"text": " This just goes back to iterating the point of we need to keep cycling through and iterating on the work, putting the work in front of people and getting feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,000",
+				"to": "00:21:52,000"
+			},
+			"offsets": {
+				"from": 1307000,
+				"to": 1312000
+			},
+			"text": " This is true for any of the designs in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1312000,
+				"to": 1322000
+			},
+			"text": " Although I could only share a few of our challenges, there are many, but that means there's lots of opportunity for design."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:13,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1333000
+			},
+			"text": " With more people designing CK Public Goods, I believe that we can empower more builders and product teams, reduce friction when onboarding to privacy apps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1333000,
+				"to": 1340000
+			},
+			"text": " help developers create protocol resources that are informed by user research,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:27,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1347000
+			},
+			"text": " educate users by providing transparent information that evolves with them as they learn,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,000",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1347000,
+				"to": 1356000
+			},
+			"text": " and reduce the stigma and normalize online privacy anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1364000
+			},
+			"text": " If we want to see privacy normalized and made accessible to everyone, we must continue to collaboratively design."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:54,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1374000
+			},
+			"text": " People from all kinds of technical backgrounds designed by approaching challenges with curiosity, getting comfortable spending time with the unknown,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,000",
+				"to": "00:23:03,000"
+			},
+			"offsets": {
+				"from": 1374000,
+				"to": 1383000
+			},
+			"text": " aligning strategy to audience objectives, testing potential solutions, and iterating their work."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,000",
+				"to": "00:23:16,000"
+			},
+			"offsets": {
+				"from": 1383000,
+				"to": 1396000
+			},
+			"text": " I want to thank my team members who helped me collaboratively with this presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,000",
+				"to": "00:23:21,000"
+			},
+			"offsets": {
+				"from": 1396000,
+				"to": 1401000
+			},
+			"text": " We worked really similarly to the way we work on other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1401000,
+				"to": 1407000
+			},
+			"text": " The QR code goes to our PSE Discord, where you can find all of us."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:35,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1415000
+			},
+			"text": " My handle is in the top left, and we started designing for Public Goods channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,000",
+				"to": "00:23:42,000"
+			},
+			"offsets": {
+				"from": 1415000,
+				"to": 1422000
+			},
+			"text": " If this content resonates with you, please join our channel and start a conversation."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,000",
+				"to": "00:23:53,000"
+			},
+			"offsets": {
+				"from": 1422000,
+				"to": 1433000
+			},
+			"text": " If you want to get involved this week, like I mentioned earlier, the temporary anonymous zone community hub is downstairs on the first floor."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,000",
+				"to": "00:24:07,000"
+			},
+			"offsets": {
+				"from": 1433000,
+				"to": 1447000
+			},
+			"text": " On Thursday from 10 to 6, there's the adoption day U.S. conference, where we'll do some ZK design lightning talks and then have discussion groups later in the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,000",
+				"to": "00:24:22,000"
+			},
+			"offsets": {
+				"from": 1447000,
+				"to": 1462000
+			},
+			"text": " We also want to start some learning groups for people who are designing in this space, and we'll keep you updated in our Design Public Goods channel on the PSE Discord."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,000",
+				"to": "00:24:24,000"
+			},
+			"offsets": {
+				"from": 1462000,
+				"to": 1464000
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,000",
+				"to": "00:24:26,000"
+			},
+			"offsets": {
+				"from": 1464000,
+				"to": 1466000
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,000",
+				"to": "00:24:34,000"
+			},
+			"offsets": {
+				"from": 1466000,
+				"to": 1474000
+			},
+			"text": " ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,000",
+				"to": "00:25:03,000"
+			},
+			"offsets": {
+				"from": 1474000,
+				"to": 1503000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

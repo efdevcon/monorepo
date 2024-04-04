@@ -1,0 +1,1198 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 24000
+			},
+			"text": " So I'm going to do just a quick overview on how to apply design into contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 29000
+			},
+			"text": " So first, what I'm doing here, I mean, what's my job here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 35000
+			},
+			"text": " Of course, you know, the designer is a guy that came after Fabian Don, his job,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 37000
+			},
+			"text": " and just make it prettier, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 40000
+			},
+			"text": " So I don't really see it that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 48000
+			},
+			"text": " I think that the purpose of the interface, of course, is to translate the code into what the user sees."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 55000
+			},
+			"text": " So in the same way, the purpose of the interface designer is to be some sort of translator"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 60000
+			},
+			"text": " between the developer and the end user. So I think it's important that the purpose of the designer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 64000
+			},
+			"text": " is to be the guy that tries to connect the two words."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 68000
+			},
+			"text": " And in order to do that, you need to do something that designers don't like really to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 75000
+			},
+			"text": " which is understanding the code and understanding what's going on under."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 79000
+			},
+			"text": " I mean, of course, it's not the job of the designers that develop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 86000
+			},
+			"text": " but if he doesn't understand what he's designing, he will not be doing a very good job at designing anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 91000
+			},
+			"text": " So here's an example. So the first time that Christian came up with this code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 98000
+			},
+			"text": " we were talking and we were checking, changing ideas, this was the first layout of the purchase function."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 104000
+			},
+			"text": " And you might notice that, I mean, it just looks like something we saw,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 113000
+			},
+			"text": " but there is this one detail, which is the buyer was set at the contract when the contract was created,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 121000
+			},
+			"text": " which made my job needed that the way that someone would interact with the contract was."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 126000
+			},
+			"text": " The seller would announce the price of blockchain. The buyer would answer him,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 133000
+			},
+			"text": " \"Look, I want to buy your stuff.\" And then the seller would get the address from the buyer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 138000
+			},
+			"text": " deploy the contract, and communicate the address of the contract back to the buyer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 143000
+			},
+			"text": " and then the buyer needs to send money to your contract, which in some sense might make sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 147000
+			},
+			"text": " and there are some advantages to it, but it creates a lot of problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 152000
+			},
+			"text": " It makes the interface a lot more complicated and creates a lot of problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 156000
+			},
+			"text": " like, \"What if the buyer never answers back? What if the buyer disappears?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 161000
+			},
+			"text": " Then you have to add some way to refund. So if you need to refund anyway,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 164000
+			},
+			"text": " so why do you need to create the seller in the beginning?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 171000
+			},
+			"text": " So that's why now we decided that the seller just puts the seller doesn't define who the buyer is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 175000
+			},
+			"text": " The buyer defines himself by actually giving the money."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 180000
+			},
+			"text": " So if the buyer doesn't deposit the money, he's not the buyer, which makes sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 184000
+			},
+			"text": " and simplifies my job, because now the seller deploys the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 190000
+			},
+			"text": " is already the price information, so the way he communicates the price is via the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 194000
+			},
+			"text": " and then all the buyer has to do is send money to the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 200000
+			},
+			"text": " which makes more... it's easier for both of them and simplifies what we need to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 208000
+			},
+			"text": " So now let's take another look at the contract, and that's all the functions that the interface has to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 213000
+			},
+			"text": " So you have to imagine that the interface needs to be able to abort, to confirm the purchase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 216000
+			},
+			"text": " to confirm the series received, so it's probably something that we need for buttons,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 222000
+			},
+			"text": " and we need to add somewhere, you can add the address of the contract, so you can interact with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 229000
+			},
+			"text": " But before we go there and try to design it on Photoshop, let's try to simplify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 235000
+			},
+			"text": " So if you remove it, you see that those are the functions, and those are the modifiers of the functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 241000
+			},
+			"text": " And if you try to rearrange them, you notice that we have like three states,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 246000
+			},
+			"text": " and we have two states, and they can be in three conditions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 251000
+			},
+			"text": " and there's only one function that you can actually do, meaning that..."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 260000
+			},
+			"text": " and you have to remember that a DAP can know who the other person is, so in a DAP can ask him for access,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 266000
+			},
+			"text": " asking for the user, \"Look, who are you? Give me the address of your if account so I can recognize you,\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 274000
+			},
+			"text": " meaning that the app knows if she's talking to... it is talking to the seller, the buyer, or anyone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 282000
+			},
+			"text": " Meaning that actually what happens is that if you... and since the states doesn't happen all the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 286000
+			},
+			"text": " it means that there's always only one single function you can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 293000
+			},
+			"text": " So if there is no buyer, and if there's no buyer, then the seller can abort the purchase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 296000
+			},
+			"text": " or anyone else can confirm the purchase."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 302000
+			},
+			"text": " If there is a buyer already, then the seller can refund, and the buyer can confirm reserves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 311000
+			},
+			"text": " and everything else is just a state that is active, meaning that actually we don't need to design the whole app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 314000
+			},
+			"text": " we can realize that the app is just a button."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 318000
+			},
+			"text": " We don't need to do the whole app with a buy-in and selling."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 325000
+			},
+			"text": " Actually, the whole design process is that it is realizing that the app is a single button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 334000
+			},
+			"text": " which is kind of cool because Don't Epic Scott was talking about how the next ever could actually be the car that owns itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 343000
+			},
+			"text": " when it's doing the transactions, and this is a very nice example of a button that holds the money itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 351000
+			},
+			"text": " Which I think is kind of cool, and takes me to the second point, which is you shouldn't try to design too much"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 353000
+			},
+			"text": " when you're trying to design a app."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 355000
+			},
+			"text": " So of course, this is a great app."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 362000
+			},
+			"text": " We could think about how the other ways you can build a marketplace, you can build Amazon.com, you can build an eBay, trustless eBay."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 367000
+			},
+			"text": " You can add search functions, but you don't need to do it right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 376000
+			},
+			"text": " Actually, since it's a very decentralized tool set, if you just build a single button and allow other people to use your button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 385000
+			},
+			"text": " that might be a viable business model because you might charge a few cents for people to use your button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 393000
+			},
+			"text": " and of course they can deploy their own contracts if you want to put, that's your job to convince them why they should you be using your contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 403000
+			},
+			"text": " that they have to pay. Which is interesting because you can imagine a web where instead of you going to Amazon, Amazon builds the whole page,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 417000
+			},
+			"text": " maybe Amazon has a single card that is from another developer, and we think less about big portals and think about a bunch of components that can work together in the new web."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 431000
+			},
+			"text": " Now, a third point, which is a more designer-oriented thing, is just when we are talking about that, we want to be able to distribute them on a bit torrent-like network, an IPFS and swarms."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 435000
+			},
+			"text": " The fonts you use should be open source that you can distribute them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 438000
+			},
+			"text": " Those are some great examples of open source fonts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 446000
+			},
+			"text": " We use source and scroll for a mess, and for most of our ads, sometimes once they are, but those are other are great."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 452000
+			},
+			"text": " I kept Libri Barzka view there because it's my favorite ampersand. I love ampersand."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 459000
+			},
+			"text": " And my fourth point is that use grids that applies to everything that the designer makes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 469000
+			},
+			"text": " We use this little grid here, which is kind of weird if you take a look at it, but we use 32 pixels by 18.4."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 483000
+			},
+			"text": " Why do I use a height of 18.4? For the simple reason that it allows me to have hexagons on my grid, which is nice because it allows you to centralize circles, which is something that is always cool with some designs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 498000
+			},
+			"text": " And also, we use 32 pixels because it's the divisor of 320, 480, 900, 60, 1024, which is a bunch of other sizes, which are great for mobile, which are great for multiple sizes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 503000
+			},
+			"text": " Finally, test, test, test. Always test whatever you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 519000
+			},
+			"text": " So normally when I first started, I always used whoever is in the office as the first, the best test is just grab someone who's not working your project, show something and ask him a dumb question like, okay, what is this that you are seeing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 538000
+			},
+			"text": " And never answer to him. Just let him answer to you. But since I work from home now, which made that kind of complicated, I was forced to find other sites that would allow me to do that, which I found the great, some greats like usability hub, I highly recommend it, envision, I highly recommend it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 550000
+			},
+			"text": " So for example, in our design process, instead of building a document saying what the interface should look like, we build an envision document that has all the screens linked."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 565000
+			},
+			"text": " And I can show you, I can show the developers, I can show some users so they can, all they have to do to understand how an interface works, they click, click, click around and they will be able to see how the app is going to feel like."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 574000
+			},
+			"text": " This is a great tool for exploring everyone. And the next thing I always use is usability hub, which is a great way to do quick design tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 594000
+			},
+			"text": " So this was the first design of the Alef1 miner, which is a CPP tool for allowing a quick one button mining, which is a great tool, but the first design was very kind of nerdy and complicated and I suggest the new design where part of it, we removed a few buttons like the CPU mining, the top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 602000
+			},
+			"text": " And the CPU mining doesn't make sense and you just have one button that's called start mining and we draw rewards because that's actually what people want."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 623000
+			},
+			"text": " And one of, in the process of convincing that this design made sense, because I think it felt like it made sense, but sometimes you need some numbers, so I run it in a usability test, which is a way that you can have 20 people clicking your design around from all over the Internet and I just ask them, look, this is some app that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 636000
+			},
+			"text": " uses your CPU and gives you money. So I want you to turn the app on and try to collect your winnings. And you can see that on the first app, people were like clicking around, they had no idea where it was and they couldn't get to the next point."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 647000
+			},
+			"text": " And on the second version, everyone was mostly clicking just on those two buttons and we were able to switch the overall rate of people having success in the first try."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 661000
+			},
+			"text": " So I think it's a great success and how important it is to test it constantly. And sometimes you can test just logos, for example, this is the first logo for MIST."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 671000
+			},
+			"text": " And of course you can see that it's a wave inside a diamond, so I think it's so obvious that I almost didn't test it, but I decided to test it anyway and that's how the Internet described it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 685000
+			},
+			"text": " It's just a diamond with a shape with purple. And then maybe there are not enough details, so I asked people to write substantive, I made a second version with more details."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 693000
+			},
+			"text": " And then everyone just told me, okay, so this is a wave mounting with water eyes, I don't know, I'm confused."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 707000
+			},
+			"text": " So I decided to, oh, maybe I just should add some smog to it. And then I, okay, what is this now? And then, oh, it's a messy, scary, confusing, cold, blue, sharp."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 719000
+			},
+			"text": " And then it could see that this was not the right approach for the icon. So I decided maybe you can go to iceberg, iceberg, there's this idea of the deep web and maybe it's an iceberg school."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 740000
+			},
+			"text": " So what is this? And everyone say nothing? That's some \"ep\" thing. So I kept trying, I kept making other designs, and I think this one was better, and people started to think that there's an iceberg, there's like an iceberg with a magical mounting thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 757000
+			},
+			"text": " And that was finally the latest iteration of the log, where I had multiple iterations between them. And they were like, oh, it's a magic diamond mounting with an iceberg cryster inside, which is more what I was going for in the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 769000
+			},
+			"text": " And finally, the last point I want is keep the user in control of his data. That's something we don't do on the current web that we can totally do on the decentralized web."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 778000
+			},
+			"text": " And so just in a midst, for example, we allow the user to, as I was studying in the beginning, the user can just tell the app who he is."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 785000
+			},
+			"text": " So the user starts all apps anonymously, and then he can choose one account to review himself."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 797000
+			},
+			"text": " And it's a great way that the user, maybe you don't need to have a login password information on your app, you don't need to keep all that information on the app side."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 807000
+			},
+			"text": " Maybe all you need to do is ask for the browser for it to show you some sort of proof of ownership of a public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 818000
+			},
+			"text": " Your app will be simpler, and it will be a better experience for the user because the app can keep his private data on his own browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 825000
+			},
+			"text": " So I think those are the six things I wanted to tell you about how to design for the new app."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 832000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 839000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 841000
+			},
+			"text": " [ ]"
+		}
+	]
+}

@@ -1,0 +1,2166 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,280"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7280
+			},
+			"text": " I'm Mamie Ratzen-Bazefi."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,280",
+				"to": "00:00:12,040"
+			},
+			"offsets": {
+				"from": 7280,
+				"to": 12040
+			},
+			"text": " I've been working on Ethereum since two years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,040",
+				"to": "00:00:16,080"
+			},
+			"offsets": {
+				"from": 12040,
+				"to": 16080
+			},
+			"text": " And first on Ethereum 1 and now Ethereum 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,080",
+				"to": "00:00:20,400"
+			},
+			"offsets": {
+				"from": 16080,
+				"to": 20400
+			},
+			"text": " And I'm part of Stairus, the Namestim."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,400",
+				"to": "00:00:25,040"
+			},
+			"offsets": {
+				"from": 20400,
+				"to": 25040
+			},
+			"text": " So most of you know Stairus as for free things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,040",
+				"to": "00:00:33,400"
+			},
+			"offsets": {
+				"from": 25040,
+				"to": 33400
+			},
+			"text": " The messenger, the web free browser and also the browser and the wallet on mobile."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,400",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 33400,
+				"to": 43000
+			},
+			"text": " But we are also involving in current infrastructure as we eat new challenges within the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:49,160"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 49160
+			},
+			"text": " So the main one I will be talking today is Ethereum 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,160",
+				"to": "00:00:57,400"
+			},
+			"offsets": {
+				"from": 49160,
+				"to": 57400
+			},
+			"text": " So at first for this talk I had a big secret plan to come like Steve Jobs with the new iPhone"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,400",
+				"to": "00:01:01,240"
+			},
+			"offsets": {
+				"from": 57400,
+				"to": 61240
+			},
+			"text": " and show you a frame 2 on Raspberry Pi."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,240",
+				"to": "00:01:03,320"
+			},
+			"offsets": {
+				"from": 61240,
+				"to": 63320
+			},
+			"text": " There is another one behind."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,320",
+				"to": "00:01:07,680"
+			},
+			"offsets": {
+				"from": 63320,
+				"to": 67680
+			},
+			"text": " But this was revealed one month ago during the interrupt in Canada."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,680",
+				"to": "00:01:13,440"
+			},
+			"offsets": {
+				"from": 67680,
+				"to": 73440
+			},
+			"text": " And all the Twitter sphere was all over the place with this plus what happened at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,440",
+				"to": "00:01:14,440"
+			},
+			"offsets": {
+				"from": 73440,
+				"to": 74440
+			},
+			"text": " interrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,440",
+				"to": "00:01:26,800"
+			},
+			"offsets": {
+				"from": 74440,
+				"to": 86800
+			},
+			"text": " So instead of talking about that, I want to take a step back and explain why this is important"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,800",
+				"to": "00:01:31,040"
+			},
+			"offsets": {
+				"from": 86800,
+				"to": 91040
+			},
+			"text": " for Ethereum, for blockchain and also for society."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,040",
+				"to": "00:01:37,560"
+			},
+			"offsets": {
+				"from": 91040,
+				"to": 97560
+			},
+			"text": " So the real program today is why running on the Pi is significant."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,560",
+				"to": "00:01:42,120"
+			},
+			"offsets": {
+				"from": 97560,
+				"to": 102120
+			},
+			"text": " Some experiments and outcomes, future and unknowns."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,120",
+				"to": "00:01:49,960"
+			},
+			"offsets": {
+				"from": 102120,
+				"to": 109960
+			},
+			"text": " So the main focus will be on sustainability and energy consumption which was one of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,960",
+				"to": "00:01:54,160"
+			},
+			"offsets": {
+				"from": 109960,
+				"to": 114160
+			},
+			"text": " main critics of blockchain and especially proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,160",
+				"to": "00:02:01,240"
+			},
+			"offsets": {
+				"from": 114160,
+				"to": 121240
+			},
+			"text": " So without further ado, if you were this morning at the introduction talk by Vitalik, we talked"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,240",
+				"to": "00:02:06,740"
+			},
+			"offsets": {
+				"from": 121240,
+				"to": 126740
+			},
+			"text": " about Byzantine fault tolerance and this paper from Lemport in 1982 which presented the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,740",
+				"to": "00:02:15,380"
+			},
+			"offsets": {
+				"from": 126740,
+				"to": 135380
+			},
+			"text": " Byzantine general problem which was about how to reach consensus between like if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,380",
+				"to": "00:02:22,460"
+			},
+			"offsets": {
+				"from": 135380,
+				"to": 142460
+			},
+			"text": " all are generals of an army, you have to attack a city and maybe you have to communicate so"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,460",
+				"to": "00:02:29,360"
+			},
+			"offsets": {
+				"from": 142460,
+				"to": 149360
+			},
+			"text": " that not half of you attack the city while half of the other retreat and you come to a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,360",
+				"to": "00:02:36,500"
+			},
+			"offsets": {
+				"from": 149360,
+				"to": 156500
+			},
+			"text": " strong decision despite spies, maybe messenger dying or fleeing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,500",
+				"to": "00:02:47,580"
+			},
+			"offsets": {
+				"from": 156500,
+				"to": 167580
+			},
+			"text": " And one of the main advancements of Bitcoin was using proof of costly resources work to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,580",
+				"to": "00:02:51,060"
+			},
+			"offsets": {
+				"from": 167580,
+				"to": 171060
+			},
+			"text": " help solve this general problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,060",
+				"to": "00:02:59,980"
+			},
+			"offsets": {
+				"from": 171060,
+				"to": 179980
+			},
+			"text": " So here you have I suppose one of the first mail that introduced Satoshi's work with"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,980",
+				"to": "00:03:09,100"
+			},
+			"offsets": {
+				"from": 179980,
+				"to": 189100
+			},
+			"text": " an example of attacking I don't know maybe a company through and trying to crack the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,100",
+				"to": "00:03:17,060"
+			},
+			"offsets": {
+				"from": 189100,
+				"to": 197060
+			},
+			"text": " crypto hashes and consulting many attackers for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,060",
+				"to": "00:03:23,860"
+			},
+			"offsets": {
+				"from": 197060,
+				"to": 203860
+			},
+			"text": " The main point is that you need a lot of compute so a lot of energy to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,860",
+				"to": "00:03:32,220"
+			},
+			"offsets": {
+				"from": 203860,
+				"to": 212220
+			},
+			"text": " And to introduce more context I want to talk about externalities and also sustainability."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,220",
+				"to": "00:03:42,100"
+			},
+			"offsets": {
+				"from": 212220,
+				"to": 222100
+			},
+			"text": " So externality is an economic term that explains that tells you it's a cost or a benefit that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,100",
+				"to": "00:03:46,580"
+			},
+			"offsets": {
+				"from": 222100,
+				"to": 226580
+			},
+			"text": " affects a party who did not choose to ensure that cost or benefit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,580",
+				"to": "00:03:52,180"
+			},
+			"offsets": {
+				"from": 226580,
+				"to": 232180
+			},
+			"text": " So to give you a concrete example, suppose there is a factory somewhere that pumps in"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,180",
+				"to": "00:03:58,020"
+			},
+			"offsets": {
+				"from": 232180,
+				"to": 238020
+			},
+			"text": " clean water and exhausts dirty water downstream."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,020",
+				"to": "00:04:04,540"
+			},
+			"offsets": {
+				"from": 238020,
+				"to": 244540
+			},
+			"text": " People downstream didn't choose to have dirty water and they are not paid to clean it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,540",
+				"to": "00:04:07,280"
+			},
+			"offsets": {
+				"from": 244540,
+				"to": 247280
+			},
+			"text": " So this is a negative externality."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,280",
+				"to": "00:04:14,100"
+			},
+			"offsets": {
+				"from": 247280,
+				"to": 254100
+			},
+			"text": " On the other hand, a positive externality will be the same factory is building a road"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,100",
+				"to": "00:04:20,140"
+			},
+			"offsets": {
+				"from": 254100,
+				"to": 260140
+			},
+			"text": " where there were none before and all the villages and the city along those roads benefits for"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,140",
+				"to": "00:04:22,140"
+			},
+			"offsets": {
+				"from": 260140,
+				"to": 262140
+			},
+			"text": " much better transportation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,140",
+				"to": "00:04:24,340"
+			},
+			"offsets": {
+				"from": 262140,
+				"to": 264340
+			},
+			"text": " So this is a positive externality."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,340",
+				"to": "00:04:29,740"
+			},
+			"offsets": {
+				"from": 264340,
+				"to": 269740
+			},
+			"text": " And sustainability I guess now everyone is familiar with the term."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,740",
+				"to": "00:04:35,100"
+			},
+			"offsets": {
+				"from": 269740,
+				"to": 275100
+			},
+			"text": " So the idea is that it's meeting the need of the present without compromising the ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,100",
+				"to": "00:04:38,620"
+			},
+			"offsets": {
+				"from": 275100,
+				"to": 278620
+			},
+			"text": " of better generation to meet their needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,620",
+				"to": "00:04:42,100"
+			},
+			"offsets": {
+				"from": 278620,
+				"to": 282100
+			},
+			"text": " How does that play in a frame?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,100",
+				"to": "00:04:54,340"
+			},
+			"offsets": {
+				"from": 282100,
+				"to": 294340
+			},
+			"text": " So the public opinion is that a lot of the proof of work is a waste of energy and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,340",
+				"to": "00:04:55,340"
+			},
+			"offsets": {
+				"from": 294340,
+				"to": 295340
+			},
+			"text": " an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,340",
+				"to": "00:05:02,020"
+			},
+			"offsets": {
+				"from": 295340,
+				"to": 302020
+			},
+			"text": " There is this EU blockchain observatory report that was sent to the European Commission that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,020",
+				"to": "00:05:09,660"
+			},
+			"offsets": {
+				"from": 302020,
+				"to": 309660
+			},
+			"text": " said that proof of work consumes as much energy per day as the country of Singapore."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,660",
+				"to": "00:05:15,740"
+			},
+			"offsets": {
+				"from": 309660,
+				"to": 315740
+			},
+			"text": " It's not shown in the slide but they said that there are lots of work in progress to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,740",
+				"to": "00:05:21,340"
+			},
+			"offsets": {
+				"from": 315740,
+				"to": 321340
+			},
+			"text": " improve that and that thankfully the blockchain community is aware of the energy consumption"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,340",
+				"to": "00:05:25,180"
+			},
+			"offsets": {
+				"from": 321340,
+				"to": 325180
+			},
+			"text": " and wants to tackle that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,180",
+				"to": "00:05:35,220"
+			},
+			"offsets": {
+				"from": 325180,
+				"to": 335220
+			},
+			"text": " Another paper was in the magazine Nature that said that blockchain might contribute to global"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,220",
+				"to": "00:05:39,020"
+			},
+			"offsets": {
+				"from": 335220,
+				"to": 339020
+			},
+			"text": " warming by two degree Celsius."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,020",
+				"to": "00:05:44,380"
+			},
+			"offsets": {
+				"from": 339020,
+				"to": 344380
+			},
+			"text": " The paper is the code behind the paper is actually public which is a very good thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,380",
+				"to": "00:05:50,780"
+			},
+			"offsets": {
+				"from": 344380,
+				"to": 350780
+			},
+			"text": " and if you want you can check out how they arrive to those estimates."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,780",
+				"to": "00:05:56,060"
+			},
+			"offsets": {
+				"from": 350780,
+				"to": 356060
+			},
+			"text": " You can also do your own, you can criticize it, put a PR or an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,060",
+				"to": "00:06:02,220"
+			},
+			"offsets": {
+				"from": 356060,
+				"to": 362220
+			},
+			"text": " But I'm not here to talk about if it's two degree or 1.5 or maybe one or maybe three."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,220",
+				"to": "00:06:08,220"
+			},
+			"offsets": {
+				"from": 362220,
+				"to": 368220
+			},
+			"text": " I want it to be zero or maybe even negative like if we have more efficient carbon market"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,220",
+				"to": "00:06:13,940"
+			},
+			"offsets": {
+				"from": 368220,
+				"to": 373940
+			},
+			"text": " with the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,940",
+				"to": "00:06:17,940"
+			},
+			"offsets": {
+				"from": 373940,
+				"to": 377940
+			},
+			"text": " Another negative externality is the space used."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,940",
+				"to": "00:06:23,980"
+			},
+			"offsets": {
+				"from": 377940,
+				"to": 383980
+			},
+			"text": " So this is an image of Iceland, a US Air Force base that was completely transformed into"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,980",
+				"to": "00:06:31,580"
+			},
+			"offsets": {
+				"from": 383980,
+				"to": 391580
+			},
+			"text": " a Bitcoin farm and I guess space today is at a premium with many countries like Japan"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,580",
+				"to": "00:06:38,780"
+			},
+			"offsets": {
+				"from": 391580,
+				"to": 398780
+			},
+			"text": " who are struggling to get space either for food or for people."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,780",
+				"to": "00:06:46,700"
+			},
+			"offsets": {
+				"from": 398780,
+				"to": 406700
+			},
+			"text": " So just to not be always negative there are also positive externalities in the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,700",
+				"to": "00:06:52,300"
+			},
+			"offsets": {
+				"from": 406700,
+				"to": 412300
+			},
+			"text": " space so we have all these permissionless, trustless, decentralized, transparent and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,300",
+				"to": "00:06:55,780"
+			},
+			"offsets": {
+				"from": 412300,
+				"to": 415780
+			},
+			"text": " social system that everyone knows."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,780",
+				"to": "00:07:02,380"
+			},
+			"offsets": {
+				"from": 415780,
+				"to": 422380
+			},
+			"text": " But also who heard about formal verification before hearing about blockchain here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,380",
+				"to": "00:07:05,340"
+			},
+			"offsets": {
+				"from": 422380,
+				"to": 425340
+			},
+			"text": " Oh, there's one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,340",
+				"to": "00:07:12,100"
+			},
+			"offsets": {
+				"from": 425340,
+				"to": 432100
+			},
+			"text": " Well blockchain is also driving all the innovation, informal verification for software."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,100",
+				"to": "00:07:18,060"
+			},
+			"offsets": {
+				"from": 432100,
+				"to": 438060
+			},
+			"text": " Formal verification has been used by Intel for example for the past 20 years for hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,060",
+				"to": "00:07:23,860"
+			},
+			"offsets": {
+				"from": 438060,
+				"to": 443860
+			},
+			"text": " but this is very new and thanks to blockchain that formal verification is used for software"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,860",
+				"to": "00:07:31,180"
+			},
+			"offsets": {
+				"from": 443860,
+				"to": 451180
+			},
+			"text": " and there are others like game theory, cryptography that are being driven by blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,180",
+				"to": "00:07:34,100"
+			},
+			"offsets": {
+				"from": 451180,
+				"to": 454100
+			},
+			"text": " So now let's go back to a frame two."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,100",
+				"to": "00:07:42,060"
+			},
+			"offsets": {
+				"from": 454100,
+				"to": 462060
+			},
+			"text": " A frame two we change the proof of work, the wasteful algorithm like the public may want"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,060",
+				"to": "00:07:45,060"
+			},
+			"offsets": {
+				"from": 462060,
+				"to": 465060
+			},
+			"text": " to call it to differ itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,060",
+				"to": "00:07:53,820"
+			},
+			"offsets": {
+				"from": 465060,
+				"to": 473820
+			},
+			"text": " So now we can run it on that, something that can fit into my hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,820",
+				"to": "00:07:59,940"
+			},
+			"offsets": {
+				"from": 473820,
+				"to": 479940
+			},
+			"text": " We go from a big data center to this small thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,940",
+				"to": "00:08:06,860"
+			},
+			"offsets": {
+				"from": 479940,
+				"to": 486860
+			},
+			"text": " I've been running tests in the past months on Raspberry Pi 4 so this one is Raspberry"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,860",
+				"to": "00:08:13,980"
+			},
+			"offsets": {
+				"from": 486860,
+				"to": 493980
+			},
+			"text": " Pi 3 and Raspberry Pi 4 was out in June I think a bit more powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,980",
+				"to": "00:08:24,180"
+			},
+			"offsets": {
+				"from": 493980,
+				"to": 504180
+			},
+			"text": " Two gigabyte of RAM I use the default distribution so that people can reproduce it and Nimbus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,180",
+				"to": "00:08:27,780"
+			},
+			"offsets": {
+				"from": 504180,
+				"to": 507780
+			},
+			"text": " the frame two client called Nimbe Exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,780",
+				"to": "00:08:33,660"
+			},
+			"offsets": {
+				"from": 507780,
+				"to": 513660
+			},
+			"text": " The configuration I used was called minimal, this is what we use for interrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,660",
+				"to": "00:08:40,060"
+			},
+			"offsets": {
+				"from": 513660,
+				"to": 520060
+			},
+			"text": " We also have a mainnet one, I use minimal because unfortunately we're not yet at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,060",
+				"to": "00:08:48,060"
+			},
+			"offsets": {
+				"from": 520060,
+				"to": 528060
+			},
+			"text": " stage we're missing a bit of extra step to get to mainnet performance but I did try"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,060",
+				"to": "00:08:52,180"
+			},
+			"offsets": {
+				"from": 528060,
+				"to": 532180
+			},
+			"text": " to make it harder than minimal."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,180",
+				"to": "00:09:00,860"
+			},
+			"offsets": {
+				"from": 532180,
+				"to": 540860
+			},
+			"text": " So instead of interrupt which was using 16 validators I use 192 which means 992 times"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,860",
+				"to": "00:09:09,700"
+			},
+			"offsets": {
+				"from": 540860,
+				"to": 549700
+			},
+			"text": " 42 if state on this, 64 shards, 8 slots per epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,700",
+				"to": "00:09:16,540"
+			},
+			"offsets": {
+				"from": 549700,
+				"to": 556540
+			},
+			"text": " So one thing is that you might think that minimal is really a done version but an epoch"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,540",
+				"to": "00:09:23,540"
+			},
+			"offsets": {
+				"from": 556540,
+				"to": 563540
+			},
+			"text": " so if you're not aware of the eframe two terminology a slot is 6 second, it's how fast"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,540",
+				"to": "00:09:32,940"
+			},
+			"offsets": {
+				"from": 563540,
+				"to": 572940
+			},
+			"text": " we create new block on the blockchain and an epoch is a group of slots that makes sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,940",
+				"to": "00:09:39,380"
+			},
+			"offsets": {
+				"from": 572940,
+				"to": 579380
+			},
+			"text": " together and we will have special processing after each epoch so that brings each epoch"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,380",
+				"to": "00:09:43,300"
+			},
+			"offsets": {
+				"from": 579380,
+				"to": 583300
+			},
+			"text": " to 48 seconds instead of 6 minutes and so."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,300",
+				"to": "00:09:48,060"
+			},
+			"offsets": {
+				"from": 583300,
+				"to": 588060
+			},
+			"text": " When I say epoch processing is costly this is the list of what we do, justification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,060",
+				"to": "00:09:52,740"
+			},
+			"offsets": {
+				"from": 588060,
+				"to": 592740
+			},
+			"text": " finalization so this means making sure that the blockchain cannot go back in time, cross"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,740",
+				"to": "00:10:00,820"
+			},
+			"offsets": {
+				"from": 592740,
+				"to": 600820
+			},
+			"text": " links, rewards and penalties, slashing validators, inducing new validators, removing those that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,820",
+				"to": "00:10:07,060"
+			},
+			"offsets": {
+				"from": 600820,
+				"to": 607060
+			},
+			"text": " are bad and updating balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,060",
+				"to": "00:10:14,060"
+			},
+			"offsets": {
+				"from": 607060,
+				"to": 614060
+			},
+			"text": " Also what I wanted to do was giving you very precise power consumption figures and it happened"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,060",
+				"to": "00:10:21,380"
+			},
+			"offsets": {
+				"from": 614060,
+				"to": 621380
+			},
+			"text": " that I had an electrical issue at home a week ago so about this fancy equipment but I couldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,380",
+				"to": "00:10:29,100"
+			},
+			"offsets": {
+				"from": 621380,
+				"to": 629100
+			},
+			"text": " use it because I needed a cable with different electricity in and electricity out so I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,100",
+				"to": "00:10:31,700"
+			},
+			"offsets": {
+				"from": 629100,
+				"to": 631700
+			},
+			"text": " sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,700",
+				"to": "00:10:40,220"
+			},
+			"offsets": {
+				"from": 631700,
+				"to": 640220
+			},
+			"text": " Now for actual demo, this is the output live from the Raspberry Pi that is behind you and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,220",
+				"to": "00:10:45,660"
+			},
+			"offsets": {
+				"from": 640220,
+				"to": 645660
+			},
+			"text": " it showed you it has been running for 40 minutes now and it showed you that first it didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,660",
+				"to": "00:10:52,420"
+			},
+			"offsets": {
+				"from": 645660,
+				"to": 652420
+			},
+			"text": " crash and it's also running and you have the output of free nodes so it's a bit fast and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,420",
+				"to": "00:11:01,340"
+			},
+			"offsets": {
+				"from": 652420,
+				"to": 661340
+			},
+			"text": " this was a video backup that I used just in case the live demo didn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,340",
+				"to": "00:11:06,980"
+			},
+			"offsets": {
+				"from": 661340,
+				"to": 666980
+			},
+			"text": " Now some key figures about running Ethereum, NEMBUS on the Raspberry Pi, the Raspberry"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,980",
+				"to": "00:11:11,740"
+			},
+			"offsets": {
+				"from": 666980,
+				"to": 671740
+			},
+			"text": " Pi maximum power consumption power draw is 7.6 watts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,740",
+				"to": "00:11:21,740"
+			},
+			"offsets": {
+				"from": 671740,
+				"to": 681740
+			},
+			"text": " To give you an idea for typical laptop nowadays it's about 30 watts so it's 4 to 5 times less"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,740",
+				"to": "00:11:28,740"
+			},
+			"offsets": {
+				"from": 681740,
+				"to": 688740
+			},
+			"text": " power consumed and also a Raspberry Pi is about 10 times slower than an entry level CPU"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,740",
+				"to": "00:11:31,260"
+			},
+			"offsets": {
+				"from": 688740,
+				"to": 691260
+			},
+			"text": " for a desktop."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,260",
+				"to": "00:11:38,460"
+			},
+			"offsets": {
+				"from": 691260,
+				"to": 698460
+			},
+			"text": " So this means that it runs, Ethereum 2 runs perfectly on this kind of CPU so if we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,460",
+				"to": "00:11:43,900"
+			},
+			"offsets": {
+				"from": 698460,
+				"to": 703900
+			},
+			"text": " get two free times more performance we will be okay for a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,900",
+				"to": "00:11:51,180"
+			},
+			"offsets": {
+				"from": 703900,
+				"to": 711180
+			},
+			"text": " And also if people were worrying because they have 10,000 ETH to stake and they didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,180",
+				"to": "00:11:59,300"
+			},
+			"offsets": {
+				"from": 711180,
+				"to": 719300
+			},
+			"text": " know what kind of hardware they needed, well it's easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,300",
+				"to": "00:12:08,420"
+			},
+			"offsets": {
+				"from": 719300,
+				"to": 728420
+			},
+			"text": " So in summary, outcomes of those experiments, it runs even an optimized on the representative"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,420",
+				"to": "00:12:09,420"
+			},
+			"offsets": {
+				"from": 728420,
+				"to": 729420
+			},
+			"text": " workload."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,420",
+				"to": "00:12:14,300"
+			},
+			"offsets": {
+				"from": 729420,
+				"to": 734300
+			},
+			"text": " You don't need the power plant in your backyard just to ensure that you always have electricity"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,300",
+				"to": "00:12:18,620"
+			},
+			"offsets": {
+				"from": 734300,
+				"to": 738620
+			},
+			"text": " and you don't black out the whole district."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,620",
+				"to": "00:12:27,380"
+			},
+			"offsets": {
+				"from": 738620,
+				"to": 747380
+			},
+			"text": " And we also have clear targets because Hasdani said this morning, the main blocker and most"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,380",
+				"to": "00:12:32,420"
+			},
+			"offsets": {
+				"from": 747380,
+				"to": 752420
+			},
+			"text": " of the time is spent on cryptography and the cryptography that we use on Ethereum 2 is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,420",
+				"to": "00:12:33,420"
+			},
+			"offsets": {
+				"from": 752420,
+				"to": 753420
+			},
+			"text": " very young."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,420",
+				"to": "00:12:40,700"
+			},
+			"offsets": {
+				"from": 753420,
+				"to": 760700
+			},
+			"text": " It was developed by Dan Bonet at Stanford but there is no either hardware or software optimization"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,700",
+				"to": "00:12:49,300"
+			},
+			"offsets": {
+				"from": 760700,
+				"to": 769300
+			},
+			"text": " yet and everyone also, Ethereum 2 team currently have an optimized and very young library but"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,300",
+				"to": "00:12:52,660"
+			},
+			"offsets": {
+				"from": 769300,
+				"to": 772660
+			},
+			"text": " as the ecosystem matter it will get much better."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,660",
+				"to": "00:12:57,300"
+			},
+			"offsets": {
+				"from": 772660,
+				"to": 777300
+			},
+			"text": " Also there is a need for it to standardize across many blockchain like Ethereum, Ccash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,300",
+				"to": "00:13:04,180"
+			},
+			"offsets": {
+				"from": 777300,
+				"to": 784180
+			},
+			"text": " Icon, Algoron, Definity, Shannetwork, I guess one or two over I forget so there is an incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,180",
+				"to": "00:13:10,460"
+			},
+			"offsets": {
+				"from": 784180,
+				"to": 790460
+			},
+			"text": " across all blockchain to collaborate and get something very strong."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,460",
+				"to": "00:13:12,060"
+			},
+			"offsets": {
+				"from": 790460,
+				"to": 792060
+			},
+			"text": " The bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,060",
+				"to": "00:13:19,220"
+			},
+			"offsets": {
+				"from": 792060,
+				"to": 799220
+			},
+			"text": " So as I said we can run minimal, we cannot run mainnet and well processing takes over"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,220",
+				"to": "00:13:26,380"
+			},
+			"offsets": {
+				"from": 799220,
+				"to": 806380
+			},
+			"text": " six seconds, maybe ten or something, we need to get twice faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,380",
+				"to": "00:13:27,700"
+			},
+			"offsets": {
+				"from": 806380,
+				"to": 807700
+			},
+			"text": " So ugly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,700",
+				"to": "00:13:32,620"
+			},
+			"offsets": {
+				"from": 807700,
+				"to": 812620
+			},
+			"text": " I'm sorry but if you wanted to hit your home in the winter you will not be able to do it"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,620",
+				"to": "00:13:39,740"
+			},
+			"offsets": {
+				"from": 812620,
+				"to": 819740
+			},
+			"text": " with proof of state so you will have to stay with Bitcoin or something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,740",
+				"to": "00:13:46,220"
+			},
+			"offsets": {
+				"from": 819740,
+				"to": 826220
+			},
+			"text": " Now some ideas I have for the future to optimize this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,220",
+				"to": "00:13:51,940"
+			},
+			"offsets": {
+				"from": 826220,
+				"to": 831940
+			},
+			"text": " So Raspberry Pi default distribution is running 32 bit mode but cryptography in 64 bit is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,940",
+				"to": "00:13:54,180"
+			},
+			"offsets": {
+				"from": 831940,
+				"to": 834180
+			},
+			"text": " much faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,180",
+				"to": "00:14:01,340"
+			},
+			"offsets": {
+				"from": 834180,
+				"to": 841340
+			},
+			"text": " We had no multi-threading yet even though this has four cores we only used one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,340",
+				"to": "00:14:08,460"
+			},
+			"offsets": {
+				"from": 841340,
+				"to": 848460
+			},
+			"text": " As I said before we have an optimized crypto library like Bitcoin has for the curve called"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,460",
+				"to": "00:14:13,140"
+			},
+			"offsets": {
+				"from": 848460,
+				"to": 853140
+			},
+			"text": " SEK P256K1."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,140",
+				"to": "00:14:19,100"
+			},
+			"offsets": {
+				"from": 853140,
+				"to": 859100
+			},
+			"text": " Also at Nimbus even though we are one of the team targeting low power devices there is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,100",
+				"to": "00:14:27,540"
+			},
+			"offsets": {
+				"from": 859100,
+				"to": 867540
+			},
+			"text": " another team, load star who is trying to run the Ethereum 2 on the browser on Chrome or"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,540",
+				"to": "00:14:31,980"
+			},
+			"offsets": {
+				"from": 867540,
+				"to": 871980
+			},
+			"text": " Firefox so they also have huge challenges ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,980",
+				"to": "00:14:37,180"
+			},
+			"offsets": {
+				"from": 871980,
+				"to": 877180
+			},
+			"text": " So it's kind of a team effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,180",
+				"to": "00:14:44,460"
+			},
+			"offsets": {
+				"from": 877180,
+				"to": 884460
+			},
+			"text": " Also what's coming next, Raspberry Pi 5 so maybe it's twice faster and we can see it"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,460",
+				"to": "00:14:48,060"
+			},
+			"offsets": {
+				"from": 884460,
+				"to": 888060
+			},
+			"text": " and do nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,060",
+				"to": "00:14:54,300"
+			},
+			"offsets": {
+				"from": 888060,
+				"to": 894300
+			},
+			"text": " For use cases for people I don't expect actually for people to run that on the Raspberry Pi"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,300",
+				"to": "00:15:00,100"
+			},
+			"offsets": {
+				"from": 894300,
+				"to": 900100
+			},
+			"text": " maybe they will rent an instance like the rent WordPress today and people will be able"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,100",
+				"to": "00:15:06,660"
+			},
+			"offsets": {
+				"from": 900100,
+				"to": 906660
+			},
+			"text": " to just launch some kind of OS with Ethereum installed and everything will be done for them"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,660",
+				"to": "00:15:15,900"
+			},
+			"offsets": {
+				"from": 906660,
+				"to": 915900
+			},
+			"text": " and the CPU that will be rented will be just powerful enough to run Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,900",
+				"to": "00:15:22,260"
+			},
+			"offsets": {
+				"from": 915900,
+				"to": 922260
+			},
+			"text": " So regarding the unknowns for Ethereum 2 performance in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,260",
+				"to": "00:15:25,940"
+			},
+			"offsets": {
+				"from": 922260,
+				"to": 925940
+			},
+			"text": " As I said verifying validators at this station is quite costly."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,940",
+				"to": "00:15:27,180"
+			},
+			"offsets": {
+				"from": 925940,
+				"to": 927180
+			},
+			"text": " This is cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,180",
+				"to": "00:15:33,020"
+			},
+			"offsets": {
+				"from": 927180,
+				"to": 933020
+			},
+			"text": " It's about 30 to 50% of the time spent in that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,020",
+				"to": "00:15:41,060"
+			},
+			"offsets": {
+				"from": 933020,
+				"to": 941060
+			},
+			"text": " If you read Prismatic Lab news from a week ago apparently they spent 99% of the time on"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,060",
+				"to": "00:15:44,460"
+			},
+			"offsets": {
+				"from": 941060,
+				"to": 944460
+			},
+			"text": " BLS signature and now it's only 20%."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,460",
+				"to": "00:15:49,820"
+			},
+			"offsets": {
+				"from": 944460,
+				"to": 949820
+			},
+			"text": " So we can get lots of improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,820",
+				"to": "00:15:54,780"
+			},
+			"offsets": {
+				"from": 949820,
+				"to": 954780
+			},
+			"text": " Another issue is when we scale to 100,000 validators we have an aggregation protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,780",
+				"to": "00:15:57,420"
+			},
+			"offsets": {
+				"from": 954780,
+				"to": 957420
+			},
+			"text": " in research."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,420",
+				"to": "00:16:00,620"
+			},
+			"offsets": {
+				"from": 957420,
+				"to": 960620
+			},
+			"text": " We have no need to connect to every peer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,620",
+				"to": "00:16:04,700"
+			},
+			"offsets": {
+				"from": 960620,
+				"to": 964700
+			},
+			"text": " So lots of optimization there as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,700",
+				"to": "00:16:11,900"
+			},
+			"offsets": {
+				"from": 964700,
+				"to": 971900
+			},
+			"text": " So for me the big unknowns are phase 1 and phase 2, the execution layer which is equivalent"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,900",
+				"to": "00:16:16,140"
+			},
+			"offsets": {
+				"from": 971900,
+				"to": 976140
+			},
+			"text": " to EVM and what the solinity compiles to."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,140",
+				"to": "00:16:20,620"
+			},
+			"offsets": {
+				"from": 976140,
+				"to": 980620
+			},
+			"text": " I don't know how heavy it will be."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,620",
+				"to": "00:16:24,340"
+			},
+			"offsets": {
+				"from": 980620,
+				"to": 984340
+			},
+			"text": " So key takeaways after this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,340",
+				"to": "00:16:28,660"
+			},
+			"offsets": {
+				"from": 984340,
+				"to": 988660
+			},
+			"text": " There are a couple of teams that have a vested interest to make Ethereum 2 as efficient as"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,660",
+				"to": "00:16:31,140"
+			},
+			"offsets": {
+				"from": 988660,
+				"to": 991140
+			},
+			"text": " possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,140",
+				"to": "00:16:36,180"
+			},
+			"offsets": {
+				"from": 991140,
+				"to": 996180
+			},
+			"text": " Also it will be a significant upgrade in terms of carbon footprint so no one will be able"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,180",
+				"to": "00:16:39,980"
+			},
+			"offsets": {
+				"from": 996180,
+				"to": 999980
+			},
+			"text": " to say anymore blockchain is wasting energy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,980",
+				"to": "00:16:48,100"
+			},
+			"offsets": {
+				"from": 999980,
+				"to": 1008100
+			},
+			"text": " Even though we know that it's used for securing censorship resistance permissionless and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,100",
+				"to": "00:16:51,660"
+			},
+			"offsets": {
+				"from": 1008100,
+				"to": 1011660
+			},
+			"text": " The consensus layer is quite solid."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,660",
+				"to": "00:16:58,540"
+			},
+			"offsets": {
+				"from": 1011660,
+				"to": 1018540
+			},
+			"text": " We need only just a focused effort and the unknowns that I talked about."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,540",
+				"to": "00:17:03,780"
+			},
+			"offsets": {
+				"from": 1018540,
+				"to": 1023780
+			},
+			"text": " It's natural aggregation, phase 1 and phase 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,780",
+				"to": "00:17:04,540"
+			},
+			"offsets": {
+				"from": 1023780,
+				"to": 1024540
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,540",
+				"to": "00:17:05,540"
+			},
+			"offsets": {
+				"from": 1024540,
+				"to": 1025540
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,540",
+				"to": "00:17:06,540"
+			},
+			"offsets": {
+				"from": 1025540,
+				"to": 1026540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,540",
+				"to": "00:17:08,540"
+			},
+			"offsets": {
+				"from": 1026540,
+				"to": 1028540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,540",
+				"to": "00:17:10,540"
+			},
+			"offsets": {
+				"from": 1028540,
+				"to": 1030540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,540",
+				"to": "00:17:12,540"
+			},
+			"offsets": {
+				"from": 1030540,
+				"to": 1032540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,540",
+				"to": "00:17:14,540"
+			},
+			"offsets": {
+				"from": 1032540,
+				"to": 1034540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,540",
+				"to": "00:17:16,540"
+			},
+			"offsets": {
+				"from": 1034540,
+				"to": 1036540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,540",
+				"to": "00:17:18,540"
+			},
+			"offsets": {
+				"from": 1036540,
+				"to": 1038540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,540",
+				"to": "00:17:20,540"
+			},
+			"offsets": {
+				"from": 1038540,
+				"to": 1040540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,540",
+				"to": "00:17:22,540"
+			},
+			"offsets": {
+				"from": 1040540,
+				"to": 1042540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,540",
+				"to": "00:17:24,540"
+			},
+			"offsets": {
+				"from": 1042540,
+				"to": 1044540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,540",
+				"to": "00:17:26,540"
+			},
+			"offsets": {
+				"from": 1044540,
+				"to": 1046540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,540",
+				"to": "00:17:28,540"
+			},
+			"offsets": {
+				"from": 1046540,
+				"to": 1048540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,540",
+				"to": "00:17:30,540"
+			},
+			"offsets": {
+				"from": 1048540,
+				"to": 1050540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,540",
+				"to": "00:17:32,540"
+			},
+			"offsets": {
+				"from": 1050540,
+				"to": 1052540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,540",
+				"to": "00:17:34,540"
+			},
+			"offsets": {
+				"from": 1052540,
+				"to": 1054540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,540",
+				"to": "00:17:36,540"
+			},
+			"offsets": {
+				"from": 1054540,
+				"to": 1056540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,540",
+				"to": "00:17:38,540"
+			},
+			"offsets": {
+				"from": 1056540,
+				"to": 1058540
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,540",
+				"to": "00:17:42,540"
+			},
+			"offsets": {
+				"from": 1058540,
+				"to": 1062540
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

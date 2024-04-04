@@ -1,0 +1,1759 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:16,600"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 16600
+			},
+			"text": " I'm Vivian, and I'm also from a PSE team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,600",
+				"to": "00:00:20,360"
+			},
+			"offsets": {
+				"from": 16600,
+				"to": 20360
+			},
+			"text": " And I will demo the Unirab Social today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,360",
+				"to": "00:00:24,120"
+			},
+			"offsets": {
+				"from": 20360,
+				"to": 24120
+			},
+			"text": " And Unirab Social is the example application"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,120",
+				"to": "00:00:27,520"
+			},
+			"offsets": {
+				"from": 24120,
+				"to": 27520
+			},
+			"text": " of Unirab Protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,520",
+				"to": "00:00:30,240"
+			},
+			"offsets": {
+				"from": 27520,
+				"to": 30240
+			},
+			"text": " So what is Unirab?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,240",
+				"to": "00:00:36,360"
+			},
+			"offsets": {
+				"from": 30240,
+				"to": 36360
+			},
+			"text": " So actually, Unirab is a cross-app reputation system."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,360",
+				"to": "00:00:39,920"
+			},
+			"offsets": {
+				"from": 36360,
+				"to": 39920
+			},
+			"text": " So you can imagine that there are many applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,920",
+				"to": "00:00:43,360"
+			},
+			"offsets": {
+				"from": 39920,
+				"to": 43360
+			},
+			"text": " There are a reputation system upon them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,360",
+				"to": "00:00:46,240"
+			},
+			"offsets": {
+				"from": 43360,
+				"to": 46240
+			},
+			"text": " but they cannot communicate with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,240",
+				"to": "00:00:51,120"
+			},
+			"offsets": {
+				"from": 46240,
+				"to": 51120
+			},
+			"text": " So if I use an Unirab application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,120",
+				"to": "00:00:53,200"
+			},
+			"offsets": {
+				"from": 51120,
+				"to": 53200
+			},
+			"text": " and how can I prove that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,200",
+				"to": "00:00:56,440"
+			},
+			"offsets": {
+				"from": 53200,
+				"to": 56440
+			},
+			"text": " I own this reputation to a GitHub user."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,440",
+				"to": "00:01:02,600"
+			},
+			"offsets": {
+				"from": 56440,
+				"to": 62600
+			},
+			"text": " So if you just show the screenshot of the Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,600",
+				"to": "00:01:07,360"
+			},
+			"offsets": {
+				"from": 62600,
+				"to": 67360
+			},
+			"text": " and then you can easily forge them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,360",
+				"to": "00:01:11,040"
+			},
+			"offsets": {
+				"from": 67360,
+				"to": 71040
+			},
+			"text": " So Unirab is a reputation system that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,040",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 71040,
+				"to": 75000
+			},
+			"text": " just do a little knowledge proof to let"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:19,120"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 79120
+			},
+			"text": " user to prove your reputation to another application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,120",
+				"to": "00:01:23,840"
+			},
+			"offsets": {
+				"from": 79120,
+				"to": 83840
+			},
+			"text": " So you can imagine that Unirab is a ERC standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,840",
+				"to": "00:01:30,920"
+			},
+			"offsets": {
+				"from": 83840,
+				"to": 90920
+			},
+			"text": " and you can issue a token, like Repetition Token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,920",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 90920,
+				"to": 93000
+			},
+			"text": " and use it in your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:39,200"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 99200
+			},
+			"text": " So this is a summary of Unirab that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,200",
+				"to": "00:01:42,520"
+			},
+			"offsets": {
+				"from": 99200,
+				"to": 102520
+			},
+			"text": " it is a private and non-reputatable reputation system that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,520",
+				"to": "00:01:49,200"
+			},
+			"offsets": {
+				"from": 102520,
+				"to": 109200
+			},
+			"text": " based on the KP. So to make it more simpler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,200",
+				"to": "00:01:53,600"
+			},
+			"offsets": {
+				"from": 109200,
+				"to": 113600
+			},
+			"text": " and to use Unirab, you can give your reputation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,600",
+				"to": "00:01:56,840"
+			},
+			"offsets": {
+				"from": 113600,
+				"to": 116840
+			},
+			"text": " and receive reputation, and also prove your reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,840",
+				"to": "00:02:06,040"
+			},
+			"offsets": {
+				"from": 116840,
+				"to": 126040
+			},
+			"text": " And one of the Unirab application is the Unirab social,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,040",
+				"to": "00:02:09,840"
+			},
+			"offsets": {
+				"from": 126040,
+				"to": 129840
+			},
+			"text": " and it is in anonymous social media."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,840",
+				"to": "00:02:15,200"
+			},
+			"offsets": {
+				"from": 129840,
+				"to": 135200
+			},
+			"text": " And why we use the reputation in the anonymous social media?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,200",
+				"to": "00:02:20,080"
+			},
+			"offsets": {
+				"from": 135200,
+				"to": 140080
+			},
+			"text": " Because in decentralized social media,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,080",
+				"to": "00:02:26,120"
+			},
+			"offsets": {
+				"from": 140080,
+				"to": 146120
+			},
+			"text": " it is hard to-- it is easily to spend,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,120",
+				"to": "00:02:29,280"
+			},
+			"offsets": {
+				"from": 146120,
+				"to": 149280
+			},
+			"text": " or you can say something irresponsible."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,280",
+				"to": "00:02:35,920"
+			},
+			"offsets": {
+				"from": 149280,
+				"to": 155920
+			},
+			"text": " So with the reputation system, you can know--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,920",
+				"to": "00:02:40,320"
+			},
+			"offsets": {
+				"from": 155920,
+				"to": 160320
+			},
+			"text": " we can avoid people to say something really bad,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,320",
+				"to": "00:02:42,240"
+			},
+			"offsets": {
+				"from": 160320,
+				"to": 162240
+			},
+			"text": " or we can prevent spend."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,240",
+				"to": "00:02:47,400"
+			},
+			"offsets": {
+				"from": 162240,
+				"to": 167400
+			},
+			"text": " And in this social media, if the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,400",
+				"to": "00:02:53,080"
+			},
+			"offsets": {
+				"from": 167400,
+				"to": 173080
+			},
+			"text": " has not enough reputation, they cannot post or comment"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,080",
+				"to": "00:02:54,920"
+			},
+			"offsets": {
+				"from": 173080,
+				"to": 174920
+			},
+			"text": " in this social media."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,920",
+				"to": "00:02:59,640"
+			},
+			"offsets": {
+				"from": 174920,
+				"to": 179640
+			},
+			"text": " And I will demo what is in the Unirab social."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,640",
+				"to": "00:03:06,880"
+			},
+			"offsets": {
+				"from": 179640,
+				"to": 186880
+			},
+			"text": " So you can log in with your alt-R,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,880",
+				"to": "00:03:08,600"
+			},
+			"offsets": {
+				"from": 186880,
+				"to": 188600
+			},
+			"text": " like Twitter or GitHub account."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,560",
+				"to": "00:03:18,120"
+			},
+			"offsets": {
+				"from": 194560,
+				"to": 198120
+			},
+			"text": " And then the Unirab social will also"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,120",
+				"to": "00:03:22,280"
+			},
+			"offsets": {
+				"from": 198120,
+				"to": 202280
+			},
+			"text": " to see if the account has logged in before or no."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,280",
+				"to": "00:03:27,840"
+			},
+			"offsets": {
+				"from": 202280,
+				"to": 207840
+			},
+			"text": " And then the most important part is that actually, we are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,840",
+				"to": "00:03:30,040"
+			},
+			"offsets": {
+				"from": 207840,
+				"to": 210040
+			},
+			"text": " signing with Twitter or GitHub account."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,040",
+				"to": "00:03:32,240"
+			},
+			"offsets": {
+				"from": 210040,
+				"to": 212240
+			},
+			"text": " We use the semaphone identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,240",
+				"to": "00:03:38,240"
+			},
+			"offsets": {
+				"from": 212240,
+				"to": 218240
+			},
+			"text": " So the user has to keep this semaphone identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,240",
+				"to": "00:03:41,200"
+			},
+			"offsets": {
+				"from": 218240,
+				"to": 221200
+			},
+			"text": " And we will use this semaphone identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,200",
+				"to": "00:03:44,360"
+			},
+			"offsets": {
+				"from": 221200,
+				"to": 224360
+			},
+			"text": " in the whole Unirab social system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,360",
+				"to": "00:03:45,880"
+			},
+			"offsets": {
+				"from": 224360,
+				"to": 225880
+			},
+			"text": " And then after you're signing, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,880",
+				"to": "00:03:51,640"
+			},
+			"offsets": {
+				"from": 225880,
+				"to": 231640
+			},
+			"text": " can create a post in this social media."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,640",
+				"to": "00:03:56,320"
+			},
+			"offsets": {
+				"from": 231640,
+				"to": 236320
+			},
+			"text": " And the interesting thing is that now in this system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,320",
+				"to": "00:03:58,720"
+			},
+			"offsets": {
+				"from": 236320,
+				"to": 238720
+			},
+			"text": " we don't use the--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,720",
+				"to": "00:04:04,880"
+			},
+			"offsets": {
+				"from": 238720,
+				"to": 244880
+			},
+			"text": " we use the-- it's called subsidy to let users to post."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,880",
+				"to": "00:04:10,240"
+			},
+			"offsets": {
+				"from": 244880,
+				"to": 250240
+			},
+			"text": " And in each app, our user has three, 30 subsidy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,240",
+				"to": "00:04:14,080"
+			},
+			"offsets": {
+				"from": 250240,
+				"to": 254080
+			},
+			"text": " And each post calls five reputations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,080",
+				"to": "00:04:19,080"
+			},
+			"offsets": {
+				"from": 254080,
+				"to": 259080
+			},
+			"text": " So if after this post, you will--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,080",
+				"to": "00:04:23,120"
+			},
+			"offsets": {
+				"from": 259080,
+				"to": 263120
+			},
+			"text": " you will minus five reputations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,120",
+				"to": "00:04:26,440"
+			},
+			"offsets": {
+				"from": 263120,
+				"to": 266440
+			},
+			"text": " Oh, and also to create the post,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,440",
+				"to": "00:04:30,960"
+			},
+			"offsets": {
+				"from": 266440,
+				"to": 270960
+			},
+			"text": " you have to prove that you're signing the Unirab system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,960",
+				"to": "00:04:34,240"
+			},
+			"offsets": {
+				"from": 270960,
+				"to": 274240
+			},
+			"text": " And also-- sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,240",
+				"to": "00:04:38,760"
+			},
+			"offsets": {
+				"from": 274240,
+				"to": 278760
+			},
+			"text": " And also, you have to prove that you own the persona here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,520",
+				"to": "00:04:44,400"
+			},
+			"offsets": {
+				"from": 281520,
+				"to": 284400
+			},
+			"text": " Yeah, because in the Unirab protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,400",
+				"to": "00:04:48,640"
+			},
+			"offsets": {
+				"from": 284400,
+				"to": 288640
+			},
+			"text": " the users will receive reputation by these personas."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,640",
+				"to": "00:04:57,720"
+			},
+			"offsets": {
+				"from": 288640,
+				"to": 297720
+			},
+			"text": " And in this version of Unirab social,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,720",
+				"to": "00:05:00,200"
+			},
+			"offsets": {
+				"from": 297720,
+				"to": 300200
+			},
+			"text": " we will have retext editor."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,200",
+				"to": "00:05:07,280"
+			},
+			"offsets": {
+				"from": 300200,
+				"to": 307280
+			},
+			"text": " So you can use markdown to post and also include images."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,400",
+				"to": "00:05:14,040"
+			},
+			"offsets": {
+				"from": 310400,
+				"to": 314040
+			},
+			"text": " OK, when you finish your post, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,040",
+				"to": "00:05:20,640"
+			},
+			"offsets": {
+				"from": 314040,
+				"to": 320640
+			},
+			"text": " can create a DKB proof to prove that you own the subsidy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,640",
+				"to": "00:05:25,240"
+			},
+			"offsets": {
+				"from": 320640,
+				"to": 325240
+			},
+			"text": " and also you're signing in this system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,240",
+				"to": "00:05:27,640"
+			},
+			"offsets": {
+				"from": 325240,
+				"to": 327640
+			},
+			"text": " OK, it is generating the DKB proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,640",
+				"to": "00:05:32,880"
+			},
+			"offsets": {
+				"from": 327640,
+				"to": 332880
+			},
+			"text": " and you will send it to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,880",
+				"to": "00:05:38,720"
+			},
+			"offsets": {
+				"from": 332880,
+				"to": 338720
+			},
+			"text": " Yeah, after the-- it is the transition with send,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,720",
+				"to": "00:05:40,920"
+			},
+			"offsets": {
+				"from": 338720,
+				"to": 340920
+			},
+			"text": " and you can look at the--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,920",
+				"to": "00:05:43,520"
+			},
+			"offsets": {
+				"from": 340920,
+				"to": 343520
+			},
+			"text": " like, is the scan to see your transaction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,520",
+				"to": "00:05:52,600"
+			},
+			"offsets": {
+				"from": 343520,
+				"to": 352600
+			},
+			"text": " Yeah, and when a post is published,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,600",
+				"to": "00:05:57,560"
+			},
+			"offsets": {
+				"from": 352600,
+				"to": 357560
+			},
+			"text": " and other users can boost or squash this post."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,560",
+				"to": "00:05:59,600"
+			},
+			"offsets": {
+				"from": 357560,
+				"to": 359600
+			},
+			"text": " So this is why--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,600",
+				"to": "00:06:03,680"
+			},
+			"offsets": {
+				"from": 359600,
+				"to": 363680
+			},
+			"text": " at least where the reputations system used."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,680",
+				"to": "00:06:06,640"
+			},
+			"offsets": {
+				"from": 363680,
+				"to": 366640
+			},
+			"text": " Because if you see this post is really bad,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,640",
+				"to": "00:06:10,800"
+			},
+			"offsets": {
+				"from": 366640,
+				"to": 370800
+			},
+			"text": " and you get splashed it, and the author of the post"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,800",
+				"to": "00:06:14,120"
+			},
+			"offsets": {
+				"from": 370800,
+				"to": 374120
+			},
+			"text": " will receive this bad reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,120",
+				"to": "00:06:17,120"
+			},
+			"offsets": {
+				"from": 374120,
+				"to": 377120
+			},
+			"text": " And if you receive too much bad reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,120",
+				"to": "00:06:22,400"
+			},
+			"offsets": {
+				"from": 377120,
+				"to": 382400
+			},
+			"text": " and then you might not able to post in the next few epochs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,400",
+				"to": "00:06:29,960"
+			},
+			"offsets": {
+				"from": 382400,
+				"to": 389960
+			},
+			"text": " Yeah, and besides post, you can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,960",
+				"to": "00:06:32,040"
+			},
+			"offsets": {
+				"from": 389960,
+				"to": 392040
+			},
+			"text": " comment in this social media."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,600",
+				"to": "00:06:39,040"
+			},
+			"offsets": {
+				"from": 394600,
+				"to": 399040
+			},
+			"text": " And also, like you can see, here's--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,040",
+				"to": "00:06:41,720"
+			},
+			"offsets": {
+				"from": 399040,
+				"to": 401720
+			},
+			"text": " now there's 25 subsidy here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,720",
+				"to": "00:06:50,880"
+			},
+			"offsets": {
+				"from": 401720,
+				"to": 410880
+			},
+			"text": " And common also requires users to generate the DKB proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,880",
+				"to": "00:06:54,080"
+			},
+			"offsets": {
+				"from": 410880,
+				"to": 414080
+			},
+			"text": " to prove you signing in this system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,080",
+				"to": "00:06:56,080"
+			},
+			"offsets": {
+				"from": 414080,
+				"to": 416080
+			},
+			"text": " and also own this persona."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,080",
+				"to": "00:07:04,440"
+			},
+			"offsets": {
+				"from": 416080,
+				"to": 424440
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,440",
+				"to": "00:07:10,560"
+			},
+			"offsets": {
+				"from": 424440,
+				"to": 430560
+			},
+			"text": " So it's pretty similar, and then you create a DKB proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,560",
+				"to": "00:07:12,960"
+			},
+			"offsets": {
+				"from": 430560,
+				"to": 432960
+			},
+			"text": " and with it on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,960",
+				"to": "00:07:21,200"
+			},
+			"offsets": {
+				"from": 432960,
+				"to": 441200
+			},
+			"text": " And then in this universe social system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,200",
+				"to": "00:07:23,560"
+			},
+			"offsets": {
+				"from": 441200,
+				"to": 443560
+			},
+			"text": " we have user information--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,560",
+				"to": "00:07:27,040"
+			},
+			"offsets": {
+				"from": 443560,
+				"to": 447040
+			},
+			"text": " user info page, so you can see what you post."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,040",
+				"to": "00:07:31,120"
+			},
+			"offsets": {
+				"from": 447040,
+				"to": 451120
+			},
+			"text": " And also, what do you have comment before?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,120",
+				"to": "00:07:36,120"
+			},
+			"offsets": {
+				"from": 451120,
+				"to": 456120
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,120",
+				"to": "00:07:37,120"
+			},
+			"offsets": {
+				"from": 456120,
+				"to": 457120
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,120",
+				"to": "00:07:44,520"
+			},
+			"offsets": {
+				"from": 457120,
+				"to": 464520
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,520",
+				"to": "00:07:48,440"
+			},
+			"offsets": {
+				"from": 464520,
+				"to": 468440
+			},
+			"text": " So-- and I want to also introduce that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,440",
+				"to": "00:07:52,200"
+			},
+			"offsets": {
+				"from": 468440,
+				"to": 472200
+			},
+			"text": " are some upcoming features."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,200",
+				"to": "00:07:56,400"
+			},
+			"offsets": {
+				"from": 472200,
+				"to": 476400
+			},
+			"text": " The first one is the edit post and comment feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,400",
+				"to": "00:08:00,760"
+			},
+			"offsets": {
+				"from": 476400,
+				"to": 480760
+			},
+			"text": " As you can see, we post and comment with the DKB proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,760",
+				"to": "00:08:04,640"
+			},
+			"offsets": {
+				"from": 480760,
+				"to": 484640
+			},
+			"text": " but how can we edit the previous post?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,640",
+				"to": "00:08:13,800"
+			},
+			"offsets": {
+				"from": 484640,
+				"to": 493800
+			},
+			"text": " So in this edit function, we will generate another persona"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,800",
+				"to": "00:08:19,360"
+			},
+			"offsets": {
+				"from": 493800,
+				"to": 499360
+			},
+			"text": " proof to prove that you are the author of the post."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,360",
+				"to": "00:08:23,960"
+			},
+			"offsets": {
+				"from": 499360,
+				"to": 503960
+			},
+			"text": " So you can use the DKB proof to prove you are the author,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,960",
+				"to": "00:08:33,280"
+			},
+			"offsets": {
+				"from": 503960,
+				"to": 513280
+			},
+			"text": " and then you can submit another transaction to this post"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,280",
+				"to": "00:08:36,680"
+			},
+			"offsets": {
+				"from": 513280,
+				"to": 516680
+			},
+			"text": " to edit this post."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,680",
+				"to": "00:08:38,800"
+			},
+			"offsets": {
+				"from": 516680,
+				"to": 518800
+			},
+			"text": " And another feature is that we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,800",
+				"to": "00:08:43,160"
+			},
+			"offsets": {
+				"from": 518800,
+				"to": 523160
+			},
+			"text": " set the username with this universe protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,160",
+				"to": "00:08:51,080"
+			},
+			"offsets": {
+				"from": 523160,
+				"to": 531080
+			},
+			"text": " So how the username work is that a user"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,080",
+				"to": "00:08:55,560"
+			},
+			"offsets": {
+				"from": 531080,
+				"to": 535560
+			},
+			"text": " will query a username request, and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,560",
+				"to": "00:08:57,600"
+			},
+			"offsets": {
+				"from": 535560,
+				"to": 537600
+			},
+			"text": " the universe social, smart country"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,600",
+				"to": "00:09:02,960"
+			},
+			"offsets": {
+				"from": 537600,
+				"to": 542960
+			},
+			"text": " will give you a reputation that includes this username."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,960",
+				"to": "00:09:03,400"
+			},
+			"offsets": {
+				"from": 542960,
+				"to": 543400
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,400",
+				"to": "00:09:06,720"
+			},
+			"offsets": {
+				"from": 543400,
+				"to": 546720
+			},
+			"text": " So in the next-- in the next effort,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,720",
+				"to": "00:09:08,920"
+			},
+			"offsets": {
+				"from": 546720,
+				"to": 548920
+			},
+			"text": " when you receive this reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,920",
+				"to": "00:09:13,240"
+			},
+			"offsets": {
+				"from": 548920,
+				"to": 553240
+			},
+			"text": " and then you can prove that I own this username."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,240",
+				"to": "00:09:17,240"
+			},
+			"offsets": {
+				"from": 553240,
+				"to": 557240
+			},
+			"text": " So not only the positive reputation and negative reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,240",
+				"to": "00:09:22,520"
+			},
+			"offsets": {
+				"from": 557240,
+				"to": 562520
+			},
+			"text": " and also a lot of things can be proved with the uni-rep"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,520",
+				"to": "00:09:25,240"
+			},
+			"offsets": {
+				"from": 562520,
+				"to": 565240
+			},
+			"text": " protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,240",
+				"to": "00:09:25,920"
+			},
+			"offsets": {
+				"from": 565240,
+				"to": 565920
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,920",
+				"to": "00:09:29,360"
+			},
+			"offsets": {
+				"from": 565920,
+				"to": 569360
+			},
+			"text": " So if you want to learn more about uni-rep,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,360",
+				"to": "00:09:35,160"
+			},
+			"offsets": {
+				"from": 569360,
+				"to": 575160
+			},
+			"text": " we will have a workshop tomorrow at 10.30 in a ZK community"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,160",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 575160,
+				"to": 576000
+			},
+			"text": " hub."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:39,360"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 579360
+			},
+			"text": " And also you can follow our Twitter account"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,360",
+				"to": "00:09:42,360"
+			},
+			"offsets": {
+				"from": 579360,
+				"to": 582360
+			},
+			"text": " and join our Discord server."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,360",
+				"to": "00:09:46,360"
+			},
+			"offsets": {
+				"from": 582360,
+				"to": 586360
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,360",
+				"to": "00:09:46,860"
+			},
+			"offsets": {
+				"from": 586360,
+				"to": 586860
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,860",
+				"to": "00:09:47,720"
+			},
+			"offsets": {
+				"from": 586860,
+				"to": 587720
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,720",
+				"to": "00:09:48,840"
+			},
+			"offsets": {
+				"from": 587720,
+				"to": 588840
+			},
+			"text": " Thank you, Vivian."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,840",
+				"to": "00:09:52,200"
+			},
+			"offsets": {
+				"from": 588840,
+				"to": 592200
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,200",
+				"to": "00:09:53,200"
+			},
+			"offsets": {
+				"from": 592200,
+				"to": 593200
+			},
+			"text": " Do you want to take it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,200",
+				"to": "00:09:57,520"
+			},
+			"offsets": {
+				"from": 593200,
+				"to": 597520
+			},
+			"text": " Yeah, we can take one question."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,520",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 597520,
+				"to": 598000
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:09:59,920"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 599920
+			},
+			"text": " Thank you for the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,920",
+				"to": "00:10:01,720"
+			},
+			"offsets": {
+				"from": 599920,
+				"to": 601720
+			},
+			"text": " Can you please explain what happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,720",
+				"to": "00:10:04,520"
+			},
+			"offsets": {
+				"from": 601720,
+				"to": 604520
+			},
+			"text": " on the-- when you do the GitHub authorization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,520",
+				"to": "00:10:09,080"
+			},
+			"offsets": {
+				"from": 604520,
+				"to": 609080
+			},
+			"text": " Are you extracting any information from that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,080",
+				"to": "00:10:10,600"
+			},
+			"offsets": {
+				"from": 609080,
+				"to": 610600
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,600",
+				"to": "00:10:13,440"
+			},
+			"offsets": {
+				"from": 610600,
+				"to": 613440
+			},
+			"text": " So like, I select doing the login."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,440",
+				"to": "00:10:18,160"
+			},
+			"offsets": {
+				"from": 613440,
+				"to": 618160
+			},
+			"text": " There's like a GitHub pop-up for like, I guess, some OAuth stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,160",
+				"to": "00:10:20,840"
+			},
+			"offsets": {
+				"from": 618160,
+				"to": 620840
+			},
+			"text": " What's happening there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,840",
+				"to": "00:10:24,600"
+			},
+			"offsets": {
+				"from": 620840,
+				"to": 624600
+			},
+			"text": " We use the OAuths only without any information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,600",
+				"to": "00:10:28,400"
+			},
+			"offsets": {
+				"from": 624600,
+				"to": 628400
+			},
+			"text": " just if the user has a signing before or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,400",
+				"to": "00:10:32,760"
+			},
+			"offsets": {
+				"from": 628400,
+				"to": 632760
+			},
+			"text": " But yeah, for no more-- yeah, operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,760",
+				"to": "00:10:33,200"
+			},
+			"offsets": {
+				"from": 632760,
+				"to": 633200
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,200",
+				"to": "00:10:33,720"
+			},
+			"offsets": {
+				"from": 633200,
+				"to": 633720
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,720",
+				"to": "00:10:35,480"
+			},
+			"offsets": {
+				"from": 633720,
+				"to": 635480
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,480",
+				"to": "00:10:37,480"
+			},
+			"offsets": {
+				"from": 635480,
+				"to": 637480
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,480",
+				"to": "00:10:39,480"
+			},
+			"offsets": {
+				"from": 637480,
+				"to": 639480
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,480",
+				"to": "00:10:43,480"
+			},
+			"offsets": {
+				"from": 639480,
+				"to": 643480
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,480",
+				"to": "00:10:47,480"
+			},
+			"offsets": {
+				"from": 643480,
+				"to": 647480
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,480",
+				"to": "00:10:49,480"
+			},
+			"offsets": {
+				"from": 647480,
+				"to": 649480
+			},
+			"text": " [ ]"
+		}
+	]
+}

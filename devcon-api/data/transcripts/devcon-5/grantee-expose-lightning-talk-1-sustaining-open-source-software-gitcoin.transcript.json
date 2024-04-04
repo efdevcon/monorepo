@@ -1,0 +1,1704 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6000
+			},
+			"text": " My name is Dan Lippert."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,000",
+				"to": "00:00:09,000"
+			},
+			"offsets": {
+				"from": 6000,
+				"to": 9000
+			},
+			"text": " I'm the VP of engineering at Gitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 9000,
+				"to": 14000
+			},
+			"text": " Today I'm going to talk about sustaining open source software."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 17000
+			},
+			"text": " What do we do at Gitcoin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 21000
+			},
+			"text": " We try to sustain the open source community."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 25000
+			},
+			"text": " One of the ways we've done that is earlier this year we launched"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 30000
+			},
+			"text": " our grants project. What grants basically is it's like"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 35000
+			},
+			"text": " Patreon but for open source software."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 38000
+			},
+			"text": " Basically you get recurring revenue for your project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 42000
+			},
+			"text": " Why that special is if you're an open source developer, maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 46000
+			},
+			"text": " every once in a while you get a donation of $1,000 or $5,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 49000
+			},
+			"text": " at a time. That's really great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 53000
+			},
+			"text": " What's actually better is if you can count on a recurring amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 56000
+			},
+			"text": " of donations every month."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 62000
+			},
+			"text": " We built that project using EIP 1337, which is a subscriptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 66000
+			},
+			"text": " model on Ethereum using meta transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 71000
+			},
+			"text": " Basically if you were to donate say 100 die to a project, instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 75000
+			},
+			"text": " of just sending that 100 die, what you can do is use our"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 81000
+			},
+			"text": " DAP, go in, select that you want to donate 10 die for 10 months,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 85000
+			},
+			"text": " and then you simply do a signature that gets sent to our"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 89000
+			},
+			"text": " backend and then we mine those transactions for you every month"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 92000
+			},
+			"text": " using meta transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 95000
+			},
+			"text": " It's a really great way to not just get money but have money"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 97000
+			},
+			"text": " that you can count on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 99000
+			},
+			"text": " As an open source developer, that's really great because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 101000
+			},
+			"text": " almost like having a day job."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 104000
+			},
+			"text": " It's almost like working for some company or some startup where"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 108000
+			},
+			"text": " you have that guaranteed paycheck every month."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 113000
+			},
+			"text": " One thing that we added on this year is capital constrained"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 116000
+			},
+			"text": " liberal radicalism. What is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 120000
+			},
+			"text": " Basically it's a way that we can match funds from big donors"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 123000
+			},
+			"text": " to our grant recipients."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 127000
+			},
+			"text": " There's a lot of different ways that you can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 131000
+			},
+			"text": " Basically you can think of two models and CLR is somewhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 137000
+			},
+			"text": " in between. You can think of the model of $1 one vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 143000
+			},
+			"text": " Someone donates a dollar and we match that with $1 or $10 or $100."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 146000
+			},
+			"text": " You can think of one person one vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 151000
+			},
+			"text": " One person makes a donation, be that $1, be that $1,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 155000
+			},
+			"text": " We match that with some predetermined fund, say $1,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 159000
+			},
+			"text": " What CLR does is it's actually in between."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 164000
+			},
+			"text": " It counts the fact that $1 is not the same to every person."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 168000
+			},
+			"text": " You do want to have that skin in the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 171000
+			},
+			"text": " You do want to count the amount of the donation that was made."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 174000
+			},
+			"text": " CLR is a nice balance between that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 178000
+			},
+			"text": " It was created by Vitalik, Glen Weil and Zoh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 181000
+			},
+			"text": " Hitzig. Definitely check out the paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 185000
+			},
+			"text": " See the e-research forums if you want to know more about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 189000
+			},
+			"text": " CLR works. It's a really cool economic model."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193000
+			},
+			"text": " It's worked out really well for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 198000
+			},
+			"text": " You can see here, here's a demonstration of how the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 202000
+			},
+			"text": " funding model actually works."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 210000
+			},
+			"text": " You've got an amount here, say $275."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 214000
+			},
+			"text": " Then we match that with another $275."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 220000
+			},
+			"text": " That's just one contributor making one donation of $275."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 224000
+			},
+			"text": " If that $275 comes from two people, that's a really good"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 228000
+			},
+			"text": " signal. That means more people are interested in this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 231000
+			},
+			"text": " We match it with even more funds, even though it's the same amount,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 235000
+			},
+			"text": " $275. If you go all the way to the right here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 240000
+			},
+			"text": " if 10 people combined donate $275, that's not each person."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 244000
+			},
+			"text": " That's all combined. Each person donating $27."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " That's a really amazing signal that this project means something"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 251000
+			},
+			"text": " that's really important to the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 254000
+			},
+			"text": " We match it with even more funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 256000
+			},
+			"text": " That's the idea behind CLR."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 258000
+			},
+			"text": " It's not how much you donate."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 261000
+			},
+			"text": " We're trying to figure out how much people care about a project"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 265000
+			},
+			"text": " using their donations as a signal."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 270000
+			},
+			"text": " Our first round, early this year, 2019, we had $25,000 in our"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 273000
+			},
+			"text": " open source sustainability fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 277000
+			},
+			"text": " We fielded $13,000 via 132 contributions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 283000
+			},
+			"text": " The winners or the highest ranking projects on our platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 286000
+			},
+			"text": " Prismatic labs, Moloch now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 288000
+			},
+			"text": " A lot of great projects here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 293000
+			},
+			"text": " E-thru's JS, one of my personal favorites."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 295000
+			},
+			"text": " Then we went on to round two."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 297000
+			},
+			"text": " Each time we want to make it even bigger."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 300000
+			},
+			"text": " We had $50,000 in our OSS fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 306000
+			},
+			"text": " This time we fielded $56,000 from 214 unique contributions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 310000
+			},
+			"text": " Here are the projects that did well that round."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 315000
+			},
+			"text": " Of course, the Prague Pao technical audit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 320000
+			},
+			"text": " Hopper, decentralized, privacy preserving, something."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 325000
+			},
+			"text": " Plasma group, wallet connect, Uniswap, Moloch down."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 328000
+			},
+			"text": " Another successful round."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 331000
+			},
+			"text": " Round three, we had $100,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 335000
+			},
+			"text": " What were the results?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 339000
+			},
+			"text": " Before I get into that, I actually want to talk about something"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 342000
+			},
+			"text": " that we launched on the platform that was new for this round,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 347000
+			},
+			"text": " which is real-time estimations of how much your contribution will"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 352000
+			},
+			"text": " affect the project, how much matching funds you'll get, as"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 353000
+			},
+			"text": " you're making the donation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 357000
+			},
+			"text": " You can see here, when we have $100,000 in matching funds, your"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 360000
+			},
+			"text": " donation can make an absolutely huge difference with CLR."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 364000
+			},
+			"text": " For this project, if you were to donate one die, we would have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 367000
+			},
+			"text": " matched it with a 115 die."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 372000
+			},
+			"text": " If you were to donate 10 die, that would have been 274 die."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 377000
+			},
+			"text": " As the amount of your donation goes up, we don't match it linearly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 381000
+			},
+			"text": " It curves off at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 384000
+			},
+			"text": " Like I said before, the important thing is that we know that this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 387000
+			},
+			"text": " person cares about this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 393000
+			},
+			"text": " We're using your donation as data to match our funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 395000
+			},
+			"text": " It's really successful around."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 397000
+			},
+			"text": " People were excited that they were able to see that, hey, I can"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 404000
+			},
+			"text": " donate $1 and it gives over $100 to this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 408000
+			},
+			"text": " Here's some folks from our community."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 412000
+			},
+			"text": " I gave one die to six projects on get coin today."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 414000
+			},
+			"text": " Here were the matches for each project."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 416000
+			},
+			"text": " For Austin Griffith, 81 die."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 422000
+			},
+			"text": " For fuzzing, 126 die."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 428000
+			},
+			"text": " Six dollars generated hundreds and hundreds of dollars in matching"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 430000
+			},
+			"text": " funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 436000
+			},
+			"text": " Over here we have Ken digging some die out of his couch, so to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 441000
+			},
+			"text": " speak, and checking in one die to make a big difference to these"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 446000
+			},
+			"text": " different projects and open source developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 452000
+			},
+			"text": " Then another person, $4 into $645."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 459000
+			},
+			"text": " Here we see Vitalik, excited about our grand CLR around three."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 465000
+			},
+			"text": " Hudson Jamison as well, contributing 10 die to five projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 470000
+			},
+			"text": " We're really excited when we see this type of community"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 472000
+			},
+			"text": " engagement."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 476000
+			},
+			"text": " We feel like for too long there's been this idea in the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 480000
+			},
+			"text": " that there are these individual people who have a ton of ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 484000
+			},
+			"text": " and you can go to them on twitter, network with people, find"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 488000
+			},
+			"text": " them, have that connection with them, and they'll give you tens"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 490000
+			},
+			"text": " of thousands of dollars for your project."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 492000
+			},
+			"text": " It's very centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 495000
+			},
+			"text": " We have these individual nodes that control the funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 500000
+			},
+			"text": " People think, but actually that's not true."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 505000
+			},
+			"text": " As a community we have hundreds, tens of thousands of people who"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 509000
+			},
+			"text": " are interested in open source software, interested in"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 513000
+			},
+			"text": " Ethereum, and we want their attention and we want their"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 518000
+			},
+			"text": " input as to where these funds should go."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 521000
+			},
+			"text": " What projects are worthwhile for the community?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 525000
+			},
+			"text": " We need to have thousands of ether to help us determine which"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 527000
+			},
+			"text": " projects are needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 529000
+			},
+			"text": " That was kind of our goal with CLR."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 535000
+			},
+			"text": " That's the goal behind our open source sustainability fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 543000
+			},
+			"text": " The round three results, $100,000 in matching funds and $170,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 548000
+			},
+			"text": " across 2,216 unique contributions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 554000
+			},
+			"text": " We have a great lighthouse, Austin Griffith, e-thub, R-Dye,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 561000
+			},
+			"text": " Prism, Viper, the gas stations network, and Ether's JS."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 566000
+			},
+			"text": " Congratulations to the winners of our latest CLR round."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 569000
+			},
+			"text": " We're excited for the next round."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 574000
+			},
+			"text": " Our goal is to raise $150,000 for our open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 581000
+			},
+			"text": " sustainability fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 585000
+			},
+			"text": " If you want to contribute, reach out to me, Kevin"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 588000
+			},
+			"text": " O'waki, Adecha, any of the Bitcoin team members and will"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 591000
+			},
+			"text": " let you know how you can help out."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 594000
+			},
+			"text": " Finally, I want to ask, what would the world look like if"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 597000
+			},
+			"text": " open source was sustainable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 600000
+			},
+			"text": " What would it look like if the people who build these tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 605000
+			},
+			"text": " would be more sustainable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 612000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:37,700"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 637700
+			},
+			"text": " ["
+		}
+	]
+}

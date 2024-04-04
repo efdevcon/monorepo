@@ -1,0 +1,2661 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 14000
+			},
+			"text": " Good morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 18000
+			},
+			"text": " So, I'm talking about enterprise smart contracts at 15 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 21000
+			},
+			"text": " It's a pretty deep topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 23000
+			},
+			"text": " This is also known as Cripplets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 28000
+			},
+			"text": " In-price smart contracts is a nice marketing term for people that aren't very technical."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 31000
+			},
+			"text": " But let's talk about some background first."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 36000
+			},
+			"text": " So, in Azure, Microsoft's Cloud Platform, we have some pillars that we've built upon"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 38000
+			},
+			"text": " to build this platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 40000
+			},
+			"text": " The first of which is identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 44000
+			},
+			"text": " Azure Active Directory is an open federated identity system."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 47000
+			},
+			"text": " Sports open authentication."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 52000
+			},
+			"text": " It's the dominant identity system used in enterprises today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 55000
+			},
+			"text": " And it allows us to do open federation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 58000
+			},
+			"text": " Second is secret storage or HSM's."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 62000
+			},
+			"text": " So, we have HSM's at scale and something called Azure Key Vault."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 66000
+			},
+			"text": " That lets you bring your own keys, bring your own secrets and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 72000
+			},
+			"text": " Recently announced the confidential compute platform, which is essentially describing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 80000
+			},
+			"text": " enclaves at scale in the cloud, both SGX and what we call hypervisor based or HSM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 89000
+			},
+			"text": " excuse me, VSM based enclaves that allow you to have secure, confidential compute in the cloud."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 91000
+			},
+			"text": " And then lastly, hyper scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 97000
+			},
+			"text": " So, we have a platform that was developed called Service Fabric that runs things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 104000
+			},
+			"text": " Xbox Live, so we have this massively scalable platform that we can build upon."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 107000
+			},
+			"text": " So, let's describe what this does."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 112000
+			},
+			"text": " Now, ESC is the acronym we're using, so Enterprise Spark contracts essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 117000
+			},
+			"text": " Under the covers, we call it the ESC framework running in the, excuse me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 121000
+			},
+			"text": " the ESC fabric running that has some core infrastructure capabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 124000
+			},
+			"text": " The first of which is we authenticate users."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 127000
+			},
+			"text": " So, we use Azure Active Directory to authenticate these users."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 132000
+			},
+			"text": " Now, don't think we can use this to authenticate using Facebook if you want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 136000
+			},
+			"text": " But essentially, you authenticate the user when you attach a message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 139000
+			},
+			"text": " it flows into the system to create a secure session."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 144000
+			},
+			"text": " Cripplets themselves have dependencies, meaning this is what are required or"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 145000
+			},
+			"text": " require an enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 147000
+			},
+			"text": " What kind of runtime environment do I need?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 152000
+			},
+			"text": " Am I a dot-net or a Java or a Rust Cripplet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 154000
+			},
+			"text": " So, those dependencies are inspected."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 159000
+			},
+			"text": " And then the infrastructure has essentially many HSM's available to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 160000
+			},
+			"text": " Those can be in the cloud."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 162000
+			},
+			"text": " They can also be on-prem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 164000
+			},
+			"text": " And then we pool scarce resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 166000
+			},
+			"text": " Unclaves would be one of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 169000
+			},
+			"text": " But we envision that you would want to use things like FPGAs to accelerate"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 172000
+			},
+			"text": " zero-knowledge proof generation, A6, GPUs, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 174000
+			},
+			"text": " Some sort of combination."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 179000
+			},
+			"text": " So, we allow you to have single sort of, we call them delegates essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 184000
+			},
+			"text": " But you're delegating your cryptographic operations to this on-claved environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 189000
+			},
+			"text": " So, what happens at runtime is a Cripplet delegate gets built that will be injected"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193000
+			},
+			"text": " with an enclave with the appropriate secrets and the appropriate APIs that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 195000
+			},
+			"text": " you're trying to use for the platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 198000
+			},
+			"text": " If you're using ECC, you'll get the appropriate ECC libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 203000
+			},
+			"text": " You also might get a composite where you would get both an enclave and an FPGA."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 205000
+			},
+			"text": " And you could call this thing a foo."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 207000
+			},
+			"text": " And give me a foo at runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 212000
+			},
+			"text": " And then I'll have my algorithm generate the zero-knowledge proof or whatever you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 213000
+			},
+			"text": " want to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 220000
+			},
+			"text": " So, you can really compose this hardware acceleration for the requirements that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 221000
+			},
+			"text": " have."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 224000
+			},
+			"text": " And then you can also do things like dynamic allocation and deallocations."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 227000
+			},
+			"text": " So, we pull these resources to get massive scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 229000
+			},
+			"text": " And also, it reduces cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 232000
+			},
+			"text": " So, you can start doing very innovative things with low cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 234000
+			},
+			"text": " Because you're only paying for what you're using."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 237000
+			},
+			"text": " So, you're not going to pay for all this stuff 24 by 7."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 241000
+			},
+			"text": " You're going to pay for it for the second or two, depending on what you're doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 243000
+			},
+			"text": " that you're actually using it for transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 248000
+			},
+			"text": " Now, we'll talk more about some of the ramifications of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 253000
+			},
+			"text": " But you can do everything from just basic signatures to threshold encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 257000
+			},
+			"text": " So, you can do encryption in the cloud as well using these."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 262000
+			},
+			"text": " So, the broader framework, we do support multiple ledgers down at the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 266000
+			},
+			"text": " We have a couple years ago, we announced blockchain as a service."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 269000
+			},
+			"text": " Which is, I unfortunately named it that for some reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 271000
+			},
+			"text": " It seemed like a good idea at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 273000
+			},
+			"text": " But essentially, it was based on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 275000
+			},
+			"text": " Everything we do at Microsoft really starts with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 277000
+			},
+			"text": " And we sort of branch out from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 280000
+			},
+			"text": " So, enterprise that Ethereum Alliance or Quorum and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 285000
+			},
+			"text": " But we also support Quora and these others because we abstract them away"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 287000
+			},
+			"text": " with what we call the blockchain router."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 292000
+			},
+			"text": " And this is a common abstraction pattern where we define a basic interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 296000
+			},
+			"text": " where anyone can write a connector that plugs into the router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 299000
+			},
+			"text": " it has a simple interface definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 302000
+			},
+			"text": " And then, it has very blockchain specific."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 306000
+			},
+			"text": " It knows how to create blockchain specific transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 310000
+			},
+			"text": " You will create contract proxies which is essentially taking that next step"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 312000
+			},
+			"text": " where we talk about a type system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 316000
+			},
+			"text": " Cripplets don't know what blockchain they're talking to, they don't care."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 318000
+			},
+			"text": " They deal with message types."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 321000
+			},
+			"text": " So, strongly typed messages are very important for contractual business."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 324000
+			},
+			"text": " We need to know not only what a message structure is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 326000
+			},
+			"text": " but what data types are embedded."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 328000
+			},
+			"text": " We don't allow variants."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 332000
+			},
+			"text": " So, they need to be declared integers or doubles or floats or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 334000
+			},
+			"text": " Or composite types."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 338000
+			},
+			"text": " Cripplets will then use those message types."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 340000
+			},
+			"text": " And then, they pass them down to the proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 345000
+			},
+			"text": " The proxy can ingest those message types and then convert them into the appropriate"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 347000
+			},
+			"text": " blockchain transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 351000
+			},
+			"text": " You see the script of delegates attached to these various locations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 354000
+			},
+			"text": " These things are, again, generally able to fly."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 356000
+			},
+			"text": " We support multiple signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 359000
+			},
+			"text": " So, you have, if you're familiar with certificate chains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 368000
+			},
+			"text": " we call it a crippled onion, which are layers of crypto validations of each operation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " both from an attestation standpoint that the code ran confidentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 377000
+			},
+			"text": " from the enclave to the source of your data actually came from where it was supposed to come."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 380000
+			},
+			"text": " So, we create this signature onion."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 384000
+			},
+			"text": " Each signature validates all the nested signatures underneath it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 386000
+			},
+			"text": " So, we sign at multiple levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 387000
+			},
+			"text": " We also have cipher diversity."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 393000
+			},
+			"text": " So, you can sign with ECC, RSA, any ciphers that you want to support."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 395000
+			},
+			"text": " It's a very flexible platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 399000
+			},
+			"text": " Up at the top, so these Cripplets will talk about them a little bit later."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 406000
+			},
+			"text": " You can write them in .NET, Java today, or native, but we'll support any sort of platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 408000
+			},
+			"text": " We're in Gnostic, what you want to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 415000
+			},
+			"text": " It'll be open so that you can port your own runtime and create your own container that runs in this platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 417000
+			},
+			"text": " Above the layer, we're using standard AMQP."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 423000
+			},
+			"text": " If you're not familiar with that, that's an ISO standard for messaging that's used in the enterprise."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 427000
+			},
+			"text": " So, we're using AMQP as the basic interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 432000
+			},
+			"text": " And those messages, the strong and tight messages are being passed back and forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 437000
+			},
+			"text": " So, you define your API with your types and your messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 444000
+			},
+			"text": " You can stick a rest or an RPC on top of that message, AMQP, very simply and easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 449000
+			},
+			"text": " Or you can just serialize your messages to JSON, which is the default."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 456000
+			},
+			"text": " So, it's a very open platform, very easy to integrate into any front-end application or any existing application."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 459000
+			},
+			"text": " A couple of things that you should note about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 464000
+			},
+			"text": " If the Cripplets are running above the blockchain, they can run in a Singleton pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 466000
+			},
+			"text": " You can also reach out."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 468000
+			},
+			"text": " Cripplets can communicate with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 471000
+			},
+			"text": " So, we talk about blockchain oracles."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 477000
+			},
+			"text": " You can certainly write a blockchain oracle here and write attested data to an id underlying blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 479000
+			},
+			"text": " if you're thinking about writing an oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 482000
+			},
+			"text": " And you're concerned of, you know, how do I support multiple blockchains?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 488000
+			},
+			"text": " This is one way for you to do that, to write your oracle once and support many different blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 492000
+			},
+			"text": " But you can also do oracle services directly from Cripplet to Cripplet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 497000
+			},
+			"text": " So, you can have a utility Cripplet, which is what we usually call an oracle, because it can do more than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 502000
+			},
+			"text": " Actually pass attested data to another Cripplet that's running a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 505000
+			},
+			"text": " We have three basic Cripplets."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 506000
+			},
+			"text": " You have your utility Cripplets."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 509000
+			},
+			"text": " Those are the ones that can provide attested data."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 512000
+			},
+			"text": " But you can also connect to an ERP system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 518000
+			},
+			"text": " You could react to some sort of event that happens in the outside world very easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 522000
+			},
+			"text": " And then that utility Cripplet can then communicate with what we call a contract Cripplet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 528000
+			},
+			"text": " which represents your typical smart contract or enterprise smart contract is what we call it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 533000
+			},
+			"text": " But we also have a token Cripplet as well, in the spirit of this conference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 538000
+			},
+			"text": " which essentially is a contract Cripplet with token behaviors exposed as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 543000
+			},
+			"text": " And it allows you to create these types of scenarios."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 545000
+			},
+			"text": " So the token Cripplet, for example, is very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 552000
+			},
+			"text": " If you create a token Cripplet, the Cripplet actually controls all the ERC-20 sort of functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 562000
+			},
+			"text": " So the issue, the transfer, the burn, the menting, all that stuff is controlled through the Cripplet itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 564000
+			},
+			"text": " But then I can extend the behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 568000
+			},
+			"text": " So I can add behavior for my token off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 575000
+			},
+			"text": " And that can also assume the identity and use the identity of the person that has a balance for that token."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 580000
+			},
+			"text": " So you can do some very interesting things with this platform as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 584000
+			},
+			"text": " So we're not really sure what customers are going to do, but the interesting thing is you can do Cripplet to Cripplet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 591000
+			},
+			"text": " Cripplet the outside, and then also you can create your proxy, you can have it monitor events on the local blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 596000
+			},
+			"text": " and react to them as well in the outside world."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 601000
+			},
+			"text": " So how do you get started? A lot of people have asked, we've been talking about this for some time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 604000
+			},
+			"text": " when do I get to see code? When can I play with this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 608000
+			},
+			"text": " Well, we tried to get this done before the show, and we're going to come out and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 612000
+			},
+			"text": " \"Hey, it's open, here go run this URL and you can get a test drive.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 618000
+			},
+			"text": " We couldn't pull that off in time. But as soon, within the next two weeks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 622000
+			},
+			"text": " we'll be able to have an environment where you can go out and do a test drive"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 628000
+			},
+			"text": " and stand up this environment, and you can build an enterprise-smart contract in Cripplets"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 633000
+			},
+			"text": " from scratch to start learning. This platform is currently in what we call early adopter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 637000
+			},
+			"text": " a private early adopter preview, a private preview, which we're going into a regular case."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 642000
+			},
+			"text": " I'll talk about that in a little bit. But if you're building these things, essentially all you have to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 645000
+			},
+			"text": " the infrastructure is built for you and abstracted from you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 651000
+			},
+			"text": " So as you would expect, you simply focus on what you're trying to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 655000
+			},
+			"text": " The first thing you always will talk about is contract-first development."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 659000
+			},
+			"text": " So you will develop your message types. So you define your message types"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 663000
+			},
+			"text": " and you can pick your language and dot enter job, and this is what it looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 668000
+			},
+			"text": " Pretty simple, getters and setters are basically properties. This is in C#."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 672000
+			},
+			"text": " We're inheriting, this is a token, Cripplet inherits from the base token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 678000
+			},
+			"text": " and then it has constructor messages, create token that derives from the base token constructor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 683000
+			},
+			"text": " and we have return types. Now here you can see others."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 687000
+			},
+			"text": " We can have time, I'll switch over and show you some more of the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 691000
+			},
+			"text": " But this is the example of the types that you'll do."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 695000
+			},
+			"text": " So you really simple types that serialize JSON."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 699000
+			},
+			"text": " So you just got to pay attention to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 703000
+			},
+			"text": " The framework takes care of the serialization for you, so it's standardized."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 707000
+			},
+			"text": " If you ever have done cross-platform serialization with JSON, it's not as smooth as it always is."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 712000
+			},
+			"text": " It always seems it should be. But we've taken care of that for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 716000
+			},
+			"text": " Next you then write your Cripplet code, utility, contract or token."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 722000
+			},
+			"text": " Depending on what you're writing, you'll derive from, you always derive from the base Cripplet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 726000
+			},
+			"text": " Class here, so this is the token Cripplet, then you'll implement the interfaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 731000
+			},
+			"text": " There's a contract Cripplet interface. By default, a token Cripplet is a contract Cripplet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 735000
+			},
+			"text": " You cannot be a token Cripplet without being a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 740000
+			},
+			"text": " And that has to do with the isolation level that the code runs in."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 747000
+			},
+			"text": " Whereas a utility Cripplet can be multi-tenant, so I can have multiple subscribers to an Oracle type service."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 752000
+			},
+			"text": " A contract Cripplet can only have one binding, or what we call essentially a binding."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 758000
+			},
+			"text": " Each instance of that same binding gets a new instance of a Cripplet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 764000
+			},
+			"text": " That's either running in a full on-claved environment or a partial on-claved environment with a Cripplet delegate."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 770000
+			},
+			"text": " So Cripplet had basic constructors. This is where we constructed API."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 776000
+			},
+			"text": " Cripplets can be inspected by simply passing a real simple message into the framework and saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 778000
+			},
+			"text": " \"Tell me about the Cripplets you have registered.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 781000
+			},
+			"text": " Then you can pick one Cripplet and say, \"Tell me what your API is.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 785000
+			},
+			"text": " What that means is, it's going to take here that's functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 788000
+			},
+			"text": " These are these message types that are defined as the types."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 791000
+			},
+			"text": " When I say, these all serialize automatically to JSON."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 794000
+			},
+			"text": " When I query it, it's going to serialize all these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 799000
+			},
+			"text": " Here are my functions with their JSON structure, and here are my returns with their JSON structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 802000
+			},
+			"text": " You know exactly how to communicate with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 809000
+			},
+			"text": " You can construct your own libraries, or we can provide you a JAR file or a DLL for you to work with those types."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 812000
+			},
+			"text": " Very simple stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 816000
+			},
+			"text": " Lastly, you need to generate your proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 820000
+			},
+			"text": " This is where tooling comes into play."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 826000
+			},
+			"text": " We're doing a lot of work around the tooling, so we'll generate as much of the proxy as possible for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 834000
+			},
+			"text": " There's two types of ways to generate object models that get some sort of underlying data structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 836000
+			},
+			"text": " You can do what we call data first."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 841000
+			},
+			"text": " That's where you've established a database, like a SQL database or whatever, or Solidity in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 847000
+			},
+			"text": " Then I can use that to then create a proxy from that structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 852000
+			},
+			"text": " Meaning I already have my Solidity defined, I can then generate a proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 857000
+			},
+			"text": " Usually when you're writing your Solidity for enterprise smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 864000
+			},
+			"text": " you only want to put the logic down in that makes sense to put down in your enterprise smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:33,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 873000
+			},
+			"text": " You want to do things that, if you're transitioning assets or changing ownership for assets that are providence on that blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 873000,
+				"to": 878000
+			},
+			"text": " then you want to do that and perform that logic on the inner Solidity code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 883000
+			},
+			"text": " There's lots of nuances there, but essentially we'll generate the proxy first."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 890000
+			},
+			"text": " Code first is where you have the type system that you defined and will then create this Solidity for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 892000
+			},
+			"text": " You do some basic customizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 895000
+			},
+			"text": " These proxies can be written in any platform as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 897000
+			},
+			"text": " This is using the Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 907000
+			},
+			"text": " The Ethereum team, the guys at Consensus are doing a lot of work for generating the proxies for this platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 913000
+			},
+			"text": " We expect each of the major platform providers and anyone will be able to take the standard interface,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 917000
+			},
+			"text": " which has an initialized function and execute async function."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 919000
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 923000
+			},
+			"text": " You can plug it into the router. It just works."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 927000
+			},
+			"text": " Again, today we're supporting .NET, JVM, and native."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 931000
+			},
+			"text": " Listen to our customers. If you have a particular runtime, you're interested in, there's enough demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 936000
+			},
+			"text": " We'll do the work. Of course, it'll be open so that you will be able to create your own port over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 940000
+			},
+			"text": " We're going to do Rich Tooling with Visual Studio, Visual Studio Code as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 945000
+			},
+			"text": " You'll see that in the test drive when you start to play with it in a couple of weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 947000
+			},
+			"text": " Follow-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 950000
+			},
+			"text": " At a time here, come by our booth. We're just outside the door here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 956000
+			},
+			"text": " We'll do demos. You can go more in-depth in code. You get hands-on. The hands-on labs actually see what it looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 959000
+			},
+			"text": " Watch for the test drive coming out in a couple of weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 966000
+			},
+			"text": " That'll include the hands-on labs, the extensions, and the sample source will be released at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 971000
+			},
+			"text": " If your code's not working, go look at the finished code to see what you've done wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 978000
+			},
+			"text": " Then we'll be transitioning from private preview to more public preview in the coming months. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 981000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:29,000"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 989000
+			},
+			"text": " [music]"
+		}
+	]
+}

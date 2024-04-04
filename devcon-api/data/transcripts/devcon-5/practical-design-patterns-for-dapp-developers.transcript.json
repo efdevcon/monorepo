@@ -1,0 +1,2452 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 15000
+			},
+			"text": " How many of you have built an app?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 18000
+			},
+			"text": " It's been used by thousands of users."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20000
+			},
+			"text": " Okay? Amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 21000
+			},
+			"text": " Got a good development problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 24000
+			},
+			"text": " If you can hands up and you build a decentralized app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 28000
+			},
+			"text": " we have a free app that's been used by thousands of users."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 31000
+			},
+			"text": " Great. We still have a few hands. It's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 37000
+			},
+			"text": " This talk is designed for developers who may be new to the referee space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 43000
+			},
+			"text": " And I want to share some of the lessons we've learned from building Origin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 50000
+			},
+			"text": " So for both of you who are North mayor, Origin is a decentralized marketplace on the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 56000
+			},
+			"text": " for enabling peer-to-peer commerce without any middleman or intermediaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 59000
+			},
+			"text": " We've been working on it for about two years now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 62000
+			},
+			"text": " Our team includes people like one of the founders of PayPal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 64000
+			},
+			"text": " the first engineer in YouTube,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 67000
+			},
+			"text": " point to engineering managers from Google and Dropbox."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 74000
+			},
+			"text": " And we've got, as of today, we have 16,000 unique wallets that are using the marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 79000
+			},
+			"text": " And so we're going to share some of the tips and tricks that we've learned from building that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 83000
+			},
+			"text": " and our rely heavily on my experience fair for some of the examples"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 88000
+			},
+			"text": " on how you can apply these design patterns to your own applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 93000
+			},
+			"text": " So what's unique about building on Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 96000
+			},
+			"text": " Well, some of these are quite obvious. Gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 100000
+			},
+			"text": " It's not something you have and you've got a new Ruby on Rails application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 103000
+			},
+			"text": " You don't have to worry about invitability."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 107000
+			},
+			"text": " As developers, one thing we know for sure is you're not going to get anything right when you first try."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 111000
+			},
+			"text": " But how do you deal with that in a world where you can't change anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 114000
+			},
+			"text": " and back to it's written to the blockchain for all eternity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 120000
+			},
+			"text": " And how do we deal with some of our unfamiliar usability challenges of the blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 122000
+			},
+			"text": " Because why do we need gas?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 130000
+			},
+			"text": " Well, it's a fair way to allocate scarce resources and give us miners and incentive to secure the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 132000
+			},
+			"text": " And it's just a deterrent for abuse."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 135000
+			},
+			"text": " So it's actually this really important concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 138000
+			},
+			"text": " But it also really sucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 141000
+			},
+			"text": " Users aren't used to paying for gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 145000
+			},
+			"text": " You've got things like TEMR, IntruderKitties, or Fairwind,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 150000
+			},
+			"text": " clung up in the network and making your app really expensive or broken to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 153000
+			},
+			"text": " And then most people on the site don't have a fake."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 155000
+			},
+			"text": " So how do you deal with that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 159000
+			},
+			"text": " And when we look at what we've spent most of our time working on in Origin"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 163000
+			},
+			"text": " over the last two years, it's all related to one of the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 167000
+			},
+			"text": " A lot of these problems are related to this concept of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 171000
+			},
+			"text": " How do we minimize the gas cost or how do we get rid of it altogether?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 179000
+			},
+			"text": " So my first thing you can do is just don't store as much data on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 184000
+			},
+			"text": " What you can do here is instead store a content hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 190000
+			},
+			"text": " This is a very basic technique which we use for storing all of the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 192000
+			},
+			"text": " that our application needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 198000
+			},
+			"text": " We use the store on IPFS, which is a content addressable, peer-to-peer file system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 204000
+			},
+			"text": " And this is still secure because if you change one byte of that content,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 207000
+			},
+			"text": " then you'll get a completely different hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 214000
+			},
+			"text": " And so it allows us to save a lot of money on gas costs by storing just content hashies instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 218000
+			},
+			"text": " Now you do have to worry about the data surviving,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 221000
+			},
+			"text": " you have a lot of risk of data loss."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 223000
+			},
+			"text": " If you're not replicating that data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 228000
+			},
+			"text": " there's no risk of that data being detected, it's still secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " So to take a quick look at what our data looks like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 236000
+			},
+			"text": " so this is the Origin Marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 237000
+			},
+			"text": " This is live on Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 240000
+			},
+			"text": " On the third Mainnet has been for quite some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 246000
+			},
+			"text": " You can see you can buy or rent all sorts of different items on this marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 252000
+			},
+			"text": " And all these listings have been fetched from Ethereum blockchain and from IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 255000
+			},
+			"text": " So here's my apartment in San Francisco."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 257000
+			},
+			"text": " You're all welcome to come stay anytime."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 259000
+			},
+			"text": " You can put this on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 261000
+			},
+			"text": " What's that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 268000
+			},
+			"text": " Well, it's quite a discounted phrase actually if you've ever rented a apartment in San Francisco,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 269000
+			},
+			"text": " it's actually put cheap."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 272000
+			},
+			"text": " You can pair with Ethereum or die."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 278000
+			},
+			"text": " And you can see there's a really nice apartment in the show of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 279000
+			},
+			"text": " mistake."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 287000
+			},
+			"text": " And so behind the scenes, this is the data that represents that listing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 289000
+			},
+			"text": " It's just a big blob of JSON."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 292000
+			},
+			"text": " It has all the details about this apartment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 297000
+			},
+			"text": " It's got some links to the pictures here in IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 303000
+			},
+			"text": " But what we actually store on chain is just this little part of the URL right here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 305000
+			},
+			"text": " 42 characters of an IPFS hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 309000
+			},
+			"text": " And if you change one character of this JSON blob, all that goes away."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 317000
+			},
+			"text": " So this saves us a lot of money by storing an IPFS instead of doing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 321000
+			},
+			"text": " Sort of all of us raw data on there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 323000
+			},
+			"text": " So we actually put some numbers to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 326000
+			},
+			"text": " We actually look at how much gas it costs to store data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 334000
+			},
+			"text": " It costs 20,000 gas to store 32 bytes for a 32 byte slot on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 337000
+			},
+			"text": " Even modifying data costs by 1,000 gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 345000
+			},
+			"text": " If you delete data, it costs 5,000 gas, but then you get a 15,000 gas refund from when you first store it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 348000
+			},
+			"text": " But one thing you'll notice here on the right, we have blog."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 354000
+			},
+			"text": " And so it's way cheaper for us to write to logs and store data on a chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 360000
+			},
+			"text": " So one of the tricks that we've linked on very heavily at Origin is just the emitting events"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 366000
+			},
+			"text": " instead of actually storing data into variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 368000
+			},
+			"text": " So Pro is a pretty obvious thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 369000
+			},
+			"text": " You save a lot of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 373000
+			},
+			"text": " It's far more gas efficient to use events."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 377000
+			},
+			"text": " The only problem is that smart contracts can't read the logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 387000
+			},
+			"text": " So you have a nice database of all the different events, but you have to have some other way to be able to index those events from the logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 396000
+			},
+			"text": " And things like if you're a you have to pay extra for it, if you have to have full node, you're running, you have to have some way of indexing those and make it sensitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 400000
+			},
+			"text": " But it's worth doing if you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 408000
+			},
+			"text": " Another trick if you are storing data on a blockchain, it's helpful to understand how an EVM is storing data under a cover."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 411000
+			},
+			"text": " So both 32-byte slots actually matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 417000
+			},
+			"text": " So you do things like variable packing, where you take the order on which you initialize these variables actually matters."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 426000
+			},
+			"text": " So if you've got, you know, AB and C, these three variables, two of them 128-byte, one is 256-byte."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 432000
+			},
+			"text": " Now you can either pack it into two slots or three slots depending on the order of those variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 438000
+			},
+			"text": " That's a difference to 20,000 gas just by swapping the order of how you write your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 441000
+			},
+			"text": " How many of you know what event sourcing is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 442000
+			},
+			"text": " Do you remember this term?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 443000
+			},
+			"text": " So some of you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 444000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 448000
+			},
+			"text": " So I guarantee even if you don't know the term, all of you know is concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 450000
+			},
+			"text": " It's essentially what the blockchain does."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 460000
+			},
+			"text": " If you were to fire up a full node and start a virginisys block and work your way to today to get the current state of how much money we all have."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 469000
+			},
+			"text": " Well that's the event source where you're actually building up a state based on a list of events instead of doing it as the current state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 472000
+			},
+			"text": " which is stored in a snapshot of the current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 481000
+			},
+			"text": " It's just a native concept to blockchains. It's also something that's really helpful when you're actually designing an app."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 484000
+			},
+			"text": " So here's how we do it at Worden."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 487000
+			},
+			"text": " So here's the admin view."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 496000
+			},
+			"text": " So this is a tool we built that lets you sort of wonder the covers of our marketplace and actually look at all of the IP address hashes and the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 501000
+			},
+			"text": " And all the data will be going to generally hide away from the users."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 507000
+			},
+			"text": " And so you can see here this list of all the events that have been happening on my apartment."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 512000
+			},
+			"text": " So you can see when I first created it in the blog of Jason that was created."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 516000
+			},
+			"text": " And then I updated it a few times and then some of it offered on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 525000
+			},
+			"text": " And then I accepted that offer and then they left a review after it was complete, after the booking was completed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 531000
+			},
+			"text": " We've got some more offers coming in and I accepted those as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 538000
+			},
+			"text": " And so instead of storing that calendar on the blockchain about which days my apartment is available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 541000
+			},
+			"text": " can you think about doing that in Solidity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 544000
+			},
+			"text": " The amount of complexity of writing that code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 548000
+			},
+			"text": " Like, or if you want to come in and block off the month of July,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 557000
+			},
+			"text": " you'll do put that in forlid. I mean, do you pick how expensive is that going to be to update that all of your store and all that data will be in the blockchain is crazy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 565000
+			},
+			"text": " So instead what we do is we don't even try. We just emit these events where each of the offers have come in, when I accept them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 573000
+			},
+			"text": " And then you can use JavaScript. You can, it's very easy to walk through the list of events in JavaScript and rebuild the state of the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 582000
+			},
+			"text": " So if you want to know if my apartment is available or not, the only way to do it is go back to the start, walk through all of them, see which offers I accepted, which ones I turned down."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 591000
+			},
+			"text": " And now you've got the sense of the state of the world. And it's way, way cheaper, it's way easier than trying to do everything on a chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 603000
+			},
+			"text": " So name registries is another concept you should be aware of."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 609000
+			},
+			"text": " ENS is probably the best known example. You can take some, when you want to map two things together."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 616000
+			},
+			"text": " So you can take Josh Phaser.Eef, it's a nice friendly name and you can map it to an address."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 627000
+			},
+			"text": " Origin has one. We have an identity contract where we publish identity attestations for all of the users on our market place."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 634000
+			},
+			"text": " But as you might guess by now, we don't actually store that data. We just emit events."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 638000
+			},
+			"text": " And what might be the simplest smart contract you can have."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 651000
+			},
+			"text": " Basically two functions emit identity updated. It's the message drop sender of your wallet and an IPFS hash with attestations on your profile."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 664000
+			},
+			"text": " And then we have identity deleted, which if you ask nicely, we will delete your code. We will un-pen your data if you ask us to for an IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 670000
+			},
+			"text": " Factory contracts. So these are super useful. And another way to save on gas costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 678000
+			},
+			"text": " They allow you to basically clone an existing smart contract and use that as a template for the code that you want to have run."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 686000
+			},
+			"text": " A great example of this is a hypnosis multi-sake wallet. So you can deploy your own multi-sake with your own funds and control it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 692000
+			},
+			"text": " But it uses all of your code and you can deploy that in a very cost-efficient way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 698000
+			},
+			"text": " And we do this for deploying our proxy contracts, which we'll get into in a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 704000
+			},
+			"text": " The code is really simple. You just use this master copy. You pass in the master copy of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 714000
+			},
+			"text": " And then you use the magical assembly code here and you have a copy of that smart contract that you can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 721000
+			},
+			"text": " One of the tricks that you can use here is predictable smart contract addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 729000
+			},
+			"text": " And so you can actually know the address of a smart contract reliably before it's even aligned on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 737000
+			},
+			"text": " And so you can know it before it exists. And this is really useful for eliminating the need for a name registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 749000
+			},
+			"text": " So what you can do is pass the order of a proxy contract and a nonce, an optional nonce, to create two."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 754000
+			},
+			"text": " And then that will give you the address of where that proxy contract is going to live."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 759000
+			},
+			"text": " So for origin, we create a proxy contract for each of our users."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 764000
+			},
+			"text": " And then we determine the secret figure out where that contract is going to live."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 774000
+			},
+			"text": " And that way we don't have to use a name registry at all for doing that lookup and figuring out where the proxy contract will actually live."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 781000
+			},
+			"text": " And so you can see that code right here on how we do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 785000
+			},
+			"text": " So we have a transaction mentioned in the last talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 792000
+			},
+			"text": " Manage transactions are high levels, it's the way for you to sponsor the gas on behalf of your users."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 804000
+			},
+			"text": " And this is something that we rolled out at origin because we want our first time users to be able to get up and create a listing without having to have a few pennies of gas in your wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 812000
+			},
+			"text": " The challenge is the theorem says that the person who signs a transaction is the person who has to pay the gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 815000
+			},
+			"text": " You can't have two different signatures on a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 822000
+			},
+			"text": " And so you have to jump through all these crazy hoops in order to do something as simple as paying the gas for someone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 825000
+			},
+			"text": " And so that's what we use our proxy contracts for."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 832000
+			},
+			"text": " We sign a transaction, we send it to our relay, our relay then deploys that proxy contract if it doesn't already exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 844000
+			},
+			"text": " And then sends that you're signing to contract or your sign transaction to the proxy contract which then relays it on to the destination contract where you want that code to actually be executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 849000
+			},
+			"text": " And so the end result is pop up it looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 854000
+			},
+			"text": " It says your signature is being requested but no, there's no gas associated with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 861000
+			},
+			"text": " So now you can actually write data to the blockchain and execute code and yes you need to sign it to prove that you control that wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 865000
+			},
+			"text": " You don't have to pay any gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 871000
+			},
+			"text": " So let's talk a little bit about different options for upgrading your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 876000
+			},
+			"text": " We don't have this problem in centralized applications, very easy to upgrade your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 879000
+			},
+			"text": " But in this world everything is immutable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 883000
+			},
+			"text": " So when option some goes by different names we call it master slave."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 891000
+			},
+			"text": " You have one smart contract and it's just the dolly proxy contract you tell everyone here's our proxy here's our code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 896000
+			},
+			"text": " And then you just update a variable with the smart contract that's actually being called behind the scenes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 905000
+			},
+			"text": " Problem of this of course is you have to, users have to trust that you're not going to be malicious and swap in malicious smart contracts in place of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 913000
+			},
+			"text": " And you also have this problem where your data gets fragmented because every time you update your smart contract the data starts living on those other smart contracts instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 917000
+			},
+			"text": " Not a great model."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 920000
+			},
+			"text": " Another way you can do it is store your data and your logic separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 923000
+			},
+			"text": " So you take a proxy contract and you're okay with what we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 928000
+			},
+			"text": " We'll keep all the data on this contract but we'll just bring in new smart contracts for the logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 935000
+			},
+			"text": " And that helps quite a bit but you still have a problem of what if we change the data structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 936000
+			},
+			"text": " So how do you do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 943000
+			},
+			"text": " Well you can use a few value type structure where you just say okay we can just add on new fields and anytime."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 944000
+			},
+			"text": " That works pretty well."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 952000
+			},
+			"text": " The only downside is that costs a lot more gas to do all that sort of computation and remapping stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 961000
+			},
+			"text": " The other day you can just pause the contract and just start over and just do it again depending on your scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:04,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 964000
+			},
+			"text": " Sometimes that makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 964000,
+				"to": 971000
+			},
+			"text": " So how we do it at a origin is we say like a lot of things we'll just do it in JavaScript instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 981000
+			},
+			"text": " The key part to smart contracts is dumb and as simple as possible and instead we'll write adapters but know how to transform between each of the different versions of the logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 998000
+			},
+			"text": " And you can apply these adapters recursively so every version knows how to get back to the previous version and you can very simply adapt your DAP across these different versions of your smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1007000
+			},
+			"text": " So let's talk a little bit about UX. How many of you have seen this type of pop-up on MetaMask before?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1009000
+			},
+			"text": " What? What?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1015000
+			},
+			"text": " It makes no sense to me let alone the average user."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1018000
+			},
+			"text": " What is this? Why is this popping out the minute?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1023000
+			},
+			"text": " I'm trying this any sort of decentralized exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1032000
+			},
+			"text": " And so the reason you're seeing this is because of the fact that you have to move an ERC20 token or for a smart contract to move an ERC20 token."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1044000
+			},
+			"text": " It first has to have approval from the user that makes sense and needs to have an allowance on how many tokens it's allowed to move."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1053000
+			},
+			"text": " So the problem is that you have two different MetaMask pop-ups. That's how you have to do anything related to tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1062000
+			},
+			"text": " One, you have this crazy thing and then you have a second one which actually hooks a smart contract to actually move the tokens to where they need to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1068000
+			},
+			"text": " And the reason you're seeing this crazy pop-up is because they only want to show us two ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1075000
+			},
+			"text": " They just go ahead and ask for basically an infinite amount of tokens that they want to be able to move."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1078000
+			},
+			"text": " But it's a very confusing user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1083000
+			},
+			"text": " And now we're looking at building more into how do we get rid of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1092000
+			},
+			"text": " How do we move our tokens from our marketplace contract without having to show that MetaMask pop-up every time."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1102000
+			},
+			"text": " And so it looks like there's prior work run as first ERC827 which proposed combining these into a single step."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1106000
+			},
+			"text": " Approved and called. Let's just do them both at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1109000
+			},
+			"text": " And we say great, this is awesome, this is what we're looking for."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1115000
+			},
+			"text": " And then we started reading the comments on it and it's susceptible to VNCH C-attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1125000
+			},
+			"text": " But we realized that the only problem that you can't use app with any untrusted smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1130000
+			},
+			"text": " But if you have your own trusted smart contract, you can actually lock this down."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1134000
+			},
+			"text": " You can actually have a proof and call WebSinger."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1141000
+			},
+			"text": " And so what we do at R&D and this is live on our ERC20 contract, it's been opted by a few bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1145000
+			},
+			"text": " You can actually safely find those two into one step."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1158000
+			},
+			"text": " And so the user is only prompted one time to both approve and call whenever we use an origin token on an origin marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1161000
+			},
+			"text": " And here is the code on how you do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1169000
+			},
+			"text": " Very simple, we really added two bits, which is just the white list."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1177000
+			},
+			"text": " And so I think I'm pretty much out of time here, but lastly I'll say origin is 100% open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1180000
+			},
+			"text": " And all of it, we do it all in our working public."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1180000,
+				"to": 1187000
+			},
+			"text": " So come join us in our Discord, we have over 160 contributors to our code base."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:49,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1189000
+			},
+			"text": " And we'd love to have more."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,000",
+				"to": "00:19:54,000"
+			},
+			"offsets": {
+				"from": 1189000,
+				"to": 1194000
+			},
+			"text": " So thanks for your time and we'll have to see you guys around."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1194000,
+				"to": 1198000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:13,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1213000
+			},
+			"text": " [Music]"
+		}
+	]
+}

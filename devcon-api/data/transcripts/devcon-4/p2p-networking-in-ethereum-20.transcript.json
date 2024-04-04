@@ -1,0 +1,2199 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,680"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4680
+			},
+			"text": " Nice to be here. My name is Janik. I'm from Brainboard and I'm here with Kevin from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,680",
+				"to": "00:00:09,380"
+			},
+			"offsets": {
+				"from": 4680,
+				"to": 9380
+			},
+			"text": " Ethereum Foundation and we're going to talk a little bit about PDP and networking in Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,380",
+				"to": "00:00:17,540"
+			},
+			"offsets": {
+				"from": 9380,
+				"to": 17540
+			},
+			"text": " 2.0 or how we call it now in Serenity. I will start and give a little bit of background"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,540",
+				"to": "00:00:22,320"
+			},
+			"offsets": {
+				"from": 17540,
+				"to": 22320
+			},
+			"text": " and try to introduce you to the problem that we're trying to solve and then and also show"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,320",
+				"to": "00:00:27,540"
+			},
+			"offsets": {
+				"from": 22320,
+				"to": 27540
+			},
+			"text": " some simulations to see if our approach makes somewhat sense and then I will hand it over"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,540",
+				"to": "00:00:35,040"
+			},
+			"offsets": {
+				"from": 27540,
+				"to": 35040
+			},
+			"text": " to Kevin who will talk about the implementation of all that stuff. But let's start with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,040",
+				"to": "00:00:39,240"
+			},
+			"offsets": {
+				"from": 35040,
+				"to": 39240
+			},
+			"text": " very basic things, our goals of networking, what we actually want to do. We have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,240",
+				"to": "00:00:43,200"
+			},
+			"offsets": {
+				"from": 39240,
+				"to": 43200
+			},
+			"text": " notes that produce data and others want to obtain the data so we need a way to distribute"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,200",
+				"to": "00:00:48,360"
+			},
+			"offsets": {
+				"from": 43200,
+				"to": 48360
+			},
+			"text": " this and that way, the way how we want to do this should be efficient, it should be fast"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,360",
+				"to": "00:00:55,880"
+			},
+			"offsets": {
+				"from": 48360,
+				"to": 55880
+			},
+			"text": " and it should also be safe. What kind of data in the original Ethereum, it's mostly transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,880",
+				"to": "00:01:01,640"
+			},
+			"offsets": {
+				"from": 55880,
+				"to": 61640
+			},
+			"text": " and blocks and the important thing here is that all nodes basically download the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,640",
+				"to": "00:01:07,640"
+			},
+			"offsets": {
+				"from": 61640,
+				"to": 67640
+			},
+			"text": " data so there's no distinction at all, basically all nodes do the same thing. In Serenity, things"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,640",
+				"to": "00:01:12,040"
+			},
+			"offsets": {
+				"from": 67640,
+				"to": 72040
+			},
+			"text": " get different mostly because of sharding. In sharding means we basically split the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,040",
+				"to": "00:01:18,640"
+			},
+			"offsets": {
+				"from": 72040,
+				"to": 78640
+			},
+			"text": " up into different shards and one particular node only downloads the data for that particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,640",
+				"to": "00:01:25,840"
+			},
+			"offsets": {
+				"from": 78640,
+				"to": 85840
+			},
+			"text": " shard. That way we can save a lot of bandwidth. I plotted in this picture it's 8, in reality"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,840",
+				"to": "00:01:34,160"
+			},
+			"offsets": {
+				"from": 85840,
+				"to": 94160
+			},
+			"text": " it's 1000 but 1000 are too many to draw in this picture but just too. In addition to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,160",
+				"to": "00:01:38,680"
+			},
+			"offsets": {
+				"from": 94160,
+				"to": 98680
+			},
+			"text": " this shard data, we also still need some kind of global data that all nodes download,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,680",
+				"to": "00:01:46,120"
+			},
+			"offsets": {
+				"from": 98680,
+				"to": 106120
+			},
+			"text": " this is the beacon chain data. From that we can basically infer how nodes should connect"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,120",
+				"to": "00:01:53,560"
+			},
+			"offsets": {
+				"from": 106120,
+				"to": 113560
+			},
+			"text": " to other nodes in original Ethereum. All nodes basically are the same so one node simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,560",
+				"to": "00:02:00,080"
+			},
+			"offsets": {
+				"from": 113560,
+				"to": 120080
+			},
+			"text": " basically picks randomly from the set of all nodes and connects to them. In Serenity, things"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,080",
+				"to": "00:02:05,640"
+			},
+			"offsets": {
+				"from": 120080,
+				"to": 125640
+			},
+			"text": " will be different. If you pick Piers, you first look at what shard you assigned to or"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,640",
+				"to": "00:02:13,920"
+			},
+			"offsets": {
+				"from": 125640,
+				"to": 133920
+			},
+			"text": " what shard you want to download in this example, shard 3 and then you pick Piers from that shard"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,920",
+				"to": "00:02:18,840"
+			},
+			"offsets": {
+				"from": 133920,
+				"to": 138840
+			},
+			"text": " so that they can give you useful information. Here we have three additional nodes from"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,840",
+				"to": "00:02:26,440"
+			},
+			"offsets": {
+				"from": 138840,
+				"to": 146440
+			},
+			"text": " the shard 3 and then in addition to that we pick nodes from the global set that can provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,440",
+				"to": "00:02:33,400"
+			},
+			"offsets": {
+				"from": 146440,
+				"to": 153400
+			},
+			"text": " you with beacon data in this example 1 and 7. Then we can basically abstract from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,400",
+				"to": "00:02:38,600"
+			},
+			"offsets": {
+				"from": 153400,
+				"to": 158600
+			},
+			"text": " Essentially what you do is we now have two networks and one is the shard network which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,600",
+				"to": "00:02:42,920"
+			},
+			"offsets": {
+				"from": 158600,
+				"to": 162920
+			},
+			"text": " consists of all the nodes that are connected to a certain shard and are connected to each"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,920",
+				"to": "00:02:51,240"
+			},
+			"offsets": {
+				"from": 162920,
+				"to": 171240
+			},
+			"text": " other. Then with the beacon network that consists of all the different nodes and in this network"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,240",
+				"to": "00:02:59,360"
+			},
+			"offsets": {
+				"from": 171240,
+				"to": 179360
+			},
+			"text": " only the beacon data is transmitted. Now another thing that's different to the existing Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,360",
+				"to": "00:03:04,160"
+			},
+			"offsets": {
+				"from": 179360,
+				"to": 184160
+			},
+			"text": " network is that we have a new class of nodes called the validators. They are quite similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,160",
+				"to": "00:03:11,560"
+			},
+			"offsets": {
+				"from": 184160,
+				"to": 191560
+			},
+			"text": " to norming nodes in that sense that they are interested in the data that belongs to a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,560",
+				"to": "00:03:17,960"
+			},
+			"offsets": {
+				"from": 191560,
+				"to": 197960
+			},
+			"text": " shard. But in addition to that, what's different to them is that they only care about the recent"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,960",
+				"to": "00:03:23,680"
+			},
+			"offsets": {
+				"from": 197960,
+				"to": 203680
+			},
+			"text": " history so they don't download like the whole chain up until genesis but only the recent"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,680",
+				"to": "00:03:31,520"
+			},
+			"offsets": {
+				"from": 203680,
+				"to": 211520
+			},
+			"text": " history. Another thing that's different is that they switch regularly between shards"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,520",
+				"to": "00:03:38,520"
+			},
+			"offsets": {
+				"from": 211520,
+				"to": 218520
+			},
+			"text": " so they basically get assigned to a new shard which they are supposed to validate randomly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,520",
+				"to": "00:03:45,680"
+			},
+			"offsets": {
+				"from": 218520,
+				"to": 225680
+			},
+			"text": " And third thing that's different is that they want not that the rest of the network knows"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,680",
+				"to": "00:03:52,680"
+			},
+			"offsets": {
+				"from": 225680,
+				"to": 232680
+			},
+			"text": " that they are validator or which validator they are because they stake some ether and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,680",
+				"to": "00:03:56,800"
+			},
+			"offsets": {
+				"from": 232680,
+				"to": 236800
+			},
+			"text": " so they want to have extra protection and if people would know that they are validated"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,800",
+				"to": "00:04:06,840"
+			},
+			"offsets": {
+				"from": 236800,
+				"to": 246840
+			},
+			"text": " they might get an attack. Now that's basically all the changes we have. Now we need to think"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,840",
+				"to": "00:04:11,640"
+			},
+			"offsets": {
+				"from": 246840,
+				"to": 251640
+			},
+			"text": " about what protocols we have. Basically there are three functionalities and the first one"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,640",
+				"to": "00:04:18,480"
+			},
+			"offsets": {
+				"from": 251640,
+				"to": 258480
+			},
+			"text": " is we need a way to find suitable peers. And that's done by a discovery protocol. The second"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,480",
+				"to": "00:04:24,920"
+			},
+			"offsets": {
+				"from": 258480,
+				"to": 264920
+			},
+			"text": " thing we need to do is to distribute data and we do this using a gossip protocol and finally"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,920",
+				"to": "00:04:31,920"
+			},
+			"offsets": {
+				"from": 264920,
+				"to": 271920
+			},
+			"text": " for new nodes that join the network or validators that are assigned to a new network, a new shard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,920",
+				"to": "00:04:39,080"
+			},
+			"offsets": {
+				"from": 271920,
+				"to": 279080
+			},
+			"text": " then need a way to synchronize the chain or the history of the chain using RPC calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,080",
+				"to": "00:04:45,040"
+			},
+			"offsets": {
+				"from": 279080,
+				"to": 285040
+			},
+			"text": " I will not talk about the last thing because that's basically no difference to how Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,040",
+				"to": "00:04:50,800"
+			},
+			"offsets": {
+				"from": 285040,
+				"to": 290800
+			},
+			"text": " wondered or does it but they will focus on gossiping and the discovery protocol. So what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,800",
+				"to": "00:04:57,800"
+			},
+			"offsets": {
+				"from": 290800,
+				"to": 297800
+			},
+			"text": " gossiping is a very simple peer to peer protocol that's been used in a lot of projects including"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,800",
+				"to": "00:05:05,680"
+			},
+			"offsets": {
+				"from": 297800,
+				"to": 305680
+			},
+			"text": " Bitcoin and including Ethereum one ago. The idea is we have one node in the network that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,680",
+				"to": "00:05:12,680"
+			},
+			"offsets": {
+				"from": 305680,
+				"to": 312680
+			},
+			"text": " has produced some data and it wants to inform the rest of the network of that data. So what"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,680",
+				"to": "00:05:18,040"
+			},
+			"offsets": {
+				"from": 312680,
+				"to": 318040
+			},
+			"text": " they do is they pick a random peer and send this data to them and now we have two peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,040",
+				"to": "00:05:22,800"
+			},
+			"offsets": {
+				"from": 318040,
+				"to": 322800
+			},
+			"text": " that know the data and in the second round they basically do the same thing again. They"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,800",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 322800,
+				"to": 328000
+			},
+			"text": " pick randomly new peers and send the data to them. They do this a couple of times and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 335000
+			},
+			"text": " after a few rounds the whole network knows the data and that's a very simple and yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:41,280"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 341280
+			},
+			"text": " aesthetic protocol that's also very efficient and this process is also very fast and safe"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,280",
+				"to": "00:05:48,280"
+			},
+			"offsets": {
+				"from": 341280,
+				"to": 348280
+			},
+			"text": " in case of network failures. We want to apply this in two different settings gossiping once"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,280",
+				"to": "00:05:56,480"
+			},
+			"offsets": {
+				"from": 348280,
+				"to": 356480
+			},
+			"text": " in the chart networks and once in the beacon network the difference between these two settings"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,480",
+				"to": "00:06:02,200"
+			},
+			"offsets": {
+				"from": 356480,
+				"to": 362200
+			},
+			"text": " is that in the chart networks we only have few nodes because they distribute themselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,200",
+				"to": "00:06:09,200"
+			},
+			"offsets": {
+				"from": 362200,
+				"to": 369200
+			},
+			"text": " over the whole set of nodes distributed themselves over the different shots but we have comparatively"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,560",
+				"to": "00:06:14,720"
+			},
+			"offsets": {
+				"from": 369560,
+				"to": 374720
+			},
+			"text": " high throughput so a lot of data is transmitted there and in the beacon network we have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,720",
+				"to": "00:06:21,720"
+			},
+			"offsets": {
+				"from": 374720,
+				"to": 381720
+			},
+			"text": " lot of nodes because all of the nodes in the network participate here but it's much less"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,720",
+				"to": "00:06:28,960"
+			},
+			"offsets": {
+				"from": 381720,
+				"to": 388960
+			},
+			"text": " data. So we did some simulations to basically answer two questions. The first one is can"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,960",
+				"to": "00:06:37,240"
+			},
+			"offsets": {
+				"from": 388960,
+				"to": 397240
+			},
+			"text": " the network handle is handle the numbers we have or the settings we have and how fast"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,440",
+				"to": "00:06:42,840"
+			},
+			"offsets": {
+				"from": 397440,
+				"to": 402840
+			},
+			"text": " does it is the propagation how much time does it take to propagate data and to do this we"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,840",
+				"to": "00:06:48,320"
+			},
+			"offsets": {
+				"from": 402840,
+				"to": 408320
+			},
+			"text": " implemented we needed an implementation and we use gossip sub that's been designed by"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,320",
+				"to": "00:06:54,840"
+			},
+			"offsets": {
+				"from": 408320,
+				"to": 414840
+			},
+			"text": " lipidopy and which will be probably or most likely will use in the end and we implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,840",
+				"to": "00:07:00,600"
+			},
+			"offsets": {
+				"from": 414840,
+				"to": 420600
+			},
+			"text": " that and then another thing we need if we do simulations we need to make sure that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,600",
+				"to": "00:07:07,600"
+			},
+			"offsets": {
+				"from": 420600,
+				"to": 427600
+			},
+			"text": " can represent reality in some sense and in particular we need to know what the connections"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,600",
+				"to": "00:07:13,760"
+			},
+			"offsets": {
+				"from": 427600,
+				"to": 433760
+			},
+			"text": " of that the nodes have which each other what bandwidth they have and unfortunately there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,760",
+				"to": "00:07:20,040"
+			},
+			"offsets": {
+				"from": 433760,
+				"to": 440040
+			},
+			"text": " a scientific paper that has measured this and we just picked those numbers from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,040",
+				"to": "00:07:27,040"
+			},
+			"offsets": {
+				"from": 440040,
+				"to": 447040
+			},
+			"text": " currently theorem network. And here's what we got we basically looked at and how much"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,160",
+				"to": "00:07:35,160"
+			},
+			"offsets": {
+				"from": 448160,
+				"to": 455160
+			},
+			"text": " time it takes to the propagation of a message through the network over time. So at the beginning"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,160",
+				"to": "00:07:39,760"
+			},
+			"offsets": {
+				"from": 455160,
+				"to": 459760
+			},
+			"text": " time zero no one knows the network no one knows the message the network the message"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,760",
+				"to": "00:07:44,200"
+			},
+			"offsets": {
+				"from": 459760,
+				"to": 464200
+			},
+			"text": " is created at time zero and then it starts to be transmitted or propagates through the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,200",
+				"to": "00:07:49,160"
+			},
+			"offsets": {
+				"from": 464200,
+				"to": 469160
+			},
+			"text": " network and at some point it reaches one meaning that the whole network has seen the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,160",
+				"to": "00:07:54,680"
+			},
+			"offsets": {
+				"from": 469160,
+				"to": 474680
+			},
+			"text": " message and we did this for a couple of block sizes one thing I forgot this is for a shot"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,680",
+				"to": "00:08:01,680"
+			},
+			"offsets": {
+				"from": 474680,
+				"to": 481680
+			},
+			"text": " so for a single shot network where we have maybe a thousand nodes. And the numbers we"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,680",
+				"to": "00:08:07,120"
+			},
+			"offsets": {
+				"from": 481680,
+				"to": 487120
+			},
+			"text": " get here is so first the first thing we see is that it works so it's not like it takes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,120",
+				"to": "00:08:14,120"
+			},
+			"offsets": {
+				"from": 487120,
+				"to": 494120
+			},
+			"text": " forever or it does never reaches one messages are always transmitted and the larger the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,120",
+				"to": "00:08:18,360"
+			},
+			"offsets": {
+				"from": 494120,
+				"to": 498360
+			},
+			"text": " size of course the longer it takes but for small block size of one hundred kilobytes maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,360",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 498360,
+				"to": 504000
+			},
+			"text": " it takes two seconds and for larger ones it gets longer and longer but even one megabyte"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 511000
+			},
+			"text": " is still eight seconds. Now another thing we should look at is what bandwidth is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:38,480"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 518480
+			},
+			"text": " used and we see here this is a histogram of all the nodes and how much data how much"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,480",
+				"to": "00:08:46,240"
+			},
+			"offsets": {
+				"from": 518480,
+				"to": 526240
+			},
+			"text": " of what fraction of their bandwidth they use we see that most most nodes use about 20%"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,240",
+				"to": "00:08:52,640"
+			},
+			"offsets": {
+				"from": 526240,
+				"to": 532640
+			},
+			"text": " of the bandwidth and some a little bit more but no nodes use more than 60% of the bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,640",
+				"to": "00:08:58,680"
+			},
+			"offsets": {
+				"from": 532640,
+				"to": 538680
+			},
+			"text": " This is important because it tells us basically two things the first one is that we're not"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,680",
+				"to": "00:09:05,680"
+			},
+			"offsets": {
+				"from": 538680,
+				"to": 545680
+			},
+			"text": " operating at capacity even at large block sizes so if there were nodes that use 100%"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,680",
+				"to": "00:09:10,800"
+			},
+			"offsets": {
+				"from": 545680,
+				"to": 550800
+			},
+			"text": " of the bandwidth we would be we could be pretty sure that they will not keep up in the long"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,800",
+				"to": "00:09:16,040"
+			},
+			"offsets": {
+				"from": 550800,
+				"to": 556040
+			},
+			"text": " run and this is not what's happening. The second thing is we see that there's a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,040",
+				"to": "00:09:21,240"
+			},
+			"offsets": {
+				"from": 556040,
+				"to": 561240
+			},
+			"text": " of bandwidth available if we get new nodes that join the network and download new data"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,240",
+				"to": "00:09:27,200"
+			},
+			"offsets": {
+				"from": 561240,
+				"to": 567200
+			},
+			"text": " and sharps the download the data because this only simulates the propagation of data that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,200",
+				"to": "00:09:34,200"
+			},
+			"offsets": {
+				"from": 567200,
+				"to": 574200
+			},
+			"text": " created newly and not synchronisation of chains and so on. So that's good and now we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,200",
+				"to": "00:09:41,480"
+			},
+			"offsets": {
+				"from": 574200,
+				"to": 581480
+			},
+			"text": " looked at the beacon network where we have a lot more nodes I simulated here 100,000 nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,480",
+				"to": "00:09:47,480"
+			},
+			"offsets": {
+				"from": 581480,
+				"to": 587480
+			},
+			"text": " and we see the same thing basically at time zero a block is created and it propagates"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,480",
+				"to": "00:09:52,440"
+			},
+			"offsets": {
+				"from": 587480,
+				"to": 592440
+			},
+			"text": " to the network and at some point it reaches all the nodes block sizes are smaller here"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,440",
+				"to": "00:09:59,440"
+			},
+			"offsets": {
+				"from": 592440,
+				"to": 599440
+			},
+			"text": " 64 kilobytes to 512 kilobytes we will see how large they will be in the end and here"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,440",
+				"to": "00:10:04,600"
+			},
+			"offsets": {
+				"from": 599440,
+				"to": 604600
+			},
+			"text": " even though the network is much larger we still get propagation times of a couple of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,600",
+				"to": "00:10:11,600"
+			},
+			"offsets": {
+				"from": 604600,
+				"to": 611600
+			},
+			"text": " seconds. So this seems to work very well and we are happy with that. Key discovery that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,520",
+				"to": "00:10:19,480"
+			},
+			"offsets": {
+				"from": 613520,
+				"to": 619480
+			},
+			"text": " more complicated and the job of peer discovery is to find peers in the beacon network and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,480",
+				"to": "00:10:24,760"
+			},
+			"offsets": {
+				"from": 619480,
+				"to": 624760
+			},
+			"text": " also to find peers in a specific chart and this is the challenging or one of the challenging"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,760",
+				"to": "00:10:29,160"
+			},
+			"offsets": {
+				"from": 624760,
+				"to": 629160
+			},
+			"text": " points here because there are a lot of charts and if you just pick a random node in the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,160",
+				"to": "00:10:33,600"
+			},
+			"offsets": {
+				"from": 629160,
+				"to": 633600
+			},
+			"text": " you need to pick a lot of them to find one that's suitable to you. So we would like to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,600",
+				"to": "00:10:39,200"
+			},
+			"offsets": {
+				"from": 633600,
+				"to": 639200
+			},
+			"text": " have a way that's more efficient than that. We also need this also should be very fast"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,200",
+				"to": "00:10:45,680"
+			},
+			"offsets": {
+				"from": 639200,
+				"to": 645680
+			},
+			"text": " so that validators who are assigned to a new chart can start operating as quickly as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,680",
+				"to": "00:10:52,680"
+			},
+			"offsets": {
+				"from": 645680,
+				"to": 652680
+			},
+			"text": " so that the dead time is as short as possible and fourth requirement is that the validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,680",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 652680,
+				"to": 658000
+			},
+			"text": " as I said earlier they would like to be private and if it's easy to discover them using this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 665000
+			},
+			"text": " discovery protocol then yeah this is not good. We are considering a bunch of options here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 674000
+			},
+			"text": " Three seem to be viable. The first one is discovery version five. It has been designed by Felix"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:20,840"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 680840
+			},
+			"text": " from the Ethereum Foundation to be used in the existing Ethereum network but it actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,840",
+				"to": "00:11:25,360"
+			},
+			"offsets": {
+				"from": 680840,
+				"to": 685360
+			},
+			"text": " has some nice properties meaning that we could maybe use it for us as well and it looks very"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,360",
+				"to": "00:11:30,640"
+			},
+			"offsets": {
+				"from": 685360,
+				"to": 690640
+			},
+			"text": " promising I think. Second one is a simple variation of cadmolia and the third one is to simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,640",
+				"to": "00:11:37,640"
+			},
+			"offsets": {
+				"from": 690640,
+				"to": 697640
+			},
+			"text": " use a global gossiping channel to propagate the charts we heard the yeah the chart preferences"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,640",
+				"to": "00:11:45,960"
+			},
+			"offsets": {
+				"from": 697640,
+				"to": 705960
+			},
+			"text": " in some sense which seems kind of boot forth but it might actually be viable. But we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,960",
+				"to": "00:11:53,560"
+			},
+			"offsets": {
+				"from": 705960,
+				"to": 713560
+			},
+			"text": " still not finished with that we're still evaluating yeah but that's it from my side and now Kevin"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,600",
+				"to": "00:12:01,600"
+			},
+			"offsets": {
+				"from": 714600,
+				"to": 721600
+			},
+			"text": " will talk about implementation. Hello everyone I'm Kevin and I'm going to introduce the P2V"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,600",
+				"to": "00:12:17,880"
+			},
+			"offsets": {
+				"from": 721600,
+				"to": 737880
+			},
+			"text": " implementation status on our site. So this project is named Charting P2PPC and it is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,600",
+				"to": "00:12:27,600"
+			},
+			"offsets": {
+				"from": 740600,
+				"to": 747600
+			},
+			"text": " proof of concept of the current design for Ethereum 2.0 P2P layer and we implemented using"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,600",
+				"to": "00:12:34,720"
+			},
+			"offsets": {
+				"from": 747600,
+				"to": 754720
+			},
+			"text": " the P2P. So what is the P2P? It is a library that has many useful peer-to-peer networking"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,720",
+				"to": "00:12:43,520"
+			},
+			"offsets": {
+				"from": 754720,
+				"to": 763520
+			},
+			"text": " components so you can choose the components you want or you need to build your own peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,520",
+				"to": "00:12:50,520"
+			},
+			"offsets": {
+				"from": 763520,
+				"to": 770520
+			},
+			"text": " applications and currently we're using the TCP components and the cadmolia DHT and PopsUp."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,520",
+				"to": "00:13:01,360"
+			},
+			"offsets": {
+				"from": 770520,
+				"to": 781360
+			},
+			"text": " And the goal of our project is we want to see if our current design means the needs of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,360",
+				"to": "00:13:08,800"
+			},
+			"offsets": {
+				"from": 781360,
+				"to": 788800
+			},
+			"text": " Ethereum 2.0 and we also want to see if they would be faced our needs and it can also serve"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,040",
+				"to": "00:13:17,040"
+			},
+			"offsets": {
+				"from": 790040,
+				"to": 797040
+			},
+			"text": " us a temporary layer for Ethereum 2.0 Python implementation until the Python little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,040",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 797040,
+				"to": 805000
+			},
+			"text": " of implementation is ready. So the requirement for our networking layer for Ethereum 2.0"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:35,880"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 815880
+			},
+			"text": " the clients should be able to subscribe one or more shards. So in this graph the client"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,880",
+				"to": "00:13:42,880"
+			},
+			"offsets": {
+				"from": 815880,
+				"to": 822880
+			},
+			"text": " should subscribe to two shards, one is black and one is red. And the client should only"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,880",
+				"to": "00:13:50,520"
+			},
+			"offsets": {
+				"from": 822880,
+				"to": 830520
+			},
+			"text": " receive the data from the shards it has subscribed. So in this case the client should only receive"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,520",
+				"to": "00:13:57,360"
+			},
+			"offsets": {
+				"from": 830520,
+				"to": 837360
+			},
+			"text": " the plug in the back and red instead of the blue one. And the time to subscribe to a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,360",
+				"to": "00:14:03,800"
+			},
+			"offsets": {
+				"from": 837360,
+				"to": 843800
+			},
+			"text": " shire should be short which means a node should be able to find the sharp peers in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,800",
+				"to": "00:14:10,800"
+			},
+			"offsets": {
+				"from": 843800,
+				"to": 850800
+			},
+			"text": " short time. So the design currently we map the shards to topics in PopsUp. So the concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,800",
+				"to": "00:14:21,160"
+			},
+			"offsets": {
+				"from": 850800,
+				"to": 861160
+			},
+			"text": " of PopsUp is subscribers subscribe to some topics and they should only receive the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,160",
+				"to": "00:14:28,160"
+			},
+			"offsets": {
+				"from": 861160,
+				"to": 868160
+			},
+			"text": " published to those topics. In this way each topic forms a separate channel so we can segregate"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,680",
+				"to": "00:14:35,680"
+			},
+			"offsets": {
+				"from": 868680,
+				"to": 875680
+			},
+			"text": " the shards with the topics. And about discovery we use Boonos for new nodes to join the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,680",
+				"to": "00:14:45,680"
+			},
+			"offsets": {
+				"from": 875680,
+				"to": 885680
+			},
+			"text": " and to find the initial peers and we use Qdemneab.dHD and we for to discover the sharp peers our"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,680",
+				"to": "00:14:56,160"
+			},
+			"offsets": {
+				"from": 885680,
+				"to": 896160
+			},
+			"text": " core approach is we have a global topic for nodes to broadcast the shards they are currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,160",
+				"to": "00:15:03,160"
+			},
+			"offsets": {
+				"from": 896160,
+				"to": 903160
+			},
+			"text": " subscribing. So if a node wants to find a peer in a specific shire it can do it through"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,160",
+				"to": "00:15:13,760"
+			},
+			"offsets": {
+				"from": 903160,
+				"to": 913760
+			},
+			"text": " subscribing the topic and we are still exploring other options. And each node provides the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,760",
+				"to": "00:15:21,280"
+			},
+			"offsets": {
+				"from": 913760,
+				"to": 921280
+			},
+			"text": " RPC for other nodes to request for data. So currently we support the request collision."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,280",
+				"to": "00:15:28,280"
+			},
+			"offsets": {
+				"from": 921280,
+				"to": 928280
+			},
+			"text": " Collation is the block in the shire. And we are going to change to use the PtoB daemon."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,280",
+				"to": "00:15:37,120"
+			},
+			"offsets": {
+				"from": 928280,
+				"to": 937120
+			},
+			"text": " So what is the PtoB daemon? It is capable of supporting the PtoB across languages and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,120",
+				"to": "00:15:45,280"
+			},
+			"offsets": {
+				"from": 937120,
+				"to": 945280
+			},
+			"text": " if you want to use it you need to implement the bindings. So as you can see in this graph"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,280",
+				"to": "00:15:52,280"
+			},
+			"offsets": {
+				"from": 945280,
+				"to": 952280
+			},
+			"text": " the left hand side is the PtoB daemon and it is the standalone process and it handles"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,280",
+				"to": "00:15:59,280"
+			},
+			"offsets": {
+				"from": 952280,
+				"to": 959280
+			},
+			"text": " the PtoB components and you can control the daemon through the UNIX domain socket. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,280",
+				"to": "00:16:09,280"
+			},
+			"offsets": {
+				"from": 959280,
+				"to": 969280
+			},
+			"text": " currently it supports multiple methods. So the item identify you can get a peer ID from"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,160",
+				"to": "00:16:16,920"
+			},
+			"offsets": {
+				"from": 970160,
+				"to": 976920
+			},
+			"text": " the daemon and you can connect to other peers and you can open strings to other peers and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,920",
+				"to": "00:16:23,680"
+			},
+			"offsets": {
+				"from": 976920,
+				"to": 983680
+			},
+			"text": " you can set up, you can register a function to handle the incoming strings and the DHT"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,680",
+				"to": "00:16:30,680"
+			},
+			"offsets": {
+				"from": 983680,
+				"to": 990680
+			},
+			"text": " operations and the Popsop is still under waste. And this graph shows how we will change our"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,320",
+				"to": "00:16:42,720"
+			},
+			"offsets": {
+				"from": 994320,
+				"to": 1002720
+			},
+			"text": " structure. So in this graph the blue one means the part we need to implement and the left"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,720",
+				"to": "00:16:48,680"
+			},
+			"offsets": {
+				"from": 1002720,
+				"to": 1008680
+			},
+			"text": " hand side is still the goal and right hand side is Python. So currently we implement our"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,680",
+				"to": "00:16:55,680"
+			},
+			"offsets": {
+				"from": 1008680,
+				"to": 1015680
+			},
+			"text": " logic for both in goal and Python and we handle the communication through G RPC. We are changing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,040",
+				"to": "00:17:05,040"
+			},
+			"offsets": {
+				"from": 1018040,
+				"to": 1025040
+			},
+			"text": " to use the PtoB daemon and in this way we can move off our logic to Python side and we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,040",
+				"to": "00:17:12,760"
+			},
+			"offsets": {
+				"from": 1025040,
+				"to": 1032760
+			},
+			"text": " to implement the Python bindings. And after PtoB is ready we can use it directly. So all"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,760",
+				"to": "00:17:21,720"
+			},
+			"offsets": {
+				"from": 1032760,
+				"to": 1041720
+			},
+			"text": " of the logic will be off, often will be in Python side. And about the implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,720",
+				"to": "00:17:28,120"
+			},
+			"offsets": {
+				"from": 1041720,
+				"to": 1048120
+			},
+			"text": " status. So we have finished the essential functionalities. So including the joining,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,120",
+				"to": "00:17:35,120"
+			},
+			"offsets": {
+				"from": 1048120,
+				"to": 1055120
+			},
+			"text": " subscribing to the shards and broadcast data to the shards and request messages. And we"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,120",
+				"to": "00:17:41,720"
+			},
+			"offsets": {
+				"from": 1055120,
+				"to": 1061720
+			},
+			"text": " have a goal topic for discovery and content validations and we have a tracing for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,720",
+				"to": "00:17:48,720"
+			},
+			"offsets": {
+				"from": 1061720,
+				"to": 1068720
+			},
+			"text": " testing. And we have the bindings of our code for Python. And what's in progress? So the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,320",
+				"to": "00:17:58,320"
+			},
+			"offsets": {
+				"from": 1071320,
+				"to": 1078320
+			},
+			"text": " white block team, they are supporting us to do the testing with network emulation. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,320",
+				"to": "00:18:08,600"
+			},
+			"offsets": {
+				"from": 1078320,
+				"to": 1088600
+			},
+			"text": " we are still doing our own deployment and testing for our testing. And we are also implementing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,600",
+				"to": "00:18:17,800"
+			},
+			"offsets": {
+				"from": 1088600,
+				"to": 1097800
+			},
+			"text": " the Python and PtoB daemon bindings. And we still have to finish the peer management"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,480",
+				"to": "00:18:25,480"
+			},
+			"offsets": {
+				"from": 1098480,
+				"to": 1105480
+			},
+			"text": " and reputation mechanism and do the further optimization for the over day. And we currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,480",
+				"to": "00:18:34,440"
+			},
+			"offsets": {
+				"from": 1105480,
+				"to": 1114440
+			},
+			"text": " have corporations with the original PtoB designers and we got a lot of advice from them. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,440",
+				"to": "00:18:42,240"
+			},
+			"offsets": {
+				"from": 1114440,
+				"to": 1122240
+			},
+			"text": " proko labs, they support us on the PtoB and Popsop. White block helps us to do the testing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,320",
+				"to": "00:18:51,320"
+			},
+			"offsets": {
+				"from": 1124320,
+				"to": 1131320
+			},
+			"text": " things. And that's it. So I want to give credits to Felix and Anton from F. They gave us a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,320",
+				"to": "00:19:04,080"
+			},
+			"offsets": {
+				"from": 1131320,
+				"to": 1144080
+			},
+			"text": " lot of instructions and the great word from my colleagues. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,080",
+				"to": "00:19:15,080"
+			},
+			"offsets": {
+				"from": 1148080,
+				"to": 1155080
+			},
+			"text": " >> If anybody in the audience has any questions, well there's one right now. >> Was the propagation"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,080",
+				"to": "00:19:20,240"
+			},
+			"offsets": {
+				"from": 1155080,
+				"to": 1160240
+			},
+			"text": " data you showed and bandwidth utilization on testing on a local network or global network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,240",
+				"to": "00:19:26,240"
+			},
+			"offsets": {
+				"from": 1160240,
+				"to": 1166240
+			},
+			"text": " >> Neither. So it was a simulation. It was running all on one machine but we simulated"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,240",
+				"to": "00:19:31,640"
+			},
+			"offsets": {
+				"from": 1166240,
+				"to": 1171640
+			},
+			"text": " the latency and the bandwidth between these nodes. >> Based on a global network latency?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,640",
+				"to": "00:19:36,640"
+			},
+			"offsets": {
+				"from": 1171640,
+				"to": 1176640
+			},
+			"text": " >> Yes. >> Hi. My question is, I know there's the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,640",
+				"to": "00:19:43,640"
+			},
+			"offsets": {
+				"from": 1176640,
+				"to": 1183640
+			},
+			"text": " depth PtoP implementation and now there's 2.0. My question is, if the previous implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,640",
+				"to": "00:19:49,760"
+			},
+			"offsets": {
+				"from": 1183640,
+				"to": 1189760
+			},
+			"text": " is kind of going to, everything is going to be switched into LIPP2P or there's going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,760",
+				"to": "00:19:56,760"
+			},
+			"offsets": {
+				"from": 1189760,
+				"to": 1196760
+			},
+			"text": " be different areas there. So in the depth PtoP right now there's no LIPP2P implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,760",
+				"to": "00:20:01,200"
+			},
+			"offsets": {
+				"from": 1196760,
+				"to": 1201200
+			},
+			"text": " There's cadmalia for discovery, et cetera, et cetera, et cetera. But in this version"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,200",
+				"to": "00:20:08,200"
+			},
+			"offsets": {
+				"from": 1201200,
+				"to": 1208200
+			},
+			"text": " you're showing that LIPP2P is kind of everywhere. >> Yes. So our current plan is to use just"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,200",
+				"to": "00:20:13,720"
+			},
+			"offsets": {
+				"from": 1208200,
+				"to": 1213720
+			},
+			"text": " use LIPP2P and not use the Fp2P for the serenity stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,720",
+				"to": "00:20:16,880"
+			},
+			"offsets": {
+				"from": 1213720,
+				"to": 1216880
+			},
+			"text": " >> And you're going for the goal implementation in LIPP2P?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,880",
+				"to": "00:20:23,880"
+			},
+			"offsets": {
+				"from": 1216880,
+				"to": 1223880
+			},
+			"text": " >> Currently, yeah. But we have a grant for the Python LIPP2P implementation. So after"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,880",
+				"to": "00:20:29,840"
+			},
+			"offsets": {
+				"from": 1223880,
+				"to": 1229840
+			},
+			"text": " it is ready, because we implement in Python, so after it is ready we can change it to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,840",
+				"to": "00:20:30,840"
+			},
+			"offsets": {
+				"from": 1229840,
+				"to": 1230840
+			},
+			"text": " that. So other --"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,840",
+				"to": "00:20:35,040"
+			},
+			"offsets": {
+				"from": 1230840,
+				"to": 1235040
+			},
+			"text": " >> And this is why you also have the Unix, the demo, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,040",
+				"to": "00:20:40,840"
+			},
+			"offsets": {
+				"from": 1235040,
+				"to": 1240840
+			},
+			"text": " >> Yeah. The demo is to solve this problem. So you can come for different languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,840",
+				"to": "00:20:47,840"
+			},
+			"offsets": {
+				"from": 1240840,
+				"to": 1247840
+			},
+			"text": " They can use the demo and without the actual LIPP2P is implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,840",
+				"to": "00:20:50,680"
+			},
+			"offsets": {
+				"from": 1247840,
+				"to": 1250680
+			},
+			"text": " >> Thank you. >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,680",
+				"to": "00:20:57,680"
+			},
+			"offsets": {
+				"from": 1250680,
+				"to": 1257680
+			},
+			"text": " >> Are there any more questions from the audience? Are there any comments from the audience?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,680",
+				"to": "00:21:02,680"
+			},
+			"offsets": {
+				"from": 1257680,
+				"to": 1262680
+			},
+			"text": " They like it. >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,680",
+				"to": "00:21:06,560"
+			},
+			"offsets": {
+				"from": 1262680,
+				"to": 1266560
+			},
+			"text": " >> All right. Great. That's it. Round of applause."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,560",
+				"to": "00:21:07,880"
+			},
+			"offsets": {
+				"from": 1266560,
+				"to": 1267880
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,880",
+				"to": "00:21:08,880"
+			},
+			"offsets": {
+				"from": 1267880,
+				"to": 1268880
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,880",
+				"to": "00:21:09,880"
+			},
+			"offsets": {
+				"from": 1268880,
+				"to": 1269880
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,880",
+				"to": "00:21:11,880"
+			},
+			"offsets": {
+				"from": 1269880,
+				"to": 1271880
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,880",
+				"to": "00:21:12,880"
+			},
+			"offsets": {
+				"from": 1271880,
+				"to": 1272880
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,880",
+				"to": "00:21:13,880"
+			},
+			"offsets": {
+				"from": 1272880,
+				"to": 1273880
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,880",
+				"to": "00:21:14,880"
+			},
+			"offsets": {
+				"from": 1273880,
+				"to": 1274880
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,880",
+				"to": "00:21:21,880"
+			},
+			"offsets": {
+				"from": 1274880,
+				"to": 1281880
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,880",
+				"to": "00:21:28,880"
+			},
+			"offsets": {
+				"from": 1281880,
+				"to": 1288880
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,880",
+				"to": "00:21:35,880"
+			},
+			"offsets": {
+				"from": 1288880,
+				"to": 1295880
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,880",
+				"to": "00:22:04,880"
+			},
+			"offsets": {
+				"from": 1295880,
+				"to": 1324880
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

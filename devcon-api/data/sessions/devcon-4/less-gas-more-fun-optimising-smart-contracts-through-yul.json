@@ -1,0 +1,24 @@
+{
+  "id": "less-gas-more-fun-optimising-smart-contracts-through-yul",
+  "sourceId": "less-gas-more-fun-optimising-smart-contracts-through-yul",
+  "eventId": "devcon-4",
+  "title": "Less Gas, More Fun: Optimising Smart Contracts through Yul",
+  "description": "Due to the relative simplicity of the Ethereum Virtual Machine, it is possible to perform heavy analyses in order to optimize bytecode. The jump operations are a main obstacle for this, because they might require a preservation of all basic blocks in the worst case. To overcome this, Solidity's new optimizer operates on an intermediate language called Yul, which is close to EVM bytecode (and also wasm) but abstracts jump operations through real function calls. Each of the many optimizing operations are simple local equivalence transforms whose effects can be inspected at any time and which in combination should be both more reliable and efficient than the classic optimizer.",
+  "track": "Layer 2s",
+  "type": "Talk",
+  "expertise": "Expert",
+  "tags": [
+    "Layer 2s",
+    "gas",
+    "gwei",
+    "fees"
+  ],
+  "speakers": [
+    "christian-reitwiessner"
+  ],
+  "sources_youtubeId": "VH4MgZDyZJU",
+  "sources_ipfsHash": "QmcpGRbhEN1TqMJZNQo5B3Ad5uaq3TKUc5QtVpNXJ7ignK",
+  "sources_swarmHash": "dfa9bbd81b0d377f9be134978b6e639e9748c89c43976cc70950adf9c0ea36a1",
+  "duration": 1522,
+  "language": "en"
+}

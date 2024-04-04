@@ -1,0 +1,3244 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,400"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6400
+			},
+			"text": " >> My name is Nick Johnson."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,400",
+				"to": "00:00:09,840"
+			},
+			"offsets": {
+				"from": 6400,
+				"to": 9840
+			},
+			"text": " I'm the lead developer for the Ethereum name service."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,840",
+				"to": "00:00:12,640"
+			},
+			"offsets": {
+				"from": 9840,
+				"to": 12640
+			},
+			"text": " And I'm here today to give you -- thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,640",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 12640,
+				"to": 17000
+			},
+			"text": " Here's a day to give you an update on what we've done in the last year and what we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,960"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18960
+			},
+			"text": " up to now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,960",
+				"to": "00:00:23,960"
+			},
+			"offsets": {
+				"from": 18960,
+				"to": 23960
+			},
+			"text": " So first for the few of you in the hall who may not already be intimately familiar with"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,960",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 23960,
+				"to": 26000
+			},
+			"text": " the Ethereum name service, what is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,640"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31640
+			},
+			"text": " The ENS is a naming system that solves what we call Zuko's triangle."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,640",
+				"to": "00:00:36,280"
+			},
+			"offsets": {
+				"from": 31640,
+				"to": 36280
+			},
+			"text": " It's a trilemma that says no naming service can be human meaningful, decentralized and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,280",
+				"to": "00:00:38,120"
+			},
+			"offsets": {
+				"from": 36280,
+				"to": 38120
+			},
+			"text": " secure all at once."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,120",
+				"to": "00:00:40,880"
+			},
+			"offsets": {
+				"from": 38120,
+				"to": 40880
+			},
+			"text": " And for a long time people believe that was probably true."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,880",
+				"to": "00:00:44,800"
+			},
+			"offsets": {
+				"from": 40880,
+				"to": 44800
+			},
+			"text": " The advent of consensus systems with blockchains has made that untrue."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,800",
+				"to": "00:00:50,520"
+			},
+			"offsets": {
+				"from": 44800,
+				"to": 50520
+			},
+			"text": " And following a name points footsteps, we've been able to launch ENS which satisfies all"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,520",
+				"to": "00:00:52,760"
+			},
+			"offsets": {
+				"from": 50520,
+				"to": 52760
+			},
+			"text": " three of those properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,760",
+				"to": "00:00:55,920"
+			},
+			"offsets": {
+				"from": 52760,
+				"to": 55920
+			},
+			"text": " And so ENS is the Ethereum name service."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,920",
+				"to": "00:00:57,920"
+			},
+			"offsets": {
+				"from": 55920,
+				"to": 57920
+			},
+			"text": " It's a naming service built on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,920",
+				"to": "00:01:00,040"
+			},
+			"offsets": {
+				"from": 57920,
+				"to": 60040
+			},
+			"text": " But that doesn't mean it's just for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,040",
+				"to": "00:01:02,200"
+			},
+			"offsets": {
+				"from": 60040,
+				"to": 62200
+			},
+			"text": " It's not for naming just Ethereum resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,200",
+				"to": "00:01:05,640"
+			},
+			"offsets": {
+				"from": 62200,
+				"to": 65640
+			},
+			"text": " You can use it to name IPFS content, swarm content."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,640",
+				"to": "00:01:07,640"
+			},
+			"offsets": {
+				"from": 65640,
+				"to": 67640
+			},
+			"text": " You can use it to insert text records."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,640",
+				"to": "00:01:11,880"
+			},
+			"offsets": {
+				"from": 67640,
+				"to": 71880
+			},
+			"text": " You can use it to point to onion sites as I'll show you later."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,880",
+				"to": "00:01:16,120"
+			},
+			"offsets": {
+				"from": 71880,
+				"to": 76120
+			},
+			"text": " So we really want it to be a new naming service for the internet that satisfies all three"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,120",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 76120,
+				"to": 79000
+			},
+			"text": " of those important properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:23,400"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 83400
+			},
+			"text": " So today I'm going to talk about what we've done in the last year, how things have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,400",
+				"to": "00:01:24,400"
+			},
+			"offsets": {
+				"from": 83400,
+				"to": 84400
+			},
+			"text": " going."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,400",
+				"to": "00:01:28,040"
+			},
+			"offsets": {
+				"from": 84400,
+				"to": 88040
+			},
+			"text": " I'm going to talk about our migration process to the permanent registrar."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,040",
+				"to": "00:01:33,480"
+			},
+			"offsets": {
+				"from": 88040,
+				"to": 93480
+			},
+			"text": " I'm going to talk about the short name auction process which is underway currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,480",
+				"to": "00:01:37,520"
+			},
+			"offsets": {
+				"from": 93480,
+				"to": 97520
+			},
+			"text": " Then about DNS namespace integration which is how we're making it possible for you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,520",
+				"to": "00:01:41,480"
+			},
+			"offsets": {
+				"from": 97520,
+				"to": 101480
+			},
+			"text": " use your DNS names inside ENS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,480",
+				"to": "00:01:45,880"
+			},
+			"offsets": {
+				"from": 101480,
+				"to": 105880
+			},
+			"text": " Our IPFS and onion integrations and then a brief preview of the things we're working"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,880",
+				"to": "00:01:49,680"
+			},
+			"offsets": {
+				"from": 105880,
+				"to": 109680
+			},
+			"text": " on now and what we're looking forward to launching in the next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,680",
+				"to": "00:01:53,200"
+			},
+			"offsets": {
+				"from": 109680,
+				"to": 113200
+			},
+			"text": " So first of all, the last year at a glance."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,200",
+				"to": "00:01:58,280"
+			},
+			"offsets": {
+				"from": 113200,
+				"to": 118280
+			},
+			"text": " This is the number of names registered on the ENS, how it's evolved over the time since"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,280",
+				"to": "00:01:59,640"
+			},
+			"offsets": {
+				"from": 118280,
+				"to": 119640
+			},
+			"text": " I've launched."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,640",
+				"to": "00:02:03,800"
+			},
+			"offsets": {
+				"from": 119640,
+				"to": 123800
+			},
+			"text": " The top line there in the blue is the total number of names in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,800",
+				"to": "00:02:08,200"
+			},
+			"offsets": {
+				"from": 123800,
+				"to": 128200
+			},
+			"text": " The second line there in the red is the number of names with resolvers set and the third"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,200",
+				"to": "00:02:11,440"
+			},
+			"offsets": {
+				"from": 128200,
+				"to": 131440
+			},
+			"text": " line is the number of names that resolve to addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,440",
+				"to": "00:02:16,680"
+			},
+			"offsets": {
+				"from": 131440,
+				"to": 136680
+			},
+			"text": " So as you can see we've had steady growth in the nearly three years since we've launched."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,680",
+				"to": "00:02:18,800"
+			},
+			"offsets": {
+				"from": 136680,
+				"to": 138800
+			},
+			"text": " And let's drill down on that a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,800",
+				"to": "00:02:24,840"
+			},
+			"offsets": {
+				"from": 138800,
+				"to": 144840
+			},
+			"text": " October 2018, so this time last year, we had 224,000 names registered and this year that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,840",
+				"to": "00:02:26,880"
+			},
+			"offsets": {
+				"from": 144840,
+				"to": 146880
+			},
+			"text": " up to 310,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,880",
+				"to": "00:02:30,520"
+			},
+			"offsets": {
+				"from": 146880,
+				"to": 150520
+			},
+			"text": " But I think the other two figures are the more interesting ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,520",
+				"to": "00:02:32,880"
+			},
+			"offsets": {
+				"from": 150520,
+				"to": 152880
+			},
+			"text": " First of all, we've got the number of names with resolvers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,880",
+				"to": "00:02:35,400"
+			},
+			"offsets": {
+				"from": 152880,
+				"to": 155400
+			},
+			"text": " And so this is the first step in setting up your name."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,400",
+				"to": "00:02:39,800"
+			},
+			"offsets": {
+				"from": 155400,
+				"to": 159800
+			},
+			"text": " You first buy the name and then you set a resolver contract for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,800",
+				"to": "00:02:45,280"
+			},
+			"offsets": {
+				"from": 159800,
+				"to": 165280
+			},
+			"text": " And if you're buying the name just to speculate on it, to sell it to somebody later for more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,280",
+				"to": "00:02:46,560"
+			},
+			"offsets": {
+				"from": 165280,
+				"to": 166560
+			},
+			"text": " there's no reason you'd set this up."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,560",
+				"to": "00:02:52,520"
+			},
+			"offsets": {
+				"from": 166560,
+				"to": 172520
+			},
+			"text": " So this is a reasonably good metric for actual adoption and use for ENS in the wild."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,520",
+				"to": "00:02:57,560"
+			},
+			"offsets": {
+				"from": 172520,
+				"to": 177560
+			},
+			"text": " And so it's gone up from 28,000 this time last year to 60,000 now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,560",
+				"to": "00:03:01,360"
+			},
+			"offsets": {
+				"from": 177560,
+				"to": 181360
+			},
+			"text": " And it's not just an increase in absolute numbers, it's an increase in percentage from"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,360",
+				"to": "00:03:04,240"
+			},
+			"offsets": {
+				"from": 181360,
+				"to": 184240
+			},
+			"text": " 12 and a half percent all the way up to about 20%."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,240",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 184240,
+				"to": 187000
+			},
+			"text": " So we're really pleased with that and we want to keep monitoring this and we hope it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:08,520"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 188520
+			},
+			"text": " will continue to grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,520",
+				"to": "00:03:14,440"
+			},
+			"offsets": {
+				"from": 188520,
+				"to": 194440
+			},
+			"text": " Likewise, names, sorry, addresses aren't the only thing you can translate ENS names to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,440",
+				"to": "00:03:17,440"
+			},
+			"offsets": {
+				"from": 194440,
+				"to": 197440
+			},
+			"text": " but they're probably the most popular application at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,440",
+				"to": "00:03:21,760"
+			},
+			"offsets": {
+				"from": 197440,
+				"to": 201760
+			},
+			"text": " So we can monitor similarly the number of names of addresses and that's up from 8,500,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,760",
+				"to": "00:03:24,600"
+			},
+			"offsets": {
+				"from": 201760,
+				"to": 204600
+			},
+			"text": " a year ago to 12% today."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,600",
+				"to": "00:03:29,440"
+			},
+			"offsets": {
+				"from": 204600,
+				"to": 209440
+			},
+			"text": " So we're really encouraged to see that this growth in ENS isn't just more people speculating"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,440",
+				"to": "00:03:33,800"
+			},
+			"offsets": {
+				"from": 209440,
+				"to": 213800
+			},
+			"text": " on names, more people hoping to make a profit off reselling them, but it's more people"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,800",
+				"to": "00:03:37,400"
+			},
+			"offsets": {
+				"from": 213800,
+				"to": 217400
+			},
+			"text": " actually using them for their intended purpose."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,400",
+				"to": "00:03:41,280"
+			},
+			"offsets": {
+				"from": 217400,
+				"to": 221280
+			},
+			"text": " So next up I'm going to talk about a migration process."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,280",
+				"to": "00:03:45,920"
+			},
+			"offsets": {
+				"from": 221280,
+				"to": 225920
+			},
+			"text": " So on May the 4th we launched the new permanent registrar."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,920",
+				"to": "00:03:50,520"
+			},
+			"offsets": {
+				"from": 225920,
+				"to": 230520
+			},
+			"text": " That replaced the auction registrar which required a length the auction process in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,520",
+				"to": "00:03:55,440"
+			},
+			"offsets": {
+				"from": 230520,
+				"to": 235440
+			},
+			"text": " to register names with the new instant registration."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,440",
+				"to": "00:03:59,600"
+			},
+			"offsets": {
+				"from": 235440,
+				"to": 239600
+			},
+			"text": " So when we launched that there's a one year migration period."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,600",
+				"to": "00:04:03,240"
+			},
+			"offsets": {
+				"from": 239600,
+				"to": 243240
+			},
+			"text": " During that period anyone who owned a name on the old registrar can migrate it to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,240",
+				"to": "00:04:04,240"
+			},
+			"offsets": {
+				"from": 243240,
+				"to": 244240
+			},
+			"text": " new one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,240",
+				"to": "00:04:09,600"
+			},
+			"offsets": {
+				"from": 244240,
+				"to": 249600
+			},
+			"text": " And when they do that they get their registration extended until May the 3rd 2020 and they get"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,600",
+				"to": "00:04:15,320"
+			},
+			"offsets": {
+				"from": 249600,
+				"to": 255320
+			},
+			"text": " a full refund of the deposit they put down to originally register the name."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,320",
+				"to": "00:04:19,360"
+			},
+			"offsets": {
+				"from": 255320,
+				"to": 259360
+			},
+			"text": " You also have the option to just release the name, you can do that and you get deposit"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,360",
+				"to": "00:04:23,240"
+			},
+			"offsets": {
+				"from": 259360,
+				"to": 263240
+			},
+			"text": " back but then the name becomes available for registration by others."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,240",
+				"to": "00:04:25,360"
+			},
+			"offsets": {
+				"from": 263240,
+				"to": 265360
+			},
+			"text": " So there's a one year migration period."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,360",
+				"to": "00:04:30,680"
+			},
+			"offsets": {
+				"from": 265360,
+				"to": 270680
+			},
+			"text": " The new registrar supports instant registration with just two transactions and in order to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,680",
+				"to": "00:04:35,520"
+			},
+			"offsets": {
+				"from": 270680,
+				"to": 275520
+			},
+			"text": " keep your name you have to pay five dollars a year per name rent and there's no limit"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,520",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 275520,
+				"to": 277000
+			},
+			"text": " on the renewal periods."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:41,600"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 281600
+			},
+			"text": " So for instance somebody's registered Walmart.eth and protocol.eth and they've paid the registration"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,600",
+				"to": "00:04:46,240"
+			},
+			"offsets": {
+				"from": 281600,
+				"to": 286240
+			},
+			"text": " all the way out to 2040 which means that that name is absolutely solidly locked into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,240",
+				"to": "00:04:48,880"
+			},
+			"offsets": {
+				"from": 286240,
+				"to": 288880
+			},
+			"text": " system at least until then."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,880",
+				"to": "00:04:53,720"
+			},
+			"offsets": {
+				"from": 288880,
+				"to": 293720
+			},
+			"text": " So we've had 10,000 new registrations since launch and the migration process is interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,720",
+				"to": "00:04:54,760"
+			},
+			"offsets": {
+				"from": 293720,
+				"to": 294760
+			},
+			"text": " to look at too."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,760",
+				"to": "00:05:02,040"
+			},
+			"offsets": {
+				"from": 294760,
+				"to": 302040
+			},
+			"text": " So on migration day ENS had 309,000 names registered in it and there was 176,000 Ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,040",
+				"to": "00:05:03,960"
+			},
+			"offsets": {
+				"from": 302040,
+				"to": 303960
+			},
+			"text": " locked in the deed contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,960",
+				"to": "00:05:07,960"
+			},
+			"offsets": {
+				"from": 303960,
+				"to": 307960
+			},
+			"text": " So when you bid on the name on the interim registrar to put a deposit down and you get"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,960",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 307960,
+				"to": 312000
+			},
+			"text": " that deposit back when you release the name or you migrate it to the new registrar."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:13,520"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 313520
+			},
+			"text": " So how are we doing today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,520",
+				"to": "00:05:18,320"
+			},
+			"offsets": {
+				"from": 313520,
+				"to": 318320
+			},
+			"text": " Today we're down to 241,000 that haven't been migrated or released."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,320",
+				"to": "00:05:25,040"
+			},
+			"offsets": {
+				"from": 318320,
+				"to": 325040
+			},
+			"text": " We had 4,000, about 1% were released and 59,000, about 19% have been migrated."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,040",
+				"to": "00:05:27,840"
+			},
+			"offsets": {
+				"from": 325040,
+				"to": 327840
+			},
+			"text": " In terms of the Ether it's actually even less."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,840",
+				"to": "00:05:34,040"
+			},
+			"offsets": {
+				"from": 327840,
+				"to": 334040
+			},
+			"text": " There's 13% of the Ether deposits have been returned and 86% are remaining and you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,040",
+				"to": "00:05:39,760"
+			},
+			"offsets": {
+				"from": 334040,
+				"to": 339760
+			},
+			"text": " sort of see the progress here with the exception of a blip around the middle of the year."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,760",
+				"to": "00:05:42,960"
+			},
+			"offsets": {
+				"from": 339760,
+				"to": 342960
+			},
+			"text": " It's been reasonably steady but it's actually tapering off a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,960",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 342960,
+				"to": 348000
+			},
+			"text": " So if you have ENS names that you registered before May the 4th 2019 there is free money"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:50,960"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 350960
+			},
+			"text": " sitting there waiting for you to claim it back."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,960",
+				"to": "00:05:54,720"
+			},
+			"offsets": {
+				"from": 350960,
+				"to": 354720
+			},
+			"text": " Release your name or migrate it which is the better option to the new registrar."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,720",
+				"to": "00:05:58,960"
+			},
+			"offsets": {
+				"from": 354720,
+				"to": 358960
+			},
+			"text": " You'll get your registration extended and you'll get all of your deposit back and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,960",
+				"to": "00:06:03,400"
+			},
+			"offsets": {
+				"from": 358960,
+				"to": 363400
+			},
+			"text": " can stop sitting on all of this Ether that's doing nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,400",
+				"to": "00:06:05,880"
+			},
+			"offsets": {
+				"from": 363400,
+				"to": 365880
+			},
+			"text": " So next up the short name auctions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,880",
+				"to": "00:06:10,960"
+			},
+			"offsets": {
+				"from": 365880,
+				"to": 370960
+			},
+			"text": " We have been moving on with making shorter names, three to six characters available via"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,960",
+				"to": "00:06:15,880"
+			},
+			"offsets": {
+				"from": 370960,
+				"to": 375880
+			},
+			"text": " OpenSea and some of you probably most of you will be aware that we had a slight pick up"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,880",
+				"to": "00:06:22,040"
+			},
+			"offsets": {
+				"from": 375880,
+				"to": 382040
+			},
+			"text": " a week or two ago where somebody managed to obtain a number of high value names without"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,040",
+				"to": "00:06:23,840"
+			},
+			"offsets": {
+				"from": 382040,
+				"to": 383840
+			},
+			"text": " paying full price for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,840",
+				"to": "00:06:27,280"
+			},
+			"offsets": {
+				"from": 383840,
+				"to": 387280
+			},
+			"text": " So I'm going to go into a bit of detail on just how that happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,280",
+				"to": "00:06:32,760"
+			},
+			"offsets": {
+				"from": 387280,
+				"to": 392760
+			},
+			"text": " What you're seeing here on the screen is an example of an OpenSea order message."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,760",
+				"to": "00:06:37,200"
+			},
+			"offsets": {
+				"from": 392760,
+				"to": 397200
+			},
+			"text": " So OpenSea works by people placing bids by signing a message offline and sending it to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,200",
+				"to": "00:06:42,440"
+			},
+			"offsets": {
+				"from": 397200,
+				"to": 402440
+			},
+			"text": " the OpenSea API and that message contains a number of important fields such as which"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,440",
+				"to": "00:06:47,040"
+			},
+			"offsets": {
+				"from": 402440,
+				"to": 407040
+			},
+			"text": " exchange contract to use, who the maker is, the person making the bid, who the taker"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,040",
+				"to": "00:06:51,080"
+			},
+			"offsets": {
+				"from": 407040,
+				"to": 411080
+			},
+			"text": " is, that's our contract, how much they're willing to pay and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,080",
+				"to": "00:06:55,640"
+			},
+			"offsets": {
+				"from": 411080,
+				"to": 415640
+			},
+			"text": " It also contains the target address, the address that should be called if the bid's accepted"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,640",
+				"to": "00:06:58,200"
+			},
+			"offsets": {
+				"from": 415640,
+				"to": 418200
+			},
+			"text": " and the call data for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,200",
+				"to": "00:07:04,360"
+			},
+			"offsets": {
+				"from": 418200,
+				"to": 424360
+			},
+			"text": " And we believed that OpenSea's API was validating all of this data."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,360",
+				"to": "00:07:08,280"
+			},
+			"offsets": {
+				"from": 424360,
+				"to": 428280
+			},
+			"text": " We also had a series of additional checks of our own against many of these fields."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,280",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 428280,
+				"to": 433000
+			},
+			"text": " Unfortunately we were mistaken and they were mistaken and neither of us was verifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:16,960"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 436960
+			},
+			"text": " the target data, which is embarrassing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,960",
+				"to": "00:07:21,800"
+			},
+			"offsets": {
+				"from": 436960,
+				"to": 441800
+			},
+			"text": " The result was that somebody was able to place bids that were ostensibly against one low"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,800",
+				"to": "00:07:27,200"
+			},
+			"offsets": {
+				"from": 441800,
+				"to": 447200
+			},
+			"text": " value name that ended quite soon, but an actual fact would finalise another name."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,200",
+				"to": "00:07:34,040"
+			},
+			"offsets": {
+				"from": 447200,
+				"to": 454040
+			},
+			"text": " So by bidding on fuba.eth they were able to finalise defi.eth before that option should"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,040",
+				"to": "00:07:35,680"
+			},
+			"offsets": {
+				"from": 454040,
+				"to": 455680
+			},
+			"text": " have ended."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,680",
+				"to": "00:07:43,600"
+			},
+			"offsets": {
+				"from": 455680,
+				"to": 463600
+			},
+			"text": " So that resulted in them obtaining 17 names and for very small bids in each case."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,600",
+				"to": "00:07:48,680"
+			},
+			"offsets": {
+				"from": 463600,
+				"to": 468680
+			},
+			"text": " So what we did, we obviously stopped the contract, we made an offer to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,680",
+				"to": "00:07:53,480"
+			},
+			"offsets": {
+				"from": 468680,
+				"to": 473480
+			},
+			"text": " We said if you want to return those names to us, we will re-oxy them the way they were"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,480",
+				"to": "00:07:57,920"
+			},
+			"offsets": {
+				"from": 473480,
+				"to": 477920
+			},
+			"text": " supposed to be auctioned and we'll provide you with a bug bounty of 25% of the final"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,920",
+				"to": "00:07:59,360"
+			},
+			"offsets": {
+				"from": 477920,
+				"to": 479360
+			},
+			"text": " sale price."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,360",
+				"to": "00:08:02,600"
+			},
+			"offsets": {
+				"from": 479360,
+				"to": 482600
+			},
+			"text": " And I'm pleased to say that they accepted the offer, they returned the 17 names to us"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,600",
+				"to": "00:08:05,520"
+			},
+			"offsets": {
+				"from": 482600,
+				"to": 485520
+			},
+			"text": " and those are now back on auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,520",
+				"to": "00:08:12,360"
+			},
+			"offsets": {
+				"from": 485520,
+				"to": 492360
+			},
+			"text": " So if you are here, thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,360",
+				"to": "00:08:17,080"
+			},
+			"offsets": {
+				"from": 492360,
+				"to": 497080
+			},
+			"text": " If you want a security consulting job, please talk to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,080",
+				"to": "00:08:20,440"
+			},
+			"offsets": {
+				"from": 497080,
+				"to": 500440
+			},
+			"text": " There was a second smaller issue with the options that we've also resolved while we"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,440",
+				"to": "00:08:24,840"
+			},
+			"offsets": {
+				"from": 500440,
+				"to": 504840
+			},
+			"text": " were paused and that was that some bidders were given the wrong information in terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,840",
+				"to": "00:08:27,160"
+			},
+			"offsets": {
+				"from": 504840,
+				"to": 507160
+			},
+			"text": " of what fields to fill out in the bids."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,160",
+				"to": "00:08:31,600"
+			},
+			"offsets": {
+				"from": 507160,
+				"to": 511600
+			},
+			"text": " So if you were using the user interface via your web browser, this was absolutely fine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,600",
+				"to": "00:08:36,240"
+			},
+			"offsets": {
+				"from": 511600,
+				"to": 516240
+			},
+			"text": " but if you were using the SDK integration, if you were sending bids yourself with an"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,240",
+				"to": "00:08:40,520"
+			},
+			"offsets": {
+				"from": 516240,
+				"to": 520520
+			},
+			"text": " automated solution, you may have been submitting bids with the wrong target field."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,520",
+				"to": "00:08:44,360"
+			},
+			"offsets": {
+				"from": 520520,
+				"to": 524360
+			},
+			"text": " We identified the roughly 30 or so options that were affected by this where the top"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,360",
+				"to": "00:08:48,680"
+			},
+			"offsets": {
+				"from": 524360,
+				"to": 528680
+			},
+			"text": " bid was a bid that didn't have the right target field and those options have been extended"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,680",
+				"to": "00:08:53,120"
+			},
+			"offsets": {
+				"from": 528680,
+				"to": 533120
+			},
+			"text": " a little further to give those users an opportunity to place valid bids that replace them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,120",
+				"to": "00:08:56,400"
+			},
+			"offsets": {
+				"from": 533120,
+				"to": 536400
+			},
+			"text": " And if you're affected by this, you will have received an email that gives a full description"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,400",
+				"to": "00:08:59,040"
+			},
+			"offsets": {
+				"from": 536400,
+				"to": 539040
+			},
+			"text": " of how to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,040",
+				"to": "00:09:05,120"
+			},
+			"offsets": {
+				"from": 539040,
+				"to": 545120
+			},
+			"text": " So the short name options in general, we auction off all three to six character length domains"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,120",
+				"to": "00:09:07,040"
+			},
+			"offsets": {
+				"from": 545120,
+				"to": 547040
+			},
+			"text": " in partnership with OpenSea."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,040",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 547040,
+				"to": 553000
+			},
+			"text": " We sort of looked at all the effort we put in for the original auction contracts and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:16,320"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 556320
+			},
+			"text": " went on an auction business where we're trying to do naming."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,320",
+				"to": "00:09:18,120"
+			},
+			"offsets": {
+				"from": 556320,
+				"to": 558120
+			},
+			"text": " We're trying to build a naming system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,120",
+				"to": "00:09:22,120"
+			},
+			"offsets": {
+				"from": 558120,
+				"to": 562120
+			},
+			"text": " We don't want to put hundreds of hours into building a system that somebody else has already"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,120",
+				"to": "00:09:24,360"
+			},
+			"offsets": {
+				"from": 562120,
+				"to": 564360
+			},
+			"text": " built in or they already know how to operate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,360",
+				"to": "00:09:28,080"
+			},
+			"offsets": {
+				"from": 564360,
+				"to": 568080
+			},
+			"text": " So we partnered with them in order to do the name allocation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,080",
+				"to": "00:09:32,320"
+			},
+			"offsets": {
+				"from": 568080,
+				"to": 572320
+			},
+			"text": " So most five to six character names, all of these names are on auction now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,320",
+				"to": "00:09:36,840"
+			},
+			"offsets": {
+				"from": 572320,
+				"to": 576840
+			},
+			"text": " The five to six character ones are ending between the 15th and 22nd of October, four"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,840",
+				"to": "00:09:42,920"
+			},
+			"offsets": {
+				"from": 576840,
+				"to": 582920
+			},
+			"text": " characters a week later, 22nd to 29th and three character names, the shortest ones ending"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,920",
+				"to": "00:09:45,560"
+			},
+			"offsets": {
+				"from": 582920,
+				"to": 585560
+			},
+			"text": " between the 29th and the 5th of November."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,560",
+				"to": "00:09:50,240"
+			},
+			"offsets": {
+				"from": 585560,
+				"to": 590240
+			},
+			"text": " If you're interested in getting a name that represents you, some of these are quite contentious"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,240",
+				"to": "00:09:54,080"
+			},
+			"offsets": {
+				"from": 590240,
+				"to": 594080
+			},
+			"text": " but many of them are going for the minimum of five bucks a year."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,080",
+				"to": "00:09:59,080"
+			},
+			"offsets": {
+				"from": 594080,
+				"to": 599080
+			},
+			"text": " The auction process exists in order to make sure names are fairly allocated but that doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,080",
+				"to": "00:10:03,080"
+			},
+			"offsets": {
+				"from": 599080,
+				"to": 603080
+			},
+			"text": " mean necessarily your first name or your last name is going to be popular amongst a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,080",
+				"to": "00:10:04,080"
+			},
+			"offsets": {
+				"from": 603080,
+				"to": 604080
+			},
+			"text": " of other people."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,080",
+				"to": "00:10:08,240"
+			},
+			"offsets": {
+				"from": 604080,
+				"to": 608240
+			},
+			"text": " So if you want to get it, go there, have a look and maybe snag yourself a name that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,240",
+				"to": "00:10:10,760"
+			},
+			"offsets": {
+				"from": 608240,
+				"to": 610760
+			},
+			"text": " represents you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,760",
+				"to": "00:10:14,280"
+			},
+			"offsets": {
+				"from": 610760,
+				"to": 614280
+			},
+			"text": " So next up, I want to talk about the DNS namespace integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,280",
+				"to": "00:10:17,280"
+			},
+			"offsets": {
+				"from": 614280,
+				"to": 617280
+			},
+			"text": " So DNS is more than just dot ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,280",
+				"to": "00:10:21,800"
+			},
+			"offsets": {
+				"from": 617280,
+				"to": 621800
+			},
+			"text": " Dot ETH is the namespace that is native to Ethereum that we sort of completely control."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,800",
+				"to": "00:10:26,160"
+			},
+			"offsets": {
+				"from": 621800,
+				"to": 626160
+			},
+			"text": " We can enforce strong contractual guarantees on it but it's not all there is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,160",
+				"to": "00:10:30,560"
+			},
+			"offsets": {
+				"from": 626160,
+				"to": 630560
+			},
+			"text": " We believe that DNS exists as part of the global namespace, the same namespace that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,560",
+				"to": "00:10:34,320"
+			},
+			"offsets": {
+				"from": 630560,
+				"to": 634320
+			},
+			"text": " inhabited by dot com and dot x, y, z and dot tv and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,320",
+				"to": "00:10:35,960"
+			},
+			"offsets": {
+				"from": 634320,
+				"to": 635960
+			},
+			"text": " And so we're doing our best to integrate with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,960",
+				"to": "00:10:37,760"
+			},
+			"offsets": {
+				"from": 635960,
+				"to": 637760
+			},
+			"text": " And there's two ways we're doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,760",
+				"to": "00:10:42,360"
+			},
+			"offsets": {
+				"from": 637760,
+				"to": 642360
+			},
+			"text": " One is a permissionless integration via DNS sec and the second is bespoke integrations"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,360",
+				"to": "00:10:45,320"
+			},
+			"offsets": {
+				"from": 642360,
+				"to": 645320
+			},
+			"text": " with top level domains that are working with us."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,320",
+				"to": "00:10:48,480"
+			},
+			"offsets": {
+				"from": 645320,
+				"to": 648480
+			},
+			"text": " So first of all, how does the DNS integration work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,480",
+				"to": "00:10:53,800"
+			},
+			"offsets": {
+				"from": 648480,
+				"to": 653800
+			},
+			"text": " It permits anyone who has a DNS domain like mysite.com to register the same domain on"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,800",
+				"to": "00:10:54,800"
+			},
+			"offsets": {
+				"from": 653800,
+				"to": 654800
+			},
+			"text": " DNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,800",
+				"to": "00:10:59,640"
+			},
+			"offsets": {
+				"from": 654800,
+				"to": 659640
+			},
+			"text": " So that means that if you have mysite.com in DNS, it's your website, you can also have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,640",
+				"to": "00:11:04,360"
+			},
+			"offsets": {
+				"from": 659640,
+				"to": 664360
+			},
+			"text": " mysite.com in DNS and people can pay you by typing in mysite.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,360",
+				"to": "00:11:10,240"
+			},
+			"offsets": {
+				"from": 664360,
+				"to": 670240
+			},
+			"text": " They can load up your smart contract by typing in mysite.com into any wallet or any application"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,240",
+				"to": "00:11:12,600"
+			},
+			"offsets": {
+				"from": 670240,
+				"to": 672600
+			},
+			"text": " that supports the DNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,600",
+				"to": "00:11:17,240"
+			},
+			"offsets": {
+				"from": 672600,
+				"to": 677240
+			},
+			"text": " So to set this up, this is deployed right now on dot x, y, z and that's our sort of test"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,240",
+				"to": "00:11:18,240"
+			},
+			"offsets": {
+				"from": 677240,
+				"to": 678240
+			},
+			"text": " domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,240",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 678240,
+				"to": 683000
+			},
+			"text": " So we're about to weigh more top level domains like most of the 2,300 top level domains early"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 684000
+			},
+			"text": " next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:37,980"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 697980
+			},
+			"text": " But right now, if you have a dot x, y, z domain, you can go to app."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,980",
+				"to": "00:11:39,160"
+			},
+			"offsets": {
+				"from": 697980,
+				"to": 699160
+			},
+			"text": " The second integration we're pursuing is the individual bespoke ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,160",
+				"to": "00:11:43,520"
+			},
+			"offsets": {
+				"from": 699160,
+				"to": 703520
+			},
+			"text": " So these are top level domain providers who have decided to work with us directly to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,520",
+				"to": "00:11:46,400"
+			},
+			"offsets": {
+				"from": 703520,
+				"to": 706400
+			},
+			"text": " make it easier for their users to integrate with the DNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,400",
+				"to": "00:11:51,120"
+			},
+			"offsets": {
+				"from": 706400,
+				"to": 711120
+			},
+			"text": " And the first of these was dot x, they launched a bit over a year ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,120",
+				"to": "00:11:55,240"
+			},
+			"offsets": {
+				"from": 711120,
+				"to": 715240
+			},
+			"text": " They have first pass support for DNS, which means that if you register a name with them"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,240",
+				"to": "00:11:59,640"
+			},
+			"offsets": {
+				"from": 715240,
+				"to": 719640
+			},
+			"text": " using one of their supported registrars, you can go into the control panel into your"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,640",
+				"to": "00:12:03,600"
+			},
+			"offsets": {
+				"from": 719640,
+				"to": 723600
+			},
+			"text": " DNS area, Ethereum and your hit go and it's just done."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,600",
+				"to": "00:12:06,960"
+			},
+			"offsets": {
+				"from": 723600,
+				"to": 726960
+			},
+			"text": " It's several steps shorter than the DNS integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,960",
+				"to": "00:12:09,120"
+			},
+			"offsets": {
+				"from": 726960,
+				"to": 729120
+			},
+			"text": " It's as simple as it possibly could be."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,120",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 729120,
+				"to": 733000
+			},
+			"text": " So if you're interested, get one of those and you can instantly start using it anywhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:16,840"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 736840
+			},
+			"text": " that an DNS name is accepted."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,840",
+				"to": "00:12:21,800"
+			},
+			"offsets": {
+				"from": 736840,
+				"to": 741800
+			},
+			"text": " The second integration, slightly different, we're working with dot cred, the TLD, to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,800",
+				"to": "00:12:24,120"
+			},
+			"offsets": {
+				"from": 741800,
+				"to": 744120
+			},
+			"text": " support DNS record integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,120",
+				"to": "00:12:29,080"
+			},
+			"offsets": {
+				"from": 744120,
+				"to": 749080
+			},
+			"text": " The idea is that we can host the DNS zone for dot cred on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,080",
+				"to": "00:12:34,120"
+			},
+			"offsets": {
+				"from": 749080,
+				"to": 754120
+			},
+			"text": " And effectively, this turns every Ethereum node in the world into a secondary name server"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,120",
+				"to": "00:12:35,120"
+			},
+			"offsets": {
+				"from": 754120,
+				"to": 755120
+			},
+			"text": " for cred."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,120",
+				"to": "00:12:39,320"
+			},
+			"offsets": {
+				"from": 755120,
+				"to": 759320
+			},
+			"text": " It means that if you have a dot cred domain, it can't be taken out by, or that the DNS"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,320",
+				"to": "00:12:44,360"
+			},
+			"offsets": {
+				"from": 759320,
+				"to": 764360
+			},
+			"text": " service can't be taken out by denial of service, it can't be taken out by service failure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,360",
+				"to": "00:12:47,920"
+			},
+			"offsets": {
+				"from": 764360,
+				"to": 767920
+			},
+			"text": " because anyone in the world can replicate those records and serve them up and verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,920",
+				"to": "00:12:49,400"
+			},
+			"offsets": {
+				"from": 767920,
+				"to": 769400
+			},
+			"text": " them for themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,400",
+				"to": "00:12:52,280"
+			},
+			"offsets": {
+				"from": 769400,
+				"to": 772280
+			},
+			"text": " Finally, we're also working with dot at."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,280",
+				"to": "00:12:57,360"
+			},
+			"offsets": {
+				"from": 772280,
+				"to": 777360
+			},
+			"text": " You might be familiar with the at digital twin, this is their project, to have physical"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,360",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 777360,
+				"to": 783000
+			},
+			"text": " artworks that have a corresponding existence on the blockchain, the former non-vungible"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 784000
+			},
+			"text": " token."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:08,880"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 788880
+			},
+			"text": " We recently enabled their namespace on the DNS, so they'll now be able to offer domains"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,880",
+				"to": "00:13:11,320"
+			},
+			"offsets": {
+				"from": 788880,
+				"to": 791320
+			},
+			"text": " via the DNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,320",
+				"to": "00:13:16,800"
+			},
+			"offsets": {
+				"from": 791320,
+				"to": 796800
+			},
+			"text": " Next up, we've been working with the IPFS team, we've got a generous grant from them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,800",
+				"to": "00:13:21,480"
+			},
+			"offsets": {
+				"from": 796800,
+				"to": 801480
+			},
+			"text": " and we've been working with them and Jim McDonald to build integration, closer integration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,480",
+				"to": "00:13:23,640"
+			},
+			"offsets": {
+				"from": 801480,
+				"to": 803640
+			},
+			"text": " between IPFS and the DNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,640",
+				"to": "00:13:30,800"
+			},
+			"offsets": {
+				"from": 803640,
+				"to": 810800
+			},
+			"text": " The way this works is you can point any DNS site on dot eth or anywhere else at an IPFS"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,800",
+				"to": "00:13:34,920"
+			},
+			"offsets": {
+				"from": 810800,
+				"to": 814920
+			},
+			"text": " content, and if you use it right now in Metamask, it will just resolve."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,920",
+				"to": "00:13:38,040"
+			},
+			"offsets": {
+				"from": 814920,
+				"to": 818040
+			},
+			"text": " But you don't have to be running Metamask for this to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,040",
+				"to": "00:13:44,040"
+			},
+			"offsets": {
+				"from": 818040,
+				"to": 824040
+			},
+			"text": " We the DNS team operate a DNS and an DNS and IPFS gateway on eth.link, so if you did"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,040",
+				"to": "00:13:49,280"
+			},
+			"offsets": {
+				"from": 824040,
+				"to": 829280
+			},
+			"text": " dot link to any eth domain and that domain has IPFS content, it will load in any browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,280",
+				"to": "00:13:52,400"
+			},
+			"offsets": {
+				"from": 829280,
+				"to": 832400
+			},
+			"text": " anywhere in the world, no special integration supported."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,400",
+				"to": "00:13:57,520"
+			},
+			"offsets": {
+				"from": 832400,
+				"to": 837520
+			},
+			"text": " So as an example, go to elmon.eth.link and it will load you a directory of decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,520",
+				"to": "00:14:00,360"
+			},
+			"offsets": {
+				"from": 837520,
+				"to": 840360
+			},
+			"text": " websites that you can access anywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,360",
+				"to": "00:14:03,600"
+			},
+			"offsets": {
+				"from": 840360,
+				"to": 843600
+			},
+			"text": " You can operate your own gateway, you don't have to trust us to correctly serve up the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,600",
+				"to": "00:14:08,120"
+			},
+			"offsets": {
+				"from": 843600,
+				"to": 848120
+			},
+			"text": " right DNS records and IPFS content, you can run this yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,120",
+				"to": "00:14:12,200"
+			},
+			"offsets": {
+				"from": 848120,
+				"to": 852200
+			},
+			"text": " And finally, something that we got working just in the lead up to this, we have a DNS"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,200",
+				"to": "00:14:17,200"
+			},
+			"offsets": {
+				"from": 852200,
+				"to": 857200
+			},
+			"text": " over HTTPS gateway, if your browser supports that, you can point it at our servers, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,200",
+				"to": "00:14:22,280"
+			},
+			"offsets": {
+				"from": 857200,
+				"to": 862280
+			},
+			"text": " your browser with no plugins, with no special support, will start resolving dot eth domains"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,280",
+				"to": "00:14:27,880"
+			},
+			"offsets": {
+				"from": 862280,
+				"to": 867880
+			},
+			"text": " in the browser as if they were top level domains in the global route."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,880",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 867880,
+				"to": 872000
+			},
+			"text": " And we've also been doing some integration with the Tor network."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:37,720"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 877720
+			},
+			"text": " So we had a hackathon project in eth new york, a project called estorgate, and building on"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,720",
+				"to": "00:14:43,760"
+			},
+			"offsets": {
+				"from": 877720,
+				"to": 883760
+			},
+			"text": " that, ens can now point at onion hidden services, which means that you can take an"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,760",
+				"to": "00:14:46,640"
+			},
+			"offsets": {
+				"from": 883760,
+				"to": 886640
+			},
+			"text": " erstomain point at any onion hidden service."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,640",
+				"to": "00:14:52,640"
+			},
+			"offsets": {
+				"from": 886640,
+				"to": 892640
+			},
+			"text": " For example, facebooktor.eth was set up by us, the ens team, and when you go there, it"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,640",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 892640,
+				"to": 897000
+			},
+			"text": " will load the Facebook hidden service if you load it in a browser that has both Tor and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:00,680"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 900680
+			},
+			"text": " ens support, such as the Tor browser with MetaMask."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,680",
+				"to": "00:15:05,680"
+			},
+			"offsets": {
+				"from": 900680,
+				"to": 905680
+			},
+			"text": " And if you look at the records for Facebook Tor.eth on our manager or on ethascan, you'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,680",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 905680,
+				"to": 908000
+			},
+			"text": " see that they're actually owned by nobody."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:11,320"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 911320
+			},
+			"text": " And what this means is that once it's been set up, it is permanently that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,320",
+				"to": "00:15:14,800"
+			},
+			"offsets": {
+				"from": 911320,
+				"to": 914800
+			},
+			"text": " You don't have to trust that whoever set it up is not going to redirect it to a phishing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,800",
+				"to": "00:15:22,920"
+			},
+			"offsets": {
+				"from": 914800,
+				"to": 922920
+			},
+			"text": " version of Facebook tomorrow, because that resolution is now locked in, it's set in stone."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,920",
+				"to": "00:15:27,360"
+			},
+			"offsets": {
+				"from": 922920,
+				"to": 927360
+			},
+			"text": " So last up, finally, what are we working on next?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,360",
+				"to": "00:15:31,320"
+			},
+			"offsets": {
+				"from": 927360,
+				"to": 931320
+			},
+			"text": " So the first and biggest thing that we're working on right now is multi-chain support"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,320",
+				"to": "00:15:32,320"
+			},
+			"offsets": {
+				"from": 931320,
+				"to": 932320
+			},
+			"text": " in ens."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,320",
+				"to": "00:15:36,280"
+			},
+			"offsets": {
+				"from": 932320,
+				"to": 936280
+			},
+			"text": " It's EAP2304, if you want to read the standards document."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,280",
+				"to": "00:15:40,680"
+			},
+			"offsets": {
+				"from": 936280,
+				"to": 940680
+			},
+			"text": " But what it means is it's a way for encoding addresses for multiple chains, for bitcoin-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,680",
+				"to": "00:15:44,680"
+			},
+			"offsets": {
+				"from": 940680,
+				"to": 944680
+			},
+			"text": " chains, for ethereum-based chains, for real space chains, for whatever you want, in an"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,680",
+				"to": "00:15:45,960"
+			},
+			"offsets": {
+				"from": 944680,
+				"to": 945960
+			},
+			"text": " ens record."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,960",
+				"to": "00:15:49,840"
+			},
+			"offsets": {
+				"from": 945960,
+				"to": 949840
+			},
+			"text": " And that means that ens can become the naming service, not just for ethereum, not just for"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,840",
+				"to": "00:15:53,920"
+			},
+			"offsets": {
+				"from": 949840,
+				"to": 953920
+			},
+			"text": " internet resources, but for every single blockchain out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,920",
+				"to": "00:15:58,360"
+			},
+			"offsets": {
+				"from": 953920,
+				"to": 958360
+			},
+			"text": " So in supported wallets, if you have a bitcoin wallet, you'll be able to use myname.eth or"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,360",
+				"to": "00:16:04,880"
+			},
+			"offsets": {
+				"from": 958360,
+				"to": 964880
+			},
+			"text": " myname.com or myname.xyz to load your bitcoin address or your eos address or your likecoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,880",
+				"to": "00:16:07,480"
+			},
+			"offsets": {
+				"from": 964880,
+				"to": 967480
+			},
+			"text": " or dogecoin or whatever suits you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,480",
+				"to": "00:16:11,880"
+			},
+			"offsets": {
+				"from": 967480,
+				"to": 971880
+			},
+			"text": " And we really like to thank BinanceX for giving us a grant that helped us get this past the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,880",
+				"to": "00:16:12,880"
+			},
+			"offsets": {
+				"from": 971880,
+				"to": 972880
+			},
+			"text": " line."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,880",
+				"to": "00:16:16,560"
+			},
+			"offsets": {
+				"from": 972880,
+				"to": 976560
+			},
+			"text": " So we wrote the CIP about two weeks ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,560",
+				"to": "00:16:19,600"
+			},
+			"offsets": {
+				"from": 976560,
+				"to": 979600
+			},
+			"text": " We started sort of talking to wallets and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,600",
+				"to": "00:16:23,200"
+			},
+			"offsets": {
+				"from": 979600,
+				"to": 983200
+			},
+			"text": " And I'm delighted to say that we already have so much support."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,200",
+				"to": "00:16:31,080"
+			},
+			"offsets": {
+				"from": 983200,
+				"to": 991080
+			},
+			"text": " We sent with a first to launch support, so thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,080",
+				"to": "00:16:36,560"
+			},
+			"offsets": {
+				"from": 991080,
+				"to": 996560
+			},
+			"text": " And I want to specifically call out, Brantley, our outreach person, because some of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,560",
+				"to": "00:16:40,200"
+			},
+			"offsets": {
+				"from": 996560,
+				"to": 1000200
+			},
+			"text": " have arrived just now, like literally minutes before the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,200",
+				"to": "00:16:45,200"
+			},
+			"offsets": {
+				"from": 1000200,
+				"to": 1005200
+			},
+			"text": " We now have Coinbase wallet, Trust wallet, I am token haven, my crypto porta son opera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,200",
+				"to": "00:16:47,560"
+			},
+			"offsets": {
+				"from": 1005200,
+				"to": 1007560
+			},
+			"text": " have all committed to ad support for this in their wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,560",
+				"to": "00:16:49,360"
+			},
+			"offsets": {
+				"from": 1007560,
+				"to": 1009360
+			},
+			"text": " Which is, I think, amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,360",
+				"to": "00:16:56,880"
+			},
+			"offsets": {
+				"from": 1009360,
+				"to": 1016880
+			},
+			"text": " And if you're building tooling and you want to do this yourself, the ENS libraries on"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,880",
+				"to": "00:16:58,440"
+			},
+			"offsets": {
+				"from": 1016880,
+				"to": 1018440
+			},
+			"text": " JavaScript will support it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,440",
+				"to": "00:17:01,240"
+			},
+			"offsets": {
+				"from": 1018440,
+				"to": 1021240
+			},
+			"text": " But Ether's JS is adding support almost immediately."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,240",
+				"to": "00:17:03,680"
+			},
+			"offsets": {
+				"from": 1021240,
+				"to": 1023680
+			},
+			"text": " So if you don't use it already, I suggest taking a look at it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,680",
+				"to": "00:17:07,880"
+			},
+			"offsets": {
+				"from": 1023680,
+				"to": 1027880
+			},
+			"text": " If you do, then you will just be able to use this straight away."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,880",
+				"to": "00:17:08,880"
+			},
+			"offsets": {
+				"from": 1027880,
+				"to": 1028880
+			},
+			"text": " What else are we doing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,880",
+				"to": "00:17:14,240"
+			},
+			"offsets": {
+				"from": 1028880,
+				"to": 1034240
+			},
+			"text": " So as I mentioned, we're rolling out DNS support to most TLDs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,240",
+				"to": "00:17:17,960"
+			},
+			"offsets": {
+				"from": 1034240,
+				"to": 1037960
+			},
+			"text": " That's effectively every internet top level domain that has DNS sec enabled, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,960",
+				"to": "00:17:20,160"
+			},
+			"offsets": {
+				"from": 1037960,
+				"to": 1040160
+			},
+			"text": " about 80 to 90% of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,160",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1040160,
+				"to": 1043000
+			},
+			"text": " We're working on more manager improvements, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:24,680"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1044680
+			},
+			"text": " That's our ongoing work."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,680",
+				"to": "00:17:28,600"
+			},
+			"offsets": {
+				"from": 1044680,
+				"to": 1048600
+			},
+			"text": " We want to make it, for instance, easier to do multiple operations, updates to resolvers"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,600",
+				"to": "00:17:31,400"
+			},
+			"offsets": {
+				"from": 1048600,
+				"to": 1051400
+			},
+			"text": " and a single transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,400",
+				"to": "00:17:36,080"
+			},
+			"offsets": {
+				"from": 1051400,
+				"to": 1056080
+			},
+			"text": " We're working on improving the manager interface for short name registration, again, fewer"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,080",
+				"to": "00:17:40,040"
+			},
+			"offsets": {
+				"from": 1056080,
+				"to": 1060040
+			},
+			"text": " transactions, and of course, once the options are over, you'll be able to register three"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,040",
+				"to": "00:17:45,120"
+			},
+			"offsets": {
+				"from": 1060040,
+				"to": 1065120
+			},
+			"text": " to six character names just as you can, seven plus character names today."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,120",
+				"to": "00:17:46,120"
+			},
+			"offsets": {
+				"from": 1065120,
+				"to": 1066120
+			},
+			"text": " Adoption, adoption, adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,120",
+				"to": "00:17:52,160"
+			},
+			"offsets": {
+				"from": 1066120,
+				"to": 1072160
+			},
+			"text": " It's unsexy in a way, but our main job now is making sure that ENS is as ubiquitous and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,160",
+				"to": "00:17:54,320"
+			},
+			"offsets": {
+				"from": 1072160,
+				"to": 1074320
+			},
+			"text": " universal as it possibly can be."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,320",
+				"to": "00:17:57,920"
+			},
+			"offsets": {
+				"from": 1074320,
+				"to": 1077920
+			},
+			"text": " And that means making sure that every wallet supports it, every tool chain supports it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,920",
+				"to": "00:17:58,920"
+			},
+			"offsets": {
+				"from": 1077920,
+				"to": 1078920
+			},
+			"text": " It should be the default."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,920",
+				"to": "00:18:02,720"
+			},
+			"offsets": {
+				"from": 1078920,
+				"to": 1082720
+			},
+			"text": " You should be able to write a DAP and not even know about ENS, but just have it work"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,720",
+				"to": "00:18:09,400"
+			},
+			"offsets": {
+				"from": 1082720,
+				"to": 1089400
+			},
+			"text": " because you're underlying tool chain already has support for resolving ENS addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,400",
+				"to": "00:18:10,640"
+			},
+			"offsets": {
+				"from": 1089400,
+				"to": 1090640
+			},
+			"text": " So want to hear more?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,640",
+				"to": "00:18:12,360"
+			},
+			"offsets": {
+				"from": 1090640,
+				"to": 1092360
+			},
+			"text": " We have a little more detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,360",
+				"to": "00:18:16,600"
+			},
+			"offsets": {
+				"from": 1092360,
+				"to": 1096600
+			},
+			"text": " If you'd like to see more about how we're reaching out past just a name resolution on"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,600",
+				"to": "00:18:20,320"
+			},
+			"offsets": {
+				"from": 1096600,
+				"to": 1100320
+			},
+			"text": " Ethereum, then come see Brantley's talk tomorrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,320",
+				"to": "00:18:24,440"
+			},
+			"offsets": {
+				"from": 1100320,
+				"to": 1104440
+			},
+			"text": " It's 9.35 in the convention room, and we're talking about how ENS is taking Ethereum to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,440",
+				"to": "00:18:26,280"
+			},
+			"offsets": {
+				"from": 1104440,
+				"to": 1106280
+			},
+			"text": " the rest of the Internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,280",
+				"to": "00:18:27,520"
+			},
+			"offsets": {
+				"from": 1106280,
+				"to": 1107520
+			},
+			"text": " And that's all I have today for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,520",
+				"to": "00:18:28,120"
+			},
+			"offsets": {
+				"from": 1107520,
+				"to": 1108120
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,120",
+				"to": "00:18:32,880"
+			},
+			"offsets": {
+				"from": 1108120,
+				"to": 1112880
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,880",
+				"to": "00:18:42,880"
+			},
+			"offsets": {
+				"from": 1112880,
+				"to": 1122880
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,880",
+				"to": "00:18:52,880"
+			},
+			"offsets": {
+				"from": 1122880,
+				"to": 1132880
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,880",
+				"to": "00:19:02,880"
+			},
+			"offsets": {
+				"from": 1132880,
+				"to": 1142880
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,880",
+				"to": "00:19:12,880"
+			},
+			"offsets": {
+				"from": 1142880,
+				"to": 1152880
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

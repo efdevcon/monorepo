@@ -1,0 +1,4685 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 27000
+			},
+			"text": " Okay. So this is a quick talk and hopefully a demo at the end on Whisper."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 31000
+			},
+			"text": " Hands up if you've heard of Whisper."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 33000
+			},
+			"text": " Almost everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 42000
+			},
+			"text": " So the first question to answer is why you have Whisper at all, when we've got the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 44000
+			},
+			"text": " The blockchain allows people to communicate."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 46000
+			},
+			"text": " We can just make contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 48000
+			},
+			"text": " We can send transactions to contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 50000
+			},
+			"text": " They can be like messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 56000
+			},
+			"text": " The main obvious answer is that it's really expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 61000
+			},
+			"text": " If you use the blockchain to communicate with each other, then you're paying essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 66000
+			},
+			"text": " to have everybody else know about and archive all of those communications."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 72000
+			},
+			"text": " Minor answers also include, hey, it's open and maybe we don't want everybody else to know"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 74000
+			},
+			"text": " about what we're saying."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 77000
+			},
+			"text": " But of course that can be achieved with encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 88000
+			},
+			"text": " So in essence, there are aspects of decentralized application building where we don't need consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 89000
+			},
+			"text": " We don't want consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 95000
+			},
+			"text": " What we actually want to do is simply do peer-to-peer communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 106000
+			},
+			"text": " So within the framework of doing massively multi-user applications, which when I say"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 111000
+			},
+			"text": " massively multi-user applications, basically what I'm talking about are web apps, but also"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 114000
+			},
+			"text": " these days decentralized applications too."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 119000
+			},
+			"text": " We see three main paradigms for communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 125000
+			},
+			"text": " The first is static publication, so where we publish generally quite a lot of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 127000
+			},
+			"text": " And it doesn't change."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 130000
+			},
+			"text": " It's the assets of a web page."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 133000
+			},
+			"text": " It's the text of a story."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 135000
+			},
+			"text": " It sort of goes up there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 136000
+			},
+			"text": " It's maybe a movie."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 137000
+			},
+			"text": " It goes up there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 138000
+			},
+			"text": " It stays the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 142000
+			},
+			"text": " This is stuff that we already have pretty decent p2p tools for."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 149000
+			},
+			"text": " BitTorrent, IPFS, and potentially even like FTP."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 156000
+			},
+			"text": " We also see obvious sort of peer-to-peer communication strategies where it's point-to-point, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 162000
+			},
+			"text": " So it's where I want to connect to one particular other identity and I want to feed them information."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 170000
+			},
+			"text": " So when we think of this, we think of things like Skype, Voice over IP, real-time communications."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 175000
+			},
+			"text": " That's generally where we're headed in that direction when it's point-to-point."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 178000
+			},
+			"text": " The final one is much more interesting than these two."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 182000
+			},
+			"text": " The final one is transient data grams is what I've called them, but this is the kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 186000
+			},
+			"text": " communication where we want to generally tell a group of people something for some"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 188000
+			},
+			"text": " limited period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 195000
+			},
+			"text": " So this is something that we don't really have a proper abstraction for yet, but you see it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 196000
+			},
+			"text": " every day."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 197000
+			},
+			"text": " You see it when you use an exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 201000
+			},
+			"text": " When you use an exchange, you want to communicate to a bunch of people, generally the people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 205000
+			},
+			"text": " the other people on the exchange, or the people at least on the exchange that want to change"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 210000
+			},
+			"text": " a particular currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 213000
+			},
+			"text": " You want to tell them a particular message and you want that message to run out after"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 214000
+			},
+			"text": " a particular period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 217000
+			},
+			"text": " So transient messages between groups of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 220000
+			},
+			"text": " You also see them in things like Twitter, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 224000
+			},
+			"text": " When I use a hashtag, I'm actually trying to reference a group of people who might be"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 226000
+			},
+			"text": " interested in something that I'm saying."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 231000
+			},
+			"text": " I don't want to reference everybody, so it's not like publication exactly, but a group of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 237000
+			},
+			"text": " people and for a particular period."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 246000
+			},
+			"text": " We can see some of the patterns within these massively multi-user applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 249000
+			},
+			"text": " In terms of direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 252000
+			},
+			"text": " When we send email, it tends to come from a particular identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 254000
+			},
+			"text": " It tends to go to a particular identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 259000
+			},
+			"text": " When we use things like mailing lists or use net, we're going to a multitude of identities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 261000
+			},
+			"text": " but it's still coming from one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 266000
+			},
+			"text": " When we use, there is also a notion of global stuff where it's not really coming from"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 273000
+			},
+			"text": " anybody, maybe it's an anonymous publication, but it's going to a whole bunch of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 276000
+			},
+			"text": " Content, we already have answers for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 277000
+			},
+			"text": " Real-time communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 283000
+			},
+			"text": " In some sense, we have an answer for that within the Ethereum framework using the dev"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 286000
+			},
+			"text": " p2b stuff, maybe a raw connection over that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 293000
+			},
+			"text": " But for the final paradigm, that's basically what WISP is designed to address."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 299000
+			},
+			"text": " So in terms of privacy, I think it's also important to remember that -- and we probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 304000
+			},
+			"text": " know this much more than when I first authored this talk, but it's very important to remember"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 311000
+			},
+			"text": " that the metadata of the communications can often be almost as important to keep secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 313000
+			},
+			"text": " as the content of the communications themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 320000
+			},
+			"text": " So we have a notion that metadata collection actually gives very useful information on"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 321000
+			},
+			"text": " what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 326000
+			},
+			"text": " So if we want privacy, it's important to make sure that the routing itself is kept"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 329000
+			},
+			"text": " private as well as the content."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 333000
+			},
+			"text": " So what does WISP -- what actually is WISP?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 337000
+			},
+			"text": " So it's a bit of an odd thing because it's not a messaging system, so we don't deal"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 342000
+			},
+			"text": " as being a pure point-to-point system for messaging, but it's also not a DHT either."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 345000
+			},
+			"text": " It's kind of a hybrid between the two."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 347000
+			},
+			"text": " It has a couple of additional attributes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 352000
+			},
+			"text": " It has probabilistic message forwarding, which means the routing itself is kept private."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 358000
+			},
+			"text": " It's kept private because actually there's no easy way of doing any analysis on it since"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 361000
+			},
+			"text": " it's probabilistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 367000
+			},
+			"text": " It's also oddly oriented around subject key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 372000
+			},
+			"text": " So I'll show you later, but basically messages -- normally when we consider messages, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 374000
+			},
+			"text": " have a very particular two endpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 379000
+			},
+			"text": " They have the endpoint at the start, the endpoint that they eventually arrive at."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 382000
+			},
+			"text": " But within WISP, that's actually played down."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 384000
+			},
+			"text": " It's not a major part of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 387000
+			},
+			"text": " Rather, the messages have a couple of attributes that are very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 389000
+			},
+			"text": " One of them are topics, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 394000
+			},
+			"text": " So there's a notion that messages have associated topics, and it's these topics that are used"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 398000
+			},
+			"text": " to route the messages through the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 400000
+			},
+			"text": " I'll come on to that in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 402000
+			},
+			"text": " So is it a DHT?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 408000
+			},
+			"text": " Well, if we think of it in terms of a DHT, then it's multi-key, which is to say messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 410000
+			},
+			"text": " may have more than one key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 412000
+			},
+			"text": " These are the topics that I alluded to earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 417000
+			},
+			"text": " It's multi-value, which is to say topics or messages that have the same keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 420000
+			},
+			"text": " Actually, they can be different values associated to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 422000
+			},
+			"text": " And it's transient, so they don't stick around forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 425000
+			},
+			"text": " They have an explicit expiry."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 430000
+			},
+			"text": " If we think of it in terms of a data gram transport layer, then -- which we can do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 433000
+			},
+			"text": " then it's also got some interesting attributes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 439000
+			},
+			"text": " It is inherently multicast, which is kind of interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 447000
+			},
+			"text": " It allows for actually reasonably efficient dealing with things like hashtags on Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 449000
+			},
+			"text": " And it's asynchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 455000
+			},
+			"text": " So the messages -- the two points from which the message is go between don't actually have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 459000
+			},
+			"text": " to be online at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 463000
+			},
+			"text": " It's also got a nice little sort of in-built anti-doss system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 470000
+			},
+			"text": " It's not next generation, but basically it's got -- we've got some good behavior incentivization"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 474000
+			},
+			"text": " in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 481000
+			},
+			"text": " One of the important sort of tenets that WISPA's designed around is always considering identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 482000
+			},
+			"text": " a never-considering endpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 488000
+			},
+			"text": " We consider endpoint to be basically an implementation detail to do with the hardware that it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 490000
+			},
+			"text": " actually running on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 494000
+			},
+			"text": " And it's as such, it fits a layer below this particular protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 499000
+			},
+			"text": " In terms of WISPA, we never deal with the endpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 504000
+			},
+			"text": " This is nice because it has certain -- it ties into the privacy thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 509000
+			},
+			"text": " If you never deal with endpoints, then in principle messages can never be tied to any"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 513000
+			},
+			"text": " particular physical location rather than tied to cryptographic identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 518000
+			},
+			"text": " And that's quite an interesting attribute to have."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 525000
+			},
+			"text": " Furthermore, the implementation is configurable in terms of what trade-off the user, or perhaps"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 530000
+			},
+			"text": " even the application wants from efficiency and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 534000
+			},
+			"text": " So on the one hand, if we want a lot of efficiency, we're going to have to give up some privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 540000
+			},
+			"text": " because we're necessarily going to be closer to the metal in terms of rooting the packets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 546000
+			},
+			"text": " Similarly, if we don't want a vast amount of privacy, then we'll be able to trade that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 553000
+			},
+			"text": " off and get substantially faster transmission times."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 560000
+			},
+			"text": " It's topic-based, which means when we want to communicate within WISPA, we do so by"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 566000
+			},
+			"text": " naming -- by associating topics which are small cryptographic identifiers with messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 572000
+			},
+			"text": " In order to eventually rein in these messages, which we may be interested in, we use the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 573000
+			},
+			"text": " same mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 580000
+			},
+			"text": " We use these small cryptographic identifiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 586000
+			},
+			"text": " In terms of the encryption it uses, the difference between a unique -- a unique"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 591000
+			},
+			"text": " message within WISPA and a broadcast message within WISPA is essentially the difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 593000
+			},
+			"text": " in which key it's encrypted with, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 600000
+			},
+			"text": " So we're not doing anything in terms of the sort of hardware close to the metal"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 601000
+			},
+			"text": " routing with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 605000
+			},
+			"text": " What we're doing is saying, right, if it's a unique, I'm going to encrypt it with your"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 608000
+			},
+			"text": " identity, which means, does it matter who receives it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 610000
+			},
+			"text": " We want everybody to receive it in principle."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 616000
+			},
+			"text": " The only person who can actually decrypt it is the recipient."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 620000
+			},
+			"text": " With broadcast, rather than encrypting it with a particular identity, we encrypt it with"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 627000
+			},
+			"text": " a particular message."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 631000
+			},
+			"text": " However, one of the nice things that's tied into this is the notion of rooted"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 637000
+			},
+			"text": " in iability, which is if I'm merely storing a message or passing it on and I was never"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 642000
+			},
+			"text": " interested in these topics, I will not be able to decrypt the message because I'm only"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 647000
+			},
+			"text": " dealing with what is essentially a partial topic, a small portion of this topic, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 654000
+			},
+			"text": " is sufficient for routing but not sufficient for actually decryption of the message itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 656000
+			},
+			"text": " Messages are authenticated as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 661000
+			},
+			"text": " The difference between there being an origin, so it coming from a particular identity and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 665000
+			},
+			"text": " it being anonymous, is simply the difference between it containing a signature and not"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 666000
+			},
+			"text": " containing a signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 672000
+			},
+			"text": " This ties into a PGP with email when you can sign a message, encrypt a message or you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 674000
+			},
+			"text": " can encrypt and sign a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 679000
+			},
+			"text": " It's not a kind of idea except it's built into the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 682000
+			},
+			"text": " It's important to also get across what whisper isn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 687000
+			},
+			"text": " There's a bunch of stuff which it's definitely not suited for."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 690000
+			},
+			"text": " It's not suited for high bandwidth point-to-point transmissions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 694000
+			},
+			"text": " Don't think you're going to do Skype over whisper."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 699000
+			},
+			"text": " It's not particularly suited to low latency transmissions, although it can be traded off"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 701000
+			},
+			"text": " to some degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 706000
+			},
+			"text": " This isn't an application level protocol, so you're not going to use whisper directly in"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 709000
+			},
+			"text": " order to take part in a chat room."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 711000
+			},
+			"text": " Application is going to be built on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 713000
+			},
+			"text": " It's not connection-oriented."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 718000
+			},
+			"text": " This is entirely about data gram messaging."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 721000
+			},
+			"text": " There are two routes in whisper to routing itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 726000
+			},
+			"text": " One is passive, which is essentially a case of gathering nodes that tend to pass you the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 732000
+			},
+			"text": " right messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 736000
+			},
+			"text": " This is something that's on the roadmap to being implemented in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 740000
+			},
+			"text": " DFP2P protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 742000
+			},
+			"text": " The second one is active routing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 745000
+			},
+			"text": " This is essentially where we form what I call topic vortices."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 753000
+			},
+			"text": " I advertise that I'm interested in these particular topics, technically partial topics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 757000
+			},
+			"text": " and my peers pass on messages to me, and they select messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 761000
+			},
+			"text": " They also pass on to their peers the messages that I'm interested in, although because"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 771000
+			},
+			"text": " obviously it's an exponential trade-off, it does so at a relatively lower accuracy level."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 782000
+			},
+			"text": " In terms of forwarding messages, we have this notion of serving one's friends well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 784000
+			},
+			"text": " We want them to stay our peers in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 786000
+			},
+			"text": " We don't want them to go away."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 790000
+			},
+			"text": " We want to behave well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 793000
+			},
+			"text": " We want to give them stuff they're interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 798000
+			},
+			"text": " There are three basic ways of determining this within the whisper protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 799000
+			},
+			"text": " One is interesting topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 802000
+			},
+			"text": " The topics that we've already told them, hey, we're interested in this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 808000
+			},
+			"text": " You should pass on messages that actually conform to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 811000
+			},
+			"text": " Another is the lowest time to live."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 816000
+			},
+			"text": " We want to prioritize messages that are actually urgent."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 818000
+			},
+			"text": " The third is the highest proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 824000
+			},
+			"text": " Each message has an associated proof of work, which basically similar sort of thing to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 825000
+			},
+			"text": " blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 833000
+			},
+			"text": " It associates a particular amount of computation to this particular message."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 842000
+			},
+			"text": " The way that we tell our peers about messages that we are interested in, topics that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 845000
+			},
+			"text": " interested in, is using this sort of masking, filtering approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 847000
+			},
+			"text": " You actually use bloom filters."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 849000
+			},
+			"text": " We pass the bloom filters to our peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 853000
+			},
+			"text": " Then they can test to see whether particular messages match these bloom filters."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 855000
+			},
+			"text": " If they do, they can send on to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 860000
+			},
+			"text": " They can combine bloom filters and send on to their peers so that their peers tend to give"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 865000
+			},
+			"text": " them messages that we can then we may then be interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 870000
+			},
+			"text": " This kind of filtering can be customized potentially per peer or even per application."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 875000
+			},
+			"text": " So the applications that may have very sensitive topics, we tend not to advertise to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 877000
+			},
+			"text": " our peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 884000
+			},
+			"text": " Applications that are not sensitive at all but actually do need to have much more real-time"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 892000
+			},
+			"text": " characteristics, for example, maybe an exchange application."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 899000
+			},
+			"text": " They would sort of be much more aggressive in telling their peers what it is that they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 901000
+			},
+			"text": " interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 905000
+			},
+			"text": " I'll go into that a little later."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 909000
+			},
+			"text": " The API has three functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 917000
+			},
+			"text": " It's super simple, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 919000
+			},
+			"text": " It's now filter."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 925000
+			},
+			"text": " Post just sets a message off onto the network and the filter is able to set up filters and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 929000
+			},
+			"text": " check to see which messages have already arrived."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 931000
+			},
+			"text": " There's an example of new identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 932000
+			},
+			"text": " It's pretty simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 934000
+			},
+			"text": " You get a key back."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 936000
+			},
+			"text": " There's an example of post."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 941000
+			},
+			"text": " This is a bit more interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 944000
+			},
+			"text": " It's a bit odd to have an optional from."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 949000
+			},
+			"text": " Normally as part of an API, we don't get the automatic ability to anonymize our messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 950000
+			},
+			"text": " This one does."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 951000
+			},
+			"text": " It's also got a two."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 957000
+			},
+			"text": " We can actually do a broadcast right from within here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 961000
+			},
+			"text": " That means comparatively little because we have topics to identify the sorts of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 966000
+			},
+			"text": " that this message is going to contain which then allows the potential recipients to identify"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 970000
+			},
+			"text": " this from all of the various other broadcast messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:12,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 972000
+			},
+			"text": " We have the payload."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 972000,
+				"to": 974000
+			},
+			"text": " That's simply a bunch of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 976000
+			},
+			"text": " That's the actual body of the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 979000
+			},
+			"text": " A couple of other things, priority, which is the amount of work we're going to put in."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 985000
+			},
+			"text": " Therefore, that's going to alter how likely it is other nodes to pass on this message sooner."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 990000
+			},
+			"text": " A time to live, which essentially is the expiry date for the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 991000
+			},
+			"text": " Watch."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 992000
+			},
+			"text": " Again, this is filter."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 994000
+			},
+			"text": " You'll see that later."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 996000
+			},
+			"text": " Optionally has a two."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 997000
+			},
+			"text": " This is very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1001000
+			},
+			"text": " We don't automatically -- we're not automatically able to filter on the recipient of the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1004000
+			},
+			"text": " We have to know in advance who the recipient is."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1012000
+			},
+			"text": " If we know that we are going to want to filter on the recipient of the message and the original"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1019000
+			},
+			"text": " sender knows this, they will place that in the topics itself so that we can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1022000
+			},
+			"text": " filter for these particular kinds of messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1026000
+			},
+			"text": " Intrinsically, the way that we receive messages are through the topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1030000
+			},
+			"text": " They're not through the from the to the from the to are essentially just the keys that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1036000
+			},
+			"text": " we are signing with or encrypting with."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1039000
+			},
+			"text": " There's a quick example."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1041000
+			},
+			"text": " In this example, we're creating an identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1042000
+			},
+			"text": " We're posting a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1044000
+			},
+			"text": " The message is going to be from our identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1046000
+			},
+			"text": " We are actually being honest about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1049000
+			},
+			"text": " Here we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1052000
+			},
+			"text": " The topic in this case is just an application name."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1058000
+			},
+			"text": " The payload is just a message saying, you know, hi, what's your name."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1063000
+			},
+			"text": " We're also going to have this watch here which is watching for these kinds of messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1067000
+			},
+			"text": " It's watching for this broadcast message."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1072000
+			},
+			"text": " I identified via the fact it's actually this application."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1077000
+			},
+			"text": " When we find this, what we're going to do is just log to the console."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1082000
+			},
+			"text": " We found someone who's asking us what our name is."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1090000
+			},
+			"text": " On the other side, we would watch this broadcast and potentially we could reply to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1095000
+			},
+			"text": " We would check to make sure it's not us who is asking for people's names."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1100000
+			},
+			"text": " Assuming it's not, then we're going to simply form a new message back to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1102000
+			},
+			"text": " We're going to sign it from ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1104000
+			},
+			"text": " We're going to use a two in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1106000
+			},
+			"text": " We're going to say who we want the message to arrive at."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1108000
+			},
+			"text": " It's not a broadcast."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1110000
+			},
+			"text": " We're going to identify it with our topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1113000
+			},
+			"text": " We're also going to identify ourselves as one of the topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1117000
+			},
+			"text": " We're going to put our identity in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1123000
+			},
+			"text": " In terms of where the protocol is going, one of the things we're going to move into soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1131000
+			},
+			"text": " It's a plausible deniability of the authoring, which is essentially a case of having a future"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1136000
+			},
+			"text": " -- the ability to have future people looking at messages, not be able to be determined"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1138000
+			},
+			"text": " that it was actually us who sent the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1143000
+			},
+			"text": " But of course, at the time, there will be cryptographic certainty that it was us."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1150000
+			},
+			"text": " And modeling on precisely how scalable this approach is and what the trade-off is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1154000
+			},
+			"text": " to be precisely between efficiency and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1157000
+			},
+			"text": " So how much time you'll have?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1159000
+			},
+			"text": " Ten more minutes, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1160000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1163000
+			},
+			"text": " Let's see if I can give a quick demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1168000
+			},
+			"text": " How do I get rid of that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1169000
+			},
+			"text": " Escape?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1179000
+			},
+			"text": " What happened there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1186000
+			},
+			"text": " There's some reason that my -- there we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1187000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:49,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1189000
+			},
+			"text": " This is our zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1189000,
+				"to": 1191000
+			},
+			"text": " It's actually running a whisper node."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:19:54,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1194000
+			},
+			"text": " Here is a console."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1194000,
+				"to": 1201000
+			},
+			"text": " So I'm first going to set up a filter."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1207000
+			},
+			"text": " So this is going to filter messages that are incoming."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1209000
+			},
+			"text": " You probably can't see that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1211000
+			},
+			"text": " Maybe you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1212000
+			},
+			"text": " It's pretty short."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:14,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1214000
+			},
+			"text": " Basically, I've got a topic set."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1214000,
+				"to": 1217000
+			},
+			"text": " The topic set is DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:18,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1218000
+			},
+			"text": " And that's the only thing that's in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,000",
+				"to": "00:20:23,000"
+			},
+			"offsets": {
+				"from": 1218000,
+				"to": 1223000
+			},
+			"text": " So it's just filtering on the entire whisper system for all messages that have a topic"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,000",
+				"to": "00:20:24,000"
+			},
+			"offsets": {
+				"from": 1223000,
+				"to": 1224000
+			},
+			"text": " of DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1224000,
+				"to": 1227000
+			},
+			"text": " And when it finds it, it's going to print something out for the console."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1231000
+			},
+			"text": " It's going to put out the found message, and then the payload, and then whoever it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1232000
+			},
+			"text": " from."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:33,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1233000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,000",
+				"to": "00:20:35,000"
+			},
+			"offsets": {
+				"from": 1233000,
+				"to": 1235000
+			},
+			"text": " So that's created that filter."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,000",
+				"to": "00:20:39,000"
+			},
+			"offsets": {
+				"from": 1235000,
+				"to": 1239000
+			},
+			"text": " And the next thing I'm going to do -- and this could be done on anyone's computer, but it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1239000,
+				"to": 1243000
+			},
+			"text": " going to be done online because I've only got one here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1247000
+			},
+			"text": " And this is going to post the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1249000
+			},
+			"text": " So the message is posting."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:20:51,000"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1251000
+			},
+			"text": " It is a message whose topics are DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,000",
+				"to": "00:20:54,000"
+			},
+			"offsets": {
+				"from": 1251000,
+				"to": 1254000
+			},
+			"text": " So the first thing can find it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,000",
+				"to": "00:20:57,000"
+			},
+			"offsets": {
+				"from": 1254000,
+				"to": 1257000
+			},
+			"text": " And the payload is going to be world."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1257000,
+				"to": 1258000
+			},
+			"text": " There we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:21:01,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1261000
+			},
+			"text": " And there's a time to live, which is a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1261000,
+				"to": 1264000
+			},
+			"text": " Which is a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:07,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1267000
+			},
+			"text": " And what we see is that found message."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,000",
+				"to": "00:21:08,000"
+			},
+			"offsets": {
+				"from": 1267000,
+				"to": 1268000
+			},
+			"text": " Found message, world."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1268000,
+				"to": 1270000
+			},
+			"text": " And it's from -- it's actually from the null address."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1274000
+			},
+			"text": " The null address just means that it was not actually signed by anybody, so we don't actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:15,000"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1275000
+			},
+			"text": " know who it's from."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,000",
+				"to": "00:21:16,000"
+			},
+			"offsets": {
+				"from": 1275000,
+				"to": 1276000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,000",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1276000,
+				"to": 1277000
+			},
+			"text": " Pretty simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,000",
+				"to": "00:21:18,000"
+			},
+			"offsets": {
+				"from": 1277000,
+				"to": 1278000
+			},
+			"text": " Next thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,000",
+				"to": "00:21:23,000"
+			},
+			"offsets": {
+				"from": 1278000,
+				"to": 1283000
+			},
+			"text": " Let's create an identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,000",
+				"to": "00:21:25,000"
+			},
+			"offsets": {
+				"from": 1283000,
+				"to": 1285000
+			},
+			"text": " There's an identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,000",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1285000,
+				"to": 1286000
+			},
+			"text": " That's our key."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:30,000"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1290000
+			},
+			"text": " So this is actually just an ECDSA public key that it's returned."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1290000,
+				"to": 1295000
+			},
+			"text": " The actual private key is managed internally in our letter zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:39,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1299000
+			},
+			"text": " And what I'm going to do is just send that exact same message."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1299000,
+				"to": 1303000
+			},
+			"text": " But I'm sending it -- actually, you know what, I'm going to change the payload so it can"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:44,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1304000
+			},
+			"text": " tell the difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1304000,
+				"to": 1308000
+			},
+			"text": " This is going to be hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:52,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1312000
+			},
+			"text": " The important thing is that I'm sending it from that identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,000",
+				"to": "00:21:53,000"
+			},
+			"offsets": {
+				"from": 1312000,
+				"to": 1313000
+			},
+			"text": " There it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,000",
+				"to": "00:21:54,000"
+			},
+			"offsets": {
+				"from": 1313000,
+				"to": 1314000
+			},
+			"text": " From ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,000",
+				"to": "00:21:56,000"
+			},
+			"offsets": {
+				"from": 1314000,
+				"to": 1316000
+			},
+			"text": " Found message."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,000",
+				"to": "00:21:57,000"
+			},
+			"offsets": {
+				"from": 1316000,
+				"to": 1317000
+			},
+			"text": " There's our new payload."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1317000,
+				"to": 1319000
+			},
+			"text": " And yes, we know now that it's coming from that particular thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:01,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1321000
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1321000,
+				"to": 1322000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:05,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1325000
+			},
+			"text": " We know that because it's actually been signed."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,000",
+				"to": "00:22:09,000"
+			},
+			"offsets": {
+				"from": 1325000,
+				"to": 1329000
+			},
+			"text": " So it's not just some insecure sort of thing attached to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,000",
+				"to": "00:22:12,000"
+			},
+			"offsets": {
+				"from": 1329000,
+				"to": 1332000
+			},
+			"text": " It's a proper signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,000",
+				"to": "00:22:13,000"
+			},
+			"offsets": {
+				"from": 1332000,
+				"to": 1333000
+			},
+			"text": " Now then."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,000",
+				"to": "00:22:14,000"
+			},
+			"offsets": {
+				"from": 1333000,
+				"to": 1334000
+			},
+			"text": " We're going to have another identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,000",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1334000,
+				"to": 1335000
+			},
+			"text": " This is my identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1336000
+			},
+			"text": " So it's GAV."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1338000
+			},
+			"text": " GAV is equally a new identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:19,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1339000
+			},
+			"text": " There's my identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1339000,
+				"to": 1340000
+			},
+			"text": " There's my identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:21,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1341000
+			},
+			"text": " X1282FF."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,000",
+				"to": "00:22:24,000"
+			},
+			"offsets": {
+				"from": 1341000,
+				"to": 1344000
+			},
+			"text": " And I'm going to set up a new filter."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,000",
+				"to": "00:22:33,000"
+			},
+			"offsets": {
+				"from": 1344000,
+				"to": 1353000
+			},
+			"text": " This one's just going to filter for messages from -- with the topic, dev con gav."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,000",
+				"to": "00:22:34,000"
+			},
+			"offsets": {
+				"from": 1353000,
+				"to": 1354000
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,000",
+				"to": "00:22:40,000"
+			},
+			"offsets": {
+				"from": 1354000,
+				"to": 1360000
+			},
+			"text": " Now we have to tell it actually up front that it needs to decrypt with my key."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1360000,
+				"to": 1364000
+			},
+			"text": " This is to avoid having any additional metadata in the message body itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:51,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1371000
+			},
+			"text": " So we're saying all messages of topic dev con gav are actually going to be sent to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,000",
+				"to": "00:22:58,000"
+			},
+			"offsets": {
+				"from": 1371000,
+				"to": 1378000
+			},
+			"text": " Now we're going to set up a watch for that and say it's going to print a message found"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1378000,
+				"to": 1380000
+			},
+			"text": " message to gav with a payload."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1382000
+			},
+			"text": " And then it's also going to tell us who it's from."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:03,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1383000
+			},
+			"text": " So I do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,000",
+				"to": "00:23:06,000"
+			},
+			"offsets": {
+				"from": 1383000,
+				"to": 1386000
+			},
+			"text": " And of course nothing comes back because no messages have been sent yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,000",
+				"to": "00:23:12,000"
+			},
+			"offsets": {
+				"from": 1386000,
+				"to": 1392000
+			},
+			"text": " But here is a post."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,000",
+				"to": "00:23:17,000"
+			},
+			"offsets": {
+				"from": 1392000,
+				"to": 1397000
+			},
+			"text": " So we're going to post using the dev con gav topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,000",
+				"to": "00:23:21,000"
+			},
+			"offsets": {
+				"from": 1397000,
+				"to": 1401000
+			},
+			"text": " And the payload there is -- let's change the payload."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,000",
+				"to": "00:23:25,000"
+			},
+			"offsets": {
+				"from": 1401000,
+				"to": 1405000
+			},
+			"text": " Make it something interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1405000,
+				"to": 1407000
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:32,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1412000
+			},
+			"text": " Gav was the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,000",
+				"to": "00:23:37,000"
+			},
+			"offsets": {
+				"from": 1412000,
+				"to": 1417000
+			},
+			"text": " From our original identity, xc b 4 d, blah blah blah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1417000,
+				"to": 1419000
+			},
+			"text": " But this one is to gav."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:40,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1420000
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,000",
+				"to": "00:23:44,000"
+			},
+			"offsets": {
+				"from": 1420000,
+				"to": 1424000
+			},
+			"text": " And -- okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,000",
+				"to": "00:23:49,000"
+			},
+			"offsets": {
+				"from": 1424000,
+				"to": 1429000
+			},
+			"text": " Did I -- oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,000",
+				"to": "00:23:52,000"
+			},
+			"offsets": {
+				"from": 1429000,
+				"to": 1432000
+			},
+			"text": " That's used double quotes instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,000",
+				"to": "00:23:53,000"
+			},
+			"offsets": {
+				"from": 1432000,
+				"to": 1433000
+			},
+			"text": " And there we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,000",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1433000,
+				"to": 1435000
+			},
+			"text": " Found message to gav."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:23:56,000"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1436000
+			},
+			"text": " Hello, gav."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,000",
+				"to": "00:23:59,000"
+			},
+			"offsets": {
+				"from": 1436000,
+				"to": 1439000
+			},
+			"text": " And it's sent from that particular identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1439000,
+				"to": 1440000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:03,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1443000
+			},
+			"text": " So that's a -- it's super simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,000",
+				"to": "00:24:05,000"
+			},
+			"offsets": {
+				"from": 1443000,
+				"to": 1445000
+			},
+			"text": " Payload can be whatever you want it to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,000",
+				"to": "00:24:12,000"
+			},
+			"offsets": {
+				"from": 1445000,
+				"to": 1452000
+			},
+			"text": " So, you know, in principle, byte data, send images around, whatever it will be."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,000",
+				"to": "00:24:16,000"
+			},
+			"offsets": {
+				"from": 1452000,
+				"to": 1456000
+			},
+			"text": " Probably it's going to be mostly ASCII with a few hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,000",
+				"to": "00:24:20,000"
+			},
+			"offsets": {
+				"from": 1456000,
+				"to": 1460000
+			},
+			"text": " And the hashes would then lead on to some of the system's publication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,000",
+				"to": "00:24:23,000"
+			},
+			"offsets": {
+				"from": 1460000,
+				"to": 1463000
+			},
+			"text": " IPFS, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,000",
+				"to": "00:24:26,000"
+			},
+			"offsets": {
+				"from": 1463000,
+				"to": 1466000
+			},
+			"text": " The topics, there can be an arbitrary number of topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,000",
+				"to": "00:24:31,000"
+			},
+			"offsets": {
+				"from": 1466000,
+				"to": 1471000
+			},
+			"text": " The topics can be anded or all together so that we can say, right, it's got to contain"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,000",
+				"to": "00:24:34,000"
+			},
+			"offsets": {
+				"from": 1471000,
+				"to": 1474000
+			},
+			"text": " one of these two topics in the first place, one of these five topics in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,000",
+				"to": "00:24:36,000"
+			},
+			"offsets": {
+				"from": 1474000,
+				"to": 1476000
+			},
+			"text": " second place, and the third place must be this topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,000",
+				"to": "00:24:39,000"
+			},
+			"offsets": {
+				"from": 1476000,
+				"to": 1479000
+			},
+			"text": " That all works fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,000",
+				"to": "00:24:41,000"
+			},
+			"offsets": {
+				"from": 1479000,
+				"to": 1481000
+			},
+			"text": " And yeah, obviously the time to live."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1481000,
+				"to": 1485000
+			},
+			"text": " I haven't bothered doing anything with the proof of work priority stuff, but the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:49,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1489000
+			},
+			"text": " principle is there and it works in practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,000",
+				"to": "00:24:52,000"
+			},
+			"offsets": {
+				"from": 1489000,
+				"to": 1492000
+			},
+			"text": " This is proof POC3."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,000",
+				"to": "00:24:55,000"
+			},
+			"offsets": {
+				"from": 1492000,
+				"to": 1495000
+			},
+			"text": " This is in the CPP code base."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,000",
+				"to": "00:24:59,000"
+			},
+			"offsets": {
+				"from": 1495000,
+				"to": 1499000
+			},
+			"text": " I understand it is being currently implemented in the Go code base."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,000",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1499000,
+				"to": 1502000
+			},
+			"text": " I think it goes up to POC2 at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:08,000"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1508000
+			},
+			"text": " And there's substantial interest in the other code bases for putting all this stuff in."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,000",
+				"to": "00:25:16,000"
+			},
+			"offsets": {
+				"from": 1508000,
+				"to": 1516000
+			},
+			"text": " Yeah, if you want to contribute and help develop this, then get in touch."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,000",
+				"to": "00:25:17,000"
+			},
+			"offsets": {
+				"from": 1516000,
+				"to": 1517000
+			},
+			"text": " And otherwise, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,000",
+				"to": "00:25:19,000"
+			},
+			"offsets": {
+				"from": 1517000,
+				"to": 1519000
+			},
+			"text": " Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,000",
+				"to": "00:25:22,000"
+			},
+			"offsets": {
+				"from": 1519000,
+				"to": 1522000
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,000",
+				"to": "00:25:29,000"
+			},
+			"offsets": {
+				"from": 1522000,
+				"to": 1529000
+			},
+			"text": " >> Two questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,000",
+				"to": "00:25:30,000"
+			},
+			"offsets": {
+				"from": 1529000,
+				"to": 1530000
+			},
+			"text": " One question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,000",
+				"to": "00:25:34,000"
+			},
+			"offsets": {
+				"from": 1530000,
+				"to": 1534000
+			},
+			"text": " >> Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,000",
+				"to": "00:25:40,000"
+			},
+			"offsets": {
+				"from": 1534000,
+				"to": 1540000
+			},
+			"text": " >> So two days ago we discussed that one paradigm of building scalable DAPs is"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,000",
+				"to": "00:25:45,000"
+			},
+			"offsets": {
+				"from": 1540000,
+				"to": 1545000
+			},
+			"text": " creating sophisticated state channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,000",
+				"to": "00:25:52,000"
+			},
+			"offsets": {
+				"from": 1545000,
+				"to": 1552000
+			},
+			"text": " And I'm wondering whether WISPR is the right protocol to distribute transactions that"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,000",
+				"to": "00:25:57,000"
+			},
+			"offsets": {
+				"from": 1552000,
+				"to": 1557000
+			},
+			"text": " happen on those state channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,000",
+				"to": "00:25:59,000"
+			},
+			"offsets": {
+				"from": 1557000,
+				"to": 1559000
+			},
+			"text": " Is WISPR suitable for that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,000",
+				"to": "00:26:03,000"
+			},
+			"offsets": {
+				"from": 1559000,
+				"to": 1563000
+			},
+			"text": " >> Yeah, so this is -- this is actually something that I would like to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,000",
+				"to": "00:26:10,000"
+			},
+			"offsets": {
+				"from": 1563000,
+				"to": 1570000
+			},
+			"text": " I think with blocks and obviously the result was talking about before, the various bits"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,000",
+				"to": "00:26:16,000"
+			},
+			"offsets": {
+				"from": 1570000,
+				"to": 1576000
+			},
+			"text": " of data regarding the blockchain, this is all static data and fits well into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,000",
+				"to": "00:26:19,000"
+			},
+			"offsets": {
+				"from": 1576000,
+				"to": 1579000
+			},
+			"text": " IPFS swarm sort of paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,000",
+				"to": "00:26:25,000"
+			},
+			"offsets": {
+				"from": 1579000,
+				"to": 1585000
+			},
+			"text": " Transactions definitely are much more ephemeral data that float around, generally have"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,000",
+				"to": "00:26:31,000"
+			},
+			"offsets": {
+				"from": 1585000,
+				"to": 1591000
+			},
+			"text": " broadcast semantics potentially exist within different networks, maybe private sub-networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,000",
+				"to": "00:26:36,000"
+			},
+			"offsets": {
+				"from": 1591000,
+				"to": 1596000
+			},
+			"text": " So yeah, WISPR would work particularly well and it would be really cool if we can make"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,000",
+				"to": "00:26:41,000"
+			},
+			"offsets": {
+				"from": 1596000,
+				"to": 1601000
+			},
+			"text": " the transaction publication stuff actually be just an application that sits on top of"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,000",
+				"to": "00:26:42,000"
+			},
+			"offsets": {
+				"from": 1601000,
+				"to": 1602000
+			},
+			"text": " WISPR."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,000",
+				"to": "00:26:43,000"
+			},
+			"offsets": {
+				"from": 1602000,
+				"to": 1603000
+			},
+			"text": " Yeah, definitely."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,000",
+				"to": "00:26:44,000"
+			},
+			"offsets": {
+				"from": 1603000,
+				"to": 1604000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,000",
+				"to": "00:26:45,000"
+			},
+			"offsets": {
+				"from": 1604000,
+				"to": 1605000
+			},
+			"text": " Thanks, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,000",
+				"to": "00:26:46,000"
+			},
+			"offsets": {
+				"from": 1605000,
+				"to": 1606000
+			},
+			"text": " >> Fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,000",
+				"to": "00:26:50,000"
+			},
+			"offsets": {
+				"from": 1606000,
+				"to": 1610000
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,000",
+				"to": "00:26:56,000"
+			},
+			"offsets": {
+				"from": 1611000,
+				"to": 1616000
+			},
+			"text": " [MUSIC]"
+		}
+	]
+}

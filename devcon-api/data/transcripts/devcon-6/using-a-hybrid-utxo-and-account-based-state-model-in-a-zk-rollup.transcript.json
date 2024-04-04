@@ -1,0 +1,6907 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:15,900"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 15900
+			},
+			"text": " So in my talk today, I'm going to be talking for the first time"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,900",
+				"to": "00:00:19,940"
+			},
+			"offsets": {
+				"from": 15900,
+				"to": 19940
+			},
+			"text": " about how we've designed a polygon-maiden rollup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,940",
+				"to": "00:00:22,780"
+			},
+			"offsets": {
+				"from": 19940,
+				"to": 22780
+			},
+			"text": " and specifically how we use this hybrid UTX or an account-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,780",
+				"to": "00:00:25,700"
+			},
+			"offsets": {
+				"from": 22780,
+				"to": 25700
+			},
+			"text": " model to achieve some interesting properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,700",
+				"to": "00:00:28,620"
+			},
+			"offsets": {
+				"from": 25700,
+				"to": 28620
+			},
+			"text": " So just to set the context at first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,620",
+				"to": "00:00:30,340"
+			},
+			"offsets": {
+				"from": 28620,
+				"to": 30340
+			},
+			"text": " the goal that we have in mind is we"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,340",
+				"to": "00:00:33,180"
+			},
+			"offsets": {
+				"from": 30340,
+				"to": 33180
+			},
+			"text": " want to build a scalable decentralized rollup with privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,180",
+				"to": "00:00:34,620"
+			},
+			"offsets": {
+				"from": 33180,
+				"to": 34620
+			},
+			"text": " enabling architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,620",
+				"to": "00:00:36,500"
+			},
+			"offsets": {
+				"from": 34620,
+				"to": 36500
+			},
+			"text": " And what I mean by that is that our immediate goal"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,500",
+				"to": "00:00:38,180"
+			},
+			"offsets": {
+				"from": 36500,
+				"to": 38180
+			},
+			"text": " is to achieve scaling, but we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,180",
+				"to": "00:00:39,380"
+			},
+			"offsets": {
+				"from": 38180,
+				"to": 39380
+			},
+			"text": " to design the rollup in such a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,380",
+				"to": "00:00:40,740"
+			},
+			"offsets": {
+				"from": 39380,
+				"to": 40740
+			},
+			"text": " that when we want to turn on privacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,740",
+				"to": "00:00:43,460"
+			},
+			"offsets": {
+				"from": 40740,
+				"to": 43460
+			},
+			"text": " it will not require a complete architecture overhaul."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,460",
+				"to": "00:00:47,260"
+			},
+			"offsets": {
+				"from": 43460,
+				"to": 47260
+			},
+			"text": " It should be very easy to achieve that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,260",
+				"to": "00:00:49,660"
+			},
+			"offsets": {
+				"from": 47260,
+				"to": 49660
+			},
+			"text": " And I'm sure a lot of you here are already familiar with this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,660",
+				"to": "00:00:52,540"
+			},
+			"offsets": {
+				"from": 49660,
+				"to": 52540
+			},
+			"text": " but just to set a context of what is a decentralized rollup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,540",
+				"to": "00:00:55,860"
+			},
+			"offsets": {
+				"from": 52540,
+				"to": 55860
+			},
+			"text": " we have users, we have rollup operators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,860",
+				"to": "00:00:57,460"
+			},
+			"offsets": {
+				"from": 55860,
+				"to": 57460
+			},
+			"text": " and we have Ethereum L1."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,460",
+				"to": "00:01:00,940"
+			},
+			"offsets": {
+				"from": 57460,
+				"to": 60940
+			},
+			"text": " And in this model, users send transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,940",
+				"to": "00:01:03,180"
+			},
+			"offsets": {
+				"from": 60940,
+				"to": 63180
+			},
+			"text": " to the operators, operators aggregate those transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,180",
+				"to": "00:01:05,940"
+			},
+			"offsets": {
+				"from": 63180,
+				"to": 65940
+			},
+			"text": " into blocks, and then they submit the state delta"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,940",
+				"to": "00:01:09,700"
+			},
+			"offsets": {
+				"from": 65940,
+				"to": 69700
+			},
+			"text": " in a context of a ZK rollup with a ZK proof to Ethereum L1."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,700",
+				"to": "00:01:13,580"
+			},
+			"offsets": {
+				"from": 69700,
+				"to": 73580
+			},
+			"text": " And then what we get-- and this is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,580",
+				"to": "00:01:14,860"
+			},
+			"offsets": {
+				"from": 73580,
+				"to": 74860
+			},
+			"text": " specific to a decentralized rollup."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,860",
+				"to": "00:01:17,300"
+			},
+			"offsets": {
+				"from": 74860,
+				"to": 77300
+			},
+			"text": " This is true for any rollup."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,300",
+				"to": "00:01:20,340"
+			},
+			"offsets": {
+				"from": 77300,
+				"to": 80340
+			},
+			"text": " We inherit security from Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,340",
+				"to": "00:01:22,180"
+			},
+			"offsets": {
+				"from": 80340,
+				"to": 82180
+			},
+			"text": " What is specific for a decentralized rollup"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,180",
+				"to": "00:01:25,420"
+			},
+			"offsets": {
+				"from": 82180,
+				"to": 85420
+			},
+			"text": " is that a rollup has its own L2 chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,420",
+				"to": "00:01:28,380"
+			},
+			"offsets": {
+				"from": 85420,
+				"to": 88380
+			},
+			"text": " and its own consensus mechanism, because the operators"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,380",
+				"to": "00:01:31,500"
+			},
+			"offsets": {
+				"from": 88380,
+				"to": 91500
+			},
+			"text": " need to agree on the state of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,500",
+				"to": "00:01:34,260"
+			},
+			"offsets": {
+				"from": 91500,
+				"to": 94260
+			},
+			"text": " And then we want to have this operators to be--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,260",
+				"to": "00:01:35,620"
+			},
+			"offsets": {
+				"from": 94260,
+				"to": 95620
+			},
+			"text": " the set of operators to be permissionless,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,620",
+				"to": "00:01:39,820"
+			},
+			"offsets": {
+				"from": 95620,
+				"to": 99820
+			},
+			"text": " meaning anybody can join and leave the set as they please."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,820",
+				"to": "00:01:41,740"
+			},
+			"offsets": {
+				"from": 99820,
+				"to": 101740
+			},
+			"text": " Now, compared to a centralized rollup"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,740",
+				"to": "00:01:44,780"
+			},
+			"offsets": {
+				"from": 101740,
+				"to": 104780
+			},
+			"text": " where we have only one operator, the centralized rollup"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,780",
+				"to": "00:01:45,820"
+			},
+			"offsets": {
+				"from": 104780,
+				"to": 105820
+			},
+			"text": " has a number of challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,820",
+				"to": "00:01:48,500"
+			},
+			"offsets": {
+				"from": 105820,
+				"to": 108500
+			},
+			"text": " The most important ones are you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,500",
+				"to": "00:01:51,580"
+			},
+			"offsets": {
+				"from": 108500,
+				"to": 111580
+			},
+			"text": " to have a separate consensus mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,580",
+				"to": "00:01:53,700"
+			},
+			"offsets": {
+				"from": 111580,
+				"to": 113700
+			},
+			"text": " You also have this execution-blown problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,700",
+				"to": "00:01:56,980"
+			},
+			"offsets": {
+				"from": 113700,
+				"to": 116980
+			},
+			"text": " now explain what it is in a couple seconds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,980",
+				"to": "00:01:58,860"
+			},
+			"offsets": {
+				"from": 116980,
+				"to": 118860
+			},
+			"text": " and then you have a state-blown problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,860",
+				"to": "00:02:02,500"
+			},
+			"offsets": {
+				"from": 118860,
+				"to": 122500
+			},
+			"text": " So in this talk, I'm going to talk about specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,500",
+				"to": "00:02:04,460"
+			},
+			"offsets": {
+				"from": 122500,
+				"to": 124460
+			},
+			"text": " execution-blown and state-blown."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,460",
+				"to": "00:02:05,820"
+			},
+			"offsets": {
+				"from": 124460,
+				"to": 125820
+			},
+			"text": " And so let's get into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,820",
+				"to": "00:02:08,060"
+			},
+			"offsets": {
+				"from": 125820,
+				"to": 128060
+			},
+			"text": " So what is execution-blown?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,060",
+				"to": "00:02:09,340"
+			},
+			"offsets": {
+				"from": 128060,
+				"to": 129340
+			},
+			"text": " An execution-blown basically means"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,340",
+				"to": "00:02:11,660"
+			},
+			"offsets": {
+				"from": 129340,
+				"to": 131660
+			},
+			"text": " that the network needs to execute all the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,660",
+				"to": "00:02:13,820"
+			},
+			"offsets": {
+				"from": 131660,
+				"to": 133820
+			},
+			"text": " And more specifically, a block producer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,820",
+				"to": "00:02:15,900"
+			},
+			"offsets": {
+				"from": 133820,
+				"to": 135900
+			},
+			"text": " needs to execute on the transactions in a block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,900",
+				"to": "00:02:18,180"
+			},
+			"offsets": {
+				"from": 135900,
+				"to": 138180
+			},
+			"text": " but also everybody else in the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,180",
+				"to": "00:02:19,540"
+			},
+			"offsets": {
+				"from": 138180,
+				"to": 139540
+			},
+			"text": " needs to re-execute the transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,540",
+				"to": "00:02:21,020"
+			},
+			"offsets": {
+				"from": 139540,
+				"to": 141020
+			},
+			"text": " to make sure that block is valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,020",
+				"to": "00:02:23,620"
+			},
+			"offsets": {
+				"from": 141020,
+				"to": 143620
+			},
+			"text": " And that leads to a lot of re-executing the same code"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,620",
+				"to": "00:02:25,100"
+			},
+			"offsets": {
+				"from": 143620,
+				"to": 145100
+			},
+			"text": " over and over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,100",
+				"to": "00:02:26,340"
+			},
+			"offsets": {
+				"from": 145100,
+				"to": 146340
+			},
+			"text": " What is state-blown?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,340",
+				"to": "00:02:27,700"
+			},
+			"offsets": {
+				"from": 146340,
+				"to": 147700
+			},
+			"text": " I'm sure a lot of you are familiar with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,700",
+				"to": "00:02:30,460"
+			},
+			"offsets": {
+				"from": 147700,
+				"to": 150460
+			},
+			"text": " This basically means that state size grows with time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,460",
+				"to": "00:02:32,940"
+			},
+			"offsets": {
+				"from": 150460,
+				"to": 152940
+			},
+			"text": " The more accounts there are, the more tokens accounts hold,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,940",
+				"to": "00:02:35,980"
+			},
+			"offsets": {
+				"from": 152940,
+				"to": 155980
+			},
+			"text": " and all of that, the state size increases."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,980",
+				"to": "00:02:38,780"
+			},
+			"offsets": {
+				"from": 155980,
+				"to": 158780
+			},
+			"text": " And the reason why we can't do much about that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,780",
+				"to": "00:02:43,260"
+			},
+			"offsets": {
+				"from": 158780,
+				"to": 163260
+			},
+			"text": " is that nodes or operators need to hold the full state"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,260",
+				"to": "00:02:46,340"
+			},
+			"offsets": {
+				"from": 163260,
+				"to": 166340
+			},
+			"text": " to be able to validate the blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,340",
+				"to": "00:02:50,460"
+			},
+			"offsets": {
+				"from": 166340,
+				"to": 170460
+			},
+			"text": " and nodes need the full state to be able to produce new blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,460",
+				"to": "00:02:51,900"
+			},
+			"offsets": {
+				"from": 170460,
+				"to": 171900
+			},
+			"text": " Now, why are these things bad?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,900",
+				"to": "00:02:54,220"
+			},
+			"offsets": {
+				"from": 171900,
+				"to": 174220
+			},
+			"text": " Like I said, there are challenges, so why exactly are they"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,220",
+				"to": "00:02:54,740"
+			},
+			"offsets": {
+				"from": 174220,
+				"to": 174740
+			},
+			"text": " challenges?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,740",
+				"to": "00:02:58,060"
+			},
+			"offsets": {
+				"from": 174740,
+				"to": 178060
+			},
+			"text": " So the first thing is, if you have state-blown and execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,060",
+				"to": "00:03:00,100"
+			},
+			"offsets": {
+				"from": 178060,
+				"to": 180100
+			},
+			"text": " blow, you need powerful machines to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,100",
+				"to": "00:03:02,140"
+			},
+			"offsets": {
+				"from": 180100,
+				"to": 182140
+			},
+			"text": " let's say we have thousands in production per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,140",
+				"to": "00:03:04,660"
+			},
+			"offsets": {
+				"from": 182140,
+				"to": 184660
+			},
+			"text": " You need a powerful machine to process that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,660",
+				"to": "00:03:06,820"
+			},
+			"offsets": {
+				"from": 184660,
+				"to": 186820
+			},
+			"text": " If you have a large terabyte size state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,820",
+				"to": "00:03:09,820"
+			},
+			"offsets": {
+				"from": 186820,
+				"to": 189820
+			},
+			"text": " you need a large machine to hold it in memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,820",
+				"to": "00:03:10,940"
+			},
+			"offsets": {
+				"from": 189820,
+				"to": 190940
+			},
+			"text": " And that leads to a centralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,940",
+				"to": "00:03:12,740"
+			},
+			"offsets": {
+				"from": 190940,
+				"to": 192740
+			},
+			"text": " And if you don't have good solutions to this problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,740",
+				"to": "00:03:15,020"
+			},
+			"offsets": {
+				"from": 192740,
+				"to": 195020
+			},
+			"text": " you might as well just build a centralized roll-up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,020",
+				"to": "00:03:16,780"
+			},
+			"offsets": {
+				"from": 195020,
+				"to": 196780
+			},
+			"text": " The other one, because everyone sees everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,780",
+				"to": "00:03:18,620"
+			},
+			"offsets": {
+				"from": 196780,
+				"to": 198620
+			},
+			"text": " and everybody needs to re-execute transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,620",
+				"to": "00:03:20,180"
+			},
+			"offsets": {
+				"from": 198620,
+				"to": 200180
+			},
+			"text": " and have the full state."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,180",
+				"to": "00:03:24,900"
+			},
+			"offsets": {
+				"from": 200180,
+				"to": 204900
+			},
+			"text": " There is inherently less privacy in this setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,900",
+				"to": "00:03:28,620"
+			},
+			"offsets": {
+				"from": 204900,
+				"to": 208620
+			},
+			"text": " And the last one is especially specific to state load."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,620",
+				"to": "00:03:29,740"
+			},
+			"offsets": {
+				"from": 208620,
+				"to": 209740
+			},
+			"text": " This is not sustainable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,740",
+				"to": "00:03:30,380"
+			},
+			"offsets": {
+				"from": 209740,
+				"to": 210380
+			},
+			"text": " The state grows."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,380",
+				"to": "00:03:33,220"
+			},
+			"offsets": {
+				"from": 210380,
+				"to": 213220
+			},
+			"text": " You can scale the roll-up only as fast as the hardware scales."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,220",
+				"to": "00:03:35,700"
+			},
+			"offsets": {
+				"from": 213220,
+				"to": 215700
+			},
+			"text": " You can go like a hardware in a single machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,700",
+				"to": "00:03:37,420"
+			},
+			"offsets": {
+				"from": 215700,
+				"to": 217420
+			},
+			"text": " or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,420",
+				"to": "00:03:38,540"
+			},
+			"offsets": {
+				"from": 217420,
+				"to": 218540
+			},
+			"text": " So what do we want to achieve?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,540",
+				"to": "00:03:40,380"
+			},
+			"offsets": {
+				"from": 218540,
+				"to": 220380
+			},
+			"text": " What is the ideal solution to this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,380",
+				"to": "00:03:42,260"
+			},
+			"offsets": {
+				"from": 220380,
+				"to": 222260
+			},
+			"text": " So the first thing, we want to minimize execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,260",
+				"to": "00:03:42,620"
+			},
+			"offsets": {
+				"from": 222260,
+				"to": 222620
+			},
+			"text": " blow."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,620",
+				"to": "00:03:45,940"
+			},
+			"offsets": {
+				"from": 222620,
+				"to": 225940
+			},
+			"text": " And that means we want to execute transaction only once."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,940",
+				"to": "00:03:48,140"
+			},
+			"offsets": {
+				"from": 225940,
+				"to": 228140
+			},
+			"text": " And also, we want to make sure that it doesn't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,140",
+				"to": "00:03:49,820"
+			},
+			"offsets": {
+				"from": 228140,
+				"to": 229820
+			},
+			"text": " to be executed by the same party."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,820",
+				"to": "00:03:50,940"
+			},
+			"offsets": {
+				"from": 229820,
+				"to": 230940
+			},
+			"text": " So it's not the same block producer"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,940",
+				"to": "00:03:52,220"
+			},
+			"offsets": {
+				"from": 230940,
+				"to": 232220
+			},
+			"text": " that needs to execute all transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,220",
+				"to": "00:03:54,140"
+			},
+			"offsets": {
+				"from": 232220,
+				"to": 234140
+			},
+			"text": " We want to have distinct actors in a network that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,140",
+				"to": "00:03:55,780"
+			},
+			"offsets": {
+				"from": 234140,
+				"to": 235780
+			},
+			"text": " can execute transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,780",
+				"to": "00:03:57,140"
+			},
+			"offsets": {
+				"from": 235780,
+				"to": 237140
+			},
+			"text": " We also want to minimize the state load."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,140",
+				"to": "00:04:00,700"
+			},
+			"offsets": {
+				"from": 237140,
+				"to": 240700
+			},
+			"text": " And that means we don't want to enforce the condition where"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,700",
+				"to": "00:04:02,820"
+			},
+			"offsets": {
+				"from": 240700,
+				"to": 242820
+			},
+			"text": " you need to know the full state to validate blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,820",
+				"to": "00:04:04,980"
+			},
+			"offsets": {
+				"from": 242820,
+				"to": 244980
+			},
+			"text": " And we also don't want to enforce the condition where"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,980",
+				"to": "00:04:07,820"
+			},
+			"offsets": {
+				"from": 244980,
+				"to": 247820
+			},
+			"text": " you need to know the full state to produce new blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,820",
+				"to": "00:04:11,260"
+			},
+			"offsets": {
+				"from": 247820,
+				"to": 251260
+			},
+			"text": " ZKPs can give us these two upper properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,260",
+				"to": "00:04:14,420"
+			},
+			"offsets": {
+				"from": 251260,
+				"to": 254420
+			},
+			"text": " If you have ZKPs, you can produce a proof of execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,420",
+				"to": "00:04:16,060"
+			},
+			"offsets": {
+				"from": 254420,
+				"to": 256060
+			},
+			"text": " for example, and you don't need to re-execute the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,060",
+				"to": "00:04:17,500"
+			},
+			"offsets": {
+				"from": 256060,
+				"to": 257500
+			},
+			"text": " transaction over and over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,500",
+				"to": "00:04:19,060"
+			},
+			"offsets": {
+				"from": 257500,
+				"to": 259060
+			},
+			"text": " But to achieve the other two properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,060",
+				"to": "00:04:20,060"
+			},
+			"offsets": {
+				"from": 259060,
+				"to": 260060
+			},
+			"text": " you need something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,060",
+				"to": "00:04:21,300"
+			},
+			"offsets": {
+				"from": 260060,
+				"to": 261300
+			},
+			"text": " ZKPs and load are not enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,300",
+				"to": "00:04:23,980"
+			},
+			"offsets": {
+				"from": 261300,
+				"to": 263980
+			},
+			"text": " You need what I call the concurrent state model."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,980",
+				"to": "00:04:25,860"
+			},
+			"offsets": {
+				"from": 263980,
+				"to": 265860
+			},
+			"text": " And before I get into the concurrent state model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,860",
+				"to": "00:04:31,260"
+			},
+			"offsets": {
+				"from": 265860,
+				"to": 271260
+			},
+			"text": " let's talk about the popular state models right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,260",
+				"to": "00:04:32,740"
+			},
+			"offsets": {
+				"from": 271260,
+				"to": 272740
+			},
+			"text": " So we usually have an account-based state"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,740",
+				"to": "00:04:34,740"
+			},
+			"offsets": {
+				"from": 272740,
+				"to": 274740
+			},
+			"text": " and a UTXO-based state."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,740",
+				"to": "00:04:37,580"
+			},
+			"offsets": {
+				"from": 274740,
+				"to": 277580
+			},
+			"text": " And if we look at pros and cons of each, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,580",
+				"to": "00:04:40,580"
+			},
+			"offsets": {
+				"from": 277580,
+				"to": 280580
+			},
+			"text": " for account-based state, it's great for expressive smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,580",
+				"to": "00:04:40,940"
+			},
+			"offsets": {
+				"from": 280580,
+				"to": 280940
+			},
+			"text": " contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,940",
+				"to": "00:04:42,140"
+			},
+			"offsets": {
+				"from": 280940,
+				"to": 282140
+			},
+			"text": " This is what we love about Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,140",
+				"to": "00:04:44,580"
+			},
+			"offsets": {
+				"from": 282140,
+				"to": 284580
+			},
+			"text": " We can write very cool applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,580",
+				"to": "00:04:45,700"
+			},
+			"offsets": {
+				"from": 284580,
+				"to": 285700
+			},
+			"text": " You have a lot of freedom."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,700",
+				"to": "00:04:48,660"
+			},
+			"offsets": {
+				"from": 285700,
+				"to": 288660
+			},
+			"text": " And they will interact with each other very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,660",
+				"to": "00:04:50,220"
+			},
+			"offsets": {
+				"from": 288660,
+				"to": 290220
+			},
+			"text": " It's not great for concurrent execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,220",
+				"to": "00:04:52,900"
+			},
+			"offsets": {
+				"from": 290220,
+				"to": 292900
+			},
+			"text": " It is possible to achieve, but it is not very easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,900",
+				"to": "00:04:54,980"
+			},
+			"offsets": {
+				"from": 292900,
+				"to": 294980
+			},
+			"text": " and has a lot of issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,980",
+				"to": "00:04:56,220"
+			},
+			"offsets": {
+				"from": 294980,
+				"to": 296220
+			},
+			"text": " And it is also bad for anonymity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,220",
+				"to": "00:04:58,660"
+			},
+			"offsets": {
+				"from": 296220,
+				"to": 298660
+			},
+			"text": " because if you want to-- if you have accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,660",
+				"to": "00:05:00,460"
+			},
+			"offsets": {
+				"from": 298660,
+				"to": 300460
+			},
+			"text": " and you know which account, participation, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,460",
+				"to": "00:05:02,580"
+			},
+			"offsets": {
+				"from": 300460,
+				"to": 302580
+			},
+			"text": " transaction, it's very difficult to hide"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,580",
+				"to": "00:05:05,140"
+			},
+			"offsets": {
+				"from": 302580,
+				"to": 305140
+			},
+			"text": " kind of this transaction graph, so to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,140",
+				"to": "00:05:06,980"
+			},
+			"offsets": {
+				"from": 305140,
+				"to": 306980
+			},
+			"text": " UTXO-based model is kind of opposite of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,980",
+				"to": "00:05:08,420"
+			},
+			"offsets": {
+				"from": 306980,
+				"to": 308420
+			},
+			"text": " It's great for concurrent execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,420",
+				"to": "00:05:10,660"
+			},
+			"offsets": {
+				"from": 308420,
+				"to": 310660
+			},
+			"text": " because in a UTXO model, transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,660",
+				"to": "00:05:13,540"
+			},
+			"offsets": {
+				"from": 310660,
+				"to": 313540
+			},
+			"text": " are logically separate from each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,540",
+				"to": "00:05:15,220"
+			},
+			"offsets": {
+				"from": 313540,
+				"to": 315220
+			},
+			"text": " It's actually a very good tool for anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,220",
+				"to": "00:05:16,500"
+			},
+			"offsets": {
+				"from": 315220,
+				"to": 316500
+			},
+			"text": " Like if you want to achieve an animation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,500",
+				"to": "00:05:18,700"
+			},
+			"offsets": {
+				"from": 316500,
+				"to": 318700
+			},
+			"text": " you almost have to use a UTXO model."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,700",
+				"to": "00:05:20,060"
+			},
+			"offsets": {
+				"from": 318700,
+				"to": 320060
+			},
+			"text": " It's not the only thing that you have to use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,060",
+				"to": "00:05:23,540"
+			},
+			"offsets": {
+				"from": 320060,
+				"to": 323540
+			},
+			"text": " but it is one of the kind of basic building blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,540",
+				"to": "00:05:25,980"
+			},
+			"offsets": {
+				"from": 323540,
+				"to": 325980
+			},
+			"text": " But it is not great for expressive smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,980",
+				"to": "00:05:28,100"
+			},
+			"offsets": {
+				"from": 325980,
+				"to": 328100
+			},
+			"text": " You can kind of get smart contracts in UTXO model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,100",
+				"to": "00:05:28,860"
+			},
+			"offsets": {
+				"from": 328100,
+				"to": 328860
+			},
+			"text": " but it's not easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,860",
+				"to": "00:05:30,380"
+			},
+			"offsets": {
+				"from": 328860,
+				"to": 330380
+			},
+			"text": " And the more expressive they are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,380",
+				"to": "00:05:32,420"
+			},
+			"offsets": {
+				"from": 330380,
+				"to": 332420
+			},
+			"text": " the more it starts to look like an account-based model."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,420",
+				"to": "00:05:36,780"
+			},
+			"offsets": {
+				"from": 332420,
+				"to": 336780
+			},
+			"text": " So what we want to do is combine the nice properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,780",
+				"to": "00:05:38,180"
+			},
+			"offsets": {
+				"from": 336780,
+				"to": 338180
+			},
+			"text": " of each of this into a single model."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,180",
+				"to": "00:05:39,980"
+			},
+			"offsets": {
+				"from": 338180,
+				"to": 339980
+			},
+			"text": " And I call this basically account-based model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,980",
+				"to": "00:05:42,860"
+			},
+			"offsets": {
+				"from": 339980,
+				"to": 342860
+			},
+			"text": " UTXO-based model, and combine that with EK proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,860",
+				"to": "00:05:44,340"
+			},
+			"offsets": {
+				"from": 342860,
+				"to": 344340
+			},
+			"text": " And we'll get something that I call it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,340",
+				"to": "00:05:48,220"
+			},
+			"offsets": {
+				"from": 344340,
+				"to": 348220
+			},
+			"text": " because the actor-based model was concurrent of chain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,220",
+				"to": "00:05:50,300"
+			},
+			"offsets": {
+				"from": 348220,
+				"to": 350300
+			},
+			"text": " And I'll get into what all of those terms mean"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,300",
+				"to": "00:05:52,820"
+			},
+			"offsets": {
+				"from": 350300,
+				"to": 352820
+			},
+			"text": " in the course of this presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,820",
+				"to": "00:05:56,620"
+			},
+			"offsets": {
+				"from": 352820,
+				"to": 356620
+			},
+			"text": " So first thing that I want to explain of how this works"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,620",
+				"to": "00:05:59,020"
+			},
+			"offsets": {
+				"from": 356620,
+				"to": 359020
+			},
+			"text": " is how do transactions work in this model?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,020",
+				"to": "00:06:01,100"
+			},
+			"offsets": {
+				"from": 359020,
+				"to": 361100
+			},
+			"text": " And what is an actor model specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,100",
+				"to": "00:06:03,260"
+			},
+			"offsets": {
+				"from": 361100,
+				"to": 363260
+			},
+			"text": " and how we think of transactions in that model?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,260",
+				"to": "00:06:05,380"
+			},
+			"offsets": {
+				"from": 363260,
+				"to": 365380
+			},
+			"text": " So just to take a step back and explain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,380",
+				"to": "00:06:06,220"
+			},
+			"offsets": {
+				"from": 365380,
+				"to": 366220
+			},
+			"text": " what is an actor model?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,220",
+				"to": "00:06:08,540"
+			},
+			"offsets": {
+				"from": 366220,
+				"to": 368540
+			},
+			"text": " It's a concept from distributed systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,540",
+				"to": "00:06:11,860"
+			},
+			"offsets": {
+				"from": 368540,
+				"to": 371860
+			},
+			"text": " where you have actors which are kind of state machines"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,860",
+				"to": "00:06:13,300"
+			},
+			"offsets": {
+				"from": 371860,
+				"to": 373300
+			},
+			"text": " with inboxes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,300",
+				"to": "00:06:16,780"
+			},
+			"offsets": {
+				"from": 373300,
+				"to": 376780
+			},
+			"text": " And actors communicate by sending messages to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,780",
+				"to": "00:06:19,580"
+			},
+			"offsets": {
+				"from": 376780,
+				"to": 379580
+			},
+			"text": " And the important property is that the messages are synchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,580",
+				"to": "00:06:21,260"
+			},
+			"offsets": {
+				"from": 379580,
+				"to": 381260
+			},
+			"text": " So an actor can produce a message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,260",
+				"to": "00:06:23,300"
+			},
+			"offsets": {
+				"from": 381260,
+				"to": 383300
+			},
+			"text": " and then a different actor can consume this message"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,300",
+				"to": "00:06:24,660"
+			},
+			"offsets": {
+				"from": 383300,
+				"to": 384660
+			},
+			"text": " at a later point in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,660",
+				"to": "00:06:27,140"
+			},
+			"offsets": {
+				"from": 384660,
+				"to": 387140
+			},
+			"text": " The way we apply this actor model to a blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,140",
+				"to": "00:06:30,580"
+			},
+			"offsets": {
+				"from": 387140,
+				"to": 390580
+			},
+			"text": " is that in our context and context of Biden,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,580",
+				"to": "00:06:31,700"
+			},
+			"offsets": {
+				"from": 390580,
+				"to": 391700
+			},
+			"text": " actors are counts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,700",
+				"to": "00:06:35,300"
+			},
+			"offsets": {
+				"from": 391700,
+				"to": 395300
+			},
+			"text": " An account holds a state and exposes an interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,300",
+				"to": "00:06:36,820"
+			},
+			"offsets": {
+				"from": 395300,
+				"to": 396820
+			},
+			"text": " An interface is just a collection of methods,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,820",
+				"to": "00:06:39,620"
+			},
+			"offsets": {
+				"from": 396820,
+				"to": 399620
+			},
+			"text": " which every of those methods is a Biden VM program."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,620",
+				"to": "00:06:43,780"
+			},
+			"offsets": {
+				"from": 399620,
+				"to": 403780
+			},
+			"text": " And Biden VM is a fully true and complete CK VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,780",
+				"to": "00:06:46,940"
+			},
+			"offsets": {
+				"from": 403780,
+				"to": 406940
+			},
+			"text": " So you can think about it as very expressive functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,940",
+				"to": "00:06:49,860"
+			},
+			"offsets": {
+				"from": 406940,
+				"to": 409860
+			},
+			"text": " that you can write for the account interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,860",
+				"to": "00:06:52,060"
+			},
+			"offsets": {
+				"from": 409860,
+				"to": 412060
+			},
+			"text": " Accounts communicate with each other by sending notes"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,060",
+				"to": "00:06:54,100"
+			},
+			"offsets": {
+				"from": 412060,
+				"to": 414100
+			},
+			"text": " to each other, and notes can carry assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,100",
+				"to": "00:06:55,860"
+			},
+			"offsets": {
+				"from": 414100,
+				"to": 415860
+			},
+			"text": " And a node also has this spend script"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,860",
+				"to": "00:06:58,740"
+			},
+			"offsets": {
+				"from": 415860,
+				"to": 418740
+			},
+			"text": " which needs to be executed to be able to consume a node."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,740",
+				"to": "00:07:01,860"
+			},
+			"offsets": {
+				"from": 418740,
+				"to": 421860
+			},
+			"text": " And one important property is that in this model"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,860",
+				"to": "00:07:03,340"
+			},
+			"offsets": {
+				"from": 421860,
+				"to": 423340
+			},
+			"text": " it actually takes two transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,340",
+				"to": "00:07:06,660"
+			},
+			"offsets": {
+				"from": 423340,
+				"to": 426660
+			},
+			"text": " to move assets from one account to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,660",
+				"to": "00:07:09,500"
+			},
+			"offsets": {
+				"from": 426660,
+				"to": 429500
+			},
+			"text": " So in a traditional kind of Ethereum model, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,500",
+				"to": "00:07:10,700"
+			},
+			"offsets": {
+				"from": 429500,
+				"to": 430700
+			},
+			"text": " you usually have just one transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,700",
+				"to": "00:07:13,140"
+			},
+			"offsets": {
+				"from": 430700,
+				"to": 433140
+			},
+			"text": " that moves assets from one account to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,140",
+				"to": "00:07:16,260"
+			},
+			"offsets": {
+				"from": 433140,
+				"to": 436260
+			},
+			"text": " In this model you have to have two transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,260",
+				"to": "00:07:18,060"
+			},
+			"offsets": {
+				"from": 436260,
+				"to": 438060
+			},
+			"text": " because the first transaction is created a node"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,060",
+				"to": "00:07:21,060"
+			},
+			"offsets": {
+				"from": 438060,
+				"to": 441060
+			},
+			"text": " and the second transaction is consumed a node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,060",
+				"to": "00:07:22,540"
+			},
+			"offsets": {
+				"from": 441060,
+				"to": 442540
+			},
+			"text": " Now let's talk about transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,540",
+				"to": "00:07:23,460"
+			},
+			"offsets": {
+				"from": 442540,
+				"to": 443460
+			},
+			"text": " that have been in a bit more detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,460",
+				"to": "00:07:25,860"
+			},
+			"offsets": {
+				"from": 443460,
+				"to": 445860
+			},
+			"text": " So what is a transaction in the context of Biden?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,860",
+				"to": "00:07:28,380"
+			},
+			"offsets": {
+				"from": 445860,
+				"to": 448380
+			},
+			"text": " A transaction always involves only one account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,380",
+				"to": "00:07:29,860"
+			},
+			"offsets": {
+				"from": 448380,
+				"to": 449860
+			},
+			"text": " A transaction does not involve more account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,860",
+				"to": "00:07:31,660"
+			},
+			"offsets": {
+				"from": 449860,
+				"to": 451660
+			},
+			"text": " And in the course of a transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,660",
+				"to": "00:07:34,940"
+			},
+			"offsets": {
+				"from": 451660,
+				"to": 454940
+			},
+			"text": " the state of the account gets updated."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,940",
+				"to": "00:07:37,740"
+			},
+			"offsets": {
+				"from": 454940,
+				"to": 457740
+			},
+			"text": " Transaction can consume zero more nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,740",
+				"to": "00:07:40,100"
+			},
+			"offsets": {
+				"from": 457740,
+				"to": 460100
+			},
+			"text": " and a transaction can produce zero more nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,100",
+				"to": "00:07:41,420"
+			},
+			"offsets": {
+				"from": 460100,
+				"to": 461420
+			},
+			"text": " So in a previous example, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,420",
+				"to": "00:07:43,180"
+			},
+			"offsets": {
+				"from": 461420,
+				"to": 463180
+			},
+			"text": " there was one transaction that produced one node"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,180",
+				"to": "00:07:44,980"
+			},
+			"offsets": {
+				"from": 463180,
+				"to": 464980
+			},
+			"text": " and one transaction that consumed one node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,980",
+				"to": "00:07:46,300"
+			},
+			"offsets": {
+				"from": 464980,
+				"to": 466300
+			},
+			"text": " And we can have all the transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,300",
+				"to": "00:07:49,300"
+			},
+			"offsets": {
+				"from": 466300,
+				"to": 469300
+			},
+			"text": " that produce and consume nodes in the same transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,300",
+				"to": "00:07:52,100"
+			},
+			"offsets": {
+				"from": 469300,
+				"to": 472100
+			},
+			"text": " Now, the execution graph of how, like let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,100",
+				"to": "00:07:54,220"
+			},
+			"offsets": {
+				"from": 472100,
+				"to": 474220
+			},
+			"text": " nodes get consumed, kind of to explain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,220",
+				"to": "00:07:55,820"
+			},
+			"offsets": {
+				"from": 474220,
+				"to": 475820
+			},
+			"text": " how this whole process works is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,820",
+				"to": "00:07:56,940"
+			},
+			"offsets": {
+				"from": 475820,
+				"to": 476940
+			},
+			"text": " let's say we have a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,940",
+				"to": "00:07:58,260"
+			},
+			"offsets": {
+				"from": 476940,
+				"to": 478260
+			},
+			"text": " that wants to consume two nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,260",
+				"to": "00:07:59,300"
+			},
+			"offsets": {
+				"from": 478260,
+				"to": 479300
+			},
+			"text": " in a context of one account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,300",
+				"to": "00:08:00,820"
+			},
+			"offsets": {
+				"from": 479300,
+				"to": 480820
+			},
+			"text": " So the way it would start is like we have this"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,820",
+				"to": "00:08:02,900"
+			},
+			"offsets": {
+				"from": 480820,
+				"to": 482900
+			},
+			"text": " prologue and epilogue that do some bookkeeping"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,900",
+				"to": "00:08:04,580"
+			},
+			"offsets": {
+				"from": 482900,
+				"to": 484580
+			},
+			"text": " to make sure that say some of inputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,580",
+				"to": "00:08:06,580"
+			},
+			"offsets": {
+				"from": 484580,
+				"to": 486580
+			},
+			"text": " is equal to some of outputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,580",
+				"to": "00:08:08,420"
+			},
+			"offsets": {
+				"from": 486580,
+				"to": 488420
+			},
+			"text": " and nothing kind of known new assets get created"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,420",
+				"to": "00:08:09,580"
+			},
+			"offsets": {
+				"from": 488420,
+				"to": 489580
+			},
+			"text": " in a process of transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,580",
+				"to": "00:08:11,820"
+			},
+			"offsets": {
+				"from": 489580,
+				"to": 491820
+			},
+			"text": " But then we go into this execution stage"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,820",
+				"to": "00:08:13,940"
+			},
+			"offsets": {
+				"from": 491820,
+				"to": 493940
+			},
+			"text": " where the first thing that happens is we call,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,940",
+				"to": "00:08:17,060"
+			},
+			"offsets": {
+				"from": 493940,
+				"to": 497060
+			},
+			"text": " execute a script of the node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,060",
+				"to": "00:08:18,460"
+			},
+			"offsets": {
+				"from": 497060,
+				"to": 498460
+			},
+			"text": " of the first node in this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,460",
+				"to": "00:08:21,620"
+			},
+			"offsets": {
+				"from": 498460,
+				"to": 501620
+			},
+			"text": " And then this execute script can call any number of methods"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,620",
+				"to": "00:08:22,540"
+			},
+			"offsets": {
+				"from": 501620,
+				"to": 502540
+			},
+			"text": " on their account interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,540",
+				"to": "00:08:24,940"
+			},
+			"offsets": {
+				"from": 502540,
+				"to": 504940
+			},
+			"text": " So in this case, let's say there is a receive method"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,940",
+				"to": "00:08:26,180"
+			},
+			"offsets": {
+				"from": 504940,
+				"to": 506180
+			},
+			"text": " that receives assets on their account."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,180",
+				"to": "00:08:28,660"
+			},
+			"offsets": {
+				"from": 506180,
+				"to": 508660
+			},
+			"text": " So a node can pass assets to their account"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,660",
+				"to": "00:08:30,060"
+			},
+			"offsets": {
+				"from": 508660,
+				"to": 510060
+			},
+			"text": " through this receive method."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,060",
+				"to": "00:08:32,740"
+			},
+			"offsets": {
+				"from": 510060,
+				"to": 512740
+			},
+			"text": " And one important thing is that account methods"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,740",
+				"to": "00:08:34,460"
+			},
+			"offsets": {
+				"from": 512740,
+				"to": 514460
+			},
+			"text": " are the only ones that have access to account state."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,460",
+				"to": "00:08:36,740"
+			},
+			"offsets": {
+				"from": 514460,
+				"to": 516740
+			},
+			"text": " A node can not modify the state of the account directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,740",
+				"to": "00:08:38,060"
+			},
+			"offsets": {
+				"from": 516740,
+				"to": 518060
+			},
+			"text": " It needs to call a method on their account"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,060",
+				"to": "00:08:40,140"
+			},
+			"offsets": {
+				"from": 518060,
+				"to": 520140
+			},
+			"text": " interface to modify an account."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,140",
+				"to": "00:08:43,180"
+			},
+			"offsets": {
+				"from": 520140,
+				"to": 523180
+			},
+			"text": " And then the account interface methods"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,180",
+				"to": "00:08:44,060"
+			},
+			"offsets": {
+				"from": 523180,
+				"to": 524060
+			},
+			"text": " can create other nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,060",
+				"to": "00:08:45,700"
+			},
+			"offsets": {
+				"from": 524060,
+				"to": 525700
+			},
+			"text": " That's how you can, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,700",
+				"to": "00:08:48,540"
+			},
+			"offsets": {
+				"from": 525700,
+				"to": 528540
+			},
+			"text": " create new nodes in the process of a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,540",
+				"to": "00:08:50,340"
+			},
+			"offsets": {
+				"from": 528540,
+				"to": 530340
+			},
+			"text": " And then if we have another node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,340",
+				"to": "00:08:53,540"
+			},
+			"offsets": {
+				"from": 530340,
+				"to": 533540
+			},
+			"text": " we do the same thing, sequentially execute the second node"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,540",
+				"to": "00:08:55,500"
+			},
+			"offsets": {
+				"from": 533540,
+				"to": 535500
+			},
+			"text": " in the context of the same account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,500",
+				"to": "00:08:57,620"
+			},
+			"offsets": {
+				"from": 535500,
+				"to": 537620
+			},
+			"text": " and that node can again call the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,620",
+				"to": "00:08:59,180"
+			},
+			"offsets": {
+				"from": 537620,
+				"to": 539180
+			},
+			"text": " or different method on their account"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,180",
+				"to": "00:09:01,780"
+			},
+			"offsets": {
+				"from": 539180,
+				"to": 541780
+			},
+			"text": " to have different effects and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,780",
+				"to": "00:09:07,660"
+			},
+			"offsets": {
+				"from": 541780,
+				"to": 547660
+			},
+			"text": " Now, in our context, because we can execute"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,660",
+				"to": "00:09:10,020"
+			},
+			"offsets": {
+				"from": 547660,
+				"to": 550020
+			},
+			"text": " and nodes only touch a single account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,020",
+				"to": "00:09:11,580"
+			},
+			"offsets": {
+				"from": 550020,
+				"to": 551580
+			},
+			"text": " what we do is we execute a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,580",
+				"to": "00:09:12,940"
+			},
+			"offsets": {
+				"from": 551580,
+				"to": 552940
+			},
+			"text": " and immediately produce a proof for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,940",
+				"to": "00:09:14,860"
+			},
+			"offsets": {
+				"from": 552940,
+				"to": 554860
+			},
+			"text": " So in our case, we use the start-proving system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,860",
+				"to": "00:09:16,820"
+			},
+			"offsets": {
+				"from": 554860,
+				"to": 556820
+			},
+			"text": " So my dev VM is a start-based VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,820",
+				"to": "00:09:18,380"
+			},
+			"offsets": {
+				"from": 556820,
+				"to": 558380
+			},
+			"text": " So whenever a transaction is executed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,380",
+				"to": "00:09:21,140"
+			},
+			"offsets": {
+				"from": 558380,
+				"to": 561140
+			},
+			"text": " we immediately produce a proof of execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,140",
+				"to": "00:09:23,020"
+			},
+			"offsets": {
+				"from": 561140,
+				"to": 563020
+			},
+			"text": " And because, again, I mentioned the transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,020",
+				"to": "00:09:25,940"
+			},
+			"offsets": {
+				"from": 563020,
+				"to": 565940
+			},
+			"text": " are logically distinct, they only touch each account separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,940",
+				"to": "00:09:28,580"
+			},
+			"offsets": {
+				"from": 565940,
+				"to": 568580
+			},
+			"text": " We can produce many transaction proofs in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,580",
+				"to": "00:09:32,420"
+			},
+			"offsets": {
+				"from": 568580,
+				"to": 572420
+			},
+			"text": " So we actually produce all the transaction proofs in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,420",
+				"to": "00:09:34,420"
+			},
+			"offsets": {
+				"from": 572420,
+				"to": 574420
+			},
+			"text": " And then what we do is, once we have a bunch"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,420",
+				"to": "00:09:37,860"
+			},
+			"offsets": {
+				"from": 574420,
+				"to": 577860
+			},
+			"text": " of these transaction proofs, we recursively aggregate them"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,860",
+				"to": "00:09:39,460"
+			},
+			"offsets": {
+				"from": 577860,
+				"to": 579460
+			},
+			"text": " into batches."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,460",
+				"to": "00:09:41,380"
+			},
+			"offsets": {
+				"from": 579460,
+				"to": 581380
+			},
+			"text": " And these batches then recursively get aggregated"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,380",
+				"to": "00:09:43,500"
+			},
+			"offsets": {
+				"from": 581380,
+				"to": 583500
+			},
+			"text": " into block proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,500",
+				"to": "00:09:46,220"
+			},
+			"offsets": {
+				"from": 583500,
+				"to": 586220
+			},
+			"text": " And then these block proofs get further aggregated into,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,220",
+				"to": "00:09:49,580"
+			},
+			"offsets": {
+				"from": 586220,
+				"to": 589580
+			},
+			"text": " like, epoch proofs, and that's what gets submitted to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,580",
+				"to": "00:09:51,580"
+			},
+			"offsets": {
+				"from": 589580,
+				"to": 591580
+			},
+			"text": " Now, it's important to know that all of this recursive"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,580",
+				"to": "00:09:53,060"
+			},
+			"offsets": {
+				"from": 591580,
+				"to": 593060
+			},
+			"text": " aggregation can also be done in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,060",
+				"to": "00:09:57,220"
+			},
+			"offsets": {
+				"from": 593060,
+				"to": 597220
+			},
+			"text": " So as I mentioned, all transactions can be proved in parallel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,220",
+				"to": "00:09:59,300"
+			},
+			"offsets": {
+				"from": 597220,
+				"to": 599300
+			},
+			"text": " but also all batches can be proved in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,300",
+				"to": "00:10:01,020"
+			},
+			"offsets": {
+				"from": 599300,
+				"to": 601020
+			},
+			"text": " The only thing that doesn't get proved in parallel"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,020",
+				"to": "00:10:03,820"
+			},
+			"offsets": {
+				"from": 601020,
+				"to": 603820
+			},
+			"text": " is the final kind of tip of this block proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,820",
+				"to": "00:10:05,340"
+			},
+			"offsets": {
+				"from": 603820,
+				"to": 605340
+			},
+			"text": " And then there is another interesting property"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,340",
+				"to": "00:10:07,820"
+			},
+			"offsets": {
+				"from": 605340,
+				"to": 607820
+			},
+			"text": " is that we can prove transactions locally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,820",
+				"to": "00:10:11,140"
+			},
+			"offsets": {
+				"from": 607820,
+				"to": 611140
+			},
+			"text": " and I'll get into that in a second of what exactly it means."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,140",
+				"to": "00:10:12,900"
+			},
+			"offsets": {
+				"from": 611140,
+				"to": 612900
+			},
+			"text": " But then these aggregation steps need"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,900",
+				"to": "00:10:13,780"
+			},
+			"offsets": {
+				"from": 612900,
+				"to": 613780
+			},
+			"text": " to be done by the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,780",
+				"to": "00:10:15,620"
+			},
+			"offsets": {
+				"from": 613780,
+				"to": 615620
+			},
+			"text": " For example, a block producer or a block producer"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,620",
+				"to": "00:10:17,700"
+			},
+			"offsets": {
+				"from": 615620,
+				"to": 617700
+			},
+			"text": " can delegate this kind of aggregation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,700",
+				"to": "00:10:20,340"
+			},
+			"offsets": {
+				"from": 617700,
+				"to": 620340
+			},
+			"text": " to someone else, some other actors."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,340",
+				"to": "00:10:21,780"
+			},
+			"offsets": {
+				"from": 620340,
+				"to": 621780
+			},
+			"text": " Now, let's talk a little bit more about"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,780",
+				"to": "00:10:24,540"
+			},
+			"offsets": {
+				"from": 621780,
+				"to": 624540
+			},
+			"text": " what this concept of local versus network execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,540",
+				"to": "00:10:26,740"
+			},
+			"offsets": {
+				"from": 624540,
+				"to": 626740
+			},
+			"text": " So in a traditional kind of model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,740",
+				"to": "00:10:28,980"
+			},
+			"offsets": {
+				"from": 626740,
+				"to": 628980
+			},
+			"text": " when we execute a transaction, we have a step"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,980",
+				"to": "00:10:30,620"
+			},
+			"offsets": {
+				"from": 628980,
+				"to": 630620
+			},
+			"text": " that prepares some inputs for the transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,620",
+				"to": "00:10:32,460"
+			},
+			"offsets": {
+				"from": 630620,
+				"to": 632460
+			},
+			"text": " signs of transaction, and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,460",
+				"to": "00:10:34,420"
+			},
+			"offsets": {
+				"from": 632460,
+				"to": 634420
+			},
+			"text": " Then we execute it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,420",
+				"to": "00:10:36,380"
+			},
+			"offsets": {
+				"from": 634420,
+				"to": 636380
+			},
+			"text": " Then in the context of a ZK system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,380",
+				"to": "00:10:37,940"
+			},
+			"offsets": {
+				"from": 636380,
+				"to": 637940
+			},
+			"text": " we generate a proof for this transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,940",
+				"to": "00:10:40,060"
+			},
+			"offsets": {
+				"from": 637940,
+				"to": 640060
+			},
+			"text": " and finally we get this transaction proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,060",
+				"to": "00:10:41,900"
+			},
+			"offsets": {
+				"from": 640060,
+				"to": 641900
+			},
+			"text": " that according to the previous slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,900",
+				"to": "00:10:43,700"
+			},
+			"offsets": {
+				"from": 641900,
+				"to": 643700
+			},
+			"text": " gets aggregated into batches and then finally"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,700",
+				"to": "00:10:45,020"
+			},
+			"offsets": {
+				"from": 643700,
+				"to": 645020
+			},
+			"text": " endups in the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,020",
+				"to": "00:10:47,580"
+			},
+			"offsets": {
+				"from": 645020,
+				"to": 647580
+			},
+			"text": " Now, in a network model, the block producer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,580",
+				"to": "00:10:49,180"
+			},
+			"offsets": {
+				"from": 647580,
+				"to": 649180
+			},
+			"text": " so the user prepares the transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,180",
+				"to": "00:10:52,100"
+			},
+			"offsets": {
+				"from": 649180,
+				"to": 652100
+			},
+			"text": " sends it to the network, and then a block producer"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,100",
+				"to": "00:10:54,060"
+			},
+			"offsets": {
+				"from": 652100,
+				"to": 654060
+			},
+			"text": " would execute this transaction, generate a proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,060",
+				"to": "00:10:56,820"
+			},
+			"offsets": {
+				"from": 654060,
+				"to": 656820
+			},
+			"text": " and then aggregate this proof as I described"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,820",
+				"to": "00:10:58,220"
+			},
+			"offsets": {
+				"from": 656820,
+				"to": 658220
+			},
+			"text": " on the previous slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,220",
+				"to": "00:11:00,940"
+			},
+			"offsets": {
+				"from": 658220,
+				"to": 660940
+			},
+			"text": " In a local context, the user can actually do all of this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,940",
+				"to": "00:11:03,260"
+			},
+			"offsets": {
+				"from": 660940,
+				"to": 663260
+			},
+			"text": " so the user can both prepare the transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,260",
+				"to": "00:11:05,740"
+			},
+			"offsets": {
+				"from": 663260,
+				"to": 665740
+			},
+			"text": " execute it, and generate a transaction proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,740",
+				"to": "00:11:07,940"
+			},
+			"offsets": {
+				"from": 665740,
+				"to": 667940
+			},
+			"text": " And then what gets sent to the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,940",
+				"to": "00:11:10,020"
+			},
+			"offsets": {
+				"from": 667940,
+				"to": 670020
+			},
+			"text": " is actually just the transaction proof itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,020",
+				"to": "00:11:12,460"
+			},
+			"offsets": {
+				"from": 670020,
+				"to": 672460
+			},
+			"text": " And then the block producer doesn't actually need"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,460",
+				"to": "00:11:14,380"
+			},
+			"offsets": {
+				"from": 672460,
+				"to": 674380
+			},
+			"text": " to execute the transaction and doesn't need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,380",
+				"to": "00:11:17,100"
+			},
+			"offsets": {
+				"from": 674380,
+				"to": 677100
+			},
+			"text": " generate a proof for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,100",
+				"to": "00:11:19,340"
+			},
+			"offsets": {
+				"from": 677100,
+				"to": 679340
+			},
+			"text": " The block producer just needs to aggregate it"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,340",
+				"to": "00:11:23,020"
+			},
+			"offsets": {
+				"from": 679340,
+				"to": 683020
+			},
+			"text": " without the transactions which it has generated the proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,020",
+				"to": "00:11:24,460"
+			},
+			"offsets": {
+				"from": 683020,
+				"to": 684460
+			},
+			"text": " One important thing to notice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,460",
+				"to": "00:11:25,620"
+			},
+			"offsets": {
+				"from": 684460,
+				"to": 685620
+			},
+			"text": " how do we handle shared state?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,620",
+				"to": "00:11:28,620"
+			},
+			"offsets": {
+				"from": 685620,
+				"to": 688620
+			},
+			"text": " Because what I describe works very nice"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,620",
+				"to": "00:11:31,020"
+			},
+			"offsets": {
+				"from": 688620,
+				"to": 691020
+			},
+			"text": " when you have transactions which go"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,020",
+				"to": "00:11:32,380"
+			},
+			"offsets": {
+				"from": 691020,
+				"to": 692380
+			},
+			"text": " and don't touch multiple accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,380",
+				"to": "00:11:34,580"
+			},
+			"offsets": {
+				"from": 692380,
+				"to": 694580
+			},
+			"text": " or when you have nodes that go to different accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,580",
+				"to": "00:11:35,460"
+			},
+			"offsets": {
+				"from": 694580,
+				"to": 695460
+			},
+			"text": " and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,460",
+				"to": "00:11:37,540"
+			},
+			"offsets": {
+				"from": 695460,
+				"to": 697540
+			},
+			"text": " But let's say we have something like a uni swap situation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,540",
+				"to": "00:11:40,300"
+			},
+			"offsets": {
+				"from": 697540,
+				"to": 700300
+			},
+			"text": " where we have several accounts that want to send nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,300",
+				"to": "00:11:43,860"
+			},
+			"offsets": {
+				"from": 700300,
+				"to": 703860
+			},
+			"text": " and exchange, let's say, assets for some other assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,860",
+				"to": "00:11:45,620"
+			},
+			"offsets": {
+				"from": 703860,
+				"to": 705620
+			},
+			"text": " using a uni swap account."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,620",
+				"to": "00:11:48,740"
+			},
+			"offsets": {
+				"from": 705620,
+				"to": 708740
+			},
+			"text": " So the way we would do it is that first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,740",
+				"to": "00:11:51,380"
+			},
+			"offsets": {
+				"from": 708740,
+				"to": 711380
+			},
+			"text": " we would have each account generates its own transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,380",
+				"to": "00:11:54,540"
+			},
+			"offsets": {
+				"from": 711380,
+				"to": 714540
+			},
+			"text": " to create a node that targets a uni swap account."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,540",
+				"to": "00:11:56,220"
+			},
+			"offsets": {
+				"from": 714540,
+				"to": 716220
+			},
+			"text": " This would be to separate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,220",
+				"to": "00:11:58,260"
+			},
+			"offsets": {
+				"from": 716220,
+				"to": 718260
+			},
+			"text": " kind of logically separate transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,260",
+				"to": "00:12:01,460"
+			},
+			"offsets": {
+				"from": 718260,
+				"to": 721460
+			},
+			"text": " Then the block producer would generate a third transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,460",
+				"to": "00:12:03,140"
+			},
+			"offsets": {
+				"from": 721460,
+				"to": 723140
+			},
+			"text": " that would consume the first two nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,140",
+				"to": "00:12:04,980"
+			},
+			"offsets": {
+				"from": 723140,
+				"to": 724980
+			},
+			"text": " in a single transaction and also as a result"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,980",
+				"to": "00:12:06,340"
+			},
+			"offsets": {
+				"from": 724980,
+				"to": 726340
+			},
+			"text": " of this consumption of this node"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,340",
+				"to": "00:12:07,540"
+			},
+			"offsets": {
+				"from": 726340,
+				"to": 727540
+			},
+			"text": " that would generate other two nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,540",
+				"to": "00:12:08,900"
+			},
+			"offsets": {
+				"from": 727540,
+				"to": 728900
+			},
+			"text": " that would kind of target back,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,900",
+				"to": "00:12:10,780"
+			},
+			"offsets": {
+				"from": 728900,
+				"to": 730780
+			},
+			"text": " carry it like they exchange tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,780",
+				"to": "00:12:12,660"
+			},
+			"offsets": {
+				"from": 730780,
+				"to": 732660
+			},
+			"text": " back to their regional accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,660",
+				"to": "00:12:17,660"
+			},
+			"offsets": {
+				"from": 732660,
+				"to": 737660
+			},
+			"text": " And then we would have the additional transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,660",
+				"to": "00:12:20,220"
+			},
+			"offsets": {
+				"from": 737660,
+				"to": 740220
+			},
+			"text": " that accounts, the users of accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,220",
+				"to": "00:12:22,460"
+			},
+			"offsets": {
+				"from": 740220,
+				"to": 742460
+			},
+			"text": " run into with execute to consume kind of this nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,460",
+				"to": "00:12:26,660"
+			},
+			"offsets": {
+				"from": 742460,
+				"to": 746660
+			},
+			"text": " back into their respective accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,660",
+				"to": "00:12:29,220"
+			},
+			"offsets": {
+				"from": 746660,
+				"to": 749220
+			},
+			"text": " So basically in this model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,220",
+				"to": "00:12:31,740"
+			},
+			"offsets": {
+				"from": 749220,
+				"to": 751740
+			},
+			"text": " we still have this ability to interact with a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,740",
+				"to": "00:12:33,660"
+			},
+			"offsets": {
+				"from": 751740,
+				"to": 753660
+			},
+			"text": " or account with a shared state."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,660",
+				"to": "00:12:37,100"
+			},
+			"offsets": {
+				"from": 753660,
+				"to": 757100
+			},
+			"text": " It just in this case, the transaction that interacts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,100",
+				"to": "00:12:38,540"
+			},
+			"offsets": {
+				"from": 757100,
+				"to": 758540
+			},
+			"text": " with the account with the shared state"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,540",
+				"to": "00:12:39,940"
+			},
+			"offsets": {
+				"from": 758540,
+				"to": 759940
+			},
+			"text": " needs to be a network transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,940",
+				"to": "00:12:41,700"
+			},
+			"offsets": {
+				"from": 759940,
+				"to": 761700
+			},
+			"text": " It's what the local executive transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,700",
+				"to": "00:12:44,100"
+			},
+			"offsets": {
+				"from": 761700,
+				"to": 764100
+			},
+			"text": " must be executed by the network or the block producer"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,100",
+				"to": "00:12:46,780"
+			},
+			"offsets": {
+				"from": 764100,
+				"to": 766780
+			},
+			"text": " because the block producer needs to sequence the nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,780",
+				"to": "00:12:48,700"
+			},
+			"offsets": {
+				"from": 766780,
+				"to": 768700
+			},
+			"text": " according to whatever logic they want to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,700",
+				"to": "00:12:51,460"
+			},
+			"offsets": {
+				"from": 768700,
+				"to": 771460
+			},
+			"text": " and then execute all of the nodes against the same account."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,460",
+				"to": "00:12:54,820"
+			},
+			"offsets": {
+				"from": 771460,
+				"to": 774820
+			},
+			"text": " Now, just to kind of summarize this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,820",
+				"to": "00:12:57,060"
+			},
+			"offsets": {
+				"from": 774820,
+				"to": 777060
+			},
+			"text": " pros and cons of local versus network execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,060",
+				"to": "00:12:59,100"
+			},
+			"offsets": {
+				"from": 777060,
+				"to": 779100
+			},
+			"text": " So if we wanna have a shared state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,100",
+				"to": "00:13:00,140"
+			},
+			"offsets": {
+				"from": 779100,
+				"to": 780140
+			},
+			"text": " kind of an account with shared state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,140",
+				"to": "00:13:01,340"
+			},
+			"offsets": {
+				"from": 780140,
+				"to": 781340
+			},
+			"text": " we cannot use local transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,340",
+				"to": "00:13:03,820"
+			},
+			"offsets": {
+				"from": 781340,
+				"to": 783820
+			},
+			"text": " but we can use network transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,820",
+				"to": "00:13:05,540"
+			},
+			"offsets": {
+				"from": 783820,
+				"to": 785540
+			},
+			"text": " Now, if we use a local transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,540",
+				"to": "00:13:08,260"
+			},
+			"offsets": {
+				"from": 785540,
+				"to": 788260
+			},
+			"text": " we can have privacy because nobody actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,260",
+				"to": "00:13:10,980"
+			},
+			"offsets": {
+				"from": 788260,
+				"to": 790980
+			},
+			"text": " in a network needs to execute those transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,980",
+				"to": "00:13:12,700"
+			},
+			"offsets": {
+				"from": 790980,
+				"to": 792700
+			},
+			"text": " We cannot have privacy with network transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,700",
+				"to": "00:13:14,940"
+			},
+			"offsets": {
+				"from": 792700,
+				"to": 794940
+			},
+			"text": " because obviously somebody needs to execute them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,940",
+				"to": "00:13:17,580"
+			},
+			"offsets": {
+				"from": 794940,
+				"to": 797580
+			},
+			"text": " Now, generating proofs is a fairly"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,580",
+				"to": "00:13:18,940"
+			},
+			"offsets": {
+				"from": 797580,
+				"to": 798940
+			},
+			"text": " computationally intensive process."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,940",
+				"to": "00:13:21,460"
+			},
+			"offsets": {
+				"from": 798940,
+				"to": 801460
+			},
+			"text": " So the client hardware requirements might be high"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,460",
+				"to": "00:13:22,900"
+			},
+			"offsets": {
+				"from": 801460,
+				"to": 802900
+			},
+			"text": " for local transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,900",
+				"to": "00:13:27,180"
+			},
+			"offsets": {
+				"from": 802900,
+				"to": 807180
+			},
+			"text": " But on the flip side, because you generated the proof locally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,180",
+				"to": "00:13:30,020"
+			},
+			"offsets": {
+				"from": 807180,
+				"to": 810020
+			},
+			"text": " there is much less work than the block producer needs to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,020",
+				"to": "00:13:31,940"
+			},
+			"offsets": {
+				"from": 810020,
+				"to": 811940
+			},
+			"text": " They don't need to generate the proof for the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,940",
+				"to": "00:13:33,140"
+			},
+			"offsets": {
+				"from": 811940,
+				"to": 813140
+			},
+			"text": " They don't need to execute the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,140",
+				"to": "00:13:34,860"
+			},
+			"offsets": {
+				"from": 813140,
+				"to": 814860
+			},
+			"text": " So the fees for the such transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,860",
+				"to": "00:13:36,380"
+			},
+			"offsets": {
+				"from": 814860,
+				"to": 816380
+			},
+			"text": " for local transactions would be lower"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,380",
+				"to": "00:13:40,220"
+			},
+			"offsets": {
+				"from": 816380,
+				"to": 820220
+			},
+			"text": " than for the ones that requested for the network to execute."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,220",
+				"to": "00:13:42,180"
+			},
+			"offsets": {
+				"from": 820220,
+				"to": 822180
+			},
+			"text": " Now, the next thing I wanna talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,180",
+				"to": "00:13:44,060"
+			},
+			"offsets": {
+				"from": 822180,
+				"to": 824060
+			},
+			"text": " is what kind of a state model do we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,060",
+				"to": "00:13:47,260"
+			},
+			"offsets": {
+				"from": 824060,
+				"to": 827260
+			},
+			"text": " to support this type of transaction model?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,260",
+				"to": "00:13:49,420"
+			},
+			"offsets": {
+				"from": 827260,
+				"to": 829420
+			},
+			"text": " And this is where the UATXO and account-based model"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,420",
+				"to": "00:13:51,140"
+			},
+			"offsets": {
+				"from": 829420,
+				"to": 831140
+			},
+			"text": " kind of comes together."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,140",
+				"to": "00:13:54,420"
+			},
+			"offsets": {
+				"from": 831140,
+				"to": 834420
+			},
+			"text": " So my little rural update is actually described"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,420",
+				"to": "00:13:55,220"
+			},
+			"offsets": {
+				"from": 834420,
+				"to": 835220
+			},
+			"text": " by three databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,220",
+				"to": "00:13:56,740"
+			},
+			"offsets": {
+				"from": 835220,
+				"to": 836740
+			},
+			"text": " Usually you have a single database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,740",
+				"to": "00:13:58,660"
+			},
+			"offsets": {
+				"from": 836740,
+				"to": 838660
+			},
+			"text": " you have usually an account database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,660",
+				"to": "00:14:02,340"
+			},
+			"offsets": {
+				"from": 838660,
+				"to": 842340
+			},
+			"text": " or in each pixel context, you have kind of a TXO database."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,340",
+				"to": "00:14:04,540"
+			},
+			"offsets": {
+				"from": 842340,
+				"to": 844540
+			},
+			"text": " But in our context, actually three separate databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,540",
+				"to": "00:14:05,940"
+			},
+			"offsets": {
+				"from": 844540,
+				"to": 845940
+			},
+			"text": " There is an account database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,940",
+				"to": "00:14:06,900"
+			},
+			"offsets": {
+				"from": 845940,
+				"to": 846900
+			},
+			"text": " there is a nodes database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,900",
+				"to": "00:14:08,140"
+			},
+			"offsets": {
+				"from": 846900,
+				"to": 848140
+			},
+			"text": " and there is a nullifier database."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,140",
+				"to": "00:14:11,420"
+			},
+			"offsets": {
+				"from": 848140,
+				"to": 851420
+			},
+			"text": " And I'll explain why all of them are needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,420",
+				"to": "00:14:13,900"
+			},
+			"offsets": {
+				"from": 851420,
+				"to": 853900
+			},
+			"text": " And then in our case, updates to all of these three databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,900",
+				"to": "00:14:14,860"
+			},
+			"offsets": {
+				"from": 853900,
+				"to": 854860
+			},
+			"text": " So like when you have a block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,860",
+				"to": "00:14:17,020"
+			},
+			"offsets": {
+				"from": 854860,
+				"to": 857020
+			},
+			"text": " a block contains information that updates"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,020",
+				"to": "00:14:18,020"
+			},
+			"offsets": {
+				"from": 857020,
+				"to": 858020
+			},
+			"text": " all of these three databases"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,020",
+				"to": "00:14:22,540"
+			},
+			"offsets": {
+				"from": 858020,
+				"to": 862540
+			},
+			"text": " and takes the state of the network from state to state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,540",
+				"to": "00:14:23,540"
+			},
+			"offsets": {
+				"from": 862540,
+				"to": 863540
+			},
+			"text": " and plus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,540",
+				"to": "00:14:26,620"
+			},
+			"offsets": {
+				"from": 863540,
+				"to": 866620
+			},
+			"text": " Account database."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,620",
+				"to": "00:14:30,060"
+			},
+			"offsets": {
+				"from": 866620,
+				"to": 870060
+			},
+			"text": " Account database holds all of the current states"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,060",
+				"to": "00:14:31,340"
+			},
+			"offsets": {
+				"from": 870060,
+				"to": 871340
+			},
+			"text": " of their accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,340",
+				"to": "00:14:33,820"
+			},
+			"offsets": {
+				"from": 871340,
+				"to": 873820
+			},
+			"text": " And we use a sparse Merkle tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,820",
+				"to": "00:14:38,820"
+			},
+			"offsets": {
+				"from": 873820,
+				"to": 878820
+			},
+			"text": " to kind of, is a data structure that holds this information."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,820",
+				"to": "00:14:41,540"
+			},
+			"offsets": {
+				"from": 878820,
+				"to": 881540
+			},
+			"text": " And the sparse Merkle tree maps account IDs"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,540",
+				"to": "00:14:43,020"
+			},
+			"offsets": {
+				"from": 881540,
+				"to": 883020
+			},
+			"text": " to account hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,020",
+				"to": "00:14:45,580"
+			},
+			"offsets": {
+				"from": 883020,
+				"to": 885580
+			},
+			"text": " But we have one kind of twist to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,580",
+				"to": "00:14:46,820"
+			},
+			"offsets": {
+				"from": 885580,
+				"to": 886820
+			},
+			"text": " We have two different types of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,820",
+				"to": "00:14:49,740"
+			},
+			"offsets": {
+				"from": 886820,
+				"to": 889740
+			},
+			"text": " two different modes of storing accounts in this database."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,740",
+				"to": "00:14:50,980"
+			},
+			"offsets": {
+				"from": 889740,
+				"to": 890980
+			},
+			"text": " The first one is on chain state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,980",
+				"to": "00:14:53,660"
+			},
+			"offsets": {
+				"from": 890980,
+				"to": 893660
+			},
+			"text": " which is basically the same as what you would get with Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,660",
+				"to": "00:14:57,860"
+			},
+			"offsets": {
+				"from": 893660,
+				"to": 897860
+			},
+			"text": " where for each hash, the nodes store also all the associated data"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,860",
+				"to": "00:15:00,540"
+			},
+			"offsets": {
+				"from": 897860,
+				"to": 900540
+			},
+			"text": " for the accounts, such as storage, code, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,540",
+				"to": "00:15:02,340"
+			},
+			"offsets": {
+				"from": 900540,
+				"to": 902340
+			},
+			"text": " nodes and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,340",
+				"to": "00:15:04,940"
+			},
+			"offsets": {
+				"from": 902340,
+				"to": 904940
+			},
+			"text": " But there is also an option to do just an off chain state"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,940",
+				"to": "00:15:09,020"
+			},
+			"offsets": {
+				"from": 904940,
+				"to": 909020
+			},
+			"text": " where what the nodes store are just the hash of the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,020",
+				"to": "00:15:13,060"
+			},
+			"offsets": {
+				"from": 909020,
+				"to": 913060
+			},
+			"text": " And the user himself or herself is responsible"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,060",
+				"to": "00:15:16,140"
+			},
+			"offsets": {
+				"from": 913060,
+				"to": 916140
+			},
+			"text": " for storing the actual state of the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,140",
+				"to": "00:15:19,980"
+			},
+			"offsets": {
+				"from": 916140,
+				"to": 919980
+			},
+			"text": " So nodes and other, not network do not store"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,980",
+				"to": "00:15:21,380"
+			},
+			"offsets": {
+				"from": 919980,
+				"to": 921380
+			},
+			"text": " the actual account state."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,380",
+				"to": "00:15:23,020"
+			},
+			"offsets": {
+				"from": 921380,
+				"to": 923020
+			},
+			"text": " Let's go to the nodes database next."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,020",
+				"to": "00:15:24,660"
+			},
+			"offsets": {
+				"from": 923020,
+				"to": 924660
+			},
+			"text": " The nodes database stores all nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,660",
+				"to": "00:15:26,020"
+			},
+			"offsets": {
+				"from": 924660,
+				"to": 926020
+			},
+			"text": " that have been ever created."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,020",
+				"to": "00:15:28,060"
+			},
+			"offsets": {
+				"from": 926020,
+				"to": 928060
+			},
+			"text": " And for this we use a Merkle Mountain range,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,060",
+				"to": "00:15:30,420"
+			},
+			"offsets": {
+				"from": 928060,
+				"to": 930420
+			},
+			"text": " which is a append on the accumulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,420",
+				"to": "00:15:32,540"
+			},
+			"offsets": {
+				"from": 930420,
+				"to": 932540
+			},
+			"text": " And leaf in this Merkle Mountain range"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,540",
+				"to": "00:15:34,660"
+			},
+			"offsets": {
+				"from": 932540,
+				"to": 934660
+			},
+			"text": " is basically just a set of nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,660",
+				"to": "00:15:36,660"
+			},
+			"offsets": {
+				"from": 934660,
+				"to": 936660
+			},
+			"text": " that were created in a specific block."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,660",
+				"to": "00:15:39,220"
+			},
+			"offsets": {
+				"from": 936660,
+				"to": 939220
+			},
+			"text": " And one of the reasons we chose this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,220",
+				"to": "00:15:40,580"
+			},
+			"offsets": {
+				"from": 939220,
+				"to": 940580
+			},
+			"text": " there are a number of reasons why we chose"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,580",
+				"to": "00:15:42,340"
+			},
+			"offsets": {
+				"from": 940580,
+				"to": 942340
+			},
+			"text": " the Merkle Mountain range and it's very convenient"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,340",
+				"to": "00:15:43,660"
+			},
+			"offsets": {
+				"from": 942340,
+				"to": 943660
+			},
+			"text": " for a number of purposes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,660",
+				"to": "00:15:48,380"
+			},
+			"offsets": {
+				"from": 943660,
+				"to": 948380
+			},
+			"text": " But one of this is that you can extend or add new nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,380",
+				"to": "00:15:50,020"
+			},
+			"offsets": {
+				"from": 948380,
+				"to": 950020
+			},
+			"text": " to this accumulator without actually knowing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,020",
+				"to": "00:15:50,940"
+			},
+			"offsets": {
+				"from": 950020,
+				"to": 950940
+			},
+			"text": " most of the previous nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,940",
+				"to": "00:15:54,500"
+			},
+			"offsets": {
+				"from": 950940,
+				"to": 954500
+			},
+			"text": " So you can discard the big part of the nodes database"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,500",
+				"to": "00:15:58,140"
+			},
+			"offsets": {
+				"from": 954500,
+				"to": 958140
+			},
+			"text": " and still be able to add new nodes to it without problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,140",
+				"to": "00:16:00,460"
+			},
+			"offsets": {
+				"from": 958140,
+				"to": 960460
+			},
+			"text": " The other property that is very important is EK context"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,460",
+				"to": "00:16:04,180"
+			},
+			"offsets": {
+				"from": 960460,
+				"to": 964180
+			},
+			"text": " because we need to prove the inclusion of--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,180",
+				"to": "00:16:06,100"
+			},
+			"offsets": {
+				"from": 964180,
+				"to": 966100
+			},
+			"text": " we need to prove that we're spending a node that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,100",
+				"to": "00:16:08,980"
+			},
+			"offsets": {
+				"from": 966100,
+				"to": 968980
+			},
+			"text": " has been created at some point in the past--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,980",
+				"to": "00:16:11,180"
+			},
+			"offsets": {
+				"from": 968980,
+				"to": 971180
+			},
+			"text": " is that the witness kind of inclusion witness"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,180",
+				"to": "00:16:12,100"
+			},
+			"offsets": {
+				"from": 971180,
+				"to": 972100
+			},
+			"text": " does not become stale."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,100",
+				"to": "00:16:14,580"
+			},
+			"offsets": {
+				"from": 972100,
+				"to": 974580
+			},
+			"text": " So if you have a Merkle path, it actually just"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,580",
+				"to": "00:16:16,940"
+			},
+			"offsets": {
+				"from": 974580,
+				"to": 976940
+			},
+			"text": " needs to be extended from time to time very infrequently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,940",
+				"to": "00:16:18,180"
+			},
+			"offsets": {
+				"from": 976940,
+				"to": 978180
+			},
+			"text": " but it doesn't become stale."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,180",
+				"to": "00:16:20,140"
+			},
+			"offsets": {
+				"from": 978180,
+				"to": 980140
+			},
+			"text": " And that means that the SDK proof that you generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,140",
+				"to": "00:16:21,900"
+			},
+			"offsets": {
+				"from": 980140,
+				"to": 981900
+			},
+			"text": " does not become obsolete very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,900",
+				"to": "00:16:25,380"
+			},
+			"offsets": {
+				"from": 981900,
+				"to": 985380
+			},
+			"text": " This is a very important SDK context."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,380",
+				"to": "00:16:28,620"
+			},
+			"offsets": {
+				"from": 985380,
+				"to": 988620
+			},
+			"text": " And then lastly, we have the nullified database."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,620",
+				"to": "00:16:30,380"
+			},
+			"offsets": {
+				"from": 988620,
+				"to": 990380
+			},
+			"text": " And the reason why we need this nullified database"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,380",
+				"to": "00:16:33,740"
+			},
+			"offsets": {
+				"from": 990380,
+				"to": 993740
+			},
+			"text": " is that we have the account database, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,740",
+				"to": "00:16:34,620"
+			},
+			"offsets": {
+				"from": 993740,
+				"to": 994620
+			},
+			"text": " stores states or accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,620",
+				"to": "00:16:35,580"
+			},
+			"offsets": {
+				"from": 994620,
+				"to": 995580
+			},
+			"text": " We have the nodes database."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,580",
+				"to": "00:16:38,180"
+			},
+			"offsets": {
+				"from": 995580,
+				"to": 998180
+			},
+			"text": " This stores all the nodes ever created,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,180",
+				"to": "00:16:42,260"
+			},
+			"offsets": {
+				"from": 998180,
+				"to": 1002260
+			},
+			"text": " but we do not remove nodes from the nodes database"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,260",
+				"to": "00:16:44,460"
+			},
+			"offsets": {
+				"from": 1002260,
+				"to": 1004460
+			},
+			"text": " because we want to have this nice property of append only"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,460",
+				"to": "00:16:45,500"
+			},
+			"offsets": {
+				"from": 1004460,
+				"to": 1005500
+			},
+			"text": " a simulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,500",
+				"to": "00:16:47,300"
+			},
+			"offsets": {
+				"from": 1005500,
+				"to": 1007300
+			},
+			"text": " Therefore, we need another data structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,300",
+				"to": "00:16:49,500"
+			},
+			"offsets": {
+				"from": 1007300,
+				"to": 1009500
+			},
+			"text": " that will tell us which nodes have been consumed."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,500",
+				"to": "00:16:51,100"
+			},
+			"offsets": {
+				"from": 1009500,
+				"to": 1011100
+			},
+			"text": " So the nullified database is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,100",
+				"to": "00:16:53,500"
+			},
+			"offsets": {
+				"from": 1011100,
+				"to": 1013500
+			},
+			"text": " that keeps track of nodes that have been consumed."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,500",
+				"to": "00:16:55,220"
+			},
+			"offsets": {
+				"from": 1013500,
+				"to": 1015220
+			},
+			"text": " And for this, we also use a sparse Merkle tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,220",
+				"to": "00:16:58,380"
+			},
+			"offsets": {
+				"from": 1015220,
+				"to": 1018380
+			},
+			"text": " where we basically map a node hash to the 0, 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,380",
+				"to": "00:17:00,060"
+			},
+			"offsets": {
+				"from": 1018380,
+				"to": 1020060
+			},
+			"text": " 0 indicates that the node hasn't been consumed."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,060",
+				"to": "00:17:02,020"
+			},
+			"offsets": {
+				"from": 1020060,
+				"to": 1022020
+			},
+			"text": " 1 indicates that the node has been consumed."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,020",
+				"to": "00:17:03,860"
+			},
+			"offsets": {
+				"from": 1022020,
+				"to": 1023860
+			},
+			"text": " So whenever we generate a proof for a block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,860",
+				"to": "00:17:06,740"
+			},
+			"offsets": {
+				"from": 1023860,
+				"to": 1026740
+			},
+			"text": " the proof must include that this node existed"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,740",
+				"to": "00:17:10,100"
+			},
+			"offsets": {
+				"from": 1026740,
+				"to": 1030100
+			},
+			"text": " in a accounts database and it did not exist in a nullified database."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,100",
+				"to": "00:17:14,940"
+			},
+			"offsets": {
+				"from": 1030100,
+				"to": 1034940
+			},
+			"text": " We actually have a slightly more sophisticated data"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,940",
+				"to": "00:17:17,260"
+			},
+			"offsets": {
+				"from": 1034940,
+				"to": 1037260
+			},
+			"text": " structure where there are multiple epochs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,260",
+				"to": "00:17:18,620"
+			},
+			"offsets": {
+				"from": 1037260,
+				"to": 1038620
+			},
+			"text": " And there was a time period."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,620",
+				"to": "00:17:21,380"
+			},
+			"offsets": {
+				"from": 1038620,
+				"to": 1041380
+			},
+			"text": " And for each epoch, you have a separate nullified tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,380",
+				"to": "00:17:24,820"
+			},
+			"offsets": {
+				"from": 1041380,
+				"to": 1044820
+			},
+			"text": " And then nodes are expected to keep the last two epochs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,820",
+				"to": "00:17:28,180"
+			},
+			"offsets": {
+				"from": 1044820,
+				"to": 1048180
+			},
+			"text": " but can discard the nullifiers for the prior epochs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,180",
+				"to": "00:17:31,340"
+			},
+			"offsets": {
+				"from": 1048180,
+				"to": 1051340
+			},
+			"text": " Now, we have this different databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,340",
+				"to": "00:17:33,220"
+			},
+			"offsets": {
+				"from": 1051340,
+				"to": 1053220
+			},
+			"text": " And there are very different growth drivers"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,220",
+				"to": "00:17:34,660"
+			},
+			"offsets": {
+				"from": 1053220,
+				"to": 1054660
+			},
+			"text": " for each of these databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,660",
+				"to": "00:17:37,500"
+			},
+			"offsets": {
+				"from": 1054660,
+				"to": 1057500
+			},
+			"text": " An accounts database grows primarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,500",
+				"to": "00:17:42,100"
+			},
+			"offsets": {
+				"from": 1057500,
+				"to": 1062100
+			},
+			"text": " with a number of public accounts or accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,100",
+				"to": "00:17:44,020"
+			},
+			"offsets": {
+				"from": 1062100,
+				"to": 1064020
+			},
+			"text": " that have on-chain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,020",
+				"to": "00:17:46,820"
+			},
+			"offsets": {
+				"from": 1064020,
+				"to": 1066820
+			},
+			"text": " Because it does grow with a total number of accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,820",
+				"to": "00:17:49,660"
+			},
+			"offsets": {
+				"from": 1066820,
+				"to": 1069660
+			},
+			"text": " but if you only have to store a single hash for an account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,660",
+				"to": "00:17:50,740"
+			},
+			"offsets": {
+				"from": 1069660,
+				"to": 1070740
+			},
+			"text": " that's almost negligible."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,740",
+				"to": "00:17:51,820"
+			},
+			"offsets": {
+				"from": 1070740,
+				"to": 1071820
+			},
+			"text": " You can store a billion accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,820",
+				"to": "00:17:54,780"
+			},
+			"offsets": {
+				"from": 1071820,
+				"to": 1074780
+			},
+			"text": " and it's going to be only 64 gigabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,780",
+				"to": "00:17:56,980"
+			},
+			"offsets": {
+				"from": 1074780,
+				"to": 1076980
+			},
+			"text": " And also, we can dynamically kind of prune this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,980",
+				"to": "00:17:59,180"
+			},
+			"offsets": {
+				"from": 1076980,
+				"to": 1079180
+			},
+			"text": " We can, for accounts, for example, that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,180",
+				"to": "00:18:01,780"
+			},
+			"offsets": {
+				"from": 1079180,
+				"to": 1081780
+			},
+			"text": " haven't been used in a while, we can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,780",
+				"to": "00:18:03,980"
+			},
+			"offsets": {
+				"from": 1081780,
+				"to": 1083980
+			},
+			"text": " remove all the data and store the hash for that account."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,980",
+				"to": "00:18:06,860"
+			},
+			"offsets": {
+				"from": 1083980,
+				"to": 1086860
+			},
+			"text": " But nodes can choose to do that if they wish to."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,860",
+				"to": "00:18:09,980"
+			},
+			"offsets": {
+				"from": 1086860,
+				"to": 1089980
+			},
+			"text": " The nodes database grows with a number of one-consume nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,980",
+				"to": "00:18:11,340"
+			},
+			"offsets": {
+				"from": 1089980,
+				"to": 1091340
+			},
+			"text": " So as soon as the node is consumed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,340",
+				"to": "00:18:12,620"
+			},
+			"offsets": {
+				"from": 1091340,
+				"to": 1092620
+			},
+			"text": " it can be safely discarded."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,620",
+				"to": "00:18:14,540"
+			},
+			"offsets": {
+				"from": 1092620,
+				"to": 1094540
+			},
+			"text": " You don't need to store it anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,540",
+				"to": "00:18:18,100"
+			},
+			"offsets": {
+				"from": 1094540,
+				"to": 1098100
+			},
+			"text": " So unconsume nodes is what drives the size of the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,100",
+				"to": "00:18:19,380"
+			},
+			"offsets": {
+				"from": 1098100,
+				"to": 1099380
+			},
+			"text": " But also, you can have this pruning"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,380",
+				"to": "00:18:22,380"
+			},
+			"offsets": {
+				"from": 1099380,
+				"to": 1102380
+			},
+			"text": " where you can remove some of the nodes and just keep the hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,380",
+				"to": "00:18:24,100"
+			},
+			"offsets": {
+				"from": 1102380,
+				"to": 1104100
+			},
+			"text": " Then finally, we have the nullifier database."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,100",
+				"to": "00:18:26,060"
+			},
+			"offsets": {
+				"from": 1104100,
+				"to": 1106060
+			},
+			"text": " And this one is a different one, because you can't easily"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,060",
+				"to": "00:18:26,780"
+			},
+			"offsets": {
+				"from": 1106060,
+				"to": 1106780
+			},
+			"text": " prune nullifiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,780",
+				"to": "00:18:28,780"
+			},
+			"offsets": {
+				"from": 1106780,
+				"to": 1108780
+			},
+			"text": " To be able to create new blocks, you actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,780",
+				"to": "00:18:30,540"
+			},
+			"offsets": {
+				"from": 1108780,
+				"to": 1110540
+			},
+			"text": " need to keep all the nullifiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,540",
+				"to": "00:18:32,540"
+			},
+			"offsets": {
+				"from": 1110540,
+				"to": 1112540
+			},
+			"text": " And the nullifier database depends on the throughput."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,540",
+				"to": "00:18:35,340"
+			},
+			"offsets": {
+				"from": 1112540,
+				"to": 1115340
+			},
+			"text": " So the more transactions per second you have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,340",
+				"to": "00:18:38,060"
+			},
+			"offsets": {
+				"from": 1115340,
+				"to": 1118060
+			},
+			"text": " the more nullifiers you need to keep for a given epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,060",
+				"to": "00:18:40,060"
+			},
+			"offsets": {
+				"from": 1118060,
+				"to": 1120060
+			},
+			"text": " We can make epochs smaller, but there"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,060",
+				"to": "00:18:40,940"
+			},
+			"offsets": {
+				"from": 1120060,
+				"to": 1120940
+			},
+			"text": " are some downsides to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,940",
+				"to": "00:18:47,660"
+			},
+			"offsets": {
+				"from": 1120940,
+				"to": 1127660
+			},
+			"text": " So overall, if we look at what sizes of these databases could"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,660",
+				"to": "00:18:48,940"
+			},
+			"offsets": {
+				"from": 1127660,
+				"to": 1128940
+			},
+			"text": " be, the nullifier database is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,940",
+				"to": "00:18:51,100"
+			},
+			"offsets": {
+				"from": 1128940,
+				"to": 1131100
+			},
+			"text": " to be by far the ones that drives the size of the overall state."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,100",
+				"to": "00:18:53,020"
+			},
+			"offsets": {
+				"from": 1131100,
+				"to": 1133020
+			},
+			"text": " It's going to be larger than the nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,020",
+				"to": "00:18:54,700"
+			},
+			"offsets": {
+				"from": 1133020,
+				"to": 1134700
+			},
+			"text": " or accounts databases combined."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,700",
+				"to": "00:18:57,820"
+			},
+			"offsets": {
+				"from": 1134700,
+				"to": 1137820
+			},
+			"text": " Now, I have a few slides to wrap up the talk to say, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,820",
+				"to": "00:18:58,820"
+			},
+			"offsets": {
+				"from": 1137820,
+				"to": 1138820
+			},
+			"text": " what did we achieve?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,820",
+				"to": "00:19:01,940"
+			},
+			"offsets": {
+				"from": 1138820,
+				"to": 1141940
+			},
+			"text": " First, we have this concept of different models"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,940",
+				"to": "00:19:04,940"
+			},
+			"offsets": {
+				"from": 1141940,
+				"to": 1144940
+			},
+			"text": " of execution, so the network execution and local execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,940",
+				"to": "00:19:08,420"
+			},
+			"offsets": {
+				"from": 1144940,
+				"to": 1148420
+			},
+			"text": " And we have this concept of on-chain data and off-chain data."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,420",
+				"to": "00:19:10,540"
+			},
+			"offsets": {
+				"from": 1148420,
+				"to": 1150540
+			},
+			"text": " And the combination of this gives us"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,540",
+				"to": "00:19:11,540"
+			},
+			"offsets": {
+				"from": 1150540,
+				"to": 1151540
+			},
+			"text": " different nice properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,540",
+				"to": "00:19:13,900"
+			},
+			"offsets": {
+				"from": 1151540,
+				"to": 1153900
+			},
+			"text": " So for example, if we have on-chain data and network"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,900",
+				"to": "00:19:16,380"
+			},
+			"offsets": {
+				"from": 1153900,
+				"to": 1156380
+			},
+			"text": " execution, this is a typical public transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,380",
+				"to": "00:19:18,700"
+			},
+			"offsets": {
+				"from": 1156380,
+				"to": 1158700
+			},
+			"text": " something that happens when they see you right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,700",
+				"to": "00:19:20,220"
+			},
+			"offsets": {
+				"from": 1158700,
+				"to": 1160220
+			},
+			"text": " We can also have stateless transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,220",
+				"to": "00:19:22,740"
+			},
+			"offsets": {
+				"from": 1160220,
+				"to": 1162740
+			},
+			"text": " if we have off-chain data but network execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,740",
+				"to": "00:19:25,700"
+			},
+			"offsets": {
+				"from": 1162740,
+				"to": 1165700
+			},
+			"text": " where the network doesn't store the state of the accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,700",
+				"to": "00:19:27,660"
+			},
+			"offsets": {
+				"from": 1165700,
+				"to": 1167660
+			},
+			"text": " for example, but the user needs to provide the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,660",
+				"to": "00:19:29,060"
+			},
+			"offsets": {
+				"from": 1167660,
+				"to": 1169060
+			},
+			"text": " of the account with every transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,060",
+				"to": "00:19:31,660"
+			},
+			"offsets": {
+				"from": 1169060,
+				"to": 1171660
+			},
+			"text": " so that the network can execute the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,660",
+				"to": "00:19:33,900"
+			},
+			"offsets": {
+				"from": 1171660,
+				"to": 1173900
+			},
+			"text": " And the next thing we can do if the data is off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,900",
+				"to": "00:19:35,180"
+			},
+			"offsets": {
+				"from": 1173900,
+				"to": 1175180
+			},
+			"text": " and local execution is happening,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,180",
+				"to": "00:19:38,060"
+			},
+			"offsets": {
+				"from": 1175180,
+				"to": 1178060
+			},
+			"text": " we can have private transactions where the network is not aware"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,060",
+				"to": "00:19:39,940"
+			},
+			"offsets": {
+				"from": 1178060,
+				"to": 1179940
+			},
+			"text": " not only of what code was executed necessarily,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,940",
+				"to": "00:19:41,860"
+			},
+			"offsets": {
+				"from": 1179940,
+				"to": 1181860
+			},
+			"text": " but also is not aware of the data that is in the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,860",
+				"to": "00:19:45,700"
+			},
+			"offsets": {
+				"from": 1181860,
+				"to": 1185700
+			},
+			"text": " And we can also hide the transaction graph using UTXOs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,700",
+				"to": "00:19:47,060"
+			},
+			"offsets": {
+				"from": 1185700,
+				"to": 1187060
+			},
+			"text": " I'm not going to get into that right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,060",
+				"to": "00:19:48,580"
+			},
+			"offsets": {
+				"from": 1187060,
+				"to": 1188580
+			},
+			"text": " but it's a bit slightly more complicated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,580",
+				"to": "00:19:50,220"
+			},
+			"offsets": {
+				"from": 1188580,
+				"to": 1190220
+			},
+			"text": " but we can do that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,220",
+				"to": "00:19:51,540"
+			},
+			"offsets": {
+				"from": 1190220,
+				"to": 1191540
+			},
+			"text": " And then finally, for completeness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,540",
+				"to": "00:19:54,340"
+			},
+			"offsets": {
+				"from": 1191540,
+				"to": 1194340
+			},
+			"text": " there is this local execution and on-chain data."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,340",
+				"to": "00:19:56,340"
+			},
+			"offsets": {
+				"from": 1194340,
+				"to": 1196340
+			},
+			"text": " I personally don't know which use cases that would cover,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,340",
+				"to": "00:19:58,380"
+			},
+			"offsets": {
+				"from": 1196340,
+				"to": 1198380
+			},
+			"text": " but maybe people will come up with something."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,380",
+				"to": "00:20:00,860"
+			},
+			"offsets": {
+				"from": 1198380,
+				"to": 1200860
+			},
+			"text": " How did we address execution load with those models?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,860",
+				"to": "00:20:02,660"
+			},
+			"offsets": {
+				"from": 1200860,
+				"to": 1202660
+			},
+			"text": " So first, we achieved no re-execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,660",
+				"to": "00:20:05,780"
+			},
+			"offsets": {
+				"from": 1202660,
+				"to": 1205780
+			},
+			"text": " so all transactions are executed only once."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,780",
+				"to": "00:20:07,140"
+			},
+			"offsets": {
+				"from": 1205780,
+				"to": 1207140
+			},
+			"text": " Second, we have concurrent processing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,140",
+				"to": "00:20:10,300"
+			},
+			"offsets": {
+				"from": 1207140,
+				"to": 1210300
+			},
+			"text": " where transactions can be processed and parallel"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,300",
+				"to": "00:20:11,300"
+			},
+			"offsets": {
+				"from": 1210300,
+				"to": 1211300
+			},
+			"text": " on independent machines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,300",
+				"to": "00:20:13,460"
+			},
+			"offsets": {
+				"from": 1211300,
+				"to": 1213460
+			},
+			"text": " and you can almost scale this thing horizontally"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,460",
+				"to": "00:20:16,620"
+			},
+			"offsets": {
+				"from": 1213460,
+				"to": 1216620
+			},
+			"text": " by adding more and more machines to generate proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,620",
+				"to": "00:20:18,340"
+			},
+			"offsets": {
+				"from": 1216620,
+				"to": 1218340
+			},
+			"text": " And finally, we have this local execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,340",
+				"to": "00:20:22,540"
+			},
+			"offsets": {
+				"from": 1218340,
+				"to": 1222540
+			},
+			"text": " where transactions can be executed by the users"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,540",
+				"to": "00:20:24,020"
+			},
+			"offsets": {
+				"from": 1222540,
+				"to": 1224020
+			},
+			"text": " that are involved in those transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,020",
+				"to": "00:20:26,300"
+			},
+			"offsets": {
+				"from": 1224020,
+				"to": 1226300
+			},
+			"text": " And the nice property here is the more locally proven"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,300",
+				"to": "00:20:28,620"
+			},
+			"offsets": {
+				"from": 1226300,
+				"to": 1228620
+			},
+			"text": " transactions you have, the less burden computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,620",
+				"to": "00:20:30,620"
+			},
+			"offsets": {
+				"from": 1228620,
+				"to": 1230620
+			},
+			"text": " the lower than the network has to encounter."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,620",
+				"to": "00:20:32,300"
+			},
+			"offsets": {
+				"from": 1230620,
+				"to": 1232300
+			},
+			"text": " Because, let's say, 90% of transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,300",
+				"to": "00:20:33,820"
+			},
+			"offsets": {
+				"from": 1232300,
+				"to": 1233820
+			},
+			"text": " are something that is proven locally."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,820",
+				"to": "00:20:35,980"
+			},
+			"offsets": {
+				"from": 1233820,
+				"to": 1235980
+			},
+			"text": " There is very little work that the block producer needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,980",
+				"to": "00:20:38,060"
+			},
+			"offsets": {
+				"from": 1235980,
+				"to": 1238060
+			},
+			"text": " to do to execute them."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,060",
+				"to": "00:20:38,860"
+			},
+			"offsets": {
+				"from": 1238060,
+				"to": 1238860
+			},
+			"text": " They don't need to prove them."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,860",
+				"to": "00:20:41,140"
+			},
+			"offsets": {
+				"from": 1238860,
+				"to": 1241140
+			},
+			"text": " They just aggregate them into blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,140",
+				"to": "00:20:42,980"
+			},
+			"offsets": {
+				"from": 1241140,
+				"to": 1242980
+			},
+			"text": " And then regarding state load, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,980",
+				"to": "00:20:46,700"
+			},
+			"offsets": {
+				"from": 1242980,
+				"to": 1246700
+			},
+			"text": " have this dynamic pruning where we can collapse accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,700",
+				"to": "00:20:49,020"
+			},
+			"offsets": {
+				"from": 1246700,
+				"to": 1249020
+			},
+			"text": " and nodes into their hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,020",
+				"to": "00:20:50,540"
+			},
+			"offsets": {
+				"from": 1249020,
+				"to": 1250540
+			},
+			"text": " We can have very light verifying nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,540",
+				"to": "00:20:52,380"
+			},
+			"offsets": {
+				"from": 1250540,
+				"to": 1252380
+			},
+			"text": " If you only want to verify state transitions"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,380",
+				"to": "00:20:54,220"
+			},
+			"offsets": {
+				"from": 1252380,
+				"to": 1254220
+			},
+			"text": " and you don't want to create new blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,220",
+				"to": "00:20:56,140"
+			},
+			"offsets": {
+				"from": 1254220,
+				"to": 1256140
+			},
+			"text": " you actually don't need to maintain the nullifier database"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,140",
+				"to": "00:20:56,740"
+			},
+			"offsets": {
+				"from": 1256140,
+				"to": 1256740
+			},
+			"text": " at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,740",
+				"to": "00:20:59,420"
+			},
+			"offsets": {
+				"from": 1256740,
+				"to": 1259420
+			},
+			"text": " And in that case, as I mentioned, the nullifier database"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,420",
+				"to": "00:21:00,540"
+			},
+			"offsets": {
+				"from": 1259420,
+				"to": 1260540
+			},
+			"text": " is the biggest part of the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,540",
+				"to": "00:21:02,900"
+			},
+			"offsets": {
+				"from": 1260540,
+				"to": 1262900
+			},
+			"text": " So you can actually discard the biggest part of the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,900",
+				"to": "00:21:04,540"
+			},
+			"offsets": {
+				"from": 1262900,
+				"to": 1264540
+			},
+			"text": " And we have this nice thing where"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,540",
+				"to": "00:21:06,620"
+			},
+			"offsets": {
+				"from": 1264540,
+				"to": 1266620
+			},
+			"text": " because the nullifier database dominates"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,620",
+				"to": "00:21:09,620"
+			},
+			"offsets": {
+				"from": 1266620,
+				"to": 1269620
+			},
+			"text": " this overall state size, the overall state size really"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,620",
+				"to": "00:21:10,460"
+			},
+			"offsets": {
+				"from": 1269620,
+				"to": 1270460
+			},
+			"text": " depends on GPS."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,460",
+				"to": "00:21:13,140"
+			},
+			"offsets": {
+				"from": 1270460,
+				"to": 1273140
+			},
+			"text": " So the higher the GPS, the higher the nullifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,140",
+				"to": "00:21:13,980"
+			},
+			"offsets": {
+				"from": 1273140,
+				"to": 1273980
+			},
+			"text": " the bigger the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,980",
+				"to": "00:21:16,340"
+			},
+			"offsets": {
+				"from": 1273980,
+				"to": 1276340
+			},
+			"text": " But it doesn't vary with the number of accounts, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,340",
+				"to": "00:21:18,940"
+			},
+			"offsets": {
+				"from": 1276340,
+				"to": 1278940
+			},
+			"text": " as much or number of nodes in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,940",
+				"to": "00:21:20,740"
+			},
+			"offsets": {
+				"from": 1278940,
+				"to": 1280740
+			},
+			"text": " And last thing that I want to leave you with"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,740",
+				"to": "00:21:22,220"
+			},
+			"offsets": {
+				"from": 1280740,
+				"to": 1282220
+			},
+			"text": " is that this is what we're trying to achieve"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,220",
+				"to": "00:21:24,380"
+			},
+			"offsets": {
+				"from": 1282220,
+				"to": 1284380
+			},
+			"text": " where the more privacy that is in the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,380",
+				"to": "00:21:25,940"
+			},
+			"offsets": {
+				"from": 1284380,
+				"to": 1285940
+			},
+			"text": " the more scalable it is, the more scalable"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,940",
+				"to": "00:21:26,980"
+			},
+			"offsets": {
+				"from": 1285940,
+				"to": 1286980
+			},
+			"text": " it is, the more private it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,980",
+				"to": "00:21:29,700"
+			},
+			"offsets": {
+				"from": 1286980,
+				"to": 1289700
+			},
+			"text": " And this is our goal with the mighty neural app."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,700",
+				"to": "00:21:30,460"
+			},
+			"offsets": {
+				"from": 1289700,
+				"to": 1290460
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,460",
+				"to": "00:21:32,340"
+			},
+			"offsets": {
+				"from": 1290460,
+				"to": 1292340
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,340",
+				"to": "00:21:35,460"
+			},
+			"offsets": {
+				"from": 1292340,
+				"to": 1295460
+			},
+			"text": " So how would the network resolve when two accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,460",
+				"to": "00:21:38,300"
+			},
+			"offsets": {
+				"from": 1295460,
+				"to": 1298300
+			},
+			"text": " try to spend the same UTXO like in a index or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,300",
+				"to": "00:21:39,700"
+			},
+			"offsets": {
+				"from": 1298300,
+				"to": 1299700
+			},
+			"text": " like that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,700",
+				"to": "00:21:42,980"
+			},
+			"offsets": {
+				"from": 1299700,
+				"to": 1302980
+			},
+			"text": " So if two accounts are trying to spend the same UTXO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,980",
+				"to": "00:21:43,660"
+			},
+			"offsets": {
+				"from": 1302980,
+				"to": 1303660
+			},
+			"text": " that's a conflict."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,660",
+				"to": "00:21:46,020"
+			},
+			"offsets": {
+				"from": 1303660,
+				"to": 1306020
+			},
+			"text": " You can spend the same UTXO twice."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,020",
+				"to": "00:21:50,180"
+			},
+			"offsets": {
+				"from": 1306020,
+				"to": 1310180
+			},
+			"text": " So I think the problem-- so it's not really a problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,180",
+				"to": "00:21:50,780"
+			},
+			"offsets": {
+				"from": 1310180,
+				"to": 1310780
+			},
+			"text": " in that case."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,780",
+				"to": "00:21:52,180"
+			},
+			"offsets": {
+				"from": 1310780,
+				"to": 1312180
+			},
+			"text": " Like if you are trying to spend--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,180",
+				"to": "00:21:54,220"
+			},
+			"offsets": {
+				"from": 1312180,
+				"to": 1314220
+			},
+			"text": " like if you have UTXO and I have UTXO"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,220",
+				"to": "00:21:57,020"
+			},
+			"offsets": {
+				"from": 1314220,
+				"to": 1317020
+			},
+			"text": " and we submit transactions for whatever reason that both of us"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,020",
+				"to": "00:21:58,740"
+			},
+			"offsets": {
+				"from": 1317020,
+				"to": 1318740
+			},
+			"text": " can consume, the block producer will"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,740",
+				"to": "00:22:01,740"
+			},
+			"offsets": {
+				"from": 1318740,
+				"to": 1321740
+			},
+			"text": " need to decide which of those transactions goes through."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,740",
+				"to": "00:22:06,180"
+			},
+			"offsets": {
+				"from": 1321740,
+				"to": 1326180
+			},
+			"text": " Because you can't execute both of those transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,180",
+				"to": "00:22:08,380"
+			},
+			"offsets": {
+				"from": 1326180,
+				"to": 1328380
+			},
+			"text": " simultaneously because one of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,380",
+				"to": "00:22:10,740"
+			},
+			"offsets": {
+				"from": 1328380,
+				"to": 1330740
+			},
+			"text": " will produce a nullifier that the second transaction will not"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,740",
+				"to": "00:22:12,420"
+			},
+			"offsets": {
+				"from": 1330740,
+				"to": 1332420
+			},
+			"text": " succeed because a nullifier for this UTXO"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,420",
+				"to": "00:22:14,100"
+			},
+			"offsets": {
+				"from": 1332420,
+				"to": 1334100
+			},
+			"text": " has already been created."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,100",
+				"to": "00:22:16,300"
+			},
+			"offsets": {
+				"from": 1334100,
+				"to": 1336300
+			},
+			"text": " So like in the Uniswap example, you can send."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,300",
+				"to": "00:22:18,620"
+			},
+			"offsets": {
+				"from": 1336300,
+				"to": 1338620
+			},
+			"text": " So you can send a node that says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,620",
+				"to": "00:22:20,420"
+			},
+			"offsets": {
+				"from": 1338620,
+				"to": 1340420
+			},
+			"text": " I want to swap token A for token B, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,420",
+				"to": "00:22:21,020"
+			},
+			"offsets": {
+				"from": 1340420,
+				"to": 1341020
+			},
+			"text": " At this price."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,020",
+				"to": "00:22:23,060"
+			},
+			"offsets": {
+				"from": 1341020,
+				"to": 1343060
+			},
+			"text": " And somebody else can do the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,060",
+				"to": "00:22:24,860"
+			},
+			"offsets": {
+				"from": 1343060,
+				"to": 1344860
+			},
+			"text": " And those are two different requests."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,860",
+				"to": "00:22:27,380"
+			},
+			"offsets": {
+				"from": 1344860,
+				"to": 1347380
+			},
+			"text": " But then the block producer will aggregate those requests,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,380",
+				"to": "00:22:29,980"
+			},
+			"offsets": {
+				"from": 1347380,
+				"to": 1349980
+			},
+			"text": " sequence them in a single transaction, and execute them."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,980",
+				"to": "00:22:31,260"
+			},
+			"offsets": {
+				"from": 1349980,
+				"to": 1351260
+			},
+			"text": " And there will be no conflict on that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,260",
+				"to": "00:22:34,140"
+			},
+			"offsets": {
+				"from": 1351260,
+				"to": 1354140
+			},
+			"text": " because the state of the Uniswap contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,140",
+				"to": "00:22:38,700"
+			},
+			"offsets": {
+				"from": 1354140,
+				"to": 1358700
+			},
+			"text": " gets a beta sequentially after each consumed node."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,700",
+				"to": "00:22:40,220"
+			},
+			"offsets": {
+				"from": 1358700,
+				"to": 1360220
+			},
+			"text": " So you're not consuming the same UTXO."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,220",
+				"to": "00:22:42,380"
+			},
+			"offsets": {
+				"from": 1360220,
+				"to": 1362380
+			},
+			"text": " You're applying the different nodes to the same account."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,380",
+				"to": "00:22:44,060"
+			},
+			"offsets": {
+				"from": 1362380,
+				"to": 1364060
+			},
+			"text": " But yes, that cannot be done locally."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,060",
+				"to": "00:22:46,940"
+			},
+			"offsets": {
+				"from": 1364060,
+				"to": 1366940
+			},
+			"text": " That needs to be done by a block producer."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,940",
+				"to": "00:22:48,580"
+			},
+			"offsets": {
+				"from": 1366940,
+				"to": 1368580
+			},
+			"text": " It's an optimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,580",
+				"to": "00:22:53,700"
+			},
+			"offsets": {
+				"from": 1368580,
+				"to": 1373700
+			},
+			"text": " The idea is that if you want to have-- let's say your node"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,700",
+				"to": "00:22:56,980"
+			},
+			"offsets": {
+				"from": 1373700,
+				"to": 1376980
+			},
+			"text": " was created in a prior epoch, and the nullifier was created then,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,980",
+				"to": "00:23:00,580"
+			},
+			"offsets": {
+				"from": 1376980,
+				"to": 1380580
+			},
+			"text": " you will need to provide the path that proves that it hasn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,580",
+				"to": "00:23:01,940"
+			},
+			"offsets": {
+				"from": 1380580,
+				"to": 1381940
+			},
+			"text": " been consumed yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,940",
+				"to": "00:23:03,700"
+			},
+			"offsets": {
+				"from": 1381940,
+				"to": 1383700
+			},
+			"text": " The nodes are not responsible for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,700",
+				"to": "00:23:06,180"
+			},
+			"offsets": {
+				"from": 1383700,
+				"to": 1386180
+			},
+			"text": " So the nodes are meant to be a short-lived object."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,180",
+				"to": "00:23:08,860"
+			},
+			"offsets": {
+				"from": 1386180,
+				"to": 1388860
+			},
+			"text": " So they are not meant to stay in a state for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,860",
+				"to": "00:23:10,100"
+			},
+			"offsets": {
+				"from": 1388860,
+				"to": 1390100
+			},
+			"text": " And if for whatever reason, you decided"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,100",
+				"to": "00:23:12,380"
+			},
+			"offsets": {
+				"from": 1390100,
+				"to": 1392380
+			},
+			"text": " to keep the state there for quite long,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,380",
+				"to": "00:23:14,340"
+			},
+			"offsets": {
+				"from": 1392380,
+				"to": 1394340
+			},
+			"text": " the sheer responsibility to be able to provide this proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,340",
+				"to": "00:23:15,620"
+			},
+			"offsets": {
+				"from": 1394340,
+				"to": 1395620
+			},
+			"text": " to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,620",
+				"to": "00:23:17,220"
+			},
+			"offsets": {
+				"from": 1395620,
+				"to": 1397220
+			},
+			"text": " It's not network's responsibility to keep it"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,220",
+				"to": "00:23:19,220"
+			},
+			"offsets": {
+				"from": 1397220,
+				"to": 1399220
+			},
+			"text": " for more than, let's say, six months or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,220",
+				"to": "00:23:22,100"
+			},
+			"offsets": {
+				"from": 1399220,
+				"to": 1402100
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,100",
+				"to": "00:23:24,060"
+			},
+			"offsets": {
+				"from": 1402100,
+				"to": 1404060
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,060",
+				"to": "00:23:27,040"
+			},
+			"offsets": {
+				"from": 1404060,
+				"to": 1407040
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,040",
+				"to": "00:23:30,020"
+			},
+			"offsets": {
+				"from": 1407040,
+				"to": 1410020
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,020",
+				"to": "00:23:33,000"
+			},
+			"offsets": {
+				"from": 1410020,
+				"to": 1413000
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,000",
+				"to": "00:24:02,000"
+			},
+			"offsets": {
+				"from": 1413000,
+				"to": 1442000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

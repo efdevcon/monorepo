@@ -1,0 +1,3739 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,120"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3120
+			},
+			"text": " All right, well, hello everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,120",
+				"to": "00:00:04,560"
+			},
+			"offsets": {
+				"from": 3120,
+				"to": 4560
+			},
+			"text": " I'm Adam Link."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,560",
+				"to": "00:00:07,480"
+			},
+			"offsets": {
+				"from": 4560,
+				"to": 7480
+			},
+			"text": " I'm an engineer with AirSwap."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,480",
+				"to": "00:00:15,040"
+			},
+			"offsets": {
+				"from": 7480,
+				"to": 15040
+			},
+			"text": " And today we are going to be talking about running a Gethnode cluster in production at"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,040",
+				"to": "00:00:15,960"
+			},
+			"offsets": {
+				"from": 15040,
+				"to": 15960
+			},
+			"text": " scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,960",
+				"to": "00:00:21,920"
+			},
+			"offsets": {
+				"from": 15960,
+				"to": 21920
+			},
+			"text": " So, as was alluded to about 15 minutes ago, there is no open source way to run a Gethnode"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,920",
+				"to": "00:00:23,240"
+			},
+			"offsets": {
+				"from": 21920,
+				"to": 23240
+			},
+			"text": " at scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,240",
+				"to": "00:00:27,360"
+			},
+			"offsets": {
+				"from": 23240,
+				"to": 27360
+			},
+			"text": " We will be open sourcing our production infrastructure in about 20 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,360",
+				"to": "00:00:37,360"
+			},
+			"offsets": {
+				"from": 27360,
+				"to": 37360
+			},
+			"text": " So, this is the work of about three developers over about two months to develop the infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,360",
+				"to": "00:00:40,480"
+			},
+			"offsets": {
+				"from": 37360,
+				"to": 40480
+			},
+			"text": " with a lot of the pitfalls that we experienced along the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,480",
+				"to": "00:00:44,880"
+			},
+			"offsets": {
+				"from": 40480,
+				"to": 44880
+			},
+			"text": " So it's at least something for you guys to reference as you're building a Gethnode cluster"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,880",
+				"to": "00:00:47,720"
+			},
+			"offsets": {
+				"from": 44880,
+				"to": 47720
+			},
+			"text": " or perhaps use on your own."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,720",
+				"to": "00:00:53,080"
+			},
+			"offsets": {
+				"from": 47720,
+				"to": 53080
+			},
+			"text": " So, at the core, this daps need to keep state."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,080",
+				"to": "00:00:57,120"
+			},
+			"offsets": {
+				"from": 53080,
+				"to": 57120
+			},
+			"text": " When you run a DAP, your data store is inherently distributed."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,120",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 57120,
+				"to": 61000
+			},
+			"text": " And distributed data store means that you just stay in sync with your peers to decide"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:03,800"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 63800
+			},
+			"text": " what the correct view of that data actually is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,800",
+				"to": "00:01:09,480"
+			},
+			"offsets": {
+				"from": 63800,
+				"to": 69480
+			},
+			"text": " And there's a whole host of issues that can occur if your front end or your back end application"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,480",
+				"to": "00:01:15,640"
+			},
+			"offsets": {
+				"from": 69480,
+				"to": 75640
+			},
+			"text": " does not properly reflect what the consensus of the database state actually is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,640",
+				"to": "00:01:19,280"
+			},
+			"offsets": {
+				"from": 75640,
+				"to": 79280
+			},
+			"text": " And there's nothing worse than users not trusting your application because they can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,280",
+				"to": "00:01:21,400"
+			},
+			"offsets": {
+				"from": 79280,
+				"to": 81400
+			},
+			"text": " trust the underlying data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,400",
+				"to": "00:01:25,720"
+			},
+			"offsets": {
+				"from": 81400,
+				"to": 85720
+			},
+			"text": " But you also can't sacrifice the responsiveness of your application when you're waiting on"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,720",
+				"to": "00:01:29,040"
+			},
+			"offsets": {
+				"from": 85720,
+				"to": 89040
+			},
+			"text": " an eventually consistent database."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,040",
+				"to": "00:01:33,240"
+			},
+			"offsets": {
+				"from": 89040,
+				"to": 93240
+			},
+			"text": " Users on the internet are generally not accustomed to waiting five minutes to do a state change"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,240",
+				"to": "00:01:34,960"
+			},
+			"offsets": {
+				"from": 93240,
+				"to": 94960
+			},
+			"text": " operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,960",
+				"to": "00:01:39,120"
+			},
+			"offsets": {
+				"from": 94960,
+				"to": 99120
+			},
+			"text": " And while we in the industry may be okay with waiting for transactions to settle, if we"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,120",
+				"to": "00:01:45,200"
+			},
+			"offsets": {
+				"from": 99120,
+				"to": 105200
+			},
+			"text": " want to actually get mass adoption, we need to -- we need to understand the general public"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,200",
+				"to": "00:01:52,200"
+			},
+			"offsets": {
+				"from": 105200,
+				"to": 112200
+			},
+			"text": " wants which is a lack of leg when they're doing a state change operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,200",
+				"to": "00:01:56,400"
+			},
+			"offsets": {
+				"from": 112200,
+				"to": 116400
+			},
+			"text": " There's two types of data that you need for state management."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,400",
+				"to": "00:02:00,600"
+			},
+			"offsets": {
+				"from": 116400,
+				"to": 120600
+			},
+			"text": " The first type is the balances on your accounts, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,600",
+				"to": "00:02:04,160"
+			},
+			"offsets": {
+				"from": 120600,
+				"to": 124160
+			},
+			"text": " This is the ETH that you hold in your wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,160",
+				"to": "00:02:09,520"
+			},
+			"offsets": {
+				"from": 124160,
+				"to": 129520
+			},
+			"text": " And for many daps, this is a critical piece of data in the user onboarding process because"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,520",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 129520,
+				"to": 136000
+			},
+			"text": " they may need to swap their ETH for your proprietary dap token in order to use the product that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:18,040"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 138040
+			},
+			"text": " you're creating."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,040",
+				"to": "00:02:22,120"
+			},
+			"offsets": {
+				"from": 138040,
+				"to": 142120
+			},
+			"text": " The second type of information is the state tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,120",
+				"to": "00:02:25,400"
+			},
+			"offsets": {
+				"from": 142120,
+				"to": 145400
+			},
+			"text": " This is information about events within your smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,400",
+				"to": "00:02:30,840"
+			},
+			"offsets": {
+				"from": 145400,
+				"to": 150840
+			},
+			"text": " This is things like the user's token balance, smart contract function executions, and token"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,840",
+				"to": "00:02:32,480"
+			},
+			"offsets": {
+				"from": 150840,
+				"to": 152480
+			},
+			"text": " balance transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,480",
+				"to": "00:02:38,200"
+			},
+			"offsets": {
+				"from": 152480,
+				"to": 158200
+			},
+			"text": " However, contract events, which is the state of your smart contract, are actually implicit"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,200",
+				"to": "00:02:41,320"
+			},
+			"offsets": {
+				"from": 158200,
+				"to": 161320
+			},
+			"text": " and computed based on the data in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,320",
+				"to": "00:02:46,200"
+			},
+			"offsets": {
+				"from": 161320,
+				"to": 166200
+			},
+			"text": " So this means that your dap needs processing power behind it when you're running your"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,200",
+				"to": "00:02:47,200"
+			},
+			"offsets": {
+				"from": 166200,
+				"to": 167200
+			},
+			"text": " Ethereum nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,200",
+				"to": "00:02:52,360"
+			},
+			"offsets": {
+				"from": 167200,
+				"to": 172360
+			},
+			"text": " If you're out of sync with your nodes, obviously you're misrepresenting the state of the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,360",
+				"to": "00:02:58,200"
+			},
+			"offsets": {
+				"from": 172360,
+				"to": 178200
+			},
+			"text": " and that's a dangerous place to be in as an application."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,200",
+				"to": "00:03:02,160"
+			},
+			"offsets": {
+				"from": 178200,
+				"to": 182160
+			},
+			"text": " So with the importance of staying in sync now for your dap kind of resting on your shoulders"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,160",
+				"to": "00:03:07,480"
+			},
+			"offsets": {
+				"from": 182160,
+				"to": 187480
+			},
+			"text": " as a developer, some of you guys and the industry as a whole, we've wondered can we just outsource"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,480",
+				"to": "00:03:10,440"
+			},
+			"offsets": {
+				"from": 187480,
+				"to": 190440
+			},
+			"text": " this and pay somebody else to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,440",
+				"to": "00:03:12,800"
+			},
+			"offsets": {
+				"from": 190440,
+				"to": 192800
+			},
+			"text": " And the answer is of course you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,800",
+				"to": "00:03:17,440"
+			},
+			"offsets": {
+				"from": 192800,
+				"to": 197440
+			},
+			"text": " There's many companies out there that actually offer services where they will run nodes for"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,440",
+				"to": "00:03:18,440"
+			},
+			"offsets": {
+				"from": 197440,
+				"to": 198440
+			},
+			"text": " you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,440",
+				"to": "00:03:23,560"
+			},
+			"offsets": {
+				"from": 198440,
+				"to": 203560
+			},
+			"text": " Not all of them are geared towards OLTP processing that a dap needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,560",
+				"to": "00:03:25,480"
+			},
+			"offsets": {
+				"from": 203560,
+				"to": 205480
+			},
+			"text": " Some of them are more analytics based."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,480",
+				"to": "00:03:28,920"
+			},
+			"offsets": {
+				"from": 205480,
+				"to": 208920
+			},
+			"text": " Google recently came out with a product like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,920",
+				"to": "00:03:33,640"
+			},
+			"offsets": {
+				"from": 208920,
+				"to": 213640
+			},
+			"text": " But the question we need to ask ourselves as an industry is do we want to move towards"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,640",
+				"to": "00:03:35,960"
+			},
+			"offsets": {
+				"from": 213640,
+				"to": 215960
+			},
+			"text": " the MasterCard Visa model?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,960",
+				"to": "00:03:40,040"
+			},
+			"offsets": {
+				"from": 215960,
+				"to": 220040
+			},
+			"text": " So right now with credit card processing, there's only a few companies in the world that have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,040",
+				"to": "00:03:45,840"
+			},
+			"offsets": {
+				"from": 220040,
+				"to": 225840
+			},
+			"text": " the technical expertise, software and hardware to actually keep up with the number of transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,840",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 225840,
+				"to": 228000
+			},
+			"text": " that happen on credit cards."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:54,040"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 234040
+			},
+			"text": " And as we move state management towards centralized parties, we move the entire industry towards"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,040",
+				"to": "00:03:55,640"
+			},
+			"offsets": {
+				"from": 234040,
+				"to": 235640
+			},
+			"text": " that model again."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,640",
+				"to": "00:03:57,840"
+			},
+			"offsets": {
+				"from": 235640,
+				"to": 237840
+			},
+			"text": " And the question is do we want to do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,840",
+				"to": "00:04:01,640"
+			},
+			"offsets": {
+				"from": 237840,
+				"to": 241640
+			},
+			"text": " Do we actually want to be there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,640",
+				"to": "00:04:09,360"
+			},
+			"offsets": {
+				"from": 241640,
+				"to": 249360
+			},
+			"text": " The solution in our mind to combat the centralization is having people run their own nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,360",
+				"to": "00:04:15,680"
+			},
+			"offsets": {
+				"from": 249360,
+				"to": 255680
+			},
+			"text": " But running in the Ethereum node at scale in production is really not well documented"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,680",
+				"to": "00:04:18,600"
+			},
+			"offsets": {
+				"from": 255680,
+				"to": 258600
+			},
+			"text": " online right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,600",
+				"to": "00:04:25,120"
+			},
+			"offsets": {
+				"from": 258600,
+				"to": 265120
+			},
+			"text": " There's also costs associated with running your own nodes, not well documented either."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,120",
+				"to": "00:04:28,840"
+			},
+			"offsets": {
+				"from": 265120,
+				"to": 268840
+			},
+			"text": " So not only do you have the overhead costs of the actual infrastructure from running your"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,840",
+				"to": "00:04:34,360"
+			},
+			"offsets": {
+				"from": 268840,
+				"to": 274360
+			},
+			"text": " own node, but you also have costs on your team to create the infrastructure and create"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,360",
+				"to": "00:04:40,680"
+			},
+			"offsets": {
+				"from": 274360,
+				"to": 280680
+			},
+			"text": " the software that manages your nodes and make sure that your nodes stay in sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,680",
+				"to": "00:04:45,880"
+			},
+			"offsets": {
+				"from": 280680,
+				"to": 285880
+			},
+			"text": " There's a lot of resources online pertaining to optimizing nodes for mining, but there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,880",
+				"to": "00:04:55,120"
+			},
+			"offsets": {
+				"from": 285880,
+				"to": 295120
+			},
+			"text": " not many resources optimized for reading and read heavy workloads that adapt needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,120",
+				"to": "00:04:59,760"
+			},
+			"offsets": {
+				"from": 295120,
+				"to": 299760
+			},
+			"text": " It gets even worse when you start going into data querying and trying to understand how"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,760",
+				"to": "00:05:02,320"
+			},
+			"offsets": {
+				"from": 299760,
+				"to": 302320
+			},
+			"text": " you process this data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,320",
+				"to": "00:05:07,360"
+			},
+			"offsets": {
+				"from": 302320,
+				"to": 307360
+			},
+			"text": " There's very few resources online for data querying, for taking block data and storing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,360",
+				"to": "00:05:09,280"
+			},
+			"offsets": {
+				"from": 307360,
+				"to": 309280
+			},
+			"text": " it internally."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,280",
+				"to": "00:05:14,320"
+			},
+			"offsets": {
+				"from": 309280,
+				"to": 314320
+			},
+			"text": " We as well as everyone else who's up here before have created tools for doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,320",
+				"to": "00:05:18,680"
+			},
+			"offsets": {
+				"from": 314320,
+				"to": 318680
+			},
+			"text": " We're not outsourcing those yet, but that is something that we are all creating our"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,680",
+				"to": "00:05:22,240"
+			},
+			"offsets": {
+				"from": 318680,
+				"to": 322240
+			},
+			"text": " own data querying layer on top of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,240",
+				"to": "00:05:26,240"
+			},
+			"offsets": {
+				"from": 322240,
+				"to": 326240
+			},
+			"text": " And there are some companies right now like the graph that are actively working on making"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,240",
+				"to": "00:05:33,440"
+			},
+			"offsets": {
+				"from": 326240,
+				"to": 333440
+			},
+			"text": " a way to query using GraphQL, but they also still require that you run your own nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,440",
+				"to": "00:05:39,440"
+			},
+			"offsets": {
+				"from": 333440,
+				"to": 339440
+			},
+			"text": " or you find somebody that can run nodes for you to get the underlying state data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,440",
+				"to": "00:05:46,440"
+			},
+			"offsets": {
+				"from": 339440,
+				"to": 346440
+			},
+			"text": " So right here is a simplistic view of our Geth architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,440",
+				"to": "00:05:54,480"
+			},
+			"offsets": {
+				"from": 346440,
+				"to": 354480
+			},
+			"text": " We run a production cluster and it's basically a group of load balanced Geth nodes behind,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,480",
+				"to": "00:06:01,280"
+			},
+			"offsets": {
+				"from": 354480,
+				"to": 361280
+			},
+			"text": " sorry, in an auto scaling group behind an application load balancer on AWS."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,280",
+				"to": "00:06:07,240"
+			},
+			"offsets": {
+				"from": 361280,
+				"to": 367240
+			},
+			"text": " The application load balancer allows us to upgrade non-secure requests to TLS."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,240",
+				"to": "00:06:13,600"
+			},
+			"offsets": {
+				"from": 367240,
+				"to": 373600
+			},
+			"text": " We can also run very tight health checks to cycle out nodes that are not healthy out of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,600",
+				"to": "00:06:15,600"
+			},
+			"offsets": {
+				"from": 373600,
+				"to": 375600
+			},
+			"text": " the load balancer target group."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,600",
+				"to": "00:06:18,840"
+			},
+			"offsets": {
+				"from": 375600,
+				"to": 378840
+			},
+			"text": " So if they fall behind, for instance, like the head of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,840",
+				"to": "00:06:23,040"
+			},
+			"offsets": {
+				"from": 378840,
+				"to": 383040
+			},
+			"text": " And usually what we found in our internal tests is we recommend setting the frequency"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,040",
+				"to": "00:06:28,600"
+			},
+			"offsets": {
+				"from": 383040,
+				"to": 388600
+			},
+			"text": " of those health checks to a time that is less than a single block propagation time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,600",
+				"to": "00:06:33,960"
+			},
+			"offsets": {
+				"from": 388600,
+				"to": 393960
+			},
+			"text": " So right now that's doing a health check inside of a 15 second window."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,960",
+				"to": "00:06:38,480"
+			},
+			"offsets": {
+				"from": 393960,
+				"to": 398480
+			},
+			"text": " This allows nodes that fall behind to be dropped out of the pool quickly so they can sync back"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,480",
+				"to": "00:06:43,600"
+			},
+			"offsets": {
+				"from": 398480,
+				"to": 403600
+			},
+			"text": " in so you're not querying nodes that you know are behind in state."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,600",
+				"to": "00:06:48,360"
+			},
+			"offsets": {
+				"from": 403600,
+				"to": 408360
+			},
+			"text": " The load balance nature of our clusters also means that if a single node does fall behind,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,360",
+				"to": "00:06:56,400"
+			},
+			"offsets": {
+				"from": 408360,
+				"to": 416400
+			},
+			"text": " our overarching service doesn't actually fall out of sync and become unavailable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,400",
+				"to": "00:07:02,280"
+			},
+			"offsets": {
+				"from": 416400,
+				"to": 422280
+			},
+			"text": " So we use our Geth nodes on the front end UI on the AirSwap platform as well as in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,280",
+				"to": "00:07:05,640"
+			},
+			"offsets": {
+				"from": 422280,
+				"to": 425640
+			},
+			"text": " back end for state management and storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,640",
+				"to": "00:07:11,220"
+			},
+			"offsets": {
+				"from": 425640,
+				"to": 431220
+			},
+			"text": " On the front end this takes the form of balance checks in the UI, wrapping and unwrapping"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,220",
+				"to": "00:07:15,840"
+			},
+			"offsets": {
+				"from": 431220,
+				"to": 435840
+			},
+			"text": " the width and also approvals and approval state for the atomic swaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,840",
+				"to": "00:07:21,480"
+			},
+			"offsets": {
+				"from": 435840,
+				"to": 441480
+			},
+			"text": " So if you've used the AirSwap platform, you know that on the new spaces on the right-hand"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,480",
+				"to": "00:07:26,720"
+			},
+			"offsets": {
+				"from": 441480,
+				"to": 446720
+			},
+			"text": " side, we have a bunch of information that comes from our Geth nodes state."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,720",
+				"to": "00:07:30,580"
+			},
+			"offsets": {
+				"from": 446720,
+				"to": 450580
+			},
+			"text": " We also use a heavy polling method to handle trade confirmations."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,580",
+				"to": "00:07:34,780"
+			},
+			"offsets": {
+				"from": 450580,
+				"to": 454780
+			},
+			"text": " So if you've ever popped open the network tab in Chrome while using AirSwap, you'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,780",
+				"to": "00:07:38,380"
+			},
+			"offsets": {
+				"from": 454780,
+				"to": 458380
+			},
+			"text": " notice that we do heavy polling against the Geth cluster."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,380",
+				"to": "00:07:43,640"
+			},
+			"offsets": {
+				"from": 458380,
+				"to": 463640
+			},
+			"text": " Basically when you do a trade to make sure the trade actually goes through and gets executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,640",
+				"to": "00:07:49,320"
+			},
+			"offsets": {
+				"from": 463640,
+				"to": 469320
+			},
+			"text": " We also do a very limited third party access to our Geth cluster."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,320",
+				"to": "00:07:55,520"
+			},
+			"offsets": {
+				"from": 469320,
+				"to": 475520
+			},
+			"text": " We do have some of our maker partners who use our Geth cluster as well for balance checks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,520",
+				"to": "00:08:00,440"
+			},
+			"offsets": {
+				"from": 475520,
+				"to": 480440
+			},
+			"text": " both for their own wallets that they operate out of as well as counterparty balance checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,440",
+				"to": "00:08:06,280"
+			},
+			"offsets": {
+				"from": 480440,
+				"to": 486280
+			},
+			"text": " to make sure that the counterparty taking a trade is a valid taker."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,280",
+				"to": "00:08:12,240"
+			},
+			"offsets": {
+				"from": 486280,
+				"to": 492240
+			},
+			"text": " Other parties also use the Geth cluster for market data and price information, in addition"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,240",
+				"to": "00:08:20,580"
+			},
+			"offsets": {
+				"from": 492240,
+				"to": 500580
+			},
+			"text": " with a couple of their sources, but we do provide chain state to them for pricing information."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,580",
+				"to": "00:08:24,380"
+			},
+			"offsets": {
+				"from": 500580,
+				"to": 504380
+			},
+			"text": " When we were setting up our Geth cluster for the first time, we ran into many issues"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,380",
+				"to": "00:08:28,780"
+			},
+			"offsets": {
+				"from": 504380,
+				"to": 508780
+			},
+			"text": " with the way Geth was written and our particular use case of heavy reads."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,780",
+				"to": "00:08:30,820"
+			},
+			"offsets": {
+				"from": 508780,
+				"to": 510820
+			},
+			"text": " It's not a knock on the guys that built Geth."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,820",
+				"to": "00:08:32,540"
+			},
+			"offsets": {
+				"from": 510820,
+				"to": 512540
+			},
+			"text": " It's a great piece of software."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,540",
+				"to": "00:08:38,820"
+			},
+			"offsets": {
+				"from": 512540,
+				"to": 518820
+			},
+			"text": " But we just operated at a scale that really no one else had been publicly talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,820",
+				"to": "00:08:43,500"
+			},
+			"offsets": {
+				"from": 518820,
+				"to": 523500
+			},
+			"text": " The first problem we had was Geth wasn't written with modern pub sub methods."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,500",
+				"to": "00:08:47,900"
+			},
+			"offsets": {
+				"from": 523500,
+				"to": 527900
+			},
+			"text": " This meant that you have to do heavy frequent polling in order to get state changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,900",
+				"to": "00:08:52,060"
+			},
+			"offsets": {
+				"from": 527900,
+				"to": 532060
+			},
+			"text": " You can't just simply subscribe to the events being omitted out of the blockchain that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,060",
+				"to": "00:08:54,300"
+			},
+			"offsets": {
+				"from": 532060,
+				"to": 534300
+			},
+			"text": " want to get."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,300",
+				"to": "00:08:57,180"
+			},
+			"offsets": {
+				"from": 534300,
+				"to": 537180
+			},
+			"text": " That's kind of true because you can with filters."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,180",
+				"to": "00:09:02,300"
+			},
+			"offsets": {
+				"from": 537180,
+				"to": 542300
+			},
+			"text": " I've heard a rumor here that this may no longer be true, but at the time, filters were"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,300",
+				"to": "00:09:05,860"
+			},
+			"offsets": {
+				"from": 542300,
+				"to": 545860
+			},
+			"text": " dropped on a node resetting."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,860",
+				"to": "00:09:09,260"
+			},
+			"offsets": {
+				"from": 545860,
+				"to": 549260
+			},
+			"text": " You'll find out in a couple slides where that was a huge issue for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,260",
+				"to": "00:09:16,100"
+			},
+			"offsets": {
+				"from": 549260,
+				"to": 556100
+			},
+			"text": " But basically, the filters being dropped was a hindrance to us properly getting a pub sub"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,100",
+				"to": "00:09:17,940"
+			},
+			"offsets": {
+				"from": 556100,
+				"to": 557940
+			},
+			"text": " system set up."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,940",
+				"to": "00:09:21,300"
+			},
+			"offsets": {
+				"from": 557940,
+				"to": 561300
+			},
+			"text": " And then further complicating that is filters are in a single node only."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,300",
+				"to": "00:09:25,380"
+			},
+			"offsets": {
+				"from": 561300,
+				"to": 565380
+			},
+			"text": " So when you cluster your nodes behind a load balancer, the round robin aspect of the load"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,380",
+				"to": "00:09:29,420"
+			},
+			"offsets": {
+				"from": 565380,
+				"to": 569420
+			},
+			"text": " balancer means you can no longer guarantee which node is being hit and if the filter"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,420",
+				"to": "00:09:31,660"
+			},
+			"offsets": {
+				"from": 569420,
+				"to": 571660
+			},
+			"text": " even existed there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,660",
+				"to": "00:09:35,380"
+			},
+			"offsets": {
+				"from": 571660,
+				"to": 575380
+			},
+			"text": " One of the solutions we found at the time was a node.js library that basically allowed"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,380",
+				"to": "00:09:40,540"
+			},
+			"offsets": {
+				"from": 575380,
+				"to": 580540
+			},
+			"text": " you to do a multi-node filter setup and all it would do is iterate over an array of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,540",
+				"to": "00:09:42,780"
+			},
+			"offsets": {
+				"from": 580540,
+				"to": 582780
+			},
+			"text": " Geth nodes and set up filters on each node."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,780",
+				"to": "00:09:46,620"
+			},
+			"offsets": {
+				"from": 582780,
+				"to": 586620
+			},
+			"text": " That was a heavy client side solution and we really didn't think that was what we wanted"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,620",
+				"to": "00:09:47,620"
+			},
+			"offsets": {
+				"from": 586620,
+				"to": 587620
+			},
+			"text": " to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,620",
+				"to": "00:09:53,300"
+			},
+			"offsets": {
+				"from": 587620,
+				"to": 593300
+			},
+			"text": " We were hoping for more of a server side solution rather than relying on a client implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,300",
+				"to": "00:09:57,260"
+			},
+			"offsets": {
+				"from": 593300,
+				"to": 597260
+			},
+			"text": " The underlying issue that we found in some of the people alluded to is the overall ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,260",
+				"to": "00:10:01,900"
+			},
+			"offsets": {
+				"from": 597260,
+				"to": 601900
+			},
+			"text": " of Ethereum is meant to be fault tolerant when it comes to chain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,900",
+				"to": "00:10:06,980"
+			},
+			"offsets": {
+				"from": 601900,
+				"to": 606980
+			},
+			"text": " However, there's no real thought that's been given to the notion of creating a subset of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,980",
+				"to": "00:10:11,180"
+			},
+			"offsets": {
+				"from": 606980,
+				"to": 611180
+			},
+			"text": " nodes that are also fault tolerant in and of themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,180",
+				"to": "00:10:16,460"
+			},
+			"offsets": {
+				"from": 611180,
+				"to": 616460
+			},
+			"text": " And so with ADAP, this means either querying a single node and praying that it doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,460",
+				"to": "00:10:21,980"
+			},
+			"offsets": {
+				"from": 616460,
+				"to": 621980
+			},
+			"text": " go down using a bunch of third party nodes and hoping you have the right state or doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,980",
+				"to": "00:10:28,340"
+			},
+			"offsets": {
+				"from": 621980,
+				"to": 628340
+			},
+			"text": " what Inferi did which is writing a really cool piece of software and hardware called"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,340",
+				"to": "00:10:35,540"
+			},
+			"offsets": {
+				"from": 628340,
+				"to": 635540
+			},
+			"text": " ferryman which basically takes introspects the request coming in and then sends the request"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,540",
+				"to": "00:10:38,220"
+			},
+			"offsets": {
+				"from": 635540,
+				"to": 638220
+			},
+			"text": " off to the proper type of node."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,220",
+				"to": "00:10:43,900"
+			},
+			"offsets": {
+				"from": 638220,
+				"to": 643900
+			},
+			"text": " Also provides a modern pub sublayer on top of that and then allows for you to subscribe"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,900",
+				"to": "00:10:45,500"
+			},
+			"offsets": {
+				"from": 643900,
+				"to": 645500
+			},
+			"text": " to client events."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,500",
+				"to": "00:10:50,220"
+			},
+			"offsets": {
+				"from": 645500,
+				"to": 650220
+			},
+			"text": " The problem is the Inferi solution is very proprietary and only makes sense for their"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,220",
+				"to": "00:10:56,220"
+			},
+			"offsets": {
+				"from": 650220,
+				"to": 656220
+			},
+			"text": " setup so they can't really open source that to the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,220",
+				"to": "00:11:02,580"
+			},
+			"offsets": {
+				"from": 656220,
+				"to": 662580
+			},
+			"text": " Our story on our Geth nodes, we do about 800 requests per second on our Geth node cluster."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,580",
+				"to": "00:11:05,500"
+			},
+			"offsets": {
+				"from": 662580,
+				"to": 665500
+			},
+			"text": " It's about 70 million requests per day."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,500",
+				"to": "00:11:08,460"
+			},
+			"offsets": {
+				"from": 665500,
+				"to": 668460
+			},
+			"text": " That's over two clusters of three nodes each."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,460",
+				"to": "00:11:11,620"
+			},
+			"offsets": {
+				"from": 668460,
+				"to": 671620
+			},
+			"text": " So that's a fairly large amount of traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,620",
+				"to": "00:11:15,660"
+			},
+			"offsets": {
+				"from": 671620,
+				"to": 675660
+			},
+			"text": " And under this load, Geth actually broke."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,660",
+				"to": "00:11:21,300"
+			},
+			"offsets": {
+				"from": 675660,
+				"to": 681300
+			},
+			"text": " We had a massive memory usage issue and a recurring memory leak that caused each node to slowly"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,300",
+				"to": "00:11:25,220"
+			},
+			"offsets": {
+				"from": 681300,
+				"to": 685220
+			},
+			"text": " utilize all the RAM available on the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,220",
+				"to": "00:11:30,220"
+			},
+			"offsets": {
+				"from": 685220,
+				"to": 690220
+			},
+			"text": " We tried scaling up our hardware to -- and this is AWS terms, but M5, 2X largest."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,220",
+				"to": "00:11:35,140"
+			},
+			"offsets": {
+				"from": 690220,
+				"to": 695140
+			},
+			"text": " So it's a 32 giga ram 8v CPU piece of hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,140",
+				"to": "00:11:40,180"
+			},
+			"offsets": {
+				"from": 695140,
+				"to": 700180
+			},
+			"text": " And with six of those in production, you should be able to do substantially more than"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,180",
+				"to": "00:11:42,540"
+			},
+			"offsets": {
+				"from": 700180,
+				"to": 702540
+			},
+			"text": " 70 million requests per day."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,540",
+				"to": "00:11:47,060"
+			},
+			"offsets": {
+				"from": 702540,
+				"to": 707060
+			},
+			"text": " But as you can see from the chart here, after about 15 hours, we had topped out our memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,060",
+				"to": "00:11:48,780"
+			},
+			"offsets": {
+				"from": 707060,
+				"to": 708780
+			},
+			"text": " at 32 gigs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,780",
+				"to": "00:11:52,220"
+			},
+			"offsets": {
+				"from": 708780,
+				"to": 712220
+			},
+			"text": " And the drops you see are where we actually went in physically and restarted the Geth"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,220",
+				"to": "00:11:55,180"
+			},
+			"offsets": {
+				"from": 712220,
+				"to": 715180
+			},
+			"text": " process."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,180",
+				"to": "00:12:00,100"
+			},
+			"offsets": {
+				"from": 715180,
+				"to": 720100
+			},
+			"text": " The memory leak meant that we had to cycle our Geth nodes before the Geth processes used"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,100",
+				"to": "00:12:01,500"
+			},
+			"offsets": {
+				"from": 720100,
+				"to": 721500
+			},
+			"text": " all the available RAM."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,500",
+				"to": "00:12:08,020"
+			},
+			"offsets": {
+				"from": 721500,
+				"to": 728020
+			},
+			"text": " In fact, if we didn't catch it in time, the box itself was so -- the RAM was so used up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,020",
+				"to": "00:12:11,620"
+			},
+			"offsets": {
+				"from": 728020,
+				"to": 731620
+			},
+			"text": " you couldn't even SSH into the box to kill the Geth process."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,620",
+				"to": "00:12:15,540"
+			},
+			"offsets": {
+				"from": 731620,
+				"to": 735540
+			},
+			"text": " You had to restart the whole node itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,540",
+				"to": "00:12:19,460"
+			},
+			"offsets": {
+				"from": 735540,
+				"to": 739460
+			},
+			"text": " And this meant that we were waking up every three to four hours to check memory consumption"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,460",
+				"to": "00:12:24,220"
+			},
+			"offsets": {
+				"from": 739460,
+				"to": 744220
+			},
+			"text": " and manually restart the process to make sure we didn't get locked out of our boxes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,220",
+				"to": "00:12:28,380"
+			},
+			"offsets": {
+				"from": 744220,
+				"to": 748380
+			},
+			"text": " And once we figured out the usual cycle of RAM usage, we were able to write cron jobs"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,380",
+				"to": "00:12:32,380"
+			},
+			"offsets": {
+				"from": 748380,
+				"to": 752380
+			},
+			"text": " to then go in and restart our Geth process."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,380",
+				"to": "00:12:36,340"
+			},
+			"offsets": {
+				"from": 752380,
+				"to": 756340
+			},
+			"text": " And we staged that over about an hour across six nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,340",
+				"to": "00:12:37,340"
+			},
+			"offsets": {
+				"from": 756340,
+				"to": 757340
+			},
+			"text": " And it worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,340",
+				"to": "00:12:42,060"
+			},
+			"offsets": {
+				"from": 757340,
+				"to": 762060
+			},
+			"text": " But any of you guys that work in infrastructure, trusting your entire system to six cron jobs"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,060",
+				"to": "00:12:44,460"
+			},
+			"offsets": {
+				"from": 762060,
+				"to": 764460
+			},
+			"text": " is incredibly scary."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,460",
+				"to": "00:12:48,700"
+			},
+			"offsets": {
+				"from": 764460,
+				"to": 768700
+			},
+			"text": " So we started tinkering with some of our Geth settings, and we actually dropped our"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,700",
+				"to": "00:12:53,900"
+			},
+			"offsets": {
+				"from": 768700,
+				"to": 773900
+			},
+			"text": " MaxPiers setting, and the memory usage issue was largely resolved."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,900",
+				"to": "00:12:57,420"
+			},
+			"offsets": {
+				"from": 773900,
+				"to": 777420
+			},
+			"text": " And it turned out that the memory leak with the MaxPiers setting really only occurred"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,420",
+				"to": "00:13:02,580"
+			},
+			"offsets": {
+				"from": 777420,
+				"to": 782580
+			},
+			"text": " at the scale at which we were operating, and it wasn't publicly documented prior to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,580",
+				"to": "00:13:05,020"
+			},
+			"offsets": {
+				"from": 782580,
+				"to": 785020
+			},
+			"text": " As you can see in the charts here, those drops."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,020",
+				"to": "00:13:09,140"
+			},
+			"offsets": {
+				"from": 785020,
+				"to": 789140
+			},
+			"text": " That's when we were restarting Geth."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,140",
+				"to": "00:13:13,460"
+			},
+			"offsets": {
+				"from": 789140,
+				"to": 793460
+			},
+			"text": " The stability that we did finally get came at an incredible cost to operations team."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,460",
+				"to": "00:13:17,580"
+			},
+			"offsets": {
+				"from": 793460,
+				"to": 797580
+			},
+			"text": " So for at least two of us, we were getting nothing done during the day other than Geth"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,580",
+				"to": "00:13:19,300"
+			},
+			"offsets": {
+				"from": 797580,
+				"to": 799300
+			},
+			"text": " Node work."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,300",
+				"to": "00:13:22,820"
+			},
+			"offsets": {
+				"from": 799300,
+				"to": 802820
+			},
+			"text": " And I can tell you that your sleep quality certainly suffers when you're waking up every"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,820",
+				"to": "00:13:28,340"
+			},
+			"offsets": {
+				"from": 802820,
+				"to": 808340
+			},
+			"text": " few hours to make sure that your boxes aren't freezing or running out of memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,340",
+				"to": "00:13:32,580"
+			},
+			"offsets": {
+				"from": 808340,
+				"to": 812580
+			},
+			"text": " Also your morale really suffers when every morning before breakfast you wake up to 50"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,580",
+				"to": "00:13:37,780"
+			},
+			"offsets": {
+				"from": 812580,
+				"to": 817780
+			},
+			"text": " plus pager duty alerts, and they just keep rolling in throughout the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,780",
+				"to": "00:13:42,580"
+			},
+			"offsets": {
+				"from": 817780,
+				"to": 822580
+			},
+			"text": " So we wanted to fix this, and we embarked on a massive experimentation to find the correct"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,580",
+				"to": "00:13:47,760"
+			},
+			"offsets": {
+				"from": 822580,
+				"to": 827760
+			},
+			"text": " hardware and software combination that would be the most stable and cost effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,760",
+				"to": "00:13:53,060"
+			},
+			"offsets": {
+				"from": 827760,
+				"to": 833060
+			},
+			"text": " We ended up iterating over 10 different instance types, spinning up everything from T2 micros"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,060",
+				"to": "00:13:58,900"
+			},
+			"offsets": {
+				"from": 833060,
+				"to": 838900
+			},
+			"text": " to 4XL boxes, and we tried everything from compute focus, memory focus, instance store"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,900",
+				"to": "00:14:04,300"
+			},
+			"offsets": {
+				"from": 838900,
+				"to": 844300
+			},
+			"text": " focused, trying to find and profile the way that the Geth process worked under the loads"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,300",
+				"to": "00:14:07,620"
+			},
+			"offsets": {
+				"from": 844300,
+				"to": 847620
+			},
+			"text": " that we were seeing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,620",
+				"to": "00:14:14,100"
+			},
+			"offsets": {
+				"from": 847620,
+				"to": 854100
+			},
+			"text": " We made some concessions along the way that we have built into open source solution unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,100",
+				"to": "00:14:17,180"
+			},
+			"offsets": {
+				"from": 854100,
+				"to": 857180
+			},
+			"text": " No pub sub method meant that we were just going to brute force it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,180",
+				"to": "00:14:21,580"
+			},
+			"offsets": {
+				"from": 857180,
+				"to": 861580
+			},
+			"text": " And that was one of our big decisions out of the gate."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,580",
+				"to": "00:14:26,340"
+			},
+			"offsets": {
+				"from": 861580,
+				"to": 866340
+			},
+			"text": " We couldn't guarantee that a single node was up, so we needed to load balance our nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,340",
+				"to": "00:14:30,100"
+			},
+			"offsets": {
+				"from": 866340,
+				"to": 870100
+			},
+			"text": " We couldn't guarantee that our nodes were in sync and up, so we needed to write health"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,100",
+				"to": "00:14:31,620"
+			},
+			"offsets": {
+				"from": 870100,
+				"to": 871620
+			},
+			"text": " checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,620",
+				"to": "00:14:35,020"
+			},
+			"offsets": {
+				"from": 871620,
+				"to": 875020
+			},
+			"text": " We also couldn't guarantee that a node was at the latest head, so we wanted to do peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,020",
+				"to": "00:14:39,500"
+			},
+			"offsets": {
+				"from": 875020,
+				"to": 879500
+			},
+			"text": " checking to make sure that we were actually at the head state that we thought we were."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,500",
+				"to": "00:14:43,420"
+			},
+			"offsets": {
+				"from": 879500,
+				"to": 883420
+			},
+			"text": " That combination was kind of the secret sauce that no one was really talking about online,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,420",
+				"to": "00:14:47,820"
+			},
+			"offsets": {
+				"from": 883420,
+				"to": 887820
+			},
+			"text": " which was aggressive health checking, aggressive peer checking, load balancing, and then proper"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,820",
+				"to": "00:14:50,940"
+			},
+			"offsets": {
+				"from": 887820,
+				"to": 890940
+			},
+			"text": " hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,940",
+				"to": "00:14:54,060"
+			},
+			"offsets": {
+				"from": 890940,
+				"to": 894060
+			},
+			"text": " So talk about the infrastructure we actually run in depth."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,060",
+				"to": "00:14:56,940"
+			},
+			"offsets": {
+				"from": 894060,
+				"to": 896940
+			},
+			"text": " This is what we're going to be open sourcing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,940",
+				"to": "00:15:03,060"
+			},
+			"offsets": {
+				"from": 896940,
+				"to": 903060
+			},
+			"text": " So when we run our nodes, we run on top of Ubuntu."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,060",
+				"to": "00:15:07,900"
+			},
+			"offsets": {
+				"from": 903060,
+				"to": 907900
+			},
+			"text": " So we use the service construct to start our proprietary tasks."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,900",
+				"to": "00:15:10,100"
+			},
+			"offsets": {
+				"from": 907900,
+				"to": 910100
+			},
+			"text": " Here we're actually starting the Geth process."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,100",
+				"to": "00:15:11,340"
+			},
+			"offsets": {
+				"from": 910100,
+				"to": 911340
+			},
+			"text": " So this is in the open source repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,340",
+				"to": "00:15:14,340"
+			},
+			"offsets": {
+				"from": 911340,
+				"to": 914340
+			},
+			"text": " You don't need to worry if you can't read the actual code."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,340",
+				"to": "00:15:16,140"
+			},
+			"offsets": {
+				"from": 914340,
+				"to": 916140
+			},
+			"text": " But let's break down the options we use."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,140",
+				"to": "00:15:18,660"
+			},
+			"offsets": {
+				"from": 916140,
+				"to": 918660
+			},
+			"text": " So we brought the Max peers down to 50."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,660",
+				"to": "00:15:23,380"
+			},
+			"offsets": {
+				"from": 918660,
+				"to": 923380
+			},
+			"text": " This solved memory leak issue and also helped with the data transfer costs that we'll talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,380",
+				"to": "00:15:25,020"
+			},
+			"offsets": {
+				"from": 923380,
+				"to": 925020
+			},
+			"text": " about in a couple of slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,020",
+				"to": "00:15:29,220"
+			},
+			"offsets": {
+				"from": 925020,
+				"to": 929220
+			},
+			"text": " We use a custom data der parameter to take advantage of the NVMe drives that AWS recently"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,220",
+				"to": "00:15:31,500"
+			},
+			"offsets": {
+				"from": 929220,
+				"to": 931500
+			},
+			"text": " made available."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,500",
+				"to": "00:15:34,660"
+			},
+			"offsets": {
+				"from": 931500,
+				"to": 934660
+			},
+			"text": " Right now our default is cores turned on everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,660",
+				"to": "00:15:37,220"
+			},
+			"offsets": {
+				"from": 934660,
+				"to": 937220
+			},
+			"text": " You may want to restrict this for your own implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,220",
+				"to": "00:15:43,300"
+			},
+			"offsets": {
+				"from": 937220,
+				"to": 943300
+			},
+			"text": " We use a 4GIG cache to speed up the initial sync process."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,300",
+				"to": "00:15:46,620"
+			},
+			"offsets": {
+				"from": 943300,
+				"to": 946620
+			},
+			"text": " This is the health check that we used to keep our nodes in sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,620",
+				"to": "00:15:52,340"
+			},
+			"offsets": {
+				"from": 946620,
+				"to": 952340
+			},
+			"text": " It's probably pretty small, but what it essentially is a Node.js express app that just does a waterfall"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,340",
+				"to": "00:15:56,300"
+			},
+			"offsets": {
+				"from": 952340,
+				"to": 956300
+			},
+			"text": " queries over our peers to determine state."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,300",
+				"to": "00:16:00,460"
+			},
+			"offsets": {
+				"from": 956300,
+				"to": 960460
+			},
+			"text": " So we compare it to inferior and ether scan, but you can certainly customize this to run"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,460",
+				"to": "00:16:02,500"
+			},
+			"offsets": {
+				"from": 960460,
+				"to": 962500
+			},
+			"text": " on additional peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,500",
+				"to": "00:16:06,580"
+			},
+			"offsets": {
+				"from": 962500,
+				"to": 966580
+			},
+			"text": " We consider ourselves to be in sync if we're within 10 blocks of the head."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,580",
+				"to": "00:16:10,580"
+			},
+			"offsets": {
+				"from": 966580,
+				"to": 970580
+			},
+			"text": " And you can make this tighter, but we found that if you tighten it up too close to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,580",
+				"to": "00:16:15,940"
+			},
+			"offsets": {
+				"from": 970580,
+				"to": 975940
+			},
+			"text": " actual head state, like three blocks or less, you will occasionally drop entirely out of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,940",
+				"to": "00:16:20,060"
+			},
+			"offsets": {
+				"from": 975940,
+				"to": 980060
+			},
+			"text": " sync with all your nodes when you get a small chain split at the head, which happens on"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,060",
+				"to": "00:16:21,060"
+			},
+			"offsets": {
+				"from": 980060,
+				"to": 981060
+			},
+			"text": " occasion."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,060",
+				"to": "00:16:26,900"
+			},
+			"offsets": {
+				"from": 981060,
+				"to": 986900
+			},
+			"text": " So we decided to really stay in sync or sorry, available, then completely in sync all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,900",
+				"to": "00:16:27,900"
+			},
+			"offsets": {
+				"from": 986900,
+				"to": 987900
+			},
+			"text": " time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,900",
+				"to": "00:16:32,460"
+			},
+			"offsets": {
+				"from": 987900,
+				"to": 992460
+			},
+			"text": " We returned back HTTP status codes that do correctly identify whether the service is up"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,460",
+				"to": "00:16:33,620"
+			},
+			"offsets": {
+				"from": 992460,
+				"to": 993620
+			},
+			"text": " or down."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,620",
+				"to": "00:16:37,620"
+			},
+			"offsets": {
+				"from": 993620,
+				"to": 997620
+			},
+			"text": " We also returned back a network timeout because we found out occasionally in Fira just times"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,620",
+				"to": "00:16:38,620"
+			},
+			"offsets": {
+				"from": 997620,
+				"to": 998620
+			},
+			"text": " out our requests."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,620",
+				"to": "00:16:41,780"
+			},
+			"offsets": {
+				"from": 998620,
+				"to": 1001780
+			},
+			"text": " We got a couple of nifty features."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,780",
+				"to": "00:16:43,180"
+			},
+			"offsets": {
+				"from": 1001780,
+				"to": 1003180
+			},
+			"text": " Health check has started as a service."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,180",
+				"to": "00:16:48,620"
+			},
+			"offsets": {
+				"from": 1003180,
+				"to": 1008620
+			},
+			"text": " We've run into issues before where our health check was down, but the node is actually up."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,620",
+				"to": "00:16:51,780"
+			},
+			"offsets": {
+				"from": 1008620,
+				"to": 1011780
+			},
+			"text": " We have cron jobs that reset the max open file limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,780",
+				"to": "00:16:56,380"
+			},
+			"offsets": {
+				"from": 1011780,
+				"to": 1016380
+			},
+			"text": " This was something that Geth had an issue with earlier where it was not respecting the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,380",
+				"to": "00:17:00,100"
+			},
+			"offsets": {
+				"from": 1016380,
+				"to": 1020100
+			},
+			"text": " max open file limit, so we wrote a cron job to fix this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,100",
+				"to": "00:17:03,980"
+			},
+			"offsets": {
+				"from": 1020100,
+				"to": 1023980
+			},
+			"text": " And then we wrapped this all in a cloud in its script, so it automatically spins up"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,980",
+				"to": "00:17:10,420"
+			},
+			"offsets": {
+				"from": 1023980,
+				"to": 1030420
+			},
+			"text": " the boxes, installs all the required programs, Geth mounts the NVMe drives, and starts the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,420",
+				"to": "00:17:11,420"
+			},
+			"offsets": {
+				"from": 1030420,
+				"to": 1031420
+			},
+			"text": " services."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,420",
+				"to": "00:17:13,340"
+			},
+			"offsets": {
+				"from": 1031420,
+				"to": 1033340
+			},
+			"text": " So your boxes spin up and they start syncing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,340",
+				"to": "00:17:16,860"
+			},
+			"offsets": {
+				"from": 1033340,
+				"to": 1036860
+			},
+			"text": " You can actually check that in a health check that we publish as to whether or not your"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,860",
+				"to": "00:17:19,820"
+			},
+			"offsets": {
+				"from": 1036860,
+				"to": 1039820
+			},
+			"text": " node is running."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,820",
+				"to": "00:17:22,860"
+			},
+			"offsets": {
+				"from": 1039820,
+				"to": 1042860
+			},
+			"text": " One of the biggest takeaways we had was the hardware selection that we used."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,860",
+				"to": "00:17:25,660"
+			},
+			"offsets": {
+				"from": 1042860,
+				"to": 1045660
+			},
+			"text": " So we're going to talk about IO right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,660",
+				"to": "00:17:28,300"
+			},
+			"offsets": {
+				"from": 1045660,
+				"to": 1048300
+			},
+			"text": " Magnetic-conspiriting disk drives just don't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,300",
+				"to": "00:17:29,300"
+			},
+			"offsets": {
+				"from": 1048300,
+				"to": 1049300
+			},
+			"text": " You just don't stay in sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,300",
+				"to": "00:17:34,300"
+			},
+			"offsets": {
+				"from": 1049300,
+				"to": 1054300
+			},
+			"text": " You become IO-bound and the node will freeze."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,300",
+				"to": "00:17:36,940"
+			},
+			"offsets": {
+				"from": 1054300,
+				"to": 1056940
+			},
+			"text": " Similarly, provisioned IOPS is actually not cost effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,940",
+				"to": "00:17:41,420"
+			},
+			"offsets": {
+				"from": 1056940,
+				"to": 1061420
+			},
+			"text": " You over-allocate your IOPS and you're only using your max IOPS about 3% of the time, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,420",
+				"to": "00:17:43,300"
+			},
+			"offsets": {
+				"from": 1061420,
+				"to": 1063300
+			},
+			"text": " that means you're just wasting money."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,300",
+				"to": "00:17:48,460"
+			},
+			"offsets": {
+				"from": 1063300,
+				"to": 1068460
+			},
+			"text": " So we tried moving back to burst-based EBS drives, and you have to actually allocate"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,460",
+				"to": "00:17:52,420"
+			},
+			"offsets": {
+				"from": 1068460,
+				"to": 1072420
+			},
+			"text": " 3TB of storage space to get the provisioned IOPS that you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,420",
+				"to": "00:17:56,460"
+			},
+			"offsets": {
+				"from": 1072420,
+				"to": 1076460
+			},
+			"text": " But again, because now you're below where you'd want to be an IOPS, you're actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,460",
+				"to": "00:18:01,340"
+			},
+			"offsets": {
+				"from": 1076460,
+				"to": 1081340
+			},
+			"text": " hitting caps when a large block comes in, and so now you have a right queue that will"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,340",
+				"to": "00:18:04,100"
+			},
+			"offsets": {
+				"from": 1081340,
+				"to": 1084100
+			},
+			"text": " build up over time and your node falls out of sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,100",
+				"to": "00:18:10,060"
+			},
+			"offsets": {
+				"from": 1084100,
+				"to": 1090060
+			},
+			"text": " EFS is something that AWS provides an infinitely scalable network attached storage, and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,060",
+				"to": "00:18:13,580"
+			},
+			"offsets": {
+				"from": 1090060,
+				"to": 1093580
+			},
+			"text": " network overhead actually makes it so your node will never sync as well, so just don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,580",
+				"to": "00:18:15,180"
+			},
+			"offsets": {
+				"from": 1093580,
+				"to": 1095180
+			},
+			"text": " try that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,180",
+				"to": "00:18:17,700"
+			},
+			"offsets": {
+				"from": 1095180,
+				"to": 1097700
+			},
+			"text": " And NVMe drives were announced a few months ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,700",
+				"to": "00:18:19,100"
+			},
+			"offsets": {
+				"from": 1097700,
+				"to": 1099100
+			},
+			"text": " That's actually what we use."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,100",
+				"to": "00:18:25,660"
+			},
+			"offsets": {
+				"from": 1099100,
+				"to": 1105660
+			},
+			"text": " It is a very good IO-based instant-store drive."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,660",
+				"to": "00:18:31,580"
+			},
+			"offsets": {
+				"from": 1105660,
+				"to": 1111580
+			},
+			"text": " Family-wise, Geth is IO-bound and incoming data and compute-bound and serving requests."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,580",
+				"to": "00:18:35,020"
+			},
+			"offsets": {
+				"from": 1111580,
+				"to": 1115020
+			},
+			"text": " So M4 and M5 general classes over-allocate memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,020",
+				"to": "00:18:37,020"
+			},
+			"offsets": {
+				"from": 1115020,
+				"to": 1117020
+			},
+			"text": " We don't use those."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,020",
+				"to": "00:18:42,700"
+			},
+			"offsets": {
+				"from": 1117020,
+				"to": 1122700
+			},
+			"text": " Any other memory-heavy family is actually not going to be cost-effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,700",
+				"to": "00:18:48,060"
+			},
+			"offsets": {
+				"from": 1122700,
+				"to": 1128060
+			},
+			"text": " I3 classes is actually what Infera uses, or use the time I talk to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,060",
+				"to": "00:18:52,860"
+			},
+			"offsets": {
+				"from": 1128060,
+				"to": 1132860
+			},
+			"text": " So they work well, but NVMe drives are now back out, and that's a better instant-store"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,860",
+				"to": "00:18:54,780"
+			},
+			"offsets": {
+				"from": 1132860,
+				"to": 1134780
+			},
+			"text": " than the I3 class."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,780",
+				"to": "00:18:57,300"
+			},
+			"offsets": {
+				"from": 1134780,
+				"to": 1137300
+			},
+			"text": " We run C5Ds in production."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,300",
+				"to": "00:19:03,380"
+			},
+			"offsets": {
+				"from": 1137300,
+				"to": 1143380
+			},
+			"text": " This is the proper mix of compute power with IO for what we run."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,380",
+				"to": "00:19:06,620"
+			},
+			"offsets": {
+				"from": 1143380,
+				"to": 1146620
+			},
+			"text": " We found anything smaller than a large instance is actually not going to give you enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,620",
+				"to": "00:19:09,940"
+			},
+			"offsets": {
+				"from": 1146620,
+				"to": 1149940
+			},
+			"text": " power to run your nodes in production at scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,940",
+				"to": "00:19:14,780"
+			},
+			"offsets": {
+				"from": 1149940,
+				"to": 1154780
+			},
+			"text": " And any other family than these, it's just cost too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,780",
+				"to": "00:19:20,380"
+			},
+			"offsets": {
+				"from": 1154780,
+				"to": 1160380
+			},
+			"text": " So we run 6 C5D4 excels in production, and we have not had a single instance to downtime"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,380",
+				"to": "00:19:23,740"
+			},
+			"offsets": {
+				"from": 1160380,
+				"to": 1163740
+			},
+			"text": " since August."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,740",
+				"to": "00:19:24,740"
+			},
+			"offsets": {
+				"from": 1163740,
+				"to": 1164740
+			},
+			"text": " Last factor is cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,740",
+				"to": "00:19:25,740"
+			},
+			"offsets": {
+				"from": 1164740,
+				"to": 1165740
+			},
+			"text": " What do you pay for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,740",
+				"to": "00:19:26,740"
+			},
+			"offsets": {
+				"from": 1165740,
+				"to": 1166740
+			},
+			"text": " You pay for these two instances."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,740",
+				"to": "00:19:28,220"
+			},
+			"offsets": {
+				"from": 1166740,
+				"to": 1168220
+			},
+			"text": " Pay for the load balancers."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,220",
+				"to": "00:19:32,060"
+			},
+			"offsets": {
+				"from": 1168220,
+				"to": 1172060
+			},
+			"text": " And then when you also pay for outbound data transfer, something we didn't know when"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,060",
+				"to": "00:19:35,580"
+			},
+			"offsets": {
+				"from": 1172060,
+				"to": 1175580
+			},
+			"text": " we had our max peer set as high as they were was your outbound data transfer actually runs"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,580",
+				"to": "00:19:37,580"
+			},
+			"offsets": {
+				"from": 1175580,
+				"to": 1177580
+			},
+			"text": " into thousands of dollars per month."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,580",
+				"to": "00:19:40,060"
+			},
+			"offsets": {
+				"from": 1177580,
+				"to": 1180060
+			},
+			"text": " So we've dropped this down with 50 peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,060",
+				"to": "00:19:45,380"
+			},
+			"offsets": {
+				"from": 1180060,
+				"to": 1185380
+			},
+			"text": " We actually end up with about two to three terabytes out every month."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,380",
+				"to": "00:19:47,900"
+			},
+			"offsets": {
+				"from": 1185380,
+				"to": 1187900
+			},
+			"text": " Real quick slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,900",
+				"to": "00:19:49,180"
+			},
+			"offsets": {
+				"from": 1187900,
+				"to": 1189180
+			},
+			"text": " Why not parity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,180",
+				"to": "00:19:53,660"
+			},
+			"offsets": {
+				"from": 1189180,
+				"to": 1193660
+			},
+			"text": " When we did parity about five months ago, we were getting a bunch of false nodes, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,660",
+				"to": "00:19:57,060"
+			},
+			"offsets": {
+				"from": 1193660,
+				"to": 1197060
+			},
+			"text": " we were not actually staying in sync appropriately with enough peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,060",
+				"to": "00:19:58,300"
+			},
+			"offsets": {
+				"from": 1197060,
+				"to": 1198300
+			},
+			"text": " So we just dropped them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,300",
+				"to": "00:20:01,860"
+			},
+			"offsets": {
+				"from": 1198300,
+				"to": 1201860
+			},
+			"text": " But version 2.0, we certainly want to go ahead and start looking at other clients to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,860",
+				"to": "00:20:02,860"
+			},
+			"offsets": {
+				"from": 1201860,
+				"to": 1202860
+			},
+			"text": " bring out."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,860",
+				"to": "00:20:05,900"
+			},
+			"offsets": {
+				"from": 1202860,
+				"to": 1205900
+			},
+			"text": " I think that's something that we call for help on the open source side."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,900",
+				"to": "00:20:10,900"
+			},
+			"offsets": {
+				"from": 1205900,
+				"to": 1210900
+			},
+			"text": " If you guys know how to properly configure parity this month, that would be great."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,900",
+				"to": "00:20:13,980"
+			},
+			"offsets": {
+				"from": 1210900,
+				"to": 1213980
+			},
+			"text": " Lastly, here's the CloudFormation stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,980",
+				"to": "00:20:19,620"
+			},
+			"offsets": {
+				"from": 1213980,
+				"to": 1219620
+			},
+			"text": " Like I said, we do run an AWS, but this URL will take you basically to our GitHub repository"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,620",
+				"to": "00:20:24,140"
+			},
+			"offsets": {
+				"from": 1219620,
+				"to": 1224140
+			},
+			"text": " where you can go ahead and click with a single launch stack, spin up the exact stack that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,140",
+				"to": "00:20:25,140"
+			},
+			"offsets": {
+				"from": 1224140,
+				"to": 1225140
+			},
+			"text": " we run in production."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,140",
+				"to": "00:20:26,140"
+			},
+			"offsets": {
+				"from": 1225140,
+				"to": 1226140
+			},
+			"text": " That's all I have."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,140",
+				"to": "00:20:27,140"
+			},
+			"offsets": {
+				"from": 1226140,
+				"to": 1227140
+			},
+			"text": " Thanks, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,140",
+				"to": "00:20:27,140"
+			},
+			"offsets": {
+				"from": 1227140,
+				"to": 1227140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,140",
+				"to": "00:20:28,140"
+			},
+			"offsets": {
+				"from": 1227140,
+				"to": 1228140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,140",
+				"to": "00:20:29,140"
+			},
+			"offsets": {
+				"from": 1228140,
+				"to": 1229140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,140",
+				"to": "00:20:31,140"
+			},
+			"offsets": {
+				"from": 1229140,
+				"to": 1231140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,140",
+				"to": "00:20:32,140"
+			},
+			"offsets": {
+				"from": 1231140,
+				"to": 1232140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,140",
+				"to": "00:20:33,140"
+			},
+			"offsets": {
+				"from": 1232140,
+				"to": 1233140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,140",
+				"to": "00:20:34,140"
+			},
+			"offsets": {
+				"from": 1233140,
+				"to": 1234140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,140",
+				"to": "00:20:35,140"
+			},
+			"offsets": {
+				"from": 1234140,
+				"to": 1235140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,140",
+				"to": "00:20:36,140"
+			},
+			"offsets": {
+				"from": 1235140,
+				"to": 1236140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,140",
+				"to": "00:20:37,140"
+			},
+			"offsets": {
+				"from": 1236140,
+				"to": 1237140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,140",
+				"to": "00:20:38,140"
+			},
+			"offsets": {
+				"from": 1237140,
+				"to": 1238140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,140",
+				"to": "00:20:39,140"
+			},
+			"offsets": {
+				"from": 1238140,
+				"to": 1239140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,140",
+				"to": "00:20:40,140"
+			},
+			"offsets": {
+				"from": 1239140,
+				"to": 1240140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,140",
+				"to": "00:20:41,140"
+			},
+			"offsets": {
+				"from": 1240140,
+				"to": 1241140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,140",
+				"to": "00:20:42,140"
+			},
+			"offsets": {
+				"from": 1241140,
+				"to": 1242140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,140",
+				"to": "00:20:43,140"
+			},
+			"offsets": {
+				"from": 1242140,
+				"to": 1243140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,140",
+				"to": "00:20:44,140"
+			},
+			"offsets": {
+				"from": 1243140,
+				"to": 1244140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,140",
+				"to": "00:20:45,140"
+			},
+			"offsets": {
+				"from": 1244140,
+				"to": 1245140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,140",
+				"to": "00:20:46,140"
+			},
+			"offsets": {
+				"from": 1245140,
+				"to": 1246140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,140",
+				"to": "00:20:47,140"
+			},
+			"offsets": {
+				"from": 1246140,
+				"to": 1247140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,140",
+				"to": "00:20:48,140"
+			},
+			"offsets": {
+				"from": 1247140,
+				"to": 1248140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,140",
+				"to": "00:20:49,140"
+			},
+			"offsets": {
+				"from": 1248140,
+				"to": 1249140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,140",
+				"to": "00:20:50,140"
+			},
+			"offsets": {
+				"from": 1249140,
+				"to": 1250140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,140",
+				"to": "00:20:51,140"
+			},
+			"offsets": {
+				"from": 1250140,
+				"to": 1251140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,140",
+				"to": "00:20:52,140"
+			},
+			"offsets": {
+				"from": 1251140,
+				"to": 1252140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,140",
+				"to": "00:20:53,140"
+			},
+			"offsets": {
+				"from": 1252140,
+				"to": 1253140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,140",
+				"to": "00:20:54,140"
+			},
+			"offsets": {
+				"from": 1253140,
+				"to": 1254140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,140",
+				"to": "00:20:55,140"
+			},
+			"offsets": {
+				"from": 1254140,
+				"to": 1255140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,140",
+				"to": "00:20:56,140"
+			},
+			"offsets": {
+				"from": 1255140,
+				"to": 1256140
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,140",
+				"to": "00:21:00,140"
+			},
+			"offsets": {
+				"from": 1256140,
+				"to": 1260140
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

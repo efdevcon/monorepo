@@ -1,0 +1,2617 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:16,800"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 16800
+			},
+			"text": " All right, that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,800",
+				"to": "00:00:18,300"
+			},
+			"offsets": {
+				"from": 16800,
+				"to": 18300
+			},
+			"text": " Hello everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,300",
+				"to": "00:00:19,800"
+			},
+			"offsets": {
+				"from": 18300,
+				"to": 19800
+			},
+			"text": " Good to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,800",
+				"to": "00:00:22,040"
+			},
+			"offsets": {
+				"from": 19800,
+				"to": 22040
+			},
+			"text": " So, I'm Voor Mackenzie."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,040",
+				"to": "00:00:23,040"
+			},
+			"offsets": {
+				"from": 22040,
+				"to": 23040
+			},
+			"text": " I'm from Jack."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,040",
+				"to": "00:00:26,440"
+			},
+			"offsets": {
+				"from": 23040,
+				"to": 26440
+			},
+			"text": " If anyone knows us, we are in the music and media space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,440",
+				"to": "00:00:31,360"
+			},
+			"offsets": {
+				"from": 26440,
+				"to": 31360
+			},
+			"text": " The name of the presentation today is a new engine to power the web of content."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,360",
+				"to": "00:00:35,320"
+			},
+			"offsets": {
+				"from": 31360,
+				"to": 35320
+			},
+			"text": " And I just really wanted to start first by acknowledging that, you know, in terms of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,320",
+				"to": "00:00:38,600"
+			},
+			"offsets": {
+				"from": 35320,
+				"to": 38600
+			},
+			"text": " music, there are a lot of music blockchain startups in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,600",
+				"to": "00:00:41,840"
+			},
+			"offsets": {
+				"from": 38600,
+				"to": 41840
+			},
+			"text": " Thought it would be a good idea really to just kind of recap why we're in the space"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,840",
+				"to": "00:00:45,400"
+			},
+			"offsets": {
+				"from": 41840,
+				"to": 45400
+			},
+			"text": " and why we really think that music and blockchain really do make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,400",
+				"to": "00:00:46,400"
+			},
+			"offsets": {
+				"from": 45400,
+				"to": 46400
+			},
+			"text": " And yep, click or work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,400",
+				"to": "00:00:48,960"
+			},
+			"offsets": {
+				"from": 46400,
+				"to": 48960
+			},
+			"text": " So, first of all, what is the problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,960",
+				"to": "00:00:54,560"
+			},
+			"offsets": {
+				"from": 48960,
+				"to": 54560
+			},
+			"text": " And I think that the way that most people as consumers experience music is that we just"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,560",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 54560,
+				"to": 56000
+			},
+			"text": " think of a song as an MP3."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:00:59,600"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 59600
+			},
+			"text": " So, when we play a song or we hear a song playing, we just think, that's a song."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,600",
+				"to": "00:01:00,600"
+			},
+			"offsets": {
+				"from": 59600,
+				"to": 60600
+			},
+			"text": " I play the song."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,600",
+				"to": "00:01:01,960"
+			},
+			"offsets": {
+				"from": 60600,
+				"to": 61960
+			},
+			"text": " That's what I need to worry about."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,960",
+				"to": "00:01:05,080"
+			},
+			"offsets": {
+				"from": 61960,
+				"to": 65080
+			},
+			"text": " The problem with music is it's very hard to figure out who to pay."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,080",
+				"to": "00:01:09,600"
+			},
+			"offsets": {
+				"from": 65080,
+				"to": 69600
+			},
+			"text": " And that's because a song is actually kind of complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,600",
+				"to": "00:01:14,160"
+			},
+			"offsets": {
+				"from": 69600,
+				"to": 74160
+			},
+			"text": " So, let's say that a few people get in the studio and they start working onto music."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,160",
+				"to": "00:01:16,920"
+			},
+			"offsets": {
+				"from": 74160,
+				"to": 76920
+			},
+			"text": " You actually are creating a very complex ownership structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,920",
+				"to": "00:01:20,600"
+			},
+			"offsets": {
+				"from": 76920,
+				"to": 80600
+			},
+			"text": " The reason why is because a song, which actually is not represented in the music industry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,600",
+				"to": "00:01:21,600"
+			},
+			"offsets": {
+				"from": 80600,
+				"to": 81600
+			},
+			"text": " they don't really think of songs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,600",
+				"to": "00:01:23,600"
+			},
+			"offsets": {
+				"from": 81600,
+				"to": 83600
+			},
+			"text": " They have completely other terms to describe things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,600",
+				"to": "00:01:24,600"
+			},
+			"offsets": {
+				"from": 83600,
+				"to": 84600
+			},
+			"text": " Songs are just for consumers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,600",
+				"to": "00:01:26,520"
+			},
+			"offsets": {
+				"from": 84600,
+				"to": 86520
+			},
+			"text": " But you have this thing called a recording."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,520",
+				"to": "00:01:28,200"
+			},
+			"offsets": {
+				"from": 86520,
+				"to": 88200
+			},
+			"text": " There's a copyright in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,200",
+				"to": "00:01:31,160"
+			},
+			"offsets": {
+				"from": 88200,
+				"to": 91160
+			},
+			"text": " And that copyright is normally created when an artist makes a recording."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,160",
+				"to": "00:01:35,800"
+			},
+			"offsets": {
+				"from": 91160,
+				"to": 95800
+			},
+			"text": " So, if I go in a studio and I record something, I'm now, I create this thing called a recording"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,800",
+				"to": "00:01:37,600"
+			},
+			"offsets": {
+				"from": 95800,
+				"to": 97600
+			},
+			"text": " and that is normally owned by a label."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,600",
+				"to": "00:01:39,040"
+			},
+			"offsets": {
+				"from": 97600,
+				"to": 99040
+			},
+			"text": " So, labels are in recordings."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,040",
+				"to": "00:01:43,680"
+			},
+			"offsets": {
+				"from": 99040,
+				"to": 103680
+			},
+			"text": " And in compositions, you can think about recordings being the implementation of a composition."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,680",
+				"to": "00:01:48,360"
+			},
+			"offsets": {
+				"from": 103680,
+				"to": 108360
+			},
+			"text": " So, a composition or as is called in the US of work is really just the nuts and bolts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,360",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 108360,
+				"to": 112000
+			},
+			"text": " the mechanics of how this song was made, the lyrics, the melodies and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:53,400"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 113400
+			},
+			"text": " And that's made by writers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,400",
+				"to": "00:01:57,400"
+			},
+			"offsets": {
+				"from": 113400,
+				"to": 117400
+			},
+			"text": " So, producers who make the instrumentals or obviously the people who just write the lyrics."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,400",
+				"to": "00:01:59,880"
+			},
+			"offsets": {
+				"from": 117400,
+				"to": 119880
+			},
+			"text": " And that's normally owned or represented by publishers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,880",
+				"to": "00:02:04,040"
+			},
+			"offsets": {
+				"from": 119880,
+				"to": 124040
+			},
+			"text": " And every single time a new publisher or writer comes onto a track, so you can have five producers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,040",
+				"to": "00:02:08,360"
+			},
+			"offsets": {
+				"from": 124040,
+				"to": 128360
+			},
+			"text": " ten producers, five samples, all of those things have their own ownership structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,360",
+				"to": "00:02:10,120"
+			},
+			"offsets": {
+				"from": 128360,
+				"to": 130120
+			},
+			"text": " These are like micro-businesses."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,120",
+				"to": "00:02:15,760"
+			},
+			"offsets": {
+				"from": 130120,
+				"to": 135760
+			},
+			"text": " Every single one of these are, they're argued in by lawyers and figured out by managers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,760",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 135760,
+				"to": 138000
+			},
+			"text": " and accountants to try and create this structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:20,320"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 140320
+			},
+			"text": " And nobody has a real picture of how this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,320",
+				"to": "00:02:22,520"
+			},
+			"offsets": {
+				"from": 140320,
+				"to": 142520
+			},
+			"text": " Now, this is one song."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,520",
+				"to": "00:02:25,520"
+			},
+			"offsets": {
+				"from": 142520,
+				"to": 145520
+			},
+			"text": " For Spotify, there are over 30 million songs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,520",
+				"to": "00:02:29,760"
+			},
+			"offsets": {
+				"from": 145520,
+				"to": 149760
+			},
+			"text": " So, you can imagine how complex that is to try and keep track of."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,760",
+				"to": "00:02:32,760"
+			},
+			"offsets": {
+				"from": 149760,
+				"to": 152760
+			},
+			"text": " And the way we keep track of that is with proprietary databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,760",
+				"to": "00:02:38,400"
+			},
+			"offsets": {
+				"from": 152760,
+				"to": 158400
+			},
+			"text": " Now, this tries to explain how when we think about how music goes from people in a studio"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,400",
+				"to": "00:02:42,720"
+			},
+			"offsets": {
+				"from": 158400,
+				"to": 162720
+			},
+			"text": " creating it all the way through to a consumer listening to on the other side, it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,720",
+				"to": "00:02:45,280"
+			},
+			"offsets": {
+				"from": 162720,
+				"to": 165280
+			},
+			"text": " quite complex because the song itself is a collaboration."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,280",
+				"to": "00:02:49,680"
+			},
+			"offsets": {
+				"from": 165280,
+				"to": 169680
+			},
+			"text": " It's then pushed in the metadata and the music becomes separate, as they always are."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,680",
+				"to": "00:02:51,920"
+			},
+			"offsets": {
+				"from": 169680,
+				"to": 171920
+			},
+			"text": " And then they move down to supply chain in different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,920",
+				"to": "00:02:55,160"
+			},
+			"offsets": {
+				"from": 171920,
+				"to": 175160
+			},
+			"text": " Now, on the work side, there is a standard identifier called the NISWC."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,160",
+				"to": "00:02:58,360"
+			},
+			"offsets": {
+				"from": 175160,
+				"to": 178360
+			},
+			"text": " And on the recording side, it's standard identifier called the NISRC."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,360",
+				"to": "00:02:59,840"
+			},
+			"offsets": {
+				"from": 178360,
+				"to": 179840
+			},
+			"text": " People like to apply these things willy-nilly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,840",
+				"to": "00:03:01,520"
+			},
+			"offsets": {
+				"from": 179840,
+				"to": 181520
+			},
+			"text": " So, it just applied all over the place."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,520",
+				"to": "00:03:05,320"
+			},
+			"offsets": {
+				"from": 181520,
+				"to": 185320
+			},
+			"text": " And it don't really map down to the actual unit we're trying to describe."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,320",
+				"to": "00:03:09,400"
+			},
+			"offsets": {
+				"from": 185320,
+				"to": 189400
+			},
+			"text": " And as we want to keep sync between these databases, we create these exports and we just"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,400",
+				"to": "00:03:10,240"
+			},
+			"offsets": {
+				"from": 189400,
+				"to": 190240
+			},
+			"text": " send them around."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,240",
+				"to": "00:03:13,600"
+			},
+			"offsets": {
+				"from": 190240,
+				"to": 193600
+			},
+			"text": " So, these flat files flying all around the industry, and this is what we're kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,600",
+				"to": "00:03:15,160"
+			},
+			"offsets": {
+				"from": 193600,
+				"to": 195160
+			},
+			"text": " using to sync, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,160",
+				"to": "00:03:18,880"
+			},
+			"offsets": {
+				"from": 195160,
+				"to": 198880
+			},
+			"text": " So, in order to figure out who owns what, we're just using these flat files."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,880",
+				"to": "00:03:25,120"
+			},
+			"offsets": {
+				"from": 198880,
+				"to": 205120
+			},
+			"text": " Now, as we were saying before, the problem here is that we end up with complete information"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,120",
+				"to": "00:03:26,280"
+			},
+			"offsets": {
+				"from": 205120,
+				"to": 206280
+			},
+			"text": " asymmetry."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,280",
+				"to": "00:03:28,800"
+			},
+			"offsets": {
+				"from": 206280,
+				"to": 208800
+			},
+			"text": " One person saying one thing, another person saying another thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,800",
+				"to": "00:03:32,800"
+			},
+			"offsets": {
+				"from": 208800,
+				"to": 212800
+			},
+			"text": " The only way to keep those two things together is to send this flat file."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,800",
+				"to": "00:03:36,320"
+			},
+			"offsets": {
+				"from": 212800,
+				"to": 216320
+			},
+			"text": " And that means there's fragmented content rights across all of these databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,320",
+				"to": "00:03:40,360"
+			},
+			"offsets": {
+				"from": 216320,
+				"to": 220360
+			},
+			"text": " And that means that even inside one organization, which could be global and own and control"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,360",
+				"to": "00:03:44,640"
+			},
+			"offsets": {
+				"from": 220360,
+				"to": 224640
+			},
+			"text": " different things and assets in different territories, it's quite hard to keep an internal consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,640",
+				"to": "00:03:46,520"
+			},
+			"offsets": {
+				"from": 224640,
+				"to": 226520
+			},
+			"text": " in that company."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,520",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 226520,
+				"to": 230000
+			},
+			"text": " And really, the only way the music industry has learned how to solve this is to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 231000
+			},
+			"text": " a new database."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:54,720"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 234720
+			},
+			"text": " So, we end up with more and more and more fragmentation and really we end up with more"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,720",
+				"to": "00:03:55,720"
+			},
+			"offsets": {
+				"from": 234720,
+				"to": 235720
+			},
+			"text": " and more databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,720",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 235720,
+				"to": 238000
+			},
+			"text": " And then we end up with parallel data reconciliation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:01,880"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 241880
+			},
+			"text": " So again, most things are traveling around via XML and spreadsheets and getting delivered"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,880",
+				"to": "00:04:03,600"
+			},
+			"offsets": {
+				"from": 241880,
+				"to": 243600
+			},
+			"text": " to FTPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,600",
+				"to": "00:04:05,760"
+			},
+			"offsets": {
+				"from": 243600,
+				"to": 245760
+			},
+			"text": " There's not very many APIs either."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,760",
+				"to": "00:04:10,600"
+			},
+			"offsets": {
+				"from": 245760,
+				"to": 250600
+			},
+			"text": " So, actually, syncing is very much manual and that's problematic because we are using"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,600",
+				"to": "00:04:12,680"
+			},
+			"offsets": {
+				"from": 250600,
+				"to": 252680
+			},
+			"text": " proprietary databases and access is ownership."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,680",
+				"to": "00:04:15,040"
+			},
+			"offsets": {
+				"from": 252680,
+				"to": 255040
+			},
+			"text": " If I want to tell you what I'm going to have to give you the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,040",
+				"to": "00:04:18,080"
+			},
+			"offsets": {
+				"from": 255040,
+				"to": 258080
+			},
+			"text": " So, it's quite hard to build out one single database."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,080",
+				"to": "00:04:20,640"
+			},
+			"offsets": {
+				"from": 258080,
+				"to": 260640
+			},
+			"text": " However, one day the music industry did try to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,640",
+				"to": "00:04:24,240"
+			},
+			"offsets": {
+				"from": 260640,
+				"to": 264240
+			},
+			"text": " There was one big global database and it didn't really work for reasons we weren't going"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,240",
+				"to": "00:04:26,840"
+			},
+			"offsets": {
+				"from": 264240,
+				"to": 266840
+			},
+			"text": " to, but centralized governance is problematic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,840",
+				"to": "00:04:29,240"
+			},
+			"offsets": {
+				"from": 266840,
+				"to": 269240
+			},
+			"text": " If I have ownership, I have control."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,240",
+				"to": "00:04:32,880"
+			},
+			"offsets": {
+				"from": 269240,
+				"to": 272880
+			},
+			"text": " And really, that's why blockchains are a great solution to this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,880",
+				"to": "00:04:33,880"
+			},
+			"offsets": {
+				"from": 272880,
+				"to": 273880
+			},
+			"text": " They help us avoid it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,880",
+				"to": "00:04:35,880"
+			},
+			"offsets": {
+				"from": 273880,
+				"to": 275880
+			},
+			"text": " We have a network of unbounded parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,880",
+				"to": "00:04:39,200"
+			},
+			"offsets": {
+				"from": 275880,
+				"to": 279200
+			},
+			"text": " We have the need to collaboratively maintain a single dataset."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,200",
+				"to": "00:04:42,240"
+			},
+			"offsets": {
+				"from": 279200,
+				"to": 282240
+			},
+			"text": " And we want to do it without putting in a central authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,240",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 282240,
+				"to": 285000
+			},
+			"text": " This is why blockchains are a great fit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 289000
+			},
+			"text": " So, what Jack is building is an open data network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:53,320"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 293320
+			},
+			"text": " We've started to cover this idea of a single source of truth and think about blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,320",
+				"to": "00:04:55,160"
+			},
+			"offsets": {
+				"from": 293320,
+				"to": 295160
+			},
+			"text": " as single source of truth systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,160",
+				"to": "00:04:59,200"
+			},
+			"offsets": {
+				"from": 295160,
+				"to": 299200
+			},
+			"text": " And, actually, thanks to incentive structures, blockchains are highly effective single source"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,200",
+				"to": "00:05:02,960"
+			},
+			"offsets": {
+				"from": 299200,
+				"to": 302960
+			},
+			"text": " of truth systems and a great, highly effective knowledge production systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,960",
+				"to": "00:05:07,720"
+			},
+			"offsets": {
+				"from": 302960,
+				"to": 307720
+			},
+			"text": " So, when we think about single source of truth, we try to think about it in the way that it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,720",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 307720,
+				"to": 309000
+			},
+			"text": " always been defined in enterprise."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:13,720"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 313720
+			},
+			"text": " And that is, say if any one of us are working with an enterprise or a consumer, we're known"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,720",
+				"to": "00:05:18,240"
+			},
+			"offsets": {
+				"from": 313720,
+				"to": 318240
+			},
+			"text": " in that enterprise to one department as, say, a customer and a different person in a CRM"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,240",
+				"to": "00:05:20,440"
+			},
+			"offsets": {
+				"from": 318240,
+				"to": 320440
+			},
+			"text": " and a different person to sales and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,440",
+				"to": "00:05:23,800"
+			},
+			"offsets": {
+				"from": 320440,
+				"to": 323800
+			},
+			"text": " And enterprise service buses help us to try to create a single source of truth about who"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,800",
+				"to": "00:05:24,800"
+			},
+			"offsets": {
+				"from": 323800,
+				"to": 324800
+			},
+			"text": " that customer is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,800",
+				"to": "00:05:27,960"
+			},
+			"offsets": {
+				"from": 324800,
+				"to": 327960
+			},
+			"text": " That's what we believe blockchains can help us do around rights."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,960",
+				"to": "00:05:32,080"
+			},
+			"offsets": {
+				"from": 327960,
+				"to": 332080
+			},
+			"text": " So, using the Ethereum ecosystem and web for the infrastructure, we can power a new paradigm"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,080",
+				"to": "00:05:33,600"
+			},
+			"offsets": {
+				"from": 332080,
+				"to": 333600
+			},
+			"text": " for content on the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,600",
+				"to": "00:05:38,360"
+			},
+			"offsets": {
+				"from": 333600,
+				"to": 338360
+			},
+			"text": " A single source of truth for content rights built on top of an open, inclusive data network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,360",
+				"to": "00:05:39,720"
+			},
+			"offsets": {
+				"from": 338360,
+				"to": 339720
+			},
+			"text": " which is called Meta."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,720",
+				"to": "00:05:43,720"
+			},
+			"offsets": {
+				"from": 339720,
+				"to": 343720
+			},
+			"text": " Now, when we were coming up with this, we ran into a few problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,720",
+				"to": "00:05:47,720"
+			},
+			"offsets": {
+				"from": 343720,
+				"to": 347720
+			},
+			"text": " And the first is, if we want to build a single source of truth, we have to define truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,720",
+				"to": "00:05:52,920"
+			},
+			"offsets": {
+				"from": 347720,
+				"to": 352920
+			},
+			"text": " And truth is pretty subjective in the music industry because data changes all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,920",
+				"to": "00:05:55,480"
+			},
+			"offsets": {
+				"from": 352920,
+				"to": 355480
+			},
+			"text": " And no one actually really knows if anyone is right."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,480",
+				"to": "00:05:56,480"
+			},
+			"offsets": {
+				"from": 355480,
+				"to": 356480
+			},
+			"text": " He was on that song."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,480",
+				"to": "00:05:57,480"
+			},
+			"offsets": {
+				"from": 356480,
+				"to": 357480
+			},
+			"text": " I wasn't in the studio."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,480",
+				"to": "00:05:58,480"
+			},
+			"offsets": {
+				"from": 357480,
+				"to": 358480
+			},
+			"text": " How do I know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,480",
+				"to": "00:05:59,840"
+			},
+			"offsets": {
+				"from": 358480,
+				"to": 359840
+			},
+			"text": " And so that creates a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,840",
+				"to": "00:06:02,480"
+			},
+			"offsets": {
+				"from": 359840,
+				"to": 362480
+			},
+			"text": " And what we've tried to do is kind of a proxy for truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,480",
+				"to": "00:06:04,680"
+			},
+			"offsets": {
+				"from": 362480,
+				"to": 364680
+			},
+			"text": " And what we've kind of moved to is authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,680",
+				"to": "00:06:10,040"
+			},
+			"offsets": {
+				"from": 364680,
+				"to": 370040
+			},
+			"text": " So authority requires really robust identity structure, which kind of led us to building"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,040",
+				"to": "00:06:11,320"
+			},
+			"offsets": {
+				"from": 370040,
+				"to": 371320
+			},
+			"text": " out this thing we call Meta ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,320",
+				"to": "00:06:15,080"
+			},
+			"offsets": {
+				"from": 371320,
+				"to": 375080
+			},
+			"text": " So you'll see here on the left, there you have this single Meta ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,080",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 375080,
+				"to": 379000
+			},
+			"text": " And Meta is basically an open, decentralized data network that can be used to build decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:23,840"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 383840
+			},
+			"text": " databases based on Meta IDs, where participants are incentivized to provide trustless services"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,840",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 383840,
+				"to": 389000
+			},
+			"text": " to the network such that they can be automatically penalized by providing proof to a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:30,840"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 390840
+			},
+			"text": " if the service hasn't been provided."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,840",
+				"to": "00:06:34,200"
+			},
+			"offsets": {
+				"from": 390840,
+				"to": 394200
+			},
+			"text": " If any of you were in the swarm talk earlier on or the one earlier in the week, you've"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,200",
+				"to": "00:06:37,600"
+			},
+			"offsets": {
+				"from": 394200,
+				"to": 397600
+			},
+			"text": " heard Victor talking about sort of swindle and a service layer of a structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,600",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 397600,
+				"to": 400000
+			},
+			"text": " And that's exactly what we're implementing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:45,080"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 405080
+			},
+			"text": " So with the Meta ID, the provider can convert their database into Meta objects and push"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,080",
+				"to": "00:06:47,840"
+			},
+			"offsets": {
+				"from": 405080,
+				"to": 407840
+			},
+			"text": " them into the network as Meta streams."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,840",
+				"to": "00:06:49,800"
+			},
+			"offsets": {
+				"from": 407840,
+				"to": 409800
+			},
+			"text": " Then anyone can provide generic indexing services."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,800",
+				"to": "00:06:51,560"
+			},
+			"offsets": {
+				"from": 409800,
+				"to": 411560
+			},
+			"text": " That's what the validators are doing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,560",
+				"to": "00:06:55,280"
+			},
+			"offsets": {
+				"from": 411560,
+				"to": 415280
+			},
+			"text": " They basically enter into a service contract with a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,280",
+				"to": "00:06:57,480"
+			},
+			"offsets": {
+				"from": 415280,
+				"to": 417480
+			},
+			"text": " And they provide services to the network and using Merkle proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,480",
+				"to": "00:07:01,320"
+			},
+			"offsets": {
+				"from": 417480,
+				"to": 421320
+			},
+			"text": " And they can just check that the actual information they provide as a Meta stream is included in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,320",
+				"to": "00:07:02,320"
+			},
+			"offsets": {
+				"from": 421320,
+				"to": 422320
+			},
+			"text": " that index."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,320",
+				"to": "00:07:09,800"
+			},
+			"offsets": {
+				"from": 422320,
+				"to": 429800
+			},
+			"text": " Therefore, with our GraphQL API, we can query that graph of objects and serve it up to adapt."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,800",
+				"to": "00:07:13,840"
+			},
+			"offsets": {
+				"from": 429800,
+				"to": 433840
+			},
+			"text": " Now the interactions between contributors to the media graph DB, sorry, moving ahead"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,840",
+				"to": "00:07:19,200"
+			},
+			"offsets": {
+				"from": 433840,
+				"to": 439200
+			},
+			"text": " a bit quick, in respect to music media rights information, we can use the Meta network to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,200",
+				"to": "00:07:24,320"
+			},
+			"offsets": {
+				"from": 439200,
+				"to": 444320
+			},
+			"text": " implement a decentralized database which has a defined schema and is maintained by validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,320",
+				"to": "00:07:28,880"
+			},
+			"offsets": {
+				"from": 444320,
+				"to": 448880
+			},
+			"text": " who are rewarded with tokens to secure the integrity of this specific database."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,880",
+				"to": "00:07:34,360"
+			},
+			"offsets": {
+				"from": 448880,
+				"to": 454360
+			},
+			"text": " The interactions between contributors to what we call media graph DB here, which is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,360",
+				"to": "00:07:37,680"
+			},
+			"offsets": {
+				"from": 454360,
+				"to": 457680
+			},
+			"text": " participants who insert or update data into this database."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,680",
+				"to": "00:07:41,920"
+			},
+			"offsets": {
+				"from": 457680,
+				"to": 461920
+			},
+			"text": " And validators is governed by a swap-swear single game mentioned in the swarm talk earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,920",
+				"to": "00:07:46,120"
+			},
+			"offsets": {
+				"from": 461920,
+				"to": 466120
+			},
+			"text": " A validator is put up a stake which can be claimed or burned if they fail to perform their"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,120",
+				"to": "00:07:49,880"
+			},
+			"offsets": {
+				"from": 466120,
+				"to": 469880
+			},
+			"text": " duties, much like proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,880",
+				"to": "00:07:55,920"
+			},
+			"offsets": {
+				"from": 469880,
+				"to": 475920
+			},
+			"text": " Now what that allows us to do is build out this object which we call smart content."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,920",
+				"to": "00:08:00,640"
+			},
+			"offsets": {
+				"from": 475920,
+				"to": 480640
+			},
+			"text": " Using Meta-Media Graph, we create a new index which is called smart content and the validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,640",
+				"to": "00:08:04,160"
+			},
+			"offsets": {
+				"from": 480640,
+				"to": 484160
+			},
+			"text": " work to make sure everyone conforms to that schema."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,160",
+				"to": "00:08:09,360"
+			},
+			"offsets": {
+				"from": 484160,
+				"to": 489360
+			},
+			"text": " It extends the media graph schema to include assets, licenses, metadata and anything else"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,360",
+				"to": "00:08:11,480"
+			},
+			"offsets": {
+				"from": 489360,
+				"to": 491480
+			},
+			"text": " required to facilitate a commercial transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,480",
+				"to": "00:08:16,560"
+			},
+			"offsets": {
+				"from": 491480,
+				"to": 496560
+			},
+			"text": " You can see here we have our graph and basically this is a swarm manifest and it has a kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,560",
+				"to": "00:08:19,560"
+			},
+			"offsets": {
+				"from": 496560,
+				"to": 499560
+			},
+			"text": " of a content address link that we can just find it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,560",
+				"to": "00:08:23,920"
+			},
+			"offsets": {
+				"from": 499560,
+				"to": 503920
+			},
+			"text": " It returns the rights information, the type of right, the percentage, the actual owner which"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,920",
+				"to": "00:08:27,520"
+			},
+			"offsets": {
+				"from": 503920,
+				"to": 507520
+			},
+			"text": " is a mess or ID and you'll see that we have these checks here and checks basically just"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,520",
+				"to": "00:08:32,400"
+			},
+			"offsets": {
+				"from": 507520,
+				"to": 512400
+			},
+			"text": " to show us that the person who actually owns this thing has signed it or some delegate there"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,400",
+				"to": "00:08:33,400"
+			},
+			"offsets": {
+				"from": 512400,
+				"to": 513400
+			},
+			"text": " of."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,400",
+				"to": "00:08:36,400"
+			},
+			"offsets": {
+				"from": 513400,
+				"to": 516400
+			},
+			"text": " And that's really what the indexes or validators here are, are doing working to maintain to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,400",
+				"to": "00:08:39,040"
+			},
+			"offsets": {
+				"from": 516400,
+				"to": 519040
+			},
+			"text": " make sure that this thing is adhered to."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,040",
+				"to": "00:08:44,480"
+			},
+			"offsets": {
+				"from": 519040,
+				"to": 524480
+			},
+			"text": " So the structure facilitates trustless kick through licensing using smart contracts and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,480",
+				"to": "00:08:48,960"
+			},
+			"offsets": {
+				"from": 524480,
+				"to": 528960
+			},
+			"text": " service guarantees using swear-ins-windle contracts where we get usage analytics and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,960",
+				"to": "00:08:53,480"
+			},
+			"offsets": {
+				"from": 528960,
+				"to": 533480
+			},
+			"text": " automated real-time payments for free."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,480",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 533480,
+				"to": 536000
+			},
+			"text": " So what are we working on at the moment?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 537000
+			},
+			"text": " A few things."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:01,320"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 541320
+			},
+			"text": " So if you've heard before, the Jack team has been contributing quite heavily to swarm"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,320",
+				"to": "00:09:05,920"
+			},
+			"offsets": {
+				"from": 541320,
+				"to": 545920
+			},
+			"text": " and we started off by working on PSS, started earlier in the year."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,920",
+				"to": "00:09:11,480"
+			},
+			"offsets": {
+				"from": 545920,
+				"to": 551480
+			},
+			"text": " PSS being a routing protocol, which again is being spoken about just after this talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,480",
+				"to": "00:09:12,720"
+			},
+			"offsets": {
+				"from": 551480,
+				"to": 552720
+			},
+			"text": " in the breakout hall."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,720",
+				"to": "00:09:17,360"
+			},
+			"offsets": {
+				"from": 552720,
+				"to": 557360
+			},
+			"text": " And PSS is a routing protocol so meta-nodes can communicate to each other and broadcast"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,360",
+				"to": "00:09:18,840"
+			},
+			"offsets": {
+				"from": 557360,
+				"to": 558840
+			},
+			"text": " updates across the meta-network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,840",
+				"to": "00:09:24,240"
+			},
+			"offsets": {
+				"from": 558840,
+				"to": 564240
+			},
+			"text": " We also worked on the network simulation framework which allows you to view the nodes that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,240",
+				"to": "00:09:25,240"
+			},
+			"offsets": {
+				"from": 564240,
+				"to": 565240
+			},
+			"text": " in a swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,240",
+				"to": "00:09:27,240"
+			},
+			"offsets": {
+				"from": 565240,
+				"to": 567240
+			},
+			"text": " And then we've also begun work on POT."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,240",
+				"to": "00:09:32,320"
+			},
+			"offsets": {
+				"from": 567240,
+				"to": 572320
+			},
+			"text": " And POT is basically the core infrastructure or technology that will be behind swarm databases"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,320",
+				"to": "00:09:34,080"
+			},
+			"offsets": {
+				"from": 572320,
+				"to": 574080
+			},
+			"text": " or swarm DB."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,080",
+				"to": "00:09:36,680"
+			},
+			"offsets": {
+				"from": 574080,
+				"to": 576680
+			},
+			"text": " And we'll be working on that alongside a few of the other projects who are engaged with"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,680",
+				"to": "00:09:42,040"
+			},
+			"offsets": {
+				"from": 576680,
+				"to": 582040
+			},
+			"text": " the swarm team over the coming months."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,040",
+				"to": "00:09:44,760"
+			},
+			"offsets": {
+				"from": 582040,
+				"to": 584760
+			},
+			"text": " We've also been working on fully decentralized applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,760",
+				"to": "00:09:49,040"
+			},
+			"offsets": {
+				"from": 584760,
+				"to": 589040
+			},
+			"text": " What you're seeing here is an application that we work with Jack for residing not, is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,040",
+				"to": "00:09:50,720"
+			},
+			"offsets": {
+				"from": 589040,
+				"to": 590720
+			},
+			"text": " really called the smart content app."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,720",
+				"to": "00:09:55,120"
+			},
+			"offsets": {
+				"from": 590720,
+				"to": 595120
+			},
+			"text": " It's basically a app that allows you to build smart content and manage it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,120",
+				"to": "00:09:59,200"
+			},
+			"offsets": {
+				"from": 595120,
+				"to": 599200
+			},
+			"text": " So theory would be you enter into the network with your MSS4ID and you're able to load up"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,200",
+				"to": "00:10:01,920"
+			},
+			"offsets": {
+				"from": 599200,
+				"to": 601920
+			},
+			"text": " any of the assets you actually have already built in."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,920",
+				"to": "00:10:05,680"
+			},
+			"offsets": {
+				"from": 601920,
+				"to": 605680
+			},
+			"text": " And then you can customize them, add licenses, add assets, so on and push them into the Jack"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,680",
+				"to": "00:10:07,240"
+			},
+			"offsets": {
+				"from": 605680,
+				"to": 607240
+			},
+			"text": " network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,240",
+				"to": "00:10:10,400"
+			},
+			"offsets": {
+				"from": 607240,
+				"to": 610400
+			},
+			"text": " And it uses pretty much many of the components we've already discussed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,400",
+				"to": "00:10:16,040"
+			},
+			"offsets": {
+				"from": 610400,
+				"to": 616040
+			},
+			"text": " Smart content indexing, media graph index, meta, swarm, ENS, and Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,040",
+				"to": "00:10:21,360"
+			},
+			"offsets": {
+				"from": 616040,
+				"to": 621360
+			},
+			"text": " So it's kind of trying to use the entire stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,360",
+				"to": "00:10:22,360"
+			},
+			"offsets": {
+				"from": 621360,
+				"to": 622360
+			},
+			"text": " So upcoming releases."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,360",
+				"to": "00:10:24,160"
+			},
+			"offsets": {
+				"from": 622360,
+				"to": 624160
+			},
+			"text": " The first thing is the meta-white paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,160",
+				"to": "00:10:25,960"
+			},
+			"offsets": {
+				"from": 624160,
+				"to": 625960
+			},
+			"text": " We've been working on it for a while now."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,960",
+				"to": "00:10:28,640"
+			},
+			"offsets": {
+				"from": 625960,
+				"to": 628640
+			},
+			"text": " Some people may have really seen a first draft already."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,640",
+				"to": "00:10:31,240"
+			},
+			"offsets": {
+				"from": 628640,
+				"to": 631240
+			},
+			"text": " That really defines the structure that we're talking about here in terms of the service"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,240",
+				"to": "00:10:35,720"
+			},
+			"offsets": {
+				"from": 631240,
+				"to": 635720
+			},
+			"text": " level agreements between nodes, which is quite powerful because it would allow things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,720",
+				"to": "00:10:39,840"
+			},
+			"offsets": {
+				"from": 635720,
+				"to": 639840
+			},
+			"text": " licensing or you just enter into a contract with the license and can provide all kinds"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,840",
+				"to": "00:10:43,440"
+			},
+			"offsets": {
+				"from": 639840,
+				"to": 643440
+			},
+			"text": " of services, including the actual storage, serving up the streaming of the assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,440",
+				"to": "00:10:46,240"
+			},
+			"offsets": {
+				"from": 643440,
+				"to": 646240
+			},
+			"text": " Again, a sort of live peer people talking about that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,240",
+				"to": "00:10:50,080"
+			},
+			"offsets": {
+				"from": 646240,
+				"to": 650080
+			},
+			"text": " And this kind of framework really I think will drive out all of the next generation of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,080",
+				"to": "00:10:51,080"
+			},
+			"offsets": {
+				"from": 650080,
+				"to": 651080
+			},
+			"text": " that development."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,080",
+				"to": "00:10:53,080"
+			},
+			"offsets": {
+				"from": 651080,
+				"to": 653080
+			},
+			"text": " The second part is the meta-ID DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,080",
+				"to": "00:10:57,040"
+			},
+			"offsets": {
+				"from": 653080,
+				"to": 657040
+			},
+			"text": " And the meta-ID really allows you to create a public address and then connect all of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,040",
+				"to": "00:10:58,880"
+			},
+			"offsets": {
+				"from": 657040,
+				"to": 658880
+			},
+			"text": " other authorized providers to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,880",
+				"to": "00:11:02,560"
+			},
+			"offsets": {
+				"from": 658880,
+				"to": 662560
+			},
+			"text": " So you can imagine signing up as an artist with a meta-ID and then being able to connect"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,560",
+				"to": "00:11:07,040"
+			},
+			"offsets": {
+				"from": 662560,
+				"to": 667040
+			},
+			"text": " any of the other trusted providers like your label or your publisher or your Instagram,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,040",
+				"to": "00:11:09,600"
+			},
+			"offsets": {
+				"from": 667040,
+				"to": 669600
+			},
+			"text": " anything where you like to dock your identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,600",
+				"to": "00:11:13,800"
+			},
+			"offsets": {
+				"from": 669600,
+				"to": 673800
+			},
+			"text": " And then the meta-testnet, which will allow you to start building these decentralized databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,800",
+				"to": "00:11:17,800"
+			},
+			"offsets": {
+				"from": 673800,
+				"to": 677800
+			},
+			"text": " We plan to push that in early 18, so you'll actually be able to try this stuff out."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,800",
+				"to": "00:11:20,600"
+			},
+			"offsets": {
+				"from": 677800,
+				"to": 680600
+			},
+			"text": " I found a hot tip."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,600",
+				"to": "00:11:21,760"
+			},
+			"offsets": {
+				"from": 680600,
+				"to": 681760
+			},
+			"text": " Obviously, I'm the CEO."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,760",
+				"to": "00:11:24,880"
+			},
+			"offsets": {
+				"from": 681760,
+				"to": 684880
+			},
+			"text": " I'm not the one building all this stuff, so I just wanted to let you know the people who"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,880",
+				"to": "00:11:27,920"
+			},
+			"offsets": {
+				"from": 684880,
+				"to": 687920
+			},
+			"text": " you can speak to if you're interested in learning a bit more."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,920",
+				"to": "00:11:32,400"
+			},
+			"offsets": {
+				"from": 687920,
+				"to": 692400
+			},
+			"text": " Fred and Victor, obviously my co-founders, Fred's Lead Application Engineer on Jack."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,400",
+				"to": "00:11:35,400"
+			},
+			"offsets": {
+				"from": 692400,
+				"to": 695400
+			},
+			"text": " Victor obviously the architect working on Jack and Meta."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,400",
+				"to": "00:11:39,240"
+			},
+			"offsets": {
+				"from": 695400,
+				"to": 699240
+			},
+			"text": " Lewis Marshall, who's heading up Meta, he's the best person to speak to about all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,240",
+				"to": "00:11:42,760"
+			},
+			"offsets": {
+				"from": 699240,
+				"to": 702760
+			},
+			"text": " stuff I just described, and Oren as well, who's also working on Meta."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,760",
+				"to": "00:11:47,880"
+			},
+			"offsets": {
+				"from": 702760,
+				"to": 707880
+			},
+			"text": " Then we have Lewis, who obviously is the developer working on PSS and Luke, who's heading up"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,880",
+				"to": "00:11:48,880"
+			},
+			"offsets": {
+				"from": 707880,
+				"to": 708880
+			},
+			"text": " Meta-ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,880",
+				"to": "00:11:51,520"
+			},
+			"offsets": {
+				"from": 708880,
+				"to": 711520
+			},
+			"text": " So again, if you do have any questions and you do want to reach out to us, guys, please"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,520",
+				"to": "00:11:55,160"
+			},
+			"offsets": {
+				"from": 711520,
+				"to": 715160
+			},
+			"text": " you just go and reach out to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,160",
+				"to": "00:12:01,080"
+			},
+			"offsets": {
+				"from": 715160,
+				"to": 721080
+			},
+			"text": " And you can find us on, we do have a GitHub.com/metahiverenetwork."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,080",
+				"to": "00:12:04,440"
+			},
+			"offsets": {
+				"from": 721080,
+				"to": 724440
+			},
+			"text": " There we have most of these things defined and conceptually, we have documents."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,440",
+				"to": "00:12:08,040"
+			},
+			"offsets": {
+				"from": 724440,
+				"to": 728040
+			},
+			"text": " We also have the Meta-ID framework, the first version of that, which is open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,040",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 728040,
+				"to": 731000
+			},
+			"text": " We plan to open source more things over the coming months, so please do check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:15,080"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 735080
+			},
+			"text": " We obviously are on Gitter, so again, just Gitter with the same thing/lobby."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,080",
+				"to": "00:12:18,360"
+			},
+			"offsets": {
+				"from": 735080,
+				"to": 738360
+			},
+			"text": " And then if you do want to join us on Slack and talk about things that may be less technical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,360",
+				"to": "00:12:22,960"
+			},
+			"offsets": {
+				"from": 738360,
+				"to": 742960
+			},
+			"text": " community.metahiverenetwork.io, and you can just jump into Slack there and speak to any"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,960",
+				"to": "00:12:23,960"
+			},
+			"offsets": {
+				"from": 742960,
+				"to": 743960
+			},
+			"text": " of the guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,960",
+				"to": "00:12:27,160"
+			},
+			"offsets": {
+				"from": 743960,
+				"to": 747160
+			},
+			"text": " So yeah, that's the end of my presentation, and thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,160",
+				"to": "00:12:28,160"
+			},
+			"offsets": {
+				"from": 747160,
+				"to": 748160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,160",
+				"to": "00:12:35,160"
+			},
+			"offsets": {
+				"from": 748160,
+				"to": 755160
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,160",
+				"to": "00:12:37,900"
+			},
+			"offsets": {
+				"from": 755160,
+				"to": 757900
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,900",
+				"to": "00:12:40,140"
+			},
+			"offsets": {
+				"from": 757900,
+				"to": 760140
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

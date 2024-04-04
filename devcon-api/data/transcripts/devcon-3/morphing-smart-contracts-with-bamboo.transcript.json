@@ -1,0 +1,1748 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 18000
+			},
+			"text": " >> Program, many things can usually still go wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 26000
+			},
+			"text": " Like, we say, a cosmic ray can hit your memory and a bit of flips that can happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31000
+			},
+			"text": " So maybe you can use some servers or crowds and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 36000
+			},
+			"text": " And then when you use remote machines, there are administrators with physical access"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 39000
+			},
+			"text": " so they can do bad stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 45000
+			},
+			"text": " Or the machine itself might have bugs and a cat might break a cable or a cloud or a cable"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 46000
+			},
+			"text": " or stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 54000
+			},
+			"text": " So there are many, many areas, and interesting reasons for program errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 61000
+			},
+			"text": " But, well, a single cosmic ray particle, whatever, cannot probably break the e-cell"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 65000
+			},
+			"text": " network because that can only affect one node."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 73000
+			},
+			"text": " And if that, I mean, for cosmic rays to cause a serious trouble, well, thousands of particles"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 83000
+			},
+			"text": " must arrive at years and they need to hit simultaneously the same memory cell in many, many different machines"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 84000
+			},
+			"text": " and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 90000
+			},
+			"text": " So, SLM is kind of resistant to many uninteresting features."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 101000
+			},
+			"text": " So bug-free programming makes sense in SLM the same there because in other places, before you remove all bugs perfectly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 106000
+			},
+			"text": " your weakest link is no longer programming errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 109000
+			},
+			"text": " There are some other non-interesting reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 124000
+			},
+			"text": " But to worry about, but in SLM, you can still, well, it's really, really difficult to get other weakest links."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 131000
+			},
+			"text": " So here my aim is to match what happens and how a program looks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 137000
+			},
+			"text": " And yes, I have to talk about what happens in SLM contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 139000
+			},
+			"text": " This is just one mental model."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 142000
+			},
+			"text": " It's just one way of thinking about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 148000
+			},
+			"text": " But, well, something calls your SLM contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 153000
+			},
+			"text": " First, with an input and the ESU contract has some state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 157000
+			},
+			"text": " And something happens and an output is produced."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 163000
+			},
+			"text": " Well, this something might contain calling other contracts or sending needs or whatever, but an output comes out."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 167000
+			},
+			"text": " And there will be a contract state after the call."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 171000
+			},
+			"text": " Is there other Huskers or categories here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 172000
+			},
+			"text": " Wow, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 175000
+			},
+			"text": " Yes, greetings, I stole your ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 183000
+			},
+			"text": " And then, so this is my mental picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 190000
+			},
+			"text": " So, and I translate that literally into a program syntax."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 196000
+			},
+			"text": " So on the left, this is what my contract here should do, where it starts as a contract A."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 202000
+			},
+			"text": " And when somebody calls function F, I want to call function F, that's the input."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 207000
+			},
+			"text": " When that input comes in, zero is returned and it becomes contract B."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 212000
+			},
+			"text": " And when it's called again, it returns one and it becomes contract C."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 218000
+			},
+			"text": " When contract C is called, it returns two and it becomes contract A and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 223000
+			},
+			"text": " And that's kind of literally reproduced here as a text."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 230000
+			},
+			"text": " And when the contract A is called with F as the specifier, then it returns zero and then becomes B."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 236000
+			},
+			"text": " And B does returns one and becomes C and C becomes A."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 241000
+			},
+			"text": " That's kind of straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 252000
+			},
+			"text": " And then, well, so I did it with three different states, but that's a very small state space."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 255000
+			},
+			"text": " Well, maybe a contract should hold numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 264000
+			},
+			"text": " So, when you call it, each time you call it the counter increments and it returns the previous counter number."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 266000
+			},
+			"text": " That's kind of implementable."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 276000
+			},
+			"text": " So, instead of having just one alphabet A, B, C as a state, I put some argument after the name of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 284000
+			},
+			"text": " So, well, now the contract signature looks like, well, the name of the contract is A and it's accompanied with a number."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 294000
+			},
+			"text": " When it's called, it returns the counter value and then it becomes A again, but with an incremented number."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 298000
+			},
+			"text": " That's my program and then it behaves like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 310000
+			},
+			"text": " So, it returns the bigger number each time it's called."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 317000
+			},
+			"text": " So, before I invented this syntax, I knew the syntax of the RAM."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 321000
+			},
+			"text": " You can write something similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 324000
+			},
+			"text": " So, it's certainly influenced by that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 330000
+			},
+			"text": " Another process and a smart contract is kind of conceptually similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 332000
+			},
+			"text": " So, it's not a bad idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 343000
+			},
+			"text": " I thought one year ago, many ethereum contracts define games."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 349000
+			},
+			"text": " So, well, here I'm showing states for a contract called vault."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 352000
+			},
+			"text": " It's like a wallet, it's a personal wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 356000
+			},
+			"text": " But the problem is trying to solve this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 361000
+			},
+			"text": " Well, somebody might steal your private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 368000
+			},
+			"text": " So, the solution here is involved two different kinds of keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 370000
+			},
+			"text": " One is called the vault key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 374000
+			},
+			"text": " The other is called the recovery key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 379000
+			},
+			"text": " By the way, this idea comes from I see three people."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 385000
+			},
+			"text": " So, it was an example for new Bitcoin script primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 391000
+			},
+			"text": " But, well, from there, people implemented in ethereum and some stuff happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 394000
+			},
+			"text": " I'm taking these ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 402000
+			},
+			"text": " So, the vault key is your usual key to get your money out of the wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 408000
+			},
+			"text": " You can call an vault function with your vault key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 411000
+			},
+			"text": " And then your contract enters a special state."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 419000
+			},
+			"text": " You have to wait for like three weeks or four weeks, some amount of time written in the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 422000
+			},
+			"text": " And then after that, you can call another function called redeem."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 428000
+			},
+			"text": " And then a payout happens to the address specified in the unvault call."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 431000
+			},
+			"text": " Why did eight weeks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 439000
+			},
+			"text": " Because when somebody steals your vault key and calls this unvault, well, you can check the contract every week."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 450000
+			},
+			"text": " And then if somebody else is trying to get your money, you can reach your more important key called recovery key."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 454000
+			},
+			"text": " And you can call recover and you can cancel this unvault call."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 460000
+			},
+			"text": " And moreover, you can change this vault key so you can create a new key as you have a new vault key."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 469000
+			},
+			"text": " And then the attacker cannot do anything about this old vault key anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 471000
+			},
+			"text": " So, that's the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 480000
+			},
+			"text": " And then, well, when you are really, really under key, the attacker can steal both keys, vault key, under recovery key."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 494000
+			},
+			"text": " Then what would happen is both parties try to withdraw the money, but both parties keep cancelling the other parties requests."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 498000
+			},
+			"text": " So that would become a stalemate."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 503000
+			},
+			"text": " To make it explicit, there is a destroy method."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 513000
+			},
+			"text": " And when anybody with the recovery key calls the destroy method, the contract enters the destroyed state."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 519000
+			},
+			"text": " And from this destroyed state, nobody can get anything out of this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 533000
+			},
+			"text": " This kind of cancels or dis-nurifies the incentives to steal any of these keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 542000
+			},
+			"text": " At most, if you are succeeding, stealing both keys, you will probably get nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 550000
+			},
+			"text": " That kind of changes, seems away. That's the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 556000
+			},
+			"text": " When you implement it in 3D, you can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 565000
+			},
+			"text": " And then you want to check if this contract, if this code matches the state diagram, I drew."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 580000
+			},
+			"text": " For checking that, first I have to identify what solidity state corresponds to the state's in the state diagram."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 588000
+			},
+			"text": " So, well, in this case it's easy. There are only 3 states. When destroyed, the burden is true."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 602000
+			},
+			"text": " It's destroyed. Otherwise, when this unborted amount is 0, it's the normal state. If this number is not 0, it's the unborted waiting state."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 609000
+			},
+			"text": " This is not hard, but it certainly requires a certain human judgment."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 617000
+			},
+			"text": " And then, well, after that, actually, after that, everything can be done automatically because this involves no loops."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 628000
+			},
+			"text": " But for doing that, first you have to look at the constructor, where it returns the usual state, not to any other state that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 635000
+			},
+			"text": " And then you have to read the rest of the program 3 times, because starting from the usual state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 650000
+			},
+			"text": " well, which function can be called, you have to check all interface functions, because anything can be called from anything can be called on any state by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 660000
+			},
+			"text": " So you have to check whatever happens from each state for each interface function."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 669000
+			},
+			"text": " And then, well, when the default function is called, the state doesn't change. So from usual, it stays usual. That looks okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 680000
+			},
+			"text": " When you unvolt is called, so the state can become unvolting. But if the argument amount is 0, it can stay unusual."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 687000
+			},
+			"text": " That's not to join in the state diagram. So I put the question mark."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 695000
+			},
+			"text": " And then, if you, well, when the function is called, well, it doesn't do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 707000
+			},
+			"text": " And then, I know it does something. It does something. Actually, it sends you, no, it sends some 0 amount of visa to somebody and becomes usual."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 718000
+			},
+			"text": " So it's again questionable behavior. And then when we cover it, it doesn't do anything. So that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 727000
+			},
+			"text": " And when this choice is called, it becomes destroyed. That's good as specified in the diagram."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 743000
+			},
+			"text": " And I have to do it like three times. When the contract is in unvolt instead, that means destroyed is false and the unvolted amount is not 0, then, yes, you can call this unvolt again."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 749000
+			},
+			"text": " Well, I know. Okay, well, you can call the default function. That's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 759000
+			},
+			"text": " You can also call the unvolt function again. That was not to join in the diagram. Is that fine or not? I have to think again."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 765000
+			},
+			"text": " When we deem a function is called, well, yes, this can become usual. That's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 772000
+			},
+			"text": " As specified. And when we cover it, it goes back to usual cancelling this waiting request. That's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 778000
+			},
+			"text": " When this choice is called, it becomes destroyed. That's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 790000
+			},
+			"text": " And then the rest is kind of easy because everything, every, every interface function is perfect with this modifier, not destroyed, not destroyed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 797000
+			},
+			"text": " So the call is about it. Nothing can happen from destroyed. That was the easy case."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 807000
+			},
+			"text": " Anyway, I had to read the program three times because the state diagram had three boxes. That's not efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 815000
+			},
+			"text": " So essentially viewing a program takes at least the number of states times the number of lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 824000
+			},
+			"text": " This is not only for human reviewers, but also for any automatic methods. That's not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 832000
+			},
+			"text": " And when you try to check the same thing for a bamboo program, it's easier. That's my claim."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 843000
+			},
+			"text": " Well, you have five arrows in the state diagram. And you have five become fridges in the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 851000
+			},
+			"text": " So essentially you need to check which one corresponds to which. And from the usual state, there are two arrows going up out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 859000
+			},
+			"text": " One is going to unvoltage. The other is going to destroy. And the yes one is going to unvoltage. The other is going to destroy."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 868000
+			},
+			"text": " From the unvoltage state, there are three arrows going out. And the yes, there are three becomes fridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 875000
+			},
+			"text": " So it's much easier to check the program corresponds to the state diagram."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 882000
+			},
+			"text": " It's kind of cheating because I chose this format of presenting states and I chose this syntax of writing programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 892000
+			},
+			"text": " So it's kind of obvious this is certainly achievable. The more interesting thing is how far I can keep this discipline."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 899000
+			},
+			"text": " When there are more and more users, they want more and more features."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 906000
+			},
+			"text": " And along the way how much I can keep this kind of discipline, that's the real challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 917000
+			},
+			"text": " But I needed to write something useful. So I'm already adding some features. I don't like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 923000
+			},
+			"text": " I generally don't like to add stuff to this world, which is already a mess."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 932000
+			},
+			"text": " But I wanted to add the features. So sometimes I wanted to call other addresses on the X-ray chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 947000
+			},
+			"text": " But I didn't want to re-enter and see. So currently whenever you call something, you have to specify what happens in re-enter and in case of re-enter and currently only abort is supported."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 957000
+			},
+			"text": " So whenever your contract calls something and that thing calls back, that's about..."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 966000
+			},
+			"text": " Eventually I want to write something else here, but I don't think about it later. You can create a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 978000
+			},
+			"text": " That's a deliberate choice because I wanted to keep each instance of the contract simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 992000
+			},
+			"text": " So I think I needed some. I added arrays. I wanted to implement the ERC20 and it's kind of..."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 1001000
+			},
+			"text": " It seems to necessarily add some kinds of arrays. I didn't like that because here you have an assignment."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1007000
+			},
+			"text": " You can modify a particular storage location here. I don't like this at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1021000
+			},
+			"text": " When you don't have arrays, bamboo has no assignments at all because everything in the storage just appears in this becomes phrase."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1039000
+			},
+			"text": " Here I'm introducing side effects. I don't like it at all, but okay, well people want to use tokens and tokens kind of essential feature to control implement script economic mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1047000
+			},
+			"text": " So I'm not quite happy. I'm not completely happy about adding this, but I did."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1053000
+			},
+			"text": " What's missing on the priorities? Language specification and independent interpreter."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1064000
+			},
+			"text": " This comes first because whenever I have a chance I keep complaining that the Solidity program has no meaning until it's compiled into the VM bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1076000
+			},
+			"text": " Because Solidity has no specification. Okay, it has a documentation, but it doesn't tell you if your program is executed from top down or bottom up."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1083000
+			},
+			"text": " If you believe it's executed from top down, you are just imagining that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:07,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1087000
+			},
+			"text": " You don't know how many other things you are just assuming."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1087000,
+				"to": 1097000
+			},
+			"text": " I say this always. This applies to bamboo as well currently. I'm not happy, so I'm writing a language specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1105000
+			},
+			"text": " And also an independent interpreter. No, this one is not in progress. Language specification is in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1115000
+			},
+			"text": " But okay, well if I've done the K-frame work, I can do this at the same time. So maybe I should just talk to these guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1129000
+			},
+			"text": " I don't want to add many features. Maybe the most prior one is calling externally defined contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1139000
+			},
+			"text": " Once this is done, the language is kind of usable. So maybe I should delay this until the other parts are done."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1150000
+			},
+			"text": " So here's a famous phrase by Simon Peton, \"I avoid success at all costs.\" Yes, I stole this phrase from the Haskell community."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1159000
+			},
+			"text": " But this is kind of ambiguous success at all costs. Avoid at all costs. I haven't decided yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1165000
+			},
+			"text": " Here's how you can help. If you write OCaml, please talk to me. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1175000
+			},
+			"text": " [applause]"
+		}
+	]
+}

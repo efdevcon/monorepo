@@ -1,0 +1,1154 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,000",
+				"to": "00:00:03,000"
+			},
+			"offsets": {
+				"from": 2000,
+				"to": 3000
+			},
+			"text": " Hello everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,000",
+				"to": "00:00:04,480"
+			},
+			"offsets": {
+				"from": 3000,
+				"to": 4480
+			},
+			"text": " My name is Jesse."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,480",
+				"to": "00:00:10,400"
+			},
+			"offsets": {
+				"from": 4480,
+				"to": 10400
+			},
+			"text": " I am the founder of Bloom and we are a decentralized identity and credit scoring protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,400",
+				"to": "00:00:14,960"
+			},
+			"offsets": {
+				"from": 10400,
+				"to": 14960
+			},
+			"text": " And today I'm here to talk about something that most of you guys probably already know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,960",
+				"to": "00:00:18,880"
+			},
+			"offsets": {
+				"from": 14960,
+				"to": 18880
+			},
+			"text": " which is that the entire history of you is being sold."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,880",
+				"to": "00:00:23,440"
+			},
+			"offsets": {
+				"from": 18880,
+				"to": 23440
+			},
+			"text": " There are thousands of computers, tens of thousands of companies that are mining your"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,440",
+				"to": "00:00:28,160"
+			},
+			"offsets": {
+				"from": 23440,
+				"to": 28160
+			},
+			"text": " personal information, pooling it up and selling it in giant data centers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,160",
+				"to": "00:00:31,160"
+			},
+			"offsets": {
+				"from": 28160,
+				"to": 31160
+			},
+			"text": " This happens continuously all day long, non-stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,160",
+				"to": "00:00:35,400"
+			},
+			"offsets": {
+				"from": 31160,
+				"to": 35400
+			},
+			"text": " So in this five minute talk, I'm going to give you a brief overview of how bad this problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,400",
+				"to": "00:00:41,840"
+			},
+			"offsets": {
+				"from": 35400,
+				"to": 41840
+			},
+			"text": " actually is, what practical solutions blockchain brings to actually address the problem that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,840",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 41840,
+				"to": 47000
+			},
+			"text": " your entire history is being sold, and then where we are today, what companies are currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:53,280"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 53280
+			},
+			"text": " adopting this, and then what technology is available to actually address this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,280",
+				"to": "00:00:55,880"
+			},
+			"offsets": {
+				"from": 53280,
+				"to": 55880
+			},
+			"text": " So this is a massive problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,880",
+				"to": "00:01:02,240"
+			},
+			"offsets": {
+				"from": 55880,
+				"to": 62240
+			},
+			"text": " There are 10,000 companies in the United States alone that are registered sellers of your"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,240",
+				"to": "00:01:05,200"
+			},
+			"offsets": {
+				"from": 62240,
+				"to": 65200
+			},
+			"text": " personal data that actually sell data to the Bureau's."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,200",
+				"to": "00:01:09,040"
+			},
+			"offsets": {
+				"from": 65200,
+				"to": 69040
+			},
+			"text": " We're talking about your bank statements, your utility bills, your identity documents,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,040",
+				"to": "00:01:14,240"
+			},
+			"offsets": {
+				"from": 69040,
+				"to": 74240
+			},
+			"text": " your social security information, everything you do, your online patterns, everything you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,240",
+				"to": "00:01:19,320"
+			},
+			"offsets": {
+				"from": 74240,
+				"to": 79320
+			},
+			"text": " do is being masked and sold and it's not even kept securely."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,320",
+				"to": "00:01:23,880"
+			},
+			"offsets": {
+				"from": 79320,
+				"to": 83880
+			},
+			"text": " We've seen what happened in the Equifax hack where they leaked the data of over 150 million"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,880",
+				"to": "00:01:28,200"
+			},
+			"offsets": {
+				"from": 83880,
+				"to": 88200
+			},
+			"text": " Americans and the data leak problem is only getting worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,200",
+				"to": "00:01:32,920"
+			},
+			"offsets": {
+				"from": 88200,
+				"to": 92920
+			},
+			"text": " If you ask most security experts, they say if data is stored in a central repository,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,920",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 92920,
+				"to": 97000
+			},
+			"text": " it's not a matter of if it will get hacked, it's a matter of when it will get hacked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:39,200"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 99200
+			},
+			"text": " and that's exactly what we're seeing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,200",
+				"to": "00:01:44,520"
+			},
+			"offsets": {
+				"from": 99200,
+				"to": 104520
+			},
+			"text": " Data that is stored centrally is exposed and the problem is getting worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,520",
+				"to": "00:01:45,960"
+			},
+			"offsets": {
+				"from": 104520,
+				"to": 105960
+			},
+			"text": " No one is immune."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,960",
+				"to": "00:01:49,920"
+			},
+			"offsets": {
+				"from": 105960,
+				"to": 109920
+			},
+			"text": " Even Facebook had a data leak recently."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,920",
+				"to": "00:01:53,600"
+			},
+			"offsets": {
+				"from": 109920,
+				"to": 113600
+			},
+			"text": " And it's not even that these Bureau's are bad at storing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,600",
+				"to": "00:01:56,360"
+			},
+			"offsets": {
+				"from": 113600,
+				"to": 116360
+			},
+			"text": " They are also bad at understanding it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,360",
+				"to": "00:02:01,240"
+			},
+			"offsets": {
+				"from": 116360,
+				"to": 121240
+			},
+			"text": " The data problem has bias in China, your political affiliation influences your credit"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,240",
+				"to": "00:02:05,240"
+			},
+			"offsets": {
+				"from": 121240,
+				"to": 125240
+			},
+			"text": " score in the United States, whether you check your credit score makes it go down."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,240",
+				"to": "00:02:09,560"
+			},
+			"offsets": {
+				"from": 125240,
+				"to": 129560
+			},
+			"text": " And these things are like mathematically proven not to matter, but it doesn't matter"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,560",
+				"to": "00:02:13,560"
+			},
+			"offsets": {
+				"from": 129560,
+				"to": 133560
+			},
+			"text": " because central companies are interpreting data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,560",
+				"to": "00:02:15,800"
+			},
+			"offsets": {
+				"from": 133560,
+				"to": 135800
+			},
+			"text": " Huge problem, huge problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,800",
+				"to": "00:02:22,200"
+			},
+			"offsets": {
+				"from": 135800,
+				"to": 142200
+			},
+			"text": " So obviously the decentralized world presents a solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,200",
+				"to": "00:02:26,040"
+			},
+			"offsets": {
+				"from": 142200,
+				"to": 146040
+			},
+			"text": " So I talked about the failures, but where can blockchain help?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,040",
+				"to": "00:02:31,040"
+			},
+			"offsets": {
+				"from": 146040,
+				"to": 151040
+			},
+			"text": " How can blockchain stop this egregious misuse of data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,040",
+				"to": "00:02:37,120"
+			},
+			"offsets": {
+				"from": 151040,
+				"to": 157120
+			},
+			"text": " Well, we are actually in a remarkably lucky time period because GDPR, the European Data"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,120",
+				"to": "00:02:41,960"
+			},
+			"offsets": {
+				"from": 157120,
+				"to": 161960
+			},
+			"text": " Act that makes it so that you can't store personal information, the California Data"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,960",
+				"to": "00:02:45,520"
+			},
+			"offsets": {
+				"from": 161960,
+				"to": 165520
+			},
+			"text": " Protection Act, all of the Senate action that's happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,520",
+				"to": "00:02:52,200"
+			},
+			"offsets": {
+				"from": 165520,
+				"to": 172200
+			},
+			"text": " The global world, the Fortune 500s, nobody wants to be the next Equifax."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,200",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 172200,
+				"to": 178000
+			},
+			"text": " They are actively pursuing blockchain solutions today, right now, to make sure that their"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:00,880"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 180880
+			},
+			"text": " data is kept securely."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,880",
+				"to": "00:03:02,440"
+			},
+			"offsets": {
+				"from": 180880,
+				"to": 182440
+			},
+			"text": " So here's a few principles."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,440",
+				"to": "00:03:05,440"
+			},
+			"offsets": {
+				"from": 182440,
+				"to": 185440
+			},
+			"text": " One, users must own their data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,440",
+				"to": "00:03:08,440"
+			},
+			"offsets": {
+				"from": 185440,
+				"to": 188440
+			},
+			"text": " Users need to be the custodian of their own data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,440",
+				"to": "00:03:12,840"
+			},
+			"offsets": {
+				"from": 188440,
+				"to": 192840
+			},
+			"text": " If the user owns the data, the user can decide how it's shared."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,840",
+				"to": "00:03:16,800"
+			},
+			"offsets": {
+				"from": 192840,
+				"to": 196800
+			},
+			"text": " That means local device storage on Bloom, we store the data right on the user's local"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,800",
+				"to": "00:03:17,800"
+			},
+			"offsets": {
+				"from": 196800,
+				"to": 197800
+			},
+			"text": " device."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,800",
+				"to": "00:03:22,200"
+			},
+			"offsets": {
+				"from": 197800,
+				"to": 202200
+			},
+			"text": " There's obviously other methods of doing this, IPFS, or any sort of local storage can accomplish"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,200",
+				"to": "00:03:25,240"
+			},
+			"offsets": {
+				"from": 202200,
+				"to": 205240
+			},
+			"text": " the same feat."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,240",
+				"to": "00:03:26,800"
+			},
+			"offsets": {
+				"from": 205240,
+				"to": 206800
+			},
+			"text": " Limiting access."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,800",
+				"to": "00:03:29,400"
+			},
+			"offsets": {
+				"from": 206800,
+				"to": 209400
+			},
+			"text": " Raw information is a killer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,400",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 209400,
+				"to": 215000
+			},
+			"text": " Limiting access to raw information is an absolute requirement of secure data sharing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:39,720"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 219720
+			},
+			"text": " On Bloom, we don't actually, we have multiple mechanisms to share data, but the user is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,720",
+				"to": "00:03:44,040"
+			},
+			"offsets": {
+				"from": 219720,
+				"to": 224040
+			},
+			"text": " responsible to trigger that sharing, and you don't need to share the full raw information."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,040",
+				"to": "00:03:48,080"
+			},
+			"offsets": {
+				"from": 224040,
+				"to": 228080
+			},
+			"text": " You can just share the fact that you're over 21, or that your passport's been validated."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,080",
+				"to": "00:03:50,520"
+			},
+			"offsets": {
+				"from": 228080,
+				"to": 230520
+			},
+			"text": " You don't actually have to share the raw information."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,520",
+				"to": "00:03:53,760"
+			},
+			"offsets": {
+				"from": 230520,
+				"to": 233760
+			},
+			"text": " That's a series of Merkle proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,760",
+				"to": "00:03:54,760"
+			},
+			"offsets": {
+				"from": 233760,
+				"to": 234760
+			},
+			"text": " We make this easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,760",
+				"to": "00:03:57,520"
+			},
+			"offsets": {
+				"from": 234760,
+				"to": 237520
+			},
+			"text": " If any of you guys actually want to develop this, this is an open source protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,520",
+				"to": "00:03:59,240"
+			},
+			"offsets": {
+				"from": 237520,
+				"to": 239240
+			},
+			"text": " It's obviously easy to get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,240",
+				"to": "00:04:04,400"
+			},
+			"offsets": {
+				"from": 239240,
+				"to": 244400
+			},
+			"text": " We have a builder so that you can actually build the system to start integrating this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,400",
+				"to": "00:04:08,040"
+			},
+			"offsets": {
+				"from": 244400,
+				"to": 248040
+			},
+			"text": " Data reusability is another critical component."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,040",
+				"to": "00:04:13,680"
+			},
+			"offsets": {
+				"from": 248040,
+				"to": 253680
+			},
+			"text": " Taking the data reusable and low cost reusability, but then also making it easy to get the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,680",
+				"to": "00:04:15,280"
+			},
+			"offsets": {
+				"from": 253680,
+				"to": 255280
+			},
+			"text": " onto users' local device."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,280",
+				"to": "00:04:18,760"
+			},
+			"offsets": {
+				"from": 255280,
+				"to": 258760
+			},
+			"text": " Gamifying the experience, putting it in an app experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,760",
+				"to": "00:04:25,040"
+			},
+			"offsets": {
+				"from": 258760,
+				"to": 265040
+			},
+			"text": " We have over 100,000 users, 30,000 on-chain users that have completed their data onboarding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,040",
+				"to": "00:04:27,640"
+			},
+			"offsets": {
+				"from": 265040,
+				"to": 267640
+			},
+			"text": " so Good UX is working."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,640",
+				"to": "00:04:31,520"
+			},
+			"offsets": {
+				"from": 267640,
+				"to": 271520
+			},
+			"text": " And then last, where is the future going?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,520",
+				"to": "00:04:35,960"
+			},
+			"offsets": {
+				"from": 271520,
+				"to": 275960
+			},
+			"text": " We've seen recently Tim Cook go on a tweet storm about maintaining users' privacy and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,960",
+				"to": "00:04:37,040"
+			},
+			"offsets": {
+				"from": 275960,
+				"to": 277040
+			},
+			"text": " maintaining data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,040",
+				"to": "00:04:39,440"
+			},
+			"offsets": {
+				"from": 277040,
+				"to": 279440
+			},
+			"text": " We see a lot of thought leaders in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,440",
+				"to": "00:04:45,280"
+			},
+			"offsets": {
+				"from": 279440,
+				"to": 285280
+			},
+			"text": " And as I mentioned, Fortune 500s are looking to adopt this technology today."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,280",
+				"to": "00:04:46,720"
+			},
+			"offsets": {
+				"from": 285280,
+				"to": 286720
+			},
+			"text": " Bloom's protocol is open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,720",
+				"to": "00:04:51,880"
+			},
+			"offsets": {
+				"from": 286720,
+				"to": 291880
+			},
+			"text": " Anyone can sell these deals, but we just signed a deal with the BMW to actually implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,880",
+				"to": "00:04:58,040"
+			},
+			"offsets": {
+				"from": 291880,
+				"to": 298040
+			},
+			"text": " Bloom's open source protocol in the BMW lending experience for their 500,000 plus loans a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,040",
+				"to": "00:04:59,040"
+			},
+			"offsets": {
+				"from": 298040,
+				"to": 299040
+			},
+			"text": " year."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,040",
+				"to": "00:05:03,200"
+			},
+			"offsets": {
+				"from": 299040,
+				"to": 303200
+			},
+			"text": " And we actually, I'm just announcing this now, but we also just signed a deal with American"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,200",
+				"to": "00:05:09,120"
+			},
+			"offsets": {
+				"from": 303200,
+				"to": 309120
+			},
+			"text": " Express in 17 countries to implement Bloom's open source protocol to actually apply for"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,120",
+				"to": "00:05:13,120"
+			},
+			"offsets": {
+				"from": 309120,
+				"to": 313120
+			},
+			"text": " loans and validate that information in more than 17 countries."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,120",
+				"to": "00:05:15,520"
+			},
+			"offsets": {
+				"from": 313120,
+				"to": 315520
+			},
+			"text": " But it is not just Bloom."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,520",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 315520,
+				"to": 319000
+			},
+			"text": " You guys have the ability to sell these same deals."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:20,720"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 320720
+			},
+			"text": " The time is now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,720",
+				"to": "00:05:26,680"
+			},
+			"offsets": {
+				"from": 320720,
+				"to": 326680
+			},
+			"text": " GDPR and compliance has opened up the gateway for blockchain businesses to actually sell"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,680",
+				"to": "00:05:28,360"
+			},
+			"offsets": {
+				"from": 326680,
+				"to": 328360
+			},
+			"text": " into Fortune 500s."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,360",
+				"to": "00:05:30,160"
+			},
+			"offsets": {
+				"from": 328360,
+				"to": 330160
+			},
+			"text": " We're not doing anything special."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,160",
+				"to": "00:05:33,480"
+			},
+			"offsets": {
+				"from": 330160,
+				"to": 333480
+			},
+			"text": " But we have the same access to the same tools that you guys have."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,480",
+				"to": "00:05:39,800"
+			},
+			"offsets": {
+				"from": 333480,
+				"to": 339800
+			},
+			"text": " And the regulatory environment has paved the way to change the future of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,800",
+				"to": "00:05:40,800"
+			},
+			"offsets": {
+				"from": 339800,
+				"to": 340800
+			},
+			"text": " My name is Jesse again."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,800",
+				"to": "00:05:42,720"
+			},
+			"offsets": {
+				"from": 340800,
+				"to": 342720
+			},
+			"text": " I'm the founder of Bloom."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,720",
+				"to": "00:05:44,800"
+			},
+			"offsets": {
+				"from": 342720,
+				"to": 344800
+			},
+			"text": " We've been working on this research for quite some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,800",
+				"to": "00:05:47,080"
+			},
+			"offsets": {
+				"from": 344800,
+				"to": 347080
+			},
+			"text": " My co-founders, State-founded Stanford Bitcoin Group."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,080",
+				"to": "00:05:51,760"
+			},
+			"offsets": {
+				"from": 347080,
+				"to": 351760
+			},
+			"text": " We study computer science at Stanford and we are really, really big on protecting user"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,760",
+				"to": "00:05:57,480"
+			},
+			"offsets": {
+				"from": 351760,
+				"to": 357480
+			},
+			"text": " data, maintaining user privacy, making that data reusable, and creating a future where"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,480",
+				"to": "00:06:00,800"
+			},
+			"offsets": {
+				"from": 357480,
+				"to": 360800
+			},
+			"text": " your data is not mined and sold."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,800",
+				"to": "00:06:01,800"
+			},
+			"offsets": {
+				"from": 360800,
+				"to": 361800
+			},
+			"text": " We're Bloom."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,800",
+				"to": "00:06:02,300"
+			},
+			"offsets": {
+				"from": 361800,
+				"to": 362300
+			},
+			"text": " Thank you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,300",
+				"to": "00:06:12,300"
+			},
+			"offsets": {
+				"from": 362300,
+				"to": 372300
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,300",
+				"to": "00:06:22,300"
+			},
+			"offsets": {
+				"from": 372300,
+				"to": 382300
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,300",
+				"to": "00:06:32,300"
+			},
+			"offsets": {
+				"from": 382300,
+				"to": 392300
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,300",
+				"to": "00:07:01,300"
+			},
+			"offsets": {
+				"from": 392300,
+				"to": 421300
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

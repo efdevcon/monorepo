@@ -1,0 +1,4850 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 17000
+			},
+			"text": " That you have learned something about distributed consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 23000
+			},
+			"text": " It takes a lot more than just the consensus protocol, obviously, to build a cryptocurrency, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 27000
+			},
+			"text": " So for instance, we need to make sure that the incentives are aligned and there's good governance policy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 34000
+			},
+			"text": " And in the interest of time, I'm not going to be able to cover these other topics in this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 40000
+			},
+			"text": " Okay. So let's begin. I'm going to begin with a little bit of storytelling."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 53000
+			},
+			"text": " Early in May this year, so there was this one day when all the flights out of London were canceled, you know, for British Airways,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 58000
+			},
+			"text": " this was because of the system's failure. And this is a picture showing people lined up at the airport."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 66000
+			},
+			"text": " And quite interestingly, in September last year, something very similar happened to Daltar Airlines."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 72000
+			},
+			"text": " And for this one day, you know, everything was shut down. You couldn't fly. You couldn't book any flights."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 80000
+			},
+			"text": " And Daltar suffered 100 million U.S. dollars in revenue because of this system's failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 87000
+			},
+			"text": " So what's the moral behind these stories? We need replication and robustness, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 99000
+			},
+			"text": " So it's a very simple idea, but it is precisely this very, very simple idea that gave birth to an entire line of work called distributed systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 103000
+			},
+			"text": " And this has been around for 30 years, right? It's not something new."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 112000
+			},
+			"text": " So in distributed systems, we care about a very important abstraction, which I will call state-mission replication."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 116000
+			},
+			"text": " So let me quickly explain what state-mission replication is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 123000
+			},
+			"text": " Okay, so state-mission replication is the task of agreeing on an ever-growing, linearly-ordered log, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 128000
+			},
+			"text": " So let's imagine we have a set of servers. In this case, we have Google Wallet servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 134000
+			},
+			"text": " And obviously, Google Wallet doesn't want the kind of disaster that Daltar Airlines has had, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 139000
+			},
+			"text": " So these servers would like to agree on linearly-ordered log of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 145000
+			},
+			"text": " And there are two very important security properties that we care about, namely consistency and liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 156000
+			},
+			"text": " Okay, so very quickly, consistency says that all of these honest notes must agree on the same log."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 160000
+			},
+			"text": " However, note that the network can have delay, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 164000
+			},
+			"text": " So it could be that your log is a little faster than mine. That doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 168000
+			},
+			"text": " Nonetheless, your log has to be a prefix of mine or mine of yours."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 171000
+			},
+			"text": " Okay, so that's what consistency says."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 182000
+			},
+			"text": " For liveness, whenever an honest client submits a transaction, we want that this transaction will appear in all of the honest servers' log very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 189000
+			},
+			"text": " Okay, so any questions at this point? If you guys have questions, feel free to interrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193000
+			},
+			"text": " The audience has reduced a little bit, which is good for asking questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 195000
+			},
+			"text": " Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 203000
+			},
+			"text": " Quickly, so typically, there's a technical definition with the liveness parameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 208000
+			},
+			"text": " So the liveness parameter can be some kind of polynomial function over parameters of the execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 211000
+			},
+			"text": " like the security parameter, the number of notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 217000
+			},
+			"text": " But for the purpose of this talk, so the protocol I'm going to describe is like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 224000
+			},
+			"text": " confirms in like one to two rounds. But in general, this parameter you can specify as a function of other parameters of the execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 228000
+			},
+			"text": " Okay, all right. So that's a very good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 234000
+			},
+			"text": " At first sight, this definition seems like deceptively simple, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 239000
+			},
+			"text": " So what can be so hard about agreeing on a linearly order log?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 245000
+			},
+			"text": " And indeed, if all of these notes behave correctly, then the problem is indeed trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 249000
+			},
+			"text": " Like, there's nothing hard about it. But what's interesting is if some of the notes are compromised,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 255000
+			},
+			"text": " let's say they have malware and then they can behave arbitrarily, deviate arbitrarily from the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 260000
+			},
+			"text": " And even in these cases, we want that for the remaining set of honest servers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 263000
+			},
+			"text": " they still have to respect these security properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 266000
+			},
+			"text": " So that's why the problem is highly non-trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 276000
+			},
+			"text": " So for the rest of the talk, whenever I mention the word consensus, I exclusively mean state-mission replication."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 281000
+			},
+			"text": " Okay. So like I said, state-mission replication is not something that's new, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 284000
+			},
+			"text": " It's not just like, you know, blockchains invented state-mission replication."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 289000
+			},
+			"text": " This has been around for a really long time, and it has been making real-world impact for a really long time, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 295000
+			},
+			"text": " For instance, every Silicon Valley company actually implies some instance of state-mission replication protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 302000
+			},
+			"text": " to replicate their computing infrastructure. So for instance, for Google, right, they run a service called Chubby."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 310000
+			},
+			"text": " And behind Chubby is this protocol called Paxos, and that's like a crash-fought tolerant version of state-mission replication."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 314000
+			},
+			"text": " Obviously, whatever Google does, you know, every other Silicon Valley company is going to copy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 321000
+			},
+			"text": " And that's why we have an open-source counterpart. I mean, sort of counterpart called Apache Zookeeper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 328000
+			},
+			"text": " and pretty much apart from Google, every other company in the Silicon Valley implies Apache Zookeeper."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 336000
+			},
+			"text": " Okay. So traditionally, when we talk about distributed consensus, the kind of scenario that conjures up in our minds"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 341000
+			},
+			"text": " is exactly what I said, right? There's a single company, there's like five to ten nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 346000
+			},
+			"text": " and the nodes are interconnected with fast local area network. So small scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 353000
+			},
+			"text": " And what is really amazing is that, you know, with cryptocurrencies like Bitcoin and Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 361000
+			},
+			"text": " we now have empirical evidence that distributed consensus is actually possible on a really large scale on the Internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 371000
+			},
+			"text": " So in many ways, this is like extremely exciting, and that's why banks and these large industry consortia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 377000
+			},
+			"text": " like everyone's super excited about this, and we want to kind of replicate the success to the permission setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 384000
+			},
+			"text": " Like we want consortium blockchains, the banks want to build the distributed ledger amounts themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 391000
+			},
+			"text": " Okay, for instance, in China, right, we have a China central bank wants to build such a distributed ledger"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 396000
+			},
+			"text": " among all of the banks in China, and the kind of scale you are looking at is like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 406000
+			},
+			"text": " there are easily 100 banks in China, and if every bank contributes like ten nodes, we are looking at a thousand nodes scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 415000
+			},
+			"text": " Okay. So, perhaps not surprisingly, right, all these large industry consortia companies in this space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 422000
+			},
+			"text": " everyone's racing to create the dream protocol for large scale consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 428000
+			},
+			"text": " So all of this is very exciting, but then again, at the end of the day, when you sit down and think about it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 433000
+			},
+			"text": " perhaps it doesn't make any sense, right? So why after 30 years of work on distributed consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 442000
+			},
+			"text": " everyone still has to roll their own implementation, right? After all, implementing consensus is like very much like implementing crypto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 450000
+			},
+			"text": " right? It's very tricky, very error-prone, and normally, like, you know, for crypto, we tend to think this is not something that you should like"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 460000
+			},
+			"text": " roll your own implementation for. Okay. So to understand why there still isn't a dream protocol for large scale consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 468000
+			},
+			"text": " it helps to understand the consensus landscape. So I'm going to talk about the consensus landscape a little bit before I start to talk about the umbrella."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 475000
+			},
+			"text": " Roughly speaking, there are two broad classes of approaches. There's classical and there's blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 486000
+			},
+			"text": " So by classical, I mean protocols like PBFT and Paxos. So what do we know about classical consensus? These protocols are fast most of the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 496000
+			},
+			"text": " They can confirm transactions like in constant number of rounds. But on the other hand, these protocols are also notorious for being incredibly complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 502000
+			},
+			"text": " And there's a lot of, like, there are implications for what complexity means on a large scale, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 508000
+			},
+			"text": " So I'm going to revisit this complexity point again a little bit later in the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 520000
+			},
+			"text": " And there are also other issues with these classical protocols. Like, for instance, in my research earlier in Cornell, we now mathematically understand why these classical protocols aren't robust enough for large scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 531000
+			},
+			"text": " So this is a point that I won't have time to articulate in this talk, but you have to take a leap of faith that we now mathematically understand what robustness means on a large scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 535000
+			},
+			"text": " and why these protocols aren't suited."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 544000
+			},
+			"text": " Okay, so of course, at the other side of the spectrum, we have blockchains, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 552000
+			},
+			"text": " So blockchains, the amazing thing is that they're not just an empirical success."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 564000
+			},
+			"text": " We now mathematically understand that these protocols actually reach consensus using a mathematical mechanism that departs completely from classical consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 568000
+			},
+			"text": " So in other words, blockchains are also a theoretical breakthrough."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 572000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 583000
+			},
+			"text": " Whenever we talk about blockchains, of course, your first reaction might be that these protocols are extremely wasteful because the miners are solving computationally expensive puzzles."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 594000
+			},
+			"text": " And in order to make progress in this talk, I'm going to ask you to take a leap of faith again and imagine that the proof of work problem has already been solved."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 607000
+			},
+			"text": " So we did have an earlier work that shows how to remove the proof of work from blockchain-style consensus and still be able to retain precisely the same mathematical properties of these protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 614000
+			},
+			"text": " So this is a paper called Sleepy Consensus. It's going to appear in Asia Group this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 624000
+			},
+			"text": " And in the rest of the talk, whenever I mention blockchains, it can either be proof of work based or non-proof of work based."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 629000
+			},
+			"text": " Okay. So in comparison with classical consensus, right, there are many advantages of blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 633000
+			},
+			"text": " For instance, they are very robust, right? Their robustness has been empirically proven."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 638000
+			},
+			"text": " Bitcoin was like, for instance, often referred to as the Honey Badger of Money."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 643000
+			},
+			"text": " The protocols are very, very simple, right? If you look at the protocol rule, it's essentially everyone picks the law."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 648000
+			},
+			"text": " Everyone picks the longest chain and they try to extend the longest chain. That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 655000
+			},
+			"text": " So simplicity, you know, in a large-scale distributed system can often be your friend."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 666000
+			},
+			"text": " Okay. On the other hand, even though the proof of work problem can be solved, blockchains still suffer from slowness, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 674000
+			},
+			"text": " As we know, in Bitcoin, it takes like 10 minutes per block. And often to get enough confidence, you have to wait for like 6 to 10 blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 678000
+			},
+			"text": " which means your transaction confirmation is on the other of an hour, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 687000
+			},
+			"text": " So I know Ethereum parameterized the block interval differently, but the point is that there are security implications when you re-parameterize these block interval parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 703000
+			},
+			"text": " So from this mathematical analysis by Pass-It-All, we understand that if you want resistance to 49% attack, your block interval should be 60 times the maximum-nour delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 709000
+			},
+			"text": " So in other words, the block interval cannot be too small with respect to the narrow delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 716000
+			},
+			"text": " So this actually seems like an inherent drawback of blockchain-style consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 720000
+			},
+			"text": " Okay. So this is kind of the overall landscape."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 727000
+			},
+			"text": " And what this tells us is that it seems like the stream protocol for large-scale is still eluding us, unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 735000
+			},
+			"text": " And in the rest of the talk, I'm going to try to answer this question."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 736000
+			},
+			"text": " And here's the plan."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 745000
+			},
+			"text": " I'm going to start talking about how classical consensus works, and I'm going to go on until I get stuck."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 754000
+			},
+			"text": " And when I do get stuck, I'm going to try to combine the best of both worlds and get a new consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 762000
+			},
+			"text": " So some dell'erilla is an extremely simple consensus protocol. At the end of the talk, I'm going to summarize the protocol in two sentences."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 765000
+			},
+			"text": " Okay. Any questions at this point?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 769000
+			},
+			"text": " All right. So without further ado, let's talk about consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 777000
+			},
+			"text": " And today we have Vitalik versus the superheroes. Vitalik will act as the leader."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 779000
+			},
+			"text": " And everyone else is the voter."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 784000
+			},
+			"text": " Okay. So some of these voters can be compromised and behaving maliciously, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 787000
+			},
+			"text": " So for instance, in this case, Loki is corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 791000
+			},
+			"text": " And also do keep in mind that the leader himself can also be corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 794000
+			},
+			"text": " So Vitalik can also be malicious."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 800000
+			},
+			"text": " Okay. So here's roughly speaking how these classical consensus protocols work."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 804000
+			},
+			"text": " Vitalik, as the leader, he's first going to make a proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 809000
+			},
+			"text": " The proposal contains a batch of transactions, attacked with a sequence number."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 817000
+			},
+			"text": " Right? So the sequence number is going to determine where in this very long lock this batch will land."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:43,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 823000
+			},
+			"text": " Okay. So the final protocol will contain many instances of this little protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 823000,
+				"to": 829000
+			},
+			"text": " But for simplicity, for now, let's focus on the little instance with the single sequence number."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 834000
+			},
+			"text": " When Vitalik makes the proposal, everyone's going to vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 839000
+			},
+			"text": " Okay. So here, imagine a golden vote is voting for the golden transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 842000
+			},
+			"text": " which is the transaction that Vitalik has proposed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 848000
+			},
+			"text": " And if you are corrupt, obviously, you don't have to vote according to the protocol rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 855000
+			},
+			"text": " So Loki in this case is voting for the red transaction and the blue transaction instead of the golden."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 866000
+			},
+			"text": " Okay. So then step number three, I'm going to wait till I hear enough people voting for the same transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 874000
+			},
+			"text": " and then I'm going to confirm or in other words, output the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 878000
+			},
+			"text": " So this is a very simple voting protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 884000
+			},
+			"text": " And I'm going to try to describe what kind of properties this protocol can achieve."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 892000
+			},
+			"text": " Okay. And before I do that, I want to stress that the most important invariant of this protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 897000
+			},
+			"text": " is that honest notes are only going to vote uniquely for every sequence number."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 902000
+			},
+			"text": " So if I'm honest, I'm going to wait till I hear the first proposal from Vitalik,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 905000
+			},
+			"text": " and I'm only going to vote for that first proposal I hear."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 908000
+			},
+			"text": " I'm not going to vote for anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 913000
+			},
+			"text": " Okay. So for count and two, understand the security of the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 917000
+			},
+			"text": " let's consider concrete parameters n equal to three of plus one, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 922000
+			},
+			"text": " So n is the total number of notes, and f is the number of corrupt notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 928000
+			},
+			"text": " So this is saying, let's imagine the number of corrupt notes is less than one third."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 937000
+			},
+			"text": " And in this case, I claim that it's sufficient to wait for two thirds of the people to vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 940000
+			},
+			"text": " So I'm going to set my threshold to two plus one, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 943000
+			},
+			"text": " So this is exactly waiting for two thirds of the people to vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 950000
+			},
+			"text": " And once I wait for enough votes, I'm going to confirm. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 954000
+			},
+			"text": " So why does this protocol achieve consistency?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 956000
+			},
+			"text": " Here's a very simple argument."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 959000
+			},
+			"text": " So imagine we have Spiderman and Ironman."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 965000
+			},
+			"text": " Spiderman has heard two f plus one people voting for the red transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 968000
+			},
+			"text": " So I'm going to call this the red quorum."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 977000
+			},
+			"text": " And Ironman has heard also heard two f plus one people voting for, let's say, the orange transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 982000
+			},
+			"text": " Okay. So these two quorums, they may not be the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 991000
+			},
+			"text": " However, by a very simple pigeonhole principle, right, n equal to three of plus one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 997000
+			},
+			"text": " it's easy to see that these two quorums must intersect at an honest note."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 999000
+			},
+			"text": " And that's the key observation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1003000
+			},
+			"text": " So if you think about it, this is like very, very easy math."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1008000
+			},
+			"text": " And because of this, remember that I said honest notes vote uniquely."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1013000
+			},
+			"text": " So we can conclude that the red transaction must be the same as the orange in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1016000
+			},
+			"text": " So consistency is guaranteed."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1028000
+			},
+			"text": " And interestingly, I want you to notice that in this argument, I never relied on the fact that the leader has to be honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1034000
+			},
+			"text": " Right? So in fact, the argument holds nonetheless even when the leaders corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1038000
+			},
+			"text": " So the fact I'm relying on here is that honest notes vote uniquely."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1042000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1046000
+			},
+			"text": " Okay. So let's now imagine there are two possible worlds, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1051000
+			},
+			"text": " On the left hand side, imagine Vitalik is honest and on the right hand side, Vitalik is corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1053000
+			},
+			"text": " When Vitalik is honest, everything's all good."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1055000
+			},
+			"text": " We have both consistency and liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:37,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1057000
+			},
+			"text": " So consistency I've just proved."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1057000,
+				"to": 1063000
+			},
+			"text": " For liveness, it's very easy to see because if Vitalik is honest, he is going to propose the same transaction to everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1068000
+			},
+			"text": " Right? And everyone will, all the honest people will vote on the same transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1076000
+			},
+			"text": " And obviously, because there are at least two F+1 honest people, soon enough, I'm going to hear two F+1 votes and then I can make progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1080000
+			},
+			"text": " On the other hand, what if Vitalik is corrupt?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1085000
+			},
+			"text": " If Vitalik is corrupt, fortunately, we still have consistency, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1090000
+			},
+			"text": " Like I said, the consistency argument didn't rely on Vitalik being honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1093000
+			},
+			"text": " However, we don't have liveness anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1099000
+			},
+			"text": " Right? So why is the case? Because if Vitalik is corrupt, he can propose different transactions to different people."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1102000
+			},
+			"text": " And everyone's going to end up voting for a different thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1110000
+			},
+			"text": " Right? So you can wait on, wait on, wait on, but you never collect enough votes for the same transaction and you just get stuck there."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1119000
+			},
+			"text": " Okay. So now, the corrupt of consensus is to solve the liveness problem when the leaders corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1125000
+			},
+			"text": " So that's what we want to be able to achieve. And if we can achieve that, then everything's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1128000
+			},
+			"text": " Okay. So how can we guarantee liveness?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1139000
+			},
+			"text": " If you look at these classical protocols like PBFT and Paxels, they rely on a very complicated leader re-election mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1144000
+			},
+			"text": " And in PBFT, this is called view change. So I don't want to have to explain this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1151000
+			},
+			"text": " Okay. So again, this is like the anatomy of a white class of classical style protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1157000
+			},
+			"text": " There's a very, very simple voting path, the normal path, as I explained, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1161000
+			},
+			"text": " All these protocols have a similar voting path."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1166000
+			},
+			"text": " But when the leaders corrupt, they go to this very complicated recovery path."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:33,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1173000
+			},
+			"text": " And that's where things kind of get extremely complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,000",
+				"to": "00:19:38,000"
+			},
+			"offsets": {
+				"from": 1173000,
+				"to": 1178000
+			},
+			"text": " So here's an interesting anecdote, right? So chain.com is a San Francisco based startup company."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1178000,
+				"to": 1181000
+			},
+			"text": " They signed a high profile contract with Visa."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1188000
+			},
+			"text": " And the way they deal with this problem is that they only implemented the normal path."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1192000
+			},
+			"text": " And they basically just ditched all of this complicated recovery path."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:59,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1199000
+			},
+			"text": " And what's going to happen is, you know, if things, the protocol is under attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1199000,
+				"to": 1205000
+			},
+			"text": " if things go around, the leader is corrupt, then you have to kind of do this manually."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1209000
+			},
+			"text": " And it's not going to be fun if you have like 100 banks running the consensus protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1212000
+			},
+			"text": " because you have to go to all of them and say, okay, now, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1217000
+			},
+			"text": " things can log to this state and then maybe reboot."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:24,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1224000
+			},
+			"text": " Okay. So essentially, I mean, we are kind of stuck at this point."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1224000,
+				"to": 1229000
+			},
+			"text": " And like I promised earlier, when we get stuck, we are going to try to combine the best of both worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1236000
+			},
+			"text": " All right. Any questions at this point? Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:40,000"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1240000
+			},
+			"text": " So here's our idea. We still have this very simple voting path,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,000",
+				"to": "00:20:45,000"
+			},
+			"offsets": {
+				"from": 1240000,
+				"to": 1245000
+			},
+			"text": " but we remove the complicated stuff and replace it with the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1245000,
+				"to": 1250000
+			},
+			"text": " And that's the idea behind Cinderella. Okay. So it's very easy, easily set."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:20:57,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1257000
+			},
+			"text": " And there are a couple tricks to doing this correctly, which I'm going to explain."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1257000,
+				"to": 1264000
+			},
+			"text": " And before I explain the protocol, here's the kind of guarantees we can achieve with Cinderella, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:11,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1271000
+			},
+			"text": " So number one, we are a blockchain-based protocol fundamentally."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,000",
+				"to": "00:21:15,000"
+			},
+			"offsets": {
+				"from": 1271000,
+				"to": 1275000
+			},
+			"text": " And that's why we are just like almost as simple as the blockchain itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,000",
+				"to": "00:21:18,000"
+			},
+			"offsets": {
+				"from": 1275000,
+				"to": 1278000
+			},
+			"text": " and we are just as robust as the blockchain too."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,000",
+				"to": "00:21:24,000"
+			},
+			"offsets": {
+				"from": 1278000,
+				"to": 1284000
+			},
+			"text": " 95% of the time in practice, you are going to live in the fast path,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,000",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1284000,
+				"to": 1286000
+			},
+			"text": " or we also call it the optimistic path."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:31,000"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1291000
+			},
+			"text": " And in the fast path, you are going to confirm transactions with a single round of voting, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,000",
+				"to": "00:21:37,000"
+			},
+			"offsets": {
+				"from": 1291000,
+				"to": 1297000
+			},
+			"text": " So not even a block interval. So two to three actual narrow grounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,000",
+				"to": "00:21:40,000"
+			},
+			"offsets": {
+				"from": 1297000,
+				"to": 1300000
+			},
+			"text": " And when you're under attack, it's not the end of the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,000",
+				"to": "00:21:45,000"
+			},
+			"offsets": {
+				"from": 1300000,
+				"to": 1305000
+			},
+			"text": " because you fall back to the blockchain's performance and guarantees as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1305000,
+				"to": 1311000
+			},
+			"text": " Okay. So Cinderella can be instantiated for both permission-than-permission-less settings."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:57,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1317000
+			},
+			"text": " And for concreteness, when I talk about the scheme, I'm going to assume the permission-less setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,000",
+				"to": "00:22:03,000"
+			},
+			"offsets": {
+				"from": 1317000,
+				"to": 1323000
+			},
+			"text": " And more concretely, let's imagine Ethereum, what Ethereum wants to do, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,000",
+				"to": "00:22:09,000"
+			},
+			"offsets": {
+				"from": 1323000,
+				"to": 1329000
+			},
+			"text": " So Ethereum has like a previous speaker talked about."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,000",
+				"to": "00:22:13,000"
+			},
+			"offsets": {
+				"from": 1329000,
+				"to": 1333000
+			},
+			"text": " Ethereum wants to move towards proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1333000,
+				"to": 1338000
+			},
+			"text": " But as a first step, the goal is to have the stakeholders form a committee"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1342000
+			},
+			"text": " and vote on top of a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:29,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1349000
+			},
+			"text": " So currently, this is a proof of work blockchain, but in the future, they want to replace it with proof of stake blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,000",
+				"to": "00:22:33,000"
+			},
+			"offsets": {
+				"from": 1349000,
+				"to": 1353000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,000",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1353000,
+				"to": 1357000
+			},
+			"text": " So I'm not going to mention how to elect the committee and elect the leader."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1363000
+			},
+			"text": " As I said up front, this is like outside the scope of this talk, but I want you to take a leap of faith"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:47,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1367000
+			},
+			"text": " and imagine that there exists mechanisms to elect the committee"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1367000,
+				"to": 1373000
+			},
+			"text": " and elect the leader from the set of the miners and the stakeholders."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:23:01,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1381000
+			},
+			"text": " Okay. So we are going to make a couple assumptions in order to achieve our worst case guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,000",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1381000,
+				"to": 1384000
+			},
+			"text": " So we are going to assume that the majority of the miners are honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1390000
+			},
+			"text": " And if this is a proof of work blockchain, we are assuming the majority of the computation power is honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:14,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1394000
+			},
+			"text": " And for the committee, we are also going to assume that the majority of them are honest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,000",
+				"to": "00:23:16,000"
+			},
+			"offsets": {
+				"from": 1394000,
+				"to": 1396000
+			},
+			"text": " but they don't have to be online, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,000",
+				"to": "00:23:23,000"
+			},
+			"offsets": {
+				"from": 1396000,
+				"to": 1403000
+			},
+			"text": " So if the entire committee is offline, it's not the end of the world because you can always fall back to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1403000,
+				"to": 1407000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1416000
+			},
+			"text": " So I'm going to take a slight detour to talk about a scheme that others have considered."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:41,000"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1421000
+			},
+			"text": " I like this example because it kind of helps to illustrate what approaches work and what approaches don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,000",
+				"to": "00:23:49,000"
+			},
+			"offsets": {
+				"from": 1421000,
+				"to": 1429000
+			},
+			"text": " So here's a very simple idea. I'm going to run the blockchain and I'm going to have the committee vote on the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1429000,
+				"to": 1440000
+			},
+			"text": " If I see enough people vote on the same block, I'm going to confirm the block immediately without waiting for more blocks to grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:12,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1452000
+			},
+			"text": " Okay. So what do you think about this very simple idea where people vote on blocks and you want to confirm as soon as you hear enough votes on the same block?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,000",
+				"to": "00:24:19,000"
+			},
+			"offsets": {
+				"from": 1452000,
+				"to": 1459000
+			},
+			"text": " Okay. So it turns out that the scheme actually doesn't give you consistency. And here's why, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,000",
+				"to": "00:24:23,000"
+			},
+			"offsets": {
+				"from": 1459000,
+				"to": 1463000
+			},
+			"text": " Let me explain a very simple reason why this protocol doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,000",
+				"to": "00:24:31,000"
+			},
+			"offsets": {
+				"from": 1463000,
+				"to": 1471000
+			},
+			"text": " At some point of time, maybe people see the fork A and they all voted for this fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,000",
+				"to": "00:24:38,000"
+			},
+			"offsets": {
+				"from": 1471000,
+				"to": 1478000
+			},
+			"text": " So this fork collected enough votes and people would have confirmed this fork very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,000",
+				"to": "00:24:46,000"
+			},
+			"offsets": {
+				"from": 1478000,
+				"to": 1486000
+			},
+			"text": " But because the narrow cast delay, right? So even if there is no attack, just because the narrow cast delay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,000",
+				"to": "00:24:50,000"
+			},
+			"offsets": {
+				"from": 1486000,
+				"to": 1490000
+			},
+			"text": " the blockchain can have forks like in an organic fashion."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,000",
+				"to": "00:24:55,000"
+			},
+			"offsets": {
+				"from": 1490000,
+				"to": 1495000
+			},
+			"text": " So it could be possible that at the end of time, the fork A didn't survive."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,000",
+				"to": "00:24:58,000"
+			},
+			"offsets": {
+				"from": 1495000,
+				"to": 1498000
+			},
+			"text": " It is fork B that survived to the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,000",
+				"to": "00:25:06,000"
+			},
+			"offsets": {
+				"from": 1498000,
+				"to": 1506000
+			},
+			"text": " So this would be problematic because earlier if you had confirmed the fork A,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,000",
+				"to": "00:25:14,000"
+			},
+			"offsets": {
+				"from": 1506000,
+				"to": 1514000
+			},
+			"text": " then you would have risked inconsistency with everyone else at the end of the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,000",
+				"to": "00:25:19,000"
+			},
+			"offsets": {
+				"from": 1514000,
+				"to": 1519000
+			},
+			"text": " Okay. Is this clear?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,000",
+				"to": "00:25:24,000"
+			},
+			"offsets": {
+				"from": 1519000,
+				"to": 1524000
+			},
+			"text": " Okay. So, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,000",
+				"to": "00:25:31,000"
+			},
+			"offsets": {
+				"from": 1524000,
+				"to": 1531000
+			},
+			"text": " So if we are going to assume honest majority for the committee, you have to wait for three quarters of the people to vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,000",
+				"to": "00:25:42,000"
+			},
+			"offsets": {
+				"from": 1531000,
+				"to": 1542000
+			},
+			"text": " So Ethereum has a way of -- this is like something that I said is outside the scope."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,000",
+				"to": "00:25:50,000"
+			},
+			"offsets": {
+				"from": 1542000,
+				"to": 1550000
+			},
+			"text": " For instance, Ethereum has a mechanism to elect a committee maybe consisting of 2,000 voters or validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,000",
+				"to": "00:26:00,000"
+			},
+			"offsets": {
+				"from": 1550000,
+				"to": 1560000
+			},
+			"text": " maybe 1,000 to 2,000 validators. So you know exactly who the committee are."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:00,000",
+				"to": "00:26:08,000"
+			},
+			"offsets": {
+				"from": 1560000,
+				"to": 1568000
+			},
+			"text": " Blockchain protocols cannot petition tolerant. So this is the point I will mention at the end of the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,000",
+				"to": "00:26:15,000"
+			},
+			"offsets": {
+				"from": 1568000,
+				"to": 1575000
+			},
+			"text": " Okay. All right. So the point is that even if we can fix the consistency problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,000",
+				"to": "00:26:20,000"
+			},
+			"offsets": {
+				"from": 1575000,
+				"to": 1580000
+			},
+			"text": " this is not the kind of protocol that we want because you don't really want to be voting on the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,000",
+				"to": "00:26:27,000"
+			},
+			"offsets": {
+				"from": 1580000,
+				"to": 1587000
+			},
+			"text": " If you are voting on the blocks, you are slow to start with because you are subject to this one block interval, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,000",
+				"to": "00:26:33,000"
+			},
+			"offsets": {
+				"from": 1587000,
+				"to": 1593000
+			},
+			"text": " Like I said, we want to confirm in 2, 2, 3 actual round trips."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,000",
+				"to": "00:26:40,000"
+			},
+			"offsets": {
+				"from": 1593000,
+				"to": 1600000
+			},
+			"text": " We don't even want to wait for a single block interval. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,000",
+				"to": "00:26:47,000"
+			},
+			"offsets": {
+				"from": 1600000,
+				"to": 1607000
+			},
+			"text": " So that's our goal. And actually in our paper, we call this technically we refer to this property as responsiveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,000",
+				"to": "00:26:52,000"
+			},
+			"offsets": {
+				"from": 1607000,
+				"to": 1612000
+			},
+			"text": " You don't want to wait for any a priori set synchronization delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,000",
+				"to": "00:26:58,000"
+			},
+			"offsets": {
+				"from": 1612000,
+				"to": 1618000
+			},
+			"text": " Okay. So now let's get back on the right track."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,000",
+				"to": "00:27:03,000"
+			},
+			"offsets": {
+				"from": 1618000,
+				"to": 1623000
+			},
+			"text": " Okay. So this was like the kind of scheme I talked about earlier, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,000",
+				"to": "00:27:11,000"
+			},
+			"offsets": {
+				"from": 1623000,
+				"to": 1631000
+			},
+			"text": " So I'm going to quickly recap the scheme. But now I'm going to keep in mind that there are many instances of this little voting protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,000",
+				"to": "00:27:18,000"
+			},
+			"offsets": {
+				"from": 1631000,
+				"to": 1638000
+			},
+			"text": " So Vitalik makes the proposal everyone votes. And we are going to wait to hear three quarters of the committee to vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,000",
+				"to": "00:27:24,000"
+			},
+			"offsets": {
+				"from": 1638000,
+				"to": 1644000
+			},
+			"text": " That's because we are assuming honest majority of the committee. Earlier we used slightly different parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:24,000",
+				"to": "00:27:31,000"
+			},
+			"offsets": {
+				"from": 1644000,
+				"to": 1651000
+			},
+			"text": " Okay. So here, every batch of transactions that has a sequence number."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,000",
+				"to": "00:27:35,000"
+			},
+			"offsets": {
+				"from": 1651000,
+				"to": 1655000
+			},
+			"text": " So this means that this transaction has collected enough votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,000",
+				"to": "00:27:39,000"
+			},
+			"offsets": {
+				"from": 1655000,
+				"to": 1659000
+			},
+			"text": " And I'm going to call this as, call this notarized."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,000",
+				"to": "00:27:44,000"
+			},
+			"offsets": {
+				"from": 1659000,
+				"to": 1664000
+			},
+			"text": " So here, 1, 2, 3, 5, 6 are notarized, but 4 is missing."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,000",
+				"to": "00:27:51,000"
+			},
+			"offsets": {
+				"from": 1664000,
+				"to": 1671000
+			},
+			"text": " And because we have to process these transactions in a linear fashion, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,000",
+				"to": "00:27:56,000"
+			},
+			"offsets": {
+				"from": 1671000,
+				"to": 1676000
+			},
+			"text": " In this case, I can only process the first three transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,000",
+				"to": "00:28:02,000"
+			},
+			"offsets": {
+				"from": 1676000,
+				"to": 1682000
+			},
+			"text": " And for the lack of a better term, I'm going to call this the maximal lucky sequence."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,000",
+				"to": "00:28:12,000"
+			},
+			"offsets": {
+				"from": 1682000,
+				"to": 1692000
+			},
+			"text": " Okay. So I'm always going to confirm the maximal lucky sequence."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,000",
+				"to": "00:28:17,000"
+			},
+			"offsets": {
+				"from": 1692000,
+				"to": 1697000
+			},
+			"text": " Okay. So again, the problem I'm trying to solve here is how do we get liveness when the leader is corrupt?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,000",
+				"to": "00:28:21,000"
+			},
+			"offsets": {
+				"from": 1697000,
+				"to": 1701000
+			},
+			"text": " Or let's say when the committee is not online."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,000",
+				"to": "00:28:27,000"
+			},
+			"offsets": {
+				"from": 1701000,
+				"to": 1707000
+			},
+			"text": " Okay. And that's where we want to make use of the blockchain, right? So we haven't used the blockchain yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,000",
+				"to": "00:28:30,000"
+			},
+			"offsets": {
+				"from": 1707000,
+				"to": 1710000
+			},
+			"text": " And we are going to use the blockchain for two purposes."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,000",
+				"to": "00:28:34,000"
+			},
+			"offsets": {
+				"from": 1710000,
+				"to": 1714000
+			},
+			"text": " First, to collect evidence to detect when something is going around."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,000",
+				"to": "00:28:40,000"
+			},
+			"offsets": {
+				"from": 1714000,
+				"to": 1720000
+			},
+			"text": " So the blockchain can tell us, okay, now the fast path has failed and you should fall back to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,000",
+				"to": "00:28:45,000"
+			},
+			"offsets": {
+				"from": 1720000,
+				"to": 1725000
+			},
+			"text": " And once we detect, we make such a detection."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,000",
+				"to": "00:28:49,000"
+			},
+			"offsets": {
+				"from": 1725000,
+				"to": 1729000
+			},
+			"text": " We'll make use of the blockchain to enter the slow mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:49,000",
+				"to": "00:28:52,000"
+			},
+			"offsets": {
+				"from": 1729000,
+				"to": 1732000
+			},
+			"text": " And of course, you don't want to be stuck in the slow mode forever, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,000",
+				"to": "00:28:57,000"
+			},
+			"offsets": {
+				"from": 1732000,
+				"to": 1737000
+			},
+			"text": " Once you are back in the blockchain mode, you can always use the smart contract to reelect a new leader"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:57,000",
+				"to": "00:29:02,000"
+			},
+			"offsets": {
+				"from": 1737000,
+				"to": 1742000
+			},
+			"text": " and new committee, and then you can try to rebootstrap a fast path."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,000",
+				"to": "00:29:09,000"
+			},
+			"offsets": {
+				"from": 1742000,
+				"to": 1749000
+			},
+			"text": " Okay. So number 1 and 2, and I'm going to talk about how to achieve 1 and 2 respectively."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:09,000",
+				"to": "00:29:13,000"
+			},
+			"offsets": {
+				"from": 1749000,
+				"to": 1753000
+			},
+			"text": " First, how can we collect evidence?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:13,000",
+				"to": "00:29:17,000"
+			},
+			"offsets": {
+				"from": 1753000,
+				"to": 1757000
+			},
+			"text": " So this detection mechanism needs to be robust."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:17,000",
+				"to": "00:29:23,000"
+			},
+			"offsets": {
+				"from": 1757000,
+				"to": 1763000
+			},
+			"text": " In particular, we want that the faulty nodes cannot falsely accuse Vitalik, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,000",
+				"to": "00:29:30,000"
+			},
+			"offsets": {
+				"from": 1763000,
+				"to": 1770000
+			},
+			"text": " If Vitalik is honest, we don't want him to be falsely accused, as well as the current committee."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:30,000",
+				"to": "00:29:33,000"
+			},
+			"offsets": {
+				"from": 1770000,
+				"to": 1773000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:33,000",
+				"to": "00:29:36,000"
+			},
+			"offsets": {
+				"from": 1773000,
+				"to": 1776000
+			},
+			"text": " So I know today, you know, when we think about the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,000",
+				"to": "00:29:40,000"
+			},
+			"offsets": {
+				"from": 1776000,
+				"to": 1780000
+			},
+			"text": " we tend to think that the blockchain collects transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,000",
+				"to": "00:29:45,000"
+			},
+			"offsets": {
+				"from": 1780000,
+				"to": 1785000
+			},
+			"text": " For the purpose of this talk, I'm going to ask you to think of the blockchain slightly differently, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,000",
+				"to": "00:29:55,000"
+			},
+			"offsets": {
+				"from": 1785000,
+				"to": 1795000
+			},
+			"text": " So when miners mine a block, when I mine a block, I'm going to put in the block everything I've observed in the protocol so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,000",
+				"to": "00:29:58,000"
+			},
+			"offsets": {
+				"from": 1795000,
+				"to": 1798000
+			},
+			"text": " So this is a conceptual way to think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:58,000",
+				"to": "00:30:04,000"
+			},
+			"offsets": {
+				"from": 1798000,
+				"to": 1804000
+			},
+			"text": " When you actually implement the protocol, there's a way to implement it such that you don't have to put so much information in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:04,000",
+				"to": "00:30:06,000"
+			},
+			"offsets": {
+				"from": 1804000,
+				"to": 1806000
+			},
+			"text": " And that's going to be more scalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,000",
+				"to": "00:30:15,000"
+			},
+			"offsets": {
+				"from": 1806000,
+				"to": 1815000
+			},
+			"text": " So for simplicity, for this talk, I'm going to ask you to imagine when miners mine a block, they tell the blockchain whatever they know."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,000",
+				"to": "00:30:18,000"
+			},
+			"offsets": {
+				"from": 1815000,
+				"to": 1818000
+			},
+			"text": " Everything they have observed so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,000",
+				"to": "00:30:25,000"
+			},
+			"offsets": {
+				"from": 1818000,
+				"to": 1825000
+			},
+			"text": " Okay, so here, the transactions, packed with the sequence number, are notarized, and otherwise they are unnodarized."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:25,000",
+				"to": "00:30:28,000"
+			},
+			"offsets": {
+				"from": 1825000,
+				"to": 1828000
+			},
+			"text": " Okay, imagine the following is happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:28,000",
+				"to": "00:30:33,000"
+			},
+			"offsets": {
+				"from": 1828000,
+				"to": 1833000
+			},
+			"text": " In some block, there is a red unnodarized transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:33,000",
+				"to": "00:30:44,000"
+			},
+			"offsets": {
+				"from": 1833000,
+				"to": 1844000
+			},
+			"text": " Okay, so normally what's going to happen is that if the leader's honest and he observes this, he will propose it very quickly to the committee members."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:44,000",
+				"to": "00:30:51,000"
+			},
+			"offsets": {
+				"from": 1844000,
+				"to": 1851000
+			},
+			"text": " And soon enough, this red guy is going to become part of a lucky sequence, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:51,000",
+				"to": "00:30:59,000"
+			},
+			"offsets": {
+				"from": 1851000,
+				"to": 1859000
+			},
+			"text": " So suppose this has not happened even after a couple blocks where a couple is a security parameter, then something has to be wrong, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:59,000",
+				"to": "00:31:09,000"
+			},
+			"offsets": {
+				"from": 1859000,
+				"to": 1869000
+			},
+			"text": " If red has not become part of a lucky sequence, it's either the leader's corrupt and trying to censor this red transaction, or maybe the committee is just not online."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:09,000",
+				"to": "00:31:13,000"
+			},
+			"offsets": {
+				"from": 1869000,
+				"to": 1873000
+			},
+			"text": " In either case, we want to fall back to the slow mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,000",
+				"to": "00:31:16,000"
+			},
+			"offsets": {
+				"from": 1873000,
+				"to": 1876000
+			},
+			"text": " Okay, any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:16,000",
+				"to": "00:31:17,000"
+			},
+			"offsets": {
+				"from": 1876000,
+				"to": 1877000
+			},
+			"text": " Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:17,000",
+				"to": "00:31:21,000"
+			},
+			"offsets": {
+				"from": 1877000,
+				"to": 1881000
+			},
+			"text": " Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:21,000",
+				"to": "00:31:23,000"
+			},
+			"offsets": {
+				"from": 1881000,
+				"to": 1883000
+			},
+			"text": " So that's what I'm going to explain how to go to the slow mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:23,000",
+				"to": "00:31:26,000"
+			},
+			"offsets": {
+				"from": 1883000,
+				"to": 1886000
+			},
+			"text": " It's actually slightly tricky to do it correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:26,000",
+				"to": "00:31:28,000"
+			},
+			"offsets": {
+				"from": 1886000,
+				"to": 1888000
+			},
+			"text": " So how do we fall back to the slow mode?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:28,000",
+				"to": "00:31:33,000"
+			},
+			"offsets": {
+				"from": 1888000,
+				"to": 1893000
+			},
+			"text": " So now we have all observed this, and we all want to fall back."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:33,000",
+				"to": "00:31:35,000"
+			},
+			"offsets": {
+				"from": 1893000,
+				"to": 1895000
+			},
+			"text": " How do we do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,000",
+				"to": "00:31:43,000"
+			},
+			"offsets": {
+				"from": 1895000,
+				"to": 1903000
+			},
+			"text": " The tricky part here is that when we all want to fall back, our fast path lock may have different lengths, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:43,000",
+				"to": "00:31:48,000"
+			},
+			"offsets": {
+				"from": 1903000,
+				"to": 1908000
+			},
+			"text": " But it's not a narrow cast delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:48,000",
+				"to": "00:31:51,000"
+			},
+			"offsets": {
+				"from": 1908000,
+				"to": 1911000
+			},
+			"text": " Like your lock can be a little longer than mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:51,000",
+				"to": "00:31:55,000"
+			},
+			"offsets": {
+				"from": 1911000,
+				"to": 1915000
+			},
+			"text": " So essentially, at this moment, we have to decide on the cutoff."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:55,000",
+				"to": "00:32:02,000"
+			},
+			"offsets": {
+				"from": 1915000,
+				"to": 1922000
+			},
+			"text": " And this will be the cutoff of the fast path lock before switching to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:02,000",
+				"to": "00:32:05,000"
+			},
+			"offsets": {
+				"from": 1922000,
+				"to": 1925000
+			},
+			"text": " Okay, yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:05,000",
+				"to": "00:32:17,000"
+			},
+			"offsets": {
+				"from": 1925000,
+				"to": 1937000
+			},
+			"text": " So that transaction is like one of the transactions that appears to use one of the miners that were able to kind of like penalize the block, or where, like, do we get it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:17,000",
+				"to": "00:32:20,000"
+			},
+			"offsets": {
+				"from": 1937000,
+				"to": 1940000
+			},
+			"text": " The red transaction, like, so..."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:20,000",
+				"to": "00:32:24,000"
+			},
+			"offsets": {
+				"from": 1940000,
+				"to": 1944000
+			},
+			"text": " So I'm not sure that I understand the question, but I'll be happy to discuss it."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:24,000",
+				"to": "00:32:29,000"
+			},
+			"offsets": {
+				"from": 1944000,
+				"to": 1949000
+			},
+			"text": " Who picks the transaction that gets checked against this security sequence?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:29,000",
+				"to": "00:32:31,000"
+			},
+			"offsets": {
+				"from": 1949000,
+				"to": 1951000
+			},
+			"text": " Where do you get it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:31,000",
+				"to": "00:32:35,000"
+			},
+			"offsets": {
+				"from": 1951000,
+				"to": 1955000
+			},
+			"text": " So, if you take transaction fee, you can put transactions on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:35,000",
+				"to": "00:32:40,000"
+			},
+			"offsets": {
+				"from": 1955000,
+				"to": 1960000
+			},
+			"text": " And normally, you know, this transaction should become part of a lucky sequence, or everyone should notarize it if the leader should propose it."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:40,000",
+				"to": "00:32:43,000"
+			},
+			"offsets": {
+				"from": 1960000,
+				"to": 1963000
+			},
+			"text": " And if it has not happened, then the fast path has failed."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:43,000",
+				"to": "00:32:58,000"
+			},
+			"offsets": {
+				"from": 1963000,
+				"to": 1978000
+			},
+			"text": " So, but like you, as the initiating party, it has to go like, and go, yeah, my transactions got not sequenced, and the lucky sequence, so now I'm calling off the security."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:58,000",
+				"to": "00:33:01,000"
+			},
+			"offsets": {
+				"from": 1978000,
+				"to": 1981000
+			},
+			"text": " Right, so everyone's making this check."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:01,000",
+				"to": "00:33:06,000"
+			},
+			"offsets": {
+				"from": 1981000,
+				"to": 1986000
+			},
+			"text": " So everyone can see the blockchain, and everyone is going to make this check to see if the blockchain has..."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:06,000",
+				"to": "00:33:22,000"
+			},
+			"offsets": {
+				"from": 1986000,
+				"to": 2002000
+			},
+			"text": " Yeah, so it's assuming that's like more miners that were able to like, finalize the block, because it still works in a sense that like individual miner finalizes the block, or like all of the miners kind of participate in the block creation."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:22,000",
+				"to": "00:33:30,000"
+			},
+			"offsets": {
+				"from": 2002000,
+				"to": 2010000
+			},
+			"text": " This sounds like a very interesting question, I think maybe we should take it offline, because I would like to understand your question a little better before I can answer it."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:30,000",
+				"to": "00:33:32,000"
+			},
+			"offsets": {
+				"from": 2010000,
+				"to": 2012000
+			},
+			"text": " Okay, all right."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:32,000",
+				"to": "00:33:38,000"
+			},
+			"offsets": {
+				"from": 2012000,
+				"to": 2018000
+			},
+			"text": " Okay, so the problem we want to solve is how do people agree on a cutoff?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:38,000",
+				"to": "00:33:41,000"
+			},
+			"offsets": {
+				"from": 2018000,
+				"to": 2021000
+			},
+			"text": " Right, so this seems like a very simple problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:41,000",
+				"to": "00:33:46,000"
+			},
+			"offsets": {
+				"from": 2021000,
+				"to": 2026000
+			},
+			"text": " You may have some kind of ideas on your mind, how to resolve this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:46,000",
+				"to": "00:33:54,000"
+			},
+			"offsets": {
+				"from": 2026000,
+				"to": 2034000
+			},
+			"text": " But the first thing to notice is that this is an agreement problem in itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:54,000",
+				"to": "00:33:58,000"
+			},
+			"offsets": {
+				"from": 2034000,
+				"to": 2038000
+			},
+			"text": " And here we need both consistency and liveness, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:58,000",
+				"to": "00:34:03,000"
+			},
+			"offsets": {
+				"from": 2038000,
+				"to": 2043000
+			},
+			"text": " Unlike earlier, when we were talking about the fast path, we planted on liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:03,000",
+				"to": "00:34:09,000"
+			},
+			"offsets": {
+				"from": 2043000,
+				"to": 2049000
+			},
+			"text": " Here we cannot plant on liveness anymore, we have to solve the agreement problem in full."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:09,000",
+				"to": "00:34:11,000"
+			},
+			"offsets": {
+				"from": 2049000,
+				"to": 2051000
+			},
+			"text": " So again, how do we do it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:11,000",
+				"to": "00:34:21,000"
+			},
+			"offsets": {
+				"from": 2051000,
+				"to": 2061000
+			},
+			"text": " The blockchain is your friend, and the key is that you don't just immediately enter the slow mode, you introduce a grace period."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:21,000",
+				"to": "00:34:23,000"
+			},
+			"offsets": {
+				"from": 2061000,
+				"to": 2063000
+			},
+			"text": " The grace period is for people to cool down."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:23,000",
+				"to": "00:34:26,000"
+			},
+			"offsets": {
+				"from": 2063000,
+				"to": 2066000
+			},
+			"text": " And once you pass the grace period, you enter the slow mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:26,000",
+				"to": "00:34:28,000"
+			},
+			"offsets": {
+				"from": 2066000,
+				"to": 2068000
+			},
+			"text": " And how does the grace period work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:28,000",
+				"to": "00:34:39,000"
+			},
+			"offsets": {
+				"from": 2068000,
+				"to": 2079000
+			},
+			"text": " Okay, so imagine, roughly speaking, at this block, we start to detect that something has gone bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:39,000",
+				"to": "00:34:43,000"
+			},
+			"offsets": {
+				"from": 2079000,
+				"to": 2083000
+			},
+			"text": " So now everyone stops participating in the fast path."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:43,000",
+				"to": "00:34:47,000"
+			},
+			"offsets": {
+				"from": 2083000,
+				"to": 2087000
+			},
+			"text": " And we're just going to tell each other what we know, and we tell the blockchain what we know."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:47,000",
+				"to": "00:34:48,000"
+			},
+			"offsets": {
+				"from": 2087000,
+				"to": 2088000
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:48,000",
+				"to": "00:34:51,000"
+			},
+			"offsets": {
+				"from": 2088000,
+				"to": 2091000
+			},
+			"text": " So the fast path stops at this point."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:51,000",
+				"to": "00:35:05,000"
+			},
+			"offsets": {
+				"from": 2091000,
+				"to": 2105000
+			},
+			"text": " So soon enough, after Kappa blocks, where Kappa is the security parameter, I claim that let's look at the prefix of the blockchain from the very beginning up till here."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:05,000",
+				"to": "00:35:16,000"
+			},
+			"offsets": {
+				"from": 2105000,
+				"to": 2116000
+			},
+			"text": " So what's going to happen is that the maximal lucky sequence contained up till here is going to be at least as long as everyone's off-chain log."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:16,000",
+				"to": "00:35:20,000"
+			},
+			"offsets": {
+				"from": 2116000,
+				"to": 2120000
+			},
+			"text": " And this is the cutoff we are going to decide on."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:20,000",
+				"to": "00:35:27,000"
+			},
+			"offsets": {
+				"from": 2120000,
+				"to": 2127000
+			},
+			"text": " Okay, so once we decide on this cutoff, we can proceed and move to the slow mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:27,000",
+				"to": "00:35:36,000"
+			},
+			"offsets": {
+				"from": 2127000,
+				"to": 2136000
+			},
+			"text": " And to quickly recap, this is the protocol you use the blockchain to detect that the fast path has failed."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:36,000",
+				"to": "00:35:41,000"
+			},
+			"offsets": {
+				"from": 2136000,
+				"to": 2141000
+			},
+			"text": " And then you leverage a grace period to enter the slow mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:41,000",
+				"to": "00:35:46,000"
+			},
+			"offsets": {
+				"from": 2141000,
+				"to": 2146000
+			},
+			"text": " And when you are in the slow mode, you can always try to re-elect leader and bootstrap another fast path."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:46,000",
+				"to": "00:35:52,000"
+			},
+			"offsets": {
+				"from": 2146000,
+				"to": 2152000
+			},
+			"text": " Okay, so to quickly recap the security guarantees, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:52,000",
+				"to": "00:36:01,000"
+			},
+			"offsets": {
+				"from": 2152000,
+				"to": 2161000
+			},
+			"text": " So when the minors and majority honest and the committee is also majority honest, we can have our worst case guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:01,000",
+				"to": "00:36:11,000"
+			},
+			"offsets": {
+				"from": 2161000,
+				"to": 2171000
+			},
+			"text": " However, when things are good, let's say the leader is honest and online, and imagine three-quarters of the committee are also honest and online."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:11,000",
+				"to": "00:36:17,000"
+			},
+			"offsets": {
+				"from": 2171000,
+				"to": 2177000
+			},
+			"text": " And in this case, things are all good, and we confirm transactions in two narrow crown trips."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:17,000",
+				"to": "00:36:21,000"
+			},
+			"offsets": {
+				"from": 2177000,
+				"to": 2181000
+			},
+			"text": " Not even waiting for a single block interval."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:21,000",
+				"to": "00:36:28,000"
+			},
+			"offsets": {
+				"from": 2181000,
+				"to": 2188000
+			},
+			"text": " So a small side note is that this parameter is actually tunable, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:28,000",
+				"to": "00:36:35,000"
+			},
+			"offsets": {
+				"from": 2188000,
+				"to": 2195000
+			},
+			"text": " Like maybe I'm very paranoid and I don't want to trust that the majority of the committee be honest, which is fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:35,000",
+				"to": "00:36:41,000"
+			},
+			"offsets": {
+				"from": 2195000,
+				"to": 2201000
+			},
+			"text": " For instance, I want to say I want security as long as a single member of the committee is honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:41,000",
+				"to": "00:36:44,000"
+			},
+			"offsets": {
+				"from": 2201000,
+				"to": 2204000
+			},
+			"text": " And the single honest member doesn't even have to be online."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:44,000",
+				"to": "00:36:50,000"
+			},
+			"offsets": {
+				"from": 2204000,
+				"to": 2210000
+			},
+			"text": " And that's okay too, but you pay a little bit in terms of the condition that's necessary for the fast path."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:50,000",
+				"to": "00:36:58,000"
+			},
+			"offsets": {
+				"from": 2210000,
+				"to": 2218000
+			},
+			"text": " In other words, you would have to require that all the committee members are online and honest in order to be fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:58,000",
+				"to": "00:37:00,000"
+			},
+			"offsets": {
+				"from": 2218000,
+				"to": 2220000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:00,000",
+				"to": "00:37:03,000"
+			},
+			"offsets": {
+				"from": 2220000,
+				"to": 2223000
+			},
+			"text": " Okay, so here are the two sentences."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:03,000",
+				"to": "00:37:08,000"
+			},
+			"offsets": {
+				"from": 2223000,
+				"to": 2228000
+			},
+			"text": " And to remember about underella, here's how underella works."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:08,000",
+				"to": "00:37:15,000"
+			},
+			"offsets": {
+				"from": 2228000,
+				"to": 2235000
+			},
+			"text": " When things are good, we conduct a single round of voting, and when things go bad, we use the blockchain to do a view change."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:15,000",
+				"to": "00:37:17,000"
+			},
+			"offsets": {
+				"from": 2235000,
+				"to": 2237000
+			},
+			"text": " So it's as simple as this."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:17,000",
+				"to": "00:37:28,000"
+			},
+			"offsets": {
+				"from": 2237000,
+				"to": 2248000
+			},
+			"text": " In our paper, we have a lot of other discussions on how to elect the leader and the committee, how to have practical optimizations that make the protocol even faster and more scalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:28,000",
+				"to": "00:37:30,000"
+			},
+			"offsets": {
+				"from": 2248000,
+				"to": 2250000
+			},
+			"text": " We have formal proof self-security."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:30,000",
+				"to": "00:37:31,000"
+			},
+			"offsets": {
+				"from": 2250000,
+				"to": 2251000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:31,000",
+				"to": "00:37:38,000"
+			},
+			"offsets": {
+				"from": 2251000,
+				"to": 2258000
+			},
+			"text": " I've mostly focused on the permission list setting, but actually, some de-rella can also be instantiated for permission, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:38,000",
+				"to": "00:37:46,000"
+			},
+			"offsets": {
+				"from": 2258000,
+				"to": 2266000
+			},
+			"text": " So if you have a company that's commercializing consortium blockchain, you can, if you are customer one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:46,000",
+				"to": "00:37:52,000"
+			},
+			"offsets": {
+				"from": 2266000,
+				"to": 2272000
+			},
+			"text": " high volume, and fast confirmation, underella can also be a good choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:52,000",
+				"to": "00:38:03,000"
+			},
+			"offsets": {
+				"from": 2272000,
+				"to": 2283000
+			},
+			"text": " So I'm actually talking to a couple companies, including Hasera and Crypt tape, to see if they're, to understand if their customers would like something like underella."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:03,000",
+				"to": "00:38:04,000"
+			},
+			"offsets": {
+				"from": 2283000,
+				"to": 2284000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:04,000",
+				"to": "00:38:14,000"
+			},
+			"offsets": {
+				"from": 2284000,
+				"to": 2294000
+			},
+			"text": " So I'm going to try to conclude, and before I conclude, I want to talk about some of the deeper insights we have gained in this process, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:14,000",
+				"to": "00:38:20,000"
+			},
+			"offsets": {
+				"from": 2294000,
+				"to": 2300000
+			},
+			"text": " So why, after 30 years of research, we can suddenly claim to be a lot faster and simpler than everyone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:20,000",
+				"to": "00:38:26,000"
+			},
+			"offsets": {
+				"from": 2300000,
+				"to": 2306000
+			},
+			"text": " There is actually a reason because some de-rella is in fact a new theoretical paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:26,000",
+				"to": "00:38:27,000"
+			},
+			"offsets": {
+				"from": 2306000,
+				"to": 2307000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:27,000",
+				"to": "00:38:36,000"
+			},
+			"offsets": {
+				"from": 2307000,
+				"to": 2316000
+			},
+			"text": " So classically, and these are what classical protocols are like, and the reason why they're complex is because they work with asynchronous, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:36,000",
+				"to": "00:38:46,000"
+			},
+			"offsets": {
+				"from": 2316000,
+				"to": 2326000
+			},
+			"text": " These protocols tries to reach consensus in asynchronous or partial asynchronous networks, where the protocol isn't aware of the maximum narrow delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:46,000",
+				"to": "00:38:56,000"
+			},
+			"offsets": {
+				"from": 2326000,
+				"to": 2336000
+			},
+			"text": " So this means that in the protocol, I cannot wait for five seconds to receive a message, and then if the message doesn't arrive, I can assume that it never will."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:56,000",
+				"to": "00:39:08,000"
+			},
+			"offsets": {
+				"from": 2336000,
+				"to": 2348000
+			},
+			"text": " So asynchronous makes life a lot more difficult, and in some sense we baited and switched to a synchronous protocol underneath."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:08,000",
+				"to": "00:39:13,000"
+			},
+			"offsets": {
+				"from": 2348000,
+				"to": 2353000
+			},
+			"text": " So this is also saying that blockchains are by nature synchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:13,000",
+				"to": "00:39:15,000"
+			},
+			"offsets": {
+				"from": 2353000,
+				"to": 2355000
+			},
+			"text": " And there are a couple ways to understand this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:15,000",
+				"to": "00:39:22,000"
+			},
+			"offsets": {
+				"from": 2355000,
+				"to": 2362000
+			},
+			"text": " So in blockchain, as we know, we have to set the block interval, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:22,000",
+				"to": "00:39:31,000"
+			},
+			"offsets": {
+				"from": 2362000,
+				"to": 2371000
+			},
+			"text": " And as I said, the block interval has to be reasonably large with respect to the narrow delay for the protocol to retain consistency."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:31,000",
+				"to": "00:39:37,000"
+			},
+			"offsets": {
+				"from": 2371000,
+				"to": 2377000
+			},
+			"text": " But in fact, actually interestingly, I have a position paper with Rafael in CSF."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:37,000",
+				"to": "00:39:49,000"
+			},
+			"offsets": {
+				"from": 2377000,
+				"to": 2389000
+			},
+			"text": " We actually showed that in the permission list setting, when you are not sure how many nodes are going to show up, in fact, any consensus protocol has to be synchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:49,000",
+				"to": "00:39:55,000"
+			},
+			"offsets": {
+				"from": 2389000,
+				"to": 2395000
+			},
+			"text": " Asynchronous consensus is basically not possible when you are not sure how many nodes are going to show up."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:55,000",
+				"to": "00:39:58,000"
+			},
+			"offsets": {
+				"from": 2395000,
+				"to": 2398000
+			},
+			"text": " So this actually has a very simple low-bound proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:58,000",
+				"to": "00:39:59,000"
+			},
+			"offsets": {
+				"from": 2398000,
+				"to": 2399000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:59,000",
+				"to": "00:40:04,000"
+			},
+			"offsets": {
+				"from": 2399000,
+				"to": 2404000
+			},
+			"text": " So now we can look at things from the perspective of asynchronous versus synchrony, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:04,000",
+				"to": "00:40:10,000"
+			},
+			"offsets": {
+				"from": 2404000,
+				"to": 2410000
+			},
+			"text": " So asynchronous protocols are fast because the protocol doesn't know the narrow delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:10,000",
+				"to": "00:40:16,000"
+			},
+			"offsets": {
+				"from": 2410000,
+				"to": 2416000
+			},
+			"text": " The only way to make progress is if I make actions as soon as I receive messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:16,000",
+				"to": "00:40:21,000"
+			},
+			"offsets": {
+				"from": 2416000,
+				"to": 2421000
+			},
+			"text": " So of course, the protocol is going to proceed as fast as the network makes progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:21,000",
+				"to": "00:40:22,000"
+			},
+			"offsets": {
+				"from": 2421000,
+				"to": 2422000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:22,000",
+				"to": "00:40:28,000"
+			},
+			"offsets": {
+				"from": 2422000,
+				"to": 2428000
+			},
+			"text": " So this is all very nice, but if you try to work with asynchronous directly, there are problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:28,000",
+				"to": "00:40:32,000"
+			},
+			"offsets": {
+				"from": 2428000,
+				"to": 2432000
+			},
+			"text": " Like not only are the protocol complex, there are also fundamental barriers."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:32,000",
+				"to": "00:40:40,000"
+			},
+			"offsets": {
+				"from": 2432000,
+				"to": 2440000
+			},
+			"text": " Like for instance, there is a very well-known lower bound by the work at all that any asynchronous protocol can tolerate only one-third corruption."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:40,000",
+				"to": "00:40:49,000"
+			},
+			"offsets": {
+				"from": 2440000,
+				"to": 2449000
+			},
+			"text": " And like I said, if you want permissionless, it's going to be even worse because asynchronous is not possible with permissionless."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:49,000",
+				"to": "00:40:51,000"
+			},
+			"offsets": {
+				"from": 2449000,
+				"to": 2451000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:51,000",
+				"to": "00:41:00,000"
+			},
+			"offsets": {
+				"from": 2451000,
+				"to": 2460000
+			},
+			"text": " If you look at the line of work in, let's say, S O S P, these are top systems conferences, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:00,000",
+				"to": "00:41:03,000"
+			},
+			"offsets": {
+				"from": 2460000,
+				"to": 2463000
+			},
+			"text": " And also the systems that Google and Facebook implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:03,000",
+				"to": "00:41:07,000"
+			},
+			"offsets": {
+				"from": 2463000,
+				"to": 2467000
+			},
+			"text": " None of these systems actually considered synchrony."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:07,000",
+				"to": "00:41:09,000"
+			},
+			"offsets": {
+				"from": 2467000,
+				"to": 2469000
+			},
+			"text": " And why is this the case?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:09,000",
+				"to": "00:41:13,000"
+			},
+			"offsets": {
+				"from": 2469000,
+				"to": 2473000
+			},
+			"text": " So classically, we tend to think that synchronous protocols are kind of slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:13,000",
+				"to": "00:41:20,000"
+			},
+			"offsets": {
+				"from": 2473000,
+				"to": 2480000
+			},
+			"text": " Because in a synchronous protocol, there is a very important parameter to set, which is like the synchrony delay, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:20,000",
+				"to": "00:41:27,000"
+			},
+			"offsets": {
+				"from": 2480000,
+				"to": 2487000
+			},
+			"text": " So if your average narrow delay is like one second, you might want to set the synchrony delay to be ten seconds just to be safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:27,000",
+				"to": "00:41:32,000"
+			},
+			"offsets": {
+				"from": 2487000,
+				"to": 2492000
+			},
+			"text": " Because if this assumption is violated, your protocol can lose all security guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:32,000",
+				"to": "00:41:38,000"
+			},
+			"offsets": {
+				"from": 2492000,
+				"to": 2498000
+			},
+			"text": " Okay, so the classical wisdom is that synchronous protocols are kind of slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:38,000",
+				"to": "00:41:44,000"
+			},
+			"offsets": {
+				"from": 2498000,
+				"to": 2504000
+			},
+			"text": " Like in Google scenario, they actually want microsecond latency, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:44,000",
+				"to": "00:41:51,000"
+			},
+			"offsets": {
+				"from": 2504000,
+				"to": 2511000
+			},
+			"text": " So our insight is that this classical wisdom in some sense is incorrect."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:51,000",
+				"to": "00:42:01,000"
+			},
+			"offsets": {
+				"from": 2511000,
+				"to": 2521000
+			},
+			"text": " So Tandarella is very interesting because most of the time, 95% of the time, we live in the asynchronous world."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:01,000",
+				"to": "00:42:10,000"
+			},
+			"offsets": {
+				"from": 2521000,
+				"to": 2530000
+			},
+			"text": " And when things go wrong, right, in the 1% of the time, we fall back to the synchronous mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:10,000",
+				"to": "00:42:15,000"
+			},
+			"offsets": {
+				"from": 2530000,
+				"to": 2535000
+			},
+			"text": " So that's why we can circumvent these fundamental barriers related to asynchronous, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:15,000",
+				"to": "00:42:20,000"
+			},
+			"offsets": {
+				"from": 2535000,
+				"to": 2540000
+			},
+			"text": " Like there's a one-third barrier, which we can overcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:20,000",
+				"to": "00:42:28,000"
+			},
+			"offsets": {
+				"from": 2540000,
+				"to": 2548000
+			},
+			"text": " Because we can tolerate a minority corruption in a permissionless setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:28,000",
+				"to": "00:42:33,000"
+			},
+			"offsets": {
+				"from": 2548000,
+				"to": 2553000
+			},
+			"text": " And in fact, if you're in a classical setting, we can even tolerate arbitrarily many faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:33,000",
+				"to": "00:42:38,000"
+			},
+			"offsets": {
+				"from": 2553000,
+				"to": 2558000
+			},
+			"text": " For instance, if you instantiate the underlying blockchain with a dull, left-strung-like protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:38,000",
+				"to": "00:42:45,000"
+			},
+			"offsets": {
+				"from": 2558000,
+				"to": 2565000
+			},
+			"text": " So we can theoretically circumvent these barriers related to asynchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:45,000",
+				"to": "00:42:52,000"
+			},
+			"offsets": {
+				"from": 2565000,
+				"to": 2572000
+			},
+			"text": " Okay, so to conclude, simplicity is really your good friend, especially for large-scale distributed systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:52,000",
+				"to": "00:43:05,000"
+			},
+			"offsets": {
+				"from": 2572000,
+				"to": 2585000
+			},
+			"text": " And our company is currently hiring. If you are interested, you can email these addresses if you want to be one of the key contributors of an early stage startup."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:05,000",
+				"to": "00:43:07,000"
+			},
+			"offsets": {
+				"from": 2585000,
+				"to": 2587000
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:07,000",
+				"to": "00:43:21,000"
+			},
+			"offsets": {
+				"from": 2587000,
+				"to": 2601000
+			},
+			"text": " [MUSIC]"
+		}
+	]
+}

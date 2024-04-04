@@ -1,0 +1,4740 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:24,960"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 24960
+			},
+			"text": " So the panel is about smart contract security."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,960",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 24960,
+				"to": 29000
+			},
+			"text": " And one thing that's been talked about a lot recently"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:32,360"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 32360
+			},
+			"text": " is formal verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,360",
+				"to": "00:00:35,280"
+			},
+			"offsets": {
+				"from": 32360,
+				"to": 35280
+			},
+			"text": " So if we start off with that, do you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,280",
+				"to": "00:00:37,320"
+			},
+			"offsets": {
+				"from": 35280,
+				"to": 37320
+			},
+			"text": " think that formal verification is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,320",
+				"to": "00:00:41,200"
+			},
+			"offsets": {
+				"from": 37320,
+				"to": 41200
+			},
+			"text": " going to be a new tool in the developer tool"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,200",
+				"to": "00:00:45,320"
+			},
+			"offsets": {
+				"from": 41200,
+				"to": 45320
+			},
+			"text": " chain that's going to be commonly used when developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,320",
+				"to": "00:00:46,880"
+			},
+			"offsets": {
+				"from": 45320,
+				"to": 46880
+			},
+			"text": " smart contracts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,880",
+				"to": "00:00:49,880"
+			},
+			"offsets": {
+				"from": 46880,
+				"to": 49880
+			},
+			"text": " What's your take?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,880",
+				"to": "00:00:52,240"
+			},
+			"offsets": {
+				"from": 49880,
+				"to": 52240
+			},
+			"text": " All right, so I worked in formal verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,240",
+				"to": "00:00:55,680"
+			},
+			"offsets": {
+				"from": 52240,
+				"to": 55680
+			},
+			"text": " for almost four years before I joined IC3 at Cornell."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,680",
+				"to": "00:00:58,240"
+			},
+			"offsets": {
+				"from": 55680,
+				"to": 58240
+			},
+			"text": " And I think formal verification is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,240",
+				"to": "00:01:00,920"
+			},
+			"offsets": {
+				"from": 58240,
+				"to": 60920
+			},
+			"text": " in the broader community, finally getting to that point"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,920",
+				"to": "00:01:02,800"
+			},
+			"offsets": {
+				"from": 60920,
+				"to": 62800
+			},
+			"text": " where it's reaching acceptance and the tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,800",
+				"to": "00:01:04,480"
+			},
+			"offsets": {
+				"from": 62800,
+				"to": 64480
+			},
+			"text": " are reaching the level of maturity that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,480",
+				"to": "00:01:06,600"
+			},
+			"offsets": {
+				"from": 64480,
+				"to": 66600
+			},
+			"text": " makes them actually practical."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,600",
+				"to": "00:01:08,040"
+			},
+			"offsets": {
+				"from": 66600,
+				"to": 68040
+			},
+			"text": " So yeah, I think formal verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,040",
+				"to": "00:01:10,760"
+			},
+			"offsets": {
+				"from": 68040,
+				"to": 70760
+			},
+			"text": " is really going to be one critical piece"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,760",
+				"to": "00:01:12,760"
+			},
+			"offsets": {
+				"from": 70760,
+				"to": 72760
+			},
+			"text": " of the overall security picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,760",
+				"to": "00:01:14,680"
+			},
+			"offsets": {
+				"from": 72760,
+				"to": 74680
+			},
+			"text": " Like I said in my talk yesterday, it's really not"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,680",
+				"to": "00:01:16,240"
+			},
+			"offsets": {
+				"from": 74680,
+				"to": 76240
+			},
+			"text": " a silver bullet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,240",
+				"to": "00:01:18,760"
+			},
+			"offsets": {
+				"from": 76240,
+				"to": 78760
+			},
+			"text": " But I'm really looking forward to using Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,760",
+				"to": "00:01:20,520"
+			},
+			"offsets": {
+				"from": 78760,
+				"to": 80520
+			},
+			"text": " and the smart contract space to set"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,520",
+				"to": "00:01:23,240"
+			},
+			"offsets": {
+				"from": 80520,
+				"to": 83240
+			},
+			"text": " the standard for how formal verification should"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,240",
+				"to": "00:01:25,520"
+			},
+			"offsets": {
+				"from": 83240,
+				"to": 85520
+			},
+			"text": " be done in the broader software development industry"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,520",
+				"to": "00:01:27,400"
+			},
+			"offsets": {
+				"from": 85520,
+				"to": 87400
+			},
+			"text": " and even in the safety critical domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,400",
+				"to": "00:01:30,320"
+			},
+			"offsets": {
+				"from": 87400,
+				"to": 90320
+			},
+			"text": " So I think we have a big opportunity here"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,320",
+				"to": "00:01:31,640"
+			},
+			"offsets": {
+				"from": 90320,
+				"to": 91640
+			},
+			"text": " to show people how it's done, really."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,640",
+				"to": "00:01:38,600"
+			},
+			"offsets": {
+				"from": 91640,
+				"to": 98600
+			},
+			"text": " So you think that there's not only going"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,600",
+				"to": "00:01:42,640"
+			},
+			"offsets": {
+				"from": 98600,
+				"to": 102640
+			},
+			"text": " to be for the specialized contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,640",
+				"to": "00:01:44,800"
+			},
+			"offsets": {
+				"from": 102640,
+				"to": 104800
+			},
+			"text": " but more for, in general, people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,800",
+				"to": "00:01:46,840"
+			},
+			"offsets": {
+				"from": 104800,
+				"to": 106840
+			},
+			"text": " are going to do formal verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,840",
+				"to": "00:01:49,520"
+			},
+			"offsets": {
+				"from": 106840,
+				"to": 109520
+			},
+			"text": " Is that going to be the developers moving over"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,520",
+				"to": "00:01:51,200"
+			},
+			"offsets": {
+				"from": 109520,
+				"to": 111200
+			},
+			"text": " into the formal verification domain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,200",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 111200,
+				"to": 114000
+			},
+			"text": " or are we going to have tools which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:58,920"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 118920
+			},
+			"text": " make it more easy to form a verify your contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,920",
+				"to": "00:02:00,640"
+			},
+			"offsets": {
+				"from": 118920,
+				"to": 120640
+			},
+			"text": " I think we're going to have a little bit of both."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,640",
+				"to": "00:02:03,040"
+			},
+			"offsets": {
+				"from": 120640,
+				"to": 123040
+			},
+			"text": " And I think it's up to the users of these contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,040",
+				"to": "00:02:05,880"
+			},
+			"offsets": {
+				"from": 123040,
+				"to": 125880
+			},
+			"text": " to really demand the standard and the level of rigor that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,880",
+				"to": "00:02:08,680"
+			},
+			"offsets": {
+				"from": 125880,
+				"to": 128680
+			},
+			"text": " appropriate for the amount of money that's going into them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,680",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 128680,
+				"to": 132000
+			},
+			"text": " I think having low effort automated tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:14,160"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 134160
+			},
+			"text": " is really a great goal and is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,160",
+				"to": "00:02:17,600"
+			},
+			"offsets": {
+				"from": 134160,
+				"to": 137600
+			},
+			"text": " that I would personally even like to contribute to in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,600",
+				"to": "00:02:20,360"
+			},
+			"offsets": {
+				"from": 137600,
+				"to": 140360
+			},
+			"text": " And I think that will be great for many, many contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,360",
+				"to": "00:02:22,720"
+			},
+			"offsets": {
+				"from": 140360,
+				"to": 142720
+			},
+			"text": " But when you have really, really high value contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,720",
+				"to": "00:02:25,240"
+			},
+			"offsets": {
+				"from": 142720,
+				"to": 145240
+			},
+			"text": " I think we will need to have some sort of specialized approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,240",
+				"to": "00:02:28,680"
+			},
+			"offsets": {
+				"from": 145240,
+				"to": 148680
+			},
+			"text": " where we bring in experts and we ask the questions about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,680",
+				"to": "00:02:30,360"
+			},
+			"offsets": {
+				"from": 148680,
+				"to": 150360
+			},
+			"text": " what is this contract actually doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,360",
+				"to": "00:02:34,440"
+			},
+			"offsets": {
+				"from": 150360,
+				"to": 154440
+			},
+			"text": " and how can we make sure it's doing what we think it's doing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,440",
+				"to": "00:02:35,920"
+			},
+			"offsets": {
+				"from": 154440,
+				"to": 155920
+			},
+			"text": " So yeah, I think to answer the question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,920",
+				"to": "00:02:38,480"
+			},
+			"offsets": {
+				"from": 155920,
+				"to": 158480
+			},
+			"text": " it'll be a combination of both general, automatic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,480",
+				"to": "00:02:40,080"
+			},
+			"offsets": {
+				"from": 158480,
+				"to": 160080
+			},
+			"text": " and specialized approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,080",
+				"to": "00:02:42,280"
+			},
+			"offsets": {
+				"from": 160080,
+				"to": 162280
+			},
+			"text": " And it really depends on how much money your contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,280",
+				"to": "00:02:44,520"
+			},
+			"offsets": {
+				"from": 162280,
+				"to": 164520
+			},
+			"text": " is handling and what the attack surface is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,520",
+				"to": "00:02:48,240"
+			},
+			"offsets": {
+				"from": 164520,
+				"to": 168240
+			},
+			"text": " and other factors like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,240",
+				"to": "00:02:51,040"
+			},
+			"offsets": {
+				"from": 168240,
+				"to": 171040
+			},
+			"text": " And I would add to that that the tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,040",
+				"to": "00:02:54,440"
+			},
+			"offsets": {
+				"from": 171040,
+				"to": 174440
+			},
+			"text": " is going to be a critical component because a lot of the developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,440",
+				"to": "00:02:56,720"
+			},
+			"offsets": {
+				"from": 174440,
+				"to": 176720
+			},
+			"text": " that are coming in and developing contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,720",
+				"to": "00:02:58,640"
+			},
+			"offsets": {
+				"from": 176720,
+				"to": 178640
+			},
+			"text": " are coming from the app development space."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,640",
+				"to": "00:03:01,040"
+			},
+			"offsets": {
+				"from": 178640,
+				"to": 181040
+			},
+			"text": " So if you're building web apps or mobile apps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,040",
+				"to": "00:03:03,240"
+			},
+			"offsets": {
+				"from": 181040,
+				"to": 183240
+			},
+			"text": " you're not used to these kinds of requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,240",
+				"to": "00:03:05,960"
+			},
+			"offsets": {
+				"from": 183240,
+				"to": 185960
+			},
+			"text": " And truly, smart contract development"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,960",
+				"to": "00:03:08,880"
+			},
+			"offsets": {
+				"from": 185960,
+				"to": 188880
+			},
+			"text": " is much more similar to writing software"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,880",
+				"to": "00:03:11,520"
+			},
+			"offsets": {
+				"from": 188880,
+				"to": 191520
+			},
+			"text": " to put a shuttle into space or writing software"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,520",
+				"to": "00:03:14,520"
+			},
+			"offsets": {
+				"from": 191520,
+				"to": 194520
+			},
+			"text": " for safety medical devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,520",
+				"to": "00:03:16,600"
+			},
+			"offsets": {
+				"from": 194520,
+				"to": 196600
+			},
+			"text": " You're writing software that handles millions of dollars,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,600",
+				"to": "00:03:17,120"
+			},
+			"offsets": {
+				"from": 196600,
+				"to": 197120
+			},
+			"text": " potentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,120",
+				"to": "00:03:19,280"
+			},
+			"offsets": {
+				"from": 197120,
+				"to": 199280
+			},
+			"text": " So the kinds of security requirements"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,280",
+				"to": "00:03:21,200"
+			},
+			"offsets": {
+				"from": 199280,
+				"to": 201200
+			},
+			"text": " are closer to those applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,200",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 201200,
+				"to": 205000
+			},
+			"text": " And a lot of the DAP developers are not coming from that space."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:27,840"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 207840
+			},
+			"text": " So a combination of tooling that automates"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,840",
+				"to": "00:03:31,680"
+			},
+			"offsets": {
+				"from": 207840,
+				"to": 211680
+			},
+			"text": " a lot of the formal verification and then also education,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,680",
+				"to": "00:03:34,520"
+			},
+			"offsets": {
+				"from": 211680,
+				"to": 214520
+			},
+			"text": " just as a process to bring developers up to speed with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,520",
+				"to": "00:03:36,160"
+			},
+			"offsets": {
+				"from": 214520,
+				"to": 216160
+			},
+			"text": " here's the domain we're in, and here's really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,160",
+				"to": "00:03:40,080"
+			},
+			"offsets": {
+				"from": 216160,
+				"to": 220080
+			},
+			"text": " what the requirements are to produce production apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,080",
+				"to": "00:03:41,560"
+			},
+			"offsets": {
+				"from": 220080,
+				"to": 221560
+			},
+			"text": " Yeah, and I think a lot of that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,560",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 221560,
+				"to": 223000
+			},
+			"text": " going to come from the user side as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:45,880"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 225880
+			},
+			"text": " We really need to educate users and make them demand"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,880",
+				"to": "00:03:48,720"
+			},
+			"offsets": {
+				"from": 225880,
+				"to": 228720
+			},
+			"text": " the appropriate level of rigor for the software"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,720",
+				"to": "00:03:49,720"
+			},
+			"offsets": {
+				"from": 228720,
+				"to": 229720
+			},
+			"text": " that they're using."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,720",
+				"to": "00:03:51,960"
+			},
+			"offsets": {
+				"from": 229720,
+				"to": 231960
+			},
+			"text": " I know people are putting lots of money in contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,960",
+				"to": "00:03:53,520"
+			},
+			"offsets": {
+				"from": 231960,
+				"to": 233520
+			},
+			"text": " right now that don't even have tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,520",
+				"to": "00:03:55,920"
+			},
+			"offsets": {
+				"from": 233520,
+				"to": 235920
+			},
+			"text": " And that's really the bare minimum in terms of software"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,920",
+				"to": "00:03:57,040"
+			},
+			"offsets": {
+				"from": 235920,
+				"to": 237040
+			},
+			"text": " engineering."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,040",
+				"to": "00:04:00,200"
+			},
+			"offsets": {
+				"from": 237040,
+				"to": 240200
+			},
+			"text": " So until we educate people to sort of what's possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,200",
+				"to": "00:04:04,200"
+			},
+			"offsets": {
+				"from": 240200,
+				"to": 244200
+			},
+			"text": " and what tools exist to do, I don't think"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,200",
+				"to": "00:04:05,160"
+			},
+			"offsets": {
+				"from": 244200,
+				"to": 245160
+			},
+			"text": " we'll see much improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,160",
+				"to": "00:04:07,880"
+			},
+			"offsets": {
+				"from": 245160,
+				"to": 247880
+			},
+			"text": " So there definitely needs to be a push on both the developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,880",
+				"to": "00:04:10,200"
+			},
+			"offsets": {
+				"from": 247880,
+				"to": 250200
+			},
+			"text": " and the user side in terms of these tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,200",
+				"to": "00:04:12,160"
+			},
+			"offsets": {
+				"from": 250200,
+				"to": 252160
+			},
+			"text": " Not just a matter of educating users."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,160",
+				"to": "00:04:14,520"
+			},
+			"offsets": {
+				"from": 252160,
+				"to": 254520
+			},
+			"text": " I think the other thing that we can and should be targeting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,520",
+				"to": "00:04:16,760"
+			},
+			"offsets": {
+				"from": 254520,
+				"to": 256760
+			},
+			"text": " is that they can be serious."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,760",
+				"to": "00:04:17,760"
+			},
+			"offsets": {
+				"from": 256760,
+				"to": 257760
+			},
+			"text": " So like one--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,760",
+				"to": "00:04:20,760"
+			},
+			"offsets": {
+				"from": 257760,
+				"to": 260760
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,760",
+				"to": "00:04:23,240"
+			},
+			"offsets": {
+				"from": 260760,
+				"to": 263240
+			},
+			"text": " One, two, three, four."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,240",
+				"to": "00:04:25,880"
+			},
+			"offsets": {
+				"from": 263240,
+				"to": 265880
+			},
+			"text": " Can we formally verify these microphones next time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,880",
+				"to": "00:04:28,640"
+			},
+			"offsets": {
+				"from": 265880,
+				"to": 268640
+			},
+			"text": " 6, 7, 8."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,640",
+				"to": "00:04:29,760"
+			},
+			"offsets": {
+				"from": 268640,
+				"to": 269760
+			},
+			"text": " Nine."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,760",
+				"to": "00:04:34,120"
+			},
+			"offsets": {
+				"from": 269760,
+				"to": 274120
+			},
+			"text": " So what I was saying is that I think it's not just"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,120",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 274120,
+				"to": 276000
+			},
+			"text": " the users that we should be targeting here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:38,800"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 278800
+			},
+			"text": " I think it's also user facing intermediaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,800",
+				"to": "00:04:40,640"
+			},
+			"offsets": {
+				"from": 278800,
+				"to": 280640
+			},
+			"text": " So like one good thing from the SDN point"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,640",
+				"to": "00:04:42,280"
+			},
+			"offsets": {
+				"from": 280640,
+				"to": 282280
+			},
+			"text": " that has already happened is just the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,280",
+				"to": "00:04:45,080"
+			},
+			"offsets": {
+				"from": 282280,
+				"to": 285080
+			},
+			"text": " that block explorers like either can have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,080",
+				"to": "00:04:46,760"
+			},
+			"offsets": {
+				"from": 285080,
+				"to": 286760
+			},
+			"text": " a risk of verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,760",
+				"to": "00:04:49,160"
+			},
+			"offsets": {
+				"from": 286760,
+				"to": 289160
+			},
+			"text": " And now check if you see a contracting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,160",
+				"to": "00:04:51,680"
+			},
+			"offsets": {
+				"from": 289160,
+				"to": 291680
+			},
+			"text": " like the rain interacting, we can actually go to where"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,680",
+				"to": "00:04:53,440"
+			},
+			"offsets": {
+				"from": 291680,
+				"to": 293440
+			},
+			"text": " it's you can check the source."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,440",
+				"to": "00:04:56,600"
+			},
+			"offsets": {
+				"from": 293440,
+				"to": 296600
+			},
+			"text": " They verify the source that actually matches the light code."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,600",
+				"to": "00:04:58,520"
+			},
+			"offsets": {
+				"from": 296600,
+				"to": 298520
+			},
+			"text": " We can see something like that potentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,520",
+				"to": "00:05:00,840"
+			},
+			"offsets": {
+				"from": 298520,
+				"to": 300840
+			},
+			"text": " You can see something like that potentially being"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,840",
+				"to": "00:05:04,280"
+			},
+			"offsets": {
+				"from": 300840,
+				"to": 304280
+			},
+			"text": " expanded quite a bit, including check marks"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,280",
+				"to": "00:05:05,920"
+			},
+			"offsets": {
+				"from": 304280,
+				"to": 305920
+			},
+			"text": " for what kinds of form of verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,920",
+				"to": "00:05:08,320"
+			},
+			"offsets": {
+				"from": 305920,
+				"to": 308320
+			},
+			"text": " here in C is passed or the rainy tested."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,320",
+				"to": "00:05:09,320"
+			},
+			"offsets": {
+				"from": 308320,
+				"to": 309320
+			},
+			"text": " It's passed or the rainy tested."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,320",
+				"to": "00:05:11,720"
+			},
+			"offsets": {
+				"from": 309320,
+				"to": 311720
+			},
+			"text": " It's failed and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,720",
+				"to": "00:05:15,120"
+			},
+			"offsets": {
+				"from": 311720,
+				"to": 315120
+			},
+			"text": " So I know rain you've been developing some tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,120",
+				"to": "00:05:16,400"
+			},
+			"offsets": {
+				"from": 315120,
+				"to": 316400
+			},
+			"text": " for solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,400",
+				"to": "00:05:19,600"
+			},
+			"offsets": {
+				"from": 316400,
+				"to": 319600
+			},
+			"text": " And so when we're talking about tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,600",
+				"to": "00:05:23,760"
+			},
+			"offsets": {
+				"from": 319600,
+				"to": 323760
+			},
+			"text": " what kind of more tools are needed in this space?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,760",
+				"to": "00:05:28,840"
+			},
+			"offsets": {
+				"from": 323760,
+				"to": 328840
+			},
+			"text": " Well, there's a huge range."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,840",
+				"to": "00:05:32,440"
+			},
+			"offsets": {
+				"from": 328840,
+				"to": 332440
+			},
+			"text": " And I think it's useful to have both the tools that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,440",
+				"to": "00:05:36,120"
+			},
+			"offsets": {
+				"from": 332440,
+				"to": 336120
+			},
+			"text": " are offering rigorous methods of completeness"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,120",
+				"to": "00:05:38,120"
+			},
+			"offsets": {
+				"from": 336120,
+				"to": 338120
+			},
+			"text": " and the academic work and the research"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,120",
+				"to": "00:05:40,120"
+			},
+			"offsets": {
+				"from": 338120,
+				"to": 340120
+			},
+			"text": " is really essential to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,120",
+				"to": "00:05:42,560"
+			},
+			"offsets": {
+				"from": 340120,
+				"to": 342560
+			},
+			"text": " You can get a lot of value out of heuristics as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,560",
+				"to": "00:05:45,520"
+			},
+			"offsets": {
+				"from": 342560,
+				"to": 345520
+			},
+			"text": " And things that are rather obvious now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,520",
+				"to": "00:05:47,960"
+			},
+			"offsets": {
+				"from": 345520,
+				"to": 347960
+			},
+			"text": " like the reentry attack on the Dow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,960",
+				"to": "00:05:50,120"
+			},
+			"offsets": {
+				"from": 347960,
+				"to": 350120
+			},
+			"text": " maybe the particulars of it weren't obvious the spot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,120",
+				"to": "00:05:52,520"
+			},
+			"offsets": {
+				"from": 350120,
+				"to": 352520
+			},
+			"text": " but the particular attack of having"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,520",
+				"to": "00:05:55,080"
+			},
+			"offsets": {
+				"from": 352520,
+				"to": 355080
+			},
+			"text": " a recursive call from an external call"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,080",
+				"to": "00:05:56,480"
+			},
+			"offsets": {
+				"from": 355080,
+				"to": 356480
+			},
+			"text": " is quite easy to spot."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,480",
+				"to": "00:06:00,040"
+			},
+			"offsets": {
+				"from": 356480,
+				"to": 360040
+			},
+			"text": " And so it doesn't take a very heavy duty approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,040",
+				"to": "00:06:02,280"
+			},
+			"offsets": {
+				"from": 360040,
+				"to": 362280
+			},
+			"text": " to be able to detect those things."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,280",
+				"to": "00:06:05,040"
+			},
+			"offsets": {
+				"from": 362280,
+				"to": 365040
+			},
+			"text": " So the tooling can range from the more rigorous"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,040",
+				"to": "00:06:10,800"
+			},
+			"offsets": {
+				"from": 365040,
+				"to": 370800
+			},
+			"text": " to just some simple sorts of analysis, static analysis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,800",
+				"to": "00:06:14,480"
+			},
+			"offsets": {
+				"from": 370800,
+				"to": 374480
+			},
+			"text": " is a great tool to be able to just detect things"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,480",
+				"to": "00:06:17,760"
+			},
+			"offsets": {
+				"from": 374480,
+				"to": 377760
+			},
+			"text": " that are potential areas of risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,760",
+				"to": "00:06:19,520"
+			},
+			"offsets": {
+				"from": 377760,
+				"to": 379520
+			},
+			"text": " And so I think that can go a long way"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,520",
+				"to": "00:06:23,920"
+			},
+			"offsets": {
+				"from": 379520,
+				"to": 383920
+			},
+			"text": " towards providing people more visibility into contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,920",
+				"to": "00:06:27,120"
+			},
+			"offsets": {
+				"from": 383920,
+				"to": 387120
+			},
+			"text": " And if you know that you're looking for risks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,120",
+				"to": "00:06:30,200"
+			},
+			"offsets": {
+				"from": 387120,
+				"to": 390200
+			},
+			"text": " then we can devise tools that highlight that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,200",
+				"to": "00:06:33,360"
+			},
+			"offsets": {
+				"from": 390200,
+				"to": 393360
+			},
+			"text": " and expose where the potential areas are."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,360",
+				"to": "00:06:36,120"
+			},
+			"offsets": {
+				"from": 393360,
+				"to": 396120
+			},
+			"text": " And that can be a low investment."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,120",
+				"to": "00:06:39,800"
+			},
+			"offsets": {
+				"from": 396120,
+				"to": 399800
+			},
+			"text": " You don't have to do a full security audit first."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,800",
+				"to": "00:06:41,560"
+			},
+			"offsets": {
+				"from": 399800,
+				"to": 401560
+			},
+			"text": " As a first step, you'll want to do it later."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,560",
+				"to": "00:06:44,200"
+			},
+			"offsets": {
+				"from": 401560,
+				"to": 404200
+			},
+			"text": " But as a first step, if you can run some tools that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,200",
+				"to": "00:06:46,320"
+			},
+			"offsets": {
+				"from": 404200,
+				"to": 406320
+			},
+			"text": " provide some indications of where"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,320",
+				"to": "00:06:48,800"
+			},
+			"offsets": {
+				"from": 406320,
+				"to": 408800
+			},
+			"text": " to look for security vulnerabilities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,800",
+				"to": "00:06:51,800"
+			},
+			"offsets": {
+				"from": 408800,
+				"to": 411800
+			},
+			"text": " that offers a lot of value for a low cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,800",
+				"to": "00:06:53,760"
+			},
+			"offsets": {
+				"from": 411800,
+				"to": 413760
+			},
+			"text": " And I think that stuff should be in the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,760",
+				"to": "00:06:55,680"
+			},
+			"offsets": {
+				"from": 413760,
+				"to": 415680
+			},
+			"text": " Like in most high level languages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,680",
+				"to": "00:06:58,040"
+			},
+			"offsets": {
+				"from": 415680,
+				"to": 418040
+			},
+			"text": " you have that kind of basic static analysis already"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,040",
+				"to": "00:06:59,360"
+			},
+			"offsets": {
+				"from": 418040,
+				"to": 419360
+			},
+			"text": " built into the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,360",
+				"to": "00:07:02,480"
+			},
+			"offsets": {
+				"from": 419360,
+				"to": 422480
+			},
+			"text": " And there's no reason we shouldn't be doing the same here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,480",
+				"to": "00:07:04,200"
+			},
+			"offsets": {
+				"from": 422480,
+				"to": 424200
+			},
+			"text": " The only caution that I would have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,200",
+				"to": "00:07:07,800"
+			},
+			"offsets": {
+				"from": 424200,
+				"to": 427800
+			},
+			"text": " is being careful not to just run sort of all the low effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,800",
+				"to": "00:07:10,120"
+			},
+			"offsets": {
+				"from": 427800,
+				"to": 430120
+			},
+			"text": " tools and then call it a solved problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,120",
+				"to": "00:07:11,720"
+			},
+			"offsets": {
+				"from": 430120,
+				"to": 431720
+			},
+			"text": " and put a bunch of money in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,720",
+				"to": "00:07:13,880"
+			},
+			"offsets": {
+				"from": 431720,
+				"to": 433880
+			},
+			"text": " Because that's something that happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,880",
+				"to": "00:07:17,080"
+			},
+			"offsets": {
+				"from": 433880,
+				"to": 437080
+			},
+			"text": " inside of the corporate space and even in high assurance software"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,080",
+				"to": "00:07:19,520"
+			},
+			"offsets": {
+				"from": 437080,
+				"to": 439520
+			},
+			"text": " all the time where people will run a few tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,520",
+				"to": "00:07:21,880"
+			},
+			"offsets": {
+				"from": 439520,
+				"to": 441880
+			},
+			"text": " and then assume that they have assurance that really isn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,880",
+				"to": "00:07:22,400"
+			},
+			"offsets": {
+				"from": 441880,
+				"to": 442400
+			},
+			"text": " there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,400",
+				"to": "00:07:27,880"
+			},
+			"offsets": {
+				"from": 442400,
+				"to": 447880
+			},
+			"text": " So when we talk about smart contract security,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,880",
+				"to": "00:07:31,960"
+			},
+			"offsets": {
+				"from": 447880,
+				"to": 451960
+			},
+			"text": " often you talk about only from the developer perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,960",
+				"to": "00:07:34,440"
+			},
+			"offsets": {
+				"from": 451960,
+				"to": 454440
+			},
+			"text": " And it's easy to forget that there's also use of perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,440",
+				"to": "00:07:39,720"
+			},
+			"offsets": {
+				"from": 454440,
+				"to": 459720
+			},
+			"text": " So how can we make it more secure for end users"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,720",
+				"to": "00:07:43,280"
+			},
+			"offsets": {
+				"from": 459720,
+				"to": 463280
+			},
+			"text": " to interact with contracts, which may or may not"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,280",
+				"to": "00:07:46,560"
+			},
+			"offsets": {
+				"from": 463280,
+				"to": 466560
+			},
+			"text": " be hostile or backdoor or flawed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,560",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 466560,
+				"to": 475000
+			},
+			"text": " I think there's always going to be a few different examples"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:55,520"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 475520
+			},
+			"text": " of the puzzle."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,520",
+				"to": "00:07:59,040"
+			},
+			"offsets": {
+				"from": 475520,
+				"to": 479040
+			},
+			"text": " So like earlier on, I'd mention block explorers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,040",
+				"to": "00:08:01,840"
+			},
+			"offsets": {
+				"from": 479040,
+				"to": 481840
+			},
+			"text": " One other possibility is that to figure out"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,840",
+				"to": "00:08:04,880"
+			},
+			"offsets": {
+				"from": 481840,
+				"to": 484880
+			},
+			"text": " some kind of tools or what kind of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,880",
+				"to": "00:08:07,920"
+			},
+			"offsets": {
+				"from": 484880,
+				"to": 487920
+			},
+			"text": " should be integrated into something like MIST,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,920",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 487920,
+				"to": 490000
+			},
+			"text": " then of course there's a question of exact to what kinds"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:12,080"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 492080
+			},
+			"text": " of things do get integrated."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,080",
+				"to": "00:08:14,360"
+			},
+			"offsets": {
+				"from": 492080,
+				"to": 494360
+			},
+			"text": " But if it's formal verification checkers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,360",
+				"to": "00:08:17,360"
+			},
+			"offsets": {
+				"from": 494360,
+				"to": 497360
+			},
+			"text": " then one question is what exactly are you verifying?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,360",
+				"to": "00:08:19,640"
+			},
+			"offsets": {
+				"from": 497360,
+				"to": 499640
+			},
+			"text": " Because it's easy to write a contract where"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,640",
+				"to": "00:08:22,080"
+			},
+			"offsets": {
+				"from": 499640,
+				"to": 502080
+			},
+			"text": " if you're a malicious developer, you write the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,080",
+				"to": "00:08:25,040"
+			},
+			"offsets": {
+				"from": 502080,
+				"to": 505040
+			},
+			"text": " and you also just write a bunch of weird Y3 statements"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,040",
+				"to": "00:08:26,560"
+			},
+			"offsets": {
+				"from": 505040,
+				"to": 506560
+			},
+			"text": " and it looks impressive and it looks secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,560",
+				"to": "00:08:28,200"
+			},
+			"offsets": {
+				"from": 506560,
+				"to": 508200
+			},
+			"text": " But in reality, the Y3 statements are"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,200",
+				"to": "00:08:31,080"
+			},
+			"offsets": {
+				"from": 508200,
+				"to": 511080
+			},
+			"text": " like missing something that's actually a backdoor."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,080",
+				"to": "00:08:34,040"
+			},
+			"offsets": {
+				"from": 511080,
+				"to": 514040
+			},
+			"text": " So that's part of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,040",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 514040,
+				"to": 518000
+			},
+			"text": " But the other part is even just things like security auditing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:40,280"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 520280
+			},
+			"text": " and even saying, you know, this particular contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,280",
+				"to": "00:08:43,600"
+			},
+			"offsets": {
+				"from": 520280,
+				"to": 523600
+			},
+			"text": " has been audited by these particular people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,600",
+				"to": "00:08:47,880"
+			},
+			"offsets": {
+				"from": 523600,
+				"to": 527880
+			},
+			"text": " this particular contract matches some particular template."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,880",
+				"to": "00:08:50,840"
+			},
+			"offsets": {
+				"from": 527880,
+				"to": 530840
+			},
+			"text": " Yeah, I think this is fundamentally a UX problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,840",
+				"to": "00:08:52,840"
+			},
+			"offsets": {
+				"from": 530840,
+				"to": 532840
+			},
+			"text": " and we should take inspiration from the work that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,840",
+				"to": "00:08:53,840"
+			},
+			"offsets": {
+				"from": 532840,
+				"to": 533840
+			},
+			"text": " been done in browsers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,840",
+				"to": "00:08:56,480"
+			},
+			"offsets": {
+				"from": 533840,
+				"to": 536480
+			},
+			"text": " There's been a lot of work about how to securely browse"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,480",
+				"to": "00:08:58,680"
+			},
+			"offsets": {
+				"from": 536480,
+				"to": 538680
+			},
+			"text": " websites and there are a lot of parallels between that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,680",
+				"to": "00:09:00,040"
+			},
+			"offsets": {
+				"from": 538680,
+				"to": 540040
+			},
+			"text": " and the apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,040",
+				"to": "00:09:02,400"
+			},
+			"offsets": {
+				"from": 540040,
+				"to": 542400
+			},
+			"text": " Well, I think the security model that we have here"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,400",
+				"to": "00:09:05,240"
+			},
+			"offsets": {
+				"from": 542400,
+				"to": 545240
+			},
+			"text": " that we're trying to achieve is definitely a bit stricter"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,240",
+				"to": "00:09:08,600"
+			},
+			"offsets": {
+				"from": 545240,
+				"to": 548600
+			},
+			"text": " as we're saying that it's the job of MIST"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,600",
+				"to": "00:09:13,760"
+			},
+			"offsets": {
+				"from": 548600,
+				"to": 553760
+			},
+			"text": " to even to protect the user from number one bad contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,760",
+				"to": "00:09:16,360"
+			},
+			"offsets": {
+				"from": 553760,
+				"to": 556360
+			},
+			"text": " Number two bad interfaces to good contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,360",
+				"to": "00:09:18,160"
+			},
+			"offsets": {
+				"from": 556360,
+				"to": 558160
+			},
+			"text": " We don't even trust the source of the JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,160",
+				"to": "00:09:19,360"
+			},
+			"offsets": {
+				"from": 558160,
+				"to": 559360
+			},
+			"text": " This is terrible."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,360",
+				"to": "00:09:23,160"
+			},
+			"offsets": {
+				"from": 559360,
+				"to": 563160
+			},
+			"text": " And then, you know, if you have good contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,160",
+				"to": "00:09:25,520"
+			},
+			"offsets": {
+				"from": 563160,
+				"to": 565520
+			},
+			"text": " and you have good JavaScript on top of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,520",
+				"to": "00:09:27,240"
+			},
+			"offsets": {
+				"from": 565520,
+				"to": 567240
+			},
+			"text": " there's also built-in user access control,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,240",
+				"to": "00:09:31,960"
+			},
+			"offsets": {
+				"from": 567240,
+				"to": 571960
+			},
+			"text": " which is something that we can have a piano on all by itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,960",
+				"to": "00:09:35,560"
+			},
+			"offsets": {
+				"from": 571960,
+				"to": 575560
+			},
+			"text": " So if you make the comparison to, for example, the web"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,560",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 575560,
+				"to": 579000
+			},
+			"text": " and use browse the internet with Google Chrome,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:42,640"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 582640
+			},
+			"text": " you have a black list approach where you try to access"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,640",
+				"to": "00:09:45,800"
+			},
+			"offsets": {
+				"from": 582640,
+				"to": 585800
+			},
+			"text": " something which is known bad and they alert you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,800",
+				"to": "00:09:49,480"
+			},
+			"offsets": {
+				"from": 585800,
+				"to": 589480
+			},
+			"text": " So do you see that as a possible way forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,480",
+				"to": "00:09:53,800"
+			},
+			"offsets": {
+				"from": 589480,
+				"to": 593800
+			},
+			"text": " or more reputation about reputation systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,800",
+				"to": "00:09:58,440"
+			},
+			"offsets": {
+				"from": 593800,
+				"to": 598440
+			},
+			"text": " for known good contracts and services?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,440",
+				"to": "00:10:00,520"
+			},
+			"offsets": {
+				"from": 598440,
+				"to": 600520
+			},
+			"text": " As far as reputation systems go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,520",
+				"to": "00:10:02,880"
+			},
+			"offsets": {
+				"from": 600520,
+				"to": 602880
+			},
+			"text": " reputation systems go like the two sort of flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,880",
+				"to": "00:10:03,720"
+			},
+			"offsets": {
+				"from": 602880,
+				"to": 603720
+			},
+			"text": " into each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,720",
+				"to": "00:10:05,400"
+			},
+			"offsets": {
+				"from": 603720,
+				"to": 605400
+			},
+			"text": " Like a black list has a reputation system"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,400",
+				"to": "00:10:07,200"
+			},
+			"offsets": {
+				"from": 605400,
+				"to": 607200
+			},
+			"text": " where the default is zero and you can go negative"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,200",
+				"to": "00:10:08,680"
+			},
+			"offsets": {
+				"from": 607200,
+				"to": 608680
+			},
+			"text": " and the other one is where the default is zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,680",
+				"to": "00:10:10,200"
+			},
+			"offsets": {
+				"from": 608680,
+				"to": 610200
+			},
+			"text": " and you can go positive."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,200",
+				"to": "00:10:13,800"
+			},
+			"offsets": {
+				"from": 610200,
+				"to": 613800
+			},
+			"text": " And I think both approaches have their merits."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,800",
+				"to": "00:10:19,800"
+			},
+			"offsets": {
+				"from": 613800,
+				"to": 619800
+			},
+			"text": " So for example, I think there are some kinds of whiteless"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,800",
+				"to": "00:10:21,200"
+			},
+			"offsets": {
+				"from": 619800,
+				"to": 621200
+			},
+			"text": " that do make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,200",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 621200,
+				"to": 624000
+			},
+			"text": " So for example, if you are accessing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:26,480"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 626480
+			},
+			"text": " some particular application and then the application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,480",
+				"to": "00:10:31,360"
+			},
+			"offsets": {
+				"from": 626480,
+				"to": 631360
+			},
+			"text": " all of a sudden decides to force your accounts to do a call"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,360",
+				"to": "00:10:32,920"
+			},
+			"offsets": {
+				"from": 631360,
+				"to": 632920
+			},
+			"text": " to some people who are really unknown at risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,920",
+				"to": "00:10:34,640"
+			},
+			"offsets": {
+				"from": 632920,
+				"to": 634640
+			},
+			"text": " with a large amount of gas and a large amount of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,640",
+				"to": "00:10:38,240"
+			},
+			"offsets": {
+				"from": 634640,
+				"to": 638240
+			},
+			"text": " you might want to be concerned that maybe that call"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,240",
+				"to": "00:10:40,400"
+			},
+			"offsets": {
+				"from": 638240,
+				"to": 640400
+			},
+			"text": " is actually stealing all of your maker coins"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,400",
+				"to": "00:10:41,560"
+			},
+			"offsets": {
+				"from": 640400,
+				"to": 641560
+			},
+			"text": " or something similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,560",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 641560,
+				"to": 645000
+			},
+			"text": " And so an approach that explicitly asks for your permission"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:47,120"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 647120
+			},
+			"text": " if it's outside of some whiteless might be a good way"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,120",
+				"to": "00:10:48,440"
+			},
+			"offsets": {
+				"from": 647120,
+				"to": 648440
+			},
+			"text": " of mitigating that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,440",
+				"to": "00:10:50,680"
+			},
+			"offsets": {
+				"from": 648440,
+				"to": 650680
+			},
+			"text": " Me and one, if there is some known black list,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,680",
+				"to": "00:10:53,840"
+			},
+			"offsets": {
+				"from": 650680,
+				"to": 653840
+			},
+			"text": " then that's something that you could provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,840",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 653840,
+				"to": 656000
+			},
+			"text": " like even stronger warnings about."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:00,520"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 660520
+			},
+			"text": " So it depends on what it is that you're blocking it"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,520",
+				"to": "00:11:03,040"
+			},
+			"offsets": {
+				"from": 660520,
+				"to": 663040
+			},
+			"text": " and also it depends on sort of what the consequences are"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,040",
+				"to": "00:11:04,880"
+			},
+			"offsets": {
+				"from": 663040,
+				"to": 664880
+			},
+			"text": " of something being outside of the whiteless"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,880",
+				"to": "00:11:07,160"
+			},
+			"offsets": {
+				"from": 664880,
+				"to": 667160
+			},
+			"text": " or inside the black list."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,160",
+				"to": "00:11:10,800"
+			},
+			"offsets": {
+				"from": 667160,
+				"to": 670800
+			},
+			"text": " And I do think that the web access control on the web"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,800",
+				"to": "00:11:14,280"
+			},
+			"offsets": {
+				"from": 670800,
+				"to": 674280
+			},
+			"text": " is a good comparison from a UI perspective"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,280",
+				"to": "00:11:17,760"
+			},
+			"offsets": {
+				"from": 674280,
+				"to": 677760
+			},
+			"text": " and the industries had to deal with how do you communicate"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,760",
+				"to": "00:11:20,800"
+			},
+			"offsets": {
+				"from": 677760,
+				"to": 680800
+			},
+			"text": " to users that this is a risk but a particular type of risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,800",
+				"to": "00:11:22,640"
+			},
+			"offsets": {
+				"from": 680800,
+				"to": 682640
+			},
+			"text": " So the same way that you would download an app"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,640",
+				"to": "00:11:25,880"
+			},
+			"offsets": {
+				"from": 682640,
+				"to": 685880
+			},
+			"text": " and they would ask permission to use a camera."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,880",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 685880,
+				"to": 689000
+			},
+			"text": " If you flood the user with too many of those warnings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:33,240"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 693240
+			},
+			"text": " you just entrain them to click OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,240",
+				"to": "00:11:37,120"
+			},
+			"offsets": {
+				"from": 693240,
+				"to": 697120
+			},
+			"text": " But if you don't provide the correct access control"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,120",
+				"to": "00:11:39,080"
+			},
+			"offsets": {
+				"from": 697120,
+				"to": 699080
+			},
+			"text": " for the correct types of operations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,080",
+				"to": "00:11:41,880"
+			},
+			"offsets": {
+				"from": 699080,
+				"to": 701880
+			},
+			"text": " then the security is worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,880",
+				"to": "00:11:44,360"
+			},
+			"offsets": {
+				"from": 701880,
+				"to": 704360
+			},
+			"text": " So I think we do, at least from a UI perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,360",
+				"to": "00:11:47,160"
+			},
+			"offsets": {
+				"from": 704360,
+				"to": 707160
+			},
+			"text": " we have a kind of comparison and like how do you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,160",
+				"to": "00:11:50,760"
+			},
+			"offsets": {
+				"from": 707160,
+				"to": 710760
+			},
+			"text": " create something for the user that is both simple"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,760",
+				"to": "00:11:55,320"
+			},
+			"offsets": {
+				"from": 710760,
+				"to": 715320
+			},
+			"text": " and provides those, the robust security measures"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,320",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 715320,
+				"to": 719000
+			},
+			"text": " against things like sending lots of ether or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:00,680"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 720680
+			},
+			"text": " - If there's also an opportunity for some"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,680",
+				"to": "00:12:03,800"
+			},
+			"offsets": {
+				"from": 720680,
+				"to": 723800
+			},
+			"text": " of the existing early adapt development companies"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,800",
+				"to": "00:12:05,600"
+			},
+			"offsets": {
+				"from": 723800,
+				"to": 725600
+			},
+			"text": " in this space to set a standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,600",
+				"to": "00:12:07,760"
+			},
+			"offsets": {
+				"from": 725600,
+				"to": 727760
+			},
+			"text": " So like one thing that we don't want for example"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,760",
+				"to": "00:12:11,040"
+			},
+			"offsets": {
+				"from": 727760,
+				"to": 731040
+			},
+			"text": " is a situation where it's just like an accepted default"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,040",
+				"to": "00:12:13,600"
+			},
+			"offsets": {
+				"from": 731040,
+				"to": 733600
+			},
+			"text": " still like ask for every single permission under the sun"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,600",
+				"to": "00:12:15,520"
+			},
+			"offsets": {
+				"from": 733600,
+				"to": 735520
+			},
+			"text": " is what to do that then you just like"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,520",
+				"to": "00:12:17,120"
+			},
+			"offsets": {
+				"from": 735520,
+				"to": 737120
+			},
+			"text": " the value of the system in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,120",
+				"to": "00:12:20,240"
+			},
+			"offsets": {
+				"from": 737120,
+				"to": 740240
+			},
+			"text": " But if on the other hand, a lot of applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,240",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 740240,
+				"to": 743000
+			},
+			"text": " are designed in such a way that they do sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:27,400"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 747400
+			},
+			"text": " go nicely with the security and access control that exists,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,400",
+				"to": "00:12:31,240"
+			},
+			"offsets": {
+				"from": 747400,
+				"to": 751240
+			},
+			"text": " then something that doesn't sort of fit those patterns"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,240",
+				"to": "00:12:33,680"
+			},
+			"offsets": {
+				"from": 751240,
+				"to": 753680
+			},
+			"text": " would actually sort of get worked that much more"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,680",
+				"to": "00:12:35,680"
+			},
+			"offsets": {
+				"from": 753680,
+				"to": 755680
+			},
+			"text": " suspiciously which is what we would want."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,680",
+				"to": "00:12:43,840"
+			},
+			"offsets": {
+				"from": 755680,
+				"to": 763840
+			},
+			"text": " - I'm gonna ask a direct question."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,840",
+				"to": "00:12:48,600"
+			},
+			"offsets": {
+				"from": 763840,
+				"to": 768600
+			},
+			"text": " So in the, as of today with the languages we have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,600",
+				"to": "00:12:52,240"
+			},
+			"offsets": {
+				"from": 768600,
+				"to": 772240
+			},
+			"text": " if you wanna write secure contracts, is it possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,240",
+				"to": "00:12:57,200"
+			},
+			"offsets": {
+				"from": 772240,
+				"to": 777200
+			},
+			"text": " to develop a secure contract without knowing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,200",
+				"to": "00:13:00,800"
+			},
+			"offsets": {
+				"from": 777200,
+				"to": 780800
+			},
+			"text": " bit of much in depth how the VM works"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,800",
+				"to": "00:13:04,040"
+			},
+			"offsets": {
+				"from": 780800,
+				"to": 784040
+			},
+			"text": " underneath the language level, the quirks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,040",
+				"to": "00:13:06,920"
+			},
+			"offsets": {
+				"from": 784040,
+				"to": 786920
+			},
+			"text": " - Nothing of any complexity I'd say."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,920",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 786920,
+				"to": 789000
+			},
+			"text": " I mean if you have something very simple that's following"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:11,640"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 791640
+			},
+			"text": " an established pattern sure, but if you're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,640",
+				"to": "00:13:14,160"
+			},
+			"offsets": {
+				"from": 791640,
+				"to": 794160
+			},
+			"text": " into some new space then yeah you should understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,160",
+				"to": "00:13:16,040"
+			},
+			"offsets": {
+				"from": 794160,
+				"to": 796040
+			},
+			"text": " how the internals affect your contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,040",
+				"to": "00:13:18,160"
+			},
+			"offsets": {
+				"from": 796040,
+				"to": 798160
+			},
+			"text": " or have someone look at it who does."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,160",
+				"to": "00:13:21,280"
+			},
+			"offsets": {
+				"from": 798160,
+				"to": 801280
+			},
+			"text": " - And ideally I think we'd want to reach the stage"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,280",
+				"to": "00:13:24,280"
+			},
+			"offsets": {
+				"from": 801280,
+				"to": 804280
+			},
+			"text": " where like the language is intuitive and like"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,280",
+				"to": "00:13:28,200"
+			},
+			"offsets": {
+				"from": 804280,
+				"to": 808200
+			},
+			"text": " the limitations in the VM layer don't really yet"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,200",
+				"to": "00:13:31,720"
+			},
+			"offsets": {
+				"from": 808200,
+				"to": 811720
+			},
+			"text": " like cause any quirks that are sort of unexpected"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,720",
+				"to": "00:13:34,960"
+			},
+			"offsets": {
+				"from": 811720,
+				"to": 814960
+			},
+			"text": " that don't appear at the celebrity level itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,960",
+				"to": "00:13:37,120"
+			},
+			"offsets": {
+				"from": 814960,
+				"to": 817120
+			},
+			"text": " but at the same time we're not quite there yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,120",
+				"to": "00:13:40,920"
+			},
+			"offsets": {
+				"from": 817120,
+				"to": 820920
+			},
+			"text": " So look we have things to worry about like gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,920",
+				"to": "00:13:44,360"
+			},
+			"offsets": {
+				"from": 820920,
+				"to": 824360
+			},
+			"text": " we have cost act limits, we have stack limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,360",
+				"to": "00:13:47,680"
+			},
+			"offsets": {
+				"from": 824360,
+				"to": 827680
+			},
+			"text": " So there are a couple of ways of attacking the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,680",
+				"to": "00:13:49,880"
+			},
+			"offsets": {
+				"from": 827680,
+				"to": 829880
+			},
+			"text": " So one of them is modifying the protocol to try"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,880",
+				"to": "00:13:51,600"
+			},
+			"offsets": {
+				"from": 829880,
+				"to": 831600
+			},
+			"text": " and reduce the number of those limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,600",
+				"to": "00:13:54,560"
+			},
+			"offsets": {
+				"from": 831600,
+				"to": 834560
+			},
+			"text": " So like I have an EIP out there that basically gets rid"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,560",
+				"to": "00:13:56,600"
+			},
+			"offsets": {
+				"from": 834560,
+				"to": 836600
+			},
+			"text": " of the cost act limit and basically replaces it"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,600",
+				"to": "00:13:58,920"
+			},
+			"offsets": {
+				"from": 836600,
+				"to": 838920
+			},
+			"text": " with like a gas based limitation scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,920",
+				"to": "00:14:02,200"
+			},
+			"offsets": {
+				"from": 838920,
+				"to": 842200
+			},
+			"text": " Another thing is to basically just like put more checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,200",
+				"to": "00:14:03,800"
+			},
+			"offsets": {
+				"from": 842200,
+				"to": 843800
+			},
+			"text": " into the development environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,800",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 843800,
+				"to": 847000
+			},
+			"text": " So if for example you have code where you can't like"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:09,520"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 849520
+			},
+			"text": " let's say formally verify that it consumes less"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,520",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 849520,
+				"to": 851000
+			},
+			"text": " and some see a safe amount of gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:13,320"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 853320
+			},
+			"text": " so that's something that should be more closely"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,320",
+				"to": "00:14:15,440"
+			},
+			"offsets": {
+				"from": 853320,
+				"to": 855440
+			},
+			"text": " and look there was some things where we can't have tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,440",
+				"to": "00:14:17,720"
+			},
+			"offsets": {
+				"from": 855440,
+				"to": 857720
+			},
+			"text": " where we can't have tools to highlight."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,720",
+				"to": "00:14:21,320"
+			},
+			"offsets": {
+				"from": 857720,
+				"to": 861320
+			},
+			"text": " - So I'm gonna draw an analogy to safety critical systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,320",
+				"to": "00:14:22,960"
+			},
+			"offsets": {
+				"from": 861320,
+				"to": 862960
+			},
+			"text": " here where if you really want to build something"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,960",
+				"to": "00:14:25,360"
+			},
+			"offsets": {
+				"from": 862960,
+				"to": 865360
+			},
+			"text": " that's going in a spacecraft or something like that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,360",
+				"to": "00:14:26,880"
+			},
+			"offsets": {
+				"from": 865360,
+				"to": 866880
+			},
+			"text": " you still have to consider the hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,880",
+				"to": "00:14:29,680"
+			},
+			"offsets": {
+				"from": 866880,
+				"to": 869680
+			},
+			"text": " and you still have to consider the assembly representation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,680",
+				"to": "00:14:32,480"
+			},
+			"offsets": {
+				"from": 869680,
+				"to": 872480
+			},
+			"text": " and you really have to consider at least the whole stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,480",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 872480,
+				"to": 876000
+			},
+			"text": " So I don't think you'll, I think maybe eventually"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:38,760"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 878760
+			},
+			"text": " once we really develop these tools you'll be able to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,760",
+				"to": "00:14:41,520"
+			},
+			"offsets": {
+				"from": 878760,
+				"to": 881520
+			},
+			"text": " some sort of ignorance and abstraction of those lower levels"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,520",
+				"to": "00:14:44,080"
+			},
+			"offsets": {
+				"from": 881520,
+				"to": 884080
+			},
+			"text": " but I think it's gonna be yours personally."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,080",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 884080,
+				"to": 888000
+			},
+			"text": " - Do you think that development on new"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:50,960"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 890960
+			},
+			"text": " domain specific languages for certain types of contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,960",
+				"to": "00:14:54,240"
+			},
+			"offsets": {
+				"from": 890960,
+				"to": 894240
+			},
+			"text": " or contracts in general would aid?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,240",
+				"to": "00:14:55,560"
+			},
+			"offsets": {
+				"from": 894240,
+				"to": 895560
+			},
+			"text": " Do you think that's coming?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,560",
+				"to": "00:14:57,320"
+			},
+			"offsets": {
+				"from": 895560,
+				"to": 897320
+			},
+			"text": " That we're having more languages?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,320",
+				"to": "00:14:59,320"
+			},
+			"offsets": {
+				"from": 897320,
+				"to": 899320
+			},
+			"text": " 'Cause earlier we had there was development"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,320",
+				"to": "00:15:02,680"
+			},
+			"offsets": {
+				"from": 899320,
+				"to": 902680
+			},
+			"text": " both in Solidity and Serp and then for that part LLL."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,680",
+				"to": "00:15:05,560"
+			},
+			"offsets": {
+				"from": 902680,
+				"to": 905560
+			},
+			"text": " Now it seems that Solidity is the leading the race"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,560",
+				"to": "00:15:10,560"
+			},
+			"offsets": {
+				"from": 905560,
+				"to": 910560
+			},
+			"text": " and it's almost the canonical contract development language."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,560",
+				"to": "00:15:12,400"
+			},
+			"offsets": {
+				"from": 910560,
+				"to": 912400
+			},
+			"text": " Will there be more?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,400",
+				"to": "00:15:15,360"
+			},
+			"offsets": {
+				"from": 912400,
+				"to": 915360
+			},
+			"text": " - Well, I can speak from my perspective"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,360",
+				"to": "00:15:17,280"
+			},
+			"offsets": {
+				"from": 915360,
+				"to": 917280
+			},
+			"text": " that I hope there will be more"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,280",
+				"to": "00:15:20,600"
+			},
+			"offsets": {
+				"from": 917280,
+				"to": 920600
+			},
+			"text": " because the language like Solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,600",
+				"to": "00:15:23,200"
+			},
+			"offsets": {
+				"from": 920600,
+				"to": 923200
+			},
+			"text": " that's fairly high level is our main abstraction layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,200",
+				"to": "00:15:24,560"
+			},
+			"offsets": {
+				"from": 923200,
+				"to": 924560
+			},
+			"text": " over the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,560",
+				"to": "00:15:29,560"
+			},
+			"offsets": {
+				"from": 924560,
+				"to": 929560
+			},
+			"text": " So as developers we spend more time writing smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,560",
+				"to": "00:15:33,920"
+			},
+			"offsets": {
+				"from": 929560,
+				"to": 933920
+			},
+			"text": " in that abstraction layer and so to the extent"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,920",
+				"to": "00:15:37,960"
+			},
+			"offsets": {
+				"from": 933920,
+				"to": 937960
+			},
+			"text": " that the abstraction layer supports good security practices"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,960",
+				"to": "00:15:39,360"
+			},
+			"offsets": {
+				"from": 937960,
+				"to": 939360
+			},
+			"text": " that's going to help the whole community"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,360",
+				"to": "00:15:41,080"
+			},
+			"offsets": {
+				"from": 939360,
+				"to": 941080
+			},
+			"text": " write more secure contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,080",
+				"to": "00:15:45,840"
+			},
+			"offsets": {
+				"from": 941080,
+				"to": 945840
+			},
+			"text": " And right now I think that the convergence on Solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,840",
+				"to": "00:15:48,240"
+			},
+			"offsets": {
+				"from": 945840,
+				"to": 948240
+			},
+			"text": " is helpful to create stability in the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,240",
+				"to": "00:15:50,040"
+			},
+			"offsets": {
+				"from": 948240,
+				"to": 950040
+			},
+			"text": " but we really do need other languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,040",
+				"to": "00:15:53,960"
+			},
+			"offsets": {
+				"from": 950040,
+				"to": 953960
+			},
+			"text": " and other abstraction layers not to necessarily find"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,960",
+				"to": "00:15:58,960"
+			},
+			"offsets": {
+				"from": 953960,
+				"to": 958960
+			},
+			"text": " the ultimate one but to similar to the web community"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,960",
+				"to": "00:16:01,920"
+			},
+			"offsets": {
+				"from": 958960,
+				"to": 961920
+			},
+			"text": " to have more experimentation and have the ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,920",
+				"to": "00:16:05,320"
+			},
+			"offsets": {
+				"from": 961920,
+				"to": 965320
+			},
+			"text": " naturally evolve these different abstraction layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,320",
+				"to": "00:16:08,760"
+			},
+			"offsets": {
+				"from": 965320,
+				"to": 968760
+			},
+			"text": " So yeah, personally I would love to see other languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,760",
+				"to": "00:16:13,080"
+			},
+			"offsets": {
+				"from": 968760,
+				"to": 973080
+			},
+			"text": " and the EVMC and JIT work that we heard about yesterday"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,080",
+				"to": "00:16:17,120"
+			},
+			"offsets": {
+				"from": 973080,
+				"to": 977120
+			},
+			"text": " is really exciting in order to open up the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,120",
+				"to": "00:16:19,440"
+			},
+			"offsets": {
+				"from": 977120,
+				"to": 979440
+			},
+			"text": " - So I'm gonna play a little bit of devil's advocate on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,440",
+				"to": "00:16:22,120"
+			},
+			"offsets": {
+				"from": 979440,
+				"to": 982120
+			},
+			"text": " I don't think good languages can solve bad programmers"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,120",
+				"to": "00:16:24,960"
+			},
+			"offsets": {
+				"from": 982120,
+				"to": 984960
+			},
+			"text": " and I think that as long as you're having a Turing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,960",
+				"to": "00:16:26,800"
+			},
+			"offsets": {
+				"from": 984960,
+				"to": 986800
+			},
+			"text": " complete language that has expressiveness"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,800",
+				"to": "00:16:30,560"
+			},
+			"offsets": {
+				"from": 986800,
+				"to": 990560
+			},
+			"text": " you're gonna run into problems of some sort with the language."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,560",
+				"to": "00:16:33,760"
+			},
+			"offsets": {
+				"from": 990560,
+				"to": 993760
+			},
+			"text": " And I do think that having a small number"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,760",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 993760,
+				"to": 996000
+			},
+			"text": " of diverse languages is better than having"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:37,480"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 997480
+			},
+			"text": " a very large number of languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,480",
+				"to": "00:16:39,200"
+			},
+			"offsets": {
+				"from": 997480,
+				"to": 999200
+			},
+			"text": " because then you have more people in the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,200",
+				"to": "00:16:41,280"
+			},
+			"offsets": {
+				"from": 999200,
+				"to": 1001280
+			},
+			"text": " who can understand the language really well"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,280",
+				"to": "00:16:43,440"
+			},
+			"offsets": {
+				"from": 1001280,
+				"to": 1003440
+			},
+			"text": " and sort of audit your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,440",
+				"to": "00:16:46,160"
+			},
+			"offsets": {
+				"from": 1003440,
+				"to": 1006160
+			},
+			"text": " So for the web it's a great example."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,160",
+				"to": "00:16:48,280"
+			},
+			"offsets": {
+				"from": 1006160,
+				"to": 1008280
+			},
+			"text": " You mostly see JavaScript really in practice"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,280",
+				"to": "00:16:50,280"
+			},
+			"offsets": {
+				"from": 1008280,
+				"to": 1010280
+			},
+			"text": " for client side computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,280",
+				"to": "00:16:53,080"
+			},
+			"offsets": {
+				"from": 1010280,
+				"to": 1013080
+			},
+			"text": " And even though it's not the greatest language"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,080",
+				"to": "00:16:55,080"
+			},
+			"offsets": {
+				"from": 1013080,
+				"to": 1015080
+			},
+			"text": " people do understand it and they sort of understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,080",
+				"to": "00:16:56,960"
+			},
+			"offsets": {
+				"from": 1015080,
+				"to": 1016960
+			},
+			"text": " the common anti-patterns and that helps them"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,960",
+				"to": "00:16:59,140"
+			},
+			"offsets": {
+				"from": 1016960,
+				"to": 1019140
+			},
+			"text": " write secure code in many cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,200",
+				"to": "00:17:02,200"
+			},
+			"offsets": {
+				"from": 1020200,
+				"to": 1022200
+			},
+			"text": " To use your own example however,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,200",
+				"to": "00:17:04,080"
+			},
+			"offsets": {
+				"from": 1022200,
+				"to": 1024080
+			},
+			"text": " the transpilers that have taken off"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,080",
+				"to": "00:17:06,200"
+			},
+			"offsets": {
+				"from": 1024080,
+				"to": 1026200
+			},
+			"text": " in the last five to 10 years in the JavaScript community"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,200",
+				"to": "00:17:10,040"
+			},
+			"offsets": {
+				"from": 1026200,
+				"to": 1030040
+			},
+			"text": " have allowed the community to test ES6, ES7 features"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,040",
+				"to": "00:17:11,960"
+			},
+			"offsets": {
+				"from": 1030040,
+				"to": 1031960
+			},
+			"text": " before they're part of the core."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,960",
+				"to": "00:17:16,520"
+			},
+			"offsets": {
+				"from": 1031960,
+				"to": 1036520
+			},
+			"text": " So that's like this bottom up contribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,520",
+				"to": "00:17:18,480"
+			},
+			"offsets": {
+				"from": 1036520,
+				"to": 1038480
+			},
+			"text": " to the language and evolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,480",
+				"to": "00:17:21,160"
+			},
+			"offsets": {
+				"from": 1038480,
+				"to": 1041160
+			},
+			"text": " So it's not just the TC39 committee"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,160",
+				"to": "00:17:24,400"
+			},
+			"offsets": {
+				"from": 1041160,
+				"to": 1044400
+			},
+			"text": " that is bringing the language changes from the top down."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,400",
+				"to": "00:17:27,120"
+			},
+			"offsets": {
+				"from": 1044400,
+				"to": 1047120
+			},
+			"text": " They're certainly helping to add them to the language"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,120",
+				"to": "00:17:30,680"
+			},
+			"offsets": {
+				"from": 1047120,
+				"to": 1050680
+			},
+			"text": " but there's this bottom up effort from community members"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,680",
+				"to": "00:17:32,500"
+			},
+			"offsets": {
+				"from": 1050680,
+				"to": 1052500
+			},
+			"text": " and transpilers and so it just helps"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,500",
+				"to": "00:17:33,920"
+			},
+			"offsets": {
+				"from": 1052500,
+				"to": 1053920
+			},
+			"text": " inform it from both sides."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,920",
+				"to": "00:17:36,840"
+			},
+			"offsets": {
+				"from": 1053920,
+				"to": 1056840
+			},
+			"text": " So I would agree with you that having"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,840",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1056840,
+				"to": 1059000
+			},
+			"text": " the kind of core language offerings"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:43,520"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1063520
+			},
+			"text": " and having people develop expertise in that language"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,520",
+				"to": "00:17:45,440"
+			},
+			"offsets": {
+				"from": 1063520,
+				"to": 1065440
+			},
+			"text": " is the primary concern."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,440",
+				"to": "00:17:48,280"
+			},
+			"offsets": {
+				"from": 1065440,
+				"to": 1068280
+			},
+			"text": " But then if you take a step back and look at the ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,280",
+				"to": "00:17:50,200"
+			},
+			"offsets": {
+				"from": 1068280,
+				"to": 1070200
+			},
+			"text": " as a whole and the evolution of the patterns"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,200",
+				"to": "00:17:52,720"
+			},
+			"offsets": {
+				"from": 1070200,
+				"to": 1072720
+			},
+			"text": " and abstractions and languages that are available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,720",
+				"to": "00:17:56,040"
+			},
+			"offsets": {
+				"from": 1072720,
+				"to": 1076040
+			},
+			"text": " having multiple sources of experimentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,040",
+				"to": "00:17:58,560"
+			},
+			"offsets": {
+				"from": 1076040,
+				"to": 1078560
+			},
+			"text": " and evolution I think really helps."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,560",
+				"to": "00:18:01,120"
+			},
+			"offsets": {
+				"from": 1078560,
+				"to": 1081120
+			},
+			"text": " - Totally agree."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,120",
+				"to": "00:18:06,480"
+			},
+			"offsets": {
+				"from": 1081120,
+				"to": 1086480
+			},
+			"text": " - All right, let's ask one last question."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,480",
+				"to": "00:18:09,880"
+			},
+			"offsets": {
+				"from": 1086480,
+				"to": 1089880
+			},
+			"text": " Do you think there are any particular features"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,880",
+				"to": "00:18:14,720"
+			},
+			"offsets": {
+				"from": 1089880,
+				"to": 1094720
+			},
+			"text": " of the EVM or new opcodes or changes to the EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,720",
+				"to": "00:18:17,080"
+			},
+			"offsets": {
+				"from": 1094720,
+				"to": 1097080
+			},
+			"text": " which could be made, which could improve"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,080",
+				"to": "00:18:19,920"
+			},
+			"offsets": {
+				"from": 1097080,
+				"to": 1099920
+			},
+			"text": " the security in contracts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,920",
+				"to": "00:18:24,040"
+			},
+			"offsets": {
+				"from": 1099920,
+				"to": 1104040
+			},
+			"text": " - One thing that I really don't like about the EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,040",
+				"to": "00:18:27,120"
+			},
+			"offsets": {
+				"from": 1104040,
+				"to": 1107120
+			},
+			"text": " is the lack of distinction between calling a function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,120",
+				"to": "00:18:30,160"
+			},
+			"offsets": {
+				"from": 1107120,
+				"to": 1110160
+			},
+			"text": " sending money and sending a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,160",
+				"to": "00:18:32,240"
+			},
+			"offsets": {
+				"from": 1110160,
+				"to": 1112240
+			},
+			"text": " I think there should be some ways to access"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,240",
+				"to": "00:18:34,760"
+			},
+			"offsets": {
+				"from": 1112240,
+				"to": 1114760
+			},
+			"text": " more restrictive subsets of this functionality"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,760",
+				"to": "00:18:36,440"
+			},
+			"offsets": {
+				"from": 1114760,
+				"to": 1116440
+			},
+			"text": " where maybe you only want to send money"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,440",
+				"to": "00:18:39,800"
+			},
+			"offsets": {
+				"from": 1116440,
+				"to": 1119800
+			},
+			"text": " and allow other contracts that you're sending money to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,800",
+				"to": "00:18:43,880"
+			},
+			"offsets": {
+				"from": 1119800,
+				"to": 1123880
+			},
+			"text": " to perform only limited operations otherwise fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,880",
+				"to": "00:18:47,240"
+			},
+			"offsets": {
+				"from": 1123880,
+				"to": 1127240
+			},
+			"text": " So I think maybe that architectural concern"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,240",
+				"to": "00:18:50,200"
+			},
+			"offsets": {
+				"from": 1127240,
+				"to": 1130200
+			},
+			"text": " could use some work but in general I don't think so."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,200",
+				"to": "00:18:52,320"
+			},
+			"offsets": {
+				"from": 1130200,
+				"to": 1132320
+			},
+			"text": " I think there's a lot more work to be done"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,320",
+				"to": "00:18:55,480"
+			},
+			"offsets": {
+				"from": 1132320,
+				"to": 1135480
+			},
+			"text": " at the higher levels than at the EVM right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,480",
+				"to": "00:18:57,880"
+			},
+			"offsets": {
+				"from": 1135480,
+				"to": 1137880
+			},
+			"text": " - I have a few specific proposals where one of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,880",
+				"to": "00:19:00,640"
+			},
+			"offsets": {
+				"from": 1137880,
+				"to": 1140640
+			},
+			"text": " is as I mentioned replacing the cost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,640",
+				"to": "00:19:03,640"
+			},
+			"offsets": {
+				"from": 1140640,
+				"to": 1143640
+			},
+			"text": " replacing the cost tag limit with gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,640",
+				"to": "00:19:06,600"
+			},
+			"offsets": {
+				"from": 1143640,
+				"to": 1146600
+			},
+			"text": " one of them is the cost static proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,600",
+				"to": "00:19:10,280"
+			},
+			"offsets": {
+				"from": 1146600,
+				"to": 1150280
+			},
+			"text": " where you can make a call so that which can read"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,280",
+				"to": "00:19:12,560"
+			},
+			"offsets": {
+				"from": 1150280,
+				"to": 1152560
+			},
+			"text": " as much as it needs to but not make any state changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,560",
+				"to": "00:19:13,400"
+			},
+			"offsets": {
+				"from": 1152560,
+				"to": 1153400
+			},
+			"text": " and a few others."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,400",
+				"to": "00:19:16,720"
+			},
+			"offsets": {
+				"from": 1153400,
+				"to": 1156720
+			},
+			"text": " And I think there always can make good building blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,720",
+				"to": "00:19:19,640"
+			},
+			"offsets": {
+				"from": 1156720,
+				"to": 1159640
+			},
+			"text": " and there are different creative ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,640",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1159640,
+				"to": 1162000
+			},
+			"text": " in high level languages, very using them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:26,120"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1166120
+			},
+			"text": " But in general, the impression I've gotten"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,120",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1166120,
+				"to": 1169000
+			},
+			"text": " is that it's much more about these sort of incremental"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:31,320"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1171320
+			},
+			"text": " additions than, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,320",
+				"to": "00:19:33,320"
+			},
+			"offsets": {
+				"from": 1171320,
+				"to": 1173320
+			},
+			"text": " but if you're always substantial redesigns."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,320",
+				"to": "00:19:37,400"
+			},
+			"offsets": {
+				"from": 1173320,
+				"to": 1177400
+			},
+			"text": " - All right, I think we're running out of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,400",
+				"to": "00:19:38,600"
+			},
+			"offsets": {
+				"from": 1177400,
+				"to": 1178600
+			},
+			"text": " Is that right, Ming?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,600",
+				"to": "00:19:39,880"
+			},
+			"offsets": {
+				"from": 1178600,
+				"to": 1179880
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,880",
+				"to": "00:19:42,080"
+			},
+			"offsets": {
+				"from": 1179880,
+				"to": 1182080
+			},
+			"text": " So thank you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,080",
+				"to": "00:19:43,920"
+			},
+			"offsets": {
+				"from": 1182080,
+				"to": 1183920
+			},
+			"text": " - Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,920",
+				"to": "00:19:46,500"
+			},
+			"offsets": {
+				"from": 1183920,
+				"to": 1186500
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,500",
+				"to": "00:19:49,080"
+			},
+			"offsets": {
+				"from": 1186500,
+				"to": 1189080
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,080",
+				"to": "00:19:51,660"
+			},
+			"offsets": {
+				"from": 1189080,
+				"to": 1191660
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

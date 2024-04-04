@@ -1,0 +1,6159 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:13,500"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 13500
+			},
+			"text": " So I'm a watchman."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,500",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 13500,
+				"to": 17000
+			},
+			"text": " And I'm going to be talking about some work that I've been doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 25000
+			},
+			"text": " What's that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 30000
+			},
+			"text": " I work with the organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 32000
+			},
+			"text": " It's not particularly glamorous work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:33,600"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 33600
+			},
+			"text": " but it's kind of necessary work to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,600",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 33600,
+				"to": 35000
+			},
+			"text": " like what the mixer is doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 37000
+			},
+			"text": " What do we want to do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 40000
+			},
+			"text": " As you would like, making sure we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 44000
+			},
+			"text": " a kind of a decent flash failure network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 48000
+			},
+			"text": " I'll talk a little bit about the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 50000
+			},
+			"text": " Probably what's about some of your shamanic design"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 51000
+			},
+			"text": " that you saw that was familiar with."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 54000
+			},
+			"text": " But now I've had to talk through what we've built so far"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 58000
+			},
+			"text": " and then look at the next subject."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 63000
+			},
+			"text": " OK, so this is a very primitive diagram"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 65000
+			},
+			"text": " about the non-chimics."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 68000
+			},
+			"text": " I'm actually really excited about this primitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 71000
+			},
+			"text": " in particular because it's one of those things"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 74000
+			},
+			"text": " that is pretty obviously different on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 76000
+			},
+			"text": " in terms of on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 81000
+			},
+			"text": " In privacy in particular, you really don't want people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 84000
+			},
+			"text": " to see what you're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 86000
+			},
+			"text": " Trusting someone to the mixer of mine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 89000
+			},
+			"text": " like trusting a Osaka ballad or something like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 91000
+			},
+			"text": " makes for a completely different user experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 93000
+			},
+			"text": " as something that is completely trustless."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 96000
+			},
+			"text": " You're like, \"Kining the crowd, kind of influence it.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 100000
+			},
+			"text": " So just real quick overview of how these things work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 102000
+			},
+			"text": " You put money into the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 104000
+			},
+			"text": " and then we'll say a bunch of other people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 105000
+			},
+			"text": " who put money into the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 108000
+			},
+			"text": " So you are a PC named the \"Kelania.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 111000
+			},
+			"text": " And then later it's a prime firm, another address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 112000
+			},
+			"text": " and generate a proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 114000
+			},
+			"text": " As your knowledge proof, it says you are one of those people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 115000
+			},
+			"text": " who put money into the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 116000
+			},
+			"text": " That's the English one."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 118000
+			},
+			"text": " And that entitles me to some of that money."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 123000
+			},
+			"text": " And so to someone looking, you know, someone doing like a chain analysis"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 125000
+			},
+			"text": " or something like that, looking at the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 127000
+			},
+			"text": " and trying to analyze like, who's the money you use?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 131000
+			},
+			"text": " They just seem four or ten or a thousand going in and a thousand going out."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 133000
+			},
+			"text": " They can't use your switch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136000
+			},
+			"text": " So, pretty, pretty powerful primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 142000
+			},
+			"text": " So real quick overview of why it relays at all,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 145000
+			},
+			"text": " or even necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 150000
+			},
+			"text": " So one of the main things that I've heard that people want to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154000
+			},
+			"text": " these kinds of things is funding addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157000
+			},
+			"text": " that are not associated with any of the addresses in current mail"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 160000
+			},
+			"text": " with e-mails so they can interact with the network with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 163000
+			},
+			"text": " So in this case, I'll say A is one address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 165000
+			},
+			"text": " A is one address, another address, one a funding crime."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 170000
+			},
+			"text": " And so you put money in, A prime then has to withdraw the money with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 175000
+			},
+			"text": " It's even all screwed, but if they have zero e, how would they be against it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 179000
+			},
+			"text": " And so that is where realers come in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 182000
+			},
+			"text": " This also isn't like a new idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 187000
+			},
+			"text": " It's like many projects talk about meta transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 189000
+			},
+			"text": " for interaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 192000
+			},
+			"text": " The idea is for certain things you might want a third party"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 194000
+			},
+			"text": " to run transactions for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 199000
+			},
+			"text": " So this is what that new transaction logo looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 204000
+			},
+			"text": " So A, it follows the name of the contract, presents a signed transaction to the realer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 207000
+			},
+			"text": " then runs the transaction on their behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 211000
+			},
+			"text": " And then over the course, that transaction money comes out to A prime,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 214000
+			},
+			"text": " and not pictured, but some of that money might come out as a particular realer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 219000
+			},
+			"text": " It's like a reward for the service to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 228000
+			},
+			"text": " So this is kind of the case I'm trying to make, is that the central realer defeats part of the purpose of a trustless mixer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " And a lot of the projects, all of the implementers, some of them here right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 236000
+			},
+			"text": " are obviously shipping with a single central mixer, which is, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 245000
+			},
+			"text": " when you're shipping an MDB, you kind of want to ship the parse that you really want to test initially."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 250000
+			},
+			"text": " So it makes sense, maybe not to do like a fully featured thing at launch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 256000
+			},
+			"text": " but an actual, like a single realer has two problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 264000
+			},
+			"text": " So one, from a user perspective, if you know that the company running the realer is the same as the company,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 268000
+			},
+			"text": " kind of like serving the client code for interacting with the mixer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 273000
+			},
+			"text": " there's no way for you to know that there isn't some communication going on there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 278000
+			},
+			"text": " even more kind of fairly silly than the realer there's some communication going on behind the scenes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 282000
+			},
+			"text": " like from the web server certain client code in the realer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 288000
+			},
+			"text": " and if there's some pattern in how the time between the positive and the drop in the client code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 291000
+			},
+			"text": " then the realer might be able to figure out who you are."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 296000
+			},
+			"text": " Another thing is obviously if you have a single realer for serving a mixer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 301000
+			},
+			"text": " there's issues of censorship, there's issues with artificially high fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 306000
+			},
+			"text": " So ideally, we would have many realer serving issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 311000
+			},
+			"text": " So that is what we're trying to solve this sort of guy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 316000
+			},
+			"text": " It's, we're currently in the process of integrating with one mixer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 319000
+			},
+			"text": " We're looking at integrating with everyone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 322000
+			},
+			"text": " So it's like pretty, I would say pretty alpha stage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 330000
+			},
+			"text": " but the ideas are that like anyone, like you or I could just run like a docker container that uses a realer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 333000
+			},
+			"text": " which is immediately the part of this network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 338000
+			},
+			"text": " Any existing mixer doesn't need to change their contracts any way to use this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 345000
+			},
+			"text": " and just has to change their client code, like change, literally install an MPM package and change on the client code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 352000
+			},
+			"text": " So this part, I'll kind of go over the main parts of what this is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 358000
+			},
+			"text": " I might try to actually speak through this because, I don't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 362000
+			},
+			"text": " but I'm just going to talk a little technical and leave more time for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 368000
+			},
+			"text": " But this is kind of like analog to previous diagram where you looked at where you had like someone who's trying to interact with the mixer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 371000
+			},
+			"text": " you know, the mixer kind of like a realer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 375000
+			},
+			"text": " And we're adding these four components."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 383000
+			},
+			"text": " The really key parts are the client, which is like an MPM package that you can put in the wallet or mixer client code."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 390000
+			},
+			"text": " And the main one, which is just like kind of the server of the realer essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 397000
+			},
+			"text": " And then two more contracts that are necessary, but sort of serve as a discovery mechanism for realers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 400000
+			},
+			"text": " as well as like transaction boring."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 407000
+			},
+			"text": " These, we have like our first, we've kind of been doing some research into the right way to do reputation in particular."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 415000
+			},
+			"text": " And so we have like the first information to stuff up. We're also talking with like the gas station network to see if we can integrate the family."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 420000
+			},
+			"text": " And they actually is kind of filling that role as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 424000
+			},
+			"text": " So first, talk quickly about the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 430000
+			},
+			"text": " So the client's main role is a client-related, so communication for adaptation contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 444000
+			},
+			"text": " And so the idea is that like let's say this is a client, this is a user, so this is also where like let's say the wallet code or the mixer client code in your browser on the mobile."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 454000
+			},
+			"text": " And so through our library it talks, it figures out where realers are and it allows you to submit transactions to those boards."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 460000
+			},
+			"text": " And this is like structured pretty simply in the get-over-go, you can see it's just like an NPM package."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 465000
+			},
+			"text": " And right now I have the example of getting the best realer idea, of course, like the border as or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 467000
+			},
+			"text": " Doesn't really matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 471000
+			},
+			"text": " But that's designed to be very, very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 475000
+			},
+			"text": " So next is the payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 486000
+			},
+			"text": " So really what we're going to share like a reference sort of API that this should expose to properly communicate with the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 492000
+			},
+			"text": " We were also releasing like reference to the move nation of this that does some like fancy stuff around transaction simulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 498000
+			},
+			"text": " But this is something that technically like anyone can create that custom version of."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 509000
+			},
+			"text": " If this becomes like a high volume event, you'd imagine that people would want to create like really high performance things that look at the network and make sure you're not getting from running stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 513000
+			},
+			"text": " Right now we do some very basic like transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 520000
+			},
+			"text": " So basically what happens in the current version of this code is for any transaction is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 529000
+			},
+			"text": " a signalized running that transaction sees how much running that transaction changes your own e-balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 535000
+			},
+			"text": " And if it's like beyond a certain amount, basically like something."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 539000
+			},
+			"text": " And I am super simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 546000
+			},
+			"text": " If you have Docker installed, it's literally destroying a few commands to run that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 554000
+			},
+			"text": " This is designed so that like anyone could run it would be really cool if like granted people run relayers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 561000
+			},
+			"text": " Oh yeah, this is, these are the two critical pieces for this spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 575000
+			},
+			"text": " There's some other routes, but basically like for given transaction like you need to tell clients what the new charge is and you need to tell them how you can tell them how you can make sure the transaction is available."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 584000
+			},
+			"text": " Okay, and so finally this last piece which is a forward and reputation background."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 601000
+			},
+			"text": " So see I hear that there's the reason we wanted to start, we want to kind of like create this set of abstractions that we can talk about with something else because it's nice to have like trust in discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 607000
+			},
+			"text": " Some like kind of understood mechanism of a failure discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 613000
+			},
+			"text": " And this is something we can play with."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 616000
+			},
+			"text": " Yeah, just to use the order contract here simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 625000
+			},
+			"text": " It just literally forwards, forwards calls to the application contract and the state's commensurate."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 628000
+			},
+			"text": " Yeah, and the reputation contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 633000
+			},
+			"text": " Yeah, I can talk a lot about this. I don't think I will right now as we want to talk about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 639000
+			},
+			"text": " But there's an ETH research post that I published a very white hat on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 642000
+			},
+			"text": " So just Google burn really just right here in the research."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 644000
+			},
+			"text": " You can kind of see are you there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 659000
+			},
+			"text": " Broadly it's like the more either you've burned in service of life, in service of real land transactions, the higher reputation is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 663000
+			},
+			"text": " But there's a lot of parameters that can be there in something or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 667000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 673000
+			},
+			"text": " So finally, the next steps are, you know, take part like one of my friends here is Epcot."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 677000
+			},
+			"text": " Talk to a bunch of mixer teams. Talk to a bunch of wall teams."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 682000
+			},
+			"text": " See how we can integrate this into the existing flows."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 685000
+			},
+			"text": " And I'm talking of the gas station networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 689000
+			},
+			"text": " Some other kids are actually going to charge me well."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 690000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 693000
+			},
+			"text": " So that's me on Twitter at the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 698000
+			},
+			"text": " And that is where the repo is for surrogate."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 701000
+			},
+			"text": " Probably."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 703000
+			},
+			"text": " I'm not 10 for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 708000
+			},
+			"text": " All the other brothers that are front managers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 712000
+			},
+			"text": " What do you mean that for like a relay or from any of the front managers from someone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 719000
+			},
+			"text": " Yeah, so I can do best of you because I'm how you pay back to the link we have for the service."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 724000
+			},
+			"text": " Yeah, so I have some people that are on production as a hardware you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 733000
+			},
+			"text": " And if you're returning to the message to it, then the front manager is incentivized to get it because he wants to get it from around you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 736000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 742000
+			},
+			"text": " There's sort of a tradeoff between, yeah, something we've thought about a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 751000
+			},
+			"text": " I think the easy answer is you'd expect that to factor into the free market is kind of part of the cost of any business around your retirement."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 760000
+			},
+			"text": " I always want to call the protect because on the first day when we were on the standard cash, we didn't even think about what we thought about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 762000
+			},
+			"text": " So we got from the front like on the first level."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 764000
+			},
+			"text": " Sorry, we got from the front."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 770000
+			},
+			"text": " So then we went on the first trial and launched the mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 776000
+			},
+			"text": " So we got from front by the way, so that's why we're like, okay, so we've not just a problem, so that's why it's easy to start approved."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 778000
+			},
+			"text": " Oh, oh, I think you're saying."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 788000
+			},
+			"text": " Well, like the, so I didn't really go into detail on this, but the address of the recipient goes into the pre-front."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 789000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 790000
+			},
+			"text": " So the real area."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 791000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 794000
+			},
+			"text": " So because the address of the real area is one of the inputs in ours."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 795000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 796000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 797000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 798000
+			},
+			"text": " You can't."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 799000
+			},
+			"text": " You can't."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 802000
+			},
+			"text": " I didn't know exactly what you literally can't from our own."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 803000
+			},
+			"text": " I understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 804000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 805000
+			},
+			"text": " I understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 805000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 806000
+			},
+			"text": " So you're losing the same protection."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 820000
+			},
+			"text": " So that means you have to design a smart private way that moves the decoy, the security approach, prevent from trying to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:43,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 823000
+			},
+			"text": " Because in that, we have to help the address on the real way."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 823000,
+				"to": 824000
+			},
+			"text": " That's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 829000
+			},
+			"text": " And so that can exist in the proxy contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 830000
+			},
+			"text": " Yeah, surely."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 831000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 832000
+			},
+			"text": " That's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 833000
+			},
+			"text": " That's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 834000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 835000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 836000
+			},
+			"text": " That's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 837000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 848000
+			},
+			"text": " So, if I'm a relayer, and I'll, I'll, I say I'll relay your transaction, but I don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 851000
+			},
+			"text": " And what, what happened today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 852000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 853000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 857000
+			},
+			"text": " So this is, there's, there's actually another interesting trade out here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 871000
+			},
+			"text": " So like in designing a client logic, you can, you can either broadcast to like every relayer, and then relayers kind of like a repress, or you can broadcast to one relayer and then a client's kind of a risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 881000
+			},
+			"text": " And there's, you know, a spectrum of like choices and how you choose to kind of like, like your broadcast strategy, essentially, a retry strategy that lie along that spectrum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 884000
+			},
+			"text": " We are opting towards, into some limitation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 889000
+			},
+			"text": " This, this is open to discussion to protect the client experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 894000
+			},
+			"text": " So the client logic by default will try a ton of relayers, and then like retry."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 900000
+			},
+			"text": " So like there's more, a little bit of risk that relayers get screwed, but we'd rather be competing effectively, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 902000
+			},
+			"text": " Because for us, if it can lose the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 907000
+			},
+			"text": " Rather push the competition with the relayers and make it a little more expensive to them than make the client experience worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 914000
+			},
+			"text": " But like the, the really, the way it completely solved the problem is just like, started to everyone immediately."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 914000
+			},
+			"text": " But then the original, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real, the real,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 944000
+			},
+			"text": " But then the, the risk will be, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every, every,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 974000
+			},
+			"text": " And then the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 988000
+			},
+			"text": " Yeah, the way you're grateful to just not share your stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:42,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 1002000
+			},
+			"text": " So if you say the approach you're going is the feeling of broadcast, the transaction is something I want to do to all the relayers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1002000,
+				"to": 1007000
+			},
+			"text": " So how is this going to work? Because every layer can have a different fee, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1008000
+			},
+			"text": " Because they want to charge for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1011000
+			},
+			"text": " No, basically the only one where we'll succeed and we'll just re-wire."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1019000
+			},
+			"text": " Yeah, I know, but I as a customer, I mean every layer charges a different fee, and they choose to get a one, choose, they want it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1031000
+			},
+			"text": " But then if I just broadcast to everybody, am I accepting like, any fee, or will only be lowest by a range, then I'm willing to pay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1040000
+			},
+			"text": " Yeah, I think there's like a bunch, like you might say there's some, some credit you can define for each success every Friday."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1047000
+			},
+			"text": " And depending on kind of like how restrictive or how restrictive that product is, like how much you pay and how much you wait changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1050000
+			},
+			"text": " So we might be feeling very broke about the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1054000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1063000
+			},
+			"text": " Any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1065000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1070000
+			},
+			"text": " How do you move the strategy for reputation on a system?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1073000
+			},
+			"text": " Yeah, that's really tricky."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1077000
+			},
+			"text": " Not completely obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1082000
+			},
+			"text": " Yes, that's my short answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1092000
+			},
+			"text": " One mechanism is to just kind of like have like the kind of naive mechanism that we've been thinking about sort of like this, just how can it be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1097000
+			},
+			"text": " Probably just burning that using some other way."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1108000
+			},
+			"text": " So, what I'll be saying is that only you can strap the amount of the membership fee times the number of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1111000
+			},
+			"text": " So, do you use a number of people?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1116000
+			},
+			"text": " Do you use a reputation as a mechanism to choose which way we're going to have to go?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1118000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1125000
+			},
+			"text": " But how then like the other like newlywares will come in and take the one."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1128000
+			},
+			"text": " Three-wares, we're supposed to put some top order."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:52,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1132000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,000",
+				"to": "00:18:55,000"
+			},
+			"offsets": {
+				"from": 1132000,
+				"to": 1135000
+			},
+			"text": " There is a tendency."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,000",
+				"to": "00:19:02,000"
+			},
+			"offsets": {
+				"from": 1135000,
+				"to": 1142000
+			},
+			"text": " I guess one thing you could do. So right now, this is certainly a challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1142000,
+				"to": 1147000
+			},
+			"text": " If you've been around for a long time, there's a higher chance that you can discover the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:08,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1148000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1148000,
+				"to": 1157000
+			},
+			"text": " But one thing that you could do is have like some ability and kind of like rehab when you're like your entrance fee or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1167000
+			},
+			"text": " Or maybe like you can use a re-wearer, a petition mechanism, but not like every request would use that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:33,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1173000
+			},
+			"text": " Re-wear your petition points to choose a re-wear. So, you know, if you can do some randomness."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1173000,
+				"to": 1176000
+			},
+			"text": " Some, some, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1181000
+			},
+			"text": " Yeah, you can definitely just put that in force and decline."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1184000
+			},
+			"text": " Yeah, that's basically the beach from Algara."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:49,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1189000
+			},
+			"text": " And then you choose the new plan to sign up at night school."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1189000,
+				"to": 1191000
+			},
+			"text": " Yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1193000
+			},
+			"text": " Oh, you can just take some randomness."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:55,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1195000
+			},
+			"text": " Exactly. It's in the plan."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1195000,
+				"to": 1197000
+			},
+			"text": " Yeah, it's the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1200000
+			},
+			"text": " Standard, I think, also."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1207000
+			},
+			"text": " I'm not sure what slide number it was, but there was like a representation contract slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1210000
+			},
+			"text": " Could you maybe still explain it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,000",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1210000,
+				"to": 1211000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1216000
+			},
+			"text": " Yeah, yeah, yeah. So, I'm sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1228000
+			},
+			"text": " Yeah, so, again, this is, this is, I kind of went over these a little quickly partially because we have our initial implementation, but this is something that we're exploring swabbing out."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1234000
+			},
+			"text": " Or maybe in like, um, boxing some other system testing or vacation, like gasation summer."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:40,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1240000
+			},
+			"text": " But what we've implemented is, uh, there's like a portion of each relay that you can choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,000",
+				"to": "00:20:42,000"
+			},
+			"offsets": {
+				"from": 1240000,
+				"to": 1242000
+			},
+			"text": " The relay that you can choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1242000,
+				"to": 1243000
+			},
+			"text": " The relay that you can choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:46,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1246000
+			},
+			"text": " The portability to relay your feet with the relay you can choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,000",
+				"to": "00:20:53,000"
+			},
+			"offsets": {
+				"from": 1246000,
+				"to": 1253000
+			},
+			"text": " And then the reputation is just a function of the number of times that you've relayed and the total amount they've learned."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,000",
+				"to": "00:20:57,000"
+			},
+			"offsets": {
+				"from": 1253000,
+				"to": 1257000
+			},
+			"text": " Good."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,000",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1257000,
+				"to": 1263000
+			},
+			"text": " And the most important question is about your relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1263000,
+				"to": 1264000
+			},
+			"text": " Almost production."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1266000
+			},
+			"text": " It's very close."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:07,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1267000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1267000,
+				"to": 1270000
+			},
+			"text": " I'm left from health pressure."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:11,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1271000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,000",
+				"to": "00:21:12,000"
+			},
+			"offsets": {
+				"from": 1271000,
+				"to": 1272000
+			},
+			"text": " Of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,000",
+				"to": "00:21:16,000"
+			},
+			"offsets": {
+				"from": 1272000,
+				"to": 1276000
+			},
+			"text": " I think by the end of the month."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,000",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1276000,
+				"to": 1277000
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,000",
+				"to": "00:21:18,000"
+			},
+			"offsets": {
+				"from": 1277000,
+				"to": 1278000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,000",
+				"to": "00:21:22,000"
+			},
+			"offsets": {
+				"from": 1278000,
+				"to": 1282000
+			},
+			"text": " I mean, we're kind of like working with the guy like you and the other mixed air renditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,000",
+				"to": "00:21:23,000"
+			},
+			"offsets": {
+				"from": 1282000,
+				"to": 1283000
+			},
+			"text": " Like in log staff."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,000",
+				"to": "00:21:25,000"
+			},
+			"offsets": {
+				"from": 1283000,
+				"to": 1285000
+			},
+			"text": " In the short distance."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,000",
+				"to": "00:21:28,000"
+			},
+			"offsets": {
+				"from": 1285000,
+				"to": 1288000
+			},
+			"text": " I think about all light, you guys are already launched."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,000",
+				"to": "00:21:30,000"
+			},
+			"offsets": {
+				"from": 1288000,
+				"to": 1290000
+			},
+			"text": " You're already launched."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,000",
+				"to": "00:21:31,000"
+			},
+			"offsets": {
+				"from": 1290000,
+				"to": 1291000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,000",
+				"to": "00:21:34,000"
+			},
+			"offsets": {
+				"from": 1291000,
+				"to": 1294000
+			},
+			"text": " How are you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,000",
+				"to": "00:21:38,000"
+			},
+			"offsets": {
+				"from": 1294000,
+				"to": 1298000
+			},
+			"text": " I really think we'll be the biggest user of the industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,000",
+				"to": "00:21:39,000"
+			},
+			"offsets": {
+				"from": 1298000,
+				"to": 1299000
+			},
+			"text": " Thanks, sir."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,000",
+				"to": "00:21:40,000"
+			},
+			"offsets": {
+				"from": 1299000,
+				"to": 1300000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,000",
+				"to": "00:21:41,000"
+			},
+			"offsets": {
+				"from": 1300000,
+				"to": 1301000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,000",
+				"to": "00:21:42,000"
+			},
+			"offsets": {
+				"from": 1301000,
+				"to": 1302000
+			},
+			"text": " Specifically here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1302000,
+				"to": 1303000
+			},
+			"text": " The big question."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:44,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1304000
+			},
+			"text": " Yes, specifically."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,000",
+				"to": "00:21:47,000"
+			},
+			"offsets": {
+				"from": 1304000,
+				"to": 1307000
+			},
+			"text": " I'm happy to tell you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,000",
+				"to": "00:21:49,000"
+			},
+			"offsets": {
+				"from": 1307000,
+				"to": 1309000
+			},
+			"text": " Everyone's sending money."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1309000,
+				"to": 1311000
+			},
+			"text": " Do you like that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:52,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1312000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,000",
+				"to": "00:21:57,000"
+			},
+			"offsets": {
+				"from": 1312000,
+				"to": 1317000
+			},
+			"text": " Like when you send ease or die or whatever, wallets should just be falled."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,000",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1317000,
+				"to": 1318000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:22:03,000"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1323000
+			},
+			"text": " You're sending, like, whoever's the ekson on or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,000",
+				"to": "00:22:08,000"
+			},
+			"offsets": {
+				"from": 1323000,
+				"to": 1328000
+			},
+			"text": " You're talking about like a little tricky, which is that the, and I'm being said is defined"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,000",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1328000,
+				"to": 1330000
+			},
+			"text": " by like how much you're sending."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1336000
+			},
+			"text": " And so the reality is like if you're sending, like say 10,000, your product is probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1340000
+			},
+			"text": " not going to ever be a large amount of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:24,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1344000
+			},
+			"text": " And so there's going to be some, my guess is there going to be some like multi-modal"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,000",
+				"to": "00:22:31,000"
+			},
+			"offsets": {
+				"from": 1344000,
+				"to": 1351000
+			},
+			"text": " distribution around like which specific like, and I'm being said sort of like a really popular."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,000",
+				"to": "00:22:32,000"
+			},
+			"offsets": {
+				"from": 1351000,
+				"to": 1352000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,000",
+				"to": "00:22:33,000"
+			},
+			"offsets": {
+				"from": 1352000,
+				"to": 1353000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,000",
+				"to": "00:22:34,000"
+			},
+			"offsets": {
+				"from": 1353000,
+				"to": 1354000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,000",
+				"to": "00:22:35,000"
+			},
+			"offsets": {
+				"from": 1354000,
+				"to": 1355000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,000",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1355000,
+				"to": 1356000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1357000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:38,000"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1358000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,000",
+				"to": "00:22:39,000"
+			},
+			"offsets": {
+				"from": 1358000,
+				"to": 1359000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,000",
+				"to": "00:22:40,000"
+			},
+			"offsets": {
+				"from": 1359000,
+				"to": 1360000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,000",
+				"to": "00:22:41,000"
+			},
+			"offsets": {
+				"from": 1360000,
+				"to": 1361000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,000",
+				"to": "00:22:42,000"
+			},
+			"offsets": {
+				"from": 1361000,
+				"to": 1362000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1362000,
+				"to": 1363000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1364000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:45,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1365000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,000",
+				"to": "00:22:46,000"
+			},
+			"offsets": {
+				"from": 1365000,
+				"to": 1366000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,000",
+				"to": "00:22:47,000"
+			},
+			"offsets": {
+				"from": 1366000,
+				"to": 1367000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,000",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1367000,
+				"to": 1368000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1369000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:50,000"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1370000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,000",
+				"to": "00:22:51,000"
+			},
+			"offsets": {
+				"from": 1370000,
+				"to": 1371000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,000",
+				"to": "00:22:52,000"
+			},
+			"offsets": {
+				"from": 1371000,
+				"to": 1372000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1372000,
+				"to": 1373000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:22:54,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1374000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,000",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1374000,
+				"to": 1375000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:22:56,000"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1376000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,000",
+				"to": "00:22:57,000"
+			},
+			"offsets": {
+				"from": 1376000,
+				"to": 1377000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,000",
+				"to": "00:22:58,000"
+			},
+			"offsets": {
+				"from": 1377000,
+				"to": 1378000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,000",
+				"to": "00:22:59,000"
+			},
+			"offsets": {
+				"from": 1378000,
+				"to": 1379000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1379000,
+				"to": 1380000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:01,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1381000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1381000,
+				"to": 1382000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:03,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1383000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,000",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1383000,
+				"to": 1384000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:05,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1385000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,000",
+				"to": "00:23:06,000"
+			},
+			"offsets": {
+				"from": 1385000,
+				"to": 1386000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,000",
+				"to": "00:23:07,000"
+			},
+			"offsets": {
+				"from": 1386000,
+				"to": 1387000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,000",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1387000,
+				"to": 1388000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:09,000"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1389000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1389000,
+				"to": 1390000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1391000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:12,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1392000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,000",
+				"to": "00:23:13,000"
+			},
+			"offsets": {
+				"from": 1392000,
+				"to": 1393000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,000",
+				"to": "00:23:14,000"
+			},
+			"offsets": {
+				"from": 1393000,
+				"to": 1394000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1394000,
+				"to": 1395000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:16,000"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1396000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,000",
+				"to": "00:23:17,000"
+			},
+			"offsets": {
+				"from": 1396000,
+				"to": 1397000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,000",
+				"to": "00:23:18,000"
+			},
+			"offsets": {
+				"from": 1397000,
+				"to": 1398000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,000",
+				"to": "00:23:19,000"
+			},
+			"offsets": {
+				"from": 1398000,
+				"to": 1399000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,000",
+				"to": "00:23:20,000"
+			},
+			"offsets": {
+				"from": 1399000,
+				"to": 1400000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,000",
+				"to": "00:23:21,000"
+			},
+			"offsets": {
+				"from": 1400000,
+				"to": 1401000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,000",
+				"to": "00:23:22,000"
+			},
+			"offsets": {
+				"from": 1401000,
+				"to": 1402000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,000",
+				"to": "00:23:23,000"
+			},
+			"offsets": {
+				"from": 1402000,
+				"to": 1403000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,000",
+				"to": "00:23:24,000"
+			},
+			"offsets": {
+				"from": 1403000,
+				"to": 1404000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,000",
+				"to": "00:23:25,000"
+			},
+			"offsets": {
+				"from": 1404000,
+				"to": 1405000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,000",
+				"to": "00:23:26,000"
+			},
+			"offsets": {
+				"from": 1405000,
+				"to": 1406000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1406000,
+				"to": 1407000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:28,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1408000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,000",
+				"to": "00:23:29,000"
+			},
+			"offsets": {
+				"from": 1408000,
+				"to": 1409000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,000",
+				"to": "00:23:30,000"
+			},
+			"offsets": {
+				"from": 1409000,
+				"to": 1410000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,000",
+				"to": "00:23:31,000"
+			},
+			"offsets": {
+				"from": 1410000,
+				"to": 1411000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,000",
+				"to": "00:23:32,000"
+			},
+			"offsets": {
+				"from": 1411000,
+				"to": 1412000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,000",
+				"to": "00:23:33,000"
+			},
+			"offsets": {
+				"from": 1412000,
+				"to": 1413000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,000",
+				"to": "00:23:34,000"
+			},
+			"offsets": {
+				"from": 1413000,
+				"to": 1414000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,000",
+				"to": "00:23:35,000"
+			},
+			"offsets": {
+				"from": 1414000,
+				"to": 1415000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,000",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1415000,
+				"to": 1416000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:37,000"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1417000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,000",
+				"to": "00:23:38,000"
+			},
+			"offsets": {
+				"from": 1417000,
+				"to": 1418000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1418000,
+				"to": 1419000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:40,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1420000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,000",
+				"to": "00:23:41,000"
+			},
+			"offsets": {
+				"from": 1420000,
+				"to": 1421000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,000",
+				"to": "00:23:42,000"
+			},
+			"offsets": {
+				"from": 1421000,
+				"to": 1422000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,000",
+				"to": "00:23:43,000"
+			},
+			"offsets": {
+				"from": 1422000,
+				"to": 1423000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,000",
+				"to": "00:23:44,000"
+			},
+			"offsets": {
+				"from": 1423000,
+				"to": 1424000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,000",
+				"to": "00:23:45,000"
+			},
+			"offsets": {
+				"from": 1424000,
+				"to": 1425000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,000",
+				"to": "00:23:46,000"
+			},
+			"offsets": {
+				"from": 1425000,
+				"to": 1426000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,000",
+				"to": "00:23:47,000"
+			},
+			"offsets": {
+				"from": 1426000,
+				"to": 1427000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,000",
+				"to": "00:23:48,000"
+			},
+			"offsets": {
+				"from": 1427000,
+				"to": 1428000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,000",
+				"to": "00:23:49,000"
+			},
+			"offsets": {
+				"from": 1428000,
+				"to": 1429000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,000",
+				"to": "00:23:50,000"
+			},
+			"offsets": {
+				"from": 1429000,
+				"to": 1430000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,000",
+				"to": "00:23:51,000"
+			},
+			"offsets": {
+				"from": 1430000,
+				"to": 1431000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,000",
+				"to": "00:23:52,000"
+			},
+			"offsets": {
+				"from": 1431000,
+				"to": 1432000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,000",
+				"to": "00:23:53,000"
+			},
+			"offsets": {
+				"from": 1432000,
+				"to": 1433000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,000",
+				"to": "00:23:54,000"
+			},
+			"offsets": {
+				"from": 1433000,
+				"to": 1434000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,000",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1434000,
+				"to": 1435000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:23:56,000"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1436000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,000",
+				"to": "00:23:57,000"
+			},
+			"offsets": {
+				"from": 1436000,
+				"to": 1437000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,000",
+				"to": "00:23:58,000"
+			},
+			"offsets": {
+				"from": 1437000,
+				"to": 1438000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,000",
+				"to": "00:23:59,000"
+			},
+			"offsets": {
+				"from": 1438000,
+				"to": 1439000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1439000,
+				"to": 1440000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:01,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1441000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,000",
+				"to": "00:24:02,000"
+			},
+			"offsets": {
+				"from": 1441000,
+				"to": 1442000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,000",
+				"to": "00:24:03,000"
+			},
+			"offsets": {
+				"from": 1442000,
+				"to": 1443000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,000",
+				"to": "00:24:04,000"
+			},
+			"offsets": {
+				"from": 1443000,
+				"to": 1444000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,000",
+				"to": "00:24:05,000"
+			},
+			"offsets": {
+				"from": 1444000,
+				"to": 1445000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,000",
+				"to": "00:24:06,000"
+			},
+			"offsets": {
+				"from": 1445000,
+				"to": 1446000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,000",
+				"to": "00:24:07,000"
+			},
+			"offsets": {
+				"from": 1446000,
+				"to": 1447000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,000",
+				"to": "00:24:08,000"
+			},
+			"offsets": {
+				"from": 1447000,
+				"to": 1448000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,000",
+				"to": "00:24:09,000"
+			},
+			"offsets": {
+				"from": 1448000,
+				"to": 1449000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,000",
+				"to": "00:24:10,000"
+			},
+			"offsets": {
+				"from": 1449000,
+				"to": 1450000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,000",
+				"to": "00:24:11,000"
+			},
+			"offsets": {
+				"from": 1450000,
+				"to": 1451000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,000",
+				"to": "00:24:12,000"
+			},
+			"offsets": {
+				"from": 1451000,
+				"to": 1452000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,000",
+				"to": "00:24:13,000"
+			},
+			"offsets": {
+				"from": 1452000,
+				"to": 1453000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,000",
+				"to": "00:24:14,000"
+			},
+			"offsets": {
+				"from": 1453000,
+				"to": 1454000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,000",
+				"to": "00:24:15,000"
+			},
+			"offsets": {
+				"from": 1454000,
+				"to": 1455000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,000",
+				"to": "00:24:16,000"
+			},
+			"offsets": {
+				"from": 1455000,
+				"to": 1456000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,000",
+				"to": "00:24:17,000"
+			},
+			"offsets": {
+				"from": 1456000,
+				"to": 1457000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,000",
+				"to": "00:24:18,000"
+			},
+			"offsets": {
+				"from": 1457000,
+				"to": 1458000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,000",
+				"to": "00:24:19,000"
+			},
+			"offsets": {
+				"from": 1458000,
+				"to": 1459000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,000",
+				"to": "00:24:20,000"
+			},
+			"offsets": {
+				"from": 1459000,
+				"to": 1460000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,000",
+				"to": "00:24:21,000"
+			},
+			"offsets": {
+				"from": 1460000,
+				"to": 1461000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,000",
+				"to": "00:24:22,000"
+			},
+			"offsets": {
+				"from": 1461000,
+				"to": 1462000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,000",
+				"to": "00:24:23,000"
+			},
+			"offsets": {
+				"from": 1462000,
+				"to": 1463000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,000",
+				"to": "00:24:24,000"
+			},
+			"offsets": {
+				"from": 1463000,
+				"to": 1464000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,000",
+				"to": "00:24:25,000"
+			},
+			"offsets": {
+				"from": 1464000,
+				"to": 1465000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,000",
+				"to": "00:24:26,000"
+			},
+			"offsets": {
+				"from": 1465000,
+				"to": 1466000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,000",
+				"to": "00:24:27,000"
+			},
+			"offsets": {
+				"from": 1466000,
+				"to": 1467000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,000",
+				"to": "00:24:28,000"
+			},
+			"offsets": {
+				"from": 1467000,
+				"to": 1468000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,000",
+				"to": "00:24:29,000"
+			},
+			"offsets": {
+				"from": 1468000,
+				"to": 1469000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,000",
+				"to": "00:24:30,000"
+			},
+			"offsets": {
+				"from": 1469000,
+				"to": 1470000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,000",
+				"to": "00:24:31,000"
+			},
+			"offsets": {
+				"from": 1470000,
+				"to": 1471000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,000",
+				"to": "00:24:32,000"
+			},
+			"offsets": {
+				"from": 1471000,
+				"to": 1472000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,000",
+				"to": "00:24:33,000"
+			},
+			"offsets": {
+				"from": 1472000,
+				"to": 1473000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,000",
+				"to": "00:24:34,000"
+			},
+			"offsets": {
+				"from": 1473000,
+				"to": 1474000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,000",
+				"to": "00:24:35,000"
+			},
+			"offsets": {
+				"from": 1474000,
+				"to": 1475000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,000",
+				"to": "00:24:36,000"
+			},
+			"offsets": {
+				"from": 1475000,
+				"to": 1476000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,000",
+				"to": "00:24:37,000"
+			},
+			"offsets": {
+				"from": 1476000,
+				"to": 1477000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,000",
+				"to": "00:24:38,000"
+			},
+			"offsets": {
+				"from": 1477000,
+				"to": 1478000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,000",
+				"to": "00:24:39,000"
+			},
+			"offsets": {
+				"from": 1478000,
+				"to": 1479000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,000",
+				"to": "00:24:40,000"
+			},
+			"offsets": {
+				"from": 1479000,
+				"to": 1480000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,000",
+				"to": "00:24:41,000"
+			},
+			"offsets": {
+				"from": 1480000,
+				"to": 1481000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,000",
+				"to": "00:24:42,000"
+			},
+			"offsets": {
+				"from": 1481000,
+				"to": 1482000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,000",
+				"to": "00:24:43,000"
+			},
+			"offsets": {
+				"from": 1482000,
+				"to": 1483000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,000",
+				"to": "00:24:44,000"
+			},
+			"offsets": {
+				"from": 1483000,
+				"to": 1484000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1484000,
+				"to": 1485000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:46,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1486000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,000",
+				"to": "00:24:47,000"
+			},
+			"offsets": {
+				"from": 1486000,
+				"to": 1487000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,000",
+				"to": "00:24:48,000"
+			},
+			"offsets": {
+				"from": 1487000,
+				"to": 1488000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,000",
+				"to": "00:24:49,000"
+			},
+			"offsets": {
+				"from": 1488000,
+				"to": 1489000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,000",
+				"to": "00:24:50,000"
+			},
+			"offsets": {
+				"from": 1489000,
+				"to": 1490000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,000",
+				"to": "00:24:51,000"
+			},
+			"offsets": {
+				"from": 1490000,
+				"to": 1491000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,000",
+				"to": "00:24:52,000"
+			},
+			"offsets": {
+				"from": 1491000,
+				"to": 1492000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,000",
+				"to": "00:24:53,000"
+			},
+			"offsets": {
+				"from": 1492000,
+				"to": 1493000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,000",
+				"to": "00:24:54,000"
+			},
+			"offsets": {
+				"from": 1493000,
+				"to": 1494000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,000",
+				"to": "00:24:55,000"
+			},
+			"offsets": {
+				"from": 1494000,
+				"to": 1495000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,000",
+				"to": "00:24:56,000"
+			},
+			"offsets": {
+				"from": 1495000,
+				"to": 1496000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,000",
+				"to": "00:24:57,000"
+			},
+			"offsets": {
+				"from": 1496000,
+				"to": 1497000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,000",
+				"to": "00:24:58,000"
+			},
+			"offsets": {
+				"from": 1497000,
+				"to": 1498000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,000",
+				"to": "00:24:59,000"
+			},
+			"offsets": {
+				"from": 1498000,
+				"to": 1499000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,000",
+				"to": "00:25:00,000"
+			},
+			"offsets": {
+				"from": 1499000,
+				"to": 1500000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,000",
+				"to": "00:25:01,000"
+			},
+			"offsets": {
+				"from": 1500000,
+				"to": 1501000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,000",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1501000,
+				"to": 1502000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:03,000"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1503000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,000",
+				"to": "00:25:04,000"
+			},
+			"offsets": {
+				"from": 1503000,
+				"to": 1504000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,000",
+				"to": "00:25:05,000"
+			},
+			"offsets": {
+				"from": 1504000,
+				"to": 1505000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,000",
+				"to": "00:25:06,000"
+			},
+			"offsets": {
+				"from": 1505000,
+				"to": 1506000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,000",
+				"to": "00:25:07,000"
+			},
+			"offsets": {
+				"from": 1506000,
+				"to": 1507000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,000",
+				"to": "00:25:08,000"
+			},
+			"offsets": {
+				"from": 1507000,
+				"to": 1508000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,000",
+				"to": "00:25:09,000"
+			},
+			"offsets": {
+				"from": 1508000,
+				"to": 1509000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,000",
+				"to": "00:25:10,000"
+			},
+			"offsets": {
+				"from": 1509000,
+				"to": 1510000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,000",
+				"to": "00:25:11,000"
+			},
+			"offsets": {
+				"from": 1510000,
+				"to": 1511000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,000",
+				"to": "00:25:12,000"
+			},
+			"offsets": {
+				"from": 1511000,
+				"to": 1512000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,000",
+				"to": "00:25:13,000"
+			},
+			"offsets": {
+				"from": 1512000,
+				"to": 1513000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,000",
+				"to": "00:25:14,000"
+			},
+			"offsets": {
+				"from": 1513000,
+				"to": 1514000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,000",
+				"to": "00:25:15,000"
+			},
+			"offsets": {
+				"from": 1514000,
+				"to": 1515000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,000",
+				"to": "00:25:16,000"
+			},
+			"offsets": {
+				"from": 1515000,
+				"to": 1516000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,000",
+				"to": "00:25:17,000"
+			},
+			"offsets": {
+				"from": 1516000,
+				"to": 1517000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,000",
+				"to": "00:25:18,000"
+			},
+			"offsets": {
+				"from": 1517000,
+				"to": 1518000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,000",
+				"to": "00:25:19,000"
+			},
+			"offsets": {
+				"from": 1518000,
+				"to": 1519000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,000",
+				"to": "00:25:20,000"
+			},
+			"offsets": {
+				"from": 1519000,
+				"to": 1520000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,000",
+				"to": "00:25:21,000"
+			},
+			"offsets": {
+				"from": 1520000,
+				"to": 1521000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,000",
+				"to": "00:25:22,000"
+			},
+			"offsets": {
+				"from": 1521000,
+				"to": 1522000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,000",
+				"to": "00:25:23,000"
+			},
+			"offsets": {
+				"from": 1522000,
+				"to": 1523000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,000",
+				"to": "00:25:24,000"
+			},
+			"offsets": {
+				"from": 1523000,
+				"to": 1524000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,000",
+				"to": "00:25:25,000"
+			},
+			"offsets": {
+				"from": 1524000,
+				"to": 1525000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,000",
+				"to": "00:25:26,000"
+			},
+			"offsets": {
+				"from": 1525000,
+				"to": 1526000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,000",
+				"to": "00:25:27,000"
+			},
+			"offsets": {
+				"from": 1526000,
+				"to": 1527000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,000",
+				"to": "00:25:28,000"
+			},
+			"offsets": {
+				"from": 1527000,
+				"to": 1528000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,000",
+				"to": "00:25:29,000"
+			},
+			"offsets": {
+				"from": 1528000,
+				"to": 1529000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,000",
+				"to": "00:25:30,000"
+			},
+			"offsets": {
+				"from": 1529000,
+				"to": 1530000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,000",
+				"to": "00:25:31,000"
+			},
+			"offsets": {
+				"from": 1530000,
+				"to": 1531000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,000",
+				"to": "00:25:32,000"
+			},
+			"offsets": {
+				"from": 1531000,
+				"to": 1532000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,000",
+				"to": "00:25:33,000"
+			},
+			"offsets": {
+				"from": 1532000,
+				"to": 1533000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,000",
+				"to": "00:25:34,000"
+			},
+			"offsets": {
+				"from": 1533000,
+				"to": 1534000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,000",
+				"to": "00:25:35,000"
+			},
+			"offsets": {
+				"from": 1534000,
+				"to": 1535000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,000",
+				"to": "00:25:36,000"
+			},
+			"offsets": {
+				"from": 1535000,
+				"to": 1536000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,000",
+				"to": "00:25:37,000"
+			},
+			"offsets": {
+				"from": 1536000,
+				"to": 1537000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,000",
+				"to": "00:25:38,000"
+			},
+			"offsets": {
+				"from": 1537000,
+				"to": 1538000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,000",
+				"to": "00:25:39,000"
+			},
+			"offsets": {
+				"from": 1538000,
+				"to": 1539000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,000",
+				"to": "00:25:40,000"
+			},
+			"offsets": {
+				"from": 1539000,
+				"to": 1540000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,000",
+				"to": "00:25:41,000"
+			},
+			"offsets": {
+				"from": 1540000,
+				"to": 1541000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,000",
+				"to": "00:25:42,000"
+			},
+			"offsets": {
+				"from": 1541000,
+				"to": 1542000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,000",
+				"to": "00:25:43,000"
+			},
+			"offsets": {
+				"from": 1542000,
+				"to": 1543000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,000",
+				"to": "00:25:44,000"
+			},
+			"offsets": {
+				"from": 1543000,
+				"to": 1544000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,000",
+				"to": "00:25:45,000"
+			},
+			"offsets": {
+				"from": 1544000,
+				"to": 1545000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,000",
+				"to": "00:25:46,000"
+			},
+			"offsets": {
+				"from": 1545000,
+				"to": 1546000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,000",
+				"to": "00:25:47,000"
+			},
+			"offsets": {
+				"from": 1546000,
+				"to": 1547000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,000",
+				"to": "00:25:48,000"
+			},
+			"offsets": {
+				"from": 1547000,
+				"to": 1548000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,000",
+				"to": "00:25:49,000"
+			},
+			"offsets": {
+				"from": 1548000,
+				"to": 1549000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,000",
+				"to": "00:25:50,000"
+			},
+			"offsets": {
+				"from": 1549000,
+				"to": 1550000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,000",
+				"to": "00:25:51,000"
+			},
+			"offsets": {
+				"from": 1550000,
+				"to": 1551000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,000",
+				"to": "00:25:52,000"
+			},
+			"offsets": {
+				"from": 1551000,
+				"to": 1552000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,000",
+				"to": "00:25:53,000"
+			},
+			"offsets": {
+				"from": 1552000,
+				"to": 1553000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,000",
+				"to": "00:25:54,000"
+			},
+			"offsets": {
+				"from": 1553000,
+				"to": 1554000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,000",
+				"to": "00:25:55,000"
+			},
+			"offsets": {
+				"from": 1554000,
+				"to": 1555000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,000",
+				"to": "00:25:56,000"
+			},
+			"offsets": {
+				"from": 1555000,
+				"to": 1556000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,000",
+				"to": "00:25:57,000"
+			},
+			"offsets": {
+				"from": 1556000,
+				"to": 1557000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,000",
+				"to": "00:25:58,000"
+			},
+			"offsets": {
+				"from": 1557000,
+				"to": 1558000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,000",
+				"to": "00:25:59,000"
+			},
+			"offsets": {
+				"from": 1558000,
+				"to": 1559000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,000",
+				"to": "00:26:00,000"
+			},
+			"offsets": {
+				"from": 1559000,
+				"to": 1560000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:00,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1560000,
+				"to": 1561000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:02,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1562000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,000",
+				"to": "00:26:03,000"
+			},
+			"offsets": {
+				"from": 1562000,
+				"to": 1563000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,000",
+				"to": "00:26:04,000"
+			},
+			"offsets": {
+				"from": 1563000,
+				"to": 1564000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,000",
+				"to": "00:26:05,000"
+			},
+			"offsets": {
+				"from": 1564000,
+				"to": 1565000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,000",
+				"to": "00:26:06,000"
+			},
+			"offsets": {
+				"from": 1565000,
+				"to": 1566000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,000",
+				"to": "00:26:07,000"
+			},
+			"offsets": {
+				"from": 1566000,
+				"to": 1567000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,000",
+				"to": "00:26:08,000"
+			},
+			"offsets": {
+				"from": 1567000,
+				"to": 1568000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,000",
+				"to": "00:26:09,000"
+			},
+			"offsets": {
+				"from": 1568000,
+				"to": 1569000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,000",
+				"to": "00:26:10,000"
+			},
+			"offsets": {
+				"from": 1569000,
+				"to": 1570000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,000",
+				"to": "00:26:11,000"
+			},
+			"offsets": {
+				"from": 1570000,
+				"to": 1571000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,000",
+				"to": "00:26:12,000"
+			},
+			"offsets": {
+				"from": 1571000,
+				"to": 1572000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,000",
+				"to": "00:26:13,000"
+			},
+			"offsets": {
+				"from": 1572000,
+				"to": 1573000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,000",
+				"to": "00:26:14,000"
+			},
+			"offsets": {
+				"from": 1573000,
+				"to": 1574000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,000",
+				"to": "00:26:15,000"
+			},
+			"offsets": {
+				"from": 1574000,
+				"to": 1575000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,000",
+				"to": "00:26:16,000"
+			},
+			"offsets": {
+				"from": 1575000,
+				"to": 1576000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,000",
+				"to": "00:26:17,000"
+			},
+			"offsets": {
+				"from": 1576000,
+				"to": 1577000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,000",
+				"to": "00:26:18,000"
+			},
+			"offsets": {
+				"from": 1577000,
+				"to": 1578000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,000",
+				"to": "00:26:19,000"
+			},
+			"offsets": {
+				"from": 1578000,
+				"to": 1579000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,000",
+				"to": "00:26:20,000"
+			},
+			"offsets": {
+				"from": 1579000,
+				"to": 1580000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,000",
+				"to": "00:26:21,000"
+			},
+			"offsets": {
+				"from": 1580000,
+				"to": 1581000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,000",
+				"to": "00:26:22,000"
+			},
+			"offsets": {
+				"from": 1581000,
+				"to": 1582000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,000",
+				"to": "00:26:23,000"
+			},
+			"offsets": {
+				"from": 1582000,
+				"to": 1583000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,000",
+				"to": "00:26:24,000"
+			},
+			"offsets": {
+				"from": 1583000,
+				"to": 1584000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,000",
+				"to": "00:26:25,000"
+			},
+			"offsets": {
+				"from": 1584000,
+				"to": 1585000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,000",
+				"to": "00:26:26,000"
+			},
+			"offsets": {
+				"from": 1585000,
+				"to": 1586000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,000",
+				"to": "00:26:27,000"
+			},
+			"offsets": {
+				"from": 1586000,
+				"to": 1587000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,000",
+				"to": "00:26:28,000"
+			},
+			"offsets": {
+				"from": 1587000,
+				"to": 1588000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,000",
+				"to": "00:26:29,000"
+			},
+			"offsets": {
+				"from": 1588000,
+				"to": 1589000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,000",
+				"to": "00:26:30,000"
+			},
+			"offsets": {
+				"from": 1589000,
+				"to": 1590000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,000",
+				"to": "00:26:31,000"
+			},
+			"offsets": {
+				"from": 1590000,
+				"to": 1591000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,000",
+				"to": "00:26:32,000"
+			},
+			"offsets": {
+				"from": 1591000,
+				"to": 1592000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,000",
+				"to": "00:26:33,000"
+			},
+			"offsets": {
+				"from": 1592000,
+				"to": 1593000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,000",
+				"to": "00:26:34,000"
+			},
+			"offsets": {
+				"from": 1593000,
+				"to": 1594000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,000",
+				"to": "00:26:35,000"
+			},
+			"offsets": {
+				"from": 1594000,
+				"to": 1595000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,000",
+				"to": "00:26:36,000"
+			},
+			"offsets": {
+				"from": 1595000,
+				"to": 1596000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,000",
+				"to": "00:26:37,000"
+			},
+			"offsets": {
+				"from": 1596000,
+				"to": 1597000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,000",
+				"to": "00:26:38,000"
+			},
+			"offsets": {
+				"from": 1597000,
+				"to": 1598000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,000",
+				"to": "00:26:39,000"
+			},
+			"offsets": {
+				"from": 1598000,
+				"to": 1599000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,000",
+				"to": "00:26:40,000"
+			},
+			"offsets": {
+				"from": 1599000,
+				"to": 1600000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,000",
+				"to": "00:26:41,000"
+			},
+			"offsets": {
+				"from": 1600000,
+				"to": 1601000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,000",
+				"to": "00:26:42,000"
+			},
+			"offsets": {
+				"from": 1601000,
+				"to": 1602000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,000",
+				"to": "00:26:43,000"
+			},
+			"offsets": {
+				"from": 1602000,
+				"to": 1603000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,000",
+				"to": "00:26:44,000"
+			},
+			"offsets": {
+				"from": 1603000,
+				"to": 1604000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,000",
+				"to": "00:26:45,000"
+			},
+			"offsets": {
+				"from": 1604000,
+				"to": 1605000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,000",
+				"to": "00:26:46,000"
+			},
+			"offsets": {
+				"from": 1605000,
+				"to": 1606000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,000",
+				"to": "00:26:47,000"
+			},
+			"offsets": {
+				"from": 1606000,
+				"to": 1607000
+			},
+			"text": " I'm not sure."
+		}
+	]
+}

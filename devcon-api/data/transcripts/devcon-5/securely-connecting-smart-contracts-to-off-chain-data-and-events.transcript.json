@@ -1,0 +1,2639 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11340
+			},
+			"text": " >> Hi, everyone. Thanks for coming to learn more about oracles and how they fit into smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,340",
+				"to": "00:00:18,700"
+			},
+			"offsets": {
+				"from": 11340,
+				"to": 18700
+			},
+			"text": " contracts and Ethereum's overall future. So I think the first useful thing is for us to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,700",
+				"to": "00:00:23,560"
+			},
+			"offsets": {
+				"from": 18700,
+				"to": 23560
+			},
+			"text": " get some shared context and to look at the security problem that we're trying to solve"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,560",
+				"to": "00:00:29,560"
+			},
+			"offsets": {
+				"from": 23560,
+				"to": 29560
+			},
+			"text": " and then look at the different ways in which that security problem can be solved effectively."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,560",
+				"to": "00:00:36,040"
+			},
+			"offsets": {
+				"from": 29560,
+				"to": 36040
+			},
+			"text": " So the nature of the problem is that smart contracts on great networks like Ethereum can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,040",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 36040,
+				"to": 42000
+			},
+			"text": " connect with external data. This is based on how they reach consensus about transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 49000
+			},
+			"text": " how they verify the data in blocks, and it isn't something that's likely to change."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:55,360"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 55360
+			},
+			"text": " It's an inherent problem of all decentralized infrastructure that seeks to package transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,360",
+				"to": "00:01:00,760"
+			},
+			"offsets": {
+				"from": 55360,
+				"to": 60760
+			},
+			"text": " into blocks because the miner set that you have doing that, you don't want specific miner"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,760",
+				"to": "00:01:06,400"
+			},
+			"offsets": {
+				"from": 60760,
+				"to": 66400
+			},
+			"text": " responsible, you don't want him having control over the ability to make your contract trigger"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,400",
+				"to": "00:01:10,700"
+			},
+			"offsets": {
+				"from": 66400,
+				"to": 70700
+			},
+			"text": " from data or not trigger, and you also can't have the entire miner set exposed to various"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,700",
+				"to": "00:01:16,880"
+			},
+			"offsets": {
+				"from": 70700,
+				"to": 76880
+			},
+			"text": " arbitrary APIs. So this is known as the Oracle problem and it's the inability of layer one"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,880",
+				"to": "00:01:23,680"
+			},
+			"offsets": {
+				"from": 76880,
+				"to": 83680
+			},
+			"text": " systems to interact with external data. Now, the significance of this is rather large."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,680",
+				"to": "00:01:30,960"
+			},
+			"offsets": {
+				"from": 83680,
+				"to": 90960
+			},
+			"text": " The significance of this is why we are currently mainly defined as an industry by tokens. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,960",
+				"to": "00:01:35,400"
+			},
+			"offsets": {
+				"from": 90960,
+				"to": 95400
+			},
+			"text": " we're defined as an industry by tokens because that's effectively what base layer one systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,400",
+				"to": "00:01:40,040"
+			},
+			"offsets": {
+				"from": 95400,
+				"to": 100040
+			},
+			"text": " can do because they have it inherently built in to incentivize mining and therefore allow"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,040",
+				"to": "00:01:48,520"
+			},
+			"offsets": {
+				"from": 100040,
+				"to": 108520
+			},
+			"text": " their basic existence. Now, the reality is that if you look at the rest of the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,520",
+				"to": "00:01:54,920"
+			},
+			"offsets": {
+				"from": 108520,
+				"to": 114920
+			},
+			"text": " and you look at all the digital agreements powering financial products in various centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,920",
+				"to": "00:02:00,120"
+			},
+			"offsets": {
+				"from": 114920,
+				"to": 120120
+			},
+			"text": " forms, the insurance industry, the global trade, trade finance industry, all of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,120",
+				"to": "00:02:05,440"
+			},
+			"offsets": {
+				"from": 120120,
+				"to": 125440
+			},
+			"text": " industries use some form of digital agreement and all of those forms of digital agreement"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,440",
+				"to": "00:02:12,720"
+			},
+			"offsets": {
+				"from": 125440,
+				"to": 132720
+			},
+			"text": " require inputs, inputs about what happened relative to the agreements terms. So generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,720",
+				"to": "00:02:19,120"
+			},
+			"offsets": {
+				"from": 132720,
+				"to": 139120
+			},
+			"text": " speaking we call these events and the ability for a contract to know about an event is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,120",
+				"to": "00:02:24,720"
+			},
+			"offsets": {
+				"from": 139120,
+				"to": 144720
+			},
+			"text": " necessary point, is a necessary condition for it to be written about that event. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,720",
+				"to": "00:02:30,320"
+			},
+			"offsets": {
+				"from": 144720,
+				"to": 150320
+			},
+			"text": " essentially the significance of the limitation is without the ability to interact with events,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,320",
+				"to": "00:02:36,840"
+			},
+			"offsets": {
+				"from": 150320,
+				"to": 156840
+			},
+			"text": " smart contracts would stay related to tokens which is only a small percentage of what our"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,840",
+				"to": "00:02:41,720"
+			},
+			"offsets": {
+				"from": 156840,
+				"to": 161720
+			},
+			"text": " technology could be about. So our industry could be about financial products, insurance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,720",
+				"to": "00:02:48,120"
+			},
+			"offsets": {
+				"from": 161720,
+				"to": 168120
+			},
+			"text": " global trade if we're able to solve this problem. So historically how our industry has actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,120",
+				"to": "00:02:53,520"
+			},
+			"offsets": {
+				"from": 168120,
+				"to": 173520
+			},
+			"text": " evolved is it's gone from a smaller set of capabilities for developers to a larger set"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,520",
+				"to": "00:02:59,480"
+			},
+			"offsets": {
+				"from": 173520,
+				"to": 179480
+			},
+			"text": " of capabilities. The first large shift in capabilities was from Bitcoin multi signature as the only"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,480",
+				"to": "00:03:05,600"
+			},
+			"offsets": {
+				"from": 179480,
+				"to": 185600
+			},
+			"text": " capability that anybody could build around in around 2011, 2012. And then in about 14"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,600",
+				"to": "00:03:10,240"
+			},
+			"offsets": {
+				"from": 185600,
+				"to": 190240
+			},
+			"text": " you had the first app coins as they were called. These were protocol smart contracts where"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,240",
+				"to": "00:03:15,440"
+			},
+			"offsets": {
+				"from": 190240,
+				"to": 195440
+			},
+			"text": " you had to bake a smart contract into each protocol. Then the protocol smart contracts got"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,440",
+				"to": "00:03:20,960"
+			},
+			"offsets": {
+				"from": 195440,
+				"to": 200960
+			},
+			"text": " switched over to scriptable contracts and scriptable contracts is what Ethereum deserves, the vast"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,960",
+				"to": "00:03:25,480"
+			},
+			"offsets": {
+				"from": 200960,
+				"to": 205480
+			},
+			"text": " majority of the credit for. They've done a fantastic job of taking our space from these"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,480",
+				"to": "00:03:30,880"
+			},
+			"offsets": {
+				"from": 205480,
+				"to": 210880
+			},
+			"text": " protocol contracts that took months to get launched to scriptable contracts which took"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,880",
+				"to": "00:03:35,400"
+			},
+			"offsets": {
+				"from": 210880,
+				"to": 215400
+			},
+			"text": " days to launch and because they took days to launch we now have all these people launching"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,400",
+				"to": "00:03:42,080"
+			},
+			"offsets": {
+				"from": 215400,
+				"to": 222080
+			},
+			"text": " massive high value systems based on this capability. And as you can see a lot of those systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,080",
+				"to": "00:03:46,360"
+			},
+			"offsets": {
+				"from": 222080,
+				"to": 226360
+			},
+			"text": " are pretty much exclusively focused on tokens because at the moment that's what scriptable"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,360",
+				"to": "00:03:52,240"
+			},
+			"offsets": {
+				"from": 226360,
+				"to": 232240
+			},
+			"text": " capabilities allow. What we think is that scriptable contracts together with external"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,240",
+				"to": "00:03:59,960"
+			},
+			"offsets": {
+				"from": 232240,
+				"to": 239960
+			},
+			"text": " events is how our space moves into this entirely new stage of usefulness for developers, for"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,960",
+				"to": "00:04:07,440"
+			},
+			"offsets": {
+				"from": 239960,
+				"to": 247440
+			},
+			"text": " users, how we redefine our space to be about tokens and all the other types of digital"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,440",
+				"to": "00:04:15,480"
+			},
+			"offsets": {
+				"from": 247440,
+				"to": 255480
+			},
+			"text": " agreements that underpin very important global industries. Generally speaking this is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,480",
+				"to": "00:04:22,080"
+			},
+			"offsets": {
+				"from": 255480,
+				"to": 262080
+			},
+			"text": " problem that we work on. We focus on creating secure blockchain middleware. That product"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,080",
+				"to": "00:04:28,080"
+			},
+			"offsets": {
+				"from": 262080,
+				"to": 268080
+			},
+			"text": " is called Chainlink and it basically focuses on enabling the ability to get data into networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,080",
+				"to": "00:04:31,520"
+			},
+			"offsets": {
+				"from": 268080,
+				"to": 271520
+			},
+			"text": " like Ethereum, get networks like Ethereum to pay and other systems and interact with other"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,520",
+				"to": "00:04:37,080"
+			},
+			"offsets": {
+				"from": 271520,
+				"to": 277080
+			},
+			"text": " environments as well as get them to do cross chain things. We're already live on Mainnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,080",
+				"to": "00:04:40,600"
+			},
+			"offsets": {
+				"from": 277080,
+				"to": 280600
+			},
+			"text": " it's all working and the things that I'm going to be showing to you are live and working"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,600",
+				"to": "00:04:50,560"
+			},
+			"offsets": {
+				"from": 280600,
+				"to": 290560
+			},
+			"text": " and usable by US developers. Generally speaking I think there's kind of two key points in"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,560",
+				"to": "00:04:55,160"
+			},
+			"offsets": {
+				"from": 290560,
+				"to": 295160
+			},
+			"text": " this talk. One key point is how do you define the security of an Oracle so that you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,160",
+				"to": "00:05:00,320"
+			},
+			"offsets": {
+				"from": 295160,
+				"to": 300320
+			},
+			"text": " rely on it to trigger your contract. That's a very important question. The second question"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,320",
+				"to": "00:05:06,840"
+			},
+			"offsets": {
+				"from": 300320,
+				"to": 306840
+			},
+			"text": " is once you rely on the security of an Oracle what can an Oracle really do for you? I've"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,840",
+				"to": "00:05:12,080"
+			},
+			"offsets": {
+				"from": 306840,
+				"to": 312080
+			},
+			"text": " arrived at a place where I can assess and feel comfortable about the security of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,080",
+				"to": "00:05:17,360"
+			},
+			"offsets": {
+				"from": 312080,
+				"to": 317360
+			},
+			"text": " Oracle mechanism which effectively makes up the second half of my contract because if"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,360",
+				"to": "00:05:21,400"
+			},
+			"offsets": {
+				"from": 317360,
+				"to": 321400
+			},
+			"text": " my contract is about an event I have a piece of it about on chain state and I have a piece"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,400",
+				"to": "00:05:26,720"
+			},
+			"offsets": {
+				"from": 321400,
+				"to": 326720
+			},
+			"text": " of it about the event and both the on chain state and the off chain event needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,720",
+				"to": "00:05:31,880"
+			},
+			"offsets": {
+				"from": 326720,
+				"to": 331880
+			},
+			"text": " properly guaranteed from a technical point of view in order for the smart contract to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,880",
+				"to": "00:05:38,040"
+			},
+			"offsets": {
+				"from": 331880,
+				"to": 338040
+			},
+			"text": " retain its unique property of reliability. So these are kind of the points I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,040",
+				"to": "00:05:44,480"
+			},
+			"offsets": {
+				"from": 338040,
+				"to": 344480
+			},
+			"text": " to be speaking about and elaborating on what it is that what makes a secure Oracle and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,480",
+				"to": "00:05:49,680"
+			},
+			"offsets": {
+				"from": 344480,
+				"to": 349680
+			},
+			"text": " what a secure Oracle can do to expand what developers in our space could build to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,680",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 349680,
+				"to": 356000
+			},
+			"text": " all these other various types of usefulness and valuable contracts. Generally speaking"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:00,880"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 360880
+			},
+			"text": " our approach to all of this is the ability to provide decentralization for the Oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,880",
+				"to": "00:06:06,640"
+			},
+			"offsets": {
+				"from": 360880,
+				"to": 366640
+			},
+			"text": " mechanism by having multiple independent node operators validate the accuracy of Oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,640",
+				"to": "00:06:11,160"
+			},
+			"offsets": {
+				"from": 366640,
+				"to": 371160
+			},
+			"text": " Oracle reports. We do this through something called binding service agreements. Binding"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,160",
+				"to": "00:06:18,400"
+			},
+			"offsets": {
+				"from": 371160,
+				"to": 378400
+			},
+			"text": " service agreements make an Oracle commit to delivering a certain quality of data or computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,400",
+				"to": "00:06:24,040"
+			},
+			"offsets": {
+				"from": 378400,
+				"to": 384040
+			},
+			"text": " or payments outcome and that commitment is both technically and cryptographically guaranteed"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,040",
+				"to": "00:06:29,960"
+			},
+			"offsets": {
+				"from": 384040,
+				"to": 389960
+			},
+			"text": " and crypt economically guaranteed through things like staking. The ability for all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,960",
+				"to": "00:06:35,920"
+			},
+			"offsets": {
+				"from": 389960,
+				"to": 395920
+			},
+			"text": " binding service agreements that an Oracle generates to be aggregated into a picture of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,920",
+				"to": "00:06:41,720"
+			},
+			"offsets": {
+				"from": 395920,
+				"to": 401720
+			},
+			"text": " that Oracle's overall reliability. The application of something called defense in depth where"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,720",
+				"to": "00:06:45,960"
+			},
+			"offsets": {
+				"from": 401720,
+				"to": 405960
+			},
+			"text": " we layer on multiple security approaches on top of decentralization such as trusted execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,960",
+				"to": "00:06:50,280"
+			},
+			"offsets": {
+				"from": 405960,
+				"to": 410280
+			},
+			"text": " environments and zero knowledge proofs and the fact that we do this with a large open"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,280",
+				"to": "00:06:55,520"
+			},
+			"offsets": {
+				"from": 410280,
+				"to": 415520
+			},
+			"text": " source community made up of some of the best academic researchers, some of the best security"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,520",
+				"to": "00:07:00,400"
+			},
+			"offsets": {
+				"from": 415520,
+				"to": 420400
+			},
+			"text": " auditors and a large and growing group of developers that are excited about enabling"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,400",
+				"to": "00:07:07,080"
+			},
+			"offsets": {
+				"from": 420400,
+				"to": 427080
+			},
+			"text": " this world of smart contracts beyond tokenization. So it's usually useful to look at the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,080",
+				"to": "00:07:12,360"
+			},
+			"offsets": {
+				"from": 427080,
+				"to": 432360
+			},
+			"text": " we're solving. The specific problem we're solving is the problem of centralization and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,360",
+				"to": "00:07:21,320"
+			},
+			"offsets": {
+				"from": 432360,
+				"to": 441320
+			},
+			"text": " the capacity for an Oracle to fail because it's been made unreliable by being attacked"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,320",
+				"to": "00:07:27,720"
+			},
+			"offsets": {
+				"from": 441320,
+				"to": 447720
+			},
+			"text": " as a single point of failure. Generally speaking, the way to approach this is through decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,720",
+				"to": "00:07:32,160"
+			},
+			"offsets": {
+				"from": 447720,
+				"to": 452160
+			},
+			"text": " Just like the contract is secured through multiple node operators validating the inputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,160",
+				"to": "00:07:37,120"
+			},
+			"offsets": {
+				"from": 452160,
+				"to": 457120
+			},
+			"text": " and the, well, validating the transactions that the block and the contract is made up"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,120",
+				"to": "00:07:43,360"
+			},
+			"offsets": {
+				"from": 457120,
+				"to": 463360
+			},
+			"text": " of, we have multiple Oracle's validating that an input is indeed correctly validated and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,360",
+				"to": "00:07:49,400"
+			},
+			"offsets": {
+				"from": 463360,
+				"to": 469400
+			},
+			"text": " secure and reliable enough to trigger large amounts of value. This is partly guaranteed"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,400",
+				"to": "00:07:53,520"
+			},
+			"offsets": {
+				"from": 469400,
+				"to": 473520
+			},
+			"text": " by service agreements. Service agreements are not legal documents. They are on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,520",
+				"to": "00:07:57,800"
+			},
+			"offsets": {
+				"from": 473520,
+				"to": 477800
+			},
+			"text": " commitments that are cryptographically and technically enforced to guarantee that an"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,800",
+				"to": "00:08:04,080"
+			},
+			"offsets": {
+				"from": 477800,
+				"to": 484080
+			},
+			"text": " Oracle does deliver data and that if the Oracle doesn't deliver data, there's immediate and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,080",
+				"to": "00:08:10,320"
+			},
+			"offsets": {
+				"from": 484080,
+				"to": 490320
+			},
+			"text": " inescapable penalties both to their long-term usefulness for other users and immediate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,320",
+				"to": "00:08:18,360"
+			},
+			"offsets": {
+				"from": 490320,
+				"to": 498360
+			},
+			"text": " loss of stake and other negative factors. Generally speaking, we see a world where just"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,360",
+				"to": "00:08:23,040"
+			},
+			"offsets": {
+				"from": 498360,
+				"to": 503040
+			},
+			"text": " like you have right now extreme decentralization in Ethereum, you should be able to have whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,040",
+				"to": "00:08:27,320"
+			},
+			"offsets": {
+				"from": 503040,
+				"to": 507320
+			},
+			"text": " degree of decentralization you'd like to have from the Oracle mechanism and also that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,320",
+				"to": "00:08:31,760"
+			},
+			"offsets": {
+				"from": 507320,
+				"to": 511760
+			},
+			"text": " will probably lead to decentralization at the data source level such that the highest"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,760",
+				"to": "00:08:36,680"
+			},
+			"offsets": {
+				"from": 511760,
+				"to": 516680
+			},
+			"text": " value, hundreds of millions of dollar contracts, you'll see them thinking about all these things"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,680",
+				"to": "00:08:41,680"
+			},
+			"offsets": {
+				"from": 516680,
+				"to": 521680
+			},
+			"text": " in more detail and you see them wondering why do I think an Oracle is secure? How do I"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,680",
+				"to": "00:08:46,880"
+			},
+			"offsets": {
+				"from": 521680,
+				"to": 526880
+			},
+			"text": " know that this data source won't be compromised? How do I protect myself from a data source"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,880",
+				"to": "00:08:50,640"
+			},
+			"offsets": {
+				"from": 526880,
+				"to": 530640
+			},
+			"text": " being compromised? How do I protect myself from an Oracle being compromised? These are"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,640",
+				"to": "00:08:56,440"
+			},
+			"offsets": {
+				"from": 530640,
+				"to": 536440
+			},
+			"text": " the problems that our space is going to have to have an answer to if we want to move into"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,440",
+				"to": "00:09:01,680"
+			},
+			"offsets": {
+				"from": 536440,
+				"to": 541680
+			},
+			"text": " this realm of events driven contracts. So that's the very large focus that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,680",
+				"to": "00:09:08,400"
+			},
+			"offsets": {
+				"from": 541680,
+				"to": 548400
+			},
+			"text": " is solving the problem of how do you reliably provide guarantees that your events driven"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,400",
+				"to": "00:09:14,440"
+			},
+			"offsets": {
+				"from": 548400,
+				"to": 554440
+			},
+			"text": " contract can have a billion dollars put into it and can be considered reliable enough to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,440",
+				"to": "00:09:20,800"
+			},
+			"offsets": {
+				"from": 554440,
+				"to": 560800
+			},
+			"text": " move that million billion, $100 million billion in a matter of seconds, which is the real"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,800",
+				"to": "00:09:27,080"
+			},
+			"offsets": {
+				"from": 560800,
+				"to": 567080
+			},
+			"text": " promise and value of our space. So generally speaking, the way this looks in practice is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,080",
+				"to": "00:09:30,600"
+			},
+			"offsets": {
+				"from": 567080,
+				"to": 570600
+			},
+			"text": " service agreements are made up of something called jobs. Jobs are basically function as"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,600",
+				"to": "00:09:36,080"
+			},
+			"offsets": {
+				"from": 570600,
+				"to": 576080
+			},
+			"text": " a service blocks of predefined computations that a node operator lists themselves as opting"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,080",
+				"to": "00:09:41,600"
+			},
+			"offsets": {
+				"from": 576080,
+				"to": 581600
+			},
+			"text": " in to do. You interact with them as on a service agreement, they commit to do this computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,600",
+				"to": "00:09:48,600"
+			},
+			"offsets": {
+				"from": 581600,
+				"to": 588600
+			},
+			"text": " for you in this case, the receive love price. You select from a multitude of nodes. We have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,600",
+				"to": "00:09:53,040"
+			},
+			"offsets": {
+				"from": 588600,
+				"to": 593040
+			},
+			"text": " I think approaching 70 high quality nodes now and I think a quarter of them are security"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,040",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 593040,
+				"to": 598000
+			},
+			"text": " reviewed in a two week process with a security interview at the end, both creating civil"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:02,120"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 602120
+			},
+			"text": " resistance and an overview of their security infrastructure, which we then present to users"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,120",
+				"to": "00:10:08,720"
+			},
+			"offsets": {
+				"from": 602120,
+				"to": 608720
+			},
+			"text": " as well. And generally speaking, the goal is well, this goal, right, what I'm showing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,720",
+				"to": "00:10:13,840"
+			},
+			"offsets": {
+				"from": 608720,
+				"to": 613840
+			},
+			"text": " you here has been achieved. If you want to compose a reliable Oracle network with multiple"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,840",
+				"to": "00:10:18,240"
+			},
+			"offsets": {
+				"from": 613840,
+				"to": 618240
+			},
+			"text": " independent parties running that network and multiple independent data sources feeding"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,240",
+				"to": "00:10:23,920"
+			},
+			"offsets": {
+				"from": 618240,
+				"to": 623920
+			},
+			"text": " your decentralized finance contract reliable data, you can, this has now been achieved"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,920",
+				"to": "00:10:29,960"
+			},
+			"offsets": {
+				"from": 623920,
+				"to": 629960
+			},
+			"text": " on mainnet. It's been live for a number of months now without any security issues. Likewise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,960",
+				"to": "00:10:36,200"
+			},
+			"offsets": {
+				"from": 629960,
+				"to": 636200
+			},
+			"text": " if you wanted to compose something like smart contract, a smart contract for crop insurance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,200",
+				"to": "00:10:42,840"
+			},
+			"offsets": {
+				"from": 636200,
+				"to": 642840
+			},
+			"text": " the crop insurance would learn about weather, it would aggregate data about weather and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,840",
+				"to": "00:10:49,440"
+			},
+			"offsets": {
+				"from": 642840,
+				"to": 649440
+			},
+			"text": " it would then arrive at a conclusion for that outcome. And then also through the set of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,440",
+				"to": "00:10:54,600"
+			},
+			"offsets": {
+				"from": 649440,
+				"to": 654600
+			},
+			"text": " Oracle's that we have be able to execute payments. So it would be able to ingest inputs, put"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,600",
+				"to": "00:10:59,480"
+			},
+			"offsets": {
+				"from": 654600,
+				"to": 659480
+			},
+			"text": " outputs and these are the previous DFI example and this example are what we're really trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,480",
+				"to": "00:11:04,520"
+			},
+			"offsets": {
+				"from": 659480,
+				"to": 664520
+			},
+			"text": " to get the space to so that just like you could write a token in a day, you should be"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,520",
+				"to": "00:11:10,840"
+			},
+			"offsets": {
+				"from": 664520,
+				"to": 670840
+			},
+			"text": " able to compose a high quality externally connected contract in a day. Generally speaking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,840",
+				"to": "00:11:14,560"
+			},
+			"offsets": {
+				"from": 670840,
+				"to": 674560
+			},
+			"text": " what all of this usage does and this is one of the important nuances of how you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,560",
+				"to": "00:11:19,960"
+			},
+			"offsets": {
+				"from": 674560,
+				"to": 679960
+			},
+			"text": " evaluate an Oracle is it generates a lot of data. It generates massive amounts of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,960",
+				"to": "00:11:24,080"
+			},
+			"offsets": {
+				"from": 679960,
+				"to": 684080
+			},
+			"text": " Just like you have block explorers for Ethereum contracts, we have even more detailed block"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,080",
+				"to": "00:11:29,520"
+			},
+			"offsets": {
+				"from": 684080,
+				"to": 689520
+			},
+			"text": " explorers for ChingLink Oracle reports that define exactly what somebody did, what they"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,520",
+				"to": "00:11:34,400"
+			},
+			"offsets": {
+				"from": 689520,
+				"to": 694400
+			},
+			"text": " committed to do and whether they met their previous commitment. You can find all this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,400",
+				"to": "00:11:38,640"
+			},
+			"offsets": {
+				"from": 694400,
+				"to": 698640
+			},
+			"text": " in a multitude of resources and I'll show you how to do that at the end of the talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,640",
+				"to": "00:11:45,480"
+			},
+			"offsets": {
+				"from": 698640,
+				"to": 705480
+			},
+			"text": " for a set of Oracle's Oracle networks that we call reference data networks. So generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,480",
+				"to": "00:11:51,920"
+			},
+			"offsets": {
+				"from": 705480,
+				"to": 711920
+			},
+			"text": " speaking, the part of the goal here is how do I as a user effectively assess a node operator"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,920",
+				"to": "00:11:56,720"
+			},
+			"offsets": {
+				"from": 711920,
+				"to": 716720
+			},
+			"text": " that I can then compose into greater and greater networks and such that if the value"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,720",
+				"to": "00:12:00,880"
+			},
+			"offsets": {
+				"from": 716720,
+				"to": 720880
+			},
+			"text": " of my contract grows, I can compose greater and greater collections of node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,880",
+				"to": "00:12:06,920"
+			},
+			"offsets": {
+				"from": 720880,
+				"to": 726920
+			},
+			"text": " We enable this by floating provable information about their infrastructure, how they've been"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,920",
+				"to": "00:12:11,520"
+			},
+			"offsets": {
+				"from": 726920,
+				"to": 731520
+			},
+			"text": " able to successfully fulfill their commitments and also what specific infrastructure they"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,520",
+				"to": "00:12:16,840"
+			},
+			"offsets": {
+				"from": 731520,
+				"to": 736840
+			},
+			"text": " run on and also the capabilities they can give you through that infrastructure. So that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,840",
+				"to": "00:12:21,400"
+			},
+			"offsets": {
+				"from": 736840,
+				"to": 741400
+			},
+			"text": " the thing that we've actually been seeing quite a bit of. Since launching on Mainnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,400",
+				"to": "00:12:26,760"
+			},
+			"offsets": {
+				"from": 741400,
+				"to": 746760
+			},
+			"text": " we've been seeing quite a lot of adoption and additional usage, not only in data delivery"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,760",
+				"to": "00:12:31,760"
+			},
+			"offsets": {
+				"from": 746760,
+				"to": 751760
+			},
+			"text": " but in the ability for ChingLink to connect smart contracts to all the different function"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,760",
+				"to": "00:12:38,120"
+			},
+			"offsets": {
+				"from": 751760,
+				"to": 758120
+			},
+			"text": " as a service systems, all the different computational environments other than blockchains which gives"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,120",
+				"to": "00:12:44,760"
+			},
+			"offsets": {
+				"from": 758120,
+				"to": 764760
+			},
+			"text": " smart contracts the capacity to securely use huge amounts of computing resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,760",
+				"to": "00:12:50,560"
+			},
+			"offsets": {
+				"from": 764760,
+				"to": 770560
+			},
+			"text": " This is for example a diagram we released in a post with Google describing how a theoretical"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,560",
+				"to": "00:12:56,200"
+			},
+			"offsets": {
+				"from": 770560,
+				"to": 776200
+			},
+			"text": " architecture would look in the case of using Google Cloud's platform for one of their specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,200",
+				"to": "00:13:03,200"
+			},
+			"offsets": {
+				"from": 776200,
+				"to": 783200
+			},
+			"text": " services like BigQuery. Here at DevCon, there's been released by one of our users, foam,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,200",
+				"to": "00:13:09,560"
+			},
+			"offsets": {
+				"from": 783200,
+				"to": 789560
+			},
+			"text": " great group of folks basically building an incentive service, a service to generate valuable"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,560",
+				"to": "00:13:16,200"
+			},
+			"offsets": {
+				"from": 789560,
+				"to": 796200
+			},
+			"text": " location data using token incentives. And here's how that architecture looks. So just"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,200",
+				"to": "00:13:21,600"
+			},
+			"offsets": {
+				"from": 796200,
+				"to": 801600
+			},
+			"text": " like we started out with data and we've started to enable a lot of Define, a lot of simpler"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,600",
+				"to": "00:13:28,400"
+			},
+			"offsets": {
+				"from": 801600,
+				"to": 808400
+			},
+			"text": " on-chain contracts with data, the next stage in all of this is actually expanding the definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,400",
+				"to": "00:13:33,720"
+			},
+			"offsets": {
+				"from": 808400,
+				"to": 813720
+			},
+			"text": " of an Oracle beyond just something that provides data but something that actually provides"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,720",
+				"to": "00:13:40,800"
+			},
+			"offsets": {
+				"from": 813720,
+				"to": 820800
+			},
+			"text": " access secure and provably secure access to all the different computational resources available"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,800",
+				"to": "00:13:46,480"
+			},
+			"offsets": {
+				"from": 820800,
+				"to": 826480
+			},
+			"text": " outside of blockchains. This includes random number generators, it includes all the resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,480",
+				"to": "00:13:50,320"
+			},
+			"offsets": {
+				"from": 826480,
+				"to": 830320
+			},
+			"text": " in cloud providers, all the great pre-made services and functions as a service that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,320",
+				"to": "00:13:56,920"
+			},
+			"offsets": {
+				"from": 830320,
+				"to": 836920
+			},
+			"text": " would want to use and the capacity to validate and prove that those computations were correctly"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,920",
+				"to": "00:14:03,920"
+			},
+			"offsets": {
+				"from": 836920,
+				"to": 843920
+			},
+			"text": " executed on one server serving across different services. So I think the interesting thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,920",
+				"to": "00:14:10,480"
+			},
+			"offsets": {
+				"from": 843920,
+				"to": 850480
+			},
+			"text": " that we've seen is the capacity to move beyond data and into data plus computation such that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,480",
+				"to": "00:14:15,840"
+			},
+			"offsets": {
+				"from": 850480,
+				"to": 855840
+			},
+			"text": " Chainlink becomes an off-chain resource that developers can go to to compose whatever interactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,840",
+				"to": "00:14:23,280"
+			},
+			"offsets": {
+				"from": 855840,
+				"to": 863280
+			},
+			"text": " they need to compose around their contract in the world of already existing high quality"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,280",
+				"to": "00:14:28,480"
+			},
+			"offsets": {
+				"from": 863280,
+				"to": 868480
+			},
+			"text": " off-chain computation that's out there. Another example of this is our recent announcement"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,480",
+				"to": "00:14:32,960"
+			},
+			"offsets": {
+				"from": 868480,
+				"to": 872960
+			},
+			"text": " at the start of this conference about how Chainlink enables Ethereum contracts to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,960",
+				"to": "00:14:37,640"
+			},
+			"offsets": {
+				"from": 872960,
+				"to": 877640
+			},
+			"text": " Intel's trusted computing framework. So Intel has spent a lot of time and effort and we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,640",
+				"to": "00:14:43,440"
+			},
+			"offsets": {
+				"from": 877640,
+				"to": 883440
+			},
+			"text": " been working with them to generate a good trusted computing framework that implements trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,440",
+				"to": "00:14:48,800"
+			},
+			"offsets": {
+				"from": 883440,
+				"to": 888800
+			},
+			"text": " execution environments as something that can be used in layer two systems and the capacity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,800",
+				"to": "00:14:54,480"
+			},
+			"offsets": {
+				"from": 888800,
+				"to": 894480
+			},
+			"text": " to use layer two systems that use trusted execution environments as an off-chain computational"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,480",
+				"to": "00:15:04,240"
+			},
+			"offsets": {
+				"from": 894480,
+				"to": 904240
+			},
+			"text": " resource that provides highly reliable, highly scalable private computations while keeping"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,240",
+				"to": "00:15:09,640"
+			},
+			"offsets": {
+				"from": 904240,
+				"to": 909640
+			},
+			"text": " a contract on chain is right now due to the current limitations of on-chain contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,640",
+				"to": "00:15:14,200"
+			},
+			"offsets": {
+				"from": 909640,
+				"to": 914200
+			},
+			"text": " probably the way people are going to build high throughput, high value applications that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,200",
+				"to": "00:15:20,880"
+			},
+			"offsets": {
+				"from": 914200,
+				"to": 920880
+			},
+			"text": " still have access to public network value. So on the one hand, we want applications that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,880",
+				"to": "00:15:26,600"
+			},
+			"offsets": {
+				"from": 920880,
+				"to": 926600
+			},
+			"text": " exist in large public networks like Ethereum that have access to the user set, to the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,600",
+				"to": "00:15:32,120"
+			},
+			"offsets": {
+				"from": 926600,
+				"to": 932120
+			},
+			"text": " effect kind of value that that network has accrued, but at the same time we want a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,120",
+				"to": "00:15:36,240"
+			},
+			"offsets": {
+				"from": 932120,
+				"to": 936240
+			},
+			"text": " of functionality because we want to build more and more complex, more and more valuable"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,240",
+				"to": "00:15:42,600"
+			},
+			"offsets": {
+				"from": 936240,
+				"to": 942600
+			},
+			"text": " and useful contracts. And the middle ground seems to be the capacity for a developer to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,600",
+				"to": "00:15:46,880"
+			},
+			"offsets": {
+				"from": 942600,
+				"to": 946880
+			},
+			"text": " use an off-chain computation environment to interact with all the different computations"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,880",
+				"to": "00:15:52,080"
+			},
+			"offsets": {
+				"from": 946880,
+				"to": 952080
+			},
+			"text": " they need and then to prove back on chain that those computations that they performed"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,080",
+				"to": "00:15:56,320"
+			},
+			"offsets": {
+				"from": 952080,
+				"to": 956320
+			},
+			"text": " were properly performed, that the data was properly delivered for those computations"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,320",
+				"to": "00:16:02,640"
+			},
+			"offsets": {
+				"from": 956320,
+				"to": 962640
+			},
+			"text": " and that that computation can form a reliable part of that contract. So that's kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,640",
+				"to": "00:16:10,320"
+			},
+			"offsets": {
+				"from": 962640,
+				"to": 970320
+			},
+			"text": " the expansion of what we're starting to define Chainlink as. What a lot of this leads to is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,320",
+				"to": "00:16:15,040"
+			},
+			"offsets": {
+				"from": 970320,
+				"to": 975040
+			},
+			"text": " it leads us to a world where across environments we have Chainlink node operators that are servicing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,040",
+				"to": "00:16:20,760"
+			},
+			"offsets": {
+				"from": 975040,
+				"to": 980760
+			},
+			"text": " various different chains and they're accruing usage and that usage in various different"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,760",
+				"to": "00:16:25,880"
+			},
+			"offsets": {
+				"from": 980760,
+				"to": 985880
+			},
+			"text": " environments is once again another source of proof. It's a source of proof that there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,880",
+				"to": "00:16:31,120"
+			},
+			"offsets": {
+				"from": 985880,
+				"to": 991120
+			},
+			"text": " you know five DFI applications, two insurance applications, you know five gaming applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,120",
+				"to": "00:16:36,280"
+			},
+			"offsets": {
+				"from": 991120,
+				"to": 996280
+			},
+			"text": " using this node operator and this node operator is able to successfully deliver data and randomness"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,280",
+				"to": "00:16:42,520"
+			},
+			"offsets": {
+				"from": 996280,
+				"to": 1002520
+			},
+			"text": " and various types of data to these users and that provides even greater surety. So as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,520",
+				"to": "00:16:47,600"
+			},
+			"offsets": {
+				"from": 1002520,
+				"to": 1007600
+			},
+			"text": " system like ours gets used you start to accrue a lot more data about each individual node"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,600",
+				"to": "00:16:52,680"
+			},
+			"offsets": {
+				"from": 1007600,
+				"to": 1012680
+			},
+			"text": " operator and that accrual of data provides even greater assurances. So there's kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,680",
+				"to": "00:16:58,160"
+			},
+			"offsets": {
+				"from": 1012680,
+				"to": 1018160
+			},
+			"text": " a network effect from usage that allows people to continually define greater degrees of their"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,160",
+				"to": "00:17:05,800"
+			},
+			"offsets": {
+				"from": 1018160,
+				"to": 1025800
+			},
+			"text": " security and guarantees for users. Now one of the things that we've been using you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,800",
+				"to": "00:17:11,200"
+			},
+			"offsets": {
+				"from": 1025800,
+				"to": 1031200
+			},
+			"text": " one of the Oracle networks that we've composed for the use of the ecosystem are these reference"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,200",
+				"to": "00:17:16,880"
+			},
+			"offsets": {
+				"from": 1031200,
+				"to": 1036880
+			},
+			"text": " price reference data networks. Price reference data networks basically put data on Chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,880",
+				"to": "00:17:21,960"
+			},
+			"offsets": {
+				"from": 1036880,
+				"to": 1041960
+			},
+			"text": " They put data on Chain for use mainly by DFI projects and right now price reference data"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,960",
+				"to": "00:17:28,680"
+			},
+			"offsets": {
+				"from": 1041960,
+				"to": 1048680
+			},
+			"text": " networks like the one I'm showing here powers all of decentralized finance. Well except if"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,680",
+				"to": "00:17:32,400"
+			},
+			"offsets": {
+				"from": 1048680,
+				"to": 1052400
+			},
+			"text": " somebody made a centralized Oracle and you took a big risk on that but you know that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,400",
+				"to": "00:17:37,480"
+			},
+			"offsets": {
+				"from": 1052400,
+				"to": 1057480
+			},
+			"text": " their decision which I don't really advise. So these price reference data networks that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,480",
+				"to": "00:17:42,960"
+			},
+			"offsets": {
+				"from": 1057480,
+				"to": 1062960
+			},
+			"text": " we've already made right now have grown to be the largest most secure most civil resistant."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,960",
+				"to": "00:17:46,960"
+			},
+			"offsets": {
+				"from": 1062960,
+				"to": 1066960
+			},
+			"text": " We can definitively say that because we have the most node operators for example in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,960",
+				"to": "00:17:52,200"
+			},
+			"offsets": {
+				"from": 1066960,
+				"to": 1072200
+			},
+			"text": " network with E3USD price we have 17 and we're far ahead of schedule to reach the target"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,200",
+				"to": "00:17:57,320"
+			},
+			"offsets": {
+				"from": 1072200,
+				"to": 1077320
+			},
+			"text": " at 21. We have multiple high quality data aggregator sources so not original exchanges"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,320",
+				"to": "00:18:03,480"
+			},
+			"offsets": {
+				"from": 1077320,
+				"to": 1083480
+			},
+			"text": " but data aggregators that take on the burden of making sure that data is correct and it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,480",
+				"to": "00:18:07,120"
+			},
+			"offsets": {
+				"from": 1083480,
+				"to": 1087120
+			},
+			"text": " a civil resistant network because we validated these node operators over the course of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,120",
+				"to": "00:18:13,560"
+			},
+			"offsets": {
+				"from": 1087120,
+				"to": 1093560
+			},
+			"text": " two week process and a final security interview and it's also you know security reviewed in"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,560",
+				"to": "00:18:17,680"
+			},
+			"offsets": {
+				"from": 1093560,
+				"to": 1097680
+			},
+			"text": " many other forms like the ways that I showed you so even the node operators I showed you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,680",
+				"to": "00:18:21,240"
+			},
+			"offsets": {
+				"from": 1097680,
+				"to": 1101240
+			},
+			"text": " in the previous slide with all that detail are the ones that are powering a network like"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,240",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1101240,
+				"to": 1106000
+			},
+			"text": " this. So these reference data networks are actually very important as you can see you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:31,920"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1111920
+			},
+			"text": " can dig into them we encourage you to go and look at them. You can once again see exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,920",
+				"to": "00:18:36,240"
+			},
+			"offsets": {
+				"from": 1111920,
+				"to": 1116240
+			},
+			"text": " what they're doing and this level of clarity is supposed to provide users a guarantee that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,240",
+				"to": "00:18:40,560"
+			},
+			"offsets": {
+				"from": 1116240,
+				"to": 1120560
+			},
+			"text": " the reference data on this network is reliable enough to trigger there are hundreds of millions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,560",
+				"to": "00:18:45,120"
+			},
+			"offsets": {
+				"from": 1120560,
+				"to": 1125120
+			},
+			"text": " of dollars in value whereas any other type of reference data network or some centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,120",
+				"to": "00:18:50,440"
+			},
+			"offsets": {
+				"from": 1125120,
+				"to": 1130440
+			},
+			"text": " oracle wouldn't have any of this information you wouldn't have any guarantees that this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,440",
+				"to": "00:18:56,440"
+			},
+			"offsets": {
+				"from": 1130440,
+				"to": 1136440
+			},
+			"text": " oracle is committed to or has successfully performed its obligations previously."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,440",
+				"to": "00:19:02,600"
+			},
+			"offsets": {
+				"from": 1136440,
+				"to": 1142600
+			},
+			"text": " We've had so much success so far doing this and it's been done so securely over the past"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,600",
+				"to": "00:19:07,840"
+			},
+			"offsets": {
+				"from": 1142600,
+				"to": 1147840
+			},
+			"text": " number of months that we've were basically committing to expand the amount of reference"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,840",
+				"to": "00:19:12,400"
+			},
+			"offsets": {
+				"from": 1147840,
+				"to": 1152400
+			},
+			"text": " data networks. These are the next seven reference data networks that we're going to be launching"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,400",
+				"to": "00:19:20,520"
+			},
+			"offsets": {
+				"from": 1152400,
+				"to": 1160520
+			},
+			"text": " Bitcoin, Dye, USDC, zero X, Rep, WBTC and BAT prices. These prices and feeds were chosen"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,520",
+				"to": "00:19:27,440"
+			},
+			"offsets": {
+				"from": 1160520,
+				"to": 1167440
+			},
+			"text": " based on the needs of our users and customers. They're meant to service systems like compound,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,440",
+				"to": "00:19:31,680"
+			},
+			"offsets": {
+				"from": 1167440,
+				"to": 1171680
+			},
+			"text": " partially synthetics, partially other systems that are going to be building their contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,680",
+				"to": "00:19:35,960"
+			},
+			"offsets": {
+				"from": 1171680,
+				"to": 1175960
+			},
+			"text": " and securing their value using these reference data networks. These reference data networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,960",
+				"to": "00:19:40,040"
+			},
+			"offsets": {
+				"from": 1175960,
+				"to": 1180040
+			},
+			"text": " are once again, I mean they're provided free by us. If somebody wants to add security"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,040",
+				"to": "00:19:44,120"
+			},
+			"offsets": {
+				"from": 1180040,
+				"to": 1184120
+			},
+			"text": " to them we're going to be releasing information about how somebody could take a reference data"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,120",
+				"to": "00:19:48,760"
+			},
+			"offsets": {
+				"from": 1184120,
+				"to": 1188760
+			},
+			"text": " network with five or seven oracles and how they can add more oracles to that reference"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,760",
+				"to": "00:19:52,720"
+			},
+			"offsets": {
+				"from": 1188760,
+				"to": 1192720
+			},
+			"text": " data network in case they start using it and they want to add more security on top of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,720",
+				"to": "00:19:58,800"
+			},
+			"offsets": {
+				"from": 1192720,
+				"to": 1198800
+			},
+			"text": " initial security we paid for but we're very excited to be giving back to the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,800",
+				"to": "00:20:04,720"
+			},
+			"offsets": {
+				"from": 1198800,
+				"to": 1204720
+			},
+			"text": " because the Ethereum community has done a huge amount for us and we think that the capacity"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,720",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1204720,
+				"to": 1210000
+			},
+			"text": " to have high quality data on chain and to make it extremely usable and reliable is one"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,000",
+				"to": "00:20:14,920"
+			},
+			"offsets": {
+				"from": 1210000,
+				"to": 1214920
+			},
+			"text": " of the key things that were kicked our DeFi. And so right now we're committing to put these"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,920",
+				"to": "00:20:20,640"
+			},
+			"offsets": {
+				"from": 1214920,
+				"to": 1220640
+			},
+			"text": " seven networks out because we know they're going to successfully service existing users"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,640",
+				"to": "00:20:29,080"
+			},
+			"offsets": {
+				"from": 1220640,
+				"to": 1229080
+			},
+			"text": " and customers and beyond that we plan to launch many more. In that vein if you have a DeFi"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,080",
+				"to": "00:20:36,160"
+			},
+			"offsets": {
+				"from": 1229080,
+				"to": 1236160
+			},
+			"text": " project if you have a need for a reference data price on chain we want to support you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,160",
+				"to": "00:20:41,040"
+			},
+			"offsets": {
+				"from": 1236160,
+				"to": 1241040
+			},
+			"text": " and our goal as a company is actually to make our users succeed by giving them access to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,040",
+				"to": "00:20:48,080"
+			},
+			"offsets": {
+				"from": 1241040,
+				"to": 1248080
+			},
+			"text": " this reliable data. So our chain link is basically here to enable smart contract developers to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,080",
+				"to": "00:20:52,720"
+			},
+			"offsets": {
+				"from": 1248080,
+				"to": 1252720
+			},
+			"text": " build any kind of externally connected or next generation contract and if that's what"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,720",
+				"to": "00:20:57,720"
+			},
+			"offsets": {
+				"from": 1252720,
+				"to": 1257720
+			},
+			"text": " you're doing you know we're very collaborative, very helpful people, we have a huge integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,720",
+				"to": "00:21:02,480"
+			},
+			"offsets": {
+				"from": 1257720,
+				"to": 1262480
+			},
+			"text": " engineer and support engineering staff that is there to help you build these contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,480",
+				"to": "00:21:08,320"
+			},
+			"offsets": {
+				"from": 1262480,
+				"to": 1268320
+			},
+			"text": " and likewise even make a great reference data network possibly even starting out for your"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,320",
+				"to": "00:21:15,720"
+			},
+			"offsets": {
+				"from": 1268320,
+				"to": 1275720
+			},
+			"text": " use case but then getting used by other DeFi projects as well. So thank you very much and"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,720",
+				"to": "00:21:18,760"
+			},
+			"offsets": {
+				"from": 1275720,
+				"to": 1278760
+			},
+			"text": " I'm looking forward to seeing you all at the conference. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,760",
+				"to": "00:21:20,760"
+			},
+			"offsets": {
+				"from": 1278760,
+				"to": 1280760
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,760",
+				"to": "00:21:22,760"
+			},
+			"offsets": {
+				"from": 1280760,
+				"to": 1282760
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,760",
+				"to": "00:21:24,760"
+			},
+			"offsets": {
+				"from": 1282760,
+				"to": 1284760
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,760",
+				"to": "00:21:26,760"
+			},
+			"offsets": {
+				"from": 1284760,
+				"to": 1286760
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,760",
+				"to": "00:21:28,760"
+			},
+			"offsets": {
+				"from": 1286760,
+				"to": 1288760
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,760",
+				"to": "00:21:30,760"
+			},
+			"offsets": {
+				"from": 1288760,
+				"to": 1290760
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,760",
+				"to": "00:21:32,760"
+			},
+			"offsets": {
+				"from": 1290760,
+				"to": 1292760
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,760",
+				"to": "00:21:34,760"
+			},
+			"offsets": {
+				"from": 1292760,
+				"to": 1294760
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,760",
+				"to": "00:21:56,760"
+			},
+			"offsets": {
+				"from": 1294760,
+				"to": 1316760
+			},
+			"text": " [Music]"
+		}
+	]
+}

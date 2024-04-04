@@ -1,0 +1,5158 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:13,520"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 13520
+			},
+			"text": " Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,520",
+				"to": "00:00:14,760"
+			},
+			"offsets": {
+				"from": 13520,
+				"to": 14760
+			},
+			"text": " I'm Nalen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,760",
+				"to": "00:00:16,120"
+			},
+			"offsets": {
+				"from": 14760,
+				"to": 16120
+			},
+			"text": " I'm Ng Tong."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,120",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 16120,
+				"to": 19000
+			},
+			"text": " And today, we're going to talk about recursive zk-snarks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:21,240"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 21240
+			},
+			"text": " the kinds of applications they unlock,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,240",
+				"to": "00:00:22,960"
+			},
+			"offsets": {
+				"from": 21240,
+				"to": 22960
+			},
+			"text": " and how we can implement them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,960",
+				"to": "00:00:25,760"
+			},
+			"offsets": {
+				"from": 22960,
+				"to": 25760
+			},
+			"text": " So first, we should talk about what recursive proofs even"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,760",
+				"to": "00:00:26,680"
+			},
+			"offsets": {
+				"from": 25760,
+				"to": 26680
+			},
+			"text": " are."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,680",
+				"to": "00:00:28,480"
+			},
+			"offsets": {
+				"from": 26680,
+				"to": 28480
+			},
+			"text": " So in the context of snark, recursion"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,480",
+				"to": "00:00:31,800"
+			},
+			"offsets": {
+				"from": 28480,
+				"to": 31800
+			},
+			"text": " is usually the ability to verify a snark proof inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,800",
+				"to": "00:00:33,200"
+			},
+			"offsets": {
+				"from": 31800,
+				"to": 33200
+			},
+			"text": " of another snark proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,200",
+				"to": "00:00:36,080"
+			},
+			"offsets": {
+				"from": 33200,
+				"to": 36080
+			},
+			"text": " So this is the ability to say something like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,080",
+				"to": "00:00:39,360"
+			},
+			"offsets": {
+				"from": 36080,
+				"to": 39360
+			},
+			"text": " I know a snark proof that when I run the snark verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,360",
+				"to": "00:00:43,880"
+			},
+			"offsets": {
+				"from": 39360,
+				"to": 43880
+			},
+			"text": " algorithm on, it returns true inside of another snark proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,880",
+				"to": "00:00:47,240"
+			},
+			"offsets": {
+				"from": 43880,
+				"to": 47240
+			},
+			"text": " And the sort of key part here is that verification of recursive"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,240",
+				"to": "00:00:50,880"
+			},
+			"offsets": {
+				"from": 47240,
+				"to": 50880
+			},
+			"text": " zk-snarks is usually not significantly slower"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,880",
+				"to": "00:00:56,160"
+			},
+			"offsets": {
+				"from": 50880,
+				"to": 56160
+			},
+			"text": " than ordinary regular zk-snark verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,160",
+				"to": "00:00:58,400"
+			},
+			"offsets": {
+				"from": 56160,
+				"to": 58400
+			},
+			"text": " So now that we have this primitive in mind,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,400",
+				"to": "00:01:00,920"
+			},
+			"offsets": {
+				"from": 58400,
+				"to": 60920
+			},
+			"text": " we should think about the sort of natural question"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,920",
+				"to": "00:01:03,920"
+			},
+			"offsets": {
+				"from": 60920,
+				"to": 63920
+			},
+			"text": " is, why would you want to make recursive snark proofs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,920",
+				"to": "00:01:06,360"
+			},
+			"offsets": {
+				"from": 63920,
+				"to": 66360
+			},
+			"text": " So typically, regular zk-snarks, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,360",
+				"to": "00:01:09,400"
+			},
+			"offsets": {
+				"from": 66360,
+				"to": 69400
+			},
+			"text": " think of them as having two sort of properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,400",
+				"to": "00:01:11,080"
+			},
+			"offsets": {
+				"from": 69400,
+				"to": 71080
+			},
+			"text": " sussingness and zero knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,080",
+				"to": "00:01:13,920"
+			},
+			"offsets": {
+				"from": 71080,
+				"to": 73920
+			},
+			"text": " So recursion, in fact, unlocks powerful versions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,920",
+				"to": "00:01:19,440"
+			},
+			"offsets": {
+				"from": 73920,
+				"to": 79440
+			},
+			"text": " of both of these properties in the form of compression, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,440",
+				"to": "00:01:21,280"
+			},
+			"offsets": {
+				"from": 79440,
+				"to": 81280
+			},
+			"text": " is a stronger version of sussingness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,280",
+				"to": "00:01:26,440"
+			},
+			"offsets": {
+				"from": 81280,
+				"to": 86440
+			},
+			"text": " and multiparty composability from zero knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,440",
+				"to": "00:01:28,800"
+			},
+			"offsets": {
+				"from": 86440,
+				"to": 88800
+			},
+			"text": " So first, let's talk about compression."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,800",
+				"to": "00:01:31,840"
+			},
+			"offsets": {
+				"from": 88800,
+				"to": 91840
+			},
+			"text": " We think of compression as supercharging sussingness."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,840",
+				"to": "00:01:34,640"
+			},
+			"offsets": {
+				"from": 91840,
+				"to": 94640
+			},
+			"text": " And in particular, usually the applications of compression"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,640",
+				"to": "00:01:37,200"
+			},
+			"offsets": {
+				"from": 94640,
+				"to": 97200
+			},
+			"text": " tend to share a sort of common pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,200",
+				"to": "00:01:38,960"
+			},
+			"offsets": {
+				"from": 97200,
+				"to": 98960
+			},
+			"text": " And this common pattern looks like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,960",
+				"to": "00:01:40,400"
+			},
+			"offsets": {
+				"from": 98960,
+				"to": 100400
+			},
+			"text": " let's say we have a prover who wants"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,400",
+				"to": "00:01:43,880"
+			},
+			"offsets": {
+				"from": 100400,
+				"to": 103880
+			},
+			"text": " to show a verifier some n pieces of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,880",
+				"to": "00:01:46,320"
+			},
+			"offsets": {
+				"from": 103880,
+				"to": 106320
+			},
+			"text": " How do they do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,320",
+				"to": "00:01:49,760"
+			},
+			"offsets": {
+				"from": 106320,
+				"to": 109760
+			},
+			"text": " They make a proof showing two sort of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,760",
+				"to": "00:01:52,040"
+			},
+			"offsets": {
+				"from": 109760,
+				"to": 112040
+			},
+			"text": " First, they show one piece of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,040",
+				"to": "00:01:53,960"
+			},
+			"offsets": {
+				"from": 112040,
+				"to": 113960
+			},
+			"text": " And then they also show, additionally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,960",
+				"to": "00:01:56,120"
+			},
+			"offsets": {
+				"from": 113960,
+				"to": 116120
+			},
+			"text": " the n minus 1 other pieces of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,120",
+				"to": "00:01:58,680"
+			},
+			"offsets": {
+				"from": 116120,
+				"to": 118680
+			},
+			"text": " But for these n minus 1 pieces, instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,680",
+				"to": "00:02:00,160"
+			},
+			"offsets": {
+				"from": 118680,
+				"to": 120160
+			},
+			"text": " of showing each piece individually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,160",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 120160,
+				"to": 124000
+			},
+			"text": " they will show that they know another snark proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:07,400"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 127400
+			},
+			"text": " of these n minus 1 pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,400",
+				"to": "00:02:08,760"
+			},
+			"offsets": {
+				"from": 127400,
+				"to": 128760
+			},
+			"text": " So the next question is, how do you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,760",
+				"to": "00:02:12,520"
+			},
+			"offsets": {
+				"from": 128760,
+				"to": 132520
+			},
+			"text": " make the snark proof for the n minus 1 pieces of knowledge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,520",
+				"to": "00:02:15,680"
+			},
+			"offsets": {
+				"from": 132520,
+				"to": 135680
+			},
+			"text": " And in fact, we use the same kind of strategy again."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,680",
+				"to": "00:02:17,280"
+			},
+			"offsets": {
+				"from": 135680,
+				"to": 137280
+			},
+			"text": " The n minus 1 pieces of knowledge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,280",
+				"to": "00:02:18,480"
+			},
+			"offsets": {
+				"from": 137280,
+				"to": 138480
+			},
+			"text": " we show one piece of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,480",
+				"to": "00:02:20,280"
+			},
+			"offsets": {
+				"from": 138480,
+				"to": 140280
+			},
+			"text": " And additionally, we show that we know another proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,280",
+				"to": "00:02:23,640"
+			},
+			"offsets": {
+				"from": 140280,
+				"to": 143640
+			},
+			"text": " of n minus 2 pieces of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,640",
+				"to": "00:02:26,520"
+			},
+			"offsets": {
+				"from": 143640,
+				"to": 146520
+			},
+			"text": " And so then you just gasket down this sort of strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,520",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 146520,
+				"to": 148000
+			},
+			"text": " And you end up with this situation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:31,960"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 151960
+			},
+			"text": " where you're verifying one snark proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,960",
+				"to": "00:02:34,480"
+			},
+			"offsets": {
+				"from": 151960,
+				"to": 154480
+			},
+			"text": " And in that, it's automatically verifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,480",
+				"to": "00:02:36,960"
+			},
+			"offsets": {
+				"from": 154480,
+				"to": 156960
+			},
+			"text": " these n items of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,960",
+				"to": "00:02:39,280"
+			},
+			"offsets": {
+				"from": 156960,
+				"to": 159280
+			},
+			"text": " Another instance of compression that's particularly helpful"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,280",
+				"to": "00:02:42,320"
+			},
+			"offsets": {
+				"from": 159280,
+				"to": 162320
+			},
+			"text": " to point out is the setting where"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,320",
+				"to": "00:02:45,280"
+			},
+			"offsets": {
+				"from": 162320,
+				"to": 165280
+			},
+			"text": " you want to compose between different proof systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,280",
+				"to": "00:02:46,360"
+			},
+			"offsets": {
+				"from": 165280,
+				"to": 166360
+			},
+			"text": " or ethnicizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,360",
+				"to": "00:02:50,400"
+			},
+			"offsets": {
+				"from": 166360,
+				"to": 170400
+			},
+			"text": " And at the time, also pick the good features of each of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,400",
+				"to": "00:02:52,760"
+			},
+			"offsets": {
+				"from": 170400,
+				"to": 172760
+			},
+			"text": " So for instance, you can have some setting"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,760",
+				"to": "00:02:55,080"
+			},
+			"offsets": {
+				"from": 172760,
+				"to": 175080
+			},
+			"text": " where you have two different proving schemes, one"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,080",
+				"to": "00:02:57,240"
+			},
+			"offsets": {
+				"from": 175080,
+				"to": 177240
+			},
+			"text": " where you have a fast prover, but unfortunately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,240",
+				"to": "00:02:58,680"
+			},
+			"offsets": {
+				"from": 177240,
+				"to": 178680
+			},
+			"text": " the verifier is slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,680",
+				"to": "00:03:01,040"
+			},
+			"offsets": {
+				"from": 178680,
+				"to": 181040
+			},
+			"text": " And another where the prover is slower,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,040",
+				"to": "00:03:03,560"
+			},
+			"offsets": {
+				"from": 181040,
+				"to": 183560
+			},
+			"text": " but you get the trade-off that the verifier is fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,560",
+				"to": "00:03:05,960"
+			},
+			"offsets": {
+				"from": 183560,
+				"to": 185960
+			},
+			"text": " So using recursion, you can compose"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,960",
+				"to": "00:03:08,960"
+			},
+			"offsets": {
+				"from": 185960,
+				"to": 188960
+			},
+			"text": " between the proving system from the wider setting"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,960",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 188960,
+				"to": 192000
+			},
+			"text": " to the narrower setting and get a tiny proof output,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:14,400"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 194400
+			},
+			"text": " as well as fast prover, getting sort of the best"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,400",
+				"to": "00:03:16,640"
+			},
+			"offsets": {
+				"from": 194400,
+				"to": 196640
+			},
+			"text": " of the world worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,640",
+				"to": "00:03:19,600"
+			},
+			"offsets": {
+				"from": 196640,
+				"to": 199600
+			},
+			"text": " A concrete sort of instantiation of this interoperability"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,600",
+				"to": "00:03:21,360"
+			},
+			"offsets": {
+				"from": 199600,
+				"to": 201360
+			},
+			"text": " is the setting that starts and got"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,360",
+				"to": "00:03:26,080"
+			},
+			"offsets": {
+				"from": 201360,
+				"to": 206080
+			},
+			"text": " 16, in particular, Graz 16 is very cheap to verify,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,080",
+				"to": "00:03:28,440"
+			},
+			"offsets": {
+				"from": 206080,
+				"to": 208440
+			},
+			"text": " whereas starts are very easy to prove."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,440",
+				"to": "00:03:31,560"
+			},
+			"offsets": {
+				"from": 208440,
+				"to": 211560
+			},
+			"text": " So if you verify a start proof inside of a Graz 16 snark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,560",
+				"to": "00:03:33,840"
+			},
+			"offsets": {
+				"from": 211560,
+				"to": 213840
+			},
+			"text": " you end up with a proof of the original statement"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,840",
+				"to": "00:03:36,560"
+			},
+			"offsets": {
+				"from": 213840,
+				"to": 216560
+			},
+			"text": " with a fast prover, as well as a fast verifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,560",
+				"to": "00:03:39,400"
+			},
+			"offsets": {
+				"from": 216560,
+				"to": 219400
+			},
+			"text": " So generally, compression has this sort of property"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,400",
+				"to": "00:03:41,080"
+			},
+			"offsets": {
+				"from": 219400,
+				"to": 221080
+			},
+			"text": " that is very mechanical."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,080",
+				"to": "00:03:44,040"
+			},
+			"offsets": {
+				"from": 221080,
+				"to": 224040
+			},
+			"text": " And usually, you're rolling up some giant list of computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,040",
+				"to": "00:03:48,840"
+			},
+			"offsets": {
+				"from": 224040,
+				"to": 228840
+			},
+			"text": " or items of knowledge, incrementing into a single proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,840",
+				"to": "00:03:51,320"
+			},
+			"offsets": {
+				"from": 228840,
+				"to": 231320
+			},
+			"text": " So just to give a flavor for sort of what applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,320",
+				"to": "00:03:53,520"
+			},
+			"offsets": {
+				"from": 231320,
+				"to": 233520
+			},
+			"text": " this unlocks, let's look at things"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,520",
+				"to": "00:03:55,720"
+			},
+			"offsets": {
+				"from": 233520,
+				"to": 235720
+			},
+			"text": " that are interesting to roll up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,720",
+				"to": "00:03:58,440"
+			},
+			"offsets": {
+				"from": 235720,
+				"to": 238440
+			},
+			"text": " So first is signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,440",
+				"to": "00:04:00,080"
+			},
+			"offsets": {
+				"from": 238440,
+				"to": 240080
+			},
+			"text": " Over the summer, we built applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,080",
+				"to": "00:04:03,600"
+			},
+			"offsets": {
+				"from": 240080,
+				"to": 243600
+			},
+			"text": " using sort of this primitive of recursive compression"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,600",
+				"to": "00:04:06,280"
+			},
+			"offsets": {
+				"from": 243600,
+				"to": 246280
+			},
+			"text": " of signatures called isograsia, where"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,280",
+				"to": "00:04:10,120"
+			},
+			"offsets": {
+				"from": 246280,
+				"to": 250120
+			},
+			"text": " we end up with a low-trust, low-cost sort of roll up"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,120",
+				"to": "00:04:14,440"
+			},
+			"offsets": {
+				"from": 250120,
+				"to": 254440
+			},
+			"text": " of off-chain votes and end up securing grovernance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,440",
+				"to": "00:04:17,240"
+			},
+			"offsets": {
+				"from": 254440,
+				"to": 257240
+			},
+			"text": " And then more related to sort of blockchain land,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,240",
+				"to": "00:04:20,720"
+			},
+			"offsets": {
+				"from": 257240,
+				"to": 260720
+			},
+			"text": " you can do the same kind of trick with light-climbed routes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,720",
+				"to": "00:04:22,360"
+			},
+			"offsets": {
+				"from": 260720,
+				"to": 262360
+			},
+			"text": " And in fact, blue mode, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,360",
+				"to": "00:04:25,080"
+			},
+			"offsets": {
+				"from": 262360,
+				"to": 265080
+			},
+			"text": " cells, light-climbed is based on this sort of idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,080",
+				"to": "00:04:27,840"
+			},
+			"offsets": {
+				"from": 265080,
+				"to": 267840
+			},
+			"text": " And there's also another group named Axiom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,840",
+				"to": "00:04:31,280"
+			},
+			"offsets": {
+				"from": 267840,
+				"to": 271280
+			},
+			"text": " which is exploring sort of more cooler use cases for this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,280",
+				"to": "00:04:34,720"
+			},
+			"offsets": {
+				"from": 271280,
+				"to": 274720
+			},
+			"text": " with aggregating and providing historical data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,720",
+				"to": "00:04:37,280"
+			},
+			"offsets": {
+				"from": 274720,
+				"to": 277280
+			},
+			"text": " through the use of recursive snarks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,280",
+				"to": "00:04:40,480"
+			},
+			"offsets": {
+				"from": 277280,
+				"to": 280480
+			},
+			"text": " And then finally, this sort of hot topic in blockchain land"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,480",
+				"to": "00:04:43,520"
+			},
+			"offsets": {
+				"from": 280480,
+				"to": 283520
+			},
+			"text": " diseases making roll-ups of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,520",
+				"to": "00:04:45,720"
+			},
+			"offsets": {
+				"from": 283520,
+				"to": 285720
+			},
+			"text": " Two particular ones that are sort of interesting to point out"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,720",
+				"to": "00:04:49,480"
+			},
+			"offsets": {
+				"from": 285720,
+				"to": 289480
+			},
+			"text": " are Mina, who sort of use this recursion primitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,480",
+				"to": "00:04:53,200"
+			},
+			"offsets": {
+				"from": 289480,
+				"to": 293200
+			},
+			"text": " as a consensus layer primitive, and Pauli Gannhermas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,200",
+				"to": "00:04:55,680"
+			},
+			"offsets": {
+				"from": 293200,
+				"to": 295680
+			},
+			"text": " who use the exact strategy of using"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,680",
+				"to": "00:04:59,600"
+			},
+			"offsets": {
+				"from": 295680,
+				"to": 299600
+			},
+			"text": " starts for fast-proofer settings and grad 16 or SNARKs"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,600",
+				"to": "00:05:02,400"
+			},
+			"offsets": {
+				"from": 299600,
+				"to": 302400
+			},
+			"text": " for fast-perification settings."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,400",
+				"to": "00:05:04,360"
+			},
+			"offsets": {
+				"from": 302400,
+				"to": 304360
+			},
+			"text": " Next, let's talk about composability."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,360",
+				"to": "00:05:08,400"
+			},
+			"offsets": {
+				"from": 304360,
+				"to": 308400
+			},
+			"text": " My personal favorite property unlocked by recursive SNARKs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,400",
+				"to": "00:05:11,720"
+			},
+			"offsets": {
+				"from": 308400,
+				"to": 311720
+			},
+			"text": " So to give some context for this, let's take a step back."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,720",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 311720,
+				"to": 315000
+			},
+			"text": " Let's think about what a normal zkproof--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:17,080"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 317080
+			},
+			"text": " what's the context of a normal zkproof?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,080",
+				"to": "00:05:18,880"
+			},
+			"offsets": {
+				"from": 317080,
+				"to": 318880
+			},
+			"text": " We usually think of zk roofs in this context"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,880",
+				"to": "00:05:21,800"
+			},
+			"offsets": {
+				"from": 318880,
+				"to": 321800
+			},
+			"text": " whether a prover is showing knowledge to a verifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,800",
+				"to": "00:05:25,480"
+			},
+			"offsets": {
+				"from": 321800,
+				"to": 325480
+			},
+			"text": " without revealing the underlying fact of the knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,480",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 325480,
+				"to": 329000
+			},
+			"text": " With recursion, in fact, you can unlock something more powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:31,120"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 331120
+			},
+			"text": " A prover can show knowledge to a verifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,120",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 331120,
+				"to": 336000
+			},
+			"text": " without fully knowing the underlying facts themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:38,360"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 338360
+			},
+			"text": " So this is a bit hard to model, so I'll just"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,360",
+				"to": "00:05:39,800"
+			},
+			"offsets": {
+				"from": 338360,
+				"to": 339800
+			},
+			"text": " lead with an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,800",
+				"to": "00:05:41,600"
+			},
+			"offsets": {
+				"from": 339800,
+				"to": 341600
+			},
+			"text": " Over the summer, we build this application called"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,600",
+				"to": "00:05:45,240"
+			},
+			"offsets": {
+				"from": 341600,
+				"to": 345240
+			},
+			"text": " Itdos, which is erdosh numbers on social graphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,240",
+				"to": "00:05:47,200"
+			},
+			"offsets": {
+				"from": 345240,
+				"to": 347200
+			},
+			"text": " So these social graphs are sort of graphs"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,200",
+				"to": "00:05:50,320"
+			},
+			"offsets": {
+				"from": 347200,
+				"to": 350320
+			},
+			"text": " of relationships of people saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,320",
+				"to": "00:05:52,680"
+			},
+			"offsets": {
+				"from": 350320,
+				"to": 352680
+			},
+			"text": " I am your friend, friends of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,680",
+				"to": "00:05:55,040"
+			},
+			"offsets": {
+				"from": 352680,
+				"to": 355040
+			},
+			"text": " And for instance, here we have this graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,040",
+				"to": "00:05:58,400"
+			},
+			"offsets": {
+				"from": 355040,
+				"to": 358400
+			},
+			"text": " And Vitalik sent someone who sent someone who sent someone."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,400",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 358400,
+				"to": 363000
+			},
+			"text": " And finally, I ended up a four-degree path to Vitalik."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:06,640"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 366640
+			},
+			"text": " Now I can prove that I have a four-degree path to Vitalik"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,640",
+				"to": "00:06:11,200"
+			},
+			"offsets": {
+				"from": 366640,
+				"to": 371200
+			},
+			"text": " without knowing any of the intermediate parties in this path."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,200",
+				"to": "00:06:12,760"
+			},
+			"offsets": {
+				"from": 371200,
+				"to": 372760
+			},
+			"text": " So how do I do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,760",
+				"to": "00:06:15,880"
+			},
+			"offsets": {
+				"from": 372760,
+				"to": 375880
+			},
+			"text": " I say, I am a friend of Adhan."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,880",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 375880,
+				"to": 380000
+			},
+			"text": " And Adhan has a ZK proof that he is three degrees from Vitalik."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:23,120"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 383120
+			},
+			"text": " So in this process, I do not know the three degrees"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,120",
+				"to": "00:06:24,440"
+			},
+			"offsets": {
+				"from": 383120,
+				"to": 384440
+			},
+			"text": " that precede Adhan."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,440",
+				"to": "00:06:27,240"
+			},
+			"offsets": {
+				"from": 384440,
+				"to": 387240
+			},
+			"text": " And I have still convinced any external--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,240",
+				"to": "00:06:31,040"
+			},
+			"offsets": {
+				"from": 387240,
+				"to": 391040
+			},
+			"text": " as well as myself-- that there is a valid path of four-degree"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,040",
+				"to": "00:06:32,600"
+			},
+			"offsets": {
+				"from": 391040,
+				"to": 392600
+			},
+			"text": " between me and Vitalik."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,600",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 392600,
+				"to": 396000
+			},
+			"text": " So of course, this is not the only application you can build."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:38,720"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 398720
+			},
+			"text": " In general, we think composability is particularly cool"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,720",
+				"to": "00:06:41,200"
+			},
+			"offsets": {
+				"from": 398720,
+				"to": 401200
+			},
+			"text": " to think of in sort of incomplete information"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,200",
+				"to": "00:06:42,960"
+			},
+			"offsets": {
+				"from": 401200,
+				"to": 402960
+			},
+			"text": " game kinds of settings."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,960",
+				"to": "00:06:46,200"
+			},
+			"offsets": {
+				"from": 402960,
+				"to": 406200
+			},
+			"text": " And of course, the sort of very typical example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,200",
+				"to": "00:06:49,160"
+			},
+			"offsets": {
+				"from": 406200,
+				"to": 409160
+			},
+			"text": " the phrase starting point, we thought of was games"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,160",
+				"to": "00:06:52,560"
+			},
+			"offsets": {
+				"from": 409160,
+				"to": 412560
+			},
+			"text": " like telephone or Chinese whispers, where you pass a word"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,560",
+				"to": "00:06:55,680"
+			},
+			"offsets": {
+				"from": 412560,
+				"to": 415680
+			},
+			"text": " around or something, and you want to make edits to it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,680",
+				"to": "00:06:56,880"
+			},
+			"offsets": {
+				"from": 415680,
+				"to": 416880
+			},
+			"text": " incrementally."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,880",
+				"to": "00:06:59,520"
+			},
+			"offsets": {
+				"from": 416880,
+				"to": 419520
+			},
+			"text": " And then you can make more complex applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,520",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 419520,
+				"to": 423000
+			},
+			"text": " like party games like mafia, those kinds of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:04,960"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 424960
+			},
+			"text": " And then more relevant to blockchain land,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,960",
+				"to": "00:07:09,640"
+			},
+			"offsets": {
+				"from": 424960,
+				"to": 429640
+			},
+			"text": " you can build private-state channels and roll-ups of that sort."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,640",
+				"to": "00:07:12,440"
+			},
+			"offsets": {
+				"from": 429640,
+				"to": 432440
+			},
+			"text": " So now that we have some intuition"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,440",
+				"to": "00:07:16,360"
+			},
+			"offsets": {
+				"from": 432440,
+				"to": 436360
+			},
+			"text": " for the high-level properties of recursive proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,360",
+				"to": "00:07:20,120"
+			},
+			"offsets": {
+				"from": 436360,
+				"to": 440120
+			},
+			"text": " and now that we've seen some classes of applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,120",
+				"to": "00:07:22,440"
+			},
+			"offsets": {
+				"from": 440120,
+				"to": 442440
+			},
+			"text": " that are enabled by them, you might"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,440",
+				"to": "00:07:26,280"
+			},
+			"offsets": {
+				"from": 442440,
+				"to": 446280
+			},
+			"text": " be feeling that recursive proofs are kind of unreasonable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,280",
+				"to": "00:07:30,040"
+			},
+			"offsets": {
+				"from": 446280,
+				"to": 450040
+			},
+			"text": " We get unlimited compression and composability."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,040",
+				"to": "00:07:32,600"
+			},
+			"offsets": {
+				"from": 450040,
+				"to": 452600
+			},
+			"text": " So I guess the natural question now"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,600",
+				"to": "00:07:38,280"
+			},
+			"offsets": {
+				"from": 452600,
+				"to": 458280
+			},
+			"text": " is how do we implement and construct these systems?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,280",
+				"to": "00:07:42,760"
+			},
+			"offsets": {
+				"from": 458280,
+				"to": 462760
+			},
+			"text": " So right now, there's broadly three classes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,760",
+				"to": "00:07:45,280"
+			},
+			"offsets": {
+				"from": 462760,
+				"to": 465280
+			},
+			"text": " of recursive proofs in production."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,280",
+				"to": "00:07:48,640"
+			},
+			"offsets": {
+				"from": 465280,
+				"to": 468640
+			},
+			"text": " And as we descend the hierarchy, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,640",
+				"to": "00:07:53,600"
+			},
+			"offsets": {
+				"from": 468640,
+				"to": 473600
+			},
+			"text": " are relaxing the requirements on the proof systems, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,600",
+				"to": "00:07:57,880"
+			},
+			"offsets": {
+				"from": 473600,
+				"to": 477880
+			},
+			"text": " are eligible for recursive schemes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,880",
+				"to": "00:08:00,520"
+			},
+			"offsets": {
+				"from": 477880,
+				"to": 480520
+			},
+			"text": " So at the very top of the hierarchy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,520",
+				"to": "00:08:03,320"
+			},
+			"offsets": {
+				"from": 480520,
+				"to": 483320
+			},
+			"text": " we have really the most stringent requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,320",
+				"to": "00:08:06,920"
+			},
+			"offsets": {
+				"from": 483320,
+				"to": 486920
+			},
+			"text": " So we need proof systems with verifiers"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,920",
+				"to": "00:08:10,800"
+			},
+			"offsets": {
+				"from": 486920,
+				"to": 490800
+			},
+			"text": " that are sublinear, that are succinct in the size"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,800",
+				"to": "00:08:12,720"
+			},
+			"offsets": {
+				"from": 490800,
+				"to": 492720
+			},
+			"text": " of the statement being proven."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,720",
+				"to": "00:08:16,440"
+			},
+			"offsets": {
+				"from": 492720,
+				"to": 496440
+			},
+			"text": " And this enables us to do full recursion"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,440",
+				"to": "00:08:18,720"
+			},
+			"offsets": {
+				"from": 496440,
+				"to": 498720
+			},
+			"text": " at every recursive step."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,720",
+				"to": "00:08:25,640"
+			},
+			"offsets": {
+				"from": 498720,
+				"to": 505640
+			},
+			"text": " So this has been implemented for the graph 16 and fry proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,640",
+				"to": "00:08:27,640"
+			},
+			"offsets": {
+				"from": 505640,
+				"to": 507640
+			},
+			"text": " systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,640",
+				"to": "00:08:32,240"
+			},
+			"offsets": {
+				"from": 507640,
+				"to": 512240
+			},
+			"text": " So if we relax our requirements a little bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,240",
+				"to": "00:08:37,400"
+			},
+			"offsets": {
+				"from": 512240,
+				"to": 517400
+			},
+			"text": " and we say even if we don't have a succinct verifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,400",
+				"to": "00:08:41,680"
+			},
+			"offsets": {
+				"from": 517400,
+				"to": 521680
+			},
+			"text": " maybe we're happy enough just with a succinct accumulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,680",
+				"to": "00:08:44,640"
+			},
+			"offsets": {
+				"from": 521680,
+				"to": 524640
+			},
+			"text": " So intuitively, what this means is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,640",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 524640,
+				"to": 529000
+			},
+			"text": " that we want a verifier with this shape,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:52,640"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 532640
+			},
+			"text": " that they have a succinct check, a cheap check,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,640",
+				"to": "00:08:55,800"
+			},
+			"offsets": {
+				"from": 532640,
+				"to": 535800
+			},
+			"text": " and then separately they have an expensive check."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,800",
+				"to": "00:09:00,280"
+			},
+			"offsets": {
+				"from": 535800,
+				"to": 540280
+			},
+			"text": " And so here we can instantiate an atomic accumulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,280",
+				"to": "00:09:02,960"
+			},
+			"offsets": {
+				"from": 540280,
+				"to": 542960
+			},
+			"text": " And at each recursive step, we only"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,960",
+				"to": "00:09:05,600"
+			},
+			"offsets": {
+				"from": 542960,
+				"to": 545600
+			},
+			"text": " perform the succinct checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,600",
+				"to": "00:09:10,040"
+			},
+			"offsets": {
+				"from": 545600,
+				"to": 550040
+			},
+			"text": " And we accumulate the expensive check"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,040",
+				"to": "00:09:15,840"
+			},
+			"offsets": {
+				"from": 550040,
+				"to": 555840
+			},
+			"text": " and delay checking it until the end of a long batch of proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,840",
+				"to": "00:09:19,520"
+			},
+			"offsets": {
+				"from": 555840,
+				"to": 559520
+			},
+			"text": " And doing this gives us amortization"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,520",
+				"to": "00:09:21,080"
+			},
+			"offsets": {
+				"from": 559520,
+				"to": 561080
+			},
+			"text": " of the expensive check."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,080",
+				"to": "00:09:25,560"
+			},
+			"offsets": {
+				"from": 561080,
+				"to": 565560
+			},
+			"text": " And finally, if we relax even more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,560",
+				"to": "00:09:29,360"
+			},
+			"offsets": {
+				"from": 565560,
+				"to": 569360
+			},
+			"text": " we don't even require a succinct accumulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,360",
+				"to": "00:09:34,280"
+			},
+			"offsets": {
+				"from": 569360,
+				"to": 574280
+			},
+			"text": " Now we're just happy with a succinct public accumulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,280",
+				"to": "00:09:37,800"
+			},
+			"offsets": {
+				"from": 574280,
+				"to": 577800
+			},
+			"text": " And the idea behind this split accumulation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,800",
+				"to": "00:09:40,720"
+			},
+			"offsets": {
+				"from": 577800,
+				"to": 580720
+			},
+			"text": " is simply that you split your accumulator"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,720",
+				"to": "00:09:43,040"
+			},
+			"offsets": {
+				"from": 580720,
+				"to": 583040
+			},
+			"text": " into a public and private part."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,040",
+				"to": "00:09:45,600"
+			},
+			"offsets": {
+				"from": 583040,
+				"to": 585600
+			},
+			"text": " And the public part is short."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,600",
+				"to": "00:09:50,200"
+			},
+			"offsets": {
+				"from": 585600,
+				"to": 590200
+			},
+			"text": " And this is what we accumulate at each recursive step,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,200",
+				"to": "00:09:54,240"
+			},
+			"offsets": {
+				"from": 590200,
+				"to": 594240
+			},
+			"text": " whereas we delay the verification of the private part"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,240",
+				"to": "00:09:57,280"
+			},
+			"offsets": {
+				"from": 594240,
+				"to": 597280
+			},
+			"text": " of the accumulator until the very end."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,280",
+				"to": "00:10:02,960"
+			},
+			"offsets": {
+				"from": 597280,
+				"to": 602960
+			},
+			"text": " So let's go through these constructions at a high level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,960",
+				"to": "00:10:06,400"
+			},
+			"offsets": {
+				"from": 602960,
+				"to": 606400
+			},
+			"text": " one by one, just so you can see the shape of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,400",
+				"to": "00:10:10,760"
+			},
+			"offsets": {
+				"from": 606400,
+				"to": 610760
+			},
+			"text": " So probably the cleanest shape is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,760",
+				"to": "00:10:13,560"
+			},
+			"offsets": {
+				"from": 610760,
+				"to": 613560
+			},
+			"text": " the cleanest shape would be full recursion."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,560",
+				"to": "00:10:18,720"
+			},
+			"offsets": {
+				"from": 613560,
+				"to": 618720
+			},
+			"text": " So over here we start with our application circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,720",
+				"to": "00:10:27,240"
+			},
+			"offsets": {
+				"from": 618720,
+				"to": 627240
+			},
+			"text": " And it's f of W i Z i gives you Z i plus 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,240",
+				"to": "00:10:29,600"
+			},
+			"offsets": {
+				"from": 627240,
+				"to": 629600
+			},
+			"text": " It's a normal relation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,600",
+				"to": "00:10:34,760"
+			},
+			"offsets": {
+				"from": 629600,
+				"to": 634760
+			},
+			"text": " Now we bundle that together with a recursive verifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,760",
+				"to": "00:10:38,760"
+			},
+			"offsets": {
+				"from": 634760,
+				"to": 638760
+			},
+			"text": " And basically this recursive verifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,760",
+				"to": "00:10:42,600"
+			},
+			"offsets": {
+				"from": 638760,
+				"to": 642600
+			},
+			"text": " takes in a proof instance that was produced"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,600",
+				"to": "00:10:46,320"
+			},
+			"offsets": {
+				"from": 642600,
+				"to": 646320
+			},
+			"text": " by the previous instance of the recursive circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,320",
+				"to": "00:10:49,600"
+			},
+			"offsets": {
+				"from": 646320,
+				"to": 649600
+			},
+			"text": " And so if we look forward, we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,600",
+				"to": "00:10:53,400"
+			},
+			"offsets": {
+				"from": 649600,
+				"to": 653400
+			},
+			"text": " to generate a proof of the whole recursive circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,400",
+				"to": "00:10:57,240"
+			},
+			"offsets": {
+				"from": 653400,
+				"to": 657240
+			},
+			"text": " in order to input to the next recursive instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,240",
+				"to": "00:11:00,240"
+			},
+			"offsets": {
+				"from": 657240,
+				"to": 660240
+			},
+			"text": " So in this way, we're chaining recursive circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,240",
+				"to": "00:11:04,920"
+			},
+			"offsets": {
+				"from": 660240,
+				"to": 664920
+			},
+			"text": " And at each step, we are fully verifying the previous instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,920",
+				"to": "00:11:08,880"
+			},
+			"offsets": {
+				"from": 664920,
+				"to": 668880
+			},
+			"text": " And when we get to the final verifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,880",
+				"to": "00:11:12,320"
+			},
+			"offsets": {
+				"from": 668880,
+				"to": 672320
+			},
+			"text": " we no longer need to bundle it with the application"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,320",
+				"to": "00:11:14,320"
+			},
+			"offsets": {
+				"from": 672320,
+				"to": 674320
+			},
+			"text": " so we're getting here, we can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,320",
+				"to": "00:11:17,800"
+			},
+			"offsets": {
+				"from": 674320,
+				"to": 677800
+			},
+			"text": " perform a final verification of the proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,800",
+				"to": "00:11:19,040"
+			},
+			"offsets": {
+				"from": 677800,
+				"to": 679040
+			},
+			"text": " outside the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,040",
+				"to": "00:11:24,880"
+			},
+			"offsets": {
+				"from": 679040,
+				"to": 684880
+			},
+			"text": " So this is full recursion, it's the cleanest API."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,880",
+				"to": "00:11:27,960"
+			},
+			"offsets": {
+				"from": 684880,
+				"to": 687960
+			},
+			"text": " Now we're going to get slightly more messy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,960",
+				"to": "00:11:31,680"
+			},
+			"offsets": {
+				"from": 687960,
+				"to": 691680
+			},
+			"text": " And we're going to relax our requirements"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,680",
+				"to": "00:11:34,840"
+			},
+			"offsets": {
+				"from": 691680,
+				"to": 694840
+			},
+			"text": " to get an atomic accumulation scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,840",
+				"to": "00:11:40,600"
+			},
+			"offsets": {
+				"from": 694840,
+				"to": 700600
+			},
+			"text": " So now if you recall here in an atomic accumulation scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,600",
+				"to": "00:11:43,440"
+			},
+			"offsets": {
+				"from": 700600,
+				"to": 703440
+			},
+			"text": " our verifier is not sublinear."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,440",
+				"to": "00:11:48,640"
+			},
+			"offsets": {
+				"from": 703440,
+				"to": 708640
+			},
+			"text": " So in fact, the verifier inside the recursive circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,640",
+				"to": "00:11:51,320"
+			},
+			"offsets": {
+				"from": 708640,
+				"to": 711320
+			},
+			"text": " is just the accumulation verifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,320",
+				"to": "00:11:55,920"
+			},
+			"offsets": {
+				"from": 711320,
+				"to": 715920
+			},
+			"text": " And it only concerns itself with the succinct checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,920",
+				"to": "00:11:58,760"
+			},
+			"offsets": {
+				"from": 715920,
+				"to": 718760
+			},
+			"text": " of the verifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,760",
+				"to": "00:12:03,560"
+			},
+			"offsets": {
+				"from": 718760,
+				"to": 723560
+			},
+			"text": " And the expensive check is accumulated and deferred"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,560",
+				"to": "00:12:05,120"
+			},
+			"offsets": {
+				"from": 723560,
+				"to": 725120
+			},
+			"text": " at each step."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,120",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 725120,
+				"to": 730000
+			},
+			"text": " So here we are chaining basically instances of proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:12,360"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 732360
+			},
+			"text": " and accumulators."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,360",
+				"to": "00:12:15,600"
+			},
+			"offsets": {
+				"from": 732360,
+				"to": 735600
+			},
+			"text": " And at each step, we're just procrastinating"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,600",
+				"to": "00:12:18,040"
+			},
+			"offsets": {
+				"from": 735600,
+				"to": 738040
+			},
+			"text": " on performing the expensive check."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,040",
+				"to": "00:12:21,040"
+			},
+			"offsets": {
+				"from": 738040,
+				"to": 741040
+			},
+			"text": " Well, until we're finally satisfied at the end"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,040",
+				"to": "00:12:27,320"
+			},
+			"offsets": {
+				"from": 741040,
+				"to": 747320
+			},
+			"text": " of a long chain of proofs, we perform the final decider"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,320",
+				"to": "00:12:31,240"
+			},
+			"offsets": {
+				"from": 747320,
+				"to": 751240
+			},
+			"text": " sub-protocol that finally bites the bullet"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,240",
+				"to": "00:12:34,720"
+			},
+			"offsets": {
+				"from": 751240,
+				"to": 754720
+			},
+			"text": " and does the linear time check."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,720",
+				"to": "00:12:38,480"
+			},
+			"offsets": {
+				"from": 754720,
+				"to": 758480
+			},
+			"text": " But at this point, we can do it outside the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,480",
+				"to": "00:12:41,920"
+			},
+			"offsets": {
+				"from": 758480,
+				"to": 761920
+			},
+			"text": " And at this point, the cost of the linear time check"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,920",
+				"to": "00:12:45,400"
+			},
+			"offsets": {
+				"from": 761920,
+				"to": 765400
+			},
+			"text": " is amortized across a big batch of proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,400",
+				"to": "00:12:48,200"
+			},
+			"offsets": {
+				"from": 765400,
+				"to": 768200
+			},
+			"text": " Now, from here to atomic, accumulation"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,200",
+				"to": "00:12:50,760"
+			},
+			"offsets": {
+				"from": 768200,
+				"to": 770760
+			},
+			"text": " is just a small step."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,760",
+				"to": "00:12:54,520"
+			},
+			"offsets": {
+				"from": 770760,
+				"to": 774520
+			},
+			"text": " So it's just splitting up your accumulator"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,520",
+				"to": "00:12:58,640"
+			},
+			"offsets": {
+				"from": 774520,
+				"to": 778640
+			},
+			"text": " and your proof instance into a public and private part."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,640",
+				"to": "00:13:03,320"
+			},
+			"offsets": {
+				"from": 778640,
+				"to": 783320
+			},
+			"text": " And now the recursive verifier gets even smaller."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,320",
+				"to": "00:13:07,120"
+			},
+			"offsets": {
+				"from": 783320,
+				"to": 787120
+			},
+			"text": " And it concerns itself only with accumulating instances,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,120",
+				"to": "00:13:08,920"
+			},
+			"offsets": {
+				"from": 787120,
+				"to": 788920
+			},
+			"text": " the public parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,920",
+				"to": "00:13:10,960"
+			},
+			"offsets": {
+				"from": 788920,
+				"to": 790960
+			},
+			"text": " And it does not perform--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,960",
+				"to": "00:13:13,800"
+			},
+			"offsets": {
+				"from": 790960,
+				"to": 793800
+			},
+			"text": " it does not have access to the private parts"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,800",
+				"to": "00:13:15,320"
+			},
+			"offsets": {
+				"from": 793800,
+				"to": 795320
+			},
+			"text": " of the accumulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,320",
+				"to": "00:13:17,400"
+			},
+			"offsets": {
+				"from": 795320,
+				"to": 797400
+			},
+			"text": " And rather, it relies on the pervert"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,400",
+				"to": "00:13:22,120"
+			},
+			"offsets": {
+				"from": 797400,
+				"to": 802120
+			},
+			"text": " to provide some commitments to the private parts, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,120",
+				"to": "00:13:25,960"
+			},
+			"offsets": {
+				"from": 802120,
+				"to": 805960
+			},
+			"text": " then performs accumulator checks on."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,960",
+				"to": "00:13:30,080"
+			},
+			"offsets": {
+				"from": 805960,
+				"to": 810080
+			},
+			"text": " So a lot of these constructions I've described"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,080",
+				"to": "00:13:32,840"
+			},
+			"offsets": {
+				"from": 810080,
+				"to": 812840
+			},
+			"text": " are really cutting edge."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,840",
+				"to": "00:13:36,720"
+			},
+			"offsets": {
+				"from": 812840,
+				"to": 816720
+			},
+			"text": " And they come from a feature of our modern proof systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,720",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 816720,
+				"to": 820000
+			},
+			"text": " that are very modular in design."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:42,520"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 822520
+			},
+			"text": " And as we get a better understanding"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,520",
+				"to": "00:13:46,960"
+			},
+			"offsets": {
+				"from": 822520,
+				"to": 826960
+			},
+			"text": " of the building blocks and the components of our proof systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,960",
+				"to": "00:13:50,400"
+			},
+			"offsets": {
+				"from": 826960,
+				"to": 830400
+			},
+			"text": " this lets us customize our proving stacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,400",
+				"to": "00:13:53,120"
+			},
+			"offsets": {
+				"from": 830400,
+				"to": 833120
+			},
+			"text": " with a lot finer granularity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,120",
+				"to": "00:13:56,840"
+			},
+			"offsets": {
+				"from": 833120,
+				"to": 836840
+			},
+			"text": " And recursion, as we saw, also allows us"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,840",
+				"to": "00:14:01,120"
+			},
+			"offsets": {
+				"from": 836840,
+				"to": 841120
+			},
+			"text": " to compose proof systems and to get the best of both worlds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,120",
+				"to": "00:14:02,520"
+			},
+			"offsets": {
+				"from": 841120,
+				"to": 842520
+			},
+			"text": " in many cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,520",
+				"to": "00:14:09,400"
+			},
+			"offsets": {
+				"from": 842520,
+				"to": 849400
+			},
+			"text": " So here's an example of a modular conception of a proof system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,400",
+				"to": "00:14:13,640"
+			},
+			"offsets": {
+				"from": 849400,
+				"to": 853640
+			},
+			"text": " So I work on the proof system Halo 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,640",
+				"to": "00:14:18,920"
+			},
+			"offsets": {
+				"from": 853640,
+				"to": 858920
+			},
+			"text": " And I think of Halo 2 in terms of these four components."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,920",
+				"to": "00:14:22,040"
+			},
+			"offsets": {
+				"from": 858920,
+				"to": 862040
+			},
+			"text": " So at the very front end is where"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,040",
+				"to": "00:14:24,560"
+			},
+			"offsets": {
+				"from": 862040,
+				"to": 864560
+			},
+			"text": " you're interfacing with your business logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,560",
+				"to": "00:14:30,080"
+			},
+			"offsets": {
+				"from": 864560,
+				"to": 870080
+			},
+			"text": " So you take a relation and you arithmetic it into--"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,080",
+				"to": "00:14:33,320"
+			},
+			"offsets": {
+				"from": 870080,
+				"to": 873320
+			},
+			"text": " so in Halo 2's case, we encode our values"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,320",
+				"to": "00:14:35,040"
+			},
+			"offsets": {
+				"from": 873320,
+				"to": 875040
+			},
+			"text": " in the Lagrange basis."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,040",
+				"to": "00:14:37,960"
+			},
+			"offsets": {
+				"from": 875040,
+				"to": 877960
+			},
+			"text": " And we encode constraints on these values"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,960",
+				"to": "00:14:40,920"
+			},
+			"offsets": {
+				"from": 877960,
+				"to": 880920
+			},
+			"text": " as polynomial identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,920",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 880920,
+				"to": 885000
+			},
+			"text": " We then input these polynomials into this information"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:50,880"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 890880
+			},
+			"text": " theoretic polynomial IOP that basically checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,880",
+				"to": "00:14:53,320"
+			},
+			"offsets": {
+				"from": 890880,
+				"to": 893320
+			},
+			"text": " the correctness and the consistency"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,320",
+				"to": "00:14:56,560"
+			},
+			"offsets": {
+				"from": 893320,
+				"to": 896560
+			},
+			"text": " of the polynomials encoding our circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,560",
+				"to": "00:15:01,440"
+			},
+			"offsets": {
+				"from": 896560,
+				"to": 901440
+			},
+			"text": " And then we realize this polynomial IOP using"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,440",
+				"to": "00:15:03,480"
+			},
+			"offsets": {
+				"from": 901440,
+				"to": 903480
+			},
+			"text": " a cryptographic compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,480",
+				"to": "00:15:06,400"
+			},
+			"offsets": {
+				"from": 903480,
+				"to": 906400
+			},
+			"text": " So in this case, it's the inner product argument"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,400",
+				"to": "00:15:08,760"
+			},
+			"offsets": {
+				"from": 906400,
+				"to": 908760
+			},
+			"text": " that-- and the fiat shumier transform that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,760",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 908760,
+				"to": 913000
+			},
+			"text": " allows the prover to define their interaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:14,440"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 914440
+			},
+			"text": " with the verifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,440",
+				"to": "00:15:18,400"
+			},
+			"offsets": {
+				"from": 914440,
+				"to": 918400
+			},
+			"text": " And at the very end of it, Halo 2 is a recursive proof system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,400",
+				"to": "00:15:23,560"
+			},
+			"offsets": {
+				"from": 918400,
+				"to": 923560
+			},
+			"text": " And we can in fact instantiate an atomic accumulator"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,560",
+				"to": "00:15:25,720"
+			},
+			"offsets": {
+				"from": 923560,
+				"to": 925720
+			},
+			"text": " over the inner product argument."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,720",
+				"to": "00:15:30,400"
+			},
+			"offsets": {
+				"from": 925720,
+				"to": 930400
+			},
+			"text": " So these are the four sort of modular pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,400",
+				"to": "00:15:33,960"
+			},
+			"offsets": {
+				"from": 930400,
+				"to": 933960
+			},
+			"text": " of modern proof systems that I think of."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,960",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 933960,
+				"to": 939000
+			},
+			"text": " Now, we can do pretty funny things composing these pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:43,920"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 943920
+			},
+			"text": " So I've thought of three cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,920",
+				"to": "00:15:48,880"
+			},
+			"offsets": {
+				"from": 943920,
+				"to": 948880
+			},
+			"text": " So the first one is information theoretic compilers."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,880",
+				"to": "00:15:53,480"
+			},
+			"offsets": {
+				"from": 948880,
+				"to": 953480
+			},
+			"text": " And then an example of this is NPC in the head."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,480",
+				"to": "00:15:58,080"
+			},
+			"offsets": {
+				"from": 953480,
+				"to": 958080
+			},
+			"text": " What this does is it converts one information theoretic"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,080",
+				"to": "00:15:59,680"
+			},
+			"offsets": {
+				"from": 958080,
+				"to": 959680
+			},
+			"text": " protocol to another one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,680",
+				"to": "00:16:04,160"
+			},
+			"offsets": {
+				"from": 959680,
+				"to": 964160
+			},
+			"text": " And in this case, it's the prover sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,160",
+				"to": "00:16:10,720"
+			},
+			"offsets": {
+				"from": 964160,
+				"to": 970720
+			},
+			"text": " of pretending to run a multi-party computation in her head."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,720",
+				"to": "00:16:15,760"
+			},
+			"offsets": {
+				"from": 970720,
+				"to": 975760
+			},
+			"text": " So she's really simulating the multiple views in an NPC"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,760",
+				"to": "00:16:17,200"
+			},
+			"offsets": {
+				"from": 975760,
+				"to": 977200
+			},
+			"text": " and committing to those views."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,200",
+				"to": "00:16:22,400"
+			},
+			"offsets": {
+				"from": 977200,
+				"to": 982400
+			},
+			"text": " And now the verifier is only checking the outer protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,400",
+				"to": "00:16:25,880"
+			},
+			"offsets": {
+				"from": 982400,
+				"to": 985880
+			},
+			"text": " being the NPC, instead of checking the inner protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,880",
+				"to": "00:16:27,360"
+			},
+			"offsets": {
+				"from": 985880,
+				"to": 987360
+			},
+			"text": " which is the zk proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,360",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 987360,
+				"to": 991000
+			},
+			"text": " So this is one very interesting way"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:33,280"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 993280
+			},
+			"text": " to compose proof systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,280",
+				"to": "00:16:37,240"
+			},
+			"offsets": {
+				"from": 993280,
+				"to": 997240
+			},
+			"text": " Another way that we've seen before in this presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,240",
+				"to": "00:16:42,600"
+			},
+			"offsets": {
+				"from": 997240,
+				"to": 1002600
+			},
+			"text": " is more or less just implementing verifier x in Prover"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,600",
+				"to": "00:16:43,600"
+			},
+			"offsets": {
+				"from": 1002600,
+				"to": 1003600
+			},
+			"text": " y."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,600",
+				"to": "00:16:47,520"
+			},
+			"offsets": {
+				"from": 1003600,
+				"to": 1007520
+			},
+			"text": " And you would do this also for efficiency games."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,520",
+				"to": "00:16:52,920"
+			},
+			"offsets": {
+				"from": 1007520,
+				"to": 1012920
+			},
+			"text": " And sort of the last class of composition"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,920",
+				"to": "00:16:56,880"
+			},
+			"offsets": {
+				"from": 1012920,
+				"to": 1016880
+			},
+			"text": " that I came up with was really just thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,880",
+				"to": "00:16:59,360"
+			},
+			"offsets": {
+				"from": 1016880,
+				"to": 1019360
+			},
+			"text": " up better cryptographic compilers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,360",
+				"to": "00:17:05,600"
+			},
+			"offsets": {
+				"from": 1019360,
+				"to": 1025600
+			},
+			"text": " So there's this recent paper by a group at Consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,600",
+				"to": "00:17:09,480"
+			},
+			"offsets": {
+				"from": 1025600,
+				"to": 1029480
+			},
+			"text": " And they took this protocol, GKR,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,480",
+				"to": "00:17:13,720"
+			},
+			"offsets": {
+				"from": 1029480,
+				"to": 1033720
+			},
+			"text": " that's highly optimized for repetitive computations"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,720",
+				"to": "00:17:15,880"
+			},
+			"offsets": {
+				"from": 1033720,
+				"to": 1035880
+			},
+			"text": " like hash functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,880",
+				"to": "00:17:20,200"
+			},
+			"offsets": {
+				"from": 1035880,
+				"to": 1040200
+			},
+			"text": " But the problem with GKR is that it has a slow verifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,560",
+				"to": "00:17:28,280"
+			},
+			"offsets": {
+				"from": 1043560,
+				"to": 1048280
+			},
+			"text": " And it also uses the Fiat Shamir hash as a cryptographic compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,280",
+				"to": "00:17:33,280"
+			},
+			"offsets": {
+				"from": 1048280,
+				"to": 1053280
+			},
+			"text": " And this makes it very inefficient in the context of recursion."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,280",
+				"to": "00:17:35,600"
+			},
+			"offsets": {
+				"from": 1053280,
+				"to": 1055600
+			},
+			"text": " So what the team at Consensus did"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,600",
+				"to": "00:17:40,240"
+			},
+			"offsets": {
+				"from": 1055600,
+				"to": 1060240
+			},
+			"text": " was they came up with their own cryptographic compiler"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,240",
+				"to": "00:17:44,680"
+			},
+			"offsets": {
+				"from": 1060240,
+				"to": 1064680
+			},
+			"text": " that was custom-made for their target proof system."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,680",
+				"to": "00:17:50,960"
+			},
+			"offsets": {
+				"from": 1064680,
+				"to": 1070960
+			},
+			"text": " And the target proof system here is like a Groth 16 R1CS"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,960",
+				"to": "00:17:52,840"
+			},
+			"offsets": {
+				"from": 1070960,
+				"to": 1072840
+			},
+			"text": " proof system."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,840",
+				"to": "00:17:56,640"
+			},
+			"offsets": {
+				"from": 1072840,
+				"to": 1076640
+			},
+			"text": " And so really, that's going in the middle"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,640",
+				"to": "00:17:59,840"
+			},
+			"offsets": {
+				"from": 1076640,
+				"to": 1079840
+			},
+			"text": " and making changes, customizing proof systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,840",
+				"to": "00:18:03,640"
+			},
+			"offsets": {
+				"from": 1079840,
+				"to": 1083640
+			},
+			"text": " at a very low level for efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,640",
+				"to": "00:18:09,720"
+			},
+			"offsets": {
+				"from": 1083640,
+				"to": 1089720
+			},
+			"text": " And yeah, I think this leads me to ask"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,720",
+				"to": "00:18:13,920"
+			},
+			"offsets": {
+				"from": 1089720,
+				"to": 1093920
+			},
+			"text": " whether or not we can systematize this process."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,920",
+				"to": "00:18:19,840"
+			},
+			"offsets": {
+				"from": 1093920,
+				"to": 1099840
+			},
+			"text": " And whether or not we can, I don't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,840",
+				"to": "00:18:25,920"
+			},
+			"offsets": {
+				"from": 1099840,
+				"to": 1105920
+			},
+			"text": " explore this optimization space in a well-defined way."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,920",
+				"to": "00:18:31,840"
+			},
+			"offsets": {
+				"from": 1105920,
+				"to": 1111840
+			},
+			"text": " So you can think of this as kind of a call to action."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,840",
+				"to": "00:18:35,520"
+			},
+			"offsets": {
+				"from": 1111840,
+				"to": 1115520
+			},
+			"text": " So I think there's certain--"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,520",
+				"to": "00:18:39,560"
+			},
+			"offsets": {
+				"from": 1115520,
+				"to": 1119560
+			},
+			"text": " nice to have-- certain to-dos that all proof system"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,560",
+				"to": "00:18:41,520"
+			},
+			"offsets": {
+				"from": 1119560,
+				"to": 1121520
+			},
+			"text": " implementers would really like."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,520",
+				"to": "00:18:46,080"
+			},
+			"offsets": {
+				"from": 1121520,
+				"to": 1126080
+			},
+			"text": " The first being good benchmarks, fair benchmarks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,080",
+				"to": "00:18:50,160"
+			},
+			"offsets": {
+				"from": 1126080,
+				"to": 1130160
+			},
+			"text": " of heavily used primitives like hash functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,160",
+				"to": "00:18:52,600"
+			},
+			"offsets": {
+				"from": 1130160,
+				"to": 1132600
+			},
+			"text": " like big and arithmetic."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,600",
+				"to": "00:18:55,080"
+			},
+			"offsets": {
+				"from": 1132600,
+				"to": 1135080
+			},
+			"text": " So benchmarks of these primitives"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,080",
+				"to": "00:18:56,720"
+			},
+			"offsets": {
+				"from": 1135080,
+				"to": 1136720
+			},
+			"text": " across different proving stacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,720",
+				"to": "00:19:02,400"
+			},
+			"offsets": {
+				"from": 1136720,
+				"to": 1142400
+			},
+			"text": " And the second would be it's a kind of a meta requirement"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,400",
+				"to": "00:19:06,760"
+			},
+			"offsets": {
+				"from": 1142400,
+				"to": 1146760
+			},
+			"text": " is to think of what metrics we're interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,760",
+				"to": "00:19:10,560"
+			},
+			"offsets": {
+				"from": 1146760,
+				"to": 1150560
+			},
+			"text": " For example, efficiency, for example, proof size."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,560",
+				"to": "00:19:14,120"
+			},
+			"offsets": {
+				"from": 1150560,
+				"to": 1154120
+			},
+			"text": " And basically how to optimize towards these metrics."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,120",
+				"to": "00:19:18,800"
+			},
+			"offsets": {
+				"from": 1154120,
+				"to": 1158800
+			},
+			"text": " So on what basis are we comparing different compositions"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,800",
+				"to": "00:19:20,280"
+			},
+			"offsets": {
+				"from": 1158800,
+				"to": 1160280
+			},
+			"text": " and configurations?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,280",
+				"to": "00:19:23,520"
+			},
+			"offsets": {
+				"from": 1160280,
+				"to": 1163520
+			},
+			"text": " And the last sort of call to action"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,520",
+				"to": "00:19:28,680"
+			},
+			"offsets": {
+				"from": 1163520,
+				"to": 1168680
+			},
+			"text": " would be to think carefully about how security properties also"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,680",
+				"to": "00:19:30,120"
+			},
+			"offsets": {
+				"from": 1168680,
+				"to": 1170120
+			},
+			"text": " compose, like--"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,120",
+				"to": "00:19:31,280"
+			},
+			"offsets": {
+				"from": 1170120,
+				"to": 1171280
+			},
+			"text": " excuse me--"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,280",
+				"to": "00:19:33,320"
+			},
+			"offsets": {
+				"from": 1171280,
+				"to": 1173320
+			},
+			"text": " is it the least secure proof system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,320",
+				"to": "00:19:38,720"
+			},
+			"offsets": {
+				"from": 1173320,
+				"to": 1178720
+			},
+			"text": " the fewest bits of security, or some weird composition"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,720",
+				"to": "00:19:40,800"
+			},
+			"offsets": {
+				"from": 1178720,
+				"to": 1180800
+			},
+			"text": " when we make some match proof systems?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,800",
+				"to": "00:19:45,440"
+			},
+			"offsets": {
+				"from": 1180800,
+				"to": 1185440
+			},
+			"text": " So all these are questions that it would be great to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,440",
+				"to": "00:19:47,640"
+			},
+			"offsets": {
+				"from": 1185440,
+				"to": 1187640
+			},
+			"text": " everyone's input on."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,640",
+				"to": "00:19:51,200"
+			},
+			"offsets": {
+				"from": 1187640,
+				"to": 1191200
+			},
+			"text": " Like even this taxonomy that I came up with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,200",
+				"to": "00:19:56,480"
+			},
+			"offsets": {
+				"from": 1191200,
+				"to": 1196480
+			},
+			"text": " I'm not sure that it captures all features of proof systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,480",
+				"to": "00:19:57,840"
+			},
+			"offsets": {
+				"from": 1196480,
+				"to": 1197840
+			},
+			"text": " in the best way."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,840",
+				"to": "00:20:05,200"
+			},
+			"offsets": {
+				"from": 1197840,
+				"to": 1205200
+			},
+			"text": " So Nallan and I actually help out at a group called Xerox"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,200",
+				"to": "00:20:06,200"
+			},
+			"offsets": {
+				"from": 1205200,
+				"to": 1206200
+			},
+			"text": " Park."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,200",
+				"to": "00:20:08,160"
+			},
+			"offsets": {
+				"from": 1206200,
+				"to": 1208160
+			},
+			"text": " Oh, we didn't put the name on the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,160",
+				"to": "00:20:11,720"
+			},
+			"offsets": {
+				"from": 1208160,
+				"to": 1211720
+			},
+			"text": " It's 0x Park."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,720",
+				"to": "00:20:15,600"
+			},
+			"offsets": {
+				"from": 1211720,
+				"to": 1215600
+			},
+			"text": " And we're setting up this task force"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,600",
+				"to": "00:20:20,520"
+			},
+			"offsets": {
+				"from": 1215600,
+				"to": 1220520
+			},
+			"text": " to look into this area of recursion, aggregation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,520",
+				"to": "00:20:23,040"
+			},
+			"offsets": {
+				"from": 1220520,
+				"to": 1223040
+			},
+			"text": " and composition."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,040",
+				"to": "00:20:23,960"
+			},
+			"offsets": {
+				"from": 1223040,
+				"to": 1223960
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,960",
+				"to": "00:20:27,200"
+			},
+			"offsets": {
+				"from": 1223960,
+				"to": 1227200
+			},
+			"text": " And I think I might as well take this opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,200",
+				"to": "00:20:29,240"
+			},
+			"offsets": {
+				"from": 1227200,
+				"to": 1229240
+			},
+			"text": " to shout out Xerox Park."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,240",
+				"to": "00:20:33,720"
+			},
+			"offsets": {
+				"from": 1229240,
+				"to": 1233720
+			},
+			"text": " They supported a lot of our work, a lot of those fun apps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,720",
+				"to": "00:20:37,200"
+			},
+			"offsets": {
+				"from": 1233720,
+				"to": 1237200
+			},
+			"text": " and a lot of these community efforts."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,200",
+				"to": "00:20:38,240"
+			},
+			"offsets": {
+				"from": 1237200,
+				"to": 1238240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,240",
+				"to": "00:20:39,840"
+			},
+			"offsets": {
+				"from": 1238240,
+				"to": 1239840
+			},
+			"text": " I think that is all I have."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,840",
+				"to": "00:20:42,000"
+			},
+			"offsets": {
+				"from": 1239840,
+				"to": 1242000
+			},
+			"text": " So thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1242000,
+				"to": 1243000
+			},
+			"text": " Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:43,840"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1243840
+			},
+			"text": " Well, thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,840",
+				"to": "00:20:45,400"
+			},
+			"offsets": {
+				"from": 1243840,
+				"to": 1245400
+			},
+			"text": " We have time for one or two questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,400",
+				"to": "00:20:47,080"
+			},
+			"offsets": {
+				"from": 1245400,
+				"to": 1247080
+			},
+			"text": " If you have any questions, please raise your hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,080",
+				"to": "00:20:49,080"
+			},
+			"offsets": {
+				"from": 1247080,
+				"to": 1249080
+			},
+			"text": " We've got a question here on this side."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,080",
+				"to": "00:20:50,200"
+			},
+			"offsets": {
+				"from": 1249080,
+				"to": 1250200
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,200",
+				"to": "00:20:54,480"
+			},
+			"offsets": {
+				"from": 1250200,
+				"to": 1254480
+			},
+			"text": " I didn't think this would work for years and years and years."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,480",
+				"to": "00:20:56,720"
+			},
+			"offsets": {
+				"from": 1254480,
+				"to": 1256720
+			},
+			"text": " And I also-- I'm not even sure that it does work."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,720",
+				"to": "00:20:58,600"
+			},
+			"offsets": {
+				"from": 1256720,
+				"to": 1258600
+			},
+			"text": " It does seem way too good to be true."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,600",
+				"to": "00:21:00,400"
+			},
+			"offsets": {
+				"from": 1258600,
+				"to": 1260400
+			},
+			"text": " So can you prove--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,400",
+				"to": "00:21:04,320"
+			},
+			"offsets": {
+				"from": 1260400,
+				"to": 1264320
+			},
+			"text": " and how do you prove that it's secure to do recursive proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,320",
+				"to": "00:21:05,200"
+			},
+			"offsets": {
+				"from": 1264320,
+				"to": 1265200
+			},
+			"text": " like this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,200",
+				"to": "00:21:08,160"
+			},
+			"offsets": {
+				"from": 1265200,
+				"to": 1268160
+			},
+			"text": " Where is the security proof?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,160",
+				"to": "00:21:11,840"
+			},
+			"offsets": {
+				"from": 1268160,
+				"to": 1271840
+			},
+			"text": " I don't know how to convince myself that this works, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,840",
+				"to": "00:21:14,200"
+			},
+			"offsets": {
+				"from": 1271840,
+				"to": 1274200
+			},
+			"text": " Yeah, I mean, that is a good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,200",
+				"to": "00:21:16,560"
+			},
+			"offsets": {
+				"from": 1274200,
+				"to": 1276560
+			},
+			"text": " It seems very unreasonable that it"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,560",
+				"to": "00:21:20,480"
+			},
+			"offsets": {
+				"from": 1276560,
+				"to": 1280480
+			},
+			"text": " can prove an arbitrarily long history of computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,480",
+				"to": "00:21:23,280"
+			},
+			"offsets": {
+				"from": 1280480,
+				"to": 1283280
+			},
+			"text": " with a constant size proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,280",
+				"to": "00:21:24,880"
+			},
+			"offsets": {
+				"from": 1283280,
+				"to": 1284880
+			},
+			"text": " It does seem unreasonable."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,880",
+				"to": "00:21:29,080"
+			},
+			"offsets": {
+				"from": 1284880,
+				"to": 1289080
+			},
+			"text": " So I will say that security proofs exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,080",
+				"to": "00:21:31,040"
+			},
+			"offsets": {
+				"from": 1289080,
+				"to": 1291040
+			},
+			"text": " They're in papers."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,040",
+				"to": "00:21:33,480"
+			},
+			"offsets": {
+				"from": 1291040,
+				"to": 1293480
+			},
+			"text": " But Nalandy have some intuition as"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,480",
+				"to": "00:21:37,240"
+			},
+			"offsets": {
+				"from": 1293480,
+				"to": 1297240
+			},
+			"text": " to why the security should hold."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,240",
+				"to": "00:21:37,920"
+			},
+			"offsets": {
+				"from": 1297240,
+				"to": 1297920
+			},
+			"text": " Yeah, for sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,920",
+				"to": "00:21:40,480"
+			},
+			"offsets": {
+				"from": 1297920,
+				"to": 1300480
+			},
+			"text": " I think one sort of physics-based view"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,480",
+				"to": "00:21:43,720"
+			},
+			"offsets": {
+				"from": 1300480,
+				"to": 1303720
+			},
+			"text": " that we've seen before is like, oh, you have 3D space"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,720",
+				"to": "00:21:46,280"
+			},
+			"offsets": {
+				"from": 1303720,
+				"to": 1306280
+			},
+			"text": " and you're collapsing it to a 2D surface."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,280",
+				"to": "00:21:47,920"
+			},
+			"offsets": {
+				"from": 1306280,
+				"to": 1307920
+			},
+			"text": " I forget the exact name of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,920",
+				"to": "00:21:49,440"
+			},
+			"offsets": {
+				"from": 1307920,
+				"to": 1309440
+			},
+			"text": " The holographic principle?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,440",
+				"to": "00:21:50,520"
+			},
+			"offsets": {
+				"from": 1309440,
+				"to": 1310520
+			},
+			"text": " There you go."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,520",
+				"to": "00:21:53,440"
+			},
+			"offsets": {
+				"from": 1310520,
+				"to": 1313440
+			},
+			"text": " So I think there is some sort of meta justification"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,440",
+				"to": "00:21:54,960"
+			},
+			"offsets": {
+				"from": 1313440,
+				"to": 1314960
+			},
+			"text": " you can come up with to convince yourself"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,960",
+				"to": "00:21:56,080"
+			},
+			"offsets": {
+				"from": 1314960,
+				"to": 1316080
+			},
+			"text": " if that's the sort of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,080",
+				"to": "00:21:58,520"
+			},
+			"offsets": {
+				"from": 1316080,
+				"to": 1318520
+			},
+			"text": " But there is proofs of what kind."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,520",
+				"to": "00:22:00,320"
+			},
+			"offsets": {
+				"from": 1318520,
+				"to": 1320320
+			},
+			"text": " They're actually substantial."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,320",
+				"to": "00:22:02,120"
+			},
+			"offsets": {
+				"from": 1320320,
+				"to": 1322120
+			},
+			"text": " It's a good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,120",
+				"to": "00:22:04,440"
+			},
+			"offsets": {
+				"from": 1322120,
+				"to": 1324440
+			},
+			"text": " Any last minute questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,440",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1324440,
+				"to": 1327000
+			},
+			"text": " We have one at the back all the way over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:08,840"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1328840
+			},
+			"text": " So recursive proofs are real fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,840",
+				"to": "00:22:12,040"
+			},
+			"offsets": {
+				"from": 1328840,
+				"to": 1332040
+			},
+			"text": " But if you do it at scale, then you're--"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,040",
+				"to": "00:22:15,400"
+			},
+			"offsets": {
+				"from": 1332040,
+				"to": 1335400
+			},
+			"text": " it's like you have skill and corrupt is"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,400",
+				"to": "00:22:19,400"
+			},
+			"offsets": {
+				"from": 1335400,
+				"to": 1339400
+			},
+			"text": " snapping at your heels because of the proof carrying data."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,400",
+				"to": "00:22:23,080"
+			},
+			"offsets": {
+				"from": 1339400,
+				"to": 1343080
+			},
+			"text": " If you want to build on recursive proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,080",
+				"to": "00:22:26,240"
+			},
+			"offsets": {
+				"from": 1343080,
+				"to": 1346240
+			},
+			"text": " and it doesn't happen at the same time-- so let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,240",
+				"to": "00:22:29,360"
+			},
+			"offsets": {
+				"from": 1346240,
+				"to": 1349360
+			},
+			"text": " you do a proof and you do a recursive proof--"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,360",
+				"to": "00:22:31,680"
+			},
+			"offsets": {
+				"from": 1349360,
+				"to": 1351680
+			},
+			"text": " and then you have to wait for a state change for something"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,680",
+				"to": "00:22:33,440"
+			},
+			"offsets": {
+				"from": 1351680,
+				"to": 1353440
+			},
+			"text": " else that might happen much later--"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,440",
+				"to": "00:22:35,680"
+			},
+			"offsets": {
+				"from": 1353440,
+				"to": 1355680
+			},
+			"text": " you need to keep the proof carrying data around."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,680",
+				"to": "00:22:40,480"
+			},
+			"offsets": {
+				"from": 1355680,
+				"to": 1360480
+			},
+			"text": " And as you know, but most here, that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,480",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1360480,
+				"to": 1364000
+			},
+			"text": " is typically a very large amount of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:47,120"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1367120
+			},
+			"text": " So if you're doing it at scale, you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,120",
+				"to": "00:22:51,200"
+			},
+			"offsets": {
+				"from": 1367120,
+				"to": 1371200
+			},
+			"text": " really running into the issues of data provisioning."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,200",
+				"to": "00:22:55,560"
+			},
+			"offsets": {
+				"from": 1371200,
+				"to": 1375560
+			},
+			"text": " And all the fun part can get really expensive, really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,560",
+				"to": "00:22:57,040"
+			},
+			"offsets": {
+				"from": 1375560,
+				"to": 1377040
+			},
+			"text": " really quickly, not even talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,040",
+				"to": "00:23:03,760"
+			},
+			"offsets": {
+				"from": 1377040,
+				"to": 1383760
+			},
+			"text": " about the computational overhead that you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,760",
+				"to": "00:23:04,360"
+			},
+			"offsets": {
+				"from": 1383760,
+				"to": 1384360
+			},
+			"text": " Yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,360",
+				"to": "00:23:09,040"
+			},
+			"offsets": {
+				"from": 1384360,
+				"to": 1389040
+			},
+			"text": " For sure, I don't think recursive proofs are a silver bullet."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,040",
+				"to": "00:23:12,040"
+			},
+			"offsets": {
+				"from": 1389040,
+				"to": 1392040
+			},
+			"text": " And I think they're better suited for some shapes"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,040",
+				"to": "00:23:13,160"
+			},
+			"offsets": {
+				"from": 1392040,
+				"to": 1393160
+			},
+			"text": " of applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,160",
+				"to": "00:23:15,480"
+			},
+			"offsets": {
+				"from": 1393160,
+				"to": 1395480
+			},
+			"text": " So recursive proofs are very commonly"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,480",
+				"to": "00:23:18,880"
+			},
+			"offsets": {
+				"from": 1395480,
+				"to": 1398880
+			},
+			"text": " used to reduce perverse space complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,880",
+				"to": "00:23:21,920"
+			},
+			"offsets": {
+				"from": 1398880,
+				"to": 1401920
+			},
+			"text": " So breaking up a large circuit into many smaller"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,920",
+				"to": "00:23:24,360"
+			},
+			"offsets": {
+				"from": 1401920,
+				"to": 1404360
+			},
+			"text": " parallelizable circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,360",
+				"to": "00:23:29,000"
+			},
+			"offsets": {
+				"from": 1404360,
+				"to": 1409000
+			},
+			"text": " So yeah, but I agree in context of applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,000",
+				"to": "00:23:34,920"
+			},
+			"offsets": {
+				"from": 1409000,
+				"to": 1414920
+			},
+			"text": " with more complicated and timely data flows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,920",
+				"to": "00:23:38,880"
+			},
+			"offsets": {
+				"from": 1414920,
+				"to": 1418880
+			},
+			"text": " we have to put some care into how and where"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,880",
+				"to": "00:23:42,160"
+			},
+			"offsets": {
+				"from": 1418880,
+				"to": 1422160
+			},
+			"text": " we are inserting this proof carrying data."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,160",
+				"to": "00:23:43,480"
+			},
+			"offsets": {
+				"from": 1422160,
+				"to": 1423480
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,480",
+				"to": "00:23:45,120"
+			},
+			"offsets": {
+				"from": 1423480,
+				"to": 1425120
+			},
+			"text": " Right, I'll also just to add--"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,120",
+				"to": "00:23:47,040"
+			},
+			"offsets": {
+				"from": 1425120,
+				"to": 1427040
+			},
+			"text": " I think there's also some interesting sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,040",
+				"to": "00:23:50,720"
+			},
+			"offsets": {
+				"from": 1427040,
+				"to": 1430720
+			},
+			"text": " of clean separation here of rules versus data availability"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,720",
+				"to": "00:23:51,960"
+			},
+			"offsets": {
+				"from": 1430720,
+				"to": 1431960
+			},
+			"text": " sort of problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,960",
+				"to": "00:23:54,880"
+			},
+			"offsets": {
+				"from": 1431960,
+				"to": 1434880
+			},
+			"text": " And if you just look at data availability as a sort of black"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,880",
+				"to": "00:23:56,720"
+			},
+			"offsets": {
+				"from": 1434880,
+				"to": 1436720
+			},
+			"text": " box problem, you have lots of blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,720",
+				"to": "00:23:57,840"
+			},
+			"offsets": {
+				"from": 1436720,
+				"to": 1437840
+			},
+			"text": " considerations for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,840",
+				"to": "00:24:00,360"
+			},
+			"offsets": {
+				"from": 1437840,
+				"to": 1440360
+			},
+			"text": " And for instance, isocratia explorers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,360",
+				"to": "00:24:05,720"
+			},
+			"offsets": {
+				"from": 1440360,
+				"to": 1445720
+			},
+			"text": " one sort of solution that maybe you can check out the blog on."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,720",
+				"to": "00:24:10,200"
+			},
+			"offsets": {
+				"from": 1445720,
+				"to": 1450200
+			},
+			"text": " Yeah, I also to add on to that, I really"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,200",
+				"to": "00:24:14,240"
+			},
+			"offsets": {
+				"from": 1450200,
+				"to": 1454240
+			},
+			"text": " like knowledge thing about composability, the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,240",
+				"to": "00:24:19,320"
+			},
+			"offsets": {
+				"from": 1454240,
+				"to": 1459320
+			},
+			"text": " that you can play incomplete information games."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,320",
+				"to": "00:24:21,840"
+			},
+			"offsets": {
+				"from": 1459320,
+				"to": 1461840
+			},
+			"text": " So I think sort of fun applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,840",
+				"to": "00:24:25,520"
+			},
+			"offsets": {
+				"from": 1461840,
+				"to": 1465520
+			},
+			"text": " like that that are unique to PCD are also"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,520",
+				"to": "00:24:28,040"
+			},
+			"offsets": {
+				"from": 1465520,
+				"to": 1468040
+			},
+			"text": " very interesting to explore."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,040",
+				"to": "00:24:28,540"
+			},
+			"offsets": {
+				"from": 1468040,
+				"to": 1468540
+			},
+			"text": " Amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,540",
+				"to": "00:24:29,800"
+			},
+			"offsets": {
+				"from": 1468540,
+				"to": 1469800
+			},
+			"text": " That's all the time we have for today."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,800",
+				"to": "00:24:32,200"
+			},
+			"offsets": {
+				"from": 1469800,
+				"to": 1472200
+			},
+			"text": " Please give Ian and Nelina a big round of applause."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,200",
+				"to": "00:24:34,200"
+			},
+			"offsets": {
+				"from": 1472200,
+				"to": 1474200
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,200",
+				"to": "00:24:36,200"
+			},
+			"offsets": {
+				"from": 1474200,
+				"to": 1476200
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,200",
+				"to": "00:24:38,200"
+			},
+			"offsets": {
+				"from": 1476200,
+				"to": 1478200
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,200",
+				"to": "00:24:40,200"
+			},
+			"offsets": {
+				"from": 1478200,
+				"to": 1480200
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,200",
+				"to": "00:24:42,200"
+			},
+			"offsets": {
+				"from": 1480200,
+				"to": 1482200
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,200",
+				"to": "00:25:11,200"
+			},
+			"offsets": {
+				"from": 1482200,
+				"to": 1511200
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

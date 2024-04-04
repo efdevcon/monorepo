@@ -1,0 +1,1418 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 18000
+			},
+			"text": " Hello everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 28000
+			},
+			"text": " I'm here to talk about MakerDA, one of the oldest and most ambitious projects in all of Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 32000
+			},
+			"text": " that seeks to create a stable coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 41000
+			},
+			"text": " For those of you who don't know, a stable coin is a cryptocurrency that is stable with respect to fiat currencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 47000
+			},
+			"text": " making it a more useful form of digital money."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 51000
+			},
+			"text": " So what is Maker?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 56000
+			},
+			"text": " At its core, Maker is comprised of two tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 59000
+			},
+			"text": " The first is called die."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 61000
+			},
+			"text": " This is the stable coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 65000
+			},
+			"text": " It is an asset-backed hard currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 72000
+			},
+			"text": " This means that every die coin is backed by some kind of valuable asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 78000
+			},
+			"text": " And this is because die is a permissionless credit system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 91000
+			},
+			"text": " And all die are issued when users lock up their valuable assets in this permissionless credit system and issue die against them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 104000
+			},
+			"text": " The stability of die is maintained by a system of dynamic autonomous interest rates that automatically react to emerging market conditions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 111000
+			},
+			"text": " and change the fees and incentives associated with using this permissionless credit system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 117000
+			},
+			"text": " The second token is called MKR."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 126000
+			},
+			"text": " It is the administrative token of the system, and its holders comprise a decentralized regulatory body"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 139000
+			},
+			"text": " who use token governance to decide what type of assets are truly valuable and can be used as collateral to back the die stable coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 146000
+			},
+			"text": " In exchange for their services, MKR is used as the fuel for the credit system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 154000
+			},
+			"text": " And when people repay die and reclaim their collateral from the system, they must include some MKR as a fee,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157000
+			},
+			"text": " which is consumed by the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 162000
+			},
+			"text": " So, what have we been up to over the last year?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 171000
+			},
+			"text": " In a word refinement, this last year has been all about removing complexity, adding simplicity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 176000
+			},
+			"text": " pairing down the code, making it easier to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 178000
+			},
+			"text": " This is not easy stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 189000
+			},
+			"text": " A good day at MKR last year, a good day often involved putting one line of code on trial and scrutinizing it and thinking about it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 192000
+			},
+			"text": " and at the end of the day, removing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 201000
+			},
+			"text": " We have used the Unix design philosophy to great effect in the MKR DAO system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 207000
+			},
+			"text": " Now, I talked about this a lot yesterday, so I'm going to sum it up simply today and say the Unix design philosophy is a good thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 219000
+			},
+			"text": " And today, the Unix design philosophy encourages programmers to write contracts that do one thing and do it well and to write contracts that work together."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 230000
+			},
+			"text": " What I'm talking about is a modular approach to system design, focusing on one component, making sure it's right, and then composing these into higher order systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 237000
+			},
+			"text": " This is not a new idea. This is a decades old idea, and we have leveraged it to great effect in the MKR DAO code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 246000
+			},
+			"text": " We have also sponsored the creation of a ton of interesting developer tools and repeatable smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 253000
+			},
+			"text": " All the stuff I talked about yesterday, we pretty much exclusively built in the pursuit of our goals for MKR DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 261000
+			},
+			"text": " And so all of that cool stuff is just one cool way that MKR has contributed to the broader development ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 266000
+			},
+			"text": " And it's something that we're very proud to do here in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 273000
+			},
+			"text": " Something else that we're very proud of, achievement that we're very proud of, is the creation of the purple paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 280000
+			},
+			"text": " The purple paper is our Haskell reference implementation of the dye stablecoin system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 286000
+			},
+			"text": " And it has been invaluable in the design of dye."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 292000
+			},
+			"text": " The reason it has been invaluable are three."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 296000
+			},
+			"text": " The first is comparison."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 308000
+			},
+			"text": " It is well understood in computer science that creating multiple freestanding implementations of a system is a great way to verify your assumptions and see what kind of behaviors translate between one and the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 322000
+			},
+			"text": " In fact, the Ethereum community has leveraged this fact to great effect in the diverse client ecosystem that we all enjoy and in the creation of multiple implementations of the CASPER algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 324000
+			},
+			"text": " Similar sort of thinking there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 327000
+			},
+			"text": " We did this in Haskell and it was very, very valuable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 329000
+			},
+			"text": " The second reason is for verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 335000
+			},
+			"text": " Haskell has a very advanced type system, especially when compared to Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 345000
+			},
+			"text": " We can achieve more expressiveness and we can specify the behaviors a lot more rigorously using Haskell than we were able to achieve Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 351000
+			},
+			"text": " And it has helped us to think more clearly about the design of the dye stablecoin system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 354000
+			},
+			"text": " And the third reason is simulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 363000
+			},
+			"text": " When you have, when you design something like this in a separate programming language, you can actually run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 366000
+			},
+			"text": " What you're looking at here is code, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 375000
+			},
+			"text": " So the purple paper is actually a model of the dye stablecoin system and we can use it on the command line to simulate the system and test our economic hypotheses."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 380000
+			},
+			"text": " It will help with the administration of maker over the long term."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 392000
+			},
+			"text": " So all of this stuff, refinement, this high standard of quality, these investment in our tooling, the purple paper, all of it over the last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 397000
+			},
+			"text": " It's been culminating. It's been leading up to something, leading up to me standing on the stage right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 408000
+			},
+			"text": " And it is my great pleasure to announce to you that the first release of dye is coming in December of this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 423000
+			},
+			"text": " So long. We've been working towards this for so long. I'm so excited. I'm so excited I might faint."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 429000
+			},
+			"text": " I'm so excited. I may explode into 10,000 pieces of confetti on this stage right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 444000
+			},
+			"text": " Now I say this is the first dye release because this is the first major step on the road to formal verification and all of the important dye stability features that we need."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 457000
+			},
+			"text": " But make no mistake, this is a major step. The landscape of Ethereum, the landscape of DAPs is going to be changed forever when we have consumer grade stability."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 463000
+			},
+			"text": " Everybody knows that. And we have been working towards this moment for years and we're ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 472000
+			},
+			"text": " We finished our audit just two weeks ago. We are currently responding to feedback and we are getting ready to launch this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 480000
+			},
+			"text": " Now I'm going to go into some detail about what is coming in this release."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 491000
+			},
+			"text": " Let's dive in and talk about the credit system mechanics. This will be especially useful if you're not as familiar with the dye stablecoin system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 502000
+			},
+			"text": " So I spoke before about how users lock up collateral assets and issue dye against them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 511000
+			},
+			"text": " This is done in what's called a collateralized debt position, a CDP."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 524000
+			},
+			"text": " And users, they create CDPs, issue dye and use it for whatever and then later they repay that dye plus a fee and reclaim their collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 534000
+			},
+			"text": " But as you can see in the diagram, it looks like there's more value in terms of collateral than there is in terms of dye."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 545000
+			},
+			"text": " Why is that? It's because the system enforces it and the reason that it enforces it is because the value of the asset, the collateral, fluctuates."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 551000
+			},
+			"text": " And it always needs to be backing the dye because a dye is an asset backed hard currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 566000
+			},
+			"text": " So because the collateral value can fluctuate, the dye system needs to protect itself. Now if the value of the collateral asset fluctuates up, if it appreciates in value, that's fine for a dye. It doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 576000
+			},
+			"text": " But if it fluctuates down and it loses value, dye needs to take steps to protect the integrity of the entire system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 591000
+			},
+			"text": " And what it does is it liquidates the CDP. It reclaims the collateral and it sells it off for dye to reclaim the dye that it needs to get and make sure that all the books are balanced."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 603000
+			},
+			"text": " You can think about it, you can analogize it to a margin call, where the CDP owner made a bet, here they were wrong and they paid the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 614000
+			},
+			"text": " So what type of collateral is going to be used in this first release of dye? It's called pooled ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 627000
+			},
+			"text": " And it allows us to back the system with ETH and protect the system in the event of extreme market volatility."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 639000
+			},
+			"text": " In the next release of dye and in future releases, we will use the MKR token to protect the system in the event of extreme market volatility, downward volatility."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 649000
+			},
+			"text": " But in this system, because it's simpler to do so, and because we are still working on that aspect of the system, we use pooled ETH, ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 657000
+			},
+			"text": " So let's go into a little bit how it works. We call this a bailout mechanism. Let's go into how this mechanism works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 666000
+			},
+			"text": " At the high level, ETH is very, very simple. You just put your ETH into a contract and you get ETH out."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 682000
+			},
+			"text": " And path can be used to reclaim your ETH. So if there's 100 ETH and 100 ETH and you put an ETH into the system, you will get one path, maintaining the ratio between path and ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 694000
+			},
+			"text": " But that ratio is not static. It is dynamic. And the reason it is dynamic is because path protects the system with this bailout mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 705000
+			},
+			"text": " In exchange for that service, half of the fee from the CDP is used to bypass and burn it, destroy it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 717000
+			},
+			"text": " So if you think about it, if we're buying path and destroying it, taking that CDP fee and destroying it, that means that the remaining path has greater claim power on the ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 728000
+			},
+			"text": " And here you can see it can claim 1.5 ETH, or before I was saying it claimed 1 ETH. That ratio is increasing and it's causing paths to appreciate value."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 740000
+			},
+			"text": " This is what happens when the system is experiencing normal levels of ETH volatility. But what if the dreaded Black Swan event happens?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 750000
+			},
+			"text": " In a Black Swan event, the price of ETH rapidly loses value faster than the die stablecoin system can liquidate positions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 764000
+			},
+			"text": " And what we wind up with is an insolvent CDP, an underwater CDP. This means that the totality of the collateral that has been issued against this die is lower than the value of the die itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 775000
+			},
+			"text": " Something needs to be done. We need to collect this die somehow. And the way that it's done is by minting path."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 785000
+			},
+			"text": " So here, this red area on the diagram would be minted path and it's minted and sold for die in order to keep the system solvent."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 793000
+			},
+			"text": " So we're accessing the value of the pool of ETH in order to keep the entire system solvent and balance the books."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 802000
+			},
+			"text": " But, as you can imagine, minting path means that the claim power is diminished."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 811000
+			},
+			"text": " Here we can see now one path claims 0.66 ETH causing the value to depreciate."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 824000
+			},
+			"text": " This is why ETH in times of normal volatility should appreciate and only falls in value in the event of these snap moments of extreme volatility."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 839000
+			},
+			"text": " The next feature is the governance fee. As I said, half of the fee is given to the path holders. The other half is given to MKR."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 848000
+			},
+			"text": " This is a payment for their service administering the system and choosing the important security parameters that keep the system safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 862000
+			},
+			"text": " This is paid in MKR. As I said, it's denominated in die. And here we will have the first main use case for this vision that we've all kind of been thinking about when it comes to tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 875000
+			},
+			"text": " Whenever we think about tokens, we often think about the user buying them and not even realizing that they're buying them, buying them behind the scenes automatically without thinking about it, without even knowing about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 892000
+			},
+			"text": " We have developed this technology for this use case. So users aren't going to have to think about MKR, but they're going to automatically buy it in a decentralized exchange like OASIS or Ether Delta or 0x automatically and use it to close their CDPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,000",
+				"to": "00:15:12,000"
+			},
+			"offsets": {
+				"from": 893000,
+				"to": 912000
+			},
+			"text": " This MKR will be burnt, consumed by the system. The last feature is called global settlement. This is how we wind down the system gracefully and it will allow us to upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 925000
+			},
+			"text": " Like I said, it's going to be graceful. This is an orderly process. When the system is globally settled by the MKR holders, a few things happen in order."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 942000
+			},
+			"text": " The first is that die becomes a claim on ETH on the ETH collateral at a fixed price. So it is as if your die, which is an actively managed stablecoin, suddenly became ETH. Just like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 970000
+			},
+			"text": " At a fixed price. Next, CDP holders will be able to free their excess peth. So if I put $100 worth of peth into a CDP and I issued $80 worth of die against it, and then the system was globally settled, I would get my $20 worth of peth back."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 980000
+			},
+			"text": " And whoever I gave that $80 worth of die to would get the other $80 worth of ETH. Simple, orderly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 991000
+			},
+			"text": " And then last, the peth holders can exit to ETH at whatever rate exists for peth at that time, whatever claim power it has."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 1005000
+			},
+			"text": " There are only three conditions upon which the system will be globally settled. The first is in cases of bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1011000
+			},
+			"text": " This is a safety precaution. You can never be too sure until the system has been formally proven."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1030000
+			},
+			"text": " The second is extreme events of market irrationality. We're all used to this in cryptocurrencies. It's something that we are quite certain won't be happening in die, both of these things, bugs and market irrationality, but it's something that we're prepared to handle nonetheless."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1038000
+			},
+			"text": " And by market irrationality, I mean something like an unstoppable amount of demand for die that threatens its various stability."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1051000
+			},
+			"text": " And then the third case is in terms of upgrade, or in cases of upgrade. This is definitely going to happen because as I said, we have another release of die coming, which is going to have more important stability features."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1058000
+			},
+			"text": " And this will be an orderly way to go from the old system to the next system."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:49,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1069000
+			},
+			"text": " So, what's coming next? A lot of exciting things. We're going to be working a lot on exchange integrations."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1069000,
+				"to": 1075000
+			},
+			"text": " This means that you're going to get die trading pairs. Die is going to be a great base pair to trade against."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1085000
+			},
+			"text": " And we hope to get our CDP system integrated into exchanges so that you get safer borrowing with much lower rates."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1089000
+			},
+			"text": " Margin trading at 1%, sounds awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1097000
+			},
+			"text": " The last feature is of course the last aspect we're going to be working on is of course the important style stability features."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1113000
+			},
+			"text": " I mentioned a few here. There's a few more that I can't get into, but we're going to be heads down over the next quarter, working really, really hard to get the next release of die out there, which is going to be even better and even closer to ready to the final formerly verified product."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1121000
+			},
+			"text": " We are so excited that we've been working for so long on die. We are so excited to deliver a working DAP to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1126000
+			},
+			"text": " This is something that we're really, really proud to put out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1134000
+			},
+			"text": " And I think that it's going to, like I said, completely change the landscape of Ethereum, getting consumer grade stability."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1139000
+			},
+			"text": " If you're interested in learning more, please visit makerdow.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1146000
+			},
+			"text": " There's a lot of information there. You can join our chat at chat.makerdow.com. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1149000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1157000
+			},
+			"text": " [music]"
+		}
+	]
+}

@@ -1,0 +1,802 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 14000
+			},
+			"text": " >> My name is Hovtina Lazaro."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:17,500"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 17500
+			},
+			"text": " During the last two years, I've been contributing to the Sondra."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,500",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 17500,
+				"to": 21000
+			},
+			"text": " And today, I'm going to talk about using IBPS to create the metallors."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 25000
+			},
+			"text": " So, let's first talk about what the metallors is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 29000
+			},
+			"text": " Well, it's a social network where you interact with friends,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:32,500"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 32500
+			},
+			"text": " people that you meet there in a three-dimensional way."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,500",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 32500,
+				"to": 40000
+			},
+			"text": " And also there you have additional identity, which is custom for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 45000
+			},
+			"text": " And it's the way that people recognize you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 53000
+			},
+			"text": " What distinguishes the Sondra from other metallors is that the users are the ones who owns the platform, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 60000
+			},
+			"text": " So, how do we do that? Well, the world is divided into parcels, and each parcel has an owner,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 64000
+			},
+			"text": " and it's the owner who decides what to show on the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 72000
+			},
+			"text": " They could choose to set up an scene, for example, for a casino, for a bar, or even a music festival."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 74000
+			},
+			"text": " And how we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 83000
+			},
+			"text": " We have deployed contracts in Ethereum to check the ownership of those lands and the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 88000
+			},
+			"text": " And to check the ownership, we use the graph in the vacant services."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 101000
+			},
+			"text": " So, we have the contract for lands, where you can own a land and then let others have permissions to deploy some scene on the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 112000
+			},
+			"text": " We also have NFT collections as well, where the world's creators can meet a collection and then sell them in the marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 120000
+			},
+			"text": " And then as a user, you can choose those werewolves by them and then set up your avatar."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 126000
+			},
+			"text": " That's where we store them in the user's profiles."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 134000
+			},
+			"text": " We can also have a name in the centaurant, and that's the identity that you own."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 145000
+			},
+			"text": " What happened with that? There are a lot of files and it's too many assets to store scenes and free models and werewolves and pictures."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 148000
+			},
+			"text": " So, we need to store them somewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 151000
+			},
+			"text": " And we have to delete that decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 158000
+			},
+			"text": " So, what we have are decentralized servers, which store all the data that the client needs to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 174000
+			},
+			"text": " The community owns the servers, which means that there is a decentralized DAO, which is the responsible of approving the list of servers that are in the DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 184000
+			},
+			"text": " So, they have to synchronize between them because we have all the content replicated on each of them, so the client can connect to any of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 187000
+			},
+			"text": " And we will get the same information, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 198000
+			},
+			"text": " The way we do that is every server, which we named catalyst, is doing a polling mechanism to all the others to retrieve the files and the entities."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 205000
+			},
+			"text": " This works okay, but we wanted to go a little bit farther and test two things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 215000
+			},
+			"text": " The first thing is that, as you may assume, we have lots of data and we have all the historical data, like all the changes that have happened on the scene,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 218000
+			},
+			"text": " and also the way that the files are replicated together."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 221000
+			},
+			"text": " Well, let's first talk about the historical data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 231000
+			},
+			"text": " What happens? For example, this is the genesis plaza for the Sondron, which was away in 2020 and there was a change in 2021."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 240000
+			},
+			"text": " So, the servers need to retrieve the latest content they don't need to serve the how was the Sondron two years before, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 248000
+			},
+			"text": " But we want to store that data as a backup, and for example, if you want to run the world of how it looked a year before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 257000
+			},
+			"text": " if you run a full node, which means that you have all the historical data, all you need to do is enlarge your disk and everything will work okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 261000
+			},
+			"text": " The only thing is that you will need two terabytes of disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 275000
+			},
+			"text": " But if you want to run a light node, then you can enable the garage collection, which is a mechanism that deletes all the files from the entities that were overwritten by new ones, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 279000
+			},
+			"text": " Okay, but what happens if all servers then enable the garage collection?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 283000
+			},
+			"text": " Then we may lose those data and we don't want that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 293000
+			},
+			"text": " So our idea was to set up a node, an E-BFS node, connected to a server which listens all the network and listens all the changes and stores,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 298000
+			},
+			"text": " well, pins to IPFS, all the files that are synchronized."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 312000
+			},
+			"text": " So first we uploaded all the files, and then we set up the server to listen all the changes and automatically pin the new files."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 317000
+			},
+			"text": " And the other thing is the file's replication, which what is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 326000
+			},
+			"text": " Well, the way that we share those files between the servers, we are doing it by HTTP request and it's a full mesh to polish you, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 330000
+			},
+			"text": " Because every node is talking to every other node."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 339000
+			},
+			"text": " And our idea was, well, what happens if we use IPFS and we leverage that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 351000
+			},
+			"text": " So we don't have to care about synchronizing files, we only have to care about the valuations that we need to do to the blockchain and the entities and the way that we need to retrieve those files."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 363000
+			},
+			"text": " But we only need to know the hashes that we need to pin and then IPFS will do all of that part themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 369000
+			},
+			"text": " So that's our idea on a trial to make something different."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 374000
+			},
+			"text": " If we can leverage IPFS to work that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 375000
+			},
+			"text": " That's all. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 382000
+			},
+			"text": " I was just wondering, could you speak a little bit about your decision to use IPFS instead of RV for storing historical data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 386000
+			},
+			"text": " Instead of RV for like permanent data to store historical data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 392000
+			},
+			"text": " We currently have the data store locally, like in the file system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 401000
+			},
+			"text": " And we have the way to configure that and store if you run it all, I want to store them on S3 you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 409000
+			},
+			"text": " We have been thinking a lot about the way that the catalysts sync each other and we've been saying a lot about how IPFS does that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 413000
+			},
+			"text": " So that's why I think we chose IPFS to test this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 417000
+			},
+			"text": " But we have done so far, it's only the historical data, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 421000
+			},
+			"text": " We haven't done use the IPFS to run the sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 430000
+			},
+			"text": " How do you handle content moderation or cases where like certain content or files might be illegal in certain countries but would be valid in other ones?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 437000
+			},
+			"text": " Well, the way that we do that now is each of the servers has an owner."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 446000
+			},
+			"text": " It's their responsibility to deny list some entities or files or the thing that they need to moderate."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 451000
+			},
+			"text": " So we are not taking care of the moderation ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 454000
+			},
+			"text": " We're letting the owners of the catalysts do themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 460000
+			},
+			"text": " We only provide the mechanism for them to remove those files and don't serve them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 461000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 468000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 474000
+			},
+			"text": " [silence]"
+		}
+	]
+}

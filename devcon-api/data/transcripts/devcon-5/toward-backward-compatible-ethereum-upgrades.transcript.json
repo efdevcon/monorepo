@@ -1,0 +1,2199 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,360"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7360
+			},
+			"text": " A short introduction about me, so I'm way"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,360",
+				"to": "00:00:15,360"
+			},
+			"offsets": {
+				"from": 7360,
+				"to": 15360
+			},
+			"text": " time a quality webmaster, a party technologist, and I work on Ethereum and Ethereum 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,360",
+				"to": "00:00:20,200"
+			},
+			"offsets": {
+				"from": 15360,
+				"to": 20200
+			},
+			"text": " So in this talk, I'm going to talk about backward compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,200",
+				"to": "00:00:25,440"
+			},
+			"offsets": {
+				"from": 20200,
+				"to": 25440
+			},
+			"text": " So in different contexts, we have different definitions for backward compatibility, for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,440",
+				"to": "00:00:34,080"
+			},
+			"offsets": {
+				"from": 25440,
+				"to": 34080
+			},
+			"text": " example, in the context of system interface is mostly about interrupt with an older version"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,080",
+				"to": "00:00:35,520"
+			},
+			"offsets": {
+				"from": 34080,
+				"to": 35520
+			},
+			"text": " of the interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,520",
+				"to": "00:00:43,600"
+			},
+			"offsets": {
+				"from": 35520,
+				"to": 43600
+			},
+			"text": " And also for things that handle files and objects, it's about handling those things produced"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,600",
+				"to": "00:00:45,880"
+			},
+			"offsets": {
+				"from": 43600,
+				"to": 45880
+			},
+			"text": " by older versions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,880",
+				"to": "00:00:49,480"
+			},
+			"offsets": {
+				"from": 45880,
+				"to": 49480
+			},
+			"text": " So we're talking about backward compatibility in a blockchain context."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,480",
+				"to": "00:00:53,680"
+			},
+			"offsets": {
+				"from": 49480,
+				"to": 53680
+			},
+			"text": " So we are really talking about smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,680",
+				"to": "00:00:59,440"
+			},
+			"offsets": {
+				"from": 53680,
+				"to": 59440
+			},
+			"text": " The definition here I gave is if a smart contract works in the past, then you should"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,440",
+				"to": "00:01:07,760"
+			},
+			"offsets": {
+				"from": 59440,
+				"to": 67760
+			},
+			"text": " continue to work in the future, no matter how many feature upgrades we add."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,760",
+				"to": "00:01:14,480"
+			},
+			"offsets": {
+				"from": 67760,
+				"to": 74480
+			},
+			"text": " So the thing we talk about here today is that it's not so nice story about backward"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,480",
+				"to": "00:01:15,960"
+			},
+			"offsets": {
+				"from": 74480,
+				"to": 75960
+			},
+			"text": " compatibility in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,960",
+				"to": "00:01:20,120"
+			},
+			"offsets": {
+				"from": 75960,
+				"to": 80120
+			},
+			"text": " So backward compatibility can be really easy to be broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,120",
+				"to": "00:01:26,440"
+			},
+			"offsets": {
+				"from": 80120,
+				"to": 86440
+			},
+			"text": " For a lot of times, I intentionally or intentionally as we demonstrated in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,440",
+				"to": "00:01:33,400"
+			},
+			"offsets": {
+				"from": 86440,
+				"to": 93400
+			},
+			"text": " So this is a huge issue because real un-channed contracts are affected and also a lot of real"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,400",
+				"to": "00:01:37,040"
+			},
+			"offsets": {
+				"from": 93400,
+				"to": 97040
+			},
+			"text": " money are involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,040",
+				"to": "00:01:44,560"
+			},
+			"offsets": {
+				"from": 97040,
+				"to": 104560
+			},
+			"text": " For an intentional backward compatibility breakage, we have the example of EIP 1283,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,560",
+				"to": "00:01:47,360"
+			},
+			"offsets": {
+				"from": 104560,
+				"to": 107360
+			},
+			"text": " which is a change to decrease guest cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,360",
+				"to": "00:01:54,880"
+			},
+			"offsets": {
+				"from": 107360,
+				"to": 114880
+			},
+			"text": " Unfortunately, we found that if we do that, then there are some issues with backward"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,880",
+				"to": "00:02:00,080"
+			},
+			"offsets": {
+				"from": 114880,
+				"to": 120080
+			},
+			"text": " compatibility because it can cause some contracts to have real entry attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,080",
+				"to": "00:02:06,080"
+			},
+			"offsets": {
+				"from": 120080,
+				"to": 126080
+			},
+			"text": " And we also have 84 in some board, which is EIP who increased guest cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,080",
+				"to": "00:02:12,640"
+			},
+			"offsets": {
+				"from": 126080,
+				"to": 132640
+			},
+			"text": " We also figure out this can't break backward compatibility because it can just cause some"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,640",
+				"to": "00:02:18,200"
+			},
+			"offsets": {
+				"from": 132640,
+				"to": 138200
+			},
+			"text": " functions of some contract to be frozen."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,200",
+				"to": "00:02:25,280"
+			},
+			"offsets": {
+				"from": 138200,
+				"to": 145280
+			},
+			"text": " So those unintentional backward compatibility breakage are nearly missed in the whole EIP"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,280",
+				"to": "00:02:26,280"
+			},
+			"offsets": {
+				"from": 145280,
+				"to": 146280
+			},
+			"text": " editing process."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,280",
+				"to": "00:02:32,840"
+			},
+			"offsets": {
+				"from": 146280,
+				"to": 152840
+			},
+			"text": " We nearly found it for the last minutes and it caused a lot of issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,840",
+				"to": "00:02:37,440"
+			},
+			"offsets": {
+				"from": 152840,
+				"to": 157440
+			},
+			"text": " So in the past, we also had debate about why the increasing guest cost or decreasing guest"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,440",
+				"to": "00:02:38,840"
+			},
+			"offsets": {
+				"from": 157440,
+				"to": 158840
+			},
+			"text": " cost will be better."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,840",
+				"to": "00:02:42,720"
+			},
+			"offsets": {
+				"from": 158840,
+				"to": 162720
+			},
+			"text": " And it turns out both scenarios can break backward compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,720",
+				"to": "00:02:47,280"
+			},
+			"offsets": {
+				"from": 162720,
+				"to": 167280
+			},
+			"text": " So it's the same by saying."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,280",
+				"to": "00:02:51,400"
+			},
+			"offsets": {
+				"from": 167280,
+				"to": 171400
+			},
+			"text": " And in the future, we may also have an intentional backward compatibility breakage."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,400",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 171400,
+				"to": 177000
+			},
+			"text": " So for example, if now we know that guest cost break everything, so in the future, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:03,360"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 183360
+			},
+			"text": " might just go ahead with some guest cost changes if that's really pressing and we want to reflect"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,360",
+				"to": "00:03:07,080"
+			},
+			"offsets": {
+				"from": 183360,
+				"to": 187080
+			},
+			"text": " the real computation cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,080",
+				"to": "00:03:15,480"
+			},
+			"offsets": {
+				"from": 187080,
+				"to": 195480
+			},
+			"text": " And also the example for statements, which is, I don't know why we want to adopt it now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,480",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 195480,
+				"to": 202000
+			},
+			"text": " but we probably want to have something more proposals to fix state floats, which can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:23,640"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 203640
+			},
+			"text": " break backward compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,640",
+				"to": "00:03:31,080"
+			},
+			"offsets": {
+				"from": 203640,
+				"to": 211080
+			},
+			"text": " And we also have the ETH1 products to ETH 2.0 shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,080",
+				"to": "00:03:36,320"
+			},
+			"offsets": {
+				"from": 211080,
+				"to": 216320
+			},
+			"text": " In that case, some contracts can be broken as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,320",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 216320,
+				"to": 219000
+			},
+			"text": " So this comes to a conversioning."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:56,080"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 236080
+			},
+			"text": " It's really about that we currently don't have regard for a backward"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,080",
+				"to": "00:04:09,360"
+			},
+			"offsets": {
+				"from": 236080,
+				"to": 249360
+			},
+			"text": " compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,360",
+				"to": "00:04:19,040"
+			},
+			"offsets": {
+				"from": 249360,
+				"to": 259040
+			},
+			"text": " So the earliest is probably the code prefix, which was in EIP 1554 in 2016."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,040",
+				"to": "00:04:23,800"
+			},
+			"offsets": {
+				"from": 259040,
+				"to": 263800
+			},
+			"text": " So it is regarding the context of the EIP wasn't support in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,800",
+				"to": "00:04:26,480"
+			},
+			"offsets": {
+				"from": 263800,
+				"to": 266480
+			},
+			"text": " So the idea is quite simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,480",
+				"to": "00:04:32,840"
+			},
+			"offsets": {
+				"from": 266480,
+				"to": 272840
+			},
+			"text": " We just add a small code prefix in the area contracts and if the contract detects that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,840",
+				"to": "00:04:36,320"
+			},
+			"offsets": {
+				"from": 272840,
+				"to": 276320
+			},
+			"text": " prefix then we just execute it in that version."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,320",
+				"to": "00:04:40,240"
+			},
+			"offsets": {
+				"from": 276320,
+				"to": 280240
+			},
+			"text": " It's an of the default version."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,240",
+				"to": "00:04:44,880"
+			},
+			"offsets": {
+				"from": 280240,
+				"to": 284880
+			},
+			"text": " So this is later expanded into EIP 1707."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,880",
+				"to": "00:04:46,920"
+			},
+			"offsets": {
+				"from": 284880,
+				"to": 286920
+			},
+			"text": " So we did have some issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,920",
+				"to": "00:04:53,480"
+			},
+			"offsets": {
+				"from": 286920,
+				"to": 293480
+			},
+			"text": " So with code prefix along, the issue is that we can deploy data on time perling."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,480",
+				"to": "00:05:02,320"
+			},
+			"offsets": {
+				"from": 293480,
+				"to": 302320
+			},
+			"text": " So some data might accidentally have the prefix and then what is the code on chance."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,320",
+				"to": "00:05:07,520"
+			},
+			"offsets": {
+				"from": 302320,
+				"to": 307520
+			},
+			"text": " So this is a huge issue for re-end that requires validation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,520",
+				"to": "00:05:10,200"
+			},
+			"offsets": {
+				"from": 307520,
+				"to": 310200
+			},
+			"text": " So it's just really bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,200",
+				"to": "00:05:12,640"
+			},
+			"offsets": {
+				"from": 310200,
+				"to": 312640
+			},
+			"text": " And we can do something about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,640",
+				"to": "00:05:19,520"
+			},
+			"offsets": {
+				"from": 312640,
+				"to": 319520
+			},
+			"text": " So there's a way that we can just deploy and use out code deployments so that we don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,520",
+				"to": "00:05:25,120"
+			},
+			"offsets": {
+				"from": 319520,
+				"to": 325120
+			},
+			"text": " have those data function that accidentally have the prefix."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,120",
+				"to": "00:05:27,600"
+			},
+			"offsets": {
+				"from": 325120,
+				"to": 327600
+			},
+			"text": " But the issue is that it's not backward compatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,600",
+				"to": "00:05:37,240"
+			},
+			"offsets": {
+				"from": 327600,
+				"to": 337240
+			},
+			"text": " So the second variations we had was using a kind of turning word special context."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,240",
+				"to": "00:05:42,640"
+			},
+			"offsets": {
+				"from": 337240,
+				"to": 342640
+			},
+			"text": " So this was EIP 1891 in 2019."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,640",
+				"to": "00:05:48,960"
+			},
+			"offsets": {
+				"from": 342640,
+				"to": 348960
+			},
+			"text": " So basically the idea is pressing for we just start the version information of an account"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,960",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 348960,
+				"to": 354000
+			},
+			"text": " in a special contract that is starting a lower location."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:00,080"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 360080
+			},
+			"text": " And then whenever we execute a contract we just fetch the version from that special"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,080",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 360080,
+				"to": 365000
+			},
+			"text": " contract first and then decide which free am we use."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:06,200"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 366200
+			},
+			"text": " So this is quite simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,200",
+				"to": "00:06:09,600"
+			},
+			"offsets": {
+				"from": 366200,
+				"to": 369600
+			},
+			"text": " It does not require anything to state the issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,600",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 369600,
+				"to": 375000
+			},
+			"text": " However, it is that we need an additional tree operation which is kind of bad because"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:25,760"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 385760
+			},
+			"text": " I mean each tree operation for all the account means we double the tree access and given"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,760",
+				"to": "00:06:28,240"
+			},
+			"offsets": {
+				"from": 385760,
+				"to": 388240
+			},
+			"text": " the current tree access is not really fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,240",
+				"to": "00:06:32,040"
+			},
+			"offsets": {
+				"from": 388240,
+				"to": 392040
+			},
+			"text": " So that's a issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,040",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 392040,
+				"to": 396000
+			},
+			"text": " And finally we have the conversion in where our field."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:42,880"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 402880
+			},
+			"text": " So this was originally in CIP 13 in 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,880",
+				"to": "00:06:44,400"
+			},
+			"offsets": {
+				"from": 402880,
+				"to": 404400
+			},
+			"text": " This idea is quite simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,400",
+				"to": "00:06:45,400"
+			},
+			"offsets": {
+				"from": 404400,
+				"to": 405400
+			},
+			"text": " Also quite simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,400",
+				"to": "00:06:51,080"
+			},
+			"offsets": {
+				"from": 405400,
+				"to": 411080
+			},
+			"text": " So we have four LP encoding currently non-spilance, not root code hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,080",
+				"to": "00:06:57,360"
+			},
+			"offsets": {
+				"from": 411080,
+				"to": 417360
+			},
+			"text": " We just had another one version and we use that to determine the VM reuse."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,360",
+				"to": "00:07:02,320"
+			},
+			"offsets": {
+				"from": 417360,
+				"to": 422320
+			},
+			"text": " So later this is expanded into 70.02."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,320",
+				"to": "00:07:07,840"
+			},
+			"offsets": {
+				"from": 422320,
+				"to": 427840
+			},
+			"text": " And this is actually quite robust and entirely backward compatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,840",
+				"to": "00:07:14,240"
+			},
+			"offsets": {
+				"from": 427840,
+				"to": 434240
+			},
+			"text": " So this is also strongly favored by the 615 team."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,240",
+				"to": "00:07:20,480"
+			},
+			"offsets": {
+				"from": 434240,
+				"to": 440480
+			},
+			"text": " During the exam board discussion we had less code training than it is so now GAS and party"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,480",
+				"to": "00:07:33,280"
+			},
+			"offsets": {
+				"from": 440480,
+				"to": 453280
+			},
+			"text": " and I believe another ARETH or all have a PR open for this conversion implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,280",
+				"to": "00:07:38,720"
+			},
+			"offsets": {
+				"from": 453280,
+				"to": 458720
+			},
+			"text": " It's also slightly good for the start rate proposal because now you can use this version"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,720",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 458720,
+				"to": 466000
+			},
+			"text": " field to determine what the rise of the ARETH field that start rate might act means."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:49,400"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 469400
+			},
+			"text": " So it provides some semantics for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,400",
+				"to": "00:07:54,320"
+			},
+			"offsets": {
+				"from": 469400,
+				"to": 474320
+			},
+			"text": " And it's the current selected conversion in solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,320",
+				"to": "00:07:59,440"
+			},
+			"offsets": {
+				"from": 474320,
+				"to": 479440
+			},
+			"text": " So for completeness there's also one thing we need to talk about is about if you're using"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,440",
+				"to": "00:08:07,120"
+			},
+			"offsets": {
+				"from": 479440,
+				"to": 487120
+			},
+			"text": " this version then what is the version, the child contracts that created by parent contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,120",
+				"to": "00:08:14,400"
+			},
+			"offsets": {
+				"from": 487120,
+				"to": 494400
+			},
+			"text": " So in EIP 70.02 this is what called a contract family and later this contract family can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,400",
+				"to": "00:08:22,240"
+			},
+			"offsets": {
+				"from": 494400,
+				"to": 502240
+			},
+			"text": " be extended so we can have some extensions to EIP 70.02 that allows different conversions"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,240",
+				"to": "00:08:23,760"
+			},
+			"offsets": {
+				"from": 502240,
+				"to": 503760
+			},
+			"text": " to be created."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,760",
+				"to": "00:08:28,720"
+			},
+			"offsets": {
+				"from": 503760,
+				"to": 508720
+			},
+			"text": " But this is for completeness so we can really see if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,720",
+				"to": "00:08:32,400"
+			},
+			"offsets": {
+				"from": 508720,
+				"to": 512400
+			},
+			"text": " And then we have the version list, EVN."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,400",
+				"to": "00:08:37,800"
+			},
+			"offsets": {
+				"from": 512400,
+				"to": 517800
+			},
+			"text": " So what we're talking about here is really if we only have a conversion, the issue is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,800",
+				"to": "00:08:41,640"
+			},
+			"offsets": {
+				"from": 517800,
+				"to": 521640
+			},
+			"text": " every six months we will want to deploy a new version."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,640",
+				"to": "00:08:47,160"
+			},
+			"offsets": {
+				"from": 521640,
+				"to": 527160
+			},
+			"text": " That for some teams is not subsensible so that is a huge pushback during the exam board"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,160",
+				"to": "00:08:48,360"
+			},
+			"offsets": {
+				"from": 527160,
+				"to": 528360
+			},
+			"text": " hard for discussion."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,360",
+				"to": "00:08:54,480"
+			},
+			"offsets": {
+				"from": 528360,
+				"to": 534480
+			},
+			"text": " Some people just think a conversion is cool but if we need to maintain too many conversions"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,480",
+				"to": "00:08:59,960"
+			},
+			"offsets": {
+				"from": 534480,
+				"to": 539960
+			},
+			"text": " then that is a huge maintenance code and they may not want to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,960",
+				"to": "00:09:05,520"
+			},
+			"offsets": {
+				"from": 539960,
+				"to": 545520
+			},
+			"text": " So version issue is VM is a fix to try to address that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,520",
+				"to": "00:09:12,760"
+			},
+			"offsets": {
+				"from": 545520,
+				"to": 552760
+			},
+			"text": " So what we do is we design things with forward capability demand and we remove some offenders"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,760",
+				"to": "00:09:16,760"
+			},
+			"offsets": {
+				"from": 552760,
+				"to": 556760
+			},
+			"text": " that breaks by pro quality in the EVN."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,760",
+				"to": "00:09:19,160"
+			},
+			"offsets": {
+				"from": 556760,
+				"to": 559160
+			},
+			"text": " So in the end we just have one new version."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,160",
+				"to": "00:09:25,440"
+			},
+			"offsets": {
+				"from": 559160,
+				"to": 565440
+			},
+			"text": " So the current U.N. version will be the legacy version and we just have one more version"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,440",
+				"to": "00:09:32,360"
+			},
+			"offsets": {
+				"from": 565440,
+				"to": 572360
+			},
+			"text": " which is a version with EVN and we can add new features change guys because on that new"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,360",
+				"to": "00:09:33,360"
+			},
+			"offsets": {
+				"from": 572360,
+				"to": 573360
+			},
+			"text": " version."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,360",
+				"to": "00:09:39,640"
+			},
+			"offsets": {
+				"from": 573360,
+				"to": 579640
+			},
+			"text": " So talking about like general things about interface design there is something really"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,640",
+				"to": "00:09:41,520"
+			},
+			"offsets": {
+				"from": 579640,
+				"to": 581520
+			},
+			"text": " important in Cloud solutions law."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,520",
+				"to": "00:09:46,920"
+			},
+			"offsets": {
+				"from": 581520,
+				"to": 586920
+			},
+			"text": " It basically says that if you have a sufficient number of users then it really doesn't matter"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,920",
+				"to": "00:09:49,960"
+			},
+			"offsets": {
+				"from": 586920,
+				"to": 589960
+			},
+			"text": " what you promised in the HGI."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,960",
+				"to": "00:09:55,520"
+			},
+			"offsets": {
+				"from": 589960,
+				"to": 595520
+			},
+			"text": " All the observer behavior in your system will be used by someone."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,520",
+				"to": "00:10:02,400"
+			},
+			"offsets": {
+				"from": 595520,
+				"to": 602400
+			},
+			"text": " So for each room we definitely have sufficient number of users so here in the law definitely"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,400",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 602400,
+				"to": 605000
+			},
+			"text": " applies to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:10,880"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 610880
+			},
+			"text": " And I mean during the backward recovery discussion many people, many quality experts were talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,880",
+				"to": "00:10:16,160"
+			},
+			"offsets": {
+				"from": 610880,
+				"to": 616160
+			},
+			"text": " about the promise of EVN, of Ethereum and EVN."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,160",
+				"to": "00:10:23,440"
+			},
+			"offsets": {
+				"from": 616160,
+				"to": 623440
+			},
+			"text": " The issue is that there will be someone who that don't follow the promise or if something"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,440",
+				"to": "00:10:29,640"
+			},
+			"offsets": {
+				"from": 623440,
+				"to": 629640
+			},
+			"text": " is practicing the past it may not be practiced by practice in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,640",
+				"to": "00:10:35,080"
+			},
+			"offsets": {
+				"from": 629640,
+				"to": 635080
+			},
+			"text": " So what I'm saying here is that instead of doing all the social promising maybe you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,080",
+				"to": "00:10:39,760"
+			},
+			"offsets": {
+				"from": 635080,
+				"to": 639760
+			},
+			"text": " just use some social engineering techniques to fix those issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,760",
+				"to": "00:10:41,360"
+			},
+			"offsets": {
+				"from": 639760,
+				"to": 641360
+			},
+			"text": " So the fix is quite simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,360",
+				"to": "00:10:49,520"
+			},
+			"offsets": {
+				"from": 641360,
+				"to": 649520
+			},
+			"text": " So we just remove those observer behavior that we don't want smart contracts to observe."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,520",
+				"to": "00:10:52,240"
+			},
+			"offsets": {
+				"from": 649520,
+				"to": 652240
+			},
+			"text": " So the biggest often there is basically gas cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,240",
+				"to": "00:10:58,800"
+			},
+			"offsets": {
+				"from": 652240,
+				"to": 658800
+			},
+			"text": " So with actually I mean a lot of core developers has expressed that smart contracts shouldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,800",
+				"to": "00:11:04,280"
+			},
+			"offsets": {
+				"from": 658800,
+				"to": 664280
+			},
+			"text": " make any assumptions about gas costs because gas costs can change a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,280",
+				"to": "00:11:12,880"
+			},
+			"offsets": {
+				"from": 664280,
+				"to": 672880
+			},
+			"text": " And so we just remove any observer we have within the EVN about gas cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,880",
+				"to": "00:11:18,360"
+			},
+			"offsets": {
+				"from": 672880,
+				"to": 678360
+			},
+			"text": " In detail it's basically removing the gas of code and for call code delegate call we"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,360",
+				"to": "00:11:25,720"
+			},
+			"offsets": {
+				"from": 678360,
+				"to": 685720
+			},
+			"text": " just take the full gas and if any cost tax is out of gas then we just reverse all of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,720",
+				"to": "00:11:27,240"
+			},
+			"offsets": {
+				"from": 685720,
+				"to": 687240
+			},
+			"text": " cost tax."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,240",
+				"to": "00:11:33,760"
+			},
+			"offsets": {
+				"from": 687240,
+				"to": 693760
+			},
+			"text": " The third item is because we don't want to accidentally reveal the current gas tax"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,760",
+				"to": "00:11:41,600"
+			},
+			"offsets": {
+				"from": 693760,
+				"to": 701600
+			},
+			"text": " information for unapparent contracts if a child contracts succeed or fails."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,600",
+				"to": "00:11:46,520"
+			},
+			"offsets": {
+				"from": 701600,
+				"to": 706520
+			},
+			"text": " So we also deny any unused up codes to be deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,520",
+				"to": "00:11:52,600"
+			},
+			"offsets": {
+				"from": 706520,
+				"to": 712600
+			},
+			"text": " So this is basically the idea of adding extremely simple validation process during contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,600",
+				"to": "00:11:53,840"
+			},
+			"offsets": {
+				"from": 712600,
+				"to": 713840
+			},
+			"text": " deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,840",
+				"to": "00:12:00,480"
+			},
+			"offsets": {
+				"from": 713840,
+				"to": 720480
+			},
+			"text": " So in this case we can make future upgrades that add additional up codes much safer."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,480",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 720480,
+				"to": 726000
+			},
+			"text": " So there are extra goodies for example we have a high feature prop which makes some"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:14,920"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 734920
+			},
+			"text": " contract can be pretty bright on channel that can later take advantage of new feature upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,920",
+				"to": "00:12:23,160"
+			},
+			"offsets": {
+				"from": 734920,
+				"to": 743160
+			},
+			"text": " So using a conversion in versionless EVN we actually have a pretty robust backward"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,160",
+				"to": "00:12:26,480"
+			},
+			"offsets": {
+				"from": 743160,
+				"to": 746480
+			},
+			"text": " cutable solutions for E0."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,480",
+				"to": "00:12:33,720"
+			},
+			"offsets": {
+				"from": 746480,
+				"to": 753720
+			},
+			"text": " So using this we now can freely change the gas cost because it's now an observer behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,720",
+				"to": "00:12:39,400"
+			},
+			"offsets": {
+				"from": 753720,
+				"to": 759400
+			},
+			"text": " and no contracts can depend on it in the versionless EVN version."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,400",
+				"to": "00:12:45,760"
+			},
+			"offsets": {
+				"from": 759400,
+				"to": 765760
+			},
+			"text": " We can also freely add new of codes because now it is not the deployment of unused up"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,760",
+				"to": "00:12:51,360"
+			},
+			"offsets": {
+				"from": 765760,
+				"to": 771360
+			},
+			"text": " codes so the conflicts will not be any further anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,360",
+				"to": "00:12:57,800"
+			},
+			"offsets": {
+				"from": 771360,
+				"to": 777800
+			},
+			"text": " For things like state run it's still really new congrats from the state but for all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,800",
+				"to": "00:13:04,280"
+			},
+			"offsets": {
+				"from": 777800,
+				"to": 784280
+			},
+			"text": " rest of the parts the state execution they can be backward compatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,280",
+				"to": "00:13:08,560"
+			},
+			"offsets": {
+				"from": 784280,
+				"to": 788560
+			},
+			"text": " It's not the upgrade will not be totally hassle free."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,560",
+				"to": "00:13:10,960"
+			},
+			"offsets": {
+				"from": 788560,
+				"to": 790960
+			},
+			"text": " There are something we need to care about."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,960",
+				"to": "00:13:19,660"
+			},
+			"offsets": {
+				"from": 790960,
+				"to": 799660
+			},
+			"text": " For example we need to change the solid compiler a little bit so that we can use because solid"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,660",
+				"to": "00:13:25,160"
+			},
+			"offsets": {
+				"from": 799660,
+				"to": 805160
+			},
+			"text": " compiler actually makes some assumptions about gas cost and we need to make the compiler"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,160",
+				"to": "00:13:28,680"
+			},
+			"offsets": {
+				"from": 805160,
+				"to": 808680
+			},
+			"text": " not make those assumptions anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,680",
+				"to": "00:13:34,560"
+			},
+			"offsets": {
+				"from": 808680,
+				"to": 814560
+			},
+			"text": " The second issue is emergency hard work which I guess probably nobody can do anything about"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,560",
+				"to": "00:13:40,560"
+			},
+			"offsets": {
+				"from": 814560,
+				"to": 820560
+			},
+			"text": " it if there is really a denial service attack on Ethereum then backward cut really has to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,560",
+				"to": "00:13:47,760"
+			},
+			"offsets": {
+				"from": 820560,
+				"to": 827760
+			},
+			"text": " be broken because those attack contracts cannot exist on channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,760",
+				"to": "00:13:50,820"
+			},
+			"offsets": {
+				"from": 827760,
+				"to": 830820
+			},
+			"text": " The same thing is something actually it's even boundary."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,820",
+				"to": "00:13:58,580"
+			},
+			"offsets": {
+				"from": 830820,
+				"to": 838580
+			},
+			"text": " So in this section we're basically talking about what upgrades will break and what will"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,580",
+				"to": "00:14:03,420"
+			},
+			"offsets": {
+				"from": 838580,
+				"to": 843420
+			},
+			"text": " never break has never been really communicated clearly."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,420",
+				"to": "00:14:10,100"
+			},
+			"offsets": {
+				"from": 843420,
+				"to": 850100
+			},
+			"text": " So the thing is no matter how we communicate it the rule is quite complex currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,100",
+				"to": "00:14:16,300"
+			},
+			"offsets": {
+				"from": 850100,
+				"to": 856300
+			},
+			"text": " We need to make assumptions, make some assumptions, not make other assumptions and the distinct"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,300",
+				"to": "00:14:19,580"
+			},
+			"offsets": {
+				"from": 856300,
+				"to": 859580
+			},
+			"text": " between them is not that obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,580",
+				"to": "00:14:27,460"
+			},
+			"offsets": {
+				"from": 859580,
+				"to": 867460
+			},
+			"text": " And many smart contract developers and even call developers misunderstood them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,460",
+				"to": "00:14:33,900"
+			},
+			"offsets": {
+				"from": 867460,
+				"to": 873900
+			},
+			"text": " So this section is basically an actual proposed that we may want to have a really clear thought"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,900",
+				"to": "00:14:40,640"
+			},
+			"offsets": {
+				"from": 873900,
+				"to": 880640
+			},
+			"text": " redesign for backward quality about what we can change the VM and what we cannot change."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,640",
+				"to": "00:14:48,680"
+			},
+			"offsets": {
+				"from": 880640,
+				"to": 888680
+			},
+			"text": " So all the contract developer knows that for each contract we have COAP we have the related"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,680",
+				"to": "00:14:55,520"
+			},
+			"offsets": {
+				"from": 888680,
+				"to": 895520
+			},
+			"text": " storage and also each contract extra contracts and pre-compels."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,520",
+				"to": "00:14:57,560"
+			},
+			"offsets": {
+				"from": 895520,
+				"to": 897560
+			},
+			"text": " So this is a clear distinction."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,560",
+				"to": "00:15:04,040"
+			},
+			"offsets": {
+				"from": 897560,
+				"to": 904040
+			},
+			"text": " So what we can do is we just say that the code and the corresponding storage will never"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,040",
+				"to": "00:15:05,040"
+			},
+			"offsets": {
+				"from": 904040,
+				"to": 905040
+			},
+			"text": " change."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,040",
+				"to": "00:15:11,840"
+			},
+			"offsets": {
+				"from": 905040,
+				"to": 911840
+			},
+			"text": " But we are a large change of anything that is in the state like external contracts or"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,840",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 911840,
+				"to": 916000
+			},
+			"text": " external pre-compels."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:22,240"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 922240
+			},
+			"text": " So this basically gives us a boundary and what we need to do right now is basically build"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,240",
+				"to": "00:15:27,280"
+			},
+			"offsets": {
+				"from": 922240,
+				"to": 927280
+			},
+			"text": " on top of the version of the VM and then move those up code that we might want to change"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,280",
+				"to": "00:15:29,920"
+			},
+			"offsets": {
+				"from": 927280,
+				"to": 929920
+			},
+			"text": " in the future into a pre-compel."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,920",
+				"to": "00:15:36,560"
+			},
+			"offsets": {
+				"from": 929920,
+				"to": 936560
+			},
+			"text": " So for example, this basically is balanced, those data cut, access, of course, and some"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,560",
+				"to": "00:15:39,840"
+			},
+			"offsets": {
+				"from": 936560,
+				"to": 939840
+			},
+			"text": " of course that requires block information."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,840",
+				"to": "00:15:47,640"
+			},
+			"offsets": {
+				"from": 939840,
+				"to": 947640
+			},
+			"text": " So we just provide the pre-compel to access those information."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,640",
+				"to": "00:15:53,200"
+			},
+			"offsets": {
+				"from": 947640,
+				"to": 953200
+			},
+			"text": " So we can have a better design to communicate the backward quality model."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,200",
+				"to": "00:16:00,840"
+			},
+			"offsets": {
+				"from": 953200,
+				"to": 960840
+			},
+			"text": " And in that case, things like state-run or the migration from ETH1.x to 2.0 can be much"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,840",
+				"to": "00:16:10,720"
+			},
+			"offsets": {
+				"from": 960840,
+				"to": 970720
+			},
+			"text": " more clearly communicated and it would cause more much less surprise for contract developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,720",
+				"to": "00:16:14,640"
+			},
+			"offsets": {
+				"from": 970720,
+				"to": 974640
+			},
+			"text": " So in this talk, this is conclusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,640",
+				"to": "00:16:22,240"
+			},
+			"offsets": {
+				"from": 974640,
+				"to": 982240
+			},
+			"text": " So basically we are talking about nearly complete fixed for our current backward-compelied model"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,240",
+				"to": "00:16:28,760"
+			},
+			"offsets": {
+				"from": 982240,
+				"to": 988760
+			},
+			"text": " that consists of a conversion which allows smart contracts not to be affected by new"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,760",
+				"to": "00:16:36,400"
+			},
+			"offsets": {
+				"from": 988760,
+				"to": 996400
+			},
+			"text": " versions and we also have the version list, the VM design which enables for our compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,400",
+				"to": "00:16:41,360"
+			},
+			"offsets": {
+				"from": 996400,
+				"to": 1001360
+			},
+			"text": " I believe those two combined can provide a really good and robust backward-compelied"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,360",
+				"to": "00:16:44,320"
+			},
+			"offsets": {
+				"from": 1001360,
+				"to": 1004320
+			},
+			"text": " model for us currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,320",
+				"to": "00:16:51,040"
+			},
+			"offsets": {
+				"from": 1004320,
+				"to": 1011040
+			},
+			"text": " And there is also a proposal that in the future we might want to do some additional"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,040",
+				"to": "00:16:56,880"
+			},
+			"offsets": {
+				"from": 1011040,
+				"to": 1016880
+			},
+			"text": " change to also design the UVM for better programming and model communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,880",
+				"to": "00:17:02,240"
+			},
+			"offsets": {
+				"from": 1016880,
+				"to": 1022240
+			},
+			"text": " So we define a really clear UVM model about what we can change and what we definitely"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,240",
+				"to": "00:17:03,840"
+			},
+			"offsets": {
+				"from": 1022240,
+				"to": 1023840
+			},
+			"text": " won't change."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,840",
+				"to": "00:17:09,840"
+			},
+			"offsets": {
+				"from": 1023840,
+				"to": 1029840
+			},
+			"text": " So it becomes harder to misuse those things."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,840",
+				"to": "00:17:10,840"
+			},
+			"offsets": {
+				"from": 1029840,
+				"to": 1030840
+			},
+			"text": " And that's all."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,840",
+				"to": "00:17:15,280"
+			},
+			"offsets": {
+				"from": 1030840,
+				"to": 1035280
+			},
+			"text": " If you have any questions, feel free to ask me after the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,280",
+				"to": "00:17:16,040"
+			},
+			"offsets": {
+				"from": 1035280,
+				"to": 1036040
+			},
+			"text": " So thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,040",
+				"to": "00:17:19,480"
+			},
+			"offsets": {
+				"from": 1036040,
+				"to": 1039480
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,480",
+				"to": "00:17:29,480"
+			},
+			"offsets": {
+				"from": 1039480,
+				"to": 1049480
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,480",
+				"to": "00:17:39,480"
+			},
+			"offsets": {
+				"from": 1049480,
+				"to": 1059480
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,480",
+				"to": "00:17:49,480"
+			},
+			"offsets": {
+				"from": 1059480,
+				"to": 1069480
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,480",
+				"to": "00:17:59,480"
+			},
+			"offsets": {
+				"from": 1069480,
+				"to": 1079480
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

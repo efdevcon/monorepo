@@ -1,0 +1,4333 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:15,640"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 15640
+			},
+			"text": " Thanks all for coming today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,640",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 15640,
+				"to": 18000
+			},
+			"text": " In this talk, we are going to be talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,760"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20760
+			},
+			"text": " about how we improve the performance of approval"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,760",
+				"to": "00:00:22,840"
+			},
+			"offsets": {
+				"from": 20760,
+				"to": 22840
+			},
+			"text": " computations using Rust."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,840",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 22840,
+				"to": 25000
+			},
+			"text": " And specifically, how we implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:27,040"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 27040
+			},
+			"text": " to take IRB-M using Rust."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,040",
+				"to": "00:00:29,040"
+			},
+			"offsets": {
+				"from": 27040,
+				"to": 29040
+			},
+			"text": " So OK, let's go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,040",
+				"to": "00:00:32,120"
+			},
+			"offsets": {
+				"from": 29040,
+				"to": 32120
+			},
+			"text": " First, I want to give a little word"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,120",
+				"to": "00:00:34,120"
+			},
+			"offsets": {
+				"from": 32120,
+				"to": 34120
+			},
+			"text": " on who we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,120",
+				"to": "00:00:35,080"
+			},
+			"offsets": {
+				"from": 34120,
+				"to": 35080
+			},
+			"text": " We are Lambda class."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,080",
+				"to": "00:00:39,200"
+			},
+			"offsets": {
+				"from": 35080,
+				"to": 39200
+			},
+			"text": " Lambda class is a lesson based software company."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,200",
+				"to": "00:00:43,560"
+			},
+			"offsets": {
+				"from": 39200,
+				"to": 43560
+			},
+			"text": " And it's in the industry more than 30 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,560",
+				"to": "00:00:48,120"
+			},
+			"offsets": {
+				"from": 43560,
+				"to": 48120
+			},
+			"text": " And yes, basically, we love solving difficult problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,120",
+				"to": "00:00:52,280"
+			},
+			"offsets": {
+				"from": 48120,
+				"to": 52280
+			},
+			"text": " So if you have any problem, just give us a go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,280",
+				"to": "00:00:55,840"
+			},
+			"offsets": {
+				"from": 52280,
+				"to": 55840
+			},
+			"text": " And OK, let's go straight to the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,840",
+				"to": "00:00:58,880"
+			},
+			"offsets": {
+				"from": 55840,
+				"to": 58880
+			},
+			"text": " And the first thing I want to start with"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,880",
+				"to": "00:01:00,880"
+			},
+			"offsets": {
+				"from": 58880,
+				"to": 60880
+			},
+			"text": " is to give a little bit of context"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,880",
+				"to": "00:01:03,360"
+			},
+			"offsets": {
+				"from": 60880,
+				"to": 63360
+			},
+			"text": " and talk a little bit about Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,360",
+				"to": "00:01:05,280"
+			},
+			"offsets": {
+				"from": 63360,
+				"to": 65280
+			},
+			"text": " And as you all may know, Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,280",
+				"to": "00:01:09,720"
+			},
+			"offsets": {
+				"from": 65280,
+				"to": 69720
+			},
+			"text": " is a centralized network, meaning that when you run a transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,720",
+				"to": "00:01:12,440"
+			},
+			"offsets": {
+				"from": 69720,
+				"to": 72440
+			},
+			"text": " the transaction is not run in only one computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,440",
+				"to": "00:01:15,200"
+			},
+			"offsets": {
+				"from": 72440,
+				"to": 75200
+			},
+			"text": " But in every computer, that forms"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,200",
+				"to": "00:01:17,960"
+			},
+			"offsets": {
+				"from": 75200,
+				"to": 77960
+			},
+			"text": " part of Ethereum or the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,960",
+				"to": "00:01:21,200"
+			},
+			"offsets": {
+				"from": 77960,
+				"to": 81200
+			},
+			"text": " So that's really cool because the verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,200",
+				"to": "00:01:24,520"
+			},
+			"offsets": {
+				"from": 81200,
+				"to": 84520
+			},
+			"text": " of the transaction does not depend on only one computer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,520",
+				"to": "00:01:27,680"
+			},
+			"offsets": {
+				"from": 84520,
+				"to": 87680
+			},
+			"text": " or a centralized entity, but on every computer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,680",
+				"to": "00:01:29,480"
+			},
+			"offsets": {
+				"from": 87680,
+				"to": 89480
+			},
+			"text": " inside the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,480",
+				"to": "00:01:31,760"
+			},
+			"offsets": {
+				"from": 89480,
+				"to": 91760
+			},
+			"text": " But it comes with a downside."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,760",
+				"to": "00:01:37,240"
+			},
+			"offsets": {
+				"from": 91760,
+				"to": 97240
+			},
+			"text": " And the downside is that the computation capacity of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,240",
+				"to": "00:01:40,200"
+			},
+			"offsets": {
+				"from": 97240,
+				"to": 100200
+			},
+			"text": " depends on your slowest note."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,200",
+				"to": "00:01:42,320"
+			},
+			"offsets": {
+				"from": 100200,
+				"to": 102320
+			},
+			"text": " So we have in a situation that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,320",
+				"to": "00:01:45,200"
+			},
+			"offsets": {
+				"from": 102320,
+				"to": 105200
+			},
+			"text": " have a high demand of our intersections."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,200",
+				"to": "00:01:52,400"
+			},
+			"offsets": {
+				"from": 105200,
+				"to": 112400
+			},
+			"text": " And our computation capacity is limited by our slowest note."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,400",
+				"to": "00:01:55,880"
+			},
+			"offsets": {
+				"from": 112400,
+				"to": 115880
+			},
+			"text": " So how can we solve this problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,880",
+				"to": "00:02:00,840"
+			},
+			"offsets": {
+				"from": 115880,
+				"to": 120840
+			},
+			"text": " And here is where StartNet comes into play."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,840",
+				"to": "00:02:02,880"
+			},
+			"offsets": {
+				"from": 120840,
+				"to": 122880
+			},
+			"text": " StartNet is a secret rollup."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,880",
+				"to": "00:02:07,960"
+			},
+			"offsets": {
+				"from": 122880,
+				"to": 127960
+			},
+			"text": " And what rollups allows us is to run transactions of chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,960",
+				"to": "00:02:09,800"
+			},
+			"offsets": {
+				"from": 127960,
+				"to": 129800
+			},
+			"text": " then make a batch of intersections,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,800",
+				"to": "00:02:12,880"
+			},
+			"offsets": {
+				"from": 129800,
+				"to": 132880
+			},
+			"text": " and send to Ethereum the updated state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,880",
+				"to": "00:02:16,120"
+			},
+			"offsets": {
+				"from": 132880,
+				"to": 136120
+			},
+			"text": " And what CKE adds to rollup is that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,120",
+				"to": "00:02:20,120"
+			},
+			"offsets": {
+				"from": 136120,
+				"to": 140120
+			},
+			"text": " can run transaction of chain, generate a proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,120",
+				"to": "00:02:24,720"
+			},
+			"offsets": {
+				"from": 140120,
+				"to": 144720
+			},
+			"text": " of the integrity of the execution of the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,720",
+				"to": "00:02:28,400"
+			},
+			"offsets": {
+				"from": 144720,
+				"to": 148400
+			},
+			"text": " And then we send to Ethereum the updated state"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,400",
+				"to": "00:02:31,680"
+			},
+			"offsets": {
+				"from": 148400,
+				"to": 151680
+			},
+			"text": " and the proof of the computation integrity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,680",
+				"to": "00:02:36,640"
+			},
+			"offsets": {
+				"from": 151680,
+				"to": 156640
+			},
+			"text": " So then on chain, the proof is verified by a verifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,640",
+				"to": "00:02:39,480"
+			},
+			"offsets": {
+				"from": 156640,
+				"to": 159480
+			},
+			"text": " And that verification is running all the computers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,480",
+				"to": "00:02:41,280"
+			},
+			"offsets": {
+				"from": 159480,
+				"to": 161280
+			},
+			"text": " inside Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,280",
+				"to": "00:02:46,200"
+			},
+			"offsets": {
+				"from": 161280,
+				"to": 166200
+			},
+			"text": " So well, and the coolest thing about this verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,200",
+				"to": "00:02:51,920"
+			},
+			"offsets": {
+				"from": 166200,
+				"to": 171920
+			},
+			"text": " is that the verification cost of the proof grows logarithmically"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,920",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 171920,
+				"to": 176000
+			},
+			"text": " with respect the number of transactions inside the batch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 181000
+			},
+			"text": " So as the cost of verification is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:03,600"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 183600
+			},
+			"text": " distributed between all the transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,600",
+				"to": "00:03:06,680"
+			},
+			"offsets": {
+				"from": 183600,
+				"to": 186680
+			},
+			"text": " including the batch, as we add more transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,680",
+				"to": "00:03:09,520"
+			},
+			"offsets": {
+				"from": 186680,
+				"to": 189520
+			},
+			"text": " in the batch, the cost perton section,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,520",
+				"to": "00:03:13,760"
+			},
+			"offsets": {
+				"from": 189520,
+				"to": 193760
+			},
+			"text": " the average cost perton sections goes to 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,760",
+				"to": "00:03:16,840"
+			},
+			"offsets": {
+				"from": 193760,
+				"to": 196840
+			},
+			"text": " So yeah, here is a slide that I was"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,840",
+				"to": "00:03:20,800"
+			},
+			"offsets": {
+				"from": 196840,
+				"to": 200800
+			},
+			"text": " supposed to say that the cost of the verification grows"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,800",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 200800,
+				"to": 204000
+			},
+			"text": " logarithmically with respect to the numbers and sections."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:26,400"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 206400
+			},
+			"text": " And yeah, if we tend to infinity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,400",
+				"to": "00:03:28,840"
+			},
+			"offsets": {
+				"from": 206400,
+				"to": 208840
+			},
+			"text": " if we take this to an extreme, and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,840",
+				"to": "00:03:32,200"
+			},
+			"offsets": {
+				"from": 208840,
+				"to": 212200
+			},
+			"text": " tend to infinity the number of transactions inside the batch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,200",
+				"to": "00:03:37,080"
+			},
+			"offsets": {
+				"from": 212200,
+				"to": 217080
+			},
+			"text": " the average cost perton sections go to 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,080",
+				"to": "00:03:40,040"
+			},
+			"offsets": {
+				"from": 217080,
+				"to": 220040
+			},
+			"text": " So OK, we say that in the standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,040",
+				"to": "00:03:44,320"
+			},
+			"offsets": {
+				"from": 220040,
+				"to": 224320
+			},
+			"text": " we can generate a proof on the execution of our transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,320",
+				"to": "00:03:46,400"
+			},
+			"offsets": {
+				"from": 224320,
+				"to": 226400
+			},
+			"text": " But what kind of proof?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,400",
+				"to": "00:03:50,480"
+			},
+			"offsets": {
+				"from": 226400,
+				"to": 230480
+			},
+			"text": " Well, it's a syringe proof, and specifically a stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,480",
+				"to": "00:03:54,840"
+			},
+			"offsets": {
+				"from": 230480,
+				"to": 234840
+			},
+			"text": " And syronollege allows us to prove the veracity of a statement"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,840",
+				"to": "00:03:57,520"
+			},
+			"offsets": {
+				"from": 234840,
+				"to": 237520
+			},
+			"text": " without revealing anything beyond the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,520",
+				"to": "00:03:59,760"
+			},
+			"offsets": {
+				"from": 237520,
+				"to": 239760
+			},
+			"text": " that the statement is true."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,760",
+				"to": "00:04:02,200"
+			},
+			"offsets": {
+				"from": 239760,
+				"to": 242200
+			},
+			"text": " And in this specific case, stacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,200",
+				"to": "00:04:06,960"
+			},
+			"offsets": {
+				"from": 242200,
+				"to": 246960
+			},
+			"text": " allow us to prove the computation integrity of the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,960",
+				"to": "00:04:08,760"
+			},
+			"offsets": {
+				"from": 246960,
+				"to": 248760
+			},
+			"text": " that we run off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,760",
+				"to": "00:04:11,040"
+			},
+			"offsets": {
+				"from": 248760,
+				"to": 251040
+			},
+			"text": " We are having to run it all again."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,040",
+				"to": "00:04:13,360"
+			},
+			"offsets": {
+				"from": 251040,
+				"to": 253360
+			},
+			"text": " So this is kind of a game changer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,360",
+				"to": "00:04:16,600"
+			},
+			"offsets": {
+				"from": 253360,
+				"to": 256600
+			},
+			"text": " because before syronollege, the only way"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,600",
+				"to": "00:04:22,600"
+			},
+			"offsets": {
+				"from": 256600,
+				"to": 262600
+			},
+			"text": " we had to prove the veracity of computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,600",
+				"to": "00:04:25,680"
+			},
+			"offsets": {
+				"from": 262600,
+				"to": 265680
+			},
+			"text": " was to run that computation ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,680",
+				"to": "00:04:32,600"
+			},
+			"offsets": {
+				"from": 265680,
+				"to": 272600
+			},
+			"text": " But with syronollege and stacks, now, an untrusted entity"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,600",
+				"to": "00:04:35,920"
+			},
+			"offsets": {
+				"from": 272600,
+				"to": 275920
+			},
+			"text": " can run transactions, generate a proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,920",
+				"to": "00:04:39,120"
+			},
+			"offsets": {
+				"from": 275920,
+				"to": 279120
+			},
+			"text": " on the integrity of that execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,120",
+				"to": "00:04:42,560"
+			},
+			"offsets": {
+				"from": 279120,
+				"to": 282560
+			},
+			"text": " And then the proof has to be verified,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,560",
+				"to": "00:04:45,680"
+			},
+			"offsets": {
+				"from": 282560,
+				"to": 285680
+			},
+			"text": " and we can be sure that everything is OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,680",
+				"to": "00:04:52,240"
+			},
+			"offsets": {
+				"from": 285680,
+				"to": 292240
+			},
+			"text": " So OK, how do we write a program that is provable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,240",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 292240,
+				"to": 298000
+			},
+			"text": " meaning that its execution can be proved"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:00,320"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 300320
+			},
+			"text": " the integrity of the execution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,320",
+				"to": "00:05:03,640"
+			},
+			"offsets": {
+				"from": 300320,
+				"to": 303640
+			},
+			"text": " And OK, we have Cairo."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,640",
+				"to": "00:05:06,640"
+			},
+			"offsets": {
+				"from": 303640,
+				"to": 306640
+			},
+			"text": " And Cairo is a programming language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,640",
+				"to": "00:05:09,440"
+			},
+			"offsets": {
+				"from": 306640,
+				"to": 309440
+			},
+			"text": " specifically designed to do in this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,440",
+				"to": "00:05:15,840"
+			},
+			"offsets": {
+				"from": 309440,
+				"to": 315840
+			},
+			"text": " When we run a program in Cairo, it's run in Cairo-BM."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,840",
+				"to": "00:05:19,440"
+			},
+			"offsets": {
+				"from": 315840,
+				"to": 319440
+			},
+			"text": " That Cairo-BM executes a program and also generates"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,440",
+				"to": "00:05:22,400"
+			},
+			"offsets": {
+				"from": 319440,
+				"to": 322400
+			},
+			"text": " a trace of the execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,400",
+				"to": "00:05:27,080"
+			},
+			"offsets": {
+				"from": 322400,
+				"to": 327080
+			},
+			"text": " And that trace is then going to be sent to a prover"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,080",
+				"to": "00:05:29,280"
+			},
+			"offsets": {
+				"from": 327080,
+				"to": 329280
+			},
+			"text": " and generate the start proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,280",
+				"to": "00:05:33,600"
+			},
+			"offsets": {
+				"from": 329280,
+				"to": 333600
+			},
+			"text": " And that proof is going to be verified by a verifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,600",
+				"to": "00:05:37,560"
+			},
+			"offsets": {
+				"from": 333600,
+				"to": 337560
+			},
+			"text": " So OK, how does the Cairo-BM works?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,560",
+				"to": "00:05:41,760"
+			},
+			"offsets": {
+				"from": 337560,
+				"to": 341760
+			},
+			"text": " Now, Farika will guide us through the internals of the Cairo-BM."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,760",
+				"to": "00:05:44,480"
+			},
+			"offsets": {
+				"from": 341760,
+				"to": 344480
+			},
+			"text": " So Farika, what's yours?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,480",
+				"to": "00:05:48,560"
+			},
+			"offsets": {
+				"from": 344480,
+				"to": 348560
+			},
+			"text": " Well, now let's talk about a bit how the Cairo-BM works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,560",
+				"to": "00:05:51,920"
+			},
+			"offsets": {
+				"from": 348560,
+				"to": 351920
+			},
+			"text": " Well, you already know how a virtual machine works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,920",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 351920,
+				"to": 355000
+			},
+			"text": " Basically, you write your source code, you compile it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:56,440"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 356440
+			},
+			"text": " and then you use a virtual machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,440",
+				"to": "00:06:00,080"
+			},
+			"offsets": {
+				"from": 356440,
+				"to": 360080
+			},
+			"text": " to interpret that compiled code and execute the instructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,080",
+				"to": "00:06:02,800"
+			},
+			"offsets": {
+				"from": 360080,
+				"to": 362800
+			},
+			"text": " But what sets apart this Cairo-Biro machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,800",
+				"to": "00:06:04,840"
+			},
+			"offsets": {
+				"from": 362800,
+				"to": 364840
+			},
+			"text": " is that it also generates this trace."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,840",
+				"to": "00:06:07,160"
+			},
+			"offsets": {
+				"from": 364840,
+				"to": 367160
+			},
+			"text": " It can be used to generate the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,160",
+				"to": "00:06:09,280"
+			},
+			"offsets": {
+				"from": 367160,
+				"to": 369280
+			},
+			"text": " So let's go a bit into the architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,280",
+				"to": "00:06:11,160"
+			},
+			"offsets": {
+				"from": 369280,
+				"to": 371160
+			},
+			"text": " of the Cairo-Biro machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,160",
+				"to": "00:06:13,520"
+			},
+			"offsets": {
+				"from": 371160,
+				"to": 373520
+			},
+			"text": " Well, first we have the memory model."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,520",
+				"to": "00:06:15,520"
+			},
+			"offsets": {
+				"from": 373520,
+				"to": 375520
+			},
+			"text": " It is a right one's read-only memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,520",
+				"to": "00:06:18,160"
+			},
+			"offsets": {
+				"from": 375520,
+				"to": 378160
+			},
+			"text": " that is divided into different segments."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,160",
+				"to": "00:06:21,040"
+			},
+			"offsets": {
+				"from": 378160,
+				"to": 381040
+			},
+			"text": " These segments have an unknown size at runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,040",
+				"to": "00:06:25,120"
+			},
+			"offsets": {
+				"from": 381040,
+				"to": 385120
+			},
+			"text": " And once we finish the VM run, these segments"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,120",
+				"to": "00:06:26,720"
+			},
+			"offsets": {
+				"from": 385120,
+				"to": 386720
+			},
+			"text": " go for a relocation process."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,720",
+				"to": "00:06:29,080"
+			},
+			"offsets": {
+				"from": 386720,
+				"to": 389080
+			},
+			"text": " And we end up with a continuous memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,080",
+				"to": "00:06:32,280"
+			},
+			"offsets": {
+				"from": 389080,
+				"to": 392280
+			},
+			"text": " So well, the segments consist of the program segment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,280",
+				"to": "00:06:34,600"
+			},
+			"offsets": {
+				"from": 392280,
+				"to": 394600
+			},
+			"text": " which contains the code of the program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,600",
+				"to": "00:06:38,200"
+			},
+			"offsets": {
+				"from": 394600,
+				"to": 398200
+			},
+			"text": " the execution segment, which gets filled up as the VM runs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,200",
+				"to": "00:06:40,640"
+			},
+			"offsets": {
+				"from": 398200,
+				"to": 400640
+			},
+			"text": " the built-in segment, which we'll talk about later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,640",
+				"to": "00:06:43,280"
+			},
+			"offsets": {
+				"from": 400640,
+				"to": 403280
+			},
+			"text": " and the user segment, which contains structures"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,280",
+				"to": "00:06:46,240"
+			},
+			"offsets": {
+				"from": 403280,
+				"to": 406240
+			},
+			"text": " defined by the user, such as arrays or dictionaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,240",
+				"to": "00:06:49,480"
+			},
+			"offsets": {
+				"from": 406240,
+				"to": 409480
+			},
+			"text": " Well, let's explain a bit about this relocation process."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,480",
+				"to": "00:06:52,320"
+			},
+			"offsets": {
+				"from": 409480,
+				"to": 412320
+			},
+			"text": " The first step is to assign a size to each segment."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,320",
+				"to": "00:06:55,160"
+			},
+			"offsets": {
+				"from": 412320,
+				"to": 415160
+			},
+			"text": " For example, the segment serial has five elements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,160",
+				"to": "00:06:56,600"
+			},
+			"offsets": {
+				"from": 415160,
+				"to": 416600
+			},
+			"text": " so it has size five."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,600",
+				"to": "00:06:58,480"
+			},
+			"offsets": {
+				"from": 416600,
+				"to": 418480
+			},
+			"text": " And then we will use these sizes"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,480",
+				"to": "00:07:00,640"
+			},
+			"offsets": {
+				"from": 418480,
+				"to": 420640
+			},
+			"text": " to assign a base to each segment."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,640",
+				"to": "00:07:04,520"
+			},
+			"offsets": {
+				"from": 420640,
+				"to": 424520
+			},
+			"text": " What we say with base is the first address"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,520",
+				"to": "00:07:07,040"
+			},
+			"offsets": {
+				"from": 424520,
+				"to": 427040
+			},
+			"text": " of each segment in the relocated memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,040",
+				"to": "00:07:09,560"
+			},
+			"offsets": {
+				"from": 427040,
+				"to": 429560
+			},
+			"text": " So for example, for segment one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,560",
+				"to": "00:07:12,160"
+			},
+			"offsets": {
+				"from": 429560,
+				"to": 432160
+			},
+			"text": " we have the previous segment base is one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,160",
+				"to": "00:07:14,440"
+			},
+			"offsets": {
+				"from": 432160,
+				"to": 434440
+			},
+			"text": " because this is the first segment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,440",
+				"to": "00:07:17,360"
+			},
+			"offsets": {
+				"from": 434440,
+				"to": 437360
+			},
+			"text": " and we add five, which is the size, and we get six."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,360",
+				"to": "00:07:19,600"
+			},
+			"offsets": {
+				"from": 437360,
+				"to": 439600
+			},
+			"text": " Now, with these bases calculated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,600",
+				"to": "00:07:22,360"
+			},
+			"offsets": {
+				"from": 439600,
+				"to": 442360
+			},
+			"text": " we'll proceed to relocate all the addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,360",
+				"to": "00:07:25,840"
+			},
+			"offsets": {
+				"from": 442360,
+				"to": 445840
+			},
+			"text": " We'll do this by adding the base of the segment"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,840",
+				"to": "00:07:27,640"
+			},
+			"offsets": {
+				"from": 445840,
+				"to": 447640
+			},
+			"text": " with the offset of the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,640",
+				"to": "00:07:31,080"
+			},
+			"offsets": {
+				"from": 447640,
+				"to": 451080
+			},
+			"text": " So for example, here we have the segment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,080",
+				"to": "00:07:32,920"
+			},
+			"offsets": {
+				"from": 451080,
+				"to": 452920
+			},
+			"text": " the address zero, zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,920",
+				"to": "00:07:35,840"
+			},
+			"offsets": {
+				"from": 452920,
+				"to": 455840
+			},
+			"text": " The base of the segment zero is one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,840",
+				"to": "00:07:37,680"
+			},
+			"offsets": {
+				"from": 455840,
+				"to": 457680
+			},
+			"text": " and we add zero and get one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,680",
+				"to": "00:07:39,360"
+			},
+			"offsets": {
+				"from": 457680,
+				"to": 459360
+			},
+			"text": " We'll do this with all the addresses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,360",
+				"to": "00:07:42,160"
+			},
+			"offsets": {
+				"from": 459360,
+				"to": 462160
+			},
+			"text": " and also with the addresses that are contained inside the memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,160",
+				"to": "00:07:46,640"
+			},
+			"offsets": {
+				"from": 462160,
+				"to": 466640
+			},
+			"text": " For example, you see here that we have two zero and three zero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,640",
+				"to": "00:07:49,520"
+			},
+			"offsets": {
+				"from": 466640,
+				"to": 469520
+			},
+			"text": " and they both relocate to nine as the base"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,520",
+				"to": "00:07:52,520"
+			},
+			"offsets": {
+				"from": 469520,
+				"to": 472520
+			},
+			"text": " of the segment two and segment three is nine."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,520",
+				"to": "00:07:55,360"
+			},
+			"offsets": {
+				"from": 472520,
+				"to": 475360
+			},
+			"text": " And this is how the relocated memory looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,360",
+				"to": "00:07:59,320"
+			},
+			"offsets": {
+				"from": 475360,
+				"to": 479320
+			},
+			"text": " It's a set of continuous addresses with elements."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,320",
+				"to": "00:08:02,200"
+			},
+			"offsets": {
+				"from": 479320,
+				"to": 482200
+			},
+			"text": " Well, now let's talk about the registers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,200",
+				"to": "00:08:05,080"
+			},
+			"offsets": {
+				"from": 482200,
+				"to": 485080
+			},
+			"text": " Cairo has three general purpose registers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,080",
+				"to": "00:08:06,840"
+			},
+			"offsets": {
+				"from": 485080,
+				"to": 486840
+			},
+			"text": " The first one is the program counter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,840",
+				"to": "00:08:08,960"
+			},
+			"offsets": {
+				"from": 486840,
+				"to": 488960
+			},
+			"text": " which iterates over the program segments"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,960",
+				"to": "00:08:12,080"
+			},
+			"offsets": {
+				"from": 488960,
+				"to": 492080
+			},
+			"text": " and points to the next instruction to be executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,080",
+				"to": "00:08:14,840"
+			},
+			"offsets": {
+				"from": 492080,
+				"to": 494840
+			},
+			"text": " Then we have the frame pointer and allocation pointer"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,840",
+				"to": "00:08:16,560"
+			},
+			"offsets": {
+				"from": 494840,
+				"to": 496560
+			},
+			"text": " in execution segments."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,560",
+				"to": "00:08:18,640"
+			},
+			"offsets": {
+				"from": 496560,
+				"to": 498640
+			},
+			"text": " The allocation pointer will point to the next"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,640",
+				"to": "00:08:20,960"
+			},
+			"offsets": {
+				"from": 498640,
+				"to": 500960
+			},
+			"text": " and use memory cell, while the frame pointer"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,960",
+				"to": "00:08:22,440"
+			},
+			"offsets": {
+				"from": 500960,
+				"to": 502440
+			},
+			"text": " points to the current frame."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,440",
+				"to": "00:08:24,760"
+			},
+			"offsets": {
+				"from": 502440,
+				"to": 504760
+			},
+			"text": " But this means is that when we want to execute"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,760",
+				"to": "00:08:26,880"
+			},
+			"offsets": {
+				"from": 504760,
+				"to": 506880
+			},
+			"text": " the Cairo function, the frame pointer"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,880",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 506880,
+				"to": 509000
+			},
+			"text": " takes the value of the allocation pointer"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:31,440"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 511440
+			},
+			"text": " and remains constant, while the allocation pointer"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,440",
+				"to": "00:08:34,760"
+			},
+			"offsets": {
+				"from": 511440,
+				"to": 514760
+			},
+			"text": " keeps increasing as we add elements into memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,760",
+				"to": "00:08:36,800"
+			},
+			"offsets": {
+				"from": 514760,
+				"to": 516800
+			},
+			"text": " And when we exceed this function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,800",
+				"to": "00:08:38,840"
+			},
+			"offsets": {
+				"from": 516800,
+				"to": 518840
+			},
+			"text": " the frame pointer will change its value."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,840",
+				"to": "00:08:40,680"
+			},
+			"offsets": {
+				"from": 518840,
+				"to": 520680
+			},
+			"text": " This is how the BM operates."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,680",
+				"to": "00:08:42,360"
+			},
+			"offsets": {
+				"from": 520680,
+				"to": 522360
+			},
+			"text": " This is the main execution loop."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,360",
+				"to": "00:08:45,480"
+			},
+			"offsets": {
+				"from": 522360,
+				"to": 525480
+			},
+			"text": " We first get the next instruction, we decode it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,480",
+				"to": "00:08:48,400"
+			},
+			"offsets": {
+				"from": 525480,
+				"to": 528400
+			},
+			"text": " we compute the operands, then we add the current register"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,400",
+				"to": "00:08:52,040"
+			},
+			"offsets": {
+				"from": 528400,
+				"to": 532040
+			},
+			"text": " values to a trace, and then we update the registers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,040",
+				"to": "00:08:55,280"
+			},
+			"offsets": {
+				"from": 532040,
+				"to": 535280
+			},
+			"text": " So, okay, this is how the trace looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,280",
+				"to": "00:08:57,360"
+			},
+			"offsets": {
+				"from": 535280,
+				"to": 537360
+			},
+			"text": " It keeps track of how the registers"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,360",
+				"to": "00:08:59,440"
+			},
+			"offsets": {
+				"from": 537360,
+				"to": 539440
+			},
+			"text": " change throughout the execution of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,440",
+				"to": "00:09:01,760"
+			},
+			"offsets": {
+				"from": 539440,
+				"to": 541760
+			},
+			"text": " And it also goes through the same relocation process"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,760",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 541760,
+				"to": 543000
+			},
+			"text": " as memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:06,400"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 546400
+			},
+			"text": " Well, as we can see, the size of this trace"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,400",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 546400,
+				"to": 548000
+			},
+			"text": " will depend on the amount of steps"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:09,680"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 549680
+			},
+			"text": " that a Cairo program takes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,680",
+				"to": "00:09:12,560"
+			},
+			"offsets": {
+				"from": 549680,
+				"to": 552560
+			},
+			"text": " So if a Cairo program takes a lot of steps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,560",
+				"to": "00:09:15,560"
+			},
+			"offsets": {
+				"from": 552560,
+				"to": 555560
+			},
+			"text": " this trace will get very big and will take more time"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,560",
+				"to": "00:09:17,240"
+			},
+			"offsets": {
+				"from": 555560,
+				"to": 557240
+			},
+			"text": " to generate the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,240",
+				"to": "00:09:20,440"
+			},
+			"offsets": {
+				"from": 557240,
+				"to": 560440
+			},
+			"text": " So sometimes there's some computations"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,440",
+				"to": "00:09:23,520"
+			},
+			"offsets": {
+				"from": 560440,
+				"to": 563520
+			},
+			"text": " which are very expensive, take a lot of steps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,520",
+				"to": "00:09:26,080"
+			},
+			"offsets": {
+				"from": 563520,
+				"to": 566080
+			},
+			"text": " but maybe the information provided by each of the steps"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,080",
+				"to": "00:09:27,400"
+			},
+			"offsets": {
+				"from": 566080,
+				"to": 567400
+			},
+			"text": " is not that relevant."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,400",
+				"to": "00:09:30,520"
+			},
+			"offsets": {
+				"from": 567400,
+				"to": 570520
+			},
+			"text": " For example, if we want to compute a Patterson hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,520",
+				"to": "00:09:32,600"
+			},
+			"offsets": {
+				"from": 570520,
+				"to": 572600
+			},
+			"text": " this will take many, many steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,600",
+				"to": "00:09:35,560"
+			},
+			"offsets": {
+				"from": 572600,
+				"to": 575560
+			},
+			"text": " So in order to solve this, what we have is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,560",
+				"to": "00:09:38,640"
+			},
+			"offsets": {
+				"from": 575560,
+				"to": 578640
+			},
+			"text": " oh, sorry, we have built-ins."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,640",
+				"to": "00:09:40,640"
+			},
+			"offsets": {
+				"from": 578640,
+				"to": 580640
+			},
+			"text": " Built-ins are low-level optimizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,640",
+				"to": "00:09:42,880"
+			},
+			"offsets": {
+				"from": 580640,
+				"to": 582880
+			},
+			"text": " that are integrated in the core loop of the BM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,880",
+				"to": "00:09:44,920"
+			},
+			"offsets": {
+				"from": 582880,
+				"to": 584920
+			},
+			"text": " and they allow otherwise expensive computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,920",
+				"to": "00:09:46,760"
+			},
+			"offsets": {
+				"from": 584920,
+				"to": 586760
+			},
+			"text": " to be performed more efficiently."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,760",
+				"to": "00:09:48,360"
+			},
+			"offsets": {
+				"from": 586760,
+				"to": 588360
+			},
+			"text": " And while each of these segments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,360",
+				"to": "00:09:51,520"
+			},
+			"offsets": {
+				"from": 588360,
+				"to": 591520
+			},
+			"text": " each of these built-ins have a segment in memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,520",
+				"to": "00:09:54,280"
+			},
+			"offsets": {
+				"from": 591520,
+				"to": 594280
+			},
+			"text": " OK, but where do they come into play?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,280",
+				"to": "00:09:57,200"
+			},
+			"offsets": {
+				"from": 594280,
+				"to": 597200
+			},
+			"text": " Well, we see here that we have our main execution loop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,200",
+				"to": "00:10:00,560"
+			},
+			"offsets": {
+				"from": 597200,
+				"to": 600560
+			},
+			"text": " and we have this deduced operand added."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,560",
+				"to": "00:10:02,680"
+			},
+			"offsets": {
+				"from": 600560,
+				"to": 602680
+			},
+			"text": " What this means is that sometimes we might want"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,680",
+				"to": "00:10:06,240"
+			},
+			"offsets": {
+				"from": 602680,
+				"to": 606240
+			},
+			"text": " to compute an operand, and we can't really compute it directly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,240",
+				"to": "00:10:08,720"
+			},
+			"offsets": {
+				"from": 606240,
+				"to": 608720
+			},
+			"text": " and we will rely on some deduction rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,720",
+				"to": "00:10:12,440"
+			},
+			"offsets": {
+				"from": 608720,
+				"to": 612440
+			},
+			"text": " Some poll here, we have the Patterson built-ins"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,440",
+				"to": "00:10:13,640"
+			},
+			"offsets": {
+				"from": 612440,
+				"to": 613640
+			},
+			"text": " out of the action rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,640",
+				"to": "00:10:17,080"
+			},
+			"offsets": {
+				"from": 613640,
+				"to": 617080
+			},
+			"text": " What it does is it takes the true previous values"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,080",
+				"to": "00:10:20,400"
+			},
+			"offsets": {
+				"from": 617080,
+				"to": 620400
+			},
+			"text": " in memory and computes the Patterson hash of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,400",
+				"to": "00:10:24,600"
+			},
+			"offsets": {
+				"from": 620400,
+				"to": 624600
+			},
+			"text": " This rule comes into play when the address of the operand"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,600",
+				"to": "00:10:27,880"
+			},
+			"offsets": {
+				"from": 624600,
+				"to": 627880
+			},
+			"text": " that we cannot compute belongs to the built-in segment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,880",
+				"to": "00:10:31,120"
+			},
+			"offsets": {
+				"from": 627880,
+				"to": 631120
+			},
+			"text": " and that built-in has an out-of-the-action rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,120",
+				"to": "00:10:34,640"
+			},
+			"offsets": {
+				"from": 631120,
+				"to": 634640
+			},
+			"text": " So what this allows us to do is, for example, here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,640",
+				"to": "00:10:37,600"
+			},
+			"offsets": {
+				"from": 634640,
+				"to": 637600
+			},
+			"text": " we want to compute the hash of x and y."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,600",
+				"to": "00:10:40,360"
+			},
+			"offsets": {
+				"from": 637600,
+				"to": 640360
+			},
+			"text": " So what we do is insert x and y to memory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,360",
+				"to": "00:10:43,040"
+			},
+			"offsets": {
+				"from": 640360,
+				"to": 643040
+			},
+			"text": " and then we ask for the next memory location."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,040",
+				"to": "00:10:46,240"
+			},
+			"offsets": {
+				"from": 643040,
+				"to": 646240
+			},
+			"text": " As we haven't inserted anything into this memory location,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,240",
+				"to": "00:10:47,880"
+			},
+			"offsets": {
+				"from": 646240,
+				"to": 647880
+			},
+			"text": " we won't be able to compute the operand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,880",
+				"to": "00:10:49,800"
+			},
+			"offsets": {
+				"from": 647880,
+				"to": 649800
+			},
+			"text": " and we will fall back in this deduction rule"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,800",
+				"to": "00:10:52,280"
+			},
+			"offsets": {
+				"from": 649800,
+				"to": 652280
+			},
+			"text": " that will be the one computing the hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,280",
+				"to": "00:10:55,320"
+			},
+			"offsets": {
+				"from": 652280,
+				"to": 655320
+			},
+			"text": " So we computed a person hash, but there"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,320",
+				"to": "00:10:58,800"
+			},
+			"offsets": {
+				"from": 655320,
+				"to": 658800
+			},
+			"text": " is no sign of the computation in the Cairo memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,800",
+				"to": "00:11:00,960"
+			},
+			"offsets": {
+				"from": 658800,
+				"to": 660960
+			},
+			"text": " or the steps or the trace."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,960",
+				"to": "00:11:03,640"
+			},
+			"offsets": {
+				"from": 660960,
+				"to": 663640
+			},
+			"text": " Another feature that Cairo offers are hints."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,640",
+				"to": "00:11:07,160"
+			},
+			"offsets": {
+				"from": 663640,
+				"to": 667160
+			},
+			"text": " These are blocks of Python code embedded into a Cairo program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,160",
+				"to": "00:11:12,080"
+			},
+			"offsets": {
+				"from": 667160,
+				"to": 672080
+			},
+			"text": " and they allow Python context to access the VM state"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,080",
+				"to": "00:11:15,920"
+			},
+			"offsets": {
+				"from": 672080,
+				"to": 675920
+			},
+			"text": " and modify it, also access local Cairo variables,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,920",
+				"to": "00:11:19,160"
+			},
+			"offsets": {
+				"from": 675920,
+				"to": 679160
+			},
+			"text": " and can communicate between each other for execution scopes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,160",
+				"to": "00:11:21,720"
+			},
+			"offsets": {
+				"from": 679160,
+				"to": 681720
+			},
+			"text": " What we see on screen is the unlock function"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,720",
+				"to": "00:11:23,160"
+			},
+			"offsets": {
+				"from": 681720,
+				"to": 683160
+			},
+			"text": " from the common library."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,160",
+				"to": "00:11:26,320"
+			},
+			"offsets": {
+				"from": 683160,
+				"to": 686320
+			},
+			"text": " This function is commonly used to generate arrays,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,320",
+				"to": "00:11:28,560"
+			},
+			"offsets": {
+				"from": 686320,
+				"to": 688560
+			},
+			"text": " and what it does is it creates a new segment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,560",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 688560,
+				"to": 692000
+			},
+			"text": " and it inserts it into memory, so we can use it from Cairo."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 694000
+			},
+			"text": " We mentioned execution scopes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:36,240"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 696240
+			},
+			"text": " These scopes are a stack of dictionaries"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,240",
+				"to": "00:11:39,480"
+			},
+			"offsets": {
+				"from": 696240,
+				"to": 699480
+			},
+			"text": " that can hold variables that are created inside a hint."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,480",
+				"to": "00:11:43,160"
+			},
+			"offsets": {
+				"from": 699480,
+				"to": 703160
+			},
+			"text": " These variables are not seen by Cairo, just by the hint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,160",
+				"to": "00:11:46,880"
+			},
+			"offsets": {
+				"from": 703160,
+				"to": 706880
+			},
+			"text": " and this can be created and removed inside hints,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,880",
+				"to": "00:11:49,560"
+			},
+			"offsets": {
+				"from": 706880,
+				"to": 709560
+			},
+			"text": " and multiple hints can access the same scope."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,560",
+				"to": "00:11:51,320"
+			},
+			"offsets": {
+				"from": 709560,
+				"to": 711320
+			},
+			"text": " For example, this code is a bit long,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,320",
+				"to": "00:11:54,160"
+			},
+			"offsets": {
+				"from": 711320,
+				"to": 714160
+			},
+			"text": " but we could just focus on, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,160",
+				"to": "00:11:57,880"
+			},
+			"offsets": {
+				"from": 714160,
+				"to": 717880
+			},
+			"text": " we first enter the scope, we done n variable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,880",
+				"to": "00:12:01,840"
+			},
+			"offsets": {
+				"from": 717880,
+				"to": 721840
+			},
+			"text": " then we use that n variable, we modify it for various situations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,840",
+				"to": "00:12:05,280"
+			},
+			"offsets": {
+				"from": 721840,
+				"to": 725280
+			},
+			"text": " and then we exit the scope, deleting this n variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,280",
+				"to": "00:12:08,320"
+			},
+			"offsets": {
+				"from": 725280,
+				"to": 728320
+			},
+			"text": " Well, so now let's talk about how we implemented hints"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,320",
+				"to": "00:12:10,120"
+			},
+			"offsets": {
+				"from": 728320,
+				"to": 730120
+			},
+			"text": " in Cairo arrest."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,120",
+				"to": "00:12:12,720"
+			},
+			"offsets": {
+				"from": 730120,
+				"to": 732720
+			},
+			"text": " That is our implementation of the VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,720",
+				"to": "00:12:15,240"
+			},
+			"offsets": {
+				"from": 732720,
+				"to": 735240
+			},
+			"text": " Well, first, why we chose Rust?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,240",
+				"to": "00:12:18,520"
+			},
+			"offsets": {
+				"from": 735240,
+				"to": 738520
+			},
+			"text": " We chose Rust because it offers very good performance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,520",
+				"to": "00:12:22,160"
+			},
+			"offsets": {
+				"from": 738520,
+				"to": 742160
+			},
+			"text": " memory safety guarantees, and it also has an amazing community."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,160",
+				"to": "00:12:24,960"
+			},
+			"offsets": {
+				"from": 742160,
+				"to": 744960
+			},
+			"text": " Our first iteration of hints in Cairo arrest"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,960",
+				"to": "00:12:28,120"
+			},
+			"offsets": {
+				"from": 744960,
+				"to": 748120
+			},
+			"text": " was basically to implement a Rust function"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,120",
+				"to": "00:12:30,440"
+			},
+			"offsets": {
+				"from": 748120,
+				"to": 750440
+			},
+			"text": " that would imitate the behavior of hints"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,440",
+				"to": "00:12:34,040"
+			},
+			"offsets": {
+				"from": 750440,
+				"to": 754040
+			},
+			"text": " and match these blocks of Python code to our R10s."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,040",
+				"to": "00:12:36,320"
+			},
+			"offsets": {
+				"from": 754040,
+				"to": 756320
+			},
+			"text": " For example, the constants we see here"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,320",
+				"to": "00:12:38,920"
+			},
+			"offsets": {
+				"from": 756320,
+				"to": 758920
+			},
+			"text": " are the blocks of Python code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,920",
+				"to": "00:12:41,480"
+			},
+			"offsets": {
+				"from": 758920,
+				"to": 761480
+			},
+			"text": " This is, again, the example of the unlock function."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,480",
+				"to": "00:12:43,040"
+			},
+			"offsets": {
+				"from": 761480,
+				"to": 763040
+			},
+			"text": " This is the block of Python code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,040",
+				"to": "00:12:46,240"
+			},
+			"offsets": {
+				"from": 763040,
+				"to": 766240
+			},
+			"text": " and this is how we replaced it with a Rust native function."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,240",
+				"to": "00:12:50,080"
+			},
+			"offsets": {
+				"from": 766240,
+				"to": 770080
+			},
+			"text": " Well, this first iteration had pros and cons."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,080",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 770080,
+				"to": 773000
+			},
+			"text": " On the pros side, we have that it was very easy to implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:54,760"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 774760
+			},
+			"text": " as we didn't need any new tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,760",
+				"to": "00:12:56,960"
+			},
+			"offsets": {
+				"from": 774760,
+				"to": 776960
+			},
+			"text": " and it also offered better performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,960",
+				"to": "00:12:59,880"
+			},
+			"offsets": {
+				"from": 776960,
+				"to": 779880
+			},
+			"text": " As calling functions within WVM was much faster"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,880",
+				"to": "00:13:02,840"
+			},
+			"offsets": {
+				"from": 779880,
+				"to": 782840
+			},
+			"text": " than compiling on running code during WMs run."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,840",
+				"to": "00:13:06,680"
+			},
+			"offsets": {
+				"from": 782840,
+				"to": 786680
+			},
+			"text": " But on the cons side is that we needed to watch out for changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,680",
+				"to": "00:13:08,800"
+			},
+			"offsets": {
+				"from": 786680,
+				"to": 788800
+			},
+			"text": " We first applied this to the common library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,800",
+				"to": "00:13:11,480"
+			},
+			"offsets": {
+				"from": 788800,
+				"to": 791480
+			},
+			"text": " so if a common library hand were to change,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,480",
+				"to": "00:13:13,320"
+			},
+			"offsets": {
+				"from": 791480,
+				"to": 793320
+			},
+			"text": " we needed to change our implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,320",
+				"to": "00:13:14,960"
+			},
+			"offsets": {
+				"from": 793320,
+				"to": 794960
+			},
+			"text": " in order to keep supporting it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,960",
+				"to": "00:13:17,360"
+			},
+			"offsets": {
+				"from": 794960,
+				"to": 797360
+			},
+			"text": " And it also wasn't really extensible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,360",
+				"to": "00:13:19,200"
+			},
+			"offsets": {
+				"from": 797360,
+				"to": 799200
+			},
+			"text": " as if we wanted to support more hints"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,200",
+				"to": "00:13:21,720"
+			},
+			"offsets": {
+				"from": 799200,
+				"to": 801720
+			},
+			"text": " with how to code it inside our VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,720",
+				"to": "00:13:24,080"
+			},
+			"offsets": {
+				"from": 801720,
+				"to": 804080
+			},
+			"text": " So as we wanted to support user-defined hints"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,080",
+				"to": "00:13:26,640"
+			},
+			"offsets": {
+				"from": 804080,
+				"to": 806640
+			},
+			"text": " and we also wanted to integrate our VM"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,640",
+				"to": "00:13:28,800"
+			},
+			"offsets": {
+				"from": 806640,
+				"to": 808800
+			},
+			"text": " with the current Python infrastructure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,800",
+				"to": "00:13:31,280"
+			},
+			"offsets": {
+				"from": 808800,
+				"to": 811280
+			},
+			"text": " we decided to go with the next iteration"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,280",
+				"to": "00:13:34,440"
+			},
+			"offsets": {
+				"from": 811280,
+				"to": 814440
+			},
+			"text": " that consisted of integrating Python with our VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,440",
+				"to": "00:13:37,480"
+			},
+			"offsets": {
+				"from": 814440,
+				"to": 817480
+			},
+			"text": " In order to achieve this, we used the create pyre-free."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,480",
+				"to": "00:13:40,160"
+			},
+			"offsets": {
+				"from": 817480,
+				"to": 820160
+			},
+			"text": " It is a create that provides Rust bindings for Python,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,160",
+				"to": "00:13:42,600"
+			},
+			"offsets": {
+				"from": 820160,
+				"to": 822600
+			},
+			"text": " and it allowed us to share our VM state"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,600",
+				"to": "00:13:44,160"
+			},
+			"offsets": {
+				"from": 822600,
+				"to": 824160
+			},
+			"text": " with a Python context,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,160",
+				"to": "00:13:46,920"
+			},
+			"offsets": {
+				"from": 824160,
+				"to": 826920
+			},
+			"text": " allow that Python context to modify our VM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,920",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 826920,
+				"to": 830000
+			},
+			"text": " and also allows to define a strict interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:51,640"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 831640
+			},
+			"text": " between our VM and Python"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,640",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 831640,
+				"to": 834000
+			},
+			"text": " by using pyclasses and py methods."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:56,960"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 836960
+			},
+			"text": " Pyclasses are Rust structs that can be interpreted"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,960",
+				"to": "00:13:58,720"
+			},
+			"offsets": {
+				"from": 836960,
+				"to": 838720
+			},
+			"text": " as Python objects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,720",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 838720,
+				"to": 841000
+			},
+			"text": " and py methods are Rust methods"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:03,240"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 843240
+			},
+			"text": " that can be called from within Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,240",
+				"to": "00:14:05,880"
+			},
+			"offsets": {
+				"from": 843240,
+				"to": 845880
+			},
+			"text": " So let's take a look at the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,880",
+				"to": "00:14:08,880"
+			},
+			"offsets": {
+				"from": 845880,
+				"to": 848880
+			},
+			"text": " Well, this is how we allowed hints to modify memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,880",
+				"to": "00:14:11,560"
+			},
+			"offsets": {
+				"from": 848880,
+				"to": 851560
+			},
+			"text": " We created this py memory object,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,560",
+				"to": "00:14:14,040"
+			},
+			"offsets": {
+				"from": 851560,
+				"to": 854040
+			},
+			"text": " and when we want to get an item,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,040",
+				"to": "00:14:17,200"
+			},
+			"offsets": {
+				"from": 854040,
+				"to": 857200
+			},
+			"text": " what actually happens is that we call our VM's memory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,200",
+				"to": "00:14:19,640"
+			},
+			"offsets": {
+				"from": 857200,
+				"to": 859640
+			},
+			"text": " and we use our Rust get function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,640",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 859640,
+				"to": 862000
+			},
+			"text": " and the same happens when we want to set an item."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:25,800"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 865800
+			},
+			"text": " Well, how did we allow it to modify"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,800",
+				"to": "00:14:27,360"
+			},
+			"offsets": {
+				"from": 865800,
+				"to": 867360
+			},
+			"text": " carry local variables?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,360",
+				"to": "00:14:30,080"
+			},
+			"offsets": {
+				"from": 867360,
+				"to": 870080
+			},
+			"text": " Carry local variables can be accessed inside hints"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,080",
+				"to": "00:14:33,120"
+			},
+			"offsets": {
+				"from": 870080,
+				"to": 873120
+			},
+			"text": " by writing ideas.dename of the variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,120",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 873120,
+				"to": 877000
+			},
+			"text": " So what we did was override this ideas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:40,160"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 880160
+			},
+			"text": " objects, set attributes, and get attribute methods."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,160",
+				"to": "00:14:42,240"
+			},
+			"offsets": {
+				"from": 880160,
+				"to": 882240
+			},
+			"text": " So when we want to get an attribute,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,240",
+				"to": "00:14:46,600"
+			},
+			"offsets": {
+				"from": 882240,
+				"to": 886600
+			},
+			"text": " we are actually calculating the value of that attribute"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,600",
+				"to": "00:14:48,720"
+			},
+			"offsets": {
+				"from": 886600,
+				"to": 888720
+			},
+			"text": " inside during the big hints run,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,720",
+				"to": "00:14:51,600"
+			},
+			"offsets": {
+				"from": 888720,
+				"to": 891600
+			},
+			"text": " and when we want to modify a local variable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,600",
+				"to": "00:14:53,200"
+			},
+			"offsets": {
+				"from": 891600,
+				"to": 893200
+			},
+			"text": " we calculated address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,200",
+				"to": "00:14:55,560"
+			},
+			"offsets": {
+				"from": 893200,
+				"to": 895560
+			},
+			"text": " and insert the new value into memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,560",
+				"to": "00:14:58,880"
+			},
+			"offsets": {
+				"from": 895560,
+				"to": 898880
+			},
+			"text": " Well, the next step was execution scopes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,880",
+				"to": "00:15:00,760"
+			},
+			"offsets": {
+				"from": 898880,
+				"to": 900760
+			},
+			"text": " In order to implement this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,760",
+				"to": "00:15:04,560"
+			},
+			"offsets": {
+				"from": 900760,
+				"to": 904560
+			},
+			"text": " we took a bunch of the local Python variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,560",
+				"to": "00:15:08,400"
+			},
+			"offsets": {
+				"from": 904560,
+				"to": 908400
+			},
+			"text": " So what we did was take our execution scopes variables,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,400",
+				"to": "00:15:09,920"
+			},
+			"offsets": {
+				"from": 908400,
+				"to": 909920
+			},
+			"text": " convert them to Python objects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,920",
+				"to": "00:15:12,360"
+			},
+			"offsets": {
+				"from": 909920,
+				"to": 912360
+			},
+			"text": " and inject them into the Python locals."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,360",
+				"to": "00:15:14,760"
+			},
+			"offsets": {
+				"from": 912360,
+				"to": 914760
+			},
+			"text": " And when the hint was done running,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,760",
+				"to": "00:15:18,120"
+			},
+			"offsets": {
+				"from": 914760,
+				"to": 918120
+			},
+			"text": " we extracted the Python objects from the locals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,120",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 918120,
+				"to": 921000
+			},
+			"text": " and inserted them into our execution scopes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:23,880"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 923880
+			},
+			"text": " This is how executing a hint currently looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,880",
+				"to": "00:15:26,560"
+			},
+			"offsets": {
+				"from": 923880,
+				"to": 926560
+			},
+			"text": " We first take this local variable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,560",
+				"to": "00:15:28,520"
+			},
+			"offsets": {
+				"from": 926560,
+				"to": 928520
+			},
+			"text": " and inject them into Python locals."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,520",
+				"to": "00:15:31,920"
+			},
+			"offsets": {
+				"from": 928520,
+				"to": 931920
+			},
+			"text": " We create these pi classes that will allow hints"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,920",
+				"to": "00:15:33,800"
+			},
+			"offsets": {
+				"from": 931920,
+				"to": 933800
+			},
+			"text": " to interact with our VM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,800",
+				"to": "00:15:35,480"
+			},
+			"offsets": {
+				"from": 933800,
+				"to": 935480
+			},
+			"text": " and insert them into globals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,480",
+				"to": "00:15:37,760"
+			},
+			"offsets": {
+				"from": 935480,
+				"to": 937760
+			},
+			"text": " and then we, again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,760",
+				"to": "00:15:40,200"
+			},
+			"offsets": {
+				"from": 937760,
+				"to": 940200
+			},
+			"text": " retrieve these values from Python locals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,200",
+				"to": "00:15:42,840"
+			},
+			"offsets": {
+				"from": 940200,
+				"to": 942840
+			},
+			"text": " and update our execution scopes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,840",
+				"to": "00:15:46,320"
+			},
+			"offsets": {
+				"from": 942840,
+				"to": 946320
+			},
+			"text": " But well, how does this all look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,320",
+				"to": "00:15:50,720"
+			},
+			"offsets": {
+				"from": 946320,
+				"to": 950720
+			},
+			"text": " We created a separate crate for this called kyra-rspy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,720",
+				"to": "00:15:52,880"
+			},
+			"offsets": {
+				"from": 950720,
+				"to": 952880
+			},
+			"text": " in which we instantiate the VM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,880",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 952880,
+				"to": 956000
+			},
+			"text": " and we execute the kyra methods,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:15:58,800"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 958800
+			},
+			"text": " the BMs methods, such as instant initialization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,800",
+				"to": "00:16:00,320"
+			},
+			"offsets": {
+				"from": 958800,
+				"to": 960320
+			},
+			"text": " running instructions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,320",
+				"to": "00:16:03,440"
+			},
+			"offsets": {
+				"from": 960320,
+				"to": 963440
+			},
+			"text": " and when a hint cannot be run by our VM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,440",
+				"to": "00:16:07,760"
+			},
+			"offsets": {
+				"from": 963440,
+				"to": 967760
+			},
+			"text": " we fall back to this Python hint execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,760",
+				"to": "00:16:10,280"
+			},
+			"offsets": {
+				"from": 967760,
+				"to": 970280
+			},
+			"text": " So with this approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,280",
+				"to": "00:16:12,920"
+			},
+			"offsets": {
+				"from": 970280,
+				"to": 972920
+			},
+			"text": " we were able to maintain the Rust functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,920",
+				"to": "00:16:15,640"
+			},
+			"offsets": {
+				"from": 972920,
+				"to": 975640
+			},
+			"text": " that we created in the first iteration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,640",
+				"to": "00:16:18,200"
+			},
+			"offsets": {
+				"from": 975640,
+				"to": 978200
+			},
+			"text": " and also add this Python integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,200",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 978200,
+				"to": 980000
+			},
+			"text": " So when you use the common library hints,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 982000
+			},
+			"text": " you can still enjoy the boosting performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:24,360"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 984360
+			},
+			"text": " from the Rust native functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,360",
+				"to": "00:16:25,200"
+			},
+			"offsets": {
+				"from": 984360,
+				"to": 985200
+			},
+			"text": " - Okay, awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,200",
+				"to": "00:16:27,520"
+			},
+			"offsets": {
+				"from": 985200,
+				"to": 987520
+			},
+			"text": " - Let's go. - Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,520",
+				"to": "00:16:28,360"
+			},
+			"offsets": {
+				"from": 987520,
+				"to": 988360
+			},
+			"text": " - Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,360",
+				"to": "00:16:30,480"
+			},
+			"offsets": {
+				"from": 988360,
+				"to": 990480
+			},
+			"text": " What is it, it's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,480",
+				"to": "00:16:33,120"
+			},
+			"offsets": {
+				"from": 990480,
+				"to": 993120
+			},
+			"text": " Well, in the name of our talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,120",
+				"to": "00:16:36,280"
+			},
+			"offsets": {
+				"from": 993120,
+				"to": 996280
+			},
+			"text": " is how we improve the performance of pre-recomputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,280",
+				"to": "00:16:40,640"
+			},
+			"offsets": {
+				"from": 996280,
+				"to": 1000640
+			},
+			"text": " so showing some benchmark was some math."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,640",
+				"to": "00:16:45,480"
+			},
+			"offsets": {
+				"from": 1000640,
+				"to": 1005480
+			},
+			"text": " And here we can see how our implementation of kyra-rsp"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,480",
+				"to": "00:16:50,480"
+			},
+			"offsets": {
+				"from": 1005480,
+				"to": 1010480
+			},
+			"text": " is about 100 times faster than the kyra-bm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,320",
+				"to": "00:16:56,920"
+			},
+			"offsets": {
+				"from": 1014320,
+				"to": 1016920
+			},
+			"text": " using the C Python interpreter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,920",
+				"to": "00:17:01,120"
+			},
+			"offsets": {
+				"from": 1016920,
+				"to": 1021120
+			},
+			"text": " and about 20 times faster than the kyra-bm"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,120",
+				"to": "00:17:03,280"
+			},
+			"offsets": {
+				"from": 1021120,
+				"to": 1023280
+			},
+			"text": " using the pipi interpreter."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,280",
+				"to": "00:17:07,960"
+			},
+			"offsets": {
+				"from": 1023280,
+				"to": 1027960
+			},
+			"text": " And the coolest thing is that our implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,960",
+				"to": "00:17:12,960"
+			},
+			"offsets": {
+				"from": 1027960,
+				"to": 1032960
+			},
+			"text": " is 100 times faster than kyra-bm using the Python,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,960",
+				"to": "00:17:16,960"
+			},
+			"offsets": {
+				"from": 1032960,
+				"to": 1036960
+			},
+			"text": " but also consumes half the memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,960",
+				"to": "00:17:21,800"
+			},
+			"offsets": {
+				"from": 1036960,
+				"to": 1041800
+			},
+			"text": " And our implementation is 20 times faster"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,800",
+				"to": "00:17:26,800"
+			},
+			"offsets": {
+				"from": 1041800,
+				"to": 1046800
+			},
+			"text": " than the pipi version, but consumes 12th time less memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,800",
+				"to": "00:17:29,720"
+			},
+			"offsets": {
+				"from": 1046800,
+				"to": 1049720
+			},
+			"text": " than pipi-pipi."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,720",
+				"to": "00:17:32,120"
+			},
+			"offsets": {
+				"from": 1049720,
+				"to": 1052120
+			},
+			"text": " So yeah, it's really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,120",
+				"to": "00:17:37,080"
+			},
+			"offsets": {
+				"from": 1052120,
+				"to": 1057080
+			},
+			"text": " And yeah, okay, I hope that standard developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,080",
+				"to": "00:17:42,080"
+			},
+			"offsets": {
+				"from": 1057080,
+				"to": 1062080
+			},
+			"text": " embrace kyra-rsp, and that helps building"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,080",
+				"to": "00:17:43,920"
+			},
+			"offsets": {
+				"from": 1062080,
+				"to": 1063920
+			},
+			"text": " and accelerating the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,920",
+				"to": "00:17:46,640"
+			},
+			"offsets": {
+				"from": 1063920,
+				"to": 1066640
+			},
+			"text": " So yeah, that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,640",
+				"to": "00:17:49,280"
+			},
+			"offsets": {
+				"from": 1066640,
+				"to": 1069280
+			},
+			"text": " Thanks for being here, questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,280",
+				"to": "00:17:51,680"
+			},
+			"offsets": {
+				"from": 1069280,
+				"to": 1071680
+			},
+			"text": " - We still have time for some questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,680",
+				"to": "00:17:55,640"
+			},
+			"offsets": {
+				"from": 1071680,
+				"to": 1075640
+			},
+			"text": " So we have our volunteers in the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,640",
+				"to": "00:17:57,920"
+			},
+			"offsets": {
+				"from": 1075640,
+				"to": 1077920
+			},
+			"text": " Just raise your hand, you have any questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,920",
+				"to": "00:18:00,040"
+			},
+			"offsets": {
+				"from": 1077920,
+				"to": 1080040
+			},
+			"text": " compliments for the great presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,040",
+				"to": "00:18:03,960"
+			},
+			"offsets": {
+				"from": 1080040,
+				"to": 1083960
+			},
+			"text": " - Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,960",
+				"to": "00:18:04,960"
+			},
+			"offsets": {
+				"from": 1083960,
+				"to": 1084960
+			},
+			"text": " - Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,960",
+				"to": "00:18:06,480"
+			},
+			"offsets": {
+				"from": 1084960,
+				"to": 1086480
+			},
+			"text": " - Hello, well, I've seen you before."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,480",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1086480,
+				"to": 1090000
+			},
+			"text": " That's the question is, how stable is this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:12,720"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1092720
+			},
+			"text": " Is this available to use right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,720",
+				"to": "00:18:16,560"
+			},
+			"offsets": {
+				"from": 1092720,
+				"to": 1096560
+			},
+			"text": " - Or if it's available to use in right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,560",
+				"to": "00:18:17,400"
+			},
+			"offsets": {
+				"from": 1096560,
+				"to": 1097400
+			},
+			"text": " - Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,400",
+				"to": "00:18:21,280"
+			},
+			"offsets": {
+				"from": 1097400,
+				"to": 1101280
+			},
+			"text": " - Yes, we are still developing the integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,280",
+				"to": "00:18:25,160"
+			},
+			"offsets": {
+				"from": 1101280,
+				"to": 1105160
+			},
+			"text": " with Python, but yes, kyra-rsp is a useful source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,160",
+				"to": "00:18:28,320"
+			},
+			"offsets": {
+				"from": 1105160,
+				"to": 1108320
+			},
+			"text": " and you can use it, but we are finishing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,320",
+				"to": "00:18:31,160"
+			},
+			"offsets": {
+				"from": 1108320,
+				"to": 1111160
+			},
+			"text": " I think in maybe two weeks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,160",
+				"to": "00:18:34,040"
+			},
+			"offsets": {
+				"from": 1111160,
+				"to": 1114040
+			},
+			"text": " the integration with Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,040",
+				"to": "00:18:37,440"
+			},
+			"offsets": {
+				"from": 1114040,
+				"to": 1117440
+			},
+			"text": " So after that, we are going to start testing it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,440",
+				"to": "00:18:39,880"
+			},
+			"offsets": {
+				"from": 1117440,
+				"to": 1119880
+			},
+			"text": " and making it faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,880",
+				"to": "00:18:42,200"
+			},
+			"offsets": {
+				"from": 1119880,
+				"to": 1122200
+			},
+			"text": " So we can be sure that everything is okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,200",
+				"to": "00:18:46,960"
+			},
+			"offsets": {
+				"from": 1122200,
+				"to": 1126960
+			},
+			"text": " And then we're going to start using it in production."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,960",
+				"to": "00:18:48,880"
+			},
+			"offsets": {
+				"from": 1126960,
+				"to": 1128880
+			},
+			"text": " So we are really excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,880",
+				"to": "00:18:54,760"
+			},
+			"offsets": {
+				"from": 1129880,
+				"to": 1134760
+			},
+			"text": " - You let them speechless about the representation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,760",
+				"to": "00:18:56,280"
+			},
+			"offsets": {
+				"from": 1134760,
+				"to": 1136280
+			},
+			"text": " Well, big round of applause."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,280",
+				"to": "00:18:58,120"
+			},
+			"offsets": {
+				"from": 1136280,
+				"to": 1138120
+			},
+			"text": " Thank you so much for the weekend, Herman."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,120",
+				"to": "00:19:00,360"
+			},
+			"offsets": {
+				"from": 1138120,
+				"to": 1140360
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,360",
+				"to": "00:19:02,360"
+			},
+			"offsets": {
+				"from": 1140360,
+				"to": 1142360
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,360",
+				"to": "00:19:04,360"
+			},
+			"offsets": {
+				"from": 1142360,
+				"to": 1144360
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,360",
+				"to": "00:19:06,360"
+			},
+			"offsets": {
+				"from": 1144360,
+				"to": 1146360
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,360",
+				"to": "00:19:10,360"
+			},
+			"offsets": {
+				"from": 1146360,
+				"to": 1150360
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

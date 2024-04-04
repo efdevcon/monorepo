@@ -1,0 +1,934 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 24000
+			},
+			"text": " I'm Jesse Baker, I'm from Providence. Some other Providence team members here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 32000
+			},
+			"text": " Yotasdina actually presented Providence the concept at DevCon Zero, so we're back with an update."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 38000
+			},
+			"text": " Yeah, woo! So it's been an interesting year going from a concept to startup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 42000
+			},
+			"text": " and it's not just about Dev, that's for sure. So fundraising, design, team building,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 50000
+			},
+			"text": " and most importantly understanding the market. So we can make sure our decentralized application is indeed serving one."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 57000
+			},
+			"text": " So what is Providence, and what are we doing? So Providence is dedicated to using technology to bring transparency"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 61000
+			},
+			"text": " to product supply chains and life cycles. So what does that mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 65000
+			},
+			"text": " That means we're basically here to help us all know more about our material world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 70000
+			},
+			"text": " Where does it come from, how was it made, who made it, from what materials, those kinds of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 76000
+			},
+			"text": " Also a little bit into how might we kind of keep the record of those materials into the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 81000
+			},
+			"text": " so we might give materials a second life, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 87000
+			},
+			"text": " So there are lots of reasons why we need transparency in product supply chains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 94000
+			},
+			"text": " and some of those range from things like counterfeit goods being sold on the internet, from drugs to handbags."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 101000
+			},
+			"text": " Slavery, it's not great, that's happening in lots of supply chains, and wasted materials, all kinds of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 108000
+			},
+			"text": " And for the most part we can kind of deduce that our material world and the relationship with it is somewhat broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 111000
+			},
+			"text": " So we started working on Providence for that simple reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 118000
+			},
+			"text": " How can we find out more about where stuff comes from and how might we start to repair our relationship with our material world a little."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 125000
+			},
+			"text": " Especially when even McDonald's advertising says that they're ethical, like what do we mean to choose?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 135000
+			},
+			"text": " When the crisps and shoes are both handcrafted, finding out information that you can trust about products is becoming increasingly difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 139000
+			},
+			"text": " So we aren't the first people to think about trying to make supply chains more transparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 146000
+			},
+			"text": " In fact, lots and lots of people have attempted this, and you guessed it in a centralized way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 148000
+			},
+			"text": " And this is fundamentally flawed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 156000
+			},
+			"text": " How could one organization or one even collection of organizations broker the world's supply chain data just doesn't work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 162000
+			},
+			"text": " Particularly when supply chains are inherently a network of organizations that don't trust each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 170000
+			},
+			"text": " because they're afraid they're going to be cut out or skipped over or screwed over in one other shape or form."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 175000
+			},
+			"text": " I think I was talking about it with somebody earlier, it's a bit like the Hunger Games."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 181000
+			},
+			"text": " So essentially transparency with a centralized system, it doesn't really work very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 188000
+			},
+			"text": " You have to trust in someone and it's usually the largest organization in a supply chain, which means the whole system is fundamentally flawed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 191000
+			},
+			"text": " So with provenances is exactly what we're trying to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 197000
+			},
+			"text": " We're trying to not have one large centralized system, broker all of the data about the world's supply chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 200000
+			},
+			"text": " We're trying to do it on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 210000
+			},
+			"text": " We're trying to let everyone use a shared secure, auditable database in order to convey information about material things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 216000
+			},
+			"text": " So we're not doing that in a kind of WikiLeaks style, although some other people are, and that's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 223000
+			},
+			"text": " We are actually kind of on the side of companies and helping to reinforce and promote and make trusted good behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 232000
+			},
+			"text": " So companies that are more interested in a voluntary approach to transparency and perhaps already taking steps towards making their supply chains better."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 244000
+			},
+			"text": " And this is where we kind of intercept in an interesting way between supply chains but also branding and kind of our concept of whether we just choose or trust a product or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 254000
+			},
+			"text": " This is something we actually spend a lot of time exploring as to what is the future of branding, what is the future of our relationship with trusting goods and services."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 263000
+			},
+			"text": " And very much the sort of provenance is nestled in that kind of intersection between how the world's supply chains are governed, but also how we choose to trust products."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 266000
+			},
+			"text": " So we look at kind of four aspects."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 269000
+			},
+			"text": " We look at gathering information about products."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 273000
+			},
+			"text": " We're very concerned with making this in an accessible format, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 276000
+			},
+			"text": " And we look very much at verifying the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 281000
+			},
+			"text": " So working with kind of trusted third parties in order to be able to verify data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 284000
+			},
+			"text": " And we work a lot on traceability to source."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 289000
+			},
+			"text": " So in terms of development, we started with a material wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 292000
+			},
+			"text": " So the simplest of the simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 298000
+			},
+			"text": " So this is actually a kind of prototype we made back in September, which was just an asset wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 301000
+			},
+			"text": " It allowed people to register an item."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 305000
+			},
+			"text": " So you could register it on using some existing information from the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 308000
+			},
+			"text": " For example, this is taking some from Amazon."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 312000
+			},
+			"text": " And you could give it a unique ID should it need one."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 320000
+			},
+			"text": " And really what you could do is transfer and receive items and that built up a chain of custody on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 331000
+			},
+			"text": " We then kind of extended this to start to look at gathering more types of information such as photographs or video, location data, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 334000
+			},
+			"text": " And that's been pretty successful."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 340000
+			},
+			"text": " But the big challenge now, and this is very much what we're in the midst of working on, is verifying data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 345000
+			},
+			"text": " So we have formed a partnership with 40 different certifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 355000
+			},
+			"text": " And we're helping digitize those certifications, but also helping the information about those certifications be verified and trusted all the way along the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 364000
+			},
+			"text": " So from the point of issue to the end consumer, allowing you to see a chain of custody of exactly where that certification was issued and came from."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 370000
+			},
+			"text": " And actually this is somewhere where we're really finding we're adding value incredibly quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 377000
+			},
+			"text": " The certification system, so for example, fair trade, at the moment it is very, very centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 385000
+			},
+			"text": " Like if you want to find out whether a product has a fair trade certificate, you really hardly have one way in to find out that information."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 387000
+			},
+			"text": " And they have a huge problem with double spend."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 399000
+			},
+			"text": " So how can you tell if there's twice as much coffee being certified fair trade when you're only auditing the supply chain around 10% of the time and only on spot audits."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 406000
+			},
+			"text": " So really you're not kind of monitoring what's going on in terms of individual certifications being granted at any step of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 416000
+			},
+			"text": " So with a bulk chain, you kind of present this whole new paradigm, which is you can now see what certifications are being issued and accounted for openly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 423000
+			},
+			"text": " So everyone can trace back exactly where a certification was issued, the quotas that were imposed on them, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 432000
+			},
+			"text": " Which already is a kind of drastic leap in terms of auditing costs, lowering the costs of being able to be certified in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 439000
+			},
+			"text": " So I guess this is the kind of picture we're working towards with provenance, which is gathering information such as certification data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 443000
+			},
+			"text": " but also other bits of information and cascading that along a chain of custody."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 450000
+			},
+			"text": " Of course, we're focused very much on supply chain data, but these certifications don't necessarily have to be organic or fair trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 456000
+			},
+			"text": " They could just be safety or proof of authenticity. The constructs is actually the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 467000
+			},
+			"text": " And we're now kind of moving into not only verifying the certification data, but also looking at transformation along the chain and how we can allow that to persist with the IDs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 477000
+			},
+			"text": " So we really believe the blockchain is a powerful broker for supply chain data and really could be used for a huge catalyst for a range of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 483000
+			},
+			"text": " Importing regulation, for example, across the border, drastically reducing auditing costs, as I mentioned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 490000
+			},
+			"text": " but also just hugely improving social and environmental impact by allowing people to actually start openly reporting these things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 501000
+			},
+			"text": " rather than constantly gathering data in silos that totally loses, gets lost along a chain due to its fundamentally non-interoperable current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 508000
+			},
+			"text": " So, yeah, that's a bit of an overview for what we're doing. So we're based in London. We're currently hiring, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 516000
+			},
+			"text": " We've got funding for another year. So if you're interested in writing smart contracts for social good, drop us a line. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 520000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 526000
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:48,260"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 528260
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

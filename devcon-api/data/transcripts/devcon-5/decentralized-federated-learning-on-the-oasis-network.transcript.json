@@ -1,0 +1,3376 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 14000
+			},
+			"text": " Thank you, everyone, for being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:15,480"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 15480
+			},
+			"text": " My name is Don Song."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,480",
+				"to": "00:00:19,120"
+			},
+			"offsets": {
+				"from": 15480,
+				"to": 19120
+			},
+			"text": " I'm the Fun Hill CEO at the Oasis Labs, and also"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,120",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 19120,
+				"to": 21000
+			},
+			"text": " Professor at the University of Brooklyn."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:23,600"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 23600
+			},
+			"text": " And today I will talk about the decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,600",
+				"to": "00:00:26,080"
+			},
+			"offsets": {
+				"from": 23600,
+				"to": 26080
+			},
+			"text": " factory today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,080",
+				"to": "00:00:30,560"
+			},
+			"offsets": {
+				"from": 26080,
+				"to": 30560
+			},
+			"text": " So first, as we are now data is the new oil, this data"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,560",
+				"to": "00:00:34,880"
+			},
+			"offsets": {
+				"from": 30560,
+				"to": 34880
+			},
+			"text": " is really helpful for us to make better decisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,880",
+				"to": "00:00:37,920"
+			},
+			"offsets": {
+				"from": 34880,
+				"to": 37920
+			},
+			"text": " and give us a lot of insights."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,920",
+				"to": "00:00:42,120"
+			},
+			"offsets": {
+				"from": 37920,
+				"to": 42120
+			},
+			"text": " However, a lot of this data is also very sensitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,120",
+				"to": "00:00:46,560"
+			},
+			"offsets": {
+				"from": 42120,
+				"to": 46560
+			},
+			"text": " And handling the sensitive data poses a lot of challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,560",
+				"to": "00:00:49,640"
+			},
+			"offsets": {
+				"from": 46560,
+				"to": 49640
+			},
+			"text": " So for example, we continue to see really large scale data"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,640",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 49640,
+				"to": 55000
+			},
+			"text": " breaches, where a capitalist compromise"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:57,440"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 57440
+			},
+			"text": " sensitive and still sensitive information"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,440",
+				"to": "00:01:01,080"
+			},
+			"offsets": {
+				"from": 57440,
+				"to": 61080
+			},
+			"text": " about hundreds of millions of users"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,080",
+				"to": "00:01:04,960"
+			},
+			"offsets": {
+				"from": 61080,
+				"to": 64960
+			},
+			"text": " being in a single attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,960",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 64960,
+				"to": 69000
+			},
+			"text": " And also, we continue to see that users are losing trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:12,760"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 72760
+			},
+			"text": " incomplete as a lot of users' data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,760",
+				"to": "00:01:16,680"
+			},
+			"offsets": {
+				"from": 72760,
+				"to": 76680
+			},
+			"text": " maybe mishandles abuse and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,680",
+				"to": "00:01:19,880"
+			},
+			"offsets": {
+				"from": 76680,
+				"to": 79880
+			},
+			"text": " So as we handle sensitive data, there"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,880",
+				"to": "00:01:23,520"
+			},
+			"offsets": {
+				"from": 79880,
+				"to": 83520
+			},
+			"text": " are a number of challenges that we need to address."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,520",
+				"to": "00:01:28,440"
+			},
+			"offsets": {
+				"from": 83520,
+				"to": 88440
+			},
+			"text": " One is that the infrastructure may be untrusted."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,440",
+				"to": "00:01:32,360"
+			},
+			"offsets": {
+				"from": 88440,
+				"to": 92360
+			},
+			"text": " Applications may have compromised the compute infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,360",
+				"to": "00:01:35,160"
+			},
+			"offsets": {
+				"from": 92360,
+				"to": 95160
+			},
+			"text": " All right, the application itself may be untrusted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,160",
+				"to": "00:01:42,360"
+			},
+			"offsets": {
+				"from": 95160,
+				"to": 102360
+			},
+			"text": " because again, attackers may have launched some malicious"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,360",
+				"to": "00:01:46,080"
+			},
+			"offsets": {
+				"from": 102360,
+				"to": 106080
+			},
+			"text": " applications, or the applications may have vulnerabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,080",
+				"to": "00:01:52,240"
+			},
+			"offsets": {
+				"from": 106080,
+				"to": 112240
+			},
+			"text": " And also, some applications may have undesirable data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,240",
+				"to": "00:01:53,960"
+			},
+			"offsets": {
+				"from": 112240,
+				"to": 113960
+			},
+			"text": " leakage."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,960",
+				"to": "00:01:58,560"
+			},
+			"offsets": {
+				"from": 113960,
+				"to": 118560
+			},
+			"text": " So to address these problems, as OISIS labs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,560",
+				"to": "00:02:01,840"
+			},
+			"offsets": {
+				"from": 118560,
+				"to": 121840
+			},
+			"text": " we have been developing new solutions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,840",
+				"to": "00:02:06,960"
+			},
+			"offsets": {
+				"from": 121840,
+				"to": 126960
+			},
+			"text": " where we essentially build the next generation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,960",
+				"to": "00:02:09,600"
+			},
+			"offsets": {
+				"from": 126960,
+				"to": 129600
+			},
+			"text": " blockchain smart contract platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,600",
+				"to": "00:02:13,640"
+			},
+			"offsets": {
+				"from": 129600,
+				"to": 133640
+			},
+			"text": " with greater scalability and privacy protection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,640",
+				"to": "00:02:16,520"
+			},
+			"offsets": {
+				"from": 133640,
+				"to": 136520
+			},
+			"text": " where we enable scalable smart contract execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,520",
+				"to": "00:02:19,640"
+			},
+			"offsets": {
+				"from": 136520,
+				"to": 139640
+			},
+			"text": " and also enable, for the first time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,640",
+				"to": "00:02:22,280"
+			},
+			"offsets": {
+				"from": 139640,
+				"to": 142280
+			},
+			"text": " confidential smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,280",
+				"to": "00:02:24,640"
+			},
+			"offsets": {
+				"from": 142280,
+				"to": 144640
+			},
+			"text": " And also, on top of the platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,640",
+				"to": "00:02:27,600"
+			},
+			"offsets": {
+				"from": 144640,
+				"to": 147600
+			},
+			"text": " we build SDKs to enable privacy preserving"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,600",
+				"to": "00:02:30,360"
+			},
+			"offsets": {
+				"from": 147600,
+				"to": 150360
+			},
+			"text": " and analytics execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,360",
+				"to": "00:02:32,600"
+			},
+			"offsets": {
+				"from": 150360,
+				"to": 152600
+			},
+			"text": " So today, I'll talk about some new research"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,600",
+				"to": "00:02:37,720"
+			},
+			"offsets": {
+				"from": 152600,
+				"to": 157720
+			},
+			"text": " that we have done at Berkeley and also OISIS"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,720",
+				"to": "00:02:42,680"
+			},
+			"offsets": {
+				"from": 157720,
+				"to": 162680
+			},
+			"text": " with decentralized federal students."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,680",
+				"to": "00:02:46,360"
+			},
+			"offsets": {
+				"from": 162680,
+				"to": 166360
+			},
+			"text": " So first, let's look at a multiplicity example"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,360",
+				"to": "00:02:48,720"
+			},
+			"offsets": {
+				"from": 166360,
+				"to": 168720
+			},
+			"text": " in fraud detection."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,720",
+				"to": "00:02:51,560"
+			},
+			"offsets": {
+				"from": 168720,
+				"to": 171560
+			},
+			"text": " So when banks provide financial services,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,560",
+				"to": "00:02:57,440"
+			},
+			"offsets": {
+				"from": 171560,
+				"to": 177440
+			},
+			"text": " for example, in the longs, they need to detect fraud."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,440",
+				"to": "00:03:01,440"
+			},
+			"offsets": {
+				"from": 177440,
+				"to": 181440
+			},
+			"text": " And typically, how this works is that each bank uses its own data"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,440",
+				"to": "00:03:07,240"
+			},
+			"offsets": {
+				"from": 181440,
+				"to": 187240
+			},
+			"text": " to build, for example, some machine model for fraud detection."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,240",
+				"to": "00:03:14,440"
+			},
+			"offsets": {
+				"from": 187240,
+				"to": 194440
+			},
+			"text": " However, as we know, it would be much better"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,440",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 194440,
+				"to": 197000
+			},
+			"text": " if these banks can actually share that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:22,880"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 202880
+			},
+			"text": " can build one fraud detection instead of the individual ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,880",
+				"to": "00:03:25,400"
+			},
+			"offsets": {
+				"from": 202880,
+				"to": 205400
+			},
+			"text": " Because with my data, the machine model"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,400",
+				"to": "00:03:27,720"
+			},
+			"offsets": {
+				"from": 205400,
+				"to": 207720
+			},
+			"text": " can essentially be more effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,720",
+				"to": "00:03:30,520"
+			},
+			"offsets": {
+				"from": 207720,
+				"to": 210520
+			},
+			"text": " Part of this can happen today because there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,520",
+				"to": "00:03:33,360"
+			},
+			"offsets": {
+				"from": 210520,
+				"to": 213360
+			},
+			"text": " a lot of privacy concerns because the data is sensitive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,360",
+				"to": "00:03:37,440"
+			},
+			"offsets": {
+				"from": 213360,
+				"to": 217440
+			},
+			"text": " and also there may be miscellaneous incentives and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,440",
+				"to": "00:03:41,400"
+			},
+			"offsets": {
+				"from": 217440,
+				"to": 221400
+			},
+			"text": " So how can we address this problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,400",
+				"to": "00:03:44,240"
+			},
+			"offsets": {
+				"from": 221400,
+				"to": 224240
+			},
+			"text": " So there are a number of alternative solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,240",
+				"to": "00:03:46,120"
+			},
+			"offsets": {
+				"from": 224240,
+				"to": 226120
+			},
+			"text": " that we can consider."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,120",
+				"to": "00:03:50,720"
+			},
+			"offsets": {
+				"from": 226120,
+				"to": 230720
+			},
+			"text": " So with one alternative solution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,720",
+				"to": "00:03:53,800"
+			},
+			"offsets": {
+				"from": 230720,
+				"to": 233800
+			},
+			"text": " we can use something called the federal solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,800",
+				"to": "00:03:58,720"
+			},
+			"offsets": {
+				"from": 233800,
+				"to": 238720
+			},
+			"text": " So federal training is a mechanism that is an approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,720",
+				"to": "00:04:02,800"
+			},
+			"offsets": {
+				"from": 238720,
+				"to": 242800
+			},
+			"text": " that actually has seen some adoption deployments"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,800",
+				"to": "00:04:09,520"
+			},
+			"offsets": {
+				"from": 242800,
+				"to": 249520
+			},
+			"text": " at Google and Apple, for example, where essentially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,520",
+				"to": "00:04:13,920"
+			},
+			"offsets": {
+				"from": 249520,
+				"to": 253920
+			},
+			"text": " using federal rating, uses data and stores locally"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,920",
+				"to": "00:04:16,160"
+			},
+			"offsets": {
+				"from": 253920,
+				"to": 256160
+			},
+			"text": " on their mobile phones."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,160",
+				"to": "00:04:19,360"
+			},
+			"offsets": {
+				"from": 256160,
+				"to": 259360
+			},
+			"text": " And then the central server at Google or Apple"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,360",
+				"to": "00:04:23,240"
+			},
+			"offsets": {
+				"from": 259360,
+				"to": 263240
+			},
+			"text": " can coordinate these different local devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,240",
+				"to": "00:04:27,080"
+			},
+			"offsets": {
+				"from": 263240,
+				"to": 267080
+			},
+			"text": " to collectively train a machine model"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,080",
+				"to": "00:04:29,400"
+			},
+			"offsets": {
+				"from": 267080,
+				"to": 269400
+			},
+			"text": " in this distributed fashion."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,400",
+				"to": "00:04:31,680"
+			},
+			"offsets": {
+				"from": 269400,
+				"to": 271680
+			},
+			"text": " So in this case, with federal training,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,680",
+				"to": "00:04:37,320"
+			},
+			"offsets": {
+				"from": 271680,
+				"to": 277320
+			},
+			"text": " it takes an iterative approach where in round I,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,320",
+				"to": "00:04:47,880"
+			},
+			"offsets": {
+				"from": 277320,
+				"to": 287880
+			},
+			"text": " it has the information of this global model that is being trained."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,880",
+				"to": "00:04:52,720"
+			},
+			"offsets": {
+				"from": 287880,
+				"to": 292720
+			},
+			"text": " And then this model is distributed to the local devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,720",
+				"to": "00:04:58,440"
+			},
+			"offsets": {
+				"from": 292720,
+				"to": 298440
+			},
+			"text": " And then each local device uses its own local data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,440",
+				"to": "00:05:04,720"
+			},
+			"offsets": {
+				"from": 298440,
+				"to": 304720
+			},
+			"text": " to try to update this model using what we call breeding update."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,720",
+				"to": "00:05:07,440"
+			},
+			"offsets": {
+				"from": 304720,
+				"to": 307440
+			},
+			"text": " And then this breeding update is then sent back"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,440",
+				"to": "00:05:11,240"
+			},
+			"offsets": {
+				"from": 307440,
+				"to": 311240
+			},
+			"text": " to the central server to then the central server"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,240",
+				"to": "00:05:14,440"
+			},
+			"offsets": {
+				"from": 311240,
+				"to": 314440
+			},
+			"text": " that aggregates these breeding updates"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,440",
+				"to": "00:05:17,560"
+			},
+			"offsets": {
+				"from": 314440,
+				"to": 317560
+			},
+			"text": " to then create the next region of the model."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,560",
+				"to": "00:05:21,040"
+			},
+			"offsets": {
+				"from": 317560,
+				"to": 321040
+			},
+			"text": " And then this continues."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,040",
+				"to": "00:05:27,520"
+			},
+			"offsets": {
+				"from": 321040,
+				"to": 327520
+			},
+			"text": " So in this way, the advantage is that each user's data"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,520",
+				"to": "00:05:31,040"
+			},
+			"offsets": {
+				"from": 327520,
+				"to": 331040
+			},
+			"text": " is stored locally, is now actually uploaded to the cloud"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,040",
+				"to": "00:05:32,560"
+			},
+			"offsets": {
+				"from": 331040,
+				"to": 332560
+			},
+			"text": " or to the central server."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,560",
+				"to": "00:05:35,880"
+			},
+			"offsets": {
+				"from": 332560,
+				"to": 335880
+			},
+			"text": " But still, in this case, it still needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,880",
+				"to": "00:05:40,800"
+			},
+			"offsets": {
+				"from": 335880,
+				"to": 340800
+			},
+			"text": " a central server to coordinate this federal training."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,800",
+				"to": "00:05:43,040"
+			},
+			"offsets": {
+				"from": 340800,
+				"to": 343040
+			},
+			"text": " And there are, of course, a number of challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,040",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 343040,
+				"to": 346000
+			},
+			"text": " of which you might be used this type of approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:48,480"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 348480
+			},
+			"text": " to address the problem that I just mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,480",
+				"to": "00:05:50,440"
+			},
+			"offsets": {
+				"from": 348480,
+				"to": 350440
+			},
+			"text": " For example, in this case, one different bank"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,440",
+				"to": "00:05:54,880"
+			},
+			"offsets": {
+				"from": 350440,
+				"to": 354880
+			},
+			"text": " wants to collaborate."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,880",
+				"to": "00:05:58,080"
+			},
+			"offsets": {
+				"from": 354880,
+				"to": 358080
+			},
+			"text": " The question is, who should actually host the central server?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,080",
+				"to": "00:06:00,320"
+			},
+			"offsets": {
+				"from": 358080,
+				"to": 360320
+			},
+			"text": " I feel like you don't want to rely on these industries"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,320",
+				"to": "00:06:02,240"
+			},
+			"offsets": {
+				"from": 360320,
+				"to": 362240
+			},
+			"text": " just then, so you don't want to actually have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,240",
+				"to": "00:06:04,200"
+			},
+			"offsets": {
+				"from": 362240,
+				"to": 364200
+			},
+			"text": " anyone hosting the central server."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,200",
+				"to": "00:06:07,200"
+			},
+			"offsets": {
+				"from": 364200,
+				"to": 367200
+			},
+			"text": " And also the central server, by relying on the central server,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,200",
+				"to": "00:06:09,400"
+			},
+			"offsets": {
+				"from": 367200,
+				"to": 369400
+			},
+			"text": " it can create issues, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,400",
+				"to": "00:06:12,680"
+			},
+			"offsets": {
+				"from": 369400,
+				"to": 372680
+			},
+			"text": " if they became malicious or they can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,680",
+				"to": "00:06:18,120"
+			},
+			"offsets": {
+				"from": 372680,
+				"to": 378120
+			},
+			"text": " give the central server some unfair advantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,120",
+				"to": "00:06:25,560"
+			},
+			"offsets": {
+				"from": 378120,
+				"to": 385560
+			},
+			"text": " So in contrast to this federal training model, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,560",
+				"to": "00:06:27,680"
+			},
+			"offsets": {
+				"from": 385560,
+				"to": 387680
+			},
+			"text": " relies on the central server to coordinate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,680",
+				"to": "00:06:31,440"
+			},
+			"offsets": {
+				"from": 387680,
+				"to": 391440
+			},
+			"text": " distributed devices to together train"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,440",
+				"to": "00:06:34,400"
+			},
+			"offsets": {
+				"from": 391440,
+				"to": 394400
+			},
+			"text": " eventually the other in the distributed way."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,400",
+				"to": "00:06:36,720"
+			},
+			"offsets": {
+				"from": 394400,
+				"to": 396720
+			},
+			"text": " Another alternative solution is what's called"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,720",
+				"to": "00:06:37,880"
+			},
+			"offsets": {
+				"from": 396720,
+				"to": 397880
+			},
+			"text": " a peer-to-peer solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,880",
+				"to": "00:06:41,520"
+			},
+			"offsets": {
+				"from": 397880,
+				"to": 401520
+			},
+			"text": " In this case, essentially the different devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,520",
+				"to": "00:06:42,840"
+			},
+			"offsets": {
+				"from": 401520,
+				"to": 402840
+			},
+			"text": " form a peer-to-peer network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,840",
+				"to": "00:06:44,920"
+			},
+			"offsets": {
+				"from": 402840,
+				"to": 404920
+			},
+			"text": " There is no central server."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,920",
+				"to": "00:06:49,680"
+			},
+			"offsets": {
+				"from": 404920,
+				"to": 409680
+			},
+			"text": " And essentially, the different devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,680",
+				"to": "00:06:53,160"
+			},
+			"offsets": {
+				"from": 409680,
+				"to": 413160
+			},
+			"text": " will communicate through this peer-to-peer network"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,160",
+				"to": "00:06:56,880"
+			},
+			"offsets": {
+				"from": 413160,
+				"to": 416880
+			},
+			"text": " with its neighbors and then through, again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,880",
+				"to": "00:07:01,880"
+			},
+			"offsets": {
+				"from": 416880,
+				"to": 421880
+			},
+			"text": " an iterative approach to try to together"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,880",
+				"to": "00:07:07,320"
+			},
+			"offsets": {
+				"from": 421880,
+				"to": 427320
+			},
+			"text": " updates this machine-in-amount to utilize the local data"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,320",
+				"to": "00:07:12,920"
+			},
+			"offsets": {
+				"from": 427320,
+				"to": 432920
+			},
+			"text": " on the different devices to train this machine-in-amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,920",
+				"to": "00:07:16,600"
+			},
+			"offsets": {
+				"from": 432920,
+				"to": 436600
+			},
+			"text": " However, so the advantage of this approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,600",
+				"to": "00:07:18,800"
+			},
+			"offsets": {
+				"from": 436600,
+				"to": 438800
+			},
+			"text": " is that in the setting, we don't need"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,800",
+				"to": "00:07:21,160"
+			},
+			"offsets": {
+				"from": 438800,
+				"to": 441160
+			},
+			"text": " to trust any central server, because there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,160",
+				"to": "00:07:22,840"
+			},
+			"offsets": {
+				"from": 441160,
+				"to": 442840
+			},
+			"text": " a simply no central server."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,840",
+				"to": "00:07:26,360"
+			},
+			"offsets": {
+				"from": 442840,
+				"to": 446360
+			},
+			"text": " However, the challenge here is that in this peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,360",
+				"to": "00:07:33,080"
+			},
+			"offsets": {
+				"from": 446360,
+				"to": 453080
+			},
+			"text": " there's a significant overhead for communication and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,080",
+				"to": "00:07:37,880"
+			},
+			"offsets": {
+				"from": 453080,
+				"to": 457880
+			},
+			"text": " And especially when the number of clients becomes large."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,880",
+				"to": "00:07:41,960"
+			},
+			"offsets": {
+				"from": 457880,
+				"to": 461960
+			},
+			"text": " And also, there is more privacy challenges in the field."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,960",
+				"to": "00:07:47,960"
+			},
+			"offsets": {
+				"from": 461960,
+				"to": 467960
+			},
+			"text": " So in our recent work, we proposed a new paradigm"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,960",
+				"to": "00:07:52,160"
+			},
+			"offsets": {
+				"from": 467960,
+				"to": 472160
+			},
+			"text": " that we call \"essentialized-fantasy-ready.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,160",
+				"to": "00:07:56,920"
+			},
+			"offsets": {
+				"from": 472160,
+				"to": 476920
+			},
+			"text": " Where we combine, essentially, the best of both worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,920",
+				"to": "00:08:01,280"
+			},
+			"offsets": {
+				"from": 476920,
+				"to": 481280
+			},
+			"text": " Both using a decentralized setting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,280",
+				"to": "00:08:04,040"
+			},
+			"offsets": {
+				"from": 481280,
+				"to": 484040
+			},
+			"text": " where we don't rely on any central server."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,040",
+				"to": "00:08:08,280"
+			},
+			"offsets": {
+				"from": 484040,
+				"to": 488280
+			},
+			"text": " But also, at the same time, we can achieve much better"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,280",
+				"to": "00:08:11,760"
+			},
+			"offsets": {
+				"from": 488280,
+				"to": 491760
+			},
+			"text": " efficiency and a much stronger privacy protection"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,760",
+				"to": "00:08:14,800"
+			},
+			"offsets": {
+				"from": 491760,
+				"to": 494800
+			},
+			"text": " than the peer-to-peer setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,800",
+				"to": "00:08:17,480"
+			},
+			"offsets": {
+				"from": 494800,
+				"to": 497480
+			},
+			"text": " And then when we do that, it's the incentive for using"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,480",
+				"to": "00:08:18,720"
+			},
+			"offsets": {
+				"from": 497480,
+				"to": 498720
+			},
+			"text": " a central server, where you essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,720",
+				"to": "00:08:22,920"
+			},
+			"offsets": {
+				"from": 498720,
+				"to": 502920
+			},
+			"text": " use a blockchain smart contract platform to coordinate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,920",
+				"to": "00:08:26,840"
+			},
+			"offsets": {
+				"from": 502920,
+				"to": 506840
+			},
+			"text": " this distributed machine learning across the different local"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,840",
+				"to": "00:08:28,960"
+			},
+			"offsets": {
+				"from": 506840,
+				"to": 508960
+			},
+			"text": " devices, the different clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,960",
+				"to": "00:08:30,480"
+			},
+			"offsets": {
+				"from": 508960,
+				"to": 510480
+			},
+			"text": " Which holds the private thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,480",
+				"to": "00:08:38,960"
+			},
+			"offsets": {
+				"from": 510480,
+				"to": 518960
+			},
+			"text": " Using this new paradigm, we achieve a number of advantages."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,960",
+				"to": "00:08:42,680"
+			},
+			"offsets": {
+				"from": 518960,
+				"to": 522680
+			},
+			"text": " One, again, we enable the centralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,680",
+				"to": "00:08:46,960"
+			},
+			"offsets": {
+				"from": 522680,
+				"to": 526960
+			},
+			"text": " So we don't need to trust any central party for the operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,960",
+				"to": "00:08:50,680"
+			},
+			"offsets": {
+				"from": 526960,
+				"to": 530680
+			},
+			"text": " And, again, it's a bunch more efficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,680",
+				"to": "00:08:54,520"
+			},
+			"offsets": {
+				"from": 530680,
+				"to": 534520
+			},
+			"text": " and can really scale to a large number of participants"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,520",
+				"to": "00:08:56,840"
+			},
+			"offsets": {
+				"from": 534520,
+				"to": 536840
+			},
+			"text": " compared to the peer-to-peer solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,840",
+				"to": "00:08:58,600"
+			},
+			"offsets": {
+				"from": 536840,
+				"to": 538600
+			},
+			"text": " And we can achieve a very high utility."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,600",
+				"to": "00:09:01,680"
+			},
+			"offsets": {
+				"from": 538600,
+				"to": 541680
+			},
+			"text": " Essentially, the accuracy can be comparable to the centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,680",
+				"to": "00:09:02,720"
+			},
+			"offsets": {
+				"from": 541680,
+				"to": 542720
+			},
+			"text": " model."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,720",
+				"to": "00:09:06,080"
+			},
+			"offsets": {
+				"from": 542720,
+				"to": 546080
+			},
+			"text": " And we achieve strong privacy, where we can protect"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,080",
+				"to": "00:09:08,800"
+			},
+			"offsets": {
+				"from": 546080,
+				"to": 548800
+			},
+			"text": " the client's data privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,800",
+				"to": "00:09:11,560"
+			},
+			"offsets": {
+				"from": 548800,
+				"to": 551560
+			},
+			"text": " And by using a blockchain smart contract platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,560",
+				"to": "00:09:13,360"
+			},
+			"offsets": {
+				"from": 551560,
+				"to": 553360
+			},
+			"text": " we have a key incentive mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,840",
+				"to": "00:09:21,040"
+			},
+			"offsets": {
+				"from": 553840,
+				"to": 561040
+			},
+			"text": " So now let's take a look at how this approach works."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,040",
+				"to": "00:09:24,480"
+			},
+			"offsets": {
+				"from": 561040,
+				"to": 564480
+			},
+			"text": " So first, let me give you a strong end solution, where"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,480",
+				"to": "00:09:27,720"
+			},
+			"offsets": {
+				"from": 564480,
+				"to": 567720
+			},
+			"text": " as I mentioned, one way to achieve the decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,720",
+				"to": "00:09:30,400"
+			},
+			"offsets": {
+				"from": 567720,
+				"to": 570400
+			},
+			"text": " fragile training is we use a blockchain smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,400",
+				"to": "00:09:34,760"
+			},
+			"offsets": {
+				"from": 570400,
+				"to": 574760
+			},
+			"text": " platform to coordinate these different clients for training"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,760",
+				"to": "00:09:37,480"
+			},
+			"offsets": {
+				"from": 574760,
+				"to": 577480
+			},
+			"text": " the machine learning model in the distributed decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,480",
+				"to": "00:09:38,320"
+			},
+			"offsets": {
+				"from": 577480,
+				"to": 578320
+			},
+			"text": " way."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,320",
+				"to": "00:09:41,960"
+			},
+			"offsets": {
+				"from": 578320,
+				"to": 581960
+			},
+			"text": " So one strong end approach is that we can simply set up"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,960",
+				"to": "00:09:44,280"
+			},
+			"offsets": {
+				"from": 581960,
+				"to": 584280
+			},
+			"text": " a smart contract on the blockchain platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,280",
+				"to": "00:09:45,880"
+			},
+			"offsets": {
+				"from": 584280,
+				"to": 585880
+			},
+			"text": " which performs a model aggregation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,880",
+				"to": "00:09:49,920"
+			},
+			"offsets": {
+				"from": 585880,
+				"to": 589920
+			},
+			"text": " As I mentioned earlier, in the Federalist's learning setting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,920",
+				"to": "00:09:52,600"
+			},
+			"offsets": {
+				"from": 589920,
+				"to": 592600
+			},
+			"text": " where essentially this model aggregation smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,600",
+				"to": "00:09:56,440"
+			},
+			"offsets": {
+				"from": 592600,
+				"to": 596440
+			},
+			"text": " will perform what the central server will do down the line."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,440",
+				"to": "00:09:59,840"
+			},
+			"offsets": {
+				"from": 596440,
+				"to": 599840
+			},
+			"text": " But however, again, so the challenge here"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,840",
+				"to": "00:10:04,640"
+			},
+			"offsets": {
+				"from": 599840,
+				"to": 604640
+			},
+			"text": " is that in this case, it can be very efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,640",
+				"to": "00:10:07,160"
+			},
+			"offsets": {
+				"from": 604640,
+				"to": 607160
+			},
+			"text": " And also provides strong integrity guarantees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,160",
+				"to": "00:10:09,560"
+			},
+			"offsets": {
+				"from": 607160,
+				"to": 609560
+			},
+			"text": " even in the decentralized setting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,560",
+				"to": "00:10:13,040"
+			},
+			"offsets": {
+				"from": 609560,
+				"to": 613040
+			},
+			"text": " where we don't need to actually rely on trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,040",
+				"to": "00:10:14,360"
+			},
+			"offsets": {
+				"from": 613040,
+				"to": 614360
+			},
+			"text": " after this central server."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,360",
+				"to": "00:10:17,480"
+			},
+			"offsets": {
+				"from": 614360,
+				"to": 617480
+			},
+			"text": " However, the challenge here is that using this approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,480",
+				"to": "00:10:21,320"
+			},
+			"offsets": {
+				"from": 617480,
+				"to": 621320
+			},
+			"text": " there can be privacy concerns, because on a typical blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,320",
+				"to": "00:10:25,040"
+			},
+			"offsets": {
+				"from": 621320,
+				"to": 625040
+			},
+			"text": " smart contract platform, the blockchain data is public."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,040",
+				"to": "00:10:28,960"
+			},
+			"offsets": {
+				"from": 625040,
+				"to": 628960
+			},
+			"text": " And even though, in this case, the clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,960",
+				"to": "00:10:33,560"
+			},
+			"offsets": {
+				"from": 628960,
+				"to": 633560
+			},
+			"text": " are now sending local data to the blockchain platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,560",
+				"to": "00:10:36,880"
+			},
+			"offsets": {
+				"from": 633560,
+				"to": 636880
+			},
+			"text": " but however, even the screening updates"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,880",
+				"to": "00:10:39,280"
+			},
+			"offsets": {
+				"from": 636880,
+				"to": 639280
+			},
+			"text": " for two updates and machine learning models,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,280",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 639280,
+				"to": 642000
+			},
+			"text": " they can still contain sensitive information."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:48,200"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 648200
+			},
+			"text": " So the question is, how can we do this in a more privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,200",
+				"to": "00:10:50,800"
+			},
+			"offsets": {
+				"from": 648200,
+				"to": 650800
+			},
+			"text": " preserving way?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,800",
+				"to": "00:10:53,960"
+			},
+			"offsets": {
+				"from": 650800,
+				"to": 653960
+			},
+			"text": " So to address these challenges, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,960",
+				"to": "00:10:58,360"
+			},
+			"offsets": {
+				"from": 653960,
+				"to": 658360
+			},
+			"text": " propose pipelines to enable this new paradigm of decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,360",
+				"to": "00:10:59,560"
+			},
+			"offsets": {
+				"from": 658360,
+				"to": 659560
+			},
+			"text": " furniture ability."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,560",
+				"to": "00:11:02,040"
+			},
+			"offsets": {
+				"from": 659560,
+				"to": 662040
+			},
+			"text": " And a pipeline essentially utilizes"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,040",
+				"to": "00:11:06,320"
+			},
+			"offsets": {
+				"from": 662040,
+				"to": 666320
+			},
+			"text": " a number of privacy-creativity technologies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,320",
+				"to": "00:11:08,760"
+			},
+			"offsets": {
+				"from": 666320,
+				"to": 668760
+			},
+			"text": " including furniture privacy, where we actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,760",
+				"to": "00:11:12,520"
+			},
+			"offsets": {
+				"from": 668760,
+				"to": 672520
+			},
+			"text": " have a differentiable in-campus machine learning model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,520",
+				"to": "00:11:16,040"
+			},
+			"offsets": {
+				"from": 672520,
+				"to": 676040
+			},
+			"text": " and using secure aggregation, where"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,040",
+				"to": "00:11:18,920"
+			},
+			"offsets": {
+				"from": 676040,
+				"to": 678920
+			},
+			"text": " the model updates that's being sent to the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,920",
+				"to": "00:11:22,360"
+			},
+			"offsets": {
+				"from": 678920,
+				"to": 682360
+			},
+			"text": " smart contract platform actually will be in an encrypted form."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,360",
+				"to": "00:11:27,560"
+			},
+			"offsets": {
+				"from": 682360,
+				"to": 687560
+			},
+			"text": " And we use secure aggregation to do the model aggregation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,560",
+				"to": "00:11:31,160"
+			},
+			"offsets": {
+				"from": 687560,
+				"to": 691160
+			},
+			"text": " And of course, in this case, also to protect privacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,160",
+				"to": "00:11:33,600"
+			},
+			"offsets": {
+				"from": 691160,
+				"to": 693600
+			},
+			"text": " we ensure that the model is equipped."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,080",
+				"to": "00:11:42,480"
+			},
+			"offsets": {
+				"from": 697080,
+				"to": 702480
+			},
+			"text": " So how this works is that, again, we take an iterative approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,480",
+				"to": "00:11:44,520"
+			},
+			"offsets": {
+				"from": 702480,
+				"to": 704520
+			},
+			"text": " And in this case, in particular, we actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,520",
+				"to": "00:11:49,440"
+			},
+			"offsets": {
+				"from": 704520,
+				"to": 709440
+			},
+			"text": " have enabled this decentralized furniture learning"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,440",
+				"to": "00:11:51,480"
+			},
+			"offsets": {
+				"from": 709440,
+				"to": 711480
+			},
+			"text": " on the Oasis blockchain platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,480",
+				"to": "00:11:54,080"
+			},
+			"offsets": {
+				"from": 711480,
+				"to": 714080
+			},
+			"text": " So one thing, as I mentioned earlier, Oasis blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,080",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 714080,
+				"to": 717000
+			},
+			"text": " platform actually enables confidential smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:02,040"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 722040
+			},
+			"text": " where the smart contracts states is actually even deformed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,040",
+				"to": "00:12:06,160"
+			},
+			"offsets": {
+				"from": 722040,
+				"to": 726160
+			},
+			"text": " and we utilize secure computing to enable"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,160",
+				"to": "00:12:12,880"
+			},
+			"offsets": {
+				"from": 726160,
+				"to": 732880
+			},
+			"text": " secure computation, or execution of the smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,880",
+				"to": "00:12:17,320"
+			},
+			"offsets": {
+				"from": 732880,
+				"to": 737320
+			},
+			"text": " while the smart contract states is stored in an encrypted form."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,320",
+				"to": "00:12:18,760"
+			},
+			"offsets": {
+				"from": 737320,
+				"to": 738760
+			},
+			"text": " So essentially, with high-minded,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,760",
+				"to": "00:12:21,920"
+			},
+			"offsets": {
+				"from": 738760,
+				"to": 741920
+			},
+			"text": " we utilize this confidential smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,920",
+				"to": "00:12:28,080"
+			},
+			"offsets": {
+				"from": 741920,
+				"to": 748080
+			},
+			"text": " primitive, where, again, in this iterative approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,080",
+				"to": "00:12:31,640"
+			},
+			"offsets": {
+				"from": 748080,
+				"to": 751640
+			},
+			"text": " at each iteration, the machine learning model"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,640",
+				"to": "00:12:33,840"
+			},
+			"offsets": {
+				"from": 751640,
+				"to": 753840
+			},
+			"text": " that we are trying to train, you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,840",
+				"to": "00:12:40,960"
+			},
+			"offsets": {
+				"from": 753840,
+				"to": 760960
+			},
+			"text": " use it as part of the states of our confidential smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,960",
+				"to": "00:12:42,760"
+			},
+			"offsets": {
+				"from": 760960,
+				"to": 762760
+			},
+			"text": " where we call hype minds."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,760",
+				"to": "00:12:48,400"
+			},
+			"offsets": {
+				"from": 762760,
+				"to": 768400
+			},
+			"text": " And at each round, this encrypted model"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,400",
+				"to": "00:12:51,240"
+			},
+			"offsets": {
+				"from": 768400,
+				"to": 771240
+			},
+			"text": " is sent to the local devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,240",
+				"to": "00:12:53,120"
+			},
+			"offsets": {
+				"from": 771240,
+				"to": 773120
+			},
+			"text": " We do handle some key management."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,120",
+				"to": "00:13:00,680"
+			},
+			"offsets": {
+				"from": 773120,
+				"to": 780680
+			},
+			"text": " So the model then gets decrypted on the local devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,680",
+				"to": "00:13:03,560"
+			},
+			"offsets": {
+				"from": 780680,
+				"to": 783560
+			},
+			"text": " And then the client uses its own local data"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,560",
+				"to": "00:13:09,320"
+			},
+			"offsets": {
+				"from": 783560,
+				"to": 789320
+			},
+			"text": " to update the local model."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,320",
+				"to": "00:13:14,360"
+			},
+			"offsets": {
+				"from": 789320,
+				"to": 794360
+			},
+			"text": " And then it then computes the gradient updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,360",
+				"to": "00:13:17,880"
+			},
+			"offsets": {
+				"from": 794360,
+				"to": 797880
+			},
+			"text": " And then it also adds differential privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,880",
+				"to": "00:13:22,720"
+			},
+			"offsets": {
+				"from": 797880,
+				"to": 802720
+			},
+			"text": " perturbation to ensure that the strategy"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,720",
+				"to": "00:13:25,720"
+			},
+			"offsets": {
+				"from": 802720,
+				"to": 805720
+			},
+			"text": " of gradient in the end, we can train"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,720",
+				"to": "00:13:28,440"
+			},
+			"offsets": {
+				"from": 805720,
+				"to": 808440
+			},
+			"text": " the differential in private model."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,440",
+				"to": "00:13:32,760"
+			},
+			"offsets": {
+				"from": 808440,
+				"to": 812760
+			},
+			"text": " And then this gradient updates with the differential"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,760",
+				"to": "00:13:38,320"
+			},
+			"offsets": {
+				"from": 812760,
+				"to": 818320
+			},
+			"text": " privacy noise at this is then, again, actually encrypted"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,320",
+				"to": "00:13:41,400"
+			},
+			"offsets": {
+				"from": 818320,
+				"to": 821400
+			},
+			"text": " and then sent to the OSU blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,400",
+				"to": "00:13:43,760"
+			},
+			"offsets": {
+				"from": 821400,
+				"to": 823760
+			},
+			"text": " from the pipeline to the pipeline, so smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,760",
+				"to": "00:13:46,640"
+			},
+			"offsets": {
+				"from": 823760,
+				"to": 826640
+			},
+			"text": " Where the client's smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,640",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 826640,
+				"to": 829000
+			},
+			"text": " then combines the screening updates"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:50,520"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 830520
+			},
+			"text": " and the differential--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,520",
+				"to": "00:13:53,920"
+			},
+			"offsets": {
+				"from": 830520,
+				"to": 833920
+			},
+			"text": " differentially private perturbations"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,920",
+				"to": "00:13:56,640"
+			},
+			"offsets": {
+				"from": 833920,
+				"to": 836640
+			},
+			"text": " and through the secure aggregation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,640",
+				"to": "00:14:00,200"
+			},
+			"offsets": {
+				"from": 836640,
+				"to": 840200
+			},
+			"text": " and then computes the next iteration of the app"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,200",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 840200,
+				"to": 842000
+			},
+			"text": " is the model."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:05,160"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 845160
+			},
+			"text": " So again, by taking this iterative approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,160",
+				"to": "00:14:08,320"
+			},
+			"offsets": {
+				"from": 845160,
+				"to": 848320
+			},
+			"text": " we can use this combined confidential smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,320",
+				"to": "00:14:12,240"
+			},
+			"offsets": {
+				"from": 848320,
+				"to": 852240
+			},
+			"text": " to coordinate the distributed machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,240",
+				"to": "00:14:15,640"
+			},
+			"offsets": {
+				"from": 852240,
+				"to": 855640
+			},
+			"text": " and training across the different devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,640",
+				"to": "00:14:17,880"
+			},
+			"offsets": {
+				"from": 855640,
+				"to": 857880
+			},
+			"text": " to enable decentralized private treatment."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,880",
+				"to": "00:14:24,200"
+			},
+			"offsets": {
+				"from": 857880,
+				"to": 864200
+			},
+			"text": " So now I'm going to give you an example"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,200",
+				"to": "00:14:28,960"
+			},
+			"offsets": {
+				"from": 864200,
+				"to": 868960
+			},
+			"text": " of an actual application that we call"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,960",
+				"to": "00:14:33,280"
+			},
+			"offsets": {
+				"from": 868960,
+				"to": 873280
+			},
+			"text": " the domain of anomaly detection."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,280",
+				"to": "00:14:36,080"
+			},
+			"offsets": {
+				"from": 873280,
+				"to": 876080
+			},
+			"text": " So in this case, essentially, we can update the pipeline"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,080",
+				"to": "00:14:39,560"
+			},
+			"offsets": {
+				"from": 876080,
+				"to": 879560
+			},
+			"text": " smart contracts to enable essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,560",
+				"to": "00:14:42,920"
+			},
+			"offsets": {
+				"from": 879560,
+				"to": 882920
+			},
+			"text": " to train a machine model for anomaly detection."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,920",
+				"to": "00:14:46,840"
+			},
+			"offsets": {
+				"from": 882920,
+				"to": 886840
+			},
+			"text": " And in particular, in this case, for anomaly detection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,840",
+				"to": "00:14:51,360"
+			},
+			"offsets": {
+				"from": 886840,
+				"to": 891360
+			},
+			"text": " we look at the application of a system log anomaly detection."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,360",
+				"to": "00:14:55,360"
+			},
+			"offsets": {
+				"from": 891360,
+				"to": 895360
+			},
+			"text": " So as computers run certain programs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,360",
+				"to": "00:14:58,560"
+			},
+			"offsets": {
+				"from": 895360,
+				"to": 898560
+			},
+			"text": " oftentimes it produces system logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,560",
+				"to": "00:15:01,320"
+			},
+			"offsets": {
+				"from": 898560,
+				"to": 901320
+			},
+			"text": " And this system logs contains very useful information."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,320",
+				"to": "00:15:04,480"
+			},
+			"offsets": {
+				"from": 901320,
+				"to": 904480
+			},
+			"text": " And one can try to train machine models"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,480",
+				"to": "00:15:09,360"
+			},
+			"offsets": {
+				"from": 904480,
+				"to": 909360
+			},
+			"text": " to go over these system logs to try to detect anomalies."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,360",
+				"to": "00:15:13,400"
+			},
+			"offsets": {
+				"from": 909360,
+				"to": 913400
+			},
+			"text": " And essentially, one way to do system log anomaly detection"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,400",
+				"to": "00:15:16,200"
+			},
+			"offsets": {
+				"from": 913400,
+				"to": 916200
+			},
+			"text": " using deep learning is that we can actually train a sequence"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,200",
+				"to": "00:15:16,920"
+			},
+			"offsets": {
+				"from": 916200,
+				"to": 916920
+			},
+			"text": " model."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,920",
+				"to": "00:15:18,640"
+			},
+			"offsets": {
+				"from": 916920,
+				"to": 918640
+			},
+			"text": " And then using the sequence model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,640",
+				"to": "00:15:21,960"
+			},
+			"offsets": {
+				"from": 918640,
+				"to": 921960
+			},
+			"text": " we can then go through the system logs"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,960",
+				"to": "00:15:26,480"
+			},
+			"offsets": {
+				"from": 921960,
+				"to": 926480
+			},
+			"text": " to try to detect anomalies."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,480",
+				"to": "00:15:30,800"
+			},
+			"offsets": {
+				"from": 926480,
+				"to": 930800
+			},
+			"text": " So in our case, essentially, we actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,800",
+				"to": "00:15:35,040"
+			},
+			"offsets": {
+				"from": 930800,
+				"to": 935040
+			},
+			"text": " use the real-world system logs and then train it through"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,040",
+				"to": "00:15:38,520"
+			},
+			"offsets": {
+				"from": 935040,
+				"to": 938520
+			},
+			"text": " using this decentralized private delivery"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,520",
+				"to": "00:15:42,720"
+			},
+			"offsets": {
+				"from": 938520,
+				"to": 942720
+			},
+			"text": " to actually train and update the model on our platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,720",
+				"to": "00:15:47,640"
+			},
+			"offsets": {
+				"from": 942720,
+				"to": 947640
+			},
+			"text": " And we enable strong privacy protection"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,640",
+				"to": "00:15:50,120"
+			},
+			"offsets": {
+				"from": 947640,
+				"to": 950120
+			},
+			"text": " while at the same time achieve high utility."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,120",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 950120,
+				"to": 955000
+			},
+			"text": " And in many settings, the utility essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:16:01,200"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 961200
+			},
+			"text": " is close to the centralized model."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,200",
+				"to": "00:16:05,160"
+			},
+			"offsets": {
+				"from": 961200,
+				"to": 965160
+			},
+			"text": " So to summarize, we have proposed a new paradigm called"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,160",
+				"to": "00:16:07,520"
+			},
+			"offsets": {
+				"from": 965160,
+				"to": 967520
+			},
+			"text": " the centralized private delivery, where"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,520",
+				"to": "00:16:11,320"
+			},
+			"offsets": {
+				"from": 967520,
+				"to": 971320
+			},
+			"text": " we don't need to rely on any trust, not any central printing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,320",
+				"to": "00:16:15,440"
+			},
+			"offsets": {
+				"from": 971320,
+				"to": 975440
+			},
+			"text": " And we provide much greater efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,440",
+				"to": "00:16:18,560"
+			},
+			"offsets": {
+				"from": 975440,
+				"to": 978560
+			},
+			"text": " for training distributed machine model than the peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,560",
+				"to": "00:16:21,320"
+			},
+			"offsets": {
+				"from": 978560,
+				"to": 981320
+			},
+			"text": " setting with the strong privacy protection"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,320",
+				"to": "00:16:23,560"
+			},
+			"offsets": {
+				"from": 981320,
+				"to": 983560
+			},
+			"text": " and the beauty in central mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,560",
+				"to": "00:16:26,280"
+			},
+			"offsets": {
+				"from": 983560,
+				"to": 986280
+			},
+			"text": " And this decentralized private delivery"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,280",
+				"to": "00:16:29,400"
+			},
+			"offsets": {
+				"from": 986280,
+				"to": 989400
+			},
+			"text": " has been enabled by the OSIS blockchain platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,400",
+				"to": "00:16:34,080"
+			},
+			"offsets": {
+				"from": 989400,
+				"to": 994080
+			},
+			"text": " with its unique capabilities for greater scalability"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,080",
+				"to": "00:16:35,600"
+			},
+			"offsets": {
+				"from": 994080,
+				"to": 995600
+			},
+			"text": " and also privacy protection."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,600",
+				"to": "00:16:44,960"
+			},
+			"offsets": {
+				"from": 995600,
+				"to": 1004960
+			},
+			"text": " With the OSIS network here, as I just demonstrated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,960",
+				"to": "00:16:48,800"
+			},
+			"offsets": {
+				"from": 1004960,
+				"to": 1008800
+			},
+			"text": " it's a first broad-to-smart contract platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,800",
+				"to": "00:16:53,120"
+			},
+			"offsets": {
+				"from": 1008800,
+				"to": 1013120
+			},
+			"text": " that can enable this type of solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,120",
+				"to": "00:16:55,360"
+			},
+			"offsets": {
+				"from": 1013120,
+				"to": 1015360
+			},
+			"text": " Decentralize the first-year company."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,360",
+				"to": "00:16:59,320"
+			},
+			"offsets": {
+				"from": 1015360,
+				"to": 1019320
+			},
+			"text": " And we hope I encourage everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,320",
+				"to": "00:17:03,560"
+			},
+			"offsets": {
+				"from": 1019320,
+				"to": 1023560
+			},
+			"text": " to build new applications on the OSIS network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,560",
+				"to": "00:17:06,560"
+			},
+			"offsets": {
+				"from": 1023560,
+				"to": 1026560
+			},
+			"text": " And we recently launched our DIMN 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,560",
+				"to": "00:17:12,400"
+			},
+			"offsets": {
+				"from": 1026560,
+				"to": 1032400
+			},
+			"text": " And also, we released a new new developer tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,400",
+				"to": "00:17:17,480"
+			},
+			"offsets": {
+				"from": 1032400,
+				"to": 1037480
+			},
+			"text": " with a new developer experience to make it really easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,480",
+				"to": "00:17:20,840"
+			},
+			"offsets": {
+				"from": 1037480,
+				"to": 1040840
+			},
+			"text": " to build applications on top of the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,840",
+				"to": "00:17:25,520"
+			},
+			"offsets": {
+				"from": 1040840,
+				"to": 1045520
+			},
+			"text": " And in particular, also including new--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,520",
+				"to": "00:17:28,520"
+			},
+			"offsets": {
+				"from": 1045520,
+				"to": 1048520
+			},
+			"text": " and also, we are developing new data privacy APIs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,520",
+				"to": "00:17:32,080"
+			},
+			"offsets": {
+				"from": 1048520,
+				"to": 1052080
+			},
+			"text": " in particular, to make it easier for developers to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,080",
+				"to": "00:17:35,360"
+			},
+			"offsets": {
+				"from": 1052080,
+				"to": 1055360
+			},
+			"text": " privacy-free applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,360",
+				"to": "00:17:42,280"
+			},
+			"offsets": {
+				"from": 1055360,
+				"to": 1062280
+			},
+			"text": " And we are inviting node operators"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,280",
+				"to": "00:17:45,960"
+			},
+			"offsets": {
+				"from": 1062280,
+				"to": 1065960
+			},
+			"text": " and to join our network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,960",
+				"to": "00:17:48,880"
+			},
+			"offsets": {
+				"from": 1065960,
+				"to": 1068880
+			},
+			"text": " And we'll be starting also about BEMT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,880",
+				"to": "00:17:52,520"
+			},
+			"offsets": {
+				"from": 1068880,
+				"to": 1072520
+			},
+			"text": " and also, we'll be launching a public test mission"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,520",
+				"to": "00:17:55,920"
+			},
+			"offsets": {
+				"from": 1072520,
+				"to": 1075920
+			},
+			"text": " with the Staking Competition."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,920",
+				"to": "00:18:00,600"
+			},
+			"offsets": {
+				"from": 1075920,
+				"to": 1080600
+			},
+			"text": " So the Staking Competition will be coming in late in Q4."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,600",
+				"to": "00:18:08,560"
+			},
+			"offsets": {
+				"from": 1080600,
+				"to": 1088560
+			},
+			"text": " And we really welcome everyone to join the Staking Competition."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,560",
+				"to": "00:18:15,360"
+			},
+			"offsets": {
+				"from": 1088560,
+				"to": 1095360
+			},
+			"text": " And again, we look forward to have people try ask the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,360",
+				"to": "00:18:19,480"
+			},
+			"offsets": {
+				"from": 1095360,
+				"to": 1099480
+			},
+			"text": " and to build new applications that couldn't be built before."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,480",
+				"to": "00:18:20,440"
+			},
+			"offsets": {
+				"from": 1099480,
+				"to": 1100440
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,440",
+				"to": "00:18:22,440"
+			},
+			"offsets": {
+				"from": 1100440,
+				"to": 1102440
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,440",
+				"to": "00:18:28,600"
+			},
+			"offsets": {
+				"from": 1102440,
+				"to": 1108600
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,600",
+				"to": "00:18:31,940"
+			},
+			"offsets": {
+				"from": 1108600,
+				"to": 1111940
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,940",
+				"to": "00:18:35,280"
+			},
+			"offsets": {
+				"from": 1111940,
+				"to": 1115280
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,280",
+				"to": "00:18:38,620"
+			},
+			"offsets": {
+				"from": 1115280,
+				"to": 1118620
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,620",
+				"to": "00:18:41,360"
+			},
+			"offsets": {
+				"from": 1118620,
+				"to": 1121360
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

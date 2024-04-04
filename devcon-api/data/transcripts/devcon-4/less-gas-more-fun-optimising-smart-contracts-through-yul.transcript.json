@@ -1,0 +1,4080 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4000
+			},
+			"text": " This talk is about the new Yule Optimizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,000",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 4000,
+				"to": 7000
+			},
+			"text": " And I want to start in a good tradition."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:09,000"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 9000
+			},
+			"text": " I want to start with a definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 9000,
+				"to": 11000
+			},
+			"text": " What is an optimizer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 16000
+			},
+			"text": " An optimizer is a piece of software that takes another piece of software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 21000
+			},
+			"text": " a program as input, and transforms it into a new piece of software"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 27000
+			},
+			"text": " that hopefully requires fewer resources, or at least not more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 29000
+			},
+			"text": " and is semantically equivalent."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 32000
+			},
+			"text": " So it means it does exactly the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 37000
+			},
+			"text": " And both of these components of the definition allow for some kind of slag,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 40000
+			},
+			"text": " so both the resources and the semantic equivalence,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 42000
+			},
+			"text": " but we'll touch on that later."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 44000
+			},
+			"text": " Let's see an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 51000
+			},
+			"text": " So this is Solidity code that computes the square of the input number."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 56000
+			},
+			"text": " And it uses the exponentiation operation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 59000
+			},
+			"text": " which is quite expensive on the EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 62000
+			},
+			"text": " and the same thing can be achieved with just a multiplication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 66000
+			},
+			"text": " multiplication of x by itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 75000
+			},
+			"text": " And so such a transformation on Solidity would be a valid optimizer transformation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 78000
+			},
+			"text": " because it does the same thing, and it's cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 82000
+			},
+			"text": " Okay, but we don't want to optimize Solidity directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 87000
+			},
+			"text": " We want to optimize the low-level language that we'll see later."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 90000
+			},
+			"text": " This thing has two problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 93000
+			},
+			"text": " The first one touches on the resources part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 97000
+			},
+			"text": " so what are actually the resources we want to optimize?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 99000
+			},
+			"text": " On the EVM, this might be trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 101000
+			},
+			"text": " Of course, you want to optimize for gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 107000
+			},
+			"text": " But if you take a closer look, then you see that, yeah, gas is not..."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 111000
+			},
+			"text": " Yeah, there's no... not a unique thing you can call gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 114000
+			},
+			"text": " or gas usage of a smart contract because there are at least two."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 118000
+			},
+			"text": " The first is the gas that is required to deploy the smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 122000
+			},
+			"text": " and the second thing is the gas that is required later if you call individual functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 128000
+			},
+			"text": " And this is a... yeah, this is a trade-off that actually matters later"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 134000
+			},
+			"text": " because some routines, if you transform them to something that is more compact"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 139000
+			},
+			"text": " but does the same thing, then this reduces deploy time cost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 142000
+			},
+			"text": " but most of the time it increases runtime costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 149000
+			},
+			"text": " So... and the current optimizer also has a flag where you can set exactly this trade-off."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 151000
+			},
+			"text": " It's called the runs parameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 155000
+			},
+			"text": " This is often misinterpreted as just the number of runs you want to..."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 158000
+			},
+			"text": " the amount of effort you want to put into the optimizer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 160000
+			},
+			"text": " but it's actually exactly this trade-off."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 164000
+			},
+			"text": " And this trade-off problem gets even more complicated when you have loops"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 168000
+			},
+			"text": " because then you might want to..."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 174000
+			},
+			"text": " so for the code that is inside the loop that is executed more often than the code outside of the loop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 178000
+			},
+			"text": " so there it's even more important that the runtime costs are lower,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 183000
+			},
+			"text": " and you might be fine with a little bit more deploy time costs in such cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 186000
+			},
+			"text": " But yeah, these are tough decisions for the optimizer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 189000
+			},
+			"text": " and it will not always get it right."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193000
+			},
+			"text": " And the second problem is that even if you have a clearly defined,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 196000
+			},
+			"text": " mathematically defined metric for resource consumption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 200000
+			},
+			"text": " it is theoretically impossible to create a perfect optimizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 204000
+			},
+			"text": " And a perfect optimizer means it takes a programmer's input"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 208000
+			},
+			"text": " and the output program is the best possible program that does the same thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 211000
+			},
+			"text": " with the least amount of resource usage."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 213000
+			},
+			"text": " And the reason for that is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 216000
+			},
+			"text": " yeah, not... not..."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 220000
+			},
+			"text": " the problem that finding this optimal program is too difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 223000
+			},
+			"text": " because the search space is too large or something like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 226000
+			},
+			"text": " but it's the semantic equivalence."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 231000
+			},
+			"text": " And more specifically, you probably heard about the halting problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 235000
+			},
+			"text": " that gets cited all the way in Turing-complete..."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 242000
+			},
+			"text": " for Turing-complete blockchain smart contract execution environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 247000
+			},
+			"text": " And you can show why are the halting problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 250000
+			},
+			"text": " that a perfect optimizer is impossible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 256000
+			},
+			"text": " And yeah, the halting problem is that it's a result from theoretical computer science,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 260000
+			},
+			"text": " and it says that there is no program that decides on a given input program"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 263000
+			},
+			"text": " whether it halts on all inputs or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 268000
+			},
+			"text": " And because we're on the EVM here, we replace halt by revert,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 270000
+			},
+			"text": " and this is still true."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 276000
+			},
+			"text": " And so we now assume that we have a perfect optimizer"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 279000
+			},
+			"text": " and use that perfect optimizer to solve the halting problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 282000
+			},
+			"text": " and because of that perfect optimizer is impossible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 286000
+			},
+			"text": " And yeah, the way we do it is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 290000
+			},
+			"text": " so if a program reverts on all inputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 293000
+			},
+			"text": " and it's the shortest program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 297000
+			},
+			"text": " then it has to look something like this empty contract here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 300000
+			},
+			"text": " Because that's the shortest program that reverts on all inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 303000
+			},
+			"text": " And so to decide the halting problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 305000
+			},
+			"text": " we take the perfect optimizer, run it on the input,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 308000
+			},
+			"text": " and if it outputs this empty smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 312000
+			},
+			"text": " then the input halts on all inputs and otherwise not."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 317000
+			},
+			"text": " Okay, that's a nice theoretical result, but yeah, completely useless for practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 323000
+			},
+			"text": " I mean, it's nice to know the lower bounds and where we cannot go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 328000
+			},
+			"text": " but if we relax this optimal thing, we can get quite far."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 332000
+			},
+			"text": " So now next question you might ask is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 334000
+			},
+			"text": " why do we want an optimizer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 337000
+			},
+			"text": " And there is probably an obvious answer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 339000
+			},
+			"text": " and that is we want cheaper smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 345000
+			},
+			"text": " But if you take a closer look, then this is not the main reason to have an optimizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 351000
+			},
+			"text": " Instead, an optimizer allows you to write your code in a more modular"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 353000
+			},
+			"text": " and more understandable way."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 359000
+			},
+			"text": " So if you do not use an optimizer and you care about resource consumption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 361000
+			},
+			"text": " then you always have to consider,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 364000
+			},
+			"text": " \"Oh, is this cheap enough what I'm writing here or not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 368000
+			},
+			"text": " Can I change it in a way so that it's a little bit cheaper?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 370000
+			},
+			"text": " And still does the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 374000
+			},
+			"text": " But if you know that the optimizer will just do that for yourself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 378000
+			},
+			"text": " then you can write it so that it's readable, it's auditable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 381000
+			},
+			"text": " you are 100% sure that it works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 384000
+			},
+			"text": " and you don't have to care about resource consumption all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 387000
+			},
+			"text": " And an example of that is this smart contract here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 392000
+			},
+			"text": " It's a simple fragment of a voting contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 397000
+			},
+			"text": " We have a vote function which takes an output, an outcome we want to vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 401000
+			},
+			"text": " and it checks that the user has not voted yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 407000
+			},
+			"text": " And if the user has not voted yet, it assigns the weight of the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 409000
+			},
+			"text": " to the votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 413000
+			},
+			"text": " And you see that this weight of is another function that just returns 10 for the owner"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 415000
+			},
+			"text": " and one for everyone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 421000
+			},
+			"text": " And without an optimizer, this would perform a function call,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 428000
+			},
+			"text": " which is costly, so a cheaper way would be to just take this statement"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 431000
+			},
+			"text": " that is inside the function and put it at the point of the function call."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 435000
+			},
+			"text": " But that will reduce readability."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 439000
+			},
+			"text": " It will not tell you what this weird expression 10 one actually is now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 443000
+			},
+			"text": " In the way it's written now, we see, yeah, it's the weight of the vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 447000
+			},
+			"text": " And also if we use this weight, if it's like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 450000
+			},
+			"text": " we can use the function from other places and then modify the weights"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 453000
+			},
+			"text": " without having to modify it everywhere in the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 457000
+			},
+			"text": " Okay, in the rest of the talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 463000
+			},
+			"text": " I will quickly describe how the current Solidity Optimizer works"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 469000
+			},
+			"text": " and then explain what we plan to do on Yule."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 477000
+			},
+			"text": " The current optimizer is wholly based on opcode stream,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 479000
+			},
+			"text": " so it's extremely low level."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 482000
+			},
+			"text": " Yeah, it has several stages."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 485000
+			},
+			"text": " I won't go into detail for all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 488000
+			},
+			"text": " The most extensive stage is the last one here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 490000
+			},
+			"text": " the common sub-expression eliminator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 494000
+			},
+			"text": " which does much more than what the name suggests."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 498000
+			},
+			"text": " And yeah, let's dive into that a little."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 501000
+			},
+			"text": " So what it does is first it chops code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 505000
+			},
+			"text": " so it gets a stream of opcodes and chops that into blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 507000
+			},
+			"text": " Blocks that don't contain jumps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 510000
+			},
+			"text": " don't contain external calls and some other restrictions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 513000
+			},
+			"text": " Then these blocks are fed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 515000
+			},
+			"text": " are upcode by upcode to the component."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 519000
+			},
+			"text": " The component builds symbolic expression trees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 523000
+			},
+			"text": " so analyzes the stack usage and creates symbolic expressions out of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 527000
+			},
+			"text": " Then these expression trees are simplified to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 532000
+			},
+			"text": " I think, 40 or 50 simple transformation rules,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 540000
+			},
+			"text": " like constant plus variable plus constant is variable plus the sum of the constants and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 543000
+			},
+			"text": " These rules will be reused by the Yule Optimizer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 545000
+			},
+			"text": " so that's not something we have to rewrite."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 549000
+			},
+			"text": " And after the expression trees are simplified,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 554000
+			},
+			"text": " the component records all changes to memory and storage in an abstract way."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 560000
+			},
+			"text": " So both the value that is written at the point where it's written to are these abstract expressions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 565000
+			},
+			"text": " Yeah, the problem with that is that it kind of looks like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 569000
+			},
+			"text": " so on the left you have the stream of opcodes and on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 574000
+			},
+			"text": " you have some kind of explanation of what the component has to store internally."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 580000
+			},
+			"text": " In the end we can't be, yeah, there's no real way to output the internal symbolic representation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 585000
+			},
+			"text": " even if there was such a way, it would be very hard to read."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 594000
+			},
+			"text": " And, yeah, so, yeah, the takeaway from the old CSE Optimizer"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 598000
+			},
+			"text": " is that it builds a gigantic internal data structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 601000
+			},
+			"text": " Yeah, it, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 606000
+			},
+			"text": " And after it has built this data structure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 611000
+			},
+			"text": " it regenerates the code from scratch, so it starts from the bottom up"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 620000
+			},
+			"text": " and takes a look what the desired stack elements at the end of this chopped up block would be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 627000
+			},
+			"text": " then recreates the stack elements and also recreates changes to storage and memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 632000
+			},
+			"text": " And in a more efficient way, because it will eliminate multiple stores"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 637000
+			},
+			"text": " to the same storage location and multiple memory stores to the same memory location."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 644000
+			},
+			"text": " And also if you have two expressions in the code that do the same thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 647000
+			},
+			"text": " then it's only computed once."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 653000
+			},
+			"text": " And, yeah, as I said, the main drawback of this component is very opaque."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 659000
+			},
+			"text": " Also, it does only vary local optimizations only inside these blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 664000
+			},
+			"text": " It has no notion of functions, so it cannot perform inlining,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 667000
+			},
+			"text": " and also cannot do any loop optimizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 673000
+			},
+			"text": " There are some stages in the old Optimizer that look beyond these blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 679000
+			},
+			"text": " but they also do not do inlining."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 685000
+			},
+			"text": " Okay, now let's take a look at Yule and what the new Optimizer can do with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 690000
+			},
+			"text": " There has been a talk, I think, yesterday by Alex about Yule here at DEF CON4"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 694000
+			},
+			"text": " and also another one at DEF CON3 last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 698000
+			},
+			"text": " We are already using Yule in the new ABI coder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 704000
+			},
+			"text": " and the plan is to use Yule for everything else starting next week."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 709000
+			},
+			"text": " So the plan is to rewrite the code generator of Solidity using Yule"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 715000
+			},
+			"text": " so that it can target both EVM and WebAssembly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 720000
+			},
+			"text": " and we will also be able to use the Optimizer for all of the code"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725000
+			},
+			"text": " that Solidity generates not only for the ABI coder."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 730000
+			},
+			"text": " Yeah, Yule has a simple syntax, has structured components,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 735000
+			},
+			"text": " and I think it's quite intuitive to read."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 738000
+			},
+			"text": " But yeah, I'm already spending too much time on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 743000
+			},
+			"text": " So let's take a look at the Optimizer itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 749000
+			},
+			"text": " Instead of building a component that looks at the code"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 752000
+			},
+			"text": " and assembles tons of information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 757000
+			},
+			"text": " we decided to instead replace it by a component that performs"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 762000
+			},
+			"text": " many tiny local transformations to the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 767000
+			},
+			"text": " So every single step of the component does only one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 771000
+			},
+			"text": " so every single step of every single component of the Optimizer"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 775000
+			},
+			"text": " does only one single thing, only one small transformation"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 780000
+			},
+			"text": " on the Yule code, and the output of each of the steps is always,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 781000
+			},
+			"text": " again, Yule code."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 785000
+			},
+			"text": " So it always..."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 788000
+			},
+			"text": " It is always readable, it is still text, there are no internal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 791000
+			},
+			"text": " big internal data structures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 796000
+			},
+			"text": " and at every time you can look at it and see whether the transformation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 797000
+			},
+			"text": " was correct or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 800000
+			},
+			"text": " And the Optimizer also keeps the structure of the code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 802000
+			},
+			"text": " so it keeps functions and loops."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 804000
+			},
+			"text": " It does not introduce go-to's,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 807000
+			},
+			"text": " and this helps us for the translation to WebAssembly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 809000
+			},
+			"text": " because WebAssembly does not have go-to's,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 814000
+			},
+			"text": " it only has functions, loops, and conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 819000
+			},
+			"text": " The tricky part of building the Optimizer is when it's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 822000
+			},
+			"text": " designing the components, but coming up with a good strategy"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 824000
+			},
+			"text": " on when to call each component."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 829000
+			},
+			"text": " But the good news here is that even if this strategy turns out"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 833000
+			},
+			"text": " to be sub-optimal, it will never result in invalid code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 838000
+			},
+			"text": " because as long as we check that every of these small,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 842000
+			},
+			"text": " tiny transformations does its job correctly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 845000
+			},
+			"text": " then any combination of these steps will always result,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 847000
+			},
+			"text": " it will also result in correct code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 850000
+			},
+			"text": " It might be less efficient, but it will always be correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 852000
+			},
+			"text": " Okay, now let's take an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 854000
+			},
+			"text": " Let's take a look at an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 857000
+			},
+			"text": " This is Uule code that computes the sum of an array,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 861000
+			},
+			"text": " so we have the first function that has a for loop"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 863000
+			},
+			"text": " over the array elements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 867000
+			},
+			"text": " and this first function calls the second function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 871000
+			},
+			"text": " and the second function retrieves a single array element."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 876000
+			},
+			"text": " So access the array and i is the position in the array."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 879000
+			},
+			"text": " The interesting thing here is that array load performs"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 880000
+			},
+			"text": " bounds checking."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 886000
+			},
+			"text": " So array load checks whether i is less than the length of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 887000
+			},
+			"text": " array."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 892000
+			},
+			"text": " And this in the form here, it's inefficient because it's done"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 894000
+			},
+			"text": " in every single loop iteration."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 899000
+			},
+			"text": " But it is very safe because we do it every single loop iteration."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 902000
+			},
+			"text": " And the cool thing now is that we will see that the optimizer"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 906000
+			},
+			"text": " is able to remove these bounds checks with equivalent"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 907000
+			},
+			"text": " transformations."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 911000
+			},
+			"text": " So the first thing that happens is that we explode this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 916000
+			},
+			"text": " large expression into an intermediate assignment."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 919000
+			},
+			"text": " And now we have the function call isolated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 923000
+			},
+			"text": " and since the function is only called once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 926000
+			},
+			"text": " we can inline it so we can replace the function call by the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 927000
+			},
+			"text": " body of the function."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 931000
+			},
+			"text": " So that's a more drastic change to the code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 933000
+			},
+			"text": " but it's simple enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 937000
+			},
+			"text": " And now the next thing that happens is we remove this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 940000
+			},
+			"text": " useless additional indented block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 944000
+			},
+			"text": " and we also rename one of the variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 947000
+			},
+			"text": " Okay, now it's already a little bit clearer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 949000
+			},
+			"text": " Now we change the formatting a little."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 954000
+			},
+			"text": " Okay, so this was already one of the two tricky parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 959000
+			},
+			"text": " Now what happens next is that we take a look at all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 963000
+			},
+			"text": " statements inside the loop buddy and see if some of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 966000
+			},
+			"text": " statements don't actually depend on the iteration at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 971000
+			},
+			"text": " So the only variable that is reassigned inside the loop is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 973000
+			},
+			"text": " sum and i."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 976000
+			},
+			"text": " So everything that does not depend on sum or i or anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 979000
+			},
+			"text": " that depends on sum or i can be pulled out of the loop."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 982000
+			},
+			"text": " And that's not executed for every single loop iteration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 986000
+			},
+			"text": " but only once before the loop starts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 988000
+			},
+			"text": " Okay, so that was data and len."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 993000
+			},
+			"text": " Now we realize that length and len, they are assigned the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 994000
+			},
+			"text": " value."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 1001000
+			},
+			"text": " Since it's a memory load, it might not be the same value in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1005000
+			},
+			"text": " end, but if the memory does not change between these two memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1008000
+			},
+			"text": " load operations, then of course it has to be the same value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1011000
+			},
+			"text": " and this is the case here, so we do not modify memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1016000
+			},
+			"text": " So len and length are actually the same thing, which means we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1021000
+			},
+			"text": " remove len and replace every len by length."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1027000
+			},
+			"text": " Okay, and now we see that inside this if statement inside the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1031000
+			},
+			"text": " loop, yeah, that's the point where I could use a laser pointer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1034000
+			},
+			"text": " but so there is less than i length."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1039000
+			},
+			"text": " So if is zero less than i length revert, that is the bounce check"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1042000
+			},
+			"text": " we had in the function."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1048000
+			},
+			"text": " And we realize that less than i length is also the loop"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1052000
+			},
+			"text": " condition, so the for loop has a condition and it runs as long as"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1055000
+			},
+			"text": " this is true, so as long as i is length less than length,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1058000
+			},
+			"text": " the for loop runs, and this means that inside the loop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1061000
+			},
+			"text": " inside the body of the for loop, less than i length would always"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1064000
+			},
+			"text": " be true, otherwise the body would not execute."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1068000
+			},
+			"text": " So this means inside this bounce check we can replace less than i"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1072000
+			},
+			"text": " length by true or one."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1077000
+			},
+			"text": " Okay, and now we see we have a constant there and apply an"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1082000
+			},
+			"text": " operation on that, is zero, is zero, is the, is EVM speak for"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:08,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1088000
+			},
+			"text": " logical negation, so is zero of one, so is zero, it's basically not"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1088000,
+				"to": 1092000
+			},
+			"text": " true, which is false, which is zero, so we can replace if is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1097000
+			},
+			"text": " zero of one by if zero, and now we see, so you see these are"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:21,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1101000
+			},
+			"text": " really tiny modifications, we could have removed the if all"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1101000,
+				"to": 1106000
+			},
+			"text": " together for a long time already, but we want to keep every step"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1110000
+			},
+			"text": " as small as possible, so we see if zero and of course, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1113000
+			},
+			"text": " it's a condition that is always false, so the whole if statement"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1115000
+			},
+			"text": " can be removed."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1118000
+			},
+			"text": " Cool, that, so, and that was, did you see the magic happening?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1122000
+			},
+			"text": " This is where the bounce check was removed."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1127000
+			},
+			"text": " And now we can do some more things, we again explode this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:52,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1132000
+			},
+			"text": " complex expression into multiple assignments to new variables,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,000",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1132000,
+				"to": 1138000
+			},
+			"text": " and okay, this is, this, I think the most tricky transformation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1144000
+			},
+			"text": " If you take a look at underscore two, it is i multiplied by"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1150000
+			},
+			"text": " hex 20 or by hex two zero, and i is the loop iteration counter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:15,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1155000
+			},
+			"text": " so this means underscore two is always zero x 20 times the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1155000,
+				"to": 1158000
+			},
+			"text": " number of iterations, and we know that multiplication is more"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1163000
+			},
+			"text": " expensive than addition, but as the code is here now, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1168000
+			},
+			"text": " multiply in every loop iteration anyway, so we would like to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:33,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1173000
+			},
+			"text": " replace it by an addition, and so what we can, so, and we know"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,000",
+				"to": "00:19:38,000"
+			},
+			"offsets": {
+				"from": 1173000,
+				"to": 1178000
+			},
+			"text": " underscore two is zero x 20 times number of iterations, so we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,000",
+				"to": "00:19:42,000"
+			},
+			"offsets": {
+				"from": 1178000,
+				"to": 1182000
+			},
+			"text": " write in a different way where we just add up in every iteration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1182000,
+				"to": 1186000
+			},
+			"text": " and it will, it's a bit tricky to find the correct start, so we"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1190000
+			},
+			"text": " pull out this underscore two outside of the loop and start, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:54,000"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1194000
+			},
+			"text": " have to start with minus zero x 20, and then we can replace the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1194000,
+				"to": 1200000
+			},
+			"text": " multiplication by an addition, so two is two plus zero x 20."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1206000
+			},
+			"text": " Okay, um, yeah, if you look at underscore three, that's just"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1212000
+			},
+			"text": " underscore two plus data, so this is kind of a similar variable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1215000
+			},
+			"text": " or in other words, these are all additions, so they are all"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:18,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1218000
+			},
+			"text": " associative, which means we can pull out the data to the very"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,000",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1218000,
+				"to": 1225000
+			},
+			"text": " beginning. Um, yeah, so underscore two is, so we, now the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1228000
+			},
+			"text": " data is added to two at the very beginning and not any more"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1234000
+			},
+			"text": " inside the loop. Okay, and I think that's almost it already,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:39,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1239000
+			},
+			"text": " okay, another thing we can do is, if you look at the definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,000",
+				"to": "00:20:44,000"
+			},
+			"offsets": {
+				"from": 1239000,
+				"to": 1244000
+			},
+			"text": " of underscore two now, um, and if you insert data into that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,000",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1244000,
+				"to": 1249000
+			},
+			"text": " then you see this is x plus zero x 20 minus zero x 20,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:20:56,000"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1256000
+			},
+			"text": " yeah, so we can replace underscore two by data, uh, I know by"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,000",
+				"to": "00:21:01,000"
+			},
+			"offsets": {
+				"from": 1256000,
+				"to": 1261000
+			},
+			"text": " x, of course, yeah, so it was x plus zero x two zero minus"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1261000,
+				"to": 1266000
+			},
+			"text": " zero x two zero, so it's x. And we also see that x is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:11,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1271000
+			},
+			"text": " unused in the rest of the program, so we can replace"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,000",
+				"to": "00:21:16,000"
+			},
+			"offsets": {
+				"from": 1271000,
+				"to": 1276000
+			},
+			"text": " underscore two by x. Oh, that was the next step. Um, we see"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1276000,
+				"to": 1279000
+			},
+			"text": " that data is fully unused in the rest of the program, so we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:23,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1283000
+			},
+			"text": " remove it all together, yeah, uh, and x is not used anymore, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,000",
+				"to": "00:21:27,000"
+			},
+			"offsets": {
+				"from": 1283000,
+				"to": 1287000
+			},
+			"text": " there's no need to redefine it as underscore two, so we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,000",
+				"to": "00:21:32,000"
+			},
+			"offsets": {
+				"from": 1287000,
+				"to": 1292000
+			},
+			"text": " replace underscore two by x. Okay, that's almost it, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,000",
+				"to": "00:21:36,000"
+			},
+			"offsets": {
+				"from": 1292000,
+				"to": 1296000
+			},
+			"text": " Um, yeah, underscore one is only used once, so we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,000",
+				"to": "00:21:41,000"
+			},
+			"offsets": {
+				"from": 1296000,
+				"to": 1301000
+			},
+			"text": " inline it back into the expression. And yeah, I would"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,000",
+				"to": "00:21:45,000"
+			},
+			"offsets": {
+				"from": 1301000,
+				"to": 1305000
+			},
+			"text": " claim that this is the optimal program. The only thing is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1305000,
+				"to": 1311000
+			},
+			"text": " one already mentioned, we might, um, replace the loop"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:56,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1316000
+			},
+			"text": " iteration variable by x and add zero x 20 instead of one"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,000",
+				"to": "00:22:01,000"
+			},
+			"offsets": {
+				"from": 1316000,
+				"to": 1321000
+			},
+			"text": " for each iteration, but yeah, uh, if you do that, then we"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,000",
+				"to": "00:22:04,000"
+			},
+			"offsets": {
+				"from": 1321000,
+				"to": 1324000
+			},
+			"text": " would have to modify length, we would have to compare against"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,000",
+				"to": "00:22:09,000"
+			},
+			"offsets": {
+				"from": 1324000,
+				"to": 1329000
+			},
+			"text": " length times zero x 20, and I think that can create problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,000",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1329000,
+				"to": 1335000
+			},
+			"text": " with overflow. Yeah. Okay, uh, that was an example of how the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1338000
+			},
+			"text": " optimizer operates, uh, you see that the resulting program is"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:23,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1343000
+			},
+			"text": " really short and all the intermediate steps were quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,000",
+				"to": "00:22:28,000"
+			},
+			"offsets": {
+				"from": 1343000,
+				"to": 1348000
+			},
+			"text": " small. Um, another thing we plan to do is, uh, memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,000",
+				"to": "00:22:32,000"
+			},
+			"offsets": {
+				"from": 1348000,
+				"to": 1352000
+			},
+			"text": " optimizations. Um, currently, solidity does not have any"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,000",
+				"to": "00:22:35,000"
+			},
+			"offsets": {
+				"from": 1352000,
+				"to": 1355000
+			},
+			"text": " memory management because in the EVM memory is usually short"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,000",
+				"to": "00:22:39,000"
+			},
+			"offsets": {
+				"from": 1355000,
+				"to": 1359000
+			},
+			"text": " lift, so it doesn't make sense to have to add the huge overhead"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1359000,
+				"to": 1364000
+			},
+			"text": " of memory management, and this currently results in some wasted"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1368000
+			},
+			"text": " memory, especially if you, for example, if you allocate a"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:52,000"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1372000
+			},
+			"text": " memory array inside a function and do not return it, so you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,000",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1372000,
+				"to": 1375000
+			},
+			"text": " basically don't really use it, then it would make sense to free"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:22:59,000"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1379000
+			},
+			"text": " the memory again after the end of the function, and, uh, this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1379000,
+				"to": 1382000
+			},
+			"text": " something we believe that the Yule optimizer can do when we"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1388000
+			},
+			"text": " introduce, yeah, memory objects as, um, yeah, first class citizens."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:14,000"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1394000
+			},
+			"text": " Uh, there is a version of Yule that has types, and this would"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,000",
+				"to": "00:23:21,000"
+			},
+			"offsets": {
+				"from": 1394000,
+				"to": 1401000
+			},
+			"text": " fit nicely into the typed Yule dialect. Um, yeah, so as you"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,000",
+				"to": "00:23:25,000"
+			},
+			"offsets": {
+				"from": 1401000,
+				"to": 1405000
+			},
+			"text": " know, as a summary, I hope that the new optimizer will be safer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1405000,
+				"to": 1407000
+			},
+			"text": " more transparent and more powerful. The main challenge here is"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:32,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1412000
+			},
+			"text": " finding good heuristics, but as I explained, um, this will not"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1412000,
+				"to": 1419000
+			},
+			"text": " impact, uh, correctness, and, um, yeah, code size is always an"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:43,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1423000
+			},
+			"text": " important, uh, measure whether or not to apply some transformation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,000",
+				"to": "00:23:47,000"
+			},
+			"offsets": {
+				"from": 1423000,
+				"to": 1427000
+			},
+			"text": " but sometimes it makes sense to create larger code, uh, larger"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,000",
+				"to": "00:23:51,000"
+			},
+			"offsets": {
+				"from": 1427000,
+				"to": 1431000
+			},
+			"text": " code, uh, in intermediate steps that can be reduced to even"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,000",
+				"to": "00:24:01,000"
+			},
+			"offsets": {
+				"from": 1431000,
+				"to": 1441000
+			},
+			"text": " shorter code later. Um, yeah, uh, just some quick words on the road map."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,000",
+				"to": "00:24:06,000"
+			},
+			"offsets": {
+				"from": 1441000,
+				"to": 1446000
+			},
+			"text": " We currently implemented, um, most of the steps we've seen here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,000",
+				"to": "00:24:11,000"
+			},
+			"offsets": {
+				"from": 1446000,
+				"to": 1451000
+			},
+			"text": " apart from the two or three loop transformations, uh, we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,000",
+				"to": "00:24:16,000"
+			},
+			"offsets": {
+				"from": 1451000,
+				"to": 1456000
+			},
+			"text": " seen, and now the, the next step is to implement these new"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,000",
+				"to": "00:24:22,000"
+			},
+			"offsets": {
+				"from": 1456000,
+				"to": 1462000
+			},
+			"text": " transformations too, and, uh, check that all the transformations"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,000",
+				"to": "00:24:26,000"
+			},
+			"offsets": {
+				"from": 1462000,
+				"to": 1466000
+			},
+			"text": " are correct, uh, and then we will apply that to the ABI coder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,000",
+				"to": "00:24:31,000"
+			},
+			"offsets": {
+				"from": 1466000,
+				"to": 1471000
+			},
+			"text": " take the ABI code, or out of experimental, and then, uh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,000",
+				"to": "00:24:36,000"
+			},
+			"offsets": {
+				"from": 1471000,
+				"to": 1476000
+			},
+			"text": " yeah, make the rewrite of the Solidity compiler, and at that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,000",
+				"to": "00:24:40,000"
+			},
+			"offsets": {
+				"from": 1476000,
+				"to": 1480000
+			},
+			"text": " point, also other steps might make sense that do not make sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,000",
+				"to": "00:24:44,000"
+			},
+			"offsets": {
+				"from": 1480000,
+				"to": 1484000
+			},
+			"text": " in the ABI coder, so we will continually improve the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,000",
+				"to": "00:24:48,000"
+			},
+			"offsets": {
+				"from": 1484000,
+				"to": 1488000
+			},
+			"text": " optimizer there. Thanks for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,000",
+				"to": "00:24:52,000"
+			},
+			"offsets": {
+				"from": 1488000,
+				"to": 1492000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,000",
+				"to": "00:24:56,000"
+			},
+			"offsets": {
+				"from": 1492000,
+				"to": 1496000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,000",
+				"to": "00:25:00,000"
+			},
+			"offsets": {
+				"from": 1496000,
+				"to": 1500000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,000",
+				"to": "00:25:04,000"
+			},
+			"offsets": {
+				"from": 1500000,
+				"to": 1504000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,000",
+				"to": "00:25:08,000"
+			},
+			"offsets": {
+				"from": 1504000,
+				"to": 1508000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,000",
+				"to": "00:25:18,000"
+			},
+			"offsets": {
+				"from": 1508000,
+				"to": 1518000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,000",
+				"to": "00:25:47,000"
+			},
+			"offsets": {
+				"from": 1518000,
+				"to": 1547000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

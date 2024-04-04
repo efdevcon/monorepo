@@ -1,0 +1,2661 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,360"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11360
+			},
+			"text": " >> My name is JK. I'm the operations manager at stakefish."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,360",
+				"to": "00:00:14,800"
+			},
+			"offsets": {
+				"from": 11360,
+				"to": 14800
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,800",
+				"to": "00:00:20,680"
+			},
+			"offsets": {
+				"from": 14800,
+				"to": 20680
+			},
+			"text": " Stakefish is a validator for different pre-OS blockchains and node operators for projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,680",
+				"to": "00:00:21,960"
+			},
+			"offsets": {
+				"from": 20680,
+				"to": 21960
+			},
+			"text": " that use stake in mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,960",
+				"to": "00:00:23,560"
+			},
+			"offsets": {
+				"from": 21960,
+				"to": 23560
+			},
+			"text": " I'll get into that a bit later."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,560",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 23560,
+				"to": 26000
+			},
+			"text": " But we're all excited for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:33,240"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 33240
+			},
+			"text": " We know POS is going to be enabled, but there have been plenty of other POS protocols that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,240",
+				"to": "00:00:38,560"
+			},
+			"offsets": {
+				"from": 33240,
+				"to": 38560
+			},
+			"text": " have been in operations for a year or even or slightly less than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,560",
+				"to": "00:00:41,880"
+			},
+			"offsets": {
+				"from": 38560,
+				"to": 41880
+			},
+			"text": " And there are already good data points to take from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,880",
+				"to": "00:00:47,240"
+			},
+			"offsets": {
+				"from": 41880,
+				"to": 47240
+			},
+			"text": " And having been in this space for about a year now and a bit over a year, there's plenty"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,240",
+				"to": "00:00:51,520"
+			},
+			"offsets": {
+				"from": 47240,
+				"to": 51520
+			},
+			"text": " of lessons that we've learned throughout our operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,520",
+				"to": "00:00:53,920"
+			},
+			"offsets": {
+				"from": 51520,
+				"to": 53920
+			},
+			"text": " And we wanted to share a few of those with you today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,920",
+				"to": "00:00:59,600"
+			},
+			"offsets": {
+				"from": 53920,
+				"to": 59600
+			},
+			"text": " In the hopes that once Ethereum 2.0 launches, we don't have similar problems we've seen on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,600",
+				"to": "00:01:03,280"
+			},
+			"offsets": {
+				"from": 59600,
+				"to": 63280
+			},
+			"text": " other POS protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,280",
+				"to": "00:01:06,080"
+			},
+			"offsets": {
+				"from": 63280,
+				"to": 66080
+			},
+			"text": " So just a very short introduction about stakefish."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,080",
+				"to": "00:01:12,280"
+			},
+			"offsets": {
+				"from": 66080,
+				"to": 72280
+			},
+			"text": " Stakefish was founded by Wangxian, who co-founded F2Pul, which is one of the largest Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,280",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 72280,
+				"to": 74000
+			},
+			"text": " and Ethereum mining pools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:18,600"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 78600
+			},
+			"text": " And he wanted to contribute something similar in the proof of stake space and of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,600",
+				"to": "00:01:21,440"
+			},
+			"offsets": {
+				"from": 78600,
+				"to": 81440
+			},
+			"text": " naturally, they meant creating validators and staking pools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,440",
+				"to": "00:01:25,760"
+			},
+			"offsets": {
+				"from": 81440,
+				"to": 85760
+			},
+			"text": " And so, so far, we have validators or nodes on various projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,760",
+				"to": "00:01:26,760"
+			},
+			"offsets": {
+				"from": 85760,
+				"to": 86760
+			},
+			"text": " We have EOS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,760",
+				"to": "00:01:32,840"
+			},
+			"offsets": {
+				"from": 86760,
+				"to": 92840
+			},
+			"text": " We are a validator on VOs, Cosmos, Tesos, Loom network, Iris network, Boss, Node operator"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,840",
+				"to": "00:01:37,880"
+			},
+			"offsets": {
+				"from": 92840,
+				"to": 97880
+			},
+			"text": " for Chainlink, Algrind, and a storage node provider for storage as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,880",
+				"to": "00:01:46,920"
+			},
+			"offsets": {
+				"from": 97880,
+				"to": 106920
+			},
+			"text": " And so right now, roughly, we're facilitating around $30 million in stakeable assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,920",
+				"to": "00:01:49,400"
+			},
+			"offsets": {
+				"from": 106920,
+				"to": 109400
+			},
+			"text": " So first of all, just a quick reality check."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,400",
+				"to": "00:01:55,480"
+			},
+			"offsets": {
+				"from": 109400,
+				"to": 115480
+			},
+			"text": " I know that everyone will be able to run an Ethereum 2.0 validator node as long as you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,480",
+				"to": "00:01:56,480"
+			},
+			"offsets": {
+				"from": 115480,
+				"to": 116480
+			},
+			"text": " have 32 E's."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,480",
+				"to": "00:01:59,400"
+			},
+			"offsets": {
+				"from": 116480,
+				"to": 119400
+			},
+			"text": " But the reality is not everyone will be able to."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,400",
+				"to": "00:02:04,480"
+			},
+			"offsets": {
+				"from": 119400,
+				"to": 124480
+			},
+			"text": " Either you don't have the equipment, we can't assume that everyone will have a PC at their"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,480",
+				"to": "00:02:06,680"
+			},
+			"offsets": {
+				"from": 124480,
+				"to": 126680
+			},
+			"text": " home or even a laptop."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,680",
+				"to": "00:02:10,960"
+			},
+			"offsets": {
+				"from": 126680,
+				"to": 130960
+			},
+			"text": " And we can't assume everyone will have the technological capabilities of parsing through"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,960",
+				"to": "00:02:16,120"
+			},
+			"offsets": {
+				"from": 130960,
+				"to": 136120
+			},
+			"text": " GitHub or even using command lines to actually run a validator node."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,120",
+				"to": "00:02:18,600"
+			},
+			"offsets": {
+				"from": 136120,
+				"to": 138600
+			},
+			"text": " And so that's where I believe validators come in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,600",
+				"to": "00:02:24,920"
+			},
+			"offsets": {
+				"from": 138600,
+				"to": 144920
+			},
+			"text": " We're trying to help lower the barriers to staking even further by making staking easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,920",
+				"to": "00:02:27,400"
+			},
+			"offsets": {
+				"from": 144920,
+				"to": 147400
+			},
+			"text": " for retail."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,400",
+				"to": "00:02:31,960"
+			},
+			"offsets": {
+				"from": 147400,
+				"to": 151960
+			},
+			"text": " And so there are two main service offerings that validators offer so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,960",
+				"to": "00:02:34,120"
+			},
+			"offsets": {
+				"from": 151960,
+				"to": 154120
+			},
+			"text": " One is validators as a service."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,120",
+				"to": "00:02:39,120"
+			},
+			"offsets": {
+				"from": 154120,
+				"to": 159120
+			},
+			"text": " This is where we run a validator and people delegate their coins to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,120",
+				"to": "00:02:45,800"
+			},
+			"offsets": {
+				"from": 159120,
+				"to": 165800
+			},
+			"text": " Delegate is where people don't give up their ownership, but rather they provide the power"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,800",
+				"to": "00:02:47,840"
+			},
+			"offsets": {
+				"from": 165800,
+				"to": 167840
+			},
+			"text": " of the coins to a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,840",
+				"to": "00:02:50,440"
+			},
+			"offsets": {
+				"from": 167840,
+				"to": 170440
+			},
+			"text": " So it's a pretty special type of transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,440",
+				"to": "00:02:54,880"
+			},
+			"offsets": {
+				"from": 170440,
+				"to": 174880
+			},
+			"text": " So therefore we're able to run a validator, but we don't have custody over the coins that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,880",
+				"to": "00:02:57,080"
+			},
+			"offsets": {
+				"from": 174880,
+				"to": 177080
+			},
+			"text": " are staked with us."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,080",
+				"to": "00:03:01,200"
+			},
+			"offsets": {
+				"from": 177080,
+				"to": 181200
+			},
+			"text": " Also there's a fair amount of validators that run a node as a service."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,200",
+				"to": "00:03:03,960"
+			},
+			"offsets": {
+				"from": 181200,
+				"to": 183960
+			},
+			"text": " This is where, imagine like AWS, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,960",
+				"to": "00:03:09,120"
+			},
+			"offsets": {
+				"from": 183960,
+				"to": 189120
+			},
+			"text": " You're trying to spin up a validator node for any customer that wants to stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,120",
+				"to": "00:03:13,120"
+			},
+			"offsets": {
+				"from": 189120,
+				"to": 193120
+			},
+			"text": " And I think in the US there are two big players in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,120",
+				"to": "00:03:15,480"
+			},
+			"offsets": {
+				"from": 193120,
+				"to": 195480
+			},
+			"text": " There's block daemon and bicent trails."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,480",
+				"to": "00:03:24,360"
+			},
+			"offsets": {
+				"from": 195480,
+				"to": 204360
+			},
+			"text": " And largely, node as a service, you can really imagine it to look similar to just an AWS."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,360",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 204360,
+				"to": 211000
+			},
+			"text": " But of course, with E2.0, there's no such thing as delegation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 213000
+			},
+			"text": " You're not going to be able to delegate your coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:38,040"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 218040
+			},
+			"text": " So unless you have custody of the funds, validators as a service is probably not going"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,040",
+				"to": "00:03:41,680"
+			},
+			"offsets": {
+				"from": 218040,
+				"to": 221680
+			},
+			"text": " to be a viable business for validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,680",
+				"to": "00:03:47,920"
+			},
+			"offsets": {
+				"from": 221680,
+				"to": 227920
+			},
+			"text": " So I won't go too much into detail because of time constraints over what validators are"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,920",
+				"to": "00:03:52,040"
+			},
+			"offsets": {
+				"from": 227920,
+				"to": 232040
+			},
+			"text": " considering on what are their businesses that could be provided."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,040",
+				"to": "00:03:56,280"
+			},
+			"offsets": {
+				"from": 232040,
+				"to": 236280
+			},
+			"text": " But rest assured that node as a service will probably be one of the more strong business"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,280",
+				"to": "00:03:59,640"
+			},
+			"offsets": {
+				"from": 236280,
+				"to": 239640
+			},
+			"text": " lines that validators will pursue for E2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,640",
+				"to": "00:04:06,160"
+			},
+			"offsets": {
+				"from": 239640,
+				"to": 246160
+			},
+			"text": " But of course, personally, there's other avenues that are exciting, such as giving a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,160",
+				"to": "00:04:12,840"
+			},
+			"offsets": {
+				"from": 246160,
+				"to": 252840
+			},
+			"text": " shout out to Rocket Pull, of course, which I'm really looking forward to for E2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,840",
+				"to": "00:04:18,360"
+			},
+			"offsets": {
+				"from": 252840,
+				"to": 258360
+			},
+			"text": " But you know, so the validators are losing probably like one of their main business lines"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,360",
+				"to": "00:04:21,760"
+			},
+			"offsets": {
+				"from": 258360,
+				"to": 261760
+			},
+			"text": " and node as a service seems to be one of the more viable options."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,760",
+				"to": "00:04:25,760"
+			},
+			"offsets": {
+				"from": 261760,
+				"to": 265760
+			},
+			"text": " But like, why are validators in here at all in this space?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,760",
+				"to": "00:04:31,560"
+			},
+			"offsets": {
+				"from": 265760,
+				"to": 271560
+			},
+			"text": " Right now there's around about $5 billion of stakeable assets in the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,560",
+				"to": "00:04:33,680"
+			},
+			"offsets": {
+				"from": 271560,
+				"to": 273680
+			},
+			"text": " So it's a fair amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,680",
+				"to": "00:04:38,640"
+			},
+			"offsets": {
+				"from": 273680,
+				"to": 278640
+			},
+			"text": " And I estimated roughly that in a year or so there's going to be this number is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,640",
+				"to": "00:04:40,440"
+			},
+			"offsets": {
+				"from": 278640,
+				"to": 280440
+			},
+			"text": " to balloon to $30 billion."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,440",
+				"to": "00:04:45,160"
+			},
+			"offsets": {
+				"from": 280440,
+				"to": 285160
+			},
+			"text": " And of course, Ethereum 2.0 is going to be the majority of that with $8 billion."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,160",
+				"to": "00:04:51,280"
+			},
+			"offsets": {
+				"from": 285160,
+				"to": 291280
+			},
+			"text": " And so not to say that this is the exact revenue opportunity, but this is the size of the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,280",
+				"to": "00:04:54,080"
+			},
+			"offsets": {
+				"from": 291280,
+				"to": 294080
+			},
+			"text": " And so therefore, there's a reason why the validators are here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,080",
+				"to": "00:04:56,720"
+			},
+			"offsets": {
+				"from": 294080,
+				"to": 296720
+			},
+			"text": " They want to either facilitate something here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,720",
+				"to": "00:04:58,440"
+			},
+			"offsets": {
+				"from": 296720,
+				"to": 298440
+			},
+			"text": " They want to do something here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,440",
+				"to": "00:05:07,520"
+			},
+			"offsets": {
+				"from": 298440,
+				"to": 307520
+			},
+			"text": " They want to help facilitate staking of $8 billion when E2.0 launches."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,520",
+				"to": "00:05:12,680"
+			},
+			"offsets": {
+				"from": 307520,
+				"to": 312680
+			},
+			"text": " And so that's sort of a short intro on like who the validators are, how they're trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,680",
+				"to": "00:05:14,440"
+			},
+			"offsets": {
+				"from": 312680,
+				"to": 314440
+			},
+			"text": " to, they're approaching E2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,440",
+				"to": "00:05:20,240"
+			},
+			"offsets": {
+				"from": 314440,
+				"to": 320240
+			},
+			"text": " But let's go into like the reason why I'm here today to talk about some of the lessons,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,240",
+				"to": "00:05:26,840"
+			},
+			"offsets": {
+				"from": 320240,
+				"to": 326840
+			},
+			"text": " the key lessons we've learned by validating on other POS protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,840",
+				"to": "00:05:28,600"
+			},
+			"offsets": {
+				"from": 326840,
+				"to": 328600
+			},
+			"text": " And I've really summarized it down to five."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,600",
+				"to": "00:05:34,720"
+			},
+			"offsets": {
+				"from": 328600,
+				"to": 334720
+			},
+			"text": " There are far many, but these are the five key ones that I believe this, the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,720",
+				"to": "00:05:37,440"
+			},
+			"offsets": {
+				"from": 334720,
+				"to": 337440
+			},
+			"text": " community needs to focus on."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,440",
+				"to": "00:05:43,160"
+			},
+			"offsets": {
+				"from": 337440,
+				"to": 343160
+			},
+			"text": " So I don't know if any of you were at the first speaker panel session for today, live,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,160",
+				"to": "00:05:47,760"
+			},
+			"offsets": {
+				"from": 343160,
+				"to": 347760
+			},
+			"text": " Adam from Live here actually gave a pretty good presentation on the one of the key bottlenecks"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,760",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 347760,
+				"to": 349000
+			},
+			"text": " of staking right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:52,480"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 352480
+			},
+			"text": " And it's the user interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,480",
+				"to": "00:05:59,800"
+			},
+			"offsets": {
+				"from": 352480,
+				"to": 359800
+			},
+			"text": " Right now staking is insanely hard even for like a network like Tezos, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,800",
+				"to": "00:06:04,200"
+			},
+			"offsets": {
+				"from": 359800,
+				"to": 364200
+			},
+			"text": " It's very difficult to understand like where I need to go if I have Tezis in my ledger."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,200",
+				"to": "00:06:06,200"
+			},
+			"offsets": {
+				"from": 364200,
+				"to": 366200
+			},
+			"text": " Is there an interface I could use to stake?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,200",
+				"to": "00:06:07,320"
+			},
+			"offsets": {
+				"from": 366200,
+				"to": 367320
+			},
+			"text": " It's very hard to find that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,320",
+				"to": "00:06:09,360"
+			},
+			"offsets": {
+				"from": 367320,
+				"to": 369360
+			},
+			"text": " I recommend you try to Google it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,360",
+				"to": "00:06:14,040"
+			},
+			"offsets": {
+				"from": 369360,
+				"to": 374040
+			},
+			"text": " You'll come up with very different explanations on where you could go."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,040",
+				"to": "00:06:15,760"
+			},
+			"offsets": {
+				"from": 374040,
+				"to": 375760
+			},
+			"text": " It's not really clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,760",
+				"to": "00:06:21,800"
+			},
+			"offsets": {
+				"from": 375760,
+				"to": 381800
+			},
+			"text": " On Cosmos similarly, so when Cosmos launched, there was only one mobile wallet available"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,800",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 381800,
+				"to": 384000
+			},
+			"text": " and one web wallet available."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:30,360"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 390360
+			},
+			"text": " And obviously people were confused whether that was the only ones they could use."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,360",
+				"to": "00:06:33,400"
+			},
+			"offsets": {
+				"from": 390360,
+				"to": 393400
+			},
+			"text": " But, you know, the most safe one was actually using the command line."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,400",
+				"to": "00:06:37,640"
+			},
+			"offsets": {
+				"from": 393400,
+				"to": 397640
+			},
+			"text": " And so people, some of the validators started telling people to use the command line."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,640",
+				"to": "00:06:42,640"
+			},
+			"offsets": {
+				"from": 397640,
+				"to": 402640
+			},
+			"text": " And obviously, as I mentioned when I first began this talk, we can't expect everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,640",
+				"to": "00:06:44,560"
+			},
+			"offsets": {
+				"from": 402640,
+				"to": 404560
+			},
+			"text": " to understand how to use the command line."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,560",
+				"to": "00:06:47,160"
+			},
+			"offsets": {
+				"from": 404560,
+				"to": 407160
+			},
+			"text": " So therefore there was a lot of confusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,160",
+				"to": "00:06:51,720"
+			},
+			"offsets": {
+				"from": 407160,
+				"to": 411720
+			},
+			"text": " So it's important that some form of staking interfaces or multiple staking interfaces"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,720",
+				"to": "00:06:54,200"
+			},
+			"offsets": {
+				"from": 411720,
+				"to": 414200
+			},
+			"text": " are available when the E2.0 launches."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,200",
+				"to": "00:06:59,520"
+			},
+			"offsets": {
+				"from": 414200,
+				"to": 419520
+			},
+			"text": " If not, it's going to cause a lot of confusion and you're just basically limiting the opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,520",
+				"to": "00:07:05,920"
+			},
+			"offsets": {
+				"from": 419520,
+				"to": 425920
+			},
+			"text": " to stake the very limited set of community members."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,920",
+				"to": "00:07:12,840"
+			},
+			"offsets": {
+				"from": 425920,
+				"to": 432840
+			},
+			"text": " Now another important part is the making staking trackable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,840",
+				"to": "00:07:15,720"
+			},
+			"offsets": {
+				"from": 432840,
+				"to": 435720
+			},
+			"text": " And, you know, of course you want it for bookkeeping."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,720",
+				"to": "00:07:19,640"
+			},
+			"offsets": {
+				"from": 435720,
+				"to": 439640
+			},
+			"text": " You want to see how much income you have, how much you have stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,640",
+				"to": "00:07:24,760"
+			},
+			"offsets": {
+				"from": 439640,
+				"to": 444760
+			},
+			"text": " But more importantly, there are tax reasons for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,760",
+				"to": "00:07:30,440"
+			},
+			"offsets": {
+				"from": 444760,
+				"to": 450440
+			},
+			"text": " There's a lot of regulatory unclarity on how staking should be considered tax-wise."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,440",
+				"to": "00:07:35,520"
+			},
+			"offsets": {
+				"from": 450440,
+				"to": 455520
+			},
+			"text": " But eventually, you know, people will need to pay their taxes most likely on staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,520",
+				"to": "00:07:36,520"
+			},
+			"offsets": {
+				"from": 455520,
+				"to": 456520
+			},
+			"text": " rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,520",
+				"to": "00:07:39,720"
+			},
+			"offsets": {
+				"from": 456520,
+				"to": 459720
+			},
+			"text": " And the only way they'll be able to do that is if they're able to track how much rewards"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,720",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 459720,
+				"to": 464000
+			},
+			"text": " they've been receiving, how much assets they've been staking so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 467000
+			},
+			"text": " There aren't that many of such dashboards."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:48,720"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 468720
+			},
+			"text": " Many of them are launching right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,720",
+				"to": "00:07:57,160"
+			},
+			"offsets": {
+				"from": 468720,
+				"to": 477160
+			},
+			"text": " But this is another key tool that needs to be provided and when E2.0 becomes available."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,160",
+				"to": "00:07:58,160"
+			},
+			"offsets": {
+				"from": 477160,
+				"to": 478160
+			},
+			"text": " So yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,160",
+				"to": "00:08:03,800"
+			},
+			"offsets": {
+				"from": 478160,
+				"to": 483800
+			},
+			"text": " So number one key theme here is try to make, you know, interfaces for users, for retail,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,800",
+				"to": "00:08:13,600"
+			},
+			"offsets": {
+				"from": 483800,
+				"to": 493600
+			},
+			"text": " such that they're able to stake easily and also track how their stake assets easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,600",
+				"to": "00:08:20,480"
+			},
+			"offsets": {
+				"from": 493600,
+				"to": 500480
+			},
+			"text": " Number two is so slashing has occurred on cosmos, especially recently, not recently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,480",
+				"to": "00:08:27,520"
+			},
+			"offsets": {
+				"from": 500480,
+				"to": 507520
+			},
+			"text": " I guess in June or July, someone, one of the validators had their validator was down for"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,520",
+				"to": "00:08:29,440"
+			},
+			"offsets": {
+				"from": 507520,
+				"to": 509440
+			},
+			"text": " a while and then they tried to bring it back up."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,440",
+				"to": "00:08:33,680"
+			},
+			"offsets": {
+				"from": 509440,
+				"to": 513680
+			},
+			"text": " And accidentally their backup note and their main validator note came back up at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,680",
+				"to": "00:08:36,760"
+			},
+			"offsets": {
+				"from": 513680,
+				"to": 516760
+			},
+			"text": " same time causing a double, double signing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,760",
+				"to": "00:08:42,640"
+			},
+			"offsets": {
+				"from": 516760,
+				"to": 522640
+			},
+			"text": " So when, as a validator, when I talk with retail or other funds, the number one question"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,640",
+				"to": "00:08:47,760"
+			},
+			"offsets": {
+				"from": 522640,
+				"to": 527760
+			},
+			"text": " they always ask us, ask us is how are you going to ensure me that, you know, how are"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,760",
+				"to": "00:08:50,120"
+			},
+			"offsets": {
+				"from": 527760,
+				"to": 530120
+			},
+			"text": " you going to ensure me in terms of slashing risk?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,120",
+				"to": "00:08:51,240"
+			},
+			"offsets": {
+				"from": 530120,
+				"to": 531240
+			},
+			"text": " It's all in their minds."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,240",
+				"to": "00:08:58,200"
+			},
+			"offsets": {
+				"from": 531240,
+				"to": 538200
+			},
+			"text": " But with this, with this double signing event, it's becoming much more, this risk is becoming"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,200",
+				"to": "00:08:59,800"
+			},
+			"offsets": {
+				"from": 538200,
+				"to": 539800
+			},
+			"text": " bigger in their minds."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,800",
+				"to": "00:09:05,760"
+			},
+			"offsets": {
+				"from": 539800,
+				"to": 545760
+			},
+			"text": " And it's become a key theme that they constantly ask for insurance or some way that some social"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,760",
+				"to": "00:09:11,360"
+			},
+			"offsets": {
+				"from": 545760,
+				"to": 551360
+			},
+			"text": " contract, some option contract, we could sign such that they're able to then somehow recoup"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,360",
+				"to": "00:09:13,760"
+			},
+			"offsets": {
+				"from": 551360,
+				"to": 553760
+			},
+			"text": " the slashed amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,760",
+				"to": "00:09:19,240"
+			},
+			"offsets": {
+				"from": 553760,
+				"to": 559240
+			},
+			"text": " And so therefore, this is definitely another pain point and there needs to be some method"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,240",
+				"to": "00:09:23,840"
+			},
+			"offsets": {
+				"from": 559240,
+				"to": 563840
+			},
+			"text": " to let, you know, people hedge their slashing risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,840",
+				"to": "00:09:28,920"
+			},
+			"offsets": {
+				"from": 563840,
+				"to": 568920
+			},
+			"text": " And most likely, I believe this will come in the form of DeFi in terms of like insurance"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,920",
+				"to": "00:09:30,920"
+			},
+			"offsets": {
+				"from": 568920,
+				"to": 570920
+			},
+			"text": " markets most likely."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,920",
+				"to": "00:09:39,680"
+			},
+			"offsets": {
+				"from": 570920,
+				"to": 579680
+			},
+			"text": " And so these sort of DeFi products need to be thought of in advance and created not"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,680",
+				"to": "00:09:42,920"
+			},
+			"offsets": {
+				"from": 579680,
+				"to": 582920
+			},
+			"text": " after E2.0 has launched really."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,920",
+				"to": "00:09:48,280"
+			},
+			"offsets": {
+				"from": 582920,
+				"to": 588280
+			},
+			"text": " Also another thing is another way of actually reducing slashing risk is by diversifying who"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,280",
+				"to": "00:09:49,520"
+			},
+			"offsets": {
+				"from": 588280,
+				"to": 589520
+			},
+			"text": " you stake to."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,520",
+				"to": "00:09:54,520"
+			},
+			"offsets": {
+				"from": 589520,
+				"to": 594520
+			},
+			"text": " For example, if I'm trying to stake on cosmos, rather than validator, rather is staking with"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,520",
+				"to": "00:09:58,920"
+			},
+			"offsets": {
+				"from": 594520,
+				"to": 598920
+			},
+			"text": " one validator, it's better to spread out your risk and valid just similar to how you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,920",
+				"to": "00:10:01,120"
+			},
+			"offsets": {
+				"from": 598920,
+				"to": 601120
+			},
+			"text": " diversify your portfolio."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,120",
+				"to": "00:10:05,080"
+			},
+			"offsets": {
+				"from": 601120,
+				"to": 605080
+			},
+			"text": " This concept is sort of not really being considered too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,080",
+				"to": "00:10:10,520"
+			},
+			"offsets": {
+				"from": 605080,
+				"to": 610520
+			},
+			"text": " We see way too many just all in staking going on in various protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,520",
+				"to": "00:10:15,520"
+			},
+			"offsets": {
+				"from": 610520,
+				"to": 615520
+			},
+			"text": " So, but probably the main reason why that's occurring is because it's very inconvenient"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,520",
+				"to": "00:10:19,760"
+			},
+			"offsets": {
+				"from": 615520,
+				"to": 619760
+			},
+			"text": " to diversify your stake when you're staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,760",
+				"to": "00:10:26,120"
+			},
+			"offsets": {
+				"from": 619760,
+				"to": 626120
+			},
+			"text": " So providing an automated option or service such that people could automatically diversify"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,120",
+				"to": "00:10:32,640"
+			},
+			"offsets": {
+				"from": 626120,
+				"to": 632640
+			},
+			"text": " the validators that they're using is also a pretty important method of hedging their slashing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,640",
+				"to": "00:10:37,800"
+			},
+			"offsets": {
+				"from": 632640,
+				"to": 637800
+			},
+			"text": " risk and probably a very important product that will be needed, you know, close to when"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,800",
+				"to": "00:10:42,560"
+			},
+			"offsets": {
+				"from": 637800,
+				"to": 642560
+			},
+			"text": " E2 point of launch is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,560",
+				"to": "00:10:48,360"
+			},
+			"offsets": {
+				"from": 642560,
+				"to": 648360
+			},
+			"text": " Another key thing that we've seen constantly come up in other POS protocols is centralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,360",
+				"to": "00:10:51,840"
+			},
+			"offsets": {
+				"from": 648360,
+				"to": 651840
+			},
+			"text": " debate."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,840",
+				"to": "00:10:59,840"
+			},
+			"offsets": {
+				"from": 651840,
+				"to": 659840
+			},
+			"text": " So on the left here, you could see sort of the graph of the state power, basically distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,840",
+				"to": "00:11:03,840"
+			},
+			"offsets": {
+				"from": 659840,
+				"to": 663840
+			},
+			"text": " And this is in cosmos by the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,840",
+				"to": "00:11:06,640"
+			},
+			"offsets": {
+				"from": 663840,
+				"to": 666640
+			},
+			"text": " So for Ethereum, there's no delegation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,640",
+				"to": "00:11:14,040"
+			},
+			"offsets": {
+				"from": 666640,
+				"to": 674040
+			},
+			"text": " So you won't see this stark of a distribution graph, but, you know, and E2 point of how"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,040",
+				"to": "00:11:16,320"
+			},
+			"offsets": {
+				"from": 674040,
+				"to": 676320
+			},
+			"text": " this is relevant is in two ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,320",
+				"to": "00:11:19,720"
+			},
+			"offsets": {
+				"from": 676320,
+				"to": 679720
+			},
+			"text": " So exchanges definitely will have so much in their custody."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,720",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 679720,
+				"to": 681000
+			},
+			"text": " So there are going to be big players."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:28,720"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 688720
+			},
+			"text": " So there will be some debate over their role in the staking economy in the E2 point of."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,720",
+				"to": "00:11:32,440"
+			},
+			"offsets": {
+				"from": 688720,
+				"to": 692440
+			},
+			"text": " But second of all, remember I said that validators will probably enter into E2 point"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,440",
+				"to": "00:11:34,280"
+			},
+			"offsets": {
+				"from": 692440,
+				"to": 694280
+			},
+			"text": " of as node as a service."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,280",
+				"to": "00:11:39,840"
+			},
+			"offsets": {
+				"from": 694280,
+				"to": 699840
+			},
+			"text": " Well imagine if any of these node as a service providers become big, like they control like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,840",
+				"to": "00:11:43,280"
+			},
+			"offsets": {
+				"from": 699840,
+				"to": 703280
+			},
+			"text": " 50, 60% of the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,280",
+				"to": "00:11:47,320"
+			},
+			"offsets": {
+				"from": 703280,
+				"to": 707320
+			},
+			"text": " Imagine that they find a very critical bug in their infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,320",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 707320,
+				"to": 714000
+			},
+			"text": " What that means is that every single user staking using their node as a service are probably likely"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:55,320"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 715320
+			},
+			"text": " going to be compromised."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,320",
+				"to": "00:11:59,080"
+			},
+			"offsets": {
+				"from": 715320,
+				"to": 719080
+			},
+			"text": " So it's another point of failure in that case."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,080",
+				"to": "00:12:05,080"
+			},
+			"offsets": {
+				"from": 719080,
+				"to": 725080
+			},
+			"text": " So that's also, that's somewhat like not going to be as forefront as, you know, seeing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,080",
+				"to": "00:12:09,120"
+			},
+			"offsets": {
+				"from": 725080,
+				"to": 729120
+			},
+			"text": " an exchange gain like 5, 6% of a network's power."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,120",
+				"to": "00:12:14,640"
+			},
+			"offsets": {
+				"from": 729120,
+				"to": 734640
+			},
+			"text": " But this is also going to be a very crucial centralization, failure point that will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,640",
+				"to": "00:12:19,200"
+			},
+			"offsets": {
+				"from": 734640,
+				"to": 739200
+			},
+			"text": " need to be vigilant about."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,200",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 739200,
+				"to": 743000
+			},
+			"text": " So I actually took this out."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:28,440"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 748440
+			},
+			"text": " I've put it as a separate point because this is very crucial."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,440",
+				"to": "00:12:30,960"
+			},
+			"offsets": {
+				"from": 748440,
+				"to": 750960
+			},
+			"text": " So exchanges are finally entering staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,960",
+				"to": "00:12:34,480"
+			},
+			"offsets": {
+				"from": 750960,
+				"to": 754480
+			},
+			"text": " You know, I'm quite sure many of you have seen how Binance announced that they're providing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,480",
+				"to": "00:12:37,080"
+			},
+			"offsets": {
+				"from": 754480,
+				"to": 757080
+			},
+			"text": " staking operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,080",
+				"to": "00:12:44,760"
+			},
+			"offsets": {
+				"from": 757080,
+				"to": 764760
+			},
+			"text": " And the reason why staking is so, exchanges are entering to staking is crucial is because"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,760",
+				"to": "00:12:50,440"
+			},
+			"offsets": {
+				"from": 764760,
+				"to": 770440
+			},
+			"text": " they're able to provide instant liquidity and they actually bypass any unbonding periods."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,440",
+				"to": "00:12:54,680"
+			},
+			"offsets": {
+				"from": 770440,
+				"to": 774680
+			},
+			"text": " And you know, imagine that, you know, like if you're trying to stake on a ease 2.0 and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,680",
+				"to": "00:12:59,560"
+			},
+			"offsets": {
+				"from": 774680,
+				"to": 779560
+			},
+			"text": " you don't need to lock up your ease, just keep it on a exchange wallet and you instantly"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,560",
+				"to": "00:13:01,280"
+			},
+			"offsets": {
+				"from": 779560,
+				"to": 781280
+			},
+			"text": " get each drop to your wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,280",
+				"to": "00:13:03,800"
+			},
+			"offsets": {
+				"from": 781280,
+				"to": 783800
+			},
+			"text": " Like how convenient is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,800",
+				"to": "00:13:09,880"
+			},
+			"offsets": {
+				"from": 783800,
+				"to": 789880
+			},
+			"text": " And so therefore, this is a really problematic, especially for independent validators like"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,880",
+				"to": "00:13:14,680"
+			},
+			"offsets": {
+				"from": 789880,
+				"to": 794680
+			},
+			"text": " us because we're not really able to compete with these exchanges that are able to bypass"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,680",
+				"to": "00:13:16,680"
+			},
+			"offsets": {
+				"from": 794680,
+				"to": 796680
+			},
+			"text": " these liquidity issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,680",
+				"to": "00:13:17,680"
+			},
+			"offsets": {
+				"from": 796680,
+				"to": 797680
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,680",
+				"to": "00:13:21,480"
+			},
+			"offsets": {
+				"from": 797680,
+				"to": 801480
+			},
+			"text": " And there's like, there's three points on how exchanges are entering."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,480",
+				"to": "00:13:26,040"
+			},
+			"offsets": {
+				"from": 801480,
+				"to": 806040
+			},
+			"text": " I'll please come up to me if you want to understand more about how exchanges are entering right"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,040",
+				"to": "00:13:27,200"
+			},
+			"offsets": {
+				"from": 806040,
+				"to": 807200
+			},
+			"text": " now."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,200",
+				"to": "00:13:33,680"
+			},
+			"offsets": {
+				"from": 807200,
+				"to": 813680
+			},
+			"text": " So as I mentioned, the important part for the important part about like, of tackling this"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,680",
+				"to": "00:13:38,020"
+			},
+			"offsets": {
+				"from": 813680,
+				"to": 818020
+			},
+			"text": " is that independent validators like us need to be able to compete with these guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,020",
+				"to": "00:13:42,600"
+			},
+			"offsets": {
+				"from": 818020,
+				"to": 822600
+			},
+			"text": " And the only way we could do that is if there's a way where we could offer people who delegate"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,600",
+				"to": "00:13:49,480"
+			},
+			"offsets": {
+				"from": 822600,
+				"to": 829480
+			},
+			"text": " to us who stake with us have similar liquidity, you know, liquidity when they're staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,480",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 829480,
+				"to": 835000
+			},
+			"text": " And so therefore I see staking derivatives, again, DeFi playing a key role here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:13:58,240"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 838240
+			},
+			"text": " There are a few players right now trying to tackle this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,240",
+				"to": "00:14:04,040"
+			},
+			"offsets": {
+				"from": 838240,
+				"to": 844040
+			},
+			"text": " And so once staking derivatives are live, that will then help us, validators actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,040",
+				"to": "00:14:05,480"
+			},
+			"offsets": {
+				"from": 844040,
+				"to": 845480
+			},
+			"text": " compete with exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,480",
+				"to": "00:14:07,160"
+			},
+			"offsets": {
+				"from": 845480,
+				"to": 847160
+			},
+			"text": " And that's what that's key here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,160",
+				"to": "00:14:14,480"
+			},
+			"offsets": {
+				"from": 847160,
+				"to": 854480
+			},
+			"text": " I think that that's how I don't expect validators to be treated more favorably compared to exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,480",
+				"to": "00:14:20,160"
+			},
+			"offsets": {
+				"from": 854480,
+				"to": 860160
+			},
+			"text": " But at the very least, we could level the playing field by providing staking derivatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,160",
+				"to": "00:14:27,400"
+			},
+			"offsets": {
+				"from": 860160,
+				"to": 867400
+			},
+			"text": " And so this is just one way of sort of tackling the exchange centralization issue regarding"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,400",
+				"to": "00:14:28,400"
+			},
+			"offsets": {
+				"from": 867400,
+				"to": 868400
+			},
+			"text": " staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,400",
+				"to": "00:14:34,760"
+			},
+			"offsets": {
+				"from": 868400,
+				"to": 874760
+			},
+			"text": " But I welcome anyone to think of any alternatives to try to see where we could compete better"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,760",
+				"to": "00:14:38,720"
+			},
+			"offsets": {
+				"from": 874760,
+				"to": 878720
+			},
+			"text": " with exchanges when it comes to staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,720",
+				"to": "00:14:45,560"
+			},
+			"offsets": {
+				"from": 878720,
+				"to": 885560
+			},
+			"text": " So finally, this is a topic that no one likes to talk about, but that we seriously need"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,560",
+				"to": "00:14:49,240"
+			},
+			"offsets": {
+				"from": 885560,
+				"to": 889240
+			},
+			"text": " to, there needs to be a working group around this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,240",
+				"to": "00:14:52,920"
+			},
+			"offsets": {
+				"from": 889240,
+				"to": 892920
+			},
+			"text": " This regulation and taxation, proof of work mining has been around."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,920",
+				"to": "00:14:59,240"
+			},
+			"offsets": {
+				"from": 892920,
+				"to": 899240
+			},
+			"text": " So there has been some framework constructed around how mining and mining rewards should"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,240",
+				"to": "00:15:00,400"
+			},
+			"offsets": {
+				"from": 899240,
+				"to": 900400
+			},
+			"text": " be considered."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,400",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 900400,
+				"to": 907000
+			},
+			"text": " But, you know, we can't assume that proof of staking and staking rewards will be considered"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 909000
+			},
+			"text": " the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:12,640"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 912640
+			},
+			"text": " Like as an example, like let's say proof of staking, staking rewards will eventually"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,640",
+				"to": "00:15:13,640"
+			},
+			"offsets": {
+				"from": 912640,
+				"to": 913640
+			},
+			"text": " be taxed."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,640",
+				"to": "00:15:17,280"
+			},
+			"offsets": {
+				"from": 913640,
+				"to": 917280
+			},
+			"text": " Will it be taxed once I get the staking rewards in my wallet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,280",
+				"to": "00:15:20,400"
+			},
+			"offsets": {
+				"from": 917280,
+				"to": 920400
+			},
+			"text": " Or will it be taxed once I liquidate it into like another coin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,400",
+				"to": "00:15:26,160"
+			},
+			"offsets": {
+				"from": 920400,
+				"to": 926160
+			},
+			"text": " Like these are questions that are still up in the air and no one knows the answers to."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,160",
+				"to": "00:15:31,560"
+			},
+			"offsets": {
+				"from": 926160,
+				"to": 931560
+			},
+			"text": " So there is a POS alliance, proof of stake alliance that has been created with a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,560",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 931560,
+				"to": 935000
+			},
+			"text": " key players in the staking world."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:41,640"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 941640
+			},
+			"text": " I also do encourage the Durham community to think about how we could engage policy makers"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,640",
+				"to": "00:15:47,200"
+			},
+			"offsets": {
+				"from": 941640,
+				"to": 947200
+			},
+			"text": " and regulators around how staking should be considered."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,200",
+				"to": "00:15:53,080"
+			},
+			"offsets": {
+				"from": 947200,
+				"to": 953080
+			},
+			"text": " Because if this stack is not figured out, like, you know, validators, stakers, everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,080",
+				"to": "00:15:57,760"
+			},
+			"offsets": {
+				"from": 953080,
+				"to": 957760
+			},
+			"text": " alike is going to be in a heap of regulatory issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,760",
+				"to": "00:16:05,840"
+			},
+			"offsets": {
+				"from": 957760,
+				"to": 965840
+			},
+			"text": " So I think it's important that we actually take a proactive approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,840",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 965840,
+				"to": 970000
+			},
+			"text": " I try to talk with policy makers on what they're thinking and how we can make it comfortable"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:16,960"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 976960
+			},
+			"text": " such that they make reasoned and logical decisions on how staking should be taxed, how staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,960",
+				"to": "00:16:19,120"
+			},
+			"offsets": {
+				"from": 976960,
+				"to": 979120
+			},
+			"text": " should be regulated."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,120",
+				"to": "00:16:23,760"
+			},
+			"offsets": {
+				"from": 979120,
+				"to": 983760
+			},
+			"text": " So yeah, so those are sort of the five key lessons I wanted to share with you guys and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,760",
+				"to": "00:16:28,080"
+			},
+			"offsets": {
+				"from": 983760,
+				"to": 988080
+			},
+			"text": " hopefully that once these 2.0 launches, we have some answers to."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,080",
+				"to": "00:16:31,360"
+			},
+			"offsets": {
+				"from": 988080,
+				"to": 991360
+			},
+			"text": " We might not have answers to all, but hopefully most of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,360",
+				"to": "00:16:32,840"
+			},
+			"offsets": {
+				"from": 991360,
+				"to": 992840
+			},
+			"text": " I love talking about staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,840",
+				"to": "00:16:37,840"
+			},
+			"offsets": {
+				"from": 992840,
+				"to": 997840
+			},
+			"text": " I'm happy to share any knowledge insight on what we've, how we've operated so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,840",
+				"to": "00:16:44,120"
+			},
+			"offsets": {
+				"from": 997840,
+				"to": 1004120
+			},
+			"text": " So please feel free to reach out to me on Twitter, on, by email or, or yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,120",
+				"to": "00:16:45,600"
+			},
+			"offsets": {
+				"from": 1004120,
+				"to": 1005600
+			},
+			"text": " I think that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,600",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1005600,
+				"to": 1008000
+			},
+			"text": " I guess I'll take questions if there are any."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1018000
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1028000
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1038000
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1048000
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

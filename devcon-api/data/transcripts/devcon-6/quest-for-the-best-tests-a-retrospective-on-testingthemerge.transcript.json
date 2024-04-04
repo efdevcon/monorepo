@@ -1,0 +1,4399 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 17000
+			},
+			"text": " So hey, I'm going to be talking about the quest"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:19,040"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 19040
+			},
+			"text": " for the best tests today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,040",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 19040,
+				"to": 21000
+			},
+			"text": " We're going to look at all the different testing tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:21,800"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 21800
+			},
+			"text": " that we used."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,800",
+				"to": "00:00:24,280"
+			},
+			"offsets": {
+				"from": 21800,
+				"to": 24280
+			},
+			"text": " And I'm going to be talking about the bugs"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,280",
+				"to": "00:00:26,440"
+			},
+			"offsets": {
+				"from": 24280,
+				"to": 26440
+			},
+			"text": " that we didn't find on Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,440",
+				"to": "00:00:29,840"
+			},
+			"offsets": {
+				"from": 26440,
+				"to": 29840
+			},
+			"text": " If you were here for two talks before mine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,840",
+				"to": "00:00:31,960"
+			},
+			"offsets": {
+				"from": 29840,
+				"to": 31960
+			},
+			"text": " Mario spoke about the bugs that we did find,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,960",
+				"to": "00:00:34,960"
+			},
+			"offsets": {
+				"from": 31960,
+				"to": 34960
+			},
+			"text": " so I'm going to do the contra."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,960",
+				"to": "00:00:38,840"
+			},
+			"offsets": {
+				"from": 34960,
+				"to": 38840
+			},
+			"text": " The first part, let's talk about what we're actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,840",
+				"to": "00:00:40,240"
+			},
+			"offsets": {
+				"from": 38840,
+				"to": 40240
+			},
+			"text": " doing with testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,240",
+				"to": "00:00:43,040"
+			},
+			"offsets": {
+				"from": 40240,
+				"to": 43040
+			},
+			"text": " Why is the merge complicated to begin with?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,040",
+				"to": "00:00:47,120"
+			},
+			"offsets": {
+				"from": 43040,
+				"to": 47120
+			},
+			"text": " Well, we have roughly 20 different client combinations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,120",
+				"to": "00:00:49,720"
+			},
+			"offsets": {
+				"from": 47120,
+				"to": 49720
+			},
+			"text": " and regression sneaking very easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,720",
+				"to": "00:00:52,280"
+			},
+			"offsets": {
+				"from": 49720,
+				"to": 52280
+			},
+			"text": " You might see a regression in one of the client combinations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,280",
+				"to": "00:00:53,440"
+			},
+			"offsets": {
+				"from": 52280,
+				"to": 53440
+			},
+			"text": " but none of the other ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,440",
+				"to": "00:00:56,520"
+			},
+			"offsets": {
+				"from": 53440,
+				"to": 56520
+			},
+			"text": " And that's very tricky to pinpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,520",
+				"to": "00:00:58,840"
+			},
+			"offsets": {
+				"from": 56520,
+				"to": 58840
+			},
+			"text": " The specs were an active development."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,840",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 58840,
+				"to": 61000
+			},
+			"text": " There were quite a few of the early test nets"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:04,400"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 64400
+			},
+			"text": " where we kind of didn't pin the spec version."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,400",
+				"to": "00:01:07,240"
+			},
+			"offsets": {
+				"from": 64400,
+				"to": 67240
+			},
+			"text": " So someone was implementing something on a different commit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,240",
+				"to": "00:01:09,200"
+			},
+			"offsets": {
+				"from": 67240,
+				"to": 69200
+			},
+			"text": " So of course, the test network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,200",
+				"to": "00:01:11,040"
+			},
+			"offsets": {
+				"from": 69200,
+				"to": 71040
+			},
+			"text": " So we had to actually figure out"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,040",
+				"to": "00:01:16,080"
+			},
+			"offsets": {
+				"from": 71040,
+				"to": 76080
+			},
+			"text": " how to treat modifying specs along with modifying test nets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,080",
+				"to": "00:01:18,680"
+			},
+			"offsets": {
+				"from": 76080,
+				"to": 78680
+			},
+			"text": " along with 20 different combinations"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,680",
+				"to": "00:01:21,520"
+			},
+			"offsets": {
+				"from": 78680,
+				"to": 81520
+			},
+			"text": " all changing at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,520",
+				"to": "00:01:23,880"
+			},
+			"offsets": {
+				"from": 81520,
+				"to": 83880
+			},
+			"text": " Communicating and debugging, it's great"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,880",
+				"to": "00:01:25,800"
+			},
+			"offsets": {
+				"from": 83880,
+				"to": 85800
+			},
+			"text": " that we have a decentralized environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,800",
+				"to": "00:01:27,760"
+			},
+			"offsets": {
+				"from": 85800,
+				"to": 87760
+			},
+			"text": " It's horrible if I have to wait for the Australians"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,760",
+				"to": "00:01:30,600"
+			},
+			"offsets": {
+				"from": 87760,
+				"to": 90600
+			},
+			"text": " to wake up for anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,600",
+				"to": "00:01:32,360"
+			},
+			"offsets": {
+				"from": 90600,
+				"to": 92360
+			},
+			"text": " It does take quite a bit of effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,360",
+				"to": "00:01:34,200"
+			},
+			"offsets": {
+				"from": 92360,
+				"to": 94200
+			},
+			"text": " and quite a bit of planning on our side."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,200",
+				"to": "00:01:36,240"
+			},
+			"offsets": {
+				"from": 94200,
+				"to": 96240
+			},
+			"text": " We had to kind of schedule around people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,240",
+				"to": "00:01:38,320"
+			},
+			"offsets": {
+				"from": 96240,
+				"to": 98320
+			},
+			"text": " picking up their kids from school."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,320",
+				"to": "00:01:41,400"
+			},
+			"offsets": {
+				"from": 98320,
+				"to": 101400
+			},
+			"text": " We had to schedule around people waking up in Australia."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,400",
+				"to": "00:01:43,120"
+			},
+			"offsets": {
+				"from": 101400,
+				"to": 103120
+			},
+			"text": " We had to schedule around Americans."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,120",
+				"to": "00:01:44,600"
+			},
+			"offsets": {
+				"from": 103120,
+				"to": 104600
+			},
+			"text": " A lot of different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,600",
+				"to": "00:01:47,760"
+			},
+			"offsets": {
+				"from": 104600,
+				"to": 107760
+			},
+			"text": " And figuring out how to do all of this in a reliable manner"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,760",
+				"to": "00:01:50,760"
+			},
+			"offsets": {
+				"from": 107760,
+				"to": 110760
+			},
+			"text": " and on a timeline was crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,760",
+				"to": "00:01:53,640"
+			},
+			"offsets": {
+				"from": 110760,
+				"to": 113640
+			},
+			"text": " The last one was debug knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,640",
+				"to": "00:01:55,920"
+			},
+			"offsets": {
+				"from": 113640,
+				"to": 115920
+			},
+			"text": " We were really surprised the type of debugging"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,920",
+				"to": "00:01:58,520"
+			},
+			"offsets": {
+				"from": 115920,
+				"to": 118520
+			},
+			"text": " you need to do for CLs and ELS are totally different."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,520",
+				"to": "00:02:02,040"
+			},
+			"offsets": {
+				"from": 118520,
+				"to": 122040
+			},
+			"text": " We had to see how to bring all of that competence in one place"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,040",
+				"to": "00:02:04,680"
+			},
+			"offsets": {
+				"from": 122040,
+				"to": 124680
+			},
+			"text": " and how to actually figure out when something goes wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,680",
+				"to": "00:02:08,640"
+			},
+			"offsets": {
+				"from": 124680,
+				"to": 128640
+			},
+			"text": " And they did go wrong a lot in the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,640",
+				"to": "00:02:11,040"
+			},
+			"offsets": {
+				"from": 128640,
+				"to": 131040
+			},
+			"text": " And the nice part is if you figure this out once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,040",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 131040,
+				"to": 133000
+			},
+			"text": " we figured out for future test nets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,120"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136120
+			},
+			"text": " So happy that that worked out."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,120",
+				"to": "00:02:17,960"
+			},
+			"offsets": {
+				"from": 136120,
+				"to": 137960
+			},
+			"text": " What could possibly go wrong?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,960",
+				"to": "00:02:21,520"
+			},
+			"offsets": {
+				"from": 137960,
+				"to": 141520
+			},
+			"text": " So the merge has two parts, the consensus layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,520",
+				"to": "00:02:23,040"
+			},
+			"offsets": {
+				"from": 141520,
+				"to": 143040
+			},
+			"text": " and the execution layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,040",
+				"to": "00:02:26,320"
+			},
+			"offsets": {
+				"from": 143040,
+				"to": 146320
+			},
+			"text": " And they communicate via this thing called the engine API."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,320",
+				"to": "00:02:28,480"
+			},
+			"offsets": {
+				"from": 146320,
+				"to": 148480
+			},
+			"text": " So if you mess up the consensus layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,480",
+				"to": "00:02:30,600"
+			},
+			"offsets": {
+				"from": 148480,
+				"to": 150600
+			},
+			"text": " you're going to have a network that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,600",
+				"to": "00:02:32,040"
+			},
+			"offsets": {
+				"from": 150600,
+				"to": 152040
+			},
+			"text": " can't agree on anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,040",
+				"to": "00:02:33,720"
+			},
+			"offsets": {
+				"from": 152040,
+				"to": 153720
+			},
+			"text": " If you mess up the execution layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,720",
+				"to": "00:02:36,120"
+			},
+			"offsets": {
+				"from": 153720,
+				"to": 156120
+			},
+			"text": " you have a network that can't do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,120",
+				"to": "00:02:37,880"
+			},
+			"offsets": {
+				"from": 156120,
+				"to": 157880
+			},
+			"text": " So those are the two high-level problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,880",
+				"to": "00:02:40,960"
+			},
+			"offsets": {
+				"from": 157880,
+				"to": 160960
+			},
+			"text": " that we're trying to ensure that never happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,960",
+				"to": "00:02:43,560"
+			},
+			"offsets": {
+				"from": 160960,
+				"to": 163560
+			},
+			"text": " Just to enumerate a bit from the regular testing world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,560",
+				"to": "00:02:45,480"
+			},
+			"offsets": {
+				"from": 163560,
+				"to": 165480
+			},
+			"text": " what sort of tests even exist?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,480",
+				"to": "00:02:47,480"
+			},
+			"offsets": {
+				"from": 165480,
+				"to": 167480
+			},
+			"text": " So we have unit tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,480",
+				"to": "00:02:50,400"
+			},
+			"offsets": {
+				"from": 167480,
+				"to": 170400
+			},
+			"text": " And at least in our decentralized world"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,400",
+				"to": "00:02:52,080"
+			},
+			"offsets": {
+				"from": 170400,
+				"to": 172080
+			},
+			"text": " with all the client teams, the client teams"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,080",
+				"to": "00:02:53,160"
+			},
+			"offsets": {
+				"from": 172080,
+				"to": 173160
+			},
+			"text": " take care of this themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,160",
+				"to": "00:02:54,360"
+			},
+			"offsets": {
+				"from": 173160,
+				"to": 174360
+			},
+			"text": " We don't have to do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,360",
+				"to": "00:02:56,720"
+			},
+			"offsets": {
+				"from": 174360,
+				"to": 176720
+			},
+			"text": " No coordination work from our side."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,720",
+				"to": "00:02:58,400"
+			},
+			"offsets": {
+				"from": 176720,
+				"to": 178400
+			},
+			"text": " This makes sure that there's no regression,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,400",
+				"to": "00:02:59,800"
+			},
+			"offsets": {
+				"from": 178400,
+				"to": 179800
+			},
+			"text": " but these are localized regression,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,800",
+				"to": "00:03:01,600"
+			},
+			"offsets": {
+				"from": 179800,
+				"to": 181600
+			},
+			"text": " something that they might have seen on their client"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,600",
+				"to": "00:03:04,320"
+			},
+			"offsets": {
+				"from": 181600,
+				"to": 184320
+			},
+			"text": " based on how they've built their client."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,320",
+				"to": "00:03:05,760"
+			},
+			"offsets": {
+				"from": 184320,
+				"to": 185760
+			},
+			"text": " We have integration tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,760",
+				"to": "00:03:07,640"
+			},
+			"offsets": {
+				"from": 185760,
+				"to": 187640
+			},
+			"text": " Part of them are done by client teams."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,640",
+				"to": "00:03:09,560"
+			},
+			"offsets": {
+				"from": 187640,
+				"to": 189560
+			},
+			"text": " So for example, the Nimbus team spins up"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,560",
+				"to": "00:03:13,080"
+			},
+			"offsets": {
+				"from": 189560,
+				"to": 193080
+			},
+			"text": " a local Nimbus network to make sure that their stuff can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,080",
+				"to": "00:03:15,960"
+			},
+			"offsets": {
+				"from": 193080,
+				"to": 195960
+			},
+			"text": " always talk to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,960",
+				"to": "00:03:18,680"
+			},
+			"offsets": {
+				"from": 195960,
+				"to": 198680
+			},
+			"text": " Then on a high level, we do some interrupt tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,680",
+				"to": "00:03:22,080"
+			},
+			"offsets": {
+				"from": 198680,
+				"to": 202080
+			},
+			"text": " So these might be DevNet or whatever they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,080",
+				"to": "00:03:23,640"
+			},
+			"offsets": {
+				"from": 202080,
+				"to": 203640
+			},
+			"text": " Then we have system tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,640",
+				"to": "00:03:27,480"
+			},
+			"offsets": {
+				"from": 203640,
+				"to": 207480
+			},
+			"text": " And this is where external coordinators come in."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,480",
+				"to": "00:03:30,920"
+			},
+			"offsets": {
+				"from": 207480,
+				"to": 210920
+			},
+			"text": " So I'm going to say the EF was part of the external coordinator"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,920",
+				"to": "00:03:32,760"
+			},
+			"offsets": {
+				"from": 210920,
+				"to": 212760
+			},
+			"text": " for the testing efforts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,760",
+				"to": "00:03:34,720"
+			},
+			"offsets": {
+				"from": 212760,
+				"to": 214720
+			},
+			"text": " So these tests end to end functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,720",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 214720,
+				"to": 219000
+			},
+			"text": " We spin up a test net, we run transactions, we withdraw,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:41,200"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 221200
+			},
+			"text": " we set up faucets, we look at it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,200",
+				"to": "00:03:43,400"
+			},
+			"offsets": {
+				"from": 221200,
+				"to": 223400
+			},
+			"text": " explorers work, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,400",
+				"to": "00:03:45,240"
+			},
+			"offsets": {
+				"from": 223400,
+				"to": 225240
+			},
+			"text": " And then we have production tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,240",
+				"to": "00:03:47,920"
+			},
+			"offsets": {
+				"from": 225240,
+				"to": 227920
+			},
+			"text": " This is something you guys might have seen with ShadowFox."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,920",
+				"to": "00:03:52,840"
+			},
+			"offsets": {
+				"from": 227920,
+				"to": 232840
+			},
+			"text": " So production tests sort of work on a crowd like environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,840",
+				"to": "00:03:55,160"
+			},
+			"offsets": {
+				"from": 232840,
+				"to": 235160
+			},
+			"text": " And I'll go into what ShadowFox are later on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,160",
+				"to": "00:03:59,240"
+			},
+			"offsets": {
+				"from": 235160,
+				"to": 239240
+			},
+			"text": " but on a high level, we inherit all the complexity of MainNet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,240",
+				"to": "00:04:01,360"
+			},
+			"offsets": {
+				"from": 239240,
+				"to": 241360
+			},
+			"text": " And this also includes public test nets."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,360",
+				"to": "00:04:04,080"
+			},
+			"offsets": {
+				"from": 241360,
+				"to": 244080
+			},
+			"text": " So if you guys remember Kiln or Kinsuki,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,080",
+				"to": "00:04:05,600"
+			},
+			"offsets": {
+				"from": 244080,
+				"to": 245600
+			},
+			"text": " that falls under this bucket."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,600",
+				"to": "00:04:08,640"
+			},
+			"offsets": {
+				"from": 245600,
+				"to": 248640
+			},
+			"text": " So you have everyone all over the place testing their things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,640",
+				"to": "00:04:10,320"
+			},
+			"offsets": {
+				"from": 248640,
+				"to": 250320
+			},
+			"text": " Layer 2s are deploying over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,320",
+				"to": "00:04:14,480"
+			},
+			"offsets": {
+				"from": 250320,
+				"to": 254480
+			},
+			"text": " We have random DeFi protocols deploying over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,480",
+				"to": "00:04:17,520"
+			},
+			"offsets": {
+				"from": 254480,
+				"to": 257520
+			},
+			"text": " And these find issues that only happen on real workloads."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,520",
+				"to": "00:04:21,960"
+			},
+			"offsets": {
+				"from": 257520,
+				"to": 261960
+			},
+			"text": " You probably can't simulate them any other way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,960",
+				"to": "00:04:23,720"
+			},
+			"offsets": {
+				"from": 261960,
+				"to": 263720
+			},
+			"text": " So the second part, I'm going to talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,720",
+				"to": "00:04:25,640"
+			},
+			"offsets": {
+				"from": 263720,
+				"to": 265640
+			},
+			"text": " about what different tools we had."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,640",
+				"to": "00:04:27,520"
+			},
+			"offsets": {
+				"from": 265640,
+				"to": 267520
+			},
+			"text": " And just give you a brief overview."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,520",
+				"to": "00:04:30,800"
+			},
+			"offsets": {
+				"from": 267520,
+				"to": 270800
+			},
+			"text": " And just to tell you how this is going to go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,800",
+				"to": "00:04:33,480"
+			},
+			"offsets": {
+				"from": 270800,
+				"to": 273480
+			},
+			"text": " once you have an overview of what sort of testing tools we have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,480",
+				"to": "00:04:35,480"
+			},
+			"offsets": {
+				"from": 273480,
+				"to": 275480
+			},
+			"text": " I'm going to talk about what we actually did with them"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,480",
+				"to": "00:04:37,960"
+			},
+			"offsets": {
+				"from": 275480,
+				"to": 277960
+			},
+			"text": " and what we didn't find."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,960",
+				"to": "00:04:41,720"
+			},
+			"offsets": {
+				"from": 277960,
+				"to": 281720
+			},
+			"text": " So the first one, starting at a high level, we have spec tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,720",
+				"to": "00:04:43,560"
+			},
+			"offsets": {
+				"from": 281720,
+				"to": 283560
+			},
+			"text": " It's the great thing about the consensus layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,560",
+				"to": "00:04:45,040"
+			},
+			"offsets": {
+				"from": 283560,
+				"to": 285040
+			},
+			"text": " They have an executable spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,040",
+				"to": "00:04:48,240"
+			},
+			"offsets": {
+				"from": 285040,
+				"to": 288240
+			},
+			"text": " They have specifications with a ton of tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,240",
+				"to": "00:04:50,360"
+			},
+			"offsets": {
+				"from": 288240,
+				"to": 290360
+			},
+			"text": " Client times can then import these specs"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,360",
+				"to": "00:04:53,600"
+			},
+			"offsets": {
+				"from": 290360,
+				"to": 293600
+			},
+			"text": " and make sure that they can test them in their local CI."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,600",
+				"to": "00:04:55,720"
+			},
+			"offsets": {
+				"from": 293600,
+				"to": 295720
+			},
+			"text": " This means whenever they're making a release,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,720",
+				"to": "00:04:58,760"
+			},
+			"offsets": {
+				"from": 295720,
+				"to": 298760
+			},
+			"text": " at least you know that they're coherent to the spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,760",
+				"to": "00:05:00,560"
+			},
+			"offsets": {
+				"from": 298760,
+				"to": 300560
+			},
+			"text": " This is largely a sanity check."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,560",
+				"to": "00:05:03,960"
+			},
+			"offsets": {
+				"from": 300560,
+				"to": 303960
+			},
+			"text": " It's not meant to find any massive bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,960",
+				"to": "00:05:08,080"
+			},
+			"offsets": {
+				"from": 303960,
+				"to": 308080
+			},
+			"text": " But it ensures that there's no regressions happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,080",
+				"to": "00:05:11,360"
+			},
+			"offsets": {
+				"from": 308080,
+				"to": 311360
+			},
+			"text": " We currently have the spec tests, I think, running every night"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,360",
+				"to": "00:05:15,160"
+			},
+			"offsets": {
+				"from": 311360,
+				"to": 315160
+			},
+			"text": " on a new CI machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,160",
+				"to": "00:05:16,760"
+			},
+			"offsets": {
+				"from": 315160,
+				"to": 316760
+			},
+			"text": " The second one is hype tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,760",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 316760,
+				"to": 320000
+			},
+			"text": " You might have seen this being referenced a couple of times."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:22,800"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 322800
+			},
+			"text": " So hype tests run with a simulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,800",
+				"to": "00:05:24,800"
+			},
+			"offsets": {
+				"from": 322800,
+				"to": 324800
+			},
+			"text": " And they essentially start up the clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,800",
+				"to": "00:05:27,960"
+			},
+			"offsets": {
+				"from": 324800,
+				"to": 327960
+			},
+			"text": " and then run the tests against a predefined interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,960",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 327960,
+				"to": 330000
+			},
+			"text": " These are a couple of hundred tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:33,160"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 333160
+			},
+			"text": " These take anywhere between, I think, a day or two days"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,160",
+				"to": "00:05:35,120"
+			},
+			"offsets": {
+				"from": 333160,
+				"to": 335120
+			},
+			"text": " to run everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,120",
+				"to": "00:05:37,360"
+			},
+			"offsets": {
+				"from": 335120,
+				"to": 337360
+			},
+			"text": " And a brief example of how this is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,360",
+				"to": "00:05:40,680"
+			},
+			"offsets": {
+				"from": 337360,
+				"to": 340680
+			},
+			"text": " is it starts up a tiny instance of another mind node."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,680",
+				"to": "00:05:42,760"
+			},
+			"offsets": {
+				"from": 340680,
+				"to": 342760
+			},
+			"text": " It sends it two terminal blocks and asserts"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,760",
+				"to": "00:05:44,800"
+			},
+			"offsets": {
+				"from": 342760,
+				"to": 344800
+			},
+			"text": " how the transition happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,800",
+				"to": "00:05:47,960"
+			},
+			"offsets": {
+				"from": 344800,
+				"to": 347960
+			},
+			"text": " This is a lot of awesome work by Mario."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,960",
+				"to": "00:05:50,200"
+			},
+			"offsets": {
+				"from": 347960,
+				"to": 350200
+			},
+			"text": " He should be somewhere in the crowd."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,200",
+				"to": "00:05:53,200"
+			},
+			"offsets": {
+				"from": 350200,
+				"to": 353200
+			},
+			"text": " Shout out to him and follow him on Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,200",
+				"to": "00:05:55,680"
+			},
+			"offsets": {
+				"from": 353200,
+				"to": 355680
+			},
+			"text": " We found a lot of edge cases in this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,680",
+				"to": "00:05:58,520"
+			},
+			"offsets": {
+				"from": 355680,
+				"to": 358520
+			},
+			"text": " And once we do find an edge case, it's always in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,520",
+				"to": "00:06:02,840"
+			},
+			"offsets": {
+				"from": 358520,
+				"to": 362840
+			},
+			"text": " so that we make sure in future updates, whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,840",
+				"to": "00:06:07,840"
+			},
+			"offsets": {
+				"from": 362840,
+				"to": 367840
+			},
+			"text": " it doesn't happen if people check the website, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,840",
+				"to": "00:06:09,920"
+			},
+			"offsets": {
+				"from": 367840,
+				"to": 369920
+			},
+			"text": " Then we have this thing called kurtosis."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,920",
+				"to": "00:06:11,840"
+			},
+			"offsets": {
+				"from": 369920,
+				"to": 371840
+			},
+			"text": " It's an external tool that we're working with."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,840",
+				"to": "00:06:15,080"
+			},
+			"offsets": {
+				"from": 371840,
+				"to": 375080
+			},
+			"text": " And kurtosis obfuscates all the complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,080",
+				"to": "00:06:16,560"
+			},
+			"offsets": {
+				"from": 375080,
+				"to": 376560
+			},
+			"text": " with setting up a test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,560",
+				"to": "00:06:18,400"
+			},
+			"offsets": {
+				"from": 376560,
+				"to": 378400
+			},
+			"text": " You don't have to worry about how Genesis works."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,400",
+				"to": "00:06:20,600"
+			},
+			"offsets": {
+				"from": 378400,
+				"to": 380600
+			},
+			"text": " You don't have to worry what format"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,600",
+				"to": "00:06:23,600"
+			},
+			"offsets": {
+				"from": 380600,
+				"to": 383600
+			},
+			"text": " that nethermind needs its Genesis file in nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,600",
+				"to": "00:06:25,320"
+			},
+			"offsets": {
+				"from": 383600,
+				"to": 385320
+			},
+			"text": " You just define it in a YAML file."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,320",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 385320,
+				"to": 389000
+			},
+			"text": " You say, I want a five node network with this Docker image"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:31,200"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 391200
+			},
+			"text": " and that's what happens for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,200",
+				"to": "00:06:32,840"
+			},
+			"offsets": {
+				"from": 391200,
+				"to": 392840
+			},
+			"text": " We done this actually nightly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,840",
+				"to": "00:06:35,720"
+			},
+			"offsets": {
+				"from": 392840,
+				"to": 395720
+			},
+			"text": " And I think we've gone through the merge"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,720",
+				"to": "00:06:37,920"
+			},
+			"offsets": {
+				"from": 395720,
+				"to": 397920
+			},
+			"text": " at least a couple hundred times this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,560",
+				"to": "00:06:42,400"
+			},
+			"offsets": {
+				"from": 399560,
+				"to": 402400
+			},
+			"text": " A lot of them with issues, but a lot of them without,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,400",
+				"to": "00:06:44,200"
+			},
+			"offsets": {
+				"from": 402400,
+				"to": 404200
+			},
+			"text": " which is great to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,200",
+				"to": "00:06:46,560"
+			},
+			"offsets": {
+				"from": 404200,
+				"to": 406560
+			},
+			"text": " We use this also to rapidly iterate ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,560",
+				"to": "00:06:48,120"
+			},
+			"offsets": {
+				"from": 406560,
+				"to": 408120
+			},
+			"text": " So once there's a new spec version,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,120",
+				"to": "00:06:49,960"
+			},
+			"offsets": {
+				"from": 408120,
+				"to": 409960
+			},
+			"text": " or if you want to try out a new testing tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,960",
+				"to": "00:06:51,400"
+			},
+			"offsets": {
+				"from": 409960,
+				"to": 411400
+			},
+			"text": " we throw it in there first."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,400",
+				"to": "00:06:54,080"
+			},
+			"offsets": {
+				"from": 411400,
+				"to": 414080
+			},
+			"text": " We also had map boost integrated into kurtosis"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,080",
+				"to": "00:06:56,960"
+			},
+			"offsets": {
+				"from": 414080,
+				"to": 416960
+			},
+			"text": " so we could test it out and do a lot of cool things there."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,960",
+				"to": "00:07:02,440"
+			},
+			"offsets": {
+				"from": 416960,
+				"to": 422440
+			},
+			"text": " General view of kurtosis is it checks the happy case."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,440",
+				"to": "00:07:03,920"
+			},
+			"offsets": {
+				"from": 422440,
+				"to": 423920
+			},
+			"text": " If you can't figure out the happy case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,920",
+				"to": "00:07:05,720"
+			},
+			"offsets": {
+				"from": 423920,
+				"to": 425720
+			},
+			"text": " there's no point checking it the rest of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,720",
+				"to": "00:07:07,160"
+			},
+			"offsets": {
+				"from": 425720,
+				"to": 427160
+			},
+			"text": " So it just starts up a test net,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,160",
+				"to": "00:07:08,720"
+			},
+			"offsets": {
+				"from": 427160,
+				"to": 428720
+			},
+			"text": " make sure everything is fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,720",
+				"to": "00:07:11,760"
+			},
+			"offsets": {
+				"from": 428720,
+				"to": 431760
+			},
+			"text": " If it's fine, it shows you green on your CI."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,760",
+				"to": "00:07:16,720"
+			},
+			"offsets": {
+				"from": 431760,
+				"to": 436720
+			},
+			"text": " The next one is sync tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,720",
+				"to": "00:07:18,760"
+			},
+			"offsets": {
+				"from": 436720,
+				"to": 438760
+			},
+			"text": " There's no point on a network if you have nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,760",
+				"to": "00:07:20,600"
+			},
+			"offsets": {
+				"from": 438760,
+				"to": 440600
+			},
+			"text": " that can't sync up to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,600",
+				"to": "00:07:23,520"
+			},
+			"offsets": {
+				"from": 440600,
+				"to": 443520
+			},
+			"text": " So what we do is we spin up nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,520",
+				"to": "00:07:26,880"
+			},
+			"offsets": {
+				"from": 443520,
+				"to": 446880
+			},
+			"text": " I think at a week's notice right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,880",
+				"to": "00:07:28,920"
+			},
+			"offsets": {
+				"from": 446880,
+				"to": 448920
+			},
+			"text": " they sync up to the head of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,920",
+				"to": "00:07:32,240"
+			},
+			"offsets": {
+				"from": 448920,
+				"to": 452240
+			},
+			"text": " And then they assert whatever we specify over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,240",
+				"to": "00:07:33,760"
+			},
+			"offsets": {
+				"from": 452240,
+				"to": 453760
+			},
+			"text": " So if you notice over here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,760",
+				"to": "00:07:35,920"
+			},
+			"offsets": {
+				"from": 453760,
+				"to": 455920
+			},
+			"text": " you can say is execution healthy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,920",
+				"to": "00:07:38,320"
+			},
+			"offsets": {
+				"from": 455920,
+				"to": 458320
+			},
+			"text": " is consensus healthy or both synced,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,320",
+				"to": "00:07:40,280"
+			},
+			"offsets": {
+				"from": 458320,
+				"to": 460280
+			},
+			"text": " are they both reaching head?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,280",
+				"to": "00:07:44,280"
+			},
+			"offsets": {
+				"from": 460280,
+				"to": 464280
+			},
+			"text": " So you can kind of define what type of syncing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,280",
+				"to": "00:07:45,280"
+			},
+			"offsets": {
+				"from": 464280,
+				"to": 465280
+			},
+			"text": " you want to do here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,280",
+				"to": "00:07:48,360"
+			},
+			"offsets": {
+				"from": 465280,
+				"to": 468360
+			},
+			"text": " And as you can see on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,360",
+				"to": "00:07:50,920"
+			},
+			"offsets": {
+				"from": 468360,
+				"to": 470920
+			},
+			"text": " there are a ton of different options you can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,920",
+				"to": "00:07:52,360"
+			},
+			"offsets": {
+				"from": 470920,
+				"to": 472360
+			},
+			"text": " and a ton of networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,360",
+				"to": "00:07:55,160"
+			},
+			"offsets": {
+				"from": 472360,
+				"to": 475160
+			},
+			"text": " And the cool thing is you can also assert bad cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,160",
+				"to": "00:07:58,880"
+			},
+			"offsets": {
+				"from": 475160,
+				"to": 478880
+			},
+			"text": " You can say start your EL, stop once it reaches head,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,880",
+				"to": "00:08:03,200"
+			},
+			"offsets": {
+				"from": 478880,
+				"to": 483200
+			},
+			"text": " then start your CL and then build weird scenarios there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,200",
+				"to": "00:08:04,800"
+			},
+			"offsets": {
+				"from": 483200,
+				"to": 484800
+			},
+			"text": " Shout out a SAM for building this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,800",
+				"to": "00:08:07,360"
+			},
+			"offsets": {
+				"from": 484800,
+				"to": 487360
+			},
+			"text": " He was also running it and sending a summary."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,360",
+				"to": "00:08:09,920"
+			},
+			"offsets": {
+				"from": 487360,
+				"to": 489920
+			},
+			"text": " I think he even presented it once on all codives."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,920",
+				"to": "00:08:13,040"
+			},
+			"offsets": {
+				"from": 489920,
+				"to": 493040
+			},
+			"text": " So we could make sure that at least"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,040",
+				"to": "00:08:15,160"
+			},
+			"offsets": {
+				"from": 493040,
+				"to": 495160
+			},
+			"text": " when we're making releases and when we merge"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,160",
+				"to": "00:08:16,680"
+			},
+			"offsets": {
+				"from": 495160,
+				"to": 496680
+			},
+			"text": " that we can sync the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,680",
+				"to": "00:08:19,840"
+			},
+			"offsets": {
+				"from": 496680,
+				"to": 499840
+			},
+			"text": " And this is the meaty one."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,840",
+				"to": "00:08:22,560"
+			},
+			"offsets": {
+				"from": 499840,
+				"to": 502560
+			},
+			"text": " We had test nets and shadow forks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,560",
+				"to": "00:08:26,440"
+			},
+			"offsets": {
+				"from": 502560,
+				"to": 506440
+			},
+			"text": " So a shadow fork and test net help us coordinate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,440",
+				"to": "00:08:28,560"
+			},
+			"offsets": {
+				"from": 506440,
+				"to": 508560
+			},
+			"text": " all client teams in one place."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,560",
+				"to": "00:08:31,640"
+			},
+			"offsets": {
+				"from": 508560,
+				"to": 511640
+			},
+			"text": " And we check compatibility largely."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,640",
+				"to": "00:08:34,520"
+			},
+			"offsets": {
+				"from": 511640,
+				"to": 514520
+			},
+			"text": " We take whatever assumptions we have in the spec"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,520",
+				"to": "00:08:37,160"
+			},
+			"offsets": {
+				"from": 514520,
+				"to": 517160
+			},
+			"text": " and we assert if those assumptions are true."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,160",
+				"to": "00:08:39,680"
+			},
+			"offsets": {
+				"from": 517160,
+				"to": 519680
+			},
+			"text": " On a large level, what we're doing is we're taking"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,680",
+				"to": "00:08:42,640"
+			},
+			"offsets": {
+				"from": 519680,
+				"to": 522640
+			},
+			"text": " the genesis configuration of any one network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,640",
+				"to": "00:08:45,360"
+			},
+			"offsets": {
+				"from": 522640,
+				"to": 525360
+			},
+			"text": " And then we modify a couple of values here and there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,360",
+				"to": "00:08:47,880"
+			},
+			"offsets": {
+				"from": 525360,
+				"to": 527880
+			},
+			"text": " And what happens when those modified values are hit"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,880",
+				"to": "00:08:50,280"
+			},
+			"offsets": {
+				"from": 527880,
+				"to": 530280
+			},
+			"text": " is we split away from the main network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,280",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 530280,
+				"to": 534000
+			},
+			"text": " but we continue staying connected on the gossip network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:55,840"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 535840
+			},
+			"text": " So we're importing all the transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,840",
+				"to": "00:08:59,640"
+			},
+			"offsets": {
+				"from": 535840,
+				"to": 539640
+			},
+			"text": " and we have the old load, but it's on a side."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,640",
+				"to": "00:09:01,520"
+			},
+			"offsets": {
+				"from": 539640,
+				"to": 541520
+			},
+			"text": " It's just a side fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,520",
+				"to": "00:09:03,440"
+			},
+			"offsets": {
+				"from": 541520,
+				"to": 543440
+			},
+			"text": " It transpell to the main network"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,440",
+				"to": "00:09:07,120"
+			},
+			"offsets": {
+				"from": 543440,
+				"to": 547120
+			},
+			"text": " and no one cares about it except for us"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,120",
+				"to": "00:09:10,560"
+			},
+			"offsets": {
+				"from": 547120,
+				"to": 550560
+			},
+			"text": " because we can find dozens and dozens of bugs there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,560",
+				"to": "00:09:13,680"
+			},
+			"offsets": {
+				"from": 550560,
+				"to": 553680
+			},
+			"text": " This allows us to stress all of our assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,680",
+				"to": "00:09:15,240"
+			},
+			"offsets": {
+				"from": 553680,
+				"to": 555240
+			},
+			"text": " And we've done a lot of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,240",
+				"to": "00:09:18,680"
+			},
+			"offsets": {
+				"from": 555240,
+				"to": 558680
+			},
+			"text": " I have a summary on how many we actually did in the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,680",
+				"to": "00:09:20,960"
+			},
+			"offsets": {
+				"from": 558680,
+				"to": 560960
+			},
+			"text": " I sort of look at this as a release test."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,960",
+				"to": "00:09:23,400"
+			},
+			"offsets": {
+				"from": 560960,
+				"to": 563400
+			},
+			"text": " So it's kind of one of the last things we would do"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,400",
+				"to": "00:09:26,480"
+			},
+			"offsets": {
+				"from": 563400,
+				"to": 566480
+			},
+			"text": " on any of the future forks that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,480",
+				"to": "00:09:29,080"
+			},
+			"offsets": {
+				"from": 566480,
+				"to": 569080
+			},
+			"text": " It's kind of when we're almost figuring out"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,080",
+				"to": "00:09:30,640"
+			},
+			"offsets": {
+				"from": 569080,
+				"to": 570640
+			},
+			"text": " are we ready to go ahead with this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,640",
+				"to": "00:09:33,160"
+			},
+			"offsets": {
+				"from": 570640,
+				"to": 573160
+			},
+			"text": " Are we ready to move forward with committing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,160",
+				"to": "00:09:34,040"
+			},
+			"offsets": {
+				"from": 573160,
+				"to": 574040
+			},
+			"text": " to this fork?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,040",
+				"to": "00:09:36,280"
+			},
+			"offsets": {
+				"from": 574040,
+				"to": 576280
+			},
+			"text": " Is there any unknowns that we don't know yet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,280",
+				"to": "00:09:40,720"
+			},
+			"offsets": {
+				"from": 576280,
+				"to": 580720
+			},
+			"text": " And then we have fuzzers and an external organization"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,720",
+				"to": "00:09:42,080"
+			},
+			"offsets": {
+				"from": 580720,
+				"to": 582080
+			},
+			"text": " called antithesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,080",
+				"to": "00:09:45,640"
+			},
+			"offsets": {
+				"from": 582080,
+				"to": 585640
+			},
+			"text": " So antithesis is a deterministic hypervisor"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,640",
+				"to": "00:09:49,360"
+			},
+			"offsets": {
+				"from": 585640,
+				"to": 589360
+			},
+			"text": " that allows us to perform network splits, packet loss,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,360",
+				"to": "00:09:52,120"
+			},
+			"offsets": {
+				"from": 589360,
+				"to": 592120
+			},
+			"text": " all sorts of really weird edge cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,120",
+				"to": "00:09:54,800"
+			},
+			"offsets": {
+				"from": 592120,
+				"to": 594800
+			},
+			"text": " We don't necessarily expect the network to be put"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,800",
+				"to": "00:09:57,080"
+			},
+			"offsets": {
+				"from": 594800,
+				"to": 597080
+			},
+			"text": " in these edge cases, but if they are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,080",
+				"to": "00:09:59,720"
+			},
+			"offsets": {
+				"from": 597080,
+				"to": 599720
+			},
+			"text": " we know that the clients can handle it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,720",
+				"to": "00:10:02,560"
+			},
+			"offsets": {
+				"from": 599720,
+				"to": 602560
+			},
+			"text": " On the right side, you can't even actually see it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,560",
+				"to": "00:10:06,120"
+			},
+			"offsets": {
+				"from": 602560,
+				"to": 606120
+			},
+			"text": " but each of those is a 256 thread machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,120",
+				"to": "00:10:08,440"
+			},
+			"offsets": {
+				"from": 606120,
+				"to": 608440
+			},
+			"text": " We have three of them, all running fuzzers."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,440",
+				"to": "00:10:09,360"
+			},
+			"offsets": {
+				"from": 608440,
+				"to": 609360
+			},
+			"text": " It was insane."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,360",
+				"to": "00:10:10,680"
+			},
+			"offsets": {
+				"from": 609360,
+				"to": 610680
+			},
+			"text": " We had way more."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,680",
+				"to": "00:10:12,560"
+			},
+			"offsets": {
+				"from": 610680,
+				"to": 612560
+			},
+			"text": " I've never seen that much compute in my life."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,560",
+				"to": "00:10:17,560"
+			},
+			"offsets": {
+				"from": 612560,
+				"to": 617560
+			},
+			"text": " We actually had the IBM Data Center go out and buy more CPUs"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,560",
+				"to": "00:10:20,200"
+			},
+			"offsets": {
+				"from": 617560,
+				"to": 620200
+			},
+			"text": " because we bought up all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,200",
+				"to": "00:10:24,120"
+			},
+			"offsets": {
+				"from": 620200,
+				"to": 624120
+			},
+			"text": " Yeah, various fuzzers, various teams running out all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,120",
+				"to": "00:10:25,040"
+			},
+			"offsets": {
+				"from": 624120,
+				"to": 625040
+			},
+			"text": " Super cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,040",
+				"to": "00:10:27,080"
+			},
+			"offsets": {
+				"from": 625040,
+				"to": 627080
+			},
+			"text": " We found a ton of bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,080",
+				"to": "00:10:29,680"
+			},
+			"offsets": {
+				"from": 627080,
+				"to": 629680
+			},
+			"text": " Refer to Marius' talk if you want to know what we actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,680",
+				"to": "00:10:30,480"
+			},
+			"offsets": {
+				"from": 629680,
+				"to": 630480
+			},
+			"text": " found there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,480",
+				"to": "00:10:33,960"
+			},
+			"offsets": {
+				"from": 630480,
+				"to": 633960
+			},
+			"text": " And we hope that some of those bugs change the spec"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,960",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 633960,
+				"to": 636000
+			},
+			"text": " to make it a lot more stable, or sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:39,200"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 639200
+			},
+			"text": " an implementation issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,200",
+				"to": "00:10:42,400"
+			},
+			"offsets": {
+				"from": 639200,
+				"to": 642400
+			},
+			"text": " So to give you a brief idea on the testing life cycle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,400",
+				"to": "00:10:44,600"
+			},
+			"offsets": {
+				"from": 642400,
+				"to": 644600
+			},
+			"text": " let me tell you it's never that clean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,600",
+				"to": "00:10:46,960"
+			},
+			"offsets": {
+				"from": 644600,
+				"to": 646960
+			},
+			"text": " but that's what we want to hope to achieve."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,960",
+				"to": "00:10:49,120"
+			},
+			"offsets": {
+				"from": 646960,
+				"to": 649120
+			},
+			"text": " So you have the client releases happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,120",
+				"to": "00:10:51,240"
+			},
+			"offsets": {
+				"from": 649120,
+				"to": 651240
+			},
+			"text": " And once the client releases happen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,240",
+				"to": "00:10:52,880"
+			},
+			"offsets": {
+				"from": 651240,
+				"to": 652880
+			},
+			"text": " they go into the integration tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,880",
+				"to": "00:10:55,480"
+			},
+			"offsets": {
+				"from": 652880,
+				"to": 655480
+			},
+			"text": " So we make sure that test nets can be run,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,480",
+				"to": "00:10:57,920"
+			},
+			"offsets": {
+				"from": 655480,
+				"to": 657920
+			},
+			"text": " that integration tests work fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,920",
+				"to": "00:11:01,080"
+			},
+			"offsets": {
+				"from": 657920,
+				"to": 661080
+			},
+			"text": " And once that's done, we move on to test nets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,080",
+				"to": "00:11:03,200"
+			},
+			"offsets": {
+				"from": 661080,
+				"to": 663200
+			},
+			"text": " and then we move on to stress tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,200",
+				"to": "00:11:06,840"
+			},
+			"offsets": {
+				"from": 663200,
+				"to": 666840
+			},
+			"text": " And we push whatever we find on the stress tests"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,840",
+				"to": "00:11:10,640"
+			},
+			"offsets": {
+				"from": 666840,
+				"to": 670640
+			},
+			"text": " onto specifications, we do regression tests,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,640",
+				"to": "00:11:11,840"
+			},
+			"offsets": {
+				"from": 670640,
+				"to": 671840
+			},
+			"text": " and then we do fuzzing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,840",
+				"to": "00:11:14,680"
+			},
+			"offsets": {
+				"from": 671840,
+				"to": 674680
+			},
+			"text": " And hopefully, whatever we find in the last couple of stages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,680",
+				"to": "00:11:16,200"
+			},
+			"offsets": {
+				"from": 674680,
+				"to": 676200
+			},
+			"text": " go back into client releases."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,200",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 676200,
+				"to": 680000
+			},
+			"text": " So that's a kind of a nice way to look at a full life cycle"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:21,640"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 681640
+			},
+			"text": " of how testing would work."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,640",
+				"to": "00:11:24,240"
+			},
+			"offsets": {
+				"from": 681640,
+				"to": 684240
+			},
+			"text": " We're hoping to adopt the same life cycle for future test"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,240",
+				"to": "00:11:24,560"
+			},
+			"offsets": {
+				"from": 684240,
+				"to": 684560
+			},
+			"text": " nets."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,560",
+				"to": "00:11:26,680"
+			},
+			"offsets": {
+				"from": 684560,
+				"to": 686680
+			},
+			"text": " Maybe we moved around a tool here or there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,680",
+				"to": "00:11:27,920"
+			},
+			"offsets": {
+				"from": 686680,
+				"to": 687920
+			},
+			"text": " but that's the general idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,920",
+				"to": "00:11:33,760"
+			},
+			"offsets": {
+				"from": 687920,
+				"to": 693760
+			},
+			"text": " And the end game, what did we actually do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,760",
+				"to": "00:11:39,400"
+			},
+			"offsets": {
+				"from": 693760,
+				"to": 699400
+			},
+			"text": " It was really hard to find a graph that actually fit"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,400",
+				"to": "00:11:40,720"
+			},
+			"offsets": {
+				"from": 699400,
+				"to": 700720
+			},
+			"text": " all the test nets we had."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,720",
+				"to": "00:11:42,120"
+			},
+			"offsets": {
+				"from": 700720,
+				"to": 702120
+			},
+			"text": " That's how many."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,120",
+				"to": "00:11:46,360"
+			},
+			"offsets": {
+				"from": 702120,
+				"to": 706360
+			},
+			"text": " So we started off in April of 2021 with Reanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,360",
+				"to": "00:11:50,160"
+			},
+			"offsets": {
+				"from": 706360,
+				"to": 710160
+			},
+			"text": " And since then, we've had four public test nets"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,160",
+				"to": "00:11:52,680"
+			},
+			"offsets": {
+				"from": 710160,
+				"to": 712680
+			},
+			"text": " that anyone could permissionlessly join into."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,680",
+				"to": "00:11:55,080"
+			},
+			"offsets": {
+				"from": 712680,
+				"to": 715080
+			},
+			"text": " We had six dev nets meant for all the client teams."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,080",
+				"to": "00:12:00,520"
+			},
+			"offsets": {
+				"from": 715080,
+				"to": 720520
+			},
+			"text": " We had five girly shadow forks and in the N13 mainnet shadow"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,520",
+				"to": "00:12:01,080"
+			},
+			"offsets": {
+				"from": 720520,
+				"to": 721080
+			},
+			"text": " forks."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,080",
+				"to": "00:12:04,920"
+			},
+			"offsets": {
+				"from": 721080,
+				"to": 724920
+			},
+			"text": " And after all of this, we had three test networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,920",
+				"to": "00:12:07,760"
+			},
+			"offsets": {
+				"from": 724920,
+				"to": 727760
+			},
+			"text": " And only 10 with the we hit mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,760",
+				"to": "00:12:11,440"
+			},
+			"offsets": {
+				"from": 727760,
+				"to": 731440
+			},
+			"text": " So the whole number of just testing hours in the merge"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,440",
+				"to": "00:12:12,360"
+			},
+			"offsets": {
+				"from": 731440,
+				"to": 732360
+			},
+			"text": " is insane."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,360",
+				"to": "00:12:15,120"
+			},
+			"offsets": {
+				"from": 732360,
+				"to": 735120
+			},
+			"text": " I'm quite sure if we added it all up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,120",
+				"to": "00:12:19,600"
+			},
+			"offsets": {
+				"from": 735120,
+				"to": 739600
+			},
+			"text": " it would be at least a couple of 10,000 hours put into this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,600",
+				"to": "00:12:24,040"
+			},
+			"offsets": {
+				"from": 739600,
+				"to": 744040
+			},
+			"text": " So what didn't we find?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,040",
+				"to": "00:12:25,560"
+			},
+			"offsets": {
+				"from": 744040,
+				"to": 745560
+			},
+			"text": " This is a really interesting part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,560",
+				"to": "00:12:27,840"
+			},
+			"offsets": {
+				"from": 745560,
+				"to": 747840
+			},
+			"text": " because even though we have all of these cool tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,840",
+				"to": "00:12:30,160"
+			},
+			"offsets": {
+				"from": 747840,
+				"to": 750160
+			},
+			"text": " there's still always going to be something we didn't find."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,160",
+				"to": "00:12:33,400"
+			},
+			"offsets": {
+				"from": 750160,
+				"to": 753400
+			},
+			"text": " This 99% participation, 98% participation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,400",
+				"to": "00:12:35,200"
+			},
+			"offsets": {
+				"from": 753400,
+				"to": 755200
+			},
+			"text": " or great blocks being produced, awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,200",
+				"to": "00:12:37,520"
+			},
+			"offsets": {
+				"from": 755200,
+				"to": 757520
+			},
+			"text": " But I want to know what we still didn't find."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,520",
+				"to": "00:12:42,120"
+			},
+			"offsets": {
+				"from": 757520,
+				"to": 762120
+			},
+			"text": " So first one, we had in memory databases"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,120",
+				"to": "00:12:44,760"
+			},
+			"offsets": {
+				"from": 762120,
+				"to": 764760
+			},
+			"text": " that were too low to process mainnet blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,760",
+				"to": "00:12:47,680"
+			},
+			"offsets": {
+				"from": 764760,
+				"to": 767680
+			},
+			"text": " It just so happened that we did too good a job of deciding"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,680",
+				"to": "00:12:50,480"
+			},
+			"offsets": {
+				"from": 767680,
+				"to": 770480
+			},
+			"text": " which machines run our test nets, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,480",
+				"to": "00:12:53,440"
+			},
+			"offsets": {
+				"from": 770480,
+				"to": 773440
+			},
+			"text": " means we didn't have any resource constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,440",
+				"to": "00:12:57,040"
+			},
+			"offsets": {
+				"from": 773440,
+				"to": 777040
+			},
+			"text": " And we kind of missed the people running nodes on 8 gig"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,040",
+				"to": "00:13:00,960"
+			},
+			"offsets": {
+				"from": 777040,
+				"to": 780960
+			},
+			"text": " RAM machines or people running on 16 gig RAM machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,960",
+				"to": "00:13:02,400"
+			},
+			"offsets": {
+				"from": 780960,
+				"to": 782400
+			},
+			"text": " We didn't account for that, or we didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,400",
+				"to": "00:13:07,840"
+			},
+			"offsets": {
+				"from": 782400,
+				"to": 787840
+			},
+			"text": " account for older versions of RAM being used, whatever it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,840",
+				"to": "00:13:12,440"
+			},
+			"offsets": {
+				"from": 787840,
+				"to": 792440
+			},
+			"text": " Another one that we missed is non-optimal block production."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,440",
+				"to": "00:13:14,160"
+			},
+			"offsets": {
+				"from": 792440,
+				"to": 794160
+			},
+			"text": " We were super focused on making sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,160",
+				"to": "00:13:17,640"
+			},
+			"offsets": {
+				"from": 794160,
+				"to": 797640
+			},
+			"text": " that we didn't see any zero transaction blocks on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,640",
+				"to": "00:13:20,880"
+			},
+			"offsets": {
+				"from": 797640,
+				"to": 800880
+			},
+			"text": " We didn't compare that to what the optimal blocks in the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,880",
+				"to": "00:13:21,640"
+			},
+			"offsets": {
+				"from": 800880,
+				"to": 801640
+			},
+			"text": " could be."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,640",
+				"to": "00:13:24,520"
+			},
+			"offsets": {
+				"from": 801640,
+				"to": 804520
+			},
+			"text": " So it is an optimization problem, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,520",
+				"to": "00:13:26,320"
+			},
+			"offsets": {
+				"from": 804520,
+				"to": 806320
+			},
+			"text": " And it is an awful that on mainnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,320",
+				"to": "00:13:27,960"
+			},
+			"offsets": {
+				"from": 806320,
+				"to": 807960
+			},
+			"text": " we have some reduced load."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,960",
+				"to": "00:13:29,680"
+			},
+			"offsets": {
+				"from": 807960,
+				"to": 809680
+			},
+			"text": " But it is something we missed, and something"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,680",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 809680,
+				"to": 813000
+			},
+			"text": " we probably should look into in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:36,400"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 816400
+			},
+			"text": " The next one, there was a really specific way"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,400",
+				"to": "00:13:38,040"
+			},
+			"offsets": {
+				"from": 816400,
+				"to": 818040
+			},
+			"text": " in which the terminal blocks could"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,040",
+				"to": "00:13:40,480"
+			},
+			"offsets": {
+				"from": 818040,
+				"to": 820480
+			},
+			"text": " arrive that broke nethermind."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,480",
+				"to": "00:13:44,280"
+			},
+			"offsets": {
+				"from": 820480,
+				"to": 824280
+			},
+			"text": " And it broke nethermind by causing missing receipts."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,280",
+				"to": "00:13:47,880"
+			},
+			"offsets": {
+				"from": 824280,
+				"to": 827880
+			},
+			"text": " And we only noticed that issue when there are deposits being"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,880",
+				"to": "00:13:48,760"
+			},
+			"offsets": {
+				"from": 827880,
+				"to": 828760
+			},
+			"text": " made."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,760",
+				"to": "00:13:51,280"
+			},
+			"offsets": {
+				"from": 828760,
+				"to": 831280
+			},
+			"text": " So we completely missed this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,280",
+				"to": "00:13:53,960"
+			},
+			"offsets": {
+				"from": 831280,
+				"to": 833960
+			},
+			"text": " And for what we still yet to figure out why."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,960",
+				"to": "00:13:56,800"
+			},
+			"offsets": {
+				"from": 833960,
+				"to": 836800
+			},
+			"text": " But this is mainly an issue for load star nethermind"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,800",
+				"to": "00:13:58,360"
+			},
+			"offsets": {
+				"from": 836800,
+				"to": 838360
+			},
+			"text": " and no other combination."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,360",
+				"to": "00:14:00,800"
+			},
+			"offsets": {
+				"from": 838360,
+				"to": 840800
+			},
+			"text": " Or at least we didn't get the memo"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,800",
+				"to": "00:14:02,320"
+			},
+			"offsets": {
+				"from": 840800,
+				"to": 842320
+			},
+			"text": " from other breaking combinations."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,320",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 842320,
+				"to": 846000
+			},
+			"text": " So load star nethermind figured that out on day one of the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:10,400"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 850400
+			},
+			"text": " And I think it was patched like a day later."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,400",
+				"to": "00:14:12,960"
+			},
+			"offsets": {
+				"from": 850400,
+				"to": 852960
+			},
+			"text": " Another one that we didn't think of, all of the shadow"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,960",
+				"to": "00:14:16,360"
+			},
+			"offsets": {
+				"from": 852960,
+				"to": 856360
+			},
+			"text": " fox didn't have any nodes syncing up to the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,360",
+				"to": "00:14:18,600"
+			},
+			"offsets": {
+				"from": 856360,
+				"to": 858600
+			},
+			"text": " after the shadow fork was done."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,600",
+				"to": "00:14:21,480"
+			},
+			"offsets": {
+				"from": 858600,
+				"to": 861480
+			},
+			"text": " Which means they weren't serving sync data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,480",
+				"to": "00:14:23,600"
+			},
+			"offsets": {
+				"from": 861480,
+				"to": 863600
+			},
+			"text": " And all they were doing were keeping up with the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,600",
+				"to": "00:14:24,720"
+			},
+			"offsets": {
+				"from": 863600,
+				"to": 864720
+			},
+			"text": " Which is great."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,720",
+				"to": "00:14:28,720"
+			},
+			"offsets": {
+				"from": 864720,
+				"to": 868720
+			},
+			"text": " But constantly syncing on mainnet also adds load on the machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,720",
+				"to": "00:14:31,240"
+			},
+			"offsets": {
+				"from": 868720,
+				"to": 871240
+			},
+			"text": " So we weren't accurately simulating that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,240",
+				"to": "00:14:33,200"
+			},
+			"offsets": {
+				"from": 871240,
+				"to": 873200
+			},
+			"text": " So potentially on future shadow fox,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,200",
+				"to": "00:14:35,440"
+			},
+			"offsets": {
+				"from": 873200,
+				"to": 875440
+			},
+			"text": " we're going to have to add a bunch of syncing nodes that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,440",
+				"to": "00:14:38,840"
+			},
+			"offsets": {
+				"from": 875440,
+				"to": 878840
+			},
+			"text": " start up later on to see what could happen there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,840",
+				"to": "00:14:41,040"
+			},
+			"offsets": {
+				"from": 878840,
+				"to": 881040
+			},
+			"text": " And the last one that we didn't find"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,040",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 881040,
+				"to": 884000
+			},
+			"text": " was a failover beacon node scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:46,320"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 886320
+			},
+			"text": " A lot of people are really obsessed with making sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,320",
+				"to": "00:14:48,680"
+			},
+			"offsets": {
+				"from": 886320,
+				"to": 888680
+			},
+			"text": " they don't miss a single attestation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,680",
+				"to": "00:14:51,320"
+			},
+			"offsets": {
+				"from": 888680,
+				"to": 891320
+			},
+			"text": " Which means they have multiple beacon nodes set up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,320",
+				"to": "00:14:53,680"
+			},
+			"offsets": {
+				"from": 891320,
+				"to": 893680
+			},
+			"text": " And that's something we just never did."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,680",
+				"to": "00:14:55,720"
+			},
+			"offsets": {
+				"from": 893680,
+				"to": 895720
+			},
+			"text": " So a lot of the requests were just"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,720",
+				"to": "00:14:58,800"
+			},
+			"offsets": {
+				"from": 895720,
+				"to": 898800
+			},
+			"text": " being sent to the primary beacon node and not the backup."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,800",
+				"to": "00:15:03,600"
+			},
+			"offsets": {
+				"from": 898800,
+				"to": 903600
+			},
+			"text": " So when the failover happens, the backup wasn't ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,600",
+				"to": "00:15:05,520"
+			},
+			"offsets": {
+				"from": 903600,
+				"to": 905520
+			},
+			"text": " I think this has also been patched right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,520",
+				"to": "00:15:07,480"
+			},
+			"offsets": {
+				"from": 905520,
+				"to": 907480
+			},
+			"text": " But it was a really tricky thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,480",
+				"to": "00:15:11,240"
+			},
+			"offsets": {
+				"from": 907480,
+				"to": 911240
+			},
+			"text": " And we should try more failover backup scenarios"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,240",
+				"to": "00:15:13,920"
+			},
+			"offsets": {
+				"from": 911240,
+				"to": 913920
+			},
+			"text": " in the future, I guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,920",
+				"to": "00:15:18,280"
+			},
+			"offsets": {
+				"from": 913920,
+				"to": 918280
+			},
+			"text": " One cool thing about why all of this wasn't found,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,280",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 918280,
+				"to": 921000
+			},
+			"text": " most of them are optimization bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:23,400"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 923400
+			},
+			"text": " As you can see, merge still went fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,400",
+				"to": "00:15:26,600"
+			},
+			"offsets": {
+				"from": 923400,
+				"to": 926600
+			},
+			"text": " But we could-- there's still some room for improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,600",
+				"to": "00:15:28,960"
+			},
+			"offsets": {
+				"from": 926600,
+				"to": 928960
+			},
+			"text": " And it's a really hard trade-off to make between,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,960",
+				"to": "00:15:32,280"
+			},
+			"offsets": {
+				"from": 928960,
+				"to": 932280
+			},
+			"text": " do we want to spend more time in fixing these optimizations?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,280",
+				"to": "00:15:34,440"
+			},
+			"offsets": {
+				"from": 932280,
+				"to": 934440
+			},
+			"text": " Or did we want an earlier merge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,440",
+				"to": "00:15:36,080"
+			},
+			"offsets": {
+				"from": 934440,
+				"to": 936080
+			},
+			"text": " And that's kind of the tricky thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,080",
+				"to": "00:15:37,240"
+			},
+			"offsets": {
+				"from": 936080,
+				"to": 937240
+			},
+			"text": " Do we want earlier fox?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,240",
+				"to": "00:15:43,280"
+			},
+			"offsets": {
+				"from": 937240,
+				"to": 943280
+			},
+			"text": " Or do we want completely butler-free fox?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,280",
+				"to": "00:15:44,520"
+			},
+			"offsets": {
+				"from": 943280,
+				"to": 944520
+			},
+			"text": " No idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,520",
+				"to": "00:15:46,200"
+			},
+			"offsets": {
+				"from": 944520,
+				"to": 946200
+			},
+			"text": " But we're definitely going to be adding resource"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,200",
+				"to": "00:15:48,440"
+			},
+			"offsets": {
+				"from": 946200,
+				"to": 948440
+			},
+			"text": " constraint machines to the mix next time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,440",
+				"to": "00:15:50,800"
+			},
+			"offsets": {
+				"from": 948440,
+				"to": 950800
+			},
+			"text": " We're thinking of just getting a bunch of Raspberry Pies"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,800",
+				"to": "00:15:52,600"
+			},
+			"offsets": {
+				"from": 950800,
+				"to": 952600
+			},
+			"text": " and doing some shadow fox on there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,600",
+				"to": "00:15:54,560"
+			},
+			"offsets": {
+				"from": 952600,
+				"to": 954560
+			},
+			"text": " See what happens there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,560",
+				"to": "00:15:56,960"
+			},
+			"offsets": {
+				"from": 954560,
+				"to": 956960
+			},
+			"text": " And another reason some of the bugs appeared,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,960",
+				"to": "00:15:59,640"
+			},
+			"offsets": {
+				"from": 956960,
+				"to": 959640
+			},
+			"text": " but they didn't appear on the shadow fox, is last minute"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,640",
+				"to": "00:16:00,960"
+			},
+			"offsets": {
+				"from": 959640,
+				"to": 960960
+			},
+			"text": " commits."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,960",
+				"to": "00:16:04,000"
+			},
+			"offsets": {
+				"from": 960960,
+				"to": 964000
+			},
+			"text": " The last shadow fork was, I think, a week before the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,000",
+				"to": "00:16:08,040"
+			},
+			"offsets": {
+				"from": 964000,
+				"to": 968040
+			},
+			"text": " And the last releases also happened a few days before the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,040",
+				"to": "00:16:12,960"
+			},
+			"offsets": {
+				"from": 968040,
+				"to": 972960
+			},
+			"text": " So yeah, it's a hard trade-off."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,960",
+				"to": "00:16:15,360"
+			},
+			"offsets": {
+				"from": 972960,
+				"to": 975360
+			},
+			"text": " If you want to join the testing efforts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,360",
+				"to": "00:16:19,400"
+			},
+			"offsets": {
+				"from": 975360,
+				"to": 979400
+			},
+			"text": " please join Mario Vega."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,400",
+				"to": "00:16:21,240"
+			},
+			"offsets": {
+				"from": 979400,
+				"to": 981240
+			},
+			"text": " His email address is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,240",
+				"to": "00:16:23,040"
+			},
+			"offsets": {
+				"from": 981240,
+				"to": 983040
+			},
+			"text": " Send in your information there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,040",
+				"to": "00:16:25,840"
+			},
+			"offsets": {
+				"from": 983040,
+				"to": 985840
+			},
+			"text": " And I think I was supposed to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,840",
+				"to": "00:16:27,320"
+			},
+			"offsets": {
+				"from": 985840,
+				"to": 987320
+			},
+			"text": " OK, I was supposed to have one more slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,320",
+				"to": "00:16:31,840"
+			},
+			"offsets": {
+				"from": 987320,
+				"to": 991840
+			},
+			"text": " but I will just talk about that other slide over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,840",
+				"to": "00:16:34,240"
+			},
+			"offsets": {
+				"from": 991840,
+				"to": 994240
+			},
+			"text": " So we have a bunch of testing tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,240",
+				"to": "00:16:36,200"
+			},
+			"offsets": {
+				"from": 994240,
+				"to": 996200
+			},
+			"text": " that we completely open sourced."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,200",
+				"to": "00:16:38,600"
+			},
+			"offsets": {
+				"from": 996200,
+				"to": 998600
+			},
+			"text": " If you're someone who wants to run"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,600",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 998600,
+				"to": 1001000
+			},
+			"text": " test nets in Kubernetes, if you're someone who wants to just"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:42,600"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1002600
+			},
+			"text": " run Kubernetes nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,600",
+				"to": "00:16:45,240"
+			},
+			"offsets": {
+				"from": 1002600,
+				"to": 1005240
+			},
+			"text": " if you want to set up your own networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,240",
+				"to": "00:16:47,440"
+			},
+			"offsets": {
+				"from": 1005240,
+				"to": 1007440
+			},
+			"text": " we have easy ways to set up genesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,440",
+				"to": "00:16:52,680"
+			},
+			"offsets": {
+				"from": 1007440,
+				"to": 1012680
+			},
+			"text": " If you want to use the same stuff we use for shadow fox,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,680",
+				"to": "00:16:54,480"
+			},
+			"offsets": {
+				"from": 1012680,
+				"to": 1014480
+			},
+			"text": " all of it is completely open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,480",
+				"to": "00:16:56,120"
+			},
+			"offsets": {
+				"from": 1014480,
+				"to": 1016120
+			},
+			"text": " Quite a few organizations that are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,120",
+				"to": "00:16:59,920"
+			},
+			"offsets": {
+				"from": 1016120,
+				"to": 1019920
+			},
+			"text": " reusing our stuff, so shout out to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,920",
+				"to": "00:17:01,600"
+			},
+			"offsets": {
+				"from": 1019920,
+				"to": 1021600
+			},
+			"text": " Contribute back whenever you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,600",
+				"to": "00:17:06,680"
+			},
+			"offsets": {
+				"from": 1021600,
+				"to": 1026680
+			},
+			"text": " You can find most of the tools either on the Ethereum GitHub"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,680",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1026680,
+				"to": 1032000
+			},
+			"text": " repo or on the ETH PandaOps GitHub repo, one of the two."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:14,200"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1034200
+			},
+			"text": " And yeah, that's about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,200",
+				"to": "00:17:19,040"
+			},
+			"offsets": {
+				"from": 1034200,
+				"to": 1039040
+			},
+			"text": " That's most of what we did and did not find on the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,040",
+				"to": "00:17:20,480"
+			},
+			"offsets": {
+				"from": 1039040,
+				"to": 1040480
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,480",
+				"to": "00:17:22,480"
+			},
+			"offsets": {
+				"from": 1040480,
+				"to": 1042480
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,480",
+				"to": "00:17:24,480"
+			},
+			"offsets": {
+				"from": 1042480,
+				"to": 1044480
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,480",
+				"to": "00:17:26,480"
+			},
+			"offsets": {
+				"from": 1044480,
+				"to": 1046480
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,480",
+				"to": "00:17:28,480"
+			},
+			"offsets": {
+				"from": 1046480,
+				"to": 1048480
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,480",
+				"to": "00:17:32,480"
+			},
+			"offsets": {
+				"from": 1048480,
+				"to": 1052480
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

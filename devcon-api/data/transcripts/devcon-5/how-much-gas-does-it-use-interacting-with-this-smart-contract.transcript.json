@@ -1,0 +1,626 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:13,920"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 13920
+			},
+			"text": " All right, hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,920",
+				"to": "00:00:17,360"
+			},
+			"offsets": {
+				"from": 13920,
+				"to": 17360
+			},
+			"text": " So we just heard the lightness talks are going to start now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,360",
+				"to": "00:00:20,640"
+			},
+			"offsets": {
+				"from": 17360,
+				"to": 20640
+			},
+			"text": " So I'm at St. Mark and I'll start with the first one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,640",
+				"to": "00:00:24,280"
+			},
+			"offsets": {
+				"from": 20640,
+				"to": 24280
+			},
+			"text": " where I'm going to present you the EVM Hunter."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,280",
+				"to": "00:00:26,840"
+			},
+			"offsets": {
+				"from": 24280,
+				"to": 26840
+			},
+			"text": " So you see you can be on the dance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,840",
+				"to": "00:00:27,920"
+			},
+			"offsets": {
+				"from": 26840,
+				"to": 27920
+			},
+			"text": " What is it actually about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,920",
+				"to": "00:00:31,920"
+			},
+			"offsets": {
+				"from": 27920,
+				"to": 31920
+			},
+			"text": " Well, it's a tool which I'm going just introduce to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,920",
+				"to": "00:00:36,760"
+			},
+			"offsets": {
+				"from": 31920,
+				"to": 36760
+			},
+			"text": " The first, if we have a look on some dabs, here are some dabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,760",
+				"to": "00:00:43,520"
+			},
+			"offsets": {
+				"from": 36760,
+				"to": 43520
+			},
+			"text": " I took from the dab river and there you can see some famous dabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,520",
+				"to": "00:00:49,440"
+			},
+			"offsets": {
+				"from": 43520,
+				"to": 49440
+			},
+			"text": " And the radar showed that there are currently 1,000 faculty with 82 dabs registered."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,440",
+				"to": "00:00:53,560"
+			},
+			"offsets": {
+				"from": 49440,
+				"to": 53560
+			},
+			"text": " That might be more flying, flowing around in the chain, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,560",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 53560,
+				"to": 56000
+			},
+			"text": " this is the number which is registered there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:02,880"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 62880
+			},
+			"text": " And so we all know that executing a smart contract costs gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,880",
+				"to": "00:01:06,960"
+			},
+			"offsets": {
+				"from": 62880,
+				"to": 66960
+			},
+			"text": " Well, people would be like, yeah, we know that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,960",
+				"to": "00:01:12,040"
+			},
+			"offsets": {
+				"from": 66960,
+				"to": 72040
+			},
+			"text": " The main question is, which I also myself, have they been optimized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,040",
+				"to": "00:01:17,440"
+			},
+			"offsets": {
+				"from": 72040,
+				"to": 77440
+			},
+			"text": " or are they wasting your gas when you interact with them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,440",
+				"to": "00:01:25,520"
+			},
+			"offsets": {
+				"from": 77440,
+				"to": 85520
+			},
+			"text": " So does the EVM actually steal your gas because the smart contract has been not optimized?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,520",
+				"to": "00:01:27,800"
+			},
+			"offsets": {
+				"from": 85520,
+				"to": 87800
+			},
+			"text": " Do you know what kind of code you're using there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,800",
+				"to": "00:01:31,800"
+			},
+			"offsets": {
+				"from": 87800,
+				"to": 91800
+			},
+			"text": " Do you pay maybe more gas than you should have?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,800",
+				"to": "00:01:35,080"
+			},
+			"offsets": {
+				"from": 91800,
+				"to": 95080
+			},
+			"text": " So we will actually a tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,080",
+				"to": "00:01:35,960"
+			},
+			"offsets": {
+				"from": 95080,
+				"to": 95960
+			},
+			"text": " It looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,960",
+				"to": "00:01:37,320"
+			},
+			"offsets": {
+				"from": 95960,
+				"to": 97320
+			},
+			"text": " Here you have the EVM Hunter."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,320",
+				"to": "00:01:43,240"
+			},
+			"offsets": {
+				"from": 97320,
+				"to": 103240
+			},
+			"text": " What you do is all you have to do is just type in the address of the smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,240",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 103240,
+				"to": 110000
+			},
+			"text": " and it tells you gas execution how much gas it wastes actually during the execution time"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:54,320"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 114320
+			},
+			"text": " and also how much gas it wastes during the deployment time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,320",
+				"to": "00:01:58,720"
+			},
+			"offsets": {
+				"from": 114320,
+				"to": 118720
+			},
+			"text": " So what you have to do is type in the smart contract and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,720",
+				"to": "00:02:03,520"
+			},
+			"offsets": {
+				"from": 118720,
+				"to": 123520
+			},
+			"text": " let's say you meet a mask and sort it and you just type it in and you can see it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,520",
+				"to": "00:02:06,960"
+			},
+			"offsets": {
+				"from": 123520,
+				"to": 126960
+			},
+			"text": " It can be your option, it can be made, it can be any network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,960",
+				"to": "00:02:12,640"
+			},
+			"offsets": {
+				"from": 126960,
+				"to": 132640
+			},
+			"text": " And you can just see how much of gas this smart contract is wasting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,640",
+				"to": "00:02:16,640"
+			},
+			"offsets": {
+				"from": 132640,
+				"to": 136640
+			},
+			"text": " So the idea is also to put pressure on the developers that they start to think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,640",
+				"to": "00:02:21,360"
+			},
+			"offsets": {
+				"from": 136640,
+				"to": 141360
+			},
+			"text": " hey, I have to optimize now my smart contract because the people are able to see if I did"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,360",
+				"to": "00:02:22,360"
+			},
+			"offsets": {
+				"from": 141360,
+				"to": 142360
+			},
+			"text": " a good work on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,360",
+				"to": "00:02:35,560"
+			},
+			"offsets": {
+				"from": 142360,
+				"to": 155560
+			},
+			"text": " So yeah, then for example, what happens is possible to distinguish between an account"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,560",
+				"to": "00:02:36,560"
+			},
+			"offsets": {
+				"from": 155560,
+				"to": 156560
+			},
+			"text": " or a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,560",
+				"to": "00:02:39,200"
+			},
+			"offsets": {
+				"from": 156560,
+				"to": 159200
+			},
+			"text": " So if you type in a wallet address with good option,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,200",
+				"to": "00:02:41,520"
+			},
+			"offsets": {
+				"from": 159200,
+				"to": 161520
+			},
+			"text": " it just doesn't store any code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,520",
+				"to": "00:02:43,520"
+			},
+			"offsets": {
+				"from": 161520,
+				"to": 163520
+			},
+			"text": " Yeah, we will tell you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,520",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 163520,
+				"to": 166000
+			},
+			"text": " So on the other hand, what does this tool do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:51,840"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 171840
+			},
+			"text": " It retrieves the bytecode from the chain, analyzes it based on some"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,840",
+				"to": "00:02:57,360"
+			},
+			"offsets": {
+				"from": 171840,
+				"to": 177360
+			},
+			"text": " other end patterns which happen to the describe and the paper and just gets you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,360",
+				"to": "00:02:59,560"
+			},
+			"offsets": {
+				"from": 177360,
+				"to": 179560
+			},
+			"text": " the result at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,560",
+				"to": "00:03:03,240"
+			},
+			"offsets": {
+				"from": 179560,
+				"to": 183240
+			},
+			"text": " So if you might ask, where do I find this tool?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,240",
+				"to": "00:03:05,640"
+			},
+			"offsets": {
+				"from": 183240,
+				"to": 185640
+			},
+			"text": " You can find it under EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,640",
+				"to": "00:03:11,360"
+			},
+			"offsets": {
+				"from": 185640,
+				"to": 191360
+			},
+			"text": " I'm sure the yvalvolve.de gives the QR code if you want to test it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,360",
+				"to": "00:03:13,080"
+			},
+			"offsets": {
+				"from": 191360,
+				"to": 193080
+			},
+			"text": " It is awesome GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,080",
+				"to": "00:03:15,280"
+			},
+			"offsets": {
+				"from": 193080,
+				"to": 195280
+			},
+			"text": " So under myvalvolve."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,280",
+				"to": "00:03:19,240"
+			},
+			"offsets": {
+				"from": 195280,
+				"to": 199240
+			},
+			"text": " So feel free to extend this tool if you know any more end patterns."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,240",
+				"to": "00:03:24,240"
+			},
+			"offsets": {
+				"from": 199240,
+				"to": 204240
+			},
+			"text": " If you know what you want to make this tool, you may be better and stuff like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,240",
+				"to": "00:03:27,640"
+			},
+			"offsets": {
+				"from": 204240,
+				"to": 207640
+			},
+			"text": " Feel free to contribute and make use of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,640",
+				"to": "00:03:28,080"
+			},
+			"offsets": {
+				"from": 207640,
+				"to": 208080
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,080",
+				"to": "00:03:33,080"
+			},
+			"offsets": {
+				"from": 208080,
+				"to": 213080
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,080",
+				"to": "00:03:40,080"
+			},
+			"offsets": {
+				"from": 213080,
+				"to": 220080
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,080",
+				"to": "00:03:47,080"
+			},
+			"offsets": {
+				"from": 220080,
+				"to": 227080
+			},
+			"text": " [END]"
+		}
+	]
+}

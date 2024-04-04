@@ -1,0 +1,1539 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,400"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2400
+			},
+			"text": " Hey everybody, my name is Jay Little."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,400",
+				"to": "00:00:05,440"
+			},
+			"offsets": {
+				"from": 2400,
+				"to": 5440
+			},
+			"text": " I'm a principal security engineer at Trail of Bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,440",
+				"to": "00:00:07,720"
+			},
+			"offsets": {
+				"from": 5440,
+				"to": 7720
+			},
+			"text": " My hobby over this past summer was trying to sync archive"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,720",
+				"to": "00:00:10,280"
+			},
+			"offsets": {
+				"from": 7720,
+				"to": 10280
+			},
+			"text": " nodes and then figure out why some contracts have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,280",
+				"to": "00:00:11,400"
+			},
+			"offsets": {
+				"from": 10280,
+				"to": 11400
+			},
+			"text": " self-destructed."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,400",
+				"to": "00:00:13,680"
+			},
+			"offsets": {
+				"from": 11400,
+				"to": 13680
+			},
+			"text": " So I'm going to quickly go over how I did this"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,680",
+				"to": "00:00:15,640"
+			},
+			"offsets": {
+				"from": 13680,
+				"to": 15640
+			},
+			"text": " and then share the results."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,640",
+				"to": "00:00:17,680"
+			},
+			"offsets": {
+				"from": 15640,
+				"to": 17680
+			},
+			"text": " In case anybody needs a brief refresher of what a self"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,680",
+				"to": "00:00:20,520"
+			},
+			"offsets": {
+				"from": 17680,
+				"to": 20520
+			},
+			"text": " destruct looks like, imagine you have some contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,520",
+				"to": "00:00:22,520"
+			},
+			"offsets": {
+				"from": 20520,
+				"to": 22520
+			},
+			"text": " people are using it, they're baking cookies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,520",
+				"to": "00:00:26,240"
+			},
+			"offsets": {
+				"from": 22520,
+				"to": 26240
+			},
+			"text": " the owners keep a track of who has what cookies."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,240",
+				"to": "00:00:27,800"
+			},
+			"offsets": {
+				"from": 26240,
+				"to": 27800
+			},
+			"text": " Then the owner wants to close up the shops,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,800",
+				"to": "00:00:29,080"
+			},
+			"offsets": {
+				"from": 27800,
+				"to": 29080
+			},
+			"text": " they do a self-destruct."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,080",
+				"to": "00:00:32,720"
+			},
+			"offsets": {
+				"from": 29080,
+				"to": 32720
+			},
+			"text": " When they do this, the owner gets all the money"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,720",
+				"to": "00:00:34,400"
+			},
+			"offsets": {
+				"from": 32720,
+				"to": 34400
+			},
+			"text": " collected by the shop."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,400",
+				"to": "00:00:37,600"
+			},
+			"offsets": {
+				"from": 34400,
+				"to": 37600
+			},
+			"text": " And when this happens, the code and all the storage gets"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,600",
+				"to": "00:00:42,360"
+			},
+			"offsets": {
+				"from": 37600,
+				"to": 42360
+			},
+			"text": " removed from all the Ethereum clients on the node."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,360",
+				"to": "00:00:47,200"
+			},
+			"offsets": {
+				"from": 42360,
+				"to": 47200
+			},
+			"text": " So because of that, the self-destruct is a type of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,200",
+				"to": "00:00:48,080"
+			},
+			"offsets": {
+				"from": 47200,
+				"to": 48080
+			},
+			"text": " internal transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,080",
+				"to": "00:00:49,640"
+			},
+			"offsets": {
+				"from": 48080,
+				"to": 49640
+			},
+			"text": " So in order to get this information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,640",
+				"to": "00:00:52,360"
+			},
+			"offsets": {
+				"from": 49640,
+				"to": 52360
+			},
+			"text": " you need to run a full node with archiving."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,360",
+				"to": "00:00:56,520"
+			},
+			"offsets": {
+				"from": 52360,
+				"to": 56520
+			},
+			"text": " And these are curated command line arguments I found"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,520",
+				"to": "00:01:00,120"
+			},
+			"offsets": {
+				"from": 56520,
+				"to": 60120
+			},
+			"text": " from Stack Overflow that will be performance and do archiving."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,120",
+				"to": "00:01:04,560"
+			},
+			"offsets": {
+				"from": 60120,
+				"to": 64560
+			},
+			"text": " Then you wait a few weeks and then you run into some"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,560",
+				"to": "00:01:05,760"
+			},
+			"offsets": {
+				"from": 64560,
+				"to": 65760
+			},
+			"text": " crashing errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,760",
+				"to": "00:01:07,920"
+			},
+			"offsets": {
+				"from": 65760,
+				"to": 67920
+			},
+			"text": " Turns out this summer was a bad time to try to get a working"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,920",
+				"to": "00:01:09,880"
+			},
+			"offsets": {
+				"from": 67920,
+				"to": 69880
+			},
+			"text": " archive node."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,880",
+				"to": "00:01:12,400"
+			},
+			"offsets": {
+				"from": 69880,
+				"to": 72400
+			},
+			"text": " These have been fixed, but it kind of felt like I was making"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,400",
+				"to": "00:01:14,280"
+			},
+			"offsets": {
+				"from": 72400,
+				"to": 74280
+			},
+			"text": " a Zen Guardian out of my chain data folder."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,280",
+				"to": "00:01:17,800"
+			},
+			"offsets": {
+				"from": 74280,
+				"to": 77800
+			},
+			"text": " I'd have to remove it and start again."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,800",
+				"to": "00:01:19,320"
+			},
+			"offsets": {
+				"from": 77800,
+				"to": 79320
+			},
+			"text": " So I still wanted to make some results."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,320",
+				"to": "00:01:24,600"
+			},
+			"offsets": {
+				"from": 79320,
+				"to": 84600
+			},
+			"text": " So luckily, Etherscan has an API that will give you a list"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,600",
+				"to": "00:01:26,480"
+			},
+			"offsets": {
+				"from": 84600,
+				"to": 86480
+			},
+			"text": " of all the transactions to a contract and all the internal"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,480",
+				"to": "00:01:28,640"
+			},
+			"offsets": {
+				"from": 86480,
+				"to": 88640
+			},
+			"text": " transactions too."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,640",
+				"to": "00:01:31,200"
+			},
+			"offsets": {
+				"from": 88640,
+				"to": 91200
+			},
+			"text": " It took about a few hours to download Etherscan, let you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,200",
+				"to": "00:01:32,400"
+			},
+			"offsets": {
+				"from": 91200,
+				"to": 92400
+			},
+			"text": " do about five queries per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,400",
+				"to": "00:01:36,920"
+			},
+			"offsets": {
+				"from": 92400,
+				"to": 96920
+			},
+			"text": " And here are some results."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,920",
+				"to": "00:01:40,040"
+			},
+			"offsets": {
+				"from": 96920,
+				"to": 100040
+			},
+			"text": " So total, there's been about two million contracts created"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,040",
+				"to": "00:01:43,480"
+			},
+			"offsets": {
+				"from": 100040,
+				"to": 103480
+			},
+			"text": " before Block 6 million on Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,480",
+				"to": "00:01:45,640"
+			},
+			"offsets": {
+				"from": 103480,
+				"to": 105640
+			},
+			"text": " And of those, 32,000 are empty."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,640",
+				"to": "00:01:49,360"
+			},
+			"offsets": {
+				"from": 105640,
+				"to": 109360
+			},
+			"text": " And a subset of these empty ones have been self-destructed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,360",
+				"to": "00:01:52,800"
+			},
+			"offsets": {
+				"from": 109360,
+				"to": 112800
+			},
+			"text": " It's a little hard to tell the difference between the two."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,800",
+				"to": "00:01:57,400"
+			},
+			"offsets": {
+				"from": 112800,
+				"to": 117400
+			},
+			"text": " So as we kind of apply some more heuristics for, like, oh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,400",
+				"to": "00:01:59,720"
+			},
+			"offsets": {
+				"from": 117400,
+				"to": 119720
+			},
+			"text": " is this self-destruct interesting or not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,720",
+				"to": "00:02:03,280"
+			},
+			"offsets": {
+				"from": 119720,
+				"to": 123280
+			},
+			"text": " Like, is the account that caused the self-destruct the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,280",
+				"to": "00:02:05,480"
+			},
+			"offsets": {
+				"from": 123280,
+				"to": 125480
+			},
+			"text": " original creator or not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,480",
+				"to": "00:02:08,760"
+			},
+			"offsets": {
+				"from": 125480,
+				"to": 128760
+			},
+			"text": " Or did it send money back to the original account or some new"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,760",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 128760,
+				"to": 130000
+			},
+			"text": " one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:15,200"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 135200
+			},
+			"text": " We get down to just 25 total self-destructs ever that sent"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,200",
+				"to": "00:02:17,080"
+			},
+			"offsets": {
+				"from": 135200,
+				"to": 137080
+			},
+			"text": " more than 0.1 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,080",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 137080,
+				"to": 138000
+			},
+			"text": " This was kind of surprising."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:20,080"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 140080
+			},
+			"text": " So I started digging through the results."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,080",
+				"to": "00:02:23,560"
+			},
+			"offsets": {
+				"from": 140080,
+				"to": 143560
+			},
+			"text": " And it turns out there's a lot of duplicated noise."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,560",
+				"to": "00:02:29,080"
+			},
+			"offsets": {
+				"from": 143560,
+				"to": 149080
+			},
+			"text": " There's 10,000 copies of this contract that kind of read"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,080",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 149080,
+				"to": 150000
+			},
+			"text": " code in a loop."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,600"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154600
+			},
+			"text": " And some stack overflow post says this was a network dust."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,600",
+				"to": "00:02:37,600"
+			},
+			"offsets": {
+				"from": 154600,
+				"to": 157600
+			},
+			"text": " Then this one's kind of unfortunate."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,600",
+				"to": "00:02:41,400"
+			},
+			"offsets": {
+				"from": 157600,
+				"to": 161400
+			},
+			"text": " There's been about 6,000 ETH lost by people sending some"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,400",
+				"to": "00:02:44,080"
+			},
+			"offsets": {
+				"from": 161400,
+				"to": 164080
+			},
+			"text": " money to address 0 and then not giving any data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,080",
+				"to": "00:02:46,080"
+			},
+			"offsets": {
+				"from": 164080,
+				"to": 166080
+			},
+			"text": " So these are gone forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,920",
+				"to": "00:02:50,840"
+			},
+			"offsets": {
+				"from": 168920,
+				"to": 170840
+			},
+			"text": " Then there's about 2,000 of these where there's 6,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,840",
+				"to": "00:02:51,360"
+			},
+			"offsets": {
+				"from": 170840,
+				"to": 171360
+			},
+			"text": " dolls."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,360",
+				"to": "00:02:52,320"
+			},
+			"offsets": {
+				"from": 171360,
+				"to": 172320
+			},
+			"text": " Nals is just a stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,320",
+				"to": "00:02:53,160"
+			},
+			"offsets": {
+				"from": 172320,
+				"to": 173160
+			},
+			"text": " It doesn't do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,160",
+				"to": "00:02:54,320"
+			},
+			"offsets": {
+				"from": 173160,
+				"to": 174320
+			},
+			"text": " So no contracts created."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,320",
+				"to": "00:02:55,160"
+			},
+			"offsets": {
+				"from": 174320,
+				"to": 175160
+			},
+			"text": " So it's empty."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,160",
+				"to": "00:03:01,320"
+			},
+			"offsets": {
+				"from": 175160,
+				"to": 181320
+			},
+			"text": " This thing is really annoying."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,320",
+				"to": "00:03:04,120"
+			},
+			"offsets": {
+				"from": 181320,
+				"to": 184120
+			},
+			"text": " There's about 3,000 of these contracts that just do a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,120",
+				"to": "00:03:06,080"
+			},
+			"offsets": {
+				"from": 184120,
+				"to": 186080
+			},
+			"text": " push and then a self-destruct."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,080",
+				"to": "00:03:10,760"
+			},
+			"offsets": {
+				"from": 186080,
+				"to": 190760
+			},
+			"text": " So they just kind of transfer one or two away."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,760",
+				"to": "00:03:13,280"
+			},
+			"offsets": {
+				"from": 190760,
+				"to": 193280
+			},
+			"text": " And when you look at it at Etherscan, it looks like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,280",
+				"to": "00:03:14,600"
+			},
+			"offsets": {
+				"from": 193280,
+				"to": 194600
+			},
+			"text": " huge mess."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,600",
+				"to": "00:03:18,760"
+			},
+			"offsets": {
+				"from": 194600,
+				"to": 198760
+			},
+			"text": " And it turns out that what these are doing is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,760",
+				"to": "00:03:22,160"
+			},
+			"offsets": {
+				"from": 198760,
+				"to": 202160
+			},
+			"text": " they will self-destruct and then that triggers a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,160",
+				"to": "00:03:24,640"
+			},
+			"offsets": {
+				"from": 202160,
+				"to": 204640
+			},
+			"text": " transaction and then it kind of does a little bit of a chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,640",
+				"to": "00:03:25,200"
+			},
+			"offsets": {
+				"from": 204640,
+				"to": 205200
+			},
+			"text": " reaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,200",
+				"to": "00:03:28,360"
+			},
+			"offsets": {
+				"from": 205200,
+				"to": 208360
+			},
+			"text": " And this was really annoying to filter out."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,360",
+				"to": "00:03:30,360"
+			},
+			"offsets": {
+				"from": 208360,
+				"to": 210360
+			},
+			"text": " So we do all this filtering."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,360",
+				"to": "00:03:34,840"
+			},
+			"offsets": {
+				"from": 210360,
+				"to": 214840
+			},
+			"text": " And we're left with about 2,000 contracts that have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,840",
+				"to": "00:03:37,200"
+			},
+			"offsets": {
+				"from": 214840,
+				"to": 217200
+			},
+			"text": " legitimately self-destructed that had code and now they"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,200",
+				"to": "00:03:38,480"
+			},
+			"offsets": {
+				"from": 217200,
+				"to": 218480
+			},
+			"text": " don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,480",
+				"to": "00:03:42,800"
+			},
+			"offsets": {
+				"from": 218480,
+				"to": 222800
+			},
+			"text": " And again, if we apply some heuristics, there's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,800",
+				"to": "00:03:43,200"
+			},
+			"offsets": {
+				"from": 222800,
+				"to": 223200
+			},
+			"text": " only--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,200",
+				"to": "00:03:46,080"
+			},
+			"offsets": {
+				"from": 223200,
+				"to": 226080
+			},
+			"text": " out of the 25 that is in 0.1 ETH, there's only 16 that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,080",
+				"to": "00:03:48,480"
+			},
+			"offsets": {
+				"from": 226080,
+				"to": 228480
+			},
+			"text": " have sent more than one ETH error when they were being"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,480",
+				"to": "00:03:50,920"
+			},
+			"offsets": {
+				"from": 228480,
+				"to": 230920
+			},
+			"text": " destroyed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,920",
+				"to": "00:03:54,600"
+			},
+			"offsets": {
+				"from": 230920,
+				"to": 234600
+			},
+			"text": " So for a few of these kind of highlights of this result,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,600",
+				"to": "00:03:58,920"
+			},
+			"offsets": {
+				"from": 234600,
+				"to": 238920
+			},
+			"text": " this one, the original owner actually destroyed his"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,920",
+				"to": "00:04:04,840"
+			},
+			"offsets": {
+				"from": 238920,
+				"to": 244840
+			},
+			"text": " contract and sent 50 ETH to 0, RIP."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,840",
+				"to": "00:04:07,560"
+			},
+			"offsets": {
+				"from": 244840,
+				"to": 247560
+			},
+			"text": " Then this one, I got excited because I'm like, ooh, 300"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,560",
+				"to": "00:04:08,480"
+			},
+			"offsets": {
+				"from": 247560,
+				"to": 248480
+			},
+			"text": " ETH in a self-destruct."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,480",
+				"to": "00:04:11,440"
+			},
+			"offsets": {
+				"from": 248480,
+				"to": 251440
+			},
+			"text": " But it turns out when you look at previous transactions, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,440",
+				"to": "00:04:13,560"
+			},
+			"offsets": {
+				"from": 251440,
+				"to": 253560
+			},
+			"text": " owner was intentionally changed by the original creator."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,560",
+				"to": "00:04:16,520"
+			},
+			"offsets": {
+				"from": 253560,
+				"to": 256520
+			},
+			"text": " So this probably wasn't an attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,520",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 256520,
+				"to": 258000
+			},
+			"text": " Then the rest of the results are actually pretty much"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:20,240"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 260240
+			},
+			"text": " just gambling."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,240",
+				"to": "00:04:23,320"
+			},
+			"offsets": {
+				"from": 260240,
+				"to": 263320
+			},
+			"text": " This one had a few ETH in it, 65."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,320",
+				"to": "00:04:25,040"
+			},
+			"offsets": {
+				"from": 263320,
+				"to": 265040
+			},
+			"text": " And it had a cool address."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,040",
+				"to": "00:04:25,960"
+			},
+			"offsets": {
+				"from": 265040,
+				"to": 265960
+			},
+			"text": " It begins with dice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,960",
+				"to": "00:04:29,640"
+			},
+			"offsets": {
+				"from": 265960,
+				"to": 269640
+			},
+			"text": " So it's like a trustworthy gambling contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,640",
+				"to": "00:04:33,280"
+			},
+			"offsets": {
+				"from": 269640,
+				"to": 273280
+			},
+			"text": " And then here's another one that transferred a few ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,280",
+				"to": "00:04:36,880"
+			},
+			"offsets": {
+				"from": 273280,
+				"to": 276880
+			},
+			"text": " This actually had source code and a pretty legit looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,880",
+				"to": "00:04:37,400"
+			},
+			"offsets": {
+				"from": 276880,
+				"to": 277400
+			},
+			"text": " website."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,720",
+				"to": "00:04:45,720"
+			},
+			"offsets": {
+				"from": 282720,
+				"to": 285720
+			},
+			"text": " This is a contract that was attacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,720",
+				"to": "00:04:50,440"
+			},
+			"offsets": {
+				"from": 285720,
+				"to": 290440
+			},
+			"text": " And the attacker called a couple functions and got a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,440",
+				"to": "00:04:52,480"
+			},
+			"offsets": {
+				"from": 290440,
+				"to": 292480
+			},
+			"text": " bounty of 0.2 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,480",
+				"to": "00:04:54,920"
+			},
+			"offsets": {
+				"from": 292480,
+				"to": 294920
+			},
+			"text": " I'm actually the original author of this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,920",
+				"to": "00:04:58,880"
+			},
+			"offsets": {
+				"from": 294920,
+				"to": 298880
+			},
+			"text": " It was just a honeypot with no trap, just honey."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,880",
+				"to": "00:05:01,440"
+			},
+			"offsets": {
+				"from": 298880,
+				"to": 301440
+			},
+			"text": " And I wanted to see if anybody was scanning binary"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,440",
+				"to": "00:05:03,440"
+			},
+			"offsets": {
+				"from": 301440,
+				"to": 303440
+			},
+			"text": " only contracts and attacking them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,440",
+				"to": "00:05:05,040"
+			},
+			"offsets": {
+				"from": 303440,
+				"to": 305040
+			},
+			"text": " And the answer is yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,040",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 305040,
+				"to": 307000
+			},
+			"text": " This happened about a day after I put the contract up on"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:08,680"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 308680
+			},
+			"text": " Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,680",
+				"to": "00:05:11,360"
+			},
+			"offsets": {
+				"from": 308680,
+				"to": 311360
+			},
+			"text": " And for an example, that's not me."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,360",
+				"to": "00:05:12,800"
+			},
+			"offsets": {
+				"from": 311360,
+				"to": 312800
+			},
+			"text": " Here's an old contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,800",
+				"to": "00:05:16,320"
+			},
+			"offsets": {
+				"from": 312800,
+				"to": 316320
+			},
+			"text": " It turns out to be an open source dungeon style"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,320",
+				"to": "00:05:18,040"
+			},
+			"offsets": {
+				"from": 316320,
+				"to": 318040
+			},
+			"text": " navigation game."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,040",
+				"to": "00:05:21,400"
+			},
+			"offsets": {
+				"from": 318040,
+				"to": 321400
+			},
+			"text": " But they copy and paste some code and removed the only"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,400",
+				"to": "00:05:23,160"
+			},
+			"offsets": {
+				"from": 321400,
+				"to": 323160
+			},
+			"text": " owner check on Mortal."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,160",
+				"to": "00:05:25,120"
+			},
+			"offsets": {
+				"from": 323160,
+				"to": 325120
+			},
+			"text": " So somebody called it and got three ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,120",
+				"to": "00:05:31,320"
+			},
+			"offsets": {
+				"from": 325120,
+				"to": 331320
+			},
+			"text": " So this is just a quick overview of what I was doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,320",
+				"to": "00:05:32,120"
+			},
+			"offsets": {
+				"from": 331320,
+				"to": 332120
+			},
+			"text": " this summer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,120",
+				"to": "00:05:35,400"
+			},
+			"offsets": {
+				"from": 332120,
+				"to": 335400
+			},
+			"text": " And it turns out only a small fraction of contracts have"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,400",
+				"to": "00:05:38,800"
+			},
+			"offsets": {
+				"from": 335400,
+				"to": 338800
+			},
+			"text": " been destroyed when they had value."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,800",
+				"to": "00:05:41,400"
+			},
+			"offsets": {
+				"from": 338800,
+				"to": 341400
+			},
+			"text": " So I'm looking for other heuristics to apply."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,400",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 341400,
+				"to": 344000
+			},
+			"text": " And if you have any questions or are curious about this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:46,480"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 346480
+			},
+			"text": " kind of analysis, I'll be happy to chat outside."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,480",
+				"to": "00:05:48,800"
+			},
+			"offsets": {
+				"from": 346480,
+				"to": 348800
+			},
+			"text": " And thank you for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,800",
+				"to": "00:05:52,160"
+			},
+			"offsets": {
+				"from": 348800,
+				"to": 352160
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,160",
+				"to": "00:05:55,520"
+			},
+			"offsets": {
+				"from": 352160,
+				"to": 355520
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,520",
+				"to": "00:05:58,880"
+			},
+			"offsets": {
+				"from": 355520,
+				"to": 358880
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,880",
+				"to": "00:06:02,240"
+			},
+			"offsets": {
+				"from": 358880,
+				"to": 362240
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,240",
+				"to": "00:06:05,600"
+			},
+			"offsets": {
+				"from": 362240,
+				"to": 365600
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,600",
+				"to": "00:06:08,960"
+			},
+			"offsets": {
+				"from": 365600,
+				"to": 368960
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,960",
+				"to": "00:06:12,320"
+			},
+			"offsets": {
+				"from": 368960,
+				"to": 372320
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,320",
+				"to": "00:06:15,680"
+			},
+			"offsets": {
+				"from": 372320,
+				"to": 375680
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,680",
+				"to": "00:06:20,680"
+			},
+			"offsets": {
+				"from": 375680,
+				"to": 380680
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

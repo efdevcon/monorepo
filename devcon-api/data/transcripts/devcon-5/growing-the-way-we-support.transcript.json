@@ -1,0 +1,2012 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7000
+			},
+			"text": " Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 11000
+			},
+			"text": " Welcome to the B KON5 and welcome to Japan."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 14000
+			},
+			"text": " [ Speaking in Japanese ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 21000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 25000
+			},
+			"text": " To be honest, when we were deciding on the location of the B KON this year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 28000
+			},
+			"text": " I wasn't really sure about bringing this to Japan."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 33000
+			},
+			"text": " I know many of the community members wanted to be in Japan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 41000
+			},
+			"text": " but selfishly, I thought that would give me extra pressure because I am from here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 49000
+			},
+			"text": " But now that we are all here, I am excited that our community members are here"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 55000
+			},
+			"text": " to have meaningful conversations and showcase what you have built this year"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 59000
+			},
+			"text": " and also discuss the future of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 65000
+			},
+			"text": " So today, the topic of my talk is about blowing the way we support"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 74000
+			},
+			"text": " and we are ready to what we have been communicating."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 79000
+			},
+			"text": " So for those who have heard my talks or others,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 88000
+			},
+			"text": " I may know that we often talked about this subtraction mindset."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 98000
+			},
+			"text": " It's the idea that normally the typical organizations tend to take and also extend,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 107000
+			},
+			"text": " but Ethereum tries to share its influence and also resources so that everyone can go."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 112000
+			},
+			"text": " And I introduced this beauty in subtraction last year at the B KON,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 119000
+			},
+			"text": " but there is more to this subtraction, just beyond just positive feelings"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 124000
+			},
+			"text": " or just a philosophy, it is a discipline."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 133000
+			},
+			"text": " Subtraction does not mean EF is doing less, nor working less than before."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 137000
+			},
+			"text": " Subtraction is about disciplined action."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 140000
+			},
+			"text": " That is why it is different from minimalism."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 148000
+			},
+			"text": " We are subtracting our power in a mindful way for long-term benefit of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 157000
+			},
+			"text": " Like Artisan or artwork, the work requires, has to be precise."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 163000
+			},
+			"text": " And once we overdo it, even if the decision is not bad, it's hard to fix it later."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 169000
+			},
+			"text": " This work requires keen intuition and thoughtfulness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 175000
+			},
+			"text": " but we still want to take some risk and also encourage innovations."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 182000
+			},
+			"text": " So with all these, we actually have to work more to subtract our power."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 189000
+			},
+			"text": " Here is a key insight of Ethereum that guides how EF grows."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193000
+			},
+			"text": " The word that stands out in my mind is support."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 200000
+			},
+			"text": " We have to give flexible support to support this very unique ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 210000
+			},
+			"text": " and going the ways we support is our main focus this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 213000
+			},
+			"text": " Many of you know that EF supports through grants."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 216000
+			},
+			"text": " This is the list of grantees this year 2019,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 221000
+			},
+			"text": " and congratulations to all of the grantees that are on the list."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 228000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 233000
+			},
+			"text": " But we don't just support by looking at project."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 238000
+			},
+			"text": " We sometimes give support for the entire domain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 245000
+			},
+			"text": " such as how do we support multiple teams that are working on the Ethereum 2.0 clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 249000
+			},
+			"text": " or state channels, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 255000
+			},
+			"text": " In the middle, I listed security because that's also deserved to be one of the domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 261000
+			},
+			"text": " And of course, without core infrastructure, Ethereum cannot work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 273000
+			},
+			"text": " and there are teams that are working so hard to maintain and also improve it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 276000
+			},
+			"text": " And going further, as part of being flexible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 284000
+			},
+			"text": " we sometimes support incubating some project for them to be kicked off,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 290000
+			},
+			"text": " and also support many communities and help Ethereum beat their own blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 298000
+			},
+			"text": " And I'd like to mention one, as an example, Ethereum.org is run by multiple community members,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 301000
+			},
+			"text": " working very, very hard every day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 306000
+			},
+			"text": " and I hope you're enjoying weekly updates that are happening now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 314000
+			},
+			"text": " And also, they just implemented 10 extra transactions, 10 languages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 321000
+			},
+			"text": " that are translated by all the community members globally that want you to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 325000
+			},
+			"text": " And that is really, I think, very beautiful about the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 330000
+			},
+			"text": " So, really, congratulations to the team of the website."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 334000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 339000
+			},
+			"text": " So, as you can see, there are many types of support to increase our Frix VD."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 344000
+			},
+			"text": " Our grants program has gone into an ecosystem support program now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 349000
+			},
+			"text": " We continue to provide financial support for those who deserve it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 354000
+			},
+			"text": " but we try to think about, like, other ways to support by thinking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 357000
+			},
+			"text": " what are the things that only the Ethereum Foundation can do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 361000
+			},
+			"text": " So, this is the website of the ecosystem support program."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 364000
+			},
+			"text": " Please check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 371000
+			},
+			"text": " And so far, I just showed what we have been doing, but it also matters why we have been doing this way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 373000
+			},
+			"text": " and if you want to listen to the details,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 381000
+			},
+			"text": " Alba is going to be your talk 5 p.m. tomorrow, so please come and join us tomorrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 386000
+			},
+			"text": " And I just spoke about what EF is doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 391000
+			},
+			"text": " and as we continue to make these efforts with other community members,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 395000
+			},
+			"text": " we see big Ethereum news coming in every day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 402000
+			},
+			"text": " but the gloss is happening here or some chart that you can easily show the gloss with numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 414000
+			},
+			"text": " And every day we hear, like, different news happening, especially lately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 418000
+			},
+			"text": " sometimes from big enterprise side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 425000
+			},
+			"text": " but it's been exciting despite the price of all the crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 429000
+			},
+			"text": " And with all these growth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 435000
+			},
+			"text": " I still think it comes down to why we are doing this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 437000
+			},
+			"text": " that we are working on Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 441000
+			},
+			"text": " and it is important for us to keep talking about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 447000
+			},
+			"text": " And there is my personal story that led to my own vision on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 450000
+			},
+			"text": " and the side of my career."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 455000
+			},
+			"text": " This is my dad and me as a baby."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 458000
+			},
+			"text": " I was born and raised in Japan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 463000
+			},
+			"text": " and my dad was a little stubborn and difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 466000
+			},
+			"text": " He was successful in his career,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 472000
+			},
+			"text": " but unlike many other Japanese, he never trusted those who had a title as experts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 476000
+			},
+			"text": " So he told me, just because someone has a title as a doctor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 478000
+			},
+			"text": " doesn't mean what they are saying is right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 484000
+			},
+			"text": " So I learned from him that to question everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 491000
+			},
+			"text": " and to do your own research before making any decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 495000
+			},
+			"text": " And also things were not equal for women here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 498000
+			},
+			"text": " but still not, unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 503000
+			},
+			"text": " And I did not think many things were not fair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 511000
+			},
+			"text": " were fair to everyone, so I became more sensitive to unfairness, injustice, and imbalance."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 516000
+			},
+			"text": " My core values remain the same today, standing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 522000
+			},
+			"text": " And I would like to see the world where we have less unfairness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 527000
+			},
+			"text": " and violence, and justice, and I believe blockchain can help that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 531000
+			},
+			"text": " And that's the vision we do not want to forget."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 538000
+			},
+			"text": " And one of the important purposes of this step-con is to share our vision, your own vision,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 546000
+			},
+			"text": " and also inspiration and discuss why we are working on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 553000
+			},
+			"text": " And with that, this year, we welcome 52 scholars from 25 countries."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 555000
+			},
+			"text": " The list is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 568000
+			},
+			"text": " And also supported by consensus and unicephonobation, so thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 574000
+			},
+			"text": " And there was an application process, and criteria was whether they represent the gender,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 579000
+			},
+			"text": " ethnicity, or region that are normally underrepresented in tech,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 584000
+			},
+			"text": " and also the needs of financial support for their learning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 589000
+			},
+			"text": " and of course their passion in learning Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 593000
+			},
+			"text": " The passion of these members is very inspiring."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 600000
+			},
+			"text": " I heard a story about a scholar from Egypt she wanted to learn about Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 606000
+			},
+			"text": " but it was really hard for her to know where to start as a Muslim woman."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 612000
+			},
+			"text": " And so coming here is really a big deal for her as a learning process."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:32,040"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 632040
+			},
+			"text": " And also there was another person who is a Blif"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,040",
+				"to": "00:10:42,040"
+			},
+			"offsets": {
+				"from": 632040,
+				"to": 642040
+			},
+			"text": " like compared to many of you, or even of course being Japanese."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,040",
+				"to": "00:10:49,040"
+			},
+			"offsets": {
+				"from": 642040,
+				"to": 649040
+			},
+			"text": " Some scholars from Afghanistan couldn't get a visa at their local place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,040",
+				"to": "00:10:56,040"
+			},
+			"offsets": {
+				"from": 649040,
+				"to": 656040
+			},
+			"text": " and they had to fly all the way to Dubai and wait there for days for the visa to come."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,040",
+				"to": "00:11:05,040"
+			},
+			"offsets": {
+				"from": 656040,
+				"to": 665040
+			},
+			"text": " And we had to keep supporting them by hiring money with Western Union,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,040",
+				"to": "00:11:10,040"
+			},
+			"offsets": {
+				"from": 665040,
+				"to": 670040
+			},
+			"text": " which kind of showed the problem that we have in society."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,040",
+				"to": "00:11:19,040"
+			},
+			"offsets": {
+				"from": 670040,
+				"to": 679040
+			},
+			"text": " But it was really hard for them to come here, but the passion showed that this is a life-changing opportunity for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,040",
+				"to": "00:11:28,040"
+			},
+			"offsets": {
+				"from": 679040,
+				"to": 688040
+			},
+			"text": " So I really encourage you to find them to talk to them, they are supposed to have orange wristband."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,040",
+				"to": "00:11:34,040"
+			},
+			"offsets": {
+				"from": 688040,
+				"to": 694040
+			},
+			"text": " And the reason why we do this is not just to help them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,040",
+				"to": "00:11:39,040"
+			},
+			"offsets": {
+				"from": 694040,
+				"to": 699040
+			},
+			"text": " And I think more importantly I want them to inspire us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,040",
+				"to": "00:11:42,040"
+			},
+			"offsets": {
+				"from": 699040,
+				"to": 702040
+			},
+			"text": " and eventually we can learn from them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,040",
+				"to": "00:11:50,040"
+			},
+			"offsets": {
+				"from": 702040,
+				"to": 710040
+			},
+			"text": " The real interesting use cases of Ethereum are happening in the areas where solving problems in front of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,040",
+				"to": "00:11:53,040"
+			},
+			"offsets": {
+				"from": 710040,
+				"to": 713040
+			},
+			"text": " would change their life immediately."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,040",
+				"to": "00:12:05,040"
+			},
+			"offsets": {
+				"from": 713040,
+				"to": 725040
+			},
+			"text": " So we are not only doing this to help them, I believe actually they will help us to find ways to use Ethereum more."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,040",
+				"to": "00:12:19,040"
+			},
+			"offsets": {
+				"from": 725040,
+				"to": 739040
+			},
+			"text": " And last but not least, speaking of our vision, today we have a big, great news to tell you from the community actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,040",
+				"to": "00:12:27,040"
+			},
+			"offsets": {
+				"from": 739040,
+				"to": 747040
+			},
+			"text": " But just today UNICEF announced Crypto Denominated Fund to support Open Source Technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,040",
+				"to": "00:12:35,040"
+			},
+			"offsets": {
+				"from": 747040,
+				"to": 755040
+			},
+			"text": " benefiting children and the future of the children, and EF is supporting this initiative as a first partner."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,040",
+				"to": "00:12:41,040"
+			},
+			"offsets": {
+				"from": 755040,
+				"to": 761040
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,040",
+				"to": "00:12:49,040"
+			},
+			"offsets": {
+				"from": 761040,
+				"to": 769040
+			},
+			"text": " I think this is something new that we are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,040",
+				"to": "00:12:55,040"
+			},
+			"offsets": {
+				"from": 769040,
+				"to": 775040
+			},
+			"text": " Of course we have many other priorities, we do not forget that, but this is really important for us to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,040",
+				"to": "00:12:58,040"
+			},
+			"offsets": {
+				"from": 775040,
+				"to": 778040
+			},
+			"text": " share our vision."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,040",
+				"to": "00:13:03,040"
+			},
+			"offsets": {
+				"from": 778040,
+				"to": 783040
+			},
+			"text": " And the UNICEF Innovation Team has been working so hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,040",
+				"to": "00:13:10,040"
+			},
+			"offsets": {
+				"from": 783040,
+				"to": 790040
+			},
+			"text": " I was receiving update every single day last couple of months especially."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,040",
+				"to": "00:13:13,040"
+			},
+			"offsets": {
+				"from": 790040,
+				"to": 793040
+			},
+			"text": " And I was just exhausted by hearing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,040",
+				"to": "00:13:22,040"
+			},
+			"offsets": {
+				"from": 793040,
+				"to": 802040
+			},
+			"text": " But you can imagine how hard it is to, when I heard about this idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,040",
+				"to": "00:13:31,040"
+			},
+			"offsets": {
+				"from": 802040,
+				"to": 811040
+			},
+			"text": " imagine doing this at one big organization at United Nations, which is normally very conservative."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,040",
+				"to": "00:13:41,040"
+			},
+			"offsets": {
+				"from": 811040,
+				"to": 821040
+			},
+			"text": " So they did lesson teaching how to first starting with what is crypto and how to use wallet to really advocate."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,040",
+				"to": "00:13:51,040"
+			},
+			"offsets": {
+				"from": 821040,
+				"to": 831040
+			},
+			"text": " And what's great is they really believe in the power of crypto, not just blockchain, not just as a currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,040",
+				"to": "00:14:21,040"
+			},
+			"offsets": {
+				"from": 831040,
+				"to": 861040
+			},
+			"text": " So this is why this is Crypto Denominated Fund, which is I think very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,040",
+				"to": "00:14:28,040"
+			},
+			"offsets": {
+				"from": 861040,
+				"to": 868040
+			},
+			"text": " There is no one that is doing like a digital prescription using blockchain solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,040",
+				"to": "00:14:36,040"
+			},
+			"offsets": {
+				"from": 868040,
+				"to": 876040
+			},
+			"text": " And in other projects, one is UtahPixer is working on the sort of data solution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,040",
+				"to": "00:14:42,040"
+			},
+			"offsets": {
+				"from": 876040,
+				"to": 882040
+			},
+			"text": " and the last one is working on the funding solution with using blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,040",
+				"to": "00:14:55,040"
+			},
+			"offsets": {
+				"from": 889040,
+				"to": 895040
+			},
+			"text": " So what is exciting about this part is it's a small start."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,040",
+				"to": "00:15:04,040"
+			},
+			"offsets": {
+				"from": 895040,
+				"to": 904040
+			},
+			"text": " The donation, we actually, yes, we successfully sent, am I supposed to be able to say this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,040",
+				"to": "00:15:10,040"
+			},
+			"offsets": {
+				"from": 904040,
+				"to": 910040
+			},
+			"text": " There are many things, I'm not supposed to say because they're big organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,040",
+				"to": "00:15:20,040"
+			},
+			"offsets": {
+				"from": 910040,
+				"to": 920040
+			},
+			"text": " We were supposed to be able to successfully send 100 ETH to UNICEF funds wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,040",
+				"to": "00:15:27,040"
+			},
+			"offsets": {
+				"from": 920040,
+				"to": 927040
+			},
+			"text": " and then they distributed to the headquarters, and then the headquarters distributed to do all this project already."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,040",
+				"to": "00:15:30,040"
+			},
+			"offsets": {
+				"from": 927040,
+				"to": 930040
+			},
+			"text": " That happened last night."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,040",
+				"to": "00:15:40,040"
+			},
+			"offsets": {
+				"from": 930040,
+				"to": 940040
+			},
+			"text": " So it was really a lot of work, and then really a conversation to the team at Chris Fabrian,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,040",
+				"to": "00:15:45,040"
+			},
+			"offsets": {
+				"from": 940040,
+				"to": 945040
+			},
+			"text": " and Christina, and all the UNICEF innovation team who are working on this territory."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,040",
+				"to": "00:15:49,040"
+			},
+			"offsets": {
+				"from": 945040,
+				"to": 949040
+			},
+			"text": " And then thank you for letting us be part of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,040",
+				"to": "00:15:53,040"
+			},
+			"offsets": {
+				"from": 949040,
+				"to": 953040
+			},
+			"text": " And I think this was a perfect way to kick off the economy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,040",
+				"to": "00:15:57,040"
+			},
+			"offsets": {
+				"from": 953040,
+				"to": 957040
+			},
+			"text": " Last week, we are not just in Japan, we are in Osaka."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,040",
+				"to": "00:16:00,040"
+			},
+			"offsets": {
+				"from": 957040,
+				"to": 960040
+			},
+			"text": " Who are here for the first time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,040",
+				"to": "00:16:08,040"
+			},
+			"offsets": {
+				"from": 960040,
+				"to": 968040
+			},
+			"text": " So I don't know how many of you have recognized Osaka is a very unique city in Japan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,040",
+				"to": "00:16:13,040"
+			},
+			"offsets": {
+				"from": 968040,
+				"to": 973040
+			},
+			"text": " and actually it is a city known for comedians."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,040",
+				"to": "00:16:16,040"
+			},
+			"offsets": {
+				"from": 973040,
+				"to": 976040
+			},
+			"text": " This city produced most number of comedians."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,040",
+				"to": "00:16:22,040"
+			},
+			"offsets": {
+				"from": 976040,
+				"to": 982040
+			},
+			"text": " So if you talk to a random stranger on the street, you're supposed to say something funny."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,040",
+				"to": "00:16:29,040"
+			},
+			"offsets": {
+				"from": 982040,
+				"to": 989040
+			},
+			"text": " So try that. But anyway, there are many interesting that you can try here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,040",
+				"to": "00:16:33,040"
+			},
+			"offsets": {
+				"from": 989040,
+				"to": 993040
+			},
+			"text": " many interesting food, \"Ophonomiyaki ta koyaki,\" which I love."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,040",
+				"to": "00:16:44,040"
+			},
+			"offsets": {
+				"from": 993040,
+				"to": 1004040
+			},
+			"text": " And also I'd like to thank us, send a big thank you to the city of Osaka that provides us this opportunity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,040",
+				"to": "00:16:49,040"
+			},
+			"offsets": {
+				"from": 1004040,
+				"to": 1009040
+			},
+			"text": " but also that it just gave us this beautiful drum performance this morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,040",
+				"to": "00:16:53,040"
+			},
+			"offsets": {
+				"from": 1009040,
+				"to": 1013040
+			},
+			"text": " And thank you very much Osaka city."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,040",
+				"to": "00:17:08,040"
+			},
+			"offsets": {
+				"from": 1013040,
+				"to": 1028040
+			},
+			"text": " Okay, that is all for me, and hope you enjoyed \"Ebcon\" and hope to talk to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,040",
+				"to": "00:17:11,040"
+			},
+			"offsets": {
+				"from": 1029040,
+				"to": 1031040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,040",
+				"to": "00:17:13,040"
+			},
+			"offsets": {
+				"from": 1031040,
+				"to": 1033040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,040",
+				"to": "00:17:15,040"
+			},
+			"offsets": {
+				"from": 1033040,
+				"to": 1035040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,040",
+				"to": "00:17:17,040"
+			},
+			"offsets": {
+				"from": 1035040,
+				"to": 1037040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,040",
+				"to": "00:17:19,040"
+			},
+			"offsets": {
+				"from": 1037040,
+				"to": 1039040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,040",
+				"to": "00:17:21,040"
+			},
+			"offsets": {
+				"from": 1039040,
+				"to": 1041040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,040",
+				"to": "00:17:23,040"
+			},
+			"offsets": {
+				"from": 1041040,
+				"to": 1043040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,040",
+				"to": "00:17:25,040"
+			},
+			"offsets": {
+				"from": 1043040,
+				"to": 1045040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,040",
+				"to": "00:17:27,040"
+			},
+			"offsets": {
+				"from": 1045040,
+				"to": 1047040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,040",
+				"to": "00:17:29,040"
+			},
+			"offsets": {
+				"from": 1047040,
+				"to": 1049040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,040",
+				"to": "00:17:31,040"
+			},
+			"offsets": {
+				"from": 1049040,
+				"to": 1051040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,040",
+				"to": "00:17:33,040"
+			},
+			"offsets": {
+				"from": 1051040,
+				"to": 1053040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,040",
+				"to": "00:17:35,040"
+			},
+			"offsets": {
+				"from": 1053040,
+				"to": 1055040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,040",
+				"to": "00:17:37,040"
+			},
+			"offsets": {
+				"from": 1055040,
+				"to": 1057040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,040",
+				"to": "00:17:39,040"
+			},
+			"offsets": {
+				"from": 1057040,
+				"to": 1059040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,040",
+				"to": "00:17:41,040"
+			},
+			"offsets": {
+				"from": 1059040,
+				"to": 1061040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,040",
+				"to": "00:17:43,040"
+			},
+			"offsets": {
+				"from": 1061040,
+				"to": 1063040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,040",
+				"to": "00:17:47,040"
+			},
+			"offsets": {
+				"from": 1063040,
+				"to": 1067040
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

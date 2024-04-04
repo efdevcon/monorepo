@@ -1,0 +1,4586 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,420"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2420
+			},
+			"text": " (soft music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,420",
+				"to": "00:00:19,180"
+			},
+			"offsets": {
+				"from": 2420,
+				"to": 19180
+			},
+			"text": " - The title of my talk is Scalable Secure Scuttlebutt."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,180",
+				"to": "00:00:21,260"
+			},
+			"offsets": {
+				"from": 19180,
+				"to": 21260
+			},
+			"text": " My name is Dominic Tarr."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,260",
+				"to": "00:00:22,500"
+			},
+			"offsets": {
+				"from": 21260,
+				"to": 22500
+			},
+			"text": " So what is Scuttlebutt?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,500",
+				"to": "00:00:23,380"
+			},
+			"offsets": {
+				"from": 22500,
+				"to": 23380
+			},
+			"text": " So Scuttlebutt,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,060",
+				"to": "00:00:29,100"
+			},
+			"offsets": {
+				"from": 26060,
+				"to": 29100
+			},
+			"text": " Scalablebutt is a nautical term for gossip,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,100",
+				"to": "00:00:32,440"
+			},
+			"offsets": {
+				"from": 29100,
+				"to": 32440
+			},
+			"text": " a butt is a barrel, that water is stored in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,440",
+				"to": "00:00:34,940"
+			},
+			"offsets": {
+				"from": 32440,
+				"to": 34940
+			},
+			"text": " and scuttle is to open the barrel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,940",
+				"to": "00:00:36,300"
+			},
+			"offsets": {
+				"from": 34940,
+				"to": 36300
+			},
+			"text": " So it's to make a hole in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,300",
+				"to": "00:00:38,540"
+			},
+			"offsets": {
+				"from": 36300,
+				"to": 38540
+			},
+			"text": " So this way Scuttle is also a disincorship"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,540",
+				"to": "00:00:40,280"
+			},
+			"offsets": {
+				"from": 38540,
+				"to": 40280
+			},
+			"text": " 'cause you open the ship."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,280",
+				"to": "00:00:41,120"
+			},
+			"offsets": {
+				"from": 40280,
+				"to": 41120
+			},
+			"text": " So"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,120",
+				"to": "00:00:46,020"
+			},
+			"offsets": {
+				"from": 41120,
+				"to": 46020
+			},
+			"text": " the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,020",
+				"to": "00:00:49,080"
+			},
+			"offsets": {
+				"from": 46020,
+				"to": 49080
+			},
+			"text": " yeah, so this means gossip for pirates and stuff like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,080",
+				"to": "00:00:50,420"
+			},
+			"offsets": {
+				"from": 49080,
+				"to": 50420
+			},
+			"text": " So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,420",
+				"to": "00:00:52,420"
+			},
+			"offsets": {
+				"from": 50420,
+				"to": 52420
+			},
+			"text": " and I got the term from"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,980",
+				"to": "00:00:56,500"
+			},
+			"offsets": {
+				"from": 53980,
+				"to": 56500
+			},
+			"text": " a part of the Amazon paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,500",
+				"to": "00:00:58,040"
+			},
+			"offsets": {
+				"from": 56500,
+				"to": 58040
+			},
+			"text": " there was an Amazon paper called"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,040",
+				"to": "00:00:59,980"
+			},
+			"offsets": {
+				"from": 58040,
+				"to": 59980
+			},
+			"text": " Flow Control for Anti-Intropy Projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,980",
+				"to": "00:01:02,860"
+			},
+			"offsets": {
+				"from": 59980,
+				"to": 62860
+			},
+			"text": " It's like for anti-entropy protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,860",
+				"to": "00:01:06,020"
+			},
+			"offsets": {
+				"from": 62860,
+				"to": 66020
+			},
+			"text": " So it's eventually consistent gossip protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,020",
+				"to": "00:01:08,460"
+			},
+			"offsets": {
+				"from": 66020,
+				"to": 68460
+			},
+			"text": " that's used within a trusted system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,460",
+				"to": "00:01:12,060"
+			},
+			"offsets": {
+				"from": 68460,
+				"to": 72060
+			},
+			"text": " And then I made secure Scuttlebutt,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,060",
+				"to": "00:01:14,660"
+			},
+			"offsets": {
+				"from": 72060,
+				"to": 74660
+			},
+			"text": " which took the same idea and then added security."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,660",
+				"to": "00:01:17,140"
+			},
+			"offsets": {
+				"from": 74660,
+				"to": 77140
+			},
+			"text": " So the pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,140",
+				"to": "00:01:19,780"
+			},
+			"offsets": {
+				"from": 77140,
+				"to": 79780
+			},
+			"text": " that idea of the pair is the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,780",
+				"to": "00:01:21,220"
+			},
+			"offsets": {
+				"from": 79780,
+				"to": 81220
+			},
+			"text": " is its public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,220",
+				"to": "00:01:24,020"
+			},
+			"offsets": {
+				"from": 81220,
+				"to": 84020
+			},
+			"text": " The data model is just append only logs"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,020",
+				"to": "00:01:25,820"
+			},
+			"offsets": {
+				"from": 84020,
+				"to": 85820
+			},
+			"text": " where each pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,820",
+				"to": "00:01:28,460"
+			},
+			"offsets": {
+				"from": 85820,
+				"to": 88460
+			},
+			"text": " appends to, has its own personal log that's signed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,460",
+				"to": "00:01:31,220"
+			},
+			"offsets": {
+				"from": 88460,
+				"to": 91220
+			},
+			"text": " Pairs can relay other messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,220",
+				"to": "00:01:35,220"
+			},
+			"offsets": {
+				"from": 91220,
+				"to": 95220
+			},
+			"text": " but they can't insert, modify, or reorder messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,220",
+				"to": "00:01:37,740"
+			},
+			"offsets": {
+				"from": 95220,
+				"to": 97740
+			},
+			"text": " because the signatures would then be invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,740",
+				"to": "00:01:38,580"
+			},
+			"offsets": {
+				"from": 97740,
+				"to": 98580
+			},
+			"text": " So"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,580",
+				"to": "00:01:43,700"
+			},
+			"offsets": {
+				"from": 98580,
+				"to": 103700
+			},
+			"text": " this gives you like a really simple data model"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,700",
+				"to": "00:01:45,940"
+			},
+			"offsets": {
+				"from": 103700,
+				"to": 105940
+			},
+			"text": " that can use to re-represent a bunch of stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,940",
+				"to": "00:01:50,780"
+			},
+			"offsets": {
+				"from": 105940,
+				"to": 110780
+			},
+			"text": " but it's, and it's completely like free to run like signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,780",
+				"to": "00:01:52,020"
+			},
+			"offsets": {
+				"from": 110780,
+				"to": 112020
+			},
+			"text": " You can make 12,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,020",
+				"to": "00:01:54,820"
+			},
+			"offsets": {
+				"from": 112020,
+				"to": 114820
+			},
+			"text": " thousands of signatures a second on an ordinary laptop."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,820",
+				"to": "00:01:59,220"
+			},
+			"offsets": {
+				"from": 114820,
+				"to": 119220
+			},
+			"text": " You can, the current implementation can receive like 2000 messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,220",
+				"to": "00:02:02,780"
+			},
+			"offsets": {
+				"from": 119220,
+				"to": 122780
+			},
+			"text": " a second and validate them like it's,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,780",
+				"to": "00:02:05,700"
+			},
+			"offsets": {
+				"from": 122780,
+				"to": 125700
+			},
+			"text": " it's very like, it's not,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,700",
+				"to": "00:02:07,460"
+			},
+			"offsets": {
+				"from": 125700,
+				"to": 127460
+			},
+			"text": " it avoids all kinds of bottlenecks that you do"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,460",
+				"to": "00:02:09,580"
+			},
+			"offsets": {
+				"from": 127460,
+				"to": 129580
+			},
+			"text": " if you have a consensus layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,580",
+				"to": "00:02:13,180"
+			},
+			"offsets": {
+				"from": 129580,
+				"to": 133180
+			},
+			"text": " So this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,180",
+				"to": "00:02:14,740"
+			},
+			"offsets": {
+				"from": 133180,
+				"to": 134740
+			},
+			"text": " then there's a few,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,740",
+				"to": "00:02:18,820"
+			},
+			"offsets": {
+				"from": 134740,
+				"to": 138820
+			},
+			"text": " it maps quite closely to social media kind of models"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,820",
+				"to": "00:02:21,780"
+			},
+			"offsets": {
+				"from": 138820,
+				"to": 141780
+			},
+			"text": " like Twitter and whatnot"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,780",
+				"to": "00:02:25,700"
+			},
+			"offsets": {
+				"from": 141780,
+				"to": 145700
+			},
+			"text": " because you follow the feeds that you want to replicate."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,700",
+				"to": "00:02:27,940"
+			},
+			"offsets": {
+				"from": 145700,
+				"to": 147940
+			},
+			"text": " And this solves a whole bunch of neat problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,940",
+				"to": "00:02:31,100"
+			},
+			"offsets": {
+				"from": 147940,
+				"to": 151100
+			},
+			"text": " So this solves a civil attack because the human,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,100",
+				"to": "00:02:32,420"
+			},
+			"offsets": {
+				"from": 151100,
+				"to": 152420
+			},
+			"text": " it bubbles up with the human layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,420",
+				"to": "00:02:34,620"
+			},
+			"offsets": {
+				"from": 152420,
+				"to": 154620
+			},
+			"text": " and then they just unfollow the nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,620",
+				"to": "00:02:36,380"
+			},
+			"offsets": {
+				"from": 154620,
+				"to": 156380
+			},
+			"text": " they don't want to talk to."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,380",
+				"to": "00:02:38,020"
+			},
+			"offsets": {
+				"from": 156380,
+				"to": 158020
+			},
+			"text": " Or don't want to hear from."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,020",
+				"to": "00:02:39,620"
+			},
+			"offsets": {
+				"from": 158020,
+				"to": 159620
+			},
+			"text": " It also provides discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,620",
+				"to": "00:02:43,340"
+			},
+			"offsets": {
+				"from": 159620,
+				"to": 163340
+			},
+			"text": " So writing a crappy peer to peer Google"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,340",
+				"to": "00:02:45,220"
+			},
+			"offsets": {
+				"from": 163340,
+				"to": 165220
+			},
+			"text": " would be really, really hard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,220",
+				"to": "00:02:49,660"
+			},
+			"offsets": {
+				"from": 165220,
+				"to": 169660
+			},
+			"text": " but writing a crappy peer to peer social network"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,660",
+				"to": "00:02:51,220"
+			},
+			"offsets": {
+				"from": 169660,
+				"to": 171220
+			},
+			"text": " actually can still be really awesome"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,220",
+				"to": "00:02:53,060"
+			},
+			"offsets": {
+				"from": 171220,
+				"to": 173060
+			},
+			"text": " if they're awesome people on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,060",
+				"to": "00:02:54,780"
+			},
+			"offsets": {
+				"from": 173060,
+				"to": 174780
+			},
+			"text": " And you can still discover new things"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,780",
+				"to": "00:02:56,820"
+			},
+			"offsets": {
+				"from": 174780,
+				"to": 176820
+			},
+			"text": " so it's a way of like discovering things"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,820",
+				"to": "00:02:59,420"
+			},
+			"offsets": {
+				"from": 176820,
+				"to": 179420
+			},
+			"text": " in a decentralized way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,420",
+				"to": "00:03:02,660"
+			},
+			"offsets": {
+				"from": 179420,
+				"to": 182660
+			},
+			"text": " And then because it replicates messages in order,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,660",
+				"to": "00:03:04,540"
+			},
+			"offsets": {
+				"from": 182660,
+				"to": 184540
+			},
+			"text": " it's easy to think about building a database"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,540",
+				"to": "00:03:07,460"
+			},
+			"offsets": {
+				"from": 184540,
+				"to": 187460
+			},
+			"text": " on top of this because the things happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,460",
+				"to": "00:03:10,420"
+			},
+			"offsets": {
+				"from": 187460,
+				"to": 190420
+			},
+			"text": " You receive things in the same order that they happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,420",
+				"to": "00:03:13,300"
+			},
+			"offsets": {
+				"from": 190420,
+				"to": 193300
+			},
+			"text": " So that was secure, it's got a bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,300",
+				"to": "00:03:15,820"
+			},
+			"offsets": {
+				"from": 193300,
+				"to": 195820
+			},
+			"text": " And then my recent work has been to make it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,820",
+				"to": "00:03:17,260"
+			},
+			"offsets": {
+				"from": 195820,
+				"to": 197260
+			},
+			"text": " much, much more scalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,260",
+				"to": "00:03:20,340"
+			},
+			"offsets": {
+				"from": 197260,
+				"to": 200340
+			},
+			"text": " So scalable, secure, or scuttlebutt is the same thing again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,340",
+				"to": "00:03:22,580"
+			},
+			"offsets": {
+				"from": 200340,
+				"to": 202580
+			},
+			"text": " but optimized for bandwidth and latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,580",
+				"to": "00:03:26,860"
+			},
+			"offsets": {
+				"from": 202580,
+				"to": 206860
+			},
+			"text": " So the big deal here is that the overhead,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,860",
+				"to": "00:03:29,180"
+			},
+			"offsets": {
+				"from": 206860,
+				"to": 209180
+			},
+			"text": " the networking overhead is proportional"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,180",
+				"to": "00:03:31,060"
+			},
+			"offsets": {
+				"from": 209180,
+				"to": 211060
+			},
+			"text": " to the feeds updated."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,060",
+				"to": "00:03:33,020"
+			},
+			"offsets": {
+				"from": 211060,
+				"to": 213020
+			},
+			"text": " And I'll explain why that's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,020",
+				"to": "00:03:38,020"
+			},
+			"offsets": {
+				"from": 213020,
+				"to": 218020
+			},
+			"text": " So part one is optimizing the network topology."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,180",
+				"to": "00:03:45,180"
+			},
+			"offsets": {
+				"from": 220180,
+				"to": 225180
+			},
+			"text": " So the simplest, most naive design would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,180",
+				"to": "00:03:48,820"
+			},
+			"offsets": {
+				"from": 225180,
+				"to": 228820
+			},
+			"text": " just to connect to everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,820",
+				"to": "00:03:50,980"
+			},
+			"offsets": {
+				"from": 228820,
+				"to": 230980
+			},
+			"text": " And I had a really cool animation of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,980",
+				"to": "00:03:54,460"
+			},
+			"offsets": {
+				"from": 230980,
+				"to": 234460
+			},
+			"text": " that you can't see, but perhaps I'll just like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,460",
+				"to": "00:03:57,580"
+			},
+			"offsets": {
+				"from": 234460,
+				"to": 237580
+			},
+			"text": " I don't know, you can see something kind of happening?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,580",
+				"to": "00:03:58,420"
+			},
+			"offsets": {
+				"from": 237580,
+				"to": 238420
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,420",
+				"to": "00:04:03,020"
+			},
+			"offsets": {
+				"from": 238420,
+				"to": 243020
+			},
+			"text": " So this of course is inherently centralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,020",
+				"to": "00:04:05,900"
+			},
+			"offsets": {
+				"from": 243020,
+				"to": 245900
+			},
+			"text": " it goes out from one point, but it's actually really efficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,900",
+				"to": "00:04:10,900"
+			},
+			"offsets": {
+				"from": 245900,
+				"to": 250900
+			},
+			"text": " because each message is transmitted exactly once"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,900",
+				"to": "00:04:13,300"
+			},
+			"offsets": {
+				"from": 250900,
+				"to": 253300
+			},
+			"text": " to every node."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,300",
+				"to": "00:04:16,260"
+			},
+			"offsets": {
+				"from": 253300,
+				"to": 256260
+			},
+			"text": " So the amount of people that receive messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,260",
+				"to": "00:04:17,980"
+			},
+			"offsets": {
+				"from": 256260,
+				"to": 257980
+			},
+			"text": " is exactly the same as the amount of messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,980",
+				"to": "00:04:19,860"
+			},
+			"offsets": {
+				"from": 257980,
+				"to": 259860
+			},
+			"text": " that are sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,860",
+				"to": "00:04:22,780"
+			},
+			"offsets": {
+				"from": 259860,
+				"to": 262780
+			},
+			"text": " And but the problem is this means that actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,780",
+				"to": "00:04:24,420"
+			},
+			"offsets": {
+				"from": 262780,
+				"to": 264420
+			},
+			"text": " there's one node that does all the work"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,420",
+				"to": "00:04:26,380"
+			},
+			"offsets": {
+				"from": 264420,
+				"to": 266380
+			},
+			"text": " and all the other nodes do nearly no work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,380",
+				"to": "00:04:31,380"
+			},
+			"offsets": {
+				"from": 266380,
+				"to": 271380
+			},
+			"text": " And then that's, you know about why centralization is bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,380",
+				"to": "00:04:34,300"
+			},
+			"offsets": {
+				"from": 271380,
+				"to": 274300
+			},
+			"text": " So another solution is you just have a random network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,300",
+				"to": "00:04:36,420"
+			},
+			"offsets": {
+				"from": 274300,
+				"to": 276420
+			},
+			"text": " just peers, every peer connects to a couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,420",
+				"to": "00:04:38,420"
+			},
+			"offsets": {
+				"from": 276420,
+				"to": 278420
+			},
+			"text": " of other random nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,420",
+				"to": "00:04:40,860"
+			},
+			"offsets": {
+				"from": 278420,
+				"to": 280860
+			},
+			"text": " And it's really easy to make a fully connected network"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,860",
+				"to": "00:04:41,780"
+			},
+			"offsets": {
+				"from": 280860,
+				"to": 281780
+			},
+			"text": " like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,780",
+				"to": "00:04:44,460"
+			},
+			"offsets": {
+				"from": 281780,
+				"to": 284460
+			},
+			"text": " Like if you connect to more than two peers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,460",
+				"to": "00:04:47,140"
+			},
+			"offsets": {
+				"from": 284460,
+				"to": 287140
+			},
+			"text": " two other peers, the chance of being completely connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,140",
+				"to": "00:04:50,220"
+			},
+			"offsets": {
+				"from": 287140,
+				"to": 290220
+			},
+			"text": " is like, as the network gets bigger, it increases."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,220",
+				"to": "00:04:52,460"
+			},
+			"offsets": {
+				"from": 290220,
+				"to": 292460
+			},
+			"text": " So once you pass two, it's like the chance"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,460",
+				"to": "00:04:55,860"
+			},
+			"offsets": {
+				"from": 292460,
+				"to": 295860
+			},
+			"text": " of being fully connected, it's like pretty much certain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,860",
+				"to": "00:04:58,700"
+			},
+			"offsets": {
+				"from": 295860,
+				"to": 298700
+			},
+			"text": " And but the problem is that it's a trade off"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,700",
+				"to": "00:05:01,460"
+			},
+			"offsets": {
+				"from": 298700,
+				"to": 301460
+			},
+			"text": " between bandwidth and latency, depending on how many"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,460",
+				"to": "00:05:02,780"
+			},
+			"offsets": {
+				"from": 301460,
+				"to": 302780
+			},
+			"text": " extra connections you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,780",
+				"to": "00:05:04,940"
+			},
+			"offsets": {
+				"from": 302780,
+				"to": 304940
+			},
+			"text": " So I have another animation here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,940",
+				"to": "00:05:10,860"
+			},
+			"offsets": {
+				"from": 304940,
+				"to": 310860
+			},
+			"text": " So it's like, looks like a noisy mess."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,860",
+				"to": "00:05:14,140"
+			},
+			"offsets": {
+				"from": 310860,
+				"to": 314140
+			},
+			"text": " And then you might see some like red,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,140",
+				"to": "00:05:16,500"
+			},
+			"offsets": {
+				"from": 314140,
+				"to": 316500
+			},
+			"text": " all the red messages that are flying around,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,500",
+				"to": "00:05:19,020"
+			},
+			"offsets": {
+				"from": 316500,
+				"to": 319020
+			},
+			"text": " those are the extra redundant messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,020",
+				"to": "00:05:22,540"
+			},
+			"offsets": {
+				"from": 319020,
+				"to": 322540
+			},
+			"text": " And if you have like, I think this one has like five"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,540",
+				"to": "00:05:26,300"
+			},
+			"offsets": {
+				"from": 322540,
+				"to": 326300
+			},
+			"text": " connections or something, I've got a little table here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,300",
+				"to": "00:05:30,540"
+			},
+			"offsets": {
+				"from": 326300,
+				"to": 330540
+			},
+			"text": " Yeah, so once you have like five connections per things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,540",
+				"to": "00:05:34,180"
+			},
+			"offsets": {
+				"from": 330540,
+				"to": 334180
+			},
+			"text": " then you're getting like 10 times extra redundant messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,180",
+				"to": "00:05:35,740"
+			},
+			"offsets": {
+				"from": 334180,
+				"to": 335740
+			},
+			"text": " that you don't need to send."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,740",
+				"to": "00:05:37,900"
+			},
+			"offsets": {
+				"from": 335740,
+				"to": 337900
+			},
+			"text": " Well, you kind of need to send to make sure they arrive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,900",
+				"to": "00:05:40,020"
+			},
+			"offsets": {
+				"from": 337900,
+				"to": 340020
+			},
+			"text": " but you've sent 10 times as much as you needed to."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,020",
+				"to": "00:05:41,340"
+			},
+			"offsets": {
+				"from": 340020,
+				"to": 341340
+			},
+			"text": " But it's super robust."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,340",
+				"to": "00:05:46,860"
+			},
+			"offsets": {
+				"from": 341340,
+				"to": 346860
+			},
+			"text": " And it's super simple to implement as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,860",
+				"to": "00:05:50,460"
+			},
+			"offsets": {
+				"from": 346860,
+				"to": 350460
+			},
+			"text": " The role is just sends new messages to everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,460",
+				"to": "00:05:54,300"
+			},
+			"offsets": {
+				"from": 350460,
+				"to": 354300
+			},
+			"text": " that didn't send it to you, which is also being"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,300",
+				"to": "00:05:55,860"
+			},
+			"offsets": {
+				"from": 354300,
+				"to": 355860
+			},
+			"text": " don't resend messages you already know."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,860",
+				"to": "00:05:58,060"
+			},
+			"offsets": {
+				"from": 355860,
+				"to": 358060
+			},
+			"text": " So just, you say for message, check if you already know"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,060",
+				"to": "00:05:59,100"
+			},
+			"offsets": {
+				"from": 358060,
+				"to": 359100
+			},
+			"text": " about this message."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,100",
+				"to": "00:06:01,540"
+			},
+			"offsets": {
+				"from": 359100,
+				"to": 361540
+			},
+			"text": " And if not, send it to everyone that you're connected to."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,540",
+				"to": "00:06:04,780"
+			},
+			"offsets": {
+				"from": 361540,
+				"to": 364780
+			},
+			"text": " And then that will flood the whole network pretty efficiently."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,780",
+				"to": "00:06:06,700"
+			},
+			"offsets": {
+				"from": 364780,
+				"to": 366700
+			},
+			"text": " Like, very robustly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,700",
+				"to": "00:06:09,460"
+			},
+			"offsets": {
+				"from": 366700,
+				"to": 369460
+			},
+			"text": " Like if some nodes get taken out, it'll just"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,460",
+				"to": "00:06:11,820"
+			},
+			"offsets": {
+				"from": 369460,
+				"to": 371820
+			},
+			"text": " be routed around otherwise."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,820",
+				"to": "00:06:14,460"
+			},
+			"offsets": {
+				"from": 371820,
+				"to": 374460
+			},
+			"text": " So there's only like a couple of cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,460",
+				"to": "00:06:18,900"
+			},
+			"offsets": {
+				"from": 374460,
+				"to": 378900
+			},
+			"text": " we need to think of here as like one pair sends it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,900",
+				"to": "00:06:22,820"
+			},
+			"offsets": {
+				"from": 378900,
+				"to": 382820
+			},
+			"text": " to another pair, or the second pair sends it to the first pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,820",
+				"to": "00:06:24,300"
+			},
+			"offsets": {
+				"from": 382820,
+				"to": 384300
+			},
+			"text": " And the other thing that can happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,300",
+				"to": "00:06:26,420"
+			},
+			"offsets": {
+				"from": 384300,
+				"to": 386420
+			},
+			"text": " is they both send it to each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,420",
+				"to": "00:06:29,100"
+			},
+			"offsets": {
+				"from": 386420,
+				"to": 389100
+			},
+			"text": " where there are two paths for that message"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,100",
+				"to": "00:06:31,660"
+			},
+			"offsets": {
+				"from": 389100,
+				"to": 391660
+			},
+			"text": " to get to Alice and to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,660",
+				"to": "00:06:34,700"
+			},
+			"offsets": {
+				"from": 391660,
+				"to": 394700
+			},
+			"text": " And they both received it within the time"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,700",
+				"to": "00:06:39,900"
+			},
+			"offsets": {
+				"from": 394700,
+				"to": 399900
+			},
+			"text": " that it takes to send one message."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,900",
+				"to": "00:06:45,140"
+			},
+			"offsets": {
+				"from": 399900,
+				"to": 405140
+			},
+			"text": " That's the only case where you get both pairs passing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,140",
+				"to": "00:06:49,500"
+			},
+			"offsets": {
+				"from": 405140,
+				"to": 409500
+			},
+			"text": " the message, where you get a redundant connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,500",
+				"to": "00:06:52,180"
+			},
+			"offsets": {
+				"from": 409500,
+				"to": 412180
+			},
+			"text": " And the bandwidth complexity is like it's proportional"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,180",
+				"to": "00:06:56,660"
+			},
+			"offsets": {
+				"from": 412180,
+				"to": 416660
+			},
+			"text": " to the messages times the spanning connections"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,660",
+				"to": "00:06:59,700"
+			},
+			"offsets": {
+				"from": 416660,
+				"to": 419700
+			},
+			"text": " plus twice the redundant connections,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,700",
+				"to": "00:07:01,580"
+			},
+			"offsets": {
+				"from": 419700,
+				"to": 421580
+			},
+			"text": " because each redundant connection"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,580",
+				"to": "00:07:03,140"
+			},
+			"offsets": {
+				"from": 421580,
+				"to": 423140
+			},
+			"text": " gets two messages sent on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,140",
+				"to": "00:07:05,620"
+			},
+			"offsets": {
+				"from": 423140,
+				"to": 425620
+			},
+			"text": " So the redundant connections are much more expensive"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,620",
+				"to": "00:07:09,460"
+			},
+			"offsets": {
+				"from": 425620,
+				"to": 429460
+			},
+			"text": " than the minimal set of spanning connections."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,460",
+				"to": "00:07:12,060"
+			},
+			"offsets": {
+				"from": 429460,
+				"to": 432060
+			},
+			"text": " And once you've got 10-- when you've got 10 connections"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,060",
+				"to": "00:07:17,860"
+			},
+			"offsets": {
+				"from": 432060,
+				"to": 437860
+			},
+			"text": " to a pair pair, you have like 95% redundant messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,860",
+				"to": "00:07:20,980"
+			},
+			"offsets": {
+				"from": 437860,
+				"to": 440980
+			},
+			"text": " So that means if we can get rid of the rounded messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,980",
+				"to": "00:07:29,820"
+			},
+			"offsets": {
+				"from": 440980,
+				"to": 449820
+			},
+			"text": " we can just transmit one message, one message per pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,820",
+				"to": "00:07:31,340"
+			},
+			"offsets": {
+				"from": 449820,
+				"to": 451340
+			},
+			"text": " which is optimal."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,340",
+				"to": "00:07:35,180"
+			},
+			"offsets": {
+				"from": 451340,
+				"to": 455180
+			},
+			"text": " So the better solution is a spanning tree network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,180",
+				"to": "00:07:37,420"
+			},
+			"offsets": {
+				"from": 455180,
+				"to": 457420
+			},
+			"text": " So a spanning tree is like we get a graph,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,420",
+				"to": "00:07:39,460"
+			},
+			"offsets": {
+				"from": 457420,
+				"to": 459460
+			},
+			"text": " and we just only have the connections"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,460",
+				"to": "00:07:43,020"
+			},
+			"offsets": {
+				"from": 459460,
+				"to": 463020
+			},
+			"text": " we need to reach all of the nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,020",
+				"to": "00:07:45,540"
+			},
+			"offsets": {
+				"from": 463020,
+				"to": 465540
+			},
+			"text": " So we can take the flooding gossip,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,540",
+				"to": "00:07:48,940"
+			},
+			"offsets": {
+				"from": 465540,
+				"to": 468940
+			},
+			"text": " and we can build-- use that to build a spanning network"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,940",
+				"to": "00:07:52,420"
+			},
+			"offsets": {
+				"from": 468940,
+				"to": 472420
+			},
+			"text": " in a decentralized way by just whenever you receive"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,420",
+				"to": "00:07:56,020"
+			},
+			"offsets": {
+				"from": 472420,
+				"to": 476020
+			},
+			"text": " a duplicate message, you just deactivate that connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,020",
+				"to": "00:07:58,900"
+			},
+			"offsets": {
+				"from": 476020,
+				"to": 478900
+			},
+			"text": " I didn't say disconnect, and I'll come back to that in a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,900",
+				"to": "00:08:01,100"
+			},
+			"offsets": {
+				"from": 478900,
+				"to": 481100
+			},
+			"text": " So you just deactivate that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,100",
+				"to": "00:08:05,100"
+			},
+			"offsets": {
+				"from": 481100,
+				"to": 485100
+			},
+			"text": " So now you're sending just the number of messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,100",
+				"to": "00:08:13,260"
+			},
+			"offsets": {
+				"from": 485100,
+				"to": 493260
+			},
+			"text": " The only problem is that trees are really fragile."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,260",
+				"to": "00:08:15,940"
+			},
+			"offsets": {
+				"from": 493260,
+				"to": 495940
+			},
+			"text": " Because now you've basically just added a whole bunch of--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,940",
+				"to": "00:08:18,780"
+			},
+			"offsets": {
+				"from": 495940,
+				"to": 498780
+			},
+			"text": " you've made every single node into a central point of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,780",
+				"to": "00:08:22,820"
+			},
+			"offsets": {
+				"from": 498780,
+				"to": 502820
+			},
+			"text": " So there's one path between any two random nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,820",
+				"to": "00:08:26,020"
+			},
+			"offsets": {
+				"from": 502820,
+				"to": 506020
+			},
+			"text": " And if any of the nodes in that thing fail,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,020",
+				"to": "00:08:29,820"
+			},
+			"offsets": {
+				"from": 506020,
+				"to": 509820
+			},
+			"text": " then those messages just won't get through."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,820",
+				"to": "00:08:37,300"
+			},
+			"offsets": {
+				"from": 509820,
+				"to": 517300
+			},
+			"text": " So it's bandwidth optimal, but it's not robust."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,300",
+				"to": "00:08:41,740"
+			},
+			"offsets": {
+				"from": 517300,
+				"to": 521740
+			},
+			"text": " But then there's this paper I discovered a while ago"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,740",
+				"to": "00:08:44,020"
+			},
+			"offsets": {
+				"from": 521740,
+				"to": 524020
+			},
+			"text": " called Epidemic Broadcast Trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,020",
+				"to": "00:08:47,700"
+			},
+			"offsets": {
+				"from": 524020,
+				"to": 527700
+			},
+			"text": " And this combines the best parts of both flooding gossip"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,700",
+				"to": "00:08:49,740"
+			},
+			"offsets": {
+				"from": 527700,
+				"to": 529740
+			},
+			"text": " and spanning trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,740",
+				"to": "00:08:55,780"
+			},
+			"offsets": {
+				"from": 529740,
+				"to": 535780
+			},
+			"text": " So how it works, basically, is you have the connections"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,780",
+				"to": "00:08:56,540"
+			},
+			"offsets": {
+				"from": 535780,
+				"to": 536540
+			},
+			"text": " are in two modes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,540",
+				"to": "00:08:58,860"
+			},
+			"offsets": {
+				"from": 536540,
+				"to": 538860
+			},
+			"text": " There's eager, and there's lazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,860",
+				"to": "00:09:04,820"
+			},
+			"offsets": {
+				"from": 538860,
+				"to": 544820
+			},
+			"text": " And so the redundant connections get put into lazy mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,820",
+				"to": "00:09:09,580"
+			},
+			"offsets": {
+				"from": 544820,
+				"to": 549580
+			},
+			"text": " So in eager mode, when you receive a message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,580",
+				"to": "00:09:11,380"
+			},
+			"offsets": {
+				"from": 549580,
+				"to": 551380
+			},
+			"text": " you transmit it immediately."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,380",
+				"to": "00:09:13,820"
+			},
+			"offsets": {
+				"from": 551380,
+				"to": 553820
+			},
+			"text": " And when a connection is in lazy mode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,820",
+				"to": "00:09:15,260"
+			},
+			"offsets": {
+				"from": 553820,
+				"to": 555260
+			},
+			"text": " when you receive a message, you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,260",
+				"to": "00:09:18,300"
+			},
+			"offsets": {
+				"from": 555260,
+				"to": 558300
+			},
+			"text": " seem to really short note that you know about this new message"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,300",
+				"to": "00:09:18,980"
+			},
+			"offsets": {
+				"from": 558300,
+				"to": 558980
+			},
+			"text": " now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,980",
+				"to": "00:09:22,900"
+			},
+			"offsets": {
+				"from": 558980,
+				"to": 562900
+			},
+			"text": " So all of the spanning connections"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,900",
+				"to": "00:09:24,580"
+			},
+			"offsets": {
+				"from": 562900,
+				"to": 564580
+			},
+			"text": " get the whole message sent across it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,580",
+				"to": "00:09:28,740"
+			},
+			"offsets": {
+				"from": 564580,
+				"to": 568740
+			},
+			"text": " So that lets the message propagate as fast as it can."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,740",
+				"to": "00:09:31,580"
+			},
+			"offsets": {
+				"from": 568740,
+				"to": 571580
+			},
+			"text": " And then the redundant connections,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,580",
+				"to": "00:09:34,740"
+			},
+			"offsets": {
+				"from": 571580,
+				"to": 574740
+			},
+			"text": " they just have a very short message being sent across."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,740",
+				"to": "00:09:37,340"
+			},
+			"offsets": {
+				"from": 574740,
+				"to": 577340
+			},
+			"text": " So it might only be--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,340",
+				"to": "00:09:45,140"
+			},
+			"offsets": {
+				"from": 577340,
+				"to": 585140
+			},
+			"text": " so in the current implementation of secure scotter work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,140",
+				"to": "00:09:48,060"
+			},
+			"offsets": {
+				"from": 585140,
+				"to": 588060
+			},
+			"text": " and the average message size is like 700 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,060",
+				"to": "00:09:50,580"
+			},
+			"offsets": {
+				"from": 588060,
+				"to": 590580
+			},
+			"text": " And it could be got to 8 kilobytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,580",
+				"to": "00:09:55,020"
+			},
+			"offsets": {
+				"from": 590580,
+				"to": 595020
+			},
+			"text": " But the note would only be like 80 bytes, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,020",
+				"to": "00:09:56,900"
+			},
+			"offsets": {
+				"from": 595020,
+				"to": 596900
+			},
+			"text": " And that could be binary optimized down"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,900",
+				"to": "00:10:00,380"
+			},
+			"offsets": {
+				"from": 596900,
+				"to": 600380
+			},
+			"text": " to probably less than 10."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,380",
+				"to": "00:10:03,260"
+			},
+			"offsets": {
+				"from": 600380,
+				"to": 603260
+			},
+			"text": " So the redundant connections still exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,260",
+				"to": "00:10:07,220"
+			},
+			"offsets": {
+				"from": 603260,
+				"to": 607220
+			},
+			"text": " But you just seem to wail your starter on them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,220",
+				"to": "00:10:11,900"
+			},
+			"offsets": {
+				"from": 607220,
+				"to": 611900
+			},
+			"text": " And then they also-- the robustness still exists"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,900",
+				"to": "00:10:18,660"
+			},
+			"offsets": {
+				"from": 611900,
+				"to": 618660
+			},
+			"text": " because when a message-- so when you receive a message"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,660",
+				"to": "00:10:21,140"
+			},
+			"offsets": {
+				"from": 618660,
+				"to": 621140
+			},
+			"text": " for the first time, you re-broadcast it and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,140",
+				"to": "00:10:23,300"
+			},
+			"offsets": {
+				"from": 621140,
+				"to": 623300
+			},
+			"text": " But if you receive a note about a message"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,300",
+				"to": "00:10:28,740"
+			},
+			"offsets": {
+				"from": 623300,
+				"to": 628740
+			},
+			"text": " that you don't know about yet, then you send a request back"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,740",
+				"to": "00:10:37,740"
+			},
+			"offsets": {
+				"from": 628740,
+				"to": 637740
+			},
+			"text": " to that peer asking them to turn back into eager mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,740",
+				"to": "00:10:39,100"
+			},
+			"offsets": {
+				"from": 637740,
+				"to": 639100
+			},
+			"text": " And then that was the new the whole message."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,100",
+				"to": "00:10:40,700"
+			},
+			"offsets": {
+				"from": 639100,
+				"to": 640700
+			},
+			"text": " And now then it works as repaired."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,700",
+				"to": "00:10:42,780"
+			},
+			"offsets": {
+				"from": 640700,
+				"to": 642780
+			},
+			"text": " So as the best of both worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,780",
+				"to": "00:10:52,420"
+			},
+			"offsets": {
+				"from": 642780,
+				"to": 652420
+			},
+			"text": " Yeah, and then there's only a small amount of state"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,420",
+				"to": "00:10:56,700"
+			},
+			"offsets": {
+				"from": 652420,
+				"to": 656700
+			},
+			"text": " that you need to keep track of per feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,700",
+				"to": "00:10:59,860"
+			},
+			"offsets": {
+				"from": 656700,
+				"to": 659860
+			},
+			"text": " You just need the ID, the local sequence number,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,860",
+				"to": "00:11:03,580"
+			},
+			"offsets": {
+				"from": 659860,
+				"to": 663580
+			},
+			"text": " the remote sequence number, the local request,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,580",
+				"to": "00:11:06,660"
+			},
+			"offsets": {
+				"from": 663580,
+				"to": 666660
+			},
+			"text": " the remote request, and the local and remote modes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,660",
+				"to": "00:11:08,820"
+			},
+			"offsets": {
+				"from": 666660,
+				"to": 668820
+			},
+			"text": " So that's only--"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,820",
+				"to": "00:11:13,260"
+			},
+			"offsets": {
+				"from": 668820,
+				"to": 673260
+			},
+			"text": " that's under like-- depending on how long the ID string is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,260",
+				"to": "00:11:16,340"
+			},
+			"offsets": {
+				"from": 673260,
+				"to": 676340
+			},
+			"text": " we're talking about just like tens of bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,340",
+				"to": "00:11:29,780"
+			},
+			"offsets": {
+				"from": 676340,
+				"to": 689780
+			},
+			"text": " So then the other-- so that's all about optimizing the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,780",
+				"to": "00:11:33,340"
+			},
+			"offsets": {
+				"from": 689780,
+				"to": 693340
+			},
+			"text": " So the second part is optimizing the handshakes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,340",
+				"to": "00:11:37,260"
+			},
+			"offsets": {
+				"from": 693340,
+				"to": 697260
+			},
+			"text": " So Secure Scuttlebutt had this--"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,260",
+				"to": "00:11:42,540"
+			},
+			"offsets": {
+				"from": 697260,
+				"to": 702540
+			},
+			"text": " so original Scuttlebutt had this thing called a vector clock."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,540",
+				"to": "00:11:47,060"
+			},
+			"offsets": {
+				"from": 702540,
+				"to": 707060
+			},
+			"text": " So a vector clock is just like a list of all of the things."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,060",
+				"to": "00:11:49,860"
+			},
+			"offsets": {
+				"from": 707060,
+				"to": 709860
+			},
+			"text": " So you have a whole bunch of friends."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,860",
+				"to": "00:11:51,540"
+			},
+			"offsets": {
+				"from": 709860,
+				"to": 711540
+			},
+			"text": " And when two friends bump into each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,540",
+				"to": "00:11:53,580"
+			},
+			"offsets": {
+				"from": 711540,
+				"to": 713580
+			},
+			"text": " they say, oh, when did you last here from Bob?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,580",
+				"to": "00:11:55,580"
+			},
+			"offsets": {
+				"from": 713580,
+				"to": 715580
+			},
+			"text": " I heard from Bob on Tuesday."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,580",
+				"to": "00:11:57,300"
+			},
+			"offsets": {
+				"from": 715580,
+				"to": 717300
+			},
+			"text": " When did you last here from Alice?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,300",
+				"to": "00:11:58,940"
+			},
+			"offsets": {
+				"from": 717300,
+				"to": 718940
+			},
+			"text": " I heard from Alice on Monday."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,940",
+				"to": "00:12:03,620"
+			},
+			"offsets": {
+				"from": 718940,
+				"to": 723620
+			},
+			"text": " And if I say that I saw Alice on Monday"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,620",
+				"to": "00:12:05,900"
+			},
+			"offsets": {
+				"from": 723620,
+				"to": 725900
+			},
+			"text": " and you saw her on Sunday, then I can--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,900",
+				"to": "00:12:10,940"
+			},
+			"offsets": {
+				"from": 725900,
+				"to": 730940
+			},
+			"text": " then I know I just need to send you the messages from Monday."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,940",
+				"to": "00:12:12,100"
+			},
+			"offsets": {
+				"from": 730940,
+				"to": 732100
+			},
+			"text": " Or from after Sunday."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,100",
+				"to": "00:12:14,940"
+			},
+			"offsets": {
+				"from": 732100,
+				"to": 734940
+			},
+			"text": " So it means we just exchange this one thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,940",
+				"to": "00:12:19,420"
+			},
+			"offsets": {
+				"from": 734940,
+				"to": 739420
+			},
+			"text": " And then I just know immediately what you don't have."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,420",
+				"to": "00:12:22,740"
+			},
+			"offsets": {
+				"from": 739420,
+				"to": 742740
+			},
+			"text": " And by arranging the messages and then learning your audio,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,740",
+				"to": "00:12:26,140"
+			},
+			"offsets": {
+				"from": 742740,
+				"to": 746140
+			},
+			"text": " order it makes that comparison completely simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,140",
+				"to": "00:12:28,900"
+			},
+			"offsets": {
+				"from": 746140,
+				"to": 748900
+			},
+			"text": " If you have more complicated orderings--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,900",
+				"to": "00:12:31,220"
+			},
+			"offsets": {
+				"from": 748900,
+				"to": 751220
+			},
+			"text": " and if you have some kind of more complicated structure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,220",
+				"to": "00:12:32,940"
+			},
+			"offsets": {
+				"from": 751220,
+				"to": 752940
+			},
+			"text": " it becomes much, much more difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,940",
+				"to": "00:12:35,620"
+			},
+			"offsets": {
+				"from": 752940,
+				"to": 755620
+			},
+			"text": " to do a remote set comparison."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,620",
+				"to": "00:12:38,140"
+			},
+			"offsets": {
+				"from": 755620,
+				"to": 758140
+			},
+			"text": " But if you have it in a linear order, it's like dead simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,140",
+				"to": "00:12:42,740"
+			},
+			"offsets": {
+				"from": 758140,
+				"to": 762740
+			},
+			"text": " So just like compromise towards the simpler structure that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,740",
+				"to": "00:12:44,660"
+			},
+			"offsets": {
+				"from": 762740,
+				"to": 764660
+			},
+			"text": " easier to be optimal about."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,660",
+				"to": "00:12:49,260"
+			},
+			"offsets": {
+				"from": 764660,
+				"to": 769260
+			},
+			"text": " But that is a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,260",
+				"to": "00:12:52,020"
+			},
+			"offsets": {
+				"from": 769260,
+				"to": 772020
+			},
+			"text": " And that if you're having-- like the original paper that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,020",
+				"to": "00:12:54,180"
+			},
+			"offsets": {
+				"from": 772020,
+				"to": 774180
+			},
+			"text": " describes this said that it probably--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,180",
+				"to": "00:12:58,020"
+			},
+			"offsets": {
+				"from": 774180,
+				"to": 778020
+			},
+			"text": " it was designed for one cluster within a data center."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,020",
+				"to": "00:13:01,140"
+			},
+			"offsets": {
+				"from": 778020,
+				"to": 781140
+			},
+			"text": " So you'd have a DynamoDB instance that they said might"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,140",
+				"to": "00:13:02,780"
+			},
+			"offsets": {
+				"from": 781140,
+				"to": 782780
+			},
+			"text": " have 300 nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,780",
+				"to": "00:13:07,580"
+			},
+			"offsets": {
+				"from": 782780,
+				"to": 787580
+			},
+			"text": " Which is maybe a lot for one cluster in a data center."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,580",
+				"to": "00:13:09,660"
+			},
+			"offsets": {
+				"from": 787580,
+				"to": 789660
+			},
+			"text": " But it's not a lot for a petapare network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,660",
+				"to": "00:13:12,500"
+			},
+			"offsets": {
+				"from": 789660,
+				"to": 792500
+			},
+			"text": " We want to have thousands and thousands of nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,500",
+				"to": "00:13:14,860"
+			},
+			"offsets": {
+				"from": 792500,
+				"to": 794860
+			},
+			"text": " So if you have thousands and thousands of nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,860",
+				"to": "00:13:18,140"
+			},
+			"offsets": {
+				"from": 794860,
+				"to": 798140
+			},
+			"text": " then just sending the vector clock really adds up."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,140",
+				"to": "00:13:20,900"
+			},
+			"offsets": {
+				"from": 798140,
+				"to": 800900
+			},
+			"text": " Because it might just be like a public key and a sequence"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,900",
+				"to": "00:13:21,540"
+			},
+			"offsets": {
+				"from": 800900,
+				"to": 801540
+			},
+			"text": " number."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,540",
+				"to": "00:13:23,260"
+			},
+			"offsets": {
+				"from": 801540,
+				"to": 803260
+			},
+			"text": " So that might be like 80 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,260",
+				"to": "00:13:26,820"
+			},
+			"offsets": {
+				"from": 803260,
+				"to": 806820
+			},
+			"text": " But then if you're sending this for like 3,000 people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,820",
+				"to": "00:13:30,220"
+			},
+			"offsets": {
+				"from": 806820,
+				"to": 810220
+			},
+			"text": " that is like into like hundreds of kilobytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,220",
+				"to": "00:13:32,380"
+			},
+			"offsets": {
+				"from": 810220,
+				"to": 812380
+			},
+			"text": " So that means like each time you connect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,380",
+				"to": "00:13:36,620"
+			},
+			"offsets": {
+				"from": 812380,
+				"to": 816620
+			},
+			"text": " you might send like half a megabyte of data both ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,620",
+				"to": "00:13:39,340"
+			},
+			"offsets": {
+				"from": 816620,
+				"to": 819340
+			},
+			"text": " And if you reconnect and reconnect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,340",
+				"to": "00:13:41,980"
+			},
+			"offsets": {
+				"from": 819340,
+				"to": 821980
+			},
+			"text": " you could be sending like tens of megabytes a day"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,980",
+				"to": "00:13:43,740"
+			},
+			"offsets": {
+				"from": 821980,
+				"to": 823740
+			},
+			"text": " just to keep the network alive."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,740",
+				"to": "00:13:45,500"
+			},
+			"offsets": {
+				"from": 823740,
+				"to": 825500
+			},
+			"text": " Like even if no messages are being sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,500",
+				"to": "00:13:48,900"
+			},
+			"offsets": {
+				"from": 825500,
+				"to": 828900
+			},
+			"text": " So that's not really-- that's not very good at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,900",
+				"to": "00:13:53,260"
+			},
+			"offsets": {
+				"from": 828900,
+				"to": 833260
+			},
+			"text": " But one of the other security scotterboat contributors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,260",
+				"to": "00:13:57,020"
+			},
+			"offsets": {
+				"from": 833260,
+				"to": 837020
+			},
+			"text": " Sel, Charles Lenher, came up with this idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,020",
+				"to": "00:13:59,660"
+			},
+			"offsets": {
+				"from": 837020,
+				"to": 839660
+			},
+			"text": " to skip some requests."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,660",
+				"to": "00:14:03,500"
+			},
+			"offsets": {
+				"from": 839660,
+				"to": 843500
+			},
+			"text": " So what you do is you just remember the vector clock"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,500",
+				"to": "00:14:05,900"
+			},
+			"offsets": {
+				"from": 843500,
+				"to": 845900
+			},
+			"text": " that the other person sent you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,900",
+				"to": "00:14:10,780"
+			},
+			"offsets": {
+				"from": 845900,
+				"to": 850780
+			},
+			"text": " And then compare your new vector clock to the stored one"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,780",
+				"to": "00:14:12,060"
+			},
+			"offsets": {
+				"from": 850780,
+				"to": 852060
+			},
+			"text": " for that pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,060",
+				"to": "00:14:15,500"
+			},
+			"offsets": {
+				"from": 852060,
+				"to": 855500
+			},
+			"text": " And then just don't mention all the things that haven't changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,500",
+				"to": "00:14:23,260"
+			},
+			"offsets": {
+				"from": 855500,
+				"to": 863260
+			},
+			"text": " So if we meet on Sunday and we exchange news about Carol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,260",
+				"to": "00:14:25,900"
+			},
+			"offsets": {
+				"from": 863260,
+				"to": 865900
+			},
+			"text": " and then we meet each other again on Wednesday,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,900",
+				"to": "00:14:28,740"
+			},
+			"offsets": {
+				"from": 865900,
+				"to": 868740
+			},
+			"text": " and neither of us have talked to Carol since then,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,740",
+				"to": "00:14:31,300"
+			},
+			"offsets": {
+				"from": 868740,
+				"to": 871300
+			},
+			"text": " we just don't mention Carol."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,300",
+				"to": "00:14:34,420"
+			},
+			"offsets": {
+				"from": 871300,
+				"to": 874420
+			},
+			"text": " And because we know that if the other person did,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,420",
+				"to": "00:14:35,940"
+			},
+			"offsets": {
+				"from": 874420,
+				"to": 875940
+			},
+			"text": " they would mention her."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,940",
+				"to": "00:14:39,980"
+			},
+			"offsets": {
+				"from": 875940,
+				"to": 879980
+			},
+			"text": " So that means that you can just leave out most of the vector"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,980",
+				"to": "00:14:42,580"
+			},
+			"offsets": {
+				"from": 879980,
+				"to": 882580
+			},
+			"text": " clock, and you just don't mention most of the things"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,580",
+				"to": "00:14:44,460"
+			},
+			"offsets": {
+				"from": 882580,
+				"to": 884460
+			},
+			"text": " that have changed-- that-- all the things that you think"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,460",
+				"to": "00:14:46,060"
+			},
+			"offsets": {
+				"from": 884460,
+				"to": 886060
+			},
+			"text": " probably haven't changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,060",
+				"to": "00:14:48,420"
+			},
+			"offsets": {
+				"from": 886060,
+				"to": 888420
+			},
+			"text": " And then if you find out if some-- if the other person"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,420",
+				"to": "00:14:53,540"
+			},
+			"offsets": {
+				"from": 888420,
+				"to": 893540
+			},
+			"text": " does mention it, then you just reply with like your partial"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,540",
+				"to": "00:14:57,700"
+			},
+			"offsets": {
+				"from": 893540,
+				"to": 897700
+			},
+			"text": " figure clock of the things that didn't change."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,700",
+				"to": "00:15:13,300"
+			},
+			"offsets": {
+				"from": 897700,
+				"to": 913300
+			},
+			"text": " So I had-- yeah, and this is really important because when"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,300",
+				"to": "00:15:18,660"
+			},
+			"offsets": {
+				"from": 913300,
+				"to": 918660
+			},
+			"text": " you have like people using pretty much any kind of application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,660",
+				"to": "00:15:20,580"
+			},
+			"offsets": {
+				"from": 918660,
+				"to": 920580
+			},
+			"text": " power law is really typical."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,580",
+				"to": "00:15:22,860"
+			},
+			"offsets": {
+				"from": 920580,
+				"to": 922860
+			},
+			"text": " So you're really likely to have some users"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,860",
+				"to": "00:15:24,300"
+			},
+			"offsets": {
+				"from": 922860,
+				"to": 924300
+			},
+			"text": " that are like really active--"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,300",
+				"to": "00:15:30,620"
+			},
+			"offsets": {
+				"from": 924300,
+				"to": 930620
+			},
+			"text": " user every day or posting constantly."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,620",
+				"to": "00:15:34,380"
+			},
+			"offsets": {
+				"from": 930620,
+				"to": 934380
+			},
+			"text": " You'll have like some users that are like daily a fair amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,380",
+				"to": "00:15:38,220"
+			},
+			"offsets": {
+				"from": 934380,
+				"to": 938220
+			},
+			"text": " of moderate users, and then like heaps and heaps of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,220",
+				"to": "00:15:40,020"
+			},
+			"offsets": {
+				"from": 938220,
+				"to": 940020
+			},
+			"text": " that only use it occasionally, or even signed up"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,020",
+				"to": "00:15:41,940"
+			},
+			"offsets": {
+				"from": 940020,
+				"to": 941940
+			},
+			"text": " and if you used it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,940",
+				"to": "00:15:44,420"
+			},
+			"offsets": {
+				"from": 941940,
+				"to": 944420
+			},
+			"text": " And you don't want to be wasting bandwidth on people"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,420",
+				"to": "00:15:45,820"
+			},
+			"offsets": {
+				"from": 944420,
+				"to": 945820
+			},
+			"text": " that haven't done anything in a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,820",
+				"to": "00:15:50,260"
+			},
+			"offsets": {
+				"from": 945820,
+				"to": 950260
+			},
+			"text": " So this simple technique allows you to completely cut out"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,260",
+				"to": "00:15:52,220"
+			},
+			"offsets": {
+				"from": 950260,
+				"to": 952220
+			},
+			"text": " all of that stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,220",
+				"to": "00:15:54,100"
+			},
+			"offsets": {
+				"from": 952220,
+				"to": 954100
+			},
+			"text": " And that basically gives you an end."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,100",
+				"to": "00:15:58,140"
+			},
+			"offsets": {
+				"from": 954100,
+				"to": 958140
+			},
+			"text": " So basic Scuttlebutt, the message over here per connection"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,140",
+				"to": "00:16:01,740"
+			},
+			"offsets": {
+				"from": 958140,
+				"to": 961740
+			},
+			"text": " was like the messages plus the feeds."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,740",
+				"to": "00:16:04,420"
+			},
+			"offsets": {
+				"from": 961740,
+				"to": 964420
+			},
+			"text": " And if no messages have changed, the messages might be 0,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,420",
+				"to": "00:16:06,020"
+			},
+			"offsets": {
+				"from": 964420,
+				"to": 966020
+			},
+			"text": " but feeds could be thousands."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,020",
+				"to": "00:16:10,100"
+			},
+			"offsets": {
+				"from": 966020,
+				"to": 970100
+			},
+			"text": " But secure Scuttlebutt is messages plus updated feeds."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,100",
+				"to": "00:16:12,620"
+			},
+			"offsets": {
+				"from": 970100,
+				"to": 972620
+			},
+			"text": " And updated feeds could be much, much smaller number."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,620",
+				"to": "00:16:15,860"
+			},
+			"offsets": {
+				"from": 972620,
+				"to": 975860
+			},
+			"text": " Usually it would be-- like if you reconnect frequently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,860",
+				"to": "00:16:18,820"
+			},
+			"offsets": {
+				"from": 975860,
+				"to": 978820
+			},
+			"text": " the number could be like will be close to 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,820",
+				"to": "00:16:22,260"
+			},
+			"offsets": {
+				"from": 978820,
+				"to": 982260
+			},
+			"text": " If you reconnect months later, it will just be--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,260",
+				"to": "00:16:26,860"
+			},
+			"offsets": {
+				"from": 982260,
+				"to": 986860
+			},
+			"text": " you might get individual users might have posted hundreds"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,860",
+				"to": "00:16:29,700"
+			},
+			"offsets": {
+				"from": 986860,
+				"to": 989700
+			},
+			"text": " of messages, but the overhead is just one"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,700",
+				"to": "00:16:35,060"
+			},
+			"offsets": {
+				"from": 989700,
+				"to": 995060
+			},
+			"text": " for that updated feed, which makes reconnections very cheap."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,060",
+				"to": "00:16:38,780"
+			},
+			"offsets": {
+				"from": 995060,
+				"to": 998780
+			},
+			"text": " The only time you have to pay the whole send all of the feeds"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,780",
+				"to": "00:16:41,780"
+			},
+			"offsets": {
+				"from": 998780,
+				"to": 1001780
+			},
+			"text": " is when you have a--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,780",
+				"to": "00:16:44,020"
+			},
+			"offsets": {
+				"from": 1001780,
+				"to": 1004020
+			},
+			"text": " when the first time that 2PS connects."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,020",
+				"to": "00:16:48,100"
+			},
+			"offsets": {
+				"from": 1004020,
+				"to": 1008100
+			},
+			"text": " Yes, that's for good."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,100",
+				"to": "00:16:52,860"
+			},
+			"offsets": {
+				"from": 1008100,
+				"to": 1012860
+			},
+			"text": " And the latency complexity is just--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,860",
+				"to": "00:16:56,100"
+			},
+			"offsets": {
+				"from": 1012860,
+				"to": 1016100
+			},
+			"text": " you're replicating in either one or two round trips."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,100",
+				"to": "00:16:59,420"
+			},
+			"offsets": {
+				"from": 1016100,
+				"to": 1019420
+			},
+			"text": " So one round trip, if you've sent the whole clock,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,420",
+				"to": "00:17:01,740"
+			},
+			"offsets": {
+				"from": 1019420,
+				"to": 1021740
+			},
+			"text": " and they then send the messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,740",
+				"to": "00:17:03,380"
+			},
+			"offsets": {
+				"from": 1021740,
+				"to": 1023380
+			},
+			"text": " But if they send a part--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,380",
+				"to": "00:17:05,820"
+			},
+			"offsets": {
+				"from": 1023380,
+				"to": 1025820
+			},
+			"text": " or if they don't-- or if the messages that you haven't"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,820",
+				"to": "00:17:08,940"
+			},
+			"offsets": {
+				"from": 1025820,
+				"to": 1028940
+			},
+			"text": " mentioned haven't updated, then it's one round trip."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,940",
+				"to": "00:17:11,140"
+			},
+			"offsets": {
+				"from": 1028940,
+				"to": 1031140
+			},
+			"text": " And if you send a message--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,140",
+				"to": "00:17:12,580"
+			},
+			"offsets": {
+				"from": 1031140,
+				"to": 1032580
+			},
+			"text": " if you send a partial vector--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,580",
+				"to": "00:17:13,860"
+			},
+			"offsets": {
+				"from": 1032580,
+				"to": 1033860
+			},
+			"text": " if they send a partial vector clock,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,860",
+				"to": "00:17:17,100"
+			},
+			"offsets": {
+				"from": 1033860,
+				"to": 1037100
+			},
+			"text": " and then you have to send one back, then it's two round trips."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,100",
+				"to": "00:17:24,420"
+			},
+			"offsets": {
+				"from": 1037100,
+				"to": 1044420
+			},
+			"text": " But my background, since now basically improvising,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,420",
+				"to": "00:17:27,100"
+			},
+			"offsets": {
+				"from": 1044420,
+				"to": 1047100
+			},
+			"text": " so I became interested in this because I was"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,100",
+				"to": "00:17:29,420"
+			},
+			"offsets": {
+				"from": 1047100,
+				"to": 1049420
+			},
+			"text": " living on a sailboat in New Zealand."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,420",
+				"to": "00:17:32,620"
+			},
+			"offsets": {
+				"from": 1049420,
+				"to": 1052620
+			},
+			"text": " And I was used to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,620",
+				"to": "00:17:35,220"
+			},
+			"offsets": {
+				"from": 1052620,
+				"to": 1055220
+			},
+			"text": " my normal thing was not having very good internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,220",
+				"to": "00:17:36,900"
+			},
+			"offsets": {
+				"from": 1055220,
+				"to": 1056900
+			},
+			"text": " At the first, when I first became interested in this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,900",
+				"to": "00:17:39,220"
+			},
+			"offsets": {
+				"from": 1056900,
+				"to": 1059220
+			},
+			"text": " I didn't actually have any internet in my boat."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,220",
+				"to": "00:17:43,340"
+			},
+			"offsets": {
+				"from": 1059220,
+				"to": 1063340
+			},
+			"text": " And I was like, why can't that be--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,340",
+				"to": "00:17:45,980"
+			},
+			"offsets": {
+				"from": 1063340,
+				"to": 1065980
+			},
+			"text": " why does that mean that I can't use my computer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,980",
+				"to": "00:17:47,100"
+			},
+			"offsets": {
+				"from": 1065980,
+				"to": 1067100
+			},
+			"text": " You should be able to use your computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,100",
+				"to": "00:17:49,020"
+			},
+			"offsets": {
+				"from": 1067100,
+				"to": 1069020
+			},
+			"text": " I also grew up on a farm in New Zealand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,020",
+				"to": "00:17:52,620"
+			},
+			"offsets": {
+				"from": 1069020,
+				"to": 1072620
+			},
+			"text": " where the best internet we had was a satellite internet that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,620",
+				"to": "00:17:58,300"
+			},
+			"offsets": {
+				"from": 1072620,
+				"to": 1078300
+			},
+			"text": " had a one second round trip, which is like--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,300",
+				"to": "00:18:01,700"
+			},
+			"offsets": {
+				"from": 1078300,
+				"to": 1081700
+			},
+			"text": " it shouldn't really take that long for light to travel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,700",
+				"to": "00:18:07,900"
+			},
+			"offsets": {
+				"from": 1081700,
+				"to": 1087900
+			},
+			"text": " but it has lots of switching packets and that sort of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,900",
+				"to": "00:18:12,540"
+			},
+			"offsets": {
+				"from": 1087900,
+				"to": 1092540
+			},
+			"text": " So I was really determined to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,540",
+				"to": "00:18:15,020"
+			},
+			"offsets": {
+				"from": 1092540,
+				"to": 1095020
+			},
+			"text": " latency is really a killer."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,020",
+				"to": "00:18:19,740"
+			},
+			"offsets": {
+				"from": 1095020,
+				"to": 1099740
+			},
+			"text": " If you live in a fancy place that has fiber and that sort of stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,740",
+				"to": "00:18:22,300"
+			},
+			"offsets": {
+				"from": 1099740,
+				"to": 1102300
+			},
+			"text": " then latency, you might not be able to notice"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,300",
+				"to": "00:18:25,180"
+			},
+			"offsets": {
+				"from": 1102300,
+				"to": 1105180
+			},
+			"text": " that a couple of extra round trips might not be that bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,180",
+				"to": "00:18:28,100"
+			},
+			"offsets": {
+				"from": 1105180,
+				"to": 1108100
+			},
+			"text": " But when latency gets bad, it gets really bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,100",
+				"to": "00:18:30,820"
+			},
+			"offsets": {
+				"from": 1108100,
+				"to": 1110820
+			},
+			"text": " And if you have a design with that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,820",
+				"to": "00:18:32,620"
+			},
+			"offsets": {
+				"from": 1110820,
+				"to": 1112620
+			},
+			"text": " sends a lot of packets back and forth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,620",
+				"to": "00:18:34,300"
+			},
+			"offsets": {
+				"from": 1112620,
+				"to": 1114300
+			},
+			"text": " then it's going to be really, really painful"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,300",
+				"to": "00:18:35,740"
+			},
+			"offsets": {
+				"from": 1114300,
+				"to": 1115740
+			},
+			"text": " to use in that situation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,740",
+				"to": "00:18:40,580"
+			},
+			"offsets": {
+				"from": 1115740,
+				"to": 1120580
+			},
+			"text": " So I was determined to have a constant number of round trips."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,580",
+				"to": "00:18:42,300"
+			},
+			"offsets": {
+				"from": 1120580,
+				"to": 1122300
+			},
+			"text": " So one or two round trips, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,300",
+				"to": "00:18:47,900"
+			},
+			"offsets": {
+				"from": 1122300,
+				"to": 1127900
+			},
+			"text": " is about how much I can tolerate for a replication protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,900",
+				"to": "00:18:52,180"
+			},
+			"offsets": {
+				"from": 1127900,
+				"to": 1132180
+			},
+			"text": " Logarithmic round trips, not acceptable."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,180",
+				"to": "00:18:55,780"
+			},
+			"offsets": {
+				"from": 1132180,
+				"to": 1135780
+			},
+			"text": " That's going to be really painful in many cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,780",
+				"to": "00:19:06,020"
+			},
+			"offsets": {
+				"from": 1135780,
+				"to": 1146020
+			},
+			"text": " So the part three is simply I've arrived in comparison"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,020",
+				"to": "00:19:07,260"
+			},
+			"offsets": {
+				"from": 1146020,
+				"to": 1147260
+			},
+			"text": " to APFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,260",
+				"to": "00:19:10,260"
+			},
+			"offsets": {
+				"from": 1147260,
+				"to": 1150260
+			},
+			"text": " I was sure people would ask about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,260",
+				"to": "00:19:16,100"
+			},
+			"offsets": {
+				"from": 1150260,
+				"to": 1156100
+			},
+			"text": " So Secure Scuttlebutt basically optimizes for the worst case"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,100",
+				"to": "00:19:18,540"
+			},
+			"offsets": {
+				"from": 1156100,
+				"to": 1158540
+			},
+			"text": " in APFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,540",
+				"to": "00:19:21,780"
+			},
+			"offsets": {
+				"from": 1158540,
+				"to": 1161780
+			},
+			"text": " So Secure Scuttlebutt is designed for long,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,780",
+				"to": "00:19:23,060"
+			},
+			"offsets": {
+				"from": 1161780,
+				"to": 1163060
+			},
+			"text": " append-only chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,060",
+				"to": "00:19:26,220"
+			},
+			"offsets": {
+				"from": 1163060,
+				"to": 1166220
+			},
+			"text": " And this would be the pathological case in APFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,220",
+				"to": "00:19:30,620"
+			},
+			"offsets": {
+				"from": 1166220,
+				"to": 1170620
+			},
+			"text": " So they're trying to do completely opposite things."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,620",
+				"to": "00:19:33,380"
+			},
+			"offsets": {
+				"from": 1170620,
+				"to": 1173380
+			},
+			"text": " But similar in that they both replicate data"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,380",
+				"to": "00:19:35,260"
+			},
+			"offsets": {
+				"from": 1173380,
+				"to": 1175260
+			},
+			"text": " without global consistency."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,260",
+				"to": "00:19:37,820"
+			},
+			"offsets": {
+				"from": 1175260,
+				"to": 1177820
+			},
+			"text": " So they're kind of like an infrastructural role"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,820",
+				"to": "00:19:41,460"
+			},
+			"offsets": {
+				"from": 1177820,
+				"to": 1181460
+			},
+			"text": " for if you're building other peer-pair apps and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,460",
+				"to": "00:19:45,620"
+			},
+			"offsets": {
+				"from": 1181460,
+				"to": 1185620
+			},
+			"text": " So neither again, neither have any cryptocurrency or thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,620",
+				"to": "00:19:47,620"
+			},
+			"offsets": {
+				"from": 1185620,
+				"to": 1187620
+			},
+			"text": " directly built into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,620",
+				"to": "00:19:49,940"
+			},
+			"offsets": {
+				"from": 1187620,
+				"to": 1189940
+			},
+			"text": " But if you're building stuff like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,940",
+				"to": "00:19:54,780"
+			},
+			"offsets": {
+				"from": 1189940,
+				"to": 1194780
+			},
+			"text": " you could move your data around using a combination"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,780",
+				"to": "00:19:57,940"
+			},
+			"offsets": {
+				"from": 1194780,
+				"to": 1197940
+			},
+			"text": " of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,940",
+				"to": "00:20:02,100"
+			},
+			"offsets": {
+				"from": 1197940,
+				"to": 1202100
+			},
+			"text": " Secure Scuttlebutt streams updates in order per feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,100",
+				"to": "00:20:06,180"
+			},
+			"offsets": {
+				"from": 1202100,
+				"to": 1206180
+			},
+			"text": " And IPFS has appointed to the latest message and works back."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,180",
+				"to": "00:20:08,140"
+			},
+			"offsets": {
+				"from": 1206180,
+				"to": 1208140
+			},
+			"text": " And if you wanted to have it relatively efficient,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,140",
+				"to": "00:20:11,100"
+			},
+			"offsets": {
+				"from": 1208140,
+				"to": 1211100
+			},
+			"text": " you would have some kind of tree or some sort of direct to route"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,100",
+				"to": "00:20:13,940"
+			},
+			"offsets": {
+				"from": 1211100,
+				"to": 1213940
+			},
+			"text": " finder things or just not have very deep structures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,940",
+				"to": "00:20:17,300"
+			},
+			"offsets": {
+				"from": 1213940,
+				"to": 1217300
+			},
+			"text": " have relatively shallow ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,300",
+				"to": "00:20:20,660"
+			},
+			"offsets": {
+				"from": 1217300,
+				"to": 1220660
+			},
+			"text": " So IPFS is probably better for arbitrary partial data"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,660",
+				"to": "00:20:24,900"
+			},
+			"offsets": {
+				"from": 1220660,
+				"to": 1224900
+			},
+			"text": " sets like Wookiees and sort of static sites,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,900",
+				"to": "00:20:30,780"
+			},
+			"offsets": {
+				"from": 1224900,
+				"to": 1230780
+			},
+			"text": " such things, or like directories of data and that sort of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,780",
+				"to": "00:20:33,340"
+			},
+			"offsets": {
+				"from": 1230780,
+				"to": 1233340
+			},
+			"text": " Whereas SSB is designed specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,340",
+				"to": "00:20:39,180"
+			},
+			"offsets": {
+				"from": 1233340,
+				"to": 1239180
+			},
+			"text": " for social applications with something strapped on the side."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,180",
+				"to": "00:20:42,180"
+			},
+			"offsets": {
+				"from": 1239180,
+				"to": 1242180
+			},
+			"text": " So Secure Scuttlebutt is basically graph database"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,180",
+				"to": "00:20:43,660"
+			},
+			"offsets": {
+				"from": 1242180,
+				"to": 1243660
+			},
+			"text": " and IPFS is file system."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,660",
+				"to": "00:20:48,260"
+			},
+			"offsets": {
+				"from": 1243660,
+				"to": 1248260
+			},
+			"text": " Yep, OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,260",
+				"to": "00:20:49,940"
+			},
+			"offsets": {
+				"from": 1248260,
+				"to": 1249940
+			},
+			"text": " That took less long because I didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,940",
+				"to": "00:20:52,300"
+			},
+			"offsets": {
+				"from": 1249940,
+				"to": 1252300
+			},
+			"text": " get to show you the animation stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,300",
+				"to": "00:20:57,740"
+			},
+			"offsets": {
+				"from": 1252300,
+				"to": 1257740
+			},
+			"text": " But that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,740",
+				"to": "00:20:58,820"
+			},
+			"offsets": {
+				"from": 1257740,
+				"to": 1258820
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,820",
+				"to": "00:21:04,340"
+			},
+			"offsets": {
+				"from": 1258820,
+				"to": 1264340
+			},
+			"text": " OK, if you'd like to learn more, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,340",
+				"to": "00:21:07,700"
+			},
+			"offsets": {
+				"from": 1264340,
+				"to": 1267700
+			},
+			"text": " can go to scuttlebutt.nz."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,700",
+				"to": "00:21:09,060"
+			},
+			"offsets": {
+				"from": 1267700,
+				"to": 1269060
+			},
+			"text": " That's 2t's."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,060",
+				"to": "00:21:13,580"
+			},
+			"offsets": {
+				"from": 1269060,
+				"to": 1273580
+			},
+			"text": " And github.com/ecsbc/patchwork."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,580",
+				"to": "00:21:18,220"
+			},
+			"offsets": {
+				"from": 1273580,
+				"to": 1278220
+			},
+			"text": " There's like a UI for like a real working application"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,220",
+				"to": "00:21:20,740"
+			},
+			"offsets": {
+				"from": 1278220,
+				"to": 1280740
+			},
+			"text": " that you can use today."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,740",
+				"to": "00:21:25,620"
+			},
+			"offsets": {
+				"from": 1280740,
+				"to": 1285620
+			},
+			"text": " And if you go on it, you'll meet lots of lovely people"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,620",
+				"to": "00:21:28,620"
+			},
+			"offsets": {
+				"from": 1285620,
+				"to": 1288620
+			},
+			"text": " that will tell you all about how things work."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,620",
+				"to": "00:21:30,380"
+			},
+			"offsets": {
+				"from": 1288620,
+				"to": 1290380
+			},
+			"text": " Fortunately, yeah, sorry, the slides didn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,380",
+				"to": "00:21:35,820"
+			},
+			"offsets": {
+				"from": 1290380,
+				"to": 1295820
+			},
+			"text": " Got still about eight minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,820",
+				"to": "00:21:38,140"
+			},
+			"offsets": {
+				"from": 1295820,
+				"to": 1298140
+			},
+			"text": " Any questions or heckling or anything?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,140",
+				"to": "00:21:44,260"
+			},
+			"offsets": {
+				"from": 1298140,
+				"to": 1304260
+			},
+			"text": " Scuttlebutt.nz."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,260",
+				"to": "00:21:50,020"
+			},
+			"offsets": {
+				"from": 1304260,
+				"to": 1310020
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,020",
+				"to": "00:21:51,180"
+			},
+			"offsets": {
+				"from": 1310020,
+				"to": 1311180
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,180",
+				"to": "00:21:53,180"
+			},
+			"offsets": {
+				"from": 1311180,
+				"to": 1313180
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,180",
+				"to": "00:21:56,540"
+			},
+			"offsets": {
+				"from": 1313180,
+				"to": 1316540
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,540",
+				"to": "00:21:59,900"
+			},
+			"offsets": {
+				"from": 1316540,
+				"to": 1319900
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,900",
+				"to": "00:22:02,140"
+			},
+			"offsets": {
+				"from": 1319900,
+				"to": 1322140
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

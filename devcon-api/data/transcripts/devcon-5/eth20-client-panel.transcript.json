@@ -1,0 +1,3552 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " Welcome everyone to the Ethereum 2.0 client panel discussion. The idea with this is to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:17,520"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 17520
+			},
+			"text": " well, after this morning's presentations where we saw lots of the work that's been done and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,520",
+				"to": "00:00:23,360"
+			},
+			"offsets": {
+				"from": 17520,
+				"to": 23360
+			},
+			"text": " been given insight into some of the solutions that have come up with to explore more how"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,360",
+				"to": "00:00:33,280"
+			},
+			"offsets": {
+				"from": 23360,
+				"to": 33280
+			},
+			"text": " we move on from here, in particular, how do we do that together? There's a lot of togetherness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,280",
+				"to": "00:00:39,680"
+			},
+			"offsets": {
+				"from": 33280,
+				"to": 39680
+			},
+			"text": " I think in general, in Ethereum 2.0, there's many of the design aspects have been centered around"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,680",
+				"to": "00:00:46,240"
+			},
+			"offsets": {
+				"from": 39680,
+				"to": 46240
+			},
+			"text": " trying to coordinate people, be that through the use of technologies that other people are using"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,240",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 46240,
+				"to": 54000
+			},
+			"text": " was on the P2P, BLS standardization, etc. to the multi-clinted approach we're taking."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:59,760"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 59760
+			},
+			"text": " And I think that's a really powerful thing as we've seen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,760",
+				"to": "00:01:06,880"
+			},
+			"offsets": {
+				"from": 59760,
+				"to": 66880
+			},
+			"text": " And so I think a good place to start off with is something we had quite recently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,880",
+				"to": "00:01:14,080"
+			},
+			"offsets": {
+				"from": 66880,
+				"to": 74080
+			},
+			"text": " which was the Interop event. This was a great opportunity where we locked, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,840",
+				"to": "00:01:19,920"
+			},
+			"offsets": {
+				"from": 75840,
+				"to": 79920
+			},
+			"text": " basically locked a bunch of people in a room to see what happened. And the results of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,920",
+				"to": "00:01:25,200"
+			},
+			"offsets": {
+				"from": 79920,
+				"to": 85200
+			},
+			"text": " experiment was we got seven clients speaking to each other, which is pretty, pretty, freaking"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,200",
+				"to": "00:01:34,880"
+			},
+			"offsets": {
+				"from": 85200,
+				"to": 94880
+			},
+			"text": " incredible. And yeah, so another we've achieved that, I think that's allowed us to get a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,880",
+				"to": "00:01:40,160"
+			},
+			"offsets": {
+				"from": 94880,
+				"to": 100160
+			},
+			"text": " further along this route. So I think you should have some introductions before we quickly dive into"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,160",
+				"to": "00:01:46,400"
+			},
+			"offsets": {
+				"from": 100160,
+				"to": 106400
+			},
+			"text": " this. So if you can start down that side and have everyone just say the name, who they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,400",
+				"to": "00:01:52,160"
+			},
+			"offsets": {
+				"from": 106400,
+				"to": 112160
+			},
+			"text": " working on and what was the sort of one thing that they took from Interop or what's the one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,160",
+				"to": "00:01:57,520"
+			},
+			"offsets": {
+				"from": 112160,
+				"to": 117520
+			},
+			"text": " maybe the main thing that you guys are now working on as a result of Interop."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,520",
+				"to": "00:02:05,920"
+			},
+			"offsets": {
+				"from": 117520,
+				"to": 125920
+			},
+			"text": " Hey, I'm Ben, I'm just standing in for the great Jodalong on this panel. I kind of assembled the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,920",
+				"to": "00:02:14,400"
+			},
+			"offsets": {
+				"from": 125920,
+				"to": 134400
+			},
+			"text": " Artemis team a year ago. I'm best better known for what's new in ETH2 these days. I was at Interop"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,400",
+				"to": "00:02:21,120"
+			},
+			"offsets": {
+				"from": 134400,
+				"to": 141120
+			},
+			"text": " and it was awesome. Takeaways, I think it's time to press on to production now. We've proved the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,120",
+				"to": "00:02:27,120"
+			},
+			"offsets": {
+				"from": 141120,
+				"to": 147120
+			},
+			"text": " concept. It works. We can inter operate. It's very cool, but now we're moving into new phase with"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,120",
+				"to": "00:02:33,360"
+			},
+			"offsets": {
+				"from": 147120,
+				"to": 153360
+			},
+			"text": " Artemis and handing it over to the production team to do all the stuff, like writing documentation and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,960",
+				"to": "00:02:39,600"
+			},
+			"offsets": {
+				"from": 154960,
+				"to": 159600
+			},
+			"text": " searching the comments for to do and all that good stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,600",
+				"to": "00:02:47,520"
+			},
+			"offsets": {
+				"from": 159600,
+				"to": 167520
+			},
+			"text": " Everyone, I'm Ro from Prismatic Labs. I was unfortunately not at Interop, but remotely helping"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,520",
+				"to": "00:02:52,880"
+			},
+			"offsets": {
+				"from": 167520,
+				"to": 172880
+			},
+			"text": " out teams there and figuring out how to get people on board Prism. One of the biggest takeaways was"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,880",
+				"to": "00:03:01,040"
+			},
+			"offsets": {
+				"from": 172880,
+				"to": 181040
+			},
+			"text": " getting everyone to easily run a beacon chain and a validator. We had to make it easy for everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,040",
+				"to": "00:03:06,880"
+			},
+			"offsets": {
+				"from": 181040,
+				"to": 186880
+			},
+			"text": " and they didn't prove a lot of our local development a lot. I made it very, very easy to launch a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,880",
+				"to": "00:03:11,760"
+			},
+			"offsets": {
+				"from": 186880,
+				"to": 191760
+			},
+			"text": " beacon chain with n number of deterministic validators. That sort of standardization that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,760",
+				"to": "00:03:15,680"
+			},
+			"offsets": {
+				"from": 191760,
+				"to": 195680
+			},
+			"text": " came out of the effort made our lives easier and hopefully others lives easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,680",
+				"to": "00:03:24,080"
+			},
+			"offsets": {
+				"from": 195680,
+				"to": 204080
+			},
+			"text": " Hi, everyone. I'm Alex Stokes. I work on Trinity, which is the Python implementation of ETH2."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,080",
+				"to": "00:03:30,320"
+			},
+			"offsets": {
+				"from": 204080,
+				"to": 210320
+			},
+			"text": " Yeah, Interop was great, as we'll probably all tell you here. The biggest thing I think we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,320",
+				"to": "00:03:35,280"
+			},
+			"offsets": {
+				"from": 210320,
+				"to": 215280
+			},
+			"text": " probably all saw across the board was, yeah, just having these sort of coordinated starts and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,280",
+				"to": "00:03:40,560"
+			},
+			"offsets": {
+				"from": 215280,
+				"to": 220560
+			},
+			"text": " getting these test nets to actually all go at the same time. We have a large number of clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,560",
+				"to": "00:03:48,080"
+			},
+			"offsets": {
+				"from": 220560,
+				"to": 228080
+			},
+			"text": " and so we have some extra fun just wrangling all these cats. There's a bunch of little stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,080",
+				"to": "00:03:55,520"
+			},
+			"offsets": {
+				"from": 228080,
+				"to": 235520
+			},
+			"text": " that we saw specific to Trinity from the Interop. The big thing there will probably be focusing on"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,520",
+				"to": "00:04:01,200"
+			},
+			"offsets": {
+				"from": 235520,
+				"to": 241200
+			},
+			"text": " longer term over the next, I don't know, let's say, three to six months is heavy focus on performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,200",
+				"to": "00:04:06,400"
+			},
+			"offsets": {
+				"from": 241200,
+				"to": 246400
+			},
+			"text": " Like I said, we're a Python client, so we kind of have a performance penalty. We incur de facto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,400",
+				"to": "00:04:13,680"
+			},
+			"offsets": {
+				"from": 246400,
+				"to": 253680
+			},
+			"text": " so we'll be doing a lot of optimization there. We were looking at dropping our really sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,680",
+				"to": "00:04:18,960"
+			},
+			"offsets": {
+				"from": 253680,
+				"to": 258960
+			},
+			"text": " tight loops and things into Rust. So we've had some work on Lightrust modules in Python, which is fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,680",
+				"to": "00:04:28,080"
+			},
+			"offsets": {
+				"from": 259680,
+				"to": 268080
+			},
+			"text": " And yeah, that's about it. Hello everyone, my name is Paul. I work on Lighthouse. It's one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,080",
+				"to": "00:04:34,720"
+			},
+			"offsets": {
+				"from": 268080,
+				"to": 274720
+			},
+			"text": " the Rust implementations. I think one of the great things that came from Interop was just a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,720",
+				"to": "00:04:38,160"
+			},
+			"offsets": {
+				"from": 274720,
+				"to": 278160
+			},
+			"text": " scripts that we can use to build each other. So, yeah, it's like, built a bunch of scripts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,160",
+				"to": "00:04:44,240"
+			},
+			"offsets": {
+				"from": 278160,
+				"to": 284240
+			},
+			"text": " which was great. So now we have a bunch of tools that we can use by ourselves to test with other"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,240",
+				"to": "00:04:50,560"
+			},
+			"offsets": {
+				"from": 284240,
+				"to": 290560
+			},
+			"text": " clients. So that really helps reduce the friction that we can, before we can test our client against"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,560",
+				"to": "00:04:58,960"
+			},
+			"offsets": {
+				"from": 290560,
+				"to": 298960
+			},
+			"text": " others. Well, we're working on now. After Interop, we're basically targeting feature completeness."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,960",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 298960,
+				"to": 306000
+			},
+			"text": " We have an RFP for security review out there, so we're preparing for that. And we're working on"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:14,080"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 314080
+			},
+			"text": " trying to take our client into the tens of thousands of validator ranges and above to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,080",
+				"to": "00:05:21,520"
+			},
+			"offsets": {
+				"from": 314080,
+				"to": 321520
+			},
+			"text": " that we can run nice and quickly and efficiently with production level numbers of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,520",
+				"to": "00:05:30,400"
+			},
+			"offsets": {
+				"from": 321520,
+				"to": 330400
+			},
+			"text": " I'm Zhaori from the Nimbus team. A lesson that we learned from Interop, I guess, is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,400",
+				"to": "00:05:36,800"
+			},
+			"offsets": {
+				"from": 330400,
+				"to": 336800
+			},
+			"text": " importance of testing. Our success was largely due to the very well-prepared test suit and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,800",
+				"to": "00:05:42,880"
+			},
+			"offsets": {
+				"from": 336800,
+				"to": 342880
+			},
+			"text": " where there were bumps along the road. These are places where the tests are kind of missing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,840",
+				"to": "00:05:50,880"
+			},
+			"offsets": {
+				"from": 343840,
+				"to": 350880
+			},
+			"text": " I would repeat what Pozzo posted that one of the most valuable takeaways was these scripts"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,880",
+				"to": "00:05:58,880"
+			},
+			"offsets": {
+				"from": 350880,
+				"to": 358880
+			},
+			"text": " that allow us now to run multi-client test nets. And I think we should all keep improving on them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,880",
+				"to": "00:06:07,280"
+			},
+			"offsets": {
+				"from": 358880,
+				"to": 367280
+			},
+			"text": " Regarding the future of Nimbus client, we'll be publishing very shortly our roadmap for getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,280",
+				"to": "00:06:12,240"
+			},
+			"offsets": {
+				"from": 367280,
+				"to": 372240
+			},
+			"text": " Nimbus production ready. And we hope to do that in the next six months."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,240",
+				"to": "00:06:24,480"
+			},
+			"offsets": {
+				"from": 372240,
+				"to": 384480
+			},
+			"text": " Hi, I'm Dejun from runtime verification. So we developed a K kind of client, but we are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,480",
+				"to": "00:06:28,160"
+			},
+			"offsets": {
+				"from": 384480,
+				"to": 388160
+			},
+			"text": " really just running the client, but just formally verifying the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,760",
+				"to": "00:06:41,600"
+			},
+			"offsets": {
+				"from": 389760,
+				"to": 401600
+			},
+			"text": " But I hope there's some crazy ideal, crazy users use our K client as just adding another"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,600",
+				"to": "00:06:48,640"
+			},
+			"offsets": {
+				"from": 401600,
+				"to": 408640
+			},
+			"text": " diversity. But yeah, so far we just fall verification purpose."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,360",
+				"to": "00:07:04,480"
+			},
+			"offsets": {
+				"from": 415360,
+				"to": 424480
+			},
+			"text": " My name is Michael. I'm from Harmony team. The Interop went very well. And I even didn't expect"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,480",
+				"to": "00:07:14,880"
+			},
+			"offsets": {
+				"from": 424480,
+				"to": 434880
+			},
+			"text": " it. It was so productive. As a follow-ups, we are continuing to work on a fork choice test,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,880",
+				"to": "00:07:24,480"
+			},
+			"offsets": {
+				"from": 434880,
+				"to": 444480
+			},
+			"text": " like a complex test. Also, we need to finish sync and was thinking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,480",
+				"to": "00:07:30,960"
+			},
+			"offsets": {
+				"from": 444480,
+				"to": 450960
+			},
+			"text": " start working on BLS stuff, finishing discovery. And the main takeaway from Interop is that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,960",
+				"to": "00:07:39,440"
+			},
+			"offsets": {
+				"from": 450960,
+				"to": 459440
+			},
+			"text": " are merging efforts with our chemists. So we probably can avoid this production ready stuff. So yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,480",
+				"to": "00:07:54,080"
+			},
+			"offsets": {
+				"from": 460480,
+				"to": 474080
+			},
+			"text": " Okay, that's it. I'm away from party. So I think we didn't join the Interop on site, but I was"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,080",
+				"to": "00:08:01,200"
+			},
+			"offsets": {
+				"from": 474080,
+				"to": 481200
+			},
+			"text": " doing some similar Interop stuff at home. Trying to get it work, put them all nice. It mostly works."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,200",
+				"to": "00:08:09,840"
+			},
+			"offsets": {
+				"from": 481200,
+				"to": 489840
+			},
+			"text": " I think the most important license we learned is still testing. So we were one or two patch version"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,840",
+				"to": "00:08:17,920"
+			},
+			"offsets": {
+				"from": 489840,
+				"to": 497920
+			},
+			"text": " behind. But even except that we still have like one or two consensus bugs found during the Interop"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,920",
+				"to": "00:08:23,280"
+			},
+			"offsets": {
+				"from": 497920,
+				"to": 503280
+			},
+			"text": " that doesn't pick up the test. Doesn't pick up by the test. We passed all the tests before."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,280",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 503280,
+				"to": 508000
+			},
+			"text": " So I think that's the biggest license we learned. Testing is really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:38,640"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 518640
+			},
+			"text": " Also, I forgot to say that we tested GVM at P2P as well as our client. And he fixed some bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,640",
+				"to": "00:08:45,440"
+			},
+			"offsets": {
+				"from": 518640,
+				"to": 525440
+			},
+			"text": " And it's now compatible. At least the stack that used for Interop is now compatible with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,440",
+				"to": "00:08:50,080"
+			},
+			"offsets": {
+				"from": 525440,
+				"to": 530080
+			},
+			"text": " all other implementations like JavaScript, Python, and Rust."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,080",
+				"to": "00:09:00,480"
+			},
+			"offsets": {
+				"from": 530080,
+				"to": 540480
+			},
+			"text": " I also want to use this moment to toss out a PSA. We're all using the same BLS library at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,480",
+				"to": "00:09:06,240"
+			},
+			"offsets": {
+				"from": 540480,
+				"to": 546240
+			},
+			"text": " moment, I believe. Yeah. So if anyone out there wants to write a BLS implementation, more implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,240",
+				"to": "00:09:14,560"
+			},
+			"offsets": {
+				"from": 546240,
+				"to": 554560
+			},
+			"text": " is better. On the note of BLS implementations, the standardization efforts have been charging"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,560",
+				"to": "00:09:22,480"
+			},
+			"offsets": {
+				"from": 554560,
+				"to": 562480
+			},
+			"text": " forward. And we have some more reference implementations from those efforts. So hopefully within the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,480",
+				"to": "00:09:28,160"
+			},
+			"offsets": {
+				"from": 562480,
+				"to": 568160
+			},
+			"text": " next one month or so, we should have what is the final specification for BLS, which is really a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,160",
+				"to": "00:09:33,760"
+			},
+			"offsets": {
+				"from": 568160,
+				"to": 573760
+			},
+			"text": " major step forward. And that means that basically, then, that's the last hurdle in terms of specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,760",
+				"to": "00:09:45,440"
+			},
+			"offsets": {
+				"from": 573760,
+				"to": 585440
+			},
+			"text": " that's left. Also, moving on, we've had all these Interop events, but we need to now start transitioning"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,440",
+				"to": "00:09:53,600"
+			},
+			"offsets": {
+				"from": 585440,
+				"to": 593600
+			},
+			"text": " to more organic starting up of these events and allowing clients to properly sync with one another"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,320",
+				"to": "00:10:02,240"
+			},
+			"offsets": {
+				"from": 596320,
+				"to": 602240
+			},
+			"text": " we previously used scripts and files to start up these test nets. But to have more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,240",
+				"to": "00:10:07,760"
+			},
+			"offsets": {
+				"from": 602240,
+				"to": 607760
+			},
+			"text": " that's the way we allow validators to join into your network and transitioning into"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,760",
+				"to": "00:10:15,840"
+			},
+			"offsets": {
+				"from": 607760,
+				"to": 615840
+			},
+			"text": " proper test nets. So I would be interested to hear comments on how we can do this and what are"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,840",
+				"to": "00:10:18,880"
+			},
+			"offsets": {
+				"from": 615840,
+				"to": 618880
+			},
+			"text": " the challenges and what are the next steps in these regards."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,240",
+				"to": "00:10:31,280"
+			},
+			"offsets": {
+				"from": 624240,
+				"to": 631280
+			},
+			"text": " Yeah, so I think a huge step forward from what we had at Interop would be testing out"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,280",
+				"to": "00:10:38,160"
+			},
+			"offsets": {
+				"from": 631280,
+				"to": 638160
+			},
+			"text": " our ETH1 integration. I think most of the clients have at least some form of it. But essentially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,160",
+				"to": "00:10:44,320"
+			},
+			"offsets": {
+				"from": 638160,
+				"to": 644320
+			},
+			"text": " this would be like having some ETH1 test net, ideally one that we kind of all could easily,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,320",
+				"to": "00:10:51,280"
+			},
+			"offsets": {
+				"from": 644320,
+				"to": 651280
+			},
+			"text": " for example, produce ETH4 or spend up or spend down as we need. And then use that to kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,280",
+				"to": "00:10:55,360"
+			},
+			"offsets": {
+				"from": 651280,
+				"to": 655360
+			},
+			"text": " test, okay, like you're saying here's a real world setting where it's like there's an ETH1"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,360",
+				"to": "00:11:02,320"
+			},
+			"offsets": {
+				"from": 655360,
+				"to": 662320
+			},
+			"text": " network, we then have this ETH2 deployment, how can we actually have validators join and leave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,320",
+				"to": "00:11:10,560"
+			},
+			"offsets": {
+				"from": 662320,
+				"to": 670560
+			},
+			"text": " but mainly join. Yeah. I think it's time for specialization. I think we're going to see like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,560",
+				"to": "00:11:14,400"
+			},
+			"offsets": {
+				"from": 670560,
+				"to": 674400
+			},
+			"text": " all the clients at this point. Now that we know we can talk and we know like we have a baseline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,400",
+				"to": "00:11:19,680"
+			},
+			"offsets": {
+				"from": 674400,
+				"to": 679680
+			},
+			"text": " we're going to see everybody kind of splitting down, isolating and like going down, basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,680",
+				"to": "00:11:26,320"
+			},
+			"offsets": {
+				"from": 679680,
+				"to": 686320
+			},
+			"text": " challenging, you know, their languages and their respective implementations to whatever it is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,320",
+				"to": "00:11:31,360"
+			},
+			"offsets": {
+				"from": 686320,
+				"to": 691360
+			},
+			"text": " like their original goal was set out to be. I think that's probably what we'll see like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,360",
+				"to": "00:11:38,720"
+			},
+			"offsets": {
+				"from": 691360,
+				"to": 698720
+			},
+			"text": " happen the next six months. For us as well, the very next milestone is running test nets connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,720",
+				"to": "00:11:47,040"
+			},
+			"offsets": {
+				"from": 698720,
+				"to": 707040
+			},
+			"text": " to ETH1. And for this, we've been following the lead of Prism and we have been publishing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,040",
+				"to": "00:11:52,320"
+			},
+			"offsets": {
+				"from": 707040,
+				"to": 712320
+			},
+			"text": " positive contract on the goal network. And I expect that we will have some interoperability"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,320",
+				"to": "00:11:57,520"
+			},
+			"offsets": {
+				"from": 712320,
+				"to": 717520
+			},
+			"text": " with, they will be able to use ours contract and you'll be able to use theirs and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,520",
+				"to": "00:12:05,120"
+			},
+			"offsets": {
+				"from": 717520,
+				"to": 725120
+			},
+			"text": " And there have been some talks in the, here, the last few days. What do the clients agree that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,120",
+				"to": "00:12:11,040"
+			},
+			"offsets": {
+				"from": 725120,
+				"to": 731040
+			},
+			"text": " it would be beneficial if we set up a shared organization on GitHub where everybody has"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,040",
+				"to": "00:12:18,880"
+			},
+			"offsets": {
+				"from": 731040,
+				"to": 738880
+			},
+			"text": " commit rights and where we can work on and improve these scripts that allow each developer to launch"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,880",
+				"to": "00:12:26,240"
+			},
+			"offsets": {
+				"from": 738880,
+				"to": 746240
+			},
+			"text": " test nets on their own computer, on their own environment. So I see two directions. One is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,240",
+				"to": "00:12:31,920"
+			},
+			"offsets": {
+				"from": 746240,
+				"to": 751920
+			},
+			"text": " public facing test nets running on ETH1 and then the ability for everyone to just make quick"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,920",
+				"to": "00:12:39,920"
+			},
+			"offsets": {
+				"from": 751920,
+				"to": 759920
+			},
+			"text": " walk-off setups for quick validation. >> Yeah. We really enjoy using Gorley. I think Gorley is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,920",
+				"to": "00:12:44,800"
+			},
+			"offsets": {
+				"from": 759920,
+				"to": 764800
+			},
+			"text": " becoming a lot more of a de facto standard as well for ETH1 devs to test out smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,800",
+				"to": "00:12:50,960"
+			},
+			"offsets": {
+				"from": 764800,
+				"to": 770960
+			},
+			"text": " and it's been really nice to try out deposits. Another big effort is the API standardization"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,960",
+				"to": "00:12:55,200"
+			},
+			"offsets": {
+				"from": 770960,
+				"to": 775200
+			},
+			"text": " effort that will come over the coming months. So there's a lot of talk about not having people"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,200",
+				"to": "00:13:00,640"
+			},
+			"offsets": {
+				"from": 775200,
+				"to": 780640
+			},
+			"text": " use the CLI to stake to run validators. Can we have a standardized API that allows people to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,640",
+				"to": "00:13:04,800"
+			},
+			"offsets": {
+				"from": 780640,
+				"to": 784800
+			},
+			"text": " build things, interesting things like wallet, explorers, other things that allow you to interact"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,800",
+				"to": "00:13:09,120"
+			},
+			"offsets": {
+				"from": 784800,
+				"to": 789120
+			},
+			"text": " with the chain. And that will be a really critical effort over the coming months as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,120",
+				"to": "00:13:17,040"
+			},
+			"offsets": {
+				"from": 789120,
+				"to": 797040
+			},
+			"text": " >> On the note of sharing deposit contracts, do you think it's worth then having one"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,040",
+				"to": "00:13:22,640"
+			},
+			"offsets": {
+				"from": 797040,
+				"to": 802640
+			},
+			"text": " centralized deposit contract on Gorley or similar? >> Well, for the world of these test nets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,640",
+				"to": "00:13:29,040"
+			},
+			"offsets": {
+				"from": 802640,
+				"to": 809040
+			},
+			"text": " it makes a lot of sense to restart them frequently and then nothing prevents you from having"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,040",
+				"to": "00:13:33,600"
+			},
+			"offsets": {
+				"from": 809040,
+				"to": 813600
+			},
+			"text": " multiple deposit contracts being acted. For the same time, basically the client only needs to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,600",
+				"to": "00:13:43,200"
+			},
+			"offsets": {
+				"from": 813600,
+				"to": 823200
+			},
+			"text": " specify the address of the deposit contract that you'll be using. >> Just in terms of the shared"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,200",
+				"to": "00:13:50,320"
+			},
+			"offsets": {
+				"from": 823200,
+				"to": 830320
+			},
+			"text": " deposit contract, I think something that would be nice to would be a common onboarding process"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,320",
+				"to": "00:13:55,760"
+			},
+			"offsets": {
+				"from": 830320,
+				"to": 835760
+			},
+			"text": " for validators. I think the ETH was maybe considering about jumping on that. So yeah, it would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,760",
+				"to": "00:14:01,120"
+			},
+			"offsets": {
+				"from": 835760,
+				"to": 841120
+			},
+			"text": " nice if we don't all have to build a million different little validator onboarding things"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,120",
+				"to": "00:14:11,920"
+			},
+			"offsets": {
+				"from": 841120,
+				"to": 851920
+			},
+			"text": " than to be superseded by an official one coming up. >> We also probably want to test these"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,920",
+				"to": "00:14:19,360"
+			},
+			"offsets": {
+				"from": 851920,
+				"to": 859360
+			},
+			"text": " big and chain start for many times because it could be a huge point of failure. I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,360",
+				"to": "00:14:26,160"
+			},
+			"offsets": {
+				"from": 859360,
+				"to": 866160
+			},
+			"text": " the kicking off from ETH1, chain to the big and chain. So that's probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,160",
+				"to": "00:14:34,800"
+			},
+			"offsets": {
+				"from": 866160,
+				"to": 874800
+			},
+			"text": " worth to focus on as well. >> Definitely. We don't want to find that out in production."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,800",
+				"to": "00:14:42,240"
+			},
+			"offsets": {
+				"from": 874800,
+				"to": 882240
+			},
+			"text": " On that topic, I think it would also be worth discussing what are the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:50,480"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 890480
+			},
+			"text": " valid criteria or how would we decide that we are ready to do this mainnet launch. So I agree"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,480",
+				"to": "00:14:59,680"
+			},
+			"offsets": {
+				"from": 890480,
+				"to": 899680
+			},
+			"text": " one of them should be that we've had launches based off ETH1 and these starts. But how do we"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,680",
+				"to": "00:15:05,760"
+			},
+			"offsets": {
+				"from": 899680,
+				"to": 905760
+			},
+			"text": " actually decide that this is the finalised version, both in terms of we can specify minimum ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,760",
+				"to": "00:15:12,640"
+			},
+			"offsets": {
+				"from": 905760,
+				"to": 912640
+			},
+			"text": " deposits and that kind of thing. But also more in terms of what do we require of clients to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,640",
+				"to": "00:15:19,360"
+			},
+			"offsets": {
+				"from": 912640,
+				"to": 919360
+			},
+			"text": " able to participate in these networks and how do we say that this client should or shouldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,360",
+				"to": "00:15:24,240"
+			},
+			"offsets": {
+				"from": 919360,
+				"to": 924240
+			},
+			"text": " participate. I mean, obviously it's not going to be some definitive thing. But what is a good"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,240",
+				"to": "00:15:28,240"
+			},
+			"offsets": {
+				"from": 924240,
+				"to": 928240
+			},
+			"text": " signal for deciding that a client is ready for participating in a mainnet launch?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,240",
+				"to": "00:15:37,120"
+			},
+			"offsets": {
+				"from": 928240,
+				"to": 937120
+			},
+			"text": " >> I mean, yeah, that's obviously a big question. At a high level, right? I would expect we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,120",
+				"to": "00:15:42,160"
+			},
+			"offsets": {
+				"from": 937120,
+				"to": 942160
+			},
+			"text": " this to be actually fairly community driven, probably highly directed by the client developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,160",
+				"to": "00:15:48,640"
+			},
+			"offsets": {
+				"from": 942160,
+				"to": 948640
+			},
+			"text": " themselves. Obviously, there's things like uptime and performance and stuff, right? So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,640",
+				"to": "00:15:53,440"
+			},
+			"offsets": {
+				"from": 948640,
+				"to": 953440
+			},
+			"text": " for example, if we end up with a ton of early validators, we all want clients to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,440",
+				"to": "00:15:59,600"
+			},
+			"offsets": {
+				"from": 953440,
+				"to": 959600
+			},
+			"text": " handle that many validators. I know, for example, Trinity can't scale to the theoretical max right"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,600",
+				"to": "00:16:03,440"
+			},
+			"offsets": {
+				"from": 959600,
+				"to": 963440
+			},
+			"text": " now. We just don't have the performance. We'll get there, but we're not there yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,440",
+				"to": "00:16:06,960"
+			},
+			"offsets": {
+				"from": 963440,
+				"to": 966960
+			},
+			"text": " So these types of things are really important qualifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,520",
+				"to": "00:16:14,480"
+			},
+			"offsets": {
+				"from": 969520,
+				"to": 974480
+			},
+			"text": " At a certain point, it's hard to say, are you ready? You can always defer and do more testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,480",
+				"to": "00:16:19,680"
+			},
+			"offsets": {
+				"from": 974480,
+				"to": 979680
+			},
+			"text": " So at a certain point, you just have to say, well, these are all sounding really negative."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,680",
+				"to": "00:16:27,360"
+			},
+			"offsets": {
+				"from": 979680,
+				"to": 987360
+			},
+			"text": " I was going to say jump off the cliff or something. But yeah, hopefully we know when we see it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,360",
+				"to": "00:16:29,680"
+			},
+			"offsets": {
+				"from": 987360,
+				"to": 989680
+			},
+			"text": " and we're like, okay, we all feel good. Here we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,920",
+				"to": "00:16:40,640"
+			},
+			"offsets": {
+				"from": 991920,
+				"to": 1000640
+			},
+			"text": " Yeah, I agree. Sorry. There should be some -- we should start testing with some -- the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,640",
+				"to": "00:16:44,720"
+			},
+			"offsets": {
+				"from": 1000640,
+				"to": 1004720
+			},
+			"text": " parameters that affect the performance of the network. We should start validating that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,720",
+				"to": "00:16:51,360"
+			},
+			"offsets": {
+				"from": 1004720,
+				"to": 1011360
+			},
+			"text": " each of the clients is ready for this. But our own roadmap is also built around the need for"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,360",
+				"to": "00:16:58,720"
+			},
+			"offsets": {
+				"from": 1011360,
+				"to": 1018720
+			},
+			"text": " performing security audit on our code. And this is a pretty complicated thing to plan out because"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,680",
+				"to": "00:17:03,440"
+			},
+			"offsets": {
+				"from": 1019680,
+				"to": 1023440
+			},
+			"text": " it requires you to freeze a lot of the code. So we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,440",
+				"to": "00:17:11,520"
+			},
+			"offsets": {
+				"from": 1023440,
+				"to": 1031520
+			},
+			"text": " currently creating a plan that would allow us to create sort of a pipeline for"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,520",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1031520,
+				"to": 1038000
+			},
+			"text": " small and small components that will go through audit and then bigger and bigger parts until"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:23,920"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1043920
+			},
+			"text": " we are ready to launch. Yeah, I was going to comment along the same lines. I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,920",
+				"to": "00:17:28,880"
+			},
+			"offsets": {
+				"from": 1043920,
+				"to": 1048880
+			},
+			"text": " in this network, you can't prevent anyone from saying I'm a validator and being part of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,880",
+				"to": "00:17:35,120"
+			},
+			"offsets": {
+				"from": 1048880,
+				"to": 1055120
+			},
+			"text": " network, and that's a whole point. So it requires client teams need to take responsibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,120",
+				"to": "00:17:43,360"
+			},
+			"offsets": {
+				"from": 1055120,
+				"to": 1063360
+			},
+			"text": " on the one hand. And so I think exactly right audits are going to be important. One of the very"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,360",
+				"to": "00:17:49,120"
+			},
+			"offsets": {
+				"from": 1063360,
+				"to": 1069120
+			},
+			"text": " striking differences between Ethereum 2 and Ethereum 1 is that in ETH 2, we need to do online"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,120",
+				"to": "00:17:56,080"
+			},
+			"offsets": {
+				"from": 1069120,
+				"to": 1076080
+			},
+			"text": " signing. You have to have your key available to sign in real time, which is something that all"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,080",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1076080,
+				"to": 1082000
+			},
+			"text": " the ETH 1 clients and nodes have moved away from over the years because it is really hard to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:07,920"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1087920
+			},
+			"text": " it securely. So that's going to be a critical point where we need to focus audit and security"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,920",
+				"to": "00:18:13,600"
+			},
+			"offsets": {
+				"from": 1087920,
+				"to": 1093600
+			},
+			"text": " effort on that. And on the other hand, users need to be kind of wise as well because they have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,600",
+				"to": "00:18:17,920"
+			},
+			"offsets": {
+				"from": 1093600,
+				"to": 1097920
+			},
+			"text": " choose a client in which to run and to stake and so forth. And I think the best thing we can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,920",
+				"to": "00:18:25,760"
+			},
+			"offsets": {
+				"from": 1097920,
+				"to": 1105760
+			},
+			"text": " there is probably to have some joint benchmark suite or some is all about information, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,760",
+				"to": "00:18:31,440"
+			},
+			"offsets": {
+				"from": 1105760,
+				"to": 1111440
+			},
+			"text": " making it consistent and so people can compare and contrast and understand which is a client"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,440",
+				"to": "00:18:35,760"
+			},
+			"offsets": {
+				"from": 1111440,
+				"to": 1115760
+			},
+			"text": " that meets their needs. But yeah, I definitely like to see a diversity. I think it would be a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,760",
+				"to": "00:18:42,800"
+			},
+			"offsets": {
+				"from": 1115760,
+				"to": 1122800
+			},
+			"text": " shame if the network were dominated by one client, more than 50% on one client would be a pity."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,800",
+				"to": "00:18:52,640"
+			},
+			"offsets": {
+				"from": 1122800,
+				"to": 1132640
+			},
+			"text": " I guess another point of point of point is formally verified the safety and livenies of the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,640",
+				"to": "00:19:01,360"
+			},
+			"offsets": {
+				"from": 1132640,
+				"to": 1141360
+			},
+			"text": " chain. So as you know, in the paper wise, the paper that proved these two properties on that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,360",
+				"to": "00:19:07,680"
+			},
+			"offsets": {
+				"from": 1141360,
+				"to": 1147680
+			},
+			"text": " the abstract model of the beacon chain, but reality is the implementation has quite a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,680",
+				"to": "00:19:13,520"
+			},
+			"offsets": {
+				"from": 1147680,
+				"to": 1153520
+			},
+			"text": " of the optimization and also slightly different definalization rules. So just make sure that those"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,520",
+				"to": "00:19:20,800"
+			},
+			"offsets": {
+				"from": 1153520,
+				"to": 1160800
+			},
+			"text": " differences doesn't actually break the safety and livenies. So yeah, that's our actually call."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,800",
+				"to": "00:19:29,280"
+			},
+			"offsets": {
+				"from": 1160800,
+				"to": 1169280
+			},
+			"text": " In our end, you wanted to finish the form verification before others are actually ready to release."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,280",
+				"to": "00:19:36,480"
+			},
+			"offsets": {
+				"from": 1169280,
+				"to": 1176480
+			},
+			"text": " Yeah, and the safety of all our clients relies on this assumption that someone's going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,480",
+				"to": "00:19:43,280"
+			},
+			"offsets": {
+				"from": 1176480,
+				"to": 1183280
+			},
+			"text": " slash bad people. I don't know anyone that's got a slash a working that can efficiently run,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,280",
+				"to": "00:19:49,360"
+			},
+			"offsets": {
+				"from": 1183280,
+				"to": 1189360
+			},
+			"text": " they can efficiently cover the distance that we need. And it's still in research as to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,840",
+				"to": "00:19:55,200"
+			},
+			"offsets": {
+				"from": 1189840,
+				"to": 1195200
+			},
+			"text": " how exactly can we, how can we store all of the previous votes and efficiently search them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,200",
+				"to": "00:20:01,360"
+			},
+			"offsets": {
+				"from": 1195200,
+				"to": 1201360
+			},
+			"text": " So we're definitely going to need slashes out there. And I think they're going to have to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,360",
+				"to": "00:20:06,880"
+			},
+			"offsets": {
+				"from": 1201360,
+				"to": 1206880
+			},
+			"text": " some degree of review and guarantee that, you know, they're watching and they'll get you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,880",
+				"to": "00:20:14,480"
+			},
+			"offsets": {
+				"from": 1206880,
+				"to": 1214480
+			},
+			"text": " Adding on to that quickly, we also need like slashing protection, right? So like in terms of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,480",
+				"to": "00:20:18,960"
+			},
+			"offsets": {
+				"from": 1214480,
+				"to": 1218960
+			},
+			"text": " like infrastructure providers or people that are, they just don't want some sort of crazy situation"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,960",
+				"to": "00:20:25,360"
+			},
+			"offsets": {
+				"from": 1218960,
+				"to": 1225360
+			},
+			"text": " with their infrared to cause them to double propose or double sign. So that's also something I need."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,360",
+				"to": "00:20:32,560"
+			},
+			"offsets": {
+				"from": 1225360,
+				"to": 1232560
+			},
+			"text": " So he built in and users will be asking for that. I totally agree with everything that's been said"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,560",
+				"to": "00:20:39,920"
+			},
+			"offsets": {
+				"from": 1232560,
+				"to": 1239920
+			},
+			"text": " and we want just to add that we might probably need some more QA stuff like fuzzing. We want to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,920",
+				"to": "00:20:47,600"
+			},
+			"offsets": {
+				"from": 1239920,
+				"to": 1247600
+			},
+			"text": " cross client fuzzing to find three key consensus breaks that could not be probably found,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,600",
+				"to": "00:20:56,880"
+			},
+			"offsets": {
+				"from": 1247600,
+				"to": 1256880
+			},
+			"text": " could not be probably found during test net runs. And also we need to expose basic interface to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,880",
+				"to": "00:21:06,160"
+			},
+			"offsets": {
+				"from": 1256880,
+				"to": 1266160
+			},
+			"text": " change data to build the even primitive block explorers around that and to get some network"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,160",
+				"to": "00:21:12,720"
+			},
+			"offsets": {
+				"from": 1266160,
+				"to": 1272720
+			},
+			"text": " monitors to understand what is going on. So yeah, that's my point."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,720",
+				"to": "00:21:17,920"
+			},
+			"offsets": {
+				"from": 1272720,
+				"to": 1277920
+			},
+			"text": " Another fun thing leading up to production would be in some device test nets. So in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,920",
+				"to": "00:21:22,160"
+			},
+			"offsets": {
+				"from": 1277920,
+				"to": 1282160
+			},
+			"text": " cosmos community they've done some of those with game mistakes. It'd be fun if we do the same thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,160",
+				"to": "00:21:26,240"
+			},
+			"offsets": {
+				"from": 1282160,
+				"to": 1286240
+			},
+			"text": " get together, a prize pool. And the idea is we have a test net, public test net,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,240",
+				"to": "00:21:29,520"
+			},
+			"offsets": {
+				"from": 1286240,
+				"to": 1289520
+			},
+			"text": " anyone can come and go and then try to keep the test net alive."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,520",
+				"to": "00:21:35,280"
+			},
+			"offsets": {
+				"from": 1289520,
+				"to": 1295280
+			},
+			"text": " I think the other thing would be like actually talking into validators or potential validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,280",
+				"to": "00:21:41,840"
+			},
+			"offsets": {
+				"from": 1295280,
+				"to": 1301840
+			},
+			"text": " and getting their input in a product feedback type setting. I think we were all very focused on"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,840",
+				"to": "00:21:47,920"
+			},
+			"offsets": {
+				"from": 1301840,
+				"to": 1307920
+			},
+			"text": " the spec and engineering and making really nice, sexy clients. But definitely it's for phase zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,920",
+				"to": "00:21:54,560"
+			},
+			"offsets": {
+				"from": 1307920,
+				"to": 1314560
+			},
+			"text": " who are the users of these things, validators. So talking to operators of validation pools and"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,560",
+				"to": "00:22:01,440"
+			},
+			"offsets": {
+				"from": 1314560,
+				"to": 1321440
+			},
+			"text": " not just pools, but validators in general. And seeing how that process unfolds."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,240",
+				"to": "00:22:09,440"
+			},
+			"offsets": {
+				"from": 1324240,
+				"to": 1329440
+			},
+			"text": " Sorry one more. I think we need some interest from external,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,440",
+				"to": "00:22:16,480"
+			},
+			"offsets": {
+				"from": 1329440,
+				"to": 1336480
+			},
+			"text": " non-client developer team UI people. So I think a lot of the client developers where systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,480",
+				"to": "00:22:23,680"
+			},
+			"offsets": {
+				"from": 1336480,
+				"to": 1343680
+			},
+			"text": " programmers and the idea of choosing a color makes us sweat. So it'd be great to have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,680",
+				"to": "00:22:29,680"
+			},
+			"offsets": {
+				"from": 1343680,
+				"to": 1349680
+			},
+			"text": " and we don't, I think at the moment, have maybe a few people that are front-end devs that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,680",
+				"to": "00:22:36,480"
+			},
+			"offsets": {
+				"from": 1349680,
+				"to": 1356480
+			},
+			"text": " interested in building UIs for this. And it'd be great to have these things as a common good that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,480",
+				"to": "00:22:39,680"
+			},
+			"offsets": {
+				"from": 1356480,
+				"to": 1359680
+			},
+			"text": " lives outside of the client teams that guests the love that they deserve."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,680",
+				"to": "00:22:48,560"
+			},
+			"offsets": {
+				"from": 1359680,
+				"to": 1368560
+			},
+			"text": " And on top of that, I think it's very important for the general validator experiences to not only"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,560",
+				"to": "00:22:52,640"
+			},
+			"offsets": {
+				"from": 1368560,
+				"to": 1372640
+			},
+			"text": " just help them with the generating of the clients, but what happens when validators get slashed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,640",
+				"to": "00:22:59,280"
+			},
+			"offsets": {
+				"from": 1372640,
+				"to": 1379280
+			},
+			"text": " How do we notify them of this? Or when there's major chain consensus, how do you, if your clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,280",
+				"to": "00:23:04,320"
+			},
+			"offsets": {
+				"from": 1379280,
+				"to": 1384320
+			},
+			"text": " not updating, or there's something, there's some fundamental issue, how do we notify clients of"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,320",
+				"to": "00:23:09,040"
+			},
+			"offsets": {
+				"from": 1384320,
+				"to": 1389040
+			},
+			"text": " these problems? And we could probably have some central solution which sends you an email or"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,040",
+				"to": "00:23:12,800"
+			},
+			"offsets": {
+				"from": 1389040,
+				"to": 1392800
+			},
+			"text": " something, but having people register their validators with such a thing as a kind of scary"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,800",
+				"to": "00:23:18,720"
+			},
+			"offsets": {
+				"from": 1392800,
+				"to": 1398720
+			},
+			"text": " concept from a privacy standpoint. So how can we enable these kinds of things which I think are"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,720",
+				"to": "00:23:24,800"
+			},
+			"offsets": {
+				"from": 1398720,
+				"to": 1404800
+			},
+			"text": " also very important for the community and to help validators understand what their clients doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,800",
+				"to": "00:23:34,320"
+			},
+			"offsets": {
+				"from": 1404800,
+				"to": 1414320
+			},
+			"text": " and how they can stay on top of things? Cool. Well, with that, I think, because we were"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,320",
+				"to": "00:23:38,480"
+			},
+			"offsets": {
+				"from": 1414320,
+				"to": 1418480
+			},
+			"text": " heading into the final minutes here, I'd like to open the floor to questions for anyone who'd like"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,480",
+				"to": "00:23:43,120"
+			},
+			"offsets": {
+				"from": 1418480,
+				"to": 1423120
+			},
+			"text": " to talk about anything related to the media future of E3.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,120",
+				"to": "00:23:52,960"
+			},
+			"offsets": {
+				"from": 1423120,
+				"to": 1432960
+			},
+			"text": " I'm somewhat forwarding this question from Philippe Castingay from Horizon Games and the Fairwind"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,960",
+				"to": "00:23:59,680"
+			},
+			"offsets": {
+				"from": 1432960,
+				"to": 1439680
+			},
+			"text": " Ponzi Scheme Revelation. My name's John Marlin. I do security audits, so I'm not adaptive, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,680",
+				"to": "00:24:05,360"
+			},
+			"offsets": {
+				"from": 1439680,
+				"to": 1445360
+			},
+			"text": " I know a lot of us are more contracts. And his question is about the migration process"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,360",
+				"to": "00:24:19,200"
+			},
+			"offsets": {
+				"from": 1445360,
+				"to": 1459200
+			},
+			"text": " and if there are plans for doing any migration testing for DAPs moving to the E3.0.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,160",
+				"to": "00:24:26,160"
+			},
+			"offsets": {
+				"from": 1460160,
+				"to": 1466160
+			},
+			"text": " Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,160",
+				"to": "00:24:34,480"
+			},
+			"offsets": {
+				"from": 1466160,
+				"to": 1474480
+			},
+			"text": " Yeah, no, definitely. So the migration from ETH1 to ETH2 is clearly something that came up"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,480",
+				"to": "00:24:39,040"
+			},
+			"offsets": {
+				"from": 1474480,
+				"to": 1479040
+			},
+			"text": " in the discussions yesterday, too, and it's a very important thing. And clearly a pain point"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,040",
+				"to": "00:24:42,480"
+			},
+			"offsets": {
+				"from": 1479040,
+				"to": 1482480
+			},
+			"text": " for the community. I think it's something everyone is nervous about. We have this great community"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,480",
+				"to": "00:24:48,640"
+			},
+			"offsets": {
+				"from": 1482480,
+				"to": 1488640
+			},
+			"text": " within Ethereum 1. How can we transfer that as seamlessly as possible? We don't want bugs in"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,640",
+				"to": "00:24:55,840"
+			},
+			"offsets": {
+				"from": 1488640,
+				"to": 1495840
+			},
+			"text": " any of these scenarios. The challenge with answering this question is that right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,840",
+				"to": "00:25:01,680"
+			},
+			"offsets": {
+				"from": 1495840,
+				"to": 1501680
+			},
+			"text": " we have such flexibility in the space that is very hard to answer exactly what this is going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,680",
+				"to": "00:25:11,840"
+			},
+			"offsets": {
+				"from": 1501680,
+				"to": 1511840
+			},
+			"text": " look like. So it is some form of moving roots between ETH1 and ETH2 and we will have an execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,840",
+				"to": "00:25:18,320"
+			},
+			"offsets": {
+				"from": 1511840,
+				"to": 1518320
+			},
+			"text": " engine which allows ETH1 to run very similarly to how it does right now. And that will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,320",
+				"to": "00:25:24,960"
+			},
+			"offsets": {
+				"from": 1518320,
+				"to": 1524960
+			},
+			"text": " very well tested for these kinds of purposes. But I think the challenge here is we're trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,960",
+				"to": "00:25:30,560"
+			},
+			"offsets": {
+				"from": 1524960,
+				"to": 1530560
+			},
+			"text": " with these execution environments that allow us such flexibilities and so many possibilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,560",
+				"to": "00:25:35,840"
+			},
+			"offsets": {
+				"from": 1530560,
+				"to": 1535840
+			},
+			"text": " We try to not lock ourselves down to committing to saying exactly this is how it's going to work"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,840",
+				"to": "00:25:42,880"
+			},
+			"offsets": {
+				"from": 1535840,
+				"to": 1542880
+			},
+			"text": " right now because that starts closing down the design space for us and could ultimately end up"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,880",
+				"to": "00:25:48,640"
+			},
+			"offsets": {
+				"from": 1542880,
+				"to": 1548640
+			},
+			"text": " in a worse product. So the answer to that is yes, it will be tested. There will be some migration"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,640",
+				"to": "00:25:54,640"
+			},
+			"offsets": {
+				"from": 1548640,
+				"to": 1554640
+			},
+			"text": " path exactly what that looks like. I can't specify right now but that will definitely exist and is"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,640",
+				"to": "00:25:58,960"
+			},
+			"offsets": {
+				"from": 1554640,
+				"to": 1558960
+			},
+			"text": " vital for the continuation of ETH3 and ETH2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,960",
+				"to": "00:26:05,440"
+			},
+			"offsets": {
+				"from": 1558960,
+				"to": 1565440
+			},
+			"text": " And just add on to that, like concretely there's definitely an intention to essentially move ETH1"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,440",
+				"to": "00:26:10,800"
+			},
+			"offsets": {
+				"from": 1565440,
+				"to": 1570800
+			},
+			"text": " into the new ETH2 infrastructure in a way that you wouldn't have to migrate your DAP and it would"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,800",
+				"to": "00:26:16,800"
+			},
+			"offsets": {
+				"from": 1570800,
+				"to": 1576800
+			},
+			"text": " just continue to run. Not quite seamlessly. There will be some sort of metadata updates of like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,800",
+				"to": "00:26:21,600"
+			},
+			"offsets": {
+				"from": 1576800,
+				"to": 1581600
+			},
+			"text": " new network, new chain, that sort of thing. But in terms of like you wouldn't have to rewrite your"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,600",
+				"to": "00:26:27,840"
+			},
+			"offsets": {
+				"from": 1581600,
+				"to": 1587840
+			},
+			"text": " DAP or do these things. That being said, there will be an opt-in upgrade path to go to perhaps"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,840",
+				"to": "00:26:34,960"
+			},
+			"offsets": {
+				"from": 1587840,
+				"to": 1594960
+			},
+			"text": " this new type of EVME that Carl was alluding to which you'd get a lot of honestly great improvements"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,960",
+				"to": "00:26:39,440"
+			},
+			"offsets": {
+				"from": 1594960,
+				"to": 1599440
+			},
+			"text": " on top of all we have today. So yeah, keep an eye out."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,440",
+				"to": "00:26:45,920"
+			},
+			"offsets": {
+				"from": 1599440,
+				"to": 1605920
+			},
+			"text": " And I think a lot of this ties into what Greg's presentation was on earlier on how do we making"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,920",
+				"to": "00:26:52,640"
+			},
+			"offsets": {
+				"from": 1605920,
+				"to": 1612640
+			},
+			"text": " connections and building common tooling between these frameworks. And it's very important to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,640",
+				"to": "00:27:00,000"
+			},
+			"offsets": {
+				"from": 1612640,
+				"to": 1620000
+			},
+			"text": " these intermediate tools between the two chains. It's totally having an easy path for upgrades is"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,000",
+				"to": "00:27:04,080"
+			},
+			"offsets": {
+				"from": 1620000,
+				"to": 1624080
+			},
+			"text": " definitely important and it will be there. Something else worth considering too is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,080",
+				"to": "00:27:10,160"
+			},
+			"offsets": {
+				"from": 1624080,
+				"to": 1630160
+			},
+			"text": " if you've just gone from this pocket calculated to this multi-core,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:10,160",
+				"to": "00:27:18,560"
+			},
+			"offsets": {
+				"from": 1630160,
+				"to": 1638560
+			},
+			"text": " thousand times faster machine, perhaps a refactor is going to be important for a lot of the DAPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,560",
+				"to": "00:27:24,000"
+			},
+			"offsets": {
+				"from": 1638560,
+				"to": 1644000
+			},
+			"text": " Like I'm not saying that you're going to have to refactor but you've got a whole new space to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:24,000",
+				"to": "00:27:31,280"
+			},
+			"offsets": {
+				"from": 1644000,
+				"to": 1651280
+			},
+			"text": " play in now. And a refactor might be what you end up doing because it will be better for your"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,280",
+				"to": "00:27:38,240"
+			},
+			"offsets": {
+				"from": 1651280,
+				"to": 1658240
+			},
+			"text": " customers or not customers people that are using your thing opting in without any control from you."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,240",
+				"to": "00:27:50,720"
+			},
+			"offsets": {
+				"from": 1658240,
+				"to": 1670720
+			},
+			"text": " The answer, where's the conversation happening? Where do you guys like interact with the DAP"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,720",
+				"to": "00:27:55,520"
+			},
+			"offsets": {
+				"from": 1670720,
+				"to": 1675520
+			},
+			"text": " dev community so they can ask those questions online? Hey, I can speak on behalf of that a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,520",
+				"to": "00:28:02,320"
+			},
+			"offsets": {
+				"from": 1675520,
+				"to": 1682320
+			},
+			"text": " bit. We're a little bit early still. That's like phase two. And to be quite frank, a lot of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,320",
+				"to": "00:28:06,960"
+			},
+			"offsets": {
+				"from": 1682320,
+				"to": 1686960
+			},
+			"text": " confusion around this is because some of the, as Carl explains, the design space is so open,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,960",
+				"to": "00:28:11,920"
+			},
+			"offsets": {
+				"from": 1686960,
+				"to": 1691920
+			},
+			"text": " but it makes it also super complicated. A lot of people have to rethink the way this is."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:11,920",
+				"to": "00:28:18,560"
+			},
+			"offsets": {
+				"from": 1691920,
+				"to": 1698560
+			},
+			"text": " How long do you take most developers to understand the EVM? Like two years before people are fully"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,560",
+				"to": "00:28:23,040"
+			},
+			"offsets": {
+				"from": 1698560,
+				"to": 1703040
+			},
+			"text": " understood. It's going to take some time to understand these new concepts. And once that happens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,040",
+				"to": "00:28:28,320"
+			},
+			"offsets": {
+				"from": 1703040,
+				"to": 1708320
+			},
+			"text": " you'll see a lot better. I don't think it's immediate to fully discuss with them. I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,320",
+				"to": "00:28:32,160"
+			},
+			"offsets": {
+				"from": 1708320,
+				"to": 1712160
+			},
+			"text": " the first priority is just talking with tooling teams to understand how we can better help them"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:32,160",
+				"to": "00:28:38,000"
+			},
+			"offsets": {
+				"from": 1712160,
+				"to": 1718000
+			},
+			"text": " and concurrently going with the DAP developers. Yeah, the quilt team deserves a plug here too."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:38,000",
+				"to": "00:28:46,400"
+			},
+			"offsets": {
+				"from": 1718000,
+				"to": 1726400
+			},
+			"text": " They're building a simulator so that you can build EEs or tests on top of EEs without needing"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,400",
+				"to": "00:28:50,960"
+			},
+			"offsets": {
+				"from": 1726400,
+				"to": 1730960
+			},
+			"text": " all of the chain infrastructure. You can just start a process and start testing. So I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,960",
+				"to": "00:28:55,520"
+			},
+			"offsets": {
+				"from": 1730960,
+				"to": 1735520
+			},
+			"text": " this is something that's going to really enable DAP developers to get involved because it's a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:55,520",
+				"to": "00:28:58,960"
+			},
+			"offsets": {
+				"from": 1735520,
+				"to": 1738960
+			},
+			"text": " a bit low level at the moment, I think, for them. But it's opening up to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:58,960",
+				"to": "00:29:08,720"
+			},
+			"offsets": {
+				"from": 1738960,
+				"to": 1748720
+			},
+			"text": " Hey. So we were at Interop2 with WIPLOCK and we're very grateful. I think it was fun to work"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,720",
+				"to": "00:29:14,080"
+			},
+			"offsets": {
+				"from": 1748720,
+				"to": 1754080
+			},
+			"text": " with all of you. We did a couple changes. So that's also an announcement for Chain Safe in"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,080",
+				"to": "00:29:21,680"
+			},
+			"offsets": {
+				"from": 1754080,
+				"to": 1761680
+			},
+			"text": " particular. So we support Alpine. So we don't need to mess around. Alpine for Docker images."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:21,680",
+				"to": "00:29:27,760"
+			},
+			"offsets": {
+				"from": 1761680,
+				"to": 1767760
+			},
+			"text": " So it would be pretty easy for us to set up a testnet because your stuff, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:27,760",
+				"to": "00:29:33,680"
+			},
+			"offsets": {
+				"from": 1767760,
+				"to": 1773680
+			},
+			"text": " which is, do you have a Docker image? Okay, cool. And wait, do you have a Docker image as well?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:33,680",
+				"to": "00:29:40,480"
+			},
+			"offsets": {
+				"from": 1773680,
+				"to": 1780480
+			},
+			"text": " Okay. All right. So if we can help in any way, we're here to help. Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,480",
+				"to": "00:29:47,680"
+			},
+			"offsets": {
+				"from": 1780480,
+				"to": 1787680
+			},
+			"text": " Do you have just give us credits and fun to that? So please involve us. We'll be happy to help."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,680",
+				"to": "00:30:02,160"
+			},
+			"offsets": {
+				"from": 1787680,
+				"to": 1802160
+			},
+			"text": " A couple of you probably know, like, some of the ETH1 core Devs, but usually a lot of them are"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:02,960",
+				"to": "00:30:11,120"
+			},
+			"offsets": {
+				"from": 1802960,
+				"to": 1811120
+			},
+			"text": " kind of like detached. So it's like if there were some things with ETH2 designs that you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:11,120",
+				"to": "00:30:18,480"
+			},
+			"offsets": {
+				"from": 1811120,
+				"to": 1818480
+			},
+			"text": " want them to like try to look at, like maybe each of you, it's like what is it that you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,480",
+				"to": "00:30:23,920"
+			},
+			"offsets": {
+				"from": 1818480,
+				"to": 1823920
+			},
+			"text": " really like them to look at because there's a lot of brain power there as well. Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:26,480",
+				"to": "00:30:36,240"
+			},
+			"offsets": {
+				"from": 1826480,
+				"to": 1836240
+			},
+			"text": " Sync strategies. So we're running out of time. So can we use this as like sort of a wrapping up"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:36,240",
+				"to": "00:30:50,000"
+			},
+			"offsets": {
+				"from": 1836240,
+				"to": 1850000
+			},
+			"text": " thing as the what? Yeah. Data serialization. API standardization efforts. Okay. This is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:50,000",
+				"to": "00:30:55,920"
+			},
+			"offsets": {
+				"from": 1850000,
+				"to": 1855920
+			},
+			"text": " just a single line. So working on Trinity, we actually have a focus of both ETH1 and ETH2."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:56,480",
+				"to": "00:31:00,720"
+			},
+			"offsets": {
+				"from": 1856480,
+				"to": 1860720
+			},
+			"text": " So I actually feel like I've been exposed a lot to a lot of the ETH1 efforts and ongoing"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:00,720",
+				"to": "00:31:07,360"
+			},
+			"offsets": {
+				"from": 1860720,
+				"to": 1867360
+			},
+			"text": " things. And like really from what I've seen, like both groups of core Devs are like starting to"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:07,360",
+				"to": "00:31:12,080"
+			},
+			"offsets": {
+				"from": 1867360,
+				"to": 1872080
+			},
+			"text": " really just tackle the same questions. Like a big one that comes to mind is like state management"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:12,080",
+				"to": "00:31:18,080"
+			},
+			"offsets": {
+				"from": 1872080,
+				"to": 1878080
+			},
+			"text": " and things. We obviously want to like, you know, we've seen what has happened on ETH1 in terms of"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:18,080",
+				"to": "00:31:24,400"
+			},
+			"offsets": {
+				"from": 1878080,
+				"to": 1884400
+			},
+			"text": " the state growing and growing and growing. And we want to, you know, basically find a solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:24,400",
+				"to": "00:31:29,440"
+			},
+			"offsets": {
+				"from": 1884400,
+				"to": 1889440
+			},
+			"text": " in ETH2 where like that's not going to be a problem. And yeah, like a lot of there's a lot of cool"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:29,440",
+				"to": "00:31:33,600"
+			},
+			"offsets": {
+				"from": 1889440,
+				"to": 1893600
+			},
+			"text": " ideas around like stateless clients and things that again have application in both domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:33,600",
+				"to": "00:31:41,920"
+			},
+			"offsets": {
+				"from": 1893600,
+				"to": 1901920
+			},
+			"text": " Madby, I think a good thing we can learn is what to and not do with in terms of governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:41,920",
+				"to": "00:31:51,600"
+			},
+			"offsets": {
+				"from": 1901920,
+				"to": 1911600
+			},
+			"text": " What we have right now with ETH1.2 is ETH2.2. The research team I think leads a lot of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:51,600",
+				"to": "00:31:56,720"
+			},
+			"offsets": {
+				"from": 1911600,
+				"to": 1916720
+			},
+			"text": " decisions. And so there's sort of a central shelling point which exists much less in ETH1.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:56,720",
+				"to": "00:32:01,920"
+			},
+			"offsets": {
+				"from": 1916720,
+				"to": 1921920
+			},
+			"text": " And the idea is that the research team wants to have less and less of this role. But how can we do"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:01,920",
+				"to": "00:32:08,080"
+			},
+			"offsets": {
+				"from": 1921920,
+				"to": 1928080
+			},
+			"text": " this in a manner that prevents deadlock and allows for continuous innovation? I think a lot of lessons"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:08,080",
+				"to": "00:32:15,440"
+			},
+			"offsets": {
+				"from": 1928080,
+				"to": 1935440
+			},
+			"text": " to be learned from ETH1.0 there. I'd be willing to take anything. I'll take any advice from any"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:15,440",
+				"to": "00:32:20,080"
+			},
+			"offsets": {
+				"from": 1935440,
+				"to": 1940080
+			},
+			"text": " of the people that have been building ETH1 or blockchain or people like anything they've got,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:20,080",
+				"to": "00:32:26,080"
+			},
+			"offsets": {
+				"from": 1940080,
+				"to": 1946080
+			},
+			"text": " bringing it here, looking for it. I think there's a lot of who can learn about"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:26,080",
+				"to": "00:32:32,880"
+			},
+			"offsets": {
+				"from": 1946080,
+				"to": 1952880
+			},
+			"text": " light plants, how to create light plants from ETH1. And on the other hand ETH1 will greatly"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:32,880",
+				"to": "00:32:39,440"
+			},
+			"offsets": {
+				"from": 1952880,
+				"to": 1959440
+			},
+			"text": " benefit from the fact that the ETH2 chain will be finalizing ETH1 as well. So it would be much"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:39,440",
+				"to": "00:32:46,320"
+			},
+			"offsets": {
+				"from": 1959440,
+				"to": 1966320
+			},
+			"text": " easier to create efficient light plants for ETH1. But the intintivations schemes, the load balancing"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:46,320",
+				"to": "00:32:55,360"
+			},
+			"offsets": {
+				"from": 1966320,
+				"to": 1975360
+			},
+			"text": " of the requests, these are areas where we can share the solutions. And kind of that grant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:55,360",
+				"to": "00:33:04,160"
+			},
+			"offsets": {
+				"from": 1975360,
+				"to": 1984160
+			},
+			"text": " I'm kind of excited about the possibility of ETH1 incorporating a lip-to-p support in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:04,160",
+				"to": "00:33:07,840"
+			},
+			"offsets": {
+				"from": 1984160,
+				"to": 1987840
+			},
+			"text": " This is something that's possible in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:13,280",
+				"to": "00:33:20,320"
+			},
+			"offsets": {
+				"from": 1993280,
+				"to": 2000320
+			},
+			"text": " Okay, probably, yeah, I'd like to take advice with network reputation systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,320",
+				"to": "00:33:31,520"
+			},
+			"offsets": {
+				"from": 2000320,
+				"to": 2011520
+			},
+			"text": " connection managers, and sync strategy and optimized incremental storage for this state."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:31,520",
+				"to": "00:33:40,320"
+			},
+			"offsets": {
+				"from": 2011520,
+				"to": 2020320
+			},
+			"text": " Yeah, that's it. I'm actually mostly related to both ETH1 and ETH2. I'm actually both"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:41,040",
+				"to": "00:33:47,920"
+			},
+			"offsets": {
+				"from": 2021040,
+				"to": 2027920
+			},
+			"text": " care a lot about the backward capability issue. The thing is, currently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:47,920",
+				"to": "00:33:56,560"
+			},
+			"offsets": {
+				"from": 2027920,
+				"to": 2036560
+			},
+			"text": " probably all of your notes are in ETH1. We have a breaking change that creates a lot of conflicts."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:56,560",
+				"to": "00:34:04,240"
+			},
+			"offsets": {
+				"from": 2036560,
+				"to": 2044240
+			},
+			"text": " I hope we can try to avoid the same situation on ETH2 by designing the execution engine"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:05,200",
+				"to": "00:34:11,280"
+			},
+			"offsets": {
+				"from": 2045200,
+				"to": 2051280
+			},
+			"text": " like make it forward, compatible from the beginning. I think that's something quite important. It's"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:11,280",
+				"to": "00:34:17,920"
+			},
+			"offsets": {
+				"from": 2051280,
+				"to": 2057920
+			},
+			"text": " also really important to consider future changes of WebAssembly because there will be upgrades"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:17,920",
+				"to": "00:34:23,840"
+			},
+			"offsets": {
+				"from": 2057920,
+				"to": 2063840
+			},
+			"text": " that are versioned, that's how the WebWorks, that will be how WebAssembly specification works. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:23,840",
+				"to": "00:34:33,680"
+			},
+			"offsets": {
+				"from": 2063840,
+				"to": 2073680
+			},
+			"text": " how do we incorporate those new features adopted in WebAssembly into our WebAssembly execution engine"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:33,680",
+				"to": "00:34:38,880"
+			},
+			"offsets": {
+				"from": 2073680,
+				"to": 2078880
+			},
+			"text": " as to? I think that's also something that's quite important to consider."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:38,880",
+				"to": "00:34:44,480"
+			},
+			"offsets": {
+				"from": 2078880,
+				"to": 2084480
+			},
+			"text": " Just quickly before Carl wraps this up, I just wanted to just to announce that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:44,480",
+				"to": "00:34:49,280"
+			},
+			"offsets": {
+				"from": 2084480,
+				"to": 2089280
+			},
+			"text": " we're looking for a senior Rust developer. If you are a Rust developer and you want to work on ETH2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:49,280",
+				"to": "00:34:50,720"
+			},
+			"offsets": {
+				"from": 2089280,
+				"to": 2090720
+			},
+			"text": " come talk to us. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:50,720",
+				"to": "00:34:57,840"
+			},
+			"offsets": {
+				"from": 2090720,
+				"to": 2097840
+			},
+			"text": " Thanks everyone for attending that. Thank you to all of the clients represented here."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:58,560",
+				"to": "00:35:04,320"
+			},
+			"offsets": {
+				"from": 2098560,
+				"to": 2104320
+			},
+			"text": " And I'm really excited to see the work that's going to happen. These incentivized test nets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:04,320",
+				"to": "00:35:10,720"
+			},
+			"offsets": {
+				"from": 2104320,
+				"to": 2110720
+			},
+			"text": " this mainnet launch, which is like this incredible event. And then this time next year, I look forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,720",
+				"to": "00:35:15,200"
+			},
+			"offsets": {
+				"from": 2110720,
+				"to": 2115200
+			},
+			"text": " to seeing all of you back here on stage. Hopefully we can talk about these experiences we've had"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:15,200",
+				"to": "00:35:20,400"
+			},
+			"offsets": {
+				"from": 2115200,
+				"to": 2120400
+			},
+			"text": " all in good light. And yeah, I think it's very exciting to see where this is going. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:20,400",
+				"to": "00:35:24,160"
+			},
+			"offsets": {
+				"from": 2120400,
+				"to": 2124160
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:24,160",
+				"to": "00:35:34,160"
+			},
+			"offsets": {
+				"from": 2124160,
+				"to": 2134160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:34,160",
+				"to": "00:35:44,160"
+			},
+			"offsets": {
+				"from": 2134160,
+				"to": 2144160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:44,160",
+				"to": "00:35:54,160"
+			},
+			"offsets": {
+				"from": 2144160,
+				"to": 2154160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:54,160",
+				"to": "00:36:04,160"
+			},
+			"offsets": {
+				"from": 2154160,
+				"to": 2164160
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

@@ -1,0 +1,5290 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:23,080"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 23080
+			},
+			"text": " So it's really nice to be here without actually having"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,080",
+				"to": "00:00:26,240"
+			},
+			"offsets": {
+				"from": 23080,
+				"to": 26240
+			},
+			"text": " to wake up at 4am in the morning to do a hot fix release."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,240",
+				"to": "00:00:30,680"
+			},
+			"offsets": {
+				"from": 26240,
+				"to": 30680
+			},
+			"text": " So I'm actually-- I can follow my own thought pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,680",
+				"to": "00:00:33,320"
+			},
+			"offsets": {
+				"from": 30680,
+				"to": 33320
+			},
+			"text": " So today I actually want to talk to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,320",
+				"to": "00:00:35,320"
+			},
+			"offsets": {
+				"from": 33320,
+				"to": 35320
+			},
+			"text": " about some constructive things after yesterday's"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,320",
+				"to": "00:00:36,800"
+			},
+			"offsets": {
+				"from": 35320,
+				"to": 36800
+			},
+			"text": " negative things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,800",
+				"to": "00:00:40,480"
+			},
+			"offsets": {
+				"from": 36800,
+				"to": 40480
+			},
+			"text": " So for this, my talk will be a bit technical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,480",
+				"to": "00:00:43,160"
+			},
+			"offsets": {
+				"from": 40480,
+				"to": 43160
+			},
+			"text": " but basically given its very nature."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,160",
+				"to": "00:00:45,480"
+			},
+			"offsets": {
+				"from": 43160,
+				"to": 45480
+			},
+			"text": " But I'm really hoping that you will see the simplicity"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,480",
+				"to": "00:00:48,200"
+			},
+			"offsets": {
+				"from": 45480,
+				"to": 48200
+			},
+			"text": " despite the technicalities."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,200",
+				"to": "00:00:51,720"
+			},
+			"offsets": {
+				"from": 48200,
+				"to": 51720
+			},
+			"text": " So first up, a little perspective of Go Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,720",
+				"to": "00:00:53,200"
+			},
+			"offsets": {
+				"from": 51720,
+				"to": 53200
+			},
+			"text": " and Ethereum in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,200",
+				"to": "00:00:55,880"
+			},
+			"offsets": {
+				"from": 53200,
+				"to": 55880
+			},
+			"text": " Basically, as you probably know, Go Ethereum, C++ Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,880",
+				"to": "00:00:59,640"
+			},
+			"offsets": {
+				"from": 55880,
+				"to": 59640
+			},
+			"text": " and Python Ethereum, we're one of the three origin clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,640",
+				"to": "00:01:02,920"
+			},
+			"offsets": {
+				"from": 59640,
+				"to": 62920
+			},
+			"text": " What this meant is that the clients kind of were already"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,920",
+				"to": "00:01:05,240"
+			},
+			"offsets": {
+				"from": 62920,
+				"to": 65240
+			},
+			"text": " existing before the protocols evolved."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,240",
+				"to": "00:01:07,600"
+			},
+			"offsets": {
+				"from": 65240,
+				"to": 67600
+			},
+			"text": " This meant that the client--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,600",
+				"to": "00:01:10,960"
+			},
+			"offsets": {
+				"from": 67600,
+				"to": 70960
+			},
+			"text": " so the peer-to-peer protocols, the consensus protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,960",
+				"to": "00:01:14,800"
+			},
+			"offsets": {
+				"from": 70960,
+				"to": 74800
+			},
+			"text": " were all specified based on the experiences"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,800",
+				"to": "00:01:16,680"
+			},
+			"offsets": {
+				"from": 74800,
+				"to": 76680
+			},
+			"text": " learned from the clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,680",
+				"to": "00:01:20,560"
+			},
+			"offsets": {
+				"from": 76680,
+				"to": 80560
+			},
+			"text": " And what this meant is that the clients were kind of evolved"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,560",
+				"to": "00:01:21,760"
+			},
+			"offsets": {
+				"from": 80560,
+				"to": 81760
+			},
+			"text": " like a startup."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,760",
+				"to": "00:01:24,120"
+			},
+			"offsets": {
+				"from": 81760,
+				"to": 84120
+			},
+			"text": " Just hacked together code, hacked together some other code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,120",
+				"to": "00:01:25,280"
+			},
+			"offsets": {
+				"from": 84120,
+				"to": 85280
+			},
+			"text": " deleted some code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,280",
+				"to": "00:01:28,400"
+			},
+			"offsets": {
+				"from": 85280,
+				"to": 88400
+			},
+			"text": " So the code quality was really, really bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,400",
+				"to": "00:01:31,800"
+			},
+			"offsets": {
+				"from": 88400,
+				"to": 91800
+			},
+			"text": " Now, on top of this, when Ethereum was born,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,800",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 91800,
+				"to": 94000
+			},
+			"text": " then there weren't any other tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 96000
+			},
+			"text": " So now we have quite a lot of tools in the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:38,880"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 98880
+			},
+			"text": " But with the birth of these three clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,880",
+				"to": "00:01:41,520"
+			},
+			"offsets": {
+				"from": 98880,
+				"to": 101520
+			},
+			"text": " the clients were required to do absolutely everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,520",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 101520,
+				"to": 104000
+			},
+			"text": " that the developer would need."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:45,960"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 105960
+			},
+			"text": " And even further, since we wanted"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,960",
+				"to": "00:01:48,520"
+			},
+			"offsets": {
+				"from": 105960,
+				"to": 108520
+			},
+			"text": " to make Ethereum to be useful as much as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,520",
+				"to": "00:01:50,880"
+			},
+			"offsets": {
+				"from": 108520,
+				"to": 110880
+			},
+			"text": " for everyday developers, the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,880",
+				"to": "00:01:53,680"
+			},
+			"offsets": {
+				"from": 110880,
+				"to": 113680
+			},
+			"text": " was that we are going to provide the JavaScript environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,680",
+				"to": "00:01:56,520"
+			},
+			"offsets": {
+				"from": 113680,
+				"to": 116520
+			},
+			"text": " because more or less everybody is familiar with JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,520",
+				"to": "00:01:59,800"
+			},
+			"offsets": {
+				"from": 116520,
+				"to": 119800
+			},
+			"text": " And because of this, the problem became apparent"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,800",
+				"to": "00:02:02,560"
+			},
+			"offsets": {
+				"from": 119800,
+				"to": 122560
+			},
+			"text": " that if you wanted to use GoEthereum or the Geth codebase"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,560",
+				"to": "00:02:05,560"
+			},
+			"offsets": {
+				"from": 122560,
+				"to": 125560
+			},
+			"text": " or any other codebase as a library from your own project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,560",
+				"to": "00:02:10,440"
+			},
+			"offsets": {
+				"from": 125560,
+				"to": 130440
+			},
+			"text": " not from a JavaScript app, it was extremely hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,440",
+				"to": "00:02:14,240"
+			},
+			"offsets": {
+				"from": 130440,
+				"to": 134240
+			},
+			"text": " And the reason was that the fast prototyping accumulated"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,240",
+				"to": "00:02:16,160"
+			},
+			"offsets": {
+				"from": 134240,
+				"to": 136160
+			},
+			"text": " an extreme amount of technical debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,160",
+				"to": "00:02:19,640"
+			},
+			"offsets": {
+				"from": 136160,
+				"to": 139640
+			},
+			"text": " The networking, since Geth was kind of the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,640",
+				"to": "00:02:21,800"
+			},
+			"offsets": {
+				"from": 139640,
+				"to": 141800
+			},
+			"text": " had the network majority in the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,800",
+				"to": "00:02:23,160"
+			},
+			"offsets": {
+				"from": 141800,
+				"to": 143160
+			},
+			"text": " I mean, had the network majority,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,160",
+				"to": "00:02:24,600"
+			},
+			"offsets": {
+				"from": 143160,
+				"to": 144600
+			},
+			"text": " it was really hard to drop features."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,600",
+				"to": "00:02:26,080"
+			},
+			"offsets": {
+				"from": 144600,
+				"to": 146080
+			},
+			"text": " And every time we tried to drop something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,080",
+				"to": "00:02:28,720"
+			},
+			"offsets": {
+				"from": 146080,
+				"to": 148720
+			},
+			"text": " somebody was using it in hidden, the end was really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,720",
+				"to": "00:02:30,600"
+			},
+			"offsets": {
+				"from": 148720,
+				"to": 150600
+			},
+			"text": " really angry at us."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,600",
+				"to": "00:02:35,040"
+			},
+			"offsets": {
+				"from": 150600,
+				"to": 155040
+			},
+			"text": " And furthermore, browsers, since we kind of targeted"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,040",
+				"to": "00:02:39,040"
+			},
+			"offsets": {
+				"from": 155040,
+				"to": 159040
+			},
+			"text": " browser-based depth first, the emphasis was always"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,040",
+				"to": "00:02:40,080"
+			},
+			"offsets": {
+				"from": 159040,
+				"to": 160080
+			},
+			"text": " placed on JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,080",
+				"to": "00:02:42,600"
+			},
+			"offsets": {
+				"from": 160080,
+				"to": 162600
+			},
+			"text": " And it was really hard to somehow use it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,600",
+				"to": "00:02:46,880"
+			},
+			"offsets": {
+				"from": 162600,
+				"to": 166880
+			},
+			"text": " outside of this predefined JavaScript environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,880",
+				"to": "00:02:50,960"
+			},
+			"offsets": {
+				"from": 166880,
+				"to": 170960
+			},
+			"text": " So this was kind of our world until now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,960",
+				"to": "00:02:53,760"
+			},
+			"offsets": {
+				"from": 170960,
+				"to": 173760
+			},
+			"text": " And if we fast-forward to the present,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,760",
+				"to": "00:02:57,080"
+			},
+			"offsets": {
+				"from": 173760,
+				"to": 177080
+			},
+			"text": " one of our main features, as I showed already mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,080",
+				"to": "00:02:59,280"
+			},
+			"offsets": {
+				"from": 177080,
+				"to": 179280
+			},
+			"text": " that we have light clients, warm and other stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,280",
+				"to": "00:03:02,640"
+			},
+			"offsets": {
+				"from": 179280,
+				"to": 182640
+			},
+			"text": " but one of our main features for the Geth 1.5 release"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,640",
+				"to": "00:03:06,480"
+			},
+			"offsets": {
+				"from": 182640,
+				"to": 186480
+			},
+			"text": " is kind of a brand new code API."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,480",
+				"to": "00:03:09,960"
+			},
+			"offsets": {
+				"from": 186480,
+				"to": 189960
+			},
+			"text": " So that actually any developer can use either GoEthereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,960",
+				"to": "00:03:13,120"
+			},
+			"offsets": {
+				"from": 189960,
+				"to": 193120
+			},
+			"text": " as full or pieces, any little tiny piece"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,120",
+				"to": "00:03:16,360"
+			},
+			"offsets": {
+				"from": 193120,
+				"to": 196360
+			},
+			"text": " that they want in their own project without actually having"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,360",
+				"to": "00:03:18,760"
+			},
+			"offsets": {
+				"from": 196360,
+				"to": 198760
+			},
+			"text": " to use a command line interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,760",
+				"to": "00:03:19,960"
+			},
+			"offsets": {
+				"from": 198760,
+				"to": 199960
+			},
+			"text": " And why are these good?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,960",
+				"to": "00:03:24,280"
+			},
+			"offsets": {
+				"from": 199960,
+				"to": 204280
+			},
+			"text": " For example, we tried to take a look from different pain points,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,280",
+				"to": "00:03:25,880"
+			},
+			"offsets": {
+				"from": 204280,
+				"to": 205880
+			},
+			"text": " from the perspective of different pain points."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,880",
+				"to": "00:03:27,760"
+			},
+			"offsets": {
+				"from": 205880,
+				"to": 207760
+			},
+			"text": " One of them was that people don't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,760",
+				"to": "00:03:30,200"
+			},
+			"offsets": {
+				"from": 207760,
+				"to": 210200
+			},
+			"text": " want to share their private keys with the node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,200",
+				"to": "00:03:32,360"
+			},
+			"offsets": {
+				"from": 210200,
+				"to": 212360
+			},
+			"text": " especially if you're running multiple depths against the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,360",
+				"to": "00:03:32,680"
+			},
+			"offsets": {
+				"from": 212360,
+				"to": 212680
+			},
+			"text": " node."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,680",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 212680,
+				"to": 215000
+			},
+			"text": " Why do you want to place the key in the node?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:36,600"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 216600
+			},
+			"text": " Keep the key yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,600",
+				"to": "00:03:38,640"
+			},
+			"offsets": {
+				"from": 216600,
+				"to": 218640
+			},
+			"text": " It's much safer that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,640",
+				"to": "00:03:42,080"
+			},
+			"offsets": {
+				"from": 218640,
+				"to": 222080
+			},
+			"text": " Or the other thing that the RPC spec, or Joe is JSON RPC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,080",
+				"to": "00:03:44,760"
+			},
+			"offsets": {
+				"from": 222080,
+				"to": 224760
+			},
+			"text": " it has this fancy hex encoding for quantities"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,760",
+				"to": "00:03:47,680"
+			},
+			"offsets": {
+				"from": 224760,
+				"to": 227680
+			},
+			"text": " and other stuff that are really non-trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,680",
+				"to": "00:03:49,880"
+			},
+			"offsets": {
+				"from": 227680,
+				"to": 229880
+			},
+			"text": " So to get them right, it's not such"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,880",
+				"to": "00:03:50,480"
+			},
+			"offsets": {
+				"from": 229880,
+				"to": 230480
+			},
+			"text": " an easy thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,480",
+				"to": "00:03:52,040"
+			},
+			"offsets": {
+				"from": 230480,
+				"to": 232040
+			},
+			"text": " And although every developer will probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,040",
+				"to": "00:03:55,480"
+			},
+			"offsets": {
+				"from": 232040,
+				"to": 235480
+			},
+			"text": " be able to do it, it's just a pain to do it yourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,480",
+				"to": "00:03:58,400"
+			},
+			"offsets": {
+				"from": 235480,
+				"to": 238400
+			},
+			"text": " Now, if you actually want to interact with an Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,400",
+				"to": "00:04:01,840"
+			},
+			"offsets": {
+				"from": 238400,
+				"to": 241840
+			},
+			"text": " contract, Ethereum has its own API, the way to encode and decode"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,840",
+				"to": "00:04:03,800"
+			},
+			"offsets": {
+				"from": 241840,
+				"to": 243800
+			},
+			"text": " function calls and parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,800",
+				"to": "00:04:06,320"
+			},
+			"offsets": {
+				"from": 243800,
+				"to": 246320
+			},
+			"text": " And that is very, very complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,320",
+				"to": "00:04:09,320"
+			},
+			"offsets": {
+				"from": 246320,
+				"to": 249320
+			},
+			"text": " So yes, it can be done, but it takes a ton of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,320",
+				"to": "00:04:11,840"
+			},
+			"offsets": {
+				"from": 249320,
+				"to": 251840
+			},
+			"text": " And possibly you don't really want to waste that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,840",
+				"to": "00:04:14,160"
+			},
+			"offsets": {
+				"from": 251840,
+				"to": 254160
+			},
+			"text": " You want to spend time developing your depths, not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,160",
+				"to": "00:04:15,880"
+			},
+			"offsets": {
+				"from": 254160,
+				"to": 255880
+			},
+			"text": " implementing some protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,880",
+				"to": "00:04:18,080"
+			},
+			"offsets": {
+				"from": 255880,
+				"to": 258080
+			},
+			"text": " And last but not least, there are some cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,080",
+				"to": "00:04:21,200"
+			},
+			"offsets": {
+				"from": 258080,
+				"to": 261200
+			},
+			"text": " where it's really natural that you don't want an external node."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,200",
+				"to": "00:04:22,760"
+			},
+			"offsets": {
+				"from": 261200,
+				"to": 262760
+			},
+			"text": " You want to be able to run your own node."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,760",
+				"to": "00:04:25,200"
+			},
+			"offsets": {
+				"from": 262760,
+				"to": 265200
+			},
+			"text": " For example, if you have a mobile app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,200",
+				"to": "00:04:27,880"
+			},
+			"offsets": {
+				"from": 265200,
+				"to": 267880
+			},
+			"text": " then it kind of sounds weird that, OK, to use my app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,880",
+				"to": "00:04:29,840"
+			},
+			"offsets": {
+				"from": 267880,
+				"to": 269840
+			},
+			"text": " please download this app, this app, and this app."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,840",
+				"to": "00:04:33,400"
+			},
+			"offsets": {
+				"from": 269840,
+				"to": 273400
+			},
+			"text": " So the user will just say, no, that's not go there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,400",
+				"to": "00:04:35,080"
+			},
+			"offsets": {
+				"from": 273400,
+				"to": 275080
+			},
+			"text": " And these were the pain points that we really"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,080",
+				"to": "00:04:37,920"
+			},
+			"offsets": {
+				"from": 275080,
+				"to": 277920
+			},
+			"text": " tried to address in guess 1.5."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,920",
+				"to": "00:04:42,360"
+			},
+			"offsets": {
+				"from": 277920,
+				"to": 282360
+			},
+			"text": " And so let's dive deep in through the technicalities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,360",
+				"to": "00:04:45,120"
+			},
+			"offsets": {
+				"from": 282360,
+				"to": 285120
+			},
+			"text": " So first of all, can client-side account management"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,120",
+				"to": "00:04:46,520"
+			},
+			"offsets": {
+				"from": 285120,
+				"to": 286520
+			},
+			"text": " be done in a simple way?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,520",
+				"to": "00:04:49,880"
+			},
+			"offsets": {
+				"from": 286520,
+				"to": 289880
+			},
+			"text": " And our answer was that, yes, of course, it can be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,880",
+				"to": "00:04:53,600"
+			},
+			"offsets": {
+				"from": 289880,
+				"to": 293600
+			},
+			"text": " And the following code that you kind of see on the screen"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,600",
+				"to": "00:04:59,200"
+			},
+			"offsets": {
+				"from": 293600,
+				"to": 299200
+			},
+			"text": " are four method calls and full account life cycle"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,200",
+				"to": "00:04:59,840"
+			},
+			"offsets": {
+				"from": 299200,
+				"to": 299840
+			},
+			"text": " management."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,840",
+				"to": "00:05:02,440"
+			},
+			"offsets": {
+				"from": 299840,
+				"to": 302440
+			},
+			"text": " You can do fully client-side in your own code"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,440",
+				"to": "00:05:07,400"
+			},
+			"offsets": {
+				"from": 302440,
+				"to": 307400
+			},
+			"text": " without actually having to run get parity or any other client."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,400",
+				"to": "00:05:09,680"
+			},
+			"offsets": {
+				"from": 307400,
+				"to": 309680
+			},
+			"text": " You can basically create a new account."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,680",
+				"to": "00:05:12,200"
+			},
+			"offsets": {
+				"from": 309680,
+				"to": 312200
+			},
+			"text": " You can export that account into JSON."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,200",
+				"to": "00:05:13,720"
+			},
+			"offsets": {
+				"from": 312200,
+				"to": 313720
+			},
+			"text": " You can take it wherever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,720",
+				"to": "00:05:15,400"
+			},
+			"offsets": {
+				"from": 313720,
+				"to": 315400
+			},
+			"text": " You can import it back up."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,400",
+				"to": "00:05:18,120"
+			},
+			"offsets": {
+				"from": 315400,
+				"to": 318120
+			},
+			"text": " And, yes, you can, of course, delete it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,120",
+				"to": "00:05:19,800"
+			},
+			"offsets": {
+				"from": 318120,
+				"to": 319800
+			},
+			"text": " And all of this is done client-side"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,800",
+				"to": "00:05:21,960"
+			},
+			"offsets": {
+				"from": 319800,
+				"to": 321960
+			},
+			"text": " without any backing theorem node."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,960",
+				"to": "00:05:24,960"
+			},
+			"offsets": {
+				"from": 321960,
+				"to": 324960
+			},
+			"text": " And that's actually the whole program"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,960",
+				"to": "00:05:26,240"
+			},
+			"offsets": {
+				"from": 324960,
+				"to": 326240
+			},
+			"text": " that I just running there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,240",
+				"to": "00:05:28,400"
+			},
+			"offsets": {
+				"from": 326240,
+				"to": 328400
+			},
+			"text": " So everything is full program."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,400",
+				"to": "00:05:30,760"
+			},
+			"offsets": {
+				"from": 328400,
+				"to": 330760
+			},
+			"text": " Nothing else is outside of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,760",
+				"to": "00:05:33,720"
+			},
+			"offsets": {
+				"from": 330760,
+				"to": 333720
+			},
+			"text": " And this is basically how we cleaned up the account management."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,720",
+				"to": "00:05:35,120"
+			},
+			"offsets": {
+				"from": 333720,
+				"to": 335120
+			},
+			"text": " So you can take the account manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,120",
+				"to": "00:05:37,640"
+			},
+			"offsets": {
+				"from": 335120,
+				"to": 337640
+			},
+			"text": " You can take your account, Ethereum, and take it everywhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,640",
+				"to": "00:05:38,600"
+			},
+			"offsets": {
+				"from": 337640,
+				"to": 338600
+			},
+			"text": " you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,600",
+				"to": "00:05:41,800"
+			},
+			"offsets": {
+				"from": 338600,
+				"to": 341800
+			},
+			"text": " And you don't have to leave it inside guess or any other node."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,800",
+				"to": "00:05:43,920"
+			},
+			"offsets": {
+				"from": 341800,
+				"to": 343920
+			},
+			"text": " You can just do it yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,920",
+				"to": "00:05:44,800"
+			},
+			"offsets": {
+				"from": 343920,
+				"to": 344800
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,800",
+				"to": "00:05:45,400"
+			},
+			"offsets": {
+				"from": 344800,
+				"to": 345400
+			},
+			"text": " Now, what happens?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,400",
+				"to": "00:05:47,120"
+			},
+			"offsets": {
+				"from": 345400,
+				"to": 347120
+			},
+			"text": " You can manage your own accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,120",
+				"to": "00:05:50,120"
+			},
+			"offsets": {
+				"from": 347120,
+				"to": 350120
+			},
+			"text": " But another thing that you really want to do is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,120",
+				"to": "00:05:52,840"
+			},
+			"offsets": {
+				"from": 350120,
+				"to": 352840
+			},
+			"text": " OK, with only with accounts, you can do much."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,840",
+				"to": "00:05:56,200"
+			},
+			"offsets": {
+				"from": 352840,
+				"to": 356200
+			},
+			"text": " You need a node to actually interact with."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,200",
+				"to": "00:06:00,320"
+			},
+			"offsets": {
+				"from": 356200,
+				"to": 360320
+			},
+			"text": " So the second part that we spent quite a lot of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,320",
+				"to": "00:06:03,520"
+			},
+			"offsets": {
+				"from": 360320,
+				"to": 363520
+			},
+			"text": " is to cleaning up the remote APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,520",
+				"to": "00:06:07,760"
+			},
+			"offsets": {
+				"from": 363520,
+				"to": 367760
+			},
+			"text": " And for this, we also provided a really nice library."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,760",
+				"to": "00:06:10,240"
+			},
+			"offsets": {
+				"from": 367760,
+				"to": 370240
+			},
+			"text": " It's called ETH client that can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,240",
+				"to": "00:06:14,720"
+			},
+			"offsets": {
+				"from": 370240,
+				"to": 374720
+			},
+			"text": " dial into any Ethereum client either via."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,720",
+				"to": "00:06:17,800"
+			},
+			"offsets": {
+				"from": 374720,
+				"to": 377800
+			},
+			"text": " IPC socket, HTTP, WebSocket."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,800",
+				"to": "00:06:20,960"
+			},
+			"offsets": {
+				"from": 377800,
+				"to": 380960
+			},
+			"text": " Basically, it's a full-fledged Ethereum client."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,960",
+				"to": "00:06:23,560"
+			},
+			"offsets": {
+				"from": 380960,
+				"to": 383560
+			},
+			"text": " And furthermore, it's not just a simple RPC client"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,560",
+				"to": "00:06:27,440"
+			},
+			"offsets": {
+				"from": 383560,
+				"to": 387440
+			},
+			"text": " that you need to manually specify all the JSON RPC details."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,440",
+				"to": "00:06:32,200"
+			},
+			"offsets": {
+				"from": 387440,
+				"to": 392200
+			},
+			"text": " Rather, it's actually all the officially specced methods"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,200",
+				"to": "00:06:33,120"
+			},
+			"offsets": {
+				"from": 392200,
+				"to": 393120
+			},
+			"text": " are available."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,120",
+				"to": "00:06:36,800"
+			},
+			"offsets": {
+				"from": 393120,
+				"to": 396800
+			},
+			"text": " So you can, for example, query the current block."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,800",
+				"to": "00:06:40,080"
+			},
+			"offsets": {
+				"from": 396800,
+				"to": 400080
+			},
+			"text": " So basically, this nil here is just"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,080",
+				"to": "00:06:42,600"
+			},
+			"offsets": {
+				"from": 400080,
+				"to": 402600
+			},
+			"text": " saying that I want the current block and not"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,600",
+				"to": "00:06:45,360"
+			},
+			"offsets": {
+				"from": 402600,
+				"to": 405360
+			},
+			"text": " any random block."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,360",
+				"to": "00:06:48,280"
+			},
+			"offsets": {
+				"from": 405360,
+				"to": 408280
+			},
+			"text": " I can, for example, also query the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,280",
+				"to": "00:06:50,520"
+			},
+			"offsets": {
+				"from": 408280,
+				"to": 410520
+			},
+			"text": " So previously, that was querying the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,520",
+				"to": "00:06:52,560"
+			},
+			"offsets": {
+				"from": 410520,
+				"to": 412560
+			},
+			"text": " I can query the state tries."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,560",
+				"to": "00:06:54,200"
+			},
+			"offsets": {
+				"from": 412560,
+				"to": 414200
+			},
+			"text": " This is just querying how much funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,200",
+				"to": "00:06:58,760"
+			},
+			"offsets": {
+				"from": 414200,
+				"to": 418760
+			},
+			"text": " the currently Ethereum tip jar has, the foundation tip jar."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,760",
+				"to": "00:07:02,280"
+			},
+			"offsets": {
+				"from": 418760,
+				"to": 422280
+			},
+			"text": " And one more thing that I'm not sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,280",
+				"to": "00:07:05,400"
+			},
+			"offsets": {
+				"from": 422280,
+				"to": 425400
+			},
+			"text": " whether it's in producing 1.4 or 1.5."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,400",
+				"to": "00:07:07,800"
+			},
+			"offsets": {
+				"from": 425400,
+				"to": 427800
+			},
+			"text": " But we actually do have subscriptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,800",
+				"to": "00:07:09,760"
+			},
+			"offsets": {
+				"from": 427800,
+				"to": 429760
+			},
+			"text": " So one of the problems we've missed"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,760",
+				"to": "00:07:12,160"
+			},
+			"offsets": {
+				"from": 429760,
+				"to": 432160
+			},
+			"text": " during the DAO crowdfunding phase"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,160",
+				"to": "00:07:14,600"
+			},
+			"offsets": {
+				"from": 432160,
+				"to": 434600
+			},
+			"text": " was it was hammering the underlying node"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,600",
+				"to": "00:07:17,680"
+			},
+			"offsets": {
+				"from": 434600,
+				"to": 437680
+			},
+			"text": " with tens of thousands of requests per second RPC request."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,680",
+				"to": "00:07:19,720"
+			},
+			"offsets": {
+				"from": 437680,
+				"to": 439720
+			},
+			"text": " And the node was basically dying because it couldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,720",
+				"to": "00:07:21,240"
+			},
+			"offsets": {
+				"from": 439720,
+				"to": 441240
+			},
+			"text": " serve those requests."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,240",
+				"to": "00:07:23,600"
+			},
+			"offsets": {
+				"from": 441240,
+				"to": 443600
+			},
+			"text": " And the single problem was that the nodes didn't subscribe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,600",
+				"to": "00:07:26,600"
+			},
+			"offsets": {
+				"from": 443600,
+				"to": 446600
+			},
+			"text": " didn't support push notifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,600",
+				"to": "00:07:29,600"
+			},
+			"offsets": {
+				"from": 446600,
+				"to": 449600
+			},
+			"text": " And that's also something that we kind of fixed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,600",
+				"to": "00:07:31,320"
+			},
+			"offsets": {
+				"from": 449600,
+				"to": 451320
+			},
+			"text": " So now you can just-- you have a--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,320",
+				"to": "00:07:33,320"
+			},
+			"offsets": {
+				"from": 451320,
+				"to": 453320
+			},
+			"text": " your Ethereum clients can simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,320",
+				"to": "00:07:35,520"
+			},
+			"offsets": {
+				"from": 453320,
+				"to": 455520
+			},
+			"text": " subscribe to new head events."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,520",
+				"to": "00:07:36,960"
+			},
+			"offsets": {
+				"from": 455520,
+				"to": 456960
+			},
+			"text": " And whenever a new block is mined,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,960",
+				"to": "00:07:39,400"
+			},
+			"offsets": {
+				"from": 456960,
+				"to": 459400
+			},
+			"text": " it will be immediately sent to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,400",
+				"to": "00:07:42,760"
+			},
+			"offsets": {
+				"from": 459400,
+				"to": 462760
+			},
+			"text": " And you don't have to do boiling at all anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,760",
+				"to": "00:07:46,520"
+			},
+			"offsets": {
+				"from": 462760,
+				"to": 466520
+			},
+			"text": " And of course, if we run that, again, that's all the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,520",
+				"to": "00:07:49,040"
+			},
+			"offsets": {
+				"from": 466520,
+				"to": 469040
+			},
+			"text": " It will tell me that my chain height is currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,040",
+				"to": "00:07:51,680"
+			},
+			"offsets": {
+				"from": 469040,
+				"to": 471680
+			},
+			"text": " at 22 million-- or 2 million something."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,680",
+				"to": "00:07:55,920"
+			},
+			"offsets": {
+				"from": 471680,
+				"to": 475920
+			},
+			"text": " It told me that the tip jar has about 3,800 ethers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,920",
+				"to": "00:07:58,400"
+			},
+			"offsets": {
+				"from": 475920,
+				"to": 478400
+			},
+			"text": " And as you can see, my laptop is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,400",
+				"to": "00:07:59,640"
+			},
+			"offsets": {
+				"from": 478400,
+				"to": 479640
+			},
+			"text": " connected to the mainnet now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,640",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 479640,
+				"to": 482000
+			},
+			"text": " And as the blocks are being mined on the mainnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:04,320"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 484320
+			},
+			"text": " it is immediately pushing it to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,320",
+				"to": "00:08:07,280"
+			},
+			"offsets": {
+				"from": 484320,
+				"to": 487280
+			},
+			"text": " And again, the code is just the three function codes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,280",
+				"to": "00:08:08,120"
+			},
+			"offsets": {
+				"from": 487280,
+				"to": 488120
+			},
+			"text": " that you see on the screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,120",
+				"to": "00:08:09,080"
+			},
+			"offsets": {
+				"from": 488120,
+				"to": 489080
+			},
+			"text": " Full source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,080",
+				"to": "00:08:11,600"
+			},
+			"offsets": {
+				"from": 489080,
+				"to": 491600
+			},
+			"text": " You can see it on the screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,600",
+				"to": "00:08:16,400"
+			},
+			"offsets": {
+				"from": 491600,
+				"to": 496400
+			},
+			"text": " So basically, you can do chain expiration and state querying"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,400",
+				"to": "00:08:21,560"
+			},
+			"offsets": {
+				"from": 496400,
+				"to": 501560
+			},
+			"text": " and everything via a few API calls, a few programmatic calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,560",
+				"to": "00:08:24,080"
+			},
+			"offsets": {
+				"from": 501560,
+				"to": 504080
+			},
+			"text": " You don't have to implement anything yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,080",
+				"to": "00:08:26,200"
+			},
+			"offsets": {
+				"from": 504080,
+				"to": 506200
+			},
+			"text": " So OK, now if you have key management"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,200",
+				"to": "00:08:27,920"
+			},
+			"offsets": {
+				"from": 506200,
+				"to": 507920
+			},
+			"text": " and you can interact with the remote node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,920",
+				"to": "00:08:29,480"
+			},
+			"offsets": {
+				"from": 507920,
+				"to": 509480
+			},
+			"text": " you almost have everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,480",
+				"to": "00:08:32,760"
+			},
+			"offsets": {
+				"from": 509480,
+				"to": 512760
+			},
+			"text": " But if you actually want to interact with the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,760",
+				"to": "00:08:34,240"
+			},
+			"offsets": {
+				"from": 512760,
+				"to": 514240
+			},
+			"text": " then you have a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,240",
+				"to": "00:08:37,960"
+			},
+			"offsets": {
+				"from": 514240,
+				"to": 517960
+			},
+			"text": " And the problem is that your code"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,960",
+				"to": "00:08:40,520"
+			},
+			"offsets": {
+				"from": 517960,
+				"to": 520520
+			},
+			"text": " needs to actually implement Ethereum API."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,520",
+				"to": "00:08:43,120"
+			},
+			"offsets": {
+				"from": 520520,
+				"to": 523120
+			},
+			"text": " The API, as I said, is not trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,120",
+				"to": "00:08:45,120"
+			},
+			"offsets": {
+				"from": 523120,
+				"to": 525120
+			},
+			"text": " The basics are kind of easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,120",
+				"to": "00:08:46,880"
+			},
+			"offsets": {
+				"from": 525120,
+				"to": 526880
+			},
+			"text": " But there are quite a lot of corner cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,880",
+				"to": "00:08:50,160"
+			},
+			"offsets": {
+				"from": 526880,
+				"to": 530160
+			},
+			"text": " For example, if you try to serialize or deserialize"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,160",
+				"to": "00:08:52,520"
+			},
+			"offsets": {
+				"from": 530160,
+				"to": 532520
+			},
+			"text": " an array of structures in Web3.js,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,520",
+				"to": "00:08:55,760"
+			},
+			"offsets": {
+				"from": 532520,
+				"to": 535760
+			},
+			"text": " you will find many corner cases that aren't completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,760",
+				"to": "00:08:57,520"
+			},
+			"offsets": {
+				"from": 535760,
+				"to": 537520
+			},
+			"text": " properly handled."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,520",
+				"to": "00:09:00,040"
+			},
+			"offsets": {
+				"from": 537520,
+				"to": 540040
+			},
+			"text": " And many times people usually just say on the internet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,040",
+				"to": "00:09:01,520"
+			},
+			"offsets": {
+				"from": 540040,
+				"to": 541520
+			},
+			"text": " just use ints."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,520",
+				"to": "00:09:04,080"
+			},
+			"offsets": {
+				"from": 541520,
+				"to": 544080
+			},
+			"text": " Yeah, but if solidity supports all these other types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,080",
+				"to": "00:09:05,560"
+			},
+			"offsets": {
+				"from": 544080,
+				"to": 545560
+			},
+			"text": " why not use them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,560",
+				"to": "00:09:08,400"
+			},
+			"offsets": {
+				"from": 545560,
+				"to": 548400
+			},
+			"text": " And implementing them is kind of in the degraded detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,400",
+				"to": "00:09:10,400"
+			},
+			"offsets": {
+				"from": 548400,
+				"to": 550400
+			},
+			"text": " There are quite a lot of details."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,400",
+				"to": "00:09:12,480"
+			},
+			"offsets": {
+				"from": 550400,
+				"to": 552480
+			},
+			"text": " So it would be very nice if we could have a library that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,480",
+				"to": "00:09:14,840"
+			},
+			"offsets": {
+				"from": 552480,
+				"to": 554840
+			},
+			"text": " does this automatically for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,840",
+				"to": "00:09:17,360"
+			},
+			"offsets": {
+				"from": 554840,
+				"to": 557360
+			},
+			"text": " Then of course, if I want to interact with the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,360",
+				"to": "00:09:19,280"
+			},
+			"offsets": {
+				"from": 557360,
+				"to": 559280
+			},
+			"text": " it would be nice if the library could also"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,280",
+				"to": "00:09:22,160"
+			},
+			"offsets": {
+				"from": 559280,
+				"to": 562160
+			},
+			"text": " cover all the remote client API stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,160",
+				"to": "00:09:25,200"
+			},
+			"offsets": {
+				"from": 562160,
+				"to": 565200
+			},
+			"text": " So I don't have to care about RPC at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,200",
+				"to": "00:09:27,120"
+			},
+			"offsets": {
+				"from": 565200,
+				"to": 567120
+			},
+			"text": " And last but not least, if you are--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,120",
+				"to": "00:09:29,160"
+			},
+			"offsets": {
+				"from": 567120,
+				"to": 569160
+			},
+			"text": " so if I have an already existing contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,160",
+				"to": "00:09:31,320"
+			},
+			"offsets": {
+				"from": 569160,
+				"to": 571320
+			},
+			"text": " and I just want to interface with it, OK, then cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,320",
+				"to": "00:09:34,360"
+			},
+			"offsets": {
+				"from": 571320,
+				"to": 574360
+			},
+			"text": " I can just create some code to access a few methods,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,360",
+				"to": "00:09:35,320"
+			},
+			"offsets": {
+				"from": 574360,
+				"to": 575320
+			},
+			"text": " and I'm done."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,320",
+				"to": "00:09:38,080"
+			},
+			"offsets": {
+				"from": 575320,
+				"to": 578080
+			},
+			"text": " But what happens if I'm actually developing that contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,080",
+				"to": "00:09:40,160"
+			},
+			"offsets": {
+				"from": 578080,
+				"to": 580160
+			},
+			"text": " If I'm developing it that often I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,160",
+				"to": "00:09:42,520"
+			},
+			"offsets": {
+				"from": 580160,
+				"to": 582520
+			},
+			"text": " just changing some solidity lines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,520",
+				"to": "00:09:43,880"
+			},
+			"offsets": {
+				"from": 582520,
+				"to": 583880
+			},
+			"text": " and the lines I change, I want them"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,880",
+				"to": "00:09:45,840"
+			},
+			"offsets": {
+				"from": 583880,
+				"to": 585840
+			},
+			"text": " to immediately reflect in my code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,840",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 585840,
+				"to": 588000
+			},
+			"text": " And this is a really nasty part."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:48,960"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 588960
+			},
+			"text": " I change solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,960",
+				"to": "00:09:51,520"
+			},
+			"offsets": {
+				"from": 588960,
+				"to": 591520
+			},
+			"text": " Then I need to have to change my own code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,520",
+				"to": "00:09:54,640"
+			},
+			"offsets": {
+				"from": 591520,
+				"to": 594640
+			},
+			"text": " And then I need to make sure that none of my tests broke."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,640",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 594640,
+				"to": 599000
+			},
+			"text": " And it's really a long procedure."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:02,760"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 602760
+			},
+			"text": " And when you want to update solidity 10 times per minute,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,760",
+				"to": "00:10:04,600"
+			},
+			"offsets": {
+				"from": 602760,
+				"to": 604600
+			},
+			"text": " it doesn't really work out."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,600",
+				"to": "00:10:08,720"
+			},
+			"offsets": {
+				"from": 604600,
+				"to": 608720
+			},
+			"text": " So our solution to this problem was you created a began."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,720",
+				"to": "00:10:11,120"
+			},
+			"offsets": {
+				"from": 608720,
+				"to": 611120
+			},
+			"text": " Basically, it's a native binding generator."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,120",
+				"to": "00:10:12,600"
+			},
+			"offsets": {
+				"from": 611120,
+				"to": 612600
+			},
+			"text": " And what it does is that you can simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,600",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 612600,
+				"to": 615000
+			},
+			"text": " specify a solidity contract, and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:17,760"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 617760
+			},
+			"text": " will generate your full Go source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,760",
+				"to": "00:10:20,800"
+			},
+			"offsets": {
+				"from": 617760,
+				"to": 620800
+			},
+			"text": " And you can just plug that Go source code into any project."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,800",
+				"to": "00:10:23,120"
+			},
+			"offsets": {
+				"from": 620800,
+				"to": 623120
+			},
+			"text": " And you will have immediately access to all the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,120",
+				"to": "00:10:25,760"
+			},
+			"offsets": {
+				"from": 623120,
+				"to": 625760
+			},
+			"text": " calls, all the transactions, all everything, natively."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,760",
+				"to": "00:10:27,960"
+			},
+			"offsets": {
+				"from": 625760,
+				"to": 627960
+			},
+			"text": " And you don't have to care about any of the encoding"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,960",
+				"to": "00:10:30,360"
+			},
+			"offsets": {
+				"from": 627960,
+				"to": 630360
+			},
+			"text": " or any of the RPC calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,360",
+				"to": "00:10:31,880"
+			},
+			"offsets": {
+				"from": 630360,
+				"to": 631880
+			},
+			"text": " And the really nice part about that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,880",
+				"to": "00:10:34,600"
+			},
+			"offsets": {
+				"from": 631880,
+				"to": 634600
+			},
+			"text": " is that if you rewrite your solidity contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,600",
+				"to": "00:10:36,920"
+			},
+			"offsets": {
+				"from": 634600,
+				"to": 636920
+			},
+			"text": " then immediately it gets recompiled."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,920",
+				"to": "00:10:39,240"
+			},
+			"offsets": {
+				"from": 636920,
+				"to": 639240
+			},
+			"text": " I mean, the Go code gets regenerated."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,240",
+				"to": "00:10:42,400"
+			},
+			"offsets": {
+				"from": 639240,
+				"to": 642400
+			},
+			"text": " And if it's type checked, it's compile time type checked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,400",
+				"to": "00:10:46,800"
+			},
+			"offsets": {
+				"from": 642400,
+				"to": 646800
+			},
+			"text": " you don't get surprises during actual deployment that, oops,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,800",
+				"to": "00:10:49,120"
+			},
+			"offsets": {
+				"from": 646800,
+				"to": 649120
+			},
+			"text": " something didn't work out."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,120",
+				"to": "00:10:51,720"
+			},
+			"offsets": {
+				"from": 649120,
+				"to": 651720
+			},
+			"text": " So how does, for example, this look?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,720",
+				"to": "00:10:55,800"
+			},
+			"offsets": {
+				"from": 651720,
+				"to": 655800
+			},
+			"text": " Well, if the top part, you can see a solidity contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,800",
+				"to": "00:10:58,240"
+			},
+			"offsets": {
+				"from": 655800,
+				"to": 658240
+			},
+			"text": " Basically, it's a snippet from our release contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,240",
+				"to": "00:10:59,680"
+			},
+			"offsets": {
+				"from": 658240,
+				"to": 659680
+			},
+			"text": " The get release Oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,680",
+				"to": "00:11:02,920"
+			},
+			"offsets": {
+				"from": 659680,
+				"to": 662920
+			},
+			"text": " But for every release, we kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,920",
+				"to": "00:11:05,440"
+			},
+			"offsets": {
+				"from": 662920,
+				"to": 665440
+			},
+			"text": " bump a version number on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,440",
+				"to": "00:11:07,600"
+			},
+			"offsets": {
+				"from": 665440,
+				"to": 667600
+			},
+			"text": " And then every time a get node starts up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,600",
+				"to": "00:11:10,280"
+			},
+			"offsets": {
+				"from": 667600,
+				"to": 670280
+			},
+			"text": " it just checks this version on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,280",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 670280,
+				"to": 672000
+			},
+			"text": " And if a newer version appears, then it just"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:15,720"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 675720
+			},
+			"text": " prints out a warning to the user that, hello, please update."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,720",
+				"to": "00:11:19,360"
+			},
+			"offsets": {
+				"from": 675720,
+				"to": 679360
+			},
+			"text": " And well, it does a bit of maintenance in the background."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,360",
+				"to": "00:11:21,120"
+			},
+			"offsets": {
+				"from": 679360,
+				"to": 681120
+			},
+			"text": " But essentially, this single function"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,120",
+				"to": "00:11:23,480"
+			},
+			"offsets": {
+				"from": 681120,
+				"to": 683480
+			},
+			"text": " is what is fetching the current version."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,480",
+				"to": "00:11:26,160"
+			},
+			"offsets": {
+				"from": 683480,
+				"to": 686160
+			},
+			"text": " And if you run through this, run this code through Abigam,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,160",
+				"to": "00:11:30,040"
+			},
+			"offsets": {
+				"from": 686160,
+				"to": 690040
+			},
+			"text": " then it will give out about 400 lines of Go code"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,040",
+				"to": "00:11:32,560"
+			},
+			"offsets": {
+				"from": 690040,
+				"to": 692560
+			},
+			"text": " that we didn't have to write ourselves, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,560",
+				"to": "00:11:37,320"
+			},
+			"offsets": {
+				"from": 692560,
+				"to": 697320
+			},
+			"text": " for the other functions in totaling up to 400 lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,320",
+				"to": "00:11:40,200"
+			},
+			"offsets": {
+				"from": 697320,
+				"to": 700200
+			},
+			"text": " But it does give us a really nice API."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,200",
+				"to": "00:11:43,720"
+			},
+			"offsets": {
+				"from": 700200,
+				"to": 703720
+			},
+			"text": " It says there, basically, I have a new release Oracle method"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,720",
+				"to": "00:11:46,160"
+			},
+			"offsets": {
+				"from": 703720,
+				"to": 706160
+			},
+			"text": " that I can just point it to a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,160",
+				"to": "00:11:49,280"
+			},
+			"offsets": {
+				"from": 706160,
+				"to": 709280
+			},
+			"text": " I can tell it how it can reach an Ethereum client that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,280",
+				"to": "00:11:52,400"
+			},
+			"offsets": {
+				"from": 709280,
+				"to": 712400
+			},
+			"text": " might be over HTTP web socket, or IPC, or actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,400",
+				"to": "00:11:54,160"
+			},
+			"offsets": {
+				"from": 712400,
+				"to": 714160
+			},
+			"text": " an in-process client."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,160",
+				"to": "00:11:56,920"
+			},
+			"offsets": {
+				"from": 714160,
+				"to": 716920
+			},
+			"text": " And then I can just call that I want to get the current version."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,920",
+				"to": "00:11:59,480"
+			},
+			"offsets": {
+				"from": 716920,
+				"to": 719480
+			},
+			"text": " And it will just, if I run this, then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,480",
+				"to": "00:12:03,960"
+			},
+			"offsets": {
+				"from": 719480,
+				"to": 723960
+			},
+			"text": " will see one of the nasty parts of our lazy side"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,960",
+				"to": "00:12:07,040"
+			},
+			"offsets": {
+				"from": 723960,
+				"to": 727040
+			},
+			"text": " is that we actually never updated the version for yesterday's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,040",
+				"to": "00:12:08,560"
+			},
+			"offsets": {
+				"from": 727040,
+				"to": 728560
+			},
+			"text": " Hotfix release."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,560",
+				"to": "00:12:10,440"
+			},
+			"offsets": {
+				"from": 728560,
+				"to": 730440
+			},
+			"text": " So oops, sorry about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,440",
+				"to": "00:12:14,040"
+			},
+			"offsets": {
+				"from": 730440,
+				"to": 734040
+			},
+			"text": " So the blockchain wasn't updated to the latest release."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,040",
+				"to": "00:12:19,800"
+			},
+			"offsets": {
+				"from": 734040,
+				"to": 739800
+			},
+			"text": " But basically, I could simply call a single command line"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,800",
+				"to": "00:12:23,200"
+			},
+			"offsets": {
+				"from": 739800,
+				"to": 743200
+			},
+			"text": " utility, and then I can immediately work with my contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,200",
+				"to": "00:12:28,920"
+			},
+			"offsets": {
+				"from": 743200,
+				"to": 748920
+			},
+			"text": " I don't have to write any boilerplate code myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,920",
+				"to": "00:12:33,400"
+			},
+			"offsets": {
+				"from": 748920,
+				"to": 753400
+			},
+			"text": " And then last but not least, one of the interesting things"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,400",
+				"to": "00:12:39,280"
+			},
+			"offsets": {
+				"from": 753400,
+				"to": 759280
+			},
+			"text": " that you can also do is often--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,280",
+				"to": "00:12:42,200"
+			},
+			"offsets": {
+				"from": 759280,
+				"to": 762200
+			},
+			"text": " so usually in this ecosystem, there"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,200",
+				"to": "00:12:45,680"
+			},
+			"offsets": {
+				"from": 762200,
+				"to": 765680
+			},
+			"text": " has been a relatively little request"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,680",
+				"to": "00:12:47,160"
+			},
+			"offsets": {
+				"from": 765680,
+				"to": 767160
+			},
+			"text": " to run in-process nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,160",
+				"to": "00:12:50,040"
+			},
+			"offsets": {
+				"from": 767160,
+				"to": 770040
+			},
+			"text": " But there are quite a lot of cases where it's genuinely"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,040",
+				"to": "00:12:51,680"
+			},
+			"offsets": {
+				"from": 770040,
+				"to": 771680
+			},
+			"text": " do need to run in-process node."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,680",
+				"to": "00:12:54,560"
+			},
+			"offsets": {
+				"from": 771680,
+				"to": 774560
+			},
+			"text": " For example, if I'm developing an application which"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,560",
+				"to": "00:12:56,880"
+			},
+			"offsets": {
+				"from": 774560,
+				"to": 776880
+			},
+			"text": " isn't Ethereum-centered, rather Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,880",
+				"to": "00:12:58,640"
+			},
+			"offsets": {
+				"from": 776880,
+				"to": 778640
+			},
+			"text": " is just a utility in it, then I would"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,640",
+				"to": "00:13:01,600"
+			},
+			"offsets": {
+				"from": 778640,
+				"to": 781600
+			},
+			"text": " like to distribute my application to clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,600",
+				"to": "00:13:04,040"
+			},
+			"offsets": {
+				"from": 781600,
+				"to": 784040
+			},
+			"text": " or to any other people without asking them"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,040",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 784040,
+				"to": 786000
+			},
+			"text": " to first sync up an 80 gigabyte blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:09,400"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 789400
+			},
+			"text": " or just telling them to please download another app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,400",
+				"to": "00:13:11,280"
+			},
+			"offsets": {
+				"from": 789400,
+				"to": 791280
+			},
+			"text": " whether that's one client or other."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,280",
+				"to": "00:13:12,400"
+			},
+			"offsets": {
+				"from": 791280,
+				"to": 792400
+			},
+			"text": " It doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,400",
+				"to": "00:13:13,560"
+			},
+			"offsets": {
+				"from": 792400,
+				"to": 793560
+			},
+			"text": " I just want to distribute my app."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,560",
+				"to": "00:13:14,760"
+			},
+			"offsets": {
+				"from": 793560,
+				"to": 794760
+			},
+			"text": " Here is the single binary."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,760",
+				"to": "00:13:17,120"
+			},
+			"offsets": {
+				"from": 794760,
+				"to": 797120
+			},
+			"text": " You can run it, and it just works."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,120",
+				"to": "00:13:22,360"
+			},
+			"offsets": {
+				"from": 797120,
+				"to": 802360
+			},
+			"text": " And for that, we cleaned up our API so that API-wise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,360",
+				"to": "00:13:24,800"
+			},
+			"offsets": {
+				"from": 802360,
+				"to": 804800
+			},
+			"text": " in the Go client, you can just create an empty peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,800",
+				"to": "00:13:25,240"
+			},
+			"offsets": {
+				"from": 804800,
+				"to": 805240
+			},
+			"text": " node."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,240",
+				"to": "00:13:27,120"
+			},
+			"offsets": {
+				"from": 805240,
+				"to": 807120
+			},
+			"text": " It's just a deaf peer-to-peer implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,120",
+				"to": "00:13:29,360"
+			},
+			"offsets": {
+				"from": 807120,
+				"to": 809360
+			},
+			"text": " You can attach any protocol, whether that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,360",
+				"to": "00:13:31,560"
+			},
+			"offsets": {
+				"from": 809360,
+				"to": 811560
+			},
+			"text": " an official protocol to it or whether your own custom"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,560",
+				"to": "00:13:32,040"
+			},
+			"offsets": {
+				"from": 811560,
+				"to": 812040
+			},
+			"text": " protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,040",
+				"to": "00:13:34,400"
+			},
+			"offsets": {
+				"from": 812040,
+				"to": 814400
+			},
+			"text": " So you are free to implement your own protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,400",
+				"to": "00:13:36,280"
+			},
+			"offsets": {
+				"from": 814400,
+				"to": 816280
+			},
+			"text": " up top of deaf peer-to-peer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,280",
+				"to": "00:13:38,560"
+			},
+			"offsets": {
+				"from": 816280,
+				"to": 818560
+			},
+			"text": " And then it's just a way to register"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,560",
+				"to": "00:13:42,520"
+			},
+			"offsets": {
+				"from": 818560,
+				"to": 822520
+			},
+			"text": " that I wanted to run the ETH service on top of that protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,520",
+				"to": "00:13:46,200"
+			},
+			"offsets": {
+				"from": 822520,
+				"to": 826200
+			},
+			"text": " I just start up the stack, and I can attach it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,200",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 826200,
+				"to": 828000
+			},
+			"text": " So again, just four function calls"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:50,880"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 830880
+			},
+			"text": " for setting up an entire Ethereum node."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,880",
+				"to": "00:13:53,080"
+			},
+			"offsets": {
+				"from": 830880,
+				"to": 833080
+			},
+			"text": " And if I run that, now it is actually compiling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,080",
+				"to": "00:13:57,280"
+			},
+			"offsets": {
+				"from": 833080,
+				"to": 837280
+			},
+			"text": " building the full Ethereum suite, which takes about 10 seconds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,280",
+				"to": "00:14:01,840"
+			},
+			"offsets": {
+				"from": 837280,
+				"to": 841840
+			},
+			"text": " maybe a bit more with my power cable on plug."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,840",
+				"to": "00:14:03,680"
+			},
+			"offsets": {
+				"from": 841840,
+				"to": 843680
+			},
+			"text": " So yes, that's another thing about Go."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,680",
+				"to": "00:14:04,480"
+			},
+			"offsets": {
+				"from": 843680,
+				"to": 844480
+			},
+			"text": " Another nice thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,480",
+				"to": "00:14:07,520"
+			},
+			"offsets": {
+				"from": 844480,
+				"to": 847520
+			},
+			"text": " That was the full compilation of Go Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,520",
+				"to": "00:14:13,320"
+			},
+			"offsets": {
+				"from": 847520,
+				"to": 853320
+			},
+			"text": " And yep, I just started up in a new empty data directory"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,320",
+				"to": "00:14:17,440"
+			},
+			"offsets": {
+				"from": 853320,
+				"to": 857440
+			},
+			"text": " and just created some basic information about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,440",
+				"to": "00:14:20,240"
+			},
+			"offsets": {
+				"from": 857440,
+				"to": 860240
+			},
+			"text": " And as you can see, this, again, as I emphasized"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,240",
+				"to": "00:14:24,880"
+			},
+			"offsets": {
+				"from": 860240,
+				"to": 864880
+			},
+			"text": " with the previous slides, again, this is the full source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,880",
+				"to": "00:14:27,040"
+			},
+			"offsets": {
+				"from": 864880,
+				"to": 867040
+			},
+			"text": " So there's no other boilerplate that you actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,040",
+				"to": "00:14:27,880"
+			},
+			"offsets": {
+				"from": 867040,
+				"to": 867880
+			},
+			"text": " need to write yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,880",
+				"to": "00:14:30,320"
+			},
+			"offsets": {
+				"from": 867880,
+				"to": 870320
+			},
+			"text": " You can have a full in-process embedded node"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,320",
+				"to": "00:14:32,720"
+			},
+			"offsets": {
+				"from": 870320,
+				"to": 872720
+			},
+			"text": " in three lines of code or four lines of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,720",
+				"to": "00:14:34,600"
+			},
+			"offsets": {
+				"from": 872720,
+				"to": 874600
+			},
+			"text": " Of course, I left out the arrow checking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,600",
+				"to": "00:14:37,240"
+			},
+			"offsets": {
+				"from": 874600,
+				"to": 877240
+			},
+			"text": " so do keep that in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,240",
+				"to": "00:14:40,920"
+			},
+			"offsets": {
+				"from": 877240,
+				"to": 880920
+			},
+			"text": " OK, so if we have these all these awesome libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,920",
+				"to": "00:14:43,280"
+			},
+			"offsets": {
+				"from": 880920,
+				"to": 883280
+			},
+			"text": " available, let's try to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,280",
+				"to": "00:14:45,560"
+			},
+			"offsets": {
+				"from": 883280,
+				"to": 885560
+			},
+			"text": " to put a twist on them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,560",
+				"to": "00:14:49,280"
+			},
+			"offsets": {
+				"from": 885560,
+				"to": 889280
+			},
+			"text": " What would it take maybe to allow supporting them"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,280",
+				"to": "00:14:51,320"
+			},
+			"offsets": {
+				"from": 889280,
+				"to": 891320
+			},
+			"text": " on mobile platforms?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,320",
+				"to": "00:14:54,160"
+			},
+			"offsets": {
+				"from": 891320,
+				"to": 894160
+			},
+			"text": " Well, to tell you the truth, mobile building"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,160",
+				"to": "00:14:57,920"
+			},
+			"offsets": {
+				"from": 894160,
+				"to": 897920
+			},
+			"text": " to mobile platform was kind of already supported in 1.3."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,920",
+				"to": "00:15:02,520"
+			},
+			"offsets": {
+				"from": 897920,
+				"to": 902520
+			},
+			"text": " About last year in September, I did the first cross-compilation"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,520",
+				"to": "00:15:03,400"
+			},
+			"offsets": {
+				"from": 902520,
+				"to": 903400
+			},
+			"text": " to Android."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,400",
+				"to": "00:15:04,560"
+			},
+			"offsets": {
+				"from": 903400,
+				"to": 904560
+			},
+			"text": " It looked horrible."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,560",
+				"to": "00:15:06,760"
+			},
+			"offsets": {
+				"from": 904560,
+				"to": 906760
+			},
+			"text": " It performed horrible."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,760",
+				"to": "00:15:07,680"
+			},
+			"offsets": {
+				"from": 906760,
+				"to": 907680
+			},
+			"text": " But it actually worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,680",
+				"to": "00:15:09,160"
+			},
+			"offsets": {
+				"from": 907680,
+				"to": 909160
+			},
+			"text": " So I was really surprised."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,160",
+				"to": "00:15:12,120"
+			},
+			"offsets": {
+				"from": 909160,
+				"to": 912120
+			},
+			"text": " We did have to fix up a few things in our code base."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,120",
+				"to": "00:15:14,880"
+			},
+			"offsets": {
+				"from": 912120,
+				"to": 914880
+			},
+			"text": " But we could actually start up an Android debugger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,880",
+				"to": "00:15:19,120"
+			},
+			"offsets": {
+				"from": 914880,
+				"to": 919120
+			},
+			"text": " just copy a binary, a CLI binary, to the Android device"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,120",
+				"to": "00:15:20,200"
+			},
+			"offsets": {
+				"from": 919120,
+				"to": 920200
+			},
+			"text": " and just run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,200",
+				"to": "00:15:20,920"
+			},
+			"offsets": {
+				"from": 920200,
+				"to": 920920
+			},
+			"text": " And it was running."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,920",
+				"to": "00:15:23,320"
+			},
+			"offsets": {
+				"from": 920920,
+				"to": 923320
+			},
+			"text": " It was really an amazing feeling."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,320",
+				"to": "00:15:24,600"
+			},
+			"offsets": {
+				"from": 923320,
+				"to": 924600
+			},
+			"text": " Of course, it was completely useless,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,600",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 924600,
+				"to": 927000
+			},
+			"text": " because you don't really run your Android programs"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:30,400"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 930400
+			},
+			"text": " by copying over a CLI binary and requiring actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,400",
+				"to": "00:15:32,120"
+			},
+			"offsets": {
+				"from": 930400,
+				"to": 932120
+			},
+			"text": " a terminal to run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,120",
+				"to": "00:15:35,640"
+			},
+			"offsets": {
+				"from": 932120,
+				"to": 935640
+			},
+			"text": " So during the winter break, Christmas time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,640",
+				"to": "00:15:38,560"
+			},
+			"offsets": {
+				"from": 935640,
+				"to": 938560
+			},
+			"text": " we started to play around with actually providing a library"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,560",
+				"to": "00:15:42,160"
+			},
+			"offsets": {
+				"from": 938560,
+				"to": 942160
+			},
+			"text": " so that users can more easily interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,160",
+				"to": "00:15:44,360"
+			},
+			"offsets": {
+				"from": 942160,
+				"to": 944360
+			},
+			"text": " go with Ethereum in mobile apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,360",
+				"to": "00:15:48,200"
+			},
+			"offsets": {
+				"from": 944360,
+				"to": 948200
+			},
+			"text": " And well, we did provide Android archives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,200",
+				"to": "00:15:50,440"
+			},
+			"offsets": {
+				"from": 948200,
+				"to": 950440
+			},
+			"text": " and we did provide iOS frameworks."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,440",
+				"to": "00:15:52,280"
+			},
+			"offsets": {
+				"from": 950440,
+				"to": 952280
+			},
+			"text": " But if we did provide all of these things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,280",
+				"to": "00:15:55,520"
+			},
+			"offsets": {
+				"from": 952280,
+				"to": 955520
+			},
+			"text": " why aren't there any Ethereum mobile apps or any popular ones?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,520",
+				"to": "00:15:59,720"
+			},
+			"offsets": {
+				"from": 955520,
+				"to": 959720
+			},
+			"text": " Well, kind of the answer is that that was our full API"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,720",
+				"to": "00:16:00,920"
+			},
+			"offsets": {
+				"from": 959720,
+				"to": 960920
+			},
+			"text": " in the bottom line."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,920",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 960920,
+				"to": 963000
+			},
+			"text": " So that was everything that we supported."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:06,720"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 966720
+			},
+			"text": " So basically, we created a wrapper around the CLI interface,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,720",
+				"to": "00:16:08,880"
+			},
+			"offsets": {
+				"from": 966720,
+				"to": 968880
+			},
+			"text": " which is a horrible, horrible idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,880",
+				"to": "00:16:11,240"
+			},
+			"offsets": {
+				"from": 968880,
+				"to": 971240
+			},
+			"text": " But since we didn't have Lite client"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,240",
+				"to": "00:16:12,600"
+			},
+			"offsets": {
+				"from": 971240,
+				"to": 972600
+			},
+			"text": " and it wasn't even under horizon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,600",
+				"to": "00:16:14,560"
+			},
+			"offsets": {
+				"from": 972600,
+				"to": 974560
+			},
+			"text": " it didn't really make sense to put more effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,560",
+				"to": "00:16:16,480"
+			},
+			"offsets": {
+				"from": 974560,
+				"to": 976480
+			},
+			"text": " into a mobile wrapper since nobody's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,480",
+				"to": "00:16:17,480"
+			},
+			"offsets": {
+				"from": 976480,
+				"to": 977480
+			},
+			"text": " going to use it anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,480",
+				"to": "00:16:19,640"
+			},
+			"offsets": {
+				"from": 977480,
+				"to": 979640
+			},
+			"text": " So it was rather a proof of concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,640",
+				"to": "00:16:21,400"
+			},
+			"offsets": {
+				"from": 979640,
+				"to": 981400
+			},
+			"text": " that people can start playing around with."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,400",
+				"to": "00:16:23,960"
+			},
+			"offsets": {
+				"from": 981400,
+				"to": 983960
+			},
+			"text": " It wasn't never meant to be something to be released."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,960",
+				"to": "00:16:26,800"
+			},
+			"offsets": {
+				"from": 983960,
+				"to": 986800
+			},
+			"text": " However, of course, with 1.5 arriving,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,800",
+				"to": "00:16:28,560"
+			},
+			"offsets": {
+				"from": 986800,
+				"to": 988560
+			},
+			"text": " we want to change all this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,560",
+				"to": "00:16:30,200"
+			},
+			"offsets": {
+				"from": 988560,
+				"to": 990200
+			},
+			"text": " So let's see how complicated will it"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,200",
+				"to": "00:16:34,680"
+			},
+			"offsets": {
+				"from": 990200,
+				"to": 994680
+			},
+			"text": " be to actually run get as a library or parts of get"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,680",
+				"to": "00:16:36,720"
+			},
+			"offsets": {
+				"from": 994680,
+				"to": 996720
+			},
+			"text": " inside mobile devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,720",
+				"to": "00:16:39,840"
+			},
+			"offsets": {
+				"from": 996720,
+				"to": 999840
+			},
+			"text": " And while it turns out that we have exactly the same APIs"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,840",
+				"to": "00:16:44,200"
+			},
+			"offsets": {
+				"from": 999840,
+				"to": 1004200
+			},
+			"text": " that we had available in Go, we have that available in Android."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,200",
+				"to": "00:16:46,360"
+			},
+			"offsets": {
+				"from": 1004200,
+				"to": 1006360
+			},
+			"text": " We have the account manager, life cycle management."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,360",
+				"to": "00:16:48,680"
+			},
+			"offsets": {
+				"from": 1006360,
+				"to": 1008680
+			},
+			"text": " It's exactly the same function calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,680",
+				"to": "00:16:52,080"
+			},
+			"offsets": {
+				"from": 1008680,
+				"to": 1012080
+			},
+			"text": " If somebody's a Java guru, you will immediately say that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,080",
+				"to": "00:16:54,120"
+			},
+			"offsets": {
+				"from": 1012080,
+				"to": 1014120
+			},
+			"text": " ooh, that get.new is ugly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,120",
+				"to": "00:16:56,040"
+			},
+			"offsets": {
+				"from": 1014120,
+				"to": 1016040
+			},
+			"text": " You should have only used new."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,040",
+				"to": "00:16:59,760"
+			},
+			"offsets": {
+				"from": 1016040,
+				"to": 1019760
+			},
+			"text": " Yes, we know that is a limitation of the Go Java bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,760",
+				"to": "00:17:00,720"
+			},
+			"offsets": {
+				"from": 1019760,
+				"to": 1020720
+			},
+			"text": " that will be fixed."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,720",
+				"to": "00:17:05,160"
+			},
+			"offsets": {
+				"from": 1020720,
+				"to": 1025160
+			},
+			"text": " But please bear with us until it is fixed."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,160",
+				"to": "00:17:12,280"
+			},
+			"offsets": {
+				"from": 1025160,
+				"to": 1032280
+			},
+			"text": " So basically, this was a part from a small Android boilerplate."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,280",
+				"to": "00:17:15,280"
+			},
+			"offsets": {
+				"from": 1032280,
+				"to": 1035280
+			},
+			"text": " This was the full code to actually do account management"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,280",
+				"to": "00:17:16,920"
+			},
+			"offsets": {
+				"from": 1035280,
+				"to": 1036920
+			},
+			"text": " inside an Android application."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,920",
+				"to": "00:17:20,240"
+			},
+			"offsets": {
+				"from": 1036920,
+				"to": 1040240
+			},
+			"text": " And basically, the screenshot from the application running"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,240",
+				"to": "00:17:21,360"
+			},
+			"offsets": {
+				"from": 1040240,
+				"to": 1041360
+			},
+			"text": " in the simulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,360",
+				"to": "00:17:22,520"
+			},
+			"offsets": {
+				"from": 1041360,
+				"to": 1042520
+			},
+			"text": " So we have the same functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,520",
+				"to": "00:17:23,680"
+			},
+			"offsets": {
+				"from": 1042520,
+				"to": 1043680
+			},
+			"text": " We can add new accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,680",
+				"to": "00:17:25,440"
+			},
+			"offsets": {
+				"from": 1043680,
+				"to": 1045440
+			},
+			"text": " We can export import."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,440",
+				"to": "00:17:27,040"
+			},
+			"offsets": {
+				"from": 1045440,
+				"to": 1047040
+			},
+			"text": " We can delete them."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,040",
+				"to": "00:17:30,680"
+			},
+			"offsets": {
+				"from": 1047040,
+				"to": 1050680
+			},
+			"text": " So everything you would like to do with an account, you can do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,680",
+				"to": "00:17:34,240"
+			},
+			"offsets": {
+				"from": 1050680,
+				"to": 1054240
+			},
+			"text": " Now, OK, you might say that account management is pretty easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,240",
+				"to": "00:17:37,080"
+			},
+			"offsets": {
+				"from": 1054240,
+				"to": 1057080
+			},
+			"text": " You can do it with a fairly nice Java library."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,080",
+				"to": "00:17:37,920"
+			},
+			"offsets": {
+				"from": 1057080,
+				"to": 1057920
+			},
+			"text": " Why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,920",
+				"to": "00:17:38,720"
+			},
+			"offsets": {
+				"from": 1057920,
+				"to": 1058720
+			},
+			"text": " What's the big deal?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,720",
+				"to": "00:17:41,840"
+			},
+			"offsets": {
+				"from": 1058720,
+				"to": 1061840
+			},
+			"text": " Well, let's go to remote APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,840",
+				"to": "00:17:43,440"
+			},
+			"offsets": {
+				"from": 1061840,
+				"to": 1063440
+			},
+			"text": " Well, it turns out that with remote APIs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,440",
+				"to": "00:17:46,680"
+			},
+			"offsets": {
+				"from": 1063440,
+				"to": 1066680
+			},
+			"text": " we can do exactly the same thing, like with Go Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,680",
+				"to": "00:17:48,760"
+			},
+			"offsets": {
+				"from": 1066680,
+				"to": 1068760
+			},
+			"text": " We can create a new Ethereum client, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,760",
+				"to": "00:17:50,080"
+			},
+			"offsets": {
+				"from": 1068760,
+				"to": 1070080
+			},
+			"text": " can attach to almost everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,080",
+				"to": "00:17:52,520"
+			},
+			"offsets": {
+				"from": 1070080,
+				"to": 1072520
+			},
+			"text": " HTTP WebSocket, IPC interface the same way"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,520",
+				"to": "00:17:56,640"
+			},
+			"offsets": {
+				"from": 1072520,
+				"to": 1076640
+			},
+			"text": " as the native Go client could attach to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,640",
+				"to": "00:17:58,520"
+			},
+			"offsets": {
+				"from": 1076640,
+				"to": 1078520
+			},
+			"text": " And it supports all the same functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,520",
+				"to": "00:18:00,680"
+			},
+			"offsets": {
+				"from": 1078520,
+				"to": 1080680
+			},
+			"text": " Plus, it also supports subscriptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,680",
+				"to": "00:18:03,400"
+			},
+			"offsets": {
+				"from": 1080680,
+				"to": 1083400
+			},
+			"text": " Now, getting all of this working is a bit more involved"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,400",
+				"to": "00:18:06,120"
+			},
+			"offsets": {
+				"from": 1083400,
+				"to": 1086120
+			},
+			"text": " since you also have to implement the RPC interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,120",
+				"to": "00:18:08,200"
+			},
+			"offsets": {
+				"from": 1086120,
+				"to": 1088200
+			},
+			"text": " And you also have to implement subscriptions, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,200",
+				"to": "00:18:11,120"
+			},
+			"offsets": {
+				"from": 1088200,
+				"to": 1091120
+			},
+			"text": " aren't exactly that trivial to do already."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,120",
+				"to": "00:18:13,920"
+			},
+			"offsets": {
+				"from": 1091120,
+				"to": 1093920
+			},
+			"text": " So push notifications, clients, I'd handling them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,920",
+				"to": "00:18:15,680"
+			},
+			"offsets": {
+				"from": 1093920,
+				"to": 1095680
+			},
+			"text": " it gets a tad messy."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,680",
+				"to": "00:18:19,360"
+			},
+			"offsets": {
+				"from": 1095680,
+				"to": 1099360
+			},
+			"text": " But basically, you get that for free."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,360",
+				"to": "00:18:22,360"
+			},
+			"offsets": {
+				"from": 1099360,
+				"to": 1102360
+			},
+			"text": " OK, so we got a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,360",
+				"to": "00:18:25,840"
+			},
+			"offsets": {
+				"from": 1102360,
+				"to": 1105840
+			},
+			"text": " I mean, we got account management and remote APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,840",
+				"to": "00:18:28,600"
+			},
+			"offsets": {
+				"from": 1105840,
+				"to": 1108600
+			},
+			"text": " Let's see, can we interact with a contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,600",
+				"to": "00:18:30,680"
+			},
+			"offsets": {
+				"from": 1108600,
+				"to": 1110680
+			},
+			"text": " And the answer is, sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,680",
+				"to": "00:18:33,360"
+			},
+			"offsets": {
+				"from": 1110680,
+				"to": 1113360
+			},
+			"text": " So actually, we extended a begin to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,360",
+				"to": "00:18:35,640"
+			},
+			"offsets": {
+				"from": 1113360,
+				"to": 1115640
+			},
+			"text": " able to generate Java bindings to contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,640",
+				"to": "00:18:37,480"
+			},
+			"offsets": {
+				"from": 1115640,
+				"to": 1117480
+			},
+			"text": " So the same way you had a solidity contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,480",
+				"to": "00:18:39,160"
+			},
+			"offsets": {
+				"from": 1117480,
+				"to": 1119160
+			},
+			"text": " and you could create a Go wrapper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,160",
+				"to": "00:18:41,680"
+			},
+			"offsets": {
+				"from": 1119160,
+				"to": 1121680
+			},
+			"text": " you have a solidity contract, and you can create a Java wrapper"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,680",
+				"to": "00:18:42,520"
+			},
+			"offsets": {
+				"from": 1121680,
+				"to": 1122520
+			},
+			"text": " around it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,520",
+				"to": "00:18:44,920"
+			},
+			"offsets": {
+				"from": 1122520,
+				"to": 1124920
+			},
+			"text": " So basically, it just spits out the Java file."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,920",
+				"to": "00:18:47,280"
+			},
+			"offsets": {
+				"from": 1124920,
+				"to": 1127280
+			},
+			"text": " You just include it in the Android project and BAM."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,280",
+				"to": "00:18:50,760"
+			},
+			"offsets": {
+				"from": 1127280,
+				"to": 1130760
+			},
+			"text": " You can create a contract object,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,760",
+				"to": "00:18:53,240"
+			},
+			"offsets": {
+				"from": 1130760,
+				"to": 1133240
+			},
+			"text": " and you can immediately call functions on them."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,240",
+				"to": "00:18:56,800"
+			},
+			"offsets": {
+				"from": 1133240,
+				"to": 1136800
+			},
+			"text": " No, basically, that's all that it takes to query the guest"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,800",
+				"to": "00:19:01,320"
+			},
+			"offsets": {
+				"from": 1136800,
+				"to": 1141320
+			},
+			"text": " version number from a mobile platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,320",
+				"to": "00:19:04,320"
+			},
+			"offsets": {
+				"from": 1141320,
+				"to": 1144320
+			},
+			"text": " And of course, last but not least, if you are running an"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,320",
+				"to": "00:19:07,120"
+			},
+			"offsets": {
+				"from": 1144320,
+				"to": 1147120
+			},
+			"text": " Android app, then this is particularly the case where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,120",
+				"to": "00:19:09,120"
+			},
+			"offsets": {
+				"from": 1147120,
+				"to": 1149120
+			},
+			"text": " don't want to depend on an external app."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,120",
+				"to": "00:19:11,120"
+			},
+			"offsets": {
+				"from": 1149120,
+				"to": 1151120
+			},
+			"text": " You want to run an in-process node."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,120",
+				"to": "00:19:15,120"
+			},
+			"offsets": {
+				"from": 1151120,
+				"to": 1155120
+			},
+			"text": " And yes, of course, we can run an in-process node, where we"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,120",
+				"to": "00:19:17,960"
+			},
+			"offsets": {
+				"from": 1155120,
+				"to": 1157960
+			},
+			"text": " can just similarly create a new node."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,960",
+				"to": "00:19:20,640"
+			},
+			"offsets": {
+				"from": 1157960,
+				"to": 1160640
+			},
+			"text": " The API here is a bit simplified, because it wasn't really a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,640",
+				"to": "00:19:26,160"
+			},
+			"offsets": {
+				"from": 1160640,
+				"to": 1166160
+			},
+			"text": " point to expose the entire Go API to creating nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,160",
+				"to": "00:19:28,160"
+			},
+			"offsets": {
+				"from": 1166160,
+				"to": 1168160
+			},
+			"text": " It was more Ethereum specific."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,160",
+				"to": "00:19:30,360"
+			},
+			"offsets": {
+				"from": 1168160,
+				"to": 1170360
+			},
+			"text": " This might change a bit in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,360",
+				"to": "00:19:33,600"
+			},
+			"offsets": {
+				"from": 1170360,
+				"to": 1173600
+			},
+			"text": " But in essence, we can create a node really simply."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,600",
+				"to": "00:19:36,680"
+			},
+			"offsets": {
+				"from": 1173600,
+				"to": 1176680
+			},
+			"text": " You can just specify data directory and voila, it's running."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,680",
+				"to": "00:19:37,960"
+			},
+			"offsets": {
+				"from": 1176680,
+				"to": 1177960
+			},
+			"text": " We can just start it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,960",
+				"to": "00:19:38,560"
+			},
+			"offsets": {
+				"from": 1177960,
+				"to": 1178560
+			},
+			"text": " And that's all."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,560",
+				"to": "00:19:41,560"
+			},
+			"offsets": {
+				"from": 1178560,
+				"to": 1181560
+			},
+			"text": " We can start it, stop it, interface with it, attach an"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,560",
+				"to": "00:19:44,440"
+			},
+			"offsets": {
+				"from": 1181560,
+				"to": 1184440
+			},
+			"text": " Ethereum client to it, get all the data we want, interact"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,440",
+				"to": "00:19:47,440"
+			},
+			"offsets": {
+				"from": 1184440,
+				"to": 1187440
+			},
+			"text": " with contracts, everything we can do with two lines of code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,440",
+				"to": "00:19:49,520"
+			},
+			"offsets": {
+				"from": 1187440,
+				"to": 1189520
+			},
+			"text": " essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,520",
+				"to": "00:19:53,200"
+			},
+			"offsets": {
+				"from": 1189520,
+				"to": 1193200
+			},
+			"text": " So that was the mobile platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,200",
+				"to": "00:19:56,320"
+			},
+			"offsets": {
+				"from": 1193200,
+				"to": 1196320
+			},
+			"text": " OK, you might ask, what about iOS?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,320",
+				"to": "00:19:57,400"
+			},
+			"offsets": {
+				"from": 1196320,
+				"to": 1197400
+			},
+			"text": " Yeah, sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,400",
+				"to": "00:19:58,640"
+			},
+			"offsets": {
+				"from": 1197400,
+				"to": 1198640
+			},
+			"text": " It works."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,640",
+				"to": "00:20:00,160"
+			},
+			"offsets": {
+				"from": 1198640,
+				"to": 1200160
+			},
+			"text": " So the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,160",
+				"to": "00:20:01,480"
+			},
+			"offsets": {
+				"from": 1200160,
+				"to": 1201480
+			},
+			"text": " I don't expect you to read the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,480",
+				"to": "00:20:03,760"
+			},
+			"offsets": {
+				"from": 1201480,
+				"to": 1203760
+			},
+			"text": " I just based it if you look at the slides offline, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,760",
+				"to": "00:20:06,280"
+			},
+			"offsets": {
+				"from": 1203760,
+				"to": 1206280
+			},
+			"text": " everything works really nicely."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,280",
+				"to": "00:20:10,880"
+			},
+			"offsets": {
+				"from": 1206280,
+				"to": 1210880
+			},
+			"text": " So just to cover some of the whole thing up, basically, Go"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,880",
+				"to": "00:20:14,080"
+			},
+			"offsets": {
+				"from": 1210880,
+				"to": 1214080
+			},
+			"text": " Ethereum or Go actually supports deploying on a variety of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,080",
+				"to": "00:20:18,840"
+			},
+			"offsets": {
+				"from": 1214080,
+				"to": 1218840
+			},
+			"text": " different platforms, Linux, Windows OS X, Free BSD on all"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,840",
+				"to": "00:20:20,920"
+			},
+			"offsets": {
+				"from": 1218840,
+				"to": 1220920
+			},
+			"text": " the platforms, all the architectures that actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,920",
+				"to": "00:20:21,800"
+			},
+			"offsets": {
+				"from": 1220920,
+				"to": 1221800
+			},
+			"text": " matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,800",
+				"to": "00:20:25,360"
+			},
+			"offsets": {
+				"from": 1221800,
+				"to": 1225360
+			},
+			"text": " And Go Ethereum will provide pre-bundled libraries for"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,360",
+				"to": "00:20:28,200"
+			},
+			"offsets": {
+				"from": 1225360,
+				"to": 1228200
+			},
+			"text": " Android and iOS for basically all the architectures that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,200",
+				"to": "00:20:29,720"
+			},
+			"offsets": {
+				"from": 1228200,
+				"to": 1229720
+			},
+			"text": " actually matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,720",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1229720,
+				"to": 1231000
+			},
+			"text": " As for Windows Phone--"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:33,680"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1233680
+			},
+			"text": " sorry, maybe in the distant future."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,680",
+				"to": "00:20:36,520"
+			},
+			"offsets": {
+				"from": 1233680,
+				"to": 1236520
+			},
+			"text": " There's not really an interest to port it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,520",
+				"to": "00:20:39,760"
+			},
+			"offsets": {
+				"from": 1236520,
+				"to": 1239760
+			},
+			"text": " And if you are actually somebody interested in trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,760",
+				"to": "00:20:43,160"
+			},
+			"offsets": {
+				"from": 1239760,
+				"to": 1243160
+			},
+			"text": " out either the Android or the iOS libraries, you are free"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,160",
+				"to": "00:20:44,520"
+			},
+			"offsets": {
+				"from": 1243160,
+				"to": 1244520
+			},
+			"text": " to download them."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,520",
+				"to": "00:20:45,720"
+			},
+			"offsets": {
+				"from": 1244520,
+				"to": 1245720
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,720",
+				"to": "00:20:48,480"
+			},
+			"offsets": {
+				"from": 1245720,
+				"to": 1248480
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,480",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1248480,
+				"to": 1249000
+			},
+			"text": " Yay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:20:50,480"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1250480
+			},
+			"text": " Thank you, Peter."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,480",
+				"to": "00:20:53,480"
+			},
+			"offsets": {
+				"from": 1250480,
+				"to": 1253480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,480",
+				"to": "00:20:56,060"
+			},
+			"offsets": {
+				"from": 1253480,
+				"to": 1256060
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,060",
+				"to": "00:20:58,640"
+			},
+			"offsets": {
+				"from": 1256060,
+				"to": 1258640
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

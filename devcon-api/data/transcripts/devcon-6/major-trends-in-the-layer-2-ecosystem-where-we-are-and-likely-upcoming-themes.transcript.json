@@ -1,0 +1,1000 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,520"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13520
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,520",
+				"to": "00:00:18,480"
+			},
+			"offsets": {
+				"from": 13520,
+				"to": 18480
+			},
+			"text": " Because of the work that I do and because of the threads that I write, I feel like I'm in a very"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,480",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 18480,
+				"to": 24000
+			},
+			"text": " unique position to talk about the themes in the Layer 2 ecosystem and the trends that I'm seeing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:29,680"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 29680
+			},
+			"text": " So I'm hoping to give you a bit of a bird's-eye view of the Layer 2 ecosystem today and what I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,680",
+				"to": "00:00:36,400"
+			},
+			"offsets": {
+				"from": 29680,
+				"to": 36400
+			},
+			"text": " seeing in the themes. So to start with off-chain data, off-chain data in roll-ups is here to stay."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,400",
+				"to": "00:00:42,320"
+			},
+			"offsets": {
+				"from": 36400,
+				"to": 42320
+			},
+			"text": " I think it's fair to say. On the roll-up level, we're seeing a push to give users a choice of off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,320",
+				"to": "00:00:49,120"
+			},
+			"offsets": {
+				"from": 42320,
+				"to": 49120
+			},
+			"text": " data in ZK roll-ups that looks like Validiums and Volitions and for optimistic roll-ups that looks"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,120",
+				"to": "00:00:54,560"
+			},
+			"offsets": {
+				"from": 49120,
+				"to": 54560
+			},
+			"text": " like Arbit from Nova and Metastow's optimistic data availability. Really, the question you should"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,560",
+				"to": "00:00:58,880"
+			},
+			"offsets": {
+				"from": 54560,
+				"to": 58880
+			},
+			"text": " be asking yourself when you're considering off-chain data for your DAP is what does this mean for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,880",
+				"to": "00:01:04,800"
+			},
+			"offsets": {
+				"from": 58880,
+				"to": 64800
+			},
+			"text": " security? What does it mean for my users' funds? And I think that there's a lot to consider there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,800",
+				"to": "00:01:09,280"
+			},
+			"offsets": {
+				"from": 64800,
+				"to": 69280
+			},
+			"text": " If we accept that off-chain data is here to stay, then we should be thinking about ways to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,280",
+				"to": "00:01:15,680"
+			},
+			"offsets": {
+				"from": 69280,
+				"to": 75680
+			},
+			"text": " those DAPs more secure despite the off-chain data. Some DAPs don't need all of their data on"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,680",
+				"to": "00:01:20,320"
+			},
+			"offsets": {
+				"from": 75680,
+				"to": 80320
+			},
+			"text": " chain and those that might need more security, there are some solutions. One thing that I thought"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,320",
+				"to": "00:01:24,560"
+			},
+			"offsets": {
+				"from": 80320,
+				"to": 84560
+			},
+			"text": " was really interesting was an article that actually came out today by Polynia, who's someone on Twitter"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,560",
+				"to": "00:01:29,840"
+			},
+			"offsets": {
+				"from": 84560,
+				"to": 89840
+			},
+			"text": " that I follow. You may have heard of them suggesting that we have split security data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,840",
+				"to": "00:01:35,280"
+			},
+			"offsets": {
+				"from": 89840,
+				"to": 95280
+			},
+			"text": " sharding on roll-ups. This is literally an idea that came out today, so as far as new trends,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,280",
+				"to": "00:01:40,160"
+			},
+			"offsets": {
+				"from": 95280,
+				"to": 100160
+			},
+			"text": " I expect to see some implementations of this sometime in the near future, but definitely not"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,160",
+				"to": "00:01:45,200"
+			},
+			"offsets": {
+				"from": 100160,
+				"to": 105200
+			},
+			"text": " right now. But that should help with some of the security concerns around off-chain data and roll-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,200",
+				"to": "00:01:50,880"
+			},
+			"offsets": {
+				"from": 105200,
+				"to": 110880
+			},
+			"text": " We're also going to continue to see progress and innovation on the bridging fund. In front,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,880",
+				"to": "00:01:55,040"
+			},
+			"offsets": {
+				"from": 110880,
+				"to": 115040
+			},
+			"text": " we just saw Georgia talk about some really interesting ideas about how we can have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,040",
+				"to": "00:02:00,080"
+			},
+			"offsets": {
+				"from": 115040,
+				"to": 120080
+			},
+			"text": " composability. But some of the things that I want to talk about are how popular layer two bridges"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,080",
+				"to": "00:02:04,320"
+			},
+			"offsets": {
+				"from": 120080,
+				"to": 124320
+			},
+			"text": " right now are centralized, and they keep the fees rather than sharing them with their users."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,320",
+				"to": "00:02:09,360"
+			},
+			"offsets": {
+				"from": 124320,
+				"to": 129360
+			},
+			"text": " That's not really a paradigm that we like in the Ethereum world. We don't really like centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,360",
+				"to": "00:02:14,160"
+			},
+			"offsets": {
+				"from": 129360,
+				"to": 134160
+			},
+			"text": " operators. We don't really like middlemen. So I'm expecting to see that paradigm being challenged."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,160",
+				"to": "00:02:17,760"
+			},
+			"offsets": {
+				"from": 134160,
+				"to": 137760
+			},
+			"text": " One thing that we already are seeing, Hot Protocol has announced that there are going to be more"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,760",
+				"to": "00:02:22,640"
+			},
+			"offsets": {
+				"from": 137760,
+				"to": 142640
+			},
+			"text": " community centric. So that's just one early example of sort of that shift that I think we're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,640",
+				"to": "00:02:29,440"
+			},
+			"offsets": {
+				"from": 142640,
+				"to": 149440
+			},
+			"text": " see. We're also seeing really interesting work around zk proofs to improve bridge architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,440",
+				"to": "00:02:36,640"
+			},
+			"offsets": {
+				"from": 149440,
+				"to": 156640
+			},
+			"text": " We can use zk proofs to verify. So Suez Bridge created a proposal called the /proposal doing just"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,640",
+				"to": "00:02:42,240"
+			},
+			"offsets": {
+				"from": 156640,
+				"to": 162240
+			},
+			"text": " that. We can also use zk proofs to create light clients with zk snarks, which is a relatively new"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,240",
+				"to": "00:02:47,440"
+			},
+			"offsets": {
+				"from": 162240,
+				"to": 167440
+			},
+			"text": " idea. So synced bridge wants to do that. So that's what you should look up if you're interested in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,440",
+				"to": "00:02:52,400"
+			},
+			"offsets": {
+				"from": 167440,
+				"to": 172400
+			},
+			"text": " that. So I would definitely keep an eye on zk proofs within bridge architectures as a way to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,400",
+				"to": "00:02:58,560"
+			},
+			"offsets": {
+				"from": 172400,
+				"to": 178560
+			},
+			"text": " improve those architectures. And also in case you missed it, L2B announced last night the release"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,560",
+				"to": "00:03:03,040"
+			},
+			"offsets": {
+				"from": 178560,
+				"to": 183040
+			},
+			"text": " of their bridge dashboard, which is really exciting because I think the more information that we give"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,040",
+				"to": "00:03:08,640"
+			},
+			"offsets": {
+				"from": 183040,
+				"to": 188640
+			},
+			"text": " to users about the security of the bridges that they want to use, the more we can push bridge protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,640",
+				"to": "00:03:13,920"
+			},
+			"offsets": {
+				"from": 188640,
+				"to": 193920
+			},
+			"text": " to work to increase security. And also we're giving users that data so they can make"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,920",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 193920,
+				"to": 198000
+			},
+			"text": " the informed decision about which bridge is right for them. When it comes to optimistic"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:22,720"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 202720
+			},
+			"text": " rollups, we're going to see these protocols branch out and really dive into innovative"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,720",
+				"to": "00:03:27,280"
+			},
+			"offsets": {
+				"from": 202720,
+				"to": 207280
+			},
+			"text": " optimizations. I've called them optimistic optimizations, which I think is kind of fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,280",
+				"to": "00:03:34,160"
+			},
+			"offsets": {
+				"from": 207280,
+				"to": 214160
+			},
+			"text": " Arbichum nitro and optimism bedrock are both huge steps forward for the ecosystem. Yesterday at"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,160",
+				"to": "00:03:38,880"
+			},
+			"offsets": {
+				"from": 214160,
+				"to": 218880
+			},
+			"text": " the rollup day event, Vitalik actually proposed several possible ways that we could decentralize"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,880",
+				"to": "00:03:46,400"
+			},
+			"offsets": {
+				"from": 218880,
+				"to": 226400
+			},
+			"text": " provers and also diversify provers. And luckily for us, both arbichum nitro and optimism bedrock"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,400",
+				"to": "00:03:52,080"
+			},
+			"offsets": {
+				"from": 226400,
+				"to": 232080
+			},
+			"text": " are already architected in a way that should allow for multiple provers and different types of provers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,080",
+				"to": "00:03:56,720"
+			},
+			"offsets": {
+				"from": 232080,
+				"to": 236720
+			},
+			"text": " One of the cool things about both arbichum nitro and optimism bedrock is that they're sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,720",
+				"to": "00:04:01,920"
+			},
+			"offsets": {
+				"from": 236720,
+				"to": 241920
+			},
+			"text": " paving the way for allowing validity proofs within optimistic rollups, which is really cool and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,920",
+				"to": "00:04:07,760"
+			},
+			"offsets": {
+				"from": 241920,
+				"to": 247760
+			},
+			"text": " something I would definitely keep an eye on. Rollups with layer three capabilities will honestly be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,760",
+				"to": "00:04:13,360"
+			},
+			"offsets": {
+				"from": 247760,
+				"to": 253360
+			},
+			"text": " able to eat up a lot of the market if they get off the ground with offerings like privacy daps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,360",
+				"to": "00:04:19,280"
+			},
+			"offsets": {
+				"from": 253360,
+				"to": 259280
+			},
+			"text": " permission daps for institutions, games, and even creating space for alternative L1 chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,280",
+				"to": "00:04:25,280"
+			},
+			"offsets": {
+				"from": 259280,
+				"to": 265280
+			},
+			"text": " to execute on top of the layer two and ultimately still settle on Ethereum, gaining Ethereum security."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,280",
+				"to": "00:04:31,120"
+			},
+			"offsets": {
+				"from": 265280,
+				"to": 271120
+			},
+			"text": " Success here will depend largely on ecosystem support, documentation, and ease of use. This is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,120",
+				"to": "00:04:36,800"
+			},
+			"offsets": {
+				"from": 271120,
+				"to": 276800
+			},
+			"text": " also kind of a new theme. Recursive proofs exist on Starknet now, but they're still pretty new,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,800",
+				"to": "00:04:41,040"
+			},
+			"offsets": {
+				"from": 276800,
+				"to": 281040
+			},
+			"text": " and I haven't seen any actual implementations of layer threes yet. If you have, let me know."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,040",
+				"to": "00:04:45,920"
+			},
+			"offsets": {
+				"from": 281040,
+				"to": 285920
+			},
+			"text": " I'd love to take a look, but I do think layer threes will be part of the discourse in the coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,920",
+				"to": "00:04:53,600"
+			},
+			"offsets": {
+				"from": 285920,
+				"to": 293600
+			},
+			"text": " months and years as all of the ZK rollups, especially mature and go to mainnet. Speaking of ZK rollups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,600",
+				"to": "00:04:58,800"
+			},
+			"offsets": {
+				"from": 293600,
+				"to": 298800
+			},
+			"text": " ZK EVMs are likely to dominate the attention of the layer two space in the coming months."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,600",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 299600,
+				"to": 304000
+			},
+			"text": " ZK EVMs are really exciting and something a lot of us have been talking about for the past,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:07,440"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 307440
+			},
+			"text": " I don't even know how long, honestly, since layer two kind of became a thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,440",
+				"to": "00:05:11,760"
+			},
+			"offsets": {
+				"from": 307440,
+				"to": 311760
+			},
+			"text": " And the reason they're exciting is because they are theoretically compatible with existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,760",
+				"to": "00:05:18,080"
+			},
+			"offsets": {
+				"from": 311760,
+				"to": 318080
+			},
+			"text": " Ethereum tooling, making them much easier to use. They allow for a shorter waiting time to exit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,080",
+				"to": "00:05:23,920"
+			},
+			"offsets": {
+				"from": 318080,
+				"to": 323920
+			},
+			"text": " to get finality, and also because they use ZK proofs and we all love math. I do anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,880",
+				"to": "00:05:30,720"
+			},
+			"offsets": {
+				"from": 324880,
+				"to": 330720
+			},
+			"text": " And I think as these protocols enter mainnet, the debate will turn to what counts as a true"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,720",
+				"to": "00:05:37,040"
+			},
+			"offsets": {
+				"from": 330720,
+				"to": 337040
+			},
+			"text": " EVM. What is close enough? What is EVM compatibility and how much of it do we need for a ZK EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,040",
+				"to": "00:05:41,440"
+			},
+			"offsets": {
+				"from": 337040,
+				"to": 341440
+			},
+			"text": " to really operate the way that we expect it to? We'll also be talking a lot more about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,440",
+				"to": "00:05:45,120"
+			},
+			"offsets": {
+				"from": 341440,
+				"to": 345120
+			},
+			"text": " innovative architectures and use cases that ZK EVMs allow."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,120",
+				"to": "00:05:53,200"
+			},
+			"offsets": {
+				"from": 345120,
+				"to": 353200
+			},
+			"text": " So I'd say things are getting a little spicy in the cryptoverse around various ZK rollups that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,200",
+				"to": "00:05:59,200"
+			},
+			"offsets": {
+				"from": 353200,
+				"to": 359200
+			},
+			"text": " are entering the ecosystem. I posit that competition is good and I hope we can turn the spice into"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,200",
+				"to": "00:06:03,840"
+			},
+			"offsets": {
+				"from": 359200,
+				"to": 363840
+			},
+			"text": " something constructive and eventually coalesce around some helpful standards. I think we're sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,840",
+				"to": "00:06:09,280"
+			},
+			"offsets": {
+				"from": 363840,
+				"to": 369280
+			},
+			"text": " of in that diverge/converge area when it comes to ZK rollups and we're still on the diverge side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,280",
+				"to": "00:06:15,120"
+			},
+			"offsets": {
+				"from": 369280,
+				"to": 375120
+			},
+			"text": " but hopefully we'll get to converge soon. And we're going to see a debate about how important ZK"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,120",
+				"to": "00:06:20,240"
+			},
+			"offsets": {
+				"from": 375120,
+				"to": 380240
+			},
+			"text": " EVMs are and that's also going to necessarily mean a discussion of how stark nets non- EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,240",
+				"to": "00:06:25,200"
+			},
+			"offsets": {
+				"from": 380240,
+				"to": 385200
+			},
+			"text": " ecosystem compares. We'll see more comparison materials and discussions of how security,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,200",
+				"to": "00:06:31,680"
+			},
+			"offsets": {
+				"from": 385200,
+				"to": 391680
+			},
+			"text": " decentralization, etc. Compares between the two types of ZK rollup protocols. There's no question"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,680",
+				"to": "00:06:37,360"
+			},
+			"offsets": {
+				"from": 391680,
+				"to": 397360
+			},
+			"text": " in my mind that the ZK space is red hot right now and I expect ZK rollups to really take the stage"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,360",
+				"to": "00:06:43,040"
+			},
+			"offsets": {
+				"from": 397360,
+				"to": 403040
+			},
+			"text": " going into 2023. If you had to pick one theme of anything that I've mentioned, it's ZK rollups"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,040",
+				"to": "00:06:49,360"
+			},
+			"offsets": {
+				"from": 403040,
+				"to": 409360
+			},
+			"text": " and probably ZK EVMs in the near future. So it turns out seven minutes is not very long. I'm literally"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,360",
+				"to": "00:06:54,320"
+			},
+			"offsets": {
+				"from": 409360,
+				"to": 414320
+			},
+			"text": " thinking about it right now. My time is up. So I did create a list of some more trends to keep an eye"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,320",
+				"to": "00:06:58,320"
+			},
+			"offsets": {
+				"from": 414320,
+				"to": 418320
+			},
+			"text": " on that I didn't really have time to dive into. I'm particularly interested in the modular"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,320",
+				"to": "00:07:04,640"
+			},
+			"offsets": {
+				"from": 418320,
+				"to": 424640
+			},
+			"text": " blockchain designs, protocols like Celestia and how they will relate to how those learnings can"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,640",
+				"to": "00:07:09,760"
+			},
+			"offsets": {
+				"from": 424640,
+				"to": 429760
+			},
+			"text": " be taken into the layer two ecosystem and maybe make changes there. So you might be thinking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,760",
+				"to": "00:07:14,320"
+			},
+			"offsets": {
+				"from": 429760,
+				"to": 434320
+			},
+			"text": " how on earth can I stay on top of all of these ecosystem developments and the space moves really"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,320",
+				"to": "00:07:19,520"
+			},
+			"offsets": {
+				"from": 434320,
+				"to": 439520
+			},
+			"text": " quickly and that's a valid concern. So I provided you with a list of some of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,520",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 439520,
+				"to": 446000
+			},
+			"text": " some of the Twitter accounts that I follow that have some great educational content. I really"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:30,320"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 450320
+			},
+			"text": " recommend following these people. It's the best place to start and then from there you can kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,320",
+				"to": "00:07:35,600"
+			},
+			"offsets": {
+				"from": 450320,
+				"to": 455600
+			},
+			"text": " see who they follow and what they're posting and become as educated as you want to be about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,600",
+				"to": "00:07:41,920"
+			},
+			"offsets": {
+				"from": 455600,
+				"to": 461920
+			},
+			"text": " layer two space and how the ecosystem is growing. So in conclusion layer two is here. It is changing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,920",
+				"to": "00:07:47,040"
+			},
+			"offsets": {
+				"from": 461920,
+				"to": 467040
+			},
+			"text": " fast and it's bringing some of the most exciting innovations imaginable to the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,040",
+				"to": "00:07:52,240"
+			},
+			"offsets": {
+				"from": 467040,
+				"to": 472240
+			},
+			"text": " And again my name is Faina. Thank you all for your time. Sorry for going over time"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,240",
+				"to": "00:08:02,240"
+			},
+			"offsets": {
+				"from": 472240,
+				"to": 482240
+			},
+			"text": " and I hope that this top is educational. Thank you Faina. Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,240",
+				"to": "00:08:31,040"
+			},
+			"offsets": {
+				"from": 482240,
+				"to": 511040
+			},
+			"text": " ["
+		}
+	]
+}

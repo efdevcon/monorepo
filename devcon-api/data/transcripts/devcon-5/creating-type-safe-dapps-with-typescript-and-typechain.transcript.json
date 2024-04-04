@@ -1,0 +1,2595 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,500"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12500
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,500",
+				"to": "00:00:16,600"
+			},
+			"offsets": {
+				"from": 12500,
+				"to": 16600
+			},
+			"text": " Sorry for the delay, the first speaker had some technical difficulties."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,600",
+				"to": "00:00:23,160"
+			},
+			"offsets": {
+				"from": 16600,
+				"to": 23160
+			},
+			"text": " And I'm grateful that so many people came for a talk that has worked tight,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,160",
+				"to": "00:00:25,200"
+			},
+			"offsets": {
+				"from": 23160,
+				"to": 25200
+			},
+			"text": " all creating free times in the title."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,200",
+				"to": "00:00:27,720"
+			},
+			"offsets": {
+				"from": 25200,
+				"to": 27720
+			},
+			"text": " So thanks for being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,720",
+				"to": "00:00:31,200"
+			},
+			"offsets": {
+				"from": 27720,
+				"to": 31200
+			},
+			"text": " My name is Chris, I work at the maker foundation and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,200",
+				"to": "00:00:36,760"
+			},
+			"offsets": {
+				"from": 31200,
+				"to": 36760
+			},
+			"text": " today I'm gonna be talking about creating type types of dots with type"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,760",
+				"to": "00:00:38,560"
+			},
+			"offsets": {
+				"from": 36760,
+				"to": 38560
+			},
+			"text": " script and type type."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,560",
+				"to": "00:00:41,200"
+			},
+			"offsets": {
+				"from": 38560,
+				"to": 41200
+			},
+			"text": " So let me ask you a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,200",
+				"to": "00:00:44,800"
+			},
+			"offsets": {
+				"from": 41200,
+				"to": 44800
+			},
+			"text": " How many people here use type script on daily basis?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,800",
+				"to": "00:00:47,880"
+			},
+			"offsets": {
+				"from": 44800,
+				"to": 47880
+			},
+			"text": " >> Yeah, that's what I was expecting."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,880",
+				"to": "00:00:50,440"
+			},
+			"offsets": {
+				"from": 47880,
+				"to": 50440
+			},
+			"text": " More than half of a room already."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,440",
+				"to": "00:00:54,080"
+			},
+			"offsets": {
+				"from": 50440,
+				"to": 54080
+			},
+			"text": " So in the last few months, years even,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,080",
+				"to": "00:00:58,240"
+			},
+			"offsets": {
+				"from": 54080,
+				"to": 58240
+			},
+			"text": " we have seen this tremendous growth of type script popularity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,240",
+				"to": "00:01:04,160"
+			},
+			"offsets": {
+				"from": 58240,
+				"to": 64160
+			},
+			"text": " And recently it even got more popular than well established languages like"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,160",
+				"to": "00:01:05,520"
+			},
+			"offsets": {
+				"from": 64160,
+				"to": 65520
+			},
+			"text": " Ruby for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,520",
+				"to": "00:01:08,800"
+			},
+			"offsets": {
+				"from": 65520,
+				"to": 68800
+			},
+			"text": " And we see steady growth of NBM and so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,800",
+				"to": "00:01:12,280"
+			},
+			"offsets": {
+				"from": 68800,
+				"to": 72280
+			},
+			"text": " So basically type script has this huge company,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,280",
+				"to": "00:01:14,960"
+			},
+			"offsets": {
+				"from": 72280,
+				"to": 74960
+			},
+			"text": " kind of itself called Microsoft."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,960",
+				"to": "00:01:22,640"
+			},
+			"offsets": {
+				"from": 74960,
+				"to": 82640
+			},
+			"text": " And there's a lot of workforce working on language itself and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,640",
+				"to": "00:01:25,520"
+			},
+			"offsets": {
+				"from": 82640,
+				"to": 85520
+			},
+			"text": " on the whole tooling around."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,520",
+				"to": "00:01:27,360"
+			},
+			"offsets": {
+				"from": 85520,
+				"to": 87360
+			},
+			"text": " So for example, I don't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,360",
+				"to": "00:01:31,560"
+			},
+			"offsets": {
+				"from": 87360,
+				"to": 91560
+			},
+			"text": " like Visual Studio code was for many people and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,560",
+				"to": "00:01:32,920"
+			},
+			"offsets": {
+				"from": 91560,
+				"to": 92920
+			},
+			"text": " you think like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,920",
+				"to": "00:01:36,880"
+			},
+			"offsets": {
+				"from": 92920,
+				"to": 96880
+			},
+			"text": " ancient drag for type script because it worked so well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,880",
+				"to": "00:01:41,960"
+			},
+			"offsets": {
+				"from": 96880,
+				"to": 101960
+			},
+			"text": " So for those who don't use type script,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,960",
+				"to": "00:01:46,680"
+			},
+			"offsets": {
+				"from": 101960,
+				"to": 106680
+			},
+			"text": " let me give you like more or less what to expect from the language itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,680",
+				"to": "00:01:48,080"
+			},
+			"offsets": {
+				"from": 106680,
+				"to": 108080
+			},
+			"text": " Some ideas behind it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,080",
+				"to": "00:01:52,600"
+			},
+			"offsets": {
+				"from": 108080,
+				"to": 112600
+			},
+			"text": " So first of all, like you can think about type script as a JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,600",
+				"to": "00:01:58,280"
+			},
+			"offsets": {
+				"from": 112600,
+				"to": 118280
+			},
+			"text": " With types and the only twisting this explanation is that the type system is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,280",
+				"to": "00:02:02,720"
+			},
+			"offsets": {
+				"from": 118280,
+				"to": 122720
+			},
+			"text": " today different from the one that you find in classical object-oriented"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,720",
+				"to": "00:02:05,960"
+			},
+			"offsets": {
+				"from": 122720,
+				"to": 125960
+			},
+			"text": " programming language like Java or C#."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,960",
+				"to": "00:02:08,880"
+			},
+			"offsets": {
+				"from": 125960,
+				"to": 128880
+			},
+			"text": " So first of all, you should just check our type things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,880",
+				"to": "00:02:14,560"
+			},
+			"offsets": {
+				"from": 128880,
+				"to": 134560
+			},
+			"text": " So imagine you have two types with like interface name and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,560",
+				"to": "00:02:19,560"
+			},
+			"offsets": {
+				"from": 134560,
+				"to": 139560
+			},
+			"text": " interface person name property of a string type."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,560",
+				"to": "00:02:24,680"
+			},
+			"offsets": {
+				"from": 139560,
+				"to": 144680
+			},
+			"text": " And in type script, these types are interchangeable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,680",
+				"to": "00:02:27,040"
+			},
+			"offsets": {
+				"from": 144680,
+				"to": 147040
+			},
+			"text": " So you can assign one to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,040",
+				"to": "00:02:33,680"
+			},
+			"offsets": {
+				"from": 147040,
+				"to": 153680
+			},
+			"text": " This is totally unexpected for a Java programmer which has nominal type."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,680",
+				"to": "00:02:41,480"
+			},
+			"offsets": {
+				"from": 153680,
+				"to": 161480
+			},
+			"text": " So this is totally doable in type script, but it's not possible in classical object languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,480",
+				"to": "00:02:48,280"
+			},
+			"offsets": {
+				"from": 161480,
+				"to": 168280
+			},
+			"text": " And you might be wondering about dark picture on the right side, dark image."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,280",
+				"to": "00:02:54,320"
+			},
+			"offsets": {
+				"from": 168280,
+				"to": 174320
+			},
+			"text": " So if you're a JavaScript programmer, you might be familiar with dark typing concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,320",
+				"to": "00:02:57,800"
+			},
+			"offsets": {
+				"from": 174320,
+				"to": 177800
+			},
+			"text": " So this is the idea, it's just as follows."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,800",
+				"to": "00:03:02,320"
+			},
+			"offsets": {
+				"from": 177800,
+				"to": 182320
+			},
+			"text": " If it works like a dark, if it works like a dark, then probably it's a dark."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,320",
+				"to": "00:03:07,720"
+			},
+			"offsets": {
+				"from": 182320,
+				"to": 187720
+			},
+			"text": " So you don't need to know the exact shape of entity that you're interacting with."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,720",
+				"to": "00:03:13,240"
+			},
+			"offsets": {
+				"from": 187720,
+				"to": 193240
+			},
+			"text": " It's just enough if it answers some comments that say."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,240",
+				"to": "00:03:15,240"
+			},
+			"offsets": {
+				"from": 193240,
+				"to": 195240
+			},
+			"text": " And that's why you have dark."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,240",
+				"to": "00:03:15,840"
+			},
+			"offsets": {
+				"from": 195240,
+				"to": 195840
+			},
+			"text": " Nothing's."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,840",
+				"to": "00:03:16,520"
+			},
+			"offsets": {
+				"from": 195840,
+				"to": 196520
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,520",
+				"to": "00:03:17,600"
+			},
+			"offsets": {
+				"from": 196520,
+				"to": 197600
+			},
+			"text": " I'm there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,600",
+				"to": "00:03:24,880"
+			},
+			"offsets": {
+				"from": 197600,
+				"to": 204880
+			},
+			"text": " So structure typing is like a dark typing, but during compile time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,880",
+				"to": "00:03:30,600"
+			},
+			"offsets": {
+				"from": 204880,
+				"to": 210600
+			},
+			"text": " So then we have text with features advanced, high-level programming features."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,600",
+				"to": "00:03:40,720"
+			},
+			"offsets": {
+				"from": 210600,
+				"to": 220720
+			},
+			"text": " So basically it allows us to transform types during compile time in like an imaginable way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,720",
+				"to": "00:03:48,840"
+			},
+			"offsets": {
+				"from": 220720,
+				"to": 228840
+			},
+			"text": " So here we have a complex object type which has some nested properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,840",
+				"to": "00:03:51,520"
+			},
+			"offsets": {
+				"from": 228840,
+				"to": 231520
+			},
+			"text": " We have some arrays nested and so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,520",
+				"to": "00:04:00,800"
+			},
+			"offsets": {
+				"from": 231520,
+				"to": 240800
+			},
+			"text": " And now we can use some generic type, like for example, DeepParsha coming from the header"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,800",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 240800,
+				"to": 248000
+			},
+			"text": " library called TSSentias and essentially, and we're going to get an object with all properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:11,280"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 251280
+			},
+			"text": " marked as optional recursively."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,280",
+				"to": "00:04:12,280"
+			},
+			"offsets": {
+				"from": 251280,
+				"to": 252280
+			},
+			"text": " And this is pretty awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,280",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 252280,
+				"to": 259000
+			},
+			"text": " You can have a config which is strict and then we can have some defaults and then make"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:27,920"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 267920
+			},
+			"text": " automatic user input which is optional of this config object."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,920",
+				"to": "00:04:29,600"
+			},
+			"offsets": {
+				"from": 267920,
+				"to": 269600
+			},
+			"text": " And finally we have gradual typing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,600",
+				"to": "00:04:35,080"
+			},
+			"offsets": {
+				"from": 269600,
+				"to": 275080
+			},
+			"text": " This means basically that we don't have to type our application 100% correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,080",
+				"to": "00:04:41,160"
+			},
+			"offsets": {
+				"from": 275080,
+				"to": 281160
+			},
+			"text": " Of course we should try to have this, we can come up with type coverage metric which basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,160",
+				"to": "00:04:48,800"
+			},
+			"offsets": {
+				"from": 281160,
+				"to": 288800
+			},
+			"text": " means like we can count the number of symbols in our programs that are typed as any, any"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,800",
+				"to": "00:04:54,320"
+			},
+			"offsets": {
+				"from": 288800,
+				"to": 294320
+			},
+			"text": " means that it's free and typed and divided by all the symbols in our program and we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,320",
+				"to": "00:05:00,680"
+			},
+			"offsets": {
+				"from": 294320,
+				"to": 300680
+			},
+			"text": " come up with this presentation how your program is typed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,680",
+				"to": "00:05:03,800"
+			},
+			"offsets": {
+				"from": 300680,
+				"to": 303800
+			},
+			"text": " And there's still type of which does it for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,800",
+				"to": "00:05:13,720"
+			},
+			"offsets": {
+				"from": 303800,
+				"to": 313720
+			},
+			"text": " And basically this allows us to just fall back to JavaScript if we don't have type information"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,720",
+				"to": "00:05:17,720"
+			},
+			"offsets": {
+				"from": 313720,
+				"to": 317720
+			},
+			"text": " or we just don't care about types in this specific place."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,720",
+				"to": "00:05:22,800"
+			},
+			"offsets": {
+				"from": 317720,
+				"to": 322800
+			},
+			"text": " But of course it should be as easy as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,800",
+				"to": "00:05:29,800"
+			},
+			"offsets": {
+				"from": 322800,
+				"to": 329800
+			},
+			"text": " So now let's talk about how, what are the challenges about TypeScript and Web Free and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,800",
+				"to": "00:05:33,120"
+			},
+			"offsets": {
+				"from": 329800,
+				"to": 333120
+			},
+			"text": " Ethereum ecosystem challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,120",
+				"to": "00:05:45,480"
+			},
+			"offsets": {
+				"from": 333120,
+				"to": 345480
+			},
+			"text": " So obviously, okay, I know."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,480",
+				"to": "00:05:47,880"
+			},
+			"offsets": {
+				"from": 345480,
+				"to": 347880
+			},
+			"text": " So that was the human rights anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,880",
+				"to": "00:05:54,240"
+			},
+			"offsets": {
+				"from": 347880,
+				"to": 354240
+			},
+			"text": " So now I created like a simple Web Free JS called snippet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,240",
+				"to": "00:05:59,480"
+			},
+			"offsets": {
+				"from": 354240,
+				"to": 359480
+			},
+			"text": " So here we, so what Web Free JS is a library written in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,480",
+				"to": "00:06:02,560"
+			},
+			"offsets": {
+				"from": 359480,
+				"to": 362560
+			},
+			"text": " It's not TypeScript enabled."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,560",
+				"to": "00:06:10,480"
+			},
+			"offsets": {
+				"from": 362560,
+				"to": 370480
+			},
+			"text": " So here even though it's a TypeScript file, we use it as it's marked as any."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,480",
+				"to": "00:06:14,320"
+			},
+			"offsets": {
+				"from": 370480,
+				"to": 374320
+			},
+			"text": " We don't have any type information about it but we can still use it and just operate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,320",
+				"to": "00:06:18,960"
+			},
+			"offsets": {
+				"from": 374320,
+				"to": 378960
+			},
+			"text": " like if you just write code that would write normally in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,960",
+				"to": "00:06:22,480"
+			},
+			"offsets": {
+				"from": 378960,
+				"to": 382480
+			},
+			"text": " So if you're like really desperate, you can still use it like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,480",
+				"to": "00:06:27,680"
+			},
+			"offsets": {
+				"from": 382480,
+				"to": 387680
+			},
+			"text": " So for example here, when we're getting like, when we're creating Web Free, any when we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,680",
+				"to": "00:06:35,840"
+			},
+			"offsets": {
+				"from": 387680,
+				"to": 395840
+			},
+			"text": " getting the block number, it's any when we're loading a API to interact with a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,840",
+				"to": "00:06:39,040"
+			},
+			"offsets": {
+				"from": 395840,
+				"to": 399040
+			},
+			"text": " is that I contract on the mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,040",
+				"to": "00:06:45,880"
+			},
+			"offsets": {
+				"from": 399040,
+				"to": 405880
+			},
+			"text": " It's again, any and everything is any like you do in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,880",
+				"to": "00:06:50,240"
+			},
+			"offsets": {
+				"from": 405880,
+				"to": 410240
+			},
+			"text": " So some people are happy with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,240",
+				"to": "00:06:55,440"
+			},
+			"offsets": {
+				"from": 410240,
+				"to": 415440
+			},
+			"text": " But basically this like TypeScript in this case doesn't help us that much."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,440",
+				"to": "00:07:00,360"
+			},
+			"offsets": {
+				"from": 415440,
+				"to": 420360
+			},
+			"text": " It's there but when interacting with blockchain, it's like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,360",
+				"to": "00:07:04,680"
+			},
+			"offsets": {
+				"from": 420360,
+				"to": 424680
+			},
+			"text": " So the easiest approach here is to load typing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,680",
+				"to": "00:07:10,560"
+			},
+			"offsets": {
+				"from": 424680,
+				"to": 430560
+			},
+			"text": " So typing is just like external type information that was provided by community usually and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,560",
+				"to": "00:07:17,680"
+			},
+			"offsets": {
+				"from": 430560,
+				"to": 437680
+			},
+			"text": " it just provides this type information for library written in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,680",
+				"to": "00:07:24,680"
+			},
+			"offsets": {
+				"from": 437680,
+				"to": 444680
+			},
+			"text": " And there are typeings for Web Free."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,680",
+				"to": "00:07:31,920"
+			},
+			"offsets": {
+				"from": 444680,
+				"to": 451920
+			},
+			"text": " Usually you would install it by the app that types Web Free."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,920",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 451920,
+				"to": 457000
+			},
+			"text": " But we don't have internet connection so I'm going to just load a Git snapshot that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:41,680"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 461680
+			},
+			"text": " I did before this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,680",
+				"to": "00:07:47,080"
+			},
+			"offsets": {
+				"from": 461680,
+				"to": 467080
+			},
+			"text": " And the only change in the code is that the way that we import the library instead of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,080",
+				"to": "00:07:51,200"
+			},
+			"offsets": {
+				"from": 467080,
+				"to": 471200
+			},
+			"text": " using require, we use ES6 style imports."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,200",
+				"to": "00:07:56,520"
+			},
+			"offsets": {
+				"from": 471200,
+				"to": 476520
+			},
+			"text": " And then suddenly our code is properly typed almost."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,520",
+				"to": "00:07:59,640"
+			},
+			"offsets": {
+				"from": 476520,
+				"to": 479640
+			},
+			"text": " So the Web Free is properly typed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,640",
+				"to": "00:08:04,080"
+			},
+			"offsets": {
+				"from": 479640,
+				"to": 484080
+			},
+			"text": " We can see that the block number is now number."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,080",
+				"to": "00:08:11,160"
+			},
+			"offsets": {
+				"from": 484080,
+				"to": 491160
+			},
+			"text": " As we expected, we get like normal code competition and so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,160",
+				"to": "00:08:20,600"
+			},
+			"offsets": {
+				"from": 491160,
+				"to": 500600
+			},
+			"text": " But when we interact with a contract because on the mainnet we load this API on the fly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,600",
+				"to": "00:08:27,200"
+			},
+			"offsets": {
+				"from": 500600,
+				"to": 507200
+			},
+			"text": " this is important because really this contract is the dynamic structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,200",
+				"to": "00:08:30,920"
+			},
+			"offsets": {
+				"from": 507200,
+				"to": 510920
+			},
+			"text": " It changes, you know, depending on the API that you load."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,920",
+				"to": "00:08:37,800"
+			},
+			"offsets": {
+				"from": 510920,
+				"to": 517800
+			},
+			"text": " So in this case, so basically these methods are like type but only a little bit, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,800",
+				"to": "00:08:43,320"
+			},
+			"offsets": {
+				"from": 517800,
+				"to": 523320
+			},
+			"text": " You see here the balance of this type is just take some arguments, the area of arguments."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,320",
+				"to": "00:08:45,680"
+			},
+			"offsets": {
+				"from": 523320,
+				"to": 525680
+			},
+			"text": " So it's not really properly typed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,680",
+				"to": "00:08:49,760"
+			},
+			"offsets": {
+				"from": 525680,
+				"to": 529760
+			},
+			"text": " And return type is again any which in fact is big number."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,760",
+				"to": "00:08:54,480"
+			},
+			"offsets": {
+				"from": 529760,
+				"to": 534480
+			},
+			"text": " So you know, it's also, it would be cool if it would say to us that it's big number because"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,480",
+				"to": "00:08:59,760"
+			},
+			"offsets": {
+				"from": 534480,
+				"to": 539760
+			},
+			"text": " people are often thinking that it's just number and try to, I don't know, use class on it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,760",
+				"to": "00:09:03,240"
+			},
+			"offsets": {
+				"from": 539760,
+				"to": 543240
+			},
+			"text": " and they just get an error during runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,240",
+				"to": "00:09:04,560"
+			},
+			"offsets": {
+				"from": 543240,
+				"to": 544560
+			},
+			"text": " Which sucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,560",
+				"to": "00:09:09,560"
+			},
+			"offsets": {
+				"from": 544560,
+				"to": 549560
+			},
+			"text": " So how do we fix this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,560",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 549560,
+				"to": 554000
+			},
+			"text": " So typing says this limitation like it lacks API changes as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:21,320"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 561320
+			},
+			"text": " So if there's a change to web3, JS, library then typing needs to be changed by some one"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,320",
+				"to": "00:09:22,320"
+			},
+			"offsets": {
+				"from": 561320,
+				"to": 562320
+			},
+			"text": " later."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,320",
+				"to": "00:09:25,520"
+			},
+			"offsets": {
+				"from": 562320,
+				"to": 565520
+			},
+			"text": " And as I mentioned before, it doesn't work with dynamic interfaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,520",
+				"to": "00:09:30,880"
+			},
+			"offsets": {
+				"from": 565520,
+				"to": 570880
+			},
+			"text": " And we load the API and then the, and we generate a wrapper on the fly during the runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,880",
+				"to": "00:09:33,480"
+			},
+			"offsets": {
+				"from": 570880,
+				"to": 573480
+			},
+			"text": " So it's impossible to type."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,480",
+				"to": "00:09:36,480"
+			},
+			"offsets": {
+				"from": 573480,
+				"to": 576480
+			},
+			"text": " The reason for this problem is to generate typing from the fly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,480",
+				"to": "00:09:44,560"
+			},
+			"offsets": {
+				"from": 576480,
+				"to": 584560
+			},
+			"text": " So basically we can gather API files from our projects, project upfront before compiling"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,560",
+				"to": "00:09:46,480"
+			},
+			"offsets": {
+				"from": 584560,
+				"to": 586480
+			},
+			"text": " it with TypeScript compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,480",
+				"to": "00:09:53,120"
+			},
+			"offsets": {
+				"from": 586480,
+				"to": 593120
+			},
+			"text": " And in the separate build step, just generate this, this typing type, typing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,120",
+				"to": "00:09:55,280"
+			},
+			"offsets": {
+				"from": 593120,
+				"to": 595280
+			},
+			"text": " So basically DTS files."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,280",
+				"to": "00:09:58,560"
+			},
+			"offsets": {
+				"from": 595280,
+				"to": 598560
+			},
+			"text": " And this is exactly what type try and does."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,560",
+				"to": "00:10:07,480"
+			},
+			"offsets": {
+				"from": 598560,
+				"to": 607480
+			},
+			"text": " So another twist here is that we need to generate typing specific to the web3, like blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,480",
+				"to": "00:10:08,480"
+			},
+			"offsets": {
+				"from": 607480,
+				"to": 608480
+			},
+			"text": " access library."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,480",
+				"to": "00:10:17,160"
+			},
+			"offsets": {
+				"from": 608480,
+				"to": 617160
+			},
+			"text": " So people using web3, JS, the API of a smart contract, a wrapper is slightly different"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,160",
+				"to": "00:10:20,600"
+			},
+			"offsets": {
+				"from": 617160,
+				"to": 620600
+			},
+			"text": " than from headers or from traffic and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,600",
+				"to": "00:10:26,920"
+			},
+			"offsets": {
+				"from": 620600,
+				"to": 626920
+			},
+			"text": " So basically type chain gathers or the API gathers like the target that you want to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,920",
+				"to": "00:10:34,600"
+			},
+			"offsets": {
+				"from": 626920,
+				"to": 634600
+			},
+			"text": " So for example, you specify that you use headers and it generates these DTS files for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,600",
+				"to": "00:10:39,040"
+			},
+			"offsets": {
+				"from": 634600,
+				"to": 639040
+			},
+			"text": " So let me show you how this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,040",
+				"to": "00:10:46,920"
+			},
+			"offsets": {
+				"from": 639040,
+				"to": 646920
+			},
+			"text": " So again, we would just do the type chain and specific target."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,920",
+				"to": "00:10:55,920"
+			},
+			"offsets": {
+				"from": 646920,
+				"to": 655920
+			},
+			"text": " So in this case, we want to load target called web3 because we're using web3 now headers."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,920",
+				"to": "00:11:04,600"
+			},
+			"offsets": {
+				"from": 655920,
+				"to": 664600
+			},
+			"text": " And then this is a CLI tool that you could, you know, make like a post install hook or"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,600",
+				"to": "00:11:10,800"
+			},
+			"offsets": {
+				"from": 664600,
+				"to": 670800
+			},
+			"text": " anything but here we just go around it directly so you can see it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,800",
+				"to": "00:11:14,640"
+			},
+			"offsets": {
+				"from": 670800,
+				"to": 674640
+			},
+			"text": " So basically you specify the target as I mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,640",
+				"to": "00:11:15,640"
+			},
+			"offsets": {
+				"from": 674640,
+				"to": 675640
+			},
+			"text": " Can you see?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,640",
+				"to": "00:11:16,640"
+			},
+			"offsets": {
+				"from": 675640,
+				"to": 676640
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,640",
+				"to": "00:11:22,560"
+			},
+			"offsets": {
+				"from": 676640,
+				"to": 682560
+			},
+			"text": " You specify target and you specify the API files."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,560",
+				"to": "00:11:27,480"
+			},
+			"offsets": {
+				"from": 682560,
+				"to": 687480
+			},
+			"text": " In this case, it's just one file but it supports block patterns and so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,480",
+				"to": "00:11:35,440"
+			},
+			"offsets": {
+				"from": 687480,
+				"to": 695440
+			},
+			"text": " And basically we can see that we generated some general types for web3 and here C20 DTS"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,440",
+				"to": "00:11:36,920"
+			},
+			"offsets": {
+				"from": 695440,
+				"to": 696920
+			},
+			"text": " file."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,920",
+				"to": "00:11:44,920"
+			},
+			"offsets": {
+				"from": 696920,
+				"to": 704920
+			},
+			"text": " And now in code of application, we need an explicit cast for this interface that was"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,920",
+				"to": "00:11:52,280"
+			},
+			"offsets": {
+				"from": 704920,
+				"to": 712280
+			},
+			"text": " generated because it's just impossible to guess that like to make a connection between"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,280",
+				"to": "00:11:57,560"
+			},
+			"offsets": {
+				"from": 712280,
+				"to": 717560
+			},
+			"text": " the address that can be random during the compile time with the typing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,560",
+				"to": "00:12:07,680"
+			},
+			"offsets": {
+				"from": 717560,
+				"to": 727680
+			},
+			"text": " So here we just need something like this explicit cast and well, now die is here is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,680",
+				"to": "00:12:20,880"
+			},
+			"offsets": {
+				"from": 727680,
+				"to": 740880
+			},
+			"text": " C20 token and balance is number as you would expect and we're getting proper code competition"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,880",
+				"to": "00:12:21,880"
+			},
+			"offsets": {
+				"from": 740880,
+				"to": 741880
+			},
+			"text": " here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,880",
+				"to": "00:12:25,680"
+			},
+			"offsets": {
+				"from": 741880,
+				"to": 745680
+			},
+			"text": " So these are all here C20 plus some others."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,680",
+				"to": "00:12:46,520"
+			},
+			"offsets": {
+				"from": 745680,
+				"to": 766520
+			},
+			"text": " So we can also browse this typing generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,520",
+				"to": "00:12:54,360"
+			},
+			"offsets": {
+				"from": 766520,
+				"to": 774360
+			},
+			"text": " So basically you can also see that sometimes it allows us to specify either number or stream"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,360",
+				"to": "00:12:59,120"
+			},
+			"offsets": {
+				"from": 774360,
+				"to": 779120
+			},
+			"text": " because this is what web3 allows us to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,120",
+				"to": "00:13:06,600"
+			},
+			"offsets": {
+				"from": 779120,
+				"to": 786600
+			},
+			"text": " So some of the stikings are really convenient and they are as open as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,600",
+				"to": "00:13:11,240"
+			},
+			"offsets": {
+				"from": 786600,
+				"to": 791240
+			},
+			"text": " There are some conversion happening if you don't see it here as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,240",
+				"to": "00:13:16,680"
+			},
+			"offsets": {
+				"from": 791240,
+				"to": 796680
+			},
+			"text": " You don't have to be super strict about something you don't want."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,680",
+				"to": "00:13:26,240"
+			},
+			"offsets": {
+				"from": 796680,
+				"to": 806240
+			},
+			"text": " So in general, typechain works perfectly with any ID if your ID supports TypeScript, it supports"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,240",
+				"to": "00:13:30,440"
+			},
+			"offsets": {
+				"from": 806240,
+				"to": 810440
+			},
+			"text": " typechain generated wrappers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,440",
+				"to": "00:13:35,080"
+			},
+			"offsets": {
+				"from": 810440,
+				"to": 815080
+			},
+			"text": " It supports officially free different targets."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,080",
+				"to": "00:13:41,920"
+			},
+			"offsets": {
+				"from": 815080,
+				"to": 821920
+			},
+			"text": " So it's web3, 1.8, etter.js and travel."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,920",
+				"to": "00:13:43,520"
+			},
+			"offsets": {
+				"from": 821920,
+				"to": 823520
+			},
+			"text": " It supports custom targets."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,520",
+				"to": "00:13:49,320"
+			},
+			"offsets": {
+				"from": 823520,
+				"to": 829320
+			},
+			"text": " So what do you like for example you mentioned that you're not developing a DAP, you're developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,320",
+				"to": "00:13:58,400"
+			},
+			"offsets": {
+				"from": 829320,
+				"to": 838400
+			},
+			"text": " like a protocol and you want to have a generated library to use by different developers and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,400",
+				"to": "00:14:03,840"
+			},
+			"offsets": {
+				"from": 838400,
+				"to": 843840
+			},
+			"text": " you want to have come up with your own interface, hide some metals, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,840",
+				"to": "00:14:09,480"
+			},
+			"offsets": {
+				"from": 843840,
+				"to": 849480
+			},
+			"text": " You can generate it automatically by providing your custom target with just takes parse API"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,480",
+				"to": "00:14:11,320"
+			},
+			"offsets": {
+				"from": 849480,
+				"to": 851320
+			},
+			"text": " and generate some code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,320",
+				"to": "00:14:16,560"
+			},
+			"offsets": {
+				"from": 851320,
+				"to": 856560
+			},
+			"text": " And by the way, you can generate even code in different languages than TypeScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,560",
+				"to": "00:14:18,960"
+			},
+			"offsets": {
+				"from": 856560,
+				"to": 858960
+			},
+			"text": " It's very general interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,960",
+				"to": "00:14:24,760"
+			},
+			"offsets": {
+				"from": 858960,
+				"to": 864760
+			},
+			"text": " And basically then you can just hide implementation details from the users of your library."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,760",
+				"to": "00:14:31,320"
+			},
+			"offsets": {
+				"from": 864760,
+				"to": 871320
+			},
+			"text": " You could swap internal web3, like blockchain access library without affecting your clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,320",
+				"to": "00:14:32,320"
+			},
+			"offsets": {
+				"from": 871320,
+				"to": 872320
+			},
+			"text": " and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,320",
+				"to": "00:14:36,160"
+			},
+			"offsets": {
+				"from": 872320,
+				"to": 876160
+			},
+			"text": " So, Typechain has full API version 2 support."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,160",
+				"to": "00:14:42,760"
+			},
+			"offsets": {
+				"from": 876160,
+				"to": 882760
+			},
+			"text": " So things like structs, things like fallback functions or override it over written functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,760",
+				"to": "00:14:43,760"
+			},
+			"offsets": {
+				"from": 882760,
+				"to": 883760
+			},
+			"text": " Now works."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,760",
+				"to": "00:14:49,680"
+			},
+			"offsets": {
+				"from": 883760,
+				"to": 889680
+			},
+			"text": " And it supports events as I've shown before."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,680",
+				"to": "00:14:52,440"
+			},
+			"offsets": {
+				"from": 889680,
+				"to": 892440
+			},
+			"text": " And what's pretty cool that it works with travel?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,440",
+				"to": "00:14:58,640"
+			},
+			"offsets": {
+				"from": 892440,
+				"to": 898640
+			},
+			"text": " So we can do smart contract development, not DAP development only."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,640",
+				"to": "00:15:07,840"
+			},
+			"offsets": {
+				"from": 898640,
+				"to": 907840
+			},
+			"text": " So here I have this example of simple, so DAP contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,840",
+				"to": "00:15:17,040"
+			},
+			"offsets": {
+				"from": 907840,
+				"to": 917040
+			},
+			"text": " It's like a traffic project with some simple, so DAP contract code reader and it has some"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,040",
+				"to": "00:15:18,040"
+			},
+			"offsets": {
+				"from": 917040,
+				"to": 918040
+			},
+			"text": " functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,040",
+				"to": "00:15:27,520"
+			},
+			"offsets": {
+				"from": 918040,
+				"to": 927520
+			},
+			"text": " We have tests here and it's super nice now to write this because we have all these code"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,520",
+				"to": "00:15:28,520"
+			},
+			"offsets": {
+				"from": 927520,
+				"to": 928520
+			},
+			"text": " conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,520",
+				"to": "00:15:29,520"
+			},
+			"offsets": {
+				"from": 928520,
+				"to": 929520
+			},
+			"text": " So we don't get them there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,520",
+				"to": "00:15:37,960"
+			},
+			"offsets": {
+				"from": 929520,
+				"to": 937960
+			},
+			"text": " The method names, we don't change files to be sure what's the name of the method."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,960",
+				"to": "00:15:44,600"
+			},
+			"offsets": {
+				"from": 937960,
+				"to": 944600
+			},
+			"text": " And what's cool is that if we introduce a change to the solidity code, let's say we"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,600",
+				"to": "00:15:58,840"
+			},
+			"offsets": {
+				"from": 944600,
+				"to": 958840
+			},
+			"text": " rename, say hello to screen hello and we regenerate, or we don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,840",
+				"to": "00:16:02,480"
+			},
+			"offsets": {
+				"from": 958840,
+				"to": 962480
+			},
+			"text": " And we regenerate the wrappers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,480",
+				"to": "00:16:08,480"
+			},
+			"offsets": {
+				"from": 962480,
+				"to": 968480
+			},
+			"text": " We gonna find automatically without running our tests, we gonna find breaking changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,480",
+				"to": "00:16:15,360"
+			},
+			"offsets": {
+				"from": 968480,
+				"to": 975360
+			},
+			"text": " So if you do a lot of smart contract development just faster to find breaking changes like"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,360",
+				"to": "00:16:23,200"
+			},
+			"offsets": {
+				"from": 975360,
+				"to": 983200
+			},
+			"text": " this, it just saves a lot of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,200",
+				"to": "00:16:29,760"
+			},
+			"offsets": {
+				"from": 983200,
+				"to": 989760
+			},
+			"text": " And by the way, if you use something like Wathu or similar tool to put traffic but using"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,760",
+				"to": "00:16:35,320"
+			},
+			"offsets": {
+				"from": 989760,
+				"to": 995320
+			},
+			"text": " enters, it works as well because it can generate better style tactics."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,320",
+				"to": "00:16:38,600"
+			},
+			"offsets": {
+				"from": 995320,
+				"to": 998600
+			},
+			"text": " So recently it's still in beta really."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,600",
+				"to": "00:16:43,720"
+			},
+			"offsets": {
+				"from": 998600,
+				"to": 1003720
+			},
+			"text": " I was about to release it today because it works very well and people tested it already"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,720",
+				"to": "00:16:45,720"
+			},
+			"offsets": {
+				"from": 1003720,
+				"to": 1005720
+			},
+			"text": " but they don't just return the next security."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,720",
+				"to": "00:16:51,200"
+			},
+			"offsets": {
+				"from": 1005720,
+				"to": 1011200
+			},
+			"text": " So basically, TIGGING version 1.0, which is a few new additions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,200",
+				"to": "00:16:57,960"
+			},
+			"offsets": {
+				"from": 1011200,
+				"to": 1017960
+			},
+			"text": " So if you use it before now, the targets are extracted as a separate package which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,960",
+				"to": "00:17:04,320"
+			},
+			"offsets": {
+				"from": 1017960,
+				"to": 1024320
+			},
+			"text": " much nicer because you can even create your own target without, you know, polluting the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,320",
+				"to": "00:17:07,480"
+			},
+			"offsets": {
+				"from": 1024320,
+				"to": 1027480
+			},
+			"text": " type script, the type chain repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,480",
+				"to": "00:17:13,320"
+			},
+			"offsets": {
+				"from": 1027480,
+				"to": 1033320
+			},
+			"text": " The API parser is much nicer so you might be wondering why do we have API parser at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,320",
+				"to": "00:17:22,960"
+			},
+			"offsets": {
+				"from": 1033320,
+				"to": 1042960
+			},
+			"text": " So basically we can parse JSON-style API to something type-shaped like discriminated unions"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,960",
+				"to": "00:17:23,960"
+			},
+			"offsets": {
+				"from": 1042960,
+				"to": 1043960
+			},
+			"text": " in TypeScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,960",
+				"to": "00:17:30,880"
+			},
+			"offsets": {
+				"from": 1043960,
+				"to": 1050880
+			},
+			"text": " It means writing the code generation part a lot and it's just like, you know, less error"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,880",
+				"to": "00:17:31,880"
+			},
+			"offsets": {
+				"from": 1050880,
+				"to": 1051880
+			},
+			"text": " from."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,880",
+				"to": "00:17:37,360"
+			},
+			"offsets": {
+				"from": 1051880,
+				"to": 1057360
+			},
+			"text": " So basically the architecture of TypeScript now reassembles it with the compiler, the generic"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,360",
+				"to": "00:17:41,640"
+			},
+			"offsets": {
+				"from": 1057360,
+				"to": 1061640
+			},
+			"text": " compiler, architectures where you have, you know, this processing in pipeline."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,640",
+				"to": "00:17:47,400"
+			},
+			"offsets": {
+				"from": 1061640,
+				"to": 1067400
+			},
+			"text": " So first we parse API and then we do code generation and this basically means that code"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,400",
+				"to": "00:17:52,160"
+			},
+			"offsets": {
+				"from": 1067400,
+				"to": 1072160
+			},
+			"text": " generation is just a pure function that takes API and returns some strings without the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,160",
+				"to": "00:17:54,360"
+			},
+			"offsets": {
+				"from": 1072160,
+				"to": 1074360
+			},
+			"text": " EIO and so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,360",
+				"to": "00:17:57,840"
+			},
+			"offsets": {
+				"from": 1074360,
+				"to": 1077840
+			},
+			"text": " So it's as simple as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,840",
+				"to": "00:18:00,440"
+			},
+			"offsets": {
+				"from": 1077840,
+				"to": 1080440
+			},
+			"text": " And I want to talk a little bit now about Ttune."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,440",
+				"to": "00:18:06,720"
+			},
+			"offsets": {
+				"from": 1080440,
+				"to": 1086720
+			},
+			"text": " Yes, organization that I created more than one year ago which is like a family for TypeScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,720",
+				"to": "00:18:11,200"
+			},
+			"offsets": {
+				"from": 1086720,
+				"to": 1091200
+			},
+			"text": " related project, TypeScript and Vderem related project."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,200",
+				"to": "00:18:19,440"
+			},
+			"offsets": {
+				"from": 1091200,
+				"to": 1099440
+			},
+			"text": " So after it was helping me for a long time and recently joined as an off-shot maintainer"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,440",
+				"to": "00:18:23,800"
+			},
+			"offsets": {
+				"from": 1099440,
+				"to": 1103800
+			},
+			"text": " and we have more than 20 community contributors to Typetrain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,800",
+				"to": "00:18:32,560"
+			},
+			"offsets": {
+				"from": 1103800,
+				"to": 1112560
+			},
+			"text": " So, you know, we have a lot of things like type-of-chain, capital, asset-building, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,560",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1112560,
+				"to": 1119000
+			},
+			"text": " then user interface like it's for developers to test our smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:42,200"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1122200
+			},
+			"text": " Like, do the graph too as one."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,200",
+				"to": "00:18:46,400"
+			},
+			"offsets": {
+				"from": 1122200,
+				"to": 1126400
+			},
+			"text": " Can we return to this question when I'm done because I'm running out of time and we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,400",
+				"to": "00:18:48,520"
+			},
+			"offsets": {
+				"from": 1126400,
+				"to": 1128520
+			},
+			"text": " going to, we have time for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,520",
+				"to": "00:18:55,320"
+			},
+			"offsets": {
+				"from": 1128520,
+				"to": 1135320
+			},
+			"text": " So Typetrain is already used by well-known companies like Maker, Noefine, Chaining and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,320",
+				"to": "00:18:56,320"
+			},
+			"offsets": {
+				"from": 1135320,
+				"to": 1136320
+			},
+			"text": " so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,320",
+				"to": "00:19:00,000"
+			},
+			"offsets": {
+				"from": 1136320,
+				"to": 1140000
+			},
+			"text": " So it's not like no-set type project that we use."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,000",
+				"to": "00:19:02,840"
+			},
+			"offsets": {
+				"from": 1140000,
+				"to": 1142840
+			},
+			"text": " It's really used in the wild."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,840",
+				"to": "00:19:13,240"
+			},
+			"offsets": {
+				"from": 1142840,
+				"to": 1153240
+			},
+			"text": " And Gitfine also sponsored like many bounties to, you know, inject some cash for external"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,240",
+				"to": "00:19:16,280"
+			},
+			"offsets": {
+				"from": 1153240,
+				"to": 1156280
+			},
+			"text": " developers to help us do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,280",
+				"to": "00:19:20,280"
+			},
+			"offsets": {
+				"from": 1156280,
+				"to": 1160280
+			},
+			"text": " And basically that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,280",
+				"to": "00:19:24,280"
+			},
+			"offsets": {
+				"from": 1160280,
+				"to": 1164280
+			},
+			"text": " That's my Twitter handle, you can consider following me on Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,280",
+				"to": "00:19:26,280"
+			},
+			"offsets": {
+				"from": 1164280,
+				"to": 1166280
+			},
+			"text": " You know, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,280",
+				"to": "00:19:28,280"
+			},
+			"offsets": {
+				"from": 1166280,
+				"to": 1168280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,280",
+				"to": "00:19:30,280"
+			},
+			"offsets": {
+				"from": 1168280,
+				"to": 1170280
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,280",
+				"to": "00:19:37,280"
+			},
+			"offsets": {
+				"from": 1170280,
+				"to": 1177280
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,280",
+				"to": "00:19:44,280"
+			},
+			"offsets": {
+				"from": 1177280,
+				"to": 1184280
+			},
+			"text": " [Music]"
+		}
+	]
+}

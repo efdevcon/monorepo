@@ -1,0 +1,2991 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,440"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5440
+			},
+			"text": " Yeah, so today I will talk about the North is safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,440",
+				"to": "00:00:09,280"
+			},
+			"offsets": {
+				"from": 5440,
+				"to": 9280
+			},
+			"text": " I will essentially talk just about one smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,280",
+				"to": "00:00:14,880"
+			},
+			"offsets": {
+				"from": 9280,
+				"to": 14880
+			},
+			"text": " We have been working on this contract for over one year now, but the implications of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,880",
+				"to": "00:00:20,720"
+			},
+			"offsets": {
+				"from": 14880,
+				"to": 20720
+			},
+			"text": " this one smart contract are hopefully quite significant for the Ethereum development and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,720",
+				"to": "00:00:22,960"
+			},
+			"offsets": {
+				"from": 20720,
+				"to": 22960
+			},
+			"text": " the user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,960",
+				"to": "00:00:29,080"
+			},
+			"offsets": {
+				"from": 22960,
+				"to": 29080
+			},
+			"text": " So first question to ask, like, why are we actually building yet another wallet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,080",
+				"to": "00:00:33,440"
+			},
+			"offsets": {
+				"from": 29080,
+				"to": 33440
+			},
+			"text": " There are already so many wallets out there, and I guess many of you have installed maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,440",
+				"to": "00:00:35,600"
+			},
+			"offsets": {
+				"from": 33440,
+				"to": 35600
+			},
+			"text": " even a couple of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,600",
+				"to": "00:00:38,380"
+			},
+			"offsets": {
+				"from": 35600,
+				"to": 38380
+			},
+			"text": " So why do we put so much effort into this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,380",
+				"to": "00:00:44,760"
+			},
+			"offsets": {
+				"from": 38380,
+				"to": 44760
+			},
+			"text": " And the reason is that we are significantly different from all of them because we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,760",
+				"to": "00:00:47,800"
+			},
+			"offsets": {
+				"from": 44760,
+				"to": 47800
+			},
+			"text": " the first smart contract based wallet for mobile."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,800",
+				"to": "00:00:53,320"
+			},
+			"offsets": {
+				"from": 47800,
+				"to": 53320
+			},
+			"text": " We try to make smart contract based wallet accessible for everyone as a default way to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,320",
+				"to": "00:00:56,200"
+			},
+			"offsets": {
+				"from": 53320,
+				"to": 56200
+			},
+			"text": " interact on this theorem network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,200",
+				"to": "00:01:00,120"
+			},
+			"offsets": {
+				"from": 56200,
+				"to": 60120
+			},
+			"text": " So what are the implications of using a smart contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,120",
+				"to": "00:01:03,960"
+			},
+			"offsets": {
+				"from": 60120,
+				"to": 63960
+			},
+			"text": " Let's look into how are all the other wallets currently interacting."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,960",
+				"to": "00:01:10,620"
+			},
+			"offsets": {
+				"from": 63960,
+				"to": 70620
+			},
+			"text": " They are using the account model where you have externally owned accounts, which are"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,620",
+				"to": "00:01:16,720"
+			},
+			"offsets": {
+				"from": 70620,
+				"to": 76720
+			},
+			"text": " controlled by a private key that users hold, and then you are signing Ethereum transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,720",
+				"to": "00:01:21,600"
+			},
+			"offsets": {
+				"from": 76720,
+				"to": 81600
+			},
+			"text": " with this private key, and then the transaction I broadcasted and mined."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,600",
+				"to": "00:01:27,960"
+			},
+			"offsets": {
+				"from": 81600,
+				"to": 87960
+			},
+			"text": " What is the issue with just using this externally owned account as your account on Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,960",
+				"to": "00:01:29,880"
+			},
+			"offsets": {
+				"from": 87960,
+				"to": 89880
+			},
+			"text": " There are mainly two issues with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,880",
+				"to": "00:01:34,280"
+			},
+			"offsets": {
+				"from": 89880,
+				"to": 94280
+			},
+			"text": " One is you have to have proper backups of this private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,280",
+				"to": "00:01:39,160"
+			},
+			"offsets": {
+				"from": 94280,
+				"to": 99160
+			},
+			"text": " If you are losing the private key, you do access to your account."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,160",
+				"to": "00:01:41,160"
+			},
+			"offsets": {
+				"from": 99160,
+				"to": 101160
+			},
+			"text": " And the other thing is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,160",
+				"to": "00:01:42,160"
+			},
+			"offsets": {
+				"from": 101160,
+				"to": 102160
+			},
+			"text": " It's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,160",
+				"to": "00:01:43,160"
+			},
+			"offsets": {
+				"from": 102160,
+				"to": 103160
+			},
+			"text": " It's somewhat."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,160",
+				"to": "00:01:45,200"
+			},
+			"offsets": {
+				"from": 103160,
+				"to": 105200
+			},
+			"text": " Yeah, there might be also benefits to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,200",
+				"to": "00:01:49,880"
+			},
+			"offsets": {
+				"from": 105200,
+				"to": 109880
+			},
+			"text": " Like you can ensure that no one will be able to access this again."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,880",
+				"to": "00:01:53,240"
+			},
+			"offsets": {
+				"from": 109880,
+				"to": 113240
+			},
+			"text": " But for the most part..."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,240",
+				"to": "00:01:57,960"
+			},
+			"offsets": {
+				"from": 113240,
+				"to": 117960
+			},
+			"text": " For the most part, people will be quite frightened if they see, \"Oh, I lost my private key.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,960",
+				"to": "00:02:00,760"
+			},
+			"offsets": {
+				"from": 117960,
+				"to": 120760
+			},
+			"text": " And this happens quite a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,760",
+				"to": "00:02:05,680"
+			},
+			"offsets": {
+				"from": 120760,
+				"to": 125680
+			},
+			"text": " If you talk to all the wallet providers, which are using externally owned accounts, there"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,680",
+				"to": "00:02:12,680"
+			},
+			"offsets": {
+				"from": 125680,
+				"to": 132680
+			},
+			"text": " are quite a lot of issues popping up with, \"Oh, I lost my password, or I lost my backup."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,680",
+				"to": "00:02:14,440"
+			},
+			"offsets": {
+				"from": 132680,
+				"to": 134440
+			},
+			"text": " Can you help me restore my account?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,440",
+				"to": "00:02:15,960"
+			},
+			"offsets": {
+				"from": 134440,
+				"to": 135960
+			},
+			"text": " \"No, sorry, we can't."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,960",
+				"to": "00:02:17,960"
+			},
+			"offsets": {
+				"from": 135960,
+				"to": 137960
+			},
+			"text": " You just lost everything.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,960",
+				"to": "00:02:21,600"
+			},
+			"offsets": {
+				"from": 137960,
+				"to": 141600
+			},
+			"text": " So that's still an unsolved issue today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,600",
+				"to": "00:02:24,280"
+			},
+			"offsets": {
+				"from": 141600,
+				"to": 144280
+			},
+			"text": " And smart contracts are a way we can try to tackle this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,280",
+				"to": "00:02:26,080"
+			},
+			"offsets": {
+				"from": 144280,
+				"to": 146080
+			},
+			"text": " And I explain you in a minute why."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,080",
+				"to": "00:02:31,120"
+			},
+			"offsets": {
+				"from": 146080,
+				"to": 151120
+			},
+			"text": " So another thing is we have not really any way to have proper access control."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,120",
+				"to": "00:02:34,360"
+			},
+			"offsets": {
+				"from": 151120,
+				"to": 154360
+			},
+			"text": " If you have a private key, yes, you can access just everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,360",
+				"to": "00:02:36,120"
+			},
+			"offsets": {
+				"from": 154360,
+				"to": 156120
+			},
+			"text": " So imagine the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,120",
+				"to": "00:02:40,720"
+			},
+			"offsets": {
+				"from": 156120,
+				"to": 160720
+			},
+			"text": " Of course, your private key is not only your key to access your funds, but of course, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,720",
+				"to": "00:02:44,040"
+			},
+			"offsets": {
+				"from": 160720,
+				"to": 164040
+			},
+			"text": " also representing you on different DApps."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,040",
+				"to": "00:02:49,480"
+			},
+			"offsets": {
+				"from": 164040,
+				"to": 169480
+			},
+			"text": " Your networks will be used on SDFs, and you are represented always with a private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,480",
+				"to": "00:02:50,840"
+			},
+			"offsets": {
+				"from": 169480,
+				"to": 170840
+			},
+			"text": " If you're losing it, you lose everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,840",
+				"to": "00:02:53,880"
+			},
+			"offsets": {
+				"from": 170840,
+				"to": 173880
+			},
+			"text": " You lose kind of your digital identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,880",
+				"to": "00:02:58,800"
+			},
+			"offsets": {
+				"from": 173880,
+				"to": 178800
+			},
+			"text": " And yeah, another thing is also you are not able to have a private key to do fine-grained"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,800",
+				"to": "00:02:59,800"
+			},
+			"offsets": {
+				"from": 178800,
+				"to": 179800
+			},
+			"text": " access control."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,800",
+				"to": "00:03:02,800"
+			},
+			"offsets": {
+				"from": 179800,
+				"to": 182800
+			},
+			"text": " You could never do something like what you can do today with your credit card where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,800",
+				"to": "00:03:09,560"
+			},
+			"offsets": {
+				"from": 182800,
+				"to": 189560
+			},
+			"text": " say, \"Ah, I am okay with just withdrawing a certain amount of money on a daily basis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,560",
+				"to": "00:03:12,800"
+			},
+			"offsets": {
+				"from": 189560,
+				"to": 192800
+			},
+			"text": " but if I want to withdraw more, then I have to have additional security measures in"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,800",
+				"to": "00:03:14,760"
+			},
+			"offsets": {
+				"from": 192800,
+				"to": 194760
+			},
+			"text": " place.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,760",
+				"to": "00:03:19,200"
+			},
+			"offsets": {
+				"from": 194760,
+				"to": 199200
+			},
+			"text": " So the future is contract accounts at what we are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,200",
+				"to": "00:03:22,600"
+			},
+			"offsets": {
+				"from": 199200,
+				"to": 202600
+			},
+			"text": " And the good thing about contracts is you can implement all kinds of logic, obviously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,600",
+				"to": "00:03:24,080"
+			},
+			"offsets": {
+				"from": 202600,
+				"to": 204080
+			},
+			"text": " into those contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,080",
+				"to": "00:03:29,440"
+			},
+			"offsets": {
+				"from": 204080,
+				"to": 209440
+			},
+			"text": " And this is because contracts are so-called first-class citizens in Ethereum, meaning they"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,440",
+				"to": "00:03:34,600"
+			},
+			"offsets": {
+				"from": 209440,
+				"to": 214600
+			},
+			"text": " can perform the same operations on the theorem network as an externally-owned account, as"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,600",
+				"to": "00:03:37,880"
+			},
+			"offsets": {
+				"from": 214600,
+				"to": 217880
+			},
+			"text": " a private key controlled account."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,880",
+				"to": "00:03:40,720"
+			},
+			"offsets": {
+				"from": 217880,
+				"to": 220720
+			},
+			"text": " So let's just look at how this actually works."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,720",
+				"to": "00:03:44,080"
+			},
+			"offsets": {
+				"from": 220720,
+				"to": 224080
+			},
+			"text": " From the top, the externally-owned account, you just sign your theorem transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,080",
+				"to": "00:03:45,080"
+			},
+			"offsets": {
+				"from": 224080,
+				"to": 225080
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,080",
+				"to": "00:03:46,160"
+			},
+			"offsets": {
+				"from": 225080,
+				"to": 226160
+			},
+			"text": " That's what we do all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,160",
+				"to": "00:03:50,160"
+			},
+			"offsets": {
+				"from": 226160,
+				"to": 230160
+			},
+			"text": " But the more interesting part is contract account interaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,160",
+				"to": "00:03:55,240"
+			},
+			"offsets": {
+				"from": 230160,
+				"to": 235240
+			},
+			"text": " What you do is you are signing something called a meta-transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,240",
+				"to": "00:04:01,480"
+			},
+			"offsets": {
+				"from": 235240,
+				"to": 241480
+			},
+			"text": " And so you're signing a transaction which will be executed from the wallet contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,480",
+				"to": "00:04:05,200"
+			},
+			"offsets": {
+				"from": 241480,
+				"to": 245200
+			},
+			"text": " account, from the proxy contract account."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,200",
+				"to": "00:04:08,960"
+			},
+			"offsets": {
+				"from": 245200,
+				"to": 248960
+			},
+			"text": " And of course, this meta-transaction still has to be broadcasted to the Ethereum network"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,960",
+				"to": "00:04:11,320"
+			},
+			"offsets": {
+				"from": 248960,
+				"to": 251320
+			},
+			"text": " and still someone has to sign this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,320",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 251320,
+				"to": 260000
+			},
+			"text": " But this doesn't necessarily has to be the same entity as the entity signing the meta-transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 264000
+			},
+			"text": " So let's look into meta-transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:26,360"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 266360
+			},
+			"text": " How do they actually work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,360",
+				"to": "00:04:32,080"
+			},
+			"offsets": {
+				"from": 266360,
+				"to": 272080
+			},
+			"text": " So if we are sending this meta-transaction wrapped into a regular Ethereum transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,080",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 272080,
+				"to": 277000
+			},
+			"text": " then it will trigger an execution on the wallet contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:42,920"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 282920
+			},
+			"text": " And the first thing we have to do is we have to ensure that this meta-transaction was signed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,920",
+				"to": "00:04:47,440"
+			},
+			"offsets": {
+				"from": 282920,
+				"to": 287440
+			},
+			"text": " by a party that is allowed to trigger this transaction from the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,440",
+				"to": "00:04:52,360"
+			},
+			"offsets": {
+				"from": 287440,
+				"to": 292360
+			},
+			"text": " So what we have to do is we have to validate the signatures which will send along with"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,360",
+				"to": "00:04:55,280"
+			},
+			"offsets": {
+				"from": 292360,
+				"to": 295280
+			},
+			"text": " the meta-transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,280",
+				"to": "00:05:01,240"
+			},
+			"offsets": {
+				"from": 295280,
+				"to": 301240
+			},
+			"text": " And the standard way of how we implement access control on the notice is by just implementing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,240",
+				"to": "00:05:03,760"
+			},
+			"offsets": {
+				"from": 301240,
+				"to": 303760
+			},
+			"text": " a regular multi-signature wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,760",
+				"to": "00:05:10,320"
+			},
+			"offsets": {
+				"from": 303760,
+				"to": 310320
+			},
+			"text": " So n out of m of those signatures that you are providing in your meta-transactions have"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,320",
+				"to": "00:05:17,440"
+			},
+			"offsets": {
+				"from": 310320,
+				"to": 317440
+			},
+			"text": " to be from valid owners of this contract to allow execution of the meta-transaction from"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,440",
+				"to": "00:05:19,680"
+			},
+			"offsets": {
+				"from": 317440,
+				"to": 319680
+			},
+			"text": " the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,680",
+				"to": "00:05:25,440"
+			},
+			"offsets": {
+				"from": 319680,
+				"to": 325440
+			},
+			"text": " And what we allow is two different types of signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,440",
+				"to": "00:05:29,480"
+			},
+			"offsets": {
+				"from": 325440,
+				"to": 329480
+			},
+			"text": " One is something that we call contract signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,480",
+				"to": "00:05:34,960"
+			},
+			"offsets": {
+				"from": 329480,
+				"to": 334960
+			},
+			"text": " Everybody, smart contracts, they don't own private keys, they don't cannot sign anything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,960",
+				"to": "00:05:42,240"
+			},
+			"offsets": {
+				"from": 334960,
+				"to": 342240
+			},
+			"text": " but what you can essentially do is you can require that this function will call an external"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,240",
+				"to": "00:05:48,960"
+			},
+			"offsets": {
+				"from": 342240,
+				"to": 348960
+			},
+			"text": " contract and ask if this contract is permissioned to execute the meta-transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,960",
+				"to": "00:05:56,040"
+			},
+			"offsets": {
+				"from": 348960,
+				"to": 356040
+			},
+			"text": " So what this essentially means is that you can have different safe contracts being owners"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,040",
+				"to": "00:05:57,400"
+			},
+			"offsets": {
+				"from": 356040,
+				"to": 357400
+			},
+			"text": " of other safe contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,400",
+				"to": "00:06:03,920"
+			},
+			"offsets": {
+				"from": 357400,
+				"to": 363920
+			},
+			"text": " So you can have nested saves where some saves are owners of other saves."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,920",
+				"to": "00:06:07,760"
+			},
+			"offsets": {
+				"from": 363920,
+				"to": 367760
+			},
+			"text": " This might be interesting if you want to build organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,760",
+				"to": "00:06:14,200"
+			},
+			"offsets": {
+				"from": 367760,
+				"to": 374200
+			},
+			"text": " We have different departments with different employees and they should authenticate specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,200",
+				"to": "00:06:20,280"
+			},
+			"offsets": {
+				"from": 374200,
+				"to": 380280
+			},
+			"text": " transactions and then they can be part of another multi-sick which is an overarching multi-sick"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,280",
+				"to": "00:06:24,200"
+			},
+			"offsets": {
+				"from": 380280,
+				"to": 384200
+			},
+			"text": " to govern a bigger part of the organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,200",
+				"to": "00:06:29,240"
+			},
+			"offsets": {
+				"from": 384200,
+				"to": 389240
+			},
+			"text": " The other signatures that we allow is just regular ECDSA signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,240",
+				"to": "00:06:34,480"
+			},
+			"offsets": {
+				"from": 389240,
+				"to": 394480
+			},
+			"text": " Those signatures are just the regular signatures that we have on Ethereum, simple private key"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,480",
+				"to": "00:06:37,720"
+			},
+			"offsets": {
+				"from": 394480,
+				"to": 397720
+			},
+			"text": " control accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,720",
+				"to": "00:06:44,520"
+			},
+			"offsets": {
+				"from": 397720,
+				"to": 404520
+			},
+			"text": " So the next step is of course just executing the meta-transaction and what they know is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,520",
+				"to": "00:06:47,960"
+			},
+			"offsets": {
+				"from": 404520,
+				"to": 407960
+			},
+			"text": " the safe allows you to do is it allows you to do all the operations that you can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,960",
+				"to": "00:06:50,200"
+			},
+			"offsets": {
+				"from": 407960,
+				"to": 410200
+			},
+			"text": " do with an externally owned account."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,200",
+				"to": "00:06:55,480"
+			},
+			"offsets": {
+				"from": 410200,
+				"to": 415480
+			},
+			"text": " Like previous multi-sick they usually were limited to doing call operations meaning they"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,480",
+				"to": "00:06:58,840"
+			},
+			"offsets": {
+				"from": 415480,
+				"to": 418840
+			},
+			"text": " do an internal transaction to another contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,840",
+				"to": "00:07:06,200"
+			},
+			"offsets": {
+				"from": 418840,
+				"to": 426200
+			},
+			"text": " What we also allow to do is to directly create a contract for example from the new multi-sick"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,200",
+				"to": "00:07:12,480"
+			},
+			"offsets": {
+				"from": 426200,
+				"to": 432480
+			},
+			"text": " or to execute something called delegate call meaning you can actually extend the functionality"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,480",
+				"to": "00:07:19,880"
+			},
+			"offsets": {
+				"from": 432480,
+				"to": 439880
+			},
+			"text": " of the save for the period of this transaction execution to embed new logic during the execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,880",
+				"to": "00:07:22,480"
+			},
+			"offsets": {
+				"from": 439880,
+				"to": 442480
+			},
+			"text": " call."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,480",
+				"to": "00:07:29,920"
+			},
+			"offsets": {
+				"from": 442480,
+				"to": 449920
+			},
+			"text": " The third part and that's probably one of the most interesting improvements is that within"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,920",
+				"to": "00:07:36,200"
+			},
+			"offsets": {
+				"from": 449920,
+				"to": 456200
+			},
+			"text": " the meta-transaction execution we allow to send and refund to the party who was submitting"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,200",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 456200,
+				"to": 460000
+			},
+			"text": " the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:41,640"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 461640
+			},
+			"text": " And what are the implications of that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,640",
+				"to": "00:07:53,160"
+			},
+			"offsets": {
+				"from": 461640,
+				"to": 473160
+			},
+			"text": " So previously when you had a multi-sick contract and you had owners who had to commit to, let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,160",
+				"to": "00:07:56,800"
+			},
+			"offsets": {
+				"from": 473160,
+				"to": 476800
+			},
+			"text": " go back to the previous notice multi-sick that you may know you had different accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,800",
+				"to": "00:08:06,640"
+			},
+			"offsets": {
+				"from": 476800,
+				"to": 486640
+			},
+			"text": " which were sending transactions to confirm transactions and they all had to be funded"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,640",
+				"to": "00:08:07,880"
+			},
+			"offsets": {
+				"from": 486640,
+				"to": 487880
+			},
+			"text": " with Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,880",
+				"to": "00:08:12,040"
+			},
+			"offsets": {
+				"from": 487880,
+				"to": 492040
+			},
+			"text": " Now because we have the meta-transactions you just collect those signed messages they are"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,040",
+				"to": "00:08:18,440"
+			},
+			"offsets": {
+				"from": 492040,
+				"to": 498440
+			},
+			"text": " sent and then you still had to, in order to send this Ethereum transaction you still had"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,440",
+				"to": "00:08:24,760"
+			},
+			"offsets": {
+				"from": 498440,
+				"to": 504760
+			},
+			"text": " to sign the Ethereum transactions which has to be signed by an account that holds Ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,760",
+				"to": "00:08:29,880"
+			},
+			"offsets": {
+				"from": 504760,
+				"to": 509880
+			},
+			"text": " in order to incentivize miners to actually mine this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,880",
+				"to": "00:08:37,840"
+			},
+			"offsets": {
+				"from": 509880,
+				"to": 517840
+			},
+			"text": " Now what we can do is we can define the meta-transaction that we refund whoever is sending the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,840",
+				"to": "00:08:45,760"
+			},
+			"offsets": {
+				"from": 517840,
+				"to": 525760
+			},
+			"text": " Ethereum transaction which is sending the meta-transaction to the contract to refund."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,760",
+				"to": "00:08:55,760"
+			},
+			"offsets": {
+				"from": 525760,
+				"to": 535760
+			},
+			"text": " And we can do this with two ways we can refund in Ether or we can refund in any ESE 20 token."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,760",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 535760,
+				"to": 543000
+			},
+			"text": " And yeah, so this is kind of like an overview how it would work or how it would work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:07,040"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 547040
+			},
+			"text": " So we have the meta-transaction that is signed by anyone who is owning the wallet contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,040",
+				"to": "00:09:15,040"
+			},
+			"offsets": {
+				"from": 547040,
+				"to": 555040
+			},
+			"text": " account and then someone has to send those meta-transactions to this contract in an Ethereum transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,040",
+				"to": "00:09:22,800"
+			},
+			"offsets": {
+				"from": 555040,
+				"to": 562800
+			},
+			"text": " and yeah this Ethereum transaction has to be signed by someone and this has to be signed"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,800",
+				"to": "00:09:29,520"
+			},
+			"offsets": {
+				"from": 562800,
+				"to": 569520
+			},
+			"text": " by an account usually which has Ether so we can incentivize miners to mine this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,520",
+				"to": "00:09:35,360"
+			},
+			"offsets": {
+				"from": 569520,
+				"to": 575360
+			},
+			"text": " And there is currently like a group working on relayers where we can send those meta-transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,360",
+				"to": "00:09:42,720"
+			},
+			"offsets": {
+				"from": 575360,
+				"to": 582720
+			},
+			"text": " to which will then actually sign the Ethereum transaction to broadcast the meta-transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,720",
+				"to": "00:09:48,160"
+			},
+			"offsets": {
+				"from": 582720,
+				"to": 588160
+			},
+			"text": " to the Ethereum network and actually make the transaction happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,160",
+				"to": "00:09:55,680"
+			},
+			"offsets": {
+				"from": 588160,
+				"to": 595680
+			},
+			"text": " In the future we might see that meta-transactions will be mined or will be directly mined by"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,680",
+				"to": "00:10:00,640"
+			},
+			"offsets": {
+				"from": 595680,
+				"to": 600640
+			},
+			"text": " miners so having those relayers is just an intermediary solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,640",
+				"to": "00:10:07,200"
+			},
+			"offsets": {
+				"from": 600640,
+				"to": 607200
+			},
+			"text": " You just have to have someone with an account that has Ether on it to send this transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,200",
+				"to": "00:10:13,280"
+			},
+			"offsets": {
+				"from": 607200,
+				"to": 613280
+			},
+			"text": " but essentially if miners would be able to merge the pending transactions that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,280",
+				"to": "00:10:19,920"
+			},
+			"offsets": {
+				"from": 613280,
+				"to": 619920
+			},
+			"text": " on the theorem today with meta-transactions that are pending they could actually just sign those"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,920",
+				"to": "00:10:26,480"
+			},
+			"offsets": {
+				"from": 619920,
+				"to": 626480
+			},
+			"text": " and not even having to require, sorry, and would not even need Ether in order to process"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,480",
+				"to": "00:10:31,360"
+			},
+			"offsets": {
+				"from": 626480,
+				"to": 631360
+			},
+			"text": " them because they are the miner who are actually mining this block so they can just include those"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,360",
+				"to": "00:10:41,840"
+			},
+			"offsets": {
+				"from": 631360,
+				"to": 641840
+			},
+			"text": " transactions. The implication of this is that you actually remove kind of like this one very"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,840",
+				"to": "00:10:48,640"
+			},
+			"offsets": {
+				"from": 641840,
+				"to": 648640
+			},
+			"text": " concrete use case for Ether itself because today the value of Ether or the reason why we have Ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,640",
+				"to": "00:10:55,040"
+			},
+			"offsets": {
+				"from": 648640,
+				"to": 655040
+			},
+			"text": " and why Ether is used is because it's the easiest way to bribe miners to mine your transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:00,560"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 660560
+			},
+			"text": " Theoretically you could try to send them money with paper but that's just not feasible."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,560",
+				"to": "00:11:08,400"
+			},
+			"offsets": {
+				"from": 660560,
+				"to": 668400
+			},
+			"text": " So now because users can just say okay I will refund the miner with my ESY 20 token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,400",
+				"to": "00:11:13,280"
+			},
+			"offsets": {
+				"from": 668400,
+				"to": 673280
+			},
+			"text": " actually Ether itself is not really required for this anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,280",
+				"to": "00:11:20,880"
+			},
+			"offsets": {
+				"from": 673280,
+				"to": 680880
+			},
+			"text": " So what are other implications of using smart contract accounts that have a significant impact"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,880",
+				"to": "00:11:27,840"
+			},
+			"offsets": {
+				"from": 680880,
+				"to": 687840
+			},
+			"text": " on our D-erbs? Something that we can allow is batch transactions. So what we can do is we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,840",
+				"to": "00:11:32,960"
+			},
+			"offsets": {
+				"from": 687840,
+				"to": 692960
+			},
+			"text": " instead of signing one transaction after the other and broadcasting to the network we can now"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,960",
+				"to": "00:11:37,920"
+			},
+			"offsets": {
+				"from": 692960,
+				"to": 697920
+			},
+			"text": " combine transactions together and send them as one Ethereum transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,920",
+				"to": "00:11:46,640"
+			},
+			"offsets": {
+				"from": 697920,
+				"to": 706640
+			},
+			"text": " So here what we do is basically we parse or transactions as one byte array and then we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,640",
+				"to": "00:11:52,400"
+			},
+			"offsets": {
+				"from": 706640,
+				"to": 712400
+			},
+			"text": " to parse it and execute all the single transactions. And there are a couple of advantages of doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,400",
+				"to": "00:12:00,480"
+			},
+			"offsets": {
+				"from": 712400,
+				"to": 720480
+			},
+			"text": " this. One is it improves usability. Like today if you're using a D-erb then usually the interaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,480",
+				"to": "00:12:07,520"
+			},
+			"offsets": {
+				"from": 720480,
+				"to": 727520
+			},
+			"text": " workflow has at least two transactions. One is you have to for example approve a token"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,520",
+				"to": "00:12:14,720"
+			},
+			"offsets": {
+				"from": 727520,
+				"to": 734720
+			},
+			"text": " to a contract and then you another transaction to actually call the contract and use the token"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,720",
+				"to": "00:12:21,360"
+			},
+			"offsets": {
+				"from": 734720,
+				"to": 741360
+			},
+			"text": " for whatever the contract should be doing. Now we can combine all of them together and execute them"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,360",
+				"to": "00:12:30,160"
+			},
+			"offsets": {
+				"from": 741360,
+				"to": 750160
+			},
+			"text": " at once. So the user knows the whole business process is executed or not a single step of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,160",
+				"to": "00:12:37,280"
+			},
+			"offsets": {
+				"from": 750160,
+				"to": 757280
+			},
+			"text": " business process. Another advantage is that it also reduces gas costs. So in Ethereum for every"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,280",
+				"to": "00:12:43,440"
+			},
+			"offsets": {
+				"from": 757280,
+				"to": 763440
+			},
+			"text": " single Ethereum transaction you have to pay 21,000 gas as fixed costs. If you combine them then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,440",
+				"to": "00:12:49,280"
+			},
+			"offsets": {
+				"from": 763440,
+				"to": 769280
+			},
+			"text": " have this cost only one time. Third advantage is that it allows you to do to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,280",
+				"to": "00:12:56,240"
+			},
+			"offsets": {
+				"from": 769280,
+				"to": 776240
+			},
+			"text": " automaticity of transactions. So for example if you would like to do an arbitrage trade between"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,240",
+				"to": "00:13:02,320"
+			},
+			"offsets": {
+				"from": 776240,
+				"to": 782320
+			},
+			"text": " different exchanges you would like to have all transactions executed or none of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,320",
+				"to": "00:13:05,680"
+			},
+			"offsets": {
+				"from": 782320,
+				"to": 785680
+			},
+			"text": " That's only possible with such kind of concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,960",
+				"to": "00:13:15,520"
+			},
+			"offsets": {
+				"from": 788960,
+				"to": 795520
+			},
+			"text": " So we talked about access control. The default way to control access in the note save is a regular"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,520",
+				"to": "00:13:23,040"
+			},
+			"offsets": {
+				"from": 795520,
+				"to": 803040
+			},
+			"text": " multisig but we will also allow to have to implement and extend the access control using modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,040",
+				"to": "00:13:29,200"
+			},
+			"offsets": {
+				"from": 803040,
+				"to": 809200
+			},
+			"text": " And modules are basically like additional contracts which have to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,200",
+				"to": "00:13:35,200"
+			},
+			"offsets": {
+				"from": 809200,
+				"to": 815200
+			},
+			"text": " whitelisted in the multisig in order to execute transactions from the multisig."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,200",
+				"to": "00:13:44,320"
+			},
+			"offsets": {
+				"from": 815200,
+				"to": 824320
+			},
+			"text": " And one very interesting module that we envision will have significant impact is of course"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,320",
+				"to": "00:13:50,880"
+			},
+			"offsets": {
+				"from": 824320,
+				"to": 830880
+			},
+			"text": " recovery of the account, recovery of the multisig itself. So how could the recovery module look"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,880",
+				"to": "00:13:57,280"
+			},
+			"offsets": {
+				"from": 830880,
+				"to": 837280
+			},
+			"text": " like? So here we do something that initially was I think invented by Uport. It's called"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,280",
+				"to": "00:14:04,960"
+			},
+			"offsets": {
+				"from": 837280,
+				"to": 844960
+			},
+			"text": " social recovery. The idea is that you have a group of friends and if they collide and agree"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,960",
+				"to": "00:14:11,040"
+			},
+			"offsets": {
+				"from": 844960,
+				"to": 851040
+			},
+			"text": " that you lost access to your account then they allow you to change one of the owners of your account."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,040",
+				"to": "00:14:17,360"
+			},
+			"offsets": {
+				"from": 851040,
+				"to": 857360
+			},
+			"text": " And that's what we do here basically. So first we have to ensure that the transaction that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,360",
+				"to": "00:14:22,480"
+			},
+			"offsets": {
+				"from": 857360,
+				"to": 862480
+			},
+			"text": " want to execute from the multisig is a swap owner transaction where you exchange the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,360",
+				"to": "00:14:32,080"
+			},
+			"offsets": {
+				"from": 863360,
+				"to": 872080
+			},
+			"text": " access and then we have to check that it was confirmed by the required amount of friends"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,080",
+				"to": "00:14:37,600"
+			},
+			"offsets": {
+				"from": 872080,
+				"to": 877600
+			},
+			"text": " and then we can actually execute this transaction. And this is just one example. There could be"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,600",
+				"to": "00:14:42,640"
+			},
+			"offsets": {
+				"from": 877600,
+				"to": 882640
+			},
+			"text": " like lots of different kinds of modules, lots of different kinds of recovery mechanisms that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,640",
+				"to": "00:14:50,960"
+			},
+			"offsets": {
+				"from": 882640,
+				"to": 890960
+			},
+			"text": " people have in mind that could eventually work. So far we have not found yet the silver ballad"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,960",
+				"to": "00:14:56,880"
+			},
+			"offsets": {
+				"from": 890960,
+				"to": 896880
+			},
+			"text": " for recovery yet but we think like the smart contract based wallet will be the foundation for"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,880",
+				"to": "00:15:02,960"
+			},
+			"offsets": {
+				"from": 896880,
+				"to": 902960
+			},
+			"text": " this for sure because it lays the foundation to have different sorts of access controls."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,960",
+				"to": "00:15:12,800"
+			},
+			"offsets": {
+				"from": 902960,
+				"to": 912800
+			},
+			"text": " Another thing that we are also innovating on is proxy contracts. So one of the downsides of using"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,800",
+				"to": "00:15:18,880"
+			},
+			"offsets": {
+				"from": 912800,
+				"to": 918880
+			},
+			"text": " of using a smart contract based accounts is that creating those accounts and creating all those"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,880",
+				"to": "00:15:25,360"
+			},
+			"offsets": {
+				"from": 918880,
+				"to": 925360
+			},
+			"text": " contracts can cost quite a lot. So with the current multisig, no this multisig it costs"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,360",
+				"to": "00:15:31,760"
+			},
+			"offsets": {
+				"from": 925360,
+				"to": 931760
+			},
+			"text": " about I think one million gas to actually create another instance of the multisig and this is because"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,760",
+				"to": "00:15:37,280"
+			},
+			"offsets": {
+				"from": 931760,
+				"to": 937280
+			},
+			"text": " the bytecode for this multisig was deployed over and over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,280",
+				"to": "00:15:44,240"
+			},
+			"offsets": {
+				"from": 937280,
+				"to": 944240
+			},
+			"text": " Since one of the recent hard forks we are able to actually implement full proxy contracts and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,240",
+				"to": "00:15:51,040"
+			},
+			"offsets": {
+				"from": 944240,
+				"to": 951040
+			},
+			"text": " what the proxy contract essentially does, it implements only one function, the fallback function"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,040",
+				"to": "00:16:00,240"
+			},
+			"offsets": {
+				"from": 951040,
+				"to": 960240
+			},
+			"text": " which relays all the transactions sent to this contract to another contract or like loads the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,240",
+				"to": "00:16:06,160"
+			},
+			"offsets": {
+				"from": 960240,
+				"to": 966160
+			},
+			"text": " logic of another contract and executes this logic within this proxy contract. So essentially it"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,160",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 966160,
+				"to": 974000
+			},
+			"text": " behaves exactly like what we call the master copy which in our case has all the logic that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:21,040"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 981040
+			},
+			"text": " the safe implements but it requires way less bytecode because the only function that's implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,040",
+				"to": "00:16:28,400"
+			},
+			"offsets": {
+				"from": 981040,
+				"to": 988400
+			},
+			"text": " in this proxy contract is this one single fallback function. This allows us to create new safe"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,400",
+				"to": "00:16:34,720"
+			},
+			"offsets": {
+				"from": 988400,
+				"to": 994720
+			},
+			"text": " contracts very efficiently because just a few sends today to actually create a new multisig contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,720",
+				"to": "00:16:41,280"
+			},
+			"offsets": {
+				"from": 994720,
+				"to": 1001280
+			},
+			"text": " or should allow basically anyone to use such a contract and not worry about gas costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,960",
+				"to": "00:16:49,600"
+			},
+			"offsets": {
+				"from": 1002960,
+				"to": 1009600
+			},
+			"text": " So yeah let's sum up what are the advantages we are able to create fine granular access schemes"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,600",
+				"to": "00:16:53,760"
+			},
+			"offsets": {
+				"from": 1009600,
+				"to": 1013760
+			},
+			"text": " what is currently implemented is just regular multisig and two factor authentication what we"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,760",
+				"to": "00:16:59,360"
+			},
+			"offsets": {
+				"from": 1013760,
+				"to": 1019360
+			},
+			"text": " essentially use for our own clients. You can integrate all kind of new access schemes like"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,360",
+				"to": "00:17:08,480"
+			},
+			"offsets": {
+				"from": 1019360,
+				"to": 1028480
+			},
+			"text": " recovery options or daily limit transactions. You can pay transaction fees now not only"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,480",
+				"to": "00:17:17,200"
+			},
+			"offsets": {
+				"from": 1028480,
+				"to": 1037200
+			},
+			"text": " either but you can use any ES20 token and you can also improve UX on your own DFS by using batch"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,200",
+				"to": "00:17:22,640"
+			},
+			"offsets": {
+				"from": 1037200,
+				"to": 1042640
+			},
+			"text": " transactions. And there are probably many more advantages if you think about like all kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,640",
+				"to": "00:17:29,120"
+			},
+			"offsets": {
+				"from": 1042640,
+				"to": 1049120
+			},
+			"text": " different modules that you may want to do. So are there any disadvantages?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,120",
+				"to": "00:17:36,800"
+			},
+			"offsets": {
+				"from": 1049120,
+				"to": 1056800
+			},
+			"text": " Surely there are so execution costs are slightly increased because now you have the overhead of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,440",
+				"to": "00:17:46,400"
+			},
+			"offsets": {
+				"from": 1057440,
+				"to": 1066400
+			},
+			"text": " sending media transactions having to check more signatures eventually if you require more signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,400",
+				"to": "00:17:54,080"
+			},
+			"offsets": {
+				"from": 1066400,
+				"to": 1074080
+			},
+			"text": " to be validated. So this all adds up but it's not very significant. The biggest disadvantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,080",
+				"to": "00:18:01,840"
+			},
+			"offsets": {
+				"from": 1074080,
+				"to": 1081840
+			},
+			"text": " that people so far saw is that if you are using such a contract account you are adding a new"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,840",
+				"to": "00:18:07,120"
+			},
+			"offsets": {
+				"from": 1081840,
+				"to": 1087120
+			},
+			"text": " attack surface because you have this additional code in between and because this code manages"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,120",
+				"to": "00:18:13,040"
+			},
+			"offsets": {
+				"from": 1087120,
+				"to": 1093040
+			},
+			"text": " everything that you have it is very important obviously and well in the past we saw that this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,040",
+				"to": "00:18:21,520"
+			},
+			"offsets": {
+				"from": 1093040,
+				"to": 1101520
+			},
+			"text": " was this trust was not always justified. So what did we do to in order to make sure that our code"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,520",
+				"to": "00:18:30,320"
+			},
+			"offsets": {
+				"from": 1101520,
+				"to": 1110320
+			},
+			"text": " is actually trustworthy we did yeah form a verification of our contracts. So that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,720",
+				"to": "00:18:41,200"
+			},
+			"offsets": {
+				"from": 1114720,
+				"to": 1121200
+			},
+			"text": " so yeah what we did is we started like basically the discussion started already last DevCon"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,200",
+				"to": "00:18:49,520"
+			},
+			"offsets": {
+				"from": 1121200,
+				"to": 1129520
+			},
+			"text": " in Cancun where Phil Dayan was asking us if we want to do form a verification together with"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,520",
+				"to": "00:18:56,080"
+			},
+			"offsets": {
+				"from": 1129520,
+				"to": 1136080
+			},
+			"text": " yeah runtime verification because this contract in his point of view was as important as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,080",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1136080,
+				"to": 1144000
+			},
+			"text": " CASPer contract. And yeah so we started talking to runtime verification and fortunately thanks"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:11,040"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1151040
+			},
+			"text": " also to the Ethereum Community Fund and the NOSIS ecosystem fund we were able to fund the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,040",
+				"to": "00:19:16,240"
+			},
+			"offsets": {
+				"from": 1151040,
+				"to": 1156240
+			},
+			"text": " verification of our contracts. So what does runtime very what does form a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,240",
+				"to": "00:19:21,120"
+			},
+			"offsets": {
+				"from": 1156240,
+				"to": 1161120
+			},
+			"text": " verification actually mean for us. So what what you have to do for form a verification is first of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,120",
+				"to": "00:19:27,520"
+			},
+			"offsets": {
+				"from": 1161120,
+				"to": 1167520
+			},
+			"text": " all you have to create a mathematical specification of what your contracts actually supposed to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,440",
+				"to": "00:19:36,560"
+			},
+			"offsets": {
+				"from": 1169440,
+				"to": 1176560
+			},
+			"text": " and this ensures two things I would say first of all you are very clear about what your contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,560",
+				"to": "00:19:44,800"
+			},
+			"offsets": {
+				"from": 1176560,
+				"to": 1184800
+			},
+			"text": " should actually be doing and also I think in the future for sure it will lead also to a very"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,800",
+				"to": "00:19:52,880"
+			},
+			"offsets": {
+				"from": 1184800,
+				"to": 1192880
+			},
+			"text": " simplified smart contract design simply because doing form a verification is a really really"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,880",
+				"to": "00:19:58,880"
+			},
+			"offsets": {
+				"from": 1192880,
+				"to": 1198880
+			},
+			"text": " time consuming process so right now it's still not fully completed but we expect it to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,880",
+				"to": "00:20:05,680"
+			},
+			"offsets": {
+				"from": 1198880,
+				"to": 1205680
+			},
+			"text": " completed in maybe about like two weeks but there are two developers working full time on it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,680",
+				"to": "00:20:12,400"
+			},
+			"offsets": {
+				"from": 1205680,
+				"to": 1212400
+			},
+			"text": " take them about two months to get to completion for just one relatively simple contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,400",
+				"to": "00:20:21,120"
+			},
+			"offsets": {
+				"from": 1212400,
+				"to": 1221120
+			},
+			"text": " Yeah so it doesn't mean that the contract will never have any bug. No probably not but"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,120",
+				"to": "00:20:28,480"
+			},
+			"offsets": {
+				"from": 1221120,
+				"to": 1228480
+			},
+			"text": " the big advantage is that we kind of did like an additional implementation of it and very"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,480",
+				"to": "00:20:34,960"
+			},
+			"offsets": {
+				"from": 1228480,
+				"to": 1234960
+			},
+			"text": " fine that we came to the same conclusions so the likelihood that there are bugs in this contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,960",
+				"to": "00:20:39,600"
+			},
+			"offsets": {
+				"from": 1234960,
+				"to": 1239600
+			},
+			"text": " drastically decreased and it's kind of like the highest standard of security that we can provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,600",
+				"to": "00:20:46,320"
+			},
+			"offsets": {
+				"from": 1239600,
+				"to": 1246320
+			},
+			"text": " today for smart contracts. Currently doing form a verification is still a very time consuming and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,320",
+				"to": "00:20:53,200"
+			},
+			"offsets": {
+				"from": 1246320,
+				"to": 1253200
+			},
+			"text": " costly process but I think in the mid-term future costs for this will go down so low that it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,200",
+				"to": "00:21:03,600"
+			},
+			"offsets": {
+				"from": 1253200,
+				"to": 1263600
+			},
+			"text": " actually be as expensive as doing a regular manual audit. Today we have already like several releases"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,600",
+				"to": "00:21:11,520"
+			},
+			"offsets": {
+				"from": 1263600,
+				"to": 1271520
+			},
+			"text": " of our Android and now also of our iOS app so actually you can go to safe.snosis.io and you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,520",
+				"to": "00:21:19,600"
+			},
+			"offsets": {
+				"from": 1271520,
+				"to": 1279600
+			},
+			"text": " download the Android or iOS app on your phone. Currently it's limited to Ringciby so please don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,600",
+				"to": "00:21:28,400"
+			},
+			"offsets": {
+				"from": 1279600,
+				"to": 1288400
+			},
+			"text": " send your real ether to those wallets yet. However we are going to release mainnet versions in about"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,400",
+				"to": "00:21:34,160"
+			},
+			"offsets": {
+				"from": 1288400,
+				"to": 1294160
+			},
+			"text": " two weeks when form a verification is completed. We don't want to go on mainnet without having"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,160",
+				"to": "00:21:39,280"
+			},
+			"offsets": {
+				"from": 1294160,
+				"to": 1299280
+			},
+			"text": " this process being done. We also have a browser extension and you can actually pair the mobile"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,280",
+				"to": "00:21:47,360"
+			},
+			"offsets": {
+				"from": 1299280,
+				"to": 1307360
+			},
+			"text": " phone with the browser extension which allows you to not only interact with DMs that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,920",
+				"to": "00:21:53,520"
+			},
+			"offsets": {
+				"from": 1307920,
+				"to": 1313520
+			},
+			"text": " accessible on your desktop browser but the browser extension can also serve as a two-factor"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,520",
+				"to": "00:21:59,680"
+			},
+			"offsets": {
+				"from": 1313520,
+				"to": 1319680
+			},
+			"text": " authentication device so you have one key in your browser extension and the other key on your phone"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,680",
+				"to": "00:22:05,680"
+			},
+			"offsets": {
+				"from": 1319680,
+				"to": 1325680
+			},
+			"text": " and you require both in order to send any transaction. This is kind of the simplest possible way you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,680",
+				"to": "00:22:13,200"
+			},
+			"offsets": {
+				"from": 1325680,
+				"to": 1333200
+			},
+			"text": " can today set up a multi-sick for your personal use. We also want to get the developer community"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,200",
+				"to": "00:22:19,200"
+			},
+			"offsets": {
+				"from": 1333200,
+				"to": 1339200
+			},
+			"text": " involved so we have several bounties up on bitcoin. Two bounties that I want to mention"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,200",
+				"to": "00:22:28,400"
+			},
+			"offsets": {
+				"from": 1339200,
+				"to": 1348400
+			},
+			"text": " so we were talking about the modules to extend the functionality of our wallet and one very obvious"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,400",
+				"to": "00:22:32,880"
+			},
+			"offsets": {
+				"from": 1348400,
+				"to": 1352880
+			},
+			"text": " module that we would like to see is a daily limit module for ESG20 tokens. Basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,880",
+				"to": "00:22:41,280"
+			},
+			"offsets": {
+				"from": 1352880,
+				"to": 1361280
+			},
+			"text": " users should be able to define IMOK with withdrawing $1,000 worth of tokens and ether on a daily basis."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,320",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1362320,
+				"to": 1368000
+			},
+			"text": " Without the requirement of two-factor authentication but if I want to go above this value then I"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:56,400"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1376400
+			},
+			"text": " should always have to send or sign with two devices. So yeah, I think I'm not sure if these"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,400",
+				"to": "00:23:00,560"
+			},
+			"offsets": {
+				"from": 1376400,
+				"to": 1380560
+			},
+			"text": " bounties are actually still available because people are signing up for them very quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,560",
+				"to": "00:23:06,000"
+			},
+			"offsets": {
+				"from": 1380560,
+				"to": 1386000
+			},
+			"text": " but definitely check it out anyways and we're going, we're going to publish more and more bounties."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,520",
+				"to": "00:23:12,720"
+			},
+			"offsets": {
+				"from": 1387520,
+				"to": 1392720
+			},
+			"text": " Yeah, that's basically already it. I think I may have time for like one question or two."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,720",
+				"to": "00:23:14,320"
+			},
+			"offsets": {
+				"from": 1392720,
+				"to": 1394320
+			},
+			"text": " Yeah, we've got time for a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,320",
+				"to": "00:23:29,040"
+			},
+			"offsets": {
+				"from": 1394320,
+				"to": 1409040
+			},
+			"text": " Great presentation. How do you design for trust in the recovery module if your friends become"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,040",
+				"to": "00:23:36,480"
+			},
+			"offsets": {
+				"from": 1409040,
+				"to": 1416480
+			},
+			"text": " adversaries and include? Yeah, so again, like we haven't really figured out the recovery problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,480",
+				"to": "00:23:44,320"
+			},
+			"offsets": {
+				"from": 1416480,
+				"to": 1424320
+			},
+			"text": " yet but what will most likely be a proper solution is to combine something that's called parallel"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,320",
+				"to": "00:23:50,160"
+			},
+			"offsets": {
+				"from": 1424320,
+				"to": 1430160
+			},
+			"text": " to this proof together with an additional authentication requirement. So parallel to this proof would"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,160",
+				"to": "00:23:55,360"
+			},
+			"offsets": {
+				"from": 1430160,
+				"to": 1435360
+			},
+			"text": " work like this that you kind of have to prove that you don't have access to your wallet anymore"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,560",
+				"to": "00:24:07,120"
+			},
+			"offsets": {
+				"from": 1436560,
+				"to": 1447120
+			},
+			"text": " by sending a transaction with a bond, let's say 100 ether or less. And this bond can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,120",
+				"to": "00:24:13,040"
+			},
+			"offsets": {
+				"from": 1447120,
+				"to": 1453040
+			},
+			"text": " slashed in case anyone can send a transaction from your multisync but if no one can do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,040",
+				"to": "00:24:19,040"
+			},
+			"offsets": {
+				"from": 1453040,
+				"to": 1459040
+			},
+			"text": " within a time frame that you define, let's say, months or so then this is a very strong indicator"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,040",
+				"to": "00:24:25,520"
+			},
+			"offsets": {
+				"from": 1459040,
+				"to": 1465520
+			},
+			"text": " that no one actually still has access to this multisync. So this could be one component of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,520",
+				"to": "00:24:32,400"
+			},
+			"offsets": {
+				"from": 1465520,
+				"to": 1472400
+			},
+			"text": " but it also has its flaw because if I know that you're going on vacation and you will not have"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,400",
+				"to": "00:24:39,440"
+			},
+			"offsets": {
+				"from": 1472400,
+				"to": 1479440
+			},
+			"text": " internet for one month, then I could exploit the situation, I could send this transaction and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,440",
+				"to": "00:24:44,640"
+			},
+			"offsets": {
+				"from": 1479440,
+				"to": 1484640
+			},
+			"text": " I know because you will not be able to react to it, I can take over your account within this time frame."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,640",
+				"to": "00:24:50,320"
+			},
+			"offsets": {
+				"from": 1484640,
+				"to": 1490320
+			},
+			"text": " So ideally you would like to combine multiple solutions. I think this parallel"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,320",
+				"to": "00:24:57,360"
+			},
+			"offsets": {
+				"from": 1490320,
+				"to": 1497360
+			},
+			"text": " proof works for sure if you wait for a very long time, let's say one year but of course the usability"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,360",
+				"to": "00:25:02,480"
+			},
+			"offsets": {
+				"from": 1497360,
+				"to": 1502480
+			},
+			"text": " is really really bad if you lose access to your account and you have to wait for one year. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,480",
+				"to": "00:25:10,000"
+			},
+			"offsets": {
+				"from": 1502480,
+				"to": 1510000
+			},
+			"text": " ideally we can combine it and make this time frame much shorter if we for example allow friends to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,000",
+				"to": "00:25:17,520"
+			},
+			"offsets": {
+				"from": 1510000,
+				"to": 1517520
+			},
+			"text": " additionally kind of combine this kind of proof together with social recovery. This should make"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,520",
+				"to": "00:25:26,160"
+			},
+			"offsets": {
+				"from": 1517520,
+				"to": 1526160
+			},
+			"text": " it way less likely. Like if your friends basically have to first agree on that okay we're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,160",
+				"to": "00:25:31,120"
+			},
+			"offsets": {
+				"from": 1526160,
+				"to": 1531120
+			},
+			"text": " try to steal your account but first of all we have to send $10,000 to the account which will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,120",
+				"to": "00:25:36,640"
+			},
+			"offsets": {
+				"from": 1531120,
+				"to": 1536640
+			},
+			"text": " slashed in case our friends are coming back from vacations earlier seems very unlikely but yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,640",
+				"to": "00:25:42,400"
+			},
+			"offsets": {
+				"from": 1536640,
+				"to": 1542400
+			},
+			"text": " we haven't figured it out yet but we will try to come up with some specifications until the end of"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,400",
+				"to": "00:25:51,920"
+			},
+			"offsets": {
+				"from": 1542400,
+				"to": 1551920
+			},
+			"text": " the year and of course we would like to have feedback from the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,920",
+				"to": "00:26:21,040"
+			},
+			"offsets": {
+				"from": 1551920,
+				"to": 1581040
+			},
+			"text": " ["
+		}
+	]
+}

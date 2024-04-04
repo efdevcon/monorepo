@@ -1,0 +1,2012 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:15,080"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 15080
+			},
+			"text": " I'm supposed to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,080",
+				"to": "00:00:19,040"
+			},
+			"offsets": {
+				"from": 15080,
+				"to": 19040
+			},
+			"text": " Actually, my colleague, Ulu, was supposed to have this talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,040",
+				"to": "00:00:21,880"
+			},
+			"offsets": {
+				"from": 19040,
+				"to": 21880
+			},
+			"text": " because he's actually done all the work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,880",
+				"to": "00:00:25,960"
+			},
+			"offsets": {
+				"from": 21880,
+				"to": 25960
+			},
+			"text": " But unfortunately, he got COVID, so I had to jump in."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,960",
+				"to": "00:00:29,400"
+			},
+			"offsets": {
+				"from": 25960,
+				"to": 29400
+			},
+			"text": " I hope I can do him justice."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,400",
+				"to": "00:00:32,320"
+			},
+			"offsets": {
+				"from": 29400,
+				"to": 32320
+			},
+			"text": " And what does that very abstract to make it a little bit fun?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,320",
+				"to": "00:00:33,600"
+			},
+			"offsets": {
+				"from": 32320,
+				"to": 33600
+			},
+			"text": " What does Shata do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,600",
+				"to": "00:00:37,480"
+			},
+			"offsets": {
+				"from": 33600,
+				"to": 37480
+			},
+			"text": " It basically allows users to safely reveal private information"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,480",
+				"to": "00:00:40,600"
+			},
+			"offsets": {
+				"from": 37480,
+				"to": 40600
+			},
+			"text": " that they have to some sort of system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,600",
+				"to": "00:00:44,080"
+			},
+			"offsets": {
+				"from": 40600,
+				"to": 44080
+			},
+			"text": " meaning that an attacker who gets hold of that information"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,080",
+				"to": "00:00:47,960"
+			},
+			"offsets": {
+				"from": 44080,
+				"to": 47960
+			},
+			"text": " can't abuse it or can't use it for anything malicious."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,960",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 47960,
+				"to": 50000
+			},
+			"text": " So basically, we want to go from a world like this"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:51,920"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 51920
+			},
+			"text": " where we have monsters that look at--"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,920",
+				"to": "00:00:54,800"
+			},
+			"offsets": {
+				"from": 51920,
+				"to": 54800
+			},
+			"text": " monsters in a forest that look at your private information"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,800",
+				"to": "00:00:58,080"
+			},
+			"offsets": {
+				"from": 54800,
+				"to": 58080
+			},
+			"text": " and do bad stuff with it to something like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,080",
+				"to": "00:01:02,760"
+			},
+			"offsets": {
+				"from": 58080,
+				"to": 62760
+			},
+			"text": " like a more heavenly view where everything is safe and nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,760",
+				"to": "00:01:03,480"
+			},
+			"offsets": {
+				"from": 62760,
+				"to": 63480
+			},
+			"text": " How do we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,480",
+				"to": "00:01:07,080"
+			},
+			"offsets": {
+				"from": 63480,
+				"to": 67080
+			},
+			"text": " We use Flashlight Encryption, which allows basically--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,080",
+				"to": "00:01:09,400"
+			},
+			"offsets": {
+				"from": 67080,
+				"to": 69400
+			},
+			"text": " Flashlight Encryption, we have a set of nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,400",
+				"to": "00:01:11,880"
+			},
+			"offsets": {
+				"from": 69400,
+				"to": 71880
+			},
+			"text": " that provides an encryption key."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,880",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 71880,
+				"to": 77000
+			},
+			"text": " And then a user can now encrypt their message using that key."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:18,480"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 78480
+			},
+			"text": " And then it's protected from everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,480",
+				"to": "00:01:20,320"
+			},
+			"offsets": {
+				"from": 78480,
+				"to": 80320
+			},
+			"text": " Then no one can abuse the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,320",
+				"to": "00:01:23,080"
+			},
+			"offsets": {
+				"from": 80320,
+				"to": 83080
+			},
+			"text": " And only when it's safe to reveal that information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,080",
+				"to": "00:01:27,440"
+			},
+			"offsets": {
+				"from": 83080,
+				"to": 87440
+			},
+			"text": " then this network of nodes will produce the decryption key."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,440",
+				"to": "00:01:30,080"
+			},
+			"offsets": {
+				"from": 87440,
+				"to": 90080
+			},
+			"text": " And then everyone can see the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,080",
+				"to": "00:01:33,680"
+			},
+			"offsets": {
+				"from": 90080,
+				"to": 93680
+			},
+			"text": " What is safe, of course, depends highly on the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,680",
+				"to": "00:01:36,440"
+			},
+			"offsets": {
+				"from": 93680,
+				"to": 96440
+			},
+			"text": " And here we want to talk about voting and governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,440",
+				"to": "00:01:38,720"
+			},
+			"offsets": {
+				"from": 96440,
+				"to": 98720
+			},
+			"text": " and this sort of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,720",
+				"to": "00:01:40,120"
+			},
+			"offsets": {
+				"from": 98720,
+				"to": 100120
+			},
+			"text": " Basically, what we want to do here"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,120",
+				"to": "00:01:43,800"
+			},
+			"offsets": {
+				"from": 100120,
+				"to": 103800
+			},
+			"text": " is we want to encrypt votes until the voting period is over"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,800",
+				"to": "00:01:50,520"
+			},
+			"offsets": {
+				"from": 103800,
+				"to": 110520
+			},
+			"text": " so that voters don't see how other people voted"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,520",
+				"to": "00:01:53,800"
+			},
+			"offsets": {
+				"from": 110520,
+				"to": 113800
+			},
+			"text": " until they can't vote anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,800",
+				"to": "00:01:55,240"
+			},
+			"offsets": {
+				"from": 113800,
+				"to": 115240
+			},
+			"text": " It's very interesting because in Dallas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,240",
+				"to": "00:01:56,760"
+			},
+			"offsets": {
+				"from": 115240,
+				"to": 116760
+			},
+			"text": " this is at the moment not the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,760",
+				"to": "00:02:00,120"
+			},
+			"offsets": {
+				"from": 116760,
+				"to": 120120
+			},
+			"text": " In Dow voting, usually, you see all the other votes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,120",
+				"to": "00:02:02,440"
+			},
+			"offsets": {
+				"from": 120120,
+				"to": 122440
+			},
+			"text": " and they can influence your decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,440",
+				"to": "00:02:05,200"
+			},
+			"offsets": {
+				"from": 122440,
+				"to": 125200
+			},
+			"text": " Whereas in traditional votes, like if you vote for a parliament"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,200",
+				"to": "00:02:07,840"
+			},
+			"offsets": {
+				"from": 125200,
+				"to": 127840
+			},
+			"text": " or in an election, this is not the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,840",
+				"to": "00:02:10,560"
+			},
+			"offsets": {
+				"from": 127840,
+				"to": 130560
+			},
+			"text": " There you only start counting when no one is allowed"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,560",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 130560,
+				"to": 132000
+			},
+			"text": " to submit votes anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:14,760"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 134760
+			},
+			"text": " And this is very good reasons because otherwise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,760",
+				"to": "00:02:18,040"
+			},
+			"offsets": {
+				"from": 134760,
+				"to": 138040
+			},
+			"text": " you get some sort of a lot of undesirable behaviors."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,040",
+				"to": "00:02:21,160"
+			},
+			"offsets": {
+				"from": 138040,
+				"to": 141160
+			},
+			"text": " For example, just three here, voter apathy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,160",
+				"to": "00:02:26,640"
+			},
+			"offsets": {
+				"from": 141160,
+				"to": 146640
+			},
+			"text": " If you see that right in the beginning, a big voter"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,640",
+				"to": "00:02:29,360"
+			},
+			"offsets": {
+				"from": 146640,
+				"to": 149360
+			},
+			"text": " submitted lots of votes for candidate A,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,360",
+				"to": "00:02:31,520"
+			},
+			"offsets": {
+				"from": 149360,
+				"to": 151520
+			},
+			"text": " then maybe lots of people, small people"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,520",
+				"to": "00:02:35,920"
+			},
+			"offsets": {
+				"from": 151520,
+				"to": 155920
+			},
+			"text": " with only small voting power that would want to vote on B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,920",
+				"to": "00:02:38,960"
+			},
+			"offsets": {
+				"from": 155920,
+				"to": 158960
+			},
+			"text": " on candidate B, might not do this because they see"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,960",
+				"to": "00:02:40,600"
+			},
+			"offsets": {
+				"from": 158960,
+				"to": 160600
+			},
+			"text": " it's probably already over."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,600",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 160600,
+				"to": 162000
+			},
+			"text": " We've lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:44,680"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 164680
+			},
+			"text": " But if they would not have had this information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,680",
+				"to": "00:02:46,760"
+			},
+			"offsets": {
+				"from": 164680,
+				"to": 166760
+			},
+			"text": " everyone would have voted, then they might have actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,760",
+				"to": "00:02:48,360"
+			},
+			"offsets": {
+				"from": 166760,
+				"to": 168360
+			},
+			"text": " won against this one big player."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,360",
+				"to": "00:02:53,280"
+			},
+			"offsets": {
+				"from": 168360,
+				"to": 173280
+			},
+			"text": " And this is actually a big problem right now in Dow voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,280",
+				"to": "00:02:55,520"
+			},
+			"offsets": {
+				"from": 173280,
+				"to": 175520
+			},
+			"text": " Another example that we might want to prevent"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,520",
+				"to": "00:02:57,080"
+			},
+			"offsets": {
+				"from": 175520,
+				"to": 177080
+			},
+			"text": " is strategic voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,080",
+				"to": "00:02:58,720"
+			},
+			"offsets": {
+				"from": 177080,
+				"to": 178720
+			},
+			"text": " So for example, if you have a vote"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,720",
+				"to": "00:03:02,360"
+			},
+			"offsets": {
+				"from": 178720,
+				"to": 182360
+			},
+			"text": " where two candidates can win and your primary candidate"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,360",
+				"to": "00:03:05,480"
+			},
+			"offsets": {
+				"from": 182360,
+				"to": 185480
+			},
+			"text": " that you want to win already has lots of votes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,480",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 185480,
+				"to": 189000
+			},
+			"text": " then you might want to vote on your secondary candidate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,560"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193560
+			},
+			"text": " which is not what the voting mechanism is intended to encourage."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,560",
+				"to": "00:03:18,120"
+			},
+			"offsets": {
+				"from": 193560,
+				"to": 198120
+			},
+			"text": " So that would be also prevent if you can't see what voters do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,120",
+				"to": "00:03:22,720"
+			},
+			"offsets": {
+				"from": 198120,
+				"to": 202720
+			},
+			"text": " And last example, a buying of votes, it gets much harder"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,720",
+				"to": "00:03:25,520"
+			},
+			"offsets": {
+				"from": 202720,
+				"to": 205520
+			},
+			"text": " if you don't know how many votes you have to buy in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,520",
+				"to": "00:03:26,200"
+			},
+			"offsets": {
+				"from": 205520,
+				"to": 206200
+			},
+			"text": " to win."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,200",
+				"to": "00:03:29,160"
+			},
+			"offsets": {
+				"from": 206200,
+				"to": 209160
+			},
+			"text": " Autoscopes privacy, because after, the votes over everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,160",
+				"to": "00:03:30,280"
+			},
+			"offsets": {
+				"from": 209160,
+				"to": 210280
+			},
+			"text": " will be public."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,280",
+				"to": "00:03:35,440"
+			},
+			"offsets": {
+				"from": 210280,
+				"to": 215440
+			},
+			"text": " Yeah, we're very proud to collaborate on this with snapshot."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,440",
+				"to": "00:03:37,440"
+			},
+			"offsets": {
+				"from": 215440,
+				"to": 217440
+			},
+			"text": " If you don't know, snapshot is this big."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,440",
+				"to": "00:03:40,920"
+			},
+			"offsets": {
+				"from": 217440,
+				"to": 220920
+			},
+			"text": " Dow voting platform, basically all Dow's use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,920",
+				"to": "00:03:42,400"
+			},
+			"offsets": {
+				"from": 220920,
+				"to": 222400
+			},
+			"text": " They're pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,400",
+				"to": "00:03:44,480"
+			},
+			"offsets": {
+				"from": 222400,
+				"to": 224480
+			},
+			"text": " And since you're starting today, basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,480",
+				"to": "00:03:48,640"
+			},
+			"offsets": {
+				"from": 224480,
+				"to": 228640
+			},
+			"text": " they support now shutter as a private voting system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,640",
+				"to": "00:03:51,840"
+			},
+			"offsets": {
+				"from": 228640,
+				"to": 231840
+			},
+			"text": " So Dow's that set up votes, they can use shutter"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,840",
+				"to": "00:03:55,560"
+			},
+			"offsets": {
+				"from": 231840,
+				"to": 235560
+			},
+			"text": " to make their votes more secure, their elections more secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,560",
+				"to": "00:03:56,280"
+			},
+			"offsets": {
+				"from": 235560,
+				"to": 236280
+			},
+			"text": " How does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,280",
+				"to": "00:03:58,720"
+			},
+			"offsets": {
+				"from": 236280,
+				"to": 238720
+			},
+			"text": " The lifecycle of a vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,720",
+				"to": "00:04:01,640"
+			},
+			"offsets": {
+				"from": 238720,
+				"to": 241640
+			},
+			"text": " The shutter system starts by generating a long-lived Yonki."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,640",
+				"to": "00:04:03,320"
+			},
+			"offsets": {
+				"from": 241640,
+				"to": 243320
+			},
+			"text": " It does that once."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,320",
+				"to": "00:04:05,800"
+			},
+			"offsets": {
+				"from": 243320,
+				"to": 245800
+			},
+			"text": " And then if a user wants to vote in a proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,800",
+				"to": "00:04:10,080"
+			},
+			"offsets": {
+				"from": 245800,
+				"to": 250080
+			},
+			"text": " they use that Yonki and the idea of the proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,080",
+				"to": "00:04:14,160"
+			},
+			"offsets": {
+				"from": 250080,
+				"to": 254160
+			},
+			"text": " and derive an encryption key from these two pieces of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,160",
+				"to": "00:04:15,720"
+			},
+			"offsets": {
+				"from": 254160,
+				"to": 255720
+			},
+			"text": " For this, no communication is required."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,720",
+				"to": "00:04:17,400"
+			},
+			"offsets": {
+				"from": 255720,
+				"to": 257400
+			},
+			"text": " It can be done purely locally."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,400",
+				"to": "00:04:19,800"
+			},
+			"offsets": {
+				"from": 257400,
+				"to": 259800
+			},
+			"text": " Once a proposal is finished, basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,800",
+				"to": "00:04:21,720"
+			},
+			"offsets": {
+				"from": 259800,
+				"to": 261720
+			},
+			"text": " then the user sent and grouped the votes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,720",
+				"to": "00:04:22,840"
+			},
+			"offsets": {
+				"from": 261720,
+				"to": 262840
+			},
+			"text": " sent it to snapshot."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,840",
+				"to": "00:04:24,440"
+			},
+			"offsets": {
+				"from": 262840,
+				"to": 264440
+			},
+			"text": " And once a proposal is finished,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,440",
+				"to": "00:04:26,760"
+			},
+			"offsets": {
+				"from": 264440,
+				"to": 266760
+			},
+			"text": " the snapshot will send a decryption request"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,760",
+				"to": "00:04:28,200"
+			},
+			"offsets": {
+				"from": 266760,
+				"to": 268200
+			},
+			"text": " to the shutter system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,200",
+				"to": "00:04:31,520"
+			},
+			"offsets": {
+				"from": 268200,
+				"to": 271520
+			},
+			"text": " Shutter will then generate the decryption key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,520",
+				"to": "00:04:34,680"
+			},
+			"offsets": {
+				"from": 271520,
+				"to": 274680
+			},
+			"text": " because then it is safe to reveal the votes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,680",
+				"to": "00:04:36,520"
+			},
+			"offsets": {
+				"from": 274680,
+				"to": 276520
+			},
+			"text": " because no one can vote anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,520",
+				"to": "00:04:39,360"
+			},
+			"offsets": {
+				"from": 276520,
+				"to": 279360
+			},
+			"text": " And using that decryption key, snapshot"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,360",
+				"to": "00:04:42,720"
+			},
+			"offsets": {
+				"from": 279360,
+				"to": 282720
+			},
+			"text": " can decrypt and count everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,720",
+				"to": "00:04:45,800"
+			},
+			"offsets": {
+				"from": 282720,
+				"to": 285800
+			},
+			"text": " Some screenshots here are how it would look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,800",
+				"to": "00:04:48,200"
+			},
+			"offsets": {
+				"from": 285800,
+				"to": 288200
+			},
+			"text": " Basically, if you set up a vote, you can select shutter."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,200",
+				"to": "00:04:49,840"
+			},
+			"offsets": {
+				"from": 288200,
+				"to": 289840
+			},
+			"text": " It's purely optional."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,840",
+				"to": "00:04:53,800"
+			},
+			"offsets": {
+				"from": 289840,
+				"to": 293800
+			},
+			"text": " If you do that during voting, you see nothing basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,800",
+				"to": "00:04:56,640"
+			},
+			"offsets": {
+				"from": 293800,
+				"to": 296640
+			},
+			"text": " You only see the number of votes who already--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,640",
+				"to": "00:04:58,800"
+			},
+			"offsets": {
+				"from": 296640,
+				"to": 298800
+			},
+			"text": " number of people who submitted votes already."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,800",
+				"to": "00:05:00,360"
+			},
+			"offsets": {
+				"from": 298800,
+				"to": 300360
+			},
+			"text": " You don't see how many votes Alice got."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,360",
+				"to": "00:05:02,840"
+			},
+			"offsets": {
+				"from": 300360,
+				"to": 302840
+			},
+			"text": " You don't see how many votes Bob got."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,840",
+				"to": "00:05:07,400"
+			},
+			"offsets": {
+				"from": 302840,
+				"to": 307400
+			},
+			"text": " And only in the end, when no one can vote anymore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,400",
+				"to": "00:05:09,960"
+			},
+			"offsets": {
+				"from": 307400,
+				"to": 309960
+			},
+			"text": " you will see that in this example, Alice is one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,960",
+				"to": "00:05:11,960"
+			},
+			"offsets": {
+				"from": 309960,
+				"to": 311960
+			},
+			"text": " and Bob didn't get any votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,960",
+				"to": "00:05:12,640"
+			},
+			"offsets": {
+				"from": 311960,
+				"to": 312640
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,640",
+				"to": "00:05:15,520"
+			},
+			"offsets": {
+				"from": 312640,
+				"to": 315520
+			},
+			"text": " And as I said, this is starting from today."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,520",
+				"to": "00:05:15,880"
+			},
+			"offsets": {
+				"from": 315520,
+				"to": 315880
+			},
+			"text": " It's live."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,880",
+				"to": "00:05:18,080"
+			},
+			"offsets": {
+				"from": 315880,
+				"to": 318080
+			},
+			"text": " You can try it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,080",
+				"to": "00:05:21,520"
+			},
+			"offsets": {
+				"from": 318080,
+				"to": 321520
+			},
+			"text": " We do have some other things at Shutter."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,520",
+				"to": "00:05:23,160"
+			},
+			"offsets": {
+				"from": 321520,
+				"to": 323160
+			},
+			"text": " We do using this mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,160",
+				"to": "00:05:25,360"
+			},
+			"offsets": {
+				"from": 323160,
+				"to": 325360
+			},
+			"text": " I hinted that it's quite general."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,360",
+				"to": "00:05:27,360"
+			},
+			"offsets": {
+				"from": 325360,
+				"to": 327360
+			},
+			"text": " And it's mostly about EMIV-related."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,360",
+				"to": "00:05:29,400"
+			},
+			"offsets": {
+				"from": 327360,
+				"to": 329400
+			},
+			"text": " And since I have one and a half minutes left,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,400",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 329400,
+				"to": 331000
+			},
+			"text": " I want to talk briefly about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:34,880"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 334880
+			},
+			"text": " Basically, we use this threshold encryption mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,880",
+				"to": "00:05:37,120"
+			},
+			"offsets": {
+				"from": 334880,
+				"to": 337120
+			},
+			"text": " to prevent front-running and malicious EMIV."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,120",
+				"to": "00:05:40,960"
+			},
+			"offsets": {
+				"from": 337120,
+				"to": 340960
+			},
+			"text": " Our main focus here is roll-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,960",
+				"to": "00:05:42,800"
+			},
+			"offsets": {
+				"from": 340960,
+				"to": 342800
+			},
+			"text": " So our product here is called rolling shutter"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,800",
+				"to": "00:05:45,120"
+			},
+			"offsets": {
+				"from": 342800,
+				"to": 345120
+			},
+			"text": " that can integrate into roll-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,120",
+				"to": "00:05:47,240"
+			},
+			"offsets": {
+				"from": 345120,
+				"to": 347240
+			},
+			"text": " It's a kind of a plug-in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,240",
+				"to": "00:05:51,080"
+			},
+			"offsets": {
+				"from": 347240,
+				"to": 351080
+			},
+			"text": " But we're also looking at beacon chain at L1s."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,080",
+				"to": "00:05:54,280"
+			},
+			"offsets": {
+				"from": 351080,
+				"to": 354280
+			},
+			"text": " There we have, for example, a beacon chain proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,280",
+				"to": "00:05:56,560"
+			},
+			"offsets": {
+				"from": 354280,
+				"to": 356560
+			},
+			"text": " but more on the research side."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,560",
+				"to": "00:05:58,800"
+			},
+			"offsets": {
+				"from": 356560,
+				"to": 358800
+			},
+			"text": " Yeah, that's basically it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,800",
+				"to": "00:06:00,200"
+			},
+			"offsets": {
+				"from": 358800,
+				"to": 360200
+			},
+			"text": " Please try it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,200",
+				"to": "00:06:01,800"
+			},
+			"offsets": {
+				"from": 360200,
+				"to": 361800
+			},
+			"text": " It's still, of course, early."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,800",
+				"to": "00:06:03,920"
+			},
+			"offsets": {
+				"from": 361800,
+				"to": 363920
+			},
+			"text": " There might be bugs, but it should work."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,920",
+				"to": "00:06:06,120"
+			},
+			"offsets": {
+				"from": 363920,
+				"to": 366120
+			},
+			"text": " It's live."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,120",
+				"to": "00:06:09,680"
+			},
+			"offsets": {
+				"from": 366120,
+				"to": 369680
+			},
+			"text": " You can scan this QR code if you want to try it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,680",
+				"to": "00:06:12,280"
+			},
+			"offsets": {
+				"from": 369680,
+				"to": 372280
+			},
+			"text": " Follow us on Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,280",
+				"to": "00:06:15,960"
+			},
+			"offsets": {
+				"from": 372280,
+				"to": 375960
+			},
+			"text": " Project Shutter also snapshot labs or collaborators."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,960",
+				"to": "00:06:20,240"
+			},
+			"offsets": {
+				"from": 375960,
+				"to": 380240
+			},
+			"text": " And Ulupe, who's the guy who is supposed to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,240",
+				"to": "00:06:23,600"
+			},
+			"offsets": {
+				"from": 380240,
+				"to": 383600
+			},
+			"text": " And my name is another Yannick."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,600",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 383600,
+				"to": 387000
+			},
+			"text": " And of course, this is all part of BrainBods."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:29,600"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 389600
+			},
+			"text": " So the company that does Shutter is called BrainBods."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,600",
+				"to": "00:06:31,320"
+			},
+			"offsets": {
+				"from": 389600,
+				"to": 391320
+			},
+			"text": " And we have lots of other projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,320",
+				"to": "00:06:32,960"
+			},
+			"offsets": {
+				"from": 391320,
+				"to": 392960
+			},
+			"text": " including B-mer, rain, and trust lines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,960",
+				"to": "00:06:36,080"
+			},
+			"offsets": {
+				"from": 392960,
+				"to": 396080
+			},
+			"text": " power dump, lots of B-mer people here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,080",
+				"to": "00:06:37,480"
+			},
+			"offsets": {
+				"from": 396080,
+				"to": 397480
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,480",
+				"to": "00:06:37,920"
+			},
+			"offsets": {
+				"from": 397480,
+				"to": 397920
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,920",
+				"to": "00:06:39,640"
+			},
+			"offsets": {
+				"from": 397920,
+				"to": 399640
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,640",
+				"to": "00:06:41,520"
+			},
+			"offsets": {
+				"from": 399640,
+				"to": 401520
+			},
+			"text": " We still have time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,520",
+				"to": "00:06:45,120"
+			},
+			"offsets": {
+				"from": 401520,
+				"to": 405120
+			},
+			"text": " So if you have any questions, remember that lighting talks"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,120",
+				"to": "00:06:47,480"
+			},
+			"offsets": {
+				"from": 405120,
+				"to": 407480
+			},
+			"text": " are like seven minutes, and we have three minutes for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,480",
+				"to": "00:06:49,840"
+			},
+			"offsets": {
+				"from": 407480,
+				"to": 409840
+			},
+			"text": " So we have our volunteers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,840",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 409840,
+				"to": 411000
+			},
+			"text": " There you go."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:54,880"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 414880
+			},
+			"text": " Please, one second, because for the streaming, thank you, Nicole."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,880",
+				"to": "00:07:01,160"
+			},
+			"offsets": {
+				"from": 414880,
+				"to": 421160
+			},
+			"text": " Is it obligatory to have the results shown"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,160",
+				"to": "00:07:03,880"
+			},
+			"offsets": {
+				"from": 421160,
+				"to": 423880
+			},
+			"text": " at the end of the voting with snapshot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,880",
+				"to": "00:07:05,760"
+			},
+			"offsets": {
+				"from": 423880,
+				"to": 425760
+			},
+			"text": " like on a per voter basis?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,760",
+				"to": "00:07:08,240"
+			},
+			"offsets": {
+				"from": 425760,
+				"to": 428240
+			},
+			"text": " Or do you just show the aggregate results?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,240",
+				"to": "00:07:11,120"
+			},
+			"offsets": {
+				"from": 428240,
+				"to": 431120
+			},
+			"text": " So in this mechanism, to be honest, I don't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,120",
+				"to": "00:07:13,040"
+			},
+			"offsets": {
+				"from": 431120,
+				"to": 433040
+			},
+			"text": " know what snapshot shows."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,040",
+				"to": "00:07:15,760"
+			},
+			"offsets": {
+				"from": 433040,
+				"to": 435760
+			},
+			"text": " But in principle, all votes will be public afterwards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,760",
+				"to": "00:07:17,200"
+			},
+			"offsets": {
+				"from": 435760,
+				"to": 437200
+			},
+			"text": " because the encrypted votes are public,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,200",
+				"to": "00:07:18,560"
+			},
+			"offsets": {
+				"from": 437200,
+				"to": 438560
+			},
+			"text": " and the decryption piece is public."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,560",
+				"to": "00:07:21,720"
+			},
+			"offsets": {
+				"from": 438560,
+				"to": 441720
+			},
+			"text": " So you can find out who voted for what."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,720",
+				"to": "00:07:22,840"
+			},
+			"offsets": {
+				"from": 441720,
+				"to": 442840
+			},
+			"text": " That's part of what I said."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,840",
+				"to": "00:07:25,360"
+			},
+			"offsets": {
+				"from": 442840,
+				"to": 445360
+			},
+			"text": " Privacy is not in scope of this, but this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,360",
+				"to": "00:07:27,640"
+			},
+			"offsets": {
+				"from": 445360,
+				"to": 447640
+			},
+			"text": " you would need other mechanisms if you want that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,640",
+				"to": "00:07:29,400"
+			},
+			"offsets": {
+				"from": 447640,
+				"to": 449400
+			},
+			"text": " One short question more."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,400",
+				"to": "00:07:30,800"
+			},
+			"offsets": {
+				"from": 449400,
+				"to": 450800
+			},
+			"text": " Yeah, just follow up."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,800",
+				"to": "00:07:35,920"
+			},
+			"offsets": {
+				"from": 450800,
+				"to": 455920
+			},
+			"text": " Are there plans to introduce privacy into the setup?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,920",
+				"to": "00:07:36,840"
+			},
+			"offsets": {
+				"from": 455920,
+				"to": 456840
+			},
+			"text": " Not with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,840",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 456840,
+				"to": 459000
+			},
+			"text": " I think threshold encryption basically ends there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:40,640"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 460640
+			},
+			"text": " I don't think it's possible for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,640",
+				"to": "00:07:43,280"
+			},
+			"offsets": {
+				"from": 460640,
+				"to": 463280
+			},
+			"text": " You need some heavier cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,280",
+				"to": "00:07:43,800"
+			},
+			"offsets": {
+				"from": 463280,
+				"to": 463800
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,800",
+				"to": "00:07:45,120"
+			},
+			"offsets": {
+				"from": 463800,
+				"to": 465120
+			},
+			"text": " Very cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,120",
+				"to": "00:07:47,440"
+			},
+			"offsets": {
+				"from": 465120,
+				"to": 467440
+			},
+			"text": " All right, be around for applause for Yannick."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,440",
+				"to": "00:07:49,040"
+			},
+			"offsets": {
+				"from": 467440,
+				"to": 469040
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,040",
+				"to": "00:07:50,720"
+			},
+			"offsets": {
+				"from": 469040,
+				"to": 470720
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,720",
+				"to": "00:07:53,720"
+			},
+			"offsets": {
+				"from": 470720,
+				"to": 473720
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,720",
+				"to": "00:07:56,720"
+			},
+			"offsets": {
+				"from": 473720,
+				"to": 476720
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,720",
+				"to": "00:07:59,720"
+			},
+			"offsets": {
+				"from": 476720,
+				"to": 479720
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,720",
+				"to": "00:08:28,720"
+			},
+			"offsets": {
+				"from": 479720,
+				"to": 508720
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

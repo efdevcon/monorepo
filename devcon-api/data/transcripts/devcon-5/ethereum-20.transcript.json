@@ -1,0 +1,4707 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,280"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11280
+			},
+			"text": " >> Welcome to the E2 Q&A session. What we're going to do is I'm going to add some very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,280",
+				"to": "00:00:17,360"
+			},
+			"offsets": {
+				"from": 11280,
+				"to": 17360
+			},
+			"text": " very basic questions just to get you all up to speed. And then I'm going to open the microphone"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,360",
+				"to": "00:00:28,240"
+			},
+			"offsets": {
+				"from": 17360,
+				"to": 28240
+			},
+			"text": " to the crowd. Just a few things. So the whole thing about validator rewards and so on. I"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,240",
+				"to": "00:00:34,400"
+			},
+			"offsets": {
+				"from": 28240,
+				"to": 34400
+			},
+			"text": " don't know if you want to dig into it. Otherwise, I think it's consensus that we can skip those"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,400",
+				"to": "00:00:45,520"
+			},
+			"offsets": {
+				"from": 34400,
+				"to": 45520
+			},
+			"text": " questions. Makes sense? Yeah? Cool. All right. So maybe let's start with Joe. Can you give us an"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,520",
+				"to": "00:00:50,480"
+			},
+			"offsets": {
+				"from": 45520,
+				"to": 50480
+			},
+			"text": " update over the inter-locking and what you achieve and what that exactly means?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,960",
+				"to": "00:01:00,640"
+			},
+			"offsets": {
+				"from": 52960,
+				"to": 60640
+			},
+			"text": " So we had this lock-in is what we called it. It's kind of a workshop for a week out in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,640",
+				"to": "00:01:05,280"
+			},
+			"offsets": {
+				"from": 60640,
+				"to": 65280
+			},
+			"text": " Muscoka, Canada. And I guess we got somebody from Muscoka here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,280",
+				"to": "00:01:17,120"
+			},
+			"offsets": {
+				"from": 65280,
+				"to": 77120
+			},
+			"text": " All right. So basically the idea was that we like basically trap all the developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,840",
+				"to": "00:01:25,280"
+			},
+			"offsets": {
+				"from": 77840,
+				"to": 85280
+			},
+			"text": " in this place and make them join our E2 cult and then we'll work on our clients together"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,280",
+				"to": "00:01:33,440"
+			},
+			"offsets": {
+				"from": 85280,
+				"to": 93440
+			},
+			"text": " and reduce the round trip time for communication for everybody on getting their clients to interrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,440",
+				"to": "00:01:41,600"
+			},
+			"offsets": {
+				"from": 93440,
+				"to": 101600
+			},
+			"text": " Interop is essentially being able to talk over libp2p to the individual clients and gossip"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,600",
+				"to": "00:01:49,440"
+			},
+			"offsets": {
+				"from": 101600,
+				"to": 109440
+			},
+			"text": " attestations and block proposals with validators kind of like shared among the individual clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,440",
+				"to": "00:01:58,880"
+			},
+			"offsets": {
+				"from": 109440,
+				"to": 118880
+			},
+			"text": " Everything that you need without syncing. And so we were expecting I think eight clients came."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,880",
+				"to": "00:02:06,960"
+			},
+			"offsets": {
+				"from": 118880,
+				"to": 126960
+			},
+			"text": " Seven got to interop and that was really exciting. I think we thought that there would probably only"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,960",
+				"to": "00:02:14,160"
+			},
+			"offsets": {
+				"from": 126960,
+				"to": 134160
+			},
+			"text": " be three or four that would achieve interop in that time, which means that all the individual"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,160",
+				"to": "00:02:24,320"
+			},
+			"offsets": {
+				"from": 134160,
+				"to": 144320
+			},
+			"text": " clients are really doing a great job. So I think that that gives us more higher probability that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,320",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 144320,
+				"to": 154000
+			},
+			"text": " we'll make some early Q1. Don't quote that. But that's kind of like the idea right now is where"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:39,840"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 159840
+			},
+			"text": " people are saying when they want to see a beacon chain up. And so I think there's higher probability"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,840",
+				"to": "00:02:50,720"
+			},
+			"offsets": {
+				"from": 159840,
+				"to": 170720
+			},
+			"text": " of that now. So just to give an update does everyone know what E2 is formed by how many clients do we"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,720",
+				"to": "00:02:56,800"
+			},
+			"offsets": {
+				"from": 170720,
+				"to": 176800
+			},
+			"text": " have and all of that? I'm asking the crowd because otherwise we should give a primer. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,800",
+				"to": "00:03:05,760"
+			},
+			"offsets": {
+				"from": 176800,
+				"to": 185760
+			},
+			"text": " Like apparently everyone knows. Yeah. All right. So I don't know. So we have a couple of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,760",
+				"to": "00:03:13,440"
+			},
+			"offsets": {
+				"from": 185760,
+				"to": 193440
+			},
+			"text": " clients here. We have Nimbus. We have Lighthouse. I just like I can't."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,440",
+				"to": "00:03:25,120"
+			},
+			"offsets": {
+				"from": 193440,
+				"to": 205120
+			},
+			"text": " These two specification team. We have a load star as well. And we have anyone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,120",
+				"to": "00:03:37,440"
+			},
+			"offsets": {
+				"from": 205120,
+				"to": 217440
+			},
+			"text": " Oh, sorry. Yeah. Trinity. Okay. Quilt. We were prototyping phase one or two. Quilts is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,440",
+				"to": "00:03:45,520"
+			},
+			"offsets": {
+				"from": 217440,
+				"to": 225520
+			},
+			"text": " They're prototyping phase one and two. On Lighthouse. All right. Which of the clients is the one that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,520",
+				"to": "00:03:58,880"
+			},
+			"offsets": {
+				"from": 225520,
+				"to": 238880
+			},
+			"text": " most advanced? Lode Start is a really good job at fuzzy test in other clients. We blow them up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,880",
+				"to": "00:04:06,800"
+			},
+			"offsets": {
+				"from": 238880,
+				"to": 246800
+			},
+			"text": " Like, yeah. Lighthouse thought they weren't going to panic. We made them panic. They fixed it. We"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,800",
+				"to": "00:04:15,040"
+			},
+			"offsets": {
+				"from": 246800,
+				"to": 255040
+			},
+			"text": " made them panic again. Lode Start best line of all time. Oh no. That's what we got. Best in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,040",
+				"to": "00:04:24,560"
+			},
+			"offsets": {
+				"from": 255040,
+				"to": 264560
+			},
+			"text": " browser. All right. Do the existing clients here want to give a really quick update? Maybe we start with"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,560",
+				"to": "00:04:36,800"
+			},
+			"offsets": {
+				"from": 264560,
+				"to": 276800
+			},
+			"text": " okay. We don't start with the yes. Yeah. Nimbus. First of all, yeah. Thanks to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,800",
+				"to": "00:04:43,600"
+			},
+			"offsets": {
+				"from": 276800,
+				"to": 283600
+			},
+			"text": " consensus and the organizers of the interop. It was really, really, really good to get together"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,600",
+				"to": "00:04:50,480"
+			},
+			"offsets": {
+				"from": 283600,
+				"to": 290480
+			},
+			"text": " there. Work out a lot of practical little details that have to be worked out when you're trying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,480",
+				"to": "00:04:55,040"
+			},
+			"offsets": {
+				"from": 290480,
+				"to": 295040
+			},
+			"text": " make two pieces of software work. You'd think that it's easy like their suspect. Everybody just"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,040",
+				"to": "00:05:00,880"
+			},
+			"offsets": {
+				"from": 295040,
+				"to": 300880
+			},
+			"text": " writes the code and then, you know, puts it up and it works. That's obviously not the way it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,880",
+				"to": "00:05:09,200"
+			},
+			"offsets": {
+				"from": 300880,
+				"to": 309200
+			},
+			"text": " We have a pretty complex product coming out. And there are very many basic building blocks that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,200",
+				"to": "00:05:14,640"
+			},
+			"offsets": {
+				"from": 309200,
+				"to": 314640
+			},
+			"text": " have to fall into place. Like, that's the networking. That's the cryptography that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,640",
+				"to": "00:05:24,080"
+			},
+			"offsets": {
+				"from": 314640,
+				"to": 324080
+			},
+			"text": " this back itself. And I think really valuable was finding out and using each other's clients as"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,080",
+				"to": "00:05:33,680"
+			},
+			"offsets": {
+				"from": 324080,
+				"to": 333680
+			},
+			"text": " stress tests as a first sort of fast testing platform so that we could feel up where the other"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,680",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 333680,
+				"to": 340000
+			},
+			"text": " clients have put their effort the most. And then that's how we could improve our own client to sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:48,160"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 348160
+			},
+			"text": " of match that level. So I think interop was great for this. We found lots of bugs, lots of issues,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,160",
+				"to": "00:05:57,440"
+			},
+			"offsets": {
+				"from": 348160,
+				"to": 357440
+			},
+			"text": " lots of places where the thinking was not consistent between the clients and that was sorted out"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,440",
+				"to": "00:06:02,800"
+			},
+			"offsets": {
+				"from": 357440,
+				"to": 362800
+			},
+			"text": " during that interop. I mean, there was a lead up to the interop where clients were sort of pairing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,800",
+				"to": "00:06:09,600"
+			},
+			"offsets": {
+				"from": 362800,
+				"to": 369600
+			},
+			"text": " up and trying to solve some of the initial things to make it smooth, right? So that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,600",
+				"to": "00:06:17,280"
+			},
+			"offsets": {
+				"from": 369600,
+				"to": 377280
+			},
+			"text": " probably why we saw so many successes right on the spot as well. Thank you. Artemys."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,280",
+				"to": "00:06:26,400"
+			},
+			"offsets": {
+				"from": 377280,
+				"to": 386400
+			},
+			"text": " So after interop, we ripped out our Rust implementation of libp2p. We're the Java client."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,400",
+				"to": "00:06:34,400"
+			},
+			"offsets": {
+				"from": 386400,
+				"to": 394400
+			},
+			"text": " So we went for the JVM libp2p that was built by Harmony. And we put that in. And now we're kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,400",
+				"to": "00:06:45,920"
+			},
+			"offsets": {
+				"from": 394400,
+				"to": 405920
+			},
+			"text": " of working on some sync issues and some implementation issues to kind of get ready. We're turning our"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,920",
+				"to": "00:06:52,880"
+			},
+			"offsets": {
+				"from": 405920,
+				"to": 412880
+			},
+			"text": " team over to start working on a sharding client. We're leaving our beacon chain client with a"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,880",
+				"to": "00:07:01,440"
+			},
+			"offsets": {
+				"from": 412880,
+				"to": 421440
+			},
+			"text": " production team who's going to kind of like get the more hard end for production. And yeah, that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,440",
+				"to": "00:07:06,720"
+			},
+			"offsets": {
+				"from": 421440,
+				"to": 426720
+			},
+			"text": " kind of where we are. We're going to work on a new sharding client that's going to be built in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,720",
+				"to": "00:07:11,920"
+			},
+			"offsets": {
+				"from": 426720,
+				"to": 431920
+			},
+			"text": " Kotlin. Just super set of Java and also compile some machine code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,120",
+				"to": "00:07:23,680"
+			},
+			"offsets": {
+				"from": 435120,
+				"to": 443680
+			},
+			"text": " Load star? Yeah. After interop, we started kind of broken into several different sub teams. We're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,680",
+				"to": "00:07:30,240"
+			},
+			"offsets": {
+				"from": 443680,
+				"to": 450240
+			},
+			"text": " working on getting Load star kind of productionized. We have a lot of optimization to do to really"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,240",
+				"to": "00:07:38,240"
+			},
+			"offsets": {
+				"from": 450240,
+				"to": 458240
+			},
+			"text": " get to like this production level that Danny was talking about. And we also were kind of looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,240",
+				"to": "00:07:51,040"
+			},
+			"offsets": {
+				"from": 458240,
+				"to": 471040
+			},
+			"text": " ahead at a light client work. So we started to prototype some of that work out. And we're hopefully"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,040",
+				"to": "00:07:57,440"
+			},
+			"offsets": {
+				"from": 471040,
+				"to": 477440
+			},
+			"text": " going to start contributing back to the spec a little bit. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,440",
+				"to": "00:08:03,360"
+			},
+			"offsets": {
+				"from": 477440,
+				"to": 483360
+			},
+			"text": " >> Like house. >> We're going well. Our main focus at the moment is to target feature completeness."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,360",
+				"to": "00:08:08,240"
+			},
+			"offsets": {
+				"from": 483360,
+				"to": 488240
+			},
+			"text": " So phase zero feature completeness. We're getting quite close. We're just sort of polishing off the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,240",
+				"to": "00:08:14,160"
+			},
+			"offsets": {
+				"from": 488240,
+				"to": 494160
+			},
+			"text": " integration to F1 to the deposit contract. We're also working on some slashing protection for"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,160",
+				"to": "00:08:21,920"
+			},
+			"offsets": {
+				"from": 494160,
+				"to": 501920
+			},
+			"text": " validators. So this is kind of the idea of feature complete being that we can run the protocol. We"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,920",
+				"to": "00:08:27,040"
+			},
+			"offsets": {
+				"from": 501920,
+				"to": 507040
+			},
+			"text": " can -- we have everything we need to run and we can run off the deposit contract. But not necessarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,040",
+				"to": "00:08:32,800"
+			},
+			"offsets": {
+				"from": 507040,
+				"to": 512800
+			},
+			"text": " can we run for say a year and use reasonable disk usage. So that's something we're working on now"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,800",
+				"to": "00:08:37,760"
+			},
+			"offsets": {
+				"from": 512800,
+				"to": 517760
+			},
+			"text": " is trying to figure out how to optimize our database storage so that we can run for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,760",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 517760,
+				"to": 526000
+			},
+			"text": " Yeah. So I think the next thing for us is we really need to start testing more public test nets."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:51,200"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 531200
+			},
+			"text": " We need to get one of our own public test nets up. And we also need to start doing test nets with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,200",
+				"to": "00:08:58,080"
+			},
+			"offsets": {
+				"from": 531200,
+				"to": 538080
+			},
+			"text": " other clients using the F1 chain as the source of deposits. So we can test this like dynamic"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,080",
+				"to": "00:09:03,120"
+			},
+			"offsets": {
+				"from": 538080,
+				"to": 543120
+			},
+			"text": " validators because this is the thing that we didn't test at interrupt. So yeah, that's us."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,120",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 543120,
+				"to": 550000
+			},
+			"text": " And we're also really trying to help foster the cool team to make sure that they can keep researching"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:14,320"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 554320
+			},
+			"text": " the next phases while still delivering phase zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,800",
+				"to": "00:09:22,960"
+			},
+			"offsets": {
+				"from": 556800,
+				"to": 562960
+			},
+			"text": " Yeah. So Trinity was an interrupt. We had a lot of fun working with everyone. Since then, we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,960",
+				"to": "00:09:27,120"
+			},
+			"offsets": {
+				"from": 562960,
+				"to": 567120
+			},
+			"text": " been just sort of merging in all the things we found there that they major but just a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,120",
+				"to": "00:09:33,200"
+			},
+			"offsets": {
+				"from": 567120,
+				"to": 573200
+			},
+			"text": " like tiny little things as I'm sure other people found. The big thing is performance. So Trinity"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,200",
+				"to": "00:09:38,800"
+			},
+			"offsets": {
+				"from": 573200,
+				"to": 578800
+			},
+			"text": " is a client written in Python. So while it's great in terms of being readable and very approachable"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,800",
+				"to": "00:09:44,080"
+			},
+			"offsets": {
+				"from": 578800,
+				"to": 584080
+			},
+			"text": " and accessible, we definitely have to deal with performance penalty we accept by choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,960",
+				"to": "00:09:49,600"
+			},
+			"offsets": {
+				"from": 584960,
+				"to": 589600
+			},
+			"text": " So that'll be a lot of our work moving forward for the next couple months is making really fast"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,600",
+				"to": "00:10:00,960"
+			},
+			"offsets": {
+				"from": 589600,
+				"to": 600960
+			},
+			"text": " interpreter code. Cool. Thank you. I am losing my voice. So excuse me. So the cool team has been"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,960",
+				"to": "00:10:09,200"
+			},
+			"offsets": {
+				"from": 600960,
+				"to": 609200
+			},
+			"text": " focused on doing research around phase two, building on execution environments and doing some early"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,200",
+				"to": "00:10:17,920"
+			},
+			"offsets": {
+				"from": 609200,
+				"to": 617920
+			},
+			"text": " prototypes on basically the stateless paradigm. So we are already building execution environments"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,920",
+				"to": "00:10:28,080"
+			},
+			"offsets": {
+				"from": 617920,
+				"to": 628080
+			},
+			"text": " that are operating with an stateless way. And we've built a simulation within lighthouses kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,080",
+				"to": "00:10:33,680"
+			},
+			"offsets": {
+				"from": 628080,
+				"to": 633680
+			},
+			"text": " base code base where we now have shard chains or multiple shard chains interacting with the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,680",
+				"to": "00:10:39,760"
+			},
+			"offsets": {
+				"from": 633680,
+				"to": 639760
+			},
+			"text": " chain. And we're able to actually run the state execution on that as well and run these execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,760",
+				"to": "00:10:47,680"
+			},
+			"offsets": {
+				"from": 639760,
+				"to": 647680
+			},
+			"text": " environments on it as well. And so we have been I guess kind of what we're doing next is expanding"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,680",
+				"to": "00:10:57,360"
+			},
+			"offsets": {
+				"from": 647680,
+				"to": 657360
+			},
+			"text": " that to include more simulations of what the state market might look like advancing on what may be"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,360",
+				"to": "00:11:05,760"
+			},
+			"offsets": {
+				"from": 657360,
+				"to": 665760
+			},
+			"text": " at ease for some of those contract frameworks as well. Yeah. And do you guys want to give an update?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,760",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 665760,
+				"to": 674000
+			},
+			"text": " Yeah. We're working on all sorts of things. Adding add some additional tests to phase zero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:20,400"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 680400
+			},
+			"text": " Justin Drake did some excellent work making phase one look really nice and easy to reason"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,400",
+				"to": "00:11:28,080"
+			},
+			"offsets": {
+				"from": 680400,
+				"to": 688080
+			},
+			"text": " about and elegant. A lot of research and thought and conversations around phase two. And more"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,080",
+				"to": "00:11:33,520"
+			},
+			"offsets": {
+				"from": 688080,
+				"to": 693520
+			},
+			"text": " recently some conversations around potential alternate structures with phase one that might allow"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,520",
+				"to": "00:11:42,080"
+			},
+			"offsets": {
+				"from": 693520,
+				"to": 702080
+			},
+			"text": " more rapid cross-linking and better communication between shards. At the same time working on some"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,080",
+				"to": "00:11:48,640"
+			},
+			"offsets": {
+				"from": 702080,
+				"to": 708640
+			},
+			"text": " standards, helping drive the standards process on BLS, Carl's been looking into key store formats,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,920",
+				"to": "00:11:56,080"
+			},
+			"offsets": {
+				"from": 709920,
+				"to": 716080
+			},
+			"text": " pushing on the deposit contract stuff, which is formally verified and ready, but we're waiting"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,080",
+				"to": "00:12:03,440"
+			},
+			"offsets": {
+				"from": 716080,
+				"to": 723440
+			},
+			"text": " on the BLS standardization to launch that. And opening up the conversations around the coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,440",
+				"to": "00:12:10,400"
+			},
+			"offsets": {
+				"from": 723440,
+				"to": 730400
+			},
+			"text": " public test nets with the clients and always kind of providing support and answering questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,400",
+				"to": "00:12:14,720"
+			},
+			"offsets": {
+				"from": 730400,
+				"to": 734720
+			},
+			"text": " on the client side. So just keeping everything moving forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,840",
+				"to": "00:12:21,920"
+			},
+			"offsets": {
+				"from": 735840,
+				"to": 741920
+			},
+			"text": " Yeah. And I've been coming up with this alternate structure is for faster cross-linking that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,920",
+				"to": "00:12:31,120"
+			},
+			"offsets": {
+				"from": 741920,
+				"to": 751120
+			},
+			"text": " Danny mentioned that we should have some information out about me maybe very soon. Also data availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,120",
+				"to": "00:12:39,600"
+			},
+			"offsets": {
+				"from": 751120,
+				"to": 759600
+			},
+			"text": " There's been a lot of kind of progress on different kinds of data availability proving mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,600",
+				"to": "00:12:47,120"
+			},
+			"offsets": {
+				"from": 759600,
+				"to": 767120
+			},
+			"text": " There was also that interesting coded Merkold tree paper from a couple of days ago that lets you do"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,120",
+				"to": "00:12:53,520"
+			},
+			"offsets": {
+				"from": 767120,
+				"to": 773520
+			},
+			"text": " erasure coded roots with much smaller fraud proofs, which is also really nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,520",
+				"to": "00:13:03,760"
+			},
+			"offsets": {
+				"from": 773520,
+				"to": 783760
+			},
+			"text": " Also thinking about the market simplification and coming up with ways to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,560",
+				"to": "00:13:08,560"
+			},
+			"offsets": {
+				"from": 784560,
+				"to": 788560
+			},
+			"text": " and if deal with edge cases in real ear markets and all of those issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,560",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 788560,
+				"to": 802000
+			},
+			"text": " I guess I've been thinking about optional upgrades. One of them is the idea of a secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:28,560"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 808560
+			},
+			"text": " leader election. So right now beacon proposes and shop proposes, then known in advance that they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,560",
+				"to": "00:13:36,400"
+			},
+			"offsets": {
+				"from": 808560,
+				"to": 816400
+			},
+			"text": " going to create a block and then these leader based systems suffer from the null of service"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,400",
+				"to": "00:13:44,160"
+			},
+			"offsets": {
+				"from": 816400,
+				"to": 824160
+			},
+			"text": " attack surface. And so what if we can have a system where you don't know ahead of time who will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,160",
+				"to": "00:13:49,760"
+			},
+			"offsets": {
+				"from": 824160,
+				"to": 829760
+			},
+			"text": " creating the next block that would be much more resilient. Another kind of optional security"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,760",
+				"to": "00:13:53,280"
+			},
+			"offsets": {
+				"from": 829760,
+				"to": 833280
+			},
+			"text": " upgrade that I've been working on for some time and it's still ongoing and we're making"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,280",
+				"to": "00:13:59,360"
+			},
+			"offsets": {
+				"from": 833280,
+				"to": 839360
+			},
+			"text": " lots of progress is the VDF project to have an unbiased ball randomness. And I guess I've also"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,360",
+				"to": "00:14:07,280"
+			},
+			"offsets": {
+				"from": 839360,
+				"to": 847280
+			},
+			"text": " been thinking maybe a decade into the future on e3 and how to make a firm quantum secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,280",
+				"to": "00:14:13,600"
+			},
+			"offsets": {
+				"from": 847280,
+				"to": 853600
+			},
+			"text": " At least 10 years I'd say."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,600",
+				"to": "00:14:20,320"
+			},
+			"offsets": {
+				"from": 853600,
+				"to": 860320
+			},
+			"text": " Dan Boon-ace is 30."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,320",
+				"to": "00:14:25,360"
+			},
+			"offsets": {
+				"from": 860320,
+				"to": 865360
+			},
+			"text": " But Dan also said don't quote me on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,360",
+				"to": "00:14:37,200"
+			},
+			"offsets": {
+				"from": 865360,
+				"to": 877200
+			},
+			"text": " All right I'm gonna open up now to questions from the audience. Who want to go first?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,200",
+				"to": "00:14:46,800"
+			},
+			"offsets": {
+				"from": 879200,
+				"to": 886800
+			},
+			"text": " Sure. You mentioned you're doing a lot of work on fee markets. One thing that I would love to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,800",
+				"to": "00:14:53,280"
+			},
+			"offsets": {
+				"from": 886800,
+				"to": 893280
+			},
+			"text": " is a bit of a high level abstraction so that you can specify how fast you want a transaction to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,280",
+				"to": "00:14:58,640"
+			},
+			"offsets": {
+				"from": 893280,
+				"to": 898640
+			},
+			"text": " happen. Like I want it to happen in a minute or five minutes or an hour or I don't care. And then"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,640",
+				"to": "00:15:03,760"
+			},
+			"offsets": {
+				"from": 898640,
+				"to": 903760
+			},
+			"text": " it builds you like however much it should the market rate would be for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,640",
+				"to": "00:15:10,400"
+			},
+			"offsets": {
+				"from": 906640,
+				"to": 910400
+			},
+			"text": " Like you could pay more and then it would refund you the difference because right now it's guess"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,400",
+				"to": "00:15:15,840"
+			},
+			"offsets": {
+				"from": 910400,
+				"to": 915840
+			},
+			"text": " work. Like trying to you know guess the right amount of gas although the gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,840",
+				"to": "00:15:23,920"
+			},
+			"offsets": {
+				"from": 915840,
+				"to": 923920
+			},
+			"text": " This is the sort of problem that EIPA 1559 is meant to basically eliminate. Like users would in"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,920",
+				"to": "00:15:34,400"
+			},
+			"offsets": {
+				"from": 923920,
+				"to": 934400
+			},
+			"text": " the normal case see their transactions just included immediately. Anyone else? Questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,400",
+				"to": "00:15:36,720"
+			},
+			"offsets": {
+				"from": 934400,
+				"to": 936720
+			},
+			"text": " Oh."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,720",
+				"to": "00:15:43,760"
+			},
+			"offsets": {
+				"from": 936720,
+				"to": 943760
+			},
+			"text": " Okay we have cable so can you come over please?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,760",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 943760,
+				"to": 954000
+			},
+			"text": " My name is Chi actually I have questions so the number of straws I understand will start with"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:15:59,840"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 959840
+			},
+			"text": " 1024. So I'm wondering why choose this number especially together with a large number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,840",
+				"to": "00:16:04,080"
+			},
+			"offsets": {
+				"from": 959840,
+				"to": 964080
+			},
+			"text": " roti daters. There was a different cost to network cross especially at a starting"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,080",
+				"to": "00:16:10,320"
+			},
+			"offsets": {
+				"from": 964080,
+				"to": 970320
+			},
+			"text": " of the answer to is that any concern that maybe we may not be able to reach so many nodes of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,320",
+				"to": "00:16:21,280"
+			},
+			"offsets": {
+				"from": 970320,
+				"to": 981280
+			},
+			"text": " roti daters at the beginning. And so this is one of the things that this kind of faster cross"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,280",
+				"to": "00:16:27,680"
+			},
+			"offsets": {
+				"from": 981280,
+				"to": 987680
+			},
+			"text": " linking proposal might actually end up changing potentially. But I think in general the justification"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,680",
+				"to": "00:16:33,520"
+			},
+			"offsets": {
+				"from": 987680,
+				"to": 993520
+			},
+			"text": " here is that we're trying to kind of like there's two different kind of constraints that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,520",
+				"to": "00:16:39,760"
+			},
+			"offsets": {
+				"from": 993520,
+				"to": 999760
+			},
+			"text": " One of the constraints is the load on the beacon chain. So we want to like the higher the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,760",
+				"to": "00:16:43,520"
+			},
+			"offsets": {
+				"from": 999760,
+				"to": 1003520
+			},
+			"text": " shard count the more scalability but on the other hand the higher the shard count the more cross"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,520",
+				"to": "00:16:49,280"
+			},
+			"offsets": {
+				"from": 1003520,
+				"to": 1009280
+			},
+			"text": " links on the beacon chain and the more expensive the beacon chain will be the process. And the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,280",
+				"to": "00:16:54,480"
+			},
+			"offsets": {
+				"from": 1009280,
+				"to": 1014480
+			},
+			"text": " other constraints that we have is just like the higher the total throughput of the system the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,480",
+				"to": "00:17:00,160"
+			},
+			"offsets": {
+				"from": 1014480,
+				"to": 1020160
+			},
+			"text": " higher the harder it is to be like to be a block explorer the higher the risk that some historical"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,160",
+				"to": "00:17:06,640"
+			},
+			"offsets": {
+				"from": 1020160,
+				"to": 1026640
+			},
+			"text": " data will eventually just end up being forgotten completely and so forth. So the scalability that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,640",
+				"to": "00:17:12,480"
+			},
+			"offsets": {
+				"from": 1026640,
+				"to": 1032480
+			},
+			"text": " we get that we're expecting like the data throughput that we're expecting the number that we've quoted"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,480",
+				"to": "00:17:21,360"
+			},
+			"offsets": {
+				"from": 1032480,
+				"to": 1041360
+			},
+			"text": " numbers between 1 to 10 megabytes per second. And that seems kind of to be close to the upper"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,360",
+				"to": "00:17:26,400"
+			},
+			"offsets": {
+				"from": 1041360,
+				"to": 1046400
+			},
+			"text": " limit of what people are fine with so far. And for the load on the beacon chain like we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,400",
+				"to": "00:17:31,520"
+			},
+			"offsets": {
+				"from": 1046400,
+				"to": 1051520
+			},
+			"text": " done numbers and it seems like beacon chain blocks can in the worst case be verified and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,520",
+				"to": "00:17:41,120"
+			},
+			"offsets": {
+				"from": 1051520,
+				"to": 1061120
+			},
+			"text": " like about a second now is it? So yeah so once again it's kind of like that much but not more sort of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,120",
+				"to": "00:17:46,560"
+			},
+			"offsets": {
+				"from": 1061120,
+				"to": 1066560
+			},
+			"text": " Yeah I think there was like four million validators we're starting to encroach over a second so"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,120",
+				"to": "00:17:50,480"
+			},
+			"offsets": {
+				"from": 1067120,
+				"to": 1070480
+			},
+			"text": " it's way above what we'll get. Yeah and like I personally want to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,480",
+				"to": "00:17:53,520"
+			},
+			"offsets": {
+				"from": 1070480,
+				"to": 1073520
+			},
+			"text": " concerned want to be conservative with beacon chain numbers so like I want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,520",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1073520,
+				"to": 1080000
+			},
+			"text": " I personally really want to avoid the mistake that we made of like in each one where like because"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:04,560"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1084560
+			},
+			"text": " the chain was heavy like so few people wants to run a node like I would prefer a beacon chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,560",
+				"to": "00:18:10,160"
+			},
+			"offsets": {
+				"from": 1084560,
+				"to": 1090160
+			},
+			"text": " node to be just a thing that you would run by defaults rather than like running only when you need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,160",
+				"to": "00:18:14,400"
+			},
+			"offsets": {
+				"from": 1090160,
+				"to": 1094400
+			},
+			"text": " And that does necessitate kind of fairly like stringent performance requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,040",
+				"to": "00:18:17,280"
+			},
+			"offsets": {
+				"from": 1095040,
+				"to": 1097280
+			},
+			"text": " Yeah I agree things are the faster harder to toss to."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,280",
+				"to": "00:18:22,640"
+			},
+			"offsets": {
+				"from": 1097280,
+				"to": 1102640
+			},
+			"text": " I mean on the concern that there won't be enough validators to start with we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,640",
+				"to": "00:18:28,160"
+			},
+			"offsets": {
+				"from": 1102640,
+				"to": 1108160
+			},
+			"text": " essentially handling that by only doing the genesis once we have sufficient validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,160",
+				"to": "00:18:32,640"
+			},
+			"offsets": {
+				"from": 1108160,
+				"to": 1112640
+			},
+			"text": " so the current numbers are 65,000 validators two million if."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,640",
+				"to": "00:18:39,040"
+			},
+			"offsets": {
+				"from": 1112640,
+				"to": 1119040
+			},
+			"text": " Another idea that we're considering is that even if we go for a thousand"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,040",
+				"to": "00:18:46,720"
+			},
+			"offsets": {
+				"from": 1119040,
+				"to": 1126720
+			},
+			"text": " shards in the very long term we could you know we could slowly enable them ratchet it up so start"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,720",
+				"to": "00:18:51,760"
+			},
+			"offsets": {
+				"from": 1126720,
+				"to": 1131760
+			},
+			"text": " maybe with 64 shards and then over time have an increase because at the very beginning there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,760",
+				"to": "00:18:58,320"
+			},
+			"offsets": {
+				"from": 1131760,
+				"to": 1138320
+			},
+			"text": " going to be very little activity and it might be worth using less shots."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,320",
+				"to": "00:19:06,480"
+			},
+			"offsets": {
+				"from": 1138320,
+				"to": 1146480
+			},
+			"text": " Yeah speaking of block times or process block processing times it's important to remember that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,480",
+				"to": "00:19:10,880"
+			},
+			"offsets": {
+				"from": 1146480,
+				"to": 1150880
+			},
+			"text": " there are cases where we have to process blocks which are not necessarily good ones that might be"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,880",
+				"to": "00:19:17,680"
+			},
+			"offsets": {
+				"from": 1150880,
+				"to": 1157680
+			},
+			"text": " spam might be maliciously constructed that takes time away so we need to have a little bit of a buffer"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,680",
+				"to": "00:19:25,040"
+			},
+			"offsets": {
+				"from": 1157680,
+				"to": 1165040
+			},
+			"text": " and that also affects the way that messages propagate in the network so we're using"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,040",
+				"to": "00:19:31,840"
+			},
+			"offsets": {
+				"from": 1165040,
+				"to": 1171840
+			},
+			"text": " an epidemic network which basically means that all the data is replicated all over the network and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,560",
+				"to": "00:19:37,760"
+			},
+			"offsets": {
+				"from": 1172560,
+				"to": 1177760
+			},
+			"text": " the longer it takes to process or the longer full block processing takes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,760",
+				"to": "00:19:45,040"
+			},
+			"offsets": {
+				"from": 1177760,
+				"to": 1185040
+			},
+			"text": " just the less validation we can do ahead of time meaning that the more risk there is that the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,040",
+				"to": "00:19:50,480"
+			},
+			"offsets": {
+				"from": 1185040,
+				"to": 1190480
+			},
+			"text": " that the network will be flooded by bad data or that it will be slow either of those two right so"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,480",
+				"to": "00:19:56,880"
+			},
+			"offsets": {
+				"from": 1190480,
+				"to": 1196880
+			},
+			"text": " so there's also that argument that if we can do more good validation upfront and still maintain"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,880",
+				"to": "00:20:03,680"
+			},
+			"offsets": {
+				"from": 1196880,
+				"to": 1203680
+			},
+			"text": " low latencies we also gain in other parts of the system as a whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,680",
+				"to": "00:20:11,600"
+			},
+			"offsets": {
+				"from": 1203680,
+				"to": 1211600
+			},
+			"text": " Yes I'm wondering what the plan is in general terms for handling of ERC 20 assets in particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,600",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1211600,
+				"to": 1216000
+			},
+			"text": " transfer functions as a developer it's somewhat difficult from user experience standpoint and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:22,480"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1222480
+			},
+			"text": " there's been many proposals ERC 2-2-3 for instance as an interesting proposal but as we transitioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,480",
+				"to": "00:20:27,040"
+			},
+			"offsets": {
+				"from": 1222480,
+				"to": 1227040
+			},
+			"text": " to E2.0 I'm curious what the general plan is for handling those assets because there's just"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,040",
+				"to": "00:20:30,480"
+			},
+			"offsets": {
+				"from": 1227040,
+				"to": 1230480
+			},
+			"text": " hundreds of them just migrating them to 2-2-3s and sort of feasible."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,480",
+				"to": "00:20:36,640"
+			},
+			"offsets": {
+				"from": 1230480,
+				"to": 1236640
+			},
+			"text": " Careous your thoughts. So kind of unrelated to the whole transfer from thing which I agree needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,640",
+				"to": "00:20:42,320"
+			},
+			"offsets": {
+				"from": 1236640,
+				"to": 1242320
+			},
+			"text": " to be reformed somehow another issue like another reason why things need to be reformed anyway is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,320",
+				"to": "00:20:49,040"
+			},
+			"offsets": {
+				"from": 1242320,
+				"to": 1249040
+			},
+			"text": " that assets are probably the major category of application that we expect like in any particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,040",
+				"to": "00:20:54,480"
+			},
+			"offsets": {
+				"from": 1249040,
+				"to": 1254480
+			},
+			"text": " token will need to be accessible in all shards like most applications like real like realistically"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,480",
+				"to": "00:20:58,160"
+			},
+			"offsets": {
+				"from": 1254480,
+				"to": 1258160
+			},
+			"text": " unless you're in the top 10 you could just live inside of one shard and you could expect people"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,160",
+				"to": "00:21:01,840"
+			},
+			"offsets": {
+				"from": 1258160,
+				"to": 1261840
+			},
+			"text": " to just move their points to your shard do stuff inside of your application and then go somewhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,840",
+				"to": "00:21:08,480"
+			},
+			"offsets": {
+				"from": 1261840,
+				"to": 1268480
+			},
+			"text": " else but tokens need to be able to move to be moved around everywhere and so like the idea of"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,480",
+				"to": "00:21:13,440"
+			},
+			"offsets": {
+				"from": 1268480,
+				"to": 1273440
+			},
+			"text": " a token as being a balance of one particular model with a contract is not something they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,440",
+				"to": "00:21:18,560"
+			},
+			"offsets": {
+				"from": 1273440,
+				"to": 1278560
+			},
+			"text": " really survive and so you'd expect like token holdings to themselves kind of be more like"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,560",
+				"to": "00:21:26,240"
+			},
+			"offsets": {
+				"from": 1278560,
+				"to": 1286240
+			},
+			"text": " individual contracts and when like when that happens like you're pretty much like it's an"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,240",
+				"to": "00:21:30,160"
+			},
+			"offsets": {
+				"from": 1286240,
+				"to": 1290160
+			},
+			"text": " opportunity to kind of reform other things about how the standard works as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,160",
+				"to": "00:21:36,880"
+			},
+			"offsets": {
+				"from": 1290160,
+				"to": 1296880
+			},
+			"text": " Another question I had just to go back to Justin."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,560",
+				"to": "00:21:45,680"
+			},
+			"offsets": {
+				"from": 1300560,
+				"to": 1305680
+			},
+			"text": " You just a minute ago mentioned that it could start with 64 shards and previously I hadn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,680",
+				"to": "00:21:49,760"
+			},
+			"offsets": {
+				"from": 1305680,
+				"to": 1309760
+			},
+			"text": " heard this so can you expand on that a little bit more as to how that could happen because"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,760",
+				"to": "00:21:55,120"
+			},
+			"offsets": {
+				"from": 1309760,
+				"to": 1315120
+			},
+			"text": " previously the response was that it you'd be underutilizing it but is that really the only"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,120",
+				"to": "00:22:00,240"
+			},
+			"offsets": {
+				"from": 1315120,
+				"to": 1320240
+			},
+			"text": " consideration that you'd be underutilizing the beacon chain the throughput that's made available"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,240",
+				"to": "00:22:04,560"
+			},
+			"offsets": {
+				"from": 1320240,
+				"to": 1324560
+			},
+			"text": " like why couldn't we start with a lower number and then scale up would you have like validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,560",
+				"to": "00:22:11,760"
+			},
+			"offsets": {
+				"from": 1324560,
+				"to": 1331760
+			},
+			"text": " sitting out and not really activated? I mean the validators do all sorts of things one of them is"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,760",
+				"to": "00:22:17,120"
+			},
+			"offsets": {
+				"from": 1331760,
+				"to": 1337120
+			},
+			"text": " cross-linking and so technically speaking to reduce number of shards it's pretty trivial like"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,120",
+				"to": "00:22:22,480"
+			},
+			"offsets": {
+				"from": 1337120,
+				"to": 1342480
+			},
+			"text": " when they do the cross link some of these cross links will just be hard-coded to zero and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,480",
+				"to": "00:22:28,000"
+			},
+			"offsets": {
+				"from": 1342480,
+				"to": 1348000
+			},
+			"text": " that will this zero hash will mean that there's no data flowing through the the respective shots"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,000",
+				"to": "00:22:34,240"
+			},
+			"offsets": {
+				"from": 1348000,
+				"to": 1354240
+			},
+			"text": " but you know these validators would still be providing value for example they'd be contributing"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,240",
+				"to": "00:22:37,120"
+			},
+			"offsets": {
+				"from": 1354240,
+				"to": 1357120
+			},
+			"text": " towards the finality of the beacon chain and all sorts of everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,120",
+				"to": "00:22:45,680"
+			},
+			"offsets": {
+				"from": 1357120,
+				"to": 1365680
+			},
+			"text": " I mean one good reason to start with lower shards is lower counters that you know maybe more"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,680",
+				"to": "00:22:54,160"
+			},
+			"offsets": {
+				"from": 1365680,
+				"to": 1374160
+			},
+			"text": " network stability we wouldn't have so many shards subnets that's a nice thing also it allows for"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,160",
+				"to": "00:23:00,960"
+			},
+			"offsets": {
+				"from": 1374160,
+				"to": 1380960
+			},
+			"text": " services like block explorers to give them a bit of breathing space to ramp up to bigger numbers"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,960",
+				"to": "00:23:08,560"
+			},
+			"offsets": {
+				"from": 1380960,
+				"to": 1388560
+			},
+			"text": " as to how we increase to a higher number of shards we can have some sort of automatic schedule or we"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,560",
+				"to": "00:23:16,400"
+			},
+			"offsets": {
+				"from": 1388560,
+				"to": 1396400
+			},
+			"text": " could kind of push this to the social consensus layer with with hot folks. So this is a possibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,400",
+				"to": "00:23:21,680"
+			},
+			"offsets": {
+				"from": 1396400,
+				"to": 1401680
+			},
+			"text": " that it could start much lower? Yes and I think it's the natural thing to do I think. Right yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,680",
+				"to": "00:23:27,680"
+			},
+			"offsets": {
+				"from": 1401680,
+				"to": 1407680
+			},
+			"text": " because I've heard from many people and I'm sympathetic to the idea that block space"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,560",
+				"to": "00:23:34,640"
+			},
+			"offsets": {
+				"from": 1408560,
+				"to": 1414640
+			},
+			"text": " should be economically valued or it has economic implications and it should be valued highly and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,640",
+				"to": "00:23:41,040"
+			},
+			"offsets": {
+				"from": 1414640,
+				"to": 1421040
+			},
+			"text": " if you have an overabundance of it then you end up devaluing the transactions that are contained"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,040",
+				"to": "00:23:46,640"
+			},
+			"offsets": {
+				"from": 1421040,
+				"to": 1426640
+			},
+			"text": " in it. I mean that's a good point if we have fewer shards it means that we can really test the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,640",
+				"to": "00:23:54,320"
+			},
+			"offsets": {
+				"from": 1426640,
+				"to": 1434320
+			},
+			"text": " new you know gas market with VIP 1159 which by the way is awesome it just seems to solve so many problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,200",
+				"to": "00:24:02,240"
+			},
+			"offsets": {
+				"from": 1435200,
+				"to": 1442240
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,240",
+				"to": "00:24:06,560"
+			},
+			"offsets": {
+				"from": 1442240,
+				"to": 1446560
+			},
+			"text": " Hi I'm Kent I'm the head of R&D at ShapeShift and I'd love to hear more from you"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,560",
+				"to": "00:24:12,240"
+			},
+			"offsets": {
+				"from": 1446560,
+				"to": 1452240
+			},
+			"text": " Vitalik about the use of phase one in the data availability context. This excites me a lot because"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,240",
+				"to": "00:24:18,720"
+			},
+			"offsets": {
+				"from": 1452240,
+				"to": 1458720
+			},
+			"text": " it seems to me that a lot of the really vaccine challenges with E2.0 are in phase two with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,720",
+				"to": "00:24:25,200"
+			},
+			"offsets": {
+				"from": 1458720,
+				"to": 1465200
+			},
+			"text": " charted EEs and cross-crossing communication. This could effectively really give us a very nice"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,200",
+				"to": "00:24:30,880"
+			},
+			"offsets": {
+				"from": 1465200,
+				"to": 1470880
+			},
+			"text": " bridge where we have a layer two solutions with Starks and Snarks. So kind of a two-fold question"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,880",
+				"to": "00:24:37,200"
+			},
+			"offsets": {
+				"from": 1470880,
+				"to": 1477200
+			},
+			"text": " to what extent is the data availability aspect being specked out and built with those particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,200",
+				"to": "00:24:43,760"
+			},
+			"offsets": {
+				"from": 1477200,
+				"to": 1483760
+			},
+			"text": " use cases in mind and also if you could shed shed some light on the big research challenges and"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,760",
+				"to": "00:24:52,560"
+			},
+			"offsets": {
+				"from": 1483760,
+				"to": 1492560
+			},
+			"text": " questions as that aspect is built out. Sure so there exists a scalability solution already like"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,560",
+				"to": "00:24:59,840"
+			},
+			"offsets": {
+				"from": 1492560,
+				"to": 1499840
+			},
+			"text": " Plasma Group is doing a demo of it like a I think I'd definitely call them optimistic roll-up"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,840",
+				"to": "00:25:06,800"
+			},
+			"offsets": {
+				"from": 1499840,
+				"to": 1506800
+			},
+			"text": " and optimistic roll-up basically works by publishing transaction data in a very compressed form on"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,800",
+				"to": "00:25:15,760"
+			},
+			"offsets": {
+				"from": 1506800,
+				"to": 1515760
+			},
+			"text": " chain but not doing like state execution on chain and optimistic roll-up because you avoid executing"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,760",
+				"to": "00:25:20,800"
+			},
+			"offsets": {
+				"from": 1515760,
+				"to": 1520800
+			},
+			"text": " you only have a little bit of data and especially because data is relatively very cheap relative to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,800",
+				"to": "00:25:29,760"
+			},
+			"offsets": {
+				"from": 1520800,
+				"to": 1529760
+			},
+			"text": " computation even on the E2 system you can achieve scalability of like 10 to 100x like the theoretical"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,760",
+				"to": "00:25:35,520"
+			},
+			"offsets": {
+				"from": 1529760,
+				"to": 1535520
+			},
+			"text": " max throughput is somewhere around 3000 TPS if like everyone were to just use optimistic roll-up"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,520",
+				"to": "00:25:43,680"
+			},
+			"offsets": {
+				"from": 1535520,
+				"to": 1543680
+			},
+			"text": " for moving coins around and E2 could potentially take make optimistic roll-up even more powerful"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,680",
+				"to": "00:25:50,480"
+			},
+			"offsets": {
+				"from": 1543680,
+				"to": 1550480
+			},
+			"text": " because instead of using the E1 chain's data store to store the data to make sure that it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,480",
+				"to": "00:25:55,680"
+			},
+			"offsets": {
+				"from": 1550480,
+				"to": 1555680
+			},
+			"text": " available you would be storing that data on the E2 chain and you would basically kind of feed into"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,680",
+				"to": "00:26:02,400"
+			},
+			"offsets": {
+				"from": 1555680,
+				"to": 1562400
+			},
+			"text": " the E1 side Merkle proofs that prove that hey this data actually has been accepted by E2 and so"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,400",
+				"to": "00:26:07,600"
+			},
+			"offsets": {
+				"from": 1562400,
+				"to": 1567600
+			},
+			"text": " if you imagine like even if say we reduce a short count and they're like even the scalability at"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,600",
+				"to": "00:26:12,400"
+			},
+			"offsets": {
+				"from": 1567600,
+				"to": 1572400
+			},
+			"text": " the beginning is toward the lower end and say there's one megabyte per second of data availability"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,400",
+				"to": "00:26:19,920"
+			},
+			"offsets": {
+				"from": 1572400,
+				"to": 1579920
+			},
+			"text": " then if we talk about say 20 byte transactions then that's 50,000 transactions a second that could"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,920",
+				"to": "00:26:29,680"
+			},
+			"offsets": {
+				"from": 1579920,
+				"to": 1589680
+			},
+			"text": " fit inside of a roll-up and that's and it's like a system that could like the logic for"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,680",
+				"to": "00:26:35,120"
+			},
+			"offsets": {
+				"from": 1589680,
+				"to": 1595120
+			},
+			"text": " kind of doing it is something that is being developed already I think the main challenge that would"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,120",
+				"to": "00:26:39,600"
+			},
+			"offsets": {
+				"from": 1595120,
+				"to": 1599600
+			},
+			"text": " need to be solved is that you would need to have at least a minimal sort of fee market form on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,600",
+				"to": "00:26:47,520"
+			},
+			"offsets": {
+				"from": 1599600,
+				"to": 1607520
+			},
+			"text": " E2 side so that optimistic roll-up relayers would at least have the ability to kind of publish their"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,520",
+				"to": "00:26:51,040"
+			},
+			"offsets": {
+				"from": 1607520,
+				"to": 1611040
+			},
+			"text": " data and that is one of the things we're actively thinking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,040",
+				"to": "00:26:58,320"
+			},
+			"offsets": {
+				"from": 1611040,
+				"to": 1618320
+			},
+			"text": " The other challenge is if you do want to use phase one as a data availability layer of on"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,320",
+				"to": "00:27:06,080"
+			},
+			"offsets": {
+				"from": 1618320,
+				"to": 1626080
+			},
+			"text": " E1 you need to go down the finality gadget road and expose E2 data E2 state routes to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,080",
+				"to": "00:27:13,760"
+			},
+			"offsets": {
+				"from": 1626080,
+				"to": 1633760
+			},
+			"text": " E1 so you can make proofs against it so depending on as we talked about in the last session depending"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,760",
+				"to": "00:27:18,400"
+			},
+			"offsets": {
+				"from": 1633760,
+				"to": 1638400
+			},
+			"text": " on kind of parallel road maps and how long expected things you're going to take it may or may not be"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,400",
+				"to": "00:27:30,880"
+			},
+			"offsets": {
+				"from": 1638400,
+				"to": 1650880
+			},
+			"text": " worth it. Right next question. Oh Marty. Hey Martin. You need to actually jump everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,880",
+				"to": "00:27:41,680"
+			},
+			"offsets": {
+				"from": 1650880,
+				"to": 1661680
+			},
+			"text": " Yeah so I came a little late so I hope this question hasn't been asked if so I'll just excuse"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,680",
+				"to": "00:27:48,160"
+			},
+			"offsets": {
+				"from": 1661680,
+				"to": 1668160
+			},
+			"text": " myself but the question is around the process by which a particular execution environment is"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:48,160",
+				"to": "00:27:58,080"
+			},
+			"offsets": {
+				"from": 1668160,
+				"to": 1678080
+			},
+			"text": " chosen for a shard if there's like some auction going on or renting that space and also what might"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,080",
+				"to": "00:28:03,680"
+			},
+			"offsets": {
+				"from": 1678080,
+				"to": 1683680
+			},
+			"text": " happen if you need to change something about the execution environment like forking it or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,680",
+				"to": "00:28:12,800"
+			},
+			"offsets": {
+				"from": 1683680,
+				"to": 1692800
+			},
+			"text": " like that. So with all of what in all of the proposals we're considering so far I think blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,800",
+				"to": "00:28:21,120"
+			},
+			"offsets": {
+				"from": 1692800,
+				"to": 1701120
+			},
+			"text": " would have the ability to contain space for multiple execution environment spaces in them"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,120",
+				"to": "00:28:27,200"
+			},
+			"offsets": {
+				"from": 1701120,
+				"to": 1707200
+			},
+			"text": " and so basically you would expect it's ultimately the block proposal that chooses what to include"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,200",
+				"to": "00:28:33,120"
+			},
+			"offsets": {
+				"from": 1707200,
+				"to": 1713120
+			},
+			"text": " and like different people would be able to bid but like you would expect at least popular"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,120",
+				"to": "00:28:41,120"
+			},
+			"offsets": {
+				"from": 1713120,
+				"to": 1721120
+			},
+			"text": " execution environments to have a presence and be executed even in every slot in the shards in"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,120",
+				"to": "00:28:47,280"
+			},
+			"offsets": {
+				"from": 1721120,
+				"to": 1727280
+			},
+			"text": " which they're located. Yeah so to be clear the execution environment is defined on the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:47,280",
+				"to": "00:28:52,560"
+			},
+			"offsets": {
+				"from": 1727280,
+				"to": 1732560
+			},
+			"text": " chain and thus available on all of the shard chains and so when you make a block you're kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,560",
+				"to": "00:28:58,160"
+			},
+			"offsets": {
+				"from": 1732560,
+				"to": 1738160
+			},
+			"text": " signaling this block is for this execution environment and thus the data in this block or chunk of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:58,160",
+				"to": "00:29:04,640"
+			},
+			"offsets": {
+				"from": 1738160,
+				"to": 1744640
+			},
+			"text": " maybe multiple is for that execution environment so you can kind of think of say this block was"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:04,640",
+				"to": "00:29:08,720"
+			},
+			"offsets": {
+				"from": 1744640,
+				"to": 1748720
+			},
+			"text": " for execution environment A this block was for execution environment B and the next one was for A"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,720",
+				"to": "00:29:18,000"
+			},
+			"offsets": {
+				"from": 1748720,
+				"to": 1758000
+			},
+			"text": " like the actual block chain of A is like this subset of the actual shard chain and on the forking"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,000",
+				"to": "00:29:26,400"
+			},
+			"offsets": {
+				"from": 1758000,
+				"to": 1766400
+			},
+			"text": " I think so the nice thing about it is you could actually define migration paths such that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,400",
+				"to": "00:29:33,040"
+			},
+			"offsets": {
+				"from": 1766400,
+				"to": 1773040
+			},
+			"text": " could deploy new E and have some sort of migration from previous E to new E and I do expect these"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:33,040",
+				"to": "00:29:40,160"
+			},
+			"offsets": {
+				"from": 1773040,
+				"to": 1780160
+			},
+			"text": " things to kind of emerge in a standards standards way kind of like in the ARC standards but I could"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,160",
+				"to": "00:29:47,920"
+			},
+			"offsets": {
+				"from": 1780160,
+				"to": 1787920
+			},
+			"text": " also see that certain E is especially like the ETH 1E could still maybe be subject to hard forking"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,920",
+				"to": "00:29:51,760"
+			},
+			"offsets": {
+				"from": 1787920,
+				"to": 1791760
+			},
+			"text": " to upgrade and manipulate depending on the kind of social dynamic around that."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,760",
+				"to": "00:29:56,400"
+			},
+			"offsets": {
+				"from": 1791760,
+				"to": 1796400
+			},
+			"text": " But is that required for getting the beacon chain as well notice?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:56,400",
+				"to": "00:30:03,760"
+			},
+			"offsets": {
+				"from": 1796400,
+				"to": 1803760
+			},
+			"text": " Yes, yes so I'm saying that would be a like to actually change an EE would require kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:03,760",
+				"to": "00:30:07,600"
+			},
+			"offsets": {
+				"from": 1803760,
+				"to": 1807600
+			},
+			"text": " changing changing the actual code of the protocol in an irregular state change."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:07,600",
+				"to": "00:30:15,520"
+			},
+			"offsets": {
+				"from": 1807600,
+				"to": 1815520
+			},
+			"text": " There are options to migrate and upgrade EE's without doing that but there it might still be"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,520",
+				"to": "00:30:18,240"
+			},
+			"offsets": {
+				"from": 1815520,
+				"to": 1818240
+			},
+			"text": " like a social tool to coordinate and manipulate these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:19,440",
+				"to": "00:30:26,400"
+			},
+			"offsets": {
+				"from": 1819440,
+				"to": 1826400
+			},
+			"text": " Will the EE's be permissioned or like is you're not going to so if you want to add a new EE do you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:26,400",
+				"to": "00:30:32,320"
+			},
+			"offsets": {
+				"from": 1826400,
+				"to": 1832320
+			},
+			"text": " need to fork anything or can you just add new EE's? There will be a large transaction for your"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,320",
+				"to": "00:30:37,200"
+			},
+			"offsets": {
+				"from": 1832320,
+				"to": 1837200
+			},
+			"text": " deposit requirements so the beacon chain doesn't get filled up too much but like anyone like"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:37,200",
+				"to": "00:30:39,920"
+			},
+			"offsets": {
+				"from": 1837200,
+				"to": 1839920
+			},
+			"text": " would be able to do it. You're not auctioning them like some other guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:39,920",
+				"to": "00:30:47,200"
+			},
+			"offsets": {
+				"from": 1839920,
+				"to": 1847200
+			},
+			"text": " And are you expecting applications? Are you expecting applications some of the bigger ones to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:47,200",
+				"to": "00:30:58,480"
+			},
+			"offsets": {
+				"from": 1847200,
+				"to": 1858480
+			},
+			"text": " their own EE? Yeah possible. A lot of the reasons you might have an EE it doesn't actually make"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:58,480",
+				"to": "00:31:02,960"
+			},
+			"offsets": {
+				"from": 1858480,
+				"to": 1862960
+			},
+			"text": " sense and it might just make sense to operate within an EE but I do funny that you asked that."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:02,960",
+				"to": "00:31:08,960"
+			},
+			"offsets": {
+				"from": 1862960,
+				"to": 1868960
+			},
+			"text": " I have thought it could be like certainly a way to advertise like if the casino has their own EE"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:08,960",
+				"to": "00:31:14,800"
+			},
+			"offsets": {
+				"from": 1868960,
+				"to": 1874800
+			},
+			"text": " come join us. Yeah I like gaming EE I mean there's probably some data that we would want to store"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:14,800",
+				"to": "00:31:22,320"
+			},
+			"offsets": {
+				"from": 1874800,
+				"to": 1882320
+			},
+			"text": " that no one else wants to store. Or maybe not data but more like how you optimize the structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:22,320",
+				"to": "00:31:26,080"
+			},
+			"offsets": {
+				"from": 1882320,
+				"to": 1886080
+			},
+			"text": " of accessing certain things. A fraction of a second block time would be really good."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:26,080",
+				"to": "00:31:32,160"
+			},
+			"offsets": {
+				"from": 1886080,
+				"to": 1892160
+			},
+			"text": " Yeah I think it might be like another tier of developer that makes an EE it might be someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:32,160",
+				"to": "00:31:36,800"
+			},
+			"offsets": {
+				"from": 1892160,
+				"to": 1896800
+			},
+			"text": " that's working regularly deeply in protocol research or like zero knowledge proof research or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:36,800",
+				"to": "00:31:40,400"
+			},
+			"offsets": {
+				"from": 1896800,
+				"to": 1900400
+			},
+			"text": " they really know what they're doing and they can't do it anywhere else and then they'll go to that"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:40,400",
+				"to": "00:31:44,800"
+			},
+			"offsets": {
+				"from": 1900400,
+				"to": 1904800
+			},
+			"text": " but then you're like kind of typical developer that's at the application layer would probably want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:44,800",
+				"to": "00:31:53,440"
+			},
+			"offsets": {
+				"from": 1904800,
+				"to": 1913440
+			},
+			"text": " stay away from it. Any other question from the audience? I mean while we're waiting for a question"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,440",
+				"to": "00:32:00,480"
+			},
+			"offsets": {
+				"from": 1913440,
+				"to": 1920480
+			},
+			"text": " I mean maybe to put a bit of cold water on the whole EE like I mean it's the EE is a beautiful"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:00,480",
+				"to": "00:32:07,920"
+			},
+			"offsets": {
+				"from": 1920480,
+				"to": 1927920
+			},
+			"text": " piece of layer of abstraction and very useful in the context of migrating in if one into if two"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:07,920",
+				"to": "00:32:15,680"
+			},
+			"offsets": {
+				"from": 1927920,
+				"to": 1935680
+			},
+			"text": " but there is also the possibility that you know EE's you know add extra friction between them"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:15,680",
+				"to": "00:32:21,760"
+			},
+			"offsets": {
+				"from": 1935680,
+				"to": 1941760
+			},
+			"text": " in addition to the friction between shards and you know there's also the possibility that we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:21,760",
+				"to": "00:32:28,240"
+			},
+			"offsets": {
+				"from": 1941760,
+				"to": 1948240
+			},
+			"text": " have unsustainable EE's so EE's for example without a state rent similar to what we have right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:28,240",
+				"to": "00:32:34,800"
+			},
+			"offsets": {
+				"from": 1948240,
+				"to": 1954800
+			},
+			"text": " in EEF1 and if they become popular then you know it's all sorts of complicated questions so it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:34,800",
+				"to": "00:32:40,960"
+			},
+			"offsets": {
+				"from": 1954800,
+				"to": 1960960
+			},
+			"text": " possible that at least in the short and medium term we will roll out with some sort of default"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:40,960",
+				"to": "00:32:49,760"
+			},
+			"offsets": {
+				"from": 1960960,
+				"to": 1969760
+			},
+			"text": " and shrine EE some sort of you know native EEF2 EE which just acts and behaves like somewhat like"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:49,760",
+				"to": "00:32:56,640"
+			},
+			"offsets": {
+				"from": 1969760,
+				"to": 1976640
+			},
+			"text": " EEF1 does today and you won't have that much room to play with in the medium term and then in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:56,640",
+				"to": "00:33:04,000"
+			},
+			"offsets": {
+				"from": 1976640,
+				"to": 1984000
+			},
+			"text": " long term we open up the EEF to everyone. Ray but how do you manage that process of opening up to"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:04,000",
+				"to": "00:33:09,760"
+			},
+			"offsets": {
+				"from": 1984000,
+				"to": 1989760
+			},
+			"text": " everyone? Right well that will happen under consensus layer and one day we say hey anyone can publish"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:09,760",
+				"to": "00:33:18,000"
+			},
+			"offsets": {
+				"from": 1989760,
+				"to": 1998000
+			},
+			"text": " an EE so you know going back to the permission in question maybe they you know the yeah no one"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:18,000",
+				"to": "00:33:22,320"
+			},
+			"offsets": {
+				"from": 1998000,
+				"to": 2002320
+			},
+			"text": " will be able to publish EE's for some time I'm not saying it will happen there's a possibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:22,320",
+				"to": "00:33:28,240"
+			},
+			"offsets": {
+				"from": 2002320,
+				"to": 2008240
+			},
+			"text": " All right questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:30,400",
+				"to": "00:33:34,800"
+			},
+			"offsets": {
+				"from": 2010400,
+				"to": 2014800
+			},
+			"text": " How much thought has there been to transparent sharding where that developers don't have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:34,800",
+				"to": "00:33:40,000"
+			},
+			"offsets": {
+				"from": 2014800,
+				"to": 2020000
+			},
+			"text": " figure out which shard they want to be on because if you give them that choice maybe they'll just"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:40,000",
+				"to": "00:33:48,000"
+			},
+			"offsets": {
+				"from": 2020000,
+				"to": 2028000
+			},
+			"text": " all choose to be on the same shard? I mean that's one of the really good benefits of opening up to"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:48,000",
+				"to": "00:33:53,120"
+			},
+			"offsets": {
+				"from": 2028000,
+				"to": 2033120
+			},
+			"text": " EE's is that all this innovation on transparent sharding can be done at the application layer and"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:53,680",
+				"to": "00:34:00,960"
+			},
+			"offsets": {
+				"from": 2033680,
+				"to": 2040960
+			},
+			"text": " us as consensus like designers we don't have to to bother about that and so if you nail or poke"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:00,960",
+				"to": "00:34:06,720"
+			},
+			"offsets": {
+				"from": 2040960,
+				"to": 2046720
+			},
+			"text": " a dot or whatever comes up with some cool innovation that can be integrated with fairly little friction"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:06,720",
+				"to": "00:34:14,480"
+			},
+			"offsets": {
+				"from": 2046720,
+				"to": 2054480
+			},
+			"text": " and there's already ideas out there for you know using the shards as you know fungible"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:15,520",
+				"to": "00:34:22,880"
+			},
+			"offsets": {
+				"from": 2055520,
+				"to": 2062880
+			},
+			"text": " data availability resource that can be used and kind of decoupling the"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:22,880",
+				"to": "00:34:29,840"
+			},
+			"offsets": {
+				"from": 2062880,
+				"to": 2069840
+			},
+			"text": " logical centralization of the application from the underlying resource which is sharded."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:29,840",
+				"to": "00:34:34,480"
+			},
+			"offsets": {
+				"from": 2069840,
+				"to": 2074480
+			},
+			"text": " But who decides where the application goes like does the application get to decide what shard"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,480",
+				"to": "00:34:37,280"
+			},
+			"offsets": {
+				"from": 2074480,
+				"to": 2077280
+			},
+			"text": " it goes on or is it do they have no control over that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:39,280",
+				"to": "00:34:47,040"
+			},
+			"offsets": {
+				"from": 2079280,
+				"to": 2087040
+			},
+			"text": " I mean at the lower level the EE lives in the beacon chain and it's made accessible to every shard"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:47,040",
+				"to": "00:34:56,160"
+			},
+			"offsets": {
+				"from": 2087040,
+				"to": 2096160
+			},
+			"text": " but then it becomes a question of for the dev developers how do they want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:56,160",
+				"to": "00:35:06,320"
+			},
+			"offsets": {
+				"from": 2096160,
+				"to": 2106320
+			},
+			"text": " either restrict themselves to a specific shard or have some sort of virtual EE or virtual execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:06,320",
+				"to": "00:35:11,040"
+			},
+			"offsets": {
+				"from": 2106320,
+				"to": 2111040
+			},
+			"text": " environment which is separate from the consensus level concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:11,040",
+				"to": "00:35:19,680"
+			},
+			"offsets": {
+				"from": 2111040,
+				"to": 2119680
+			},
+			"text": " Also within EE development there's a few things you can do and you know when this opens up as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:19,680",
+				"to": "00:35:25,840"
+			},
+			"offsets": {
+				"from": 2119680,
+				"to": 2125840
+			},
+			"text": " I think there are a couple questions so one question is do you have to deploy to the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:25,840",
+				"to": "00:35:31,840"
+			},
+			"offsets": {
+				"from": 2125840,
+				"to": 2131840
+			},
+			"text": " chain and do you also have to deploy to multiple shards or do you automatically have it available"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:31,840",
+				"to": "00:35:37,680"
+			},
+			"offsets": {
+				"from": 2131840,
+				"to": 2137680
+			},
+			"text": " across all the shards? So that's one piece but also within your execution environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:37,680",
+				"to": "00:35:44,480"
+			},
+			"offsets": {
+				"from": 2137680,
+				"to": 2144480
+			},
+			"text": " you could technically build some basic level of scheduling yourself as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:44,480",
+				"to": "00:35:54,720"
+			},
+			"offsets": {
+				"from": 2144480,
+				"to": 2154720
+			},
+			"text": " Saying I will only operate certain you know certain transactions on shard 5 for you know this series"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:54,720",
+				"to": "00:36:01,440"
+			},
+			"offsets": {
+				"from": 2154720,
+				"to": 2161440
+			},
+			"text": " of epics or shard 5, 6 and 7 for this series of epics. So there's a lot of flexibility in how"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:01,440",
+				"to": "00:36:05,120"
+			},
+			"offsets": {
+				"from": 2161440,
+				"to": 2165120
+			},
+			"text": " how you can write these and how you may be able to enforce load balancing"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:05,120",
+				"to": "00:36:09,520"
+			},
+			"offsets": {
+				"from": 2165120,
+				"to": 2169520
+			},
+			"text": " yourself just within the semantics behind an execution environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:09,520",
+				"to": "00:36:22,800"
+			},
+			"offsets": {
+				"from": 2169520,
+				"to": 2182800
+			},
+			"text": " Are we going to retain the financial Lego that we've got a plug and play between"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:24,000",
+				"to": "00:36:30,480"
+			},
+			"offsets": {
+				"from": 2184000,
+				"to": 2190480
+			},
+			"text": " composability are we losing that or compromising that with the sharding?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:30,480",
+				"to": "00:36:40,800"
+			},
+			"offsets": {
+				"from": 2190480,
+				"to": 2200800
+			},
+			"text": " From a tooling perspective? Well right now you can you know you can plug compound and die"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:40,800",
+				"to": "00:36:46,560"
+			},
+			"offsets": {
+				"from": 2200800,
+				"to": 2206560
+			},
+			"text": " together or something if you don't know if your Lego blocks are now on different shards"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:46,560",
+				"to": "00:36:52,880"
+			},
+			"offsets": {
+				"from": 2206560,
+				"to": 2212880
+			},
+			"text": " and they can't interrupt without cross shard links which might be slower and have some penalty."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:53,680",
+				"to": "00:37:00,800"
+			},
+			"offsets": {
+				"from": 2213680,
+				"to": 2220800
+			},
+			"text": " I think that I get the concern but I think like all of the kind of DeFi"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:00,800",
+				"to": "00:37:05,440"
+			},
+			"offsets": {
+				"from": 2220800,
+				"to": 2225440
+			},
+			"text": " integrations like for just as one example I've seen in practice I don't think any of them really"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:05,440",
+				"to": "00:37:10,000"
+			},
+			"offsets": {
+				"from": 2225440,
+				"to": 2230000
+			},
+			"text": " break from asynchronous. One of the reasons why is that half of these integrations just"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:10,000",
+				"to": "00:37:15,040"
+			},
+			"offsets": {
+				"from": 2230000,
+				"to": 2235040
+			},
+			"text": " happen to do with like one system containing a token from another system but tokens are one"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:15,040",
+				"to": "00:37:19,840"
+			},
+			"offsets": {
+				"from": 2235040,
+				"to": 2239840
+			},
+			"text": " thing that's like they probably easier than anything else to move across shards you just like"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:19,840",
+				"to": "00:37:26,000"
+			},
+			"offsets": {
+				"from": 2239840,
+				"to": 2246000
+			},
+			"text": " yank the contract over in like one one Merkle branch and it's like somewhere else wherever you"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:26,000",
+				"to": "00:37:36,480"
+			},
+			"offsets": {
+				"from": 2246000,
+				"to": 2256480
+			},
+			"text": " want it to be. I think the thing that and then if you look at like even Uniswap for example it"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:36,480",
+				"to": "00:37:40,240"
+			},
+			"offsets": {
+				"from": 2256480,
+				"to": 2260240
+			},
+			"text": " just moves tokens around you move the tokens in the Uniswap shards swap it move the tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:40,240",
+				"to": "00:37:47,360"
+			},
+			"offsets": {
+				"from": 2260240,
+				"to": 2267360
+			},
+			"text": " somewhere else so most of the the integrations do kind of work work that way the the ones that"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:47,360",
+				"to": "00:37:52,720"
+			},
+			"offsets": {
+				"from": 2267360,
+				"to": 2272720
+			},
+			"text": " don't are basically the ones that involve kind of synchronously calling other other applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:52,720",
+				"to": "00:37:58,800"
+			},
+			"offsets": {
+				"from": 2272720,
+				"to": 2278800
+			},
+			"text": " but like even in that case a lot of a lot of the calls are like do tends to be asynchronous or"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:58,800",
+				"to": "00:38:03,280"
+			},
+			"offsets": {
+				"from": 2278800,
+				"to": 2283280
+			},
+			"text": " at least would be perfectly fine if you did them in did them in an asynchronous way so"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:03,280",
+				"to": "00:38:08,080"
+			},
+			"offsets": {
+				"from": 2283280,
+				"to": 2288080
+			},
+			"text": " at least like given the applications that we know about I think that's a kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:08,080",
+				"to": "00:38:15,520"
+			},
+			"offsets": {
+				"from": 2288080,
+				"to": 2295520
+			},
+			"text": " smaller risk than a lot of people think. I mean I could see like execution environment fragmentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:15,520",
+				"to": "00:38:21,600"
+			},
+			"offsets": {
+				"from": 2295520,
+				"to": 2301600
+			},
+			"text": " being an even a bigger issue than short fragment then short fragmentation if not handled correctly"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:21,600",
+				"to": "00:38:26,560"
+			},
+			"offsets": {
+				"from": 2301600,
+				"to": 2306560
+			},
+			"text": " and that's like it's definitely something that we're thinking very actively about how to smooth over."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:26,560",
+				"to": "00:38:35,840"
+			},
+			"offsets": {
+				"from": 2306560,
+				"to": 2315840
+			},
+			"text": " And I mean concretely it might turn out that cross chain communication is actually faster on"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:35,840",
+				"to": "00:38:43,280"
+			},
+			"offsets": {
+				"from": 2315840,
+				"to": 2323280
+			},
+			"text": " if two than you know an if one transaction right if one on average is 15 seconds and you know two"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:43,280",
+				"to": "00:38:48,000"
+			},
+			"offsets": {
+				"from": 2323280,
+				"to": 2328000
+			},
+			"text": " ways that we could have fast cross-shot communication is one we have this new proposal where we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:48,000",
+				"to": "00:38:53,440"
+			},
+			"offsets": {
+				"from": 2328000,
+				"to": 2333440
+			},
+			"text": " cross-links in every slot on the beacon chain you know we might have cross cross-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:53,440",
+				"to": "00:39:00,480"
+			},
+			"offsets": {
+				"from": 2333440,
+				"to": 2340480
+			},
+			"text": " collaborative communication in just just a few slots and then the other way kind of which is generic"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:00,480",
+				"to": "00:39:09,040"
+			},
+			"offsets": {
+				"from": 2340480,
+				"to": 2349040
+			},
+			"text": " is to use optimistic cross-links where basically you have some sort of off-chain mechanism to"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:09,040",
+				"to": "00:39:14,000"
+			},
+			"offsets": {
+				"from": 2349040,
+				"to": 2354000
+			},
+			"text": " gauge the probability that some cross-link will eventually make it into the beacon chain and get"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:14,000",
+				"to": "00:39:20,480"
+			},
+			"offsets": {
+				"from": 2354000,
+				"to": 2360480
+			},
+			"text": " finalized but you don't have 100 probability that will happen and then you can design your"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:20,480",
+				"to": "00:39:26,080"
+			},
+			"offsets": {
+				"from": 2360480,
+				"to": 2366080
+			},
+			"text": " application around that and benefit from the low latency. Can you do any some kind of automated"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:26,080",
+				"to": "00:39:30,880"
+			},
+			"offsets": {
+				"from": 2366080,
+				"to": 2370880
+			},
+			"text": " garbage collection and start moving smart contracts that want to be on the same chain together so"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:30,880",
+				"to": "00:39:44,000"
+			},
+			"offsets": {
+				"from": 2370880,
+				"to": 2384000
+			},
+			"text": " that that falls to. So I generally think the space across interaction around multiple shards I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:44,000",
+				"to": "00:39:52,320"
+			},
+			"offsets": {
+				"from": 2384000,
+				"to": 2392320
+			},
+			"text": " there should generally be a set of tooling within the HLLs or DSLs that are used so with"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:52,320",
+				"to": "00:40:01,360"
+			},
+			"offsets": {
+				"from": 2392320,
+				"to": 2401360
+			},
+			"text": " insolidity, Viper, anything else so from a DAP developer perspective if you accept asynchronous is"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:01,360",
+				"to": "00:40:08,880"
+			},
+			"offsets": {
+				"from": 2401360,
+				"to": 2408880
+			},
+			"text": " you know the basic construct of communication across shards you can have tooling that does that"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:08,880",
+				"to": "00:40:16,000"
+			},
+			"offsets": {
+				"from": 2408880,
+				"to": 2416000
+			},
+			"text": " through message passing you could have tooling that does that through you know a two-phase commit"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:16,000",
+				"to": "00:40:22,640"
+			},
+			"offsets": {
+				"from": 2416000,
+				"to": 2422640
+			},
+			"text": " you know system if you need some type of atomic transaction you could have you know tooling that"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:22,640",
+				"to": "00:40:28,640"
+			},
+			"offsets": {
+				"from": 2422640,
+				"to": 2428640
+			},
+			"text": " so I think from a DAP developer's perspective you're going to have more tooling in these languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:28,640",
+				"to": "00:40:34,400"
+			},
+			"offsets": {
+				"from": 2428640,
+				"to": 2434400
+			},
+			"text": " that you would go ahead and utilize for the problem that you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:41,040",
+				"to": "00:40:47,360"
+			},
+			"offsets": {
+				"from": 2441040,
+				"to": 2447360
+			},
+			"text": " Yeah how do the archive notes look like for F2 and our block explorer is ready for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:47,360",
+				"to": "00:41:00,800"
+			},
+			"offsets": {
+				"from": 2447360,
+				"to": 2460800
+			},
+			"text": " I guess if you're a block explorer you would pretty much have to download every block on every"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:00,800",
+				"to": "00:41:10,000"
+			},
+			"offsets": {
+				"from": 2460800,
+				"to": 2470000
+			},
+			"text": " shard which is 1 to 10 megabytes per second multiplied by 86,400 we're talking 80 to 100 gigabytes a day"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:10,000",
+				"to": "00:41:15,280"
+			},
+			"offsets": {
+				"from": 2470000,
+				"to": 2475280
+			},
+			"text": " so it's like you have like more hardware requirements"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:15,280",
+				"to": "00:41:27,600"
+			},
+			"offsets": {
+				"from": 2475280,
+				"to": 2487600
+			},
+			"text": " and then of course so that's one issue the higher card requirements going up and another issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:27,600",
+				"to": "00:41:37,040"
+			},
+			"offsets": {
+				"from": 2487600,
+				"to": 2497040
+			},
+			"text": " is that you'll have to deal like a kind of under like with the two basically more things are being"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:37,040",
+				"to": "00:41:42,160"
+			},
+			"offsets": {
+				"from": 2497040,
+				"to": 2502160
+			},
+			"text": " kind of layer two applied than before so you have execution environments and then within"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:42,160",
+				"to": "00:41:47,040"
+			},
+			"offsets": {
+				"from": 2502160,
+				"to": 2507040
+			},
+			"text": " execution environments like we're also planning to push forward on transaction abstraction and so"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:47,040",
+				"to": "00:41:51,920"
+			},
+			"offsets": {
+				"from": 2507040,
+				"to": 2511920
+			},
+			"text": " now you don't like you don't have eoas and contracts as different classes of things anymore and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:51,920",
+				"to": "00:41:58,560"
+			},
+			"offsets": {
+				"from": 2511920,
+				"to": 2518560
+			},
+			"text": " you have cross-charge transactions in different ways of implementing them and so your responsibility to"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:58,560",
+				"to": "00:42:03,600"
+			},
+			"offsets": {
+				"from": 2518560,
+				"to": 2523600
+			},
+			"text": " and if understands popular layer two protocols will realistically end up increasing and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:03,600",
+				"to": "00:42:09,120"
+			},
+			"offsets": {
+				"from": 2523600,
+				"to": 2529120
+			},
+			"text": " another thing that you might need to watch that you'll probably needs to watch out for so I guess"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:09,120",
+				"to": "00:42:15,040"
+			},
+			"offsets": {
+				"from": 2529120,
+				"to": 2535040
+			},
+			"text": " you know like in general for like being a general purpose block explorer like realistically is one"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:15,040",
+				"to": "00:42:25,520"
+			},
+			"offsets": {
+				"from": 2535040,
+				"to": 2545520
+			},
+			"text": " of the things that will get harder. All right we have time for one last question make it week."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:25,520",
+				"to": "00:42:30,960"
+			},
+			"offsets": {
+				"from": 2545520,
+				"to": 2550960
+			},
+			"text": " So as a dap developer that has an erc20 asset is there anything specifically we should do"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:30,960",
+				"to": "00:42:39,280"
+			},
+			"offsets": {
+				"from": 2550960,
+				"to": 2559280
+			},
+			"text": " and we're maybe not to as we look towards YouTube one out. Right now no I am in the future when I"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:39,280",
+				"to": "00:42:45,600"
+			},
+			"offsets": {
+				"from": 2559280,
+				"to": 2565600
+			},
+			"text": " think I'm inclined to just say like don't like don't think about the problem now and like in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:45,600",
+				"to": "00:42:52,240"
+			},
+			"offsets": {
+				"from": 2565600,
+				"to": 2572240
+			},
+			"text": " future as the execution environments and if start becoming more nailed down then you'll be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:52,240",
+				"to": "00:42:57,920"
+			},
+			"offsets": {
+				"from": 2572240,
+				"to": 2577920
+			},
+			"text": " and if think more about like how to design design the kind of token in like application"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:57,920",
+				"to": "00:43:02,640"
+			},
+			"offsets": {
+				"from": 2577920,
+				"to": 2582640
+			},
+			"text": " specific details around a cross-charge context. But no migration specifically."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:02,640",
+				"to": "00:43:11,920"
+			},
+			"offsets": {
+				"from": 2582640,
+				"to": 2591920
+			},
+			"text": " Like there is a possibility you'll have to do a one-time token upgrade but that could also be"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:11,920",
+				"to": "00:43:19,840"
+			},
+			"offsets": {
+				"from": 2591920,
+				"to": 2599840
+			},
+			"text": " done with a wrapper. Knowing that tokens are the most used function in the current chain is it"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:19,840",
+				"to": "00:43:25,680"
+			},
+			"offsets": {
+				"from": 2599840,
+				"to": 2605680
+			},
+			"text": " not worth considering hard coding them and like making them much more efficient than they are"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:25,680",
+				"to": "00:43:29,760"
+			},
+			"offsets": {
+				"from": 2605680,
+				"to": 2609760
+			},
+			"text": " right now or taking a snapshot potentially. What hard coding make them more efficient?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:29,760",
+				"to": "00:43:34,480"
+			},
+			"offsets": {
+				"from": 2609760,
+				"to": 2614480
+			},
+			"text": " Well because right now they execute code just to do basic functionality of the token. The code"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:34,480",
+				"to": "00:43:43,200"
+			},
+			"offsets": {
+				"from": 2614480,
+				"to": 2623200
+			},
+			"text": " is like fairly small right like execution of EVM code is not like a dominant factor of like watching"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:43,200",
+				"to": "00:43:51,120"
+			},
+			"offsets": {
+				"from": 2623200,
+				"to": 2631120
+			},
+			"text": " over and overhead time. Like the one thing okay so the thing that I would look into like if we"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:51,120",
+				"to": "00:43:56,080"
+			},
+			"offsets": {
+				"from": 2631120,
+				"to": 2636080
+			},
+			"text": " want to like really optimize tokens heavily things that I would look into I mean one is to just like"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:56,080",
+				"to": "00:44:01,600"
+			},
+			"offsets": {
+				"from": 2636080,
+				"to": 2641600
+			},
+			"text": " review like the whole year C20 transfer from architecture and like think hard about do we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:01,600",
+				"to": "00:44:07,280"
+			},
+			"offsets": {
+				"from": 2641600,
+				"to": 2647280
+			},
+			"text": " to build into like higher language standards and more explicit like pay for token with function"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:07,280",
+				"to": "00:44:15,520"
+			},
+			"offsets": {
+				"from": 2647280,
+				"to": 2655520
+			},
+			"text": " calling strategy. Another thing to look into is that actually one kind of functionality that I"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:15,520",
+				"to": "00:44:20,560"
+			},
+			"offsets": {
+				"from": 2655520,
+				"to": 2660560
+			},
+			"text": " think will likely put in is the ability to store pieces of contract code on the beacon chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:21,200",
+				"to": "00:44:27,200"
+			},
+			"offsets": {
+				"from": 2661200,
+				"to": 2667200
+			},
+			"text": " and then have the ability to just reference them by address and this would like this would"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:27,200",
+				"to": "00:44:33,600"
+			},
+			"offsets": {
+				"from": 2667200,
+				"to": 2673600
+			},
+			"text": " prevent things like account abstraction like tokens not being abstracted and or tokens already"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:33,600",
+				"to": "00:44:37,840"
+			},
+			"offsets": {
+				"from": 2673600,
+				"to": 2677840
+			},
+			"text": " being abstracted and all these other things from blowing up witness sizes because you'll instead of"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:37,840",
+				"to": "00:44:43,200"
+			},
+			"offsets": {
+				"from": 2677840,
+				"to": 2683200
+			},
+			"text": " having a piece of code in your witness you'll just be able to point to an index so a lot of those"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:43,200",
+				"to": "00:44:52,000"
+			},
+			"offsets": {
+				"from": 2683200,
+				"to": 2692000
+			},
+			"text": " gains have kind of been factored into the existing design already. Another thing to look into would"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:52,000",
+				"to": "00:45:00,240"
+			},
+			"offsets": {
+				"from": 2692000,
+				"to": 2700240
+			},
+			"text": " it be kind of redesigning user accounts so that you would have the benefit of kind of being able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:00,240",
+				"to": "00:45:05,840"
+			},
+			"offsets": {
+				"from": 2700240,
+				"to": 2705840
+			},
+			"text": " just like you would be able to get the efficiency benefits of being able to hold like many units of"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:05,840",
+				"to": "00:45:11,920"
+			},
+			"offsets": {
+				"from": 2705840,
+				"to": 2711920
+			},
+			"text": " a token within one particular package that could get passed around between shards but like there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:11,920",
+				"to": "00:45:15,760"
+			},
+			"offsets": {
+				"from": 2711920,
+				"to": 2715760
+			},
+			"text": " trade-offs there right because like from a privacy point of view if you want to improve your privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:15,760",
+				"to": "00:45:22,560"
+			},
+			"offsets": {
+				"from": 2715760,
+				"to": 2722560
+			},
+			"text": " it actually makes sense to kind of separate out all of your token holdings from from each other and"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:22,560",
+				"to": "00:45:30,400"
+			},
+			"offsets": {
+				"from": 2722560,
+				"to": 2730400
+			},
+			"text": " even have multiple accounts per token so it's like in general I feel like there's a way like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:30,400",
+				"to": "00:45:34,720"
+			},
+			"offsets": {
+				"from": 2730400,
+				"to": 2734720
+			},
+			"text": " optimizations are needed but there's generally ways to make the optimization without in trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:34,720",
+				"to": "00:45:43,280"
+			},
+			"offsets": {
+				"from": 2734720,
+				"to": 2743280
+			},
+			"text": " too many things. Well it's important to note the the notion of owning ether actually becomes a"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:43,280",
+				"to": "00:45:49,440"
+			},
+			"offsets": {
+				"from": 2743280,
+				"to": 2749440
+			},
+			"text": " layer two concept in EE's so the only thing that owns EE's is the actually the EE has a balance and"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:49,440",
+				"to": "00:45:53,680"
+			},
+			"offsets": {
+				"from": 2749440,
+				"to": 2753680
+			},
+			"text": " then there's some sort of presumably some sort of account model and state model within that EE"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:53,680",
+				"to": "00:45:58,080"
+			},
+			"offsets": {
+				"from": 2753680,
+				"to": 2758080
+			},
+			"text": " that's defined that allows you to actually have a right to a portion of that ether and so we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:58,080",
+				"to": "00:46:04,000"
+			},
+			"offsets": {
+				"from": 2758080,
+				"to": 2764000
+			},
+			"text": " actually instead of enshrining tokens we're now like d-shining ether within within the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:04,000",
+				"to": "00:46:11,440"
+			},
+			"offsets": {
+				"from": 2764000,
+				"to": 2771440
+			},
+			"text": " All right we have to stop here sorry everyone do you want to talk? Less-hearted"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:11,440",
+				"to": "00:46:20,080"
+			},
+			"offsets": {
+				"from": 2771440,
+				"to": 2780080
+			},
+			"text": " coded things at the end of the day is better you know so like not having like a ERC hard coded"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:20,080",
+				"to": "00:46:26,400"
+			},
+			"offsets": {
+				"from": 2780080,
+				"to": 2786400
+			},
+			"text": " just gonna be better because less hard forks less nonsense to deal with from a pm perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:26,480",
+				"to": "00:46:28,560"
+			},
+			"offsets": {
+				"from": 2786480,
+				"to": 2788560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:28,560",
+				"to": "00:46:30,560"
+			},
+			"offsets": {
+				"from": 2788560,
+				"to": 2790560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:30,560",
+				"to": "00:46:32,560"
+			},
+			"offsets": {
+				"from": 2790560,
+				"to": 2792560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:32,560",
+				"to": "00:46:34,560"
+			},
+			"offsets": {
+				"from": 2792560,
+				"to": 2794560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:34,560",
+				"to": "00:46:36,560"
+			},
+			"offsets": {
+				"from": 2794560,
+				"to": 2796560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:36,560",
+				"to": "00:46:38,560"
+			},
+			"offsets": {
+				"from": 2796560,
+				"to": 2798560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:38,560",
+				"to": "00:46:40,560"
+			},
+			"offsets": {
+				"from": 2798560,
+				"to": 2800560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:40,560",
+				"to": "00:46:42,560"
+			},
+			"offsets": {
+				"from": 2800560,
+				"to": 2802560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:42,560",
+				"to": "00:46:44,560"
+			},
+			"offsets": {
+				"from": 2802560,
+				"to": 2804560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:44,560",
+				"to": "00:46:46,560"
+			},
+			"offsets": {
+				"from": 2804560,
+				"to": 2806560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:46,560",
+				"to": "00:46:48,560"
+			},
+			"offsets": {
+				"from": 2806560,
+				"to": 2808560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:48,560",
+				"to": "00:46:50,560"
+			},
+			"offsets": {
+				"from": 2808560,
+				"to": 2810560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:50,560",
+				"to": "00:46:52,560"
+			},
+			"offsets": {
+				"from": 2810560,
+				"to": 2812560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:52,560",
+				"to": "00:46:54,560"
+			},
+			"offsets": {
+				"from": 2812560,
+				"to": 2814560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:54,560",
+				"to": "00:46:56,560"
+			},
+			"offsets": {
+				"from": 2814560,
+				"to": 2816560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:56,560",
+				"to": "00:46:58,560"
+			},
+			"offsets": {
+				"from": 2816560,
+				"to": 2818560
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:58,560",
+				"to": "00:47:27,560"
+			},
+			"offsets": {
+				"from": 2818560,
+				"to": 2847560
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

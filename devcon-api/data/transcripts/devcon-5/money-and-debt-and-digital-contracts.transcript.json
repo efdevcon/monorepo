@@ -1,0 +1,4003 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,760"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7760
+			},
+			"text": " I was very impressed with Prague last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,760",
+				"to": "00:00:12,840"
+			},
+			"offsets": {
+				"from": 7760,
+				"to": 12840
+			},
+			"text": " And I was very impressed because there was a lot of thinking going on about what should"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,840",
+				"to": "00:00:14,520"
+			},
+			"offsets": {
+				"from": 12840,
+				"to": 14520
+			},
+			"text": " we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,520",
+				"to": "00:00:16,040"
+			},
+			"offsets": {
+				"from": 14520,
+				"to": 16040
+			},
+			"text": " What's the point here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,040",
+				"to": "00:00:18,160"
+			},
+			"offsets": {
+				"from": 16040,
+				"to": 18160
+			},
+			"text": " And how could this thing go wrong?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,160",
+				"to": "00:00:22,440"
+			},
+			"offsets": {
+				"from": 18160,
+				"to": 22440
+			},
+			"text": " And how could we learn from the .com guys that seem to have screwed things up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,440",
+				"to": "00:00:28,360"
+			},
+			"offsets": {
+				"from": 22440,
+				"to": 28360
+			},
+			"text": " The internet guys or those guys in the financial crisis, how did they screw things up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,360",
+				"to": "00:00:31,320"
+			},
+			"offsets": {
+				"from": 28360,
+				"to": 31320
+			},
+			"text": " Where can we learn from to grow from?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,320",
+				"to": "00:00:37,200"
+			},
+			"offsets": {
+				"from": 31320,
+				"to": 37200
+			},
+			"text": " And I'm taking that as the starting point for this talk to try to suggest something you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,200",
+				"to": "00:00:41,400"
+			},
+			"offsets": {
+				"from": 37200,
+				"to": 41400
+			},
+			"text": " might want to think about and look at anew."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,400",
+				"to": "00:00:45,800"
+			},
+			"offsets": {
+				"from": 41400,
+				"to": 45800
+			},
+			"text": " I'm going to talk about money, debt and smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,800",
+				"to": "00:00:49,400"
+			},
+			"offsets": {
+				"from": 45800,
+				"to": 49400
+			},
+			"text": " But the internet archive, you think, well, gosh, what is this internet archive?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,400",
+				"to": "00:00:52,360"
+			},
+			"offsets": {
+				"from": 49400,
+				"to": 52360
+			},
+			"text": " It's a nonprofit in San Francisco."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,360",
+				"to": "00:01:00,840"
+			},
+			"offsets": {
+				"from": 52360,
+				"to": 60840
+			},
+			"text": " We're kind of Wikipedia-ish but a lot smaller and the ideas bring universal access to all"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,840",
+				"to": "00:01:01,840"
+			},
+			"offsets": {
+				"from": 60840,
+				"to": 61840
+			},
+			"text": " knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,840",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 61840,
+				"to": 69000
+			},
+			"text": " So that's probably, if you know of me at all, I started and run this organization and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:12,120"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 72120
+			},
+			"text": " should please come and visit us in San Francisco."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,120",
+				"to": "00:01:16,080"
+			},
+			"offsets": {
+				"from": 72120,
+				"to": 76080
+			},
+			"text": " We have open lunches, all sorts of fun things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,080",
+				"to": "00:01:20,160"
+			},
+			"offsets": {
+				"from": 76080,
+				"to": 80160
+			},
+			"text": " But if you don't know about the internet archive, you may know of the Wayback Machine, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,160",
+				"to": "00:01:27,880"
+			},
+			"offsets": {
+				"from": 80160,
+				"to": 87880
+			},
+			"text": " has old web pages and to try to preserve the memory that has come before on the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,880",
+				"to": "00:01:33,080"
+			},
+			"offsets": {
+				"from": 87880,
+				"to": 93080
+			},
+			"text": " I may be here because I hang out with smart guys and sort of internet pioneers sort in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,080",
+				"to": "00:01:35,240"
+			},
+			"offsets": {
+				"from": 93080,
+				"to": 95240
+			},
+			"text": " terms of the internet hall of fame."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,240",
+				"to": "00:01:38,800"
+			},
+			"offsets": {
+				"from": 95240,
+				"to": 98800
+			},
+			"text": " And that's probably why I got an indoor."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,800",
+				"to": "00:01:41,200"
+			},
+			"offsets": {
+				"from": 98800,
+				"to": 101200
+			},
+			"text": " Maybe it's the decentralized web."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,200",
+				"to": "00:01:47,160"
+			},
+			"offsets": {
+				"from": 101200,
+				"to": 107160
+			},
+			"text": " Can we make the world wide web work without having a reliance on any particular piece"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,160",
+				"to": "00:01:48,800"
+			},
+			"offsets": {
+				"from": 107160,
+				"to": 108800
+			},
+			"text": " of hardware being up or down?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,800",
+				"to": "00:01:51,880"
+			},
+			"offsets": {
+				"from": 108800,
+				"to": 111880
+			},
+			"text": " Can we make a peer-to-peer back end for the web?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,880",
+				"to": "00:01:57,120"
+			},
+			"offsets": {
+				"from": 111880,
+				"to": 117120
+			},
+			"text": " So it really helped trying to support the promotion of locking the web open."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,120",
+				"to": "00:02:01,400"
+			},
+			"offsets": {
+				"from": 117120,
+				"to": 121400
+			},
+			"text": " But I'm expert in all of those things, so I'm going to talk to you about something I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,400",
+				"to": "00:02:05,160"
+			},
+			"offsets": {
+				"from": 121400,
+				"to": 125160
+			},
+			"text": " not an expert in and actually I know who I'm talking to, the experts in this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,160",
+				"to": "00:02:10,120"
+			},
+			"offsets": {
+				"from": 125160,
+				"to": 130120
+			},
+			"text": " But I'm hoping I'm going to give you a new perspective in the area of debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,120",
+				"to": "00:02:14,160"
+			},
+			"offsets": {
+				"from": 130120,
+				"to": 134160
+			},
+			"text": " And my story starts by my having won the internet lottery."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,160",
+				"to": "00:02:20,080"
+			},
+			"offsets": {
+				"from": 134160,
+				"to": 140080
+			},
+			"text": " I sold companies, I became artificially wealthy, and I was trying to figure out what the heck"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,080",
+				"to": "00:02:21,640"
+			},
+			"offsets": {
+				"from": 140080,
+				"to": 141640
+			},
+			"text": " is money."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,640",
+				"to": "00:02:24,760"
+			},
+			"offsets": {
+				"from": 141640,
+				"to": 144760
+			},
+			"text": " And so I started reading books."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,760",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 144760,
+				"to": 149000
+			},
+			"text": " And my favorite book from that era was called Frozen Desire."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:33,760"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 153760
+			},
+			"text": " So this guy, James Buck, and he goes over the history of money, and he goes and says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,760",
+				"to": "00:02:35,400"
+			},
+			"offsets": {
+				"from": 153760,
+				"to": 155400
+			},
+			"text": " what is money?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,400",
+				"to": "00:02:37,320"
+			},
+			"offsets": {
+				"from": 155400,
+				"to": 157320
+			},
+			"text": " It's frozen desire."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,320",
+				"to": "00:02:43,240"
+			},
+			"offsets": {
+				"from": 157320,
+				"to": 163240
+			},
+			"text": " And it talks all about money, money, money, and how it works and how you finance debt"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,240",
+				"to": "00:02:45,120"
+			},
+			"offsets": {
+				"from": 163240,
+				"to": 165120
+			},
+			"text": " and how it works and on and on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,120",
+				"to": "00:02:47,240"
+			},
+			"offsets": {
+				"from": 165120,
+				"to": 167240
+			},
+			"text": " It's a very interesting book."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,240",
+				"to": "00:02:51,080"
+			},
+			"offsets": {
+				"from": 167240,
+				"to": 171080
+			},
+			"text": " But it occurred to me, it's like, no, no, maybe it's not really money that's the important"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,080",
+				"to": "00:02:52,080"
+			},
+			"offsets": {
+				"from": 171080,
+				"to": 172080
+			},
+			"text": " part."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,080",
+				"to": "00:02:54,280"
+			},
+			"offsets": {
+				"from": 172080,
+				"to": 174280
+			},
+			"text": " Maybe it's debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,280",
+				"to": "00:02:56,120"
+			},
+			"offsets": {
+				"from": 174280,
+				"to": 176120
+			},
+			"text": " Maybe it's debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,120",
+				"to": "00:03:03,120"
+			},
+			"offsets": {
+				"from": 176120,
+				"to": 183120
+			},
+			"text": " And it turns out that money and debt mostly create each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,120",
+				"to": "00:03:06,360"
+			},
+			"offsets": {
+				"from": 183120,
+				"to": 186360
+			},
+			"text": " And I'm going to stay on this for a moment because I think it's going to be important"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,360",
+				"to": "00:03:09,600"
+			},
+			"offsets": {
+				"from": 186360,
+				"to": 189600
+			},
+			"text": " in our crypto world."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,600",
+				"to": "00:03:14,920"
+			},
+			"offsets": {
+				"from": 189600,
+				"to": 194920
+			},
+			"text": " So even in the crypto communities, they talk about money like gold and things like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,920",
+				"to": "00:03:17,360"
+			},
+			"offsets": {
+				"from": 194920,
+				"to": 197360
+			},
+			"text": " where it doesn't go into, there isn't debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,360",
+				"to": "00:03:24,200"
+			},
+			"offsets": {
+				"from": 197360,
+				"to": 204200
+			},
+			"text": " But if you take currency, the American currency, or any of the world currencies, about 5% is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,200",
+				"to": "00:03:29,960"
+			},
+			"offsets": {
+				"from": 204200,
+				"to": 209960
+			},
+			"text": " money, and the rest is money and debt create each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,960",
+				"to": "00:03:33,840"
+			},
+			"offsets": {
+				"from": 209960,
+				"to": 213840
+			},
+			"text": " The way that you get more money is you create debt obligations."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,840",
+				"to": "00:03:38,960"
+			},
+			"offsets": {
+				"from": 213840,
+				"to": 218960
+			},
+			"text": " If you go and say, well, I'm against being in debt, really what you're saying is I want"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,960",
+				"to": "00:03:44,880"
+			},
+			"offsets": {
+				"from": 218960,
+				"to": 224880
+			},
+			"text": " somebody else to be in debt because if I have money, somebody else has debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,880",
+				"to": "00:03:46,320"
+			},
+			"offsets": {
+				"from": 224880,
+				"to": 226320
+			},
+			"text": " They create each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,320",
+				"to": "00:03:52,480"
+			},
+			"offsets": {
+				"from": 226320,
+				"to": 232480
+			},
+			"text": " They exist in a one-to-one relationship almost, except for about 5%."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,480",
+				"to": "00:03:54,680"
+			},
+			"offsets": {
+				"from": 232480,
+				"to": 234680
+			},
+			"text": " That is, I find, very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,680",
+				"to": "00:03:59,320"
+			},
+			"offsets": {
+				"from": 234680,
+				"to": 239320
+			},
+			"text": " So whenever I hear of these bankers or these economists going on and on about, we want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,320",
+				"to": "00:04:02,040"
+			},
+			"offsets": {
+				"from": 239320,
+				"to": 242040
+			},
+			"text": " increase liquidity out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,040",
+				"to": "00:04:07,680"
+			},
+			"offsets": {
+				"from": 242040,
+				"to": 247680
+			},
+			"text": " What they really want to increase the money supply, just try out a thought experiment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,680",
+				"to": "00:04:12,160"
+			},
+			"offsets": {
+				"from": 247680,
+				"to": 252160
+			},
+			"text": " Where they say money, just insert the word debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,160",
+				"to": "00:04:16,200"
+			},
+			"offsets": {
+				"from": 252160,
+				"to": 256200
+			},
+			"text": " And you will also understand what they're saying and actually much more precisely."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,200",
+				"to": "00:04:20,560"
+			},
+			"offsets": {
+				"from": 256200,
+				"to": 260560
+			},
+			"text": " When they say they want to increase the money supply, they want to increase the amount of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,560",
+				"to": "00:04:22,400"
+			},
+			"offsets": {
+				"from": 260560,
+				"to": 262400
+			},
+			"text": " debt supply."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,400",
+				"to": "00:04:27,240"
+			},
+			"offsets": {
+				"from": 262400,
+				"to": 267240
+			},
+			"text": " They want to go and liquidity more money out there, they want more debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,240",
+				"to": "00:04:32,840"
+			},
+			"offsets": {
+				"from": 267240,
+				"to": 272840
+			},
+			"text": " So what debt is, and it's always debt with interest, it's a slope."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,840",
+				"to": "00:04:35,960"
+			},
+			"offsets": {
+				"from": 272840,
+				"to": 275960
+			},
+			"text": " And money goes from debtors to creditors."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,960",
+				"to": "00:04:36,960"
+			},
+			"offsets": {
+				"from": 275960,
+				"to": 276960
+			},
+			"text": " It's a slope."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,960",
+				"to": "00:04:42,280"
+			},
+			"offsets": {
+				"from": 276960,
+				"to": 282280
+			},
+			"text": " You can change what the slope is, and you can change how much there is."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,280",
+				"to": "00:04:45,560"
+			},
+			"offsets": {
+				"from": 282280,
+				"to": 285560
+			},
+			"text": " And when they're trying to increase the money supply, they're trying to increase the amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,560",
+				"to": "00:04:46,760"
+			},
+			"offsets": {
+				"from": 285560,
+				"to": 286760
+			},
+			"text": " of debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,760",
+				"to": "00:04:51,440"
+			},
+			"offsets": {
+				"from": 286760,
+				"to": 291440
+			},
+			"text": " So that just increases the amount that's going from debtors to creditors."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,440",
+				"to": "00:04:57,520"
+			},
+			"offsets": {
+				"from": 291440,
+				"to": 297520
+			},
+			"text": " And then there's interest rates where you can go and tilt it the slide more."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,520",
+				"to": "00:04:59,480"
+			},
+			"offsets": {
+				"from": 297520,
+				"to": 299480
+			},
+			"text": " But it's all going one way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,480",
+				"to": "00:05:01,800"
+			},
+			"offsets": {
+				"from": 299480,
+				"to": 301800
+			},
+			"text": " I'm not saying that debt is bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,800",
+				"to": "00:05:03,640"
+			},
+			"offsets": {
+				"from": 301800,
+				"to": 303640
+			},
+			"text": " It just is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,640",
+				"to": "00:05:08,240"
+			},
+			"offsets": {
+				"from": 303640,
+				"to": 308240
+			},
+			"text": " But debt exists and it has existed for as long as there has been writing, which I'll get"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,240",
+				"to": "00:05:10,680"
+			},
+			"offsets": {
+				"from": 308240,
+				"to": 310680
+			},
+			"text": " to in a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,680",
+				"to": "00:05:14,680"
+			},
+			"offsets": {
+				"from": 310680,
+				"to": 314680
+			},
+			"text": " So if you're trying to look for lines of control and trying to predict how the future"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,680",
+				"to": "00:05:18,800"
+			},
+			"offsets": {
+				"from": 314680,
+				"to": 318800
+			},
+			"text": " will behold, I always try to figure out what's the root causes out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,800",
+				"to": "00:05:24,040"
+			},
+			"offsets": {
+				"from": 318800,
+				"to": 324040
+			},
+			"text": " I would suggest don't follow the money, as I said in all the President's men, a famous"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,040",
+				"to": "00:05:28,480"
+			},
+			"offsets": {
+				"from": 324040,
+				"to": 328480
+			},
+			"text": " movie about the Watergate investigation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,480",
+				"to": "00:05:30,640"
+			},
+			"offsets": {
+				"from": 328480,
+				"to": 330640
+			},
+			"text": " Follow the debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,640",
+				"to": "00:05:31,640"
+			},
+			"offsets": {
+				"from": 330640,
+				"to": 331640
+			},
+			"text": " Follow debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,640",
+				"to": "00:05:34,040"
+			},
+			"offsets": {
+				"from": 331640,
+				"to": 334040
+			},
+			"text": " Obligated to whom?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,040",
+				"to": "00:05:39,840"
+			},
+			"offsets": {
+				"from": 334040,
+				"to": 339840
+			},
+			"text": " That's going to be the more important part of how all of this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,840",
+				"to": "00:05:48,760"
+			},
+			"offsets": {
+				"from": 339840,
+				"to": 348760
+			},
+			"text": " And this, I would suggest, be the most indicative of what's going to happen in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,760",
+				"to": "00:05:54,760"
+			},
+			"offsets": {
+				"from": 348760,
+				"to": 354760
+			},
+			"text": " At that point, a book came out called Debt, the first 5,000 years by David Graber."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,760",
+				"to": "00:05:58,680"
+			},
+			"offsets": {
+				"from": 354760,
+				"to": 358680
+			},
+			"text": " This is the most important book I've read in the last 20 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,680",
+				"to": "00:05:59,680"
+			},
+			"offsets": {
+				"from": 358680,
+				"to": 359680
+			},
+			"text": " It blew my mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,680",
+				"to": "00:06:05,920"
+			},
+			"offsets": {
+				"from": 359680,
+				"to": 365920
+			},
+			"text": " It basically chopped pillars out from underneath my whole belief system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,920",
+				"to": "00:06:11,320"
+			},
+			"offsets": {
+				"from": 365920,
+				"to": 371320
+			},
+			"text": " This guy basically wrote, it's across the 5,000 years history across the whole world."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,320",
+				"to": "00:06:17,920"
+			},
+			"offsets": {
+				"from": 371320,
+				"to": 377920
+			},
+			"text": " It's kind of an amazing book and tried to detail the history of debt and how did it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,920",
+				"to": "00:06:20,040"
+			},
+			"offsets": {
+				"from": 377920,
+				"to": 380040
+			},
+			"text": " work in different cultures."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,040",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 380040,
+				"to": 382000
+			},
+			"text": " And it works very differently in different cultures."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:24,480"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 384480
+			},
+			"text": " And there's a lot more possibilities out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,480",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 384480,
+				"to": 389000
+			},
+			"text": " A brilliant man, a wonderful read, highly, highly recommend it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:37,440"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 397440
+			},
+			"text": " But he basically goes on this structure of how does debt evolve and how does obligation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,440",
+				"to": "00:06:40,720"
+			},
+			"offsets": {
+				"from": 397440,
+				"to": 400720
+			},
+			"text": " Let me define debt precisely."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,720",
+				"to": "00:06:44,680"
+			},
+			"offsets": {
+				"from": 400720,
+				"to": 404680
+			},
+			"text": " Debt is quantified obligation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,680",
+				"to": "00:06:50,160"
+			},
+			"offsets": {
+				"from": 404680,
+				"to": 410160
+			},
+			"text": " So there's obligations we all have to our friends, our mothers, but quantified obligations"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,160",
+				"to": "00:06:51,240"
+			},
+			"offsets": {
+				"from": 410160,
+				"to": 411240
+			},
+			"text": " is debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,240",
+				"to": "00:06:55,200"
+			},
+			"offsets": {
+				"from": 411240,
+				"to": 415200
+			},
+			"text": " And another characteristic of almost all debt is it's transferable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,200",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 415200,
+				"to": 418000
+			},
+			"text": " So it's transferable actually by the creditor."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:06:59,800"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 419800
+			},
+			"text": " The creditor can give it to somebody else."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,800",
+				"to": "00:07:03,040"
+			},
+			"offsets": {
+				"from": 419800,
+				"to": 423040
+			},
+			"text": " So you might be in debt to somebody and then they suddenly put it to somebody else."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,040",
+				"to": "00:07:04,560"
+			},
+			"offsets": {
+				"from": 423040,
+				"to": 424560
+			},
+			"text": " And now you're in debt to somebody else."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,560",
+				"to": "00:07:07,360"
+			},
+			"offsets": {
+				"from": 424560,
+				"to": 427360
+			},
+			"text": " So a really peculiar device."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,360",
+				"to": "00:07:15,680"
+			},
+			"offsets": {
+				"from": 427360,
+				"to": 435680
+			},
+			"text": " But I highly recommend this book in terms of how does value exchange move among people."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,680",
+				"to": "00:07:19,080"
+			},
+			"offsets": {
+				"from": 435680,
+				"to": 439080
+			},
+			"text": " And you guys are all in this field, so recommend it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,080",
+				"to": "00:07:23,360"
+			},
+			"offsets": {
+				"from": 439080,
+				"to": 443360
+			},
+			"text": " So basically I said, all right, if that's what's crushing our people, we now had the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,360",
+				"to": "00:07:29,360"
+			},
+			"offsets": {
+				"from": 443360,
+				"to": 449360
+			},
+			"text": " debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,360",
+				"to": "00:07:32,360"
+			},
+			"offsets": {
+				"from": 449360,
+				"to": 452360
+			},
+			"text": " It was 2008, there's a housing crisis."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,360",
+				"to": "00:07:36,360"
+			},
+			"offsets": {
+				"from": 452360,
+				"to": 456360
+			},
+			"text": " The people at the Internet Archive were having real trouble because of rent."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,360",
+				"to": "00:07:39,360"
+			},
+			"offsets": {
+				"from": 456360,
+				"to": 459360
+			},
+			"text": " I tried to figure out why was rent so high."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,360",
+				"to": "00:07:42,360"
+			},
+			"offsets": {
+				"from": 459360,
+				"to": 462360
+			},
+			"text": " It turns out it was debt service on the apartment buildings."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,360",
+				"to": "00:07:48,360"
+			},
+			"offsets": {
+				"from": 462360,
+				"to": 468360
+			},
+			"text": " If you could make debt-free apartment buildings, you could have rent that's one-third of market-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,360",
+				"to": "00:07:49,360"
+			},
+			"offsets": {
+				"from": 468360,
+				"to": 469360
+			},
+			"text": " rent."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,360",
+				"to": "00:07:52,360"
+			},
+			"offsets": {
+				"from": 469360,
+				"to": 472360
+			},
+			"text": " I said, great, why don't we go and try to make debt-free housing happen by going having a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,360",
+				"to": "00:07:56,360"
+			},
+			"offsets": {
+				"from": 472360,
+				"to": 476360
+			},
+			"text": " credit union called the Internet Credit Union."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,360",
+				"to": "00:08:02,360"
+			},
+			"offsets": {
+				"from": 476360,
+				"to": 482360
+			},
+			"text": " And we ran it for a while and boy, the regulators really, really didn't like it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,360",
+				"to": "00:08:06,360"
+			},
+			"offsets": {
+				"from": 482360,
+				"to": 486360
+			},
+			"text": " Boy, just go start a bank."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,360",
+				"to": "00:08:09,360"
+			},
+			"offsets": {
+				"from": 486360,
+				"to": 489360
+			},
+			"text": " Yeah, they basically didn't want us around."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,360",
+				"to": "00:08:11,360"
+			},
+			"offsets": {
+				"from": 489360,
+				"to": 491360
+			},
+			"text": " So they crushed us out of existence."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,360",
+				"to": "00:08:17,360"
+			},
+			"offsets": {
+				"from": 491360,
+				"to": 497360
+			},
+			"text": " And unfortunately, Trade Hill, which is a Bitcoin company because we were the only credit"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,360",
+				"to": "00:08:19,360"
+			},
+			"offsets": {
+				"from": 497360,
+				"to": 499360
+			},
+			"text": " union that would go and deal with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,360",
+				"to": "00:08:24,360"
+			},
+			"offsets": {
+				"from": 499360,
+				"to": 504360
+			},
+			"text": " When they crushed out of existence, they went out of existence too."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,360",
+				"to": "00:08:29,360"
+			},
+			"offsets": {
+				"from": 504360,
+				"to": 509360
+			},
+			"text": " So I learned a lot about how the banking system worked and it is really that bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,360",
+				"to": "00:08:32,360"
+			},
+			"offsets": {
+				"from": 509360,
+				"to": 512360
+			},
+			"text": " If you think it's bad, you're right."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,360",
+				"to": "00:08:38,360"
+			},
+			"offsets": {
+				"from": 512360,
+				"to": 518360
+			},
+			"text": " In terms of how electronic funds transfers work, ACH transfers, it's insecure, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,360",
+				"to": "00:08:41,360"
+			},
+			"offsets": {
+				"from": 518360,
+				"to": 521360
+			},
+			"text": " fraud-written, it's a real problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,360",
+				"to": "00:08:45,360"
+			},
+			"offsets": {
+				"from": 521360,
+				"to": 525360
+			},
+			"text": " So we tried to do a bank, and that didn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,360",
+				"to": "00:08:47,360"
+			},
+			"offsets": {
+				"from": 525360,
+				"to": 527360
+			},
+			"text": " We were very early in Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,360",
+				"to": "00:08:50,360"
+			},
+			"offsets": {
+				"from": 527360,
+				"to": 530360
+			},
+			"text": " In the Internet Archive, we basically paid our employees in Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,360",
+				"to": "00:08:54,360"
+			},
+			"offsets": {
+				"from": 530360,
+				"to": 534360
+			},
+			"text": " This, I think, is a picture of the first Bitcoin ATM."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,360",
+				"to": "00:08:59,360"
+			},
+			"offsets": {
+				"from": 534360,
+				"to": 539360
+			},
+			"text": " It's an open cash box with a wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,360",
+				"to": "00:09:04,360"
+			},
+			"offsets": {
+				"from": 539360,
+				"to": 544360
+			},
+			"text": " So you basically can just go and change your money back and forth to the Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,360",
+				"to": "00:09:08,360"
+			},
+			"offsets": {
+				"from": 544360,
+				"to": 548360
+			},
+			"text": " Okay, a lot of the Bitcoin people didn't like it because it trusted people, but anyway,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,360",
+				"to": "00:09:09,360"
+			},
+			"offsets": {
+				"from": 548360,
+				"to": 549360
+			},
+			"text": " it worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,360",
+				"to": "00:09:15,360"
+			},
+			"offsets": {
+				"from": 549360,
+				"to": 555360
+			},
+			"text": " And so that was our part of our exploration with Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,360",
+				"to": "00:09:18,360"
+			},
+			"offsets": {
+				"from": 555360,
+				"to": 558360
+			},
+			"text": " And then this book."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,360",
+				"to": "00:09:22,360"
+			},
+			"offsets": {
+				"from": 558360,
+				"to": 562360
+			},
+			"text": " This is where David Graber got his ideas on the early part."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,360",
+				"to": "00:09:26,360"
+			},
+			"offsets": {
+				"from": 562360,
+				"to": 566360
+			},
+			"text": " And here I think is where the things are going to get interesting for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,360",
+				"to": "00:09:29,360"
+			},
+			"offsets": {
+				"from": 566360,
+				"to": 569360
+			},
+			"text": " The title of this is \"And Forgive Them Their Dats.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,360",
+				"to": "00:09:34,360"
+			},
+			"offsets": {
+				"from": 569360,
+				"to": 574360
+			},
+			"text": " It's a line from the Lord's Prayer, \"And Forgive Them Their Dats,\" and they will"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,360",
+				"to": "00:09:36,360"
+			},
+			"offsets": {
+				"from": 574360,
+				"to": 576360
+			},
+			"text": " forgive their debts against you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,360",
+				"to": "00:09:38,360"
+			},
+			"offsets": {
+				"from": 576360,
+				"to": 578360
+			},
+			"text": " And they meant it literally."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,360",
+				"to": "00:09:46,360"
+			},
+			"offsets": {
+				"from": 578360,
+				"to": 586360
+			},
+			"text": " That basically this is a history book of what happened during the Sumerians, Babylonians,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,360",
+				"to": "00:09:54,360"
+			},
+			"offsets": {
+				"from": 586360,
+				"to": 594360
+			},
+			"text": " Acadians, basically the Bronze Age near East, how their financial system worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,360",
+				"to": "00:09:57,360"
+			},
+			"offsets": {
+				"from": 594360,
+				"to": 597360
+			},
+			"text": " They were the first to invent debt with interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,360",
+				"to": "00:10:04,360"
+			},
+			"offsets": {
+				"from": 597360,
+				"to": 604360
+			},
+			"text": " With debt with interest, what happens is you slide things from debtors to creditors."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,360",
+				"to": "00:10:07,360"
+			},
+			"offsets": {
+				"from": 604360,
+				"to": 607360
+			},
+			"text": " Debtors become everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,360",
+				"to": "00:10:08,360"
+			},
+			"offsets": {
+				"from": 607360,
+				"to": 608360
+			},
+			"text": " They lose their farms."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,360",
+				"to": "00:10:10,360"
+			},
+			"offsets": {
+				"from": 608360,
+				"to": 610360
+			},
+			"text": " They become in debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,360",
+				"to": "00:10:12,360"
+			},
+			"offsets": {
+				"from": 610360,
+				"to": 612360
+			},
+			"text": " They leave the land."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,360",
+				"to": "00:10:16,360"
+			},
+			"offsets": {
+				"from": 612360,
+				"to": 616360
+			},
+			"text": " They end up with their wives and children as debt servants."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,360",
+				"to": "00:10:21,360"
+			},
+			"offsets": {
+				"from": 616360,
+				"to": 621360
+			},
+			"text": " And basically society breaks down."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,360",
+				"to": "00:10:25,360"
+			},
+			"offsets": {
+				"from": 621360,
+				"to": 625360
+			},
+			"text": " If you allow this to go too far, it breaks down."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,360",
+				"to": "00:10:27,360"
+			},
+			"offsets": {
+				"from": 625360,
+				"to": 627360
+			},
+			"text": " And it breaks down quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,360",
+				"to": "00:10:31,360"
+			},
+			"offsets": {
+				"from": 627360,
+				"to": 631360
+			},
+			"text": " So what they invented was a debt forgiveness system."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,360",
+				"to": "00:10:38,360"
+			},
+			"offsets": {
+				"from": 631360,
+				"to": 638360
+			},
+			"text": " Every 25 to 50 years, they would basically go and declare debts gone."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,360",
+				"to": "00:10:40,360"
+			},
+			"offsets": {
+				"from": 638360,
+				"to": 640360
+			},
+			"text": " They wiped the slate clean."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,360",
+				"to": "00:10:41,360"
+			},
+			"offsets": {
+				"from": 640360,
+				"to": 641360
+			},
+			"text": " That's a literal term."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,360",
+				"to": "00:10:42,360"
+			},
+			"offsets": {
+				"from": 641360,
+				"to": 642360
+			},
+			"text": " They were on slate."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,360",
+				"to": "00:10:45,360"
+			},
+			"offsets": {
+				"from": 642360,
+				"to": 645360
+			},
+			"text": " The Sumerians wiped the slate clean and you were out of debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,360",
+				"to": "00:10:47,360"
+			},
+			"offsets": {
+				"from": 645360,
+				"to": 647360
+			},
+			"text": " It usually came with the beginning of a monarch."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,360",
+				"to": "00:10:50,360"
+			},
+			"offsets": {
+				"from": 647360,
+				"to": 650360
+			},
+			"text": " A new monarch would come in and say, \"You're all out of debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,360",
+				"to": "00:10:52,360"
+			},
+			"offsets": {
+				"from": 650360,
+				"to": 652360
+			},
+			"text": " You don't owe the government any money."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,360",
+				"to": "00:10:58,360"
+			},
+			"offsets": {
+				"from": 652360,
+				"to": 658360
+			},
+			"text": " You get your farms back so people could move back onto their farms."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,360",
+				"to": "00:11:06,360"
+			},
+			"offsets": {
+				"from": 658360,
+				"to": 666360
+			},
+			"text": " The children and the wives are released from their servitude, their debt servitude.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,360",
+				"to": "00:11:08,360"
+			},
+			"offsets": {
+				"from": 666360,
+				"to": 668360
+			},
+			"text": " And they would do this every 25 to 50 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,360",
+				"to": "00:11:16,360"
+			},
+			"offsets": {
+				"from": 668360,
+				"to": 676360
+			},
+			"text": " If they did not do this, then the society would go exponentially more and more unequal"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,360",
+				"to": "00:11:19,360"
+			},
+			"offsets": {
+				"from": 676360,
+				"to": 679360
+			},
+			"text": " until people revolted and there was civil war."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,360",
+				"to": "00:11:26,360"
+			},
+			"offsets": {
+				"from": 679360,
+				"to": 686360
+			},
+			"text": " Every civil war for 3,000 years was a debt war according to this scholar."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,360",
+				"to": "00:11:27,360"
+			},
+			"offsets": {
+				"from": 686360,
+				"to": 687360
+			},
+			"text": " Interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,360",
+				"to": "00:11:29,360"
+			},
+			"offsets": {
+				"from": 687360,
+				"to": 689360
+			},
+			"text": " I'd never heard this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,360",
+				"to": "00:11:34,360"
+			},
+			"offsets": {
+				"from": 689360,
+				"to": 694360
+			},
+			"text": " So the Hebrews developed a system called Jubilee."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,360",
+				"to": "00:11:38,360"
+			},
+			"offsets": {
+				"from": 694360,
+				"to": 698360
+			},
+			"text": " Jubilee is every 50 years there would be debt forgiveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,360",
+				"to": "00:11:42,360"
+			},
+			"offsets": {
+				"from": 698360,
+				"to": 702360
+			},
+			"text": " And you would go and let people have their lands back."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,360",
+				"to": "00:11:49,360"
+			},
+			"offsets": {
+				"from": 702360,
+				"to": 709360
+			},
+			"text": " You would go and take things away from the oligarchs and give them back to the peasants."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,360",
+				"to": "00:11:50,360"
+			},
+			"offsets": {
+				"from": 709360,
+				"to": 710360
+			},
+			"text": " Can you imagine that now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,360",
+				"to": "00:11:53,360"
+			},
+			"offsets": {
+				"from": 710360,
+				"to": 713360
+			},
+			"text": " But if you don't do this, bad things happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,360",
+				"to": "00:11:57,360"
+			},
+			"offsets": {
+				"from": 713360,
+				"to": 717360
+			},
+			"text": " So let me say, \"Gosh, I haven't heard that before."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,360",
+				"to": "00:11:59,360"
+			},
+			"offsets": {
+				"from": 717360,
+				"to": 719360
+			},
+			"text": " Maybe you have, but it was new to me.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,360",
+				"to": "00:12:04,360"
+			},
+			"offsets": {
+				"from": 719360,
+				"to": 724360
+			},
+			"text": " There were some things that were very interesting to me in grinding this idea home."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,360",
+				"to": "00:12:07,360"
+			},
+			"offsets": {
+				"from": 724360,
+				"to": 727360
+			},
+			"text": " And I'm going to then come back around how it works in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,360",
+				"to": "00:12:12,360"
+			},
+			"offsets": {
+				"from": 727360,
+				"to": 732360
+			},
+			"text": " The Liberty Bell was a famous thing in the Liberty Bell of the United States,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,360",
+				"to": "00:12:13,360"
+			},
+			"offsets": {
+				"from": 732360,
+				"to": 733360
+			},
+			"text": " founding of the country."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,360",
+				"to": "00:12:18,360"
+			},
+			"offsets": {
+				"from": 733360,
+				"to": 738360
+			},
+			"text": " It says, \"Perclaim Liberty out throughout the land and the inhabitants thereof.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,360",
+				"to": "00:12:23,360"
+			},
+			"offsets": {
+				"from": 738360,
+				"to": 743360
+			},
+			"text": " The rest of that line is actually Leviticus 25, 10."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,360",
+				"to": "00:12:26,360"
+			},
+			"offsets": {
+				"from": 743360,
+				"to": 746360
+			},
+			"text": " And it says, \"And it shall be a Jubilee unto you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,360",
+				"to": "00:12:31,360"
+			},
+			"offsets": {
+				"from": 746360,
+				"to": 751360
+			},
+			"text": " Each of you will return to your family property and your own clan.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,360",
+				"to": "00:12:37,360"
+			},
+			"offsets": {
+				"from": 751360,
+				"to": 757360
+			},
+			"text": " So what Liberty meant in the early part of the United States was freedom from debt,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,360",
+				"to": "00:12:42,360"
+			},
+			"offsets": {
+				"from": 757360,
+				"to": 762360
+			},
+			"text": " was freedom from these obligations that they were escaping in other lands."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,360",
+				"to": "00:12:43,360"
+			},
+			"offsets": {
+				"from": 762360,
+				"to": 763360
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,360",
+				"to": "00:12:44,360"
+			},
+			"offsets": {
+				"from": 763360,
+				"to": 764360
+			},
+			"text": " Another one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,360",
+				"to": "00:12:45,360"
+			},
+			"offsets": {
+				"from": 764360,
+				"to": 765360
+			},
+			"text": " The Rosetta Stone."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,360",
+				"to": "00:12:48,360"
+			},
+			"offsets": {
+				"from": 765360,
+				"to": 768360
+			},
+			"text": " We know the Rosetta Stone is how we broke hieroglyphics."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,360",
+				"to": "00:12:49,360"
+			},
+			"offsets": {
+				"from": 768360,
+				"to": 769360
+			},
+			"text": " We understand hieroglyphics."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,360",
+				"to": "00:12:51,360"
+			},
+			"offsets": {
+				"from": 769360,
+				"to": 771360
+			},
+			"text": " Do you know what it said?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,360",
+				"to": "00:12:53,360"
+			},
+			"offsets": {
+				"from": 771360,
+				"to": 773360
+			},
+			"text": " You know what the proclamation was?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,360",
+				"to": "00:12:55,360"
+			},
+			"offsets": {
+				"from": 773360,
+				"to": 775360
+			},
+			"text": " It was a government proclamation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,360",
+				"to": "00:12:56,360"
+			},
+			"offsets": {
+				"from": 775360,
+				"to": 776360
+			},
+			"text": " Okay, you guessed it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,360",
+				"to": "00:12:58,360"
+			},
+			"offsets": {
+				"from": 776360,
+				"to": 778360
+			},
+			"text": " It was debt forgiveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,360",
+				"to": "00:13:00,360"
+			},
+			"offsets": {
+				"from": 778360,
+				"to": 780360
+			},
+			"text": " It's basically structured debt forgiveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,360",
+				"to": "00:13:05,360"
+			},
+			"offsets": {
+				"from": 780360,
+				"to": 785360
+			},
+			"text": " That was what was worth carving in stone and distributing it out through the empire"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,360",
+				"to": "00:13:08,360"
+			},
+			"offsets": {
+				"from": 785360,
+				"to": 788360
+			},
+			"text": " during the Ptolemaic period."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,360",
+				"to": "00:13:12,360"
+			},
+			"offsets": {
+				"from": 788360,
+				"to": 792360
+			},
+			"text": " So we see it starting to be again and again."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,360",
+				"to": "00:13:16,360"
+			},
+			"offsets": {
+				"from": 792360,
+				"to": 796360
+			},
+			"text": " Jesus is in his first sermon in Nazareth."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,360",
+				"to": "00:13:18,360"
+			},
+			"offsets": {
+				"from": 796360,
+				"to": 798360
+			},
+			"text": " Okay, I'm not a Bible thumper guy here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,360",
+				"to": "00:13:19,360"
+			},
+			"offsets": {
+				"from": 798360,
+				"to": 799360
+			},
+			"text": " I'm just a historian."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,360",
+				"to": "00:13:23,360"
+			},
+			"offsets": {
+				"from": 799360,
+				"to": 803360
+			},
+			"text": " But Jesus in his first sermon coming back to Nazareth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,360",
+				"to": "00:13:27,360"
+			},
+			"offsets": {
+				"from": 803360,
+				"to": 807360
+			},
+			"text": " he declared a Jubilee year."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,360",
+				"to": "00:13:31,360"
+			},
+			"offsets": {
+				"from": 807360,
+				"to": 811360
+			},
+			"text": " He declared, there is this guy who basically said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,360",
+				"to": "00:13:33,360"
+			},
+			"offsets": {
+				"from": 811360,
+				"to": 813360
+			},
+			"text": " \"All you oligarchs have to give all your money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,360",
+				"to": "00:13:39,360"
+			},
+			"offsets": {
+				"from": 813360,
+				"to": 819360
+			},
+			"text": " basically back to the people you've shafted out of all of that over the last 50 years.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,360",
+				"to": "00:13:42,360"
+			},
+			"offsets": {
+				"from": 819360,
+				"to": 822360
+			},
+			"text": " And it's not just me interpreting this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,360",
+				"to": "00:13:44,360"
+			},
+			"offsets": {
+				"from": 822360,
+				"to": 824360
+			},
+			"text": " It's actually, this is from the Vatican little footnote."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,360",
+				"to": "00:13:47,360"
+			},
+			"offsets": {
+				"from": 824360,
+				"to": 827360
+			},
+			"text": " This is what it is Jesus said."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,360",
+				"to": "00:13:49,360"
+			},
+			"offsets": {
+				"from": 827360,
+				"to": 829360
+			},
+			"text": " And that's enough to get you killed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,360",
+				"to": "00:13:55,360"
+			},
+			"offsets": {
+				"from": 829360,
+				"to": 835360
+			},
+			"text": " So if you go forward a bit more to the Spartans,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,360",
+				"to": "00:13:59,360"
+			},
+			"offsets": {
+				"from": 835360,
+				"to": 839360
+			},
+			"text": " the Spartans had real troubles with wealth inequality."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,360",
+				"to": "00:14:03,360"
+			},
+			"offsets": {
+				"from": 839360,
+				"to": 843360
+			},
+			"text": " And there were two Spartan kings that promised reform."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,360",
+				"to": "00:14:06,360"
+			},
+			"offsets": {
+				"from": 843360,
+				"to": 846360
+			},
+			"text": " They were killed or exiled."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,360",
+				"to": "00:14:09,360"
+			},
+			"offsets": {
+				"from": 846360,
+				"to": 849360
+			},
+			"text": " So they basically said, \"Yes, we're going to basically do debt forgiveness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,360",
+				"to": "00:14:12,360"
+			},
+			"offsets": {
+				"from": 849360,
+				"to": 852360
+			},
+			"text": " land redistribution that will work.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,360",
+				"to": "00:14:15,360"
+			},
+			"offsets": {
+				"from": 852360,
+				"to": 855360
+			},
+			"text": " If you don't do this, things collapse."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,360",
+				"to": "00:14:17,360"
+			},
+			"offsets": {
+				"from": 855360,
+				"to": 857360
+			},
+			"text": " Sparta collapsed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,360",
+				"to": "00:14:23,360"
+			},
+			"offsets": {
+				"from": 857360,
+				"to": 863360
+			},
+			"text": " And the United States is in this process of kind of basically at war with itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,360",
+				"to": "00:14:26,360"
+			},
+			"offsets": {
+				"from": 863360,
+				"to": 866360
+			},
+			"text": " with massive wealth inequality."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,360",
+				"to": "00:14:29,360"
+			},
+			"offsets": {
+				"from": 866360,
+				"to": 869360
+			},
+			"text": " Yet we have not really broached the subject of debt forgiveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,360",
+				"to": "00:14:35,360"
+			},
+			"offsets": {
+				"from": 869360,
+				"to": 875360
+			},
+			"text": " So debt with interest, the lesson out of this up is if you do not have a reset mechanism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,360",
+				"to": "00:14:40,360"
+			},
+			"offsets": {
+				"from": 875360,
+				"to": 880360
+			},
+			"text": " it leads to societal collapse and civil war every time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,360",
+				"to": "00:14:44,360"
+			},
+			"offsets": {
+				"from": 880360,
+				"to": 884360
+			},
+			"text": " It's a way of interpreting the Maoist revolution, the Bolshevik revolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,360",
+				"to": "00:14:47,360"
+			},
+			"offsets": {
+				"from": 884360,
+				"to": 887360
+			},
+			"text": " Take away any ideological terms."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,360",
+				"to": "00:14:51,360"
+			},
+			"offsets": {
+				"from": 887360,
+				"to": 891360
+			},
+			"text": " Just think of it as just how do you go and equalize after you've ended up with"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,360",
+				"to": "00:14:54,360"
+			},
+			"offsets": {
+				"from": 891360,
+				"to": 894360
+			},
+			"text": " massively unequal wealth inequality."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,360",
+				"to": "00:14:57,360"
+			},
+			"offsets": {
+				"from": 894360,
+				"to": 897360
+			},
+			"text": " So what, why am I talking about this here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,360",
+				"to": "00:15:01,360"
+			},
+			"offsets": {
+				"from": 897360,
+				"to": 901360
+			},
+			"text": " Well, crypto, you guys are designing a new system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,360",
+				"to": "00:15:02,360"
+			},
+			"offsets": {
+				"from": 901360,
+				"to": 902360
+			},
+			"text": " It's a beautiful system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,360",
+				"to": "00:15:03,360"
+			},
+			"offsets": {
+				"from": 902360,
+				"to": 903360
+			},
+			"text": " It's based on math."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,360",
+				"to": "00:15:05,360"
+			},
+			"offsets": {
+				"from": 903360,
+				"to": 905360
+			},
+			"text": " It's not based on regulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,360",
+				"to": "00:15:07,360"
+			},
+			"offsets": {
+				"from": 905360,
+				"to": 907360
+			},
+			"text": " It's got all sorts of interesting properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,360",
+				"to": "00:15:08,360"
+			},
+			"offsets": {
+				"from": 907360,
+				"to": 908360
+			},
+			"text": " I love it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,360",
+				"to": "00:15:09,360"
+			},
+			"offsets": {
+				"from": 908360,
+				"to": 909360
+			},
+			"text": " I've been involved in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,360",
+				"to": "00:15:10,360"
+			},
+			"offsets": {
+				"from": 909360,
+				"to": 910360
+			},
+			"text": " Terrific."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,360",
+				"to": "00:15:11,360"
+			},
+			"offsets": {
+				"from": 910360,
+				"to": 911360
+			},
+			"text": " Will crypto be different?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,360",
+				"to": "00:15:15,360"
+			},
+			"offsets": {
+				"from": 911360,
+				"to": 915360
+			},
+			"text": " Well, whenever I read this wonderful book, Digital Cash by Finn Bolton,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,360",
+				"to": "00:15:20,360"
+			},
+			"offsets": {
+				"from": 915360,
+				"to": 920360
+			},
+			"text": " that's wonderful book about the history and the dreams of crypto currencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,360",
+				"to": "00:15:22,360"
+			},
+			"offsets": {
+				"from": 920360,
+				"to": 922360
+			},
+			"text": " and it never talks about debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,360",
+				"to": "00:15:27,360"
+			},
+			"offsets": {
+				"from": 922360,
+				"to": 927360
+			},
+			"text": " In fact, I've talked to several people here and they say, \"Well, it can't happen with Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,360",
+				"to": "00:15:29,360"
+			},
+			"offsets": {
+				"from": 927360,
+				"to": 929360
+			},
+			"text": " and it can't happen with the Ethereum.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,360",
+				"to": "00:15:34,360"
+			},
+			"offsets": {
+				"from": 929360,
+				"to": 934360
+			},
+			"text": " It suggests it can and it will because it evolves into this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,360",
+				"to": "00:15:39,360"
+			},
+			"offsets": {
+				"from": 934360,
+				"to": 939360
+			},
+			"text": " so 95% of the money out there in the world is matched with debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,360",
+				"to": "00:15:43,360"
+			},
+			"offsets": {
+				"from": 939360,
+				"to": 943360
+			},
+			"text": " 5% is sort of the Bitcoin equivalent."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,360",
+				"to": "00:15:47,360"
+			},
+			"offsets": {
+				"from": 943360,
+				"to": 947360
+			},
+			"text": " So I think there's at least a major possibility that there's going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,360",
+				"to": "00:15:52,360"
+			},
+			"offsets": {
+				"from": 947360,
+				"to": 952360
+			},
+			"text": " lending and there's going to be derivatives and the like that are going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,360",
+				"to": "00:15:53,360"
+			},
+			"offsets": {
+				"from": 952360,
+				"to": 953360
+			},
+			"text": " hang on to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,360",
+				"to": "00:15:56,360"
+			},
+			"offsets": {
+				"from": 953360,
+				"to": 956360
+			},
+			"text": " And one of the things, the reason why we're going to get that is because of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,360",
+				"to": "00:15:58,360"
+			},
+			"offsets": {
+				"from": 956360,
+				"to": 958360
+			},
+			"text": " smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,360",
+				"to": "00:16:05,360"
+			},
+			"offsets": {
+				"from": 958360,
+				"to": 965360
+			},
+			"text": " Smart contracts allow you to quantify and enforce certain obligations."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,360",
+				"to": "00:16:11,360"
+			},
+			"offsets": {
+				"from": 965360,
+				"to": 971360
+			},
+			"text": " So actually, I would suggest the Ethereum community, you guys, we guys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,360",
+				"to": "00:16:17,360"
+			},
+			"offsets": {
+				"from": 971360,
+				"to": 977360
+			},
+			"text": " are building the actual mechanisms that we're going to be able to do this type of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,360",
+				"to": "00:16:22,360"
+			},
+			"offsets": {
+				"from": 977360,
+				"to": 982360
+			},
+			"text": " But the weird thing about it is there's almost no reset button."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,360",
+				"to": "00:16:23,360"
+			},
+			"offsets": {
+				"from": 982360,
+				"to": 983360
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,360",
+				"to": "00:16:25,360"
+			},
+			"offsets": {
+				"from": 983360,
+				"to": 985360
+			},
+			"text": " We think of regulation as bad, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,360",
+				"to": "00:16:27,360"
+			},
+			"offsets": {
+				"from": 985360,
+				"to": 987360
+			},
+			"text": " Government is, you know, they screw things up."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,360",
+				"to": "00:16:30,360"
+			},
+			"offsets": {
+				"from": 987360,
+				"to": 990360
+			},
+			"text": " Well, they have been a bit of a reset button."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,360",
+				"to": "00:16:33,360"
+			},
+			"offsets": {
+				"from": 990360,
+				"to": 993360
+			},
+			"text": " Boy, if they screw things up and often they're working for the wrong people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,360",
+				"to": "00:16:37,360"
+			},
+			"offsets": {
+				"from": 993360,
+				"to": 997360
+			},
+			"text": " for all the wrong reasons, you know, there's issues there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,360",
+				"to": "00:16:42,360"
+			},
+			"offsets": {
+				"from": 997360,
+				"to": 1002360
+			},
+			"text": " But if we make a system that is debt with interest that has no reset,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,360",
+				"to": "00:16:49,360"
+			},
+			"offsets": {
+				"from": 1002360,
+				"to": 1009360
+			},
+			"text": " then at least historically we can run into some severe, severe problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,360",
+				"to": "00:16:56,360"
+			},
+			"offsets": {
+				"from": 1009360,
+				"to": 1016360
+			},
+			"text": " So that's the basic point of this talk is to say that the evolution of money"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,360",
+				"to": "00:17:05,360"
+			},
+			"offsets": {
+				"from": 1016360,
+				"to": 1025360
+			},
+			"text": " and debt, money and debt, baguette each other, that debt with interest goes exponential."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,360",
+				"to": "00:17:11,360"
+			},
+			"offsets": {
+				"from": 1025360,
+				"to": 1031360
+			},
+			"text": " If there's no reset mechanism, then there's societal collapse and civil war."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,360",
+				"to": "00:17:16,360"
+			},
+			"offsets": {
+				"from": 1031360,
+				"to": 1036360
+			},
+			"text": " Basically, you have very few winners and lots and lots and lots of losers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,360",
+				"to": "00:17:20,360"
+			},
+			"offsets": {
+				"from": 1036360,
+				"to": 1040360
+			},
+			"text": " And that's not a very stable environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,360",
+				"to": "00:17:28,360"
+			},
+			"offsets": {
+				"from": 1040360,
+				"to": 1048360
+			},
+			"text": " I wonder, and I just posed to you, that as we're designing a next generation internet money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,360",
+				"to": "00:17:36,360"
+			},
+			"offsets": {
+				"from": 1048360,
+				"to": 1056360
+			},
+			"text": " how money and value is exchanged with smart contracts, that the debt system is something we can't just go and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,360",
+				"to": "00:17:38,360"
+			},
+			"offsets": {
+				"from": 1056360,
+				"to": 1058360
+			},
+			"text": " \"Oh, well, we'll just won't do it.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,360",
+				"to": "00:17:40,360"
+			},
+			"offsets": {
+				"from": 1058360,
+				"to": 1060360
+			},
+			"text": " Because it will probably be built in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,360",
+				"to": "00:17:46,360"
+			},
+			"offsets": {
+				"from": 1060360,
+				"to": 1066360
+			},
+			"text": " How do we go and build our systems that will serve a large number of people over time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,360",
+				"to": "00:17:50,360"
+			},
+			"offsets": {
+				"from": 1066360,
+				"to": 1070360
+			},
+			"text": " I look at the microfinance system where it was like, \"Hey, isn't it great?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,360",
+				"to": "00:17:52,360"
+			},
+			"offsets": {
+				"from": 1070360,
+				"to": 1072360
+			},
+			"text": " Let's go and put a lot of poor people in debt.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,360",
+				"to": "00:17:54,360"
+			},
+			"offsets": {
+				"from": 1072360,
+				"to": 1074360
+			},
+			"text": " And so they did."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,360",
+				"to": "00:17:58,360"
+			},
+			"offsets": {
+				"from": 1074360,
+				"to": 1078360
+			},
+			"text": " And that's gone really wrong in a lot of circumstances."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,360",
+				"to": "00:18:07,360"
+			},
+			"offsets": {
+				"from": 1078360,
+				"to": 1087360
+			},
+			"text": " And there's in cases of India going and giving peasants the right to not pay back their debts in microfinance"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,360",
+				"to": "00:18:10,360"
+			},
+			"offsets": {
+				"from": 1087360,
+				"to": 1090360
+			},
+			"text": " because they were committing suicide at a too higher rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,360",
+				"to": "00:18:15,360"
+			},
+			"offsets": {
+				"from": 1090360,
+				"to": 1095360
+			},
+			"text": " So even these systems that seem great at the time, they're awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,360",
+				"to": "00:18:17,360"
+			},
+			"offsets": {
+				"from": 1095360,
+				"to": 1097360
+			},
+			"text": " They have some downsides to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,360",
+				"to": "00:18:19,360"
+			},
+			"offsets": {
+				"from": 1097360,
+				"to": 1099360
+			},
+			"text": " I speak to you as an internet pioneer."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,360",
+				"to": "00:18:23,360"
+			},
+			"offsets": {
+				"from": 1099360,
+				"to": 1103360
+			},
+			"text": " It didn't all turn out quite the way we thought it would."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,360",
+				"to": "00:18:31,360"
+			},
+			"offsets": {
+				"from": 1103360,
+				"to": 1111360
+			},
+			"text": " And so let's go and see if we can learn from those things, but also what are the precursors to the systems that you're building?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,360",
+				"to": "00:18:33,360"
+			},
+			"offsets": {
+				"from": 1111360,
+				"to": 1113360
+			},
+			"text": " What should this mean for Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,360",
+				"to": "00:18:35,360"
+			},
+			"offsets": {
+				"from": 1113360,
+				"to": 1115360
+			},
+			"text": " I don't know the answer to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,360",
+				"to": "00:18:37,360"
+			},
+			"offsets": {
+				"from": 1115360,
+				"to": 1117360
+			},
+			"text": " Really, I don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,360",
+				"to": "00:18:43,360"
+			},
+			"offsets": {
+				"from": 1117360,
+				"to": 1123360
+			},
+			"text": " What I wanted to do this, and I really appreciate your time, is for you to think it through a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,360",
+				"to": "00:18:45,360"
+			},
+			"offsets": {
+				"from": 1123360,
+				"to": 1125360
+			},
+			"text": " Spend a shower on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,360",
+				"to": "00:18:47,360"
+			},
+			"offsets": {
+				"from": 1125360,
+				"to": 1127360
+			},
+			"text": " Spend a commute."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,360",
+				"to": "00:18:53,360"
+			},
+			"offsets": {
+				"from": 1127360,
+				"to": 1133360
+			},
+			"text": " Okay, what does this mean in terms of debt and how can it go out of control?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,360",
+				"to": "00:18:59,360"
+			},
+			"offsets": {
+				"from": 1133360,
+				"to": 1139360
+			},
+			"text": " How is the system that I'm doing kind of walking in a set of losers that may be exponentially increasing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,360",
+				"to": "00:19:07,360"
+			},
+			"offsets": {
+				"from": 1139360,
+				"to": 1147360
+			},
+			"text": " When I hear somebody really enthusiastically saying I'm going to go and make better for billions of people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,360",
+				"to": "00:19:11,360"
+			},
+			"offsets": {
+				"from": 1147360,
+				"to": 1151360
+			},
+			"text": " just go and look at it again and go and say, \"Well, is that true?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,360",
+				"to": "00:19:15,360"
+			},
+			"offsets": {
+				"from": 1151360,
+				"to": 1155360
+			},
+			"text": " How did it play out before when certain other people have said the same things?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,360",
+				"to": "00:19:17,360"
+			},
+			"offsets": {
+				"from": 1155360,
+				"to": 1157360
+			},
+			"text": " It's not to say we shouldn't do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,360",
+				"to": "00:19:19,360"
+			},
+			"offsets": {
+				"from": 1157360,
+				"to": 1159360
+			},
+			"text": " It's just our chance now."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,360",
+				"to": "00:19:20,360"
+			},
+			"offsets": {
+				"from": 1159360,
+				"to": 1160360
+			},
+			"text": " It's early enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,360",
+				"to": "00:19:24,360"
+			},
+			"offsets": {
+				"from": 1160360,
+				"to": 1164360
+			},
+			"text": " People like you guys that are building these systems, we can do something about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,360",
+				"to": "00:19:28,360"
+			},
+			"offsets": {
+				"from": 1164360,
+				"to": 1168360
+			},
+			"text": " Let's not come to regret what we are building now."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,360",
+				"to": "00:19:30,360"
+			},
+			"offsets": {
+				"from": 1168360,
+				"to": 1170360
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,360",
+				"to": "00:19:37,360"
+			},
+			"offsets": {
+				"from": 1170360,
+				"to": 1177360
+			},
+			"text": " (Applause)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,360",
+				"to": "00:19:41,360"
+			},
+			"offsets": {
+				"from": 1177360,
+				"to": 1181360
+			},
+			"text": " I have 26 seconds for a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,360",
+				"to": "00:19:44,360"
+			},
+			"offsets": {
+				"from": 1181360,
+				"to": 1184360
+			},
+			"text": " Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,360",
+				"to": "00:19:47,360"
+			},
+			"offsets": {
+				"from": 1184360,
+				"to": 1187360
+			},
+			"text": " (inaudible)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,360",
+				"to": "00:19:49,360"
+			},
+			"offsets": {
+				"from": 1187360,
+				"to": 1189360
+			},
+			"text": " Pardon?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,360",
+				"to": "00:19:52,360"
+			},
+			"offsets": {
+				"from": 1189360,
+				"to": 1192360
+			},
+			"text": " (inaudible)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,360",
+				"to": "00:19:56,360"
+			},
+			"offsets": {
+				"from": 1192360,
+				"to": 1196360
+			},
+			"text": " What's the precursor for debt forgiveness now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,360",
+				"to": "00:19:58,360"
+			},
+			"offsets": {
+				"from": 1196360,
+				"to": 1198360
+			},
+			"text": " Desperation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,360",
+				"to": "00:20:00,360"
+			},
+			"offsets": {
+				"from": 1198360,
+				"to": 1200360
+			},
+			"text": " Usually it only comes about when people are really desperate."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,360",
+				"to": "00:20:06,360"
+			},
+			"offsets": {
+				"from": 1200360,
+				"to": 1206360
+			},
+			"text": " We had a chance in the United States when the housing debt happened,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,360",
+				"to": "00:20:10,360"
+			},
+			"offsets": {
+				"from": 1206360,
+				"to": 1210360
+			},
+			"text": " and we could have gone and forgiven the housing debt and kept people in their homes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,360",
+				"to": "00:20:12,360"
+			},
+			"offsets": {
+				"from": 1210360,
+				"to": 1212360
+			},
+			"text": " We bailed out the banks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,360",
+				"to": "00:20:14,360"
+			},
+			"offsets": {
+				"from": 1212360,
+				"to": 1214360
+			},
+			"text": " We didn't bail out the homeowners."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,360",
+				"to": "00:20:18,360"
+			},
+			"offsets": {
+				"from": 1214360,
+				"to": 1218360
+			},
+			"text": " Now a lot of those homes are now owned by Berkshire Hathaway."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,360",
+				"to": "00:20:21,360"
+			},
+			"offsets": {
+				"from": 1218360,
+				"to": 1221360
+			},
+			"text": " They're rented back to those people."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,360",
+				"to": "00:20:23,360"
+			},
+			"offsets": {
+				"from": 1221360,
+				"to": 1223360
+			},
+			"text": " It's a level of desperation."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,360",
+				"to": "00:20:25,360"
+			},
+			"offsets": {
+				"from": 1223360,
+				"to": 1225360
+			},
+			"text": " It's going on right now with student debt in the United States."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,360",
+				"to": "00:20:26,360"
+			},
+			"offsets": {
+				"from": 1225360,
+				"to": 1226360
+			},
+			"text": " Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,360",
+				"to": "00:20:31,360"
+			},
+			"offsets": {
+				"from": 1226360,
+				"to": 1231360
+			},
+			"text": " I will read the books, but I was wondering if you could give us a little summary, though,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,360",
+				"to": "00:20:36,360"
+			},
+			"offsets": {
+				"from": 1231360,
+				"to": 1236360
+			},
+			"text": " from the perspective of the people that are holding all of the debt,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,360",
+				"to": "00:20:39,360"
+			},
+			"offsets": {
+				"from": 1236360,
+				"to": 1239360
+			},
+			"text": " and it's getting forgiven, this is a terrible thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,360",
+				"to": "00:20:42,360"
+			},
+			"offsets": {
+				"from": 1239360,
+				"to": 1242360
+			},
+			"text": " and you were saying this, Pardon Kings, two of them were killed, and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,360",
+				"to": "00:20:43,360"
+			},
+			"offsets": {
+				"from": 1242360,
+				"to": 1243360
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,360",
+				"to": "00:20:49,360"
+			},
+			"offsets": {
+				"from": 1243360,
+				"to": 1249360
+			},
+			"text": " So what sort of, how does a society get to a point where it does this non-civil war"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,360",
+				"to": "00:20:51,360"
+			},
+			"offsets": {
+				"from": 1249360,
+				"to": 1251360
+			},
+			"text": " peaceful forgiveness of debt?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,360",
+				"to": "00:20:53,360"
+			},
+			"offsets": {
+				"from": 1251360,
+				"to": 1253360
+			},
+			"text": " What are the conditions that make that happen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,360",
+				"to": "00:20:56,360"
+			},
+			"offsets": {
+				"from": 1253360,
+				"to": 1256360
+			},
+			"text": " In the United States, in the early 20th century,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,360",
+				"to": "00:20:59,360"
+			},
+			"offsets": {
+				"from": 1256360,
+				"to": 1259360
+			},
+			"text": " well, in the 20th century we had the Bolshevik Revolution, the Mao revolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,360",
+				"to": "00:21:01,360"
+			},
+			"offsets": {
+				"from": 1259360,
+				"to": 1261360
+			},
+			"text": " In the United States we had the New Deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,360",
+				"to": "00:21:07,360"
+			},
+			"offsets": {
+				"from": 1261360,
+				"to": 1267360
+			},
+			"text": " The New Deal, the oligarchs hated the New Deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,360",
+				"to": "00:21:14,360"
+			},
+			"offsets": {
+				"from": 1267360,
+				"to": 1274360
+			},
+			"text": " The New Deal of FDR, there was a 95% incremental tax rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,360",
+				"to": "00:21:18,360"
+			},
+			"offsets": {
+				"from": 1274360,
+				"to": 1278360
+			},
+			"text": " My grandfather complained that if he made another dollar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,360",
+				"to": "00:21:21,360"
+			},
+			"offsets": {
+				"from": 1278360,
+				"to": 1281360
+			},
+			"text": " 95 cents of it went to the government, he hated it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,360",
+				"to": "00:21:22,360"
+			},
+			"offsets": {
+				"from": 1281360,
+				"to": 1282360
+			},
+			"text": " He did just fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,360",
+				"to": "00:21:24,360"
+			},
+			"offsets": {
+				"from": 1282360,
+				"to": 1284360
+			},
+			"text": " Don't cry for my grandfather."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,360",
+				"to": "00:21:30,360"
+			},
+			"offsets": {
+				"from": 1284360,
+				"to": 1290360
+			},
+			"text": " So this is what the United States did is they basically taxed their way"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,360",
+				"to": "00:21:32,360"
+			},
+			"offsets": {
+				"from": 1290360,
+				"to": 1292360
+			},
+			"text": " into restoring a middle class."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,360",
+				"to": "00:21:36,360"
+			},
+			"offsets": {
+				"from": 1292360,
+				"to": 1296360
+			},
+			"text": " We had a gilded age, and we crushed it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,360",
+				"to": "00:21:41,360"
+			},
+			"offsets": {
+				"from": 1296360,
+				"to": 1301360
+			},
+			"text": " The United States, I grew up with, sorry, had a middle class."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,360",
+				"to": "00:21:45,360"
+			},
+			"offsets": {
+				"from": 1301360,
+				"to": 1305360
+			},
+			"text": " The United States, I live in now, it's disappearing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,360",
+				"to": "00:21:47,360"
+			},
+			"offsets": {
+				"from": 1305360,
+				"to": 1307360
+			},
+			"text": " It is horrible."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,360",
+				"to": "00:21:49,360"
+			},
+			"offsets": {
+				"from": 1307360,
+				"to": 1309360
+			},
+			"text": " And it erodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,360",
+				"to": "00:21:52,360"
+			},
+			"offsets": {
+				"from": 1309360,
+				"to": 1312360
+			},
+			"text": " So you can do it without a civil war."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,360",
+				"to": "00:21:55,360"
+			},
+			"offsets": {
+				"from": 1312360,
+				"to": 1315360
+			},
+			"text": " You can just do it by having somebody powerful enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,360",
+				"to": "00:22:00,360"
+			},
+			"offsets": {
+				"from": 1315360,
+				"to": 1320360
+			},
+			"text": " that wants to preserve society and keep people from all moving away from their lands,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,360",
+				"to": "00:22:02,360"
+			},
+			"offsets": {
+				"from": 1320360,
+				"to": 1322360
+			},
+			"text": " which is sort of what's going on now in the United States."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,360",
+				"to": "00:22:03,360"
+			},
+			"offsets": {
+				"from": 1322360,
+				"to": 1323360
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,360",
+				"to": "00:22:13,360"
+			},
+			"offsets": {
+				"from": 1323360,
+				"to": 1333360
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,360",
+				"to": "00:22:38,360"
+			},
+			"offsets": {
+				"from": 1333360,
+				"to": 1358360
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

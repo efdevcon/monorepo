@@ -1,0 +1,648 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:28,400"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 28400
+			},
+			"text": " This presentation is called the Gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,400",
+				"to": "00:00:34,480"
+			},
+			"offsets": {
+				"from": 28400,
+				"to": 34480
+			},
+			"text": " to provide minutes, but what it basically is is the ability to refund yourself on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,480",
+				"to": "00:00:39,320"
+			},
+			"offsets": {
+				"from": 34480,
+				"to": 39320
+			},
+			"text": " Ethereum network. It's built into Ethereum and it's effectively an ERC20 that pays for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,320",
+				"to": "00:00:45,520"
+			},
+			"offsets": {
+				"from": 39320,
+				"to": 45520
+			},
+			"text": " your gas. So given that context, you'll be able to understand the rest of this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,520",
+				"to": "00:00:53,280"
+			},
+			"offsets": {
+				"from": 45520,
+				"to": 53280
+			},
+			"text": " And then so the attack given that that token is an exploit whereby anyone who pays for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,280",
+				"to": "00:01:01,080"
+			},
+			"offsets": {
+				"from": 53280,
+				"to": 61080
+			},
+			"text": " a transaction fee can be attacked by minty gas token for you. So in this example, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,080",
+				"to": "00:01:08,240"
+			},
+			"offsets": {
+				"from": 61080,
+				"to": 68240
+			},
+			"text": " exchanges who paid for your withdrawal fees, which is all exchanges in this case, if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,240",
+				"to": "00:01:12,240"
+			},
+			"offsets": {
+				"from": 68240,
+				"to": 72240
+			},
+			"text": " make a withdrawal from an exchange into a contract that you created that has this exploit"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,240",
+				"to": "00:01:18,560"
+			},
+			"offsets": {
+				"from": 72240,
+				"to": 78560
+			},
+			"text": " in it, what ends up happening is the exchange mince gas token for you. So what that means"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,560",
+				"to": "00:01:24,160"
+			},
+			"offsets": {
+				"from": 78560,
+				"to": 84160
+			},
+			"text": " is they pay a very high gas limit in the transaction for your withdrawal of a very small amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,160",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 84160,
+				"to": 90000
+			},
+			"text": " of ETH. And what that does is it prints you a gas token that allows you to profit from"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:35,720"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 95720
+			},
+			"text": " their paying for the withdrawal fee. So in some extreme cases, exchanges pay up to $50 for"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,720",
+				"to": "00:01:41,920"
+			},
+			"offsets": {
+				"from": 95720,
+				"to": 101920
+			},
+			"text": " you to withdraw from their account and effectively you're making $50. So that was the premise"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,920",
+				"to": "00:01:46,400"
+			},
+			"offsets": {
+				"from": 101920,
+				"to": 106400
+			},
+			"text": " of what happened last year and when having pretty much every exchange was affected to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,400",
+				"to": "00:01:54,200"
+			},
+			"offsets": {
+				"from": 106400,
+				"to": 114200
+			},
+			"text": " a very degrees of severity. And who am I? I co-founder of the gas second attack. I do"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,200",
+				"to": "00:01:59,840"
+			},
+			"offsets": {
+				"from": 114200,
+				"to": 119840
+			},
+			"text": " audits with zero trust and we have a wallet company called Ontario. One question that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,840",
+				"to": "00:02:07,240"
+			},
+			"offsets": {
+				"from": 119840,
+				"to": 127240
+			},
+			"text": " I always get with this ask is gas token good. The basic idea is good. It says if you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,240",
+				"to": "00:02:11,560"
+			},
+			"offsets": {
+				"from": 127240,
+				"to": 131560
+			},
+			"text": " to clear some state on the Ethereum network, we'll give you a refund for doing so to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,560",
+				"to": "00:02:15,920"
+			},
+			"offsets": {
+				"from": 131560,
+				"to": 135920
+			},
+			"text": " the state smaller. But what's happened in reality is a lot of people are using it maliciously."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,920",
+				"to": "00:02:21,240"
+			},
+			"offsets": {
+				"from": 135920,
+				"to": 141240
+			},
+			"text": " So people are printing gas token now with the intention of using it later. And that's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,240",
+				"to": "00:02:25,680"
+			},
+			"offsets": {
+				"from": 141240,
+				"to": 145680
+			},
+			"text": " how it was intended to be used, but it is how it is being used now. And how are people"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,680",
+				"to": "00:02:30,120"
+			},
+			"offsets": {
+				"from": 145680,
+				"to": 150120
+			},
+			"text": " using gas token that a lot of people are using it for arbitrage. So when they go to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,120",
+				"to": "00:02:35,600"
+			},
+			"offsets": {
+				"from": 150120,
+				"to": 155600
+			},
+			"text": " make a trade or an arbitrage, whereas anyone in this room will be able to make $1. Someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,600",
+				"to": "00:02:42,160"
+			},
+			"offsets": {
+				"from": 155600,
+				"to": 162160
+			},
+			"text": " using gas token might be able to make $1.10 because their fees are reduced because they"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,160",
+				"to": "00:02:49,160"
+			},
+			"offsets": {
+				"from": 162160,
+				"to": 169160
+			},
+			"text": " have gas tokens. Exchanges can use this as effectively gas futures, but that's a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,160",
+				"to": "00:02:54,120"
+			},
+			"offsets": {
+				"from": 169160,
+				"to": 174120
+			},
+			"text": " longer conversation. Here's one example transaction you can look at later. And the only really"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,120",
+				"to": "00:02:59,960"
+			},
+			"offsets": {
+				"from": 174120,
+				"to": 179960
+			},
+			"text": " important part is this is a withdrawal from an exchange. And you can see here the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,960",
+				"to": "00:03:04,760"
+			},
+			"offsets": {
+				"from": 179960,
+				"to": 184760
+			},
+			"text": " fee is 0.2 either. So this is basically saying that an exchange paid 0.2 either in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,760",
+				"to": "00:03:09,760"
+			},
+			"offsets": {
+				"from": 184760,
+				"to": 189760
+			},
+			"text": " for me and which is for all 0.01 either for my exchange account. So that $34 at the time"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,760",
+				"to": "00:03:16,080"
+			},
+			"offsets": {
+				"from": 189760,
+				"to": 196080
+			},
+			"text": " you came from an exchange. And so it's a very real attack. How can you change this? The"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,080",
+				"to": "00:03:21,080"
+			},
+			"offsets": {
+				"from": 196080,
+				"to": 201080
+			},
+			"text": " answer is don't pay for a user's gas. More frank, the answer is a charge of withdrawal"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,080",
+				"to": "00:03:29,720"
+			},
+			"offsets": {
+				"from": 201080,
+				"to": 209720
+			},
+			"text": " fee that is greater than the fee that the user can mint in gas token. So someone like"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,720",
+				"to": "00:03:36,720"
+			},
+			"offsets": {
+				"from": 209720,
+				"to": 216720
+			},
+			"text": " Coinbase charges $5 over withdrawal fee. A user who wants to withdraw the print gas token"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,720",
+				"to": "00:03:43,720"
+			},
+			"offsets": {
+				"from": 216720,
+				"to": 223720
+			},
+			"text": " can only be able to print less and it wouldn't make an economic sense. A few examples of interfaces"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,720",
+				"to": "00:03:49,560"
+			},
+			"offsets": {
+				"from": 223720,
+				"to": 229560
+			},
+			"text": " that don't, that try to attract a wind gas but it's somewhat dangerous are trust wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,560",
+				"to": "00:03:53,720"
+			},
+			"offsets": {
+				"from": 229560,
+				"to": 233720
+			},
+			"text": " formats and metamask. You'll see here they don't even mention gas. But if you use one"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,720",
+				"to": "00:03:58,520"
+			},
+			"offsets": {
+				"from": 233720,
+				"to": 238520
+			},
+			"text": " of these wallets to send money to someone or send money to a contract, what might happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,520",
+				"to": "00:04:03,120"
+			},
+			"offsets": {
+				"from": 238520,
+				"to": 243120
+			},
+			"text": " is that contract might be trying to cite gas for you and you almost won't even be able"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,120",
+				"to": "00:04:08,920"
+			},
+			"offsets": {
+				"from": 243120,
+				"to": 248920
+			},
+			"text": " to recognize that you're being attacked. So it's pretty dangerous and it's just something"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,920",
+				"to": "00:04:13,920"
+			},
+			"offsets": {
+				"from": 248920,
+				"to": 253920
+			},
+			"text": " to watch out for. And then I'm running out of time here but real quick is some interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,920",
+				"to": "00:04:24,440"
+			},
+			"offsets": {
+				"from": 253920,
+				"to": 264440
+			},
+			"text": " facts. These guys, so some interesting facts about gas as everyone knows the gas price"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,440",
+				"to": "00:04:30,440"
+			},
+			"offsets": {
+				"from": 264440,
+				"to": 270440
+			},
+			"text": " is currently rising. Those two graphs show it. What's seen here is that miners are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,440",
+				"to": "00:04:36,320"
+			},
+			"offsets": {
+				"from": 270440,
+				"to": 276320
+			},
+			"text": " now using gas token. Some of the blocks they mined are only minting gas tokens. So if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,320",
+				"to": "00:04:42,400"
+			},
+			"offsets": {
+				"from": 276320,
+				"to": 282400
+			},
+			"text": " look here they're not collecting any fees. All these transactions are straight from,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,400",
+				"to": "00:04:45,600"
+			},
+			"offsets": {
+				"from": 282400,
+				"to": 285600
+			},
+			"text": " or miners transactions, they're not paying any fees and they're just using the whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,600",
+				"to": "00:04:49,880"
+			},
+			"offsets": {
+				"from": 285600,
+				"to": 289880
+			},
+			"text": " block they mined to print gas token. And it's pretty crazy and it's not how it was meant"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,880",
+				"to": "00:04:54,520"
+			},
+			"offsets": {
+				"from": 289880,
+				"to": 294520
+			},
+			"text": " to be used but we're seeing it happen in the real world. Here's the use of gas token"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,520",
+				"to": "00:05:00,600"
+			},
+			"offsets": {
+				"from": 294520,
+				"to": 300600
+			},
+			"text": " rising over time. The same thing's happening on these classic, nothing's any better. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,600",
+				"to": "00:05:06,560"
+			},
+			"offsets": {
+				"from": 300600,
+				"to": 306560
+			},
+			"text": " finally there are markets for gas token. So people are starting to trade gas token as"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,560",
+				"to": "00:05:11,560"
+			},
+			"offsets": {
+				"from": 306560,
+				"to": 311560
+			},
+			"text": " an ERC 20 token and not as the gas refund it was meant to be. So the point of this talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,560",
+				"to": "00:05:17,040"
+			},
+			"offsets": {
+				"from": 311560,
+				"to": 317040
+			},
+			"text": " was to kind of show you what gas token was and to make you aware of it and to kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,040",
+				"to": "00:05:24,040"
+			},
+			"offsets": {
+				"from": 317040,
+				"to": 324040
+			},
+			"text": " protect yourselves if you're vulnerable. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,040",
+				"to": "00:05:31,040"
+			},
+			"offsets": {
+				"from": 324040,
+				"to": 331040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,040",
+				"to": "00:05:38,040"
+			},
+			"offsets": {
+				"from": 331040,
+				"to": 338040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,040",
+				"to": "00:05:40,780"
+			},
+			"offsets": {
+				"from": 338040,
+				"to": 340780
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

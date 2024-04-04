@@ -1,0 +1,2804 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,400"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18400
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,400",
+				"to": "00:00:25,040"
+			},
+			"offsets": {
+				"from": 18400,
+				"to": 25040
+			},
+			"text": " Hello everyone, I am Uri from Sertora and today we're going to talk about bad proofs in formal"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,040",
+				"to": "00:00:33,040"
+			},
+			"offsets": {
+				"from": 25040,
+				"to": 33040
+			},
+			"text": " verification. Many times people think of formal verification as the holy grail or highest insurance"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,040",
+				"to": "00:00:38,800"
+			},
+			"offsets": {
+				"from": 33040,
+				"to": 38800
+			},
+			"text": " against bugs and yet sometimes we still see that even projects that have been formally verified"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,800",
+				"to": "00:00:45,920"
+			},
+			"offsets": {
+				"from": 38800,
+				"to": 45920
+			},
+			"text": " still contain bugs. For example, this is a high-profile case where we in Sertora have formally"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,920",
+				"to": "00:00:52,960"
+			},
+			"offsets": {
+				"from": 45920,
+				"to": 52960
+			},
+			"text": " verified a specific thing about one of our customers and it still contains a bug in deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,680",
+				"to": "00:00:59,120"
+			},
+			"offsets": {
+				"from": 53680,
+				"to": 59120
+			},
+			"text": " In this lecture we're going to see how that is possible, how it happens and how can we prevent that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,120",
+				"to": "00:01:05,680"
+			},
+			"offsets": {
+				"from": 59120,
+				"to": 65680
+			},
+			"text": " In general the lecture is going to be divided into a few different parts. At first we'll say"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,680",
+				"to": "00:01:12,720"
+			},
+			"offsets": {
+				"from": 65680,
+				"to": 72720
+			},
+			"text": " what is formal verification, what are the proofs that you get out of it, and what does it mean for"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,720",
+				"to": "00:01:21,600"
+			},
+			"offsets": {
+				"from": 72720,
+				"to": 81600
+			},
+			"text": " a proof to be bad. Then we'll showcase two different types of bad proofs and we'll also show you how"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,600",
+				"to": "00:01:28,400"
+			},
+			"offsets": {
+				"from": 81600,
+				"to": 88400
+			},
+			"text": " you can sometimes tell if a proof is bad or not. At the end we'll show you a real-life example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,400",
+				"to": "00:01:33,280"
+			},
+			"offsets": {
+				"from": 88400,
+				"to": 93280
+			},
+			"text": " the same example I've shown you on the previous slide, we'll delve into it deeply and understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,280",
+				"to": "00:01:42,240"
+			},
+			"offsets": {
+				"from": 93280,
+				"to": 102240
+			},
+			"text": " it. Let's go. Formal verification is the process where we take a piece of software and try to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,240",
+				"to": "00:01:51,920"
+			},
+			"offsets": {
+				"from": 102240,
+				"to": 111920
+			},
+			"text": " if it behaves according to some pre-find set of rules. We call those security properties or rules,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,920",
+				"to": "00:01:58,240"
+			},
+			"offsets": {
+				"from": 111920,
+				"to": 118240
+			},
+			"text": " we call them specifications. There are one of the two inputs along with the code that we want to check"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,240",
+				"to": "00:02:06,480"
+			},
+			"offsets": {
+				"from": 118240,
+				"to": 126480
+			},
+			"text": " that we need to feed into the software that executes the formal verification. In this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,480",
+				"to": "00:02:13,040"
+			},
+			"offsets": {
+				"from": 126480,
+				"to": 133040
+			},
+			"text": " for example the Sertor approver. Then after the approver gets those two inputs, it can give us"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,040",
+				"to": "00:02:20,320"
+			},
+			"offsets": {
+				"from": 133040,
+				"to": 140320
+			},
+			"text": " one out of three possible outcomes. One, a proof, that means that in all different cases, ways,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,320",
+				"to": "00:02:28,720"
+			},
+			"offsets": {
+				"from": 140320,
+				"to": 148720
+			},
+			"text": " behaviors, or states, the program behaves as intended. Another is that it doesn't always behave"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,720",
+				"to": "00:02:35,680"
+			},
+			"offsets": {
+				"from": 148720,
+				"to": 155680
+			},
+			"text": " as intended and then we get what we call a counter example, which is often showing us something"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,680",
+				"to": "00:02:43,360"
+			},
+			"offsets": {
+				"from": 155680,
+				"to": 163360
+			},
+			"text": " that is hard to find and very often a bug in our program, an unintended behavior. And also the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,360",
+				"to": "00:02:49,440"
+			},
+			"offsets": {
+				"from": 163360,
+				"to": 169440
+			},
+			"text": " tool king time out and that in that case we don't know if the software is behaving well or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,440",
+				"to": "00:02:58,960"
+			},
+			"offsets": {
+				"from": 169440,
+				"to": 178960
+			},
+			"text": " Let's show that with a simple example of a Solidity pseudocode. This is a transfer function. We're"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,840",
+				"to": "00:03:07,280"
+			},
+			"offsets": {
+				"from": 179840,
+				"to": 187280
+			},
+			"text": " transferring some amount of tokens from one address to the other. And an example of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,280",
+				"to": "00:03:14,320"
+			},
+			"offsets": {
+				"from": 187280,
+				"to": 194320
+			},
+			"text": " specification that we can give to the software that does the formal verification is this invariant"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,320",
+				"to": "00:03:21,120"
+			},
+			"offsets": {
+				"from": 194320,
+				"to": 201120
+			},
+			"text": " that says that the total supply of the token is equal to the sum of the balances of all addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,760",
+				"to": "00:03:28,160"
+			},
+			"offsets": {
+				"from": 201760,
+				"to": 208160
+			},
+			"text": " that hold that token, which makes sense. If we feed those two inputs to the approver,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,160",
+				"to": "00:03:36,880"
+			},
+			"offsets": {
+				"from": 208160,
+				"to": 216880
+			},
+			"text": " we will get a bug. We get a counter example, a specific scenario where that invariant doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,880",
+				"to": "00:03:44,800"
+			},
+			"offsets": {
+				"from": 216880,
+				"to": 224800
+			},
+			"text": " hold anymore. Here we can see that when we pass an amount of 18 from the address of Alice to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,800",
+				"to": "00:03:54,320"
+			},
+			"offsets": {
+				"from": 224800,
+				"to": 234320
+			},
+			"text": " address of Alice, we get a violation. We see that Alice's balance grew by 18 tokens, which it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,320",
+				"to": "00:04:02,800"
+			},
+			"offsets": {
+				"from": 234320,
+				"to": 242800
+			},
+			"text": " shouldn't have. Now the invariant is broken and that's why it's a bug. However, if we try and fix"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,800",
+				"to": "00:04:10,640"
+			},
+			"offsets": {
+				"from": 242800,
+				"to": 250640
+			},
+			"text": " that Solidity code, let's say to this implementation, which doesn't contain bug, we'll actually get"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,640",
+				"to": "00:04:16,880"
+			},
+			"offsets": {
+				"from": 250640,
+				"to": 256880
+			},
+			"text": " a proof. And what does that proof mean? It means that the sum of the balances of the token for"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,880",
+				"to": "00:04:23,200"
+			},
+			"offsets": {
+				"from": 256880,
+				"to": 263200
+			},
+			"text": " all addresses before. And after the transfer is equal. And then we can be sure that it's true"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,200",
+				"to": "00:04:31,200"
+			},
+			"offsets": {
+				"from": 263200,
+				"to": 271200
+			},
+			"text": " no matter which addresses we chose and which amount we've chosen. And that's one of the key"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,200",
+				"to": "00:04:37,680"
+			},
+			"offsets": {
+				"from": 271200,
+				"to": 277680
+			},
+			"text": " advantages of formal verification. It's is exhaustiveness. We're not checking for a specific set of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,680",
+				"to": "00:04:44,960"
+			},
+			"offsets": {
+				"from": 277680,
+				"to": 284960
+			},
+			"text": " inputs, but instead we're covering the entire input space. That way we're able to find bugs that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,960",
+				"to": "00:04:53,440"
+			},
+			"offsets": {
+				"from": 284960,
+				"to": 293440
+			},
+			"text": " often or sometimes missed by humans. Another big advantage is that whenever we get a violation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,440",
+				"to": "00:05:00,640"
+			},
+			"offsets": {
+				"from": 293440,
+				"to": 300640
+			},
+			"text": " it's very easy to verify it. We get specific numbers, specific addresses, and we can see and run it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,640",
+				"to": "00:05:07,200"
+			},
+			"offsets": {
+				"from": 300640,
+				"to": 307200
+			},
+			"text": " ourselves and see if we get a violation or not and try to track and see exactly where the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,200",
+				"to": "00:05:14,160"
+			},
+			"offsets": {
+				"from": 307200,
+				"to": 314160
+			},
+			"text": " lies. And also we can get a proof of correctness, which is something great that we can't really get"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,160",
+				"to": "00:05:22,480"
+			},
+			"offsets": {
+				"from": 314160,
+				"to": 322480
+			},
+			"text": " through many other security methods for smart contracts. However, those proofs are very hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,480",
+				"to": "00:05:27,200"
+			},
+			"offsets": {
+				"from": 322480,
+				"to": 327200
+			},
+			"text": " to verify. Obviously we cannot go ourselves through all the different inputs and see that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,200",
+				"to": "00:05:32,880"
+			},
+			"offsets": {
+				"from": 327200,
+				"to": 332880
+			},
+			"text": " it's true or not. Else we would have done that instead of trying to prove it. Right? And actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,880",
+				"to": "00:05:39,840"
+			},
+			"offsets": {
+				"from": 332880,
+				"to": 339840
+			},
+			"text": " sometimes our proofs don't actually mean what we think they do. Sometimes we're proving something"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,840",
+				"to": "00:05:46,640"
+			},
+			"offsets": {
+				"from": 339840,
+				"to": 346640
+			},
+			"text": " completely different from what we've intended. And those proofs are bad because they can give us a"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,640",
+				"to": "00:05:54,400"
+			},
+			"offsets": {
+				"from": 346640,
+				"to": 354400
+			},
+			"text": " false sense of security. And if we have a false sense of security, we might upload code prematurely"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,400",
+				"to": "00:06:02,800"
+			},
+			"offsets": {
+				"from": 354400,
+				"to": 362800
+			},
+			"text": " that might contain bugs. Let's look deeper into those specifications I've been telling you about."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,960",
+				"to": "00:06:08,720"
+			},
+			"offsets": {
+				"from": 362960,
+				"to": 368720
+			},
+			"text": " This code that you see on the screen behind me is written in a specific language called the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,720",
+				"to": "00:06:15,600"
+			},
+			"offsets": {
+				"from": 368720,
+				"to": 375600
+			},
+			"text": " certioravarification language used for writing specifications. But the same principles hold no"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,600",
+				"to": "00:06:23,360"
+			},
+			"offsets": {
+				"from": 375600,
+				"to": 383360
+			},
+			"text": " matter how you represent your property. The general anatomy is divided into three different parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,360",
+				"to": "00:06:28,960"
+			},
+			"offsets": {
+				"from": 383360,
+				"to": 388960
+			},
+			"text": " The first is the precondition. Then we have an operation and then we have a post condition."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,840",
+				"to": "00:06:36,720"
+			},
+			"offsets": {
+				"from": 389840,
+				"to": 396720
+			},
+			"text": " And if we look at this specific example, here we check that the transfer function behaves as"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,720",
+				"to": "00:06:43,760"
+			},
+			"offsets": {
+				"from": 396720,
+				"to": 403760
+			},
+			"text": " intended. The way we do that is that at first our precondition, we check the balance of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,760",
+				"to": "00:06:51,200"
+			},
+			"offsets": {
+				"from": 403760,
+				"to": 411200
+			},
+			"text": " bug for a specific token. That's our precondition. And we keep that number. Then we do the operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,200",
+				"to": "00:06:58,800"
+			},
+			"offsets": {
+				"from": 411200,
+				"to": 418800
+			},
+			"text": " In this case, it's the transfer function. And after the operation, we check the post condition."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,800",
+				"to": "00:07:05,200"
+			},
+			"offsets": {
+				"from": 418800,
+				"to": 425200
+			},
+			"text": " We check the balance of the tokens of Bob after the transfer and see if it is indeed equal to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,200",
+				"to": "00:07:10,640"
+			},
+			"offsets": {
+				"from": 425200,
+				"to": 430640
+			},
+			"text": " balance Bob had before the transfer plus the amount of tokens we have transferred to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,640",
+				"to": "00:07:22,560"
+			},
+			"offsets": {
+				"from": 430640,
+				"to": 442560
+			},
+			"text": " Let's look at it more visually. When we define a property, we define a starting state by the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,560",
+				"to": "00:07:29,840"
+			},
+			"offsets": {
+				"from": 442560,
+				"to": 449840
+			},
+			"text": " different constraints that we give. And that's the circle. The arrow represents the operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,840",
+				"to": "00:07:38,320"
+			},
+			"offsets": {
+				"from": 449840,
+				"to": 458320
+			},
+			"text": " And then we want to land within one of the desired states, one of the states that satisfy or in which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,320",
+				"to": "00:07:46,240"
+			},
+			"offsets": {
+				"from": 458320,
+				"to": 466240
+			},
+			"text": " the assert expression that we had holds. So the desired behavior is that every state that is within"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,240",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 466240,
+				"to": 474000
+			},
+			"text": " the starting states, if we do the operation, if we draw the arrow, we end up within the green circle."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:57,920"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 477920
+			},
+			"text": " And all of them live within the space of possibilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,920",
+				"to": "00:08:06,800"
+			},
+			"offsets": {
+				"from": 477920,
+				"to": 486800
+			},
+			"text": " When we get a violation, we get into a counter example that means that we started from one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,800",
+				"to": "00:08:12,640"
+			},
+			"offsets": {
+				"from": 486800,
+				"to": 492640
+			},
+			"text": " the starting states. We did an operation. We have an arrow, but that arrow doesn't land within the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,640",
+				"to": "00:08:20,320"
+			},
+			"offsets": {
+				"from": 492640,
+				"to": 500320
+			},
+			"text": " desired states. That's a counter example. That's a violation. That's what might be a bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,320",
+				"to": "00:08:27,520"
+			},
+			"offsets": {
+				"from": 500320,
+				"to": 507520
+			},
+			"text": " And the interesting thing to note is that if the tool cannot find a counter example"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,520",
+				"to": "00:08:33,920"
+			},
+			"offsets": {
+				"from": 507520,
+				"to": 513920
+			},
+			"text": " for the specification or the property that we provided it, then it will output us a proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,920",
+				"to": "00:08:42,400"
+			},
+			"offsets": {
+				"from": 513920,
+				"to": 522400
+			},
+			"text": " And that is because in logic, we define a false statement as a statement to which we can give"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,400",
+				"to": "00:08:51,760"
+			},
+			"offsets": {
+				"from": 522400,
+				"to": 531760
+			},
+			"text": " a counter example. That part covered the first section of this lecture, what are the proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,760",
+				"to": "00:08:56,880"
+			},
+			"offsets": {
+				"from": 531760,
+				"to": 536880
+			},
+			"text": " and what is formal verification. And now we look at two different types of bad proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,880",
+				"to": "00:09:06,240"
+			},
+			"offsets": {
+				"from": 536880,
+				"to": 546240
+			},
+			"text": " The first type is what we call a vacuous rule or vacuous proof. Vacuous is something empty or"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,240",
+				"to": "00:09:12,080"
+			},
+			"offsets": {
+				"from": 546240,
+				"to": 552080
+			},
+			"text": " meaningless or insignificant. And this is better shown by a real-life example."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,080",
+				"to": "00:09:20,480"
+			},
+			"offsets": {
+				"from": 552080,
+				"to": 560480
+			},
+			"text": " I am 29 years old and I don't have any children yet. And I'm claiming the following statement,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,480",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 560480,
+				"to": 566000
+			},
+			"text": " if I let my children drink a long-band coffee, they will sleep better at night."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:34,800"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 574800
+			},
+			"text": " Is that statement true or false? So if we want to say that the statement is false,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,800",
+				"to": "00:09:39,600"
+			},
+			"offsets": {
+				"from": 574800,
+				"to": 579600
+			},
+			"text": " we need to provide a counter example. So we need to start from one of the starting states,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,600",
+				"to": "00:09:44,400"
+			},
+			"offsets": {
+				"from": 579600,
+				"to": 584400
+			},
+			"text": " meaning you need to choose one of my children. Then you need to do the operation, meaning"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,400",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 584400,
+				"to": 590000
+			},
+			"text": " let them drink a Colombian coffee, hopefully not to hot, not to injure them. And then you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:56,960"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 596960
+			},
+			"text": " see that they actually do not fall asleep at night. Can you do that? You cannot do that since I don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,960",
+				"to": "00:10:04,160"
+			},
+			"offsets": {
+				"from": 596960,
+				"to": 604160
+			},
+			"text": " have any children. And therefore, there is no counter example to that claim. If we don't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,160",
+				"to": "00:10:10,640"
+			},
+			"offsets": {
+				"from": 604160,
+				"to": 610640
+			},
+			"text": " a counter example to a claim, the claim is true. Here it's true vacuously. We don't have a starting"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,640",
+				"to": "00:10:17,760"
+			},
+			"offsets": {
+				"from": 610640,
+				"to": 617760
+			},
+			"text": " state, so it's true. However, I can also say something that apparently seems completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,760",
+				"to": "00:10:24,160"
+			},
+			"offsets": {
+				"from": 617760,
+				"to": 624160
+			},
+			"text": " contradictory. I can say that if I let my children drink Colombian coffee, they will not sleep at night."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,160",
+				"to": "00:10:31,120"
+			},
+			"offsets": {
+				"from": 624160,
+				"to": 631120
+			},
+			"text": " Sounds completely the opposite. Yet the same principles still hold. You still cannot provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,120",
+				"to": "00:10:38,080"
+			},
+			"offsets": {
+				"from": 631120,
+				"to": 638080
+			},
+			"text": " a counter example here. I still don't have a child. And therefore, that statement is also true."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,080",
+				"to": "00:10:46,160"
+			},
+			"offsets": {
+				"from": 638080,
+				"to": 646160
+			},
+			"text": " If we look at it visually, we just don't have any starting states, and we don't have any arrows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,160",
+				"to": "00:10:52,640"
+			},
+			"offsets": {
+				"from": 646160,
+				"to": 652640
+			},
+			"text": " and therefore, we cannot have a counter example. Let's look at a code example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,640",
+				"to": "00:10:59,920"
+			},
+			"offsets": {
+				"from": 652640,
+				"to": 659920
+			},
+			"text": " This balance of function belongs to a token of open Zeppelin. And the interesting part about it"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,920",
+				"to": "00:11:06,080"
+			},
+			"offsets": {
+				"from": 659920,
+				"to": 666080
+			},
+			"text": " is that we require that the address that we check the balance of cannot be addressed zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,080",
+				"to": "00:11:15,600"
+			},
+			"offsets": {
+				"from": 666080,
+				"to": 675600
+			},
+			"text": " One of Sertura's employees was working on open Zeppelin contract, as was writing a rule of property"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,600",
+				"to": "00:11:23,520"
+			},
+			"offsets": {
+				"from": 675600,
+				"to": 683520
+			},
+			"text": " that he thought should hold on the tokens of open Zeppelin. However, that rule, that specification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,520",
+				"to": "00:11:28,720"
+			},
+			"offsets": {
+				"from": 683520,
+				"to": 688720
+			},
+			"text": " contained an error. You see, in the middle of the rule, we have this requirement that the balance"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,720",
+				"to": "00:11:36,160"
+			},
+			"offsets": {
+				"from": 688720,
+				"to": 696160
+			},
+			"text": " of the address zero for a given token must be zero. That can never happen because every call"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,160",
+				"to": "00:11:43,040"
+			},
+			"offsets": {
+				"from": 696160,
+				"to": 703040
+			},
+			"text": " to the function balance off for the address zero will revert. And if it reverts in particular,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,040",
+				"to": "00:11:50,560"
+			},
+			"offsets": {
+				"from": 703040,
+				"to": 710560
+			},
+			"text": " it never returns back the value zero. Therefore, nothing can satisfy this requirement."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,560",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 710560,
+				"to": 718000
+			},
+			"text": " If nothing can satisfy this requirement, we don't have any starting states. This is a vacuous rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,640",
+				"to": "00:12:04,720"
+			},
+			"offsets": {
+				"from": 718640,
+				"to": 724720
+			},
+			"text": " And therefore, it doesn't actually matter what appears later in the rule after that requirement."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,720",
+				"to": "00:12:11,280"
+			},
+			"offsets": {
+				"from": 724720,
+				"to": 731280
+			},
+			"text": " It will be true no matter what we do. And in fact, I could try and assert something completely ridiculous."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,280",
+				"to": "00:12:20,320"
+			},
+			"offsets": {
+				"from": 731280,
+				"to": 740320
+			},
+			"text": " I can assert that zero is greater than one. And that would still be true because you cannot"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,320",
+				"to": "00:12:27,280"
+			},
+			"offsets": {
+				"from": 740320,
+				"to": 747280
+			},
+			"text": " still give me any counter examples. And when a rule is vacuous, we can prove anything we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,440",
+				"to": "00:12:35,440"
+			},
+			"offsets": {
+				"from": 747440,
+				"to": 755440
+			},
+			"text": " Unfortunately, vacuous rules are not just an academic concern."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,440",
+				"to": "00:12:42,880"
+			},
+			"offsets": {
+				"from": 755440,
+				"to": 762880
+			},
+			"text": " Formal verification has been used a lot on hardware along the years, and studies have found that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,880",
+				"to": "00:12:51,280"
+			},
+			"offsets": {
+				"from": 762880,
+				"to": 771280
+			},
+			"text": " about 20% of specifications written on hardware on the first time are actually vacuous. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,280",
+				"to": "00:12:57,280"
+			},
+			"offsets": {
+				"from": 771280,
+				"to": 777280
+			},
+			"text": " whenever they are vacuous, they hint at a real problem, either at the code you are trying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,280",
+				"to": "00:13:05,040"
+			},
+			"offsets": {
+				"from": 777280,
+				"to": 785040
+			},
+			"text": " verify or at your specification. So this is a pressing problem, but fortunately, we have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,040",
+				"to": "00:13:13,280"
+			},
+			"offsets": {
+				"from": 785040,
+				"to": 793280
+			},
+			"text": " ways to try and catch them. And one of the ways that we use in Sertora is doing what we call a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,280",
+				"to": "00:13:20,240"
+			},
+			"offsets": {
+				"from": 793280,
+				"to": 800240
+			},
+			"text": " reachability check. What we do is that we take the same specification as before exactly as it is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,960",
+				"to": "00:13:29,920"
+			},
+			"offsets": {
+				"from": 800960,
+				"to": 809920
+			},
+			"text": " and add something at the end. We add an assertion of false. Obviously, assertion of false is always"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,920",
+				"to": "00:13:36,320"
+			},
+			"offsets": {
+				"from": 809920,
+				"to": 816320
+			},
+			"text": " false, so we expect the rule to fail. We expect to get a counter example, right, because nothing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,320",
+				"to": "00:13:45,840"
+			},
+			"offsets": {
+				"from": 816320,
+				"to": 825840
+			},
+			"text": " can satisfy false. However, if we do not get a counter example, if the rule is proven, that that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,840",
+				"to": "00:13:52,080"
+			},
+			"offsets": {
+				"from": 825840,
+				"to": 832080
+			},
+			"text": " means we didn't actually reach that last line of the specification. We didn't reach that last"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,080",
+				"to": "00:13:58,320"
+			},
+			"offsets": {
+				"from": 832080,
+				"to": 838320
+			},
+			"text": " line of the specification because that requirement erased out all the possible starting states."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,320",
+				"to": "00:14:02,640"
+			},
+			"offsets": {
+				"from": 838320,
+				"to": 842640
+			},
+			"text": " It doesn't matter, we never reach that last line, and that's how we check that. We say"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,640",
+				"to": "00:14:08,960"
+			},
+			"offsets": {
+				"from": 842640,
+				"to": 848960
+			},
+			"text": " something absurd at the end, and we see if we fail or not. If we don't fail, that's the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,960",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 848960,
+				"to": 858000
+			},
+			"text": " That's when we know that a rule is vacuous. For completeness, I will say that usually when we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:25,360"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 865360
+			},
+			"text": " vacuous rules, it's not due to one precondition, one requirement that is never satisfiable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,360",
+				"to": "00:14:33,280"
+			},
+			"offsets": {
+				"from": 865360,
+				"to": 873280
+			},
+			"text": " It's usually due to a combination that their intersection is actually empty and not satisfiable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,280",
+				"to": "00:14:39,680"
+			},
+			"offsets": {
+				"from": 873280,
+				"to": 879680
+			},
+			"text": " but each part by its own makes sense. For example, here, if we require that x is smaller than y,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,680",
+				"to": "00:14:45,920"
+			},
+			"offsets": {
+				"from": 879680,
+				"to": 885920
+			},
+			"text": " maybe we can prove the property. Let's say we add another requirement, y is smaller than z."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,920",
+				"to": "00:14:50,160"
+			},
+			"offsets": {
+				"from": 885920,
+				"to": 890160
+			},
+			"text": " Now, we limit the starting states only to be the intersection."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,160",
+				"to": "00:14:58,560"
+			},
+			"offsets": {
+				"from": 890160,
+				"to": 898560
+			},
+			"text": " And if we add this third requirement that z is smaller than x, then we have no intersection"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,560",
+				"to": "00:15:04,800"
+			},
+			"offsets": {
+				"from": 898560,
+				"to": 904800
+			},
+			"text": " anymore. Here, by transitivity, we say that x is smaller than itself, and that's never true for"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,800",
+				"to": "00:15:10,880"
+			},
+			"offsets": {
+				"from": 904800,
+				"to": 910880
+			},
+			"text": " any number, therefore we don't have any starting states, and this rules vacuous. But note that some"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,880",
+				"to": "00:15:19,600"
+			},
+			"offsets": {
+				"from": 910880,
+				"to": 919600
+			},
+			"text": " combination of those requirements could make for a sensible rule. Moving on to the next type of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,600",
+				"to": "00:15:25,200"
+			},
+			"offsets": {
+				"from": 919600,
+				"to": 925200
+			},
+			"text": " bad proofs, we're going to talk about totalgies. A totalgies is something that is always true,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,400",
+				"to": "00:15:31,520"
+			},
+			"offsets": {
+				"from": 926400,
+				"to": 931520
+			},
+			"text": " and therefore is actually not telling us anything useful about the code that we're trying to prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,520",
+				"to": "00:15:40,080"
+			},
+			"offsets": {
+				"from": 931520,
+				"to": 940080
+			},
+			"text": " things on. For example, let's look at this rule. If this rule tries to check again the integrity"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,080",
+				"to": "00:15:45,920"
+			},
+			"offsets": {
+				"from": 940080,
+				"to": 945920
+			},
+			"text": " of the transfer function, we check that the balance of a recipient is zero, then we transfer"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,920",
+				"to": "00:15:51,440"
+			},
+			"offsets": {
+				"from": 945920,
+				"to": 951440
+			},
+			"text": " some positive amounts of tokens to that recipient, then we assert that the balance of tokens for"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,440",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 951440,
+				"to": 958000
+			},
+			"text": " that recipient actually grew. However, this rule on the screen is wrong because we didn't check the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:03,840"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 963840
+			},
+			"text": " balance of the user before and after the transfer, we checked that the balance of the user after the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,840",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 963840,
+				"to": 970000
+			},
+			"text": " transfer is not smaller than itself, and this is something that's always true for any number,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:15,520"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 975520
+			},
+			"text": " and that's a problem. Because in this case, we didn't actually check what the transfer function"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,520",
+				"to": "00:16:20,160"
+			},
+			"offsets": {
+				"from": 975520,
+				"to": 980160
+			},
+			"text": " is doing. We're checking something that is always true. The transfer function could burn all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,160",
+				"to": "00:16:25,520"
+			},
+			"offsets": {
+				"from": 980160,
+				"to": 985520
+			},
+			"text": " tokens, could send all the tokens to me, or it could do something entirely different and not move any"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,520",
+				"to": "00:16:31,440"
+			},
+			"offsets": {
+				"from": 985520,
+				"to": 991440
+			},
+			"text": " tokens around. We don't know, we didn't actually check that. If we look at it visually at what"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,440",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 991440,
+				"to": 996000
+			},
+			"text": " all the other things are always true, so it encompasses the entire space of possibilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:41,840"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 1001840
+			},
+			"text": " So here, the arrow representing the operation lands somewhere within the space of possibilities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,840",
+				"to": "00:16:46,800"
+			},
+			"offsets": {
+				"from": 1001840,
+				"to": 1006800
+			},
+			"text": " and therefore it's true. The problem is that we could have drawn any arrow, we could have done"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,800",
+				"to": "00:16:52,320"
+			},
+			"offsets": {
+				"from": 1006800,
+				"to": 1012320
+			},
+			"text": " any operation, and it would still be true, so we didn't check anything specifically about our code"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,320",
+				"to": "00:16:59,600"
+			},
+			"offsets": {
+				"from": 1012320,
+				"to": 1019600
+			},
+			"text": " at all. The way, one of the ways that we find the ontology in the insertor is that we remove"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,600",
+				"to": "00:17:08,080"
+			},
+			"offsets": {
+				"from": 1019600,
+				"to": 1028080
+			},
+			"text": " all the preconditions and all the operations just live the assertion at the end and see if it still"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,080",
+				"to": "00:17:15,040"
+			},
+			"offsets": {
+				"from": 1028080,
+				"to": 1035040
+			},
+			"text": " passes or not. If it passes, it means that it does not depend on the requirements and the operation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,040",
+				"to": "00:17:20,960"
+			},
+			"offsets": {
+				"from": 1035040,
+				"to": 1040960
+			},
+			"text": " it's something that is just always true, and therefore it's a tautology. So here in this example, we just"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,960",
+				"to": "00:17:27,040"
+			},
+			"offsets": {
+				"from": 1040960,
+				"to": 1047040
+			},
+			"text": " remove all the lines both the last two, and in this case this rule would pass, it would always be true,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,040",
+				"to": "00:17:34,080"
+			},
+			"offsets": {
+				"from": 1047040,
+				"to": 1054080
+			},
+			"text": " and that hints that it's a tautology. And now it's time to delve into the real life example"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,080",
+				"to": "00:17:36,240"
+			},
+			"offsets": {
+				"from": 1054080,
+				"to": 1056240
+			},
+			"text": " I've shown you briefly at the beginning of the lecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,240",
+				"to": "00:17:44,800"
+			},
+			"offsets": {
+				"from": 1056240,
+				"to": 1064800
+			},
+			"text": " Before that, I need to introduce you some new notion, a notion of an invariant. An invariant"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,800",
+				"to": "00:17:51,280"
+			},
+			"offsets": {
+				"from": 1064800,
+				"to": 1071280
+			},
+			"text": " is something that is always true. In particular, it's something that is kept after doing some"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,280",
+				"to": "00:18:00,400"
+			},
+			"offsets": {
+				"from": 1071280,
+				"to": 1080400
+			},
+			"text": " operations. In our case, it's calling functions of a smart contract. The way that we prove invariants"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,400",
+				"to": "00:18:06,800"
+			},
+			"offsets": {
+				"from": 1080400,
+				"to": 1086800
+			},
+			"text": " is by induction, and you might be familiar with it from school. It's similar to proving by induction"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,800",
+				"to": "00:18:12,400"
+			},
+			"offsets": {
+				"from": 1086800,
+				"to": 1092400
+			},
+			"text": " things about natural numbers. We have the base of the induction. We're trying to see if the condition"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,400",
+				"to": "00:18:19,120"
+			},
+			"offsets": {
+				"from": 1092400,
+				"to": 1099120
+			},
+			"text": " is true right after calling the constructor. And then we're doing the step of the induction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,120",
+				"to": "00:18:25,680"
+			},
+			"offsets": {
+				"from": 1099120,
+				"to": 1105680
+			},
+			"text": " That is, we assume that the invariant holds. We operate some function of the contract that must be"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,680",
+				"to": "00:18:33,760"
+			},
+			"offsets": {
+				"from": 1105680,
+				"to": 1113760
+			},
+			"text": " public or external. And then we check that it's still true after. The same condition is true after."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,760",
+				"to": "00:18:39,040"
+			},
+			"offsets": {
+				"from": 1113760,
+				"to": 1119040
+			},
+			"text": " If we do that, we get that the invariant is true, the same when the induction proof that things are"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,040",
+				"to": "00:18:43,920"
+			},
+			"offsets": {
+				"from": 1119040,
+				"to": 1123920
+			},
+			"text": " true. The interesting thing here is that we check for every possible function of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,920",
+				"to": "00:18:53,520"
+			},
+			"offsets": {
+				"from": 1123920,
+				"to": 1133520
+			},
+			"text": " And this example belongs to Notional, which is one of Sertura's customers. And they were using"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,520",
+				"to": "00:18:59,280"
+			},
+			"offsets": {
+				"from": 1133520,
+				"to": 1139280
+			},
+			"text": " our tool and writing a specification. And we'll go over it. It's a more complex example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,280",
+				"to": "00:19:07,200"
+			},
+			"offsets": {
+				"from": 1139280,
+				"to": 1147200
+			},
+			"text": " because it's a real-life example. What they tried to prove here is that an asset in their system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,200",
+				"to": "00:19:13,760"
+			},
+			"offsets": {
+				"from": 1147200,
+				"to": 1153760
+			},
+			"text": " and their system allows lending and borrowing at fixed rates, by the way. An asset cannot be"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,760",
+				"to": "00:19:20,560"
+			},
+			"offsets": {
+				"from": 1153760,
+				"to": 1160560
+			},
+			"text": " counted both as a bitmap asset and as an active asset. And here we see that they try to reach"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,560",
+				"to": "00:19:25,280"
+			},
+			"offsets": {
+				"from": 1160560,
+				"to": 1165280
+			},
+			"text": " that conclusion at the end. The highlight line at the end says that the same currency can't be"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,280",
+				"to": "00:19:33,760"
+			},
+			"offsets": {
+				"from": 1165280,
+				"to": 1173760
+			},
+			"text": " both active and bitmap. The first line here is just a natural requirement on the index of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,760",
+				"to": "00:19:40,160"
+			},
+			"offsets": {
+				"from": 1173760,
+				"to": 1180160
+			},
+			"text": " asset, and it's not very interesting. And the rest is where it starts to get a bit more complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,160",
+				"to": "00:19:44,800"
+			},
+			"offsets": {
+				"from": 1180160,
+				"to": 1184800
+			},
+			"text": " Here we see we have one statement that says that the bitmap currency cannot be zero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,800",
+				"to": "00:19:52,080"
+			},
+			"offsets": {
+				"from": 1184800,
+				"to": 1192080
+			},
+			"text": " and that will always have to be true. Then we have another statement that has an or sign."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,080",
+				"to": "00:19:57,200"
+			},
+			"offsets": {
+				"from": 1192080,
+				"to": 1197200
+			},
+			"text": " And if we look at the first part of it, we see that we require that the active unmasked currency"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,200",
+				"to": "00:20:03,840"
+			},
+			"offsets": {
+				"from": 1197200,
+				"to": 1203840
+			},
+			"text": " is equal to zero. So if you look just at that part of the or statement, we see that the bitmap"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,840",
+				"to": "00:20:10,800"
+			},
+			"offsets": {
+				"from": 1203840,
+				"to": 1210800
+			},
+			"text": " currency is not zero, and the active currency is zero. So zero and non-zero are always different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,800",
+				"to": "00:20:18,400"
+			},
+			"offsets": {
+				"from": 1210800,
+				"to": 1218400
+			},
+			"text": " so the conclusion is true, trivially true. What happens if you look at the other part of the or"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,400",
+				"to": "00:20:26,320"
+			},
+			"offsets": {
+				"from": 1218400,
+				"to": 1226320
+			},
+			"text": " statement? Here we require that the active mass currency is zero. Innotional system assets are"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,320",
+				"to": "00:20:34,560"
+			},
+			"offsets": {
+				"from": 1226320,
+				"to": 1234560
+			},
+			"text": " represented using 14 bits plus two more bits for a mask. So the mask encompasses all 16 bits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,560",
+				"to": "00:20:40,720"
+			},
+			"offsets": {
+				"from": 1234560,
+				"to": 1240720
+			},
+			"text": " and the unmasked encompasses the lower 14. But if the mass currency is all zeros,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,720",
+				"to": "00:20:48,240"
+			},
+			"offsets": {
+				"from": 1240720,
+				"to": 1248240
+			},
+			"text": " it means that the unmask currency must also all be zeros. Therefore, it follows that it is zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,240",
+				"to": "00:20:54,080"
+			},
+			"offsets": {
+				"from": 1248240,
+				"to": 1254080
+			},
+			"text": " itself, and we have actually reached the same statement as we've reached before, meaning if the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,080",
+				"to": "00:20:59,680"
+			},
+			"offsets": {
+				"from": 1254080,
+				"to": 1259680
+			},
+			"text": " bitmap currency is not zero, and the active currency is zero, then they must be different."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,680",
+				"to": "00:21:04,400"
+			},
+			"offsets": {
+				"from": 1259680,
+				"to": 1264400
+			},
+			"text": " And that's always true, because zero is always different than non-zero. And in total, we get that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,400",
+				"to": "00:21:11,360"
+			},
+			"offsets": {
+				"from": 1264400,
+				"to": 1271360
+			},
+			"text": " this entire statement, although complex, is just a totalg, hard to see, and you can understand why"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,360",
+				"to": "00:21:18,000"
+			},
+			"offsets": {
+				"from": 1271360,
+				"to": 1278000
+			},
+			"text": " the person that wrote it could make that mistake. It's not apparent, but this is indeed a totalg."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,000",
+				"to": "00:21:26,080"
+			},
+			"offsets": {
+				"from": 1280000,
+				"to": 1286080
+			},
+			"text": " And unfortunately, the code was deployed thinking that it cannot contain that bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,080",
+				"to": "00:21:33,520"
+			},
+			"offsets": {
+				"from": 1286080,
+				"to": 1293520
+			},
+			"text": " And unfortunately, it did. The bug lied in this specific function, enable bitmap currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,520",
+				"to": "00:21:39,760"
+			},
+			"offsets": {
+				"from": 1293520,
+				"to": 1299760
+			},
+			"text": " And it's a bit hard to see the bug itself, so I'm just going to show you the exploit scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,760",
+				"to": "00:21:47,040"
+			},
+			"offsets": {
+				"from": 1299760,
+				"to": 1307040
+			},
+			"text": " The exploit scenario goes like this. We enable the bitmap currency for an account, let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,040",
+				"to": "00:21:54,320"
+			},
+			"offsets": {
+				"from": 1307040,
+				"to": 1314320
+			},
+			"text": " ETH. We deposit a second currency for that account, let's say die, and then we try to enable"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,320",
+				"to": "00:22:04,560"
+			},
+			"offsets": {
+				"from": 1314320,
+				"to": 1324560
+			},
+			"text": " die now as the bitmap currency. Due to the bug, now die will be counted both as an active asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,560",
+				"to": "00:22:10,800"
+			},
+			"offsets": {
+				"from": 1324560,
+				"to": 1330800
+			},
+			"text": " and as a bitmap asset. That means it will be counted twice. It means that the user collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,800",
+				"to": "00:22:15,600"
+			},
+			"offsets": {
+				"from": 1330800,
+				"to": 1335600
+			},
+			"text": " will be larger than it truly is, and therefore we could borrow more money that we should,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,240",
+				"to": "00:22:24,080"
+			},
+			"offsets": {
+				"from": 1336240,
+				"to": 1344080
+			},
+			"text": " and therefore we can drain funds from the system. Fortunately, this bug was found by a white hat,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,080",
+				"to": "00:22:33,520"
+			},
+			"offsets": {
+				"from": 1344080,
+				"to": 1353520
+			},
+			"text": " so no real damage was done. Notional had to pay the maximum bounty amount of 1 million USD,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,520",
+				"to": "00:22:40,560"
+			},
+			"offsets": {
+				"from": 1353520,
+				"to": 1360560
+			},
+			"text": " but no real damage was done. The interesting thing is that this invariant I've shown before"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,560",
+				"to": "00:22:45,920"
+			},
+			"offsets": {
+				"from": 1360560,
+				"to": 1365920
+			},
+			"text": " is pretty close to the correct one. The correct one, the fixed invariant, will look something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,400",
+				"to": "00:22:52,080"
+			},
+			"offsets": {
+				"from": 1366400,
+				"to": 1372080
+			},
+			"text": " Actually looks simpler in this case. And the interesting thing to see is that if we run this"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,080",
+				"to": "00:22:58,720"
+			},
+			"offsets": {
+				"from": 1372080,
+				"to": 1378720
+			},
+			"text": " invariant on the buggy version of the code, we get the exact same counter example, where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,720",
+				"to": "00:23:04,640"
+			},
+			"offsets": {
+				"from": 1378720,
+				"to": 1384640
+			},
+			"text": " set one token as a bitmap currency, deposit another token, then move the bitmap currency"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,640",
+				"to": "00:23:09,360"
+			},
+			"offsets": {
+				"from": 1384640,
+				"to": 1389360
+			},
+			"text": " to be the other active currency. We get this exact counter example."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,160",
+				"to": "00:23:17,920"
+			},
+			"offsets": {
+				"from": 1392160,
+				"to": 1397920
+			},
+			"text": " Notional used some of the top wire draws in the field and formalification and missed it. However,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,920",
+				"to": "00:23:23,120"
+			},
+			"offsets": {
+				"from": 1397920,
+				"to": 1403120
+			},
+			"text": " it's interesting to see that if they use formal verification correctly, they could have caught this"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,120",
+				"to": "00:23:31,680"
+			},
+			"offsets": {
+				"from": 1403120,
+				"to": 1411680
+			},
+			"text": " critical bug. So not only can we catch the bug with the fixed rule version, we can also verify the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,680",
+				"to": "00:23:38,320"
+			},
+			"offsets": {
+				"from": 1411680,
+				"to": 1418320
+			},
+			"text": " fix, right? Because the specification doesn't change when the code changes, so we can run it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,080",
+				"to": "00:23:49,040"
+			},
+			"offsets": {
+				"from": 1420080,
+				"to": 1429040
+			},
+			"text": " And more importantly, this incident was a catalyst for Satora to invest in ways to catch bad proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,040",
+				"to": "00:23:56,880"
+			},
+			"offsets": {
+				"from": 1429040,
+				"to": 1436880
+			},
+			"text": " and ensure quality of specifications automatically. And today, you could have caught that the buggy"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,880",
+				"to": "00:24:05,040"
+			},
+			"offsets": {
+				"from": 1436880,
+				"to": 1445040
+			},
+			"text": " invariant was a totality using the method that I've shown you before, meaning that we just take it"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,600",
+				"to": "00:24:12,480"
+			},
+			"offsets": {
+				"from": 1445600,
+				"to": 1452480
+			},
+			"text": " and require this condition without having the precondition, without having any operation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,480",
+				"to": "00:24:15,760"
+			},
+			"offsets": {
+				"from": 1452480,
+				"to": 1455760
+			},
+			"text": " we would have seen that this would hold because it's a totality, and therefore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,760",
+				"to": "00:24:23,440"
+			},
+			"offsets": {
+				"from": 1455760,
+				"to": 1463440
+			},
+			"text": " this mistake would not be possible with our tool today. And we are still working on more ways to"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,440",
+				"to": "00:24:30,480"
+			},
+			"offsets": {
+				"from": 1463440,
+				"to": 1470480
+			},
+			"text": " ensuring qualities of good specification and catching more possible bugs and bad types of proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,800",
+				"to": "00:24:36,240"
+			},
+			"offsets": {
+				"from": 1470800,
+				"to": 1476240
+			},
+			"text": " [pause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,240",
+				"to": "00:24:44,880"
+			},
+			"offsets": {
+				"from": 1476240,
+				"to": 1484880
+			},
+			"text": " To sum it up, specifications are written by humans just like code is, and they are equally or even"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,880",
+				"to": "00:24:49,760"
+			},
+			"offsets": {
+				"from": 1484880,
+				"to": 1489760
+			},
+			"text": " harder to write. This is something you have to keep in mind. You shouldn't expect your"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,760",
+				"to": "00:24:55,200"
+			},
+			"offsets": {
+				"from": 1489760,
+				"to": 1495200
+			},
+			"text": " specifications to be perfect like you don't expect your code to be perfect. Therefore, you should"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,200",
+				"to": "00:25:01,200"
+			},
+			"offsets": {
+				"from": 1495200,
+				"to": 1501200
+			},
+			"text": " always check your spec. It's good if other another person reviews it, if an expert reviews it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,200",
+				"to": "00:25:06,000"
+			},
+			"offsets": {
+				"from": 1501200,
+				"to": 1506000
+			},
+			"text": " and also even better to use some automatic checks like we insert or provide you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,000",
+				"to": "00:25:13,040"
+			},
+			"offsets": {
+				"from": 1506000,
+				"to": 1513040
+			},
+			"text": " You should always suspect what the tool gives you, like you would any other security tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,040",
+				"to": "00:25:17,760"
+			},
+			"offsets": {
+				"from": 1513040,
+				"to": 1517760
+			},
+			"text": " When you get a bug, it's always a good result because you can always check it and see if it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,760",
+				"to": "00:25:22,640"
+			},
+			"offsets": {
+				"from": 1517760,
+				"to": 1522640
+			},
+			"text": " good or not. However, when you get a proof, you don't have a good way to verify it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,640",
+				"to": "00:25:29,040"
+			},
+			"offsets": {
+				"from": 1522640,
+				"to": 1529040
+			},
+			"text": " and the best course of action is to be suspicious of it. Don't take it blindly and just upload your"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,040",
+				"to": "00:25:35,120"
+			},
+			"offsets": {
+				"from": 1529040,
+				"to": 1535120
+			},
+			"text": " code. And obviously, we could have seen that writing the correct specifications, you can still"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,120",
+				"to": "00:25:40,480"
+			},
+			"offsets": {
+				"from": 1535120,
+				"to": 1540480
+			},
+			"text": " find bugs that are worth millions or billions of dollars. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,480",
+				"to": "00:25:49,520"
+			},
+			"offsets": {
+				"from": 1540480,
+				"to": 1549520
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,520",
+				"to": "00:25:56,720"
+			},
+			"offsets": {
+				"from": 1549520,
+				"to": 1556720
+			},
+			"text": " I would like to take some questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,720",
+				"to": "00:26:06,880"
+			},
+			"offsets": {
+				"from": 1556720,
+				"to": 1566880
+			},
+			"text": " Thank you. So, great presentation. So, it seems from what you explained that"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,880",
+				"to": "00:26:17,120"
+			},
+			"offsets": {
+				"from": 1566880,
+				"to": 1577120
+			},
+			"text": " when you have a bad proof that is vacuose, you can just detect it just with a coverage report,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,120",
+				"to": "00:26:24,560"
+			},
+			"offsets": {
+				"from": 1577120,
+				"to": 1584560
+			},
+			"text": " let's say, in which part of your specification was never rich. So, it's like immediate. But when"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,560",
+				"to": "00:26:33,280"
+			},
+			"offsets": {
+				"from": 1584560,
+				"to": 1593280
+			},
+			"text": " you have a tautology, it's more difficult because you will need to remove, let's say, preconditions"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,280",
+				"to": "00:26:38,480"
+			},
+			"offsets": {
+				"from": 1593280,
+				"to": 1598480
+			},
+			"text": " and removing preconditions, you can have like 10 preconditions. You don't know which one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,480",
+				"to": "00:26:45,120"
+			},
+			"offsets": {
+				"from": 1598480,
+				"to": 1605120
+			},
+			"text": " perhaps a combination of this. So, what is your view on this? Is it correct that it's easier to"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,120",
+				"to": "00:26:50,000"
+			},
+			"offsets": {
+				"from": 1605120,
+				"to": 1610000
+			},
+			"text": " detect vacuose than tautologies? Okay, so one thing I want to emphasize,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:50,000",
+				"to": "00:26:54,480"
+			},
+			"offsets": {
+				"from": 1610000,
+				"to": 1614480
+			},
+			"text": " the checks that I've shown you don't catch all types of the Q-it-Is and not all types of"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,480",
+				"to": "00:26:59,840"
+			},
+			"offsets": {
+				"from": 1614480,
+				"to": 1619840
+			},
+			"text": " tautologies, just catches only the simplest types. And I've chosen to present them to you because"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,840",
+				"to": "00:27:04,560"
+			},
+			"offsets": {
+				"from": 1619840,
+				"to": 1624560
+			},
+			"text": " they're the easiest to explain in a 20-minute slot. They're actually more involved checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,560",
+				"to": "00:27:10,720"
+			},
+			"offsets": {
+				"from": 1624560,
+				"to": 1630720
+			},
+			"text": " that try to cover more and more cases. We don't cover all of them currently. It's an ongoing effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:10,720",
+				"to": "00:27:16,960"
+			},
+			"offsets": {
+				"from": 1630720,
+				"to": 1636960
+			},
+			"text": " in Sertora or in a phone verification at large. Maybe it was not clear, so I'm just going to say"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,960",
+				"to": "00:27:22,400"
+			},
+			"offsets": {
+				"from": 1636960,
+				"to": 1642400
+			},
+			"text": " something simple. The removal of all the preconditions and operations is done automatically by Sertora."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,400",
+				"to": "00:27:29,360"
+			},
+			"offsets": {
+				"from": 1642400,
+				"to": 1649360
+			},
+			"text": " It's an automatic check. So, in that sense, it's not harder. So, if I understand the question correctly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,360",
+				"to": "00:27:34,960"
+			},
+			"offsets": {
+				"from": 1649360,
+				"to": 1654960
+			},
+			"text": " you say, \"How can I fix it?\" Which part of this statement causes it to be a tautology? And that"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:34,960",
+				"to": "00:27:39,840"
+			},
+			"offsets": {
+				"from": 1654960,
+				"to": 1659840
+			},
+			"text": " it indeed sometimes more difficult. But it's something that you can do systematically. Say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,840",
+				"to": "00:27:47,200"
+			},
+			"offsets": {
+				"from": 1659840,
+				"to": 1667200
+			},
+			"text": " your expression is an OR expression. You can check each part of the OR independently and see"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,200",
+				"to": "00:27:51,200"
+			},
+			"offsets": {
+				"from": 1667200,
+				"to": 1671200
+			},
+			"text": " which branch of the OR is something that is always correct. If something is always correct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,200",
+				"to": "00:27:54,720"
+			},
+			"offsets": {
+				"from": 1671200,
+				"to": 1674720
+			},
+			"text": " it means the entire statement is always correct. There were this thing causes the"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,720",
+				"to": "00:27:59,600"
+			},
+			"offsets": {
+				"from": 1674720,
+				"to": 1679600
+			},
+			"text": " vacuity. And this is actually a feature that's very close to production in Sertora. Maybe I'm wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,600",
+				"to": "00:28:04,640"
+			},
+			"offsets": {
+				"from": 1679600,
+				"to": 1684640
+			},
+			"text": " it's already in production. Maybe I'm not so keen on the details, but it's really close to production."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,040",
+				"to": "00:28:10,560"
+			},
+			"offsets": {
+				"from": 1685040,
+				"to": 1690560
+			},
+			"text": " If you have an implication, same thing. You can see that maybe the premise, that's the part"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,560",
+				"to": "00:28:14,560"
+			},
+			"offsets": {
+				"from": 1690560,
+				"to": 1694560
+			},
+			"text": " before the arrow that comes before the conclusion. If it's something that's always false, you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,560",
+				"to": "00:28:21,840"
+			},
+			"offsets": {
+				"from": 1694560,
+				"to": 1701840
+			},
+			"text": " have a rule that's vacuous. So, depending on the structure of your conditions, you can learn more"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,840",
+				"to": "00:28:26,720"
+			},
+			"offsets": {
+				"from": 1701840,
+				"to": 1706720
+			},
+			"text": " intelligent things about them that can guide you. It's still not perfect, but this is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,720",
+				"to": "00:28:33,280"
+			},
+			"offsets": {
+				"from": 1706720,
+				"to": 1713280
+			},
+			"text": " that you are actively working on. There is time for another, so thank you all."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,280",
+				"to": "00:28:35,280"
+			},
+			"offsets": {
+				"from": 1713280,
+				"to": 1715280
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:35,280",
+				"to": "00:28:41,280"
+			},
+			"offsets": {
+				"from": 1715280,
+				"to": 1721280
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,280",
+				"to": "00:28:47,280"
+			},
+			"offsets": {
+				"from": 1721280,
+				"to": 1727280
+			},
+			"text": " [Music]"
+		}
+	]
+}

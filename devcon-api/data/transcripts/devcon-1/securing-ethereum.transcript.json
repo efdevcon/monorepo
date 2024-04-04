@@ -1,0 +1,2573 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 21000
+			},
+			"text": " >> Hello. So Gustav and I wanted to talk to you a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 22000
+			},
+			"text": " So my name is Yota."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 27000
+			},
+			"text": " We were heading, supporting the security audit"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 31000
+			},
+			"text": " to launch and Gustav and I wanted to talk to you a bit about what we have done"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 39000
+			},
+			"text": " from the SDev side in order to secure the network and make everything stable."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 42000
+			},
+			"text": " So, first I have said security is a process."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 47000
+			},
+			"text": " So that's what we kept in mind when we thought about security."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 52000
+			},
+			"text": " It starts with the different implementations that were supported"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 60000
+			},
+			"text": " and by the Ethereum Foundation, particularly the Python client, the C++ and the Go client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 66000
+			},
+			"text": " in order to ensure a healthy network together with the yellow paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 74000
+			},
+			"text": " that is a bit unreadable, as some people say, but nonetheless serve very well as a process."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 79000
+			},
+			"text": " And Gustav will talk a bit more about that in order to ensure that the implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 87000
+			},
+			"text": " are actually in like comply with the form of specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 93000
+			},
+			"text": " Then of course, a big set of comprehensive tests that we implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 96000
+			},
+			"text": " and also Gustav will talk a bit more about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 102000
+			},
+			"text": " Cross-client tests, particular tests for the VM as a critical core component"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 107000
+			},
+			"text": " of the protocol, transactions and block tests, and Christo Vendimitri"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 113000
+			},
+			"text": " who are around, they did a great job in achieving a very big coverage."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 118000
+			},
+			"text": " And then finally, the thing that Gustav and I mainly worked on the audits"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 123000
+			},
+			"text": " that we did prior to launch, so where we worked together with blockchain researchers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 127000
+			},
+			"text": " academic researchers, different professional security firms"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 132000
+			},
+			"text": " for which we use the big chunk of the budget from the raise"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 137000
+			},
+			"text": " and from the sale and the bounty program."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 144000
+			},
+			"text": " Let me say a few words about the bounty program since we have one of the bounty hunters here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 148000
+			},
+			"text": " Martin did a great job, so that was an effort and is still ongoing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 155000
+			},
+			"text": " where we engage the community to find and scrutinize, find issues, scrutinize the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 160000
+			},
+			"text": " So yeah, as I said, it's still ongoing and it's important that we continue the work"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 166000
+			},
+			"text": " that started prior to launch even now, especially since we are still in the frontier phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 169000
+			},
+			"text": " So that's a bit of an overview of what we did."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 176000
+			},
+			"text": " So as I said, it started basically with the different implementations last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 180000
+			},
+			"text": " Then that was the moment when Gustav and I joined the team in December"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 187000
+			},
+			"text": " setting up the audit strategy and then the different companies, so digital,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 193000
+			},
+			"text": " least authority, they also did a very great job analyzing the economics of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 200000
+			},
+			"text": " Deja Vu, who helped us with the Go, C++ and Python audits."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 205000
+			},
+			"text": " And finally, as I said, the researchers, so Sergio Leina, Andrew Miller and Ithayal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 210000
+			},
+			"text": " they helped us with a lot of theoretic analyses."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 215000
+			},
+			"text": " So before I hand over to Gustav, I want to talk about one thing that's particularly important for me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 221000
+			},
+			"text": " which is diversity, but not the sort of diversity you might think when you look around,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 223000
+			},
+			"text": " but the diversity of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 228000
+			},
+			"text": " So when we started, we hope for a very diverse network, because it's an answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 236000
+			},
+			"text": " When you think of when we find a bug, we want to ensure that the network can continue operating safely."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 244000
+			},
+			"text": " So this is how it should be, but unfortunately, the audit schedule has kind of more led to a picture like this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 253000
+			},
+			"text": " where Go is dominating, so we launched the Go implementation first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 259000
+			},
+			"text": " because we were done with the officially kind of, because we had finished the audit already."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 266000
+			},
+			"text": " But in between, we also finished the C++ audit, and it's essential to keep in mind that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 274000
+			},
+			"text": " a critical factor for the mining is the implementation of the block to mine function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 276000
+			},
+			"text": " which depends on the implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 285000
+			},
+			"text": " So please get C++ minor up and running, and if it's just because you want to earn some money when Go is down"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 287000
+			},
+			"text": " and the difficulty goes down."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 289000
+			},
+			"text": " Just a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 295000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 298000
+			},
+			"text": " Yeah, so what is blockchain security?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 304000
+			},
+			"text": " There's a great quote in the demo paper from Gavin about how this form more in valid states"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 306000
+			},
+			"text": " than valid states in a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 311000
+			},
+			"text": " And the blockchain security is a very broad scope."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 318000
+			},
+			"text": " And earlier this week, we had Vlad Samphir talking about security in terms of mining home"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 320000
+			},
+			"text": " and proof of state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 325000
+			},
+			"text": " And early today, we had Alex Lovitt, talking about the peer-to-peer protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 335000
+			},
+			"text": " So what I'll focus on here is just a few examples of how -- the things we found in the core consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 336000
+			},
+			"text": " protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 342000
+			},
+			"text": " So we're not going to go too much into networking or mining, but look at the core version machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 345000
+			},
+			"text": " and the protocol around it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 352000
+			},
+			"text": " So I'll show a few examples, but before that, I just wanted to show this relation between the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 354000
+			},
+			"text": " Jellup paper and the clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 361000
+			},
+			"text": " So we started with kind of three main clients, CPP, GoLang and Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 364000
+			},
+			"text": " And they are based on the Jellup papers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 368000
+			},
+			"text": " They are considering the Jellup paper to be the formal specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 373000
+			},
+			"text": " And they have implemented the virtual machine and the protocol based on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 378000
+			},
+			"text": " And the Jellup paper is also what the other tests are derived from."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 385000
+			},
+			"text": " So if you go to GitHub, we have this repository for protocol test cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 392000
+			},
+			"text": " We have a few thousand tests that cover blocks, transactions and the virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 397000
+			},
+			"text": " And these clients execute these test cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 404000
+			},
+			"text": " And the tests were actually started when the proof of concept was started last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 411000
+			},
+			"text": " So during the development until the launch, all these clients have executed these test"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 412000
+			},
+			"text": " cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 420000
+			},
+			"text": " And they've also been used by other clients like Java, JavaScript and Haskell Client to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 425000
+			},
+			"text": " ensure that they're compliant with the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 428000
+			},
+			"text": " And there's also feedback from the clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 435000
+			},
+			"text": " So we will see one example where we found a bug in the formal spec based on the clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 440000
+			},
+			"text": " where the clients were actually correct, but the spec was wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 445000
+			},
+			"text": " And there's also a relation between the C++ client and the tests in that C++ client is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 451000
+			},
+			"text": " used to generate the test cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 457000
+			},
+			"text": " So we're just going to go for a few examples to see what we found during the audit and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 459000
+			},
+			"text": " in the boundary program."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 468000
+			},
+			"text": " And some really rough categories can be said to be the consensus protocol in terms of both"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 472000
+			},
+			"text": " logic, implementation details like overflows."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 479000
+			},
+			"text": " We'll see one example of a denial of service attack and a few issues that we found after"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 481000
+			},
+			"text": " the launch."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 488000
+			},
+			"text": " So here's the first issue in the boundary program, creating e-frame out of dinner."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 494000
+			},
+			"text": " So this one was, I think at this time, as you've done, I were talking about how to reward"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 495000
+			},
+			"text": " boundary program issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 501000
+			},
+			"text": " And we were kind of thinking that it's a pretty critical thing because it kind of affects"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 504000
+			},
+			"text": " the limited supply property of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 512000
+			},
+			"text": " So what happened was that the former specification doesn't limit the block number."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 514000
+			},
+			"text": " It's actually unlimited."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 522000
+			},
+			"text": " So the data type that was used in Go was a big integer for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 531000
+			},
+			"text": " And there was an interesting bug here that was found by, let's see, yeah, John and Snake"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 534000
+			},
+			"text": " in the boundary program back in February."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 541000
+			},
+			"text": " And what happened was that so the Go implementation is using a Go Lamb begin for the block number."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 549000
+			},
+			"text": " And there's an upcode, an instruction in the virtual machine to get the block number on"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 550000
+			},
+			"text": " the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 557000
+			},
+			"text": " And what happened was that you could actually put a block number that was bigger than 32"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 560000
+			},
+			"text": " bytes there in your block header."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 567000
+			},
+			"text": " That would actually be valid when you deserialized the block header from the RNP encoding that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 570000
+			},
+			"text": " Vitalik mentioned in his previous talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 573000
+			},
+			"text": " So you could set the block number to more than 32 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 582000
+			},
+			"text": " And then when you grab that number on the stack, it would actually be casted in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 588000
+			},
+			"text": " that you could push a negative integer on the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 596000
+			},
+			"text": " This was an example of how we kind of used the wrong data type in the sense that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 602000
+			},
+			"text": " theme virtual machine is not defined to be, I mean, like, big integer, it's defined to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 605000
+			},
+			"text": " just be 256 bit values."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 612000
+			},
+			"text": " But in languages like Go, you kind of have to use a big integer to model that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 617000
+			},
+			"text": " So the error is actually what we can see the Go for looking at here, which is the commented"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 625000
+			},
+			"text": " code to make sure that what we push back on the stack is an inside integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 631000
+			},
+			"text": " And the thing we see at the bottom there is actually the contract bytecode that would"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 633000
+			},
+			"text": " trigger this issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 641000
+			},
+			"text": " And the result was that you could actually create unlimited amounts of ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 648000
+			},
+			"text": " Another short example is just a very simple integer overflow that was found back in March."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 653000
+			},
+			"text": " This one was found by the security auditors, the security."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 662000
+			},
+			"text": " And it was related to the sign extend operator in the jail paper, which is used to extend"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 670000
+			},
+			"text": " an integer, by no integer, without changing the value or the sign."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 676000
+			},
+			"text": " And so what the Go client used to do back in March is that it converted, it popped one"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 684000
+			},
+			"text": " of the arguments from the stack and would then cast that to an inside integer of 64 bits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 687000
+			},
+			"text": " even though stack items are 256 bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 693000
+			},
+			"text": " So that was something you could easily overflow as an attacker."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 700000
+			},
+			"text": " And that would then cause a consensus issue with C++ clients or the Python client."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 709000
+			},
+			"text": " So we had a lot of these issues where we were just casting big integers to unsciences for"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 721000
+			},
+			"text": " big integers for convenience, basically, to make implementation of instructions easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 728000
+			},
+			"text": " Another kind of class of issues that we had is the year off by one error, where one example"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 733000
+			},
+			"text": " is the gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 739000
+			},
+			"text": " Vitalik mentioned this in the previous talk here, that the protocol has a gas limit in"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 743000
+			},
+			"text": " each block, and the jail paper specifies how much this can grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 748000
+			},
+			"text": " So the miners basically vote, and they can change the gas limit to go up or down, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 753000
+			},
+			"text": " only within a certain interval."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 757000
+			},
+			"text": " And this is the different GitHub for the fix to this issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 764000
+			},
+			"text": " So what happened was that we were not considering the case when the gas limit was going down,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 767000
+			},
+			"text": " only when it was going up."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 774000
+			},
+			"text": " It's a bit of an embarrassing issue to find when you're just completely off by one, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 778000
+			},
+			"text": " there's a lot of examples like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 784000
+			},
+			"text": " And we actually had the same thing in the C++ client, so here you see the code there for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 785000
+			},
+			"text": " the fixed error."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 791000
+			},
+			"text": " The important part there is just that we changed the less than or equal and greater than or"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 799000
+			},
+			"text": " equal to less than, sorry, we changed less than to less than or equal and vice versa."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 805000
+			},
+			"text": " You can't see the full differ because C++ doesn't have code standard for line length, so they"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 811000
+			},
+			"text": " have very long lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 818000
+			},
+			"text": " So moving on to another type of issue, we also had some non-consensus issues during the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 827000
+			},
+			"text": " audits, and this one was found by Martin in the Adonter program, and it's an issue that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 829000
+			},
+			"text": " we're trying to do with the consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 835000
+			},
+			"text": " The clients were correct in the logic, but they had a very unperformant part related"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 838000
+			},
+			"text": " to the jump-test instruction."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 843000
+			},
+			"text": " And you could trigger this by making this contract where there's a single function that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 845000
+			},
+			"text": " calls itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 850000
+			},
+			"text": " So you could pass it like 1000, it would just call itself 1000 times."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 856000
+			},
+			"text": " And each time it calls itself, it makes a external function call to make sure that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 859000
+			},
+			"text": " have a new execution environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 866000
+			},
+			"text": " And if you compile this and then post compilation manually insert jump-test instructions in"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 875000
+			},
+			"text": " the place right there, then you would have this very, very slow thing where both goal"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 882000
+			},
+			"text": " and C++ were using a data type to store basically jump-test during the execution of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 885000
+			},
+			"text": " contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 890000
+			},
+			"text": " And one more thing to notice is that the cost is really cheap for a jump-test, so you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:53,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 893000
+			},
+			"text": " pay a single gas for one jump-test."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 893000,
+				"to": 901000
+			},
+			"text": " And so what happened is that they were both using a set data type to store all the jump-test."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 906000
+			},
+			"text": " And when you had a new execution environment in the virtual machine, like when you do a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 910000
+			},
+			"text": " external function call, that data type was basically recreated."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 920000
+			},
+			"text": " So in a single transaction execution of the same contract, you would have to be recreated."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 925000
+			},
+			"text": " So what was changed here was basically to use a map instead and also to cache it between"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 930000
+			},
+			"text": " executions within a single contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 939000
+			},
+			"text": " A short example of how to not do your encrypt was found in the C++ client where we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 941000
+			},
+			"text": " a spec from NSA actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 946000
+			},
+			"text": " So I couldn't find this in the ECDSA spec itself, but it's present in the implementation guide"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 954000
+			},
+			"text": " from NSA where I've calculated the first steps, just to focus on the last step, which is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 960000
+			},
+			"text": " there's a point about you have to check whether the derived public key is that point of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 970000
+			},
+			"text": " infinity or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 976000
+			},
+			"text": " We're pretty short on time, so the fix for this was really quick in C++ where we just added a"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 977000
+			},
+			"text": " single check."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 981000
+			},
+			"text": " There was already a feel to track this, so you could just add a check on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 985000
+			},
+			"text": " The point of this issue is that it was really hard to find, even though the fix is really simple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 993000
+			},
+			"text": " it was hard to find because it's something that's missing from the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 999000
+			},
+			"text": " A short example, but the formal spec, we found a case where the formal spec was using the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1004000
+			},
+			"text": " floor function to round sign the inter-division."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1008000
+			},
+			"text": " That was the case where the clients were actually rounding towards zero when they do sign"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1013000
+			},
+			"text": " division, but the formal spec was rounding to the floor."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1020000
+			},
+			"text": " That's the example I mentioned before where the clients kind of influenced back the specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1026000
+			},
+			"text": " Another example, also in the form of spec around the same instruction, sign division, is this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1028000
+			},
+			"text": " edge case."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1035000
+			},
+			"text": " When you divide, yeah, minus two, raise it to five five, divided by minus one, so this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1039000
+			},
+			"text": " kind of a realization how sometimes we're working with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1045000
+			},
+			"text": " The problem is basically that the data paper didn't specify this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1050000
+			},
+			"text": " You could do your different overflow semantics and still be technically correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1055000
+			},
+			"text": " We had to add a case to just, you can see on the right-hand side, the stack items we"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1063000
+			},
+			"text": " pop, so we had basically a special case for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1068000
+			},
+			"text": " My time is almost up there, so I'm just going to show a really quick thing, which is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1072000
+			},
+			"text": " when we launched, there was a note about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1079000
+			},
+			"text": " It's not really safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1082000
+			},
+			"text": " So post-launch, we found a few issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:07,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1087000
+			},
+			"text": " I'll just show one really, really quick thing here, which is also found in the counter for"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,000",
+				"to": "00:18:08,000"
+			},
+			"offsets": {
+				"from": 1087000,
+				"to": 1088000
+			},
+			"text": " them."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1088000,
+				"to": 1095000
+			},
+			"text": " This was found after launch in the Python client, where the Python client was not following"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1097000
+			},
+			"text": " the spec for suicide."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1104000
+			},
+			"text": " So if you're suicidal to the contract to yourself, you need to make sure that you set the balance"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1105000
+			},
+			"text": " to zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1111000
+			},
+			"text": " Well, you need to make sure that's a case in any suicide."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1114000
+			},
+			"text": " But if you're suicidal to yourself, then in Python you would actually still have that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1117000
+			},
+			"text": " balance afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1120000
+			},
+			"text": " Just one example we had post-launch."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1126000
+			},
+			"text": " I'll just skip through a few other examples here and just go directly to some of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1127000
+			},
+			"text": " takeaways."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:52,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1132000
+			},
+			"text": " So don't make your own blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1132000,
+				"to": 1137000
+			},
+			"text": " If you do, it's a really good idea to have a formal specification and multiple clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1141000
+			},
+			"text": " We've seen issues where we had a bug in single client."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1145000
+			},
+			"text": " In two out of three clients, we've seen a bug in all clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1151000
+			},
+			"text": " We also seen bugs where the former spec was wrong, but all the clients were actually correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1158000
+			},
+			"text": " Some of the things you have to really think about is the data types you use in the conversions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1159000
+			},
+			"text": " Off by one hours."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1165000
+			},
+			"text": " And also be really careful with cryptography because there's a lot of cryptography details"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1168000
+			},
+			"text": " that are not specified in the form of spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1174000
+			},
+			"text": " They are simply referenced from the literature."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1180000
+			},
+			"text": " And future wise, we want to add more audits, perhaps, on an annual basis."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1180000,
+				"to": 1186000
+			},
+			"text": " It would be great if we could include more clients in audits and also include these clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1190000
+			},
+			"text": " in the scope of the boundary program."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1198000
+			},
+			"text": " The current boundary program reward is between half a bit cornered and bit cornered."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1203000
+			},
+			"text": " If you compare this to a Google's boundary program, they offer a bit more in case you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1205000
+			},
+			"text": " find kind of a sale they exploit."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1210000
+			},
+			"text": " And then in like two or three years, we can increase the boundary rewards to match companies"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1210000,
+				"to": 1217000
+			},
+			"text": " like Google or Facebook."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1220000
+			},
+			"text": " I'll skip this one on this style."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1221000
+			},
+			"text": " Good, then."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1222000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1229000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1234000
+			},
+			"text": " [Music]"
+		}
+	]
+}

@@ -1,0 +1,582 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12880
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,880",
+				"to": "00:00:18,720"
+			},
+			"offsets": {
+				"from": 12880,
+				"to": 18720
+			},
+			"text": " Hello everyone, welcome to this lightning talk about the unspecified evaluation order in Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,720",
+				"to": "00:00:23,120"
+			},
+			"offsets": {
+				"from": 18720,
+				"to": 23120
+			},
+			"text": " Or how our colleague, Tina and Richard, who unfortunately couldn't make it to Bogota,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,120",
+				"to": "00:00:27,840"
+			},
+			"offsets": {
+				"from": 23120,
+				"to": 27840
+			},
+			"text": " won the Underhanded Solidity Contest. The goal of the Underhanded Solidity Contest"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,840",
+				"to": "00:00:33,760"
+			},
+			"offsets": {
+				"from": 27840,
+				"to": 33760
+			},
+			"text": " is to write harmless or un-suspicious looking smart contracts with hidden bugs or pitfalls,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,760",
+				"to": "00:00:39,440"
+			},
+			"offsets": {
+				"from": 33760,
+				"to": 39440
+			},
+			"text": " thereby exposing weird behavior and solidity in a fun way. Let's jump right in."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,440",
+				"to": "00:00:46,160"
+			},
+			"offsets": {
+				"from": 39440,
+				"to": 46160
+			},
+			"text": " Here's an excerpt from the Solidity Docs. What it's basically saying is the evaluation order"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,160",
+				"to": "00:00:52,880"
+			},
+			"offsets": {
+				"from": 46160,
+				"to": 52880
+			},
+			"text": " of expressions is not specified. If function f takes two arguments, which are further function"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,880",
+				"to": "00:01:00,240"
+			},
+			"offsets": {
+				"from": 52880,
+				"to": 60240
+			},
+			"text": " calls to functions g and h, it's unclear in which order they are evaluated. Either function g is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,240",
+				"to": "00:01:06,640"
+			},
+			"offsets": {
+				"from": 60240,
+				"to": 66640
+			},
+			"text": " evaluated first or function h is evaluated first, but we can never be sure which one. Obviously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,640",
+				"to": "00:01:12,080"
+			},
+			"offsets": {
+				"from": 66640,
+				"to": 72080
+			},
+			"text": " function f is evaluated last because it depends on the result of the other functions. Let's consider"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,080",
+				"to": "00:01:18,320"
+			},
+			"offsets": {
+				"from": 72080,
+				"to": 78320
+			},
+			"text": " this example. Let's say we call the function with an argument of two. What's the correct result here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,040",
+				"to": "00:01:24,240"
+			},
+			"offsets": {
+				"from": 79040,
+				"to": 84240
+			},
+			"text": " Is it four or five? Well, it depends on the evaluation order and it's not really"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,240",
+				"to": "00:01:30,480"
+			},
+			"offsets": {
+				"from": 84240,
+				"to": 90480
+			},
+			"text": " specified for the Solidity compiler. This is not unique to Solidity, insufficient specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,480",
+				"to": "00:01:35,840"
+			},
+			"offsets": {
+				"from": 90480,
+				"to": 95840
+			},
+			"text": " to off-expected behavior can be found in all kinds of different programming languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,840",
+				"to": "00:01:42,240"
+			},
+			"offsets": {
+				"from": 95840,
+				"to": 102240
+			},
+			"text": " A big adage for everyone involved. Does this matter in practice? Yes, of course. It does,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,240",
+				"to": "00:01:48,800"
+			},
+			"offsets": {
+				"from": 102240,
+				"to": 108800
+			},
+			"text": " as it can lead to unexpected behavior results by analyzing the code generator of the Solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,800",
+				"to": "00:01:54,880"
+			},
+			"offsets": {
+				"from": 108800,
+				"to": 114880
+			},
+			"text": " compiler, our colleague Tina found three cases of unusual evaluation ordered, which this talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,880",
+				"to": "00:02:01,760"
+			},
+			"offsets": {
+				"from": 114880,
+				"to": 121760
+			},
+			"text": " is about. Yes, most of the time evaluation order is as expected from left of right, but not always."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,760",
+				"to": "00:02:08,160"
+			},
+			"offsets": {
+				"from": 121760,
+				"to": 128160
+			},
+			"text": " First two examples are the opcodes, Admod and Mulmod. Here, the evaluation order surprisingly"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,160",
+				"to": "00:02:17,200"
+			},
+			"offsets": {
+				"from": 128160,
+				"to": 137200
+			},
+			"text": " is from right to left. So if we evaluate f of two, it first evaluates a, incremented by one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,200",
+				"to": "00:02:25,440"
+			},
+			"offsets": {
+				"from": 137200,
+				"to": 145440
+			},
+			"text": " and only later evaluates the first argument, which results in Admod with argument three, two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,440",
+				"to": "00:02:35,040"
+			},
+			"offsets": {
+				"from": 145440,
+				"to": 155040
+			},
+			"text": " instead of two, two, as you might have expected. Interestingly, this is actually documented in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,040",
+				"to": "00:02:42,320"
+			},
+			"offsets": {
+				"from": 155040,
+				"to": 162320
+			},
+			"text": " Solidity. However, not where you expect. In Solidity, there are currently two ways on how code can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,320",
+				"to": "00:02:48,800"
+			},
+			"offsets": {
+				"from": 162320,
+				"to": 168800
+			},
+			"text": " compiled. The default code generation and the new code generation via the UIL-IR pipeline."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,800",
+				"to": "00:02:57,840"
+			},
+			"offsets": {
+				"from": 168800,
+				"to": 177840
+			},
+			"text": " In the documentation describing the UIL pipeline, it's actually documented that here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,840",
+				"to": "00:03:03,840"
+			},
+			"offsets": {
+				"from": 177840,
+				"to": 183840
+			},
+			"text": " the evaluation order will no longer be from right to left, but also left to right. The most"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,840",
+				"to": "00:03:09,840"
+			},
+			"offsets": {
+				"from": 183840,
+				"to": 189840
+			},
+			"text": " interesting one is the order of evaluation inside events. This one is really special. The power"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,840",
+				"to": "00:03:16,480"
+			},
+			"offsets": {
+				"from": 189840,
+				"to": 196480
+			},
+			"text": " matters are evaluated in a bizarre order. First, the indexed parameters are evaluated from right to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,480",
+				"to": "00:03:25,280"
+			},
+			"offsets": {
+				"from": 196480,
+				"to": 205280
+			},
+			"text": " left, then the remaining parameters are evaluated from left to right. Wow, who knew that? With Solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,280",
+				"to": "00:03:33,200"
+			},
+			"offsets": {
+				"from": 205280,
+				"to": 213200
+			},
+			"text": " Dev has this in mind when coding. No one, right? This can lead to really strange or unexpected behavior,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:39,760"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 219760
+			},
+			"text": " and this is what Tinan leveraged and used for his submission to the underhanded Solidity Contest"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,760",
+				"to": "00:03:47,440"
+			},
+			"offsets": {
+				"from": 219760,
+				"to": 227440
+			},
+			"text": " 2022. He wrote a simple decentralized exchange where liquidity providers and the admin shared"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,440",
+				"to": "00:03:53,040"
+			},
+			"offsets": {
+				"from": 227440,
+				"to": 233040
+			},
+			"text": " the collected fees. In a legitimate text, the admin shouldn't be able to screw over the liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,040",
+				"to": "00:03:59,600"
+			},
+			"offsets": {
+				"from": 233040,
+				"to": 239600
+			},
+			"text": " providers by changing the fees afterwards. This is the heart of Tinan's submission. Looks legit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,600",
+				"to": "00:04:07,440"
+			},
+			"offsets": {
+				"from": 239600,
+				"to": 247440
+			},
+			"text": " right? What's wrong here? Let's see. So the admin calls functions change admin fees once he wants"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,440",
+				"to": "00:04:14,080"
+			},
+			"offsets": {
+				"from": 247440,
+				"to": 254080
+			},
+			"text": " to update the fee. It looks like function retire old admin fee is called first, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,080",
+				"to": "00:04:22,400"
+			},
+			"offsets": {
+				"from": 254080,
+				"to": 262400
+			},
+			"text": " execute claim fee and distributes the fees based on the old fee amount to the liquidity provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,120",
+				"to": "00:04:29,840"
+			},
+			"offsets": {
+				"from": 263120,
+				"to": 269840
+			},
+			"text": " before calling set new admin fee, which updates the admin fee to the new admin fee. But remember"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,840",
+				"to": "00:04:36,160"
+			},
+			"offsets": {
+				"from": 269840,
+				"to": 276160
+			},
+			"text": " what we just learned before, indexed events are evaluated from right to left. So actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,160",
+				"to": "00:04:44,480"
+			},
+			"offsets": {
+				"from": 276160,
+				"to": 284480
+			},
+			"text": " set admin fees evaluated first to the fees updated and only afterwards retire old admin fee. This"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,480",
+				"to": "00:04:51,680"
+			},
+			"offsets": {
+				"from": 284480,
+				"to": 291680
+			},
+			"text": " attributes the liquidity fee to the liquidity providers based on the new fee. Really surprising."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,680",
+				"to": "00:04:58,640"
+			},
+			"offsets": {
+				"from": 291680,
+				"to": 298640
+			},
+			"text": " So one important thing to mention here, the Solidity compiler as set has two ways to compile"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,640",
+				"to": "00:05:05,600"
+			},
+			"offsets": {
+				"from": 298640,
+				"to": 305600
+			},
+			"text": " code, the default way and the new way using the UIL IR pipeline. In the UIL IR pipeline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,600",
+				"to": "00:05:10,560"
+			},
+			"offsets": {
+				"from": 305600,
+				"to": 310560
+			},
+			"text": " this is no longer true. They are the function evaluation order is strictly from left to right."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,560",
+				"to": "00:05:15,520"
+			},
+			"offsets": {
+				"from": 310560,
+				"to": 315520
+			},
+			"text": " However, per default, the Solidity compiler uses the old code generation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,520",
+				"to": "00:05:27,920"
+			},
+			"offsets": {
+				"from": 315520,
+				"to": 327920
+			},
+			"text": " About this may change at any time in the future. Thanks a lot. Happy to take any question. One minute left."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,920",
+				"to": "00:05:29,920"
+			},
+			"offsets": {
+				"from": 327920,
+				"to": 329920
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,920",
+				"to": "00:05:31,920"
+			},
+			"offsets": {
+				"from": 329920,
+				"to": 331920
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,920",
+				"to": "00:05:39,920"
+			},
+			"offsets": {
+				"from": 331920,
+				"to": 339920
+			},
+			"text": " ]"
+		}
+	]
+}

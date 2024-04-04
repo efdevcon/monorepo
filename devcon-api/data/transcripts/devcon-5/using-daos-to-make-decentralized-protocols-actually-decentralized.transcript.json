@@ -1,0 +1,3662 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7880
+			},
+			"text": " We're going to talk about DAOs today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,880",
+				"to": "00:00:10,600"
+			},
+			"offsets": {
+				"from": 7880,
+				"to": 10600
+			},
+			"text": " A few years ago, we were talking about DAOs people."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,600",
+				"to": "00:00:16,640"
+			},
+			"offsets": {
+				"from": 10600,
+				"to": 16640
+			},
+			"text": " We were thinking that you would just put money into them and your money would be to disappear"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,640",
+				"to": "00:00:19,400"
+			},
+			"offsets": {
+				"from": 16640,
+				"to": 19400
+			},
+			"text": " because of the whole DAO hack."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,400",
+				"to": "00:00:23,560"
+			},
+			"offsets": {
+				"from": 19400,
+				"to": 23560
+			},
+			"text": " But back in the day, we were like, well, DAOs are not inherently bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,560",
+				"to": "00:00:24,920"
+			},
+			"offsets": {
+				"from": 23560,
+				"to": 24920
+			},
+			"text": " So let's focus on them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,920",
+				"to": "00:00:26,680"
+			},
+			"offsets": {
+				"from": 24920,
+				"to": 26680
+			},
+			"text": " Let's actually make them great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,680",
+				"to": "00:00:31,720"
+			},
+			"offsets": {
+				"from": 26680,
+				"to": 31720
+			},
+			"text": " The DAO was unfortunate, but it also put the space forward by a lot in terms of security."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,720",
+				"to": "00:00:38,440"
+			},
+			"offsets": {
+				"from": 31720,
+				"to": 38440
+			},
+			"text": " And so that's what we're doing at Argonne within doing DAOs since November 2016, focusing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,440",
+				"to": "00:00:42,880"
+			},
+			"offsets": {
+				"from": 38440,
+				"to": 42880
+			},
+			"text": " on making them very high-quality and very easy to use for anywhere in the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,880",
+				"to": "00:00:48,240"
+			},
+			"offsets": {
+				"from": 42880,
+				"to": 48240
+			},
+			"text": " So what I want to talk about today is how we can use DAOs to make decentralized protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,240",
+				"to": "00:00:50,040"
+			},
+			"offsets": {
+				"from": 48240,
+				"to": 50040
+			},
+			"text": " actually decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,040",
+				"to": "00:00:54,720"
+			},
+			"offsets": {
+				"from": 50040,
+				"to": 54720
+			},
+			"text": " So I don't know if I call it this term, but I like to use the term CFI."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,720",
+				"to": "00:00:58,360"
+			},
+			"offsets": {
+				"from": 54720,
+				"to": 58360
+			},
+			"text": " You probably all know DeFi, decentralized finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,360",
+				"to": "00:01:03,160"
+			},
+			"offsets": {
+				"from": 58360,
+				"to": 63160
+			},
+			"text": " But actually, there's another term called CFI, which is centralized finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,160",
+				"to": "00:01:07,840"
+			},
+			"offsets": {
+				"from": 63160,
+				"to": 67840
+			},
+			"text": " And a lot of these DeFi that we talk about today is actually CFI, which I mean, I will"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,840",
+				"to": "00:01:13,520"
+			},
+			"offsets": {
+				"from": 67840,
+				"to": 73520
+			},
+			"text": " talk about that later, but I think it's OK sometimes to start centralized and then decentralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,520",
+				"to": "00:01:18,320"
+			},
+			"offsets": {
+				"from": 73520,
+				"to": 78320
+			},
+			"text": " but we just have to go into this about it and make a conscious effort to actually get"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,320",
+				"to": "00:01:19,600"
+			},
+			"offsets": {
+				"from": 78320,
+				"to": 79600
+			},
+			"text": " for it to be decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,600",
+				"to": "00:01:25,560"
+			},
+			"offsets": {
+				"from": 79600,
+				"to": 85560
+			},
+			"text": " And so I want to talk about some things today, starting with smart contracts, the best invention"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,560",
+				"to": "00:01:26,560"
+			},
+			"offsets": {
+				"from": 85560,
+				"to": 86560
+			},
+			"text": " since Ramen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,560",
+				"to": "00:01:28,800"
+			},
+			"offsets": {
+				"from": 86560,
+				"to": 88800
+			},
+			"text": " I think we will all agree."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,800",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 88800,
+				"to": 94000
+			},
+			"text": " Inutable smart contracts are the default state of smart contracts, at least on blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 95000
+			},
+			"text": " like Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:39,600"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 99600
+			},
+			"text": " And so they are fully trashless, so call this law kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,600",
+				"to": "00:01:42,760"
+			},
+			"offsets": {
+				"from": 99600,
+				"to": 102760
+			},
+			"text": " What you write into a smart contract is basically what happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,760",
+				"to": "00:01:50,760"
+			},
+			"offsets": {
+				"from": 102760,
+				"to": 110760
+			},
+			"text": " But these two, they are not upgradable, and so we learn the hard way via some other issues"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,760",
+				"to": "00:01:54,840"
+			},
+			"offsets": {
+				"from": 110760,
+				"to": 114840
+			},
+			"text": " that we have in the Ethereum community that is very important for smart contracts to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,840",
+				"to": "00:01:55,920"
+			},
+			"offsets": {
+				"from": 114840,
+				"to": 115920
+			},
+			"text": " upgradable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,920",
+				"to": "00:01:57,080"
+			},
+			"offsets": {
+				"from": 115920,
+				"to": 117080
+			},
+			"text": " For mainly two reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,080",
+				"to": "00:02:00,920"
+			},
+			"offsets": {
+				"from": 117080,
+				"to": 120920
+			},
+			"text": " One of them is you want to be able to fix bugs, and the other one is you want to be able"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,920",
+				"to": "00:02:01,920"
+			},
+			"offsets": {
+				"from": 120920,
+				"to": 121920
+			},
+			"text": " to add features."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,920",
+				"to": "00:02:07,440"
+			},
+			"offsets": {
+				"from": 121920,
+				"to": 127440
+			},
+			"text": " It is very hard to compete against other systems that are upgradable and enhance over time"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,440",
+				"to": "00:02:09,760"
+			},
+			"offsets": {
+				"from": 127440,
+				"to": 129760
+			},
+			"text": " if we don't have that capability."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,760",
+				"to": "00:02:15,560"
+			},
+			"offsets": {
+				"from": 129760,
+				"to": 135560
+			},
+			"text": " Or if the only way to upgrade something is via forks, which require a lot of human coordination."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,560",
+				"to": "00:02:19,440"
+			},
+			"offsets": {
+				"from": 135560,
+				"to": 139440
+			},
+			"text": " So it is time you want to add something, you have to tell your whole network, hey, I deployed"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,440",
+				"to": "00:02:24,840"
+			},
+			"offsets": {
+				"from": 139440,
+				"to": 144840
+			},
+			"text": " a new contract, this is the new address, and they have to review it again, and they have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,840",
+				"to": "00:02:29,840"
+			},
+			"offsets": {
+				"from": 144840,
+				"to": 149840
+			},
+			"text": " to reach consensus again that that new contract is the one that this will actually use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,840",
+				"to": "00:02:32,080"
+			},
+			"offsets": {
+				"from": 149840,
+				"to": 152080
+			},
+			"text": " And you lose a lot of network effects as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,080",
+				"to": "00:02:37,520"
+			},
+			"offsets": {
+				"from": 152080,
+				"to": 157520
+			},
+			"text": " If you want to fork every time that you want to upgrade a contract, that may just break,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,520",
+				"to": "00:02:41,800"
+			},
+			"offsets": {
+				"from": 157520,
+				"to": 161800
+			},
+			"text": " for example, like a lot of different protocols, because it cannot be like, yeah, it is V2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,800",
+				"to": "00:02:44,280"
+			},
+			"offsets": {
+				"from": 161800,
+				"to": 164280
+			},
+			"text": " and you have to move all your funds from one place to the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,280",
+				"to": "00:02:51,840"
+			},
+			"offsets": {
+				"from": 164280,
+				"to": 171840
+			},
+			"text": " Imagine all of that if people were like closing CDPs in one system, opening the other one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,840",
+				"to": "00:02:53,840"
+			},
+			"offsets": {
+				"from": 171840,
+				"to": 173840
+			},
+			"text": " that would just break everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,840",
+				"to": "00:02:57,960"
+			},
+			"offsets": {
+				"from": 173840,
+				"to": 177960
+			},
+			"text": " Then on the other hand, we have the centrally governed smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,960",
+				"to": "00:02:59,240"
+			},
+			"offsets": {
+				"from": 177960,
+				"to": 179240
+			},
+			"text": " That's easy for developers, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,240",
+				"to": "00:03:03,400"
+			},
+			"offsets": {
+				"from": 179240,
+				"to": 183400
+			},
+			"text": " You have a smart contract, and then you use \"accurate\" it, and that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,400",
+				"to": "00:03:07,160"
+			},
+			"offsets": {
+				"from": 183400,
+				"to": 187160
+			},
+			"text": " But it is not really trash less, because it has to all the other ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,160",
+				"to": "00:03:12,240"
+			},
+			"offsets": {
+				"from": 187160,
+				"to": 192240
+			},
+			"text": " So you have funds, and then you have only lateral permission to upgrade the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,240",
+				"to": "00:03:17,200"
+			},
+			"offsets": {
+				"from": 192240,
+				"to": 197200
+			},
+			"text": " What is the difference with just having a centralized server in which you can push code"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,200",
+				"to": "00:03:18,200"
+			},
+			"offsets": {
+				"from": 197200,
+				"to": 198200
+			},
+			"text": " too?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,200",
+				"to": "00:03:22,400"
+			},
+			"offsets": {
+				"from": 198200,
+				"to": 202400
+			},
+			"text": " And so I like to use the Ether Trump analogy here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,400",
+				"to": "00:03:26,560"
+			},
+			"offsets": {
+				"from": 202400,
+				"to": 206560
+			},
+			"text": " I made this kind of picture with Ethereum's logo and Trump, because I think this is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,560",
+				"to": "00:03:28,360"
+			},
+			"offsets": {
+				"from": 206560,
+				"to": 208360
+			},
+			"text": " worst from both worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,360",
+				"to": "00:03:35,080"
+			},
+			"offsets": {
+				"from": 208360,
+				"to": 215080
+			},
+			"text": " You have Ethereum, which is kind of clunky to use, and it's low, and all of those things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,080",
+				"to": "00:03:40,080"
+			},
+			"offsets": {
+				"from": 215080,
+				"to": 220080
+			},
+			"text": " and it costs money to click buttons as one team member from our team said."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,080",
+				"to": "00:03:43,840"
+			},
+			"offsets": {
+				"from": 220080,
+				"to": 223840
+			},
+			"text": " But then also you have the worst things from it being centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,840",
+				"to": "00:03:48,160"
+			},
+			"offsets": {
+				"from": 223840,
+				"to": 228160
+			},
+			"text": " So there is one person, one sort of big data or entity that can just push changes, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,160",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 228160,
+				"to": 233000
+			},
+			"text": " So I think centrally governed smart contracts are used very bad idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:58,640"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 238640
+			},
+			"text": " So that's why the Ether Trump, I hope you don't have nightmares about the Ether Trump."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,640",
+				"to": "00:04:00,600"
+			},
+			"offsets": {
+				"from": 238640,
+				"to": 240600
+			},
+			"text": " And thanks, John, for coining the term \"Ether Trump.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,600",
+				"to": "00:04:02,600"
+			},
+			"offsets": {
+				"from": 240600,
+				"to": 242600
+			},
+			"text": " I love it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,600",
+				"to": "00:04:07,040"
+			},
+			"offsets": {
+				"from": 242600,
+				"to": 247040
+			},
+			"text": " And now what I want to propose is a different thing, which is a different combination that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,040",
+				"to": "00:04:09,240"
+			},
+			"offsets": {
+				"from": 247040,
+				"to": 249240
+			},
+			"text": " I think takes the best from both worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,240",
+				"to": "00:04:12,280"
+			},
+			"offsets": {
+				"from": 249240,
+				"to": 252280
+			},
+			"text": " And that is community governed smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,280",
+				"to": "00:04:16,320"
+			},
+			"offsets": {
+				"from": 252280,
+				"to": 256320
+			},
+			"text": " And so the idea for these smart contracts is that they are upgradable."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,320",
+				"to": "00:04:18,440"
+			},
+			"offsets": {
+				"from": 256320,
+				"to": 258440
+			},
+			"text": " You can enhance them over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,440",
+				"to": "00:04:19,600"
+			},
+			"offsets": {
+				"from": 258440,
+				"to": 259600
+			},
+			"text": " You can enhance your protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,600",
+				"to": "00:04:20,680"
+			},
+			"offsets": {
+				"from": 259600,
+				"to": 260680
+			},
+			"text": " You can enhance your apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,680",
+				"to": "00:04:23,320"
+			},
+			"offsets": {
+				"from": 260680,
+				"to": 263320
+			},
+			"text": " But at the same time, there's a community."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,320",
+				"to": "00:04:28,680"
+			},
+			"offsets": {
+				"from": 263320,
+				"to": 268680
+			},
+			"text": " There's a governance process, a legitimate governance process that ensures that you cannot"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,680",
+				"to": "00:04:33,640"
+			},
+			"offsets": {
+				"from": 268680,
+				"to": 273640
+			},
+			"text": " push an update that gets people's money and get away with it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,640",
+				"to": "00:04:37,600"
+			},
+			"offsets": {
+				"from": 273640,
+				"to": 277600
+			},
+			"text": " And so I think it is very important to work on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,600",
+				"to": "00:04:41,840"
+			},
+			"offsets": {
+				"from": 277600,
+				"to": 281840
+			},
+			"text": " And this here is, of course, you have to figure out your governance structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,840",
+				"to": "00:04:46,800"
+			},
+			"offsets": {
+				"from": 281840,
+				"to": 286800
+			},
+			"text": " You have to think, all right, if I am going to put my smart contracts governance behind"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,800",
+				"to": "00:04:51,760"
+			},
+			"offsets": {
+				"from": 286800,
+				"to": 291760
+			},
+			"text": " a DAO or some sort of community governance, what is the governance structure that fits"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,760",
+				"to": "00:04:52,920"
+			},
+			"offsets": {
+				"from": 291760,
+				"to": 292920
+			},
+			"text": " the best?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,920",
+				"to": "00:04:56,960"
+			},
+			"offsets": {
+				"from": 292920,
+				"to": 296960
+			},
+			"text": " And so we've been working with projects for a long time to figure this out."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,960",
+				"to": "00:05:00,040"
+			},
+			"offsets": {
+				"from": 296960,
+				"to": 300040
+			},
+			"text": " And there are a bunch of different things you can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,040",
+				"to": "00:05:04,840"
+			},
+			"offsets": {
+				"from": 300040,
+				"to": 304840
+			},
+			"text": " The cool thing about Aragon and the way we thought about it is that it is very modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,840",
+				"to": "00:05:09,440"
+			},
+			"offsets": {
+				"from": 304840,
+				"to": 309440
+			},
+			"text": " So instead of saying, you know, we have the key ingredient, the key source, and that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,440",
+				"to": "00:05:13,760"
+			},
+			"offsets": {
+				"from": 309440,
+				"to": 313760
+			},
+			"text": " going to solve all your governance problems, and we're going to focus on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,760",
+				"to": "00:05:18,680"
+			},
+			"offsets": {
+				"from": 313760,
+				"to": 318680
+			},
+			"text": " Instead of saying that, we were like, well, we don't know how organizations of the future"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,680",
+				"to": "00:05:20,040"
+			},
+			"offsets": {
+				"from": 318680,
+				"to": 320040
+			},
+			"text": " are going to look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,040",
+				"to": "00:05:25,200"
+			},
+			"offsets": {
+				"from": 320040,
+				"to": 325200
+			},
+			"text": " We don't know in the future which kind of DAO's people will want to deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,200",
+				"to": "00:05:30,560"
+			},
+			"offsets": {
+				"from": 325200,
+				"to": 330560
+			},
+			"text": " We think every protocol or each community even has their own needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,560",
+				"to": "00:05:34,520"
+			},
+			"offsets": {
+				"from": 330560,
+				"to": 334520
+			},
+			"text": " And so let's build this model framework in which you can basically do everything that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,520",
+				"to": "00:05:36,120"
+			},
+			"offsets": {
+				"from": 334520,
+				"to": 336120
+			},
+			"text": " is here and much more."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,120",
+				"to": "00:05:40,920"
+			},
+			"offsets": {
+				"from": 336120,
+				"to": 340920
+			},
+			"text": " So there are two axes in this kind of map here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,920",
+				"to": "00:05:42,680"
+			},
+			"offsets": {
+				"from": 340920,
+				"to": 342680
+			},
+			"text": " And so one of them is speed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,680",
+				"to": "00:05:47,960"
+			},
+			"offsets": {
+				"from": 342680,
+				"to": 347960
+			},
+			"text": " So the speed of which developers, core developers can implement changes to the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,960",
+				"to": "00:05:52,880"
+			},
+			"offsets": {
+				"from": 347960,
+				"to": 352880
+			},
+			"text": " And there's the other one which is Treaslessness, which is how Treasless is actually this protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,880",
+				"to": "00:05:57,760"
+			},
+			"offsets": {
+				"from": 352880,
+				"to": 357760
+			},
+			"text": " The reason why Treaslessness is important is not because I like visualization, which I"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,760",
+				"to": "00:05:59,680"
+			},
+			"offsets": {
+				"from": 357760,
+				"to": 359680
+			},
+			"text": " also do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,680",
+				"to": "00:06:03,800"
+			},
+			"offsets": {
+				"from": 359680,
+				"to": 363800
+			},
+			"text": " It's more because if it's not Treasless, again, if you just have a protocol that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,800",
+				"to": "00:06:08,600"
+			},
+			"offsets": {
+				"from": 363800,
+				"to": 368600
+			},
+			"text": " custodial, you may have a lot of issues from not having trust from your users because you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,600",
+				"to": "00:06:15,720"
+			},
+			"offsets": {
+				"from": 368600,
+				"to": 375720
+			},
+			"text": " can use with rather fans or maliciously intervening in their apps and the working systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,720",
+				"to": "00:06:17,920"
+			},
+			"offsets": {
+				"from": 375720,
+				"to": 377920
+			},
+			"text": " Or even because you may have legal issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,920",
+				"to": "00:06:23,720"
+			},
+			"offsets": {
+				"from": 377920,
+				"to": 383720
+			},
+			"text": " Like a lot of these CFI projects today, I think they may face some kind of legal issue if"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,720",
+				"to": "00:06:27,880"
+			},
+			"offsets": {
+				"from": 383720,
+				"to": 387880
+			},
+			"text": " they are used basically at the ones controlling the whole protocol in the background, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,880",
+				"to": "00:06:31,760"
+			},
+			"offsets": {
+				"from": 387880,
+				"to": 391760
+			},
+			"text": " So because they are supposed to be decentralized, but they are not in practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,760",
+				"to": "00:06:37,160"
+			},
+			"offsets": {
+				"from": 391760,
+				"to": 397160
+			},
+			"text": " So I think it is very important to put Treaslessness first where we're building Treasless systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,160",
+				"to": "00:06:41,520"
+			},
+			"offsets": {
+				"from": 397160,
+				"to": 401520
+			},
+			"text": " If you don't want a Treasless system, you can always use MongoDB and you go the centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,520",
+				"to": "00:06:42,520"
+			},
+			"offsets": {
+				"from": 401520,
+				"to": 402520
+			},
+			"text": " route."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,520",
+				"to": "00:06:45,400"
+			},
+			"offsets": {
+				"from": 402520,
+				"to": 405400
+			},
+			"text": " It's going to have amazing user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,400",
+				"to": "00:06:50,680"
+			},
+			"offsets": {
+				"from": 405400,
+				"to": 410680
+			},
+			"text": " The centralized for me has very, very high speed, but it's not Treasless at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,680",
+				"to": "00:06:53,040"
+			},
+			"offsets": {
+				"from": 410680,
+				"to": 413040
+			},
+			"text": " Then you have something like a technical counsel."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,040",
+				"to": "00:06:59,160"
+			},
+			"offsets": {
+				"from": 413040,
+				"to": 419160
+			},
+			"text": " So there is a project, a V5 protocol actually called Melon protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,160",
+				"to": "00:07:04,800"
+			},
+			"offsets": {
+				"from": 419160,
+				"to": 424800
+			},
+			"text": " And so the way they structured the governance, they wanted to do something in which token"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,800",
+				"to": "00:07:11,800"
+			},
+			"offsets": {
+				"from": 424800,
+				"to": 431800
+			},
+			"text": " holders have the ultimate word, but also there was fairly fast to post updates, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,800",
+				"to": "00:07:18,480"
+			},
+			"offsets": {
+				"from": 431800,
+				"to": 438480
+			},
+			"text": " And so today it is very hard to token holders of your community as a smart contract and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,480",
+				"to": "00:07:20,480"
+			},
+			"offsets": {
+				"from": 438480,
+				"to": 440480
+			},
+			"text": " be like, well, they want to approach this upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,480",
+				"to": "00:07:23,040"
+			},
+			"offsets": {
+				"from": 440480,
+				"to": 443040
+			},
+			"text": " I mean, that requires a lot of coordination costs and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,040",
+				"to": "00:07:27,440"
+			},
+			"offsets": {
+				"from": 443040,
+				"to": 447440
+			},
+			"text": " And there is very specific knowledge that they need to have on solidity and, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,440",
+				"to": "00:07:28,440"
+			},
+			"offsets": {
+				"from": 447440,
+				"to": 448440
+			},
+			"text": " protocol design."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,440",
+				"to": "00:07:32,080"
+			},
+			"offsets": {
+				"from": 448440,
+				"to": 452080
+			},
+			"text": " Instead of doing that, they wanted a technical counsel."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,080",
+				"to": "00:07:35,640"
+			},
+			"offsets": {
+				"from": 452080,
+				"to": 455640
+			},
+			"text": " So token holders could like both for this counsel and then this counsel would take care"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,640",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 455640,
+				"to": 458000
+			},
+			"text": " of the upgrades afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:42,760"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 462760
+			},
+			"text": " So for me, that's not like super, super Treasless, but I think it's like Treasless enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,760",
+				"to": "00:07:46,720"
+			},
+			"offsets": {
+				"from": 462760,
+				"to": 466720
+			},
+			"text": " And also guarantees a very high speed because you can iterate very fast with this counsel"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,720",
+				"to": "00:07:49,880"
+			},
+			"offsets": {
+				"from": 466720,
+				"to": 469880
+			},
+			"text": " and you can ensure that these people actually know what they are talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,880",
+				"to": "00:07:51,680"
+			},
+			"offsets": {
+				"from": 469880,
+				"to": 471680
+			},
+			"text": " They are experts in their field."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,680",
+				"to": "00:07:57,440"
+			},
+			"offsets": {
+				"from": 471680,
+				"to": 477440
+			},
+			"text": " So this is a very, very example of how a protocol went from centralized to decentralized using"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,440",
+				"to": "00:07:59,440"
+			},
+			"offsets": {
+				"from": 477440,
+				"to": 479440
+			},
+			"text": " argon and our tool in."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,440",
+				"to": "00:08:01,360"
+			},
+			"offsets": {
+				"from": 479440,
+				"to": 481360
+			},
+			"text": " And it's a very exciting project."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,360",
+				"to": "00:08:05,720"
+			},
+			"offsets": {
+				"from": 481360,
+				"to": 485720
+			},
+			"text": " And right now it's been a minute for a few months in terms of the governance structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,720",
+				"to": "00:08:10,080"
+			},
+			"offsets": {
+				"from": 485720,
+				"to": 490080
+			},
+			"text": " that they are using with argon and I'm super, super happy that it's working out for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,080",
+				"to": "00:08:12,880"
+			},
+			"offsets": {
+				"from": 490080,
+				"to": 492880
+			},
+			"text": " Then you have other models, for example, community veto."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,880",
+				"to": "00:08:18,200"
+			},
+			"offsets": {
+				"from": 492880,
+				"to": 498200
+			},
+			"text": " So here you may say, as the core developer, I still want to retain the power to boost"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,200",
+				"to": "00:08:19,200"
+			},
+			"offsets": {
+				"from": 498200,
+				"to": 499200
+			},
+			"text": " upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,200",
+				"to": "00:08:24,760"
+			},
+			"offsets": {
+				"from": 499200,
+				"to": 504760
+			},
+			"text": " But I want to give my community like 24 hours, 48 hours, whatever time you want for them"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,760",
+				"to": "00:08:29,120"
+			},
+			"offsets": {
+				"from": 504760,
+				"to": 509120
+			},
+			"text": " to check the upgrade and be able to veto it if it's just like outrageous, if I'm just"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,120",
+				"to": "00:08:32,360"
+			},
+			"offsets": {
+				"from": 509120,
+				"to": 512360
+			},
+			"text": " going to like, you know, steal their money or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,360",
+				"to": "00:08:39,960"
+			},
+			"offsets": {
+				"from": 512360,
+				"to": 519960
+			},
+			"text": " So with this, you may have this period where you need to allow token holders to vote no"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,960",
+				"to": "00:08:41,760"
+			},
+			"offsets": {
+				"from": 519960,
+				"to": 521760
+			},
+			"text": " to your proposed upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,760",
+				"to": "00:08:44,560"
+			},
+			"offsets": {
+				"from": 521760,
+				"to": 524560
+			},
+			"text": " So it is not that fast, but it's more trustless, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,560",
+				"to": "00:08:49,120"
+			},
+			"offsets": {
+				"from": 524560,
+				"to": 529120
+			},
+			"text": " Because you can have your whole community basically stop updates at any point in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,120",
+				"to": "00:08:50,120"
+			},
+			"offsets": {
+				"from": 529120,
+				"to": 530120
+			},
+			"text": " So that's cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,120",
+				"to": "00:08:53,160"
+			},
+			"offsets": {
+				"from": 530120,
+				"to": 533160
+			},
+			"text": " Then you have like stuff like liquid tokenocracy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,160",
+				"to": "00:08:56,480"
+			},
+			"offsets": {
+				"from": 533160,
+				"to": 536480
+			},
+			"text": " There is something called it tokenocracy because it is not like democracy in the sense that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,480",
+				"to": "00:08:59,040"
+			},
+			"offsets": {
+				"from": 536480,
+				"to": 539040
+			},
+			"text": " you have like one person one vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,040",
+				"to": "00:09:03,640"
+			},
+			"offsets": {
+				"from": 539040,
+				"to": 543640
+			},
+			"text": " You can also deal with Argon, there is another doubt that is doing that, doing some kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,640",
+				"to": "00:09:08,320"
+			},
+			"offsets": {
+				"from": 543640,
+				"to": 548320
+			},
+			"text": " of like civil resistance using an app that they have in which you have to like pick a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,320",
+				"to": "00:09:10,720"
+			},
+			"offsets": {
+				"from": 548320,
+				"to": 550720
+			},
+			"text": " photo or something like that, it's a record system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,720",
+				"to": "00:09:12,200"
+			},
+			"offsets": {
+				"from": 550720,
+				"to": 552200
+			},
+			"text": " But here I'm referring to tokenocracy."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,200",
+				"to": "00:09:17,600"
+			},
+			"offsets": {
+				"from": 552200,
+				"to": 557600
+			},
+			"text": " So basically, you're skinning the game kind of tokenocracy where like you have one token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,600",
+				"to": "00:09:19,240"
+			},
+			"offsets": {
+				"from": 557600,
+				"to": 559240
+			},
+			"text": " you have one vote basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,240",
+				"to": "00:09:22,880"
+			},
+			"offsets": {
+				"from": 559240,
+				"to": 562880
+			},
+			"text": " And so you can have something like liquid tokenocracy where you can delegate to other"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,880",
+				"to": "00:09:23,880"
+			},
+			"offsets": {
+				"from": 562880,
+				"to": 563880
+			},
+			"text": " people."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,880",
+				"to": "00:09:26,560"
+			},
+			"offsets": {
+				"from": 563880,
+				"to": 566560
+			},
+			"text": " So you're token holders that have to read every proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,560",
+				"to": "00:09:32,400"
+			},
+			"offsets": {
+				"from": 566560,
+				"to": 572400
+			},
+			"text": " They can just delegate to other person that they think is more expert in that field."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,400",
+				"to": "00:09:35,600"
+			},
+			"offsets": {
+				"from": 572400,
+				"to": 575600
+			},
+			"text": " But then if that person that delegates is not performing, well, they can withdraw the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,600",
+				"to": "00:09:38,120"
+			},
+			"offsets": {
+				"from": 575600,
+				"to": 578120
+			},
+			"text": " vote immediately and give it to someone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,120",
+				"to": "00:09:39,120"
+			},
+			"offsets": {
+				"from": 578120,
+				"to": 579120
+			},
+			"text": " So that's very cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,120",
+				"to": "00:09:41,560"
+			},
+			"offsets": {
+				"from": 579120,
+				"to": 581560
+			},
+			"text": " We're working on that implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,560",
+				"to": "00:09:45,560"
+			},
+			"offsets": {
+				"from": 581560,
+				"to": 585560
+			},
+			"text": " And then you have something that is I think probably the most trustless but also like kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,560",
+				"to": "00:09:48,480"
+			},
+			"offsets": {
+				"from": 585560,
+				"to": 588480
+			},
+			"text": " of as low which is direct tokenocracy."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,480",
+				"to": "00:09:51,880"
+			},
+			"offsets": {
+				"from": 588480,
+				"to": 591880
+			},
+			"text": " That's what we do also in Argon for our own governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,880",
+				"to": "00:09:56,520"
+			},
+			"offsets": {
+				"from": 591880,
+				"to": 596520
+			},
+			"text": " So each three months, token holders get to decide on the future of a project."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,520",
+				"to": "00:09:58,600"
+			},
+			"offsets": {
+				"from": 596520,
+				"to": 598600
+			},
+			"text": " And I think that's a very cool model."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,600",
+				"to": "00:10:00,960"
+			},
+			"offsets": {
+				"from": 598600,
+				"to": 600960
+			},
+			"text": " It's again like it's super trustless."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,960",
+				"to": "00:10:04,320"
+			},
+			"offsets": {
+				"from": 600960,
+				"to": 604320
+			},
+			"text": " Like every three months basically they can do whatever they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,320",
+				"to": "00:10:05,480"
+			},
+			"offsets": {
+				"from": 604320,
+				"to": 605480
+			},
+			"text": " You don't have to do it every three months."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,480",
+				"to": "00:10:06,800"
+			},
+			"offsets": {
+				"from": 605480,
+				"to": 606800
+			},
+			"text": " You can do like continues as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,800",
+				"to": "00:10:12,160"
+			},
+			"offsets": {
+				"from": 606800,
+				"to": 612160
+			},
+			"text": " But of course, if you need all the other stakeholders to come together and take a decision, maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,160",
+				"to": "00:10:17,040"
+			},
+			"offsets": {
+				"from": 612160,
+				"to": 617040
+			},
+			"text": " it's better to concentrate that into one moment, each quarter, one moment, each year kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,040",
+				"to": "00:10:18,040"
+			},
+			"offsets": {
+				"from": 617040,
+				"to": 618040
+			},
+			"text": " thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,040",
+				"to": "00:10:21,160"
+			},
+			"offsets": {
+				"from": 618040,
+				"to": 621160
+			},
+			"text": " So it's more, you know, it's slower but it's more trustless."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,160",
+				"to": "00:10:25,240"
+			},
+			"offsets": {
+				"from": 621160,
+				"to": 625240
+			},
+			"text": " So again, you can design all of this with Argon and you can basically see what are your"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,240",
+				"to": "00:10:30,200"
+			},
+			"offsets": {
+				"from": 625240,
+				"to": 630200
+			},
+			"text": " trade offs, what matters to you and then you know, customize your doubt to fit those needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,200",
+				"to": "00:10:35,440"
+			},
+			"offsets": {
+				"from": 630200,
+				"to": 635440
+			},
+			"text": " So I think it is very important to build a community not only to ensure that your protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,440",
+				"to": "00:10:40,440"
+			},
+			"offsets": {
+				"from": 635440,
+				"to": 640440
+			},
+			"text": " remains trustless and so you can eventually move governance from centralized to decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,440",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 640440,
+				"to": 645000
+			},
+			"text": " But also because if you look at like what three is all about is basically network effects"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:46,520"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 646520
+			},
+			"text": " around communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,520",
+				"to": "00:10:49,360"
+			},
+			"offsets": {
+				"from": 646520,
+				"to": 649360
+			},
+			"text": " The code can be forked."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,360",
+				"to": "00:10:53,480"
+			},
+			"offsets": {
+				"from": 649360,
+				"to": 653480
+			},
+			"text": " Of course like branding and stuff like that and community cannot."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,480",
+				"to": "00:10:56,280"
+			},
+			"offsets": {
+				"from": 653480,
+				"to": 656280
+			},
+			"text": " So it is very, very important that we focus on the right things here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,280",
+				"to": "00:11:01,520"
+			},
+			"offsets": {
+				"from": 656280,
+				"to": 661520
+			},
+			"text": " In communities, the right thing, if you look at Ethereum, you can fork Ethereum today."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,520",
+				"to": "00:11:03,920"
+			},
+			"offsets": {
+				"from": 661520,
+				"to": 663920
+			},
+			"text": " You can name it Ethereum Cash."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,920",
+				"to": "00:11:09,400"
+			},
+			"offsets": {
+				"from": 663920,
+				"to": 669400
+			},
+			"text": " Probably no one would use it because the community we have here, you guys and everyone out there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,400",
+				"to": "00:11:12,400"
+			},
+			"offsets": {
+				"from": 669400,
+				"to": 672400
+			},
+			"text": " that cannot be forked."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,400",
+				"to": "00:11:19,200"
+			},
+			"offsets": {
+				"from": 672400,
+				"to": 679200
+			},
+			"text": " So I think also it's very important as I was a student the other day that we see organizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,200",
+				"to": "00:11:23,640"
+			},
+			"offsets": {
+				"from": 679200,
+				"to": 683640
+			},
+			"text": " and governance structures as products and the users maybe in this case I was looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,640",
+				"to": "00:11:27,880"
+			},
+			"offsets": {
+				"from": 683640,
+				"to": 687880
+			},
+			"text": " about like a company structure or like an organization but I think it's the same for"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,880",
+				"to": "00:11:30,200"
+			},
+			"offsets": {
+				"from": 687880,
+				"to": 690200
+			},
+			"text": " a crypto protocol or network."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,200",
+				"to": "00:11:34,160"
+			},
+			"offsets": {
+				"from": 690200,
+				"to": 694160
+			},
+			"text": " So when you create the governance structure that is also a product."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,160",
+				"to": "00:11:37,960"
+			},
+			"offsets": {
+				"from": 694160,
+				"to": 697960
+			},
+			"text": " That is a product and your users are your community members for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,960",
+				"to": "00:11:42,160"
+			},
+			"offsets": {
+				"from": 697960,
+				"to": 702160
+			},
+			"text": " So when I think about the governance process we created for ourselves in Argon, we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,160",
+				"to": "00:11:47,680"
+			},
+			"offsets": {
+				"from": 702160,
+				"to": 707680
+			},
+			"text": " a lot of these people who offer new governance proposals, we have these people who edit them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,680",
+				"to": "00:11:51,720"
+			},
+			"offsets": {
+				"from": 707680,
+				"to": 711720
+			},
+			"text": " we have these people who then are community members and they get affected by them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,720",
+				"to": "00:11:55,320"
+			},
+			"offsets": {
+				"from": 711720,
+				"to": 715320
+			},
+			"text": " So at the end of the day, you have to look at your community and your governance as just"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,320",
+				"to": "00:11:56,320"
+			},
+			"offsets": {
+				"from": 715320,
+				"to": 716320
+			},
+			"text": " another product."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,320",
+				"to": "00:12:00,720"
+			},
+			"offsets": {
+				"from": 716320,
+				"to": 720720
+			},
+			"text": " Have you have to care of it as if it was just another product that you're building?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,720",
+				"to": "00:12:03,840"
+			},
+			"offsets": {
+				"from": 720720,
+				"to": 723840
+			},
+			"text": " And of course a very important one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,840",
+				"to": "00:12:09,040"
+			},
+			"offsets": {
+				"from": 723840,
+				"to": 729040
+			},
+			"text": " I think also when talking about one token one vote, a lot of people get outraged about"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,040",
+				"to": "00:12:13,640"
+			},
+			"offsets": {
+				"from": 729040,
+				"to": 733640
+			},
+			"text": " you know, protocracy and capture and all of these things, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,640",
+				"to": "00:12:18,600"
+			},
+			"offsets": {
+				"from": 733640,
+				"to": 738600
+			},
+			"text": " I think if we look at tokenocracy or what I call the evolution of the stakeholder governance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,600",
+				"to": "00:12:23,040"
+			},
+			"offsets": {
+				"from": 738600,
+				"to": 743040
+			},
+			"text": " if you look at shareholder governance for the last hundreds of years, it has to work"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,040",
+				"to": "00:12:24,960"
+			},
+			"offsets": {
+				"from": 743040,
+				"to": 744960
+			},
+			"text": " beautifully to create value."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,960",
+				"to": "00:12:28,800"
+			},
+			"offsets": {
+				"from": 744960,
+				"to": 748800
+			},
+			"text": " Now we are in this weird position where we have common goods or something that kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,800",
+				"to": "00:12:33,720"
+			},
+			"offsets": {
+				"from": 748800,
+				"to": 753720
+			},
+			"text": " resembles a common good or is like kind of a gray area between being a common good and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,720",
+				"to": "00:12:38,440"
+			},
+			"offsets": {
+				"from": 753720,
+				"to": 758440
+			},
+			"text": " also like a private property because I mean it's not certainly like 100% common good,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,440",
+				"to": "00:12:42,920"
+			},
+			"offsets": {
+				"from": 758440,
+				"to": 762920
+			},
+			"text": " you have to like add quite if or Bitcoin or whatever to be part of these networks but"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,920",
+				"to": "00:12:46,600"
+			},
+			"offsets": {
+				"from": 762920,
+				"to": 766600
+			},
+			"text": " at the same time like it's not used as traditional private company."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,600",
+				"to": "00:12:51,720"
+			},
+			"offsets": {
+				"from": 766600,
+				"to": 771720
+			},
+			"text": " So I think here with this evolution of stakeholder governance, one token one vote, there are certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,720",
+				"to": "00:12:55,400"
+			},
+			"offsets": {
+				"from": 771720,
+				"to": 775400
+			},
+			"text": " things that could improve but there are also things that are really great and they are"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,400",
+				"to": "00:12:59,640"
+			},
+			"offsets": {
+				"from": 775400,
+				"to": 779640
+			},
+			"text": " very handy if you just want to like have a community vote in today."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,640",
+				"to": "00:13:04,040"
+			},
+			"offsets": {
+				"from": 779640,
+				"to": 784040
+			},
+			"text": " So in services, in the game of course if you have participants in your network that own"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,040",
+				"to": "00:13:07,920"
+			},
+			"offsets": {
+				"from": 784040,
+				"to": 787920
+			},
+			"text": " a biggest stake or they own a stake, they're going to be incentivized for the network and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,920",
+				"to": "00:13:10,280"
+			},
+			"offsets": {
+				"from": 787920,
+				"to": 790280
+			},
+			"text": " the community to grow and work."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,280",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 790280,
+				"to": 794000
+			},
+			"text": " They are easy to deploy today, like you can deploy one token one vote today, very very"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 797000
+			},
+			"text": " easy, allows for sedonymous participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:18,200"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 798200
+			},
+			"text": " I don't like it twice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,200",
+				"to": "00:13:23,560"
+			},
+			"offsets": {
+				"from": 798200,
+				"to": 803560
+			},
+			"text": " I think it works for some models, governance models but I think allowing sedonymous participation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,560",
+				"to": "00:13:24,560"
+			},
+			"offsets": {
+				"from": 803560,
+				"to": 804560
+			},
+			"text": " is very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,560",
+				"to": "00:13:28,440"
+			},
+			"offsets": {
+				"from": 804560,
+				"to": 808440
+			},
+			"text": " For example, in the Aruin community, there are people who are sedonymous, they pass proposals"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,440",
+				"to": "00:13:32,040"
+			},
+			"offsets": {
+				"from": 808440,
+				"to": 812040
+			},
+			"text": " into the ballot and they actually get adopted by a whole community and we don't know who"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,040",
+				"to": "00:13:35,040"
+			},
+			"offsets": {
+				"from": 812040,
+				"to": 815040
+			},
+			"text": " these people are and that's beautiful as a beauty of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,040",
+				"to": "00:13:37,840"
+			},
+			"offsets": {
+				"from": 815040,
+				"to": 817840
+			},
+			"text": " And then also allows everyone to benefit from value creation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,840",
+				"to": "00:13:44,200"
+			},
+			"offsets": {
+				"from": 817840,
+				"to": 824200
+			},
+			"text": " So a key difference with private companies decades ago is that you could only benefit"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,200",
+				"to": "00:13:47,840"
+			},
+			"offsets": {
+				"from": 824200,
+				"to": 827840
+			},
+			"text": " from this value creation, for example in Apple, Facebook and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,840",
+				"to": "00:13:53,200"
+			},
+			"offsets": {
+				"from": 827840,
+				"to": 833200
+			},
+			"text": " If you were the first engine investor, the seed investor, even later in the kind of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,200",
+				"to": "00:13:55,640"
+			},
+			"offsets": {
+				"from": 833200,
+				"to": 835640
+			},
+			"text": " a stage in which you could buy shares, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,640",
+				"to": "00:14:00,600"
+			},
+			"offsets": {
+				"from": 835640,
+				"to": 840600
+			},
+			"text": " But not a lot of people had access to that, especially not like everyone who was not a"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,600",
+				"to": "00:14:01,600"
+			},
+			"offsets": {
+				"from": 840600,
+				"to": 841600
+			},
+			"text": " VC."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,600",
+				"to": "00:14:06,680"
+			},
+			"offsets": {
+				"from": 841600,
+				"to": 846680
+			},
+			"text": " Here everyone can just chime in and buy Bitcoin early in the day or buy ETH or buy whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,680",
+				"to": "00:14:11,800"
+			},
+			"offsets": {
+				"from": 846680,
+				"to": 851800
+			},
+			"text": " kind of talk in our community so they can participate in that value creation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,800",
+				"to": "00:14:16,120"
+			},
+			"offsets": {
+				"from": 851800,
+				"to": 856120
+			},
+			"text": " So my message here is only owner, I don't think it will last."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,120",
+				"to": "00:14:21,280"
+			},
+			"offsets": {
+				"from": 856120,
+				"to": 861280
+			},
+			"text": " We need to improve trashlessness and transparency with those, especially for protocols that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,280",
+				"to": "00:14:22,840"
+			},
+			"offsets": {
+				"from": 861280,
+				"to": 862840
+			},
+			"text": " are supposed to be decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,840",
+				"to": "00:14:26,800"
+			},
+			"offsets": {
+				"from": 862840,
+				"to": 866800
+			},
+			"text": " I think it's important also if your protocol is centralized today, I think there are some"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,800",
+				"to": "00:14:29,640"
+			},
+			"offsets": {
+				"from": 866800,
+				"to": 869640
+			},
+			"text": " trade-offs, there are things that need to be improved and I don't blame you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,640",
+				"to": "00:14:35,080"
+			},
+			"offsets": {
+				"from": 869640,
+				"to": 875080
+			},
+			"text": " A technology wasn't there a year ago for these protocols to actually be more decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,080",
+				"to": "00:14:38,600"
+			},
+			"offsets": {
+				"from": 875080,
+				"to": 878600
+			},
+			"text": " but it is today and so we need to pave the way, we need to think about the roadmap and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,600",
+				"to": "00:14:42,960"
+			},
+			"offsets": {
+				"from": 878600,
+				"to": 882960
+			},
+			"text": " we need to actually get these things at the point that they are actually trashless."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,960",
+				"to": "00:14:45,600"
+			},
+			"offsets": {
+				"from": 882960,
+				"to": 885600
+			},
+			"text": " If you get an only owner problem, we can help."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,600",
+				"to": "00:14:49,040"
+			},
+			"offsets": {
+				"from": 885600,
+				"to": 889040
+			},
+			"text": " We're working on this one click setup template for protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,040",
+				"to": "00:14:54,280"
+			},
+			"offsets": {
+				"from": 889040,
+				"to": 894280
+			},
+			"text": " So if you go to the Aragon app, you see these templates that you can just click on and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,280",
+				"to": "00:15:00,600"
+			},
+			"offsets": {
+				"from": 894280,
+				"to": 900600
+			},
+			"text": " feel like a bunch of text fields in our beautiful UI, click create, boom, done."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,600",
+				"to": "00:15:03,760"
+			},
+			"offsets": {
+				"from": 900600,
+				"to": 903760
+			},
+			"text": " If you want to do something more complex, there are like CLI, like command line tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,760",
+				"to": "00:15:08,680"
+			},
+			"offsets": {
+				"from": 903760,
+				"to": 908680
+			},
+			"text": " that are like an SDK with a bunch of things, you can really get crazy with it but if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,680",
+				"to": "00:15:14,400"
+			},
+			"offsets": {
+				"from": 908680,
+				"to": 914400
+			},
+			"text": " want to get like the basic basic templates, is it like graphic user interface, you don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,400",
+				"to": "00:15:19,480"
+			},
+			"offsets": {
+				"from": 914400,
+				"to": 919480
+			},
+			"text": " have to do anything else and we're working on integrating this into our Aragon client."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,480",
+				"to": "00:15:24,440"
+			},
+			"offsets": {
+				"from": 919480,
+				"to": 924440
+			},
+			"text": " In the future, you will be able to use go to app.org, select crypto protocol and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,440",
+				"to": "00:15:27,120"
+			},
+			"offsets": {
+				"from": 924440,
+				"to": 927120
+			},
+			"text": " basically you can write your smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,120",
+				"to": "00:15:30,840"
+			},
+			"offsets": {
+				"from": 927120,
+				"to": 930840
+			},
+			"text": " For example here, this can be your protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,840",
+				"to": "00:15:38,440"
+			},
+			"offsets": {
+				"from": 930840,
+				"to": 938440
+			},
+			"text": " You can write your smart contracts as much flexibility as you want and then instead of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,440",
+				"to": "00:15:45,480"
+			},
+			"offsets": {
+				"from": 938440,
+				"to": 945480
+			},
+			"text": " putting the only owner to your account or your company's letter or dress or whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,480",
+				"to": "00:15:49,280"
+			},
+			"offsets": {
+				"from": 945480,
+				"to": 949280
+			},
+			"text": " what you can do is put the only owner to the agent app in the DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,280",
+				"to": "00:15:51,960"
+			},
+			"offsets": {
+				"from": 949280,
+				"to": 951960
+			},
+			"text": " So basically everything to the right is the DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,960",
+				"to": "00:15:55,960"
+			},
+			"offsets": {
+				"from": 951960,
+				"to": 955960
+			},
+			"text": " So the DAO can have multiple apps, the voting app, the finance app that allows your DAO"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,960",
+				"to": "00:15:57,600"
+			},
+			"offsets": {
+				"from": 955960,
+				"to": 957600
+			},
+			"text": " to have money."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,600",
+				"to": "00:15:59,240"
+			},
+			"offsets": {
+				"from": 957600,
+				"to": 959240
+			},
+			"text": " You can get very crazy with permissions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,240",
+				"to": "00:16:03,880"
+			},
+			"offsets": {
+				"from": 959240,
+				"to": 963880
+			},
+			"text": " For example, you can give the voting app to get money out of the finance app."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,880",
+				"to": "00:16:09,600"
+			},
+			"offsets": {
+				"from": 963880,
+				"to": 969600
+			},
+			"text": " So you can even have a protocol reward DAO in which each block or yeah, each block or"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,600",
+				"to": "00:16:16,080"
+			},
+			"offsets": {
+				"from": 969600,
+				"to": 976080
+			},
+			"text": " each period of time there's a new token created that goes into this finance app in the DAO"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,080",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 976080,
+				"to": 980000
+			},
+			"text": " and then token holders can use the voting app to decide how to spend those funds from"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:21,960"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 981960
+			},
+			"text": " protocol development."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,960",
+				"to": "00:16:24,360"
+			},
+			"offsets": {
+				"from": 981960,
+				"to": 984360
+			},
+			"text": " But then we created this app called AYOND."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,360",
+				"to": "00:16:30,880"
+			},
+			"offsets": {
+				"from": 984360,
+				"to": 990880
+			},
+			"text": " AYOND is basically the DAO's face to the world, to the worthy world."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,880",
+				"to": "00:16:36,320"
+			},
+			"offsets": {
+				"from": 990880,
+				"to": 996320
+			},
+			"text": " And so what AYOND allows is for the DAO to interoperate with any worthy protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,320",
+				"to": "00:16:40,720"
+			},
+			"offsets": {
+				"from": 996320,
+				"to": 1000720
+			},
+			"text": " So the DAO may be able to open a CDT on Maker, it may be able to lend money on Compound,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,720",
+				"to": "00:16:41,720"
+			},
+			"offsets": {
+				"from": 1000720,
+				"to": 1001720
+			},
+			"text": " all of those things."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,720",
+				"to": "00:16:45,720"
+			},
+			"offsets": {
+				"from": 1001720,
+				"to": 1005720
+			},
+			"text": " And the cool thing here is you don't need to get into our SDK to use this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,720",
+				"to": "00:16:49,680"
+			},
+			"offsets": {
+				"from": 1005720,
+				"to": 1009680
+			},
+			"text": " Like you use basically have to create your protocol, whatever way you want and then put"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,680",
+				"to": "00:16:54,960"
+			},
+			"offsets": {
+				"from": 1009680,
+				"to": 1014960
+			},
+			"text": " the address of this AYOND app as the only owner and that would basically make your protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,960",
+				"to": "00:16:57,200"
+			},
+			"offsets": {
+				"from": 1014960,
+				"to": 1017200
+			},
+			"text": " be governed by a DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,200",
+				"to": "00:17:00,160"
+			},
+			"offsets": {
+				"from": 1017200,
+				"to": 1020160
+			},
+			"text": " It's that easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,160",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1020160,
+				"to": 1027000
+			},
+			"text": " So I think as a summary, DAO's make DFI deserve the D. I think right now we're in the presence"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:09,560"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1029560
+			},
+			"text": " of actually making sure that DFI actually deserves that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,560",
+				"to": "00:17:11,320"
+			},
+			"offsets": {
+				"from": 1029560,
+				"to": 1031320
+			},
+			"text": " I think it's more like CFI today."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,320",
+				"to": "00:17:15,640"
+			},
+			"offsets": {
+				"from": 1031320,
+				"to": 1035640
+			},
+			"text": " I think everyone else are very easy to deploy, you can literally deploy them in like 30 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,640",
+				"to": "00:17:20,160"
+			},
+			"offsets": {
+				"from": 1035640,
+				"to": 1040160
+			},
+			"text": " They are working in a study some mainnet, like the one that I mentioned from Melon protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,160",
+				"to": "00:17:23,840"
+			},
+			"offsets": {
+				"from": 1040160,
+				"to": 1043840
+			},
+			"text": " If you go to the AYOND website, there's a slide so we've multiple mainnet use cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,840",
+				"to": "00:17:24,840"
+			},
+			"offsets": {
+				"from": 1043840,
+				"to": 1044840
+			},
+			"text": " today."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,840",
+				"to": "00:17:30,280"
+			},
+			"offsets": {
+				"from": 1044840,
+				"to": 1050280
+			},
+			"text": " And we're working on this one, click set up template that will make things way, way easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,280",
+				"to": "00:17:33,920"
+			},
+			"offsets": {
+				"from": 1050280,
+				"to": 1053920
+			},
+			"text": " So as I said before, we have a bunch of DAOs now on mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,920",
+				"to": "00:17:37,320"
+			},
+			"offsets": {
+				"from": 1053920,
+				"to": 1057320
+			},
+			"text": " I think a year ago technology was very early, I think now we're getting there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,320",
+				"to": "00:17:43,280"
+			},
+			"offsets": {
+				"from": 1057320,
+				"to": 1063280
+			},
+			"text": " So more than 300 DAOs on mainnet today, you can create your set up.argone.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,280",
+				"to": "00:17:45,080"
+			},
+			"offsets": {
+				"from": 1063280,
+				"to": 1065080
+			},
+			"text": " Very easy, it's right like 30 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,080",
+				"to": "00:17:49,720"
+			},
+			"offsets": {
+				"from": 1065080,
+				"to": 1069720
+			},
+			"text": " We just released a new version two weeks ago or three weeks ago that makes the user experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,720",
+				"to": "00:17:50,720"
+			},
+			"offsets": {
+				"from": 1069720,
+				"to": 1070720
+			},
+			"text": " much better."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,720",
+				"to": "00:17:51,720"
+			},
+			"offsets": {
+				"from": 1070720,
+				"to": 1071720
+			},
+			"text": " I think we're getting there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,720",
+				"to": "00:17:56,960"
+			},
+			"offsets": {
+				"from": 1071720,
+				"to": 1076960
+			},
+			"text": " Like we are slowly making sure that it's comparable to web to experiences, inter-user"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,960",
+				"to": "00:17:57,960"
+			},
+			"offsets": {
+				"from": 1076960,
+				"to": 1077960
+			},
+			"text": " experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,960",
+				"to": "00:17:58,960"
+			},
+			"offsets": {
+				"from": 1077960,
+				"to": 1078960
+			},
+			"text": " So I'm very happy about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,960",
+				"to": "00:18:00,480"
+			},
+			"offsets": {
+				"from": 1078960,
+				"to": 1080480
+			},
+			"text": " And I just want to thank everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,480",
+				"to": "00:18:03,320"
+			},
+			"offsets": {
+				"from": 1080480,
+				"to": 1083320
+			},
+			"text": " You can follow our go on Twitter, you can follow me on Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,320",
+				"to": "00:18:07,600"
+			},
+			"offsets": {
+				"from": 1083320,
+				"to": 1087600
+			},
+			"text": " If you are interested in these challenges, the company that I work for, AYOND-GONE, we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,600",
+				"to": "00:18:09,800"
+			},
+			"offsets": {
+				"from": 1087600,
+				"to": 1089800
+			},
+			"text": " having a bunch of roles."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,800",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1089800,
+				"to": 1093000
+			},
+			"text": " It's really front-end people because we really care about designing, we really care about"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:15,400"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1095400
+			},
+			"text": " bringing these two people that actually need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,400",
+				"to": "00:18:19,160"
+			},
+			"offsets": {
+				"from": 1095400,
+				"to": 1099160
+			},
+			"text": " So you go to AYOND.org and also you can check out the AYOND website."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,160",
+				"to": "00:18:20,960"
+			},
+			"offsets": {
+				"from": 1099160,
+				"to": 1100960
+			},
+			"text": " So thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,960",
+				"to": "00:18:22,960"
+			},
+			"offsets": {
+				"from": 1100960,
+				"to": 1102960
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,960",
+				"to": "00:18:28,680"
+			},
+			"offsets": {
+				"from": 1102960,
+				"to": 1108680
+			},
+			"text": " And actually we have two more things for today."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,680",
+				"to": "00:18:33,840"
+			},
+			"offsets": {
+				"from": 1108680,
+				"to": 1113840
+			},
+			"text": " So one of them is, AYOND is going to be releasing a couple interesting news later today"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,840",
+				"to": "00:18:37,720"
+			},
+			"offsets": {
+				"from": 1113840,
+				"to": 1117720
+			},
+			"text": " about a couple community developments that are going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,720",
+				"to": "00:18:41,880"
+			},
+			"offsets": {
+				"from": 1117720,
+				"to": 1121880
+			},
+			"text": " So it's the tune for the AYOND news during the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,880",
+				"to": "00:18:45,520"
+			},
+			"offsets": {
+				"from": 1121880,
+				"to": 1125520
+			},
+			"text": " And then a second one is we are throwing up our team."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,520",
+				"to": "00:18:50,600"
+			},
+			"offsets": {
+				"from": 1125520,
+				"to": 1130600
+			},
+			"text": " And so we are throwing a DAO party, Daiko edition, basically focusing on the DAiko model and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,600",
+				"to": "00:18:55,080"
+			},
+			"offsets": {
+				"from": 1130600,
+				"to": 1135080
+			},
+			"text": " upcoming launch of AYOND fundraising that would allow any down in the world to fundraise"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,080",
+				"to": "00:18:56,520"
+			},
+			"offsets": {
+				"from": 1135080,
+				"to": 1136520
+			},
+			"text": " using bonding curves."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,520",
+				"to": "00:18:57,520"
+			},
+			"offsets": {
+				"from": 1136520,
+				"to": 1137520
+			},
+			"text": " So it's very cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,520",
+				"to": "00:19:03,320"
+			},
+			"offsets": {
+				"from": 1137520,
+				"to": 1143320
+			},
+			"text": " We're going to have actual, like, sushi there for the first people that arrive."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,320",
+				"to": "00:19:05,960"
+			},
+			"offsets": {
+				"from": 1143320,
+				"to": 1145960
+			},
+			"text": " Not like party finger food, I'm very happy about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,960",
+				"to": "00:19:08,840"
+			},
+			"offsets": {
+				"from": 1145960,
+				"to": 1148840
+			},
+			"text": " And I invite everyone to use sign up."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,840",
+				"to": "00:19:12,720"
+			},
+			"offsets": {
+				"from": 1148840,
+				"to": 1152720
+			},
+			"text": " You can RSVP just going to AYOND's Twitter and there is a link there."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,720",
+				"to": "00:19:17,320"
+			},
+			"offsets": {
+				"from": 1152720,
+				"to": 1157320
+			},
+			"text": " So see you later and hope we can enjoy some sushi and DAO conversations."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,320",
+				"to": "00:19:18,320"
+			},
+			"offsets": {
+				"from": 1157320,
+				"to": 1158320
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,320",
+				"to": "00:19:18,320"
+			},
+			"offsets": {
+				"from": 1158320,
+				"to": 1158320
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,320",
+				"to": "00:19:20,320"
+			},
+			"offsets": {
+				"from": 1158320,
+				"to": 1160320
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,320",
+				"to": "00:19:22,320"
+			},
+			"offsets": {
+				"from": 1160320,
+				"to": 1162320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,320",
+				"to": "00:19:24,320"
+			},
+			"offsets": {
+				"from": 1162320,
+				"to": 1164320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,320",
+				"to": "00:19:26,320"
+			},
+			"offsets": {
+				"from": 1164320,
+				"to": 1166320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,320",
+				"to": "00:19:28,320"
+			},
+			"offsets": {
+				"from": 1166320,
+				"to": 1168320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,320",
+				"to": "00:19:30,320"
+			},
+			"offsets": {
+				"from": 1168320,
+				"to": 1170320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,320",
+				"to": "00:19:32,320"
+			},
+			"offsets": {
+				"from": 1170320,
+				"to": 1172320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,320",
+				"to": "00:19:34,320"
+			},
+			"offsets": {
+				"from": 1172320,
+				"to": 1174320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,320",
+				"to": "00:19:36,320"
+			},
+			"offsets": {
+				"from": 1174320,
+				"to": 1176320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,320",
+				"to": "00:19:38,320"
+			},
+			"offsets": {
+				"from": 1176320,
+				"to": 1178320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,320",
+				"to": "00:19:40,320"
+			},
+			"offsets": {
+				"from": 1178320,
+				"to": 1180320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,320",
+				"to": "00:19:42,320"
+			},
+			"offsets": {
+				"from": 1180320,
+				"to": 1182320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,320",
+				"to": "00:19:44,320"
+			},
+			"offsets": {
+				"from": 1182320,
+				"to": 1184320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,320",
+				"to": "00:19:46,320"
+			},
+			"offsets": {
+				"from": 1184320,
+				"to": 1186320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,320",
+				"to": "00:19:48,320"
+			},
+			"offsets": {
+				"from": 1186320,
+				"to": 1188320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,320",
+				"to": "00:19:50,320"
+			},
+			"offsets": {
+				"from": 1188320,
+				"to": 1190320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,320",
+				"to": "00:19:52,320"
+			},
+			"offsets": {
+				"from": 1190320,
+				"to": 1192320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,320",
+				"to": "00:19:54,320"
+			},
+			"offsets": {
+				"from": 1192320,
+				"to": 1194320
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,320",
+				"to": "00:19:56,320"
+			},
+			"offsets": {
+				"from": 1194320,
+				"to": 1196320
+			},
+			"text": " [end]"
+		}
+	]
+}

@@ -1,0 +1,6269 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:14,440"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 14440
+			},
+			"text": " Cute."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,440",
+				"to": "00:00:17,560"
+			},
+			"offsets": {
+				"from": 14440,
+				"to": 17560
+			},
+			"text": " OK, yeah, I'm Mike, and I'm going to talk to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,560",
+				"to": "00:00:19,200"
+			},
+			"offsets": {
+				"from": 17560,
+				"to": 19200
+			},
+			"text": " about public-private composability"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,200",
+				"to": "00:00:20,640"
+			},
+			"offsets": {
+				"from": 19200,
+				"to": 20640
+			},
+			"text": " and what that really means is I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,640",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 20640,
+				"to": 25000
+			},
+			"text": " to talk about Aztecs' private smart contract architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:26,720"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 26720
+			},
+			"text": " So we've specked it all out, and we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,720",
+				"to": "00:00:29,920"
+			},
+			"offsets": {
+				"from": 26720,
+				"to": 29920
+			},
+			"text": " going to be spending the next year, maybe more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,920",
+				"to": "00:00:32,800"
+			},
+			"offsets": {
+				"from": 29920,
+				"to": 32800
+			},
+			"text": " building a general private smart contract platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,800",
+				"to": "00:00:34,040"
+			},
+			"offsets": {
+				"from": 32800,
+				"to": 34040
+			},
+			"text": " for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,040",
+				"to": "00:00:36,760"
+			},
+			"offsets": {
+				"from": 34040,
+				"to": 36760
+			},
+			"text": " So what were our aims when designing this private smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,760",
+				"to": "00:00:38,520"
+			},
+			"offsets": {
+				"from": 36760,
+				"to": 38520
+			},
+			"text": " contract platform?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,520",
+				"to": "00:00:42,160"
+			},
+			"offsets": {
+				"from": 38520,
+				"to": 42160
+			},
+			"text": " Well, firstly, private states, and what private states are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,160",
+				"to": "00:00:44,160"
+			},
+			"offsets": {
+				"from": 42160,
+				"to": 44160
+			},
+			"text": " are values known to only one person."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,160",
+				"to": "00:00:47,200"
+			},
+			"offsets": {
+				"from": 44160,
+				"to": 47200
+			},
+			"text": " So a private state has an owner, and no one else in the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,200",
+				"to": "00:00:49,680"
+			},
+			"offsets": {
+				"from": 47200,
+				"to": 49680
+			},
+			"text": " knows the value of that state."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,680",
+				"to": "00:00:52,360"
+			},
+			"offsets": {
+				"from": 49680,
+				"to": 52360
+			},
+			"text": " And then private function execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,360",
+				"to": "00:00:53,240"
+			},
+			"offsets": {
+				"from": 52360,
+				"to": 53240
+			},
+			"text": " And this is really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,240",
+				"to": "00:00:55,600"
+			},
+			"offsets": {
+				"from": 53240,
+				"to": 55600
+			},
+			"text": " This is the ability to execute a function"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,600",
+				"to": "00:00:57,880"
+			},
+			"offsets": {
+				"from": 55600,
+				"to": 57880
+			},
+			"text": " without revealing to anyone in the world which function"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,880",
+				"to": "00:00:59,320"
+			},
+			"offsets": {
+				"from": 57880,
+				"to": 59320
+			},
+			"text": " you've just executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,320",
+				"to": "00:01:02,520"
+			},
+			"offsets": {
+				"from": 59320,
+				"to": 62520
+			},
+			"text": " So similar to the ZEXI protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,520",
+				"to": "00:01:05,560"
+			},
+			"offsets": {
+				"from": 62520,
+				"to": 65560
+			},
+			"text": " And we want people to have a similar experience to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,560",
+				"to": "00:01:08,960"
+			},
+			"offsets": {
+				"from": 65560,
+				"to": 68960
+			},
+			"text": " So we want people to be able to deploy contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,960",
+				"to": "00:01:09,720"
+			},
+			"offsets": {
+				"from": 68960,
+				"to": 69720
+			},
+			"text": " permissionlessly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,720",
+				"to": "00:01:12,280"
+			},
+			"offsets": {
+				"from": 69720,
+				"to": 72280
+			},
+			"text": " So just any time you want to deploy a contract to the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,280",
+				"to": "00:01:14,720"
+			},
+			"offsets": {
+				"from": 72280,
+				"to": 74720
+			},
+			"text": " you can just deploy it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,720",
+				"to": "00:01:17,600"
+			},
+			"offsets": {
+				"from": 74720,
+				"to": 77600
+			},
+			"text": " And again, similarly to Ethereum experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,600",
+				"to": "00:01:18,800"
+			},
+			"offsets": {
+				"from": 77600,
+				"to": 78800
+			},
+			"text": " we want composability."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,800",
+				"to": "00:01:22,120"
+			},
+			"offsets": {
+				"from": 78800,
+				"to": 82120
+			},
+			"text": " So we want someone to be able to call a function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,120",
+				"to": "00:01:24,960"
+			},
+			"offsets": {
+				"from": 82120,
+				"to": 84960
+			},
+			"text": " and that function might make a call to another function"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,960",
+				"to": "00:01:26,200"
+			},
+			"offsets": {
+				"from": 84960,
+				"to": 86200
+			},
+			"text": " of another contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,200",
+				"to": "00:01:28,360"
+			},
+			"offsets": {
+				"from": 86200,
+				"to": 88360
+			},
+			"text": " And that function might make another call to another function"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,360",
+				"to": "00:01:30,640"
+			},
+			"offsets": {
+				"from": 88360,
+				"to": 90640
+			},
+			"text": " of a different contract, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,640",
+				"to": "00:01:32,320"
+			},
+			"offsets": {
+				"from": 90640,
+				"to": 92320
+			},
+			"text": " So that's really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,320",
+				"to": "00:01:34,720"
+			},
+			"offsets": {
+				"from": 92320,
+				"to": 94720
+			},
+			"text": " And we want a different kind of composability as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,720",
+				"to": "00:01:39,400"
+			},
+			"offsets": {
+				"from": 94720,
+				"to": 99400
+			},
+			"text": " We want composability between private and public functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,400",
+				"to": "00:01:43,600"
+			},
+			"offsets": {
+				"from": 99400,
+				"to": 103600
+			},
+			"text": " which I'll talk about more as we get into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,600",
+				"to": "00:01:47,080"
+			},
+			"offsets": {
+				"from": 103600,
+				"to": 107080
+			},
+			"text": " And altogether, we just want intuitive transaction semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,080",
+				"to": "00:01:48,760"
+			},
+			"offsets": {
+				"from": 107080,
+				"to": 108760
+			},
+			"text": " So we want-- we don't want everybody"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,760",
+				"to": "00:01:52,440"
+			},
+			"offsets": {
+				"from": 108760,
+				"to": 112440
+			},
+			"text": " to have to think about the underlying cryptography or any"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,440",
+				"to": "00:01:52,800"
+			},
+			"offsets": {
+				"from": 112440,
+				"to": 112800
+			},
+			"text": " of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,800",
+				"to": "00:01:55,720"
+			},
+			"offsets": {
+				"from": 112800,
+				"to": 115720
+			},
+			"text": " We just want them to have as close to a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,720",
+				"to": "00:01:58,040"
+			},
+			"offsets": {
+				"from": 115720,
+				"to": 118040
+			},
+			"text": " experience that they have with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,040",
+				"to": "00:02:00,280"
+			},
+			"offsets": {
+				"from": 118040,
+				"to": 120280
+			},
+			"text": " OK, so I'll take a step back."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,280",
+				"to": "00:02:02,840"
+			},
+			"offsets": {
+				"from": 120280,
+				"to": 122840
+			},
+			"text": " What fundamentally is a smart contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,840",
+				"to": "00:02:06,080"
+			},
+			"offsets": {
+				"from": 122840,
+				"to": 126080
+			},
+			"text": " Well, at its core, it's just a collection of state variables"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,080",
+				"to": "00:02:08,400"
+			},
+			"offsets": {
+				"from": 126080,
+				"to": 128400
+			},
+			"text": " and a collection of functions which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,400",
+				"to": "00:02:11,160"
+			},
+			"offsets": {
+				"from": 128400,
+				"to": 131160
+			},
+			"text": " may edit those state variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,160",
+				"to": "00:02:14,560"
+			},
+			"offsets": {
+				"from": 131160,
+				"to": 134560
+			},
+			"text": " And here we can see a naughty example of an ERC-20 contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,560",
+				"to": "00:02:16,160"
+			},
+			"offsets": {
+				"from": 134560,
+				"to": 136160
+			},
+			"text": " Balances is a state variable, and there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,160",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 136160,
+				"to": 138000
+			},
+			"text": " a function called transfer, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:21,720"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 141720
+			},
+			"text": " has rules which allow people to edit the balances state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,720",
+				"to": "00:02:24,880"
+			},
+			"offsets": {
+				"from": 141720,
+				"to": 144880
+			},
+			"text": " And there are two to the 160 such balances states"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,880",
+				"to": "00:02:26,920"
+			},
+			"offsets": {
+				"from": 144880,
+				"to": 146920
+			},
+			"text": " in this example."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,920",
+				"to": "00:02:30,080"
+			},
+			"offsets": {
+				"from": 146920,
+				"to": 150080
+			},
+			"text": " But what would an Aztec smart contract look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,080",
+				"to": "00:02:35,040"
+			},
+			"offsets": {
+				"from": 150080,
+				"to": 155040
+			},
+			"text": " Well, people will still be able to write functions and states"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,040",
+				"to": "00:02:38,120"
+			},
+			"offsets": {
+				"from": 155040,
+				"to": 158120
+			},
+			"text": " in-- for layer 1, so for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,120",
+				"to": "00:02:41,400"
+			},
+			"offsets": {
+				"from": 158120,
+				"to": 161400
+			},
+			"text": " They'll also, similarly to all the other rollups"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,400",
+				"to": "00:02:44,040"
+			},
+			"offsets": {
+				"from": 161400,
+				"to": 164040
+			},
+			"text": " in existence, the ZK rollups and the optimistic rollups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,040",
+				"to": "00:02:45,920"
+			},
+			"offsets": {
+				"from": 164040,
+				"to": 165920
+			},
+			"text": " they'll be able to deploy functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,920",
+				"to": "00:02:51,480"
+			},
+			"offsets": {
+				"from": 165920,
+				"to": 171480
+			},
+			"text": " and have persistent state on a layer 2, just to save on costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,480",
+				"to": "00:02:53,960"
+			},
+			"offsets": {
+				"from": 171480,
+				"to": 173960
+			},
+			"text": " But the key differentiator with Aztec contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,960",
+				"to": "00:02:58,800"
+			},
+			"offsets": {
+				"from": 173960,
+				"to": 178800
+			},
+			"text": " is there will also be private functions and private states."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,800",
+				"to": "00:03:00,840"
+			},
+			"offsets": {
+				"from": 178800,
+				"to": 180840
+			},
+			"text": " And crucially, you can see here, these"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,840",
+				"to": "00:03:06,160"
+			},
+			"offsets": {
+				"from": 180840,
+				"to": 186160
+			},
+			"text": " will be on a user's device rather than executed"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,160",
+				"to": "00:03:09,480"
+			},
+			"offsets": {
+				"from": 186160,
+				"to": 189480
+			},
+			"text": " by Ethereum nodes or rollup sequencer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,480",
+				"to": "00:03:11,560"
+			},
+			"offsets": {
+				"from": 189480,
+				"to": 191560
+			},
+			"text": " OK, so what do I mean by private state?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,560",
+				"to": "00:03:13,760"
+			},
+			"offsets": {
+				"from": 191560,
+				"to": 193760
+			},
+			"text": " Let's look into it a bit more, get everyone up to speed"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,760",
+				"to": "00:03:15,680"
+			},
+			"offsets": {
+				"from": 193760,
+				"to": 195680
+			},
+			"text": " on some background."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,680",
+				"to": "00:03:18,800"
+			},
+			"offsets": {
+				"from": 195680,
+				"to": 198800
+			},
+			"text": " So a public state, it's just a value in a Merkle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,800",
+				"to": "00:03:20,280"
+			},
+			"offsets": {
+				"from": 198800,
+				"to": 200280
+			},
+			"text": " It's the same in Ethereum, and it'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,280",
+				"to": "00:03:22,120"
+			},
+			"offsets": {
+				"from": 200280,
+				"to": 202120
+			},
+			"text": " be the same on our layer 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,120",
+				"to": "00:03:23,520"
+			},
+			"offsets": {
+				"from": 202120,
+				"to": 203520
+			},
+			"text": " What's a private state?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,520",
+				"to": "00:03:26,440"
+			},
+			"offsets": {
+				"from": 203520,
+				"to": 206440
+			},
+			"text": " Well, it's just a commitment to a value in a tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,440",
+				"to": "00:03:27,480"
+			},
+			"offsets": {
+				"from": 206440,
+				"to": 207480
+			},
+			"text": " and it has an owner."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,480",
+				"to": "00:03:29,880"
+			},
+			"offsets": {
+				"from": 207480,
+				"to": 209880
+			},
+			"text": " So here we can see an example of a commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,880",
+				"to": "00:03:31,280"
+			},
+			"offsets": {
+				"from": 209880,
+				"to": 211280
+			},
+			"text": " It's got an owner public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,280",
+				"to": "00:03:34,040"
+			},
+			"offsets": {
+				"from": 211280,
+				"to": 214040
+			},
+			"text": " It's got some value that you want to hide and store persistently"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,040",
+				"to": "00:03:36,080"
+			},
+			"offsets": {
+				"from": 214040,
+				"to": 216080
+			},
+			"text": " in our layer 2 storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,080",
+				"to": "00:03:38,600"
+			},
+			"offsets": {
+				"from": 216080,
+				"to": 218600
+			},
+			"text": " And it's got a salt, which is something random,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,600",
+				"to": "00:03:41,120"
+			},
+			"offsets": {
+				"from": 218600,
+				"to": 221120
+			},
+			"text": " to give the commitment hiding properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,120",
+				"to": "00:03:43,200"
+			},
+			"offsets": {
+				"from": 221120,
+				"to": 223200
+			},
+			"text": " and maybe some other stuff, depending on the application"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,200",
+				"to": "00:03:44,880"
+			},
+			"offsets": {
+				"from": 223200,
+				"to": 224880
+			},
+			"text": " that someone deploys."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,880",
+				"to": "00:03:47,440"
+			},
+			"offsets": {
+				"from": 224880,
+				"to": 227440
+			},
+			"text": " Public states will follow an account model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,440",
+				"to": "00:03:50,720"
+			},
+			"offsets": {
+				"from": 227440,
+				"to": 230720
+			},
+			"text": " just like states in Ethereum smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,720",
+				"to": "00:03:54,200"
+			},
+			"offsets": {
+				"from": 230720,
+				"to": 234200
+			},
+			"text": " And with the account model, a state lives at one position"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,200",
+				"to": "00:03:58,440"
+			},
+			"offsets": {
+				"from": 234200,
+				"to": 238440
+			},
+			"text": " in a Merkle tree, one leaf, and will occupy that leaf forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,440",
+				"to": "00:04:00,800"
+			},
+			"offsets": {
+				"from": 238440,
+				"to": 240800
+			},
+			"text": " So if someone ever wants to edit that state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,800",
+				"to": "00:04:03,240"
+			},
+			"offsets": {
+				"from": 240800,
+				"to": 243240
+			},
+			"text": " the person executing the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,240",
+				"to": "00:04:05,480"
+			},
+			"offsets": {
+				"from": 243240,
+				"to": 245480
+			},
+			"text": " will have to go to that exact leaf position,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,480",
+				"to": "00:04:07,240"
+			},
+			"offsets": {
+				"from": 245480,
+				"to": 247240
+			},
+			"text": " modify the value."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,240",
+				"to": "00:04:08,960"
+			},
+			"offsets": {
+				"from": 247240,
+				"to": 248960
+			},
+			"text": " But that's no good with private states,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,960",
+				"to": "00:04:12,400"
+			},
+			"offsets": {
+				"from": 248960,
+				"to": 252400
+			},
+			"text": " because if you have to tell the whole world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,400",
+				"to": "00:04:15,200"
+			},
+			"offsets": {
+				"from": 252400,
+				"to": 255200
+			},
+			"text": " I'm editing this particular leaf of this tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,200",
+				"to": "00:04:17,400"
+			},
+			"offsets": {
+				"from": 255200,
+				"to": 257400
+			},
+			"text": " please update your node accordingly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,400",
+				"to": "00:04:19,320"
+			},
+			"offsets": {
+				"from": 257400,
+				"to": 259320
+			},
+			"text": " You've revealed which state is being edited,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,320",
+				"to": "00:04:20,600"
+			},
+			"offsets": {
+				"from": 259320,
+				"to": 260600
+			},
+			"text": " so that doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,600",
+				"to": "00:04:22,880"
+			},
+			"offsets": {
+				"from": 260600,
+				"to": 262880
+			},
+			"text": " Which is why we adopt a UTXO model."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,880",
+				"to": "00:04:26,880"
+			},
+			"offsets": {
+				"from": 262880,
+				"to": 266880
+			},
+			"text": " And in a UTXO model, once you add one of these commitments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,880",
+				"to": "00:04:29,560"
+			},
+			"offsets": {
+				"from": 266880,
+				"to": 269560
+			},
+			"text": " one of these hashes of a private value to the tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,560",
+				"to": "00:04:30,880"
+			},
+			"offsets": {
+				"from": 269560,
+				"to": 270880
+			},
+			"text": " it never changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,880",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 270880,
+				"to": 273000
+			},
+			"text": " If you ever want to edit that state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:34,800"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 274800
+			},
+			"text": " similar to the Zcash model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,800",
+				"to": "00:04:36,360"
+			},
+			"offsets": {
+				"from": 274800,
+				"to": 276360
+			},
+			"text": " you have to nullify that state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,360",
+				"to": "00:04:38,080"
+			},
+			"offsets": {
+				"from": 276360,
+				"to": 278080
+			},
+			"text": " which allows you to change it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,080",
+				"to": "00:04:41,480"
+			},
+			"offsets": {
+				"from": 278080,
+				"to": 281480
+			},
+			"text": " or prevent it from being used again, without revealing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,480",
+				"to": "00:04:43,560"
+			},
+			"offsets": {
+				"from": 281480,
+				"to": 283560
+			},
+			"text": " And you have to add a new commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,560",
+				"to": "00:04:45,120"
+			},
+			"offsets": {
+				"from": 283560,
+				"to": 285120
+			},
+			"text": " to the right-hand side of the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,120",
+				"to": "00:04:47,640"
+			},
+			"offsets": {
+				"from": 285120,
+				"to": 287640
+			},
+			"text": " So you're always appending new values."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,640",
+				"to": "00:04:50,560"
+			},
+			"offsets": {
+				"from": 287640,
+				"to": 290560
+			},
+			"text": " So if someone comes along and they want to edit your state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,560",
+				"to": "00:04:54,920"
+			},
+			"offsets": {
+				"from": 290560,
+				"to": 294920
+			},
+			"text": " they will create a new commitment representing maybe the add-end"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,920",
+				"to": "00:04:57,160"
+			},
+			"offsets": {
+				"from": 294920,
+				"to": 297160
+			},
+			"text": " that they want to add to the state, or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,160",
+				"to": "00:04:59,200"
+			},
+			"offsets": {
+				"from": 297160,
+				"to": 299200
+			},
+			"text": " And just to continue with the background,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,200",
+				"to": "00:05:03,200"
+			},
+			"offsets": {
+				"from": 299200,
+				"to": 303200
+			},
+			"text": " and carry on with this Zcash-like protocol description,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,200",
+				"to": "00:05:08,400"
+			},
+			"offsets": {
+				"from": 303200,
+				"to": 308400
+			},
+			"text": " or indeed our current Aztec Connect protocol description,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,400",
+				"to": "00:05:12,800"
+			},
+			"offsets": {
+				"from": 308400,
+				"to": 312800
+			},
+			"text": " let's say someone inputs a commitment into their circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,800",
+				"to": "00:05:16,280"
+			},
+			"offsets": {
+				"from": 312800,
+				"to": 316280
+			},
+			"text": " and they want to modify the value contained within that commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,280",
+				"to": "00:05:18,280"
+			},
+			"offsets": {
+				"from": 316280,
+				"to": 318280
+			},
+			"text": " They pass it into the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,280",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 318280,
+				"to": 321000
+			},
+			"text": " The first thing they would do is prove that this commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:24,200"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 324200
+			},
+			"text": " does indeed exist somewhere in the Merkle tree of notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,200",
+				"to": "00:05:28,640"
+			},
+			"offsets": {
+				"from": 324200,
+				"to": 328640
+			},
+			"text": " And in Aztec Connect, the Merkle tree is 2 to the 32."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,640",
+				"to": "00:05:30,840"
+			},
+			"offsets": {
+				"from": 328640,
+				"to": 330840
+			},
+			"text": " With this private smart contract platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,840",
+				"to": "00:05:32,560"
+			},
+			"offsets": {
+				"from": 330840,
+				"to": 332560
+			},
+			"text": " it might be quite a lot bigger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,560",
+				"to": "00:05:36,560"
+			},
+			"offsets": {
+				"from": 332560,
+				"to": 336560
+			},
+			"text": " because apps will probably create a lot more commitments."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,560",
+				"to": "00:05:39,520"
+			},
+			"offsets": {
+				"from": 336560,
+				"to": 339520
+			},
+			"text": " Okay, the next thing you do is you open the commitment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,520",
+				"to": "00:05:42,520"
+			},
+			"offsets": {
+				"from": 339520,
+				"to": 342520
+			},
+			"text": " and you would hash the values to prove that you indeed"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,520",
+				"to": "00:05:45,160"
+			},
+			"offsets": {
+				"from": 342520,
+				"to": 345160
+			},
+			"text": " know the pre-image of the commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,160",
+				"to": "00:05:48,160"
+			},
+			"offsets": {
+				"from": 345160,
+				"to": 348160
+			},
+			"text": " And Alice, in this example, is the owner of this state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,160",
+				"to": "00:05:50,960"
+			},
+			"offsets": {
+				"from": 348160,
+				"to": 350960
+			},
+			"text": " And so for her to prove that she is indeed allowed"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,960",
+				"to": "00:05:52,760"
+			},
+			"offsets": {
+				"from": 350960,
+				"to": 352760
+			},
+			"text": " to modify the state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,760",
+				"to": "00:05:54,520"
+			},
+			"offsets": {
+				"from": 352760,
+				"to": 354520
+			},
+			"text": " she has to prove knowledge of her secret key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,520",
+				"to": "00:05:56,280"
+			},
+			"offsets": {
+				"from": 354520,
+				"to": 356280
+			},
+			"text": " and she can do that by just hashing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,280",
+				"to": "00:05:59,480"
+			},
+			"offsets": {
+				"from": 356280,
+				"to": 359480
+			},
+			"text": " However, or following however the secret key is derived."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,480",
+				"to": "00:06:00,960"
+			},
+			"offsets": {
+				"from": 359480,
+				"to": 360960
+			},
+			"text": " And then she produces an nullifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,960",
+				"to": "00:06:02,880"
+			},
+			"offsets": {
+				"from": 360960,
+				"to": 362880
+			},
+			"text": " and the previous talk was quite helpful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,880",
+				"to": "00:06:05,360"
+			},
+			"offsets": {
+				"from": 362880,
+				"to": 365360
+			},
+			"text": " because it explained nullifiers, so I don't have to."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,360",
+				"to": "00:06:12,600"
+			},
+			"offsets": {
+				"from": 365360,
+				"to": 372600
+			},
+			"text": " And then they prove it doesn't yet exist in the nullifier tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,600",
+				"to": "00:06:16,880"
+			},
+			"offsets": {
+				"from": 372600,
+				"to": 376880
+			},
+			"text": " And the nullifier tree at the moment is a sparse Merkle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,880",
+				"to": "00:06:19,960"
+			},
+			"offsets": {
+				"from": 376880,
+				"to": 379960
+			},
+			"text": " It allows you to prove non-membership."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,960",
+				"to": "00:06:23,040"
+			},
+			"offsets": {
+				"from": 379960,
+				"to": 383040
+			},
+			"text": " But we're actually going to update this to a linked list tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,040",
+				"to": "00:06:25,320"
+			},
+			"offsets": {
+				"from": 383040,
+				"to": 385320
+			},
+			"text": " which allows you to prove much more efficiently"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,320",
+				"to": "00:06:27,160"
+			},
+			"offsets": {
+				"from": 385320,
+				"to": 387160
+			},
+			"text": " that something doesn't yet exist in the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,160",
+				"to": "00:06:28,960"
+			},
+			"offsets": {
+				"from": 387160,
+				"to": 388960
+			},
+			"text": " And suppose Alice wants to perform"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,960",
+				"to": "00:06:31,280"
+			},
+			"offsets": {
+				"from": 388960,
+				"to": 391280
+			},
+			"text": " some simple operation on her state."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,280",
+				"to": "00:06:33,920"
+			},
+			"offsets": {
+				"from": 391280,
+				"to": 393920
+			},
+			"text": " The circuit, she'll add five to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,920",
+				"to": "00:06:35,720"
+			},
+			"offsets": {
+				"from": 393920,
+				"to": 395720
+			},
+			"text": " And you can see we've incremented the value"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,720",
+				"to": "00:06:37,200"
+			},
+			"offsets": {
+				"from": 395720,
+				"to": 397200
+			},
+			"text": " that Alice is hiding."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,200",
+				"to": "00:06:41,080"
+			},
+			"offsets": {
+				"from": 397200,
+				"to": 401080
+			},
+			"text": " We've changed the salt to re-randomize the commitment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,080",
+				"to": "00:06:43,240"
+			},
+			"offsets": {
+				"from": 401080,
+				"to": 403240
+			},
+			"text": " and she adds it into the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,240",
+				"to": "00:06:47,200"
+			},
+			"offsets": {
+				"from": 403240,
+				"to": 407200
+			},
+			"text": " So this is quite a general way of just modifying state"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,200",
+				"to": "00:06:49,640"
+			},
+			"offsets": {
+				"from": 407200,
+				"to": 409640
+			},
+			"text": " within a public protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,640",
+				"to": "00:06:52,720"
+			},
+			"offsets": {
+				"from": 409640,
+				"to": 412720
+			},
+			"text": " And crucially, this step has to happen on a user's device,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,720",
+				"to": "00:06:54,920"
+			},
+			"offsets": {
+				"from": 412720,
+				"to": 414920
+			},
+			"text": " or at least in the most basic systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,920",
+				"to": "00:06:56,320"
+			},
+			"offsets": {
+				"from": 414920,
+				"to": 416320
+			},
+			"text": " this has to happen on the user's device."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,320",
+				"to": "00:06:58,200"
+			},
+			"offsets": {
+				"from": 416320,
+				"to": 418200
+			},
+			"text": " You can do some delegating schemes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,200",
+				"to": "00:07:00,800"
+			},
+			"offsets": {
+				"from": 418200,
+				"to": 420800
+			},
+			"text": " but we won't talk about that here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,800",
+				"to": "00:07:03,720"
+			},
+			"offsets": {
+				"from": 420800,
+				"to": 423720
+			},
+			"text": " And so this gives our roll-ups something different"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,720",
+				"to": "00:07:04,880"
+			},
+			"offsets": {
+				"from": 423720,
+				"to": 424880
+			},
+			"text": " from other roll-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,880",
+				"to": "00:07:07,640"
+			},
+			"offsets": {
+				"from": 424880,
+				"to": 427640
+			},
+			"text": " There is a layer where if someone wants to modify"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,640",
+				"to": "00:07:10,160"
+			},
+			"offsets": {
+				"from": 427640,
+				"to": 430160
+			},
+			"text": " a private state, they have to do it on their own device,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,160",
+				"to": "00:07:12,360"
+			},
+			"offsets": {
+				"from": 430160,
+				"to": 432360
+			},
+			"text": " before then passing it to some sequencer"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,360",
+				"to": "00:07:15,320"
+			},
+			"offsets": {
+				"from": 432360,
+				"to": 435320
+			},
+			"text": " who will deal with all the public state changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,320",
+				"to": "00:07:17,760"
+			},
+			"offsets": {
+				"from": 435320,
+				"to": 437760
+			},
+			"text": " And indeed, because it has to happen on a user's device,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,760",
+				"to": "00:07:20,160"
+			},
+			"offsets": {
+				"from": 437760,
+				"to": 440160
+			},
+			"text": " possibly in the browser, we need extremely efficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,160",
+				"to": "00:07:22,480"
+			},
+			"offsets": {
+				"from": 440160,
+				"to": 442480
+			},
+			"text": " proving systems, which we've been working on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,480",
+				"to": "00:07:24,760"
+			},
+			"offsets": {
+				"from": 442480,
+				"to": 444760
+			},
+			"text": " and we're continuing to improve."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,760",
+				"to": "00:07:28,240"
+			},
+			"offsets": {
+				"from": 444760,
+				"to": 448240
+			},
+			"text": " So on an L2, functions are slightly different"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,240",
+				"to": "00:07:30,480"
+			},
+			"offsets": {
+				"from": 448240,
+				"to": 450480
+			},
+			"text": " from a solidity function."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,480",
+				"to": "00:07:32,160"
+			},
+			"offsets": {
+				"from": 450480,
+				"to": 452160
+			},
+			"text": " They're actually ZK-snark circuits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,160",
+				"to": "00:07:36,680"
+			},
+			"offsets": {
+				"from": 452160,
+				"to": 456680
+			},
+			"text": " so similar to other ZK roll-ups that you might have read about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,680",
+				"to": "00:07:39,640"
+			},
+			"offsets": {
+				"from": 456680,
+				"to": 459640
+			},
+			"text": " except our roll-up will need to be actual ZK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,640",
+				"to": "00:07:41,440"
+			},
+			"offsets": {
+				"from": 459640,
+				"to": 461440
+			},
+			"text": " so provide hiding properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,440",
+				"to": "00:07:43,600"
+			},
+			"offsets": {
+				"from": 461440,
+				"to": 463600
+			},
+			"text": " So if someone begins with a circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,600",
+				"to": "00:07:46,880"
+			},
+			"offsets": {
+				"from": 463600,
+				"to": 466880
+			},
+			"text": " suppose they write a circuit in some circuit language"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,880",
+				"to": "00:07:51,240"
+			},
+			"offsets": {
+				"from": 466880,
+				"to": 471240
+			},
+			"text": " like Noire, they write the rules of their function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,240",
+				"to": "00:07:53,080"
+			},
+			"offsets": {
+				"from": 471240,
+				"to": 473080
+			},
+			"text": " you know, it might include state changes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,080",
+				"to": "00:07:55,720"
+			},
+			"offsets": {
+				"from": 473080,
+				"to": 475720
+			},
+			"text": " computations, stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,720",
+				"to": "00:07:57,280"
+			},
+			"offsets": {
+				"from": 475720,
+				"to": 477280
+			},
+			"text": " And using something like Noire,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,280",
+				"to": "00:08:00,200"
+			},
+			"offsets": {
+				"from": 477280,
+				"to": 480200
+			},
+			"text": " they can take that circuit and compute a proving key"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,200",
+				"to": "00:08:01,440"
+			},
+			"offsets": {
+				"from": 480200,
+				"to": 481440
+			},
+			"text": " and a verification key."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,440",
+				"to": "00:08:05,560"
+			},
+			"offsets": {
+				"from": 481440,
+				"to": 485560
+			},
+			"text": " And a user will come along and they want to execute"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,560",
+				"to": "00:08:08,200"
+			},
+			"offsets": {
+				"from": 485560,
+				"to": 488200
+			},
+			"text": " this function, or rather prove that they have executed"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,200",
+				"to": "00:08:09,840"
+			},
+			"offsets": {
+				"from": 488200,
+				"to": 489840
+			},
+			"text": " the function correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,840",
+				"to": "00:08:12,360"
+			},
+			"offsets": {
+				"from": 489840,
+				"to": 492360
+			},
+			"text": " And that function will take some secret inputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,360",
+				"to": "00:08:13,720"
+			},
+			"offsets": {
+				"from": 492360,
+				"to": 493720
+			},
+			"text": " and some public inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,720",
+				"to": "00:08:17,440"
+			},
+			"offsets": {
+				"from": 493720,
+				"to": 497440
+			},
+			"text": " And they'll pass it into Noire, a big black box,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,440",
+				"to": "00:08:19,560"
+			},
+			"offsets": {
+				"from": 497440,
+				"to": 499560
+			},
+			"text": " and it will generate a proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,560",
+				"to": "00:08:21,800"
+			},
+			"offsets": {
+				"from": 499560,
+				"to": 501800
+			},
+			"text": " Out will come the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,800",
+				"to": "00:08:24,600"
+			},
+			"offsets": {
+				"from": 501800,
+				"to": 504600
+			},
+			"text": " And you can send the proof and the public inputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,600",
+				"to": "00:08:27,320"
+			},
+			"offsets": {
+				"from": 504600,
+				"to": 507320
+			},
+			"text": " to some verifier who already has the verification key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,320",
+				"to": "00:08:28,920"
+			},
+			"offsets": {
+				"from": 507320,
+				"to": 508920
+			},
+			"text": " and they can verify that you did indeed"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,920",
+				"to": "00:08:30,640"
+			},
+			"offsets": {
+				"from": 508920,
+				"to": 510640
+			},
+			"text": " execute the function correctly"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,640",
+				"to": "00:08:33,360"
+			},
+			"offsets": {
+				"from": 510640,
+				"to": 513360
+			},
+			"text": " for the given set of public inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,360",
+				"to": "00:08:35,760"
+			},
+			"offsets": {
+				"from": 513360,
+				"to": 515760
+			},
+			"text": " One thing I want to point out"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,760",
+				"to": "00:08:38,440"
+			},
+			"offsets": {
+				"from": 515760,
+				"to": 518440
+			},
+			"text": " with this slide and the wheel need going forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,440",
+				"to": "00:08:40,120"
+			},
+			"offsets": {
+				"from": 518440,
+				"to": 520120
+			},
+			"text": " is that the verification key can be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,120",
+				"to": "00:08:41,800"
+			},
+			"offsets": {
+				"from": 520120,
+				"to": 521800
+			},
+			"text": " as a unique identifier for the circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,800",
+				"to": "00:08:43,840"
+			},
+			"offsets": {
+				"from": 521800,
+				"to": 523840
+			},
+			"text": " because it was derived from the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,840",
+				"to": "00:08:45,120"
+			},
+			"offsets": {
+				"from": 523840,
+				"to": 525120
+			},
+			"text": " And the hash of the verification key"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,120",
+				"to": "00:08:47,280"
+			},
+			"offsets": {
+				"from": 525120,
+				"to": 527280
+			},
+			"text": " is like a unique single number"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,280",
+				"to": "00:08:49,400"
+			},
+			"offsets": {
+				"from": 527280,
+				"to": 529400
+			},
+			"text": " that can completely represent the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,400",
+				"to": "00:08:52,520"
+			},
+			"offsets": {
+				"from": 529400,
+				"to": 532520
+			},
+			"text": " And yeah, this can all be handled by Noire."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,520",
+				"to": "00:08:57,600"
+			},
+			"offsets": {
+				"from": 532520,
+				"to": 537600
+			},
+			"text": " So if a verification key can represent a circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,600",
+				"to": "00:09:01,120"
+			},
+			"offsets": {
+				"from": 537600,
+				"to": 541120
+			},
+			"text": " and if a smart contract is a collection of functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,120",
+				"to": "00:09:03,560"
+			},
+			"offsets": {
+				"from": 541120,
+				"to": 543560
+			},
+			"text": " then we can create,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,560",
+				"to": "00:09:05,920"
+			},
+			"offsets": {
+				"from": 543560,
+				"to": 545920
+			},
+			"text": " well, we can represent our set of functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,920",
+				"to": "00:09:08,440"
+			},
+			"offsets": {
+				"from": 545920,
+				"to": 548440
+			},
+			"text": " as just a set of verification keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,440",
+				"to": "00:09:11,400"
+			},
+			"offsets": {
+				"from": 548440,
+				"to": 551400
+			},
+			"text": " And if we want to prove one of our objectives"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,400",
+				"to": "00:09:13,280"
+			},
+			"offsets": {
+				"from": 551400,
+				"to": 553280
+			},
+			"text": " that we have executed a function"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,280",
+				"to": "00:09:16,280"
+			},
+			"offsets": {
+				"from": 553280,
+				"to": 556280
+			},
+			"text": " without revealing which function we have actually executed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,280",
+				"to": "00:09:18,320"
+			},
+			"offsets": {
+				"from": 556280,
+				"to": 558320
+			},
+			"text": " we can just mercalize all our verification keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,320",
+				"to": "00:09:19,720"
+			},
+			"offsets": {
+				"from": 558320,
+				"to": 559720
+			},
+			"text": " into a big tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,720",
+				"to": "00:09:22,280"
+			},
+			"offsets": {
+				"from": 559720,
+				"to": 562280
+			},
+			"text": " and we can add our contract or our set of functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,280",
+				"to": "00:09:24,320"
+			},
+			"offsets": {
+				"from": 562280,
+				"to": 564320
+			},
+			"text": " to a giant contract tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,320",
+				"to": "00:09:27,040"
+			},
+			"offsets": {
+				"from": 564320,
+				"to": 567040
+			},
+			"text": " which contains all functions that have ever been deployed"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,040",
+				"to": "00:09:29,920"
+			},
+			"offsets": {
+				"from": 567040,
+				"to": 569920
+			},
+			"text": " to this Layer 2 Smart Contract Platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,920",
+				"to": "00:09:31,640"
+			},
+			"offsets": {
+				"from": 569920,
+				"to": 571640
+			},
+			"text": " And in doing so,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,640",
+				"to": "00:09:33,800"
+			},
+			"offsets": {
+				"from": 571640,
+				"to": 573800
+			},
+			"text": " if this computation, a Merkle membership check"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,800",
+				"to": "00:09:35,080"
+			},
+			"offsets": {
+				"from": 573800,
+				"to": 575080
+			},
+			"text": " is done within a circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,080",
+				"to": "00:09:37,640"
+			},
+			"offsets": {
+				"from": 575080,
+				"to": 577640
+			},
+			"text": " you can hide which function someone has executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,640",
+				"to": "00:09:42,200"
+			},
+			"offsets": {
+				"from": 577640,
+				"to": 582200
+			},
+			"text": " So the ZXA already came up with a system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,200",
+				"to": "00:09:44,200"
+			},
+			"offsets": {
+				"from": 582200,
+				"to": 584200
+			},
+			"text": " which was really good a few years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,200",
+				"to": "00:09:46,440"
+			},
+			"offsets": {
+				"from": 584200,
+				"to": 586440
+			},
+			"text": " It's a good paper if you haven't read it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,440",
+				"to": "00:09:49,880"
+			},
+			"offsets": {
+				"from": 586440,
+				"to": 589880
+			},
+			"text": " for hiding which function has been executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,880",
+				"to": "00:09:53,240"
+			},
+			"offsets": {
+				"from": 589880,
+				"to": 593240
+			},
+			"text": " And this hash here represents a commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,240",
+				"to": "00:09:56,440"
+			},
+			"offsets": {
+				"from": 593240,
+				"to": 596440
+			},
+			"text": " that someone might add to a tree that we talked about earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,440",
+				"to": "00:09:58,440"
+			},
+			"offsets": {
+				"from": 596440,
+				"to": 598440
+			},
+			"text": " And within the commitment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,440",
+				"to": "00:10:00,880"
+			},
+			"offsets": {
+				"from": 598440,
+				"to": 600880
+			},
+			"text": " they had a nice idea that you would put"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,880",
+				"to": "00:10:03,760"
+			},
+			"offsets": {
+				"from": 600880,
+				"to": 603760
+			},
+			"text": " in a birth predicate, i.e. details of the function"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,760",
+				"to": "00:10:05,720"
+			},
+			"offsets": {
+				"from": 603760,
+				"to": 605720
+			},
+			"text": " which created this commitment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,720",
+				"to": "00:10:07,200"
+			},
+			"offsets": {
+				"from": 605720,
+				"to": 607200
+			},
+			"text": " and a death predicate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,200",
+				"to": "00:10:09,280"
+			},
+			"offsets": {
+				"from": 607200,
+				"to": 609280
+			},
+			"text": " a function which, the only function"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,280",
+				"to": "00:10:11,600"
+			},
+			"offsets": {
+				"from": 609280,
+				"to": 611600
+			},
+			"text": " which may nullify this commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,600",
+				"to": "00:10:14,360"
+			},
+			"offsets": {
+				"from": 611600,
+				"to": 614360
+			},
+			"text": " But if people are familiar with Solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,360",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 614360,
+				"to": 616000
+			},
+			"text": " Smart Contract Development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:19,640"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 619640
+			},
+			"text": " it's not quite good enough to just have one function"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,640",
+				"to": "00:10:20,560"
+			},
+			"offsets": {
+				"from": 619640,
+				"to": 620560
+			},
+			"text": " on Modify Estate."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,560",
+				"to": "00:10:21,880"
+			},
+			"offsets": {
+				"from": 620560,
+				"to": 621880
+			},
+			"text": " You might want multiple functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,880",
+				"to": "00:10:23,440"
+			},
+			"offsets": {
+				"from": 621880,
+				"to": 623440
+			},
+			"text": " to be able to modify Estate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,440",
+				"to": "00:10:25,120"
+			},
+			"offsets": {
+				"from": 623440,
+				"to": 625120
+			},
+			"text": " which is why in the previous slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,120",
+				"to": "00:10:27,280"
+			},
+			"offsets": {
+				"from": 625120,
+				"to": 627280
+			},
+			"text": " we've kind of collected all possible functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,280",
+				"to": "00:10:29,720"
+			},
+			"offsets": {
+				"from": 627280,
+				"to": 629720
+			},
+			"text": " of the Smart Contract and added them to a contract tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,720",
+				"to": "00:10:34,720"
+			},
+			"offsets": {
+				"from": 629720,
+				"to": 634720
+			},
+			"text": " And so instead, what we do in our Smart Contract spec"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,720",
+				"to": "00:10:36,600"
+			},
+			"offsets": {
+				"from": 634720,
+				"to": 636600
+			},
+			"text": " is we include a contract address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,600",
+				"to": "00:10:39,400"
+			},
+			"offsets": {
+				"from": 636600,
+				"to": 639400
+			},
+			"text": " and that represents just the set of all functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,400",
+				"to": "00:10:41,880"
+			},
+			"offsets": {
+				"from": 639400,
+				"to": 641880
+			},
+			"text": " which may edit this particular state."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,880",
+				"to": "00:10:44,680"
+			},
+			"offsets": {
+				"from": 641880,
+				"to": 644680
+			},
+			"text": " And again, this is how ZXA proposed"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,680",
+				"to": "00:10:46,560"
+			},
+			"offsets": {
+				"from": 644680,
+				"to": 646560
+			},
+			"text": " to hide the function being called"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,560",
+				"to": "00:10:49,480"
+			},
+			"offsets": {
+				"from": 646560,
+				"to": 649480
+			},
+			"text": " so that no one knows really what's happening in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,480",
+				"to": "00:10:51,880"
+			},
+			"offsets": {
+				"from": 649480,
+				"to": 651880
+			},
+			"text": " You know, all observers see is that some function"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,880",
+				"to": "00:10:54,560"
+			},
+			"offsets": {
+				"from": 651880,
+				"to": 654560
+			},
+			"text": " got executed according to some set of rules"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,560",
+				"to": "00:10:56,680"
+			},
+			"offsets": {
+				"from": 654560,
+				"to": 656680
+			},
+			"text": " for some Smart Contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,680",
+				"to": "00:10:59,920"
+			},
+			"offsets": {
+				"from": 656680,
+				"to": 659920
+			},
+			"text": " You take the private circuit and generate a proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,920",
+				"to": "00:11:01,520"
+			},
+			"offsets": {
+				"from": 659920,
+				"to": 661520
+			},
+			"text": " And if we stop there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,520",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 661520,
+				"to": 664000
+			},
+			"text": " the world would see which function got executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:06,920"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 666920
+			},
+			"text": " So we pass the proof into this kernel circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,920",
+				"to": "00:11:10,520"
+			},
+			"offsets": {
+				"from": 666920,
+				"to": 670520
+			},
+			"text": " and the kernel circuit verifies the earlier proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,520",
+				"to": "00:11:12,360"
+			},
+			"offsets": {
+				"from": 670520,
+				"to": 672360
+			},
+			"text": " and kind of masks from the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,360",
+				"to": "00:11:15,240"
+			},
+			"offsets": {
+				"from": 672360,
+				"to": 675240
+			},
+			"text": " which function got executed, which is really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,240",
+				"to": "00:11:17,320"
+			},
+			"offsets": {
+				"from": 675240,
+				"to": 677320
+			},
+			"text": " And we take this and we take it a step further,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,320",
+				"to": "00:11:19,320"
+			},
+			"offsets": {
+				"from": 677320,
+				"to": 679320
+			},
+			"text": " which I'll talk about in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,320",
+				"to": "00:11:21,080"
+			},
+			"offsets": {
+				"from": 679320,
+				"to": 681080
+			},
+			"text": " I'll talk about it here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,080",
+				"to": "00:11:22,720"
+			},
+			"offsets": {
+				"from": 681080,
+				"to": 682720
+			},
+			"text": " One of the things we said, one of our aims"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,720",
+				"to": "00:11:25,280"
+			},
+			"offsets": {
+				"from": 682720,
+				"to": 685280
+			},
+			"text": " is the ability for functions to make calls to other functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,280",
+				"to": "00:11:27,720"
+			},
+			"offsets": {
+				"from": 685280,
+				"to": 687720
+			},
+			"text": " and so on and so on and so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,720",
+				"to": "00:11:29,360"
+			},
+			"offsets": {
+				"from": 687720,
+				"to": 689360
+			},
+			"text": " So how are we gonna do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,360",
+				"to": "00:11:31,640"
+			},
+			"offsets": {
+				"from": 689360,
+				"to": 691640
+			},
+			"text": " Well, first, why would we want to do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,640",
+				"to": "00:11:33,320"
+			},
+			"offsets": {
+				"from": 691640,
+				"to": 693320
+			},
+			"text": " Here's a really simple reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,320",
+				"to": "00:11:36,240"
+			},
+			"offsets": {
+				"from": 693320,
+				"to": 696240
+			},
+			"text": " If you consider a decentralized exchange,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,240",
+				"to": "00:11:37,840"
+			},
+			"offsets": {
+				"from": 696240,
+				"to": 697840
+			},
+			"text": " just on layer one at the moment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,840",
+				"to": "00:11:40,400"
+			},
+			"offsets": {
+				"from": 697840,
+				"to": 700400
+			},
+			"text": " if Alice wants to swap tokens A and B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,400",
+				"to": "00:11:42,240"
+			},
+			"offsets": {
+				"from": 700400,
+				"to": 702240
+			},
+			"text": " she must first call the exchange contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,240",
+				"to": "00:11:44,600"
+			},
+			"offsets": {
+				"from": 702240,
+				"to": 704600
+			},
+			"text": " and then the exchange contract has to call"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,600",
+				"to": "00:11:47,400"
+			},
+			"offsets": {
+				"from": 704600,
+				"to": 707400
+			},
+			"text": " the ERC-20 contract for token A,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,400",
+				"to": "00:11:49,360"
+			},
+			"offsets": {
+				"from": 707400,
+				"to": 709360
+			},
+			"text": " and then she, and then the exchange contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,360",
+				"to": "00:11:51,800"
+			},
+			"offsets": {
+				"from": 709360,
+				"to": 711800
+			},
+			"text": " has to call the ERC-20 contract for token B."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,800",
+				"to": "00:11:54,400"
+			},
+			"offsets": {
+				"from": 711800,
+				"to": 714400
+			},
+			"text": " So the most basic kind of applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,400",
+				"to": "00:11:56,520"
+			},
+			"offsets": {
+				"from": 714400,
+				"to": 716520
+			},
+			"text": " on Ethereum require nested function calls,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,520",
+				"to": "00:11:59,600"
+			},
+			"offsets": {
+				"from": 716520,
+				"to": 719600
+			},
+			"text": " and we want to mimic that with our private programming,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,600",
+				"to": "00:12:00,800"
+			},
+			"offsets": {
+				"from": 719600,
+				"to": 720800
+			},
+			"text": " smart contract language."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,800",
+				"to": "00:12:04,280"
+			},
+			"offsets": {
+				"from": 720800,
+				"to": 724280
+			},
+			"text": " What does a function call look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,280",
+				"to": "00:12:06,920"
+			},
+			"offsets": {
+				"from": 724280,
+				"to": 726920
+			},
+			"text": " Well, in Ethereum, it's a contract address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,920",
+				"to": "00:12:09,960"
+			},
+			"offsets": {
+				"from": 726920,
+				"to": 729960
+			},
+			"text": " some identifier for where people can load the K the function"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,960",
+				"to": "00:12:11,400"
+			},
+			"offsets": {
+				"from": 729960,
+				"to": 731400
+			},
+			"text": " and a set of arguments."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,400",
+				"to": "00:12:14,400"
+			},
+			"offsets": {
+				"from": 731400,
+				"to": 734400
+			},
+			"text": " And so similarly for Aztec, it will be the contract address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,400",
+				"to": "00:12:17,040"
+			},
+			"offsets": {
+				"from": 734400,
+				"to": 737040
+			},
+			"text": " the VK index, as we saw in the previous slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,040",
+				"to": "00:12:20,360"
+			},
+			"offsets": {
+				"from": 737040,
+				"to": 740360
+			},
+			"text": " the verification keys all get added to some contract tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,360",
+				"to": "00:12:23,920"
+			},
+			"offsets": {
+				"from": 740360,
+				"to": 743920
+			},
+			"text": " and a hash of the public inputs to the circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,920",
+				"to": "00:12:25,600"
+			},
+			"offsets": {
+				"from": 743920,
+				"to": 745600
+			},
+			"text": " which represents a function."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,600",
+				"to": "00:12:27,680"
+			},
+			"offsets": {
+				"from": 745600,
+				"to": 747680
+			},
+			"text": " So let's work through an example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,680",
+				"to": "00:12:29,200"
+			},
+			"offsets": {
+				"from": 747680,
+				"to": 749200
+			},
+			"text": " and you don't need to read the code for this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,200",
+				"to": "00:12:31,720"
+			},
+			"offsets": {
+				"from": 749200,
+				"to": 751720
+			},
+			"text": " or you need to really look at as the colors."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,720",
+				"to": "00:12:34,240"
+			},
+			"offsets": {
+				"from": 751720,
+				"to": 754240
+			},
+			"text": " So we've got to imagine someone calls the red function"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,240",
+				"to": "00:12:35,760"
+			},
+			"offsets": {
+				"from": 754240,
+				"to": 755760
+			},
+			"text": " over there, function one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,760",
+				"to": "00:12:37,280"
+			},
+			"offsets": {
+				"from": 755760,
+				"to": 757280
+			},
+			"text": " and the red function is making call"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,280",
+				"to": "00:12:39,480"
+			},
+			"offsets": {
+				"from": 757280,
+				"to": 759480
+			},
+			"text": " to an orange function in a different contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,480",
+				"to": "00:12:41,240"
+			},
+			"offsets": {
+				"from": 759480,
+				"to": 761240
+			},
+			"text": " and in turn that orange function is calling"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,240",
+				"to": "00:12:43,280"
+			},
+			"offsets": {
+				"from": 761240,
+				"to": 763280
+			},
+			"text": " a blue function in a different contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,280",
+				"to": "00:12:45,560"
+			},
+			"offsets": {
+				"from": 763280,
+				"to": 765560
+			},
+			"text": " it's returning some values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,560",
+				"to": "00:12:47,480"
+			},
+			"offsets": {
+				"from": 765560,
+				"to": 767480
+			},
+			"text": " and then it's calling a green function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,480",
+				"to": "00:12:50,040"
+			},
+			"offsets": {
+				"from": 767480,
+				"to": 770040
+			},
+			"text": " and this green function is a public function."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,040",
+				"to": "00:12:51,800"
+			},
+			"offsets": {
+				"from": 770040,
+				"to": 771800
+			},
+			"text": " So what I'm going to try and demonstrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,800",
+				"to": "00:12:54,080"
+			},
+			"offsets": {
+				"from": 771800,
+				"to": 774080
+			},
+			"text": " is how functions can call functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,080",
+				"to": "00:12:55,080"
+			},
+			"offsets": {
+				"from": 774080,
+				"to": 775080
+			},
+			"text": " over the smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,080",
+				"to": "00:12:57,440"
+			},
+			"offsets": {
+				"from": 775080,
+				"to": 777440
+			},
+			"text": " and can also, you can have functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,440",
+				"to": "00:13:00,560"
+			},
+			"offsets": {
+				"from": 777440,
+				"to": 780560
+			},
+			"text": " from private world to the public world."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,560",
+				"to": "00:13:03,800"
+			},
+			"offsets": {
+				"from": 780560,
+				"to": 783800
+			},
+			"text": " Well, what we first have to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,800",
+				"to": "00:13:06,680"
+			},
+			"offsets": {
+				"from": 783800,
+				"to": 786680
+			},
+			"text": " is each of those individual functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,680",
+				"to": "00:13:08,760"
+			},
+			"offsets": {
+				"from": 786680,
+				"to": 788760
+			},
+			"text": " is an individual circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,760",
+				"to": "00:13:12,040"
+			},
+			"offsets": {
+				"from": 788760,
+				"to": 792040
+			},
+			"text": " and so you would have to generate six distinct proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,040",
+				"to": "00:13:13,760"
+			},
+			"offsets": {
+				"from": 792040,
+				"to": 793760
+			},
+			"text": " one for each function that you want to prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,760",
+				"to": "00:13:15,120"
+			},
+			"offsets": {
+				"from": 793760,
+				"to": 795120
+			},
+			"text": " you have executed correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,120",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 795120,
+				"to": 798000
+			},
+			"text": " But then the question is how do we prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:19,400"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 799400
+			},
+			"text": " that they relate to each other"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,400",
+				"to": "00:13:21,880"
+			},
+			"offsets": {
+				"from": 799400,
+				"to": 801880
+			},
+			"text": " in a way that the code wants them to relate?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,880",
+				"to": "00:13:24,160"
+			},
+			"offsets": {
+				"from": 801880,
+				"to": 804160
+			},
+			"text": " So how do we prove that they were executed in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,160",
+				"to": "00:13:26,320"
+			},
+			"offsets": {
+				"from": 804160,
+				"to": 806320
+			},
+			"text": " and the parameters that were sent to functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,320",
+				"to": "00:13:28,960"
+			},
+			"offsets": {
+				"from": 806320,
+				"to": 808960
+			},
+			"text": " and the return values all intertwined correctly?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,960",
+				"to": "00:13:32,160"
+			},
+			"offsets": {
+				"from": 808960,
+				"to": 812160
+			},
+			"text": " Well, we use call stacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,160",
+				"to": "00:13:37,680"
+			},
+			"offsets": {
+				"from": 812160,
+				"to": 817680
+			},
+			"text": " So say we want to execute function one first."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,680",
+				"to": "00:13:40,880"
+			},
+			"offsets": {
+				"from": 817680,
+				"to": 820880
+			},
+			"text": " Well, the public inputs to every single function"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,880",
+				"to": "00:13:42,720"
+			},
+			"offsets": {
+				"from": 820880,
+				"to": 822720
+			},
+			"text": " on our smart contract platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,720",
+				"to": "00:13:46,040"
+			},
+			"offsets": {
+				"from": 822720,
+				"to": 826040
+			},
+			"text": " will have to adhere to a very rigid static ABI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,040",
+				"to": "00:13:48,760"
+			},
+			"offsets": {
+				"from": 826040,
+				"to": 828760
+			},
+			"text": " and one of the fields in that ABI will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,760",
+				"to": "00:13:50,120"
+			},
+			"offsets": {
+				"from": 828760,
+				"to": 830120
+			},
+			"text": " call stacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,120",
+				"to": "00:13:51,760"
+			},
+			"offsets": {
+				"from": 830120,
+				"to": 831760
+			},
+			"text": " So because function one makes a call"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,760",
+				"to": "00:13:53,840"
+			},
+			"offsets": {
+				"from": 831760,
+				"to": 833840
+			},
+			"text": " to the orange and yellow functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,840",
+				"to": "00:13:57,040"
+			},
+			"offsets": {
+				"from": 833840,
+				"to": 837040
+			},
+			"text": " this circuit will expose through its private inputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,040",
+				"to": "00:13:59,440"
+			},
+			"offsets": {
+				"from": 837040,
+				"to": 839440
+			},
+			"text": " the call arguments and the function signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,440",
+				"to": "00:14:01,560"
+			},
+			"offsets": {
+				"from": 839440,
+				"to": 841560
+			},
+			"text": " of the orange and the yellow functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,560",
+				"to": "00:14:05,800"
+			},
+			"offsets": {
+				"from": 841560,
+				"to": 845800
+			},
+			"text": " And similarly, the orange function is making a call"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,800",
+				"to": "00:14:09,200"
+			},
+			"offsets": {
+				"from": 845800,
+				"to": 849200
+			},
+			"text": " to the green function, and the blue function."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,200",
+				"to": "00:14:13,120"
+			},
+			"offsets": {
+				"from": 849200,
+				"to": 853120
+			},
+			"text": " So it will also expose calls to the blue function"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,120",
+				"to": "00:14:15,400"
+			},
+			"offsets": {
+				"from": 853120,
+				"to": 855400
+			},
+			"text": " and the green function in its public inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,400",
+				"to": "00:14:18,400"
+			},
+			"offsets": {
+				"from": 855400,
+				"to": 858400
+			},
+			"text": " And notice the green function is labeled as public,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,400",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 858400,
+				"to": 861000
+			},
+			"text": " and so because public functions get executed"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 864000
+			},
+			"text": " by the sequencer and private functions get executed"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:26,840"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 866840
+			},
+			"text": " by the user, they have to be separated in this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,840",
+				"to": "00:14:30,280"
+			},
+			"offsets": {
+				"from": 866840,
+				"to": 870280
+			},
+			"text": " And on we go, the green function is making a call"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,280",
+				"to": "00:14:33,240"
+			},
+			"offsets": {
+				"from": 870280,
+				"to": 873240
+			},
+			"text": " to the purple function, so we add that to the call stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,240",
+				"to": "00:14:35,240"
+			},
+			"offsets": {
+				"from": 873240,
+				"to": 875240
+			},
+			"text": " And here's the really meaty cool bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,240",
+				"to": "00:14:38,640"
+			},
+			"offsets": {
+				"from": 875240,
+				"to": 878640
+			},
+			"text": " and that's kind of extending the sexy example"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,640",
+				"to": "00:14:40,800"
+			},
+			"offsets": {
+				"from": 878640,
+				"to": 880800
+			},
+			"text": " we saw before, where if you pass a function"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,800",
+				"to": "00:14:43,200"
+			},
+			"offsets": {
+				"from": 880800,
+				"to": 883200
+			},
+			"text": " into a kernel circuit, it hides which function"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,200",
+				"to": "00:14:44,520"
+			},
+			"offsets": {
+				"from": 883200,
+				"to": 884520
+			},
+			"text": " has been executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,520",
+				"to": "00:14:48,320"
+			},
+			"offsets": {
+				"from": 884520,
+				"to": 888320
+			},
+			"text": " We add some extra logic to our kernel circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,320",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 888320,
+				"to": 891000
+			},
+			"text": " to allow these call stacks to be interpreted"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:53,240"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 893240
+			},
+			"text": " and to check that the parameters being passed"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,240",
+				"to": "00:14:55,440"
+			},
+			"offsets": {
+				"from": 893240,
+				"to": 895440
+			},
+			"text": " between all these functions make sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,440",
+				"to": "00:14:57,440"
+			},
+			"offsets": {
+				"from": 895440,
+				"to": 897440
+			},
+			"text": " and are according to the rules of the smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,440",
+				"to": "00:15:00,640"
+			},
+			"offsets": {
+				"from": 897440,
+				"to": 900640
+			},
+			"text": " that somebody wrote or smart contracts for all"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,640",
+				"to": "00:15:01,800"
+			},
+			"offsets": {
+				"from": 900640,
+				"to": 901800
+			},
+			"text": " that some people wrote."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,800",
+				"to": "00:15:05,920"
+			},
+			"offsets": {
+				"from": 901800,
+				"to": 905920
+			},
+			"text": " So we begin with function one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,920",
+				"to": "00:15:08,560"
+			},
+			"offsets": {
+				"from": 905920,
+				"to": 908560
+			},
+			"text": " We pass it into the private kernel circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,560",
+				"to": "00:15:12,360"
+			},
+			"offsets": {
+				"from": 908560,
+				"to": 912360
+			},
+			"text": " and the private kernel circuit will read the public inputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,360",
+				"to": "00:15:15,880"
+			},
+			"offsets": {
+				"from": 912360,
+				"to": 915880
+			},
+			"text": " of function one and push onto its own call stack"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,880",
+				"to": "00:15:18,480"
+			},
+			"offsets": {
+				"from": 915880,
+				"to": 918480
+			},
+			"text": " the two items that function one makes a call to."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,480",
+				"to": "00:15:24,360"
+			},
+			"offsets": {
+				"from": 918480,
+				"to": 924360
+			},
+			"text": " And then we will carry on with our recursion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,360",
+				"to": "00:15:26,560"
+			},
+			"offsets": {
+				"from": 924360,
+				"to": 926560
+			},
+			"text": " the private kernel circuit will spit out a proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,560",
+				"to": "00:15:30,920"
+			},
+			"offsets": {
+				"from": 926560,
+				"to": 930920
+			},
+			"text": " and we will pop the next call from the call stack"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,920",
+				"to": "00:15:33,360"
+			},
+			"offsets": {
+				"from": 930920,
+				"to": 933360
+			},
+			"text": " and we'll pass it in to another iteration"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,360",
+				"to": "00:15:34,960"
+			},
+			"offsets": {
+				"from": 933360,
+				"to": 934960
+			},
+			"text": " of the private kernel circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,960",
+				"to": "00:15:37,720"
+			},
+			"offsets": {
+				"from": 934960,
+				"to": 937720
+			},
+			"text": " So each of these arrows is a proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,720",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 937720,
+				"to": 940000
+			},
+			"text": " and within the private kernel circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:42,840"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 942840
+			},
+			"text": " two proofs are being verified each time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,840",
+				"to": "00:15:47,360"
+			},
+			"offsets": {
+				"from": 942840,
+				"to": 947360
+			},
+			"text": " And so we can see the call stack has shrunk a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,360",
+				"to": "00:15:51,440"
+			},
+			"offsets": {
+				"from": 947360,
+				"to": 951440
+			},
+			"text": " and then we pop call number two, the orange call,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,440",
+				"to": "00:15:54,840"
+			},
+			"offsets": {
+				"from": 951440,
+				"to": 954840
+			},
+			"text": " off it and pass that into the private kernel circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,840",
+				"to": "00:15:57,040"
+			},
+			"offsets": {
+				"from": 954840,
+				"to": 957040
+			},
+			"text": " and we do recurse until the call stacks are empty"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,040",
+				"to": "00:16:00,120"
+			},
+			"offsets": {
+				"from": 957040,
+				"to": 960120
+			},
+			"text": " and then we know we're done except the orange function"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,120",
+				"to": "00:16:02,320"
+			},
+			"offsets": {
+				"from": 960120,
+				"to": 962320
+			},
+			"text": " is making calls to another two."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,320",
+				"to": "00:16:06,040"
+			},
+			"offsets": {
+				"from": 962320,
+				"to": 966040
+			},
+			"text": " So we'll just keep going until, okay, finally"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,040",
+				"to": "00:16:07,560"
+			},
+			"offsets": {
+				"from": 966040,
+				"to": 967560
+			},
+			"text": " the private call stack is empty"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,560",
+				"to": "00:16:10,280"
+			},
+			"offsets": {
+				"from": 967560,
+				"to": 970280
+			},
+			"text": " and therein ends the work that needs to happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,280",
+				"to": "00:16:11,880"
+			},
+			"offsets": {
+				"from": 970280,
+				"to": 971880
+			},
+			"text": " on a user's device."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,880",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 971880,
+				"to": 975000
+			},
+			"text": " So because the user only executes private functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:18,280"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 978280
+			},
+			"text": " public functions are executed by the role of provider,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,280",
+				"to": "00:16:21,720"
+			},
+			"offsets": {
+				"from": 978280,
+				"to": 981720
+			},
+			"text": " this proof here will be sent to the role of provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,720",
+				"to": "00:16:24,120"
+			},
+			"offsets": {
+				"from": 981720,
+				"to": 984120
+			},
+			"text": " What will the role of provider see?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,120",
+				"to": "00:16:26,080"
+			},
+			"offsets": {
+				"from": 984120,
+				"to": 986080
+			},
+			"text": " Well, they'll just see that somebody executed"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,080",
+				"to": "00:16:27,800"
+			},
+			"offsets": {
+				"from": 986080,
+				"to": 987800
+			},
+			"text": " some function of some smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,800",
+				"to": "00:16:29,520"
+			},
+			"offsets": {
+				"from": 987800,
+				"to": 989520
+			},
+			"text": " and changed some kind of states"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,520",
+				"to": "00:16:32,680"
+			},
+			"offsets": {
+				"from": 989520,
+				"to": 992680
+			},
+			"text": " but the role of provider will have no idea which,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,680",
+				"to": "00:16:34,120"
+			},
+			"offsets": {
+				"from": 992680,
+				"to": 994120
+			},
+			"text": " which is really, really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,120",
+				"to": "00:16:37,200"
+			},
+			"offsets": {
+				"from": 994120,
+				"to": 997200
+			},
+			"text": " What they will see, if the private function"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,200",
+				"to": "00:16:39,200"
+			},
+			"offsets": {
+				"from": 997200,
+				"to": 999200
+			},
+			"text": " is making a call to a public function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,200",
+				"to": "00:16:41,160"
+			},
+			"offsets": {
+				"from": 999200,
+				"to": 1001160
+			},
+			"text": " they will be able to see the public functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,160",
+				"to": "00:16:43,720"
+			},
+			"offsets": {
+				"from": 1001160,
+				"to": 1003720
+			},
+			"text": " which need to be called, there's no way around that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,720",
+				"to": "00:16:46,760"
+			},
+			"offsets": {
+				"from": 1003720,
+				"to": 1006760
+			},
+			"text": " So seeing the call stack as it is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,760",
+				"to": "00:16:50,120"
+			},
+			"offsets": {
+				"from": 1006760,
+				"to": 1010120
+			},
+			"text": " the role of provider will take this function"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,120",
+				"to": "00:16:54,360"
+			},
+			"offsets": {
+				"from": 1010120,
+				"to": 1014360
+			},
+			"text": " and execute it and pass it into a public kernel circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,360",
+				"to": "00:16:56,560"
+			},
+			"offsets": {
+				"from": 1014360,
+				"to": 1016560
+			},
+			"text": " which has, instead of hiding logic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,560",
+				"to": "00:16:58,920"
+			},
+			"offsets": {
+				"from": 1016560,
+				"to": 1018920
+			},
+			"text": " it just executes states out in the open similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,920",
+				"to": "00:17:01,200"
+			},
+			"offsets": {
+				"from": 1018920,
+				"to": 1021200
+			},
+			"text": " to, I guess, other ZK rollups."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,200",
+				"to": "00:17:05,040"
+			},
+			"offsets": {
+				"from": 1021200,
+				"to": 1025040
+			},
+			"text": " And this function's making a call and we're almost done."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,040",
+				"to": "00:17:06,400"
+			},
+			"offsets": {
+				"from": 1025040,
+				"to": 1026400
+			},
+			"text": " We pass that into the kernel circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,400",
+				"to": "00:17:08,040"
+			},
+			"offsets": {
+				"from": 1026400,
+				"to": 1028040
+			},
+			"text": " and hurray the call stacks are empty."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,040",
+				"to": "00:17:12,440"
+			},
+			"offsets": {
+				"from": 1028040,
+				"to": 1032440
+			},
+			"text": " We finished executing our function trace or our stack trace"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,440",
+				"to": "00:17:14,640"
+			},
+			"offsets": {
+				"from": 1032440,
+				"to": 1034640
+			},
+			"text": " and this can then be sent to the rollup circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,640",
+				"to": "00:17:17,760"
+			},
+			"offsets": {
+				"from": 1034640,
+				"to": 1037760
+			},
+			"text": " This entire thing represents a single user transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,760",
+				"to": "00:17:19,680"
+			},
+			"offsets": {
+				"from": 1037760,
+				"to": 1039680
+			},
+			"text": " on our smart contract platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,680",
+				"to": "00:17:22,400"
+			},
+			"offsets": {
+				"from": 1039680,
+				"to": 1042400
+			},
+			"text": " and it can get rolled up with all the other transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,400",
+				"to": "00:17:26,760"
+			},
+			"offsets": {
+				"from": 1042400,
+				"to": 1046760
+			},
+			"text": " You don't need to read this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,760",
+				"to": "00:17:30,240"
+			},
+			"offsets": {
+				"from": 1046760,
+				"to": 1050240
+			},
+			"text": " All this is saying is that the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,240",
+				"to": "00:17:33,320"
+			},
+			"offsets": {
+				"from": 1050240,
+				"to": 1053320
+			},
+			"text": " in order for the kernel circuit, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,320",
+				"to": "00:17:35,360"
+			},
+			"offsets": {
+				"from": 1053320,
+				"to": 1055360
+			},
+			"text": " In order for the kernel circuit to be able to operate"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,360",
+				"to": "00:17:37,280"
+			},
+			"offsets": {
+				"from": 1055360,
+				"to": 1057280
+			},
+			"text": " on any kind of function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,280",
+				"to": "00:17:40,280"
+			},
+			"offsets": {
+				"from": 1057280,
+				"to": 1060280
+			},
+			"text": " we need one giant static interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,280",
+				"to": "00:17:44,360"
+			},
+			"offsets": {
+				"from": 1060280,
+				"to": 1064360
+			},
+			"text": " which accommodates as many possible function permutations"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,360",
+				"to": "00:17:45,720"
+			},
+			"offsets": {
+				"from": 1064360,
+				"to": 1065720
+			},
+			"text": " as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,720",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1065720,
+				"to": 1067000
+			},
+			"text": " And that's what these interfaces are."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:48,680"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1068680
+			},
+			"text": " There's one for private circuits"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,680",
+				"to": "00:17:51,480"
+			},
+			"offsets": {
+				"from": 1068680,
+				"to": 1071480
+			},
+			"text": " and you can see there's a lot of arrays"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,480",
+				"to": "00:17:54,960"
+			},
+			"offsets": {
+				"from": 1071480,
+				"to": 1074960
+			},
+			"text": " to allow for various sizes and various permutations"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,960",
+				"to": "00:17:57,080"
+			},
+			"offsets": {
+				"from": 1074960,
+				"to": 1077080
+			},
+			"text": " of stuff that an app might wish to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,080",
+				"to": "00:17:58,840"
+			},
+			"offsets": {
+				"from": 1077080,
+				"to": 1078840
+			},
+			"text": " or a function of an app might wish to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,840",
+				"to": "00:18:00,800"
+			},
+			"offsets": {
+				"from": 1078840,
+				"to": 1080800
+			},
+			"text": " And we've got one for public circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,800",
+				"to": "00:18:04,880"
+			},
+			"offsets": {
+				"from": 1080800,
+				"to": 1084880
+			},
+			"text": " Similarly, the private inputs and public inputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,880",
+				"to": "00:18:07,320"
+			},
+			"offsets": {
+				"from": 1084880,
+				"to": 1087320
+			},
+			"text": " are the kernel circuit, there's loads of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,320",
+				"to": "00:18:09,080"
+			},
+			"offsets": {
+				"from": 1087320,
+				"to": 1089080
+			},
+			"text": " and there's a lot happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,080",
+				"to": "00:18:10,720"
+			},
+			"offsets": {
+				"from": 1089080,
+				"to": 1090720
+			},
+			"text": " There is so much computation happening"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,720",
+				"to": "00:18:13,240"
+			},
+			"offsets": {
+				"from": 1090720,
+				"to": 1093240
+			},
+			"text": " in these kernel circuits that we've been working"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,240",
+				"to": "00:18:16,200"
+			},
+			"offsets": {
+				"from": 1093240,
+				"to": 1096200
+			},
+			"text": " on a better proof system, more efficient proof system"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,200",
+				"to": "00:18:19,520"
+			},
+			"offsets": {
+				"from": 1096200,
+				"to": 1099520
+			},
+			"text": " for ZK Snarks and it's actually similar to hyperflunk"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,520",
+				"to": "00:18:22,080"
+			},
+			"offsets": {
+				"from": 1099520,
+				"to": 1102080
+			},
+			"text": " which is Espresso systems have been working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,080",
+				"to": "00:18:24,800"
+			},
+			"offsets": {
+				"from": 1102080,
+				"to": 1104800
+			},
+			"text": " It's really cool idea and I guess there'll be more"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,800",
+				"to": "00:18:27,040"
+			},
+			"offsets": {
+				"from": 1104800,
+				"to": 1107040
+			},
+			"text": " on that at some point in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,040",
+				"to": "00:18:29,440"
+			},
+			"offsets": {
+				"from": 1107040,
+				"to": 1109440
+			},
+			"text": " So we have this transaction and I mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,440",
+				"to": "00:18:31,840"
+			},
+			"offsets": {
+				"from": 1109440,
+				"to": 1111840
+			},
+			"text": " when we get to this stage it gets sent to the rollup."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,840",
+				"to": "00:18:33,880"
+			},
+			"offsets": {
+				"from": 1111840,
+				"to": 1113880
+			},
+			"text": " What does the rollup topology look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,880",
+				"to": "00:18:36,080"
+			},
+			"offsets": {
+				"from": 1113880,
+				"to": 1116080
+			},
+			"text": " Well first I wanna point out that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,080",
+				"to": "00:18:38,600"
+			},
+			"offsets": {
+				"from": 1116080,
+				"to": 1118600
+			},
+			"text": " that example transaction was doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,600",
+				"to": "00:18:40,200"
+			},
+			"offsets": {
+				"from": 1118600,
+				"to": 1120200
+			},
+			"text": " some private computation for the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,200",
+				"to": "00:18:41,680"
+			},
+			"offsets": {
+				"from": 1120200,
+				"to": 1121680
+			},
+			"text": " and some public computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,680",
+				"to": "00:18:44,200"
+			},
+			"offsets": {
+				"from": 1121680,
+				"to": 1124200
+			},
+			"text": " But it doesn't need to be that way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,200",
+				"to": "00:18:48,080"
+			},
+			"offsets": {
+				"from": 1124200,
+				"to": 1128080
+			},
+			"text": " it can just be this transaction is just public computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,080",
+				"to": "00:18:50,520"
+			},
+			"offsets": {
+				"from": 1128080,
+				"to": 1130520
+			},
+			"text": " similar to other ZK rollups"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,520",
+				"to": "00:18:52,200"
+			},
+			"offsets": {
+				"from": 1130520,
+				"to": 1132200
+			},
+			"text": " or it can be completely private computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,200",
+				"to": "00:18:55,640"
+			},
+			"offsets": {
+				"from": 1132200,
+				"to": 1135640
+			},
+			"text": " You can think ZKASH transactions are completely private"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,640",
+				"to": "00:18:58,840"
+			},
+			"offsets": {
+				"from": 1135640,
+				"to": 1138840
+			},
+			"text": " so you could deploy an app which does ZKASH-like transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,840",
+				"to": "00:19:00,360"
+			},
+			"offsets": {
+				"from": 1138840,
+				"to": 1140360
+			},
+			"text": " on this smart contract platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,360",
+				"to": "00:19:02,920"
+			},
+			"offsets": {
+				"from": 1140360,
+				"to": 1142920
+			},
+			"text": " And I won't go into it today"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,920",
+				"to": "00:19:06,320"
+			},
+			"offsets": {
+				"from": 1142920,
+				"to": 1146320
+			},
+			"text": " but there's also the ability to deploy contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,320",
+				"to": "00:19:09,280"
+			},
+			"offsets": {
+				"from": 1146320,
+				"to": 1149280
+			},
+			"text": " and you can even have similar to Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,280",
+				"to": "00:19:14,200"
+			},
+			"offsets": {
+				"from": 1149280,
+				"to": 1154200
+			},
+			"text": " functions deploying contracts for you from a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,200",
+				"to": "00:19:16,320"
+			},
+			"offsets": {
+				"from": 1154200,
+				"to": 1156320
+			},
+			"text": " Okay, so we've got these transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,320",
+				"to": "00:19:20,160"
+			},
+			"offsets": {
+				"from": 1156320,
+				"to": 1160160
+			},
+			"text": " and they get sent to the sequencer or rollup provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,160",
+				"to": "00:19:23,760"
+			},
+			"offsets": {
+				"from": 1160160,
+				"to": 1163760
+			},
+			"text": " and this sequencer is gonna compress, compress, compress,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,760",
+				"to": "00:19:26,360"
+			},
+			"offsets": {
+				"from": 1163760,
+				"to": 1166360
+			},
+			"text": " compress until they're well left with one proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,360",
+				"to": "00:19:30,600"
+			},
+			"offsets": {
+				"from": 1166360,
+				"to": 1170600
+			},
+			"text": " And the way you do that is by verifying proofs within circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,600",
+				"to": "00:19:33,240"
+			},
+			"offsets": {
+				"from": 1170600,
+				"to": 1173240
+			},
+			"text": " So this base rollup circuit verifies two proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,240",
+				"to": "00:19:35,280"
+			},
+			"offsets": {
+				"from": 1173240,
+				"to": 1175280
+			},
+			"text": " and this one verifies two proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,280",
+				"to": "00:19:37,280"
+			},
+			"offsets": {
+				"from": 1175280,
+				"to": 1177280
+			},
+			"text": " And then we go to the next level"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,280",
+				"to": "00:19:39,640"
+			},
+			"offsets": {
+				"from": 1177280,
+				"to": 1179640
+			},
+			"text": " and we verify two more proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,640",
+				"to": "00:19:42,000"
+			},
+			"offsets": {
+				"from": 1179640,
+				"to": 1182000
+			},
+			"text": " And then we end up with one proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,000",
+				"to": "00:19:44,240"
+			},
+			"offsets": {
+				"from": 1182000,
+				"to": 1184240
+			},
+			"text": " and because the proof system we use here"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,240",
+				"to": "00:19:47,440"
+			},
+			"offsets": {
+				"from": 1184240,
+				"to": 1187440
+			},
+			"text": " ends up being quite expensive to verify an Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,440",
+				"to": "00:19:50,200"
+			},
+			"offsets": {
+				"from": 1187440,
+				"to": 1190200
+			},
+			"text": " we'll squish it down to a cheaper proof-like plon call"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,200",
+				"to": "00:19:53,680"
+			},
+			"offsets": {
+				"from": 1190200,
+				"to": 1193680
+			},
+			"text": " GROSS 16 and then send it to the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,680",
+				"to": "00:19:54,880"
+			},
+			"offsets": {
+				"from": 1193680,
+				"to": 1194880
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,880",
+				"to": "00:19:56,120"
+			},
+			"offsets": {
+				"from": 1194880,
+				"to": 1196120
+			},
+			"text": " And then within the smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,120",
+				"to": "00:19:57,920"
+			},
+			"offsets": {
+				"from": 1196120,
+				"to": 1197920
+			},
+			"text": " this proof will be verified"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,920",
+				"to": "00:20:00,400"
+			},
+			"offsets": {
+				"from": 1197920,
+				"to": 1200400
+			},
+			"text": " and the state trees of all the various trees"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,400",
+				"to": "00:20:02,480"
+			},
+			"offsets": {
+				"from": 1200400,
+				"to": 1202480
+			},
+			"text": " where managing will be updated"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,480",
+				"to": "00:20:04,760"
+			},
+			"offsets": {
+				"from": 1202480,
+				"to": 1204760
+			},
+			"text": " or rather the roots of the trees will be updated."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,760",
+				"to": "00:20:07,160"
+			},
+			"offsets": {
+				"from": 1204760,
+				"to": 1207160
+			},
+			"text": " Okay, and I think this is the final slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,160",
+				"to": "00:20:10,120"
+			},
+			"offsets": {
+				"from": 1207160,
+				"to": 1210120
+			},
+			"text": " So what I wanna point out here"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,120",
+				"to": "00:20:12,640"
+			},
+			"offsets": {
+				"from": 1210120,
+				"to": 1212640
+			},
+			"text": " is that there's always this arrow of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,640",
+				"to": "00:20:14,160"
+			},
+			"offsets": {
+				"from": 1212640,
+				"to": 1214160
+			},
+			"text": " with these transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,160",
+				"to": "00:20:17,280"
+			},
+			"offsets": {
+				"from": 1214160,
+				"to": 1217280
+			},
+			"text": " So you begin with a private function executions"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,280",
+				"to": "00:20:19,600"
+			},
+			"offsets": {
+				"from": 1217280,
+				"to": 1219600
+			},
+			"text": " or proving you've executed private functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,600",
+				"to": "00:20:21,040"
+			},
+			"offsets": {
+				"from": 1219600,
+				"to": 1221040
+			},
+			"text": " always on the user's device."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,040",
+				"to": "00:20:23,280"
+			},
+			"offsets": {
+				"from": 1221040,
+				"to": 1223280
+			},
+			"text": " And once you've done that step"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,280",
+				"to": "00:20:26,400"
+			},
+			"offsets": {
+				"from": 1223280,
+				"to": 1226400
+			},
+			"text": " then you can go send your transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,400",
+				"to": "00:20:28,680"
+			},
+			"offsets": {
+				"from": 1226400,
+				"to": 1228680
+			},
+			"text": " or your call stacks to the rollup provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,680",
+				"to": "00:20:30,600"
+			},
+			"offsets": {
+				"from": 1228680,
+				"to": 1230600
+			},
+			"text": " who will execute their stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,600",
+				"to": "00:20:33,280"
+			},
+			"offsets": {
+				"from": 1230600,
+				"to": 1233280
+			},
+			"text": " and we'll ignore the contract deployment step"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,280",
+				"to": "00:20:35,600"
+			},
+			"offsets": {
+				"from": 1233280,
+				"to": 1235600
+			},
+			"text": " and then it gets sent to the rollup contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,600",
+				"to": "00:20:37,440"
+			},
+			"offsets": {
+				"from": 1235600,
+				"to": 1237440
+			},
+			"text": " and from there similar to Aztec Connect"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,440",
+				"to": "00:20:39,040"
+			},
+			"offsets": {
+				"from": 1237440,
+				"to": 1239040
+			},
+			"text": " if you've looked into it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,040",
+				"to": "00:20:42,640"
+			},
+			"offsets": {
+				"from": 1239040,
+				"to": 1242640
+			},
+			"text": " you can then make calls to any smart contract in Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,640",
+				"to": "00:20:45,520"
+			},
+			"offsets": {
+				"from": 1242640,
+				"to": 1245520
+			},
+			"text": " and interact with any DeFi contract that already exists."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,520",
+				"to": "00:20:47,040"
+			},
+			"offsets": {
+				"from": 1245520,
+				"to": 1247040
+			},
+			"text": " But suppose your private function"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,040",
+				"to": "00:20:49,720"
+			},
+			"offsets": {
+				"from": 1247040,
+				"to": 1249720
+			},
+			"text": " wants to make a call to a public function"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,720",
+				"to": "00:20:53,760"
+			},
+			"offsets": {
+				"from": 1249720,
+				"to": 1253760
+			},
+			"text": " or to a layer one function and receive return values."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,760",
+				"to": "00:20:55,920"
+			},
+			"offsets": {
+				"from": 1253760,
+				"to": 1255920
+			},
+			"text": " Well, it can't receive return values immediately"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,920",
+				"to": "00:20:57,440"
+			},
+			"offsets": {
+				"from": 1255920,
+				"to": 1257440
+			},
+			"text": " because of this arrow of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,440",
+				"to": "00:20:59,640"
+			},
+			"offsets": {
+				"from": 1257440,
+				"to": 1259640
+			},
+			"text": " and the order things need to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,640",
+				"to": "00:21:00,800"
+			},
+			"offsets": {
+				"from": 1259640,
+				"to": 1260800
+			},
+			"text": " Excuse me."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,800",
+				"to": "00:21:03,440"
+			},
+			"offsets": {
+				"from": 1260800,
+				"to": 1263440
+			},
+			"text": " So you'll have to wait until the next rollup."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,440",
+				"to": "00:21:04,600"
+			},
+			"offsets": {
+				"from": 1263440,
+				"to": 1264600
+			},
+			"text": " And so what we have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,600",
+				"to": "00:21:05,920"
+			},
+			"offsets": {
+				"from": 1264600,
+				"to": 1265920
+			},
+			"text": " and I don't have time to go into it here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,920",
+				"to": "00:21:08,120"
+			},
+			"offsets": {
+				"from": 1265920,
+				"to": 1268120
+			},
+			"text": " is if a private function is making a call"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,120",
+				"to": "00:21:10,120"
+			},
+			"offsets": {
+				"from": 1268120,
+				"to": 1270120
+			},
+			"text": " to another layer of this stack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,120",
+				"to": "00:21:12,360"
+			},
+			"offsets": {
+				"from": 1270120,
+				"to": 1272360
+			},
+			"text": " it will have to record callback functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,360",
+				"to": "00:21:15,040"
+			},
+			"offsets": {
+				"from": 1272360,
+				"to": 1275040
+			},
+			"text": " similar to if you're working with JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,040",
+				"to": "00:21:17,320"
+			},
+			"offsets": {
+				"from": 1275040,
+				"to": 1277320
+			},
+			"text": " And those record of those callback functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,320",
+				"to": "00:21:19,120"
+			},
+			"offsets": {
+				"from": 1277320,
+				"to": 1279120
+			},
+			"text": " will be added to a tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,120",
+				"to": "00:21:21,200"
+			},
+			"offsets": {
+				"from": 1279120,
+				"to": 1281200
+			},
+			"text": " And then in the next rollup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,200",
+				"to": "00:21:23,720"
+			},
+			"offsets": {
+				"from": 1281200,
+				"to": 1283720
+			},
+			"text": " the user will have to prove that they are executing"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,720",
+				"to": "00:21:28,720"
+			},
+			"offsets": {
+				"from": 1283720,
+				"to": 1288720
+			},
+			"text": " the correct success or failure callback function"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,720",
+				"to": "00:21:31,640"
+			},
+			"offsets": {
+				"from": 1288720,
+				"to": 1291640
+			},
+			"text": " in order to carry on with the execution of their function."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,640",
+				"to": "00:21:33,440"
+			},
+			"offsets": {
+				"from": 1291640,
+				"to": 1293440
+			},
+			"text": " So there's a lot of complexity there."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,440",
+				"to": "00:21:36,600"
+			},
+			"offsets": {
+				"from": 1293440,
+				"to": 1296600
+			},
+			"text": " We've written a lot of documentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,600",
+				"to": "00:21:38,680"
+			},
+			"offsets": {
+				"from": 1296600,
+				"to": 1298680
+			},
+			"text": " which I think we're gonna publish,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,680",
+				"to": "00:21:41,040"
+			},
+			"offsets": {
+				"from": 1298680,
+				"to": 1301040
+			},
+			"text": " which kind of explains all of this complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,040",
+				"to": "00:21:45,240"
+			},
+			"offsets": {
+				"from": 1301040,
+				"to": 1305240
+			},
+			"text": " But yeah, that's everything I wanted to talk about today."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,240",
+				"to": "00:21:49,040"
+			},
+			"offsets": {
+				"from": 1305240,
+				"to": 1309040
+			},
+			"text": " Oh, and I guess I do have time to just briefly say"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,040",
+				"to": "00:21:51,040"
+			},
+			"offsets": {
+				"from": 1309040,
+				"to": 1311040
+			},
+			"text": " what the kernel circuit does."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,040",
+				"to": "00:21:52,380"
+			},
+			"offsets": {
+				"from": 1311040,
+				"to": 1312380
+			},
+			"text": " It does tons."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,380",
+				"to": "00:21:56,180"
+			},
+			"offsets": {
+				"from": 1313380,
+				"to": 1316180
+			},
+			"text": " And my throat's hurting so much that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,180",
+				"to": "00:21:57,660"
+			},
+			"offsets": {
+				"from": 1316180,
+				"to": 1317660
+			},
+			"text": " I'm not gonna go through this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,660",
+				"to": "00:21:59,500"
+			},
+			"offsets": {
+				"from": 1317660,
+				"to": 1319500
+			},
+			"text": " but feel free to take a picture"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,500",
+				"to": "00:22:02,220"
+			},
+			"offsets": {
+				"from": 1319500,
+				"to": 1322220
+			},
+			"text": " and ask me questions afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,220",
+				"to": "00:22:04,420"
+			},
+			"offsets": {
+				"from": 1322220,
+				"to": 1324420
+			},
+			"text": " Yeah, thanks very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,420",
+				"to": "00:22:08,380"
+			},
+			"offsets": {
+				"from": 1324420,
+				"to": 1328380
+			},
+			"text": " - We still have time for one question, maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,380",
+				"to": "00:22:10,020"
+			},
+			"offsets": {
+				"from": 1328380,
+				"to": 1330020
+			},
+			"text": " If someone wants to do a question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,020",
+				"to": "00:22:13,140"
+			},
+			"offsets": {
+				"from": 1330020,
+				"to": 1333140
+			},
+			"text": " we have our volunteers with the mics."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,140",
+				"to": "00:22:14,700"
+			},
+			"offsets": {
+				"from": 1333140,
+				"to": 1334700
+			},
+			"text": " There you're here to the left."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,700",
+				"to": "00:22:18,300"
+			},
+			"offsets": {
+				"from": 1334700,
+				"to": 1338300
+			},
+			"text": " And maybe one there, depending on time."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,300",
+				"to": "00:22:21,900"
+			},
+			"offsets": {
+				"from": 1338300,
+				"to": 1341900
+			},
+			"text": " - One thing that you didn't touch it on the sensation"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,900",
+				"to": "00:22:23,660"
+			},
+			"offsets": {
+				"from": 1341900,
+				"to": 1343660
+			},
+			"text": " was about the participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,660",
+				"to": "00:22:25,100"
+			},
+			"offsets": {
+				"from": 1343660,
+				"to": 1345100
+			},
+			"text": " You mentioned the beginning that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,100",
+				"to": "00:22:27,420"
+			},
+			"offsets": {
+				"from": 1345100,
+				"to": 1347420
+			},
+			"text": " you might have a state with participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,420",
+				"to": "00:22:32,140"
+			},
+			"offsets": {
+				"from": 1347420,
+				"to": 1352140
+			},
+			"text": " So for example, go quantum with the zeta"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,140",
+				"to": "00:22:34,940"
+			},
+			"offsets": {
+				"from": 1352140,
+				"to": 1354940
+			},
+			"text": " and best with the zeta, which I'm sure you're aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,940",
+				"to": "00:22:36,500"
+			},
+			"offsets": {
+				"from": 1354940,
+				"to": 1356500
+			},
+			"text": " There are platforms that allow you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,500",
+				"to": "00:22:38,820"
+			},
+			"offsets": {
+				"from": 1356500,
+				"to": 1358820
+			},
+			"text": " to have public and private state contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,820",
+				"to": "00:22:41,700"
+			},
+			"offsets": {
+				"from": 1358820,
+				"to": 1361700
+			},
+			"text": " They have different ways to tackle it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,700",
+				"to": "00:22:45,100"
+			},
+			"offsets": {
+				"from": 1361700,
+				"to": 1365100
+			},
+			"text": " So best of those like groups, you define your group"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,100",
+				"to": "00:22:47,740"
+			},
+			"offsets": {
+				"from": 1365100,
+				"to": 1367740
+			},
+			"text": " and that group will share a private state"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,740",
+				"to": "00:22:51,020"
+			},
+			"offsets": {
+				"from": 1367740,
+				"to": 1371020
+			},
+			"text": " and go quantum, which is a fork of get,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,020",
+				"to": "00:22:52,500"
+			},
+			"offsets": {
+				"from": 1371020,
+				"to": 1372500
+			},
+			"text": " with modification for private state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,500",
+				"to": "00:22:55,220"
+			},
+			"offsets": {
+				"from": 1372500,
+				"to": 1375220
+			},
+			"text": " allow you to select for each transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,220",
+				"to": "00:22:58,300"
+			},
+			"offsets": {
+				"from": 1375220,
+				"to": 1378300
+			},
+			"text": " which participants will see those changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,300",
+				"to": "00:23:02,180"
+			},
+			"offsets": {
+				"from": 1378300,
+				"to": 1382180
+			},
+			"text": " And that means that you can have the versions on the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,180",
+				"to": "00:23:03,740"
+			},
+			"offsets": {
+				"from": 1382180,
+				"to": 1383740
+			},
+			"text": " So like you might have a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,740",
+				"to": "00:23:05,460"
+			},
+			"offsets": {
+				"from": 1383740,
+				"to": 1385460
+			},
+			"text": " that you change one smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,460",
+				"to": "00:23:09,980"
+			},
+			"offsets": {
+				"from": 1385460,
+				"to": 1389980
+			},
+			"text": " and you apply that state change for two participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,980",
+				"to": "00:23:11,180"
+			},
+			"offsets": {
+				"from": 1389980,
+				"to": 1391180
+			},
+			"text": " But then in the next transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,180",
+				"to": "00:23:12,540"
+			},
+			"offsets": {
+				"from": 1391180,
+				"to": 1392540
+			},
+			"text": " you change the same value"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,540",
+				"to": "00:23:15,180"
+			},
+			"offsets": {
+				"from": 1392540,
+				"to": 1395180
+			},
+			"text": " and only one participant will see it, not the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,180",
+				"to": "00:23:17,340"
+			},
+			"offsets": {
+				"from": 1395180,
+				"to": 1397340
+			},
+			"text": " How do you solve that in your platform?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,020",
+				"to": "00:23:21,620"
+			},
+			"offsets": {
+				"from": 1399020,
+				"to": 1401620
+			},
+			"text": " I didn't fully follow the long question."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,620",
+				"to": "00:23:22,900"
+			},
+			"offsets": {
+				"from": 1401620,
+				"to": 1402900
+			},
+			"text": " Maybe we can chat afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,900",
+				"to": "00:23:23,740"
+			},
+			"offsets": {
+				"from": 1402900,
+				"to": 1403740
+			},
+			"text": " Sorry about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,740",
+				"to": "00:23:26,300"
+			},
+			"offsets": {
+				"from": 1403740,
+				"to": 1406300
+			},
+			"text": " - Yeah, you can chat outside."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,300",
+				"to": "00:23:27,780"
+			},
+			"offsets": {
+				"from": 1406300,
+				"to": 1407780
+			},
+			"text": " That's the very place to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,780",
+				"to": "00:23:29,020"
+			},
+			"offsets": {
+				"from": 1407780,
+				"to": 1409020
+			},
+			"text": " that we're gonna get to know more."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,020",
+				"to": "00:23:30,940"
+			},
+			"offsets": {
+				"from": 1409020,
+				"to": 1410940
+			},
+			"text": " And we have one more question there."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,940",
+				"to": "00:23:32,660"
+			},
+			"offsets": {
+				"from": 1410940,
+				"to": 1412660
+			},
+			"text": " Please sound to that, Mike."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,660",
+				"to": "00:23:36,540"
+			},
+			"offsets": {
+				"from": 1412660,
+				"to": 1416540
+			},
+			"text": " - Hello, just one quick question."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,540",
+				"to": "00:23:41,340"
+			},
+			"offsets": {
+				"from": 1416540,
+				"to": 1421340
+			},
+			"text": " Is this private call for contracts already available"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,340",
+				"to": "00:23:43,980"
+			},
+			"offsets": {
+				"from": 1421340,
+				"to": 1423980
+			},
+			"text": " in NASDAQ or is it going to be in the next release?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,980",
+				"to": "00:23:46,260"
+			},
+			"offsets": {
+				"from": 1423980,
+				"to": 1426260
+			},
+			"text": " - So we'll be releasing the specs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,260",
+				"to": "00:23:48,460"
+			},
+			"offsets": {
+				"from": 1426260,
+				"to": 1428460
+			},
+			"text": " but we haven't built this."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,460",
+				"to": "00:23:50,860"
+			},
+			"offsets": {
+				"from": 1428460,
+				"to": 1430860
+			},
+			"text": " We've begun building it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,860",
+				"to": "00:23:54,180"
+			},
+			"offsets": {
+				"from": 1430860,
+				"to": 1434180
+			},
+			"text": " but it's probably maybe a year away from testnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,180",
+				"to": "00:23:58,100"
+			},
+			"offsets": {
+				"from": 1434180,
+				"to": 1438100
+			},
+			"text": " So yeah, it's a big beast."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,100",
+				"to": "00:24:00,500"
+			},
+			"offsets": {
+				"from": 1438100,
+				"to": 1440500
+			},
+			"text": " - Bigger enough applause once again for Mike Hunter."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,500",
+				"to": "00:24:01,340"
+			},
+			"offsets": {
+				"from": 1440500,
+				"to": 1441340
+			},
+			"text": " - Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,340",
+				"to": "00:24:04,500"
+			},
+			"offsets": {
+				"from": 1441340,
+				"to": 1444500
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,500",
+				"to": "00:24:07,340"
+			},
+			"offsets": {
+				"from": 1444500,
+				"to": 1447340
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,340",
+				"to": "00:24:10,180"
+			},
+			"offsets": {
+				"from": 1447340,
+				"to": 1450180
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,180",
+				"to": "00:24:13,020"
+			},
+			"offsets": {
+				"from": 1450180,
+				"to": 1453020
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,020",
+				"to": "00:24:42,020"
+			},
+			"offsets": {
+				"from": 1453020,
+				"to": 1482020
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

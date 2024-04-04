@@ -1,0 +1,4839 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:15,500"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 15500
+			},
+			"text": " Hi, my name is Alex Sander."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,500",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 15500,
+				"to": 21000
+			},
+			"text": " I'm CTO at StreamingFast and I'm also a pianist, a data scientist, whatever that means."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 25000
+			},
+			"text": " I'm a father of eight beautiful children, two of whom are there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 29000
+			},
+			"text": " I love designing and crafting software, which I've done since I was 12."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 36000
+			},
+			"text": " And I'm here today because one day in 2013, I read the Bitcoin White Paper and that changed trajectory in my life."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 45000
+			},
+			"text": " And fast forward to today, StreamingFast, a company based in Montreal, Canada, is now one of the core developers of the graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 52000
+			},
+			"text": " And we joined the graph a bit more than a year ago in a current bizarre MNA 2.0 fashion, or lawyers did don't understand what happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 59000
+			},
+			"text": " But anyway, we said thanks and goodbye to our VCs and shifted our focus to make the graph the greatest data platform on Earth."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 67000
+			},
+			"text": " So today, I'm here to introduce Subtrees, which is a powerful new paralyzed engine to process blockchain data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 70000
+			},
+			"text": " And before I can do that, I just want to set a bit of context."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 74000
+			},
+			"text": " Perhaps you can raise your hand if you know what subgraphs are. Raise your hand if you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 81000
+			},
+			"text": " You're good. Okay. So subgraphs can be thought of an ETL process, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 86000
+			},
+			"text": " Extract, transform, and load. And subgraphs add that little queue there that graphs you a layer to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 92000
+			},
+			"text": " And subgraphs today provide that sort of simple, approachable end-to-end solution to blockchain indexing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 96000
+			},
+			"text": " And the graph node is responsible for all of these components, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 99000
+			},
+			"text": " The extraction is done through hitting JSON RPC nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 101000
+			},
+			"text": " And then transformation, you provide some assembly script."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 104000
+			},
+			"text": " You guys know that compathuasm, running in a distributed environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 109000
+			},
+			"text": " And then you have the load aspect, which graph node does, puts that into postgres and offers you a rich, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 112000
+			},
+			"text": " and beautiful graph QL interface on top."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 119000
+			},
+			"text": " And one of the reasons we were brought in was that we could push the graph to new height in terms of performances."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 126000
+			},
+			"text": " So to do that, we brought first thing, the fire hose, something at the extraction layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 132000
+			},
+			"text": " So we brought this to our take to boosting performance by one, two, three orders of magnitude."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 137000
+			},
+			"text": " The first layer of extraction. It's a method of extracting data from blockchain nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 146000
+			},
+			"text": " Imagine prying an egg open, where the data is exfiltrated as fast as possible, and all the juicy data gets there and is thrown in a GRPC stream"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 153000
+			},
+			"text": " as well as into flat files. And you can think of that as sort of a bin log replication stream for blockchains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 157000
+			},
+			"text": " where you'd find in a master's labor application engine like databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 159000
+			},
+			"text": " So we'll get back to fire hose in a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 165000
+			},
+			"text": " Then substreams is sort of rethinking of the second box, the transformation layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 172000
+			},
+			"text": " Here, instead of the traditional subgraph handlers and assembly script, you will write substreams modules in Rust,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 179000
+			},
+			"text": " and those can be executed in real time, as well as in parallel with unprecedented performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 187000
+			},
+			"text": " So let me give you first a primer on fire hose, because there's a lot of benefits of substreams that come directly from the fire hose."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 193000
+			},
+			"text": " So, streaming fast for many years, we've been thinking hard about all these indexing problems from first principles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 196000
+			},
+			"text": " and we needed a first robust extraction layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 200000
+			},
+			"text": " We wanted something that was extremely low latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 207000
+			},
+			"text": " So I'm thinking that I would push data out the moment the transaction was executed within a blockchain node."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 209000
+			},
+			"text": " JSON RPC was not going to cut it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 213000
+			},
+			"text": " And we didn't want to have to deal with those large, bulky nodes, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 219000
+			},
+			"text": " Hang on, I'm going to thread, occupied with managing high right throughput."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 224000
+			},
+			"text": " We kept everything in a key value store behind a JSON RPC request,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 229000
+			},
+			"text": " and it was really heavy and ram and CPU, and you needed super optimized SSDs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 236000
+			},
+			"text": " It's really annoying, and all these things are much costier than what's needed when our goal was to get to the data inside."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 241000
+			},
+			"text": " So we also wanted proper decoupling between the processes producing the data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 246000
+			},
+			"text": " so the blockchain nodes and its intricacies and its request response model, and they're all different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 248000
+			},
+			"text": " and the data itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 251000
+			},
+			"text": " We wanted the data to be the interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 254000
+			},
+			"text": " And we wanted something also extremely reliable."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 260000
+			},
+			"text": " In the sense that we could avoid hitting load balance nodes that had all sorts of different views of the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 266000
+			},
+			"text": " and that we need to have client code to, latency-inducing code to resolve what's happening there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 273000
+			},
+			"text": " If there's a fork, you need to query nodes again for reorganization, heuristics, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 279000
+			},
+			"text": " But also, we wanted something better than even the web socket streams that pretend to be linear."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 286000
+			},
+			"text": " That the nodes have implemented, because when they would send you a signal that, let's say, this block was removed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 293000
+			},
+			"text": " it can leave you hanging. If you were to be disconnected for just half a second, you'd reconnect, you'd miss the signal."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 297000
+			},
+			"text": " So the reliability was not built in, so we wanted something to address that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 303000
+			},
+			"text": " And above all, we wanted something that is able to process networks in 20 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 309000
+			},
+			"text": " Well, okay. And now we're two, but, you know, we never, three weeks or things were waiting linearly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 311000
+			},
+			"text": " and that's still our goal today."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 317000
+			},
+			"text": " And when we say network history, I mean executing guess and extracting data executed into flat files."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 325000
+			},
+			"text": " That's the extraction layer. But also, any sort of index thing after the fact, we wanted to be able to have massive parallelization."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 331000
+			},
+			"text": " Like, there was no other way to have reliable and durable in performance without parallelization."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 338000
+			},
+			"text": " So our solution was the fire hose. And the fire hose solved all of these issues in a radical way."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 343000
+			},
+			"text": " We took a radical approach because we wanted to solve those problems definitively."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 351000
+			},
+			"text": " Like, meaning that there would be no further optimization possible, except attempting to bend sort of space-time continuum itself, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 356000
+			},
+			"text": " So with streaming, we, with even multiple nodes, pushing out data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 362000
+			},
+			"text": " multiple nodes are actually racing to push the data, the first, so our consuming process gets the first to get out."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 372000
+			},
+			"text": " Like, you can't really add, remove more latency there. And there can be nothing faster than immediately when the transaction has just executed from your node."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 379000
+			},
+			"text": " And then, like, regarding the staple processes and cost, flat files, flat files for the win. We have a hashtag to that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 383000
+			},
+			"text": " Flat files are the cheapest, much cheaper than processes. They're easier to work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 386000
+			},
+			"text": " There's nothing simpler, nor cheaper, in terms of computing resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 389000
+			},
+			"text": " These storage facilities have been optimized like crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 392000
+			},
+			"text": " And it's also where data science has headed these days."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 399000
+			},
+			"text": " And there's one common thing to every blockchain protocol that it processes, data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 405000
+			},
+			"text": " Data is also the right abstraction for this technology. Not an API that's common to all chain. Data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 409000
+			},
+			"text": " So fire hose clearly delineates responsibilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 416000
+			},
+			"text": " And the contract between the extraction and transformation layers is, again, the data model. Fire hose creates."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 421000
+			},
+			"text": " And for every chain, you can imagine the best data model, the most complete."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 425000
+			},
+			"text": " And that's what you've done for Fire hose, for Ethereum, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 430000
+			},
+			"text": " The data model for Ethereum, within fire hose, is the richest there is."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 433000
+			},
+			"text": " Like, you have in there the full call tree, internal transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 437000
+			},
+			"text": " You have the inputs and outputs as raw bytes. You have the logs, obviously."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 443000
+			},
+			"text": " You have the state changes, like you see on Etherscan, down to the internal transaction level."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 447000
+			},
+			"text": " You have balanced changes the same way. With the prior value and the next value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 452000
+			},
+			"text": " So when you're doing, like, navigation backwards or forward, you have the data you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 457000
+			},
+			"text": " You have also gas costs at different places. And there's that important notion of total ordering"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 460000
+			},
+			"text": " between things happening within the logs, state changes and calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 464000
+			},
+			"text": " All of these things happening during execution are totally ordered."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 468000
+			},
+			"text": " So you get in there, everything parity traces would give you, and more."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 473000
+			},
+			"text": " And everything you would need to rebuild a full archive node from flat files."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 476000
+			},
+			"text": " And everything there is ghost to the transaction level."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 481000
+			},
+			"text": " Not rounded at the block level, which is crucial if you want to index with precision."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 488000
+			},
+			"text": " Rounding of blockchain information at the block level is sort of meant for helping and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 493000
+			},
+			"text": " consensus. But it doesn't mean that what happens mid block is of less value than what"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 496000
+			},
+			"text": " happens at the boundaries. So, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 500000
+			},
+			"text": " So that's very interesting. And now regarding reliability, whoops, no, not so fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 507000
+			},
+			"text": " Regarding reliability, the Firehost RPC stream provides reorg messages like new block or"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 510000
+			},
+			"text": " undo this block or this block is now final."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 516000
+			},
+			"text": " Accompanied by a precious cursor, I think that's really key here, with each message."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 521000
+			},
+			"text": " So if you get disconnected, and upon reconnection you give back that cursor, you'll continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 527000
+			},
+			"text": " exactly where you left off, and you're potentially receiving that undo signal that you would not"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 530000
+			},
+			"text": " have seen where you disconnected, right? So you will get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 534000
+			},
+			"text": " So with the guarantees or linearity of the stream."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 538000
+			},
+			"text": " So no web socket implementation would do that because it doesn't make sense for a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 542000
+			},
+			"text": " node to track all the forks possible even two days after the fact."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 545000
+			},
+			"text": " And undo messages come with full payloads."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 549000
+			},
+			"text": " So you get all the delta. So you can just turn around to your database and apply the reverse."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 555000
+			},
+			"text": " Or you know, a block again in the full payload of what happened in the block and decide what"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 559000
+			},
+			"text": " to do. So it doesn't pose on the reader to store what happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 563000
+			},
+			"text": " Like that previous block, if the signal was just removed block 7,000, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 568000
+			},
+			"text": " Okay. And when you commit that cursor to your database, well, you get sort of that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 574000
+			},
+			"text": " finally some consistency guarantees within your, you know, your back end."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 581000
+			},
+			"text": " So some of our users told us they could cut 90% 9-0 of their code reading the chain because they were"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 584000
+			},
+			"text": " relying on that reliable stream."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 589000
+			},
+			"text": " And okay. And it also lays, lays down the foundation for massively paralyzed operation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 596000
+			},
+			"text": " files plus the stream. And so this is the future of the graph's unbeatable performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 603000
+			},
+			"text": " And it's core to our multi-chain strategy because, you know, any blockchain can have that data model."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 610000
+			},
+			"text": " Now let's dig into sub-streams. Sub-streams is a powerful clustered engine to process"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 614000
+			},
+			"text": " blockchain data. It's a streaming first engine and it's powered by the fire hose of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 617000
+			},
+			"text": " and its data models of the chain. So let's dig in."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 622000
+			},
+			"text": " Here's a few quick facts. It's invoked as a single, J-S-G-R-P-C call."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 627000
+			},
+			"text": " And within the request we provide all the transformation code like you'll have in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 631000
+			},
+			"text": " Oh, it's too low. You'll have in there the code, some WASM modules,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 636000
+			},
+			"text": " relationships within the modules and, you know, all the transformations within the request."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 639000
+			},
+			"text": " It's not a long running process except if you run it for long."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 644000
+			},
+			"text": " It's not a service you spin up, right? And the backing nodes are stateless which provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 649000
+			},
+			"text": " nice scalability properties. Modules for transformations are written in Rust."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 653000
+			},
+			"text": " They compile to WASM and they're running a secure sandbox on the infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 657000
+			},
+			"text": " They're similar to the sub-graphs. And the ultimate data source being the blockchain data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 662000
+			},
+			"text": " being deterministic, all the transformation outputs are also deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 667000
+			},
+			"text": " And the request, if the request you send involves process prior history,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 671000
+			},
+			"text": " even if it's 15 million blocks, well the sub-streams runtime will then turn around"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 676000
+			},
+			"text": " and orchestrate the execution of a multitude of smaller jobs in parallel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 681000
+			},
+			"text": " fuse the results on the fly for you and aggregate the results to simulate"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 684000
+			},
+			"text": " a linear execution. You would see a dime in the difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 688000
+			},
+			"text": " And all the results are streamed back to you as fast as possible with the same guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 693000
+			},
+			"text": " provided by the fire hose with a block per block cursor and a transparent handoff"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 698000
+			},
+			"text": " from batch and in-hoist historical processing to the real-time low latency rewards"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 704000
+			},
+			"text": " aware stream of the head of the chain. So let me show you, if you're interested,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 708000
+			},
+			"text": " how we create one of these things. Raise your hand if you're curious. Okay, you're good."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 711000
+			},
+			"text": " Okay, so let's start. We start with some manifest like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 714000
+			},
+			"text": " Do you see that down here? Can move the podium? I can't."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 717000
+			},
+			"text": " So there's package information, you know, some metadata there."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 720000
+			},
+			"text": " You have pointers to the protobuf that you'll use."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 723000
+			},
+			"text": " Again, contracts between modules are about data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 726000
+			},
+			"text": " So there are protobuf models similar to the protobuf models of the root chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 730000
+			},
+			"text": " of the chains, the layer ones. And you have pointers to the binary that you're working on"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 734000
+			},
+			"text": " your drive and all that. And you have imports. And imports are actually very interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 738000
+			},
+			"text": " because you can import third-party sub-streams packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 743000
+			},
+			"text": " And these yaml can be packaged. And so you can import from someone else's package,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 748000
+			},
+			"text": " you can write your own or combine both. That means sub-streams and naibuls"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 753000
+			},
+			"text": " come composition at transformation time, which I think is pretty unique in a pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 758000
+			},
+			"text": " game changer. And then follow up, and there you have the module sections, which defines"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 763000
+			},
+			"text": " the relation between the different modules. And you see it defines a directed"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 768000
+			},
+			"text": " acyclic graph. You have modules that slowly refine the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 773000
+			},
+			"text": " And so there's two types of modules. One, the mapper, the first up there, map pools."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 777000
+			},
+			"text": " And this one takes inputs, does transformation and outputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 781000
+			},
+			"text": " It's parallelizable down to its core, block-wise, so massively parallelizable."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 784000
+			},
+			"text": " And then there's the store input. I think it's awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 789000
+			},
+			"text": " This one takes any inputs and outputs a key-value store."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 793000
+			},
+			"text": " Or an accumulated in a stateful way."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 797000
+			},
+			"text": " And stores can then be queried by downstream modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 801000
+			},
+			"text": " And okay, so we'll see a bit more after. The name corresponds to the function in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 807000
+			},
+			"text": " WASM code. And the inputs can be of a few things, either the raw firehose feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 811000
+			},
+			"text": " So for example, the source here, that means the block with all transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 815000
+			},
+			"text": " for that particular block. And it can be the output of another module, like you see"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 819000
+			},
+			"text": " down here, the input of map pools. So you'll get the data as bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:43,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 823000
+			},
+			"text": " And it can also be a store, which would be a reference."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 823000,
+				"to": 827000
+			},
+			"text": " We'll see in the next slide there. And on the store pools here, you see there's an update"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 831000
+			},
+			"text": " policy, which sets constraints on what you can do with the store."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 835000
+			},
+			"text": " And it defines a merge strategy for when you're running parallelized operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 839000
+			},
+			"text": " Okay, I'll get to that also a little later. And the value type field"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 843000
+			},
+			"text": " will help anyone decoding understand what bytes there is in that store."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 847000
+			},
+			"text": " So you can use UI, JSON to find them, and your code, consuming can automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 851000
+			},
+			"text": " decode them with protobust, all languages supported. Otherwise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 855000
+			},
+			"text": " the key value is just keys, strings, bytes, values, very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 859000
+			},
+			"text": " And one thing to note here is that because it has deterministic inputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 863000
+			},
+			"text": " it's possible to hash a module, like the kind, and all"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 867000
+			},
+			"text": " of its inputs, and the pointers to its parent, and including the initial block."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 871000
+			},
+			"text": " So you have a fully determined and hashable, let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 875000
+			},
+			"text": " a cache location for all of the history, similar to Git, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 879000
+			},
+			"text": " All of the history of data produced by the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 883000
+			},
+			"text": " WASM code, right? So it makes it for an extremely"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 887000
+			},
+			"text": " cacheable system, and highly shareable, and cross verifiable"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 891000
+			},
+			"text": " output of modules, which opens really interesting possibilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 895000
+			},
+			"text": " for collaboration within the graph ecosystem. And imagine that one has"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 899000
+			},
+			"text": " large disks, and everyone has large CPUs, or sleeping CPUs, they could pool"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 903000
+			},
+			"text": " resources together to build something bigger than themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 907000
+			},
+			"text": " Okay, and see the relation there? So this gets piped to that, and if we add another module"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 911000
+			},
+			"text": " here, you see how the graph comes together, this one computes the price,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 915000
+			},
+			"text": " this is Uniswap V3 thing, it computes the price, but you want to get them"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 919000
+			},
+			"text": " for certain pools, because maybe you want to use the decimal placements, and the pool will see"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 923000
+			},
+			"text": " a little bit more there. And when you're running, let's say you're running that at"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 927000
+			},
+			"text": " block 15 million. Well, you're guaranteed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 931000
+			},
+			"text": " and the runtime guarantees that the store you'll have"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 935000
+			},
+			"text": " to execute code at block 15 million will have been synced"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 939000
+			},
+			"text": " linearly, or in parallel, but you wouldn't know, but it'll give you a full in-memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 943000
+			},
+			"text": " store, eventually backed by some disks, but whatever, and you can query the key value"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 947000
+			},
+			"text": " store at each block. It's guaranteed to be synced for you. That's exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 951000
+			},
+			"text": " No, okay. So you see the DAG fully being built, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 955000
+			},
+			"text": " So now let's, let's, let's, this leads us to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 959000
+			},
+			"text": " compose the ability. See, each color here means a different author,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 963000
+			},
+			"text": " and modules written by different people, ideally the most"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 967000
+			},
+			"text": " competent for each, right, like we would hope, they would crop"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 971000
+			},
+			"text": " and, you know, analyze what's on chain, and refine the data, and abstract"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 975000
+			},
+			"text": " it to new heights. And the contract between the handoffs is always"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 979000
+			},
+			"text": " data. It's a model of data. So you take a module,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 983000
+			},
+			"text": " it's bytes in, bytes out. And so you see here we can get the prices"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 987000
+			},
+			"text": " for a new swap V2, and prices for new swap V3, and sushi and chain link, and whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 991000
+			},
+			"text": " and have someone write a module that takes his input at transformation time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:35,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 995000
+			},
+			"text": " and then averages them out and whatnot, right? And then that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 995000,
+				"to": 999000
+			},
+			"text": " you'd have that sort of one beautiful universal price module that you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1003000
+			},
+			"text": " then hook on top and feed to some, who knows, maybe if someone feeds that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1007000
+			},
+			"text": " back onto the chain for some reason. And then soon enough, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1011000
+			},
+			"text": " all of that, well, someone wants to build on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1015000
+			},
+			"text": " Yeah, something like that. If someone wants to compute, you know, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1019000
+			},
+			"text": " USD-denominated volumes aggregation of an if key sales on open C, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1023000
+			},
+			"text": " you'll take some sales, you'll merge it with a price. And we see here that little"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1027000
+			},
+			"text": " trader ink, he sees, maybe he wants to feed that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1031000
+			},
+			"text": " into his trading bot, because it's his streaming engine, we're not storing that in the database"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1035000
+			},
+			"text": " yet, right? But this begs the question, where is that all that beautiful data"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1039000
+			},
+			"text": " land? Where does it get piped? That's where sinks head up."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1043000
+			},
+			"text": " Like, sub streams being limited to the transformation stage of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1047000
+			},
+			"text": " ETL analogy, remember? It doesn't really care where you load it, and that could"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1051000
+			},
+			"text": " be anywhere. These are just a few examples. You can load that in databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1055000
+			},
+			"text": " You already have a sink for postgres and mongo, you hook to sub streams and it just"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1059000
+			},
+			"text": " loads it into postgres with data models that we've agreed upon, right? If you write it in a certain way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1063000
+			},
+			"text": " it just sinks over there. And/or message queues or whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1067000
+			},
+			"text": " you know, data lakes or some bots or some trading algorithm, you know, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1071000
+			},
+			"text": " there's some whale detector you want to hook directly on the stream. Or also something"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1075000
+			},
+			"text": " I think big for doing some ad hoc data science, because"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1079000
+			},
+			"text": " now you have a really fast engine that allows you to process the whole history"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1083000
+			},
+			"text": " and, like, it can take a few minutes to process the whole of the human image, because you're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:07,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1087000
+			},
+			"text": " pluck some new insight. So you can write your code, send it to the network, and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1087000,
+				"to": 1091000
+			},
+			"text": " stream out the results, similar to for those who know big query,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1095000
+			},
+			"text": " you know the cluster, the big cluster, the service by Google, that's what they do."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1099000
+			},
+			"text": " And then you have to request it, just shard at every end, send it back to request."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1103000
+			},
+			"text": " Well, all of a sudden, the sub streams engine can allow you to do some things like that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:27,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1107000
+			},
+			"text": " ad hoc. And it can run any program that supports"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1107000,
+				"to": 1111000
+			},
+			"text": " GRP-syn protocol, which are many. And the last one here, not the least,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1115000
+			},
+			"text": " subgraphs through graph node. So we're working to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1119000
+			},
+			"text": " sub streams feed directly into graph node to then provide the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1123000
+			},
+			"text": " loading experience and then querying experience that you've come to know and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1127000
+			},
+			"text": " have to deploy a subgraphs, this time not containing assembly script, but a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1131000
+			},
+			"text": " substream package with an entry point and would process the history"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:18:55,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1135000
+			},
+			"text": " in parallel and load that in your database in crazy speeds, so stay tuned"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1135000,
+				"to": 1139000
+			},
+			"text": " for that. That's not out yet, but, you know, soon. Okay, and so"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1143000
+			},
+			"text": " this is a simple example in Python. It's not really longer than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1147000
+			},
+			"text": " You have one or two dependencies like GRPC, so that it can use a query, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1151000
+			},
+			"text": " we're leveraging a lot there. And you can, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:15,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1155000
+			},
+			"text": " if we see that SPKG there, we can use that to code gen Python"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1155000,
+				"to": 1159000
+			},
+			"text": " classes and helpers and all of that, because it turns out that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1163000
+			},
+			"text": " manifest, sort of the SPKG there is, for those who know"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1167000
+			},
+			"text": " protobuf, is a file descriptor set. It contains all of the things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1171000
+			},
+			"text": " all the protobuf definitions. So the SPKG also contains"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1175000
+			},
+			"text": " all the WASM code, the module graph information, you know, the dependencies, the inputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1179000
+			},
+			"text": " and all that, and even some documentation. Everything is needed, is in there, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1183000
+			},
+			"text": " you can pass it down to the modules you take it from the disk and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1187000
+			},
+			"text": " boom, you send the request to the server and it's running. So you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1191000
+			},
+			"text": " deploy packages also very easily and consume them very simply this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:19:55,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1195000
+			},
+			"text": " There's a few imports, we've omitted there, but it's simple. It's just the show."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,000",
+				"to": "00:19:59,000"
+			},
+			"offsets": {
+				"from": 1195000,
+				"to": 1199000
+			},
+			"text": " Okay, and let's look at a simplified data model for Uniswap v3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1199000,
+				"to": 1203000
+			},
+			"text": " and then I'll show some code making use of it. Okay, so this here, the pool, the list"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1207000
+			},
+			"text": " of pool, this actually gets handed off from, you know, our mapper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1211000
+			},
+			"text": " which finds the pool that we're created down to the store pool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1215000
+			},
+			"text": " which we're going to look also. And so it has a list of pools, and the pools you can imagine"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1219000
+			},
+			"text": " and address and the two tokens that are concerned here, and we have a reference to the token also"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:23,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1223000
+			},
+			"text": " which is going to be very useful to enrich the data down. So we will have the decimals"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1223000,
+				"to": 1227000
+			},
+			"text": " right at hand. Like, we won't need to do much loading, it's going to be very, very close, so we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1231000
+			},
+			"text": " enrich all these Uins to 50, 79,000, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:35,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1235000
+			},
+			"text": " you know, put the comma where it belongs. So let's see what happens in the mappers. So this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,000",
+				"to": "00:20:39,000"
+			},
+			"offsets": {
+				"from": 1235000,
+				"to": 1239000
+			},
+			"text": " a sample Rust code. Raise your hand if you love Rust."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1239000,
+				"to": 1243000
+			},
+			"text": " Raise your hand if you know Rust. Okay, it's very simple here. I'm going to go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1247000
+			},
+			"text": " You have the map pools function corresponding to the manifest there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:51,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1251000
+			},
+			"text": " It has one input, the block. This is the fire hose block. It's all"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,000",
+				"to": "00:20:55,000"
+			},
+			"offsets": {
+				"from": 1251000,
+				"to": 1255000
+			},
+			"text": " transactions, all logs, all state chains. You can craft your own triggers in there"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,000",
+				"to": "00:20:59,000"
+			},
+			"offsets": {
+				"from": 1255000,
+				"to": 1259000
+			},
+			"text": " as you wish, but we have a simple version. See that line there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,000",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1259000,
+				"to": 1263000
+			},
+			"text": " Blox events. You have a thing that goes through transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,000",
+				"to": "00:21:07,000"
+			},
+			"offsets": {
+				"from": 1263000,
+				"to": 1267000
+			},
+			"text": " and it's going to trigger on pool created, and that pool created object in Rust was"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,000",
+				"to": "00:21:11,000"
+			},
+			"offsets": {
+				"from": 1267000,
+				"to": 1271000
+			},
+			"text": " actually code gend from the JSON ABI. So you can just give"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,000",
+				"to": "00:21:15,000"
+			},
+			"offsets": {
+				"from": 1271000,
+				"to": 1275000
+			},
+			"text": " an instruction, and we're going to filter it for only the V3 swap factory, and then that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1275000,
+				"to": 1279000
+			},
+			"text": " beautiful filter map will give us the log. Okay? And then we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:23,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1283000
+			},
+			"text": " output, we're going to collect some of these things into one list"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,000",
+				"to": "00:21:27,000"
+			},
+			"offsets": {
+				"from": 1283000,
+				"to": 1287000
+			},
+			"text": " of pools, and it's assigned to the pools object there. And notice that little thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,000",
+				"to": "00:21:31,000"
+			},
+			"offsets": {
+				"from": 1287000,
+				"to": 1291000
+			},
+			"text": " he G, this is the RPC create Uins swap token thing. This actually hits"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1291000,
+				"to": 1295000
+			},
+			"text": " an eth call on a node behind, similar to what we have in subgraphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:39,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1299000
+			},
+			"text": " That's actually very important. It means that once we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1299000,
+				"to": 1303000
+			},
+			"text": " processed this layer once, and we've done it for the history,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:47,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1307000
+			},
+			"text": " it can be cached very efficiently. So anyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1307000,
+				"to": 1311000
+			},
+			"text": " relying on that thing will never need to reprocess it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:55,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1315000
+			},
+			"text": " You can give the package to someone, and they can access the store that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1315000,
+				"to": 1319000
+			},
+			"text": " been cached by other people immediately. So you can go to the block 15 million,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:03,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1323000
+			},
+			"text": " and you'll have the list of all pool created that you can query"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,000",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1323000,
+				"to": 1327000
+			},
+			"text": " super fast. You can depend on it also. So I think that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:11,000"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1331000
+			},
+			"text": " pretty cool. And here that's the store module."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,000",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1331000,
+				"to": 1335000
+			},
+			"text": " The store module is pretty simple. Here it receives C, the pools from the output"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:19,000"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1339000
+			},
+			"text": " of the prior module. And it does, it loops through the little pools there, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,000",
+				"to": "00:22:23,000"
+			},
+			"offsets": {
+				"from": 1339000,
+				"to": 1343000
+			},
+			"text": " calls output set. And see the key there is pool colon, the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,000",
+				"to": "00:22:27,000"
+			},
+			"offsets": {
+				"from": 1343000,
+				"to": 1347000
+			},
+			"text": " It's going to store the proto buff encoded stuff of the pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,000",
+				"to": "00:22:31,000"
+			},
+			"offsets": {
+				"from": 1347000,
+				"to": 1351000
+			},
+			"text": " With the token decimals for both, right? Did I say that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,000",
+				"to": "00:22:35,000"
+			},
+			"offsets": {
+				"from": 1351000,
+				"to": 1355000
+			},
+			"text": " to be constrained? So the store here is constrained in two ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,000",
+				"to": "00:22:39,000"
+			},
+			"offsets": {
+				"from": 1355000,
+				"to": 1359000
+			},
+			"text": " In order to preserve parallelized ability, the stores"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1359000,
+				"to": 1363000
+			},
+			"text": " are right only. You cannot read your rights, otherwise that would make them potentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:47,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1367000
+			},
+			"text": " cyclic. And they expose only the function defined by"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,000",
+				"to": "00:22:51,000"
+			},
+			"offsets": {
+				"from": 1367000,
+				"to": 1371000
+			},
+			"text": " the update policy. In this case, it's set. So let's see what happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,000",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1371000,
+				"to": 1375000
+			},
+			"text": " if we run things in parallel. So here we have two jobs"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:22:59,000"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1379000
+			},
+			"text": " covering two segments of the chain, one million block each. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,000",
+				"to": "00:23:03,000"
+			},
+			"offsets": {
+				"from": 1379000,
+				"to": 1383000
+			},
+			"text": " to see those ugly arrows there, they correspond to a pool created event."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,000",
+				"to": "00:23:07,000"
+			},
+			"offsets": {
+				"from": 1383000,
+				"to": 1387000
+			},
+			"text": " And so in our code you've seen we would write a key for each of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1387000,
+				"to": 1391000
+			},
+			"text": " And so in the first partial run, we would have a, what we call a partial store"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1395000
+			},
+			"text": " with four keys. And the next one would have two keys. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:19,000"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1399000
+			},
+			"text": " so when we run the merge operation, we would apply the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,000",
+				"to": "00:23:23,000"
+			},
+			"offsets": {
+				"from": 1399000,
+				"to": 1403000
+			},
+			"text": " set merge policy, which says, basically, if you take one store, take the other store,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1403000,
+				"to": 1407000
+			},
+			"text": " cycle through keys, and the last key wins. If you do that, you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:31,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1411000
+			},
+			"text": " parallelize endlessly. So we'd have here a complete store with"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,000",
+				"to": "00:23:35,000"
+			},
+			"offsets": {
+				"from": 1411000,
+				"to": 1415000
+			},
+			"text": " six keys. And now at that place we have a snapshot. We can have periodic"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1415000,
+				"to": 1419000
+			},
+			"text": " snapshots. And so if you want to go and explore the chain at any point in time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:43,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1423000
+			},
+			"text": " you have a snapshot plus a little partial. You can have the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,000",
+				"to": "00:23:47,000"
+			},
+			"offsets": {
+				"from": 1423000,
+				"to": 1427000
+			},
+			"text": " synced at any block height. So this one"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,000",
+				"to": "00:23:51,000"
+			},
+			"offsets": {
+				"from": 1427000,
+				"to": 1431000
+			},
+			"text": " has the last key win policy, but you have a few others like min, max,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,000",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1431000,
+				"to": 1435000
+			},
+			"text": " add, and another one like first key wins. So if you merge them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:23:59,000"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1439000
+			},
+			"text": " you would have set if not exists. And then that allows us to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,000",
+				"to": "00:24:03,000"
+			},
+			"offsets": {
+				"from": 1439000,
+				"to": 1443000
+			},
+			"text": " different aggregations, right? You'd like to see that running live?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,000",
+				"to": "00:24:07,000"
+			},
+			"offsets": {
+				"from": 1443000,
+				"to": 1447000
+			},
+			"text": " A few minutes. Now I need to bring that other window up. So you see that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,000",
+				"to": "00:24:11,000"
+			},
+			"offsets": {
+				"from": 1447000,
+				"to": 1451000
+			},
+			"text": " Okay, that's good enough, huh? Okay. So let's imagine"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,000",
+				"to": "00:24:15,000"
+			},
+			"offsets": {
+				"from": 1451000,
+				"to": 1455000
+			},
+			"text": " we want to see that pool, pools created"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,000",
+				"to": "00:24:19,000"
+			},
+			"offsets": {
+				"from": 1455000,
+				"to": 1459000
+			},
+			"text": " thing. Okay, do you see that? I want to see the output."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,000",
+				"to": "00:24:23,000"
+			},
+			"offsets": {
+				"from": 1459000,
+				"to": 1463000
+			},
+			"text": " I'm going to run that. I hope everything is good. You know, the demo gods"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,000",
+				"to": "00:24:27,000"
+			},
+			"offsets": {
+				"from": 1463000,
+				"to": 1467000
+			},
+			"text": " are connecting. Okay, okay, whoa, not too fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,000",
+				"to": "00:24:31,000"
+			},
+			"offsets": {
+				"from": 1467000,
+				"to": 1471000
+			},
+			"text": " So this is going through starting at the beginning, and we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,000",
+				"to": "00:24:35,000"
+			},
+			"offsets": {
+				"from": 1471000,
+				"to": 1475000
+			},
+			"text": " there a pool created event. And see that? We have everything decoded because"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,000",
+				"to": "00:24:39,000"
+			},
+			"offsets": {
+				"from": 1475000,
+				"to": 1479000
+			},
+			"text": " it's a protobuf thing. We have the thing to decode it. We could see that it arrives on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,000",
+				"to": "00:24:43,000"
+			},
+			"offsets": {
+				"from": 1479000,
+				"to": 1483000
+			},
+			"text": " wire as bytes and it'll properly serialize bytes. And then we see that the token address is"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,000",
+				"to": "00:24:47,000"
+			},
+			"offsets": {
+				"from": 1483000,
+				"to": 1487000
+			},
+			"text": " there. We have a decimal. We have the address. And so what that means"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,000",
+				"to": "00:24:53,000"
+			},
+			"offsets": {
+				"from": 1487000,
+				"to": 1493000
+			},
+			"text": " is that you can inspect the chain with your code at any place in time. From mapper, especially, can go there. And I can run it again here and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,000",
+				"to": "00:24:59,000"
+			},
+			"offsets": {
+				"from": 1493000,
+				"to": 1499000
+			},
+			"text": " hmm, and say, I want to run the mapper. Let's say a block. I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,000",
+				"to": "00:25:03,000"
+			},
+			"offsets": {
+				"from": 1499000,
+				"to": 1503000
+			},
+			"text": " Something more recent. Give me a recent block. What's the block yesterday?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,000",
+				"to": "00:25:07,000"
+			},
+			"offsets": {
+				"from": 1503000,
+				"to": 1507000
+			},
+			"text": " 15, 7 million, I don't know, something like that. Okay? And see?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,000",
+				"to": "00:25:11,000"
+			},
+			"offsets": {
+				"from": 1507000,
+				"to": 1511000
+			},
+			"text": " Is there anything recent? So there's some stuff, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,000",
+				"to": "00:25:15,000"
+			},
+			"offsets": {
+				"from": 1511000,
+				"to": 1515000
+			},
+			"text": " Some things are recent. And I see that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,000",
+				"to": "00:25:19,000"
+			},
+			"offsets": {
+				"from": 1515000,
+				"to": 1519000
+			},
+			"text": " Some ones still created a new pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,000",
+				"to": "00:25:23,000"
+			},
+			"offsets": {
+				"from": 1519000,
+				"to": 1523000
+			},
+			"text": " And I can inspect my code to make sure it works. Where is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,000",
+				"to": "00:25:29,000"
+			},
+			"offsets": {
+				"from": 1523000,
+				"to": 1529000
+			},
+			"text": " Come on. Right? This one was wrapped ether and infinity. They just created that address as a new pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,000",
+				"to": "00:25:33,000"
+			},
+			"offsets": {
+				"from": 1529000,
+				"to": 1533000
+			},
+			"text": " So you can go and test your code everywhere. What? That's done with your set, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,000",
+				"to": "00:25:37,000"
+			},
+			"offsets": {
+				"from": 1533000,
+				"to": 1537000
+			},
+			"text": " You can go to the next data dependency. So this really changes dynamics for debugging."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,000",
+				"to": "00:25:43,000"
+			},
+			"offsets": {
+				"from": 1537000,
+				"to": 1543000
+			},
+			"text": " And this can also work for stores. You can ask for a store and it's going to process it in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,000",
+				"to": "00:25:47,000"
+			},
+			"offsets": {
+				"from": 1543000,
+				"to": 1547000
+			},
+			"text": " And then you can inspect all the keys that exist there or see the deltas coming through."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,000",
+				"to": "00:25:51,000"
+			},
+			"offsets": {
+				"from": 1547000,
+				"to": 1551000
+			},
+			"text": " Okay. And let me show you something running in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,000",
+				"to": "00:25:55,000"
+			},
+			"offsets": {
+				"from": 1551000,
+				"to": 1555000
+			},
+			"text": " Graph out. Now, this is very interesting because,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,000",
+				"to": "00:25:59,000"
+			},
+			"offsets": {
+				"from": 1555000,
+				"to": 1559000
+			},
+			"text": " oh no, let's start it at 15 million. Let's say I want graph out at 15 million."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,000",
+				"to": "00:26:03,000"
+			},
+			"offsets": {
+				"from": 1559000,
+				"to": 1563000
+			},
+			"text": " I didn't run it again before. And I want -- so let's run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,000",
+				"to": "00:26:07,000"
+			},
+			"offsets": {
+				"from": 1563000,
+				"to": 1567000
+			},
+			"text": " So this starts a whole bunch of"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,000",
+				"to": "00:26:11,000"
+			},
+			"offsets": {
+				"from": 1567000,
+				"to": 1571000
+			},
+			"text": " parallel processes. And you see up there the number of blocks per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,000",
+				"to": "00:26:15,000"
+			},
+			"offsets": {
+				"from": 1571000,
+				"to": 1575000
+			},
+			"text": " Yesterday I had that 8,000 -- on Solana blocks I had 16,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,000",
+				"to": "00:26:19,000"
+			},
+			"offsets": {
+				"from": 1575000,
+				"to": 1579000
+			},
+			"text": " It depends on the power you put behind there. But this all -- like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,000",
+				"to": "00:26:23,000"
+			},
+			"offsets": {
+				"from": 1579000,
+				"to": 1583000
+			},
+			"text": " it has a pool count as a dependency on the pools. The pools are further down."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,000",
+				"to": "00:26:27,000"
+			},
+			"offsets": {
+				"from": 1583000,
+				"to": 1587000
+			},
+			"text": " So we're able to schedule things. And all that just massively parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,000",
+				"to": "00:26:31,000"
+			},
+			"offsets": {
+				"from": 1587000,
+				"to": 1591000
+			},
+			"text": " And once that's ready, let's say everything was done, I would start streaming and get all the content."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,000",
+				"to": "00:26:35,000"
+			},
+			"offsets": {
+				"from": 1591000,
+				"to": 1595000
+			},
+			"text": " And so let me show you the graph out. It's very interesting because"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,000",
+				"to": "00:26:39,000"
+			},
+			"offsets": {
+				"from": 1595000,
+				"to": 1599000
+			},
+			"text": " graph out"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,000",
+				"to": "00:26:43,000"
+			},
+			"offsets": {
+				"from": 1599000,
+				"to": 1603000
+			},
+			"text": " has refined the data up to entities."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,000",
+				"to": "00:26:47,000"
+			},
+			"offsets": {
+				"from": 1603000,
+				"to": 1607000
+			},
+			"text": " Now we're talking about database tables and fields."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,000",
+				"to": "00:26:49,000"
+			},
+			"offsets": {
+				"from": 1607000,
+				"to": 1609000
+			},
+			"text": " And you get -- and you get out of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,000",
+				"to": "00:26:53,000"
+			},
+			"offsets": {
+				"from": 1609000,
+				"to": 1613000
+			},
+			"text": " Do you not see it? Okay, that. What is that in here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,000",
+				"to": "00:26:57,000"
+			},
+			"offsets": {
+				"from": 1613000,
+				"to": 1617000
+			},
+			"text": " So let's imagine -- see, we have token and an update."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,000",
+				"to": "00:27:01,000"
+			},
+			"offsets": {
+				"from": 1617000,
+				"to": 1621000
+			},
+			"text": " And you have the field derived -- and you have the old value and the new value."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,000",
+				"to": "00:27:05,000"
+			},
+			"offsets": {
+				"from": 1621000,
+				"to": 1625000
+			},
+			"text": " I don't know if you've seen this thing in the data science world. This looks very much like"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,000",
+				"to": "00:27:11,000"
+			},
+			"offsets": {
+				"from": 1625000,
+				"to": 1631000
+			},
+			"text": " a change. Change data capture CDCs that can power a lot of large-scale systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,000",
+				"to": "00:27:17,000"
+			},
+			"offsets": {
+				"from": 1631000,
+				"to": 1637000
+			},
+			"text": " And you have the prior -- so you can feed that to your, let's say, postgres,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:17,000",
+				"to": "00:27:21,000"
+			},
+			"offsets": {
+				"from": 1637000,
+				"to": 1641000
+			},
+			"text": " apply the changes. And when you have an undo signal, it gives you back that payload."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,000",
+				"to": "00:27:25,000"
+			},
+			"offsets": {
+				"from": 1641000,
+				"to": 1645000
+			},
+			"text": " You then just flip everything and you have guaranteed linearities."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,000",
+				"to": "00:27:29,000"
+			},
+			"offsets": {
+				"from": 1645000,
+				"to": 1649000
+			},
+			"text": " You're stored with a cursor. And it's flawless. It's just extremely simple"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,000",
+				"to": "00:27:33,000"
+			},
+			"offsets": {
+				"from": 1649000,
+				"to": 1653000
+			},
+			"text": " to keep your things in sync. You also want to have a slack body can have an undo message."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,000",
+				"to": "00:27:37,000"
+			},
+			"offsets": {
+				"from": 1653000,
+				"to": 1657000
+			},
+			"text": " If you have a thing coming through, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,000",
+				"to": "00:27:41,000"
+			},
+			"offsets": {
+				"from": 1657000,
+				"to": 1661000
+			},
+			"text": " So I think that's pretty cool. What do you think?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,000",
+				"to": "00:27:45,000"
+			},
+			"offsets": {
+				"from": 1661000,
+				"to": 1665000
+			},
+			"text": " Okay, okay. That's cool. Can I shut that down here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,000",
+				"to": "00:27:49,000"
+			},
+			"offsets": {
+				"from": 1665000,
+				"to": 1669000
+			},
+			"text": " Do I have another window? I'm close to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,000",
+				"to": "00:27:53,000"
+			},
+			"offsets": {
+				"from": 1669000,
+				"to": 1673000
+			},
+			"text": " Prepare your question. Please ask them succinctly. We have a half a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,000",
+				"to": "00:27:55,000"
+			},
+			"offsets": {
+				"from": 1673000,
+				"to": 1675000
+			},
+			"text": " I just wanted to have a final note there."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,000",
+				"to": "00:27:59,000"
+			},
+			"offsets": {
+				"from": 1675000,
+				"to": 1679000
+			},
+			"text": " So as a final note, I wanted to share with you a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,000",
+				"to": "00:28:03,000"
+			},
+			"offsets": {
+				"from": 1679000,
+				"to": 1683000
+			},
+			"text": " of my vision for the graph. Okay? I don't know where the window is."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,000",
+				"to": "00:28:07,000"
+			},
+			"offsets": {
+				"from": 1683000,
+				"to": 1687000
+			},
+			"text": " So whatever. It just says fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,000",
+				"to": "00:28:10,000"
+			},
+			"offsets": {
+				"from": 1687000,
+				"to": 1690000
+			},
+			"text": " I'm imagining the graph becoming that sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,000",
+				"to": "00:28:14,000"
+			},
+			"offsets": {
+				"from": 1690000,
+				"to": 1694000
+			},
+			"text": " huge worldwide cluster of processing and storage capabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,000",
+				"to": "00:28:19,000"
+			},
+			"offsets": {
+				"from": 1694000,
+				"to": 1699000
+			},
+			"text": " and something like Google's BigQuery. But where people join because it's better"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:19,000",
+				"to": "00:28:23,000"
+			},
+			"offsets": {
+				"from": 1699000,
+				"to": 1703000
+			},
+			"text": " together, right, instead of running it alone, we need to have all the resources alone."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,000",
+				"to": "00:28:27,000"
+			},
+			"offsets": {
+				"from": 1703000,
+				"to": 1707000
+			},
+			"text": " And I see also a new era of composability, which means more collaboration"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,000",
+				"to": "00:28:31,000"
+			},
+			"offsets": {
+				"from": 1707000,
+				"to": 1711000
+			},
+			"text": " and in a tighter community working together more intimately"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:31,000",
+				"to": "00:28:35,000"
+			},
+			"offsets": {
+				"from": 1711000,
+				"to": 1715000
+			},
+			"text": " with those data contracts. And I see also"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:35,000",
+				"to": "00:28:39,000"
+			},
+			"offsets": {
+				"from": 1715000,
+				"to": 1719000
+			},
+			"text": " a new mix of collaboration between indexers"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,000",
+				"to": "00:28:43,000"
+			},
+			"offsets": {
+				"from": 1719000,
+				"to": 1723000
+			},
+			"text": " like exchanging data or sharing resources in terms of compute and storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,000",
+				"to": "00:28:47,000"
+			},
+			"offsets": {
+				"from": 1723000,
+				"to": 1727000
+			},
+			"text": " and whatnot, therefore introducing new value flows. And also I'm seeing new"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:47,000",
+				"to": "00:28:51,000"
+			},
+			"offsets": {
+				"from": 1727000,
+				"to": 1731000
+			},
+			"text": " products, new services being offered directly on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:51,000",
+				"to": "00:28:55,000"
+			},
+			"offsets": {
+				"from": 1731000,
+				"to": 1735000
+			},
+			"text": " To satisfy some needs that perhaps couldn't be addressed before."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:55,000",
+				"to": "00:28:59,000"
+			},
+			"offsets": {
+				"from": 1735000,
+				"to": 1739000
+			},
+			"text": " I mean, there's a place for you and there as a developer, as an indexer, as someone who"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,000",
+				"to": "00:29:03,000"
+			},
+			"offsets": {
+				"from": 1739000,
+				"to": 1743000
+			},
+			"text": " realizes the radical benefits of such a platform and who"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,000",
+				"to": "00:29:07,000"
+			},
+			"offsets": {
+				"from": 1743000,
+				"to": 1747000
+			},
+			"text": " builds on it and promotes it. But my ask to you is, you go to"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,000",
+				"to": "00:29:11,000"
+			},
+			"offsets": {
+				"from": 1747000,
+				"to": 1751000
+			},
+			"text": " go try substreams, put pressure on your favorite layer ones so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:11,000",
+				"to": "00:29:15,000"
+			},
+			"offsets": {
+				"from": 1751000,
+				"to": 1755000
+			},
+			"text": " they do integrate the firehose natively. That's pristine."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,000",
+				"to": "00:29:19,000"
+			},
+			"offsets": {
+				"from": 1755000,
+				"to": 1759000
+			},
+			"text": " Aptose has done that recently. Some other start where I think. So that makes it"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,000",
+				"to": "00:29:23,000"
+			},
+			"offsets": {
+				"from": 1759000,
+				"to": 1763000
+			},
+			"text": " everything we've seen today becomes immediately available to them. Sell them on the goodies."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,000",
+				"to": "00:29:27,000"
+			},
+			"offsets": {
+				"from": 1763000,
+				"to": 1767000
+			},
+			"text": " I've been very excited. I've been very excited. I've been very excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:27,000",
+				"to": "00:29:31,000"
+			},
+			"offsets": {
+				"from": 1767000,
+				"to": 1771000
+			},
+			"text": " I've been very excited. I've been very excited. I've been very excited. I've been very excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:31,000",
+				"to": "00:29:35,000"
+			},
+			"offsets": {
+				"from": 1771000,
+				"to": 1775000
+			},
+			"text": " I've been very excited. I've been very excited. I've been very excited. I've been very excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:35,000",
+				"to": "00:29:41,000"
+			},
+			"offsets": {
+				"from": 1775000,
+				"to": 1781000
+			},
+			"text": " I've been very excited. I've been very excited. I've been very excited. I've been very excited. I've been very excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:41,000",
+				"to": "00:29:45,000"
+			},
+			"offsets": {
+				"from": 1781000,
+				"to": 1785000
+			},
+			"text": " We have time for two, three questions. We're the last ones. If you have a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,000",
+				"to": "00:29:49,000"
+			},
+			"offsets": {
+				"from": 1785000,
+				"to": 1789000
+			},
+			"text": " Hey, so one question. Modularity and"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,000",
+				"to": "00:29:53,000"
+			},
+			"offsets": {
+				"from": 1789000,
+				"to": 1793000
+			},
+			"text": " modularity of these substreams is super super powerful. But still, if I look at this"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,000",
+				"to": "00:29:57,000"
+			},
+			"offsets": {
+				"from": 1793000,
+				"to": 1797000
+			},
+			"text": " compared to SQL and like DBT models, it's a lot more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,000",
+				"to": "00:30:01,000"
+			},
+			"offsets": {
+				"from": 1797000,
+				"to": 1801000
+			},
+			"text": " So how can we enable people to really learn this and"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:01,000",
+				"to": "00:30:05,000"
+			},
+			"offsets": {
+				"from": 1801000,
+				"to": 1805000
+			},
+			"text": " build these hyper-modular data streams?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,000",
+				"to": "00:30:09,000"
+			},
+			"offsets": {
+				"from": 1805000,
+				"to": 1809000
+			},
+			"text": " So, it's a good question. But the transformation layer is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:09,000",
+				"to": "00:30:13,000"
+			},
+			"offsets": {
+				"from": 1809000,
+				"to": 1813000
+			},
+			"text": " the SQL layer. Like this is powering, going through history,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:13,000",
+				"to": "00:30:17,000"
+			},
+			"offsets": {
+				"from": 1813000,
+				"to": 1817000
+			},
+			"text": " it's an ad hoc transform with stateful storage. But you would pipeline into a SQL"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:17,000",
+				"to": "00:30:21,000"
+			},
+			"offsets": {
+				"from": 1817000,
+				"to": 1821000
+			},
+			"text": " storage to do other things. You have refinement. You have knowledge from the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:21,000",
+				"to": "00:30:25,000"
+			},
+			"offsets": {
+				"from": 1821000,
+				"to": 1825000
+			},
+			"text": " as to how to analyze this in that protocol, ever, ever"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:25,000",
+				"to": "00:30:29,000"
+			},
+			"offsets": {
+				"from": 1825000,
+				"to": 1829000
+			},
+			"text": " increasing refinements. But then you might store that in your store with off-chain data."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:29,000",
+				"to": "00:30:33,000"
+			},
+			"offsets": {
+				"from": 1829000,
+				"to": 1833000
+			},
+			"text": " Maybe that's best fit for you. Maybe you feed it into a subgraph. That's what you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:33,000",
+				"to": "00:30:37,000"
+			},
+			"offsets": {
+				"from": 1833000,
+				"to": 1837000
+			},
+			"text": " You have a total decentralized solution and you don't need to host anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:37,000",
+				"to": "00:30:41,000"
+			},
+			"offsets": {
+				"from": 1837000,
+				"to": 1841000
+			},
+			"text": " So, this is enabler at a lower level. It doesn't seek to replace"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,000",
+				"to": "00:30:45,000"
+			},
+			"offsets": {
+				"from": 1841000,
+				"to": 1845000
+			},
+			"text": " SQL. But it puts itself at a place where we can feed"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:45,000",
+				"to": "00:30:49,000"
+			},
+			"offsets": {
+				"from": 1845000,
+				"to": 1849000
+			},
+			"text": " all the systems on Earth with enriched data. Which you would need to do in SQL."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:49,000",
+				"to": "00:30:53,000"
+			},
+			"offsets": {
+				"from": 1849000,
+				"to": 1853000
+			},
+			"text": " It's really not fun. So you leave that to the community, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:53,000",
+				"to": "00:30:57,000"
+			},
+			"offsets": {
+				"from": 1853000,
+				"to": 1857000
+			},
+			"text": " Thank you. We have an old subgraph which is pretty slow"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:57,000",
+				"to": "00:31:01,000"
+			},
+			"offsets": {
+				"from": 1857000,
+				"to": 1861000
+			},
+			"text": " and would like to transform it to the new type of subgraph."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:01,000",
+				"to": "00:31:05,000"
+			},
+			"offsets": {
+				"from": 1861000,
+				"to": 1865000
+			},
+			"text": " Should I only read some code on the RAST and that's it or"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:05,000",
+				"to": "00:31:09,000"
+			},
+			"offsets": {
+				"from": 1865000,
+				"to": 1869000
+			},
+			"text": " something else? So, it is not the same paradigm. To enable"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:09,000",
+				"to": "00:31:13,000"
+			},
+			"offsets": {
+				"from": 1869000,
+				"to": 1873000
+			},
+			"text": " parallelization, you need to distinguish the data dependencies and that infers"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,000",
+				"to": "00:31:17,000"
+			},
+			"offsets": {
+				"from": 1873000,
+				"to": 1877000
+			},
+			"text": " the number of stage of parallelization that is needed. It's not easy at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:17,000",
+				"to": "00:31:21,000"
+			},
+			"offsets": {
+				"from": 1877000,
+				"to": 1881000
+			},
+			"text": " It's pretty crazy to try to parallelize the subgraphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:21,000",
+				"to": "00:31:25,000"
+			},
+			"offsets": {
+				"from": 1881000,
+				"to": 1885000
+			},
+			"text": " We try that. That's what yield us to design sub streams by cutting"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:25,000",
+				"to": "00:31:29,000"
+			},
+			"offsets": {
+				"from": 1885000,
+				"to": 1889000
+			},
+			"text": " uni swap stuff. So, you will want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:29,000",
+				"to": "00:31:33,000"
+			},
+			"offsets": {
+				"from": 1889000,
+				"to": 1893000
+			},
+			"text": " go and write in-rust modules and it's a different paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:33,000",
+				"to": "00:31:37,000"
+			},
+			"offsets": {
+				"from": 1893000,
+				"to": 1897000
+			},
+			"text": " So, it's not just an easy switch, I admit. But it brings us to the next stage"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:37,000",
+				"to": "00:31:41,000"
+			},
+			"offsets": {
+				"from": 1897000,
+				"to": 1901000
+			},
+			"text": " an evolution of blockchain indexing."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:41,000",
+				"to": "00:31:45,000"
+			},
+			"offsets": {
+				"from": 1901000,
+				"to": 1905000
+			},
+			"text": " Thank you so much. Alexander."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:45,000",
+				"to": "00:31:49,000"
+			},
+			"offsets": {
+				"from": 1905000,
+				"to": 1909000
+			},
+			"text": " My pleasure."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:49,000",
+				"to": "00:31:59,000"
+			},
+			"offsets": {
+				"from": 1909000,
+				"to": 1919000
+			},
+			"text": " [silence]"
+		}
+	]
+}

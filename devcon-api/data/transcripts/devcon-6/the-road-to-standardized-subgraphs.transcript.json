@@ -1,0 +1,1561 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:14,760"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 14760
+			},
+			"text": " Hey, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,760",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 14760,
+				"to": 16000
+			},
+			"text": " Thanks for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:17,120"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 17120
+			},
+			"text": " My name is Vincent."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,120",
+				"to": "00:00:20,840"
+			},
+			"offsets": {
+				"from": 17120,
+				"to": 20840
+			},
+			"text": " I'm going to talk about standardized subgraph today"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,840",
+				"to": "00:00:23,640"
+			},
+			"offsets": {
+				"from": 20840,
+				"to": 23640
+			},
+			"text": " or how we can make it so much easier for you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,640",
+				"to": "00:00:25,440"
+			},
+			"offsets": {
+				"from": 23640,
+				"to": 25440
+			},
+			"text": " to build your adapts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,440",
+				"to": "00:00:28,880"
+			},
+			"offsets": {
+				"from": 25440,
+				"to": 28880
+			},
+			"text": " If you ever built a adapt or have ever considered building"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,880",
+				"to": "00:00:31,800"
+			},
+			"offsets": {
+				"from": 28880,
+				"to": 31800
+			},
+			"text": " adapt, one of the first questions that comes to mind"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,800",
+				"to": "00:00:35,440"
+			},
+			"offsets": {
+				"from": 31800,
+				"to": 35440
+			},
+			"text": " is probably, where do you find the data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,440",
+				"to": "00:00:39,480"
+			},
+			"offsets": {
+				"from": 35440,
+				"to": 39480
+			},
+			"text": " And let me show you an example that component finance"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,480",
+				"to": "00:00:40,840"
+			},
+			"offsets": {
+				"from": 39480,
+				"to": 40840
+			},
+			"text": " has been working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,840",
+				"to": "00:00:47,280"
+			},
+			"offsets": {
+				"from": 40840,
+				"to": 47280
+			},
+			"text": " So they are trying to build this predicted model for people"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,280",
+				"to": "00:00:51,360"
+			},
+			"offsets": {
+				"from": 47280,
+				"to": 51360
+			},
+			"text": " to look at different assets, like ETH, in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,360",
+				"to": "00:00:54,800"
+			},
+			"offsets": {
+				"from": 51360,
+				"to": 54800
+			},
+			"text": " and how the yield will be in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,800",
+				"to": "00:00:57,200"
+			},
+			"offsets": {
+				"from": 54800,
+				"to": 57200
+			},
+			"text": " And in order to do that, they need"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,200",
+				"to": "00:01:01,400"
+			},
+			"offsets": {
+				"from": 57200,
+				"to": 61400
+			},
+			"text": " a lot of historical data, historical data on interest rate"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,400",
+				"to": "00:01:04,080"
+			},
+			"offsets": {
+				"from": 61400,
+				"to": 64080
+			},
+			"text": " on total deposit from different lending"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,080",
+				"to": "00:01:07,920"
+			},
+			"offsets": {
+				"from": 64080,
+				"to": 67920
+			},
+			"text": " protocols across different networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,920",
+				"to": "00:01:11,200"
+			},
+			"offsets": {
+				"from": 67920,
+				"to": 71200
+			},
+			"text": " And this is a small example to illustrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,200",
+				"to": "00:01:14,680"
+			},
+			"offsets": {
+				"from": 71200,
+				"to": 74680
+			},
+			"text": " where you might go to find all these data today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,680",
+				"to": "00:01:17,120"
+			},
+			"offsets": {
+				"from": 74680,
+				"to": 77120
+			},
+			"text": " As you can see, there are many different data sources"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,120",
+				"to": "00:01:20,600"
+			},
+			"offsets": {
+				"from": 77120,
+				"to": 80600
+			},
+			"text": " that you need to hit depending on which lending protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,600",
+				"to": "00:01:22,480"
+			},
+			"offsets": {
+				"from": 80600,
+				"to": 82480
+			},
+			"text": " you want to pull data from."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,480",
+				"to": "00:01:24,040"
+			},
+			"offsets": {
+				"from": 82480,
+				"to": 84040
+			},
+			"text": " If you're lucky, there's a subgraph"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,040",
+				"to": "00:01:26,640"
+			},
+			"offsets": {
+				"from": 84040,
+				"to": 86640
+			},
+			"text": " that you can already use that has all that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,640",
+				"to": "00:01:31,320"
+			},
+			"offsets": {
+				"from": 86640,
+				"to": 91320
+			},
+			"text": " If not, you might have to work with JSON RPC API"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,320",
+				"to": "00:01:35,240"
+			},
+			"offsets": {
+				"from": 91320,
+				"to": 95240
+			},
+			"text": " and kind of transform and aggregate all of that data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,240",
+				"to": "00:01:36,960"
+			},
+			"offsets": {
+				"from": 95240,
+				"to": 96960
+			},
+			"text": " yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,960",
+				"to": "00:01:39,480"
+			},
+			"offsets": {
+				"from": 96960,
+				"to": 99480
+			},
+			"text": " And for each of that data, you probably also"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,480",
+				"to": "00:01:44,440"
+			},
+			"offsets": {
+				"from": 99480,
+				"to": 104440
+			},
+			"text": " need data adapter to normalize so that your application can"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,440",
+				"to": "00:01:45,120"
+			},
+			"offsets": {
+				"from": 104440,
+				"to": 105120
+			},
+			"text": " use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,120",
+				"to": "00:01:47,040"
+			},
+			"offsets": {
+				"from": 105120,
+				"to": 107040
+			},
+			"text": " So the point I wanted to make here"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,040",
+				"to": "00:01:50,600"
+			},
+			"offsets": {
+				"from": 107040,
+				"to": 110600
+			},
+			"text": " is that Web3 data space is very fragmented."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,600",
+				"to": "00:01:52,920"
+			},
+			"offsets": {
+				"from": 110600,
+				"to": 112920
+			},
+			"text": " There are dozens and dozens of different data source"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,920",
+				"to": "00:01:55,960"
+			},
+			"offsets": {
+				"from": 112920,
+				"to": 115960
+			},
+			"text": " that focus on different parts of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,960",
+				"to": "00:01:57,520"
+			},
+			"offsets": {
+				"from": 115960,
+				"to": 117520
+			},
+			"text": " or different kind of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,520",
+				"to": "00:01:59,720"
+			},
+			"offsets": {
+				"from": 117520,
+				"to": 119720
+			},
+			"text": " If you're working with raw data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,720",
+				"to": "00:02:02,880"
+			},
+			"offsets": {
+				"from": 119720,
+				"to": 122880
+			},
+			"text": " it takes a lot of effort to aggregate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,880",
+				"to": "00:02:05,600"
+			},
+			"offsets": {
+				"from": 122880,
+				"to": 125600
+			},
+			"text": " transform them into something that you can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,600",
+				"to": "00:02:10,480"
+			},
+			"offsets": {
+				"from": 125600,
+				"to": 130480
+			},
+			"text": " For example, TVL, revenue, those all require a lot of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,480",
+				"to": "00:02:13,920"
+			},
+			"offsets": {
+				"from": 130480,
+				"to": 133920
+			},
+			"text": " Historical data is often difficult to find."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,920",
+				"to": "00:02:15,480"
+			},
+			"offsets": {
+				"from": 133920,
+				"to": 135480
+			},
+			"text": " You probably need an archive node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,480",
+				"to": "00:02:18,160"
+			},
+			"offsets": {
+				"from": 135480,
+				"to": 138160
+			},
+			"text": " and those are often difficult to access."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,160",
+				"to": "00:02:21,760"
+			},
+			"offsets": {
+				"from": 138160,
+				"to": 141760
+			},
+			"text": " This is actually a problem that Missouri has run into when"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,760",
+				"to": "00:02:23,840"
+			},
+			"offsets": {
+				"from": 141760,
+				"to": 143840
+			},
+			"text": " we first got into the on-chain space"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,840",
+				"to": "00:02:27,920"
+			},
+			"offsets": {
+				"from": 143840,
+				"to": 147920
+			},
+			"text": " where a big data provider were trying to get a lot of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,920",
+				"to": "00:02:30,960"
+			},
+			"offsets": {
+				"from": 147920,
+				"to": 150960
+			},
+			"text": " And it was difficult for us to find those."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,960",
+				"to": "00:02:34,400"
+			},
+			"offsets": {
+				"from": 150960,
+				"to": 154400
+			},
+			"text": " So we decided to collaborate with the graph"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,400",
+				"to": "00:02:39,160"
+			},
+			"offsets": {
+				"from": 154400,
+				"to": 159160
+			},
+			"text": " to work on standardizing subgraphs so that we solve this problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,160",
+				"to": "00:02:41,320"
+			},
+			"offsets": {
+				"from": 159160,
+				"to": 161320
+			},
+			"text": " for everyone in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,320",
+				"to": "00:02:45,440"
+			},
+			"offsets": {
+				"from": 161320,
+				"to": 165440
+			},
+			"text": " Specifically, the way that we standardize these subgraphs"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,440",
+				"to": "00:02:48,280"
+			},
+			"offsets": {
+				"from": 165440,
+				"to": 168280
+			},
+			"text": " is that we would look at all of the protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,280",
+				"to": "00:02:51,320"
+			},
+			"offsets": {
+				"from": 168280,
+				"to": 171320
+			},
+			"text": " in a specific category, say, lending protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,320",
+				"to": "00:02:53,520"
+			},
+			"offsets": {
+				"from": 171320,
+				"to": 173520
+			},
+			"text": " And we pick out all of the commonalities"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,520",
+				"to": "00:02:56,040"
+			},
+			"offsets": {
+				"from": 173520,
+				"to": 176040
+			},
+			"text": " and differences among these protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,040",
+				"to": "00:02:59,400"
+			},
+			"offsets": {
+				"from": 176040,
+				"to": 179400
+			},
+			"text": " and come up with a unified data model"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,400",
+				"to": "00:03:01,840"
+			},
+			"offsets": {
+				"from": 179400,
+				"to": 181840
+			},
+			"text": " that would apply to all of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,840",
+				"to": "00:03:06,280"
+			},
+			"offsets": {
+				"from": 181840,
+				"to": 186280
+			},
+			"text": " And then we transform that into a common subgraph schema"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,280",
+				"to": "00:03:09,560"
+			},
+			"offsets": {
+				"from": 186280,
+				"to": 189560
+			},
+			"text": " in which we build all of our subgraphs again."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,560",
+				"to": "00:03:12,240"
+			},
+			"offsets": {
+				"from": 189560,
+				"to": 192240
+			},
+			"text": " So for each of the lending protocols we integrate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,240",
+				"to": "00:03:14,360"
+			},
+			"offsets": {
+				"from": 192240,
+				"to": 194360
+			},
+			"text": " we use that standardized schema"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,360",
+				"to": "00:03:16,840"
+			},
+			"offsets": {
+				"from": 194360,
+				"to": 196840
+			},
+			"text": " so that you can use the same query,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,840",
+				"to": "00:03:18,880"
+			},
+			"offsets": {
+				"from": 196840,
+				"to": 198880
+			},
+			"text": " you can use the same data adapter"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,880",
+				"to": "00:03:21,040"
+			},
+			"offsets": {
+				"from": 198880,
+				"to": 201040
+			},
+			"text": " to fetch all of that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,040",
+				"to": "00:03:25,160"
+			},
+			"offsets": {
+				"from": 201040,
+				"to": 205160
+			},
+			"text": " And now, instead of going to all of these different data sources"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,160",
+				"to": "00:03:29,760"
+			},
+			"offsets": {
+				"from": 205160,
+				"to": 209760
+			},
+			"text": " to fetch that data, you just need to hit one single,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,760",
+				"to": "00:03:32,480"
+			},
+			"offsets": {
+				"from": 209760,
+				"to": 212480
+			},
+			"text": " decentralized data source that's the graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,480",
+				"to": "00:03:34,920"
+			},
+			"offsets": {
+				"from": 212480,
+				"to": 214920
+			},
+			"text": " And you'll be able to find all of the data you need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,920",
+				"to": "00:03:36,800"
+			},
+			"offsets": {
+				"from": 214920,
+				"to": 216800
+			},
+			"text": " including the historical ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,800",
+				"to": "00:03:39,800"
+			},
+			"offsets": {
+				"from": 216800,
+				"to": 219800
+			},
+			"text": " So here's an example product."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,800",
+				"to": "00:03:42,320"
+			},
+			"offsets": {
+				"from": 219800,
+				"to": 222320
+			},
+			"text": " Or here's actually a product that Missouri has built"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,320",
+				"to": "00:03:45,200"
+			},
+			"offsets": {
+				"from": 222320,
+				"to": 225200
+			},
+			"text": " on top of all of the standardized subgraphs"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,200",
+				"to": "00:03:46,840"
+			},
+			"offsets": {
+				"from": 225200,
+				"to": 226840
+			},
+			"text": " that we have built."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,840",
+				"to": "00:03:49,040"
+			},
+			"offsets": {
+				"from": 226840,
+				"to": 229040
+			},
+			"text": " As you can see here, we're showing--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,040",
+				"to": "00:03:52,840"
+			},
+			"offsets": {
+				"from": 229040,
+				"to": 232840
+			},
+			"text": " there's a lot more metrics that we're showing that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,840",
+				"to": "00:03:53,480"
+			},
+			"offsets": {
+				"from": 232840,
+				"to": 233480
+			},
+			"text": " integrated."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,480",
+				"to": "00:03:58,480"
+			},
+			"offsets": {
+				"from": 233480,
+				"to": 238480
+			},
+			"text": " It's not in this slide, but you can check it out"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,480",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 238480,
+				"to": 240000
+			},
+			"text": " using the URL there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:04,240"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 244240
+			},
+			"text": " So to give you a sense of where we are today"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,240",
+				"to": "00:04:06,440"
+			},
+			"offsets": {
+				"from": 244240,
+				"to": 246440
+			},
+			"text": " on the subgraph standardization work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,440",
+				"to": "00:04:10,120"
+			},
+			"offsets": {
+				"from": 246440,
+				"to": 250120
+			},
+			"text": " we have indexed data from 60 different protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,120",
+				"to": "00:04:14,680"
+			},
+			"offsets": {
+				"from": 250120,
+				"to": 254680
+			},
+			"text": " across 20 different networks, surfacing over 500 unique"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,680",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 254680,
+				"to": 258000
+			},
+			"text": " metrics across all of the different protocol types."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:22,280"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 262280
+			},
+			"text": " And we have indexed over a billion data points"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,280",
+				"to": "00:04:24,920"
+			},
+			"offsets": {
+				"from": 262280,
+				"to": 264920
+			},
+			"text": " that you can use in your depth directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,920",
+				"to": "00:04:27,600"
+			},
+			"offsets": {
+				"from": 264920,
+				"to": 267600
+			},
+			"text": " so that you don't have to do that work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,600",
+				"to": "00:04:32,120"
+			},
+			"offsets": {
+				"from": 267600,
+				"to": 272120
+			},
+			"text": " And the way that we are seeing how the future will evolve"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,120",
+				"to": "00:04:36,160"
+			},
+			"offsets": {
+				"from": 272120,
+				"to": 276160
+			},
+			"text": " is that today, you're spending a lot of effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,160",
+				"to": "00:04:39,520"
+			},
+			"offsets": {
+				"from": 276160,
+				"to": 279520
+			},
+			"text": " on the data planning on the data aggregation part"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,520",
+				"to": "00:04:43,840"
+			},
+			"offsets": {
+				"from": 279520,
+				"to": 283840
+			},
+			"text": " and very little on the application logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,840",
+				"to": "00:04:47,640"
+			},
+			"offsets": {
+				"from": 283840,
+				"to": 287640
+			},
+			"text": " But with the subgraphs that we have built,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,640",
+				"to": "00:04:48,680"
+			},
+			"offsets": {
+				"from": 287640,
+				"to": 288680
+			},
+			"text": " it's already done for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,680",
+				"to": "00:04:52,440"
+			},
+			"offsets": {
+				"from": 288680,
+				"to": 292440
+			},
+			"text": " You can just use that so you can focus more"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,440",
+				"to": "00:04:56,040"
+			},
+			"offsets": {
+				"from": 292440,
+				"to": 296040
+			},
+			"text": " on your application logic as a adaptive developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,040",
+				"to": "00:04:59,160"
+			},
+			"offsets": {
+				"from": 296040,
+				"to": 299160
+			},
+			"text": " Yeah, so all of the work we do is open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,160",
+				"to": "00:05:00,240"
+			},
+			"offsets": {
+				"from": 299160,
+				"to": 300240
+			},
+			"text": " It's public."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,240",
+				"to": "00:05:04,160"
+			},
+			"offsets": {
+				"from": 300240,
+				"to": 304160
+			},
+			"text": " Here's the GitHub repo for all of our standardized subgraphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,160",
+				"to": "00:05:08,560"
+			},
+			"offsets": {
+				"from": 304160,
+				"to": 308560
+			},
+			"text": " If you're a dev builder or a data scientist, data analyst,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,560",
+				"to": "00:05:11,240"
+			},
+			"offsets": {
+				"from": 308560,
+				"to": 311240
+			},
+			"text": " if you work with the protocol team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,240",
+				"to": "00:05:16,560"
+			},
+			"offsets": {
+				"from": 311240,
+				"to": 316560
+			},
+			"text": " we're more than happy to integrate your protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,560",
+				"to": "00:05:18,040"
+			},
+			"offsets": {
+				"from": 316560,
+				"to": 318040
+			},
+			"text": " into our standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,040",
+				"to": "00:05:21,360"
+			},
+			"offsets": {
+				"from": 318040,
+				"to": 321360
+			},
+			"text": " So feel free to reach out to me after the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,360",
+				"to": "00:05:24,680"
+			},
+			"offsets": {
+				"from": 321360,
+				"to": 324680
+			},
+			"text": " And if you're a subgraph developer or a RAS developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,680",
+				"to": "00:05:28,240"
+			},
+			"offsets": {
+				"from": 324680,
+				"to": 328240
+			},
+			"text": " that's interested in this data space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,240",
+				"to": "00:05:31,040"
+			},
+			"offsets": {
+				"from": 328240,
+				"to": 331040
+			},
+			"text": " feel free to scan that QR code there that will take you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,040",
+				"to": "00:05:32,680"
+			},
+			"offsets": {
+				"from": 331040,
+				"to": 332680
+			},
+			"text": " to our careers page."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,680",
+				"to": "00:05:34,640"
+			},
+			"offsets": {
+				"from": 332680,
+				"to": 334640
+			},
+			"text": " And we are always hiring."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,640",
+				"to": "00:05:36,720"
+			},
+			"offsets": {
+				"from": 334640,
+				"to": 336720
+			},
+			"text": " Yeah, this is my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,720",
+				"to": "00:05:38,640"
+			},
+			"offsets": {
+				"from": 336720,
+				"to": 338640
+			},
+			"text": " And thank you for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,640",
+				"to": "00:05:43,240"
+			},
+			"offsets": {
+				"from": 338640,
+				"to": 343240
+			},
+			"text": " Is aggregated subgraph-- is there assumptions of trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,240",
+				"to": "00:05:45,960"
+			},
+			"offsets": {
+				"from": 343240,
+				"to": 345960
+			},
+			"text": " when you use aggregated subgraph compared to this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,960",
+				"to": "00:05:47,960"
+			},
+			"offsets": {
+				"from": 345960,
+				"to": 347960
+			},
+			"text": " How do we subgraph or compound subgraph?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,960",
+				"to": "00:05:53,720"
+			},
+			"offsets": {
+				"from": 347960,
+				"to": 353720
+			},
+			"text": " Yeah, so all of our subgraph source code is open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,720",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 353720,
+				"to": 356000
+			},
+			"text": " There was the GitHub repo we showed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:59,880"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 359880
+			},
+			"text": " So we describe all of the methodology"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,880",
+				"to": "00:06:04,280"
+			},
+			"offsets": {
+				"from": 359880,
+				"to": 364280
+			},
+			"text": " of our kind of the computation for metrics in detail"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,280",
+				"to": "00:06:05,240"
+			},
+			"offsets": {
+				"from": 364280,
+				"to": 365240
+			},
+			"text": " in the repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,240",
+				"to": "00:06:08,360"
+			},
+			"offsets": {
+				"from": 365240,
+				"to": 368360
+			},
+			"text": " And of course, you can go into the source code"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,360",
+				"to": "00:06:11,960"
+			},
+			"offsets": {
+				"from": 368360,
+				"to": 371960
+			},
+			"text": " to look at exactly how different numbers are integrated."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,960",
+				"to": "00:06:14,960"
+			},
+			"offsets": {
+				"from": 371960,
+				"to": 374960
+			},
+			"text": " And the graph is also working on something"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,960",
+				"to": "00:06:18,640"
+			},
+			"offsets": {
+				"from": 374960,
+				"to": 378640
+			},
+			"text": " called verifiable queries that will put that trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,640",
+				"to": "00:06:21,880"
+			},
+			"offsets": {
+				"from": 378640,
+				"to": 381880
+			},
+			"text": " into the data that it indexes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,880",
+				"to": "00:06:25,080"
+			},
+			"offsets": {
+				"from": 381880,
+				"to": 385080
+			},
+			"text": " What's the approximate delay before the data is available?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,080",
+				"to": "00:06:26,600"
+			},
+			"offsets": {
+				"from": 385080,
+				"to": 386600
+			},
+			"text": " I mean, if we wanted to do some real time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,600",
+				"to": "00:06:27,560"
+			},
+			"offsets": {
+				"from": 386600,
+				"to": 387560
+			},
+			"text": " It's in real time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,560",
+				"to": "00:06:29,080"
+			},
+			"offsets": {
+				"from": 387560,
+				"to": 389080
+			},
+			"text": " Yeah, so it's block by block."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,080",
+				"to": "00:06:29,960"
+			},
+			"offsets": {
+				"from": 389080,
+				"to": 389960
+			},
+			"text": " OK, but--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,960",
+				"to": "00:06:30,560"
+			},
+			"offsets": {
+				"from": 389960,
+				"to": 390560
+			},
+			"text": " On the order of--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,560",
+				"to": "00:06:31,760"
+			},
+			"offsets": {
+				"from": 390560,
+				"to": 391760
+			},
+			"text": " There's going to be some delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,760",
+				"to": "00:06:33,800"
+			},
+			"offsets": {
+				"from": 391760,
+				"to": 393800
+			},
+			"text": " Like 15 seconds to like two minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,800",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 393800,
+				"to": 394000
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:34,920"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 394920
+			},
+			"text": " Depending on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,920",
+				"to": "00:06:34,920"
+			},
+			"offsets": {
+				"from": 394920,
+				"to": 394920
+			},
+			"text": " Perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,920",
+				"to": "00:06:35,400"
+			},
+			"offsets": {
+				"from": 394920,
+				"to": 395400
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,400",
+				"to": "00:06:36,920"
+			},
+			"offsets": {
+				"from": 395400,
+				"to": 396920
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,920",
+				"to": "00:06:41,920"
+			},
+			"offsets": {
+				"from": 396920,
+				"to": 401920
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,920",
+				"to": "00:06:46,920"
+			},
+			"offsets": {
+				"from": 401920,
+				"to": 406920
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,920",
+				"to": "00:07:15,920"
+			},
+			"offsets": {
+				"from": 406920,
+				"to": 435920
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

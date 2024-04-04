@@ -1,0 +1,1231 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:16,420"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 16420
+			},
+			"text": " We have two general methods for conducting user research,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,420",
+				"to": "00:00:18,760"
+			},
+			"offsets": {
+				"from": 16420,
+				"to": 18760
+			},
+			"text": " which is gathering feedback on a digital product"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,760",
+				"to": "00:00:20,260"
+			},
+			"offsets": {
+				"from": 18760,
+				"to": 20260
+			},
+			"text": " with the intention to improve it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,260",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 20260,
+				"to": 23000
+			},
+			"text": " So we have qualitative and quantitative."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:26,920"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 26920
+			},
+			"text": " Qualitative research involves conversing, questioning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,920",
+				"to": "00:00:28,800"
+			},
+			"offsets": {
+				"from": 26920,
+				"to": 28800
+			},
+			"text": " and observing users as they interact"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,800",
+				"to": "00:00:29,980"
+			},
+			"offsets": {
+				"from": 28800,
+				"to": 29980
+			},
+			"text": " with your digital product."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,700",
+				"to": "00:00:33,860"
+			},
+			"offsets": {
+				"from": 30700,
+				"to": 33860
+			},
+			"text": " This usually comes in the form of interviews or live tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,860",
+				"to": "00:00:36,200"
+			},
+			"offsets": {
+				"from": 33860,
+				"to": 36200
+			},
+			"text": " It's also called participatory design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,200",
+				"to": "00:00:39,700"
+			},
+			"offsets": {
+				"from": 36200,
+				"to": 39700
+			},
+			"text": " or having your users participate in your users development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,700",
+				"to": "00:00:41,560"
+			},
+			"offsets": {
+				"from": 39700,
+				"to": 41560
+			},
+			"text": " or at the products development, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,560",
+				"to": "00:00:45,200"
+			},
+			"offsets": {
+				"from": 41560,
+				"to": 45200
+			},
+			"text": " And on the other hand, we have quantitative research,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,200",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 45200,
+				"to": 48000
+			},
+			"text": " which is capturing user activity, patterns,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:51,540"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 51540
+			},
+			"text": " and behaviors with a product using data or analytics."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,540",
+				"to": "00:00:55,460"
+			},
+			"offsets": {
+				"from": 51540,
+				"to": 55460
+			},
+			"text": " Also, I'm going to stop using the term users for the rest"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,460",
+				"to": "00:00:58,360"
+			},
+			"offsets": {
+				"from": 55460,
+				"to": 58360
+			},
+			"text": " of this talk because I think it sounds pretty detached."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,900",
+				"to": "00:01:02,420"
+			},
+			"offsets": {
+				"from": 58900,
+				"to": 62420
+			},
+			"text": " And my hope for Web3 is that we can stop defining our community members"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,420",
+				"to": "00:01:06,020"
+			},
+			"offsets": {
+				"from": 62420,
+				"to": 66020
+			},
+			"text": " by the lone fact that they use the product and start to see them"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,020",
+				"to": "00:01:09,420"
+			},
+			"offsets": {
+				"from": 66020,
+				"to": 69420
+			},
+			"text": " in the broader context of their complex lives and their complex needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,420",
+				"to": "00:01:13,620"
+			},
+			"offsets": {
+				"from": 69420,
+				"to": 73620
+			},
+			"text": " So we're learning about people to better serve them"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,620",
+				"to": "00:01:15,020"
+			},
+			"offsets": {
+				"from": 73620,
+				"to": 75020
+			},
+			"text": " with our digital products, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,020",
+				"to": "00:01:17,460"
+			},
+			"offsets": {
+				"from": 75020,
+				"to": 77460
+			},
+			"text": " Let's unpack those two methodologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,460",
+				"to": "00:01:22,980"
+			},
+			"offsets": {
+				"from": 77460,
+				"to": 82980
+			},
+			"text": " Starting with quantitative, some benefits to quantitative research is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,980",
+				"to": "00:01:25,340"
+			},
+			"offsets": {
+				"from": 82980,
+				"to": 85340
+			},
+			"text": " that we can determine patterns to investigate further."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,340",
+				"to": "00:01:28,820"
+			},
+			"offsets": {
+				"from": 85340,
+				"to": 88820
+			},
+			"text": " So data can reveal what's going right or wrong based"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,820",
+				"to": "00:01:29,820"
+			},
+			"offsets": {
+				"from": 88820,
+				"to": 89820
+			},
+			"text": " on our product's goals."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,820",
+				"to": "00:01:32,580"
+			},
+			"offsets": {
+				"from": 89820,
+				"to": 92580
+			},
+			"text": " It can also reveal insights that leave us curious."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,580",
+				"to": "00:01:36,860"
+			},
+			"offsets": {
+				"from": 92580,
+				"to": 96860
+			},
+			"text": " Some drawbacks to quantitative research is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,860",
+				"to": "00:01:39,380"
+			},
+			"offsets": {
+				"from": 96860,
+				"to": 99380
+			},
+			"text": " that the data doesn't tell you why something is happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,380",
+				"to": "00:01:43,300"
+			},
+			"offsets": {
+				"from": 99380,
+				"to": 103300
+			},
+			"text": " And to guess why is fine, hypotheses are really important,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,300",
+				"to": "00:01:46,780"
+			},
+			"offsets": {
+				"from": 103300,
+				"to": 106780
+			},
+			"text": " but it's important to treat them as untested, subjective results"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,780",
+				"to": "00:01:47,760"
+			},
+			"offsets": {
+				"from": 106780,
+				"to": 107760
+			},
+			"text": " to look into further."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,760",
+				"to": "00:01:52,600"
+			},
+			"offsets": {
+				"from": 107760,
+				"to": 112600
+			},
+			"text": " Another drawback is that people are conscious of their privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,600",
+				"to": "00:01:56,680"
+			},
+			"offsets": {
+				"from": 112600,
+				"to": 116680
+			},
+			"text": " So a lot of people in the Web3 community use Brave or VPNs"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,680",
+				"to": "00:01:58,660"
+			},
+			"offsets": {
+				"from": 116680,
+				"to": 118660
+			},
+			"text": " that make their actions off-chain untraceable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,540",
+				"to": "00:02:02,940"
+			},
+			"offsets": {
+				"from": 119540,
+				"to": 122940
+			},
+			"text": " So this means that the data that we pull off-chain may never be the full picture"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,940",
+				"to": "00:02:04,140"
+			},
+			"offsets": {
+				"from": 122940,
+				"to": 124140
+			},
+			"text": " of community usage."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,140",
+				"to": "00:02:09,660"
+			},
+			"offsets": {
+				"from": 124140,
+				"to": 129660
+			},
+			"text": " Data collection and analysis is expensive and time-consuming."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,660",
+				"to": "00:02:12,740"
+			},
+			"offsets": {
+				"from": 129660,
+				"to": 132740
+			},
+			"text": " And it can also be unethical."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,740",
+				"to": "00:02:16,980"
+			},
+			"offsets": {
+				"from": 132740,
+				"to": 136980
+			},
+			"text": " So a person's data can be used to improve a product"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,980",
+				"to": "00:02:18,580"
+			},
+			"offsets": {
+				"from": 136980,
+				"to": 138580
+			},
+			"text": " and increase a company's profits."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,580",
+				"to": "00:02:22,540"
+			},
+			"offsets": {
+				"from": 138580,
+				"to": 142540
+			},
+			"text": " If that data has value and the person who is creating that data"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,540",
+				"to": "00:02:25,540"
+			},
+			"offsets": {
+				"from": 142540,
+				"to": 145540
+			},
+			"text": " is not collecting any of that value, is that ethical?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,820",
+				"to": "00:02:29,540"
+			},
+			"offsets": {
+				"from": 146820,
+				"to": 149540
+			},
+			"text": " Maybe if they sold it to you or if they agreed to give it to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,540",
+				"to": "00:02:32,020"
+			},
+			"offsets": {
+				"from": 149540,
+				"to": 152020
+			},
+			"text": " without compensation, but that's the argument here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,020",
+				"to": "00:02:36,020"
+			},
+			"offsets": {
+				"from": 152020,
+				"to": 156020
+			},
+			"text": " To collect somebody's valuable data, you should either compensate them"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,020",
+				"to": "00:02:37,300"
+			},
+			"offsets": {
+				"from": 156020,
+				"to": 157300
+			},
+			"text": " or gain their consent."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,300",
+				"to": "00:02:40,980"
+			},
+			"offsets": {
+				"from": 157300,
+				"to": 160980
+			},
+			"text": " Data can also be biased."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,980",
+				"to": "00:02:43,260"
+			},
+			"offsets": {
+				"from": 160980,
+				"to": 163260
+			},
+			"text": " And there's a lot of types of bias that can occur here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,260",
+				"to": "00:02:45,940"
+			},
+			"offsets": {
+				"from": 163260,
+				"to": 165940
+			},
+			"text": " but the most common is called confirmation bias,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,940",
+				"to": "00:02:48,500"
+			},
+			"offsets": {
+				"from": 165940,
+				"to": 168500
+			},
+			"text": " which is when somebody is interpreting the data set"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,500",
+				"to": "00:02:51,620"
+			},
+			"offsets": {
+				"from": 168500,
+				"to": 171620
+			},
+			"text": " and then comes to conclusions based on their own ideas or interests."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,620",
+				"to": "00:02:55,740"
+			},
+			"offsets": {
+				"from": 171620,
+				"to": 175740
+			},
+			"text": " What can also happen here is the manipulation of data visualizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,740",
+				"to": "00:02:58,620"
+			},
+			"offsets": {
+				"from": 175740,
+				"to": 178620
+			},
+			"text": " to further justify that bias and present it as truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,620",
+				"to": "00:03:03,180"
+			},
+			"offsets": {
+				"from": 178620,
+				"to": 183180
+			},
+			"text": " Moving over to qualitative research."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,180",
+				"to": "00:03:07,100"
+			},
+			"offsets": {
+				"from": 183180,
+				"to": 187100
+			},
+			"text": " So some benefits to this is that it can validate those hypotheses"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,100",
+				"to": "00:03:08,140"
+			},
+			"offsets": {
+				"from": 187100,
+				"to": 188140
+			},
+			"text": " you made about your data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,140",
+				"to": "00:03:11,980"
+			},
+			"offsets": {
+				"from": 188140,
+				"to": 191980
+			},
+			"text": " So you can get to the bottom of why, by asking people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,980",
+				"to": "00:03:15,180"
+			},
+			"offsets": {
+				"from": 191980,
+				"to": 195180
+			},
+			"text": " by watching them interact with your product and asking them to think out loud."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,180",
+				"to": "00:03:16,900"
+			},
+			"offsets": {
+				"from": 195180,
+				"to": 196900
+			},
+			"text": " It is super effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,900",
+				"to": "00:03:20,460"
+			},
+			"offsets": {
+				"from": 196900,
+				"to": 200460
+			},
+			"text": " You're also compensating people for their time"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,460",
+				"to": "00:03:22,740"
+			},
+			"offsets": {
+				"from": 200460,
+				"to": 202740
+			},
+			"text": " and gaining their consent to participate in your study."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,300",
+				"to": "00:03:28,260"
+			},
+			"offsets": {
+				"from": 203300,
+				"to": 208260
+			},
+			"text": " So with those two criteria, your research is becoming more ethical and legitimate."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,260",
+				"to": "00:03:32,500"
+			},
+			"offsets": {
+				"from": 208260,
+				"to": 212500
+			},
+			"text": " It's also encouraging community development"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,500",
+				"to": "00:03:35,380"
+			},
+			"offsets": {
+				"from": 212500,
+				"to": 215380
+			},
+			"text": " and responding to that eagerness to contribute in Web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,380",
+				"to": "00:03:38,780"
+			},
+			"offsets": {
+				"from": 215380,
+				"to": 218780
+			},
+			"text": " So people want to be involved, so let them, reward them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,780",
+				"to": "00:03:41,220"
+			},
+			"offsets": {
+				"from": 218780,
+				"to": 221220
+			},
+			"text": " encourage them, just build loyalty and buy-in."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,220",
+				"to": "00:03:46,660"
+			},
+			"offsets": {
+				"from": 221220,
+				"to": 226660
+			},
+			"text": " And you're building empathy with your community by talking to them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,660",
+				"to": "00:03:48,300"
+			},
+			"offsets": {
+				"from": 226660,
+				"to": 228300
+			},
+			"text": " by seeing their faces."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,300",
+				"to": "00:03:52,060"
+			},
+			"offsets": {
+				"from": 228300,
+				"to": 232060
+			},
+			"text": " It's really important to see your community as humans and not data points."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,500",
+				"to": "00:03:55,300"
+			},
+			"offsets": {
+				"from": 232500,
+				"to": 235300
+			},
+			"text": " And it's really easy to detach yourself from this valuable concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,300",
+				"to": "00:03:58,900"
+			},
+			"offsets": {
+				"from": 235300,
+				"to": 238900
+			},
+			"text": " if your data is the only source to understand the people that you work for."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,900",
+				"to": "00:04:03,340"
+			},
+			"offsets": {
+				"from": 238900,
+				"to": 243340
+			},
+			"text": " So it does have some drawbacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,340",
+				"to": "00:04:05,700"
+			},
+			"offsets": {
+				"from": 243340,
+				"to": 245700
+			},
+			"text": " Participatory design can be really challenging"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,700",
+				"to": "00:04:07,580"
+			},
+			"offsets": {
+				"from": 245700,
+				"to": 247580
+			},
+			"text": " in an online international community."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,580",
+				"to": "00:04:10,740"
+			},
+			"offsets": {
+				"from": 247580,
+				"to": 250740
+			},
+			"text": " Many people don't feel comfortable sharing their identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,740",
+				"to": "00:04:12,700"
+			},
+			"offsets": {
+				"from": 250740,
+				"to": 252700
+			},
+			"text": " They don't want to show their faces on camera."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,700",
+				"to": "00:04:14,980"
+			},
+			"offsets": {
+				"from": 252700,
+				"to": 254980
+			},
+			"text": " They may not speak your primary language."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,980",
+				"to": "00:04:16,900"
+			},
+			"offsets": {
+				"from": 254980,
+				"to": 256900
+			},
+			"text": " These can all be really intimidating barriers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,900",
+				"to": "00:04:20,580"
+			},
+			"offsets": {
+				"from": 256900,
+				"to": 260580
+			},
+			"text": " And there can also be confirmation bias here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,060",
+				"to": "00:04:24,620"
+			},
+			"offsets": {
+				"from": 261060,
+				"to": 264620
+			},
+			"text": " So it's important to keep in mind that this line of research is informal."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,620",
+				"to": "00:04:27,980"
+			},
+			"offsets": {
+				"from": 264620,
+				"to": 267980
+			},
+			"text": " We're not using rigorous controls under the scientific method."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,980",
+				"to": "00:04:31,420"
+			},
+			"offsets": {
+				"from": 267980,
+				"to": 271420
+			},
+			"text": " This research is always somewhat subjective and open to biases."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,420",
+				"to": "00:04:37,380"
+			},
+			"offsets": {
+				"from": 271420,
+				"to": 277380
+			},
+			"text": " So my approach for participatory design in Web3 is always changing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,380",
+				"to": "00:04:39,580"
+			},
+			"offsets": {
+				"from": 277380,
+				"to": 279580
+			},
+			"text": " but here's what's been working so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,580",
+				"to": "00:04:43,660"
+			},
+			"offsets": {
+				"from": 279580,
+				"to": 283660
+			},
+			"text": " So I found that by offering tiered approach for users to participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,660",
+				"to": "00:04:46,540"
+			},
+			"offsets": {
+				"from": 283660,
+				"to": 286540
+			},
+			"text": " It lets you meet people where they're at."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,940",
+				"to": "00:04:52,140"
+			},
+			"offsets": {
+				"from": 286940,
+				"to": 292140
+			},
+			"text": " So you can have these bottom tier rewards for submitting to long form tech surveys."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,140",
+				"to": "00:04:56,460"
+			},
+			"offsets": {
+				"from": 292140,
+				"to": 296460
+			},
+			"text": " This lets people translate them and they can also remain anonymous."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,460",
+				"to": "00:05:00,820"
+			},
+			"offsets": {
+				"from": 296460,
+				"to": 300820
+			},
+			"text": " You can offer mid tier rewards for having people record looms of themselves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,820",
+				"to": "00:05:03,220"
+			},
+			"offsets": {
+				"from": 300820,
+				"to": 303220
+			},
+			"text": " screen sharing and performing certain tasks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,220",
+				"to": "00:05:06,020"
+			},
+			"offsets": {
+				"from": 303220,
+				"to": 306020
+			},
+			"text": " This can also be translated."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,020",
+				"to": "00:05:09,300"
+			},
+			"offsets": {
+				"from": 306020,
+				"to": 309300
+			},
+			"text": " This can also be anonymous and they can speak at their own pace if they choose to."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,300",
+				"to": "00:05:13,660"
+			},
+			"offsets": {
+				"from": 309300,
+				"to": 313660
+			},
+			"text": " And then you have a top rewards tier where you have a video call"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,660",
+				"to": "00:05:16,500"
+			},
+			"offsets": {
+				"from": 313660,
+				"to": 316500
+			},
+			"text": " and they perform certain tasks, answer questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,900",
+				"to": "00:05:19,620"
+			},
+			"offsets": {
+				"from": 316900,
+				"to": 319620
+			},
+			"text": " And this works best when you can both communicate freely with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,620",
+				"to": "00:05:24,900"
+			},
+			"offsets": {
+				"from": 319620,
+				"to": 324900
+			},
+			"text": " Systems like this are best managed in Discord or other community tools like Crew 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,900",
+				"to": "00:05:30,460"
+			},
+			"offsets": {
+				"from": 324900,
+				"to": 330460
+			},
+			"text": " Ultimately, I advocate for a participatory design focused approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,460",
+				"to": "00:05:33,380"
+			},
+			"offsets": {
+				"from": 330460,
+				"to": 333380
+			},
+			"text": " with data to guide you towards those areas of improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,380",
+				"to": "00:05:36,500"
+			},
+			"offsets": {
+				"from": 333380,
+				"to": 336500
+			},
+			"text": " I think there's a really beautiful opportunity in Web3"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,500",
+				"to": "00:05:40,620"
+			},
+			"offsets": {
+				"from": 336500,
+				"to": 340620
+			},
+			"text": " to practice genuine empathy for our community by working alongside them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,620",
+				"to": "00:05:42,940"
+			},
+			"offsets": {
+				"from": 340620,
+				"to": 342940
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,460",
+				"to": "00:05:48,460"
+			},
+			"offsets": {
+				"from": 343460,
+				"to": 348460
+			},
+			"text": " What kind of tools do you use on the quantitative side for user research?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,460",
+				"to": "00:05:54,700"
+			},
+			"offsets": {
+				"from": 348460,
+				"to": 354700
+			},
+			"text": " On the quantitative side, at the moment, we typically hire somebody to do that for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,700",
+				"to": "00:05:59,100"
+			},
+			"offsets": {
+				"from": 354700,
+				"to": 359100
+			},
+			"text": " So we've been working with ARKX, who've been really great at accumulating data for our product."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,100",
+				"to": "00:06:03,540"
+			},
+			"offsets": {
+				"from": 359100,
+				"to": 363540
+			},
+			"text": " On the smaller scale side, we use Google Analytics."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,540",
+				"to": "00:06:08,260"
+			},
+			"offsets": {
+				"from": 363540,
+				"to": 368260
+			},
+			"text": " That's easy for me to interpret, but yeah, for the bigger questions, we outsource."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,260",
+				"to": "00:06:21,260"
+			},
+			"offsets": {
+				"from": 368260,
+				"to": 381260
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

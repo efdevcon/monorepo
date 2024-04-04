@@ -1,0 +1,846 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13240
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,240",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 13240,
+				"to": 15000
+			},
+			"text": " So yeah, what started this talk?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,240"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17240
+			},
+			"text": " It started in April."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,240",
+				"to": "00:00:23,800"
+			},
+			"offsets": {
+				"from": 17240,
+				"to": 23800
+			},
+			"text": " There was a tweet by Birdmiller from Flashbots about a moonbird that was actually bought for 44 ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,800",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 23800,
+				"to": 29000
+			},
+			"text": " and then immediately sold in one single transaction for 240 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 36000
+			},
+			"text": " And when I saw this, I was like, wow, this is pretty insane and we really dived into the topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 40000
+			},
+			"text": " So at first I'm going to give a short introduction, what is MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 48000
+			},
+			"text": " Basically, who can say here what happens if you click like swap on Uniswap in a one sentence?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 51000
+			},
+			"text": " This transaction gets submitted to the mempool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 58000
+			},
+			"text": " And the technical view is you have the public mempool where you can submit the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 64000
+			},
+			"text": " in traditional finance, you only have like a centralized server and then the transactions get executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 72000
+			},
+			"text": " With the public mempool though, people can see your transaction and they can insert their own transaction before."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 80000
+			},
+			"text": " Or even, I mean the miner itself can insert the transactions, manipulate them, block them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 87000
+			},
+			"text": " And yeah, there's a more technical explanation about like what's different in POS in the last slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 94000
+			},
+			"text": " So basically MEV exists also in like old auctions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 102000
+			},
+			"text": " It's basically if you skip the auction and make a contract with the seller itself, in this case the seller is the block space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 104000
+			},
+			"text": " And yeah, what is an NFT?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 111000
+			},
+			"text": " For me it was kind of interesting to understand that NFT is kind of like the same as an ERC20 token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 117000
+			},
+			"text": " but with an ID that was much more understandable to me than like non-fungible token."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 127000
+			},
+			"text": " And there are like if you look at Google search volume, you will see that like 1 to 10,000 people Google how to create an ERC20 token each month."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 134000
+			},
+			"text": " And like how people want to create an NFT, it's like 10,000 to 100,000 people."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 139000
+			},
+			"text": " So you could assume that NFTs are like very mainstream."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 147000
+			},
+			"text": " And also the gas, if you look at Ethereum is kind of high from NFT projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 151000
+			},
+			"text": " So like OpenSea is always in the like top 10 of gas vendors."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 154000
+			},
+			"text": " You can see the beautiful NFT project on the side."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 160000
+			},
+			"text": " And so another question, what happens if you like make a collection bid on a NFT site?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 166000
+			},
+			"text": " It doesn't work on every marketplace, but maybe someone knows it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 173000
+			},
+			"text": " So basically if you click and make a collection bid on an NFT marketplace,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 175000
+			},
+			"text": " usually the auction is off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 183000
+			},
+			"text": " But once the contract gets settled in the mempool, people can still like do arbitrage."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 186000
+			},
+			"text": " So let's dive into this rabbit hole."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 189000
+			},
+			"text": " So what is an NFT arbitrage?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 194000
+			},
+			"text": " Basically you buy the NFT at one marketplace and you sell it at the other marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 199000
+			},
+			"text": " What is special about it is in crypto you can do it in a single transaction in one block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 207000
+			},
+			"text": " There's some particular cases about like NFTs and MEV or in general like value extraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 212000
+			},
+			"text": " So the moonbird example is pretty extreme I find."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 219000
+			},
+			"text": " And also the ape coin maybe you've heard of it, they had a token for every NFT holder."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 227000
+			},
+			"text": " And there was a trader who basically lent the NFTs, claimed the tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 234000
+			},
+			"text": " and then sold them immediately so he netted more than like $600,000 I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 235000
+			},
+			"text": " So what can we do about it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 240000
+			},
+			"text": " Because I mean if you look at the life cycle of NFT, it's like pretty mainstream."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 246000
+			},
+			"text": " And I don't assume like Bill Murray knows like what happens in the mempool."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 251000
+			},
+			"text": " And so there's a couple of resources to educate yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 260000
+			},
+			"text": " There's this like website MEV tools which shows like also how to like mint an NFT or like submitted transaction through flash bots"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 263000
+			},
+			"text": " which is basically making skipping the mempool."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 266000
+			},
+			"text": " There's other ways you can avoid it right."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 271000
+			},
+			"text": " So if you have an auction where you have a commit reveal you first commit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 279000
+			},
+			"text": " And then once you place a bit your reveal you bit and you cannot like front run it because you need the commit first."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 283000
+			},
+			"text": " So when you buy an in-est domain you have to wait one minute that's basically the reason why."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 287000
+			},
+			"text": " So the life cycle of an NFT you have the minting process."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 290000
+			},
+			"text": " Here it can like lead to gas wars."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 301000
+			},
+			"text": " So I don't know there was a soccer project that actually had like $1 million in gas fees and like the NFT mint was like less valuable than it's crazy right."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 308000
+			},
+			"text": " And if you like submitted transaction to flash bots it basically if it fails you don't need to pay gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 309000
+			},
+			"text": " So that's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 319000
+			},
+			"text": " But also there's been cases where an NFT project might be super successful and people were like bribing the miners to make sure that they minted."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 323000
+			},
+			"text": " So even if you're like a normal consumer you don't have any chance to mint it right."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 335000
+			},
+			"text": " And the holding time of an NFT I mean it indicates basically if the NFTs are flipped and the transfer function is basically for like auctions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 344000
+			},
+			"text": " And yeah so what can we do and one idea is we just fork the ERC 20 ERC 71 contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 348000
+			},
+			"text": " And if you think about okay what is atomic arbitrage you sell it and buy it in one block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 358000
+			},
+			"text": " So we just simply lock the last transfer and we block the ID from being transferred twice per block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 368000
+			},
+			"text": " I mean it's more like it's a very simple solution but yeah obviously some contracts might not work with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 373000
+			},
+			"text": " So what else can we do what are like conclusions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 378000
+			},
+			"text": " First of all there's different stakeholders so the markets they just want to sell the artists just want to sell the users."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 381000
+			},
+			"text": " I mean they don't maybe don't spend so much money."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 388000
+			},
+			"text": " NFT is a bit like long-tail there's been a case where somebody just wrote a function for I think it was a potato or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 400000
+			},
+			"text": " And the volume is like pretty variable so it might not be the best trading for like a high volume trading company."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 411000
+			},
+			"text": " And yeah there's like different resources we've been working on an extension which shows like MEV activity, fishing activity and yeah time is over."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 421000
+			},
+			"text": " Here's the sources thank you so much thanks to Alan Burtmiller and so many more maybe I forgot some."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 426000
+			},
+			"text": " And you can find me on Twitter under Film France thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 428000
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 430000
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 432000
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 434000
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 438000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

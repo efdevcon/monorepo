@@ -1,0 +1,758 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:08,440"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 8440
+			},
+			"text": " Okay, so hi everybody. My name is David. I'm from Orbs, which is a company based in Israel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,440",
+				"to": "00:00:14,700"
+			},
+			"offsets": {
+				"from": 8440,
+				"to": 14700
+			},
+			"text": " And I will talk today about DKG distributed key generation. So a core cryptographic primitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,700",
+				"to": "00:00:21,320"
+			},
+			"offsets": {
+				"from": 14700,
+				"to": 21320
+			},
+			"text": " that we use in Orbs is Threshold Signatures, in which, so in a Threshold signature scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,320",
+				"to": "00:00:27,960"
+			},
+			"offsets": {
+				"from": 21320,
+				"to": 27960
+			},
+			"text": " you have N participants and any large N of subsets should be able to produce a valid signature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,960",
+				"to": "00:00:34,160"
+			},
+			"offsets": {
+				"from": 27960,
+				"to": 34160
+			},
+			"text": " but a small subset of the participants should not be able to produce a valid signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,160",
+				"to": "00:00:38,760"
+			},
+			"offsets": {
+				"from": 34160,
+				"to": 38760
+			},
+			"text": " And this is quite similar to a multisignature, but not just quite, right? Because we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,760",
+				"to": "00:00:48,480"
+			},
+			"offsets": {
+				"from": 38760,
+				"to": 48480
+			},
+			"text": " a one, one signature. So as you can probably understand, if you want to have such a primitive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,480",
+				"to": "00:00:54,560"
+			},
+			"offsets": {
+				"from": 48480,
+				"to": 54560
+			},
+			"text": " such a scheme, you need the participants' keys to be related mathematically. So the participants"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,560",
+				"to": "00:01:00,240"
+			},
+			"offsets": {
+				"from": 54560,
+				"to": 60240
+			},
+			"text": " cannot just generate their keys locally and expect them to somehow work together. So option"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,240",
+				"to": "00:01:06,200"
+			},
+			"offsets": {
+				"from": 60240,
+				"to": 66200
+			},
+			"text": " A, the way to address this is to use a trusted dealer that would distribute the keys to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,200",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 66200,
+				"to": 72000
+			},
+			"text": " participants, but of course, in a decentralized environment, that would not be desired, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:18,280"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 78280
+			},
+			"text": " You don't want a single entity to know everything. So what you can do is you can use a distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,280",
+				"to": "00:01:27,040"
+			},
+			"offsets": {
+				"from": 78280,
+				"to": 87040
+			},
+			"text": " key generation protocol, which would indeed reduce the need of a trusted dealer, but it"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,040",
+				"to": "00:01:32,680"
+			},
+			"offsets": {
+				"from": 87040,
+				"to": 92680
+			},
+			"text": " would introduce some challenges. So first of all, a lot of communication, right? All the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,680",
+				"to": "00:01:38,120"
+			},
+			"offsets": {
+				"from": 92680,
+				"to": 98120
+			},
+			"text": " participants are going to have to communicate with all the participants. So this is expensive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,120",
+				"to": "00:01:42,640"
+			},
+			"offsets": {
+				"from": 98120,
+				"to": 102640
+			},
+			"text": " and then computationally it's going to be hard on participants. They're going to have to run"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,640",
+				"to": "00:01:47,600"
+			},
+			"offsets": {
+				"from": 102640,
+				"to": 107600
+			},
+			"text": " many computations to validate that everything is correct. And then there is still this trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,600",
+				"to": "00:01:53,200"
+			},
+			"offsets": {
+				"from": 107600,
+				"to": 113200
+			},
+			"text": " assumption where we're trusting that the majority of the participants are following the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,200",
+				"to": "00:02:02,280"
+			},
+			"offsets": {
+				"from": 113200,
+				"to": 122280
+			},
+			"text": " correctly. And if this assumption breaks, then the protocol breaks. So we're going to use Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,280",
+				"to": "00:02:09,200"
+			},
+			"offsets": {
+				"from": 122280,
+				"to": 129200
+			},
+			"text": " in order to kind of justify or relax this assumption in red. That's the main purpose of using Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,200",
+				"to": "00:02:18,520"
+			},
+			"offsets": {
+				"from": 129200,
+				"to": 138520
+			},
+			"text": " So how is it going to work? Basically, it's going to be a smart contract, right? A DAP that does the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,520",
+				"to": "00:02:23,680"
+			},
+			"offsets": {
+				"from": 138520,
+				"to": 143680
+			},
+			"text": " DKG. And the participants are going to start by enrolling to the smart contract. They're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,680",
+				"to": "00:02:32,160"
+			},
+			"offsets": {
+				"from": 143680,
+				"to": 152160
+			},
+			"text": " send a deposit. And then they're formally a part of the DKG. And after this is over, the actual DKG"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,160",
+				"to": "00:02:38,440"
+			},
+			"offsets": {
+				"from": 152160,
+				"to": 158440
+			},
+			"text": " can start. So first communication, they're going to communicate by sending transactions to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,440",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 158440,
+				"to": 163000
+			},
+			"text": " smart contract, which would basically be data that they're trying to distribute between one"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:47,920"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 167920
+			},
+			"text": " and another. And this could be public information available for everybody, or private information"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,920",
+				"to": "00:02:53,680"
+			},
+			"offsets": {
+				"from": 167920,
+				"to": 173680
+			},
+			"text": " that is destined to a specific participant. And then they just encrypt their data. After the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,680",
+				"to": "00:02:58,640"
+			},
+			"offsets": {
+				"from": 173680,
+				"to": 178640
+			},
+			"text": " communication is over, the participants are going to execute local computations. And then if"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,640",
+				"to": "00:03:04,840"
+			},
+			"offsets": {
+				"from": 178640,
+				"to": 184840
+			},
+			"text": " everything is fine, then basically the DKG is over. Okay, and everybody, every participant has their"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,840",
+				"to": "00:03:11,720"
+			},
+			"offsets": {
+				"from": 184840,
+				"to": 191720
+			},
+			"text": " keys and it's good to go. However, if there's a problem, then any participant that detects a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,720",
+				"to": "00:03:17,560"
+			},
+			"offsets": {
+				"from": 191720,
+				"to": 197560
+			},
+			"text": " problem with another participant's data, they can basically complain. They can file a complaint"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,560",
+				"to": "00:03:25,040"
+			},
+			"offsets": {
+				"from": 197560,
+				"to": 205040
+			},
+			"text": " to the smart contract, which would then re-execute the reported computation and would find whoever's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,040",
+				"to": "00:03:31,160"
+			},
+			"offsets": {
+				"from": 205040,
+				"to": 211160
+			},
+			"text": " faulty and would slash that participant. Okay. So what we were able to do is where I"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,160",
+				"to": "00:03:38,240"
+			},
+			"offsets": {
+				"from": 211160,
+				"to": 218240
+			},
+			"text": " were able to find valid complaints for every way that a participant can diverge from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,240",
+				"to": "00:03:44,520"
+			},
+			"offsets": {
+				"from": 218240,
+				"to": 224520
+			},
+			"text": " instructions, from the original instructions of the protocol. And what this means is that if"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,520",
+				"to": "00:03:48,920"
+			},
+			"offsets": {
+				"from": 224520,
+				"to": 228920
+			},
+			"text": " you are a participant, then you care about the deposit that you put, you would have to follow"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,920",
+				"to": "00:03:54,040"
+			},
+			"offsets": {
+				"from": 228920,
+				"to": 234040
+			},
+			"text": " the protocol instructions correctly, or else you're going to be complained against and slashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,040",
+				"to": "00:04:03,480"
+			},
+			"offsets": {
+				"from": 234040,
+				"to": 243480
+			},
+			"text": " Okay, so this is exactly what we wanted, which is great. But let me just finish up by giving you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,480",
+				"to": "00:04:10,240"
+			},
+			"offsets": {
+				"from": 243480,
+				"to": 250240
+			},
+			"text": " a taste as to how we actually solve the technical problems, because the DKG is very computation and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,240",
+				"to": "00:04:16,280"
+			},
+			"offsets": {
+				"from": 250240,
+				"to": 256280
+			},
+			"text": " communication expensive, as I said before. So our general approach is to do as most as we can off"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,280",
+				"to": "00:04:23,360"
+			},
+			"offsets": {
+				"from": 256280,
+				"to": 263360
+			},
+			"text": " chain. So what does that mean? So in terms of communication, except for a 32-byte commitment that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,360",
+				"to": "00:04:28,400"
+			},
+			"offsets": {
+				"from": 263360,
+				"to": 268400
+			},
+			"text": " the participants have to include in their enrollment transaction, basically all the communication can"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,400",
+				"to": "00:04:36,920"
+			},
+			"offsets": {
+				"from": 268400,
+				"to": 276920
+			},
+			"text": " be done off chain. Secondly, in terms of the interactive of the dispute mechanism, so if any"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,920",
+				"to": "00:04:42,160"
+			},
+			"offsets": {
+				"from": 276920,
+				"to": 282160
+			},
+			"text": " participant files a complaint, this really expensive computation has to be done on chain to verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,160",
+				"to": "00:04:47,280"
+			},
+			"offsets": {
+				"from": 282160,
+				"to": 287280
+			},
+			"text": " who was correct and who was faulty. And this is very expensive, this cannot be done over with"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,280",
+				"to": "00:04:52,560"
+			},
+			"offsets": {
+				"from": 287280,
+				"to": 292560
+			},
+			"text": " Ethereum. So what we use is we use an interactive protocol between the participant who is complaining"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,560",
+				"to": "00:04:57,840"
+			},
+			"offsets": {
+				"from": 292560,
+				"to": 297840
+			},
+			"text": " and the participant who is being complained against. Okay, in the spirit of true bit. So this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,840",
+				"to": "00:05:05,440"
+			},
+			"offsets": {
+				"from": 297840,
+				"to": 305440
+			},
+			"text": " really great because this, what it brings, what it lets us, it lets us arrive to a situation where"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,440",
+				"to": "00:05:15,120"
+			},
+			"offsets": {
+				"from": 305440,
+				"to": 315120
+			},
+			"text": " there's only one on chain operation has to be done in order to find out who is faulty. But this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,120",
+				"to": "00:05:20,080"
+			},
+			"offsets": {
+				"from": 315120,
+				"to": 320080
+			},
+			"text": " still too expensive to run over Ethereum because this is typically going to be an elliptic curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,080",
+				"to": "00:05:27,040"
+			},
+			"offsets": {
+				"from": 320080,
+				"to": 327040
+			},
+			"text": " operation. Okay, so the way to address this is to use one of the pre-compiled contracts that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,040",
+				"to": "00:05:35,920"
+			},
+			"offsets": {
+				"from": 327040,
+				"to": 335920
+			},
+			"text": " actually do elliptic curve operations and this will allow us to be to not to pass the gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,920",
+				"to": "00:05:43,520"
+			},
+			"offsets": {
+				"from": 335920,
+				"to": 343520
+			},
+			"text": " So what we were able to do is to, we were able to take the DKG, the original DKG protocol and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,520",
+				"to": "00:05:52,240"
+			},
+			"offsets": {
+				"from": 343520,
+				"to": 352240
+			},
+			"text": " restrict it to only use the curves and the operations that are backed by these pre-compiled contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,240",
+				"to": "00:05:56,240"
+			},
+			"offsets": {
+				"from": 352240,
+				"to": 356240
+			},
+			"text": " Even though these pre-compiled contracts were originally introduced to Ethereum just to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,240",
+				"to": "00:06:01,920"
+			},
+			"offsets": {
+				"from": 356240,
+				"to": 361920
+			},
+			"text": " DKS Snarks, so we were able to use them for a completely different use case and we're using them"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,920",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 361920,
+				"to": 368000
+			},
+			"text": " for this DKG and then for BLS threshold signatures to be done over Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,600",
+				"to": "00:06:15,200"
+			},
+			"offsets": {
+				"from": 369600,
+				"to": 375200
+			},
+			"text": " So this is pretty cool that we were able to do this. We proved that our variant of the DKG"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,200",
+				"to": "00:06:23,040"
+			},
+			"offsets": {
+				"from": 375200,
+				"to": 383040
+			},
+			"text": " is safe and it works. And so all of these things together, we're actually able to make the DKG run"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,040",
+				"to": "00:06:27,200"
+			},
+			"offsets": {
+				"from": 383040,
+				"to": 387200
+			},
+			"text": " efficiently over Ethereum with a very large number of participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,200",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 387200,
+				"to": 396000
+			},
+			"text": " So there is a prototype implementation that you can find in our GitHub. It's a proof of concept,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:42,320"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 402320
+			},
+			"text": " it's not production ready or anything and there is a paper coming which you can also check out and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,320",
+				"to": "00:06:48,400"
+			},
+			"offsets": {
+				"from": 402320,
+				"to": 408400
+			},
+			"text": " I encourage it to come and ask me a question if you have. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,400",
+				"to": "00:06:58,400"
+			},
+			"offsets": {
+				"from": 408400,
+				"to": 418400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,400",
+				"to": "00:07:08,400"
+			},
+			"offsets": {
+				"from": 418400,
+				"to": 428400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,400",
+				"to": "00:07:18,400"
+			},
+			"offsets": {
+				"from": 428400,
+				"to": 438400
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

@@ -1,0 +1,3365 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 17000
+			},
+			"text": " >> Hello everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:19,600"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 19600
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,600",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 19600,
+				"to": 24000
+			},
+			"text": " So today I'm going to be announcing and releasing a new project we have at IC3."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 29000
+			},
+			"text": " IC3 is sort of a cross-university initiative for experimental blockchain research and systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 35000
+			},
+			"text": " This is joint work with Florian Tramer from Stanford and Lauren's Brydenbach from ETH Zurich,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 42000
+			},
+			"text": " Cornell Tech and IC3, as well as myself and my advisor, Ari Jewels, also from Cornell Tech and IC3."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 44000
+			},
+			"text": " All right, so just a brief reminder."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 48000
+			},
+			"text": " Last year I gave a talk in DevCon on smart contract security, and we talked about how we sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 53000
+			},
+			"text": " view this problem at IC3 as having these three different prongs of formal verification and specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 56000
+			},
+			"text": " So how do we know what we are building and how can we check it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 62000
+			},
+			"text": " Escape hatches, how do we recover when something goes badly wrong with the contract, and bug bounties."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 66000
+			},
+			"text": " So how can we address these perverse incentives where people in the ecosystem are incentivized to attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 69000
+			},
+			"text": " and steal money rather than honestly report vulnerabilities?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 74000
+			},
+			"text": " So for some general security background, I highly recommend checking that talk out."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 77000
+			},
+			"text": " All right, so there's some new promise in the space in the last few years."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 83000
+			},
+			"text": " You can see sort of this Google Trends Graph, and this is for this new concept called cryptoeconomics."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 85000
+			},
+			"text": " So what is cryptoeconomics?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 89000
+			},
+			"text": " Cryptoeconomics is sort of the idea of combining cryptography to look at the past"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 92000
+			},
+			"text": " and economics to provide security guarantees that hold into the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 96000
+			},
+			"text": " to secure these protocols and contracts that we're all building here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 101000
+			},
+			"text": " There's even been a cryptoeconomics security conference this year at Berkeley for the first time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 106000
+			},
+			"text": " and by the way, blockchain at Berkeley, we totally agree that the blockchain space needs more academic presence."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 109000
+			},
+			"text": " All right, so is this planet hype, or is this the real deal?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 110000
+			},
+			"text": " Let's take a look."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 113000
+			},
+			"text": " So where is cryptoeconomics kind of being explored right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 118000
+			},
+			"text": " We have the original sort of incarnation of this in the Bitcoin system and the Nakamoto white paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 121000
+			},
+			"text": " and we have several new protocols that are coming out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 124000
+			},
+			"text": " among which relevant to the Ethereum community is CASPER,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 130000
+			},
+			"text": " and the set of protocols and encompasses that are also using this style of analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 133000
+			},
+			"text": " All right, so where don't we have cryptoeconomics?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 138000
+			},
+			"text": " Unfortunately, there is not much cryptoeconomics going on at the smart contract layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 142000
+			},
+			"text": " so we really don't have rigorous economic analyses of most of these contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 146000
+			},
+			"text": " or cryptographic mechanisms to sort of guarantee the properties we're looking for."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 149000
+			},
+			"text": " And that is why today we're announcing the Hydra project."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 155000
+			},
+			"text": " You can check out the Hydra.io and sort of follow along and read the paper or look at the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 157000
+			},
+			"text": " Highly recommend you do so if you have a laptop."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 161000
+			},
+			"text": " And the Hydra project is a smart contract development framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 164000
+			},
+			"text": " that gives you decentralized security and bug bounties"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 167000
+			},
+			"text": " with no humans in the loop and no trust required for payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 171000
+			},
+			"text": " Rigorous cryptoeconomic security guarantees that we can model and analyze,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 176000
+			},
+			"text": " and a strategy for mitigating both programmer and compiler error."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 181000
+			},
+			"text": " A little bit of a warning here, the Hydra project is still in sort of the research phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 184000
+			},
+			"text": " We're still undergoing testing process, security audits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 187000
+			},
+			"text": " and other sort of high assurance software development processes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 190000
+			},
+			"text": " So we have released all the code for you guys to play with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 192000
+			},
+			"text": " and start experimenting with and give us feedback on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 195000
+			},
+			"text": " but trusting large amounts of funds to this little baby Hydra"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 199000
+			},
+			"text": " that we've sort of spun up would probably be a mistake."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 201000
+			},
+			"text": " All right, so why bounties?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 204000
+			},
+			"text": " Traditionally, you sort of have this limited time for software development."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 206000
+			},
+			"text": " You have two to four people take a look at it, do a code review,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 208000
+			},
+			"text": " and then you ship it to the customer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 211000
+			},
+			"text": " This new crowd security approach says basically for an unlimited time"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 214000
+			},
+			"text": " you run a little bounty and you let the community look at it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 217000
+			},
+			"text": " with the idea being that many eyes are better than one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 220000
+			},
+			"text": " All right, so let's see this as a game since we're talking about cryptoeconomics"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 224000
+			},
+			"text": " and take a look at what a rational attacker would do with these bounty systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 227000
+			},
+			"text": " All right, so here is a system with no bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 230000
+			},
+			"text": " An attacker finds an exploit and then they have two choices."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 233000
+			},
+			"text": " They can either attack and steal the $8 in the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 235000
+			},
+			"text": " or they can disclose and get nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 237000
+			},
+			"text": " So obviously they're going to attack the contract every time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 239000
+			},
+			"text": " This is why we need bounties."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 243000
+			},
+			"text": " All right, how about traditional bounties like the kind I showed you on the previous slide?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 246000
+			},
+			"text": " Well, there's a problem here which is that an attacker doesn't actually know"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 248000
+			},
+			"text": " when they disclose how much money they're going to get paid."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 251000
+			},
+			"text": " So they actually have no way to make a rational decision on"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 254000
+			},
+			"text": " whether to disclose or to attack the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 256000
+			},
+			"text": " All right, what would be a better game?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 258000
+			},
+			"text": " What would we sort of want out of this functionality?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 261000
+			},
+			"text": " Well, one thing we definitely want is we want the attacker to know"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 266000
+			},
+			"text": " sort of what the value of the bounty is so they can at least make somewhat of a rational decision"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 269000
+			},
+			"text": " and attack only if the contract value is greater than the bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 272000
+			},
+			"text": " Unfortunately, this means you need to have very large bounties"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 274000
+			},
+			"text": " and essentially pay more than what the contract is holding."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 275000
+			},
+			"text": " It doesn't really make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 277000
+			},
+			"text": " So what would we really like to see economically?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 280000
+			},
+			"text": " We'd like to see sort of this game where an attacker,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 284000
+			},
+			"text": " once they find an exploit, either has the choice to disclose it for some amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 288000
+			},
+			"text": " or to continue trying to attack, which will incur to them some cost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 291000
+			},
+			"text": " to eventually try to steal all of the money in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 295000
+			},
+			"text": " So in this game, an attacker is going to attack if sort of the cost they have to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 297000
+			},
+			"text": " to fully exploit the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 300000
+			},
+			"text": " The contract value minus that is greater than the bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 302000
+			},
+			"text": " So what do we want to do here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 305000
+			},
+			"text": " We want to maximize this C if we can create such a game as high as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 309000
+			},
+			"text": " and sort of get the best possible economic security for our contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 313000
+			},
+			"text": " This C costs after finding the first exploit to a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 315000
+			},
+			"text": " is what we call an exploit gap."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 319000
+			},
+			"text": " So we say mine the gap and introduce an exploit gap."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 321000
+			},
+			"text": " What are other things we'd like out of our bounty?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 324000
+			},
+			"text": " We'd like the attacker to be able to either attack our contract or claim the bounty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 326000
+			},
+			"text": " but not both."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 328000
+			},
+			"text": " We would like the payout to be predetermined so they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 330000
+			},
+			"text": " rationally make a decision on whether to take the bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 332000
+			},
+			"text": " And we would like the payout to be fully trustless."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 335000
+			},
+			"text": " It's full of stories on the internet, several of which we cited in our paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 338000
+			},
+			"text": " about hackers who complained that X Company didn't pay them"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 341000
+			},
+			"text": " or they didn't pay them enough or they didn't agree with their assessment of a bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 344000
+			},
+			"text": " So we want to get rid of that completely by just eliminating humans from the loop"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 347000
+			},
+			"text": " and allowing the attackers to see exactly what they get."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 349000
+			},
+			"text": " All right, so how do we do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 352000
+			},
+			"text": " There are many, many ways to accomplish an exploit gap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 354000
+			},
+			"text": " several of which we mentioned in our paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 356000
+			},
+			"text": " But the one we're going to look at today is this thing we call a hydro program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 359000
+			},
+			"text": " which sort of takes this classical idea of n-version programming"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 363000
+			},
+			"text": " and tweaks it a little bit, so that rather than focusing on availability"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 366000
+			},
+			"text": " as you would like in an airplane system or a space shuttle or something like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 368000
+			},
+			"text": " we focus on integrity."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " So what you do is you develop multiple copies of your contract independently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 375000
+			},
+			"text": " and then if any of them has an error, you can notice the divergence"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 380000
+			},
+			"text": " in the output of those contracts and then use sort of a governance contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 385000
+			},
+			"text": " to abort your contracts and pay a bounty and do some safe recovery procedure"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 389000
+			},
+			"text": " where either the money is returned or it's sent to a trusted multi-sig, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 394000
+			},
+			"text": " All right, so this sounds great, but I heard that n-version programming sucks"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 397000
+			},
+			"text": " and it's like not fully independent, so what are you talking about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 401000
+			},
+			"text": " So let's look at when we actually get this exploit gap out of our hydro contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 404000
+			},
+			"text": " Let's say one of the versions you do has a bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 407000
+			},
+			"text": " Of course, then you get the exploit gap because it's very easy for the governor"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 409000
+			},
+			"text": " to sort of notice this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 412000
+			},
+			"text": " What if all of the versions you have have a bug?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 413000
+			},
+			"text": " Well, you might still be okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 417000
+			},
+			"text": " As long as it's not an identical bug, our governance contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 421000
+			},
+			"text": " can sort of notice the divergence between these contracts and pay the bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 424000
+			},
+			"text": " Sometimes, though, we have no gap and this is a little bit unavoidable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 428000
+			},
+			"text": " So if all of your heads, all of your n-heads have the same exact bug,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 434000
+			},
+			"text": " then unfortunately you are sort of out of luck and the attacker can fully exploit the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 435000
+			},
+			"text": " and break the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 439000
+			},
+			"text": " This might happen if you have an incredibly common mistake,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 442000
+			},
+			"text": " a universal compiler or EVM bug, or a bug in your specification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 444000
+			},
+			"text": " that's sort of all your contracts implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 448000
+			},
+			"text": " So it's not a perfect system, but still we say, let's bring back the 80s"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 451000
+			},
+			"text": " and maybe we can do something cool with the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 455000
+			},
+			"text": " All right, let's take a look at some of the highest value losses in the Ethereum ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 460000
+			},
+			"text": " over the last few years, the parity multi-sig, the DAO, smart billions, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 465000
+			},
+			"text": " So here we've sort of highlighted in green the exploits which we believe that this kind of methodology"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 467000
+			},
+			"text": " could address very easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 470000
+			},
+			"text": " In red, which you can't tell is red, sort of this bottom line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 474000
+			},
+			"text": " the ones that we can't address because for reasons described in the paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 479000
+			},
+			"text": " we don't handle gas issues, as well as ones that maybe could have been addressed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 482000
+			},
+			"text": " but it's a little bit more complicated than just taking a look at it and saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 484000
+			},
+			"text": " \"Yeah, definitely, this is okay.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 487000
+			},
+			"text": " So what I'm going to say is five and a half out of seven is not bad,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 492000
+			},
+			"text": " and it's a great start towards achieving the sort of rigorous security that our ecosystem demands."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 497000
+			},
+			"text": " All right, so a warning, we got some math coming up, so if you hate math,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 500000
+			},
+			"text": " you might want to tune out for about the next three minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 504000
+			},
+			"text": " So this is sort of the cryptoeconomic analysis I was telling you guys before."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 509000
+			},
+			"text": " So we want to ask sort of the question, when is honest behavior incentivized?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 513000
+			},
+			"text": " So honest behavior is incentivized when the payout of the adversary for following the honest strategy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 519000
+			},
+			"text": " that's this payout of H, over the payout of the adversary for following the malicious strategy is greater than one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 524000
+			},
+			"text": " indicating that the honest strategy is expected to pay the adversary more than the malicious strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 529000
+			},
+			"text": " So to sort of arrive at our analysis, we model bug finding as a Poisson process."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 534000
+			},
+			"text": " So these T variables over here, sort of our random variables modeling the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 538000
+			},
+			"text": " either an honest player or a malicious player is going to find an exploit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 544000
+			},
+			"text": " And this gap variable here is sort of the size of the exploit gap we managed to achieve with our contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 546000
+			},
+			"text": " What does that look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 550000
+			},
+			"text": " Well, we do this analysis that involves defining an ideal functionality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 553000
+			},
+			"text": " which you never actually have to define as a user of the hydro framework,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 558000
+			},
+			"text": " but it sort of represents in our analysis the functionality the developers had in their mind when they created it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 570000
+			},
+			"text": " And if you have this P, sorry, if you have the number of total heads, the space of all exploits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 576000
+			},
+			"text": " and you sort of randomly sample a bug and you can get this P, which is the probability that that will apply to one of the heads,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 581000
+			},
+			"text": " then you can rigorously quantify and even graph your exploit gap, which is nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 585000
+			},
+			"text": " The nice thing to notice here is that this exploit gap is exponential in N,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 588000
+			},
+			"text": " which is the number of heads that you do in your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 590000
+			},
+			"text": " So even if you don't have perfect independence among your heads,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 595000
+			},
+			"text": " even if bugs are somewhat correlated or likely to affect multiple heads in your system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 602000
+			},
+			"text": " you still might create a large enough gap and enough independence to have this sort of governance contract detect the error."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 606000
+			},
+			"text": " So that's a really nice result and it kind of differs from classical N version programming,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 610000
+			},
+			"text": " where you do something like take the average of a bunch of different programs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 615000
+			},
+			"text": " and then one program being off could badly damage your input and sort of lose you all assurance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 620000
+			},
+			"text": " All right, so let's get back to Earth. If you tuned out for the math, you can come back now."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 627000
+			},
+			"text": " So what are we doing? So we're launching an ERC20 bounty, details about that are available at our website, the Hydra.io."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 636000
+			},
+			"text": " We have it funded with $1,000 today, so $1,000 is the reward for sort of breaking the full contract and achieving that full $1.00 A exploit I talked about in the first slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 641000
+			},
+			"text": " If you only manage to break one of our heads and our governance contract manages to catch your issue,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 646000
+			},
+			"text": " then you get paid one tenth of that, which today is $100. Why so low?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 651000
+			},
+			"text": " Well, this is a research prototype and we're still sort of undergoing testing and we expect to rapidly iterate this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 656000
+			},
+			"text": " Our hope is within the next six months or so to ramp up to a $50,000 bounty on the mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 661000
+			},
+			"text": " The contract that we have deployed right now is just an ERC20, that's one-to-one peg to Ether,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 667000
+			},
+			"text": " and it's running two solidity implementations, one Viper implementation and one serpent implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 672000
+			},
+			"text": " Yes, serpent, and if you can manage to trigger the bounty with a serpent compiler bug or break the whole contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 677000
+			},
+			"text": " I'd sort of like to see that happen on chain, so that should be a little bit of fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 682000
+			},
+			"text": " We also believe we've written the most thorough ERC20 test suite that's currently available open source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 685000
+			},
+			"text": " and we encourage you to check that out on our website."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 689000
+			},
+			"text": " And if you can propose additional tests that we didn't cover, that would also be wonderful."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 695000
+			},
+			"text": " And the ERC20 Viper contract that we wrote has actually been merged and integrated into Viper as sort of a standard example"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 697000
+			},
+			"text": " of how to write an ERC20."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 700000
+			},
+			"text": " So the project has already sort of produced some real-world artifacts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 708000
+			},
+			"text": " We also have a Monty Hall game, a generalized Monty Hall, where you can sort of bet on the outcome of a Monty Hall."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 712000
+			},
+			"text": " It's in testing still, we don't know how large of a bounty we're going to launch it with."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 715000
+			},
+			"text": " We wrote this contract because we expected it to be challenging,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 720000
+			},
+			"text": " and there is code and specification for that on the website, and we expect it to be live soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725000
+			},
+			"text": " Alright, I didn't do a demo because I didn't want the risk of things blowing up on me, and we only had so much time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 730000
+			},
+			"text": " So I'm going to sort of take you through a picture demo of what it looks like when you're interacting with these contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 734000
+			},
+			"text": " It's very easy, the address that they're deployed at in the ABI are all on our website,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 738000
+			},
+			"text": " so all you really have to do is plug them into any Ethereum client or any Ethereum tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 742000
+			},
+			"text": " and you should be able to interact with the contract like it was any other ERC20."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 746000
+			},
+			"text": " So here it is in my Ether wallet, you can see there's like a few functions that you can access there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 751000
+			},
+			"text": " some of which are not in the original ERC20 contracts, but were added for the Hydra."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 753000
+			},
+			"text": " One example is this bounty claimed."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 758000
+			},
+			"text": " So the bounty claimed flag you can look at for any token contract or other Hydra contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 763000
+			},
+			"text": " and it will tell you whether someone has already sort of claimed the bounty by causing that divergence that we're talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 765000
+			},
+			"text": " So here it is true."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 769000
+			},
+			"text": " Alright, and this is what sort of a history of transactions look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 773000
+			},
+			"text": " You can see the contract creation there, someone deposited some Ether into it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 777000
+			},
+			"text": " and then they found an exploit, and that top one is actually what a bounty claim transaction looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 780000
+			},
+			"text": " So here it is blown up on Etherscan."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 786000
+			},
+			"text": " I don't know if you can see this, the font is a little small, but what it's done is it's transferred one tenth of the Ether in the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 790000
+			},
+			"text": " to the person who found the bounty, so this is sort of that one tenth of that three ETH we mentioned earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 794000
+			},
+			"text": " and it's transferred the rest sort of back to this trusted multi-sake,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 797000
+			},
+			"text": " which we're currently just using the creator contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 801000
+			},
+			"text": " Alright, and so how do you actually develop a Hydra contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 805000
+			},
+			"text": " We have this sort of Hydra process that we're proposing, which has three steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 809000
+			},
+			"text": " The first step is specification, so this is something you always want to do for your smart contracts anyway,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 816000
+			},
+			"text": " please start doing the skies, which is to write an independent specification of what functionality you're trying to achieve"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 821000
+			},
+			"text": " in enough detail so that a programmer with no communication with you could sort of sit down and implement that correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 826000
+			},
+			"text": " The second step after that is implementation, so what that looks like in a Hydra is you ship off that specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 830000
+			},
+			"text": " to a bunch of different developers, and they sort of implement your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 835000
+			},
+			"text": " It's worth noting that the Hydra is sort of flexible in how you use it, you don't necessarily need multiple developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 841000
+			},
+			"text": " you can also just compile with multiple compilers if all you want is a bounty on a compiler errors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 846000
+			},
+			"text": " or you can deploy it sort of alongside your original contract rather than using it fully in production"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 850000
+			},
+			"text": " to just get a separate decentralized trustless bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 855000
+			},
+			"text": " So while we were developing our ERC20 with this process, this process helped us find integer overflow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 861000
+			},
+			"text": " ERC20 non-conformance errors that is developers incorrectly implementing the specification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 866000
+			},
+			"text": " and the most surprising one is sort of this suicide issue that ended up winning the underhanded solidity contest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 872000
+			},
+			"text": " or placing in the underhanded solidity contest, whereby you sort of suicide send money to a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 878000
+			},
+			"text": " and corrupt its balance without allowing it to run its fallback function and react this send."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 883000
+			},
+			"text": " So this suicide issue occurred in our contract because we were writing a one-to-one ether peg,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 889000
+			},
+			"text": " so the total supply function on three of our contracts would use a UN256 to keep track of how much ether had been deposited"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 895000
+			},
+			"text": " and just return that, but on our last contract, the total supply was actually just returning this stop balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 900000
+			},
+			"text": " So if you suicide sent to that one head that was returning this stop balance and then ran total supply,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 906000
+			},
+			"text": " you'd be able to claim the bounty, and you could do that either as a contract transaction or as two separate transactions on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 910000
+			},
+			"text": " And I think that's really cool because we actually were not consciously aware of this anti-pattern"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 915000
+			},
+			"text": " while we were developing the contracts, and it's sort of something we realized and tested after the fact."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 921000
+			},
+			"text": " The other nice thing is all of the issues we found, which we found about, I would say, four or five during the process of our development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 927000
+			},
+			"text": " were all claimable bounties, and none of them were full exploits against all four of our contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 933000
+			},
+			"text": " So that sort of, at least informally empirically validates the approach a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 937000
+			},
+			"text": " You might be thinking, \"Well, this is horribly expensive. I'm going to have to be paying a ton of gas to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 940000
+			},
+			"text": " I don't want to pay five times the gas.\" I mean, it's certainly true."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 944000
+			},
+			"text": " You're definitely paying more gas with a Hydra contract than with a regular contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 948000
+			},
+			"text": " The nice thing is that it sort of scales a little bit better than you'd expect."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 954000
+			},
+			"text": " So these dotted lines are sort of lines with a slope of one, which is how you'd expect a Hydra to scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 959000
+			},
+			"text": " You add another head. You sort of add one to the constant factor of your costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 966000
+			},
+			"text": " The nice thing is that we actually scale below that slope of one because of some constant overhead that's associated with EVM transaction costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 971000
+			},
+			"text": " And we can scale pretty significantly below it depending on what type of contract you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 976000
+			},
+			"text": " So the more you sort of alter storage, the closer to this slope of one you get,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 982000
+			},
+			"text": " because storage alteration is the most expensive operation. Our contracts are performing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 988000
+			},
+			"text": " All right. Another thing we would like to announce soon is integration with HackTis Contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 993000
+			},
+			"text": " HackTis Contract is a platform that we developed a few months ago in the bootcamp, the IC3 bootcamp,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 998000
+			},
+			"text": " which has a bunch of examples of intentionally vulnerable and insecure solidity contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1003000
+			},
+			"text": " So you can go there, you put in your account for the test net. We're using Rinkaby right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1008000
+			},
+			"text": " It'll deploy you vulnerable contracts, and then it's your job to sort of hack them and have the site tell you you did it right."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1013000
+			},
+			"text": " So ideally, we'd like to sort of make this a hub for people trying to hack contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1017000
+			},
+			"text": " and we'd like to have sort of these easy challenges, which are obviously vulnerable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1022000
+			},
+			"text": " as well as these harder challenges that we think that are secure and cannot be broken"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1029000
+			},
+			"text": " and do pay out real ETH in the case you do break them. So that's a future direction we're working as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1033000
+			},
+			"text": " All right. What about formal verification? I've been hearing a lot about this formal verification thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1041000
+			},
+			"text": " Doesn't it make this whole Hydra obsolete? Not really. So it is my belief that programmers will always sort of develop"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1046000
+			},
+			"text": " past what the formal verification allows them to prove, and many lower assurance contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1050000
+			},
+			"text": " won't want to put in the cost to do full formal verification, which can be expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1056000
+			},
+			"text": " So this is sort of a lower bar approach. You only need to develop your contract three, four, five times, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1061000
+			},
+			"text": " Most of these contracts are like two, three hundred lines, so this is not really a substantial expense that we're talking about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1067000
+			},
+			"text": " especially when you consider that they're holding in cases hundreds of millions or even billions of dollars in user funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1070000
+			},
+			"text": " So we see this as sort of a stopgap approach to formal verification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1075000
+			},
+			"text": " with the nice property that it encourages you and sort of requires you to write a detailed specification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1079000
+			},
+			"text": " which you can then use to formally verify your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1083000
+			},
+			"text": " All right. The last thing that we handle, front running, so we have this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1089000
+			},
+			"text": " You found a nice juicy bounty. It's worth five million dollars. You're excited to claim it and become the next e-milliener."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1094000
+			},
+			"text": " So you submit it to the chain, and then someone else sees it, or some script sees it, or some minor sees it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1099000
+			},
+			"text": " and sort of rebroadcast the same transaction with a higher gas cost getting mined before yours."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1104000
+			},
+			"text": " Suddenly they've got the five million, and you've got nothing. So this sounds pretty bad, and it actually gets worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:27,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1107000
+			},
+			"text": " If you allow this issue to persist, it breaks our whole economic game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1107000,
+				"to": 1111000
+			},
+			"text": " because what an adversary, a powerful adversary can do that has a good network connection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1116000
+			},
+			"text": " is sort of find an exploit and then sit on it until they see someone else has also found an exploit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1122000
+			},
+			"text": " and then release it. So they can sort of keep trying to break the full contract and withhold their exploit from the bounty process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1125000
+			},
+			"text": " which is obviously something that we'd like to prevent."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1129000
+			},
+			"text": " So we introduced this new scheme. We have a blog post on it. It's called submarine commitments."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1134000
+			},
+			"text": " It's used in the hydro project, not in the current alpha prototype, which is only intended for small amounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1144000
+			},
+			"text": " but we do have code for it. And we're sort of waiting on EIP86 to be released, which is what we need to deploy this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1151000
+			},
+			"text": " And after that we will have submarine commitment enabled bounties. And the nice thing is this can even be used outside of bounties."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1156000
+			},
+			"text": " All right. So the research contributions here, we have the first rigorous cryptoeconomic reasoning"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1160000
+			},
+			"text": " on what used to be ad hoc security in bug bounties, including how to price them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1163000
+			},
+			"text": " We have a model for how to price these things in our paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1167000
+			},
+			"text": " We have an end-head approach for achieving this exploit gap concept that we've introduced."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:33,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1173000
+			},
+			"text": " We've introduced software and bounty code development, so put the bounty in the software development process as a first-class citizen."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,000",
+				"to": "00:19:38,000"
+			},
+			"offsets": {
+				"from": 1173000,
+				"to": 1178000
+			},
+			"text": " We've sort of revived this old and sort of stale and dead end-head approach for correctness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1178000,
+				"to": 1183000
+			},
+			"text": " and we've developed what we believe will become the most secure contract eventually on the Ethereum mainnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1188000
+			},
+			"text": " because it's the only one that really has these rigorous economic guarantees of security."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1193000
+			},
+			"text": " And a really nice thing I'd like to point out here is that this kind of bounty, this kind of decentralized process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1197000
+			},
+			"text": " is not possible outside of smart contracts. So this is something new enabled by these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1200000
+			},
+			"text": " All right. What do we want from you guys? I have 20 seconds left."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1205000
+			},
+			"text": " Hack the contract, join the riot, claim some bounties. Its alpha should be easy money."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1209000
+			},
+			"text": " If you want to bespoke bounty for your token or whatever, feel free to get in touch."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1212000
+			},
+			"text": " Feedback on paper code is always appreciated."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1216000
+			},
+			"text": " And eventually, if the community or some projects in the community that are doing really well"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1220000
+			},
+			"text": " and use the ERC20 code can contribute to these bounties, that would be incredible."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1228000
+			},
+			"text": " So, yeah, please give special thanks to the NSF for funding this project, both through grants and through a graduate research fellowship for me."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:33,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1233000
+			},
+			"text": " Thanks to our reviewers, Rahul and Paul for reviewing this paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,000",
+				"to": "00:20:41,000"
+			},
+			"offsets": {
+				"from": 1233000,
+				"to": 1241000
+			},
+			"text": " And thank you to our IC3 industry sponsors at Chain Microsoft Intel Fidelity Digital Asset IBM and Shaping Morgan for sponsoring this work."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1241000,
+				"to": 1243000
+			},
+			"text": " And thank you all of you for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:48,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1248000
+			},
+			"text": " Here's the official sponsorship and disclaimer slide. And that's it. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1248000,
+				"to": 1250000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1263000
+			},
+			"text": " [music]"
+		}
+	]
+}

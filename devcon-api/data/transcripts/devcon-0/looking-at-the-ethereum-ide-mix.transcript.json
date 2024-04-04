@@ -1,0 +1,6368 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,800"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12800
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,800",
+				"to": "00:00:19,040"
+			},
+			"offsets": {
+				"from": 12800,
+				"to": 19040
+			},
+			"text": " So this talk is about the ID,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,040",
+				"to": "00:00:26,520"
+			},
+			"offsets": {
+				"from": 19040,
+				"to": 26520
+			},
+			"text": " the integrated development environment or the tool that you use to develop things with the Ethereum framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,520",
+				"to": "00:00:32,160"
+			},
+			"offsets": {
+				"from": 26520,
+				"to": 32160
+			},
+			"text": " I'm going to say things what I actually mean is that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,160",
+				"to": "00:00:37,480"
+			},
+			"offsets": {
+				"from": 32160,
+				"to": 37480
+			},
+			"text": " The talk has been given a name by, sorry, the ID has been given a name by Jan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,480",
+				"to": "00:00:40,960"
+			},
+			"offsets": {
+				"from": 37480,
+				"to": 40960
+			},
+			"text": " who has started development on it not long ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,960",
+				"to": "00:00:44,840"
+			},
+			"offsets": {
+				"from": 40960,
+				"to": 44840
+			},
+			"text": " And I got it right, yeah, mix."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,840",
+				"to": "00:00:47,920"
+			},
+			"offsets": {
+				"from": 44840,
+				"to": 47920
+			},
+			"text": " That's the code name for the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,080",
+				"to": "00:01:04,320"
+			},
+			"offsets": {
+				"from": 53080,
+				"to": 64320
+			},
+			"text": " So like all things, it is an attempt to solve a problem or at least provide some degree of a solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,320",
+				"to": "00:01:08,560"
+			},
+			"offsets": {
+				"from": 64320,
+				"to": 68560
+			},
+			"text": " So the problem in this case is that writing software is hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,560",
+				"to": "00:01:17,120"
+			},
+			"offsets": {
+				"from": 68560,
+				"to": 77120
+			},
+			"text": " We have ways of making it easier, Sven mentioned some of those ways in his talk as they've crissed off."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,120",
+				"to": "00:01:19,920"
+			},
+			"offsets": {
+				"from": 77120,
+				"to": 79920
+			},
+			"text": " And we have services that help us as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,920",
+				"to": "00:01:25,240"
+			},
+			"offsets": {
+				"from": 79920,
+				"to": 85240
+			},
+			"text": " And we also have various bits of technology, there are some examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,240",
+				"to": "00:01:29,600"
+			},
+			"offsets": {
+				"from": 85240,
+				"to": 89600
+			},
+			"text": " But these things are often kind of disparate."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,600",
+				"to": "00:01:34,840"
+			},
+			"offsets": {
+				"from": 89600,
+				"to": 94840
+			},
+			"text": " For instance, when I'm in my editor and I'm working on a feature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,840",
+				"to": "00:01:41,120"
+			},
+			"offsets": {
+				"from": 94840,
+				"to": 101120
+			},
+			"text": " that does not directly integrate with my feature manager, which is, at least for me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,120",
+				"to": "00:01:43,920"
+			},
+			"offsets": {
+				"from": 101120,
+				"to": 103920
+			},
+			"text": " GitHub and specifically the GitHub issue system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,920",
+				"to": "00:01:49,400"
+			},
+			"offsets": {
+				"from": 103920,
+				"to": 109400
+			},
+			"text": " So the idea of ID stands for integrated."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,400",
+				"to": "00:01:53,840"
+			},
+			"offsets": {
+				"from": 109400,
+				"to": 113840
+			},
+			"text": " And the idea of integrated, of course, to bring all these things into one place."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,840",
+				"to": "00:01:58,120"
+			},
+			"offsets": {
+				"from": 113840,
+				"to": 118120
+			},
+			"text": " Now, in addition to just general software development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,120",
+				"to": "00:02:02,040"
+			},
+			"offsets": {
+				"from": 118120,
+				"to": 122040
+			},
+			"text": " it turns out that actually writing decentralized apps is even harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,040",
+				"to": "00:02:09,040"
+			},
+			"offsets": {
+				"from": 122040,
+				"to": 129040
+			},
+			"text": " So firstly, it's harder conceptually because decentralized applications are just not things"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,040",
+				"to": "00:02:10,600"
+			},
+			"offsets": {
+				"from": 129040,
+				"to": 130600
+			},
+			"text": " that we're used to developing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,600",
+				"to": "00:02:18,240"
+			},
+			"offsets": {
+				"from": 130600,
+				"to": 138240
+			},
+			"text": " Then it takes even a seasoned programmer a long time to really understand how Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,240",
+				"to": "00:02:21,520"
+			},
+			"offsets": {
+				"from": 138240,
+				"to": 141520
+			},
+			"text": " works, why it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,520",
+				"to": "00:02:27,480"
+			},
+			"offsets": {
+				"from": 141520,
+				"to": 147480
+			},
+			"text": " Often you find people asking when you talk about Bitcoin, blockchain technology in general,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,480",
+				"to": "00:02:28,680"
+			},
+			"offsets": {
+				"from": 147480,
+				"to": 148680
+			},
+			"text": " \"Well, hold on, what about the security?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,680",
+				"to": "00:02:31,960"
+			},
+			"offsets": {
+				"from": 148680,
+				"to": 151960
+			},
+			"text": " What firewalls do you need to have in place for Bitcoin to work?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,960",
+				"to": "00:02:35,120"
+			},
+			"offsets": {
+				"from": 151960,
+				"to": 155120
+			},
+			"text": " It's like, \"Well, this isn't the right question."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,120",
+				"to": "00:02:36,600"
+			},
+			"offsets": {
+				"from": 155120,
+				"to": 156600
+			},
+			"text": " You're in the wrong paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,600",
+				"to": "00:02:38,400"
+			},
+			"offsets": {
+				"from": 156600,
+				"to": 158400
+			},
+			"text": " You've got to shift your paradigm.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,400",
+				"to": "00:02:41,640"
+			},
+			"offsets": {
+				"from": 158400,
+				"to": 161640
+			},
+			"text": " And it's the same with decentralized applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,640",
+				"to": "00:02:44,640"
+			},
+			"offsets": {
+				"from": 161640,
+				"to": 164640
+			},
+			"text": " And for that, I think I mentioned some of this stuff in Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,640",
+				"to": "00:02:48,200"
+			},
+			"offsets": {
+				"from": 164640,
+				"to": 168200
+			},
+			"text": " And there's actually another talk I did, which I'll probably give again at some point."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,200",
+				"to": "00:02:57,120"
+			},
+			"offsets": {
+				"from": 168200,
+				"to": 177120
+			},
+			"text": " About having different amounts of information available to different people and different"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,120",
+				"to": "00:02:59,680"
+			},
+			"offsets": {
+				"from": 177120,
+				"to": 179680
+			},
+			"text": " decentralized applications and how they all collaborate."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,680",
+				"to": "00:03:02,040"
+			},
+			"offsets": {
+				"from": 179680,
+				"to": 182040
+			},
+			"text": " But anyway, it is a different paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,040",
+				"to": "00:03:04,440"
+			},
+			"offsets": {
+				"from": 182040,
+				"to": 184440
+			},
+			"text": " So we have a diverse debugging environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,440",
+				"to": "00:03:10,240"
+			},
+			"offsets": {
+				"from": 184440,
+				"to": 190240
+			},
+			"text": " We're not dealing with a single language or a single machine or a single set of state."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,240",
+				"to": "00:03:11,920"
+			},
+			"offsets": {
+				"from": 190240,
+				"to": 191920
+			},
+			"text": " We have all of this stuff going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,920",
+				"to": "00:03:13,960"
+			},
+			"offsets": {
+				"from": 191920,
+				"to": 193960
+			},
+			"text": " It's very hard to collect it all together."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,960",
+				"to": "00:03:21,560"
+			},
+			"offsets": {
+				"from": 193960,
+				"to": 201560
+			},
+			"text": " As anyone who has used LF0 to develop, Dapps will know and hate."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,560",
+				"to": "00:03:30,280"
+			},
+			"offsets": {
+				"from": 201560,
+				"to": 210280
+			},
+			"text": " Yes, the last point is what's happening on the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,280",
+				"to": "00:03:34,760"
+			},
+			"offsets": {
+				"from": 210280,
+				"to": 214760
+			},
+			"text": " It's really easy to get the state of a system when you've got just a traditional system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,760",
+				"to": "00:03:38,240"
+			},
+			"offsets": {
+				"from": 214760,
+				"to": 218240
+			},
+			"text": " a system where all the state is basically memory and hard disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,240",
+				"to": "00:03:42,880"
+			},
+			"offsets": {
+				"from": 218240,
+				"to": 222880
+			},
+			"text": " And when you have that, you can use a debugger, you can ask the debugger, \"Hey, what's the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,880",
+				"to": "00:03:43,880"
+			},
+			"offsets": {
+				"from": 222880,
+				"to": 223880
+			},
+			"text": " value of this variable?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,880",
+				"to": "00:03:47,200"
+			},
+			"offsets": {
+				"from": 223880,
+				"to": 227200
+			},
+			"text": " Well, it's a bit different when you're dealing with decentralized applications because it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,200",
+				"to": "00:03:48,200"
+			},
+			"offsets": {
+				"from": 227200,
+				"to": 228200
+			},
+			"text": " might not be around."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,200",
+				"to": "00:03:51,080"
+			},
+			"offsets": {
+				"from": 228200,
+				"to": 231080
+			},
+			"text": " It's hard to set things up, exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,080",
+				"to": "00:03:55,360"
+			},
+			"offsets": {
+				"from": 231080,
+				"to": 235360
+			},
+			"text": " So with decentralized applications, at least the decentralized applications that Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,360",
+				"to": "00:03:58,680"
+			},
+			"offsets": {
+				"from": 235360,
+				"to": 238680
+			},
+			"text": " 1.0 will be thinking about and supporting."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,680",
+				"to": "00:04:07,080"
+			},
+			"offsets": {
+				"from": 238680,
+				"to": 247080
+			},
+			"text": " And this notion of Web3 and the collection of these three technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,080",
+				"to": "00:04:16,040"
+			},
+			"offsets": {
+				"from": 247080,
+				"to": 256040
+			},
+			"text": " So we have the Ethereum blockchain, so they need to launch a transaction, but debug the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,040",
+				"to": "00:04:19,440"
+			},
+			"offsets": {
+				"from": 256040,
+				"to": 259440
+			},
+			"text": " transaction, but do so with the blockchain in a particular state."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,440",
+				"to": "00:04:22,720"
+			},
+			"offsets": {
+				"from": 259440,
+				"to": 262720
+			},
+			"text": " It's no good as the blockchain can be in any state because that could easily affect what"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,720",
+				"to": "00:04:26,640"
+			},
+			"offsets": {
+				"from": 262720,
+				"to": 266640
+			},
+			"text": " your assertions are with the debugging environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,640",
+				"to": "00:04:32,440"
+			},
+			"offsets": {
+				"from": 266640,
+				"to": 272440
+			},
+			"text": " Similarly, with the two other protocols, whisper and swarm, it's important that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,440",
+				"to": "00:04:41,080"
+			},
+			"offsets": {
+				"from": 272440,
+				"to": 281080
+			},
+			"text": " don't launch or debug or test your decentralized application on just any old instantiation of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,080",
+				"to": "00:04:45,400"
+			},
+			"offsets": {
+				"from": 281080,
+				"to": 285400
+			},
+			"text": " whisper or on the present live net whisper or even the test net whisper because there"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,400",
+				"to": "00:04:50,240"
+			},
+			"offsets": {
+				"from": 285400,
+				"to": 290240
+			},
+			"text": " may be messages there that you don't expect and that alter your base assertions and assumptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,240",
+				"to": "00:04:52,640"
+			},
+			"offsets": {
+				"from": 290240,
+				"to": 292640
+			},
+			"text": " with the debugging environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,640",
+				"to": "00:04:56,600"
+			},
+			"offsets": {
+				"from": 292640,
+				"to": 296600
+			},
+			"text": " Basically, as we move to the notion of unit tests, we need to isolate things and we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,600",
+				"to": "00:05:02,760"
+			},
+			"offsets": {
+				"from": 296600,
+				"to": 302760
+			},
+			"text": " to have harnesses for these things in a very easy way of operating them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,760",
+				"to": "00:05:07,160"
+			},
+			"offsets": {
+				"from": 302760,
+				"to": 307160
+			},
+			"text": " Same with swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,160",
+				"to": "00:05:11,160"
+			},
+			"offsets": {
+				"from": 307160,
+				"to": 311160
+			},
+			"text": " So we try and solve this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,160",
+				"to": "00:05:21,840"
+			},
+			"offsets": {
+				"from": 311160,
+				"to": 321840
+			},
+			"text": " So here's a basic look at what the first attempt, first effort at the IDE could look"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,840",
+				"to": "00:05:22,840"
+			},
+			"offsets": {
+				"from": 321840,
+				"to": 322840
+			},
+			"text": " like."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,840",
+				"to": "00:05:25,960"
+			},
+			"offsets": {
+				"from": 322840,
+				"to": 325960
+			},
+			"text": " You've got your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,960",
+				"to": "00:05:28,080"
+			},
+			"offsets": {
+				"from": 325960,
+				"to": 328080
+			},
+			"text": " This might be a solidity contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,080",
+				"to": "00:05:29,680"
+			},
+			"offsets": {
+				"from": 328080,
+				"to": 329680
+			},
+			"text": " That's what it is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,680",
+				"to": "00:05:35,720"
+			},
+			"offsets": {
+				"from": 329680,
+				"to": 335720
+			},
+			"text": " And then you've got what it looked like, ultimately, so maybe you're hosting some HTML"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,720",
+				"to": "00:05:42,240"
+			},
+			"offsets": {
+				"from": 335720,
+				"to": 342240
+			},
+			"text": " file on your machine and it's just browsing that file and maybe this file in some way"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,240",
+				"to": "00:05:43,400"
+			},
+			"offsets": {
+				"from": 342240,
+				"to": 343400
+			},
+			"text": " operates with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,400",
+				"to": "00:05:47,920"
+			},
+			"offsets": {
+				"from": 343400,
+				"to": 347920
+			},
+			"text": " But it's very hard to really understand how this is working."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,920",
+				"to": "00:05:50,880"
+			},
+			"offsets": {
+				"from": 347920,
+				"to": 350880
+			},
+			"text": " You'd have to do a lot of the grunt work manually."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,880",
+				"to": "00:05:57,800"
+			},
+			"offsets": {
+				"from": 350880,
+				"to": 357800
+			},
+			"text": " You'd have to make sure that this points at wherever this goes into the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,800",
+				"to": "00:06:01,240"
+			},
+			"offsets": {
+				"from": 357800,
+				"to": 361240
+			},
+			"text": " You would have to submit that to the blockchain, of course, and the debugging would happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,240",
+				"to": "00:06:04,560"
+			},
+			"offsets": {
+				"from": 361240,
+				"to": 364560
+			},
+			"text": " entirely separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,560",
+				"to": "00:06:10,880"
+			},
+			"offsets": {
+				"from": 364560,
+				"to": 370880
+			},
+			"text": " Now as I go on and show more and more of what we plan, this stuff isn't necessarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,880",
+				"to": "00:06:12,040"
+			},
+			"offsets": {
+				"from": 370880,
+				"to": 372040
+			},
+			"text": " a theory in 1.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,040",
+				"to": "00:06:14,880"
+			},
+			"offsets": {
+				"from": 372040,
+				"to": 374880
+			},
+			"text": " It will take some time to develop out."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,880",
+				"to": "00:06:17,080"
+			},
+			"offsets": {
+				"from": 374880,
+				"to": 377080
+			},
+			"text": " Of course, we'll be doing it in milestone."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,080",
+				"to": "00:06:20,280"
+			},
+			"offsets": {
+				"from": 377080,
+				"to": 380280
+			},
+			"text": " There are some features that are higher-priced than others."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,280",
+				"to": "00:06:23,600"
+			},
+			"offsets": {
+				"from": 380280,
+				"to": 383600
+			},
+			"text": " In the same way that all of solidity is an 1.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,600",
+				"to": "00:06:27,080"
+			},
+			"offsets": {
+				"from": 383600,
+				"to": 387080
+			},
+			"text": " We're not going to manage it by March."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,080",
+				"to": "00:06:32,800"
+			},
+			"offsets": {
+				"from": 387080,
+				"to": 392800
+			},
+			"text": " Certainly the invariance, the static checking is going to run into the 2.0 schedule."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,800",
+				"to": "00:06:37,680"
+			},
+			"offsets": {
+				"from": 392800,
+				"to": 397680
+			},
+			"text": " But it's planned."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,680",
+				"to": "00:06:43,160"
+			},
+			"offsets": {
+				"from": 397680,
+				"to": 403160
+			},
+			"text": " So first thing to do is to say, right, a DAP is something that is not just a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,160",
+				"to": "00:06:44,440"
+			},
+			"offsets": {
+				"from": 403160,
+				"to": 404440
+			},
+			"text": " It's a bunch of other stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,440",
+				"to": "00:06:48,920"
+			},
+			"offsets": {
+				"from": 404440,
+				"to": 408920
+			},
+			"text": " It's the JavaScript, the front-end stuff, the stuff that holds it together, holds the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,920",
+				"to": "00:06:50,600"
+			},
+			"offsets": {
+				"from": 408920,
+				"to": 410600
+			},
+			"text": " user experience together."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,600",
+				"to": "00:06:52,680"
+			},
+			"offsets": {
+				"from": 410600,
+				"to": 412680
+			},
+			"text": " It's a bunch of HTML, bunch of CSS."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,680",
+				"to": "00:06:59,600"
+			},
+			"offsets": {
+				"from": 412680,
+				"to": 419600
+			},
+			"text": " Ultimately, of course, maybe if we move on to a QML, optionally QML front-end, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,600",
+				"to": "00:07:01,600"
+			},
+			"offsets": {
+				"from": 419600,
+				"to": 421600
+			},
+			"text": " you can swap some of this out for QML."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,600",
+				"to": "00:07:05,360"
+			},
+			"offsets": {
+				"from": 421600,
+				"to": 425360
+			},
+			"text": " At the moment, we're just dealing with web technologies, and that's a mostly strategic"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,360",
+				"to": "00:07:07,240"
+			},
+			"offsets": {
+				"from": 425360,
+				"to": 427240
+			},
+			"text": " decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,240",
+				"to": "00:07:09,160"
+			},
+			"offsets": {
+				"from": 427240,
+				"to": 429160
+			},
+			"text": " So we want some sort of project management."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,160",
+				"to": "00:07:16,160"
+			},
+			"offsets": {
+				"from": 429160,
+				"to": 436160
+			},
+			"text": " We want some way of holding together the contracts for a particular decentralized application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,160",
+				"to": "00:07:20,400"
+			},
+			"offsets": {
+				"from": 436160,
+				"to": 440400
+			},
+			"text": " and then the other sort of more front-end."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,400",
+				"to": "00:07:22,400"
+			},
+			"offsets": {
+				"from": 440400,
+				"to": 442400
+			},
+			"text": " So in this, it's a bit blurry."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,400",
+				"to": "00:07:26,240"
+			},
+			"offsets": {
+				"from": 442400,
+				"to": 446240
+			},
+			"text": " Can we alter the focus slightly?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,240",
+				"to": "00:07:27,720"
+			},
+			"offsets": {
+				"from": 446240,
+				"to": 447720
+			},
+			"text": " Maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,720",
+				"to": "00:07:31,520"
+			},
+			"offsets": {
+				"from": 447720,
+				"to": 451520
+			},
+			"text": " No, even bla-- yeah, that's more like it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,520",
+				"to": "00:07:33,720"
+			},
+			"offsets": {
+				"from": 451520,
+				"to": 453720
+			},
+			"text": " So in this case, we've got a couple of contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,720",
+				"to": "00:07:40,880"
+			},
+			"offsets": {
+				"from": 453720,
+				"to": 460880
+			},
+			"text": " We've got a JavaScript file, and then we've got some styles and whatnot."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,880",
+				"to": "00:07:50,040"
+			},
+			"offsets": {
+				"from": 460880,
+				"to": 470040
+			},
+			"text": " Really, the way that we want to take the ID is to remove the overburden of file management."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,040",
+				"to": "00:07:53,640"
+			},
+			"offsets": {
+				"from": 470040,
+				"to": 473640
+			},
+			"text": " So file management was something that was sort of invented in the, I don't know, '60s"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,640",
+				"to": "00:08:00,640"
+			},
+			"offsets": {
+				"from": 473640,
+				"to": 480640
+			},
+			"text": " or '70s, I guess, whereby we group lumps of data into files and store them generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,640",
+				"to": "00:08:02,920"
+			},
+			"offsets": {
+				"from": 480640,
+				"to": 482920
+			},
+			"text": " hierarchically on a filing system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,920",
+				"to": "00:08:08,640"
+			},
+			"offsets": {
+				"from": 482920,
+				"to": 488640
+			},
+			"text": " Now that's fine when you need something that's low level, but when we're dealing with high-level"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,640",
+				"to": "00:08:14,800"
+			},
+			"offsets": {
+				"from": 488640,
+				"to": 494800
+			},
+			"text": " concepts like projects and contracts, these really don't need to be falling back into"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,800",
+				"to": "00:08:19,480"
+			},
+			"offsets": {
+				"from": 494800,
+				"to": 499480
+			},
+			"text": " low-level concepts like files and groups of bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,480",
+				"to": "00:08:26,920"
+			},
+			"offsets": {
+				"from": 499480,
+				"to": 506920
+			},
+			"text": " So although it's very hard to get around this for the web technology stuff, so it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,920",
+				"to": "00:08:31,600"
+			},
+			"offsets": {
+				"from": 506920,
+				"to": 511600
+			},
+			"text": " very hard to sort of reference something like a JPEG file without actually having a file"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,600",
+				"to": "00:08:34,920"
+			},
+			"offsets": {
+				"from": 511600,
+				"to": 514920
+			},
+			"text": " for the contract, well, we have a name for a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,920",
+				"to": "00:08:38,320"
+			},
+			"offsets": {
+				"from": 514920,
+				"to": 518320
+			},
+			"text": " And so we can avoid actually explicitly dealing with files."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,320",
+				"to": "00:08:41,160"
+			},
+			"offsets": {
+				"from": 518320,
+				"to": 521160
+			},
+			"text": " We can actually just have contracts by the name."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,160",
+				"to": "00:08:45,720"
+			},
+			"offsets": {
+				"from": 521160,
+				"to": 525720
+			},
+			"text": " If you rename your contract, then sort of hidden behind the scenes, maybe a file gets"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,720",
+				"to": "00:08:50,040"
+			},
+			"offsets": {
+				"from": 525720,
+				"to": 530040
+			},
+			"text": " renamed somewhere, but you never need to know."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,040",
+				"to": "00:08:55,040"
+			},
+			"offsets": {
+				"from": 530040,
+				"to": 535040
+			},
+			"text": " So if you add a bit more, a bit more integration in, you can see we've got some bit of extra"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,040",
+				"to": "00:08:56,040"
+			},
+			"offsets": {
+				"from": 535040,
+				"to": 536040
+			},
+			"text": " stuff now."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,040",
+				"to": "00:08:57,800"
+			},
+			"offsets": {
+				"from": 536040,
+				"to": 537800
+			},
+			"text": " We've got this idea of team activity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,800",
+				"to": "00:09:03,600"
+			},
+			"offsets": {
+				"from": 537800,
+				"to": 543600
+			},
+			"text": " One of the key things of developing software is collaboration with other members of a team"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,600",
+				"to": "00:09:06,360"
+			},
+			"offsets": {
+				"from": 543600,
+				"to": 546360
+			},
+			"text": " that helps you develop software."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,360",
+				"to": "00:09:08,320"
+			},
+			"offsets": {
+				"from": 546360,
+				"to": 548320
+			},
+			"text": " We have this notion of what you're currently working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,320",
+				"to": "00:09:13,840"
+			},
+			"offsets": {
+				"from": 548320,
+				"to": 553840
+			},
+			"text": " A developer, well, maybe there's some awesome superstar developers that can do that work"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,840",
+				"to": "00:09:17,840"
+			},
+			"offsets": {
+				"from": 553840,
+				"to": 557840
+			},
+			"text": " on two or three or four features literally at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,840",
+				"to": "00:09:24,640"
+			},
+			"offsets": {
+				"from": 557840,
+				"to": 564640
+			},
+			"text": " But in general, we tend to address one issue or one feature at once."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,640",
+				"to": "00:09:27,160"
+			},
+			"offsets": {
+				"from": 564640,
+				"to": 567160
+			},
+			"text": " So we have this idea of what you're working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,160",
+				"to": "00:09:33,360"
+			},
+			"offsets": {
+				"from": 567160,
+				"to": 573360
+			},
+			"text": " We also have things like documentation, integrated and context sensitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,360",
+				"to": "00:09:40,360"
+			},
+			"offsets": {
+				"from": 573360,
+				"to": 580360
+			},
+			"text": " If you notice, we've also gotten rid of the, oh, oh, that's not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,360",
+				"to": "00:09:45,400"
+			},
+			"offsets": {
+				"from": 580360,
+				"to": 585400
+			},
+			"text": " What happened there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,400",
+				"to": "00:09:52,760"
+			},
+			"offsets": {
+				"from": 585400,
+				"to": 592760
+			},
+			"text": " We have this notion of, yes, there we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,760",
+				"to": "00:09:59,040"
+			},
+			"offsets": {
+				"from": 592760,
+				"to": 599040
+			},
+			"text": " We have this notion of what file we've certainly removed the local host stuff because the ID"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,040",
+				"to": "00:10:03,040"
+			},
+			"offsets": {
+				"from": 599040,
+				"to": 603040
+			},
+			"text": " is going to host the file, the project, to hold the DAP, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,040",
+				"to": "00:10:08,440"
+			},
+			"offsets": {
+				"from": 603040,
+				"to": 608440
+			},
+			"text": " We won't have to care about where it's hosting it because that's taken care of by the ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,440",
+				"to": "00:10:11,280"
+			},
+			"offsets": {
+				"from": 608440,
+				"to": 611280
+			},
+			"text": " Kind of in the same way that when you're in, I don't know, Visual Studio, whenever you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,280",
+				"to": "00:10:16,400"
+			},
+			"offsets": {
+				"from": 611280,
+				"to": 616400
+			},
+			"text": " hit a five, you don't actually care about where in the file system the executable happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,400",
+				"to": "00:10:17,760"
+			},
+			"offsets": {
+				"from": 616400,
+				"to": 617760
+			},
+			"text": " to be that's running."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,760",
+				"to": "00:10:24,920"
+			},
+			"offsets": {
+				"from": 617760,
+				"to": 624920
+			},
+			"text": " The fact of the matter is that it is running and that's all you care about as a developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,920",
+				"to": "00:10:30,440"
+			},
+			"offsets": {
+				"from": 624920,
+				"to": 630440
+			},
+			"text": " Add on a little more and we can start to see things like the tests that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,440",
+				"to": "00:10:34,880"
+			},
+			"offsets": {
+				"from": 630440,
+				"to": 634880
+			},
+			"text": " Now this all happens as you'll notice there's no buttons, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,880",
+				"to": "00:10:37,760"
+			},
+			"offsets": {
+				"from": 634880,
+				"to": 637760
+			},
+			"text": " This all happens and it's sensitive to as you type."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,760",
+				"to": "00:10:43,960"
+			},
+			"offsets": {
+				"from": 637760,
+				"to": 643960
+			},
+			"text": " So as you type, as you update the code, as you add more tests, as you remove tests, as"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,960",
+				"to": "00:10:50,920"
+			},
+			"offsets": {
+				"from": 643960,
+				"to": 650920
+			},
+			"text": " you change the code there, these book date automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,920",
+				"to": "00:10:53,120"
+			},
+			"offsets": {
+				"from": 650920,
+				"to": 653120
+			},
+			"text": " We have context sensitive information."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,120",
+				"to": "00:10:56,720"
+			},
+			"offsets": {
+				"from": 653120,
+				"to": 656720
+			},
+			"text": " We're actually built into the textual representation of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,720",
+				"to": "00:11:02,240"
+			},
+			"offsets": {
+				"from": 656720,
+				"to": 662240
+			},
+			"text": " In this case, it's telling us that there's something wrong here that the number found"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,240",
+				"to": "00:11:04,120"
+			},
+			"offsets": {
+				"from": 662240,
+				"to": 664120
+			},
+			"text": " is not a number."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,120",
+				"to": "00:11:09,040"
+			},
+			"offsets": {
+				"from": 664120,
+				"to": 669040
+			},
+			"text": " It used to be an integer, but it became not a number in line nine."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,040",
+				"to": "00:11:14,440"
+			},
+			"offsets": {
+				"from": 669040,
+				"to": 674440
+			},
+			"text": " So it's actually tracking the state of variables as the debugging happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,440",
+				"to": "00:11:19,320"
+			},
+			"offsets": {
+				"from": 674440,
+				"to": 679320
+			},
+			"text": " So the idea is that as it's debugging, as you are not allowed to edit the thing, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,320",
+				"to": "00:11:23,960"
+			},
+			"offsets": {
+				"from": 679320,
+				"to": 683960
+			},
+			"text": " background turns yellow and we get context sensitive information."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,960",
+				"to": "00:11:26,680"
+			},
+			"offsets": {
+				"from": 683960,
+				"to": 686680
+			},
+			"text": " We get annotation directly in the editor."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,680",
+				"to": "00:11:32,240"
+			},
+			"offsets": {
+				"from": 686680,
+				"to": 692240
+			},
+			"text": " Now we can do this basically because we have full compiler integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,240",
+				"to": "00:11:37,320"
+			},
+			"offsets": {
+				"from": 692240,
+				"to": 697320
+			},
+			"text": " One of the key points of the Solidity project was to separate the compiler executable, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,320",
+				"to": "00:11:43,920"
+			},
+			"offsets": {
+				"from": 697320,
+				"to": 703920
+			},
+			"text": " thing that turns some source code into some object code and the AST interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,920",
+				"to": "00:11:48,080"
+			},
+			"offsets": {
+				"from": 703920,
+				"to": 708080
+			},
+			"text": " So the AST, for those of you who are not compiler writers, is the abstract syntax tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,080",
+				"to": "00:11:52,680"
+			},
+			"offsets": {
+				"from": 708080,
+				"to": 712680
+			},
+			"text": " And this is basically a mid-level representation of the actual program."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,680",
+				"to": "00:11:58,280"
+			},
+			"offsets": {
+				"from": 712680,
+				"to": 718280
+			},
+			"text": " So we're used to thinking of programs in terms of text."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,280",
+				"to": "00:12:04,080"
+			},
+			"offsets": {
+				"from": 718280,
+				"to": 724080
+			},
+			"text": " So if I ask an average developer, \"Hey, show me the hello program,\" what they'll do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,080",
+				"to": "00:12:06,800"
+			},
+			"offsets": {
+				"from": 724080,
+				"to": 726800
+			},
+			"text": " they'll write out some text and also there you go."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,800",
+				"to": "00:12:10,240"
+			},
+			"offsets": {
+				"from": 726800,
+				"to": 730240
+			},
+			"text": " Now that's kind of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,240",
+				"to": "00:12:15,120"
+			},
+			"offsets": {
+				"from": 730240,
+				"to": 735120
+			},
+			"text": " You might argue it's a projection or a representation of the program, but it's not canonically the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,120",
+				"to": "00:12:16,120"
+			},
+			"offsets": {
+				"from": 735120,
+				"to": 736120
+			},
+			"text": " program."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,120",
+				"to": "00:12:20,080"
+			},
+			"offsets": {
+				"from": 736120,
+				"to": 740080
+			},
+			"text": " One of the reasons that you might use to argue this point is that, well, I could alter this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,080",
+				"to": "00:12:24,400"
+			},
+			"offsets": {
+				"from": 740080,
+				"to": 744400
+			},
+			"text": " program in numerous ways, white space removal, for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,400",
+				"to": "00:12:26,760"
+			},
+			"offsets": {
+				"from": 744400,
+				"to": 746760
+			},
+			"text": " Yet it wouldn't change what the program is."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,760",
+				"to": "00:12:27,760"
+			},
+			"offsets": {
+				"from": 746760,
+				"to": 747760
+			},
+			"text": " It wouldn't change."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,760",
+				"to": "00:12:31,160"
+			},
+			"offsets": {
+				"from": 747760,
+				"to": 751160
+			},
+			"text": " If we're going to get technical, it wouldn't change the AST."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,160",
+				"to": "00:12:36,800"
+			},
+			"offsets": {
+				"from": 751160,
+				"to": 756800
+			},
+			"text": " It still gets passed and understood as the same actual program."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,800",
+				"to": "00:12:43,720"
+			},
+			"offsets": {
+				"from": 756800,
+				"to": 763720
+			},
+			"text": " Now there are a group of pieces of software that actually deal with ASTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,720",
+				"to": "00:12:46,320"
+			},
+			"offsets": {
+				"from": 763720,
+				"to": 766320
+			},
+			"text": " And when you edit the program, you do literally edit the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,320",
+				"to": "00:12:47,680"
+			},
+			"offsets": {
+				"from": 766320,
+				"to": 767680
+			},
+			"text": " You don't edit the source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,680",
+				"to": "00:12:50,840"
+			},
+			"offsets": {
+				"from": 767680,
+				"to": 770840
+			},
+			"text": " So these are called structural editors or language workbenchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,840",
+				"to": "00:12:54,520"
+			},
+			"offsets": {
+				"from": 770840,
+				"to": 774520
+			},
+			"text": " We're not going to be doing a language workbench because that's kind of outside the scope,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,520",
+				"to": "00:12:59,400"
+			},
+			"offsets": {
+				"from": 774520,
+				"to": 779400
+			},
+			"text": " but this may ultimately change into a structural editor, whereby suddenly we won't have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,400",
+				"to": "00:13:05,480"
+			},
+			"offsets": {
+				"from": 779400,
+				"to": 785480
+			},
+			"text": " worry about things like white space or code formatting being in the wrong way."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,480",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 785480,
+				"to": 792000
+			},
+			"text": " These things will automatically get rendered in the way that the user actually wants to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:14,520"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 794520
+			},
+			"text": " render them, the developer wants to render them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,520",
+				"to": "00:13:20,320"
+			},
+			"offsets": {
+				"from": 794520,
+				"to": 800320
+			},
+			"text": " And it will default to some canonical representation, probably, some basic representation that everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,320",
+				"to": "00:13:21,320"
+			},
+			"offsets": {
+				"from": 800320,
+				"to": 801320
+			},
+			"text": " agrees on."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,320",
+				"to": "00:13:23,520"
+			},
+			"offsets": {
+				"from": 801320,
+				"to": 803520
+			},
+			"text": " But ultimately, it's something that people can alter."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,520",
+				"to": "00:13:27,480"
+			},
+			"offsets": {
+				"from": 803520,
+				"to": 807480
+			},
+			"text": " If you don't like tabs, if you like spaces, then find you alter it and it renders it as"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,480",
+				"to": "00:13:29,840"
+			},
+			"offsets": {
+				"from": 807480,
+				"to": 809840
+			},
+			"text": " with tabs and not spaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,840",
+				"to": "00:13:33,640"
+			},
+			"offsets": {
+				"from": 809840,
+				"to": 813640
+			},
+			"text": " If you prefer your parentheses to be on the same line or on the next line, you can alter"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,640",
+				"to": "00:13:34,640"
+			},
+			"offsets": {
+				"from": 813640,
+				"to": 814640
+			},
+			"text": " that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,640",
+				"to": "00:13:36,160"
+			},
+			"offsets": {
+				"from": 814640,
+				"to": 816160
+			},
+			"text": " The idea is this is all transparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,160",
+				"to": "00:13:41,440"
+			},
+			"offsets": {
+				"from": 816160,
+				"to": 821440
+			},
+			"text": " And the thing that goes into GitHub is just the canonical representation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,440",
+				"to": "00:13:50,440"
+			},
+			"offsets": {
+				"from": 821440,
+				"to": 830440
+			},
+			"text": " Okay, who's that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,440",
+				"to": "00:13:54,800"
+			},
+			"offsets": {
+				"from": 830440,
+				"to": 834800
+			},
+			"text": " Nope."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,800",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 834800,
+				"to": 837000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:07,720"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 847720
+			},
+			"text": " So that was, that seemed to be Google, probably our iffy internet connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,720",
+				"to": "00:14:14,200"
+			},
+			"offsets": {
+				"from": 847720,
+				"to": 854200
+			},
+			"text": " Okay, so just to go over some of these features, intern, document integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,200",
+				"to": "00:14:19,920"
+			},
+			"offsets": {
+				"from": 854200,
+				"to": 859920
+			},
+			"text": " So as you have, I don't know, cursor is over a function, or maybe as you're writing, you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,920",
+				"to": "00:14:24,040"
+			},
+			"offsets": {
+				"from": 859920,
+				"to": 864040
+			},
+			"text": " calling into a function, you'll get pop-up documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,040",
+				"to": "00:14:30,560"
+			},
+			"offsets": {
+				"from": 864040,
+				"to": 870560
+			},
+			"text": " This can be done by virtue of having a contract sort of database, a decentralized database"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,560",
+				"to": "00:14:32,680"
+			},
+			"offsets": {
+				"from": 870560,
+				"to": 872680
+			},
+			"text": " for contracts that stores the documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,680",
+				"to": "00:14:38,120"
+			},
+			"offsets": {
+				"from": 872680,
+				"to": 878120
+			},
+			"text": " So we heard some of the ideas from Andreas a few days ago of how this might be implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,120",
+				"to": "00:14:41,600"
+			},
+			"offsets": {
+				"from": 878120,
+				"to": 881600
+			},
+			"text": " And the idea is that the ID actually goes to this place."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,600",
+				"to": "00:14:48,120"
+			},
+			"offsets": {
+				"from": 881600,
+				"to": 888120
+			},
+			"text": " It understands through some sort of URI system and registration system what the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,120",
+				"to": "00:14:58,800"
+			},
+			"offsets": {
+				"from": 888120,
+				"to": 898800
+			},
+			"text": " is, again, in tandem, this is achieved through using the AST from the Solidity Library."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,800",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 898800,
+				"to": 903000
+			},
+			"text": " And it's able to actually pull out the documentation from that repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:07,560"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 907560
+			},
+			"text": " If necessary, it could go off on millions and all the decentralized network, swarm or"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,560",
+				"to": "00:15:11,760"
+			},
+			"offsets": {
+				"from": 907560,
+				"to": 911760
+			},
+			"text": " wherever, and grab the documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,760",
+				"to": "00:15:17,280"
+			},
+			"offsets": {
+				"from": 911760,
+				"to": 917280
+			},
+			"text": " The idea is, of course, that it also is able to pull out the documentation for the program"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,280",
+				"to": "00:15:21,120"
+			},
+			"offsets": {
+				"from": 917280,
+				"to": 921120
+			},
+			"text": " and tell you, hey, hold on, you've only documented three out of the four functions, or this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,120",
+				"to": "00:15:24,560"
+			},
+			"offsets": {
+				"from": 921120,
+				"to": 924560
+			},
+			"text": " invariant you just added, you didn't document it properly."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,560",
+				"to": "00:15:26,360"
+			},
+			"offsets": {
+				"from": 924560,
+				"to": 926360
+			},
+			"text": " Or maybe you're missing a parameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,360",
+				"to": "00:15:30,520"
+			},
+			"offsets": {
+				"from": 926360,
+				"to": 930520
+			},
+			"text": " Maybe there's a parameter for the function, and your documentation actually doesn't utilize"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,520",
+				"to": "00:15:33,440"
+			},
+			"offsets": {
+				"from": 930520,
+				"to": 933440
+			},
+			"text": " the value of that parameter in documenting it to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,440",
+				"to": "00:15:38,160"
+			},
+			"offsets": {
+				"from": 933440,
+				"to": 938160
+			},
+			"text": " And that's obviously a grave error because the user probably wants to know it's probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,160",
+				"to": "00:15:43,080"
+			},
+			"offsets": {
+				"from": 938160,
+				"to": 943080
+			},
+			"text": " quite important."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,080",
+				"to": "00:15:48,320"
+			},
+			"offsets": {
+				"from": 943080,
+				"to": 948320
+			},
+			"text": " Test integration, tests, so initially, tests will be a very important part of contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,320",
+				"to": "00:15:49,320"
+			},
+			"offsets": {
+				"from": 948320,
+				"to": 949320
+			},
+			"text": " development."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,320",
+				"to": "00:15:51,960"
+			},
+			"offsets": {
+				"from": 949320,
+				"to": 951960
+			},
+			"text": " Hopefully, eventually we'll move over to a more formal system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,960",
+				"to": "00:15:56,520"
+			},
+			"offsets": {
+				"from": 951960,
+				"to": 956520
+			},
+			"text": " But initially, it's going to be very important that developers of contracts write a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,520",
+				"to": "00:16:04,360"
+			},
+			"offsets": {
+				"from": 956520,
+				"to": 964360
+			},
+			"text": " tests and that these tests can be viewed and checked by auditors of contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,360",
+				"to": "00:16:08,440"
+			},
+			"offsets": {
+				"from": 964360,
+				"to": 968440
+			},
+			"text": " To make tests ever more useful for developers, they should be as dynamic as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,440",
+				"to": "00:16:14,840"
+			},
+			"offsets": {
+				"from": 968440,
+				"to": 974840
+			},
+			"text": " So it's a bit of a pain to write tests first because often what the interface for a particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,840",
+				"to": "00:16:20,320"
+			},
+			"offsets": {
+				"from": 974840,
+				"to": 980320
+			},
+			"text": " functional method or contract is differs after you've finished the contract from when you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,320",
+				"to": "00:16:23,840"
+			},
+			"offsets": {
+				"from": 980320,
+				"to": 983840
+			},
+			"text": " started the contract because you simply don't have full knowledge until you've written most"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,840",
+				"to": "00:16:24,840"
+			},
+			"offsets": {
+				"from": 983840,
+				"to": 984840
+			},
+			"text": " of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,840",
+				"to": "00:16:32,080"
+			},
+			"offsets": {
+				"from": 984840,
+				"to": 992080
+			},
+			"text": " So although writing the tests after development is perhaps, there are arguments for writing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,080",
+				"to": "00:16:37,760"
+			},
+			"offsets": {
+				"from": 992080,
+				"to": 997760
+			},
+			"text": " it before you've finished the full contract, but there are also very good arguments for"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,760",
+				"to": "00:16:40,560"
+			},
+			"offsets": {
+				"from": 997760,
+				"to": 1000560
+			},
+			"text": " not writing them before you've started the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,560",
+				"to": "00:16:45,880"
+			},
+			"offsets": {
+				"from": 1000560,
+				"to": 1005880
+			},
+			"text": " So writing tests as you develop the contract is probably going to be a sensible way forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,880",
+				"to": "00:16:51,120"
+			},
+			"offsets": {
+				"from": 1005880,
+				"to": 1011120
+			},
+			"text": " and the way to encourage developers to do that by a cert is to make the tests as dynamic"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,120",
+				"to": "00:16:52,120"
+			},
+			"offsets": {
+				"from": 1011120,
+				"to": 1012120
+			},
+			"text": " as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,120",
+				"to": "00:16:57,400"
+			},
+			"offsets": {
+				"from": 1012120,
+				"to": 1017400
+			},
+			"text": " So sometimes I'll be putting a feature, I'll want to debug that feature to get a bit of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,400",
+				"to": "00:17:00,440"
+			},
+			"offsets": {
+				"from": 1017400,
+				"to": 1020440
+			},
+			"text": " a better idea and test certain assertions that I'm making."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,440",
+				"to": "00:17:06,200"
+			},
+			"offsets": {
+				"from": 1020440,
+				"to": 1026200
+			},
+			"text": " Well, this should be a very dynamic, a very quick way of adding extra tests as you develop"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,200",
+				"to": "00:17:13,640"
+			},
+			"offsets": {
+				"from": 1026200,
+				"to": 1033640
+			},
+			"text": " to make sure that the assertions that you're making as you develop are indeed true."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,640",
+				"to": "00:17:18,080"
+			},
+			"offsets": {
+				"from": 1033640,
+				"to": 1038080
+			},
+			"text": " As you type, as you alter the contract rather than just testing, you know, maybe when you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,080",
+				"to": "00:17:24,080"
+			},
+			"offsets": {
+				"from": 1038080,
+				"to": 1044080
+			},
+			"text": " compile or when you commit or when you push, it tests everything as you type."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,080",
+				"to": "00:17:28,920"
+			},
+			"offsets": {
+				"from": 1044080,
+				"to": 1048920
+			},
+			"text": " If you type a bunch of stuff, you add a new function, then before you've even compiled"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,920",
+				"to": "00:17:32,800"
+			},
+			"offsets": {
+				"from": 1048920,
+				"to": 1052800
+			},
+			"text": " anything, you're told, \"Hey, hold on, this breaks that earlier test.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,800",
+				"to": "00:17:36,920"
+			},
+			"offsets": {
+				"from": 1052800,
+				"to": 1056920
+			},
+			"text": " You get a little warning."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,920",
+				"to": "00:17:39,120"
+			},
+			"offsets": {
+				"from": 1056920,
+				"to": 1059120
+			},
+			"text": " Compiler integration is going to be very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,120",
+				"to": "00:17:46,280"
+			},
+			"offsets": {
+				"from": 1059120,
+				"to": 1066280
+			},
+			"text": " Again, as I said before, Solidity was always devised to be a library and not simply a compiler"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,280",
+				"to": "00:17:49,960"
+			},
+			"offsets": {
+				"from": 1066280,
+				"to": 1069960
+			},
+			"text": " because it's a library where we're able to get structured information from it from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,960",
+				"to": "00:17:55,360"
+			},
+			"offsets": {
+				"from": 1069960,
+				"to": 1075360
+			},
+			"text": " Solidity parser and the Solidity parse tree analyzer."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,360",
+				"to": "00:17:59,840"
+			},
+			"offsets": {
+				"from": 1075360,
+				"to": 1079840
+			},
+			"text": " So you can get this AST and you can have all of the references you need, which is to say"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,840",
+				"to": "00:18:05,600"
+			},
+			"offsets": {
+				"from": 1079840,
+				"to": 1085600
+			},
+			"text": " you can say that this identifier here that corresponds to this byte position going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,600",
+				"to": "00:18:14,760"
+			},
+			"offsets": {
+				"from": 1085600,
+				"to": 1094760
+			},
+			"text": " this byte position on line 24 is actually a variable that is referencing the parameter"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,760",
+				"to": "00:18:18,440"
+			},
+			"offsets": {
+				"from": 1094760,
+				"to": 1098440
+			},
+			"text": " of name campaign ID to this function."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,440",
+				"to": "00:18:19,440"
+			},
+			"offsets": {
+				"from": 1098440,
+				"to": 1099440
+			},
+			"text": " You can get that information."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,440",
+				"to": "00:18:26,320"
+			},
+			"offsets": {
+				"from": 1099440,
+				"to": 1106320
+			},
+			"text": " And when you can get that information, you can do all sorts of cool things that are only"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,320",
+				"to": "00:18:32,540"
+			},
+			"offsets": {
+				"from": 1106320,
+				"to": 1112540
+			},
+			"text": " kind of possible in various certain situations with existing technologies such as refactor"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,540",
+				"to": "00:18:36,720"
+			},
+			"offsets": {
+				"from": 1112540,
+				"to": 1116720
+			},
+			"text": " various types of refactoring variable renaming and generally altering the abstract syntax"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,720",
+				"to": "00:18:43,200"
+			},
+			"offsets": {
+				"from": 1116720,
+				"to": 1123200
+			},
+			"text": " tree, altering the program in logical, well-defined ways that are effectively guaranteed to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,200",
+				"to": "00:18:49,160"
+			},
+			"offsets": {
+				"from": 1123200,
+				"to": 1129160
+			},
+			"text": " neutral transformations."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,160",
+				"to": "00:18:54,640"
+			},
+			"offsets": {
+				"from": 1129160,
+				"to": 1134640
+			},
+			"text": " So because we're integrating the compiler, we can also, as you type, check for things"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,640",
+				"to": "00:18:59,480"
+			},
+			"offsets": {
+				"from": 1134640,
+				"to": 1139480
+			},
+			"text": " like code health, so the warnings that it generates maybe even compilers, we can take"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,480",
+				"to": "00:19:05,680"
+			},
+			"offsets": {
+				"from": 1139480,
+				"to": 1145680
+			},
+			"text": " as you type the invariance, so these are sort of static assertions or assertions made over"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,680",
+				"to": "00:19:11,960"
+			},
+			"offsets": {
+				"from": 1145680,
+				"to": 1151960
+			},
+			"text": " the entire lifetime or state or all possible states of the contract are true and we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,960",
+				"to": "00:19:18,040"
+			},
+			"offsets": {
+				"from": 1151960,
+				"to": 1158040
+			},
+			"text": " have within the code itself a sort of, I don't know, massive red box or a massive cross"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,040",
+				"to": "00:19:23,240"
+			},
+			"offsets": {
+				"from": 1158040,
+				"to": 1163240
+			},
+			"text": " when an alteration you make actually fails an invariant."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,240",
+				"to": "00:19:27,840"
+			},
+			"offsets": {
+				"from": 1163240,
+				"to": 1167840
+			},
+			"text": " We can derive code structure and render it in a way that the user is going to find useful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,840",
+				"to": "00:19:33,880"
+			},
+			"offsets": {
+				"from": 1167840,
+				"to": 1173880
+			},
+			"text": " perhaps as a, I don't know if many of you use editors that have a sort of zoomed out"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,880",
+				"to": "00:19:38,080"
+			},
+			"offsets": {
+				"from": 1173880,
+				"to": 1178080
+			},
+			"text": " view of the program code all syntax highlighted, you're familiar with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,080",
+				"to": "00:19:41,080"
+			},
+			"offsets": {
+				"from": 1178080,
+				"to": 1181080
+			},
+			"text": " So the idea is, well, that's okay, that's kind of good."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,080",
+				"to": "00:19:45,880"
+			},
+			"offsets": {
+				"from": 1181080,
+				"to": 1185880
+			},
+			"text": " So it gives you a nice visual representation of the total amount of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,880",
+				"to": "00:19:48,480"
+			},
+			"offsets": {
+				"from": 1185880,
+				"to": 1188480
+			},
+			"text": " But what we can also do is we can add to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,480",
+				"to": "00:19:54,360"
+			},
+			"offsets": {
+				"from": 1188480,
+				"to": 1194360
+			},
+			"text": " We can take the abstract syntax tree, what we can do is render a non-textual representation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,360",
+				"to": "00:19:59,360"
+			},
+			"offsets": {
+				"from": 1194360,
+				"to": 1199360
+			},
+			"text": " a sort of diagrammatic representation or a structural representation and place that at"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,360",
+				"to": "00:20:04,520"
+			},
+			"offsets": {
+				"from": 1199360,
+				"to": 1204520
+			},
+			"text": " the side and that's going to be a bit more information dense."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,520",
+				"to": "00:20:07,760"
+			},
+			"offsets": {
+				"from": 1204520,
+				"to": 1207760
+			},
+			"text": " And finally, as I mentioned earlier, we can do things like canonical code formatting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,760",
+				"to": "00:20:11,680"
+			},
+			"offsets": {
+				"from": 1207760,
+				"to": 1211680
+			},
+			"text": " which is sort of a halfway step to actual structural editing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,680",
+				"to": "00:20:15,160"
+			},
+			"offsets": {
+				"from": 1211680,
+				"to": 1215160
+			},
+			"text": " And canonical code formatting, what I mean by that is basically when you make an alteration"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,160",
+				"to": "00:20:20,320"
+			},
+			"offsets": {
+				"from": 1215160,
+				"to": 1220320
+			},
+			"text": " to the code, it automatically reformats the code in the way that is actually canonical."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,320",
+				"to": "00:20:26,360"
+			},
+			"offsets": {
+				"from": 1220320,
+				"to": 1226360
+			},
+			"text": " So you don't have any of these problems with style, coding standards as the C++ developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,360",
+				"to": "00:20:28,680"
+			},
+			"offsets": {
+				"from": 1226360,
+				"to": 1228680
+			},
+			"text": " now I'm kind of tough on these."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,680",
+				"to": "00:20:35,200"
+			},
+			"offsets": {
+				"from": 1228680,
+				"to": 1235200
+			},
+			"text": " This effectively removes that as a contention."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,200",
+				"to": "00:20:39,240"
+			},
+			"offsets": {
+				"from": 1235200,
+				"to": 1239240
+			},
+			"text": " Now I don't know if any of you are, it probably shows my age a little, are familiar with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,240",
+				"to": "00:20:40,840"
+			},
+			"offsets": {
+				"from": 1239240,
+				"to": 1240840
+			},
+			"text": " AMOS programming environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,840",
+				"to": "00:20:45,880"
+			},
+			"offsets": {
+				"from": 1240840,
+				"to": 1245880
+			},
+			"text": " There's something early on the Amiga, you can make your computer games, it's kind of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,880",
+				"to": "00:20:47,880"
+			},
+			"offsets": {
+				"from": 1245880,
+				"to": 1247880
+			},
+			"text": " form of basic."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,880",
+				"to": "00:20:49,400"
+			},
+			"offsets": {
+				"from": 1247880,
+				"to": 1249400
+			},
+			"text": " That actually already had this."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,400",
+				"to": "00:20:55,920"
+			},
+			"offsets": {
+				"from": 1249400,
+				"to": 1255920
+			},
+			"text": " So this stuff that I'm mentioning is very little of it is a tall sort of new or anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,920",
+				"to": "00:21:01,240"
+			},
+			"offsets": {
+				"from": 1255920,
+				"to": 1261240
+			},
+			"text": " And that was in the what mid-90s, early-90s, late-80s, you know, a new type of line of"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,240",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1261240,
+				"to": 1264000
+			},
+			"text": " code to press enter and it would just format the code canonically."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:06,120"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1266120
+			},
+			"text": " It's like, yeah, it's really sensible."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,120",
+				"to": "00:21:10,440"
+			},
+			"offsets": {
+				"from": 1266120,
+				"to": 1270440
+			},
+			"text": " Why do we go back to the 70s all too often?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,440",
+				"to": "00:21:14,440"
+			},
+			"offsets": {
+				"from": 1270440,
+				"to": 1274440
+			},
+			"text": " Okay, so we've also got things like debugger integration because we know the abstract syntax"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,440",
+				"to": "00:21:18,640"
+			},
+			"offsets": {
+				"from": 1274440,
+				"to": 1278640
+			},
+			"text": " tree, because we know all of this stuff, we have absolutely full knowledge of what's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,640",
+				"to": "00:21:19,640"
+			},
+			"offsets": {
+				"from": 1278640,
+				"to": 1279640
+			},
+			"text": " on in the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,640",
+				"to": "00:21:24,640"
+			},
+			"offsets": {
+				"from": 1279640,
+				"to": 1284640
+			},
+			"text": " We can do all sorts of cool stuff like as you debug annotation for things like state."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,640",
+				"to": "00:21:26,440"
+			},
+			"offsets": {
+				"from": 1284640,
+				"to": 1286440
+			},
+			"text": " What value are these variables right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,440",
+				"to": "00:21:27,840"
+			},
+			"offsets": {
+				"from": 1286440,
+				"to": 1287840
+			},
+			"text": " Well we can actually show that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,840",
+				"to": "00:21:32,160"
+			},
+			"offsets": {
+				"from": 1287840,
+				"to": 1292160
+			},
+			"text": " So there could be, for instance, you hold down control shift and suddenly the code expands"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,160",
+				"to": "00:21:35,080"
+			},
+			"offsets": {
+				"from": 1292160,
+				"to": 1295080
+			},
+			"text": " into equals five."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,080",
+				"to": "00:21:39,240"
+			},
+			"offsets": {
+				"from": 1295080,
+				"to": 1299240
+			},
+			"text": " Instead of you in company, that becomes you in company equals five, maybe the equals five"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,240",
+				"to": "00:21:43,960"
+			},
+			"offsets": {
+				"from": 1299240,
+				"to": 1303960
+			},
+			"text": " is in italics and some variable with font so that we know it's not actually literally"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,960",
+				"to": "00:21:45,560"
+			},
+			"offsets": {
+				"from": 1303960,
+				"to": 1305560
+			},
+			"text": " equals five in the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,560",
+				"to": "00:21:50,080"
+			},
+			"offsets": {
+				"from": 1305560,
+				"to": 1310080
+			},
+			"text": " But you can start to imagine that we can actually annotate this code with up-to-date contact"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,080",
+				"to": "00:21:56,080"
+			},
+			"offsets": {
+				"from": 1310080,
+				"to": 1316080
+			},
+			"text": " sensitive information directly from the debugger that is just kind of, if not impossible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,080",
+				"to": "00:22:00,040"
+			},
+			"offsets": {
+				"from": 1316080,
+				"to": 1320040
+			},
+			"text": " very difficult to do with existing tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,040",
+				"to": "00:22:03,360"
+			},
+			"offsets": {
+				"from": 1320040,
+				"to": 1323360
+			},
+			"text": " Assertion truth again is something similar to the invariant."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,360",
+				"to": "00:22:07,440"
+			},
+			"offsets": {
+				"from": 1323360,
+				"to": 1327440
+			},
+			"text": " We can actually put crosses where assertions fail and this could be integrated into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,440",
+				"to": "00:22:12,840"
+			},
+			"offsets": {
+				"from": 1327440,
+				"to": 1332840
+			},
+			"text": " test environment in order that when you run your running test you get an immediate visualization"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,840",
+				"to": "00:22:18,120"
+			},
+			"offsets": {
+				"from": 1332840,
+				"to": 1338120
+			},
+			"text": " of where the test is going."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,120",
+				"to": "00:22:22,760"
+			},
+			"offsets": {
+				"from": 1338120,
+				"to": 1342760
+			},
+			"text": " You can go into state integration, transaction integration, the blockchain integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,760",
+				"to": "00:22:28,360"
+			},
+			"offsets": {
+				"from": 1342760,
+				"to": 1348360
+			},
+			"text": " So this is where we are developing in this new environment, this environment where there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,360",
+				"to": "00:22:30,240"
+			},
+			"offsets": {
+				"from": 1348360,
+				"to": 1350240
+			},
+			"text": " a lot of other stuff going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,240",
+				"to": "00:22:34,040"
+			},
+			"offsets": {
+				"from": 1350240,
+				"to": 1354040
+			},
+			"text": " So we need to integrate this stuff into the development environment and really sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,040",
+				"to": "00:22:40,360"
+			},
+			"offsets": {
+				"from": 1354040,
+				"to": 1360360
+			},
+			"text": " wrap all around it so we've got full app, your fingertips control as well as obviously"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,360",
+				"to": "00:22:46,000"
+			},
+			"offsets": {
+				"from": 1360360,
+				"to": 1366000
+			},
+			"text": " transparent handling of various grunt tasks wherever possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,000",
+				"to": "00:22:52,360"
+			},
+			"offsets": {
+				"from": 1366000,
+				"to": 1372360
+			},
+			"text": " So one of the most important things is to be able to test and debug with very particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,360",
+				"to": "00:22:54,400"
+			},
+			"offsets": {
+				"from": 1372360,
+				"to": 1374400
+			},
+			"text": " states of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,400",
+				"to": "00:22:59,640"
+			},
+			"offsets": {
+				"from": 1374400,
+				"to": 1379640
+			},
+			"text": " It's no good saying, well, we'll just test with the current state of the main net."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,640",
+				"to": "00:23:03,520"
+			},
+			"offsets": {
+				"from": 1379640,
+				"to": 1383520
+			},
+			"text": " That's crazy, all sorts of things might be going on that you just can't predict."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,520",
+				"to": "00:23:05,280"
+			},
+			"offsets": {
+				"from": 1383520,
+				"to": 1385280
+			},
+			"text": " You may not even have an internet connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,280",
+				"to": "00:23:11,040"
+			},
+			"offsets": {
+				"from": 1385280,
+				"to": 1391040
+			},
+			"text": " But similarly, doing it with a test net is no good either for the same reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,040",
+				"to": "00:23:15,680"
+			},
+			"offsets": {
+				"from": 1391040,
+				"to": 1395680
+			},
+			"text": " So we want to be able to start debugging control in a very controlled fashion."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,680",
+				"to": "00:23:19,440"
+			},
+			"offsets": {
+				"from": 1395680,
+				"to": 1399440
+			},
+			"text": " We want to be able to pick out which block that we want to debug on."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,440",
+				"to": "00:23:24,480"
+			},
+			"offsets": {
+				"from": 1399440,
+				"to": 1404480
+			},
+			"text": " We want to be able to specify, hey, maybe I want to debug on a chain that's empty."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,480",
+				"to": "00:23:27,680"
+			},
+			"offsets": {
+				"from": 1404480,
+				"to": 1407680
+			},
+			"text": " We want to be able to specify what states we want to be debug on."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,680",
+				"to": "00:23:28,880"
+			},
+			"offsets": {
+				"from": 1407680,
+				"to": 1408880
+			},
+			"text": " Maybe it's never was a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,880",
+				"to": "00:23:35,880"
+			},
+			"offsets": {
+				"from": 1408880,
+				"to": 1415880
+			},
+			"text": " It's never in existence and we just want to create this state, this new genesis state"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,880",
+				"to": "00:23:38,800"
+			},
+			"offsets": {
+				"from": 1415880,
+				"to": 1418800
+			},
+			"text": " if you like and debug on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,800",
+				"to": "00:23:40,520"
+			},
+			"offsets": {
+				"from": 1418800,
+				"to": 1420520
+			},
+			"text": " Same with the transaction integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,520",
+				"to": "00:23:46,120"
+			},
+			"offsets": {
+				"from": 1420520,
+				"to": 1426120
+			},
+			"text": " Maybe we want the transaction that we're actually going to debug to follow several other transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,120",
+				"to": "00:23:51,000"
+			},
+			"offsets": {
+				"from": 1426120,
+				"to": 1431000
+			},
+			"text": " first so we can make sure that the block has, say, five transactions first and then debug"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,000",
+				"to": "00:23:56,120"
+			},
+			"offsets": {
+				"from": 1431000,
+				"to": 1436120
+			},
+			"text": " our transaction just to set up the state into exactly what we need, exactly with full control"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,120",
+				"to": "00:23:59,880"
+			},
+			"offsets": {
+				"from": 1436120,
+				"to": 1439880
+			},
+			"text": " over it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,880",
+				"to": "00:24:04,880"
+			},
+			"offsets": {
+				"from": 1439880,
+				"to": 1444880
+			},
+			"text": " And again, blockchain and swarm integration so that there's a one-step deploy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,880",
+				"to": "00:24:08,760"
+			},
+			"offsets": {
+				"from": 1444880,
+				"to": 1448760
+			},
+			"text": " Deployment could very easily be an absolute pain in the ass and very error-prone."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,760",
+				"to": "00:24:13,760"
+			},
+			"offsets": {
+				"from": 1448760,
+				"to": 1453760
+			},
+			"text": " We need to really get on top of that and have basically just a button that hits it, it"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,760",
+				"to": "00:24:26,800"
+			},
+			"offsets": {
+				"from": 1453760,
+				"to": 1466800
+			},
+			"text": " runs a deploy script that's easily createable."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,800",
+				"to": "00:24:29,200"
+			},
+			"offsets": {
+				"from": 1466800,
+				"to": 1469200
+			},
+			"text": " Yes, it's easily createable and can do whatever you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,200",
+				"to": "00:24:34,040"
+			},
+			"offsets": {
+				"from": 1469200,
+				"to": 1474040
+			},
+			"text": " So what it might do, for instance, is we already have something like this in the C++"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,040",
+				"to": "00:24:37,960"
+			},
+			"offsets": {
+				"from": 1474040,
+				"to": 1477960
+			},
+			"text": " codebase where anyone is familiar with the standard services of things like name registration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,960",
+				"to": "00:24:42,360"
+			},
+			"offsets": {
+				"from": 1477960,
+				"to": 1482360
+			},
+			"text": " the config contract, the coin, the exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,360",
+				"to": "00:24:45,600"
+			},
+			"offsets": {
+				"from": 1482360,
+				"to": 1485600
+			},
+			"text": " That's actually all just the JavaScript file that I've run whenever there's a new chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,600",
+				"to": "00:24:48,240"
+			},
+			"offsets": {
+				"from": 1485600,
+				"to": 1488240
+			},
+			"text": " created and it deploys all this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,240",
+				"to": "00:24:54,520"
+			},
+			"offsets": {
+				"from": 1488240,
+				"to": 1494520
+			},
+			"text": " Well, we need a really easy way of creating this and running it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,520",
+				"to": "00:25:00,720"
+			},
+			"offsets": {
+				"from": 1494520,
+				"to": 1500720
+			},
+			"text": " And of course, selecting whether we want to run out on the test net or the main."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,720",
+				"to": "00:25:07,360"
+			},
+			"offsets": {
+				"from": 1500720,
+				"to": 1507360
+			},
+			"text": " Very, very important integration is that with source code version control tools, these"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,360",
+				"to": "00:25:12,960"
+			},
+			"offsets": {
+				"from": 1507360,
+				"to": 1512960
+			},
+			"text": " are absolute lifeblood of programmers and have been for some time now."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,960",
+				"to": "00:25:16,440"
+			},
+			"offsets": {
+				"from": 1512960,
+				"to": 1516440
+			},
+			"text": " Yet integration in editors is often pretty minimal."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,440",
+				"to": "00:25:18,680"
+			},
+			"offsets": {
+				"from": 1516440,
+				"to": 1518680
+			},
+			"text": " Yay, I can commit because I made a change."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,680",
+				"to": "00:25:20,520"
+			},
+			"offsets": {
+				"from": 1518680,
+				"to": 1520520
+			},
+			"text": " I mean, this is really basic stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,520",
+				"to": "00:25:25,120"
+			},
+			"offsets": {
+				"from": 1520520,
+				"to": 1525120
+			},
+			"text": " All it's doing is basically running a command git commit."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,120",
+				"to": "00:25:26,320"
+			},
+			"offsets": {
+				"from": 1525120,
+				"to": 1526320
+			},
+			"text": " We need something a bit better."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,320",
+				"to": "00:25:31,400"
+			},
+			"offsets": {
+				"from": 1526320,
+				"to": 1531400
+			},
+			"text": " We need something that follows our workflow a bit better and encourages us to really commit"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,400",
+				"to": "00:25:33,760"
+			},
+			"offsets": {
+				"from": 1531400,
+				"to": 1533760
+			},
+			"text": " or use these tools optimally."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,760",
+				"to": "00:25:39,600"
+			},
+			"offsets": {
+				"from": 1533760,
+				"to": 1539600
+			},
+			"text": " So one thing Google brought in a while ago with the Google Docs infrastructure was the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,600",
+				"to": "00:25:46,040"
+			},
+			"offsets": {
+				"from": 1539600,
+				"to": 1546040
+			},
+			"text": " idea of having a permanent undo stack or really tracking all of the changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,040",
+				"to": "00:25:51,240"
+			},
+			"offsets": {
+				"from": 1546040,
+				"to": 1551240
+			},
+			"text": " So what they've done is they've taken the notion of controls ed of undo and they've"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,240",
+				"to": "00:25:53,840"
+			},
+			"offsets": {
+				"from": 1551240,
+				"to": 1553840
+			},
+			"text": " bundled it with the notion of version control."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,840",
+				"to": "00:26:00,000"
+			},
+			"offsets": {
+				"from": 1553840,
+				"to": 1560000
+			},
+			"text": " So now when you say write revision history, it will give you an undo history scanning"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:00,000",
+				"to": "00:26:04,520"
+			},
+			"offsets": {
+				"from": 1560000,
+				"to": 1564520
+			},
+			"text": " all the way back to the very beginning of the document."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,520",
+				"to": "00:26:05,680"
+			},
+			"offsets": {
+				"from": 1564520,
+				"to": 1565680
+			},
+			"text": " Why don't we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,680",
+				"to": "00:26:06,680"
+			},
+			"offsets": {
+				"from": 1565680,
+				"to": 1566680
+			},
+			"text": " We've got git."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,680",
+				"to": "00:26:11,360"
+			},
+			"offsets": {
+				"from": 1566680,
+				"to": 1571360
+			},
+			"text": " It's pretty efficient, certainly efficient enough for our needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,360",
+				"to": "00:26:15,240"
+			},
+			"offsets": {
+				"from": 1571360,
+				"to": 1575240
+			},
+			"text": " No reason, just nobody's done it yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,240",
+				"to": "00:26:16,240"
+			},
+			"offsets": {
+				"from": 1575240,
+				"to": 1576240
+			},
+			"text": " Currently working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,240",
+				"to": "00:26:19,600"
+			},
+			"offsets": {
+				"from": 1576240,
+				"to": 1579600
+			},
+			"text": " So with git with the commits with branches, you tend to say, right, there's an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,600",
+				"to": "00:26:20,600"
+			},
+			"offsets": {
+				"from": 1579600,
+				"to": 1580600
+			},
+			"text": " I create a new branch."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,600",
+				"to": "00:26:25,800"
+			},
+			"offsets": {
+				"from": 1580600,
+				"to": 1585800
+			},
+			"text": " I'm going to, I don't know, it's a feature or it's a bug fix."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,800",
+				"to": "00:26:28,800"
+			},
+			"offsets": {
+				"from": 1585800,
+				"to": 1588800
+			},
+			"text": " You'll commit to that branch a few times and you'll generally merge into the branch that"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,800",
+				"to": "00:26:29,800"
+			},
+			"offsets": {
+				"from": 1588800,
+				"to": 1589800
+			},
+			"text": " you came from."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,800",
+				"to": "00:26:31,560"
+			},
+			"offsets": {
+				"from": 1589800,
+				"to": 1591560
+			},
+			"text": " This is the branch that you came from."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,560",
+				"to": "00:26:37,640"
+			},
+			"offsets": {
+				"from": 1591560,
+				"to": 1597640
+			},
+			"text": " This is the branch that your bug fix branch, maybe it's connected to an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,640",
+				"to": "00:26:38,880"
+			},
+			"offsets": {
+				"from": 1597640,
+				"to": 1598880
+			},
+			"text": " Let's just build it into the workflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,880",
+				"to": "00:26:43,360"
+			},
+			"offsets": {
+				"from": 1598880,
+				"to": 1603360
+			},
+			"text": " Let's automate this stuff as much as possible and put the control, put what the program"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,360",
+				"to": "00:26:49,120"
+			},
+			"offsets": {
+				"from": 1603360,
+				"to": 1609120
+			},
+			"text": " needs to do, focus on what they want to tell, not what they have to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,120",
+				"to": "00:26:51,720"
+			},
+			"offsets": {
+				"from": 1609120,
+				"to": 1611720
+			},
+			"text": " Yeah, we don't want the programmer to work around tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,720",
+				"to": "00:26:55,880"
+			},
+			"offsets": {
+				"from": 1611720,
+				"to": 1615880
+			},
+			"text": " We want tools to work around the programmer."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,880",
+				"to": "00:27:00,160"
+			},
+			"offsets": {
+				"from": 1615880,
+				"to": 1620160
+			},
+			"text": " Another contract repository integration, so half-kiting back to what Andreas was saying"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,160",
+				"to": "00:27:05,800"
+			},
+			"offsets": {
+				"from": 1620160,
+				"to": 1625800
+			},
+			"text": " a few days ago with the documentation system, this should just pull that information in."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,800",
+				"to": "00:27:11,200"
+			},
+			"offsets": {
+				"from": 1625800,
+				"to": 1631200
+			},
+			"text": " We've got the information to collate with that, so let's just put the ends together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,200",
+				"to": "00:27:20,680"
+			},
+			"offsets": {
+				"from": 1631200,
+				"to": 1640680
+			},
+			"text": " connect it all up and really give the developer that information at their fingertips automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,680",
+				"to": "00:27:23,040"
+			},
+			"offsets": {
+				"from": 1640680,
+				"to": 1643040
+			},
+			"text": " GitHub is a great service."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,040",
+				"to": "00:27:31,520"
+			},
+			"offsets": {
+				"from": 1643040,
+				"to": 1651520
+			},
+			"text": " The open source developers, has anybody here not used GitHub that is a developer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,520",
+				"to": "00:27:35,240"
+			},
+			"offsets": {
+				"from": 1651520,
+				"to": 1655240
+			},
+			"text": " Nope."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,240",
+				"to": "00:27:39,960"
+			},
+			"offsets": {
+				"from": 1655240,
+				"to": 1659960
+			},
+			"text": " It's a great service, but it's disjoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,960",
+				"to": "00:27:47,720"
+			},
+			"offsets": {
+				"from": 1659960,
+				"to": 1667720
+			},
+			"text": " I have to go to the web browser and use GitHub and then I go to my emacs or Qt Creator or"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,720",
+				"to": "00:27:49,800"
+			},
+			"offsets": {
+				"from": 1667720,
+				"to": 1669800
+			},
+			"text": " whatever the I, whatever it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,800",
+				"to": "00:27:53,240"
+			},
+			"offsets": {
+				"from": 1669800,
+				"to": 1673240
+			},
+			"text": " When I use, I edit the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,240",
+				"to": "00:27:55,160"
+			},
+			"offsets": {
+				"from": 1673240,
+				"to": 1675160
+			},
+			"text": " Why can't I do both at the same time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,160",
+				"to": "00:27:57,120"
+			},
+			"offsets": {
+				"from": 1675160,
+				"to": 1677120
+			},
+			"text": " GitHub is very clearly a programmer tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,120",
+				"to": "00:27:59,080"
+			},
+			"offsets": {
+				"from": 1677120,
+				"to": 1679080
+			},
+			"text": " Editors are very clear programmer tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,080",
+				"to": "00:28:01,760"
+			},
+			"offsets": {
+				"from": 1679080,
+				"to": 1681760
+			},
+			"text": " They're dealing with the same stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,760",
+				"to": "00:28:04,000"
+			},
+			"offsets": {
+				"from": 1681760,
+				"to": 1684000
+			},
+			"text": " They should be integrated."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,000",
+				"to": "00:28:07,480"
+			},
+			"offsets": {
+				"from": 1684000,
+				"to": 1687480
+			},
+			"text": " Team activity, activity is largely development."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,480",
+				"to": "00:28:11,280"
+			},
+			"offsets": {
+				"from": 1687480,
+				"to": 1691280
+			},
+			"text": " As I'm developing, I want to know what other developers are doing and whether it's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:11,280",
+				"to": "00:28:14,080"
+			},
+			"offsets": {
+				"from": 1691280,
+				"to": 1694080
+			},
+			"text": " to affect what it is that I'm doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,080",
+				"to": "00:28:16,080"
+			},
+			"offsets": {
+				"from": 1694080,
+				"to": 1696080
+			},
+			"text": " It needs to be integrated."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,080",
+				"to": "00:28:20,600"
+			},
+			"offsets": {
+				"from": 1696080,
+				"to": 1700600
+			},
+			"text": " If I'm working on an issue and somebody else is reporting, \"Hey, this issue, this book,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,600",
+				"to": "00:28:22,120"
+			},
+			"offsets": {
+				"from": 1700600,
+				"to": 1702120
+			},
+			"text": " I've got some more information."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,120",
+				"to": "00:28:23,800"
+			},
+			"offsets": {
+				"from": 1702120,
+				"to": 1703800
+			},
+			"text": " I've been testing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,800",
+				"to": "00:28:25,160"
+			},
+			"offsets": {
+				"from": 1703800,
+				"to": 1705160
+			},
+			"text": " I've got some more information.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:28:25,160",
+				"to": "00:28:30,720"
+			},
+			"offsets": {
+				"from": 1705160,
+				"to": 1710720
+			},
+			"text": " I don't want to have to finish half hour of work, go on to the web browser, click on"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,720",
+				"to": "00:28:34,400"
+			},
+			"offsets": {
+				"from": 1710720,
+				"to": 1714400
+			},
+			"text": " something, click on something else, get into the issue, find that they've posted."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,400",
+				"to": "00:28:35,840"
+			},
+			"offsets": {
+				"from": 1714400,
+				"to": 1715840
+			},
+			"text": " Oh, well, it was that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:35,840",
+				"to": "00:28:39,960"
+			},
+			"offsets": {
+				"from": 1715840,
+				"to": 1719960
+			},
+			"text": " No, I want it right there in front of me."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,960",
+				"to": "00:28:50,880"
+			},
+			"offsets": {
+				"from": 1719960,
+				"to": 1730880
+			},
+			"text": " When we have real GitHub integration, what we'll be able to do is click, project, fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,880",
+				"to": "00:28:56,800"
+			},
+			"offsets": {
+				"from": 1730880,
+				"to": 1736800
+			},
+			"text": " In our development environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,800",
+				"to": "00:29:02,480"
+			},
+			"offsets": {
+				"from": 1736800,
+				"to": 1742480
+			},
+			"text": " When I do that, it will go to GitHub, it will fork that, it will put it under my account"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,480",
+				"to": "00:29:05,720"
+			},
+			"offsets": {
+				"from": 1742480,
+				"to": 1745720
+			},
+			"text": " and get a bit of create a new repository, it will open it all up, and it will be good"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,720",
+				"to": "00:29:08,720"
+			},
+			"offsets": {
+				"from": 1745720,
+				"to": 1748720
+			},
+			"text": " to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,720",
+				"to": "00:29:10,400"
+			},
+			"offsets": {
+				"from": 1748720,
+				"to": 1750400
+			},
+			"text": " It will do the same for distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,400",
+				"to": "00:29:14,600"
+			},
+			"offsets": {
+				"from": 1750400,
+				"to": 1754600
+			},
+			"text": " When I want to distribute, it's already on GitHub and I should just be able to click"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,600",
+				"to": "00:29:18,920"
+			},
+			"offsets": {
+				"from": 1754600,
+				"to": 1758920
+			},
+			"text": " a link, give it to someone else, and they can fork if they want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,920",
+				"to": "00:29:21,400"
+			},
+			"offsets": {
+				"from": 1758920,
+				"to": 1761400
+			},
+			"text": " Issue integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:21,400",
+				"to": "00:29:24,720"
+			},
+			"offsets": {
+				"from": 1761400,
+				"to": 1764720
+			},
+			"text": " GitHub issues are great."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:24,720",
+				"to": "00:29:29,040"
+			},
+			"offsets": {
+				"from": 1764720,
+				"to": 1769040
+			},
+			"text": " People already use issues for slightly more than they were designed with the sort of Waffle"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,040",
+				"to": "00:29:32,960"
+			},
+			"offsets": {
+				"from": 1769040,
+				"to": 1772960
+			},
+			"text": " that I have, the Kanban board thing that utilizes issues as bases."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:32,960",
+				"to": "00:29:37,320"
+			},
+			"offsets": {
+				"from": 1772960,
+				"to": 1777320
+			},
+			"text": " It's underlying database effectively."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:37,320",
+				"to": "00:29:40,000"
+			},
+			"offsets": {
+				"from": 1777320,
+				"to": 1780000
+			},
+			"text": " Why don't IDEs do the same?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,000",
+				"to": "00:29:43,680"
+			},
+			"offsets": {
+				"from": 1780000,
+				"to": 1783680
+			},
+			"text": " I mean, all right, you might argue, the skit hub integration, you need the internet for"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,680",
+				"to": "00:29:44,680"
+			},
+			"offsets": {
+				"from": 1783680,
+				"to": 1784680
+			},
+			"text": " a fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:44,680",
+				"to": "00:29:48,080"
+			},
+			"offsets": {
+				"from": 1784680,
+				"to": 1788080
+			},
+			"text": " But most of the time developers have the internet and when they don't, they should be an offline"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:48,080",
+				"to": "00:29:50,040"
+			},
+			"offsets": {
+				"from": 1788080,
+				"to": 1790040
+			},
+			"text": " option."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:50,040",
+				"to": "00:29:53,640"
+			},
+			"offsets": {
+				"from": 1790040,
+				"to": 1793640
+			},
+			"text": " When we're doing task feature and project management, let's use issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,640",
+				"to": "00:29:56,720"
+			},
+			"offsets": {
+				"from": 1793640,
+				"to": 1796720
+			},
+			"text": " When we're doing collaboration, let's use this system."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:56,720",
+				"to": "00:29:57,920"
+			},
+			"offsets": {
+				"from": 1796720,
+				"to": 1797920
+			},
+			"text": " It's already built for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,920",
+				"to": "00:30:01,720"
+			},
+			"offsets": {
+				"from": 1797920,
+				"to": 1801720
+			},
+			"text": " There's APIs there."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:01,720",
+				"to": "00:30:08,720"
+			},
+			"offsets": {
+				"from": 1801720,
+				"to": 1808720
+			},
+			"text": " Some of the ideas that we have that we want to put in action over the coming 12, 18 years"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,720",
+				"to": "00:30:10,080"
+			},
+			"offsets": {
+				"from": 1808720,
+				"to": 1810080
+			},
+			"text": " months."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:10,080",
+				"to": "00:30:11,080"
+			},
+			"offsets": {
+				"from": 1810080,
+				"to": 1811080
+			},
+			"text": " Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:11,080",
+				"to": "00:30:16,760"
+			},
+			"offsets": {
+				"from": 1811080,
+				"to": 1816760
+			},
+			"text": " Are you only going to be able to work on the solidity code or are you going to give"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:16,760",
+				"to": "00:30:21,040"
+			},
+			"offsets": {
+				"from": 1816760,
+				"to": 1821040
+			},
+			"text": " some of our other thinking abilities as well?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:21,040",
+				"to": "00:30:22,600"
+			},
+			"offsets": {
+				"from": 1821040,
+				"to": 1822600
+			},
+			"text": " Present."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:22,600",
+				"to": "00:30:27,360"
+			},
+			"offsets": {
+				"from": 1822600,
+				"to": 1827360
+			},
+			"text": " It's going to be designed mostly for solidity, but there's no reason why ultimately we can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:27,360",
+				"to": "00:30:32,400"
+			},
+			"offsets": {
+				"from": 1827360,
+				"to": 1832400
+			},
+			"text": " add an abstraction platform to allow it to be used for other code as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,400",
+				"to": "00:30:36,960"
+			},
+			"offsets": {
+				"from": 1832400,
+				"to": 1836960
+			},
+			"text": " What I would like to see is a multi-language support."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:36,960",
+				"to": "00:30:41,600"
+			},
+			"offsets": {
+				"from": 1836960,
+				"to": 1841600
+			},
+			"text": " Specifically JavaScript as well, because JavaScript is going to be a very important part of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,600",
+				"to": "00:30:43,960"
+			},
+			"offsets": {
+				"from": 1841600,
+				"to": 1843960
+			},
+			"text": " From JavaScript, you're going to want to call into contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:43,960",
+				"to": "00:30:48,200"
+			},
+			"offsets": {
+				"from": 1843960,
+				"to": 1848200
+			},
+			"text": " You're going to want some form of AST analysis for JavaScript so that you can do all of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:48,200",
+				"to": "00:30:54,720"
+			},
+			"offsets": {
+				"from": 1848200,
+				"to": 1854720
+			},
+			"text": " cool documentation stuff and parameter up front head documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:54,720",
+				"to": "00:31:00,000"
+			},
+			"offsets": {
+				"from": 1854720,
+				"to": 1860000
+			},
+			"text": " Ultimately, I'd like to add multi-language support in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:00,000",
+				"to": "00:31:06,960"
+			},
+			"offsets": {
+				"from": 1860000,
+				"to": 1866960
+			},
+			"text": " It depends on contracts that are already deployed and it's not part of your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,960",
+				"to": "00:31:10,400"
+			},
+			"offsets": {
+				"from": 1866960,
+				"to": 1870400
+			},
+			"text": " What are you going to do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:10,400",
+				"to": "00:31:16,160"
+			},
+			"offsets": {
+				"from": 1870400,
+				"to": 1876160
+			},
+			"text": " I'll go back a few."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:16,160",
+				"to": "00:31:19,200"
+			},
+			"offsets": {
+				"from": 1876160,
+				"to": 1879200
+			},
+			"text": " This will come forward with the contract repository integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:19,200",
+				"to": "00:31:22,200"
+			},
+			"offsets": {
+				"from": 1879200,
+				"to": 1882200
+			},
+			"text": " The idea is that there's a contract repository that doesn't necessarily store the source"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:22,200",
+				"to": "00:31:26,080"
+			},
+			"offsets": {
+				"from": 1882200,
+				"to": 1886080
+			},
+			"text": " code of the contract, maybe it was the closed source."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:26,080",
+				"to": "00:31:31,120"
+			},
+			"offsets": {
+				"from": 1886080,
+				"to": 1891120
+			},
+			"text": " What it does store is the JSON -- if you remember a talk earlier, there's a JSON representation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:31,120",
+				"to": "00:31:34,360"
+			},
+			"offsets": {
+				"from": 1891120,
+				"to": 1894360
+			},
+			"text": " which is kind of like the header file of a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:34,360",
+				"to": "00:31:35,360"
+			},
+			"offsets": {
+				"from": 1894360,
+				"to": 1895360
+			},
+			"text": " That it would store."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,360",
+				"to": "00:31:39,440"
+			},
+			"offsets": {
+				"from": 1895360,
+				"to": 1899440
+			},
+			"text": " There's no reason why a developer wouldn't have a contract, wouldn't put that in."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:39,440",
+				"to": "00:31:40,440"
+			},
+			"offsets": {
+				"from": 1899440,
+				"to": 1900440
+			},
+			"text": " It's free information."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:40,440",
+				"to": "00:31:43,200"
+			},
+			"offsets": {
+				"from": 1900440,
+				"to": 1903200
+			},
+			"text": " It just helps people interact with their contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:43,200",
+				"to": "00:31:45,320"
+			},
+			"offsets": {
+				"from": 1903200,
+				"to": 1905320
+			},
+			"text": " It's easily derivable."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:45,320",
+				"to": "00:31:49,000"
+			},
+			"offsets": {
+				"from": 1905320,
+				"to": 1909000
+			},
+			"text": " That would go in the repository alongside some documentation, whether it's contributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:49,000",
+				"to": "00:31:53,440"
+			},
+			"offsets": {
+				"from": 1909000,
+				"to": 1913440
+			},
+			"text": " by the author or other people."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,440",
+				"to": "00:31:56,920"
+			},
+			"offsets": {
+				"from": 1913440,
+				"to": 1916920
+			},
+			"text": " It's that that it would look up via this URI system."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:56,920",
+				"to": "00:32:03,520"
+			},
+			"offsets": {
+				"from": 1916920,
+				"to": 1923520
+			},
+			"text": " The URI system ultimately will be integrated with the Solidity language."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:03,520",
+				"to": "00:32:09,320"
+			},
+			"offsets": {
+				"from": 1923520,
+				"to": 1929320
+			},
+			"text": " You use a URI to cast from an address, from a generic address, into a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,320",
+				"to": "00:32:14,080"
+			},
+			"offsets": {
+				"from": 1929320,
+				"to": 1934080
+			},
+			"text": " When you start calling, that's then an object of type this URI, this particular contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:14,080",
+				"to": "00:32:19,800"
+			},
+			"offsets": {
+				"from": 1934080,
+				"to": 1939800
+			},
+			"text": " When you start, I don't know, if the contract's called A, that will bring up the methods"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:19,800",
+				"to": "00:32:23,520"
+			},
+			"offsets": {
+				"from": 1939800,
+				"to": 1943520
+			},
+			"text": " that you can call, whether it's in JavaScript or Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:23,520",
+				"to": "00:32:25,520"
+			},
+			"offsets": {
+				"from": 1943520,
+				"to": 1945520
+			},
+			"text": " Is that all?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:25,520",
+				"to": "00:32:36,200"
+			},
+			"offsets": {
+				"from": 1945520,
+				"to": 1956200
+			},
+			"text": " Is the thing to slowly improve an S0 with this feature set or just about the development"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:36,200",
+				"to": "00:32:40,400"
+			},
+			"offsets": {
+				"from": 1956200,
+				"to": 1960400
+			},
+			"text": " of the contract development separately from an S0?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:40,400",
+				"to": "00:32:45,400"
+			},
+			"offsets": {
+				"from": 1960400,
+				"to": 1965400
+			},
+			"text": " The latter."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:45,400",
+				"to": "00:32:49,600"
+			},
+			"offsets": {
+				"from": 1965400,
+				"to": 1969600
+			},
+			"text": " It does most things that you can ever need to do, but it does it in ways that are very"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:49,600",
+				"to": "00:32:52,480"
+			},
+			"offsets": {
+				"from": 1969600,
+				"to": 1972480
+			},
+			"text": " much not designed around the developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:52,480",
+				"to": "00:32:59,200"
+			},
+			"offsets": {
+				"from": 1972480,
+				"to": 1979200
+			},
+			"text": " The idea is to have this additional ID and basically push our L0 into power user or people"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,200",
+				"to": "00:33:04,560"
+			},
+			"offsets": {
+				"from": 1979200,
+				"to": 1984560
+			},
+			"text": " who are just interested in mucking around and viewing the blockchain and really push the"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:04,560",
+				"to": "00:33:08,520"
+			},
+			"offsets": {
+				"from": 1984560,
+				"to": 1988520
+			},
+			"text": " ID as the primary way of developing DAPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:08,520",
+				"to": "00:33:10,520"
+			},
+			"offsets": {
+				"from": 1988520,
+				"to": 1990520
+			},
+			"text": " You picked up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:10,520",
+				"to": "00:33:13,520"
+			},
+			"offsets": {
+				"from": 1990520,
+				"to": 1993520
+			},
+			"text": " It's a dream of questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:13,520",
+				"to": "00:33:16,520"
+			},
+			"offsets": {
+				"from": 1993520,
+				"to": 1996520
+			},
+			"text": " First is the seventh block, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:16,520",
+				"to": "00:33:19,520"
+			},
+			"offsets": {
+				"from": 1996520,
+				"to": 1999520
+			},
+			"text": " So it's not existing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:19,520",
+				"to": "00:33:20,520"
+			},
+			"offsets": {
+				"from": 1999520,
+				"to": 2000520
+			},
+			"text": " The data is correct, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,520",
+				"to": "00:33:21,520"
+			},
+			"offsets": {
+				"from": 2000520,
+				"to": 2001520
+			},
+			"text": " I'm more familiar."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:21,520",
+				"to": "00:33:24,520"
+			},
+			"offsets": {
+				"from": 2001520,
+				"to": 2004520
+			},
+			"text": " I mean more than more specific."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:24,520",
+				"to": "00:33:26,520"
+			},
+			"offsets": {
+				"from": 2004520,
+				"to": 2006520
+			},
+			"text": " Does it exist in the cell phone?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:26,520",
+				"to": "00:33:27,520"
+			},
+			"offsets": {
+				"from": 2006520,
+				"to": 2007520
+			},
+			"text": " Yes, there is."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:27,520",
+				"to": "00:33:30,520"
+			},
+			"offsets": {
+				"from": 2007520,
+				"to": 2010520
+			},
+			"text": " We've just about got to milestone one, I believe."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:30,520",
+				"to": "00:33:32,520"
+			},
+			"offsets": {
+				"from": 2010520,
+				"to": 2012520
+			},
+			"text": " Is that correct, Carol?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:32,520",
+				"to": "00:33:33,520"
+			},
+			"offsets": {
+				"from": 2012520,
+				"to": 2013520
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:33,520",
+				"to": "00:33:40,520"
+			},
+			"offsets": {
+				"from": 2013520,
+				"to": 2020520
+			},
+			"text": " Second, you mentioned that we don't want to deal with files, I get a bit scared."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:40,520",
+				"to": "00:33:44,520"
+			},
+			"offsets": {
+				"from": 2020520,
+				"to": 2024520
+			},
+			"text": " You obviously, people understand what files is, what directories is there."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:44,520",
+				"to": "00:33:50,520"
+			},
+			"offsets": {
+				"from": 2024520,
+				"to": 2030520
+			},
+			"text": " Even if you have proper GitHub integration, I mean even with GitHub you need to have files"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:50,520",
+				"to": "00:33:55,520"
+			},
+			"offsets": {
+				"from": 2030520,
+				"to": 2035520
+			},
+			"text": " and then people understand how to transport maybe that project with the Z."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:55,520",
+				"to": "00:33:57,520"
+			},
+			"offsets": {
+				"from": 2035520,
+				"to": 2037520
+			},
+			"text": " I know it's like less for me."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:57,520",
+				"to": "00:34:02,520"
+			},
+			"offsets": {
+				"from": 2037520,
+				"to": 2042520
+			},
+			"text": " So for example, with the contracts, it seems to have the only other names."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:02,520",
+				"to": "00:34:08,520"
+			},
+			"offsets": {
+				"from": 2042520,
+				"to": 2048520
+			},
+			"text": " Yeah, so I suppose if you think of it, it's not that files won't be used underneath and"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:08,520",
+				"to": "00:34:12,520"
+			},
+			"offsets": {
+				"from": 2048520,
+				"to": 2052520
+			},
+			"text": " it's not that ultimately the developer will have access, won't have access to their files"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:12,520",
+				"to": "00:34:14,520"
+			},
+			"offsets": {
+				"from": 2052520,
+				"to": 2054520
+			},
+			"text": " if they want access."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:14,520",
+				"to": "00:34:19,520"
+			},
+			"offsets": {
+				"from": 2054520,
+				"to": 2059520
+			},
+			"text": " It's simply that it shouldn't be necessary to understand the concept of a file because"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:19,520",
+				"to": "00:34:22,520"
+			},
+			"offsets": {
+				"from": 2059520,
+				"to": 2062520
+			},
+			"text": " actually it's not actually necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:22,520",
+				"to": "00:34:24,520"
+			},
+			"offsets": {
+				"from": 2062520,
+				"to": 2064520
+			},
+			"text": " It shouldn't be a first class citizen."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:24,520",
+				"to": "00:34:29,520"
+			},
+			"offsets": {
+				"from": 2064520,
+				"to": 2069520
+			},
+			"text": " It should effectively be an implementation detail that you can drill down to if you want but that you don't have to."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:29,520",
+				"to": "00:34:35,520"
+			},
+			"offsets": {
+				"from": 2069520,
+				"to": 2075520
+			},
+			"text": " So with the contracts to take an example, it might be that the contracts are won't stored,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:35,520",
+				"to": "00:34:40,520"
+			},
+			"offsets": {
+				"from": 2075520,
+				"to": 2080520
+			},
+			"text": " won in each file and the files name is that contract name dot soul."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:40,520",
+				"to": "00:34:43,520"
+			},
+			"offsets": {
+				"from": 2080520,
+				"to": 2083520
+			},
+			"text": " I mean that would be a very sensible way of doing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:43,520",
+				"to": "00:34:48,520"
+			},
+			"offsets": {
+				"from": 2083520,
+				"to": 2088520
+			},
+			"text": " But you know, just to mix things up a bit, it may be that you store them in the same file."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:48,520",
+				"to": "00:34:50,520"
+			},
+			"offsets": {
+				"from": 2088520,
+				"to": 2090520
+			},
+			"text": " So all contracts may be stored in a single file."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:50,520",
+				"to": "00:34:55,520"
+			},
+			"offsets": {
+				"from": 2090520,
+				"to": 2095520
+			},
+			"text": " In general, you need to be naturalizing what these people think in the magic functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:55,520",
+				"to": "00:35:02,520"
+			},
+			"offsets": {
+				"from": 2095520,
+				"to": 2102520
+			},
+			"text": " You might have a tendency to sort of end up creating a sort of super proprietary format which you don't want."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:02,520",
+				"to": "00:35:05,520"
+			},
+			"offsets": {
+				"from": 2102520,
+				"to": 2105520
+			},
+			"text": " So there would be, I mean, you know, it's open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:05,520",
+				"to": "00:35:10,520"
+			},
+			"offsets": {
+				"from": 2105520,
+				"to": 2110520
+			},
+			"text": " If it does something really terrible, developers don't like, they'll change it."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,520",
+				"to": "00:35:12,520"
+			},
+			"offsets": {
+				"from": 2110520,
+				"to": 2112520
+			},
+			"text": " So it's not going to make anything proprietary."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:12,520",
+				"to": "00:35:22,520"
+			},
+			"offsets": {
+				"from": 2112520,
+				"to": 2122520
+			},
+			"text": " I suppose the point is that files as a thing don't need to exist for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:22,520",
+				"to": "00:35:26,520"
+			},
+			"offsets": {
+				"from": 2122520,
+				"to": 2126520
+			},
+			"text": " And with the notion of zips, well again, maybe the developers want to have a zip,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:26,520",
+				"to": "00:35:28,520"
+			},
+			"offsets": {
+				"from": 2126520,
+				"to": 2128520
+			},
+			"text": " in which case they're free to make a zip from the directory."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:28,520",
+				"to": "00:35:31,520"
+			},
+			"offsets": {
+				"from": 2128520,
+				"to": 2131520
+			},
+			"text": " I mean, it's going to be a directory because as you said, GitHub works in this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:31,520",
+				"to": "00:35:37,520"
+			},
+			"offsets": {
+				"from": 2131520,
+				"to": 2137520
+			},
+			"text": " But it doesn't mean that it has to be shoved into the developers space."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:37,520",
+				"to": "00:35:42,520"
+			},
+			"offsets": {
+				"from": 2137520,
+				"to": 2142520
+			},
+			"text": " Now what I specifically want to avoid, so that if you're after a real use case for this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:42,520",
+				"to": "00:35:48,520"
+			},
+			"offsets": {
+				"from": 2142520,
+				"to": 2148520
+			},
+			"text": " it's I rename a contract and yet the file is still the old name of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:48,520",
+				"to": "00:35:53,520"
+			},
+			"offsets": {
+				"from": 2148520,
+				"to": 2153520
+			},
+			"text": " So if I've got a contract foo, I rename to bar, but they have still got foo.sole."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:53,520",
+				"to": "00:35:58,520"
+			},
+			"offsets": {
+				"from": 2153520,
+				"to": 2158520
+			},
+			"text": " Now as a program, I shouldn't be forced to look after my files as well as looking after my code."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:58,520",
+				"to": "00:36:02,520"
+			},
+			"offsets": {
+				"from": 2158520,
+				"to": 2162520
+			},
+			"text": " Exactly, but what about the foo name? It's just a scary size."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:02,520",
+				"to": "00:36:06,520"
+			},
+			"offsets": {
+				"from": 2162520,
+				"to": 2166520
+			},
+			"text": " I would argue that it's considerably less."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:06,520",
+				"to": "00:36:07,520"
+			},
+			"offsets": {
+				"from": 2166520,
+				"to": 2167520
+			},
+			"text": " Yeah, we do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:07,520",
+				"to": "00:36:14,520"
+			},
+			"offsets": {
+				"from": 2167520,
+				"to": 2174520
+			},
+			"text": " And the sort of depression, can we get through the semi-corner at the end of the night?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:14,520",
+				"to": "00:36:19,520"
+			},
+			"offsets": {
+				"from": 2174520,
+				"to": 2179520
+			},
+			"text": " We have to, well, we could have a separate panel discussion about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:19,520",
+				"to": "00:36:21,520"
+			},
+			"offsets": {
+				"from": 2179520,
+				"to": 2181520
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:21,520",
+				"to": "00:36:24,520"
+			},
+			"offsets": {
+				"from": 2181520,
+				"to": 2184520
+			},
+			"text": " Uh, lefurs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:24,520",
+				"to": "00:36:30,520"
+			},
+			"offsets": {
+				"from": 2184520,
+				"to": 2190520
+			},
+			"text": " Yeah, I'd say to do many questions regarding the integration of some of these people"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:30,520",
+				"to": "00:36:32,520"
+			},
+			"offsets": {
+				"from": 2190520,
+				"to": 2192520
+			},
+			"text": " possibly in Java editors."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:32,520",
+				"to": "00:36:38,520"
+			},
+			"offsets": {
+				"from": 2192520,
+				"to": 2198520
+			},
+			"text": " You mentioned that it's all in the library right now, in literally a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:38,520",
+				"to": "00:36:46,520"
+			},
+			"offsets": {
+				"from": 2198520,
+				"to": 2206520
+			},
+			"text": " So, that would integrate with the idea that it's called in the functions of the library."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:46,520",
+				"to": "00:36:56,520"
+			},
+			"offsets": {
+				"from": 2206520,
+				"to": 2216520
+			},
+			"text": " But couldn't also have at least some like the AST printing or other features made into a file by SoC."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:56,520",
+				"to": "00:37:01,520"
+			},
+			"offsets": {
+				"from": 2216520,
+				"to": 2221520
+			},
+			"text": " This would sound like an argument, so other editors can also integrate with some of these pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:01,520",
+				"to": "00:37:04,520"
+			},
+			"offsets": {
+				"from": 2221520,
+				"to": 2224520
+			},
+			"text": " Yes, and I believe it already does. Is that correct?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:04,520",
+				"to": "00:37:08,520"
+			},
+			"offsets": {
+				"from": 2224520,
+				"to": 2228520
+			},
+			"text": " The farmer is not really possible, but that's..."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:08,520",
+				"to": "00:37:10,520"
+			},
+			"offsets": {
+				"from": 2228520,
+				"to": 2230520
+			},
+			"text": " Okay, but could we mate?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:10,520",
+				"to": "00:37:12,520"
+			},
+			"offsets": {
+				"from": 2230520,
+				"to": 2232520
+			},
+			"text": " Yeah, I don't. Yeah, why not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:12,520",
+				"to": "00:37:13,520"
+			},
+			"offsets": {
+				"from": 2232520,
+				"to": 2233520
+			},
+			"text": " Why not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:13,520",
+				"to": "00:37:21,520"
+			},
+			"offsets": {
+				"from": 2233520,
+				"to": 2241520
+			},
+			"text": " The precise priority of that task would have to be discussed, but in principle, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:21,520",
+				"to": "00:37:30,520"
+			},
+			"offsets": {
+				"from": 2241520,
+				"to": 2250520
+			},
+			"text": " I'm just mentioning because we were not able to adapt to that, we shouldn't, so no matter how many is specific editor on the face."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:30,520",
+				"to": "00:37:36,520"
+			},
+			"offsets": {
+				"from": 2250520,
+				"to": 2256520
+			},
+			"text": " Sure, that won't be the case. So they'll always have the command line compiler of nothing else."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:36,520",
+				"to": "00:37:38,520"
+			},
+			"offsets": {
+				"from": 2256520,
+				"to": 2258520
+			},
+			"text": " Alex?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:38,520",
+				"to": "00:37:43,520"
+			},
+			"offsets": {
+				"from": 2258520,
+				"to": 2263520
+			},
+			"text": " So, the questions of the first is, might it be less important than the last form?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:43,520",
+				"to": "00:37:47,520"
+			},
+			"offsets": {
+				"from": 2263520,
+				"to": 2267520
+			},
+			"text": " Is form integrated at all, initially?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:47,520",
+				"to": "00:37:48,520"
+			},
+			"offsets": {
+				"from": 2267520,
+				"to": 2268520
+			},
+			"text": " Yes, absolutely."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:48,520",
+				"to": "00:37:57,520"
+			},
+			"offsets": {
+				"from": 2268520,
+				"to": 2277520
+			},
+			"text": " And if you integrated in one one way, and what will happen to the things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:57,520",
+				"to": "00:38:04,520"
+			},
+			"offsets": {
+				"from": 2277520,
+				"to": 2284520
+			},
+			"text": " Oh, I mean, it doesn't look like that progress mark is moving."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:04,520",
+				"to": "00:38:06,520"
+			},
+			"offsets": {
+				"from": 2284520,
+				"to": 2286520
+			},
+			"text": " It may feel the worst."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:06,520",
+				"to": "00:38:13,520"
+			},
+			"offsets": {
+				"from": 2286520,
+				"to": 2293520
+			},
+			"text": " As for swarm, yes, it will be possible to set up within the deployment script or within the test and debugging environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:13,520",
+				"to": "00:38:22,520"
+			},
+			"offsets": {
+				"from": 2293520,
+				"to": 2302520
+			},
+			"text": " So within the tests and debug definitions, a set of key value pairs, force swarm, for the resources that you might want there."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:22,520",
+				"to": "00:38:32,520"
+			},
+			"offsets": {
+				"from": 2302520,
+				"to": 2312520
+			},
+			"text": " What about, say, for chatting about GitHub issues or storing the project itself?"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:32,520",
+				"to": "00:38:41,520"
+			},
+			"offsets": {
+				"from": 2312520,
+				"to": 2321520
+			},
+			"text": " Well, that's right. Indeed, exactly that. So click New Project, it makes a new project in GitHub, checks it out, and you get to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:41,520",
+				"to": "00:38:50,520"
+			},
+			"offsets": {
+				"from": 2321520,
+				"to": 2330520
+			},
+			"text": " Yeah, so I guess, I guess we can store everything in the GitHub repository somehow."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:50,520",
+				"to": "00:39:02,520"
+			},
+			"offsets": {
+				"from": 2330520,
+				"to": 2342520
+			},
+			"text": " But then that could also, I mean, you can mount a PDF as a local with, or you can maybe, that's just, you might not need the file system."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:02,520",
+				"to": "00:39:05,520"
+			},
+			"offsets": {
+				"from": 2342520,
+				"to": 2345520
+			},
+			"text": " That's a possibility too."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:05,520",
+				"to": "00:39:10,520"
+			},
+			"offsets": {
+				"from": 2345520,
+				"to": 2350520
+			},
+			"text": " So I'm keen to go with things that are already working for now, but, Daniel."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:10,520",
+				"to": "00:39:18,520"
+			},
+			"offsets": {
+				"from": 2350520,
+				"to": 2358520
+			},
+			"text": " Is it part of the vision for it to become eventually self-boosted? I mean, to get rid of GitHub, I'm just boosted and swarmed."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:18,520",
+				"to": "00:39:24,520"
+			},
+			"offsets": {
+				"from": 2358520,
+				"to": 2364520
+			},
+			"text": " That's something that could certainly be considered once swarm is a game, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:24,520",
+				"to": "00:39:28,520"
+			},
+			"offsets": {
+				"from": 2364520,
+				"to": 2368520
+			},
+			"text": " More idea message version then."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:28,520",
+				"to": "00:39:30,520"
+			},
+			"offsets": {
+				"from": 2368520,
+				"to": 2370520
+			},
+			"text": " Yeah, for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:30,520",
+				"to": "00:39:40,520"
+			},
+			"offsets": {
+				"from": 2370520,
+				"to": 2380520
+			},
+			"text": " What were your reasons to say, okay, create a complete new idea instead of just adding it to a live source or something like that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:40,520",
+				"to": "00:39:59,520"
+			},
+			"offsets": {
+				"from": 2380520,
+				"to": 2399520
+			},
+			"text": " So, mainly because I wanted to avoid forcing other software into the system and making more dependencies, making more things that go wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:59,520",
+				"to": "00:40:09,520"
+			},
+			"offsets": {
+				"from": 2399520,
+				"to": 2409520
+			},
+			"text": " more moving parts, I kind of wanted to keep it towards a single code base that we had full control over."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:09,520",
+				"to": "00:40:17,520"
+			},
+			"offsets": {
+				"from": 2409520,
+				"to": 2417520
+			},
+			"text": " That made some sense to me regarding the need to integrate into the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:17,520",
+				"to": "00:40:22,520"
+			},
+			"offsets": {
+				"from": 2417520,
+				"to": 2422520
+			},
+			"text": " So I know Eclipse is pure plug-in and technically you should actually be able to do any of this with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:22,520",
+				"to": "00:40:29,520"
+			},
+			"offsets": {
+				"from": 2422520,
+				"to": 2429520
+			},
+			"text": " The other reason, of course, is that Eclipse is Java based and Java is utterly horrible. Sorry, bro."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:29,520",
+				"to": "00:40:32,520"
+			},
+			"offsets": {
+				"from": 2429520,
+				"to": 2432520
+			},
+			"text": " It's very handy to see it."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:32,520",
+				"to": "00:40:36,520"
+			},
+			"offsets": {
+				"from": 2432520,
+				"to": 2436520
+			},
+			"text": " And it's a very good thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:36,520",
+				"to": "00:40:44,520"
+			},
+			"offsets": {
+				"from": 2436520,
+				"to": 2444520
+			},
+			"text": " There are so many things that I do with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:44,520",
+				"to": "00:40:50,520"
+			},
+			"offsets": {
+				"from": 2444520,
+				"to": 2450520
+			},
+			"text": " So I secondly, I do that Eclipse is an extended, easy thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:50,520",
+				"to": "00:41:00,520"
+			},
+			"offsets": {
+				"from": 2450520,
+				"to": 2460520
+			},
+			"text": " One main thing because we've got a code teaching project that seems to be coming up a lot is collaborative or pair programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:00,520",
+				"to": "00:41:09,520"
+			},
+			"offsets": {
+				"from": 2460520,
+				"to": 2469520
+			},
+			"text": " With video tutorials, side by side, you can, and especially in this look, you might want to be a legal person or business person and contract person."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:09,520",
+				"to": "00:41:26,520"
+			},
+			"offsets": {
+				"from": 2469520,
+				"to": 2486520
+			},
+			"text": " You're debating your writing together. It just seems to extend the type of users and to get it should maybe be early in thinking about these things like that to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:26,520",
+				"to": "00:41:30,520"
+			},
+			"offsets": {
+				"from": 2486520,
+				"to": 2490520
+			},
+			"text": " You mentioned like Google Docs and that's classic."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:30,520",
+				"to": "00:41:39,520"
+			},
+			"offsets": {
+				"from": 2490520,
+				"to": 2499520
+			},
+			"text": " What are your plans with regard to collaboratively working in an educational or other sense, especially with the idea?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:39,520",
+				"to": "00:41:48,520"
+			},
+			"offsets": {
+				"from": 2499520,
+				"to": 2508520
+			},
+			"text": " The screenshot, wherever it was, is a first effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:48,520",
+				"to": "00:41:51,520"
+			},
+			"offsets": {
+				"from": 2508520,
+				"to": 2511520
+			},
+			"text": " But yeah, actually dynamic pair programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:51,520",
+				"to": "00:41:59,520"
+			},
+			"offsets": {
+				"from": 2511520,
+				"to": 2519520
+			},
+			"text": " So having seen the other person's cursor, Google Doc style, chatting maybe voice over IP at the same time with what,"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:59,520",
+				"to": "00:42:02,520"
+			},
+			"offsets": {
+				"from": 2519520,
+				"to": 2522520
+			},
+			"text": " as you see the other developer altering things."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:02,520",
+				"to": "00:42:07,520"
+			},
+			"offsets": {
+				"from": 2522520,
+				"to": 2527520
+			},
+			"text": " Yeah, I mean, absolutely. That's what it's all about."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:07,520",
+				"to": "00:42:10,520"
+			},
+			"offsets": {
+				"from": 2527520,
+				"to": 2530520
+			},
+			"text": " I want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:10,520",
+				"to": "00:42:13,520"
+			},
+			"offsets": {
+				"from": 2530520,
+				"to": 2533520
+			},
+			"text": " Eventually, time will tell."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:13,520",
+				"to": "00:42:16,520"
+			},
+			"offsets": {
+				"from": 2533520,
+				"to": 2536520
+			},
+			"text": " Good things come to those who wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:16,520",
+				"to": "00:42:18,520"
+			},
+			"offsets": {
+				"from": 2536520,
+				"to": 2538520
+			},
+			"text": " Okay, any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:18,520",
+				"to": "00:42:20,520"
+			},
+			"offsets": {
+				"from": 2538520,
+				"to": 2540520
+			},
+			"text": " No, cool. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:20,520",
+				"to": "00:42:24,520"
+			},
+			"offsets": {
+				"from": 2540520,
+				"to": 2544520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:24,520",
+				"to": "00:42:31,520"
+			},
+			"offsets": {
+				"from": 2544520,
+				"to": 2551520
+			},
+			"text": " [Music]"
+		}
+	]
+}

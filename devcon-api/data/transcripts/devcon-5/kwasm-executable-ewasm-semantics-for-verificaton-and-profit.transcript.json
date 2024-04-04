@@ -1,0 +1,1198 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3960
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,960",
+				"to": "00:00:11,760"
+			},
+			"offsets": {
+				"from": 3960,
+				"to": 11760
+			},
+			"text": " Hey, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,760",
+				"to": "00:00:12,760"
+			},
+			"offsets": {
+				"from": 11760,
+				"to": 12760
+			},
+			"text": " I'm Descartes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,760",
+				"to": "00:00:14,600"
+			},
+			"offsets": {
+				"from": 12760,
+				"to": 14600
+			},
+			"text": " I want to talk about K-Wassen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,600",
+				"to": "00:00:16,200"
+			},
+			"offsets": {
+				"from": 14600,
+				"to": 16200
+			},
+			"text": " So I want to talk about the challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,200",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 16200,
+				"to": 18000
+			},
+			"text": " that we face when we're building a virtual machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:21,080"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 21080
+			},
+			"text": " for blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,080",
+				"to": "00:00:23,280"
+			},
+			"offsets": {
+				"from": 21080,
+				"to": 23280
+			},
+			"text": " We want to run smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,280",
+				"to": "00:00:25,840"
+			},
+			"offsets": {
+				"from": 23280,
+				"to": 25840
+			},
+			"text": " A lot of you know we want to have a bunch of contract security"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,840",
+				"to": "00:00:26,340"
+			},
+			"offsets": {
+				"from": 25840,
+				"to": 26340
+			},
+			"text": " tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,340",
+				"to": "00:00:27,360"
+			},
+			"offsets": {
+				"from": 26340,
+				"to": 27360
+			},
+			"text": " We want to be able to audit them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,360",
+				"to": "00:00:28,680"
+			},
+			"offsets": {
+				"from": 27360,
+				"to": 28680
+			},
+			"text": " We want to do some static checking."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,680",
+				"to": "00:00:30,920"
+			},
+			"offsets": {
+				"from": 28680,
+				"to": 30920
+			},
+			"text": " We want to do some small checking for modification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,920",
+				"to": "00:00:32,480"
+			},
+			"offsets": {
+				"from": 30920,
+				"to": 32480
+			},
+			"text": " testing, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,480",
+				"to": "00:00:35,520"
+			},
+			"offsets": {
+				"from": 32480,
+				"to": 35520
+			},
+			"text": " Usually these are built with separate tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,520",
+				"to": "00:00:38,160"
+			},
+			"offsets": {
+				"from": 35520,
+				"to": 38160
+			},
+			"text": " And we also want to have clear consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,160",
+				"to": "00:00:40,120"
+			},
+			"offsets": {
+				"from": 38160,
+				"to": 40120
+			},
+			"text": " of what we're building, what is the exact behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,120",
+				"to": "00:00:41,280"
+			},
+			"offsets": {
+				"from": 40120,
+				"to": 41280
+			},
+			"text": " of this virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,280",
+				"to": "00:00:43,040"
+			},
+			"offsets": {
+				"from": 41280,
+				"to": 43040
+			},
+			"text": " So we want to have a trusted runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,040",
+				"to": "00:00:44,200"
+			},
+			"offsets": {
+				"from": 43040,
+				"to": 44200
+			},
+			"text": " We want to have good documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,200",
+				"to": "00:00:46,080"
+			},
+			"offsets": {
+				"from": 44200,
+				"to": 46080
+			},
+			"text": " So implementers know what they're building."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,080",
+				"to": "00:00:48,560"
+			},
+			"offsets": {
+				"from": 46080,
+				"to": 48560
+			},
+			"text": " We want it to be perfectly unambiguous."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,560",
+				"to": "00:00:51,200"
+			},
+			"offsets": {
+				"from": 48560,
+				"to": 51200
+			},
+			"text": " We just want to make sure we can avoid consensus bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,200",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 51200,
+				"to": 53000
+			},
+			"text": " And again, these are all things that people"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:54,320"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 54320
+			},
+			"text": " tend to work on separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,320",
+				"to": "00:00:56,080"
+			},
+			"offsets": {
+				"from": 54320,
+				"to": 56080
+			},
+			"text": " Someone's writing a documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,080",
+				"to": "00:01:00,480"
+			},
+			"offsets": {
+				"from": 56080,
+				"to": 60480
+			},
+			"text": " Someone is formalizing the VDM, like the elevator as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,480",
+				"to": "00:01:03,480"
+			},
+			"offsets": {
+				"from": 60480,
+				"to": 63480
+			},
+			"text": " So I want to pitch another approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,480",
+				"to": "00:01:05,800"
+			},
+			"offsets": {
+				"from": 63480,
+				"to": 65800
+			},
+			"text": " which is what we applied in the K-frame work, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,800",
+				"to": "00:01:09,480"
+			},
+			"offsets": {
+				"from": 65800,
+				"to": 69480
+			},
+			"text": " is this idea that you can kill endarts with K-stones."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,480",
+				"to": "00:01:13,800"
+			},
+			"offsets": {
+				"from": 69480,
+				"to": 73800
+			},
+			"text": " Basically, the idea is that you specify your language"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,800",
+				"to": "00:01:16,160"
+			},
+			"offsets": {
+				"from": 73800,
+				"to": 76160
+			},
+			"text": " once and you derive the tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,160",
+				"to": "00:01:17,520"
+			},
+			"offsets": {
+				"from": 76160,
+				"to": 77520
+			},
+			"text": " That might sound like magic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,520",
+				"to": "00:01:19,200"
+			},
+			"offsets": {
+				"from": 77520,
+				"to": 79200
+			},
+			"text": " But it's only what you're doing with a parser."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,200",
+				"to": "00:01:21,840"
+			},
+			"offsets": {
+				"from": 79200,
+				"to": 81840
+			},
+			"text": " You're not seeing not to write a parser in C most of the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,840",
+				"to": "00:01:24,080"
+			},
+			"offsets": {
+				"from": 81840,
+				"to": 84080
+			},
+			"text": " You're probably writing a grammar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,080",
+				"to": "00:01:26,480"
+			},
+			"offsets": {
+				"from": 84080,
+				"to": 86480
+			},
+			"text": " and a tool is going to generate a parser for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,480",
+				"to": "00:01:28,840"
+			},
+			"offsets": {
+				"from": 86480,
+				"to": 88840
+			},
+			"text": " We take that same approach with languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,840",
+				"to": "00:01:31,640"
+			},
+			"offsets": {
+				"from": 88840,
+				"to": 91640
+			},
+			"text": " to the next level, where you specify your language"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,640",
+				"to": "00:01:34,240"
+			},
+			"offsets": {
+				"from": 91640,
+				"to": 94240
+			},
+			"text": " in a formalism, mathematically."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,240",
+				"to": "00:01:35,560"
+			},
+			"offsets": {
+				"from": 94240,
+				"to": 95560
+			},
+			"text": " You can think of it as math."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,560",
+				"to": "00:01:37,320"
+			},
+			"offsets": {
+				"from": 95560,
+				"to": 97320
+			},
+			"text": " You can think of it as programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,320",
+				"to": "00:01:40,640"
+			},
+			"offsets": {
+				"from": 97320,
+				"to": 100640
+			},
+			"text": " And from there, we can generate parses, interpreters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,640",
+				"to": "00:01:42,480"
+			},
+			"offsets": {
+				"from": 100640,
+				"to": 102480
+			},
+			"text": " program error fires."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,480",
+				"to": "00:01:44,880"
+			},
+			"offsets": {
+				"from": 102480,
+				"to": 104880
+			},
+			"text": " We're working on a bunch of tools like model checkers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,880",
+				"to": "00:01:45,280"
+			},
+			"offsets": {
+				"from": 104880,
+				"to": 105280
+			},
+			"text": " and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,280",
+				"to": "00:01:47,560"
+			},
+			"offsets": {
+				"from": 105280,
+				"to": 107560
+			},
+			"text": " But the idea is you specify your language once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,560",
+				"to": "00:01:51,120"
+			},
+			"offsets": {
+				"from": 107560,
+				"to": 111120
+			},
+			"text": " and then you get all the tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,120",
+				"to": "00:01:52,920"
+			},
+			"offsets": {
+				"from": 111120,
+				"to": 112920
+			},
+			"text": " I'd argue that it's ambitious."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,920",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 112920,
+				"to": 115000
+			},
+			"text": " Let's derive all the tools from one specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:56,040"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 116040
+			},
+			"text": " But it's also realistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,040",
+				"to": "00:01:57,680"
+			},
+			"offsets": {
+				"from": 116040,
+				"to": 117680
+			},
+			"text": " Run-time verification is doing this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,680",
+				"to": "00:02:00,280"
+			},
+			"offsets": {
+				"from": 117680,
+				"to": 120280
+			},
+			"text": " and we've been doing it for about a few years."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,280",
+				"to": "00:02:01,800"
+			},
+			"offsets": {
+				"from": 120280,
+				"to": 121800
+			},
+			"text": " I'd say these are pretty successful with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,800",
+				"to": "00:02:03,680"
+			},
+			"offsets": {
+				"from": 121800,
+				"to": 123680
+			},
+			"text": " So it's not paper-ware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,680",
+				"to": "00:02:06,480"
+			},
+			"offsets": {
+				"from": 123680,
+				"to": 126480
+			},
+			"text": " It's ambitious, but it's realism."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,480",
+				"to": "00:02:10,040"
+			},
+			"offsets": {
+				"from": 126480,
+				"to": 130040
+			},
+			"text": " So one example you might have heard of is the KVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,040",
+				"to": "00:02:14,640"
+			},
+			"offsets": {
+				"from": 130040,
+				"to": 134640
+			},
+			"text": " It's a formal specification of the EVM in the K framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,640",
+				"to": "00:02:16,960"
+			},
+			"offsets": {
+				"from": 134640,
+				"to": 136960
+			},
+			"text": " So it's more like the L-paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,960",
+				"to": "00:02:19,920"
+			},
+			"offsets": {
+				"from": 136960,
+				"to": 139920
+			},
+			"text": " Not the exact same formalism, but it's still--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,920",
+				"to": "00:02:21,760"
+			},
+			"offsets": {
+				"from": 139920,
+				"to": 141760
+			},
+			"text": " it's executable, so it's if you could actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,760",
+				"to": "00:02:25,680"
+			},
+			"offsets": {
+				"from": 141760,
+				"to": 145680
+			},
+			"text": " execute the L-paper to run it, as I know it, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,680",
+				"to": "00:02:28,040"
+			},
+			"offsets": {
+				"from": 145680,
+				"to": 148040
+			},
+			"text": " And it reads like code with a lot of documentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,040",
+				"to": "00:02:31,960"
+			},
+			"offsets": {
+				"from": 148040,
+				"to": 151960
+			},
+			"text": " because we've opted for a literature programming style,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,960",
+				"to": "00:02:33,600"
+			},
+			"offsets": {
+				"from": 151960,
+				"to": 153600
+			},
+			"text": " where you have a bunch of documentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,600",
+				"to": "00:02:36,240"
+			},
+			"offsets": {
+				"from": 153600,
+				"to": 156240
+			},
+			"text": " and then we'll inform it with some."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,240",
+				"to": "00:02:38,080"
+			},
+			"offsets": {
+				"from": 156240,
+				"to": 158080
+			},
+			"text": " A lot of nice tools we generate from this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,080",
+				"to": "00:02:40,240"
+			},
+			"offsets": {
+				"from": 158080,
+				"to": 160240
+			},
+			"text": " There's a tool we work on called Firefly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,240",
+				"to": "00:02:41,840"
+			},
+			"offsets": {
+				"from": 160240,
+				"to": 161840
+			},
+			"text": " which is sort of a truffle integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,840",
+				"to": "00:02:45,680"
+			},
+			"offsets": {
+				"from": 161840,
+				"to": 165680
+			},
+			"text": " We build a lot of a bunch of dev tools by the truffle."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,680",
+				"to": "00:02:47,320"
+			},
+			"offsets": {
+				"from": 165680,
+				"to": 167320
+			},
+			"text": " We generate docs like the Jell-O paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,320",
+				"to": "00:02:52,400"
+			},
+			"offsets": {
+				"from": 167320,
+				"to": 172400
+			},
+			"text": " as some argue easier formal specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,400",
+				"to": "00:02:54,360"
+			},
+			"offsets": {
+				"from": 172400,
+				"to": 174360
+			},
+			"text": " to read than the yellow paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,360",
+				"to": "00:02:56,800"
+			},
+			"offsets": {
+				"from": 174360,
+				"to": 176800
+			},
+			"text": " We do verifications and a bunch of verifiers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,800",
+				"to": "00:03:00,960"
+			},
+			"offsets": {
+				"from": 176800,
+				"to": 180960
+			},
+			"text": " modcontrast, and we're building more cool stuff all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,960",
+				"to": "00:03:03,720"
+			},
+			"offsets": {
+				"from": 180960,
+				"to": 183720
+			},
+			"text": " And I work on K-wasm, which is just"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,720",
+				"to": "00:03:09,120"
+			},
+			"offsets": {
+				"from": 183720,
+				"to": 189120
+			},
+			"text": " a formalization of web assembly in the K framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,120",
+				"to": "00:03:12,400"
+			},
+			"offsets": {
+				"from": 189120,
+				"to": 192400
+			},
+			"text": " Right now, it's mostly a spec of curable web assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,400",
+				"to": "00:03:13,800"
+			},
+			"offsets": {
+				"from": 192400,
+				"to": 193800
+			},
+			"text": " Very similar to the official spec,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,800",
+				"to": "00:03:16,600"
+			},
+			"offsets": {
+				"from": 193800,
+				"to": 196600
+			},
+			"text": " which is nice because they chose the same formalism"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,600",
+				"to": "00:03:18,200"
+			},
+			"offsets": {
+				"from": 196600,
+				"to": 198200
+			},
+			"text": " as we've been using for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,200",
+				"to": "00:03:20,400"
+			},
+			"offsets": {
+				"from": 198200,
+				"to": 200400
+			},
+			"text": " So it's a testament to its in-depth formalism."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,400",
+				"to": "00:03:25,520"
+			},
+			"offsets": {
+				"from": 200400,
+				"to": 205520
+			},
+			"text": " It's called rewriting logic or rewriting basic."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,520",
+				"to": "00:03:26,440"
+			},
+			"offsets": {
+				"from": 205520,
+				"to": 206440
+			},
+			"text": " It's these type of embeddings."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,440",
+				"to": "00:03:28,760"
+			},
+			"offsets": {
+				"from": 206440,
+				"to": 208760
+			},
+			"text": " We have a prototype embedding for Ewasm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,760",
+				"to": "00:03:31,880"
+			},
+			"offsets": {
+				"from": 208760,
+				"to": 211880
+			},
+			"text": " even though that's not in a final state."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,880",
+				"to": "00:03:34,440"
+			},
+			"offsets": {
+				"from": 211880,
+				"to": 214440
+			},
+			"text": " Building prototypes, we're working with Polkadot"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,440",
+				"to": "00:03:37,640"
+			},
+			"offsets": {
+				"from": 214440,
+				"to": 217640
+			},
+			"text": " and Substrate to ramp up our verification abilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,640",
+				"to": "00:03:41,560"
+			},
+			"offsets": {
+				"from": 217640,
+				"to": 221560
+			},
+			"text": " to do formal verification on web assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,560",
+				"to": "00:03:46,400"
+			},
+			"offsets": {
+				"from": 221560,
+				"to": 226400
+			},
+			"text": " And because K-wasm, most EDM tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,400",
+				"to": "00:03:48,920"
+			},
+			"offsets": {
+				"from": 226400,
+				"to": 228920
+			},
+			"text": " K-wasm tools will become Ewasm tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,920",
+				"to": "00:03:51,040"
+			},
+			"offsets": {
+				"from": 228920,
+				"to": 231040
+			},
+			"text": " but it takes some massaging."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,040",
+				"to": "00:03:53,200"
+			},
+			"offsets": {
+				"from": 231040,
+				"to": 233200
+			},
+			"text": " But the idea is, we're doing awesome now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,200",
+				"to": "00:03:55,360"
+			},
+			"offsets": {
+				"from": 233200,
+				"to": 235360
+			},
+			"text": " and when Ewasm kicks in, we're ready to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,360",
+				"to": "00:03:58,800"
+			},
+			"offsets": {
+				"from": 235360,
+				"to": 238800
+			},
+			"text": " And if it doesn't kick in, we're ready to do any other web"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,800",
+				"to": "00:04:00,240"
+			},
+			"offsets": {
+				"from": 238800,
+				"to": 240240
+			},
+			"text": " assembly work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,240",
+				"to": "00:04:03,440"
+			},
+			"offsets": {
+				"from": 240240,
+				"to": 243440
+			},
+			"text": " And that's what we're doing in the Substrate."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,440",
+				"to": "00:04:07,320"
+			},
+			"offsets": {
+				"from": 243440,
+				"to": 247320
+			},
+			"text": " Here's a slight one photograph if you want to get on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,320",
+				"to": "00:04:09,480"
+			},
+			"offsets": {
+				"from": 247320,
+				"to": 249480
+			},
+			"text": " Talk to me after."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,480",
+				"to": "00:04:10,480"
+			},
+			"offsets": {
+				"from": 249480,
+				"to": 250480
+			},
+			"text": " Thanks again."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,480",
+				"to": "00:04:12,960"
+			},
+			"offsets": {
+				"from": 250480,
+				"to": 252960
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,960",
+				"to": "00:04:16,320"
+			},
+			"offsets": {
+				"from": 252960,
+				"to": 256320
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,320",
+				"to": "00:04:19,680"
+			},
+			"offsets": {
+				"from": 256320,
+				"to": 259680
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,680",
+				"to": "00:04:23,040"
+			},
+			"offsets": {
+				"from": 259680,
+				"to": 263040
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,040",
+				"to": "00:04:26,400"
+			},
+			"offsets": {
+				"from": 263040,
+				"to": 266400
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,400",
+				"to": "00:04:29,140"
+			},
+			"offsets": {
+				"from": 266400,
+				"to": 269140
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

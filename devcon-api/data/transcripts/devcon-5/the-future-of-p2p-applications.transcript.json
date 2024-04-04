@@ -1,0 +1,2386 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:09,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 9000
+			},
+			"text": " >> Good morning, everybody. It's great to be here at DevCon. I hope everybody is having"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 9000,
+				"to": 15000
+			},
+			"text": " a great week. My name is rich. I work on a project called wireline. What i'm going to do this morning"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 21000
+			},
+			"text": " is demo a new kind of peer-to-peer platform for privacy preserving and censorship resistant"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 25000
+			},
+			"text": " applications. And i'm going to show how easy it is to build these apps. These aren't"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 30000
+			},
+			"text": " apps. These are the kinds of apps that we could use ourselves to organize and manage our own"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 35000
+			},
+			"text": " decentralized projects. But first i want to talk a little bit about what i think of some of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 41000
+			},
+			"text": " challenges and opportunities that we face together as a community. So i used to work for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 49000
+			},
+			"text": " Google. It's a large cloud company. And i'm a distributed systems engineer. I worked on cloud"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 55000
+			},
+			"text": " technologies for about ten years and some of the technologies that go into Google docs and Gmail."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 61000
+			},
+			"text": " Since the Cambridge Analytica crisis last year, there's been a general increase of awareness"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 66000
+			},
+			"text": " inside the general public about some of the dangers of big tech. And obviously we know all about"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 72000
+			},
+			"text": " that. But there's an elephant in the room. Despite our passion for decentralization, most of us"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 78000
+			},
+			"text": " are still using applications like Google docs and G Suite and other kinds of centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 83000
+			},
+			"text": " applications to manage our projects. And in case you're feeling complacent, we put the slide"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 87000
+			},
+			"text": " together this morning from certain things that have been happening over the last couple of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 95000
+			},
+			"text": " weeks, including Adobe banning users in Venezuela. This is Gmail. This was a revolutionary app when"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 101000
+			},
+			"text": " it launched on April the 1st, 2004. In fact, it was so revolutionary people thought it was a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 106000
+			},
+			"text": " joke. Thought it was an April Fool's joke. And the reason for that is it offered free"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 112000
+			},
+			"text": " storage. It was an unprecedented business model at the time. And the reason it was able to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 116000
+			},
+			"text": " that was through a technological breakthrough called Bigtable that offered infinite-scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 122000
+			},
+			"text": " storage. And it's these breakthroughs that change the paradigm that's been happening every ten"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 127000
+			},
+			"text": " years or so over the last 40 years. It's ultimately led to what we think of as the web today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 133000
+			},
+			"text": " But Gmail was started by a small team. And they were trying to do something that was more -- to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 138000
+			},
+			"text": " build apps that were more responsive to create better user experiences. And it's this more"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 146000
+			},
+			"text": " responsive UX that was become known as Web 2.0 that drove the rapid adoption of these technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 153000
+			},
+			"text": " But Gmail also introduced something else, a new business model, free. And not open as in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 159000
+			},
+			"text": " free software foundation, but free meaning we'll figure out what the monetization strategy is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 167000
+			},
+			"text": " later. And so 15 years later, we've got a billion .2 users on the Gmail platform. But the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 172000
+			},
+			"text": " app itself hasn't changed very much. Gmail itself hasn't changed in the last 50 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 178000
+			},
+			"text": " Dominant companies resist change. They don't want to cannibalize their existing products."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 183000
+			},
+			"text": " In fact, the strong incentives within the companies that growth is the only thing that matters and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 189000
+			},
+			"text": " so innovation really tapers off. And because it's a closed system, none of us can change the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 195000
+			},
+			"text": " functionality, fix bugs, add new features, or even verify that the application is doing what it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 200000
+			},
+			"text": " supposed to be doing. And if you're an independent software developer, competing with a free"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 207000
+			},
+			"text": " business model is really difficult, unless your business model is to try to get acquired by Google."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 213000
+			},
+			"text": " So Gmail is part of a set of applications called the G Suite. And the G Suite is a platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 218000
+			},
+			"text": " And platforms go through the same growth cycle, the ones that succeed. There's a large adoption"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 224000
+			},
+			"text": " curve at the beginning. And then at a certain point, the platform switches from being an"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 229000
+			},
+			"text": " innovator into a rent seeker. And at that point, they start to monetize the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 234000
+			},
+			"text": " And often these monetization strategies can flick with our interests as users."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 239000
+			},
+			"text": " For developers, there's taxes imposed on the platform and restrictions on the kinds of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 247000
+			},
+			"text": " applications that can be built. And for users, there are the obvious privacy issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 257000
+			},
+			"text": " So this should be a really big opportunity for us. The complacency of the dominant players."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 263000
+			},
+			"text": " Why aren't we seeing more widespread decentralized applications? Why aren't we seeing adoption"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 271000
+			},
+			"text": " of these kinds of technologies? Well, the truth is, building web scale applications is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 276000
+			},
+			"text": " difficult. And there's been 15 years of innovation in the tools, platforms, frameworks and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 281000
+			},
+			"text": " APIs that we have to build web applications. And we just don't have those today."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 286000
+			},
+			"text": " So I thought what I do is quickly go through some of the elemental structures required"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 292000
+			},
+			"text": " to build web scale applications. If we were editing a document together in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 297000
+			},
+			"text": " hall this morning, it would make absolutely no sense for each of our keystrokes to be sent"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 303000
+			},
+			"text": " to a server in Mountain View or in Tokyo for that matter. We think peer-to-peer is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 308000
+			},
+			"text": " obvious solution to this. But we have to add additional infrastructure to make peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 312000
+			},
+			"text": " work seamlessly in the browser. We need stun servers and signaling servers so that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 316000
+			},
+			"text": " different peers can find each other. And we have to do this in a way that doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 321000
+			},
+			"text": " reintroduce new centralized dependencies. If we were building these apps on the cloud"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 326000
+			},
+			"text": " today, we have dozens of different database solutions that we could use that give us the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 332000
+			},
+			"text": " scale that we would like. Now, on the peer-to-peer side of things, BitTorrent was the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 338000
+			},
+			"text": " killer app and enabled this massive scale replication of files. But it also had centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 343000
+			},
+			"text": " dependencies for the index for where you actually found the files that were being shared."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 348000
+			},
+			"text": " But the BitTorrent technologies have evolved into different kinds of chain linked real-time"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 354000
+			},
+			"text": " data exchange protocols like secure scuttled and that. And we can start to use these to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 360000
+			},
+			"text": " build replicated databases. But real-time collaboration is still inherently a really"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 365000
+			},
+			"text": " difficult problem to solve. In 2007, we were working on technologies at Google called"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 370000
+			},
+			"text": " operational transformations. This was for a project called Wave that some of you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 375000
+			},
+			"text": " remember. And this is what enables different clients to interoperate at the same time"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 382000
+			},
+			"text": " across the internet. But again, this requires centralized infrastructure. Most of compute"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 386000
+			},
+			"text": " today is done in the cloud. And with layer two solutions solving some of the scalability"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 392000
+			},
+			"text": " bottlenecks for blockchain, we're going to have more and more applications for blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 398000
+			},
+			"text": " But as a general principle of decentralization, we should be moving as much compute as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 403000
+			},
+			"text": " to the edges. And that means doing more work in the browser. Now, we're also going to need"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 407000
+			},
+			"text": " to have long running processes so that, for example, if we wanted to index our documents"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 411000
+			},
+			"text": " so we could search them, we would have to do that outside of the browser. And we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 416000
+			},
+			"text": " adapt technologies from the cloud like function as a service which has great scaling"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 421000
+			},
+			"text": " characteristics. But the challenge is to make that work in a peer-to-peer environment and to make it"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 428000
+			},
+			"text": " as secure as possible. And then finally, identity. There are many places and times where"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 432000
+			},
+			"text": " anonymity is really important to us. But with social beings. And so we need a mechanism to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 438000
+			},
+			"text": " represent our identity and the identity of the services that we interact with online."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 444000
+			},
+			"text": " Now, there are hundreds of identity providers today. And some people use single sign-on"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 449000
+			},
+			"text": " as a convenience to log into all of these different services. But there's a danger there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 454000
+			},
+			"text": " At any point that service provider could switch off our identity without any course of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 462000
+			},
+			"text": " the web or repeal. And they can track our movements across the web. So we have standards like"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 466000
+			},
+			"text": " self-sovereign identity and very far but credentials where users can control their"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 471000
+			},
+			"text": " identity with public-private key pairs. But even if you're an expert in this technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 476000
+			},
+			"text": " it's still really cumbersome to use to do things like key management, key rotation and key"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 482000
+			},
+			"text": " recovery. We think the solution is going to be a hybrid of different technologies. So the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 489000
+			},
+			"text": " cloud isn't going to go away. It's a good, cheap resource for high-scale computation and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 493000
+			},
+			"text": " storage. We're going to have more and more use cases for blockchain, especially with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 499000
+			},
+			"text": " innovations like Ethereum 2.0. But what we've been focusing on is the missing middle tier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 504000
+			},
+			"text": " the peer-to-peer tier. And that's what we're going to demo this morning. But suppose we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 510000
+			},
+			"text": " solve all of these technical problems. Unless we can deliver user experiences that are as good"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 516000
+			},
+			"text": " as or better than the existing cloud technologies today, we're not going to see widespread"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 521000
+			},
+			"text": " adoption of decentralized technology. So that's something that we're going to show in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 529000
+			},
+			"text": " demo that we're going to do next. So this is an application we built on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 535000
+			},
+			"text": " Wireline platform. It's called Launchpad. It's kind of like an app store or home screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 541000
+			},
+			"text": " It's a place where users can discover, search and install peer-to-peer applications that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 546000
+			},
+			"text": " don't require any centralized infrastructure. It uses the Wireline naming service, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 551000
+			},
+			"text": " is a permissionless blockchain that lets any developer publish an application without any"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 557000
+			},
+			"text": " censorship, without any taxes or other restrictions placed by the platform. So I'm going to show"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 562000
+			},
+			"text": " a couple of example applications that have been built on the platform already. So we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 568000
+			},
+			"text": " simple collaborative calendars, spreadsheet. There's a planning tool, which is a kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 574000
+			},
+			"text": " can ban. And even the slides that I was presenting were written with an application that was"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 581000
+			},
+			"text": " built on this platform. So we're eating our own dog food. We've also got a map application."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 589000
+			},
+			"text": " And I'm going to create here a simple text document."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 593000
+			},
+			"text": " And as I mentioned earlier, one of the most difficult things to do with our collaborative"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 598000
+			},
+			"text": " applications is the real-time interaction between different users, especially when you don't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 603000
+			},
+			"text": " any cloud infrastructure. So what I'm going to do here is invite some of my colleagues who are"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 609000
+			},
+			"text": " here on the front row to join me in editing this document. So I'm going to send them at an"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 618000
+			},
+			"text": " invite. And that should enable their peers to swarm and connect to my peer on the stage"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 623000
+			},
+			"text": " here, and we can collaboratively edit the document. So I'll just demo first of all that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 628000
+			},
+			"text": " completely offline here. If I do a web search, it's not going to get resolved. And I should"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 635000
+			},
+			"text": " see if I open the debug panel that Salar and Ashwin joined this, what we call a party. This"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 641000
+			},
+			"text": " is a collaborative space where these documents live. And we can see that they're typing along."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 649000
+			},
+			"text": " I can type at the same time. This looks good, including the typo. And so we've got this technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 654000
+			},
+			"text": " now like operational transformations where we can collaborate in real-time across all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 660000
+			},
+			"text": " these different applications. It uses a technology called CRDT, which is a very early stage"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 665000
+			},
+			"text": " experimental technology that has some limitations in terms of scale. But we're working to improve"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 673000
+			},
+			"text": " some of those things. You can see Salar has been learning Japanese. One of the other properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 679000
+			},
+			"text": " about applications on the platform is that these applications are all modular. And even"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 683000
+			},
+			"text": " though they've been built by different third-party developers, we can combine them together in"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 689000
+			},
+			"text": " interesting ways. So, for example, we could insert a spreadsheet into this document. I see Salar's"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 696000
+			},
+			"text": " done that here. And I could create, for example, let me insert our trip map into this document."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 702000
+			},
+			"text": " And you can see this is live. These different applications have access to this replicated"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 708000
+			},
+			"text": " database that is securely replicated between the colleagues that I've invited into this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 713000
+			},
+			"text": " shared environment. So, at this point, we're going to change gears in quickly in five minutes"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 720000
+			},
+			"text": " build an application from scratch. So, what I'm going to do is use the Yline SDK. And I'm going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 728000
+			},
+			"text": " fork an existing project. So, it's using the CLI, which is called wire. So, wirepad create will"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 742000
+			},
+			"text": " create a new application. I'm going to open up the code here. And look at that in VS code. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 748000
+			},
+			"text": " just take a quick look at the definition style and this is a pad. The pad is a simple React"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 754000
+			},
+			"text": " component. So, we're trying to make the SDK as simple as possible and as natural as possible to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 760000
+			},
+			"text": " existing web developers. So, what I'm going to do here is register the pad with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 769000
+			},
+			"text": " Yline naming service, so wirepad register. And then I'm going to build it. And with that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 777000
+			},
+			"text": " out of the way, the launch pad here in debug mode should see that the application has been"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 782000
+			},
+			"text": " registered with the chain. And now it shows the new tasks application, which was the application"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 788000
+			},
+			"text": " that we forked. So, we're going to create a new instance of that and write some tasks down here"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 795000
+			},
+			"text": " and out of order. So, I've done that. I haven't done any of these. And because the framework is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 801000
+			},
+			"text": " naturally collaborative and Ashwin is currently inside this party, I can see that without me"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 807000
+			},
+			"text": " doing any more coding, he's able to interoperate with this, interact with this new pad. Okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 810000
+			},
+			"text": " so we're going to do something different. We're going to change this pad and we're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 815000
+			},
+			"text": " build, we usually do chess as an example, but since we're in Japan, we're going to build a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 822000
+			},
+			"text": " shogi game, which is Japanese chess. So, the first thing I do is change the render method."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 831000
+			},
+			"text": " And we've got some of the code already in place. So, we're using a standard React component that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 840000
+			},
+			"text": " we found on npm that has a shogi board. And we're going to just, we can get rid of most of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 846000
+			},
+			"text": " code here. So, we've got a simple render function and we're going to set the initial states"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 853000
+			},
+			"text": " here and then just save the pad. And then going to definitions, I'm going to change the icon."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 862000
+			},
+			"text": " I'm going to change the name of the app shogi and the database name here. And we should see the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 870000
+			},
+			"text": " pad update once it's rebuilt. And now we can see our shogi board. Okay, so we have the starting"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 877000
+			},
+			"text": " points of a new game. I can move pieces. But obviously if I reset the browser at this point, we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 880000
+			},
+			"text": " going to lose the state because we're not writing that to the database anywhere. So, that's the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 885000
+			},
+			"text": " next thing I'm going to do. There's a common React idiom called a higher order component."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 890000
+			},
+			"text": " And we're using that to inject the peer to peer database into this React control. So, what I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 902000
+			},
+			"text": " going to do here is I'm going to add a handler. And what I'm doing here is I'm getting the event"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 906000
+			},
+			"text": " for the actual drop of the piece. I'm going to validate that that's actually a legal move. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 913000
+			},
+			"text": " then if it is, I'm going to append that move onto the replicated database log. That's this view"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 919000
+			},
+			"text": " property that's been inserted into the control. Now, it's a handle. The moves coming in from other"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 929000
+			},
+			"text": " peers on the network, I'm going to add in another piece of code here which takes the log. I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 935000
+			},
+			"text": " to iterate through it and then update the state of the game and then set that as the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 941000
+			},
+			"text": " property in the application. And so now if I go into the chat room once the app is reloaded, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 952000
+			},
+			"text": " can say, hey Ashwin, are you there? Apologies for the type. Let's play shogi. And so here I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 957000
+			},
+			"text": " creating a new game from our kind of Slack application, our chat application. And if I click on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 963000
+			},
+			"text": " link here, it should take me into the game. And just because Ashwin and I are now swarming on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:09,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 969000
+			},
+			"text": " same node on this peer to peer network, that should allow his peer to dynamically load this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 969000,
+				"to": 978000
+			},
+			"text": " application. So now if I make a move, let's see if Ashwin can play. Okay, so I'll just move my"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 985000
+			},
+			"text": " kaku bishop over here and take his piece. And we have the beginning of a collaborative game. Again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 991000
+			},
+			"text": " without having to manage any of that replicated state. So I've got a minute and 16 seconds left."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 998000
+			},
+			"text": " That should be plenty of time to create a super AI that is going to play shogi with me. So we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1005000
+			},
+			"text": " going to use the wire on SDK again. I'm going to say wire bot create. Again, forking an existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1012000
+			},
+			"text": " project. Now bots are these asynchronous autonomous agents that live on the peer to peer network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1018000
+			},
+			"text": " And they're modeled after simple lambda of function as a service function. So they're really easy to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1029000
+			},
+			"text": " develop. Open up the code here. And there's a definition file. There's the bot code and there's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1036000
+			},
+			"text": " configuration file. So the first thing I'm going to do is change the name of this to shogi bot."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1043000
+			},
+			"text": " I'm going to change the definitions to use the same database table that I set up for the pad so"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1048000
+			},
+			"text": " that they can interoperate with each other. And then I'm going to use the same standard library"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1059000
+			},
+			"text": " that we used on the pad. So I'm going to here -- I don't know if you can see this, but I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1065000
+			},
+			"text": " to iterate through the log of moves that have been replicated to this peer and update the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1073000
+			},
+			"text": " So now if I go into the terminal and I'm going to do the same thing here, wire bot register."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1077000
+			},
+			"text": " So this is registering the bot with the block chain and we have a full block chain node running"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1085000
+			},
+			"text": " here on this peer. And wire bot run. This will run the bot in a debug mode so I can see that it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1093000
+			},
+			"text": " started here. And now the bot has its own identity. So if I open up the sidebar here, I can go here"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1099000
+			},
+			"text": " and query the block chain. I find the bot registered there and I can invite it to the party."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1105000
+			},
+			"text": " And so I can see here both Ashwin and the bot are now part of this collaborative space."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1110000
+			},
+			"text": " And we can see that the bot has logged the current state of this shogi game. If you see if I move"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1116000
+			},
+			"text": " a piece, then this piece gets updated here. So last thing I'm going to do really quickly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1124000
+			},
+			"text": " we're going to do the AI piece. So I guess we'll keep that simple. We're going to get a list of valid"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1130000
+			},
+			"text": " moves and pick one at random and then post that move to the feed and see if the replication happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1139000
+			},
+			"text": " So if I save that, it should restart the bot. And if I now create a new game and I make the first move,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1150000
+			},
+			"text": " we should see that shogi bot is now alive. So we've built a complete peer-to-peer application in just a few minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1163000
+			},
+			"text": " So I'll finish off here. We see the web evolving into a hybrid of different decentralized systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:30,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1170000
+			},
+			"text": " The wire naming service is a permissionless blockchain and it's the registry for all of the applications that run on the peer-to-peer network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1170000,
+				"to": 1177000
+			},
+			"text": " It's the source of truth. It's also a mechanism that enables payments to work between the different applications and users on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:45,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1185000
+			},
+			"text": " We've got wire compute, which is a decentralized computation platform for long-running processes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,000",
+				"to": "00:19:49,000"
+			},
+			"offsets": {
+				"from": 1185000,
+				"to": 1189000
+			},
+			"text": " And then we've got wire P2P, which is our peer-to-peer network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1189000,
+				"to": 1197000
+			},
+			"text": " We've been working on these technologies for the last 12 months. We're getting ready for our public beta and our testnet launch in Q1 of next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:08,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1208000
+			},
+			"text": " And we're starting to work with some independent software companies to build and individual contributors to build out the infrastructure and to build some of the applications on this platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,000",
+				"to": "00:20:14,000"
+			},
+			"offsets": {
+				"from": 1208000,
+				"to": 1214000
+			},
+			"text": " If you're interested in any of these technologies or you'd like to come and collaborate with us, the team is here this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1214000,
+				"to": 1217000
+			},
+			"text": " Please come and approach us and we'd love to talk to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1220000
+			},
+			"text": " And thanks very much for taking a first look at Wireline."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1221000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:24,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1224000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,000",
+				"to": "00:20:26,000"
+			},
+			"offsets": {
+				"from": 1224000,
+				"to": 1226000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1226000,
+				"to": 1228000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:30,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1230000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1230000,
+				"to": 1232000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1234000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1236000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1238000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:40,000"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1240000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,000",
+				"to": "00:20:42,000"
+			},
+			"offsets": {
+				"from": 1240000,
+				"to": 1242000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,000",
+				"to": "00:20:44,000"
+			},
+			"offsets": {
+				"from": 1242000,
+				"to": 1244000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,000",
+				"to": "00:20:46,000"
+			},
+			"offsets": {
+				"from": 1244000,
+				"to": 1246000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,000",
+				"to": "00:20:48,000"
+			},
+			"offsets": {
+				"from": 1246000,
+				"to": 1248000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1248000,
+				"to": 1250000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1252000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:20:54,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1254000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1254000,
+				"to": 1258000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

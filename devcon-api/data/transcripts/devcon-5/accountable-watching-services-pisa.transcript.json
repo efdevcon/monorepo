@@ -1,0 +1,3046 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7000
+			},
+			"text": " Thank you guys for coming for this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:11,540"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 11540
+			},
+			"text": " What I want to present about today is what we've been building for the past six months,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,540",
+				"to": "00:00:13,840"
+			},
+			"offsets": {
+				"from": 11540,
+				"to": 13840
+			},
+			"text": " a Financially Accountable Watching Network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,840",
+				"to": "00:00:17,800"
+			},
+			"offsets": {
+				"from": 13840,
+				"to": 17800
+			},
+			"text": " This is in collaboration with Chris, who's in the audience, Sergi and Salvatore."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,800",
+				"to": "00:00:21,760"
+			},
+			"offsets": {
+				"from": 17800,
+				"to": 21760
+			},
+			"text": " What I really want to highlight is that normally when people think of PISA, they think of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,760",
+				"to": "00:00:23,800"
+			},
+			"offsets": {
+				"from": 21760,
+				"to": 23800
+			},
+			"text": " off-chain protocols and scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,800",
+				"to": "00:00:27,840"
+			},
+			"offsets": {
+				"from": 23800,
+				"to": 27840
+			},
+			"text": " I've actually taken this moment where this talk is not going to have anything to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,840",
+				"to": "00:00:29,920"
+			},
+			"offsets": {
+				"from": 27840,
+				"to": 29920
+			},
+			"text": " with off-chain protocols whatsoever."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,920",
+				"to": "00:00:34,440"
+			},
+			"offsets": {
+				"from": 29920,
+				"to": 34440
+			},
+			"text": " I want to highlight how PISA is generally useful for most top developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,440",
+				"to": "00:00:35,440"
+			},
+			"offsets": {
+				"from": 34440,
+				"to": 35440
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,440",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 35440,
+				"to": 40000
+			},
+			"text": " Now, what I'm going to begin with is actually a watching network is a misnomer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:45,120"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 45120
+			},
+			"text": " There's actually two different rules in this third-party broadcasting network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,120",
+				"to": "00:00:48,680"
+			},
+			"offsets": {
+				"from": 45120,
+				"to": 48680
+			},
+			"text": " We have relayers, we have meta-transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,680",
+				"to": "00:00:52,680"
+			},
+			"offsets": {
+				"from": 48680,
+				"to": 52680
+			},
+			"text": " You give a transaction to this third-party, and they guarantee that it gets relayed to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,680",
+				"to": "00:00:54,200"
+			},
+			"offsets": {
+				"from": 52680,
+				"to": 54200
+			},
+			"text": " the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,200",
+				"to": "00:00:55,920"
+			},
+			"offsets": {
+				"from": 54200,
+				"to": 55920
+			},
+			"text": " Or you have watchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,920",
+				"to": "00:00:57,400"
+			},
+			"offsets": {
+				"from": 55920,
+				"to": 57400
+			},
+			"text": " These watchtowers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,400",
+				"to": "00:01:01,800"
+			},
+			"offsets": {
+				"from": 57400,
+				"to": 61800
+			},
+			"text": " When a watchtower, you can be hired, simply the \"watch for events\" on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,800",
+				"to": "00:01:05,920"
+			},
+			"offsets": {
+				"from": 61800,
+				"to": 65920
+			},
+			"text": " if there's an event, it will then respond on your behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,920",
+				"to": "00:01:10,280"
+			},
+			"offsets": {
+				"from": 65920,
+				"to": 70280
+			},
+			"text": " That's why it's actually a third-party broadcasting network, which sounds really boring, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,280",
+				"to": "00:01:11,280"
+			},
+			"offsets": {
+				"from": 70280,
+				"to": 71280
+			},
+			"text": " LOL."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,280",
+				"to": "00:01:13,920"
+			},
+			"offsets": {
+				"from": 71280,
+				"to": 73920
+			},
+			"text": " But that's actually what it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,920",
+				"to": "00:01:18,040"
+			},
+			"offsets": {
+				"from": 73920,
+				"to": 78040
+			},
+			"text": " Why do we have relayers and responders?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,040",
+				"to": "00:01:23,440"
+			},
+			"offsets": {
+				"from": 78040,
+				"to": 83440
+			},
+			"text": " Relayers try to solve the problem when the user doesn't have access to the native token."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,440",
+				"to": "00:01:28,960"
+			},
+			"offsets": {
+				"from": 83440,
+				"to": 88960
+			},
+			"text": " This could be onboarding new users, accessing coins in a contract like a multi-sake, or"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,960",
+				"to": "00:01:31,440"
+			},
+			"offsets": {
+				"from": 88960,
+				"to": 91440
+			},
+			"text": " mixing and toppling as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,440",
+				"to": "00:01:36,600"
+			},
+			"offsets": {
+				"from": 91440,
+				"to": 96600
+			},
+			"text": " Where watchtowers and responders, they try to alleviate the user-liveness requirement."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,600",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 96600,
+				"to": 102000
+			},
+			"text": " That's to say you do an auction, you submit your bid, three days later, you have to review"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:45,320"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 105320
+			},
+			"text": " your bid, and you do want to come online in three days' time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,320",
+				"to": "00:01:47,760"
+			},
+			"offsets": {
+				"from": 105320,
+				"to": 107760
+			},
+			"text": " So the watchtowers can just do that in your behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,760",
+				"to": "00:01:51,840"
+			},
+			"offsets": {
+				"from": 107760,
+				"to": 111840
+			},
+			"text": " Of course, the main motivations always been off-chain protocols, like plasma and state"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,840",
+				"to": "00:01:56,840"
+			},
+			"offsets": {
+				"from": 111840,
+				"to": 116840
+			},
+			"text": " models, and you can also do data-villability providers as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,840",
+				"to": "00:02:01,240"
+			},
+			"offsets": {
+				"from": 116840,
+				"to": 121240
+			},
+			"text": " So what is the perception of a third-party broadcasting network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,240",
+				"to": "00:02:05,200"
+			},
+			"offsets": {
+				"from": 121240,
+				"to": 125200
+			},
+			"text": " You know, how do people typically think about it in their protocols?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,200",
+				"to": "00:02:09,520"
+			},
+			"offsets": {
+				"from": 125200,
+				"to": 129520
+			},
+			"text": " Well, first you have a user, and this is the anime edition by the way of the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,520",
+				"to": "00:02:15,160"
+			},
+			"offsets": {
+				"from": 129520,
+				"to": 135160
+			},
+			"text": " So the user typically has a job, and what they're going to do is hire multiple watchtowers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,160",
+				"to": "00:02:17,040"
+			},
+			"offsets": {
+				"from": 135160,
+				"to": 137040
+			},
+			"text": " at exactly the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,040",
+				"to": "00:02:20,680"
+			},
+			"offsets": {
+				"from": 137040,
+				"to": 140680
+			},
+			"text": " So they're going to send the job out, you know, \"Bam, bam, bam.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,680",
+				"to": "00:02:24,240"
+			},
+			"offsets": {
+				"from": 140680,
+				"to": 144240
+			},
+			"text": " And then multiple watchtowers now have the job."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,240",
+				"to": "00:02:28,840"
+			},
+			"offsets": {
+				"from": 144240,
+				"to": 148840
+			},
+			"text": " But the user has to pay for multiple watchtowers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,840",
+				"to": "00:02:31,920"
+			},
+			"offsets": {
+				"from": 148840,
+				"to": 151920
+			},
+			"text": " So this sounds a bit crazy expensive, doesn't it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,920",
+				"to": "00:02:36,800"
+			},
+			"offsets": {
+				"from": 151920,
+				"to": 156800
+			},
+			"text": " So typically what people do instead is that there's this on-chain bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,800",
+				"to": "00:02:42,160"
+			},
+			"offsets": {
+				"from": 156800,
+				"to": 162160
+			},
+			"text": " So the first watchtower, you know, the relay, the transaction, and get it in the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,160",
+				"to": "00:02:45,560"
+			},
+			"offsets": {
+				"from": 162160,
+				"to": 165560
+			},
+			"text": " will get the claim, \"This bounty.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,560",
+				"to": "00:02:48,640"
+			},
+			"offsets": {
+				"from": 165560,
+				"to": 168640
+			},
+			"text": " So can you see the obvious problem with this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,640",
+				"to": "00:02:52,960"
+			},
+			"offsets": {
+				"from": 168640,
+				"to": 172960
+			},
+			"text": " If you've hired 20 watchtowers on the roll competing for the CM Bounty, you're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,960",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 172960,
+				"to": 176000
+			},
+			"text": " to get \"spom, spom, spom, spom, spom.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:02:59,120"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 179120
+			},
+			"text": " You know, only one watchtower is going to get rewarded, and the rest are going to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,120",
+				"to": "00:03:03,960"
+			},
+			"offsets": {
+				"from": 179120,
+				"to": 183960
+			},
+			"text": " to pay a penalty, you know, the gas price of a transaction for failing to get it in."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,960",
+				"to": "00:03:04,960"
+			},
+			"offsets": {
+				"from": 183960,
+				"to": 184960
+			},
+			"text": " And that's not very good."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,960",
+				"to": "00:03:08,360"
+			},
+			"offsets": {
+				"from": 184960,
+				"to": 188360
+			},
+			"text": " You know, as an illustrated example, \"Bam.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,360",
+				"to": "00:03:11,640"
+			},
+			"offsets": {
+				"from": 188360,
+				"to": 191640
+			},
+			"text": " You know, the reward is given to this watchtower."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,640",
+				"to": "00:03:16,960"
+			},
+			"offsets": {
+				"from": 191640,
+				"to": 196960
+			},
+			"text": " Now if they're competing for this $5,000 as a bounty, that's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,960",
+				"to": "00:03:19,600"
+			},
+			"offsets": {
+				"from": 196960,
+				"to": 199600
+			},
+			"text": " Over the long period, you make some losses, you win."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,600",
+				"to": "00:03:23,400"
+			},
+			"offsets": {
+				"from": 199600,
+				"to": 203400
+			},
+			"text": " But if they're competing for $5, that just sucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,400",
+				"to": "00:03:26,960"
+			},
+			"offsets": {
+				"from": 203400,
+				"to": 206960
+			},
+			"text": " You know, who wants to compete for $5 and lose money in the long run?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,960",
+				"to": "00:03:30,840"
+			},
+			"offsets": {
+				"from": 206960,
+				"to": 210840
+			},
+			"text": " So it's not a great way to build these Theraparty watching networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,840",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 210840,
+				"to": 216000
+			},
+			"text": " An alternative approach with people tend that recommend is, \"Why don't we, you know, do"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:37,360"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 217360
+			},
+			"text": " segments?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,360",
+				"to": "00:03:41,040"
+			},
+			"offsets": {
+				"from": 217360,
+				"to": 221040
+			},
+			"text": " So watchtower one can respond by time T1."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,040",
+				"to": "00:03:45,400"
+			},
+			"offsets": {
+				"from": 221040,
+				"to": 225400
+			},
+			"text": " Watchtower two can respond by T2, opto-Tn."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,400",
+				"to": "00:03:49,080"
+			},
+			"offsets": {
+				"from": 225400,
+				"to": 229080
+			},
+			"text": " Now the issue here is that it's really awkward to enforce."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,080",
+				"to": "00:03:54,320"
+			},
+			"offsets": {
+				"from": 229080,
+				"to": 234320
+			},
+			"text": " Either your smart contract considers is upfront, or you somehow try to enforce it in an off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,320",
+				"to": "00:03:56,840"
+			},
+			"offsets": {
+				"from": 234320,
+				"to": 236840
+			},
+			"text": " manner, which doesn't really work either."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,840",
+				"to": "00:04:01,360"
+			},
+			"offsets": {
+				"from": 236840,
+				"to": 241360
+			},
+			"text": " So I've never really considered this as a real valid solution to the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,360",
+				"to": "00:04:07,480"
+			},
+			"offsets": {
+				"from": 241360,
+				"to": 247480
+			},
+			"text": " And then the worst case scenario, you guys hired 20 watchers, and nobody responded,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,480",
+				"to": "00:04:09,640"
+			},
+			"offsets": {
+				"from": 247480,
+				"to": 249640
+			},
+			"text": " and your transaction was never relayed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,640",
+				"to": "00:04:12,960"
+			},
+			"offsets": {
+				"from": 249640,
+				"to": 252960
+			},
+			"text": " Maybe you lost the auction, you lost money in your state channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,960",
+				"to": "00:04:16,200"
+			},
+			"offsets": {
+				"from": 252960,
+				"to": 256200
+			},
+			"text": " Well, there's no evidence, there's no recourse, nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,200",
+				"to": "00:04:18,760"
+			},
+			"offsets": {
+				"from": 256200,
+				"to": 258760
+			},
+			"text": " So that really sucks just from a user perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,760",
+				"to": "00:04:22,760"
+			},
+			"offsets": {
+				"from": 258760,
+				"to": 262760
+			},
+			"text": " You can't blame anyone, because they didn't do their job."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,760",
+				"to": "00:04:26,760"
+			},
+			"offsets": {
+				"from": 262760,
+				"to": 266760
+			},
+			"text": " So why do we always think this is the best way to build this Theraparty broadcasting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,760",
+				"to": "00:04:27,760"
+			},
+			"offsets": {
+				"from": 266760,
+				"to": 267760
+			},
+			"text": " network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,760",
+				"to": "00:04:30,960"
+			},
+			"offsets": {
+				"from": 267760,
+				"to": 270960
+			},
+			"text": " It was actually really frustrating because it's clearly awkward and it doesn't work that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,960",
+				"to": "00:04:31,960"
+			},
+			"offsets": {
+				"from": 270960,
+				"to": 271960
+			},
+			"text": " well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,960",
+				"to": "00:04:34,760"
+			},
+			"offsets": {
+				"from": 271960,
+				"to": 274760
+			},
+			"text": " You know, I've got my little anime gift there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,760",
+				"to": "00:04:39,680"
+			},
+			"offsets": {
+				"from": 274760,
+				"to": 279680
+			},
+			"text": " So from the end user perspective, why are we trying to design these Theraparty relay"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,680",
+				"to": "00:04:41,520"
+			},
+			"offsets": {
+				"from": 279680,
+				"to": 281520
+			},
+			"text": " networks in this fashion?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,520",
+				"to": "00:04:45,600"
+			},
+			"offsets": {
+				"from": 281520,
+				"to": 285600
+			},
+			"text": " And what are the goals that we're trying to achieve?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,600",
+				"to": "00:04:48,560"
+			},
+			"offsets": {
+				"from": 285600,
+				"to": 288560
+			},
+			"text": " Typically we're trying to minimize trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,560",
+				"to": "00:04:54,200"
+			},
+			"offsets": {
+				"from": 288560,
+				"to": 294200
+			},
+			"text": " We don't want to blindly trust a single party that responded on our behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,200",
+				"to": "00:05:00,440"
+			},
+			"offsets": {
+				"from": 294200,
+				"to": 300440
+			},
+			"text": " And also for the availability of broadcasters, if I hire 22 watchers, hopefully one's at"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,440",
+				"to": "00:05:03,240"
+			},
+			"offsets": {
+				"from": 300440,
+				"to": 303240
+			},
+			"text": " least online to complete the job for me."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,240",
+				"to": "00:05:08,720"
+			},
+			"offsets": {
+				"from": 303240,
+				"to": 308720
+			},
+			"text": " But what most people seem to forget about is accountability."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,720",
+				"to": "00:05:13,480"
+			},
+			"offsets": {
+				"from": 308720,
+				"to": 313480
+			},
+			"text": " You know, if the watchtower doesn't do the job for me, can I prove that and can I hold"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,480",
+				"to": "00:05:15,480"
+			},
+			"offsets": {
+				"from": 313480,
+				"to": 315480
+			},
+			"text": " them accountable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,480",
+				"to": "00:05:21,040"
+			},
+			"offsets": {
+				"from": 315480,
+				"to": 321040
+			},
+			"text": " So this is basically what we're building a PISA, a financly accountable Theraparty broadcasting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,040",
+				"to": "00:05:22,360"
+			},
+			"offsets": {
+				"from": 321040,
+				"to": 322360
+			},
+			"text": " network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,360",
+				"to": "00:05:24,360"
+			},
+			"offsets": {
+				"from": 322360,
+				"to": 324360
+			},
+			"text": " So now I'm going to start my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,360",
+				"to": "00:05:25,360"
+			},
+			"offsets": {
+				"from": 324360,
+				"to": 325360
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,360",
+				"to": "00:05:26,360"
+			},
+			"offsets": {
+				"from": 325360,
+				"to": 326360
+			},
+			"text": " So what is PISA?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,360",
+				"to": "00:05:28,920"
+			},
+			"offsets": {
+				"from": 326360,
+				"to": 328920
+			},
+			"text": " Basically, we have this broadcaster."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,920",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 328920,
+				"to": 332000
+			},
+			"text": " He has skin in the game and coins locked up on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:38,040"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 338040
+			},
+			"text": " And there's a PISA contract, which is effectively the service level agreement between the tower"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,040",
+				"to": "00:05:40,880"
+			},
+			"offsets": {
+				"from": 338040,
+				"to": 340880
+			},
+			"text": " and the customer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,880",
+				"to": "00:05:46,320"
+			},
+			"offsets": {
+				"from": 340880,
+				"to": 346320
+			},
+			"text": " Now when the customer hires PISA, you send the job to PISA and in return, the customer"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,320",
+				"to": "00:05:48,040"
+			},
+			"offsets": {
+				"from": 346320,
+				"to": 348040
+			},
+			"text": " would get assigned receipt."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,040",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 348040,
+				"to": 355000
+			},
+			"text": " So now they have cryptographic evidence that they've actually hired PISA or a watchtower."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:57,560"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 357560
+			},
+			"text": " So what type of job can PISA accept?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,560",
+				"to": "00:05:58,800"
+			},
+			"offsets": {
+				"from": 357560,
+				"to": 358800
+			},
+			"text": " Both."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,800",
+				"to": "00:06:04,040"
+			},
+			"offsets": {
+				"from": 358800,
+				"to": 364040
+			},
+			"text": " It can be a relayer, you know, these meta transactions, and it can be a responder."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,040",
+				"to": "00:06:08,680"
+			},
+			"offsets": {
+				"from": 364040,
+				"to": 368680
+			},
+			"text": " It can watch for events and respond on your behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,680",
+				"to": "00:06:13,640"
+			},
+			"offsets": {
+				"from": 368680,
+				"to": 373640
+			},
+			"text": " And of course, the way it will look like is, you know, Alice and Bob do something."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,640",
+				"to": "00:06:14,640"
+			},
+			"offsets": {
+				"from": 373640,
+				"to": 374640
+			},
+			"text": " Alice hires PISA."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,640",
+				"to": "00:06:17,160"
+			},
+			"offsets": {
+				"from": 374640,
+				"to": 377160
+			},
+			"text": " Alice goes offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,160",
+				"to": "00:06:23,200"
+			},
+			"offsets": {
+				"from": 377160,
+				"to": 383200
+			},
+			"text": " If there's an event on the blockchain, the MPISA will simply respond in Alice's behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,200",
+				"to": "00:06:27,520"
+			},
+			"offsets": {
+				"from": 383200,
+				"to": 387520
+			},
+			"text": " Then Alice can come back online later and then she can, you know, verify that PISA and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,520",
+				"to": "00:06:30,800"
+			},
+			"offsets": {
+				"from": 387520,
+				"to": 390800
+			},
+			"text": " the watchtower actually did his job."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,800",
+				"to": "00:06:34,880"
+			},
+			"offsets": {
+				"from": 390800,
+				"to": 394880
+			},
+			"text": " Now the question is, what if PISA didn't respond?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,880",
+				"to": "00:06:40,200"
+			},
+			"offsets": {
+				"from": 394880,
+				"to": 400200
+			},
+			"text": " What if PISA didn't do the job and didn't protect the customer, you know, when it promised"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,200",
+				"to": "00:06:42,400"
+			},
+			"offsets": {
+				"from": 400200,
+				"to": 402400
+			},
+			"text": " it would?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,400",
+				"to": "00:06:44,240"
+			},
+			"offsets": {
+				"from": 402400,
+				"to": 404240
+			},
+			"text": " Can we do anything about that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,240",
+				"to": "00:06:46,480"
+			},
+			"offsets": {
+				"from": 404240,
+				"to": 406480
+			},
+			"text": " And that's exactly what PISA is trying to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,480",
+				"to": "00:06:51,920"
+			},
+			"offsets": {
+				"from": 406480,
+				"to": 411920
+			},
+			"text": " PISA is a trust-minimized, you know, third-party broadcaster because it has financial"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,920",
+				"to": "00:06:53,400"
+			},
+			"offsets": {
+				"from": 411920,
+				"to": 413400
+			},
+			"text": " liability."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,400",
+				"to": "00:06:56,760"
+			},
+			"offsets": {
+				"from": 413400,
+				"to": 416760
+			},
+			"text": " The user has assigned receipt that they hired this watchtower."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,760",
+				"to": "00:07:01,400"
+			},
+			"offsets": {
+				"from": 416760,
+				"to": 421400
+			},
+			"text": " And they have on-chain evidence that PISA didn't do its job."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,400",
+				"to": "00:07:05,200"
+			},
+			"offsets": {
+				"from": 421400,
+				"to": 425200
+			},
+			"text": " You simply submit both pieces of evidence to the PISA contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,200",
+				"to": "00:07:06,200"
+			},
+			"offsets": {
+				"from": 425200,
+				"to": 426200
+			},
+			"text": " Whoops."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,200",
+				"to": "00:07:11,960"
+			},
+			"offsets": {
+				"from": 426200,
+				"to": 431960
+			},
+			"text": " Then the PISA contract will look at the evidence, evaluate it, and say, yep, PISA didn't do"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,960",
+				"to": "00:07:13,440"
+			},
+			"offsets": {
+				"from": 431960,
+				"to": 433440
+			},
+			"text": " its job."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,440",
+				"to": "00:07:16,320"
+			},
+			"offsets": {
+				"from": 433440,
+				"to": 436320
+			},
+			"text": " So now it forces his refund period."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,320",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 436320,
+				"to": 438000
+			},
+			"text": " And there's two outcomes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:22,680"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 442680
+			},
+			"text": " Either Alice is refunded a pre-agreed amount that was, you know, specified in the signed"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,680",
+				"to": "00:07:23,680"
+			},
+			"offsets": {
+				"from": 442680,
+				"to": 443680
+			},
+			"text": " receipt."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,680",
+				"to": "00:07:27,400"
+			},
+			"offsets": {
+				"from": 443680,
+				"to": 447400
+			},
+			"text": " Or PISA is eventually sloshed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,400",
+				"to": "00:07:30,520"
+			},
+			"offsets": {
+				"from": 447400,
+				"to": 450520
+			},
+			"text": " So PISA issues the refund, really straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,520",
+				"to": "00:07:35,160"
+			},
+			"offsets": {
+				"from": 450520,
+				"to": 455160
+			},
+			"text": " You send the money, you know, that challenge is canceled and everyone's hopping."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,160",
+				"to": "00:07:36,440"
+			},
+			"offsets": {
+				"from": 455160,
+				"to": 456440
+			},
+			"text": " So I've got one question here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,440",
+				"to": "00:07:40,920"
+			},
+			"offsets": {
+				"from": 456440,
+				"to": 460920
+			},
+			"text": " Who's ever sent a transaction to the network that lingered for six hours?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,920",
+				"to": "00:07:41,920"
+			},
+			"offsets": {
+				"from": 460920,
+				"to": 461920
+			},
+			"text": " There we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,920",
+				"to": "00:07:42,920"
+			},
+			"offsets": {
+				"from": 461920,
+				"to": 462920
+			},
+			"text": " Look at these."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,920",
+				"to": "00:07:43,920"
+			},
+			"offsets": {
+				"from": 462920,
+				"to": 463920
+			},
+			"text": " You're all dubbed developers, definitely."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,920",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 463920,
+				"to": 468000
+			},
+			"text": " Now what would be nice is if it lingered for six hours, you're going to get a $20 refund"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 469000
+			},
+			"text": " from PISA."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:51,020"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 471020
+			},
+			"text": " You know, so you're going to have a little smile on your face because you made money"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,020",
+				"to": "00:07:52,020"
+			},
+			"offsets": {
+				"from": 471020,
+				"to": 472020
+			},
+			"text": " for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,020",
+				"to": "00:07:53,900"
+			},
+			"offsets": {
+				"from": 472020,
+				"to": 473900
+			},
+			"text": " You actually use your experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,900",
+				"to": "00:08:00,280"
+			},
+			"offsets": {
+				"from": 473900,
+				"to": 480280
+			},
+			"text": " Anyway, if PISA doesn't give you that $20 refund, well, you know, blocks keep ticking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,280",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 480280,
+				"to": 485000
+			},
+			"text": " PISA gets sloshed, and PISA will lose his money and be very upset."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:07,680"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 487680
+			},
+			"text": " And that's the basic principle about, you know, behind this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,680",
+				"to": "00:08:12,680"
+			},
+			"offsets": {
+				"from": 487680,
+				"to": 492680
+			},
+			"text": " Now what does this on-chain evidence actually look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,680",
+				"to": "00:08:17,480"
+			},
+			"offsets": {
+				"from": 492680,
+				"to": 497480
+			},
+			"text": " Well first, that was a good the relay kiss, these meta transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,480",
+				"to": "00:08:23,580"
+			},
+			"offsets": {
+				"from": 497480,
+				"to": 503580
+			},
+			"text": " Every time you hire PISA, the relay a transaction in your behalf, PISA will relay that via the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,580",
+				"to": "00:08:28,460"
+			},
+			"offsets": {
+				"from": 503580,
+				"to": 508460
+			},
+			"text": " PISA contract and it simply keeps a record of every attempt."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,460",
+				"to": "00:08:29,860"
+			},
+			"offsets": {
+				"from": 508460,
+				"to": 509860
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,860",
+				"to": "00:08:33,140"
+			},
+			"offsets": {
+				"from": 509860,
+				"to": 513140
+			},
+			"text": " Now, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,140",
+				"to": "00:08:34,940"
+			},
+			"offsets": {
+				"from": 513140,
+				"to": 514940
+			},
+			"text": " So it keeps a record of that attempt."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,940",
+				"to": "00:08:39,900"
+			},
+			"offsets": {
+				"from": 514940,
+				"to": 519900
+			},
+			"text": " So later on, if you come online, you know, PISA promised you this transaction would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,900",
+				"to": "00:08:46,020"
+			},
+			"offsets": {
+				"from": 519900,
+				"to": 526020
+			},
+			"text": " relayed before time T. You come online after time T, you look at the PISA contract and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,020",
+				"to": "00:08:47,780"
+			},
+			"offsets": {
+				"from": 526020,
+				"to": 527780
+			},
+			"text": " there's no record of the attempt."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,780",
+				"to": "00:08:53,260"
+			},
+			"offsets": {
+				"from": 527780,
+				"to": 533260
+			},
+			"text": " If there's no record of the attempt, PISA didn't do its job, you just send over the signed receipt"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,260",
+				"to": "00:08:55,120"
+			},
+			"offsets": {
+				"from": 533260,
+				"to": 535120
+			},
+			"text": " and PISA gets punished."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,120",
+				"to": "00:08:56,120"
+			},
+			"offsets": {
+				"from": 535120,
+				"to": 536120
+			},
+			"text": " So that's cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,120",
+				"to": "00:08:59,680"
+			},
+			"offsets": {
+				"from": 536120,
+				"to": 539680
+			},
+			"text": " That actually works out of the box today."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,680",
+				"to": "00:09:02,120"
+			},
+			"offsets": {
+				"from": 539680,
+				"to": 542120
+			},
+			"text": " On the other hand, what about the responder?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,120",
+				"to": "00:09:08,020"
+			},
+			"offsets": {
+				"from": 542120,
+				"to": 548020
+			},
+			"text": " Well, in the kids of the responder, basically, we have to look for events in the other contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,020",
+				"to": "00:09:10,220"
+			},
+			"offsets": {
+				"from": 548020,
+				"to": 550220
+			},
+			"text": " So let's consider the auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,220",
+				"to": "00:09:13,160"
+			},
+			"offsets": {
+				"from": 550220,
+				"to": 553160
+			},
+			"text": " We have to watch out for, you know, the auction to be triggered."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,160",
+				"to": "00:09:14,160"
+			},
+			"offsets": {
+				"from": 553160,
+				"to": 554160
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,160",
+				"to": "00:09:18,220"
+			},
+			"offsets": {
+				"from": 554160,
+				"to": 558220
+			},
+			"text": " Yeah, we have to watch out for the auction to be triggered."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,220",
+				"to": "00:09:22,440"
+			},
+			"offsets": {
+				"from": 558220,
+				"to": 562440
+			},
+			"text": " Once it's been triggered, then there's evidence the auction was triggered and that we didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,440",
+				"to": "00:09:23,440"
+			},
+			"offsets": {
+				"from": 562440,
+				"to": 563440
+			},
+			"text": " respond."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,440",
+				"to": "00:09:30,700"
+			},
+			"offsets": {
+				"from": 563440,
+				"to": 570700
+			},
+			"text": " Now, the issue is that this con worked today, but if it requires its external contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,700",
+				"to": "00:09:32,140"
+			},
+			"offsets": {
+				"from": 570700,
+				"to": 572140
+			},
+			"text": " they use our data registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,140",
+				"to": "00:09:35,580"
+			},
+			"offsets": {
+				"from": 572140,
+				"to": 575580
+			},
+			"text": " Unless not great, it's a bit invasive."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,580",
+				"to": "00:09:39,060"
+			},
+			"offsets": {
+				"from": 575580,
+				"to": 579060
+			},
+			"text": " We want to make sure we have seamless integrations to PISA."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,060",
+				"to": "00:09:44,680"
+			},
+			"offsets": {
+				"from": 579060,
+				"to": 584680
+			},
+			"text": " So for seamless integrations, we have to push for this hard fork for blocked-out block hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,680",
+				"to": "00:09:50,360"
+			},
+			"offsets": {
+				"from": 584680,
+				"to": 590360
+			},
+			"text": " If you have this hard fork, then we can use the transaction receipts and a block as evidence"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,360",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 590360,
+				"to": 592000
+			},
+			"text": " that PISA didn't do its job."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:56,720"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 596720
+			},
+			"text": " If you want to learn more information about that, just check out this wonderful blog post"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,720",
+				"to": "00:09:58,720"
+			},
+			"offsets": {
+				"from": 596720,
+				"to": 598720
+			},
+			"text": " that Chris wrote."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,720",
+				"to": "00:10:01,720"
+			},
+			"offsets": {
+				"from": 598720,
+				"to": 601720
+			},
+			"text": " Oh, and I also found this emoji."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,720",
+				"to": "00:10:03,080"
+			},
+			"offsets": {
+				"from": 601720,
+				"to": 603080
+			},
+			"text": " I was trying to find a fork emoji."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,080",
+				"to": "00:10:09,180"
+			},
+			"offsets": {
+				"from": 603080,
+				"to": 609180
+			},
+			"text": " So if you want to get this in the iOS, you know, sign up to the chians.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,180",
+				"to": "00:10:11,380"
+			},
+			"offsets": {
+				"from": 609180,
+				"to": 611380
+			},
+			"text": " So what's the current state of the PISA project?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,380",
+				"to": "00:10:14,720"
+			},
+			"offsets": {
+				"from": 611380,
+				"to": 614720
+			},
+			"text": " You know, this is something we've been working on for two years in terms of designing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,720",
+				"to": "00:10:20,300"
+			},
+			"offsets": {
+				"from": 614720,
+				"to": 620300
+			},
+			"text": " protocol and now we've been trying to implement it for the past six months."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,300",
+				"to": "00:10:24,500"
+			},
+			"offsets": {
+				"from": 620300,
+				"to": 624500
+			},
+			"text": " What's nice is that we envision it to be like an infurilake API."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,500",
+				"to": "00:10:29,620"
+			},
+			"offsets": {
+				"from": 624500,
+				"to": 629620
+			},
+			"text": " As a DOP developer, you're simply going to have a very simple API like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,620",
+				"to": "00:10:33,400"
+			},
+			"offsets": {
+				"from": 629620,
+				"to": 633400
+			},
+			"text": " You tell PISA, when do you need that transaction delivered?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,400",
+				"to": "00:10:37,740"
+			},
+			"offsets": {
+				"from": 633400,
+				"to": 637740
+			},
+			"text": " What was the call data and what is the contract address?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,740",
+				"to": "00:10:42,260"
+			},
+			"offsets": {
+				"from": 637740,
+				"to": 642260
+			},
+			"text": " You simply call the API and in return, you'll get assigned receipt."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,260",
+				"to": "00:10:44,180"
+			},
+			"offsets": {
+				"from": 642260,
+				"to": 644180
+			},
+			"text": " And that's awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,180",
+				"to": "00:10:47,980"
+			},
+			"offsets": {
+				"from": 644180,
+				"to": 647980
+			},
+			"text": " And right now our current guinea pigs are Kinex and L4."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,980",
+				"to": "00:10:51,900"
+			},
+			"offsets": {
+				"from": 647980,
+				"to": 651900
+			},
+			"text": " So now we're actually trying to do an integration to see how well this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,900",
+				"to": "00:10:55,360"
+			},
+			"offsets": {
+				"from": 651900,
+				"to": 655360
+			},
+			"text": " And once it works, everyone here can try it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,360",
+				"to": "00:11:03,600"
+			},
+			"offsets": {
+				"from": 655360,
+				"to": 663600
+			},
+			"text": " And of course, if you want to find more information about it, our client information is on MPMJS"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,600",
+				"to": "00:11:05,440"
+			},
+			"offsets": {
+				"from": 663600,
+				"to": 665440
+			},
+			"text": " and everything's open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,440",
+				"to": "00:11:09,400"
+			},
+			"offsets": {
+				"from": 665440,
+				"to": 669400
+			},
+			"text": " So you can just look at this repo and you can see exactly how PISA works today, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,400",
+				"to": "00:11:12,320"
+			},
+			"offsets": {
+				"from": 669400,
+				"to": 672320
+			},
+			"text": " and try it locally amongst yourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,320",
+				"to": "00:11:17,880"
+			},
+			"offsets": {
+				"from": 672320,
+				"to": 677880
+			},
+			"text": " Now, it was PISA, a boring, tedious and hard project."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,880",
+				"to": "00:11:24,680"
+			},
+			"offsets": {
+				"from": 677880,
+				"to": 684680
+			},
+			"text": " Actually PISA is a high availability, reliability, and fault tolerant project."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,680",
+				"to": "00:11:26,440"
+			},
+			"offsets": {
+				"from": 684680,
+				"to": 686440
+			},
+			"text": " What do I mean by that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,440",
+				"to": "00:11:31,600"
+			},
+			"offsets": {
+				"from": 686440,
+				"to": 691600
+			},
+			"text": " So if you're a DOP developer, and you got to guarantee transactions for your users get"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,600",
+				"to": "00:11:37,160"
+			},
+			"offsets": {
+				"from": 691600,
+				"to": 697160
+			},
+			"text": " in the blockchain, what you've got to worry about is bumping the feed during congestion."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,160",
+				"to": "00:11:42,160"
+			},
+			"offsets": {
+				"from": 697160,
+				"to": 702160
+			},
+			"text": " You've got to worry about managing the balance of multiple hot wallets to pay for gas, managing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,160",
+				"to": "00:11:47,800"
+			},
+			"offsets": {
+				"from": 702160,
+				"to": 707800
+			},
+			"text": " dependent and chain transactions, handling block reorgs and hard forks, detecting these"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,800",
+				"to": "00:11:52,560"
+			},
+			"offsets": {
+				"from": 707800,
+				"to": 712560
+			},
+			"text": " emitted events, taking data from it and using that as part of the response."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,560",
+				"to": "00:11:55,880"
+			},
+			"offsets": {
+				"from": 712560,
+				"to": 715880
+			},
+			"text": " And one really good example of this was DeFi CERVER."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,880",
+				"to": "00:12:00,520"
+			},
+			"offsets": {
+				"from": 715880,
+				"to": 720520
+			},
+			"text": " You know, if you pick two or more of the above, it becomes non-trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,520",
+				"to": "00:12:07,320"
+			},
+			"offsets": {
+				"from": 720520,
+				"to": 727320
+			},
+			"text": " So DeFi CERVER had a chain transaction, but in the chain, the first transaction had a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,320",
+				"to": "00:12:08,320"
+			},
+			"offsets": {
+				"from": 727320,
+				"to": 728320
+			},
+			"text": " low fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,320",
+				"to": "00:12:13,720"
+			},
+			"offsets": {
+				"from": 728320,
+				"to": 733720
+			},
+			"text": " It had a low fee and it didn't get in, which meant the other transactions also didn't get"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,720",
+				"to": "00:12:14,880"
+			},
+			"offsets": {
+				"from": 733720,
+				"to": 734880
+			},
+			"text": " in."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,880",
+				"to": "00:12:17,840"
+			},
+			"offsets": {
+				"from": 734880,
+				"to": 737840
+			},
+			"text": " So this is actually a non-trivial problem that builds."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,840",
+				"to": "00:12:22,240"
+			},
+			"offsets": {
+				"from": 737840,
+				"to": 742240
+			},
+			"text": " And actually most projects have to do this with sort of sucks, it's taken us four or"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,240",
+				"to": "00:12:26,080"
+			},
+			"offsets": {
+				"from": 742240,
+				"to": 746080
+			},
+			"text": " five months to get an alpha version that we're sort of comfortable with."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,080",
+				"to": "00:12:30,560"
+			},
+			"offsets": {
+				"from": 746080,
+				"to": 750560
+			},
+			"text": " And we expect that every team that replicate this, you've already lost four or five months"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,560",
+				"to": "00:12:31,560"
+			},
+			"offsets": {
+				"from": 750560,
+				"to": 751560
+			},
+			"text": " of engineering time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,560",
+				"to": "00:12:35,840"
+			},
+			"offsets": {
+				"from": 751560,
+				"to": 755840
+			},
+			"text": " So that's exactly why I think PISA is useful for most DOP developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,840",
+				"to": "00:12:38,480"
+			},
+			"offsets": {
+				"from": 755840,
+				"to": 758480
+			},
+			"text": " Now what about the future of PISA?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,480",
+				"to": "00:12:42,880"
+			},
+			"offsets": {
+				"from": 758480,
+				"to": 762880
+			},
+			"text": " What I really want to build is a watching pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,880",
+				"to": "00:12:43,880"
+			},
+			"offsets": {
+				"from": 762880,
+				"to": 763880
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,880",
+				"to": "00:12:47,680"
+			},
+			"offsets": {
+				"from": 763880,
+				"to": 767680
+			},
+			"text": " So basically when people think about these watching networks, every all the watchers are"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,680",
+				"to": "00:12:49,360"
+			},
+			"offsets": {
+				"from": 767680,
+				"to": 769360
+			},
+			"text": " in competition."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,360",
+				"to": "00:12:51,400"
+			},
+			"offsets": {
+				"from": 769360,
+				"to": 771400
+			},
+			"text": " We're actually going to have a pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,400",
+				"to": "00:12:53,240"
+			},
+			"offsets": {
+				"from": 771400,
+				"to": 773240
+			},
+			"text": " We have this non-trusted coordinator."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,240",
+				"to": "00:12:56,160"
+			},
+			"offsets": {
+				"from": 773240,
+				"to": 776160
+			},
+			"text": " You know, I send the job to the PISA server."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,160",
+				"to": "00:12:58,680"
+			},
+			"offsets": {
+				"from": 776160,
+				"to": 778680
+			},
+			"text": " The PISA server will send the job to each watcher."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,680",
+				"to": "00:13:03,640"
+			},
+			"offsets": {
+				"from": 778680,
+				"to": 783640
+			},
+			"text": " If we get care of when watchers are green, we get a fully signed receipt, then the sign"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,640",
+				"to": "00:13:05,720"
+			},
+			"offsets": {
+				"from": 783640,
+				"to": 785720
+			},
+			"text": " receipt goes out to the customer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,720",
+				"to": "00:13:09,120"
+			},
+			"offsets": {
+				"from": 785720,
+				"to": 789120
+			},
+			"text": " So actually all the watchers are watching each other's backs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,120",
+				"to": "00:13:14,080"
+			},
+			"offsets": {
+				"from": 789120,
+				"to": 794080
+			},
+			"text": " So at least our service gets dossed, hopefully one remains online."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,080",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 794080,
+				"to": 797000
+			},
+			"text": " There's also the motivation for end-level programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:18,800"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 798800
+			},
+			"text": " They avoid critical bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,800",
+				"to": "00:13:22,160"
+			},
+			"offsets": {
+				"from": 798800,
+				"to": 802160
+			},
+			"text": " Now what about the security collateral lockup?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,160",
+				"to": "00:13:24,520"
+			},
+			"offsets": {
+				"from": 802160,
+				"to": 804520
+			},
+			"text": " A lot of people ask about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,520",
+				"to": "00:13:29,520"
+			},
+			"offsets": {
+				"from": 804520,
+				"to": 809520
+			},
+			"text": " One of the main criticisms of PISA is that we may have the lockup $50K, they're really"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,520",
+				"to": "00:13:31,760"
+			},
+			"offsets": {
+				"from": 809520,
+				"to": 811760
+			},
+			"text": " sure that we have skin in the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,760",
+				"to": "00:13:34,680"
+			},
+			"offsets": {
+				"from": 811760,
+				"to": 814680
+			},
+			"text": " What's nice is that we can outsource that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,680",
+				"to": "00:13:39,400"
+			},
+			"offsets": {
+				"from": 814680,
+				"to": 819400
+			},
+			"text": " People can donate the money on our behalf and they're sort of betting on our reputation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,400",
+				"to": "00:13:41,040"
+			},
+			"offsets": {
+				"from": 819400,
+				"to": 821040
+			},
+			"text": " that we won't get sloshed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,040",
+				"to": "00:13:44,400"
+			},
+			"offsets": {
+				"from": 821040,
+				"to": 824400
+			},
+			"text": " And by betting on our reputation, you get a share of that revenue."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,400",
+				"to": "00:13:49,080"
+			},
+			"offsets": {
+				"from": 824400,
+				"to": 829080
+			},
+			"text": " You can also just lock it up a maker and compound and then use that money to earn interest as"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,080",
+				"to": "00:13:50,080"
+			},
+			"offsets": {
+				"from": 829080,
+				"to": 830080
+			},
+			"text": " well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,080",
+				"to": "00:13:51,080"
+			},
+			"offsets": {
+				"from": 830080,
+				"to": 831080
+			},
+			"text": " This is actually quite nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,080",
+				"to": "00:13:52,080"
+			},
+			"offsets": {
+				"from": 831080,
+				"to": 832080
+			},
+			"text": " You know, the money doesn't go to waste."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,080",
+				"to": "00:13:53,840"
+			},
+			"offsets": {
+				"from": 832080,
+				"to": 833840
+			},
+			"text": " There's a real store of value."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,840",
+				"to": "00:14:01,280"
+			},
+			"offsets": {
+				"from": 833840,
+				"to": 841280
+			},
+			"text": " Now I just want to finish my takeaway message of all of this, you know, talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,280",
+				"to": "00:14:03,680"
+			},
+			"offsets": {
+				"from": 841280,
+				"to": 843680
+			},
+			"text": " What makes cryptocurrency so great?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,680",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 843680,
+				"to": 846000
+			},
+			"text": " You know, why are we all excited about it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:12,520"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 852520
+			},
+			"text": " From my perspective, what makes cryptocurrency so great is that everything is publicly verifiable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,520",
+				"to": "00:14:15,800"
+			},
+			"offsets": {
+				"from": 852520,
+				"to": 855800
+			},
+			"text": " And we have a decentralized set of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,800",
+				"to": "00:14:19,480"
+			},
+			"offsets": {
+				"from": 855800,
+				"to": 859480
+			},
+			"text": " Anyone in the world can validate a blockchain real time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,480",
+				"to": "00:14:24,680"
+			},
+			"offsets": {
+				"from": 859480,
+				"to": 864680
+			},
+			"text": " If you're validating a block, you can hold the miners accountable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,680",
+				"to": "00:14:28,400"
+			},
+			"offsets": {
+				"from": 864680,
+				"to": 868400
+			},
+			"text": " You've validated and you accept it or you reject it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,400",
+				"to": "00:14:33,760"
+			},
+			"offsets": {
+				"from": 868400,
+				"to": 873760
+			},
+			"text": " If the miners cheat, you just reject the block and what you're actually doing is holding"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,760",
+				"to": "00:14:38,320"
+			},
+			"offsets": {
+				"from": 873760,
+				"to": 878320
+			},
+			"text": " the block producers financially accountable if they produce Bob blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,320",
+				"to": "00:14:40,880"
+			},
+			"offsets": {
+				"from": 878320,
+				"to": 880880
+			},
+			"text": " And that's really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,880",
+				"to": "00:14:45,280"
+			},
+			"offsets": {
+				"from": 880880,
+				"to": 885280
+			},
+			"text": " So I guess my motivation for the past few years and what we're trying to now build a"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,280",
+				"to": "00:14:51,800"
+			},
+			"offsets": {
+				"from": 885280,
+				"to": 891800
+			},
+			"text": " PISA is that's bringing financial accountability to every single online service."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,800",
+				"to": "00:14:54,720"
+			},
+			"offsets": {
+				"from": 891800,
+				"to": 894720
+			},
+			"text": " Starting with, you know, third party broadcast networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,720",
+				"to": "00:14:59,040"
+			},
+			"offsets": {
+				"from": 894720,
+				"to": 899040
+			},
+			"text": " We're building this, you know, financially accountable third party."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,040",
+				"to": "00:15:02,400"
+			},
+			"offsets": {
+				"from": 899040,
+				"to": 902400
+			},
+			"text": " And this is what everyone in this room should be aiming towards as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,400",
+				"to": "00:15:08,080"
+			},
+			"offsets": {
+				"from": 902400,
+				"to": 908080
+			},
+			"text": " We should be building services such that, you know, the terms of the, you know, service"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,080",
+				"to": "00:15:12,400"
+			},
+			"offsets": {
+				"from": 908080,
+				"to": 912400
+			},
+			"text": " level agreement are easily enforceable and verifiable."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,400",
+				"to": "00:15:15,520"
+			},
+			"offsets": {
+				"from": 912400,
+				"to": 915520
+			},
+			"text": " We should not blindly trust third parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,520",
+				"to": "00:15:18,760"
+			},
+			"offsets": {
+				"from": 915520,
+				"to": 918760
+			},
+			"text": " We should verify everything they do."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,760",
+				"to": "00:15:22,800"
+			},
+			"offsets": {
+				"from": 918760,
+				"to": 922800
+			},
+			"text": " And if the third party's deviate from the protocol or if they cheat, we should have an"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,800",
+				"to": "00:15:28,320"
+			},
+			"offsets": {
+				"from": 922800,
+				"to": 928320
+			},
+			"text": " ability to issue punishments, you know, they make sure we hold them financially accountable."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,320",
+				"to": "00:15:30,600"
+			},
+			"offsets": {
+				"from": 928320,
+				"to": 930600
+			},
+			"text": " And that's actually what makes cryptocurrency so great."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,600",
+				"to": "00:15:34,920"
+			},
+			"offsets": {
+				"from": 930600,
+				"to": 934920
+			},
+			"text": " You know, that's Sotosi's real vision of why he built this entire system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,920",
+				"to": "00:15:36,680"
+			},
+			"offsets": {
+				"from": 934920,
+				"to": 936680
+			},
+			"text": " So that's basically the end of this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,680",
+				"to": "00:15:41,480"
+			},
+			"offsets": {
+				"from": 936680,
+				"to": 941480
+			},
+			"text": " You know, our goal is to build this financially accountable third party broadcasting network."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,480",
+				"to": "00:15:46,480"
+			},
+			"offsets": {
+				"from": 941480,
+				"to": 946480
+			},
+			"text": " Hopefully people here realized I did not talk about off-chain protocols whatsoever."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,480",
+				"to": "00:15:48,840"
+			},
+			"offsets": {
+				"from": 946480,
+				"to": 948840
+			},
+			"text": " It's generally useful for most smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,840",
+				"to": "00:15:52,680"
+			},
+			"offsets": {
+				"from": 948840,
+				"to": 952680
+			},
+			"text": " And that's hopefully we're going to be, I mean, there's an alpha version running already."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,680",
+				"to": "00:15:55,200"
+			},
+			"offsets": {
+				"from": 952680,
+				"to": 955200
+			},
+			"text": " And hopefully the API will be publicly available very soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,080",
+				"to": "00:15:57,680"
+			},
+			"offsets": {
+				"from": 956080,
+				"to": 957680
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,680",
+				"to": "00:16:07,680"
+			},
+			"offsets": {
+				"from": 957680,
+				"to": 967680
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,680",
+				"to": "00:16:17,680"
+			},
+			"offsets": {
+				"from": 967680,
+				"to": 977680
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,680",
+				"to": "00:16:27,680"
+			},
+			"offsets": {
+				"from": 977680,
+				"to": 987680
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,680",
+				"to": "00:16:31,680"
+			},
+			"offsets": {
+				"from": 987680,
+				"to": 991680
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

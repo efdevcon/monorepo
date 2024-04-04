@@ -1,0 +1,923 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:17,760"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 17760
+			},
+			"text": " Hi to everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,760",
+				"to": "00:00:19,280"
+			},
+			"offsets": {
+				"from": 17760,
+				"to": 19280
+			},
+			"text": " I'm Thomas Bertani."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,280",
+				"to": "00:00:24,120"
+			},
+			"offsets": {
+				"from": 19280,
+				"to": 24120
+			},
+			"text": " And I try to briefly explain what the point of our analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,120",
+				"to": "00:00:28,880"
+			},
+			"offsets": {
+				"from": 24120,
+				"to": 28880
+			},
+			"text": " So we keep talking about the potentials of smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,880",
+				"to": "00:00:32,200"
+			},
+			"offsets": {
+				"from": 28880,
+				"to": 32200
+			},
+			"text": " But one of the main limitations of smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,200",
+				"to": "00:00:35,360"
+			},
+			"offsets": {
+				"from": 32200,
+				"to": 35360
+			},
+			"text": " is that we have to rely on on-chain data only."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,360",
+				"to": "00:00:37,440"
+			},
+			"offsets": {
+				"from": 35360,
+				"to": 37440
+			},
+			"text": " So in the previous presentations, they already"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,440",
+				"to": "00:00:42,200"
+			},
+			"offsets": {
+				"from": 37440,
+				"to": 42200
+			},
+			"text": " seen something like BTC relay or other price fits, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,200",
+				"to": "00:00:47,120"
+			},
+			"offsets": {
+				"from": 42200,
+				"to": 47120
+			},
+			"text": " are essentially some contracts from where you can get some data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,120",
+				"to": "00:00:50,600"
+			},
+			"offsets": {
+				"from": 47120,
+				"to": 50600
+			},
+			"text": " which should be updated by an external data provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,600",
+				"to": "00:00:52,360"
+			},
+			"offsets": {
+				"from": 50600,
+				"to": 52360
+			},
+			"text": " So essentially, this means that there"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,360",
+				"to": "00:00:55,040"
+			},
+			"offsets": {
+				"from": 52360,
+				"to": 55040
+			},
+			"text": " is a party, an external centralized party,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,040",
+				"to": "00:00:59,800"
+			},
+			"offsets": {
+				"from": 55040,
+				"to": 59800
+			},
+			"text": " that is pushing some data with some cryptographic proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,800",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 59800,
+				"to": 63000
+			},
+			"text": " to these contracts so that you can fetch this information"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:04,520"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 64520
+			},
+			"text": " from another contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,520",
+				"to": "00:01:08,400"
+			},
+			"offsets": {
+				"from": 64520,
+				"to": 68400
+			},
+			"text": " So the approach of Oracleize is slightly different."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,400",
+				"to": "00:01:12,160"
+			},
+			"offsets": {
+				"from": 68400,
+				"to": 72160
+			},
+			"text": " What we have built here is a contract interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,160",
+				"to": "00:01:16,280"
+			},
+			"offsets": {
+				"from": 72160,
+				"to": 76280
+			},
+			"text": " so that you can use from your own contract our service"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,280",
+				"to": "00:01:19,960"
+			},
+			"offsets": {
+				"from": 76280,
+				"to": 79960
+			},
+			"text": " to fetch APIs and data feeds from the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,960",
+				"to": "00:01:22,560"
+			},
+			"offsets": {
+				"from": 79960,
+				"to": 82560
+			},
+			"text": " So since we are a centralized party"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,560",
+				"to": "00:01:25,120"
+			},
+			"offsets": {
+				"from": 82560,
+				"to": 85120
+			},
+			"text": " because the fetching cannot be done on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,120",
+				"to": "00:01:28,880"
+			},
+			"offsets": {
+				"from": 85120,
+				"to": 88880
+			},
+			"text": " and directly with some of codes or things like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,880",
+				"to": "00:01:31,080"
+			},
+			"offsets": {
+				"from": 88880,
+				"to": 91080
+			},
+			"text": " how can you trust us?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,080",
+				"to": "00:01:34,440"
+			},
+			"offsets": {
+				"from": 91080,
+				"to": 94440
+			},
+			"text": " We are sending TLS not a reproof, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,440",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 94440,
+				"to": 100000
+			},
+			"text": " is proving that a certain content was given as a result"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:42,960"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 102960
+			},
+			"text": " by a certain server at a specified time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,960",
+				"to": "00:01:48,040"
+			},
+			"offsets": {
+				"from": 102960,
+				"to": 108040
+			},
+			"text": " So in this way, you don't have to trust us not to alter"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,040",
+				"to": "00:01:48,880"
+			},
+			"offsets": {
+				"from": 108040,
+				"to": 108880
+			},
+			"text": " your data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,880",
+				"to": "00:01:52,160"
+			},
+			"offsets": {
+				"from": 108880,
+				"to": 112160
+			},
+			"text": " And you are 100% sure that the data coming from us"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,160",
+				"to": "00:01:53,840"
+			},
+			"offsets": {
+				"from": 112160,
+				"to": 113840
+			},
+			"text": " is not altered."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,840",
+				"to": "00:01:58,480"
+			},
+			"offsets": {
+				"from": 113840,
+				"to": 118480
+			},
+			"text": " So to explain with some code, what I just said--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,480",
+				"to": "00:01:59,320"
+			},
+			"offsets": {
+				"from": 118480,
+				"to": 119320
+			},
+			"text": " there is no code here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,320",
+				"to": "00:02:02,820"
+			},
+			"offsets": {
+				"from": 119320,
+				"to": 122820
+			},
+			"text": " Oops."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,820",
+				"to": "00:02:07,240"
+			},
+			"offsets": {
+				"from": 122820,
+				"to": 127240
+			},
+			"text": " I just showed directly on the website."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,240",
+				"to": "00:02:14,080"
+			},
+			"offsets": {
+				"from": 127240,
+				"to": 134080
+			},
+			"text": " So if you go through this subdomain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,080",
+				"to": "00:02:17,880"
+			},
+			"offsets": {
+				"from": 134080,
+				"to": 137880
+			},
+			"text": " dev.oracolize.at, there are some sample codes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,880",
+				"to": "00:02:21,960"
+			},
+			"offsets": {
+				"from": 137880,
+				"to": 141960
+			},
+			"text": " that hopefully now will be loading."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,960",
+				"to": "00:02:23,520"
+			},
+			"offsets": {
+				"from": 141960,
+				"to": 143520
+			},
+			"text": " And calling oracolize is very easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,520",
+				"to": "00:02:27,400"
+			},
+			"offsets": {
+				"from": 143520,
+				"to": 147400
+			},
+			"text": " because essentially we are providing a solidity file"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,400",
+				"to": "00:02:30,600"
+			},
+			"offsets": {
+				"from": 147400,
+				"to": 150600
+			},
+			"text": " to import directly in your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,600",
+				"to": "00:02:33,600"
+			},
+			"offsets": {
+				"from": 150600,
+				"to": 153600
+			},
+			"text": " And after that, you have a base contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,600",
+				"to": "00:02:35,560"
+			},
+			"offsets": {
+				"from": 153600,
+				"to": 155560
+			},
+			"text": " which is called using oracolize."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,560",
+				"to": "00:02:39,800"
+			},
+			"offsets": {
+				"from": 155560,
+				"to": 159800
+			},
+			"text": " So essentially, you can write your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,800",
+				"to": "00:02:41,920"
+			},
+			"offsets": {
+				"from": 159800,
+				"to": 161920
+			},
+			"text": " And in the definition, you can extend-- you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,920",
+				"to": "00:02:44,400"
+			},
+			"offsets": {
+				"from": 161920,
+				"to": 164400
+			},
+			"text": " can inherit our contract by just typing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,400",
+				"to": "00:02:46,120"
+			},
+			"offsets": {
+				"from": 164400,
+				"to": 166120
+			},
+			"text": " is using oracolize."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,120",
+				"to": "00:02:49,240"
+			},
+			"offsets": {
+				"from": 166120,
+				"to": 169240
+			},
+			"text": " So this is providing some functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,240",
+				"to": "00:02:54,160"
+			},
+			"offsets": {
+				"from": 169240,
+				"to": 174160
+			},
+			"text": " such as oracolize_query."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,160",
+				"to": "00:02:55,160"
+			},
+			"offsets": {
+				"from": 174160,
+				"to": 175160
+			},
+			"text": " The code is not loading."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,160",
+				"to": "00:02:58,240"
+			},
+			"offsets": {
+				"from": 175160,
+				"to": 178240
+			},
+			"text": " So this is a little bit difficult to explain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,240",
+				"to": "00:03:03,640"
+			},
+			"offsets": {
+				"from": 178240,
+				"to": 183640
+			},
+			"text": " Let's see if at least the documentation is working."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,640",
+				"to": "00:03:15,920"
+			},
+			"offsets": {
+				"from": 183640,
+				"to": 195920
+			},
+			"text": " So essentially, you are sending us an asynchronous request."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,920",
+				"to": "00:03:18,400"
+			},
+			"offsets": {
+				"from": 195920,
+				"to": 198400
+			},
+			"text": " And this is the syntax."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,400",
+				"to": "00:03:21,080"
+			},
+			"offsets": {
+				"from": 198400,
+				"to": 201080
+			},
+			"text": " So you just type oracolize_query."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,080",
+				"to": "00:03:24,200"
+			},
+			"offsets": {
+				"from": 201080,
+				"to": 204200
+			},
+			"text": " And as first argument, you specify the data source."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,200",
+				"to": "00:03:26,960"
+			},
+			"offsets": {
+				"from": 204200,
+				"to": 206960
+			},
+			"text": " The data source, in this case, is Wolfram alpha."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,960",
+				"to": "00:03:34,280"
+			},
+			"offsets": {
+				"from": 206960,
+				"to": 214280
+			},
+			"text": " But obviously, you can use directly any HTTP API you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,280",
+				"to": "00:03:36,880"
+			},
+			"offsets": {
+				"from": 214280,
+				"to": 216880
+			},
+			"text": " just by typing as data source URL."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,880",
+				"to": "00:03:38,240"
+			},
+			"offsets": {
+				"from": 216880,
+				"to": 218240
+			},
+			"text": " So this is asynchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,240",
+				"to": "00:03:41,840"
+			},
+			"offsets": {
+				"from": 218240,
+				"to": 221840
+			},
+			"text": " And then we are sending back a transaction, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,840",
+				"to": "00:03:44,560"
+			},
+			"offsets": {
+				"from": 221840,
+				"to": 224560
+			},
+			"text": " is calling a callback method in your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,560",
+				"to": "00:03:47,480"
+			},
+			"offsets": {
+				"from": 224560,
+				"to": 227480
+			},
+			"text": " So the only thing you have to do is to implement a callback"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,480",
+				"to": "00:03:51,200"
+			},
+			"offsets": {
+				"from": 227480,
+				"to": 231200
+			},
+			"text": " method, which is describing the commutation here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,200",
+				"to": "00:03:52,440"
+			},
+			"offsets": {
+				"from": 231200,
+				"to": 232440
+			},
+			"text": " callback function."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,440",
+				"to": "00:03:55,600"
+			},
+			"offsets": {
+				"from": 232440,
+				"to": 235600
+			},
+			"text": " And then here, you decide what to do with this data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,600",
+				"to": "00:03:59,920"
+			},
+			"offsets": {
+				"from": 235600,
+				"to": 239920
+			},
+			"text": " So essentially, you can write in just 10 lines something"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,920",
+				"to": "00:04:05,560"
+			},
+			"offsets": {
+				"from": 239920,
+				"to": 245560
+			},
+			"text": " like a data feed, which is always keeping updated the price"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,560",
+				"to": "00:04:12,360"
+			},
+			"offsets": {
+				"from": 245560,
+				"to": 252360
+			},
+			"text": " of a eater, taking the price from Kraken or things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,360",
+				"to": "00:04:15,240"
+			},
+			"offsets": {
+				"from": 252360,
+				"to": 255240
+			},
+			"text": " There are even some utilities you can use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,240",
+				"to": "00:04:19,200"
+			},
+			"offsets": {
+				"from": 255240,
+				"to": 259200
+			},
+			"text": " because obviously, we are sending back this as a string."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,200",
+				"to": "00:04:23,480"
+			},
+			"offsets": {
+				"from": 259200,
+				"to": 263480
+			},
+			"text": " So we have some JSON and XML alpers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,480",
+				"to": "00:04:27,200"
+			},
+			"offsets": {
+				"from": 263480,
+				"to": 267200
+			},
+			"text": " So you can just fetch some fields if you don't need the old"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,200",
+				"to": "00:04:29,200"
+			},
+			"offsets": {
+				"from": 267200,
+				"to": 269200
+			},
+			"text": " response, back from the API."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,200",
+				"to": "00:04:33,600"
+			},
+			"offsets": {
+				"from": 269200,
+				"to": 273600
+			},
+			"text": " And there are some alpers so that you can do string comparison,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,600",
+				"to": "00:04:36,160"
+			},
+			"offsets": {
+				"from": 273600,
+				"to": 276160
+			},
+			"text": " string concatenation, and all this kind of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,160",
+				"to": "00:04:38,120"
+			},
+			"offsets": {
+				"from": 276160,
+				"to": 278120
+			},
+			"text": " Thank you for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,120",
+				"to": "00:04:41,080"
+			},
+			"offsets": {
+				"from": 278120,
+				"to": 281080
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,080",
+				"to": "00:04:44,560"
+			},
+			"offsets": {
+				"from": 281080,
+				"to": 284560
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,560",
+				"to": "00:04:46,560"
+			},
+			"offsets": {
+				"from": 284560,
+				"to": 286560
+			},
+			"text": " (music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,560",
+				"to": "00:04:48,800"
+			},
+			"offsets": {
+				"from": 286560,
+				"to": 288800
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

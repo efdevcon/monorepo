@@ -1,0 +1,1836 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,840"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20840
+			},
+			"text": " >> All right, so I'm Joey Kuk from Auger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,840",
+				"to": "00:00:22,520"
+			},
+			"offsets": {
+				"from": 20840,
+				"to": 22520
+			},
+			"text": " our prediction market on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,520",
+				"to": "00:00:26,360"
+			},
+			"offsets": {
+				"from": 22520,
+				"to": 26360
+			},
+			"text": " And I'm just going to talk about a few kind of weird things"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,360",
+				"to": "00:00:29,520"
+			},
+			"offsets": {
+				"from": 26360,
+				"to": 29520
+			},
+			"text": " that we do that's maybe different than other contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,520",
+				"to": "00:00:32,320"
+			},
+			"offsets": {
+				"from": 29520,
+				"to": 32320
+			},
+			"text": " on Ethereum and kind of why we do them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,320",
+				"to": "00:00:35,080"
+			},
+			"offsets": {
+				"from": 32320,
+				"to": 35080
+			},
+			"text": " And I'll keep it short so maybe we can get back on schedule."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,080",
+				"to": "00:00:39,640"
+			},
+			"offsets": {
+				"from": 35080,
+				"to": 39640
+			},
+			"text": " So when you're updating contracts, there's like --"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,640",
+				"to": "00:00:41,480"
+			},
+			"offsets": {
+				"from": 39640,
+				"to": 41480
+			},
+			"text": " there's a few things you have to decide."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,480",
+				"to": "00:00:44,880"
+			},
+			"offsets": {
+				"from": 41480,
+				"to": 44880
+			},
+			"text": " One is like how do you decide whether to update a contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,880",
+				"to": "00:00:46,880"
+			},
+			"offsets": {
+				"from": 44880,
+				"to": 46880
+			},
+			"text": " You know, you could say you have one private key"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,880",
+				"to": "00:00:49,640"
+			},
+			"offsets": {
+				"from": 46880,
+				"to": 49640
+			},
+			"text": " which basically says this private key is going to be the one"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,640",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 49640,
+				"to": 51000
+			},
+			"text": " that updates the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:54,400"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 54400
+			},
+			"text": " You have M of N, so that's like multi-signature where you say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,400",
+				"to": "00:00:56,720"
+			},
+			"offsets": {
+				"from": 54400,
+				"to": 56720
+			},
+			"text": " you know, three out of five of these keys have to agree"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,720",
+				"to": "00:00:58,520"
+			},
+			"offsets": {
+				"from": 56720,
+				"to": 58520
+			},
+			"text": " and if so, we'll update the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,520",
+				"to": "00:01:00,840"
+			},
+			"offsets": {
+				"from": 58520,
+				"to": 60840
+			},
+			"text": " You can do other things like in Auger, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,840",
+				"to": "00:01:03,200"
+			},
+			"offsets": {
+				"from": 60840,
+				"to": 63200
+			},
+			"text": " the way we're going to decide updates is we'll have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,200",
+				"to": "00:01:04,920"
+			},
+			"offsets": {
+				"from": 63200,
+				"to": 64920
+			},
+			"text": " reporter's vote on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,920",
+				"to": "00:01:08,520"
+			},
+			"offsets": {
+				"from": 64920,
+				"to": 68520
+			},
+			"text": " But I decided it didn't make sense to talk about that too much"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,520",
+				"to": "00:01:11,040"
+			},
+			"offsets": {
+				"from": 68520,
+				"to": 71040
+			},
+			"text": " because, you know, having something like reporters"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,040",
+				"to": "00:01:12,840"
+			},
+			"offsets": {
+				"from": 71040,
+				"to": 72840
+			},
+			"text": " in your system may not be too relevant."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,840",
+				"to": "00:01:14,960"
+			},
+			"offsets": {
+				"from": 72840,
+				"to": 74960
+			},
+			"text": " So the other problem you have to solve and update"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,960",
+				"to": "00:01:20,280"
+			},
+			"offsets": {
+				"from": 74960,
+				"to": 80280
+			},
+			"text": " in a contract is basically how do you actually do it"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,280",
+				"to": "00:01:23,520"
+			},
+			"offsets": {
+				"from": 80280,
+				"to": 83520
+			},
+			"text": " without like losing your data or paying a ton of money"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,520",
+				"to": "00:01:24,880"
+			},
+			"offsets": {
+				"from": 83520,
+				"to": 84880
+			},
+			"text": " to transfer your data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,880",
+				"to": "00:01:28,480"
+			},
+			"offsets": {
+				"from": 84880,
+				"to": 88480
+			},
+			"text": " So the simplest way to do things is you basically just --"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,480",
+				"to": "00:01:35,680"
+			},
+			"offsets": {
+				"from": 88480,
+				"to": 95680
+			},
+			"text": " set up a contract, it has basically your data in it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,680",
+				"to": "00:01:38,480"
+			},
+			"offsets": {
+				"from": 95680,
+				"to": 98480
+			},
+			"text": " it has functions and all the functions to do is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,480",
+				"to": "00:01:41,040"
+			},
+			"offsets": {
+				"from": 98480,
+				"to": 101040
+			},
+			"text": " forward the call to another contract which has your business"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,040",
+				"to": "00:01:44,240"
+			},
+			"offsets": {
+				"from": 101040,
+				"to": 104240
+			},
+			"text": " logic which, you know, actually modifies your functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,240",
+				"to": "00:01:46,800"
+			},
+			"offsets": {
+				"from": 104240,
+				"to": 106800
+			},
+			"text": " So an example would be like you have a contract that has"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,800",
+				"to": "00:01:50,880"
+			},
+			"offsets": {
+				"from": 106800,
+				"to": 110880
+			},
+			"text": " like some money in it or something and you want to be able"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,880",
+				"to": "00:01:52,560"
+			},
+			"offsets": {
+				"from": 110880,
+				"to": 112560
+			},
+			"text": " to update your send function."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,560",
+				"to": "00:01:55,960"
+			},
+			"offsets": {
+				"from": 112560,
+				"to": 115960
+			},
+			"text": " And so what you do is you write another contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,960",
+				"to": "00:01:58,080"
+			},
+			"offsets": {
+				"from": 115960,
+				"to": 118080
+			},
+			"text": " and the first contract always forwards the calls"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,080",
+				"to": "00:01:59,360"
+			},
+			"offsets": {
+				"from": 118080,
+				"to": 119360
+			},
+			"text": " in the new one."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,360",
+				"to": "00:02:03,280"
+			},
+			"offsets": {
+				"from": 119360,
+				"to": 123280
+			},
+			"text": " And your first contract keeps the second contract's address."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,280",
+				"to": "00:02:04,480"
+			},
+			"offsets": {
+				"from": 123280,
+				"to": 124480
+			},
+			"text": " So if you want to update the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,480",
+				"to": "00:02:06,360"
+			},
+			"offsets": {
+				"from": 124480,
+				"to": 126360
+			},
+			"text": " all you do is change the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,360",
+				"to": "00:02:12,280"
+			},
+			"offsets": {
+				"from": 126360,
+				"to": 132280
+			},
+			"text": " The problem with that is you basically cannot really change"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,280",
+				"to": "00:02:14,280"
+			},
+			"offsets": {
+				"from": 132280,
+				"to": 134280
+			},
+			"text": " the parameters that send uses."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,280",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 134280,
+				"to": 138000
+			},
+			"text": " You cannot, you know, make an entirely different function."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:21,080"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 141080
+			},
+			"text": " So it's kind of limited in how you can upgrade things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,080",
+				"to": "00:02:24,400"
+			},
+			"offsets": {
+				"from": 141080,
+				"to": 144400
+			},
+			"text": " Another thing you can do is there's this thing called call code"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,400",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 144400,
+				"to": 148000
+			},
+			"text": " which is an opcode which allows you to basically run"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:31,280"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 151280
+			},
+			"text": " the other code from another contract as if it was in your"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,280",
+				"to": "00:02:31,840"
+			},
+			"offsets": {
+				"from": 151280,
+				"to": 151840
+			},
+			"text": " contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,840",
+				"to": "00:02:33,280"
+			},
+			"offsets": {
+				"from": 151840,
+				"to": 153280
+			},
+			"text": " It's similar to delegate call."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,280",
+				"to": "00:02:34,920"
+			},
+			"offsets": {
+				"from": 153280,
+				"to": 154920
+			},
+			"text": " The only difference is call code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,920",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 154920,
+				"to": 158000
+			},
+			"text": " You can't have state in second contract which isn't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:40,280"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 160280
+			},
+			"text": " super relevant to this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,280",
+				"to": "00:02:44,200"
+			},
+			"offsets": {
+				"from": 160280,
+				"to": 164200
+			},
+			"text": " The problem with doing that though is you can't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,200",
+				"to": "00:02:47,320"
+			},
+			"offsets": {
+				"from": 164200,
+				"to": 167320
+			},
+			"text": " change what's called the ABI in any easy way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,320",
+				"to": "00:02:49,440"
+			},
+			"offsets": {
+				"from": 167320,
+				"to": 169440
+			},
+			"text": " So every contract has this thing called the ABI."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,440",
+				"to": "00:02:51,960"
+			},
+			"offsets": {
+				"from": 169440,
+				"to": 171960
+			},
+			"text": " And basically all it is is the data that tells you what"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,960",
+				"to": "00:02:54,440"
+			},
+			"offsets": {
+				"from": 171960,
+				"to": 174440
+			},
+			"text": " functions your contract has, what parameters your contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,440",
+				"to": "00:02:55,920"
+			},
+			"offsets": {
+				"from": 174440,
+				"to": 175920
+			},
+			"text": " functions have in them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,920",
+				"to": "00:02:57,840"
+			},
+			"offsets": {
+				"from": 175920,
+				"to": 177840
+			},
+			"text": " And so if you want to be able to update your contracts and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,840",
+				"to": "00:03:00,680"
+			},
+			"offsets": {
+				"from": 177840,
+				"to": 180680
+			},
+			"text": " change the ABI, using delegate calls is not a super good way"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,680",
+				"to": "00:03:01,720"
+			},
+			"offsets": {
+				"from": 180680,
+				"to": 181720
+			},
+			"text": " to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,720",
+				"to": "00:03:04,440"
+			},
+			"offsets": {
+				"from": 181720,
+				"to": 184440
+			},
+			"text": " There's one kind of hacky way you can do it where you say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,440",
+				"to": "00:03:08,960"
+			},
+			"offsets": {
+				"from": 184440,
+				"to": 188960
+			},
+			"text": " well, if we pass the message.data to the contract we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,960",
+				"to": "00:03:11,920"
+			},
+			"offsets": {
+				"from": 188960,
+				"to": 191920
+			},
+			"text": " calling, then we can basically set it up so that you can call"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,920",
+				"to": "00:03:14,640"
+			},
+			"offsets": {
+				"from": 191920,
+				"to": 194640
+			},
+			"text": " any sort of generic function on any contract you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,640",
+				"to": "00:03:17,960"
+			},
+			"offsets": {
+				"from": 194640,
+				"to": 197960
+			},
+			"text": " provided that the user, you know, inputs the proper data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,960",
+				"to": "00:03:20,320"
+			},
+			"offsets": {
+				"from": 197960,
+				"to": 200320
+			},
+			"text": " The problem with that is one, it's very confusing for people"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,320",
+				"to": "00:03:22,440"
+			},
+			"offsets": {
+				"from": 200320,
+				"to": 202440
+			},
+			"text": " trying to audit your code or read your code, try to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,440",
+				"to": "00:03:23,280"
+			},
+			"offsets": {
+				"from": 202440,
+				"to": 203280
+			},
+			"text": " understand it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,280",
+				"to": "00:03:25,600"
+			},
+			"offsets": {
+				"from": 203280,
+				"to": 205600
+			},
+			"text": " It's very confusing from someone trying to interact with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,600",
+				"to": "00:03:27,720"
+			},
+			"offsets": {
+				"from": 205600,
+				"to": 207720
+			},
+			"text": " your code because it's just this generic function that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,720",
+				"to": "00:03:31,240"
+			},
+			"offsets": {
+				"from": 207720,
+				"to": 211240
+			},
+			"text": " like past the message data to whatever contract we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,240",
+				"to": "00:03:35,040"
+			},
+			"offsets": {
+				"from": 211240,
+				"to": 215040
+			},
+			"text": " So the way we actually do updates for contracts is we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,040",
+				"to": "00:03:37,480"
+			},
+			"offsets": {
+				"from": 215040,
+				"to": 217480
+			},
+			"text": " separate the data and we separate the business logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,480",
+				"to": "00:03:40,120"
+			},
+			"offsets": {
+				"from": 217480,
+				"to": 220120
+			},
+			"text": " So all the data is stored in separate contracts with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,120",
+				"to": "00:03:41,720"
+			},
+			"offsets": {
+				"from": 220120,
+				"to": 221720
+			},
+			"text": " getters and setters."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,720",
+				"to": "00:03:44,520"
+			},
+			"offsets": {
+				"from": 221720,
+				"to": 224520
+			},
+			"text": " And all the business logic, so stuff that modifies it, are"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,520",
+				"to": "00:03:46,760"
+			},
+			"offsets": {
+				"from": 224520,
+				"to": 226760
+			},
+			"text": " all in separate contracts as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,760",
+				"to": "00:03:49,680"
+			},
+			"offsets": {
+				"from": 226760,
+				"to": 229680
+			},
+			"text": " Then what we do is we say, OK, in the data contracts we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,680",
+				"to": "00:03:52,560"
+			},
+			"offsets": {
+				"from": 229680,
+				"to": 232560
+			},
+			"text": " have a white list, which allows these business logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,560",
+				"to": "00:03:54,520"
+			},
+			"offsets": {
+				"from": 232560,
+				"to": 234520
+			},
+			"text": " contracts to modify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,520",
+				"to": "00:03:56,760"
+			},
+			"offsets": {
+				"from": 234520,
+				"to": 236760
+			},
+			"text": " And so what that allows you to do is it allows you to update"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,760",
+				"to": "00:03:59,240"
+			},
+			"offsets": {
+				"from": 236760,
+				"to": 239240
+			},
+			"text": " your functions that are actually modifying state in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,240",
+				"to": "00:04:00,960"
+			},
+			"offsets": {
+				"from": 239240,
+				"to": 240960
+			},
+			"text": " relatively easy way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,960",
+				"to": "00:04:03,200"
+			},
+			"offsets": {
+				"from": 240960,
+				"to": 243200
+			},
+			"text": " And it allows you to add new functions, allows you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,200",
+				"to": "00:04:05,800"
+			},
+			"offsets": {
+				"from": 243200,
+				"to": 245800
+			},
+			"text": " change the parameters, allows you to do basically almost"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,800",
+				"to": "00:04:08,760"
+			},
+			"offsets": {
+				"from": 245800,
+				"to": 248760
+			},
+			"text": " anything you'd want to do when you're updating something"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,760",
+				"to": "00:04:10,800"
+			},
+			"offsets": {
+				"from": 248760,
+				"to": 250800
+			},
+			"text": " without many limitations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,800",
+				"to": "00:04:13,040"
+			},
+			"offsets": {
+				"from": 250800,
+				"to": 253040
+			},
+			"text": " And if you want to add new data, you can basically just"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,040",
+				"to": "00:04:14,720"
+			},
+			"offsets": {
+				"from": 253040,
+				"to": 254720
+			},
+			"text": " create another data contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,720",
+				"to": "00:04:16,440"
+			},
+			"offsets": {
+				"from": 254720,
+				"to": 256440
+			},
+			"text": " So that's kind of the way we update things as opposed to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,440",
+				"to": "00:04:18,880"
+			},
+			"offsets": {
+				"from": 256440,
+				"to": 258880
+			},
+			"text": " using the more traditional recommended way of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,880",
+				"to": "00:04:19,720"
+			},
+			"offsets": {
+				"from": 258880,
+				"to": 259720
+			},
+			"text": " delegate call."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,560",
+				"to": "00:04:24,320"
+			},
+			"offsets": {
+				"from": 262560,
+				"to": 264320
+			},
+			"text": " Another interesting thing is we use serpent as opposed to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,320",
+				"to": "00:04:25,520"
+			},
+			"offsets": {
+				"from": 264320,
+				"to": 265520
+			},
+			"text": " solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,520",
+				"to": "00:04:26,680"
+			},
+			"offsets": {
+				"from": 265520,
+				"to": 266680
+			},
+			"text": " The reason we use serpent is because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,680",
+				"to": "00:04:28,480"
+			},
+			"offsets": {
+				"from": 266680,
+				"to": 268480
+			},
+			"text": " stupidly simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,480",
+				"to": "00:04:30,920"
+			},
+			"offsets": {
+				"from": 268480,
+				"to": 270920
+			},
+			"text": " If you look at solidity, it has quite a few complicated"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,920",
+				"to": "00:04:32,040"
+			},
+			"offsets": {
+				"from": 270920,
+				"to": 272040
+			},
+			"text": " features in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,040",
+				"to": "00:04:33,920"
+			},
+			"offsets": {
+				"from": 272040,
+				"to": 273920
+			},
+			"text": " There's a lot you can do with it, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,920",
+				"to": "00:04:35,880"
+			},
+			"offsets": {
+				"from": 273920,
+				"to": 275880
+			},
+			"text": " Serpent is really basic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,880",
+				"to": "00:04:39,160"
+			},
+			"offsets": {
+				"from": 275880,
+				"to": 279160
+			},
+			"text": " And so it makes it kind of easier to find flaws when"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,160",
+				"to": "00:04:40,480"
+			},
+			"offsets": {
+				"from": 279160,
+				"to": 280480
+			},
+			"text": " you're looking at serpent code, as opposed to a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,480",
+				"to": "00:04:42,480"
+			},
+			"offsets": {
+				"from": 280480,
+				"to": 282480
+			},
+			"text": " solidity code."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,480",
+				"to": "00:04:43,820"
+			},
+			"offsets": {
+				"from": 282480,
+				"to": 283820
+			},
+			"text": " The other reason is when we started,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,820",
+				"to": "00:04:49,360"
+			},
+			"offsets": {
+				"from": 283820,
+				"to": 289360
+			},
+			"text": " solidity didn't exist, which is a good reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,360",
+				"to": "00:04:51,960"
+			},
+			"offsets": {
+				"from": 289360,
+				"to": 291960
+			},
+			"text": " But one thing I'm really interested in is when you look"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,960",
+				"to": "00:04:55,040"
+			},
+			"offsets": {
+				"from": 291960,
+				"to": 295040
+			},
+			"text": " at how we're trying to approach formal verification and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,040",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 295040,
+				"to": 297000
+			},
+			"text": " things like that for improving security of smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:04:59,680"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 299680
+			},
+			"text": " contracts, we're really kind of almost starting from scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,680",
+				"to": "00:05:02,160"
+			},
+			"offsets": {
+				"from": 299680,
+				"to": 302160
+			},
+			"text": " We're building on top of solidity, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,160",
+				"to": "00:05:04,920"
+			},
+			"offsets": {
+				"from": 302160,
+				"to": 304920
+			},
+			"text": " They're using Y3, which is good because it's building"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,920",
+				"to": "00:05:07,040"
+			},
+			"offsets": {
+				"from": 304920,
+				"to": 307040
+			},
+			"text": " off of existing work."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,040",
+				"to": "00:05:10,640"
+			},
+			"offsets": {
+				"from": 307040,
+				"to": 310640
+			},
+			"text": " But what I think would be really cool is if you were"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,640",
+				"to": "00:05:12,880"
+			},
+			"offsets": {
+				"from": 310640,
+				"to": 312880
+			},
+			"text": " able to write smart contracts in A."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,880",
+				"to": "00:05:14,480"
+			},
+			"offsets": {
+				"from": 312880,
+				"to": 314480
+			},
+			"text": " And basically--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,480",
+				"to": "00:05:16,920"
+			},
+			"offsets": {
+				"from": 314480,
+				"to": 316920
+			},
+			"text": " so I made a tweet about this kind of as a joke, but then"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,920",
+				"to": "00:05:17,680"
+			},
+			"offsets": {
+				"from": 316920,
+				"to": 317680
+			},
+			"text": " I looked into it more."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,680",
+				"to": "00:05:19,680"
+			},
+			"offsets": {
+				"from": 317680,
+				"to": 319680
+			},
+			"text": " And it actually seems very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,680",
+				"to": "00:05:21,920"
+			},
+			"offsets": {
+				"from": 319680,
+				"to": 321920
+			},
+			"text": " Once the EVM supports WebAssembly, you'll be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,920",
+				"to": "00:05:26,640"
+			},
+			"offsets": {
+				"from": 321920,
+				"to": 326640
+			},
+			"text": " take ADA code and compile it to using the LLVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,640",
+				"to": "00:05:29,280"
+			},
+			"offsets": {
+				"from": 326640,
+				"to": 329280
+			},
+			"text": " And then compile that to WebAssembly, which means you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,280",
+				"to": "00:05:32,440"
+			},
+			"offsets": {
+				"from": 329280,
+				"to": 332440
+			},
+			"text": " write smart contracts in ADA, which is very interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,440",
+				"to": "00:05:35,640"
+			},
+			"offsets": {
+				"from": 332440,
+				"to": 335640
+			},
+			"text": " because that's the language that the DOD, NASA, all these"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,640",
+				"to": "00:05:38,640"
+			},
+			"offsets": {
+				"from": 335640,
+				"to": 338640
+			},
+			"text": " super, super mission critical systems use."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,640",
+				"to": "00:05:41,800"
+			},
+			"offsets": {
+				"from": 338640,
+				"to": 341800
+			},
+			"text": " An interesting thing about it is they spent tens of hundreds"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,800",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 341800,
+				"to": 345000
+			},
+			"text": " of millions of dollars into writing suites of software"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:47,960"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 347960
+			},
+			"text": " that allow you to do formal verification very easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,960",
+				"to": "00:05:51,200"
+			},
+			"offsets": {
+				"from": 347960,
+				"to": 351200
+			},
+			"text": " So if you write a program in ADA, it allows you to do tons"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,200",
+				"to": "00:05:53,480"
+			},
+			"offsets": {
+				"from": 351200,
+				"to": 353480
+			},
+			"text": " of informal verification stuff automatically for one without"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,480",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 353480,
+				"to": 355000
+			},
+			"text": " you even happen to do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:57,800"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 357800
+			},
+			"text": " And then if you write assertions and things, it'll also"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,800",
+				"to": "00:06:01,400"
+			},
+			"offsets": {
+				"from": 357800,
+				"to": 361400
+			},
+			"text": " automatically prove things for you very easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,400",
+				"to": "00:06:03,080"
+			},
+			"offsets": {
+				"from": 361400,
+				"to": 363080
+			},
+			"text": " So what I think would be really cool is if people started"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,080",
+				"to": "00:06:04,760"
+			},
+			"offsets": {
+				"from": 363080,
+				"to": 364760
+			},
+			"text": " writing contracts in ADA."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,760",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 364760,
+				"to": 368000
+			},
+			"text": " So if you look at the Ethereum WebAssembly GitHub page, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:10,720"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 370720
+			},
+			"text": " have plans to make it so there's a library for C and a"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,720",
+				"to": "00:06:14,160"
+			},
+			"offsets": {
+				"from": 370720,
+				"to": 374160
+			},
+			"text": " library for Rust and instructions on how to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,160",
+				"to": "00:06:17,520"
+			},
+			"offsets": {
+				"from": 374160,
+				"to": 377520
+			},
+			"text": " Ethereum, write Ethereum programs in those languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,520",
+				"to": "00:06:19,560"
+			},
+			"offsets": {
+				"from": 377520,
+				"to": 379560
+			},
+			"text": " And it could be cool if they have one for ADA."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,560",
+				"to": "00:06:22,920"
+			},
+			"offsets": {
+				"from": 379560,
+				"to": 382920
+			},
+			"text": " So what we'd like to do is basically announce basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,920",
+				"to": "00:06:27,920"
+			},
+			"offsets": {
+				"from": 382920,
+				"to": 387920
+			},
+			"text": " a $10,000 bounty where if someone does that for ADA, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,920",
+				"to": "00:06:31,120"
+			},
+			"offsets": {
+				"from": 387920,
+				"to": 391120
+			},
+			"text": " get 10K and Bitcoin or Ether or whatever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,120",
+				"to": "00:06:35,680"
+			},
+			"offsets": {
+				"from": 391120,
+				"to": 395680
+			},
+			"text": " And basically not super relevant right now because the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,680",
+				"to": "00:06:37,760"
+			},
+			"offsets": {
+				"from": 395680,
+				"to": 397760
+			},
+			"text": " WebAssembly stuff's not that far along."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,760",
+				"to": "00:06:40,680"
+			},
+			"offsets": {
+				"from": 397760,
+				"to": 400680
+			},
+			"text": " But in a few months, once they start doing it for C and Rust,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,680",
+				"to": "00:06:41,520"
+			},
+			"offsets": {
+				"from": 400680,
+				"to": 401520
+			},
+			"text": " shouldn't it be too hard to do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,520",
+				"to": "00:06:44,240"
+			},
+			"offsets": {
+				"from": 401520,
+				"to": 404240
+			},
+			"text": " You'd basically just look at what they're doing, what things"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,240",
+				"to": "00:06:46,200"
+			},
+			"offsets": {
+				"from": 404240,
+				"to": 406200
+			},
+			"text": " they're adding, and write a library for ADA that allows you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,200",
+				"to": "00:06:48,160"
+			},
+			"offsets": {
+				"from": 406200,
+				"to": 408160
+			},
+			"text": " to write Ethereum contracts in ADA."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,160",
+				"to": "00:06:50,760"
+			},
+			"offsets": {
+				"from": 408160,
+				"to": 410760
+			},
+			"text": " So that'd be very cool because you wouldn't actually prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,760",
+				"to": "00:06:53,200"
+			},
+			"offsets": {
+				"from": 410760,
+				"to": 413200
+			},
+			"text": " quite a bit more about your contracts in ADA than you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,200",
+				"to": "00:06:56,240"
+			},
+			"offsets": {
+				"from": 413200,
+				"to": 416240
+			},
+			"text": " in any other language."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,240",
+				"to": "00:07:00,760"
+			},
+			"offsets": {
+				"from": 416240,
+				"to": 420760
+			},
+			"text": " The only other thing I have is where people ask me all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,760",
+				"to": "00:07:04,560"
+			},
+			"offsets": {
+				"from": 420760,
+				"to": 424560
+			},
+			"text": " time about what we're doing with Rep when it's a Rep launch."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,560",
+				"to": "00:07:05,800"
+			},
+			"offsets": {
+				"from": 424560,
+				"to": 425800
+			},
+			"text": " So basically, a bunch of people messed up their"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,800",
+				"to": "00:07:07,200"
+			},
+			"offsets": {
+				"from": 425800,
+				"to": 427200
+			},
+			"text": " Ethereum buy-ins."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,200",
+				"to": "00:07:10,760"
+			},
+			"offsets": {
+				"from": 427200,
+				"to": 430760
+			},
+			"text": " So we're going to do another test run this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,760",
+				"to": "00:07:13,360"
+			},
+			"offsets": {
+				"from": 430760,
+				"to": 433360
+			},
+			"text": " And then after that, launch like in a week."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,360",
+				"to": "00:07:14,880"
+			},
+			"offsets": {
+				"from": 433360,
+				"to": 434880
+			},
+			"text": " And that's the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,880",
+				"to": "00:07:15,880"
+			},
+			"offsets": {
+				"from": 434880,
+				"to": 435880
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,880",
+				"to": "00:07:19,880"
+			},
+			"offsets": {
+				"from": 436880,
+				"to": 439880
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,880",
+				"to": "00:07:23,880"
+			},
+			"offsets": {
+				"from": 439880,
+				"to": 443880
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,880",
+				"to": "00:07:26,460"
+			},
+			"offsets": {
+				"from": 443880,
+				"to": 446460
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

@@ -1,0 +1,3629 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:14,760"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 14760
+			},
+			"text": " So the accuracy of the Oracle may be off when the network is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,760",
+				"to": "00:00:19,160"
+			},
+			"offsets": {
+				"from": 14760,
+				"to": 19160
+			},
+			"text": " congested, and the Oracle may be not as resilient."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,160",
+				"to": "00:00:21,200"
+			},
+			"offsets": {
+				"from": 19160,
+				"to": 21200
+			},
+			"text": " Maybe you don't even get enough transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,200",
+				"to": "00:00:24,160"
+			},
+			"offsets": {
+				"from": 21200,
+				"to": 24160
+			},
+			"text": " through to a cheap point."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,160",
+				"to": "00:00:27,720"
+			},
+			"offsets": {
+				"from": 24160,
+				"to": 27720
+			},
+			"text": " And so this really doesn't scale all that well."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,720",
+				"to": "00:00:30,480"
+			},
+			"offsets": {
+				"from": 27720,
+				"to": 30480
+			},
+			"text": " And it's pretty expensive to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,480",
+				"to": "00:00:32,160"
+			},
+			"offsets": {
+				"from": 30480,
+				"to": 32160
+			},
+			"text": " But you're trying to come up with something"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,160",
+				"to": "00:00:33,640"
+			},
+			"offsets": {
+				"from": 32160,
+				"to": 33640
+			},
+			"text": " like a collateral that I work in."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,640",
+				"to": "00:00:36,040"
+			},
+			"offsets": {
+				"from": 33640,
+				"to": 36040
+			},
+			"text": " I have many different kinds of collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,040",
+				"to": "00:00:39,720"
+			},
+			"offsets": {
+				"from": 36040,
+				"to": 39720
+			},
+			"text": " You can't do many, many, many oracles."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,720",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 39720,
+				"to": 42000
+			},
+			"text": " This kind of architecture is just not going to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:47,360"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 47360
+			},
+			"text": " So there's also one huge criticism"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,360",
+				"to": "00:00:48,720"
+			},
+			"offsets": {
+				"from": 47360,
+				"to": 48720
+			},
+			"text": " that people will easily give us."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,720",
+				"to": "00:00:51,360"
+			},
+			"offsets": {
+				"from": 48720,
+				"to": 51360
+			},
+			"text": " And it's why, if we claim that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,360",
+				"to": "00:00:54,440"
+			},
+			"offsets": {
+				"from": 51360,
+				"to": 54440
+			},
+			"text": " should be centralized oracles, why or can we not use"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,440",
+				"to": "00:00:55,760"
+			},
+			"offsets": {
+				"from": 54440,
+				"to": 55760
+			},
+			"text": " non-chain price sources?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,760",
+				"to": "00:00:57,480"
+			},
+			"offsets": {
+				"from": 55760,
+				"to": 57480
+			},
+			"text": " Why are we using Uniswap?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,480",
+				"to": "00:00:59,280"
+			},
+			"offsets": {
+				"from": 57480,
+				"to": 59280
+			},
+			"text": " Why are we using OasisX?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,280",
+				"to": "00:01:02,160"
+			},
+			"offsets": {
+				"from": 59280,
+				"to": 62160
+			},
+			"text": " Why are we using Kyra?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,160",
+				"to": "00:01:05,480"
+			},
+			"offsets": {
+				"from": 62160,
+				"to": 65480
+			},
+			"text": " The big reason is liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,480",
+				"to": "00:01:11,040"
+			},
+			"offsets": {
+				"from": 65480,
+				"to": 71040
+			},
+			"text": " So off-chain liquidity is, in general, much, much higher"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,040",
+				"to": "00:01:12,600"
+			},
+			"offsets": {
+				"from": 71040,
+				"to": 72600
+			},
+			"text": " than on-chain liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,600",
+				"to": "00:01:17,440"
+			},
+			"offsets": {
+				"from": 72600,
+				"to": 77440
+			},
+			"text": " So it's much easier to manipulate an order book on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,440",
+				"to": "00:01:20,600"
+			},
+			"offsets": {
+				"from": 77440,
+				"to": 80600
+			},
+			"text": " than it is to manipulate an order book off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,600",
+				"to": "00:01:22,080"
+			},
+			"offsets": {
+				"from": 80600,
+				"to": 82080
+			},
+			"text": " So if you don't have a lot of liquidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,080",
+				"to": "00:01:23,840"
+			},
+			"offsets": {
+				"from": 82080,
+				"to": 83840
+			},
+			"text": " the order book is very thin."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,840",
+				"to": "00:01:26,280"
+			},
+			"offsets": {
+				"from": 83840,
+				"to": 86280
+			},
+			"text": " You can spend a very small amount of money"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,280",
+				"to": "00:01:29,200"
+			},
+			"offsets": {
+				"from": 86280,
+				"to": 89200
+			},
+			"text": " to manipulate the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,200",
+				"to": "00:01:31,400"
+			},
+			"offsets": {
+				"from": 89200,
+				"to": 91400
+			},
+			"text": " A very kind of good story that illustrates this"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,400",
+				"to": "00:01:36,720"
+			},
+			"offsets": {
+				"from": 91400,
+				"to": 96720
+			},
+			"text": " is earlier this year, BitNex, effectively, got played."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,720",
+				"to": "00:01:39,200"
+			},
+			"offsets": {
+				"from": 96720,
+				"to": 99200
+			},
+			"text": " And so for those of you who don't know what happened,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,200",
+				"to": "00:01:43,760"
+			},
+			"offsets": {
+				"from": 99200,
+				"to": 103760
+			},
+			"text": " BitNex pulls its prices by taking the average of coinbase"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,760",
+				"to": "00:01:46,320"
+			},
+			"offsets": {
+				"from": 103760,
+				"to": 106320
+			},
+			"text": " and bitstamp."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,320",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 106320,
+				"to": 112000
+			},
+			"text": " So bitstamp tends to have about six times less volume"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:53,160"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 113160
+			},
+			"text": " than coinbase."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,160",
+				"to": "00:01:56,720"
+			},
+			"offsets": {
+				"from": 113160,
+				"to": 116720
+			},
+			"text": " So what the attacker did was they opened the giant lever"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,720",
+				"to": "00:01:59,320"
+			},
+			"offsets": {
+				"from": 116720,
+				"to": 119320
+			},
+			"text": " short position on BitNex."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,320",
+				"to": "00:02:05,800"
+			},
+			"offsets": {
+				"from": 119320,
+				"to": 125800
+			},
+			"text": " They then sold a ton of BTC on BitNex,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,800",
+				"to": "00:02:08,840"
+			},
+			"offsets": {
+				"from": 125800,
+				"to": 128840
+			},
+			"text": " which crashed the price, which caused the BitNex Oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,840",
+				"to": "00:02:10,560"
+			},
+			"offsets": {
+				"from": 128840,
+				"to": 130560
+			},
+			"text": " right to read a super low value."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,560",
+				"to": "00:02:14,320"
+			},
+			"offsets": {
+				"from": 130560,
+				"to": 134320
+			},
+			"text": " And the guy made, I think, millions and millions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,320",
+				"to": "00:02:16,680"
+			},
+			"offsets": {
+				"from": 134320,
+				"to": 136680
+			},
+			"text": " and millions of dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,680",
+				"to": "00:02:19,280"
+			},
+			"offsets": {
+				"from": 136680,
+				"to": 139280
+			},
+			"text": " So that was not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,280",
+				"to": "00:02:22,520"
+			},
+			"offsets": {
+				"from": 139280,
+				"to": 142520
+			},
+			"text": " But there's a much, much bigger problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,520",
+				"to": "00:02:24,680"
+			},
+			"offsets": {
+				"from": 142520,
+				"to": 144680
+			},
+			"text": " with non-chain price sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,680",
+				"to": "00:02:28,840"
+			},
+			"offsets": {
+				"from": 144680,
+				"to": 148840
+			},
+			"text": " And that is if you can imagine, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,840",
+				"to": "00:02:33,520"
+			},
+			"offsets": {
+				"from": 148840,
+				"to": 153520
+			},
+			"text": " a contract, a contract can do a lot of different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,520",
+				"to": "00:02:37,760"
+			},
+			"offsets": {
+				"from": 153520,
+				"to": 157760
+			},
+			"text": " So if you tell your contract to do a series,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,760",
+				"to": "00:02:41,520"
+			},
+			"offsets": {
+				"from": 157760,
+				"to": 161520
+			},
+			"text": " like a sequence of different actions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,520",
+				"to": "00:02:44,880"
+			},
+			"offsets": {
+				"from": 161520,
+				"to": 164880
+			},
+			"text": " you can actually gain these on-chain price"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,880",
+				"to": "00:02:51,520"
+			},
+			"offsets": {
+				"from": 164880,
+				"to": 171520
+			},
+			"text": " sources with very, very, very little risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,520",
+				"to": "00:02:53,960"
+			},
+			"offsets": {
+				"from": 171520,
+				"to": 173960
+			},
+			"text": " So this leads me to a very big point"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,960",
+				"to": "00:02:55,600"
+			},
+			"offsets": {
+				"from": 173960,
+				"to": 175600
+			},
+			"text": " that I want everyone to realize."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,600",
+				"to": "00:02:59,840"
+			},
+			"offsets": {
+				"from": 175600,
+				"to": 179840
+			},
+			"text": " BitNex, as an Oracle, is a huge anti-pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,840",
+				"to": "00:03:04,160"
+			},
+			"offsets": {
+				"from": 179840,
+				"to": 184160
+			},
+			"text": " So effectively, an attacker can atomically"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,160",
+				"to": "00:03:08,720"
+			},
+			"offsets": {
+				"from": 184160,
+				"to": 188720
+			},
+			"text": " execute a series of transactions and single block"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,720",
+				"to": "00:03:11,480"
+			},
+			"offsets": {
+				"from": 188720,
+				"to": 191480
+			},
+			"text": " to manipulate the price of a bitX."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,480",
+				"to": "00:03:13,360"
+			},
+			"offsets": {
+				"from": 191480,
+				"to": 193360
+			},
+			"text": " And all they're going to do is pay gas fees"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,360",
+				"to": "00:03:15,120"
+			},
+			"offsets": {
+				"from": 193360,
+				"to": 195120
+			},
+			"text": " and they take zero risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,120",
+				"to": "00:03:16,720"
+			},
+			"offsets": {
+				"from": 195120,
+				"to": 196720
+			},
+			"text": " Absolutely not."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,720",
+				"to": "00:03:20,560"
+			},
+			"offsets": {
+				"from": 196720,
+				"to": 200560
+			},
+			"text": " So there's a guy called a San CZ-SUM last week"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,560",
+				"to": "00:03:24,240"
+			},
+			"offsets": {
+				"from": 200560,
+				"to": 204240
+			},
+			"text": " who released a paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,240",
+				"to": "00:03:29,480"
+			},
+			"offsets": {
+				"from": 204240,
+				"to": 209480
+			},
+			"text": " But I was kind of really in awe to find that before this paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,480",
+				"to": "00:03:32,080"
+			},
+			"offsets": {
+				"from": 209480,
+				"to": 212080
+			},
+			"text": " was even published back in February,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,080",
+				"to": "00:03:35,440"
+			},
+			"offsets": {
+				"from": 212080,
+				"to": 215440
+			},
+			"text": " Unislop tweeted this about themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,440",
+				"to": "00:03:37,640"
+			},
+			"offsets": {
+				"from": 215440,
+				"to": 217640
+			},
+			"text": " And yet people still went ahead and did it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,640",
+				"to": "00:03:44,360"
+			},
+			"offsets": {
+				"from": 217640,
+				"to": 224360
+			},
+			"text": " So you can read the attack on the tweet itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,360",
+				"to": "00:03:46,720"
+			},
+			"offsets": {
+				"from": 224360,
+				"to": 226720
+			},
+			"text": " Effectively, the attacker will just"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,720",
+				"to": "00:03:50,160"
+			},
+			"offsets": {
+				"from": 226720,
+				"to": 230160
+			},
+			"text": " make a huge trade on Unislop."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,160",
+				"to": "00:03:53,320"
+			},
+			"offsets": {
+				"from": 230160,
+				"to": 233320
+			},
+			"text": " That will either drop or raise the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,320",
+				"to": "00:03:55,800"
+			},
+			"offsets": {
+				"from": 233320,
+				"to": 235800
+			},
+			"text": " They will poke whatever thing they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,800",
+				"to": "00:04:00,600"
+			},
+			"offsets": {
+				"from": 235800,
+				"to": 240600
+			},
+			"text": " trying to compromise to check the price from Unislop."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,600",
+				"to": "00:04:02,960"
+			},
+			"offsets": {
+				"from": 240600,
+				"to": 242960
+			},
+			"text": " They will then use that manipulated price"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,960",
+				"to": "00:04:05,680"
+			},
+			"offsets": {
+				"from": 242960,
+				"to": 245680
+			},
+			"text": " to do some kind of profitable action."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,680",
+				"to": "00:04:08,520"
+			},
+			"offsets": {
+				"from": 245680,
+				"to": 248520
+			},
+			"text": " And then in the same transaction, they'll go and sell"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,520",
+				"to": "00:04:12,720"
+			},
+			"offsets": {
+				"from": 248520,
+				"to": 252720
+			},
+			"text": " all the stuff they bought on Unislop or sold right back."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,720",
+				"to": "00:04:15,840"
+			},
+			"offsets": {
+				"from": 252720,
+				"to": 255840
+			},
+			"text": " So they effectively just lose the gas fees"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,840",
+				"to": "00:04:18,040"
+			},
+			"offsets": {
+				"from": 255840,
+				"to": 258040
+			},
+			"text": " for that transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,040",
+				"to": "00:04:19,200"
+			},
+			"offsets": {
+				"from": 258040,
+				"to": 259200
+			},
+			"text": " That is risk-free."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,200",
+				"to": "00:04:24,320"
+			},
+			"offsets": {
+				"from": 259200,
+				"to": 264320
+			},
+			"text": " So in this paper at the San CZ-SUM published, effectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,320",
+				"to": "00:04:28,680"
+			},
+			"offsets": {
+				"from": 264320,
+				"to": 268680
+			},
+			"text": " what it showed was that you could compromise"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,680",
+				"to": "00:04:33,120"
+			},
+			"offsets": {
+				"from": 268680,
+				"to": 273120
+			},
+			"text": " D-X and BZ-X, which allowed you to, while D-X's case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,120",
+				"to": "00:04:36,160"
+			},
+			"offsets": {
+				"from": 273120,
+				"to": 276160
+			},
+			"text": " create a huge leverage position."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,160",
+				"to": "00:04:40,360"
+			},
+			"offsets": {
+				"from": 276160,
+				"to": 280360
+			},
+			"text": " And BZ-X's case just kind of borrow against collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,360",
+				"to": "00:04:44,240"
+			},
+			"offsets": {
+				"from": 280360,
+				"to": 284240
+			},
+			"text": " So if you can make your collateral a super, super high price,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,240",
+				"to": "00:04:48,600"
+			},
+			"offsets": {
+				"from": 284240,
+				"to": 288600
+			},
+			"text": " then you can borrow a ton of dye that you can liquidate back"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,600",
+				"to": "00:04:50,960"
+			},
+			"offsets": {
+				"from": 288600,
+				"to": 290960
+			},
+			"text": " that and make the profit there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,960",
+				"to": "00:04:54,080"
+			},
+			"offsets": {
+				"from": 290960,
+				"to": 294080
+			},
+			"text": " And so I'm just going to read this quote from him"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,080",
+				"to": "00:04:57,360"
+			},
+			"offsets": {
+				"from": 294080,
+				"to": 297360
+			},
+			"text": " because he can say it a lot better than I could reward it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,360",
+				"to": "00:05:00,360"
+			},
+			"offsets": {
+				"from": 297360,
+				"to": 300360
+			},
+			"text": " But effectively, D-X and BZ-X assume"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,360",
+				"to": "00:05:02,720"
+			},
+			"offsets": {
+				"from": 300360,
+				"to": 302720
+			},
+			"text": " that Unislop and Kyger would be a source of accurate"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,720",
+				"to": "00:05:04,040"
+			},
+			"offsets": {
+				"from": 302720,
+				"to": 304040
+			},
+			"text": " price data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,040",
+				"to": "00:05:05,920"
+			},
+			"offsets": {
+				"from": 304040,
+				"to": 305920
+			},
+			"text": " However, an accurate rate for a D-X just"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,920",
+				"to": "00:05:10,360"
+			},
+			"offsets": {
+				"from": 305920,
+				"to": 310360
+			},
+			"text": " means that a trade can be made at that rate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,360",
+				"to": "00:05:13,360"
+			},
+			"offsets": {
+				"from": 310360,
+				"to": 313360
+			},
+			"text": " while an accurate rate for a D-Fi project"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,360",
+				"to": "00:05:15,840"
+			},
+			"offsets": {
+				"from": 313360,
+				"to": 315840
+			},
+			"text": " means that it's actually close to the fair market value."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,840",
+				"to": "00:05:22,440"
+			},
+			"offsets": {
+				"from": 315840,
+				"to": 322440
+			},
+			"text": " OK, so let's talk about Oracle's V2."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,440",
+				"to": "00:05:26,720"
+			},
+			"offsets": {
+				"from": 322440,
+				"to": 326720
+			},
+			"text": " This is what we are going to be using for MCD"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,720",
+				"to": "00:05:30,360"
+			},
+			"offsets": {
+				"from": 326720,
+				"to": 330360
+			},
+			"text": " and has been used by a couple of select partners"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,360",
+				"to": "00:05:34,320"
+			},
+			"offsets": {
+				"from": 330360,
+				"to": 334320
+			},
+			"text": " since back in February, I believe."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,320",
+				"to": "00:05:38,260"
+			},
+			"offsets": {
+				"from": 334320,
+				"to": 338260
+			},
+			"text": " So our main goals with Oracle's V2 was we want to make them"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,260",
+				"to": "00:05:39,040"
+			},
+			"offsets": {
+				"from": 338260,
+				"to": 339040
+			},
+			"text": " scalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,040",
+				"to": "00:05:41,960"
+			},
+			"offsets": {
+				"from": 339040,
+				"to": 341960
+			},
+			"text": " We want to reduce the cost considerably."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,960",
+				"to": "00:05:44,040"
+			},
+			"offsets": {
+				"from": 341960,
+				"to": 344040
+			},
+			"text": " We want to make them more reliable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,040",
+				"to": "00:05:45,760"
+			},
+			"offsets": {
+				"from": 344040,
+				"to": 345760
+			},
+			"text": " And we want to reduce the latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,760",
+				"to": "00:05:52,560"
+			},
+			"offsets": {
+				"from": 345760,
+				"to": 352560
+			},
+			"text": " So one of the key kind of technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,560",
+				"to": "00:05:56,480"
+			},
+			"offsets": {
+				"from": 352560,
+				"to": 356480
+			},
+			"text": " that we're using in Oracle's V2 is Secure Scaldball."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,480",
+				"to": "00:05:58,680"
+			},
+			"offsets": {
+				"from": 356480,
+				"to": 358680
+			},
+			"text": " And so what's Secure Scaldball is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,680",
+				"to": "00:06:02,040"
+			},
+			"offsets": {
+				"from": 358680,
+				"to": 362040
+			},
+			"text": " it's a peer-appear gossip network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,040",
+				"to": "00:06:05,520"
+			},
+			"offsets": {
+				"from": 362040,
+				"to": 365520
+			},
+			"text": " You can kind of think of it like Twitter, in a sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,520",
+				"to": "00:06:08,960"
+			},
+			"offsets": {
+				"from": 365520,
+				"to": 368960
+			},
+			"text": " where every peer is a Twitter user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,960",
+				"to": "00:06:13,240"
+			},
+			"offsets": {
+				"from": 368960,
+				"to": 373240
+			},
+			"text": " and they post a message, and that message goes on their feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,240",
+				"to": "00:06:16,840"
+			},
+			"offsets": {
+				"from": 373240,
+				"to": 376840
+			},
+			"text": " And anyone following that Twitter user"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,840",
+				"to": "00:06:19,200"
+			},
+			"offsets": {
+				"from": 376840,
+				"to": 379200
+			},
+			"text": " will repost that on their feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,200",
+				"to": "00:06:22,840"
+			},
+			"offsets": {
+				"from": 379200,
+				"to": 382840
+			},
+			"text": " And so this is kind of how all these messages kind of propagate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,840",
+				"to": "00:06:25,880"
+			},
+			"offsets": {
+				"from": 382840,
+				"to": 385880
+			},
+			"text": " along in this gossip network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,880",
+				"to": "00:06:28,080"
+			},
+			"offsets": {
+				"from": 385880,
+				"to": 388080
+			},
+			"text": " It's actually very similar to a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,080",
+				"to": "00:06:31,920"
+			},
+			"offsets": {
+				"from": 388080,
+				"to": 391920
+			},
+			"text": " And that everything is hash-linked."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,920",
+				"to": "00:06:33,640"
+			},
+			"offsets": {
+				"from": 391920,
+				"to": 393640
+			},
+			"text": " So in that sense, it's immutable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,640",
+				"to": "00:06:35,440"
+			},
+			"offsets": {
+				"from": 393640,
+				"to": 395440
+			},
+			"text": " You can't go back and change a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,440",
+				"to": "00:06:37,520"
+			},
+			"offsets": {
+				"from": 395440,
+				"to": 397520
+			},
+			"text": " You can't go back and delete a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,520",
+				"to": "00:06:46,040"
+			},
+			"offsets": {
+				"from": 397520,
+				"to": 406040
+			},
+			"text": " OK, so there's a lot of stuff on the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,040",
+				"to": "00:06:49,040"
+			},
+			"offsets": {
+				"from": 406040,
+				"to": 409040
+			},
+			"text": " But let's take this whole load of slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,040",
+				"to": "00:06:55,480"
+			},
+			"offsets": {
+				"from": 409040,
+				"to": 415480
+			},
+			"text": " So the feeds are no longer pushing their prices"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,480",
+				"to": "00:06:58,720"
+			},
+			"offsets": {
+				"from": 415480,
+				"to": 418720
+			},
+			"text": " to a price-speed contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,720",
+				"to": "00:07:01,240"
+			},
+			"offsets": {
+				"from": 418720,
+				"to": 421240
+			},
+			"text": " If you look at the two kind of sections of this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,240",
+				"to": "00:07:03,840"
+			},
+			"offsets": {
+				"from": 421240,
+				"to": 423840
+			},
+			"text": " I've kind of cordoned off this off-chain process"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,840",
+				"to": "00:07:05,600"
+			},
+			"offsets": {
+				"from": 423840,
+				"to": 425600
+			},
+			"text": " and the on-chain process."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,600",
+				"to": "00:07:08,360"
+			},
+			"offsets": {
+				"from": 425600,
+				"to": 428360
+			},
+			"text": " The off-chain process has gotten considerably larger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,360",
+				"to": "00:07:10,320"
+			},
+			"offsets": {
+				"from": 428360,
+				"to": 430320
+			},
+			"text": " and the on-chain process has gotten"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,320",
+				"to": "00:07:13,840"
+			},
+			"offsets": {
+				"from": 430320,
+				"to": 433840
+			},
+			"text": " on-chain process considerably shorter."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,840",
+				"to": "00:07:17,080"
+			},
+			"offsets": {
+				"from": 433840,
+				"to": 437080
+			},
+			"text": " So effectively, now, feeds will just push their price"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,080",
+				"to": "00:07:19,240"
+			},
+			"offsets": {
+				"from": 437080,
+				"to": 439240
+			},
+			"text": " updates to Scaldball."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,240",
+				"to": "00:07:22,480"
+			},
+			"offsets": {
+				"from": 439240,
+				"to": 442480
+			},
+			"text": " And since the cost of that is effectively free,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,480",
+				"to": "00:07:25,880"
+			},
+			"offsets": {
+				"from": 442480,
+				"to": 445880
+			},
+			"text": " the feeds can now kind of poke prices"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,880",
+				"to": "00:07:28,240"
+			},
+			"offsets": {
+				"from": 445880,
+				"to": 448240
+			},
+			"text": " at a much, much lower sensitivity."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,240",
+				"to": "00:07:31,120"
+			},
+			"offsets": {
+				"from": 448240,
+				"to": 451120
+			},
+			"text": " So the Oracle is going to be much, much more accurate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,120",
+				"to": "00:07:36,520"
+			},
+			"offsets": {
+				"from": 451120,
+				"to": 456520
+			},
+			"text": " because it has much, much more recent data to work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,520",
+				"to": "00:07:41,680"
+			},
+			"offsets": {
+				"from": 456520,
+				"to": 461680
+			},
+			"text": " So effectively, then, relayers is a new concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,680",
+				"to": "00:07:46,360"
+			},
+			"offsets": {
+				"from": 461680,
+				"to": 466360
+			},
+			"text": " A relayer is a boss that anyone can effectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,360",
+				"to": "00:07:48,680"
+			},
+			"offsets": {
+				"from": 466360,
+				"to": 468680
+			},
+			"text": " run any individual, any third party,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,680",
+				"to": "00:07:51,400"
+			},
+			"offsets": {
+				"from": 468680,
+				"to": 471400
+			},
+			"text": " you could run a relayer."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,400",
+				"to": "00:07:55,520"
+			},
+			"offsets": {
+				"from": 471400,
+				"to": 475520
+			},
+			"text": " And what these relayers do is they pick a bunch of these price"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,520",
+				"to": "00:07:59,960"
+			},
+			"offsets": {
+				"from": 475520,
+				"to": 479960
+			},
+			"text": "-speed messages, and then they sort them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,960",
+				"to": "00:08:03,120"
+			},
+			"offsets": {
+				"from": 479960,
+				"to": 483120
+			},
+			"text": " And then they push one transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,120",
+				"to": "00:08:05,160"
+			},
+			"offsets": {
+				"from": 483120,
+				"to": 485160
+			},
+			"text": " to the media nicer contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,160",
+				"to": "00:08:09,840"
+			},
+			"offsets": {
+				"from": 485160,
+				"to": 489840
+			},
+			"text": " So instead of having n feeds doing n transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,840",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 489840,
+				"to": 493000
+			},
+			"text": " you now can have n feeds, and all you do is one transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 495000
+			},
+			"text": " no matter how many feeds you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:19,280"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 499280
+			},
+			"text": " So in terms of scalability, that's a huge improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,280",
+				"to": "00:08:22,080"
+			},
+			"offsets": {
+				"from": 499280,
+				"to": 502080
+			},
+			"text": " And effectively, the way that we do this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,080",
+				"to": "00:08:25,080"
+			},
+			"offsets": {
+				"from": 502080,
+				"to": 505080
+			},
+			"text": " how you make sure that these prices are legit"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,080",
+				"to": "00:08:26,560"
+			},
+			"offsets": {
+				"from": 505080,
+				"to": 506560
+			},
+			"text": " is that the feeds are effectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,560",
+				"to": "00:08:31,360"
+			},
+			"offsets": {
+				"from": 506560,
+				"to": 511360
+			},
+			"text": " using their Ethereum private key to sign the price data."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,360",
+				"to": "00:08:34,440"
+			},
+			"offsets": {
+				"from": 511360,
+				"to": 514440
+			},
+			"text": " So they sign a message essentially saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,440",
+				"to": "00:08:38,320"
+			},
+			"offsets": {
+				"from": 514440,
+				"to": 518320
+			},
+			"text": " this is the price of this asset at this time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,320",
+				"to": "00:08:39,960"
+			},
+			"offsets": {
+				"from": 518320,
+				"to": 519960
+			},
+			"text": " And in the media nicer contract, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,960",
+				"to": "00:08:43,640"
+			},
+			"offsets": {
+				"from": 519960,
+				"to": 523640
+			},
+			"text": " can use a solidity function called ECRecover"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,640",
+				"to": "00:08:46,640"
+			},
+			"offsets": {
+				"from": 523640,
+				"to": 526640
+			},
+			"text": " that will then be able to check all of that data"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,640",
+				"to": "00:08:52,240"
+			},
+			"offsets": {
+				"from": 526640,
+				"to": 532240
+			},
+			"text": " and make sure it was signed by a legitimate feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,240",
+				"to": "00:08:56,520"
+			},
+			"offsets": {
+				"from": 532240,
+				"to": 536520
+			},
+			"text": " Another thing here is that the number of S-Store operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,520",
+				"to": "00:09:00,120"
+			},
+			"offsets": {
+				"from": 536520,
+				"to": 540120
+			},
+			"text": " has been reduced considerably."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,120",
+				"to": "00:09:02,200"
+			},
+			"offsets": {
+				"from": 540120,
+				"to": 542200
+			},
+			"text": " So for those of you who don't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,200",
+				"to": "00:09:06,480"
+			},
+			"offsets": {
+				"from": 542200,
+				"to": 546480
+			},
+			"text": " an S-Store is just writing a value to storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,480",
+				"to": "00:09:10,840"
+			},
+			"offsets": {
+				"from": 546480,
+				"to": 550840
+			},
+			"text": " And it's a very, very, very guess intensive operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,840",
+				"to": "00:09:15,920"
+			},
+			"offsets": {
+				"from": 550840,
+				"to": 555920
+			},
+			"text": " So the less S-Store you can do, the cheaper your transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,920",
+				"to": "00:09:16,760"
+			},
+			"offsets": {
+				"from": 555920,
+				"to": 556760
+			},
+			"text": " are going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,760",
+				"to": "00:09:20,680"
+			},
+			"offsets": {
+				"from": 556760,
+				"to": 560680
+			},
+			"text": " So we got it from scaling from two times the number of feeds"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,680",
+				"to": "00:09:23,800"
+			},
+			"offsets": {
+				"from": 560680,
+				"to": 563800
+			},
+			"text": " to just two."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,800",
+				"to": "00:09:27,320"
+			},
+			"offsets": {
+				"from": 563800,
+				"to": 567320
+			},
+			"text": " Another thing I want to point out is that this architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,320",
+				"to": "00:09:29,960"
+			},
+			"offsets": {
+				"from": 567320,
+				"to": 569960
+			},
+			"text": " is fairly blockchain agnostic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,960",
+				"to": "00:09:34,560"
+			},
+			"offsets": {
+				"from": 569960,
+				"to": 574560
+			},
+			"text": " So if you look, most of the pieces are off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,560",
+				"to": "00:09:36,640"
+			},
+			"offsets": {
+				"from": 574560,
+				"to": 576640
+			},
+			"text": " So if you want to import this architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,640",
+				"to": "00:09:39,800"
+			},
+			"offsets": {
+				"from": 576640,
+				"to": 579800
+			},
+			"text": " to a different blockchain, the only thing you have to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,800",
+				"to": "00:09:43,600"
+			},
+			"offsets": {
+				"from": 579800,
+				"to": 583600
+			},
+			"text": " really, is recreate the media and I/O contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,600",
+				"to": "00:09:45,320"
+			},
+			"offsets": {
+				"from": 583600,
+				"to": 585320
+			},
+			"text": " on that other blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,320",
+				"to": "00:09:47,520"
+			},
+			"offsets": {
+				"from": 585320,
+				"to": 587520
+			},
+			"text": " And then you just point your relayers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,520",
+				"to": "00:09:50,880"
+			},
+			"offsets": {
+				"from": 587520,
+				"to": 590880
+			},
+			"text": " to that other blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,880",
+				"to": "00:09:54,600"
+			},
+			"offsets": {
+				"from": 590880,
+				"to": 594600
+			},
+			"text": " And another thing is, since Scellowblatt messages are just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,600",
+				"to": "00:09:58,480"
+			},
+			"offsets": {
+				"from": 594600,
+				"to": 598480
+			},
+			"text": " JSON, you can handle all kinds of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,480",
+				"to": "00:10:00,360"
+			},
+			"offsets": {
+				"from": 598480,
+				"to": 600360
+			},
+			"text": " It's not just pricing data."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,360",
+				"to": "00:10:03,320"
+			},
+			"offsets": {
+				"from": 600360,
+				"to": 603320
+			},
+			"text": " You can handle many, many, many more types of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,320",
+				"to": "00:10:05,040"
+			},
+			"offsets": {
+				"from": 603320,
+				"to": 605040
+			},
+			"text": " So it's very, very dynamic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,040",
+				"to": "00:10:10,560"
+			},
+			"offsets": {
+				"from": 605040,
+				"to": 610560
+			},
+			"text": " OK, so let's talk about feeds."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,560",
+				"to": "00:10:15,240"
+			},
+			"offsets": {
+				"from": 610560,
+				"to": 615240
+			},
+			"text": " So in Oracle's D1, we only had one kind of feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,240",
+				"to": "00:10:20,120"
+			},
+			"offsets": {
+				"from": 615240,
+				"to": 620120
+			},
+			"text": " And we're going to label those types of feeds, dark feeds."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,120",
+				"to": "00:10:22,520"
+			},
+			"offsets": {
+				"from": 620120,
+				"to": 622520
+			},
+			"text": " So what dark feeds are is they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,520",
+				"to": "00:10:27,600"
+			},
+			"offsets": {
+				"from": 622520,
+				"to": 627600
+			},
+			"text": " kind of these two-dollumous individuals and organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,600",
+				"to": "00:10:29,760"
+			},
+			"offsets": {
+				"from": 627600,
+				"to": 629760
+			},
+			"text": " That's the most pricing data."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,760",
+				"to": "00:10:32,640"
+			},
+			"offsets": {
+				"from": 629760,
+				"to": 632640
+			},
+			"text": " And one of the big criticisms we get"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,640",
+				"to": "00:10:36,080"
+			},
+			"offsets": {
+				"from": 632640,
+				"to": 636080
+			},
+			"text": " is why are these people anonymous?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,080",
+				"to": "00:10:38,280"
+			},
+			"offsets": {
+				"from": 636080,
+				"to": 638280
+			},
+			"text": " I don't know if I trust them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,280",
+				"to": "00:10:43,360"
+			},
+			"offsets": {
+				"from": 638280,
+				"to": 643360
+			},
+			"text": " Is it just a bunch of maker insiders or whales or whatever?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,360",
+				"to": "00:10:47,520"
+			},
+			"offsets": {
+				"from": 643360,
+				"to": 647520
+			},
+			"text": " But the thing is, they need to be announced by necessity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,520",
+				"to": "00:10:54,840"
+			},
+			"offsets": {
+				"from": 647520,
+				"to": 654840
+			},
+			"text": " So if you have a public identity, it's very easy to target you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,840",
+				"to": "00:10:58,800"
+			},
+			"offsets": {
+				"from": 654840,
+				"to": 658800
+			},
+			"text": " So blackmailing you, extort you, coerce you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,800",
+				"to": "00:11:03,360"
+			},
+			"offsets": {
+				"from": 658800,
+				"to": 663360
+			},
+			"text": " It's also very easy for a state actor to kind of hunt you down."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,360",
+				"to": "00:11:08,600"
+			},
+			"offsets": {
+				"from": 663360,
+				"to": 668600
+			},
+			"text": " By having this anonymity, you kind of protect yourself from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,600",
+				"to": "00:11:11,560"
+			},
+			"offsets": {
+				"from": 668600,
+				"to": 671560
+			},
+			"text": " But the downside here is, as we said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,560",
+				"to": "00:11:13,520"
+			},
+			"offsets": {
+				"from": 671560,
+				"to": 673520
+			},
+			"text": " there's no civil resistance."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,520",
+				"to": "00:11:17,440"
+			},
+			"offsets": {
+				"from": 673520,
+				"to": 677440
+			},
+			"text": " You don't know if all of these feeds are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,440",
+				"to": "00:11:19,800"
+			},
+			"offsets": {
+				"from": 677440,
+				"to": 679800
+			},
+			"text": " just one person."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,800",
+				"to": "00:11:24,520"
+			},
+			"offsets": {
+				"from": 679800,
+				"to": 684520
+			},
+			"text": " And people seem to really distrust that kind of idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,520",
+				"to": "00:11:27,040"
+			},
+			"offsets": {
+				"from": 684520,
+				"to": 687040
+			},
+			"text": " So what we're introducing in Oracle's B2"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,040",
+				"to": "00:11:29,160"
+			},
+			"offsets": {
+				"from": 687040,
+				"to": 689160
+			},
+			"text": " is this concept of a light feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,160",
+				"to": "00:11:32,360"
+			},
+			"offsets": {
+				"from": 689160,
+				"to": 692360
+			},
+			"text": " And so a light feed is going to be a feed that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,360",
+				"to": "00:11:35,440"
+			},
+			"offsets": {
+				"from": 692360,
+				"to": 695440
+			},
+			"text": " has a public identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,440",
+				"to": "00:11:39,280"
+			},
+			"offsets": {
+				"from": 695440,
+				"to": 699280
+			},
+			"text": " So the best types of light feeds are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,280",
+				"to": "00:11:41,520"
+			},
+			"offsets": {
+				"from": 699280,
+				"to": 701520
+			},
+			"text": " going to be ones run by organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,520",
+				"to": "00:11:45,040"
+			},
+			"offsets": {
+				"from": 701520,
+				"to": 705040
+			},
+			"text": " Because organizations are groups of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,040",
+				"to": "00:11:47,440"
+			},
+			"offsets": {
+				"from": 705040,
+				"to": 707440
+			},
+			"text": " They're much harder to kind of coerce in black middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,440",
+				"to": "00:11:49,960"
+			},
+			"offsets": {
+				"from": 707440,
+				"to": 709960
+			},
+			"text": " They have more resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,960",
+				"to": "00:11:53,440"
+			},
+			"offsets": {
+				"from": 709960,
+				"to": 713440
+			},
+			"text": " And on top of that, they have their reputation at stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,440",
+				"to": "00:11:56,840"
+			},
+			"offsets": {
+				"from": 713440,
+				"to": 716840
+			},
+			"text": " So in that sense, if you have a system that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,840",
+				"to": "00:12:00,040"
+			},
+			"offsets": {
+				"from": 716840,
+				"to": 720040
+			},
+			"text": " has much light feeds, users are going to inherently maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,040",
+				"to": "00:12:03,920"
+			},
+			"offsets": {
+				"from": 720040,
+				"to": 723920
+			},
+			"text": " trust that system more because, oh, so and so is running a light"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,920",
+				"to": "00:12:04,800"
+			},
+			"offsets": {
+				"from": 723920,
+				"to": 724800
+			},
+			"text": " feed, I trust them."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,800",
+				"to": "00:12:07,400"
+			},
+			"offsets": {
+				"from": 724800,
+				"to": 727400
+			},
+			"text": " Right, this bank is running a light feed, and I trust that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,400",
+				"to": "00:12:10,560"
+			},
+			"offsets": {
+				"from": 727400,
+				"to": 730560
+			},
+			"text": " Quite based is running a light feed, and I trust quite based."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,560",
+				"to": "00:12:13,280"
+			},
+			"offsets": {
+				"from": 730560,
+				"to": 733280
+			},
+			"text": " And so essentially what it comes down to is you don't want"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,280",
+				"to": "00:12:15,320"
+			},
+			"offsets": {
+				"from": 733280,
+				"to": 735320
+			},
+			"text": " to have just dark feeds."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,320",
+				"to": "00:12:17,200"
+			},
+			"offsets": {
+				"from": 735320,
+				"to": 737200
+			},
+			"text": " And you don't want to have just light feeds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,200",
+				"to": "00:12:19,560"
+			},
+			"offsets": {
+				"from": 737200,
+				"to": 739560
+			},
+			"text": " but they both have kind of disadvantages."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,560",
+				"to": "00:12:22,280"
+			},
+			"offsets": {
+				"from": 739560,
+				"to": 742280
+			},
+			"text": " But there is this kind of sweet middle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,280",
+				"to": "00:12:24,800"
+			},
+			"offsets": {
+				"from": 742280,
+				"to": 744800
+			},
+			"text": " where this hybrid model is kind of optimal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,800",
+				"to": "00:12:27,600"
+			},
+			"offsets": {
+				"from": 744800,
+				"to": 747600
+			},
+			"text": " where you kind of preserve the hardness properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,600",
+				"to": "00:12:29,200"
+			},
+			"offsets": {
+				"from": 747600,
+				"to": 749200
+			},
+			"text": " of dark feeds."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,200",
+				"to": "00:12:33,240"
+			},
+			"offsets": {
+				"from": 749200,
+				"to": 753240
+			},
+			"text": " But you benefit from the reputation of the light feeds."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,240",
+				"to": "00:12:40,680"
+			},
+			"offsets": {
+				"from": 753240,
+				"to": 760680
+			},
+			"text": " OK, so let's talk about governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,680",
+				"to": "00:12:45,880"
+			},
+			"offsets": {
+				"from": 760680,
+				"to": 765880
+			},
+			"text": " So in Orville's V2, effectively governance takes over end"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,880",
+				"to": "00:12:49,480"
+			},
+			"offsets": {
+				"from": 765880,
+				"to": 769480
+			},
+			"text": " to end ownership and management of every aspect"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,480",
+				"to": "00:12:52,320"
+			},
+			"offsets": {
+				"from": 769480,
+				"to": 772320
+			},
+			"text": " of the Oracles."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,320",
+				"to": "00:12:55,200"
+			},
+			"offsets": {
+				"from": 772320,
+				"to": 775200
+			},
+			"text": " And so actually, as of this morning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,200",
+				"to": "00:12:57,960"
+			},
+			"offsets": {
+				"from": 775200,
+				"to": 777960
+			},
+			"text": " I was on a flight to Osaka here, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,960",
+				"to": "00:13:00,560"
+			},
+			"offsets": {
+				"from": 777960,
+				"to": 780560
+			},
+			"text": " passed four different Orville proposals."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,560",
+				"to": "00:13:03,040"
+			},
+			"offsets": {
+				"from": 780560,
+				"to": 783040
+			},
+			"text": " So as of this morning, these are all official."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,040",
+				"to": "00:13:06,880"
+			},
+			"offsets": {
+				"from": 783040,
+				"to": 786880
+			},
+			"text": " I can now talk to you about them without any risk of saying"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,880",
+				"to": "00:13:08,360"
+			},
+			"offsets": {
+				"from": 786880,
+				"to": 788360
+			},
+			"text": " something that's not true."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,360",
+				"to": "00:13:10,280"
+			},
+			"offsets": {
+				"from": 788360,
+				"to": 790280
+			},
+			"text": " So what we passed was--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,280",
+				"to": "00:13:13,200"
+			},
+			"offsets": {
+				"from": 790280,
+				"to": 793200
+			},
+			"text": " and I'll get into these a little more a little bit--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,200",
+				"to": "00:13:16,240"
+			},
+			"offsets": {
+				"from": 793200,
+				"to": 796240
+			},
+			"text": " the D5 public feed proposal, the Oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,240",
+				"to": "00:13:18,440"
+			},
+			"offsets": {
+				"from": 796240,
+				"to": 798440
+			},
+			"text": " incentives for structuring proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,440",
+				"to": "00:13:21,320"
+			},
+			"offsets": {
+				"from": 798440,
+				"to": 801320
+			},
+			"text": " the responsible Oracle migration proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,320",
+				"to": "00:13:23,320"
+			},
+			"offsets": {
+				"from": 801320,
+				"to": 803320
+			},
+			"text": " and the Oracle team mandate proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,720",
+				"to": "00:13:30,800"
+			},
+			"offsets": {
+				"from": 806720,
+				"to": 810800
+			},
+			"text": " So first of all, the D5 light feed proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,800",
+				"to": "00:13:37,280"
+			},
+			"offsets": {
+				"from": 810800,
+				"to": 817280
+			},
+			"text": " OK, so we are going to be adding DY DX, 0X maker,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,280",
+				"to": "00:13:41,880"
+			},
+			"offsets": {
+				"from": 817280,
+				"to": 821880
+			},
+			"text": " set Oracle, and notice as the first light feeds."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,880",
+				"to": "00:13:44,320"
+			},
+			"offsets": {
+				"from": 821880,
+				"to": 824320
+			},
+			"text": " So that's going to be super exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,320",
+				"to": "00:13:46,080"
+			},
+			"offsets": {
+				"from": 824320,
+				"to": 826080
+			},
+			"text": " This is just the first wave, and it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,080",
+				"to": "00:13:48,200"
+			},
+			"offsets": {
+				"from": 826080,
+				"to": 828200
+			},
+			"text": " going to be a bunch more."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,200",
+				"to": "00:13:53,760"
+			},
+			"offsets": {
+				"from": 828200,
+				"to": 833760
+			},
+			"text": " But it's really cool to have these guys on board."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,760",
+				"to": "00:13:54,960"
+			},
+			"offsets": {
+				"from": 833760,
+				"to": 834960
+			},
+			"text": " OK, number two."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,960",
+				"to": "00:13:57,960"
+			},
+			"offsets": {
+				"from": 834960,
+				"to": 837960
+			},
+			"text": " The Oracle incentives for structuring proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,960",
+				"to": "00:14:03,400"
+			},
+			"offsets": {
+				"from": 837960,
+				"to": 843400
+			},
+			"text": " So we like to talk about decentralized systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,400",
+				"to": "00:14:07,480"
+			},
+			"offsets": {
+				"from": 843400,
+				"to": 847480
+			},
+			"text": " in terms of, for example, like the Dow being self-governing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,480",
+				"to": "00:14:09,960"
+			},
+			"offsets": {
+				"from": 847480,
+				"to": 849960
+			},
+			"text": " But I think a key point that a lot of people miss"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,960",
+				"to": "00:14:12,920"
+			},
+			"offsets": {
+				"from": 849960,
+				"to": 852920
+			},
+			"text": " is that these systems, if they're going to succeed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,920",
+				"to": "00:14:15,160"
+			},
+			"offsets": {
+				"from": 852920,
+				"to": 855160
+			},
+			"text": " they need to be self-sustainable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,160",
+				"to": "00:14:18,160"
+			},
+			"offsets": {
+				"from": 855160,
+				"to": 858160
+			},
+			"text": " So in this diagram, on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,160",
+				"to": "00:14:21,560"
+			},
+			"offsets": {
+				"from": 858160,
+				"to": 861560
+			},
+			"text": " you can kind of see this incentive and alignment"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,560",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 861560,
+				"to": 863000
+			},
+			"text": " that have come up with."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:26,520"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 866520
+			},
+			"text": " And essentially, what's going to happen is that feeds"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,520",
+				"to": "00:14:30,680"
+			},
+			"offsets": {
+				"from": 866520,
+				"to": 870680
+			},
+			"text": " are going to be paid in DY every month by maker token holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,680",
+				"to": "00:14:33,240"
+			},
+			"offsets": {
+				"from": 870680,
+				"to": 873240
+			},
+			"text": " And this is a payment for the valuable service"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,240",
+				"to": "00:14:37,120"
+			},
+			"offsets": {
+				"from": 873240,
+				"to": 877120
+			},
+			"text": " they provide, and kind of an incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,120",
+				"to": "00:14:39,800"
+			},
+			"offsets": {
+				"from": 877120,
+				"to": 879800
+			},
+			"text": " to not be a malicious fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,800",
+				"to": "00:14:44,180"
+			},
+			"offsets": {
+				"from": 879800,
+				"to": 884180
+			},
+			"text": " In turn, the Oracle's are going to have a whitelist"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,180",
+				"to": "00:14:44,920"
+			},
+			"offsets": {
+				"from": 884180,
+				"to": 884920
+			},
+			"text": " added to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,920",
+				"to": "00:14:46,920"
+			},
+			"offsets": {
+				"from": 884920,
+				"to": 886920
+			},
+			"text": " So you need to be on the whitelist in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,920",
+				"to": "00:14:48,840"
+			},
+			"offsets": {
+				"from": 886920,
+				"to": 888840
+			},
+			"text": " to access the prices."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,840",
+				"to": "00:14:53,240"
+			},
+			"offsets": {
+				"from": 888840,
+				"to": 893240
+			},
+			"text": " So the data consumers are going to have to pay"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,240",
+				"to": "00:14:58,040"
+			},
+			"offsets": {
+				"from": 893240,
+				"to": 898040
+			},
+			"text": " in monthly in DY to have a QR token holders in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,040",
+				"to": "00:15:01,120"
+			},
+			"offsets": {
+				"from": 898040,
+				"to": 901120
+			},
+			"text": " to access the Oracle prices."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,120",
+				"to": "00:15:04,440"
+			},
+			"offsets": {
+				"from": 901120,
+				"to": 904440
+			},
+			"text": " And so the amount of DY that's going to be paid to the fees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,440",
+				"to": "00:15:07,280"
+			},
+			"offsets": {
+				"from": 904440,
+				"to": 907280
+			},
+			"text": " the amount of DY that's going to be charged by a QR token"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,280",
+				"to": "00:15:09,160"
+			},
+			"offsets": {
+				"from": 907280,
+				"to": 909160
+			},
+			"text": " holders, this is all defined by governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,160",
+				"to": "00:15:12,640"
+			},
+			"offsets": {
+				"from": 909160,
+				"to": 912640
+			},
+			"text": " So this is not set by the maker foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,480",
+				"to": "00:15:19,800"
+			},
+			"offsets": {
+				"from": 916480,
+				"to": 919800
+			},
+			"text": " And the last proposal that I want to cover today"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,800",
+				"to": "00:15:23,520"
+			},
+			"offsets": {
+				"from": 919800,
+				"to": 923520
+			},
+			"text": " is the responsible Oracle migration proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,520",
+				"to": "00:15:28,280"
+			},
+			"offsets": {
+				"from": 923520,
+				"to": 928280
+			},
+			"text": " So Oracle's V1 has kind of proliferated all around DY."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,280",
+				"to": "00:15:30,600"
+			},
+			"offsets": {
+				"from": 928280,
+				"to": 930600
+			},
+			"text": " And I think that's super, super cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,600",
+				"to": "00:15:32,400"
+			},
+			"offsets": {
+				"from": 930600,
+				"to": 932400
+			},
+			"text": " We built something, and everyone can use it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,400",
+				"to": "00:15:36,480"
+			},
+			"offsets": {
+				"from": 932400,
+				"to": 936480
+			},
+			"text": " and everyone's building really cool stuff on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,480",
+				"to": "00:15:41,040"
+			},
+			"offsets": {
+				"from": 936480,
+				"to": 941040
+			},
+			"text": " But we don't actually know how many people are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,040",
+				"to": "00:15:41,880"
+			},
+			"offsets": {
+				"from": 941040,
+				"to": 941880
+			},
+			"text": " using this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,880",
+				"to": "00:15:44,200"
+			},
+			"offsets": {
+				"from": 941880,
+				"to": 944200
+			},
+			"text": " And it's actually kind of scary when you think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,200",
+				"to": "00:15:46,840"
+			},
+			"offsets": {
+				"from": 944200,
+				"to": 946840
+			},
+			"text": " So some people are open about it, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,840",
+				"to": "00:15:49,480"
+			},
+			"offsets": {
+				"from": 946840,
+				"to": 949480
+			},
+			"text": " can read in their documentation that they use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,480",
+				"to": "00:15:51,520"
+			},
+			"offsets": {
+				"from": 949480,
+				"to": 951520
+			},
+			"text": " Some people have come up to me at conferences and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,520",
+				"to": "00:15:54,360"
+			},
+			"offsets": {
+				"from": 951520,
+				"to": 954360
+			},
+			"text": " oh, we're using the Oracle's."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,360",
+				"to": "00:15:57,160"
+			},
+			"offsets": {
+				"from": 954360,
+				"to": 957160
+			},
+			"text": " But I'm sure there's dozens and dozens more"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,160",
+				"to": "00:15:59,040"
+			},
+			"offsets": {
+				"from": 957160,
+				"to": 959040
+			},
+			"text": " that we all know about."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,040",
+				"to": "00:16:01,360"
+			},
+			"offsets": {
+				"from": 959040,
+				"to": 961360
+			},
+			"text": " And so it's kind of our responsibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,360",
+				"to": "00:16:03,640"
+			},
+			"offsets": {
+				"from": 961360,
+				"to": 963640
+			},
+			"text": " to be kind of a good citizen of the ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,640",
+				"to": "00:16:07,920"
+			},
+			"offsets": {
+				"from": 963640,
+				"to": 967920
+			},
+			"text": " and make sure that this transition goes extremely smoothly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,920",
+				"to": "00:16:10,320"
+			},
+			"offsets": {
+				"from": 967920,
+				"to": 970320
+			},
+			"text": " So what we committed to in this proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,320",
+				"to": "00:16:14,160"
+			},
+			"offsets": {
+				"from": 970320,
+				"to": 974160
+			},
+			"text": " is that Oracle's V1 is going to run parallel with Oracle's V2"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,160",
+				"to": "00:16:19,080"
+			},
+			"offsets": {
+				"from": 974160,
+				"to": 979080
+			},
+			"text": " until at least single collateral die is shut down."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,080",
+				"to": "00:16:21,880"
+			},
+			"offsets": {
+				"from": 979080,
+				"to": 981880
+			},
+			"text": " And so that is at least six months out."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,880",
+				"to": "00:16:23,880"
+			},
+			"offsets": {
+				"from": 981880,
+				"to": 983880
+			},
+			"text": " So it gives these organizations six months"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,880",
+				"to": "00:16:26,560"
+			},
+			"offsets": {
+				"from": 983880,
+				"to": 986560
+			},
+			"text": " to kind of transition over to Oracle's V2."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,560",
+				"to": "00:16:29,760"
+			},
+			"offsets": {
+				"from": 986560,
+				"to": 989760
+			},
+			"text": " On top of that, we're going to be giving"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,760",
+				"to": "00:16:32,960"
+			},
+			"offsets": {
+				"from": 989760,
+				"to": 992960
+			},
+			"text": " a whitelist access to the Oracle's, any Oracle's,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,960",
+				"to": "00:16:36,400"
+			},
+			"offsets": {
+				"from": 992960,
+				"to": 996400
+			},
+			"text": " any number of Oracle's for free for one year."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,400",
+				"to": "00:16:40,640"
+			},
+			"offsets": {
+				"from": 996400,
+				"to": 1000640
+			},
+			"text": " So just make sure that no one has the right pulled out"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,640",
+				"to": "00:16:42,000"
+			},
+			"offsets": {
+				"from": 1000640,
+				"to": 1002000
+			},
+			"text": " from under them, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,000",
+				"to": "00:16:45,120"
+			},
+			"offsets": {
+				"from": 1002000,
+				"to": 1005120
+			},
+			"text": " Everyone has time to transition to the new architecture,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,120",
+				"to": "00:16:48,320"
+			},
+			"offsets": {
+				"from": 1005120,
+				"to": 1008320
+			},
+			"text": " see if it's what they like."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,320",
+				"to": "00:16:52,640"
+			},
+			"offsets": {
+				"from": 1008320,
+				"to": 1012640
+			},
+			"text": " And hopefully, year from now, they'll select to stay on."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,640",
+				"to": "00:16:55,920"
+			},
+			"offsets": {
+				"from": 1012640,
+				"to": 1015920
+			},
+			"text": " And so this kind of allows us to support innovation, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,920",
+				"to": "00:16:58,800"
+			},
+			"offsets": {
+				"from": 1015920,
+				"to": 1018800
+			},
+			"text": " It lets us still support new projects, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,800",
+				"to": "00:17:00,080"
+			},
+			"offsets": {
+				"from": 1018800,
+				"to": 1020080
+			},
+			"text": " That don't have any funding, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,080",
+				"to": "00:17:03,160"
+			},
+			"offsets": {
+				"from": 1020080,
+				"to": 1023160
+			},
+			"text": " That's just a data at home building something cool, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,160",
+				"to": "00:17:05,440"
+			},
+			"offsets": {
+				"from": 1023160,
+				"to": 1025440
+			},
+			"text": " You can still use Oracle's, no problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,440",
+				"to": "00:17:07,760"
+			},
+			"offsets": {
+				"from": 1025440,
+				"to": 1027760
+			},
+			"text": " And if it ever turns into something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,760",
+				"to": "00:17:10,560"
+			},
+			"offsets": {
+				"from": 1027760,
+				"to": 1030560
+			},
+			"text": " then there's a long term management for the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,560",
+				"to": "00:17:13,240"
+			},
+			"offsets": {
+				"from": 1030560,
+				"to": 1033240
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,240",
+				"to": "00:17:17,160"
+			},
+			"offsets": {
+				"from": 1033240,
+				"to": 1037160
+			},
+			"text": " Okay, and that's all I have for you today."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,160",
+				"to": "00:17:21,400"
+			},
+			"offsets": {
+				"from": 1037160,
+				"to": 1041400
+			},
+			"text": " If you want to find out more, we have a bunch of different"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,400",
+				"to": "00:17:24,600"
+			},
+			"offsets": {
+				"from": 1041400,
+				"to": 1044600
+			},
+			"text": " socials, you can find us on Twitter, our active chat,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,600",
+				"to": "00:17:27,680"
+			},
+			"offsets": {
+				"from": 1044600,
+				"to": 1047680
+			},
+			"text": " a really active forum, an active subreddit."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,680",
+				"to": "00:17:31,720"
+			},
+			"offsets": {
+				"from": 1047680,
+				"to": 1051720
+			},
+			"text": " Or you can come find me, always have each other at Oracle's."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,720",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1051720,
+				"to": 1053000
+			},
+			"text": " Okay, thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:36,520"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1056520
+			},
+			"text": " >> [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,520",
+				"to": "00:17:46,520"
+			},
+			"offsets": {
+				"from": 1056520,
+				"to": 1066520
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,520",
+				"to": "00:17:56,520"
+			},
+			"offsets": {
+				"from": 1066520,
+				"to": 1076520
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

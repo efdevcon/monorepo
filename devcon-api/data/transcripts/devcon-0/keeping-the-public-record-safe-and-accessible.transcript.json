@@ -1,0 +1,6951 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:19,440"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 19440
+			},
+			"text": " So we're interested in low latency instead of high throughput"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,440",
+				"to": "00:00:26,860"
+			},
+			"offsets": {
+				"from": 19440,
+				"to": 26860
+			},
+			"text": " and we're interested about small pieces of information not like films."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,900",
+				"to": "00:00:35,180"
+			},
+			"offsets": {
+				"from": 27900,
+				"to": 35180
+			},
+			"text": " So from a application programmer's point of view,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,180",
+				"to": "00:00:40,720"
+			},
+			"offsets": {
+				"from": 35180,
+				"to": 40720
+			},
+			"text": " what it does for you is you ask, you know the hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,720",
+				"to": "00:00:43,460"
+			},
+			"offsets": {
+				"from": 40720,
+				"to": 43460
+			},
+			"text": " of some piece of information, you ask for it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,460",
+				"to": "00:00:45,600"
+			},
+			"offsets": {
+				"from": 43460,
+				"to": 45600
+			},
+			"text": " and you get it as fast as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,600",
+				"to": "00:00:50,120"
+			},
+			"offsets": {
+				"from": 45600,
+				"to": 50120
+			},
+			"text": " Like preferably from the RAM of your own computer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,120",
+				"to": "00:00:55,900"
+			},
+			"offsets": {
+				"from": 50120,
+				"to": 55900
+			},
+			"text": " slightly worse from the hard drive or the SSD of your computer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,240",
+				"to": "00:00:58,980"
+			},
+			"offsets": {
+				"from": 56240,
+				"to": 58980
+			},
+			"text": " and in the absolute worst case from the network but quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,980",
+				"to": "00:01:06,820"
+			},
+			"offsets": {
+				"from": 58980,
+				"to": 66820
+			},
+			"text": " So the design goals, integrity, so you don't,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,820",
+				"to": "00:01:14,160"
+			},
+			"offsets": {
+				"from": 66820,
+				"to": 74160
+			},
+			"text": " so the information stays immutable and you can be sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,160",
+				"to": "00:01:18,080"
+			},
+			"offsets": {
+				"from": 74160,
+				"to": 78080
+			},
+			"text": " that that's what you get what you asked for."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,080",
+				"to": "00:01:23,280"
+			},
+			"offsets": {
+				"from": 78080,
+				"to": 83280
+			},
+			"text": " A measure of permanence, so once something gets there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,280",
+				"to": "00:01:25,880"
+			},
+			"offsets": {
+				"from": 83280,
+				"to": 85880
+			},
+			"text": " it's impossible to delete."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,060",
+				"to": "00:01:31,440"
+			},
+			"offsets": {
+				"from": 86060,
+				"to": 91440
+			},
+			"text": " It's resilient against both random failures"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,440",
+				"to": "00:01:35,440"
+			},
+			"offsets": {
+				"from": 91440,
+				"to": 95440
+			},
+			"text": " and malicious adversaries where of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,440",
+				"to": "00:01:38,720"
+			},
+			"offsets": {
+				"from": 95440,
+				"to": 98720
+			},
+			"text": " if it's resilient against malicious adversaries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,720",
+				"to": "00:01:41,300"
+			},
+			"offsets": {
+				"from": 98720,
+				"to": 101300
+			},
+			"text": " it's automatically resilient against random failures"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,300",
+				"to": "00:01:43,240"
+			},
+			"offsets": {
+				"from": 101300,
+				"to": 103240
+			},
+			"text": " but we sort of keep both in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,240",
+				"to": "00:01:50,320"
+			},
+			"offsets": {
+				"from": 103240,
+				"to": 110320
+			},
+			"text": " Speed is very important and by speed I mean low latency"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,260",
+				"to": "00:01:57,180"
+			},
+			"offsets": {
+				"from": 111260,
+				"to": 117180
+			},
+			"text": " and a utilization, an optimal utilization of available resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,180",
+				"to": "00:02:01,300"
+			},
+			"offsets": {
+				"from": 117180,
+				"to": 121300
+			},
+			"text": " so network storage and to some lesser extent processing power"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,300",
+				"to": "00:02:04,380"
+			},
+			"offsets": {
+				"from": 121300,
+				"to": 124380
+			},
+			"text": " but mostly we're interested in network resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,380",
+				"to": "00:02:05,540"
+			},
+			"offsets": {
+				"from": 124380,
+				"to": 125540
+			},
+			"text": " and storage resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,540",
+				"to": "00:02:12,580"
+			},
+			"offsets": {
+				"from": 125540,
+				"to": 132580
+			},
+			"text": " How do we ensure integrity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,580",
+				"to": "00:02:17,580"
+			},
+			"offsets": {
+				"from": 132580,
+				"to": 137580
+			},
+			"text": " Each time you receive a piece of data, if it comes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,580",
+				"to": "00:02:19,980"
+			},
+			"offsets": {
+				"from": 137580,
+				"to": 139980
+			},
+			"text": " from any other source but your RAM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,100",
+				"to": "00:02:24,660"
+			},
+			"offsets": {
+				"from": 140100,
+				"to": 144660
+			},
+			"text": " you check the hash, that's just a rule and because of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,660",
+				"to": "00:02:26,780"
+			},
+			"offsets": {
+				"from": 144660,
+				"to": 146780
+			},
+			"text": " in order for that to be feasible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,780",
+				"to": "00:02:32,660"
+			},
+			"offsets": {
+				"from": 146780,
+				"to": 152660
+			},
+			"text": " then we need to make sure that there are no long unchecked downloads."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,660",
+				"to": "00:02:37,540"
+			},
+			"offsets": {
+				"from": 152660,
+				"to": 157540
+			},
+			"text": " So if something is long, then it needs to be chunked"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,540",
+				"to": "00:02:42,940"
+			},
+			"offsets": {
+				"from": 157540,
+				"to": 162940
+			},
+			"text": " and we should maximize the chunk size in something like 4 kilobytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,940",
+				"to": "00:02:45,940"
+			},
+			"offsets": {
+				"from": 162940,
+				"to": 165940
+			},
+			"text": " not more and there are two kinds of chunks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,940",
+				"to": "00:02:48,140"
+			},
+			"offsets": {
+				"from": 165940,
+				"to": 168140
+			},
+			"text": " There's a leaf data fragment"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,420",
+				"to": "00:02:53,780"
+			},
+			"offsets": {
+				"from": 169420,
+				"to": 173780
+			},
+			"text": " and there's a Merkle tree node which has hashes of other chunks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,780",
+				"to": "00:03:02,780"
+			},
+			"offsets": {
+				"from": 173780,
+				"to": 182780
+			},
+			"text": " And this of course means that the hash is really a Merkle hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,780",
+				"to": "00:03:08,100"
+			},
+			"offsets": {
+				"from": 182780,
+				"to": 188100
+			},
+			"text": " and I really recommend that we should probably discuss it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,100",
+				"to": "00:03:13,980"
+			},
+			"offsets": {
+				"from": 188100,
+				"to": 193980
+			},
+			"text": " that everything in, when we say hash inside Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,980",
+				"to": "00:03:16,100"
+			},
+			"offsets": {
+				"from": 193980,
+				"to": 196100
+			},
+			"text": " of stuff that needs to be stored,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,340",
+				"to": "00:03:19,980"
+			},
+			"offsets": {
+				"from": 196340,
+				"to": 199980
+			},
+			"text": " then we always calculate this Merkle hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,980",
+				"to": "00:03:27,180"
+			},
+			"offsets": {
+				"from": 199980,
+				"to": 207180
+			},
+			"text": " because even if the purpose is not immediate storage in this archive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,180",
+				"to": "00:03:34,300"
+			},
+			"offsets": {
+				"from": 207180,
+				"to": 214300
+			},
+			"text": " still calculating a Merkle hash in a multi-core machine is actually faster"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,300",
+				"to": "00:03:39,500"
+			},
+			"offsets": {
+				"from": 214300,
+				"to": 219500
+			},
+			"text": " and it's nice if the hash all is reversed to the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,500",
+				"to": "00:03:45,500"
+			},
+			"offsets": {
+				"from": 219500,
+				"to": 225500
+			},
+			"text": " But the underlying assumption is that the vast majority of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,500",
+				"to": "00:03:49,260"
+			},
+			"offsets": {
+				"from": 225500,
+				"to": 229260
+			},
+			"text": " is going to be stored here, it fits into a single chunk."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,260",
+				"to": "00:03:54,740"
+			},
+			"offsets": {
+				"from": 229260,
+				"to": 234740
+			},
+			"text": " So we're thinking about things like parts of the state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,740",
+				"to": "00:03:59,620"
+			},
+			"offsets": {
+				"from": 234740,
+				"to": 239620
+			},
+			"text": " transactions, contracts, things like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,620",
+				"to": "00:04:01,260"
+			},
+			"offsets": {
+				"from": 239620,
+				"to": 241260
+			},
+			"text": " which are typically not very long."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,260",
+				"to": "00:04:07,020"
+			},
+			"offsets": {
+				"from": 241260,
+				"to": 247020
+			},
+			"text": " So how do we go about being resilient and redundant?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,020",
+				"to": "00:04:12,860"
+			},
+			"offsets": {
+				"from": 247020,
+				"to": 252860
+			},
+			"text": " So this is where DHT comes into play."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,300",
+				"to": "00:04:18,020"
+			},
+			"offsets": {
+				"from": 254300,
+				"to": 258020
+			},
+			"text": " So this is going to be a little bit of an introduction to what ADHD is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,020",
+				"to": "00:04:22,420"
+			},
+			"offsets": {
+				"from": 258020,
+				"to": 262420
+			},
+			"text": " and how they work, maybe for some of you it will be a little boring."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,420",
+				"to": "00:04:26,220"
+			},
+			"offsets": {
+				"from": 262420,
+				"to": 266220
+			},
+			"text": " So node addresses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,220",
+				"to": "00:04:29,740"
+			},
+			"offsets": {
+				"from": 266220,
+				"to": 269740
+			},
+			"text": " so the addresses of the machines that form the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,740",
+				"to": "00:04:34,540"
+			},
+			"offsets": {
+				"from": 269740,
+				"to": 274540
+			},
+			"text": " and the keys of the pieces of data, the hashes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,540",
+				"to": "00:04:38,660"
+			},
+			"offsets": {
+				"from": 274540,
+				"to": 278660
+			},
+			"text": " they come from the same, they're the same type of object."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,660",
+				"to": "00:04:43,820"
+			},
+			"offsets": {
+				"from": 278660,
+				"to": 283820
+			},
+			"text": " So in this particular case, it's probably going to be 256-bit hashes"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,820",
+				"to": "00:04:49,860"
+			},
+			"offsets": {
+				"from": 284820,
+				"to": 289860
+			},
+			"text": " because the addresses of the nodes are just the hashes of their public keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,860",
+				"to": "00:04:55,900"
+			},
+			"offsets": {
+				"from": 289860,
+				"to": 295900
+			},
+			"text": " And there's a particular distance measure defined on this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,900",
+				"to": "00:05:00,700"
+			},
+			"offsets": {
+				"from": 295900,
+				"to": 300700
+			},
+			"text": " And by distance measure, I mean the mathematical definition of a distance measure."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,700",
+				"to": "00:05:05,900"
+			},
+			"offsets": {
+				"from": 300700,
+				"to": 305900
+			},
+			"text": " So it's symmetric, the distance from A to B is the same as distance from B to A."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,900",
+				"to": "00:05:09,780"
+			},
+			"offsets": {
+				"from": 305900,
+				"to": 309780
+			},
+			"text": " It satisfies the triangle inequality"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,460",
+				"to": "00:05:16,140"
+			},
+			"offsets": {
+				"from": 310460,
+				"to": 316140
+			},
+			"text": " and the distance from something from itself is zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,140",
+				"to": "00:05:23,340"
+			},
+			"offsets": {
+				"from": 316140,
+				"to": 323340
+			},
+			"text": " So what you get is that suppose, so this is an illustration"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,340",
+				"to": "00:05:27,220"
+			},
+			"offsets": {
+				"from": 323340,
+				"to": 327220
+			},
+			"text": " where the distance is like the Euclidean distance on the plane."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,220",
+				"to": "00:05:30,380"
+			},
+			"offsets": {
+				"from": 327220,
+				"to": 330380
+			},
+			"text": " The black dots are the machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,380",
+				"to": "00:05:38,900"
+			},
+			"offsets": {
+				"from": 330380,
+				"to": 338900
+			},
+			"text": " They are randomly and uniformly distributed because the address is a result of hashing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,220",
+				"to": "00:05:44,300"
+			},
+			"offsets": {
+				"from": 339220,
+				"to": 344300
+			},
+			"text": " and the big black circle is the entire space."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,300",
+				"to": "00:05:47,300"
+			},
+			"offsets": {
+				"from": 344300,
+				"to": 347300
+			},
+			"text": " So that's where the data can live."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,300",
+				"to": "00:05:49,300"
+			},
+			"offsets": {
+				"from": 347300,
+				"to": 349300
+			},
+			"text": " So a piece of data can be anywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,300",
+				"to": "00:05:54,060"
+			},
+			"offsets": {
+				"from": 349300,
+				"to": 354060
+			},
+			"text": " And nodes are keeping the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,060",
+				"to": "00:05:59,420"
+			},
+			"offsets": {
+				"from": 354060,
+				"to": 359420
+			},
+			"text": " Each node is keeping the information that is closest to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,420",
+				"to": "00:06:05,780"
+			},
+			"offsets": {
+				"from": 359420,
+				"to": 365780
+			},
+			"text": " Now, of course, as long as they can afford to store something, they just store it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,060",
+				"to": "00:06:12,500"
+			},
+			"offsets": {
+				"from": 366060,
+				"to": 372500
+			},
+			"text": " But when their storage resources get full, first they ram and then they're background storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,500",
+				"to": "00:06:18,100"
+			},
+			"offsets": {
+				"from": 372500,
+				"to": 378100
+			},
+			"text": " then they sort of delete what is furthest away from them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,100",
+				"to": "00:06:24,420"
+			},
+			"offsets": {
+				"from": 378100,
+				"to": 384420
+			},
+			"text": " So basically, there's a radius in which they are responsible for the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,420",
+				"to": "00:06:29,860"
+			},
+			"offsets": {
+				"from": 384420,
+				"to": 389860
+			},
+			"text": " And as the volume of the data inside the DHT increases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,860",
+				"to": "00:06:33,140"
+			},
+			"offsets": {
+				"from": 389860,
+				"to": 393140
+			},
+			"text": " then these radii, they get smaller and smaller."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,460",
+				"to": "00:06:36,100"
+			},
+			"offsets": {
+				"from": 393460,
+				"to": 396100
+			},
+			"text": " And there are like two situations depicted here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,100",
+				"to": "00:06:44,180"
+			},
+			"offsets": {
+				"from": 396100,
+				"to": 404180
+			},
+			"text": " The green situation when these radii are very big, they completely overlap the entire space."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,180",
+				"to": "00:06:47,740"
+			},
+			"offsets": {
+				"from": 404180,
+				"to": 407740
+			},
+			"text": " And of course, if the system gets overwhelmed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,740",
+				"to": "00:06:54,300"
+			},
+			"offsets": {
+				"from": 407740,
+				"to": 414300
+			},
+			"text": " meaning that the total storage resource inside the system is insufficient,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,300",
+				"to": "00:06:59,340"
+			},
+			"offsets": {
+				"from": 414300,
+				"to": 419340
+			},
+			"text": " then we get to this right situation when they are uncovered places."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,820",
+				"to": "00:07:03,300"
+			},
+			"offsets": {
+				"from": 419820,
+				"to": 423300
+			},
+			"text": " So this is a failure mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,300",
+				"to": "00:07:06,180"
+			},
+			"offsets": {
+				"from": 423300,
+				"to": 426180
+			},
+			"text": " It's a graceful failure, but it's still a failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,180",
+				"to": "00:07:12,340"
+			},
+			"offsets": {
+				"from": 426180,
+				"to": 432340
+			},
+			"text": " And this system provides a natural load balancing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,340",
+				"to": "00:07:17,940"
+			},
+			"offsets": {
+				"from": 432340,
+				"to": 437940
+			},
+			"text": " because since both addresses and..."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,940",
+				"to": "00:07:25,220"
+			},
+			"offsets": {
+				"from": 437940,
+				"to": 445220
+			},
+			"text": " addresses and keys are results from hashes, they're uniformly distributed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,780",
+				"to": "00:07:32,580"
+			},
+			"offsets": {
+				"from": 445780,
+				"to": 452580
+			},
+			"text": " it means that all the nodes are exposed to roughly the same load."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,580",
+				"to": "00:07:39,420"
+			},
+			"offsets": {
+				"from": 452580,
+				"to": 459420
+			},
+			"text": " So this is how we address redundancy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,420",
+				"to": "00:07:43,220"
+			},
+			"offsets": {
+				"from": 459420,
+				"to": 463220
+			},
+			"text": " So in the normal situation, which is depicted with green here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,220",
+				"to": "00:07:48,860"
+			},
+			"offsets": {
+				"from": 463220,
+				"to": 468860
+			},
+			"text": " if one node goes offline, then its circle is removed, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,860",
+				"to": "00:07:52,380"
+			},
+			"offsets": {
+				"from": 468860,
+				"to": 472380
+			},
+			"text": " but still all the other circles still cover the entire..."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,580",
+				"to": "00:07:56,340"
+			},
+			"offsets": {
+				"from": 472580,
+				"to": 476340
+			},
+			"text": " the whole, the green circles still cover the entire black circle."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,340",
+				"to": "00:08:01,740"
+			},
+			"offsets": {
+				"from": 476340,
+				"to": 481740
+			},
+			"text": " So that's how every DHT works like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,740",
+				"to": "00:08:06,180"
+			},
+			"offsets": {
+				"from": 481740,
+				"to": 486180
+			},
+			"text": " And basically the difference between the different DHTs"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,180",
+				"to": "00:08:12,060"
+			},
+			"offsets": {
+				"from": 486180,
+				"to": 492060
+			},
+			"text": " largely boil down to how these nodes are connected and what the distance measure is."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,060",
+				"to": "00:08:17,980"
+			},
+			"offsets": {
+				"from": 492060,
+				"to": 497980
+			},
+			"text": " So let's first talk about the desirable network topology."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,980",
+				"to": "00:08:20,580"
+			},
+			"offsets": {
+				"from": 497980,
+				"to": 500580
+			},
+			"text": " How to connect these nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,580",
+				"to": "00:08:25,340"
+			},
+			"offsets": {
+				"from": 501580,
+				"to": 505340
+			},
+			"text": " Oh, before we go there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,340",
+				"to": "00:08:30,020"
+			},
+			"offsets": {
+				"from": 505340,
+				"to": 510020
+			},
+			"text": " So suppose this node is interested in this list of information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,020",
+				"to": "00:08:36,020"
+			},
+			"offsets": {
+				"from": 510020,
+				"to": 516020
+			},
+			"text": " then they need to follow the path through the network topology."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,020",
+				"to": "00:08:39,460"
+			},
+			"offsets": {
+				"from": 516020,
+				"to": 519460
+			},
+			"text": " So that's why network topology is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,460",
+				"to": "00:08:47,060"
+			},
+			"offsets": {
+				"from": 519460,
+				"to": 527060
+			},
+			"text": " So we are building a scalable network of unknowns where N can grow indefinitely."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,060",
+				"to": "00:08:50,180"
+			},
+			"offsets": {
+				"from": 527060,
+				"to": 530180
+			},
+			"text": " The first thing that we want is a low diameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,380",
+				"to": "00:08:55,900"
+			},
+			"offsets": {
+				"from": 530380,
+				"to": 535900
+			},
+			"text": " That comes directly from our requirement of low latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,900",
+				"to": "00:09:00,620"
+			},
+			"offsets": {
+				"from": 535900,
+				"to": 540620
+			},
+			"text": " So the theoretical minimum is order one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,620",
+				"to": "00:09:03,460"
+			},
+			"offsets": {
+				"from": 540620,
+				"to": 543460
+			},
+			"text": " So for example, if you think about a complete graph,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,460",
+				"to": "00:09:09,300"
+			},
+			"offsets": {
+				"from": 543460,
+				"to": 549300
+			},
+			"text": " when every node nodes every other node, there the diameter is exactly one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,300",
+				"to": "00:09:16,580"
+			},
+			"offsets": {
+				"from": 549300,
+				"to": 556580
+			},
+			"text": " For those of... so the definition of the diameter is the longest shortest path."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,780",
+				"to": "00:09:21,340"
+			},
+			"offsets": {
+				"from": 556780,
+				"to": 561340
+			},
+			"text": " So you take every pair of nodes, you find the shortest path between them"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,340",
+				"to": "00:09:26,140"
+			},
+			"offsets": {
+				"from": 561340,
+				"to": 566140
+			},
+			"text": " and the longest of these across all the pairs of nodes is the diameter of the graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,140",
+				"to": "00:09:30,500"
+			},
+			"offsets": {
+				"from": 566140,
+				"to": 570500
+			},
+			"text": " So theoretically, it can be as low as one or order of one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,500",
+				"to": "00:09:36,140"
+			},
+			"offsets": {
+				"from": 570500,
+				"to": 576140
+			},
+			"text": " So it can be proportional to... it can be a fixed number."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,140",
+				"to": "00:09:40,540"
+			},
+			"offsets": {
+				"from": 576140,
+				"to": 580540
+			},
+			"text": " And the acceptable maximum, I would say, that is probably log n."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,740",
+				"to": "00:09:48,980"
+			},
+			"offsets": {
+				"from": 580740,
+				"to": 588980
+			},
+			"text": " So you don't want the diameter to be longer than log n as the network grows."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,980",
+				"to": "00:09:53,460"
+			},
+			"offsets": {
+				"from": 588980,
+				"to": 593460
+			},
+			"text": " The other thing that you want to limit is the degree of the nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,460",
+				"to": "00:09:58,780"
+			},
+			"offsets": {
+				"from": 593460,
+				"to": 598780
+			},
+			"text": " So how many other nodes a particular node is connected to?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,780",
+				"to": "00:10:01,820"
+			},
+			"offsets": {
+				"from": 598780,
+				"to": 601820
+			},
+			"text": " Again, the theoretical minimum is order one."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,820",
+				"to": "00:10:09,420"
+			},
+			"offsets": {
+				"from": 601820,
+				"to": 609420
+			},
+			"text": " So it is possible to achieve even log n diameter with a fixed number of nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,620",
+				"to": "00:10:12,380"
+			},
+			"offsets": {
+				"from": 609620,
+				"to": 612380
+			},
+			"text": " I will show you an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,380",
+				"to": "00:10:15,300"
+			},
+			"offsets": {
+				"from": 612380,
+				"to": 615300
+			},
+			"text": " So that's the theoretical minimum."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,300",
+				"to": "00:10:22,300"
+			},
+			"offsets": {
+				"from": 615300,
+				"to": 622300
+			},
+			"text": " And the acceptable maximum is basically something proportional to the size of the network for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,300",
+				"to": "00:10:28,140"
+			},
+			"offsets": {
+				"from": 622300,
+				"to": 628140
+			},
+			"text": " Probably, over a long time, that would be less and less acceptable."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,140",
+				"to": "00:10:34,300"
+			},
+			"offsets": {
+				"from": 628140,
+				"to": 634300
+			},
+			"text": " And the problem, of course, with a large number of neighbors is that the house"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,500",
+				"to": "00:10:38,900"
+			},
+			"offsets": {
+				"from": 634500,
+				"to": 638900
+			},
+			"text": " that we've been keeping overhead maintaining that network will become..."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,900",
+				"to": "00:10:43,340"
+			},
+			"offsets": {
+				"from": 638900,
+				"to": 643340
+			},
+			"text": " it will grow and it will become a sizable part of what the nodes do"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,340",
+				"to": "00:10:47,700"
+			},
+			"offsets": {
+				"from": 643340,
+				"to": 647700
+			},
+			"text": " instead of performing their direct duties."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,700",
+				"to": "00:10:54,140"
+			},
+			"offsets": {
+				"from": 647700,
+				"to": 654140
+			},
+			"text": " Then, another thing that you want is uniform centrality across all nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,140",
+				"to": "00:10:55,860"
+			},
+			"offsets": {
+				"from": 654140,
+				"to": 655860
+			},
+			"text": " So what centrality is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,060",
+				"to": "00:11:03,740"
+			},
+			"offsets": {
+				"from": 656060,
+				"to": 663740
+			},
+			"text": " Centrality in a graph is defined as the number of shortest paths that go through"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,740",
+				"to": "00:11:06,420"
+			},
+			"offsets": {
+				"from": 663740,
+				"to": 666420
+			},
+			"text": " one particular node for one particular edge."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,420",
+				"to": "00:11:09,620"
+			},
+			"offsets": {
+				"from": 666420,
+				"to": 669620
+			},
+			"text": " You can define edge centrality and node centrality as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,620",
+				"to": "00:11:16,140"
+			},
+			"offsets": {
+				"from": 669620,
+				"to": 676140
+			},
+			"text": " Actually, this property centrality was introduced in applied research,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,140",
+				"to": "00:11:21,420"
+			},
+			"offsets": {
+				"from": 676140,
+				"to": 681420
+			},
+			"text": " which was interested in preventing sexually communicable diseases."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,620",
+				"to": "00:11:25,660"
+			},
+			"offsets": {
+				"from": 681620,
+				"to": 685660
+			},
+			"text": " And the question was, if we have a limited number of condoms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,660",
+				"to": "00:11:28,900"
+			},
+			"offsets": {
+				"from": 685660,
+				"to": 688900
+			},
+			"text": " whom are we going to give them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,900",
+				"to": "00:11:34,500"
+			},
+			"offsets": {
+				"from": 688900,
+				"to": 694500
+			},
+			"text": " So this sort of shows you what this centrality really means."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,500",
+				"to": "00:11:39,180"
+			},
+			"offsets": {
+				"from": 694500,
+				"to": 699180
+			},
+			"text": " So if you take out the most central nodes from a graph,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,180",
+				"to": "00:11:40,780"
+			},
+			"offsets": {
+				"from": 699180,
+				"to": 700780
+			},
+			"text": " the graph will fall apart."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,780",
+				"to": "00:11:46,220"
+			},
+			"offsets": {
+				"from": 700780,
+				"to": 706220
+			},
+			"text": " The connectivity of the graph will be broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,420",
+				"to": "00:11:54,260"
+			},
+			"offsets": {
+				"from": 706420,
+				"to": 714260
+			},
+			"text": " So the centrality needs to be uniform in order for there not to be some vulnerable nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,260",
+				"to": "00:11:59,780"
+			},
+			"offsets": {
+				"from": 714260,
+				"to": 719780
+			},
+			"text": " So for the cost of bringing down the network should be high."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,780",
+				"to": "00:12:02,300"
+			},
+			"offsets": {
+				"from": 719780,
+				"to": 722300
+			},
+			"text": " Because if the centrality is not uniform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,300",
+				"to": "00:12:07,180"
+			},
+			"offsets": {
+				"from": 722300,
+				"to": 727180
+			},
+			"text": " then there's a small subset of nodes that if you take out that subset of nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,180",
+				"to": "00:12:10,300"
+			},
+			"offsets": {
+				"from": 727180,
+				"to": 730300
+			},
+			"text": " then your graph falls apart,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,500",
+				"to": "00:12:17,380"
+			},
+			"offsets": {
+				"from": 730500,
+				"to": 737380
+			},
+			"text": " which is bad both against random failures and even worse against a dedicated"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,380",
+				"to": "00:12:24,220"
+			},
+			"offsets": {
+				"from": 737380,
+				"to": 744220
+			},
+			"text": " adversary because all the adversary needs to do is to map out the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,220",
+				"to": "00:12:30,820"
+			},
+			"offsets": {
+				"from": 744220,
+				"to": 750820
+			},
+			"text": " calculate the centrality and then the most central nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,820",
+				"to": "00:12:35,860"
+			},
+			"offsets": {
+				"from": 750820,
+				"to": 755860
+			},
+			"text": " And of course, you also want to keep the housekeeping overhead low."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,860",
+				"to": "00:12:40,340"
+			},
+			"offsets": {
+				"from": 755860,
+				"to": 760340
+			},
+			"text": " So you want some network topology, which is easily maintained."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,500",
+				"to": "00:12:48,460"
+			},
+			"offsets": {
+				"from": 760500,
+				"to": 768460
+			},
+			"text": " So I will show you a few examples of how these trade-offs can play out."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,460",
+				"to": "00:12:52,740"
+			},
+			"offsets": {
+				"from": 768460,
+				"to": 772740
+			},
+			"text": " So for example, we currently have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,740",
+				"to": "00:12:55,500"
+			},
+			"offsets": {
+				"from": 772740,
+				"to": 775500
+			},
+			"text": " peer selection algorithm, which is that simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,500",
+				"to": "00:12:59,740"
+			},
+			"offsets": {
+				"from": 775500,
+				"to": 779740
+			},
+			"text": " You connect to the nodes that you know, you ask them about other nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,740",
+				"to": "00:13:03,340"
+			},
+			"offsets": {
+				"from": 779740,
+				"to": 783340
+			},
+			"text": " and you connect to those without giving it too much consideration."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,340",
+				"to": "00:13:07,540"
+			},
+			"offsets": {
+				"from": 783340,
+				"to": 787540
+			},
+			"text": " Perhaps you stop after you reach a certain node limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,740",
+				"to": "00:13:12,300"
+			},
+			"offsets": {
+				"from": 787740,
+				"to": 792300
+			},
+			"text": " So these completely ad hoc networks, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,300",
+				"to": "00:13:16,220"
+			},
+			"offsets": {
+				"from": 792300,
+				"to": 796220
+			},
+			"text": " they go through a phase transition in the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,220",
+				"to": "00:13:22,020"
+			},
+			"offsets": {
+				"from": 796220,
+				"to": 802020
+			},
+			"text": " They in the beginning, they form a almost complete graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,020",
+				"to": "00:13:27,500"
+			},
+			"offsets": {
+				"from": 802020,
+				"to": 807500
+			},
+			"text": " Every node knows a sizable subset of the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,500",
+				"to": "00:13:30,700"
+			},
+			"offsets": {
+				"from": 807500,
+				"to": 810700
+			},
+			"text": " maybe even the majority of nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,700",
+				"to": "00:13:32,700"
+			},
+			"offsets": {
+				"from": 810700,
+				"to": 812700
+			},
+			"text": " So it's almost complete."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,900",
+				"to": "00:13:38,180"
+			},
+			"offsets": {
+				"from": 812900,
+				"to": 818180
+			},
+			"text": " So the number of neighbors is in the order of the size of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,180",
+				"to": "00:13:40,660"
+			},
+			"offsets": {
+				"from": 818180,
+				"to": 820660
+			},
+			"text": " The diameter is more or less fixed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,660",
+				"to": "00:13:44,420"
+			},
+			"offsets": {
+				"from": 820660,
+				"to": 824420
+			},
+			"text": " You can reach everybody in one or two hops."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,420",
+				"to": "00:13:49,940"
+			},
+			"offsets": {
+				"from": 824420,
+				"to": 829940
+			},
+			"text": " The problem is that in this phase, the housekeeping overhead is ballooning"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,940",
+				"to": "00:13:52,180"
+			},
+			"offsets": {
+				"from": 829940,
+				"to": 832180
+			},
+			"text": " because when you are."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,180",
+				"to": "00:13:55,460"
+			},
+			"offsets": {
+				"from": 832180,
+				"to": 835460
+			},
+			"text": " So for it, think about just pinging all the other nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,460",
+				"to": "00:13:57,980"
+			},
+			"offsets": {
+				"from": 835460,
+				"to": 837980
+			},
+			"text": " You need to keep track of their dresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,980",
+				"to": "00:13:59,740"
+			},
+			"offsets": {
+				"from": 837980,
+				"to": 839740
+			},
+			"text": " You need to see which one is alive."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,740",
+				"to": "00:14:02,580"
+			},
+			"offsets": {
+				"from": 839740,
+				"to": 842580
+			},
+			"text": " So a lot of traffic on the wires is just pings."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,780",
+				"to": "00:14:10,820"
+			},
+			"offsets": {
+				"from": 842780,
+				"to": 850820
+			},
+			"text": " So the housekeeping overhead is actually the traffic generated by housekeeping"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,820",
+				"to": "00:14:17,380"
+			},
+			"offsets": {
+				"from": 850820,
+				"to": 857380
+			},
+			"text": " is growing with the square of n until you transition to this other phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,380",
+				"to": "00:14:23,300"
+			},
+			"offsets": {
+				"from": 857380,
+				"to": 863300
+			},
+			"text": " When the number of nodes that one particular node knows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,300",
+				"to": "00:14:27,740"
+			},
+			"offsets": {
+				"from": 863300,
+				"to": 867740
+			},
+			"text": " the neighboring nodes is relatively small compared to the size of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,740",
+				"to": "00:14:32,540"
+			},
+			"offsets": {
+				"from": 867740,
+				"to": 872540
+			},
+			"text": " Then what you get is what mathematicians call a scale free graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,740",
+				"to": "00:14:39,540"
+			},
+			"offsets": {
+				"from": 872740,
+				"to": 879540
+			},
+			"text": " Where you have a wildly different distribution of degrees."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,540",
+				"to": "00:14:43,860"
+			},
+			"offsets": {
+				"from": 879540,
+				"to": 883860
+			},
+			"text": " Actually, they follow a power loss, so it's a long tail distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,860",
+				"to": "00:14:46,940"
+			},
+			"offsets": {
+				"from": 883860,
+				"to": 886940
+			},
+			"text": " That's usually how natural social networks work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,940",
+				"to": "00:14:51,100"
+			},
+			"offsets": {
+				"from": 886940,
+				"to": 891100
+			},
+			"text": " So if you look at, for example, whom people friend on Facebook."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,100",
+				"to": "00:14:53,620"
+			},
+			"offsets": {
+				"from": 891100,
+				"to": 893620
+			},
+			"text": " So you look at social networks like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,620",
+				"to": "00:14:56,100"
+			},
+			"offsets": {
+				"from": 893620,
+				"to": 896100
+			},
+			"text": " or you look at front to front computer networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,100",
+				"to": "00:15:02,660"
+			},
+			"offsets": {
+				"from": 896100,
+				"to": 902660
+			},
+			"text": " or you look at, for example, the social graph of sexual relationships."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,660",
+				"to": "00:15:06,780"
+			},
+			"offsets": {
+				"from": 902660,
+				"to": 906780
+			},
+			"text": " Then they are typically the scale free graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,780",
+				"to": "00:15:10,340"
+			},
+			"offsets": {
+				"from": 906780,
+				"to": 910340
+			},
+			"text": " So in nature, the scale free graphs, they're very common."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,340",
+				"to": "00:15:14,060"
+			},
+			"offsets": {
+				"from": 910340,
+				"to": 914060
+			},
+			"text": " Their diameter statistically is pretty low."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,060",
+				"to": "00:15:18,020"
+			},
+			"offsets": {
+				"from": 914060,
+				"to": 918020
+			},
+			"text": " So these are the famous 6 degrees of separation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,020",
+				"to": "00:15:20,340"
+			},
+			"offsets": {
+				"from": 918020,
+				"to": 920340
+			},
+			"text": " So it's actually smaller than log n."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,340",
+				"to": "00:15:22,980"
+			},
+			"offsets": {
+				"from": 920340,
+				"to": 922980
+			},
+			"text": " It's log n over log n."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,980",
+				"to": "00:15:25,740"
+			},
+			"offsets": {
+				"from": 922980,
+				"to": 925740
+			},
+			"text": " But that just statistically."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,740",
+				"to": "00:15:30,100"
+			},
+			"offsets": {
+				"from": 925740,
+				"to": 930100
+			},
+			"text": " So the other undesirable property of scale free graphs"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,300",
+				"to": "00:15:34,300"
+			},
+			"offsets": {
+				"from": 930300,
+				"to": 934300
+			},
+			"text": " is that their centrality is not uniform at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,300",
+				"to": "00:15:43,140"
+			},
+			"offsets": {
+				"from": 934300,
+				"to": 943140
+			},
+			"text": " Like some typically scale free graphs have a very small number of very central nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,140",
+				"to": "00:15:45,460"
+			},
+			"offsets": {
+				"from": 943140,
+				"to": 945460
+			},
+			"text": " Which is interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,460",
+				"to": "00:15:51,140"
+			},
+			"offsets": {
+				"from": 945460,
+				"to": 951140
+			},
+			"text": " This fact is widely used in all sorts of social engineering"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,140",
+				"to": "00:15:53,060"
+			},
+			"offsets": {
+				"from": 951140,
+				"to": 953060
+			},
+			"text": " from marketing to politics."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,060",
+				"to": "00:15:55,220"
+			},
+			"offsets": {
+				"from": 953060,
+				"to": 955220
+			},
+			"text": " That there are these influencer people."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,220",
+				"to": "00:15:58,780"
+			},
+			"offsets": {
+				"from": 955220,
+				"to": 958780
+			},
+			"text": " That if you find the right people to influence, you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,980",
+				"to": "00:16:05,180"
+			},
+			"offsets": {
+				"from": 958980,
+				"to": 965180
+			},
+			"text": " You can spread information or disease or whatever very fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,180",
+				"to": "00:16:09,220"
+			},
+			"offsets": {
+				"from": 965180,
+				"to": 969220
+			},
+			"text": " Or when you want to bomb a railway network then."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,220",
+				"to": "00:16:13,460"
+			},
+			"offsets": {
+				"from": 969220,
+				"to": 973460
+			},
+			"text": " A few well-placed bombs can bring an economy to a halt."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,460",
+				"to": "00:16:15,500"
+			},
+			"offsets": {
+				"from": 973460,
+				"to": 975500
+			},
+			"text": " So it's well studied."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,500",
+				"to": "00:16:18,820"
+			},
+			"offsets": {
+				"from": 975500,
+				"to": 978820
+			},
+			"text": " And it's a well-known property of scale free graphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,820",
+				"to": "00:16:24,580"
+			},
+			"offsets": {
+				"from": 978820,
+				"to": 984580
+			},
+			"text": " So basically, this is another argument against this kind of ad hoc infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,780",
+				"to": "00:16:30,820"
+			},
+			"offsets": {
+				"from": 984780,
+				"to": 990820
+			},
+			"text": " that in addition to the large housekeeping costs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,820",
+				"to": "00:16:33,020"
+			},
+			"offsets": {
+				"from": 990820,
+				"to": 993020
+			},
+			"text": " we will have centrality problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,020",
+				"to": "00:16:34,980"
+			},
+			"offsets": {
+				"from": 993020,
+				"to": 994980
+			},
+			"text": " The network will not be resilient."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,980",
+				"to": "00:16:38,700"
+			},
+			"offsets": {
+				"from": 994980,
+				"to": 998700
+			},
+			"text": " There will be some nodes which will have high centrality."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,700",
+				"to": "00:16:44,540"
+			},
+			"offsets": {
+				"from": 998700,
+				"to": 1004540
+			},
+			"text": " Because of their high centrality, they will have a high load, a disproportionately high load."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,540",
+				"to": "00:16:47,740"
+			},
+			"offsets": {
+				"from": 1004540,
+				"to": 1007740
+			},
+			"text": " And, OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,740",
+				"to": "00:16:50,620"
+			},
+			"offsets": {
+				"from": 1007740,
+				"to": 1010620
+			},
+			"text": " Yep, here we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,620",
+				"to": "00:16:53,620"
+			},
+			"offsets": {
+				"from": 1010620,
+				"to": 1013620
+			},
+			"text": " They will have a disproportionately high load."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,820",
+				"to": "00:16:59,500"
+			},
+			"offsets": {
+				"from": 1013820,
+				"to": 1019500
+			},
+			"text": " And they will be, the network will be vulnerable."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,500",
+				"to": "00:17:03,940"
+			},
+			"offsets": {
+				"from": 1019500,
+				"to": 1023940
+			},
+			"text": " And there's another problem which is not mentioned here that, OK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,940",
+				"to": "00:17:08,140"
+			},
+			"offsets": {
+				"from": 1023940,
+				"to": 1028140
+			},
+			"text": " we have a distance measure which follows the triangle inequality."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,140",
+				"to": "00:17:16,940"
+			},
+			"offsets": {
+				"from": 1028140,
+				"to": 1036940
+			},
+			"text": " But in a ad hoc graph like this, there's no guarantee whatsoever that if you go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,940",
+				"to": "00:17:23,340"
+			},
+			"offsets": {
+				"from": 1036940,
+				"to": 1043340
+			},
+			"text": " you know, along the gradient, like you always take the hop that brings you closest"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,540",
+				"to": "00:17:29,940"
+			},
+			"offsets": {
+				"from": 1043540,
+				"to": 1049940
+			},
+			"text": " to one hop to your destination, then you will actually follow a shortest path."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,940",
+				"to": "00:17:34,140"
+			},
+			"offsets": {
+				"from": 1049940,
+				"to": 1054140
+			},
+			"text": " There's no guarantee for that at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,140",
+				"to": "00:17:36,620"
+			},
+			"offsets": {
+				"from": 1054140,
+				"to": 1056620
+			},
+			"text": " Actually, in practice, it's not that bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,620",
+				"to": "00:17:42,780"
+			},
+			"offsets": {
+				"from": 1056620,
+				"to": 1062780
+			},
+			"text": " So there is a upper upper bound that in the majority of cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,780",
+				"to": "00:17:46,580"
+			},
+			"offsets": {
+				"from": 1062780,
+				"to": 1066580
+			},
+			"text": " the number of hops will still be fairly low."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,580",
+				"to": "00:17:51,940"
+			},
+			"offsets": {
+				"from": 1066580,
+				"to": 1071940
+			},
+			"text": " So it's not catastrophic, but it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,140",
+				"to": "00:17:55,620"
+			},
+			"offsets": {
+				"from": 1072140,
+				"to": 1075620
+			},
+			"text": " definitely not optimal."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,620",
+				"to": "00:18:01,180"
+			},
+			"offsets": {
+				"from": 1075620,
+				"to": 1081180
+			},
+			"text": " And you can have rare but very painful searches."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,180",
+				"to": "00:18:04,020"
+			},
+			"offsets": {
+				"from": 1081180,
+				"to": 1084020
+			},
+			"text": " So, OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,020",
+				"to": "00:18:12,660"
+			},
+			"offsets": {
+				"from": 1084020,
+				"to": 1092660
+			},
+			"text": " But the basic, the basic, so I would not like to change the basic strategy"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,660",
+				"to": "00:18:16,140"
+			},
+			"offsets": {
+				"from": 1092660,
+				"to": 1096140
+			},
+			"text": " of connecting to a network."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,340",
+				"to": "00:18:23,820"
+			},
+			"offsets": {
+				"from": 1096340,
+				"to": 1103820
+			},
+			"text": " So we can keep the pattern that you connect to one node, you ask about its"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,820",
+				"to": "00:18:29,860"
+			},
+			"offsets": {
+				"from": 1103820,
+				"to": 1109860
+			},
+			"text": " neighbors, and then by some clever algorithm, you select to which ones to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,860",
+				"to": "00:18:31,340"
+			},
+			"offsets": {
+				"from": 1109860,
+				"to": 1111340
+			},
+			"text": " connect further."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,340",
+				"to": "00:18:36,020"
+			},
+			"offsets": {
+				"from": 1111340,
+				"to": 1116020
+			},
+			"text": " And actually, when somebody asks you about your neighbors, you can also be clever and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,020",
+				"to": "00:18:37,740"
+			},
+			"offsets": {
+				"from": 1116020,
+				"to": 1117740
+			},
+			"text": " not tell them everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,740",
+				"to": "00:18:43,060"
+			},
+			"offsets": {
+				"from": 1117740,
+				"to": 1123060
+			},
+			"text": " So by tweaking these two things, you can even stay compatible with the original"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,260",
+				"to": "00:18:50,220"
+			},
+			"offsets": {
+				"from": 1123260,
+				"to": 1130220
+			},
+			"text": " periodic, the periodic, the periodic, the periodic, the periodic, the periodic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,220",
+				"to": "00:18:56,660"
+			},
+			"offsets": {
+				"from": 1130220,
+				"to": 1136660
+			},
+			"text": " the periodic, the periodic, the periodic, the periodic, the periodic, the periodic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,660",
+				"to": "00:19:02,860"
+			},
+			"offsets": {
+				"from": 1136660,
+				"to": 1142860
+			},
+			"text": " the periodic, the periodic, the periodic, the periodic, the periodic, the periodic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,860",
+				"to": "00:19:08,260"
+			},
+			"offsets": {
+				"from": 1142860,
+				"to": 1148260
+			},
+			"text": " the periodic, the periodic, the periodic, the periodic, the periodic, the periodic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,260",
+				"to": "00:19:12,660"
+			},
+			"offsets": {
+				"from": 1148260,
+				"to": 1152660
+			},
+			"text": " the periodic, the periodic, the periodic, the periodic, the periodic, the periodic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,860",
+				"to": "00:19:18,660"
+			},
+			"offsets": {
+				"from": 1152860,
+				"to": 1158660
+			},
+			"text": " but this, this is a good example of the kind of graph that you, you will achieve."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,660",
+				"to": "00:19:24,460"
+			},
+			"offsets": {
+				"from": 1158660,
+				"to": 1164460
+			},
+			"text": " If you have a limited small number of neighbors, so this graph is, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,460",
+				"to": "00:19:30,460"
+			},
+			"offsets": {
+				"from": 1164460,
+				"to": 1170460
+			},
+			"text": " three regular, it can grow indefinitely and it still will have a logarithmic"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,460",
+				"to": "00:19:32,660"
+			},
+			"offsets": {
+				"from": 1170460,
+				"to": 1172660
+			},
+			"text": " diameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,660",
+				"to": "00:19:36,460"
+			},
+			"offsets": {
+				"from": 1172660,
+				"to": 1176460
+			},
+			"text": " So what it is is that there's this central node."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,460",
+				"to": "00:19:38,260"
+			},
+			"offsets": {
+				"from": 1176460,
+				"to": 1178260
+			},
+			"text": " It has three neighbors."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,460",
+				"to": "00:19:42,860"
+			},
+			"offsets": {
+				"from": 1178460,
+				"to": 1182860
+			},
+			"text": " These neighbors grow binary trees and the leaves of those binary trees are"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,860",
+				"to": "00:19:43,460"
+			},
+			"offsets": {
+				"from": 1182860,
+				"to": 1183460
+			},
+			"text": " connected."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,460",
+				"to": "00:19:52,060"
+			},
+			"offsets": {
+				"from": 1183460,
+				"to": 1192060
+			},
+			"text": " So this is a three regular graph, logarithmic diameter constant neighbor number."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,060",
+				"to": "00:19:53,260"
+			},
+			"offsets": {
+				"from": 1192060,
+				"to": 1193260
+			},
+			"text": " You can achieve this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,260",
+				"to": "00:19:57,860"
+			},
+			"offsets": {
+				"from": 1193260,
+				"to": 1197860
+			},
+			"text": " The problem is this with this is also that the centrality of the nodes is highly"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,860",
+				"to": "00:20:02,660"
+			},
+			"offsets": {
+				"from": 1197860,
+				"to": 1202660
+			},
+			"text": " variable, but the housekeeping overhead on the other hand is really, really, really"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,660",
+				"to": "00:20:03,260"
+			},
+			"offsets": {
+				"from": 1202660,
+				"to": 1203260
+			},
+			"text": " short."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,460",
+				"to": "00:20:10,060"
+			},
+			"offsets": {
+				"from": 1203460,
+				"to": 1210060
+			},
+			"text": " So if you just to tell you how these kinds of graphs are maintained, it's very"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,060",
+				"to": "00:20:13,860"
+			},
+			"offsets": {
+				"from": 1210060,
+				"to": 1213860
+			},
+			"text": " similar how real armies maintain their chain of commands."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,860",
+				"to": "00:20:19,260"
+			},
+			"offsets": {
+				"from": 1213860,
+				"to": 1219260
+			},
+			"text": " So if a general is killed, the army does not, does not collapse immediately."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,260",
+				"to": "00:20:23,260"
+			},
+			"offsets": {
+				"from": 1219260,
+				"to": 1223260
+			},
+			"text": " So there's always, you know, all the soldiers have a rank."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,260",
+				"to": "00:20:27,860"
+			},
+			"offsets": {
+				"from": 1223260,
+				"to": 1227860
+			},
+			"text": " They always know that, you know, if two soldiers who have not previously met this"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,860",
+				"to": "00:20:33,260"
+			},
+			"offsets": {
+				"from": 1227860,
+				"to": 1233260
+			},
+			"text": " organization is immediately established and, you know, they have some site connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,260",
+				"to": "00:20:37,860"
+			},
+			"offsets": {
+				"from": 1233260,
+				"to": 1237860
+			},
+			"text": " So it's about like where to connect in case some nodes fall out."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,860",
+				"to": "00:20:40,060"
+			},
+			"offsets": {
+				"from": 1237860,
+				"to": 1240060
+			},
+			"text": " So it's it's doable."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,060",
+				"to": "00:20:45,860"
+			},
+			"offsets": {
+				"from": 1240060,
+				"to": 1245860
+			},
+			"text": " So you can build in a decentralized fashion by each node only caring about its own"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,860",
+				"to": "00:20:46,460"
+			},
+			"offsets": {
+				"from": 1245860,
+				"to": 1246460
+			},
+			"text": " surrounding."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,460",
+				"to": "00:20:51,860"
+			},
+			"offsets": {
+				"from": 1246460,
+				"to": 1251860
+			},
+			"text": " You can build graphs like this, but I think that they're still too vulnerable and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,860",
+				"to": "00:20:58,260"
+			},
+			"offsets": {
+				"from": 1251860,
+				"to": 1258260
+			},
+			"text": " they place a they place too high a load on some central nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,460",
+				"to": "00:21:06,260"
+			},
+			"offsets": {
+				"from": 1258460,
+				"to": 1266260
+			},
+			"text": " Unfortunately, if you keep the degree of the nodes low, then and you want to maintain"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,260",
+				"to": "00:21:09,260"
+			},
+			"offsets": {
+				"from": 1266260,
+				"to": 1269260
+			},
+			"text": " a logarithmic diameter, you cannot avoid this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,260",
+				"to": "00:21:12,060"
+			},
+			"offsets": {
+				"from": 1269260,
+				"to": 1272060
+			},
+			"text": " That's a mathematical result."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,060",
+				"to": "00:21:20,660"
+			},
+			"offsets": {
+				"from": 1272060,
+				"to": 1280660
+			},
+			"text": " So what I propose is and what Gav also proposes is taking a page from Kadamlia."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,660",
+				"to": "00:21:25,460"
+			},
+			"offsets": {
+				"from": 1280660,
+				"to": 1285460
+			},
+			"text": " Kadamlia is not optimal in the sense that it doesn't take."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,660",
+				"to": "00:21:31,460"
+			},
+			"offsets": {
+				"from": 1285660,
+				"to": 1291460
+			},
+			"text": " So for a logarithmic number of neighbors, it has a diameter that is larger than"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,460",
+				"to": "00:21:36,660"
+			},
+			"offsets": {
+				"from": 1291460,
+				"to": 1296660
+			},
+			"text": " necessary and for the logarithmic diameter, it has a number of neighbors that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,660",
+				"to": "00:21:38,060"
+			},
+			"offsets": {
+				"from": 1296660,
+				"to": 1298060
+			},
+			"text": " larger than necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,060",
+				"to": "00:21:44,460"
+			},
+			"offsets": {
+				"from": 1298060,
+				"to": 1304460
+			},
+			"text": " So it's not it doesn't take anything to the extreme, but it's like both both"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,460",
+				"to": "00:21:47,260"
+			},
+			"offsets": {
+				"from": 1304460,
+				"to": 1307260
+			},
+			"text": " values are sort of acceptable."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,260",
+				"to": "00:21:51,660"
+			},
+			"offsets": {
+				"from": 1307260,
+				"to": 1311660
+			},
+			"text": " And for this, like this is an example, it's a hypercube."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,860",
+				"to": "00:21:54,460"
+			},
+			"offsets": {
+				"from": 1311860,
+				"to": 1314460
+			},
+			"text": " Hyper cubes are also like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,460",
+				"to": "00:22:00,660"
+			},
+			"offsets": {
+				"from": 1314460,
+				"to": 1320660
+			},
+			"text": " So Kadamlia results in hypercube hypercube like topologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,660",
+				"to": "00:22:02,660"
+			},
+			"offsets": {
+				"from": 1320660,
+				"to": 1322660
+			},
+			"text": " So here every node."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,660",
+				"to": "00:22:09,460"
+			},
+			"offsets": {
+				"from": 1322660,
+				"to": 1329460
+			},
+			"text": " So there are 16 nodes here and everyone each one has four degrees."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,460",
+				"to": "00:22:14,660"
+			},
+			"offsets": {
+				"from": 1329460,
+				"to": 1334660
+			},
+			"text": " Kadamlia has a low housekeeping overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,660",
+				"to": "00:22:17,460"
+			},
+			"offsets": {
+				"from": 1334660,
+				"to": 1337460
+			},
+			"text": " It has a perfectly uniform centrality."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,660",
+				"to": "00:22:23,460"
+			},
+			"offsets": {
+				"from": 1337660,
+				"to": 1343460
+			},
+			"text": " And I think what's most convincing is that it already operates in a highly"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,460",
+				"to": "00:22:34,660"
+			},
+			"offsets": {
+				"from": 1343460,
+				"to": 1354660
+			},
+			"text": " hostile environment because Kadamlia is used as the DHT for the trackerless"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,660",
+				"to": "00:22:41,060"
+			},
+			"offsets": {
+				"from": 1354660,
+				"to": 1361060
+			},
+			"text": " torrents and you know, there are many highly funded organizations trying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,060",
+				"to": "00:22:45,260"
+			},
+			"offsets": {
+				"from": 1361060,
+				"to": 1365260
+			},
+			"text": " disrupt that network and they don't generally succeed."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,460",
+				"to": "00:22:48,660"
+			},
+			"offsets": {
+				"from": 1365460,
+				"to": 1368660
+			},
+			"text": " So it it looks like a good idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,660",
+				"to": "00:22:56,660"
+			},
+			"offsets": {
+				"from": 1368660,
+				"to": 1376660
+			},
+			"text": " So we would like to take many ideas and maybe quite a bit of code from Kadamlia."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,660",
+				"to": "00:23:00,660"
+			},
+			"offsets": {
+				"from": 1376660,
+				"to": 1380660
+			},
+			"text": " It has the notion of the routing table."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,660",
+				"to": "00:23:10,260"
+			},
+			"offsets": {
+				"from": 1380660,
+				"to": 1390260
+			},
+			"text": " The routing table is basically how the how the node structures its neighbors."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,460",
+				"to": "00:23:16,660"
+			},
+			"offsets": {
+				"from": 1390460,
+				"to": 1396660
+			},
+			"text": " So it has short list of live neighbors."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,660",
+				"to": "00:23:21,860"
+			},
+			"offsets": {
+				"from": 1396660,
+				"to": 1401860
+			},
+			"text": " The length of each list is maximized at some small number, which is typically"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,860",
+				"to": "00:23:23,260"
+			},
+			"offsets": {
+				"from": 1401860,
+				"to": 1403260
+			},
+			"text": " between five and twenty."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,260",
+				"to": "00:23:25,660"
+			},
+			"offsets": {
+				"from": 1403260,
+				"to": 1405660
+			},
+			"text": " So it's not really a large number."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,660",
+				"to": "00:23:31,060"
+			},
+			"offsets": {
+				"from": 1405660,
+				"to": 1411060
+			},
+			"text": " And for each bit of the address, they have at most one list."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,060",
+				"to": "00:23:40,260"
+			},
+			"offsets": {
+				"from": 1411060,
+				"to": 1420260
+			},
+			"text": " So the bits means that so for each each of these lists correspond"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,260",
+				"to": "00:23:46,060"
+			},
+			"offsets": {
+				"from": 1420260,
+				"to": 1426060
+			},
+			"text": " to nodes whose address is the same up to that bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,060",
+				"to": "00:23:50,460"
+			},
+			"offsets": {
+				"from": 1426060,
+				"to": 1430460
+			},
+			"text": " So the first list doesn't require any."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,460",
+				"to": "00:23:54,660"
+			},
+			"offsets": {
+				"from": 1430460,
+				"to": 1434660
+			},
+			"text": " It differs even in the first bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,660",
+				"to": "00:24:01,860"
+			},
+			"offsets": {
+				"from": 1434660,
+				"to": 1441860
+			},
+			"text": " And the last address is what the last list, which is where it is almost always"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,860",
+				"to": "00:24:08,260"
+			},
+			"offsets": {
+				"from": 1441860,
+				"to": 1448260
+			},
+			"text": " empty, of course, but the last list contains nodes, which contains the node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,460",
+				"to": "00:24:09,860"
+			},
+			"offsets": {
+				"from": 1448460,
+				"to": 1449860
+			},
+			"text": " which differs in only one bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,860",
+				"to": "00:24:15,060"
+			},
+			"offsets": {
+				"from": 1449860,
+				"to": 1455060
+			},
+			"text": " Of course, it never happens in practice, but even that list is has something in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,060",
+				"to": "00:24:20,060"
+			},
+			"offsets": {
+				"from": 1455060,
+				"to": 1460060
+			},
+			"text": " So Kadamlia has a very peculiar distance measure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,060",
+				"to": "00:24:21,660"
+			},
+			"offsets": {
+				"from": 1460060,
+				"to": 1461660
+			},
+			"text": " It's the XOR matrix."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,660",
+				"to": "00:24:27,660"
+			},
+			"offsets": {
+				"from": 1461660,
+				"to": 1467660
+			},
+			"text": " So they take the XOR of the two addresses and treat it as a binary number."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,660",
+				"to": "00:24:35,460"
+			},
+			"offsets": {
+				"from": 1467660,
+				"to": 1475460
+			},
+			"text": " Say good exercise to check that it's really a distance measure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,660",
+				"to": "00:24:42,660"
+			},
+			"offsets": {
+				"from": 1475660,
+				"to": 1482660
+			},
+			"text": " When a node asks another node about the neighbors that they know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,660",
+				"to": "00:24:48,460"
+			},
+			"offsets": {
+				"from": 1482660,
+				"to": 1488460
+			},
+			"text": " you don't tell them the entire routing table, you tell them only one list."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,460",
+				"to": "00:24:55,460"
+			},
+			"offsets": {
+				"from": 1488460,
+				"to": 1495460
+			},
+			"text": " So for each lookup, you try to for each lookup that another node makes"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,460",
+				"to": "00:25:01,260"
+			},
+			"offsets": {
+				"from": 1495460,
+				"to": 1501260
+			},
+			"text": " a lookup request makes at you what you do, you try to place that lookup on your lists."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,260",
+				"to": "00:25:05,160"
+			},
+			"offsets": {
+				"from": 1501260,
+				"to": 1505160
+			},
+			"text": " So which list corresponds to that lookup and you reveal only that list."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,360",
+				"to": "00:25:10,360"
+			},
+			"offsets": {
+				"from": 1505360,
+				"to": 1510360
+			},
+			"text": " So you don't upload your entire routing table."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,360",
+				"to": "00:25:15,760"
+			},
+			"offsets": {
+				"from": 1510360,
+				"to": 1515760
+			},
+			"text": " And when you are updating your routing tables because some new nodes come in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,760",
+				"to": "00:25:23,360"
+			},
+			"offsets": {
+				"from": 1515760,
+				"to": 1523360
+			},
+			"text": " you learn about some new nodes, then what you do is when a list gets full,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,360",
+				"to": "00:25:30,960"
+			},
+			"offsets": {
+				"from": 1523360,
+				"to": 1530960
+			},
+			"text": " then if the list is for longer matching prefixes, so there's some space in longer matching"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,160",
+				"to": "00:25:35,760"
+			},
+			"offsets": {
+				"from": 1531160,
+				"to": 1535760
+			},
+			"text": " prefixes, so the list."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,760",
+				"to": "00:25:41,160"
+			},
+			"offsets": {
+				"from": 1535760,
+				"to": 1541160
+			},
+			"text": " So for example, you have a list for three matching bits, but you don't have a list"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,160",
+				"to": "00:25:48,360"
+			},
+			"offsets": {
+				"from": 1541160,
+				"to": 1548360
+			},
+			"text": " for four matching bits, then what you do is you split this list into two."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,360",
+				"to": "00:25:54,160"
+			},
+			"offsets": {
+				"from": 1548360,
+				"to": 1554160
+			},
+			"text": " And you start the new list for the longer prefix."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,160",
+				"to": "00:26:00,960"
+			},
+			"offsets": {
+				"from": 1554160,
+				"to": 1560960
+			},
+			"text": " Otherwise, if the list is full and it's on the, the new node is on the far end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:00,960",
+				"to": "00:26:06,960"
+			},
+			"offsets": {
+				"from": 1560960,
+				"to": 1566960
+			},
+			"text": " then what you do is you simply forget the node that, you know, that is the worst"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,960",
+				"to": "00:26:08,560"
+			},
+			"offsets": {
+				"from": 1566960,
+				"to": 1568560
+			},
+			"text": " by some criteria."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,560",
+				"to": "00:26:15,760"
+			},
+			"offsets": {
+				"from": 1568560,
+				"to": 1575760
+			},
+			"text": " What Kadamlia does is it regularly pings the nodes and from whichever it heard last,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,760",
+				"to": "00:26:16,960"
+			},
+			"offsets": {
+				"from": 1575760,
+				"to": 1576960
+			},
+			"text": " it will delete."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,960",
+				"to": "00:26:22,960"
+			},
+			"offsets": {
+				"from": 1576960,
+				"to": 1582960
+			},
+			"text": " We might do something similar or we might have some other criteria by which to rank"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,960",
+				"to": "00:26:28,360"
+			},
+			"offsets": {
+				"from": 1582960,
+				"to": 1588360
+			},
+			"text": " the nodes, it doesn't really matter all that much, but it provides some way to control"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,560",
+				"to": "00:26:32,760"
+			},
+			"offsets": {
+				"from": 1588560,
+				"to": 1592760
+			},
+			"text": " the quality and there is a lens of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,760",
+				"to": "00:26:35,760"
+			},
+			"offsets": {
+				"from": 1592760,
+				"to": 1595760
+			},
+			"text": " So how do you join a network like this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,760",
+				"to": "00:26:42,160"
+			},
+			"offsets": {
+				"from": 1595760,
+				"to": 1602160
+			},
+			"text": " You learn about one bootstrap node, you connect to it, you register with the bootstrap"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,160",
+				"to": "00:26:47,760"
+			},
+			"offsets": {
+				"from": 1602160,
+				"to": 1607760
+			},
+			"text": " node, so basically the bootstrap node adds you to the list where you belong."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,760",
+				"to": "00:26:51,360"
+			},
+			"offsets": {
+				"from": 1607760,
+				"to": 1611360
+			},
+			"text": " Then you do a self lookup with the bootstrap node."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,360",
+				"to": "00:26:57,760"
+			},
+			"offsets": {
+				"from": 1611360,
+				"to": 1617760
+			},
+			"text": " You try to look up yourself so you download that particular list in which you"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,960",
+				"to": "00:27:05,560"
+			},
+			"offsets": {
+				"from": 1617960,
+				"to": 1625560
+			},
+			"text": " have been, to which you have been placed, you download the entire list."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,560",
+				"to": "00:27:12,160"
+			},
+			"offsets": {
+				"from": 1625560,
+				"to": 1632160
+			},
+			"text": " And then you insert those, you insert those nodes one by one into your routing table"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,160",
+				"to": "00:27:15,760"
+			},
+			"offsets": {
+				"from": 1632160,
+				"to": 1635760
+			},
+			"text": " and, you know, handle it the way they should be handled."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,760",
+				"to": "00:27:21,760"
+			},
+			"offsets": {
+				"from": 1635760,
+				"to": 1641760
+			},
+			"text": " And then you generate a random address in the range, which is one bit further than"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,760",
+				"to": "00:27:23,760"
+			},
+			"offsets": {
+				"from": 1641760,
+				"to": 1643760
+			},
+			"text": " the bootstrap node."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,960",
+				"to": "00:27:28,560"
+			},
+			"offsets": {
+				"from": 1643960,
+				"to": 1648560
+			},
+			"text": " And you make a lookup for that address and that also gives you some nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:28,560",
+				"to": "00:27:34,760"
+			},
+			"offsets": {
+				"from": 1648560,
+				"to": 1654760
+			},
+			"text": " And this way you have joined the network and you have established yourself as a equally"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:34,760",
+				"to": "00:27:37,360"
+			},
+			"offsets": {
+				"from": 1654760,
+				"to": 1657360
+			},
+			"text": " central node as everybody else."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,360",
+				"to": "00:27:43,360"
+			},
+			"offsets": {
+				"from": 1657360,
+				"to": 1663360
+			},
+			"text": " So the point of this exercise is that when you join this network, it's not that you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,360",
+				"to": "00:27:48,360"
+			},
+			"offsets": {
+				"from": 1663360,
+				"to": 1668360
+			},
+			"text": " going to be somewhere on the outskirts of the network, but you will establish yourself"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:48,360",
+				"to": "00:27:53,160"
+			},
+			"offsets": {
+				"from": 1668360,
+				"to": 1673160
+			},
+			"text": " with deep enough connections so that you're just as central as any other node."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,360",
+				"to": "00:27:57,360"
+			},
+			"offsets": {
+				"from": 1673360,
+				"to": 1677360
+			},
+			"text": " So it provides a uniformity."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,360",
+				"to": "00:28:00,760"
+			},
+			"offsets": {
+				"from": 1677360,
+				"to": 1680760
+			},
+			"text": " And there are some big open questions about what we do."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,760",
+				"to": "00:28:05,960"
+			},
+			"offsets": {
+				"from": 1680760,
+				"to": 1685960
+			},
+			"text": " So first there's this thing that are we going to do this over UDP or TCP?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,960",
+				"to": "00:28:10,160"
+			},
+			"offsets": {
+				"from": 1685960,
+				"to": 1690160
+			},
+			"text": " Now, since all the packets that we are sending around, they're short."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,160",
+				"to": "00:28:18,560"
+			},
+			"offsets": {
+				"from": 1690160,
+				"to": 1698560
+			},
+			"text": " And since UDP is much easier to to send around, send through firewalls and not"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,760",
+				"to": "00:28:22,560"
+			},
+			"offsets": {
+				"from": 1698760,
+				"to": 1702560
+			},
+			"text": " some things like that, I'm actually leaning towards UDP."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,560",
+				"to": "00:28:28,960"
+			},
+			"offsets": {
+				"from": 1702560,
+				"to": 1708960
+			},
+			"text": " And that means that maybe this thing should have a separate"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,960",
+				"to": "00:28:37,560"
+			},
+			"offsets": {
+				"from": 1708960,
+				"to": 1717560
+			},
+			"text": " layer with a separate network layer from the peer to peer protocol that has been"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,560",
+				"to": "00:28:39,960"
+			},
+			"offsets": {
+				"from": 1717560,
+				"to": 1719960
+			},
+			"text": " presented to talks ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,960",
+				"to": "00:28:42,160"
+			},
+			"offsets": {
+				"from": 1719960,
+				"to": 1722160
+			},
+			"text": " Then there's the second question."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:42,160",
+				"to": "00:28:44,360"
+			},
+			"offsets": {
+				"from": 1722160,
+				"to": 1724360
+			},
+			"text": " These two are somewhat related."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:44,360",
+				"to": "00:28:46,560"
+			},
+			"offsets": {
+				"from": 1724360,
+				"to": 1726560
+			},
+			"text": " So not tunneling."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,760",
+				"to": "00:28:53,160"
+			},
+			"offsets": {
+				"from": 1726760,
+				"to": 1733160
+			},
+			"text": " When you're tunneling through not, you either do it by routing your traffic through"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:53,160",
+				"to": "00:29:00,160"
+			},
+			"offsets": {
+				"from": 1733160,
+				"to": 1740160
+			},
+			"text": " some third node, which is really bad, or you really try to borrow a hole through"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,160",
+				"to": "00:29:01,760"
+			},
+			"offsets": {
+				"from": 1740160,
+				"to": 1741760
+			},
+			"text": " the not firewall."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:01,760",
+				"to": "00:29:08,960"
+			},
+			"offsets": {
+				"from": 1741760,
+				"to": 1748960
+			},
+			"text": " You do that by spraying each other with UDPs with random source and destination ports"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,960",
+				"to": "00:29:16,560"
+			},
+			"offsets": {
+				"from": 1748960,
+				"to": 1756560
+			},
+			"text": " and rely on the birthday paradox on one of the requests being an answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,560",
+				"to": "00:29:18,160"
+			},
+			"offsets": {
+				"from": 1756560,
+				"to": 1758160
+			},
+			"text": " To another request."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,160",
+				"to": "00:29:22,960"
+			},
+			"offsets": {
+				"from": 1758160,
+				"to": 1762960
+			},
+			"text": " And from that point on the routers will pass those two."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:22,960",
+				"to": "00:29:28,360"
+			},
+			"offsets": {
+				"from": 1762960,
+				"to": 1768360
+			},
+			"text": " That specific source port and that specific destination port right through"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,360",
+				"to": "00:29:30,360"
+			},
+			"offsets": {
+				"from": 1768360,
+				"to": 1770360
+			},
+			"text": " the not firewall."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:30,360",
+				"to": "00:29:37,760"
+			},
+			"offsets": {
+				"from": 1770360,
+				"to": 1777760
+			},
+			"text": " But the problem is that in this case, the establishment of a connection is slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:37,760",
+				"to": "00:29:41,160"
+			},
+			"offsets": {
+				"from": 1777760,
+				"to": 1781160
+			},
+			"text": " So it's really not something that you want to change."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:41,360",
+				"to": "00:29:47,360"
+			},
+			"offsets": {
+				"from": 1781360,
+				"to": 1787360
+			},
+			"text": " So in this case, instead, so the what Kadamlia does and what the Victorants"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,360",
+				"to": "00:29:52,760"
+			},
+			"offsets": {
+				"from": 1787360,
+				"to": 1792760
+			},
+			"text": " implementation of it does is that it never routes data through nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:52,760",
+				"to": "00:29:57,160"
+			},
+			"offsets": {
+				"from": 1792760,
+				"to": 1797160
+			},
+			"text": " It always gives you an address that if you're interested in this particular piece,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,160",
+				"to": "00:29:59,960"
+			},
+			"offsets": {
+				"from": 1797160,
+				"to": 1799960
+			},
+			"text": " here's an address go as bad guy."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,960",
+				"to": "00:30:05,760"
+			},
+			"offsets": {
+				"from": 1799960,
+				"to": 1805760
+			},
+			"text": " But if we're doing not tunneling, then this is an expensive and slow step."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,760",
+				"to": "00:30:08,360"
+			},
+			"offsets": {
+				"from": 1805760,
+				"to": 1808360
+			},
+			"text": " So we might not want to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,560",
+				"to": "00:30:13,160"
+			},
+			"offsets": {
+				"from": 1808560,
+				"to": 1813160
+			},
+			"text": " Maybe we want to pass around information and maybe we even need to be somewhat"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:13,160",
+				"to": "00:30:17,560"
+			},
+			"offsets": {
+				"from": 1813160,
+				"to": 1817560
+			},
+			"text": " adaptable like distinguish between nodes behind not firewalls and other nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:17,560",
+				"to": "00:30:21,360"
+			},
+			"offsets": {
+				"from": 1817560,
+				"to": 1821360
+			},
+			"text": " which have a public IP address."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:21,360",
+				"to": "00:30:24,760"
+			},
+			"offsets": {
+				"from": 1821360,
+				"to": 1824760
+			},
+			"text": " Another good question is what are we going to do with spam?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:24,760",
+				"to": "00:30:32,760"
+			},
+			"offsets": {
+				"from": 1824760,
+				"to": 1832760
+			},
+			"text": " Because if we implement this directly, then anybody can, you know, force it to store"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,960",
+				"to": "00:30:41,960"
+			},
+			"offsets": {
+				"from": 1832960,
+				"to": 1841960
+			},
+			"text": " whatever information to which there's to which it knows the hash, but whether"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,960",
+				"to": "00:30:45,560"
+			},
+			"offsets": {
+				"from": 1841960,
+				"to": 1845560
+			},
+			"text": " this information is useful or not is anybody's guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:45,560",
+				"to": "00:30:51,560"
+			},
+			"offsets": {
+				"from": 1845560,
+				"to": 1851560
+			},
+			"text": " And this also gives us this also leads us to the question of incentives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:51,560",
+				"to": "00:30:57,360"
+			},
+			"offsets": {
+				"from": 1851560,
+				"to": 1857360
+			},
+			"text": " which really depends on what this thing is going to be used for."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:57,360",
+				"to": "00:30:59,960"
+			},
+			"offsets": {
+				"from": 1857360,
+				"to": 1859960
+			},
+			"text": " And, you know, there are many other open questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:00,160",
+				"to": "00:31:07,960"
+			},
+			"offsets": {
+				"from": 1860160,
+				"to": 1867960
+			},
+			"text": " I think that at this point we start the Q&A session and maybe on Friday,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:07,960",
+				"to": "00:31:12,560"
+			},
+			"offsets": {
+				"from": 1867960,
+				"to": 1872560
+			},
+			"text": " we should have a discussion about what to do with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:12,560",
+				"to": "00:31:20,760"
+			},
+			"offsets": {
+				"from": 1872560,
+				"to": 1880760
+			},
+			"text": " So a little bit to elaborate about how I joined to network and what information"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:20,760",
+				"to": "00:31:27,760"
+			},
+			"offsets": {
+				"from": 1880760,
+				"to": 1887760
+			},
+			"text": " the key that I enjoyed to provide me, like maybe the level of the of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:27,960",
+				"to": "00:31:31,760"
+			},
+			"offsets": {
+				"from": 1887960,
+				"to": 1891760
+			},
+			"text": " quality of the edit, like in the general or the whole group."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:31,760",
+				"to": "00:31:36,760"
+			},
+			"offsets": {
+				"from": 1891760,
+				"to": 1896760
+			},
+			"text": " No, no, in this case, when you're in Kdenumlia, there's no rank."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:36,760",
+				"to": "00:31:38,560"
+			},
+			"offsets": {
+				"from": 1896760,
+				"to": 1898560
+			},
+			"text": " Everybody is equal."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:38,560",
+				"to": "00:31:43,160"
+			},
+			"offsets": {
+				"from": 1898560,
+				"to": 1903160
+			},
+			"text": " So what you do is you connect to one node that is already a member."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:43,160",
+				"to": "00:31:45,560"
+			},
+			"offsets": {
+				"from": 1903160,
+				"to": 1905560
+			},
+			"text": " That's how you bootstrap."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:45,560",
+				"to": "00:31:47,960"
+			},
+			"offsets": {
+				"from": 1905560,
+				"to": 1907960
+			},
+			"text": " Then you register with that node."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:47,960",
+				"to": "00:31:53,160"
+			},
+			"offsets": {
+				"from": 1907960,
+				"to": 1913160
+			},
+			"text": " So you give your address to that node and that node puts it into the appropriate"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,160",
+				"to": "00:31:55,760"
+			},
+			"offsets": {
+				"from": 1913160,
+				"to": 1915760
+			},
+			"text": " list where it belongs."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:55,960",
+				"to": "00:31:59,360"
+			},
+			"offsets": {
+				"from": 1915960,
+				"to": 1919360
+			},
+			"text": " Then it gives you back the entire list."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:59,360",
+				"to": "00:32:06,360"
+			},
+			"offsets": {
+				"from": 1919360,
+				"to": 1926360
+			},
+			"text": " So it will you will have a list of addresses of valid nodes from the bootstrap"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:06,360",
+				"to": "00:32:12,360"
+			},
+			"offsets": {
+				"from": 1926360,
+				"to": 1932360
+			},
+			"text": " node. You insert all those addresses into your own routing table."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:12,360",
+				"to": "00:32:20,560"
+			},
+			"offsets": {
+				"from": 1932360,
+				"to": 1940560
+			},
+			"text": " And then with this routing table, you do a lookup of a random address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:20,760",
+				"to": "00:32:30,960"
+			},
+			"offsets": {
+				"from": 1940760,
+				"to": 1950960
+			},
+			"text": " which differs from the so it you look at the prefix which you share with the bootstrap"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:30,960",
+				"to": "00:32:41,240"
+			},
+			"offsets": {
+				"from": 1950960,
+				"to": 1961240
+			},
+			"text": " node and you take the you flip the bit that comes afterwards to the one that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:41,240",
+				"to": "00:32:45,160"
+			},
+			"offsets": {
+				"from": 1961240,
+				"to": 1965160
+			},
+			"text": " have, but not the bootstrap node and you fill up the rest of the bits with some"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:45,160",
+				"to": "00:32:48,760"
+			},
+			"offsets": {
+				"from": 1965160,
+				"to": 1968760
+			},
+			"text": " random binary values and you make a lookup."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:48,960",
+				"to": "00:32:55,560"
+			},
+			"offsets": {
+				"from": 1968960,
+				"to": 1975560
+			},
+			"text": " Now, how a lookup looks like with the lookup, you go to a node to the nearest node"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:55,560",
+				"to": "00:32:59,360"
+			},
+			"offsets": {
+				"from": 1975560,
+				"to": 1979360
+			},
+			"text": " that you can find in your routing table."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,360",
+				"to": "00:33:07,960"
+			},
+			"offsets": {
+				"from": 1979360,
+				"to": 1987960
+			},
+			"text": " And then you ask that next node to give you the corresponding list."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:07,960",
+				"to": "00:33:13,560"
+			},
+			"offsets": {
+				"from": 1987960,
+				"to": 1993560
+			},
+			"text": " You insert all those nodes into your routing table and then and then you keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:13,760",
+				"to": "00:33:18,360"
+			},
+			"offsets": {
+				"from": 1993760,
+				"to": 1998360
+			},
+			"text": " continuing until you find the nearest node."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:18,360",
+				"to": "00:33:23,160"
+			},
+			"offsets": {
+				"from": 1998360,
+				"to": 2003160
+			},
+			"text": " And of course, if along the way you find the actual content, then you download"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:23,160",
+				"to": "00:33:25,760"
+			},
+			"offsets": {
+				"from": 2003160,
+				"to": 2005760
+			},
+			"text": " that content, you don't you don't continue."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:25,760",
+				"to": "00:33:30,760"
+			},
+			"offsets": {
+				"from": 2005760,
+				"to": 2010760
+			},
+			"text": " But with a random lookup, the chances of that happening are negligible."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:30,760",
+				"to": "00:33:34,760"
+			},
+			"offsets": {
+				"from": 2010760,
+				"to": 2014760
+			},
+			"text": " So this is the organization of a lookup."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:34,760",
+				"to": "00:33:36,160"
+			},
+			"offsets": {
+				"from": 2014760,
+				"to": 2016160
+			},
+			"text": " It's like a circle."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:36,160",
+				"to": "00:33:38,960"
+			},
+			"offsets": {
+				"from": 2016160,
+				"to": 2018960
+			},
+			"text": " Everybody will take the circle, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:38,960",
+				"to": "00:33:40,960"
+			},
+			"offsets": {
+				"from": 2018960,
+				"to": 2020960
+			},
+			"text": " So it's no, it's not a circle."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:40,960",
+				"to": "00:33:42,160"
+			},
+			"offsets": {
+				"from": 2020960,
+				"to": 2022160
+			},
+			"text": " It's a hypercube."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:42,360",
+				"to": "00:33:47,960"
+			},
+			"offsets": {
+				"from": 2022360,
+				"to": 2027960
+			},
+			"text": " So what you do when you're looking up a node is that your a lookup is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:47,960",
+				"to": "00:33:55,360"
+			},
+			"offsets": {
+				"from": 2027960,
+				"to": 2035360
+			},
+			"text": " you always go one bit closer and you always go along the bit, which is higher"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:55,360",
+				"to": "00:34:01,160"
+			},
+			"offsets": {
+				"from": 2035360,
+				"to": 2041160
+			},
+			"text": " like has a highest so higher order bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:01,160",
+				"to": "00:34:05,360"
+			},
+			"offsets": {
+				"from": 2041160,
+				"to": 2045360
+			},
+			"text": " So it's always like let's suppose this direction, the vertical direction is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:05,360",
+				"to": "00:34:06,760"
+			},
+			"offsets": {
+				"from": 2045360,
+				"to": 2046760
+			},
+			"text": " hypercube direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:06,760",
+				"to": "00:34:11,560"
+			},
+			"offsets": {
+				"from": 2046760,
+				"to": 2051560
+			},
+			"text": " So whenever you go from this node to this node, you always go along one"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:11,760",
+				"to": "00:34:16,160"
+			},
+			"offsets": {
+				"from": 2051760,
+				"to": 2056160
+			},
+			"text": " and actually closer, but you always follow the same order of bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:16,160",
+				"to": "00:34:21,160"
+			},
+			"offsets": {
+				"from": 2056160,
+				"to": 2061160
+			},
+			"text": " That's how you do the lookup and your guaranteed to have a logarithmic number"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:21,160",
+				"to": "00:34:27,760"
+			},
+			"offsets": {
+				"from": 2061160,
+				"to": 2067760
+			},
+			"text": " because with each with each hop, the number of common bits increases at least"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:27,760",
+				"to": "00:34:29,360"
+			},
+			"offsets": {
+				"from": 2067760,
+				"to": 2069360
+			},
+			"text": " by one."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:29,360",
+				"to": "00:34:33,960"
+			},
+			"offsets": {
+				"from": 2069360,
+				"to": 2073960
+			},
+			"text": " So it gives you a guarantee on the diameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:33,960",
+				"to": "00:34:38,360"
+			},
+			"offsets": {
+				"from": 2073960,
+				"to": 2078360
+			},
+			"text": " Okay, next question."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:38,560",
+				"to": "00:34:42,360"
+			},
+			"offsets": {
+				"from": 2078560,
+				"to": 2082360
+			},
+			"text": " What is the category of the engineering span?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:42,360",
+				"to": "00:34:44,360"
+			},
+			"offsets": {
+				"from": 2082360,
+				"to": 2084360
+			},
+			"text": " So the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:44,360",
+				"to": "00:34:51,560"
+			},
+			"offsets": {
+				"from": 2084360,
+				"to": 2091560
+			},
+			"text": " Well, in case of the torrent, since they have, since it's mutable, so it's not the"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:51,560",
+				"to": "00:34:57,560"
+			},
+			"offsets": {
+				"from": 2091560,
+				"to": 2097560
+			},
+			"text": " same as here, it just overrides the key and it forgets gracefully old key."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:57,560",
+				"to": "00:35:01,760"
+			},
+			"offsets": {
+				"from": 2097560,
+				"to": 2101760
+			},
+			"text": " So when, so in case of the, in case of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:01,960",
+				"to": "00:35:07,960"
+			},
+			"offsets": {
+				"from": 2101960,
+				"to": 2107960
+			},
+			"text": " torrent, the information is not really valuable. So it, they just throw away"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:07,960",
+				"to": "00:35:10,760"
+			},
+			"offsets": {
+				"from": 2107960,
+				"to": 2110760
+			},
+			"text": " information that hasn't been queried for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,760",
+				"to": "00:35:13,960"
+			},
+			"offsets": {
+				"from": 2110760,
+				"to": 2113960
+			},
+			"text": " That's all they do. And it's, it's efficient for their purpose."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:13,960",
+				"to": "00:35:16,960"
+			},
+			"offsets": {
+				"from": 2113960,
+				"to": 2116960
+			},
+			"text": " And it might be sufficient for our purpose as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:16,960",
+				"to": "00:35:20,960"
+			},
+			"offsets": {
+				"from": 2116960,
+				"to": 2120960
+			},
+			"text": " I don't know. It depends on really what we're going to use it for."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:20,960",
+				"to": "00:35:23,160"
+			},
+			"offsets": {
+				"from": 2120960,
+				"to": 2123160
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:23,160",
+				"to": "00:35:25,360"
+			},
+			"offsets": {
+				"from": 2123160,
+				"to": 2125360
+			},
+			"text": " So what are we using for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:25,360",
+				"to": "00:35:26,560"
+			},
+			"offsets": {
+				"from": 2125360,
+				"to": 2126560
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:26,760",
+				"to": "00:35:56,760"
+			},
+			"offsets": {
+				"from": 2126760,
+				"to": 2156760
+			},
+			"text": " So the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:56,760",
+				"to": "00:36:00,760"
+			},
+			"offsets": {
+				"from": 2156760,
+				"to": 2160760
+			},
+			"text": " So it's kind of like a public utility, like a formation."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:00,760",
+				"to": "00:36:01,560"
+			},
+			"offsets": {
+				"from": 2160760,
+				"to": 2161560
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:01,560",
+				"to": "00:36:06,960"
+			},
+			"offsets": {
+				"from": 2161560,
+				"to": 2166960
+			},
+			"text": " So if the bootstrap dies, we're going to want to know how to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:06,960",
+				"to": "00:36:08,760"
+			},
+			"offsets": {
+				"from": 2166960,
+				"to": 2168760
+			},
+			"text": " Well, you need to find one."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:08,760",
+				"to": "00:36:13,560"
+			},
+			"offsets": {
+				"from": 2168760,
+				"to": 2173560
+			},
+			"text": " So for example, there are some botnets that also organize themselves into"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:13,560",
+				"to": "00:36:15,160"
+			},
+			"offsets": {
+				"from": 2173560,
+				"to": 2175160
+			},
+			"text": " cadmium-like networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:15,160",
+				"to": "00:36:19,360"
+			},
+			"offsets": {
+				"from": 2175160,
+				"to": 2179360
+			},
+			"text": " And what they do is they just program them IP addresses until they find."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:19,360",
+				"to": "00:36:22,560"
+			},
+			"offsets": {
+				"from": 2179360,
+				"to": 2182560
+			},
+			"text": " Do you need some type of watch though?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:22,760",
+				"to": "00:36:26,960"
+			},
+			"offsets": {
+				"from": 2182760,
+				"to": 2186960
+			},
+			"text": " Well, were you download a recent list from a website?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:26,960",
+				"to": "00:36:31,760"
+			},
+			"offsets": {
+				"from": 2186960,
+				"to": 2191760
+			},
+			"text": " It's, and you know, you go through it and the first note that you find is OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:31,760",
+				"to": "00:36:36,360"
+			},
+			"offsets": {
+				"from": 2191760,
+				"to": 2196360
+			},
+			"text": " So it's really, you need to find one note that is member of the network and then you're done."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:36,360",
+				"to": "00:36:40,560"
+			},
+			"offsets": {
+				"from": 2196360,
+				"to": 2200560
+			},
+			"text": " Don't forget it's on the same network as Ethereum, West by so."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:40,560",
+				"to": "00:36:41,160"
+			},
+			"offsets": {
+				"from": 2200560,
+				"to": 2201160
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:41,160",
+				"to": "00:36:45,360"
+			},
+			"offsets": {
+				"from": 2201160,
+				"to": 2205360
+			},
+			"text": " The chat, if you notice there, you'll actually find a swum."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:45,360",
+				"to": "00:36:49,560"
+			},
+			"offsets": {
+				"from": 2205360,
+				"to": 2209560
+			},
+			"text": " Do you remember the cost connections?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:49,560",
+				"to": "00:36:50,760"
+			},
+			"offsets": {
+				"from": 2209560,
+				"to": 2210760
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:50,960",
+				"to": "00:36:52,560"
+			},
+			"offsets": {
+				"from": 2210960,
+				"to": 2212560
+			},
+			"text": " Yeah, of course you save."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:52,560",
+				"to": "00:36:54,760"
+			},
+			"offsets": {
+				"from": 2212560,
+				"to": 2214760
+			},
+			"text": " You don't forget your routing table."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:54,760",
+				"to": "00:37:02,160"
+			},
+			"offsets": {
+				"from": 2214760,
+				"to": 2222160
+			},
+			"text": " So when you're switched on, then you renew your routing table, but you use the one that you had."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:02,160",
+				"to": "00:37:03,360"
+			},
+			"offsets": {
+				"from": 2222160,
+				"to": 2223360
+			},
+			"text": " Good."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:03,360",
+				"to": "00:37:07,360"
+			},
+			"offsets": {
+				"from": 2223360,
+				"to": 2227360
+			},
+			"text": " The second start already has a bunch of the most interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:07,360",
+				"to": "00:37:08,560"
+			},
+			"offsets": {
+				"from": 2227360,
+				"to": 2228560
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:08,560",
+				"to": "00:37:10,360"
+			},
+			"offsets": {
+				"from": 2228560,
+				"to": 2230360
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:10,360",
+				"to": "00:37:17,360"
+			},
+			"offsets": {
+				"from": 2230360,
+				"to": 2237360
+			},
+			"text": " How much great is the latency to post to make is"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:17,560",
+				"to": "00:37:22,360"
+			},
+			"offsets": {
+				"from": 2237560,
+				"to": 2242360
+			},
+			"text": " how much you can network to scale for you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:22,360",
+				"to": "00:37:26,960"
+			},
+			"offsets": {
+				"from": 2242360,
+				"to": 2246960
+			},
+			"text": " It really depends on how much information you store."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:26,960",
+				"to": "00:37:35,160"
+			},
+			"offsets": {
+				"from": 2246960,
+				"to": 2255160
+			},
+			"text": " So the latency in this setup really depends on how large your diameter is."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:35,160",
+				"to": "00:37:42,560"
+			},
+			"offsets": {
+				"from": 2255160,
+				"to": 2262560
+			},
+			"text": " But after this, how large your radius is, but once your radius has been exhausted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:42,560",
+				"to": "00:37:46,560"
+			},
+			"offsets": {
+				"from": 2262560,
+				"to": 2266560
+			},
+			"text": " then it depends on the diameter and actually, it can only slower."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:46,760",
+				"to": "00:37:52,360"
+			},
+			"offsets": {
+				"from": 2266760,
+				"to": 2272360
+			},
+			"text": " Like on a general scale free network, the diameter is logon over log logon."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:52,360",
+				"to": "00:37:58,360"
+			},
+			"offsets": {
+				"from": 2272360,
+				"to": 2278360
+			},
+			"text": " Whereas here it's logon, so it's slightly slower, but you know, the log log is not that big a deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:58,360",
+				"to": "00:38:04,160"
+			},
+			"offsets": {
+				"from": 2278360,
+				"to": 2284160
+			},
+			"text": " Are you going to talk tomorrow?"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:04,160",
+				"to": "00:38:08,760"
+			},
+			"offsets": {
+				"from": 2284160,
+				"to": 2288760
+			},
+			"text": " No, because it's the same talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:08,760",
+				"to": "00:38:10,560"
+			},
+			"offsets": {
+				"from": 2288760,
+				"to": 2290560
+			},
+			"text": " I didn't realize that this talk was awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:10,760",
+				"to": "00:38:19,160"
+			},
+			"offsets": {
+				"from": 2290760,
+				"to": 2299160
+			},
+			"text": " You mentioned a lot of times before that you have not used the whole VHT."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:19,160",
+				"to": "00:38:21,160"
+			},
+			"offsets": {
+				"from": 2299160,
+				"to": 2301160
+			},
+			"text": " Very different."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:21,160",
+				"to": "00:38:22,360"
+			},
+			"offsets": {
+				"from": 2301160,
+				"to": 2302360
+			},
+			"text": " Yes, there was."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:22,360",
+				"to": "00:38:24,760"
+			},
+			"offsets": {
+				"from": 2302360,
+				"to": 2304760
+			},
+			"text": " What was interesting about it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:24,760",
+				"to": "00:38:29,960"
+			},
+			"offsets": {
+				"from": 2304760,
+				"to": 2309960
+			},
+			"text": " So about this, the interesting thing is that you never need to revisit."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:29,960",
+				"to": "00:38:37,160"
+			},
+			"offsets": {
+				"from": 2309960,
+				"to": 2317160
+			},
+			"text": " You don't need to keep querying, but you don't need like flooding the network with new information."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:37,160",
+				"to": "00:38:38,360"
+			},
+			"offsets": {
+				"from": 2317160,
+				"to": 2318360
+			},
+			"text": " It's not an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:38,560",
+				"to": "00:38:43,560"
+			},
+			"offsets": {
+				"from": 2318560,
+				"to": 2323560
+			},
+			"text": " So here you can get away with if something is asked of you that you don't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:43,560",
+				"to": "00:38:47,960"
+			},
+			"offsets": {
+				"from": 2323560,
+				"to": 2327960
+			},
+			"text": " then you find it and you store it for later reference."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:47,960",
+				"to": "00:38:55,360"
+			},
+			"offsets": {
+				"from": 2327960,
+				"to": 2335360
+			},
+			"text": " And you know how to flood the network with new information is not an issue here"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:55,360",
+				"to": "00:38:57,160"
+			},
+			"offsets": {
+				"from": 2335360,
+				"to": 2337160
+			},
+			"text": " because it never gets over it."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:57,160",
+				"to": "00:39:00,360"
+			},
+			"offsets": {
+				"from": 2337160,
+				"to": 2340360
+			},
+			"text": " It propagates slowly and it's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:00,360",
+				"to": "00:39:03,960"
+			},
+			"offsets": {
+				"from": 2340360,
+				"to": 2343960
+			},
+			"text": " Basically any stupid tactic."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:04,160",
+				"to": "00:39:10,960"
+			},
+			"offsets": {
+				"from": 2344160,
+				"to": 2350960
+			},
+			"text": " For example, if you get some piece of information, you send it to the nearest two nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:10,960",
+				"to": "00:39:18,760"
+			},
+			"offsets": {
+				"from": 2350960,
+				"to": 2358760
+			},
+			"text": " that you can find, that's good enough because that will flood like it will go in the general direction"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:18,760",
+				"to": "00:39:21,160"
+			},
+			"offsets": {
+				"from": 2358760,
+				"to": 2361160
+			},
+			"text": " where it needs to be and it's okay for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:21,160",
+				"to": "00:39:27,960"
+			},
+			"offsets": {
+				"from": 2361160,
+				"to": 2367960
+			},
+			"text": " So you don't have to be very clever about how to make sure that new information propagates through the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:28,160",
+				"to": "00:39:36,160"
+			},
+			"offsets": {
+				"from": 2368160,
+				"to": 2376160
+			},
+			"text": " It's half of the code of the anomaly. You can safely leave that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:36,160",
+				"to": "00:39:37,360"
+			},
+			"offsets": {
+				"from": 2376160,
+				"to": 2377360
+			},
+			"text": " Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:37,360",
+				"to": "00:39:45,960"
+			},
+			"offsets": {
+				"from": 2377360,
+				"to": 2385960
+			},
+			"text": " We have this theme that we didn't choose to get the entries required"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:45,960",
+				"to": "00:39:49,960"
+			},
+			"offsets": {
+				"from": 2385960,
+				"to": 2389960
+			},
+			"text": " and we moved away prior to the entire..."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:49,960",
+				"to": "00:39:55,160"
+			},
+			"offsets": {
+				"from": 2389960,
+				"to": 2395160
+			},
+			"text": " For Richard Argystam."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:55,360",
+				"to": "00:39:58,360"
+			},
+			"offsets": {
+				"from": 2395360,
+				"to": 2398360
+			},
+			"text": " Good question because..."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:58,360",
+				"to": "00:40:01,160"
+			},
+			"offsets": {
+				"from": 2398360,
+				"to": 2401160
+			},
+			"text": " You keep it in there, you have to refresh it."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:01,160",
+				"to": "00:40:03,360"
+			},
+			"offsets": {
+				"from": 2401160,
+				"to": 2403360
+			},
+			"text": " Or somebody has to refresh it."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:03,360",
+				"to": "00:40:06,560"
+			},
+			"offsets": {
+				"from": 2403360,
+				"to": 2406560
+			},
+			"text": " If anyone refresh the spam..."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:06,560",
+				"to": "00:40:11,360"
+			},
+			"offsets": {
+				"from": 2406560,
+				"to": 2411360
+			},
+			"text": " Well, refreshing the spam costs, right? You need to query it continually."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:11,360",
+				"to": "00:40:12,360"
+			},
+			"offsets": {
+				"from": 2411360,
+				"to": 2412360
+			},
+			"text": " So do look up."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:12,360",
+				"to": "00:40:17,360"
+			},
+			"offsets": {
+				"from": 2412360,
+				"to": 2417360
+			},
+			"text": " So if you want to spam that way, it's probably doable."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:17,360",
+				"to": "00:40:19,960"
+			},
+			"offsets": {
+				"from": 2417360,
+				"to": 2419960
+			},
+			"text": " Like, I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:19,960",
+				"to": "00:40:22,360"
+			},
+			"offsets": {
+				"from": 2419960,
+				"to": 2422360
+			},
+			"text": " It really depends on what we're going to use it for."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:22,360",
+				"to": "00:40:25,160"
+			},
+			"offsets": {
+				"from": 2422360,
+				"to": 2425160
+			},
+			"text": " How do you incentivize..."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:25,160",
+				"to": "00:40:29,160"
+			},
+			"offsets": {
+				"from": 2425160,
+				"to": 2429160
+			},
+			"text": " This is an old network, basically. It stores anything you're here to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:29,160",
+				"to": "00:40:32,560"
+			},
+			"offsets": {
+				"from": 2429160,
+				"to": 2432560
+			},
+			"text": " It doesn't even have to fit into four kilowatts. You can split it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:32,560",
+				"to": "00:40:36,760"
+			},
+			"offsets": {
+				"from": 2432560,
+				"to": 2436760
+			},
+			"text": " You can store anything in it. There's no..."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:36,760",
+				"to": "00:40:38,360"
+			},
+			"offsets": {
+				"from": 2436760,
+				"to": 2438360
+			},
+			"text": " Yes, but the question is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:38,360",
+				"to": "00:40:41,560"
+			},
+			"offsets": {
+				"from": 2438360,
+				"to": 2441560
+			},
+			"text": " If you have to put something in this network, then you can keep it alive"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:41,560",
+				"to": "00:40:44,160"
+			},
+			"offsets": {
+				"from": 2441560,
+				"to": 2444160
+			},
+			"text": " and it doesn't take any costs too much to keep it alive."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:44,160",
+				"to": "00:40:47,160"
+			},
+			"offsets": {
+				"from": 2444160,
+				"to": 2447160
+			},
+			"text": " No, it doesn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:47,160",
+				"to": "00:40:51,160"
+			},
+			"offsets": {
+				"from": 2447160,
+				"to": 2451160
+			},
+			"text": " So basically what happens is shown here."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:51,360",
+				"to": "00:40:56,360"
+			},
+			"offsets": {
+				"from": 2451360,
+				"to": 2456360
+			},
+			"text": " So this is the relevant figure that if there's too much stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:56,360",
+				"to": "00:41:00,560"
+			},
+			"offsets": {
+				"from": 2456360,
+				"to": 2460560
+			},
+			"text": " and the notes cannot keep up, then there will be some blanks here."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:00,560",
+				"to": "00:41:02,960"
+			},
+			"offsets": {
+				"from": 2460560,
+				"to": 2462960
+			},
+			"text": " And then you need to decide what to throw out."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:02,960",
+				"to": "00:41:07,760"
+			},
+			"offsets": {
+				"from": 2462960,
+				"to": 2467760
+			},
+			"text": " Because if you throw out information, then these circles will grow again."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:07,760",
+				"to": "00:41:12,960"
+			},
+			"offsets": {
+				"from": 2467760,
+				"to": 2472960
+			},
+			"text": " So basically you need to decide what to throw out when you're full."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:12,960",
+				"to": "00:41:16,960"
+			},
+			"offsets": {
+				"from": 2472960,
+				"to": 2476960
+			},
+			"text": " I mean, when you're really full, when things get really bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:17,160",
+				"to": "00:41:22,160"
+			},
+			"offsets": {
+				"from": 2477160,
+				"to": 2482160
+			},
+			"text": " So when not only are you full, but you're radius is too small."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:22,160",
+				"to": "00:41:25,960"
+			},
+			"offsets": {
+				"from": 2482160,
+				"to": 2485960
+			},
+			"text": " Can you detect that this is happening?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:25,960",
+				"to": "00:41:34,960"
+			},
+			"offsets": {
+				"from": 2485960,
+				"to": 2494960
+			},
+			"text": " Yes, you can detect because the key value pair is not arbitrary."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:34,960",
+				"to": "00:41:39,960"
+			},
+			"offsets": {
+				"from": 2494960,
+				"to": 2499960
+			},
+			"text": " So it's a hash, so it's a uniform randomness."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:39,960",
+				"to": "00:41:43,160"
+			},
+			"offsets": {
+				"from": 2499960,
+				"to": 2503160
+			},
+			"text": " It's uniformly randomly distributed."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:43,360",
+				"to": "00:41:47,560"
+			},
+			"offsets": {
+				"from": 2503360,
+				"to": 2507560
+			},
+			"text": " So from that you can be sure of the density of information in your neighborhood"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:47,560",
+				"to": "00:41:50,160"
+			},
+			"offsets": {
+				"from": 2507560,
+				"to": 2510160
+			},
+			"text": " is the same as the density everywhere else."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:50,160",
+				"to": "00:41:56,160"
+			},
+			"offsets": {
+				"from": 2510160,
+				"to": 2516160
+			},
+			"text": " And from that you can make very accurate assumptions of how much information is stored in the whole network."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:56,160",
+				"to": "00:42:00,960"
+			},
+			"offsets": {
+				"from": 2516160,
+				"to": 2520960
+			},
+			"text": " But this still doesn't tell you whether there's a total income."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:00,960",
+				"to": "00:42:03,160"
+			},
+			"offsets": {
+				"from": 2520960,
+				"to": 2523160
+			},
+			"text": " Wow."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:03,160",
+				"to": "00:42:04,360"
+			},
+			"offsets": {
+				"from": 2523160,
+				"to": 2524360
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:04,360",
+				"to": "00:42:08,360"
+			},
+			"offsets": {
+				"from": 2524360,
+				"to": 2528360
+			},
+			"text": " No, you can make educated guesses about how bad the situation is."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:08,360",
+				"to": "00:42:12,160"
+			},
+			"offsets": {
+				"from": 2528360,
+				"to": 2532160
+			},
+			"text": " So that's another thing, just referring back to your question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:12,360",
+				"to": "00:42:17,760"
+			},
+			"offsets": {
+				"from": 2532360,
+				"to": 2537760
+			},
+			"text": " because of that, because you can be sure that the keys are distributed uniformly"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:17,760",
+				"to": "00:42:23,560"
+			},
+			"offsets": {
+				"from": 2537760,
+				"to": 2543560
+			},
+			"text": " and it's immutable, you can actually, from a local point of view of a node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:23,560",
+				"to": "00:42:29,360"
+			},
+			"offsets": {
+				"from": 2543560,
+				"to": 2549360
+			},
+			"text": " has a fairly good estimate of how full the whole network is."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:29,360",
+				"to": "00:42:32,960"
+			},
+			"offsets": {
+				"from": 2549360,
+				"to": 2552960
+			},
+			"text": " Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:32,960",
+				"to": "00:42:36,160"
+			},
+			"offsets": {
+				"from": 2552960,
+				"to": 2556160
+			},
+			"text": " How does it stay in the territory of roadmap for the swarm?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:36,160",
+				"to": "00:42:41,160"
+			},
+			"offsets": {
+				"from": 2556160,
+				"to": 2561160
+			},
+			"text": " So did it first be implemented using the form of librarians which are over to this or?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:41,360",
+				"to": "00:42:47,760"
+			},
+			"offsets": {
+				"from": 2561360,
+				"to": 2567760
+			},
+			"text": " I think so. So I think that it will not be in the next proof of concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:47,760",
+				"to": "00:42:51,560"
+			},
+			"offsets": {
+				"from": 2567760,
+				"to": 2571560
+			},
+			"text": " It will not be there, but in proof of concept number eight, it might."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:51,560",
+				"to": "00:42:54,360"
+			},
+			"offsets": {
+				"from": 2571560,
+				"to": 2574360
+			},
+			"text": " Right? That's where it belongs."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:54,360",
+				"to": "00:42:57,160"
+			},
+			"offsets": {
+				"from": 2574360,
+				"to": 2577160
+			},
+			"text": " That's, that's entirely feasible."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:57,160",
+				"to": "00:43:00,360"
+			},
+			"offsets": {
+				"from": 2577160,
+				"to": 2580360
+			},
+			"text": " So I think the target for this is concept eight."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:00,360",
+				"to": "00:43:03,160"
+			},
+			"offsets": {
+				"from": 2580360,
+				"to": 2583160
+			},
+			"text": " Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:03,160",
+				"to": "00:43:05,760"
+			},
+			"offsets": {
+				"from": 2583160,
+				"to": 2585760
+			},
+			"text": " Just use case. If you want to have a study that side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:05,960",
+				"to": "00:43:10,360"
+			},
+			"offsets": {
+				"from": 2585960,
+				"to": 2590360
+			},
+			"text": " you can face the theory on it, sub-couple key device, but if I always store it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:10,360",
+				"to": "00:43:13,160"
+			},
+			"offsets": {
+				"from": 2590360,
+				"to": 2593160
+			},
+			"text": " they will obviously be there for the one to download, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:13,160",
+				"to": "00:43:14,760"
+			},
+			"offsets": {
+				"from": 2593160,
+				"to": 2594760
+			},
+			"text": " That's how I would do this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:14,760",
+				"to": "00:43:18,960"
+			},
+			"offsets": {
+				"from": 2594760,
+				"to": 2598960
+			},
+			"text": " I'd serve off my website, store the stuff and even if no one's using it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:18,960",
+				"to": "00:43:22,960"
+			},
+			"offsets": {
+				"from": 2598960,
+				"to": 2602960
+			},
+			"text": " it's always kind of a use case for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:22,960",
+				"to": "00:43:25,560"
+			},
+			"offsets": {
+				"from": 2602960,
+				"to": 2605560
+			},
+			"text": " Yeah, you can use static content there."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:25,560",
+				"to": "00:43:27,160"
+			},
+			"offsets": {
+				"from": 2605560,
+				"to": 2607160
+			},
+			"text": " Actually, it would be..."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:27,160",
+				"to": "00:43:28,760"
+			},
+			"offsets": {
+				"from": 2607160,
+				"to": 2608760
+			},
+			"text": " Yeah, I mean, like, come on, check your lives, yeah?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:28,760",
+				"to": "00:43:29,560"
+			},
+			"offsets": {
+				"from": 2608760,
+				"to": 2609560
+			},
+			"text": " Yeah, sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:29,560",
+				"to": "00:43:30,760"
+			},
+			"offsets": {
+				"from": 2609560,
+				"to": 2610760
+			},
+			"text": " But that's also kind of span."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:30,960",
+				"to": "00:43:33,560"
+			},
+			"offsets": {
+				"from": 2610960,
+				"to": 2613560
+			},
+			"text": " I know, but I store it for me and please today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:33,560",
+				"to": "00:43:37,360"
+			},
+			"offsets": {
+				"from": 2613560,
+				"to": 2617360
+			},
+			"text": " I can throw it out from time to time, but it's still not timeable for someone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:37,360",
+				"to": "00:43:38,560"
+			},
+			"offsets": {
+				"from": 2617360,
+				"to": 2618560
+			},
+			"text": " Because I was doing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:38,560",
+				"to": "00:43:40,560"
+			},
+			"offsets": {
+				"from": 2618560,
+				"to": 2620560
+			},
+			"text": " You're seeing it, but that's what I consider."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:40,560",
+				"to": "00:43:42,560"
+			},
+			"offsets": {
+				"from": 2620560,
+				"to": 2622560
+			},
+			"text": " Yeah, it's, it's, it's possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:42,560",
+				"to": "00:43:44,160"
+			},
+			"offsets": {
+				"from": 2622560,
+				"to": 2624160
+			},
+			"text": " It is."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:44,160",
+				"to": "00:43:48,960"
+			},
+			"offsets": {
+				"from": 2624160,
+				"to": 2628960
+			},
+			"text": " Actually, I'm thinking about adding a HTTP interface just for fun,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:48,960",
+				"to": "00:43:53,760"
+			},
+			"offsets": {
+				"from": 2628960,
+				"to": 2633760
+			},
+			"text": " that when you enter a hash in the URL,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:53,760",
+				"to": "00:44:00,360"
+			},
+			"offsets": {
+				"from": 2633760,
+				"to": 2640360
+			},
+			"text": " then it will collect the corresponding pieces and, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:00,560",
+				"to": "00:44:03,560"
+			},
+			"offsets": {
+				"from": 2640560,
+				"to": 2643560
+			},
+			"text": " push out the entire content."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:03,560",
+				"to": "00:44:06,560"
+			},
+			"offsets": {
+				"from": 2643560,
+				"to": 2646560
+			},
+			"text": " But only for the local node."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:06,560",
+				"to": "00:44:11,560"
+			},
+			"offsets": {
+				"from": 2646560,
+				"to": 2651560
+			},
+			"text": " So it's only, no, no, no, it's only accessible from 127.001."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:11,560",
+				"to": "00:44:14,760"
+			},
+			"offsets": {
+				"from": 2651560,
+				"to": 2654760
+			},
+			"text": " It's not accessible from the other side."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:14,760",
+				"to": "00:44:17,560"
+			},
+			"offsets": {
+				"from": 2654760,
+				"to": 2657560
+			},
+			"text": " So one idea for spam prevention is to use the work"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:17,560",
+				"to": "00:44:19,760"
+			},
+			"offsets": {
+				"from": 2657560,
+				"to": 2659760
+			},
+			"text": " and keep the eyes before it's up in the table"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:19,760",
+				"to": "00:44:22,760"
+			},
+			"offsets": {
+				"from": 2659760,
+				"to": 2662760
+			},
+			"text": " and target kind of, like, not the workload."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:22,760",
+				"to": "00:44:24,960"
+			},
+			"offsets": {
+				"from": 2662760,
+				"to": 2664960
+			},
+			"text": " And that way blocks will always stay in there"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:24,960",
+				"to": "00:44:26,360"
+			},
+			"offsets": {
+				"from": 2664960,
+				"to": 2666360
+			},
+			"text": " because there will have the work."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:26,360",
+				"to": "00:44:28,560"
+			},
+			"offsets": {
+				"from": 2666360,
+				"to": 2668560
+			},
+			"text": " Locals, blocks, and trends, and policies."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:28,760",
+				"to": "00:44:31,360"
+			},
+			"offsets": {
+				"from": 2668760,
+				"to": 2671360
+			},
+			"text": " So it will always be hosted by our own nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:31,360",
+				"to": "00:44:35,160"
+			},
+			"offsets": {
+				"from": 2671360,
+				"to": 2675160
+			},
+			"text": " because they will store the data anyway because they're using."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:35,160",
+				"to": "00:44:36,760"
+			},
+			"offsets": {
+				"from": 2675160,
+				"to": 2676760
+			},
+			"text": " That's kind of the definition I'm making."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:36,760",
+				"to": "00:44:37,960"
+			},
+			"offsets": {
+				"from": 2676760,
+				"to": 2677960
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:37,960",
+				"to": "00:44:40,960"
+			},
+			"offsets": {
+				"from": 2677960,
+				"to": 2680960
+			},
+			"text": " Why do they need to, I mean, just start happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:40,960",
+				"to": "00:44:44,160"
+			},
+			"offsets": {
+				"from": 2680960,
+				"to": 2684160
+			},
+			"text": " Well, if the proof of work is such that they need to look it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:44,160",
+				"to": "00:44:48,760"
+			},
+			"offsets": {
+				"from": 2684160,
+				"to": 2688760
+			},
+			"text": " So if a hashimoto style, in hashimoto style proof of work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:48,760",
+				"to": "00:44:50,960"
+			},
+			"offsets": {
+				"from": 2688760,
+				"to": 2690960
+			},
+			"text": " you need to."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:50,960",
+				"to": "00:44:53,960"
+			},
+			"offsets": {
+				"from": 2690960,
+				"to": 2693960
+			},
+			"text": " So it's full, yeah, it is a bit weird."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:53,960",
+				"to": "00:44:56,760"
+			},
+			"offsets": {
+				"from": 2693960,
+				"to": 2696760
+			},
+			"text": " So there's full nodes which, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:56,960",
+				"to": "00:44:59,960"
+			},
+			"offsets": {
+				"from": 2696960,
+				"to": 2699960
+			},
+			"text": " which keep this stuff for the last n-locks."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:59,960",
+				"to": "00:45:02,760"
+			},
+			"offsets": {
+				"from": 2699960,
+				"to": 2702760
+			},
+			"text": " It's just super like nodes that don't keep very, really."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:02,760",
+				"to": "00:45:04,960"
+			},
+			"offsets": {
+				"from": 2702760,
+				"to": 2704960
+			},
+			"text": " And then there's all kind of nodes that keep everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:04,960",
+				"to": "00:45:07,560"
+			},
+			"offsets": {
+				"from": 2704960,
+				"to": 2707560
+			},
+			"text": " And the idea is that the foundation ones, if you are hard nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:07,560",
+				"to": "00:45:08,560"
+			},
+			"offsets": {
+				"from": 2707560,
+				"to": 2708560
+			},
+			"text": " and make you some money."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:08,560",
+				"to": "00:45:11,760"
+			},
+			"offsets": {
+				"from": 2708560,
+				"to": 2711760
+			},
+			"text": " But actually with this, you don't even need archive nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:11,760",
+				"to": "00:45:15,160"
+			},
+			"offsets": {
+				"from": 2711760,
+				"to": 2715160
+			},
+			"text": " because with this in place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:15,160",
+				"to": "00:45:17,960"
+			},
+			"offsets": {
+				"from": 2715160,
+				"to": 2717960
+			},
+			"text": " you have a common archive."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:17,960",
+				"to": "00:45:22,560"
+			},
+			"offsets": {
+				"from": 2717960,
+				"to": 2722560
+			},
+			"text": " And as long as you keep randomly checking the past,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:22,560",
+				"to": "00:45:26,760"
+			},
+			"offsets": {
+				"from": 2722560,
+				"to": 2726760
+			},
+			"text": " it will stay up to date and it will be fairly distributed."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:26,760",
+				"to": "00:45:33,760"
+			},
+			"offsets": {
+				"from": 2726760,
+				"to": 2733760
+			},
+			"text": " And, you know, this kind of proof of work can be actually a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:33,760",
+				"to": "00:45:39,360"
+			},
+			"offsets": {
+				"from": 2733760,
+				"to": 2739360
+			},
+			"text": " So you can actually offer either in exchange for checking the same,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:39,360",
+				"to": "00:45:44,360"
+			},
+			"offsets": {
+				"from": 2739360,
+				"to": 2744360
+			},
+			"text": " for providing, for making spot checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:44,360",
+				"to": "00:45:47,360"
+			},
+			"offsets": {
+				"from": 2744360,
+				"to": 2747360
+			},
+			"text": " So it can be done on top of Ethereum that you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:47,360",
+				"to": "00:45:50,760"
+			},
+			"offsets": {
+				"from": 2747360,
+				"to": 2750760
+			},
+			"text": " here's a contract that if you maintain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:50,760",
+				"to": "00:45:54,160"
+			},
+			"offsets": {
+				"from": 2750760,
+				"to": 2754160
+			},
+			"text": " you know, you sleep around the archives that you can compare with."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:54,160",
+				"to": "00:45:54,960"
+			},
+			"offsets": {
+				"from": 2754160,
+				"to": 2754960
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:55,160",
+				"to": "00:45:56,760"
+			},
+			"offsets": {
+				"from": 2755160,
+				"to": 2756760
+			},
+			"text": " You don't even need full archive nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:56,760",
+				"to": "00:46:06,960"
+			},
+			"offsets": {
+				"from": 2756760,
+				"to": 2766960
+			},
+			"text": " Daniel, what's the behavior if you have like two co-current requests"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:06,960",
+				"to": "00:46:09,160"
+			},
+			"offsets": {
+				"from": 2766960,
+				"to": 2769160
+			},
+			"text": " for writing the same hash?"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:09,160",
+				"to": "00:46:10,960"
+			},
+			"offsets": {
+				"from": 2769160,
+				"to": 2770960
+			},
+			"text": " But you will write the same thing there."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:10,960",
+				"to": "00:46:12,160"
+			},
+			"offsets": {
+				"from": 2770960,
+				"to": 2772160
+			},
+			"text": " That's the point."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:12,160",
+				"to": "00:46:14,760"
+			},
+			"offsets": {
+				"from": 2772160,
+				"to": 2774760
+			},
+			"text": " That here, the value..."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:14,760",
+				"to": "00:46:15,760"
+			},
+			"offsets": {
+				"from": 2774760,
+				"to": 2775760
+			},
+			"text": " Sorry, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:15,760",
+				"to": "00:46:18,160"
+			},
+			"offsets": {
+				"from": 2775760,
+				"to": 2778160
+			},
+			"text": " But what if it's mutable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:18,160",
+				"to": "00:46:20,360"
+			},
+			"offsets": {
+				"from": 2778160,
+				"to": 2780360
+			},
+			"text": " If it's mutable, it's a lot harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:20,360",
+				"to": "00:46:21,160"
+			},
+			"offsets": {
+				"from": 2780360,
+				"to": 2781160
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:21,160",
+				"to": "00:46:21,960"
+			},
+			"offsets": {
+				"from": 2781160,
+				"to": 2781960
+			},
+			"text": " There's no..."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:21,960",
+				"to": "00:46:24,360"
+			},
+			"offsets": {
+				"from": 2781960,
+				"to": 2784360
+			},
+			"text": " It's not designed to be mutable."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:24,360",
+				"to": "00:46:31,360"
+			},
+			"offsets": {
+				"from": 2784360,
+				"to": 2791360
+			},
+			"text": " So we have a relationship with the mutable."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:31,360",
+				"to": "00:46:34,360"
+			},
+			"offsets": {
+				"from": 2791360,
+				"to": 2794360
+			},
+			"text": " We might, but it will be a thick layer on top of..."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:34,360",
+				"to": "00:46:35,560"
+			},
+			"offsets": {
+				"from": 2794360,
+				"to": 2795560
+			},
+			"text": " Like..."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:35,560",
+				"to": "00:46:38,760"
+			},
+			"offsets": {
+				"from": 2795560,
+				"to": 2798760
+			},
+			"text": " That's a lot more valuable than a mutable one."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:38,760",
+				"to": "00:46:43,160"
+			},
+			"offsets": {
+				"from": 2798760,
+				"to": 2803160
+			},
+			"text": " And actually for a mutable one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:43,160",
+				"to": "00:46:47,960"
+			},
+			"offsets": {
+				"from": 2803160,
+				"to": 2807960
+			},
+			"text": " I would probably just use Victor and Scadumlia because,"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:47,960",
+				"to": "00:46:52,160"
+			},
+			"offsets": {
+				"from": 2807960,
+				"to": 2812160
+			},
+			"text": " you know, it's already there and it's mutable and they have solved all the problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:52,160",
+				"to": "00:46:54,160"
+			},
+			"offsets": {
+				"from": 2812160,
+				"to": 2814160
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:54,160",
+				"to": "00:46:56,160"
+			},
+			"offsets": {
+				"from": 2814160,
+				"to": 2816160
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:56,160",
+				"to": "00:46:58,160"
+			},
+			"offsets": {
+				"from": 2816160,
+				"to": 2818160
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:58,160",
+				"to": "00:47:00,160"
+			},
+			"offsets": {
+				"from": 2818160,
+				"to": 2820160
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:00,160",
+				"to": "00:47:22,160"
+			},
+			"offsets": {
+				"from": 2820160,
+				"to": 2842160
+			},
+			"text": " [silence]"
+		}
+	]
+}

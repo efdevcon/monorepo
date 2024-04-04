@@ -1,0 +1,2331 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 17000
+			},
+			"text": " >> This talk is about, is it important to know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " >> Yeah, this is work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 22000
+			},
+			"text": " >> Not yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 23000
+			},
+			"text": " >> No?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 25000
+			},
+			"text": " >> Maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 27000
+			},
+			"text": " >> Yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 32000
+			},
+			"text": " >> Okay, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 41000
+			},
+			"text": " >> In this talk, I will tell you what the security team did about you in the last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 46000
+			},
+			"text": " If you can't probably see the screen, then you're out here in the bottom of the resource lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 52000
+			},
+			"text": " >> [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 53000
+			},
+			"text": " >> Okay, so this is more or less a continuation of the talk I gave at Death"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 54000
+			},
+			"text": " Prince Doref."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 57000
+			},
+			"text": " Let's guess more how to optimize this for contents to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 81000
+			},
+			"text": " It's not probably if you haven't seen that talk, just for context."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 91000
+			},
+			"text": " In that talk, I explained how we wanted to leverage an intermediate language for you so"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 99000
+			},
+			"text": " that the SINETY compiler has a better readable code generator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 106000
+			},
+			"text": " And the optimizer and in general, more flexibility towards which backend we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 116000
+			},
+			"text": " use, for example, you can apply to IBM to E-M 1.5 or, I don't know, IBM."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 119000
+			},
+			"text": " And on the bottom here, you can see some example U code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 126000
+			},
+			"text": " It's allocation or it's the standard SINETY allocator memory allocator."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 133000
+			},
+			"text": " And I think it's rather obvious what it does and easy to move."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 138000
+			},
+			"text": " At least you can use some of the old codes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 142000
+			},
+			"text": " Okay, what did we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 146000
+			},
+			"text": " So this was basically the recap of the talk of last year, what happened after that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 153000
+			},
+			"text": " We started the rewrite of the SINETY generator to you and we're going to have half way"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 154000
+			},
+			"text": " there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157000
+			},
+			"text": " This will be the first third of the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 163000
+			},
+			"text": " And I will tell you how you can build E-Wasm code from SINETY."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 167000
+			},
+			"text": " And the last part will be about the U-Wasm."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 171000
+			},
+			"text": " Okay, the code generator."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 173000
+			},
+			"text": " We are actually quite far with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 180000
+			},
+			"text": " We had to stop at some point because we want to release SINETY 0.6.0 soon with new features"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 184000
+			},
+			"text": " and breaking changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 189000
+			},
+			"text": " We are, it's possible to compile the years in 2010."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 199000
+			},
+			"text": " So, general years in 2010, contract-renewability, including nothing's events require and whatever is necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 206000
+			},
+			"text": " The new code generator has a breaking change."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 211000
+			},
+			"text": " That is that it will automatically revert on arabatic allocation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 217000
+			},
+			"text": " The code generator on your words are given by 0 in similar things and new code generator"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 222000
+			},
+			"text": " will also revert on the multiplication and accuracy of the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 230000
+			},
+			"text": " And the main reason why we didn't do that for the old code generator is because it, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 237000
+			},
+			"text": " these checks will have branches and they will optimize their kind of really all over code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 241000
+			},
+			"text": " And the new optimizer, yeah, we'll see in the third part of this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 245000
+			},
+			"text": " And it was also much easier to write."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 253000
+			},
+			"text": " The generator is using the new rule because it might actually look like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 256000
+			},
+			"text": " but you will have, does not have the concept of stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 266000
+			},
+			"text": " The load has local variables and these are, there's a rather direct translation from the local variables to a stack machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 270000
+			},
+			"text": " But in general, you don't need to worry about the stack layout."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 278000
+			},
+			"text": " So, there is one of the most complex parts in the Cylenity code generator is internal function calls"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 281000
+			},
+			"text": " because the code has so many parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 288000
+			},
+			"text": " And it also depends whether you call a library or a regular function or whether you specify the gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 291000
+			},
+			"text": " or whether you specify the value and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 302000
+			},
+			"text": " So, there's different ways to use the call up code and all the time you have to keep track of where everything is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 304000
+			},
+			"text": " on the stack in the old code generator."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 308000
+			},
+			"text": " And the new code generator just referenced stuff by their name."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 311000
+			},
+			"text": " So, it just gets as environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 320000
+			},
+			"text": " And another thing is that, so when the old code generator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 324000
+			},
+			"text": " we forgot to or did not yet implement a certain feature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 330000
+			},
+			"text": " but by accident the stack layout is correct, then this will need to code that the latch generated"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 333000
+			},
+			"text": " and will of course do something invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 339000
+			},
+			"text": " In the new code generator, some expressions are always referenced by their identifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 343000
+			},
+			"text": " And if the code generation of that sub-expressions are not implemented,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 346000
+			},
+			"text": " then the identifier will just not exist in the new code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 356000
+			},
+			"text": " So, we have additional level of checks on the intermediate language and this will be detected and nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 359000
+			},
+			"text": " Okay, how can you actually use it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 361000
+			},
+			"text": " I'm going to show you how to use it on the command line."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 364000
+			},
+			"text": " The standard JSON also works."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 367000
+			},
+			"text": " There's more complicated on the screen here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 373000
+			},
+			"text": " So, C minus minus IR will generate a U code from the select code."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 382000
+			},
+			"text": " And for safety reasons, we do not support a direct translation from Solidity through Uo to UVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 386000
+			},
+			"text": " because it's still in the command experimental stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 395000
+			},
+			"text": " So, you have to copy the output of the first stage and then rerun the Solidity compiler in the sampling code"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 401000
+			},
+			"text": " and then transfer the U code to UVM by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 407000
+			},
+			"text": " Yeah, let's take a look at how that then looks in practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 414000
+			},
+			"text": " So, this is an example in ERC-20 contract or a hard ERC-20 contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 416000
+			},
+			"text": " We have an event."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 423000
+			},
+			"text": " We have the mapping of the balances, total supply, and a mint function that generates tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 425000
+			},
+			"text": " which is called in the constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 429000
+			},
+			"text": " So, the sender gets 20 coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 433000
+			},
+			"text": " And the mint function starts with this required call."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 438000
+			},
+			"text": " So, the address to mint 2 cannot be the zero address."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 446000
+			},
+			"text": " And then total supply balances is modified and the transfer event is limited."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 451000
+			},
+			"text": " Now, we compile that to Uo."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 456000
+			},
+			"text": " And so, this is not the code directed generated by the code generated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 460000
+			},
+			"text": " but this is the code after optimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 464000
+			},
+			"text": " And I think it's very nice that this is still nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 465000
+			},
+			"text": " We do like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 470000
+			},
+			"text": " I would say let's get into detail and then you will see."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 475000
+			},
+			"text": " But you see that it still has expressions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 485000
+			},
+			"text": " And yeah, so you would even see the mint function call here and it was recognized the name mint."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 492000
+			},
+			"text": " The issue here is just that the mint function in the init context is only called once."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 496000
+			},
+			"text": " And because of that, it's of course in line and so the function is called."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 502000
+			},
+			"text": " But we, so it starts with initializing the memory allocator."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 504000
+			},
+			"text": " Then we have the call value check."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 507000
+			},
+			"text": " So, because the constructor is not labeled."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 514000
+			},
+			"text": " And then the second thing here is the require that the address to mint 2 is not zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 521000
+			},
+			"text": " And you actually see the error string here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 525000
+			},
+			"text": " Here's the 20 and mint to the zero address."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 529000
+			},
+			"text": " So, this block here is the require call."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 532000
+			},
+			"text": " And then we update the total supply."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 536000
+			},
+			"text": " This is the common I added manually."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 543000
+			},
+			"text": " Yeah, you take the data that is currently at storage location 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 546000
+			},
+			"text": " You add 20 and you store it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 552000
+			},
+			"text": " Now, it calls the user defined function called check add."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 556000
+			},
+			"text": " This is the overflow check I was talking about earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 561000
+			},
+			"text": " And that is one of the two functions that is not visible on the screen here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 564000
+			},
+			"text": " And the rest of the code is all the rest of the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 569000
+			},
+			"text": " So, this is the full constructor code missing two small functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 572000
+			},
+			"text": " And now we update the balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 574000
+			},
+			"text": " This is still a kind of problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 578000
+			},
+			"text": " There is a function called mapping index access team mapping and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 580000
+			},
+			"text": " It's a little bit longer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 586000
+			},
+			"text": " So, the reason is that so this is the index access helper function for storage mappings."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 588000
+			},
+			"text": " And the name is generated from the type."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 591000
+			},
+			"text": " And I think we still have to come up with a way to shorten it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 594000
+			},
+			"text": " So, it's better to be good."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 600000
+			},
+			"text": " And another issue here is you see that mapping index access the function I was just talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 601000
+			},
+			"text": " about."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 605000
+			},
+			"text": " It's called here and it's also called here again with the same parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 610000
+			},
+			"text": " Usually the optimizer is able to combine them and call it only once."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 617000
+			},
+			"text": " The problem here is that it calls the catch-up function which works on memory because of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 619000
+			},
+			"text": " that it has to access the memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 628000
+			},
+			"text": " And the optimizer cannot yet recognize that writing this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 633000
+			},
+			"text": " So, the stuff that is written in the first call and the stuff that is written in the second"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 635000
+			},
+			"text": " call they do not conflict because it's exactly the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 640000
+			},
+			"text": " So, the write in the same memory location because of that it can't really swap them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 647000
+			},
+			"text": " But it should detect that it's actually the same stuff that is written."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 650000
+			},
+			"text": " So, let me speak a little."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 653000
+			},
+			"text": " Yeah, talking about the Python size."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 660000
+			},
+			"text": " I'm not sure if you can compare these numbers with the earlier talk because this is 256."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 667000
+			},
+			"text": " Get EVM code and I think it's also a lot more obvious in 2020 than there was in the WebAssembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 681000
+			},
+			"text": " change."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 705000
+			},
+			"text": " So, it's a little bit more obvious in the next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 712000
+			},
+			"text": " Okay, WebAssembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 719000
+			},
+			"text": " Similar to Sol C minus minus, I already can use Sol C minus minus E wasn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 728000
+			},
+			"text": " So, this will actually generate E wasn't text representation in one run."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 732000
+			},
+			"text": " The thing is it's not tested at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 735000
+			},
+			"text": " It's not tested yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 742000
+			},
+			"text": " Because we couldn't yet find a good execution environment we can run against."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 749000
+			},
+			"text": " It can again deploy contracts and the reason for that is that we have not implemented a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 754000
+			},
+			"text": " transform from WebAssembly text representation to WebAssembly by representation and you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 757000
+			},
+			"text": " that for deploying the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 767000
+			},
+			"text": " Because it's returned to binary optimality and then finally representation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 775000
+			},
+			"text": " Okay, how does the compiler to E wasn't work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 777000
+			},
+			"text": " It takes the regular EVM code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 784000
+			},
+			"text": " So, it starts exactly at the point where the sol C to E will to EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 798000
+			},
+			"text": " So, you have to transform to a 64-bit code and this is done by splitting all the U variables"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 802000
+			},
+			"text": " into four variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 810000
+			},
+			"text": " And at that point we have some kind of a mix of WebAssembly U."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 817000
+			},
+			"text": " So, we have a kind of a library code that implements all EVM codes as user defined functions using"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 824000
+			},
+			"text": " the EVM built-in for any E wasn't built-in functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 831000
+			},
+			"text": " And at that point we have, it wasn't flavored fuel."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 838000
+			},
+			"text": " And we run the regular optimizer, it would also run on EVM with side modifications because"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 840000
+			},
+			"text": " we have different approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 850000
+			},
+			"text": " And, yeah, it turns out that we are able to reuse almost all of the components of the EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 857000
+			},
+			"text": " fuel optimizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 864000
+			},
+			"text": " Yeah, it generates a kind of a pretty straightforward transformation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 869000
+			},
+			"text": " Yeah, let's see if there's a specific sub-example."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 876000
+			},
+			"text": " We just store the current block gas limit at position zero in memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 883000
+			},
+			"text": " This, yeah, I have to worry because of the 256-bit, 64-bit thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 886000
+			},
+			"text": " This will not be a little bit complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 891000
+			},
+			"text": " Okay, what we do is gas limit returns a 26-bit value."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 894000
+			},
+			"text": " So, we have to split that into four variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 897000
+			},
+			"text": " And that's what is done here in the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 900000
+			},
+			"text": " So, we call gas limit and sign it into four variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 910000
+			},
+			"text": " And then for M-store, that is the kind of pseudo-hybrid EVM E wasn't functioned that takes eight parameters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 913000
+			},
+			"text": " so four for the address and four for the value."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 921000
+			},
+			"text": " And then we add the implementations of the EVM of codes in using the privacy of the built-in."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 926000
+			},
+			"text": " So, gas limit for example just calls eads.get.gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 933000
+			},
+			"text": " And then M-store, how we perform indian swapping because what assembly is in the machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 936000
+			},
+			"text": " but then we have the outside screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 940000
+			},
+			"text": " Okay, this looks very complicated, but if you apply the optimizer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 944000
+			},
+			"text": " then you will of course in line the gas limit call here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 948000
+			},
+			"text": " and also remove all the other merits we don't need anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 953000
+			},
+			"text": " And also the M-store, it has tons of constants here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 958000
+			},
+			"text": " so it makes sense also in line that, and then it will look like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 961000
+			},
+			"text": " Only the end gets more please."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 973000
+			},
+			"text": " Okay, now third part of the talk, the one we did on the new optimizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 982000
+			},
+			"text": " All components of the optimizer take you a code, transform it and output you a code."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 986000
+			},
+			"text": " So it's no reduction, we're like a trustee."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 988000
+			},
+			"text": " It's a city or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:35,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 995000
+			},
+			"text": " So all the modus are simple and can be combined in arbitrary way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,000",
+				"to": "00:16:42,000"
+			},
+			"offsets": {
+				"from": 995000,
+				"to": 1002000
+			},
+			"text": " If all the modus are correct, then the whole optimizer is correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1002000,
+				"to": 1007000
+			},
+			"text": " It turned out that we need a little bit more modus than we initially thought,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1011000
+			},
+			"text": " and we currently have roughly 25."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1015000
+			},
+			"text": " But most of the modus are really, really tiny."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1021000
+			},
+			"text": " And there are only two to three components that restore okay data structure, so."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1024000
+			},
+			"text": " Three minutes, okay, let's be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1030000
+			},
+			"text": " So for example, the condition of simplify, we're sitting here with a date for that module."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1036000
+			},
+			"text": " It takes a look at branches, so for example you see the stock."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1038000
+			},
+			"text": " So you can check this if, or with terminings."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1042000
+			},
+			"text": " So after the body, you know that C is false or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1050000
+			},
+			"text": " So the only thing that this does is inject assignments of this form after terminating branches."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1056000
+			},
+			"text": " And other modus in the optimizer can pick that up and use that information."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1061000
+			},
+			"text": " But the information is visible to the code, it's not stored in some data structure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1066000
+			},
+			"text": " you would have to move into that if there is somewhere else."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1075000
+			},
+			"text": " Yeah, let's get that and talk about the past of the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1079000
+			},
+			"text": " Memory types, we already saw that we have some problems with memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:08,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1088000
+			},
+			"text": " This will hopefully be solved by adding memory chunks as a built-in type into you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1088000,
+				"to": 1096000
+			},
+			"text": " That way different memory stores to different data structures are fully independent because it uses kind of a different hand into access memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1110000
+			},
+			"text": " Also, we're thinking about adding a super optimizer, so an optimizer that takes a really long time and tries to really crunch the numbers and find a good way to optimize the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1116000
+			},
+			"text": " And that can maybe have shortcuts if you want to recompile stuff, so it's faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1122000
+			},
+			"text": " And we're thinking about adding a genetic algorithm to find a good order for applying steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1126000
+			},
+			"text": " As I already said, each step individually should be correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1131000
+			},
+			"text": " The order doesn't matter for correctness, but it matters for efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1145000
+			},
+			"text": " And yeah, it's kind of hard to manually come up with a good order to apply them, so we want to find a generic way to come up with a good sequence of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1152000
+			},
+			"text": " I'm not sure if it's the time question, but thanks for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1156000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1171000
+			},
+			"text": " [Music]"
+		}
+	]
+}

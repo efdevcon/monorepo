@@ -1,0 +1,2320 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 16000
+			},
+			"text": " So, what we're talking about now is the Ethereum Litecoin protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 21000
+			},
+			"text": " So, for just to give an introduction to why your Litecoins are needed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 25000
+			},
+			"text": " I guess the important thing here is that we are dealing with"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 30000
+			},
+			"text": " with distributing consensus and we're dealing with a system where every full node"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 32000
+			},
+			"text": " has to process every single transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 36000
+			},
+			"text": " So, you know, right now with something like Bitcoin, it's relatively fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 38000
+			},
+			"text": " One transaction a second, anyone can do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 44000
+			},
+			"text": " Although you do need to download about 20 gigabytes of stuff by now, which is a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 47000
+			},
+			"text": " Now, with something like Ethereum, you know, in some ways their protocol is more efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 51000
+			},
+			"text": " In some ways it's a lot sufficient because we have to store a bunch more stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 56000
+			},
+			"text": " But if scalability gets the any significant point, if you imagine we have something like"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 61000
+			},
+			"text": " a thousand transactions a second, then, you know, well, the amount of resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 66000
+			},
+			"text": " that it will take to run a full node on the network is 100 to 200 megabytes per hour"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 68000
+			},
+			"text": " just processing transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 72000
+			},
+			"text": " Assuming 10% of those transactions increase the state, which is about accurate for Bitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 75000
+			},
+			"text": " that's a gigabyte of hard disk space every two or four days."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 78000
+			},
+			"text": " Thousand-gasm transaction, that's a million gas a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 82000
+			},
+			"text": " I believe that's pretty much 100% of what Bellwood Goa Ethereum can do right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 85000
+			},
+			"text": " If not more, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 89000
+			},
+			"text": " We will have just in time compilation at that point."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 90000
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 100000
+			},
+			"text": " So, ultimately, it's kind of important that for decentralized applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 105000
+			},
+			"text": " we have a strategy for using these things on mobile devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 110000
+			},
+			"text": " The general idea is to replace so many massively multi-user applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 115000
+			},
+			"text": " that things we tend to use the web for, that these devices are going to be super important"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 118000
+			},
+			"text": " for actually providing people what they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 121000
+			},
+			"text": " So, we have two problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 129000
+			},
+			"text": " The first is, given that a light client knows very little about the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 133000
+			},
+			"text": " because it stores very little, probably only the headers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 137000
+			},
+			"text": " how does it find out about events that are going on in the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 140000
+			},
+			"text": " that the decentralized application might be interested in?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 143000
+			},
+			"text": " The second is, assuming that it now knows about these events,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 147000
+			},
+			"text": " perhaps it's a transaction, perhaps it's a particular execution, a particular contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 153000
+			},
+			"text": " how does it be certain that this information is actually true?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 158000
+			},
+			"text": " So, just to give an introduction to the fundamental theory behind light clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 163000
+			},
+			"text": " the first thing is based on this wonderful construction invented by Ralph Marco in the 1970s,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 167000
+			},
+			"text": " so the idea behind the Marco trees is you arrange that in a kind of tree structure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170000
+			},
+			"text": " where you have all the little nodes and excuses at the bottom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 173000
+			},
+			"text": " and then you take a few nodes and make a hash of them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 175000
+			},
+			"text": " then you take a, and then that's the next level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 177000
+			},
+			"text": " and then you take a compassion and make a hash of those,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 180000
+			},
+			"text": " and it all sort of follows up until we have a single root hash at the top,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 184000
+			},
+			"text": " and you can think of the root hash as kind of representing the entire tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 187000
+			},
+			"text": " So, there's no way to change a single, anything whatsoever about the tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 191000
+			},
+			"text": " without creating changes that eventually propagate up the tree and also,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 194000
+			},
+			"text": " and ultimately to a change in the root."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 197000
+			},
+			"text": " So, if the root is inside the header, then once you've validated the header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 199000
+			},
+			"text": " you've sort of implicitly validated the entire tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 205000
+			},
+			"text": " So, the idea with light clients is you only download the block header chain by default,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 211000
+			},
+			"text": " and if you need data, then you just fetch whatever data you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 216000
+			},
+			"text": " and once you have that specific set of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 221000
+			},
+			"text": " you can just validate it by just making sure that the hash is matched all the way up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 227000
+			},
+			"text": " So, basic idea is that you can think of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 232000
+			},
+			"text": " so you can think of a proof of something as being the subset of tree nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 235000
+			},
+			"text": " that are involved in accessing or processing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 240000
+			},
+			"text": " So, if you want to improve that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 243000
+			},
+			"text": " some particular account has some particular state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 248000
+			},
+			"text": " and then you take the nodes in the tree that you need to sort of go all the way down"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 253000
+			},
+			"text": " to that particular thing, and that set of nodes basically is the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 255000
+			},
+			"text": " So, we create a proof, it's literally this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 258000
+			},
+			"text": " but this is how it's actually implemented in the Python client right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 261000
+			},
+			"text": " You know, just, if you want to prove some particular part of an account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 265000
+			},
+			"text": " you just grab it, but you record all the tree nodes that you accessed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 269000
+			},
+			"text": " and we verify the proof is that you just sort of run the same standard algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 272000
+			},
+			"text": " but using the proof as your database."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 276000
+			},
+			"text": " So, the nice thing is that you sit with the way the protocol is designed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 278000
+			},
+			"text": " you say a lot of this stuff you just sort of get automatically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 281000
+			},
+			"text": " because everything is based on these reverse hash walkups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 286000
+			},
+			"text": " and, you know, if you assume that the hashes that you need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 288000
+			},
+			"text": " that you need actually already exist,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 291000
+			},
+			"text": " then you can just reuse the exact same code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 293000
+			},
+			"text": " and it's just a matter of which, you know, which hashes do you need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 297000
+			},
+			"text": " or which one nodes do you need to download to make sure you have everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 301000
+			},
+			"text": " So, in Ethereum, we have three Mergled trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 305000
+			},
+			"text": " We have a state tree, state tree records account balances, storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 309000
+			},
+			"text": " a little little Mergled tree for each account code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 313000
+			},
+			"text": " In 1.1, maybe we'll consider events, so a way for contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 317000
+			},
+			"text": " to sort of do events to the event, then we get propagated, processed in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 320000
+			},
+			"text": " and then those events have to be stored in the state during the meantime."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 323000
+			},
+			"text": " Transaction tree just stores all the transactions in the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 327000
+			},
+			"text": " So, the receipt tree, that's pretty important and we'll talk more about that later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 331000
+			},
+			"text": " but the idea is that it sort of stores specific results that are related to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 334000
+			},
+			"text": " processing each individual transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 338000
+			},
+			"text": " So, what do we care about proving, or what do we care about light nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 340000
+			},
+			"text": " being able to securely access?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 344000
+			},
+			"text": " Account balance, account non-seeking on code, account storage data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 347000
+			},
+			"text": " whether or not a transaction has been included."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 353000
+			},
+			"text": " So, one thing I know I was asked a couple days ago is how does they know"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 358000
+			},
+			"text": " how does the JavaScript even know that a particular transaction was processed"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 361000
+			},
+			"text": " so they can start sending off another transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 369000
+			},
+			"text": " And, you know, this is something that the line client should be able to figure out from the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 374000
+			},
+			"text": " Also, potentially if you want clients to start actually probabilisticly validating"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 379000
+			},
+			"text": " that a block was produced correctly, they can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 383000
+			},
+			"text": " And finally, I think that we'll probably talk more about which is logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 388000
+			},
+			"text": " So, Kim data, we already talked about that, prove existence."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 391000
+			},
+			"text": " So, if you want to fetch a Kim data, you just sort of prove an existence"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 392000
+			},
+			"text": " of a node in the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 396000
+			},
+			"text": " So, a transaction state transition of what it is, some more complicated thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 400000
+			},
+			"text": " But basically, if he wants to prove that a particular transaction was processed"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 406000
+			},
+			"text": " or correctly, then you take some of this data from the receipt tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 410000
+			},
+			"text": " So, the receipt tree contains an intermediate state root after processing every transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 413000
+			},
+			"text": " It's taking an intermediate state root, you take the transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 417000
+			},
+			"text": " and you make sure that if you just run the transaction on top of the previous intermediate state root,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 420000
+			},
+			"text": " you get back the new intermediate state root."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 426000
+			},
+			"text": " And why is this stuff necessary? Basically, so one reason is that if you want a somewhat stronger assurance"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 430000
+			},
+			"text": " that things are being done correctly and if you don't necessarily trust the majority,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 434000
+			},
+			"text": " the majority hash power, one screw of stake comes along and you can't just"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 439000
+			},
+			"text": " provide on difficulty as a measure and a sort of proxy for security might become even more important."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 440000
+			},
+			"text": " And final advice."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 453000
+			},
+			"text": " So, one of the things that we want to provide with DAPs is the ability to effectively not think about the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 457000
+			},
+			"text": " Not have to think necessarily about transactions, not have to think particularly about state."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 463000
+			},
+			"text": " The idea is to provide an abstraction mechanism for the blockchain, for what the blockchain provides."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 468000
+			},
+			"text": " And this abstraction mechanism, the sort of interface it provides, becomes something that we're a bit more familiar with"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 473000
+			},
+			"text": " than the notion of the sort of virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 480000
+			},
+			"text": " As the virtual machine executes, it's useful because it's not in an environment that you have direct access to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 483000
+			},
+			"text": " you have to do it in terms of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 486000
+			},
+			"text": " It's useful to be able to put things like checkpoints in."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 491000
+			},
+			"text": " To see if a particular contract that you're interested in is in a particular point, in this execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 500000
+			},
+			"text": " Such a point, for example, might be that it has received a payment, a set of payment has been sent from one of your accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 505000
+			},
+			"text": " Or that one of the orders that you might have put on an exchange, for instance, has actually executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 511000
+			},
+			"text": " So, this is kind of like the I/O, more the O from the blockchain and the I into the rest of the DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 520000
+			},
+			"text": " But the I/O between blockchain and the DAP as a whole, the JavaScript portion that's actually executing locally in the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 524000
+			},
+			"text": " Now originally, we had this idea of messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 529000
+			},
+			"text": " So, in the light transactions, messages are things that can actually go and execute contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 533000
+			},
+			"text": " But messages can also be the things that messages execute."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 537000
+			},
+			"text": " Transactions, of course, always come from an external entity in this, they're cryptographically signed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 549000
+			},
+			"text": " And we had the idea of message tracking, so message watching, whereby the job's the local portion of the DAP could watch out for changes on the blockchain that involved a particular message."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 553000
+			},
+			"text": " And it might also have filtered it by what the input to the message was."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 558000
+			},
+			"text": " Now, this turned out to be less than ideal, and so we sort of evolved this motion of a log."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 563000
+			},
+			"text": " Now, the log is like a breakpoint or a record."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 571000
+			},
+			"text": " It allows a message or contract to point out to an interface that a particular thing has happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 574000
+			},
+			"text": " Logs can include a topic or many topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:37,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 577000
+			},
+			"text": " And these sort of identify the type of entry."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 577000,
+				"to": 582000
+			},
+			"text": " Logs also implicitly include the address of the contract that created the log."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 587000
+			},
+			"text": " And finally, logs can also include data, arbitrary and formatted binary data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 591000
+			},
+			"text": " And of course, this data can mean whatever the contract wants it to mean."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 595000
+			},
+			"text": " The difference between the topics and the data is that the topics are indexed."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 602000
+			},
+			"text": " So, topics can be watched out for by the JavaScript content, by the rest of the DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 611000
+			},
+			"text": " The reason that we have logs at all is so that we can very efficiently index them and filter them when DAP's required."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 620000
+			},
+			"text": " Now, because the light client is an important part of the eventual protocol, it's important to get this interface in now."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 625000
+			},
+			"text": " So, we can work out exactly how light clients will be able to work out efficiently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 634000
+			},
+			"text": " whether any of these log entries in blockchain have actually fired whether they're there, whether new records have come along that were interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 640000
+			},
+			"text": " And the way that we do this, as Vitalik mentioned before, is transaction receipts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 652000
+			},
+			"text": " So, first of all, just to describe how logs are implemented, there is an opcode and this sort of Bitcoin term for what the log code does is proof of publication."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 661000
+			},
+			"text": " So, it just proves that something, it sort of publishes an event in the blockchain by connecting it, by just connecting it with a hash tree to a state-ridden log header."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 664000
+			},
+			"text": " Log upcode has up to six arguments."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 669000
+			},
+			"text": " So, first of all, it has two arguments to grab a slice of memory that it keeps us data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 671000
+			},
+			"text": " Then a log can have up to four topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 678000
+			},
+			"text": " And implicitly, a log always has a sort of argument, the address of the contract that created the log."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 685000
+			},
+			"text": " And the data structure is that will have a log is stored, is this ROP, address, topics, and data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 696000
+			},
+			"text": " So, receipts in the transaction, so the way that the transaction, so how the transaction receipt looks is that the med state is like the state rude after processing that particular transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 701000
+			},
+			"text": " Yes, used as a calendar of how much gas was used after processing the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 713000
+			},
+			"text": " Bloom, Bloom Filter, we'll talk about that a bit later, and logs, so that's just a list, the ROP encoded ROP list of each log, where each log is encoded like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 723000
+			},
+			"text": " And in the block header, we have the end state to match the intermediate states, gas used at the end, and we have a sort of block-wide Bloom Filter."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 730000
+			},
+			"text": " So, each Bloom Filter is 64 bytes, and the way Bloom Filters work is if you're not clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 738000
+			},
+			"text": " It's a sort of mechanism where you can put keys into the Bloom Filter, and the Bloom Filter is a really compact structure where you can then check other values again."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 743000
+			},
+			"text": " Once you've put some set of keys into the Bloom Filter, you can check some new value against the Bloom Filter."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 749000
+			},
+			"text": " And the Bloom Filter either returns, no, this key is definitely not in the Bloom Filter, or maybe this key is in the blue filter."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 754000
+			},
+			"text": " Or maybe this key is in the Bloom Filter."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 762000
+			},
+			"text": " And the reason why it's maybe is because it's a sort of loss of compression where all the keys are in a sense, hashed and packed together, so you're losing some data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 772000
+			},
+			"text": " So the way the protocol works is you search the blockchain for Bloom Filters that are matching some particular topic that you're sort of watching for."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 782000
+			},
+			"text": " If you find the block that matches what you want, you check every transaction, you see which transaction or which transactions match that have a Bloom Filter that matches that particular topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 797000
+			},
+			"text": " And then once you've returned, once you find transactions, you would actually ask for, you would actually ask for the Merkle proof going down to the logs, which would tell you whether or not logs were actually there, and if logs were there, what the actual content of the logs is."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 812000
+			},
+			"text": " So the minor thing that has been missed from this particular list is that we can search the header for Bloom so that the tellers that a particular block may contain a transaction that had a log that we're interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 825000
+			},
+			"text": " Following that, we can actually request the transaction receipt block and search in that block for the Bloom Filters, so the Bloom's are also for each transaction actually put in that block before we actually go ahead and search for the log entries themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 828000
+			},
+			"text": " So it's a little more efficient before."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 835000
+			},
+			"text": " Well, search from the search blockchain for blocks, search block for transaction, search transaction, well I guess it will not be clear, but it will."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 845000
+			},
+			"text": " So basic roadmap is that the client that we're going to have for 1.0 is Archive Node, Simplesting the implement that stores everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 851000
+			},
+			"text": " Then after that, what he wants to get into is he wants to move from Archive Node to what we're calling Full Node."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 855000
+			},
+			"text": " So Full Node store the entire state, but they only store a recent history."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 867000
+			},
+			"text": " So you can imagine they store the state routes going back maybe a week, and then they just store some more block headers going back maybe a month or two, and then they store transactions going back that far as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 878000
+			},
+			"text": " And then if they want to grab Ancient History, then they would just maintain some block headers and they would use, basically they would use the Light Node protocol to ask for Ancient History."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 882000
+			},
+			"text": " And so Full Node are actually much closer to Light Node than the Archive Node in some sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 885000
+			},
+			"text": " And then Light Node will just download block headers by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 895000
+			},
+			"text": " And we are expecting it will take quite a while for the full sort of Light Client technology to get rolled out just because it involves a whole bunch of these previous prerequisites."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 898000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 901000
+			},
+			"text": " So how does this work from a networking standpoint?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 920000
+			},
+			"text": " So what's important is that when a Light Client wants to operate, it does not have to request a proof which are necessarily things that are customized for the request from some of the Node."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 930000
+			},
+			"text": " If that were the case, then effectively Light Clients would be literally clients, and the Node that they come from the Archive Node or maybe the Full Node would be servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 936000
+			},
+			"text": " And that's not an especially nice way of doing it. It sort of reduces the decentrality of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 959000
+			},
+			"text": " So, rather than so as an alternative to the ask for the proof mechanism, which may still be necessary for some particular things, depending on whether the state tree is well distributed or well stored by the network, is to store the various portions of things like headers, blocks and transaction receipts on the DHT itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:09,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 969000
+			},
+			"text": " So these are necessarily things that are identified by the hash. They're actually probably the same hash within the blockchain itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 969000,
+				"to": 987000
+			},
+			"text": " And the idea is that Light Clients themselves are a contributor to this DHT. So they do their own bit in terms of storing, maybe some transaction receipts, some blocks and some headers that they can obviously shut the chance happen that they need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 1001000
+			},
+			"text": " They can use themselves, but that they can in a bit torrent like tip the top fashion exchange with other Light Clients in order to provide information across the network without having this reliance upon archival or maybe Full Node."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1017000
+			},
+			"text": " So, the idea is that once again it actually works nicely in from an implementation standpoint is that the way that it's all you're doing is that you're grabbing notes from a database, you're just grabbing notes from this DHT."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1023000
+			},
+			"text": " So you can think of it as using the Internet as a sort of extra hard drive."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1029000
+			},
+			"text": " And this can be used for reading the state. It can be used for processing watches, potentially probabilistic validation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1041000
+			},
+			"text": " So, as far as what we want, what we want to have is we want to store everything that Light Nodes are going to be storing by themselves in this kind of specialized DHT."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1047000
+			},
+			"text": " We don't necessarily want to mix it with Swarm just because it's better to have, first of all it's better to have the different protocols be separate."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1054000
+			},
+			"text": " I think people should be able to use, even if they don't care about Whisper and Swarm, they should be able to use Swarm if they don't care about Whisper and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1064000
+			},
+			"text": " And there's an possibility of making a sort of tit-for-tat protocol for Light Nodes can sort of ask each other and give each other proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1068000
+			},
+			"text": " And that helps incentivize notes to actually store things."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1083000
+			},
+			"text": " So, Long-term, like clients and Proof of Stake, there are potential tricks that, it's obvious we're going to have more info load than Proof of Work because with Proof of Stake you have to use them."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1086000
+			},
+			"text": " Because with Proof of Stake you actually need to validate that people have Stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1093000
+			},
+			"text": " There's this option of sort of artificially discretizing the protocol so you would have these sort of checkpoints that are far away from each other and each checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:21,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1101000
+			},
+			"text": " And the D is that each checkpoint would be signed by a very large number of nodes and then you would see that, \"Hey, this very, very large set of signers is validated in this next checkpoint.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1101000,
+				"to": 1103000
+			},
+			"text": " And then you sort of go from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1106000
+			},
+			"text": " Proof provision, not incentivized."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1112000
+			},
+			"text": " A tit-for-tat protocol sort of does it put it on a VHD sort of solves the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1116000
+			},
+			"text": " Is there some better solution? Will we need to have some better solution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1117000
+			},
+			"text": " Hard to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1121000
+			},
+			"text": " Light clients in Ethereum 2.0, depends entirely on what Ethereum 2.0 is going to look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1124000
+			},
+			"text": " Anything else you want to add?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1125000
+			},
+			"text": " No, that's about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1126000
+			},
+			"text": " Alright, let's do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1127000
+			},
+			"text": " Let's do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1152000
+			},
+			"text": " [silence]"
+		}
+	]
+}

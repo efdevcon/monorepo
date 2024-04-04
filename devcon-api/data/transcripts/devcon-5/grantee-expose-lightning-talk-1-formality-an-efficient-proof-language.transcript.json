@@ -1,0 +1,1374 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,320"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10320
+			},
+			"text": " Hi, everyone. Good morning. My name is John and I'm working on the formality proof language"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,320",
+				"to": "00:00:16,160"
+			},
+			"offsets": {
+				"from": 10320,
+				"to": 16160
+			},
+			"text": " with my co-founder, Victor Maya. What's a proof language? So let's do a quick refresher"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,160",
+				"to": "00:00:23,280"
+			},
+			"offsets": {
+				"from": 16160,
+				"to": 23280
+			},
+			"text": " on type systems. Here's some pseudocode representing an array indexing function in an untyped language."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,280",
+				"to": "00:00:29,120"
+			},
+			"offsets": {
+				"from": 23280,
+				"to": 29120
+			},
+			"text": " I take an index and an array and I try to get whatever's inside the array at that index."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,120",
+				"to": "00:00:36,560"
+			},
+			"offsets": {
+				"from": 29120,
+				"to": 36560
+			},
+			"text": " Get one is bar because array indices started zero and get two is bass. Here's a riddle."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,560",
+				"to": "00:00:43,340"
+			},
+			"offsets": {
+				"from": 36560,
+				"to": 43340
+			},
+			"text": " If get one is bar and get two is bass, what's get 1.5? Better question. What should get"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,340",
+				"to": "00:00:50,240"
+			},
+			"offsets": {
+				"from": 43340,
+				"to": 50240
+			},
+			"text": " 1.5 be? A runtime error. Indexing an array with a non-inager makes no sense because an"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,240",
+				"to": "00:00:54,320"
+			},
+			"offsets": {
+				"from": 50240,
+				"to": 54320
+			},
+			"text": " untyped language, but an untyped language lets you shoot yourself in the foot and make a"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,320",
+				"to": "00:00:59,960"
+			},
+			"offsets": {
+				"from": 54320,
+				"to": 59960
+			},
+			"text": " bad function call. This only fails during execution, i.e. when your code is running and can affect"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,960",
+				"to": "00:01:05,240"
+			},
+			"offsets": {
+				"from": 59960,
+				"to": 65240
+			},
+			"text": " the world around it. Run time errors are tough because sometimes they do nothing and sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,240",
+				"to": "00:01:10,360"
+			},
+			"offsets": {
+				"from": 65240,
+				"to": 70360
+			},
+			"text": " they cause your spacecraft to perform a rapid, un-scheduled disassembly. Your code's runtime"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,360",
+				"to": "00:01:14,400"
+			},
+			"offsets": {
+				"from": 70360,
+				"to": 74400
+			},
+			"text": " could be in five minutes on your laptop or it could be 30 years from now on devices that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,400",
+				"to": "00:01:19,280"
+			},
+			"offsets": {
+				"from": 74400,
+				"to": 79280
+			},
+			"text": " don't even exist yet. You don't know. It's runtime. By adding some types, we can get the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,280",
+				"to": "00:01:24,760"
+			},
+			"offsets": {
+				"from": 79280,
+				"to": 84760
+			},
+			"text": " compiler to complain, hey, fix your code. You can't have an index that's not an integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,760",
+				"to": "00:01:28,840"
+			},
+			"offsets": {
+				"from": 84760,
+				"to": 88840
+			},
+			"text": " This error might look deceptively similar to the previous one, but there's one crucial"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,840",
+				"to": "00:01:35,720"
+			},
+			"offsets": {
+				"from": 88840,
+				"to": 95720
+			},
+			"text": " difference. It occurs before your code runs. That is, before it can do any damage. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,720",
+				"to": "00:01:40,120"
+			},
+			"offsets": {
+				"from": 95720,
+				"to": 100120
+			},
+			"text": " simple types are kind of inflexible. This function only works for arrays that contain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,120",
+				"to": "00:01:44,520"
+			},
+			"offsets": {
+				"from": 100120,
+				"to": 104520
+			},
+			"text": " integers. If we want different array contents in a simply typed language, we need a copy"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,520",
+				"to": "00:01:49,120"
+			},
+			"offsets": {
+				"from": 104520,
+				"to": 109120
+			},
+			"text": " paste, lots of boilerplate. Lots of languages try to solve this with things like interfaces,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,120",
+				"to": "00:01:54,560"
+			},
+			"offsets": {
+				"from": 109120,
+				"to": 114560
+			},
+			"text": " but there's a better way. Polymorphism allows us to have a type parameter, a, that can get"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,560",
+				"to": "00:01:59,920"
+			},
+			"offsets": {
+				"from": 114560,
+				"to": 119920
+			},
+			"text": " filled with int or string or any type that we like. This is really useful and most type"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,920",
+				"to": "00:02:05,720"
+			},
+			"offsets": {
+				"from": 119920,
+				"to": 125720
+			},
+			"text": " languages stop there, but this still doesn't prevent all runtime errors. We could call get"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,720",
+				"to": "00:02:10,560"
+			},
+			"offsets": {
+				"from": 125720,
+				"to": 130560
+			},
+			"text": " with a really large index and cause an out of bounds runtime error. Some languages don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,560",
+				"to": "00:02:15,360"
+			},
+			"offsets": {
+				"from": 130560,
+				"to": 135360
+			},
+			"text": " even error. They just dump the contents of memory and that's probably worse. But if we"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,360",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135360,
+				"to": 139000
+			},
+			"text": " want the compiler to warn us if our index is bigger than our array length, we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 145000
+			},
+			"text": " to need types that depend not only on other types, but on normal values. Here we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:30,640"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 150640
+			},
+			"text": " a type level number n that tells the compiler how long the array is. Just like we have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,640",
+				"to": "00:02:35,640"
+			},
+			"offsets": {
+				"from": 150640,
+				"to": 155640
+			},
+			"text": " type parameter a that tells us what's in the array, n is a type level value that lets"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,640",
+				"to": "00:02:41,200"
+			},
+			"offsets": {
+				"from": 155640,
+				"to": 161200
+			},
+			"text": " us enforce that our index has to be between zero and n minus one. The values independent"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,200",
+				"to": "00:02:46,080"
+			},
+			"offsets": {
+				"from": 161200,
+				"to": 166080
+			},
+			"text": " types don't have to be constants. They can be the results of computations. This lets us"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,080",
+				"to": "00:02:49,960"
+			},
+			"offsets": {
+				"from": 166080,
+				"to": 169960
+			},
+			"text": " constrain the function so much that we can often guess what the implementation has to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,960",
+				"to": "00:02:55,160"
+			},
+			"offsets": {
+				"from": 169960,
+				"to": 175160
+			},
+			"text": " be just from its shape, kind of like a game of who's at Pokemon, but with types. In this"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,160",
+				"to": "00:02:58,800"
+			},
+			"offsets": {
+				"from": 175160,
+				"to": 178800
+			},
+			"text": " case, we have a function that receives a number n and returns an array of prime numbers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,800",
+				"to": "00:03:05,120"
+			},
+			"offsets": {
+				"from": 178800,
+				"to": 185120
+			},
+			"text": " that have multiplied together equal n. Can anyone guess what this has to be? It's factorize."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,120",
+				"to": "00:03:08,640"
+			},
+			"offsets": {
+				"from": 185120,
+				"to": 188640
+			},
+			"text": " The cool thing is nothing other than the correct factorization implementation will pass the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,640",
+				"to": "00:03:12,720"
+			},
+			"offsets": {
+				"from": 188640,
+				"to": 192720
+			},
+			"text": " type checker. The Fibonacci sequence would be a type error because the products wouldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,720",
+				"to": "00:03:20,160"
+			},
+			"offsets": {
+				"from": 192720,
+				"to": 200160
+			},
+			"text": " sum to the number. Let's play again. Given an array x's, return an array y's with the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,160",
+				"to": "00:03:25,920"
+			},
+			"offsets": {
+				"from": 200160,
+				"to": 205920
+			},
+			"text": " elements, but in ascending order. What does this function have to be? Sort. Anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,920",
+				"to": "00:03:30,480"
+			},
+			"offsets": {
+				"from": 205920,
+				"to": 210480
+			},
+			"text": " else is a type error. Those such that are checked statically, which means that you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,480",
+				"to": "00:03:35,280"
+			},
+			"offsets": {
+				"from": 210480,
+				"to": 215280
+			},
+			"text": " not go to space today becomes my code is broken and I don't know why. Which is great because"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,280",
+				"to": "00:03:40,160"
+			},
+			"offsets": {
+				"from": 215280,
+				"to": 220160
+			},
+			"text": " compile time is when you, the programmer, are in the process of fixing your code. This is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,160",
+				"to": "00:03:45,040"
+			},
+			"offsets": {
+				"from": 220160,
+				"to": 225040
+			},
+			"text": " really nice for immutable blockchains where a runtime error means my code is broken, no"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,040",
+				"to": "00:03:49,320"
+			},
+			"offsets": {
+				"from": 225040,
+				"to": 229320
+			},
+			"text": " one can get their money out, and I can't fix it because I deployed my code to an immutable"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,320",
+				"to": "00:03:55,400"
+			},
+			"offsets": {
+				"from": 229320,
+				"to": 235400
+			},
+			"text": " platform. But dependent types are useful for so much more. If we can do arbitrary type"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,400",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 235400,
+				"to": 240000
+			},
+			"text": " level computation, we can use our type system to declare any number of -- any combination"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:04,480"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 244480
+			},
+			"text": " of properties we want. And then if we write code that validly checks those properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,480",
+				"to": "00:04:08,720"
+			},
+			"offsets": {
+				"from": 244480,
+				"to": 248720
+			},
+			"text": " we built a constructive executable proof of the theorem that type represents. This is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,720",
+				"to": "00:04:14,400"
+			},
+			"offsets": {
+				"from": 248720,
+				"to": 254400
+			},
+			"text": " the curry howard isomorphism. Formologic and software development are actually the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,400",
+				"to": "00:04:18,640"
+			},
+			"offsets": {
+				"from": 254400,
+				"to": 258640
+			},
+			"text": " activity. It's just not obvious because the usual syntax is very different. Most math"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,640",
+				"to": "00:04:23,200"
+			},
+			"offsets": {
+				"from": 258640,
+				"to": 263200
+			},
+			"text": " syntax forces you to do the execution manually, and most code syntax forces you to keep track"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,200",
+				"to": "00:04:28,400"
+			},
+			"offsets": {
+				"from": 263200,
+				"to": 268400
+			},
+			"text": " of type information manually. Our goal with formality is to have a language that's really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,400",
+				"to": "00:04:32,840"
+			},
+			"offsets": {
+				"from": 268400,
+				"to": 272840
+			},
+			"text": " really good for both software development and for exploring mathematics. We want to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,840",
+				"to": "00:04:37,040"
+			},
+			"offsets": {
+				"from": 272840,
+				"to": 277040
+			},
+			"text": " a programming language as accessible as Python and a proof language as powerful as Oggda,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,040",
+				"to": "00:04:41,840"
+			},
+			"offsets": {
+				"from": 277040,
+				"to": 281840
+			},
+			"text": " one that's safe, fast, simple, and portable. We still have a long way to meet that goal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,840",
+				"to": "00:04:45,840"
+			},
+			"offsets": {
+				"from": 281840,
+				"to": 285840
+			},
+			"text": " but we've made great progress in the past year. Here's all the type signatures we just"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,840",
+				"to": "00:04:52,400"
+			},
+			"offsets": {
+				"from": 285840,
+				"to": 292400
+			},
+			"text": " went over, but in formality syntax instead of pseudocode. And here's how we declare data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,400",
+				"to": "00:04:56,640"
+			},
+			"offsets": {
+				"from": 292400,
+				"to": 296640
+			},
+			"text": " types and how we take the tail of a list. The cool thing here is that unlike other proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,640",
+				"to": "00:05:02,640"
+			},
+			"offsets": {
+				"from": 296640,
+				"to": 302640
+			},
+			"text": " languages like cock or Oggda, our data types aren't built in to the theory. They're actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,640",
+				"to": "00:05:07,960"
+			},
+			"offsets": {
+				"from": 302640,
+				"to": 307960
+			},
+			"text": " just a syntax sugar for lambda functions. This code looks a little scary from a user"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,960",
+				"to": "00:05:11,960"
+			},
+			"offsets": {
+				"from": 307960,
+				"to": 311960
+			},
+			"text": " perspective, which is why we built the syntax sugar over the past year, but it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,960",
+				"to": "00:05:16,160"
+			},
+			"offsets": {
+				"from": 311960,
+				"to": 316160
+			},
+			"text": " a lot simpler to implement. And our runtime is only about 400 lines long, and our core"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,160",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 316160,
+				"to": 320000
+			},
+			"text": " language theory is only about 1500. We think it's really important for portability and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:24,920"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 324920
+			},
+			"text": " decentralization to have a language that's small enough that people can implement it or"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,920",
+				"to": "00:05:29,720"
+			},
+			"offsets": {
+				"from": 324920,
+				"to": 329720
+			},
+			"text": " at least understand it themselves. Here's the clean syntax again, you know, now that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,720",
+				"to": "00:05:34,560"
+			},
+			"offsets": {
+				"from": 329720,
+				"to": 334560
+			},
+			"text": " you know the lambda name codeings look like. Let's talk about performance. A language"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,560",
+				"to": "00:05:38,880"
+			},
+			"offsets": {
+				"from": 334560,
+				"to": 338880
+			},
+			"text": " that's great for writing practical software has to be fast. While formality's runtime"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,880",
+				"to": "00:05:42,080"
+			},
+			"offsets": {
+				"from": 338880,
+				"to": 342080
+			},
+			"text": " is still immature, the language has a lot of features that we think will make it very"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,080",
+				"to": "00:05:46,600"
+			},
+			"offsets": {
+				"from": 342080,
+				"to": 346600
+			},
+			"text": " fast in the long term. Interaction nets is our runtime model, and I think it deserves"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,600",
+				"to": "00:05:51,040"
+			},
+			"offsets": {
+				"from": 346600,
+				"to": 351040
+			},
+			"text": " its own talk since they allow some really crazy optimizations like optimal sharing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,040",
+				"to": "00:05:56,720"
+			},
+			"offsets": {
+				"from": 351040,
+				"to": 356720
+			},
+			"text": " runtime fusion, and here's our nice illustration of what the reduction actually looks like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,720",
+				"to": "00:06:03,720"
+			},
+			"offsets": {
+				"from": 356720,
+				"to": 363720
+			},
+			"text": " and you can see the conversion from a lambda term to a graph and then back. For code with"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,720",
+				"to": "00:06:11,840"
+			},
+			"offsets": {
+				"from": 363720,
+				"to": 371840
+			},
+			"text": " higher order functions, formality's extremely fast right now, but there's still substantial"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,840",
+				"to": "00:06:17,040"
+			},
+			"offsets": {
+				"from": 371840,
+				"to": 377040
+			},
+			"text": " overhead, which makes us only moderately fast on average at the moment. We think in future"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,040",
+				"to": "00:06:20,880"
+			},
+			"offsets": {
+				"from": 377040,
+				"to": 380880
+			},
+			"text": " our interaction net model will pay a lot of dividends here. Performance is really critical"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,880",
+				"to": "00:06:27,040"
+			},
+			"offsets": {
+				"from": 380880,
+				"to": 387040
+			},
+			"text": " to us, forgetting people to adopt formality and using it to build lots of great software."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,040",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 387040,
+				"to": 391000
+			},
+			"text": " One interesting thing about these benchmarks is that if instead I call the function not"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 396000
+			},
+			"text": " 10 to the 100 times, but 10 to the 100,000, it still only takes like 12 seconds, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:40,680"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 400680
+			},
+			"text": " is way better than I think pretty much any other language that I've used unless you do"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,680",
+				"to": "00:06:47,520"
+			},
+			"offsets": {
+				"from": 400680,
+				"to": 407520
+			},
+			"text": " like crazy optimizations. Here's what proves matter. Here's a sample of some costly issues"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,520",
+				"to": "00:06:50,520"
+			},
+			"offsets": {
+				"from": 407520,
+				"to": 410520
+			},
+			"text": " that have happened at different parts of the stack that perhaps could have benefited from"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,520",
+				"to": "00:06:56,640"
+			},
+			"offsets": {
+				"from": 410520,
+				"to": 416640
+			},
+			"text": " proofs and type safety. Heart bleed, that's just an out of bounds indexing error. Now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,640",
+				"to": "00:07:00,480"
+			},
+			"offsets": {
+				"from": 416640,
+				"to": 420480
+			},
+			"text": " proofs aren't a silver bullet because all these issues are really complicated, but if"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,480",
+				"to": "00:07:04,120"
+			},
+			"offsets": {
+				"from": 420480,
+				"to": 424120
+			},
+			"text": " proofs can reduce the severity or incidence of these kinds of errors, even just a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,120",
+				"to": "00:07:09,680"
+			},
+			"offsets": {
+				"from": 424120,
+				"to": 429680
+			},
+			"text": " bit at the margin, I think it's worth exploring. And in blockchain, I think it's especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,680",
+				"to": "00:07:16,120"
+			},
+			"offsets": {
+				"from": 429680,
+				"to": 436120
+			},
+			"text": " relevant because the ratio between code complexity and code value is so extreme. Here, I just"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,120",
+				"to": "00:07:23,520"
+			},
+			"offsets": {
+				"from": 436120,
+				"to": 443520
+			},
+			"text": " counted the lines in some popular projects, you know, B-A-T-U-S-D-C. And, you know, a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,520",
+				"to": "00:07:27,720"
+			},
+			"offsets": {
+				"from": 443520,
+				"to": 447720
+			},
+			"text": " lot of projects are running at about a million -- a million dollars per capital per lines"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,720",
+				"to": "00:07:32,160"
+			},
+			"offsets": {
+				"from": 447720,
+				"to": 452160
+			},
+			"text": " of code. So I think it's really important that if you're writing projects like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,160",
+				"to": "00:07:35,600"
+			},
+			"offsets": {
+				"from": 452160,
+				"to": 455600
+			},
+			"text": " you should put a little extra effort in trying to make sure that the lines of code are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,600",
+				"to": "00:07:41,280"
+			},
+			"offsets": {
+				"from": 455600,
+				"to": 461280
+			},
+			"text": " the correct lines of code. One criticism of proofs is that they pass responsibility for"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,280",
+				"to": "00:07:45,040"
+			},
+			"offsets": {
+				"from": 461280,
+				"to": 465040
+			},
+			"text": " correctness to the specification rather than the implementation. You still have to audit"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,040",
+				"to": "00:07:49,440"
+			},
+			"offsets": {
+				"from": 465040,
+				"to": 469440
+			},
+			"text": " it. And that's completely true. This proofs don't solve having to actually think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,440",
+				"to": "00:07:54,040"
+			},
+			"offsets": {
+				"from": 469440,
+				"to": 474040
+			},
+			"text": " your code and reason -- reason that is correct. And if your type spec is bad, then your proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,040",
+				"to": "00:07:59,680"
+			},
+			"offsets": {
+				"from": 474040,
+				"to": 479680
+			},
+			"text": " don't help you. But type specifications can be much simpler than the code they're typing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,680",
+				"to": "00:08:06,680"
+			},
+			"offsets": {
+				"from": 479680,
+				"to": 486680
+			},
+			"text": " And at worst, act like a compiler check documentation. Here's a little snippet from our ERC20 implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,680",
+				"to": "00:08:11,280"
+			},
+			"offsets": {
+				"from": 486680,
+				"to": 491280
+			},
+			"text": " And you can see that, like, if we -- that we have this type specification that says I"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,280",
+				"to": "00:08:14,680"
+			},
+			"offsets": {
+				"from": 491280,
+				"to": 494680
+			},
+			"text": " have a transfer function, I have -- the approvals have to be in an old state that has to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,680",
+				"to": "00:08:18,960"
+			},
+			"offsets": {
+				"from": 494680,
+				"to": 498960
+			},
+			"text": " removed from a new state. And it has to obey a double entry bookkeeping environment. You"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,960",
+				"to": "00:08:22,520"
+			},
+			"offsets": {
+				"from": 498960,
+				"to": 502520
+			},
+			"text": " don't even need to see the implementation to know that if it type checks those properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,520",
+				"to": "00:08:26,640"
+			},
+			"offsets": {
+				"from": 502520,
+				"to": 506640
+			},
+			"text": " that it's going to -- as long as the compiler is valid, that it's going to be safe according"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,640",
+				"to": "00:08:31,040"
+			},
+			"offsets": {
+				"from": 506640,
+				"to": 511040
+			},
+			"text": " to those properties. The vision is to have formality be a language that can add type"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,040",
+				"to": "00:08:35,440"
+			},
+			"offsets": {
+				"from": 511040,
+				"to": 515440
+			},
+			"text": " safety at every layer of the stack. Having the same language every -- means that you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,440",
+				"to": "00:08:39,040"
+			},
+			"offsets": {
+				"from": 515440,
+				"to": 519040
+			},
+			"text": " use the same types everywhere with minimal friction. And this is what's awesome about"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,040",
+				"to": "00:08:42,920"
+			},
+			"offsets": {
+				"from": 519040,
+				"to": 522920
+			},
+			"text": " having a 400-line language implementation. We can have the same language infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,920",
+				"to": "00:08:50,320"
+			},
+			"offsets": {
+				"from": 522920,
+				"to": 530320
+			},
+			"text": " running inside a web app, smart contract, server, editor plug-in, or our test suite."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,320",
+				"to": "00:08:53,960"
+			},
+			"offsets": {
+				"from": 530320,
+				"to": 533960
+			},
+			"text": " Our next big priority now that the language is pretty stable is to write the compilers"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,960",
+				"to": "00:08:57,880"
+			},
+			"offsets": {
+				"from": 533960,
+				"to": 537880
+			},
+			"text": " that will let us deploy formality smart contracts and to continue administering the library's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,880",
+				"to": "00:09:02,360"
+			},
+			"offsets": {
+				"from": 537880,
+				"to": 542360
+			},
+			"text": " tools and docs to make that a really great user experience. After that, implementing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,360",
+				"to": "00:09:05,920"
+			},
+			"offsets": {
+				"from": 542360,
+				"to": 545920
+			},
+			"text": " formality in itself will improve portability even further. And we're going to see how fast"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,920",
+				"to": "00:09:10,320"
+			},
+			"offsets": {
+				"from": 545920,
+				"to": 550320
+			},
+			"text": " we can put the existing C implementation. The two projects after that are going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,320",
+				"to": "00:09:13,800"
+			},
+			"offsets": {
+				"from": 550320,
+				"to": 553800
+			},
+			"text": " our package management infrastructure and putting the formality type checker on an Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,800",
+				"to": "00:09:19,560"
+			},
+			"offsets": {
+				"from": 553800,
+				"to": 559560
+			},
+			"text": " contract. That enables us to build a completely trustless marketplace for code and proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,560",
+				"to": "00:09:23,520"
+			},
+			"offsets": {
+				"from": 559560,
+				"to": 563520
+			},
+			"text": " You can submit a formality type to a contract along with a bounty for the first valid implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,520",
+				"to": "00:09:26,760"
+			},
+			"offsets": {
+				"from": 563520,
+				"to": 566760
+			},
+			"text": " of that type. And then anyone in the world can claim the bounty just by submitting the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,760",
+				"to": "00:09:33,360"
+			},
+			"offsets": {
+				"from": 566760,
+				"to": 573360
+			},
+			"text": " code. No human interaction required. If it passes the type checker, you get paid. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,360",
+				"to": "00:09:37,720"
+			},
+			"offsets": {
+				"from": 573360,
+				"to": 577720
+			},
+			"text": " that's formality. Thanks. Happy to take any questions. I don't think I have any time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,720",
+				"to": "00:09:41,360"
+			},
+			"offsets": {
+				"from": 577720,
+				"to": 581360
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,360",
+				"to": "00:09:42,360"
+			},
+			"offsets": {
+				"from": 581360,
+				"to": 582360
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,360",
+				"to": "00:09:49,360"
+			},
+			"offsets": {
+				"from": 582360,
+				"to": 589360
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,360",
+				"to": "00:09:56,360"
+			},
+			"offsets": {
+				"from": 589360,
+				"to": 596360
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,360",
+				"to": "00:10:03,360"
+			},
+			"offsets": {
+				"from": 596360,
+				"to": 603360
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,360",
+				"to": "00:10:19,360"
+			},
+			"offsets": {
+				"from": 603360,
+				"to": 619360
+			},
+			"text": " [Music]"
+		}
+	]
+}

@@ -1,0 +1,1770 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 20000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 27000
+			},
+			"text": " All right. Thanks a lot for coming. Thanks a lot to DevCon for having me."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 33000
+			},
+			"text": " First things first, this is my understanding. It's not the official IBM line."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 38000
+			},
+			"text": " And I'll be talking about the exploration project, MTM."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 45000
+			},
+			"text": " It's not a product. It's a research project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 51000
+			},
+			"text": " And this is basically how it mostly looks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 58000
+			},
+			"text": " So the team MTM is sponsored by Mac Devine, who's the vice president for cloud innovation at IBM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 65000
+			},
+			"text": " and it's run by Egan Ford, the distinguished engineer who's working 24/7 in the moment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 70000
+			},
+			"text": " pushing this and also pushing this within IBM. That's the important part to understand there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 78000
+			},
+			"text": " And with Raman Dindmeyer driving the bus and 12 engineers that are working on this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 85000
+			},
+			"text": " I'm Hanning Ditle. I'm a senior programmer at the blockchain group at IBM."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 90000
+			},
+			"text": " And I have prior experience, for example, in distributed databases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 95000
+			},
+			"text": " which come in quite handy sometimes in this particular field."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 100000
+			},
+			"text": " But also with high velocity and scalability, as these problems are, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 105000
+			},
+			"text": " nothing new in the world of distributed databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 110000
+			},
+			"text": " So MTM is an acronym for multiplying things needlessly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 115000
+			},
+			"text": " And this was a pun, a little bit of how blockchain works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 118000
+			},
+			"text": " And maybe it's not quite that needless, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 127000
+			},
+			"text": " And it's really about autonomous processing, communication and coordination between the edge and the cloud."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 132000
+			},
+			"text": " So where we're at, we saw this diagram before today, even I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 137000
+			},
+			"text": " we're at a historic explosion of calculation, power of processing power."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 146000
+			},
+			"text": " And this is of course driving the Internet of Things, because more and more small devices are becoming more and more intelligent."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 150000
+			},
+			"text": " IoT, as a fanaman, is actually already here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 153000
+			},
+			"text": " There are huge success stories in the industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 160000
+			},
+			"text": " For example, jet engines, the way that they are checked every second and traced and tracked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 166000
+			},
+			"text": " the way that a new business model basically has evolved from the way that they are constantly online."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 169000
+			},
+			"text": " And that is something that is a reality now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 173000
+			},
+			"text": " There are also disappointments where, for example, in the consumer sector,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 176000
+			},
+			"text": " things didn't pick up the way that they might have been expected."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 184000
+			},
+			"text": " For example, you would still not see too many TVs that actually are used to use the Internet with."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 192000
+			},
+			"text": " The motivation for MTN is that as more and more devices around us become more and more intelligent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 196000
+			},
+			"text": " the digital experience is going to be changing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 200000
+			},
+			"text": " And more and more of these devices will be connected directly to each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 205000
+			},
+			"text": " here to here, instead of to a centralized cloud, just because they can."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 214000
+			},
+			"text": " So what's emerging there has been called a device democracy, in the best case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 221000
+			},
+			"text": " where the power in the Internet of Things will actually shift from the center to the edge."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 227000
+			},
+			"text": " And while that happens, what can happen there is that a liquid market can emerge"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 231000
+			},
+			"text": " where devices are dealing directly with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 236000
+			},
+			"text": " And this will hopefully lead to products that we can't even imagine right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 244000
+			},
+			"text": " Obviously, to make that happen, the blockchain can be a really strong component."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 251000
+			},
+			"text": " And the needs that we identify for this new world of device democracy"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 257000
+			},
+			"text": " are to large degree exactly what a blockchain can offer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 265000
+			},
+			"text": " So if we look at the actual requirements and needs of the Internet of Things around today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 268000
+			},
+			"text": " we see a couple of roadblocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 273000
+			},
+			"text": " One of them is that the architecture that we have today that's highly centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 276000
+			},
+			"text": " will necessarily scale over the next couple years."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 281000
+			},
+			"text": " We now have an Internet of Things that is having a certain topology"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 288000
+			},
+			"text": " and we will, at any rate, want to find a new way of connecting devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 293000
+			},
+			"text": " Then these connections have to be maintained."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 295000
+			},
+			"text": " They have to be uphold."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 301000
+			},
+			"text": " And this is going to be creating some expense and somehow that has to be justified."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 306000
+			},
+			"text": " And it's not quite clear that business models that we have today are actually doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 314000
+			},
+			"text": " What we also are going to realize is that the Internet of Trust that we had some decades ago"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 317000
+			},
+			"text": " without spam and everything is not a reality anymore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 322000
+			},
+			"text": " we can be certain that any system that we're deploying today is going to be attacked"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 325000
+			},
+			"text": " and has vulnerabilities are going to be exploited."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 330000
+			},
+			"text": " So security has a very high priority right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 337000
+			},
+			"text": " They also won't be seeing people accepting their toasters spying at them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 342000
+			},
+			"text": " So that's another dimension of security where people will want to have some control"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 344000
+			},
+			"text": " over what the devices are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 350000
+			},
+			"text": " And the way that, for example, the smartphone is completely owned by the producer of the smartphone today"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 357000
+			},
+			"text": " is probably not how it's going to be continued."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 367000
+			},
+			"text": " Now, coming back to the toaster, people expect 20 years or more as a life span for a toaster."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 373000
+			},
+			"text": " If you have a centralized model with a toaster that's somehow useful because it's connected,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 377000
+			},
+			"text": " then you have to maintain that for 20 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 383000
+			},
+			"text": " Is that even viable or are people going to be very, very frustrated with producers going out of business,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 389000
+			},
+			"text": " which is kind of likely within 20 years, not every company gets to 100 like IBM."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 402000
+			},
+			"text": " And then finally, the business models that we're seeing today are very much focused on information for advertisement."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 409000
+			},
+			"text": " And that is probably not going to scale because there's only so much data that you can actually get out of a household"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 417000
+			},
+			"text": " and there's more and more devices compete to collect the same data than probably the value of the data is going to go down."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 424000
+			},
+			"text": " So the motivation here is that when we see the possibilities that we have here today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 428000
+			},
+			"text": " can we have a user defined algorithm?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 435000
+			},
+			"text": " Can we have a customized experience that is not based on what we have in the moment?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 445000
+			},
+			"text": " And the IoT today where we have new possibilities that are going to be used either for mischievous stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 452000
+			},
+			"text": " if security is not high enough or for exciting new stuff that we might not even imagine right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 461000
+			},
+			"text": " When we see at the bottom line though, it's important to always remember that in the end it's about making the experience better."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 467000
+			},
+			"text": " It's not maybe worthwhile to have the toaster printing advertisement on your toast,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 473000
+			},
+			"text": " but you will want to have something that really makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 482000
+			},
+			"text": " And on the whole, what we are having today is the cloud as a centralized, very powerful control mechanism, so to say, of devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 490000
+			},
+			"text": " That's less centralized than we had before, but it's also not probably how it's going to stay when we're going to more peer and peer architectures."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 501000
+			},
+			"text": " That this kind of development is happening no matter whether you are imagining the blockchain here or some other peer-to-peer mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 504000
+			},
+			"text": " That is pretty clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 515000
+			},
+			"text": " So if you look at this requirements, what emerges as basic foundation, so to say, has a very large overlap with what blockchain can offer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 526000
+			},
+			"text": " And in this regard, except for identity, all three of the first, all three bullet points over that are exactly what a blockchain can offer you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 536000
+			},
+			"text": " You will have a very interesting convergence here where you can see that Ethereum, for example, is implementing Whisper now."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 545000
+			},
+			"text": " There are efforts to create Swarm that is going to add exactly what is needed to have file transfer and messaging,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 563000
+			},
+			"text": " where fascinatingly, in earlier explorations that were done at IBM, Talihash and Biturand were used that are now, or at least part of them, part of Whisper and Swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 569000
+			},
+			"text": " So the Internet of Things as it stands now is at probably 9 billion devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 576000
+			},
+			"text": " And what we are thinking about and talking about is when it goes to 100 billion devices, which is the future, nobody might say exactly when it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 582000
+			},
+			"text": " Maybe it's 2020 or 2025, but it's going to go there. That's pretty clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 590000
+			},
+			"text": " And the mission that we put ourselves for MTN is analytics at the edge."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 602000
+			},
+			"text": " Analytics at the edge means if you have a sensor that is picking up data, then you might not be able to ship it fast enough to the cloud and have it analyzed with high-capacity computers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 608000
+			},
+			"text": " but it's possible that this data has to be selected before it can even be shipped."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 619000
+			},
+			"text": " And it seems to be that in the moment, 60% of all the data that is collected at the edge loses its value within milliseconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 624000
+			},
+			"text": " And so 90% of the data that is collected is never actually used."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 628000
+			},
+			"text": " And this is what we wanted to address with the exploration, MTN."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 642000
+			},
+			"text": " And what we used for that, what we looked at here, is how we can use technical behaviors that we'd see now, how we have real-time processing at the edge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 653000
+			},
+			"text": " and how we, in the end, can have security containers in a hostile environment, and how we have a bottom line that gives us better quality of experience, hopefully."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 671000
+			},
+			"text": " So this is how it looks like. This is a software-defined radio, and it has five megabits of seconds of data that it collects."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 681000
+			},
+			"text": " And that volume is enough that you cannot actually ship it from our experimental Raspberry Pi setup to a central cloud to have it analyzed."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 693000
+			},
+			"text": " So what has to happen is create an infrastructure so that we can use these little devices, where we have Raspberry Pi's at endpoints that are our sensors in this exploration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 706000
+			},
+			"text": " and these software radio devices attached to them, and then use the plethora of data that's out there, terabytes, actually, that you have access to."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 714000
+			},
+			"text": " This is the United States frequency allocation. And zoom in into some frequency where we can find interesting data, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 717000
+			},
+			"text": " We have smart meters at some point."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 731000
+			},
+			"text": " We also have other stuff like aircraft radio navigation, where you can track aircrafts. Of course, mobile and FM is taking up big swaths of this, but we are focusing on something simple, and that is just the water and power meter output."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 737000
+			},
+			"text": " And this is how it actually looks. If you read that out, interestingly, in America, there seems to be no protection at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 746000
+			},
+			"text": " You can read all the meters of all your neighbors in the moment. Maybe that's not going to stay like that, but for experimental purposes that may be quite interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 757000
+			},
+			"text": " You can also track flight data. That is another possibility. This is how this looks if you read it out of the radio frequencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 765000
+			},
+			"text": " So for our experimental setup, we have a couple of personas here. We have the device itself that's the Raspberry Pi."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 775000
+			},
+			"text": " We have the device contract. That is the contract that are actually the Ethereum contracts that are actually entered in between the devices and a central token bank."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 782000
+			},
+			"text": " We have the device registry that basically knows everything about all the devices in the system for our setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 790000
+			},
+			"text": " And then we have Glansan, which is a producer of Docker containers that are actually shipped out to the devices that those devices employ."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 803000
+			},
+			"text": " Deploy. And that are then having basically the entire logic that is needed to make the enter into the negotiations and to ship the data home to a consumer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 812000
+			},
+			"text": " This is how the infrastructure looks. Up on the top you have the Raspberry Pi's."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 825000
+			},
+			"text": " Down here in the middle you have the contracting server that is the consumer of the data that actually is willing to pay for the data and wants the data to have the data delivered from the Raspberry Pi's."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 831000
+			},
+			"text": " Oops. Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 840000
+			},
+			"text": " It's out of power for good. Somebody can help me?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 866000
+			},
+			"text": " I have one. It's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 883000
+			},
+			"text": " I'm not."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 896000
+			},
+			"text": " Okay. So the main aspect of what Ethereum is actually used for, and that's the important thing here because I often encountered the question, why do you need blockchain for IoT?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 899000
+			},
+			"text": " And the main aspect is really the negotiation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 906000
+			},
+			"text": " To negotiate between devices and endpoints in an untrusted environment, that is what we're using Ethereum for."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 926000
+			},
+			"text": " And that is the whole mechanism of the devices offering their data, the central consumer of the data, accepting that offer, creating an escrow where the future payment is put for the devices then to ship the data, which is out of band."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 933000
+			},
+			"text": " And then in the end to pay out of the escrow when the data has been shipped."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 942000
+			},
+			"text": " And that is basically the main point of the whole experiment to see whether that in a fashion that scales sufficiently can actually be done using Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 948000
+			},
+			"text": " And at this point I would say it is a success."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 955000
+			},
+			"text": " So this is how a proof of concept looked like. It's actually simulated, simulated."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 962000
+			},
+			"text": " We didn't have quite as many points there, but we zeroed in on some that were actually running."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 968000
+			},
+			"text": " Then you could see what data was actually there, and what connections were endpoints were actually there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 976000
+			},
+			"text": " To be consumed, you could have a device registration where device can be registered so that it can be in, take part in the marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 986000
+			},
+			"text": " We then have the view here of the blockchain, how it looks when these devices are actually starting to communicate with each other and starting to enter contracts with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 993000
+			},
+			"text": " And this is how the actual flow within the different players in the system worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:42,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 1002000
+			},
+			"text": " I won't go through it step by step in a moment here, but it's just, you're getting the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1002000,
+				"to": 1013000
+			},
+			"text": " It's quite straightforward actually. And in the end, this was the bootstrapping flow actually to enter into the, to get a container to a device so the whole system can start."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1031000
+			},
+			"text": " And this is the flow when the container actually runs where you are making a proposal and in the end the execution when it's done is wound down."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1038000
+			},
+			"text": " So there are a couple of risk and opportunities that are obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1045000
+			},
+			"text": " I mean, that we haven't looked into. One is the question about a spot market. How can that look?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1050000
+			},
+			"text": " What is not clear to us in the moment is how do you actually control access to the whole market?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1060000
+			},
+			"text": " How do you control access to the sensors? It's basically out of the scope of the experimentation that we did, but it's not something that we consider unsolvable."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1072000
+			},
+			"text": " There's also the question how would actual vendors, how would actually participants in such a marketplace like to access and process and analyze and filter this kind of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1079000
+			},
+			"text": " And what kind of arbitrary code can you allow in this kind of environment?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1085000
+			},
+			"text": " The next steps were us and it's still ongoing. What is happening there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1094000
+			},
+			"text": " And again, this is an internal experimentation, so to say, where we use also to convince people that this is the way to forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1109000
+			},
+			"text": " And we are looking, we're just hoping that a thin client is going to be in the cards very soon to have a good road towards scalability for this model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1119000
+			},
+			"text": " where as far as I can see, we are going to have not too many validators, but a lot of thin clients, and that would be a good answer to how this can scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1129000
+			},
+			"text": " There should be some kind of an exchange and directory that we will look at how this could look, where the entire marketplace can be driven through."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1136000
+			},
+			"text": " And then we are going to have a push internally to try to find 20,000 people"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1146000
+			},
+			"text": " that are interested to sign up for this, have rasporatized connecting into the system and making a large-scale real test, testing the whole Ethereum installation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1151000
+			},
+			"text": " how big it can really scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1157000
+			},
+			"text": " A big thanks goes to the Go team at this point, and I've been asked specifically where you can forward to extend that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1160000
+			},
+			"text": " Jeff, Felix, Gosef, Victor, you really helped us a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1166000
+			},
+			"text": " I hope we also were able to contribute because we actually ran some large-scale tests with hundreds of devices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1177000
+			},
+			"text": " or GSA 100 devices running through containers, running unusual devices like armed Raspberry Pi's who are slower and might have different kinds of race conditions as a result."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:45,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1185000
+			},
+			"text": " And we ran into a bug here and there, and it was just amazing how this week we've been able to work together and fix the stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,000",
+				"to": "00:19:55,000"
+			},
+			"offsets": {
+				"from": 1185000,
+				"to": 1195000
+			},
+			"text": " The IBM guys were very tired and overworked, so they were grumpy and brief sometimes, but it was great support that came from here, and a big thanks for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1195000,
+				"to": 1197000
+			},
+			"text": " So, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1207000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:09,260"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1209260
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

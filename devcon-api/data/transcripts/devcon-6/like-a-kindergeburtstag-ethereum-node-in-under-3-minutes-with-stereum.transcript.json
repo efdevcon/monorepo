@@ -1,0 +1,1495 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:15,320"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 15320
+			},
+			"text": " What's Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,320",
+				"to": "00:00:18,720"
+			},
+			"offsets": {
+				"from": 15320,
+				"to": 18720
+			},
+			"text": " Ethereum is the one-stop solution to run an Ethereum node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,720",
+				"to": "00:00:19,960"
+			},
+			"offsets": {
+				"from": 18720,
+				"to": 19960
+			},
+			"text": " the easy way."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,960",
+				"to": "00:00:23,040"
+			},
+			"offsets": {
+				"from": 19960,
+				"to": 23040
+			},
+			"text": " Ethereum originated in the beginning of 2020"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,040",
+				"to": "00:00:26,400"
+			},
+			"offsets": {
+				"from": 23040,
+				"to": 26400
+			},
+			"text": " when we started with a Docker compose setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,400",
+				"to": "00:00:31,440"
+			},
+			"offsets": {
+				"from": 26400,
+				"to": 31440
+			},
+			"text": " And now we have a full-fledged UI that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,440",
+				"to": "00:00:37,960"
+			},
+			"offsets": {
+				"from": 31440,
+				"to": 37960
+			},
+			"text": " is focused on ease of use and flexibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,960",
+				"to": "00:00:39,920"
+			},
+			"offsets": {
+				"from": 37960,
+				"to": 39920
+			},
+			"text": " So how do you set up Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,920",
+				"to": "00:00:43,080"
+			},
+			"offsets": {
+				"from": 39920,
+				"to": 43080
+			},
+			"text": " So the requirements are you need some kind of a desktop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,080",
+				"to": "00:00:47,320"
+			},
+			"offsets": {
+				"from": 43080,
+				"to": 47320
+			},
+			"text": " like a Windows, Linux desktop, or a macOS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,320",
+				"to": "00:00:53,760"
+			},
+			"offsets": {
+				"from": 47320,
+				"to": 53760
+			},
+			"text": " And you need some Ubuntu 22.04 to run the node on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,760",
+				"to": "00:00:56,880"
+			},
+			"offsets": {
+				"from": 53760,
+				"to": 56880
+			},
+			"text": " We will support other operating systems later on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,880",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 56880,
+				"to": 60000
+			},
+			"text": " but for now we're stuck with Ubuntu."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:01,800"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 61800
+			},
+			"text": " And this is how it looks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,800",
+				"to": "00:01:04,960"
+			},
+			"offsets": {
+				"from": 61800,
+				"to": 64960
+			},
+			"text": " You download the software, start it, and discretes you."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,960",
+				"to": "00:01:08,320"
+			},
+			"offsets": {
+				"from": 64960,
+				"to": 68320
+			},
+			"text": " So you just enter your SSH credentials"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,320",
+				"to": "00:01:10,040"
+			},
+			"offsets": {
+				"from": 68320,
+				"to": 70040
+			},
+			"text": " after you've gone to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,040",
+				"to": "00:01:11,640"
+			},
+			"offsets": {
+				"from": 70040,
+				"to": 71640
+			},
+			"text": " I mentioned earlier--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,640",
+				"to": "00:01:18,560"
+			},
+			"offsets": {
+				"from": 71640,
+				"to": 78560
+			},
+			"text": " we support password authentication as well as SSH keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,560",
+				"to": "00:01:20,520"
+			},
+			"offsets": {
+				"from": 78560,
+				"to": 80520
+			},
+			"text": " of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,520",
+				"to": "00:01:23,720"
+			},
+			"offsets": {
+				"from": 80520,
+				"to": 83720
+			},
+			"text": " Then the Ethereum launcher checks your operating system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,720",
+				"to": "00:01:28,240"
+			},
+			"offsets": {
+				"from": 83720,
+				"to": 88240
+			},
+			"text": " If it's supported or not, it gives you a thumbs up."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,240",
+				"to": "00:01:30,560"
+			},
+			"offsets": {
+				"from": 88240,
+				"to": 90560
+			},
+			"text": " After that, just click on the one-click installer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,560",
+				"to": "00:01:34,720"
+			},
+			"offsets": {
+				"from": 90560,
+				"to": 94720
+			},
+			"text": " and you can choose between running on mainnet or testnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,720",
+				"to": "00:01:37,160"
+			},
+			"offsets": {
+				"from": 94720,
+				"to": 97160
+			},
+			"text": " In this example, we just run on testnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,160",
+				"to": "00:01:39,760"
+			},
+			"offsets": {
+				"from": 97160,
+				"to": 99760
+			},
+			"text": " and setup a staking node."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,760",
+				"to": "00:01:44,880"
+			},
+			"offsets": {
+				"from": 99760,
+				"to": 104880
+			},
+			"text": " After that, you can see the setup already"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,880",
+				"to": "00:01:49,480"
+			},
+			"offsets": {
+				"from": 104880,
+				"to": 109480
+			},
+			"text": " pre-chose a execution client and then consensus client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,480",
+				"to": "00:01:51,120"
+			},
+			"offsets": {
+				"from": 109480,
+				"to": 111120
+			},
+			"text": " This is, of course, changeable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,120",
+				"to": "00:01:54,880"
+			},
+			"offsets": {
+				"from": 111120,
+				"to": 114880
+			},
+			"text": " So the user can easily, with just clicking on it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,880",
+				"to": "00:01:55,800"
+			},
+			"offsets": {
+				"from": 114880,
+				"to": 115800
+			},
+			"text": " choose something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,800",
+				"to": "00:02:00,080"
+			},
+			"offsets": {
+				"from": 115800,
+				"to": 120080
+			},
+			"text": " Right now we support three execution clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,080",
+				"to": "00:02:01,760"
+			},
+			"offsets": {
+				"from": 120080,
+				"to": 121760
+			},
+			"text": " three different execution clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,760",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 121760,
+				"to": 125000
+			},
+			"text": " and four different consensus clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:08,240"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 128240
+			},
+			"text": " You can also use check points if you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,240",
+				"to": "00:02:13,400"
+			},
+			"offsets": {
+				"from": 128240,
+				"to": 133400
+			},
+			"text": " It's a little bit faster than swinging from scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,400",
+				"to": "00:02:17,160"
+			},
+			"offsets": {
+				"from": 133400,
+				"to": 137160
+			},
+			"text": " The next screen will just confirm what you just entered."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,160",
+				"to": "00:02:18,480"
+			},
+			"offsets": {
+				"from": 137160,
+				"to": 138480
+			},
+			"text": " It shows you where to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,480",
+				"to": "00:02:22,040"
+			},
+			"offsets": {
+				"from": 138480,
+				"to": 142040
+			},
+			"text": " where it will get installed and what gets installed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,040",
+				"to": "00:02:23,680"
+			},
+			"offsets": {
+				"from": 142040,
+				"to": 143680
+			},
+			"text": " And you might notice there is also"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,680",
+				"to": "00:02:26,360"
+			},
+			"offsets": {
+				"from": 143680,
+				"to": 146360
+			},
+			"text": " some monitoring tools installed, namely,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,360",
+				"to": "00:02:29,560"
+			},
+			"offsets": {
+				"from": 146360,
+				"to": 149560
+			},
+			"text": " Prometheus and Kaffana."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,560",
+				"to": "00:02:31,240"
+			},
+			"offsets": {
+				"from": 149560,
+				"to": 151240
+			},
+			"text": " And then the setup already starts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,240",
+				"to": "00:02:34,400"
+			},
+			"offsets": {
+				"from": 151240,
+				"to": 154400
+			},
+			"text": " It downloads some operating system packages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,400",
+				"to": "00:02:35,480"
+			},
+			"offsets": {
+				"from": 154400,
+				"to": 155480
+			},
+			"text": " installs them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,480",
+				"to": "00:02:40,560"
+			},
+			"offsets": {
+				"from": 155480,
+				"to": 160560
+			},
+			"text": " That's all for making Ethereum work on your Ubuntu."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,560",
+				"to": "00:02:42,920"
+			},
+			"offsets": {
+				"from": 160560,
+				"to": 162920
+			},
+			"text": " After that, it also configures the firewall"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,920",
+				"to": "00:02:45,360"
+			},
+			"offsets": {
+				"from": 162920,
+				"to": 165360
+			},
+			"text": " and, of course, writes some configuration files"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,360",
+				"to": "00:02:48,560"
+			},
+			"offsets": {
+				"from": 165360,
+				"to": 168560
+			},
+			"text": " for Ethereum itself and the services."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,560",
+				"to": "00:02:51,240"
+			},
+			"offsets": {
+				"from": 168560,
+				"to": 171240
+			},
+			"text": " And that's how it looks when it's done."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,240",
+				"to": "00:02:52,760"
+			},
+			"offsets": {
+				"from": 171240,
+				"to": 172760
+			},
+			"text": " Then we have the control page."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,760",
+				"to": "00:02:55,120"
+			},
+			"offsets": {
+				"from": 172760,
+				"to": 175120
+			},
+			"text": " This is really nice because on the left side"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,120",
+				"to": "00:03:01,400"
+			},
+			"offsets": {
+				"from": 175120,
+				"to": 181400
+			},
+			"text": " you have all the services that are running."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,400",
+				"to": "00:03:03,160"
+			},
+			"offsets": {
+				"from": 181400,
+				"to": 183160
+			},
+			"text": " And in the middle and the right side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,160",
+				"to": "00:03:05,800"
+			},
+			"offsets": {
+				"from": 183160,
+				"to": 185800
+			},
+			"text": " there's a big panel that shows a lot of widgets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,800",
+				"to": "00:03:07,720"
+			},
+			"offsets": {
+				"from": 185800,
+				"to": 187720
+			},
+			"text": " Some of them are still working in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,720",
+				"to": "00:03:10,200"
+			},
+			"offsets": {
+				"from": 187720,
+				"to": 190200
+			},
+			"text": " But it shows you the sync status."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,200",
+				"to": "00:03:14,360"
+			},
+			"offsets": {
+				"from": 190200,
+				"to": 194360
+			},
+			"text": " It shows you how many peer counts you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,360",
+				"to": "00:03:16,840"
+			},
+			"offsets": {
+				"from": 194360,
+				"to": 196840
+			},
+			"text": " have from the different services, also some other stats"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,840",
+				"to": "00:03:20,920"
+			},
+			"offsets": {
+				"from": 196840,
+				"to": 200920
+			},
+			"text": " from the host, like CPU usage and memory usage."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,920",
+				"to": "00:03:23,280"
+			},
+			"offsets": {
+				"from": 200920,
+				"to": 203280
+			},
+			"text": " And that's done in three minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,280",
+				"to": "00:03:26,080"
+			},
+			"offsets": {
+				"from": 203280,
+				"to": 206080
+			},
+			"text": " So how about staking?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,080",
+				"to": "00:03:28,280"
+			},
+			"offsets": {
+				"from": 206080,
+				"to": 208280
+			},
+			"text": " Well, that's the staking screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,280",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 208280,
+				"to": 211000
+			},
+			"text": " Looks quite similar, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:32,240"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 212240
+			},
+			"text": " And it's pretty easy to stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,240",
+				"to": "00:03:35,840"
+			},
+			"offsets": {
+				"from": 212240,
+				"to": 215840
+			},
+			"text": " You just drag and drop the files, the JSON key files,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,840",
+				"to": "00:03:36,960"
+			},
+			"offsets": {
+				"from": 215840,
+				"to": 216960
+			},
+			"text": " on the Ethereum launcher."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,960",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 216960,
+				"to": 220000
+			},
+			"text": " Or you press the big button on the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:41,560"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 221560
+			},
+			"text": " Then a file that's selected appears."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,560",
+				"to": "00:03:42,760"
+			},
+			"offsets": {
+				"from": 221560,
+				"to": 222760
+			},
+			"text": " You can choose them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,760",
+				"to": "00:03:44,080"
+			},
+			"offsets": {
+				"from": 222760,
+				"to": 224080
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,080",
+				"to": "00:03:46,480"
+			},
+			"offsets": {
+				"from": 224080,
+				"to": 226480
+			},
+			"text": " The Ethereum will ask you where you want to stake them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,480",
+				"to": "00:03:50,280"
+			},
+			"offsets": {
+				"from": 226480,
+				"to": 230280
+			},
+			"text": " You might notice the small button at the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,280",
+				"to": "00:03:52,400"
+			},
+			"offsets": {
+				"from": 230280,
+				"to": 232400
+			},
+			"text": " So we also support-- we will soon"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,400",
+				"to": "00:03:58,400"
+			},
+			"offsets": {
+				"from": 232400,
+				"to": 238400
+			},
+			"text": " support multiple validator clients to stake on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,400",
+				"to": "00:04:00,880"
+			},
+			"offsets": {
+				"from": 238400,
+				"to": 240880
+			},
+			"text": " Then you just enter the password."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,880",
+				"to": "00:04:03,200"
+			},
+			"offsets": {
+				"from": 240880,
+				"to": 243200
+			},
+			"text": " And the staking process starts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,200",
+				"to": "00:04:04,520"
+			},
+			"offsets": {
+				"from": 243200,
+				"to": 244520
+			},
+			"text": " The import process starts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,520",
+				"to": "00:04:11,760"
+			},
+			"offsets": {
+				"from": 244520,
+				"to": 251760
+			},
+			"text": " If it's successful-- so if your password was correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,760",
+				"to": "00:04:15,200"
+			},
+			"offsets": {
+				"from": 251760,
+				"to": 255200
+			},
+			"text": " Then the staking starts already."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,200",
+				"to": "00:04:17,960"
+			},
+			"offsets": {
+				"from": 255200,
+				"to": 257960
+			},
+			"text": " And the staking key gets listed in the list."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,960",
+				"to": "00:04:21,440"
+			},
+			"offsets": {
+				"from": 257960,
+				"to": 261440
+			},
+			"text": " On the right side, you can also modify the graffiti you will use."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,440",
+				"to": "00:04:23,960"
+			},
+			"offsets": {
+				"from": 261440,
+				"to": 263960
+			},
+			"text": " And of course, you can remove the keys in case you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,960",
+				"to": "00:04:28,120"
+			},
+			"offsets": {
+				"from": 263960,
+				"to": 268120
+			},
+			"text": " want to migrate to another Ethereum server."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,120",
+				"to": "00:04:31,320"
+			},
+			"offsets": {
+				"from": 268120,
+				"to": 271320
+			},
+			"text": " On the top of the page is always two small buttons."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,320",
+				"to": "00:04:32,840"
+			},
+			"offsets": {
+				"from": 271320,
+				"to": 272840
+			},
+			"text": " That's for graphite and Prometheus."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,840",
+				"to": "00:04:34,800"
+			},
+			"offsets": {
+				"from": 272840,
+				"to": 274800
+			},
+			"text": " You can easily access them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,800",
+				"to": "00:04:36,160"
+			},
+			"offsets": {
+				"from": 274800,
+				"to": 276160
+			},
+			"text": " Just click on the button."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,160",
+				"to": "00:04:40,680"
+			},
+			"offsets": {
+				"from": 276160,
+				"to": 280680
+			},
+			"text": " And the end theorem will open up a tab or a window"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,680",
+				"to": "00:04:43,280"
+			},
+			"offsets": {
+				"from": 280680,
+				"to": 283280
+			},
+			"text": " of your default browser of your OS."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,280",
+				"to": "00:04:49,400"
+			},
+			"offsets": {
+				"from": 283280,
+				"to": 289400
+			},
+			"text": " And make an SSH tunnel to access your Gafana and Prometheus"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,400",
+				"to": "00:04:52,160"
+			},
+			"offsets": {
+				"from": 289400,
+				"to": 292160
+			},
+			"text": " directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,160",
+				"to": "00:04:54,400"
+			},
+			"offsets": {
+				"from": 292160,
+				"to": 294400
+			},
+			"text": " So how do you configure and make it a little bit more"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,400",
+				"to": "00:04:56,560"
+			},
+			"offsets": {
+				"from": 294400,
+				"to": 296560
+			},
+			"text": " customizable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,560",
+				"to": "00:05:00,280"
+			},
+			"offsets": {
+				"from": 296560,
+				"to": 300280
+			},
+			"text": " What we see here is the service configuration."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,280",
+				"to": "00:05:03,240"
+			},
+			"offsets": {
+				"from": 300280,
+				"to": 303240
+			},
+			"text": " We have an expert mode where you can basically configure"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,240",
+				"to": "00:05:05,080"
+			},
+			"offsets": {
+				"from": 303240,
+				"to": 305080
+			},
+			"text": " the whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,080",
+				"to": "00:05:09,480"
+			},
+			"offsets": {
+				"from": 305080,
+				"to": 309480
+			},
+			"text": " You can add it or add and remove flags from Tico,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,480",
+				"to": "00:05:11,280"
+			},
+			"offsets": {
+				"from": 309480,
+				"to": 311280
+			},
+			"text": " for example, here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,280",
+				"to": "00:05:14,360"
+			},
+			"offsets": {
+				"from": 311280,
+				"to": 314360
+			},
+			"text": " You can also think with the Docker settings that we use."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,360",
+				"to": "00:05:17,160"
+			},
+			"offsets": {
+				"from": 314360,
+				"to": 317160
+			},
+			"text": " The other two options are a little bit easier to configure"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,160",
+				"to": "00:05:18,200"
+			},
+			"offsets": {
+				"from": 317160,
+				"to": 318200
+			},
+			"text": " because it's on text base."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,200",
+				"to": "00:05:23,080"
+			},
+			"offsets": {
+				"from": 318200,
+				"to": 323080
+			},
+			"text": " It's just select how much memory limit Tico has."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,080",
+				"to": "00:05:26,880"
+			},
+			"offsets": {
+				"from": 323080,
+				"to": 326880
+			},
+			"text": " And of course, for Stakers, very important,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,880",
+				"to": "00:05:30,240"
+			},
+			"offsets": {
+				"from": 326880,
+				"to": 330240
+			},
+			"text": " the default fee recipient."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,240",
+				"to": "00:05:33,280"
+			},
+			"offsets": {
+				"from": 330240,
+				"to": 333280
+			},
+			"text": " We also provide an update panel that shows you not only"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,280",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 333280,
+				"to": 338000
+			},
+			"text": " the launchers version, but also the notes version."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:41,280"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 341280
+			},
+			"text": " And of course, the service versions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,280",
+				"to": "00:05:43,640"
+			},
+			"offsets": {
+				"from": 341280,
+				"to": 343640
+			},
+			"text": " All updates will be-- all available updates"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,640",
+				"to": "00:05:47,480"
+			},
+			"offsets": {
+				"from": 343640,
+				"to": 347480
+			},
+			"text": " will be, of course, on this panel visible to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,480",
+				"to": "00:05:50,920"
+			},
+			"offsets": {
+				"from": 347480,
+				"to": 350920
+			},
+			"text": " Also, some other settings for Stirium itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,920",
+				"to": "00:05:53,800"
+			},
+			"offsets": {
+				"from": 350920,
+				"to": 353800
+			},
+			"text": " Well, what's next for Stirium?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,800",
+				"to": "00:05:55,400"
+			},
+			"offsets": {
+				"from": 353800,
+				"to": 355400
+			},
+			"text": " First of all, in the next couple of weeks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,400",
+				"to": "00:05:57,080"
+			},
+			"offsets": {
+				"from": 355400,
+				"to": 357080
+			},
+			"text": " we will release a new update that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,080",
+				"to": "00:05:59,720"
+			},
+			"offsets": {
+				"from": 357080,
+				"to": 359720
+			},
+			"text": " will introduce custom installations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,720",
+				"to": "00:06:06,040"
+			},
+			"offsets": {
+				"from": 359720,
+				"to": 366040
+			},
+			"text": " These custom installations will allow the user to not only"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,040",
+				"to": "00:06:07,920"
+			},
+			"offsets": {
+				"from": 366040,
+				"to": 367920
+			},
+			"text": " remove services they don't like."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,920",
+				"to": "00:06:09,760"
+			},
+			"offsets": {
+				"from": 367920,
+				"to": 369760
+			},
+			"text": " But also add new services."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,760",
+				"to": "00:06:14,200"
+			},
+			"offsets": {
+				"from": 369760,
+				"to": 374200
+			},
+			"text": " It will also enable them to run multiple consensus clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,200",
+				"to": "00:06:18,400"
+			},
+			"offsets": {
+				"from": 374200,
+				"to": 378400
+			},
+			"text": " execution clients, validator services on the same machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,400",
+				"to": "00:06:20,400"
+			},
+			"offsets": {
+				"from": 378400,
+				"to": 380400
+			},
+			"text": " This is just a small peak of what features"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,400",
+				"to": "00:06:25,560"
+			},
+			"offsets": {
+				"from": 380400,
+				"to": 385560
+			},
+			"text": " we already implemented and what will come in a new future."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,560",
+				"to": "00:06:29,360"
+			},
+			"offsets": {
+				"from": 385560,
+				"to": 389360
+			},
+			"text": " So we also have an impact booth just around the corner."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,360",
+				"to": "00:06:32,080"
+			},
+			"offsets": {
+				"from": 389360,
+				"to": 392080
+			},
+			"text": " If you have any questions, please drop by."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,080",
+				"to": "00:06:34,240"
+			},
+			"offsets": {
+				"from": 392080,
+				"to": 394240
+			},
+			"text": " And we will show you how to set it up"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,240",
+				"to": "00:06:37,400"
+			},
+			"offsets": {
+				"from": 394240,
+				"to": 397400
+			},
+			"text": " and answer all your questions because unfortunately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,400",
+				"to": "00:06:39,360"
+			},
+			"offsets": {
+				"from": 397400,
+				"to": 399360
+			},
+			"text": " the next time is already running out."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,360",
+				"to": "00:06:39,640"
+			},
+			"offsets": {
+				"from": 399360,
+				"to": 399640
+			},
+			"text": " See you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,640",
+				"to": "00:06:41,160"
+			},
+			"offsets": {
+				"from": 399640,
+				"to": 401160
+			},
+			"text": " Bye."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,160",
+				"to": "00:06:46,160"
+			},
+			"offsets": {
+				"from": 401160,
+				"to": 406160
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,160",
+				"to": "00:06:51,160"
+			},
+			"offsets": {
+				"from": 406160,
+				"to": 411160
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,160",
+				"to": "00:07:20,160"
+			},
+			"offsets": {
+				"from": 411160,
+				"to": 440160
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

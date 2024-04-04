@@ -1,0 +1,4333 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,200"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3200
+			},
+			"text": " >> Hi, I'm Hogar, I'm a team lead for the Ethereum JS team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,200",
+				"to": "00:00:06,280"
+			},
+			"offsets": {
+				"from": 3200,
+				"to": 6280
+			},
+			"text": " which actually is a JavaScript team within the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,280",
+				"to": "00:00:09,040"
+			},
+			"offsets": {
+				"from": 6280,
+				"to": 9040
+			},
+			"text": " I'll give you a short introduction to what we are up to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,040",
+				"to": "00:00:12,200"
+			},
+			"offsets": {
+				"from": 9040,
+				"to": 12200
+			},
+			"text": " what we are doing, and then the other team members will introduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,200",
+				"to": "00:00:15,520"
+			},
+			"offsets": {
+				"from": 12200,
+				"to": 15520
+			},
+			"text": " some parts of the roadmap for 2019."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,520",
+				"to": "00:00:16,640"
+			},
+			"offsets": {
+				"from": 15520,
+				"to": 16640
+			},
+			"text": " What's the Ethereum JS?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,640",
+				"to": "00:00:20,880"
+			},
+			"offsets": {
+				"from": 16640,
+				"to": 20880
+			},
+			"text": " The Ethereum JS is mainly this GitHub organization at GitHub.com/"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,880",
+				"to": "00:00:22,720"
+			},
+			"offsets": {
+				"from": 20880,
+				"to": 22720
+			},
+			"text": " EthereumJS and what Lane said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,720",
+				"to": "00:00:25,480"
+			},
+			"offsets": {
+				"from": 22720,
+				"to": 25480
+			},
+			"text": " we mainly do base-level infrastructure components in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,480",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 25480,
+				"to": 28000
+			},
+			"text": " This is an implementation of the virtual machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:31,360"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 31360
+			},
+			"text": " DEVP2P implementation, Merco2P implementation, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,360",
+				"to": "00:00:33,320"
+			},
+			"offsets": {
+				"from": 31360,
+				"to": 33320
+			},
+			"text": " We've roughly have got 20 active,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,320",
+				"to": "00:00:35,880"
+			},
+			"offsets": {
+				"from": 33320,
+				"to": 35880
+			},
+			"text": " limited repositories there, so lots of work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,880",
+				"to": "00:00:37,920"
+			},
+			"offsets": {
+				"from": 35880,
+				"to": 37920
+			},
+			"text": " and mostly is done by the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,920",
+				"to": "00:00:41,800"
+			},
+			"offsets": {
+				"from": 37920,
+				"to": 41800
+			},
+			"text": " There are some other managed repositories from other people."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,800",
+				"to": "00:00:46,920"
+			},
+			"offsets": {
+				"from": 41800,
+				"to": 46920
+			},
+			"text": " Just as an introduction, we do months' legal system updates on Reddit since some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,920",
+				"to": "00:00:48,520"
+			},
+			"offsets": {
+				"from": 46920,
+				"to": 48520
+			},
+			"text": " If you want to stay up to date,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,520",
+				"to": "00:00:50,720"
+			},
+			"offsets": {
+				"from": 48520,
+				"to": 50720
+			},
+			"text": " what we are up to, what we are doing at the moment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,720",
+				"to": "00:00:53,920"
+			},
+			"offsets": {
+				"from": 50720,
+				"to": 53920
+			},
+			"text": " go and read it and have a look out there, what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,920",
+				"to": "00:00:56,720"
+			},
+			"offsets": {
+				"from": 53920,
+				"to": 56720
+			},
+			"text": " I just provide for a repository organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,720",
+				"to": "00:00:59,720"
+			},
+			"offsets": {
+				"from": 56720,
+				"to": 59720
+			},
+			"text": " If you've got for general project management stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,720",
+				"to": "00:01:04,600"
+			},
+			"offsets": {
+				"from": 59720,
+				"to": 64600
+			},
+			"text": " so if you want to suggest something which we could do better on your projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,600",
+				"to": "00:01:07,240"
+			},
+			"offsets": {
+				"from": 64600,
+				"to": 67240
+			},
+			"text": " you can go there and just file an issue there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,240",
+				"to": "00:01:09,040"
+			},
+			"offsets": {
+				"from": 67240,
+				"to": 69040
+			},
+			"text": " and then we can start a discussion there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,040",
+				"to": "00:01:12,680"
+			},
+			"offsets": {
+				"from": 69040,
+				"to": 72680
+			},
+			"text": " We've got our mandatory JITA channel at Ethereum/EthereumJS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,680",
+				"to": "00:01:14,520"
+			},
+			"offsets": {
+				"from": 72680,
+				"to": 74520
+			},
+			"text": " and you can go there for tech-related questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,520",
+				"to": "00:01:18,120"
+			},
+			"offsets": {
+				"from": 74520,
+				"to": 78120
+			},
+			"text": " or forgetting contact in first place as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,120",
+				"to": "00:01:20,760"
+			},
+			"offsets": {
+				"from": 78120,
+				"to": 80760
+			},
+			"text": " What are the characteristics of our libraries?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,760",
+				"to": "00:01:22,280"
+			},
+			"offsets": {
+				"from": 80760,
+				"to": 82280
+			},
+			"text": " We initially developed for NodeJS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,280",
+				"to": "00:01:25,040"
+			},
+			"offsets": {
+				"from": 82280,
+				"to": 85040
+			},
+			"text": " and then we distribute many of our libraries as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,040",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 85040,
+				"to": 87000
+			},
+			"text": " as ES5 modules for the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:30,360"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 90360
+			},
+			"text": " For example, the VM is a browser-first library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,360",
+				"to": "00:01:34,440"
+			},
+			"offsets": {
+				"from": 90360,
+				"to": 94440
+			},
+			"text": " and it's also actually run in various tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,440",
+				"to": "00:01:39,360"
+			},
+			"offsets": {
+				"from": 94440,
+				"to": 99360
+			},
+			"text": " like remix or meta-mask or travel, so many development tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,360",
+				"to": "00:01:41,720"
+			},
+			"offsets": {
+				"from": 99360,
+				"to": 101720
+			},
+			"text": " Our libraries are high-quality libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,720",
+				"to": "00:01:44,920"
+			},
+			"offsets": {
+				"from": 101720,
+				"to": 104920
+			},
+			"text": " We've got unit tests for all the libraries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,920",
+				"to": "00:01:49,880"
+			},
+			"offsets": {
+				"from": 104920,
+				"to": 109880
+			},
+			"text": " all of CI-integrated, and we have to test coverage above 90% in most cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,880",
+				"to": "00:01:53,560"
+			},
+			"offsets": {
+				"from": 109880,
+				"to": 113560
+			},
+			"text": " This actually is really needed because, like I said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,560",
+				"to": "00:01:55,880"
+			},
+			"offsets": {
+				"from": 113560,
+				"to": 115880
+			},
+			"text": " the libraries are very much used in production"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,880",
+				"to": "00:02:00,120"
+			},
+			"offsets": {
+				"from": 115880,
+				"to": 120120
+			},
+			"text": " and also in security-sensitive contexts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,120",
+				"to": "00:02:03,120"
+			},
+			"offsets": {
+				"from": 120120,
+				"to": 123120
+			},
+			"text": " We do like behind a bit on modernization of our libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,120",
+				"to": "00:02:05,360"
+			},
+			"offsets": {
+				"from": 123120,
+				"to": 125360
+			},
+			"text": " We are very much aware of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,360",
+				"to": "00:02:08,280"
+			},
+			"offsets": {
+				"from": 125360,
+				"to": 128280
+			},
+			"text": " like using modern JavaScript features like promises,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,280",
+				"to": "00:02:10,520"
+			},
+			"offsets": {
+				"from": 128280,
+				"to": 130520
+			},
+			"text": " and we have very much call-back-based still,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,520",
+				"to": "00:02:12,640"
+			},
+			"offsets": {
+				"from": 130520,
+				"to": 132640
+			},
+			"text": " and ES6 classes and stuff like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,640",
+				"to": "00:02:13,920"
+			},
+			"offsets": {
+				"from": 132640,
+				"to": 133920
+			},
+			"text": " but we have this on the plate as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,920",
+				"to": "00:02:15,960"
+			},
+			"offsets": {
+				"from": 133920,
+				"to": 135960
+			},
+			"text": " and we'll do updates on that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,960",
+				"to": "00:02:17,760"
+			},
+			"offsets": {
+				"from": 135960,
+				"to": 137760
+			},
+			"text": " Another part is TypeScript integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,760",
+				"to": "00:02:21,160"
+			},
+			"offsets": {
+				"from": 137760,
+				"to": 141160
+			},
+			"text": " where Alex will talk about more later."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,680",
+				"to": "00:02:24,680"
+			},
+			"offsets": {
+				"from": 142680,
+				"to": 144680
+			},
+			"text": " Actually, many of the work being done"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,680",
+				"to": "00:02:26,080"
+			},
+			"offsets": {
+				"from": 144680,
+				"to": 146080
+			},
+			"text": " is actually coming from a community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,080",
+				"to": "00:02:28,680"
+			},
+			"offsets": {
+				"from": 146080,
+				"to": 148680
+			},
+			"text": " and we are highly community-driven projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,680",
+				"to": "00:02:33,280"
+			},
+			"offsets": {
+				"from": 148680,
+				"to": 153280
+			},
+			"text": " and I'm always very much amazed that every now and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,280",
+				"to": "00:02:35,600"
+			},
+			"offsets": {
+				"from": 153280,
+				"to": 155600
+			},
+			"text": " some super-high quality pull requests"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,600",
+				"to": "00:02:37,560"
+			},
+			"offsets": {
+				"from": 155600,
+				"to": 157560
+			},
+			"text": " comes in like implementing Merkle trees"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,560",
+				"to": "00:02:41,480"
+			},
+			"offsets": {
+				"from": 157560,
+				"to": 161480
+			},
+			"text": " or doing a super-high quality new client RPC server,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,480",
+				"to": "00:02:44,640"
+			},
+			"offsets": {
+				"from": 161480,
+				"to": 164640
+			},
+			"text": " and this is just coming out from nowhere,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,640",
+				"to": "00:02:47,240"
+			},
+			"offsets": {
+				"from": 164640,
+				"to": 167240
+			},
+			"text": " and I actually want to take the stage and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,240",
+				"to": "00:02:50,880"
+			},
+			"offsets": {
+				"from": 167240,
+				"to": 170880
+			},
+			"text": " \"Thanks you to all you guys who contribute to our libraries.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,880",
+				"to": "00:02:52,880"
+			},
+			"offsets": {
+				"from": 170880,
+				"to": 172880
+			},
+			"text": " And yeah, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,880",
+				"to": "00:02:55,120"
+			},
+			"offsets": {
+				"from": 172880,
+				"to": 175120
+			},
+			"text": " (applause)"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,120",
+				"to": "00:02:58,640"
+			},
+			"offsets": {
+				"from": 175120,
+				"to": 178640
+			},
+			"text": " And I've got very much this on the plate"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,640",
+				"to": "00:03:00,840"
+			},
+			"offsets": {
+				"from": 178640,
+				"to": 180840
+			},
+			"text": " that we should more emphasis on this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,840",
+				"to": "00:03:03,560"
+			},
+			"offsets": {
+				"from": 180840,
+				"to": 183560
+			},
+			"text": " or that we should emphasis on this even more."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,560",
+				"to": "00:03:05,680"
+			},
+			"offsets": {
+				"from": 183560,
+				"to": 185680
+			},
+			"text": " We do get it getting better in review times."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,680",
+				"to": "00:03:07,960"
+			},
+			"offsets": {
+				"from": 185680,
+				"to": 187960
+			},
+			"text": " We are not there where we want to be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,960",
+				"to": "00:03:09,200"
+			},
+			"offsets": {
+				"from": 187960,
+				"to": 189200
+			},
+			"text": " but I have this very much on the plate"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,200",
+				"to": "00:03:10,920"
+			},
+			"offsets": {
+				"from": 189200,
+				"to": 190920
+			},
+			"text": " that we want to improve there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,920",
+				"to": "00:03:13,200"
+			},
+			"offsets": {
+				"from": 190920,
+				"to": 193200
+			},
+			"text": " I just introduced in a labeling system as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,200",
+				"to": "00:03:15,400"
+			},
+			"offsets": {
+				"from": 193200,
+				"to": 195400
+			},
+			"text": " and we've got a new corporation with Gitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,400",
+				"to": "00:03:18,080"
+			},
+			"offsets": {
+				"from": 195400,
+				"to": 198080
+			},
+			"text": " so many ways to contribute to our libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,080",
+				"to": "00:03:22,200"
+			},
+			"offsets": {
+				"from": 198080,
+				"to": 202200
+			},
+			"text": " And also talk to us at DevCon, just remember our faces,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,200",
+				"to": "00:03:24,520"
+			},
+			"offsets": {
+				"from": 202200,
+				"to": 204520
+			},
+			"text": " and very happy if we get an exchange later"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,520",
+				"to": "00:03:27,440"
+			},
+			"offsets": {
+				"from": 204520,
+				"to": 207440
+			},
+			"text": " about what we can do and what we can do better, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,440",
+				"to": "00:03:30,640"
+			},
+			"offsets": {
+				"from": 207440,
+				"to": 210640
+			},
+			"text": " These are some of our libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,640",
+				"to": "00:03:34,440"
+			},
+			"offsets": {
+				"from": 210640,
+				"to": 214440
+			},
+			"text": " that we don't want to dig in there to deep virtual machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,440",
+				"to": "00:03:36,520"
+			},
+			"offsets": {
+				"from": 214440,
+				"to": 216520
+			},
+			"text": " transaction library, Merkle Patricia tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,520",
+				"to": "00:03:38,520"
+			},
+			"offsets": {
+				"from": 216520,
+				"to": 218520
+			},
+			"text": " various utility libraries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,520",
+				"to": "00:03:41,280"
+			},
+			"offsets": {
+				"from": 218520,
+				"to": 221280
+			},
+			"text": " and implementation of base-level protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,280",
+				"to": "00:03:43,200"
+			},
+			"offsets": {
+				"from": 221280,
+				"to": 223200
+			},
+			"text": " like the RLP library, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,200",
+				"to": "00:03:45,600"
+			},
+			"offsets": {
+				"from": 223200,
+				"to": 225600
+			},
+			"text": " and many others, just to give you a short overview."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,600",
+				"to": "00:03:48,240"
+			},
+			"offsets": {
+				"from": 225600,
+				"to": 228240
+			},
+			"text": " But you can look at the organization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,240",
+				"to": "00:03:51,440"
+			},
+			"offsets": {
+				"from": 228240,
+				"to": 231440
+			},
+			"text": " GitHub organization for a better overview on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,440",
+				"to": "00:03:53,200"
+			},
+			"offsets": {
+				"from": 231440,
+				"to": 233200
+			},
+			"text": " And that was already my introduction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,200",
+				"to": "00:03:54,520"
+			},
+			"offsets": {
+				"from": 233200,
+				"to": 234520
+			},
+			"text": " We have many speakers today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,520",
+				"to": "00:03:56,960"
+			},
+			"offsets": {
+				"from": 234520,
+				"to": 236960
+			},
+			"text": " and Nexus Jared, who will give you some update"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,960",
+				"to": "00:03:58,320"
+			},
+			"offsets": {
+				"from": 236960,
+				"to": 238320
+			},
+			"text": " on the virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,320",
+				"to": "00:03:59,320"
+			},
+			"offsets": {
+				"from": 238320,
+				"to": 239320
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,320",
+				"to": "00:04:01,800"
+			},
+			"offsets": {
+				"from": 239320,
+				"to": 241800
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,800",
+				"to": "00:04:04,880"
+			},
+			"offsets": {
+				"from": 241800,
+				"to": 244880
+			},
+			"text": " - So, hi, I'm Jared Wossinger."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,880",
+				"to": "00:04:06,800"
+			},
+			"offsets": {
+				"from": 244880,
+				"to": 246800
+			},
+			"text": " I have done quite a bit of work"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,800",
+				"to": "00:04:10,160"
+			},
+			"offsets": {
+				"from": 246800,
+				"to": 250160
+			},
+			"text": " on the Ethereum JS implementation of the virtual machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,160",
+				"to": "00:04:12,120"
+			},
+			"offsets": {
+				"from": 250160,
+				"to": 252120
+			},
+			"text": " as well as other projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,120",
+				"to": "00:04:16,960"
+			},
+			"offsets": {
+				"from": 252120,
+				"to": 256960
+			},
+			"text": " The virtual machine is designed to be a web-first library."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,960",
+				"to": "00:04:18,680"
+			},
+			"offsets": {
+				"from": 256960,
+				"to": 258680
+			},
+			"text": " It's embedded in tools like Remix,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,680",
+				"to": "00:04:22,600"
+			},
+			"offsets": {
+				"from": 258680,
+				"to": 262600
+			},
+			"text": " and used in other tools like MetaMask."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,600",
+				"to": "00:04:26,480"
+			},
+			"offsets": {
+				"from": 262600,
+				"to": 266480
+			},
+			"text": " It captures Ethereum state transition rules,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,480",
+				"to": "00:04:29,960"
+			},
+			"offsets": {
+				"from": 266480,
+				"to": 269960
+			},
+			"text": " as defined by the official test suite."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,960",
+				"to": "00:04:32,200"
+			},
+			"offsets": {
+				"from": 269960,
+				"to": 272200
+			},
+			"text": " And it provides,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,200",
+				"to": "00:04:34,680"
+			},
+			"offsets": {
+				"from": 272200,
+				"to": 274680
+			},
+			"text": " we like to think that it provides a modular implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,680",
+				"to": "00:04:36,480"
+			},
+			"offsets": {
+				"from": 274680,
+				"to": 276480
+			},
+			"text": " of the various blockchain components,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,480",
+				"to": "00:04:40,400"
+			},
+			"offsets": {
+				"from": 276480,
+				"to": 280400
+			},
+			"text": " like the block blockchain, the VM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,400",
+				"to": "00:04:44,080"
+			},
+			"offsets": {
+				"from": 280400,
+				"to": 284080
+			},
+			"text": " so that the community can make use of them in the browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,080",
+				"to": "00:04:46,880"
+			},
+			"offsets": {
+				"from": 284080,
+				"to": 286880
+			},
+			"text": " and with no JS applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,880",
+				"to": "00:04:52,520"
+			},
+			"offsets": {
+				"from": 286880,
+				"to": 292520
+			},
+			"text": " So, just to give you an idea of what we are doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,520",
+				"to": "00:04:56,120"
+			},
+			"offsets": {
+				"from": 292520,
+				"to": 296120
+			},
+			"text": " regarding updating to Constantinople,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,120",
+				"to": "00:04:59,320"
+			},
+			"offsets": {
+				"from": 296120,
+				"to": 299320
+			},
+			"text": " we've implemented all EIPs in the VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,320",
+				"to": "00:05:02,960"
+			},
+			"offsets": {
+				"from": 299320,
+				"to": 302960
+			},
+			"text": " We're still waiting for some additional testing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,960",
+				"to": "00:05:04,960"
+			},
+			"offsets": {
+				"from": 302960,
+				"to": 304960
+			},
+			"text": " around XT code hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,960",
+				"to": "00:05:06,920"
+			},
+			"offsets": {
+				"from": 304960,
+				"to": 306920
+			},
+			"text": " and we thank the testing team so much"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,920",
+				"to": "00:05:11,920"
+			},
+			"offsets": {
+				"from": 306920,
+				"to": 311920
+			},
+			"text": " for doing the hard job to provide those tests to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,920",
+				"to": "00:05:17,280"
+			},
+			"offsets": {
+				"from": 311920,
+				"to": 317280
+			},
+			"text": " We also have a few edge cases in the Create2OP code"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,280",
+				"to": "00:05:18,920"
+			},
+			"offsets": {
+				"from": 317280,
+				"to": 318920
+			},
+			"text": " that we're working to fix,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,920",
+				"to": "00:05:20,600"
+			},
+			"offsets": {
+				"from": 318920,
+				"to": 320600
+			},
+			"text": " and we're thinking that a release"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,600",
+				"to": "00:05:22,960"
+			},
+			"offsets": {
+				"from": 320600,
+				"to": 322960
+			},
+			"text": " should come around two to three weeks from now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,960",
+				"to": "00:05:28,840"
+			},
+			"offsets": {
+				"from": 322960,
+				"to": 328840
+			},
+			"text": " In addition, thanks to generous community contributions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,840",
+				"to": "00:05:34,240"
+			},
+			"offsets": {
+				"from": 328840,
+				"to": 334240
+			},
+			"text": " we have a brand new API test suite for Ethereum JS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,520",
+				"to": "00:05:39,880"
+			},
+			"offsets": {
+				"from": 335520,
+				"to": 339880
+			},
+			"text": " and that has brought our test coverage to 93%."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,880",
+				"to": "00:05:44,800"
+			},
+			"offsets": {
+				"from": 339880,
+				"to": 344800
+			},
+			"text": " So, like the theme of this conference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,800",
+				"to": "00:05:47,080"
+			},
+			"offsets": {
+				"from": 344800,
+				"to": 347080
+			},
+			"text": " I'd like to think is that we're trying to put the spotlight"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,080",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 347080,
+				"to": 348000
+			},
+			"text": " back on the community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:51,040"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 351040
+			},
+			"text": " and I think that this demonstrates that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,040",
+				"to": "00:05:52,640"
+			},
+			"offsets": {
+				"from": 351040,
+				"to": 352640
+			},
+			"text": " And as Holger said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,640",
+				"to": "00:05:55,400"
+			},
+			"offsets": {
+				"from": 352640,
+				"to": 355400
+			},
+			"text": " we've just gotten so many community contributions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,400",
+				"to": "00:05:57,520"
+			},
+			"offsets": {
+				"from": 355400,
+				"to": 357520
+			},
+			"text": " and it's so wonderful."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,520",
+				"to": "00:06:01,280"
+			},
+			"offsets": {
+				"from": 357520,
+				"to": 361280
+			},
+			"text": " So, just to kind of give a brief outlook"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,280",
+				"to": "00:06:03,960"
+			},
+			"offsets": {
+				"from": 361280,
+				"to": 363960
+			},
+			"text": " on what the future holds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,960",
+				"to": "00:06:07,080"
+			},
+			"offsets": {
+				"from": 363960,
+				"to": 367080
+			},
+			"text": " we're looking at integration with Ewasm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,080",
+				"to": "00:06:11,520"
+			},
+			"offsets": {
+				"from": 367080,
+				"to": 371520
+			},
+			"text": " which is the execution layer for Ethereum 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,520",
+				"to": "00:06:16,520"
+			},
+			"offsets": {
+				"from": 371520,
+				"to": 376520
+			},
+			"text": " But there's a few difficulties here that I can kind of touch on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,520",
+				"to": "00:06:21,480"
+			},
+			"offsets": {
+				"from": 376520,
+				"to": 381480
+			},
+			"text": " So, Ewasm defines an API that isn't exactly compatible"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,480",
+				"to": "00:06:23,680"
+			},
+			"offsets": {
+				"from": 381480,
+				"to": 383680
+			},
+			"text": " with the browser in the sense that it's synchronous,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,680",
+				"to": "00:06:26,120"
+			},
+			"offsets": {
+				"from": 383680,
+				"to": 386120
+			},
+			"text": " whereas the browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,120",
+				"to": "00:06:30,480"
+			},
+			"offsets": {
+				"from": 386120,
+				"to": 390480
+			},
+			"text": " anybody whose program JS knows that everything is async."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,840",
+				"to": "00:06:34,640"
+			},
+			"offsets": {
+				"from": 391840,
+				"to": 394640
+			},
+			"text": " So, we have a few possible solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,640",
+				"to": "00:06:38,440"
+			},
+			"offsets": {
+				"from": 394640,
+				"to": 398440
+			},
+			"text": " We're looking at one is to rewrite the VM to be synchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,440",
+				"to": "00:06:42,320"
+			},
+			"offsets": {
+				"from": 398440,
+				"to": 402320
+			},
+			"text": " I don't personally think that will work for various reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,320",
+				"to": "00:06:47,320"
+			},
+			"offsets": {
+				"from": 402320,
+				"to": 407320
+			},
+			"text": " But another approach could be to implement a translation tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,320",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 407320,
+				"to": 409000
+			},
+			"text": " And I won't go into too much detail"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:52,440"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 412440
+			},
+			"text": " because we could go a whole day on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,440",
+				"to": "00:06:56,640"
+			},
+			"offsets": {
+				"from": 412440,
+				"to": 416640
+			},
+			"text": " So, if you want to know more about this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,640",
+				"to": "00:06:59,720"
+			},
+			"offsets": {
+				"from": 416640,
+				"to": 419720
+			},
+			"text": " I would invite you to go to this link."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,720",
+				"to": "00:07:01,560"
+			},
+			"offsets": {
+				"from": 419720,
+				"to": 421560
+			},
+			"text": " I have, under more resources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,560",
+				"to": "00:07:04,920"
+			},
+			"offsets": {
+				"from": 421560,
+				"to": 424920
+			},
+			"text": " and we would very much welcome contributions on this front."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,920",
+				"to": "00:07:08,200"
+			},
+			"offsets": {
+				"from": 424920,
+				"to": 428200
+			},
+			"text": " So, if you want to contribute on this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,200",
+				"to": "00:07:10,120"
+			},
+			"offsets": {
+				"from": 428200,
+				"to": 430120
+			},
+			"text": " if you want to do something, please reach out."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,120",
+				"to": "00:07:11,520"
+			},
+			"offsets": {
+				"from": 430120,
+				"to": 431520
+			},
+			"text": " We're on Gitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,520",
+				"to": "00:07:14,680"
+			},
+			"offsets": {
+				"from": 431520,
+				"to": 434680
+			},
+			"text": " It's generally a good place to find us."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,680",
+				"to": "00:07:18,080"
+			},
+			"offsets": {
+				"from": 434680,
+				"to": 438080
+			},
+			"text": " I'm going to pass this off to Vinay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,080",
+				"to": "00:07:19,320"
+			},
+			"offsets": {
+				"from": 438080,
+				"to": 439320
+			},
+			"text": " who works on the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,320",
+				"to": "00:07:23,680"
+			},
+			"offsets": {
+				"from": 439320,
+				"to": 443680
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,680",
+				"to": "00:07:27,160"
+			},
+			"offsets": {
+				"from": 443680,
+				"to": 447160
+			},
+			"text": " - Hi, my name is Vinay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,160",
+				"to": "00:07:30,200"
+			},
+			"offsets": {
+				"from": 447160,
+				"to": 450200
+			},
+			"text": " and I'm working on the Ethereum JavaScript client."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,200",
+				"to": "00:07:32,680"
+			},
+			"offsets": {
+				"from": 450200,
+				"to": 452680
+			},
+			"text": " And so, what do we need, another client?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,680",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 452680,
+				"to": 455000
+			},
+			"text": " So, our goal is not to actually build"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:38,560"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 458560
+			},
+			"text": " another consensus critical client like get their parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,560",
+				"to": "00:07:41,600"
+			},
+			"offsets": {
+				"from": 458560,
+				"to": 461600
+			},
+			"text": " Instead, we want to build a working client"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,600",
+				"to": "00:07:43,880"
+			},
+			"offsets": {
+				"from": 461600,
+				"to": 463880
+			},
+			"text": " to help harden some of the other existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,880",
+				"to": "00:07:46,040"
+			},
+			"offsets": {
+				"from": 463880,
+				"to": 466040
+			},
+			"text": " JavaScript libraries like the VM"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,040",
+				"to": "00:07:48,920"
+			},
+			"offsets": {
+				"from": 466040,
+				"to": 468920
+			},
+			"text": " and that Merkle-Patrician tree, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,920",
+				"to": "00:07:52,280"
+			},
+			"offsets": {
+				"from": 468920,
+				"to": 472280
+			},
+			"text": " Another goal is to provide an R&D platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,280",
+				"to": "00:07:54,960"
+			},
+			"offsets": {
+				"from": 472280,
+				"to": 474960
+			},
+			"text": " for new features like libpdp support,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,960",
+				"to": "00:07:59,480"
+			},
+			"offsets": {
+				"from": 474960,
+				"to": 479480
+			},
+			"text": " the Ethereum 2.0 stateless clients, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,480",
+				"to": "00:08:02,600"
+			},
+			"offsets": {
+				"from": 479480,
+				"to": 482600
+			},
+			"text": " and future research efforts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,600",
+				"to": "00:08:05,240"
+			},
+			"offsets": {
+				"from": 482600,
+				"to": 485240
+			},
+			"text": " And finally, I wanted to provide an educational tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,240",
+				"to": "00:08:07,800"
+			},
+			"offsets": {
+				"from": 485240,
+				"to": 487800
+			},
+			"text": " JavaScript is really friendly to a large"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,800",
+				"to": "00:08:09,960"
+			},
+			"offsets": {
+				"from": 487800,
+				"to": 489960
+			},
+			"text": " community of developers, and it's a great way"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,960",
+				"to": "00:08:14,560"
+			},
+			"offsets": {
+				"from": 489960,
+				"to": 494560
+			},
+			"text": " to learn about the details of how an Ethereum client"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,560",
+				"to": "00:08:16,120"
+			},
+			"offsets": {
+				"from": 494560,
+				"to": 496120
+			},
+			"text": " would work."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,120",
+				"to": "00:08:18,960"
+			},
+			"offsets": {
+				"from": 496120,
+				"to": 498960
+			},
+			"text": " And so, in terms of the architecture,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,960",
+				"to": "00:08:21,840"
+			},
+			"offsets": {
+				"from": 498960,
+				"to": 501840
+			},
+			"text": " it's heavily inspired by Bitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,840",
+				"to": "00:08:24,960"
+			},
+			"offsets": {
+				"from": 501840,
+				"to": 504960
+			},
+			"text": " which is the Bitcoin JavaScript client."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,960",
+				"to": "00:08:28,040"
+			},
+			"offsets": {
+				"from": 504960,
+				"to": 508040
+			},
+			"text": " And like that, it's heavily event-driven"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,040",
+				"to": "00:08:31,800"
+			},
+			"offsets": {
+				"from": 508040,
+				"to": 511800
+			},
+			"text": " and based on a set of loosely coupled components,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,800",
+				"to": "00:08:34,720"
+			},
+			"offsets": {
+				"from": 511800,
+				"to": 514720
+			},
+			"text": " which leads to a very extensible design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,720",
+				"to": "00:08:36,360"
+			},
+			"offsets": {
+				"from": 514720,
+				"to": 516360
+			},
+			"text": " for example, through plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,360",
+				"to": "00:08:40,160"
+			},
+			"offsets": {
+				"from": 516360,
+				"to": 520160
+			},
+			"text": " And in terms of the roadmap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,160",
+				"to": "00:08:42,360"
+			},
+			"offsets": {
+				"from": 520160,
+				"to": 522360
+			},
+			"text": " currently we have a proof of concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,360",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 522360,
+				"to": 526000
+			},
+			"text": " of a client that could sync to mainnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:50,200"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 530200
+			},
+			"text": " and other networks through fast and light sync protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,200",
+				"to": "00:08:53,560"
+			},
+			"offsets": {
+				"from": 530200,
+				"to": 533560
+			},
+			"text": " And also a prototype of libpdp."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,560",
+				"to": "00:08:56,520"
+			},
+			"offsets": {
+				"from": 533560,
+				"to": 536520
+			},
+			"text": " Obviously, that's not used to sync to other clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,520",
+				"to": "00:08:57,880"
+			},
+			"offsets": {
+				"from": 536520,
+				"to": 537880
+			},
+			"text": " 'cause they don't support it yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,880",
+				"to": "00:09:02,880"
+			},
+			"offsets": {
+				"from": 537880,
+				"to": 542880
+			},
+			"text": " but within the Ethereum/JIS environment, it does work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,880",
+				"to": "00:09:06,480"
+			},
+			"offsets": {
+				"from": 542880,
+				"to": 546480
+			},
+			"text": " And also, browser support."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,480",
+				"to": "00:09:10,840"
+			},
+			"offsets": {
+				"from": 546480,
+				"to": 550840
+			},
+			"text": " And by the end of the year, we wanna hopefully provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,840",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 550840,
+				"to": 554000
+			},
+			"text": " reliable mainnet chain sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:17,640"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 557640
+			},
+			"text": " And this includes block validation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,640",
+				"to": "00:09:20,080"
+			},
+			"offsets": {
+				"from": 557640,
+				"to": 560080
+			},
+			"text": " and transaction execution as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,080",
+				"to": "00:09:22,160"
+			},
+			"offsets": {
+				"from": 560080,
+				"to": 562160
+			},
+			"text": " And then integration with a Hive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,160",
+				"to": "00:09:26,600"
+			},
+			"offsets": {
+				"from": 562160,
+				"to": 566600
+			},
+			"text": " which is a test setup to test sync functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,600",
+				"to": "00:09:29,480"
+			},
+			"offsets": {
+				"from": 566600,
+				"to": 569480
+			},
+			"text": " And the goal about a bit of next year"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,480",
+				"to": "00:09:33,280"
+			},
+			"offsets": {
+				"from": 569480,
+				"to": 573280
+			},
+			"text": " is to have a proof of concept of a 2.0 stateless client"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,280",
+				"to": "00:09:35,880"
+			},
+			"offsets": {
+				"from": 573280,
+				"to": 575880
+			},
+			"text": " and alpha release of the current client."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,880",
+				"to": "00:09:39,320"
+			},
+			"offsets": {
+				"from": 575880,
+				"to": 579320
+			},
+			"text": " So now there's enough time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,320",
+				"to": "00:09:40,680"
+			},
+			"offsets": {
+				"from": 579320,
+				"to": 580680
+			},
+			"text": " We're gonna do a quick demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,680",
+				"to": "00:09:42,120"
+			},
+			"offsets": {
+				"from": 580680,
+				"to": 582120
+			},
+			"text": " This is a video 'cause it's just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,120",
+				"to": "00:09:43,880"
+			},
+			"offsets": {
+				"from": 582120,
+				"to": 583880
+			},
+			"text": " we're not sure about the WiFi environment here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,880",
+				"to": "00:09:47,480"
+			},
+			"offsets": {
+				"from": 583880,
+				"to": 587480
+			},
+			"text": " So all of this code is download is available on GitHub"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,480",
+				"to": "00:09:50,280"
+			},
+			"offsets": {
+				"from": 587480,
+				"to": 590280
+			},
+			"text": " and feel free to run these examples yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,280",
+				"to": "00:09:52,920"
+			},
+			"offsets": {
+				"from": 590280,
+				"to": 592920
+			},
+			"text": " So this is an example of the JavaScript client"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,920",
+				"to": "00:09:56,480"
+			},
+			"offsets": {
+				"from": 592920,
+				"to": 596480
+			},
+			"text": " syncing to the ReikiB network launching"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,480",
+				"to": "00:09:58,360"
+			},
+			"offsets": {
+				"from": 596480,
+				"to": 598360
+			},
+			"text": " including light serve functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,360",
+				"to": "00:10:00,960"
+			},
+			"offsets": {
+				"from": 598360,
+				"to": 600960
+			},
+			"text": " And you can see here, it's listening on both RLPX"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,960",
+				"to": "00:10:05,880"
+			},
+			"offsets": {
+				"from": 600960,
+				"to": 605880
+			},
+			"text": " and RLPX and LibPDP transports."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,880",
+				"to": "00:10:08,440"
+			},
+			"offsets": {
+				"from": 605880,
+				"to": 608440
+			},
+			"text": " And we'll save the LibPDP URL"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,440",
+				"to": "00:10:10,960"
+			},
+			"offsets": {
+				"from": 608440,
+				"to": 610960
+			},
+			"text": " for the next step in the demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,960",
+				"to": "00:10:14,960"
+			},
+			"offsets": {
+				"from": 610960,
+				"to": 614960
+			},
+			"text": " And you can see it's downloading blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,960",
+				"to": "00:10:19,400"
+			},
+			"offsets": {
+				"from": 614960,
+				"to": 619400
+			},
+			"text": " So now we'll move on to the more fun stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,400",
+				"to": "00:10:22,840"
+			},
+			"offsets": {
+				"from": 619400,
+				"to": 622840
+			},
+			"text": " which is, so this is an actual demo of a browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,840",
+				"to": "00:10:25,800"
+			},
+			"offsets": {
+				"from": 622840,
+				"to": 625800
+			},
+			"text": " that's connecting to the client we just launched"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,800",
+				"to": "00:10:29,440"
+			},
+			"offsets": {
+				"from": 625800,
+				"to": 629440
+			},
+			"text": " over web sockets, which is available through LibPDP."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,440",
+				"to": "00:10:32,840"
+			},
+			"offsets": {
+				"from": 629440,
+				"to": 632840
+			},
+			"text": " And so we'll launch the clients in the console."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,840",
+				"to": "00:10:35,520"
+			},
+			"offsets": {
+				"from": 632840,
+				"to": 635520
+			},
+			"text": " We don't have a UI yet, but you can, here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,520",
+				"to": "00:10:39,160"
+			},
+			"offsets": {
+				"from": 635520,
+				"to": 639160
+			},
+			"text": " we're pasting in the URL that we copied in the previous step."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,160",
+				"to": "00:10:40,960"
+			},
+			"offsets": {
+				"from": 639160,
+				"to": 640960
+			},
+			"text": " And so directly from the browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,960",
+				"to": "00:10:42,880"
+			},
+			"offsets": {
+				"from": 640960,
+				"to": 642880
+			},
+			"text": " we're gonna connect to that client"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,880",
+				"to": "00:10:45,680"
+			},
+			"offsets": {
+				"from": 642880,
+				"to": 645680
+			},
+			"text": " and start downloading blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,680",
+				"to": "00:10:50,680"
+			},
+			"offsets": {
+				"from": 645680,
+				"to": 650680
+			},
+			"text": " And this uses the local storage in the browser via index DB."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,400",
+				"to": "00:10:54,760"
+			},
+			"offsets": {
+				"from": 651400,
+				"to": 654760
+			},
+			"text": " And you can see here, just some of the raw data"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,760",
+				"to": "00:10:56,400"
+			},
+			"offsets": {
+				"from": 654760,
+				"to": 656400
+			},
+			"text": " in the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,400",
+				"to": "00:10:59,600"
+			},
+			"offsets": {
+				"from": 656400,
+				"to": 659600
+			},
+			"text": " So, yeah, so that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,600",
+				"to": "00:11:02,720"
+			},
+			"offsets": {
+				"from": 659600,
+				"to": 662720
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,720",
+				"to": "00:11:04,840"
+			},
+			"offsets": {
+				"from": 662720,
+				"to": 664840
+			},
+			"text": " So, yeah, it's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,840",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 664840,
+				"to": 668000
+			},
+			"text": " And again, in the theme of contributions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:09,480"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 669480
+			},
+			"text": " there's a ton of work left to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,480",
+				"to": "00:11:11,920"
+			},
+			"offsets": {
+				"from": 669480,
+				"to": 671920
+			},
+			"text": " So we're hoping to get the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,920",
+				"to": "00:11:14,400"
+			},
+			"offsets": {
+				"from": 671920,
+				"to": 674400
+			},
+			"text": " to help contribute and move things quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,400",
+				"to": "00:11:17,880"
+			},
+			"offsets": {
+				"from": 674400,
+				"to": 677880
+			},
+			"text": " So I'm gonna hand this off now to Casey."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,880",
+				"to": "00:11:22,040"
+			},
+			"offsets": {
+				"from": 678880,
+				"to": 682040
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,040",
+				"to": "00:11:28,080"
+			},
+			"offsets": {
+				"from": 682040,
+				"to": 688080
+			},
+			"text": " - I'm Casey."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,080",
+				"to": "00:11:33,080"
+			},
+			"offsets": {
+				"from": 688080,
+				"to": 693080
+			},
+			"text": " I started contributing to EthereumJS last year for Byzantium."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,080",
+				"to": "00:11:38,400"
+			},
+			"offsets": {
+				"from": 693080,
+				"to": 698400
+			},
+			"text": " So implementing the Byzantium features in 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,400",
+				"to": "00:11:43,400"
+			},
+			"offsets": {
+				"from": 698400,
+				"to": 703400
+			},
+			"text": " And I wanted to just highlight one of our research project"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,520",
+				"to": "00:11:48,200"
+			},
+			"offsets": {
+				"from": 705520,
+				"to": 708200
+			},
+			"text": " to do on the EthereumJS team."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,200",
+				"to": "00:11:52,560"
+			},
+			"offsets": {
+				"from": 708200,
+				"to": 712560
+			},
+			"text": " I'm also now working with the Ewasm team."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,560",
+				"to": "00:11:58,080"
+			},
+			"offsets": {
+				"from": 712560,
+				"to": 718080
+			},
+			"text": " So that's why we're getting into this phase two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,080",
+				"to": "00:12:03,080"
+			},
+			"offsets": {
+				"from": 718080,
+				"to": 723080
+			},
+			"text": " because most Ethereum 2.0 R&D efforts right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,080",
+				"to": "00:12:05,720"
+			},
+			"offsets": {
+				"from": 723080,
+				"to": 725720
+			},
+			"text": " are focused on phase one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,720",
+				"to": "00:12:08,320"
+			},
+			"offsets": {
+				"from": 725720,
+				"to": 728320
+			},
+			"text": " which is implementing the beacon chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,320",
+				"to": "00:12:11,480"
+			},
+			"offsets": {
+				"from": 728320,
+				"to": 731480
+			},
+			"text": " There's another team, ChainSafe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,480",
+				"to": "00:12:13,720"
+			},
+			"offsets": {
+				"from": 731480,
+				"to": 733720
+			},
+			"text": " who's working on a JavaScript implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,720",
+				"to": "00:12:16,240"
+			},
+			"offsets": {
+				"from": 733720,
+				"to": 736240
+			},
+			"text": " of the beacon chain called LoadStar."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,240",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 736240,
+				"to": 741000
+			},
+			"text": " But as a member of the Ewasm team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:23,280"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 743280
+			},
+			"text": " we're not so concerned with phase one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,280",
+				"to": "00:12:24,680"
+			},
+			"offsets": {
+				"from": 743280,
+				"to": 744680
+			},
+			"text": " we're focused on phase two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,680",
+				"to": "00:12:28,720"
+			},
+			"offsets": {
+				"from": 744680,
+				"to": 748720
+			},
+			"text": " which is gonna be the execution engine of Shasper."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,720",
+				"to": "00:12:35,240"
+			},
+			"offsets": {
+				"from": 748720,
+				"to": 755240
+			},
+			"text": " So one of our two do's is prototype phase two."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,240",
+				"to": "00:12:39,520"
+			},
+			"offsets": {
+				"from": 755240,
+				"to": 759520
+			},
+			"text": " Right now there's a lot of ideas bouncing around"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,520",
+				"to": "00:12:44,520"
+			},
+			"offsets": {
+				"from": 759520,
+				"to": 764520
+			},
+			"text": " for what the spec should be for the phase two execution engine."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,520",
+				"to": "00:12:52,480"
+			},
+			"offsets": {
+				"from": 764520,
+				"to": 772480
+			},
+			"text": " All phase one does is orders a set of data blobs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,480",
+				"to": "00:12:54,960"
+			},
+			"offsets": {
+				"from": 772480,
+				"to": 774960
+			},
+			"text": " and that's actually the hard part."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,960",
+				"to": "00:12:58,680"
+			},
+			"offsets": {
+				"from": 774960,
+				"to": 778680
+			},
+			"text": " So it's actually easier to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,680",
+				"to": "00:13:00,480"
+			},
+			"offsets": {
+				"from": 778680,
+				"to": 780480
+			},
+			"text": " if you have an order set of data blobs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,480",
+				"to": "00:13:03,640"
+			},
+			"offsets": {
+				"from": 780480,
+				"to": 783640
+			},
+			"text": " then to just process them as transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,640",
+				"to": "00:13:07,240"
+			},
+			"offsets": {
+				"from": 783640,
+				"to": 787240
+			},
+			"text": " And that's what the goal is for prototyping phase two."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,200",
+				"to": "00:13:12,480"
+			},
+			"offsets": {
+				"from": 789200,
+				"to": 792480
+			},
+			"text": " One of the ideas being bounced around for phase two"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,480",
+				"to": "00:13:14,480"
+			},
+			"offsets": {
+				"from": 792480,
+				"to": 794480
+			},
+			"text": " is stateless clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,480",
+				"to": "00:13:20,440"
+			},
+			"offsets": {
+				"from": 794480,
+				"to": 800440
+			},
+			"text": " And it's actually probably the simplest you can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,440",
+				"to": "00:13:25,120"
+			},
+			"offsets": {
+				"from": 800440,
+				"to": 805120
+			},
+			"text": " Client just has a 32 byte state route."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,120",
+				"to": "00:13:29,040"
+			},
+			"offsets": {
+				"from": 805120,
+				"to": 809040
+			},
+			"text": " And I mean the trade off is that then transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,040",
+				"to": "00:13:30,920"
+			},
+			"offsets": {
+				"from": 809040,
+				"to": 810920
+			},
+			"text": " become much larger because they have to include"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,920",
+				"to": "00:13:34,760"
+			},
+			"offsets": {
+				"from": 810920,
+				"to": 814760
+			},
+			"text": " the Merkle proof of all the touched accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,760",
+				"to": "00:13:36,520"
+			},
+			"offsets": {
+				"from": 814760,
+				"to": 816520
+			},
+			"text": " Hopefully you can see this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,520",
+				"to": "00:13:41,520"
+			},
+			"offsets": {
+				"from": 816520,
+				"to": 821520
+			},
+			"text": " This is a visualization of the Merkle Patricia tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,520",
+				"to": "00:13:47,880"
+			},
+			"offsets": {
+				"from": 821520,
+				"to": 827880
+			},
+			"text": " which is the tree that's used in a current Ethereum 1.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,880",
+				"to": "00:13:52,480"
+			},
+			"offsets": {
+				"from": 827880,
+				"to": 832480
+			},
+			"text": " So this is an example of an advantage of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,480",
+				"to": "00:13:56,240"
+			},
+			"offsets": {
+				"from": 832480,
+				"to": 836240
+			},
+			"text": " when you have lots of libraries and tooling and JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,240",
+				"to": "00:14:00,320"
+			},
+			"offsets": {
+				"from": 836240,
+				"to": 840320
+			},
+			"text": " You can do neat things like visualize them fairly easily"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,320",
+				"to": "00:14:03,440"
+			},
+			"offsets": {
+				"from": 840320,
+				"to": 843440
+			},
+			"text": " in the browser, which really helps with debugging."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,240",
+				"to": "00:14:08,080"
+			},
+			"offsets": {
+				"from": 846240,
+				"to": 848080
+			},
+			"text": " And explaining how things work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,080",
+				"to": "00:14:13,080"
+			},
+			"offsets": {
+				"from": 848080,
+				"to": 853080
+			},
+			"text": " So to conclude, why do we want to prototype Shasper and JS?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,080",
+				"to": "00:14:18,400"
+			},
+			"offsets": {
+				"from": 853080,
+				"to": 858400
+			},
+			"text": " Because there's already a lot of base libraries in JS"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,400",
+				"to": "00:14:21,800"
+			},
+			"offsets": {
+				"from": 858400,
+				"to": 861800
+			},
+			"text": " and also user interface tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,800",
+				"to": "00:14:24,360"
+			},
+			"offsets": {
+				"from": 861800,
+				"to": 864360
+			},
+			"text": " For example, if we have to change the transaction format"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,360",
+				"to": "00:14:28,200"
+			},
+			"offsets": {
+				"from": 864360,
+				"to": 868200
+			},
+			"text": " for Ethereum 2.0, then getting those working"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,200",
+				"to": "00:14:33,200"
+			},
+			"offsets": {
+				"from": 868200,
+				"to": 873200
+			},
+			"text": " in JavaScript libraries lets other projects like my crypto"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,560",
+				"to": "00:14:36,360"
+			},
+			"offsets": {
+				"from": 873560,
+				"to": 876360
+			},
+			"text": " and made a mask in different wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,360",
+				"to": "00:14:39,840"
+			},
+			"offsets": {
+				"from": 876360,
+				"to": 879840
+			},
+			"text": " more easily test out these UI changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,840",
+				"to": "00:14:42,160"
+			},
+			"offsets": {
+				"from": 879840,
+				"to": 882160
+			},
+			"text": " Also, there's mature networking libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,160",
+				"to": "00:14:46,760"
+			},
+			"offsets": {
+				"from": 882160,
+				"to": 886760
+			},
+			"text": " For example, libp2p, libp2p is being adopted"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,760",
+				"to": "00:14:51,320"
+			},
+			"offsets": {
+				"from": 886760,
+				"to": 891320
+			},
+			"text": " probably as the networking library for Ethereum 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,320",
+				"to": "00:14:55,360"
+			},
+			"offsets": {
+				"from": 891320,
+				"to": 895360
+			},
+			"text": " And it's not, doesn't have a mature implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,360",
+				"to": "00:14:58,160"
+			},
+			"offsets": {
+				"from": 895360,
+				"to": 898160
+			},
+			"text": " in every language, but does have a pretty decent one"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,160",
+				"to": "00:14:59,280"
+			},
+			"offsets": {
+				"from": 898160,
+				"to": 899280
+			},
+			"text": " in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,280",
+				"to": "00:15:03,480"
+			},
+			"offsets": {
+				"from": 899280,
+				"to": 903480
+			},
+			"text": " Also, if the phase two execution engine is ewasm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,480",
+				"to": "00:15:08,480"
+			},
+			"offsets": {
+				"from": 903480,
+				"to": 908480
+			},
+			"text": " then it's very convenient to have a native JIT powerful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,480",
+				"to": "00:15:11,160"
+			},
+			"offsets": {
+				"from": 908480,
+				"to": 911160
+			},
+			"text": " WebAssembly JIT engine from the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,160",
+				"to": "00:15:14,040"
+			},
+			"offsets": {
+				"from": 911160,
+				"to": 914040
+			},
+			"text": " So we get that for free implementing in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,040",
+				"to": "00:15:16,200"
+			},
+			"offsets": {
+				"from": 914040,
+				"to": 916200
+			},
+			"text": " And of course, I mean, JavaScript's everybody's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,200",
+				"to": "00:15:18,840"
+			},
+			"offsets": {
+				"from": 916200,
+				"to": 918840
+			},
+			"text": " favorite language, so obviously should implement it"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,840",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 918840,
+				"to": 921000
+			},
+			"text": " in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:24,480"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 924480
+			},
+			"text": " And that's it, I'm gonna pass it off to Alex now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,480",
+				"to": "00:15:27,660"
+			},
+			"offsets": {
+				"from": 924480,
+				"to": 927660
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,660",
+				"to": "00:15:33,120"
+			},
+			"offsets": {
+				"from": 927660,
+				"to": 933120
+			},
+			"text": " - Thank you, Casey."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,120",
+				"to": "00:15:35,280"
+			},
+			"offsets": {
+				"from": 933120,
+				"to": 935280
+			},
+			"text": " So my name is Alex, I've worked in Ethereum JS"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,280",
+				"to": "00:15:38,160"
+			},
+			"offsets": {
+				"from": 935280,
+				"to": 938160
+			},
+			"text": " for a long while, but today, mostly I'm focused"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,160",
+				"to": "00:15:40,200"
+			},
+			"offsets": {
+				"from": 938160,
+				"to": 940200
+			},
+			"text": " on ewasm and the Solidity compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,200",
+				"to": "00:15:43,520"
+			},
+			"offsets": {
+				"from": 940200,
+				"to": 943520
+			},
+			"text": " Anyhow, I do have a couple of things to say here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,520",
+				"to": "00:15:47,560"
+			},
+			"offsets": {
+				"from": 943520,
+				"to": 947560
+			},
+			"text": " So there are a lot of 2.0 things flying around nowadays."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,560",
+				"to": "00:15:49,560"
+			},
+			"offsets": {
+				"from": 947560,
+				"to": 949560
+			},
+			"text": " So I'm just gonna talk a bit about Ethereum JS 2.0"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,560",
+				"to": "00:15:51,560"
+			},
+			"offsets": {
+				"from": 949560,
+				"to": 951560
+			},
+			"text": " and what that may look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,560",
+				"to": "00:15:53,480"
+			},
+			"offsets": {
+				"from": 951560,
+				"to": 953480
+			},
+			"text": " But first, just take a step back."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,480",
+				"to": "00:15:56,640"
+			},
+			"offsets": {
+				"from": 953480,
+				"to": 956640
+			},
+			"text": " What is Ethereum JS currently?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,640",
+				"to": "00:16:00,280"
+			},
+			"offsets": {
+				"from": 956640,
+				"to": 960280
+			},
+			"text": " A lot of the APIs in Ethereum JS are fully synchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,280",
+				"to": "00:16:02,840"
+			},
+			"offsets": {
+				"from": 960280,
+				"to": 962840
+			},
+			"text": " A good example for that is the wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,840",
+				"to": "00:16:05,040"
+			},
+			"offsets": {
+				"from": 962840,
+				"to": 965040
+			},
+			"text": " And one particular example in the wallet itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,040",
+				"to": "00:16:06,360"
+			},
+			"offsets": {
+				"from": 965040,
+				"to": 966360
+			},
+			"text": " is random number generation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,360",
+				"to": "00:16:08,680"
+			},
+			"offsets": {
+				"from": 966360,
+				"to": 968680
+			},
+			"text": " That is expected to be fully synchronous today."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,680",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 968680,
+				"to": 971000
+			},
+			"text": " A lot of people run into issues trying to integrate it"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:13,360"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 973360
+			},
+			"text": " into mobile devices for a random number generation"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,360",
+				"to": "00:16:15,200"
+			},
+			"offsets": {
+				"from": 973360,
+				"to": 975200
+			},
+			"text": " would be asynchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,200",
+				"to": "00:16:18,240"
+			},
+			"offsets": {
+				"from": 975200,
+				"to": 978240
+			},
+			"text": " But compared to that, a lot of the code in Ethereum JS"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,240",
+				"to": "00:16:21,960"
+			},
+			"offsets": {
+				"from": 978240,
+				"to": 981960
+			},
+			"text": " is fully asynchronous, as it was mentioned before."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,960",
+				"to": "00:16:24,840"
+			},
+			"offsets": {
+				"from": 981960,
+				"to": 984840
+			},
+			"text": " So one example for that is the VM, that's fully synchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,840",
+				"to": "00:16:28,040"
+			},
+			"offsets": {
+				"from": 984840,
+				"to": 988040
+			},
+			"text": " Maybe we should have a bit more consistency"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,040",
+				"to": "00:16:31,640"
+			},
+			"offsets": {
+				"from": 988040,
+				"to": 991640
+			},
+			"text": " between the libraries and choose one way or the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,640",
+				"to": "00:16:34,720"
+			},
+			"offsets": {
+				"from": 991640,
+				"to": 994720
+			},
+			"text": " Also, Ethereum JS was mostly written like two years ago"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,720",
+				"to": "00:16:37,280"
+			},
+			"offsets": {
+				"from": 994720,
+				"to": 997280
+			},
+			"text": " and it has been upgraded and improved,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,280",
+				"to": "00:16:41,600"
+			},
+			"offsets": {
+				"from": 997280,
+				"to": 1001600
+			},
+			"text": " but only incrementally, it hasn't had a big rewrite."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,600",
+				"to": "00:16:44,920"
+			},
+			"offsets": {
+				"from": 1001600,
+				"to": 1004920
+			},
+			"text": " So maybe we should consider doing bigger changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,920",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1004920,
+				"to": 1008000
+			},
+			"text": " and improving it from the ground up."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:50,440"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1010440
+			},
+			"text": " While doing this improvements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,440",
+				"to": "00:16:54,520"
+			},
+			"offsets": {
+				"from": 1010440,
+				"to": 1014520
+			},
+			"text": " we may decide on choosing a different language."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,520",
+				"to": "00:16:57,360"
+			},
+			"offsets": {
+				"from": 1014520,
+				"to": 1017360
+			},
+			"text": " So in the team, there's a bit of understanding"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,360",
+				"to": "00:17:00,960"
+			},
+			"offsets": {
+				"from": 1017360,
+				"to": 1020960
+			},
+			"text": " that maybe going to TypeScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,960",
+				"to": "00:17:02,520"
+			},
+			"offsets": {
+				"from": 1020960,
+				"to": 1022520
+			},
+			"text": " would give us some benefits."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,520",
+				"to": "00:17:07,240"
+			},
+			"offsets": {
+				"from": 1022520,
+				"to": 1027240
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,240",
+				"to": "00:17:11,920"
+			},
+			"offsets": {
+				"from": 1027240,
+				"to": 1031920
+			},
+			"text": " Okay, with TypeScript, the main benefit there is types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,920",
+				"to": "00:17:13,040"
+			},
+			"offsets": {
+				"from": 1031920,
+				"to": 1033040
+			},
+			"text": " types and types."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,040",
+				"to": "00:17:17,560"
+			},
+			"offsets": {
+				"from": 1033040,
+				"to": 1037560
+			},
+			"text": " One big part of Ethereum JS today is with dealing with types"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,560",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1037560,
+				"to": 1041000
+			},
+			"text": " and having a lot of code to ensure that the data is valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:22,960"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1042960
+			},
+			"text": " We do that because we don't have types"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,960",
+				"to": "00:17:25,440"
+			},
+			"offsets": {
+				"from": 1042960,
+				"to": 1045440
+			},
+			"text": " and there were a couple of bugs with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,440",
+				"to": "00:17:27,720"
+			},
+			"offsets": {
+				"from": 1045440,
+				"to": 1047720
+			},
+			"text": " So this example here is from 2015."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,040",
+				"to": "00:17:33,080"
+			},
+			"offsets": {
+				"from": 1049040,
+				"to": 1053080
+			},
+			"text": " The back in 2015, it was the famous Ethereum JS bug"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,080",
+				"to": "00:17:35,880"
+			},
+			"offsets": {
+				"from": 1053080,
+				"to": 1055880
+			},
+			"text": " where in one, 256 instances,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,880",
+				"to": "00:17:37,800"
+			},
+			"offsets": {
+				"from": 1055880,
+				"to": 1057800
+			},
+			"text": " the public key would be invalid"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,800",
+				"to": "00:17:41,680"
+			},
+			"offsets": {
+				"from": 1057800,
+				"to": 1061680
+			},
+			"text": " and some either was lost during that process."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,680",
+				"to": "00:17:43,760"
+			},
+			"offsets": {
+				"from": 1061680,
+				"to": 1063760
+			},
+			"text": " So in this example, we are concatenating the X"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,760",
+				"to": "00:17:45,360"
+			},
+			"offsets": {
+				"from": 1063760,
+				"to": 1065360
+			},
+			"text": " and Y components of the public key"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,360",
+				"to": "00:17:47,440"
+			},
+			"offsets": {
+				"from": 1065360,
+				"to": 1067440
+			},
+			"text": " and in the case of the X component,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,440",
+				"to": "00:17:49,160"
+			},
+			"offsets": {
+				"from": 1067440,
+				"to": 1069160
+			},
+			"text": " because it's represented as an array,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,160",
+				"to": "00:17:51,640"
+			},
+			"offsets": {
+				"from": 1069160,
+				"to": 1071640
+			},
+			"text": " if the X component starts with a zero byte,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,640",
+				"to": "00:17:53,160"
+			},
+			"offsets": {
+				"from": 1071640,
+				"to": 1073160
+			},
+			"text": " that is just ignored."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,160",
+				"to": "00:17:55,480"
+			},
+			"offsets": {
+				"from": 1073160,
+				"to": 1075480
+			},
+			"text": " We wouldn't have had this problem with TypeScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,480",
+				"to": "00:17:57,720"
+			},
+			"offsets": {
+				"from": 1075480,
+				"to": 1077720
+			},
+			"text": " because all of like X and Y component"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,720",
+				"to": "00:17:59,880"
+			},
+			"offsets": {
+				"from": 1077720,
+				"to": 1079880
+			},
+			"text": " would have been a proper type."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,880",
+				"to": "00:18:04,520"
+			},
+			"offsets": {
+				"from": 1079880,
+				"to": 1084520
+			},
+			"text": " Also don't be afraid, this comment is from 2015,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,520",
+				"to": "00:18:07,360"
+			},
+			"offsets": {
+				"from": 1084520,
+				"to": 1087360
+			},
+			"text": " the code has improved, it doesn't look like this anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,360",
+				"to": "00:18:11,280"
+			},
+			"offsets": {
+				"from": 1087360,
+				"to": 1091280
+			},
+			"text": " Some other reasons for TypeScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,280",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1091280,
+				"to": 1094000
+			},
+			"text": " It is practically a typed extension of JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:16,560"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1096560
+			},
+			"text": " so it should look familiar to everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,560",
+				"to": "00:18:19,040"
+			},
+			"offsets": {
+				"from": 1096560,
+				"to": 1099040
+			},
+			"text": " who has JavaScript as their favorite language."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,040",
+				"to": "00:18:20,600"
+			},
+			"offsets": {
+				"from": 1099040,
+				"to": 1100600
+			},
+			"text": " It can also be compiled to JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,600",
+				"to": "00:18:22,680"
+			},
+			"offsets": {
+				"from": 1100600,
+				"to": 1102680
+			},
+			"text": " and it can be mixed with JavaScript,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,680",
+				"to": "00:18:25,200"
+			},
+			"offsets": {
+				"from": 1102680,
+				"to": 1105200
+			},
+			"text": " that means JavaScript code can be imported."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,200",
+				"to": "00:18:27,600"
+			},
+			"offsets": {
+				"from": 1105200,
+				"to": 1107600
+			},
+			"text": " As a result, we don't need to rewrite everything at once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,600",
+				"to": "00:18:29,520"
+			},
+			"offsets": {
+				"from": 1107600,
+				"to": 1109520
+			},
+			"text": " we can do it step by step."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,520",
+				"to": "00:18:33,920"
+			},
+			"offsets": {
+				"from": 1109520,
+				"to": 1113920
+			},
+			"text": " One important thing to mention here is assembly script."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,920",
+				"to": "00:18:37,360"
+			},
+			"offsets": {
+				"from": 1113920,
+				"to": 1117360
+			},
+			"text": " So assembly script is a subset of TypeScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,360",
+				"to": "00:18:39,360"
+			},
+			"offsets": {
+				"from": 1117360,
+				"to": 1119360
+			},
+			"text": " which can be compiled to WebAssembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,360",
+				"to": "00:18:40,680"
+			},
+			"offsets": {
+				"from": 1119360,
+				"to": 1120680
+			},
+			"text": " KCS mentioned the Ywasm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,680",
+				"to": "00:18:43,640"
+			},
+			"offsets": {
+				"from": 1120680,
+				"to": 1123640
+			},
+			"text": " it's like a future potential execution engine."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,640",
+				"to": "00:18:47,280"
+			},
+			"offsets": {
+				"from": 1123640,
+				"to": 1127280
+			},
+			"text": " So assembly script supporting TypeScript in Ethereum.js"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,280",
+				"to": "00:18:48,240"
+			},
+			"offsets": {
+				"from": 1127280,
+				"to": 1128240
+			},
+			"text": " and having assembly script"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,240",
+				"to": "00:18:51,960"
+			},
+			"offsets": {
+				"from": 1128240,
+				"to": 1131960
+			},
+			"text": " would enable us to write smart contracts in JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,960",
+				"to": "00:18:53,760"
+			},
+			"offsets": {
+				"from": 1131960,
+				"to": 1133760
+			},
+			"text": " and have it on Ywasm."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,760",
+				"to": "00:18:55,160"
+			},
+			"offsets": {
+				"from": 1133760,
+				"to": 1135160
+			},
+			"text": " And while doing this right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,160",
+				"to": "00:18:56,840"
+			},
+			"offsets": {
+				"from": 1135160,
+				"to": 1136840
+			},
+			"text": " we have an opportunity to make things right"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,840",
+				"to": "00:18:58,600"
+			},
+			"offsets": {
+				"from": 1136840,
+				"to": 1138600
+			},
+			"text": " and redesign it well."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,600",
+				"to": "00:19:01,920"
+			},
+			"offsets": {
+				"from": 1138600,
+				"to": 1141920
+			},
+			"text": " Okay, what's the future like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,920",
+				"to": "00:19:04,520"
+			},
+			"offsets": {
+				"from": 1141920,
+				"to": 1144520
+			},
+			"text": " So today there's already an incomplete implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,520",
+				"to": "00:19:07,200"
+			},
+			"offsets": {
+				"from": 1144520,
+				"to": 1147200
+			},
+			"text": " of the EVM in TypeScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,200",
+				"to": "00:19:10,600"
+			},
+			"offsets": {
+				"from": 1147200,
+				"to": 1150600
+			},
+			"text": " and it's not done by this team, it's done by someone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,600",
+				"to": "00:19:13,120"
+			},
+			"offsets": {
+				"from": 1150600,
+				"to": 1153120
+			},
+			"text": " Our own initiative is called ETMTS"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,120",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1153120,
+				"to": 1156000
+			},
+			"text": " but the Eaters.js team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:18,720"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1158720
+			},
+			"text": " well, the single person working on it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,720",
+				"to": "00:19:22,840"
+			},
+			"offsets": {
+				"from": 1158720,
+				"to": 1162840
+			},
+			"text": " has done a lot of work in rewriting the code in TypeScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,840",
+				"to": "00:19:24,720"
+			},
+			"offsets": {
+				"from": 1162840,
+				"to": 1164720
+			},
+			"text": " I think we shouldn't, hey,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,720",
+				"to": "00:19:28,040"
+			},
+			"offsets": {
+				"from": 1164720,
+				"to": 1168040
+			},
+			"text": " I think we shouldn't have all these competing projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,040",
+				"to": "00:19:29,960"
+			},
+			"offsets": {
+				"from": 1168040,
+				"to": 1169960
+			},
+			"text": " and we should just combine our efforts"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,960",
+				"to": "00:19:32,720"
+			},
+			"offsets": {
+				"from": 1169960,
+				"to": 1172720
+			},
+			"text": " that have one complete fully tested,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,720",
+				"to": "00:19:35,880"
+			},
+			"offsets": {
+				"from": 1172720,
+				"to": 1175880
+			},
+			"text": " comprehensive Ethereum TypeScript implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,880",
+				"to": "00:19:37,960"
+			},
+			"offsets": {
+				"from": 1175880,
+				"to": 1177960
+			},
+			"text": " So I think that's the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,960",
+				"to": "00:19:38,800"
+			},
+			"offsets": {
+				"from": 1177960,
+				"to": 1178800
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,800",
+				"to": "00:19:41,800"
+			},
+			"offsets": {
+				"from": 1178800,
+				"to": 1181800
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,800",
+				"to": "00:19:44,380"
+			},
+			"offsets": {
+				"from": 1181800,
+				"to": 1184380
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,380",
+				"to": "00:19:46,620"
+			},
+			"offsets": {
+				"from": 1184380,
+				"to": 1186620
+			},
+			"text": " (buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,620",
+				"to": "00:19:48,860"
+			},
+			"offsets": {
+				"from": 1186620,
+				"to": 1188860
+			},
+			"text": " (buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,860",
+				"to": "00:20:11,180"
+			},
+			"offsets": {
+				"from": 1188860,
+				"to": 1211180
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

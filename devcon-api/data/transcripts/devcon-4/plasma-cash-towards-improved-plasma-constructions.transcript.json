@@ -1,0 +1,4762 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,680"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5680
+			},
+			"text": " So this one I will try to make it as technical as possible. So apologies if it sounds like 2d pofidive"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,680",
+				"to": "00:00:12,240"
+			},
+			"offsets": {
+				"from": 5680,
+				"to": 12240
+			},
+			"text": " But I want everybody so like you have I have 20 minutes. So in 20 minutes you learn what plasma cache is how it works"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,240",
+				"to": "00:00:15,500"
+			},
+			"offsets": {
+				"from": 12240,
+				"to": 15500
+			},
+			"text": " Where it works where it doesn't and why it's the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,500",
+				"to": "00:00:22,520"
+			},
+			"offsets": {
+				"from": 15500,
+				"to": 22520
+			},
+			"text": " most like viable like solution currently at least at the current research levels because all the other solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,520",
+				"to": "00:00:25,580"
+			},
+			"offsets": {
+				"from": 22520,
+				"to": 25580
+			},
+			"text": " I'm of the personal opinion that they're quite let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,200",
+				"to": "00:00:31,020"
+			},
+			"offsets": {
+				"from": 26200,
+				"to": 31020
+			},
+			"text": " Optimistic and ambitious and it will take some time and people we have them like in production so"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,020",
+				"to": "00:00:40,360"
+			},
+			"offsets": {
+				"from": 31020,
+				"to": 40360
+			},
+			"text": " Yeah, so who knows here how plasma cache works like has tried to implement the gate in a low level essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,360",
+				"to": "00:00:44,720"
+			},
+			"offsets": {
+				"from": 40360,
+				"to": 44720
+			},
+			"text": " Okay"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,720",
+				"to": "00:00:46,720"
+			},
+			"offsets": {
+				"from": 44720,
+				"to": 46720
+			},
+			"text": " okay, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,720",
+				"to": "00:00:51,120"
+			},
+			"offsets": {
+				"from": 46720,
+				"to": 51120
+			},
+			"text": " The point is that the other plasma construction the original plasma paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,320",
+				"to": "00:00:58,160"
+			},
+			"offsets": {
+				"from": 51320,
+				"to": 58160
+			},
+			"text": " It was very very important because it gave the notion of what plasma is it should be like the Satoshi's vision thing the Dalek's vision"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,160",
+				"to": "00:01:00,160"
+			},
+			"offsets": {
+				"from": 58160,
+				"to": 60160
+			},
+			"text": " Whatever you want to call it however"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,160",
+				"to": "00:01:03,220"
+			},
+			"offsets": {
+				"from": 60160,
+				"to": 63220
+			},
+			"text": " It was like totally unrealistic has this whole map reduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,220",
+				"to": "00:01:10,720"
+			},
+			"offsets": {
+				"from": 63220,
+				"to": 70720
+			},
+			"text": " Construction it had like a bunch of like the dream of the three of chains and now everything communicating with each other like the Supreme Court"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,720",
+				"to": "00:01:15,760"
+			},
+			"offsets": {
+				"from": 70720,
+				"to": 75760
+			},
+			"text": " I don't I'm not of the opinion that it works. So this talk will be highly opinionated on what I'm saying"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,760",
+				"to": "00:01:19,900"
+			},
+			"offsets": {
+				"from": 75760,
+				"to": 79900
+			},
+			"text": " How plasma is and works so take this with a grain of salt. This is not expressing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,420",
+				"to": "00:01:22,220"
+			},
+			"offsets": {
+				"from": 80420,
+				"to": 82220
+			},
+			"text": " general let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,220",
+				"to": "00:01:24,820"
+			},
+			"offsets": {
+				"from": 82220,
+				"to": 84820
+			},
+			"text": " Opinions of the plasma community I guess"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,820",
+				"to": "00:01:27,820"
+			},
+			"offsets": {
+				"from": 84820,
+				"to": 87820
+			},
+			"text": " so yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,820",
+				"to": "00:01:31,180"
+			},
+			"offsets": {
+				"from": 87820,
+				"to": 91180
+			},
+			"text": " Test test one two"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,180",
+				"to": "00:01:33,980"
+			},
+			"offsets": {
+				"from": 91180,
+				"to": 93980
+			},
+			"text": " yeah, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,980",
+				"to": "00:01:36,260"
+			},
+			"offsets": {
+				"from": 93980,
+				"to": 96260
+			},
+			"text": " The point is okay anyway"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,260",
+				"to": "00:01:40,620"
+			},
+			"offsets": {
+				"from": 96260,
+				"to": 100620
+			},
+			"text": " The thing is that the plasma it works like with a classic side change construction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,620",
+				"to": "00:01:44,780"
+			},
+			"offsets": {
+				"from": 100620,
+				"to": 104780
+			},
+			"text": " You have like a mention the side chain you deposit funds you do whatever you like on the side chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,780",
+				"to": "00:01:52,280"
+			},
+			"offsets": {
+				"from": 104780,
+				"to": 112280
+			},
+			"text": " You can take them out. But the thing is that in order to get scalability. We actually need a consensus mechanism that advances faster than the normal"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,280",
+				"to": "00:01:54,280"
+			},
+			"offsets": {
+				"from": 112280,
+				"to": 114280
+			},
+			"text": " Mechanism than the Beijing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,280",
+				"to": "00:01:57,400"
+			},
+			"offsets": {
+				"from": 114280,
+				"to": 117400
+			},
+			"text": " Mechanism and you cannot do that like in my opinion by definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,400",
+				"to": "00:02:01,640"
+			},
+			"offsets": {
+				"from": 117400,
+				"to": 121640
+			},
+			"text": " You need to like make some compromise on either the centralization or the security aspect"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,640",
+				"to": "00:02:07,540"
+			},
+			"offsets": {
+				"from": 121640,
+				"to": 127540
+			},
+			"text": " And so what we're doing is that with plasma you construct essentially a non-custodial side chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,540",
+				"to": "00:02:10,740"
+			},
+			"offsets": {
+				"from": 127540,
+				"to": 130740
+			},
+			"text": " Because a ten given point in time if there's some involved state transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,740",
+				"to": "00:02:15,780"
+			},
+			"offsets": {
+				"from": 130740,
+				"to": 135780
+			},
+			"text": " You can go through this exit game and you can like just get your money out within a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,780",
+				"to": "00:02:18,540"
+			},
+			"offsets": {
+				"from": 135780,
+				"to": 138540
+			},
+			"text": " Challenge period"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,540",
+				"to": "00:02:19,840"
+			},
+			"offsets": {
+				"from": 138540,
+				"to": 139840
+			},
+			"text": " Yeah, maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,840",
+				"to": "00:02:24,360"
+			},
+			"offsets": {
+				"from": 139840,
+				"to": 144360
+			},
+			"text": " How do you handle this? I'm not exactly sure like yeah, I have like a bunch of nice like"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,360",
+				"to": "00:02:28,380"
+			},
+			"offsets": {
+				"from": 144360,
+				"to": 148380
+			},
+			"text": " Shapes and all that to explain it so like the whole difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,380",
+				"to": "00:02:32,980"
+			},
+			"offsets": {
+				"from": 148380,
+				"to": 152980
+			},
+			"text": " Between like plasma cash and like the other variants. It's because the plasma cash"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,980",
+				"to": "00:02:38,020"
+			},
+			"offsets": {
+				"from": 152980,
+				"to": 158020
+			},
+			"text": " It's non-fundable it is it is in the family. Let's say of plasma protocols that it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,220",
+				"to": "00:02:45,260"
+			},
+			"offsets": {
+				"from": 159220,
+				"to": 165260
+			},
+			"text": " The security is enforced by the non-fungibility of routine deposits. So each coin you deposit has a unique idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,260",
+				"to": "00:02:50,380"
+			},
+			"offsets": {
+				"from": 165260,
+				"to": 170380
+			},
+			"text": " It's different from each other and you can use it to have a sort of like a simple exit game"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,380",
+				"to": "00:02:54,540"
+			},
+			"offsets": {
+				"from": 170380,
+				"to": 174540
+			},
+			"text": " Where like it's going is unique you don't have to use the whole priority queue"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,540",
+				"to": "00:02:58,740"
+			},
+			"offsets": {
+				"from": 174540,
+				"to": 178740
+			},
+			"text": " construction to go through your what you call it to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,740",
+				"to": "00:03:07,260"
+			},
+			"offsets": {
+				"from": 178740,
+				"to": 187260
+			},
+			"text": " Multiple exits there is no need for the mass exits construction, which is like very important because currently and all the other plasma"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,260",
+				"to": "00:03:14,220"
+			},
+			"offsets": {
+				"from": 187260,
+				"to": 194220
+			},
+			"text": " Non-plasma cash variants designs they require mass exits and they will make the claim that the mass exits currently are enviable"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,220",
+				"to": "00:03:16,220"
+			},
+			"offsets": {
+				"from": 194220,
+				"to": 196220
+			},
+			"text": " due to how like"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,220",
+				"to": "00:03:21,540"
+			},
+			"offsets": {
+				"from": 196220,
+				"to": 201540
+			},
+			"text": " Let's say primitive like our signature aggregation works on the we cannot verify enough even if you do a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,540",
+				"to": "00:03:26,660"
+			},
+			"offsets": {
+				"from": 201540,
+				"to": 206660
+			},
+			"text": " A multi signature and you compress it and you do a threshold signature on all of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,660",
+				"to": "00:03:31,420"
+			},
+			"offsets": {
+				"from": 206660,
+				"to": 211420
+			},
+			"text": " You cannot actually like verify the whole thing on the avian. Yeah, and like okay, okay"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,420",
+				"to": "00:03:32,540"
+			},
+			"offsets": {
+				"from": 211420,
+				"to": 212540
+			},
+			"text": " so"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,540",
+				"to": "00:03:38,820"
+			},
+			"offsets": {
+				"from": 212540,
+				"to": 218820
+			},
+			"text": " Jeff just said like explained by Starks are better than XT based checkpoints and whatever our are say to me leaders"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,820",
+				"to": "00:03:42,500"
+			},
+			"offsets": {
+				"from": 218820,
+				"to": 222500
+			},
+			"text": " So first of all quantum resistance. Okay, so the argument is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,500",
+				"to": "00:03:46,420"
+			},
+			"offsets": {
+				"from": 222500,
+				"to": 226420
+			},
+			"text": " plasma cash has a very big let's say disadvantage that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,420",
+				"to": "00:03:50,140"
+			},
+			"offsets": {
+				"from": 226420,
+				"to": 230140
+			},
+			"text": " Whenever you're passing coins around and as the side chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,140",
+				"to": "00:03:53,260"
+			},
+			"offsets": {
+				"from": 230140,
+				"to": 233260
+			},
+			"text": " Progresses the coin history girls linearly"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,260",
+				"to": "00:03:58,220"
+			},
+			"offsets": {
+				"from": 233260,
+				"to": 238220
+			},
+			"text": " So I have 10 blocks. I need to pass around 10 blocks worth of proofs and this sucks"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,460",
+				"to": "00:04:03,340"
+			},
+			"offsets": {
+				"from": 238460,
+				"to": 243340
+			},
+			"text": " So what we can do is one you can just pass around the proofs - we can do checkpoints"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,340",
+				"to": "00:04:09,260"
+			},
+			"offsets": {
+				"from": 243340,
+				"to": 249260
+			},
+			"text": " But which is a very brilliant construction by Kelvin. However, let's think it's it requires so much social coordination"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,260",
+				"to": "00:04:13,380"
+			},
+			"offsets": {
+				"from": 249260,
+				"to": 253380
+			},
+			"text": " It's like on the level of the mass exits and I'm not sure if it works"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,380",
+				"to": "00:04:17,800"
+			},
+			"offsets": {
+				"from": 253380,
+				"to": 257800
+			},
+			"text": " So on the contrary what you can do is that you can use the other side simulator"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,800",
+				"to": "00:04:20,460"
+			},
+			"offsets": {
+				"from": 257800,
+				"to": 260460
+			},
+			"text": " The other side to me later recent construction"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,460",
+				"to": "00:04:25,860"
+			},
+			"offsets": {
+				"from": 260460,
+				"to": 265860
+			},
+			"text": " Which is like assign a unique prime number to each leaf and you make some black magic on it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,860",
+				"to": "00:04:33,440"
+			},
+			"offsets": {
+				"from": 265860,
+				"to": 273440
+			},
+			"text": " And you can somehow prove no combatly there that the coin history is valid and the final the very sexy alternative is that you can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,440",
+				"to": "00:04:35,920"
+			},
+			"offsets": {
+				"from": 273440,
+				"to": 275920
+			},
+			"text": " Take the whole history you make a stark proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,920",
+				"to": "00:04:42,140"
+			},
+			"offsets": {
+				"from": 275920,
+				"to": 282140
+			},
+			"text": " You put it on the black box without any trusted setup or anything that you don't like and just have a combat proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,140",
+				"to": "00:04:45,540"
+			},
+			"offsets": {
+				"from": 282140,
+				"to": 285540
+			},
+			"text": " That can be that can be translated to your receiver"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,540",
+				"to": "00:04:51,540"
+			},
+			"offsets": {
+				"from": 285540,
+				"to": 291540
+			},
+			"text": " And actually in these cases we never need a non-chain very fire to do that because I'm just I want to prove like"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,540",
+				"to": "00:04:56,100"
+			},
+			"offsets": {
+				"from": 291540,
+				"to": 296100
+			},
+			"text": " Let's say to Jeff. I just want to tell him that you know I have this going take it and he proves it on his own"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,100",
+				"to": "00:05:00,300"
+			},
+			"offsets": {
+				"from": 296100,
+				"to": 300300
+			},
+			"text": " And the verification is really very fast and yeah quantum resistance because we need to be like"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,300",
+				"to": "00:05:03,060"
+			},
+			"offsets": {
+				"from": 300300,
+				"to": 303060
+			},
+			"text": " Anticipating the quantum computers. They're coming together"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,060",
+				"to": "00:05:06,420"
+			},
+			"offsets": {
+				"from": 303060,
+				"to": 306420
+			},
+			"text": " What was my slides?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,420",
+				"to": "00:05:17,060"
+			},
+			"offsets": {
+				"from": 306420,
+				"to": 317060
+			},
+			"text": " More yet Q&A exact questions, please actually yeah, I'm pretty sure I can answer like any technical question"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,060",
+				"to": "00:05:20,220"
+			},
+			"offsets": {
+				"from": 317060,
+				"to": 320220
+			},
+			"text": " So hit me with your best shot and if I don't answer yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,220",
+				"to": "00:05:27,380"
+			},
+			"offsets": {
+				"from": 321220,
+				"to": 327380
+			},
+			"text": " Why do we need to worry about quantum resistance if we're not even sure if this isn't work yet like we're gonna"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,380",
+				"to": "00:05:29,660"
+			},
+			"offsets": {
+				"from": 327380,
+				"to": 329660
+			},
+			"text": " multiple times"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,660",
+				"to": "00:05:35,920"
+			},
+			"offsets": {
+				"from": 329660,
+				"to": 335920
+			},
+			"text": " Well, my cash is real is it because that's it's gonna exist in perpetuity for a long period of time and then future quantum"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,920",
+				"to": "00:05:37,940"
+			},
+			"offsets": {
+				"from": 335920,
+				"to": 337940
+			},
+			"text": " I mean that generally we need to be like looking ahead"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,940",
+				"to": "00:05:44,960"
+			},
+			"offsets": {
+				"from": 337940,
+				"to": 344960
+			},
+			"text": " And like protecting our gets a so to rephrase if we can have a quantum resistance scheme in one year"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,960",
+				"to": "00:05:50,020"
+			},
+			"offsets": {
+				"from": 344960,
+				"to": 350020
+			},
+			"text": " I believe it's much better than investing six six months in a non quantum resistance"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,020",
+				"to": "00:05:52,240"
+			},
+			"offsets": {
+				"from": 350020,
+				"to": 352240
+			},
+			"text": " So I'll just chime in for a second"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,240",
+				"to": "00:05:57,440"
+			},
+			"offsets": {
+				"from": 352240,
+				"to": 357440
+			},
+			"text": " So I think the danger is is if we encrypt all this data and we have like our browser history encrypted"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,440",
+				"to": "00:06:00,440"
+			},
+			"offsets": {
+				"from": 357440,
+				"to": 360440
+			},
+			"text": " And then somebody gets a quantum computer. We're all screwed, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,440",
+				"to": "00:06:09,040"
+			},
+			"offsets": {
+				"from": 360440,
+				"to": 369040
+			},
+			"text": " Okay, so how do you get started firstly Kelvin and friends have done like a great great amazing educational effort with the site"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,040",
+				"to": "00:06:11,440"
+			},
+			"offsets": {
+				"from": 369040,
+				"to": 371440
+			},
+			"text": " called little plus one dot org if I'm not mistaken"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,440",
+				"to": "00:06:15,440"
+			},
+			"offsets": {
+				"from": 373440,
+				"to": 375440
+			},
+			"text": " But I am of the opinion that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,440",
+				"to": "00:06:17,680"
+			},
+			"offsets": {
+				"from": 375440,
+				"to": 377680
+			},
+			"text": " Where's the timer going if I don't have slides?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,680",
+				"to": "00:06:26,400"
+			},
+			"offsets": {
+				"from": 377680,
+				"to": 386400
+			},
+			"text": " But I am the opinion that I literally cannot show you how one thing works if I little a point you like to if I give you ten"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,400",
+				"to": "00:06:31,700"
+			},
+			"offsets": {
+				"from": 386400,
+				"to": 391700
+			},
+			"text": " Links it doesn't work that way. So I've been writing a plasma paper like yeah, we'll talk about my work, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,700",
+				"to": "00:06:34,640"
+			},
+			"offsets": {
+				"from": 391700,
+				"to": 394640
+			},
+			"text": " I've been writing a sort of plasma paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,640",
+				"to": "00:06:41,320"
+			},
+			"offsets": {
+				"from": 394640,
+				"to": 401320
+			},
+			"text": " That it's like a 20 pager that you read in maybe two hours and you can like understand everything about plasma this variant that I'm working on"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,640",
+				"to": "00:06:46,080"
+			},
+			"offsets": {
+				"from": 401640,
+				"to": 406080
+			},
+			"text": " so you read it and basically you should be having like a pretty good idea of what's going on and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,080",
+				"to": "00:06:51,240"
+			},
+			"offsets": {
+				"from": 406080,
+				"to": 411240
+			},
+			"text": " Implementing a plasma contract isn't actually the hard thing implementing the client software is the hardest thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,240",
+				"to": "00:06:55,960"
+			},
+			"offsets": {
+				"from": 411240,
+				"to": 415960
+			},
+			"text": " Because the smart contract you need like you define it like you give it like you need to do this for exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,960",
+				"to": "00:06:59,120"
+			},
+			"offsets": {
+				"from": 415960,
+				"to": 419120
+			},
+			"text": " This to withdraw this to deposit. That's all there is to it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,120",
+				"to": "00:07:03,160"
+			},
+			"offsets": {
+				"from": 419120,
+				"to": 423160
+			},
+			"text": " And you have the submit block function to commit the miracle root and that's it"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,160",
+				"to": "00:07:06,520"
+			},
+			"offsets": {
+				"from": 423160,
+				"to": 426520
+			},
+			"text": " But the client software it needs to watch it needs to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,120",
+				"to": "00:07:10,480"
+			},
+			"offsets": {
+				"from": 427120,
+				"to": 430480
+			},
+			"text": " Catch state because if you pull the medical proof you need to save it"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,480",
+				"to": "00:07:13,280"
+			},
+			"offsets": {
+				"from": 430480,
+				"to": 433280
+			},
+			"text": " Because if you don't like and you restart your client"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,280",
+				"to": "00:07:17,200"
+			},
+			"offsets": {
+				"from": 433280,
+				"to": 437200
+			},
+			"text": " You don't have the proofs you assume that the whatever entities providing you the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,200",
+				"to": "00:07:21,440"
+			},
+			"offsets": {
+				"from": 437200,
+				"to": 441440
+			},
+			"text": " They will provide you the data and if you do that wife and bother with plasma"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,440",
+				"to": "00:07:26,760"
+			},
+			"offsets": {
+				"from": 441440,
+				"to": 446760
+			},
+			"text": " Which is I'm pretty sure there is some like plasma variants that assume some sort of data availability"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,760",
+				"to": "00:07:33,960"
+			},
+			"offsets": {
+				"from": 446760,
+				"to": 453960
+			},
+			"text": " And you should never assume any any kind of it. So yeah, just read learn plasma like I'll give a link to the paper at the end"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,960",
+				"to": "00:07:35,960"
+			},
+			"offsets": {
+				"from": 453960,
+				"to": 455960
+			},
+			"text": " Yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,960",
+				"to": "00:07:38,960"
+			},
+			"offsets": {
+				"from": 456960,
+				"to": 458960
+			},
+			"text": " Anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,960",
+				"to": "00:07:49,840"
+			},
+			"offsets": {
+				"from": 458960,
+				"to": 469840
+			},
+			"text": " So I don't work on MVP"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,840",
+				"to": "00:07:55,160"
+			},
+			"offsets": {
+				"from": 469840,
+				"to": 475160
+			},
+			"text": " But again my opinion, I don't think light client verification works on MVP"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,160",
+				"to": "00:08:00,440"
+			},
+			"offsets": {
+				"from": 475160,
+				"to": 480440
+			},
+			"text": " I'll put very contrary on pinions. So always with a grain of salt so I"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,440",
+				"to": "00:08:05,200"
+			},
+			"offsets": {
+				"from": 480440,
+				"to": 485200
+			},
+			"text": " MVP it requires you to validate the side-chain state which by definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,400",
+				"to": "00:08:10,680"
+			},
+			"offsets": {
+				"from": 485400,
+				"to": 490680
+			},
+			"text": " It contradicts the scalability because if you need to do full-client validation on the light clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,680",
+				"to": "00:08:13,560"
+			},
+			"offsets": {
+				"from": 490680,
+				"to": 493560
+			},
+			"text": " You can never run like a secure plasma chain on your phone"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,560",
+				"to": "00:08:16,320"
+			},
+			"offsets": {
+				"from": 493560,
+				"to": 496320
+			},
+			"text": " You can never like validate the secure plasma chain on your phone"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,320",
+				"to": "00:08:20,680"
+			},
+			"offsets": {
+				"from": 496320,
+				"to": 500680
+			},
+			"text": " And you need to do that because otherwise you cannot be sure that the plasma chain is not the fractional reserve"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,680",
+				"to": "00:08:24,600"
+			},
+			"offsets": {
+				"from": 500680,
+				"to": 504600
+			},
+			"text": " Like if there is a withdrawal so from it and you didn't take note"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,600",
+				"to": "00:08:30,800"
+			},
+			"offsets": {
+				"from": 504600,
+				"to": 510800
+			},
+			"text": " So yeah, that's why like I'm a very bullish on the plasma cash because everything that happens on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,800",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 510800,
+				"to": 515000
+			},
+			"text": " You know at that moment. So okay plasma cash blah blah"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:39,640"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 519640
+			},
+			"text": " Okay, so why is plasma you have the main chain the side chain like you deposit some funds you do the funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,640",
+				"to": "00:08:42,040"
+			},
+			"offsets": {
+				"from": 519640,
+				"to": 522040
+			},
+			"text": " What they really like we talked about this already so I will skip this through"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,040",
+				"to": "00:08:44,640"
+			},
+			"offsets": {
+				"from": 522040,
+				"to": 524640
+			},
+			"text": " The big details that we need to like"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,640",
+				"to": "00:08:51,040"
+			},
+			"offsets": {
+				"from": 524640,
+				"to": 531040
+			},
+			"text": " In system is that each block must be submitted and the gas cost for this they kind of stuck up. I actually really like this purple color"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,040",
+				"to": "00:08:52,040"
+			},
+			"offsets": {
+				"from": 531040,
+				"to": 532040
+			},
+			"text": " It's very satisfying"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,040",
+				"to": "00:08:53,120"
+			},
+			"offsets": {
+				"from": 532040,
+				"to": 533120
+			},
+			"text": " so"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,120",
+				"to": "00:08:56,880"
+			},
+			"offsets": {
+				"from": 533120,
+				"to": 536880
+			},
+			"text": " You checkpoint each block and the moment you consider transaction finalized"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,880",
+				"to": "00:09:02,880"
+			},
+			"offsets": {
+				"from": 536880,
+				"to": 542880
+			},
+			"text": " This is like security property that you consider transaction finalized once the block root has been committed and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,320",
+				"to": "00:09:08,480"
+			},
+			"offsets": {
+				"from": 543320,
+				"to": 548480
+			},
+			"text": " The witness data the miracle branch for that transaction that you're looking for is made available to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,480",
+				"to": "00:09:14,080"
+			},
+			"offsets": {
+				"from": 548480,
+				"to": 554080
+			},
+			"text": " Because if that data is not made available to you you literally cannot know if the transaction was included or it was answered"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,080",
+				"to": "00:09:15,920"
+			},
+			"offsets": {
+				"from": 554080,
+				"to": 555920
+			},
+			"text": " so"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,920",
+				"to": "00:09:20,680"
+			},
+			"offsets": {
+				"from": 555920,
+				"to": 560680
+			},
+			"text": " Just a moment to just say that plasma cash is real. It's working right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,680",
+				"to": "00:09:25,160"
+			},
+			"offsets": {
+				"from": 560680,
+				"to": 565160
+			},
+			"text": " It's live right now. You can do MPM install like this thing you can run this command"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,160",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 565160,
+				"to": 568000
+			},
+			"text": " These are two real addresses and you can get connect to ring could be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:32,800"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 572800
+			},
+			"text": " Via inferior or your own node, but nobody runs their own nodes unfortunately, but yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,800",
+				"to": "00:09:35,800"
+			},
+			"offsets": {
+				"from": 573800,
+				"to": 575800
+			},
+			"text": " shout out Bitcoin and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,800",
+				"to": "00:09:43,960"
+			},
+			"offsets": {
+				"from": 575800,
+				"to": 583960
+			},
+			"text": " This is like how the thing like looks from the inside type help you have a bunch of commands the user needs to do the very very minimal"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,960",
+				"to": "00:09:48,600"
+			},
+			"offsets": {
+				"from": 583960,
+				"to": 588600
+			},
+			"text": " Amount of things just need deposit transfer exit withdrawal. That's all you need to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,600",
+				"to": "00:09:53,320"
+			},
+			"offsets": {
+				"from": 588600,
+				"to": 593320
+			},
+			"text": " I'm of the opinion that you never should like force the user to do anything we are watching"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,320",
+				"to": "00:10:00,080"
+			},
+			"offsets": {
+				"from": 593320,
+				"to": 600080
+			},
+			"text": " It's all in the client software and yeah, whatever like you can demo it if you want like I won't do a live demo because it's total like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,600",
+				"to": "00:10:02,600"
+			},
+			"offsets": {
+				"from": 600600,
+				"to": 602600
+			},
+			"text": " Hubris I it doesn't work"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,600",
+				"to": "00:10:07,800"
+			},
+			"offsets": {
+				"from": 602600,
+				"to": 607800
+			},
+			"text": " So okay, I've written this thing like you should try to read it give me feedback and so on"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,800",
+				"to": "00:10:12,800"
+			},
+			"offsets": {
+				"from": 607800,
+				"to": 612800
+			},
+			"text": " I'm basically trying to do what I said before I'm trying to do a very like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,800",
+				"to": "00:10:16,920"
+			},
+			"offsets": {
+				"from": 612800,
+				"to": 616920
+			},
+			"text": " Concise overview of how plasma cash works and what's it about and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,920",
+				"to": "00:10:23,480"
+			},
+			"offsets": {
+				"from": 616920,
+				"to": 623480
+			},
+			"text": " Soon I will have like some more like formal notation of how to exit game and the final is in the state transitions work"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,480",
+				"to": "00:10:25,240"
+			},
+			"offsets": {
+				"from": 623480,
+				"to": 625240
+			},
+			"text": " so"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,240",
+				"to": "00:10:30,640"
+			},
+			"offsets": {
+				"from": 625240,
+				"to": 630640
+			},
+			"text": " First of all like why it's real we can do it like in pretty realistic time frames"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,640",
+				"to": "00:10:35,560"
+			},
+			"offsets": {
+				"from": 630640,
+				"to": 635560
+			},
+			"text": " I believe that I started working on it on me and we had like an implementation within a month and a half. So it's real"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,560",
+				"to": "00:10:40,120"
+			},
+			"offsets": {
+				"from": 635560,
+				"to": 640120
+			},
+			"text": " We have low data requirements for the light guys like okay"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,120",
+				"to": "00:10:43,740"
+			},
+			"offsets": {
+				"from": 640120,
+				"to": 643740
+			},
+			"text": " It's not really low that is lower than any other available solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,740",
+				"to": "00:10:50,520"
+			},
+			"offsets": {
+				"from": 643740,
+				"to": 650520
+			},
+			"text": " I will claim it's low and you can have like this module architecture where if anything that you don't like you just add the plug in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,520",
+				"to": "00:10:53,440"
+			},
+			"offsets": {
+				"from": 650520,
+				"to": 653440
+			},
+			"text": " So this whole naming convention thing. Yeah, I'll talk about both"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:11:00,780"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 660780
+			},
+			"text": " So I believe that this is a very good call this light like to like get people to understand like what are the difference of its variant"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,780",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 660780,
+				"to": 666000
+			},
+			"text": " So the ones that we are working on and much thanks to the energy for maybe a sudden name wrong"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:08,440"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 668440
+			},
+			"text": " To for all the discussion for this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,440",
+				"to": "00:11:15,080"
+			},
+			"offsets": {
+				"from": 668440,
+				"to": 675080
+			},
+			"text": " Is that the whenever you deposit the coin on this variance of plasma cash its coin is unique"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,080",
+				"to": "00:11:18,360"
+			},
+			"offsets": {
+				"from": 675080,
+				"to": 678360
+			},
+			"text": " So you have this like this gives you like a very simple exit game"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,360",
+				"to": "00:11:24,240"
+			},
+			"offsets": {
+				"from": 678360,
+				"to": 684240
+			},
+			"text": " And it's very like the security is tight and what you can do is that but it has some problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,240",
+				"to": "00:11:28,260"
+			},
+			"offsets": {
+				"from": 684240,
+				"to": 688260
+			},
+			"text": " It doesn't have like fungible payments and doesn't it the history girls like hell"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,260",
+				"to": "00:11:35,240"
+			},
+			"offsets": {
+				"from": 688260,
+				"to": 695240
+			},
+			"text": " So what you can do is that you can either like use some magic like I say kimuligos zero knowledge proofs to prove the coins"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,240",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 695240,
+				"to": 697000
+			},
+			"text": " Here's so in a more compact way"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:41,520"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 701520
+			},
+			"text": " And the other thing is that we need to like if you want to do like fungible payments with multiple ones"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,520",
+				"to": "00:11:45,960"
+			},
+			"offsets": {
+				"from": 701520,
+				"to": 705960
+			},
+			"text": " You can apply the other technique that you break a coin down in 100 pieces and you have the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,240",
+				"to": "00:11:51,880"
+			},
+			"offsets": {
+				"from": 706240,
+				"to": 711880
+			},
+			"text": " transferring the sub pieces of it and whenever you're speaking about the coin you're actually talking about a range of coins or"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,880",
+				"to": "00:11:55,080"
+			},
+			"offsets": {
+				"from": 711880,
+				"to": 715080
+			},
+			"text": " Just use state channel. Yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,080",
+				"to": "00:11:59,160"
+			},
+			"offsets": {
+				"from": 715080,
+				"to": 719160
+			},
+			"text": " I'm very I'm a very big fan of state channels from plasma, but we'll talk about that later"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,160",
+				"to": "00:12:02,680"
+			},
+			"offsets": {
+				"from": 719160,
+				"to": 722680
+			},
+			"text": " So the other variants there are the plasma MVP"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,680",
+				"to": "00:12:10,040"
+			},
+			"offsets": {
+				"from": 722680,
+				"to": 730040
+			},
+			"text": " Once which I argued earlier that they required much data and they also require the they also require sort of priority queue construction"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,600",
+				"to": "00:12:15,520"
+			},
+			"offsets": {
+				"from": 730600,
+				"to": 735520
+			},
+			"text": " For exits because if the operator the operator is basically able to create a huge UTXO"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,520",
+				"to": "00:12:20,200"
+			},
+			"offsets": {
+				"from": 735520,
+				"to": 740200
+			},
+			"text": " Which exits the whole chain which would make it a fractional reserve and you need a mass exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,200",
+				"to": "00:12:23,440"
+			},
+			"offsets": {
+				"from": 740200,
+				"to": 743440
+			},
+			"text": " Which to my knowledge, there is no working mass mass exits scheme to date and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,440",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 743440,
+				"to": 747000
+			},
+			"text": " On top of it. You're not the more viable plasma"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:33,720"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 753720
+			},
+			"text": " which Kelvin has thought of to like solve you to make you act better and maybe most viable plasma one day, I don't know and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,720",
+				"to": "00:12:35,920"
+			},
+			"offsets": {
+				"from": 753720,
+				"to": 755920
+			},
+			"text": " Yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,920",
+				"to": "00:12:42,200"
+			},
+			"offsets": {
+				"from": 755920,
+				"to": 762200
+			},
+			"text": " You can use NARCS to verify the state transitions from like one thing to another. So currently what we have is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,200",
+				"to": "00:12:50,140"
+			},
+			"offsets": {
+				"from": 762200,
+				"to": 770140
+			},
+			"text": " We do turn action routes. So anytime you submit a block. You don't actually submit the state route"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,140",
+				"to": "00:12:54,560"
+			},
+			"offsets": {
+				"from": 770140,
+				"to": 774560
+			},
+			"text": " So it's not the latest state. So you need to like go literally the whole block history"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,560",
+				"to": "00:12:58,560"
+			},
+			"offsets": {
+				"from": 774560,
+				"to": 778560
+			},
+			"text": " Well in this case you just have the state route and it's like it's there"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,560",
+				"to": "00:13:04,420"
+			},
+			"offsets": {
+				"from": 778560,
+				"to": 784420
+			},
+			"text": " You know it's there because you have this whatever black magic box that it proves your"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,120",
+				"to": "00:13:06,920"
+			},
+			"offsets": {
+				"from": 785120,
+				"to": 786920
+			},
+			"text": " assumptions so"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,920",
+				"to": "00:13:12,280"
+			},
+			"offsets": {
+				"from": 786920,
+				"to": 792280
+			},
+			"text": " I'm pretty sure this is a good economy unlike which are the variants of plasma and there are okay to be fair"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,280",
+				"to": "00:13:14,380"
+			},
+			"offsets": {
+				"from": 792280,
+				"to": 794380
+			},
+			"text": " These are the variants that are based on payments and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,380",
+				"to": "00:13:19,440"
+			},
+			"offsets": {
+				"from": 794380,
+				"to": 799440
+			},
+			"text": " The payments the variants are based on smart contracts. I'm not well informed on them"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,440",
+				"to": "00:13:22,320"
+			},
+			"offsets": {
+				"from": 799440,
+				"to": 802320
+			},
+			"text": " But they're very fun. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,320",
+				"to": "00:13:28,480"
+			},
+			"offsets": {
+				"from": 802320,
+				"to": 808480
+			},
+			"text": " To do like a quick technology primer. So the main data structure that we use in plasma cache"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,480",
+				"to": "00:13:32,860"
+			},
+			"offsets": {
+				"from": 808480,
+				"to": 812860
+			},
+			"text": " It's a sparse mercury. It's basically a tree with which has all the it's has like whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,480",
+				"to": "00:13:38,680"
+			},
+			"offsets": {
+				"from": 813480,
+				"to": 818680
+			},
+			"text": " Leaf amount you want. It's all pre-computed. So it's all like in the default values"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,680",
+				"to": "00:13:43,520"
+			},
+			"offsets": {
+				"from": 818680,
+				"to": 823520
+			},
+			"text": " It's the hash of zero or whatever null value you want and to prove the inclusion of an element"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,520",
+				"to": "00:13:47,200"
+			},
+			"offsets": {
+				"from": 823520,
+				"to": 827200
+			},
+			"text": " You do in the classic way that you just provide the miracle branch with the siblings everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,200",
+				"to": "00:13:49,360"
+			},
+			"offsets": {
+				"from": 827200,
+				"to": 829360
+			},
+			"text": " I'm assuming that people know how a metal tree works and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,360",
+				"to": "00:13:57,880"
+			},
+			"offsets": {
+				"from": 829360,
+				"to": 837880
+			},
+			"text": " The fun part is that you can actually prove non inclusion by giving in proof of inclusion of the zero hash of the hash of zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,880",
+				"to": "00:14:03,040"
+			},
+			"offsets": {
+				"from": 837880,
+				"to": 843040
+			},
+			"text": " At this leaf and this is very convenient because we can this what basically makes plasma cache work"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,040",
+				"to": "00:14:04,360"
+			},
+			"offsets": {
+				"from": 843040,
+				"to": 844360
+			},
+			"text": " And"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,360",
+				"to": "00:14:07,200"
+			},
+			"offsets": {
+				"from": 844360,
+				"to": 847200
+			},
+			"text": " You can actually have some very nice optimizations on top of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,200",
+				"to": "00:14:10,120"
+			},
+			"offsets": {
+				"from": 847200,
+				"to": 850120
+			},
+			"text": " So because all the values are pre-computed when I'm giving the miracle proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,120",
+				"to": "00:14:15,560"
+			},
+			"offsets": {
+				"from": 850120,
+				"to": 855560
+			},
+			"text": " I do not need to give like 30 debates every time whenever I have I want to give the default value for a sibling"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,560",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 855560,
+				"to": 860000
+			},
+			"text": " I can just give a bit field and this like it's literally one bit where it's 32 bytes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:22,040"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 862040
+			},
+			"text": " In this very simple example"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,040",
+				"to": "00:14:26,760"
+			},
+			"offsets": {
+				"from": 862040,
+				"to": 866760
+			},
+			"text": " So like instead normally the miracle path who have been hash of zero and the and the higher level one"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,760",
+				"to": "00:14:30,400"
+			},
+			"offsets": {
+				"from": 866760,
+				"to": 870400
+			},
+			"text": " So it's 64 bytes while with the optimization for the bitmap"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,400",
+				"to": "00:14:36,720"
+			},
+			"offsets": {
+				"from": 870400,
+				"to": 876720
+			},
+			"text": " It's the bits and much love to the the walt team for thinking this up and having a working implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,720",
+				"to": "00:14:39,280"
+			},
+			"offsets": {
+				"from": 876720,
+				"to": 879280
+			},
+			"text": " So the usual suspects"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,280",
+				"to": "00:14:43,520"
+			},
+			"offsets": {
+				"from": 879280,
+				"to": 883520
+			},
+			"text": " Alice deposit 5 ether was like the actual flow so"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,520",
+				"to": "00:14:51,360"
+			},
+			"offsets": {
+				"from": 883520,
+				"to": 891360
+			},
+			"text": " So Alice deposits like 5 ether to the smart contract the smart conger"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,360",
+				"to": "00:14:57,320"
+			},
+			"offsets": {
+				"from": 891360,
+				"to": 897320
+			},
+			"text": " Emates some deposit event that the plasma chain listens the plasma chain is supposed to create a new block one new block per deposit"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,400",
+				"to": "00:15:01,400"
+			},
+			"offsets": {
+				"from": 897400,
+				"to": 901400
+			},
+			"text": " This is not a security requirement, but it makes proving like it's an optimization"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,400",
+				"to": "00:15:04,880"
+			},
+			"offsets": {
+				"from": 901400,
+				"to": 904880
+			},
+			"text": " Basically, this has been asked a number of times just deposit the coin and you get a new block"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,880",
+				"to": "00:15:07,320"
+			},
+			"offsets": {
+				"from": 904880,
+				"to": 907320
+			},
+			"text": " this isn't necessary, but it's better and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,320",
+				"to": "00:15:14,120"
+			},
+			"offsets": {
+				"from": 907320,
+				"to": 914120
+			},
+			"text": " What does it is it creates a plasma block and get literally a 5 ether bill if you will and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,120",
+				"to": "00:15:19,680"
+			},
+			"offsets": {
+				"from": 914120,
+				"to": 919680
+			},
+			"text": " The thing is that the transaction flow. It's like UTXO based, but it's one input one output"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,680",
+				"to": "00:15:22,720"
+			},
+			"offsets": {
+				"from": 919680,
+				"to": 922720
+			},
+			"text": " I cannot break a coin. I just say new owner and that's a new owner"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,720",
+				"to": "00:15:24,880"
+			},
+			"offsets": {
+				"from": 922720,
+				"to": 924880
+			},
+			"text": " Just like cash. Yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,880",
+				"to": "00:15:29,860"
+			},
+			"offsets": {
+				"from": 924880,
+				"to": 929860
+			},
+			"text": " So I'll just go through a simple like example of how the deposit the transaction flow works"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,860",
+				"to": "00:15:33,640"
+			},
+			"offsets": {
+				"from": 929860,
+				"to": 933640
+			},
+			"text": " So deposit Alice deposit the 5 ether like the 5 ether example"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,640",
+				"to": "00:15:39,280"
+			},
+			"offsets": {
+				"from": 933640,
+				"to": 939280
+			},
+			"text": " So five ether like it just appears Alice gives the coin to Bob, but the thing is that at this moment"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,280",
+				"to": "00:15:42,800"
+			},
+			"offsets": {
+				"from": 939280,
+				"to": 942800
+			},
+			"text": " Bob must actually verify that the coins history is valid"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,800",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 942800,
+				"to": 949000
+			},
+			"text": " And now let's consider that there is a new block where Alice does it where Bob who is the latest value donor of the coin"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 951000
+			},
+			"text": " doesn't move the coin and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:55,960"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 955960
+			},
+			"text": " If Bob wants to give the coin to Charlie Charlie must not only verify the inclusion block one and two"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,960",
+				"to": "00:15:58,920"
+			},
+			"offsets": {
+				"from": 955960,
+				"to": 958920
+			},
+			"text": " He must also verify the non inclusion in block three"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,920",
+				"to": "00:16:05,080"
+			},
+			"offsets": {
+				"from": 958920,
+				"to": 965080
+			},
+			"text": " Which is why I was I spoke before about the non inclusion proofs in sparse mercantries and he needs to do that because"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,080",
+				"to": "00:16:11,360"
+			},
+			"offsets": {
+				"from": 965080,
+				"to": 971360
+			},
+			"text": " Considering the fact that there might have been a transfer from two to three the two to three would make the two to four a double spend and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,360",
+				"to": "00:16:13,520"
+			},
+			"offsets": {
+				"from": 971360,
+				"to": 973520
+			},
+			"text": " we don't want double spends"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,520",
+				"to": "00:16:16,880"
+			},
+			"offsets": {
+				"from": 973520,
+				"to": 976880
+			},
+			"text": " So yeah, and he does that and he exits by"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,880",
+				"to": "00:16:18,680"
+			},
+			"offsets": {
+				"from": 976880,
+				"to": 978680
+			},
+			"text": " by"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,680",
+				"to": "00:16:20,280"
+			},
+			"offsets": {
+				"from": 978680,
+				"to": 980280
+			},
+			"text": " providing an ancestor"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,280",
+				"to": "00:16:24,880"
+			},
+			"offsets": {
+				"from": 980280,
+				"to": 984880
+			},
+			"text": " There has been some discussion lately that there might be a way to optimize this to not require an ancestor"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,880",
+				"to": "00:16:28,320"
+			},
+			"offsets": {
+				"from": 984880,
+				"to": 988320
+			},
+			"text": " But I'm not sure about the safety of it if you want to evaluate it fine"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,320",
+				"to": "00:16:30,280"
+			},
+			"offsets": {
+				"from": 988320,
+				"to": 990280
+			},
+			"text": " But I haven't been able to evaluate it"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,280",
+				"to": "00:16:32,200"
+			},
+			"offsets": {
+				"from": 990280,
+				"to": 992200
+			},
+			"text": " But basically the thing that we know that works currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,200",
+				"to": "00:16:38,480"
+			},
+			"offsets": {
+				"from": 992200,
+				"to": 998480
+			},
+			"text": " It's you give it a coin and the parent coin and you use this to exit and I will go over the exit game the game"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,480",
+				"to": "00:16:40,480"
+			},
+			"offsets": {
+				"from": 998480,
+				"to": 1000480
+			},
+			"text": " That's played like very soon"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,480",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1000480,
+				"to": 1007000
+			},
+			"text": " So the whole plasma constructions they work based on a challenge period like the classic dispute period where I make claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:53,040"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1013040
+			},
+			"text": " I put up a bond I wait some amount of time and if nobody challenges. Yeah, my my claim must probably be right"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,040",
+				"to": "00:16:56,680"
+			},
+			"offsets": {
+				"from": 1013040,
+				"to": 1016680
+			},
+			"text": " Right, it's all like kitto economics. I hate that word. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,680",
+				"to": "00:17:01,480"
+			},
+			"offsets": {
+				"from": 1016680,
+				"to": 1021480
+			},
+			"text": " The time currently and the bond amounts are totally arbitrary"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,480",
+				"to": "00:17:04,980"
+			},
+			"offsets": {
+				"from": 1021480,
+				"to": 1024980
+			},
+			"text": " I'm of the opinion that somebody just wrote the first MVP implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,980",
+				"to": "00:17:11,640"
+			},
+			"offsets": {
+				"from": 1024980,
+				"to": 1031640
+			},
+			"text": " Maybe it was David actually like it just put like seven days for an exit period and everybody said that's it the holy grail"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,640",
+				"to": "00:17:16,960"
+			},
+			"offsets": {
+				"from": 1031640,
+				"to": 1036960
+			},
+			"text": " Or maybe Vitalik say I don't know but the point is that currently there has been no game theoretic like proper analysis"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,960",
+				"to": "00:17:22,080"
+			},
+			"offsets": {
+				"from": 1036960,
+				"to": 1042080
+			},
+			"text": " on like what the deposit the what the challenge period should be and what the bond amount should be and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,080",
+				"to": "00:17:25,920"
+			},
+			"offsets": {
+				"from": 1042080,
+				"to": 1045920
+			},
+			"text": " I'm very interested in that so if you have any research on that, please speak to me and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,920",
+				"to": "00:17:30,160"
+			},
+			"offsets": {
+				"from": 1045920,
+				"to": 1050160
+			},
+			"text": " Yeah, so this is like a good takeaway from the presentation that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,160",
+				"to": "00:17:33,560"
+			},
+			"offsets": {
+				"from": 1050160,
+				"to": 1053560
+			},
+			"text": " We model its coin as its own state machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,560",
+				"to": "00:17:35,880"
+			},
+			"offsets": {
+				"from": 1053560,
+				"to": 1055880
+			},
+			"text": " so state machines like it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,880",
+				"to": "00:17:41,720"
+			},
+			"offsets": {
+				"from": 1055880,
+				"to": 1061720
+			},
+			"text": " Yeah, we have the initial deposit state and basically you define the transition function that whenever you want to go from one"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,720",
+				"to": "00:17:48,040"
+			},
+			"offsets": {
+				"from": 1061720,
+				"to": 1068040
+			},
+			"text": " Say to another some certain things need to happen and what you do it's simple like whenever you want to go from deposit to exiting"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,040",
+				"to": "00:17:54,840"
+			},
+			"offsets": {
+				"from": 1068040,
+				"to": 1074840
+			},
+			"text": " You start an exit and you put up a bond the start exit you put whatever proofs you like with doesn't matter and there are two types of challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,840",
+				"to": "00:17:59,080"
+			},
+			"offsets": {
+				"from": 1074840,
+				"to": 1079080
+			},
+			"text": " The one type of challenge is the interactive one and the other is the non interactive"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,080",
+				"to": "00:18:03,120"
+			},
+			"offsets": {
+				"from": 1079080,
+				"to": 1083120
+			},
+			"text": " So I'll speak about the non interactive, which is simpler. So the non interactive challenge is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,120",
+				"to": "00:18:09,320"
+			},
+			"offsets": {
+				"from": 1083120,
+				"to": 1089320
+			},
+			"text": " Essentially I see a claim and I instantly challenge it and the exit goes home like it's like it never happened, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,320",
+				"to": "00:18:16,080"
+			},
+			"offsets": {
+				"from": 1089320,
+				"to": 1096080
+			},
+			"text": " And it's a simple form of challenges. However, the interactive challenges essentially in order to finalize an exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,080",
+				"to": "00:18:19,680"
+			},
+			"offsets": {
+				"from": 1096080,
+				"to": 1099680
+			},
+			"text": " It mustn't have any pending challenges in any outstanding challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,680",
+				"to": "00:18:26,280"
+			},
+			"offsets": {
+				"from": 1099680,
+				"to": 1106280
+			},
+			"text": " So what you do is I start an exit somebody else challenges my exit and in order for me to be able to finalize my exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,280",
+				"to": "00:18:31,360"
+			},
+			"offsets": {
+				"from": 1106280,
+				"to": 1111360
+			},
+			"text": " The word exit was being said too many times you need to actually respond to the exit and like you have let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,360",
+				"to": "00:18:36,040"
+			},
+			"offsets": {
+				"from": 1111360,
+				"to": 1116040
+			},
+			"text": " You have a counter a challenge counter that goes up and down and all the way to finalize it's when it's at zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,040",
+				"to": "00:18:41,960"
+			},
+			"offsets": {
+				"from": 1116040,
+				"to": 1121960
+			},
+			"text": " I hope this slide is clear because it's like more or less the whole like construction of how it works and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,960",
+				"to": "00:18:44,600"
+			},
+			"offsets": {
+				"from": 1121960,
+				"to": 1124600
+			},
+			"text": " Now talk about the challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,600",
+				"to": "00:18:50,320"
+			},
+			"offsets": {
+				"from": 1124600,
+				"to": 1130320
+			},
+			"text": " So I'm hoping things are clear so far because like this where we get the examples"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,320",
+				"to": "00:18:56,880"
+			},
+			"offsets": {
+				"from": 1130320,
+				"to": 1136880
+			},
+			"text": " Let's say the Alice has a coin at block and whatever you like and the Alice spends the coins"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,880",
+				"to": "00:19:00,600"
+			},
+			"offsets": {
+				"from": 1136880,
+				"to": 1140600
+			},
+			"text": " She gives it Bob or whoever else and Bob maybe then gives it Charlie"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,680",
+				"to": "00:19:06,160"
+			},
+			"offsets": {
+				"from": 1140680,
+				"to": 1146160
+			},
+			"text": " So the thing is that Alice isn't forced to exit from the latest stage. She can always go to a stale scene just say"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,160",
+				"to": "00:19:08,440"
+			},
+			"offsets": {
+				"from": 1146160,
+				"to": 1148440
+			},
+			"text": " I'll exit so yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,440",
+				"to": "00:19:13,720"
+			},
+			"offsets": {
+				"from": 1148440,
+				"to": 1153720
+			},
+			"text": " She can do that but the thing is that she needs to wait seven days or whatever to do the exit and at that point"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,720",
+				"to": "00:19:18,600"
+			},
+			"offsets": {
+				"from": 1153720,
+				"to": 1158600
+			},
+			"text": " Another entity they can challenge by providing a spend so Alice is in it makes the claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,600",
+				"to": "00:19:20,720"
+			},
+			"offsets": {
+				"from": 1158600,
+				"to": 1160720
+			},
+			"text": " I am the latest owner of the coin and the other"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,720",
+				"to": "00:19:24,480"
+			},
+			"offsets": {
+				"from": 1160720,
+				"to": 1164480
+			},
+			"text": " And then and then he challenged her count and says no you're not basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,480",
+				"to": "00:19:26,080"
+			},
+			"offsets": {
+				"from": 1164480,
+				"to": 1166080
+			},
+			"text": " That's the whole thing that you need to know about it"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,080",
+				"to": "00:19:31,040"
+			},
+			"offsets": {
+				"from": 1166080,
+				"to": 1171040
+			},
+			"text": " And this is the one type of attack that you can do and this shout out to Carl because he did like a very good like"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,040",
+				"to": "00:19:34,560"
+			},
+			"offsets": {
+				"from": 1171040,
+				"to": 1174560
+			},
+			"text": " specification which is explained all that stuff I used it you should use it"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,560",
+				"to": "00:19:39,040"
+			},
+			"offsets": {
+				"from": 1174560,
+				"to": 1179040
+			},
+			"text": " The other alternative is that you do double spend so the example I was talking about before"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,040",
+				"to": "00:19:45,320"
+			},
+			"offsets": {
+				"from": 1179040,
+				"to": 1185320
+			},
+			"text": " I was considering the fact that they are Charlie the or Alice Prime not plasma prime"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,320",
+				"to": "00:19:49,040"
+			},
+			"offsets": {
+				"from": 1185320,
+				"to": 1189040
+			},
+			"text": " Is actually like it's not a colluding party"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,040",
+				"to": "00:19:53,800"
+			},
+			"offsets": {
+				"from": 1189040,
+				"to": 1193800
+			},
+			"text": " So what can happen in this case that Alice gives a coin to Bob and Alice in collusion with the operator"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,800",
+				"to": "00:20:00,120"
+			},
+			"offsets": {
+				"from": 1193800,
+				"to": 1200120
+			},
+			"text": " They double spend the coin so they give it themselves some other friend of them whatever and what happens in this case if Charlie wants"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,120",
+				"to": "00:20:04,620"
+			},
+			"offsets": {
+				"from": 1200120,
+				"to": 1204620
+			},
+			"text": " To exit the coin he needs to provide the parent as I said and the whole like exit game here"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,620",
+				"to": "00:20:09,240"
+			},
+			"offsets": {
+				"from": 1204620,
+				"to": 1209240
+			},
+			"text": " It works that you need to provide the coin that is in between and this actually proves the double spend because you say no"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,240",
+				"to": "00:20:11,240"
+			},
+			"offsets": {
+				"from": 1209240,
+				"to": 1211240
+			},
+			"text": " I owned it before you did and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,240",
+				"to": "00:20:15,480"
+			},
+			"offsets": {
+				"from": 1211240,
+				"to": 1215480
+			},
+			"text": " Yeah, and the final example of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,480",
+				"to": "00:20:21,480"
+			},
+			"offsets": {
+				"from": 1215480,
+				"to": 1221480
+			},
+			"text": " Like the exit game is that when you're exiting a coin you actually so when you're receiving coin"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,480",
+				"to": "00:20:29,040"
+			},
+			"offsets": {
+				"from": 1221480,
+				"to": 1229040
+			},
+			"text": " You actually value the whole tone history, but what if you don't so I want to start in this example like try to imagine that the red arrow doesn't exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,040",
+				"to": "00:20:33,040"
+			},
+			"offsets": {
+				"from": 1229040,
+				"to": 1233040
+			},
+			"text": " It exists, but it's like the response state. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,040",
+				"to": "00:20:39,520"
+			},
+			"offsets": {
+				"from": 1233040,
+				"to": 1239520
+			},
+			"text": " Let's say that Alice gives it has a coin and that the operator they collude with some party to give a coin to Bob"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,520",
+				"to": "00:20:41,520"
+			},
+			"offsets": {
+				"from": 1239520,
+				"to": 1241520
+			},
+			"text": " So they make an invalid state transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,520",
+				"to": "00:20:48,840"
+			},
+			"offsets": {
+				"from": 1241520,
+				"to": 1248840
+			},
+			"text": " So to say in plasma MVP if an invalid state transition happens the whole chain has to leave which is impossible system"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,040",
+				"to": "00:20:52,120"
+			},
+			"offsets": {
+				"from": 1249040,
+				"to": 1252120
+			},
+			"text": " so what you do is that if somehow Alice"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,120",
+				"to": "00:20:56,900"
+			},
+			"offsets": {
+				"from": 1252120,
+				"to": 1256900
+			},
+			"text": " Somehow there's a transaction that gives the coin to Bob and Bob starts transiting with this coin"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,900",
+				"to": "00:21:01,480"
+			},
+			"offsets": {
+				"from": 1256900,
+				"to": 1261480
+			},
+			"text": " There's an invalid state and if Bob Charlie D-Lan aren't my least each parties"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,480",
+				"to": "00:21:04,720"
+			},
+			"offsets": {
+				"from": 1261480,
+				"to": 1264720
+			},
+			"text": " They will check the coins history, but they're trying to steal the coin. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,720",
+				"to": "00:21:09,480"
+			},
+			"offsets": {
+				"from": 1264720,
+				"to": 1269480
+			},
+			"text": " D-Lan tries to exit and at this point at the seven day period"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,480",
+				"to": "00:21:10,840"
+			},
+			"offsets": {
+				"from": 1269480,
+				"to": 1270840
+			},
+			"text": " Alice can say no"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,840",
+				"to": "00:21:13,880"
+			},
+			"offsets": {
+				"from": 1270840,
+				"to": 1273880
+			},
+			"text": " I am the latest of the owner of the coin in this example"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,880",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1273880,
+				"to": 1277000
+			},
+			"text": " What you can do is that you can actually respond to the exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,000",
+				"to": "00:21:21,920"
+			},
+			"offsets": {
+				"from": 1277000,
+				"to": 1281920
+			},
+			"text": " So this is the interactive challenge the previous two they were non-interactive in this one when you make an exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,920",
+				"to": "00:21:28,760"
+			},
+			"offsets": {
+				"from": 1281920,
+				"to": 1288760
+			},
+			"text": " And when you make a challenge you can leave also some amount of time to respond because if Alice made an invalid"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,760",
+				"to": "00:21:34,280"
+			},
+			"offsets": {
+				"from": 1288760,
+				"to": 1294280
+			},
+			"text": " Exit in an invalid challenge somebody would should be able to respond"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,280",
+				"to": "00:21:38,080"
+			},
+			"offsets": {
+				"from": 1294280,
+				"to": 1298080
+			},
+			"text": " So that's there where the red arrow comes in that you should be able to bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,080",
+				"to": "00:21:42,760"
+			},
+			"offsets": {
+				"from": 1298080,
+				"to": 1302760
+			},
+			"text": " Essentially, you should prove that there is actually a spend from Alice to Bob and invalidates here"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,720",
+				"to": "00:21:49,520"
+			},
+			"offsets": {
+				"from": 1303720,
+				"to": 1309520
+			},
+			"text": " Challenge and there can be a number of these so you can have like multiple challenges within valid histories"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,520",
+				"to": "00:21:56,000"
+			},
+			"offsets": {
+				"from": 1309520,
+				"to": 1316000
+			},
+			"text": " And the final result is that you want it to be you can only finalize the exit when it has zero challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,000",
+				"to": "00:21:58,680"
+			},
+			"offsets": {
+				"from": 1316000,
+				"to": 1318680
+			},
+			"text": " so"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,680",
+				"to": "00:22:05,880"
+			},
+			"offsets": {
+				"from": 1318680,
+				"to": 1325880
+			},
+			"text": " From my experience like towards building a client like it has been a pain to actually like keep like on the implementation part"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,880",
+				"to": "00:22:12,320"
+			},
+			"offsets": {
+				"from": 1325880,
+				"to": 1332320
+			},
+			"text": " Has been a pain to like actually keep the plasma contract and the plasma chain in sync because you have essentially cron job"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,320",
+				"to": "00:22:14,320"
+			},
+			"offsets": {
+				"from": 1332320,
+				"to": 1334320
+			},
+			"text": " which submits blocked the main chain and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,320",
+				"to": "00:22:19,080"
+			},
+			"offsets": {
+				"from": 1334320,
+				"to": 1339080
+			},
+			"text": " To the theorem whatever you want to call it and the thing is that you have to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,080",
+				"to": "00:22:24,120"
+			},
+			"offsets": {
+				"from": 1339080,
+				"to": 1344120
+			},
+			"text": " Essentially you mustn't make any synchrony assumptions at any time like any state that is in the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,120",
+				"to": "00:22:27,160"
+			},
+			"offsets": {
+				"from": 1344120,
+				"to": 1347160
+			},
+			"text": " It must be checkpointed, but if there is a delay or if for some reason the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,160",
+				"to": "00:22:32,040"
+			},
+			"offsets": {
+				"from": 1347160,
+				"to": 1352040
+			},
+			"text": " The cron job submits a block twice your chains are out of sync"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,040",
+				"to": "00:22:37,520"
+			},
+			"offsets": {
+				"from": 1352040,
+				"to": 1357520
+			},
+			"text": " So you're the main chain con that gets a block 10 and the plasma chains a block nine. So that's that bad"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,800",
+				"to": "00:22:43,100"
+			},
+			"offsets": {
+				"from": 1358800,
+				"to": 1363100
+			},
+			"text": " And I also relate to the second bullet point that whenever you're listening"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,100",
+				"to": "00:22:47,320"
+			},
+			"offsets": {
+				"from": 1363100,
+				"to": 1367320
+			},
+			"text": " So the plasma chain actually listens for mainnet events to actually like modify the state and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,320",
+				"to": "00:22:52,400"
+			},
+			"offsets": {
+				"from": 1367320,
+				"to": 1372400
+			},
+			"text": " You need to apply them in the right order because if you don't the state will be botched and so it's a problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,400",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1372400,
+				"to": 1380000
+			},
+			"text": " On the client side so this was on the operator side. Let's say to have a I connect honest operator or software"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:02,280"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1382280
+			},
+			"text": " On the client side"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,280",
+				"to": "00:23:06,180"
+			},
+			"offsets": {
+				"from": 1382280,
+				"to": 1386180
+			},
+			"text": " You need to also like whenever you go flying you need to save the block that you went offline"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,180",
+				"to": "00:23:10,300"
+			},
+			"offsets": {
+				"from": 1386180,
+				"to": 1390300
+			},
+			"text": " And when you go back online you take everything that happened while you were flying"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,300",
+				"to": "00:23:13,940"
+			},
+			"offsets": {
+				"from": 1390300,
+				"to": 1393940
+			},
+			"text": " It's like it sounds like bad, but it's like actually what happened with full notes"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,940",
+				"to": "00:23:17,860"
+			},
+			"offsets": {
+				"from": 1393940,
+				"to": 1397860
+			},
+			"text": " But I guess it's our approach to which full notes, but we like very light clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,860",
+				"to": "00:23:23,640"
+			},
+			"offsets": {
+				"from": 1397860,
+				"to": 1403640
+			},
+			"text": " And yeah, I'm very much of the opinion that you need to keep the client light if you need to store too much data on it"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,640",
+				"to": "00:23:27,260"
+			},
+			"offsets": {
+				"from": 1403640,
+				"to": 1407260
+			},
+			"text": " It's bad, but also you need to be able like yeah, just cash the status"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,260",
+				"to": "00:23:31,820"
+			},
+			"offsets": {
+				"from": 1407260,
+				"to": 1411820
+			},
+			"text": " So if you download some data, just keep it there and don't discard it. This may sound obvious, but yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,060",
+				"to": "00:23:38,580"
+			},
+			"offsets": {
+				"from": 1414060,
+				"to": 1418580
+			},
+			"text": " Yeah, so we should be able to do better. So currently this is like"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,580",
+				"to": "00:23:43,260"
+			},
+			"offsets": {
+				"from": 1418580,
+				"to": 1423260
+			},
+			"text": " Better is the enemy of good good is good enough currently it is workable. It is"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,260",
+				"to": "00:23:46,060"
+			},
+			"offsets": {
+				"from": 1423260,
+				"to": 1426060
+			},
+			"text": " Done, but we want to do better"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,060",
+				"to": "00:23:52,420"
+			},
+			"offsets": {
+				"from": 1426060,
+				"to": 1432420
+			},
+			"text": " We want to reduce the two main problems that we want to solve is reducing the coin history and making fungible payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,420",
+				"to": "00:23:54,620"
+			},
+			"offsets": {
+				"from": 1432420,
+				"to": 1434620
+			},
+			"text": " And this pretty much what the plasma prime conception is"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,620",
+				"to": "00:24:01,060"
+			},
+			"offsets": {
+				"from": 1434620,
+				"to": 1441060
+			},
+			"text": " So I'll just give a brief overview of what happens. So the non fungible coins"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,060",
+				"to": "00:24:04,460"
+			},
+			"offsets": {
+				"from": 1441060,
+				"to": 1444460
+			},
+			"text": " It's a double-edged sword because it gives you this nice security progress"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,460",
+				"to": "00:24:06,900"
+			},
+			"offsets": {
+				"from": 1444460,
+				"to": 1446900
+			},
+			"text": " But you have like you cannot make the payments like you like"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,900",
+				"to": "00:24:10,420"
+			},
+			"offsets": {
+				"from": 1446900,
+				"to": 1450420
+			},
+			"text": " So the one approach is that you have a change provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,420",
+				"to": "00:24:13,420"
+			},
+			"offsets": {
+				"from": 1450420,
+				"to": 1453420
+			},
+			"text": " So I send just like seven ether and gives two back to me"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,420",
+				"to": "00:24:19,300"
+			},
+			"offsets": {
+				"from": 1453420,
+				"to": 1459300
+			},
+			"text": " But you need an atomic swap construction which before plasma prime plasma prime the the dream"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,300",
+				"to": "00:24:26,540"
+			},
+			"offsets": {
+				"from": 1459300,
+				"to": 1466540
+			},
+			"text": " It didn't exist and the other approach it was the plasma debit by Dan who I love done, but he's not here"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,540",
+				"to": "00:24:27,900"
+			},
+			"offsets": {
+				"from": 1466540,
+				"to": 1467900
+			},
+			"text": " Yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,900",
+				"to": "00:24:31,900"
+			},
+			"offsets": {
+				"from": 1467900,
+				"to": 1471900
+			},
+			"text": " Plasma debit which basically like instead of a coin like having a certain value"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,900",
+				"to": "00:24:37,900"
+			},
+			"offsets": {
+				"from": 1471900,
+				"to": 1477900
+			},
+			"text": " You can have any value between zero and that value and you can think of it as a liquid like a liquid that goes from zero to that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,900",
+				"to": "00:24:45,700"
+			},
+			"offsets": {
+				"from": 1477900,
+				"to": 1485700
+			},
+			"text": " To its max capacity and essentially if you're able to reduce the one like liquid by a certain amount and increase the other one by another amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,700",
+				"to": "00:24:52,540"
+			},
+			"offsets": {
+				"from": 1485700,
+				"to": 1492540
+			},
+			"text": " Essentially you have simulated a transfer from these two it's very neat because it also has the notion of transferable payment channels"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,780",
+				"to": "00:24:57,700"
+			},
+			"offsets": {
+				"from": 1492780,
+				"to": 1497700
+			},
+			"text": " Because if I have a coin if I own a coin that is like with some balance and they transferred somebody else"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,700",
+				"to": "00:25:02,060"
+			},
+			"offsets": {
+				"from": 1497700,
+				"to": 1502060
+			},
+			"text": " It's essentially that guy who has not out here because has the payment channel now"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,060",
+				"to": "00:25:06,140"
+			},
+			"offsets": {
+				"from": 1502060,
+				"to": 1506140
+			},
+			"text": " So it's very very convenient and the final approach which is the cash flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,140",
+				"to": "00:25:12,700"
+			},
+			"offsets": {
+				"from": 1506140,
+				"to": 1512700
+			},
+			"text": " different notation prime whatever is that I deposit like one ether and instead of depositing one ether I get"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,700",
+				"to": "00:25:17,180"
+			},
+			"offsets": {
+				"from": 1512700,
+				"to": 1517180
+			},
+			"text": " 100 0.01 ether coins and I can move them around and so on"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,180",
+				"to": "00:25:22,620"
+			},
+			"offsets": {
+				"from": 1517180,
+				"to": 1522620
+			},
+			"text": " But the problem with that is that if I have let's say like ten coins in a row and I send the middle coin"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,620",
+				"to": "00:25:25,180"
+			},
+			"offsets": {
+				"from": 1522620,
+				"to": 1525180
+			},
+			"text": " Suddenly I have to like I have two"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,180",
+				"to": "00:25:33,460"
+			},
+			"offsets": {
+				"from": 1525180,
+				"to": 1533460
+			},
+			"text": " Subtrees and the whole technique the efficiencies of this technique is that you can exit multiple coins by exiting a sub tree by proving it with whatever magic and"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,460",
+				"to": "00:25:38,540"
+			},
+			"offsets": {
+				"from": 1533460,
+				"to": 1538540
+			},
+			"text": " Yeah, and the other approaches like how will we reduce the history right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,540",
+				"to": "00:25:41,380"
+			},
+			"offsets": {
+				"from": 1538540,
+				"to": 1541380
+			},
+			"text": " So firstly the checkpoints the LDR"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,380",
+				"to": "00:25:45,060"
+			},
+			"offsets": {
+				"from": 1541380,
+				"to": 1545060
+			},
+			"text": " It's like you have a coin and you instead of validating from its deposit"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,060",
+				"to": "00:25:50,340"
+			},
+			"offsets": {
+				"from": 1545060,
+				"to": 1550340
+			},
+			"text": " Which is like 10 10 million blocks ago you've I'll be up to the last checkpoint so you pick the checkpoint"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,340",
+				"to": "00:25:53,460"
+			},
+			"offsets": {
+				"from": 1550340,
+				"to": 1553460
+			},
+			"text": " The range to be like manageable"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,460",
+				"to": "00:25:59,620"
+			},
+			"offsets": {
+				"from": 1553460,
+				"to": 1559620
+			},
+			"text": " however, I claim that this requires too much social coordination because it involves the operator advertising"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,620",
+				"to": "00:26:06,860"
+			},
+			"offsets": {
+				"from": 1559620,
+				"to": 1566860
+			},
+			"text": " It's it's complicated and the other approach is that you can like simply like make less frequent commitments"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,860",
+				"to": "00:26:14,700"
+			},
+			"offsets": {
+				"from": 1566860,
+				"to": 1574700
+			},
+			"text": " but this hits on your throughput and your capacity because if I have like you basically say that if I have like one gigabyte of"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,700",
+				"to": "00:26:17,100"
+			},
+			"offsets": {
+				"from": 1574700,
+				"to": 1577100
+			},
+			"text": " History and they commit one time every 15 seconds"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,100",
+				"to": "00:26:23,180"
+			},
+			"offsets": {
+				"from": 1577100,
+				"to": 1583180
+			},
+			"text": " It makes sense to say that if I commit one time every minute the coin history goes down by one fourth by to the one fourth"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,180",
+				"to": "00:26:25,900"
+			},
+			"offsets": {
+				"from": 1583180,
+				"to": 1585900
+			},
+			"text": " The other approach to use the probabilistic"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,900",
+				"to": "00:26:33,140"
+			},
+			"offsets": {
+				"from": 1585900,
+				"to": 1593140
+			},
+			"text": " Structure with the bloom filter, but if the bloom filter has false false divs and it was shown recently that you can actually like"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,140",
+				"to": "00:26:35,660"
+			},
+			"offsets": {
+				"from": 1593140,
+				"to": 1595660
+			},
+			"text": " pollute the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,740",
+				"to": "00:26:38,020"
+			},
+			"offsets": {
+				"from": 1595740,
+				"to": 1598020
+			},
+			"text": " Look yeah, the bloom filter. Yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,020",
+				"to": "00:26:40,140"
+			},
+			"offsets": {
+				"from": 1598020,
+				"to": 1600140
+			},
+			"text": " Another approach is the accumulator"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,140",
+				"to": "00:26:47,140"
+			},
+			"offsets": {
+				"from": 1600140,
+				"to": 1607140
+			},
+			"text": " So with the accumulator what you do is that the goal with that accumulator is that you succinctly prove the inclusion or non-inclusion of something and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,140",
+				"to": "00:26:49,540"
+			},
+			"offsets": {
+				"from": 1607140,
+				"to": 1609540
+			},
+			"text": " use either our set of the letter which is the current like"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,540",
+				"to": "00:26:57,020"
+			},
+			"offsets": {
+				"from": 1609540,
+				"to": 1617020
+			},
+			"text": " Approach that people like or there's another alternative which is playing based which I would like to discuss at the plasma call live later and"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,020",
+				"to": "00:27:03,100"
+			},
+			"offsets": {
+				"from": 1617020,
+				"to": 1623100
+			},
+			"text": " The final thing is that yeah that magic black box the snark stark toolkit"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,100",
+				"to": "00:27:05,620"
+			},
+			"offsets": {
+				"from": 1623100,
+				"to": 1625620
+			},
+			"text": " which I was at the stark presentation yesterday and"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,620",
+				"to": "00:27:12,860"
+			},
+			"offsets": {
+				"from": 1625620,
+				"to": 1632860
+			},
+			"text": " It I was informed that it is possible to actually do budget proofs and everything we need like with Starks in a realistic time frame"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,860",
+				"to": "00:27:15,100"
+			},
+			"offsets": {
+				"from": 1632860,
+				"to": 1635100
+			},
+			"text": " So that will be like lovely if we can have it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,100",
+				"to": "00:27:18,940"
+			},
+			"offsets": {
+				"from": 1635100,
+				"to": 1638940
+			},
+			"text": " Yeah, okay, there is this other thing so currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,940",
+				"to": "00:27:23,940"
+			},
+			"offsets": {
+				"from": 1638940,
+				"to": 1643940
+			},
+			"text": " The UX sucks you need to wait seven days to exit the coin if you need to exit the coin"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,940",
+				"to": "00:27:27,140"
+			},
+			"offsets": {
+				"from": 1643940,
+				"to": 1647140
+			},
+			"text": " My opinion is that you don't need to exit the coin, but it must be there"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,740",
+				"to": "00:27:33,460"
+			},
+			"offsets": {
+				"from": 1647740,
+				"to": 1653460
+			},
+			"text": " So what you can do is that you literally like tok in ice the exit so I make an exit instead of like owning the exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,460",
+				"to": "00:27:35,980"
+			},
+			"offsets": {
+				"from": 1653460,
+				"to": 1655980
+			},
+			"text": " I can get a near C7 to one or whatever non-fungible"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,980",
+				"to": "00:27:39,300"
+			},
+			"offsets": {
+				"from": 1655980,
+				"to": 1659300
+			},
+			"text": " And I can sell that around and whoever owns that coin"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,300",
+				"to": "00:27:43,860"
+			},
+			"offsets": {
+				"from": 1659300,
+				"to": 1663860
+			},
+			"text": " It's like a coupon and you can send it and you can after the exit period has passed you can withdraw it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,860",
+				"to": "00:27:51,580"
+			},
+			"offsets": {
+				"from": 1663860,
+				"to": 1671580
+			},
+			"text": " The whole construction is that this creates a whole market for exits where instead of like pay if I'm exiting five with"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,100",
+				"to": "00:27:58,180"
+			},
+			"offsets": {
+				"from": 1672100,
+				"to": 1678180
+			},
+			"text": " Essentially somebody else is probably willing to buy my coin for 4.95 with because they have a lower term preference"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,180",
+				"to": "00:28:02,500"
+			},
+			"offsets": {
+				"from": 1678180,
+				"to": 1682500
+			},
+			"text": " And this party it makes sense to say that it will be the operator because they're running in the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,500",
+				"to": "00:28:06,500"
+			},
+			"offsets": {
+				"from": 1682500,
+				"to": 1686500
+			},
+			"text": " And they don't care and they also run a full node anyway, so they know what's valid and not and"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,500",
+				"to": "00:28:08,980"
+			},
+			"offsets": {
+				"from": 1686500,
+				"to": 1688980
+			},
+			"text": " The second one is the optimistic exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,980",
+				"to": "00:28:14,100"
+			},
+			"offsets": {
+				"from": 1688980,
+				"to": 1694100
+			},
+			"text": " So instead of exiting so when exiting you need to provide miracle proof signatures whole lot of stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,100",
+				"to": "00:28:20,140"
+			},
+			"offsets": {
+				"from": 1694100,
+				"to": 1700140
+			},
+			"text": " It's a lot of data so that the gas can go from one thousand hundred thousand to like two hundred thousand and maybe more"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,700",
+				"to": "00:28:22,700"
+			},
+			"offsets": {
+				"from": 1700700,
+				"to": 1702700
+			},
+			"text": " Depending on your proof size"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,700",
+				"to": "00:28:30,780"
+			},
+			"offsets": {
+				"from": 1702700,
+				"to": 1710780
+			},
+			"text": " Alternatively what you can do is that you can assume that the exit will be valid and add one more challenge the economic approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,780",
+				"to": "00:28:37,580"
+			},
+			"offsets": {
+				"from": 1710780,
+				"to": 1717580
+			},
+			"text": " Which it's it's nice because like you can essentially reduce the cost of an exit like 60k gas like for two store operations, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,580",
+				"to": "00:28:41,700"
+			},
+			"offsets": {
+				"from": 1717580,
+				"to": 1721700
+			},
+			"text": " You you add the knowledge challenge and yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,700",
+				"to": "00:28:46,620"
+			},
+			"offsets": {
+				"from": 1721700,
+				"to": 1726620
+			},
+			"text": " Some the final takeaway from this presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:47,300",
+				"to": "00:28:51,260"
+			},
+			"offsets": {
+				"from": 1727300,
+				"to": 1731260
+			},
+			"text": " The technical stuff it's it's solid like you should look into it"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:51,260",
+				"to": "00:28:54,780"
+			},
+			"offsets": {
+				"from": 1731260,
+				"to": 1734780
+			},
+			"text": " It's not complicated and talk to me for learning about it"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,780",
+				"to": "00:28:59,500"
+			},
+			"offsets": {
+				"from": 1734780,
+				"to": 1739500
+			},
+			"text": " Plasma doesn't improve finality, so this whole one million possessions per second dream"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,500",
+				"to": "00:29:05,020"
+			},
+			"offsets": {
+				"from": 1739500,
+				"to": 1745020
+			},
+			"text": " It's it's not real what you do is that you increase the capacity that you can force per 15 seconds"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,020",
+				"to": "00:29:09,340"
+			},
+			"offsets": {
+				"from": 1745020,
+				"to": 1749340
+			},
+			"text": " Because currently if a theorem can handle like was it like nine million gas per block or eight"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:09,340",
+				"to": "00:29:15,100"
+			},
+			"offsets": {
+				"from": 1749340,
+				"to": 1755100
+			},
+			"text": " What you do is that you you you can put the whole information that happened on the plasma chain in three to two bytes"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,100",
+				"to": "00:29:19,260"
+			},
+			"offsets": {
+				"from": 1755100,
+				"to": 1759260
+			},
+			"text": " In storing 30 divides it cheap, so if we had like multiple plasma chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,260",
+				"to": "00:29:22,260"
+			},
+			"offsets": {
+				"from": 1759260,
+				"to": 1762260
+			},
+			"text": " Yeah, okay the scalability it can be one million transactions a second"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:22,260",
+				"to": "00:29:26,820"
+			},
+			"offsets": {
+				"from": 1762260,
+				"to": 1766820
+			},
+			"text": " But it still settles every 15 seconds if the data is made available and"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,820",
+				"to": "00:29:29,820"
+			},
+			"offsets": {
+				"from": 1766820,
+				"to": 1769820
+			},
+			"text": " Yeah, essentially just think of it as a compression"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,820",
+				"to": "00:29:33,340"
+			},
+			"offsets": {
+				"from": 1769820,
+				"to": 1773340
+			},
+			"text": " Literally maybe not because you assume a decompression mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:33,340",
+				"to": "00:29:36,220"
+			},
+			"offsets": {
+				"from": 1773340,
+				"to": 1776220
+			},
+			"text": " But the thing is that you just take everything you put very little data on it"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,220",
+				"to": "00:29:42,980"
+			},
+			"offsets": {
+				"from": 1776220,
+				"to": 1782980
+			},
+			"text": " And if you follow some certain rules of the protocol like watching you're good and yeah, it's a non-custodial side chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:44,220",
+				"to": "00:29:49,060"
+			},
+			"offsets": {
+				"from": 1784220,
+				"to": 1789060
+			},
+			"text": " Thank you very much, and these are the repositories go check them break it if you can yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,060",
+				"to": "00:29:51,740"
+			},
+			"offsets": {
+				"from": 1789060,
+				"to": 1791740
+			},
+			"text": " Yeah, and have it take any questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,740",
+				"to": "00:30:01,660"
+			},
+			"offsets": {
+				"from": 1791740,
+				"to": 1801660
+			},
+			"text": " Maybe is there a microphone"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:01,660",
+				"to": "00:30:09,580"
+			},
+			"offsets": {
+				"from": 1801660,
+				"to": 1809580
+			},
+			"text": " Thank you for your talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:09,620",
+				"to": "00:30:17,180"
+			},
+			"offsets": {
+				"from": 1809620,
+				"to": 1817180
+			},
+			"text": " What's the problem with allowing atomic multiple transactions to be atomic within one plasma block because you cannot force the operator to include both"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:17,180",
+				"to": "00:30:20,180"
+			},
+			"offsets": {
+				"from": 1817180,
+				"to": 1820180
+			},
+			"text": " So what you can do is that you can construct a game"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:20,180",
+				"to": "00:30:28,700"
+			},
+			"offsets": {
+				"from": 1820180,
+				"to": 1828700
+			},
+			"text": " Where one transaction is depend what you want in atomic swaps is that atomic is a bad word actually so like either both happen or none happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:28,700",
+				"to": "00:30:32,060"
+			},
+			"offsets": {
+				"from": 1828700,
+				"to": 1832060
+			},
+			"text": " Right, so this matches your exchange use case. I guess so"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,060",
+				"to": "00:30:36,220"
+			},
+			"offsets": {
+				"from": 1832060,
+				"to": 1836220
+			},
+			"text": " The operator you need to force them if they include one transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:36,300",
+				"to": "00:30:41,100"
+			},
+			"offsets": {
+				"from": 1836300,
+				"to": 1841100
+			},
+			"text": " But either they must include the other one or if they include the one and they don't include the other one"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,100",
+				"to": "00:30:46,140"
+			},
+			"offsets": {
+				"from": 1841100,
+				"to": 1846140
+			},
+			"text": " That one is invalid right and you can do this by essential like doing a two-step game"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:46,140",
+				"to": "00:30:50,420"
+			},
+			"offsets": {
+				"from": 1846140,
+				"to": 1850420
+			},
+			"text": " We're just like similar in the classic atomic swap construction room between chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:50,420",
+				"to": "00:30:54,980"
+			},
+			"offsets": {
+				"from": 1850420,
+				"to": 1854980
+			},
+			"text": " You just you commit to a pretty much and you give the pretty much to each other and you reveal but"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:54,980",
+				"to": "00:31:02,180"
+			},
+			"offsets": {
+				"from": 1854980,
+				"to": 1862180
+			},
+			"text": " Yeah, maybe Carl is better to ask like in depth on how the atomic swap works because I haven't been looking the prime"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:02,180",
+				"to": "00:31:04,180"
+			},
+			"offsets": {
+				"from": 1862180,
+				"to": 1864180
+			},
+			"text": " How they how it's being done"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:05,900",
+				"to": "00:31:07,900"
+			},
+			"offsets": {
+				"from": 1865900,
+				"to": 1867900
+			},
+			"text": " Quick if it's quick"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:07,900",
+				"to": "00:31:14,260"
+			},
+			"offsets": {
+				"from": 1867900,
+				"to": 1874260
+			},
+			"text": " So I'm from dog we are a dead exchange protocol and we were trying to enable micro payments using plasma cache and we need a poc"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:14,260",
+				"to": "00:31:16,780"
+			},
+			"offsets": {
+				"from": 1874260,
+				"to": 1876780
+			},
+			"text": " So we came up with the approach, but I want to know your thoughts"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:16,780",
+				"to": "00:31:21,820"
+			},
+			"offsets": {
+				"from": 1876780,
+				"to": 1881820
+			},
+			"text": " How do you think micro payments can be never using why don't you want to use the payment channels?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:21,820",
+				"to": "00:31:28,540"
+			},
+			"offsets": {
+				"from": 1881820,
+				"to": 1888540
+			},
+			"text": " You have the engineering toolkit and you need to use the right tool. I do not believe that plasma is the right tool"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:28,540",
+				"to": "00:31:30,740"
+			},
+			"offsets": {
+				"from": 1888540,
+				"to": 1890740
+			},
+			"text": " Okay plasma cache, you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:31,580",
+				"to": "00:31:35,420"
+			},
+			"offsets": {
+				"from": 1891580,
+				"to": 1895420
+			},
+			"text": " Okay, so you're saying using the state channels probably a bit of a payment change"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,420",
+				"to": "00:31:42,240"
+			},
+			"offsets": {
+				"from": 1895420,
+				"to": 1902240
+			},
+			"text": " I think George yours needs a lot more credit for actually implementing plasma cache, which is pretty amazing. So thank you George"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:42,240",
+				"to": "00:31:44,240"
+			},
+			"offsets": {
+				"from": 1902240,
+				"to": 1904240
+			},
+			"text": " Yes"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:44,240",
+				"to": "00:31:46,240"
+			},
+			"offsets": {
+				"from": 1904240,
+				"to": 1906240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:46,240",
+				"to": "00:31:48,240"
+			},
+			"offsets": {
+				"from": 1906240,
+				"to": 1908240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:48,240",
+				"to": "00:31:50,240"
+			},
+			"offsets": {
+				"from": 1908240,
+				"to": 1910240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:50,240",
+				"to": "00:31:52,240"
+			},
+			"offsets": {
+				"from": 1910240,
+				"to": 1912240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:52,240",
+				"to": "00:31:54,240"
+			},
+			"offsets": {
+				"from": 1912240,
+				"to": 1914240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:54,240",
+				"to": "00:31:56,240"
+			},
+			"offsets": {
+				"from": 1914240,
+				"to": 1916240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:56,240",
+				"to": "00:31:58,240"
+			},
+			"offsets": {
+				"from": 1916240,
+				"to": 1918240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:58,240",
+				"to": "00:32:00,240"
+			},
+			"offsets": {
+				"from": 1918240,
+				"to": 1920240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:00,240",
+				"to": "00:32:02,240"
+			},
+			"offsets": {
+				"from": 1920240,
+				"to": 1922240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:02,240",
+				"to": "00:32:04,240"
+			},
+			"offsets": {
+				"from": 1922240,
+				"to": 1924240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:04,240",
+				"to": "00:32:06,240"
+			},
+			"offsets": {
+				"from": 1924240,
+				"to": 1926240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:06,240",
+				"to": "00:32:08,240"
+			},
+			"offsets": {
+				"from": 1926240,
+				"to": 1928240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:08,240",
+				"to": "00:32:10,240"
+			},
+			"offsets": {
+				"from": 1928240,
+				"to": 1930240
+			},
+			"text": " You"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:10,240",
+				"to": "00:32:14,240"
+			},
+			"offsets": {
+				"from": 1930240,
+				"to": 1934240
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

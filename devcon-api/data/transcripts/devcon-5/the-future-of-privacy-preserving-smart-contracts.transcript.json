@@ -1,0 +1,3211 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:15,640"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 15640
+			},
+			"text": " >> I know you're doing well again."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,640",
+				"to": "00:00:18,640"
+			},
+			"offsets": {
+				"from": 15640,
+				"to": 18640
+			},
+			"text": " >> So if you put disclaimers, if you come to see this talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,640",
+				"to": "00:00:21,140"
+			},
+			"offsets": {
+				"from": 18640,
+				"to": 21140
+			},
+			"text": " we really hope you have familiarity with your knowledge proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,140",
+				"to": "00:00:26,320"
+			},
+			"offsets": {
+				"from": 21140,
+				"to": 26320
+			},
+			"text": " home orbit encryption, and we're really hoping to provide as unbiased"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,320",
+				"to": "00:00:28,400"
+			},
+			"offsets": {
+				"from": 26320,
+				"to": 28400
+			},
+			"text": " of a discussion as possible here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,400",
+				"to": "00:00:30,280"
+			},
+			"offsets": {
+				"from": 28400,
+				"to": 30280
+			},
+			"text": " You feel like we're not doing a good job of that and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,280",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 30280,
+				"to": 32000
+			},
+			"text": " please feel free to call us out."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:37,560"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 37560
+			},
+			"text": " >> So what is the privacy preserving the smart and non-profits?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,560",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 37560,
+				"to": 40000
+			},
+			"text": " There's a few different components and properties and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:42,640"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 42640
+			},
+			"text": " privacy preserving smart contracts that we're going to go over and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,640",
+				"to": "00:00:44,120"
+			},
+			"offsets": {
+				"from": 42640,
+				"to": 44120
+			},
+			"text": " make exactly what defines them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,120",
+				"to": "00:00:51,360"
+			},
+			"offsets": {
+				"from": 44120,
+				"to": 51360
+			},
+			"text": " In our case, privacy is defined by two properties, confidentiality and anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,360",
+				"to": "00:00:53,880"
+			},
+			"offsets": {
+				"from": 51360,
+				"to": 53880
+			},
+			"text": " And what we define privacy as, in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,880",
+				"to": "00:00:56,680"
+			},
+			"offsets": {
+				"from": 53880,
+				"to": 56680
+			},
+			"text": " the confidentiality is when we can hide the input and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,680",
+				"to": "00:01:00,560"
+			},
+			"offsets": {
+				"from": 56680,
+				"to": 60560
+			},
+			"text": " the outputs of that state machines program."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,560",
+				"to": "00:01:03,120"
+			},
+			"offsets": {
+				"from": 60560,
+				"to": 63120
+			},
+			"text": " So for example, in a slowly smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,120",
+				"to": "00:01:07,280"
+			},
+			"offsets": {
+				"from": 63120,
+				"to": 67280
+			},
+			"text": " we all know that the inputs are not private and everybody can see them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,280",
+				"to": "00:01:11,400"
+			},
+			"offsets": {
+				"from": 67280,
+				"to": 71400
+			},
+			"text": " As well as they are also known as, the inputs are not confidential."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,400",
+				"to": "00:01:14,920"
+			},
+			"offsets": {
+				"from": 71400,
+				"to": 74920
+			},
+			"text": " And also they don't hide the users involved in that confrontation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,920",
+				"to": "00:01:19,400"
+			},
+			"offsets": {
+				"from": 74920,
+				"to": 79400
+			},
+			"text": " So we have two properties that we're defining, but it's confidentiality."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,400",
+				"to": "00:01:23,480"
+			},
+			"offsets": {
+				"from": 79400,
+				"to": 83480
+			},
+			"text": " So that's like the bare minimum, which is like just inputs are hidden."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,480",
+				"to": "00:01:28,360"
+			},
+			"offsets": {
+				"from": 83480,
+				"to": 88360
+			},
+			"text": " And then an editor would be like a more complete solution where it implies confidentiality."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,360",
+				"to": "00:01:32,640"
+			},
+			"offsets": {
+				"from": 88360,
+				"to": 92640
+			},
+			"text": " You're probably familiar with some of the use cases for smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,640",
+				"to": "00:01:37,720"
+			},
+			"offsets": {
+				"from": 92640,
+				"to": 97720
+			},
+			"text": " In case you didn't know, smart contracts are also a form of private transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,720",
+				"to": "00:01:42,840"
+			},
+			"offsets": {
+				"from": 97720,
+				"to": 102840
+			},
+			"text": " So like a Bitcoin transaction is a smart contract to some extent."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,840",
+				"to": "00:01:46,880"
+			},
+			"offsets": {
+				"from": 102840,
+				"to": 106880
+			},
+			"text": " So in the case of private transactions, there are a few implementations of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,880",
+				"to": "00:01:49,080"
+			},
+			"offsets": {
+				"from": 106880,
+				"to": 109080
+			},
+			"text": " Zcash, Panero, and two major ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,680",
+				"to": "00:01:54,640"
+			},
+			"offsets": {
+				"from": 110680,
+				"to": 114640
+			},
+			"text": " Private voting is another use case where people actually need to have their"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,640",
+				"to": "00:02:00,120"
+			},
+			"offsets": {
+				"from": 114640,
+				"to": 120120
+			},
+			"text": " some privacy, some degree of maybe even anonymity when they vote to gas balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,120",
+				"to": "00:02:04,520"
+			},
+			"offsets": {
+				"from": 120120,
+				"to": 124520
+			},
+			"text": " As well as auctions, there's a really big margin for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,520",
+				"to": "00:02:09,120"
+			},
+			"offsets": {
+				"from": 124520,
+				"to": 129120
+			},
+			"text": " wanted auctions and keeping who is paying for what and how much they're paying for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,120",
+				"to": "00:02:09,680"
+			},
+			"offsets": {
+				"from": 129120,
+				"to": 129680
+			},
+			"text": " private."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,680",
+				"to": "00:02:15,120"
+			},
+			"offsets": {
+				"from": 129680,
+				"to": 135120
+			},
+			"text": " So what are some considerations for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,120",
+				"to": "00:02:17,360"
+			},
+			"offsets": {
+				"from": 135120,
+				"to": 137360
+			},
+			"text": " how do you consider a smart contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,360",
+				"to": "00:02:21,320"
+			},
+			"offsets": {
+				"from": 137360,
+				"to": 141320
+			},
+			"text": " In our talk, we're mainly going to focus on transaction privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,320",
+				"to": "00:02:26,440"
+			},
+			"offsets": {
+				"from": 141320,
+				"to": 146440
+			},
+			"text": " The reason why is because transaction privacy is a small subset problem of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,440",
+				"to": "00:02:30,840"
+			},
+			"offsets": {
+				"from": 146440,
+				"to": 150840
+			},
+			"text": " private currency preserving smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,840",
+				"to": "00:02:34,200"
+			},
+			"offsets": {
+				"from": 150840,
+				"to": 154200
+			},
+			"text": " And the cool thing about transactions is that when you make them private,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,200",
+				"to": "00:02:39,840"
+			},
+			"offsets": {
+				"from": 154200,
+				"to": 159840
+			},
+			"text": " you can actually sometimes generalize these into more broad definitions of smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,840",
+				"to": "00:02:44,400"
+			},
+			"offsets": {
+				"from": 159840,
+				"to": 164400
+			},
+			"text": " So we can actually make them do more computations that aren't just transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,400",
+				"to": "00:02:47,280"
+			},
+			"offsets": {
+				"from": 164400,
+				"to": 167280
+			},
+			"text": " or maybe involve whole state machines and whole execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,280",
+				"to": "00:02:49,720"
+			},
+			"offsets": {
+				"from": 167280,
+				"to": 169720
+			},
+			"text": " We'll be getting the warrants that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,720",
+				"to": "00:02:52,880"
+			},
+			"offsets": {
+				"from": 169720,
+				"to": 172880
+			},
+			"text": " >> So we believe there are four main considerations that go into"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,880",
+				"to": "00:02:56,280"
+			},
+			"offsets": {
+				"from": 172880,
+				"to": 176280
+			},
+			"text": " actually developing a privacy preserving smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,280",
+				"to": "00:03:02,240"
+			},
+			"offsets": {
+				"from": 176280,
+				"to": 182240
+			},
+			"text": " So we've separated these out into efficiency, privacy, security, and functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,240",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 182240,
+				"to": 185000
+			},
+			"text": " Within each of these, there's a lot of complexities."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:07,040"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 187040
+			},
+			"text": " So in efficiency, you can ask yourself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,040",
+				"to": "00:03:10,320"
+			},
+			"offsets": {
+				"from": 187040,
+				"to": 190320
+			},
+			"text": " how long does it take to actually generate the transaction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,320",
+				"to": "00:03:12,600"
+			},
+			"offsets": {
+				"from": 190320,
+				"to": 192600
+			},
+			"text": " What about verifying a transaction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,600",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 192600,
+				"to": 197000
+			},
+			"text": " What is the actual communication complexity set up during time, set up time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:18,840"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 198840
+			},
+			"text": " reference during size?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,840",
+				"to": "00:03:20,920"
+			},
+			"offsets": {
+				"from": 198840,
+				"to": 200920
+			},
+			"text": " What are the hardware resources required?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,920",
+				"to": "00:03:26,920"
+			},
+			"offsets": {
+				"from": 200920,
+				"to": 206920
+			},
+			"text": " Some zero-notch-free systems do have a lot of hardware resources required and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,920",
+				"to": "00:03:29,200"
+			},
+			"offsets": {
+				"from": 206920,
+				"to": 209200
+			},
+			"text": " they tend to gloss over that aspect."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,200",
+				"to": "00:03:31,680"
+			},
+			"offsets": {
+				"from": 209200,
+				"to": 211680
+			},
+			"text": " And how does it actually scale?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,680",
+				"to": "00:03:37,880"
+			},
+			"offsets": {
+				"from": 211680,
+				"to": 217880
+			},
+			"text": " With privacy, as we mentioned before, can we provide confidentiality or anonymity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,880",
+				"to": "00:03:41,360"
+			},
+			"offsets": {
+				"from": 217880,
+				"to": 221360
+			},
+			"text": " And is the privacy based on cryptographic techniques?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,360",
+				"to": "00:03:44,600"
+			},
+			"offsets": {
+				"from": 221360,
+				"to": 224600
+			},
+			"text": " So do we have some provable form of privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,600",
+				"to": "00:03:48,560"
+			},
+			"offsets": {
+				"from": 224600,
+				"to": 228560
+			},
+			"text": " Or are we using other techniques such as tumblers for anonymity or"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,560",
+				"to": "00:03:49,800"
+			},
+			"offsets": {
+				"from": 228560,
+				"to": 229800
+			},
+			"text": " stealth addresses?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,800",
+				"to": "00:03:52,160"
+			},
+			"offsets": {
+				"from": 229800,
+				"to": 232160
+			},
+			"text": " Security has similar considerations."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,160",
+				"to": "00:03:55,360"
+			},
+			"offsets": {
+				"from": 232160,
+				"to": 235360
+			},
+			"text": " Is the security based on cryptography?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,360",
+				"to": "00:03:57,400"
+			},
+			"offsets": {
+				"from": 235360,
+				"to": 237400
+			},
+			"text": " Do we have provable security?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,400",
+				"to": "00:04:01,600"
+			},
+			"offsets": {
+				"from": 237400,
+				"to": 241600
+			},
+			"text": " Or is security based on non-cryptographic techniques?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,600",
+				"to": "00:04:03,720"
+			},
+			"offsets": {
+				"from": 241600,
+				"to": 243720
+			},
+			"text": " We can look at trusted setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,720",
+				"to": "00:04:07,200"
+			},
+			"offsets": {
+				"from": 243720,
+				"to": 247200
+			},
+			"text": " We also have to consider non-standard cryptographic assumptions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,200",
+				"to": "00:04:10,680"
+			},
+			"offsets": {
+				"from": 247200,
+				"to": 250680
+			},
+			"text": " such as using the algebraic remodel, knowledge of exponent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,680",
+				"to": "00:04:12,640"
+			},
+			"offsets": {
+				"from": 250680,
+				"to": 252640
+			},
+			"text": " which are slightly non-standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,640",
+				"to": "00:04:16,120"
+			},
+			"offsets": {
+				"from": 252640,
+				"to": 256120
+			},
+			"text": " And we have to consider what kind of adversary is our scheme actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,120",
+				"to": "00:04:19,800"
+			},
+			"offsets": {
+				"from": 256120,
+				"to": 259800
+			},
+			"text": " secured against, a post-quantum one, a semi-malicious one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,800",
+				"to": "00:04:24,720"
+			},
+			"offsets": {
+				"from": 259800,
+				"to": 264720
+			},
+			"text": " And then finally, and arguably to us, the most important consideration is functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,720",
+				"to": "00:04:29,320"
+			},
+			"offsets": {
+				"from": 264720,
+				"to": 269320
+			},
+			"text": " When you're talking about developing PPSC, can you actually adapt your scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,320",
+				"to": "00:04:30,720"
+			},
+			"offsets": {
+				"from": 269320,
+				"to": 270720
+			},
+			"text": " to new settings?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,720",
+				"to": "00:04:35,680"
+			},
+			"offsets": {
+				"from": 270720,
+				"to": 275680
+			},
+			"text": " Is it possible to really express any arbitrary computation with your scheme?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,680",
+				"to": "00:04:37,560"
+			},
+			"offsets": {
+				"from": 275680,
+				"to": 277560
+			},
+			"text": " And more importantly, is there support for"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,560",
+				"to": "00:04:42,560"
+			},
+			"offsets": {
+				"from": 277560,
+				"to": 282560
+			},
+			"text": " the stateful computations like Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,560",
+				"to": "00:04:47,560"
+			},
+			"offsets": {
+				"from": 282560,
+				"to": 287560
+			},
+			"text": " So that leads us into what we believe are the four definitions for these qualities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,560",
+				"to": "00:04:51,560"
+			},
+			"offsets": {
+				"from": 287560,
+				"to": 291560
+			},
+			"text": " For efficiency in the ideal world, it should be quick to generate and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,560",
+				"to": "00:04:53,560"
+			},
+			"offsets": {
+				"from": 291560,
+				"to": 293560
+			},
+			"text": " verify transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,560",
+				"to": "00:04:54,560"
+			},
+			"offsets": {
+				"from": 293560,
+				"to": 294560
+			},
+			"text": " Setup should be fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,560",
+				"to": "00:04:57,560"
+			},
+			"offsets": {
+				"from": 294560,
+				"to": 297560
+			},
+			"text": " There should be a small communication cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,560",
+				"to": "00:05:01,560"
+			},
+			"offsets": {
+				"from": 297560,
+				"to": 301560
+			},
+			"text": " It should be efficiently scaling and minimal hardware resources are required."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,560",
+				"to": "00:05:06,560"
+			},
+			"offsets": {
+				"from": 301560,
+				"to": 306560
+			},
+			"text": " With privacy, we should be able to get anonymity, not just confidentiality."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,560",
+				"to": "00:05:09,560"
+			},
+			"offsets": {
+				"from": 306560,
+				"to": 309560
+			},
+			"text": " It should be based solely on cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,560",
+				"to": "00:05:10,560"
+			},
+			"offsets": {
+				"from": 309560,
+				"to": 310560
+			},
+			"text": " Security is similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,560",
+				"to": "00:05:13,560"
+			},
+			"offsets": {
+				"from": 310560,
+				"to": 313560
+			},
+			"text": " It should be based solely on cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,560",
+				"to": "00:05:18,560"
+			},
+			"offsets": {
+				"from": 313560,
+				"to": 318560
+			},
+			"text": " We do not want to use a trusted setup, both for security and functionality reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,560",
+				"to": "00:05:21,560"
+			},
+			"offsets": {
+				"from": 318560,
+				"to": 321560
+			},
+			"text": " And it should be secure against strong adversaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,560",
+				"to": "00:05:27,560"
+			},
+			"offsets": {
+				"from": 321560,
+				"to": 327560
+			},
+			"text": " We've left this deliberately ambiguous because it depends what you can achieve in your scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,560",
+				"to": "00:05:32,560"
+			},
+			"offsets": {
+				"from": 327560,
+				"to": 332560
+			},
+			"text": " And finally, for functionality, we should be able to check off all three boxes that we just saw."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,560",
+				"to": "00:05:36,560"
+			},
+			"offsets": {
+				"from": 332560,
+				"to": 336560
+			},
+			"text": " We want it to be easy to adapt to new settings."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,560",
+				"to": "00:05:40,560"
+			},
+			"offsets": {
+				"from": 336560,
+				"to": 340560
+			},
+			"text": " We should be able to express any kind of program with our scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,560",
+				"to": "00:05:44,560"
+			},
+			"offsets": {
+				"from": 340560,
+				"to": 344560
+			},
+			"text": " And finally, it should support stateful computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,560",
+				"to": "00:05:47,560"
+			},
+			"offsets": {
+				"from": 344560,
+				"to": 347560
+			},
+			"text": " So how do we actually achieve these four characteristics?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,560",
+				"to": "00:05:54,560"
+			},
+			"offsets": {
+				"from": 347560,
+				"to": 354560
+			},
+			"text": " We're going to focus exclusively on cryptographic techniques because we believe in provable security and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,560",
+				"to": "00:05:58,560"
+			},
+			"offsets": {
+				"from": 354560,
+				"to": 358560
+			},
+			"text": " The first one we're going to look at is of course zero knowledge groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,560",
+				"to": "00:06:01,560"
+			},
+			"offsets": {
+				"from": 358560,
+				"to": 361560
+			},
+			"text": " And there are three main schemes that everyone's familiar with."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,560",
+				"to": "00:06:04,560"
+			},
+			"offsets": {
+				"from": 361560,
+				"to": 364560
+			},
+			"text": " Snarks, Starks, and bullet groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,560",
+				"to": "00:06:07,560"
+			},
+			"offsets": {
+				"from": 364560,
+				"to": 367560
+			},
+			"text": " So for Starks, they have trusted setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,560",
+				"to": "00:06:14,560"
+			},
+			"offsets": {
+				"from": 367560,
+				"to": 374560
+			},
+			"text": " However, that allows us to get the smallest proof sizes out of the three and the fastest verification possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,560",
+				"to": "00:06:20,560"
+			},
+			"offsets": {
+				"from": 374560,
+				"to": 380560
+			},
+			"text": " But they also use a slightly non-standard cryptographic assumption, which is knowledge of exponent."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,560",
+				"to": "00:06:24,560"
+			},
+			"offsets": {
+				"from": 380560,
+				"to": 384560
+			},
+			"text": " Starks are arguably an improvement on Starks in that they have no trusted setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,560",
+				"to": "00:06:30,560"
+			},
+			"offsets": {
+				"from": 384560,
+				"to": 390560
+			},
+			"text": " And they use a much better understood hardness assumption of hash functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,560",
+				"to": "00:06:35,560"
+			},
+			"offsets": {
+				"from": 390560,
+				"to": 395560
+			},
+			"text": " But that comes at the cost of incredibly large proof sizes compared to the other two."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,560",
+				"to": "00:06:41,560"
+			},
+			"offsets": {
+				"from": 395560,
+				"to": 401560
+			},
+			"text": " And some expensive hardware is needed in the form of extra RAM to actually get the efficiency they talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,560",
+				"to": "00:06:45,560"
+			},
+			"offsets": {
+				"from": 401560,
+				"to": 405560
+			},
+			"text": " Finding the bullet proofs, they fall somewhere in between the two."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,560",
+				"to": "00:06:48,560"
+			},
+			"offsets": {
+				"from": 405560,
+				"to": 408560
+			},
+			"text": " There is no trusted setup, which is fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,560",
+				"to": "00:06:52,560"
+			},
+			"offsets": {
+				"from": 408560,
+				"to": 412560
+			},
+			"text": " They have moderate proof sizes, but they have some of the worst verification times."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,560",
+				"to": "00:06:56,560"
+			},
+			"offsets": {
+				"from": 412560,
+				"to": 416560
+			},
+			"text": " However, they can be improved when batching them together."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,560",
+				"to": "00:07:01,560"
+			},
+			"offsets": {
+				"from": 416560,
+				"to": 421560
+			},
+			"text": " And they're based on well understood hardness assumptions using discrete logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,560",
+				"to": "00:07:09,560"
+			},
+			"offsets": {
+				"from": 421560,
+				"to": 429560
+			},
+			"text": " So if we look at the three and see how they compare in terms of the four qualities, we ignore privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,560",
+				"to": "00:07:14,560"
+			},
+			"offsets": {
+				"from": 429560,
+				"to": 434560
+			},
+			"text": " because arguably all zero knowledge proof systems better provide confidentiality."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,560",
+				"to": "00:07:20,560"
+			},
+			"offsets": {
+				"from": 434560,
+				"to": 440560
+			},
+			"text": " In terms of efficiency, Snarks come out ahead with the smallest proof sizes and the fastest verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,560",
+				"to": "00:07:25,560"
+			},
+			"offsets": {
+				"from": 440560,
+				"to": 445560
+			},
+			"text": " However, due to their trusted setup, functionality is impacted a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,560",
+				"to": "00:07:28,560"
+			},
+			"offsets": {
+				"from": 445560,
+				"to": 448560
+			},
+			"text": " It's very difficult to port the scheme into new settings."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,560",
+				"to": "00:07:33,560"
+			},
+			"offsets": {
+				"from": 448560,
+				"to": 453560
+			},
+			"text": " Starks have very poor efficiency as we see because they need additional hardware resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,560",
+				"to": "00:07:36,560"
+			},
+			"offsets": {
+				"from": 453560,
+				"to": 456560
+			},
+			"text": " and they have absolutely giant proof sizes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,560",
+				"to": "00:07:40,560"
+			},
+			"offsets": {
+				"from": 456560,
+				"to": 460560
+			},
+			"text": " But they do very well in security and functionality as do both proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,560",
+				"to": "00:07:45,560"
+			},
+			"offsets": {
+				"from": 460560,
+				"to": 465560
+			},
+			"text": " And bullet proofs fall somewhere in between the two."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,560",
+				"to": "00:07:49,560"
+			},
+			"offsets": {
+				"from": 465560,
+				"to": 469560
+			},
+			"text": " So that leads us into the next building block that Tux is going to tell us about."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,560",
+				"to": "00:07:52,560"
+			},
+			"offsets": {
+				"from": 469560,
+				"to": 472560
+			},
+			"text": " So the next one is called multiparty computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,560",
+				"to": "00:07:58,560"
+			},
+			"offsets": {
+				"from": 472560,
+				"to": 478560
+			},
+			"text": " Something I'm probably sure a lot of you are already familiar with the form of secret sharing schemes, such as shavir secret sharing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,560",
+				"to": "00:08:04,560"
+			},
+			"offsets": {
+				"from": 478560,
+				"to": 484560
+			},
+			"text": " So multiparty computation is a type of privacy preserving computation technique,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,560",
+				"to": "00:08:10,560"
+			},
+			"offsets": {
+				"from": 484560,
+				"to": 490560
+			},
+			"text": " which allows us to secure the inputs to some predetermined program."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,560",
+				"to": "00:08:17,560"
+			},
+			"offsets": {
+				"from": 490560,
+				"to": 497560
+			},
+			"text": " And we have multiple parties who collaborate together and work together to execute this program."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,560",
+				"to": "00:08:22,560"
+			},
+			"offsets": {
+				"from": 497560,
+				"to": 502560
+			},
+			"text": " So if you have a template, they should have a private template that only the person who requested that competition should know."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,560",
+				"to": "00:08:29,560"
+			},
+			"offsets": {
+				"from": 502560,
+				"to": 509560
+			},
+			"text": " Like I said, one of these examples from your secret sharing, which you're probably familiar with in the case of wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,560",
+				"to": "00:08:32,560"
+			},
+			"offsets": {
+				"from": 509560,
+				"to": 512560
+			},
+			"text": " And how does you split up your wallets and share those?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,560",
+				"to": "00:08:39,560"
+			},
+			"offsets": {
+				"from": 512560,
+				"to": 519560
+			},
+			"text": " So, maybe this is the most predominant issue that everybody should understand when we're talking about multiparty computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,560",
+				"to": "00:08:42,560"
+			},
+			"offsets": {
+				"from": 519560,
+				"to": 522560
+			},
+			"text": " is how interactive it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,560",
+				"to": "00:08:46,560"
+			},
+			"offsets": {
+				"from": 522560,
+				"to": 526560
+			},
+			"text": " It is incredibly interactive depending on the number of parties you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,560",
+				"to": "00:08:51,560"
+			},
+			"offsets": {
+				"from": 526560,
+				"to": 531560
+			},
+			"text": " So anything more than usually two or three participants, we start seeing some really massive problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,560",
+				"to": "00:08:59,560"
+			},
+			"offsets": {
+				"from": 531560,
+				"to": 539560
+			},
+			"text": " And for many other protocols, it requires something like zero knowledge proofs to keep the protocol actually fair."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,560",
+				"to": "00:09:05,560"
+			},
+			"offsets": {
+				"from": 539560,
+				"to": 545560
+			},
+			"text": " So what that means essentially is we have like complexity layers in our MPC protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,560",
+				"to": "00:09:07,560"
+			},
+			"offsets": {
+				"from": 545560,
+				"to": 547560
+			},
+			"text": " At like the very first layer, we can imagine the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,560",
+				"to": "00:09:13,560"
+			},
+			"offsets": {
+				"from": 547560,
+				"to": 553560
+			},
+			"text": " So all of our participants have to communicate with each other, but we start having similar problems like traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,560",
+				"to": "00:09:20,560"
+			},
+			"offsets": {
+				"from": 553560,
+				"to": 560560
+			},
+			"text": " When you get into a traffic jam, the first person in the front of the traffic jam steps on the brakes, which causes everybody else to step on the brakes as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,560",
+				"to": "00:09:25,560"
+			},
+			"offsets": {
+				"from": 560560,
+				"to": 565560
+			},
+			"text": " So we start seeing network latency filter through the entire and propagate through the entire network like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,560",
+				"to": "00:09:31,560"
+			},
+			"offsets": {
+				"from": 565560,
+				"to": 571560
+			},
+			"text": " And it causes massive problems, especially when a lot of communication is required for more complex things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,560",
+				"to": "00:09:34,560"
+			},
+			"offsets": {
+				"from": 571560,
+				"to": 574560
+			},
+			"text": " like we can imagine for a privacy-preserving smart phone track."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,560",
+				"to": "00:09:42,560"
+			},
+			"offsets": {
+				"from": 574560,
+				"to": 582560
+			},
+			"text": " Another thing is that it has gained theoretical security sometimes where we may require non-dispaturity."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,560",
+				"to": "00:09:47,560"
+			},
+			"offsets": {
+				"from": 582560,
+				"to": 587560
+			},
+			"text": " And to keep things fair, we require another layer of complexity like that's most likely zero-knowledge proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,560",
+				"to": "00:09:52,560"
+			},
+			"offsets": {
+				"from": 587560,
+				"to": 592560
+			},
+			"text": " When we start having to integrate proofs to ensure that everybody is acting appropriately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,560",
+				"to": "00:09:57,560"
+			},
+			"offsets": {
+				"from": 592560,
+				"to": 597560
+			},
+			"text": " and if we start doing this, now we're talking about a very complex and long protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,560",
+				"to": "00:10:04,560"
+			},
+			"offsets": {
+				"from": 597560,
+				"to": 604560
+			},
+			"text": " So on our next slide, we'll be talking about some implementations of privacy-preserving smart phone tracks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,560",
+				"to": "00:10:10,560"
+			},
+			"offsets": {
+				"from": 604560,
+				"to": 610560
+			},
+			"text": " So two of the most recent approaches that are based on Ethereum are Aztec and Zither."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,560",
+				"to": "00:10:14,560"
+			},
+			"offsets": {
+				"from": 610560,
+				"to": 614560
+			},
+			"text": " Both of them allow us to perform confidential transactions on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,560",
+				"to": "00:10:20,560"
+			},
+			"offsets": {
+				"from": 614560,
+				"to": 620560
+			},
+			"text": " Aztec uses a UTXO model, whereas Zither uses an account-based model."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,560",
+				"to": "00:10:24,560"
+			},
+			"offsets": {
+				"from": 620560,
+				"to": 624560
+			},
+			"text": " Both of them in theory are able to achieve anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,560",
+				"to": "00:10:32,560"
+			},
+			"offsets": {
+				"from": 624560,
+				"to": 632560
+			},
+			"text": " However, Aztec uses self-addresses, which doesn't really satisfy the cryptographic definition of privacy we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,560",
+				"to": "00:10:39,560"
+			},
+			"offsets": {
+				"from": 632560,
+				"to": 639560
+			},
+			"text": " Zither does do ring signatures, however it's too expensive to implement on Ethereum as is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,560",
+				"to": "00:10:42,560"
+			},
+			"offsets": {
+				"from": 639560,
+				"to": 642560
+			},
+			"text": " Zither is a lot more mathematically sophisticated."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,560",
+				"to": "00:10:47,560"
+			},
+			"offsets": {
+				"from": 642560,
+				"to": 647560
+			},
+			"text": " It comes from the same authors of bulletproofs and utilizes commitment schemes held along versions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,560",
+				"to": "00:10:52,560"
+			},
+			"offsets": {
+				"from": 647560,
+				"to": 652560
+			},
+			"text": " and it actually combines bulletproofs and single protocols into something called single bullets."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,560",
+				"to": "00:10:56,560"
+			},
+			"offsets": {
+				"from": 652560,
+				"to": 656560
+			},
+			"text": " Aztec is significantly simpler, but they use a trusted setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,560",
+				"to": "00:10:58,560"
+			},
+			"offsets": {
+				"from": 656560,
+				"to": 658560
+			},
+			"text": " They're a lot more efficient than Zither."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,560",
+				"to": "00:11:05,560"
+			},
+			"offsets": {
+				"from": 658560,
+				"to": 665560
+			},
+			"text": " And they just rely exclusively on commitment schemes and signal protocols to achieve this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,560",
+				"to": "00:11:10,560"
+			},
+			"offsets": {
+				"from": 665560,
+				"to": 670560
+			},
+			"text": " So what do Zither and Aztec have in common?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,560",
+				"to": "00:11:13,560"
+			},
+			"offsets": {
+				"from": 670560,
+				"to": 673560
+			},
+			"text": " When we're talking about the both use of alcohol and encryption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,560",
+				"to": "00:11:20,560"
+			},
+			"offsets": {
+				"from": 673560,
+				"to": 680560
+			},
+			"text": " what they're actually using is a property called additively homomorphic encryption, or even commitment schemes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,560",
+				"to": "00:11:23,560"
+			},
+			"offsets": {
+				"from": 680560,
+				"to": 683560
+			},
+			"text": " So what does it mean to be additively homomorphic?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,560",
+				"to": "00:11:30,560"
+			},
+			"offsets": {
+				"from": 683560,
+				"to": 690560
+			},
+			"text": " When we have two, we'll talk about different types of homomorphisms, but in the case of additive homomorphism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,560",
+				"to": "00:11:35,560"
+			},
+			"offsets": {
+				"from": 690560,
+				"to": 695560
+			},
+			"text": " we can imagine that we have an encryption of some of the value A and an encryption of a value B."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,560",
+				"to": "00:11:42,560"
+			},
+			"offsets": {
+				"from": 695560,
+				"to": 702560
+			},
+			"text": " And if we take these two sacrotects and perform an addition operation on the two sacrotects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,560",
+				"to": "00:11:48,560"
+			},
+			"offsets": {
+				"from": 702560,
+				"to": 708560
+			},
+			"text": " we actually get the encryption of what would be the output if you had just added the two plaintext together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,560",
+				"to": "00:11:50,560"
+			},
+			"offsets": {
+				"from": 708560,
+				"to": 710560
+			},
+			"text": " except they're now encrypted."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,560",
+				"to": "00:11:58,560"
+			},
+			"offsets": {
+				"from": 710560,
+				"to": 718560
+			},
+			"text": " So how this is built around to build actual computational transactions is we have an encryption of a balance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,560",
+				"to": "00:12:05,560"
+			},
+			"offsets": {
+				"from": 718560,
+				"to": 725560
+			},
+			"text": " say the number three, and then we have an encryption of a transfer amount, say a number like negative two."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,560",
+				"to": "00:12:08,560"
+			},
+			"offsets": {
+				"from": 725560,
+				"to": 728560
+			},
+			"text": " You're sending two coins to somebody."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,560",
+				"to": "00:12:12,560"
+			},
+			"offsets": {
+				"from": 728560,
+				"to": 732560
+			},
+			"text": " So when you take your encrypted balance of three and your encrypted balance of negative..."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,560",
+				"to": "00:12:16,560"
+			},
+			"offsets": {
+				"from": 732560,
+				"to": 736560
+			},
+			"text": " or your encrypted transfer of negative two, you add them together and you get one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,560",
+				"to": "00:12:21,560"
+			},
+			"offsets": {
+				"from": 736560,
+				"to": 741560
+			},
+			"text": " So that'll be the encryption of the balance after that transaction in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,560",
+				"to": "00:12:27,560"
+			},
+			"offsets": {
+				"from": 741560,
+				"to": 747560
+			},
+			"text": " So it essentially lets you, in additive homomorphism, it's simply a way to map between these two domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,560",
+				"to": "00:12:32,560"
+			},
+			"offsets": {
+				"from": 747560,
+				"to": 752560
+			},
+			"text": " We have the plaintext domain where we're all familiar with just doing simple addition on things"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,560",
+				"to": "00:12:39,560"
+			},
+			"offsets": {
+				"from": 752560,
+				"to": 759560
+			},
+			"text": " and the encrypted ciphertext domain, where we don't normally see what the value is underneath, but we know it's sub-value."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,560",
+				"to": "00:12:48,560"
+			},
+			"offsets": {
+				"from": 759560,
+				"to": 768560
+			},
+			"text": " Homomorphism is simply an operation, an addition operation that lets us calculate what that value would be in the plaintext space."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,560",
+				"to": "00:12:53,560"
+			},
+			"offsets": {
+				"from": 768560,
+				"to": 773560
+			},
+			"text": " So you can simply add some text together, you can get their plaintext output."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,560",
+				"to": "00:12:55,560"
+			},
+			"offsets": {
+				"from": 773560,
+				"to": 775560
+			},
+			"text": " So..."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,560",
+				"to": "00:13:00,560"
+			},
+			"offsets": {
+				"from": 775560,
+				"to": 780560
+			},
+			"text": " That leads us into a fully homomorphic encryption, which that's all I'm talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,560",
+				"to": "00:13:06,560"
+			},
+			"offsets": {
+				"from": 780560,
+				"to": 786560
+			},
+			"text": " As we just saw, some schemes do utilize homomorphic addition to perform confidential transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,560",
+				"to": "00:13:18,560"
+			},
+			"offsets": {
+				"from": 786560,
+				"to": 798560
+			},
+			"text": " If you actually extend that and consider homomorphic multiplication, which means that the encryption of A times the encryption of B is the same as first multiplying A and B together and then encrypting it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,560",
+				"to": "00:13:27,560"
+			},
+			"offsets": {
+				"from": 798560,
+				"to": 807560
+			},
+			"text": " So what might happen if we were to create a PPS scheme that doesn't only just do homomorphic addition, but also does homomorphic multiplication?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,560",
+				"to": "00:13:44,560"
+			},
+			"offsets": {
+				"from": 807560,
+				"to": 824560
+			},
+			"text": " That would actually give us something that performs fully homomorphic encryption. There hasn't been any PPS-B scheme that does fully homomorphic encryption so far, but it might be interesting to consider how much more power we would get from including this in such a scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,560",
+				"to": "00:13:51,560"
+			},
+			"offsets": {
+				"from": 824560,
+				"to": 831560
+			},
+			"text": " We're going to quickly look at two non-aherium approaches. One is ZXE, which uses the QTSO model."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,560",
+				"to": "00:14:00,560"
+			},
+			"offsets": {
+				"from": 831560,
+				"to": 840560
+			},
+			"text": " They use DKSARTS for performing confidential transactions. And they actually have an even stronger notion of privacy than the one you define."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,560",
+				"to": "00:14:08,560"
+			},
+			"offsets": {
+				"from": 840560,
+				"to": 848560
+			},
+			"text": " In addition to hiding the inputs and outputs of a function, they also discuss hiding the function itself, so what we can call function privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,560",
+				"to": "00:14:18,560"
+			},
+			"offsets": {
+				"from": 848560,
+				"to": 858560
+			},
+			"text": " However, to achieve the efficiency that they're talking about, it's also an expensive scheme in the sense that you need hundreds of gigabytes of RAM to get the proving times you're talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,560",
+				"to": "00:14:25,560"
+			},
+			"offsets": {
+				"from": 858560,
+				"to": 865560
+			},
+			"text": " And there's a second one from OASIS Labs. We don't actually know how to pronounce the name, so we're just going to refer to it as a project from OASIS Labs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,560",
+				"to": "00:14:36,560"
+			},
+			"offsets": {
+				"from": 865560,
+				"to": 876560
+			},
+			"text": " They use trusted hardware, which does not satisfy our notions of security and privacy with cryptography, so we're just going to gloss over their work, but they're also in this space for information."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,560",
+				"to": "00:14:41,560"
+			},
+			"offsets": {
+				"from": 876560,
+				"to": 881560
+			},
+			"text": " So briefly, we'll talk about some comparisons between the technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,560",
+				"to": "00:14:53,560"
+			},
+			"offsets": {
+				"from": 881560,
+				"to": 893560
+			},
+			"text": " So it's really difficult to actually compare these technologies because they all accomplish similar things with different techniques, and they're just not really that easy to compare together directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,560",
+				"to": "00:15:00,560"
+			},
+			"offsets": {
+				"from": 893560,
+				"to": 900560
+			},
+			"text": " But they do satisfy some properties we can discuss, such as performance, privacy, the interactivity involved, and the cryptographic security used."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,560",
+				"to": "00:15:05,560"
+			},
+			"offsets": {
+				"from": 900560,
+				"to": 905560
+			},
+			"text": " So for fully homomorphic encryption, it is entirely compute bound."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,560",
+				"to": "00:15:17,560"
+			},
+			"offsets": {
+				"from": 905560,
+				"to": 917560
+			},
+			"text": " So performance is basically built on, it just depends on how well your computer can actually perform these really intense operations, such as FFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,560",
+				"to": "00:15:30,560"
+			},
+			"offsets": {
+				"from": 917560,
+				"to": 930560
+			},
+			"text": " The privacy is also based on the encryption scheme, which if you're familiar with any cryptographic security assumptions, we can say that usually just the standard that's I and D CPA secured."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,560",
+				"to": "00:15:36,560"
+			},
+			"offsets": {
+				"from": 930560,
+				"to": 936560
+			},
+			"text": " It is non-interactive, meaning that you don't have to interact with a bunch of people who perform this computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,560",
+				"to": "00:15:41,560"
+			},
+			"offsets": {
+				"from": 936560,
+				"to": 941560
+			},
+			"text": " You only need to go to the computing party, encrypt some data, give them a key, and then can usually perform the computation on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,560",
+				"to": "00:15:45,560"
+			},
+			"offsets": {
+				"from": 941560,
+				"to": 945560
+			},
+			"text": " And it also satisfies some cryptographic security as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,560",
+				"to": "00:15:55,560"
+			},
+			"offsets": {
+				"from": 945560,
+				"to": 955560
+			},
+			"text": " So we know that when we do fully homomorphic encryption, we know that it's going to satisfy a mathematically hard problem that's not easy to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,560",
+				"to": "00:16:03,560"
+			},
+			"offsets": {
+				"from": 955560,
+				"to": 963560
+			},
+			"text": " And like I said, UBC is network bound, and it becomes an issue where you have more and more participants in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,560",
+				"to": "00:16:09,560"
+			},
+			"offsets": {
+				"from": 963560,
+				"to": 969560
+			},
+			"text": " It's based on encryption scheme and non-collusion of that from the privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,560",
+				"to": "00:16:14,560"
+			},
+			"offsets": {
+				"from": 969560,
+				"to": 974560
+			},
+			"text": " So for shimier secret sharing, you're pretty much assuming that your friends won't get together and try to screw you over."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,560",
+				"to": "00:16:17,560"
+			},
+			"offsets": {
+				"from": 974560,
+				"to": 977560
+			},
+			"text": " It is interactive, so it doesn't satisfy that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,560",
+				"to": "00:16:27,560"
+			},
+			"offsets": {
+				"from": 977560,
+				"to": 987560
+			},
+			"text": " And the cryptographic security is somewhat similar that it requires, usually it has some fairness assumptions that requires usually some zero-knowledge groups to actually do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,560",
+				"to": "00:16:31,560"
+			},
+			"offsets": {
+				"from": 987560,
+				"to": 991560
+			},
+			"text": " Trust hardware is kind of bullshit, in my opinion."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,560",
+				"to": "00:16:37,560"
+			},
+			"offsets": {
+				"from": 991560,
+				"to": 997560
+			},
+			"text": " It's just based on hardware security, which has been paid attention to the space recently."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,560",
+				"to": "00:16:41,560"
+			},
+			"offsets": {
+				"from": 997560,
+				"to": 1001560
+			},
+			"text": " We have spec- the specter meltdown, speculative execution attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,560",
+				"to": "00:16:47,560"
+			},
+			"offsets": {
+				"from": 1001560,
+				"to": 1007560
+			},
+			"text": " We've been trying for years to make secure processors, and they're not working out that well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,560",
+				"to": "00:16:58,560"
+			},
+			"offsets": {
+				"from": 1007560,
+				"to": 1018560
+			},
+			"text": " So it's time. The advancements that's going to take to make secure processors a real secure thing is much longer than it will be to take these theoretical advancements to improve either FH or FH or FH."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,560",
+				"to": "00:17:04,560"
+			},
+			"offsets": {
+				"from": 1018560,
+				"to": 1024560
+			},
+			"text": " So let's just move on and do actual provable security and not just deal with the stuff that kind of but doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,560",
+				"to": "00:17:09,560"
+			},
+			"offsets": {
+				"from": 1024560,
+				"to": 1029560
+			},
+			"text": " So I have a lot of feelings on trusted hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,560",
+				"to": "00:17:19,560"
+			},
+			"offsets": {
+				"from": 1029560,
+				"to": 1039560
+			},
+			"text": " So if I can just look at some of the privacy conserving for our contract approaches so far, we've already seen ZEAPR and it really optimizes for security in a provable sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,560",
+				"to": "00:17:23,560"
+			},
+			"offsets": {
+				"from": 1039560,
+				"to": 1043560
+			},
+			"text": " We frequently think out of tech, but arguably they're not an PTSD scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,560",
+				"to": "00:17:26,560"
+			},
+			"offsets": {
+				"from": 1043560,
+				"to": 1046560
+			},
+			"text": " They're just trying to perform confidential transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,560",
+				"to": "00:17:28,560"
+			},
+			"offsets": {
+				"from": 1046560,
+				"to": 1048560
+			},
+			"text": " They really optimize for its efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,560",
+				"to": "00:17:36,560"
+			},
+			"offsets": {
+				"from": 1048560,
+				"to": 1056560
+			},
+			"text": " ZEXI does a fantastic job optimizing your privacy and HOP, which we haven't really mentioned, but is a lesser known project in ZEAPR."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,560",
+				"to": "00:17:40,560"
+			},
+			"offsets": {
+				"from": 1056560,
+				"to": 1060560
+			},
+			"text": " So you can see cash doesn't really do a good job with any of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,560",
+				"to": "00:17:47,560"
+			},
+			"offsets": {
+				"from": 1060560,
+				"to": 1067560
+			},
+			"text": " However, the most important thing to focus on is that none of the approaches so far has actually tried to optimize for functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,560",
+				"to": "00:17:53,560"
+			},
+			"offsets": {
+				"from": 1067560,
+				"to": 1073560
+			},
+			"text": " So it might be interesting to consider what happens if we pick a PTSD scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,560",
+				"to": "00:18:05,560"
+			},
+			"offsets": {
+				"from": 1073560,
+				"to": 1085560
+			},
+			"text": " What happens if we pick a PTSD scheme that optimizes for security, privacy, and functionality and gives a little for efficiency and compromises a little there instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,560",
+				"to": "00:18:18,560"
+			},
+			"offsets": {
+				"from": 1085560,
+				"to": 1098560
+			},
+			"text": " And for everyone else in the room that might not care so much about that, when you're developing your own PPSCs, you should really look back at the chart and consider which of the four properties you've seen, do you really want to opt for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,560",
+				"to": "00:18:21,560"
+			},
+			"offsets": {
+				"from": 1098560,
+				"to": 1101560
+			},
+			"text": " So that's it. Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,560",
+				"to": "00:18:30,560"
+			},
+			"offsets": {
+				"from": 1101560,
+				"to": 1110560
+			},
+			"text": " You have roughly..."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,560",
+				"to": "00:18:31,560"
+			},
+			"offsets": {
+				"from": 1110560,
+				"to": 1111560
+			},
+			"text": " You guys have four questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,560",
+				"to": "00:18:32,560"
+			},
+			"offsets": {
+				"from": 1111560,
+				"to": 1112560
+			},
+			"text": " Thirty seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,560",
+				"to": "00:18:33,560"
+			},
+			"offsets": {
+				"from": 1112560,
+				"to": 1113560
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,560",
+				"to": "00:18:34,560"
+			},
+			"offsets": {
+				"from": 1113560,
+				"to": 1114560
+			},
+			"text": " One question."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,560",
+				"to": "00:18:35,560"
+			},
+			"offsets": {
+				"from": 1114560,
+				"to": 1115560
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,560",
+				"to": "00:18:43,560"
+			},
+			"offsets": {
+				"from": 1115560,
+				"to": 1123560
+			},
+			"text": " Could you explain why you consider bulletproof more secure than start and start more secure than start?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,560",
+				"to": "00:18:48,560"
+			},
+			"offsets": {
+				"from": 1123560,
+				"to": 1128560
+			},
+			"text": " So I don't believe I said that bulletproofs are more secure than start."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,560",
+				"to": "00:18:51,560"
+			},
+			"offsets": {
+				"from": 1128560,
+				"to": 1131560
+			},
+			"text": " I believe in thoughts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,560",
+				"to": "00:18:54,560"
+			},
+			"offsets": {
+				"from": 1131560,
+				"to": 1134560
+			},
+			"text": " Let's go back to the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,560",
+				"to": "00:18:57,560"
+			},
+			"offsets": {
+				"from": 1134560,
+				"to": 1137560
+			},
+			"text": " That was the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,560",
+				"to": "00:18:59,560"
+			},
+			"offsets": {
+				"from": 1137560,
+				"to": 1139560
+			},
+			"text": " I'm supposed to be keeping the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,560",
+				"to": "00:19:02,560"
+			},
+			"offsets": {
+				"from": 1139560,
+				"to": 1142560
+			},
+			"text": " I'm pressing the button two at a time."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,560",
+				"to": "00:19:05,560"
+			},
+			"offsets": {
+				"from": 1143560,
+				"to": 1145560
+			},
+			"text": " So I didn't..."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,560",
+				"to": "00:19:06,560"
+			},
+			"offsets": {
+				"from": 1145560,
+				"to": 1146560
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,560",
+				"to": "00:19:07,560"
+			},
+			"offsets": {
+				"from": 1146560,
+				"to": 1147560
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,560",
+				"to": "00:19:12,560"
+			},
+			"offsets": {
+				"from": 1147560,
+				"to": 1152560
+			},
+			"text": " I'm more secure than start more secure than start more secure than start more."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,560",
+				"to": "00:19:14,560"
+			},
+			"offsets": {
+				"from": 1152560,
+				"to": 1154560
+			},
+			"text": " I do think start's more secure than start's."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,560",
+				"to": "00:19:16,560"
+			},
+			"offsets": {
+				"from": 1154560,
+				"to": 1156560
+			},
+			"text": " I don't really agree with trusted set up."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,560",
+				"to": "00:19:19,560"
+			},
+			"offsets": {
+				"from": 1156560,
+				"to": 1159560
+			},
+			"text": " Security can be compromised if the party is glued together."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,560",
+				"to": "00:19:24,560"
+			},
+			"offsets": {
+				"from": 1159560,
+				"to": 1164560
+			},
+			"text": " And I think knowledge of exponent is a non-standard assumption that's not well understood."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,560",
+				"to": "00:19:27,560"
+			},
+			"offsets": {
+				"from": 1164560,
+				"to": 1167560
+			},
+			"text": " So I personally, as a personographer, wouldn't feel comfortable using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,560",
+				"to": "00:19:29,560"
+			},
+			"offsets": {
+				"from": 1167560,
+				"to": 1169560
+			},
+			"text": " Other people might feel differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,560",
+				"to": "00:19:35,560"
+			},
+			"offsets": {
+				"from": 1169560,
+				"to": 1175560
+			},
+			"text": " But according to my definition, I think start's more a little less secure than start's bulletproofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,560",
+				"to": "00:19:37,560"
+			},
+			"offsets": {
+				"from": 1175560,
+				"to": 1177560
+			},
+			"text": " And why bulletproofs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,560",
+				"to": "00:19:40,560"
+			},
+			"offsets": {
+				"from": 1177560,
+				"to": 1180560
+			},
+			"text": " Bulletproofs are based on discrete log and then just great log problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,560",
+				"to": "00:19:44,560"
+			},
+			"offsets": {
+				"from": 1180560,
+				"to": 1184560
+			},
+			"text": " And that's a very well understood cryptography assumption that's been around for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,560",
+				"to": "00:19:45,560"
+			},
+			"offsets": {
+				"from": 1184560,
+				"to": 1185560
+			},
+			"text": " Yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,560",
+				"to": "00:19:53,560"
+			},
+			"offsets": {
+				"from": 1185560,
+				"to": 1193560
+			},
+			"text": " But bulletproofs are based on discrete log only if you make them interactive, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,560",
+				"to": "00:19:55,560"
+			},
+			"offsets": {
+				"from": 1193560,
+				"to": 1195560
+			},
+			"text": " Make them non-interactive."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,560",
+				"to": "00:19:59,560"
+			},
+			"offsets": {
+				"from": 1195560,
+				"to": 1199560
+			},
+			"text": " They require random oracle the same as the start's."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,560",
+				"to": "00:20:00,560"
+			},
+			"offsets": {
+				"from": 1199560,
+				"to": 1200560
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,560",
+				"to": "00:20:06,560"
+			},
+			"offsets": {
+				"from": 1200560,
+				"to": 1206560
+			},
+			"text": " And the random oracle is a security point of view and pre-volume to knowledge of X."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,560",
+				"to": "00:20:09,560"
+			},
+			"offsets": {
+				"from": 1206560,
+				"to": 1209560
+			},
+			"text": " I don't know if that's true."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,560",
+				"to": "00:20:13,560"
+			},
+			"offsets": {
+				"from": 1209560,
+				"to": 1213560
+			},
+			"text": " I agree random oracle is a slightly non-standard cryptographic assumption."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,560",
+				"to": "00:20:19,560"
+			},
+			"offsets": {
+				"from": 1213560,
+				"to": 1219560
+			},
+			"text": " And a lot of things use that if you want to ever turn a pre-non-interactive, you almost always need the option there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,560",
+				"to": "00:20:21,560"
+			},
+			"offsets": {
+				"from": 1219560,
+				"to": 1221560
+			},
+			"text": " You're going to get a random oracle out."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,560",
+				"to": "00:20:24,560"
+			},
+			"offsets": {
+				"from": 1221560,
+				"to": 1224560
+			},
+			"text": " So it depends person to person what you feel most comfortable with."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,560",
+				"to": "00:20:32,560"
+			},
+			"offsets": {
+				"from": 1224560,
+				"to": 1232560
+			},
+			"text": " I think this does an opinion and I understand that other people maybe not don't feel so comfortable with random oracles and don't want to use that in their own scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,560",
+				"to": "00:20:38,560"
+			},
+			"offsets": {
+				"from": 1232560,
+				"to": 1238560
+			},
+			"text": " For many cryptographic use cases, it would be better for us to utilize things."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,560",
+				"to": "00:20:40,560"
+			},
+			"offsets": {
+				"from": 1238560,
+				"to": 1240560
+			},
+			"text": " It's great that people want to utilize knowledge of X-sponsored."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,560",
+				"to": "00:20:45,560"
+			},
+			"offsets": {
+				"from": 1240560,
+				"to": 1245560
+			},
+			"text": " It'll honestly help us find, you know, understanding more as people implement it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,560",
+				"to": "00:20:53,560"
+			},
+			"offsets": {
+				"from": 1245560,
+				"to": 1253560
+			},
+			"text": " But for many use cases where we want to build for the long-term future, we want to use stuff that we know and understand very, very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,560",
+				"to": "00:20:58,560"
+			},
+			"offsets": {
+				"from": 1253560,
+				"to": 1258560
+			},
+			"text": " Now, which is the random oracle model, which is the discrete log, logarithm problem as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,560",
+				"to": "00:21:09,560"
+			},
+			"offsets": {
+				"from": 1258560,
+				"to": 1269560
+			},
+			"text": " So I would also agree that knowledge of X-funded is not very well understood as either discrete log or random oracle model."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,560",
+				"to": "00:21:13,560"
+			},
+			"offsets": {
+				"from": 1269560,
+				"to": 1273560
+			},
+			"text": " It's been around the same time as discrete logarithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,560",
+				"to": "00:21:15,560"
+			},
+			"offsets": {
+				"from": 1273560,
+				"to": 1275560
+			},
+			"text": " It's not like I don't think it's been as well studied."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,560",
+				"to": "00:21:21,560"
+			},
+			"offsets": {
+				"from": 1275560,
+				"to": 1281560
+			},
+			"text": " I would argue it's not been as well studied and used quite as much to have as good of an understanding."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,560",
+				"to": "00:21:25,560"
+			},
+			"offsets": {
+				"from": 1281560,
+				"to": 1285560
+			},
+			"text": " But I'm happy to talk to you about this afterwards, if you're still interested."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,560",
+				"to": "00:21:29,560"
+			},
+			"offsets": {
+				"from": 1285560,
+				"to": 1289560
+			},
+			"text": " And even sitting inside the hardness metric, obviously the trust is set up."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,560",
+				"to": "00:21:32,560"
+			},
+			"offsets": {
+				"from": 1289560,
+				"to": 1292560
+			},
+			"text": " The trust is also as it uses, starts one of the dots."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,560",
+				"to": "00:21:36,560"
+			},
+			"offsets": {
+				"from": 1292560,
+				"to": 1296560
+			},
+			"text": " Yeah, it's a most powerful depth on the knowledge of X-funded."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,560",
+				"to": "00:21:38,560"
+			},
+			"offsets": {
+				"from": 1296560,
+				"to": 1298560
+			},
+			"text": " That's also part of security."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,560",
+				"to": "00:21:41,560"
+			},
+			"offsets": {
+				"from": 1298560,
+				"to": 1301560
+			},
+			"text": " At least to us, that's part of the thinking."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,560",
+				"to": "00:21:42,560"
+			},
+			"offsets": {
+				"from": 1301560,
+				"to": 1302560
+			},
+			"text": " Yeah, there."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,560",
+				"to": "00:21:45,560"
+			},
+			"offsets": {
+				"from": 1302560,
+				"to": 1305560
+			},
+			"text": " Yeah, but I think we're going to put us all over the music kitchen."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,560",
+				"to": "00:21:50,560"
+			},
+			"offsets": {
+				"from": 1305560,
+				"to": 1310560
+			},
+			"text": " We are on the ground, so we're going to let the university know it's very well-proofed."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,560",
+				"to": "00:21:57,560"
+			},
+			"offsets": {
+				"from": 1310560,
+				"to": 1317560
+			},
+			"text": " So yeah, the process comes from the system anyway, because it's going to be used on a very mentally maloric regard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,560",
+				"to": "00:22:03,560"
+			},
+			"offsets": {
+				"from": 1317560,
+				"to": 1323560
+			},
+			"text": " in the ground, which is really insecure with the materials in terms of like input."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,560",
+				"to": "00:22:10,560"
+			},
+			"offsets": {
+				"from": 1323560,
+				"to": 1330560
+			},
+			"text": " And I'm going to use a low-grade input of interactions in the interactive part of the department to make it"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,560",
+				"to": "00:22:13,560"
+			},
+			"offsets": {
+				"from": 1330560,
+				"to": 1333560
+			},
+			"text": " more attractive, you need to use cache on here, but it's actually not used to the cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,560",
+				"to": "00:22:17,560"
+			},
+			"offsets": {
+				"from": 1333560,
+				"to": 1337560
+			},
+			"text": " So people may be supported by having C-a-1 from the back."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,560",
+				"to": "00:22:23,560"
+			},
+			"offsets": {
+				"from": 1338560,
+				"to": 1343560
+			},
+			"text": " Cool. Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,560",
+				"to": "00:22:26,560"
+			},
+			"offsets": {
+				"from": 1343560,
+				"to": 1346560
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,560",
+				"to": "00:22:28,560"
+			},
+			"offsets": {
+				"from": 1346560,
+				"to": 1348560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,560",
+				"to": "00:22:42,560"
+			},
+			"offsets": {
+				"from": 1348560,
+				"to": 1362560
+			},
+			"text": " [music]"
+		}
+	]
+}

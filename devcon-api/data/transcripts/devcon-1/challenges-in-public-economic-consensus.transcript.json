@@ -1,0 +1,4355 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " Hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20000
+			},
+			"text": " It's a real honor to be here and a real honor to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 21000
+			},
+			"text": " that introduction from Vitalik."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 24000
+			},
+			"text": " Thanks, V."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 29000
+			},
+			"text": " So this first talk actually is going to be on --"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 31000
+			},
+			"text": " there you go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 34000
+			},
+			"text": " On the problem space rather than the solution space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 37000
+			},
+			"text": " So I'm not going to talk about CASPER directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 39000
+			},
+			"text": " I'm just going to talk about what is this problem that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 42000
+			},
+			"text": " trying to solve with blockchains and with the extensive"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 46000
+			},
+			"text": " protocols and then after lunch I'm going to give a talk on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 48000
+			},
+			"text": " CASPER."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 52000
+			},
+			"text": " So firstly, let's start off with a little bit of background."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 54000
+			},
+			"text": " So what's a consensus protocol?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 57000
+			},
+			"text": " I'm not going to be too formal, just like pragmatically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 60000
+			},
+			"text": " a consensus protocol is something that computers use to agree"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 62000
+			},
+			"text": " on the state of some application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 66000
+			},
+			"text": " Basically the important thing is that a consensus protocol is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 69000
+			},
+			"text": " useful for making reliable systems out of unreliable or"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 72000
+			},
+			"text": " even untrusted components."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 76000
+			},
+			"text": " And so some nodes go offline, some nodes behave badly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 79000
+			},
+			"text": " clients can still access the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 84000
+			},
+			"text": " Here's like a nice -- here's the only drawing in my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 88000
+			},
+			"text": " This kind of shows you this idea that there's some nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 93000
+			},
+			"text": " who keep some state as a result of applying some changes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 96000
+			},
+			"text": " which are kept in some log, and then there are clients who"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 99000
+			},
+			"text": " are able to interface with this state."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 103000
+			},
+			"text": " And if one of these nodes were to go offline or behave badly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 106000
+			},
+			"text": " the clients wouldn't be disrupted."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 110000
+			},
+			"text": " So usually in traditional consensus protocols we have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 113000
+			},
+			"text": " network administrator and we try to guarantee that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 117000
+			},
+			"text": " application is available in the system so long as not so many"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 119000
+			},
+			"text": " nodes go offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 122000
+			},
+			"text": " Or as long as the network is in partitioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 125000
+			},
+			"text": " So let's go through these little concepts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 128000
+			},
+			"text": " Because this means that traditionally means that every"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 132000
+			},
+			"text": " node has the same like an identical copy of the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 134000
+			},
+			"text": " And availability means that clients are able to interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 136000
+			},
+			"text": " with it and cause changes to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 139000
+			},
+			"text": " And then there's a famous result, one of the most important"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 142000
+			},
+			"text": " results in consensus literature is called the CAP theorem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 145000
+			},
+			"text": " if there's a partition then a consensus protocol has to choose"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 148000
+			},
+			"text": " between being available or being persistent."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 150000
+			},
+			"text": " And you kind of imagine why that is because if there's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 153000
+			},
+			"text": " partition, a client and a client is able to affect changes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 156000
+			},
+			"text": " then different clients could affect changes on either side"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 159000
+			},
+			"text": " of the partition and we would lose consistency because the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 161000
+			},
+			"text": " application state would be different on either side of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 162000
+			},
+			"text": " the partition."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 164000
+			},
+			"text": " Or we could not allow them to make changes and remain and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 166000
+			},
+			"text": " have the same application state on either side of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 167000
+			},
+			"text": " partition."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170000
+			},
+			"text": " And then the other concept that I brought up was like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 173000
+			},
+			"text": " idea of false, usually like breakdown false into kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 175000
+			},
+			"text": " crash faults and Byzantine faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 178000
+			},
+			"text": " Crash faults are when nodes go offline and they may come back"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 180000
+			},
+			"text": " or they may not ever."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 182000
+			},
+			"text": " So crash fail basically means that they don't come back online,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 186000
+			},
+			"text": " crash recover faults, eventually they'll re-sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 190000
+			},
+			"text": " And Byzantine faults are kind of just a note that isn't offline"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 192000
+			},
+			"text": " but it behaves badly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 195000
+			},
+			"text": " Generally Byzantine faults are kind of defined to behave in"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 198000
+			},
+			"text": " an arbitrary way which can mean basically what you can think"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 201000
+			},
+			"text": " of as like the running the wrong code, the one that the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 205000
+			},
+			"text": " administrator didn't tell them to run or that they somehow can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 208000
+			},
+			"text": " be observed to behave wrong, behaving correctly due to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 213000
+			},
+			"text": " Like, you know, perhaps not because the code they're running"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 215000
+			},
+			"text": " because of other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 219000
+			},
+			"text": " So basically usually what we talk about like the security"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 221000
+			},
+			"text": " of consensus protocols and traditional consensus literature"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 225000
+			},
+			"text": " we think about how can we keep this protocol guarantee given"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 228000
+			},
+			"text": " some number of faulty nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " And we basically say that it's secure up to some given number"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 233000
+			},
+			"text": " of faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 240000
+			},
+			"text": " And like, consistency availability are some examples of properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 242000
+			},
+			"text": " that we want to assess protocols to have."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 246000
+			},
+			"text": " And I'm also going to mention sensitive resistance because"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 249000
+			},
+			"text": " that's especially relevant in our context."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 252000
+			},
+			"text": " One more thing before we go on to public consensus is this idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 255000
+			},
+			"text": " of eventual consistency which is kind of a weakening of the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 256000
+			},
+			"text": " of consistency."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 258000
+			},
+			"text": " Instead of requiring that every node has exactly the same copy"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 261000
+			},
+			"text": " of the state, you require that eventually with very high"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 265000
+			},
+			"text": " probability they do have exactly the same state."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 268000
+			},
+			"text": " So Bitcoin is eventually consistent in that you don't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 270000
+			},
+			"text": " have a strong guarantee that everyone has the same copy of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 273000
+			},
+			"text": " the state now, but you have a really strong guarantee that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 279000
+			},
+			"text": " have the same state, you know, four or five, six blocks ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 283000
+			},
+			"text": " So public consensus is basically consensus protocol without"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 286000
+			},
+			"text": " network administrators where basically anyone can go and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 289000
+			},
+			"text": " become one of those nodes who is part of the consensus process"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 292000
+			},
+			"text": " and who can handle client requests and cause changes to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 293000
+			},
+			"text": " consensus state."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 296000
+			},
+			"text": " Basically, because there's no network administrator, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 299000
+			},
+			"text": " membership has to be governed by something actually inside the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 300000
+			},
+			"text": " consensus itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 304000
+			},
+			"text": " Basically, we call it a mechanism, kind of parking into like"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 305000
+			},
+			"text": " game theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 308000
+			},
+			"text": " It's like basically like a game whose rules define whether"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 311000
+			},
+			"text": " or known is able to participate in affecting the state of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 312000
+			},
+			"text": " consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 316000
+			},
+			"text": " So there's like a really big problem to this kind of mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 319000
+			},
+			"text": " which is basically that an adversary could try game"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 323000
+			},
+			"text": " to mechanism to overwhelm the network and to have all or very"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 326000
+			},
+			"text": " large majority of the nodes in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 329000
+			},
+			"text": " And that's like the first challenge to public consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 333000
+			},
+			"text": " Basically, how do you prevent without being -- without"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 335000
+			},
+			"text": " there being a network administrator, an adversary from"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 338000
+			},
+			"text": " bringing off the water nodes online?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 343000
+			},
+			"text": " And this is kind of the real important innovation of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 346000
+			},
+			"text": " bitcoins that it figured out that you can have an economic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 350000
+			},
+			"text": " mechanism in the consensus which made it expensive for civil to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 353000
+			},
+			"text": " bring on a lot of nodes into the hate badly."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 358000
+			},
+			"text": " So basically, economic consensus protocols try to make it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 361000
+			},
+			"text": " prohibitively expensive for civil to conduct their attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 366000
+			},
+			"text": " And currently, economic consensus is the only known solution to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 368000
+			},
+			"text": " public consensus problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 371000
+			},
+			"text": " It's the only way that we know to defend against civil attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 374000
+			},
+			"text": " without having a concept of trusted network administrators."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 380000
+			},
+			"text": " So it's in bold because it's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 386000
+			},
+			"text": " So just to take bitcoins as an example, what bitcoin does is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 389000
+			},
+			"text": " it makes it computationally expensive to produce changes to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 391000
+			},
+			"text": " the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 394000
+			},
+			"text": " And so for civil to propose a change, they have to incur this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 395000
+			},
+			"text": " expense."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 398000
+			},
+			"text": " And for civil to take a majority of the network, they have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 401000
+			},
+			"text": " incur a majority of the expense."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 405000
+			},
+			"text": " And so this is like the simple way that bitcoin uses economics"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 411000
+			},
+			"text": " in order to make civil attacks difficult and inconvenient."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 414000
+			},
+			"text": " And incidentally, this is why blockchains are trusted because"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 418000
+			},
+			"text": " it's expensive and inconvenient to use the trust that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 420000
+			},
+			"text": " blockchains provide."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 427000
+			},
+			"text": " So economic consensus basically has like -- it has to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 429000
+			},
+			"text": " certain properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 432000
+			},
+			"text": " And so I'm going to start to give you an idea of how we"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 434000
+			},
+			"text": " reason about these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 437000
+			},
+			"text": " So nodes have expenses in revenues."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 440000
+			},
+			"text": " Nodes can't operate at a loss forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 443000
+			},
+			"text": " Nodes can change their software for profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 447000
+			},
+			"text": " And adversary can -- has to be defined not just as like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 453000
+			},
+			"text": " number of nodes, but someone who has a certain attack budget."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 456000
+			},
+			"text": " And nodes can have their profitability affected by an"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 457000
+			},
+			"text": " attacker."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 463000
+			},
+			"text": " So we kind of need to use economic analysis rather than"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 466000
+			},
+			"text": " fault tolerance analysis to analyze public consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 467000
+			},
+			"text": " protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 469000
+			},
+			"text": " It's bold because it's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 471000
+			},
+			"text": " I'll say this again and again."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 475000
+			},
+			"text": " So because nodes have expenses and they can't operate a loss"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 479000
+			},
+			"text": " forever, it's not sufficient to just say whether a node is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 480000
+			},
+			"text": " correct or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 483000
+			},
+			"text": " Because even a correct node can't stay around forever if it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 485000
+			},
+			"text": " operating at a loss."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 487000
+			},
+			"text": " So the idea of using fault tolerance analysis where an"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 489000
+			},
+			"text": " adversary controls some of the nodes and all the rest of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 493000
+			},
+			"text": " nodes are correct doesn't work because you need to pay attention"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 496000
+			},
+			"text": " to whether or not those other nodes are operating at a loss or"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 497000
+			},
+			"text": " not."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 499000
+			},
+			"text": " Because if they're operating at a loss, then that pool of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 501000
+			},
+			"text": " data is not right."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 504000
+			},
+			"text": " So we need to use economic analysis rather than fault"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 508000
+			},
+			"text": " tolerance analysis to analyze these networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 513000
+			},
+			"text": " So we kind of -- to do economic analysis, the kind of nice"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 516000
+			},
+			"text": " tractable way to do it is to use kind of game theory and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 520000
+			},
+			"text": " economics as like, you know, the school of thought that involves"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 524000
+			},
+			"text": " like rational action, which is to say that nodes will change"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 526000
+			},
+			"text": " the behavior and increase their profitability."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 530000
+			},
+			"text": " Now, the true state of the reality is that nodes that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 533000
+			},
+			"text": " behave in a way that is more rational end up having higher"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 536000
+			},
+			"text": " turns and nodes and have in a way that's less rational end up"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 537000
+			},
+			"text": " having bigger losses."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 540000
+			},
+			"text": " And so over time, the profit of the rational nodes will"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 541000
+			},
+			"text": " dominate."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 543000
+			},
+			"text": " But we can reason about it by thinking about nodes changing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 546000
+			},
+			"text": " their strategies to increase their profitability."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 550000
+			},
+			"text": " And basically, so they'll -- they'll -- they'll -- it respond"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 554000
+			},
+			"text": " to all the incentives they have, including the ones that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 558000
+			},
+			"text": " define the protocol and the ones due to an adversary -- the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 560000
+			},
+			"text": " expenditure of an adversary's budget."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 563000
+			},
+			"text": " So it's not -- and it also not sufficient to regard rational"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 567000
+			},
+			"text": " nodes as a business team because we can say a lot more than just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 568000
+			},
+			"text": " that they're behaving badly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 571000
+			},
+			"text": " We can say in a very particular -- they're behaving badly in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 572000
+			},
+			"text": " very particular way."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 579000
+			},
+			"text": " So in the worst case -- in the worst case economic -- economic"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 583000
+			},
+			"text": " analysis, all -- or maybe almost all nodes are rational,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 587000
+			},
+			"text": " and coordination costs are zero, which is to say that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 591000
+			},
+			"text": " you know, an adversary doesn't have to deal with a complicated"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 594000
+			},
+			"text": " process to contact nodes and to bribe them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 600000
+			},
+			"text": " They can -- they can -- and nodes don't need to incur costs in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 602000
+			},
+			"text": " order to act together to increase their profitability."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 605000
+			},
+			"text": " They could all just upgrade -- upgrade to the software and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 606000
+			},
+			"text": " access to coalition."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 611000
+			},
+			"text": " So in the worst case economic analysis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 615000
+			},
+			"text": " attackers can easily bribe nodes and nodes will form profit"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 617000
+			},
+			"text": " maximizing coalitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 620000
+			},
+			"text": " So it's bold because it's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 623000
+			},
+			"text": " This is the context that we have to reason in when we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 627000
+			},
+			"text": " reasoning about consensus protocols in a public setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 631000
+			},
+			"text": " At least if we want to do a worst case analysis, which I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 633000
+			},
+			"text": " going to argue is what we should do because if we make something"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 636000
+			},
+			"text": " that's better in the worst case, that's going to be better in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 638000
+			},
+			"text": " the -- the better case."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 641000
+			},
+			"text": " And so here are some additional kind of worst case assumptions that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 642000
+			},
+			"text": " we also make sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 644000
+			},
+			"text": " They're maybe a little less important."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 648000
+			},
+			"text": " Marginal return is equal to marginal costs on a global basis."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 652000
+			},
+			"text": " And nodes have access to basically like derivative markets so"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 655000
+			},
+			"text": " that you can't assume that, oh, they won't attack the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 657000
+			},
+			"text": " because that'll make the price of the node go down."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 659000
+			},
+			"text": " That's kind of like a rosy assumption, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 662000
+			},
+			"text": " They could -- they could have just had -- they could just hedge"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 665000
+			},
+			"text": " their exposure to that -- to those price fluctuations."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 671000
+			},
+			"text": " So basically those two things together mean that -- in --"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 675000
+			},
+			"text": " those two things being that -- nodes of form coalitions and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 677000
+			},
+			"text": " attackers can bribe nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 681000
+			},
+			"text": " I mean that in order to have security, we needed to make it"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 685000
+			},
+			"text": " unprofitable for majority coalitions to undermine"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 688000
+			},
+			"text": " protocol guarantees because then -- because they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 691000
+			},
+			"text": " unprofitable when they undermine the guarantee, an attacker"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 695000
+			},
+			"text": " would have to spend a large budget in order to cost them to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 698000
+			},
+			"text": " that without, you know, incurring a loss for an extended period of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 699000
+			},
+			"text": " time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 702000
+			},
+			"text": " So we need to make it unprofitable for majority coalitions to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 706000
+			},
+			"text": " revert transactions to prevent consensus from occurring or"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 707000
+			},
+			"text": " to censor transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 712000
+			},
+			"text": " It's bold because it's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 717000
+			},
+			"text": " So the fundamental challenge then in public consensus is, again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 723000
+			},
+			"text": " to protect protocol guarantees against supermajority coalitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 726000
+			},
+			"text": " Even in the context of bribe attacks, which means we need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 728000
+			},
+			"text": " make sure that if a majority coalition gets together and tries"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 731000
+			},
+			"text": " to undermine the protocol, then they will do so at their own"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 734000
+			},
+			"text": " expense and they will need to therefore -- on an adversary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 737000
+			},
+			"text": " we need to allocate and spend a large budget."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 742000
+			},
+			"text": " So in Bitcoin, like most public consensus protocols out there"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 746000
+			},
+			"text": " today, it's rational for majority -- any majority coal is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 747000
+			},
+			"text": " in the sense of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 749000
+			},
+			"text": " They get an immediate raise."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 752000
+			},
+			"text": " So an adversary who actually doesn't need to spend any money"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 755000
+			},
+			"text": " to convince them to do this in an irrational model because they"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 757000
+			},
+			"text": " just get a raise in protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 761000
+			},
+			"text": " After the difficulty, we adjust -- if two-thirds of the Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 764000
+			},
+			"text": " miners censor one-third, they get a 50% increase in their"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 765000
+			},
+			"text": " block awards."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 769000
+			},
+			"text": " You know, a 50% increase in returns for a minor is a huge deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 773000
+			},
+			"text": " You know, there's like selfish mining strategy, so you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 778000
+			},
+			"text": " give another example of how a Bitcoin node can be Byzantine"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 783000
+			},
+			"text": " and at their profit, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 787000
+			},
+			"text": " Rational miners will engage in selfish mining, at least if they"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 792000
+			},
+			"text": " have sufficient mining power for it to be effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 795000
+			},
+			"text": " And another thing, because marginal cost is a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 799000
+			},
+			"text": " commercial return in kind of the worst-case analysis, you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 802000
+			},
+			"text": " bribe some miners in order to increase the marginal cost of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 805000
+			},
+			"text": " all other miners, and only the miners that you're bribing will"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 808000
+			},
+			"text": " be able to stay online because the other ones will be operating"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 809000
+			},
+			"text": " at a loss."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 813000
+			},
+			"text": " Unless they're also being bribed by someone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 818000
+			},
+			"text": " So these are already like examples of this kind of analysis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 821000
+			},
+			"text": " worst-case analysis, applied to Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 825000
+			},
+			"text": " Traditional and from stake has very similar problems, but in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 830000
+			},
+			"text": " addition, they have this nothing at stake problem where a rational"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 835000
+			},
+			"text": " node will move their coins to a new address and then sell their"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 838000
+			},
+			"text": " keys that held their coins, if their old address to an adversary"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 841000
+			},
+			"text": " is willing to pay a small amount of money because that old address"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 844000
+			},
+			"text": " doesn't hold any coins anymore and so it needs nothing to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 847000
+			},
+			"text": " And so if all or both nodes are rational, you can have a circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 850000
+			},
+			"text": " and they could all coordinate with a low cost, they could all"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 853000
+			},
+			"text": " at the same time move their coins to new addresses and then sell"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 856000
+			},
+			"text": " all of their old keys to an attacker for like no money and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 860000
+			},
+			"text": " the attacker would control basically the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 863000
+			},
+			"text": " And so this is kind of a combination of a long range attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 867000
+			},
+			"text": " and the nothing at stake attack, which we're going to talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 868000
+			},
+			"text": " more in my CASR talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 871000
+			},
+			"text": " And then also we have this property that majority coalition has"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 874000
+			},
+			"text": " an incentive to censor a minority because they just get a"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 877000
+			},
+			"text": " raise right away in terms of block rewards and transaction fees"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 882000
+			},
+			"text": " and we have the same property for double spends where like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 884000
+			},
+			"text": " you know, a majority can get together and conduct double"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 888000
+			},
+			"text": " spends and actually they just gain from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 892000
+			},
+			"text": " So rather than making, defending against majority coalitions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 896000
+			},
+			"text": " these consensus protocols have the property that it is rational"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 900000
+			},
+			"text": " for a majority coalition to undermine their properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 905000
+			},
+			"text": " So basically these protocols are not secure under pure economic"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 908000
+			},
+			"text": " analysis with these kind of worst case assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:12,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 912000
+			},
+			"text": " And it might hold philosophy of CASR as we'll see later is to try"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 912000,
+				"to": 920000
+			},
+			"text": " to have as best of an outlook under this kind of rational model"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 923000
+			},
+			"text": " or under economic analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 927000
+			},
+			"text": " So the kind of two main places that people love me when I tell them this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 930000
+			},
+			"text": " it's not realistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 934000
+			},
+			"text": " It's basically people who have some consensus protocol they like in"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 937000
+			},
+			"text": " the cryptocurrency space and they think that under their assumptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 941000
+			},
+			"text": " though, under the realistic assumptions their thing is secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 944000
+			},
+			"text": " because it's not going to be the case that all of these,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 947000
+			},
+			"text": " all the stakeholders and proof-stake like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 950000
+			},
+			"text": " pure coin or something will move their points in a new address in order to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 952000
+			},
+			"text": " sell all their old coins to an attacker."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 954000
+			},
+			"text": " And there's like coordination costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 957000
+			},
+			"text": " There's also some reasons why this might not be realistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 963000
+			},
+			"text": " But, and then the other criticisms that are often here is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 967000
+			},
+			"text": " it's just impossible to be secure in this context."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 970000
+			},
+			"text": " And that's something that I hear especially from people who have a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 973000
+			},
+			"text": " traditional consensus research because they have like fault tolerance"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 975000
+			},
+			"text": " results that say, oh, more than this number of nodes behave badly"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 977000
+			},
+			"text": " then we lose our guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 980000
+			},
+			"text": " Whereas here we're assuming that actually most nodes will behave badly"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 983000
+			},
+			"text": " if they just have an incentive to."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:29,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 989000
+			},
+			"text": " You've given me these criticisms before, you know who you are."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 989000,
+				"to": 994000
+			},
+			"text": " So in response to that, it's not realistic criticism."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 998000
+			},
+			"text": " Basically, there's a couple of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1001000
+			},
+			"text": " One of them is this teaches us about kind of, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1006000
+			},
+			"text": " edge cases of like, you know, the economic assumptions that we could be making."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1009000
+			},
+			"text": " And that is really informative."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1013000
+			},
+			"text": " So even if it's not realistic, it teaches us about the protocols that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:54,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1014000
+			},
+			"text": " analyzing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1014000,
+				"to": 1018000
+			},
+			"text": " And I think it kind of is realistic in the long run for basically a couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1019000
+			},
+			"text": " of reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1024000
+			},
+			"text": " One of them is, you know, there might be a rule of funded adversary who tries to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1025000
+			},
+			"text": " tackle any of these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1030000
+			},
+			"text": " I mean, it's kind of a fundamental problem to an extent that because we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1036000
+			},
+			"text": " relying on economics, someone with enough money can come in and have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1037000
+			},
+			"text": " large effect on the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1043000
+			},
+			"text": " And so if we can be secure against highly resource attackers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1047000
+			},
+			"text": " then if there will be highly resource attackers, then this model becomes"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1049000
+			},
+			"text": " more realistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1052000
+			},
+			"text": " And the other thing is that coordination costs are kind of falling"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1055000
+			},
+			"text": " over time, both because people kind of get established in the industry and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1058000
+			},
+			"text": " figure out who each other are and have conversations."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1061000
+			},
+			"text": " And because we're actually working on technology that reduces coordination"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1062000
+			},
+			"text": " costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1066000
+			},
+			"text": " So I think, you know, even though it might not be realistic today where like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1070000
+			},
+			"text": " Bitcoin miners wouldn't dream of colluding to attack Bitcoin because,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1073000
+			},
+			"text": " you know, they think Bitcoin is a good thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1074000
+			},
+			"text": " It's something that they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1081000
+			},
+			"text": " In the long run, I would say that it's this kind of situation where everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1084000
+			},
+			"text": " is just governed by their ability to make profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1089000
+			},
+			"text": " It becomes kind of more reasonable."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1092000
+			},
+			"text": " And basically, I also think that if we make our protocols better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1095000
+			},
+			"text": " under a worst-case analysis, they'll be better in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1097000
+			},
+			"text": " And so that's another reason why, you know, even though it might not be"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1100000
+			},
+			"text": " realistic, this is how we should do analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:27,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1107000
+			},
+			"text": " And then basically, it's impossible to be secure in this context, they say."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,000",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1107000,
+				"to": 1112000
+			},
+			"text": " And partly, partly they say this because they have results in"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1114000
+			},
+			"text": " Byzantine fault tonic literature."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1119000
+			},
+			"text": " But Byzantine fault is very different from an economic fault, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1122000
+			},
+			"text": " Byzantine node is just like a node that will do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1125000
+			},
+			"text": " An economic node will only do anything at a price."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1128000
+			},
+			"text": " And it's important to say what that price is."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:52,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1132000
+			},
+			"text": " Rational nodes kind of only behaving correctly if it's in their incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1132000,
+				"to": 1137000
+			},
+			"text": " tube."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1144000
+			},
+			"text": " And basically, you know, it's impossible to be secure in this context."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1147000
+			},
+			"text": " I agree if the adversary has an unbounded budget."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1152000
+			},
+			"text": " But for any particular budget, you can say whether or not we are secure in that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:13,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1153000
+			},
+			"text": " context."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1153000,
+				"to": 1160000
+			},
+			"text": " So this analysis lets you think about an adversary that has like $100,000 or $10"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1164000
+			},
+			"text": " million or $1 billion."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1168000
+			},
+			"text": " And we can't just say that because all of the nodes will just behave badly if"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:32,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1172000
+			},
+			"text": " they're incentivized to, that we won't be secure because they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,000",
+				"to": "00:19:33,000"
+			},
+			"offsets": {
+				"from": 1172000,
+				"to": 1173000
+			},
+			"text": " Byzantine."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1173000,
+				"to": 1177000
+			},
+			"text": " It kind of really depends on what their incentives are."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:42,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1182000
+			},
+			"text": " So, you know, and another reason is that I don't like -- my other response I"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,000",
+				"to": "00:19:45,000"
+			},
+			"offsets": {
+				"from": 1182000,
+				"to": 1185000
+			},
+			"text": " have to this criticism is that, you know, you don't know this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1185000,
+				"to": 1186000
+			},
+			"text": " You just think this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1187000
+			},
+			"text": " This is like any tuition you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1190000
+			},
+			"text": " But this is all very new and we haven't had much time to explore this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:56,000"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1196000
+			},
+			"text": " It might be that you're just wrong and that we can be secure in this context."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1196000,
+				"to": 1201000
+			},
+			"text": " So public consensus protocols face very different challenges than traditional"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1205000
+			},
+			"text": " consensus protocols or the non-public protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1209000
+			},
+			"text": " They're kind of hard to reason about because we can't just assume that a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1211000
+			},
+			"text": " portion of nodes behave badly."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1216000
+			},
+			"text": " We have to use economics and game theory and this kind of reasoning about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1222000
+			},
+			"text": " environment in which nodes operate as an economic agent or as an economic entity"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:26,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1226000
+			},
+			"text": " with expenses and revenues."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1226000,
+				"to": 1231000
+			},
+			"text": " And there's no way at all to weasel economic analysis into business analysis or"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:35,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1235000
+			},
+			"text": " into a rounded by saying, oh, we do business in fault tolerance analysis and we say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,000",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1235000,
+				"to": 1238000
+			},
+			"text": " oh, and then we prove that it's incentive compatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1243000
+			},
+			"text": " You know, there are separate things and there's no way to put the economic"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1247000
+			},
+			"text": " analysis thing into the business analysis box."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:53,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1253000
+			},
+			"text": " And when you start to doubt that, just remember,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,000",
+				"to": "00:20:56,000"
+			},
+			"offsets": {
+				"from": 1253000,
+				"to": 1256000
+			},
+			"text": " nodes have expenses, nodes have revenues."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1256000,
+				"to": 1258000
+			},
+			"text": " A correct node doesn't have an infinite budget."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1260000
+			},
+			"text": " If it's operating at a loss, it'll go offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1264000
+			},
+			"text": " And therefore you can't just rely on this business analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:11,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1271000
+			},
+			"text": " So my basically takeaways for you if you are designing or reasoning about these"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,000",
+				"to": "00:21:15,000"
+			},
+			"offsets": {
+				"from": 1271000,
+				"to": 1275000
+			},
+			"text": " consensus protocols is take about it in the worst case."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1275000,
+				"to": 1279000
+			},
+			"text": " Assume that there's a super majority of validators who will maximize their"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:22,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1282000
+			},
+			"text": " property working in concert."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,000",
+				"to": "00:21:28,000"
+			},
+			"offsets": {
+				"from": 1282000,
+				"to": 1288000
+			},
+			"text": " And assume that an adversary can affect their incentives rather than assuming that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,000",
+				"to": "00:21:32,000"
+			},
+			"offsets": {
+				"from": 1288000,
+				"to": 1292000
+			},
+			"text": " the adversary just controls some fixed proportion of their nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,000",
+				"to": "00:21:34,000"
+			},
+			"offsets": {
+				"from": 1292000,
+				"to": 1294000
+			},
+			"text": " So that's the end of my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,000",
+				"to": "00:21:36,000"
+			},
+			"offsets": {
+				"from": 1294000,
+				"to": 1296000
+			},
+			"text": " Hope you enjoyed it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,000",
+				"to": "00:21:46,000"
+			},
+			"offsets": {
+				"from": 1296000,
+				"to": 1306000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,000",
+				"to": "00:21:52,000"
+			},
+			"offsets": {
+				"from": 1306000,
+				"to": 1312000
+			},
+			"text": " [Music]"
+		}
+	]
+}

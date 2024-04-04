@@ -1,0 +1,2727 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:19,600"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 19600
+			},
+			"text": " I should have put MEV in my talk title because we are actually talking about MEV"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,600",
+				"to": "00:00:21,360"
+			},
+			"offsets": {
+				"from": 19600,
+				"to": 21360
+			},
+			"text": " and I think we would have a higher attendance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,360",
+				"to": "00:00:25,120"
+			},
+			"offsets": {
+				"from": 21360,
+				"to": 25120
+			},
+			"text": " But anyway, this is going to be an interesting talk, I promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,920",
+				"to": "00:00:34,840"
+			},
+			"offsets": {
+				"from": 25920,
+				"to": 34840
+			},
+			"text": " And cool, so yeah, the focus for today is how basically application design decisions can remove"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,840",
+				"to": "00:00:41,800"
+			},
+			"offsets": {
+				"from": 34840,
+				"to": 41800
+			},
+			"text": " or at least reduce the centralizing force that MEV is placing on the ECEO/M blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,800",
+				"to": "00:00:52,320"
+			},
+			"offsets": {
+				"from": 41800,
+				"to": 52320
+			},
+			"text": " All right, so let's see basically the first part of the talk, we focus about how the degree"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,320",
+				"to": "00:00:54,640"
+			},
+			"offsets": {
+				"from": 52320,
+				"to": 54640
+			},
+			"text": " of centralization in proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,040",
+				"to": "00:01:00,280"
+			},
+			"offsets": {
+				"from": 55040,
+				"to": 60280
+			},
+			"text": " So basically we will look at a few data points telling us how decentralized are we actually today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,280",
+				"to": "00:01:07,480"
+			},
+			"offsets": {
+				"from": 60280,
+				"to": 67480
+			},
+			"text": " And then the second part we focus on a more bright layout for ECEO/M where we are heading"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,480",
+				"to": "00:01:13,680"
+			},
+			"offsets": {
+				"from": 67480,
+				"to": 73680
+			},
+			"text": " and hopefully ways of how we can avoid the dystopian future scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,680",
+				"to": "00:01:20,560"
+			},
+			"offsets": {
+				"from": 73680,
+				"to": 80560
+			},
+			"text": " And that really does to the next part where we will talk about how specifically we can make design choices"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,560",
+				"to": "00:01:28,800"
+			},
+			"offsets": {
+				"from": 80560,
+				"to": 88800
+			},
+			"text": " for applications to reduce MEV and then dive into core protocol as one implementation of batch"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,800",
+				"to": "00:01:30,800"
+			},
+			"offsets": {
+				"from": 88800,
+				"to": 90800
+			},
+			"text": " auctions that basically facilitate this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,800",
+				"to": "00:01:33,720"
+			},
+			"offsets": {
+				"from": 90800,
+				"to": 93720
+			},
+			"text": " Cool, let's dive right in and look at some data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,720",
+				"to": "00:01:39,080"
+			},
+			"offsets": {
+				"from": 93720,
+				"to": 99080
+			},
+			"text": " So we had to talk, the talk right before was focusing on validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,080",
+				"to": "00:01:45,320"
+			},
+			"offsets": {
+				"from": 99080,
+				"to": 105320
+			},
+			"text": " And like he was saying actually is that the set of validators today is quite centralized in a way."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,040",
+				"to": "00:01:51,440"
+			},
+			"offsets": {
+				"from": 106040,
+				"to": 111440
+			},
+			"text": " You have stake in providers such as LIDO who hold more than 25% of the market share,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,440",
+				"to": "00:01:55,840"
+			},
+			"offsets": {
+				"from": 111440,
+				"to": 115840
+			},
+			"text": " followed by individual stakeholders, but then already you have decentralized exchanges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,840",
+				"to": "00:02:05,040"
+			},
+			"offsets": {
+				"from": 115840,
+				"to": 125040
+			},
+			"text": " coin-based, and BINES who in total combined also make up more than 25% of the entire validator set on ECEO/M today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,040",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 125040,
+				"to": 131000
+			},
+			"text": " So you can say we have already some degree of centralization in ECEO/M today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,440",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 131440,
+				"to": 138000
+			},
+			"text": " But of course now with MEV you add additional risk of decentralization growing further."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:20,640"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 140640
+			},
+			"text": " Like MEV, why is that helping centralization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,640",
+				"to": "00:02:34,080"
+			},
+			"offsets": {
+				"from": 140640,
+				"to": 154080
+			},
+			"text": " Why is MEV causing centralization is because people or like validators that have the chance of proposing the next doc."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,080",
+				"to": "00:02:40,320"
+			},
+			"offsets": {
+				"from": 154080,
+				"to": 160320
+			},
+			"text": " They can move transactions around in a way that they are able to extract additional value out of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,320",
+				"to": "00:02:46,680"
+			},
+			"offsets": {
+				"from": 160320,
+				"to": 166680
+			},
+			"text": " In this way they are actually able to reap more rewards from the blocks than anyone else would be able to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,680",
+				"to": "00:02:49,680"
+			},
+			"offsets": {
+				"from": 166680,
+				"to": 169680
+			},
+			"text": " In this way they grow their pie more and more over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,680",
+				"to": "00:02:55,880"
+			},
+			"offsets": {
+				"from": 169680,
+				"to": 175880
+			},
+			"text": " And this is already bad, this already existed in proof of work, but not proof of stake, this was accelerated."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,880",
+				"to": "00:03:02,960"
+			},
+			"offsets": {
+				"from": 175880,
+				"to": 182960
+			},
+			"text": " Because now you also have the downside basically that you know in advance who are the next set of validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,960",
+				"to": "00:03:07,720"
+			},
+			"offsets": {
+				"from": 182960,
+				"to": 187720
+			},
+			"text": " so you can have more sophisticated MEV attacks that involve multiple blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,160",
+				"to": "00:03:11,440"
+			},
+			"offsets": {
+				"from": 188160,
+				"to": 191440
+			},
+			"text": " and even are taking place across multiple blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,440",
+				"to": "00:03:18,280"
+			},
+			"offsets": {
+				"from": 191440,
+				"to": 198280
+			},
+			"text": " The response to that is PBS, the Proposer Builder Separation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,280",
+				"to": "00:03:24,040"
+			},
+			"offsets": {
+				"from": 198280,
+				"to": 204040
+			},
+			"text": " where basically you now divide the tasks of the validator into two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,040",
+				"to": "00:03:26,640"
+			},
+			"offsets": {
+				"from": 204040,
+				"to": 206640
+			},
+			"text": " you have the blockproposer and the block builder."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,640",
+				"to": "00:03:33,440"
+			},
+			"offsets": {
+				"from": 206640,
+				"to": 213440
+			},
+			"text": " Now the block builder is basically competing against each other"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,440",
+				"to": "00:03:38,400"
+			},
+			"offsets": {
+				"from": 213440,
+				"to": 218400
+			},
+			"text": " and the one that is able to extract most value is winning the competition because they are basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,400",
+				"to": "00:03:44,880"
+			},
+			"offsets": {
+				"from": 218400,
+				"to": 224880
+			},
+			"text": " bidding against each other and the one who is able to pay the most to the validators, the one who is picked."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,880",
+				"to": "00:03:52,720"
+			},
+			"offsets": {
+				"from": 224880,
+				"to": 232720
+			},
+			"text": " So you might say that basically now PBS is helpful to move the responsibility,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,720",
+				"to": "00:03:57,200"
+			},
+			"offsets": {
+				"from": 232720,
+				"to": 237200
+			},
+			"text": " like to move the centralization away from the validators to the block builders."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,200",
+				"to": "00:04:02,480"
+			},
+			"offsets": {
+				"from": 237200,
+				"to": 242480
+			},
+			"text": " But now actually this is problematic because now we have more centralizing force on the block builders."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,120",
+				"to": "00:04:09,040"
+			},
+			"offsets": {
+				"from": 243120,
+				"to": 249040
+			},
+			"text": " You can even enter a scenario where basically more than 60% or even more than 90%"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,040",
+				"to": "00:04:12,080"
+			},
+			"offsets": {
+				"from": 249040,
+				"to": 252080
+			},
+			"text": " of all blocks are created by one single block builder."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,080",
+				"to": "00:04:17,680"
+			},
+			"offsets": {
+				"from": 252080,
+				"to": 257680
+			},
+			"text": " And this can even be accelerated if they for example would have access to private order flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,680",
+				"to": "00:04:23,360"
+			},
+			"offsets": {
+				"from": 257680,
+				"to": 263360
+			},
+			"text": " So if now you would have wallets such as MiraMasks, could you sign up my transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,360",
+				"to": "00:04:31,760"
+			},
+			"offsets": {
+				"from": 263360,
+				"to": 271760
+			},
+			"text": " to a single block builder, then the single block builder would have additional advantages"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,760",
+				"to": "00:04:36,960"
+			},
+			"offsets": {
+				"from": 271760,
+				"to": 276960
+			},
+			"text": " over the other block builders and would more reliably be able to win this block builder competition"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,960",
+				"to": "00:04:38,960"
+			},
+			"offsets": {
+				"from": 276960,
+				"to": 278960
+			},
+			"text": " and gain more and more share of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,960",
+				"to": "00:04:46,960"
+			},
+			"offsets": {
+				"from": 278960,
+				"to": 286960
+			},
+			"text": " Okay, now let's actually get to the interesting point and look at some data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,960",
+				"to": "00:04:54,800"
+			},
+			"offsets": {
+				"from": 286960,
+				"to": 294800
+			},
+			"text": " So here you see basically how much MEV has been extracted, 145,000 blocks before the merge and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,800",
+				"to": "00:05:03,040"
+			},
+			"offsets": {
+				"from": 294800,
+				"to": 303040
+			},
+			"text": " after the merge. And this is roughly equal to 20.1 days and basically I mean proof of stack has"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,040",
+				"to": "00:05:09,040"
+			},
+			"offsets": {
+				"from": 303040,
+				"to": 309040
+			},
+			"text": " only been live for not even four weeks at this point. And if you look at this data it almost"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,040",
+				"to": "00:05:16,080"
+			},
+			"offsets": {
+				"from": 309040,
+				"to": 316080
+			},
+			"text": " looks like we are extracting less MEV right now than we did before the merge. It's interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,080",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 316080,
+				"to": 320000
+			},
+			"text": " but what is the conclusion? Why is this the case?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,920",
+				"to": "00:05:26,800"
+			},
+			"offsets": {
+				"from": 321920,
+				"to": 326800
+			},
+			"text": " Now if we look at this slide we basically zoom into one specific kind of MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,800",
+				"to": "00:05:35,040"
+			},
+			"offsets": {
+				"from": 326800,
+				"to": 335040
+			},
+			"text": " sandwich attacks. And we can look basically at starting it's showing the first 20 days"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,040",
+				"to": "00:05:42,160"
+			},
+			"offsets": {
+				"from": 335040,
+				"to": 342160
+			},
+			"text": " of sandwich attacks on proof of stack. And you can see basically that the amount of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,160",
+				"to": "00:05:48,640"
+			},
+			"offsets": {
+				"from": 342160,
+				"to": 348640
+			},
+			"text": " very extracted where this attack is growing, right? So basically at the beginning when we"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,640",
+				"to": "00:05:52,800"
+			},
+			"offsets": {
+				"from": 348640,
+				"to": 352800
+			},
+			"text": " moved from proof of work of proof of stack we had one short period of time where less MEV was"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,800",
+				"to": "00:05:57,520"
+			},
+			"offsets": {
+				"from": 352800,
+				"to": 357520
+			},
+			"text": " extracted. But now over time we are getting back to the same stage as we did before."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,520",
+				"to": "00:06:04,880"
+			},
+			"offsets": {
+				"from": 357520,
+				"to": 364880
+			},
+			"text": " And now here what we see here is basically a chart that is showing the adoption of math boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,880",
+				"to": "00:06:10,880"
+			},
+			"offsets": {
+				"from": 364880,
+				"to": 370880
+			},
+			"text": " And math boost is the protocol created by the flashboards team that allows for this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,880",
+				"to": "00:06:15,920"
+			},
+			"offsets": {
+				"from": 370880,
+				"to": 375920
+			},
+			"text": " proposal builder separation that allows for this block builder competition. And the interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,920",
+				"to": "00:06:21,600"
+			},
+			"offsets": {
+				"from": 375920,
+				"to": 381600
+			},
+			"text": " part is that basically they correlate, right? Like you see how with the growing adoption of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,600",
+				"to": "00:06:28,560"
+			},
+			"offsets": {
+				"from": 381600,
+				"to": 388560
+			},
+			"text": " MEV boost you also have growing extraction of sandwich attacks. So that's one important point"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,560",
+				"to": "00:06:36,480"
+			},
+			"offsets": {
+				"from": 388560,
+				"to": 396480
+			},
+			"text": " to make. But then also let's see how the adoption is going. So today already more than 49% of all"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,480",
+				"to": "00:06:41,600"
+			},
+			"offsets": {
+				"from": 396480,
+				"to": 401600
+			},
+			"text": " validators that we were looking at in the first slide, they have already integrated MEV boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,280",
+				"to": "00:06:49,760"
+			},
+			"offsets": {
+				"from": 403280,
+				"to": 409760
+			},
+			"text": " Now let's go one level further and look actually at the relays themselves. So MEV boost was created"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,760",
+				"to": "00:06:57,120"
+			},
+			"offsets": {
+				"from": 409760,
+				"to": 417120
+			},
+			"text": " by the flashboards team. But it's open source so anyone can create their own relay with their own"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,120",
+				"to": "00:07:04,080"
+			},
+			"offsets": {
+				"from": 417120,
+				"to": 424080
+			},
+			"text": " rules of the game for the competition. However the relay that was created by the flashboards team"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,080",
+				"to": "00:07:11,520"
+			},
+			"offsets": {
+				"from": 424080,
+				"to": 431520
+			},
+			"text": " is by far the most leading one, right? It has 83% market share. So you would say what's the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,520",
+				"to": "00:07:17,440"
+			},
+			"offsets": {
+				"from": 431520,
+				"to": 437440
+			},
+			"text": " with that? What's the problem about flashboards having a large market share? But the problem arises"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,440",
+				"to": "00:07:24,720"
+			},
+			"offsets": {
+				"from": 437440,
+				"to": 444720
+			},
+			"text": " then when one of these relayers decides to start censoring transactions. And this is exactly what"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,720",
+				"to": "00:07:30,480"
+			},
+			"offsets": {
+				"from": 444720,
+				"to": 450480
+			},
+			"text": " flashboard does today, right? They are complying with OPEC with the office of, OFAC with the office of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,480",
+				"to": "00:07:38,400"
+			},
+			"offsets": {
+				"from": 450480,
+				"to": 458400
+			},
+			"text": " foreign asset control. And this means that any transactions that were created by the accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,400",
+				"to": "00:07:44,320"
+			},
+			"offsets": {
+				"from": 458400,
+				"to": 464320
+			},
+			"text": " that have previously interacted with tornado cash are not being put into these blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,320",
+				"to": "00:07:52,960"
+			},
+			"offsets": {
+				"from": 464320,
+				"to": 472960
+			},
+			"text": " So if flashboards has 83% market share of 50% market share basically of those that are being"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,960",
+				"to": "00:08:01,120"
+			},
+			"offsets": {
+				"from": 472960,
+				"to": 481120
+			},
+			"text": " integrated by validators, this means that today already more than 40% of all blocks on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,120",
+				"to": "00:08:06,080"
+			},
+			"offsets": {
+				"from": 481120,
+				"to": 486080
+			},
+			"text": " at censoring transactions, that censoring the accounts that have previously interacted"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,080",
+				"to": "00:08:12,960"
+			},
+			"offsets": {
+				"from": 486080,
+				"to": 492960
+			},
+			"text": " with tornado cash. Now we zoom one level further and look at the block builders."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,960",
+				"to": "00:08:20,640"
+			},
+			"offsets": {
+				"from": 492960,
+				"to": 500640
+			},
+			"text": " So who is actually behind these block builders? And here you see basically this is an entire overview"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,640",
+				"to": "00:08:27,360"
+			},
+			"offsets": {
+				"from": 500640,
+				"to": 507360
+			},
+			"text": " of all the block builders today operating with any of the relayers in PBS. And you see that the top two"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,360",
+				"to": "00:08:37,040"
+			},
+			"offsets": {
+				"from": 507360,
+				"to": 517040
+			},
+			"text": " have more than 50% market share. That means if basically you have 50% adoption of math boost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,040",
+				"to": "00:08:45,120"
+			},
+			"offsets": {
+				"from": 517040,
+				"to": 525120
+			},
+			"text": " and within math boost 50% of blocks are created by two players that in total of all the existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,120",
+				"to": "00:08:53,040"
+			},
+			"offsets": {
+				"from": 525120,
+				"to": 533040
+			},
+			"text": " blocks that are today created in Ethereum, 25% of them are created by two single individual block"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,040",
+				"to": "00:08:59,040"
+			},
+			"offsets": {
+				"from": 533040,
+				"to": 539040
+			},
+			"text": " builders. And then just adding again the argument that I had mentioned at the beginning basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,040",
+				"to": "00:09:05,200"
+			},
+			"offsets": {
+				"from": 539040,
+				"to": 545200
+			},
+			"text": " if you have private order flow of math or anyone else is deciding to sell their order flow to this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,200",
+				"to": "00:09:12,160"
+			},
+			"offsets": {
+				"from": 545200,
+				"to": 552160
+			},
+			"text": " one individual block builder, you have very fast and accelerated centralization force even more"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,160",
+				"to": "00:09:18,640"
+			},
+			"offsets": {
+				"from": 552160,
+				"to": 558640
+			},
+			"text": " like you have these block builders will win even more market share. And suddenly this topian future"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,640",
+				"to": "00:09:25,440"
+			},
+			"offsets": {
+				"from": 558640,
+				"to": 565440
+			},
+			"text": " scenario of where Ethereum hopefully is not heading towards suddenly doesn't seem so unlikely anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,440",
+				"to": "00:09:32,400"
+			},
+			"offsets": {
+				"from": 565440,
+				"to": 572400
+			},
+			"text": " Already today you have two block builders having 25% market share and they can easily grow this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,400",
+				"to": "00:09:37,920"
+			},
+			"offsets": {
+				"from": 572400,
+				"to": 577920
+			},
+			"text": " very quickly. Okay that was like the negative side of the talk that's now focused more on like"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,920",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 577920,
+				"to": 586000
+			},
+			"text": " the hopefully more utopian utopian future where we are heading in Ethereum. And for this let's have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:51,280"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 591280
+			},
+			"text": " a look at a quote that Vitalik said earlier this year. So what is his vision for Ethereum right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,280",
+				"to": "00:09:57,120"
+			},
+			"offsets": {
+				"from": 591280,
+				"to": 597120
+			},
+			"text": " Like how can you avoid this avoid the centralizing force of MEV? And what he is saying is that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,120",
+				"to": "00:10:04,560"
+			},
+			"offsets": {
+				"from": 597120,
+				"to": 604560
+			},
+			"text": " have to create an insulation layer around the core protocol to basically ensure that these negative"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,560",
+				"to": "00:10:12,560"
+			},
+			"offsets": {
+				"from": 604560,
+				"to": 612560
+			},
+			"text": " externalities that are created by MEV cannot affect the core decisions that we are taking"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,560",
+				"to": "00:10:18,160"
+			},
+			"offsets": {
+				"from": 612560,
+				"to": 618160
+			},
+			"text": " because right now with having smart contracts built on top of Ethereum you have these applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,160",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 618160,
+				"to": 624000
+			},
+			"text": " that now allow suddenly for decentralized exchange trading and for liquidations and all these"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:31,600"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 631600
+			},
+			"text": " transactions they basically set incentives now for value extraction that give more power to very"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,600",
+				"to": "00:10:38,720"
+			},
+			"offsets": {
+				"from": 631600,
+				"to": 638720
+			},
+			"text": " important players and stakeholders of the Ethereum network. And we need to find a way to not do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,720",
+				"to": "00:10:43,920"
+			},
+			"offsets": {
+				"from": 638720,
+				"to": 643920
+			},
+			"text": " because right now our solution is basically okay damn validators are centralized so let's move"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,920",
+				"to": "00:10:47,600"
+			},
+			"offsets": {
+				"from": 643920,
+				"to": 647600
+			},
+			"text": " it to the block builders but now the block builders are centralizing so where do we move this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,600",
+				"to": "00:10:53,520"
+			},
+			"offsets": {
+				"from": 647600,
+				"to": 653520
+			},
+			"text": " And we need to find a way to avoid this we have to have a better structured way of protecting the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,520",
+				"to": "00:11:03,040"
+			},
+			"offsets": {
+				"from": 653520,
+				"to": 663040
+			},
+			"text": " Ethereum core protocol. And what Vitalik said himself is basically the way forward is that these risks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,040",
+				"to": "00:11:08,400"
+			},
+			"offsets": {
+				"from": 663040,
+				"to": 668400
+			},
+			"text": " they need to be absorbed elsewhere they need to be absorbed either by layer 2s or by the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,400",
+				"to": "00:11:16,240"
+			},
+			"offsets": {
+				"from": 668400,
+				"to": 676240
+			},
+			"text": " applications themselves. Here we have another quote by Stefan Dikofarner of Flashbots who actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,240",
+				"to": "00:11:21,440"
+			},
+			"offsets": {
+				"from": 676240,
+				"to": 681440
+			},
+			"text": " last week announced that he's leaving the team because he does not agree with the centering that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,440",
+				"to": "00:11:27,200"
+			},
+			"offsets": {
+				"from": 681440,
+				"to": 687200
+			},
+			"text": " Flashbots is doing today. And he is also stressing the point that the right way of dealing with MEV"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,840",
+				"to": "00:11:34,400"
+			},
+			"offsets": {
+				"from": 687840,
+				"to": 694400
+			},
+			"text": " is not too basic you try to extract it and then sell it or like distribute it but the right way"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,400",
+				"to": "00:11:40,480"
+			},
+			"offsets": {
+				"from": 694400,
+				"to": 700480
+			},
+			"text": " is to create applications that don't extract the value in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,480",
+				"to": "00:11:49,360"
+			},
+			"offsets": {
+				"from": 700480,
+				"to": 709360
+			},
+			"text": " And this leads us basically to the next part of the talk where we look at how can we design"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,360",
+				"to": "00:11:55,600"
+			},
+			"offsets": {
+				"from": 709360,
+				"to": 715600
+			},
+			"text": " applications in this way that they're not exposing MEV. To do that we first have to understand where"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,600",
+				"to": "00:12:00,800"
+			},
+			"offsets": {
+				"from": 715600,
+				"to": 720800
+			},
+			"text": " MEV is actually coming from like right like why do we have this we need to understand where it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,800",
+				"to": "00:12:08,640"
+			},
+			"offsets": {
+				"from": 720800,
+				"to": 728640
+			},
+			"text": " coming from in order to be able to avoid it. We basically believe or it's pretty clear actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,640",
+				"to": "00:12:14,640"
+			},
+			"offsets": {
+				"from": 728640,
+				"to": 734640
+			},
+			"text": " that one of the reasons that like the main reason that MEV exists today is that within a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,640",
+				"to": "00:12:21,280"
+			},
+			"offsets": {
+				"from": 734640,
+				"to": 741280
+			},
+			"text": " Ethereum block you have multiple different token prices for a single individual asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:27,840"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 747840
+			},
+			"text": " So if you use the example of decentralized trading for example yeah you can have a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,840",
+				"to": "00:12:35,120"
+			},
+			"offsets": {
+				"from": 747840,
+				"to": 755120
+			},
+			"text": " where five people all want to sell your DC for example they all interact with the same AMM"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,120",
+				"to": "00:12:40,880"
+			},
+			"offsets": {
+				"from": 755120,
+				"to": 760880
+			},
+			"text": " but each of them would get a different price within a single block that has one single time like it"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,880",
+				"to": "00:12:47,200"
+			},
+			"offsets": {
+				"from": 760880,
+				"to": 767200
+			},
+			"text": " it's very interesting right like you have an AMM one person in SEX with it they move the price"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,200",
+				"to": "00:12:53,600"
+			},
+			"offsets": {
+				"from": 767200,
+				"to": 773600
+			},
+			"text": " the next person interacts with it they move the price again and because of that they basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,600",
+				"to": "00:13:01,280"
+			},
+			"offsets": {
+				"from": 773600,
+				"to": 781280
+			},
+			"text": " create incentives for other players to jump in move their transactions around place additional"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,280",
+				"to": "00:13:06,800"
+			},
+			"offsets": {
+				"from": 781280,
+				"to": 786800
+			},
+			"text": " transactions in front and after them to extract value from these users and to give a more concrete"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,800",
+				"to": "00:13:15,040"
+			},
+			"offsets": {
+				"from": 786800,
+				"to": 795040
+			},
+			"text": " example of a real block this is like six days old and we had one single block where there was"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,040",
+				"to": "00:13:22,800"
+			},
+			"offsets": {
+				"from": 795040,
+				"to": 802800
+			},
+			"text": " 11 different traders that all traded is USDT and USDT is obviously a super liquid pair right"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,800",
+				"to": "00:13:28,400"
+			},
+			"offsets": {
+				"from": 802800,
+				"to": 808400
+			},
+			"text": " it's like one of the most liquid pairs on this Ethereum and still within the single block you had"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,400",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 808400,
+				"to": 818000
+			},
+			"text": " eight different clearing prices yeah like the price spread across 1337 USD to 1351 so you had"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:44,720"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 824720
+			},
+			"text": " more than 1% spread and price within a single Ethereum block and this very much demonstrates"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,720",
+				"to": "00:13:49,680"
+			},
+			"offsets": {
+				"from": 824720,
+				"to": 829680
+			},
+			"text": " like the value that can be extracted if you have so many different prices in one single block"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,680",
+				"to": "00:13:54,640"
+			},
+			"offsets": {
+				"from": 829680,
+				"to": 834640
+			},
+			"text": " and here this is just like a nice pointer because MEV obviously has been discussed for a very long"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,640",
+				"to": "00:13:59,520"
+			},
+			"offsets": {
+				"from": 834640,
+				"to": 839520
+			},
+			"text": " time it hasn't been addressed for a very long time but it was known about since 2014"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,520",
+				"to": "00:14:06,480"
+			},
+			"offsets": {
+				"from": 839520,
+				"to": 846480
+			},
+			"text": " and this is a Reddit post and the interesting part here is basically the screen shot on the right"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,480",
+				"to": "00:14:13,200"
+			},
+			"offsets": {
+				"from": 846480,
+				"to": 853200
+			},
+			"text": " where Vitalik interacted with and he basically said well one way of how we could tackle this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,200",
+				"to": "00:14:21,440"
+			},
+			"offsets": {
+				"from": 853200,
+				"to": 861440
+			},
+			"text": " problem of value extraction is by processing orders in batches so let's take a look if like looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,440",
+				"to": "00:14:25,600"
+			},
+			"offsets": {
+				"from": 861440,
+				"to": 865600
+			},
+			"text": " back at the previous block that we just saw where we had 11 different traders who got eight different"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,600",
+				"to": "00:14:31,200"
+			},
+			"offsets": {
+				"from": 865600,
+				"to": 871200
+			},
+			"text": " Ethereum prices what would happen if you were able to batch them all together and would give them a"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,200",
+				"to": "00:14:38,960"
+			},
+			"offsets": {
+				"from": 871200,
+				"to": 878960
+			},
+			"text": " single unique clearing price then we would actually be able to even offer them better prices because"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,960",
+				"to": "00:14:44,080"
+			},
+			"offsets": {
+				"from": 878960,
+				"to": 884080
+			},
+			"text": " we wouldn't have to move the price on the price curve up and down up and down that we would"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,080",
+				"to": "00:14:50,320"
+			},
+			"offsets": {
+				"from": 884080,
+				"to": 890320
+			},
+			"text": " basically be able to not have this much price impact and have additional value that we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,320",
+				"to": "00:14:56,080"
+			},
+			"offsets": {
+				"from": 890320,
+				"to": 896080
+			},
+			"text": " give back to the users and in this concrete example it would be 930 USD that we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,080",
+				"to": "00:15:01,440"
+			},
+			"offsets": {
+				"from": 896080,
+				"to": 901440
+			},
+			"text": " additionally pay out to the users but the real benefit on top of this is that because you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,440",
+				"to": "00:15:07,280"
+			},
+			"offsets": {
+				"from": 901440,
+				"to": 907280
+			},
+			"text": " a single Ethereum price you don't expose those trades to MEV okay and this leads us now to call"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,280",
+				"to": "00:15:13,360"
+			},
+			"offsets": {
+				"from": 907280,
+				"to": 913360
+			},
+			"text": " protocol which is basically an implementation of batch auctions on ethereum today and how does"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,360",
+				"to": "00:15:20,320"
+			},
+			"offsets": {
+				"from": 913360,
+				"to": 920320
+			},
+			"text": " cow protocol work so we are doing batch auctions we are batching trades together and what happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,320",
+				"to": "00:15:27,120"
+			},
+			"offsets": {
+				"from": 920320,
+				"to": 927120
+			},
+			"text": " is that basically users on cow's web or cow protocol they go to our UI and then they sign messages they"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,120",
+				"to": "00:15:33,440"
+			},
+			"offsets": {
+				"from": 927120,
+				"to": 933440
+			},
+			"text": " sign and intend to trade and this is actually really important right like because they sign a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,440",
+				"to": "00:15:40,480"
+			},
+			"offsets": {
+				"from": 933440,
+				"to": 940480
+			},
+			"text": " message and they don't just execute they don't just sign a transaction on this theorem this gives us"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,480",
+				"to": "00:15:46,880"
+			},
+			"offsets": {
+				"from": 940480,
+				"to": 946880
+			},
+			"text": " more flexibility what to do with these transactions we are actually then able to batch them together"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,880",
+				"to": "00:15:53,680"
+			},
+			"offsets": {
+				"from": 946880,
+				"to": 953680
+			},
+			"text": " so we collect all these orders in our off-chain order book and then we have a competition we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,680",
+				"to": "00:15:59,600"
+			},
+			"offsets": {
+				"from": 953680,
+				"to": 959600
+			},
+			"text": " a competition of so-called cow batch builders they're basically look at what are all the transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,600",
+				"to": "00:16:06,880"
+			},
+			"offsets": {
+				"from": 959600,
+				"to": 966880
+			},
+			"text": " that currently exist in our off-chain order book and try to find the best possible way of matching"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,880",
+				"to": "00:16:14,640"
+			},
+			"offsets": {
+				"from": 966880,
+				"to": 974640
+			},
+			"text": " them together with by finding a unique clearing price for all these trades and then the winning"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,640",
+				"to": "00:16:23,600"
+			},
+			"offsets": {
+				"from": 974640,
+				"to": 983600
+			},
+			"text": " cow batch builder is the one that would settle these trades on chain and what is to be highlighted"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,600",
+				"to": "00:16:32,400"
+			},
+			"offsets": {
+				"from": 983600,
+				"to": 992400
+			},
+			"text": " here is that it looks maybe on high level it looks very similar to the block builder competition"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,400",
+				"to": "00:16:38,160"
+			},
+			"offsets": {
+				"from": 992400,
+				"to": 998160
+			},
+			"text": " but it's very different it's quite the opposite actually because in the block builder competition"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,160",
+				"to": "00:16:43,520"
+			},
+			"offsets": {
+				"from": 998160,
+				"to": 1003520
+			},
+			"text": " you are really high like you're focused on extracting most where you form the transactions right in"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,520",
+				"to": "00:16:50,800"
+			},
+			"offsets": {
+				"from": 1003520,
+				"to": 1010800
+			},
+			"text": " order to be able to win the competition against the other block builders but on cow's web you maximize"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,800",
+				"to": "00:16:56,880"
+			},
+			"offsets": {
+				"from": 1010800,
+				"to": 1016880
+			},
+			"text": " the value for the users the block builder the batch builder that is able to find the best possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,880",
+				"to": "00:17:03,280"
+			},
+			"offsets": {
+				"from": 1016880,
+				"to": 1023280
+			},
+			"text": " prices for our users is the one that would win the competition and this is enforced by the objective"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,280",
+				"to": "00:17:09,920"
+			},
+			"offsets": {
+				"from": 1023280,
+				"to": 1029920
+			},
+			"text": " function that we are using the batch builder that is maximizing most the utility for the users is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,920",
+				"to": "00:17:18,080"
+			},
+			"offsets": {
+				"from": 1029920,
+				"to": 1038080
+			},
+			"text": " the one that wins the competition all right so um how how does this work how do we keep our cow"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,080",
+				"to": "00:17:26,080"
+			},
+			"offsets": {
+				"from": 1038080,
+				"to": 1046080
+			},
+			"text": " batch builders honest is they they participate by staking on our protocol then they can participate"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,080",
+				"to": "00:17:32,640"
+			},
+			"offsets": {
+				"from": 1046080,
+				"to": 1052640
+			},
+			"text": " in the competition and in case of malicious behavior they would be slashed but if they actually win"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,640",
+				"to": "00:17:37,280"
+			},
+			"offsets": {
+				"from": 1052640,
+				"to": 1057280
+			},
+			"text": " the competition and they execute the trade on chain they're being rewarded by the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,280",
+				"to": "00:17:43,680"
+			},
+			"offsets": {
+				"from": 1057280,
+				"to": 1063680
+			},
+			"text": " um so now this is all like all sounds very good in theory right let's look at it in practice"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,680",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1063680,
+				"to": 1070000
+			},
+			"text": " so cow protocol has been live since a year and a half we have been processing 15 billion dollars"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:56,080"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1076080
+			},
+			"text": " in trading volume so we have a lot of real life examples um this is like an example batch from"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,080",
+				"to": "00:18:05,200"
+			},
+			"offsets": {
+				"from": 1076080,
+				"to": 1085200
+			},
+			"text": " 11 days ago where we had one user that was wanting to say 40 000 worth of money for it against USDC"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,200",
+				"to": "00:18:11,600"
+			},
+			"offsets": {
+				"from": 1085200,
+				"to": 1091600
+			},
+			"text": " and another user that wanted to actually buy money for it wanted to buy 48 000 dollars worth"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,600",
+				"to": "00:18:18,480"
+			},
+			"offsets": {
+				"from": 1091600,
+				"to": 1098480
+			},
+			"text": " of money for it so in this particular batch our cow batch builders were able to match the two"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,480",
+				"to": "00:18:27,040"
+			},
+			"offsets": {
+				"from": 1098480,
+				"to": 1107040
+			},
+			"text": " trades together and in this way create additional surplus for our users additional value that could"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,040",
+				"to": "00:18:34,080"
+			},
+			"offsets": {
+				"from": 1107040,
+				"to": 1114080
+			},
+			"text": " be given back to the users because instead of processing 48 000 worth of tokens on 1 amm and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,080",
+				"to": "00:18:41,280"
+			},
+			"offsets": {
+				"from": 1114080,
+				"to": 1121280
+			},
+			"text": " shifting the price and then settling another transaction of 40 000 48 000 and shift moving the price back"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,600",
+				"to": "00:18:46,720"
+			},
+			"offsets": {
+				"from": 1121600,
+				"to": 1126720
+			},
+			"text": " instead we were able to match these two trades directly against each other and only the left"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,720",
+				"to": "00:18:55,120"
+			},
+			"offsets": {
+				"from": 1126720,
+				"to": 1135120
+			},
+			"text": " over amount of roughly 8 000 dollars needed to be placed on executed in an on-chain amm and this way"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,120",
+				"to": "00:19:01,920"
+			},
+			"offsets": {
+				"from": 1135120,
+				"to": 1141920
+			},
+			"text": " we were able due to the mid due to the price impact the removed price impact we were able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,920",
+				"to": "00:19:09,760"
+			},
+			"offsets": {
+				"from": 1141920,
+				"to": 1149760
+			},
+			"text": " save 1500 dollars for users and also we were able to save on um protocol fees for the users in"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,760",
+				"to": "00:19:16,640"
+			},
+			"offsets": {
+				"from": 1149760,
+				"to": 1156640
+			},
+			"text": " additional 800 dollars that didn't have to be paid to the amm cool and that basically leads me already"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,640",
+				"to": "00:19:26,640"
+			},
+			"offsets": {
+				"from": 1156640,
+				"to": 1166640
+			},
+			"text": " to the final slide of my talk so our vision is to protect the users and our vision is to protect"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,640",
+				"to": "00:19:35,280"
+			},
+			"offsets": {
+				"from": 1166640,
+				"to": 1175280
+			},
+			"text": " this your core protocol against the negative centralizing externalities of mev but to achieve"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,280",
+				"to": "00:19:41,280"
+			},
+			"offsets": {
+				"from": 1175280,
+				"to": 1181280
+			},
+			"text": " this we really have to become the backbone of decentralized trading on ethereum and for this"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,280",
+				"to": "00:19:47,600"
+			},
+			"offsets": {
+				"from": 1181280,
+				"to": 1187600
+			},
+			"text": " what we would like to achieve is that really like our cow batch builders are submitting one batch"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,600",
+				"to": "00:19:54,320"
+			},
+			"offsets": {
+				"from": 1187600,
+				"to": 1194320
+			},
+			"text": " for each ethereum block ideally this batch would actually be placed first in the block because this"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,320",
+				"to": "00:20:01,200"
+			},
+			"offsets": {
+				"from": 1194320,
+				"to": 1201200
+			},
+			"text": " way we could also avoid negative slippage and care transactions but the re-argument here that I"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,200",
+				"to": "00:20:07,680"
+			},
+			"offsets": {
+				"from": 1201200,
+				"to": 1207680
+			},
+			"text": " want to make is that even if our our batch is not placed first in the block by growing our share"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,680",
+				"to": "00:20:13,760"
+			},
+			"offsets": {
+				"from": 1207680,
+				"to": 1213760
+			},
+			"text": " we are basically reducing the total amount of mev transactions in the block and this means in"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,760",
+				"to": "00:20:22,880"
+			},
+			"offsets": {
+				"from": 1213760,
+				"to": 1222880
+			},
+			"text": " other words growing the share of cow protocol means at the same time reducing the share of mev"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,880",
+				"to": "00:20:31,120"
+			},
+			"offsets": {
+				"from": 1222880,
+				"to": 1231120
+			},
+			"text": " thank you everyone for watching me talk thank you Anna we still have five minutes more"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,440",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1231440,
+				"to": 1234000
+			},
+			"text": " so if there are questions i got one two"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:45,040"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1245040
+			},
+			"text": " uh hi i have one question how it can be more profitable when mev so you have to reward more"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,040",
+				"to": "00:20:51,840"
+			},
+			"offsets": {
+				"from": 1245040,
+				"to": 1251840
+			},
+			"text": " than uh flashbots right and do you mean how can you repeat your question you mean how can we be"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,840",
+				"to": "00:21:02,000"
+			},
+			"offsets": {
+				"from": 1251840,
+				"to": 1262000
+			},
+			"text": " how can we ensure that how you can give more rewards to cow builders and mev builders"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,000",
+				"to": "00:21:08,160"
+			},
+			"offsets": {
+				"from": 1262000,
+				"to": 1268160
+			},
+			"text": " so that's so we basically maybe can i go back in my slides just to make this point clear"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,160",
+				"to": "00:21:15,760"
+			},
+			"offsets": {
+				"from": 1268160,
+				"to": 1275760
+			},
+			"text": " is that possible so so okay otherwise i can explain it but basically we had this one slide"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,760",
+				"to": "00:21:22,480"
+			},
+			"offsets": {
+				"from": 1275760,
+				"to": 1282480
+			},
+			"text": " where you could see that um the value chain of a transaction from it's being placed and it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,480",
+				"to": "00:21:32,640"
+			},
+			"offsets": {
+				"from": 1282480,
+				"to": 1292640
+			},
+			"text": " being executed on chain so basically yeah okay so what we do so these are two separate processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,640",
+				"to": "00:21:38,560"
+			},
+			"offsets": {
+				"from": 1292640,
+				"to": 1298560
+			},
+			"text": " right like the first part is basically cow protocol that is the application on top and what we do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,560",
+				"to": "00:21:42,800"
+			},
+			"offsets": {
+				"from": 1298560,
+				"to": 1302800
+			},
+			"text": " we collect the user orders and we collect them they they're signing and tends to trade so we"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,800",
+				"to": "00:21:47,360"
+			},
+			"offsets": {
+				"from": 1302800,
+				"to": 1307360
+			},
+			"text": " collect them off chain and an off chain order and then we have the cow builder competition"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,360",
+				"to": "00:21:53,200"
+			},
+			"offsets": {
+				"from": 1307360,
+				"to": 1313200
+			},
+			"text": " and they basically they have their own set they have their own rule set and their own competition"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,200",
+				"to": "00:21:59,840"
+			},
+			"offsets": {
+				"from": 1313200,
+				"to": 1319840
+			},
+			"text": " rules right and that it is completely separate from the block builder competition so someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,840",
+				"to": "00:22:05,200"
+			},
+			"offsets": {
+				"from": 1319840,
+				"to": 1325200
+			},
+			"text": " who is participating in a cow batch builder competition they basically they they know if they participate"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,200",
+				"to": "00:22:10,640"
+			},
+			"offsets": {
+				"from": 1325200,
+				"to": 1330640
+			},
+			"text": " they only get rewarded they only win if they're maximizing maximizing value for the user but this"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,640",
+				"to": "00:22:16,400"
+			},
+			"offsets": {
+				"from": 1330640,
+				"to": 1336400
+			},
+			"text": " is orthogonal orthogonal to to the block builder competition on ecereum that happens at a later"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,400",
+				"to": "00:22:21,920"
+			},
+			"offsets": {
+				"from": 1336400,
+				"to": 1341920
+			},
+			"text": " stage so right like the cow batch builders they find they find a perfect solution they then"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,920",
+				"to": "00:22:27,440"
+			},
+			"offsets": {
+				"from": 1341920,
+				"to": 1347440
+			},
+			"text": " submit them on chain and on chain they can actually decide how they want to submit this this is up"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,440",
+				"to": "00:22:32,960"
+			},
+			"offsets": {
+				"from": 1347440,
+				"to": 1352960
+			},
+			"text": " to the to the batch builders they can either submit them directly to the to the public mentful"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,960",
+				"to": "00:22:37,840"
+			},
+			"offsets": {
+				"from": 1352960,
+				"to": 1357840
+			},
+			"text": " or they can submit them via a relayer if they decide that they want to additionally protect"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,840",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1357840,
+				"to": 1364000
+			},
+			"text": " themselves against MEV however basically at this point in the execution if they are being front"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:48,640"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1368640
+			},
+			"text": " understand which this is actually something that the block builders they're sorry the batch builders"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,640",
+				"to": "00:22:55,440"
+			},
+			"offsets": {
+				"from": 1368640,
+				"to": 1375440
+			},
+			"text": " have to pay for it so at this point the the user is already protected by the the price that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,440",
+				"to": "00:23:00,560"
+			},
+			"offsets": {
+				"from": 1375440,
+				"to": 1380560
+			},
+			"text": " cow batch builder promised so the cow batch builder wins the competition by promising i can get at"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,560",
+				"to": "00:23:05,600"
+			},
+			"offsets": {
+				"from": 1380560,
+				"to": 1385600
+			},
+			"text": " least this price and then they hold account before this so this is for sure the price that the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,600",
+				"to": "00:23:11,600"
+			},
+			"offsets": {
+				"from": 1385600,
+				"to": 1391600
+			},
+			"text": " gets hey thank you for laying out the problem with l1 right now in terms of MEV the very nice slides"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,600",
+				"to": "00:23:18,800"
+			},
+			"offsets": {
+				"from": 1391600,
+				"to": 1398800
+			},
+			"text": " i'm curious about how you uh moving this problem into the application layer how you deal with"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,800",
+				"to": "00:23:24,480"
+			},
+			"offsets": {
+				"from": 1398800,
+				"to": 1404480
+			},
+			"text": " censorship resistance problems in the off-chain order book specifically so today if i go to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,480",
+				"to": "00:23:29,040"
+			},
+			"offsets": {
+				"from": 1404480,
+				"to": 1409040
+			},
+			"text": " cow swap website and i make a transaction like how do i know i'm not going to be censored by"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,040",
+				"to": "00:23:34,400"
+			},
+			"offsets": {
+				"from": 1409040,
+				"to": 1414400
+			},
+			"text": " the cow swap like company or whoever runs this protocol yes no that's a very good question"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,400",
+				"to": "00:23:38,480"
+			},
+			"offsets": {
+				"from": 1414400,
+				"to": 1418480
+			},
+			"text": " it's basically something that we're working on we still have some centralizing facts"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,480",
+				"to": "00:23:46,240"
+			},
+			"offsets": {
+				"from": 1418480,
+				"to": 1426240
+			},
+			"text": " components in the in in cow protocol but essentially basically this is um right now we have this off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,240",
+				"to": "00:23:50,800"
+			},
+			"offsets": {
+				"from": 1426240,
+				"to": 1430800
+			},
+			"text": " order book that is hosted by us but the ideas that in the future this will be decentralized and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,800",
+				"to": "00:23:57,280"
+			},
+			"offsets": {
+				"from": 1430800,
+				"to": 1437280
+			},
+			"text": " not hosted by us anymore um and yeah but basically this is the answer it's a it's a it's an ongoing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,280",
+				"to": "00:24:03,600"
+			},
+			"offsets": {
+				"from": 1437280,
+				"to": 1443600
+			},
+			"text": " process where we have to decentralize more and more of the components one last question and here"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,840",
+				"to": "00:24:11,200"
+			},
+			"offsets": {
+				"from": 1443840,
+				"to": 1451200
+			},
+			"text": " and question is when you're trying to remove the map in the blocks by cutting this"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,200",
+				"to": "00:24:17,120"
+			},
+			"offsets": {
+				"from": 1451200,
+				"to": 1457120
+			},
+			"text": " batch ballism between how is then how is it then still attractive from a builder perspective"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,120",
+				"to": "00:24:22,880"
+			},
+			"offsets": {
+				"from": 1457120,
+				"to": 1462880
+			},
+			"text": " since here it has less math in the block now how can you still win the bid auction and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,880",
+				"to": "00:24:29,360"
+			},
+			"offsets": {
+				"from": 1462880,
+				"to": 1469360
+			},
+			"text": " how do you make sure that the block gets actually proposed um so i mean right now usually not 100"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,360",
+				"to": "00:24:33,920"
+			},
+			"offsets": {
+				"from": 1469360,
+				"to": 1473920
+			},
+			"text": " percent of these transactions in a block i may be transaction right so basically you would even"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,920",
+				"to": "00:24:38,560"
+			},
+			"offsets": {
+				"from": 1473920,
+				"to": 1478560
+			},
+			"text": " if you're not the first in the block you could still ensure that you're part of it but i think one"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,560",
+				"to": "00:24:44,160"
+			},
+			"offsets": {
+				"from": 1478560,
+				"to": 1484160
+			},
+			"text": " interesting point that where we could get at is by the more order flow we are actually processing"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,160",
+				"to": "00:24:50,240"
+			},
+			"offsets": {
+				"from": 1484160,
+				"to": 1490240
+			},
+			"text": " the more surplus we are generating right like this was the point on like this one slide over here"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,240",
+				"to": "00:24:54,560"
+			},
+			"offsets": {
+				"from": 1490240,
+				"to": 1494560
+			},
+			"text": " where we have this like real example of creating an additional two thousand three hundred dollars"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,560",
+				"to": "00:25:00,640"
+			},
+			"offsets": {
+				"from": 1494560,
+				"to": 1500640
+			},
+			"text": " and surplus so what we could do is for example we would if we are creating this much more value"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,640",
+				"to": "00:25:06,000"
+			},
+			"offsets": {
+				"from": 1500640,
+				"to": 1506000
+			},
+			"text": " for users we could take a percentage cut of this if it was needed in the future to pay"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,000",
+				"to": "00:25:11,680"
+			},
+			"offsets": {
+				"from": 1506000,
+				"to": 1511680
+			},
+			"text": " block builders to guarantee execution in a block we could do this but our future scenario is more"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,680",
+				"to": "00:25:16,400"
+			},
+			"offsets": {
+				"from": 1511680,
+				"to": 1516400
+			},
+			"text": " focusing in the direction that hopefully this won't even be necessary right because we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,400",
+				"to": "00:25:21,600"
+			},
+			"offsets": {
+				"from": 1516400,
+				"to": 1521600
+			},
+			"text": " basically trying to win over more share of the general transactions on ethereum and then that"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,600",
+				"to": "00:25:27,920"
+			},
+			"offsets": {
+				"from": 1521600,
+				"to": 1527920
+			},
+			"text": " would automatically reduce the amount of mav transactions in a block thank you Anna we are running"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,920",
+				"to": "00:25:33,280"
+			},
+			"offsets": {
+				"from": 1527920,
+				"to": 1533280
+			},
+			"text": " out of time so you have enough time to go to the next stop thank you so much and a big round of"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,280",
+				"to": "00:25:37,520"
+			},
+			"offsets": {
+				"from": 1533280,
+				"to": 1537520
+			},
+			"text": " applause for Anna"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,520",
+				"to": "00:25:39,520"
+			},
+			"offsets": {
+				"from": 1537520,
+				"to": 1539520
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,520",
+				"to": "00:25:41,520"
+			},
+			"offsets": {
+				"from": 1539520,
+				"to": 1541520
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,520",
+				"to": "00:25:43,520"
+			},
+			"offsets": {
+				"from": 1541520,
+				"to": 1543520
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,520",
+				"to": "00:25:45,520"
+			},
+			"offsets": {
+				"from": 1543520,
+				"to": 1545520
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,520",
+				"to": "00:25:49,520"
+			},
+			"offsets": {
+				"from": 1545520,
+				"to": 1549520
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

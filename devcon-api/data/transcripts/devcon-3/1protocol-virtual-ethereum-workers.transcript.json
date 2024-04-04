@@ -1,0 +1,2397 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:14,600"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 14600
+			},
+			"text": " >> So, hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,600",
+				"to": "00:00:17,620"
+			},
+			"offsets": {
+				"from": 14600,
+				"to": 17620
+			},
+			"text": " My name is Axel Eriksen and today my co-founder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,620",
+				"to": "00:00:19,620"
+			},
+			"offsets": {
+				"from": 17620,
+				"to": 19620
+			},
+			"text": " Zach Lawrence and I are going to be talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,620",
+				"to": "00:00:21,740"
+			},
+			"offsets": {
+				"from": 19620,
+				"to": 21740
+			},
+			"text": " about what we're building over at One Protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,740",
+				"to": "00:00:24,980"
+			},
+			"offsets": {
+				"from": 21740,
+				"to": 24980
+			},
+			"text": " So, quick who we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,980",
+				"to": "00:00:27,960"
+			},
+			"offsets": {
+				"from": 24980,
+				"to": 27960
+			},
+			"text": " We were both studying at Stanford University,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,960",
+				"to": "00:00:30,680"
+			},
+			"offsets": {
+				"from": 27960,
+				"to": 30680
+			},
+			"text": " computer science and mathematics respectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,680",
+				"to": "00:00:34,040"
+			},
+			"offsets": {
+				"from": 30680,
+				"to": 34040
+			},
+			"text": " and chose to do Ethereum protocol development full time"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,040",
+				"to": "00:00:37,120"
+			},
+			"offsets": {
+				"from": 34040,
+				"to": 37120
+			},
+			"text": " in the beginning of this year and that is not a decision"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,120",
+				"to": "00:00:37,760"
+			},
+			"offsets": {
+				"from": 37120,
+				"to": 37760
+			},
+			"text": " that I regret."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,760",
+				"to": "00:00:41,800"
+			},
+			"offsets": {
+				"from": 37760,
+				"to": 41800
+			},
+			"text": " So, for those of you who haven't heard about One Protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,800",
+				"to": "00:00:44,400"
+			},
+			"offsets": {
+				"from": 41800,
+				"to": 44400
+			},
+			"text": " or haven't heard about the concepts of virtual workers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,400",
+				"to": "00:00:47,560"
+			},
+			"offsets": {
+				"from": 44400,
+				"to": 47560
+			},
+			"text": " the short version of this speech is essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,560",
+				"to": "00:00:51,120"
+			},
+			"offsets": {
+				"from": 47560,
+				"to": 51120
+			},
+			"text": " that instead of signing machines up directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,120",
+				"to": "00:00:54,440"
+			},
+			"offsets": {
+				"from": 51120,
+				"to": 54440
+			},
+			"text": " as validators in CASPER or as solvers in true bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,440",
+				"to": "00:00:57,400"
+			},
+			"offsets": {
+				"from": 54440,
+				"to": 57400
+			},
+			"text": " or more generally as workers in staking protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,680",
+				"to": "00:01:01,240"
+			},
+			"offsets": {
+				"from": 57680,
+				"to": 61240
+			},
+			"text": " we can actually sign up smart contracts as these workers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,240",
+				"to": "00:01:03,600"
+			},
+			"offsets": {
+				"from": 61240,
+				"to": 63600
+			},
+			"text": " in these staking protocols and in doing so,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,600",
+				"to": "00:01:06,720"
+			},
+			"offsets": {
+				"from": 63600,
+				"to": 66720
+			},
+			"text": " we can actually solve some fundamental problems inherent"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,720",
+				"to": "00:01:09,160"
+			},
+			"offsets": {
+				"from": 66720,
+				"to": 69160
+			},
+			"text": " in all staking protocols and we can also introduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,160",
+				"to": "00:01:10,480"
+			},
+			"offsets": {
+				"from": 69160,
+				"to": 70480
+			},
+			"text": " some new exciting properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,480",
+				"to": "00:01:15,620"
+			},
+			"offsets": {
+				"from": 70480,
+				"to": 75620
+			},
+			"text": " So, to get to that, we're going to start by introducing a useful model"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,620",
+				"to": "00:01:18,280"
+			},
+			"offsets": {
+				"from": 75620,
+				"to": 78280
+			},
+			"text": " that we can use to think about protocols like Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,280",
+				"to": "00:01:20,360"
+			},
+			"offsets": {
+				"from": 78280,
+				"to": 80360
+			},
+			"text": " Truebit and Filecoin and then we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,360",
+				"to": "00:01:22,820"
+			},
+			"offsets": {
+				"from": 80360,
+				"to": 82820
+			},
+			"text": " to explore different ways that we can ensure correctness"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,820",
+				"to": "00:01:25,540"
+			},
+			"offsets": {
+				"from": 82820,
+				"to": 85540
+			},
+			"text": " in these protocols and what we're going to find is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,540",
+				"to": "00:01:28,980"
+			},
+			"offsets": {
+				"from": 85540,
+				"to": 88980
+			},
+			"text": " that using staking in the general sense is a very cheap way"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,980",
+				"to": "00:01:30,620"
+			},
+			"offsets": {
+				"from": 88980,
+				"to": 90620
+			},
+			"text": " of ensuring correctness."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,620",
+				"to": "00:01:34,620"
+			},
+			"offsets": {
+				"from": 90620,
+				"to": 94620
+			},
+			"text": " However, there is a fundamental problem with slapping staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,620",
+				"to": "00:01:38,580"
+			},
+			"offsets": {
+				"from": 94620,
+				"to": 98580
+			},
+			"text": " onto a market protocol, so we're going to introduce that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,580",
+				"to": "00:01:40,860"
+			},
+			"offsets": {
+				"from": 98580,
+				"to": 100860
+			},
+			"text": " and then Zach is going to introduce our solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,860",
+				"to": "00:01:42,780"
+			},
+			"offsets": {
+				"from": 100860,
+				"to": 102780
+			},
+			"text": " which are of course virtual workers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,780",
+				"to": "00:01:48,440"
+			},
+			"offsets": {
+				"from": 102780,
+				"to": 108440
+			},
+			"text": " We're going to give you a sneak peek for what virtual workers may look"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,440",
+				"to": "00:01:52,580"
+			},
+			"offsets": {
+				"from": 108440,
+				"to": 112580
+			},
+			"text": " like on protocols like CASPER, Truebit and even Radon"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,580",
+				"to": "00:01:54,900"
+			},
+			"offsets": {
+				"from": 112580,
+				"to": 114900
+			},
+			"text": " and then we're going to finish off by introducing you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,900",
+				"to": "00:01:58,020"
+			},
+			"offsets": {
+				"from": 114900,
+				"to": 118020
+			},
+			"text": " to the idea of the one protocol which is of course what we're working towards."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,020",
+				"to": "00:02:03,860"
+			},
+			"offsets": {
+				"from": 118020,
+				"to": 123860
+			},
+			"text": " So, to begin, we think that a nice and easy way to think about protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,860",
+				"to": "00:02:07,900"
+			},
+			"offsets": {
+				"from": 123860,
+				"to": 127900
+			},
+			"text": " like Ethereum and Truebit is simply that they are a market places"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,900",
+				"to": "00:02:11,460"
+			},
+			"offsets": {
+				"from": 127900,
+				"to": 131460
+			},
+			"text": " for some digital service and in market places of course you have a set"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,460",
+				"to": "00:02:14,640"
+			},
+			"offsets": {
+				"from": 131460,
+				"to": 134640
+			},
+			"text": " of sellers and you have a set of buyers and what the buyers do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,640",
+				"to": "00:02:18,060"
+			},
+			"offsets": {
+				"from": 134640,
+				"to": 138060
+			},
+			"text": " that they form jobs along with payments and they send them to the sellers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,060",
+				"to": "00:02:21,780"
+			},
+			"offsets": {
+				"from": 138060,
+				"to": 141780
+			},
+			"text": " and what the sellers are expected to do is to return some service"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,220",
+				"to": "00:02:25,660"
+			},
+			"offsets": {
+				"from": 142220,
+				"to": 145660
+			},
+			"text": " and perhaps the protocol that fits this model best is Truebit"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,660",
+				"to": "00:02:29,420"
+			},
+			"offsets": {
+				"from": 145660,
+				"to": 149420
+			},
+			"text": " where of course you have a set of task givers which are either, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,420",
+				"to": "00:02:34,260"
+			},
+			"offsets": {
+				"from": 149420,
+				"to": 154260
+			},
+			"text": " Ethereum accounts or smart contracts themselves that want to do some off-chain computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,260",
+				"to": "00:02:39,540"
+			},
+			"offsets": {
+				"from": 154260,
+				"to": 159540
+			},
+			"text": " What they do is that they create what are called tasks in the Truebit system along"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,540",
+				"to": "00:02:42,940"
+			},
+			"offsets": {
+				"from": 159540,
+				"to": 162940
+			},
+			"text": " with payments and they send those to the solvers on the other side"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,940",
+				"to": "00:02:44,700"
+			},
+			"offsets": {
+				"from": 162940,
+				"to": 164700
+			},
+			"text": " that of course execute the programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,700",
+				"to": "00:02:49,300"
+			},
+			"offsets": {
+				"from": 164700,
+				"to": 169300
+			},
+			"text": " So, we can imagine that the service being mediated across Truebit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,300",
+				"to": "00:02:53,060"
+			},
+			"offsets": {
+				"from": 169300,
+				"to": 173060
+			},
+			"text": " the market protocol is quite literally off-chain computation like we would expect."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,060",
+				"to": "00:02:56,900"
+			},
+			"offsets": {
+				"from": 173060,
+				"to": 176900
+			},
+			"text": " But this model extends to Ethereum itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,900",
+				"to": "00:03:01,620"
+			},
+			"offsets": {
+				"from": 176900,
+				"to": 181620
+			},
+			"text": " So, in Ethereum we can imagine that the buyers of the service are all the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,620",
+				"to": "00:03:04,060"
+			},
+			"offsets": {
+				"from": 181620,
+				"to": 184060
+			},
+			"text": " that hold private keys and sign transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,060",
+				"to": "00:03:08,740"
+			},
+			"offsets": {
+				"from": 184060,
+				"to": 188740
+			},
+			"text": " Tasks that they send to the sellers are literally the signed Ethereum transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,740",
+				"to": "00:03:12,260"
+			},
+			"offsets": {
+				"from": 188740,
+				"to": 192260
+			},
+			"text": " that they broadcast across the network and then the miners are of course the machines"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,260",
+				"to": "00:03:14,700"
+			},
+			"offsets": {
+				"from": 192260,
+				"to": 194700
+			},
+			"text": " that plug in on the selling side to provide the service."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,260",
+				"to": "00:03:19,140"
+			},
+			"offsets": {
+				"from": 195260,
+				"to": 199140
+			},
+			"text": " But what is the service in the market protocol Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,140",
+				"to": "00:03:22,820"
+			},
+			"offsets": {
+				"from": 199140,
+				"to": 202820
+			},
+			"text": " Well, it's quite literally having your transaction included in the Ethereum state."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,820",
+				"to": "00:03:24,300"
+			},
+			"offsets": {
+				"from": 202820,
+				"to": 204300
+			},
+			"text": " Okay, simple enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,300",
+				"to": "00:03:27,500"
+			},
+			"offsets": {
+				"from": 204300,
+				"to": 207500
+			},
+			"text": " There is however a fundamental difference between, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,500",
+				"to": "00:03:31,380"
+			},
+			"offsets": {
+				"from": 207500,
+				"to": 211380
+			},
+			"text": " these market protocols and how we imagine a normal market to work"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,380",
+				"to": "00:03:34,020"
+			},
+			"offsets": {
+				"from": 211380,
+				"to": 214020
+			},
+			"text": " and this is of course that they are both open and anonymous."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,020",
+				"to": "00:03:39,660"
+			},
+			"offsets": {
+				"from": 214020,
+				"to": 219660
+			},
+			"text": " And what we mean by this is that anyone should be able to plug in as the seller"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,660",
+				"to": "00:03:42,700"
+			},
+			"offsets": {
+				"from": 219660,
+				"to": 222700
+			},
+			"text": " in one of these protocols and when they do, we don't know who they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,900",
+				"to": "00:03:48,060"
+			},
+			"offsets": {
+				"from": 222900,
+				"to": 228060
+			},
+			"text": " Simultaneously, the users expect the protocol to reliably deliver the service"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,060",
+				"to": "00:03:53,700"
+			},
+			"offsets": {
+				"from": 228060,
+				"to": 233700
+			},
+			"text": " and the users really don't want to have to care about who they actually get matched up with on the other side."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,700",
+				"to": "00:03:57,100"
+			},
+			"offsets": {
+				"from": 233700,
+				"to": 237100
+			},
+			"text": " And if we think about it, this is of course the expected behavior in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,100",
+				"to": "00:04:02,340"
+			},
+			"offsets": {
+				"from": 237100,
+				"to": 242340
+			},
+			"text": " One, anyone can join as a miner and two, when you as a user sign your Ethereum transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,340",
+				"to": "00:04:07,540"
+			},
+			"offsets": {
+				"from": 242340,
+				"to": 247540
+			},
+			"text": " and send them away, you never actually want to have to worry about which miner actually picks it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,540",
+				"to": "00:04:10,260"
+			},
+			"offsets": {
+				"from": 247540,
+				"to": 250260
+			},
+			"text": " So the question is, how can we achieve this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,740",
+				"to": "00:04:15,580"
+			},
+			"offsets": {
+				"from": 250740,
+				"to": 255580
+			},
+			"text": " Well, in the general case, the short answer is that we use financial incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,580",
+				"to": "00:04:21,340"
+			},
+			"offsets": {
+				"from": 255580,
+				"to": 261340
+			},
+			"text": " So we can imagine that for any worker that plugs in as a seller to provide some service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,340",
+				"to": "00:04:24,940"
+			},
+			"offsets": {
+				"from": 261340,
+				"to": 264940
+			},
+			"text": " there's essentially two categories of strategies that they can employ."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,940",
+				"to": "00:04:29,260"
+			},
+			"offsets": {
+				"from": 264940,
+				"to": 269260
+			},
+			"text": " And the first category is the, the first strategy is the correct strategy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,260",
+				"to": "00:04:33,060"
+			},
+			"offsets": {
+				"from": 269260,
+				"to": 273060
+			},
+			"text": " which is when the seller simply delivers what the user expects them to."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,060",
+				"to": "00:04:34,700"
+			},
+			"offsets": {
+				"from": 273060,
+				"to": 274700
+			},
+			"text": " He performs according to the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,700",
+				"to": "00:04:38,620"
+			},
+			"offsets": {
+				"from": 274700,
+				"to": 278620
+			},
+			"text": " This would be analogous to running the standard implementation of some mining software."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,060",
+				"to": "00:04:43,740"
+			},
+			"offsets": {
+				"from": 279060,
+				"to": 283740
+			},
+			"text": " And then the second strategy is the incorrect strategy, which is any other one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,740",
+				"to": "00:04:48,460"
+			},
+			"offsets": {
+				"from": 283740,
+				"to": 288460
+			},
+			"text": " So this could be either that the miner accidentally faults,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,460",
+				"to": "00:04:51,100"
+			},
+			"offsets": {
+				"from": 288460,
+				"to": 291100
+			},
+			"text": " meaning that the software breaks down, mid-execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,100",
+				"to": "00:04:53,700"
+			},
+			"offsets": {
+				"from": 291100,
+				"to": 293700
+			},
+			"text": " or that he deliberately does something that he shouldn't do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,700",
+				"to": "00:04:55,380"
+			},
+			"offsets": {
+				"from": 293700,
+				"to": 295380
+			},
+			"text": " think selfish mining attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,380",
+				"to": "00:04:59,420"
+			},
+			"offsets": {
+				"from": 295380,
+				"to": 299420
+			},
+			"text": " And there are of course expected returns to both these strategies."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,420",
+				"to": "00:05:05,740"
+			},
+			"offsets": {
+				"from": 299420,
+				"to": 305740
+			},
+			"text": " And using this notation, we can ask, well, what's the cost of incorrectness to the miner that chooses to cheat?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,340",
+				"to": "00:05:10,980"
+			},
+			"offsets": {
+				"from": 306340,
+				"to": 310980
+			},
+			"text": " Well, the cost of incorrectness is of course going to be the opportunity cost of the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,980",
+				"to": "00:05:15,460"
+			},
+			"offsets": {
+				"from": 310980,
+				"to": 315460
+			},
+			"text": " of correctness, which is the payment that he doesn't get because he doesn't perform correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,460",
+				"to": "00:05:19,140"
+			},
+			"offsets": {
+				"from": 315460,
+				"to": 319140
+			},
+			"text": " And from the cost of incorrectness, we're going to subtract what he actually does make"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,140",
+				"to": "00:05:22,380"
+			},
+			"offsets": {
+				"from": 319140,
+				"to": 322380
+			},
+			"text": " when he chooses an incorrect strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,380",
+				"to": "00:05:28,180"
+			},
+			"offsets": {
+				"from": 322380,
+				"to": 328180
+			},
+			"text": " So in order to ensure correctness, all that we're really trying to do is just trying to maximize this difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,180",
+				"to": "00:05:29,300"
+			},
+			"offsets": {
+				"from": 328180,
+				"to": 329300
+			},
+			"text": " So how can we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,300",
+				"to": "00:05:31,300"
+			},
+			"offsets": {
+				"from": 329300,
+				"to": 331300
+			},
+			"text": " Well, there's really only two options."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,300",
+				"to": "00:05:35,820"
+			},
+			"offsets": {
+				"from": 331300,
+				"to": 335820
+			},
+			"text": " So we can start with trying to maximize the opportunity cost of correctness."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,500",
+				"to": "00:05:42,260"
+			},
+			"offsets": {
+				"from": 336500,
+				"to": 342260
+			},
+			"text": " The problem with this is that we're effectively saying that the price and the correct case should be higher, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,260",
+				"to": "00:05:43,860"
+			},
+			"offsets": {
+				"from": 342260,
+				"to": 343860
+			},
+			"text": " Which means everybody pays."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,860",
+				"to": "00:05:47,380"
+			},
+			"offsets": {
+				"from": 343860,
+				"to": 347380
+			},
+			"text": " This is analogous to block rewards and consensus protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,380",
+				"to": "00:05:50,700"
+			},
+			"offsets": {
+				"from": 347380,
+				"to": 350700
+			},
+			"text": " And it might seem fine because it achieves what we're trying to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,700",
+				"to": "00:05:56,740"
+			},
+			"offsets": {
+				"from": 350700,
+				"to": 356740
+			},
+			"text": " But in a system like Ethereum, for example, these costs can go crazy after a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,740",
+				"to": "00:06:02,140"
+			},
+			"offsets": {
+				"from": 356740,
+				"to": 362140
+			},
+			"text": " So with three new ethers being issued in every new block and one new block every 13 seconds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,660",
+				"to": "00:06:11,420"
+			},
+			"offsets": {
+				"from": 362660,
+				"to": 371420
+			},
+			"text": " all Ethereum users are actually cumulatively paying about $5.5 million a day to increase the opportunity cost of correctness on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,420",
+				"to": "00:06:16,460"
+			},
+			"offsets": {
+				"from": 371420,
+				"to": 376460
+			},
+			"text": " So a fun calculation to do is to simply take the number of ether that you have and divide it by 18,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,460",
+				"to": "00:06:21,500"
+			},
+			"offsets": {
+				"from": 376460,
+				"to": 381500
+			},
+			"text": " and then you'll find out how much you're paying every day to increase this opportunity cost in dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,500",
+				"to": "00:06:24,380"
+			},
+			"offsets": {
+				"from": 381500,
+				"to": 384380
+			},
+			"text": " But there is, of course, a second thing that we can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,380",
+				"to": "00:06:27,380"
+			},
+			"offsets": {
+				"from": 384380,
+				"to": 387380
+			},
+			"text": " And we can try to minimize the pay out of being incorrect."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,220",
+				"to": "00:06:35,340"
+			},
+			"offsets": {
+				"from": 388220,
+				"to": 395340
+			},
+			"text": " And if we're able to implement this correctly, what we achieve is that we increase costs only for the actors that choose that strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,340",
+				"to": "00:06:37,940"
+			},
+			"offsets": {
+				"from": 395340,
+				"to": 397940
+			},
+			"text": " And this is, of course, what staking tries to achieve."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,940",
+				"to": "00:06:41,140"
+			},
+			"offsets": {
+				"from": 397940,
+				"to": 401140
+			},
+			"text": " We make it a part of the requirement to be a selling machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,140",
+				"to": "00:06:48,460"
+			},
+			"offsets": {
+				"from": 401140,
+				"to": 408460
+			},
+			"text": " to put up a massive security deposit when you join, that you'll always lose if you cheat according to the rules of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,460",
+				"to": "00:06:56,860"
+			},
+			"offsets": {
+				"from": 408460,
+				"to": 416860
+			},
+			"text": " So when implemented correctly, we can actually make this expected returns to be incorrectness negative,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,980",
+				"to": "00:06:59,420"
+			},
+			"offsets": {
+				"from": 416980,
+				"to": 419420
+			},
+			"text": " which, of course, is going to maximize the cost of incorrectness."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,420",
+				"to": "00:07:06,140"
+			},
+			"offsets": {
+				"from": 419420,
+				"to": 426140
+			},
+			"text": " And the idea there is that for any incorrect strategy that a malicious miner can find either accidentally or deliberately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,140",
+				"to": "00:07:09,060"
+			},
+			"offsets": {
+				"from": 426140,
+				"to": 429060
+			},
+			"text": " he's always going to lose money if he chooses that path."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,060",
+				"to": "00:07:17,420"
+			},
+			"offsets": {
+				"from": 429060,
+				"to": 437420
+			},
+			"text": " So what we found essentially is that staking in the general sense is a very cheap way of ensuring correctness."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,420",
+				"to": "00:07:24,660"
+			},
+			"offsets": {
+				"from": 437420,
+				"to": 444660
+			},
+			"text": " And this is, of course, why so many protocols have used stake in different ways to ensure correctness."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,660",
+				"to": "00:07:30,460"
+			},
+			"offsets": {
+				"from": 444660,
+				"to": 450460
+			},
+			"text": " And we have, you know, often computation protocols, decentralized file storage, marketplaces, consensus protocols, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,460",
+				"to": "00:07:38,940"
+			},
+			"offsets": {
+				"from": 450460,
+				"to": 458940
+			},
+			"text": " There is, however, a fundamental problem that's not talked about that much, that is inherent to all staking protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,940",
+				"to": "00:07:44,020"
+			},
+			"offsets": {
+				"from": 458940,
+				"to": 464020
+			},
+			"text": " And if you think about it, what we've done is that we've essentially taken a worker and we've changed what it needs to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,020",
+				"to": "00:07:48,660"
+			},
+			"offsets": {
+				"from": 464020,
+				"to": 468660
+			},
+			"text": " So instead of just performing a task and delivering some useful service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,660",
+				"to": "00:07:53,220"
+			},
+			"offsets": {
+				"from": 468660,
+				"to": 473220
+			},
+			"text": " we've also said that this worker needs to put up a massive or a stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,860",
+				"to": "00:07:58,140"
+			},
+			"offsets": {
+				"from": 473860,
+				"to": 478140
+			},
+			"text": " So what we've effectively done is that we've limited the supply of viable workers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,140",
+				"to": "00:08:05,100"
+			},
+			"offsets": {
+				"from": 478140,
+				"to": 485100
+			},
+			"text": " which in the short term means higher prices for the same security or lower security for the same price."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,100",
+				"to": "00:08:10,540"
+			},
+			"offsets": {
+				"from": 485100,
+				"to": 490540
+			},
+			"text": " And this in the long term creates a big, big macro inefficiency in any protocol that chooses the strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,540",
+				"to": "00:08:17,060"
+			},
+			"offsets": {
+				"from": 490540,
+				"to": 497060
+			},
+			"text": " And I think this is all very, you know, up there and theoretical, but I think the pragmatic way to think about it is simply that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,220",
+				"to": "00:08:25,900"
+			},
+			"offsets": {
+				"from": 497220,
+				"to": 505900
+			},
+			"text": " which of the people that we would ideally want to run CASPer validators also have $100 million in Ether to stick."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,900",
+				"to": "00:08:27,900"
+			},
+			"offsets": {
+				"from": 505900,
+				"to": 507900
+			},
+			"text": " And the answer is not that many."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,900",
+				"to": "00:08:32,300"
+			},
+			"offsets": {
+				"from": 507900,
+				"to": 512300
+			},
+			"text": " So this is the problem and to present the solution is Zach."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,300",
+				"to": "00:08:41,260"
+			},
+			"offsets": {
+				"from": 512300,
+				"to": 521260
+			},
+			"text": " Alright, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,260",
+				"to": "00:08:45,500"
+			},
+			"offsets": {
+				"from": 521260,
+				"to": 525500
+			},
+			"text": " So the solution is actually to divide the labor using smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,660",
+				"to": "00:08:50,820"
+			},
+			"offsets": {
+				"from": 525660,
+				"to": 530820
+			},
+			"text": " So more specifically, you can imagine using smart contracts, which we term virtual workers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,820",
+				"to": "00:08:55,180"
+			},
+			"offsets": {
+				"from": 530820,
+				"to": 535180
+			},
+			"text": " to allow two parties, one a capitalist who's providing some tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,180",
+				"to": "00:08:59,580"
+			},
+			"offsets": {
+				"from": 535180,
+				"to": 539580
+			},
+			"text": " another party, the operator who's providing the computational resources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,580",
+				"to": "00:09:04,340"
+			},
+			"offsets": {
+				"from": 539580,
+				"to": 544340
+			},
+			"text": " to work collaboratively for these different staking protocols that Axel was talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,340",
+				"to": "00:09:07,860"
+			},
+			"offsets": {
+				"from": 544340,
+				"to": 547860
+			},
+			"text": " And then use the virtual worker contract to share in the returns."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,860",
+				"to": "00:09:15,460"
+			},
+			"offsets": {
+				"from": 547860,
+				"to": 555460
+			},
+			"text": " So let's take a quick look at the actual logic that we imagine to be contained in these smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,820",
+				"to": "00:09:23,180"
+			},
+			"offsets": {
+				"from": 555820,
+				"to": 563180
+			},
+			"text": " So the first role of the smart contract would be in restricting how this operator can use the borrowed capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,180",
+				"to": "00:09:34,300"
+			},
+			"offsets": {
+				"from": 563180,
+				"to": 574300
+			},
+			"text": " So you can imagine in a virtual worker for CASPer, the logic would ensure that the operator can only use the capital to sign up as a validator in CASPer and validate blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,300",
+				"to": "00:09:43,660"
+			},
+			"offsets": {
+				"from": 574300,
+				"to": 583660
+			},
+			"text": " Now second, also important, important logic is to ensure that the operator doesn't destroy any of the capital that is actually borrowing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,140",
+				"to": "00:09:51,500"
+			},
+			"offsets": {
+				"from": 584140,
+				"to": 591500
+			},
+			"text": " So you can imagine in the case of CASPer, you wouldn't want the operator to destroy the capital,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,500",
+				"to": "00:10:01,740"
+			},
+			"offsets": {
+				"from": 591500,
+				"to": 601740
+			},
+			"text": " and to protect against that, you would use the virtual worker logic to incentivize machines to be moderating this operator and reporting before he destroys any of the capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,740",
+				"to": "00:10:06,540"
+			},
+			"offsets": {
+				"from": 601740,
+				"to": 606540
+			},
+			"text": " And then finally, you would just use the virtual worker to handle division of the rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,100",
+				"to": "00:10:15,260"
+			},
+			"offsets": {
+				"from": 607100,
+				"to": 615260
+			},
+			"text": " So you can imagine the virtual worker would allow the operator and capitalist to negotiate some sort of rate which they would use to split the rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,260",
+				"to": "00:10:23,060"
+			},
+			"offsets": {
+				"from": 615260,
+				"to": 623060
+			},
+			"text": " So now we'd like to present a few of the virtual workers that we've been designing at one protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,060",
+				"to": "00:10:26,420"
+			},
+			"offsets": {
+				"from": 623060,
+				"to": 626420
+			},
+			"text": " So starting with CASPer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,420",
+				"to": "00:10:36,780"
+			},
+			"offsets": {
+				"from": 626420,
+				"to": 636780
+			},
+			"text": " So as most of you probably already know, Ethereum is planning transition from its current proof of work-based consensus mechanism to a proof of stake-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,780",
+				"to": "00:10:39,580"
+			},
+			"offsets": {
+				"from": 636780,
+				"to": 639580
+			},
+			"text": " consensus mechanism in one of the upcoming hard forks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,580",
+				"to": "00:10:46,900"
+			},
+			"offsets": {
+				"from": 639580,
+				"to": 646900
+			},
+			"text": " And essentially all that means is that miners are going to have to supply a stake in order to perform work for the consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,900",
+				"to": "00:10:51,300"
+			},
+			"offsets": {
+				"from": 646900,
+				"to": 651300
+			},
+			"text": " In other words, Ethereum is becoming a stake in protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,300",
+				"to": "00:10:56,780"
+			},
+			"offsets": {
+				"from": 651300,
+				"to": 656780
+			},
+			"text": " So we have two ideas for how to create a virtual worker for CASPer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,780",
+				"to": "00:11:06,740"
+			},
+			"offsets": {
+				"from": 656780,
+				"to": 666740
+			},
+			"text": " In the first one, operator produces blocks and also supplies a small stake which is lost if he loses any of the capitalist's."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,740",
+				"to": "00:11:12,140"
+			},
+			"offsets": {
+				"from": 666740,
+				"to": 672140
+			},
+			"text": " And then the capitalist, as before, just supplies tokens, in this case Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,140",
+				"to": "00:11:21,260"
+			},
+			"offsets": {
+				"from": 672140,
+				"to": 681260
+			},
+			"text": " So the other model we have, which actually applies to many different stake in protocols, not only CASPer, is the producer signer model."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,260",
+				"to": "00:11:30,900"
+			},
+			"offsets": {
+				"from": 681260,
+				"to": 690900
+			},
+			"text": " So in this case, we actually further divide the role of operator into producer which produces the blocks and proposes blocks to be signed."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,340",
+				"to": "00:11:37,700"
+			},
+			"offsets": {
+				"from": 691340,
+				"to": 697700
+			},
+			"text": " And signer, which actually decides which of these proposed blocks to sign and then broadcast to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,700",
+				"to": "00:11:52,820"
+			},
+			"offsets": {
+				"from": 697700,
+				"to": 712820
+			},
+			"text": " So this makes a lot of sense in protocols where the computation being performed is very expensive and it would make sense in CASPer if the cost of running a full miner becomes prohibitively expensive so a lot of players can't participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,820",
+				"to": "00:11:59,460"
+			},
+			"offsets": {
+				"from": 712820,
+				"to": 719460
+			},
+			"text": " So the second virtual worker we wanted to present is our virtual worker for TrueBit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,820",
+				"to": "00:12:09,460"
+			},
+			"offsets": {
+				"from": 719820,
+				"to": 729460
+			},
+			"text": " So for those that don't know, TrueBit is a protocol on Ethereum which allows users to hire a solver to solve a computational task."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,460",
+				"to": "00:12:17,500"
+			},
+			"offsets": {
+				"from": 729460,
+				"to": 737500
+			},
+			"text": " Notably, these solvers have to supply a security deposit which is slashed if the task is performed incorrectly."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,500",
+				"to": "00:12:25,020"
+			},
+			"offsets": {
+				"from": 737500,
+				"to": 745020
+			},
+			"text": " And also, these solvers are chosen to solve tasks based on the size of their security deposits."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,180",
+				"to": "00:12:33,140"
+			},
+			"offsets": {
+				"from": 746180,
+				"to": 753140
+			},
+			"text": " So in the case of our virtual worker, again, the operator supplies a small stake which is slashed if he performs incorrectly."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,140",
+				"to": "00:12:43,500"
+			},
+			"offsets": {
+				"from": 753140,
+				"to": 763500
+			},
+			"text": " And then this operator leverages the tokens it borrows from the token holder in order to increase the chances of being selected for tasks and also to be able to take on many different jobs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,500",
+				"to": "00:12:55,900"
+			},
+			"offsets": {
+				"from": 763500,
+				"to": 775900
+			},
+			"text": " And now in this virtual worker, there's also logic which incentivizes different workers to monitor the operator and replace him if he fails to perform a task correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,900",
+				"to": "00:13:02,180"
+			},
+			"offsets": {
+				"from": 775900,
+				"to": 782180
+			},
+			"text": " So the final virtual worker we wanted to present was one for Radon."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,180",
+				"to": "00:13:07,420"
+			},
+			"offsets": {
+				"from": 782180,
+				"to": 787420
+			},
+			"text": " So for those that don't know, Radon is an implementation of state channels on top of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,420",
+				"to": "00:13:20,500"
+			},
+			"offsets": {
+				"from": 787420,
+				"to": 800500
+			},
+			"text": " Essentially, if Alice wants to send capital to a e-third of Bob, they can create a payment channel and send an unlimited number of transactions amongst each other off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,500",
+				"to": "00:13:26,300"
+			},
+			"offsets": {
+				"from": 800500,
+				"to": 806300
+			},
+			"text": " And then close the channel only actually needing to interact with the Ethereum blockchain to open and close the channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,300",
+				"to": "00:13:33,140"
+			},
+			"offsets": {
+				"from": 806300,
+				"to": 813140
+			},
+			"text": " For many use cases, that's good, but for some it's actually too much to have to communicate with Ethereum twice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,140",
+				"to": "00:13:40,460"
+			},
+			"offsets": {
+				"from": 813140,
+				"to": 820460
+			},
+			"text": " So you can imagine if Axel is communicating with BBC and BBC is charging Axel for every webpage he visits."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,460",
+				"to": "00:13:45,500"
+			},
+			"offsets": {
+				"from": 820460,
+				"to": 825500
+			},
+			"text": " Axel is not going to want to have to wait several blocks to begin visiting websites."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,500",
+				"to": "00:13:51,860"
+			},
+			"offsets": {
+				"from": 825500,
+				"to": 831860
+			},
+			"text": " And BBC is not going to want to have to wait several blocks in order to receive confirmation of the payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,860",
+				"to": "00:13:56,580"
+			},
+			"offsets": {
+				"from": 831860,
+				"to": 836580
+			},
+			"text": " So Radon does have a solution to this and it's in the form of mediated transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,580",
+				"to": "00:14:02,940"
+			},
+			"offsets": {
+				"from": 836580,
+				"to": 842940
+			},
+			"text": " So you can imagine if Axel already has a payment channel open with a mediator who's also connected to BBC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,940",
+				"to": "00:14:08,820"
+			},
+			"offsets": {
+				"from": 842940,
+				"to": 848820
+			},
+			"text": " then Axel can pay the mediator to forward a payment to BBC for Axel."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,820",
+				"to": "00:14:18,020"
+			},
+			"offsets": {
+				"from": 848820,
+				"to": 858020
+			},
+			"text": " The caveat here is that the mediator has to have enough tokens already in the channel with BBC in order to handle the request from Axel."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,020",
+				"to": "00:14:27,220"
+			},
+			"offsets": {
+				"from": 858020,
+				"to": 867220
+			},
+			"text": " So you can imagine some ideal mediator could be connected to all the major recipients like Live here, BBC, New York Times, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,220",
+				"to": "00:14:30,020"
+			},
+			"offsets": {
+				"from": 867220,
+				"to": 870020
+			},
+			"text": " And then users, Axel, Bob, and Zach, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,020",
+				"to": "00:14:40,740"
+			},
+			"offsets": {
+				"from": 870020,
+				"to": 880740
+			},
+			"text": " Wouldn't even need to ever connect to these vendors directly instead they would connect to the mediator and send all of their payments directly through the mediator."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,740",
+				"to": "00:14:45,820"
+			},
+			"offsets": {
+				"from": 880740,
+				"to": 885820
+			},
+			"text": " Now the caveat with this is the mediator is going to have to have a lot of tokens to be able to handle that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,820",
+				"to": "00:14:53,620"
+			},
+			"offsets": {
+				"from": 885820,
+				"to": 893620
+			},
+			"text": " You can imagine potentially millions of dollars worth of tokens flowing through this mediator means it has to have millions of dollars of tokens in all of these channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,620",
+				"to": "00:15:01,820"
+			},
+			"offsets": {
+				"from": 893620,
+				"to": 901820
+			},
+			"text": " So we think that's a perfect opportunity for a virtual worker and so as before we use the operator token holder model."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,820",
+				"to": "00:15:12,420"
+			},
+			"offsets": {
+				"from": 901820,
+				"to": 912420
+			},
+			"text": " The token holders put tokens into this virtual contract and the operator handles the job of being this ideal mediator and they split the rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,420",
+				"to": "00:15:21,740"
+			},
+			"offsets": {
+				"from": 912420,
+				"to": 921740
+			},
+			"text": " So this is just a preview of a couple of the protocols we're building virtual workers for and we're playing design virtual workers for many more upcoming staking protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,740",
+				"to": "00:15:34,140"
+			},
+			"offsets": {
+				"from": 921740,
+				"to": 934140
+			},
+			"text": " But the ultimate aim of what we're doing is actually to create a marketplace for capitalists and operators to match up, be placed into virtual workers and then start working for arbitrary staking protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,140",
+				"to": "00:15:38,700"
+			},
+			"offsets": {
+				"from": 934140,
+				"to": 938700
+			},
+			"text": " So we want to create this shared platform for a couple of reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,700",
+				"to": "00:15:50,100"
+			},
+			"offsets": {
+				"from": 938700,
+				"to": 950100
+			},
+			"text": " The first one being that there's a huge benefit for virtual workers to be all in the same platform in that many of these virtual workers rely on a deep liquid pool of workers"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,100",
+				"to": "00:15:54,460"
+			},
+			"offsets": {
+				"from": 950100,
+				"to": 954460
+			},
+			"text": " which can come in and replace their operator if he acts maliciously."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,460",
+				"to": "00:16:03,100"
+			},
+			"offsets": {
+				"from": 954460,
+				"to": 963100
+			},
+			"text": " And also some of these virtual workers rely on operators which are monitoring their operators ensuring that they don't lose any of the capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,100",
+				"to": "00:16:13,260"
+			},
+			"offsets": {
+				"from": 963100,
+				"to": 973260
+			},
+			"text": " And then additionally, we just want to make as seamless as possible for any capitalists or operator to find the protocol which can give them the highest returns."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,260",
+				"to": "00:16:18,100"
+			},
+			"offsets": {
+				"from": 973260,
+				"to": 978100
+			},
+			"text": " And as soon as it stops giving the highest returns, switch to some new protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,100",
+				"to": "00:16:26,660"
+			},
+			"offsets": {
+				"from": 978100,
+				"to": 986660
+			},
+			"text": " So at this point in the explanation, people usually start asking me, okay, so how high are my returns going to be on tokens if I put them into the system?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,660",
+				"to": "00:16:33,140"
+			},
+			"offsets": {
+				"from": 986660,
+				"to": 993140
+			},
+			"text": " And my response to that is that potential returns are always a function of risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,140",
+				"to": "00:16:36,220"
+			},
+			"offsets": {
+				"from": 993140,
+				"to": 996220
+			},
+			"text": " And there's risks associated right now with owning crypto tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,220",
+				"to": "00:16:39,660"
+			},
+			"offsets": {
+				"from": 996220,
+				"to": 999660
+			},
+			"text": " It's also risk associated with interacting with one of these virtual workers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,660",
+				"to": "00:16:42,660"
+			},
+			"offsets": {
+				"from": 999660,
+				"to": 1002660
+			},
+			"text": " And so the returns are going to be positively correlated with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,660",
+				"to": "00:16:47,260"
+			},
+			"offsets": {
+				"from": 1002660,
+				"to": 1007260
+			},
+			"text": " And so it's hard to say exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,260",
+				"to": "00:16:56,460"
+			},
+			"offsets": {
+				"from": 1007260,
+				"to": 1016460
+			},
+			"text": " So moving forward, you can imagine rather than having individual users plugging in as a capitalist or an operator, instead having smart contracts plugging in."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,460",
+				"to": "00:17:02,380"
+			},
+			"offsets": {
+				"from": 1016460,
+				"to": 1022380
+			},
+			"text": " In the case of multiple capitalists plugging in via a smart contract, we term that a fun pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,380",
+				"to": "00:17:07,100"
+			},
+			"offsets": {
+				"from": 1022380,
+				"to": 1027100
+			},
+			"text": " And you could further imagine these fun pools tokenizing participation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,100",
+				"to": "00:17:14,860"
+			},
+			"offsets": {
+				"from": 1027100,
+				"to": 1034860
+			},
+			"text": " In other words, issuing shares, which then the participants can go to exchanges on, making it even easier for people to start interacting with the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,860",
+				"to": "00:17:24,620"
+			},
+			"offsets": {
+				"from": 1034860,
+				"to": 1044620
+			},
+			"text": " And finally, with what we're building with the one protocol, we see that right now there's a lot of idle capital out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,620",
+				"to": "00:17:29,260"
+			},
+			"offsets": {
+				"from": 1044620,
+				"to": 1049260
+			},
+			"text": " Tons of people have millions if not billions of dollars in cold storage and ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,260",
+				"to": "00:17:36,460"
+			},
+			"offsets": {
+				"from": 1049260,
+				"to": 1056460
+			},
+			"text": " And whether or not it's your ether and cold storage or your old smartphone and your drawer that you haven't seen in years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,460",
+				"to": "00:17:44,540"
+			},
+			"offsets": {
+				"from": 1056460,
+				"to": 1064540
+			},
+			"text": " we think that if there's an easy, seamless way for people to start getting returns on that capital by plugging into the digital ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,540",
+				"to": "00:17:46,660"
+			},
+			"offsets": {
+				"from": 1064540,
+				"to": 1066660
+			},
+			"text": " That could make the whole digital economy a lot faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,660",
+				"to": "00:17:49,620"
+			},
+			"offsets": {
+				"from": 1066660,
+				"to": 1069620
+			},
+			"text": " So thank you guys so much for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,620",
+				"to": "00:17:51,660"
+			},
+			"offsets": {
+				"from": 1069620,
+				"to": 1071660
+			},
+			"text": " So we're currently hiring, so feel free to reach out."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,660",
+				"to": "00:17:54,780"
+			},
+			"offsets": {
+				"from": 1071660,
+				"to": 1074780
+			},
+			"text": " And if you guys have any questions, feel free to reach out to us via our website."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,780",
+				"to": "00:17:55,620"
+			},
+			"offsets": {
+				"from": 1074780,
+				"to": 1075620
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,620",
+				"to": "00:17:57,620"
+			},
+			"offsets": {
+				"from": 1075620,
+				"to": 1077620
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,620",
+				"to": "00:17:59,620"
+			},
+			"offsets": {
+				"from": 1077620,
+				"to": 1079620
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,620",
+				"to": "00:18:01,620"
+			},
+			"offsets": {
+				"from": 1079620,
+				"to": 1081620
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,620",
+				"to": "00:18:03,620"
+			},
+			"offsets": {
+				"from": 1081620,
+				"to": 1083620
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,620",
+				"to": "00:18:05,620"
+			},
+			"offsets": {
+				"from": 1083620,
+				"to": 1085620
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,620",
+				"to": "00:18:07,620"
+			},
+			"offsets": {
+				"from": 1085620,
+				"to": 1087620
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,620",
+				"to": "00:18:09,620"
+			},
+			"offsets": {
+				"from": 1087620,
+				"to": 1089620
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,620",
+				"to": "00:18:12,360"
+			},
+			"offsets": {
+				"from": 1089620,
+				"to": 1092360
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

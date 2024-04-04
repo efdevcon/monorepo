@@ -1,0 +1,3750 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 18000
+			},
+			"text": " Hi. Yeah, excellent."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 22000
+			},
+			"text": " So, yeah, I'm going to talk about vocal trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 26000
+			},
+			"text": " I've been making a few presentations about those already,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31000
+			},
+			"text": " but they tended to be a bit too deep, technically speaking."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 36000
+			},
+			"text": " So, because this is DEFCON and we're trying to onboard more people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 43000
+			},
+			"text": " this one is going to be a bit more high level, so hopefully enough to raise your interest in vocal trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 48000
+			},
+			"text": " So, yeah, why are we considering vocal trees?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 53000
+			},
+			"text": " It's basically a big change in the way Ethereum functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 55000
+			},
+			"text": " so why do we want to risk this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 57000
+			},
+			"text": " Well, there are several reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 62000
+			},
+			"text": " The first one is we want to be able to build blocks as self-contained execution units."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 67000
+			},
+			"text": " At the moment, Ethereum has a bit of a problem that when you want to join the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 69000
+			},
+			"text": " or if you haven't followed the network for a while,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 73000
+			},
+			"text": " you need to go through a process that's called a sync synchronization."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 76000
+			},
+			"text": " You cannot access the state directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 80000
+			},
+			"text": " It's like you cannot just download the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 85000
+			},
+			"text": " You cannot download the state, but it's a fairly convoluted process."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 90000
+			},
+			"text": " So, the idea is that if you include in the block everything that you need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 95000
+			},
+			"text": " you can just download the block and execute it and see if you're interested."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 103000
+			},
+			"text": " Like, even before you execute the block, you can even know if it's going to be of interest to you or not,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 106000
+			},
+			"text": " and if it's of interest to you, you can execute it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 108000
+			},
+			"text": " Otherwise, you don't even have to care."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 113000
+			},
+			"text": " So, it's something that is -- it's to build something that is in between a full client"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 119000
+			},
+			"text": " and like a full node and a light client in the sense that you are still supposed to follow blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 122000
+			},
+			"text": " but you don't have to hold the entire state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 127000
+			},
+			"text": " And it's nice because it paves the way for other upgrades,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 129000
+			},
+			"text": " or it makes other upgrades a bit simpler."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 136000
+			},
+			"text": " For example, if you want to shuffle committees between shards in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 143000
+			},
+			"text": " you don't want shards to charge the validators to keep following the chain at all times,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 145000
+			},
+			"text": " like several chains at all time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 149000
+			},
+			"text": " So, it's something that's going to help them get up to speed a bit faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 156000
+			},
+			"text": " And, of course, there's the idea of state expiry, like the state of Ethereum is quite large,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 162000
+			},
+			"text": " so we want to be able to delete some of the state, but we don't want to delete and forget forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 168000
+			},
+			"text": " If your state has been deleted but you want to use it again, you need to provide a proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 175000
+			},
+			"text": " to resurrect your state, and the idea is that vertical trees make your proofs smaller,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 178000
+			},
+			"text": " so it will be cheaper for you to resurrect the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 188000
+			},
+			"text": " So, because it's a fairly deeply technical topic, I have tried to make a simpler explanation with pirates."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 193000
+			},
+			"text": " So, imagine you have four pirates, and they bury a treasure somewhere,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 196000
+			},
+			"text": " and they plot the directions to get to the treasure on the map,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 198000
+			},
+			"text": " and then they want to go their separate ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 206000
+			},
+			"text": " So, if they adopt the method, like the metaphorical method that we currently use in these terms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 213000
+			},
+			"text": " to store the Ethereum state, what they would do is they would split the map in four bits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 216000
+			},
+			"text": " and then each of the pirates would get their own bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 225000
+			},
+			"text": " When they want to access the treasure, they need to put all the pieces of the map together."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 227000
+			},
+			"text": " The problem is inheritance."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 234000
+			},
+			"text": " If one of the pirates wants to retire, and for example, wants to sell you his bit of the map,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 241000
+			},
+			"text": " how do you know he's not selling you a fake map, a fake piece of the map?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 244000
+			},
+			"text": " He's a pirate, after all, so you should be careful."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " Well, the problem was this method that was chosen."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 253000
+			},
+			"text": " To figure that out, you need at least the other two pirates to check that the pattern matches."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 256000
+			},
+			"text": " The proof size is quite involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 261000
+			},
+			"text": " It requires you to take the siblings, the sibling pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 269000
+			},
+			"text": " Now, if we used the proofing technique that is suggested by vertical trees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 274000
+			},
+			"text": " which is based on something called vector commitments, hence the name vertical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 282000
+			},
+			"text": " what you do is you cut out something at the center, some little stub,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 286000
+			},
+			"text": " and you make this little stub as hard to reproduce as possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 293000
+			},
+			"text": " ideally cryptographically impossible to fake, and then everybody goes their separate ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 306000
+			},
+			"text": " When you want to buy your part of the map, all you have to do is make sure that your piece fits into that proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 307000
+			},
+			"text": " that little stub."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 310000
+			},
+			"text": " Of course, we don't use pieces of paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 313000
+			},
+			"text": " We use chromatography, stronger chromatography than this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 315000
+			},
+			"text": " Now, this is your proof size."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 320000
+			},
+			"text": " How do you transpose this to vertical trees?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 328000
+			},
+			"text": " Well, the current ethereum state is stored in a tree where all the data of ethereum is at the bottom of the tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 334000
+			},
+			"text": " and then you group them, the parent is a commitment, the parent node is a commitment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 339000
+			},
+			"text": " and then the parent of that parent is also a commitment all the way to the top,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 343000
+			},
+			"text": " and the root of the tree is ending up in the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 347000
+			},
+			"text": " So if you want to prove in a tree, for example, the purple square here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 351000
+			},
+			"text": " if you use the current method, it's the same thing as with the pirates."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 354000
+			},
+			"text": " For each level, you have to pass the siblings."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 362000
+			},
+			"text": " And here, this is a very simple representation, but in ethereum, each parent node has 16 children,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 370000
+			},
+			"text": " and the consequence of this is that you need to pass 15 other value for each value at each level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 372000
+			},
+			"text": " for each value you want to prove."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 377000
+			},
+			"text": " So there are thousands of values per that get touch per block."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 382000
+			},
+			"text": " That's a thousand times 15 values per level."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 390000
+			},
+			"text": " And if I remember correctly, the depth, the average depth of the MPT is between 10 and 15."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 392000
+			},
+			"text": " I don't remember exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 393000
+			},
+			"text": " So that's a lot of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 399000
+			},
+			"text": " That's roughly, if you want to pass that data in a block, that's 3 megabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 401000
+			},
+			"text": " We are in Bitcoin territory."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 406000
+			},
+			"text": " So, yeah, it's a bit too big to pass around the network in a reasonable time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 412000
+			},
+			"text": " If you use the vertical commitment, so you have the equivalent, like you still have the -- oops,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 423000
+			},
+			"text": " that doesn't -- yes, you have the little cryptographic proof, but all you have to pass as your proof is the nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 425000
+			},
+			"text": " along the way to your value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 430000
+			},
+			"text": " And that is much smaller, first of all, because you don't pass the siblings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 434000
+			},
+			"text": " but on top of that, because you don't pass the siblings, there's a virtual cycle"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 437000
+			},
+			"text": " that allows you to widen the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 441000
+			},
+			"text": " You can have more children per tree per node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 444000
+			},
+			"text": " And as a result, the tree gets shallower."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 448000
+			},
+			"text": " So your path is even smaller, even shorter."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 451000
+			},
+			"text": " And as a result, your proof is that much smaller."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 454000
+			},
+			"text": " So unfortunately, it's not that simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 458000
+			},
+			"text": " There's quite a few changes to introduce at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 462000
+			},
+			"text": " Like the first one is putting the proofs in the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 464000
+			},
+			"text": " That's the whole point."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 466000
+			},
+			"text": " But we also need to change the tree structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 472000
+			},
+			"text": " And I'm not going to get too deep into the details, because once again, it's quite involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 473000
+			},
+			"text": " There's an EIP."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 475000
+			},
+			"text": " There are other talks about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 476000
+			},
+			"text": " Look at them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 477000
+			},
+			"text": " Look them up if you're interested."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 481000
+			},
+			"text": " But the idea is that all the data ends up in a single tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 484000
+			},
+			"text": " So currently, accounts have their own tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 491000
+			},
+			"text": " And for each account, you have another tree that encodes the storage for this account."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 498000
+			},
+			"text": " Well, here, everything is kind of, yeah, hashed or mixed together and spread over the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 507000
+			},
+			"text": " Each item, like each account item, for example, the balance, the nonce, the code, any slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 514000
+			},
+			"text": " Like, for example, if you're thinking of crypto-kitty, each cat is accessed independently."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 520000
+			},
+			"text": " Because we don't want to add more to the proof that is required."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 528000
+			},
+			"text": " So if I'm sending funds to a new address, well, I just need the target address balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 531000
+			},
+			"text": " I don't need to know how much code they have."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 534000
+			},
+			"text": " I'm only interested in the funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 539000
+			},
+			"text": " And like I was saying, the data is spread all over the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:05,500"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 545500
+			},
+			"text": " But we are trying to group things that belong together a little bit so that you don't spend"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,500",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 545500,
+				"to": 548000
+			},
+			"text": " your time jumping all over the tree all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 551000
+			},
+			"text": " So it's grouped in batches of 256."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 556000
+			},
+			"text": " And I'm going to go over that in just a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 560000
+			},
+			"text": " So this is a picture that comes from the EIP itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 562000
+			},
+			"text": " I'm going to describe."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 565000
+			},
+			"text": " On the left side, you've got what's called the stem tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 567000
+			},
+			"text": " And it's basically the top of the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 569000
+			},
+			"text": " So the tree is flipped to the side."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 572000
+			},
+			"text": " It's rotated 90 degrees to the left."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 578000
+			},
+			"text": " And the root, sorry, the stem tree only has a branch node."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 581000
+			},
+			"text": " So that means every node in that tree has at least two children."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 590000
+			},
+			"text": " When you take your key and you follow the pass traced by the key, at some point you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:58,440"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 598440
+			},
+			"text": " reach a moment where there's only one group that is a group of 256 that is pointed out"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,440",
+				"to": "00:09:59,520"
+			},
+			"offsets": {
+				"from": 598440,
+				"to": 599520
+			},
+			"text": " by this key."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,520",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 599520,
+				"to": 603000
+			},
+			"text": " So there's this intermediate, like what's called an extension."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 606000
+			},
+			"text": " Yeah, I don't quite see the pointer here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 607000
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:14,520"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 614520
+			},
+			"text": " But the blue box, that extension says this is the prefix, the 31 byte prefix that every"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,520",
+				"to": "00:10:20,880"
+			},
+			"offsets": {
+				"from": 614520,
+				"to": 620880
+			},
+			"text": " key below me have like our keyed by."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,880",
+				"to": "00:10:29,080"
+			},
+			"offsets": {
+				"from": 620880,
+				"to": 629080
+			},
+			"text": " So that means that if when you go through the tree and you have to compare the key that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,080",
+				"to": "00:10:35,120"
+			},
+			"offsets": {
+				"from": 629080,
+				"to": 635120
+			},
+			"text": " you're using with the encoding, the key encoded in that blue box, and if it's the same, that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,120",
+				"to": "00:10:41,760"
+			},
+			"offsets": {
+				"from": 635120,
+				"to": 641760
+			},
+			"text": " means your data is in the group below it, otherwise your data is not present in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,760",
+				"to": "00:10:42,760"
+			},
+			"offsets": {
+				"from": 641760,
+				"to": 642760
+			},
+			"text": " tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,760",
+				"to": "00:10:47,600"
+			},
+			"offsets": {
+				"from": 642760,
+				"to": 647600
+			},
+			"text": " And there's the suffix tree so that corresponds to the 256 values."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,600",
+				"to": "00:10:50,360"
+			},
+			"offsets": {
+				"from": 647600,
+				"to": 650360
+			},
+			"text": " And there's a force column that we're not going to cover."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,360",
+				"to": "00:10:53,360"
+			},
+			"offsets": {
+				"from": 650360,
+				"to": 653360
+			},
+			"text": " It's not really important for this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,360",
+				"to": "00:10:57,040"
+			},
+			"offsets": {
+				"from": 653360,
+				"to": 657040
+			},
+			"text": " So like I said, every piece of data is broken into chunk."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,040",
+				"to": "00:11:04,440"
+			},
+			"offsets": {
+				"from": 657040,
+				"to": 664440
+			},
+			"text": " That means for example the code is broken into bits into 31 byte pieces that are fitted"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,440",
+				"to": "00:11:06,640"
+			},
+			"offsets": {
+				"from": 664440,
+				"to": 666640
+			},
+			"text": " in a 32 byte piece."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,640",
+				"to": "00:11:13,720"
+			},
+			"offsets": {
+				"from": 666640,
+				"to": 673720
+			},
+			"text": " The storage slots are also have their own data, the balance as its own value."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,720",
+				"to": "00:11:20,040"
+			},
+			"offsets": {
+				"from": 673720,
+				"to": 680040
+			},
+			"text": " And each of these values, each of these chunks is given an offset."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,040",
+				"to": "00:11:25,400"
+			},
+			"offsets": {
+				"from": 680040,
+				"to": 685400
+			},
+			"text": " And for example, the balance is always an offset one, the non-set offset two."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,400",
+				"to": "00:11:31,040"
+			},
+			"offsets": {
+				"from": 685400,
+				"to": 691040
+			},
+			"text": " And then a bit further you have the beginning of where the code is supposed to start."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,040",
+				"to": "00:11:37,200"
+			},
+			"offsets": {
+				"from": 691040,
+				"to": 697200
+			},
+			"text": " And then even further you have the bits where all the data slots are supposed to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,200",
+				"to": "00:11:44,960"
+			},
+			"offsets": {
+				"from": 697200,
+				"to": 704960
+			},
+			"text": " And the way you find them in the tree is you take the address of, so you have a key that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,960",
+				"to": "00:11:47,480"
+			},
+			"offsets": {
+				"from": 704960,
+				"to": 707480
+			},
+			"text": " is made of two parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,480",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 707480,
+				"to": 714000
+			},
+			"text": " The 31st bytes are called the stem and the suffix is just the byte that indexes in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:55,680"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 715680
+			},
+			"text": " group that we saw before."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,680",
+				"to": "00:11:59,280"
+			},
+			"offsets": {
+				"from": 715680,
+				"to": 719280
+			},
+			"text": " I'm talking about the third column here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,280",
+				"to": "00:12:03,240"
+			},
+			"offsets": {
+				"from": 719280,
+				"to": 723240
+			},
+			"text": " So the last byte is the index in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,240",
+				"to": "00:12:08,360"
+			},
+			"offsets": {
+				"from": 723240,
+				"to": 728360
+			},
+			"text": " And so to build the stem what you do is you take the address of the account and you take"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,360",
+				"to": "00:12:14,440"
+			},
+			"offsets": {
+				"from": 728360,
+				"to": 734440
+			},
+			"text": " the first 31 bytes of the offset of that chunk."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,440",
+				"to": "00:12:17,560"
+			},
+			"offsets": {
+				"from": 734440,
+				"to": 737560
+			},
+			"text": " And you hash them using what's called a peterson hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,560",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 737560,
+				"to": 745000
+			},
+			"text": " So it's like ketchup but it's much more friendly for ZK applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:32,880"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 752880
+			},
+			"text": " And it's also much slower but you get a 32 byte values, you take the 31st bytes of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,880",
+				"to": "00:12:36,280"
+			},
+			"offsets": {
+				"from": 752880,
+				"to": 756280
+			},
+			"text": " value and that gives you the stem."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,280",
+				"to": "00:12:41,120"
+			},
+			"offsets": {
+				"from": 756280,
+				"to": 761120
+			},
+			"text": " And the way you use it when you compare it to the tree, the stem will give you the pass"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,120",
+				"to": "00:12:44,480"
+			},
+			"offsets": {
+				"from": 761120,
+				"to": 764480
+			},
+			"text": " through the stem tree and the extension."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,480",
+				"to": "00:12:50,800"
+			},
+			"offsets": {
+				"from": 764480,
+				"to": 770800
+			},
+			"text": " And when you found that you use the suffix to select the value in the group."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,800",
+				"to": "00:12:57,800"
+			},
+			"offsets": {
+				"from": 770800,
+				"to": 777800
+			},
+			"text": " So like I said, just a recap, vertical trees are nice because you can make the tree much"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,800",
+				"to": "00:13:02,960"
+			},
+			"offsets": {
+				"from": 777800,
+				"to": 782960
+			},
+			"text": " larger, much smaller, much more shallow, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,960",
+				"to": "00:13:08,360"
+			},
+			"offsets": {
+				"from": 782960,
+				"to": 788360
+			},
+			"text": " You can also experiment with ideas like you could think."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,360",
+				"to": "00:13:11,640"
+			},
+			"offsets": {
+				"from": 788360,
+				"to": 791640
+			},
+			"text": " So I know this is very interesting to dev developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,640",
+				"to": "00:13:15,200"
+			},
+			"offsets": {
+				"from": 791640,
+				"to": 795200
+			},
+			"text": " You can just download the blockchain, not care about the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,200",
+				"to": "00:13:23,600"
+			},
+			"offsets": {
+				"from": 795200,
+				"to": 803600
+			},
+			"text": " And when you look at the proof in the block at the witness, you can figure out if that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,600",
+				"to": "00:13:29,600"
+			},
+			"offsets": {
+				"from": 803600,
+				"to": 809600
+			},
+			"text": " block is accessing something you're interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,600",
+				"to": "00:13:36,800"
+			},
+			"offsets": {
+				"from": 809600,
+				"to": 816800
+			},
+			"text": " So for example, if your crypto kitty, you want to see if the crypto kitty contract is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,800",
+				"to": "00:13:37,800"
+			},
+			"offsets": {
+				"from": 816800,
+				"to": 817800
+			},
+			"text": " accessed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,800",
+				"to": "00:13:41,920"
+			},
+			"offsets": {
+				"from": 817800,
+				"to": 821920
+			},
+			"text": " If so, you just execute that block to update your internal state."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,920",
+				"to": "00:13:43,600"
+			},
+			"offsets": {
+				"from": 821920,
+				"to": 823600
+			},
+			"text": " If not, you don't care."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,600",
+				"to": "00:13:44,600"
+			},
+			"offsets": {
+				"from": 823600,
+				"to": 824600
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,600",
+				"to": "00:13:48,040"
+			},
+			"offsets": {
+				"from": 824600,
+				"to": 828040
+			},
+			"text": " And I was just a recap for the rest of the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,040",
+				"to": "00:13:53,080"
+			},
+			"offsets": {
+				"from": 828040,
+				"to": 833080
+			},
+			"text": " So what is the current state of vertical tree implementations?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,080",
+				"to": "00:13:57,520"
+			},
+			"offsets": {
+				"from": 833080,
+				"to": 837520
+			},
+			"text": " We have one and a half running test nets."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,520",
+				"to": "00:14:00,160"
+			},
+			"offsets": {
+				"from": 837520,
+				"to": 840160
+			},
+			"text": " We have one test net that is fully working."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,160",
+				"to": "00:14:02,080"
+			},
+			"offsets": {
+				"from": 840160,
+				"to": 842080
+			},
+			"text": " It's a proof of work test net called Conbrijo."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,080",
+				"to": "00:14:05,120"
+			},
+			"offsets": {
+				"from": 842080,
+				"to": 845120
+			},
+			"text": " I'll give the address at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,120",
+				"to": "00:14:09,320"
+			},
+			"offsets": {
+				"from": 845120,
+				"to": 849320
+			},
+			"text": " And so proof in blocks, it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,320",
+				"to": "00:14:11,040"
+			},
+			"offsets": {
+				"from": 849320,
+				"to": 851040
+			},
+			"text": " It's been working for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,040",
+				"to": "00:14:16,320"
+			},
+			"offsets": {
+				"from": 851040,
+				"to": 856320
+			},
+			"text": " And then there's proof of stake test net that is currently in bring up phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,320",
+				"to": "00:14:21,160"
+			},
+			"offsets": {
+				"from": 856320,
+				"to": 861160
+			},
+			"text": " So unfortunately, I wasn't able to get it to work for devcon, but it's going to happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,160",
+				"to": "00:14:22,160"
+			},
+			"offsets": {
+				"from": 861160,
+				"to": 862160
+			},
+			"text": " shortly."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,160",
+				"to": "00:14:27,400"
+			},
+			"offsets": {
+				"from": 862160,
+				"to": 867400
+			},
+			"text": " When we do performance, we currently have performance testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,400",
+				"to": "00:14:31,520"
+			},
+			"offsets": {
+				"from": 867400,
+				"to": 871520
+			},
+			"text": " We see that is currently five times slower than regular mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,520",
+				"to": "00:14:37,640"
+			},
+			"offsets": {
+				"from": 871520,
+				"to": 877640
+			},
+			"text": " So when we replay blocks from mainnet on a translated vertical tree layer, it's five"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,640",
+				"to": "00:14:40,360"
+			},
+			"offsets": {
+				"from": 877640,
+				"to": 880360
+			},
+			"text": " times slower."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,360",
+				"to": "00:14:46,040"
+			},
+			"offsets": {
+				"from": 880360,
+				"to": 886040
+			},
+			"text": " We took it down, it used to be 40x, so it's a bit faster already."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,040",
+				"to": "00:14:50,480"
+			},
+			"offsets": {
+				"from": 886040,
+				"to": 890480
+			},
+			"text": " We have another avenue to make it faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,480",
+				"to": "00:14:56,320"
+			},
+			"offsets": {
+				"from": 890480,
+				"to": 896320
+			},
+			"text": " But in my opinion, it's always going to be a bit slower than the current method, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,320",
+				"to": "00:15:00,440"
+			},
+			"offsets": {
+				"from": 896320,
+				"to": 900440
+			},
+			"text": " it offers some opportunities to build interesting applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,440",
+				"to": "00:15:02,760"
+			},
+			"offsets": {
+				"from": 900440,
+				"to": 902760
+			},
+			"text": " So I think it's worth it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,760",
+				"to": "00:15:06,680"
+			},
+			"offsets": {
+				"from": 902760,
+				"to": 906680
+			},
+			"text": " And there are three implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,680",
+				"to": "00:15:10,320"
+			},
+			"offsets": {
+				"from": 906680,
+				"to": 910320
+			},
+			"text": " And there's a fourth one ongoing with base two."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,320",
+				"to": "00:15:15,480"
+			},
+			"offsets": {
+				"from": 910320,
+				"to": 915480
+			},
+			"text": " So I don't know if it's quite readable, but I wanted to give an example of what you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,480",
+				"to": "00:15:16,800"
+			},
+			"offsets": {
+				"from": 915480,
+				"to": 916800
+			},
+			"text": " do with vertical trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,800",
+				"to": "00:15:20,600"
+			},
+			"offsets": {
+				"from": 916800,
+				"to": 920600
+			},
+			"text": " So there's a block explorer on that test net, on the running test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,600",
+				"to": "00:15:27,280"
+			},
+			"offsets": {
+				"from": 920600,
+				"to": 927280
+			},
+			"text": " And there's a piece of software that is able to read the block and reconstruct a view"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,280",
+				"to": "00:15:32,600"
+			},
+			"offsets": {
+				"from": 927280,
+				"to": 932600
+			},
+			"text": " of the network, sorry, of the tree, that is everything you know to re-execute the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,600",
+				"to": "00:15:34,120"
+			},
+			"offsets": {
+				"from": 932600,
+				"to": 934120
+			},
+			"text": " on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,120",
+				"to": "00:15:36,040"
+			},
+			"offsets": {
+				"from": 934120,
+				"to": 936040
+			},
+			"text": " So I don't know if it's quite visible."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,040",
+				"to": "00:15:37,960"
+			},
+			"offsets": {
+				"from": 936040,
+				"to": 937960
+			},
+			"text": " I still don't see the pointer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,960",
+				"to": "00:15:44,560"
+			},
+			"offsets": {
+				"from": 937960,
+				"to": 944560
+			},
+			"text": " But basically you can see that the leftmost branch here is an account."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,560",
+				"to": "00:15:47,600"
+			},
+			"offsets": {
+				"from": 944560,
+				"to": 947600
+			},
+			"text": " The next branch, the right of it is another account."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,600",
+				"to": "00:15:53,480"
+			},
+			"offsets": {
+				"from": 947600,
+				"to": 953480
+			},
+			"text": " I mean, I can tell because of the way the last level looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,480",
+				"to": "00:15:57,720"
+			},
+			"offsets": {
+				"from": 953480,
+				"to": 957720
+			},
+			"text": " And you have the other two branches from the root."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,720",
+				"to": "00:16:00,520"
+			},
+			"offsets": {
+				"from": 957720,
+				"to": 960520
+			},
+			"text": " These do not have a very deep tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,520",
+				"to": "00:16:03,520"
+			},
+			"offsets": {
+				"from": 960520,
+				"to": 963520
+			},
+			"text": " And that's because this is a proof of absence."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,520",
+				"to": "00:16:10,680"
+			},
+			"offsets": {
+				"from": 963520,
+				"to": 970680
+			},
+			"text": " So that means this is the way you signal that those branches, those locations did not exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,680",
+				"to": "00:16:12,800"
+			},
+			"offsets": {
+				"from": 970680,
+				"to": 972800
+			},
+			"text": " before the execution of the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,800",
+				"to": "00:16:19,920"
+			},
+			"offsets": {
+				"from": 972800,
+				"to": 979920
+			},
+			"text": " And what definitely happened here is that those two accounts on the left probably sent"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,920",
+				"to": "00:16:23,520"
+			},
+			"offsets": {
+				"from": 979920,
+				"to": 983520
+			},
+			"text": " funds to those two accounts on the right that did not exist yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,520",
+				"to": "00:16:27,400"
+			},
+			"offsets": {
+				"from": 983520,
+				"to": 987400
+			},
+			"text": " And they will exist after the execution of the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,400",
+				"to": "00:16:30,800"
+			},
+			"offsets": {
+				"from": 987400,
+				"to": 990800
+			},
+			"text": " So it's quite interesting because you can see what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,800",
+				"to": "00:16:35,240"
+			},
+			"offsets": {
+				"from": 990800,
+				"to": 995240
+			},
+			"text": " You can visualize it this way without loading the whole tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,240",
+				"to": "00:16:36,240"
+			},
+			"offsets": {
+				"from": 995240,
+				"to": 996240
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,240",
+				"to": "00:16:37,880"
+			},
+			"offsets": {
+				"from": 996240,
+				"to": 997880
+			},
+			"text": " So this is the current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,880",
+				"to": "00:16:41,560"
+			},
+			"offsets": {
+				"from": 997880,
+				"to": 1001560
+			},
+			"text": " What are the challenges we still have to overcome?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,560",
+				"to": "00:16:44,840"
+			},
+			"offsets": {
+				"from": 1001560,
+				"to": 1004840
+			},
+			"text": " One of them is the transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,840",
+				"to": "00:16:50,240"
+			},
+			"offsets": {
+				"from": 1004840,
+				"to": 1010240
+			},
+			"text": " Converting a miracle tree to a miracle tree is no walk in the park."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,240",
+				"to": "00:16:51,640"
+			},
+			"offsets": {
+				"from": 1010240,
+				"to": 1011640
+			},
+			"text": " It requires a lot of ram."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,640",
+				"to": "00:16:55,120"
+			},
+			"offsets": {
+				"from": 1011640,
+				"to": 1015120
+			},
+			"text": " It requires a lot of disk space."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,120",
+				"to": "00:16:58,640"
+			},
+			"offsets": {
+				"from": 1015120,
+				"to": 1018640
+			},
+			"text": " And yeah, it's quite difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,640",
+				"to": "00:17:04,320"
+			},
+			"offsets": {
+				"from": 1018640,
+				"to": 1024320
+			},
+			"text": " So there are two methods, really two avenues to do this translation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,320",
+				"to": "00:17:09,280"
+			},
+			"offsets": {
+				"from": 1024320,
+				"to": 1029280
+			},
+			"text": " Either you entrust the conversion to very powerful machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,280",
+				"to": "00:17:12,840"
+			},
+			"offsets": {
+				"from": 1029280,
+				"to": 1032840
+			},
+			"text": " I have a test machine that is a Xeon."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,840",
+				"to": "00:17:14,720"
+			},
+			"offsets": {
+				"from": 1032840,
+				"to": 1034720
+			},
+			"text": " It takes it six days."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,720",
+				"to": "00:17:22,920"
+			},
+			"offsets": {
+				"from": 1034720,
+				"to": 1042920
+			},
+			"text": " I know Arigun is able to do it in less than a day, but even for Arigun it's not instant."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,920",
+				"to": "00:17:26,440"
+			},
+			"offsets": {
+				"from": 1042920,
+				"to": 1046440
+			},
+			"text": " And where was I?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,440",
+				"to": "00:17:27,600"
+			},
+			"offsets": {
+				"from": 1046440,
+				"to": 1047600
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,600",
+				"to": "00:17:29,200"
+			},
+			"offsets": {
+				"from": 1047600,
+				"to": 1049200
+			},
+			"text": " So that's the first avenue."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,200",
+				"to": "00:17:35,040"
+			},
+			"offsets": {
+				"from": 1049200,
+				"to": 1055040
+			},
+			"text": " The second avenue we have to do the translation is simply to pace it to the slowest machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,040",
+				"to": "00:17:36,360"
+			},
+			"offsets": {
+				"from": 1055040,
+				"to": 1056360
+			},
+			"text": " on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,360",
+				"to": "00:17:42,880"
+			},
+			"offsets": {
+				"from": 1056360,
+				"to": 1062880
+			},
+			"text": " So that would be to do a translation of, let's say, five, ten, a hundred values per"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,880",
+				"to": "00:17:44,040"
+			},
+			"offsets": {
+				"from": 1062880,
+				"to": 1064040
+			},
+			"text": " block."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,040",
+				"to": "00:17:45,720"
+			},
+			"offsets": {
+				"from": 1064040,
+				"to": 1065720
+			},
+			"text": " But this would last for a month."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,720",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1065720,
+				"to": 1071000
+			},
+			"text": " But then every node on the network would theoretically be able to follow."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:53,680"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1073680
+			},
+			"text": " So these methods have names."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,680",
+				"to": "00:17:59,640"
+			},
+			"offsets": {
+				"from": 1073680,
+				"to": 1079640
+			},
+			"text": " The one where, like you follow the pace of the network, it's called the overlay tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,640",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1079640,
+				"to": 1082000
+			},
+			"text": " The other one was called offline conversion."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:08,080"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1088080
+			},
+			"text": " There's a third one that is known as the roll-up appreciation week where you just do nothing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,080",
+				"to": "00:18:13,600"
+			},
+			"offsets": {
+				"from": 1088080,
+				"to": 1093600
+			},
+			"text": " for a week or a month and you wait for everybody to be done translating."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,600",
+				"to": "00:18:16,120"
+			},
+			"offsets": {
+				"from": 1093600,
+				"to": 1096120
+			},
+			"text": " That's just here because it's a cool name."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,120",
+				"to": "00:18:18,080"
+			},
+			"offsets": {
+				"from": 1096120,
+				"to": 1098080
+			},
+			"text": " No one's really considering that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,080",
+				"to": "00:18:22,280"
+			},
+			"offsets": {
+				"from": 1098080,
+				"to": 1102280
+			},
+			"text": " Yeah, one last thing I wanted to say about this slide is pre-images."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,280",
+				"to": "00:18:28,960"
+			},
+			"offsets": {
+				"from": 1102280,
+				"to": 1108960
+			},
+			"text": " So most clients, including Geth, do not encode the addresses directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,960",
+				"to": "00:18:34,120"
+			},
+			"offsets": {
+				"from": 1108960,
+				"to": 1114120
+			},
+			"text": " They just write the hash of those addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,120",
+				"to": "00:18:39,200"
+			},
+			"offsets": {
+				"from": 1114120,
+				"to": 1119200
+			},
+			"text": " So to do the translation and because we use a different hash system, we need the pre-images."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,200",
+				"to": "00:18:43,320"
+			},
+			"offsets": {
+				"from": 1119200,
+				"to": 1123320
+			},
+			"text": " It turns out that most clients do not store that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,320",
+				"to": "00:18:45,560"
+			},
+			"offsets": {
+				"from": 1123320,
+				"to": 1125560
+			},
+			"text": " Erigan does, but the rest of them don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,560",
+				"to": "00:18:52,640"
+			},
+			"offsets": {
+				"from": 1125560,
+				"to": 1132640
+			},
+			"text": " So pre-image availability is another problem that needs to be addressed and it's not an"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,640",
+				"to": "00:18:54,200"
+			},
+			"offsets": {
+				"from": 1132640,
+				"to": 1134200
+			},
+			"text": " easy one."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,200",
+				"to": "00:18:58,160"
+			},
+			"offsets": {
+				"from": 1134200,
+				"to": 1138160
+			},
+			"text": " Another thing is the slower cryptographic primitives."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,160",
+				"to": "00:18:59,960"
+			},
+			"offsets": {
+				"from": 1138160,
+				"to": 1139960
+			},
+			"text": " It's not as fast as Ketchak."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,960",
+				"to": "00:19:03,880"
+			},
+			"offsets": {
+				"from": 1139960,
+				"to": 1143880
+			},
+			"text": " So this is one of the latest runs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,880",
+				"to": "00:19:13,440"
+			},
+			"offsets": {
+				"from": 1143880,
+				"to": 1153440
+			},
+			"text": " And you can see that roughly 3%, 35% is spent just doing elliptic curve operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,440",
+				"to": "00:19:22,200"
+			},
+			"offsets": {
+				"from": 1153440,
+				"to": 1162200
+			},
+			"text": " So cryptographic primitives is really where the effort needs to be, the optimization effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,200",
+				"to": "00:19:23,400"
+			},
+			"offsets": {
+				"from": 1162200,
+				"to": 1163400
+			},
+			"text": " needs to be made."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,400",
+				"to": "00:19:29,800"
+			},
+			"offsets": {
+				"from": 1163400,
+				"to": 1169800
+			},
+			"text": " So either by writing faster crypto or by not calling those functions as much."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,800",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1169800,
+				"to": 1174000
+			},
+			"text": " So Ketching, for example, is a technique that has worked well."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:36,960"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1176960
+			},
+			"text": " Yeah, there's a slide on database design."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,960",
+				"to": "00:19:44,720"
+			},
+			"offsets": {
+				"from": 1176960,
+				"to": 1184720
+			},
+			"text": " So basically the idea is that current most clients have written their optimized their"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,720",
+				"to": "00:19:50,240"
+			},
+			"offsets": {
+				"from": 1184720,
+				"to": 1190240
+			},
+			"text": " database layout and their database access layer for the current MPT."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,240",
+				"to": "00:19:55,720"
+			},
+			"offsets": {
+				"from": 1190240,
+				"to": 1195720
+			},
+			"text": " A lot of those assumptions are no longer valid, let alone helpful with vertical trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,720",
+				"to": "00:20:03,800"
+			},
+			"offsets": {
+				"from": 1195720,
+				"to": 1203800
+			},
+			"text": " So there will be some need to adapt to something that is a bit close to what Erigan is doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,800",
+				"to": "00:20:06,520"
+			},
+			"offsets": {
+				"from": 1203800,
+				"to": 1206520
+			},
+			"text": " but that will take time, unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,520",
+				"to": "00:20:12,360"
+			},
+			"offsets": {
+				"from": 1206520,
+				"to": 1212360
+			},
+			"text": " And I wanted to finish on what you can do if you want to help."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,360",
+				"to": "00:20:15,760"
+			},
+			"offsets": {
+				"from": 1212360,
+				"to": 1215760
+			},
+			"text": " The first thing would be there are test nets."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,760",
+				"to": "00:20:20,320"
+			},
+			"offsets": {
+				"from": 1215760,
+				"to": 1220320
+			},
+			"text": " So the first thing you can do is just try to deploy your contracts on the test net and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,320",
+				"to": "00:20:23,120"
+			},
+			"offsets": {
+				"from": 1220320,
+				"to": 1223120
+			},
+			"text": " see if that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,120",
+				"to": "00:20:33,280"
+			},
+			"offsets": {
+				"from": 1223120,
+				"to": 1233280
+			},
+			"text": " If you can also try to run your own client, like #testingtheverge, you can also modify"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,280",
+				"to": "00:20:41,640"
+			},
+			"offsets": {
+				"from": 1233280,
+				"to": 1241640
+			},
+			"text": " a CL client to figure out how to propagate the proofs because currently it hasn't been"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,640",
+				"to": "00:20:42,640"
+			},
+			"offsets": {
+				"from": 1241640,
+				"to": 1242640
+			},
+			"text": " defined."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,640",
+				"to": "00:20:49,160"
+			},
+			"offsets": {
+				"from": 1242640,
+				"to": 1249160
+			},
+			"text": " So it would be interesting to run a fact finding machine, finding out where and how the proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,160",
+				"to": "00:20:52,840"
+			},
+			"offsets": {
+				"from": 1249160,
+				"to": 1252840
+			},
+			"text": " need to be propagated in a proof of stake world."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,840",
+				"to": "00:20:55,600"
+			},
+			"offsets": {
+				"from": 1252840,
+				"to": 1255600
+			},
+			"text": " Like I said, crypto is the bottleneck."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,600",
+				"to": "00:21:01,160"
+			},
+			"offsets": {
+				"from": 1255600,
+				"to": 1261160
+			},
+			"text": " So if you can find a better cryptographic primitive than what we have, that would be also quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,160",
+				"to": "00:21:03,960"
+			},
+			"offsets": {
+				"from": 1261160,
+				"to": 1263960
+			},
+			"text": " helpful."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,960",
+				"to": "00:21:11,760"
+			},
+			"offsets": {
+				"from": 1263960,
+				"to": 1271760
+			},
+			"text": " It's also going to affect layer two solutions, like presumably layer two groups don't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,760",
+				"to": "00:21:17,640"
+			},
+			"offsets": {
+				"from": 1271760,
+				"to": 1277640
+			},
+			"text": " want to diverge too much from the main net."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,640",
+				"to": "00:21:23,040"
+			},
+			"offsets": {
+				"from": 1277640,
+				"to": 1283040
+			},
+			"text": " They will need to adapt as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,040",
+				"to": "00:21:27,280"
+			},
+			"offsets": {
+				"from": 1283040,
+				"to": 1287280
+			},
+			"text": " There's not a clear pass for that yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,280",
+				"to": "00:21:29,640"
+			},
+			"offsets": {
+				"from": 1287280,
+				"to": 1289640
+			},
+			"text": " Like I said, preimages are also a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,640",
+				"to": "00:21:36,320"
+			},
+			"offsets": {
+				"from": 1289640,
+				"to": 1296320
+			},
+			"text": " If you have a way to make preimages available to everyone, that's a very good test, very"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,320",
+				"to": "00:21:37,480"
+			},
+			"offsets": {
+				"from": 1296320,
+				"to": 1297480
+			},
+			"text": " useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,480",
+				"to": "00:21:38,720"
+			},
+			"offsets": {
+				"from": 1297480,
+				"to": 1298720
+			},
+			"text": " And then you can go crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,720",
+				"to": "00:21:44,680"
+			},
+			"offsets": {
+				"from": 1298720,
+				"to": 1304680
+			},
+			"text": " You can try to prototype the interaction of vertical tree with the portal network, with"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,680",
+				"to": "00:21:48,920"
+			},
+			"offsets": {
+				"from": 1304680,
+				"to": 1308920
+			},
+			"text": " try to implement state expiry using vertical trees, all of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,920",
+				"to": "00:21:54,640"
+			},
+			"offsets": {
+				"from": 1308920,
+				"to": 1314640
+			},
+			"text": " None of that is greenfield, but it's also quite interesting to get some information, some"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,640",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1314640,
+				"to": 1318000
+			},
+			"text": " ideas of what is to come."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:22:01,440"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1321440
+			},
+			"text": " And with this, that's pretty much it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,440",
+				"to": "00:22:08,040"
+			},
+			"offsets": {
+				"from": 1321440,
+				"to": 1328040
+			},
+			"text": " I have put addresses of the two test nets, knowing that the second one is still in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,040",
+				"to": "00:22:10,560"
+			},
+			"offsets": {
+				"from": 1328040,
+				"to": 1330560
+			},
+			"text": " bring-up phase, so it will probably not work today."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,560",
+				"to": "00:22:15,160"
+			},
+			"offsets": {
+				"from": 1330560,
+				"to": 1335160
+			},
+			"text": " But the other one is the landing page for the proof-of-work test net, and this one works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,160",
+				"to": "00:22:17,120"
+			},
+			"offsets": {
+				"from": 1335160,
+				"to": 1337120
+			},
+			"text": " or should work."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,120",
+				"to": "00:22:22,760"
+			},
+			"offsets": {
+				"from": 1337120,
+				"to": 1342760
+			},
+			"text": " And you can look at the explorer, you can send transaction, you can try everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,760",
+				"to": "00:22:23,760"
+			},
+			"offsets": {
+				"from": 1342760,
+				"to": 1343760
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,760",
+				"to": "00:22:25,760"
+			},
+			"offsets": {
+				"from": 1343760,
+				"to": 1345760
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,760",
+				"to": "00:22:28,400"
+			},
+			"offsets": {
+				"from": 1345760,
+				"to": 1348400
+			},
+			"text": " >> Thank you so much, Guillaume."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,400",
+				"to": "00:22:31,360"
+			},
+			"offsets": {
+				"from": 1348400,
+				"to": 1351360
+			},
+			"text": " Guillaume, do you mind taking a minute to answer questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,360",
+				"to": "00:22:32,360"
+			},
+			"offsets": {
+				"from": 1351360,
+				"to": 1352360
+			},
+			"text": " >> I'm going to throw it at you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,360",
+				"to": "00:22:35,280"
+			},
+			"offsets": {
+				"from": 1352360,
+				"to": 1355280
+			},
+			"text": " >> If you do have any questions for Guillaume, go ahead and raise your hand, and one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,280",
+				"to": "00:22:38,120"
+			},
+			"offsets": {
+				"from": 1355280,
+				"to": 1358120
+			},
+			"text": " the volunteers will actually come towards you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,120",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1358120,
+				"to": 1364000
+			},
+			"text": " There's a question right there in the fourth row, fifth row with a black sweatshirt."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:46,800"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1366800
+			},
+			"text": " >> You mentioned accessing data is going to be a little bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,800",
+				"to": "00:22:51,640"
+			},
+			"offsets": {
+				"from": 1366800,
+				"to": 1371640
+			},
+			"text": " Does this imply that, like, tooling teams and wallets and such, and I are going to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,640",
+				"to": "00:22:54,680"
+			},
+			"offsets": {
+				"from": 1371640,
+				"to": 1374680
+			},
+			"text": " to enforce access lists now moving forward?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,680",
+				"to": "00:23:01,160"
+			},
+			"offsets": {
+				"from": 1374680,
+				"to": 1381160
+			},
+			"text": " >> No, it doesn't mean that, but it means that the gas model is going to change to follow"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,160",
+				"to": "00:23:05,960"
+			},
+			"offsets": {
+				"from": 1381160,
+				"to": 1385960
+			},
+			"text": " this new model, which is why I was like, if you've got a contract, please deploy it on"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,960",
+				"to": "00:23:07,560"
+			},
+			"offsets": {
+				"from": 1385960,
+				"to": 1387560
+			},
+			"text": " the test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,560",
+				"to": "00:23:10,240"
+			},
+			"offsets": {
+				"from": 1387560,
+				"to": 1390240
+			},
+			"text": " But you do not need access lists are going to disappear."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,240",
+				"to": "00:23:16,040"
+			},
+			"offsets": {
+				"from": 1390240,
+				"to": 1396040
+			},
+			"text": " They're replaced by something else that is not really exposed to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,040",
+				"to": "00:23:21,240"
+			},
+			"offsets": {
+				"from": 1396040,
+				"to": 1401240
+			},
+			"text": " So for the end user, in theory, apart from the gas cost, everything will be transparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,240",
+				"to": "00:23:22,560"
+			},
+			"offsets": {
+				"from": 1401240,
+				"to": 1402560
+			},
+			"text": " >> Oh, there's one more question."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,560",
+				"to": "00:23:24,440"
+			},
+			"offsets": {
+				"from": 1402560,
+				"to": 1404440
+			},
+			"text": " Do you mind answering one more?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,440",
+				"to": "00:23:25,760"
+			},
+			"offsets": {
+				"from": 1404440,
+				"to": 1405760
+			},
+			"text": " Can I repeat the question real quick?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,760",
+				"to": "00:23:26,760"
+			},
+			"offsets": {
+				"from": 1405760,
+				"to": 1406760
+			},
+			"text": " >> Oh, sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,760",
+				"to": "00:23:27,760"
+			},
+			"offsets": {
+				"from": 1406760,
+				"to": 1407760
+			},
+			"text": " >> I'm just going to paraphrase it real quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,760",
+				"to": "00:23:31,320"
+			},
+			"offsets": {
+				"from": 1407760,
+				"to": 1411320
+			},
+			"text": " They said that they wanted to know if there's any drawbacks to the vertical trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,320",
+				"to": "00:23:33,160"
+			},
+			"offsets": {
+				"from": 1411320,
+				"to": 1413160
+			},
+			"text": " >> Yes, there's plenty of drawbacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,160",
+				"to": "00:23:38,720"
+			},
+			"offsets": {
+				"from": 1413160,
+				"to": 1418720
+			},
+			"text": " Like I said, there's the transition, the slow crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,720",
+				"to": "00:23:44,280"
+			},
+			"offsets": {
+				"from": 1418720,
+				"to": 1424280
+			},
+			"text": " Otherwise, yes, like the biggest drawback I only alluded to in the previous answer, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,280",
+				"to": "00:23:46,040"
+			},
+			"offsets": {
+				"from": 1424280,
+				"to": 1426040
+			},
+			"text": " that the gas model changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,040",
+				"to": "00:23:52,400"
+			},
+			"offsets": {
+				"from": 1426040,
+				"to": 1432400
+			},
+			"text": " And that means that a lot of code, you know, like contracts tend to, some contracts tend"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,400",
+				"to": "00:23:55,880"
+			},
+			"offsets": {
+				"from": 1432400,
+				"to": 1435880
+			},
+			"text": " to be very optimized for gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,880",
+				"to": "00:24:00,800"
+			},
+			"offsets": {
+				"from": 1435880,
+				"to": 1440800
+			},
+			"text": " Those optimization can turn out to be completely obsolete and counterproductive."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,800",
+				"to": "00:24:04,760"
+			},
+			"offsets": {
+				"from": 1440800,
+				"to": 1444760
+			},
+			"text": " So I would say that's the biggest drawback I can think of."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,760",
+				"to": "00:24:05,760"
+			},
+			"offsets": {
+				"from": 1444760,
+				"to": 1445760
+			},
+			"text": " >> Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,760",
+				"to": "00:24:08,520"
+			},
+			"offsets": {
+				"from": 1445760,
+				"to": 1448520
+			},
+			"text": " If you have any other questions for Guillaume, I'm sure you'll be over to the side."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,520",
+				"to": "00:24:11,360"
+			},
+			"offsets": {
+				"from": 1448520,
+				"to": 1451360
+			},
+			"text": " Feel free to ask them after the talk, too."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,360",
+				"to": "00:24:12,360"
+			},
+			"offsets": {
+				"from": 1451360,
+				"to": 1452360
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,360",
+				"to": "00:24:12,360"
+			},
+			"offsets": {
+				"from": 1452360,
+				"to": 1452360
+			},
+			"text": " >> Awesome, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,360",
+				"to": "00:24:14,360"
+			},
+			"offsets": {
+				"from": 1452360,
+				"to": 1454360
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,360",
+				"to": "00:24:21,360"
+			},
+			"offsets": {
+				"from": 1454360,
+				"to": 1461360
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,360",
+				"to": "00:24:28,360"
+			},
+			"offsets": {
+				"from": 1461360,
+				"to": 1468360
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

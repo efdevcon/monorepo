@@ -1,0 +1,2914 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17000
+			},
+			"text": " Hey everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " Who's that high just now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 22000
+			},
+			"text": " I didn't hear."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 23000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 24000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 25000
+			},
+			"text": " Oh great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 26000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 34000
+			},
+			"text": " Today I'm going to share some exciting research that I've been doing, I don't know, for the greater part of the last six months, eight months, nine months, I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 36000
+			},
+			"text": " Most of this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 38000
+			},
+			"text": " Not that this is the only research I've done."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 43000
+			},
+			"text": " This is just the most exciting stuff, the stuff that I want to blow your mind with right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 48000
+			},
+			"text": " So, I had to cut out a lot of content from the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 54000
+			},
+			"text": " So I'm going to try to go through it quickly and add it back in without slides, because I don't think I'm going to make it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 62000
+			},
+			"text": " I'm going to just take out my notes just in case I get there and then I need a refresher."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 63000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 65000
+			},
+			"text": " Hey everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 67000
+			},
+			"text": " So, smart transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 68000
+			},
+			"text": " Sounds great."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 73000
+			},
+			"text": " It is a prophecy of a new paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 77000
+			},
+			"text": " It's basically a prophecy because it's not something like I decided."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 78000
+			},
+			"text": " I'm not like imposing this on you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 82000
+			},
+			"text": " I'm like making a prediction that you're going to agree with me is like sort of a sound prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 89000
+			},
+			"text": " And then the only thing that might be imposing is accelerating the timeline, which is sort of maybe my fault if I'm accelerating it, but it's not my fault that's going to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 90000
+			},
+			"text": " This wasn't me."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 91000
+			},
+			"text": " It's like a pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 92000
+			},
+			"text": " I'm like the profit here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 95000
+			},
+			"text": " I didn't do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 98000
+			},
+			"text": " So here's the prophecy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 111000
+			},
+			"text": " Basically, a theory of transactions will become smart, which means you're already programmable in that work, but they're going to become context aware in this way that's like characteristic of smart products that like sort of like you should, you know, you go, you walk beside them and then they start like breathing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 121000
+			},
+			"text": " and like knowing what you're about to do and, you know, the sort of like acts smart in a way that's sort of more than just programmable networks, but actually like they're, they're reactive to their context."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 127000
+			},
+			"text": " And basically, that means sort of over their actual impossible futures in this context."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 131000
+			},
+			"text": " And also over their over like this, their context."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 133000
+			},
+			"text": " And we'll get into that a little more detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 149000
+			},
+			"text": " But like today, relatively speaking, let me say that transactions are dominant blind basically transactions today are not smart and they will become smart in the sense of like smart products, which is like a kind of kind of research in product design, where you try to make products like"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 159000
+			},
+			"text": " programmable network and reactive to their context in order to, you know, in order to act right depending on what's happening to them actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 177000
+			},
+			"text": " So basically, Ethereum is and has always already been profoundly disrupted by unexpected semantics of the VM like so that he and the reentercy or like just all sorts of weird quirks, you know, it takes a lot of time to become a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 181000
+			},
+			"text": " slitty developer because of the weird ways that they behave, they behave that you wouldn't think."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 193000
+			},
+			"text": " And basically, this has come to a real, real head now with MEV where sort of it's much, very much not the expected transaction semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 197000
+			},
+			"text": " It sort of like, it ends up being like the worst possible semantics that could be interpreted for that transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 204000
+			},
+			"text": " And sort of it ends up being kind of worst case execution, reintermediation, censorship, literally."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 209000
+			},
+			"text": " And this is actually putting all blockchain communities into crisis into like a deep constitutional crisis."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 214000
+			},
+			"text": " So like, what is a blockchain even? Like, what is a transaction? What does it mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 219000
+			},
+			"text": " What does this transaction mean? Because like all the different possible ways can be executed in different contexts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 230000
+			},
+			"text": " And so, especially what does it mean if it's not just sort of included in a block in this sort of natural simple way that we were taught in the white paper and like all the white papers even."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 235000
+			},
+			"text": " So basically, transactions face an evolutionary pressure due to these changing circumstances."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 245000
+			},
+			"text": " And they're basically like, in fact, de facto changing semantics, even though it's a map abstract computer science sense like, oh, unless there's a new, unless there's a change to Ethereum and there's semantics aren't changing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 252000
+			},
+			"text": " Actually, when people, when the transaction pool changes, when the way people order them in blocks changes, it changes in fact the transaction semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 257000
+			},
+			"text": " And so, and they're going to become aware, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 261000
+			},
+			"text": " At first slowly and then, and then a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 273000
+			},
+			"text": " And any of you search where it is, basically will start and is starting out as a sort of really minor little hacks and is going to become sort of much more, much more aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 278000
+			},
+			"text": " So basically, today, you know, you might pay out Mev in a favorable outcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 292000
+			},
+			"text": " In the future, you'll be much more actively and much less packively interacting with the search in order to get better performance and sort of a better even understanding of how your transactions being treated during the transactions on validation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 298000
+			},
+			"text": " So that was the prophecy, basically, like, because this insane pressure by Mev, transactions are going to become smart."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 307000
+			},
+			"text": " The semantics are going to be totally different than what we recognize today because basically, well, I mean, I'll get to exactly like how and why that's like a."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 310000
+			},
+			"text": " Secured prophecy and not like a speculation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 314000
+			},
+			"text": " So let's talk about the past, like, how did we get here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 324000
+			},
+			"text": " So we have this, this dark forest, basically, we have, I call them, ethereal predators in the dark forest because you don't always really know what happened and how this all went down."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 331000
+			},
+			"text": " Worst case performance, free click of the station is still an arbitrage hijack hacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 338000
+			},
+			"text": " It's the stuff that we love to read about, but also stuff that really hurts people when they transact financially."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 346000
+			},
+			"text": " And just in terms of like, imagine you're trying to like be a white head hacker and then like your white head hacking gets hacked by some like front running bot."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 348000
+			},
+			"text": " It's sort of dark."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 351000
+			},
+			"text": " And basically, transactions went into hiding because of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 354000
+			},
+			"text": " They avoid the mempool, they use trusted searchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 358000
+			},
+			"text": " They basically try to eliminate their Mev in order to avoid this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 363000
+			},
+			"text": " This treatment and this is like what I consider to be sort of dumb behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 369000
+			},
+			"text": " I mean, it's a little bit smarter than getting wrecked right away, but it could be a lot smarter, really."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 374000
+			},
+			"text": " So, you know, we have also this concept of good mev."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 376000
+			},
+			"text": " Not all mev is bad, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 382000
+			},
+			"text": " And I think this originated with mev tips in bundles, but I wasn't around."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 384000
+			},
+			"text": " So someone could correct me later."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 385000
+			},
+			"text": " That's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 400000
+			},
+			"text": " And so that's sort of distributed power from the sort of big, bad minor who is supposed to take all the mev to searchers who are supposed to be like sort of the good guys protecting your transactions and giving them the ability to influence the block outcome without just sort of this pure extractive politics."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 407000
+			},
+			"text": " More like, you know, we pay for the thing to win as long as we win the auction, you know, and we're finding a good bundle, that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 414000
+			},
+			"text": " And then there's also this sort of really, really, I mean, nascent kind of good now, which is like the saving and out of gas exceptions, which is sort of like a really classic thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 424000
+			},
+			"text": " That like mev was sort of built for from the start, where basically like sort of the space really was for traders who were getting wrecked in this garbage gas price auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 436000
+			},
+			"text": " And so a gas price auction became mev and then there was like good mev and mad mev as people sort of, you know, exploited and also try to defend themselves and use it as a sort of lever."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 458000
+			},
+			"text": " And basically, you know, I really have to power through here. So basically, you know, I sort of picked up on this research this year, right, I got into the game, basically when I realized that there's this thing called mev time, which is like sort of the time when the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 475000
+			},
+			"text": " search is happening, when the time when the search for this like bundle or block is happening, where you can actually interact with the theorem transactions in a sort of unconventional way, basically rather than sort of only having, you know, interactions with transactions, you can actually interact as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 486000
+			},
+			"text": " searcher with the transactions directly. Basically by, you know, searches have been adding their own transactions to bundles and interacting with them to like sort of take our profits in the normal way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 502000
+			},
+			"text": " But sort of to directly interface with them via like an IO interface where you just like load values and they read values really opens up the theorem transactions to incredible sort of semantics by basically letting you interrupt transactions flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 510000
+			},
+			"text": " Do some stuff and then continue transaction flow as the searcher in a way where you can sort of update Oracle values many times within the trace of a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 517000
+			},
+			"text": " You can do all sorts of operations in the middle of a transaction and sort of in some way violating atomicity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 526000
+			},
+			"text": " But in some way, it's not because ultimately still have the same, you know, bundle of transactions just that the bundle was set up in a way where the earlier transactions are put in as a function of like what happened in the middle of the other ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 533000
+			},
+			"text": " So, you sort of really just me the time interaction with transactions really opens up non deterministic semantics of the VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 543000
+			},
+			"text": " Now, instead of having like you just literally have the EVM choose arbitrarily and then like your the searcher tells you what you chose and they have like an incentive if you tip them good to choose the right thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 553000
+			},
+			"text": " And then actually not just lets you take advantage of these magic non-termistic choices, but lets you have more information in the transaction than you could before."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 560000
+			},
+			"text": " And you can literally just give them anything with like an Oracle item in the time during the middle of their transaction execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 565000
+			},
+			"text": " And so this is actually a tremendous change."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 573000
+			},
+			"text": " But however, it's not really secure today because of the way that like bundles and like transactions can be reordered out of the search result that you find."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 576000
+			},
+			"text": " So you imagine you like search for this amazing interaction with the smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 579000
+			},
+			"text": " Sorry, well with the smart transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 584000
+			},
+			"text": " Excuse me."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 591000
+			},
+			"text": " And then someone else jacks it and changes uses different input values for the same transactions and then you sort of get wrecked on your execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 599000
+			},
+			"text": " You know, basically like the search is not secure and that means that these EV time interactions are not secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 604000
+			},
+			"text": " But if they can be secured actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 608000
+			},
+			"text": " Basically anything a search for knows can be given to the transaction and they can use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 614000
+			},
+			"text": " They can become aware of not just their execution on this trace, but all the other counterfactual timelines."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 618000
+			},
+			"text": " They have many possible presence, futures and paths."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 623000
+			},
+			"text": " Because that's sort of like what transactions are like before they're included in a block and finally actualize."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 633000
+			},
+			"text": " So basically, you know, we have sort of with any of these interactions, you can transaction can become aware of like sort of this superposition of different possibilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 638000
+			},
+			"text": " And counterfactual traces that end up being very, very useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 649000
+			},
+			"text": " And basically, we need these searches to be secure basically like I was saying earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 655000
+			},
+			"text": " And so basically I did a lot of research as a result into securing the semi-v search."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 659000
+			},
+			"text": " Like how do we secure the search results that it can't get checked."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 666000
+			},
+			"text": " That the transaction receipts can't change after you sort of like finished search like those are the ones and they can't change."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 670000
+			},
+			"text": " Thankfully, I'm like happy to announce that I did succeed."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 682000
+			},
+			"text": " I'm not sharing the solution. I'll share now, and therefore, and therefore I can make this prophecy very, very comfortably because basically if it's competitive enough, viability is inevitability."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 693000
+			},
+			"text": " And basically like it's like strictly dominant over done transactions. It's possible we can do it and it's going to happen because like the competitive pressure is too great."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 701000
+			},
+			"text": " And so this sort of this argument I like to say underwrites my prophecy sort of signs off on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 707000
+			},
+			"text": " And basically it's sort of you have to take it for granted or you have to believe me that I can secure the search."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 711000
+			},
+			"text": " I can do this semi-v time interaction. I can inform the transactions of anything basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 718000
+			},
+			"text": " And then they can sort of do this crazy stuff of like lots of like wild magic, which we'll get to very soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 721000
+			},
+			"text": " So what is the state of the art in smart transactions today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 731000
+			},
+			"text": " Well, this is sort of the state of the art in my tech research, the economics and law and like other research has been sort of there's not enough time for all of it, unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 750000
+			},
+			"text": " So basically smart transaction infrastructure is basically a story of smart transactions like pulling themselves up by the bootstraps using a little bit of awareness to get a little more awareness to try to get sort of, you know, very secure basis, a lot of awareness for the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 763000
+			},
+			"text": " And so I split it up into phases that are designed to be sort of acceptable to our current normal trust model at first and then deviate a little bit only as necessary and then come back so that like is a minimally politically objective of objectionable for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 771000
+			},
+			"text": " So basically in phase one we save gas and this very classic way of like not doing those pesky out of gas transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 782000
+			},
+			"text": " Save one and phase one, sorry, we have semi atomistic, which means like you can execute the prefix of a bundle can't choose the suffix or like anything that isn't a prefix."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 796000
+			},
+			"text": " So it's like not, not a missy, but you sort of I can restrict using the EVMS rules only sort of that you can only do a prefix using this thing I call cumulative validation sort of like, you know, it's going to invalidate anything else invalidated and also cumulative"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 801000
+			},
+			"text": " meve to sort of like says stores up the map and then pays it only at the end of the bundle kind of story."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 811000
+			},
+			"text": " Phase two is the interesting one that deviates from like the current trust model that people have, which is basically I'm saying like, oh, you know, we actually need to like essential it's essential that we trust the proposal for a moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 814000
+			},
+			"text": " Just for a moment just for like this phase two we trust the proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 821000
+			},
+			"text": " And then in phrase three we remove the trust from the proposal by sort of locking down their commitments, making it making them like unable to screw us."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 828000
+			},
+			"text": " So basically in phase two we just sort of normally I bear and cover with because like the whole EV space has been set up to defend you against the search and against the proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 832000
+			},
+			"text": " But I insist it's necessary. There's no way to do bundle protection without this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 835000
+			},
+			"text": " If you try to do it at the proposal you won't be able to do it. The proposal is so important."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 841000
+			},
+			"text": " He's the they're the they're the they're the signature on the block. They make it a block. You can't make a block without the mistake validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 845000
+			},
+			"text": " It's just not a thing like they're important for building the block. There's no such thing as a block builder is not a proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 850000
+			},
+			"text": " No offense. I'm sorry. I wasn't even supposed to say that. I take it back."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 856000
+			},
+			"text": " Basically that today we sort of had a idea we don't trust the proposal but we really got it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 859000
+			},
+			"text": " We really got to in order to get out of the city full out of the city."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 862000
+			},
+			"text": " And then we can lock it down and not trust them anymore in the next phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 870000
+			},
+			"text": " And then after we have the the out of the city of these of these search results basically and like sort of like the guaranteed like full inclusion of them fully whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 875000
+			},
+			"text": " Then we can open it up to basically all sorts of smart contract development or search smart."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 883000
+			},
+			"text": " Sorry. Again, smart transaction development and virtual and virtual services was a very cool concept of sort of to the."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 890000
+			},
+			"text": " I mean, these are they're just extracting value for you to you. You're getting a service from them, but sort of like they're not a real service provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 903000
+			},
+			"text": " They're just they're extracting value from you from their perspective. If you're a for any perspective, you're sort of hijacking that in the way that like, for example, like fruit, hijack fruit eating animals in order to spread their seed."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 907000
+			},
+			"text": " That's an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 915000
+			},
+			"text": " So here's some more tech, so this is an example of formal semantics of what I call smart transitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 922000
+			},
+			"text": " So smart transitions is sort of like a idea that comes from smart transactions and sort of generalizes it to like all sorts of different computer science."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 931000
+			},
+			"text": " This is like a system for describing distribution systems that I'm doing all this notation and there's going to be a paper released about this should have been."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 935000
+			},
+			"text": " Today, but it's going to be like tomorrow or maybe the next day, like latest."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 945000
+			},
+			"text": " So we got look out for this. It's going to be it's going to help you understand this. But basically, we have like a labeled state transition message production system V and then I can find another one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 956000
+			},
+			"text": " Are which has these special operations duplicate, speculate and validate, which is going to do basically a speculative execution of this other system in order to see in the future, whether the thing that happened was supposed to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 967000
+			},
+			"text": " And then validate basically the current transition based on like what happens many transitions down in the future sort of violating normal transition semantics in a very, very interesting way, which I call smart."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 971000
+			},
+			"text": " And basically, the idea is like they can sort of look into the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 976000
+			},
+			"text": " But in general, you know, far and wide all over the place."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 983000
+			},
+			"text": " So basically, here's like the transitions. So let's just like go over them quickly duplicate takes a state creates two copies of the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 987000
+			},
+			"text": " If you try to duplicate and already duplicated state, it does nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 997000
+			},
+			"text": " Speculate basically only works on duplicated states. Otherwise, it does nothing. This is what it's on its own duplicated state. What it will do is it'll apply the transition with this label L and the message M to the second state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1008000
+			},
+			"text": " So the original state is left untouched. And the second state is updated to the new state. And then it outputs like a message in this like little temporary buffer zone from that transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1022000
+			},
+			"text": " So it collects these messages and updates the state while speculating. And then you can do a valid transition, which will either do one of few things. One of them is it'll delete the specular execution state, or it'll delete the current state, like the old state."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1026000
+			},
+			"text": " And so then when you do this validate step, it's like a few transitions later, at least one transition later."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1038000
+			},
+			"text": " And then based on the validity of that transition, you sort of either revert all the previous transitions, or you sort of choose them. You sort of collapse this superposition of like the old state and the new state. You just get the new state."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1046000
+			},
+			"text": " So this sort of is a speculative execution transition system based on like one transition. And basically the amazing thing about this is that you can sort of implement Ethereum out of gas semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1054000
+			},
+			"text": " Sort of like just with this, basically you charge that account gas, you do a bunch of execution specularly thinking they won't run out of gas. If they run out of gas, you throw out all those changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1070000
+			},
+			"text": " You go back to that just after the charge state. And sort of you can use this like just a fact that Ethereum transactions are already sort of smart, just with respect to the out of gas exception, that is that the block is aware of on this sort of block limit transaction limit"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1076000
+			},
+			"text": " sort of level. I mean the block, I mean, maybe the validator or something, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1089000
+			},
+			"text": " And so basically, but this idea of like validating based on what happens in the future sort of it could be done much, much more widely than just out of gas. You can just sort of refine those validity checks that whatever constraints you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1102000
+			},
+			"text": " You know, you could have, you know, more than this amount of money of like better than this performing as you revert, etc. And the nice thing about this is sort of, okay, that was one specular execution, but we do the same thing where we do many, many, many specular executions where then this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1113000
+			},
+			"text": " could sort of very well encode an EV search where basically you're just trying a lot of different possibilities. And then you can validate based on the whole search, whether you'll do any of those transitions in which one you'll do."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1129000
+			},
+			"text": " And that's sort of like extremely powerful semantics. But that's just looking forward. I mean, like, and this stuff really can look back and at different alternative presence either also, which is sort of a sort of a trip and sort of really, really help me get intuition for quantum mechanics randomly."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:19:00,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1140000
+			},
+			"text": " Anyways, so use cases, challenges and implications. There's there's stuff from the slides that haven't read. I'm trying to really rush through this, but some of it is going to come back up now. I realize."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1140000,
+				"to": 1152000
+			},
+			"text": " So basically, there's a bunch of stuff that's useful for first, I'm going to stress again the infrastructure and the way that it's pulling us off by the blue structure blue straps by like using transactions to make transaction infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1165000
+			},
+			"text": " And then also all, all blotching use cases, I'm trying to say this is this is like totally dominant paradigm where basically like no matter what you think of, you can do more efficiently with smart transactions, except for maybe a simple send."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1166000
+			},
+			"text": " Maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1167000
+			},
+			"text": " Jerry's out."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:30,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1170000
+			},
+			"text": " Probably more efficient with smart transactions anyways."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1170000,
+				"to": 1175000
+			},
+			"text": " But it's going to be more like a smart trans smart operation or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1179000
+			},
+			"text": " So basically long story short, or I mean, here's a bunch of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:49,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1189000
+			},
+			"text": " Oh, you know, we have these access control lifts list that don't really work because like you sort of might get outside of them, and then you still have to see the transaction and then just get it, you just get less of a discount if it doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1189000,
+				"to": 1191000
+			},
+			"text": " It's like sort of a weird hack."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1197000
+			},
+			"text": " It'd be nice and we can do this to have access control lists that actually work without having to do any code analysis to prove that they work."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1203000
+			},
+			"text": " You just sort of try it and if it doesn't work, it's great validation is amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:08,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1208000
+			},
+			"text": " We can save gas and pay without you. This is sort of like classic stuff for me."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1208000,
+				"to": 1212000
+			},
+			"text": " But the way that it's done in smart transactions is a little more capital efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1215000
+			},
+			"text": " Maybe a lot more capital efficient in some cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:18,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1218000
+			},
+			"text": " Rent as expected me to justify state and ram."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,000",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1218000,
+				"to": 1219000
+			},
+			"text": " This is a very interesting thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:24,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1224000
+			},
+			"text": " We have like a long problem in Ethereum about state rent and statelessness and how people have the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1224000,
+				"to": 1227000
+			},
+			"text": " Why will they know to healthy value by transaction like now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1228000
+			},
+			"text": " Like how will they search it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:35,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1235000
+			},
+			"text": " And the answer is like, if you have enough, if they expect enough, they'll store it and they'll speculate on that in all sorts of ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,000",
+				"to": "00:20:41,000"
+			},
+			"offsets": {
+				"from": 1235000,
+				"to": 1241000
+			},
+			"text": " Maybe they'll even do it in a way that's sort of like public value as opposed to internalized value."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1241000,
+				"to": 1247000
+			},
+			"text": " And so basically rent actually comes in through the back door, not to smart transactions, but like many of in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:57,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1257000
+			},
+			"text": " But I think smart transactions in particular because sort of they can be rent aware in a way that's sort of like a function of what is happening on this searchers ram."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1257000,
+				"to": 1260000
+			},
+			"text": " And what the searchers policy is for what they choose to put in their ram."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:08,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1268000
+			},
+			"text": " And so it can be like sort of very specific and very flexible compared to like all the rent proposals so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1268000,
+				"to": 1270000
+			},
+			"text": " Automated collective bargaining, pretty cool, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:18,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1278000
+			},
+			"text": " You have a bunch of transactions with a bunch of people in your little union and you decide, hey, we're not going to transact unless we're all treated good."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,000",
+				"to": "00:21:20,000"
+			},
+			"offsets": {
+				"from": 1278000,
+				"to": 1280000
+			},
+			"text": " Very, very good, very, very good stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,000",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1280000,
+				"to": 1286000
+			},
+			"text": " We'll get those beasts from the dark forest, get them out back."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:32,000"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1292000
+			},
+			"text": " Direct economic interventions at all scales is very, very cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,000",
+				"to": "00:21:42,000"
+			},
+			"offsets": {
+				"from": 1292000,
+				"to": 1302000
+			},
+			"text": " You may use macro statistics, micro statistics, meso statistics, and like just pay for those outcomes in a sort of very direct way that's sort of lacking today in like public policy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,000",
+				"to": "00:21:46,000"
+			},
+			"offsets": {
+				"from": 1302000,
+				"to": 1306000
+			},
+			"text": " or basically like helicopter ban has a really hard time dropping money on people."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,000",
+				"to": "00:21:55,000"
+			},
+			"offsets": {
+				"from": 1306000,
+				"to": 1315000
+			},
+			"text": " But like sort of we see all the transactions on all the timelines like collapsed into one and sort of like can pay the searchers to."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,000",
+				"to": "00:21:57,000"
+			},
+			"offsets": {
+				"from": 1315000,
+				"to": 1317000
+			},
+			"text": " For whatever policy goal we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,000",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1317000,
+				"to": 1318000
+			},
+			"text": " It's amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:22:00,000"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1320000
+			},
+			"text": " Just in time, liquidity pools is pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,000",
+				"to": "00:22:05,000"
+			},
+			"offsets": {
+				"from": 1320000,
+				"to": 1325000
+			},
+			"text": " Imagine the liquidity follows the different trades within your transaction around just to serve you better."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,000",
+				"to": "00:22:12,000"
+			},
+			"offsets": {
+				"from": 1325000,
+				"to": 1332000
+			},
+			"text": " Amazing can happen today because of the transaction timing and the operation timing doesn't allow for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,000",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1332000,
+				"to": 1335000
+			},
+			"text": " Zero capital zero credit trading."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1340000
+			},
+			"text": " This is very cool where you can do time travel to borrow profits from the future to do your trade now."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1342000
+			},
+			"text": " You wouldn't think."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1345000
+			},
+			"text": " But totally possible in Ethereum today already."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:33,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1353000
+			},
+			"text": " But just within the scope of a single transaction and the future will be across many transactions because you know atomic block happens all at the same time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,000",
+				"to": "00:22:41,000"
+			},
+			"offsets": {
+				"from": 1353000,
+				"to": 1361000
+			},
+			"text": " which means that the end of the block happens the same as the time as the start of the block, which means you can sort of borrow the profit from the end of the block and sort of have it all work out."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,000",
+				"to": "00:22:42,000"
+			},
+			"offsets": {
+				"from": 1361000,
+				"to": 1362000
+			},
+			"text": " Amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1362000,
+				"to": 1363000
+			},
+			"text": " Amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:47,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1367000
+			},
+			"text": " You can hedge quote unquote using exactly the cost that occurred at the end of the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,000",
+				"to": "00:22:56,000"
+			},
+			"offsets": {
+				"from": 1367000,
+				"to": 1376000
+			},
+			"text": " It's not even really hedging because you know for sure the cost. It's like the most efficient to possibly be for certain instruments and lots of other stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1376000,
+				"to": 1380000
+			},
+			"text": " But we have challenges still unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:06,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1386000
+			},
+			"text": " Unfortunately, this can be very, very computationally expensive simultaneously searching for all these solutions at the same time for all these transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,000",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1386000,
+				"to": 1388000
+			},
+			"text": " especially if everyone's demanding them."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1390000
+			},
+			"text": " You know, there's a lot of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1391000
+			},
+			"text": " It could be very hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:13,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1393000
+			},
+			"text": " Who knows how the complexity grows in the search transactions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1393000,
+				"to": 1395000
+			},
+			"text": " It depends on what they're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:23,000"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1403000
+			},
+			"text": " I could definitely design smart transactions that do really bad for the searchers and that basically don't have solutions the more you add to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1403000,
+				"to": 1407000
+			},
+			"text": " Like, you know, you might have a solution subtractively or a few, but then like the big goes so bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:30,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1410000
+			},
+			"text": " Like you add 10 more and then just you can't solve them anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,000",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1410000,
+				"to": 1416000
+			},
+			"text": " And this is why this doss and gas insurance market is so important because like you kind of need to figure out like is this a doss attack?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:38,000"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1418000
+			},
+			"text": " Is this a legitimate smart transaction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,000",
+				"to": "00:23:44,000"
+			},
+			"offsets": {
+				"from": 1418000,
+				"to": 1424000
+			},
+			"text": " Is it something that is going to have a solution or is it something that we're wasting our search on in order because it just computationally very difficult to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,000",
+				"to": "00:23:46,000"
+			},
+			"offsets": {
+				"from": 1424000,
+				"to": 1426000
+			},
+			"text": " It's computationally very difficult to find all these solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,000",
+				"to": "00:23:50,000"
+			},
+			"offsets": {
+				"from": 1426000,
+				"to": 1430000
+			},
+			"text": " Also, you know, I mentioned all these kind of counterfactual stats and claims and things."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,000",
+				"to": "00:23:54,000"
+			},
+			"offsets": {
+				"from": 1430000,
+				"to": 1434000
+			},
+			"text": " The searcher knows that, but like why should your transaction trust the searcher to give it the right values?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,000",
+				"to": "00:24:04,000"
+			},
+			"offsets": {
+				"from": 1434000,
+				"to": 1444000
+			},
+			"text": " Like there are sort of like challenges with respect to verifying these inputs, especially efficiently."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,000",
+				"to": "00:24:13,000"
+			},
+			"offsets": {
+				"from": 1444000,
+				"to": 1453000
+			},
+			"text": " And then there's a multi-block issue, which is sort of like actually we don't want in some way transactions to like end in one block to finish just value."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,000",
+				"to": "00:24:15,000"
+			},
+			"offsets": {
+				"from": 1453000,
+				"to": 1455000
+			},
+			"text": " To just finish valid data, get everything in one block."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,000",
+				"to": "00:24:17,000"
+			},
+			"offsets": {
+				"from": 1455000,
+				"to": 1457000
+			},
+			"text": " It's sort of very nice to have multi-block transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,000",
+				"to": "00:24:22,000"
+			},
+			"offsets": {
+				"from": 1457000,
+				"to": 1462000
+			},
+			"text": " And to do this efficiently is a challenge, especially composed of all the other search."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,000",
+				"to": "00:24:30,000"
+			},
+			"offsets": {
+				"from": 1462000,
+				"to": 1470000
+			},
+			"text": " So rather than all the searches being sort of like this block, imagine you have searches on different timelines sort of for different transactions that are executing different timelines."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,000",
+				"to": "00:24:33,000"
+			},
+			"offsets": {
+				"from": 1470000,
+				"to": 1473000
+			},
+			"text": " So and also there's a whole search organization problem around this."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,000",
+				"to": "00:24:35,000"
+			},
+			"offsets": {
+				"from": 1473000,
+				"to": 1475000
+			},
+			"text": " Like how do you organize the searchers actually?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,000",
+				"to": "00:24:47,000"
+			},
+			"offsets": {
+				"from": 1475000,
+				"to": 1487000
+			},
+			"text": " So basically, but like very, very interestingly that this sort of has a lot of implications beyond the sort of birthplace of these transactions as sort of this Mev space where basically you know you're responding to this Mev search."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,000",
+				"to": "00:24:51,000"
+			},
+			"offsets": {
+				"from": 1487000,
+				"to": 1491000
+			},
+			"text": " Because actually like the smart transaction validation is sort of very wide."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,000",
+				"to": "00:24:53,000"
+			},
+			"offsets": {
+				"from": 1491000,
+				"to": 1493000
+			},
+			"text": " It doesn't need to be validating anything to do with Mev."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,000",
+				"to": "00:24:58,000"
+			},
+			"offsets": {
+				"from": 1493000,
+				"to": 1498000
+			},
+			"text": " And this sort of useful distributed systems in a broad way is in transactional systems in a very broad way."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,000",
+				"to": "00:25:05,000"
+			},
+			"offsets": {
+				"from": 1498000,
+				"to": 1505000
+			},
+			"text": " And so actually smart transactions are sort of not just Mev. Mev is sort of like an economic thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,000",
+				"to": "00:25:07,000"
+			},
+			"offsets": {
+				"from": 1505000,
+				"to": 1507000
+			},
+			"text": " It's like only one side of the story."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,000",
+				"to": "00:25:10,000"
+			},
+			"offsets": {
+				"from": 1507000,
+				"to": 1510000
+			},
+			"text": " They also have really amazing computer science innovations."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,000",
+				"to": "00:25:12,000"
+			},
+			"offsets": {
+				"from": 1510000,
+				"to": 1512000
+			},
+			"text": " Not that the economic stuff isn't great."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,000",
+				"to": "00:25:21,000"
+			},
+			"offsets": {
+				"from": 1512000,
+				"to": 1521000
+			},
+			"text": " I mean the risk management, the smart transactions to do like that hedging that I was talking about earlier, amazing, basically can really, really make things much more economically efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,000",
+				"to": "00:25:35,000"
+			},
+			"offsets": {
+				"from": 1521000,
+				"to": 1535000
+			},
+			"text": " And then sort of like legally, if you will, it's very low liability to hire quote unquote, or to be a virtual service provider because you're not a real service provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,000",
+				"to": "00:25:36,000"
+			},
+			"offsets": {
+				"from": 1535000,
+				"to": 1536000
+			},
+			"text": " And so you're just extracting money."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,000",
+				"to": "00:25:41,000"
+			},
+			"offsets": {
+				"from": 1536000,
+				"to": 1541000
+			},
+			"text": " You're just being sort of a selfish maximizer, which means that you're limited in liability."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,000",
+				"to": "00:25:47,000"
+			},
+			"offsets": {
+				"from": 1541000,
+				"to": 1547000
+			},
+			"text": " So basically, unfortunately out of time, this is my concluding slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,000",
+				"to": "00:25:49,000"
+			},
+			"offsets": {
+				"from": 1547000,
+				"to": 1549000
+			},
+			"text": " And they're missing a will there."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,000",
+				"to": "00:25:53,000"
+			},
+			"offsets": {
+				"from": 1549000,
+				"to": 1553000
+			},
+			"text": " So they do actually revolutionize now, if they're in transactional semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1553000,
+				"to": 1561000
+			},
+			"text": " And sort of like that's sort of the prophecy and sort of like the fact in the future, which is sort of like I guess what a prophecy should do."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:03,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1563000
+			},
+			"text": " Thank you so much everyone, really appreciate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,000",
+				"to": "00:26:07,000"
+			},
+			"offsets": {
+				"from": 1563000,
+				"to": 1567000
+			},
+			"text": " I have more. I have more. Come see me later."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,000",
+				"to": "00:26:09,000"
+			},
+			"offsets": {
+				"from": 1567000,
+				"to": 1569000
+			},
+			"text": " Thank you so much, Vlad."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,000",
+				"to": "00:26:16,000"
+			},
+			"offsets": {
+				"from": 1569000,
+				"to": 1576000
+			},
+			"text": " Sadly, there's no more time for questions, but I'm sure he's going to answer all your questions over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,000",
+				"to": "00:26:18,000"
+			},
+			"offsets": {
+				"from": 1576000,
+				"to": 1578000
+			},
+			"text": " Yeah, outside the outside."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,000",
+				"to": "00:26:20,000"
+			},
+			"offsets": {
+				"from": 1578000,
+				"to": 1580000
+			},
+			"text": " Yeah, outside."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,000",
+				"to": "00:26:21,000"
+			},
+			"offsets": {
+				"from": 1580000,
+				"to": 1581000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,000",
+				"to": "00:26:26,000"
+			},
+			"offsets": {
+				"from": 1581000,
+				"to": 1586000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,000",
+				"to": "00:26:31,000"
+			},
+			"offsets": {
+				"from": 1586000,
+				"to": 1591000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,000",
+				"to": "00:26:33,000"
+			},
+			"offsets": {
+				"from": 1591000,
+				"to": 1593000
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

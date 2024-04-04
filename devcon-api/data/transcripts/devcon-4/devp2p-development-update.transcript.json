@@ -1,0 +1,2012 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,680"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7680
+			},
+			"text": " Hi guys. So yeah, I'm Felix. I work for Ethereum Foundation. I'm one of the maintainers of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,680",
+				"to": "00:00:17,760"
+			},
+			"offsets": {
+				"from": 7680,
+				"to": 17760
+			},
+			"text": " Goethrium and I'm also the maintainer of the DEF PDP specifications. So in this talk, I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,760",
+				"to": "00:00:26,560"
+			},
+			"offsets": {
+				"from": 17760,
+				"to": 26560
+			},
+			"text": " just going to talk about things that happened around DEF PDP in 2018. So yeah, I get to answer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,560",
+				"to": "00:00:34,080"
+			},
+			"offsets": {
+				"from": 26560,
+				"to": 34080
+			},
+			"text": " this question every year. So what's DEF PDP? Well, it's a peer-to-peer networking stack. And it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,080",
+				"to": "00:00:40,960"
+			},
+			"offsets": {
+				"from": 34080,
+				"to": 40960
+			},
+			"text": " a system that Ethereum nodes use to talk to each other over the network. So and it has all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,960",
+				"to": "00:00:48,080"
+			},
+			"offsets": {
+				"from": 40960,
+				"to": 48080
+			},
+			"text": " things that PDP networking stacks usually have. So it has a system for finding nodes on the internet"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,080",
+				"to": "00:00:54,080"
+			},
+			"offsets": {
+				"from": 48080,
+				"to": 54080
+			},
+			"text": " and it has an encrypted transport protocol that you even heard about a bit earlier. It's not the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,080",
+				"to": "00:01:01,360"
+			},
+			"offsets": {
+				"from": 54080,
+				"to": 61360
+			},
+			"text": " best, but it does have one. And this is the protocol that the nodes actually use once they are exchanging"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,360",
+				"to": "00:01:07,920"
+			},
+			"offsets": {
+				"from": 61360,
+				"to": 67920
+			},
+			"text": " data. And I think the important thing to know about DEF PDP mostly is that it's an integrated"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,920",
+				"to": "00:01:16,640"
+			},
+			"offsets": {
+				"from": 67920,
+				"to": 76640
+			},
+			"text": " networking stack. So all the components work together in a predefined way. And this is great"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,640",
+				"to": "00:01:21,520"
+			},
+			"offsets": {
+				"from": 76640,
+				"to": 81520
+			},
+			"text": " because it means that the system has certain properties that we can rely on and it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,520",
+				"to": "00:01:27,280"
+			},
+			"offsets": {
+				"from": 81520,
+				"to": 87280
+			},
+			"text": " much easier to evaluate the security this way. Because if you know how exactly this stuff is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,280",
+				"to": "00:01:37,680"
+			},
+			"offsets": {
+				"from": 87280,
+				"to": 97680
+			},
+			"text": " going to be used, then it's easy to reason about. So there are around 10 implementations of DEF"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,680",
+				"to": "00:01:46,160"
+			},
+			"offsets": {
+				"from": 97680,
+				"to": 106160
+			},
+			"text": " PDP right now. So you can see them listed here. Most of these implement, like most of the DEF"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,160",
+				"to": "00:01:52,560"
+			},
+			"offsets": {
+				"from": 106160,
+				"to": 112560
+			},
+			"text": " PDP implementations are part of some kind of Ethereum blockchain client. But it's not all blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,560",
+				"to": "00:01:57,920"
+			},
+			"offsets": {
+				"from": 112560,
+				"to": 117920
+			},
+			"text": " So there are some implementations that are incomplete or they're just a library that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,920",
+				"to": "00:02:04,320"
+			},
+			"offsets": {
+				"from": 117920,
+				"to": 124320
+			},
+			"text": " implement a certain part of it. And DEF PDP isn't just used for the blockchain. It's also used"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,320",
+				"to": "00:02:12,400"
+			},
+			"offsets": {
+				"from": 124320,
+				"to": 132400
+			},
+			"text": " by other projects like the Swarm distributed file system. Most of the offshoots of the Swarm"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,400",
+				"to": "00:02:20,320"
+			},
+			"offsets": {
+				"from": 132400,
+				"to": 140320
+			},
+			"text": " file system also use it. And even the status messenger app used it for a long time. But I'm not sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,320",
+				"to": "00:02:24,080"
+			},
+			"offsets": {
+				"from": 140320,
+				"to": 144080
+			},
+			"text": " whether they're still using it or whether they switch to something else by now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,080",
+				"to": "00:02:33,440"
+			},
+			"offsets": {
+				"from": 144080,
+				"to": 153440
+			},
+			"text": " Yeah. So apart from these implementations that are just speaking to protocol, there are a couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,440",
+				"to": "00:02:41,680"
+			},
+			"offsets": {
+				"from": 153440,
+				"to": 161680
+			},
+			"text": " of tools around. Specifically, what we have is a couple of DHT crawlers. Some of them open source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,680",
+				"to": "00:02:49,840"
+			},
+			"offsets": {
+				"from": 161680,
+				"to": 169840
+			},
+			"text": " some of them not. So the most famous one is ethernodes.org, which you can visit and check stats. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,840",
+				"to": "00:02:56,240"
+			},
+			"offsets": {
+				"from": 169840,
+				"to": 176240
+			},
+			"text": " basically, so a DHT crawler explores the node discovery system to see which nodes are around,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,240",
+				"to": "00:03:01,440"
+			},
+			"offsets": {
+				"from": 176240,
+				"to": 181440
+			},
+			"text": " and then it lists those on the web page. And then finally, for networking nerds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,440",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 181440,
+				"to": 188000
+			},
+			"text": " this year, consensus has released wire shocker sectors for the protocols. And I'm actually really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:13,440"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 193440
+			},
+			"text": " happy about that because it means it's much easier now to debug issues with a protocol because I"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,440",
+				"to": "00:03:19,840"
+			},
+			"offsets": {
+				"from": 193440,
+				"to": 199840
+			},
+			"text": " can just load it up in wire shock and see what is the node doing. And it labels all the packets"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,840",
+				"to": "00:03:23,920"
+			},
+			"offsets": {
+				"from": 199840,
+				"to": 203920
+			},
+			"text": " that are being sent on the wire by name and things like that. So this is a really helpful thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,920",
+				"to": "00:03:26,720"
+			},
+			"offsets": {
+				"from": 203920,
+				"to": 206720
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,720",
+				"to": "00:03:35,680"
+			},
+			"offsets": {
+				"from": 206720,
+				"to": 215680
+			},
+			"text": " Let's talk about the live network for a bit. So we're still alive, I guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,480",
+				"to": "00:03:38,400"
+			},
+			"offsets": {
+				"from": 216480,
+				"to": 218400
+			},
+			"text": " [LAUGHTER]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,400",
+				"to": "00:03:46,720"
+			},
+			"offsets": {
+				"from": 218400,
+				"to": 226720
+			},
+			"text": " We have about 12,000 ethernodes just like last year. At least that's what ethernodes says."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,720",
+				"to": "00:03:55,520"
+			},
+			"offsets": {
+				"from": 226720,
+				"to": 235520
+			},
+			"text": " And the number of DHT participants is actually quite a bit higher because when you look at ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,520",
+				"to": "00:04:01,680"
+			},
+			"offsets": {
+				"from": 235520,
+				"to": 241680
+			},
+			"text": " nodes, what you see on the front page is ethernodes, which ethernodes has decided that this node"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,680",
+				"to": "00:04:06,080"
+			},
+			"offsets": {
+				"from": 241680,
+				"to": 246080
+			},
+			"text": " is part of the mainnet. But actually in the discovery, you'll find a bunch more nodes that are doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,080",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 246080,
+				"to": 252000
+			},
+			"text": " all kinds of stuff. Like there are other blockchains which have somehow imported DEF VDP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:17,920"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 257920
+			},
+			"text": " there are swarm nodes, there are all kinds of nodes listed there. So you can actually find a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,920",
+				"to": "00:04:27,760"
+			},
+			"offsets": {
+				"from": 257920,
+				"to": 267760
+			},
+			"text": " lot more nodes than just those. Oh, right. I forgot something. Yeah. Actually, we haven't,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,640",
+				"to": "00:04:33,840"
+			},
+			"offsets": {
+				"from": 268640,
+				"to": 273840
+			},
+			"text": " in 2018, there haven't been any new attacks. So this is, oh, I'm also happy about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,840",
+				"to": "00:04:39,440"
+			},
+			"offsets": {
+				"from": 273840,
+				"to": 279440
+			},
+			"text": " So in general, we're not seeing a lot of network level attacks. So most of the attacks on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,440",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 279440,
+				"to": 286000
+			},
+			"text": " have been on the consensus protocol level. But on the network level, we haven't actually seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:53,440"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 293440
+			},
+			"text": " any malicious activity as far as we know it least in 2018. So there was not a major"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,880",
+				"to": "00:05:01,520"
+			},
+			"offsets": {
+				"from": 294880,
+				"to": 301520
+			},
+			"text": " network disruption. But what we did see was that there was a research paper was published in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,520",
+				"to": "00:05:07,200"
+			},
+			"offsets": {
+				"from": 301520,
+				"to": 307200
+			},
+			"text": " beginning of the year by researchers at the University of Boston, where they explored the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,200",
+				"to": "00:05:14,160"
+			},
+			"offsets": {
+				"from": 307200,
+				"to": 314160
+			},
+			"text": " possibility of an eclipse attack on the Ethereum discovery network. But fortunately for us, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,160",
+				"to": "00:05:19,760"
+			},
+			"offsets": {
+				"from": 314160,
+				"to": 319760
+			},
+			"text": " this was disclosed responsibly through the bounty program. So they"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,440",
+				"to": "00:05:26,080"
+			},
+			"offsets": {
+				"from": 321440,
+				"to": 326080
+			},
+			"text": " sent the paper to us a month in advance. And we could actually read it before it was published,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,080",
+				"to": "00:05:30,720"
+			},
+			"offsets": {
+				"from": 326080,
+				"to": 330720
+			},
+			"text": " and we could mitigate the issues. And I'll talk a bit about that later."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,720",
+				"to": "00:05:38,240"
+			},
+			"offsets": {
+				"from": 330720,
+				"to": 338240
+			},
+			"text": " So yeah, this is now the section where we talk about what happened in terms of development"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,240",
+				"to": "00:05:47,920"
+			},
+			"offsets": {
+				"from": 338240,
+				"to": 347920
+			},
+			"text": " in 2018. So the first new thing is actually kind of old. So all the specs were rewritten."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,480",
+				"to": "00:05:56,480"
+			},
+			"offsets": {
+				"from": 348480,
+				"to": 356480
+			},
+			"text": " And if you read the old spec, it was just one document. Maybe you'll understand why. So it was"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,480",
+				"to": "00:06:02,720"
+			},
+			"offsets": {
+				"from": 356480,
+				"to": 362720
+			},
+			"text": " really hard to read. It was incomplete at times. You couldn't really figure out"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,720",
+				"to": "00:06:08,960"
+			},
+			"offsets": {
+				"from": 362720,
+				"to": 368960
+			},
+			"text": " what the semantics of the protocol were. Half of the document was stuff that never got implemented,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,960",
+				"to": "00:06:17,360"
+			},
+			"offsets": {
+				"from": 368960,
+				"to": 377360
+			},
+			"text": " which is a big bunch of notes, basically. So yeah, I'm a bit proud to say that the specs are now"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,360",
+				"to": "00:06:24,640"
+			},
+			"offsets": {
+				"from": 377360,
+				"to": 384640
+			},
+			"text": " much more readable and they're up to date. And yeah, just in general, I've split up the specs"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,640",
+				"to": "00:06:32,080"
+			},
+			"offsets": {
+				"from": 384640,
+				"to": 392080
+			},
+			"text": " into multiple parts. So I feel like it should all be a lot nicer now. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,080",
+				"to": "00:06:41,760"
+			},
+			"offsets": {
+				"from": 392080,
+				"to": 401760
+			},
+			"text": " we have a test suit now. So this is something that I'm very excited about. Frank"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,520",
+				"to": "00:06:49,840"
+			},
+			"offsets": {
+				"from": 403520,
+				"to": 409840
+			},
+			"text": " has joined the Goethrium team very recently and he has created a PewDiePie networking test suit"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,840",
+				"to": "00:06:56,560"
+			},
+			"offsets": {
+				"from": 409840,
+				"to": 416560
+			},
+			"text": " based on the Hive tool. So Hive is a tool that we use for testing the consensus between clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,560",
+				"to": "00:07:05,680"
+			},
+			"offsets": {
+				"from": 416560,
+				"to": 425680
+			},
+			"text": " And it's also used for testing the RPC interface to the clients. So now we can test the PewDiePie"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,680",
+				"to": "00:07:13,520"
+			},
+			"offsets": {
+				"from": 425680,
+				"to": 433520
+			},
+			"text": " networking as well. And Goeth, Parity, Aleth, and EthereumJ are hooked up to this test suit and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,520",
+				"to": "00:07:19,600"
+			},
+			"offsets": {
+				"from": 433520,
+				"to": 439600
+			},
+			"text": " Trinity is being added. Well, it's been being added since a couple months now. So it's like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,600",
+				"to": "00:07:26,400"
+			},
+			"offsets": {
+				"from": 439600,
+				"to": 446400
+			},
+			"text": " it's going to be done any second. But yeah, it will eventually also be there. And really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,400",
+				"to": "00:07:32,320"
+			},
+			"offsets": {
+				"from": 446400,
+				"to": 452320
+			},
+			"text": " like adding a client to Hive isn't all that hard. So I think this is a huge success."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,720",
+				"to": "00:07:42,160"
+			},
+			"offsets": {
+				"from": 454720,
+				"to": 462160
+			},
+			"text": " So in Goeth, what's happened in Goeth? So in the beginning of the year, we were really busy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,160",
+				"to": "00:07:51,360"
+			},
+			"offsets": {
+				"from": 462160,
+				"to": 471360
+			},
+			"text": " implementing the mitigation for the Eclipse attack. And basically, the way the attack works is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,360",
+				"to": "00:07:56,400"
+			},
+			"offsets": {
+				"from": 471360,
+				"to": 476400
+			},
+			"text": " a node can be surrounded on the discovery level with attacker nodes. And it won't be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,400",
+				"to": "00:08:03,120"
+			},
+			"offsets": {
+				"from": 476400,
+				"to": 483120
+			},
+			"text": " find any kind of honest node, because all this will know about is like these"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,120",
+				"to": "00:08:08,960"
+			},
+			"offsets": {
+				"from": 483120,
+				"to": 488960
+			},
+			"text": " attackers that were spawned specifically to bring this node down. And the way we approached"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,960",
+				"to": "00:08:18,160"
+			},
+			"offsets": {
+				"from": 488960,
+				"to": 498160
+			},
+			"text": " mitigation was to introduce IP limits on the connectivity. And so basically, you have to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,160",
+				"to": "00:08:27,120"
+			},
+			"offsets": {
+				"from": 498160,
+				"to": 507120
+			},
+			"text": " a nice looking IP address to connect. Yeah, something like that. And we also reworked how"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,120",
+				"to": "00:08:34,720"
+			},
+			"offsets": {
+				"from": 507120,
+				"to": 514720
+			},
+			"text": " the discovery tables work so that the table can be overrun by attackers so easily. And then later"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,720",
+				"to": "00:08:43,040"
+			},
+			"offsets": {
+				"from": 514720,
+				"to": 523040
+			},
+			"text": " in the year, we've introduced support for ENR throughout the goal P2P codebase. I'll have"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,040",
+				"to": "00:08:49,600"
+			},
+			"offsets": {
+				"from": 523040,
+				"to": 529600
+			},
+			"text": " something about ENR later. If that doesn't mean anything to you, it's fine. And we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,600",
+				"to": "00:08:53,920"
+			},
+			"offsets": {
+				"from": 529600,
+				"to": 533920
+			},
+			"text": " modularized the discovery code in general. So we're now ready to actually plug in different"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,920",
+				"to": "00:09:00,640"
+			},
+			"offsets": {
+				"from": 533920,
+				"to": 540640
+			},
+			"text": " pure discovery mechanisms. And this is massively going to help with adoption of some of the new"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,640",
+				"to": "00:09:06,720"
+			},
+			"offsets": {
+				"from": 540640,
+				"to": 546720
+			},
+			"text": " changes. But most of the changes to the P2P codebase haven't had any kind of immediate impact on"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,720",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 546720,
+				"to": 550000
+			},
+			"text": " the connectivity. So, you know, as a user of Gathya, you're not going to like see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:19,360"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 559360
+			},
+			"text": " I don't know, any improvements, basically. It's, yeah, it's basically mostly in prep work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,360",
+				"to": "00:09:25,600"
+			},
+			"offsets": {
+				"from": 559360,
+				"to": 565600
+			},
+			"text": " And then as Guillaume mentioned, we've done this experiment to run Deaf P2P applications on"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,600",
+				"to": "00:09:32,240"
+			},
+			"offsets": {
+				"from": 565600,
+				"to": 572240
+			},
+			"text": " LIP P2P. So since you already talked about it so much, I'm just going to skip it now. So it was,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,240",
+				"to": "00:09:40,080"
+			},
+			"offsets": {
+				"from": 572240,
+				"to": 580080
+			},
+			"text": " I think the experiment was successful. And we have a pretty clear roadmap now of how to integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,080",
+				"to": "00:09:50,480"
+			},
+			"offsets": {
+				"from": 580080,
+				"to": 590480
+			},
+			"text": " LIP P2P into the whole Deaf P2P thing. Okay, so there are some ongoing changes to the low-level"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,480",
+				"to": "00:09:59,440"
+			},
+			"offsets": {
+				"from": 590480,
+				"to": 599440
+			},
+			"text": " protocols. So independent of any actual implementation. And yeah, so what I've done"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,440",
+				"to": "00:10:08,480"
+			},
+			"offsets": {
+				"from": 599440,
+				"to": 608480
+			},
+			"text": " this year is to just, I've published three EAP drafts. The first one is EAP778. That's Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,480",
+				"to": "00:10:14,720"
+			},
+			"offsets": {
+				"from": 608480,
+				"to": 614720
+			},
+			"text": " node records. And this is kind of at the heart of it. So Ethereum node records are a new concept. It's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,720",
+				"to": "00:10:22,960"
+			},
+			"offsets": {
+				"from": 614720,
+				"to": 622960
+			},
+			"text": " like a small document format with node metadata. It's a bit like business cards for nodes. And in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,960",
+				"to": "00:10:29,440"
+			},
+			"offsets": {
+				"from": 622960,
+				"to": 629440
+			},
+			"text": " those business cards, the nodes can declare transport capabilities and application capabilities in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,440",
+				"to": "00:10:36,720"
+			},
+			"offsets": {
+				"from": 629440,
+				"to": 636720
+			},
+			"text": " all these kinds of things. And then they can be relayed through some medium. And then up next,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,720",
+				"to": "00:10:45,280"
+			},
+			"offsets": {
+				"from": 636720,
+				"to": 645280
+			},
+			"text": " we have this EAP868, which is a tiny specification that integrates node records into the existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,280",
+				"to": "00:10:52,320"
+			},
+			"offsets": {
+				"from": 645280,
+				"to": 652320
+			},
+			"text": " discovery protocol. So this one's really short. And then finally, we have something new, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,320",
+				"to": "00:11:02,080"
+			},
+			"offsets": {
+				"from": 652320,
+				"to": 662080
+			},
+			"text": " the last item. And that one is an entirely new mechanism for discovering nodes based on DNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,080",
+				"to": "00:11:08,240"
+			},
+			"offsets": {
+				"from": 662080,
+				"to": 668240
+			},
+			"text": " So it basically allows you to find node records behind a certain DNS name. And it's totally"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,240",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 668240,
+				"to": 676000
+			},
+			"text": " independent of the of the distributed hash table. So yeah, you know, so what's that about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:22,720"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 682720
+			},
+			"text": " So maybe I'll, it's when people look at the EONR specification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,720",
+				"to": "00:11:28,800"
+			},
+			"offsets": {
+				"from": 682720,
+				"to": 688800
+			},
+			"text": " they can sometimes, well, they come back to me and they say, well, what can I use this for? I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,800",
+				"to": "00:11:33,360"
+			},
+			"offsets": {
+				"from": 688800,
+				"to": 693360
+			},
+			"text": " this is like, you know, there are almost no details in the EAP about, you know, potential uses."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,360",
+				"to": "00:11:41,760"
+			},
+			"offsets": {
+				"from": 693360,
+				"to": 701760
+			},
+			"text": " And it's a document format. I mean, how does that relate to the grand scheme of things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,760",
+				"to": "00:11:46,720"
+			},
+			"offsets": {
+				"from": 701760,
+				"to": 706720
+			},
+			"text": " So the thing about EONR is that it's more like, it's like a medium for negotiating"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,720",
+				"to": "00:11:54,480"
+			},
+			"offsets": {
+				"from": 706720,
+				"to": 714480
+			},
+			"text": " all kinds of capabilities that nodes have. And it can be about hard to imagine like which"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,480",
+				"to": "00:11:59,200"
+			},
+			"offsets": {
+				"from": 714480,
+				"to": 719200
+			},
+			"text": " capabilities are actually worth negotiating between nodes. So I'll just have a couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,200",
+				"to": "00:12:08,880"
+			},
+			"offsets": {
+				"from": 719200,
+				"to": 728880
+			},
+			"text": " examples for you guys now. So one of the things that makes me excited about EONR is that it gives"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,880",
+				"to": "00:12:16,560"
+			},
+			"offsets": {
+				"from": 728880,
+				"to": 736560
+			},
+			"text": " us the option to switch to a zero round trip and encryption scheme. So if two nodes learn about"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,560",
+				"to": "00:12:22,720"
+			},
+			"offsets": {
+				"from": 736560,
+				"to": 742720
+			},
+			"text": " each other in some discovery system, what the discovery system can do for them is it can relay"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,720",
+				"to": "00:12:30,320"
+			},
+			"offsets": {
+				"from": 742720,
+				"to": 750320
+			},
+			"text": " key material, which can be used to pre-compute secrets for a connection. And this is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,320",
+				"to": "00:12:36,160"
+			},
+			"offsets": {
+				"from": 750320,
+				"to": 756160
+			},
+			"text": " really nice because it means that as soon as a connection between those two nodes is created,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,160",
+				"to": "00:12:43,600"
+			},
+			"offsets": {
+				"from": 756160,
+				"to": 763600
+			},
+			"text": " the nodes can start sending data that's relevant to the application pretty much within the first byte"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,600",
+				"to": "00:12:49,520"
+			},
+			"offsets": {
+				"from": 763600,
+				"to": 769520
+			},
+			"text": " because most of the secrets that are needed to encrypt their communication are already pre-computed"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,480",
+				"to": "00:12:57,920"
+			},
+			"offsets": {
+				"from": 770480,
+				"to": 777920
+			},
+			"text": " before the connection was even created. And yeah, so I feel like this is a pretty useful feature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,920",
+				"to": "00:13:02,640"
+			},
+			"offsets": {
+				"from": 777920,
+				"to": 782640
+			},
+			"text": " but what we need for that obviously is a way to like relay this initial key material. And this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,640",
+				"to": "00:13:10,160"
+			},
+			"offsets": {
+				"from": 782640,
+				"to": 790160
+			},
+			"text": " where EONR can help. The second thing is well, transport options. So this is something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,160",
+				"to": "00:13:17,680"
+			},
+			"offsets": {
+				"from": 790160,
+				"to": 797680
+			},
+			"text": " also makes sense to negotiate upfront because like Guillaume told you, we have this ambitious plan"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,680",
+				"to": "00:13:27,600"
+			},
+			"offsets": {
+				"from": 797680,
+				"to": 807600
+			},
+			"text": " to use some of the lipidope transport offerings in our Fp2P stack. But in order to make this work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,600",
+				"to": "00:13:33,040"
+			},
+			"offsets": {
+				"from": 807600,
+				"to": 813040
+			},
+			"text": " well, if you have a node that speaks lipidope and you have another that wants to talk to it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,040",
+				"to": "00:13:37,120"
+			},
+			"offsets": {
+				"from": 813040,
+				"to": 817120
+			},
+			"text": " that other node needs to know whether lipidope is supported. And this isn't really something you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,120",
+				"to": "00:13:41,120"
+			},
+			"offsets": {
+				"from": 817120,
+				"to": 821120
+			},
+			"text": " can just sort of try. And you can poke the node and then see it was not responding, but that just"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,120",
+				"to": "00:13:47,760"
+			},
+			"offsets": {
+				"from": 821120,
+				"to": 827760
+			},
+			"text": " takes super long. And the right solution here is to just know that this node is capable of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,760",
+				"to": "00:13:54,320"
+			},
+			"offsets": {
+				"from": 827760,
+				"to": 834320
+			},
+			"text": " speaking lipidope. And so for these kinds of things, it's obviously very useful if the node can"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,320",
+				"to": "00:14:02,640"
+			},
+			"offsets": {
+				"from": 834320,
+				"to": 842640
+			},
+			"text": " declare upfront in some kind of system that it's compatible with whatever transport you want to speak."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,960",
+				"to": "00:14:11,520"
+			},
+			"offsets": {
+				"from": 844960,
+				"to": 851520
+			},
+			"text": " And then finally, there's another thing which is negotiating prices. So what kind of prices?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,520",
+				"to": "00:14:18,160"
+			},
+			"offsets": {
+				"from": 851520,
+				"to": 858160
+			},
+			"text": " Well, so in systems like the Ethereum like client or swarm, you have something called an incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,160",
+				"to": "00:14:24,160"
+			},
+			"offsets": {
+				"from": 858160,
+				"to": 864160
+			},
+			"text": " system. So in an incentive system on the network level, there are clients and there are servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,160",
+				"to": "00:14:33,440"
+			},
+			"offsets": {
+				"from": 864160,
+				"to": 873440
+			},
+			"text": " and the clients pay the servers for whatever bandwidth they're using. And while that bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,440",
+				"to": "00:14:40,480"
+			},
+			"offsets": {
+				"from": 873440,
+				"to": 880480
+			},
+			"text": " comes at a certain price. And if you have an incentive system set up, then there's a market"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,480",
+				"to": "00:14:44,400"
+			},
+			"offsets": {
+				"from": 880480,
+				"to": 884400
+			},
+			"text": " for servers, obviously, because some servers are going to have one price and other servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,400",
+				"to": "00:14:50,160"
+			},
+			"offsets": {
+				"from": 884400,
+				"to": 890160
+			},
+			"text": " going to offer another price. And as a client, you want to connect to servers that are sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,160",
+				"to": "00:14:57,440"
+			},
+			"offsets": {
+				"from": 890160,
+				"to": 897440
+			},
+			"text": " like in your price range, right? I mean, you don't have an infinite budget. You need a server"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,440",
+				"to": "00:15:05,280"
+			},
+			"offsets": {
+				"from": 897440,
+				"to": 905280
+			},
+			"text": " that gives you the most, how do you say bang for the buck, I guess? And so to make this work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,280",
+				"to": "00:15:12,320"
+			},
+			"offsets": {
+				"from": 905280,
+				"to": 912320
+			},
+			"text": " if you can already know upfront that a certain server for say swarm can offer you data at a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,320",
+				"to": "00:15:19,760"
+			},
+			"offsets": {
+				"from": 912320,
+				"to": 919760
+			},
+			"text": " certain price that can influence your connectivity decision as a client. So you're obviously going"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,760",
+				"to": "00:15:26,560"
+			},
+			"offsets": {
+				"from": 919760,
+				"to": 926560
+			},
+			"text": " to prefer the servers that are, you know, match your price expectations, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,560",
+				"to": "00:15:35,920"
+			},
+			"offsets": {
+				"from": 926560,
+				"to": 935920
+			},
+			"text": " And let's just go and look a bit at how the DNS discovery works, because this is like the new thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,920",
+				"to": "00:15:42,560"
+			},
+			"offsets": {
+				"from": 935920,
+				"to": 942560
+			},
+			"text": " So the DNS discovery is a bit different from the others because it doesn't talk about improving"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,560",
+				"to": "00:15:49,280"
+			},
+			"offsets": {
+				"from": 942560,
+				"to": 949280
+			},
+			"text": " any existing protocol. It's a totally new protocol. And we've come up with this scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,280",
+				"to": "00:15:55,280"
+			},
+			"offsets": {
+				"from": 949280,
+				"to": 955280
+			},
+			"text": " because we want a replacement for bootstrap node lists. So in most clients, what you'll find is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,280",
+				"to": "00:16:00,640"
+			},
+			"offsets": {
+				"from": 955280,
+				"to": 960640
+			},
+			"text": " there's a hard-coded list of bootstrap nodes, usually it's not that long, and these nodes are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,640",
+				"to": "00:16:04,640"
+			},
+			"offsets": {
+				"from": 960640,
+				"to": 964640
+			},
+			"text": " the initial entry point into the network. So when you want to talk to Ethereum blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,640",
+				"to": "00:16:08,720"
+			},
+			"offsets": {
+				"from": 964640,
+				"to": 968720
+			},
+			"text": " you've got to start somewhere. So you've got to find someone who's on that blockchain more or less,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,720",
+				"to": "00:16:13,680"
+			},
+			"offsets": {
+				"from": 968720,
+				"to": 973680
+			},
+			"text": " talk to them first and then find all the others who are also, you know, into this thing. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,880",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 974880,
+				"to": 980000
+			},
+			"text": " maintaining these lists is, you know, annoying because if we want to add a node to it, then we"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:24,880"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 984880
+			},
+			"text": " can just put in a source code. People can download some release, a new release of the client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,880",
+				"to": "00:16:30,320"
+			},
+			"offsets": {
+				"from": 984880,
+				"to": 990320
+			},
+			"text": " and then they'll have it. But we'd rather much rather have a list that's dynamic that can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,320",
+				"to": "00:16:34,960"
+			},
+			"offsets": {
+				"from": 990320,
+				"to": 994960
+			},
+			"text": " updated on the fly and the list is like very, very long, right? So we, you know, for initial entry"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,960",
+				"to": "00:16:42,400"
+			},
+			"offsets": {
+				"from": 994960,
+				"to": 1002400
+			},
+			"text": " points, you better give people some options. So what we envision for DNS discovery is a system"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,400",
+				"to": "00:16:48,240"
+			},
+			"offsets": {
+				"from": 1002400,
+				"to": 1008240
+			},
+			"text": " that can dynamically, with the help of the distributed hash table, create a massive list of nodes that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,240",
+				"to": "00:16:54,720"
+			},
+			"offsets": {
+				"from": 1008240,
+				"to": 1014720
+			},
+			"text": " have a certain uptime and that have certain capabilities, like, let's say, like a big list of main of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,720",
+				"to": "00:17:01,120"
+			},
+			"offsets": {
+				"from": 1014720,
+				"to": 1021120
+			},
+			"text": " mainnet nodes. Well, then we compile them into a certain format and publish that at some DNS"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,120",
+				"to": "00:17:09,520"
+			},
+			"offsets": {
+				"from": 1021120,
+				"to": 1029520
+			},
+			"text": " provider. And, well, and then clients would be able to find them there. And, well, that's DNS"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,520",
+				"to": "00:17:14,800"
+			},
+			"offsets": {
+				"from": 1029520,
+				"to": 1034800
+			},
+			"text": " discovery for you. All right. And there is one more feature. So the thing is the system also"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,800",
+				"to": "00:17:19,600"
+			},
+			"offsets": {
+				"from": 1034800,
+				"to": 1039600
+			},
+			"text": " includes a certain, it's a bit like a web of trust. So one node list can actually refer to another"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,600",
+				"to": "00:17:25,600"
+			},
+			"offsets": {
+				"from": 1039600,
+				"to": 1045600
+			},
+			"text": " node list using the DNS name of the list and the public key. And this means that, well, certainly"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,600",
+				"to": "00:17:30,160"
+			},
+			"offsets": {
+				"from": 1045600,
+				"to": 1050160
+			},
+			"text": " the list can sort of authorize each other and we can, we can group them into meta lists and things"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,160",
+				"to": "00:17:41,280"
+			},
+			"offsets": {
+				"from": 1050160,
+				"to": 1061280
+			},
+			"text": " like that. Right. So, yeah, the EPS. So Ethereum node records is implemented in Go Python and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,280",
+				"to": "00:17:49,040"
+			},
+			"offsets": {
+				"from": 1061280,
+				"to": 1069040
+			},
+			"text": " JavaScript so far. The extension is implemented in Go but isn't, isn't merged in the master branch"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,040",
+				"to": "00:17:54,560"
+			},
+			"offsets": {
+				"from": 1069040,
+				"to": 1074560
+			},
+			"text": " and no discovery via DNS is implemented in Go and Python. But the deployer tool that, that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,360",
+				"to": "00:18:03,120"
+			},
+			"offsets": {
+				"from": 1075360,
+				"to": 1083120
+			},
+			"text": " moves it to, moves it to a DNS provider isn't really done yet. Right. And now I had just have"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,120",
+				"to": "00:18:08,320"
+			},
+			"offsets": {
+				"from": 1083120,
+				"to": 1088320
+			},
+			"text": " two more minutes, I guess, more or less. It says two there. So I'm just, I look at this clock."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,320",
+				"to": "00:18:15,600"
+			},
+			"offsets": {
+				"from": 1088320,
+				"to": 1095600
+			},
+			"text": " And so I'll just talk about a bit about what's next. So we have an ongoing discussion with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,600",
+				"to": "00:18:23,280"
+			},
+			"offsets": {
+				"from": 1095600,
+				"to": 1103280
+			},
+			"text": " sharding team. The theorem research team about how we can, how we can join the efforts because"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,280",
+				"to": "00:18:30,400"
+			},
+			"offsets": {
+				"from": 1103280,
+				"to": 1110400
+			},
+			"text": " the Ethereum sharding right now, the networking is based on lippy to pee. So I feel this is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,400",
+				"to": "00:18:35,600"
+			},
+			"offsets": {
+				"from": 1110400,
+				"to": 1115600
+			},
+			"text": " good decision with lippy to pee because it gives them a lot of options to try out. But obviously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,600",
+				"to": "00:18:41,040"
+			},
+			"offsets": {
+				"from": 1115600,
+				"to": 1121040
+			},
+			"text": " like I myself want to like feed my improvements that I'm working on, you know, on the fund,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,040",
+				"to": "00:18:45,440"
+			},
+			"offsets": {
+				"from": 1121040,
+				"to": 1125440
+			},
+			"text": " Ethereum foundation payroll, I want to, you know, feed those improvements into the sharding. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,440",
+				"to": "00:18:52,080"
+			},
+			"offsets": {
+				"from": 1125440,
+				"to": 1132080
+			},
+			"text": " I feel like the things that that we're doing here to, to improve the PDP, these things can"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,080",
+				"to": "00:18:59,040"
+			},
+			"offsets": {
+				"from": 1132080,
+				"to": 1139040
+			},
+			"text": " actually benefit sharding in the long run. But right now there isn't much overlap. But like I"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,040",
+				"to": "00:19:04,240"
+			},
+			"offsets": {
+				"from": 1139040,
+				"to": 1144240
+			},
+			"text": " said, we have an ongoing discussion. And then the biggest challenge that sharding faces is just"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,240",
+				"to": "00:19:09,760"
+			},
+			"offsets": {
+				"from": 1144240,
+				"to": 1149760
+			},
+			"text": " that they need a system where peers can, can be switched really quickly and we're trying to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,760",
+				"to": "00:19:16,240"
+			},
+			"offsets": {
+				"from": 1149760,
+				"to": 1156240
+			},
+			"text": " that work. Right, I'm going to skip this part. And I'm going to just quickly say before I have to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,240",
+				"to": "00:19:24,240"
+			},
+			"offsets": {
+				"from": 1156240,
+				"to": 1164240
+			},
+			"text": " that there's a big plan for 2019 to offer a deaf PDP as a WebAssembly module. So that you guys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,240",
+				"to": "00:19:29,840"
+			},
+			"offsets": {
+				"from": 1164240,
+				"to": 1169840
+			},
+			"text": " if you ever want to use deaf PDP, you don't have to use Go or like another good implementation, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,840",
+				"to": "00:19:37,600"
+			},
+			"offsets": {
+				"from": 1169840,
+				"to": 1177600
+			},
+			"text": " probably that's going to be Go because it's the best. Yeah. But yeah. So this is a plan that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,600",
+				"to": "00:19:41,920"
+			},
+			"offsets": {
+				"from": 1177600,
+				"to": 1181920
+			},
+			"text": " and thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,920",
+				"to": "00:19:43,920"
+			},
+			"offsets": {
+				"from": 1181920,
+				"to": 1183920
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,920",
+				"to": "00:19:45,920"
+			},
+			"offsets": {
+				"from": 1183920,
+				"to": 1185920
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,920",
+				"to": "00:19:47,920"
+			},
+			"offsets": {
+				"from": 1185920,
+				"to": 1187920
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,920",
+				"to": "00:19:49,920"
+			},
+			"offsets": {
+				"from": 1187920,
+				"to": 1189920
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,920",
+				"to": "00:19:51,920"
+			},
+			"offsets": {
+				"from": 1189920,
+				"to": 1191920
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,920",
+				"to": "00:19:53,920"
+			},
+			"offsets": {
+				"from": 1191920,
+				"to": 1193920
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,920",
+				"to": "00:20:13,920"
+			},
+			"offsets": {
+				"from": 1193920,
+				"to": 1213920
+			},
+			"text": " [Music]"
+		}
+	]
+}

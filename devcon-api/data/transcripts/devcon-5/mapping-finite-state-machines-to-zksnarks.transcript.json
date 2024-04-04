@@ -1,0 +1,1099 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,320"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11320
+			},
+			"text": " >> Hello, everyone. I'm Fabrizio from Statebox and I'm going to talk about how to map"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,320",
+				"to": "00:00:19,680"
+			},
+			"offsets": {
+				"from": 11320,
+				"to": 19680
+			},
+			"text": " fun state machines to zkznarks using category theory. This is joint work with Andre Nispo"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,680",
+				"to": "00:00:26,520"
+			},
+			"offsets": {
+				"from": 19680,
+				"to": 26520
+			},
+			"text": " and Joshua for our team as well. We have a paper about what we did which is this archibilink"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,520",
+				"to": "00:00:35,200"
+			},
+			"offsets": {
+				"from": 26520,
+				"to": 35200
+			},
+			"text": " out there. Okay, so let's start. What is a zero-knowledge snark? They are just a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,200",
+				"to": "00:00:41,520"
+			},
+			"offsets": {
+				"from": 35200,
+				"to": 41520
+			},
+			"text": " to prove that some computation follows some rules without revealing anything about a"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,520",
+				"to": "00:00:49,360"
+			},
+			"offsets": {
+				"from": 41520,
+				"to": 49360
+			},
+			"text": " computation itself. They are good for privacy. They compress a lot of information and blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,360",
+				"to": "00:00:55,680"
+			},
+			"offsets": {
+				"from": 49360,
+				"to": 55680
+			},
+			"text": " people seem to love them, so why not doing some research about them? The nice thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,680",
+				"to": "00:01:00,840"
+			},
+			"offsets": {
+				"from": 55680,
+				"to": 60840
+			},
+			"text": " is that for this talk you don't really have to know what a zkznark is. Everything you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,840",
+				"to": "00:01:07,760"
+			},
+			"offsets": {
+				"from": 60840,
+				"to": 67760
+			},
+			"text": " have to know is that if you have a Boolean circuit then you can turn it into a zkznark."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,760",
+				"to": "00:01:14,520"
+			},
+			"offsets": {
+				"from": 67760,
+				"to": 74520
+			},
+			"text": " So another question becomes cool but what is a Boolean circuit? Well, it's just literally"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,520",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 74520,
+				"to": 80000
+			},
+			"text": " a bunch of logical gates work together. So in here you see for instance four gates, an"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:26,080"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 86080
+			},
+			"text": " AND gate, an OR gate, a copy gate, and a constant gate. And you know this is a Boolean circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,080",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 86080,
+				"to": 91000
+			},
+			"text": " You just like work them together and you put bits in the vertical wires and you get an"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:38,080"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 98080
+			},
+			"text": " output bit on the right. Okay, so what is a finite state machine? A finite state machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,080",
+				"to": "00:01:44,960"
+			},
+			"offsets": {
+				"from": 98080,
+				"to": 104960
+			},
+			"text": " is some very old gadget in theoretical computer science. Old means good because it means that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,960",
+				"to": "00:01:50,760"
+			},
+			"offsets": {
+				"from": 104960,
+				"to": 110760
+			},
+			"text": " a lot of theory has been redeveloped about finite state machines. We know perfectly well"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,760",
+				"to": "00:01:56,880"
+			},
+			"offsets": {
+				"from": 110760,
+				"to": 116880
+			},
+			"text": " how they work and how to prove formal properties about them. So in here you can see this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,880",
+				"to": "00:02:04,680"
+			},
+			"offsets": {
+				"from": 116880,
+				"to": 124680
+			},
+			"text": " just a vending machine, a model of a very simple vending machine. And you can think about it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,680",
+				"to": "00:02:11,880"
+			},
+			"offsets": {
+				"from": 124680,
+				"to": 131880
+			},
+			"text": " just as a graph. The vertexes represent all the possible states of the system and the edges."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,880",
+				"to": "00:02:17,880"
+			},
+			"offsets": {
+				"from": 131880,
+				"to": 137880
+			},
+			"text": " So the arcs represent operations that mutate state. So you see that in here you can insert"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,880",
+				"to": "00:02:24,760"
+			},
+			"offsets": {
+				"from": 137880,
+				"to": 144760
+			},
+			"text": " a coin and go from ready to select and then you can order stuff and get changed. And a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,760",
+				"to": "00:02:29,960"
+			},
+			"offsets": {
+				"from": 144760,
+				"to": 149960
+			},
+			"text": " competition that follows the rules of the finite state machine is just a path in this graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,960",
+				"to": "00:02:36,080"
+			},
+			"offsets": {
+				"from": 149960,
+				"to": 156080
+			},
+			"text": " So you see that you can't buy Coke if you are not in the select state. You need to, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,080",
+				"to": "00:02:42,240"
+			},
+			"offsets": {
+				"from": 156080,
+				"to": 162240
+			},
+			"text": " if you are in a ready state then you have to insert a coin first. So the idea is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,240",
+				"to": "00:02:48,920"
+			},
+			"offsets": {
+				"from": 162240,
+				"to": 168920
+			},
+			"text": " if we can map these parts of this graph to Boolean circuits then we can basically turn"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,920",
+				"to": "00:02:55,480"
+			},
+			"offsets": {
+				"from": 168920,
+				"to": 175480
+			},
+			"text": " this circuit into a snark that verifies that a computation followed the rules determined"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,480",
+				"to": "00:03:01,520"
+			},
+			"offsets": {
+				"from": 175480,
+				"to": 181520
+			},
+			"text": " by the finite state machine. Okay, so what is category theory? Like where do you use"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,520",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 181520,
+				"to": 186000
+			},
+			"text": " category theory? So category theory is a super complicated thing that is used to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:13,120"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 193120
+			},
+			"text": " simple things that seems like not great. But actually it is because it scales better."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,120",
+				"to": "00:03:20,960"
+			},
+			"offsets": {
+				"from": 193120,
+				"to": 200960
+			},
+			"text": " So the idea is that in category theory everything is compositional. It is super related to type"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,960",
+				"to": "00:03:26,120"
+			},
+			"offsets": {
+				"from": 200960,
+				"to": 206120
+			},
+			"text": " theory. So if you like functional programming you should really like category theory even"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,120",
+				"to": "00:03:32,560"
+			},
+			"offsets": {
+				"from": 206120,
+				"to": 212560
+			},
+			"text": " if functional programmers won't agree with me on this. So the idea is that in category"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,560",
+				"to": "00:03:38,360"
+			},
+			"offsets": {
+				"from": 212560,
+				"to": 218360
+			},
+			"text": " theory you can relate different mathematical structures. Everything is formally interconnected"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,360",
+				"to": "00:03:44,280"
+			},
+			"offsets": {
+				"from": 218360,
+				"to": 224280
+			},
+			"text": " in a way that respects the structures of the things you are connecting. This means that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,280",
+				"to": "00:03:49,080"
+			},
+			"offsets": {
+				"from": 224280,
+				"to": 229080
+			},
+			"text": " if we build the categorical correspondence between graphs and Boolean circuits then we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,080",
+				"to": "00:03:56,840"
+			},
+			"offsets": {
+				"from": 229080,
+				"to": 236840
+			},
+			"text": " can be sure that if we morph the graph the circuit will morph accordingly. And moreover"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,840",
+				"to": "00:04:03,840"
+			},
+			"offsets": {
+				"from": 236840,
+				"to": 243840
+			},
+			"text": " once you categorify a concept you automatically connect it to the whole of mathematics. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,840",
+				"to": "00:04:08,760"
+			},
+			"offsets": {
+				"from": 243840,
+				"to": 248760
+			},
+			"text": " this basically means that now if you have a categorical correspondence between whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,760",
+				"to": "00:04:14,560"
+			},
+			"offsets": {
+				"from": 248760,
+				"to": 254560
+			},
+			"text": " you like to graphs then you will be able to pipe these correspondence inside the thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,560",
+				"to": "00:04:22,440"
+			},
+			"offsets": {
+				"from": 254560,
+				"to": 262440
+			},
+			"text": " we are doing and get automatically zk's narks out of it. So this is an example. With each"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,440",
+				"to": "00:04:29,800"
+			},
+			"offsets": {
+				"from": 262440,
+				"to": 269800
+			},
+			"text": " graph G you can build the free category free of G. This free category represents all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,800",
+				"to": "00:04:34,320"
+			},
+			"offsets": {
+				"from": 269800,
+				"to": 274320
+			},
+			"text": " possible parts in the graph so the possible local computations we are interested about."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,320",
+				"to": "00:04:38,720"
+			},
+			"offsets": {
+				"from": 274320,
+				"to": 278720
+			},
+			"text": " And you know this is a commutative square which is the very heart of category theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,720",
+				"to": "00:04:44,800"
+			},
+			"offsets": {
+				"from": 278720,
+				"to": 284800
+			},
+			"text": " And what it means is that if you have an F that morphs your graph G to a graph G prime"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,800",
+				"to": "00:04:50,440"
+			},
+			"offsets": {
+				"from": 284800,
+				"to": 290440
+			},
+			"text": " then you obtain automatically a way to morph the corresponding categories. And if you map"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,440",
+				"to": "00:04:57,240"
+			},
+			"offsets": {
+				"from": 290440,
+				"to": 297240
+			},
+			"text": " the graph G to the free category and then you morph that is the same of morphing the graph"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,240",
+				"to": "00:05:03,360"
+			},
+			"offsets": {
+				"from": 297240,
+				"to": 303360
+			},
+			"text": " first and then doing the free category. So this square commutes. It does not matter which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,360",
+				"to": "00:05:10,080"
+			},
+			"offsets": {
+				"from": 303360,
+				"to": 310080
+			},
+			"text": " path you take you can go from G to free of G prime using both paths. So what we do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,080",
+				"to": "00:05:17,560"
+			},
+			"offsets": {
+				"from": 310080,
+				"to": 317560
+			},
+			"text": " this we can basically use the adjacency matrix of the graph corresponding to the FSM to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,560",
+				"to": "00:05:23,880"
+			},
+			"offsets": {
+				"from": 317560,
+				"to": 323880
+			},
+			"text": " a circuit. In this circuit you see you basically plug in an enumeration of a vertex on the left"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,880",
+				"to": "00:05:31,960"
+			},
+			"offsets": {
+				"from": 323880,
+				"to": 331960
+			},
+			"text": " and an edge. And this circuit will give you zero or one depending if the vertex you plugged"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,960",
+				"to": "00:05:39,080"
+			},
+			"offsets": {
+				"from": 331960,
+				"to": 339080
+			},
+			"text": " in is the starting vertex of the edge and it will give you the next vertex. So if x to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,080",
+				"to": "00:05:46,760"
+			},
+			"offsets": {
+				"from": 339080,
+				"to": 346760
+			},
+			"text": " the e is a thing that goes from a to b and you plug a on the left on xv then you get"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,760",
+				"to": "00:05:56,560"
+			},
+			"offsets": {
+				"from": 346760,
+				"to": 356560
+			},
+			"text": " one and b on the other side. Now we can connect these things together and this is exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,560",
+				"to": "00:06:02,760"
+			},
+			"offsets": {
+				"from": 356560,
+				"to": 362760
+			},
+			"text": " what this free category will do. So we can map now everything in this free category to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,760",
+				"to": "00:06:09,360"
+			},
+			"offsets": {
+				"from": 362760,
+				"to": 369360
+			},
+			"text": " a piping of these modular circuits basically. But we can do more we can abstract the adjacency"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,360",
+				"to": "00:06:15,480"
+			},
+			"offsets": {
+				"from": 369360,
+				"to": 375480
+			},
+			"text": " matrix which at the moment is encoded in this S of G and T of G like this. And now the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,480",
+				"to": "00:06:21,040"
+			},
+			"offsets": {
+				"from": 375480,
+				"to": 381040
+			},
+			"text": " is that in this densely dotted wire you can also specify the adjacency matrix of the graph"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,040",
+				"to": "00:06:28,200"
+			},
+			"offsets": {
+				"from": 381040,
+				"to": 388200
+			},
+			"text": " you want to use. So now you are plugging in the vertex, an edge and also the graph the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,200",
+				"to": "00:06:36,440"
+			},
+			"offsets": {
+				"from": 388200,
+				"to": 396440
+			},
+			"text": " vertex and the edge belong to. So again all these things are composable and you can basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,440",
+				"to": "00:06:43,560"
+			},
+			"offsets": {
+				"from": 396440,
+				"to": 403560
+			},
+			"text": " obtain a function that goes from your free categories to these circuits. This means that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,560",
+				"to": "00:06:49,920"
+			},
+			"offsets": {
+				"from": 403560,
+				"to": 409920
+			},
+			"text": " you are basically a categorical way to map a fun state machine to this category of Boolean"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,920",
+				"to": "00:06:57,040"
+			},
+			"offsets": {
+				"from": 409920,
+				"to": 417040
+			},
+			"text": " circuits. And everything we built is compositional. So basically you see in this huge diagram you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,040",
+				"to": "00:07:05,040"
+			},
+			"offsets": {
+				"from": 417040,
+				"to": 425040
+			},
+			"text": " start with graphs on the left. Then you calculate this free category thing and then you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,040",
+				"to": "00:07:10,040"
+			},
+			"offsets": {
+				"from": 425040,
+				"to": 430040
+			},
+			"text": " there are different kind of things that are related to knowledge proofs or zero knowledge"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,040",
+				"to": "00:07:18,480"
+			},
+			"offsets": {
+				"from": 430040,
+				"to": 438480
+			},
+			"text": " proofs. And the idea is that if you morph the graph down there you can basically traverse"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,480",
+				"to": "00:07:23,280"
+			},
+			"offsets": {
+				"from": 438480,
+				"to": 443280
+			},
+			"text": " this diagram in any way you want. It does not matter which path you take. The only thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,280",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 443280,
+				"to": 449000
+			},
+			"text": " that matters is what is your starting point and your end point. And this is exactly what"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:36,360"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 456360
+			},
+			"text": " category theory is about. So the take home message of this talk is this. If you build"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,360",
+				"to": "00:07:42,120"
+			},
+			"offsets": {
+				"from": 456360,
+				"to": 462120
+			},
+			"text": " things categorically there is a good chance that they will be formally correct because"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,120",
+				"to": "00:07:48,120"
+			},
+			"offsets": {
+				"from": 462120,
+				"to": 468120
+			},
+			"text": " category theory is all about structure and when you are able to express some concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,120",
+				"to": "00:07:55,240"
+			},
+			"offsets": {
+				"from": 468120,
+				"to": 475240
+			},
+			"text": " categorically then the concept will be correct and type check by definition. You can think"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,240",
+				"to": "00:08:02,560"
+			},
+			"offsets": {
+				"from": 475240,
+				"to": 482560
+			},
+			"text": " about category theory really like a semantics for type theory if you want. Then you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,560",
+				"to": "00:08:07,800"
+			},
+			"offsets": {
+				"from": 482560,
+				"to": 487800
+			},
+			"text": " be able to verify that your constructions satisfy some nice properties. And this is because"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,800",
+				"to": "00:08:12,520"
+			},
+			"offsets": {
+				"from": 487800,
+				"to": 492520
+			},
+			"text": " categories are very structured. So once you turn something into categories you have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,520",
+				"to": "00:08:18,720"
+			},
+			"offsets": {
+				"from": 492520,
+				"to": 498720
+			},
+			"text": " plethora of formal tools that you can use to verify that your constructions have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,720",
+				"to": "00:08:28,560"
+			},
+			"offsets": {
+				"from": 498720,
+				"to": 508560
+			},
+			"text": " properties. And they will be more easily implementable in a formally verified setting because basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,560",
+				"to": "00:08:33,400"
+			},
+			"offsets": {
+				"from": 508560,
+				"to": 513400
+			},
+			"text": " many formally verified settings are fully functional. For instance we are mainly using"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,400",
+				"to": "00:08:38,560"
+			},
+			"offsets": {
+				"from": 513400,
+				"to": 518560
+			},
+			"text": " Idris to implement this stuff and we just built a category theory library in Idris. We"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,560",
+				"to": "00:08:44,280"
+			},
+			"offsets": {
+				"from": 518560,
+				"to": 524280
+			},
+			"text": " literally took a category theory book and implemented all the definitions with proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,280",
+				"to": "00:08:51,760"
+			},
+			"offsets": {
+				"from": 524280,
+				"to": 531760
+			},
+			"text": " in Idris. And then you see that if you are able to translate the theory we developed to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,760",
+				"to": "00:08:57,760"
+			},
+			"offsets": {
+				"from": 531760,
+				"to": 537760
+			},
+			"text": " the Idris library. Just is between quotes obviously because it is not easy but it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,760",
+				"to": "00:09:04,560"
+			},
+			"offsets": {
+				"from": 537760,
+				"to": 544560
+			},
+			"text": " a very conceptly straight path to get to formal verification. And yeah in the end you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,560",
+				"to": "00:09:11,840"
+			},
+			"offsets": {
+				"from": 544560,
+				"to": 551840
+			},
+			"text": " be able to link things together without making an MS. So that is basically it. So category"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,840",
+				"to": "00:09:16,680"
+			},
+			"offsets": {
+				"from": 551840,
+				"to": 556680
+			},
+			"text": " theory is difficult in the beginning especially if you do not know it but it pays off big"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,680",
+				"to": "00:09:23,280"
+			},
+			"offsets": {
+				"from": 556680,
+				"to": 563280
+			},
+			"text": " time as your system becomes more complicated. So for instance in this case we have basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,280",
+				"to": "00:09:29,160"
+			},
+			"offsets": {
+				"from": 563280,
+				"to": 569160
+			},
+			"text": " built a categorical module for our infrastructure. A categorical gadget that transfers graphs"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,160",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 569160,
+				"to": 576000
+			},
+			"text": " into zero-elage proofs. Now whatever you are doing if you are able to translate the stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:41,760"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 581760
+			},
+			"text": " you care about into graphs then you can just use this module to get a zero-elage proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,760",
+				"to": "00:09:47,120"
+			},
+			"offsets": {
+				"from": 581760,
+				"to": 587120
+			},
+			"text": " from that graph that verifies that the rules specified by the finite state machine corresponding"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,120",
+				"to": "00:09:51,840"
+			},
+			"offsets": {
+				"from": 587120,
+				"to": 591840
+			},
+			"text": " to the graph are being followed. And yeah I think that is it basically. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,840",
+				"to": "00:09:57,360"
+			},
+			"offsets": {
+				"from": 591840,
+				"to": 597360
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,360",
+				"to": "00:10:04,360"
+			},
+			"offsets": {
+				"from": 597360,
+				"to": 604360
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,360",
+				"to": "00:10:11,360"
+			},
+			"offsets": {
+				"from": 604360,
+				"to": 611360
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,360",
+				"to": "00:10:18,360"
+			},
+			"offsets": {
+				"from": 611360,
+				"to": 618360
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,360",
+				"to": "00:10:25,360"
+			},
+			"offsets": {
+				"from": 618360,
+				"to": 625360
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,360",
+				"to": "00:10:32,360"
+			},
+			"offsets": {
+				"from": 625360,
+				"to": 632360
+			},
+			"text": " [Music]"
+		}
+	]
+}

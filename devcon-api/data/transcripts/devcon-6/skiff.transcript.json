@@ -1,0 +1,4278 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 19000
+			},
+			"text": " >> Gurde, and thank you for starting the morning with us."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 21000
+			},
+			"text": " I'm here to introduce Andrew Millek."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 24000
+			},
+			"text": " He's the co-founder and CEO of SKIF,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 27000
+			},
+			"text": " which is an end-to-end encrypted privacy first"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 30000
+			},
+			"text": " of the United Native Communication and Collaboration platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 34000
+			},
+			"text": " Andrew previously worked on spacecraft at 8 SpaceX,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 37000
+			},
+			"text": " operating systems, and spent time working all over Asia"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 38000
+			},
+			"text": " and Eastern Europe."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 42000
+			},
+			"text": " Before that, Andrew graduated as the Henry Ford,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 44000
+			},
+			"text": " the second scholar from Stanford."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 45000
+			},
+			"text": " Welcome, Andrew."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 46000
+			},
+			"text": " >> Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 47000
+			},
+			"text": " And hi, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 48000
+			},
+			"text": " Nice to meet you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 51000
+			},
+			"text": " I've got a great group."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 54000
+			},
+			"text": " So, yeah, we're going to start by talking about basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 58000
+			},
+			"text": " the stack of how you build consumer applications in Web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 61000
+			},
+			"text": " And so, what does that mean not just for applications in DeFi"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 63000
+			},
+			"text": " and finance and trading and exchanges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 65000
+			},
+			"text": " but how can we actually build applications that we use"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 68000
+			},
+			"text": " every single day and ideally every single hour?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 71000
+			},
+			"text": " So, you wake up, you check your email, you check your messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 74000
+			},
+			"text": " How can we rebuild the stack of the way consumers live and work"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 76000
+			},
+			"text": " on the internet to be more private and use their own?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 79000
+			},
+			"text": " So, we'll start with just some of the attributes of what we look for"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 83000
+			},
+			"text": " in our application and also in all applications in this sector."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 85000
+			},
+			"text": " We'll start with privacy first."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 87000
+			},
+			"text": " And this actually, for us at SCIF, is probably the most important"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 90000
+			},
+			"text": " fundamental layer of how we build things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 93000
+			},
+			"text": " So, what that means is all of your data is owned by you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 94000
+			},
+			"text": " and it's private to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 98000
+			},
+			"text": " So, no one else, not some technology provider or platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 99000
+			},
+			"text": " will have access to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 102000
+			},
+			"text": " And so, it's really only something that you should have access to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 105000
+			},
+			"text": " which is just also a lot more intuitive for the way we use"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 108000
+			},
+			"text": " these really sensitive applications, whether it's file storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 112000
+			},
+			"text": " or messaging or communication, all the things that we store"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 115000
+			},
+			"text": " on those products should really only be known to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 120000
+			},
+			"text": " And that's not an expectation that people certainly have today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 122000
+			},
+			"text": " Beyond that, and we'll talk more about this later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 123000
+			},
+			"text": " we think it should be decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 125000
+			},
+			"text": " And what that means isn't always that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 129000
+			},
+			"text": " compute is taking place all across the world on chain or"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 133000
+			},
+			"text": " always on a decentralized network, but it should be architected"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136000
+			},
+			"text": " in a way where your data and your compute isn't always entrusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 137000
+			},
+			"text": " to a platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 140000
+			},
+			"text": " And that translates into the data structures that you might use"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 143000
+			},
+			"text": " into the way authentication and identity might work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 146000
+			},
+			"text": " and also into so much more from an ideological side"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 149000
+			},
+			"text": " of how might your data be de-platformed if you're removed from it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 151000
+			},
+			"text": " How would you think about censorship resistance?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 154000
+			},
+			"text": " How would you think about access to it that's always permanent"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 155000
+			},
+			"text": " and always accessible?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 158000
+			},
+			"text": " And then also, how would you think about just incorporating privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 162000
+			},
+			"text": " into every single piece of your data storage and identity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 164000
+			},
+			"text": " Finally, this one's a little interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 166000
+			},
+			"text": " We think that applications should be interoperable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 169000
+			},
+			"text": " So, when you're no longer asking an OAuth application"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 172000
+			},
+			"text": " like Google for your identity, we want you to be able to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 174000
+			},
+			"text": " that information in other parts of the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 178000
+			},
+			"text": " So, whether it's logged into another product, storing your data elsewhere,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 182000
+			},
+			"text": " or building really cool API and programmatic integrations"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 184000
+			},
+			"text": " to all the files and things that you create."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 186000
+			},
+			"text": " And lastly, we'll just say this very briefly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 188000
+			},
+			"text": " We think it should be open source, which is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 191000
+			},
+			"text": " we've committed to at SKIF, but also I think something that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 196000
+			},
+			"text": " in the entire community of just Ethereum and the crypto ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 198000
+			},
+			"text": " is really important to make sure people trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 200000
+			},
+			"text": " What you can do and also can replicate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 202000
+			},
+			"text": " [DING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 206000
+			},
+			"text": " So, we'll start with privacy first with a pretty intuitive saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 210000
+			},
+			"text": " which is, if you own the keys, you also own the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 214000
+			},
+			"text": " And so, basically, everything on the product should be"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 216000
+			},
+			"text": " intended encrypted from the ground up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 218000
+			},
+			"text": " So, you're sending a message, keep that message private only to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 219000
+			},
+			"text": " in the recipient."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 221000
+			},
+			"text": " If you're uploading a file or piece of information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 223000
+			},
+			"text": " make sure that's also private only to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 226000
+			},
+			"text": " We've basically just seen countless examples in the last two years"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 229000
+			},
+			"text": " with people storing things on the cloud and being deplatformed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 232000
+			},
+			"text": " targeted for the things that they store in a cloud provider,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 236000
+			},
+			"text": " or just not really able to understand and trust where their data is being used."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 239000
+			},
+			"text": " Is it being dropped into some massive machine learning model?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 242000
+			},
+			"text": " Is it being used in some massive search indexing algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 245000
+			},
+			"text": " that's also just used across 500 million other users?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 248000
+			},
+			"text": " Your data should be private to you and intent encrypted."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 251000
+			},
+			"text": " I skipped over this, but we also want to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 254000
+			},
+			"text": " there's no personally identifying information inside these products."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 258000
+			},
+			"text": " This is slightly controversial depending on the application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 263000
+			},
+			"text": " but in the encrypted messaging space and intent encrypted communications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 266000
+			},
+			"text": " it's really kind of this ground zero expectation that people have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 268000
+			},
+			"text": " where you want to be able to use a messaging product,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 272000
+			},
+			"text": " you want to be able to use a communication product without giving out a phone number"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 273000
+			},
+			"text": " or a real name, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 276000
+			},
+			"text": " And so many places in the world now make it harder and harder to do that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 279000
+			},
+			"text": " whether you need to submit an ID to buy a SIM card,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 282000
+			},
+			"text": " or you need to go through an internet provider or an email provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 285000
+			},
+			"text": " and provide another address or some sort of accountability chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 287000
+			},
+			"text": " So that first one's also really important to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 292000
+			},
+			"text": " And finally, a lot of these bullet points actually rest on the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 295000
+			},
+			"text": " of non-custodial wallets or non-custodial public keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 299000
+			},
+			"text": " where if you're doing intent encryption, you kind of have to own your own key pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 302000
+			},
+			"text": " And so that poses a bunch of interesting consumer product challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 304000
+			},
+			"text": " that we'll get to shortly."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 308000
+			},
+			"text": " So on that next point of decentralized, we talked a bit about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 310000
+			},
+			"text": " decentralized can lead to censorship resistance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 313000
+			},
+			"text": " where there isn't a single kind of point of deplatforming,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 316000
+			},
+			"text": " where you can get kicked out of your identity or kicked out of your product."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 320000
+			},
+			"text": " And also with intent encryption, it's really unclear even who is using that data"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 324000
+			},
+			"text": " or how it's going to be processed beyond just the things that you do with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 327000
+			},
+			"text": " This also translates into client-side data storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 331000
+			},
+			"text": " data structures, sharing, search, collaboration, and more."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 334000
+			},
+			"text": " So once you've gone down the path of intent encryption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 337000
+			},
+			"text": " any product that you build will not have access to user data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 340000
+			},
+			"text": " And what that means is you've kind of set up an entire sequence of challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 342000
+			},
+			"text": " and hoops that you have to jump through,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 346000
+			},
+			"text": " whether it's rebuilding how search works, you know, searching on someone's device,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 348000
+			},
+			"text": " or rebuilding how you share that data with other people."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 352000
+			},
+			"text": " So if I want to share a file or a document with another collaborator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 354000
+			},
+			"text": " how can, you know, I as a user do that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 357000
+			},
+			"text": " but the platform never be able to do something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 361000
+			},
+			"text": " Finally, one super important point is also how you trust the platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 362000
+			},
+			"text": " and the product as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 365000
+			},
+			"text": " And so that comes from how you might actually look up other users' public keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 368000
+			},
+			"text": " And we'll get to this later, but this is one of the biggest, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 370000
+			},
+			"text": " age-old questions in communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 372000
+			},
+			"text": " How do I send a secure email to someone?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 375000
+			},
+			"text": " How do I look up someone's public key if I'm using, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 379000
+			},
+			"text": " signal or a telegram secret chat or PGP email back in the 90s?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 384000
+			},
+			"text": " And then on that interoperable point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 388000
+			},
+			"text": " a lot of similar things about basically giving people ownership of their identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 390000
+			},
+			"text": " through self-custody of their keys or wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 394000
+			},
+			"text": " And then also just using a much more local first on device model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 397000
+			},
+			"text": " where data can still be synced or synchronized across the devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 398000
+			},
+			"text": " and things that you use."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 400000
+			},
+			"text": " But because it's n10 encrypted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 403000
+			},
+			"text": " a lot of that actual computing power and computing authority"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 405000
+			},
+			"text": " is no longer with the technology provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 410000
+			},
+			"text": " And then we'll cover some of that last point about command line access"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 413000
+			},
+			"text": " or programmatic access for your content."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 417000
+			},
+			"text": " So I guess let's get into some of the actual technical parts of the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 422000
+			},
+			"text": " How has actually n10 encryption communication been done in the past?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 424000
+			},
+			"text": " We'll start with PGP."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 428000
+			},
+			"text": " I don't know, has anyone used PGP or uses it regularly?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 430000
+			},
+			"text": " Okay, so a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 434000
+			},
+			"text": " So PGP is, I think, a little over 30 years old now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 439000
+			},
+			"text": " It was invented or published in the 1990s, I think, '91."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 445000
+			},
+			"text": " And unfortunately, it's become pretty clunky, very complex and pretty inefficient,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 448000
+			},
+			"text": " where there were proprietary formats owned by corporations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 451000
+			},
+			"text": " open source formats owned by, you know, open source standards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 456000
+			},
+			"text": " and now just other basically open source publications, compliance standards, et cetera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 461000
+			},
+			"text": " that try and take this age old 30-year-old standard and update it for modern cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 464000
+			},
+			"text": " And secretly, it seems like we have a few PGP users here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 467000
+			},
+			"text": " but I'm just going to say that almost no one actually uses it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 472000
+			},
+			"text": " It's estimated that literally 50,000 people worldwide still maintain PGP key pairs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 476000
+			},
+			"text": " and if we look at the other option for n10 encrypted private communication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 480000
+			},
+			"text": " we're literally looking at many three-four orders of magnitude of different scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 484000
+			},
+			"text": " And so you can understand why maintaining your own PGP care, or key pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 486000
+			},
+			"text": " is probably a thing in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 489000
+			},
+			"text": " So if we look at signal and telegram as examples,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 492000
+			},
+			"text": " where signal is default n10 encrypted using the signal protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 495000
+			},
+			"text": " and telegram is n10 encrypted using secret chats,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 499000
+			},
+			"text": " we get so much more privacy built in right out of the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 503000
+			},
+			"text": " So the protocols handle all the stuff around key exchange, key downloading,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 507000
+			},
+			"text": " and actual encryption of messages, and then that leads to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 512000
+			},
+			"text": " 700 million monthly active users on telegram and over 100 million on signal."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 515000
+			},
+			"text": " Finally, one piece of this that, you know, is somewhat of an advantage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 520000
+			},
+			"text": " but also can bite you in the back in the end, is a complex story around key ownership,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 521000
+			},
+			"text": " sign up, and metadata."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 523000
+			},
+			"text": " Where if you look at a product like telegram,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 527000
+			},
+			"text": " they're often criticized for not being fully open source, even if some of the protocol is."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 531000
+			},
+			"text": " And signal often is criticized for requiring a phone number on sign up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 533000
+			},
+			"text": " which for some of us may not matter because we'll, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 535000
+			},
+			"text": " happily share a phone number with friends."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 540000
+			},
+			"text": " But for others, it can really defeat the purpose of a privacy first messaging product."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 548000
+			},
+			"text": " Now we'll look at one last piece of the current authentication framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 553000
+			},
+			"text": " So the last is OAuth, which I think is one of the most painful forms of doing authentication today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 558000
+			},
+			"text": " because it's basically putting your identity in the hands of one single server and provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 562000
+			},
+			"text": " And so whether it's, you know, your Gmail account or another product,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 568000
+			},
+			"text": " you've basically made that, you know, become your identity around the web without really knowing that you really own it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 571000
+			},
+			"text": " And so the way OAuth works is just for a quick overview."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 574000
+			},
+			"text": " You know, you'll plug OAuth into your app in five minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 576000
+			},
+			"text": " You know, developers have made that so easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 581000
+			},
+			"text": " You can query for a scoped token, so ask for my birthday or my favorite color or my email address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 584000
+			},
+			"text": " and get back credentials that can be refreshed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 587000
+			},
+			"text": " possibly indefinitely, for access to an application."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 594000
+			},
+			"text": " So a lot of these standards have developed as, you know, the identity story gets more and more complicated around the web,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 597000
+			},
+			"text": " as centralized providers store more information about us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 602000
+			},
+			"text": " and also just keep enlarging these scopes of data that you could access."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 605000
+			},
+			"text": " Now we'll just flip the paradigm completely on its head."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 609000
+			},
+			"text": " We at SCIF think wallets are just a natural successor to this problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 612000
+			},
+			"text": " across encryption, across identity, and across data ownership."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 617000
+			},
+			"text": " So we've actually seen wallets start to be used as the basis for generating and 10 encrypted key pairs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 621000
+			},
+			"text": " And so if you're familiar with the method, \"ethget encryption public key,\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 624000
+			},
+			"text": " this is actually an innovative thing published by the MetaMask community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 630000
+			},
+			"text": " and then later adopted into Brave Wallet, where you'll turn an Ethereum public key, or Ethereum key pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 638000
+			},
+			"text": " into a curve 25519 encryption key pair, which can be used to just encrypt and decrypt data with your MetaMask or Brave Wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 641000
+			},
+			"text": " There's a bit of complication around that as some of the cryptography is ironed out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 646000
+			},
+			"text": " but it's this much more simple and intuitive way of going from a key that you own"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 649000
+			},
+			"text": " to an entire framework for n10 encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 654000
+			},
+			"text": " Instead of access grants, where we'll ask Google or a provider for more data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 657000
+			},
+			"text": " all of this will be super transparent to users, where you sign a token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 661000
+			},
+			"text": " giving access or authenticating exactly what you want or exactly who you are."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 665000
+			},
+			"text": " And then finally, on the distributed public key directory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 671000
+			},
+			"text": " I think no one here wants to put up one of those HTML only personal pages with your PGP key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 675000
+			},
+			"text": " and then just expect people to go to that if they want to communicate securely with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 680000
+			},
+			"text": " With wallets and things like naming services, we get a much simpler way of going from a human readable name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 688000
+			},
+			"text": " like skiff.eth, to a public key, and we have some people from the DM3 team here who are working on that exact problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 692000
+			},
+			"text": " We'll talk about this more later, but it does introduce some problems on the consumer side"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 697000
+			},
+			"text": " with recovery and basically account reset, as we all know, in using a wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 701000
+			},
+			"text": " So just to recap, what's this new model for authentication?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 705000
+			},
+			"text": " We'll start with a human readable name, like an email address or even simpler."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 711000
+			},
+			"text": " We'll take that and transform it to a wallet address, which is done using a transparent on-chain lookup."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 714000
+			},
+			"text": " And then finally, we'll recover a public key from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 717000
+			},
+			"text": " And so in certain cases, we'll get back an Ethereum key pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 722000
+			},
+			"text": " or in others like that experimental method I talked about, we could actually figure out a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 727000
+			},
+			"text": " to get a really well-suited encryption key pair to send data to people and to encrypt it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 731000
+			},
+			"text": " So now we'll go, we'll kind of completely erase the PGP stack, we'll erase OAuth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 736000
+			},
+			"text": " and we'll go from this human readable name all the way to n10 encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 740000
+			},
+			"text": " Much easier than signal, much easier than telegram, and so much easier than PGP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 743000
+			},
+			"text": " which is why people don't use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 748000
+			},
+			"text": " So then we'll just cover some about storage and interoperability, a little more on the technical side."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 754000
+			},
+			"text": " So this is a point that I've made a lot, but I think is pretty intuitive as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 758000
+			},
+			"text": " If we're moving to a world where decentralized storage actually works for products,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 760000
+			},
+			"text": " we also need n10 encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 764000
+			},
+			"text": " If you're storing data on a decentralized network, you wouldn't want to store it all in plain text."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 769000
+			},
+			"text": " You know, I write a note, I write my PhD thesis, I don't always want every single draft of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 772000
+			},
+			"text": " to just be stored, you know, sharded around the internet in plain text."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 777000
+			},
+			"text": " So instead I want that to be encrypted, and I don't want that to be encrypted with some random person's key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 781000
+			},
+			"text": " I want it to be encrypted with my key, and that's exactly what n10 encryption means."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 786000
+			},
+			"text": " So to get basically this value alignment across n10 encryption and decentralized storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 788000
+			},
+			"text": " wallets are an excellent solution for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 792000
+			},
+			"text": " And then once you've actually published things to a decentralized network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 795000
+			},
+			"text": " you can use that network to query for it, maintain a list of identifiers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 799000
+			},
+			"text": " and have permanent access to that outside of any sort of platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 802000
+			},
+			"text": " which gets back to that importance of censorship resistance."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 806000
+			},
+			"text": " Then we'll also just talk about the data structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 810000
+			},
+			"text": " Let's say you're now using an n10 encrypted product that has no access to the things that you're writing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 812000
+			},
+			"text": " you're typing, your notes, your documents."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 816000
+			},
+			"text": " All of a sudden you can't use a single server like the Google model, or, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 818000
+			},
+			"text": " the centralized model of collaborating."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 820000
+			},
+			"text": " You have to use a new set of data structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 824000
+			},
+			"text": " And so we'll cover this briefly because it's probably a little bit of a tangent."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 828000
+			},
+			"text": " But there are actually really good data structures that are now coming into modern production use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 832000
+			},
+			"text": " like CRDTs, which are conflict-free replicated data types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 837000
+			},
+			"text": " that actually allow for composable operations to be done on these data structures from around the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 841000
+			},
+			"text": " So I increment some number, and someone else across the world decrements it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 843000
+			},
+			"text": " You can see how that operation is composable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 847000
+			},
+			"text": " And so even if there's some latency or someone gets disconnected,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 852000
+			},
+			"text": " we can arrive at a really consensus-based version of a final product without having a server."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 861000
+			},
+			"text": " The last point about interoperability is that it makes account transfer sales and auctions so much simpler."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 864000
+			},
+			"text": " So when an account or identity is transferred on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 868000
+			},
+			"text": " we'll just do that same lookup, and the new owner gets access to that user name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 871000
+			},
+			"text": " or we'll just automatically have access to that's gift.eth."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 876000
+			},
+			"text": " It'll also mean that users can choose their own history and path around things like 2FA,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 881000
+			},
+			"text": " you know, account signatures and log in and all that sort of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 884000
+			},
+			"text": " So if you want to use a multi-sig wallet for gift.eth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 887000
+			},
+			"text": " or you want to set some sort of 2FA mechanism or use a hardware wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 890000
+			},
+			"text": " you'll get to choose your own security posture."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:53,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 893000
+			},
+			"text": " And so that has a lot of pros for more advanced users."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 893000,
+				"to": 896000
+			},
+			"text": " It means that people can choose their own way of securing their private keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 902000
+			},
+			"text": " But it also means that platforms no longer have to deal with some of that risk of accidentally deplatforming people"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 908000
+			},
+			"text": " having 2FA and complicated reset mechanisms, and you can make sure that the right identity is going to the right person."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 911000
+			},
+			"text": " It does, however, introduce complications around account reset."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 913000
+			},
+			"text": " So we'll just be transparent about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 918000
+			},
+			"text": " You know how difficult it is to remember a seed phrase, maybe you wrote it down or put it in a safety deposit box,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 921000
+			},
+			"text": " or you split up pieces and gave them to your friend."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 924000
+			},
+			"text": " But that makes building consumer apps a little more challenging too."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 927000
+			},
+			"text": " Like if I want to reset my email address or my messaging app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 930000
+			},
+			"text": " it's a little weird to ask my friend to click a button or three of them to click a button"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 933000
+			},
+			"text": " and give me their secret out of a few different secret shares,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 938000
+			},
+			"text": " or to use a multi-sig wallet to log into a single collaborative product."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 942000
+			},
+			"text": " So it gives users a lot more freedom and empowerment over how they can use these products,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 945000
+			},
+			"text": " and lets you choose your own security journey."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 949000
+			},
+			"text": " But it also means that there's more complexity around account reset, identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 953000
+			},
+			"text": " and all those areas that, frankly, a lot of the regular consumers will get to."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 955000
+			},
+			"text": " And so that's something we spend a lot of time on at SCIF."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 959000
+			},
+			"text": " How can you make products really simple, really easy to use, and really easy to sign up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 965000
+			},
+			"text": " And so once you get to users who don't want to remember a seed phrase or write it down on their desk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 970000
+			},
+			"text": " you actually get people who have access to all these amazing benefits of end-to-end encryption"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 974000
+			},
+			"text": " and easy to use collaboration, but then if they lose their seed phrase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 976000
+			},
+			"text": " it's harder to reset your account."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 983000
+			},
+			"text": " So to recap on the stack, we talked first about the auth layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:29,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 989000
+			},
+			"text": " where wallets basically enable this entirely new user-owned flow for authenticating and logging into products."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 989000,
+				"to": 993000
+			},
+			"text": " They also give us a much simpler mechanism for distributing public keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 997000
+			},
+			"text": " So don't run your own personal site with a PGP key pair, run your wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1001000
+			},
+			"text": " and just basically add that data on chain, so we can go from your human readable name"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1005000
+			},
+			"text": " to your wallet address to a public key to end-to-end encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1009000
+			},
+			"text": " From there, the storage layer of using decentralization and end-to-end encryption"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1011000
+			},
+			"text": " give us so much more flexibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:16:54,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1014000
+			},
+			"text": " You can basically store data in more places or in a decentralized network"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1014000,
+				"to": 1017000
+			},
+			"text": " if that data is encrypted with your key pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1020000
+			},
+			"text": " It also means that data is portable, so you want to access it via program"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1024000
+			},
+			"text": " or via some sort of command line tool and change it or edit it or download it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1027000
+			},
+			"text": " You can do that all from the decentralized network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1032000
+			},
+			"text": " And then finally, on the app layer, there's still a lot of progress that has to be made."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1038000
+			},
+			"text": " So this is basically a whole new paradigm for building a product like Gmail or Dropbox or Drive or OneDrive."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1043000
+			},
+			"text": " Our team has tested every single email product out there, every single storage product out there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1047000
+			},
+			"text": " and it's radically different to build one that's end-to-end encrypted from the ground up"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1049000
+			},
+			"text": " and works with people's wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1053000
+			},
+			"text": " So it gives us a lot of benefits of basically this natural path"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1058000
+			},
+			"text": " from identity to key pair, but it also means that we have to rebuild a new stack of consumer apps"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1063000
+			},
+			"text": " that do this all behind the scenes, you know, simply, naturally, and also really performantly."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1067000
+			},
+			"text": " So that look-up process gets complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1072000
+			},
+			"text": " So I think from there, yeah, I just wanted to add a couple notes about basically how we think this benefits"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1075000
+			},
+			"text": " the entire community and ecosystem, and then we'll do questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1080000
+			},
+			"text": " So my background is I've been a software engineer my whole life since I was probably five or six years old,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1085000
+			},
+			"text": " although I was not a professional engineer at that point, and now actually doing this for real."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1089000
+			},
+			"text": " You can see that this model of building products is just so much more intuitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1091000
+			},
+			"text": " and better for people and their identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1095000
+			},
+			"text": " So if you have a wallet or a key pair that you really trust and you want to keep track of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1100000
+			},
+			"text": " you could to choose your own security mechanisms and safety mechanisms for owning that private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1104000
+			},
+			"text": " If you want to communicate with people around the world with end-to-end encryption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1109000
+			},
+			"text": " you can now get that an entirely new kind of more user-owned stack of products."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1112000
+			},
+			"text": " I've been a big fan, and so has our team of decentralized storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1117000
+			},
+			"text": " and end-to-end encryption is one of the biggest enablers for actually building consumer apps on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1120000
+			},
+			"text": " So there's still so much work to be done on the product side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1125000
+			},
+			"text": " but we think that basically going from, you know, this distributed consensus around public keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1129000
+			},
+			"text": " to end-to-end encryption to a lot more flexibility on storage and interoperability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1133000
+			},
+			"text": " it's just a much more intuitive, better, and simpler future"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1137000
+			},
+			"text": " that the end of the day is giving people access to what we see as a fundamental right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1141000
+			},
+			"text": " which is private communication, private writing, private collaboration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1143000
+			},
+			"text": " and owning your own key pairs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1146000
+			},
+			"text": " So I think we've got five, six minutes for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1149000
+			},
+			"text": " Thank you all for coming. I know it's early."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1151000
+			},
+			"text": " Go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1156000
+			},
+			"text": " Ah, so this is a great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1160000
+			},
+			"text": " The question was, what are the nuances of going from, I think it's just basically a wallet address"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1164000
+			},
+			"text": " to an actual public key that you might use to encrypt data."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1167000
+			},
+			"text": " So the nuances are like a wallet address is derived from a public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1171000
+			},
+			"text": " So it might be a hash of a public key or, you know, a hash and a truncation of a public key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1175000
+			},
+			"text": " and that's how you get the, you know, the hex, zero, x, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:38,000"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1178000
+			},
+			"text": " You can't use that hex to encrypt data."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1178000,
+				"to": 1181000
+			},
+			"text": " It's just basically the hash of a public key and not a public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1187000
+			},
+			"text": " So that gives us, I'll just go back to the diagram."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1193000
+			},
+			"text": " So because we can't actually do that, there's now two options to go to a public key we can use for encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1197000
+			},
+			"text": " One is we generate a new key pair that's derived from your wallet address."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1200000
+			},
+			"text": " So derive from your wallet private key for encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:02,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1202000
+			},
+			"text": " So you can use whatever elliptic curve you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1202000,
+				"to": 1205000
+			},
+			"text": " So one that's really well suited for that and generate a new key pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:08,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1208000
+			},
+			"text": " Or in the Ethereum context, you could use an Ethereum public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1208000,
+				"to": 1215000
+			},
+			"text": " So a curve SCP-256K public key, which is not really quite as well suited for encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1221000
+			},
+			"text": " It's a little slower and generally not preferred over, you know, like a curve 25509 public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:26,000"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1226000
+			},
+			"text": " I think there's still a lot of lack of consensus on how to go from a wallet address to a public key"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1226000,
+				"to": 1229000
+			},
+			"text": " or how to use, you know, do encryption and decryption via wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:33,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1233000
+			},
+			"text": " You said the data can be stored in a decentralized way."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1233000,
+				"to": 1234000
+			},
+			"text": " You showed IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:39,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1239000
+			},
+			"text": " How is this real-lasting practice on CRDTs when a user presses a key?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1239000,
+				"to": 1243000
+			},
+			"text": " Is that a new IPFS hash every time? Or how does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:44,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1244000
+			},
+			"text": " Yeah, this is a good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,000",
+				"to": "00:20:48,000"
+			},
+			"offsets": {
+				"from": 1244000,
+				"to": 1248000
+			},
+			"text": " So right now, basically the way our products work is when a user presses a key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1248000,
+				"to": 1250000
+			},
+			"text": " it's applied locally to your editor state."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1252000
+			},
+			"text": " Your editor state is some data structure that's like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:20:54,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1254000
+			},
+			"text": " editors are actually super complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,000",
+				"to": "00:20:56,000"
+			},
+			"offsets": {
+				"from": 1254000,
+				"to": 1256000
+			},
+			"text": " You know, we should all go to a conference on text editing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,000",
+				"to": "00:21:02,000"
+			},
+			"offsets": {
+				"from": 1256000,
+				"to": 1262000
+			},
+			"text": " But basically, editors store some array of values, like headers, body, text, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1262000,
+				"to": 1266000
+			},
+			"text": " So that gets mapped to a CRDT state, which is just a data structure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:09,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1269000
+			},
+			"text": " which is basically like a set of operations on an empty state."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,000",
+				"to": "00:21:13,000"
+			},
+			"offsets": {
+				"from": 1269000,
+				"to": 1273000
+			},
+			"text": " And so that operation, you know, I typed a key at position 500,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,000",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1273000,
+				"to": 1277000
+			},
+			"text": " is then sent or it's end-to-end encrypted, sent across the network to other people who are collaborating,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1277000,
+				"to": 1279000
+			},
+			"text": " and they also apply that operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:22,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1282000
+			},
+			"text": " And so you do both do that composably and end up at a final state."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,000",
+				"to": "00:21:28,000"
+			},
+			"offsets": {
+				"from": 1282000,
+				"to": 1288000
+			},
+			"text": " From there, every so often, and there's another, I guess, like a few little kinks to iron out here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,000",
+				"to": "00:21:33,000"
+			},
+			"offsets": {
+				"from": 1288000,
+				"to": 1293000
+			},
+			"text": " from there, your document is end-to-end encrypted, so encrypted with a key that you have access to and your collaborators do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,000",
+				"to": "00:21:37,000"
+			},
+			"offsets": {
+				"from": 1293000,
+				"to": 1297000
+			},
+			"text": " but no one else does. And then from there, it can be uploaded to IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,000",
+				"to": "00:21:42,000"
+			},
+			"offsets": {
+				"from": 1297000,
+				"to": 1302000
+			},
+			"text": " And so there's a few nuances of not everything in real time on our products as uploaded to IPFS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,000",
+				"to": "00:21:45,000"
+			},
+			"offsets": {
+				"from": 1302000,
+				"to": 1305000
+			},
+			"text": " but things that are immutable or static or published can be."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,000",
+				"to": "00:21:53,000"
+			},
+			"offsets": {
+				"from": 1305000,
+				"to": 1313000
+			},
+			"text": " So that's how that's done today, but yeah, the whole decentralized storage kind of network choosing is another whole area."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,000",
+				"to": "00:21:54,000"
+			},
+			"offsets": {
+				"from": 1313000,
+				"to": 1314000
+			},
+			"text": " Go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,000",
+				"to": "00:22:00,000"
+			},
+			"offsets": {
+				"from": 1314000,
+				"to": 1320000
+			},
+			"text": " So can I just ask then, are your servers, they're providing the IPFS services?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,000",
+				"to": "00:22:05,000"
+			},
+			"offsets": {
+				"from": 1320000,
+				"to": 1325000
+			},
+			"text": " That's not decentralized as of yet. Do you have any plans around that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,000",
+				"to": "00:22:13,000"
+			},
+			"offsets": {
+				"from": 1325000,
+				"to": 1333000
+			},
+			"text": " Yeah, so I don't think we... I've been a big fan of IPFS for like five years and tried running my own nodes, all that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1333000,
+				"to": 1338000
+			},
+			"text": " I don't think it's totally feasible for everyone to be running their own nodes in a decentralized network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:27,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1347000
+			},
+			"text": " so there are really great IPFS gateways for upload and even CloudFlare runs a really fast caching layer on top of the download part of IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,000",
+				"to": "00:22:32,000"
+			},
+			"offsets": {
+				"from": 1347000,
+				"to": 1352000
+			},
+			"text": " So I think basically, yes, there's some, you know, end-to-end encryption which is done client-side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,000",
+				"to": "00:22:35,000"
+			},
+			"offsets": {
+				"from": 1352000,
+				"to": 1355000
+			},
+			"text": " then it gets passed through some sort of gateway which is generally centralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,000",
+				"to": "00:22:40,000"
+			},
+			"offsets": {
+				"from": 1355000,
+				"to": 1360000
+			},
+			"text": " and then it gets put on a network, and the user at the end of the day can get access to those identifiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1360000,
+				"to": 1364000
+			},
+			"text": " So at the end of the day, you still get the benefit of, you know, your data's on 10 encrypted, it's put on a network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:51,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1371000
+			},
+			"text": " you can get access to the identifier and the key, but it's not, you know, every single part of that process isn't totally distributed."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,000",
+				"to": "00:22:57,000"
+			},
+			"offsets": {
+				"from": 1371000,
+				"to": 1377000
+			},
+			"text": " Well, if any last quick things either come grab me, thank you all for coming, and yeah, I guess we had that whole power scare,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1377000,
+				"to": 1380000
+			},
+			"text": " so someone, you know, did some sort of search."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1381000,
+				"to": 1382000
+			},
+			"text": " Thank you all."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1384000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:09,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1389000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1389000,
+				"to": 1395000
+			},
+			"text": " [silence]"
+		}
+	]
+}

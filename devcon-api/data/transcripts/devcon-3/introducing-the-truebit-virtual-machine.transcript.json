@@ -1,0 +1,3211 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " >> Thanks, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 22000
+			},
+			"text": " So, I'm Jason Toich."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 24000
+			},
+			"text": " Can we talk about Trubit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 31000
+			},
+			"text": " >> I -- so, in what sense am I introducing the Trubit virtual machine?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 38000
+			},
+			"text": " Some of you remember last year, DevCon 2, Christian and right there also gave a talk on Trubit."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 46000
+			},
+			"text": " So, I'm pleased to announce here today that Trubit is up on the Kovan test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 52000
+			},
+			"text": " You can take a piece of C or C++ code and run a verification game up there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 54000
+			},
+			"text": " All the code is up on our GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 59000
+			},
+			"text": " It's all open source, so dig right in."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 65000
+			},
+			"text": " And I'd also like to thank all of our -- in addition to our core team, all of our open source contributors"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 69000
+			},
+			"text": " who have been making that into a reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 75000
+			},
+			"text": " We are especially -- seeing a Vivian and Harley Swift."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 84000
+			},
+			"text": " So, some of you may be old enough to remember before Bitcoin there was a thing called Big Data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 86000
+			},
+			"text": " And you could actually store stuff on your computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 89000
+			},
+			"text": " You could use the computer to compute stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 91000
+			},
+			"text": " And there was even some privacy features."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 97000
+			},
+			"text": " Well, Ethereum sacrificed all these for a property we called Immutability."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 101000
+			},
+			"text": " And that's what makes blockchains amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 102000
+			},
+			"text": " They're immutable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 107000
+			},
+			"text": " They have some sort of democratic equality properties to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 113000
+			},
+			"text": " But we are -- so it's time to bring the Big Data back onto the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 117000
+			},
+			"text": " So, that's -- Trubit is taking this piece right here, computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 120000
+			},
+			"text": " And that's where we're bringing onto the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 126000
+			},
+			"text": " So -- and there's also a communication component to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 133000
+			},
+			"text": " Just like you have the internet for Big Data, we're looking at something like Doge Ethereum Bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136000
+			},
+			"text": " a way of bringing existing bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 139000
+			},
+			"text": " Take the tokens off Dogecoin and put them on Ethereum and then back."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 142000
+			},
+			"text": " So, that's the functionality we're talking about here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 145000
+			},
+			"text": " So, Trubit is a scalability solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 151000
+			},
+			"text": " And in terms of the storage piece -- so I'm talking about Trubit as a scalability solution for computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 160000
+			},
+			"text": " But if you look at the storage situation, there are a lot of projects already looking in that space already."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 168000
+			},
+			"text": " Most of them are more focused on privacy than data availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 172000
+			},
+			"text": " But there is interesting things going on in the storage department."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 174000
+			},
+			"text": " In fact, there's interesting stuff going on everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 176000
+			},
+			"text": " I guess that's why we're here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 178000
+			},
+			"text": " But what is it about Trubit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 180000
+			},
+			"text": " What about Trubit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 185000
+			},
+			"text": " What we're here to talk about today is a process which we call interactive verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 186000
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 190000
+			},
+			"text": " And what is -- this is -- what are we focused on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 192000
+			},
+			"text": " Trubit is focused on large transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 195000
+			},
+			"text": " So, we've had a few talks just recently about sharding."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 201000
+			},
+			"text": " So, where Trubit is not going to assume that you can take your transaction set and break it up into smaller pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 205000
+			},
+			"text": " You have a massive transaction that's coming in and you have to process it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 208000
+			},
+			"text": " That's what Trubit is all about."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 209000
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 213000
+			},
+			"text": " So, what's the problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 214000
+			},
+			"text": " What are we trying to solve here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 218000
+			},
+			"text": " I guess I don't really have to tell this audience what a smart contract is."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 228000
+			},
+			"text": " But I do want to point out a sort of critical property of the smart contract is that they only --"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " this sign at the bottom, which you can see now, says small computations only."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 237000
+			},
+			"text": " You're not running computations that run for hours or even minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 240000
+			},
+			"text": " I mean, they don't even run for seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 243000
+			},
+			"text": " So, that's what we mean by scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 245000
+			},
+			"text": " Computations is actually run."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 250000
+			},
+			"text": " So, the length of the computation you can run is bounded by Ethereum's gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 254000
+			},
+			"text": " So, the obvious thing, let's get the elephant out of the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 256000
+			},
+			"text": " Why don't we just dump the gas limit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 261000
+			},
+			"text": " So, first -- so, what is the gas limit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 267000
+			},
+			"text": " Ethereum beat a smart contract storage and compute resources with a measurement that's called gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 271000
+			},
+			"text": " And the gas limit is the maximum amount of gas that you can allow per block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 274000
+			},
+			"text": " It's not per-stricken transaction, it's per block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 278000
+			},
+			"text": " And so, why do we have the gas limit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 279000
+			},
+			"text": " That's a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 284000
+			},
+			"text": " So, reason A, is it because every minor has to replicate every Ethereum computation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 290000
+			},
+			"text": " B, it's because removing the gas limit would leave Ethereum vulnerable to denial of service attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 296000
+			},
+			"text": " Is it C, because the gas limit helps incentivize transaction verification?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 301000
+			},
+			"text": " Or is it just that Vitalik, you trans-secretly doesn't want Ethereum to scale?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 305000
+			},
+			"text": " Well, I think we can quickly cross out D, because it's not a secret anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 308000
+			},
+			"text": " I told this same joke a few weeks ago at CESC."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 315000
+			},
+			"text": " So, now, what I do want to do is convince you that C is -- well, I say all these answers are true,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 317000
+			},
+			"text": " but C is more true than all the others."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 324000
+			},
+			"text": " So, this is what I want to convince you in the next three slides, that C is actually the right answer to this question."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 326000
+			},
+			"text": " So, let's see what happens without the gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 328000
+			},
+			"text": " Okay, so, no gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 333000
+			},
+			"text": " You have a guy with two pointy horns comes in with a heavy transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 337000
+			},
+			"text": " He incentivizes it nicely, so someone is bound to pick it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 339000
+			},
+			"text": " You put a nice big transaction fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 345000
+			},
+			"text": " So, a minor comes in, he says, \"Sure, I'll include that because he's got an incentive for it.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 347000
+			},
+			"text": " And what do the rest of the miners do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 350000
+			},
+			"text": " They just get completely confused, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 354000
+			},
+			"text": " Because they -- well, why are they confused?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 358000
+			},
+			"text": " So, this is a -- let's look at a little bit into their confusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 361000
+			},
+			"text": " So, what are they confused about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 368000
+			},
+			"text": " So, this is actually a principle which we call the \"verifiers dilemma.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " So, in the case of a heavy transaction, what should a rational minor do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 378000
+			},
+			"text": " A rational minor being somebody who likes to earn more ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 385000
+			},
+			"text": " So, number one, skipping verification affords an advantage in the mining race."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 389000
+			},
+			"text": " So, therefore, he has a reason to skip the verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 394000
+			},
+			"text": " Mining on the wrong chain, on the other hand, means that other miners will ignore the found block."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 398000
+			},
+			"text": " So, therefore, you should skip the verif -- therefore, you should do the verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 405000
+			},
+			"text": " So, it should be clear from looking at these two statements that rationality doesn't actually help you decide what to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 408000
+			},
+			"text": " So, the miners want to do whatever other miners are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 413000
+			},
+			"text": " So, that's the verifiers dilemma."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 419000
+			},
+			"text": " So, what is true bit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 426000
+			},
+			"text": " True bit is a solution to this verifier's dilemma."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 432000
+			},
+			"text": " It sort of makes it so we put everything off-chain so you don't actually have to deal with heavy transactions on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 436000
+			},
+			"text": " What we've sort of observed in blockchains, and this is kind of the miracle of the whole thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 440000
+			},
+			"text": " is that miners are willing to do a small amount of work for free."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 442000
+			},
+			"text": " And then you don't have a verifier's dilemma."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 449000
+			},
+			"text": " So, here with TrueBit, we are going to give a three-dimensional boost by doing the heavy work off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 455000
+			},
+			"text": " So, the goals of the protocol is that anyone can offer a reward for performing a computational task."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 459000
+			},
+			"text": " Anyone can solve a task in exchange for a reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 463000
+			},
+			"text": " The protocol, most importantly, guarantees correctness of solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 466000
+			},
+			"text": " And here by anyone, I mean anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 470000
+			},
+			"text": " That means a smart contract, pseudonymous identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 475000
+			},
+			"text": " or the bots that came up in the earlier talk this afternoon."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 479000
+			},
+			"text": " And so, if you want to say formally, what is TrueBit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 482000
+			},
+			"text": " It's an Ethereum smart contract. That's one part of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 485000
+			},
+			"text": " But it's also a new off-chain architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 489000
+			},
+			"text": " So, I'm going to walk us through these two pieces in the remaining time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 491000
+			},
+			"text": " So, let me try to explain how the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 494000
+			},
+			"text": " Let's look at the architecture piece first, just as an overview."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 503000
+			},
+			"text": " So, TrueBit is a unanimous consensus algorithm. Unlike a theorem which you sort of have majority vote on the miners, people say like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 509000
+			},
+			"text": " anyone in TrueBit can challenge a computation by taking it to court, so to speak."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 516000
+			},
+			"text": " And who sits in the court? Well, it's your miners from the Ethereum network are sitting in this court."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 521000
+			},
+			"text": " They're always right, but they have very limited computational bandwidth, as we just see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 525000
+			},
+			"text": " because of the gas limit, because of the verifier's dilemma, you're stuck with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 531000
+			},
+			"text": " So, what can we do? So, you have a solver, you have a solver who comes in with a..."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 536000
+			},
+			"text": " Did a computation, and then a challenger who comes in and says, \"Well, you're wrong.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 539000
+			},
+			"text": " And the solver doesn't actually say, \"Let's play a verification game.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 543000
+			},
+			"text": " He gets forced to play a verification game. He gets taken to court."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 548000
+			},
+			"text": " Okay? So, what does the court do? It tries to pinpoint the place where they're disagreeing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 552000
+			},
+			"text": " So, you have a solver and the challenger, they enumerate the computation states."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 556000
+			},
+			"text": " They do all this off-chain. And then the judges are going to enforce the binary search"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 561000
+			},
+			"text": " to find the first step in the computation where they disagree."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 569000
+			},
+			"text": " So, Solvish says here, he kicks out his... Obviously, they agreed on the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 573000
+			},
+			"text": " Green means they agreed. So, they agreed on the first step, because that's the input it's just given."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 576000
+			},
+			"text": " And they didn't agree on the end, or they wouldn't have been in the court in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 578000
+			},
+			"text": " So, he says, \"Do you agree halfway through?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 580000
+			},
+			"text": " The challenger says, \"No, I don't agree on that.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 584000
+			},
+			"text": " So, we mark that as red. \"Do you agree at step N over 4?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 587000
+			},
+			"text": " He says, \"Yeah, okay. \"Great step N over 4.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 591000
+			},
+			"text": " What about 3N over 8? So, we're just getting... Now, we're..."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 595000
+			},
+			"text": " These are close enough. You can actually run this one step with a computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 598000
+			},
+			"text": " You can do it on-chain, because it's small."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 602000
+			},
+			"text": " And it's important to note here that the computational steps have to be absolutely identical"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 606000
+			},
+			"text": " across all the platforms in order to rule fairly on the final check."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 610000
+			},
+			"text": " There's no notion of one step if everybody's running a different set of steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 614000
+			},
+			"text": " So, the judges have to make sure that that's the key property of our architectures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 617000
+			},
+			"text": " that all the steps are exactly the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 621000
+			},
+			"text": " Okay, so what happens here? So, here was the last step where they agreed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 625000
+			},
+			"text": " and here's the step... Or they disagreed. This is what the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 628000
+			},
+			"text": " This step was, of course, provided by the solver."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 630000
+			},
+			"text": " So, he's saying, \"So, I'm talking about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 633000
+			},
+			"text": " There's a picture of a Merkle tree, because you can sort of..."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 636000
+			},
+			"text": " to optimize space on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 639000
+			},
+			"text": " We represent these states and form a Merkle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 641000
+			},
+			"text": " But you can think of it as a Turing machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 646000
+			},
+			"text": " So, you said, \"You're a given machine. It's in state Q0. It sees a 1.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 649000
+			},
+			"text": " So, then the program... He's claiming that the program says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 652000
+			},
+			"text": " \"Write a 0, change to state Q1, and move to the left.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 654000
+			},
+			"text": " If you don't know what a Turing machine is, that's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 658000
+			},
+			"text": " Just note that whatever the judge said, he noticed that it did something different"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 661000
+			},
+			"text": " than what the solver claimed it would."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 665000
+			},
+			"text": " So, the solver is wrong, so the challenge is justified,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 668000
+			},
+			"text": " and that forfeit is now deposited."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 672000
+			},
+			"text": " The deposit is forfeited."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 676000
+			},
+			"text": " So, now let's look at the other piece, the smart contract piece,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 679000
+			},
+			"text": " which is sort of the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 683000
+			},
+			"text": " ...crepto-economic innovation part of this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 688000
+			},
+			"text": " So, how do you actually ensure that this verification actually occurs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 693000
+			},
+			"text": " What if nobody shows up to take you to court, then there's no..."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 695000
+			},
+			"text": " ...it doesn't really work."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 700000
+			},
+			"text": " So, how do you make sure that people actually use the court the way it's supposed to be used?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 703000
+			},
+			"text": " So, the second idea, you offer awards for checking computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 706000
+			},
+			"text": " Just pay everybody who checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 709000
+			},
+			"text": " So, now how do you know that they checked?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 711000
+			},
+			"text": " Well, you go back and run the computation yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 713000
+			},
+			"text": " I mean, you check that they checked."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 716000
+			},
+			"text": " Well, you might as well have just done the thing yourself in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 719000
+			},
+			"text": " So, this incentivizes participation if you pay people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 723000
+			},
+			"text": " but it doesn't incentivize correctness."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 727000
+			},
+			"text": " So, an idea, in three, would be that you offer awards for finding bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 733000
+			},
+			"text": " So, this gives you correctness, but it doesn't incentivize participation when there are no bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 736000
+			},
+			"text": " So, it's the opposite problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 740000
+			},
+			"text": " So, essentially, we have the problem that these verifiers stop paying attention"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 742000
+			},
+			"text": " if they don't expect to receive any rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 751000
+			},
+			"text": " Okay, this brings us to our final scalability idea for this talk, which we call forced errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 758000
+			},
+			"text": " And that is that we're going to offer a bug bounty and provide expectation that bugs will exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 762000
+			},
+			"text": " And so, this is actually what TrueBit does."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 764000
+			},
+			"text": " We are occasionally..."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 767000
+			},
+			"text": " ...the protocol pays solvers for submitting incorrect solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 769000
+			},
+			"text": " You have to get it wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 778000
+			},
+			"text": " So, the dispute resolution ensures correctness whenever forced errors are not in effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 779000
+			},
+			"text": " What do I mean by that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 782000
+			},
+			"text": " So, you're only having maybe one out of a thousand times you might have a forced error."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 786000
+			},
+			"text": " But the idea is that every verifier doesn't know when the forced error is going to come."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 788000
+			},
+			"text": " So, they're just going to check everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 793000
+			},
+			"text": " So, most of the time, the verifiers think they're getting paid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 797000
+			},
+			"text": " and the solver thinks someone's going to watch, and therefore, he gives the right answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 802000
+			},
+			"text": " So, and ideally, if we made our compiler exactly right on this architecture,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 804000
+			},
+			"text": " no one's ever going to go to court."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 806000
+			},
+			"text": " This subroutine is never even going to be executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 810000
+			},
+			"text": " So, that's a lot of work for code that you're never going to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 814000
+			},
+			"text": " Now, if you only remember one slide from my talk, please look at this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 821000
+			},
+			"text": " This is a picture of an illustration of Ruby errors, Simon de Luviers, Panoptic computer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 831000
+			},
+			"text": " which is based on Bentham's Panopticon, and which has physical manifestations in the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 836000
+			},
+			"text": " penitentiary in Joliet, Illinois, the Presidio Medello, and he's led a Pinos in Cuba,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 838000
+			},
+			"text": " and it's a prison, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 846000
+			},
+			"text": " So, you have in the middle, there's a watchtower with someone who's looking around into all of these cells."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 848000
+			},
+			"text": " There's a bright light, so they can't see what he's looking at."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 854000
+			},
+			"text": " But out of fear that the guard sitting in the watchtower is actually looking at them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 856000
+			},
+			"text": " they actually behave correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 859000
+			},
+			"text": " So, that's the principle of the Panoptic computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 862000
+			},
+			"text": " It's all about..."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 867000
+			},
+			"text": " You imagine that these people sitting up here are all performing the computations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 872000
+			},
+			"text": " and they do it correctly because they think they're being watched."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 877000
+			},
+			"text": " So, and I just quote from Michael Fokkold, who is also an important figure in the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 881000
+			},
+			"text": " wrote a book in the 1970s about Panopticism."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 886000
+			},
+			"text": " We have seen that anyone may come and exercise in the central tower the functions of surveillance."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 889000
+			},
+			"text": " So, anybody can sit in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 890000
+			},
+			"text": " Now, there's no reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 894000
+			},
+			"text": " This is exactly an illustration of Tribute because there's no reputation in Tribute."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 897000
+			},
+			"text": " Anyone can come in and do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 902000
+			},
+			"text": " So, let me in the last few minutes talk about the developments that we're going on with..."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 903000
+			},
+			"text": " with Trubot right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 906000
+			},
+			"text": " So, the Trubot virtual machine, when I speak of the virtual machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 909000
+			},
+			"text": " I mean specifically this new architecture that's offside,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 913000
+			},
+			"text": " which is part off-chain, but also your on-chain stepper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 917000
+			},
+			"text": " which allows judges to participate in this mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 922000
+			},
+			"text": " So, as I mentioned before, the tasks have to compile and execute identically on all machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 924000
+			},
+			"text": " Otherwise, there's no notion of step,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 927000
+			},
+			"text": " and the judges can't really participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 928000
+			},
+			"text": " So, they all have to be the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 935000
+			},
+			"text": " The other thing is that your single computation step on the TVM has to be running within Ethereum's gas limit itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 938000
+			},
+			"text": " So, to this... and not all that, you also have to..."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 943000
+			},
+			"text": " the space required to describe a state change also has to fit inside Ethereum transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 948000
+			},
+			"text": " So, we... ideally, you'd use a Turing machine, as I said before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 952000
+			},
+			"text": " but there's no... at least I haven't found any code that takes a bit of C code"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 954000
+			},
+			"text": " and turns it into a Turing machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 958000
+			},
+			"text": " So, we had to do the next best thing, which is go to WebAssembly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 961000
+			},
+			"text": " and we even broke that down further."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:09,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 969000
+			},
+			"text": " We have... each WebAssembly step is broken down into basically 16 sub-steps sort of..."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 969000,
+				"to": 973000
+			},
+			"text": " so this is... we have these properties of our architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 977000
+			},
+			"text": " So, if you look at what does it look like overall, the picture of the TVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 984000
+			},
+			"text": " so you have your C and C++ code, and it's coming into... you want to run this task."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 987000
+			},
+			"text": " So, your smart contract needs some computational boost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 990000
+			},
+			"text": " so you have a C or C++ code that says the task that it wants performed"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 992000
+			},
+			"text": " and it wants to ensure that it's done correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 997000
+			},
+			"text": " You can use this property called \"enscriptin\","
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1001000
+			},
+			"text": " which we use to transform the C++ code into the WebAssembly code."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1003000
+			},
+			"text": " Now, that WebAssembly code is used in two places."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1008000
+			},
+			"text": " It's used both off-chain in this... we use the OCaml reference interpreter"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1013000
+			},
+			"text": " to generate the states, a list of computation steps"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1015000
+			},
+			"text": " that are going to go through on the computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1017000
+			},
+			"text": " That's used by the solvers and the verifiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1021000
+			},
+			"text": " Meanwhile, the task-giver pitches this WASM task actually onto..."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1026000
+			},
+			"text": " he commits the task to the chain itself so that it's enforceable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1028000
+			},
+			"text": " so the judges can do it there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1031000
+			},
+			"text": " And then all this stuff about the incentives that we discussed before"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1033000
+			},
+			"text": " and the forced errors are monitored there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1036000
+			},
+			"text": " and we have this... this is what holds the money that pays out"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1038000
+			},
+			"text": " some of the incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1040000
+			},
+			"text": " And here's where the judges live."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1042000
+			},
+			"text": " They're running... this is where... that's on-chain and it runs one step."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1047000
+			},
+			"text": " Now, I want to point out that we do have a new file system for TrueBit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1051000
+			},
+			"text": " which is... basically has..."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1054000
+			},
+			"text": " well, it currently has two flavors."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:37,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1057000
+			},
+			"text": " One is... even if you store the data on the chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1057000,
+				"to": 1059000
+			},
+			"text": " you still need a file system to access it on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1064000
+			},
+			"text": " so you can put your data on the chain, and the advantage there is that it stays there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1068000
+			},
+			"text": " But you... this advantage is you can't put very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1071000
+			},
+			"text": " IPFS, on the other hand, you can store whatever you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1079000
+			},
+			"text": " but... data availability... well, ideally we want a system that has both of these properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1085000
+			},
+			"text": " The data is available and you can put stuff there, so... to be continued."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:07,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1087000
+			},
+			"text": " So, let me just wrap things up."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1087000,
+				"to": 1095000
+			},
+			"text": " We're in the process of... one of the first applications of TrueBit"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1098000
+			},
+			"text": " is going to be the Doge Ethereum bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1103000
+			},
+			"text": " And we've got the code writing on the Ethereum side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1105000
+			},
+			"text": " but we need to reach out to the Dogecoin community"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1108000
+			},
+			"text": " and get them to put in the new opcode that we need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1112000
+			},
+			"text": " which is going to be something that allows people to take Dogecoin off the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1115000
+			},
+			"text": " Dogecoin network and put it on to... like, lock it on the Dogecoin side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1118000
+			},
+			"text": " unlock it on Ethereum, use it in a smart contract, whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1123000
+			},
+			"text": " and then lock and unlock, send it back. It's a Doge again."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1128000
+			},
+			"text": " And in order to reach out to people, we're doing... we're... we're instituting a new public art project."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1134000
+			},
+			"text": " So, I'm calling everyone who's interested in being part of this amazing movement."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1136000
+			},
+			"text": " This is a once-in-a-lifetime opportunity."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1138000
+			},
+			"text": " Come talk to me after this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1141000
+			},
+			"text": " Where, as I mentioned earlier, we're live on Kovan TestNet."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1146000
+			},
+			"text": " And all of our code is up on GitHub. Check us out on TrueBit."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1150000
+			},
+			"text": " Follow us on Reddit, Medium, GitHub, Twitter, and Facebook."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1152000
+			},
+			"text": " And thanks, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1156000
+			},
+			"text": " (Applause)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1162000
+			},
+			"text": " (Music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1169000
+			},
+			"text": " (Music)"
+		}
+	]
+}

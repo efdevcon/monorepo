@@ -1,0 +1,1462 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:16,400"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 16400
+			},
+			"text": " At the EF, we have a lot of security researchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,400",
+				"to": "00:00:22,920"
+			},
+			"offsets": {
+				"from": 16400,
+				"to": 22920
+			},
+			"text": " They spend all their time trying to break applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,920",
+				"to": "00:00:26,320"
+			},
+			"offsets": {
+				"from": 22920,
+				"to": 26320
+			},
+			"text": " And basically, to figure out how the specifications of the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,320",
+				"to": "00:00:29,680"
+			},
+			"offsets": {
+				"from": 26320,
+				"to": 29680
+			},
+			"text": " might be broken and then trying to sort that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,680",
+				"to": "00:00:33,400"
+			},
+			"offsets": {
+				"from": 29680,
+				"to": 33400
+			},
+			"text": " We also take in some external bug counters from time to time."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,400",
+				"to": "00:00:38,360"
+			},
+			"offsets": {
+				"from": 33400,
+				"to": 38360
+			},
+			"text": " And they kind of focus on a specific task at hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,360",
+				"to": "00:00:42,080"
+			},
+			"offsets": {
+				"from": 38360,
+				"to": 42080
+			},
+			"text": " And also to augment that, we use a bug bounty program."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,080",
+				"to": "00:00:44,720"
+			},
+			"offsets": {
+				"from": 42080,
+				"to": 44720
+			},
+			"text": " So the bug bounty program is there in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,720",
+				"to": "00:00:49,480"
+			},
+			"offsets": {
+				"from": 44720,
+				"to": 49480
+			},
+			"text": " to allow for external researchers to come in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,480",
+				"to": "00:00:54,160"
+			},
+			"offsets": {
+				"from": 49480,
+				"to": 54160
+			},
+			"text": " do some vulnerability bug hunting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,160",
+				"to": "00:00:58,520"
+			},
+			"offsets": {
+				"from": 54160,
+				"to": 58520
+			},
+			"text": " and then basically submit reports to the bug bounty program."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,520",
+				"to": "00:01:04,120"
+			},
+			"offsets": {
+				"from": 58520,
+				"to": 64120
+			},
+			"text": " And this is done so that we can provide rewards and other incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,120",
+				"to": "00:01:06,360"
+			},
+			"offsets": {
+				"from": 64120,
+				"to": 66360
+			},
+			"text": " to the bug hunters."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,360",
+				"to": "00:01:09,280"
+			},
+			"offsets": {
+				"from": 66360,
+				"to": 69280
+			},
+			"text": " So our scope is kind of wide."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,280",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 69280,
+				"to": 73000
+			},
+			"text": " We have-- you can see a list there--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:14,680"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 74680
+			},
+			"text": " basically all the clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,680",
+				"to": "00:01:17,040"
+			},
+			"offsets": {
+				"from": 74680,
+				"to": 77040
+			},
+			"text": " We have the deposit contracts, deleted bugs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,040",
+				"to": "00:01:19,600"
+			},
+			"offsets": {
+				"from": 77040,
+				"to": 79600
+			},
+			"text": " and the specifications of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,600",
+				"to": "00:01:21,960"
+			},
+			"offsets": {
+				"from": 79600,
+				"to": 81960
+			},
+			"text": " But something that we don't have, which is kind of a usual,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,960",
+				"to": "00:01:26,400"
+			},
+			"offsets": {
+				"from": 81960,
+				"to": 86400
+			},
+			"text": " I guess, is that we don't have any scope for websites"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,400",
+				"to": "00:01:28,960"
+			},
+			"offsets": {
+				"from": 86400,
+				"to": 88960
+			},
+			"text": " or for infrastructure or for anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,960",
+				"to": "00:01:31,920"
+			},
+			"offsets": {
+				"from": 88960,
+				"to": 91920
+			},
+			"text": " We focus solely on the protocol itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,920",
+				"to": "00:01:34,480"
+			},
+			"offsets": {
+				"from": 91920,
+				"to": 94480
+			},
+			"text": " You can use two different ways of having a bug bounty program."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,480",
+				"to": "00:01:36,520"
+			},
+			"offsets": {
+				"from": 94480,
+				"to": 96520
+			},
+			"text": " You can use bug botting program as a service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,520",
+				"to": "00:01:38,520"
+			},
+			"offsets": {
+				"from": 96520,
+				"to": 98520
+			},
+			"text": " basically paying a service provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,520",
+				"to": "00:01:40,320"
+			},
+			"offsets": {
+				"from": 98520,
+				"to": 100320
+			},
+			"text": " There are many of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,320",
+				"to": "00:01:43,440"
+			},
+			"offsets": {
+				"from": 100320,
+				"to": 103440
+			},
+			"text": " They will come in, set up your bug botting program."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,440",
+				"to": "00:01:48,240"
+			},
+			"offsets": {
+				"from": 103440,
+				"to": 108240
+			},
+			"text": " They will provide a often very, very large set of bug hunters."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,240",
+				"to": "00:01:51,680"
+			},
+			"offsets": {
+				"from": 108240,
+				"to": 111680
+			},
+			"text": " They are ready to just start hammering on your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,680",
+				"to": "00:01:53,120"
+			},
+			"offsets": {
+				"from": 111680,
+				"to": 113120
+			},
+			"text": " Or you can do it in-house."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,120",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 113120,
+				"to": 115000
+			},
+			"text": " And there are some pros and cons with each."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:59,840"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 119840
+			},
+			"text": " But the reason we went for an in-house solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,840",
+				"to": "00:02:03,840"
+			},
+			"offsets": {
+				"from": 119840,
+				"to": 123840
+			},
+			"text": " is that Ethereum is kind of complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,840",
+				"to": "00:02:05,880"
+			},
+			"offsets": {
+				"from": 123840,
+				"to": 125880
+			},
+			"text": " It requires a lot of expertise."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,880",
+				"to": "00:02:09,520"
+			},
+			"offsets": {
+				"from": 125880,
+				"to": 129520
+			},
+			"text": " A lot of digging through it, compared to, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,520",
+				"to": "00:02:12,040"
+			},
+			"offsets": {
+				"from": 129520,
+				"to": 132040
+			},
+			"text": " finding an SQL in your actually in a web application."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,040",
+				"to": "00:02:14,840"
+			},
+			"offsets": {
+				"from": 132040,
+				"to": 134840
+			},
+			"text": " So we didn't feel that there was that much value."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,840",
+				"to": "00:02:16,920"
+			},
+			"offsets": {
+				"from": 134840,
+				"to": 136920
+			},
+			"text": " So that's why we went with an in-house solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,920",
+				"to": "00:02:20,160"
+			},
+			"offsets": {
+				"from": 136920,
+				"to": 140160
+			},
+			"text": " And we also have a team that can triage and report"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,160",
+				"to": "00:02:23,400"
+			},
+			"offsets": {
+				"from": 140160,
+				"to": 143400
+			},
+			"text": " that we're receiving."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,400",
+				"to": "00:02:25,120"
+			},
+			"offsets": {
+				"from": 143400,
+				"to": 145120
+			},
+			"text": " But depending on your situation, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,120",
+				"to": "00:02:28,440"
+			},
+			"offsets": {
+				"from": 145120,
+				"to": 148440
+			},
+			"text": " might feel the need to go with a service provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,440",
+				"to": "00:02:32,080"
+			},
+			"offsets": {
+				"from": 148440,
+				"to": 152080
+			},
+			"text": " So looking at the history, we can see that in 2015,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,080",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 152080,
+				"to": 156000
+			},
+			"text": " we launched the first iteration of the bug bounty program."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:38,080"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 158080
+			},
+			"text": " It had a very narrow scope."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,080",
+				"to": "00:02:42,480"
+			},
+			"offsets": {
+				"from": 158080,
+				"to": 162480
+			},
+			"text": " Some execution layer clients and the rewards were 5BTC"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,480",
+				"to": "00:02:46,520"
+			},
+			"offsets": {
+				"from": 162480,
+				"to": 166520
+			},
+			"text": " for a consensus issue, which today would be quite a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,520",
+				"to": "00:02:49,960"
+			},
+			"offsets": {
+				"from": 166520,
+				"to": 169960
+			},
+			"text": " But back in the time, it was 1,500 bucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,960",
+				"to": "00:02:53,400"
+			},
+			"offsets": {
+				"from": 169960,
+				"to": 173400
+			},
+			"text": " Over the course of the years, this was increased."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,400",
+				"to": "00:02:56,160"
+			},
+			"offsets": {
+				"from": 173400,
+				"to": 176160
+			},
+			"text": " And in 2020, the consensus layer bug bounty program"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,160",
+				"to": "00:02:57,880"
+			},
+			"offsets": {
+				"from": 176160,
+				"to": 177880
+			},
+			"text": " was introduced."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,880",
+				"to": "00:03:00,400"
+			},
+			"offsets": {
+				"from": 177880,
+				"to": 180400
+			},
+			"text": " At that time, the execution layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,400",
+				"to": "00:03:04,560"
+			},
+			"offsets": {
+				"from": 180400,
+				"to": 184560
+			},
+			"text": " had a bug bounty of up to $25,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,560",
+				"to": "00:03:08,080"
+			},
+			"offsets": {
+				"from": 184560,
+				"to": 188080
+			},
+			"text": " And the consensus layer received an expunty of $50,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,080",
+				"to": "00:03:10,360"
+			},
+			"offsets": {
+				"from": 188080,
+				"to": 190360
+			},
+			"text": " We also have a specific thing where"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,360",
+				"to": "00:03:16,120"
+			},
+			"offsets": {
+				"from": 190360,
+				"to": 196120
+			},
+			"text": " we will double the rewards during basically just"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,120",
+				"to": "00:03:17,720"
+			},
+			"offsets": {
+				"from": 196120,
+				"to": 197720
+			},
+			"text": " before hard forks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,720",
+				"to": "00:03:22,240"
+			},
+			"offsets": {
+				"from": 197720,
+				"to": 202240
+			},
+			"text": " So this is done so that we will get additional eyes on any updates"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,240",
+				"to": "00:03:26,640"
+			},
+			"offsets": {
+				"from": 202240,
+				"to": 206640
+			},
+			"text": " that we're doing to make sure that there aren't any obvious issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,640",
+				"to": "00:03:31,640"
+			},
+			"offsets": {
+				"from": 206640,
+				"to": 211640
+			},
+			"text": " And then in 2022, we merged those programs into a single one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,640",
+				"to": "00:03:36,600"
+			},
+			"offsets": {
+				"from": 211640,
+				"to": 216600
+			},
+			"text": " We also up the rewards to 250,000 as the base max reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,600",
+				"to": "00:03:39,440"
+			},
+			"offsets": {
+				"from": 216600,
+				"to": 219440
+			},
+			"text": " And you can also get a 2x for a hard fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,440",
+				"to": "00:03:42,280"
+			},
+			"offsets": {
+				"from": 219440,
+				"to": 222280
+			},
+			"text": " But for the merge itself, we increased it for x."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,280",
+				"to": "00:03:45,800"
+			},
+			"offsets": {
+				"from": 222280,
+				"to": 225800
+			},
+			"text": " So we had a 1 million bounty out during the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,800",
+				"to": "00:03:50,800"
+			},
+			"offsets": {
+				"from": 226800,
+				"to": 230800
+			},
+			"text": " This is what it looked like back in the days"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,800",
+				"to": "00:03:53,800"
+			},
+			"offsets": {
+				"from": 230800,
+				"to": 233800
+			},
+			"text": " with the execution layer bug bounty program."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,800",
+				"to": "00:03:55,800"
+			},
+			"offsets": {
+				"from": 233800,
+				"to": 235800
+			},
+			"text": " You can see the leaderboard there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,800",
+				"to": "00:03:58,800"
+			},
+			"offsets": {
+				"from": 235800,
+				"to": 238800
+			},
+			"text": " And basically, you submit a report via email."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,800",
+				"to": "00:04:00,800"
+			},
+			"offsets": {
+				"from": 238800,
+				"to": 240800
+			},
+			"text": " You could use encryption if you wanted to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,800",
+				"to": "00:04:03,800"
+			},
+			"offsets": {
+				"from": 240800,
+				"to": 243800
+			},
+			"text": " but the majority didn't do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,800",
+				"to": "00:04:05,800"
+			},
+			"offsets": {
+				"from": 243800,
+				"to": 245800
+			},
+			"text": " Currently, we have two ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,800",
+				"to": "00:04:08,800"
+			},
+			"offsets": {
+				"from": 245800,
+				"to": 248800
+			},
+			"text": " We have the email system where you can submit a report"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,800",
+				"to": "00:04:12,800"
+			},
+			"offsets": {
+				"from": 248800,
+				"to": 252800
+			},
+			"text": " or you can also use Google Form."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,800",
+				"to": "00:04:16,800"
+			},
+			"offsets": {
+				"from": 252800,
+				"to": 256800
+			},
+			"text": " What kind of surprised me is that the vast majority of people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,800",
+				"to": "00:04:20,800"
+			},
+			"offsets": {
+				"from": 256800,
+				"to": 260800
+			},
+			"text": " they want to use a form to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,800",
+				"to": "00:04:23,800"
+			},
+			"offsets": {
+				"from": 260800,
+				"to": 263800
+			},
+			"text": " It's a bit easier to fill out because you have these kind of preset questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,800",
+				"to": "00:04:26,800"
+			},
+			"offsets": {
+				"from": 263800,
+				"to": 266800
+			},
+			"text": " that you have to submit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,800",
+				"to": "00:04:28,800"
+			},
+			"offsets": {
+				"from": 266800,
+				"to": 268800
+			},
+			"text": " But there are some security concerns with that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,800",
+				"to": "00:04:30,800"
+			},
+			"offsets": {
+				"from": 268800,
+				"to": 270800
+			},
+			"text": " which I'll get into soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,800",
+				"to": "00:04:33,800"
+			},
+			"offsets": {
+				"from": 270800,
+				"to": 273800
+			},
+			"text": " So in the course of the bug bounty program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,800",
+				"to": "00:04:37,800"
+			},
+			"offsets": {
+				"from": 273800,
+				"to": 277800
+			},
+			"text": " we've received about 200 plus vulnerabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,800",
+				"to": "00:04:40,800"
+			},
+			"offsets": {
+				"from": 277800,
+				"to": 280800
+			},
+			"text": " that were actual vulnerabilities, counting the spam"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,800",
+				"to": "00:04:43,800"
+			},
+			"offsets": {
+				"from": 280800,
+				"to": 283800
+			},
+			"text": " and non- vulnerabilities, probably 2,000 reports."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,800",
+				"to": "00:04:47,800"
+			},
+			"offsets": {
+				"from": 283800,
+				"to": 287800
+			},
+			"text": " But it's about 200 plus actual vulnerabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,800",
+				"to": "00:04:51,800"
+			},
+			"offsets": {
+				"from": 287800,
+				"to": 291800
+			},
+			"text": " And you can find these vulnerabilities in a public disclosure repo"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,800",
+				"to": "00:04:53,800"
+			},
+			"offsets": {
+				"from": 291800,
+				"to": 293800
+			},
+			"text": " that we have on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,800",
+				"to": "00:04:57,800"
+			},
+			"offsets": {
+				"from": 293800,
+				"to": 297800
+			},
+			"text": " If you're interested in digging in a bit in what vulnerabilities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,800",
+				"to": "00:04:59,800"
+			},
+			"offsets": {
+				"from": 297800,
+				"to": 299800
+			},
+			"text": " yeah, we've seen."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,800",
+				"to": "00:05:01,800"
+			},
+			"offsets": {
+				"from": 299800,
+				"to": 301800
+			},
+			"text": " It's not completely updated."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,800",
+				"to": "00:05:03,800"
+			},
+			"offsets": {
+				"from": 301800,
+				"to": 303800
+			},
+			"text": " We updated after each hard fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,800",
+				"to": "00:05:08,800"
+			},
+			"offsets": {
+				"from": 303800,
+				"to": 308800
+			},
+			"text": " So right now, I think the latest update is in May or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,800",
+				"to": "00:05:10,800"
+			},
+			"offsets": {
+				"from": 308800,
+				"to": 310800
+			},
+			"text": " March maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,800",
+				"to": "00:05:12,800"
+			},
+			"offsets": {
+				"from": 310800,
+				"to": 312800
+			},
+			"text": " But we will update it very soon again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,800",
+				"to": "00:05:14,800"
+			},
+			"offsets": {
+				"from": 312800,
+				"to": 314800
+			},
+			"text": " given that the merge has now happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,800",
+				"to": "00:05:18,800"
+			},
+			"offsets": {
+				"from": 314800,
+				"to": 318800
+			},
+			"text": " So there will be additional ones to be found in this repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,800",
+				"to": "00:05:21,800"
+			},
+			"offsets": {
+				"from": 318800,
+				"to": 321800
+			},
+			"text": " Oh, and if you're interested in some specific vulnerabilities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,800",
+				"to": "00:05:24,800"
+			},
+			"offsets": {
+				"from": 321800,
+				"to": 324800
+			},
+			"text": " learning more about, like, in detail,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,800",
+				"to": "00:05:29,800"
+			},
+			"offsets": {
+				"from": 324800,
+				"to": 329800
+			},
+			"text": " you can have a look at Mario's talk that he had, I think, two days ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,800",
+				"to": "00:05:36,800"
+			},
+			"offsets": {
+				"from": 329800,
+				"to": 336800
+			},
+			"text": " So, like I said, we're using the Google Form system right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,800",
+				"to": "00:05:39,800"
+			},
+			"offsets": {
+				"from": 336800,
+				"to": 339800
+			},
+			"text": " which isn't super good from a security perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,800",
+				"to": "00:05:45,800"
+			},
+			"offsets": {
+				"from": 339800,
+				"to": 345800
+			},
+			"text": " because the reports we receive are plain text or clear text."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,800",
+				"to": "00:05:48,800"
+			},
+			"offsets": {
+				"from": 345800,
+				"to": 348800
+			},
+			"text": " Anyone can read them as long as they have access to the Google Form system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,800",
+				"to": "00:05:51,800"
+			},
+			"offsets": {
+				"from": 348800,
+				"to": 351800
+			},
+			"text": " So if a user with access were to be compromised"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,800",
+				"to": "00:05:55,800"
+			},
+			"offsets": {
+				"from": 351800,
+				"to": 355800
+			},
+			"text": " or Google Forms were to be compromised, then that would post an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,800",
+				"to": "00:05:58,800"
+			},
+			"offsets": {
+				"from": 355800,
+				"to": 358800
+			},
+			"text": " Especially now that we're dealing with vulnerabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,800",
+				"to": "00:06:02,800"
+			},
+			"offsets": {
+				"from": 358800,
+				"to": 362800
+			},
+			"text": " that could affect a lot of funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,800",
+				"to": "00:06:06,800"
+			},
+			"offsets": {
+				"from": 362800,
+				"to": 366800
+			},
+			"text": " So we have been building a secure submission form,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,800",
+				"to": "00:06:10,800"
+			},
+			"offsets": {
+				"from": 366800,
+				"to": 370800
+			},
+			"text": " which is based on OpenPGP.js."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,800",
+				"to": "00:06:17,800"
+			},
+			"offsets": {
+				"from": 370800,
+				"to": 377800
+			},
+			"text": " And this allows, basically, bug hunters to submit vulnerabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,800",
+				"to": "00:06:24,800"
+			},
+			"offsets": {
+				"from": 377800,
+				"to": 384800
+			},
+			"text": " And before they're submitted, the data is encrypted on client side."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,800",
+				"to": "00:06:27,800"
+			},
+			"offsets": {
+				"from": 384800,
+				"to": 387800
+			},
+			"text": " And this means that even if someone gains access to an email account"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,800",
+				"to": "00:06:30,800"
+			},
+			"offsets": {
+				"from": 387800,
+				"to": 390800
+			},
+			"text": " or something else, then they are basically --"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,800",
+				"to": "00:06:33,800"
+			},
+			"offsets": {
+				"from": 390800,
+				"to": 393800
+			},
+			"text": " they can't read anything unless they have the private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,800",
+				"to": "00:06:36,800"
+			},
+			"offsets": {
+				"from": 393800,
+				"to": 396800
+			},
+			"text": " That one is not yet available publicly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,800",
+				"to": "00:06:39,800"
+			},
+			"offsets": {
+				"from": 396800,
+				"to": 399800
+			},
+			"text": " but we do have a smaller version available that people can download"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,800",
+				"to": "00:06:43,800"
+			},
+			"offsets": {
+				"from": 399800,
+				"to": 403800
+			},
+			"text": " if they're interested in it, which is the secure drop."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,800",
+				"to": "00:06:48,800"
+			},
+			"offsets": {
+				"from": 403800,
+				"to": 408800
+			},
+			"text": " Looking ahead, we're working on building an encrypted"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,800",
+				"to": "00:06:50,800"
+			},
+			"offsets": {
+				"from": 408800,
+				"to": 410800
+			},
+			"text": " vulnerability lifecycle system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,800",
+				"to": "00:06:57,800"
+			},
+			"offsets": {
+				"from": 410800,
+				"to": 417800
+			},
+			"text": " This will allow us to, basically, follow the vulnerability from start to end."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,800",
+				"to": "00:07:02,800"
+			},
+			"offsets": {
+				"from": 417800,
+				"to": 422800
+			},
+			"text": " We will be able to receive the vulnerability, assign it to certain people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,800",
+				"to": "00:07:07,800"
+			},
+			"offsets": {
+				"from": 422800,
+				"to": 427800
+			},
+			"text": " have comments, assign it to client teams, and then close it as needed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,800",
+				"to": "00:07:09,800"
+			},
+			"offsets": {
+				"from": 427800,
+				"to": 429800
+			},
+			"text": " all while being encrypted."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,800",
+				"to": "00:07:12,800"
+			},
+			"offsets": {
+				"from": 429800,
+				"to": 432800
+			},
+			"text": " And we're also looking at additional incentives for bounty hunters."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,800",
+				"to": "00:07:17,800"
+			},
+			"offsets": {
+				"from": 432800,
+				"to": 437800
+			},
+			"text": " One of them that we've been looking at is basically creating bug hunting"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,800",
+				"to": "00:07:23,800"
+			},
+			"offsets": {
+				"from": 437800,
+				"to": 443800
+			},
+			"text": " NFTs that will provide some value in real life at events, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,800",
+				"to": "00:07:25,800"
+			},
+			"offsets": {
+				"from": 443800,
+				"to": 445800
+			},
+			"text": " And ReMix team has been doing something similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,800",
+				"to": "00:07:30,800"
+			},
+			"offsets": {
+				"from": 445800,
+				"to": 450800
+			},
+			"text": " That's it for me. Thank you very much for presenting the -- stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,800",
+				"to": "00:07:41,800"
+			},
+			"offsets": {
+				"from": 450800,
+				"to": 461800
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,800",
+				"to": "00:07:43,800"
+			},
+			"offsets": {
+				"from": 461800,
+				"to": 463800
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

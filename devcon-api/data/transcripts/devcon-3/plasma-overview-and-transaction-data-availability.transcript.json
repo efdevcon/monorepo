@@ -1,0 +1,2958 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17000
+			},
+			"text": " >> Oh, that's loud."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " Hi, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20000
+			},
+			"text": " I'm Joseph Kuhn."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 24000
+			},
+			"text": " I'm here to talk about plasma, and this is going to be sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 27000
+			},
+			"text": " of an overview for about the first ten minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 29000
+			},
+			"text": " So if you've already seen the other presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 31000
+			},
+			"text": " a little bit of this might be review."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 36000
+			},
+			"text": " So the second half is going to be sort of exploring the narratives"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 41000
+			},
+			"text": " around data availability and the data availability problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 44000
+			},
+			"text": " Vitalik has been talking about this data availability problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 48000
+			},
+			"text": " for the past several years, and it's very critical when it comes"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 52000
+			},
+			"text": " to Ethereum-based layer scalability, such as sharding."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 55000
+			},
+			"text": " And today I'm going to be talking about the implications"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 58000
+			},
+			"text": " of data availability when it comes to building transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 62000
+			},
+			"text": " When we're talking about plasma in particular."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 69000
+			},
+			"text": " So plasma is a project that right now is being architected,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 73000
+			},
+			"text": " and after that will be written, and it's co-authored by me"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 77000
+			},
+			"text": " in Vitalik, and hopefully, you know, a lot of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 80000
+			},
+			"text": " in the Ethereum community can contribute,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 84000
+			},
+			"text": " because I think this can be, you know, this can be a lot of fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 88000
+			},
+			"text": " So plasma at its core is about building a blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 89000
+			},
+			"text": " on top of a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 94000
+			},
+			"text": " So you write the smart contract inside Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 98000
+			},
+			"text": " and you initialize it by basically taking a library"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 101000
+			},
+			"text": " and modifying it to whatever particular use you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 105000
+			},
+			"text": " So for example, you can build, you know, some social networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 110000
+			},
+			"text": " some decentralized exchange, or even some private blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 112000
+			},
+			"text": " I think a private blockchain example is pretty interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 116000
+			},
+			"text": " because you can build a private system with your own rules,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 119000
+			},
+			"text": " with your own participants, with whatever terms you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 122000
+			},
+			"text": " but also enforceable on the public network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 125000
+			},
+			"text": " That's pretty effective, because right now a lot of private blockchain systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 126000
+			},
+			"text": " are role-playing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 129000
+			},
+			"text": " A lot of the systems they're building today can be modified"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 131000
+			},
+			"text": " by the operators of these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 133000
+			},
+			"text": " So if it's these five people, then you're sort of like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 137000
+			},
+			"text": " \"Well, all my money is sort of at the whim of these five people.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 141000
+			},
+			"text": " If you bond your activity in a private chain to a public network"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 145000
+			},
+			"text": " that allows everybody in the world to sort of say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 149000
+			},
+			"text": " \"Okay, this allows the Ethereum network to sort of be this base layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 152000
+			},
+			"text": " for all of these private chains interacting in the future.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 156000
+			},
+			"text": " And that could be an interesting aspect to develop on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 160000
+			},
+			"text": " And the way this works is that in the smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 165000
+			},
+			"text": " you make it so that the consensus rules are defined inside Ethereum itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 170000
+			},
+			"text": " where you upload the smart contract, and it's enforceable via fraud proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 175000
+			},
+			"text": " And each individual plasma chain has its own consensus mechanisms defined inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 179000
+			},
+			"text": " the smart contract, and it could be written in Solidity or in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 181000
+			},
+			"text": " more likely Viper."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 184000
+			},
+			"text": " And the goal is to build decentralized applications at scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 188000
+			},
+			"text": " where you can create, you know, transactions, like billions of transactions per second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 192000
+			},
+			"text": " is sort of the goal, you know, given certain security constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 195000
+			},
+			"text": " The presumption is that you're not really trusting them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 199000
+			},
+			"text": " and the way you do that is that, let's say you're Alice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 203000
+			},
+			"text": " you have one ETH held inside this plasma chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 207000
+			},
+			"text": " and this plasma block periodically commit block hashes onto Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 211000
+			},
+			"text": " So it's, you know, very, very small, measured in hundreds of bytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 214000
+			},
+			"text": " which can encompass perhaps gigabytes of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 217000
+			},
+			"text": " This is not proof of existence."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 220000
+			},
+			"text": " Proof of existence is another form of like role-playing that people use"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 223000
+			},
+			"text": " when it comes to building blockchains inside blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 225000
+			},
+			"text": " This is actually enforceable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 228000
+			},
+			"text": " The notion is, if you create an invalid block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 231000
+			},
+			"text": " is invalid, it can be penalized and rolled back."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 237000
+			},
+			"text": " And what this allows you to do is allows you to create a lot of transactions inside a system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 239000
+			},
+			"text": " This is, of course, assuming data availability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 245000
+			},
+			"text": " and data availability is an interesting problem that we'll get into in greater detail later."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 250000
+			},
+			"text": " And essentially, this is an example if someone submits an incorrect transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 256000
+			},
+			"text": " an incorrect block rather, and then what happens is someone submits a proof onto Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 258000
+			},
+			"text": " and you submit a mark-alized proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 263000
+			},
+			"text": " And it's actually very similar to the previous presentation about TrueBit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 267000
+			},
+			"text": " where you have a mark-alized enforcement and a mark-alized attestation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 271000
+			},
+			"text": " And by having a mark-alized attestation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 275000
+			},
+			"text": " you can represent information in a very, very compact way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 279000
+			},
+			"text": " So, for example, if, you know, this very, very specific, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 282000
+			},
+			"text": " 100 bytes within a block inside this plasma block is invalid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 285000
+			},
+			"text": " you just say, \"Okay, these 100 bytes are invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 288000
+			},
+			"text": " Here's a proof that these 100 bytes were inside this plasma block.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 291000
+			},
+			"text": " And then you submit that inside Ethereum, and it's very, very compact,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 295000
+			},
+			"text": " that allows you to say, \"Okay, one piece of this entire block is broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 297000
+			},
+			"text": " Let's roll it all back.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 305000
+			},
+			"text": " And then in that moment, that individual, that the individuals that created that block get penalized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 311000
+			},
+			"text": " and that allows, you know, some measure of honesty when it comes to propagation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 318000
+			},
+			"text": " But the core notion of plasma is not around the notion of mark-alization of information."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 324000
+			},
+			"text": " The core notion is about exiting in the event of data unavailability."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 328000
+			},
+			"text": " Data unavailability is an interesting problem because you can't prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 332000
+			},
+			"text": " when someone is withholding data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 337000
+			},
+			"text": " It's sort of like, if Alice and Bob says, \"Oh, I gave the data to Bob,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 340000
+			},
+			"text": " and Bob says, \"No, Alice didn't give it to me, who do you know is right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 344000
+			},
+			"text": " You really can't be on like having trusted, this trusted third party,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 348000
+			},
+			"text": " and, you know, in Ethereum, we try to like reduce that as much as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 353000
+			},
+			"text": " And what you can do in plasma, in this core of plasma's construction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 357000
+			},
+			"text": " is this allows you to exit in the event blocks are withheld."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 360000
+			},
+			"text": " So, plasma blocks in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 365000
+			},
+			"text": " So, it's saying that if you, let's say, block number four is committed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 368000
+			},
+			"text": " so this 100 plus bytes is committed onto Ethereum, and it's like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 371000
+			},
+			"text": " \"Wait, I don't have this data. I can't prove this as false."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 373000
+			},
+			"text": " I can't prove this as invalid.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 377000
+			},
+			"text": " So, then what you do is you then submit it, and then when you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 382000
+			},
+			"text": " not submit it, you exit, and basically you exit from that chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 384000
+			},
+			"text": " because you're like, \"Well, someone's not giving me the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 387000
+			},
+			"text": " There could be bad data in there. There could be bad state transitions.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 390000
+			},
+			"text": " It's sort of like if a party starts sucking, you just leave."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 393000
+			},
+			"text": " You don't try to make, you know, like, it's like a party's a disaster."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 395000
+			},
+			"text": " You're just like, \"Well, you can try to make it better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 398000
+			},
+			"text": " but you could just leave and join another party.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 401000
+			},
+			"text": " And it's much more fun that way for everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 404000
+			},
+			"text": " And the fun part is when you do blockchains and blockchains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 406000
+			},
+			"text": " you could do blockchains and blockchains and blockchains and blockchains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 408000
+			},
+			"text": " and that gives you even greater scalability"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 411000
+			},
+			"text": " where you could do, like, potentially billions at this point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 415000
+			},
+			"text": " representing a single use case, for example, you know, like fun posting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 419000
+			},
+			"text": " in some live chat. You could do that and, like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 423000
+			},
+			"text": " build a system where you could, you know, make that enforceable in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 425000
+			},
+			"text": " And that gives you a great deal of computational scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 428000
+			},
+			"text": " This is not just computational scaling of financial activity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 431000
+			},
+			"text": " but potential anything. You know, this could be a system where, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 437000
+			},
+			"text": " you move from, you know, centralized data services where, you know, like Reddit"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 440000
+			},
+			"text": " or Twitter or whatever it may be, and you can credibly decentralize this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 445000
+			},
+			"text": " since capacity is significantly increased to an incredible degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 448000
+			},
+			"text": " This also lets you do computation using MapReduce."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 450000
+			},
+			"text": " So you go, like, \"Okay, Map.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 452000
+			},
+			"text": " And you sort of map out all the blockchains and blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 455000
+			},
+			"text": " They do computation across many, many different blockchains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 457000
+			},
+			"text": " and you reduce the results back down."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 459000
+			},
+			"text": " It's sort of like returning variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 461000
+			},
+			"text": " So you just have one way of splitting up the work"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 464000
+			},
+			"text": " and one way of returning the work, and that's sort of how you reach"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 466000
+			},
+			"text": " incredible computational scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 470000
+			},
+			"text": " So the design goals is, you know, one blockchain can encompass, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 473000
+			},
+			"text": " all worldwide computation. Maybe not all is in everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 477000
+			},
+			"text": " but all is in, like, you know, there's no necessary constraints given"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 480000
+			},
+			"text": " the security properties of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 483000
+			},
+			"text": " And the goal is to do trust minimization where you're not trusting the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 487000
+			},
+			"text": " operating these plasma chains because you can ultimately go to Ethereum and enforce"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 489000
+			},
+			"text": " invalid state transitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 491000
+			},
+			"text": " And the goal is to payment and ledger scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 495000
+			},
+			"text": " Ledger scalability is interesting because ultimately you want records,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 500000
+			},
+			"text": " and that's, it's sort of like state channels get to, like, you know, an X percent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 505000
+			},
+			"text": " X time scalability. This can give you, you know, many, many X,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 508000
+			},
+			"text": " and, you know, Ethereum charting can give you many, many other Xs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 511000
+			},
+			"text": " and then at that point you can reach incredible scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 514000
+			},
+			"text": " And I believe that, you know, this is very much in the near future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 519000
+			},
+			"text": " you know, measured in, you know, very short time frames, not, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 523000
+			},
+			"text": " 10 years plus, but closer to, like, low digits and amount of years."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 527000
+			},
+			"text": " But, you know, transaction data, I think, can give you an example"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 529000
+			},
+			"text": " of the problems that we're dealing with."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 532000
+			},
+			"text": " This may be a little bit, you know, more architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 536000
+			},
+			"text": " So if you're a little bit, you know, it may be a little bit hairy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 540000
+			},
+			"text": " This requires some knowledge in the way, you know, atomicity works."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 545000
+			},
+			"text": " But basically what we're talking about is that, you know, you want it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 549000
+			},
+			"text": " you want to create a transaction, and you want it, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 551000
+			},
+			"text": " and then let's say you just broadcast it inside this plasma block."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 554000
+			},
+			"text": " You're done, right? Not really."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 559000
+			},
+			"text": " You can't attest to this payment if the block is being withheld."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 563000
+			},
+			"text": " Remember, like that block number four I was going over earlier?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 567000
+			},
+			"text": " If that happens, then if, you know, there's, you make a payment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 570000
+			},
+			"text": " you don't really know if that payment is in there, and like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 573000
+			},
+			"text": " you don't know if the correct amount is in there, you don't know if, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 576000
+			},
+			"text": " the current state is correct, it's just being withheld from you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 579000
+			},
+			"text": " And you can't even prove that it's invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 582000
+			},
+			"text": " It's sort of like, you, all you can do is just say, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 586000
+			},
+			"text": " maybe my payment is in there, maybe it isn't in there, or maybe it's wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 590000
+			},
+			"text": " And if it is in there, and you try to withdraw an old state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 594000
+			},
+			"text": " and you get penalized, if you try to withdraw and it isn't in there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 596000
+			},
+			"text": " well, then that makes no sense, that won't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 600000
+			},
+			"text": " And if it's incorrect, well, you have a big problem, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 603000
+			},
+			"text": " And normally, when an incorrect state is attested to, you just exit."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 607000
+			},
+			"text": " But in this case, you may not have enough information to exit."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 613000
+			},
+			"text": " So that's sort of a problem that needs to be addressed within the context of data availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 619000
+			},
+			"text": " And, you know, you're not sure if that, that those funds are even,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 621000
+			},
+			"text": " are spent even further, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 624000
+			},
+			"text": " Someone, maybe that transaction went in to this plasma block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 627000
+			},
+			"text": " and maybe later it gets withheld because it gets spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 630000
+			},
+			"text": " A separate transaction spends it. So that could be a big problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 637000
+			},
+			"text": " And this problem also exists when you put funds into a plasma block as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 639000
+			},
+			"text": " So how do you address this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 642000
+			},
+			"text": " You address this by creating this two-phase commit process."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 645000
+			},
+			"text": " This is a very different way to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 647000
+			},
+			"text": " This is not a hard necessity for a lot of problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 652000
+			},
+			"text": " but if you want 100% certainty, this is sort of how you would do it in the event of data withholding."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 656000
+			},
+			"text": " We don't have this problem on the Ethereum base chain, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 658000
+			},
+			"text": " On Ethereum, all you do is use broadcast of transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 660000
+			},
+			"text": " It gets confirmed. You're done."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 666000
+			},
+			"text": " The reason it's not a problem in Ethereum is because it has presumptions of everybody having the data available."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 669000
+			},
+			"text": " Ethereum works by, I receive blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 673000
+			},
+			"text": " I don't trust anyone else, right? Anyone else on this network."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 677000
+			},
+			"text": " And when I receive it, I compute it, I validate it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 682000
+			},
+			"text": " and I just make sure that it's true according to the consensus rules on my computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 691000
+			},
+			"text": " And what happens is I can process the current state, but you could also do a full replay of the entire blockchain history"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 698000
+			},
+			"text": " in order to have 100% assurance. That's not necessary, but you're capable of doing that because you have the data available."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 702000
+			},
+			"text": " In this case, when you split up into all these different plasma blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 706000
+			},
+			"text": " they're only committing very small pieces of data onto the Ethereum main chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 712000
+			},
+			"text": " What happens is that in this plasma block, there could be information you don't know about."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 720000
+			},
+			"text": " And when someone's withholding, you could exit, but what happens if you don't have all the data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725000
+			},
+			"text": " So in this case, what you do is you create and broadcast the transaction, much like you do normally."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 731000
+			},
+			"text": " And in this case, the plasma block gets signed by a validator, so it gets included into a plasma block."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 733000
+			},
+			"text": " And then step three is where it gets weird."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 740000
+			},
+			"text": " Alice commits that she saw her transaction get submitted into a block, and she can give that to Bob,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 743000
+			},
+			"text": " or she can submit it onto the plasma chain so that there's like a second record."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 749000
+			},
+			"text": " So it's sort of like, I submit a transaction, and I submit another transaction saying I saw the first one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 757000
+			},
+			"text": " And then at that point, when Bob sees that second step, whether it be directly from Alice or from the plasma chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 759000
+			},
+			"text": " Bob now has assurance that the money is his."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 763000
+			},
+			"text": " Why do we do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 769000
+			},
+			"text": " Alice needs to be sure that the transaction has occurred, and she's able to reference it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 771000
+			},
+			"text": " Remember that mercilize proof stuff?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 777000
+			},
+			"text": " So Alice now is able to reference that that transaction existed, and now Alice is able to be assured of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 781000
+			},
+			"text": " and now she's willing to prove to a test that, okay, this money's no longer mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 785000
+			},
+			"text": " And this is sort of the one weird trick to make this all work."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 791000
+			},
+			"text": " And as Bob, you're only willing to accept the funds when you receive that second step,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 796000
+			},
+			"text": " because at that point, Alice cannot claim the funds according to the consensus rules written in, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 799000
+			},
+			"text": " solidity or viper on the base chain, on Ethereum, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 804000
+			},
+			"text": " It says like, okay, once the second signature happens, Alice no longer has any claim to the funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 806000
+			},
+			"text": " And essentially we're dealing with three parties here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 808000
+			},
+			"text": " Alice, Bob and the plasma chain itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 811000
+			},
+			"text": " So let's go over these four steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 819000
+			},
+			"text": " There's Alice, there's Bob, this is the chain, and that's sort of the state, so that's the third thing I was talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 824000
+			},
+			"text": " Alice has one eath, the plasma chain is there, and then Ethereum on the base layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 827000
+			},
+			"text": " which periodically gets commitments and exits and deposits."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 832000
+			},
+			"text": " So Alice signs a payment, so this is like very similar to how Ethereum works."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 836000
+			},
+			"text": " You just send a payment into the plasma chain, ultimately a plasma chain creates a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 842000
+			},
+			"text": " And then it sends a commitment onto Ethereum and it says, hey, I made a block, here's a couple hundred bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 848000
+			},
+			"text": " Alice and Bob then get the data of that plasma block and it says like, okay, I see this block is legit."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 849000
+			},
+			"text": " Okay, there is a payment going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 853000
+			},
+			"text": " Alice and Bob both see that there has been a payment from Alice to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 860000
+			},
+			"text": " Notice on the top right, it shows Alice or Bob, because either Alice or Bob can claim this according to the chain itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 866000
+			},
+			"text": " Step three, this gets a little bit tricky, but it'll make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 877000
+			},
+			"text": " So Alice then submits a commitment signed by herself that she has seen that previous transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 883000
+			},
+			"text": " and essentially she's able to prove it because she sort of like can see the data there and sees the localized commitments."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 889000
+			},
+			"text": " So she's like, okay, cool, this money's no longer mine, she passes it off into the plasma chain and Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 892000
+			},
+			"text": " And now from her perspective, it's not her money anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 897000
+			},
+			"text": " If she tries to claim it, bad news for her because she's not able to do that or gets penalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 904000
+			},
+			"text": " For Bob, it's sort of like, well, okay, if he hasn't received it yet, oh, there's a slide skipped."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 905000
+			},
+			"text": " Oh, well, anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 910000
+			},
+			"text": " So for Bob, he, let's say Bob hasn't seen it yet, that should be a dash."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 912000,
+				"to": 919000
+			},
+			"text": " Then Bob doesn't yet know whether it's Alice's or Bob's."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 921000
+			},
+			"text": " From his perspective, it should be Alice's."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 926000
+			},
+			"text": " And for the chain, it sees it as Bob's because it received that transaction and confirmed."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 932000
+			},
+			"text": " In this case now, that should be a solid line to Bob, so we're correct here now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 939000
+			},
+			"text": " Bob now sees the funds as his because he has that commitment and the original transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 944000
+			},
+			"text": " So Alice now has no claim and in the top right, you now see Bob has the one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 954000
+			},
+			"text": " So creating this two phase construction allows Bob to know that Alice no longer has any claim to the funds and Alice has assurance that she does not."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 962000
+			},
+			"text": " She will have the funds available if the block is withheld at any point in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 966000
+			},
+			"text": " So as an example, let's say Alice tries to maliciously withdraw the funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 981000
+			},
+			"text": " If Alice tries to withdraw the funds during step three, what happens is that when it's not fully committed to Bob yet, she submits a transaction onto the Ethereum main chain, the Ethereum root chain, you know, basically what we call Ethereum today."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 988000
+			},
+			"text": " And let's say the holding period is 14 days before she can correctly withdraw and she has to put up a bond."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 999000
+			},
+			"text": " Assume that Bob believes that the money is his because he has the information available to prove that Alice has committed to the fact that she saw her original transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1005000
+			},
+			"text": " Then what Bob can do is take that proof that says Alice says, \"Hey, I saw this transaction hit the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1013000
+			},
+			"text": " Here's a proof that this transaction hit the block and here's a commitment that I have submitted this transaction.\" Bob should say, \"Okay, that money is mine now.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1020000
+			},
+			"text": " But if Alice tries to take that money, Bob can submit to Ethereum that says, \"Okay, Alice tried to submit this. Bob sees it on the blockchain.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1024000
+			},
+			"text": " And he says, \"Okay, Alice screwed up or is trying to take my money."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1028000
+			},
+			"text": " Here's a proof because Alice gave it to me and I saw it on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1032000
+			},
+			"text": " And now what happens is Bob is even happier because she takes her bond and it's his money back.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1040000
+			},
+			"text": " So this type of construction by constructing a two-phase commit process, you're basically making attestation on information availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1044000
+			},
+			"text": " And this is going to be, I believe, an emerging theme."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1050000
+			},
+			"text": " When you're dealing with states, where not everybody in the world has information, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1053000
+			},
+			"text": " We're not dealing with global state anymore. How do we deal with this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1056000
+			},
+			"text": " In channels, the way we deal with it is we can only move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1058000
+			},
+			"text": " Both parties have it available."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1063000
+			},
+			"text": " But we're dealing with perhaps thousands of parties, billions of parties, maybe eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1066000
+			},
+			"text": " And different people have different sets of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1072000
+			},
+			"text": " So the goal is to be able to make it so that you can have attestation correctly and to scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1082000
+			},
+			"text": " And perhaps the blockchain can be the ultimate arbiter, in this case, Ethereum, can basically be the supreme court of computation across the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1084000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1096000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:18,080"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1098080
+			},
+			"text": " (buzzer)"
+		}
+	]
+}

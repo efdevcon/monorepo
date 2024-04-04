@@ -1,0 +1,2012 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 13000
+			},
+			"text": " Heavy details."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 17000
+			},
+			"text": " I'm going to be presenting you to packet lean, so we'll see how that goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " >> Good."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 21000
+			},
+			"text": " >> Did not know that was a thing until this conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 25000
+			},
+			"text": " Light clients, they're in two light clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 26000
+			},
+			"text": " How light is light?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 29000
+			},
+			"text": " They're really integral to the 3M2."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 34000
+			},
+			"text": " We're going to see why they're integral to the light client is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 42000
+			},
+			"text": " And we're going to try to give you something like the thinking behind how a light client works and how to think about the light client universe."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 43000
+			},
+			"text": " >> My name is Mark."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 46000
+			},
+			"text": " >> So, brief introduction about me."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 50000
+			},
+			"text": " I'm a very intuitive developer at Chain State Systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 57000
+			},
+			"text": " I have a glitter and I have a GitHub that might interact with me online and these are my profile things right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 60000
+			},
+			"text": " We're working on a project called LoadStar."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 64000
+			},
+			"text": " We're building a TypeScript Ethereum 2 ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 66000
+			},
+			"text": " Started with a beacon chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 76000
+			},
+			"text": " We're also building on a light client and we're going to be involved with helping with the developer tooling as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 81000
+			},
+			"text": " So, trying to onboard a Ethereum 1 developer and then Ethereum 2 ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 86000
+			},
+			"text": " We channel Discord, so if anyone wants to talk to us, we're available there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 91000
+			},
+			"text": " Also, glitter allowing other relevant places."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 93000
+			},
+			"text": " Chain State."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 94000
+			},
+			"text": " This is where I work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 97000
+			},
+			"text": " It's a great group of guys and gals."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 104000
+			},
+			"text": " Everyone's based on Toronto mostly and we all work on protocol level blockchain development."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 110000
+			},
+			"text": " They are all online so they're really, really valuable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 115000
+			},
+			"text": " So, this is what we're going to be covering."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 125000
+			},
+			"text": " We're going to start off with just what a light client is, why we need light clients, why we need them in Ethereum 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 132000
+			},
+			"text": " Get a sense of what does a full node?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 133000
+			},
+			"text": " What does a light client?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 135000
+			},
+			"text": " What does a light node?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 139000
+			},
+			"text": " It's probably pretty obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 148000
+			},
+			"text": " But in Ethereum 1, we haven't really been using them. We use Ethereum, we use Metamask, it uses Ethereum, we use Etherscan."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 151000
+			},
+			"text": " We're not really used to interacting with light clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 158000
+			},
+			"text": " There's been a lot of research into making it more usable, making it more like a default experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 165000
+			},
+			"text": " But we're going to need to kind of start there with Ethereum 2 because of some reasons that I'll get into."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 170000
+			},
+			"text": " We'll go into some background about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 181000
+			},
+			"text": " We'll kind of want to cover before we get into the kind of meat of things, which is the actual light client and how we are going to be sinking data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 184000
+			},
+			"text": " So, just some motivation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 186000
+			},
+			"text": " What is a light client?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 192000
+			},
+			"text": " A light client is software looking to securely consume blockchain data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 199000
+			},
+			"text": " It has requirements that scale logarithmically to the total blockchain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 209000
+			},
+			"text": " Logarithmically, you kind of think of this kind of curve as the blockchain grows and grows and grows."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 216000
+			},
+			"text": " The amount of data that you need to actually process as a light client, you want that to not really change very much at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 226000
+			},
+			"text": " One way to think of it is as the total size grows exponentially, then the total size that you need to verify things only in the doubles."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 240000
+			},
+			"text": " So, let's say the chain went from 1,000 transactions a day to 1,000,000 transactions a day to 1,000,000 transactions a day that would only require a doubling of world light client would need to process."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 245000
+			},
+			"text": " So, why do we need light clients in Ethereum 2?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 253000
+			},
+			"text": " There are going to be first-class citizens, I think, in the new version of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 258000
+			},
+			"text": " So, we think about certain cases where we are going to need them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 260000
+			},
+			"text": " A resource that's for the environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 268000
+			},
+			"text": " So, which everyone here has a smartphone on them, but who here has the chain synced on their phone?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 270000
+			},
+			"text": " No one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 271000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 276000
+			},
+			"text": " It's probably why you have that mask, all your phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 280000
+			},
+			"text": " But, MetaMask is all using Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 294000
+			},
+			"text": " And Ethereum is a big service, not kind of distant, but you're kind of losing out on some of the guarantees that you get with a blockchain when you're relying entirely on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 311000
+			},
+			"text": " One really interesting case for light clients, especially in this very burgeoning ecosystem of blockchains is to be able to have other blockchains as light clients to your blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 323000
+			},
+			"text": " So, when we go on to Ethereum 2, it would be really cool if Ethereum won blockchain and was able to, in some way, validate the data of Ethereum 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 328000
+			},
+			"text": " You can think of that as a light client into Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 338000
+			},
+			"text": " And so, if we make things easy enough, if we make things like small enough, it becomes more practical to do that in more places."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 346000
+			},
+			"text": " Another thing to consider is, in Ethereum 1, it's really easy for everyone to get the whole state of the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 356000
+			},
+			"text": " In Ethereum 2, we are moving to the sharded architecture where it's not actually going to be feasible for everyone to store all the data, even if you wanted to."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 359000
+			},
+			"text": " Unless maybe you just ran out a bunch of servers on AWS."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 364000
+			},
+			"text": " For practically speaking, most people aren't going to store everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 374000
+			},
+			"text": " And even within just the protocol itself, validators are going to be required to be sinking shards at different points."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 382000
+			},
+			"text": " They're going to be required to be proposing new blocks for different shards, so they're going to have to sync up at that point."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 388000
+			},
+			"text": " They're going to have to be attesting to different parts of the recent shard state through crosslinks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 396000
+			},
+			"text": " And so, during these cases, they're going to need to be quickly downloading parts of shards that they don't have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 401000
+			},
+			"text": " and so they're going to need to do that in a way that they can verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 405000
+			},
+			"text": " They're not going to be using an inferior system to be doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 411000
+			},
+			"text": " They're going to need to actually have proof that what they're getting is legitimate."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 422000
+			},
+			"text": " So with that said, let's just cover some things that some of you probably know, but I just want to cover because it'll really help out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 433000
+			},
+			"text": " like just thinking and understanding of lifetimes. So, Merkle proofs are basically the key to the castle for lifetimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 440000
+			},
+			"text": " And I'm sure a lot of you know this, a lot of you might notice, but we'll kind of cover it more briefly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 451000
+			},
+			"text": " So, Merkle proofs are a way to verify some piece of data within a larger suite of data where you only need to verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 462000
+			},
+			"text": " a logarithmic amount of data to validate that something is authentic."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 470000
+			},
+			"text": " So, usually what we are wanting some kind of data, we're assuming it's part of a Merkle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 484000
+			},
+			"text": " And a Merkle tree is just a hash of successive hashes and you end up with this kind of root hash, which says something about all the data underneath the bin."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 492000
+			},
+			"text": " And very importantly, when we're kind of thinking about Merkle proofs, we have this root that we trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 499000
+			},
+			"text": " And so this key with verifying data only works when we have this root that we trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 505000
+			},
+			"text": " So, the roots are often like what's stored in a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 511000
+			},
+			"text": " So, actually when you're verifying this Merkle proof, usually the only thing you know is the root."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 516000
+			},
+			"text": " And everything else is kind of just unknown to you. And that's why you're requesting an improvement personally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 522000
+			},
+			"text": " to try to get some information that you don't already have."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 532000
+			},
+			"text": " So, when we're giving a chunk of data, what we're doing with the proof is we're linking it from this bottom piece all the way up to this root that we already know."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 538000
+			},
+			"text": " And so we're wanting to be able to recreate this root, which we do trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 549000
+			},
+			"text": " So, what we need with the proof, what the proof actually is, is it's one intermediate node per level in the tree starting from the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 556000
+			},
+			"text": " So, we're able to kind of build up to the very top of the tree to the root."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 565000
+			},
+			"text": " And at that point, you can compare this recreated root against your previously computed or previously trusted root."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 571000
+			},
+			"text": " And if they match, then you kind of like have proven this entire chain all the way to the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 582000
+			},
+			"text": " And so what's really cool about this is that you only need one node per level of the tree, and that grows very, very slowly with like the total amount of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 590000
+			},
+			"text": " So, that's why it's so important for these lifelines, because it's only a small amount of work that you need to do to prove,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 595000
+			},
+			"text": " even if there's a giant amount of data in the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 602000
+			},
+			"text": " Kind of a side tangent, multi-proops, that's kind of just an extension of the Merkle proof idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 609000
+			},
+			"text": " And a Merkle multi-proop, we are proving data about multiple pieces in this tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 611000
+			},
+			"text": " And multiple leaves in the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 619000
+			},
+			"text": " And so, very similar to a Merkle proof, you're wanting to build back up the tree to the root."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 629000
+			},
+			"text": " But what makes a multi-proop a little bit different is that you can share these intermediate nodes between all of your paths."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 637000
+			},
+			"text": " And so you're able to be a little bit more efficient than just having one proof for one branch, one proof for another branch."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 644000
+			},
+			"text": " We end up taking advantage of this for Ethereum two lifelines."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 652000
+			},
+			"text": " Another thing to think about is that it's been proof of work and proof of stake lifelines."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 656000
+			},
+			"text": " So, it's proof of work lifelines."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 662000
+			},
+			"text": " It's really, it's kind of easy because everything that you need is within the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 667000
+			},
+			"text": " You can download all the headers and you verify everything based on protocol rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 673000
+			},
+			"text": " So, these, this kind of like the headers, you download all the headers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 677000
+			},
+			"text": " You, everything is available to you just from those headers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 686000
+			},
+			"text": " You hash the headers, you verify the proof of work, you verify that the header points back to the previous header."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 689000
+			},
+			"text": " And then, that's all you need to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 693000
+			},
+			"text": " And then once you write like the final header, the Merkle roots are right there."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 696000
+			},
+			"text": " And then you can request the proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 705000
+			},
+			"text": " So, steps usually go sync up and now you have, now you have, then you can just book us proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 713000
+			},
+			"text": " And proof of stake is a little bit different because the headers alone aren't sufficient to verify proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 723000
+			},
+			"text": " You have to also keep track of the stake of validators because in this proof of stake world, we're governed by some super majority stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 727000
+			},
+			"text": " So, we have to ensure we're on the chain with the most stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 734000
+			},
+			"text": " The only way you can do that is by keeping track of validators and their balances and how they have voted."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 745000
+			},
+			"text": " So, this is, it's a, it's a different beast and proof of work, but it's an opportunity to do things a little bit differently and maybe do things a little more efficiently."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 753000
+			},
+			"text": " I want to take another little detour to simple serialize, which is a spec that we have for Ethereum too."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 761000
+			},
+			"text": " And it's a way to consistently and easily Merkleize our data structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 765000
+			},
+			"text": " So, to kind of go through, do by example."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 777000
+			},
+			"text": " So, what it does is, we can create a consistent way of creating these Merkle roots for any kind of data structure that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 780000
+			},
+			"text": " So, for example, we have a checkpointing. A checkpoint is an epoch in a root."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 790000
+			},
+			"text": " So, if we wanted to make a Merkle tree out of this, we would just put each of these elements into chunks and then create a hash from those."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 802000
+			},
+			"text": " We can get a little more complicated. If you have things called a cross link, then we can still create a Merkle tree from now and we just pat it with some zero data."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 807000
+			},
+			"text": " And then we can kind of put them even, you can kind of compose these data structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 814000
+			},
+			"text": " So, here's another example of an attestation data which uses a checkpoint and uses a cross link."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 833000
+			},
+			"text": " And so, you can, because things are kind of built out systematically, it makes it very easy to, if you want to think about the proofs that we kind of went over earlier, it makes it very easy to be able to traverse the tree and create the proof for any sub element of the data structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 840000
+			},
+			"text": " And then things get, things can get really, these structures can get really, really nested in these areas too."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 848000
+			},
+			"text": " So, we have, we put Merkle roots within a lot of these data structures. We can link beacon blocks toward beacon state."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 853000
+			},
+			"text": " We can link, we can state to beacon blocks, trust certain trusted beacon blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 862000
+			},
+			"text": " We can link our shard blocks to beacon blocks. And so, you can imagine, like, say like the data root within this cross link here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 869000
+			},
+			"text": " that data root is actually a Merkle root of some other data which you can then, you can imagine there being a tree below that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 881000
+			},
+			"text": " And then, so you can end up navigating down this tree, like further and further, making it into the past or into a shard or back into the beacon chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 891000
+			},
+			"text": " And so, we've like designed this in a way where it's, we try to make it as friendly as possible to be able to create these proofs that can take you where you need to go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 898000
+			},
+			"text": " where, wherever you need to go, is some place in the, in the, in the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 905000
+			},
+			"text": " So with that, we can kind of, we can start finally, finally get to the, into lifeline itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 916000
+			},
+			"text": " So let's start with syncing. So, in, we kind of looked at the proof of work model of syncing, which is download all the headers and then process headers one by one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 927000
+			},
+			"text": " So, what we need to do here is we need to think, how can we get these trusted Merkle roots in our proof of stake system?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 938000
+			},
+			"text": " And can we do this syncly? So smaller, smaller on a data, fewer steps, that's better for our lifeline needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 949000
+			},
+			"text": " But what is trusted? Well, trusted is our roots that are attested by a certain amount of stake. Two thirds roughly."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 963000
+			},
+			"text": " I mean, if, but the stakes, the stakes votes give way to the chain. So we need to make sure that the roots that we're getting are roots that mean something."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 974000
+			},
+			"text": " So, we can kind of think of two key insights that, that kind of change how we can progress in, in syncing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 986000
+			},
+			"text": " So one is, instead of syncing headers by hashing one, one by one and progressing just one at a time, we can use stake to vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 997000
+			},
+			"text": " We can use the stake to skip ahead to a current trusted header without having to verify every single header one by one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1016000
+			},
+			"text": " Instead, instead of using kind of the cryptographic trust of each header being, each previous header being included in the next header, we can instead, if we, if we already know who's validating, we can use the trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1028000
+			},
+			"text": " We can, we can use if we chow all the votes, we can jump ahead to a place much further than where we don't have to go one by one."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1035000
+			},
+			"text": " So if you imagine like a blockchain where the validators never changed and the balance is never changed, we had, we knew everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1044000
+			},
+			"text": " We could, we would be able to skip immediately to the, to the very head of the chain if, if we saw that everyone was voting for that head."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1056000
+			},
+			"text": " The, the, the, the, the, the trick with the theorem two is that the validators are always changing and so we need to keep, be keeping track of that and that makes it a little more complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1070000
+			},
+			"text": " So that means this was another key insight, which is instead of tracking all of the validator balances and all of the votes, if we can find a place where we don't have to do that, if you find a place where we only need to track a few of the validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1079000
+			},
+			"text": " then that will really like lower our requirements for, for keeping track of the, the snake."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1085000
+			},
+			"text": " So where, where do you to validate or validate?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1089000
+			},
+			"text": " Well, they validate in cross the committees."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1091000
+			},
+			"text": " One place is very fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1095000
+			},
+			"text": " These, these committees change every e-plot."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1098000
+			},
+			"text": " And they, so they test to resubcharge data."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1109000
+			},
+			"text": " They test to the beacon block root, which is great, but that they actually, we have to account all the votes across committees in order, in that case, so that isn't helping."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1114000
+			},
+			"text": " And they test to recent checkpoints also as the whole validator set."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1124000
+			},
+			"text": " So the, the, the cross the committees are really a great place to like keep track of lifelines because we, we really need the whole validator set."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1127000
+			},
+			"text": " And so they do not helping us out."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1131000
+			},
+			"text": " So the other place that we can look is in the char committees."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1139000
+			},
+			"text": " And so these are the committees that are proposing new blocks within char, at least in the current scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:02,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1142000
+			},
+			"text": " And these only change every 27 hours."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1142000,
+				"to": 1149000
+			},
+			"text": " So this is actually a lot better of a place for lifelines because if we want to keep track of the votes, we'll kind of keep track of the validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1154000
+			},
+			"text": " Those, these things only really update very infrequently."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1159000
+			},
+			"text": " And so because they update more infrequently, that's less work that we need to do as a, as a lifeline."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1168000
+			},
+			"text": " So that brings us to the same protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:38,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1178000
+			},
+			"text": " So what we end up doing is we try to, we, we save to a certain shard."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1178000,
+				"to": 1183000
+			},
+			"text": " Oh, well, my time is up."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1190000
+			},
+			"text": " But I have, I tweeted out my slides and I kind of covered the rest of all this if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1197000
+			},
+			"text": " I can do, I can do for this presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1204000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1211000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:18,000"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1218000
+			},
+			"text": " [Chatter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1218000,
+				"to": 1228000
+			},
+			"text": " [Chatter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1238000
+			},
+			"text": " [Chatter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:48,000"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1248000
+			},
+			"text": " [Chatter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1248000,
+				"to": 1258000
+			},
+			"text": " [Chatter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:21:08,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1268000
+			},
+			"text": " [Chatter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,000",
+				"to": "00:21:32,000"
+			},
+			"offsets": {
+				"from": 1268000,
+				"to": 1292000
+			},
+			"text": " [Chatter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,000",
+				"to": "00:21:47,000"
+			},
+			"offsets": {
+				"from": 1292000,
+				"to": 1307000
+			},
+			"text": " [Chatter]"
+		}
+	]
+}

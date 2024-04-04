@@ -1,0 +1,2452 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 18000
+			},
+			"text": " Welcome. Thank you all for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 25000
+			},
+			"text": " A friend of mine recently shared this picture with me with a label, MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 28000
+			},
+			"text": " [Laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 32000
+			},
+			"text": " And sure enough, right, it looks, it's very reminiscent of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 36000
+			},
+			"text": " Memble Wars between searchers trying to snatch an opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 42000
+			},
+			"text": " right from each other and try to get early, try to overbeat the other one, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 46000
+			},
+			"text": " But is this a good metaphor for MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 51000
+			},
+			"text": " Is this actually MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 54000
+			},
+			"text": " People in the community now are very MEV aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 58000
+			},
+			"text": " The proof of that is that there's 18 talks in this DevCon"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 60000
+			},
+			"text": " around the topic of MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 66000
+			},
+			"text": " There were zero in the last, so that's quite a testament for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 72000
+			},
+			"text": " Despite this, I would argue that we're not 100% sure of what MEV even means."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 75000
+			},
+			"text": " This is a poll from last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 79000
+			},
+			"text": " So which of the following is not MEV, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 83000
+			},
+			"text": " There seems to be rough consensus around front-running, but much less so"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 88000
+			},
+			"text": " around transaction fees, liquidation rewards, and like all of these are MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 92000
+			},
+			"text": " It's very evenly split."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 94000
+			},
+			"text": " This one is more recent, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 100000
+			},
+			"text": " Like the last year, from last year to this year, there has been many developments, as you all know."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 102000
+			},
+			"text": " This is a recent one from last month."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 105000
+			},
+			"text": " Our blog rewards are a form of MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 106000
+			},
+			"text": " This is really impressive."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 108000
+			},
+			"text": " It's almost half and half, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 112000
+			},
+			"text": " So it's really a contentious concept, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 117000
+			},
+			"text": " This is perhaps a more trolley one."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 120000
+			},
+			"text": " Conference swag is a form of MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 122000
+			},
+			"text": " I won't go through this chart."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 123000
+			},
+			"text": " It's a lot of fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 125000
+			},
+			"text": " I encourage you all to check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 129000
+			},
+			"text": " Essentially, there's two dimensions that are taking into account here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 133000
+			},
+			"text": " One is value and one is extraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 138000
+			},
+			"text": " So depending on where you see it on each of these variables,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 142000
+			},
+			"text": " it's what you should consider MEV or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 146000
+			},
+			"text": " But are these the only dimensions that are relevant?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 152000
+			},
+			"text": " So again, it doesn't seem like there's a lot of consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 155000
+			},
+			"text": " This is the ultimate one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 157000
+			},
+			"text": " I hope nobody got robbed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 159000
+			},
+			"text": " I really hope so."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 163000
+			},
+			"text": " But yeah, so I think this meme illustrates, it's also my favorite meme format."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 164000
+			},
+			"text": " It's on mine, by the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 171000
+			},
+			"text": " I think it illustrates what I'm trying to get through to you today, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 175000
+			},
+			"text": " We've been calling MEV a lot of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 183000
+			},
+			"text": " So in my work in trying to formalize MEV, I've been argued that there's no consensus on a formal definition of MEV"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 189000
+			},
+			"text": " and there's many around there and we're using different things and it's hard to come up with a formula."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 194000
+			},
+			"text": " But in doing work for this talk, I realized that there's no real consensus on the concept, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 197000
+			},
+			"text": " On intuition of what we want to call MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 203000
+			},
+			"text": " So in this talk, I want to go through different ideas and say why many of these are not MEV"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 212000
+			},
+			"text": " and crucially this talk is tightly coupled together with my friend Chin's talk next, who will tell you what actually is MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 213000
+			},
+			"text": " So I encourage you to stay."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 217000
+			},
+			"text": " He's going to roast me and tell you why the things I tell you now are actually wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 219000
+			},
+			"text": " So you should definitely stay."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 225000
+			},
+			"text": " We're going to be a bit of a shorter talk and he's going to give a longer talk and perhaps if the MC allows us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 227000
+			},
+			"text": " we can do questions at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 234000
+			},
+			"text": " So since you all said that you were going to stay for his talk, all right, let's get going."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 239000
+			},
+			"text": " So I forgot I have like a cool animation transparency."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 242000
+			},
+			"text": " Okay, just a T-shin stock."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 244000
+			},
+			"text": " Okay, let's get going."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 249000
+			},
+			"text": " So when I start with like a trivial example, right, is MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 256000
+			},
+			"text": " Are all the things that are MEV also, all the things that are value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 259000
+			},
+			"text": " Is value the same as MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 261000
+			},
+			"text": " Right, this is a trivial example."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 263000
+			},
+			"text": " We can easily argue that this is not the case, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 267000
+			},
+			"text": " That there's more to MEV than to any value."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 271000
+			},
+			"text": " You can think of picking up a $1 bill out of on the street, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 273000
+			},
+			"text": " We wouldn't want to call that MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 277000
+			},
+			"text": " Actually, you all agree, but this is still value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 281000
+			},
+			"text": " So again, this is a trivial example, but just to set the stage of the type of argument I'm going to be doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 283000
+			},
+			"text": " And critically, this is all intuitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 284000
+			},
+			"text": " There's no proofs here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 290000
+			},
+			"text": " I'm not just trying to hone in a concept and it's up to all of us what we decide to call MEV, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 294000
+			},
+			"text": " It's a matter of choice, no, like, again, proofs here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 302000
+			},
+			"text": " Okay, so first non-trivial example is MEV equal to a set of value on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 304000
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 311000
+			},
+			"text": " So if you think of the definition, the original definition in the flashroaches 2.0 paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 318000
+			},
+			"text": " there was like value that can be extracted by miners by censoring, reordering transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 321000
+			},
+			"text": " So there's a lot of blockchain in concepts there, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 323000
+			},
+			"text": " Transactions, miners, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 329000
+			},
+			"text": " So it might well be that, okay, what we're calling MEV is nothing else than value on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 333000
+			},
+			"text": " And sure enough, there's things that are value on the blockchain that are also MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 339000
+			},
+			"text": " Arbs are one of them and I'm going to be using arbs like canonical example of MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 344000
+			},
+			"text": " Arbs like talking about arbitrage on a blockchain, for instance, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 350000
+			},
+			"text": " But are there things that are value on a blockchain that are not MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 354000
+			},
+			"text": " Well, here one could argue that, okay, if I do a simple ETH transfer, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 361000
+			},
+			"text": " and then the miner has no way to extract that, so we can call that value on the blockchain that it's not MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 366000
+			},
+			"text": " Although put a pin on this idea because we're going to come back to it because it's not as simple as it looks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 369000
+			},
+			"text": " Even a simply transfer can get trickier."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 373000
+			},
+			"text": " But in principle, we can say, okay, there's some value on the blockchain that's actually not MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 377000
+			},
+			"text": " How are the other side, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 382000
+			},
+			"text": " And let me also say that mostly for the question of this is not MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 386000
+			},
+			"text": " we're going to be thinking about the right side of this slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 390000
+			},
+			"text": " like the inclusion of the pink set in the white set,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 395000
+			},
+			"text": " but we're going to find interesting things along the way on the left-hand side too, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 397000
+			},
+			"text": " So we're going to also comment a bit on those."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 404000
+			},
+			"text": " So in this case, is there MEV that's not value on the blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 406000
+			},
+			"text": " This is again a matter of choice, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 411000
+			},
+			"text": " But I would argue that we are striving for a more abstract general concept than value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 414000
+			},
+			"text": " and that's strictly on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 418000
+			},
+			"text": " I don't see anything special about blockchains in terms of value."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 422000
+			},
+			"text": " Blockchains are certainly special in terms of coordinating devices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 430000
+			},
+			"text": " but I don't see them as, again, providing value, a characteristic that's so special, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 433000
+			},
+			"text": " So in general, we'd like to think of MEV as something more general."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 437000
+			},
+			"text": " And here the canonical example you can think of is a centralized exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 440000
+			},
+			"text": " A centralized exchange, you have all the orders coming,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 443000
+			},
+			"text": " and the operator can decide to extract value from users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 446000
+			},
+			"text": " like Robinhood does, that's the Robinhood business model, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 450000
+			},
+			"text": " So we might want to call that MEV matter of definition, you might not agree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 454000
+			},
+			"text": " Feel free to come and chat if you don't, but in principle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 456000
+			},
+			"text": " I would argue that perhaps we want that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 460000
+			},
+			"text": " One subtle point here is that we might need this if we start quantifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 464000
+			},
+			"text": " a centralized exchange versus the centralized exchange arts, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 467000
+			},
+			"text": " So if we have value flowing in and out of the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 472000
+			},
+			"text": " then maybe when we start quantifying this kind of arbitrage and so on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 478000
+			},
+			"text": " we might need to call that MEV if we want the whole calculation to be sound, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 486000
+			},
+			"text": " So, okay, so value in the blockchain doesn't seem like it's the best candidate for our concept of MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 488000
+			},
+			"text": " so let's move on to the next one."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 492000
+			},
+			"text": " Is MEV the same as front running, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 496000
+			},
+			"text": " Okay, we start with the intersection of these sets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 500000
+			},
+			"text": " trivially ARBs, again, as we saw, I'm going to use always ARBs here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 504000
+			},
+			"text": " the first leg of a sandwich, for instance, you can think of it as an ARB."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 508000
+			},
+			"text": " This is clearly MEV, this is clearly front running, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 513000
+			},
+			"text": " How we start with the left side here, also obvious point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 517000
+			},
+			"text": " there's clearly MEV that's not front running, you can think of back running, trivially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 521000
+			},
+			"text": " or re-arids, other things, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 525000
+			},
+			"text": " So here the tricky part is on the right side."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 528000
+			},
+			"text": " Are all things that are front running MEV, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 532000
+			},
+			"text": " And thinking from running here is you learn some information from other"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 537000
+			},
+			"text": " parties and then you like are faster than the other in catching or capturing that value."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 543000
+			},
+			"text": " Is that MEV? Again, the RACV example in the first slide, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 551000
+			},
+			"text": " So here you can take two paths, you can say, okay, let's look at the RACV example, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 556000
+			},
+			"text": " maybe I don't want to call that MEV, even if it has the characteristic of like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 560000
+			},
+			"text": " being faster than the other person."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 566000
+			},
+			"text": " And so there has to be something else for us to call MEV because being early,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 572000
+			},
+			"text": " again, doesn't have that much to do with the structure of the value itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 576000
+			},
+			"text": " And so here, okay, what's the missing part here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 582000
+			},
+			"text": " Perhaps we can think of a coordinator, a coordinator that is doing the allocations of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 586000
+			},
+			"text": " value, right? And in the RACV there's no really meaningful coordinator."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 591000
+			},
+			"text": " You can think of, I don't know, gravity as a coordinator, but it's a coordinator that cannot extract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 595000
+			},
+			"text": " It's like a dumb coordinator. So here if you have a smarter coordinator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 598000
+			},
+			"text": " what happens is that the game theory gets more interesting, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 605000
+			},
+			"text": " So the MEV concept becomes much richer. So here, okay, this is one path you can go down"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 610000
+			},
+			"text": " and you can say, okay, not all front-running is MEV because for it to be MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 616000
+			},
+			"text": " we need some extra player. So this is perfectly fine until you start thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 620000
+			},
+			"text": " and, okay, you can think of the example of the RBTrum chain, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 627000
+			},
+			"text": " In RBTrum you have a first-come, first-serve centralized server that cannot extract"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 630000
+			},
+			"text": " and then people are doing arbitrage. So if you go down this path,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 635000
+			},
+			"text": " considering that the coordinator there cannot extract, you would not be calling"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 642000
+			},
+			"text": " RBTrum ARPS as MEV, right? And this is something many people would frown upon, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 645000
+			},
+			"text": " And in fact, the avalanche devs at some point were saying, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 649000
+			},
+			"text": " ARPS are not MEV and the searchers were laughing because they were saying, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 652000
+			},
+			"text": " we're calling what you will. We're making millions of dollars out of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 657000
+			},
+			"text": " So I think there's some consensus that, okay, these type of things are MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 664000
+			},
+			"text": " So again, tricky, contentious point. It's a matter of choice where we want to call that MEV or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 672000
+			},
+			"text": " Okay, so this, again, question, is the set of things are front-running,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 678000
+			},
+			"text": " included in the set of things that are MEV? And welcome back to this at the very end."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 686000
+			},
+			"text": " Okay, next set is MEV and the set of things that are MEV equal to the set of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 693000
+			},
+			"text": " that are permissionless value. To your example in center, ARPS, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 699000
+			},
+			"text": " This is permissionless. Anybody can make an ARP and it's also MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 702000
+			},
+			"text": " can only get an example of MEV, so that's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 708000
+			},
+			"text": " How on the left side are all things are MEV permissionless?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 713000
+			},
+			"text": " So when I work with definitions and formalization of MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 718000
+			},
+			"text": " I argued for the importance of permissionlessness in the definition,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 722000
+			},
+			"text": " because there were many definitions out there that included the notion of a player"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 725000
+			},
+			"text": " that can extract a value, but this is very tricky."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 730000
+			},
+			"text": " And it's tricky because you can think of an example where you have an ARP, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 734000
+			},
+			"text": " You have an ARP, that's only entitled to you. And when you are going to claim the ARP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 739000
+			},
+			"text": " the minor cannot do anything, right? So there's no way the minor can steal that value from you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 745000
+			},
+			"text": " So I would say, okay, permissionless looks like it's important in the concept of MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 750000
+			},
+			"text": " Although, if you think of an ARP twist, to like example, say you have an ARP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 754000
+			},
+			"text": " which you can only claim at a specific block height and say that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 759000
+			},
+			"text": " proposer of that block knows about this. So then they can credibly extort you"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 765000
+			},
+			"text": " and tell you, look, if you don't give me a share of the ARP, I won't include your transaction, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 774000
+			},
+			"text": " So then, okay, after all, there might be some MEV character to this extortion capability of the coordinator, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 778000
+			},
+			"text": " And this might look like a very contorted example, okay, after all,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 782000
+			},
+			"text": " is there any ARP that is only valid for one block?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 786000
+			},
+			"text": " But if you think a little bit deeper on this and a few some numbers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 792000
+			},
+			"text": " you can think of the earlier ether transfer from the earlier slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 796000
+			},
+			"text": " And there, if you have a collusion of say 10% of the validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 803000
+			},
+			"text": " they could in principle extort you for 0.4% of the value."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 808000
+			},
+			"text": " She has run these calculations, right? So 0.4% of the value is a lot, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 813000
+			},
+			"text": " It's more or less the same as the fees that you have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 817000
+			},
+			"text": " you pay like swapping or uni swap or whatever. So actually, this example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 821000
+			},
+			"text": " and that looks contorted is not and could very well happen, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 828000
+			},
+			"text": " So extortion is a real thing. Okay, that's again for the left side."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 834000
+			},
+			"text": " On the right side, this is not too interesting. We have the example I gave you earlier of the dollar bill."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 840000
+			},
+			"text": " You pick up a dollar bill, that's permissionless value, and that's arguably not MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 845000
+			},
+			"text": " But okay, that's an example that's outside of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 850000
+			},
+			"text": " So perhaps we want to consider permissionless value on the blockchain, how this set of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 857000
+			},
+			"text": " Okay, the two examples I gave you for the intersection and for the MEV side are on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 862000
+			},
+			"text": " So we know this exists in principle. So how about the other side?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 868000
+			},
+			"text": " Are there things that are permissionless value on the blockchain that are not MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 872000
+			},
+			"text": " This is a question for you, actually. I have one example."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 878000
+			},
+			"text": " So if you can come up with an example, like enough things that are permissionless value on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 886000
+			},
+			"text": " that you wouldn't call MEV, please let me know, and we can sort out that set inclusion there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:53,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 893000
+			},
+			"text": " So this is one I can need set to consider for characterizing or half characterizing MEV if you will."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 893000,
+				"to": 899000
+			},
+			"text": " Okay, thanks for wearing with me. We've been through a lot of Venn diagrams. This is the last one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 904000
+			},
+			"text": " Okay, how about value extractable by a monopolistic coordinator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:12,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 912000
+			},
+			"text": " Again, I've argued for the importance of a coordinator, and because it changes the game theory, it makes it more fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 912000,
+				"to": 918000
+			},
+			"text": " So here again, critically, the coordinator needs to be able to extract for that game theory to be richer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 925000
+			},
+			"text": " It has to be monopolistic because also for the extortion I showed you before, if it's some monopolistic, then this doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 928000
+			},
+			"text": " So in the intersection we have the same example as before."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 935000
+			},
+			"text": " Arby trash is an example of this. Monopolistic coordinators come naturally in blockchains like the proposers are that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 946000
+			},
+			"text": " Okay, so how the left side are things that are MEV and that are not value extractable by a monopolistic coordinator."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 952000
+			},
+			"text": " And here it depends on your earlier choice on the arbitrum example, right, the front running example."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 966000
+			},
+			"text": " Okay, if you decided to call arbitrum ARBS that type of front running MEV, then this is an example of an element here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 974000
+			},
+			"text": " Because it's not value extractable by a monopolistic coordinator, but you're still choosing to call it MEV again a choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 983000
+			},
+			"text": " Finally, let's look at the other side. Is there value extractable by a monopolistic coordinator that is not MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 993000
+			},
+			"text": " Can you find examples of this? I haven't, so again, a challenge to you all, please come talk to me if you find an example in this set there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 997000
+			},
+			"text": " And again, we can sort out this question here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1007000
+			},
+			"text": " Okay, so we've dealt with the concept of MEV. We came up with three sets that look like might always be MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1018000
+			},
+			"text": " This is, of course, not a full characterization just to sum up value extractable by a monopolistic coordinator, front running permissionless value in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1026000
+			},
+			"text": " This is quite an unfortunate picture, are you right? Because there's these three disjoint sets and how are they related to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1035000
+			},
+			"text": " This doesn't look like a unified theory of MEV, right? One would ideally like to have a more concise idea of what MEV is, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1047000
+			},
+			"text": " And these are only if at all partial characterizations. So, in the talk that comes next, she needs to share a little bit of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1058000
+			},
+			"text": " and try to come up with this was more like an outside-in exploration of the idea of MEV, she is going to share inside out a more constructive way to think cohesively about MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1063000
+			},
+			"text": " And so, again, thank you so much for coming. I appreciate you all being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1066000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1071000
+			},
+			"text": " [Silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1079000
+			},
+			"text": " [Silence]"
+		}
+	]
+}

@@ -1,0 +1,2210 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:01,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 1000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:01,000",
+				"to": "00:00:04,000"
+			},
+			"offsets": {
+				"from": 1000,
+				"to": 4000
+			},
+			"text": " Trinity is-- today I want to talk to you about Trinity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,000",
+				"to": "00:00:08,300"
+			},
+			"offsets": {
+				"from": 4000,
+				"to": 8300
+			},
+			"text": " Trinity is a client for the Ethereum network, similar to Gather Parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,300",
+				"to": "00:00:10,200"
+			},
+			"offsets": {
+				"from": 8300,
+				"to": 10200
+			},
+			"text": " We are, however, in an alpha stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,200",
+				"to": "00:00:14,880"
+			},
+			"offsets": {
+				"from": 10200,
+				"to": 14880
+			},
+			"text": " Don't use this in production yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,880",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 14880,
+				"to": 18000
+			},
+			"text": " This is a project I started around two years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:23,040"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 23040
+			},
+			"text": " We had our first public alpha release earlier this year, and in August we had our first"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,040",
+				"to": "00:00:26,080"
+			},
+			"offsets": {
+				"from": 23040,
+				"to": 26080
+			},
+			"text": " successful sync with the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,080",
+				"to": "00:00:27,080"
+			},
+			"offsets": {
+				"from": 26080,
+				"to": 27080
+			},
+			"text": " Here's some numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,080",
+				"to": "00:00:29,800"
+			},
+			"offsets": {
+				"from": 27080,
+				"to": 29800
+			},
+			"text": " We've got three full-time engineers on the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,800",
+				"to": "00:00:33,200"
+			},
+			"offsets": {
+				"from": 29800,
+				"to": 33200
+			},
+			"text": " I have put two years of my life into this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,200",
+				"to": "00:00:37,800"
+			},
+			"offsets": {
+				"from": 33200,
+				"to": 37800
+			},
+			"text": " And it takes about 10 or more days to sync with the network, which is slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,800",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 37800,
+				"to": 41000
+			},
+			"text": " Right now we're working on a couple of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:44,640"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 44640
+			},
+			"text": " Main efforts are on making synchronization faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,640",
+				"to": "00:00:49,720"
+			},
+			"offsets": {
+				"from": 44640,
+				"to": 49720
+			},
+			"text": " The research team from Taipei is working on implementation of the beacon chain in our"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,720",
+				"to": "00:00:52,520"
+			},
+			"offsets": {
+				"from": 49720,
+				"to": 52520
+			},
+			"text": " base EVM library."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,520",
+				"to": "00:00:56,080"
+			},
+			"offsets": {
+				"from": 52520,
+				"to": 56080
+			},
+			"text": " And today I want to talk to you about our plug-in API, which is the cool part as far"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,080",
+				"to": "00:00:58,480"
+			},
+			"offsets": {
+				"from": 56080,
+				"to": 58480
+			},
+			"text": " as I'm concerned."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,480",
+				"to": "00:01:02,080"
+			},
+			"offsets": {
+				"from": 58480,
+				"to": 62080
+			},
+			"text": " A good way to think about plug-ins is that they're similar to extensions for a web browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,080",
+				"to": "00:01:06,920"
+			},
+			"offsets": {
+				"from": 62080,
+				"to": 66920
+			},
+			"text": " They're like a native way to extend the functionality of the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,920",
+				"to": "00:01:11,880"
+			},
+			"offsets": {
+				"from": 66920,
+				"to": 71880
+			},
+			"text": " And rather than-- I figured the best way to talk to you about what these can do is to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,880",
+				"to": "00:01:14,640"
+			},
+			"offsets": {
+				"from": 71880,
+				"to": 74640
+			},
+			"text": " talk about some use cases that we foresee happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,640",
+				"to": "00:01:18,840"
+			},
+			"offsets": {
+				"from": 74640,
+				"to": 78840
+			},
+			"text": " One of these is application-specific JSON RPC endpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,840",
+				"to": "00:01:23,120"
+			},
+			"offsets": {
+				"from": 78840,
+				"to": 83120
+			},
+			"text": " A lot of applications have a lot of business logic tied up with them, often the developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,120",
+				"to": "00:01:27,680"
+			},
+			"offsets": {
+				"from": 83120,
+				"to": 87680
+			},
+			"text": " of the applications or protocols know how those things are supposed to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,680",
+				"to": "00:01:34,880"
+			},
+			"offsets": {
+				"from": 87680,
+				"to": 94880
+			},
+			"text": " And being able to expose these at a high level through the JSON RPC API, it's just a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,880",
+				"to": "00:01:35,880"
+			},
+			"offsets": {
+				"from": 94880,
+				"to": 95880
+			},
+			"text": " better user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,880",
+				"to": "00:01:36,880"
+			},
+			"offsets": {
+				"from": 95880,
+				"to": 96880
+			},
+			"text": " At least that's what we think."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,880",
+				"to": "00:01:42,880"
+			},
+			"offsets": {
+				"from": 96880,
+				"to": 102880
+			},
+			"text": " So we are-- one of the use cases we see is the ability to expose JSON RPC-- new JSON"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,880",
+				"to": "00:01:46,280"
+			},
+			"offsets": {
+				"from": 102880,
+				"to": 106280
+			},
+			"text": " RPC endpoints to your users through our client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,280",
+				"to": "00:01:49,840"
+			},
+			"offsets": {
+				"from": 106280,
+				"to": 109840
+			},
+			"text": " Another thing that-- I don't know if I made this word up, but protocol daimens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,840",
+				"to": "00:01:54,800"
+			},
+			"offsets": {
+				"from": 109840,
+				"to": 114800
+			},
+			"text": " A lot of protocols have a need for like an off-chain actor to perform some actions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,800",
+				"to": "00:01:55,960"
+			},
+			"offsets": {
+				"from": 114800,
+				"to": 115960
+			},
+			"text": " things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,960",
+				"to": "00:01:59,080"
+			},
+			"offsets": {
+				"from": 115960,
+				"to": 119080
+			},
+			"text": " And these are often shipped, shipped around as their own binary, and you have to link"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,080",
+				"to": "00:02:01,280"
+			},
+			"offsets": {
+				"from": 119080,
+				"to": 121280
+			},
+			"text": " it up to a running Ethereum node."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,280",
+				"to": "00:02:06,960"
+			},
+			"offsets": {
+				"from": 121280,
+				"to": 126960
+			},
+			"text": " We foresee packaging these up as a plugin as like a much better user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,960",
+				"to": "00:02:10,520"
+			},
+			"offsets": {
+				"from": 126960,
+				"to": 130520
+			},
+			"text": " Anybody who's already running the Trinity client, it's like going to be a one-click"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,520",
+				"to": "00:02:15,920"
+			},
+			"offsets": {
+				"from": 130520,
+				"to": 135920
+			},
+			"text": " install type thing and make an onboard to your protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,920",
+				"to": "00:02:21,080"
+			},
+			"offsets": {
+				"from": 135920,
+				"to": 141080
+			},
+			"text": " And what we're shooting for is entire-- the ability to implement entire protocols altogether."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,080",
+				"to": "00:02:24,680"
+			},
+			"offsets": {
+				"from": 141080,
+				"to": 144680
+			},
+			"text": " So we're going to be looking at whether or not we can implement the beacon chain using"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,680",
+				"to": "00:02:25,960"
+			},
+			"offsets": {
+				"from": 144680,
+				"to": 145960
+			},
+			"text": " this API."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,960",
+				"to": "00:02:32,520"
+			},
+			"offsets": {
+				"from": 145960,
+				"to": 152520
+			},
+			"text": " Similarly, at some point here, I suspect Swarm and Whisper will be on the table for plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,520",
+				"to": "00:02:37,360"
+			},
+			"offsets": {
+				"from": 152520,
+				"to": 157360
+			},
+			"text": " And I would love to get even broader beyond our own personal ecosystem and get things"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,360",
+				"to": "00:02:38,600"
+			},
+			"offsets": {
+				"from": 157360,
+				"to": 158600
+			},
+			"text": " like IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,600",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 158600,
+				"to": 162000
+			},
+			"text": " But this is the one that I'm most excited about."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:45,400"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 165400
+			},
+			"text": " A couple of weeks ago, this thing showed up on Reddit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,400",
+				"to": "00:02:49,160"
+			},
+			"offsets": {
+				"from": 165400,
+				"to": 169160
+			},
+			"text": " One of the members of this community made this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,160",
+				"to": "00:02:53,680"
+			},
+			"offsets": {
+				"from": 169160,
+				"to": 173680
+			},
+			"text": " This is an interminal wallet that has like a cursus-style interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,680",
+				"to": "00:02:57,760"
+			},
+			"offsets": {
+				"from": 173680,
+				"to": 177760
+			},
+			"text": " And when myself and my team saw this, we got really excited because for a long time, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,760",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 177760,
+				"to": 180000
+			},
+			"text": " thought UX is always going to be in the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:01,720"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 181720
+			},
+			"text": " User land is always in the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,720",
+				"to": "00:03:06,400"
+			},
+			"offsets": {
+				"from": 181720,
+				"to": 186400
+			},
+			"text": " And while end users are not likely to use terminal applications, there are a whole suite"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,400",
+				"to": "00:03:09,880"
+			},
+			"offsets": {
+				"from": 186400,
+				"to": 189880
+			},
+			"text": " of use cases that are absolutely suitable for a cursus-style interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,880",
+				"to": "00:03:14,040"
+			},
+			"offsets": {
+				"from": 189880,
+				"to": 194040
+			},
+			"text": " And we think that there's a lot that can be done here, and we want to enable that through"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,040",
+				"to": "00:03:16,440"
+			},
+			"offsets": {
+				"from": 194040,
+				"to": 196440
+			},
+			"text": " plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,440",
+				"to": "00:03:18,640"
+			},
+			"offsets": {
+				"from": 196440,
+				"to": 198640
+			},
+			"text": " We are dog-fooding this API pretty heavily."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,640",
+				"to": "00:03:22,400"
+			},
+			"offsets": {
+				"from": 198640,
+				"to": 202400
+			},
+			"text": " We have converted a bunch of our internal things to be plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,400",
+				"to": "00:03:27,800"
+			},
+			"offsets": {
+				"from": 202400,
+				"to": 207800
+			},
+			"text": " We are considering and we have the idea of converting our entire synchronization to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,800",
+				"to": "00:03:28,800"
+			},
+			"offsets": {
+				"from": 207800,
+				"to": 208800
+			},
+			"text": " be a plugin."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,800",
+				"to": "00:03:32,200"
+			},
+			"offsets": {
+				"from": 208800,
+				"to": 212200
+			},
+			"text": " So this is an API that's new."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,200",
+				"to": "00:03:33,200"
+			},
+			"offsets": {
+				"from": 212200,
+				"to": 213200
+			},
+			"text": " It's an alpha."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,200",
+				"to": "00:03:34,400"
+			},
+			"offsets": {
+				"from": 213200,
+				"to": 214400
+			},
+			"text": " We got the documentation up today."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,400",
+				"to": "00:03:38,120"
+			},
+			"offsets": {
+				"from": 214400,
+				"to": 218120
+			},
+			"text": " I encourage you to go check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,120",
+				"to": "00:03:41,320"
+			},
+			"offsets": {
+				"from": 218120,
+				"to": 221320
+			},
+			"text": " But now I want to do something completely different."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,320",
+				"to": "00:03:47,720"
+			},
+			"offsets": {
+				"from": 221320,
+				"to": 227720
+			},
+			"text": " So the original idea for this talk was for me to tell you a story about Trinity, how"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,720",
+				"to": "00:03:51,640"
+			},
+			"offsets": {
+				"from": 227720,
+				"to": 231640
+			},
+			"text": " it got to where it was today and where it's going."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,640",
+				"to": "00:03:56,560"
+			},
+			"offsets": {
+				"from": 231640,
+				"to": 236560
+			},
+			"text": " But as I started working on that, I had a hard time digging my personal life out of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,560",
+				"to": "00:03:58,880"
+			},
+			"offsets": {
+				"from": 236560,
+				"to": 238880
+			},
+			"text": " that story."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,880",
+				"to": "00:04:04,760"
+			},
+			"offsets": {
+				"from": 238880,
+				"to": 244760
+			},
+			"text": " All of you have a story, how you got here today, how you got into blockchain, why you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,760",
+				"to": "00:04:06,560"
+			},
+			"offsets": {
+				"from": 244760,
+				"to": 246560
+			},
+			"text": " do this work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,560",
+				"to": "00:04:10,080"
+			},
+			"offsets": {
+				"from": 246560,
+				"to": 250080
+			},
+			"text": " And I want to tell you my story."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,080",
+				"to": "00:04:12,960"
+			},
+			"offsets": {
+				"from": 250080,
+				"to": 252960
+			},
+			"text": " I've spent three years of my life doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,960",
+				"to": "00:04:18,840"
+			},
+			"offsets": {
+				"from": 252960,
+				"to": 258840
+			},
+			"text": " Three years of code, three years building and creating, three years steeped in the uncertainty."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,840",
+				"to": "00:04:25,440"
+			},
+			"offsets": {
+				"from": 258840,
+				"to": 265440
+			},
+			"text": " Unsure if I'm making a difference, but desperately wanting things to be different."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,440",
+				"to": "00:04:28,320"
+			},
+			"offsets": {
+				"from": 265440,
+				"to": 268320
+			},
+			"text": " And back at the beginning now, it's 2013."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,320",
+				"to": "00:04:34,120"
+			},
+			"offsets": {
+				"from": 268320,
+				"to": 274120
+			},
+			"text": " My newborn son takes his first breath while the CPU on my laptop spits out one more shot"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,120",
+				"to": "00:04:38,800"
+			},
+			"offsets": {
+				"from": 274120,
+				"to": 278800
+			},
+			"text": " 256, overheats and burns itself to death."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,800",
+				"to": "00:04:40,520"
+			},
+			"offsets": {
+				"from": 278800,
+				"to": 280520
+			},
+			"text": " The Silk Road is open now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,520",
+				"to": "00:04:43,680"
+			},
+			"offsets": {
+				"from": 280520,
+				"to": 283680
+			},
+			"text": " The Dread Pirate Robert shows us something new."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,680",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 283680,
+				"to": 288000
+			},
+			"text": " My mind expands while the web contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:52,920"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 292920
+			},
+			"text": " Satoshi has given us a glimpse of a world without walls, but the wall gardens continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,920",
+				"to": "00:04:55,160"
+			},
+			"offsets": {
+				"from": 292920,
+				"to": 295160
+			},
+			"text": " to grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,160",
+				"to": "00:04:57,440"
+			},
+			"offsets": {
+				"from": 295160,
+				"to": 297440
+			},
+			"text": " My son is one now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,440",
+				"to": "00:05:04,240"
+			},
+			"offsets": {
+				"from": 297440,
+				"to": 304240
+			},
+			"text": " It's late in the addict in the main lines, yet another blog post about this ethereum thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,240",
+				"to": "00:05:08,760"
+			},
+			"offsets": {
+				"from": 304240,
+				"to": 308760
+			},
+			"text": " I spend money I don't have on an idea I don't understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,760",
+				"to": "00:05:12,680"
+			},
+			"offsets": {
+				"from": 308760,
+				"to": 312680
+			},
+			"text": " But a small seed is planted in my mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,680",
+				"to": "00:05:19,400"
+			},
+			"offsets": {
+				"from": 312680,
+				"to": 319400
+			},
+			"text": " My mind, the part of myself I hold most dear, powerful, flawed, beautiful, but wracked with"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,400",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 319400,
+				"to": 324000
+			},
+			"text": " unspoken pain, crumbling and falling to pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:26,120"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 326120
+			},
+			"text": " My son is two now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,120",
+				"to": "00:05:28,560"
+			},
+			"offsets": {
+				"from": 326120,
+				"to": 328560
+			},
+			"text": " The seed lies dormant."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,560",
+				"to": "00:05:31,280"
+			},
+			"offsets": {
+				"from": 328560,
+				"to": 331280
+			},
+			"text": " Darkness encroaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,280",
+				"to": "00:05:32,720"
+			},
+			"offsets": {
+				"from": 331280,
+				"to": 332720
+			},
+			"text": " My demon is coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,720",
+				"to": "00:05:36,880"
+			},
+			"offsets": {
+				"from": 332720,
+				"to": 336880
+			},
+			"text": " My demon has no name, and it destroys everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,880",
+				"to": "00:05:42,960"
+			},
+			"offsets": {
+				"from": 336880,
+				"to": 342960
+			},
+			"text": " Everything that has come before, consuming me from the inside, leaving me hollow, broken,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,960",
+				"to": "00:05:45,680"
+			},
+			"offsets": {
+				"from": 342960,
+				"to": 345680
+			},
+			"text": " the shell of a person."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,680",
+				"to": "00:05:50,600"
+			},
+			"offsets": {
+				"from": 345680,
+				"to": 350600
+			},
+			"text": " And like so many times before, I could fall into its embrace while it tears my world to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,600",
+				"to": "00:05:52,240"
+			},
+			"offsets": {
+				"from": 350600,
+				"to": 352240
+			},
+			"text": " pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,240",
+				"to": "00:05:57,160"
+			},
+			"offsets": {
+				"from": 352240,
+				"to": 357160
+			},
+			"text": " Given and let go while it burns everything I love, everything I hold dear."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,160",
+				"to": "00:06:01,760"
+			},
+			"offsets": {
+				"from": 357160,
+				"to": 361760
+			},
+			"text": " My marriage, my life, my son."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,760",
+				"to": "00:06:03,360"
+			},
+			"offsets": {
+				"from": 361760,
+				"to": 363360
+			},
+			"text": " My son is three now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,360",
+				"to": "00:06:05,480"
+			},
+			"offsets": {
+				"from": 363360,
+				"to": 365480
+			},
+			"text": " My daughter is born."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,480",
+				"to": "00:06:09,840"
+			},
+			"offsets": {
+				"from": 365480,
+				"to": 369840
+			},
+			"text": " My demon is at bay, and my demon has a name."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,840",
+				"to": "00:06:12,960"
+			},
+			"offsets": {
+				"from": 369840,
+				"to": 372960
+			},
+			"text": " Its name is depression."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,960",
+				"to": "00:06:18,280"
+			},
+			"offsets": {
+				"from": 372960,
+				"to": 378280
+			},
+			"text": " And in naming it, I can know it, and in knowing it, I can fight it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,280",
+				"to": "00:06:22,040"
+			},
+			"offsets": {
+				"from": 378280,
+				"to": 382040
+			},
+			"text": " But the fight is brutal, and I am in pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,040",
+				"to": "00:06:23,960"
+			},
+			"offsets": {
+				"from": 382040,
+				"to": 383960
+			},
+			"text": " But I put the pieces back together."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,960",
+				"to": "00:06:26,680"
+			},
+			"offsets": {
+				"from": 383960,
+				"to": 386680
+			},
+			"text": " I will not let this define me."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,680",
+				"to": "00:06:28,240"
+			},
+			"offsets": {
+				"from": 386680,
+				"to": 388240
+			},
+			"text": " And the seed is sprouting now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,240",
+				"to": "00:06:34,120"
+			},
+			"offsets": {
+				"from": 388240,
+				"to": 394120
+			},
+			"text": " The seed is growing, spreading its roots, taking form, and I'm at the frontier."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,120",
+				"to": "00:06:37,600"
+			},
+			"offsets": {
+				"from": 394120,
+				"to": 397600
+			},
+			"text": " The network takes its first breath."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,600",
+				"to": "00:06:39,800"
+			},
+			"offsets": {
+				"from": 397600,
+				"to": 399800
+			},
+			"text": " And my mind breathes it in."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,800",
+				"to": "00:06:40,800"
+			},
+			"offsets": {
+				"from": 399800,
+				"to": 400800
+			},
+			"text": " I work."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,800",
+				"to": "00:06:41,800"
+			},
+			"offsets": {
+				"from": 400800,
+				"to": 401800
+			},
+			"text": " I build."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,800",
+				"to": "00:06:42,720"
+			},
+			"offsets": {
+				"from": 401800,
+				"to": 402720
+			},
+			"text": " I create."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,720",
+				"to": "00:06:45,680"
+			},
+			"offsets": {
+				"from": 402720,
+				"to": 405680
+			},
+			"text": " But I am uncertain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,680",
+				"to": "00:06:47,320"
+			},
+			"offsets": {
+				"from": 405680,
+				"to": 407320
+			},
+			"text": " Is this real?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,320",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 407320,
+				"to": 410000
+			},
+			"text": " Is this the force of change that I have yearned for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 413000
+			},
+			"text": " Can we really build this new thing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:54,920"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 414920
+			},
+			"text": " We're few, but we are strong."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,920",
+				"to": "00:06:57,360"
+			},
+			"offsets": {
+				"from": 414920,
+				"to": 417360
+			},
+			"text": " We know it can be better."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,360",
+				"to": "00:06:59,720"
+			},
+			"offsets": {
+				"from": 417360,
+				"to": 419720
+			},
+			"text": " And for the first time, I feel empowered."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,720",
+				"to": "00:07:02,360"
+			},
+			"offsets": {
+				"from": 419720,
+				"to": 422360
+			},
+			"text": " We are in this together, a community."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,360",
+				"to": "00:07:05,240"
+			},
+			"offsets": {
+				"from": 422360,
+				"to": 425240
+			},
+			"text": " Distributed, but connected."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,240",
+				"to": "00:07:08,240"
+			},
+			"offsets": {
+				"from": 425240,
+				"to": 428240
+			},
+			"text": " We create fulcrums with game theory and economics."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,240",
+				"to": "00:07:10,360"
+			},
+			"offsets": {
+				"from": 428240,
+				"to": 430360
+			},
+			"text": " We create levers with protocol and code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,360",
+				"to": "00:07:14,240"
+			},
+			"offsets": {
+				"from": 430360,
+				"to": 434240
+			},
+			"text": " We want to move the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,240",
+				"to": "00:07:15,600"
+			},
+			"offsets": {
+				"from": 434240,
+				"to": 435600
+			},
+			"text": " My son is four now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,600",
+				"to": "00:07:18,040"
+			},
+			"offsets": {
+				"from": 435600,
+				"to": 438040
+			},
+			"text": " He is strong, will, and kind."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,040",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 438040,
+				"to": 440000
+			},
+			"text": " My daughter is one now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:23,200"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 443200
+			},
+			"text": " She screams less and smiles more."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,200",
+				"to": "00:07:25,760"
+			},
+			"offsets": {
+				"from": 443200,
+				"to": 445760
+			},
+			"text": " And I am remade."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,760",
+				"to": "00:07:30,720"
+			},
+			"offsets": {
+				"from": 445760,
+				"to": 450720
+			},
+			"text": " The molecules and memories remain, but the whole is something new."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,720",
+				"to": "00:07:33,120"
+			},
+			"offsets": {
+				"from": 450720,
+				"to": 453120
+			},
+			"text": " I start work on something new."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,120",
+				"to": "00:07:34,760"
+			},
+			"offsets": {
+				"from": 453120,
+				"to": 454760
+			},
+			"text": " I work alone."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,760",
+				"to": "00:07:37,800"
+			},
+			"offsets": {
+				"from": 454760,
+				"to": 457800
+			},
+			"text": " I am isolated, but I am inspired."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,800",
+				"to": "00:07:39,640"
+			},
+			"offsets": {
+				"from": 457800,
+				"to": 459640
+			},
+			"text": " I am building a lever."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,640",
+				"to": "00:07:41,280"
+			},
+			"offsets": {
+				"from": 459640,
+				"to": 461280
+			},
+			"text": " I want to move things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,280",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 461280,
+				"to": 463000
+			},
+			"text": " I want to make a difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:45,720"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 465720
+			},
+			"text": " But I am afraid."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,720",
+				"to": "00:07:47,720"
+			},
+			"offsets": {
+				"from": 465720,
+				"to": 467720
+			},
+			"text": " My an imposter."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,720",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 467720,
+				"to": 469000
+			},
+			"text": " I am uncertain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:50,240"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 470240
+			},
+			"text": " I work."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,240",
+				"to": "00:07:51,080"
+			},
+			"offsets": {
+				"from": 470240,
+				"to": 471080
+			},
+			"text": " I build."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,080",
+				"to": "00:07:52,400"
+			},
+			"offsets": {
+				"from": 471080,
+				"to": 472400
+			},
+			"text": " I create."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,400",
+				"to": "00:07:54,120"
+			},
+			"offsets": {
+				"from": 472400,
+				"to": 474120
+			},
+			"text": " Is this real?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,120",
+				"to": "00:07:56,920"
+			},
+			"offsets": {
+				"from": 474120,
+				"to": 476920
+			},
+			"text": " I think it's really feels so real."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,920",
+				"to": "00:07:58,760"
+			},
+			"offsets": {
+				"from": 476920,
+				"to": 478760
+			},
+			"text": " My son is five now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,760",
+				"to": "00:08:00,480"
+			},
+			"offsets": {
+				"from": 478760,
+				"to": 480480
+			},
+			"text": " He starts kindergarten."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,480",
+				"to": "00:08:06,520"
+			},
+			"offsets": {
+				"from": 480480,
+				"to": 486520
+			},
+			"text": " When he grows up, he wants to be a ninja programmer, trash truck driver, spy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,520",
+				"to": "00:08:09,640"
+			},
+			"offsets": {
+				"from": 486520,
+				"to": 489640
+			},
+			"text": " Literally."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,640",
+				"to": "00:08:11,040"
+			},
+			"offsets": {
+				"from": 489640,
+				"to": 491040
+			},
+			"text": " My daughter is two now."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,040",
+				"to": "00:08:17,280"
+			},
+			"offsets": {
+				"from": 491040,
+				"to": 497280
+			},
+			"text": " She is joy in carnit and an unstoppable force of nature when things don't go her way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,280",
+				"to": "00:08:19,440"
+			},
+			"offsets": {
+				"from": 497280,
+				"to": 499440
+			},
+			"text": " My demon is always with me."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,440",
+				"to": "00:08:21,840"
+			},
+			"offsets": {
+				"from": 499440,
+				"to": 501840
+			},
+			"text": " I will never be rid of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,840",
+				"to": "00:08:23,280"
+			},
+			"offsets": {
+				"from": 501840,
+				"to": 503280
+			},
+			"text": " But now I know it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,280",
+				"to": "00:08:24,760"
+			},
+			"offsets": {
+				"from": 503280,
+				"to": 504760
+			},
+			"text": " I medicate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,760",
+				"to": "00:08:26,360"
+			},
+			"offsets": {
+				"from": 504760,
+				"to": 506360
+			},
+			"text": " There's always there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,360",
+				"to": "00:08:28,320"
+			},
+			"offsets": {
+				"from": 506360,
+				"to": 508320
+			},
+			"text": " I will never be rid of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,320",
+				"to": "00:08:29,520"
+			},
+			"offsets": {
+				"from": 508320,
+				"to": 509520
+			},
+			"text": " I work."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,520",
+				"to": "00:08:31,360"
+			},
+			"offsets": {
+				"from": 509520,
+				"to": 511360
+			},
+			"text": " I build."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,360",
+				"to": "00:08:33,520"
+			},
+			"offsets": {
+				"from": 511360,
+				"to": 513520
+			},
+			"text": " I create."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,520",
+				"to": "00:08:35,280"
+			},
+			"offsets": {
+				"from": 513520,
+				"to": 515280
+			},
+			"text": " There are six of us now."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,280",
+				"to": "00:08:37,800"
+			},
+			"offsets": {
+				"from": 515280,
+				"to": 517800
+			},
+			"text": " And I no longer work alone."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,800",
+				"to": "00:08:39,960"
+			},
+			"offsets": {
+				"from": 517800,
+				"to": 519960
+			},
+			"text": " But I am often lonely."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,960",
+				"to": "00:08:42,040"
+			},
+			"offsets": {
+				"from": 519960,
+				"to": 522040
+			},
+			"text": " But we thrive."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,040",
+				"to": "00:08:44,320"
+			},
+			"offsets": {
+				"from": 522040,
+				"to": 524320
+			},
+			"text": " We create and build together."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,320",
+				"to": "00:08:45,400"
+			},
+			"offsets": {
+				"from": 524320,
+				"to": 525400
+			},
+			"text": " We have a vision."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,400",
+				"to": "00:08:47,800"
+			},
+			"offsets": {
+				"from": 525400,
+				"to": 527800
+			},
+			"text": " We are strong."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,800",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 527800,
+				"to": 530000
+			},
+			"text": " The lever we're building is taking shape."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:51,440"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 531440
+			},
+			"text": " We can make a difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,440",
+				"to": "00:08:53,400"
+			},
+			"offsets": {
+				"from": 531440,
+				"to": 533400
+			},
+			"text": " We can build something new."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,400",
+				"to": "00:08:56,160"
+			},
+			"offsets": {
+				"from": 533400,
+				"to": 536160
+			},
+			"text": " We can build something better."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,160",
+				"to": "00:08:58,640"
+			},
+			"offsets": {
+				"from": 536160,
+				"to": 538640
+			},
+			"text": " But there's still work to be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,640",
+				"to": "00:08:59,400"
+			},
+			"offsets": {
+				"from": 538640,
+				"to": 539400
+			},
+			"text": " We work."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,400",
+				"to": "00:09:00,400"
+			},
+			"offsets": {
+				"from": 539400,
+				"to": 540400
+			},
+			"text": " We build."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,400",
+				"to": "00:09:04,400"
+			},
+			"offsets": {
+				"from": 540400,
+				"to": 544400
+			},
+			"text": " We create."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,400",
+				"to": "00:09:07,880"
+			},
+			"offsets": {
+				"from": 544400,
+				"to": 547880
+			},
+			"text": " Remote work has been harder than I ever expected it to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,880",
+				"to": "00:09:13,960"
+			},
+			"offsets": {
+				"from": 547880,
+				"to": 553960
+			},
+			"text": " But I have never felt so empowered as I do being part of this community."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,960",
+				"to": "00:09:19,160"
+			},
+			"offsets": {
+				"from": 553960,
+				"to": 559160
+			},
+			"text": " If you take anything away from this, it's that you're not alone and we are all in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,160",
+				"to": "00:09:20,160"
+			},
+			"offsets": {
+				"from": 559160,
+				"to": 560160
+			},
+			"text": " together."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,160",
+				"to": "00:09:21,160"
+			},
+			"offsets": {
+				"from": 560160,
+				"to": 561160
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,160",
+				"to": "00:09:21,160"
+			},
+			"offsets": {
+				"from": 561160,
+				"to": 561160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,160",
+				"to": "00:09:23,160"
+			},
+			"offsets": {
+				"from": 561160,
+				"to": 563160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,160",
+				"to": "00:09:25,160"
+			},
+			"offsets": {
+				"from": 563160,
+				"to": 565160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,160",
+				"to": "00:09:27,160"
+			},
+			"offsets": {
+				"from": 565160,
+				"to": 567160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,160",
+				"to": "00:09:29,160"
+			},
+			"offsets": {
+				"from": 567160,
+				"to": 569160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,160",
+				"to": "00:09:31,160"
+			},
+			"offsets": {
+				"from": 569160,
+				"to": 571160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,160",
+				"to": "00:09:33,160"
+			},
+			"offsets": {
+				"from": 571160,
+				"to": 573160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,160",
+				"to": "00:09:35,160"
+			},
+			"offsets": {
+				"from": 573160,
+				"to": 575160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,160",
+				"to": "00:09:37,160"
+			},
+			"offsets": {
+				"from": 575160,
+				"to": 577160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,160",
+				"to": "00:09:39,160"
+			},
+			"offsets": {
+				"from": 577160,
+				"to": 579160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,160",
+				"to": "00:09:41,160"
+			},
+			"offsets": {
+				"from": 579160,
+				"to": 581160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,160",
+				"to": "00:09:43,160"
+			},
+			"offsets": {
+				"from": 581160,
+				"to": 583160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,160",
+				"to": "00:09:45,160"
+			},
+			"offsets": {
+				"from": 583160,
+				"to": 585160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,160",
+				"to": "00:09:47,160"
+			},
+			"offsets": {
+				"from": 585160,
+				"to": 587160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,160",
+				"to": "00:09:49,160"
+			},
+			"offsets": {
+				"from": 587160,
+				"to": 589160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,160",
+				"to": "00:09:51,160"
+			},
+			"offsets": {
+				"from": 589160,
+				"to": 591160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,160",
+				"to": "00:09:55,160"
+			},
+			"offsets": {
+				"from": 591160,
+				"to": 595160
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

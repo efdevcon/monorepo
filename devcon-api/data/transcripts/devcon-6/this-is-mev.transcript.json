@@ -1,0 +1,6731 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:14,680"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 14680
+			},
+			"text": " Yeah, so from the last talk, we arrive at this slide"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,680",
+				"to": "00:00:17,400"
+			},
+			"offsets": {
+				"from": 14680,
+				"to": 17400
+			},
+			"text": " and having a test for non-MEV needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,400",
+				"to": "00:00:20,120"
+			},
+			"offsets": {
+				"from": 17400,
+				"to": 20120
+			},
+			"text": " But in this talk, I'm done talking about, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,120",
+				"to": "00:00:22,560"
+			},
+			"offsets": {
+				"from": 20120,
+				"to": 22560
+			},
+			"text": " But this formulation of MEV is mid."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,560",
+				"to": "00:00:25,560"
+			},
+			"offsets": {
+				"from": 22560,
+				"to": 25560
+			},
+			"text": " So specifically what it means, why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,560",
+				"to": "00:00:29,480"
+			},
+			"offsets": {
+				"from": 25560,
+				"to": 29480
+			},
+			"text": " Because it's like a party guy, a guy at the corner of a party"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,480",
+				"to": "00:00:31,640"
+			},
+			"offsets": {
+				"from": 29480,
+				"to": 31640
+			},
+			"text": " saying they don't know this is not MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,640",
+				"to": "00:00:34,600"
+			},
+			"offsets": {
+				"from": 31640,
+				"to": 34600
+			},
+			"text": " While there are people all of us, yes, we know."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,600",
+				"to": "00:00:35,400"
+			},
+			"offsets": {
+				"from": 34600,
+				"to": 35400
+			},
+			"text": " And we don't care."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,400",
+				"to": "00:00:36,240"
+			},
+			"offsets": {
+				"from": 35400,
+				"to": 36240
+			},
+			"text": " It's a good name."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,240",
+				"to": "00:00:39,040"
+			},
+			"offsets": {
+				"from": 36240,
+				"to": 39040
+			},
+			"text": " And these memes are important."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,040",
+				"to": "00:00:44,160"
+			},
+			"offsets": {
+				"from": 39040,
+				"to": 44160
+			},
+			"text": " Memes are more important than arguably many other things"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,160",
+				"to": "00:00:47,080"
+			},
+			"offsets": {
+				"from": 44160,
+				"to": 47080
+			},
+			"text": " in our life."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,080",
+				"to": "00:00:51,360"
+			},
+			"offsets": {
+				"from": 47080,
+				"to": 51360
+			},
+			"text": " But there is also another extreme in the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,360",
+				"to": "00:00:55,240"
+			},
+			"offsets": {
+				"from": 51360,
+				"to": 55240
+			},
+			"text": " vouching for a formalization of MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,240",
+				"to": "00:01:01,200"
+			},
+			"offsets": {
+				"from": 55240,
+				"to": 61200
+			},
+			"text": " So some common pitfalls on the definition of the word MEV"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,200",
+				"to": "00:01:03,880"
+			},
+			"offsets": {
+				"from": 61200,
+				"to": 63880
+			},
+			"text": " is that we give up on the clarity of the notion"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,880",
+				"to": "00:01:08,160"
+			},
+			"offsets": {
+				"from": 63880,
+				"to": 68160
+			},
+			"text": " we over formalize it such that we lose the memes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,160",
+				"to": "00:01:11,040"
+			},
+			"offsets": {
+				"from": 68160,
+				"to": 71040
+			},
+			"text": " It is no longer a meme term."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,040",
+				"to": "00:01:13,200"
+			},
+			"offsets": {
+				"from": 71040,
+				"to": 73200
+			},
+			"text": " And we are getting lost in the detail"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,200",
+				"to": "00:01:15,840"
+			},
+			"offsets": {
+				"from": 73200,
+				"to": 75840
+			},
+			"text": " of the real value of defining MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,840",
+				"to": "00:01:19,120"
+			},
+			"offsets": {
+				"from": 75840,
+				"to": 79120
+			},
+			"text": " So in this talk, I will give a clear definition of MEV"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,120",
+				"to": "00:01:20,920"
+			},
+			"offsets": {
+				"from": 79120,
+				"to": 80920
+			},
+			"text": " that points to the solution--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,920",
+				"to": "00:01:23,480"
+			},
+			"offsets": {
+				"from": 80920,
+				"to": 83480
+			},
+			"text": " two points clearly to the solution recipes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,480",
+				"to": "00:01:26,320"
+			},
+			"offsets": {
+				"from": 83480,
+				"to": 86320
+			},
+			"text": " that are how we should solve MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,320",
+				"to": "00:01:30,200"
+			},
+			"offsets": {
+				"from": 86320,
+				"to": 90200
+			},
+			"text": " And I'm not going to give a meat curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,200",
+				"to": "00:01:35,040"
+			},
+			"offsets": {
+				"from": 90200,
+				"to": 95040
+			},
+			"text": " formalization nor am I abandoning our memes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,040",
+				"to": "00:01:36,600"
+			},
+			"offsets": {
+				"from": 95040,
+				"to": 96600
+			},
+			"text": " So what is MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,600",
+				"to": "00:01:38,040"
+			},
+			"offsets": {
+				"from": 96600,
+				"to": 98040
+			},
+			"text": " So by the end of the talk, you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,040",
+				"to": "00:01:43,680"
+			},
+			"offsets": {
+				"from": 98040,
+				"to": 103680
+			},
+			"text": " see that MEV is elkopon evo-deity and lose the sixteenth."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,680",
+				"to": "00:01:45,280"
+			},
+			"offsets": {
+				"from": 103680,
+				"to": 105280
+			},
+			"text": " So this is MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,280",
+				"to": "00:01:50,080"
+			},
+			"offsets": {
+				"from": 105280,
+				"to": 110080
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,080",
+				"to": "00:01:53,400"
+			},
+			"offsets": {
+				"from": 110080,
+				"to": 113400
+			},
+			"text": " So to start, we see that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,400",
+				"to": "00:01:56,520"
+			},
+			"offsets": {
+				"from": 113400,
+				"to": 116520
+			},
+			"text": " So why elkopon evo-deity is MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,520",
+				"to": "00:02:03,440"
+			},
+			"offsets": {
+				"from": 116520,
+				"to": 123440
+			},
+			"text": " So because MEV is tradable value, 3cm, arises when one agent"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,440",
+				"to": "00:02:06,440"
+			},
+			"offsets": {
+				"from": 123440,
+				"to": 126440
+			},
+			"text": " or a collision of agents gains an asymmetric knowledge"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,440",
+				"to": "00:02:08,640"
+			},
+			"offsets": {
+				"from": 126440,
+				"to": 128640
+			},
+			"text": " of another agent's private information."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,640",
+				"to": "00:02:12,040"
+			},
+			"offsets": {
+				"from": 128640,
+				"to": 132040
+			},
+			"text": " So this condition sounds there exists"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,040",
+				"to": "00:02:14,360"
+			},
+			"offsets": {
+				"from": 132040,
+				"to": 134360
+			},
+			"text": " an asymmetric sophistication between agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,360",
+				"to": "00:02:17,720"
+			},
+			"offsets": {
+				"from": 134360,
+				"to": 137720
+			},
+			"text": " So very easy examples include sandwich, internalized"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,720",
+				"to": "00:02:20,040"
+			},
+			"offsets": {
+				"from": 137720,
+				"to": 140040
+			},
+			"text": " front-running, or in traditional finance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,040",
+				"to": "00:02:21,560"
+			},
+			"offsets": {
+				"from": 140040,
+				"to": 141560
+			},
+			"text": " we see that people trading--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,560",
+				"to": "00:02:23,600"
+			},
+			"offsets": {
+				"from": 141560,
+				"to": 143600
+			},
+			"text": " one strategy is to trade people trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,600",
+				"to": "00:02:26,200"
+			},
+			"offsets": {
+				"from": 143600,
+				"to": 146200
+			},
+			"text": " on the limit of other books in balance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,200",
+				"to": "00:02:30,040"
+			},
+			"offsets": {
+				"from": 146200,
+				"to": 150040
+			},
+			"text": " which is essentially a form of one agent gaining knowledge"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,040",
+				"to": "00:02:32,560"
+			},
+			"offsets": {
+				"from": 150040,
+				"to": 152560
+			},
+			"text": " of another agent's utility or intent, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,560",
+				"to": "00:02:34,760"
+			},
+			"offsets": {
+				"from": 152560,
+				"to": 154760
+			},
+			"text": " When you see more bid than ask on the book,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,760",
+				"to": "00:02:38,600"
+			},
+			"offsets": {
+				"from": 154760,
+				"to": 158600
+			},
+			"text": " then you take the best ask and you make the best bid."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,600",
+				"to": "00:02:40,560"
+			},
+			"offsets": {
+				"from": 158600,
+				"to": 160560
+			},
+			"text": " So then, evo-deity is a malloc."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,560",
+				"to": "00:02:42,240"
+			},
+			"offsets": {
+				"from": 160560,
+				"to": 162240
+			},
+			"text": " Why is it MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,240",
+				"to": "00:02:44,200"
+			},
+			"offsets": {
+				"from": 162240,
+				"to": 164200
+			},
+			"text": " So malloc is tradable value is a value"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,200",
+				"to": "00:02:46,440"
+			},
+			"offsets": {
+				"from": 164200,
+				"to": 166440
+			},
+			"text": " that was surrendered to the malloc, i.e."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,440",
+				"to": "00:02:48,880"
+			},
+			"offsets": {
+				"from": 166440,
+				"to": 168880
+			},
+			"text": " on coordination within your mechanism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,880",
+				"to": "00:02:51,320"
+			},
+			"offsets": {
+				"from": 168880,
+				"to": 171320
+			},
+			"text": " your allocation mechanisms for people's preferences."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,320",
+				"to": "00:02:54,680"
+			},
+			"offsets": {
+				"from": 171320,
+				"to": 174680
+			},
+			"text": " So one example of this is the negative externalities"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,680",
+				"to": "00:02:56,800"
+			},
+			"offsets": {
+				"from": 174680,
+				"to": 176800
+			},
+			"text": " caused by any expressive mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,800",
+				"to": "00:02:59,040"
+			},
+			"offsets": {
+				"from": 176800,
+				"to": 179040
+			},
+			"text": " So for example, suppose you have a random audience"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,040",
+				"to": "00:03:02,600"
+			},
+			"offsets": {
+				"from": 179040,
+				"to": 182600
+			},
+			"text": " and people spam the network and that is the only way"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,600",
+				"to": "00:03:04,600"
+			},
+			"offsets": {
+				"from": 182600,
+				"to": 184600
+			},
+			"text": " you can express your preferences"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,600",
+				"to": "00:03:07,480"
+			},
+			"offsets": {
+				"from": 184600,
+				"to": 187480
+			},
+			"text": " and it is a very one-dimensional way, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,480",
+				"to": "00:03:09,960"
+			},
+			"offsets": {
+				"from": 187480,
+				"to": 189960
+			},
+			"text": " So you have a kind of a shrink transaction quality"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,960",
+				"to": "00:03:12,360"
+			},
+			"offsets": {
+				"from": 189960,
+				"to": 192360
+			},
+			"text": " trial, and there are, of course, many other examples,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,360",
+				"to": "00:03:14,800"
+			},
+			"offsets": {
+				"from": 192360,
+				"to": 194800
+			},
+			"text": " for example, in the traditional high frequency trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,800",
+				"to": "00:03:20,400"
+			},
+			"offsets": {
+				"from": 194800,
+				"to": 200400
+			},
+			"text": " arms race example, people, the cost that market maker"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,400",
+				"to": "00:03:23,600"
+			},
+			"offsets": {
+				"from": 200400,
+				"to": 203600
+			},
+			"text": " spans on arms race gaining latency advantages"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,600",
+				"to": "00:03:27,560"
+			},
+			"offsets": {
+				"from": 203600,
+				"to": 207560
+			},
+			"text": " was channeled as charging higher spreads for users."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,560",
+				"to": "00:03:31,640"
+			},
+			"offsets": {
+				"from": 207560,
+				"to": 211640
+			},
+			"text": " So the externality is transferred from sophisticated agents"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,640",
+				"to": "00:03:34,160"
+			},
+			"offsets": {
+				"from": 211640,
+				"to": 214160
+			},
+			"text": " to unsophisticated agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,160",
+				"to": "00:03:35,200"
+			},
+			"offsets": {
+				"from": 214160,
+				"to": 215200
+			},
+			"text": " There are some other examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,200",
+				"to": "00:03:38,160"
+			},
+			"offsets": {
+				"from": 215200,
+				"to": 218160
+			},
+			"text": " And so finally, Louis the 16th, the malloc."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,160",
+				"to": "00:03:39,640"
+			},
+			"offsets": {
+				"from": 218160,
+				"to": 219640
+			},
+			"text": " Why is the him MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,640",
+				"to": "00:03:42,160"
+			},
+			"offsets": {
+				"from": 219640,
+				"to": 222160
+			},
+			"text": " So malloc is tradable value arises from the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,160",
+				"to": "00:03:44,120"
+			},
+			"offsets": {
+				"from": 222160,
+				"to": 224120
+			},
+			"text": " that the coordinator-- so for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,120",
+				"to": "00:03:46,960"
+			},
+			"offsets": {
+				"from": 224120,
+				"to": 226960
+			},
+			"text": " the sequencer or the validator has the ultimate power"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,960",
+				"to": "00:03:49,280"
+			},
+			"offsets": {
+				"from": 226960,
+				"to": 229280
+			},
+			"text": " of deciding what the ordering or the allocation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,280",
+				"to": "00:03:51,400"
+			},
+			"offsets": {
+				"from": 229280,
+				"to": 231400
+			},
+			"text": " of specification on status."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,400",
+				"to": "00:03:53,320"
+			},
+			"offsets": {
+				"from": 231400,
+				"to": 233320
+			},
+			"text": " So by specification on status, I specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,320",
+				"to": "00:03:54,840"
+			},
+			"offsets": {
+				"from": 233320,
+				"to": 234840
+			},
+			"text": " mean which specification or property"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,840",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 234840,
+				"to": 237000
+			},
+			"text": " does the next data satisfy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:03:59,320"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 239320
+			},
+			"text": " For those of you familiar with program languages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,320",
+				"to": "00:04:03,400"
+			},
+			"offsets": {
+				"from": 239320,
+				"to": 243400
+			},
+			"text": " you can see that this directly links into the formal"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,400",
+				"to": "00:04:03,960"
+			},
+			"offsets": {
+				"from": 243400,
+				"to": 243960
+			},
+			"text": " verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,960",
+				"to": "00:04:05,920"
+			},
+			"offsets": {
+				"from": 243960,
+				"to": 245920
+			},
+			"text": " You have a program and the specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,920",
+				"to": "00:04:07,720"
+			},
+			"offsets": {
+				"from": 245920,
+				"to": 247720
+			},
+			"text": " that the next data must satisfy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,720",
+				"to": "00:04:09,400"
+			},
+			"offsets": {
+				"from": 247720,
+				"to": 249400
+			},
+			"text": " So then some examples of this include"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,400",
+				"to": "00:04:12,760"
+			},
+			"offsets": {
+				"from": 249400,
+				"to": 252760
+			},
+			"text": " that the validators currently in the thermal and other chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,760",
+				"to": "00:04:14,680"
+			},
+			"offsets": {
+				"from": 252760,
+				"to": 254680
+			},
+			"text": " crew value because they have the power"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,680",
+				"to": "00:04:18,040"
+			},
+			"offsets": {
+				"from": 254680,
+				"to": 258040
+			},
+			"text": " of determining what content is in the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,040",
+				"to": "00:04:23,360"
+			},
+			"offsets": {
+				"from": 258040,
+				"to": 263360
+			},
+			"text": " And many other examples in trad by such as co-location fees"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,360",
+				"to": "00:04:26,920"
+			},
+			"offsets": {
+				"from": 263360,
+				"to": 266920
+			},
+			"text": " and cross-chain searches, cross-domain market makers"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,920",
+				"to": "00:04:28,520"
+			},
+			"offsets": {
+				"from": 266920,
+				"to": 268520
+			},
+			"text": " for swaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,520",
+				"to": "00:04:31,680"
+			},
+			"offsets": {
+				"from": 268520,
+				"to": 271680
+			},
+			"text": " So then we can see that MEV arises from three"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,680",
+				"to": "00:04:32,520"
+			},
+			"offsets": {
+				"from": 271680,
+				"to": 272520
+			},
+			"text": " distinct properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,520",
+				"to": "00:04:34,680"
+			},
+			"offsets": {
+				"from": 272520,
+				"to": 274680
+			},
+			"text": " The mafia, the malloc, and the malloc."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,680",
+				"to": "00:04:37,760"
+			},
+			"offsets": {
+				"from": 274680,
+				"to": 277760
+			},
+			"text": " So now a little bit more formalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,760",
+				"to": "00:04:41,080"
+			},
+			"offsets": {
+				"from": 277760,
+				"to": 281080
+			},
+			"text": " Suppose that M is the malloc in our unions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,080",
+				"to": "00:04:45,480"
+			},
+			"offsets": {
+				"from": 281080,
+				"to": 285480
+			},
+			"text": " versus our game E and W is the social welfare function."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,480",
+				"to": "00:04:48,640"
+			},
+			"offsets": {
+				"from": 285480,
+				"to": 288640
+			},
+			"text": " Then we know that the malloc is trad by value equals"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,640",
+				"to": "00:04:51,400"
+			},
+			"offsets": {
+				"from": 288640,
+				"to": 291400
+			},
+			"text": " to the welfare that is achievable by the best possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,400",
+				"to": "00:04:54,240"
+			},
+			"offsets": {
+				"from": 291400,
+				"to": 294240
+			},
+			"text": " mechanism for our game to allocate specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,240",
+				"to": "00:04:57,200"
+			},
+			"offsets": {
+				"from": 294240,
+				"to": 297200
+			},
+			"text": " on state minus welfare of the current monarch."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,200",
+				"to": "00:05:01,560"
+			},
+			"offsets": {
+				"from": 297200,
+				"to": 301560
+			},
+			"text": " And the monarch UV equals to the welfare of the current monarch"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,560",
+				"to": "00:05:08,400"
+			},
+			"offsets": {
+				"from": 301560,
+				"to": 308400
+			},
+			"text": " minus the welfare that already existed in the original game"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,400",
+				"to": "00:05:11,280"
+			},
+			"offsets": {
+				"from": 308400,
+				"to": 311280
+			},
+			"text": " E without our current monarch has the coordinator."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,280",
+				"to": "00:05:16,640"
+			},
+			"offsets": {
+				"from": 311280,
+				"to": 316640
+			},
+			"text": " So you can see those closely tied to the idea of externalities."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,640",
+				"to": "00:05:18,800"
+			},
+			"offsets": {
+				"from": 316640,
+				"to": 318800
+			},
+			"text": " And then from our definition, we know immediately"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,800",
+				"to": "00:05:21,560"
+			},
+			"offsets": {
+				"from": 318800,
+				"to": 321560
+			},
+			"text": " that monarch UV plus malloc extra value"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,560",
+				"to": "00:05:25,160"
+			},
+			"offsets": {
+				"from": 321560,
+				"to": 325160
+			},
+			"text": " equals the welfare of the best possible mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,160",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 325160,
+				"to": 331000
+			},
+			"text": " in our game minus the welfare of the original game."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:34,160"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 334160
+			},
+			"text": " So it equals the constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,160",
+				"to": "00:05:37,840"
+			},
+			"offsets": {
+				"from": 334160,
+				"to": 337840
+			},
+			"text": " So malloc UV plus monarch UV is innate to the game E"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,840",
+				"to": "00:05:42,400"
+			},
+			"offsets": {
+				"from": 337840,
+				"to": 342400
+			},
+			"text": " and does not depend on our choice of the mechanism M."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,400",
+				"to": "00:05:46,320"
+			},
+			"offsets": {
+				"from": 342400,
+				"to": 346320
+			},
+			"text": " And finally, defining mafia UV is a little harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,320",
+				"to": "00:05:48,320"
+			},
+			"offsets": {
+				"from": 346320,
+				"to": 348320
+			},
+			"text": " But the intuition is that mafia UV depends"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,320",
+				"to": "00:05:50,640"
+			},
+			"offsets": {
+				"from": 348320,
+				"to": 350640
+			},
+			"text": " on the specific sophistication details"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,640",
+				"to": "00:05:53,800"
+			},
+			"offsets": {
+				"from": 350640,
+				"to": 353800
+			},
+			"text": " or the power of agents that is existing in M."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,800",
+				"to": "00:05:57,080"
+			},
+			"offsets": {
+				"from": 353800,
+				"to": 357080
+			},
+			"text": " So what this means is that how much exposed knowledge"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,080",
+				"to": "00:06:00,320"
+			},
+			"offsets": {
+				"from": 357080,
+				"to": 360320
+			},
+			"text": " or last look one agent can have over other agents"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,320",
+				"to": "00:06:01,880"
+			},
+			"offsets": {
+				"from": 360320,
+				"to": 361880
+			},
+			"text": " or the coalitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,880",
+				"to": "00:06:04,320"
+			},
+			"offsets": {
+				"from": 361880,
+				"to": 364320
+			},
+			"text": " So then we can see that those three values"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,320",
+				"to": "00:06:06,280"
+			},
+			"offsets": {
+				"from": 364320,
+				"to": 366280
+			},
+			"text": " have distinct sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,280",
+				"to": "00:06:08,920"
+			},
+			"offsets": {
+				"from": 366280,
+				"to": 368920
+			},
+			"text": " And those sources of value are non-overlapping."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,920",
+				"to": "00:06:12,320"
+			},
+			"offsets": {
+				"from": 368920,
+				"to": 372320
+			},
+			"text": " Thus, we can cause them our new definition collectively,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,320",
+				"to": "00:06:16,040"
+			},
+			"offsets": {
+				"from": 372320,
+				"to": 376040
+			},
+			"text": " three UV mafia malloc monarch extra value."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,040",
+				"to": "00:06:20,400"
+			},
+			"offsets": {
+				"from": 376040,
+				"to": 380400
+			},
+			"text": " It forms the sum type, its perfection."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,400",
+				"to": "00:06:23,800"
+			},
+			"offsets": {
+				"from": 380400,
+				"to": 383800
+			},
+			"text": " So then what this implies is that the solution recipe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,800",
+				"to": "00:06:25,120"
+			},
+			"offsets": {
+				"from": 383800,
+				"to": 385120
+			},
+			"text": " it's future is in our hands."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,120",
+				"to": "00:06:28,200"
+			},
+			"offsets": {
+				"from": 385120,
+				"to": 388200
+			},
+			"text": " We know that mafia plus malloc plus monarch"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,200",
+				"to": "00:06:30,040"
+			},
+			"offsets": {
+				"from": 388200,
+				"to": 390040
+			},
+			"text": " is 100% of the--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,040",
+				"to": "00:06:33,240"
+			},
+			"offsets": {
+				"from": 390040,
+				"to": 393240
+			},
+			"text": " and that malloc UV plus malloc UV equals to the constant"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,240",
+				"to": "00:06:35,640"
+			},
+			"offsets": {
+				"from": 393240,
+				"to": 395640
+			},
+			"text": " depending only on the original game."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,640",
+				"to": "00:06:40,320"
+			},
+			"offsets": {
+				"from": 395640,
+				"to": 400320
+			},
+			"text": " But the percentage of malloc versus malloc depends on M,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,320",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 400320,
+				"to": 402000
+			},
+			"text": " our choice of the mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:45,480"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 405480
+			},
+			"text": " So you can already see that there is a nice link"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,480",
+				"to": "00:06:47,040"
+			},
+			"offsets": {
+				"from": 405480,
+				"to": 407040
+			},
+			"text": " with the notion of price of anarchy"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,040",
+				"to": "00:06:49,320"
+			},
+			"offsets": {
+				"from": 407040,
+				"to": 409320
+			},
+			"text": " in traditional mechanism design here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,320",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 409320,
+				"to": 411000
+			},
+			"text": " Although in traditional mechanism design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:53,600"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 413600
+			},
+			"text": " of course, they are seriously one bounce."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,600",
+				"to": "00:06:56,920"
+			},
+			"offsets": {
+				"from": 413600,
+				"to": 416920
+			},
+			"text": " So they define price of anarchy as the diffusion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,920",
+				"to": "00:06:58,720"
+			},
+			"offsets": {
+				"from": 416920,
+				"to": 418720
+			},
+			"text": " but now we are interested in values."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,720",
+				"to": "00:07:02,280"
+			},
+			"offsets": {
+				"from": 418720,
+				"to": 422280
+			},
+			"text": " So I kind of define it as difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,280",
+				"to": "00:07:06,200"
+			},
+			"offsets": {
+				"from": 422280,
+				"to": 426200
+			},
+			"text": " And then finally, we can see that mafia UV is also"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,200",
+				"to": "00:07:07,800"
+			},
+			"offsets": {
+				"from": 426200,
+				"to": 427800
+			},
+			"text": " a constant depending on our choice of M."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,800",
+				"to": "00:07:10,120"
+			},
+			"offsets": {
+				"from": 427800,
+				"to": 430120
+			},
+			"text": " So since the sources are distinct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,120",
+				"to": "00:07:13,880"
+			},
+			"offsets": {
+				"from": 430120,
+				"to": 433880
+			},
+			"text": " we can adjust the percentage of the three variants of M"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,880",
+				"to": "00:07:15,960"
+			},
+			"offsets": {
+				"from": 433880,
+				"to": 435960
+			},
+			"text": " maybe by transforming one form of M"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,960",
+				"to": "00:07:20,680"
+			},
+			"offsets": {
+				"from": 435960,
+				"to": 440680
+			},
+			"text": " maybe into another by in our designing of a better mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,680",
+				"to": "00:07:25,680"
+			},
+			"offsets": {
+				"from": 440680,
+				"to": 445680
+			},
+			"text": " M. So I argue that ideally we should have 0% mafia, 0%"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,680",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 445680,
+				"to": 449000
+			},
+			"text": " malloc and 100% monarch, where the monarch's profits"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:30,960"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 450960
+			},
+			"text": " are distributed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,960",
+				"to": "00:07:33,600"
+			},
+			"offsets": {
+				"from": 450960,
+				"to": 453600
+			},
+			"text": " So what this specifically means and why is this true"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,600",
+				"to": "00:07:36,520"
+			},
+			"offsets": {
+				"from": 453600,
+				"to": 456520
+			},
+			"text": " is that because mafia relies on the existence"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,520",
+				"to": "00:07:38,760"
+			},
+			"offsets": {
+				"from": 456520,
+				"to": 458760
+			},
+			"text": " that there is one exposed knowledge"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,760",
+				"to": "00:07:41,680"
+			},
+			"offsets": {
+				"from": 458760,
+				"to": 461680
+			},
+			"text": " and there's on sophistication or sophistication"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,680",
+				"to": "00:07:42,600"
+			},
+			"offsets": {
+				"from": 461680,
+				"to": 462600
+			},
+			"text": " between agents, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,600",
+				"to": "00:07:44,600"
+			},
+			"offsets": {
+				"from": 462600,
+				"to": 464600
+			},
+			"text": " There is a symmetry."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,600",
+				"to": "00:07:47,920"
+			},
+			"offsets": {
+				"from": 464600,
+				"to": 467920
+			},
+			"text": " And so specifically, once you have this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,920",
+				"to": "00:07:51,240"
+			},
+			"offsets": {
+				"from": 467920,
+				"to": 471240
+			},
+			"text": " then the sophisticated agents are going to charge"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,240",
+				"to": "00:07:54,640"
+			},
+			"offsets": {
+				"from": 471240,
+				"to": 474640
+			},
+			"text": " sort of an on-sufficient text on the other agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,640",
+				"to": "00:07:56,440"
+			},
+			"offsets": {
+				"from": 474640,
+				"to": 476440
+			},
+			"text": " And thus, this hurts long-term stability"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,440",
+				"to": "00:07:59,160"
+			},
+			"offsets": {
+				"from": 476440,
+				"to": 479160
+			},
+			"text": " of the domain or long-term prosperity."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,160",
+				"to": "00:08:02,400"
+			},
+			"offsets": {
+				"from": 479160,
+				"to": 482400
+			},
+			"text": " And then why we want 0% malloc is because any value"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,400",
+				"to": "00:08:05,520"
+			},
+			"offsets": {
+				"from": 482400,
+				"to": 485520
+			},
+			"text": " that or any weapon that is attributed to the malloc"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,520",
+				"to": "00:08:06,480"
+			},
+			"offsets": {
+				"from": 485520,
+				"to": 486480
+			},
+			"text": " is forever lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,480",
+				"to": "00:08:09,680"
+			},
+			"offsets": {
+				"from": 486480,
+				"to": 489680
+			},
+			"text": " It's not recoverable and nor is it redistributable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,680",
+				"to": "00:08:13,760"
+			},
+			"offsets": {
+				"from": 489680,
+				"to": 493760
+			},
+			"text": " So then and why 100% monarch with redistribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,760",
+				"to": "00:08:17,160"
+			},
+			"offsets": {
+				"from": 493760,
+				"to": 497160
+			},
+			"text": " is that if there is no redistribution to the monarch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,160",
+				"to": "00:08:21,440"
+			},
+			"offsets": {
+				"from": 497160,
+				"to": 501440
+			},
+			"text": " then the 100% monarch is going to erode the incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,440",
+				"to": "00:08:23,920"
+			},
+			"offsets": {
+				"from": 501440,
+				"to": 503920
+			},
+			"text": " for people to use your mechanism, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,920",
+				"to": "00:08:28,120"
+			},
+			"offsets": {
+				"from": 503920,
+				"to": 508120
+			},
+			"text": " Because you're essentially creating,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,120",
+				"to": "00:08:30,640"
+			},
+			"offsets": {
+				"from": 508120,
+				"to": 510640
+			},
+			"text": " reintroducing the value that they would have paid"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,640",
+				"to": "00:08:34,440"
+			},
+			"offsets": {
+				"from": 510640,
+				"to": 514440
+			},
+			"text": " to the malloc by having them paid to the monarch instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,440",
+				"to": "00:08:37,800"
+			},
+			"offsets": {
+				"from": 514440,
+				"to": 517800
+			},
+			"text": " So there is a difference-- you can see there is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,800",
+				"to": "00:08:40,200"
+			},
+			"offsets": {
+				"from": 517800,
+				"to": 520200
+			},
+			"text": " so users would be indifferent between paying"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,200",
+				"to": "00:08:42,040"
+			},
+			"offsets": {
+				"from": 520200,
+				"to": 522040
+			},
+			"text": " to the malloc in the original game"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,040",
+				"to": "00:08:44,520"
+			},
+			"offsets": {
+				"from": 522040,
+				"to": 524520
+			},
+			"text": " and paying to the monarch in the meta game."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,520",
+				"to": "00:08:49,440"
+			},
+			"offsets": {
+				"from": 524520,
+				"to": 529440
+			},
+			"text": " So this violates the individual rationality guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,440",
+				"to": "00:08:51,560"
+			},
+			"offsets": {
+				"from": 529440,
+				"to": 531560
+			},
+			"text": " So then there are, of course, some caveats"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,560",
+				"to": "00:08:54,200"
+			},
+			"offsets": {
+				"from": 531560,
+				"to": 534200
+			},
+			"text": " as to our choice of monarch and our definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,200",
+				"to": "00:08:57,720"
+			},
+			"offsets": {
+				"from": 534200,
+				"to": 537720
+			},
+			"text": " So as we can see that the welfare of the game"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,720",
+				"to": "00:09:00,160"
+			},
+			"offsets": {
+				"from": 537720,
+				"to": 540160
+			},
+			"text": " without the mechanism depends on the E, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,160",
+				"to": "00:09:05,160"
+			},
+			"offsets": {
+				"from": 540160,
+				"to": 545160
+			},
+			"text": " So now we assume that the mechanism represents a domain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,160",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 545160,
+				"to": 548000
+			},
+			"text": " or a builder or just some coalition of agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:10,040"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 550040
+			},
+			"text": " Then we can give a kind of--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,040",
+				"to": "00:09:12,920"
+			},
+			"offsets": {
+				"from": 550040,
+				"to": 552920
+			},
+			"text": " and have a notion of an inter-domain coalition factor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,920",
+				"to": "00:09:18,080"
+			},
+			"offsets": {
+				"from": 552920,
+				"to": 558080
+			},
+			"text": " K, where K equals 1 if the mechanism is monopolistic"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,080",
+				"to": "00:09:19,520"
+			},
+			"offsets": {
+				"from": 558080,
+				"to": 559520
+			},
+			"text": " across all domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,520",
+				"to": "00:09:21,600"
+			},
+			"offsets": {
+				"from": 559520,
+				"to": 561600
+			},
+			"text": " So here we are kind of cheating a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,600",
+				"to": "00:09:23,960"
+			},
+			"offsets": {
+				"from": 561600,
+				"to": 563960
+			},
+			"text": " We are including time as another domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,960",
+				"to": "00:09:27,040"
+			},
+			"offsets": {
+				"from": 563960,
+				"to": 567040
+			},
+			"text": " So K is kind of like a discounted and dimensional"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,040",
+				"to": "00:09:28,040"
+			},
+			"offsets": {
+				"from": 567040,
+				"to": 568040
+			},
+			"text": " preference curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,040",
+				"to": "00:09:30,400"
+			},
+			"offsets": {
+				"from": 568040,
+				"to": 570400
+			},
+			"text": " And an example of the preference curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,400",
+				"to": "00:09:32,280"
+			},
+			"offsets": {
+				"from": 570400,
+				"to": 572280
+			},
+			"text": " you can see on the top right corner."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,280",
+				"to": "00:09:36,440"
+			},
+			"offsets": {
+				"from": 572280,
+				"to": 576440
+			},
+			"text": " And then K equals 0 if the mechanism is powerless."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,440",
+				"to": "00:09:39,360"
+			},
+			"offsets": {
+				"from": 576440,
+				"to": 579360
+			},
+			"text": " So then what this implies is that by forming a larger"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,360",
+				"to": "00:09:42,480"
+			},
+			"offsets": {
+				"from": 579360,
+				"to": 582480
+			},
+			"text": " coalition means the coalition has a higher K."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,480",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 582480,
+				"to": 587000
+			},
+			"text": " And this enables them to do more credible extortions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:50,400"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 590400
+			},
+			"text": " So what this means is that the monarch is rather well"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,400",
+				"to": "00:09:54,840"
+			},
+			"offsets": {
+				"from": 590400,
+				"to": 594840
+			},
+			"text": " for your coalition of agents forming the mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,840",
+				"to": "00:09:58,160"
+			},
+			"offsets": {
+				"from": 594840,
+				"to": 598160
+			},
+			"text": " equals to K multiplied by the original monarch"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,160",
+				"to": "00:10:01,400"
+			},
+			"offsets": {
+				"from": 598160,
+				"to": 601400
+			},
+			"text": " if M and M and M forms the grand coalition."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,400",
+				"to": "00:10:04,720"
+			},
+			"offsets": {
+				"from": 601400,
+				"to": 604720
+			},
+			"text": " So then of course, this implies the users can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,720",
+				"to": "00:10:07,840"
+			},
+			"offsets": {
+				"from": 604720,
+				"to": 607840
+			},
+			"text": " be the monarch if they have a large enough K, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,840",
+				"to": "00:10:10,200"
+			},
+			"offsets": {
+				"from": 607840,
+				"to": 610200
+			},
+			"text": " And similar for validator, searchers, or builders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,200",
+				"to": "00:10:13,320"
+			},
+			"offsets": {
+				"from": 610200,
+				"to": 613320
+			},
+			"text": " you can imagine different mechanisms than what"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,320",
+				"to": "00:10:15,560"
+			},
+			"offsets": {
+				"from": 613320,
+				"to": 615560
+			},
+			"text": " is currently being played in the MIV field."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,560",
+				"to": "00:10:19,360"
+			},
+			"offsets": {
+				"from": 615560,
+				"to": 619360
+			},
+			"text": " So essentially the inter-domain coalition factor"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,360",
+				"to": "00:10:21,760"
+			},
+			"offsets": {
+				"from": 619360,
+				"to": 621760
+			},
+			"text": " represents your collective bargaining power, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,760",
+				"to": "00:10:23,720"
+			},
+			"offsets": {
+				"from": 621760,
+				"to": 623720
+			},
+			"text": " determines how the monarch is set up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,720",
+				"to": "00:10:27,840"
+			},
+			"offsets": {
+				"from": 623720,
+				"to": 627840
+			},
+			"text": " who is thrown as the king, and how the monarch is set up"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,840",
+				"to": "00:10:28,520"
+			},
+			"offsets": {
+				"from": 627840,
+				"to": 628520
+			},
+			"text": " within the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,520",
+				"to": "00:10:38,360"
+			},
+			"offsets": {
+				"from": 628520,
+				"to": 638360
+			},
+			"text": " OK, so there are some caveats to the choice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,360",
+				"to": "00:10:40,840"
+			},
+			"offsets": {
+				"from": 638360,
+				"to": 640840
+			},
+			"text": " how much coalitions can you have, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,840",
+				"to": "00:10:44,480"
+			},
+			"offsets": {
+				"from": 640840,
+				"to": 644480
+			},
+			"text": " So you can imagine this formalized as a cooperative game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,480",
+				"to": "00:10:46,320"
+			},
+			"offsets": {
+				"from": 644480,
+				"to": 646320
+			},
+			"text": " where the core of the game might not exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,320",
+				"to": "00:10:50,320"
+			},
+			"offsets": {
+				"from": 646320,
+				"to": 650320
+			},
+			"text": " if we have too many inter-domain coalitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,320",
+				"to": "00:10:55,080"
+			},
+			"offsets": {
+				"from": 650320,
+				"to": 655080
+			},
+			"text": " So this kind of reminds us as the original notion of there"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,080",
+				"to": "00:11:00,920"
+			},
+			"offsets": {
+				"from": 655080,
+				"to": 660920
+			},
+			"text": " exists a nominal tenacity of coordination and efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,920",
+				"to": "00:11:03,360"
+			},
+			"offsets": {
+				"from": 660920,
+				"to": 663360
+			},
+			"text": " And this also relates back to a notion"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,360",
+				"to": "00:11:05,520"
+			},
+			"offsets": {
+				"from": 663360,
+				"to": 665520
+			},
+			"text": " I would like to call the Incompreneuse theorem of the MIV"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,520",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 665520,
+				"to": 666000
+			},
+			"text": " right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:10,040"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 670040
+			},
+			"text": " So you can see that the game E cannot continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,040",
+				"to": "00:11:13,320"
+			},
+			"offsets": {
+				"from": 670040,
+				"to": 673320
+			},
+			"text": " if there is not enough competition."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,320",
+				"to": "00:11:17,200"
+			},
+			"offsets": {
+				"from": 673320,
+				"to": 677200
+			},
+			"text": " What this means is that you can increase the coordination,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,200",
+				"to": "00:11:20,520"
+			},
+			"offsets": {
+				"from": 677200,
+				"to": 680520
+			},
+			"text": " but it does not always increase the efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,520",
+				"to": "00:11:21,880"
+			},
+			"offsets": {
+				"from": 680520,
+				"to": 681880
+			},
+			"text": " of the allocation in reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,880",
+				"to": "00:11:25,400"
+			},
+			"offsets": {
+				"from": 681880,
+				"to": 685400
+			},
+			"text": " And even if you try to eliminate the efficiencies caused"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,400",
+				"to": "00:11:28,920"
+			},
+			"offsets": {
+				"from": 685400,
+				"to": 688920
+			},
+			"text": " by your extra coordination, by using another credible"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,920",
+				"to": "00:11:31,880"
+			},
+			"offsets": {
+				"from": 688920,
+				"to": 691880
+			},
+			"text": " commitment or coordination device in the meta game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,880",
+				"to": "00:11:33,720"
+			},
+			"offsets": {
+				"from": 691880,
+				"to": 693720
+			},
+			"text": " then you're just transferring the mall lock"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,720",
+				"to": "00:11:36,720"
+			},
+			"offsets": {
+				"from": 693720,
+				"to": 696720
+			},
+			"text": " its credible value in the original game to the monarch"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,720",
+				"to": "00:11:38,200"
+			},
+			"offsets": {
+				"from": 696720,
+				"to": 698200
+			},
+			"text": " in the wrapped game."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,200",
+				"to": "00:11:40,600"
+			},
+			"offsets": {
+				"from": 698200,
+				"to": 700600
+			},
+			"text": " So this kind of provides a ground for us"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,600",
+				"to": "00:11:45,600"
+			},
+			"offsets": {
+				"from": 700600,
+				"to": 705600
+			},
+			"text": " to refill any previous ideas by Virgil Griffiths"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,600",
+				"to": "00:11:48,760"
+			},
+			"offsets": {
+				"from": 705600,
+				"to": 708760
+			},
+			"text": " in his whole Ethereum and Scam Changing Technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,760",
+				"to": "00:11:49,960"
+			},
+			"offsets": {
+				"from": 708760,
+				"to": 709960
+			},
+			"text": " argument."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,960",
+				"to": "00:11:54,880"
+			},
+			"offsets": {
+				"from": 709960,
+				"to": 714880
+			},
+			"text": " So then coming back to this, the specific value"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,880",
+				"to": "00:11:58,280"
+			},
+			"offsets": {
+				"from": 714880,
+				"to": 718280
+			},
+			"text": " of the coalition factor K depends on how we set up the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,280",
+				"to": "00:12:00,560"
+			},
+			"offsets": {
+				"from": 718280,
+				"to": 720560
+			},
+			"text": " We can throw out these throwing different monarchs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,560",
+				"to": "00:12:03,640"
+			},
+			"offsets": {
+				"from": 720560,
+				"to": 723640
+			},
+			"text": " Ultimately, we want to choose the best mechanism and start"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,640",
+				"to": "00:12:06,720"
+			},
+			"offsets": {
+				"from": 723640,
+				"to": 726720
+			},
+			"text": " that is most incentive-aligned with the long-term prosperity"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,720",
+				"to": "00:12:09,200"
+			},
+			"offsets": {
+				"from": 726720,
+				"to": 729200
+			},
+			"text": " and the most capable of coordination."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,200",
+				"to": "00:12:11,680"
+			},
+			"offsets": {
+				"from": 729200,
+				"to": 731680
+			},
+			"text": " So you can see there is a trade-off over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,680",
+				"to": "00:12:14,920"
+			},
+			"offsets": {
+				"from": 731680,
+				"to": 734920
+			},
+			"text": " And of course, why do we want a monarch?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,920",
+				"to": "00:12:16,360"
+			},
+			"offsets": {
+				"from": 734920,
+				"to": 736360
+			},
+			"text": " Why do we need this meme?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,360",
+				"to": "00:12:17,560"
+			},
+			"offsets": {
+				"from": 736360,
+				"to": 737560
+			},
+			"text": " What can we just go?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,560",
+				"to": "00:12:20,040"
+			},
+			"offsets": {
+				"from": 737560,
+				"to": 740040
+			},
+			"text": " The formalization, relative, or full formalization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,040",
+				"to": "00:12:22,160"
+			},
+			"offsets": {
+				"from": 740040,
+				"to": 742160
+			},
+			"text": " throwing mass equations."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,160",
+				"to": "00:12:24,080"
+			},
+			"offsets": {
+				"from": 742160,
+				"to": 744080
+			},
+			"text": " So the reason for this monarch abstraction"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,080",
+				"to": "00:12:29,200"
+			},
+			"offsets": {
+				"from": 744080,
+				"to": 749200
+			},
+			"text": " is because the outcome in contrary to traditional mechanisms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,200",
+				"to": "00:12:31,360"
+			},
+			"offsets": {
+				"from": 749200,
+				"to": 751360
+			},
+			"text": " the outcome in AmiVy is not common knowledge"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,360",
+				"to": "00:12:33,920"
+			},
+			"offsets": {
+				"from": 751360,
+				"to": 753920
+			},
+			"text": " and depends on each agent's private information, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,920",
+				"to": "00:12:39,080"
+			},
+			"offsets": {
+				"from": 753920,
+				"to": 759080
+			},
+			"text": " the other agents don't have priori to the AmiVy time, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,080",
+				"to": "00:12:41,360"
+			},
+			"offsets": {
+				"from": 759080,
+				"to": 761360
+			},
+			"text": " is the allocation time, or like property in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,360",
+				"to": "00:12:44,120"
+			},
+			"offsets": {
+				"from": 761360,
+				"to": 764120
+			},
+			"text": " So it is hard to analyze the equilibrium within this game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,120",
+				"to": "00:12:49,320"
+			},
+			"offsets": {
+				"from": 764120,
+				"to": 769320
+			},
+			"text": " especially when there exists a symmetry"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,320",
+				"to": "00:12:51,440"
+			},
+			"offsets": {
+				"from": 769320,
+				"to": 771440
+			},
+			"text": " in the sophistication of agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,440",
+				"to": "00:12:56,600"
+			},
+			"offsets": {
+				"from": 771440,
+				"to": 776600
+			},
+			"text": " So thus, we reduce the guarantee of our mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,600",
+				"to": "00:13:01,120"
+			},
+			"offsets": {
+				"from": 776600,
+				"to": 781120
+			},
+			"text": " to just have some bounce, like some loose bounce,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,120",
+				"to": "00:13:05,800"
+			},
+			"offsets": {
+				"from": 781120,
+				"to": 785800
+			},
+			"text": " on the incentive compatibility and individual rationale."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,800",
+				"to": "00:13:07,520"
+			},
+			"offsets": {
+				"from": 785800,
+				"to": 787520
+			},
+			"text": " So then, now to concretize things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,520",
+				"to": "00:13:09,360"
+			},
+			"offsets": {
+				"from": 787520,
+				"to": 789360
+			},
+			"text": " we provide some case studies."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,360",
+				"to": "00:13:12,800"
+			},
+			"offsets": {
+				"from": 789360,
+				"to": 792800
+			},
+			"text": " So specifically, we say that there is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,800",
+				"to": "00:13:15,720"
+			},
+			"offsets": {
+				"from": 792800,
+				"to": 795720
+			},
+			"text": " we know that there has been vanilla first-conversed"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,720",
+				"to": "00:13:18,960"
+			},
+			"offsets": {
+				"from": 795720,
+				"to": 798960
+			},
+			"text": " and frequent batch auctions, the first-conversed"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,960",
+				"to": "00:13:22,200"
+			},
+			"offsets": {
+				"from": 798960,
+				"to": 802200
+			},
+			"text": " where we increase fairness granularity"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,200",
+				"to": "00:13:25,240"
+			},
+			"offsets": {
+				"from": 802200,
+				"to": 805240
+			},
+			"text": " within the receive-other fairness protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,240",
+				"to": "00:13:26,960"
+			},
+			"offsets": {
+				"from": 805240,
+				"to": 806960
+			},
+			"text": " So what this specifically means is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,960",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 806960,
+				"to": 809000
+			},
+			"text": " that instead of reporting a strict ordering"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:31,200"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 811200
+			},
+			"text": " by the receive-other time of the transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,200",
+				"to": "00:13:33,840"
+			},
+			"offsets": {
+				"from": 811200,
+				"to": 813840
+			},
+			"text": " each individual node now reports a partial ordering"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,840",
+				"to": "00:13:36,280"
+			},
+			"offsets": {
+				"from": 813840,
+				"to": 816280
+			},
+			"text": " to the leader of the ordering consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,280",
+				"to": "00:13:39,080"
+			},
+			"offsets": {
+				"from": 816280,
+				"to": 819080
+			},
+			"text": " So what this concrete means is that you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,080",
+				"to": "00:13:42,240"
+			},
+			"offsets": {
+				"from": 819080,
+				"to": 822240
+			},
+			"text": " take the smaller than two smaller or equal to."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,240",
+				"to": "00:13:45,440"
+			},
+			"offsets": {
+				"from": 822240,
+				"to": 825440
+			},
+			"text": " And then after aggregating each individual node's preference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,440",
+				"to": "00:13:47,040"
+			},
+			"offsets": {
+				"from": 825440,
+				"to": 827040
+			},
+			"text": " the monarch, in this case, the leader"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,040",
+				"to": "00:13:48,800"
+			},
+			"offsets": {
+				"from": 827040,
+				"to": 828800
+			},
+			"text": " of the consensus protocol gets a weak ordering"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,800",
+				"to": "00:13:50,120"
+			},
+			"offsets": {
+				"from": 828800,
+				"to": 830120
+			},
+			"text": " by first-conversed serve."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,120",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 830120,
+				"to": 834000
+			},
+			"text": " And then, of course, we know that there must exist some other"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:57,840"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 837840
+			},
+			"text": " batches in it, which is caused both by the converse paradoxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,840",
+				"to": "00:13:59,560"
+			},
+			"offsets": {
+				"from": 837840,
+				"to": 839560
+			},
+			"text": " and the initial partial ordering reported"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,560",
+				"to": "00:14:00,960"
+			},
+			"offsets": {
+				"from": 839560,
+				"to": 840960
+			},
+			"text": " by each individual node."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,960",
+				"to": "00:14:04,880"
+			},
+			"offsets": {
+				"from": 840960,
+				"to": 844880
+			},
+			"text": " So now the monarch tries to resolve the order of the other batches"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,880",
+				"to": "00:14:06,040"
+			},
+			"offsets": {
+				"from": 844880,
+				"to": 846040
+			},
+			"text": " using auctions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,040",
+				"to": "00:14:08,600"
+			},
+			"offsets": {
+				"from": 846040,
+				"to": 848600
+			},
+			"text": " So this is why it's a very compact option."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,600",
+				"to": "00:14:10,960"
+			},
+			"offsets": {
+				"from": 848600,
+				"to": 850960
+			},
+			"text": " And then in reality, why is this more their other role?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,960",
+				"to": "00:14:12,320"
+			},
+			"offsets": {
+				"from": 850960,
+				"to": 852320
+			},
+			"text": " Let's peek into some data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,320",
+				"to": "00:14:16,440"
+			},
+			"offsets": {
+				"from": 852320,
+				"to": 856440
+			},
+			"text": " We see that in reality, over 65% of the uni-style volume"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,440",
+				"to": "00:14:19,640"
+			},
+			"offsets": {
+				"from": 856440,
+				"to": 859640
+			},
+			"text": " is constant from arbitrage, maybe statistical."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,640",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 859640,
+				"to": 865000
+			},
+			"text": " And among the other 35%, it's a big few market makers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:27,440"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 867440
+			},
+			"text": " So what this means is that the MIV activity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,440",
+				"to": "00:14:29,880"
+			},
+			"offsets": {
+				"from": 867440,
+				"to": 869880
+			},
+			"text": " constitutes a huge amount of Ethereum activity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,880",
+				"to": "00:14:32,800"
+			},
+			"offsets": {
+				"from": 869880,
+				"to": 872800
+			},
+			"text": " And the burst period on Ethereum, which arises from public"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,800",
+				"to": "00:14:35,280"
+			},
+			"offsets": {
+				"from": 872800,
+				"to": 875280
+			},
+			"text": " information reviews, for example, some price discovery"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,280",
+				"to": "00:14:38,240"
+			},
+			"offsets": {
+				"from": 875280,
+				"to": 878240
+			},
+			"text": " happens on Binance or some people, some wells,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,240",
+				"to": "00:14:40,920"
+			},
+			"offsets": {
+				"from": 878240,
+				"to": 880920
+			},
+			"text": " send an unprotected transaction into the public member"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,920",
+				"to": "00:14:45,040"
+			},
+			"offsets": {
+				"from": 880920,
+				"to": 885040
+			},
+			"text": " Then once this kind of event happens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,040",
+				"to": "00:14:50,560"
+			},
+			"offsets": {
+				"from": 885040,
+				"to": 890560
+			},
+			"text": " it takes around 1.2 second and 75% of the conflict"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,560",
+				"to": "00:14:52,840"
+			},
+			"offsets": {
+				"from": 890560,
+				"to": 892840
+			},
+			"text": " of preferences on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,840",
+				"to": "00:14:55,440"
+			},
+			"offsets": {
+				"from": 892840,
+				"to": 895440
+			},
+			"text": " Conflict preferences, meaning that there is a conflict"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,440",
+				"to": "00:15:00,560"
+			},
+			"offsets": {
+				"from": 895440,
+				"to": 900560
+			},
+			"text": " within what specification should the next day satisfy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,560",
+				"to": "00:15:03,680"
+			},
+			"offsets": {
+				"from": 900560,
+				"to": 903680
+			},
+			"text": " It happens less than 4% of the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,680",
+				"to": "00:15:06,440"
+			},
+			"offsets": {
+				"from": 903680,
+				"to": 906440
+			},
+			"text": " And so this means that vanilla first-comferser"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,440",
+				"to": "00:15:09,080"
+			},
+			"offsets": {
+				"from": 906440,
+				"to": 909080
+			},
+			"text": " compared with frequent batch auction, first-comferser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,080",
+				"to": "00:15:11,680"
+			},
+			"offsets": {
+				"from": 909080,
+				"to": 911680
+			},
+			"text": " will be bearing the extra-anactivity"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,680",
+				"to": "00:15:15,560"
+			},
+			"offsets": {
+				"from": 911680,
+				"to": 915560
+			},
+			"text": " turnalities, which cause worse UX, higher fees for users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,560",
+				"to": "00:15:18,200"
+			},
+			"offsets": {
+				"from": 915560,
+				"to": 918200
+			},
+			"text": " or centralization in the notes, from 12x more"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,200",
+				"to": "00:15:19,760"
+			},
+			"offsets": {
+				"from": 918200,
+				"to": 919760
+			},
+			"text": " conflict of preferences."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,760",
+				"to": "00:15:23,840"
+			},
+			"offsets": {
+				"from": 919760,
+				"to": 923840
+			},
+			"text": " So burst of periods of preferences are significant."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,840",
+				"to": "00:15:26,280"
+			},
+			"offsets": {
+				"from": 923840,
+				"to": 926280
+			},
+			"text": " And just adding some partial ordering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,280",
+				"to": "00:15:29,400"
+			},
+			"offsets": {
+				"from": 926280,
+				"to": 929400
+			},
+			"text": " just covering that little 4% window,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,400",
+				"to": "00:15:33,560"
+			},
+			"offsets": {
+				"from": 929400,
+				"to": 933560
+			},
+			"text": " you can mitigate most of the negative externalities"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,560",
+				"to": "00:15:34,760"
+			},
+			"offsets": {
+				"from": 933560,
+				"to": 934760
+			},
+			"text": " on the domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,760",
+				"to": "00:15:37,080"
+			},
+			"offsets": {
+				"from": 934760,
+				"to": 937080
+			},
+			"text": " You can take value back from the malloc."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,080",
+				"to": "00:15:41,040"
+			},
+			"offsets": {
+				"from": 937080,
+				"to": 941040
+			},
+			"text": " So if we use the 3 EV framework to compare those two protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,040",
+				"to": "00:15:44,880"
+			},
+			"offsets": {
+				"from": 941040,
+				"to": 944880
+			},
+			"text": " we can see that they have the same mafia."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,880",
+				"to": "00:15:49,040"
+			},
+			"offsets": {
+				"from": 944880,
+				"to": 949040
+			},
+			"text": " And for mallocs, the vanilla version"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,040",
+				"to": "00:15:52,920"
+			},
+			"offsets": {
+				"from": 949040,
+				"to": 952920
+			},
+			"text": " has much more malloc because the vanilla version,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,920",
+				"to": "00:15:54,720"
+			},
+			"offsets": {
+				"from": 952920,
+				"to": 954720
+			},
+			"text": " nobody can express their preferences"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,720",
+				"to": "00:15:57,080"
+			},
+			"offsets": {
+				"from": 954720,
+				"to": 957080
+			},
+			"text": " in a short burst period, which constitutes"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,080",
+				"to": "00:15:58,400"
+			},
+			"offsets": {
+				"from": 957080,
+				"to": 958400
+			},
+			"text": " most of their activity."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,400",
+				"to": "00:16:01,680"
+			},
+			"offsets": {
+				"from": 958400,
+				"to": 961680
+			},
+			"text": " So the malloc arises from-- the tribute to the malloc"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,680",
+				"to": "00:16:03,440"
+			},
+			"offsets": {
+				"from": 961680,
+				"to": 963440
+			},
+			"text": " arises from on coordination."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,440",
+				"to": "00:16:06,080"
+			},
+			"offsets": {
+				"from": 963440,
+				"to": 966080
+			},
+			"text": " And then all trust simplifies social choice function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,080",
+				"to": "00:16:08,920"
+			},
+			"offsets": {
+				"from": 966080,
+				"to": 968920
+			},
+			"text": " where the social choice function is like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,920",
+				"to": "00:16:11,760"
+			},
+			"offsets": {
+				"from": 968920,
+				"to": 971760
+			},
+			"text": " I choose to preference by the order I receive them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,760",
+				"to": "00:16:15,440"
+			},
+			"offsets": {
+				"from": 971760,
+				"to": 975440
+			},
+			"text": " That does not coordinate any of the burst period that I'm EV."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,440",
+				"to": "00:16:18,240"
+			},
+			"offsets": {
+				"from": 975440,
+				"to": 978240
+			},
+			"text": " And the burst period I'm EV, typical cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,240",
+				"to": "00:16:20,480"
+			},
+			"offsets": {
+				"from": 978240,
+				"to": 980480
+			},
+			"text": " include permissionless, I mean, price discovery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,480",
+				"to": "00:16:21,960"
+			},
+			"offsets": {
+				"from": 980480,
+				"to": 981960
+			},
+			"text": " what one can I be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,960",
+				"to": "00:16:25,840"
+			},
+			"offsets": {
+				"from": 981960,
+				"to": 985840
+			},
+			"text": " So we can see from the graph on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,840",
+				"to": "00:16:29,040"
+			},
+			"offsets": {
+				"from": 985840,
+				"to": 989040
+			},
+			"text": " we are transforming the mafia slowly into the malloc,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,040",
+				"to": "00:16:32,360"
+			},
+			"offsets": {
+				"from": 989040,
+				"to": 992360
+			},
+			"text": " where the value is transferred to the users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,360",
+				"to": "00:16:36,080"
+			},
+			"offsets": {
+				"from": 992360,
+				"to": 996080
+			},
+			"text": " because the users have the same payoff, same bad payoff."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,080",
+				"to": "00:16:38,480"
+			},
+			"offsets": {
+				"from": 996080,
+				"to": 998480
+			},
+			"text": " And then from the malloc, it's strictly worse,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,480",
+				"to": "00:16:39,520"
+			},
+			"offsets": {
+				"from": 998480,
+				"to": 999520
+			},
+			"text": " but better definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,520",
+				"to": "00:16:43,640"
+			},
+			"offsets": {
+				"from": 999520,
+				"to": 1003640
+			},
+			"text": " But also, vanilla versions from the raw malloc."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,640",
+				"to": "00:16:48,600"
+			},
+			"offsets": {
+				"from": 1003640,
+				"to": 1008600
+			},
+			"text": " So in latency games, you pay more to AWS or Google Cloud"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,600",
+				"to": "00:16:51,440"
+			},
+			"offsets": {
+				"from": 1008600,
+				"to": 1011440
+			},
+			"text": " because you need to play latency games."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,440",
+				"to": "00:16:54,560"
+			},
+			"offsets": {
+				"from": 1011440,
+				"to": 1014560
+			},
+			"text": " And thus, the malloc, Google and Amazon"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,560",
+				"to": "00:16:57,200"
+			},
+			"offsets": {
+				"from": 1014560,
+				"to": 1017200
+			},
+			"text": " are obviously nothing incentive aligned with crypto"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,200",
+				"to": "00:16:59,360"
+			},
+			"offsets": {
+				"from": 1017200,
+				"to": 1019360
+			},
+			"text": " or whichever, though, may you adopt your other one"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,360",
+				"to": "00:17:00,280"
+			},
+			"offsets": {
+				"from": 1019360,
+				"to": 1020280
+			},
+			"text": " for the co-op."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,280",
+				"to": "00:17:01,720"
+			},
+			"offsets": {
+				"from": 1020280,
+				"to": 1021720
+			},
+			"text": " And of course, it's more centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,720",
+				"to": "00:17:03,320"
+			},
+			"offsets": {
+				"from": 1021720,
+				"to": 1023320
+			},
+			"text": " because, come on, it's like fan."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,320",
+				"to": "00:17:09,360"
+			},
+			"offsets": {
+				"from": 1023320,
+				"to": 1029360
+			},
+			"text": " OK, so now some concrete examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,360",
+				"to": "00:17:11,400"
+			},
+			"offsets": {
+				"from": 1029360,
+				"to": 1031400
+			},
+			"text": " Let's see, you know, transformation of 3D."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,400",
+				"to": "00:17:14,840"
+			},
+			"offsets": {
+				"from": 1031400,
+				"to": 1034840
+			},
+			"text": " That's really actually capture most of the existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,840",
+				"to": "00:17:16,480"
+			},
+			"offsets": {
+				"from": 1034840,
+				"to": 1036480
+			},
+			"text": " and maybe notions that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,480",
+				"to": "00:17:18,960"
+			},
+			"offsets": {
+				"from": 1036480,
+				"to": 1038960
+			},
+			"text": " So for transforming malloc to malloc,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,960",
+				"to": "00:17:22,400"
+			},
+			"offsets": {
+				"from": 1038960,
+				"to": 1042400
+			},
+			"text": " we see that one form of this is the spread charge"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,400",
+				"to": "00:17:24,960"
+			},
+			"offsets": {
+				"from": 1042400,
+				"to": 1044960
+			},
+			"text": " by market maker bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,960",
+				"to": "00:17:29,440"
+			},
+			"offsets": {
+				"from": 1044960,
+				"to": 1049440
+			},
+			"text": " From malloc to mafia, we see that if in traditional--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,440",
+				"to": "00:17:31,720"
+			},
+			"offsets": {
+				"from": 1049440,
+				"to": 1051720
+			},
+			"text": " if in previous Ethereum profile work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,720",
+				"to": "00:17:34,160"
+			},
+			"offsets": {
+				"from": 1051720,
+				"to": 1054160
+			},
+			"text": " the minus were to go rogue and still bond us."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,160",
+				"to": "00:17:36,560"
+			},
+			"offsets": {
+				"from": 1054160,
+				"to": 1056560
+			},
+			"text": " They need to be-- they were the monarch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,560",
+				"to": "00:17:38,960"
+			},
+			"offsets": {
+				"from": 1056560,
+				"to": 1058960
+			},
+			"text": " but they choose to gain an advantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,960",
+				"to": "00:17:41,160"
+			},
+			"offsets": {
+				"from": 1058960,
+				"to": 1061160
+			},
+			"text": " using the asymmetric information, the ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,160",
+				"to": "00:17:42,560"
+			},
+			"offsets": {
+				"from": 1061160,
+				"to": 1062560
+			},
+			"text": " to act on that information."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,560",
+				"to": "00:17:46,760"
+			},
+			"offsets": {
+				"from": 1062560,
+				"to": 1066760
+			},
+			"text": " Wait, what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,760",
+				"to": "00:17:50,400"
+			},
+			"offsets": {
+				"from": 1066760,
+				"to": 1070400
+			},
+			"text": " OK, and then from mafia to malloc, the transformation--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,400",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1070400,
+				"to": 1073000
+			},
+			"text": " so for example, you go from a top-income malloc"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:54,720"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1074720
+			},
+			"text": " to a vanilla first-comfist server."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,720",
+				"to": "00:17:57,120"
+			},
+			"offsets": {
+				"from": 1074720,
+				"to": 1077120
+			},
+			"text": " You eliminate it from the platform in the malloc,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,120",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1077120,
+				"to": 1079000
+			},
+			"text": " so you don't have that information in the streaming trip."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:02,880"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1082880
+			},
+			"text": " But you have that, you know, on coordination,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,880",
+				"to": "00:18:06,800"
+			},
+			"offsets": {
+				"from": 1082880,
+				"to": 1086800
+			},
+			"text": " you have a very bad allocation of preferences,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,800",
+				"to": "00:18:08,040"
+			},
+			"offsets": {
+				"from": 1086800,
+				"to": 1088040
+			},
+			"text": " which increases malloc."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,040",
+				"to": "00:18:10,880"
+			},
+			"offsets": {
+				"from": 1088040,
+				"to": 1090880
+			},
+			"text": " And then from malloc to mafia, you'll see that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,880",
+				"to": "00:18:12,840"
+			},
+			"offsets": {
+				"from": 1090880,
+				"to": 1092840
+			},
+			"text": " so for example, if a malicious coordinator"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,840",
+				"to": "00:18:15,240"
+			},
+			"offsets": {
+				"from": 1092840,
+				"to": 1095240
+			},
+			"text": " were to pocket all of the surplus welfare,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,240",
+				"to": "00:18:19,240"
+			},
+			"offsets": {
+				"from": 1095240,
+				"to": 1099240
+			},
+			"text": " that it generates from optimizing the ordering"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,240",
+				"to": "00:18:21,440"
+			},
+			"offsets": {
+				"from": 1099240,
+				"to": 1101440
+			},
+			"text": " or just existing from coordination."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,440",
+				"to": "00:18:27,040"
+			},
+			"offsets": {
+				"from": 1101440,
+				"to": 1107040
+			},
+			"text": " So this case, you go from malloc to mafia."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,040",
+				"to": "00:18:31,920"
+			},
+			"offsets": {
+				"from": 1107040,
+				"to": 1111920
+			},
+			"text": " And then what we can do to go from mafia to malloc"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,920",
+				"to": "00:18:34,080"
+			},
+			"offsets": {
+				"from": 1111920,
+				"to": 1114080
+			},
+			"text": " is to have program of privacy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,080",
+				"to": "00:18:35,880"
+			},
+			"offsets": {
+				"from": 1114080,
+				"to": 1115880
+			},
+			"text": " So in this case, for example, SDS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,880",
+				"to": "00:18:38,120"
+			},
+			"offsets": {
+				"from": 1115880,
+				"to": 1118120
+			},
+			"text": " you can still do bundle merging or block building"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,120",
+				"to": "00:18:41,120"
+			},
+			"offsets": {
+				"from": 1118120,
+				"to": 1121120
+			},
+			"text": " or preference aggregation despite that you don't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,120",
+				"to": "00:18:46,480"
+			},
+			"offsets": {
+				"from": 1121120,
+				"to": 1126480
+			},
+			"text": " asymmetry in the information."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,480",
+				"to": "00:18:50,640"
+			},
+			"offsets": {
+				"from": 1126480,
+				"to": 1130640
+			},
+			"text": " And then finally, come on, the current model"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,640",
+				"to": "00:18:54,400"
+			},
+			"offsets": {
+				"from": 1130640,
+				"to": 1134400
+			},
+			"text": " of dog governance is a form of transforming the malloc"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,400",
+				"to": "00:18:56,080"
+			},
+			"offsets": {
+				"from": 1134400,
+				"to": 1136080
+			},
+			"text": " to the malloc, which is not good, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,080",
+				"to": "00:19:01,480"
+			},
+			"offsets": {
+				"from": 1136080,
+				"to": 1141480
+			},
+			"text": " So what this means is that the dog exists for coordination,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,480",
+				"to": "00:19:04,720"
+			},
+			"offsets": {
+				"from": 1141480,
+				"to": 1144720
+			},
+			"text": " but launching a dog token and then allowing it"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,720",
+				"to": "00:19:08,720"
+			},
+			"offsets": {
+				"from": 1144720,
+				"to": 1148720
+			},
+			"text": " to distribute under a bad economics or whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,720",
+				"to": "00:19:12,600"
+			},
+			"offsets": {
+				"from": 1148720,
+				"to": 1152600
+			},
+			"text": " your creating a policy which creates more malloc, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,600",
+				"to": "00:19:15,560"
+			},
+			"offsets": {
+				"from": 1152600,
+				"to": 1155560
+			},
+			"text": " You could have got that to a monarch stage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,560",
+				"to": "00:19:17,720"
+			},
+			"offsets": {
+				"from": 1155560,
+				"to": 1157720
+			},
+			"text": " but then through more decentralization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,720",
+				"to": "00:19:20,400"
+			},
+			"offsets": {
+				"from": 1157720,
+				"to": 1160400
+			},
+			"text": " you have recreated the malloc in the meta game"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,400",
+				"to": "00:19:21,640"
+			},
+			"offsets": {
+				"from": 1160400,
+				"to": 1161640
+			},
+			"text": " of the token game, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,640",
+				"to": "00:19:23,720"
+			},
+			"offsets": {
+				"from": 1161640,
+				"to": 1163720
+			},
+			"text": " So this reminds us of the previous example"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,720",
+				"to": "00:19:27,560"
+			},
+			"offsets": {
+				"from": 1163720,
+				"to": 1167560
+			},
+			"text": " of the non-monotonic relation between decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,560",
+				"to": "00:19:31,200"
+			},
+			"offsets": {
+				"from": 1167560,
+				"to": 1171200
+			},
+			"text": " and coordination and efficiency in the mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,200",
+				"to": "00:19:33,720"
+			},
+			"offsets": {
+				"from": 1171200,
+				"to": 1173720
+			},
+			"text": " So then some implications of SRIV, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,720",
+				"to": "00:19:34,880"
+			},
+			"offsets": {
+				"from": 1173720,
+				"to": 1174880
+			},
+			"text": " Concreteize this idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,880",
+				"to": "00:19:36,600"
+			},
+			"offsets": {
+				"from": 1174880,
+				"to": 1176600
+			},
+			"text": " Why is it useful?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,600",
+				"to": "00:19:39,480"
+			},
+			"offsets": {
+				"from": 1176600,
+				"to": 1179480
+			},
+			"text": " So then the solution recipes, how to achieve 0%"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,480",
+				"to": "00:19:41,520"
+			},
+			"offsets": {
+				"from": 1179480,
+				"to": 1181520
+			},
+			"text": " 0% and distribute to 100%."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,520",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1181520,
+				"to": 1184000
+			},
+			"text": " We can solve mafia EV using program of privacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:46,480"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1186480
+			},
+			"text": " which allows for expressivity and agents"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,480",
+				"to": "00:19:48,520"
+			},
+			"offsets": {
+				"from": 1186480,
+				"to": 1188520
+			},
+			"text": " can control how their information is used"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,520",
+				"to": "00:19:50,840"
+			},
+			"offsets": {
+				"from": 1188520,
+				"to": 1190840
+			},
+			"text": " along the path of the determination of the outcome"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,840",
+				"to": "00:19:52,240"
+			},
+			"offsets": {
+				"from": 1190840,
+				"to": 1192240
+			},
+			"text": " by the monarch."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,240",
+				"to": "00:19:54,920"
+			},
+			"offsets": {
+				"from": 1192240,
+				"to": 1194920
+			},
+			"text": " Also, this relates to the traditional mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,920",
+				"to": "00:19:59,600"
+			},
+			"offsets": {
+				"from": 1194920,
+				"to": 1199600
+			},
+			"text": " design idea of the definition of how expressive a mechanism is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,600",
+				"to": "00:20:00,240"
+			},
+			"offsets": {
+				"from": 1199600,
+				"to": 1200240
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,240",
+				"to": "00:20:01,720"
+			},
+			"offsets": {
+				"from": 1200240,
+				"to": 1201720
+			},
+			"text": " And then concretely, what this means"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,720",
+				"to": "00:20:04,240"
+			},
+			"offsets": {
+				"from": 1201720,
+				"to": 1204240
+			},
+			"text": " is that you can devise a mechanism for discovering"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,240",
+				"to": "00:20:06,280"
+			},
+			"offsets": {
+				"from": 1204240,
+				"to": 1206280
+			},
+			"text": " the unsophatically user's preferences"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,280",
+				"to": "00:20:08,480"
+			},
+			"offsets": {
+				"from": 1206280,
+				"to": 1208480
+			},
+			"text": " and helping them to communicate this preference"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,480",
+				"to": "00:20:10,480"
+			},
+			"offsets": {
+				"from": 1208480,
+				"to": 1210480
+			},
+			"text": " to the coordinator or to the mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,480",
+				"to": "00:20:12,880"
+			},
+			"offsets": {
+				"from": 1210480,
+				"to": 1212880
+			},
+			"text": " And then we can solve malloc is spread of value"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,880",
+				"to": "00:20:15,360"
+			},
+			"offsets": {
+				"from": 1212880,
+				"to": 1215360
+			},
+			"text": " by just increasing more efficiency, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,360",
+				"to": "00:20:17,640"
+			},
+			"offsets": {
+				"from": 1215360,
+				"to": 1217640
+			},
+			"text": " We can eliminate the price of energy"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,640",
+				"to": "00:20:23,600"
+			},
+			"offsets": {
+				"from": 1217640,
+				"to": 1223600
+			},
+			"text": " via refinement of society or IE specialization of labor."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,600",
+				"to": "00:20:27,280"
+			},
+			"offsets": {
+				"from": 1223600,
+				"to": 1227280
+			},
+			"text": " So what you can see in this example"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,280",
+				"to": "00:20:29,280"
+			},
+			"offsets": {
+				"from": 1227280,
+				"to": 1229280
+			},
+			"text": " is a country to the idea of malloc"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,280",
+				"to": "00:20:31,200"
+			},
+			"offsets": {
+				"from": 1229280,
+				"to": 1231200
+			},
+			"text": " it has the idea of a slack."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,200",
+				"to": "00:20:33,880"
+			},
+			"offsets": {
+				"from": 1231200,
+				"to": 1233880
+			},
+			"text": " So slack arises from coordination"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,880",
+				"to": "00:20:37,880"
+			},
+			"offsets": {
+				"from": 1233880,
+				"to": 1237880
+			},
+			"text": " where it's basically you allow somebody"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,880",
+				"to": "00:20:43,600"
+			},
+			"offsets": {
+				"from": 1237880,
+				"to": 1243600
+			},
+			"text": " to have enough modes or period where they can grind"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,600",
+				"to": "00:20:46,360"
+			},
+			"offsets": {
+				"from": 1243600,
+				"to": 1246360
+			},
+			"text": " on the higher payoff scene."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,360",
+				"to": "00:20:49,800"
+			},
+			"offsets": {
+				"from": 1246360,
+				"to": 1249800
+			},
+			"text": " And this is only allowed if you have a highly coordinated"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,800",
+				"to": "00:20:52,160"
+			},
+			"offsets": {
+				"from": 1249800,
+				"to": 1252160
+			},
+			"text": " specialization of labor in your society."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,160",
+				"to": "00:20:53,960"
+			},
+			"offsets": {
+				"from": 1252160,
+				"to": 1253960
+			},
+			"text": " And then finally, monarch is spread of value."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,960",
+				"to": "00:20:55,720"
+			},
+			"offsets": {
+				"from": 1253960,
+				"to": 1255720
+			},
+			"text": " How do we division its value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,720",
+				"to": "00:20:59,560"
+			},
+			"offsets": {
+				"from": 1255720,
+				"to": 1259560
+			},
+			"text": " So the value division we should division it in such a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,560",
+				"to": "00:21:03,640"
+			},
+			"offsets": {
+				"from": 1259560,
+				"to": 1263640
+			},
+			"text": " in that we maximizes the welfare or the future returns."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,640",
+				"to": "00:21:05,880"
+			},
+			"offsets": {
+				"from": 1263640,
+				"to": 1265880
+			},
+			"text": " So what this means is that you probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,880",
+				"to": "00:21:08,640"
+			},
+			"offsets": {
+				"from": 1265880,
+				"to": 1268640
+			},
+			"text": " shouldn't focus on giving tiny kickbacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,640",
+				"to": "00:21:11,600"
+			},
+			"offsets": {
+				"from": 1268640,
+				"to": 1271600
+			},
+			"text": " to the existing 1% of users, but instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,600",
+				"to": "00:21:15,040"
+			},
+			"offsets": {
+				"from": 1271600,
+				"to": 1275040
+			},
+			"text": " focusing on onboarding the invisible 99% of users"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,040",
+				"to": "00:21:18,760"
+			},
+			"offsets": {
+				"from": 1275040,
+				"to": 1278760
+			},
+			"text": " as monarch is spread of value or like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,760",
+				"to": "00:21:22,160"
+			},
+			"offsets": {
+				"from": 1278760,
+				"to": 1282160
+			},
+			"text": " I mean, in general, grows super linearly with respect"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,160",
+				"to": "00:21:25,720"
+			},
+			"offsets": {
+				"from": 1282160,
+				"to": 1285720
+			},
+			"text": " of compare with the number of other flows that exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,720",
+				"to": "00:21:26,800"
+			},
+			"offsets": {
+				"from": 1285720,
+				"to": 1286800
+			},
+			"text": " on your domain, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,800",
+				"to": "00:21:28,640"
+			},
+			"offsets": {
+				"from": 1286800,
+				"to": 1288640
+			},
+			"text": " So for example, the ways you can do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,640",
+				"to": "00:21:31,360"
+			},
+			"offsets": {
+				"from": 1288640,
+				"to": 1291360
+			},
+			"text": " is through investment into wallets or some idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,360",
+				"to": "00:21:33,240"
+			},
+			"offsets": {
+				"from": 1291360,
+				"to": 1293240
+			},
+			"text": " like ritual active public goods funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,240",
+				"to": "00:21:35,040"
+			},
+			"offsets": {
+				"from": 1293240,
+				"to": 1295040
+			},
+			"text": " And of course, this was the original idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,040",
+				"to": "00:21:36,560"
+			},
+			"offsets": {
+				"from": 1295040,
+				"to": 1296560
+			},
+			"text": " by Faralding as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,560",
+				"to": "00:21:40,120"
+			},
+			"offsets": {
+				"from": 1296560,
+				"to": 1300120
+			},
+			"text": " The idea is that there are 99% of users"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,120",
+				"to": "00:21:41,760"
+			},
+			"offsets": {
+				"from": 1300120,
+				"to": 1301760
+			},
+			"text": " that would have come to your domain"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,760",
+				"to": "00:21:44,120"
+			},
+			"offsets": {
+				"from": 1301760,
+				"to": 1304120
+			},
+			"text": " if you other things fairly."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,120",
+				"to": "00:21:48,320"
+			},
+			"offsets": {
+				"from": 1304120,
+				"to": 1308320
+			},
+			"text": " But yeah, so it's been an as a narrative."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,320",
+				"to": "00:21:51,960"
+			},
+			"offsets": {
+				"from": 1308320,
+				"to": 1311960
+			},
+			"text": " And then, yeah, so then,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,960",
+				"to": "00:21:56,200"
+			},
+			"offsets": {
+				"from": 1311960,
+				"to": 1316200
+			},
+			"text": " specifically implementations, we know that 3EV was defined"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,200",
+				"to": "00:21:57,400"
+			},
+			"offsets": {
+				"from": 1316200,
+				"to": 1317400
+			},
+			"text": " by the source of value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,400",
+				"to": "00:21:58,480"
+			},
+			"offsets": {
+				"from": 1317400,
+				"to": 1318480
+			},
+			"text": " There are distinct."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,480",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1318480,
+				"to": 1322000
+			},
+			"text": " So the sink, however, the sink of those value are different."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:04,520"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1324520
+			},
+			"text": " So for example, the mafia extra value sometimes sinks"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,520",
+				"to": "00:22:06,320"
+			},
+			"offsets": {
+				"from": 1324520,
+				"to": 1326320
+			},
+			"text": " into monarch, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,320",
+				"to": "00:22:08,440"
+			},
+			"offsets": {
+				"from": 1326320,
+				"to": 1328440
+			},
+			"text": " So for example, when there is a sandwich"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,440",
+				"to": "00:22:11,280"
+			},
+			"offsets": {
+				"from": 1328440,
+				"to": 1331280
+			},
+			"text": " and then two very competent atomic searchers"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,280",
+				"to": "00:22:13,960"
+			},
+			"offsets": {
+				"from": 1331280,
+				"to": 1333960
+			},
+			"text": " and the value sinks to the monarch, which is the value there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,960",
+				"to": "00:22:16,960"
+			},
+			"offsets": {
+				"from": 1333960,
+				"to": 1336960
+			},
+			"text": " And then the sink of value impacts the source of value."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,960",
+				"to": "00:22:19,480"
+			},
+			"offsets": {
+				"from": 1336960,
+				"to": 1339480
+			},
+			"text": " So I argue that by controlling the sink of the value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,480",
+				"to": "00:22:23,480"
+			},
+			"offsets": {
+				"from": 1339480,
+				"to": 1343480
+			},
+			"text": " we can already-- we can also impact"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,480",
+				"to": "00:22:27,560"
+			},
+			"offsets": {
+				"from": 1343480,
+				"to": 1347560
+			},
+			"text": " the source of the value, the magic of credible commitments."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,560",
+				"to": "00:22:29,920"
+			},
+			"offsets": {
+				"from": 1347560,
+				"to": 1349920
+			},
+			"text": " So some example of credible commitments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,920",
+				"to": "00:22:32,720"
+			},
+			"offsets": {
+				"from": 1349920,
+				"to": 1352720
+			},
+			"text": " I'm not going to explain that you can hit me up later"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,720",
+				"to": "00:22:33,960"
+			},
+			"offsets": {
+				"from": 1352720,
+				"to": 1353960
+			},
+			"text": " after this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,960",
+				"to": "00:22:35,680"
+			},
+			"offsets": {
+				"from": 1353960,
+				"to": 1355680
+			},
+			"text": " Examples include builders as roll up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,680",
+				"to": "00:22:38,560"
+			},
+			"offsets": {
+				"from": 1355680,
+				"to": 1358560
+			},
+			"text": " or you have a special builder innovation"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,560",
+				"to": "00:22:42,480"
+			},
+			"offsets": {
+				"from": 1358560,
+				"to": 1362480
+			},
+			"text": " where you grind on the expressivity of the building language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,480",
+				"to": "00:22:45,640"
+			},
+			"offsets": {
+				"from": 1362480,
+				"to": 1365640
+			},
+			"text": " or you have a decentralization of building use SGS tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,640",
+				"to": "00:22:48,240"
+			},
+			"offsets": {
+				"from": 1365640,
+				"to": 1368240
+			},
+			"text": " to align the incentives or some more fancy things."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,240",
+				"to": "00:22:51,800"
+			},
+			"offsets": {
+				"from": 1368240,
+				"to": 1371800
+			},
+			"text": " But all of those conditions, all of those solutions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,800",
+				"to": "00:22:54,680"
+			},
+			"offsets": {
+				"from": 1371800,
+				"to": 1374680
+			},
+			"text": " conditions are low enough inter-domain collision factor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,680",
+				"to": "00:22:55,160"
+			},
+			"offsets": {
+				"from": 1374680,
+				"to": 1375160
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,160",
+				"to": "00:22:59,120"
+			},
+			"offsets": {
+				"from": 1375160,
+				"to": 1379120
+			},
+			"text": " Remember from before, once you have too much collision"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,120",
+				"to": "00:23:02,920"
+			},
+			"offsets": {
+				"from": 1379120,
+				"to": 1382920
+			},
+			"text": " or too much coordination, then you can't possibly"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,920",
+				"to": "00:23:04,440"
+			},
+			"offsets": {
+				"from": 1382920,
+				"to": 1384440
+			},
+			"text": " have a good mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,440",
+				"to": "00:23:07,320"
+			},
+			"offsets": {
+				"from": 1384440,
+				"to": 1387320
+			},
+			"text": " Or it's very hard to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,320",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1387320,
+				"to": 1390000
+			},
+			"text": " And that a low enough factor means"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:12,200"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1392200
+			},
+			"text": " that you have high enough competition, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,200",
+				"to": "00:23:14,200"
+			},
+			"offsets": {
+				"from": 1392200,
+				"to": 1394200
+			},
+			"text": " means the market is contestable."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,200",
+				"to": "00:23:18,760"
+			},
+			"offsets": {
+				"from": 1394200,
+				"to": 1398760
+			},
+			"text": " So I claim that having more competition in the game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,760",
+				"to": "00:23:21,200"
+			},
+			"offsets": {
+				"from": 1398760,
+				"to": 1401200
+			},
+			"text": " by incentivizing having more competition in the game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,200",
+				"to": "00:23:22,640"
+			},
+			"offsets": {
+				"from": 1401200,
+				"to": 1402640
+			},
+			"text": " is right curve behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,640",
+				"to": "00:23:25,200"
+			},
+			"offsets": {
+				"from": 1402640,
+				"to": 1405200
+			},
+			"text": " And optimizing the ordering by learning more"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,200",
+				"to": "00:23:27,120"
+			},
+			"offsets": {
+				"from": 1405200,
+				"to": 1407120
+			},
+			"text": " about the preference microstructures"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,120",
+				"to": "00:23:29,160"
+			},
+			"offsets": {
+				"from": 1407120,
+				"to": 1409160
+			},
+			"text": " and then grinding on the design of the mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,160",
+				"to": "00:23:30,360"
+			},
+			"offsets": {
+				"from": 1409160,
+				"to": 1410360
+			},
+			"text": " is mid-curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,360",
+				"to": "00:23:33,120"
+			},
+			"offsets": {
+				"from": 1410360,
+				"to": 1413120
+			},
+			"text": " So contestability is an important tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,120",
+				"to": "00:23:36,240"
+			},
+			"offsets": {
+				"from": 1413120,
+				"to": 1416240
+			},
+			"text": " and it can only be realized if we design the initial marketing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,240",
+				"to": "00:23:38,600"
+			},
+			"offsets": {
+				"from": 1416240,
+				"to": 1418600
+			},
+			"text": " in such a way that it is not centralizing."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,600",
+				"to": "00:23:41,400"
+			},
+			"offsets": {
+				"from": 1418600,
+				"to": 1421400
+			},
+			"text": " What this means is that in reality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,400",
+				"to": "00:23:43,320"
+			},
+			"offsets": {
+				"from": 1421400,
+				"to": 1423320
+			},
+			"text": " what this means is that there should not--"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,320",
+				"to": "00:23:48,400"
+			},
+			"offsets": {
+				"from": 1423320,
+				"to": 1428400
+			},
+			"text": " we should definitely devise a mechanism that will exclusive"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,400",
+				"to": "00:23:49,680"
+			},
+			"offsets": {
+				"from": 1428400,
+				"to": 1429680
+			},
+			"text": " other flow within it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,680",
+				"to": "00:23:51,520"
+			},
+			"offsets": {
+				"from": 1429680,
+				"to": 1431520
+			},
+			"text": " It provides some philosophical foundations"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,520",
+				"to": "00:23:53,680"
+			},
+			"offsets": {
+				"from": 1431520,
+				"to": 1433680
+			},
+			"text": " for the previous talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,680",
+				"to": "00:23:54,480"
+			},
+			"offsets": {
+				"from": 1433680,
+				"to": 1434480
+			},
+			"text": " I said it's mid."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,480",
+				"to": "00:23:56,600"
+			},
+			"offsets": {
+				"from": 1434480,
+				"to": 1436600
+			},
+			"text": " Now it's time to show some real work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,600",
+				"to": "00:24:00,920"
+			},
+			"offsets": {
+				"from": 1436600,
+				"to": 1440920
+			},
+			"text": " show some real test for non-MEViness."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,920",
+				"to": "00:24:03,880"
+			},
+			"offsets": {
+				"from": 1440920,
+				"to": 1443880
+			},
+			"text": " So then remember that Fraga and Russell"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,880",
+				"to": "00:24:07,360"
+			},
+			"offsets": {
+				"from": 1443880,
+				"to": 1447360
+			},
+			"text": " was debating whether the king of French"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,360",
+				"to": "00:24:10,560"
+			},
+			"offsets": {
+				"from": 1447360,
+				"to": 1450560
+			},
+			"text": " was both in the beginning of the 20th century."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,560",
+				"to": "00:24:14,360"
+			},
+			"offsets": {
+				"from": 1450560,
+				"to": 1454360
+			},
+			"text": " And they come up with the test for presuppositions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,360",
+				"to": "00:24:16,320"
+			},
+			"offsets": {
+				"from": 1454360,
+				"to": 1456320
+			},
+			"text": " for utterances of sentences."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,320",
+				"to": "00:24:18,960"
+			},
+			"offsets": {
+				"from": 1456320,
+				"to": 1458960
+			},
+			"text": " So for example, the utterance of the sentence axis"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,960",
+				"to": "00:24:22,400"
+			},
+			"offsets": {
+				"from": 1458960,
+				"to": 1462400
+			},
+			"text": " and the heavy has presuppositions and tests"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,400",
+				"to": "00:24:25,880"
+			},
+			"offsets": {
+				"from": 1462400,
+				"to": 1465880
+			},
+			"text": " that there must exist a game in an allocation"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,880",
+				"to": "00:24:29,960"
+			},
+			"offsets": {
+				"from": 1465880,
+				"to": 1469960
+			},
+			"text": " or other than a protocol M and that within M and E,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,960",
+				"to": "00:24:33,840"
+			},
+			"offsets": {
+				"from": 1469960,
+				"to": 1473840
+			},
+			"text": " using the three EV definitions, we can indeed see that M"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,840",
+				"to": "00:24:37,720"
+			},
+			"offsets": {
+				"from": 1473840,
+				"to": 1477720
+			},
+			"text": " is constituted by a type or multiple types of the three EV."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,720",
+				"to": "00:24:41,680"
+			},
+			"offsets": {
+				"from": 1477720,
+				"to": 1481680
+			},
+			"text": " So in this sense, the utterance of X is M and EV"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,680",
+				"to": "00:24:44,840"
+			},
+			"offsets": {
+				"from": 1481680,
+				"to": 1484840
+			},
+			"text": " has presuppositions of the existence condition of E and M"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,840",
+				"to": "00:24:47,960"
+			},
+			"offsets": {
+				"from": 1484840,
+				"to": 1487960
+			},
+			"text": " and X being indeed in the set of three EV."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,960",
+				"to": "00:24:53,680"
+			},
+			"offsets": {
+				"from": 1487960,
+				"to": 1493680
+			},
+			"text": " Thus, if there does not exist such an E and M, which translates"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,680",
+				"to": "00:24:57,360"
+			},
+			"offsets": {
+				"from": 1493680,
+				"to": 1497360
+			},
+			"text": " into English, is that if that is absence of a monarch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,360",
+				"to": "00:25:00,480"
+			},
+			"offsets": {
+				"from": 1497360,
+				"to": 1500480
+			},
+			"text": " then the utterance of this sentence, X is M, E, E is false,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,480",
+				"to": "00:25:02,880"
+			},
+			"offsets": {
+				"from": 1500480,
+				"to": 1502880
+			},
+			"text": " and X is not M, E, E."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,880",
+				"to": "00:25:07,200"
+			},
+			"offsets": {
+				"from": 1502880,
+				"to": 1507200
+			},
+			"text": " So then a concrete example, imagine Kim and Don playing"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,200",
+				"to": "00:25:08,760"
+			},
+			"offsets": {
+				"from": 1507200,
+				"to": 1508760
+			},
+			"text": " a prisoner's dilemma."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,760",
+				"to": "00:25:10,640"
+			},
+			"offsets": {
+				"from": 1508760,
+				"to": 1510640
+			},
+			"text": " So then they both choose to be trained."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,640",
+				"to": "00:25:12,800"
+			},
+			"offsets": {
+				"from": 1510640,
+				"to": 1512800
+			},
+			"text": " Now suppose there isn't a coordinate."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,800",
+				"to": "00:25:16,800"
+			},
+			"offsets": {
+				"from": 1512800,
+				"to": 1516800
+			},
+			"text": " So then somebody utter the sentence, he says that the value"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,800",
+				"to": "00:25:19,560"
+			},
+			"offsets": {
+				"from": 1516800,
+				"to": 1519560
+			},
+			"text": " that Kim and Don is extracting absent the monarch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,560",
+				"to": "00:25:24,040"
+			},
+			"offsets": {
+				"from": 1519560,
+				"to": 1524040
+			},
+			"text": " i.e., 1, 1, is not M, E, V. Then this value is indeed not M,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,040",
+				"to": "00:25:26,680"
+			},
+			"offsets": {
+				"from": 1524040,
+				"to": 1526680
+			},
+			"text": " E, V, bypassing the presuppositions test."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,680",
+				"to": "00:25:30,160"
+			},
+			"offsets": {
+				"from": 1526680,
+				"to": 1530160
+			},
+			"text": " But if we take a free game view, and then of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,160",
+				"to": "00:25:31,520"
+			},
+			"offsets": {
+				"from": 1530160,
+				"to": 1531520
+			},
+			"text": " like there are other account examples,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,520",
+				"to": "00:25:34,640"
+			},
+			"offsets": {
+				"from": 1531520,
+				"to": 1534640
+			},
+			"text": " like Wittgenstein has this notion of a language game"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,640",
+				"to": "00:25:36,440"
+			},
+			"offsets": {
+				"from": 1534640,
+				"to": 1536440
+			},
+			"text": " where the context depends on social scenes."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,440",
+				"to": "00:25:39,400"
+			},
+			"offsets": {
+				"from": 1536440,
+				"to": 1539400
+			},
+			"text": " So the utterance of X is M, E, V. So this sentence might be true"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,400",
+				"to": "00:25:41,080"
+			},
+			"offsets": {
+				"from": 1539400,
+				"to": 1541080
+			},
+			"text": " as the context of the utterance is social,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,080",
+				"to": "00:25:43,640"
+			},
+			"offsets": {
+				"from": 1541080,
+				"to": 1543640
+			},
+			"text": " and we might agree on some notion of the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,640",
+				"to": "00:25:46,680"
+			},
+			"offsets": {
+				"from": 1543640,
+				"to": 1546680
+			},
+			"text": " So if the sentence is provided without context,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,680",
+				"to": "00:25:49,160"
+			},
+			"offsets": {
+				"from": 1546680,
+				"to": 1549160
+			},
+			"text": " then the sentence is nonsense and has no choose value."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,160",
+				"to": "00:25:51,800"
+			},
+			"offsets": {
+				"from": 1549160,
+				"to": 1551800
+			},
+			"text": " Thus, ultimately, the test of M, E,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,800",
+				"to": "00:25:54,360"
+			},
+			"offsets": {
+				"from": 1551800,
+				"to": 1554360
+			},
+			"text": " conditions on which philosophical interpretation"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,360",
+				"to": "00:25:56,040"
+			},
+			"offsets": {
+				"from": 1554360,
+				"to": 1556040
+			},
+			"text": " of language you agree with."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,040",
+				"to": "00:25:58,920"
+			},
+			"offsets": {
+				"from": 1556040,
+				"to": 1558920
+			},
+			"text": " If you are Wittgenstein, you know, you're Wittgenstein"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,920",
+				"to": "00:26:02,320"
+			},
+			"offsets": {
+				"from": 1558920,
+				"to": 1562320
+			},
+			"text": " and believes that the utterance is within the context"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,320",
+				"to": "00:26:05,000"
+			},
+			"offsets": {
+				"from": 1562320,
+				"to": 1565000
+			},
+			"text": " where it is socially agreeable that a monarch exists."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,000",
+				"to": "00:26:07,120"
+			},
+			"offsets": {
+				"from": 1565000,
+				"to": 1567120
+			},
+			"text": " So in the previous rugby case, remember,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,120",
+				"to": "00:26:13,200"
+			},
+			"offsets": {
+				"from": 1567120,
+				"to": 1573200
+			},
+			"text": " we often see that physics is the monarch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,200",
+				"to": "00:26:16,080"
+			},
+			"offsets": {
+				"from": 1573200,
+				"to": 1576080
+			},
+			"text": " and then over there is a value is indeed a M, E, V."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,080",
+				"to": "00:26:19,280"
+			},
+			"offsets": {
+				"from": 1576080,
+				"to": 1579280
+			},
+			"text": " Okay, so now some takeaways."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,280",
+				"to": "00:26:20,960"
+			},
+			"offsets": {
+				"from": 1579280,
+				"to": 1580960
+			},
+			"text": " Let's change the language in Kim."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,960",
+				"to": "00:26:23,560"
+			},
+			"offsets": {
+				"from": 1580960,
+				"to": 1583560
+			},
+			"text": " Are you tired about minor or maximal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,560",
+				"to": "00:26:25,560"
+			},
+			"offsets": {
+				"from": 1583560,
+				"to": 1585560
+			},
+			"text": " where the grammar isn't even correct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,560",
+				"to": "00:26:28,000"
+			},
+			"offsets": {
+				"from": 1585560,
+				"to": 1588000
+			},
+			"text": " like we say maximal and M, E, V all the time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,000",
+				"to": "00:26:29,200"
+			},
+			"offsets": {
+				"from": 1588000,
+				"to": 1589200
+			},
+			"text": " And we should just say M, E, V,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,200",
+				"to": "00:26:31,360"
+			},
+			"offsets": {
+				"from": 1589200,
+				"to": 1591360
+			},
+			"text": " and it conveniently represents a shorthand"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,360",
+				"to": "00:26:34,160"
+			},
+			"offsets": {
+				"from": 1591360,
+				"to": 1594160
+			},
+			"text": " for the some type of mafia, malloc, monarch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,160",
+				"to": "00:26:35,240"
+			},
+			"offsets": {
+				"from": 1594160,
+				"to": 1595240
+			},
+			"text": " extractable value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,240",
+				"to": "00:26:36,880"
+			},
+			"offsets": {
+				"from": 1595240,
+				"to": 1596880
+			},
+			"text": " Have you been saying M, E, V,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,880",
+				"to": "00:26:39,360"
+			},
+			"offsets": {
+				"from": 1596880,
+				"to": 1599360
+			},
+			"text": " because you have poor imagination to come up"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,360",
+				"to": "00:26:42,720"
+			},
+			"offsets": {
+				"from": 1599360,
+				"to": 1602720
+			},
+			"text": " with a replacement term for minors that keeps the M"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,720",
+				"to": "00:26:45,520"
+			},
+			"offsets": {
+				"from": 1602720,
+				"to": 1605520
+			},
+			"text": " and makes sense, you know, is that what we are doing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,520",
+				"to": "00:26:48,400"
+			},
+			"offsets": {
+				"from": 1605520,
+				"to": 1608400
+			},
+			"text": " You know, so then the argument is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,400",
+				"to": "00:26:51,080"
+			},
+			"offsets": {
+				"from": 1608400,
+				"to": 1611080
+			},
+			"text": " by changing this language game, we have several benefits."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,080",
+				"to": "00:26:55,840"
+			},
+			"offsets": {
+				"from": 1611080,
+				"to": 1615840
+			},
+			"text": " We have, you know, this formulation"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,840",
+				"to": "00:26:59,680"
+			},
+			"offsets": {
+				"from": 1615840,
+				"to": 1619680
+			},
+			"text": " gives you a distinct value, which origin is from the source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,680",
+				"to": "00:27:01,200"
+			},
+			"offsets": {
+				"from": 1619680,
+				"to": 1621200
+			},
+			"text": " and then it is more formalizable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,200",
+				"to": "00:27:03,000"
+			},
+			"offsets": {
+				"from": 1621200,
+				"to": 1623000
+			},
+			"text": " and it is formalizable in the sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,000",
+				"to": "00:27:04,640"
+			},
+			"offsets": {
+				"from": 1623000,
+				"to": 1624640
+			},
+			"text": " that you don't get lost in the details."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,640",
+				"to": "00:27:07,560"
+			},
+			"offsets": {
+				"from": 1624640,
+				"to": 1627560
+			},
+			"text": " It still keeps the meme, and the formalization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,560",
+				"to": "00:27:10,160"
+			},
+			"offsets": {
+				"from": 1627560,
+				"to": 1630160
+			},
+			"text": " the proof only serves as a social process"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:10,160",
+				"to": "00:27:11,400"
+			},
+			"offsets": {
+				"from": 1630160,
+				"to": 1631400
+			},
+			"text": " to help people to understand it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,400",
+				"to": "00:27:13,200"
+			},
+			"offsets": {
+				"from": 1631400,
+				"to": 1633200
+			},
+			"text": " And then of course, the settles the bad"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,200",
+				"to": "00:27:14,800"
+			},
+			"offsets": {
+				"from": 1633200,
+				"to": 1634800
+			},
+			"text": " and E, V argument and the trade off"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,800",
+				"to": "00:27:16,800"
+			},
+			"offsets": {
+				"from": 1634800,
+				"to": 1636800
+			},
+			"text": " or the transformation between the three values"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,800",
+				"to": "00:27:18,040"
+			},
+			"offsets": {
+				"from": 1636800,
+				"to": 1638040
+			},
+			"text": " space is clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,040",
+				"to": "00:27:19,960"
+			},
+			"offsets": {
+				"from": 1638040,
+				"to": 1639960
+			},
+			"text": " What this implies, also this implies"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,960",
+				"to": "00:27:21,080"
+			},
+			"offsets": {
+				"from": 1639960,
+				"to": 1641080
+			},
+			"text": " as clear solution recipe."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,080",
+				"to": "00:27:23,360"
+			},
+			"offsets": {
+				"from": 1641080,
+				"to": 1643360
+			},
+			"text": " So some nurse niping for you all,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,360",
+				"to": "00:27:25,480"
+			},
+			"offsets": {
+				"from": 1643360,
+				"to": 1645480
+			},
+			"text": " they said to research on how monarch"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,480",
+				"to": "00:27:27,080"
+			},
+			"offsets": {
+				"from": 1645480,
+				"to": 1647080
+			},
+			"text": " and its rather value can be distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,080",
+				"to": "00:27:30,160"
+			},
+			"offsets": {
+				"from": 1647080,
+				"to": 1650160
+			},
+			"text": " and the research on the program of privacy solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,160",
+				"to": "00:27:31,000"
+			},
+			"offsets": {
+				"from": 1650160,
+				"to": 1651000
+			},
+			"text": " for mafia EV."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,000",
+				"to": "00:27:33,360"
+			},
+			"offsets": {
+				"from": 1651000,
+				"to": 1653360
+			},
+			"text": " And then finally, a police compensation test."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,360",
+				"to": "00:27:37,680"
+			},
+			"offsets": {
+				"from": 1653360,
+				"to": 1657680
+			},
+			"text": " And so to conclude, I would like to hypnotize you."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,680",
+				"to": "00:27:41,040"
+			},
+			"offsets": {
+				"from": 1657680,
+				"to": 1661040
+			},
+			"text": " Three, V, three, V, three, V, three, V, three, V, three, V,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,040",
+				"to": "00:27:42,920"
+			},
+			"offsets": {
+				"from": 1661040,
+				"to": 1662920
+			},
+			"text": " three, V."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,920",
+				"to": "00:27:44,560"
+			},
+			"offsets": {
+				"from": 1662920,
+				"to": 1664560
+			},
+			"text": " That's all you can hear me out."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,560",
+				"to": "00:27:47,840"
+			},
+			"offsets": {
+				"from": 1664560,
+				"to": 1667840
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,840",
+				"to": "00:27:52,920"
+			},
+			"offsets": {
+				"from": 1667840,
+				"to": 1672920
+			},
+			"text": " - Well, I think we all agree that was a fantastic talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,920",
+				"to": "00:27:57,080"
+			},
+			"offsets": {
+				"from": 1672920,
+				"to": 1677080
+			},
+			"text": " A lot of the two speakers, we said at the beginning"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,080",
+				"to": "00:27:59,200"
+			},
+			"offsets": {
+				"from": 1677080,
+				"to": 1679200
+			},
+			"text": " that maybe we have time for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,200",
+				"to": "00:28:02,920"
+			},
+			"offsets": {
+				"from": 1679200,
+				"to": 1682920
+			},
+			"text": " So let's pick a couple of them over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,920",
+				"to": "00:28:04,240"
+			},
+			"offsets": {
+				"from": 1682920,
+				"to": 1684240
+			},
+			"text": " It's going to be hard for me to get there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,240",
+				"to": "00:28:05,880"
+			},
+			"offsets": {
+				"from": 1684240,
+				"to": 1685880
+			},
+			"text": " so maybe you can chat out loud."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,880",
+				"to": "00:28:09,040"
+			},
+			"offsets": {
+				"from": 1685880,
+				"to": 1689040
+			},
+			"text": " (audience member speaking off mic)"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,040",
+				"to": "00:28:10,160"
+			},
+			"offsets": {
+				"from": 1689040,
+				"to": 1690160
+			},
+			"text": " - Yeah, good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,160",
+				"to": "00:28:14,880"
+			},
+			"offsets": {
+				"from": 1690160,
+				"to": 1694880
+			},
+			"text": " So OFAC censorship can be done implicitly using a term"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,880",
+				"to": "00:28:19,400"
+			},
+			"offsets": {
+				"from": 1694880,
+				"to": 1699400
+			},
+			"text": " using a form of the private scarce, but at home maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,600",
+				"to": "00:28:26,400"
+			},
+			"offsets": {
+				"from": 1701600,
+				"to": 1706400
+			},
+			"text": " Is it monarch, is it mafia or is it monarch emberly?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,400",
+				"to": "00:28:27,640"
+			},
+			"offsets": {
+				"from": 1706400,
+				"to": 1707640
+			},
+			"text": " - It is monarch."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,640",
+				"to": "00:28:31,840"
+			},
+			"offsets": {
+				"from": 1707640,
+				"to": 1711840
+			},
+			"text": " Yeah, but as I said, what we want is to shift"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:31,840",
+				"to": "00:28:33,480"
+			},
+			"offsets": {
+				"from": 1711840,
+				"to": 1713480
+			},
+			"text": " the structure of the game, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,480",
+				"to": "00:28:35,720"
+			},
+			"offsets": {
+				"from": 1713480,
+				"to": 1715720
+			},
+			"text": " Remember the interdoming coalition factor."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:35,720",
+				"to": "00:28:39,080"
+			},
+			"offsets": {
+				"from": 1715720,
+				"to": 1719080
+			},
+			"text": " You can't unify the users by devising some mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,080",
+				"to": "00:28:40,960"
+			},
+			"offsets": {
+				"from": 1719080,
+				"to": 1720960
+			},
+			"text": " to help them become sophisticated"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,960",
+				"to": "00:28:42,680"
+			},
+			"offsets": {
+				"from": 1720960,
+				"to": 1722680
+			},
+			"text": " and have collective bargaining power."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:42,680",
+				"to": "00:28:45,400"
+			},
+			"offsets": {
+				"from": 1722680,
+				"to": 1725400
+			},
+			"text": " So that is what we ultimately want to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,400",
+				"to": "00:28:46,240"
+			},
+			"offsets": {
+				"from": 1725400,
+				"to": 1726240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,240",
+				"to": "00:28:49,360"
+			},
+			"offsets": {
+				"from": 1726240,
+				"to": 1729360
+			},
+			"text": " - Anyone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,200",
+				"to": "00:28:54,840"
+			},
+			"offsets": {
+				"from": 1730200,
+				"to": 1734840
+			},
+			"text": " (audience member speaking off mic)"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,840",
+				"to": "00:28:58,360"
+			},
+			"offsets": {
+				"from": 1734840,
+				"to": 1738360
+			},
+			"text": " All right guys, so big round of applause."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:58,360",
+				"to": "00:29:01,360"
+			},
+			"offsets": {
+				"from": 1738360,
+				"to": 1741360
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:01,360",
+				"to": "00:29:05,520"
+			},
+			"offsets": {
+				"from": 1741360,
+				"to": 1745520
+			},
+			"text": " (audience member speaking off mic)"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,520",
+				"to": "00:29:09,680"
+			},
+			"offsets": {
+				"from": 1745520,
+				"to": 1749680
+			},
+			"text": " (audience member speaking off mic)"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:09,680",
+				"to": "00:29:37,680"
+			},
+			"offsets": {
+				"from": 1749680,
+				"to": 1777680
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

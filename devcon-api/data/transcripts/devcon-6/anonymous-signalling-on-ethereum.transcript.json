@@ -1,0 +1,3717 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:16,640"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 16640
+			},
+			"text": " I'm a cedar, and I work as a software engineer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,640",
+				"to": "00:00:19,080"
+			},
+			"offsets": {
+				"from": 16640,
+				"to": 19080
+			},
+			"text": " with a privacy and scaling exploration team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,080",
+				"to": "00:00:24,400"
+			},
+			"offsets": {
+				"from": 19080,
+				"to": 24400
+			},
+			"text": " So I am going to talk about anonymous signal"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,400",
+				"to": "00:00:27,040"
+			},
+			"offsets": {
+				"from": 24400,
+				"to": 27040
+			},
+			"text": " in Ethereum, and I would like to start"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,040",
+				"to": "00:00:29,320"
+			},
+			"offsets": {
+				"from": 27040,
+				"to": 29320
+			},
+			"text": " with an important question."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,320",
+				"to": "00:00:31,960"
+			},
+			"offsets": {
+				"from": 29320,
+				"to": 31960
+			},
+			"text": " Why anonymity is important?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,960",
+				"to": "00:00:33,760"
+			},
+			"offsets": {
+				"from": 31960,
+				"to": 33760
+			},
+			"text": " I don't know why people are soaking"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,760",
+				"to": "00:00:36,840"
+			},
+			"offsets": {
+				"from": 33760,
+				"to": 36840
+			},
+			"text": " to put the details of their life in public."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,840",
+				"to": "00:00:41,440"
+			},
+			"offsets": {
+				"from": 36840,
+				"to": 41440
+			},
+			"text": " They forget that invisibility is a superpower."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,440",
+				"to": "00:00:44,080"
+			},
+			"offsets": {
+				"from": 41440,
+				"to": 44080
+			},
+			"text": " We cannot be sure if this quote is from Banksy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,080",
+				"to": "00:00:46,520"
+			},
+			"offsets": {
+				"from": 44080,
+				"to": 46520
+			},
+			"text": " but even if it was anonymous, the message"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,520",
+				"to": "00:00:48,640"
+			},
+			"offsets": {
+				"from": 46520,
+				"to": 48640
+			},
+			"text": " is still very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,640",
+				"to": "00:00:52,040"
+			},
+			"offsets": {
+				"from": 48640,
+				"to": 52040
+			},
+			"text": " Invisibility or anonymity is a superpower"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,040",
+				"to": "00:00:56,680"
+			},
+			"offsets": {
+				"from": 52040,
+				"to": 56680
+			},
+			"text": " because it's a couple of ideas from the identity of its order,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,680",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 56680,
+				"to": 60000
+			},
+			"text": " because it allows flowers to be thrown without the identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:01,920"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 61920
+			},
+			"text": " of the thrower being known."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,920",
+				"to": "00:01:06,120"
+			},
+			"offsets": {
+				"from": 61920,
+				"to": 66120
+			},
+			"text": " So all the ideas are intrinsically connected to the hotel."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,120",
+				"to": "00:01:09,840"
+			},
+			"offsets": {
+				"from": 66120,
+				"to": 69840
+			},
+			"text": " Sometimes the message is more important than the messenger."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,840",
+				"to": "00:01:12,800"
+			},
+			"offsets": {
+				"from": 69840,
+				"to": 72800
+			},
+			"text": " And sometimes preserving the identity of the messenger"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,800",
+				"to": "00:01:14,800"
+			},
+			"offsets": {
+				"from": 72800,
+				"to": 74800
+			},
+			"text": " is even more important."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,800",
+				"to": "00:01:17,680"
+			},
+			"offsets": {
+				"from": 74800,
+				"to": 77680
+			},
+			"text": " So anonymity can therefore become an important tool"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,680",
+				"to": "00:01:20,360"
+			},
+			"offsets": {
+				"from": 77680,
+				"to": 80360
+			},
+			"text": " because it limits power."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,360",
+				"to": "00:01:23,840"
+			},
+			"offsets": {
+				"from": 80360,
+				"to": 83840
+			},
+			"text": " Those with a lot of power derive much of that power"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,840",
+				"to": "00:01:26,600"
+			},
+			"offsets": {
+				"from": 83840,
+				"to": 86600
+			},
+			"text": " from knowledge, from information."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,600",
+				"to": "00:01:29,920"
+			},
+			"offsets": {
+				"from": 86600,
+				"to": 89920
+			},
+			"text": " The more someone knows about us, the more power"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,920",
+				"to": "00:01:32,240"
+			},
+			"offsets": {
+				"from": 89920,
+				"to": 92240
+			},
+			"text": " they can have over us."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,240",
+				"to": "00:01:35,080"
+			},
+			"offsets": {
+				"from": 92240,
+				"to": 95080
+			},
+			"text": " Keeping our data or our identity private"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,080",
+				"to": "00:01:37,080"
+			},
+			"offsets": {
+				"from": 95080,
+				"to": 97080
+			},
+			"text": " decentralize that power."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,080",
+				"to": "00:01:39,840"
+			},
+			"offsets": {
+				"from": 97080,
+				"to": 99840
+			},
+			"text": " Anonymity promotes freedom of speech."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,840",
+				"to": "00:01:41,760"
+			},
+			"offsets": {
+				"from": 99840,
+				"to": 101760
+			},
+			"text": " The first step in censoring an idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,760",
+				"to": "00:01:44,120"
+			},
+			"offsets": {
+				"from": 101760,
+				"to": 104120
+			},
+			"text": " is to attack its order."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,120",
+				"to": "00:01:45,960"
+			},
+			"offsets": {
+				"from": 104120,
+				"to": 105960
+			},
+			"text": " And the fear of suffering repercussions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,960",
+				"to": "00:01:51,640"
+			},
+			"offsets": {
+				"from": 105960,
+				"to": 111640
+			},
+			"text": " for what we say or write also limits our thinking."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,640",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 111640,
+				"to": 115000
+			},
+			"text": " So knowing that our data and identity are safe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 118000
+			},
+			"text": " our encourages us to think freely."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:00,200"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 120200
+			},
+			"text": " Anonymity is a guard's reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,200",
+				"to": "00:02:03,840"
+			},
+			"offsets": {
+				"from": 120200,
+				"to": 123840
+			},
+			"text": " It is important that people are held accountable for the actions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,840",
+				"to": "00:02:05,800"
+			},
+			"offsets": {
+				"from": 123840,
+				"to": 125800
+			},
+			"text": " and especially for their mistakes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,800",
+				"to": "00:02:09,840"
+			},
+			"offsets": {
+				"from": 125800,
+				"to": 129840
+			},
+			"text": " particularly when these people have a lot of responsibility,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,840",
+				"to": "00:02:12,080"
+			},
+			"offsets": {
+				"from": 129840,
+				"to": 132080
+			},
+			"text": " when they have an important role."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,080",
+				"to": "00:02:15,040"
+			},
+			"offsets": {
+				"from": 132080,
+				"to": 135040
+			},
+			"text": " But it is also important that our ideas are not judged"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,040",
+				"to": "00:02:19,480"
+			},
+			"offsets": {
+				"from": 135040,
+				"to": 139480
+			},
+			"text": " based on who we are, but rather on what we have to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,480",
+				"to": "00:02:22,360"
+			},
+			"offsets": {
+				"from": 139480,
+				"to": 142360
+			},
+			"text": " Anonymity allows an idea to be shared regardless"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,360",
+				"to": "00:02:24,680"
+			},
+			"offsets": {
+				"from": 142360,
+				"to": 144680
+			},
+			"text": " of its author's reputation, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,680",
+				"to": "00:02:27,200"
+			},
+			"offsets": {
+				"from": 144680,
+				"to": 147200
+			},
+			"text": " allows people to consider and evaluate ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,200",
+				"to": "00:02:30,080"
+			},
+			"offsets": {
+				"from": 147200,
+				"to": 150080
+			},
+			"text": " for a more objective perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,080",
+				"to": "00:02:32,040"
+			},
+			"offsets": {
+				"from": 150080,
+				"to": 152040
+			},
+			"text": " Most of us are aware of the importance"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,040",
+				"to": "00:02:34,160"
+			},
+			"offsets": {
+				"from": 152040,
+				"to": 154160
+			},
+			"text": " of anonymity and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,160",
+				"to": "00:02:36,880"
+			},
+			"offsets": {
+				"from": 154160,
+				"to": 156880
+			},
+			"text": " But what about our challenges?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,880",
+				"to": "00:02:38,880"
+			},
+			"offsets": {
+				"from": 156880,
+				"to": 158880
+			},
+			"text": " What are the main drawbacks right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,880",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 158880,
+				"to": 161000
+			},
+			"text": " And how can we solve them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:43,360"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 163360
+			},
+			"text": " There are probably many reasons, but two of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,360",
+				"to": "00:02:45,160"
+			},
+			"offsets": {
+				"from": 163360,
+				"to": 165160
+			},
+			"text": " deserve particular attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,160",
+				"to": "00:02:48,560"
+			},
+			"offsets": {
+				"from": 165160,
+				"to": 168560
+			},
+			"text": " The first one is complexity of technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,560",
+				"to": "00:02:51,880"
+			},
+			"offsets": {
+				"from": 168560,
+				"to": 171880
+			},
+			"text": " In recent years, we have seen a constant growth"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,880",
+				"to": "00:02:55,320"
+			},
+			"offsets": {
+				"from": 171880,
+				"to": 175320
+			},
+			"text": " in the development and use of cryptographic technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,320",
+				"to": "00:02:57,440"
+			},
+			"offsets": {
+				"from": 175320,
+				"to": 177440
+			},
+			"text": " Derenology proofs, for example, are now"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,440",
+				"to": "00:02:59,760"
+			},
+			"offsets": {
+				"from": 177440,
+				"to": 179760
+			},
+			"text": " being used in main applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,760",
+				"to": "00:03:01,440"
+			},
+			"offsets": {
+				"from": 179760,
+				"to": 181440
+			},
+			"text": " Proving you have a certain information"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,440",
+				"to": "00:03:03,520"
+			},
+			"offsets": {
+				"from": 181440,
+				"to": 183520
+			},
+			"text": " without revealing the information itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,520",
+				"to": "00:03:06,120"
+			},
+			"offsets": {
+				"from": 183520,
+				"to": 186120
+			},
+			"text": " is a really powerful concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,120",
+				"to": "00:03:08,680"
+			},
+			"offsets": {
+				"from": 186120,
+				"to": 188680
+			},
+			"text": " By the way these technologies work"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,680",
+				"to": "00:03:11,480"
+			},
+			"offsets": {
+				"from": 188680,
+				"to": 191480
+			},
+			"text": " is not trivial for people without a background"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,480",
+				"to": "00:03:14,120"
+			},
+			"offsets": {
+				"from": 191480,
+				"to": 194120
+			},
+			"text": " in mathematics or cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,120",
+				"to": "00:03:17,200"
+			},
+			"offsets": {
+				"from": 194120,
+				"to": 197200
+			},
+			"text": " In addition, the availability of simple and practical development"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,200",
+				"to": "00:03:19,680"
+			},
+			"offsets": {
+				"from": 197200,
+				"to": 199680
+			},
+			"text": " tools is still limited."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,680",
+				"to": "00:03:22,080"
+			},
+			"offsets": {
+				"from": 199680,
+				"to": 202080
+			},
+			"text": " Well, a lot of progress has been made, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,080",
+				"to": "00:03:25,760"
+			},
+			"offsets": {
+				"from": 202080,
+				"to": 205760
+			},
+			"text": " But I believe one more step is needed in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,760",
+				"to": "00:03:28,440"
+			},
+			"offsets": {
+				"from": 205760,
+				"to": 208440
+			},
+			"text": " to further abstract some technical concepts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,440",
+				"to": "00:03:32,560"
+			},
+			"offsets": {
+				"from": 208440,
+				"to": 212560
+			},
+			"text": " So the second drawback is the indifference of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,560",
+				"to": "00:03:35,400"
+			},
+			"offsets": {
+				"from": 212560,
+				"to": 215400
+			},
+			"text": " One of the reasons why some people don't care enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,400",
+				"to": "00:03:38,640"
+			},
+			"offsets": {
+				"from": 215400,
+				"to": 218640
+			},
+			"text": " about privacy and anonymity might be"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,640",
+				"to": "00:03:41,960"
+			},
+			"offsets": {
+				"from": 218640,
+				"to": 221960
+			},
+			"text": " that there is not enough awareness and education"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,960",
+				"to": "00:03:45,360"
+			},
+			"offsets": {
+				"from": 221960,
+				"to": 225360
+			},
+			"text": " about how our data is used and why anonymity is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,360",
+				"to": "00:03:47,640"
+			},
+			"offsets": {
+				"from": 225360,
+				"to": 227640
+			},
+			"text": " important in our society."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,640",
+				"to": "00:03:49,960"
+			},
+			"offsets": {
+				"from": 227640,
+				"to": 229960
+			},
+			"text": " So what can we do then?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,960",
+				"to": "00:03:51,680"
+			},
+			"offsets": {
+				"from": 229960,
+				"to": 231680
+			},
+			"text": " There are many solutions, but I would"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,680",
+				"to": "00:03:53,760"
+			},
+			"offsets": {
+				"from": 231680,
+				"to": 233760
+			},
+			"text": " like to focus on three solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,760",
+				"to": "00:03:56,160"
+			},
+			"offsets": {
+				"from": 233760,
+				"to": 236160
+			},
+			"text": " The first one is privacy by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,160",
+				"to": "00:03:57,880"
+			},
+			"offsets": {
+				"from": 236160,
+				"to": 237880
+			},
+			"text": " The right to privacy is mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,880",
+				"to": "00:03:59,800"
+			},
+			"offsets": {
+				"from": 237880,
+				"to": 239800
+			},
+			"text": " in most natural institutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,800",
+				"to": "00:04:01,880"
+			},
+			"offsets": {
+				"from": 239800,
+				"to": 241880
+			},
+			"text": " But it has often been neglected in the name"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,880",
+				"to": "00:04:05,400"
+			},
+			"offsets": {
+				"from": 241880,
+				"to": 245400
+			},
+			"text": " of national security issues or to make the applications we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,400",
+				"to": "00:04:09,160"
+			},
+			"offsets": {
+				"from": 245400,
+				"to": 249160
+			},
+			"text": " use every day smarter and more efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,160",
+				"to": "00:04:11,960"
+			},
+			"offsets": {
+				"from": 249160,
+				"to": 251960
+			},
+			"text": " Privacy and cryptographic should be the backbone"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,960",
+				"to": "00:04:13,760"
+			},
+			"offsets": {
+				"from": 251960,
+				"to": 253760
+			},
+			"text": " of the internet infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,760",
+				"to": "00:04:16,400"
+			},
+			"offsets": {
+				"from": 253760,
+				"to": 256400
+			},
+			"text": " Protocols and applications should be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,400",
+				"to": "00:04:19,200"
+			},
+			"offsets": {
+				"from": 256400,
+				"to": 259200
+			},
+			"text": " so protect all user data by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,200",
+				"to": "00:04:22,640"
+			},
+			"offsets": {
+				"from": 259200,
+				"to": 262640
+			},
+			"text": " And in addition, users should be free to change those settings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,640",
+				"to": "00:04:23,920"
+			},
+			"offsets": {
+				"from": 262640,
+				"to": 263920
+			},
+			"text": " not the opposite."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,920",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 263920,
+				"to": 266000
+			},
+			"text": " Another point is education, explaining"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:28,480"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 268480
+			},
+			"text": " to people why privacy is important"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,480",
+				"to": "00:04:30,920"
+			},
+			"offsets": {
+				"from": 268480,
+				"to": 270920
+			},
+			"text": " and how we can build privacy-focused applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,920",
+				"to": "00:04:33,280"
+			},
+			"offsets": {
+				"from": 270920,
+				"to": 273280
+			},
+			"text": " are very valuable challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,280",
+				"to": "00:04:35,560"
+			},
+			"offsets": {
+				"from": 273280,
+				"to": 275560
+			},
+			"text": " It is important to choose the right words,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,560",
+				"to": "00:04:38,480"
+			},
+			"offsets": {
+				"from": 275560,
+				"to": 278480
+			},
+			"text": " build effective designs, and convey information"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,480",
+				"to": "00:04:40,680"
+			},
+			"offsets": {
+				"from": 278480,
+				"to": 280680
+			},
+			"text": " as simply as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,680",
+				"to": "00:04:43,920"
+			},
+			"offsets": {
+				"from": 280680,
+				"to": 283920
+			},
+			"text": " However, Simplify things is not enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,920",
+				"to": "00:04:47,160"
+			},
+			"offsets": {
+				"from": 283920,
+				"to": 287160
+			},
+			"text": " Making people aware of the technological and social"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,160",
+				"to": "00:04:51,120"
+			},
+			"offsets": {
+				"from": 287160,
+				"to": 291120
+			},
+			"text": " complexity of the world we live in is equally important."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,120",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 291120,
+				"to": 294000
+			},
+			"text": " Because we don't just want users to enjoy an experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:57,600"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 297600
+			},
+			"text": " We want new friends helping us build a new web free."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,600",
+				"to": "00:05:01,040"
+			},
+			"offsets": {
+				"from": 297600,
+				"to": 301040
+			},
+			"text": " So the third point is the developer experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,040",
+				"to": "00:05:03,640"
+			},
+			"offsets": {
+				"from": 301040,
+				"to": 303640
+			},
+			"text": " The growth of our community and the adoption of our technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,640",
+				"to": "00:05:06,280"
+			},
+			"offsets": {
+				"from": 303640,
+				"to": 306280
+			},
+			"text": " depends heavily on how clear the goals are"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,280",
+				"to": "00:05:10,240"
+			},
+			"offsets": {
+				"from": 306280,
+				"to": 310240
+			},
+			"text": " and how easily the main values and concepts can be conveyed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,240",
+				"to": "00:05:12,960"
+			},
+			"offsets": {
+				"from": 310240,
+				"to": 312960
+			},
+			"text": " However, another extremely important aspect"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,960",
+				"to": "00:05:15,360"
+			},
+			"offsets": {
+				"from": 312960,
+				"to": 315360
+			},
+			"text": " is the quality of the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,360",
+				"to": "00:05:19,560"
+			},
+			"offsets": {
+				"from": 315360,
+				"to": 319560
+			},
+			"text": " The code should be tested, documented, formatted"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,560",
+				"to": "00:05:21,120"
+			},
+			"offsets": {
+				"from": 319560,
+				"to": 321120
+			},
+			"text": " with the utmost care."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,120",
+				"to": "00:05:24,480"
+			},
+			"offsets": {
+				"from": 321120,
+				"to": 324480
+			},
+			"text": " It is extremely important to use the right patters"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,480",
+				"to": "00:05:28,400"
+			},
+			"offsets": {
+				"from": 324480,
+				"to": 328400
+			},
+			"text": " and to follow the best practices, like dry and kiss."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,400",
+				"to": "00:05:31,560"
+			},
+			"offsets": {
+				"from": 328400,
+				"to": 331560
+			},
+			"text": " So developers need to be able to rely on robust,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,560",
+				"to": "00:05:33,480"
+			},
+			"offsets": {
+				"from": 331560,
+				"to": 333480
+			},
+			"text": " easy to use tools that allow applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,480",
+				"to": "00:05:36,600"
+			},
+			"offsets": {
+				"from": 333480,
+				"to": 336600
+			},
+			"text": " to be built in a short time, while also allowing them"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,600",
+				"to": "00:05:39,520"
+			},
+			"offsets": {
+				"from": 336600,
+				"to": 339520
+			},
+			"text": " to be extended, customized, and adapted"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,520",
+				"to": "00:05:42,120"
+			},
+			"offsets": {
+				"from": 339520,
+				"to": 342120
+			},
+			"text": " for specific uses."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,120",
+				"to": "00:05:45,160"
+			},
+			"offsets": {
+				"from": 342120,
+				"to": 345160
+			},
+			"text": " So developer experience and education"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,160",
+				"to": "00:05:48,760"
+			},
+			"offsets": {
+				"from": 345160,
+				"to": 348760
+			},
+			"text": " is what we have focused on in the last few months of work"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,760",
+				"to": "00:05:50,160"
+			},
+			"offsets": {
+				"from": 348760,
+				"to": 350160
+			},
+			"text": " with Semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,160",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 350160,
+				"to": 353000
+			},
+			"text": " But many of you maybe wonder if one Semaphore is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:54,680"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 354680
+			},
+			"text": " Semaphore is a technology protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,680",
+				"to": "00:05:57,480"
+			},
+			"offsets": {
+				"from": 354680,
+				"to": 357480
+			},
+			"text": " that allows people to join a group"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,480",
+				"to": "00:06:01,280"
+			},
+			"offsets": {
+				"from": 357480,
+				"to": 361280
+			},
+			"text": " and then to send signals, such as messages, endorsements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,280",
+				"to": "00:06:05,120"
+			},
+			"offsets": {
+				"from": 361280,
+				"to": 365120
+			},
+			"text": " or votes, without revealing the original identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,120",
+				"to": "00:06:07,040"
+			},
+			"offsets": {
+				"from": 365120,
+				"to": 367040
+			},
+			"text": " In addition, it also provides a mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,040",
+				"to": "00:06:09,720"
+			},
+			"offsets": {
+				"from": 367040,
+				"to": 369720
+			},
+			"text": " to prevent double signaling, which basically means"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,720",
+				"to": "00:06:11,840"
+			},
+			"offsets": {
+				"from": 369720,
+				"to": 371840
+			},
+			"text": " you cannot create the same proof twice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,840",
+				"to": "00:06:14,440"
+			},
+			"offsets": {
+				"from": 371840,
+				"to": 374440
+			},
+			"text": " or the proof cannot be verified twice."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,440",
+				"to": "00:06:17,160"
+			},
+			"offsets": {
+				"from": 374440,
+				"to": 377160
+			},
+			"text": " So what makes Semaphore powerful tool"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,160",
+				"to": "00:06:21,120"
+			},
+			"offsets": {
+				"from": 377160,
+				"to": 381120
+			},
+			"text": " is the simplicity of the protocol and the flexibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,120",
+				"to": "00:06:23,280"
+			},
+			"offsets": {
+				"from": 381120,
+				"to": 383280
+			},
+			"text": " It can be used to build many applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,280",
+				"to": "00:06:25,840"
+			},
+			"offsets": {
+				"from": 383280,
+				"to": 385840
+			},
+			"text": " like private voting applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,840",
+				"to": "00:06:29,120"
+			},
+			"offsets": {
+				"from": 385840,
+				"to": 389120
+			},
+			"text": " whistleblower applications, or xenology titles."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,120",
+				"to": "00:06:32,400"
+			},
+			"offsets": {
+				"from": 389120,
+				"to": 392400
+			},
+			"text": " Semaphore is made of three different parts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,400",
+				"to": "00:06:34,600"
+			},
+			"offsets": {
+				"from": 392400,
+				"to": 394600
+			},
+			"text": " the accounts, liquids, solidity contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,600",
+				"to": "00:06:36,200"
+			},
+			"offsets": {
+				"from": 394600,
+				"to": 396200
+			},
+			"text": " and JavaScript libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,200",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 396200,
+				"to": 401000
+			},
+			"text": " My work has focused more JavaScript libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:42,200"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 402200
+			},
+			"text": " and solidity contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,200",
+				"to": "00:06:45,080"
+			},
+			"offsets": {
+				"from": 402200,
+				"to": 405080
+			},
+			"text": " So I would like to show you the main Semaphore concepts"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,080",
+				"to": "00:06:47,520"
+			},
+			"offsets": {
+				"from": 405080,
+				"to": 407520
+			},
+			"text": " and how our libraries and contracts work"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,520",
+				"to": "00:06:50,400"
+			},
+			"offsets": {
+				"from": 407520,
+				"to": 410400
+			},
+			"text": " and how they can be used to build private applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,400",
+				"to": "00:06:52,440"
+			},
+			"offsets": {
+				"from": 410400,
+				"to": 412440
+			},
+			"text": " So creating a Semaphore identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,440",
+				"to": "00:06:55,520"
+			},
+			"offsets": {
+				"from": 412440,
+				"to": 415520
+			},
+			"text": " is the first step to interact with the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,520",
+				"to": "00:06:58,760"
+			},
+			"offsets": {
+				"from": 415520,
+				"to": 418760
+			},
+			"text": " Each identity is made up of two secret values--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,760",
+				"to": "00:07:03,080"
+			},
+			"offsets": {
+				"from": 418760,
+				"to": 423080
+			},
+			"text": " trapdoor and nullifier, and one public value, commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,080",
+				"to": "00:07:05,200"
+			},
+			"offsets": {
+				"from": 423080,
+				"to": 425200
+			},
+			"text": " So they pose in the hash of the identity nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,200",
+				"to": "00:07:08,080"
+			},
+			"offsets": {
+				"from": 425200,
+				"to": 428080
+			},
+			"text": " and trapdoor is called the identity secret,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,080",
+				"to": "00:07:10,560"
+			},
+			"offsets": {
+				"from": 428080,
+				"to": 430560
+			},
+			"text": " and the hash of the identity secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,560",
+				"to": "00:07:12,120"
+			},
+			"offsets": {
+				"from": 430560,
+				"to": 432120
+			},
+			"text": " is the identity commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,120",
+				"to": "00:07:14,680"
+			},
+			"offsets": {
+				"from": 432120,
+				"to": 434680
+			},
+			"text": " So although, in this case, we are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,680",
+				"to": "00:07:19,040"
+			},
+			"offsets": {
+				"from": 434680,
+				"to": 439040
+			},
+			"text": " using asymmetric encryption, an identity commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,040",
+				"to": "00:07:22,040"
+			},
+			"offsets": {
+				"from": 439040,
+				"to": 442040
+			},
+			"text": " can be considered something like an Ethereum address."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,040",
+				"to": "00:07:24,600"
+			},
+			"offsets": {
+				"from": 442040,
+				"to": 444600
+			},
+			"text": " It is a public value, used to represent people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,600",
+				"to": "00:07:25,920"
+			},
+			"offsets": {
+				"from": 444600,
+				"to": 445920
+			},
+			"text": " in the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,920",
+				"to": "00:07:27,880"
+			},
+			"offsets": {
+				"from": 445920,
+				"to": 447880
+			},
+			"text": " And in particular, commitments are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,880",
+				"to": "00:07:30,080"
+			},
+			"offsets": {
+				"from": 447880,
+				"to": 450080
+			},
+			"text": " used in Semaphore groups to represent"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,080",
+				"to": "00:07:32,080"
+			},
+			"offsets": {
+				"from": 450080,
+				"to": 452080
+			},
+			"text": " the identity of a group member."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,080",
+				"to": "00:07:34,640"
+			},
+			"offsets": {
+				"from": 452080,
+				"to": 454640
+			},
+			"text": " The secret values are like Ethereum private keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,640",
+				"to": "00:07:37,640"
+			},
+			"offsets": {
+				"from": 454640,
+				"to": 457640
+			},
+			"text": " and they are used to generate semaphore zero-logic proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,640",
+				"to": "00:07:39,920"
+			},
+			"offsets": {
+				"from": 457640,
+				"to": 459920
+			},
+			"text": " and authenticate signals."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,920",
+				"to": "00:07:42,360"
+			},
+			"offsets": {
+				"from": 459920,
+				"to": 462360
+			},
+			"text": " Semaphore identities can be generated off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,360",
+				"to": "00:07:46,520"
+			},
+			"offsets": {
+				"from": 462360,
+				"to": 466520
+			},
+			"text": " without JavaScript library, and quite simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,520",
+				"to": "00:07:48,760"
+			},
+			"offsets": {
+				"from": 466520,
+				"to": 468760
+			},
+			"text": " And you can generate it in two ways--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,760",
+				"to": "00:07:51,160"
+			},
+			"offsets": {
+				"from": 468760,
+				"to": 471160
+			},
+			"text": " randomly or deterministically."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,160",
+				"to": "00:07:53,080"
+			},
+			"offsets": {
+				"from": 471160,
+				"to": 473080
+			},
+			"text": " You can generate a random identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,080",
+				"to": "00:07:56,680"
+			},
+			"offsets": {
+				"from": 473080,
+				"to": 476680
+			},
+			"text": " without passing any parameters, and a deterministic identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,680",
+				"to": "00:07:59,400"
+			},
+			"offsets": {
+				"from": 476680,
+				"to": 479400
+			},
+			"text": " passing a secret message, like a password"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,400",
+				"to": "00:08:00,880"
+			},
+			"offsets": {
+				"from": 479400,
+				"to": 480880
+			},
+			"text": " or a sign-in message."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,880",
+				"to": "00:08:04,600"
+			},
+			"offsets": {
+				"from": 480880,
+				"to": 484600
+			},
+			"text": " Groups are an important concept when we speak about privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,600",
+				"to": "00:08:06,560"
+			},
+			"offsets": {
+				"from": 484600,
+				"to": 486560
+			},
+			"text": " and zero-knowledge technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,560",
+				"to": "00:08:09,760"
+			},
+			"offsets": {
+				"from": 486560,
+				"to": 489760
+			},
+			"text": " They can be thought as anonymity sets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,760",
+				"to": "00:08:12,480"
+			},
+			"offsets": {
+				"from": 489760,
+				"to": 492480
+			},
+			"text": " and they are a way to establish necessary trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,480",
+				"to": "00:08:14,360"
+			},
+			"offsets": {
+				"from": 492480,
+				"to": 494360
+			},
+			"text": " among participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,360",
+				"to": "00:08:17,800"
+			},
+			"offsets": {
+				"from": 494360,
+				"to": 497800
+			},
+			"text": " In Semaphore, a group can be people who have an account"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,800",
+				"to": "00:08:21,240"
+			},
+			"offsets": {
+				"from": 497800,
+				"to": 501240
+			},
+			"text": " on some web tube platforms with high reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,240",
+				"to": "00:08:25,040"
+			},
+			"offsets": {
+				"from": 501240,
+				"to": 505040
+			},
+			"text": " employees of a specific company, voters in an election,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,040",
+				"to": "00:08:27,960"
+			},
+			"offsets": {
+				"from": 505040,
+				"to": 507960
+			},
+			"text": " or people with specific SBTs or NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,960",
+				"to": "00:08:30,320"
+			},
+			"offsets": {
+				"from": 507960,
+				"to": 510320
+			},
+			"text": " Essentially, any set of individuals"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,320",
+				"to": "00:08:33,920"
+			},
+			"offsets": {
+				"from": 510320,
+				"to": 513920
+			},
+			"text": " who are eligible to participate in something."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,920",
+				"to": "00:08:38,360"
+			},
+			"offsets": {
+				"from": 513920,
+				"to": 518360
+			},
+			"text": " So groups can use several types of data structures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,360",
+				"to": "00:08:41,240"
+			},
+			"offsets": {
+				"from": 518360,
+				"to": 521240
+			},
+			"text": " but Merkle trees are particularly efficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,240",
+				"to": "00:08:44,080"
+			},
+			"offsets": {
+				"from": 521240,
+				"to": 524080
+			},
+			"text": " since they can prove that a leaf belongs to a tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,080",
+				"to": "00:08:47,440"
+			},
+			"offsets": {
+				"from": 524080,
+				"to": 527440
+			},
+			"text": " by using just one portion of that tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,440",
+				"to": "00:08:49,560"
+			},
+			"offsets": {
+				"from": 527440,
+				"to": 529560
+			},
+			"text": " So Semaphore uses binary Merkle trees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,560",
+				"to": "00:08:51,920"
+			},
+			"offsets": {
+				"from": 529560,
+				"to": 531920
+			},
+			"text": " in which the leaves are identity commitments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,920",
+				"to": "00:08:53,600"
+			},
+			"offsets": {
+				"from": 531920,
+				"to": 533600
+			},
+			"text": " and all the other nodes in the tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,600",
+				"to": "00:08:56,960"
+			},
+			"offsets": {
+				"from": 533600,
+				"to": 536960
+			},
+			"text": " are the ashes of their child nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,960",
+				"to": "00:08:59,960"
+			},
+			"offsets": {
+				"from": 536960,
+				"to": 539960
+			},
+			"text": " When a user join a group, their public identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,960",
+				"to": "00:09:02,560"
+			},
+			"offsets": {
+				"from": 539960,
+				"to": 542560
+			},
+			"text": " is added to that group's Merkle tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,560",
+				"to": "00:09:04,440"
+			},
+			"offsets": {
+				"from": 542560,
+				"to": 544440
+			},
+			"text": " which is therefore used to allow users"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,440",
+				"to": "00:09:06,440"
+			},
+			"offsets": {
+				"from": 544440,
+				"to": 546440
+			},
+			"text": " to generate proof of membership"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,440",
+				"to": "00:09:09,080"
+			},
+			"offsets": {
+				"from": 546440,
+				"to": 549080
+			},
+			"text": " and then send anonymous signals."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,080",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 549080,
+				"to": 552000
+			},
+			"text": " So groups can be created off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:13,920"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 553920
+			},
+			"text": " with our JavaScript library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,920",
+				"to": "00:09:16,880"
+			},
+			"offsets": {
+				"from": 553920,
+				"to": 556880
+			},
+			"text": " or on-chain with our Semaphore countries."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,880",
+				"to": "00:09:20,320"
+			},
+			"offsets": {
+				"from": 556880,
+				"to": 560320
+			},
+			"text": " When a group is very large and is updated very frequently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,320",
+				"to": "00:09:23,080"
+			},
+			"offsets": {
+				"from": 560320,
+				"to": 563080
+			},
+			"text": " an off-chain group might be a valuable alternative"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,080",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 563080,
+				"to": 564000
+			},
+			"text": " or solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 566000
+			},
+			"text": " This solution is cheaper, faster,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:28,120"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 568120
+			},
+			"text": " but tended to be more centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,120",
+				"to": "00:09:30,880"
+			},
+			"offsets": {
+				"from": 568120,
+				"to": 570880
+			},
+			"text": " On the other end, if you need correct execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,880",
+				"to": "00:09:34,960"
+			},
+			"offsets": {
+				"from": 570880,
+				"to": 574960
+			},
+			"text": " or sensitive resistance, groups can also be created on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,960",
+				"to": "00:09:37,520"
+			},
+			"offsets": {
+				"from": 574960,
+				"to": 577520
+			},
+			"text": " For each on-chain groups, there is an admin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,520",
+				"to": "00:09:39,680"
+			},
+			"offsets": {
+				"from": 577520,
+				"to": 579680
+			},
+			"text": " which can be an Ethereum address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,680",
+				"to": "00:09:41,840"
+			},
+			"offsets": {
+				"from": 579680,
+				"to": 581840
+			},
+			"text": " a smart contract or a multi-sick world."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,840",
+				"to": "00:09:43,840"
+			},
+			"offsets": {
+				"from": 581840,
+				"to": 583840
+			},
+			"text": " For example, if you want to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,840",
+				"to": "00:09:45,600"
+			},
+			"offsets": {
+				"from": 583840,
+				"to": 585600
+			},
+			"text": " a fully decentralized on-chain group,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,600",
+				"to": "00:09:50,960"
+			},
+			"offsets": {
+				"from": 585600,
+				"to": 590960
+			},
+			"text": " you could create a group and send your contract as admin"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,960",
+				"to": "00:09:55,840"
+			},
+			"offsets": {
+				"from": 590960,
+				"to": 595840
+			},
+			"text": " or USA Mothers, which could use to allow people"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,840",
+				"to": "00:10:00,680"
+			},
+			"offsets": {
+				"from": 595840,
+				"to": 600680
+			},
+			"text": " to join that group, only if they own specific NFTs or SBTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,680",
+				"to": "00:10:03,800"
+			},
+			"offsets": {
+				"from": 600680,
+				"to": 603800
+			},
+			"text": " So after creating data identity and joining a group,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,800",
+				"to": "00:10:07,800"
+			},
+			"offsets": {
+				"from": 603800,
+				"to": 607800
+			},
+			"text": " users can anonymously prove that they are members of that group"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,800",
+				"to": "00:10:12,920"
+			},
+			"offsets": {
+				"from": 607800,
+				"to": 612920
+			},
+			"text": " and send signals, such as votes, endorsements or any message."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,920",
+				"to": "00:10:14,880"
+			},
+			"offsets": {
+				"from": 612920,
+				"to": 614880
+			},
+			"text": " Signals are part of a zero-knowledge proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,880",
+				"to": "00:10:18,880"
+			},
+			"offsets": {
+				"from": 614880,
+				"to": 618880
+			},
+			"text": " which must be generated by users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,880",
+				"to": "00:10:20,680"
+			},
+			"offsets": {
+				"from": 618880,
+				"to": 620680
+			},
+			"text": " preferably in their own device,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,680",
+				"to": "00:10:22,800"
+			},
+			"offsets": {
+				"from": 620680,
+				"to": 622800
+			},
+			"text": " as they need to use their private identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,800",
+				"to": "00:10:24,680"
+			},
+			"offsets": {
+				"from": 622800,
+				"to": 624680
+			},
+			"text": " so secret values."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,680",
+				"to": "00:10:29,360"
+			},
+			"offsets": {
+				"from": 624680,
+				"to": 629360
+			},
+			"text": " And it's something like client-sibing-creature, in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,360",
+				"to": "00:10:32,920"
+			},
+			"offsets": {
+				"from": 629360,
+				"to": 632920
+			},
+			"text": " and it allows proofs to be generated in a protected environment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,920",
+				"to": "00:10:33,920"
+			},
+			"offsets": {
+				"from": 632920,
+				"to": 633920
+			},
+			"text": " locally."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,920",
+				"to": "00:10:37,680"
+			},
+			"offsets": {
+				"from": 633920,
+				"to": 637680
+			},
+			"text": " So that proof can then be made public"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,680",
+				"to": "00:10:40,960"
+			},
+			"offsets": {
+				"from": 637680,
+				"to": 640960
+			},
+			"text": " and verified by everyone, on-chain or off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,960",
+				"to": "00:10:44,840"
+			},
+			"offsets": {
+				"from": 640960,
+				"to": 644840
+			},
+			"text": " To generate a valid proof, we also need an external nullifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,840",
+				"to": "00:10:48,280"
+			},
+			"offsets": {
+				"from": 644840,
+				"to": 648280
+			},
+			"text": " and the edge of this value and the identity nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,280",
+				"to": "00:10:50,200"
+			},
+			"offsets": {
+				"from": 648280,
+				"to": 650200
+			},
+			"text": " is the nullifier hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,200",
+				"to": "00:10:52,680"
+			},
+			"offsets": {
+				"from": 650200,
+				"to": 652680
+			},
+			"text": " which can be used to avoid double signaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,680",
+				"to": "00:10:54,280"
+			},
+			"offsets": {
+				"from": 652680,
+				"to": 654280
+			},
+			"text": " So imagine you have a group you are using"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,280",
+				"to": "00:10:56,360"
+			},
+			"offsets": {
+				"from": 654280,
+				"to": 656360
+			},
+			"text": " to vote on some proposals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,360",
+				"to": "00:10:59,680"
+			},
+			"offsets": {
+				"from": 656360,
+				"to": 659680
+			},
+			"text": " and you want all members of that group to vote only once."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,680",
+				"to": "00:11:04,120"
+			},
+			"offsets": {
+				"from": 659680,
+				"to": 664120
+			},
+			"text": " You can use the idea of the group as an external nullifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,120",
+				"to": "00:11:06,640"
+			},
+			"offsets": {
+				"from": 664120,
+				"to": 666640
+			},
+			"text": " and when a user votes the first time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,640",
+				"to": "00:11:08,840"
+			},
+			"offsets": {
+				"from": 666640,
+				"to": 668840
+			},
+			"text": " you can save the edge of their identity nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,840",
+				"to": "00:11:10,320"
+			},
+			"offsets": {
+				"from": 668840,
+				"to": 670320
+			},
+			"text": " and group ID,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,320",
+				"to": "00:11:12,720"
+			},
+			"offsets": {
+				"from": 670320,
+				"to": 672720
+			},
+			"text": " and afterwards block any double votes"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,720",
+				"to": "00:11:15,080"
+			},
+			"offsets": {
+				"from": 672720,
+				"to": 675080
+			},
+			"text": " by checking if that hash already exists."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,080",
+				"to": "00:11:18,440"
+			},
+			"offsets": {
+				"from": 675080,
+				"to": 678440
+			},
+			"text": " Also, in this case, we have a JavaScript library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,440",
+				"to": "00:11:20,800"
+			},
+			"offsets": {
+				"from": 678440,
+				"to": 680800
+			},
+			"text": " which can be used to generate proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,800",
+				"to": "00:11:23,120"
+			},
+			"offsets": {
+				"from": 680800,
+				"to": 683120
+			},
+			"text": " Proofs must be generated off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,120",
+				"to": "00:11:27,800"
+			},
+			"offsets": {
+				"from": 683120,
+				"to": 687800
+			},
+			"text": " And those proofs can be verified on-chain or off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,800",
+				"to": "00:11:29,360"
+			},
+			"offsets": {
+				"from": 687800,
+				"to": 689360
+			},
+			"text": " Off-chain with our JavaScript library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,360",
+				"to": "00:11:32,600"
+			},
+			"offsets": {
+				"from": 689360,
+				"to": 692600
+			},
+			"text": " the same library, and on-chain with our smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,600",
+				"to": "00:11:34,520"
+			},
+			"offsets": {
+				"from": 692600,
+				"to": 694520
+			},
+			"text": " Also, in this case, the way you use them"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,520",
+				"to": "00:11:37,840"
+			},
+			"offsets": {
+				"from": 694520,
+				"to": 697840
+			},
+			"text": " depends on your application, on your use case."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,840",
+				"to": "00:11:39,920"
+			},
+			"offsets": {
+				"from": 697840,
+				"to": 699920
+			},
+			"text": " So verifying enough chain proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,920",
+				"to": "00:11:42,880"
+			},
+			"offsets": {
+				"from": 699920,
+				"to": 702880
+			},
+			"text": " allows the verifier, your server, or you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,880",
+				"to": "00:11:45,720"
+			},
+			"offsets": {
+				"from": 702880,
+				"to": 705720
+			},
+			"text": " to be certain of the validity of the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,720",
+				"to": "00:11:47,320"
+			},
+			"offsets": {
+				"from": 705720,
+				"to": 707320
+			},
+			"text": " So it's more centralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,320",
+				"to": "00:11:49,680"
+			},
+			"offsets": {
+				"from": 707320,
+				"to": 709680
+			},
+			"text": " and verifying it on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,680",
+				"to": "00:11:51,440"
+			},
+			"offsets": {
+				"from": 709680,
+				"to": 711440
+			},
+			"text": " On the other end, allows everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,440",
+				"to": "00:11:53,040"
+			},
+			"offsets": {
+				"from": 711440,
+				"to": 713040
+			},
+			"text": " to consider that proof valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,040",
+				"to": "00:11:55,400"
+			},
+			"offsets": {
+				"from": 713040,
+				"to": 715400
+			},
+			"text": " Because that's not contactly public."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,400",
+				"to": "00:11:59,880"
+			},
+			"offsets": {
+				"from": 715400,
+				"to": 719880
+			},
+			"text": " So semaphore is already being used by some projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,880",
+				"to": "00:12:01,800"
+			},
+			"offsets": {
+				"from": 719880,
+				"to": 721800
+			},
+			"text": " like Unirap."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,800",
+				"to": "00:12:04,280"
+			},
+			"offsets": {
+				"from": 721800,
+				"to": 724280
+			},
+			"text": " Unirap is a protocol of our reputation system"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,280",
+				"to": "00:12:05,720"
+			},
+			"offsets": {
+				"from": 724280,
+				"to": 725720
+			},
+			"text": " built on top of semaphore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,720",
+				"to": "00:12:08,800"
+			},
+			"offsets": {
+				"from": 725720,
+				"to": 728800
+			},
+			"text": " where users can anonymously give, receive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,800",
+				"to": "00:12:10,960"
+			},
+			"offsets": {
+				"from": 728800,
+				"to": 730960
+			},
+			"text": " and prove reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,960",
+				"to": "00:12:12,440"
+			},
+			"offsets": {
+				"from": 730960,
+				"to": 732440
+			},
+			"text": " It is a great way to allow people"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,440",
+				"to": "00:12:14,320"
+			},
+			"offsets": {
+				"from": 732440,
+				"to": 734320
+			},
+			"text": " to build reputation over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,320",
+				"to": "00:12:17,160"
+			},
+			"offsets": {
+				"from": 734320,
+				"to": 737160
+			},
+			"text": " while giving them technical role"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,160",
+				"to": "00:12:19,720"
+			},
+			"offsets": {
+				"from": 737160,
+				"to": 739720
+			},
+			"text": " over how much they reveal about themselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,720",
+				"to": "00:12:21,160"
+			},
+			"offsets": {
+				"from": 739720,
+				"to": 741160
+			},
+			"text": " in a given interaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,160",
+				"to": "00:12:24,320"
+			},
+			"offsets": {
+				"from": 741160,
+				"to": 744320
+			},
+			"text": " So another interesting project is the Kitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,320",
+				"to": "00:12:25,880"
+			},
+			"offsets": {
+				"from": 744320,
+				"to": 745880
+			},
+			"text": " which is an anonymous social network"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,880",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 745880,
+				"to": 749000
+			},
+			"text": " where people can post and chat"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:31,400"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 751400
+			},
+			"text": " without losing their real-life reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,400",
+				"to": "00:12:36,400"
+			},
+			"offsets": {
+				"from": 751400,
+				"to": 756400
+			},
+			"text": " And temporary anonymous zone is like an experiment."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,400",
+				"to": "00:12:40,720"
+			},
+			"offsets": {
+				"from": 756400,
+				"to": 760720
+			},
+			"text": " We have a booth on the first floor."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,720",
+				"to": "00:12:42,080"
+			},
+			"offsets": {
+				"from": 760720,
+				"to": 762080
+			},
+			"text": " You can try our applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,080",
+				"to": "00:12:45,520"
+			},
+			"offsets": {
+				"from": 762080,
+				"to": 765520
+			},
+			"text": " And there are like two applications you can use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,520",
+				"to": "00:12:48,680"
+			},
+			"offsets": {
+				"from": 765520,
+				"to": 768680
+			},
+			"text": " where you can answer questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,680",
+				"to": "00:12:50,760"
+			},
+			"offsets": {
+				"from": 768680,
+				"to": 770760
+			},
+			"text": " and ask questions anonymously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,760",
+				"to": "00:12:51,880"
+			},
+			"offsets": {
+				"from": 770760,
+				"to": 771880
+			},
+			"text": " with one application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,880",
+				"to": "00:12:55,560"
+			},
+			"offsets": {
+				"from": 771880,
+				"to": 775560
+			},
+			"text": " and make art anonymously with the other application."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,560",
+				"to": "00:12:56,680"
+			},
+			"offsets": {
+				"from": 775560,
+				"to": 776680
+			},
+			"text": " Collective art."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,680",
+				"to": "00:12:58,400"
+			},
+			"offsets": {
+				"from": 776680,
+				"to": 778400
+			},
+			"text": " It's like an experiment to allow people"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,400",
+				"to": "00:13:02,160"
+			},
+			"offsets": {
+				"from": 778400,
+				"to": 782160
+			},
+			"text": " to learn more about our technologies and about semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,160",
+				"to": "00:13:05,120"
+			},
+			"offsets": {
+				"from": 782160,
+				"to": 785120
+			},
+			"text": " So semaphore is still in its early stage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,120",
+				"to": "00:13:09,760"
+			},
+			"offsets": {
+				"from": 785120,
+				"to": 789760
+			},
+			"text": " and some of the ideas for improving it are the following."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,760",
+				"to": "00:13:11,760"
+			},
+			"offsets": {
+				"from": 789760,
+				"to": 791760
+			},
+			"text": " Create an infrastructure to manage groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,760",
+				"to": "00:13:16,520"
+			},
+			"offsets": {
+				"from": 791760,
+				"to": 796520
+			},
+			"text": " The idea is to have a cloud or self-hosted dashboard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,520",
+				"to": "00:13:19,040"
+			},
+			"offsets": {
+				"from": 796520,
+				"to": 799040
+			},
+			"text": " where people can create groups, add members,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,040",
+				"to": "00:13:21,640"
+			},
+			"offsets": {
+				"from": 799040,
+				"to": 801640
+			},
+			"text": " remove members or update members,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,640",
+				"to": "00:13:24,560"
+			},
+			"offsets": {
+				"from": 801640,
+				"to": 804560
+			},
+			"text": " and they can create many kind of groups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,560",
+				"to": "00:13:27,560"
+			},
+			"offsets": {
+				"from": 804560,
+				"to": 807560
+			},
+			"text": " like permission at groups or permissionless,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,560",
+				"to": "00:13:30,440"
+			},
+			"offsets": {
+				"from": 807560,
+				"to": 810440
+			},
+			"text": " decentralized groups, and also reputation groups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,440",
+				"to": "00:13:32,760"
+			},
+			"offsets": {
+				"from": 810440,
+				"to": 812760
+			},
+			"text": " similar to rep."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,760",
+				"to": "00:13:36,600"
+			},
+			"offsets": {
+				"from": 812760,
+				"to": 816600
+			},
+			"text": " So another point is create attestations contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,600",
+				"to": "00:13:38,800"
+			},
+			"offsets": {
+				"from": 816600,
+				"to": 818800
+			},
+			"text": " for decentralized groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,800",
+				"to": "00:13:41,320"
+			},
+			"offsets": {
+				"from": 818800,
+				"to": 821320
+			},
+			"text": " The idea here is quite simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,320",
+				"to": "00:13:43,880"
+			},
+			"offsets": {
+				"from": 821320,
+				"to": 823880
+			},
+			"text": " The idea is to create on-chain contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,880",
+				"to": "00:13:44,720"
+			},
+			"offsets": {
+				"from": 823880,
+				"to": 824720
+			},
+			"text": " as more contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,720",
+				"to": "00:13:47,720"
+			},
+			"offsets": {
+				"from": 824720,
+				"to": 827720
+			},
+			"text": " where people can join groups directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,720",
+				"to": "00:13:50,040"
+			},
+			"offsets": {
+				"from": 827720,
+				"to": 830040
+			},
+			"text": " without any external approval,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,040",
+				"to": "00:13:52,840"
+			},
+			"offsets": {
+				"from": 830040,
+				"to": 832840
+			},
+			"text": " based on on-chain attributes like SBTs or NFTs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,840",
+				"to": "00:13:56,160"
+			},
+			"offsets": {
+				"from": 832840,
+				"to": 836160
+			},
+			"text": " or just the amount of money you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,160",
+				"to": "00:13:58,520"
+			},
+			"offsets": {
+				"from": 836160,
+				"to": 838520
+			},
+			"text": " We will investigate all our zero knowledge technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,520",
+				"to": "00:14:00,560"
+			},
+			"offsets": {
+				"from": 838520,
+				"to": 840560
+			},
+			"text": " and proof-it systems, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,560",
+				"to": "00:14:03,360"
+			},
+			"offsets": {
+				"from": 840560,
+				"to": 843360
+			},
+			"text": " and we will continue improving the developer experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,360",
+				"to": "00:14:05,400"
+			},
+			"offsets": {
+				"from": 843360,
+				"to": 845400
+			},
+			"text": " and our documentation website."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,400",
+				"to": "00:14:09,160"
+			},
+			"offsets": {
+				"from": 845400,
+				"to": 849160
+			},
+			"text": " The idea is to create an educational website."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,160",
+				"to": "00:14:10,600"
+			},
+			"offsets": {
+				"from": 849160,
+				"to": 850600
+			},
+			"text": " And last but not least,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,600",
+				"to": "00:14:13,680"
+			},
+			"offsets": {
+				"from": 850600,
+				"to": 853680
+			},
+			"text": " we want to create a strong community."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,680",
+				"to": "00:14:15,080"
+			},
+			"offsets": {
+				"from": 853680,
+				"to": 855080
+			},
+			"text": " We have many ideas here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,120",
+				"to": "00:14:17,960"
+			},
+			"offsets": {
+				"from": 856120,
+				"to": 857960
+			},
+			"text": " One of them is our GANs round."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,960",
+				"to": "00:14:20,120"
+			},
+			"offsets": {
+				"from": 857960,
+				"to": 860120
+			},
+			"text": " So we are launching a semaphore GAN round."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,120",
+				"to": "00:14:23,880"
+			},
+			"offsets": {
+				"from": 860120,
+				"to": 863880
+			},
+			"text": " You can scan the core code on the left."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,880",
+				"to": "00:14:26,720"
+			},
+			"offsets": {
+				"from": 863880,
+				"to": 866720
+			},
+			"text": " And yeah, if you are interested in building"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,720",
+				"to": "00:14:29,080"
+			},
+			"offsets": {
+				"from": 866720,
+				"to": 869080
+			},
+			"text": " privacy preserving applications with semaphore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,080",
+				"to": "00:14:32,760"
+			},
+			"offsets": {
+				"from": 869080,
+				"to": 872760
+			},
+			"text": " you can scan that core code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,760",
+				"to": "00:14:36,040"
+			},
+			"offsets": {
+				"from": 872760,
+				"to": 876040
+			},
+			"text": " We will be real excited to know more about your ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,040",
+				"to": "00:14:36,880"
+			},
+			"offsets": {
+				"from": 876040,
+				"to": 876880
+			},
+			"text": " and projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,880",
+				"to": "00:14:40,080"
+			},
+			"offsets": {
+				"from": 876880,
+				"to": 880080
+			},
+			"text": " Whereas if you want more information about semaphore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,080",
+				"to": "00:14:42,120"
+			},
+			"offsets": {
+				"from": 880080,
+				"to": 882120
+			},
+			"text": " or if you have any questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,120",
+				"to": "00:14:43,600"
+			},
+			"offsets": {
+				"from": 882120,
+				"to": 883600
+			},
+			"text": " please visit our website,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,600",
+				"to": "00:14:47,760"
+			},
+			"offsets": {
+				"from": 883600,
+				"to": 887760
+			},
+			"text": " where you can also find the link of our Discord server,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,760",
+				"to": "00:14:51,240"
+			},
+			"offsets": {
+				"from": 887760,
+				"to": 891240
+			},
+			"text": " or come to our touch booth on the first floor."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,240",
+				"to": "00:14:55,080"
+			},
+			"offsets": {
+				"from": 891240,
+				"to": 895080
+			},
+			"text": " So I hope my talk has been helpful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,080",
+				"to": "00:14:57,800"
+			},
+			"offsets": {
+				"from": 895080,
+				"to": 897800
+			},
+			"text": " and I really want to thank you all for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,800",
+				"to": "00:15:01,480"
+			},
+			"offsets": {
+				"from": 897800,
+				"to": 901480
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,480",
+				"to": "00:15:02,320"
+			},
+			"offsets": {
+				"from": 901480,
+				"to": 902320
+			},
+			"text": " - Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,320",
+				"to": "00:15:05,800"
+			},
+			"offsets": {
+				"from": 902320,
+				"to": 905800
+			},
+			"text": " We have eight minutes for any question"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,800",
+				"to": "00:15:07,400"
+			},
+			"offsets": {
+				"from": 905800,
+				"to": 907400
+			},
+			"text": " that you have for SIDOR."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,400",
+				"to": "00:15:10,240"
+			},
+			"offsets": {
+				"from": 907400,
+				"to": 910240
+			},
+			"text": " No, no questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,240",
+				"to": "00:15:11,080"
+			},
+			"offsets": {
+				"from": 910240,
+				"to": 911080
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,520",
+				"to": "00:15:15,360"
+			},
+			"offsets": {
+				"from": 912520,
+				"to": 915360
+			},
+			"text": " So you can go to those QR and continue the conversation"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,360",
+				"to": "00:15:16,960"
+			},
+			"offsets": {
+				"from": 915360,
+				"to": 916960
+			},
+			"text": " on the website on the GANs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,960",
+				"to": "00:15:19,540"
+			},
+			"offsets": {
+				"from": 916960,
+				"to": 919540
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,540",
+				"to": "00:15:22,380"
+			},
+			"offsets": {
+				"from": 919540,
+				"to": 922380
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,380",
+				"to": "00:15:25,220"
+			},
+			"offsets": {
+				"from": 922380,
+				"to": 925220
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,220",
+				"to": "00:15:28,060"
+			},
+			"offsets": {
+				"from": 925220,
+				"to": 928060
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,060",
+				"to": "00:15:57,060"
+			},
+			"offsets": {
+				"from": 928060,
+				"to": 957060
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

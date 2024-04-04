@@ -1,0 +1,6159 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,360"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3360
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,360",
+				"to": "00:00:18,160"
+			},
+			"offsets": {
+				"from": 3360,
+				"to": 18160
+			},
+			"text": " My name is Venkatesh Rao, and it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,160",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18160,
+				"to": 20000
+			},
+			"text": " kind of complicated to introduce myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:22,640"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 22640
+			},
+			"text": " So you can go to my website."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,640",
+				"to": "00:00:25,960"
+			},
+			"offsets": {
+				"from": 22640,
+				"to": 25960
+			},
+			"text": " I'm basically a blogger and a couple of other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,960",
+				"to": "00:00:30,120"
+			},
+			"offsets": {
+				"from": 25960,
+				"to": 30120
+			},
+			"text": " And I promise you this is the only meme I'll throw at you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,120",
+				"to": "00:00:37,240"
+			},
+			"offsets": {
+				"from": 30120,
+				"to": 37240
+			},
+			"text": " So I do write a blog, newsletter, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,240",
+				"to": "00:00:40,560"
+			},
+			"offsets": {
+				"from": 37240,
+				"to": 40560
+			},
+			"text": " And this is going to be a pretty abstract doc"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,560",
+				"to": "00:00:42,360"
+			},
+			"offsets": {
+				"from": 40560,
+				"to": 42360
+			},
+			"text": " and a fairly high level."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,360",
+				"to": "00:00:45,080"
+			},
+			"offsets": {
+				"from": 42360,
+				"to": 45080
+			},
+			"text": " But I do have at least some experience dabbling"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,080",
+				"to": "00:00:47,360"
+			},
+			"offsets": {
+				"from": 45080,
+				"to": 47360
+			},
+			"text": " at a very hands-on beginner level."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,360",
+				"to": "00:00:51,040"
+			},
+			"offsets": {
+				"from": 47360,
+				"to": 51040
+			},
+			"text": " So I'm coming from somewhere, as in it's not up in the cloud."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,040",
+				"to": "00:00:53,760"
+			},
+			"offsets": {
+				"from": 51040,
+				"to": 53760
+			},
+			"text": " So if you're interested, I did a long thread last year"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,760",
+				"to": "00:00:58,400"
+			},
+			"offsets": {
+				"from": 53760,
+				"to": 58400
+			},
+			"text": " about my initial explorations of Web3 stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,400",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 58400,
+				"to": 62000
+			},
+			"text": " OK, so the title of my talk, There are many alternatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:06,200"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 66200
+			},
+			"text": " It's a reference to Margaret Thatcher's famous line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,200",
+				"to": "00:01:07,800"
+			},
+			"offsets": {
+				"from": 66200,
+				"to": 67800
+			},
+			"text": " there is no alternative."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,800",
+				"to": "00:01:11,400"
+			},
+			"offsets": {
+				"from": 67800,
+				"to": 71400
+			},
+			"text": " She popularized it, I think, starting in 1980."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,400",
+				"to": "00:01:16,040"
+			},
+			"offsets": {
+				"from": 71400,
+				"to": 76040
+			},
+			"text": " And it became the catchphrase of neoliberalism."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,040",
+				"to": "00:01:18,840"
+			},
+			"offsets": {
+				"from": 76040,
+				"to": 78840
+			},
+			"text": " And the basic idea was that as communism"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,840",
+				"to": "00:01:21,240"
+			},
+			"offsets": {
+				"from": 78840,
+				"to": 81240
+			},
+			"text": " was beginning to get discredited,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,240",
+				"to": "00:01:23,480"
+			},
+			"offsets": {
+				"from": 81240,
+				"to": 83480
+			},
+			"text": " there was increasingly no alternative"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,480",
+				"to": "00:01:26,400"
+			},
+			"offsets": {
+				"from": 83480,
+				"to": 86400
+			},
+			"text": " to the ideal Western liberal democratic ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,400",
+				"to": "00:01:28,760"
+			},
+			"offsets": {
+				"from": 86400,
+				"to": 88760
+			},
+			"text": " of running countries with free markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,760",
+				"to": "00:01:31,240"
+			},
+			"offsets": {
+				"from": 88760,
+				"to": 91240
+			},
+			"text": " and the institutions that came with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,240",
+				"to": "00:01:35,120"
+			},
+			"offsets": {
+				"from": 91240,
+				"to": 95120
+			},
+			"text": " And it became sort of the core of what"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,120",
+				"to": "00:01:37,160"
+			},
+			"offsets": {
+				"from": 95120,
+				"to": 97160
+			},
+			"text": " became known as the Washington consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,160",
+				"to": "00:01:40,760"
+			},
+			"offsets": {
+				"from": 97160,
+				"to": 100760
+			},
+			"text": " So for those of you who need the short history lesson,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,760",
+				"to": "00:01:43,840"
+			},
+			"offsets": {
+				"from": 100760,
+				"to": 103840
+			},
+			"text": " this was a consensus before blockchain type consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,840",
+				"to": "00:01:46,360"
+			},
+			"offsets": {
+				"from": 103840,
+				"to": 106360
+			},
+			"text": " And this was the set of practices that the World Bank"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,360",
+				"to": "00:01:51,800"
+			},
+			"offsets": {
+				"from": 106360,
+				"to": 111800
+			},
+			"text": " and IMF used to sort of dictate to countries how they should"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,800",
+				"to": "00:01:53,400"
+			},
+			"offsets": {
+				"from": 111800,
+				"to": 113400
+			},
+			"text": " run their economies."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,400",
+				"to": "00:01:55,400"
+			},
+			"offsets": {
+				"from": 113400,
+				"to": 115400
+			},
+			"text": " And this was around 1989."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,400",
+				"to": "00:02:01,920"
+			},
+			"offsets": {
+				"from": 115400,
+				"to": 121920
+			},
+			"text": " And as the Cold War ended, the thesis"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,920",
+				"to": "00:02:04,520"
+			},
+			"offsets": {
+				"from": 121920,
+				"to": 124520
+			},
+			"text": " became more than an economic thesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,520",
+				"to": "00:02:07,080"
+			},
+			"offsets": {
+				"from": 124520,
+				"to": 127080
+			},
+			"text": " And it leveled up into a sort of philosophical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,080",
+				"to": "00:02:08,760"
+			},
+			"offsets": {
+				"from": 127080,
+				"to": 128760
+			},
+			"text": " historical thesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,760",
+				"to": "00:02:11,080"
+			},
+			"offsets": {
+				"from": 128760,
+				"to": 131080
+			},
+			"text": " And one of the things that really helped this along"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,080",
+				"to": "00:02:13,360"
+			},
+			"offsets": {
+				"from": 131080,
+				"to": 133360
+			},
+			"text": " was this book that came out in '91"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,360",
+				"to": "00:02:16,360"
+			},
+			"offsets": {
+				"from": 133360,
+				"to": 136360
+			},
+			"text": " called \"The End of History and the Last Man.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,360",
+				"to": "00:02:18,480"
+			},
+			"offsets": {
+				"from": 136360,
+				"to": 138480
+			},
+			"text": " And it's widely misunderstood."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,480",
+				"to": "00:02:20,280"
+			},
+			"offsets": {
+				"from": 138480,
+				"to": 140280
+			},
+			"text": " But it became sort of a justification"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,280",
+				"to": "00:02:23,560"
+			},
+			"offsets": {
+				"from": 140280,
+				"to": 143560
+			},
+			"text": " for the idea that there is no alternative to the one way"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,560",
+				"to": "00:02:25,160"
+			},
+			"offsets": {
+				"from": 143560,
+				"to": 145160
+			},
+			"text": " to run the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,160",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 145160,
+				"to": 148000
+			},
+			"text": " And of course, as many of you remember,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:30,160"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 150160
+			},
+			"text": " a lot of people were very unhappy with the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,160",
+				"to": "00:02:34,440"
+			},
+			"offsets": {
+				"from": 150160,
+				"to": 154440
+			},
+			"text": " of there is a one single playbook of how to run the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,440",
+				"to": "00:02:38,200"
+			},
+			"offsets": {
+				"from": 154440,
+				"to": 158200
+			},
+			"text": " And I think of them as all tenors."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,200",
+				"to": "00:02:40,200"
+			},
+			"offsets": {
+				"from": 158200,
+				"to": 160200
+			},
+			"text": " They don't really want a pluralist world"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,200",
+				"to": "00:02:42,800"
+			},
+			"offsets": {
+				"from": 160200,
+				"to": 162800
+			},
+			"text": " with many systems competing on how to run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,800",
+				"to": "00:02:45,080"
+			},
+			"offsets": {
+				"from": 162800,
+				"to": 165080
+			},
+			"text": " But they want to be the default alternative."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,080",
+				"to": "00:02:47,400"
+			},
+			"offsets": {
+				"from": 165080,
+				"to": 167400
+			},
+			"text": " They want to be the way to run the world to which there"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,400",
+				"to": "00:02:48,760"
+			},
+			"offsets": {
+				"from": 167400,
+				"to": 168760
+			},
+			"text": " is no alternative."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,760",
+				"to": "00:02:51,920"
+			},
+			"offsets": {
+				"from": 168760,
+				"to": 171920
+			},
+			"text": " And some of them are kind of like lost to history now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,920",
+				"to": "00:02:55,680"
+			},
+			"offsets": {
+				"from": 171920,
+				"to": 175680
+			},
+			"text": " But some of you may remember the anti-globalization protests"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,680",
+				"to": "00:02:59,040"
+			},
+			"offsets": {
+				"from": 175680,
+				"to": 179040
+			},
+			"text": " and the World Social Forum that came up in the late '90s."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,040",
+				"to": "00:03:01,840"
+			},
+			"offsets": {
+				"from": 179040,
+				"to": 181840
+			},
+			"text": " Islamic terror was another alternate way"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,840",
+				"to": "00:03:04,600"
+			},
+			"offsets": {
+				"from": 181840,
+				"to": 184600
+			},
+			"text": " of running the world in the making."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,600",
+				"to": "00:03:07,600"
+			},
+			"offsets": {
+				"from": 184600,
+				"to": 187600
+			},
+			"text": " What we now think of as sovereign individualism"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,600",
+				"to": "00:03:10,200"
+			},
+			"offsets": {
+				"from": 187600,
+				"to": 190200
+			},
+			"text": " type libertarianism, the original book actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,200",
+				"to": "00:03:13,760"
+			},
+			"offsets": {
+				"from": 190200,
+				"to": 193760
+			},
+			"text": " came out in the late '90s before blockchain stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,760",
+				"to": "00:03:16,800"
+			},
+			"offsets": {
+				"from": 193760,
+				"to": 196800
+			},
+			"text": " And of course, the Chinese model and Deng's model"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,800",
+				"to": "00:03:19,440"
+			},
+			"offsets": {
+				"from": 196800,
+				"to": 199440
+			},
+			"text": " of running an alternate to the Western model"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,440",
+				"to": "00:03:20,600"
+			},
+			"offsets": {
+				"from": 199440,
+				"to": 200600
+			},
+			"text": " came up around them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,600",
+				"to": "00:03:24,080"
+			},
+			"offsets": {
+				"from": 200600,
+				"to": 204080
+			},
+			"text": " So I define Athena, or there is no alternative theory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,080",
+				"to": "00:03:26,240"
+			},
+			"offsets": {
+				"from": 204080,
+				"to": 206240
+			},
+			"text": " as a kind of maxi thesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,240",
+				"to": "00:03:30,800"
+			},
+			"offsets": {
+				"from": 206240,
+				"to": 210800
+			},
+			"text": " It's the idea that one winner-take-all convergent future"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,800",
+				"to": "00:03:33,240"
+			},
+			"offsets": {
+				"from": 210800,
+				"to": 213240
+			},
+			"text": " will dominate the rest of history."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,240",
+				"to": "00:03:35,960"
+			},
+			"offsets": {
+				"from": 213240,
+				"to": 215960
+			},
+			"text": " And again, is Bruno Massas in the crowd?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,960",
+				"to": "00:03:39,600"
+			},
+			"offsets": {
+				"from": 215960,
+				"to": 219600
+			},
+			"text": " So you should attend his talk since he's written"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,600",
+				"to": "00:03:42,040"
+			},
+			"offsets": {
+				"from": 219600,
+				"to": 222040
+			},
+			"text": " a book called History's Beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,040",
+				"to": "00:03:43,680"
+			},
+			"offsets": {
+				"from": 222040,
+				"to": 223680
+			},
+			"text": " And I'm sure he has more to say about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,680",
+				"to": "00:03:46,680"
+			},
+			"offsets": {
+				"from": 223680,
+				"to": 226680
+			},
+			"text": " But I think a lot of the use of Fukuyama's ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,680",
+				"to": "00:03:50,120"
+			},
+			"offsets": {
+				"from": 226680,
+				"to": 230120
+			},
+			"text": " in the sort of there is no alternative kind of theorizing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,120",
+				"to": "00:03:52,280"
+			},
+			"offsets": {
+				"from": 230120,
+				"to": 232280
+			},
+			"text": " is basically wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,280",
+				"to": "00:03:56,640"
+			},
+			"offsets": {
+				"from": 232280,
+				"to": 236640
+			},
+			"text": " OK, let's start the story for this talk with Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,640",
+				"to": "00:03:59,760"
+			},
+			"offsets": {
+				"from": 236640,
+				"to": 239760
+			},
+			"text": " And I think of Bitcoin as the alt-libertarian,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,760",
+				"to": "00:04:02,880"
+			},
+			"offsets": {
+				"from": 239760,
+				"to": 242880
+			},
+			"text": " Tina playbook with extra steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,880",
+				"to": "00:04:05,960"
+			},
+			"offsets": {
+				"from": 242880,
+				"to": 245960
+			},
+			"text": " So I don't have much more to say about Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,960",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 245960,
+				"to": 250000
+			},
+			"text": " But Ethereum, I think, is not a Tina theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:14,480"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 254480
+			},
+			"text": " It seems to enable many divergent stories even within itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,480",
+				"to": "00:04:17,080"
+			},
+			"offsets": {
+				"from": 254480,
+				"to": 257080
+			},
+			"text": " and in its relationships to other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,080",
+				"to": "00:04:18,960"
+			},
+			"offsets": {
+				"from": 257080,
+				"to": 258960
+			},
+			"text": " So within the Ethereum universe, you've"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,960",
+				"to": "00:04:20,800"
+			},
+			"offsets": {
+				"from": 258960,
+				"to": 260800
+			},
+			"text": " got artists with their NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,800",
+				"to": "00:04:24,920"
+			},
+			"offsets": {
+				"from": 260800,
+				"to": 264920
+			},
+			"text": " You've got DeFi deejans going for yield farming."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,920",
+				"to": "00:04:26,920"
+			},
+			"offsets": {
+				"from": 264920,
+				"to": 266920
+			},
+			"text": " And these are very, very different types of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,920",
+				"to": "00:04:29,280"
+			},
+			"offsets": {
+				"from": 266920,
+				"to": 269280
+			},
+			"text": " They're not like-- when you talk to Bitcoin maxis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,280",
+				"to": "00:04:31,920"
+			},
+			"offsets": {
+				"from": 269280,
+				"to": 271920
+			},
+			"text": " you expect them to be eating beef, reading the same books,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,920",
+				"to": "00:04:34,160"
+			},
+			"offsets": {
+				"from": 271920,
+				"to": 274160
+			},
+			"text": " and sort of spouting the same ideology."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,160",
+				"to": "00:04:37,600"
+			},
+			"offsets": {
+				"from": 274160,
+				"to": 277600
+			},
+			"text": " When you talk to Ethereum people, if you pick one at random,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,600",
+				"to": "00:04:38,920"
+			},
+			"offsets": {
+				"from": 277600,
+				"to": 278920
+			},
+			"text": " you have no idea what you'll get."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,920",
+				"to": "00:04:41,880"
+			},
+			"offsets": {
+				"from": 278920,
+				"to": 281880
+			},
+			"text": " You could get a far left person into art."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,880",
+				"to": "00:04:43,240"
+			},
+			"offsets": {
+				"from": 281880,
+				"to": 283240
+			},
+			"text": " You could get a far right person who's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,240",
+				"to": "00:04:45,520"
+			},
+			"offsets": {
+				"from": 283240,
+				"to": 285520
+			},
+			"text": " kind of like indistinguishable from Bitcoiners."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,520",
+				"to": "00:04:47,480"
+			},
+			"offsets": {
+				"from": 285520,
+				"to": 287480
+			},
+			"text": " So that's what you get with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,480",
+				"to": "00:04:50,120"
+			},
+			"offsets": {
+				"from": 287480,
+				"to": 290120
+			},
+			"text": " And it seems to go exist well with things outside Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,120",
+				"to": "00:04:53,720"
+			},
+			"offsets": {
+				"from": 290120,
+				"to": 293720
+			},
+			"text": " as well, like the traditional legal system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,720",
+				"to": "00:04:58,120"
+			},
+			"offsets": {
+				"from": 293720,
+				"to": 298120
+			},
+			"text": " It has ways of inter-operating with them and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,120",
+				"to": "00:04:59,920"
+			},
+			"offsets": {
+				"from": 298120,
+				"to": 299920
+			},
+			"text": " OK, let's give that property a name."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,920",
+				"to": "00:05:02,080"
+			},
+			"offsets": {
+				"from": 299920,
+				"to": 302080
+			},
+			"text": " I'm going to call it hyper complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,080",
+				"to": "00:05:04,040"
+			},
+			"offsets": {
+				"from": 302080,
+				"to": 304040
+			},
+			"text": " It's the property of a system that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,040",
+				"to": "00:05:06,280"
+			},
+			"offsets": {
+				"from": 304040,
+				"to": 306280
+			},
+			"text": " allows it to sustain many mutually"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,280",
+				"to": "00:05:10,200"
+			},
+			"offsets": {
+				"from": 306280,
+				"to": 310200
+			},
+			"text": " incommensurate divergent narrative futures at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,200",
+				"to": "00:05:11,880"
+			},
+			"offsets": {
+				"from": 310200,
+				"to": 311880
+			},
+			"text": " I wanted to read it out at least once."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,880",
+				"to": "00:05:13,560"
+			},
+			"offsets": {
+				"from": 311880,
+				"to": 313560
+			},
+			"text": " And by mutually incommensurate, that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,560",
+				"to": "00:05:15,960"
+			},
+			"offsets": {
+				"from": 313560,
+				"to": 315960
+			},
+			"text": " kind of a quasi-mathematical way of saying it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,960",
+				"to": "00:05:19,880"
+			},
+			"offsets": {
+				"from": 315960,
+				"to": 319880
+			},
+			"text": " But it means you cannot judge one story by another story."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,880",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 319880,
+				"to": 323000
+			},
+			"text": " You cannot judge whether a lot of the rings is a good story"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:25,080"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 325080
+			},
+			"text": " based on whether you like Harry Potter or not,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,080",
+				"to": "00:05:26,600"
+			},
+			"offsets": {
+				"from": 325080,
+				"to": 326600
+			},
+			"text": " because they have different aesthetics."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,600",
+				"to": "00:05:29,960"
+			},
+			"offsets": {
+				"from": 326600,
+				"to": 329960
+			},
+			"text": " They have different narrative logics, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,960",
+				"to": "00:05:33,040"
+			},
+			"offsets": {
+				"from": 329960,
+				"to": 333040
+			},
+			"text": " So why hyper instead of all the other prefixes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,040",
+				"to": "00:05:35,280"
+			},
+			"offsets": {
+				"from": 333040,
+				"to": 335280
+			},
+			"text": " And I think that's where the note, lots of other things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,280",
+				"to": "00:05:36,880"
+			},
+			"offsets": {
+				"from": 335280,
+				"to": 336880
+			},
+			"text": " call themselves hyper."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,880",
+				"to": "00:05:39,800"
+			},
+			"offsets": {
+				"from": 336880,
+				"to": 339800
+			},
+			"text": " All are interesting to look into Timothy Martin's hyper"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,800",
+				"to": "00:05:42,280"
+			},
+			"offsets": {
+				"from": 339800,
+				"to": 342280
+			},
+			"text": " objects, climate change is an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,280",
+				"to": "00:05:45,600"
+			},
+			"offsets": {
+				"from": 342280,
+				"to": 345600
+			},
+			"text": " Adam Curtis's hyper-normalization is sort of the opposite"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,600",
+				"to": "00:05:47,680"
+			},
+			"offsets": {
+				"from": 345600,
+				"to": 347680
+			},
+			"text": " of what I'm talking about right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,680",
+				"to": "00:05:50,320"
+			},
+			"offsets": {
+				"from": 347680,
+				"to": 350320
+			},
+			"text": " Nick Land from the far right, he has this notion"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,320",
+				"to": "00:05:54,680"
+			},
+			"offsets": {
+				"from": 350320,
+				"to": 354680
+			},
+			"text": " of a hyperstition, which is kind of like a self-fulfilling"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,680",
+				"to": "00:05:57,080"
+			},
+			"offsets": {
+				"from": 354680,
+				"to": 357080
+			},
+			"text": " prophecy of a superstition."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,080",
+				"to": "00:05:59,320"
+			},
+			"offsets": {
+				"from": 357080,
+				"to": 359320
+			},
+			"text": " Computer Science has an idea of a hypervisor."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,320",
+				"to": "00:06:00,840"
+			},
+			"offsets": {
+				"from": 359320,
+				"to": 360840
+			},
+			"text": " And I'm an aerospace engineer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,840",
+				"to": "00:06:02,920"
+			},
+			"offsets": {
+				"from": 360840,
+				"to": 362920
+			},
+			"text": " And I like things that fly faster than Mark's life."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,920",
+				"to": "00:06:04,400"
+			},
+			"offsets": {
+				"from": 362920,
+				"to": 364400
+			},
+			"text": " So that's hypersonic."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,400",
+				"to": "00:06:08,240"
+			},
+			"offsets": {
+				"from": 364400,
+				"to": 368240
+			},
+			"text": " But the reference I'm most sort of inspired by"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,240",
+				"to": "00:06:11,520"
+			},
+			"offsets": {
+				"from": 368240,
+				"to": 371520
+			},
+			"text": " is the idea of hyperbolic geometry."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,520",
+				"to": "00:06:13,200"
+			},
+			"offsets": {
+				"from": 371520,
+				"to": 373200
+			},
+			"text": " So here's the mnemonic image for those of you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,200",
+				"to": "00:06:14,560"
+			},
+			"offsets": {
+				"from": 373200,
+				"to": 374560
+			},
+			"text": " who don't know what it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,560",
+				"to": "00:06:16,520"
+			},
+			"offsets": {
+				"from": 374560,
+				"to": 376520
+			},
+			"text": " Regular geometry, which you learn in high school,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,520",
+				"to": "00:06:17,960"
+			},
+			"offsets": {
+				"from": 376520,
+				"to": 377960
+			},
+			"text": " happens on a plane."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,960",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 377960,
+				"to": 381000
+			},
+			"text": " If you have a line and you pick a point outside it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:23,680"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 383680
+			},
+			"text": " there's only one line you can draw through it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,680",
+				"to": "00:06:25,520"
+			},
+			"offsets": {
+				"from": 383680,
+				"to": 385520
+			},
+			"text": " That's Euclidean geometry."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,520",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 385520,
+				"to": 389000
+			},
+			"text": " And non-Euclidean geometries mess with the parallel"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:31,520"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 391520
+			},
+			"text": " postulate and you get two basic versions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,520",
+				"to": "00:06:34,160"
+			},
+			"offsets": {
+				"from": 391520,
+				"to": 394160
+			},
+			"text": " So if you have spacetime that's positively curved,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,160",
+				"to": "00:06:37,720"
+			},
+			"offsets": {
+				"from": 394160,
+				"to": 397720
+			},
+			"text": " like the sphere on the top, you get a situation where there"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,720",
+				"to": "00:06:39,600"
+			},
+			"offsets": {
+				"from": 397720,
+				"to": 399600
+			},
+			"text": " are no possible parallel lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,600",
+				"to": "00:06:43,280"
+			},
+			"offsets": {
+				"from": 399600,
+				"to": 403280
+			},
+			"text": " So the equivalent of a straight line in a sphere"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,280",
+				"to": "00:06:44,600"
+			},
+			"offsets": {
+				"from": 403280,
+				"to": 404600
+			},
+			"text": " is a great circle."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,600",
+				"to": "00:06:47,160"
+			},
+			"offsets": {
+				"from": 404600,
+				"to": 407160
+			},
+			"text": " And if you pick a point outside the great circle"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,160",
+				"to": "00:06:49,520"
+			},
+			"offsets": {
+				"from": 407160,
+				"to": 409520
+			},
+			"text": " and try to draw another great circle that does not"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,520",
+				"to": "00:06:51,840"
+			},
+			"offsets": {
+				"from": 409520,
+				"to": 411840
+			},
+			"text": " intersect the first one, it's not possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,840",
+				"to": "00:06:53,320"
+			},
+			"offsets": {
+				"from": 411840,
+				"to": 413320
+			},
+			"text": " So I like to think of that as a motif"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,320",
+				"to": "00:06:55,400"
+			},
+			"offsets": {
+				"from": 413320,
+				"to": 415400
+			},
+			"text": " for there is no alternative."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,400",
+				"to": "00:06:58,960"
+			},
+			"offsets": {
+				"from": 415400,
+				"to": 418960
+			},
+			"text": " Whereas hyperbolic geometry on negatively curved spaces"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,960",
+				"to": "00:07:02,160"
+			},
+			"offsets": {
+				"from": 418960,
+				"to": 422160
+			},
+			"text": " if you have a straight line and then you pick a point outside it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,160",
+				"to": "00:07:04,440"
+			},
+			"offsets": {
+				"from": 422160,
+				"to": 424440
+			},
+			"text": " you can draw an infinite number of other straight lines"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,440",
+				"to": "00:07:05,240"
+			},
+			"offsets": {
+				"from": 424440,
+				"to": 425240
+			},
+			"text": " through it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,240",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 425240,
+				"to": 430000
+			},
+			"text": " So think of this as the motif for hyper complexity here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:10,920"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 430920
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,920",
+				"to": "00:07:13,160"
+			},
+			"offsets": {
+				"from": 430920,
+				"to": 433160
+			},
+			"text": " So why is hyper complexity important?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,160",
+				"to": "00:07:18,760"
+			},
+			"offsets": {
+				"from": 433160,
+				"to": 438760
+			},
+			"text": " And I claim that hyper complexity allows open-ended evolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,760",
+				"to": "00:07:23,760"
+			},
+			"offsets": {
+				"from": 438760,
+				"to": 443760
+			},
+			"text": " And it is the sort of substance of civilizational advances."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,760",
+				"to": "00:07:25,200"
+			},
+			"offsets": {
+				"from": 443760,
+				"to": 445200
+			},
+			"text": " Whereas the opposite, which is there"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,200",
+				"to": "00:07:28,040"
+			},
+			"offsets": {
+				"from": 445200,
+				"to": 448040
+			},
+			"text": " is no alternative single monolithic states"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,040",
+				"to": "00:07:31,560"
+			},
+			"offsets": {
+				"from": 448040,
+				"to": 451560
+			},
+			"text": " approaching perfection are a sign of evolutionary dead ends"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,560",
+				"to": "00:07:32,720"
+			},
+			"offsets": {
+				"from": 451560,
+				"to": 452720
+			},
+			"text": " or bottlenecks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,720",
+				"to": "00:07:35,200"
+			},
+			"offsets": {
+				"from": 452720,
+				"to": 455200
+			},
+			"text": " And my hypothesis is that history evolves"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,200",
+				"to": "00:07:37,880"
+			},
+			"offsets": {
+				"from": 455200,
+				"to": 457880
+			},
+			"text": " when smooth, teen-up periods trigger"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,880",
+				"to": "00:07:40,520"
+			},
+			"offsets": {
+				"from": 457880,
+				"to": 460520
+			},
+			"text": " discontinuous hyper complexity leaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,520",
+				"to": "00:07:44,400"
+			},
+			"offsets": {
+				"from": 460520,
+				"to": 464400
+			},
+			"text": " It's similar to the idea of punctuated equilibrium biology."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,400",
+				"to": "00:07:45,280"
+			},
+			"offsets": {
+				"from": 464400,
+				"to": 465280
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,280",
+				"to": "00:07:48,200"
+			},
+			"offsets": {
+				"from": 465280,
+				"to": 468200
+			},
+			"text": " Some justification, since it's kind of like a wild, big claim--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,200",
+				"to": "00:07:52,040"
+			},
+			"offsets": {
+				"from": 468200,
+				"to": 472040
+			},
+			"text": " so this is from Parkinson's Law Management Classic."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,040",
+				"to": "00:07:53,960"
+			},
+			"offsets": {
+				"from": 472040,
+				"to": 473960
+			},
+			"text": " And there's a lot of evidence for the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,960",
+				"to": "00:07:57,640"
+			},
+			"offsets": {
+				"from": 473960,
+				"to": 477640
+			},
+			"text": " that when a system approaches perfection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,640",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 477640,
+				"to": 480000
+			},
+			"text": " it's at the point of collapse."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:01,440"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 481440
+			},
+			"text": " Perfection is finality."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,440",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 481440,
+				"to": 483000
+			},
+			"text": " Perfection is death."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:07,160"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 487160
+			},
+			"text": " So a system approaching that state is about to collapse and die."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,160",
+				"to": "00:08:08,760"
+			},
+			"offsets": {
+				"from": 487160,
+				"to": 488760
+			},
+			"text": " I hope you can see some connections to things"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,760",
+				"to": "00:08:11,880"
+			},
+			"offsets": {
+				"from": 488760,
+				"to": 491880
+			},
+			"text": " that were said earlier in the morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,880",
+				"to": "00:08:15,600"
+			},
+			"offsets": {
+				"from": 491880,
+				"to": 495600
+			},
+			"text": " And Tim had this slide up yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,600",
+				"to": "00:08:18,120"
+			},
+			"offsets": {
+				"from": 495600,
+				"to": 498120
+			},
+			"text": " And it made me grit my teeth because it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,120",
+				"to": "00:08:19,600"
+			},
+			"offsets": {
+				"from": 498120,
+				"to": 499600
+			},
+			"text": " makes my talk a little harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,600",
+				"to": "00:08:25,720"
+			},
+			"offsets": {
+				"from": 499600,
+				"to": 505720
+			},
+			"text": " And I just took this picture in the morning with Danny's talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,720",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 505720,
+				"to": 508000
+			},
+			"text": " And I thought the headline was perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:30,280"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 510280
+			},
+			"text": " Perfect with them of finality and maybe perfection"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,280",
+				"to": "00:08:32,960"
+			},
+			"offsets": {
+				"from": 510280,
+				"to": 512960
+			},
+			"text": " and collapsing death, I hope not."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,960",
+				"to": "00:08:34,240"
+			},
+			"offsets": {
+				"from": 512960,
+				"to": 514240
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,240",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 514240,
+				"to": 516000
+			},
+			"text": " Let's see if we can find a way out of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:40,040"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 520040
+			},
+			"text": " So I love this definition of civilizational advances"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,040",
+				"to": "00:08:42,560"
+			},
+			"offsets": {
+				"from": 520040,
+				"to": 522560
+			},
+			"text": " by the philosopher Whitehead."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,560",
+				"to": "00:08:44,360"
+			},
+			"offsets": {
+				"from": 522560,
+				"to": 524360
+			},
+			"text": " Civilization advances by extending"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,360",
+				"to": "00:08:46,960"
+			},
+			"offsets": {
+				"from": 524360,
+				"to": 526960
+			},
+			"text": " the number of important operations which we can perform"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,960",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 526960,
+				"to": 529000
+			},
+			"text": " without thinking about them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:50,800"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 530800
+			},
+			"text": " So basically, the idea is civilization"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,800",
+				"to": "00:08:55,160"
+			},
+			"offsets": {
+				"from": 530800,
+				"to": 535160
+			},
+			"text": " is a series of automations of important things."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,160",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 535160,
+				"to": 537000
+			},
+			"text": " So maybe protocol perfection can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:00,240"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 540240
+			},
+			"text": " be a foundation for an ecosystem hyper complexity leap."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,240",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 540240,
+				"to": 543000
+			},
+			"text": " So that's sort of the wild speculative hypothesis here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:05,840"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 545840
+			},
+			"text": " Yeah, so a major category of important operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,840",
+				"to": "00:09:09,080"
+			},
+			"offsets": {
+				"from": 545840,
+				"to": 549080
+			},
+			"text": " is basically dealing with conflict amongst mutually"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,080",
+				"to": "00:09:10,200"
+			},
+			"offsets": {
+				"from": 549080,
+				"to": 550200
+			},
+			"text": " divergent narratives."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,200",
+				"to": "00:09:11,800"
+			},
+			"offsets": {
+				"from": 550200,
+				"to": 551800
+			},
+			"text": " Many stories are being told."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,800",
+				"to": "00:09:14,360"
+			},
+			"offsets": {
+				"from": 551800,
+				"to": 554360
+			},
+			"text": " How do you actually deal with conflict?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,360",
+				"to": "00:09:17,720"
+			},
+			"offsets": {
+				"from": 554360,
+				"to": 557720
+			},
+			"text": " An example is a religion that competes for believers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,720",
+				"to": "00:09:20,080"
+			},
+			"offsets": {
+				"from": 557720,
+				"to": 560080
+			},
+			"text": " and promise different afterlife."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,080",
+				"to": "00:09:22,720"
+			},
+			"offsets": {
+				"from": 560080,
+				"to": 562720
+			},
+			"text": " And for thousands of years, we did not actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,720",
+				"to": "00:09:25,600"
+			},
+			"offsets": {
+				"from": 562720,
+				"to": 565600
+			},
+			"text": " have a good way of dealing with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,600",
+				"to": "00:09:27,400"
+			},
+			"offsets": {
+				"from": 565600,
+				"to": 567400
+			},
+			"text": " And freedom of religion, you can think of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,400",
+				"to": "00:09:29,800"
+			},
+			"offsets": {
+				"from": 567400,
+				"to": 569800
+			},
+			"text": " as a Whitehead advance that automates"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,800",
+				"to": "00:09:32,160"
+			},
+			"offsets": {
+				"from": 569800,
+				"to": 572160
+			},
+			"text": " this particular important operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,160",
+				"to": "00:09:35,080"
+			},
+			"offsets": {
+				"from": 572160,
+				"to": 575080
+			},
+			"text": " And in this conference of like 3,000 people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,080",
+				"to": "00:09:37,640"
+			},
+			"offsets": {
+				"from": 575080,
+				"to": 577640
+			},
+			"text": " some subset of you are in this room,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,640",
+				"to": "00:09:40,040"
+			},
+			"offsets": {
+				"from": 577640,
+				"to": 580040
+			},
+			"text": " I'm sure that many religions and many levels"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,040",
+				"to": "00:09:42,280"
+			},
+			"offsets": {
+				"from": 580040,
+				"to": 582280
+			},
+			"text": " of sincerity and religious belief are represented"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,280",
+				"to": "00:09:43,920"
+			},
+			"offsets": {
+				"from": 582280,
+				"to": 583920
+			},
+			"text": " and there's a lot of atheists."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,920",
+				"to": "00:09:45,720"
+			},
+			"offsets": {
+				"from": 583920,
+				"to": 585720
+			},
+			"text": " But fundamentally, we sort of figured out"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,720",
+				"to": "00:09:49,640"
+			},
+			"offsets": {
+				"from": 585720,
+				"to": 589640
+			},
+			"text": " about 300, 400 years ago what it takes for multiple religions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,640",
+				"to": "00:09:53,080"
+			},
+			"offsets": {
+				"from": 589640,
+				"to": 593080
+			},
+			"text": " to live in the same area without killing each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,080",
+				"to": "00:09:55,640"
+			},
+			"offsets": {
+				"from": 593080,
+				"to": 595640
+			},
+			"text": " So we've replaced religious wars with a kind of pluralist"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,640",
+				"to": "00:09:59,760"
+			},
+			"offsets": {
+				"from": 595640,
+				"to": 599760
+			},
+			"text": " piece, an example, a list of examples of Whitehead advances."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,760",
+				"to": "00:10:02,640"
+			},
+			"offsets": {
+				"from": 599760,
+				"to": 602640
+			},
+			"text": " So I've compiled this from a bunch of sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,640",
+				"to": "00:10:04,320"
+			},
+			"offsets": {
+				"from": 602640,
+				"to": 604320
+			},
+			"text": " You can see that at the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,320",
+				"to": "00:10:06,880"
+			},
+			"offsets": {
+				"from": 604320,
+				"to": 606880
+			},
+			"text": " The first three are from Fukuyama's other book,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,880",
+				"to": "00:10:08,720"
+			},
+			"offsets": {
+				"from": 606880,
+				"to": 608720
+			},
+			"text": " Really Good, I strongly recommend it"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,720",
+				"to": "00:10:10,400"
+			},
+			"offsets": {
+				"from": 608720,
+				"to": 610400
+			},
+			"text": " if you're interested in these topics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,400",
+				"to": "00:10:13,320"
+			},
+			"offsets": {
+				"from": 610400,
+				"to": 613320
+			},
+			"text": " the origins of political order."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,320",
+				"to": "00:10:16,480"
+			},
+			"offsets": {
+				"from": 613320,
+				"to": 616480
+			},
+			"text": " The first three are civilizational leaps"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,480",
+				"to": "00:10:19,520"
+			},
+			"offsets": {
+				"from": 616480,
+				"to": 619520
+			},
+			"text": " that really allowed more and more divergent stories"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,520",
+				"to": "00:10:24,080"
+			},
+			"offsets": {
+				"from": 619520,
+				"to": 624080
+			},
+			"text": " to live in the same region or nation or country."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,080",
+				"to": "00:10:26,120"
+			},
+			"offsets": {
+				"from": 624080,
+				"to": 626120
+			},
+			"text": " Strong centralized state, rule of law,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,120",
+				"to": "00:10:28,840"
+			},
+			"offsets": {
+				"from": 626120,
+				"to": 628840
+			},
+			"text": " which is a very different idea than rule by law."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,840",
+				"to": "00:10:31,320"
+			},
+			"offsets": {
+				"from": 628840,
+				"to": 631320
+			},
+			"text": " If there are just laws, that's not enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,320",
+				"to": "00:10:33,840"
+			},
+			"offsets": {
+				"from": 631320,
+				"to": 633840
+			},
+			"text": " You need everybody to be under the law."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,840",
+				"to": "00:10:35,440"
+			},
+			"offsets": {
+				"from": 633840,
+				"to": 635440
+			},
+			"text": " Some people cannot be above the law."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,440",
+				"to": "00:10:36,840"
+			},
+			"offsets": {
+				"from": 635440,
+				"to": 636840
+			},
+			"text": " So that's rule of law."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,840",
+				"to": "00:10:40,280"
+			},
+			"offsets": {
+				"from": 636840,
+				"to": 640280
+			},
+			"text": " And China, even though it innovated a strong central state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,280",
+				"to": "00:10:43,840"
+			},
+			"offsets": {
+				"from": 640280,
+				"to": 643840
+			},
+			"text": " it did not develop and still has not developed rule of law."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,840",
+				"to": "00:10:45,560"
+			},
+			"offsets": {
+				"from": 643840,
+				"to": 645560
+			},
+			"text": " It has rule by law."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,560",
+				"to": "00:10:48,920"
+			},
+			"offsets": {
+				"from": 645560,
+				"to": 648920
+			},
+			"text": " And that developed in Egypt, India, and later on through Europe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,920",
+				"to": "00:10:50,440"
+			},
+			"offsets": {
+				"from": 648920,
+				"to": 650440
+			},
+			"text": " an accountable garment."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,440",
+				"to": "00:10:51,640"
+			},
+			"offsets": {
+				"from": 650440,
+				"to": 651640
+			},
+			"text": " Forgiveness is an idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,640",
+				"to": "00:10:55,480"
+			},
+			"offsets": {
+				"from": 651640,
+				"to": 655480
+			},
+			"text": " Hannah Arendt points out is kind of a novel innovation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,480",
+				"to": "00:10:57,080"
+			},
+			"offsets": {
+				"from": 655480,
+				"to": 657080
+			},
+			"text": " that came out of Christianity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,080",
+				"to": "00:11:00,360"
+			},
+			"offsets": {
+				"from": 657080,
+				"to": 660360
+			},
+			"text": " That took us from a regime of like vendetta-filled stories,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,360",
+				"to": "00:11:03,960"
+			},
+			"offsets": {
+				"from": 660360,
+				"to": 663960
+			},
+			"text": " of like killing each other in tit-for-tat stories,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,960",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 663960,
+				"to": 667000
+			},
+			"text": " to much more pluralist stories where maybe you didn't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:08,800"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 668800
+			},
+			"text": " to kill each other, maybe forgiveness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,800",
+				"to": "00:11:11,280"
+			},
+			"offsets": {
+				"from": 668800,
+				"to": 671280
+			},
+			"text": " and moving forward is a way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,280",
+				"to": "00:11:12,840"
+			},
+			"offsets": {
+				"from": 671280,
+				"to": 672840
+			},
+			"text": " Separation of religion and state."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,840",
+				"to": "00:11:14,480"
+			},
+			"offsets": {
+				"from": 672840,
+				"to": 674480
+			},
+			"text": " This is a fairly recent idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,480",
+				"to": "00:11:18,240"
+			},
+			"offsets": {
+				"from": 674480,
+				"to": 678240
+			},
+			"text": " Spinoza in the 1670s actually had to kind of invent the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,240",
+				"to": "00:11:22,760"
+			},
+			"offsets": {
+				"from": 678240,
+				"to": 682760
+			},
+			"text": " and states had to kind of be developed on the basis of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,760",
+				"to": "00:11:26,880"
+			},
+			"offsets": {
+				"from": 682760,
+				"to": 686880
+			},
+			"text": " Modern markets strongly suggest you read Brad Dilon's new book"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,880",
+				"to": "00:11:29,520"
+			},
+			"offsets": {
+				"from": 686880,
+				"to": 689520
+			},
+			"text": " that just came out slouching towards utopia."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,520",
+				"to": "00:11:31,480"
+			},
+			"offsets": {
+				"from": 689520,
+				"to": 691480
+			},
+			"text": " And of course, what we're talking about here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,480",
+				"to": "00:11:34,360"
+			},
+			"offsets": {
+				"from": 691480,
+				"to": 694360
+			},
+			"text": " I think crypto is actually one such civilizational"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,360",
+				"to": "00:11:35,720"
+			},
+			"offsets": {
+				"from": 694360,
+				"to": 695720
+			},
+			"text": " advance or leap."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,720",
+				"to": "00:11:37,400"
+			},
+			"offsets": {
+				"from": 695720,
+				"to": 697400
+			},
+			"text": " And I think there's another big contender"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,400",
+				"to": "00:11:39,320"
+			},
+			"offsets": {
+				"from": 697400,
+				"to": 699320
+			},
+			"text": " in the world today, which is machine learning."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,320",
+				"to": "00:11:41,760"
+			},
+			"offsets": {
+				"from": 699320,
+				"to": 701760
+			},
+			"text": " And it's kind of interesting that we have these two things."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,760",
+				"to": "00:11:44,720"
+			},
+			"offsets": {
+				"from": 701760,
+				"to": 704720
+			},
+			"text": " And as tweeting a while ago that maybe crypto is the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,720",
+				"to": "00:11:47,520"
+			},
+			"offsets": {
+				"from": 704720,
+				"to": 707520
+			},
+			"text": " foundation, and machine learning is the second foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,520",
+				"to": "00:11:50,960"
+			},
+			"offsets": {
+				"from": 707520,
+				"to": 710960
+			},
+			"text": " Like, you know, in Assimov's psychohistory."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,960",
+				"to": "00:11:52,760"
+			},
+			"offsets": {
+				"from": 710960,
+				"to": 712760
+			},
+			"text": " OK, so let's put all these things together."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,760",
+				"to": "00:11:55,200"
+			},
+			"offsets": {
+				"from": 712760,
+				"to": 715200
+			},
+			"text": " What's the connection between complexity, hyper complexity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,200",
+				"to": "00:11:57,680"
+			},
+			"offsets": {
+				"from": 715200,
+				"to": 717680
+			},
+			"text": " ossification, civilizational advances?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,680",
+				"to": "00:11:59,680"
+			},
+			"offsets": {
+				"from": 717680,
+				"to": 719680
+			},
+			"text": " Lots of big, vague terms."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,680",
+				"to": "00:12:00,960"
+			},
+			"offsets": {
+				"from": 719680,
+				"to": 720960
+			},
+			"text": " Let's start with complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,960",
+				"to": "00:12:03,360"
+			},
+			"offsets": {
+				"from": 720960,
+				"to": 723360
+			},
+			"text": " And there's like lots and lots of different ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,360",
+				"to": "00:12:04,480"
+			},
+			"offsets": {
+				"from": 723360,
+				"to": 724480
+			},
+			"text": " to think about complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,480",
+				"to": "00:12:06,840"
+			},
+			"offsets": {
+				"from": 724480,
+				"to": 726840
+			},
+			"text": " I'm not going to be talking about all of these,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,840",
+				"to": "00:12:09,320"
+			},
+			"offsets": {
+				"from": 726840,
+				"to": 729320
+			},
+			"text": " but happy to like sidebar with anybody who's interested."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,320",
+				"to": "00:12:12,120"
+			},
+			"offsets": {
+				"from": 729320,
+				"to": 732120
+			},
+			"text": " I could talk for an hour on each of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,120",
+				"to": "00:12:13,640"
+			},
+			"offsets": {
+				"from": 732120,
+				"to": 733640
+			},
+			"text": " All are the technical ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,640",
+				"to": "00:12:14,640"
+			},
+			"offsets": {
+				"from": 733640,
+				"to": 734640
+			},
+			"text": " These are all technical ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,640",
+				"to": "00:12:16,360"
+			},
+			"offsets": {
+				"from": 734640,
+				"to": 736360
+			},
+			"text": " There are social and humanities ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,360",
+				"to": "00:12:20,720"
+			},
+			"offsets": {
+				"from": 736360,
+				"to": 740720
+			},
+			"text": " of thinking about complexity, but I'll go with technical."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,720",
+				"to": "00:12:22,200"
+			},
+			"offsets": {
+				"from": 740720,
+				"to": 742200
+			},
+			"text": " And the one I want to like highlight"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,200",
+				"to": "00:12:25,640"
+			},
+			"offsets": {
+				"from": 742200,
+				"to": 745640
+			},
+			"text": " for understanding our topic is one known as kinefin."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,640",
+				"to": "00:12:26,600"
+			},
+			"offsets": {
+				"from": 745640,
+				"to": 746600
+			},
+			"text": " It's pronounced kinefin."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,600",
+				"to": "00:12:27,360"
+			},
+			"offsets": {
+				"from": 746600,
+				"to": 747360
+			},
+			"text": " It's a Scottish word."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,360",
+				"to": "00:12:29,880"
+			},
+			"offsets": {
+				"from": 747360,
+				"to": 749880
+			},
+			"text": " It looks like cinephin, but it's kinefin."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,880",
+				"to": "00:12:33,280"
+			},
+			"offsets": {
+				"from": 749880,
+				"to": 753280
+			},
+			"text": " And it was developed by this guy, Dave Snowden."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,280",
+				"to": "00:12:34,480"
+			},
+			"offsets": {
+				"from": 753280,
+				"to": 754480
+			},
+			"text": " And this is the picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,480",
+				"to": "00:12:38,320"
+			},
+			"offsets": {
+				"from": 754480,
+				"to": 758320
+			},
+			"text": " It thinks of systems within the framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,320",
+				"to": "00:12:42,120"
+			},
+			"offsets": {
+				"from": 758320,
+				"to": 762120
+			},
+			"text": " of four regimes of clear, complicated, complex, and chaotic."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,120",
+				"to": "00:12:46,400"
+			},
+			"offsets": {
+				"from": 762120,
+				"to": 766400
+			},
+			"text": " And they're each described by a pattern of constraints"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,400",
+				"to": "00:12:49,520"
+			},
+			"offsets": {
+				"from": 766400,
+				"to": 769520
+			},
+			"text": " and a pattern of how to operate effectively within them."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,520",
+				"to": "00:12:51,840"
+			},
+			"offsets": {
+				"from": 769520,
+				"to": 771840
+			},
+			"text": " So if you work backwards from chaotic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,840",
+				"to": "00:12:54,080"
+			},
+			"offsets": {
+				"from": 771840,
+				"to": 774080
+			},
+			"text": " chaotic systems lack all constraint"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,080",
+				"to": "00:12:56,200"
+			},
+			"offsets": {
+				"from": 774080,
+				"to": 776200
+			},
+			"text": " and the bits and pieces are highly decoupled,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,200",
+				"to": "00:12:58,720"
+			},
+			"offsets": {
+				"from": 776200,
+				"to": 778720
+			},
+			"text": " which means you have like stories that can evolve"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,720",
+				"to": "00:13:01,440"
+			},
+			"offsets": {
+				"from": 778720,
+				"to": 781440
+			},
+			"text": " that are like disconnected and mutually incommensurate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,440",
+				"to": "00:13:02,560"
+			},
+			"offsets": {
+				"from": 781440,
+				"to": 782560
+			},
+			"text": " like I said."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,560",
+				"to": "00:13:05,520"
+			},
+			"offsets": {
+				"from": 782560,
+				"to": 785520
+			},
+			"text": " And the best way to act within them is kind of adventurously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,520",
+				"to": "00:13:07,760"
+			},
+			"offsets": {
+				"from": 785520,
+				"to": 787760
+			},
+			"text": " so you know, act, sense, respond."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,760",
+				"to": "00:13:10,280"
+			},
+			"offsets": {
+				"from": 787760,
+				"to": 790280
+			},
+			"text": " That's the phrase they use, which is kind of like living"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,280",
+				"to": "00:13:10,800"
+			},
+			"offsets": {
+				"from": 790280,
+				"to": 790800
+			},
+			"text": " dangerously."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,800",
+				"to": "00:13:12,360"
+			},
+			"offsets": {
+				"from": 790800,
+				"to": 792360
+			},
+			"text": " You could die."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,360",
+				"to": "00:13:14,160"
+			},
+			"offsets": {
+				"from": 792360,
+				"to": 794160
+			},
+			"text": " Once you get to complex regimes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,160",
+				"to": "00:13:17,360"
+			},
+			"offsets": {
+				"from": 794160,
+				"to": 797360
+			},
+			"text": " you have slightly loosely coupled systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,360",
+				"to": "00:13:19,280"
+			},
+			"offsets": {
+				"from": 797360,
+				"to": 799280
+			},
+			"text": " So it's no longer decoupled."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,280",
+				"to": "00:13:21,160"
+			},
+			"offsets": {
+				"from": 799280,
+				"to": 801160
+			},
+			"text": " And you have a more experimental regime"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,160",
+				"to": "00:13:23,240"
+			},
+			"offsets": {
+				"from": 801160,
+				"to": 803240
+			},
+			"text": " where you can do like, you know, trial and error"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,240",
+				"to": "00:13:24,440"
+			},
+			"offsets": {
+				"from": 803240,
+				"to": 804440
+			},
+			"text": " and it won't always kill you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,440",
+				"to": "00:13:26,640"
+			},
+			"offsets": {
+				"from": 804440,
+				"to": 806640
+			},
+			"text": " And there's an opportunity to learn and evolve"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,640",
+				"to": "00:13:28,200"
+			},
+			"offsets": {
+				"from": 806640,
+				"to": 808200
+			},
+			"text": " without killing yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,200",
+				"to": "00:13:30,400"
+			},
+			"offsets": {
+				"from": 808200,
+				"to": 810400
+			},
+			"text": " Then you get to complicated where constraints"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,400",
+				"to": "00:13:32,120"
+			},
+			"offsets": {
+				"from": 810400,
+				"to": 812120
+			},
+			"text": " start to get tightly coupled."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,120",
+				"to": "00:13:34,720"
+			},
+			"offsets": {
+				"from": 812120,
+				"to": 814720
+			},
+			"text": " And you're in a sense, analyzer of spawned regime"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,720",
+				"to": "00:13:37,800"
+			},
+			"offsets": {
+				"from": 814720,
+				"to": 817800
+			},
+			"text": " where think of it as you have to look at a situation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,800",
+				"to": "00:13:40,400"
+			},
+			"offsets": {
+				"from": 817800,
+				"to": 820400
+			},
+			"text": " model it, analyze it, you know, with spreadsheets"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,400",
+				"to": "00:13:42,160"
+			},
+			"offsets": {
+				"from": 820400,
+				"to": 822160
+			},
+			"text": " and equations and everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,160",
+				"to": "00:13:45,520"
+			},
+			"offsets": {
+				"from": 822160,
+				"to": 825520
+			},
+			"text": " And chances are, if you think clearly and do it well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,520",
+				"to": "00:13:48,240"
+			},
+			"offsets": {
+				"from": 825520,
+				"to": 828240
+			},
+			"text": " it actually won't require much trial and error"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,240",
+				"to": "00:13:49,800"
+			},
+			"offsets": {
+				"from": 828240,
+				"to": 829800
+			},
+			"text": " or, you know, killing yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,800",
+				"to": "00:13:52,840"
+			},
+			"offsets": {
+				"from": 829800,
+				"to": 832840
+			},
+			"text": " And finally, clear, it's a completely constrained system."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,840",
+				"to": "00:13:54,200"
+			},
+			"offsets": {
+				"from": 832840,
+				"to": 834200
+			},
+			"text": " There are no degrees of freedom."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,200",
+				"to": "00:13:56,360"
+			},
+			"offsets": {
+				"from": 834200,
+				"to": 836360
+			},
+			"text": " There is no alternative."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,360",
+				"to": "00:13:58,560"
+			},
+			"offsets": {
+				"from": 836360,
+				"to": 838560
+			},
+			"text": " And all you can do is look at reality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,560",
+				"to": "00:14:00,320"
+			},
+			"offsets": {
+				"from": 838560,
+				"to": 840320
+			},
+			"text": " sense it, categorize it and respond."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,320",
+				"to": "00:14:01,880"
+			},
+			"offsets": {
+				"from": 840320,
+				"to": 841880
+			},
+			"text": " You're almost an automaton."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,880",
+				"to": "00:14:02,920"
+			},
+			"offsets": {
+				"from": 841880,
+				"to": 842920
+			},
+			"text": " You're a bot."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,920",
+				"to": "00:14:03,480"
+			},
+			"offsets": {
+				"from": 842920,
+				"to": 843480
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,480",
+				"to": "00:14:05,920"
+			},
+			"offsets": {
+				"from": 843480,
+				"to": 845920
+			},
+			"text": " Let's map this to everything we've talked about so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,920",
+				"to": "00:14:08,640"
+			},
+			"offsets": {
+				"from": 845920,
+				"to": 848640
+			},
+			"text": " So the white head definition of civilization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,640",
+				"to": "00:14:13,320"
+			},
+			"offsets": {
+				"from": 848640,
+				"to": 853320
+			},
+			"text": " I think maps to the path from chaotic to clear, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,320",
+				"to": "00:14:15,480"
+			},
+			"offsets": {
+				"from": 853320,
+				"to": 855480
+			},
+			"text": " You have a chaotic system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,480",
+				"to": "00:14:18,360"
+			},
+			"offsets": {
+				"from": 855480,
+				"to": 858360
+			},
+			"text": " You add a little bit more thinking and advancing"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,360",
+				"to": "00:14:20,560"
+			},
+			"offsets": {
+				"from": 858360,
+				"to": 860560
+			},
+			"text": " and it becomes a complex system where it's still hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,560",
+				"to": "00:14:22,880"
+			},
+			"offsets": {
+				"from": 860560,
+				"to": 862880
+			},
+			"text": " to manage, then it becomes a complicated system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,880",
+				"to": "00:14:24,440"
+			},
+			"offsets": {
+				"from": 862880,
+				"to": 864440
+			},
+			"text": " And then finally, it becomes a clear system"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,440",
+				"to": "00:14:26,200"
+			},
+			"offsets": {
+				"from": 864440,
+				"to": 866200
+			},
+			"text": " where it's been fully automated."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,200",
+				"to": "00:14:28,080"
+			},
+			"offsets": {
+				"from": 866200,
+				"to": 868080
+			},
+			"text": " And you don't have to think about it anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,080",
+				"to": "00:14:30,520"
+			},
+			"offsets": {
+				"from": 868080,
+				"to": 870520
+			},
+			"text": " And the right half of that kind of 2 by 2"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,520",
+				"to": "00:14:33,640"
+			},
+			"offsets": {
+				"from": 870520,
+				"to": 873640
+			},
+			"text": " is there is no alternative regime, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,640",
+				"to": "00:14:35,120"
+			},
+			"offsets": {
+				"from": 873640,
+				"to": 875120
+			},
+			"text": " Complicated plus clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,120",
+				"to": "00:14:38,400"
+			},
+			"offsets": {
+				"from": 875120,
+				"to": 878400
+			},
+			"text": " That's what things that there are no alternative to look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,400",
+				"to": "00:14:40,120"
+			},
+			"offsets": {
+				"from": 878400,
+				"to": 880120
+			},
+			"text": " If you look at the neoliberal world order"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,120",
+				"to": "00:14:42,920"
+			},
+			"offsets": {
+				"from": 880120,
+				"to": 882920
+			},
+			"text": " and the Washington consensus, World Bank's playbook,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,920",
+				"to": "00:14:46,280"
+			},
+			"offsets": {
+				"from": 882920,
+				"to": 886280
+			},
+			"text": " IMF's playbook, that looks like the part on the right."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,280",
+				"to": "00:14:47,200"
+			},
+			"offsets": {
+				"from": 886280,
+				"to": 887200
+			},
+			"text": " There is no alternative."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,200",
+				"to": "00:14:50,200"
+			},
+			"offsets": {
+				"from": 887200,
+				"to": 890200
+			},
+			"text": " It's a complicated and in some places clear thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,200",
+				"to": "00:14:53,880"
+			},
+			"offsets": {
+				"from": 890200,
+				"to": 893880
+			},
+			"text": " And of course, if you want to add the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,880",
+				"to": "00:14:56,720"
+			},
+			"offsets": {
+				"from": 893880,
+				"to": 896720
+			},
+			"text": " that towards perfection, you get collapse,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,720",
+				"to": "00:14:59,640"
+			},
+			"offsets": {
+				"from": 896720,
+				"to": 899640
+			},
+			"text": " you have a leap, a red leap from clear to chaotic"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,640",
+				"to": "00:15:02,240"
+			},
+			"offsets": {
+				"from": 899640,
+				"to": 902240
+			},
+			"text": " where a system approaches perfection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,240",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 902240,
+				"to": 904000
+			},
+			"text": " acquires fragility, collapses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:06,160"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 906160
+			},
+			"text": " and then you're back in chaos, all right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,160",
+				"to": "00:15:09,200"
+			},
+			"offsets": {
+				"from": 906160,
+				"to": 909200
+			},
+			"text": " So this is how I think of hyper complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,200",
+				"to": "00:15:10,840"
+			},
+			"offsets": {
+				"from": 909200,
+				"to": 910840
+			},
+			"text": " This is the picture on which it evolves."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,840",
+				"to": "00:15:13,920"
+			},
+			"offsets": {
+				"from": 910840,
+				"to": 913920
+			},
+			"text": " So the question is, can we eliminate crisis pathways"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,920",
+				"to": "00:15:17,040"
+			},
+			"offsets": {
+				"from": 913920,
+				"to": 917040
+			},
+			"text": " in this whole process of evolving hyper complexity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,040",
+				"to": "00:15:20,400"
+			},
+			"offsets": {
+				"from": 917040,
+				"to": 920400
+			},
+			"text": " Can we have smoothly increasing hyper complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,400",
+				"to": "00:15:23,600"
+			},
+			"offsets": {
+				"from": 920400,
+				"to": 923600
+			},
+			"text": " without these, you know, there is no alternative bottlenecks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,600",
+				"to": "00:15:25,320"
+			},
+			"offsets": {
+				"from": 923600,
+				"to": 925320
+			},
+			"text": " And my belief is, no, you cannot."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,320",
+				"to": "00:15:30,120"
+			},
+			"offsets": {
+				"from": 925320,
+				"to": 930120
+			},
+			"text": " Maybe you guys think differently, but, all right."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,120",
+				"to": "00:15:32,520"
+			},
+			"offsets": {
+				"from": 930120,
+				"to": 932520
+			},
+			"text": " But can we at least reshape crisis pathways?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,520",
+				"to": "00:15:34,880"
+			},
+			"offsets": {
+				"from": 932520,
+				"to": 934880
+			},
+			"text": " So I went from green, but not quite red,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,880",
+				"to": "00:15:36,360"
+			},
+			"offsets": {
+				"from": 934880,
+				"to": 936360
+			},
+			"text": " so an orange pathway."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,360",
+				"to": "00:15:38,320"
+			},
+			"offsets": {
+				"from": 936360,
+				"to": 938320
+			},
+			"text": " I think of this as equivalent to the question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,320",
+				"to": "00:15:42,680"
+			},
+			"offsets": {
+				"from": 938320,
+				"to": 942680
+			},
+			"text": " can you do the equivalent of asymoovian cycle history?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,680",
+				"to": "00:15:46,200"
+			},
+			"offsets": {
+				"from": 942680,
+				"to": 946200
+			},
+			"text": " And my belief is, yeah, maybe you can do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,200",
+				"to": "00:15:52,200"
+			},
+			"offsets": {
+				"from": 946200,
+				"to": 952200
+			},
+			"text": " This is sort of a very janky work in progress definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,200",
+				"to": "00:15:55,080"
+			},
+			"offsets": {
+				"from": 952200,
+				"to": 955080
+			},
+			"text": " But the idea is, if you respond to a looming crisis"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,080",
+				"to": "00:15:58,120"
+			},
+			"offsets": {
+				"from": 955080,
+				"to": 958120
+			},
+			"text": " by tweaking the system at an axiomatic level somehow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,120",
+				"to": "00:16:00,400"
+			},
+			"offsets": {
+				"from": 958120,
+				"to": 960400
+			},
+			"text": " maybe the big crisis becomes a small crisis"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,400",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 960400,
+				"to": 962000
+			},
+			"text": " or even a no crisis."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:04,600"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 964600
+			},
+			"text": " And maybe because of that, you benefit by getting a period"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,600",
+				"to": "00:16:07,600"
+			},
+			"offsets": {
+				"from": 964600,
+				"to": 967600
+			},
+			"text": " where hyper complexity can grow, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,600",
+				"to": "00:16:11,040"
+			},
+			"offsets": {
+				"from": 967600,
+				"to": 971040
+			},
+			"text": " And examples are Y2K, a crisis that turned out not to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,040",
+				"to": "00:16:14,560"
+			},
+			"offsets": {
+				"from": 971040,
+				"to": 974560
+			},
+			"text": " the Montreal Protocol for ozone that worked pretty well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,560",
+				"to": "00:16:16,080"
+			},
+			"offsets": {
+				"from": 974560,
+				"to": 976080
+			},
+			"text": " It's sort of like backsliding now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,080",
+				"to": "00:16:18,200"
+			},
+			"offsets": {
+				"from": 976080,
+				"to": 978200
+			},
+			"text": " and ozone is back as a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,200",
+				"to": "00:16:20,440"
+			},
+			"offsets": {
+				"from": 978200,
+				"to": 980440
+			},
+			"text": " Some types of corporate self disruption seem to work"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,440",
+				"to": "00:16:23,840"
+			},
+			"offsets": {
+				"from": 980440,
+				"to": 983840
+			},
+			"text": " like Netflix moving from DVDs to streaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,840",
+				"to": "00:16:26,480"
+			},
+			"offsets": {
+				"from": 983840,
+				"to": 986480
+			},
+			"text": " The merge, I think I would still put a question mark on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,480",
+				"to": "00:16:30,120"
+			},
+			"offsets": {
+				"from": 986480,
+				"to": 990120
+			},
+			"text": " Has it actually hit the category of this definition?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,120",
+				"to": "00:16:31,960"
+			},
+			"offsets": {
+				"from": 990120,
+				"to": 991960
+			},
+			"text": " Same with a lot of things happening in the state climate"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,960",
+				"to": "00:16:34,760"
+			},
+			"offsets": {
+				"from": 991960,
+				"to": 994760
+			},
+			"text": " change like renewables or carbon capture."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,760",
+				"to": "00:16:38,680"
+			},
+			"offsets": {
+				"from": 994760,
+				"to": 998680
+			},
+			"text": " And note that this is not resilience or accelerationism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,680",
+				"to": "00:16:42,160"
+			},
+			"offsets": {
+				"from": 998680,
+				"to": 1002160
+			},
+			"text": " which are two other ways of thinking about this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,160",
+				"to": "00:16:44,240"
+			},
+			"offsets": {
+				"from": 1002160,
+				"to": 1004240
+			},
+			"text": " Resilience is you make yourself tough enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,240",
+				"to": "00:16:46,480"
+			},
+			"offsets": {
+				"from": 1004240,
+				"to": 1006480
+			},
+			"text": " and redundant enough that you can sort of power"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,480",
+				"to": "00:16:48,760"
+			},
+			"offsets": {
+				"from": 1006480,
+				"to": 1008760
+			},
+			"text": " through the crisis and come out maybe a little broken"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,760",
+				"to": "00:16:50,920"
+			},
+			"offsets": {
+				"from": 1008760,
+				"to": 1010920
+			},
+			"text": " and battered, but you're still alive."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,920",
+				"to": "00:16:52,560"
+			},
+			"offsets": {
+				"from": 1010920,
+				"to": 1012560
+			},
+			"text": " That's resilience."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,560",
+				"to": "00:16:55,840"
+			},
+			"offsets": {
+				"from": 1012560,
+				"to": 1015840
+			},
+			"text": " Accelerationism is you believe that the system today"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,840",
+				"to": "00:16:59,160"
+			},
+			"offsets": {
+				"from": 1015840,
+				"to": 1019160
+			},
+			"text": " so corrupted deserves to die and you floor the accelerator"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,160",
+				"to": "00:17:01,320"
+			},
+			"offsets": {
+				"from": 1019160,
+				"to": 1021320
+			},
+			"text": " and burst through the crisis and you come out"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,320",
+				"to": "00:17:03,560"
+			},
+			"offsets": {
+				"from": 1021320,
+				"to": 1023560
+			},
+			"text": " on the other side maybe superhuman."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,560",
+				"to": "00:17:05,160"
+			},
+			"offsets": {
+				"from": 1023560,
+				"to": 1025160
+			},
+			"text": " And a lot of the accelerationists,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,160",
+				"to": "00:17:06,920"
+			},
+			"offsets": {
+				"from": 1025160,
+				"to": 1026920
+			},
+			"text": " it started as a right to philosophy."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,920",
+				"to": "00:17:09,320"
+			},
+			"offsets": {
+				"from": 1026920,
+				"to": 1029320
+			},
+			"text": " Now there's a left accelerationism as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,320",
+				"to": "00:17:11,960"
+			},
+			"offsets": {
+				"from": 1029320,
+				"to": 1031960
+			},
+			"text": " but this is neither resilience nor accelerationism."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,960",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1031960,
+				"to": 1034000
+			},
+			"text": " This is what I think of as an adaptation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:16,600"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1036600
+			},
+			"text": " So you know, adapting to something kind of before it happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,600",
+				"to": "00:17:18,680"
+			},
+			"offsets": {
+				"from": 1036600,
+				"to": 1038680
+			},
+			"text": " So this is where I think it maps to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,680",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1038680,
+				"to": 1042000
+			},
+			"text": " this is another slight stolen from Tim yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:26,360"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1046360
+			},
+			"text": " So we had a candidate hyper complexity leap starting"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,360",
+				"to": "00:17:30,480"
+			},
+			"offsets": {
+				"from": 1046360,
+				"to": 1050480
+			},
+			"text": " and before ossification, maybe we will enjoy a period"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,480",
+				"to": "00:17:32,640"
+			},
+			"offsets": {
+				"from": 1050480,
+				"to": 1052640
+			},
+			"text": " of hyper complexity growth."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,640",
+				"to": "00:17:34,640"
+			},
+			"offsets": {
+				"from": 1052640,
+				"to": 1054640
+			},
+			"text": " And that's a pretty blurry picture,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,640",
+				"to": "00:17:36,600"
+			},
+			"offsets": {
+				"from": 1054640,
+				"to": 1056600
+			},
+			"text": " but that's about as blurry as my understanding."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,600",
+				"to": "00:17:38,080"
+			},
+			"offsets": {
+				"from": 1056600,
+				"to": 1058080
+			},
+			"text": " So I'm fine with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,080",
+				"to": "00:17:41,920"
+			},
+			"offsets": {
+				"from": 1058080,
+				"to": 1061920
+			},
+			"text": " How do you design for this process of like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,920",
+				"to": "00:17:44,680"
+			},
+			"offsets": {
+				"from": 1061920,
+				"to": 1064680
+			},
+			"text": " hopefully reshaped hyper complexity evolution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,680",
+				"to": "00:17:49,280"
+			},
+			"offsets": {
+				"from": 1064680,
+				"to": 1069280
+			},
+			"text": " So in search of design principles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,280",
+				"to": "00:17:51,520"
+			},
+			"offsets": {
+				"from": 1069280,
+				"to": 1071520
+			},
+			"text": " you can think of like the spirit"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,520",
+				"to": "00:17:53,200"
+			},
+			"offsets": {
+				"from": 1071520,
+				"to": 1073200
+			},
+			"text": " of the design principles first."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,200",
+				"to": "00:17:57,080"
+			},
+			"offsets": {
+				"from": 1073200,
+				"to": 1077080
+			},
+			"text": " So first thing I wanna do is infer what hyper complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,080",
+				"to": "00:17:59,720"
+			},
+			"offsets": {
+				"from": 1077080,
+				"to": 1079720
+			},
+			"text": " is like from historical examples, not theories."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,720",
+				"to": "00:18:01,720"
+			},
+			"offsets": {
+				"from": 1079720,
+				"to": 1081720
+			},
+			"text": " So the list of examples I looked at before, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,720",
+				"to": "00:18:03,280"
+			},
+			"offsets": {
+				"from": 1081720,
+				"to": 1083280
+			},
+			"text": " like developing to the state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,280",
+				"to": "00:18:05,640"
+			},
+			"offsets": {
+				"from": 1083280,
+				"to": 1085640
+			},
+			"text": " the emergence of Christianity, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,640",
+				"to": "00:18:08,920"
+			},
+			"offsets": {
+				"from": 1085640,
+				"to": 1088920
+			},
+			"text": " It's not the original Tina playbook of neoliberalism."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,920",
+				"to": "00:18:11,800"
+			},
+			"offsets": {
+				"from": 1088920,
+				"to": 1091800
+			},
+			"text": " It's not the Silicon Valley playbook."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,800",
+				"to": "00:18:14,240"
+			},
+			"offsets": {
+				"from": 1091800,
+				"to": 1094240
+			},
+			"text": " Some of you may recognize the phrase breaking smart."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,240",
+				"to": "00:18:16,560"
+			},
+			"offsets": {
+				"from": 1094240,
+				"to": 1096560
+			},
+			"text": " I wrote a set of essays while working"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,560",
+				"to": "00:18:18,760"
+			},
+			"offsets": {
+				"from": 1096560,
+				"to": 1098760
+			},
+			"text": " with Andries and Horowitz about seven years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,760",
+				"to": "00:18:20,600"
+			},
+			"offsets": {
+				"from": 1098760,
+				"to": 1100600
+			},
+			"text": " And that's the Silicon Valley playbook."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,600",
+				"to": "00:18:22,280"
+			},
+			"offsets": {
+				"from": 1100600,
+				"to": 1102280
+			},
+			"text": " I sincerely believe what we're entering now"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,280",
+				"to": "00:18:24,280"
+			},
+			"offsets": {
+				"from": 1102280,
+				"to": 1104280
+			},
+			"text": " is no longer the Silicon Valley playbook."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,720",
+				"to": "00:18:30,160"
+			},
+			"offsets": {
+				"from": 1105720,
+				"to": 1110160
+			},
+			"text": " And of course, all the other all Tina playbooks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,160",
+				"to": "00:18:31,840"
+			},
+			"offsets": {
+				"from": 1110160,
+				"to": 1111840
+			},
+			"text": " the socialist one, the libertarian one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,840",
+				"to": "00:18:35,160"
+			},
+			"offsets": {
+				"from": 1111840,
+				"to": 1115160
+			},
+			"text": " I think they're all kind of like, not candidates here."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,160",
+				"to": "00:18:37,600"
+			},
+			"offsets": {
+				"from": 1115160,
+				"to": 1117600
+			},
+			"text": " So right now I'm just thinking through the phenomenology"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,600",
+				"to": "00:18:40,160"
+			},
+			"offsets": {
+				"from": 1117600,
+				"to": 1120160
+			},
+			"text": " that I think is important in hyper complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,160",
+				"to": "00:18:41,920"
+			},
+			"offsets": {
+				"from": 1120160,
+				"to": 1121920
+			},
+			"text": " It needs theorizing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,920",
+				"to": "00:18:44,240"
+			},
+			"offsets": {
+				"from": 1121920,
+				"to": 1124240
+			},
+			"text": " And I added those last two points as I was listening"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,240",
+				"to": "00:18:46,520"
+			},
+			"offsets": {
+				"from": 1124240,
+				"to": 1126520
+			},
+			"text": " this morning, I love the idea of subtraction over addition."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,520",
+				"to": "00:18:49,240"
+			},
+			"offsets": {
+				"from": 1126520,
+				"to": 1129240
+			},
+			"text": " And I'm surprised to hear so many mentions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,240",
+				"to": "00:18:50,680"
+			},
+			"offsets": {
+				"from": 1129240,
+				"to": 1130680
+			},
+			"text": " of infinite game over finite game."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,680",
+				"to": "00:18:52,440"
+			},
+			"offsets": {
+				"from": 1130680,
+				"to": 1132440
+			},
+			"text": " I'm really pleased to hear that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,440",
+				"to": "00:18:55,240"
+			},
+			"offsets": {
+				"from": 1132440,
+				"to": 1135240
+			},
+			"text": " because James Scars is one of my favorite authors."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,240",
+				"to": "00:18:59,320"
+			},
+			"offsets": {
+				"from": 1135240,
+				"to": 1139320
+			},
+			"text": " And I had the good fortune to be in a salon"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,320",
+				"to": "00:19:01,960"
+			},
+			"offsets": {
+				"from": 1139320,
+				"to": 1141960
+			},
+			"text": " where he spoke a few weeks before he died."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,960",
+				"to": "00:19:04,160"
+			},
+			"offsets": {
+				"from": 1141960,
+				"to": 1144160
+			},
+			"text": " So one of the last opportunities to hear him."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,160",
+				"to": "00:19:05,600"
+			},
+			"offsets": {
+				"from": 1144160,
+				"to": 1145600
+			},
+			"text": " And one of the interesting things was"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,600",
+				"to": "00:19:08,600"
+			},
+			"offsets": {
+				"from": 1145600,
+				"to": 1148600
+			},
+			"text": " I had assumed he would be kind of this very spiritual,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,600",
+				"to": "00:19:12,160"
+			},
+			"offsets": {
+				"from": 1148600,
+				"to": 1152160
+			},
+			"text": " theological, philosophical guy who would,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,160",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1152160,
+				"to": 1154000
+			},
+			"text": " I had a certain picture in my head,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:16,440"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1156440
+			},
+			"text": " but it turns out he's a jock."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,440",
+				"to": "00:19:18,200"
+			},
+			"offsets": {
+				"from": 1156440,
+				"to": 1158200
+			},
+			"text": " At one point in his life, he was an athlete,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,200",
+				"to": "00:19:20,560"
+			},
+			"offsets": {
+				"from": 1158200,
+				"to": 1160560
+			},
+			"text": " a football player, and it was really sort of like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,560",
+				"to": "00:19:22,400"
+			},
+			"offsets": {
+				"from": 1160560,
+				"to": 1162400
+			},
+			"text": " you know, a narrative violation for me."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,400",
+				"to": "00:19:24,800"
+			},
+			"offsets": {
+				"from": 1162400,
+				"to": 1164800
+			},
+			"text": " But when he thinks about finite and infinite games,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,800",
+				"to": "00:19:26,600"
+			},
+			"offsets": {
+				"from": 1164800,
+				"to": 1166600
+			},
+			"text": " he literally comes from a background"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,600",
+				"to": "00:19:28,400"
+			},
+			"offsets": {
+				"from": 1166600,
+				"to": 1168400
+			},
+			"text": " of real sports and games."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,400",
+				"to": "00:19:30,600"
+			},
+			"offsets": {
+				"from": 1168400,
+				"to": 1170600
+			},
+			"text": " And it's when we talk about like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,600",
+				"to": "00:19:32,840"
+			},
+			"offsets": {
+				"from": 1170600,
+				"to": 1172840
+			},
+			"text": " hyper games on top of Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,840",
+				"to": "00:19:35,760"
+			},
+			"offsets": {
+				"from": 1172840,
+				"to": 1175760
+			},
+			"text": " you really should actually think about real games as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,760",
+				"to": "00:19:37,880"
+			},
+			"offsets": {
+				"from": 1175760,
+				"to": 1177880
+			},
+			"text": " not like an abstract game theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,880",
+				"to": "00:19:38,760"
+			},
+			"offsets": {
+				"from": 1177880,
+				"to": 1178760
+			},
+			"text": " It's a starting point."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,760",
+				"to": "00:19:40,280"
+			},
+			"offsets": {
+				"from": 1178760,
+				"to": 1180280
+			},
+			"text": " So I've been sort of collecting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,280",
+				"to": "00:19:42,760"
+			},
+			"offsets": {
+				"from": 1180280,
+				"to": 1182760
+			},
+			"text": " I've been thinking about these things for like several years."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,760",
+				"to": "00:19:44,760"
+			},
+			"offsets": {
+				"from": 1182760,
+				"to": 1184760
+			},
+			"text": " And those of you I've been talking to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,760",
+				"to": "00:19:47,560"
+			},
+			"offsets": {
+				"from": 1184760,
+				"to": 1187560
+			},
+			"text": " you know that I can go on at length about several of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,560",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1187560,
+				"to": 1190000
+			},
+			"text": " So for example, mediocrity over excellence"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:52,560"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1192560
+			},
+			"text": " is one of the points that gets me in the most trouble."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,560",
+				"to": "00:19:55,720"
+			},
+			"offsets": {
+				"from": 1192560,
+				"to": 1195720
+			},
+			"text": " I've written a 12-part blog series about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,720",
+				"to": "00:19:57,040"
+			},
+			"offsets": {
+				"from": 1195720,
+				"to": 1197040
+			},
+			"text": " So if you want to argue with me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,040",
+				"to": "00:19:59,320"
+			},
+			"offsets": {
+				"from": 1197040,
+				"to": 1199320
+			},
+			"text": " you're going to have to read that first."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,320",
+				"to": "00:20:00,920"
+			},
+			"offsets": {
+				"from": 1199320,
+				"to": 1200920
+			},
+			"text": " I like this idea of like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,920",
+				"to": "00:20:04,080"
+			},
+			"offsets": {
+				"from": 1200920,
+				"to": 1204080
+			},
+			"text": " there's a lot of bureaucracy and bureaucracy gets a bad name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,080",
+				"to": "00:20:05,280"
+			},
+			"offsets": {
+				"from": 1204080,
+				"to": 1205280
+			},
+			"text": " but you know, you guys have things"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,280",
+				"to": "00:20:06,920"
+			},
+			"offsets": {
+				"from": 1205280,
+				"to": 1206920
+			},
+			"text": " that sound extremely bureaucratic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,920",
+				"to": "00:20:07,880"
+			},
+			"offsets": {
+				"from": 1206920,
+				"to": 1207880
+			},
+			"text": " and that's a good thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,880",
+				"to": "00:20:10,280"
+			},
+			"offsets": {
+				"from": 1207880,
+				"to": 1210280
+			},
+			"text": " EIP, one, two, three, four, or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,280",
+				"to": "00:20:11,160"
+			},
+			"offsets": {
+				"from": 1210280,
+				"to": 1211160
+			},
+			"text": " I love it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,160",
+				"to": "00:20:13,720"
+			},
+			"offsets": {
+				"from": 1211160,
+				"to": 1213720
+			},
+			"text": " And I like the idea of bureaucracy over monarchs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,720",
+				"to": "00:20:14,760"
+			},
+			"offsets": {
+				"from": 1213720,
+				"to": 1214760
+			},
+			"text": " messiahs, and mobs."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,760",
+				"to": "00:20:16,560"
+			},
+			"offsets": {
+				"from": 1214760,
+				"to": 1216560
+			},
+			"text": " And this principle, it's kind of like a port"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,560",
+				"to": "00:20:20,160"
+			},
+			"offsets": {
+				"from": 1216560,
+				"to": 1220160
+			},
+			"text": " of an old IETF principle that says something like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,160",
+				"to": "00:20:23,040"
+			},
+			"offsets": {
+				"from": 1220160,
+				"to": 1223040
+			},
+			"text": " we don't believe in kings or democracy."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,040",
+				"to": "00:20:25,880"
+			},
+			"offsets": {
+				"from": 1223040,
+				"to": 1225880
+			},
+			"text": " We believe in rough consensus and running code."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,880",
+				"to": "00:20:27,240"
+			},
+			"offsets": {
+				"from": 1225880,
+				"to": 1227240
+			},
+			"text": " I think we need an update of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,240",
+				"to": "00:20:28,800"
+			},
+			"offsets": {
+				"from": 1227240,
+				"to": 1228800
+			},
+			"text": " and that might be a good one."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,800",
+				"to": "00:20:31,120"
+			},
+			"offsets": {
+				"from": 1228800,
+				"to": 1231120
+			},
+			"text": " Fat over lead, I've written a bunch about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,120",
+				"to": "00:20:33,080"
+			},
+			"offsets": {
+				"from": 1231120,
+				"to": 1233080
+			},
+			"text": " I want to say a little bit about the seventh one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,080",
+				"to": "00:20:37,160"
+			},
+			"offsets": {
+				"from": 1233080,
+				"to": 1237160
+			},
+			"text": " which is entangled fan outs over fuck you, for, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,160",
+				"to": "00:20:38,560"
+			},
+			"offsets": {
+				"from": 1237160,
+				"to": 1238560
+			},
+			"text": " And if I'm allowed to say that here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,560",
+				"to": "00:20:40,800"
+			},
+			"offsets": {
+				"from": 1238560,
+				"to": 1240800
+			},
+			"text": " but the idea that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,800",
+				"to": "00:20:42,840"
+			},
+			"offsets": {
+				"from": 1240800,
+				"to": 1242840
+			},
+			"text": " became popular in the last 10 years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,840",
+				"to": "00:20:45,560"
+			},
+			"offsets": {
+				"from": 1242840,
+				"to": 1245560
+			},
+			"text": " a good idea of like, you know, exit over voice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,560",
+				"to": "00:20:47,880"
+			},
+			"offsets": {
+				"from": 1245560,
+				"to": 1247880
+			},
+			"text": " it sort of went cancerous,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,880",
+				"to": "00:20:50,240"
+			},
+			"offsets": {
+				"from": 1247880,
+				"to": 1250240
+			},
+			"text": " and now everybody's like exiting from each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,240",
+				"to": "00:20:51,920"
+			},
+			"offsets": {
+				"from": 1250240,
+				"to": 1251920
+			},
+			"text": " and it's like, you know, a few."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,920",
+				"to": "00:20:54,240"
+			},
+			"offsets": {
+				"from": 1251920,
+				"to": 1254240
+			},
+			"text": " I'm going to create my own future over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,240",
+				"to": "00:20:57,640"
+			},
+			"offsets": {
+				"from": 1254240,
+				"to": 1257640
+			},
+			"text": " And I think that's gotten unhealthy."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,640",
+				"to": "00:21:00,120"
+			},
+			"offsets": {
+				"from": 1257640,
+				"to": 1260120
+			},
+			"text": " And really, I love what I see in the Ethereum community."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,120",
+				"to": "00:21:02,360"
+			},
+			"offsets": {
+				"from": 1260120,
+				"to": 1262360
+			},
+			"text": " So yesterday in the R&D workshop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,360",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1262360,
+				"to": 1264000
+			},
+			"text": " it was, you know, funny thing happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:04,840"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1264840
+			},
+			"text": " They had the big room,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,840",
+				"to": "00:21:07,280"
+			},
+			"offsets": {
+				"from": 1264840,
+				"to": 1267280
+			},
+			"text": " and when the two breakout sessions started,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,280",
+				"to": "00:21:09,080"
+			},
+			"offsets": {
+				"from": 1267280,
+				"to": 1269080
+			},
+			"text": " there was this group on one end."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,080",
+				"to": "00:21:10,320"
+			},
+			"offsets": {
+				"from": 1269080,
+				"to": 1270320
+			},
+			"text": " I have a photo I'm meant to put it in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,320",
+				"to": "00:21:11,640"
+			},
+			"offsets": {
+				"from": 1270320,
+				"to": 1271640
+			},
+			"text": " but I couldn't find time."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,640",
+				"to": "00:21:13,760"
+			},
+			"offsets": {
+				"from": 1271640,
+				"to": 1273760
+			},
+			"text": " But in one room, one end of the room,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,760",
+				"to": "00:21:15,200"
+			},
+			"offsets": {
+				"from": 1273760,
+				"to": 1275200
+			},
+			"text": " there was a bunch of people discussing"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,200",
+				"to": "00:21:16,920"
+			},
+			"offsets": {
+				"from": 1275200,
+				"to": 1276920
+			},
+			"text": " some complex number theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,920",
+				"to": "00:21:17,880"
+			},
+			"offsets": {
+				"from": 1276920,
+				"to": 1277880
+			},
+			"text": " And in the other end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,880",
+				"to": "00:21:20,320"
+			},
+			"offsets": {
+				"from": 1277880,
+				"to": 1280320
+			},
+			"text": " some really janky practical implementation stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,320",
+				"to": "00:21:21,400"
+			},
+			"offsets": {
+				"from": 1280320,
+				"to": 1281400
+			},
+			"text": " on software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,400",
+				"to": "00:21:24,680"
+			},
+			"offsets": {
+				"from": 1281400,
+				"to": 1284680
+			},
+			"text": " and the room hadn't really been designed for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,680",
+				"to": "00:21:26,480"
+			},
+			"offsets": {
+				"from": 1284680,
+				"to": 1286480
+			},
+			"text": " So both started talking loudly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,480",
+				"to": "00:21:27,680"
+			},
+			"offsets": {
+				"from": 1286480,
+				"to": 1287680
+			},
+			"text": " and then there was some cross-stuck,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,680",
+				"to": "00:21:28,720"
+			},
+			"offsets": {
+				"from": 1287680,
+				"to": 1288720
+			},
+			"text": " and there was some joking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,720",
+				"to": "00:21:31,840"
+			},
+			"offsets": {
+				"from": 1288720,
+				"to": 1291840
+			},
+			"text": " and then both started speaking very softly."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,840",
+				"to": "00:21:33,320"
+			},
+			"offsets": {
+				"from": 1291840,
+				"to": 1293320
+			},
+			"text": " And I think of that as, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,320",
+				"to": "00:21:35,160"
+			},
+			"offsets": {
+				"from": 1293320,
+				"to": 1295160
+			},
+			"text": " you're exploring many futures"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,160",
+				"to": "00:21:38,880"
+			},
+			"offsets": {
+				"from": 1295160,
+				"to": 1298880
+			},
+			"text": " with like a fork of a garden of forking paths,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,880",
+				"to": "00:21:40,160"
+			},
+			"offsets": {
+				"from": 1298880,
+				"to": 1300160
+			},
+			"text": " but they're not like independent"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,160",
+				"to": "00:21:41,640"
+			},
+			"offsets": {
+				"from": 1300160,
+				"to": 1301640
+			},
+			"text": " and exiting from each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,640",
+				"to": "00:21:42,520"
+			},
+			"offsets": {
+				"from": 1301640,
+				"to": 1302520
+			},
+			"text": " They're entangled."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,520",
+				"to": "00:21:46,920"
+			},
+			"offsets": {
+				"from": 1302520,
+				"to": 1306920
+			},
+			"text": " So I think of that as entangled fan outs"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,920",
+				"to": "00:21:48,280"
+			},
+			"offsets": {
+				"from": 1306920,
+				"to": 1308280
+			},
+			"text": " is the phrase I'm thinking of."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,280",
+				"to": "00:21:50,040"
+			},
+			"offsets": {
+				"from": 1308280,
+				"to": 1310040
+			},
+			"text": " So fan as in like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,040",
+				"to": "00:21:52,400"
+			},
+			"offsets": {
+				"from": 1310040,
+				"to": 1312400
+			},
+			"text": " things diverging, not fanatic."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,400",
+				"to": "00:21:54,760"
+			},
+			"offsets": {
+				"from": 1312400,
+				"to": 1314760
+			},
+			"text": " And if you extrapolate that to the global level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,760",
+				"to": "00:21:58,200"
+			},
+			"offsets": {
+				"from": 1314760,
+				"to": 1318200
+			},
+			"text": " you really kind of want to go towards planetary mutualism"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,200",
+				"to": "00:22:00,680"
+			},
+			"offsets": {
+				"from": 1318200,
+				"to": 1320680
+			},
+			"text": " as opposed to sovereign individualism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,680",
+				"to": "00:22:02,520"
+			},
+			"offsets": {
+				"from": 1320680,
+				"to": 1322520
+			},
+			"text": " which seems to be the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,520",
+				"to": "00:22:04,000"
+			},
+			"offsets": {
+				"from": 1322520,
+				"to": 1324000
+			},
+			"text": " maybe it's Bitcoin's influence,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,000",
+				"to": "00:22:06,200"
+			},
+			"offsets": {
+				"from": 1324000,
+				"to": 1326200
+			},
+			"text": " but sovereign individualism seems to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,200",
+				"to": "00:22:09,840"
+			},
+			"offsets": {
+				"from": 1326200,
+				"to": 1329840
+			},
+			"text": " the popular default philosophy in the crypto world."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,840",
+				"to": "00:22:11,480"
+			},
+			"offsets": {
+				"from": 1329840,
+				"to": 1331480
+			},
+			"text": " I think planetary mutualism"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,480",
+				"to": "00:22:14,360"
+			},
+			"offsets": {
+				"from": 1331480,
+				"to": 1334360
+			},
+			"text": " is what it should be and what Ethereum should lean towards."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,360",
+				"to": "00:22:18,560"
+			},
+			"offsets": {
+				"from": 1334360,
+				"to": 1338560
+			},
+			"text": " A bunch of others happy to talk to anybody who's interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,560",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1338560,
+				"to": 1340000
+			},
+			"text": " in any of these,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:22,480"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1342480
+			},
+			"text": " I could go on for hours about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,480",
+				"to": "00:22:23,600"
+			},
+			"offsets": {
+				"from": 1342480,
+				"to": 1343600
+			},
+			"text": " I have a couple of minutes left."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,600",
+				"to": "00:22:25,200"
+			},
+			"offsets": {
+				"from": 1343600,
+				"to": 1345200
+			},
+			"text": " I do want to acknowledge a bunch of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,200",
+				"to": "00:22:27,000"
+			},
+			"offsets": {
+				"from": 1345200,
+				"to": 1347000
+			},
+			"text": " So a lot of this thinking actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,000",
+				"to": "00:22:28,040"
+			},
+			"offsets": {
+				"from": 1347000,
+				"to": 1348040
+			},
+			"text": " for the last couple of years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,040",
+				"to": "00:22:29,360"
+			},
+			"offsets": {
+				"from": 1348040,
+				"to": 1349360
+			},
+			"text": " it's been happening at this group."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,360",
+				"to": "00:22:31,320"
+			},
+			"offsets": {
+				"from": 1349360,
+				"to": 1351320
+			},
+			"text": " I belong to the Yacht Collective."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,320",
+				"to": "00:22:33,680"
+			},
+			"offsets": {
+				"from": 1351320,
+				"to": 1353680
+			},
+			"text": " We have a Monday morning distributed systems group"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,680",
+				"to": "00:22:36,120"
+			},
+			"offsets": {
+				"from": 1353680,
+				"to": 1356120
+			},
+			"text": " that discusses kind of more technical stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,120",
+				"to": "00:22:37,880"
+			},
+			"offsets": {
+				"from": 1356120,
+				"to": 1357880
+			},
+			"text": " and a Friday morning study group"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,880",
+				"to": "00:22:38,800"
+			},
+			"offsets": {
+				"from": 1357880,
+				"to": 1358800
+			},
+			"text": " that talks about like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,800",
+				"to": "00:22:40,640"
+			},
+			"offsets": {
+				"from": 1358800,
+				"to": 1360640
+			},
+			"text": " online governance and social stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,640",
+				"to": "00:22:42,560"
+			},
+			"offsets": {
+				"from": 1360640,
+				"to": 1362560
+			},
+			"text": " So if you're interested, please do join us."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,560",
+				"to": "00:22:44,760"
+			},
+			"offsets": {
+				"from": 1362560,
+				"to": 1364760
+			},
+			"text": " And I do want to shout out to all the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,760",
+				"to": "00:22:45,600"
+			},
+			"offsets": {
+				"from": 1364760,
+				"to": 1365600
+			},
+			"text": " I've listed there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,600",
+				"to": "00:22:50,400"
+			},
+			"offsets": {
+				"from": 1365600,
+				"to": 1370400
+			},
+			"text": " So John, Miguel, Kay, Rafa, John, many others."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,400",
+				"to": "00:22:53,480"
+			},
+			"offsets": {
+				"from": 1370400,
+				"to": 1373480
+			},
+			"text": " All the people who helped me not make a complete ass"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,480",
+				"to": "00:22:55,680"
+			},
+			"offsets": {
+				"from": 1373480,
+				"to": 1375680
+			},
+			"text": " of myself as I was exploring these topics"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,680",
+				"to": "00:22:57,240"
+			},
+			"offsets": {
+				"from": 1375680,
+				"to": 1377240
+			},
+			"text": " starting a couple of years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,240",
+				"to": "00:22:59,080"
+			},
+			"offsets": {
+				"from": 1377240,
+				"to": 1379080
+			},
+			"text": " I have been around the Ethereum ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,080",
+				"to": "00:23:00,600"
+			},
+			"offsets": {
+				"from": 1379080,
+				"to": 1380600
+			},
+			"text": " as a lurker since the beginning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,600",
+				"to": "00:23:03,800"
+			},
+			"offsets": {
+				"from": 1380600,
+				"to": 1383800
+			},
+			"text": " but I only really got into it a couple of years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,800",
+				"to": "00:23:06,200"
+			},
+			"offsets": {
+				"from": 1383800,
+				"to": 1386200
+			},
+			"text": " And of course, thanks to Tim and Vitalik"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,200",
+				"to": "00:23:08,560"
+			},
+			"offsets": {
+				"from": 1386200,
+				"to": 1388560
+			},
+			"text": " for a bunch of helpful conversations."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,560",
+				"to": "00:23:10,720"
+			},
+			"offsets": {
+				"from": 1388560,
+				"to": 1390720
+			},
+			"text": " So it's like I ended with a minute to spare,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,720",
+				"to": "00:23:12,400"
+			},
+			"offsets": {
+				"from": 1390720,
+				"to": 1392400
+			},
+			"text": " so thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,400",
+				"to": "00:23:14,640"
+			},
+			"offsets": {
+				"from": 1392400,
+				"to": 1394640
+			},
+			"text": " (buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,640",
+				"to": "00:23:16,640"
+			},
+			"offsets": {
+				"from": 1394640,
+				"to": 1396640
+			},
+			"text": " (buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,640",
+				"to": "00:23:18,640"
+			},
+			"offsets": {
+				"from": 1396640,
+				"to": 1398640
+			},
+			"text": " (buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,640",
+				"to": "00:23:20,640"
+			},
+			"offsets": {
+				"from": 1398640,
+				"to": 1400640
+			},
+			"text": " (buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,640",
+				"to": "00:23:22,640"
+			},
+			"offsets": {
+				"from": 1400640,
+				"to": 1402640
+			},
+			"text": " (buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,640",
+				"to": "00:23:51,640"
+			},
+			"offsets": {
+				"from": 1402640,
+				"to": 1431640
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

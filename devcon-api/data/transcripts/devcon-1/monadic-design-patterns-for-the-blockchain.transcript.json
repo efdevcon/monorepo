@@ -1,0 +1,1979 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:24,600"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 24600
+			},
+			"text": " >> So first of all, thanks to Vitalik and Vlad for asking me to come."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,600",
+				"to": "00:00:26,720"
+			},
+			"offsets": {
+				"from": 24600,
+				"to": 26720
+			},
+			"text": " And it's great to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,720",
+				"to": "00:00:30,440"
+			},
+			"offsets": {
+				"from": 26720,
+				"to": 30440
+			},
+			"text": " I'm glad to be able to deliver a few impressions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,440",
+				"to": "00:00:35,280"
+			},
+			"offsets": {
+				"from": 30440,
+				"to": 35280
+			},
+			"text": " I think in 25 minutes, that's all I can do is deliver a few impressions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,280",
+				"to": "00:00:43,960"
+			},
+			"offsets": {
+				"from": 35280,
+				"to": 43960
+			},
+			"text": " Vlad and I have been working a lot on CASPER and kind of the technologies and tools and ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,960",
+				"to": "00:00:50,440"
+			},
+			"offsets": {
+				"from": 43960,
+				"to": 50440
+			},
+			"text": " that I'm bringing to the formal verification of CASPER are also embodied in some of the ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,440",
+				"to": "00:00:52,440"
+			},
+			"offsets": {
+				"from": 50440,
+				"to": 52440
+			},
+			"text": " that I'll be presenting here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,440",
+				"to": "00:00:59,240"
+			},
+			"offsets": {
+				"from": 52440,
+				"to": 59240
+			},
+			"text": " So kind of the, you know, just want to touch on an overall narrative and then,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,240",
+				"to": "00:01:04,600"
+			},
+			"offsets": {
+				"from": 59240,
+				"to": 64600
+			},
+			"text": " and really if you walk away with nothing else, I want to leave you with this one big picture idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,600",
+				"to": "00:01:10,040"
+			},
+			"offsets": {
+				"from": 64600,
+				"to": 70040
+			},
+			"text": " But, you know, in the details, there's enough space for God and the devil, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,040",
+				"to": "00:01:13,800"
+			},
+			"offsets": {
+				"from": 70040,
+				"to": 73800
+			},
+			"text": " So there's always lots and lots of space in the details."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,800",
+				"to": "00:01:15,960"
+			},
+			"offsets": {
+				"from": 73800,
+				"to": 75960
+			},
+			"text": " And maybe talk about some next steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,960",
+				"to": "00:01:18,200"
+			},
+			"offsets": {
+				"from": 75960,
+				"to": 78200
+			},
+			"text": " So that's kind of what we're going to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,200",
+				"to": "00:01:20,200"
+			},
+			"offsets": {
+				"from": 78200,
+				"to": 80200
+			},
+			"text": " And the narrative is actually a fairly simple one."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,200",
+				"to": "00:01:21,880"
+			},
+			"offsets": {
+				"from": 80200,
+				"to": 81880
+			},
+			"text": " It's fairly straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,880",
+				"to": "00:01:24,600"
+			},
+			"offsets": {
+				"from": 81880,
+				"to": 84600
+			},
+			"text": " Consensus is a necessary component of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,600",
+				"to": "00:01:31,600"
+			},
+			"offsets": {
+				"from": 84600,
+				"to": 91600
+			},
+			"text": " So you heard Vlad talk rather eloquently about consensus and some of the problems there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,600",
+				"to": "00:01:37,760"
+			},
+			"offsets": {
+				"from": 91600,
+				"to": 97760
+			},
+			"text": " It turns out, I mean, I think many of the people here know that blockchain currently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,760",
+				"to": "00:01:43,200"
+			},
+			"offsets": {
+				"from": 97760,
+				"to": 103200
+			},
+			"text": " you know, as embodied, doesn't scale very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,200",
+				"to": "00:01:48,040"
+			},
+			"offsets": {
+				"from": 103200,
+				"to": 108040
+			},
+			"text": " And CASPER's variation, the proof of stake, is an important step along the way towards scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,040",
+				"to": "00:01:50,440"
+			},
+			"offsets": {
+				"from": 108040,
+				"to": 110440
+			},
+			"text": " I wouldn't say that it's the solution to scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,440",
+				"to": "00:01:55,960"
+			},
+			"offsets": {
+				"from": 110440,
+				"to": 115960
+			},
+			"text": " But it's one component of a scaling solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,960",
+				"to": "00:02:02,920"
+			},
+			"offsets": {
+				"from": 115960,
+				"to": 122920
+			},
+			"text": " And so we want to look at proof of stake and in particular the CASPER variant of proof of stake"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,920",
+				"to": "00:02:07,080"
+			},
+			"offsets": {
+				"from": 122920,
+				"to": 127080
+			},
+			"text": " and really bash on it from the point of view of formal verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,080",
+				"to": "00:02:13,160"
+			},
+			"offsets": {
+				"from": 127080,
+				"to": 133160
+			},
+			"text": " We'd like to know for sure once and for all whether CASPER enjoys certain properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,160",
+				"to": "00:02:19,720"
+			},
+			"offsets": {
+				"from": 133160,
+				"to": 139720
+			},
+			"text": " And so one of the tools that we're using to go about this is something called the Applied Pi Calculus."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,720",
+				"to": "00:02:26,920"
+			},
+			"offsets": {
+				"from": 139720,
+				"to": 146920
+			},
+			"text": " And this gives us, and I'll show kind of where we are in the state of that later in the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,920",
+				"to": "00:02:32,360"
+			},
+			"offsets": {
+				"from": 146920,
+				"to": 152360
+			},
+			"text": " But this gives us access to automated support for proof of correctness."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,360",
+				"to": "00:02:40,280"
+			},
+			"offsets": {
+				"from": 152360,
+				"to": 160280
+			},
+			"text": " So the tools that we're employing right now include Provera, but much more the spatial logic model checker"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,280",
+				"to": "00:02:43,240"
+			},
+			"offsets": {
+				"from": 160280,
+				"to": 163240
+			},
+			"text": " which was developed by Luis Carrez."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,240",
+				"to": "00:02:47,160"
+			},
+			"offsets": {
+				"from": 163240,
+				"to": 167160
+			},
+			"text": " And that turns out to be good fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,160",
+				"to": "00:02:53,160"
+			},
+			"offsets": {
+				"from": 167160,
+				"to": 173160
+			},
+			"text": " And if you want to look at the code, it's up on GitHub and I'll give you a link a bit later."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,160",
+				"to": "00:02:59,720"
+			},
+			"offsets": {
+				"from": 173160,
+				"to": 179720
+			},
+			"text": " But it turns out that if you have a spec in the Applied Pi Calculus, well I have a bunch of libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,720",
+				"to": "00:03:08,360"
+			},
+			"offsets": {
+				"from": 179720,
+				"to": 188360
+			},
+			"text": " that up on GitHub called Special K. And they are an implementation, an executable distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,360",
+				"to": "00:03:11,320"
+			},
+			"offsets": {
+				"from": 188360,
+				"to": 191320
+			},
+			"text": " virtual machine of the Applied Pi Calculus."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,320",
+				"to": "00:03:15,320"
+			},
+			"offsets": {
+				"from": 191320,
+				"to": 195320
+			},
+			"text": " So if you have a spec, you can turn it straight into an implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,360",
+				"to": "00:03:22,120"
+			},
+			"offsets": {
+				"from": 196360,
+				"to": 202120
+			},
+			"text": " So if you have a spec that you can reason about the correctness properties, then you can actually run"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,120",
+				"to": "00:03:29,320"
+			},
+			"offsets": {
+				"from": 202120,
+				"to": 209320
+			},
+			"text": " CASPER. And so this has big implications for the correctness of an implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,320",
+				"to": "00:03:35,560"
+			},
+			"offsets": {
+				"from": 209320,
+				"to": 215560
+			},
+			"text": " What you get is correct by construction. And that's a different approach to design that I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,560",
+				"to": "00:03:43,720"
+			},
+			"offsets": {
+				"from": 215560,
+				"to": 223720
+			},
+			"text": " happens in a lot of software, a lot of the software industry. But in particular in this space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,440",
+				"to": "00:03:52,440"
+			},
+			"offsets": {
+				"from": 224440,
+				"to": 232440
+			},
+			"text": " I'm not sure that the blockchain, as originally conceived, was done in a correct by construction"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,440",
+				"to": "00:03:59,080"
+			},
+			"offsets": {
+				"from": 232440,
+				"to": 239080
+			},
+			"text": " style. I think it was quite the opposite actually. But if you take on correct by construction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,080",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 239080,
+				"to": 245000
+			},
+			"text": " this helps with scaling. There are a lot of different aspects to scaling. It's not just about"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:12,600"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 252600
+			},
+			"text": " volume and performance. It's also about when you have reliability, reliability is what engenders"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,600",
+				"to": "00:04:20,360"
+			},
+			"offsets": {
+				"from": 252600,
+				"to": 260360
+			},
+			"text": " adoption. So you think about your someone who manages a large financial firm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,360",
+				"to": "00:04:25,480"
+			},
+			"offsets": {
+				"from": 260360,
+				"to": 265480
+			},
+			"text": " and there's this great new technology that promises wonderful things, but am I going to swap it out"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,480",
+				"to": "00:04:32,200"
+			},
+			"offsets": {
+				"from": 265480,
+				"to": 272200
+			},
+			"text": " for the thing that works? Well, I might be more inclined to do that, take on some of that risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,200",
+				"to": "00:04:37,560"
+			},
+			"offsets": {
+				"from": 272200,
+				"to": 277560
+			},
+			"text": " if I knew that it had certain reliability properties that were formally and automatically verified."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,720",
+				"to": "00:04:47,880"
+			},
+			"offsets": {
+				"from": 279720,
+				"to": 287880
+			},
+			"text": " It also helps with maintenance and evolution, because as we know, this space is changing very fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,880",
+				"to": "00:04:55,800"
+			},
+			"offsets": {
+				"from": 287880,
+				"to": 295800
+			},
+			"text": " So it's kind of important to be able to adapt the code to the needs of the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:10,360"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 310360
+			},
+			"text": " It turns out that in addition to some of these benefits, Special K provide already of its own,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,360",
+				"to": "00:05:17,320"
+			},
+			"offsets": {
+				"from": 310360,
+				"to": 317320
+			},
+			"text": " provides a broad range of transactional semantics. And we get these because of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,320",
+				"to": "00:05:24,200"
+			},
+			"offsets": {
+				"from": 317320,
+				"to": 324200
+			},
+			"text": " monadic decomposition of the elements that are used to make these kinds of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,200",
+				"to": "00:05:31,720"
+			},
+			"offsets": {
+				"from": 324200,
+				"to": 331720
+			},
+			"text": " And I'll go through those. But there's basically a handful of programming paradigms that are used"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,720",
+				"to": "00:05:38,360"
+			},
+			"offsets": {
+				"from": 331720,
+				"to": 338360
+			},
+			"text": " successfully today in building distributed systems. And it turns out that you can organize all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,360",
+				"to": "00:05:47,640"
+			},
+			"offsets": {
+				"from": 338360,
+				"to": 347640
+			},
+			"text": " those under a single rubric, essentially a single API. Additionally, the compositional nature"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,280",
+				"to": "00:05:57,560"
+			},
+			"offsets": {
+				"from": 348280,
+				"to": 357560
+			},
+			"text": " of the Pi calculus. So I'm just giving you some sense of all the benefits of this kind of approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,560",
+				"to": "00:06:03,480"
+			},
+			"offsets": {
+				"from": 357560,
+				"to": 363480
+			},
+			"text": " makes it possible to write down in a single page a metered distributed concurrent VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,480",
+				"to": "00:06:07,880"
+			},
+			"offsets": {
+				"from": 363480,
+				"to": 367880
+			},
+			"text": " So just for fun, I'll show you that spec right at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,880",
+				"to": "00:06:13,320"
+			},
+			"offsets": {
+				"from": 367880,
+				"to": 373320
+			},
+			"text": " Ooh, that's some nice feedback. Some really nice high frequencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,800",
+				"to": "00:06:21,720"
+			},
+			"offsets": {
+				"from": 375800,
+				"to": 381720
+			},
+			"text": " Okay, so the big picture is that compositionality is the key to scaling any system. So if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,720",
+				"to": "00:06:28,920"
+			},
+			"offsets": {
+				"from": 381720,
+				"to": 388920
+			},
+			"text": " forget everything else in this talk, if you remember that one idea, I'm hoping to plant that seed in"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,920",
+				"to": "00:06:34,120"
+			},
+			"offsets": {
+				"from": 388920,
+				"to": 394120
+			},
+			"text": " your mind and go home and think about that. So what the hell is compositionality? Is it even a word?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,120",
+				"to": "00:06:42,920"
+			},
+			"offsets": {
+				"from": 394120,
+				"to": 402920
+			},
+			"text": " Spellcheck is going to underline it in red. I guarantee you. So let me kind of unpack this idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,920",
+				"to": "00:06:48,520"
+			},
+			"offsets": {
+				"from": 402920,
+				"to": 408520
+			},
+			"text": " So in computing, I think we're all familiar with the idea that scaling refers to lots and lots of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,520",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 408520,
+				"to": 415000
+			},
+			"text": " copies of things that are potentially not reliable individually. So lots of chips, lots of boxes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:00,680"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 420680
+			},
+			"text": " lots of databases, lots of servers, lots of data centers. So that's the traditional"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,680",
+				"to": "00:07:05,800"
+			},
+			"offsets": {
+				"from": 420680,
+				"to": 425800
+			},
+			"text": " high volume, high performance notion of scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,080",
+				"to": "00:07:12,760"
+			},
+			"offsets": {
+				"from": 427080,
+				"to": 432760
+			},
+			"text": " Compositionality turns this upside down. And what it says is that scaling is about making"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,760",
+				"to": "00:07:21,560"
+			},
+			"offsets": {
+				"from": 432760,
+				"to": 441560
+			},
+			"text": " the large reflect the small. And every child understands this idea. They hold up the leaf,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,560",
+				"to": "00:07:26,200"
+			},
+			"offsets": {
+				"from": 441560,
+				"to": 446200
+			},
+			"text": " they look at the leaf, and they say, hey, there's a tree inside this leaf."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,200",
+				"to": "00:07:34,520"
+			},
+			"offsets": {
+				"from": 446200,
+				"to": 454520
+			},
+			"text": " And that is in fact how nature scales. And we see it again and again and again."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,080",
+				"to": "00:07:42,680"
+			},
+			"offsets": {
+				"from": 455080,
+				"to": 462680
+			},
+			"text": " And it's kind of funny. Why is it that we forget? We knew this at one point and then we forget it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,680",
+				"to": "00:07:50,040"
+			},
+			"offsets": {
+				"from": 462680,
+				"to": 470040
+			},
+			"text": " And why is it that we forget this? Well, it turns out that it's actually a fairly new thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,040",
+				"to": "00:07:56,280"
+			},
+			"offsets": {
+				"from": 470040,
+				"to": 476280
+			},
+			"text": " for culture to remember this. So I'm just giving you a few examples from pop culture"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,280",
+				"to": "00:08:04,360"
+			},
+			"offsets": {
+				"from": 476280,
+				"to": 484360
+			},
+			"text": " of this idea. And you'll notice that all of them, I mean, even Mandelbrot sets are very new"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,360",
+				"to": "00:08:12,680"
+			},
+			"offsets": {
+				"from": 484360,
+				"to": 492680
+			},
+			"text": " on the cultural landscape. And just to give you another sense of how interesting and different"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,680",
+				"to": "00:08:18,680"
+			},
+			"offsets": {
+				"from": 492680,
+				"to": 498680
+			},
+			"text": " this way of thinking is, so here's a bunch of people who had computationally very effective ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,680",
+				"to": "00:08:25,720"
+			},
+			"offsets": {
+				"from": 498680,
+				"to": 505720
+			},
+			"text": " So maybe you recognize Paul Dirac, maybe you recognize Erwin Schrodinger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,720",
+				"to": "00:08:31,320"
+			},
+			"offsets": {
+				"from": 505720,
+				"to": 511320
+			},
+			"text": " but quantum mechanics as formulated in those days was not compositional. And it's only been in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,320",
+				"to": "00:08:36,840"
+			},
+			"offsets": {
+				"from": 511320,
+				"to": 516840
+			},
+			"text": " last five years that we've had a compositional formulation or presentation of quantum mechanics"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,840",
+				"to": "00:08:44,200"
+			},
+			"offsets": {
+				"from": 516840,
+				"to": 524200
+			},
+			"text": " via Simpson of Bramsky and Bob Cooka. A similar thing has happened in the physics of the large"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,200",
+				"to": "00:08:49,320"
+			},
+			"offsets": {
+				"from": 524200,
+				"to": 529320
+			},
+			"text": " gravitation and cosmology. And because we don't have good compositional accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,320",
+				"to": "00:08:55,720"
+			},
+			"offsets": {
+				"from": 529320,
+				"to": 535720
+			},
+			"text": " physics fails to scale. We don't have a nice way to marry those two ideas. So if you're feeling like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,720",
+				"to": "00:09:00,920"
+			},
+			"offsets": {
+				"from": 535720,
+				"to": 540920
+			},
+			"text": " hey, I'm not quite sure what compositionality is. I'm not sure. Well, these guys didn't either."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,880",
+				"to": "00:09:12,600"
+			},
+			"offsets": {
+				"from": 541880,
+				"to": 552600
+			},
+			"text": " So it's kind of okay. But what I can say is that the notion of composition has nice formalizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,600",
+				"to": "00:09:19,800"
+			},
+			"offsets": {
+				"from": 552600,
+				"to": 559800
+			},
+			"text": " So since about the 1950s, there's been an appropriately parametric notion of composition"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,800",
+				"to": "00:09:26,200"
+			},
+			"offsets": {
+				"from": 559800,
+				"to": 566200
+			},
+			"text": " that was formulated first in category theory. And it was given this weird, crazy name of a monad."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,240",
+				"to": "00:09:34,840"
+			},
+			"offsets": {
+				"from": 567240,
+				"to": 574840
+			},
+			"text": " If you pair monads with their dual mathematical widget, the Comonad, you couldn't think of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,840",
+				"to": "00:09:39,880"
+			},
+			"offsets": {
+				"from": 574840,
+				"to": 579880
+			},
+			"text": " So composition is kind of like nesting, right? It's like the Russian dolls. You nest. You know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,880",
+				"to": "00:09:46,200"
+			},
+			"offsets": {
+				"from": 579880,
+				"to": 586200
+			},
+			"text": " it's like the tree inside the leaf and the leaf inside that tree and the tree inside the leaf,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,200",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 586200,
+				"to": 593000
+			},
+			"text": " right? So it's about nesting. And what Monads and Comonads give you, Monads give you a way to zoom out."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:58,360"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 598360
+			},
+			"text": " And Comonads give you a way to zoom in on this nesting phenomena or this composing phenomena."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,360",
+				"to": "00:10:03,400"
+			},
+			"offsets": {
+				"from": 598360,
+				"to": 603400
+			},
+			"text": " And lest you think I'm talking about abstract, airy, fairy stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,400",
+				"to": "00:10:10,920"
+			},
+			"offsets": {
+				"from": 603400,
+				"to": 610920
+			},
+			"text": " again, all I can do in 25 minutes is give you a few impressions, right? So here are effective"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,920",
+				"to": "00:10:18,760"
+			},
+			"offsets": {
+				"from": 610920,
+				"to": 618760
+			},
+			"text": " APIs expressed in the language Scala. You can find similar expressions in the language Haskell,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,760",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 618760,
+				"to": 625000
+			},
+			"text": " just out of curiosity. How many people code in functional languages? Here. Awesome. How many"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:34,440"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 634440
+			},
+			"text": " people use Monads in their daily practice? Yeah, quite a few less. Yeah, okay. But the point is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,440",
+				"to": "00:10:38,600"
+			},
+			"offsets": {
+				"from": 634440,
+				"to": 638600
+			},
+			"text": " that they are an effective notion and they're a great way to structure your code, even if you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,600",
+				"to": "00:10:44,440"
+			},
+			"offsets": {
+				"from": 638600,
+				"to": 644440
+			},
+			"text": " not thinking about scaling blockchains. They're a great way to structure container code. They're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,440",
+				"to": "00:10:50,440"
+			},
+			"offsets": {
+				"from": 644440,
+				"to": 650440
+			},
+			"text": " a great way to structure control flow. But it turns out that we can do better than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,440",
+				"to": "00:11:00,760"
+			},
+			"offsets": {
+				"from": 650440,
+				"to": 660760
+			},
+			"text": " So in particular, a special K, KVDB, looks at a duality between continuation, which is the rest"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,760",
+				"to": "00:11:04,360"
+			},
+			"offsets": {
+				"from": 660760,
+				"to": 664360
+			},
+			"text": " of your program. So let's say your program walks up to the blockchain and says, I'm looking for"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,360",
+				"to": "00:11:09,960"
+			},
+			"offsets": {
+				"from": 664360,
+				"to": 669960
+			},
+			"text": " something, right? And what if that something isn't there yet? What do you do with that program that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,960",
+				"to": "00:11:15,160"
+			},
+			"offsets": {
+				"from": 669960,
+				"to": 675160
+			},
+			"text": " is waiting for data and can't go further, right? So in special K, what happens is the rest of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,160",
+				"to": "00:11:22,040"
+			},
+			"offsets": {
+				"from": 675160,
+				"to": 682040
+			},
+			"text": " that program is packaged up as a piece of data and stored at the place where it was looking for"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,040",
+				"to": "00:11:27,480"
+			},
+			"offsets": {
+				"from": 682040,
+				"to": 687480
+			},
+			"text": " something, right? So that's the continuation. And then data is dual to that. And in fact,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,480",
+				"to": "00:11:33,720"
+			},
+			"offsets": {
+				"from": 687480,
+				"to": 693720
+			},
+			"text": " you can have a notion of data integrity that goes all the way back to the law of excluded middle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,720",
+				"to": "00:11:40,920"
+			},
+			"offsets": {
+				"from": 693720,
+				"to": 700920
+			},
+			"text": " right? A or not A, right? That has to do with this duality between continuation and data. So at"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,920",
+				"to": "00:11:45,560"
+			},
+			"offsets": {
+				"from": 700920,
+				"to": 705560
+			},
+			"text": " this location that you're looking for, this address on the blockchain or in the case of special K,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,560",
+				"to": "00:11:53,400"
+			},
+			"offsets": {
+				"from": 705560,
+				"to": 713400
+			},
+			"text": " it's a more sophisticated kind of key. But at this location, you will either have a continuation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,400",
+				"to": "00:11:59,640"
+			},
+			"offsets": {
+				"from": 713400,
+				"to": 719640
+			},
+			"text": " or some data. And if a program is looking for data and it's not there, the continuation will"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,640",
+				"to": "00:12:04,440"
+			},
+			"offsets": {
+				"from": 719640,
+				"to": 724440
+			},
+			"text": " be stored there. If a program is depositing data, if there is a continuation there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,440",
+				"to": "00:12:10,440"
+			},
+			"offsets": {
+				"from": 724440,
+				"to": 730440
+			},
+			"text": " that continuation will be woken up and handed the data. Okay, that's the basic setup, right? Now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,440",
+				"to": "00:12:17,960"
+			},
+			"offsets": {
+				"from": 730440,
+				"to": 737960
+			},
+			"text": " you can ask some questions about that setup. You can say, well, after the data and the program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,960",
+				"to": "00:12:24,840"
+			},
+			"offsets": {
+				"from": 737960,
+				"to": 744840
+			},
+			"text": " the continuation meet each other, what happens? And there are only a handful of possibilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,400",
+				"to": "00:12:33,160"
+			},
+			"offsets": {
+				"from": 745400,
+				"to": 753160
+			},
+			"text": " One is the data disappears and the continuation disappears. So they meet each other in this abstract"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,160",
+				"to": "00:12:40,120"
+			},
+			"offsets": {
+				"from": 753160,
+				"to": 760120
+			},
+			"text": " space, this address, and they go poof. All right, another possibility is that the continuation"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,120",
+				"to": "00:12:45,800"
+			},
+			"offsets": {
+				"from": 760120,
+				"to": 765800
+			},
+			"text": " remains and the data goes poof. Another possibility is that the continuation goes poof and the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,800",
+				"to": "00:12:52,680"
+			},
+			"offsets": {
+				"from": 765800,
+				"to": 772680
+			},
+			"text": " remains. And the last possibility, of course, is that they both persist, right? So what does that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,680",
+				"to": "00:13:04,040"
+			},
+			"offsets": {
+				"from": 772680,
+				"to": 784040
+			},
+			"text": " have to do with traditional approaches to distributed applications? Well, if the data persists and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,040",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 784040,
+				"to": 791000
+			},
+			"text": " the continuation evaporates, that's just traditional database operations. Think about a read, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 795000
+			},
+			"text": " My program wants the data. I read it, but I don't get rid of it out of the database just from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:26,040"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 806040
+			},
+			"text": " read operation, right? That's traditional database operations. If I publish and the publishing data"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,040",
+				"to": "00:13:32,840"
+			},
+			"offsets": {
+				"from": 806040,
+				"to": 812840
+			},
+			"text": " is ephemeral, but the continuation persists, that's ordinary publish and subscribe. That's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,840",
+				"to": "00:13:37,960"
+			},
+			"offsets": {
+				"from": 812840,
+				"to": 817960
+			},
+			"text": " ordinary publish and subscribe. And if they, if both of them persist, it's published and subscribed"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,960",
+				"to": "00:13:45,320"
+			},
+			"offsets": {
+				"from": 817960,
+				"to": 825320
+			},
+			"text": " with a history, with a backlog of what you published. And finally, this is quite interesting. If they"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,320",
+				"to": "00:13:52,840"
+			},
+			"offsets": {
+				"from": 825320,
+				"to": 832840
+			},
+			"text": " if they both disappear, then you get item level locking in a distributed transactional semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,840",
+				"to": "00:14:05,960"
+			},
+			"offsets": {
+				"from": 832840,
+				"to": 845960
+			},
+			"text": " So one API, which I showed you, nothing up my sleeves, right? One API, the the monadic API covers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,840",
+				"to": "00:14:16,200"
+			},
+			"offsets": {
+				"from": 846840,
+				"to": 856200
+			},
+			"text": " all of those distributed programming paradigms. So now, how does this apply to the blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,200",
+				"to": "00:14:26,120"
+			},
+			"offsets": {
+				"from": 856200,
+				"to": 866120
+			},
+			"text": " Well, that that that how we provide that is that the continuation monad is the monad underlying"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,120",
+				"to": "00:14:31,160"
+			},
+			"offsets": {
+				"from": 866120,
+				"to": 871160
+			},
+			"text": " being able to bring those those patterns together, right? So we talked about this duality between"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,640",
+				"to": "00:14:36,760"
+			},
+			"offsets": {
+				"from": 871640,
+				"to": 876760
+			},
+			"text": " continuation and data. Well, it's the con it's the structuring of the continuations in the way we"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,760",
+				"to": "00:14:42,840"
+			},
+			"offsets": {
+				"from": 876760,
+				"to": 882840
+			},
+			"text": " store them that uses the continuation monad to provide to provide that unification of all those"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,840",
+				"to": "00:14:50,600"
+			},
+			"offsets": {
+				"from": 882840,
+				"to": 890600
+			},
+			"text": " programming paradigms. And and so we looked at that API, it turns out that if you just tilt that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,600",
+				"to": "00:14:56,760"
+			},
+			"offsets": {
+				"from": 890600,
+				"to": 896760
+			},
+			"text": " API on its side a little bit, what you end up getting is the applied PyCalculus. And that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,760",
+				"to": "00:15:02,840"
+			},
+			"offsets": {
+				"from": 896760,
+				"to": 902840
+			},
+			"text": " exactly how special K is organized. So if you look at special K, if you go to GitHub right now and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,840",
+				"to": "00:15:09,720"
+			},
+			"offsets": {
+				"from": 902840,
+				"to": 909720
+			},
+			"text": " you look at special K, what you'll find is a little DSL that provides an implementation of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,720",
+				"to": "00:15:17,560"
+			},
+			"offsets": {
+				"from": 909720,
+				"to": 917560
+			},
+			"text": " applied PyCalculus. So, but here's a little preview of applying that API to Casper."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,040",
+				"to": "00:15:28,040"
+			},
+			"offsets": {
+				"from": 920040,
+				"to": 928040
+			},
+			"text": " So I spent last night and refactored this. I had good fun. So let's see if I can can you see that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,040",
+				"to": "00:15:33,400"
+			},
+			"offsets": {
+				"from": 928040,
+				"to": 933400
+			},
+			"text": " Well, that's that's all right. So I'm just gonna again, I only have time to give you a flavor."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,400",
+				"to": "00:15:45,720"
+			},
+			"offsets": {
+				"from": 933400,
+				"to": 945720
+			},
+			"text": " So here are the files in the spec. And let's take a look briefly at just some of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,720",
+				"to": "00:15:55,880"
+			},
+			"offsets": {
+				"from": 949720,
+				"to": 955880
+			},
+			"text": " So in in Casper, the consensus protocol is organized around nodes, which we think of as validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,880",
+				"to": "00:16:03,560"
+			},
+			"offsets": {
+				"from": 955880,
+				"to": 963560
+			},
+			"text": " And what a validator wants to do is essentially receive blocks and then make bets on whether or"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,560",
+				"to": "00:16:10,920"
+			},
+			"offsets": {
+				"from": 963560,
+				"to": 970920
+			},
+			"text": " not a block should be published to the to the to the to the blockchain. And here's here's basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,920",
+				"to": "00:16:18,840"
+			},
+			"offsets": {
+				"from": 970920,
+				"to": 978840
+			},
+			"text": " just an applied PyCalculus spec of the betting and the convergence around betting spec for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,840",
+				"to": "00:16:24,600"
+			},
+			"offsets": {
+				"from": 978840,
+				"to": 984600
+			},
+			"text": " validator. We can there are similar and you can see how tiny it is. It's teeny tiny."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,600",
+				"to": "00:16:32,280"
+			},
+			"offsets": {
+				"from": 984600,
+				"to": 992280
+			},
+			"text": " This this wow we're already at two minutes. Okay, come see me afterwards and I'll show you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,280",
+				"to": "00:16:39,160"
+			},
+			"offsets": {
+				"from": 992280,
+				"to": 999160
+			},
+			"text": " probing this spec for properties. Okay, so I'll I'll I'll cut to the cut to the chase."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,400",
+				"to": "00:16:53,240"
+			},
+			"offsets": {
+				"from": 1007400,
+				"to": 1013240
+			},
+			"text": " I was gonna give you a demo, but I would like to just take take a just come come see me afterwards"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,240",
+				"to": "00:16:58,120"
+			},
+			"offsets": {
+				"from": 1013240,
+				"to": 1018120
+			},
+			"text": " and I'll give you a lot more of the flavor of the spec and how we can probe it automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,120",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1018120,
+				"to": 1023000
+			},
+			"text": " with the spatial logic model checker. But I would like to conclude by just taking you through a"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:10,120"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1030120
+			},
+			"text": " little bit, taking the same kind of specs and using the compositional structure, we can walk"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,120",
+				"to": "00:17:16,920"
+			},
+			"offsets": {
+				"from": 1030120,
+				"to": 1036920
+			},
+			"text": " this structure. We can essentially build up a new semantics from the existing semantics in a nice"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,920",
+				"to": "00:17:26,040"
+			},
+			"offsets": {
+				"from": 1036920,
+				"to": 1046040
+			},
+			"text": " clean careful way. So I took the I took the essentially a variant of the applied PyCalculus"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,040",
+				"to": "00:17:33,800"
+			},
+			"offsets": {
+				"from": 1046040,
+				"to": 1053800
+			},
+			"text": " and I added to it metering and this metering basically uses three elements. So there's a resource."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,800",
+				"to": "00:17:39,480"
+			},
+			"offsets": {
+				"from": 1053800,
+				"to": 1059480
+			},
+			"text": " There's there's a there's a channel for the exchange of the resource and there's a channel for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,480",
+				"to": "00:17:46,840"
+			},
+			"offsets": {
+				"from": 1059480,
+				"to": 1066840
+			},
+			"text": " next step that next step is again and encoding of a continuation. And what what we see here is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,840",
+				"to": "00:17:53,960"
+			},
+			"offsets": {
+				"from": 1066840,
+				"to": 1073960
+			},
+			"text": " essentially just just a tiny little harness for for running a metered VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,960",
+				"to": "00:18:03,800"
+			},
+			"offsets": {
+				"from": 1073960,
+				"to": 1083800
+			},
+			"text": " We run inside that harness the translation of our of our little tiny API for for contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,800",
+				"to": "00:18:08,680"
+			},
+			"offsets": {
+				"from": 1083800,
+				"to": 1088680
+			},
+			"text": " Right, but this this API and this contract language is a little different. And the reason"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,680",
+				"to": "00:18:16,440"
+			},
+			"offsets": {
+				"from": 1088680,
+				"to": 1096440
+			},
+			"text": " it's different is because contracts can be executed in parallel. Contracts have have other"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,440",
+				"to": "00:18:20,360"
+			},
+			"offsets": {
+				"from": 1096440,
+				"to": 1100360
+			},
+			"text": " interesting properties in that contracts themselves can be reified and exchanged."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,360",
+				"to": "00:18:28,760"
+			},
+			"offsets": {
+				"from": 1100360,
+				"to": 1108760
+			},
+			"text": " The important point here again I'm happy to go through all the details with you offline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,760",
+				"to": "00:18:35,480"
+			},
+			"offsets": {
+				"from": 1108760,
+				"to": 1115480
+			},
+			"text": " but the important point here is the size of this spec. And not only the size of this spec,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,480",
+				"to": "00:18:40,920"
+			},
+			"offsets": {
+				"from": 1115480,
+				"to": 1120920
+			},
+			"text": " but the correctness properties of this virtual machine can be stated and proved in about a half"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,920",
+				"to": "00:18:48,600"
+			},
+			"offsets": {
+				"from": 1120920,
+				"to": 1128600
+			},
+			"text": " a page. Right, so even more interestingly, you can take this kind of virtual machine and bootstrap."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,600",
+				"to": "00:18:54,920"
+			},
+			"offsets": {
+				"from": 1128600,
+				"to": 1134920
+			},
+			"text": " So you can build this virtual machine on top of this virtual machine. Now it would be interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,920",
+				"to": "00:19:00,120"
+			},
+			"offsets": {
+				"from": 1134920,
+				"to": 1140120
+			},
+			"text": " to look at look at doing that with the existing VM. That would be an interesting question."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,120",
+				"to": "00:19:08,040"
+			},
+			"offsets": {
+				"from": 1140120,
+				"to": 1148040
+			},
+			"text": " Could we build the Ethereum blockchain on top of the existing VM? Does it bootstrap? And that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,040",
+				"to": "00:19:12,840"
+			},
+			"offsets": {
+				"from": 1148040,
+				"to": 1152840
+			},
+			"text": " that brings us back to the point I was trying to make at the very beginning. Do we have this"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,840",
+				"to": "00:19:17,880"
+			},
+			"offsets": {
+				"from": 1152840,
+				"to": 1157880
+			},
+			"text": " self loop? Right, because that's your first and best test that you can scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,880",
+				"to": "00:19:24,840"
+			},
+			"offsets": {
+				"from": 1157880,
+				"to": 1164840
+			},
+			"text": " So the big picture that I want to leave you with is that is that compositionality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,840",
+				"to": "00:19:30,680"
+			},
+			"offsets": {
+				"from": 1164840,
+				"to": 1170680
+			},
+			"text": " this this kind of finding the small and the large, the large and the small, is the key to scaling"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,680",
+				"to": "00:19:41,640"
+			},
+			"offsets": {
+				"from": 1170680,
+				"to": 1181640
+			},
+			"text": " any system. So thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,640",
+				"to": "00:20:10,640"
+			},
+			"offsets": {
+				"from": 1181640,
+				"to": 1210640
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

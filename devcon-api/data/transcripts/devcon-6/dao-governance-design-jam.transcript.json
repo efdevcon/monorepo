@@ -1,0 +1,4014 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,160"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14160
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,160",
+				"to": "00:00:21,280"
+			},
+			"offsets": {
+				"from": 14160,
+				"to": 21280
+			},
+			"text": " Ladies and gentlemen, wow this is crazy. We were not expecting this many people in the room, so that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,280",
+				"to": "00:00:26,160"
+			},
+			"offsets": {
+				"from": 21280,
+				"to": 26160
+			},
+			"text": " that's really cool, but that's also going to be a challenge because we're going to do a workshop"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,160",
+				"to": "00:00:31,200"
+			},
+			"offsets": {
+				"from": 26160,
+				"to": 31200
+			},
+			"text": " and workshoping is pretty difficult with more than 100 people. But we're going to pull it off."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,200",
+				"to": "00:00:36,320"
+			},
+			"offsets": {
+				"from": 31200,
+				"to": 36320
+			},
+			"text": " Thanks for being here. My name is Dennis. This is my colleague, Diego. We are with MakerDAU,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,320",
+				"to": "00:00:39,920"
+			},
+			"offsets": {
+				"from": 36320,
+				"to": 39920
+			},
+			"text": " and I'm not going to talk much about what we do because we don't have time for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,920",
+				"to": "00:00:47,520"
+			},
+			"offsets": {
+				"from": 39920,
+				"to": 47520
+			},
+			"text": " We are here today to solve some DAO governance challenges that are real. So like we selected"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,520",
+				"to": "00:00:52,240"
+			},
+			"offsets": {
+				"from": 47520,
+				"to": 52240
+			},
+			"text": " four challenges from friends from the web free space that are dealing with some problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,200",
+				"to": "00:00:58,720"
+			},
+			"offsets": {
+				"from": 53200,
+				"to": 58720
+			},
+			"text": " and we're going to try and find some inspiration for that. Another goal is to get some of you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,720",
+				"to": "00:01:04,720"
+			},
+			"offsets": {
+				"from": 58720,
+				"to": 64720
+			},
+			"text": " more familiar with design thinking methodologies because it's a really powerful way of innovating."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,720",
+				"to": "00:01:11,120"
+			},
+			"offsets": {
+				"from": 64720,
+				"to": 71120
+			},
+			"text": " We actually did a workshop at DevConnect earlier this year in Amsterdam, and that was like a different"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,120",
+				"to": "00:01:16,080"
+			},
+			"offsets": {
+				"from": 71120,
+				"to": 76080
+			},
+			"text": " workshop. It was like a fully fledged design sprint with a small group. That's what we had in mind"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,080",
+				"to": "00:01:22,640"
+			},
+			"offsets": {
+				"from": 76080,
+				"to": 82640
+			},
+			"text": " for today, but we actually decided to switch it up a little bit. A little bit of context,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,640",
+				"to": "00:01:27,200"
+			},
+			"offsets": {
+				"from": 82640,
+				"to": 87200
+			},
+			"text": " a design sprint is usually like a workshop, quite an intense workshop, multiple days,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,200",
+				"to": "00:01:34,160"
+			},
+			"offsets": {
+				"from": 87200,
+				"to": 94160
+			},
+			"text": " small team, where you basically innovate and you validate ideas. So you create a concept and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,160",
+				"to": "00:01:38,640"
+			},
+			"offsets": {
+				"from": 94160,
+				"to": 98640
+			},
+			"text": " validate it without actually building anything, like without writing a single line of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,640",
+				"to": "00:01:45,280"
+			},
+			"offsets": {
+				"from": 98640,
+				"to": 105280
+			},
+			"text": " And I think that's something that the notion of innovating without building is something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,280",
+				"to": "00:01:50,160"
+			},
+			"offsets": {
+				"from": 105280,
+				"to": 110160
+			},
+			"text": " we should embrace as a space. So for those who haven't heard about design thinking, design sprint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,160",
+				"to": "00:01:56,480"
+			},
+			"offsets": {
+				"from": 110160,
+				"to": 116480
+			},
+			"text": " this might be a good first experience for you. What we're going to do today, we have one hour"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,480",
+				"to": "00:02:02,320"
+			},
+			"offsets": {
+				"from": 116480,
+				"to": 122320
+			},
+			"text": " and 40 minutes, and we're going to guide you through a very intense process. The time is our"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,320",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 122320,
+				"to": 128000
+			},
+			"text": " biggest enemy today. We're going to do divergent and convergent thinking. So basically, initially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:14,960"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 134960
+			},
+			"text": " we're going to do a brain dump where we try and get as much feedback and no ideas and inspiration"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,760",
+				"to": "00:02:20,080"
+			},
+			"offsets": {
+				"from": 135760,
+				"to": 140080
+			},
+			"text": " on the table as possible. And then we're going to do a voting exercise to create some kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,080",
+				"to": "00:02:24,320"
+			},
+			"offsets": {
+				"from": 140080,
+				"to": 144320
+			},
+			"text": " abstraction. And then we're going to do that again, but then for creating a solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,320",
+				"to": "00:02:31,520"
+			},
+			"offsets": {
+				"from": 144320,
+				"to": 151520
+			},
+			"text": " The agenda is we have four challenge owners from various doubts in the room. They're going to take"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,520",
+				"to": "00:02:37,440"
+			},
+			"offsets": {
+				"from": 151520,
+				"to": 157440
+			},
+			"text": " five minutes to present their challenge and give some context. And then we're basically going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,440",
+				"to": "00:02:41,520"
+			},
+			"offsets": {
+				"from": 157440,
+				"to": 161520
+			},
+			"text": " break up some of the tables in this room are going to be focusing on those challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,800",
+				"to": "00:02:47,360"
+			},
+			"offsets": {
+				"from": 162800,
+				"to": 167360
+			},
+			"text": " So we're going to do some kind of team formation. If you don't feel like actively participating,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,360",
+				"to": "00:02:51,040"
+			},
+			"offsets": {
+				"from": 167360,
+				"to": 171040
+			},
+			"text": " that's completely fine. I mean, that's actually welcome because we have way too many people. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,040",
+				"to": "00:02:55,680"
+			},
+			"offsets": {
+				"from": 171040,
+				"to": 175680
+			},
+			"text": " if you just want to listen in, no art feelings. If you just want to listen in and just walk around,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,680",
+				"to": "00:03:00,560"
+			},
+			"offsets": {
+				"from": 175680,
+				"to": 180560
+			},
+			"text": " please feel free to do so. If you want to commit to participating, please participate and be here"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,560",
+				"to": "00:03:08,400"
+			},
+			"offsets": {
+				"from": 180560,
+				"to": 188400
+			},
+			"text": " for the full two hours. Yeah, this is what I just mentioned. Let's just have a look at the challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,400",
+				"to": "00:03:13,360"
+			},
+			"offsets": {
+				"from": 188400,
+				"to": 193360
+			},
+			"text": " and then we're going to do. Yeah, then we're going to switch to the ideation process. And I'd like to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,360",
+				"to": "00:03:23,760"
+			},
+			"offsets": {
+				"from": 193360,
+				"to": 203760
+			},
+			"text": " welcome Shelby and Abby from the radical team. Hi guys, my name is Abby. Nice to meet you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,760",
+				"to": "00:03:27,440"
+			},
+			"offsets": {
+				"from": 203760,
+				"to": 207440
+			},
+			"text": " I'm the head of community and governance at radical and I sit on the board of the radical"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,440",
+				"to": "00:03:32,080"
+			},
+			"offsets": {
+				"from": 207440,
+				"to": 212080
+			},
+			"text": " foundation. For those who don't know, radical radical is basically a protocol ecosystem that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,080",
+				"to": "00:03:36,640"
+			},
+			"offsets": {
+				"from": 212080,
+				"to": 216640
+			},
+			"text": " based building decentralized collaboration tools for developers building decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,640",
+				"to": "00:03:42,320"
+			},
+			"offsets": {
+				"from": 216640,
+				"to": 222320
+			},
+			"text": " technologies. And so like the TLDR is decentralized GitHub, but it's a lot more things than that as"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,320",
+				"to": "00:03:48,560"
+			},
+			"offsets": {
+				"from": 222320,
+				"to": 228560
+			},
+			"text": " well. And so radical has been on a journey for the last year or two. And we've been slowly"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,560",
+				"to": "00:03:55,360"
+			},
+			"offsets": {
+				"from": 228560,
+				"to": 235360
+			},
+			"text": " progressively decentralizing in our efforts to become like a truly open source, free and open"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,360",
+				"to": "00:04:00,560"
+			},
+			"offsets": {
+				"from": 235360,
+				"to": 240560
+			},
+			"text": " source, self-sustaining community owned and operated free and open source project, free and open"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,560",
+				"to": "00:04:06,800"
+			},
+			"offsets": {
+				"from": 240560,
+				"to": 246800
+			},
+			"text": " source. I said twice, but you get the picture. And so over the last year, two years, we made a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,800",
+				"to": "00:04:14,160"
+			},
+			"offsets": {
+				"from": 246800,
+				"to": 254160
+			},
+			"text": " successful transition from a startup to a foundation. And we launched our governance token RAD and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,160",
+				"to": "00:04:20,800"
+			},
+			"offsets": {
+				"from": 254160,
+				"to": 260800
+			},
+			"text": " we became a DAO. But if everybody here has experience with DAOs, you know that becoming a DAO, it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,800",
+				"to": "00:04:25,440"
+			},
+			"offsets": {
+				"from": 260800,
+				"to": 265440
+			},
+			"text": " doesn't just happen when you technically decentralized, there's a lot of social and political decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,440",
+				"to": "00:04:31,040"
+			},
+			"offsets": {
+				"from": 265440,
+				"to": 271040
+			},
+			"text": " that comes along with that. So now we're on our next chapter, the first of many, which is furthering"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,040",
+				"to": "00:04:35,920"
+			},
+			"offsets": {
+				"from": 271040,
+				"to": 275920
+			},
+			"text": " our transition to the DAO by dissolving our foundation council, which currently manages all of our"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,920",
+				"to": "00:04:40,720"
+			},
+			"offsets": {
+				"from": 275920,
+				"to": 280720
+			},
+			"text": " project development, our core teams that are contributing to maintaining the radical stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,720",
+				"to": "00:04:47,680"
+			},
+			"offsets": {
+				"from": 280720,
+				"to": 287680
+			},
+			"text": " And replacing that with decentralized entities that our contributors run and operate themselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,680",
+				"to": "00:04:52,560"
+			},
+			"offsets": {
+				"from": 287680,
+				"to": 292560
+			},
+			"text": " and restructuring our governance process along the way. There's a lot more of this on discourse,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,560",
+				"to": "00:04:58,160"
+			},
+			"offsets": {
+				"from": 292560,
+				"to": 298160
+			},
+			"text": " if you want to learn more, radical.community. But basically, our goal is to create a decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,160",
+				"to": "00:05:02,960"
+			},
+			"offsets": {
+				"from": 298160,
+				"to": 302960
+			},
+			"text": " organization that can manage all of our project development within the DAO without relying on"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,960",
+				"to": "00:05:08,480"
+			},
+			"offsets": {
+				"from": 302960,
+				"to": 308480
+			},
+			"text": " the intermediary of a foundation council. And in that process, Stuart, the emergence of other"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,480",
+				"to": "00:05:15,200"
+			},
+			"offsets": {
+				"from": 308480,
+				"to": 315200
+			},
+			"text": " organizations within the radical.dao ecosystem by distributing ownership, influence and supporting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,200",
+				"to": "00:05:20,160"
+			},
+			"offsets": {
+				"from": 315200,
+				"to": 320160
+			},
+			"text": " the generation of more decentralized governance entities that all are steward and funded by"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,160",
+				"to": "00:05:26,480"
+			},
+			"offsets": {
+				"from": 320160,
+				"to": 326480
+			},
+			"text": " our radical treasury. Wow, okay, so that's the transition. So our challenge, which is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,480",
+				"to": "00:05:30,080"
+			},
+			"offsets": {
+				"from": 326480,
+				"to": 330080
+			},
+			"text": " that we've been thinking about in this transition, we have four work streams, right? One is the actual"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,080",
+				"to": "00:05:33,840"
+			},
+			"offsets": {
+				"from": 330080,
+				"to": 333840
+			},
+			"text": " org design. So how do you actually build an organization for our contributors to participate in?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,840",
+				"to": "00:05:37,600"
+			},
+			"offsets": {
+				"from": 333840,
+				"to": 337600
+			},
+			"text": " The second is DAO tooling. What are the best tools that we can be using to actually, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,600",
+				"to": "00:05:41,120"
+			},
+			"offsets": {
+				"from": 337600,
+				"to": 341120
+			},
+			"text": " steward this decentralization process? And then the last two are what we're going to be talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,120",
+				"to": "00:05:45,200"
+			},
+			"offsets": {
+				"from": 341120,
+				"to": 345200
+			},
+			"text": " about today, which is the distribution of ownership and the distribution of influence. So I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,200",
+				"to": "00:05:50,480"
+			},
+			"offsets": {
+				"from": 345200,
+				"to": 350480
+			},
+			"text": " everybody knows that token voting governance governance DAOs are pretty plutocratic right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,480",
+				"to": "00:05:55,520"
+			},
+			"offsets": {
+				"from": 350480,
+				"to": 355520
+			},
+			"text": " if not entirely plutocratic, including radical. And we're trying to change that. So first, we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,520",
+				"to": "00:05:59,760"
+			},
+			"offsets": {
+				"from": 355520,
+				"to": 359760
+			},
+			"text": " trying to distribute ownership in a way that better supports the transition of our project to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,760",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 359760,
+				"to": 366000
+			},
+			"text": " something more member-based more with highly diverse stakeholder governance. That's not plutocratic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:09,920"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 369920
+			},
+			"text": " has more fair and equitable qualities and can better support the long-term sustainability of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,920",
+				"to": "00:06:14,320"
+			},
+			"offsets": {
+				"from": 369920,
+				"to": 374320
+			},
+			"text": " the project. But we think that that's not possible without actually introducing a non-financialized"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,320",
+				"to": "00:06:19,280"
+			},
+			"offsets": {
+				"from": 374320,
+				"to": 379280
+			},
+			"text": " governance layer, which we call influence. So our challenge is about how do we effectively distribute"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,280",
+				"to": "00:06:24,400"
+			},
+			"offsets": {
+				"from": 379280,
+				"to": 384400
+			},
+			"text": " influence and ownership as separate financialized governing power, which is tokens and non-financial"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,400",
+				"to": "00:06:30,720"
+			},
+			"offsets": {
+				"from": 384400,
+				"to": 390720
+			},
+			"text": " power, which is who knows what? And how do we distribute that amongst active contributors of the DAO"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,720",
+				"to": "00:06:34,880"
+			},
+			"offsets": {
+				"from": 390720,
+				"to": 394880
+			},
+			"text": " to better support the transition of our governance structure to something static and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,880",
+				"to": "00:06:39,840"
+			},
+			"offsets": {
+				"from": 394880,
+				"to": 399840
+			},
+			"text": " plutocratic to something dynamic and member-based and more fair and equitable. So cool. Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,840",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 399840,
+				"to": 404000
+			},
+			"text": " So Shelby is right here, so we'll be walking around with our challenge and you can ask us any"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:45,920"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 405920
+			},
+			"text": " questions along the way. Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,920",
+				"to": "00:06:51,360"
+			},
+			"offsets": {
+				"from": 405920,
+				"to": 411360
+			},
+			"text": " Let's see. That's over three minutes. That's really impressive. You can tell that she's done this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,360",
+				"to": "00:06:56,640"
+			},
+			"offsets": {
+				"from": 411360,
+				"to": 416640
+			},
+			"text": " before. Thanks a lot, Abby. It's important that you take note of the challenges because the idea is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,640",
+				"to": "00:07:01,520"
+			},
+			"offsets": {
+				"from": 416640,
+				"to": 421520
+			},
+			"text": " that every table picks a challenge to focus on and then some of you that might be interested in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,520",
+				"to": "00:07:07,520"
+			},
+			"offsets": {
+				"from": 421520,
+				"to": 427520
+			},
+			"text": " actively participating, you really focus on that challenge. So keep that in mind. Next up, we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,520",
+				"to": "00:07:13,760"
+			},
+			"offsets": {
+				"from": 427520,
+				"to": 433760
+			},
+			"text": " Peyton from MakerDAO. Yeah, let's see. We have a lot of problems at MakerDAO. A lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,760",
+				"to": "00:07:17,840"
+			},
+			"offsets": {
+				"from": 433760,
+				"to": 437840
+			},
+			"text": " challenges that can be solved. So let's hand it over to Peyton."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,840",
+				"to": "00:07:24,880"
+			},
+			"offsets": {
+				"from": 437840,
+				"to": 444880
+			},
+			"text": " Hi, my name is Peyton. I go by Pro's 11 online and I am one of Maker's governance facilitators."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,880",
+				"to": "00:07:31,280"
+			},
+			"offsets": {
+				"from": 444880,
+				"to": 451280
+			},
+			"text": " Yeah, you might have heard of Maker. You've probably heard of DAO. In this room, we're probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,280",
+				"to": "00:07:38,400"
+			},
+			"offsets": {
+				"from": 451280,
+				"to": 458400
+			},
+			"text": " batting better than average. But I guess our problem with governance, right? You'll hear about"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,400",
+				"to": "00:07:43,280"
+			},
+			"offsets": {
+				"from": 458400,
+				"to": 463280
+			},
+			"text": " it in tweets. You'll see about it in news articles, but it has to happen all the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,280",
+				"to": "00:07:47,920"
+			},
+			"offsets": {
+				"from": 463280,
+				"to": 467920
+			},
+			"text": " right? Whether someone's watching or I guess, whether everyone's watching or just a few people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,920",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 467920,
+				"to": 474000
+			},
+			"text": " are watching, governance is there. Governance is a risk. That kind of transitions into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:58,320"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 478320
+			},
+			"text": " workforce, which is this whole separate thing that intertwines with governance and is a part of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,320",
+				"to": "00:08:05,360"
+			},
+			"offsets": {
+				"from": 478320,
+				"to": 485360
+			},
+			"text": " yet is entirely separate as well. So you might have read the articles that Maker you might have seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,360",
+				"to": "00:08:10,560"
+			},
+			"offsets": {
+				"from": 485360,
+				"to": 490560
+			},
+			"text": " some bits of runes, grand plan, or seen band tag tweet about how DAO is going to lose its peg or"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,560",
+				"to": "00:08:17,840"
+			},
+			"offsets": {
+				"from": 490560,
+				"to": 497840
+			},
+			"text": " what have you. But basically, fundamentally, I would like to argue that the problem that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,840",
+				"to": "00:08:22,720"
+			},
+			"offsets": {
+				"from": 497840,
+				"to": 502720
+			},
+			"text": " rune is pitching to try to solve is how might we reallocate the workforce to be more efficient?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,720",
+				"to": "00:08:27,920"
+			},
+			"offsets": {
+				"from": 502720,
+				"to": 507920
+			},
+			"text": " And I don't think this is a problem that you have to be at the size of Maker now to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,920",
+				"to": "00:08:34,160"
+			},
+			"offsets": {
+				"from": 507920,
+				"to": 514160
+			},
+			"text": " encounter. I think it's fundamentally a problem of scaling. Every DAO starts out with this really"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,160",
+				"to": "00:08:39,600"
+			},
+			"offsets": {
+				"from": 514160,
+				"to": 519600
+			},
+			"text": " awesome problem, which is we have a very cool solution and not enough people know about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,600",
+				"to": "00:08:43,200"
+			},
+			"offsets": {
+				"from": 519600,
+				"to": 523200
+			},
+			"text": " So what do you do? You start ramping up. You start bringing people into the workforce and giving"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,200",
+				"to": "00:08:49,840"
+			},
+			"offsets": {
+				"from": 523200,
+				"to": 529840
+			},
+			"text": " them jobs, making them contributors, having them one way or another be a part of your ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,840",
+				"to": "00:08:55,440"
+			},
+			"offsets": {
+				"from": 529840,
+				"to": 535440
+			},
+			"text": " And before too long, you realize, OK, well, maybe our problem isn't that we don't have enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,440",
+				"to": "00:09:00,640"
+			},
+			"offsets": {
+				"from": 535440,
+				"to": 540640
+			},
+			"text": " people who know about our system now. Maybe our problem is that the way we have organized in an"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,640",
+				"to": "00:09:06,160"
+			},
+			"offsets": {
+				"from": 540640,
+				"to": 546160
+			},
+			"text": " alternative structure, right, that typically bucks hierarchy and doesn't have a lot of direct"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,160",
+				"to": "00:09:11,840"
+			},
+			"offsets": {
+				"from": 546160,
+				"to": 551840
+			},
+			"text": " reporting. How do we take that and actually make sure that we are getting the value"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,840",
+				"to": "00:09:15,120"
+			},
+			"offsets": {
+				"from": 551840,
+				"to": 555120
+			},
+			"text": " of all the talented individuals that have joined organization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,120",
+				"to": "00:09:21,920"
+			},
+			"offsets": {
+				"from": 555120,
+				"to": 561920
+			},
+			"text": " So when I like to approach this problem, I think it's important to think about two sides,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,920",
+				"to": "00:09:26,320"
+			},
+			"offsets": {
+				"from": 561920,
+				"to": 566320
+			},
+			"text": " because it's really obvious from the DAO side why you might want a more efficient workforce,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,320",
+				"to": "00:09:31,040"
+			},
+			"offsets": {
+				"from": 566320,
+				"to": 571040
+			},
+			"text": " right? Just like every corporation wants to squeeze out the most profit your DAO is going to want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,040",
+				"to": "00:09:36,800"
+			},
+			"offsets": {
+				"from": 571040,
+				"to": 576800
+			},
+			"text": " take a look at your workforce and say, all right, how can we get these people to reach their potential"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,800",
+				"to": "00:09:41,520"
+			},
+			"offsets": {
+				"from": 576800,
+				"to": 581520
+			},
+			"text": " and to give that value to us? But you also have to think about it from the worker side."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,520",
+				"to": "00:09:47,040"
+			},
+			"offsets": {
+				"from": 581520,
+				"to": 587040
+			},
+			"text": " Workers and DAOs are incredibly autonomous, right? If they don't want to be there, they'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,040",
+				"to": "00:09:51,760"
+			},
+			"offsets": {
+				"from": 587040,
+				"to": 591760
+			},
+			"text": " find somebody else to do. There's plenty of money in the web through ecosystem. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,760",
+				"to": "00:09:56,800"
+			},
+			"offsets": {
+				"from": 591760,
+				"to": 596800
+			},
+			"text": " yeah, if you're not thinking about them when you're trying to solve this problem, you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,800",
+				"to": "00:10:02,560"
+			},
+			"offsets": {
+				"from": 596800,
+				"to": 602560
+			},
+			"text": " going to fall short. So I want to put in a little plug about burnout because I think that's a problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,560",
+				"to": "00:10:11,760"
+			},
+			"offsets": {
+				"from": 602560,
+				"to": 611760
+			},
+			"text": " with tech, with DAOs, with our industry at large. But studies have shown that the key thing you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,760",
+				"to": "00:10:16,400"
+			},
+			"offsets": {
+				"from": 611760,
+				"to": 616400
+			},
+			"text": " do to prevent burnout within organization is to make sure people feel valued, to make sure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,400",
+				"to": "00:10:21,520"
+			},
+			"offsets": {
+				"from": 616400,
+				"to": 621520
+			},
+			"text": " their work is being appreciated. And the only way that people are going to appreciate their work"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,520",
+				"to": "00:10:26,800"
+			},
+			"offsets": {
+				"from": 621520,
+				"to": 626800
+			},
+			"text": " is if they feel like they are making an impact. So the challenge is as you grow, as you scale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,800",
+				"to": "00:10:33,200"
+			},
+			"offsets": {
+				"from": 626800,
+				"to": 633200
+			},
+			"text": " how do you make sure that the talent you have is being properly utilized? Because whether it's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,200",
+				"to": "00:10:38,720"
+			},
+			"offsets": {
+				"from": 633200,
+				"to": 638720
+			},
+			"text": " treasury or intellectual property, if you have a resource and you're not constantly checking in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,720",
+				"to": "00:10:43,760"
+			},
+			"offsets": {
+				"from": 638720,
+				"to": 643760
+			},
+			"text": " making sure that you're getting the most out of it, you're going to lose efficiency, you're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,760",
+				"to": "00:10:52,160"
+			},
+			"offsets": {
+				"from": 643760,
+				"to": 652160
+			},
+			"text": " lose the battle's entropy. And a DAO can die. Many DAOs have died. I would not like to be one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,160",
+				"to": "00:10:56,400"
+			},
+			"offsets": {
+				"from": 652160,
+				"to": 656400
+			},
+			"text": " them. And I would certainly not like to be the governance facilitator if the DAO were to die."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,400",
+				"to": "00:11:02,800"
+			},
+			"offsets": {
+				"from": 656400,
+				"to": 662800
+			},
+			"text": " So maybe you can help me today. And we can think about how can we make our workforce reallocation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,800",
+				"to": "00:11:07,920"
+			},
+			"offsets": {
+				"from": 662800,
+				"to": 667920
+			},
+			"text": " be the most efficient way, keeping in mind that there are two distinct sides we need to think about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,920",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 667920,
+				"to": 676000
+			},
+			"text": " the worker and the DAO itself. Thanks. Thank you very much, Peyton. That was really good."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:20,800"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 680800
+			},
+			"text": " If there's anyone at Maker who is in sync in tune with what's happening at the DAO, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,800",
+				"to": "00:11:27,440"
+			},
+			"offsets": {
+				"from": 680800,
+				"to": 687440
+			},
+			"text": " Peyton. So if any of you can somehow give some kind of inspiration or new perspective on this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,440",
+				"to": "00:11:31,280"
+			},
+			"offsets": {
+				"from": 687440,
+				"to": 691280
+			},
+			"text": " problem, that could be really actually really impactful. Because there's actually a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,280",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 691280,
+				"to": 696000
+			},
+			"text": " Maker people in the room. So I hope you can contribute to this challenge that we're facing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,880",
+				"to": "00:11:41,840"
+			},
+			"offsets": {
+				"from": 696880,
+				"to": 701840
+			},
+			"text": " Moving on to the third challenge, which is brought forward by Zaku from Coordinate."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,840",
+				"to": "00:11:49,760"
+			},
+			"offsets": {
+				"from": 701840,
+				"to": 709760
+			},
+			"text": " Thanks everybody. So I am indeed Zach from Coordinate. And for those that don't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,760",
+				"to": "00:11:54,080"
+			},
+			"offsets": {
+				"from": 709760,
+				"to": 714080
+			},
+			"text": " Coordinate is actually a tool to help employees feel or employees."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,080",
+				"to": "00:12:04,080"
+			},
+			"offsets": {
+				"from": 714080,
+				"to": 724080
+			},
+			"text": " Yeah, exactly. Good thing I didn't say that. To help contributors to a DAO feel more"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,080",
+				"to": "00:12:08,640"
+			},
+			"offsets": {
+				"from": 724080,
+				"to": 728640
+			},
+			"text": " appreciated and also compensated. So quickly, the way that Coordinate works is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,640",
+				"to": "00:12:16,560"
+			},
+			"offsets": {
+				"from": 728640,
+				"to": 736560
+			},
+			"text": " in a circle of contributors, they all have 100 Give tokens. And you can give to other people"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,560",
+				"to": "00:12:21,040"
+			},
+			"offsets": {
+				"from": 736560,
+				"to": 741040
+			},
+			"text": " according to the value that you've seen them have over some period of time. And then whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,040",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 741040,
+				"to": 746000
+			},
+			"text": " percentage of the total amount of Give tokens you get, you get that percentage of the budget."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:32,320"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 752320
+			},
+			"text": " Right? So instead of saying, here's our budget for coordinators. It's 100,000 and I am the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,320",
+				"to": "00:12:36,560"
+			},
+			"offsets": {
+				"from": 752320,
+				"to": 756560
+			},
+			"text": " the people ops person and I choose you get this much and this much. You put the whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,560",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 756560,
+				"to": 762000
+			},
+			"text": " pile in the middle of the table and people basically allocate it to each other in a decentralized way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:49,200"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 769200
+			},
+			"text": " And so the idea is to get closer to value in equals value out. Right? Those contributors that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,200",
+				"to": "00:12:53,680"
+			},
+			"offsets": {
+				"from": 769200,
+				"to": 773680
+			},
+			"text": " are just like really crushing it and everyone's really appreciating. Here's your chance to appreciate"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,680",
+				"to": "00:12:59,200"
+			},
+			"offsets": {
+				"from": 773680,
+				"to": 779200
+			},
+			"text": " them with payment. And also write notes to them and tell them about why you appreciate what they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,200",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 779200,
+				"to": 784000
+			},
+			"text": " doing and then it creates the social graph so everyone can see who's adding value and what"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:10,480"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 790480
+			},
+			"text": " they're doing. So it also helps a lot with sense making in the DAO. That said, so my previous company,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,480",
+				"to": "00:13:14,480"
+			},
+			"offsets": {
+				"from": 790480,
+				"to": 794480
+			},
+			"text": " this is the way that we paid each other for like all seven years. And we always said that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,480",
+				"to": "00:13:20,240"
+			},
+			"offsets": {
+				"from": 794480,
+				"to": 800240
+			},
+			"text": " conversation is actually more valuable than the allocation itself because as we were paying each"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,240",
+				"to": "00:13:23,280"
+			},
+			"offsets": {
+				"from": 800240,
+				"to": 803280
+			},
+			"text": " other, we're like, here's what you did that was awesome. Here's what you could do better."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,280",
+				"to": "00:13:28,720"
+			},
+			"offsets": {
+				"from": 803280,
+				"to": 808720
+			},
+			"text": " At Coordinate, one of the challenges that we have is that you have this distribution. And so"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,720",
+				"to": "00:13:34,480"
+			},
+			"offsets": {
+				"from": 808720,
+				"to": 814480
+			},
+			"text": " everyone's and it's all transparent and you can see like, oh wow, Sally got this much and wait,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,480",
+				"to": "00:13:38,800"
+			},
+			"offsets": {
+				"from": 814480,
+				"to": 818800
+			},
+			"text": " why did she get that much more than me? And why did Steve get this much to come here on? Wait,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,800",
+				"to": "00:13:45,120"
+			},
+			"offsets": {
+				"from": 818800,
+				"to": 825120
+			},
+			"text": " what's going on? Right? And so the sense making part and really understanding, especially as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,120",
+				"to": "00:13:50,720"
+			},
+			"offsets": {
+				"from": 825120,
+				"to": 830720
+			},
+			"text": " DAO, like what do we value? Is this person getting more because they're more public in their role?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,720",
+				"to": "00:13:55,040"
+			},
+			"offsets": {
+				"from": 830720,
+				"to": 835040
+			},
+			"text": " Or is it because what they're doing is super valuable? Like, are we allocating according to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,040",
+				"to": "00:13:59,200"
+			},
+			"offsets": {
+				"from": 835040,
+				"to": 839200
+			},
+			"text": " what we really think is in line with the mission that we're trying to achieve? And so"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,200",
+				"to": "00:14:05,520"
+			},
+			"offsets": {
+				"from": 839200,
+				"to": 845520
+			},
+			"text": " the question really is like, how do we asynchronously do sense making? Because it's just not practical"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,520",
+				"to": "00:14:10,720"
+			},
+			"offsets": {
+				"from": 845520,
+				"to": 850720
+			},
+			"text": " to say we're going to have our coordinate retro and all 40 people are going to meet and on Zoom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,720",
+				"to": "00:14:15,440"
+			},
+			"offsets": {
+				"from": 850720,
+				"to": 855440
+			},
+			"text": " we're all going to talk about what happened. We are doing lots of MVPs with like small groups and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,440",
+				"to": "00:14:20,400"
+			},
+			"offsets": {
+				"from": 855440,
+				"to": 860400
+			},
+			"text": " pulse surveys and things like this. But there's a lot of issues in DAOs when they get sensitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,120",
+				"to": "00:14:27,360"
+			},
+			"offsets": {
+				"from": 861120,
+				"to": 867360
+			},
+			"text": " And if you just are writing on Discord, that encourages a very certain kind of conversation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,360",
+				"to": "00:14:33,040"
+			},
+			"offsets": {
+				"from": 867360,
+				"to": 873040
+			},
+			"text": " It's obviously like we are not evolved to be text-based communicators. Most of our communication is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,040",
+				"to": "00:14:37,040"
+			},
+			"offsets": {
+				"from": 873040,
+				"to": 877040
+			},
+			"text": " nonverbal. And now we're trying to do this through screens around really sensitive topics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,040",
+				"to": "00:14:42,640"
+			},
+			"offsets": {
+				"from": 877040,
+				"to": 882640
+			},
+			"text": " especially in coordinates case around like compensation, which gets into how people feel valued. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,640",
+				"to": "00:14:47,680"
+			},
+			"offsets": {
+				"from": 882640,
+				"to": 887680
+			},
+			"text": " these are like really hot topics. And there's a lot more, I'm sure, in all the DAOs you're a part of."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,680",
+				"to": "00:14:54,240"
+			},
+			"offsets": {
+				"from": 887680,
+				"to": 894240
+			},
+			"text": " And so how can we address these really sensitive and nuanced topics and do sense making in an"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,240",
+				"to": "00:15:00,160"
+			},
+			"offsets": {
+				"from": 894240,
+				"to": 900160
+			},
+			"text": " asynchronous decentralized way? Obviously coming together as a team is the best way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,160",
+				"to": "00:15:05,920"
+			},
+			"offsets": {
+				"from": 900160,
+				"to": 905920
+			},
+			"text": " but that's not usually possible. So yeah, this is the sticky problem that we're going to be talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,920",
+				"to": "00:15:14,320"
+			},
+			"offsets": {
+				"from": 905920,
+				"to": 914320
+			},
+			"text": " about. Thanks, Zach. Interesting stuff. And I think for some of us, we can relate."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,040",
+				"to": "00:15:22,080"
+			},
+			"offsets": {
+				"from": 915040,
+				"to": 922080
+			},
+			"text": " So yeah, let's move on to the fourth challenge posed by Patricia from Oiler Finance. I always"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,080",
+				"to": "00:15:27,920"
+			},
+			"offsets": {
+				"from": 922080,
+				"to": 927920
+			},
+			"text": " said Yuler Finance, but it's actually Oiler. So I've heard. So yeah, let's give her a hand and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,920",
+				"to": "00:15:37,920"
+			},
+			"offsets": {
+				"from": 927920,
+				"to": 937920
+			},
+			"text": " let's hear what she has to say. Hey guys, so yeah, I'm from Oiler Finance. It's pronounced as Oiler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,920",
+				"to": "00:15:45,200"
+			},
+			"offsets": {
+				"from": 937920,
+				"to": 945200
+			},
+			"text": " just as Oiler. It's not called Yuler. It's wrong. So we have protocol that nobody even knows how"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,200",
+				"to": "00:15:50,560"
+			},
+			"offsets": {
+				"from": 945200,
+				"to": 950560
+			},
+			"text": " to pronounce the name. And that kind of reflects the governance problems we're currently facing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,560",
+				"to": "00:15:56,800"
+			},
+			"offsets": {
+				"from": 950560,
+				"to": 956800
+			},
+			"text": " which is like low community engagement, because the product itself is less well known. And at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,800",
+				"to": "00:16:02,800"
+			},
+			"offsets": {
+				"from": 956800,
+				"to": 962800
+			},
+			"text": " same time, it's highly technical. So Oiler Finance is a learning and borrowing protocol. So you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,800",
+				"to": "00:16:08,880"
+			},
+			"offsets": {
+				"from": 962800,
+				"to": 968880
+			},
+			"text": " think of us as similar to Aave, but way more complex with a way more functionality building."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,880",
+				"to": "00:16:15,520"
+			},
+			"offsets": {
+				"from": 968880,
+				"to": 975520
+			},
+			"text": " And the code is just extremely difficult to understand for average technical person. So the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,520",
+				"to": "00:16:23,520"
+			},
+			"offsets": {
+				"from": 975520,
+				"to": 983520
+			},
+			"text": " problem we're currently facing is basically like we launched around like November last year, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,520",
+				"to": "00:16:31,760"
+			},
+			"offsets": {
+				"from": 983520,
+				"to": 991760
+			},
+			"text": " right before like everything crashed basically. And we did a token launch about in May that was"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,760",
+				"to": "00:16:36,480"
+			},
+			"offsets": {
+				"from": 991760,
+				"to": 996480
+			},
+			"text": " like when the market was like pretty bad. And we didn't do our public token launch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,480",
+				"to": "00:16:41,920"
+			},
+			"offsets": {
+				"from": 996480,
+				"to": 1001920
+			},
+			"text": " we did like the token sales with the VCs. So from that side, it's like there's very little"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,920",
+				"to": "00:16:48,080"
+			},
+			"offsets": {
+				"from": 1001920,
+				"to": 1008080
+			},
+			"text": " people to be fair that are have vested interest within the protocol. And a lot of the technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,080",
+				"to": "00:16:53,040"
+			},
+			"offsets": {
+				"from": 1008080,
+				"to": 1013040
+			},
+			"text": " people were trying to onboard right now, they do not have a vested interest within the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,040",
+				"to": "00:16:59,760"
+			},
+			"offsets": {
+				"from": 1013040,
+				"to": 1019760
+			},
+			"text": " They do not have the token. At the same time, the thing we have with the governance is like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,760",
+				"to": "00:17:06,480"
+			},
+			"offsets": {
+				"from": 1019760,
+				"to": 1026480
+			},
+			"text": " we're trying to have the governance to decide on the parameters of the protocol, such as like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,480",
+				"to": "00:17:10,960"
+			},
+			"offsets": {
+				"from": 1026480,
+				"to": 1030960
+			},
+			"text": " learning and borrowing factors. We thought that would be the best way to disemphasize the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,960",
+				"to": "00:17:17,360"
+			},
+			"offsets": {
+				"from": 1030960,
+				"to": 1037360
+			},
+			"text": " to make it really permissionless, learning and borrowing and listing for us as to be collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,360",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1037360,
+				"to": 1044000
+			},
+			"text": " However, we would realize that not everyone have not knowledge to be calculating collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:30,080"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1050080
+			},
+			"text": " factors. A lot of people within our community that are most active have very little tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,080",
+				"to": "00:17:35,520"
+			},
+			"offsets": {
+				"from": 1050080,
+				"to": 1055520
+			},
+			"text": " at the same time do not have the knowledge to be calculating those risk parameters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,520",
+				"to": "00:17:40,880"
+			},
+			"offsets": {
+				"from": 1055520,
+				"to": 1060880
+			},
+			"text": " I do not have the knowledge to be participating within the discussion. So that's like the main"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,880",
+				"to": "00:17:47,040"
+			},
+			"offsets": {
+				"from": 1060880,
+				"to": 1067040
+			},
+			"text": " problem we're facing is that where we're trying to leave the governance to be like and what the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,040",
+				"to": "00:17:53,920"
+			},
+			"offsets": {
+				"from": 1067040,
+				"to": 1073920
+			},
+			"text": " governance is currently at. So the problem that's worth like I'm presenting today and the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,920",
+				"to": "00:18:00,480"
+			},
+			"offsets": {
+				"from": 1073920,
+				"to": 1080480
+			},
+			"text": " that I'm trying to ask you all to contribute and help me to solve is how can we solve"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,480",
+				"to": "00:18:06,240"
+			},
+			"offsets": {
+				"from": 1080480,
+				"to": 1086240
+			},
+			"text": " the community engagement problem within a highly technical protocol community."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,240",
+				"to": "00:18:14,480"
+			},
+			"offsets": {
+				"from": 1086240,
+				"to": 1094480
+			},
+			"text": " Think about oil as a protocol, a baby protocol has a baby governance. Everything is very primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,480",
+				"to": "00:18:20,080"
+			},
+			"offsets": {
+				"from": 1094480,
+				"to": 1100080
+			},
+			"text": " The very little people have vested interest and people like outside of the community or even"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,080",
+				"to": "00:18:25,440"
+			},
+			"offsets": {
+				"from": 1100080,
+				"to": 1105440
+			},
+			"text": " within the community cannot even pronounce the name of the protocol. So that's a problem we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,440",
+				"to": "00:18:31,680"
+			},
+			"offsets": {
+				"from": 1105440,
+				"to": 1111680
+			},
+			"text": " currently facing and I think it's a problem that exists across a lot of other technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,680",
+				"to": "00:18:37,280"
+			},
+			"offsets": {
+				"from": 1111680,
+				"to": 1117280
+			},
+			"text": " protocols, other defined protocols and I think it's something that in general how do we encourage"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,280",
+				"to": "00:18:42,480"
+			},
+			"offsets": {
+				"from": 1117280,
+				"to": 1122480
+			},
+			"text": " people that currently do not have the knowledge to be participating and at the same time encourage"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,480",
+				"to": "00:18:47,760"
+			},
+			"offsets": {
+				"from": 1122480,
+				"to": 1127760
+			},
+			"text": " those who have the knowledge to be participating in the governance and be contributing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,280",
+				"to": "00:18:59,760"
+			},
+			"offsets": {
+				"from": 1129280,
+				"to": 1139760
+			},
+			"text": " So. Thank you Patricia. Cool. So as I said we have four really we have real governance challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,760",
+				"to": "00:19:05,600"
+			},
+			"offsets": {
+				"from": 1139760,
+				"to": 1145600
+			},
+			"text": " that we're gonna that we're gonna focus on today. What we had in mind is that every table can pick"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,600",
+				"to": "00:19:11,360"
+			},
+			"offsets": {
+				"from": 1145600,
+				"to": 1151360
+			},
+			"text": " their own challenge but maybe we need to do it a bit smarter because we only have a bunch of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,360",
+				"to": "00:19:15,520"
+			},
+			"offsets": {
+				"from": 1151360,
+				"to": 1155520
+			},
+			"text": " facilitators and we can't really have them walk around the whole room. So I'm just going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,520",
+				"to": "00:19:22,240"
+			},
+			"offsets": {
+				"from": 1155520,
+				"to": 1162240
+			},
+			"text": " MacGyver this if I have the mandate. I would say I'm just going to point out a few tables and a number"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,240",
+				"to": "00:19:26,160"
+			},
+			"offsets": {
+				"from": 1162240,
+				"to": 1166160
+			},
+			"text": " and if you really want to join a particular challenge and you can just move to the table"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,160",
+				"to": "00:19:30,960"
+			},
+			"offsets": {
+				"from": 1166160,
+				"to": 1170960
+			},
+			"text": " but otherwise I would suggest you just stay where you are and try to share your input. The whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,960",
+				"to": "00:19:34,480"
+			},
+			"offsets": {
+				"from": 1170960,
+				"to": 1174480
+			},
+			"text": " goal is to cross pollinate right. I think you all have different perspectives different"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,480",
+				"to": "00:19:40,960"
+			},
+			"offsets": {
+				"from": 1174480,
+				"to": 1180960
+			},
+			"text": " work experience and I'm really curious what's going to come out of that. So what I'm gonna do is I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,960",
+				"to": "00:19:46,320"
+			},
+			"offsets": {
+				"from": 1180960,
+				"to": 1186320
+			},
+			"text": " gonna assign these four tables. So this row to the radical challenge because we have two"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,320",
+				"to": "00:19:53,680"
+			},
+			"offsets": {
+				"from": 1186320,
+				"to": 1193680
+			},
+			"text": " radical facilitators. I think they can handle this this row of four tables. Then we have these"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,680",
+				"to": "00:20:03,040"
+			},
+			"offsets": {
+				"from": 1193680,
+				"to": 1203040
+			},
+			"text": " three I would say I would assign them to Patricia. So this this and this. So that is challenge number"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,040",
+				"to": "00:20:14,960"
+			},
+			"offsets": {
+				"from": 1203040,
+				"to": 1214960
+			},
+			"text": " four and that is challenge number one. Sorry yeah. Okay and then we have one two three four that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,960",
+				"to": "00:20:21,440"
+			},
+			"offsets": {
+				"from": 1214960,
+				"to": 1221440
+			},
+			"text": " MacGyver one two three four. So you're going to be talking about the second challenge and then we"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,440",
+				"to": "00:20:28,800"
+			},
+			"offsets": {
+				"from": 1221440,
+				"to": 1228800
+			},
+			"text": " have one two three that's going to be coordinate. Does that make sense? Do you all know which challenge"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,800",
+				"to": "00:20:33,840"
+			},
+			"offsets": {
+				"from": 1228800,
+				"to": 1233840
+			},
+			"text": " you you're assigned with your table and again if you really want to join a particular challenge"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,840",
+				"to": "00:20:40,240"
+			},
+			"offsets": {
+				"from": 1233840,
+				"to": 1240240
+			},
+			"text": " feel free to move around and try and organize. I'm going to give you a few minutes for it. In the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,240",
+				"to": "00:20:46,320"
+			},
+			"offsets": {
+				"from": 1240240,
+				"to": 1246320
+			},
+			"text": " meantime I'm just going to continue talking just to explain what we have in mind. Once again we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,320",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1246320,
+				"to": 1252000
+			},
+			"text": " an ideation process that we're going to guide you through. We have a bunch of materials on your table"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:20:58,320"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1258320
+			},
+			"text": " and you're going to need that to do the ideation. Let's take two minutes to organize yourselves and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,320",
+				"to": "00:21:05,360"
+			},
+			"offsets": {
+				"from": 1258320,
+				"to": 1265360
+			},
+			"text": " then we're going to just continue. All right everyone we're at time and I just want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,360",
+				"to": "00:21:10,640"
+			},
+			"offsets": {
+				"from": 1265360,
+				"to": 1270640
+			},
+			"text": " make sure that we're not mixing up stuff. So I'm can I have everyone's attention please. Time is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,640",
+				"to": "00:21:15,600"
+			},
+			"offsets": {
+				"from": 1270640,
+				"to": 1275600
+			},
+			"text": " at the essence. Thank you very much. I'm going to walk past each of the table and I want you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,600",
+				"to": "00:21:20,880"
+			},
+			"offsets": {
+				"from": 1275600,
+				"to": 1280880
+			},
+			"text": " shout which challenge number you are working on just to make sure we're on the same page three two"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,880",
+				"to": "00:21:31,840"
+			},
+			"offsets": {
+				"from": 1280880,
+				"to": 1291840
+			},
+			"text": " one one three two one three two one three two one. Okay this is all radical three two one four so you are"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,840",
+				"to": "00:21:39,360"
+			},
+			"offsets": {
+				"from": 1291840,
+				"to": 1299360
+			},
+			"text": " Euler Finance and that one also okay so we actually have two tables Euler Finance right because"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,360",
+				"to": "00:21:49,360"
+			},
+			"offsets": {
+				"from": 1299360,
+				"to": 1309360
+			},
+			"text": " these what are you working on? Two that's maker right and you maker maker maker and maker and over"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,360",
+				"to": "00:21:56,160"
+			},
+			"offsets": {
+				"from": 1309360,
+				"to": 1316160
+			},
+			"text": " there three and three okay so we actually have two tables for Zach two tables for Patricia"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,160",
+				"to": "00:22:02,640"
+			},
+			"offsets": {
+				"from": 1316160,
+				"to": 1322640
+			},
+			"text": " we have three tables for Peyton for maker and we have four tables for radical that's correct right"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,640",
+				"to": "00:22:08,720"
+			},
+			"offsets": {
+				"from": 1322640,
+				"to": 1328720
+			},
+			"text": " awesome then I think we're ready to go. We're going to have the inner facilitators right the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,720",
+				"to": "00:22:12,720"
+			},
+			"offsets": {
+				"from": 1328720,
+				"to": 1332720
+			},
+			"text": " challenge owners they're going to be at your tables and they're going to be available for"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,720",
+				"to": "00:22:18,240"
+			},
+			"offsets": {
+				"from": 1332720,
+				"to": 1338240
+			},
+			"text": " helping with ideation because we actually briefed them a little bit but also to give more challenge"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,240",
+				"to": "00:22:24,880"
+			},
+			"offsets": {
+				"from": 1338240,
+				"to": 1344880
+			},
+			"text": " on the on the yeah more context about the challenge. I'm going to hand the mic over to my colleague"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,880",
+				"to": "00:22:30,480"
+			},
+			"offsets": {
+				"from": 1344880,
+				"to": 1350480
+			},
+			"text": " Thiago and we're going to talk about ideation practices please please pay attention because"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,480",
+				"to": "00:22:36,880"
+			},
+			"offsets": {
+				"from": 1350480,
+				"to": 1356880
+			},
+			"text": " yeah we're going to have to do this asynchronously now so let's get it Thiago all right so this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,880",
+				"to": "00:22:45,360"
+			},
+			"offsets": {
+				"from": 1356880,
+				"to": 1365360
+			},
+			"text": " the fun part brainstorming just a bit of recap so you're going to follow this process of divergent"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,360",
+				"to": "00:22:52,480"
+			},
+			"offsets": {
+				"from": 1365360,
+				"to": 1372480
+			},
+			"text": " and conversion ticking so first we come up with as many ideas as possible literally open your brain"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,480",
+				"to": "00:22:58,000"
+			},
+			"offsets": {
+				"from": 1372480,
+				"to": 1378000
+			},
+			"text": " then you're going to have one one voting process called democracy so you need to select the most"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,000",
+				"to": "00:23:03,760"
+			},
+			"offsets": {
+				"from": 1378000,
+				"to": 1383760
+			},
+			"text": " likable ideas then you so this would this would be around the opportunity area and then we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,760",
+				"to": "00:23:10,640"
+			},
+			"offsets": {
+				"from": 1383760,
+				"to": 1390640
+			},
+			"text": " to do this loop again diverging but hopefully come up already with a more craft solution and we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,640",
+				"to": "00:23:18,160"
+			},
+			"offsets": {
+				"from": 1390640,
+				"to": 1398160
+			},
+			"text": " going to convert again using the democracy hopefully find a solution that we are all happy with"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,160",
+				"to": "00:23:27,440"
+			},
+			"offsets": {
+				"from": 1398160,
+				"to": 1407440
+			},
+			"text": " in your table so we a lot of people we move around so maybe just take five minutes to introduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,440",
+				"to": "00:23:32,880"
+			},
+			"offsets": {
+				"from": 1407440,
+				"to": 1412880
+			},
+			"text": " yourself you don't need to tell the story of our life just your name where you work and why you"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,880",
+				"to": "00:23:38,080"
+			},
+			"offsets": {
+				"from": 1412880,
+				"to": 1418080
+			},
+			"text": " join this workshop just take five minutes to within your group introduce yourself give a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,080",
+				"to": "00:23:42,560"
+			},
+			"offsets": {
+				"from": 1418080,
+				"to": 1422560
+			},
+			"text": " wrong one minute per each just real quick"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,560",
+				"to": "00:23:54,000"
+			},
+			"offsets": {
+				"from": 1422560,
+				"to": 1434000
+			},
+			"text": " now now so now just within your group just give a round of introductions that's it then then we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,000",
+				"to": "00:23:58,400"
+			},
+			"offsets": {
+				"from": 1434000,
+				"to": 1438400
+			},
+			"text": " then we'll move on just make sure we know each other we get along"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,400",
+				"to": "00:24:06,080"
+			},
+			"offsets": {
+				"from": 1438400,
+				"to": 1446080
+			},
+			"text": " or everyone know each other now a bit a bit better within your group we're going to start the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,080",
+				"to": "00:24:12,320"
+			},
+			"offsets": {
+				"from": 1446080,
+				"to": 1452320
+			},
+			"text": " exercise yeah so this is just a quick way to download your brains the brain them"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,320",
+				"to": "00:24:19,920"
+			},
+			"offsets": {
+				"from": 1452320,
+				"to": 1459920
+			},
+			"text": " it's a conversation starter so the first exercise there are blank sheets on your table"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,920",
+				"to": "00:24:28,400"
+			},
+			"offsets": {
+				"from": 1459920,
+				"to": 1468400
+			},
+			"text": " please just use one or two divide into three columns and then write I like I wish and I wonder"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,760",
+				"to": "00:24:37,200"
+			},
+			"offsets": {
+				"from": 1469760,
+				"to": 1477200
+			},
+			"text": " and we will everyone will be putting posters on each column so in the I like column so this will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,200",
+				"to": "00:24:42,480"
+			},
+			"offsets": {
+				"from": 1477200,
+				"to": 1482480
+			},
+			"text": " something that inspires you something that is you already know this are resistance"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,480",
+				"to": "00:24:49,520"
+			},
+			"offsets": {
+				"from": 1482480,
+				"to": 1489520
+			},
+			"text": " resistance solutions yeah so just some references on the I wish yeah so based on this"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,520",
+				"to": "00:24:54,880"
+			},
+			"offsets": {
+				"from": 1489520,
+				"to": 1494880
+			},
+			"text": " resistance solutions maybe there's something that could be improved maybe there are new features"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,880",
+				"to": "00:25:01,760"
+			},
+			"offsets": {
+				"from": 1494880,
+				"to": 1501760
+			},
+			"text": " that you thought out so that will be on the I wish column and then finally we have the I wonder"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,760",
+				"to": "00:25:08,880"
+			},
+			"offsets": {
+				"from": 1501760,
+				"to": 1508880
+			},
+			"text": " column so this will be solutions that don't exist just yet so be more your future vision"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,880",
+				"to": "00:25:14,720"
+			},
+			"offsets": {
+				"from": 1508880,
+				"to": 1514720
+			},
+			"text": " I can free our brain a bit more maybe you wonder if this is feasible this be possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,720",
+				"to": "00:25:21,520"
+			},
+			"offsets": {
+				"from": 1514720,
+				"to": 1521520
+			},
+			"text": " maybe you do a bit of reflection about any unintended consequences yeah so it's more the future"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,520",
+				"to": "00:25:29,120"
+			},
+			"offsets": {
+				"from": 1521520,
+				"to": 1529120
+			},
+			"text": " scenarios again so three columns I like I wish I wonder one or two blank sheets per"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,120",
+				"to": "00:25:36,000"
+			},
+			"offsets": {
+				"from": 1529120,
+				"to": 1536000
+			},
+			"text": " per table you so you're going to give ourselves eight minutes for this exercise no"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,000",
+				"to": "00:25:43,040"
+			},
+			"offsets": {
+				"from": 1536000,
+				"to": 1543040
+			},
+			"text": " do it introspectively in silence unless you want to explain what do you mean or someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,040",
+				"to": "00:25:50,560"
+			},
+			"offsets": {
+				"from": 1543040,
+				"to": 1550560
+			},
+			"text": " don't understand explain to your table yeah so let's let's get started eight minutes"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,560",
+				"to": "00:25:52,880"
+			},
+			"offsets": {
+				"from": 1550560,
+				"to": 1552880
+			},
+			"text": " good luck"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,880",
+				"to": "00:26:02,880"
+			},
+			"offsets": {
+				"from": 1552880,
+				"to": 1562880
+			},
+			"text": " I still wear a lot of talking I really suggest doing it in silence respect the process my friends"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,880",
+				"to": "00:26:05,120"
+			},
+			"offsets": {
+				"from": 1562880,
+				"to": 1565120
+			},
+			"text": " stick to the process"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,120",
+				"to": "00:26:12,880"
+			},
+			"offsets": {
+				"from": 1565120,
+				"to": 1572880
+			},
+			"text": " the purpose is to just get a download of everyone's brain based on their perspective and their"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,880",
+				"to": "00:26:20,000"
+			},
+			"offsets": {
+				"from": 1572880,
+				"to": 1580000
+			},
+			"text": " experience stop talking start writing make sure to add them to the sheets immediately so you"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,000",
+				"to": "00:26:26,160"
+			},
+			"offsets": {
+				"from": 1580000,
+				"to": 1586160
+			},
+			"text": " prevent people from writing down duplicates the goal is to get as many post-its on that sheet"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,160",
+				"to": "00:26:30,960"
+			},
+			"offsets": {
+				"from": 1586160,
+				"to": 1590960
+			},
+			"text": " per table so write them down put them on the sheet and we're going to do a voting exercise"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,960",
+				"to": "00:26:34,000"
+			},
+			"offsets": {
+				"from": 1590960,
+				"to": 1594000
+			},
+			"text": " per table afterwards we are almost at half time"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,680",
+				"to": "00:26:44,480"
+			},
+			"offsets": {
+				"from": 1599680,
+				"to": 1604480
+			},
+			"text": " maybe there's anything in particular like something that you know of some experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,480",
+				"to": "00:26:50,960"
+			},
+			"offsets": {
+				"from": 1604480,
+				"to": 1610960
+			},
+			"text": " that is quite unique to you that might be a source of inspiration for the others on your table"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:50,960",
+				"to": "00:26:55,520"
+			},
+			"offsets": {
+				"from": 1610960,
+				"to": 1615520
+			},
+			"text": " all right I see many post-its on the table"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,520",
+				"to": "00:27:04,080"
+			},
+			"offsets": {
+				"from": 1615520,
+				"to": 1624080
+			},
+			"text": " too many too much information to download in those brains I can see all right all right so"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,600",
+				"to": "00:27:09,360"
+			},
+			"offsets": {
+				"from": 1625600,
+				"to": 1629360
+			},
+			"text": " no worry it's not a we don't need perfection we just need some"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,360",
+				"to": "00:27:13,120"
+			},
+			"offsets": {
+				"from": 1629360,
+				"to": 1633120
+			},
+			"text": " we just needed some information to get the conversation started"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,120",
+				"to": "00:27:22,400"
+			},
+			"offsets": {
+				"from": 1633120,
+				"to": 1642400
+			},
+			"text": " now of course I'm sure there are different solutions on the table so we need to align our"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,400",
+				"to": "00:27:31,520"
+			},
+			"offsets": {
+				"from": 1642400,
+				"to": 1651520
+			},
+			"text": " brains within your own groups so where this system is called dot democracy so dot democracy is just"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,520",
+				"to": "00:27:39,680"
+			},
+			"offsets": {
+				"from": 1651520,
+				"to": 1659680
+			},
+			"text": " a way to help you vote on the most likable items that you have on the table just just find some"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,680",
+				"to": "00:27:47,040"
+			},
+			"offsets": {
+				"from": 1659680,
+				"to": 1667040
+			},
+			"text": " alignment within your own group so you'll have five minutes I know you are short on sharpies but"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,040",
+				"to": "00:27:56,880"
+			},
+			"offsets": {
+				"from": 1667040,
+				"to": 1676880
+			},
+			"text": " share your pens around user pens to to place three dots three dots per person and per column on your"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,880",
+				"to": "00:28:05,120"
+			},
+			"offsets": {
+				"from": 1676880,
+				"to": 1685120
+			},
+			"text": " on your most likable items in there are maybe there are similar items try to cluster them a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,120",
+				"to": "00:28:13,760"
+			},
+			"offsets": {
+				"from": 1685120,
+				"to": 1693760
+			},
+			"text": " bit and yeah see what's the spirit in your table see what what your group like the most so let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,760",
+				"to": "00:28:21,200"
+			},
+			"offsets": {
+				"from": 1693760,
+				"to": 1701200
+			},
+			"text": " yeah let's take five minutes to vote again three three dots per person per column"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,400",
+				"to": "00:28:27,120"
+			},
+			"offsets": {
+				"from": 1702400,
+				"to": 1707120
+			},
+			"text": " okay everyone please make sure that you just look at what's on the table and place those dots we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,120",
+				"to": "00:28:33,520"
+			},
+			"offsets": {
+				"from": 1707120,
+				"to": 1713520
+			},
+			"text": " going to do discussion afterwards we have five minutes remember no cheating three dots per person"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,520",
+				"to": "00:28:39,840"
+			},
+			"offsets": {
+				"from": 1713520,
+				"to": 1719840
+			},
+			"text": " per column you can put multiple dots on one item if you'd like we have about two minutes remaining"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,840",
+				"to": "00:28:45,200"
+			},
+			"offsets": {
+				"from": 1719840,
+				"to": 1725200
+			},
+			"text": " make sure you use your votes we want to have a nice heat map of where the most interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,480",
+				"to": "00:28:56,400"
+			},
+			"offsets": {
+				"from": 1726480,
+				"to": 1736400
+			},
+			"text": " opportunity areas are let's the last 20 seconds so for now the goal is just to make sure you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,400",
+				"to": "00:29:02,560"
+			},
+			"offsets": {
+				"from": 1736400,
+				"to": 1742560
+			},
+			"text": " an alignment within your table in terms of opportunity area you'll have time to do this for the discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,560",
+				"to": "00:29:08,880"
+			},
+			"offsets": {
+				"from": 1742560,
+				"to": 1748880
+			},
+			"text": " all right all right I know I know you're already ahead of the game in the discussion part so that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,880",
+				"to": "00:29:16,320"
+			},
+			"offsets": {
+				"from": 1748880,
+				"to": 1756320
+			},
+			"text": " good so just make sure you look again to the post-its you have on the table make sure you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,320",
+				"to": "00:29:22,320"
+			},
+			"offsets": {
+				"from": 1756320,
+				"to": 1762320
+			},
+			"text": " look at the find a heat map you find the ones that the ones with the most dots"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:22,320",
+				"to": "00:29:29,600"
+			},
+			"offsets": {
+				"from": 1762320,
+				"to": 1769600
+			},
+			"text": " and again this is not to come up with the solution just yet try to focus on the opportunity areas"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,600",
+				"to": "00:29:38,560"
+			},
+			"offsets": {
+				"from": 1769600,
+				"to": 1778560
+			},
+			"text": " for the time being so let's uh let's give us eight minutes just to find the right opportunity area"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:39,280",
+				"to": "00:29:46,720"
+			},
+			"offsets": {
+				"from": 1779280,
+				"to": 1786720
+			},
+			"text": " so just to clarify you don't need to look at all the post-its just look at the post-its with the most"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:46,720",
+				"to": "00:29:52,640"
+			},
+			"offsets": {
+				"from": 1786720,
+				"to": 1792640
+			},
+			"text": " dots those those are the ones we are converging at the moment so to look at the post-its is the most"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:52,640",
+				"to": "00:29:59,280"
+			},
+			"offsets": {
+				"from": 1792640,
+				"to": 1799280
+			},
+			"text": " dots those those are the ones where your brain should be focused on and for now it's just opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,280",
+				"to": "00:30:06,640"
+			},
+			"offsets": {
+				"from": 1799280,
+				"to": 1806640
+			},
+			"text": " areas we'll have another session based on solutions all right folks we have about five minutes left"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,640",
+				"to": "00:30:11,920"
+			},
+			"offsets": {
+				"from": 1806640,
+				"to": 1811920
+			},
+			"text": " and the aim is that after five minutes within your table you have a good sense of where the"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:11,920",
+				"to": "00:30:15,920"
+			},
+			"offsets": {
+				"from": 1811920,
+				"to": 1815920
+			},
+			"text": " opportunity is so just have a bunch of post-its that are your favorites that's super important"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,920",
+				"to": "00:30:24,080"
+			},
+			"offsets": {
+				"from": 1815920,
+				"to": 1824080
+			},
+			"text": " all right last one more minute for the to find the right opportunity area"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:24,080",
+				"to": "00:30:30,160"
+			},
+			"offsets": {
+				"from": 1824080,
+				"to": 1830160
+			},
+			"text": " try to converge in one just one single opportunity area"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,000",
+				"to": "00:30:38,480"
+			},
+			"offsets": {
+				"from": 1832000,
+				"to": 1838480
+			},
+			"text": " again rely on your facilitators they are the they are governance experts they know the challenge"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:38,480",
+				"to": "00:30:49,520"
+			},
+			"offsets": {
+				"from": 1838480,
+				"to": 1849520
+			},
+			"text": " more more than anyone all right so let's just decide i know most of you are free styling going"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:49,520",
+				"to": "00:30:55,520"
+			},
+			"offsets": {
+				"from": 1849520,
+				"to": 1855520
+			},
+			"text": " with your own methods and that's totally fine but i mean this is also a good one so it's called"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:56,400",
+				"to": "00:31:04,480"
+			},
+			"offsets": {
+				"from": 1856400,
+				"to": 1864480
+			},
+			"text": " uh crazy aids so basically yeah you look uh so based on the opportunity area that your table"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:04,480",
+				"to": "00:31:11,040"
+			},
+			"offsets": {
+				"from": 1864480,
+				"to": 1871040
+			},
+			"text": " selected uh we're gonna come up with we call it crazy aid solutions so you can either draw"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:11,040",
+				"to": "00:31:18,640"
+			},
+			"offsets": {
+				"from": 1871040,
+				"to": 1878640
+			},
+			"text": " or write whatever is easy for you to to to depict the solution so this is more a concept creation"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:20,720",
+				"to": "00:31:29,440"
+			},
+			"offsets": {
+				"from": 1880720,
+				"to": 1889440
+			},
+			"text": " you can go a bit wild in on sense but uh we are trying to diverge as much as possible but again"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:29,440",
+				"to": "00:31:36,000"
+			},
+			"offsets": {
+				"from": 1889440,
+				"to": 1896000
+			},
+			"text": " focus on the challenge focus on the opportunity area try to stick to one minute one minute uh"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:36,000",
+				"to": "00:31:42,960"
+			},
+			"offsets": {
+				"from": 1896000,
+				"to": 1902960
+			},
+			"text": " purpose it one idea purpose it and since we are many groups maybe try to come up have two"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:42,960",
+				"to": "00:31:49,920"
+			},
+			"offsets": {
+				"from": 1902960,
+				"to": 1909920
+			},
+			"text": " two two two sheets on the table uh try to have two crazy eight sheets on the table and again we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:49,920",
+				"to": "00:31:57,520"
+			},
+			"offsets": {
+				"from": 1909920,
+				"to": 1917520
+			},
+			"text": " gonna have uh eight minutes for each for for this exercise um yeah let's get started"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:57,520",
+				"to": "00:32:03,200"
+			},
+			"offsets": {
+				"from": 1917520,
+				"to": 1923200
+			},
+			"text": " yeah maybe just too clarify because everyone can we have a attention it please crazy aids"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:03,200",
+				"to": "00:32:09,760"
+			},
+			"offsets": {
+				"from": 1923200,
+				"to": 1929760
+			},
+			"text": " hey hello thank you very much crazy aids is a bit of an abstract one so you need to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,760",
+				"to": "00:32:15,600"
+			},
+			"offsets": {
+				"from": 1929760,
+				"to": 1935600
+			},
+			"text": " it well it's also the most fun one and the idea is that you make a sketch of your idea it can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:15,600",
+				"to": "00:32:20,640"
+			},
+			"offsets": {
+				"from": 1935600,
+				"to": 1940640
+			},
+			"text": " like a drawing it can be a diagram it has to fit on a post it so it has to be really succinct"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:20,640",
+				"to": "00:32:25,600"
+			},
+			"offsets": {
+				"from": 1940640,
+				"to": 1945600
+			},
+			"text": " and you're actually going to make eight very rapid iterations so we're going to do very strict"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:25,600",
+				"to": "00:32:30,800"
+			},
+			"offsets": {
+				"from": 1945600,
+				"to": 1950800
+			},
+			"text": " timekeeping after one minute you you leave that post it alone you move on to the next one"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:30,800",
+				"to": "00:32:37,440"
+			},
+			"offsets": {
+				"from": 1950800,
+				"to": 1957440
+			},
+			"text": " so each table only has about two or three of those sheets so we actually need two or three people"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:37,440",
+				"to": "00:32:42,480"
+			},
+			"offsets": {
+				"from": 1957440,
+				"to": 1962480
+			},
+			"text": " on the table to step forward maybe someone who's good at drawing because this requires some drawing"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:42,480",
+				"to": "00:32:47,280"
+			},
+			"offsets": {
+				"from": 1962480,
+				"to": 1967280
+			},
+			"text": " skills and when everyone's ready probably in like two minutes or so make sure you make some room"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:47,280",
+				"to": "00:32:54,800"
+			},
+			"offsets": {
+				"from": 1967280,
+				"to": 1974800
+			},
+			"text": " on your table get the drawers uh prepared and then we're going to do eight short uh cycles of one"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:54,800",
+				"to": "00:32:59,920"
+			},
+			"offsets": {
+				"from": 1974800,
+				"to": 1979920
+			},
+			"text": " minute where you just draw and you iterate on one idea and of course the idea is that you use"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,920",
+				"to": "00:33:04,960"
+			},
+			"offsets": {
+				"from": 1979920,
+				"to": 1984960
+			},
+			"text": " all of the previous stuff as inspiration for this single solution that you're going to draw"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:04,960",
+				"to": "00:33:09,280"
+			},
+			"offsets": {
+				"from": 1984960,
+				"to": 1989280
+			},
+			"text": " let's take two minutes to get organized and then we're actually going to start"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:09,280",
+				"to": "00:33:16,240"
+			},
+			"offsets": {
+				"from": 1989280,
+				"to": 1996240
+			},
+			"text": " with the one minute cycle so let's get ready another good thing to know the nice thing about"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:16,240",
+				"to": "00:33:22,320"
+			},
+			"offsets": {
+				"from": 1996240,
+				"to": 2002320
+			},
+			"text": " crazy aids is it excavates your subconscious to to participate in the creative process"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:22,320",
+				"to": "00:33:26,960"
+			},
+			"offsets": {
+				"from": 2002320,
+				"to": 2006960
+			},
+			"text": " so really trust that just pick something if you're not sure yet just pick something and just go"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:26,960",
+				"to": "00:33:34,400"
+			},
+			"offsets": {
+				"from": 2006960,
+				"to": 2014400
+			},
+			"text": " for it let's just create a solution yes so to clarify every minute you make a new version of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:34,400",
+				"to": "00:33:42,960"
+			},
+			"offsets": {
+				"from": 2014400,
+				"to": 2022960
+			},
+			"text": " same idea so you basically have eight versions of the same idea all right everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:42,960",
+				"to": "00:33:51,280"
+			},
+			"offsets": {
+				"from": 2022960,
+				"to": 2031280
+			},
+			"text": " attention please where are we are about to start so um once again i hope you're ready"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:51,280",
+				"to": "00:33:56,160"
+			},
+			"offsets": {
+				"from": 2031280,
+				"to": 2036160
+			},
+			"text": " we're going to start the timer in a few seconds we need a few need a few more minutes i think okay"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:56,160",
+				"to": "00:34:04,080"
+			},
+			"offsets": {
+				"from": 2036160,
+				"to": 2044080
+			},
+			"text": " okay i think we should just start let's just go for it make sure that every sheet has one"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:04,080",
+				"to": "00:34:09,680"
+			},
+			"offsets": {
+				"from": 2044080,
+				"to": 2049680
+			},
+			"text": " person who's going to make the drawings you pick one idea that you're going to try and explain in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:09,680",
+				"to": "00:34:15,520"
+			},
+			"offsets": {
+				"from": 2049680,
+				"to": 2055520
+			},
+			"text": " drawing and you just use one of the boxes to try and draw it and you have one minute to do so"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:15,520",
+				"to": "00:34:20,400"
+			},
+			"offsets": {
+				"from": 2055520,
+				"to": 2060400
+			},
+			"text": " after one minute you move on to the next box and you try again and you have eight versions of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:20,400",
+				"to": "00:34:31,120"
+			},
+			"offsets": {
+				"from": 2060400,
+				"to": 2071120
+			},
+			"text": " same drawing basically we are going to start the timer in three two one start"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:32,080",
+				"to": "00:34:41,440"
+			},
+			"offsets": {
+				"from": 2072080,
+				"to": 2081440
+			},
+			"text": " start drawing it can be a user interface it can be a drawing it can be a diagram"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:41,440",
+				"to": "00:34:46,480"
+			},
+			"offsets": {
+				"from": 2081440,
+				"to": 2086480
+			},
+			"text": " as long as it explains the solution that you've been working on"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:46,480",
+				"to": "00:34:52,720"
+			},
+			"offsets": {
+				"from": 2086480,
+				"to": 2092720
+			},
+			"text": " ten seconds remaining for the first drawing i'll leave you to it keep going in a few minutes"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:52,720",
+				"to": "00:34:59,680"
+			},
+			"offsets": {
+				"from": 2092720,
+				"to": 2099680
+			},
+			"text": " we'll move on to a discussion all right everyone let's uh let's do a quick pause here"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:00,480",
+				"to": "00:35:07,360"
+			},
+			"offsets": {
+				"from": 2100480,
+				"to": 2107360
+			},
+			"text": " so we are nearing the end of the workshop and the idea is that you still have some time you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:07,360",
+				"to": "00:35:14,640"
+			},
+			"offsets": {
+				"from": 2107360,
+				"to": 2114640
+			},
+			"text": " eight minutes in total to prepare your solution and your explanation to other tables so in short"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:14,640",
+				"to": "00:35:21,680"
+			},
+			"offsets": {
+				"from": 2114640,
+				"to": 2121680
+			},
+			"text": " in eight minutes i'm going to ask each of the tables to share your biggest takeaway or like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:21,680",
+				"to": "00:35:26,320"
+			},
+			"offsets": {
+				"from": 2121680,
+				"to": 2126320
+			},
+			"text": " TLDR or maybe anything that you're struggling with just try and give some kind of abstract"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:27,040",
+				"to": "00:35:30,720"
+			},
+			"offsets": {
+				"from": 2127040,
+				"to": 2130720
+			},
+			"text": " of the value that you've been creating and try to share it with another table i'll give you eight"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:30,720",
+				"to": "00:35:35,680"
+			},
+			"offsets": {
+				"from": 2130720,
+				"to": 2135680
+			},
+			"text": " minutes to prepare that and now we still have some time to cross pollinate between the tables good luck"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:35,680",
+				"to": "00:35:48,400"
+			},
+			"offsets": {
+				"from": 2135680,
+				"to": 2148400
+			},
+			"text": " all right everyone let's uh take a moment here let's take a moment here please assign one person"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:48,400",
+				"to": "00:35:55,360"
+			},
+			"offsets": {
+				"from": 2148400,
+				"to": 2155360
+			},
+			"text": " on your table that's going to uh to do the talking and the idea is if it's correct each table has"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:55,360",
+				"to": "00:35:59,120"
+			},
+			"offsets": {
+				"from": 2155360,
+				"to": 2159120
+			},
+			"text": " been assigned another table that they're going to talk to and you're just going to explain what"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:59,120",
+				"to": "00:36:05,280"
+			},
+			"offsets": {
+				"from": 2159120,
+				"to": 2165280
+			},
+			"text": " you came up with it can be a TLDR of your idea it can be the main takeaway it can also be if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:05,280",
+				"to": "00:36:10,960"
+			},
+			"offsets": {
+				"from": 2165280,
+				"to": 2170960
+			},
+			"text": " if you've been struggling just share like the main challenges that you run into assign one person"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:10,960",
+				"to": "00:36:16,400"
+			},
+			"offsets": {
+				"from": 2170960,
+				"to": 2176400
+			},
+			"text": " and then we're going to take time to explain it to the other table uh let's go lovely people we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:16,400",
+				"to": "00:36:22,080"
+			},
+			"offsets": {
+				"from": 2176400,
+				"to": 2182080
+			},
+			"text": " going to be kicked out in one minute so i'd like to ask you to wrap up make sure you hand your final"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:22,080",
+				"to": "00:36:28,560"
+			},
+			"offsets": {
+				"from": 2182080,
+				"to": 2188560
+			},
+			"text": " drawing to the challenge owner so they can make a picture of it and most importantly don't forget"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:28,560",
+				"to": "00:36:33,600"
+			},
+			"offsets": {
+				"from": 2188560,
+				"to": 2193600
+			},
+			"text": " to mint your poll up by scanning the QR code their friends we're going to be kicked out thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:33,600",
+				"to": "00:36:40,400"
+			},
+			"offsets": {
+				"from": 2193600,
+				"to": 2200400
+			},
+			"text": " very much for your energy for your participation round of applause you've been fantastic i hope we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:40,400",
+				"to": "00:36:46,000"
+			},
+			"offsets": {
+				"from": 2200400,
+				"to": 2206000
+			},
+			"text": " going to find some gems in the output we'll figure it out over the next few hours thanks a lot don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:46,000",
+				"to": "00:36:56,400"
+			},
+			"offsets": {
+				"from": 2206000,
+				"to": 2216400
+			},
+			"text": " forget your poll app and have a great conference"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:56,400",
+				"to": "00:37:25,400"
+			},
+			"offsets": {
+				"from": 2216400,
+				"to": 2245400
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

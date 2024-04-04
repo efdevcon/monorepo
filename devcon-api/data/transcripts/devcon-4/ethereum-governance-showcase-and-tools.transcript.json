@@ -1,0 +1,1847 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,320"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5320
+			},
+			"text": " I'm here to talk about Ethereum governance or one of the many ways to think about Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,320",
+				"to": "00:00:06,800"
+			},
+			"offsets": {
+				"from": 5320,
+				"to": 6800
+			},
+			"text": " governance, I suppose."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,800",
+				"to": "00:00:10,720"
+			},
+			"offsets": {
+				"from": 6800,
+				"to": 10720
+			},
+			"text": " Less philosophical, it's entirely what is happening today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,720",
+				"to": "00:00:12,360"
+			},
+			"offsets": {
+				"from": 10720,
+				"to": 12360
+			},
+			"text": " Who are the organizations involved?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,360",
+				"to": "00:00:15,440"
+			},
+			"offsets": {
+				"from": 12360,
+				"to": 15440
+			},
+			"text": " What's the history of it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,440",
+				"to": "00:00:17,400"
+			},
+			"offsets": {
+				"from": 15440,
+				"to": 17400
+			},
+			"text": " First little bit about me."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,400",
+				"to": "00:00:20,360"
+			},
+			"offsets": {
+				"from": 17400,
+				"to": 20360
+			},
+			"text": " I have been involved in cryptocurrency since about 2011."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,360",
+				"to": "00:00:27,520"
+			},
+			"offsets": {
+				"from": 20360,
+				"to": 27520
+			},
+			"text": " I worked at a bank for a few years, then Ethereum Foundation, and I co-founded Okan Innovations"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,520",
+				"to": "00:00:28,920"
+			},
+			"offsets": {
+				"from": 27520,
+				"to": 28920
+			},
+			"text": " and Service and Advisor there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,920",
+				"to": "00:00:37,240"
+			},
+			"offsets": {
+				"from": 28920,
+				"to": 37240
+			},
+			"text": " I have one wife, Laura, top left, and three cats, top right is Vivian, bottom left is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,240",
+				"to": "00:00:43,400"
+			},
+			"offsets": {
+				"from": 37240,
+				"to": 43400
+			},
+			"text": " Fry, and bottom right is Lulu."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,400",
+				"to": "00:00:47,200"
+			},
+			"offsets": {
+				"from": 43400,
+				"to": 47200
+			},
+			"text": " So I'm going to start with Vlad's definition of governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,200",
+				"to": "00:00:52,080"
+			},
+			"offsets": {
+				"from": 47200,
+				"to": 52080
+			},
+			"text": " It's the process by which we attempt to establish the legitimacy of decisions, decision-making"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,080",
+				"to": "00:00:56,040"
+			},
+			"offsets": {
+				"from": 52080,
+				"to": 56040
+			},
+			"text": " processes, and related governance norms and expectations."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,040",
+				"to": "00:00:59,360"
+			},
+			"offsets": {
+				"from": 56040,
+				"to": 59360
+			},
+			"text": " I just like that definition a lot, so I wanted to throw it into my slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,360",
+				"to": "00:01:05,680"
+			},
+			"offsets": {
+				"from": 59360,
+				"to": 65680
+			},
+			"text": " I think it really boils it down well for what most blockchain governance discussions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,680",
+				"to": "00:01:09,200"
+			},
+			"offsets": {
+				"from": 65680,
+				"to": 69200
+			},
+			"text": " come down to in a way."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,200",
+				"to": "00:01:11,680"
+			},
+			"offsets": {
+				"from": 69200,
+				"to": 71680
+			},
+			"text": " That's just how I feel about the definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,680",
+				"to": "00:01:21,400"
+			},
+			"offsets": {
+				"from": 71680,
+				"to": 81400
+			},
+			"text": " Let me give you a history of what governance or powers of Ethereum, what that was back"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,400",
+				"to": "00:01:23,400"
+			},
+			"offsets": {
+				"from": 81400,
+				"to": 83400
+			},
+			"text": " in the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,400",
+				"to": "00:01:30,360"
+			},
+			"offsets": {
+				"from": 83400,
+				"to": 90360
+			},
+			"text": " In 2014, early 2015, all clients and development tools were developed by the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,360",
+				"to": "00:01:35,720"
+			},
+			"offsets": {
+				"from": 90360,
+				"to": 95720
+			},
+			"text": " All the co-founders were there, all the first developers, DevCon Zero had about 50 people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,720",
+				"to": "00:01:38,400"
+			},
+			"offsets": {
+				"from": 95720,
+				"to": 98400
+			},
+			"text": " and that's kind of where it was all centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,400",
+				"to": "00:01:39,680"
+			},
+			"offsets": {
+				"from": 98400,
+				"to": 99680
+			},
+			"text": " You can think of it that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,680",
+				"to": "00:01:44,240"
+			},
+			"offsets": {
+				"from": 99680,
+				"to": 104240
+			},
+			"text": " Granted, it was such a small project, you can't really blame it for not being decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,240",
+				"to": "00:01:45,240"
+			},
+			"offsets": {
+				"from": 104240,
+				"to": 105240
+			},
+			"text": " yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,240",
+				"to": "00:01:50,640"
+			},
+			"offsets": {
+				"from": 105240,
+				"to": 110640
+			},
+			"text": " 2015 to 2016, outside of NDA started to form and leave the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,640",
+				"to": "00:01:57,680"
+			},
+			"offsets": {
+				"from": 110640,
+				"to": 117680
+			},
+			"text": " We had stuff like consensus happening, parity happened around 2016, I believe, and other"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,680",
+				"to": "00:02:01,680"
+			},
+			"offsets": {
+				"from": 117680,
+				"to": 121680
+			},
+			"text": " stuff like that, just keeping time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,680",
+				"to": "00:02:08,960"
+			},
+			"offsets": {
+				"from": 121680,
+				"to": 128960
+			},
+			"text": " And then 2016, enterprise Ethereum discussions started on a Skype chat between a lot of enterprises"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,960",
+				"to": "00:02:11,760"
+			},
+			"offsets": {
+				"from": 128960,
+				"to": 131760
+			},
+			"text": " who are starting to get interested in it, and then eventually the Ethereum Enterprise"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,760",
+				"to": "00:02:13,840"
+			},
+			"offsets": {
+				"from": 131760,
+				"to": 133840
+			},
+			"text": " Alliance formed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,840",
+				"to": "00:02:16,280"
+			},
+			"offsets": {
+				"from": 133840,
+				"to": 136280
+			},
+			"text": " More infrastructure is now being developed by third parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,280",
+				"to": "00:02:17,280"
+			},
+			"offsets": {
+				"from": 136280,
+				"to": 137280
+			},
+			"text": " We have Metamask."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,280",
+				"to": "00:02:18,280"
+			},
+			"offsets": {
+				"from": 137280,
+				"to": 138280
+			},
+			"text": " We have Infura."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,280",
+				"to": "00:02:24,360"
+			},
+			"offsets": {
+				"from": 138280,
+				"to": 144360
+			},
+			"text": " They probably started a little bit before 2016, but you start seeing them be a lot more used."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,360",
+				"to": "00:02:29,040"
+			},
+			"offsets": {
+				"from": 144360,
+				"to": 149040
+			},
+			"text": " And then 2017, Enterprise Ethereum brings traditional companies into Ethereum, and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,040",
+				"to": "00:02:31,920"
+			},
+			"offsets": {
+				"from": 149040,
+				"to": 151920
+			},
+			"text": " more visible from a government and academic interest perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,920",
+				"to": "00:02:39,080"
+			},
+			"offsets": {
+				"from": 151920,
+				"to": 159080
+			},
+			"text": " You have IC3 from Cornell University, you have Stanford, Harvard, the Cambridge is another"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,080",
+				"to": "00:02:41,720"
+			},
+			"offsets": {
+				"from": 159080,
+				"to": 161720
+			},
+			"text": " big one, UCLA."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,720",
+				"to": "00:02:45,360"
+			},
+			"offsets": {
+				"from": 161720,
+				"to": 165360
+			},
+			"text": " There's just a lot of different blockchain organizations within colleges and academic"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,360",
+				"to": "00:02:47,360"
+			},
+			"offsets": {
+				"from": 165360,
+				"to": 167360
+			},
+			"text": " institutions now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,360",
+				"to": "00:02:49,360"
+			},
+			"offsets": {
+				"from": 167360,
+				"to": 169360
+			},
+			"text": " What is it now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,360",
+				"to": "00:02:52,640"
+			},
+			"offsets": {
+				"from": 169360,
+				"to": 172640
+			},
+			"text": " It is Vitalik holding a Lambo."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,640",
+				"to": "00:03:00,520"
+			},
+			"offsets": {
+				"from": 172640,
+				"to": 180520
+			},
+			"text": " Okay, so this is my favorite slide because it's the most aesthetically pleasing, because"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,520",
+				"to": "00:03:04,480"
+			},
+			"offsets": {
+				"from": 180520,
+				"to": 184480
+			},
+			"text": " it looks like stair steps, like climbing down, and I didn't plan for it that way until I"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,480",
+				"to": "00:03:06,880"
+			},
+			"offsets": {
+				"from": 184480,
+				"to": 186880
+			},
+			"text": " noticed that all of them could do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,880",
+				"to": "00:03:09,800"
+			},
+			"offsets": {
+				"from": 186880,
+				"to": 189800
+			},
+			"text": " So yeah, my favorite slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,800",
+				"to": "00:03:13,200"
+			},
+			"offsets": {
+				"from": 189800,
+				"to": 193200
+			},
+			"text": " Here are the current major players in the ecosystem that kind of contribute to a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,200",
+				"to": "00:03:18,080"
+			},
+			"offsets": {
+				"from": 193200,
+				"to": 198080
+			},
+			"text": " of the decisions being made, the direction that Ethereum's going, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,080",
+				"to": "00:03:25,840"
+			},
+			"offsets": {
+				"from": 198080,
+				"to": 205840
+			},
+			"text": " Consensus is a big hub and spoke model, I guess, company organization, conglomerate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,840",
+				"to": "00:03:27,600"
+			},
+			"offsets": {
+				"from": 205840,
+				"to": 207600
+			},
+			"text": " whatever you want to call it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,600",
+				"to": "00:03:31,760"
+			},
+			"offsets": {
+				"from": 207600,
+				"to": 211760
+			},
+			"text": " And it has a bunch of different teams that all work across teams and come up with their"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,760",
+				"to": "00:03:35,840"
+			},
+			"offsets": {
+				"from": 211760,
+				"to": 215840
+			},
+			"text": " own projects and then eventually some of them spin out into their own companies, other stay"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,840",
+				"to": "00:03:37,800"
+			},
+			"offsets": {
+				"from": 215840,
+				"to": 217800
+			},
+			"text": " in and provide infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,800",
+				"to": "00:03:43,160"
+			},
+			"offsets": {
+				"from": 217800,
+				"to": 223160
+			},
+			"text": " It's kind of a very hard to pin down what Consensus is unless you've worked there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,160",
+				"to": "00:03:46,920"
+			},
+			"offsets": {
+				"from": 223160,
+				"to": 226920
+			},
+			"text": " So, oh, even though you don't know, okay, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,920",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 226920,
+				"to": 232000
+			},
+			"text": " So then there's the Web3 Foundation, which is working really hard across different technologies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:04:00,200"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 240200
+			},
+			"text": " including affinity, Ethereum, obviously, Hokadot and others to bring about the Web3 future"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,200",
+				"to": "00:04:04,120"
+			},
+			"offsets": {
+				"from": 240200,
+				"to": 244120
+			},
+			"text": " that's been envisioned by people like Gavin Wood in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,120",
+				"to": "00:04:08,760"
+			},
+			"offsets": {
+				"from": 244120,
+				"to": 248760
+			},
+			"text": " Parity Technologies, they build the second biggest Ethereum client that was founded by"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,760",
+				"to": "00:04:12,880"
+			},
+			"offsets": {
+				"from": 248760,
+				"to": 252880
+			},
+			"text": " Gavin Wood as one of the spin-offs from Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,880",
+				"to": "00:04:15,840"
+			},
+			"offsets": {
+				"from": 252880,
+				"to": 255840
+			},
+			"text": " The Ethereum Foundation, they're hosting DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,840",
+				"to": "00:04:17,280"
+			},
+			"offsets": {
+				"from": 255840,
+				"to": 257280
+			},
+			"text": " I think they're pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,280",
+				"to": "00:04:18,760"
+			},
+			"offsets": {
+				"from": 257280,
+				"to": 258760
+			},
+			"text": " I work there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,760",
+				"to": "00:04:23,400"
+			},
+			"offsets": {
+				"from": 258760,
+				"to": 263400
+			},
+			"text": " And what they do is they provide funding, support, grants, other things to the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,400",
+				"to": "00:04:24,400"
+			},
+			"offsets": {
+				"from": 263400,
+				"to": 264400
+			},
+			"text": " ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,400",
+				"to": "00:04:28,320"
+			},
+			"offsets": {
+				"from": 264400,
+				"to": 268320
+			},
+			"text": " It's pretty much all about supporting the ecosystem and making sure things get done."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,320",
+				"to": "00:04:32,480"
+			},
+			"offsets": {
+				"from": 268320,
+				"to": 272480
+			},
+			"text": " EEA, that's for enterprise Ethereum people."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,480",
+				"to": "00:04:38,120"
+			},
+			"offsets": {
+				"from": 272480,
+				"to": 278120
+			},
+			"text": " Fellowship of Ethereum Magicians is a disorganization, as Boris put it, of people coming together"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,120",
+				"to": "00:04:43,920"
+			},
+			"offsets": {
+				"from": 278120,
+				"to": 283920
+			},
+			"text": " to make technical standards or to not make, but to basically review and talk about technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,920",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 283920,
+				"to": 288000
+			},
+			"text": " and sometimes philosophical standards within Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:52,640"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 292640
+			},
+			"text": " We have the client devs that get together during the all-core developer meetings, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,640",
+				"to": "00:04:55,320"
+			},
+			"offsets": {
+				"from": 292640,
+				"to": 295320
+			},
+			"text": " I'll show you a little bit more about in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,320",
+				"to": "00:05:02,720"
+			},
+			"offsets": {
+				"from": 295320,
+				"to": 302720
+			},
+			"text": " That is those client devs have a lot of input, and they don't even always want it, but that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,720",
+				"to": "00:05:04,560"
+			},
+			"offsets": {
+				"from": 302720,
+				"to": 304560
+			},
+			"text": " kind of what they end up doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,560",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 304560,
+				"to": 307000
+			},
+			"text": " Then we have Ethereum Improvement Proposal Editors."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:10,400"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 310400
+			},
+			"text": " This is like our IETF standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,400",
+				"to": "00:05:17,160"
+			},
+			"offsets": {
+				"from": 310400,
+				"to": 317160
+			},
+			"text": " I'm an EIP editor, so is Nick Johnson, for instance, and Greg Colvin, who's around here"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,160",
+				"to": "00:05:20,160"
+			},
+			"offsets": {
+				"from": 317160,
+				"to": 320160
+			},
+			"text": " somewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,160",
+				"to": "00:05:24,600"
+			},
+			"offsets": {
+				"from": 320160,
+				"to": 324600
+			},
+			"text": " There's also highly used infrastructure tools, such as Infura, My Crypto, and MetaMask."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,600",
+				"to": "00:05:29,560"
+			},
+			"offsets": {
+				"from": 324600,
+				"to": 329560
+			},
+			"text": " They have a good say in the ecosystem as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,560",
+				"to": "00:05:31,320"
+			},
+			"offsets": {
+				"from": 329560,
+				"to": 331320
+			},
+			"text": " Here's an example of EIPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,320",
+				"to": "00:05:33,040"
+			},
+			"offsets": {
+				"from": 331320,
+				"to": 333040
+			},
+			"text": " There's the front page of the EIPs repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,040",
+				"to": "00:05:37,400"
+			},
+			"offsets": {
+				"from": 333040,
+				"to": 337400
+			},
+			"text": " It says the status terms, how to contribute the types."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,400",
+				"to": "00:05:43,280"
+			},
+			"offsets": {
+				"from": 337400,
+				"to": 343280
+			},
+			"text": " The most famous example of an EIP is the ERC20 token standard, which defines the most basic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,280",
+				"to": "00:05:48,200"
+			},
+			"offsets": {
+				"from": 343280,
+				"to": 348200
+			},
+			"text": " type of token you can have in the Ethereum ecosystem that's cross-compatible via the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,200",
+				"to": "00:05:53,240"
+			},
+			"offsets": {
+				"from": 348200,
+				"to": 353240
+			},
+			"text": " smart contracts it produces."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,240",
+				"to": "00:05:56,760"
+			},
+			"offsets": {
+				"from": 353240,
+				"to": 356760
+			},
+			"text": " This is a screenshot of the core developer call."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,760",
+				"to": "00:06:01,760"
+			},
+			"offsets": {
+				"from": 356760,
+				"to": 361760
+			},
+			"text": " This one in particular had about 30 people because it was a very contentious issue about"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,760",
+				"to": "00:06:03,960"
+			},
+			"offsets": {
+				"from": 361760,
+				"to": 363960
+			},
+			"text": " issuance reduction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,960",
+				"to": "00:06:07,760"
+			},
+			"offsets": {
+				"from": 363960,
+				"to": 367760
+			},
+			"text": " Core developer meetings happen every two weeks on Fridays."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,760",
+				"to": "00:06:11,760"
+			},
+			"offsets": {
+				"from": 367760,
+				"to": 371760
+			},
+			"text": " I think it's like 10 a.m. Eastern, US time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,760",
+				"to": "00:06:15,960"
+			},
+			"offsets": {
+				"from": 371760,
+				"to": 375960
+			},
+			"text": " What we do is we try not to talk about controversial topics unless we absolutely have to, but it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,960",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 375960,
+				"to": 379000
+			},
+			"text": " all about low-level client and protocol development stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:20,600"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 380600
+			},
+			"text": " What's the next hard-for-capping?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,600",
+				"to": "00:06:22,960"
+			},
+			"offsets": {
+				"from": 380600,
+				"to": 382960
+			},
+			"text": " How do we fix the network layer if there's something wrong?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,960",
+				"to": "00:06:26,240"
+			},
+			"offsets": {
+				"from": 382960,
+				"to": 386240
+			},
+			"text": " What are we going to do whenever Robston messes up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,240",
+				"to": "00:06:28,360"
+			},
+			"offsets": {
+				"from": 386240,
+				"to": 388360
+			},
+			"text": " What's everyone's client updates?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,360",
+				"to": "00:06:32,520"
+			},
+			"offsets": {
+				"from": 388360,
+				"to": 392520
+			},
+			"text": " Every time there's a new client that comes out such as Pantheon, such as Xtherium, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,520",
+				"to": "00:06:33,640"
+			},
+			"offsets": {
+				"from": 392520,
+				"to": 393640
+			},
+			"text": " invite them to the call."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,640",
+				"to": "00:06:37,440"
+			},
+			"offsets": {
+				"from": 393640,
+				"to": 397440
+			},
+			"text": " At this point, I believe there is nine clients that are compatible with the current Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,440",
+				"to": "00:06:39,760"
+			},
+			"offsets": {
+				"from": 397440,
+				"to": 399760
+			},
+			"text": " network, which is incredible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,760",
+				"to": "00:06:44,880"
+			},
+			"offsets": {
+				"from": 399760,
+				"to": 404880
+			},
+			"text": " All of them are represented on this call."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,880",
+				"to": "00:06:49,440"
+			},
+			"offsets": {
+				"from": 404880,
+				"to": 409440
+			},
+			"text": " The All-Core Devs call sparked other calls, including the Ewasm community call, the Plasma"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,440",
+				"to": "00:06:52,640"
+			},
+			"offsets": {
+				"from": 409440,
+				"to": 412640
+			},
+			"text": " Implementers call, and the F Implementers 2.0 call."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,640",
+				"to": "00:06:56,840"
+			},
+			"offsets": {
+				"from": 412640,
+				"to": 416840
+			},
+			"text": " F Implementers 2.0 call is incredibly interesting because it's people from across many, many"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,840",
+				"to": "00:07:00,160"
+			},
+			"offsets": {
+				"from": 416840,
+				"to": 420160
+			},
+			"text": " different ecosystem organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,160",
+				"to": "00:07:06,280"
+			},
+			"offsets": {
+				"from": 420160,
+				"to": 426280
+			},
+			"text": " Plasma Implementers calls well as very, very diverse, I would say."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,280",
+				"to": "00:07:11,280"
+			},
+			"offsets": {
+				"from": 426280,
+				"to": 431280
+			},
+			"text": " It's hard for Vitalik to keep up attending all of these because he's definitely someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,280",
+				"to": "00:07:18,440"
+			},
+			"offsets": {
+				"from": 431280,
+				"to": 438440
+			},
+			"text": " who would be valued at all of these, but there's just too many calls now, too many."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,440",
+				"to": "00:07:19,840"
+			},
+			"offsets": {
+				"from": 438440,
+				"to": 439840
+			},
+			"text": " Here's the problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,840",
+				"to": "00:07:25,360"
+			},
+			"offsets": {
+				"from": 439840,
+				"to": 445360
+			},
+			"text": " The IPs and the All-Core Devs meetings are the only formal way that decisions are made."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,360",
+				"to": "00:07:30,200"
+			},
+			"offsets": {
+				"from": 445360,
+				"to": 450200
+			},
+			"text": " The most technical stuff, we don't have enough people to actually help us out on these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,200",
+				"to": "00:07:33,560"
+			},
+			"offsets": {
+				"from": 450200,
+				"to": 453560
+			},
+			"text": " There's the same people making decisions over and over again because there's a lot to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,560",
+				"to": "00:07:38,040"
+			},
+			"offsets": {
+				"from": 453560,
+				"to": 458040
+			},
+			"text": " at the very complicated underlying Ethereum protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,040",
+				"to": "00:07:41,920"
+			},
+			"offsets": {
+				"from": 458040,
+				"to": 461920
+			},
+			"text": " We have few good signaling systems or other methods to gauge community consensus whenever"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,920",
+				"to": "00:07:42,920"
+			},
+			"offsets": {
+				"from": 461920,
+				"to": 462920
+			},
+			"text": " things happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,920",
+				"to": "00:07:45,120"
+			},
+			"offsets": {
+				"from": 462920,
+				"to": 465120
+			},
+			"text": " You can think back to the DAO, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,120",
+				"to": "00:07:47,800"
+			},
+			"offsets": {
+				"from": 465120,
+				"to": 467800
+			},
+			"text": " That was a very hard decision at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,800",
+				"to": "00:07:49,880"
+			},
+			"offsets": {
+				"from": 467800,
+				"to": 469880
+			},
+			"text": " I can go on all day about the DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,880",
+				"to": "00:07:55,120"
+			},
+			"offsets": {
+				"from": 469880,
+				"to": 475120
+			},
+			"text": " The point is it was hard to gauge the community sentiment at the time and then eventually the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,120",
+				"to": "00:08:01,720"
+			},
+			"offsets": {
+				"from": 475120,
+				"to": 481720
+			},
+			"text": " call was made for what defaults were presented on the clients to go forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,720",
+				"to": "00:08:04,840"
+			},
+			"offsets": {
+				"from": 481720,
+				"to": 484840
+			},
+			"text": " Solutions involve more diverse groups and participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,840",
+				"to": "00:08:07,080"
+			},
+			"offsets": {
+				"from": 484840,
+				"to": 487080
+			},
+			"text": " Bake a loaf of doge bread."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,080",
+				"to": "00:08:10,440"
+			},
+			"offsets": {
+				"from": 487080,
+				"to": 490440
+			},
+			"text": " Create safe places for people to discuss things."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,440",
+				"to": "00:08:14,320"
+			},
+			"offsets": {
+				"from": 490440,
+				"to": 494320
+			},
+			"text": " Encourage participation in outspoken opinions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,320",
+				"to": "00:08:18,360"
+			},
+			"offsets": {
+				"from": 494320,
+				"to": 498360
+			},
+			"text": " Safe places for discord is important because we don't want to become toxic like Bitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,360",
+				"to": "00:08:20,240"
+			},
+			"offsets": {
+				"from": 498360,
+				"to": 500240
+			},
+			"text": " just straight up."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,240",
+				"to": "00:08:25,320"
+			},
+			"offsets": {
+				"from": 500240,
+				"to": 505320
+			},
+			"text": " In order to do that, we need to have a variety of places where we're all just nice to each"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,320",
+				"to": "00:08:28,720"
+			},
+			"offsets": {
+				"from": 505320,
+				"to": 508720
+			},
+			"text": " other and not assholes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,720",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 508720,
+				"to": 511000
+			},
+			"text": " Encourage participation in outspoken opinions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 512000
+			},
+			"text": " Same vein."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:33,920"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 513920
+			},
+			"text": " Just listen to people."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,920",
+				"to": "00:08:35,360"
+			},
+			"offsets": {
+				"from": 513920,
+				"to": 515360
+			},
+			"text": " More governance structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,360",
+				"to": "00:08:39,200"
+			},
+			"offsets": {
+				"from": 515360,
+				"to": 519200
+			},
+			"text": " Ethereum magicians came in and I believe they're saving the day right now because we just had"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,200",
+				"to": "00:08:43,920"
+			},
+			"offsets": {
+				"from": 519200,
+				"to": 523920
+			},
+			"text": " the all-port dev meetings and EIPs and now they're coming in to really help structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,920",
+				"to": "00:08:48,400"
+			},
+			"offsets": {
+				"from": 523920,
+				"to": 528400
+			},
+			"text": " the future of EIPs and other governance things with their rings model, which you may hear"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,400",
+				"to": "00:08:49,760"
+			},
+			"offsets": {
+				"from": 528400,
+				"to": 529760
+			},
+			"text": " about later."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,760",
+				"to": "00:08:51,920"
+			},
+			"offsets": {
+				"from": 529760,
+				"to": 531920
+			},
+			"text": " And then continuous improvement on current structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,920",
+				"to": "00:08:57,240"
+			},
+			"offsets": {
+				"from": 531920,
+				"to": 537240
+			},
+			"text": " We're always trying to improve the core dev meetings, the EIPs process, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,240",
+				"to": "00:08:58,240"
+			},
+			"offsets": {
+				"from": 537240,
+				"to": 538240
+			},
+			"text": " Are we centralized?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,240",
+				"to": "00:09:05,440"
+			},
+			"offsets": {
+				"from": 538240,
+				"to": 545440
+			},
+			"text": " Nope, we're too disorganized to be centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,440",
+				"to": "00:09:06,840"
+			},
+			"offsets": {
+				"from": 545440,
+				"to": 546840
+			},
+			"text": " What can we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,840",
+				"to": "00:09:08,200"
+			},
+			"offsets": {
+				"from": 546840,
+				"to": 548200
+			},
+			"text": " Don't panic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,200",
+				"to": "00:09:11,920"
+			},
+			"offsets": {
+				"from": 548200,
+				"to": 551920
+			},
+			"text": " We need to develop good governance structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,920",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 551920,
+				"to": 556000
+			},
+			"text": " I truly believe that the idea of figureheads are good early on in a blockchain project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:18,880"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 558880
+			},
+			"text": " but influence needs to be lessened over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,880",
+				"to": "00:09:26,120"
+			},
+			"offsets": {
+				"from": 558880,
+				"to": 566120
+			},
+			"text": " Maybe in the case of Vitalik, he's been basically the earlier on he had a lot more influence."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,120",
+				"to": "00:09:29,280"
+			},
+			"offsets": {
+				"from": 566120,
+				"to": 569280
+			},
+			"text": " Today he's stepping back into more of a research role and you won't even see him on the core"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,280",
+				"to": "00:09:30,280"
+			},
+			"offsets": {
+				"from": 569280,
+				"to": 570280
+			},
+			"text": " dev calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,280",
+				"to": "00:09:34,200"
+			},
+			"offsets": {
+				"from": 570280,
+				"to": 574200
+			},
+			"text": " You won't see him commenting on major issues as much anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,200",
+				"to": "00:09:37,840"
+			},
+			"offsets": {
+				"from": 574200,
+				"to": 577840
+			},
+			"text": " He's out of the decision making process in a lot of ways and I think that's great and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,840",
+				"to": "00:09:42,880"
+			},
+			"offsets": {
+				"from": 577840,
+				"to": 582880
+			},
+			"text": " I think that's purposeful and I've confirmed that's purposeful from him."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,880",
+				"to": "00:09:47,960"
+			},
+			"offsets": {
+				"from": 582880,
+				"to": 587960
+			},
+			"text": " That's something that I think is really, really important for the ecosystem to thrive and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,960",
+				"to": "00:09:51,480"
+			},
+			"offsets": {
+				"from": 587960,
+				"to": 591480
+			},
+			"text": " become more decentralized and more people take over."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,480",
+				"to": "00:09:55,720"
+			},
+			"offsets": {
+				"from": 591480,
+				"to": 595720
+			},
+			"text": " And then look at traditional old school things like IETF and see how they're running and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,720",
+				"to": "00:09:59,680"
+			},
+			"offsets": {
+				"from": 595720,
+				"to": 599680
+			},
+			"text": " what you can do about things like rough consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,680",
+				"to": "00:10:02,600"
+			},
+			"offsets": {
+				"from": 599680,
+				"to": 602600
+			},
+			"text": " I'm at Hudson Jameson on Twitter and at HudsonJameson.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,600",
+				"to": "00:10:03,600"
+			},
+			"offsets": {
+				"from": 602600,
+				"to": 603600
+			},
+			"text": " Thank you all so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,600",
+				"to": "00:10:04,520"
+			},
+			"offsets": {
+				"from": 603600,
+				"to": 604520
+			},
+			"text": " I hope I didn't go over my time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,520",
+				"to": "00:10:14,520"
+			},
+			"offsets": {
+				"from": 604520,
+				"to": 614520
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,520",
+				"to": "00:10:24,520"
+			},
+			"offsets": {
+				"from": 614520,
+				"to": 624520
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,520",
+				"to": "00:10:34,520"
+			},
+			"offsets": {
+				"from": 624520,
+				"to": 634520
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,520",
+				"to": "00:11:03,520"
+			},
+			"offsets": {
+				"from": 634520,
+				"to": 663520
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

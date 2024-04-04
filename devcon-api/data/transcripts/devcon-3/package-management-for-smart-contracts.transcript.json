@@ -1,0 +1,2177 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " Let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 18000
+			},
+			"text": " Hello, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20000
+			},
+			"text": " I'm Piper."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 27000
+			},
+			"text": " I've been working on a lot of things in the theory of ecosystem since the frontier network"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 34000
+			},
+			"text": " and today I would like to talk to you about packaging up smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 39000
+			},
+			"text": " So first let's establish what we mean when we say package management."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 41000
+			},
+			"text": " Thank you, Wikipedia."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 46000
+			},
+			"text": " A package management system is a collection of software tools that automates the process"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 51000
+			},
+			"text": " of installing, upgrading, configuring, and removing computer programs"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 55000
+			},
+			"text": " for a computer's operating system in a consistent manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 58000
+			},
+			"text": " Hopefully that's the last reading from my slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 64000
+			},
+			"text": " I want to point out the part here that says that it is a system, it's a collection of software tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 66000
+			},
+			"text": " So we're not talking about one thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 72000
+			},
+			"text": " We're talking about specifications and tooling support and all of these things coming together"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 77000
+			},
+			"text": " to allow us to package up a smart contract system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 83000
+			},
+			"text": " So let's take a look at what a smart contract package actually is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 89000
+			},
+			"text": " So at the beginning of this year, myself and a number of other framework developers came together"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 94000
+			},
+			"text": " and we hashed out what is referred to as ERC 190."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 98000
+			},
+			"text": " This is a spec for how smart contracts can be packaged."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 107000
+			},
+			"text": " You can find it in the AP's repo as well as in a dedicated GitHub repo for this specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 113000
+			},
+			"text": " So what ERC 90 specifies is a format for a JSON document."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 119000
+			},
+			"text": " It allows for all of the rest of these bullet points are effectively the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 126000
+			},
+			"text": " It allows for you to create a package that allows other people to deterministically rebuild the assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 132000
+			},
+			"text": " from that package to verify on chain assets or assets that are included in the package"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 136000
+			},
+			"text": " and the packages themselves are designed to be immutable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 142000
+			},
+			"text": " which means once you have a reference to a package, that thing can never change out from under you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 149000
+			},
+			"text": " Packages at ERC 190 packages can include a number of things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 153000
+			},
+			"text": " full source code for the source files,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 157000
+			},
+			"text": " assets that have been pre-compiled,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 160000
+			},
+			"text": " ABI for contracts that are included,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 164000
+			},
+			"text": " the addresses of actual deployed assets on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 171000
+			},
+			"text": " and as well as sort of nitty-gritty data like link references when people are using things like libraries from Solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 176000
+			},
+			"text": " so that you can actually do verification all the way down the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 181000
+			},
+			"text": " We also covered a number of use cases, so base things like reusable contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 187000
+			},
+			"text": " You can think of like the ERC 20 contracts that ship with the Zeppelin OS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 192000
+			},
+			"text": " sort of normal common patterns like the owned pattern,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 198000
+			},
+			"text": " as well as live contracts, deployed instances, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 204000
+			},
+			"text": " We also made sure that we covered both the Ethereum mainnet case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 209000
+			},
+			"text": " which is a place where we don't want to have to trust things and we want to be able to verify everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 214000
+			},
+			"text": " as well as stuff for private chains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 218000
+			},
+			"text": " places where you're working in an environment where trust is okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 222000
+			},
+			"text": " where potentially the packages that you're using are all made by you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 227000
+			},
+			"text": " so you are happy to just trust embedded bytecode in them rather than verifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 231000
+			},
+			"text": " that that matches the source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 236000
+			},
+			"text": " So let's look at some examples of what a smart contract package actually looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 239000
+			},
+			"text": " This should be familiar to anybody who's worked in Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 242000
+			},
+			"text": " This is a very standard pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 250000
+			},
+			"text": " I'm sure that you can find almost this exact contract in hundreds of different code bases."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 254000
+			},
+			"text": " So this is what I call an inheritable contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 257000
+			},
+			"text": " This contract is not really useful on its own,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 264000
+			},
+			"text": " but it is useful when you inherit from it and make use of some of these modifiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 267000
+			},
+			"text": " This is a very simple version of what this package looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 269000
+			},
+			"text": " It is a JSON document."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 274000
+			},
+			"text": " It defines a couple of bits of metadata and it uses a content addressable URI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 281000
+			},
+			"text": " an IPFS URI, to reference the actual source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 285000
+			},
+			"text": " And then if you pipe that lock file from the previous version,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 287000
+			},
+			"text": " by the way, we use the term lock file."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 290000
+			},
+			"text": " It's roughly interchangeable with package."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 295000
+			},
+			"text": " Then this right here is the actual IPFS URI for that package,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 299000
+			},
+			"text": " and in theory, with a supporting development tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 304000
+			},
+			"text": " you can take this and use it to install the owned package."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 308000
+			},
+			"text": " Now, that's a very ugly reference to owned."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 312000
+			},
+			"text": " It's not a very nice URL way to install things."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 315000
+			},
+			"text": " So we'll talk about that in a little bit here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 317000
+			},
+			"text": " So we have a source file."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 320000
+			},
+			"text": " We have this lock file, which you can also think of as a package."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 325000
+			},
+			"text": " And then we can reference it using its own content addressable URI."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 329000
+			},
+			"text": " So let's look at what dependencies look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 334000
+			},
+			"text": " So we can actually extend the owned concept with this transferable contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 337000
+			},
+			"text": " It depends on the previous example."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 340000
+			},
+			"text": " And this is what the lock file is going to look like for that package."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 345000
+			},
+			"text": " It references the other lock file using the build dependency,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 353000
+			},
+			"text": " this build dependencies key, which makes the entire dependency tree immutable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 358000
+			},
+			"text": " because everything is using content addressable URI's."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 360000
+			},
+			"text": " We can move on to things like ready-to-use contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 367000
+			},
+			"text": " like a ready-to-go ERC20 contract that can just be used right out of the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 373000
+			},
+			"text": " Here's some -- we've got two source files here that are the --"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 377000
+			},
+			"text": " an abstract version of it and the actual implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 382000
+			},
+			"text": " And in this one, we actually include some information about the contract types themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 385000
+			},
+			"text": " We say this includes the standard token contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 393000
+			},
+			"text": " There's maybe some meta information included with it, like the ABI that allows people to use this package to interact with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 398000
+			},
+			"text": " And we can also include bits of extra information, like the compiled bytecode"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 403000
+			},
+			"text": " and the information about the compiler that we used to actually compile this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 406000
+			},
+			"text": " Now, this is where we get into different use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 408000
+			},
+			"text": " If this were a package I was using on the mainnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 412000
+			},
+			"text": " then what I'm going to do is use this compiler information to recompile this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 417000
+			},
+			"text": " and verify that the included bytecode does, in fact, match the compiled output."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 425000
+			},
+			"text": " But in a trusted environment, we can actually just use the bytecode embedded in this package."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 426000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 431000
+			},
+			"text": " Now let's look at what it looks like if we have a smart contract that's been actually deployed to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 434000
+			},
+			"text": " So this is a safe math library."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 438000
+			},
+			"text": " It does some underflow and overflow protection."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 443000
+			},
+			"text": " And this is what it looks like to package up a smart contract that has a live deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 448000
+			},
+			"text": " So we have references to -- you can see this blockchain URI up here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 451000
+			},
+			"text": " This is how we reference what chain this is deployed to."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 456000
+			},
+			"text": " This is also how we support deployments across multiple chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 460000
+			},
+			"text": " This means that we aren't locked into something like just supporting the mainnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 465000
+			},
+			"text": " or just supporting Robston or some predefined set of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 471000
+			},
+			"text": " You can use this for private blockchains, for local test chains, anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 475000
+			},
+			"text": " And then within it we actually get a reference to which contract did we deploy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 477000
+			},
+			"text": " what address can I find to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 483000
+			},
+			"text": " And then we've got some convenience stuff which are the transaction that it was deployed with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 486000
+			},
+			"text": " or the block that it was deployed on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 494000
+			},
+			"text": " Again, these are things that are easy to verify, but they're convenient to include in the actual package."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 500000
+			},
+			"text": " So with packages, it enables a number of things that we can actually do with these."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 503000
+			},
+			"text": " The most obvious is just using them in our code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 509000
+			},
+			"text": " A tool that supports these packages, in theory, you run some installation command."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 511000
+			},
+			"text": " You can see that on the upper left."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 514000
+			},
+			"text": " On the upper right here, this is what likely results in our file system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 518000
+			},
+			"text": " This should be familiar to people who are used to node development."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 521000
+			},
+			"text": " This is much like the node modules directory."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 527000
+			},
+			"text": " And then from within our actual code, we can import these and use them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 530000
+			},
+			"text": " But there's some really cool other things that we can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 536000
+			},
+			"text": " This is the interface from Etherscan for how you verify contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 543000
+			},
+			"text": " And anybody who's ever tried to verify a complex set of contracts knows some of the pain points of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:07,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 547000
+			},
+			"text": " You have to munch together all of your source code into one file."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 547000,
+				"to": 550000
+			},
+			"text": " You've got to pick the exact right compiler version."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 557000
+			},
+			"text": " If you want to verify multiple contracts, you've got to go through this multiple times."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 563000
+			},
+			"text": " Smart contract packages can replace that entire thing with just a single upload."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 567000
+			},
+			"text": " Since packages include enough information to verify everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 571000
+			},
+			"text": " instead of having to manually put all of that information in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 575000
+			},
+			"text": " you could just upload the lock file and Etherscan can automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 581000
+			},
+			"text": " verify every deployed instance of the contract included in that package."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 584000
+			},
+			"text": " I also think that this would be useful in wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 588000
+			},
+			"text": " This is a pretty common interface for wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 592000
+			},
+			"text": " Give me the contract address, tell me about the ABI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 596000
+			},
+			"text": " and then I will generate an interface and you can interact with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 603000
+			},
+			"text": " This is often sufficient, but it leaves a lot of things desired because you don't really know what you're interacting with."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 607000
+			},
+			"text": " You don't know if it's been verified, that sort of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 613000
+			},
+			"text": " If we replace this with a package, or you upload a package,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 616000
+			},
+			"text": " wallets can still generate the same interface,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 620000
+			},
+			"text": " but they can also show you a lot of extra information, such as,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 626000
+			},
+			"text": " yes, this does actually verify whenever I recompile the source code and check it against the bytecode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 633000
+			},
+			"text": " or there is not enough information to verify this, or it can even just let you browse the source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 637000
+			},
+			"text": " But this right here is my favorite idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 642000
+			},
+			"text": " Come with me on a journey to the future where the EVM is everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 650000
+			},
+			"text": " Where there are packages for all kinds of things, and where the EVM is really fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 656000
+			},
+			"text": " So I think that EVM packages are capable of being a cross-language packaging system."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 663000
+			},
+			"text": " And what I mean by that is that we can actually use the EVM implementation natively in our code."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 671000
+			},
+			"text": " This is sort of an imagined Python library here that makes use of some mystical SHA-7 package."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 675000
+			},
+			"text": " And rather than needing an implementation of SHA-7 and Python,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 679000
+			},
+			"text": " instead, we use the EVM implementation in our code."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 683000
+			},
+			"text": " And I think that's really powerful because that means that we can have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 691000
+			},
+			"text": " single, well-tested, battle-tested implementations that are then usable across many different languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 696000
+			},
+			"text": " So let's talk about the standard library."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 701000
+			},
+			"text": " So to talk about the standard library, I actually want to back up and talk about package indexes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 706000
+			},
+			"text": " This is sort of the default state of the world right now, is that package indexes are centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 712000
+			},
+			"text": " There's often sort of one centralized system that handles all of the packages for an ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 719000
+			},
+			"text": " We've got NPM, we've got PyPy, we've got whatever else is out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 724000
+			},
+			"text": " But this is what I'd like. I'd like everybody out here to have their own package index."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 728000
+			},
+			"text": " And that is actually really easy with the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 736000
+			},
+			"text": " So with a reusable implementation of a package index contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 743000
+			},
+			"text": " a contract that manages tracking versions and tracking what packages are available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 751000
+			},
+			"text": " that plus a little bit of tooling integration combined with ENS means that we have a very easy system"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 758000
+			},
+			"text": " for every team to set up their own package index where they are in full control of all of their packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 763000
+			},
+			"text": " Now how this relates to the standard library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 768000
+			},
+			"text": " and this is a theoretical way of how you would install this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 772000
+			},
+			"text": " We've got the part on the left which is handled by the dev framework and the part on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 776000
+			},
+			"text": " which is the namespace piece which is handled by ENS."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 782000
+			},
+			"text": " So our ecosystem might look like this. Maybe I've deployed a couple packages to my index,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 787000
+			},
+			"text": " maybe the MakerDAU teams and deployed a couple there, maybe Zeppelin's got some there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 792000
+			},
+			"text": " And there's some overlap, right? Like I've got my own version of owned up here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 795000
+			},
+			"text": " Nope, that one doesn't overlap. Safe math."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 799000
+			},
+			"text": " I've got my own version of safe math on my side, Zeppelin's got theirs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 805000
+			},
+			"text": " And the idea here is that somebody can then come along and pick and choose out of each of these different indexes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 815000
+			},
+			"text": " which ones they think can come together to form one rich reusable standard library."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 821000
+			},
+			"text": " And while it's great that we all get different package indexes, and we all have our own package indexes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 824000
+			},
+			"text": " I think that's the way the standard library can work too."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 828000
+			},
+			"text": " It can look a lot like Linux where there's different flavors of the standard library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 834000
+			},
+			"text": " where there's different curators and different people who've picked and choose which packages from which place"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 839000
+			},
+			"text": " they think make up the best standard library, which means we're not stuck with one package index."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 845000
+			},
+			"text": " We're not stuck with one standard library, but we actually have a lot of choice to pick and choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 851000
+			},
+			"text": " This can be thought of sort of as the spread a bunch of seeds and see which flowers bloom."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 858000
+			},
+			"text": " But I think this is very promising for a rich ecosystem of packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 861000
+			},
+			"text": " So what do we need to make this a reality?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 865000
+			},
+			"text": " So right now we need more support for ERC90 and tooling."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 872000
+			},
+			"text": " Populis has some basic support in it, same with Truffle, but we need more tools to support this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 878000
+			},
+			"text": " We need a standard implementation of a package registry, something that we can ship around in those tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 881000
+			},
+			"text": " so those tools can set them up for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 884000
+			},
+			"text": " And then we need automation for setting these registries up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 891000
+			},
+			"text": " And that's both automation for deploying them, as well as automation for getting the ENS piece tied together."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 898000
+			},
+			"text": " And we need a feature request into Solidity and other EVM languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 903000
+			},
+			"text": " to allow us to inject pre-compiled bytecode into the compilation process."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 907000
+			},
+			"text": " And the reason for this is that as our package ecosystem grows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 913000
+			},
+			"text": " we're going to have many different versions of Solidity that are required to recompile certain things."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 918000
+			},
+			"text": " And in order to require a compile, a very complex dependency tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 921000
+			},
+			"text": " that has lots of different versions of Solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 927000
+			},
+			"text": " we're going to need to be able to compile all those individually and then slowly combine them together into one big compiled asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 930000
+			},
+			"text": " So there's going to be some compiler work that has to be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 936000
+			},
+			"text": " But in general, most of these pieces are at the 80% mark or more."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 941000
+			},
+			"text": " We're very close to this, and all of this is about ready to come together."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 943000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 948000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 954000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:15:56,240"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 956240
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

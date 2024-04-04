@@ -1,0 +1,2837 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,200"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11200
+			},
+			"text": " >> Hello, everyone. Thank you for having me here today. My name is Thomas. I'm the CEO"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,200",
+				"to": "00:00:18,280"
+			},
+			"offsets": {
+				"from": 11200,
+				"to": 18280
+			},
+			"text": " and founder of Provable. Provable is blockchain oracle service that has been operating in"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,280",
+				"to": "00:00:24,400"
+			},
+			"offsets": {
+				"from": 18280,
+				"to": 24400
+			},
+			"text": " the Ethereum space since 2015. So during this presentation, I will show you what is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,400",
+				"to": "00:00:30,880"
+			},
+			"offsets": {
+				"from": 24400,
+				"to": 30880
+			},
+			"text": " trust model that we are using with our Oracle service. And we try to understand what are"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,880",
+				"to": "00:00:37,480"
+			},
+			"offsets": {
+				"from": 30880,
+				"to": 37480
+			},
+			"text": " the trust implications and what's the challenge behind the designing of such Oracle services."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,480",
+				"to": "00:00:44,160"
+			},
+			"offsets": {
+				"from": 37480,
+				"to": 44160
+			},
+			"text": " And in the last part, I will introduce a new project based on the same trust model, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,160",
+				"to": "00:00:51,320"
+			},
+			"offsets": {
+				"from": 44160,
+				"to": 51320
+			},
+			"text": " is called the P tokens. And this is basically a two-way peg for tokens which are native"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,320",
+				"to": "00:00:57,600"
+			},
+			"offsets": {
+				"from": 51320,
+				"to": 57600
+			},
+			"text": " to one blockchain so we can use them on Ethereum or other blockchains. So let's start with"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,600",
+				"to": "00:01:05,120"
+			},
+			"offsets": {
+				"from": 57600,
+				"to": 65120
+			},
+			"text": " a brief introduction to understand some terms that we will be using during the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,120",
+				"to": "00:01:11,440"
+			},
+			"offsets": {
+				"from": 65120,
+				"to": 71440
+			},
+			"text": " So the three entities we are interested in are basically the data source, which is like"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,440",
+				"to": "00:01:16,680"
+			},
+			"offsets": {
+				"from": 71440,
+				"to": 76680
+			},
+			"text": " a Web API or a source for external data that doesn't live on the blockchain. Then we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,680",
+				"to": "00:01:21,560"
+			},
+			"offsets": {
+				"from": 76680,
+				"to": 81560
+			},
+			"text": " the application which typically will be a smart contract. And we have the Oracle which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,560",
+				"to": "00:01:28,280"
+			},
+			"offsets": {
+				"from": 81560,
+				"to": 88280
+			},
+			"text": " this like new intermediary in a world that is trying to get rid of intermediaries. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,280",
+				"to": "00:01:33,560"
+			},
+			"offsets": {
+				"from": 88280,
+				"to": 93560
+			},
+			"text": " why do we need like an Oracle to reach out external data? Well, this is because of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,560",
+				"to": "00:01:40,640"
+			},
+			"offsets": {
+				"from": 93560,
+				"to": 100640
+			},
+			"text": " way the blockchain works. So it's not possible to reach out to like the internet from within"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,640",
+				"to": "00:01:46,360"
+			},
+			"offsets": {
+				"from": 100640,
+				"to": 106360
+			},
+			"text": " the blockchain. So the Oracle somehow enables that. We see later how this is possible, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,360",
+				"to": "00:01:50,880"
+			},
+			"offsets": {
+				"from": 106360,
+				"to": 110880
+			},
+			"text": " the Oracle is basically an actor that operates on the blockchain but is also capable somehow"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,880",
+				"to": "00:01:56,600"
+			},
+			"offsets": {
+				"from": 110880,
+				"to": 116600
+			},
+			"text": " to reach out outside to the data source. So as you see already here, the data source is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,600",
+				"to": "00:02:05,160"
+			},
+			"offsets": {
+				"from": 116600,
+				"to": 125160
+			},
+			"text": " always to be trusted because the data in general is something inherently trusted. Like if we"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,160",
+				"to": "00:02:12,360"
+			},
+			"offsets": {
+				"from": 125160,
+				"to": 132360
+			},
+			"text": " have a smart contract that needs to release a payment when a given flight is late or if"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,360",
+				"to": "00:02:20,040"
+			},
+			"offsets": {
+				"from": 132360,
+				"to": 140040
+			},
+			"text": " the temperature is reaching some degrees or like if the number of views of a YouTube"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,040",
+				"to": "00:02:26,800"
+			},
+			"offsets": {
+				"from": 140040,
+				"to": 146800
+			},
+			"text": " video go above a certain limit, then we always have like a third party that is like claiming"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,800",
+				"to": "00:02:33,520"
+			},
+			"offsets": {
+				"from": 146800,
+				"to": 153520
+			},
+			"text": " what the correct answer to those questions is. So one example for the number of views"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,520",
+				"to": "00:02:39,560"
+			},
+			"offsets": {
+				"from": 153520,
+				"to": 159560
+			},
+			"text": " for a YouTube video is that YouTube is the one telling us how many views the video has"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,560",
+				"to": "00:02:44,520"
+			},
+			"offsets": {
+				"from": 159560,
+				"to": 164520
+			},
+			"text": " and we have no way to independently verify that. So we always need to trust YouTube."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,520",
+				"to": "00:02:49,880"
+			},
+			"offsets": {
+				"from": 164520,
+				"to": 169880
+			},
+			"text": " In the same way, if I was asking you like what's the temperature here today, I'm sure I will"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,880",
+				"to": "00:02:54,600"
+			},
+			"offsets": {
+				"from": 169880,
+				"to": 174600
+			},
+			"text": " get different answers, but most of you will probably look for the first results on Google."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,600",
+				"to": "00:02:59,640"
+			},
+			"offsets": {
+				"from": 174600,
+				"to": 179640
+			},
+			"text": " And the reality is that we don't know like the precision that we are looking for as for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,640",
+				"to": "00:03:04,560"
+			},
+			"offsets": {
+				"from": 179640,
+				"to": 184560
+			},
+			"text": " the data, we don't know the exact location. So you know, the data source is always making"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,560",
+				"to": "00:03:09,720"
+			},
+			"offsets": {
+				"from": 184560,
+				"to": 189720
+			},
+			"text": " some assumptions, so we need to trust the data source for the data it's providing. It's like"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,720",
+				"to": "00:03:17,560"
+			},
+			"offsets": {
+				"from": 189720,
+				"to": 197560
+			},
+			"text": " the data we are pushing to the blockchain is always like a claim coming from the data source."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,560",
+				"to": "00:03:30,240"
+			},
+			"offsets": {
+				"from": 197560,
+				"to": 210240
+			},
+			"text": " Yeah, sorry. So as I said, we have been around for a while, so this enabled us to collect"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,240",
+				"to": "00:03:36,600"
+			},
+			"offsets": {
+				"from": 210240,
+				"to": 216600
+			},
+			"text": " some interesting data. The data you can see here is quite small, but it will help you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,600",
+				"to": "00:03:43,920"
+			},
+			"offsets": {
+				"from": 216600,
+				"to": 223920
+			},
+			"text": " understand it. So over the last four years, we have processed over 1 million transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,920",
+				"to": "00:03:48,400"
+			},
+			"offsets": {
+				"from": 223920,
+				"to": 228400
+			},
+			"text": " on the theorem mainnet asking for external data. And if you look on GitHub, there are"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,400",
+				"to": "00:03:55,600"
+			},
+			"offsets": {
+				"from": 228400,
+				"to": 235600
+			},
+			"text": " approximately 1000 GitHub open source smart contracts that are basically using the Oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,600",
+				"to": "00:04:01,360"
+			},
+			"offsets": {
+				"from": 235600,
+				"to": 241360
+			},
+			"text": " service. So we have processed this data to understand what those contracts do, what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,360",
+				"to": "00:04:07,440"
+			},
+			"offsets": {
+				"from": 241360,
+				"to": 247440
+			},
+			"text": " there like field. And basically what we found out is that of course there is a lot around"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,440",
+				"to": "00:04:16,040"
+			},
+			"offsets": {
+				"from": 247440,
+				"to": 256040
+			},
+			"text": " DeFi, so asset and tokens or ICOs that needs to check a price feed because maybe they want"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,040",
+				"to": "00:04:24,560"
+			},
+			"offsets": {
+				"from": 256040,
+				"to": 264560
+			},
+			"text": " to fix the contribution in USD instead, but they receive Eaters or things like that. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,560",
+				"to": "00:04:30,200"
+			},
+			"offsets": {
+				"from": 264560,
+				"to": 270200
+			},
+			"text": " there is also a lot around gambling as you can see here, because the randomness is yet"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,200",
+				"to": "00:04:36,240"
+			},
+			"offsets": {
+				"from": 270200,
+				"to": 276240
+			},
+			"text": " another piece of data which is not easy to compute straight on the blockchain without"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,240",
+				"to": "00:04:45,480"
+			},
+			"offsets": {
+				"from": 276240,
+				"to": 285480
+			},
+			"text": " having the minus to possibly collude. So the role of the Oracle goes way beyond the fetching"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,480",
+				"to": "00:04:50,640"
+			},
+			"offsets": {
+				"from": 285480,
+				"to": 290640
+			},
+			"text": " of the data from a Web API. It could be really the offloading of a computation to an option"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,640",
+				"to": "00:05:00,320"
+			},
+			"offsets": {
+				"from": 290640,
+				"to": 300320
+			},
+			"text": " in context, but it could be much more as we see later. So the model that provable as adopted"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,320",
+				"to": "00:05:08,600"
+			},
+			"offsets": {
+				"from": 300320,
+				"to": 308600
+			},
+			"text": " is the one of using the basically trusted computing techniques to prove that the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,600",
+				"to": "00:05:13,680"
+			},
+			"offsets": {
+				"from": 308600,
+				"to": 313680
+			},
+			"text": " we are fetching from a Web API is indeed authentic and it has not been tampered with during the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,680",
+				"to": "00:05:20,200"
+			},
+			"offsets": {
+				"from": 313680,
+				"to": 320200
+			},
+			"text": " delivery process. So you don't want the Oracle to potentially like compromise the data. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,200",
+				"to": "00:05:24,760"
+			},
+			"offsets": {
+				"from": 320200,
+				"to": 324760
+			},
+			"text": " you are already trusting data source. You shouldn't trust the Oracle as the Oracle could"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,760",
+				"to": "00:05:30,080"
+			},
+			"offsets": {
+				"from": 324760,
+				"to": 330080
+			},
+			"text": " potentially change the data it has received from the data source and just push something"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,080",
+				"to": "00:05:34,920"
+			},
+			"offsets": {
+				"from": 330080,
+				"to": 334920
+			},
+			"text": " different to the blockchain. So it may trigger a wrong payment on the blockchain or it may"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,920",
+				"to": "00:05:39,360"
+			},
+			"offsets": {
+				"from": 334920,
+				"to": 339360
+			},
+			"text": " elate to the wrong results. So what you want is the Oracle not to be trusted and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,360",
+				"to": "00:05:48,360"
+			},
+			"offsets": {
+				"from": 339360,
+				"to": 348360
+			},
+			"text": " why you need some kind of proofs that the data delivered is authentic. So provable has"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,360",
+				"to": "00:05:54,160"
+			},
+			"offsets": {
+				"from": 348360,
+				"to": 354160
+			},
+			"text": " been doing that with trusted computing techniques. For those of you who are not familiar around"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,160",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 354160,
+				"to": 361000
+			},
+			"text": " trusted computing, the idea is to basically use some like dedicated chips that provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:06,800"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 366800
+			},
+			"text": " send boxing in hardware for the execution of a given piece of code. So basically we publish"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,800",
+				"to": "00:06:14,200"
+			},
+			"offsets": {
+				"from": 366800,
+				"to": 374200
+			},
+			"text": " the code that gets executed on those special machines and those machines help to generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,200",
+				"to": "00:06:20,280"
+			},
+			"offsets": {
+				"from": 374200,
+				"to": 380280
+			},
+			"text": " an authentic proof. So it's basically something that along with the result helps to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,280",
+				"to": "00:06:24,800"
+			},
+			"offsets": {
+				"from": 380280,
+				"to": 384800
+			},
+			"text": " that the computation has happened within those safe boundaries. We send them to the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,800",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 384800,
+				"to": 390000
+			},
+			"text": " and then basically this provides like a shield against the manipulations during the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:35,480"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 395480
+			},
+			"text": " delivery. So this enables you to verify that the Oracle has sent the answer but it's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,480",
+				"to": "00:06:39,320"
+			},
+			"offsets": {
+				"from": 395480,
+				"to": 399320
+			},
+			"text": " the like owner of the data and the owner of the data is already the website. So there"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,320",
+				"to": "00:06:43,440"
+			},
+			"offsets": {
+				"from": 399320,
+				"to": 403440
+			},
+			"text": " has been no alteration during the process. This is why they are called like authentic"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,440",
+				"to": "00:06:49,680"
+			},
+			"offsets": {
+				"from": 403440,
+				"to": 409680
+			},
+			"text": " networks. There are many like challenges around Oracle's. It's not just around you know proving"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,680",
+				"to": "00:06:56,120"
+			},
+			"offsets": {
+				"from": 409680,
+				"to": 416120
+			},
+			"text": " the authenticity of data which has been our main like focus for the last years. There"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,120",
+				"to": "00:07:01,880"
+			},
+			"offsets": {
+				"from": 416120,
+				"to": 421880
+			},
+			"text": " are many more challenges. So as you can see here one is around you know relying on reliable"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,880",
+				"to": "00:07:08,360"
+			},
+			"offsets": {
+				"from": 421880,
+				"to": 428360
+			},
+			"text": " data sources. We don't want to you know push data to the blockchain in a way which is secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,360",
+				"to": "00:07:13,680"
+			},
+			"offsets": {
+				"from": 428360,
+				"to": 433680
+			},
+			"text": " and then have low quality data sources that cannot really be trusted. So this is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,680",
+				"to": "00:07:20,240"
+			},
+			"offsets": {
+				"from": 433680,
+				"to": 440240
+			},
+			"text": " where well players like Tom's Reuters but also streamer and few others are working a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,240",
+				"to": "00:07:25,920"
+			},
+			"offsets": {
+				"from": 440240,
+				"to": 445920
+			},
+			"text": " lot so that they can basically provide some guarantees on the selected data sources and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,920",
+				"to": "00:07:34,640"
+			},
+			"offsets": {
+				"from": 445920,
+				"to": 454640
+			},
+			"text": " they can provide quality data to the blockchain. And the way to basically not rely on a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,640",
+				"to": "00:07:40,320"
+			},
+			"offsets": {
+				"from": 454640,
+				"to": 460320
+			},
+			"text": " trust line on the data source front is to basically use more than one data source. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,320",
+				"to": "00:07:44,960"
+			},
+			"offsets": {
+				"from": 460320,
+				"to": 464960
+			},
+			"text": " in the case of the price of ether for instance it's quite simple because you can just you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,960",
+				"to": "00:07:51,360"
+			},
+			"offsets": {
+				"from": 464960,
+				"to": 471360
+			},
+			"text": " know do an average on all the exchanges that have the majority of the trading volumes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,360",
+				"to": "00:07:56,680"
+			},
+			"offsets": {
+				"from": 471360,
+				"to": 476680
+			},
+			"text": " So you have something accurate which doesn't have like points of failure theory. But it"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,680",
+				"to": "00:08:01,480"
+			},
+			"offsets": {
+				"from": 476680,
+				"to": 481480
+			},
+			"text": " depends. You can get much harder depending on the data you want. As I said for with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,480",
+				"to": "00:08:07,680"
+			},
+			"offsets": {
+				"from": 481480,
+				"to": 487680
+			},
+			"text": " example of the number of views for a YouTube video you have no possibility to go you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,680",
+				"to": "00:08:12,600"
+			},
+			"offsets": {
+				"from": 487680,
+				"to": 492600
+			},
+			"text": " to avoid the trust line with Google because it's just something which inherently belongs"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,600",
+				"to": "00:08:19,920"
+			},
+			"offsets": {
+				"from": 492600,
+				"to": 499920
+			},
+			"text": " to YouTube right. So YouTube is somehow the only data source you will need to reach out"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,920",
+				"to": "00:08:26,560"
+			},
+			"offsets": {
+				"from": 499920,
+				"to": 506560
+			},
+			"text": " to. Then as for the like authenticity of the data we have been using few technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,560",
+				"to": "00:08:34,480"
+			},
+			"offsets": {
+				"from": 506560,
+				"to": 514480
+			},
+			"text": " such as like the trusted execution environment of Qualcomm, the Ledger NUS, some of you may"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,480",
+				"to": "00:08:41,760"
+			},
+			"offsets": {
+				"from": 514480,
+				"to": 521760
+			},
+			"text": " be familiar with and Intel SGX. So this is something that also chain link with the town"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,760",
+				"to": "00:08:47,920"
+			},
+			"offsets": {
+				"from": 521760,
+				"to": 527920
+			},
+			"text": " cryer project has been working on. There are few options on that front but using trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,920",
+				"to": "00:08:52,960"
+			},
+			"offsets": {
+				"from": 527920,
+				"to": 532960
+			},
+			"text": " computing is quite general purpose so it can help to basically provide those guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,960",
+				"to": "00:08:57,280"
+			},
+			"offsets": {
+				"from": 532960,
+				"to": 537280
+			},
+			"text": " for the execution of something on the option context while interacting with the option"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,280",
+				"to": "00:09:03,160"
+			},
+			"offsets": {
+				"from": 537280,
+				"to": 543160
+			},
+			"text": " context. Also there is a lot of work going on on the protocol that those oracles should"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,160",
+				"to": "00:09:09,840"
+			},
+			"offsets": {
+				"from": 543160,
+				"to": 549840
+			},
+			"text": " use while speaking with the blockchain. So chain link but also make a doubt compound,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,840",
+				"to": "00:09:17,040"
+			},
+			"offsets": {
+				"from": 549840,
+				"to": 557040
+			},
+			"text": " the rhombus and others also with net. They are working on that front. We have been doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,040",
+				"to": "00:09:22,200"
+			},
+			"offsets": {
+				"from": 557040,
+				"to": 562200
+			},
+			"text": " so for few years as well and I think those systems will end up to interoperate one with"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,200",
+				"to": "00:09:27,960"
+			},
+			"offsets": {
+				"from": 562200,
+				"to": 567960
+			},
+			"text": " the other and depending on the needs of the smart contract there will be the adoption"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,960",
+				"to": "00:09:33,120"
+			},
+			"offsets": {
+				"from": 567960,
+				"to": 573120
+			},
+			"text": " of one system over the other. So for example as you will see in a second, the provable one"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,120",
+				"to": "00:09:38,920"
+			},
+			"offsets": {
+				"from": 573120,
+				"to": 578920
+			},
+			"text": " is optimized for being cost effective on chain so the gas cost is very low and it doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,920",
+				"to": "00:09:44,520"
+			},
+			"offsets": {
+				"from": 578920,
+				"to": 584520
+			},
+			"text": " give strong guarantees on the fact that the unanswered will be provided but it provides"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,520",
+				"to": "00:09:49,520"
+			},
+			"offsets": {
+				"from": 584520,
+				"to": 589520
+			},
+			"text": " guarantees on the fact that when an answer is sent to the blockchain it's really authentic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,520",
+				"to": "00:09:54,160"
+			},
+			"offsets": {
+				"from": 589520,
+				"to": 594160
+			},
+			"text": " So you know that basically if you get an answer the answer is secure. While other systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,160",
+				"to": "00:10:00,840"
+			},
+			"offsets": {
+				"from": 594160,
+				"to": 600840
+			},
+			"text": " focus also on like giving some more guarantees around the redundancy so that basically you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,840",
+				"to": "00:10:08,080"
+			},
+			"offsets": {
+				"from": 600840,
+				"to": 608080
+			},
+			"text": " can potentially have also a guarantee that the result will be sent. So that's why for"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,080",
+				"to": "00:10:12,200"
+			},
+			"offsets": {
+				"from": 608080,
+				"to": 612200
+			},
+			"text": " instance we are looking to integrate with other systems here. So if someone is interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,200",
+				"to": "00:10:16,960"
+			},
+			"offsets": {
+				"from": 612200,
+				"to": 616960
+			},
+			"text": " to pay a premium because maybe they want more redundancy then they can go via other oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,960",
+				"to": "00:10:25,160"
+			},
+			"offsets": {
+				"from": 616960,
+				"to": 625160
+			},
+			"text": " systems and still benefit from our authenticity process. So over the years what we have like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,160",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 625160,
+				"to": 630000
+			},
+			"text": " heard from the community as for the community feedback is basically that this is what they"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:37,680"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 637680
+			},
+			"text": " were looking for like a reduced cost because many times you have like a transaction on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,680",
+				"to": "00:10:45,120"
+			},
+			"offsets": {
+				"from": 637680,
+				"to": 645120
+			},
+			"text": " that needs to reach out to external data and you don't really want this external data fetching"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,120",
+				"to": "00:10:51,720"
+			},
+			"offsets": {
+				"from": 645120,
+				"to": 651720
+			},
+			"text": " to like increase significantly the cost of your transaction. You're already paying like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,720",
+				"to": "00:10:56,760"
+			},
+			"offsets": {
+				"from": 651720,
+				"to": 656760
+			},
+			"text": " the gas price for confirming transaction. You don't want the oracle to impact significantly"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,760",
+				"to": "00:11:02,520"
+			},
+			"offsets": {
+				"from": 656760,
+				"to": 662520
+			},
+			"text": " on that cost. So this is why having a fully decentralized approach is typically more expensive"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,520",
+				"to": "00:11:08,080"
+			},
+			"offsets": {
+				"from": 662520,
+				"to": 668080
+			},
+			"text": " and for some applications it may be like it may not be a good fit. So it depends on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,080",
+				"to": "00:11:13,240"
+			},
+			"offsets": {
+				"from": 668080,
+				"to": 673240
+			},
+			"text": " application. If you have an application where for instance you want to like get external"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,240",
+				"to": "00:11:19,080"
+			},
+			"offsets": {
+				"from": 673240,
+				"to": 679080
+			},
+			"text": " data for every transaction doing it in a fully decentralized way maybe way more expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,080",
+				"to": "00:11:24,160"
+			},
+			"offsets": {
+				"from": 679080,
+				"to": 684160
+			},
+			"text": " So it depends like for gambling for instance I don't think that decentralization provides"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,160",
+				"to": "00:11:29,080"
+			},
+			"offsets": {
+				"from": 684160,
+				"to": 689080
+			},
+			"text": " really a strong benefit on the random number generation part. While for other things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,080",
+				"to": "00:11:35,640"
+			},
+			"offsets": {
+				"from": 689080,
+				"to": 695640
+			},
+			"text": " price fits you may want like to get data every few minutes instead of then every transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,640",
+				"to": "00:11:42,760"
+			},
+			"offsets": {
+				"from": 695640,
+				"to": 702760
+			},
+			"text": " so you may want to obtain in a more like decentralized approach and pay a premium for that. Also"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,760",
+				"to": "00:11:48,200"
+			},
+			"offsets": {
+				"from": 702760,
+				"to": 708200
+			},
+			"text": " the other things you see here like data security so the authenticity approach and more they"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,200",
+				"to": "00:11:51,960"
+			},
+			"offsets": {
+				"from": 708200,
+				"to": 711960
+			},
+			"text": " are all like critical components that are needed because you don't want to compromise"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,960",
+				"to": "00:12:00,560"
+			},
+			"offsets": {
+				"from": 711960,
+				"to": 720560
+			},
+			"text": " the security of your smart contract again. And also reputation systems of course are something"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,560",
+				"to": "00:12:08,520"
+			},
+			"offsets": {
+				"from": 720560,
+				"to": 728520
+			},
+			"text": " that is often mentioned and that somehow is part of those oracle systems that are being"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,520",
+				"to": "00:12:14,280"
+			},
+			"offsets": {
+				"from": 728520,
+				"to": 734280
+			},
+			"text": " implemented and well these are fuels as well because you really want to you know you don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,280",
+				"to": "00:12:22,040"
+			},
+			"offsets": {
+				"from": 734280,
+				"to": 742040
+			},
+			"text": " want the oracle components to complicate too much the way your application is structured."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,040",
+				"to": "00:12:28,400"
+			},
+			"offsets": {
+				"from": 742040,
+				"to": 748400
+			},
+			"text": " So basically the technologies as I said that we work with are basically web blockchain in"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,400",
+				"to": "00:12:32,160"
+			},
+			"offsets": {
+				"from": 748400,
+				"to": 752160
+			},
+			"text": " general because we don't integrate just with Ethereum. We have integrations with a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,160",
+				"to": "00:12:37,320"
+			},
+			"offsets": {
+				"from": 752160,
+				"to": 757320
+			},
+			"text": " blockages but Ethereum is the one with most of the interaction and trusted execution environments"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,320",
+				"to": "00:12:48,040"
+			},
+			"offsets": {
+				"from": 757320,
+				"to": 768040
+			},
+			"text": " so trusted computing techniques of different kinds. So at the moment we have approximately"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,040",
+				"to": "00:12:54,840"
+			},
+			"offsets": {
+				"from": 768040,
+				"to": 774840
+			},
+			"text": " 200 projects that are reaching out to provable every month from their smart contracts to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,840",
+				"to": "00:13:01,800"
+			},
+			"offsets": {
+				"from": 774840,
+				"to": 781800
+			},
+			"text": " real world data and as I said most of them are around like the generation of random numbers"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,800",
+				"to": "00:13:09,920"
+			},
+			"offsets": {
+				"from": 781800,
+				"to": 789920
+			},
+			"text": " price feeds or like a variety of web API calls that connect some advanced like off chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,920",
+				"to": "00:13:14,680"
+			},
+			"offsets": {
+				"from": 789920,
+				"to": 794680
+			},
+			"text": " computations typically with the on chain smart contracts that may just you know release"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,680",
+				"to": "00:13:20,360"
+			},
+			"offsets": {
+				"from": 794680,
+				"to": 800360
+			},
+			"text": " a payment. So Oracle is currently integrated with Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,360",
+				"to": "00:13:29,480"
+			},
+			"offsets": {
+				"from": 800360,
+				"to": 809480
+			},
+			"text": " Mainnet but also with many test nets basically all the main Ethereum test nets and also with"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,480",
+				"to": "00:13:37,960"
+			},
+			"offsets": {
+				"from": 809480,
+				"to": 817960
+			},
+			"text": " like other Oracle's network and with some side chains. So we have focused a lot in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,960",
+				"to": "00:13:43,880"
+			},
+			"offsets": {
+				"from": 817960,
+				"to": 823880
+			},
+			"text": " last few years on the random number generation use case because it's actually a strong need"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,880",
+				"to": "00:13:47,880"
+			},
+			"offsets": {
+				"from": 823880,
+				"to": 827880
+			},
+			"text": " and it has been one of the first applications getting some traction in the Ethereum space"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,880",
+				"to": "00:13:52,960"
+			},
+			"offsets": {
+				"from": 827880,
+				"to": 832960
+			},
+			"text": " and before also in the Bitcoin space if you think of Satoshi dies which was like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,960",
+				"to": "00:14:02,760"
+			},
+			"offsets": {
+				"from": 832960,
+				"to": 842760
+			},
+			"text": " first application on Bitcoin that caused like a spike in the transaction volumes in 2012."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,760",
+				"to": "00:14:07,960"
+			},
+			"offsets": {
+				"from": 842760,
+				"to": 847960
+			},
+			"text": " So the technology we have used to like provide the provable random number generator which"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,960",
+				"to": "00:14:12,320"
+			},
+			"offsets": {
+				"from": 847960,
+				"to": 852320
+			},
+			"text": " is a part of the Oracle are the ones you see mentioned here. So it's quite interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,320",
+				"to": "00:14:18,280"
+			},
+			"offsets": {
+				"from": 852320,
+				"to": 858280
+			},
+			"text": " the use of the ledger TE because most of us know the ledger nano S as the you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,280",
+				"to": "00:14:25,200"
+			},
+			"offsets": {
+				"from": 858280,
+				"to": 865200
+			},
+			"text": " hardware wallet to secure you know if or other tokens but the reality is that the security"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,200",
+				"to": "00:14:29,760"
+			},
+			"offsets": {
+				"from": 865200,
+				"to": 869760
+			},
+			"text": " guarantees provided by the ledger nano S could be used for custom applications and you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,760",
+				"to": "00:14:34,680"
+			},
+			"offsets": {
+				"from": 869760,
+				"to": 874680
+			},
+			"text": " really implement anything within the safe boundaries of the ledger nano S while proving"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,680",
+				"to": "00:14:39,160"
+			},
+			"offsets": {
+				"from": 874680,
+				"to": 879160
+			},
+			"text": " to third parties that you know the application was really running on a ledger nano S with"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,160",
+				"to": "00:14:46,080"
+			},
+			"offsets": {
+				"from": 879160,
+				"to": 886080
+			},
+			"text": " no iterations. So this is what we are using for the random number generator for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,080",
+				"to": "00:14:51,480"
+			},
+			"offsets": {
+				"from": 886080,
+				"to": 891480
+			},
+			"text": " These are the networks I was mentioning where we are integrated. As you see we also have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,480",
+				"to": "00:14:57,720"
+			},
+			"offsets": {
+				"from": 891480,
+				"to": 897720
+			},
+			"text": " like other Ethereum based networks such as RSK but also other networks which are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,720",
+				"to": "00:15:09,200"
+			},
+			"offsets": {
+				"from": 897720,
+				"to": 909200
+			},
+			"text": " Ethereum based EVM based such as US, R3 core, the fabric and others. So everyone is discussing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,200",
+				"to": "00:15:13,960"
+			},
+			"offsets": {
+				"from": 909200,
+				"to": 913960
+			},
+			"text": " this year about DeFi which is really a new term for something that you know we have always"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,960",
+				"to": "00:15:21,720"
+			},
+			"offsets": {
+				"from": 913960,
+				"to": 921720
+			},
+			"text": " discussed which is the potential of decentralized financial applications in this space. So I"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,720",
+				"to": "00:15:29,320"
+			},
+			"offsets": {
+				"from": 921720,
+				"to": 929320
+			},
+			"text": " found that tweet a few months ago quite interesting as it's basically showing as we have seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,320",
+				"to": "00:15:37,800"
+			},
+			"offsets": {
+				"from": 929320,
+				"to": 937800
+			},
+			"text": " in other presentations as well that like the composability of those DeFi tools is somehow"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,800",
+				"to": "00:15:42,520"
+			},
+			"offsets": {
+				"from": 937800,
+				"to": 942520
+			},
+			"text": " leading to many interesting use cases and everyone is building on top of other components"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,520",
+				"to": "00:15:49,560"
+			},
+			"offsets": {
+				"from": 942520,
+				"to": 949560
+			},
+			"text": " that are built by other teams. So thinking about that I think we could really split the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,560",
+				"to": "00:15:54,760"
+			},
+			"offsets": {
+				"from": 949560,
+				"to": 954760
+			},
+			"text": " needs of DeFi in two categories. So the first one is the engine which is like the platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,760",
+				"to": "00:16:00,400"
+			},
+			"offsets": {
+				"from": 954760,
+				"to": 960400
+			},
+			"text": " where you want to run the DeFi tool and at the moment it's mostly Ethereum right. So we"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,400",
+				"to": "00:16:06,800"
+			},
+			"offsets": {
+				"from": 960400,
+				"to": 966800
+			},
+			"text": " have something that are like on EOS but it's still quite limited. Why? Because on EOS"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,800",
+				"to": "00:16:11,920"
+			},
+			"offsets": {
+				"from": 966800,
+				"to": 971920
+			},
+			"text": " you don't really have other you know the rest of the ecosystem is sort of missing. So Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,920",
+				"to": "00:16:17,720"
+			},
+			"offsets": {
+				"from": 971920,
+				"to": 977720
+			},
+			"text": " got a lot of traction for different reasons for the technology but I would say that one"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,720",
+				"to": "00:16:23,480"
+			},
+			"offsets": {
+				"from": 977720,
+				"to": 983480
+			},
+			"text": " of the main points in favor of Ethereum today is the huge like developers base and the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,480",
+				"to": "00:16:28,200"
+			},
+			"offsets": {
+				"from": 983480,
+				"to": 988200
+			},
+			"text": " base and the fact that we already have some initial traction differently than other blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,200",
+				"to": "00:16:33,160"
+			},
+			"offsets": {
+				"from": 988200,
+				"to": 993160
+			},
+			"text": " So this is probably one of the main reasons why DeFi is being built there and why there"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,160",
+				"to": "00:16:38,360"
+			},
+			"offsets": {
+				"from": 993160,
+				"to": 998360
+			},
+			"text": " are so many new tools that are being built there. So interoperability of blockchain and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,360",
+				"to": "00:16:45,720"
+			},
+			"offsets": {
+				"from": 998360,
+				"to": 1005720
+			},
+			"text": " composability of those DeFi tools are helping to like grow significantly the relevance of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,720",
+				"to": "00:16:50,400"
+			},
+			"offsets": {
+				"from": 1005720,
+				"to": 1010400
+			},
+			"text": " DeFi in general. So the first thing you need is like the engine as I said which today is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,400",
+				"to": "00:16:56,600"
+			},
+			"offsets": {
+				"from": 1010400,
+				"to": 1016600
+			},
+			"text": " Ethereum and that's fine as there doesn't seem to be like a cast from the users to move"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,600",
+				"to": "00:17:02,080"
+			},
+			"offsets": {
+				"from": 1016600,
+				"to": 1022080
+			},
+			"text": " it as well. So that's where we are building and then you need assets right. This is what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,080",
+				"to": "00:17:08,040"
+			},
+			"offsets": {
+				"from": 1022080,
+				"to": 1028040
+			},
+			"text": " also listed in the tweet but we have been saying like tokens of all kinds that you know are"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,040",
+				"to": "00:17:15,120"
+			},
+			"offsets": {
+				"from": 1028040,
+				"to": 1035120
+			},
+			"text": " interest bearing or that have other properties. Think of like Vrap the Bitcoin is one example"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,120",
+				"to": "00:17:21,960"
+			},
+			"offsets": {
+				"from": 1035120,
+				"to": 1041960
+			},
+			"text": " of that where you have a federation securing basically a near C20 token on Ethereum which"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,960",
+				"to": "00:17:31,960"
+			},
+			"offsets": {
+				"from": 1041960,
+				"to": 1051960
+			},
+			"text": " is collateralized by Bitcoin. And yeah the point is do we really believe that like all"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,960",
+				"to": "00:17:38,200"
+			},
+			"offsets": {
+				"from": 1051960,
+				"to": 1058200
+			},
+			"text": " those DeFi tools will never have any need outside of Ethereum. Well I guess the answer"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,200",
+				"to": "00:17:45,720"
+			},
+			"offsets": {
+				"from": 1058200,
+				"to": 1065720
+			},
+			"text": " is already there with WBTC right. We see there is a first need for like going beyond"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,720",
+				"to": "00:17:51,920"
+			},
+			"offsets": {
+				"from": 1065720,
+				"to": 1071920
+			},
+			"text": " the limits of the platform where the DeFi tools are operating which is Ethereum. So we"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,920",
+				"to": "00:17:58,440"
+			},
+			"offsets": {
+				"from": 1071920,
+				"to": 1078440
+			},
+			"text": " have if you look on coin market cap the like tools being the assets being traded that have"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,440",
+				"to": "00:18:03,520"
+			},
+			"offsets": {
+				"from": 1078440,
+				"to": 1083520
+			},
+			"text": " most of the volumes and also the liquidity are not just Ethereum based. So some of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,520",
+				"to": "00:18:07,240"
+			},
+			"offsets": {
+				"from": 1083520,
+				"to": 1087240
+			},
+			"text": " are Ethereum based but you have many others that are not Ethereum based not to talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,240",
+				"to": "00:18:12,360"
+			},
+			"offsets": {
+				"from": 1087240,
+				"to": 1092360
+			},
+			"text": " the you know non-bloching assets. So there is a strong need to go beyond that. So that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,360",
+				"to": "00:18:19,120"
+			},
+			"offsets": {
+				"from": 1092360,
+				"to": 1099120
+			},
+			"text": " why we started to work on this new project called the P tokens. This is based on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,120",
+				"to": "00:18:25,480"
+			},
+			"offsets": {
+				"from": 1099120,
+				"to": 1105480
+			},
+			"text": " provable infrastructure and provable technology. P stands for a few things. It stands for provable"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,480",
+				"to": "00:18:31,640"
+			},
+			"offsets": {
+				"from": 1105480,
+				"to": 1111640
+			},
+			"text": " but it also stands for portable tokens and also for packed tokens because what they are"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,640",
+				"to": "00:18:37,520"
+			},
+			"offsets": {
+				"from": 1111640,
+				"to": 1117520
+			},
+			"text": " is really just a two way pack with tokens from that live natively on a different blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,520",
+				"to": "00:18:43,800"
+			},
+			"offsets": {
+				"from": 1117520,
+				"to": 1123800
+			},
+			"text": " than Ethereum but the P tokens are their representation on Ethereum. So it's basically the same thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,800",
+				"to": "00:18:50,240"
+			},
+			"offsets": {
+				"from": 1123800,
+				"to": 1130240
+			},
+			"text": " you may have already tested out with WBTC but it goes beyond that because it could either"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,240",
+				"to": "00:18:56,760"
+			},
+			"offsets": {
+				"from": 1130240,
+				"to": 1136760
+			},
+			"text": " be like in support of a federation so it could be something used on top of WBTC or it's something"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,760",
+				"to": "00:19:02,960"
+			},
+			"offsets": {
+				"from": 1136760,
+				"to": 1142960
+			},
+			"text": " you can use to potentially like replicate WBTC without the federation or start other"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,960",
+				"to": "00:19:10,400"
+			},
+			"offsets": {
+				"from": 1142960,
+				"to": 1150400
+			},
+			"text": " tokens without bootstrapping a new federation again and again. So I believe this is like"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,400",
+				"to": "00:19:16,360"
+			},
+			"offsets": {
+				"from": 1150400,
+				"to": 1156360
+			},
+			"text": " quite significant for the impact it could have on DeFi. So I want to explain you how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,360",
+				"to": "00:19:21,640"
+			},
+			"offsets": {
+				"from": 1156360,
+				"to": 1161640
+			},
+			"text": " The trust assumption is the same one we had built the provable Oracle service on so it"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,640",
+				"to": "00:19:28,920"
+			},
+			"offsets": {
+				"from": 1161640,
+				"to": 1168920
+			},
+			"text": " uses trusted computing to secure the packing and it can be integrated with like any blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,920",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1168920,
+				"to": 1176000
+			},
+			"text": " really for the way it works so it's very general purpose. So let me show you what's the flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:42,200"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1182200
+			},
+			"text": " So this is like a general representation of the Ethereum blockchain on the right and on"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,200",
+				"to": "00:19:50,080"
+			},
+			"offsets": {
+				"from": 1182200,
+				"to": 1190080
+			},
+			"text": " the left you have a blockchain which is non-Atheorem based so it's like the first one we released"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,080",
+				"to": "00:19:58,320"
+			},
+			"offsets": {
+				"from": 1190080,
+				"to": 1198320
+			},
+			"text": " is EOS as it didn't exist on Ethereum so it will be like a P EOS token on Ethereum but"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,320",
+				"to": "00:20:02,320"
+			},
+			"offsets": {
+				"from": 1198320,
+				"to": 1202320
+			},
+			"text": " it this applies really to any blockchain so it could be Bitcoin it could be you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,320",
+				"to": "00:20:09,080"
+			},
+			"offsets": {
+				"from": 1202320,
+				"to": 1209080
+			},
+			"text": " Apple or whatever whatever there is a need for in the DeFi ecosystem on Ethereum. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,080",
+				"to": "00:20:13,360"
+			},
+			"offsets": {
+				"from": 1209080,
+				"to": 1213360
+			},
+			"text": " you have the trusted execution environment in the middle which is the secure sandbox executed"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,360",
+				"to": "00:20:23,520"
+			},
+			"offsets": {
+				"from": 1213360,
+				"to": 1223520
+			},
+			"text": " on Intel Sjax in this case and basically what the what the what happens is that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,520",
+				"to": "00:20:28,080"
+			},
+			"offsets": {
+				"from": 1223520,
+				"to": 1228080
+			},
+			"text": " the secure enclave at the moment is running within like those boxes that we had as part"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,080",
+				"to": "00:20:32,120"
+			},
+			"offsets": {
+				"from": 1228080,
+				"to": 1232120
+			},
+			"text": " of our infrastructure but it could be run anywhere so you can run it on your own like"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,120",
+				"to": "00:20:38,240"
+			},
+			"offsets": {
+				"from": 1232120,
+				"to": 1238240
+			},
+			"text": " Intel Sjax machine it could be running the cloud with some Intel Sjax enabled machines"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,240",
+				"to": "00:20:45,920"
+			},
+			"offsets": {
+				"from": 1238240,
+				"to": 1245920
+			},
+			"text": " or you can just use one of those machines as well if like you want to potentially secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,920",
+				"to": "00:20:52,800"
+			},
+			"offsets": {
+				"from": 1245920,
+				"to": 1252800
+			},
+			"text": " this two way pack and contribute to the redundancy of it. So it doesn't it needs to be limited"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,800",
+				"to": "00:20:58,440"
+			},
+			"offsets": {
+				"from": 1252800,
+				"to": 1258440
+			},
+			"text": " to Intel Sjax the concept goes beyond Sjax itself but the first implementation will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,440",
+				"to": "00:21:04,280"
+			},
+			"offsets": {
+				"from": 1258440,
+				"to": 1264280
+			},
+			"text": " on Sjax as it's the like easier the easiest to get started with and the code is quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,280",
+				"to": "00:21:10,480"
+			},
+			"offsets": {
+				"from": 1264280,
+				"to": 1270480
+			},
+			"text": " complex at the moment the code is open source so basically anyone will be able to verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,480",
+				"to": "00:21:15,080"
+			},
+			"offsets": {
+				"from": 1270480,
+				"to": 1275080
+			},
+			"text": " the code and know that the two way pack is actually secure and it's running as intended"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,080",
+				"to": "00:21:20,320"
+			},
+			"offsets": {
+				"from": 1275080,
+				"to": 1280320
+			},
+			"text": " so it gives full transparency which is not reputation based so that's why you know you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,320",
+				"to": "00:21:24,320"
+			},
+			"offsets": {
+				"from": 1280320,
+				"to": 1284320
+			},
+			"text": " don't necessarily need a federation you can potentially use it without a federation or"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,320",
+				"to": "00:21:29,360"
+			},
+			"offsets": {
+				"from": 1284320,
+				"to": 1289360
+			},
+			"text": " in support of a federation to minimize the trust in the players involved. So we in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,360",
+				"to": "00:21:39,440"
+			},
+			"offsets": {
+				"from": 1289360,
+				"to": 1299440
+			},
+			"text": " PEOS case that's what happens with the issuance of new PEOS tokens so you basically send like"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,440",
+				"to": "00:21:45,640"
+			},
+			"offsets": {
+				"from": 1299440,
+				"to": 1305640
+			},
+			"text": " an EOS transaction to a specific address which is probably under the control of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,640",
+				"to": "00:21:50,120"
+			},
+			"offsets": {
+				"from": 1305640,
+				"to": 1310120
+			},
+			"text": " enclave of the trusted execution environment and then you send to the trusted execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,120",
+				"to": "00:21:55,000"
+			},
+			"offsets": {
+				"from": 1310120,
+				"to": 1315000
+			},
+			"text": " environment approve of that like approve of the deposit so the enclave will be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,000",
+				"to": "00:22:00,160"
+			},
+			"offsets": {
+				"from": 1315000,
+				"to": 1320160
+			},
+			"text": " verify that this deposit happened correctly and will authorize on Ethereum a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,160",
+				"to": "00:22:06,720"
+			},
+			"offsets": {
+				"from": 1320160,
+				"to": 1326720
+			},
+			"text": " where that basically issues the new PEOS tokens. So the opposite happens when you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,720",
+				"to": "00:22:14,120"
+			},
+			"offsets": {
+				"from": 1326720,
+				"to": 1334120
+			},
+			"text": " to like ban the token and redeem the PEOS token so the PEOS token can like freely be"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,120",
+				"to": "00:22:20,360"
+			},
+			"offsets": {
+				"from": 1334120,
+				"to": 1340360
+			},
+			"text": " exchanged on Ethereum as any ESC 20 token and at any time in an automated way with no"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,360",
+				"to": "00:22:25,240"
+			},
+			"offsets": {
+				"from": 1340360,
+				"to": 1345240
+			},
+			"text": " manual intervention it can just be redeemed for the underlying asset which in this case"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,240",
+				"to": "00:22:31,880"
+			},
+			"offsets": {
+				"from": 1345240,
+				"to": 1351880
+			},
+			"text": " is EOS. So what you will do is basically barring the PEOS token and when you burn it"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,880",
+				"to": "00:22:38,480"
+			},
+			"offsets": {
+				"from": 1351880,
+				"to": 1358480
+			},
+			"text": " you specify the EOS address that where you want to redeem the EOS tokens on and what"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,480",
+				"to": "00:22:43,480"
+			},
+			"offsets": {
+				"from": 1358480,
+				"to": 1363480
+			},
+			"text": " happens is that basically after the trusted execution environment as verified that everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,480",
+				"to": "00:22:49,080"
+			},
+			"offsets": {
+				"from": 1363480,
+				"to": 1369080
+			},
+			"text": " is correct it will release the EOS tokens accordingly. So there is no possibility to"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,080",
+				"to": "00:22:54,360"
+			},
+			"offsets": {
+				"from": 1369080,
+				"to": 1374360
+			},
+			"text": " steal funds it is fully transparent and secure thanks to the trusted computing component"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,360",
+				"to": "00:23:03,840"
+			},
+			"offsets": {
+				"from": 1374360,
+				"to": 1383840
+			},
+			"text": " and yeah so we have a demo working we plan to release the production version of the PEOS"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,840",
+				"to": "00:23:08,080"
+			},
+			"offsets": {
+				"from": 1383840,
+				"to": 1388080
+			},
+			"text": " token by end of month but now we are looking for community feedback and we are discussing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,080",
+				"to": "00:23:14,160"
+			},
+			"offsets": {
+				"from": 1388080,
+				"to": 1394160
+			},
+			"text": " with DeFi tools to see if they are interested and what tokens they would like to have on"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,160",
+				"to": "00:23:20,080"
+			},
+			"offsets": {
+				"from": 1394160,
+				"to": 1400080
+			},
+			"text": " Ethereum so if you are interested to potentially have like on Ethereum a token which is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,080",
+				"to": "00:23:25,600"
+			},
+			"offsets": {
+				"from": 1400080,
+				"to": 1405600
+			},
+			"text": " there at the moment please reach out and we will be happy to support you. So this is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,600",
+				"to": "00:23:31,440"
+			},
+			"offsets": {
+				"from": 1405600,
+				"to": 1411440
+			},
+			"text": " DAP that you will be connecting to this is already actually everything is already working"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,440",
+				"to": "00:23:35,560"
+			},
+			"offsets": {
+				"from": 1411440,
+				"to": 1415560
+			},
+			"text": " we are finalizing the enclave component at the moment but the blockchain component is"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,560",
+				"to": "00:23:43,920"
+			},
+			"offsets": {
+				"from": 1415560,
+				"to": 1423920
+			},
+			"text": " already finalized so what you have in the DAP is well just a transparent look out to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,920",
+				"to": "00:23:47,920"
+			},
+			"offsets": {
+				"from": 1423920,
+				"to": 1427920
+			},
+			"text": " like the minting events and binding events so you can check that you know the PEOS tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,920",
+				"to": "00:23:55,760"
+			},
+			"offsets": {
+				"from": 1427920,
+				"to": 1435760
+			},
+			"text": " and the underlying EOS tokens do match and then you will see the state of the enclave"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,760",
+				"to": "00:24:00,400"
+			},
+			"offsets": {
+				"from": 1435760,
+				"to": 1440400
+			},
+			"text": " so this is the trusted computing you will see the last EOS and the last Ethereum block"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,400",
+				"to": "00:24:06,520"
+			},
+			"offsets": {
+				"from": 1440400,
+				"to": 1446520
+			},
+			"text": " that are known to the enclave and there are some statistics here on like the operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,520",
+				"to": "00:24:12,960"
+			},
+			"offsets": {
+				"from": 1446520,
+				"to": 1452960
+			},
+			"text": " that has been done by the enclave and that are reported by it you can also like issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,960",
+				"to": "00:24:18,760"
+			},
+			"offsets": {
+				"from": 1452960,
+				"to": 1458760
+			},
+			"text": " and redeem via the DAP the tokens independently at any time with no intervention so that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,760",
+				"to": "00:24:25,600"
+			},
+			"offsets": {
+				"from": 1458760,
+				"to": 1465600
+			},
+			"text": " much faster than any alternative solution like WBTC or in general since there is no"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,600",
+				"to": "00:24:31,160"
+			},
+			"offsets": {
+				"from": 1465600,
+				"to": 1471160
+			},
+			"text": " human intervention for the minting or anything like that it can be done very quickly so in"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,160",
+				"to": "00:24:38,560"
+			},
+			"offsets": {
+				"from": 1471160,
+				"to": 1478560
+			},
+			"text": " the case of like Bitcoin for example you would just need to wait for the confirmation time."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,560",
+				"to": "00:24:45,740"
+			},
+			"offsets": {
+				"from": 1478560,
+				"to": 1485740
+			},
+			"text": " So this is our cup so basically we have worked a lot recently on securing like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,740",
+				"to": "00:24:52,480"
+			},
+			"offsets": {
+				"from": 1485740,
+				"to": 1492480
+			},
+			"text": " the Oracle service which is already like stable and use the a lot on the Ethereum mainnet we"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,480",
+				"to": "00:24:56,800"
+			},
+			"offsets": {
+				"from": 1492480,
+				"to": 1496800
+			},
+			"text": " have also released like new certifications for regulated casinos around the provable"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,800",
+				"to": "00:25:03,200"
+			},
+			"offsets": {
+				"from": 1496800,
+				"to": 1503200
+			},
+			"text": " RNG but our recent area of focus has become the PE tokens which we believe will use the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,200",
+				"to": "00:25:07,920"
+			},
+			"offsets": {
+				"from": 1503200,
+				"to": 1507920
+			},
+			"text": " same technology while providing like a service which is strongly needed today in the DeFi"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,920",
+				"to": "00:25:15,360"
+			},
+			"offsets": {
+				"from": 1507920,
+				"to": 1515360
+			},
+			"text": " ecosystem so if you are interested that well sorry this was like PE tokens.io is a website"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,360",
+				"to": "00:25:19,240"
+			},
+			"offsets": {
+				"from": 1515360,
+				"to": 1519240
+			},
+			"text": " where you can go there is like a white paper there is the draft of a white paper that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,240",
+				"to": "00:25:23,680"
+			},
+			"offsets": {
+				"from": 1519240,
+				"to": 1523680
+			},
+			"text": " have released today and there is a telegram channel where you can join the discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,680",
+				"to": "00:25:28,120"
+			},
+			"offsets": {
+				"from": 1523680,
+				"to": 1528120
+			},
+			"text": " if you are interested on the topic so it's PE tokens.io."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,120",
+				"to": "00:25:29,720"
+			},
+			"offsets": {
+				"from": 1528120,
+				"to": 1529720
+			},
+			"text": " Thank you for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,720",
+				"to": "00:25:30,080"
+			},
+			"offsets": {
+				"from": 1529720,
+				"to": 1530080
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,080",
+				"to": "00:25:33,840"
+			},
+			"offsets": {
+				"from": 1530080,
+				"to": 1533840
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,840",
+				"to": "00:25:40,840"
+			},
+			"offsets": {
+				"from": 1533840,
+				"to": 1540840
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,840",
+				"to": "00:25:47,840"
+			},
+			"offsets": {
+				"from": 1540840,
+				"to": 1547840
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,840",
+				"to": "00:25:54,840"
+			},
+			"offsets": {
+				"from": 1547840,
+				"to": 1554840
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,840",
+				"to": "00:26:01,840"
+			},
+			"offsets": {
+				"from": 1554840,
+				"to": 1561840
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,840",
+				"to": "00:26:08,840"
+			},
+			"offsets": {
+				"from": 1561840,
+				"to": 1568840
+			},
+			"text": " [Music]"
+		}
+	]
+}

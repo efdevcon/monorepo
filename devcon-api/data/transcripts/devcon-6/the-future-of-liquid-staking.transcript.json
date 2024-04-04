@@ -1,0 +1,2463 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " Hey folks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 23000
+			},
+			"text": " My name is Vasilis Chapavalloff. I work in LIDO."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 30000
+			},
+			"text": " And what I want to talk about today is what I think will be the future of liquid-staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 34000
+			},
+			"text": " I really love the crowd, by the way. There's so many of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 40000
+			},
+			"text": " A bit about Las Ayla, us and about me. Why I'm talking about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 47000
+			},
+			"text": " I'm at a clitted LIDO, which is a doll that headquartered on a dium that makes liquid-staking protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 53000
+			},
+			"text": " and it maintains the largest liquid-staking protocol in the distance, LIDO on a dium,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 58000
+			},
+			"text": " which has a bit more than four million other in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 64000
+			},
+			"text": " Currently there are number two U5 protocol by KVL, and I'm co-founded at that LIDO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 67000
+			},
+			"text": " so I guess I know a couple of things about staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 79000
+			},
+			"text": " For folks who are not really familiar with the topic, liquid-staking is when a staker gets transferable"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 82000
+			},
+			"text": " or older, when they lock up their staker and it's taken protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 91000
+			},
+			"text": " So it can be used in DeFi, it can be transferred, sold, bought, collateralized, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 103000
+			},
+			"text": " And liquid-staking is a small but growing and pretty significant in size part of staking economy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 113000
+			},
+			"text": " like old staking economy without 80 billion and liquid-staking protocols that together are about 80 billion or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 122000
+			},
+			"text": " And if we add to the liquid-staking protocols also liquid-staking exchanges, which I think we actually should count among the liquid-staking options,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 130000
+			},
+			"text": " it will be closer to 20 billion I think, so large but not relevant part of staking economy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 144000
+			},
+			"text": " So I'm not going to do any deep insights here, like I don't pretend there is something I'm going to say that is not pretty obvious, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 147000
+			},
+			"text": " But I'm going to say it anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 154000
+			},
+			"text": " I'm going to make three predictions, basically one is that protocol-based liquid-staking could grow alongside DeFi ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 159000
+			},
+			"text": " When DeFi ecosystem growth, liquid-staking protocols grow with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 171000
+			},
+			"text": " When it doesn't grow, when it stagnates, that liquid-staking protocols will not grow, like there will be people who use staking exchanges instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 178000
+			},
+			"text": " There will be a lot of options for liquid-staking, but few of them will be the winners."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 185000
+			},
+			"text": " And who will be the winner? Who will be the winners? Will be determined by stakers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 191000
+			},
+			"text": " They will be the one who vote with their money about what the future would look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 201000
+			},
+			"text": " Now, in a bit of more details, our area of this statement I'll talk about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 207000
+			},
+			"text": " So our experience at Lido, building liquid-staking protocols, many chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 217000
+			},
+			"text": " We have one on Ethereum, one on Solana, on Polygon, on Polkadot."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 224000
+			},
+			"text": " The thing is liquid-staking protocol growth is driven by DeFi ecosystem growth."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 230000
+			},
+			"text": " When there is a low amount of DeFi penetration, liquid-staking will also be pretty small."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 236000
+			},
+			"text": " And when there is a very strong economy, liquid-staking will be very popular."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 240000
+			},
+			"text": " There are other factors, but that's primarily the thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 249000
+			},
+			"text": " When people want to use DeFi, they will rather use some kind of staking liquid-staking token in DeFi."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 257000
+			},
+			"text": " When they don't use DeFi and DeFi, they don't care about stakers, rocket-pullers, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 265000
+			},
+			"text": " The main competition are the World of Gardens of DeFi."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 269000
+			},
+			"text": " Exchanges have liquid-staking since forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 271000
+			},
+			"text": " It works very seamlessly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 274000
+			},
+			"text": " It's very easy for the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 279000
+			},
+			"text": " They just deposit the tokens that they use to if they are working with the exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 280000
+			},
+			"text": " And it's automatically staked."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 284000
+			},
+			"text": " It can be often used as collateral for margin trading."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 288000
+			},
+			"text": " It has most of the users that people want liquid-staking for."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 298000
+			},
+			"text": " And if you don't care about being in decentralized finance, if you don't care about these being not your keys, it's perfectly serviceable."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 305000
+			},
+			"text": " So the product is just better than regular-staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 309000
+			},
+			"text": " Liquid-staking is better for users than regular-staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 319000
+			},
+			"text": " The adoption barriers that are major problems for liquid-staking protocol growth is smart contract risk, governance risks, and sometimes tax implications."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 326000
+			},
+			"text": " The smart contract risk and governance risk, on one hand, they go down with time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 328000
+			},
+			"text": " So with time, people are starting to trust more."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 332000
+			},
+			"text": " The protocols for good measure, because they haven't been hacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 334000
+			},
+			"text": " They are less likely to be hacked in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 336000
+			},
+			"text": " Same about governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 340000
+			},
+			"text": " And still, it's not worth it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 354000
+			},
+			"text": " If you're not using the token in DeFi, if you're not using the token or not going to trade it or collateralize it, you don't want to take a traditional risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 361000
+			},
+			"text": " And there are multiple options for building liquid-staking protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 371000
+			},
+			"text": " And in general, not just protocols that are going to exist already or will be existing going forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 379000
+			},
+			"text": " And to talk about them, we need to understand what is liquid-staking as a product, like who are the users, what do they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 383000
+			},
+			"text": " And there are three kinds of users, like three kinds of stakeholders for liquid-staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 384000
+			},
+			"text": " One is the stakers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 386000
+			},
+			"text": " They are most important here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 388000
+			},
+			"text": " And they want staking awards."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 389000
+			},
+			"text": " They want security."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 395000
+			},
+			"text": " They want liquidity and usability in finance, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 402000
+			},
+			"text": " Protocols community want the best-related asset for the protocol that is decentralized and such a persistent."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 408000
+			},
+			"text": " And not operators in protocols, they want to run a stable-staking business if they are professional."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 412000
+			},
+			"text": " And if they're hobbyists, they want to be, like, I don't know, respected."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 421000
+			},
+			"text": " But they are not rational. They just do it for the fun and for the feeling of contributing to the destination, which is great."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 430000
+			},
+			"text": " And the options that are available will be available in the future are broadly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 437000
+			},
+			"text": " It's custodial option, exchange-based liquid-staking, co-casted, you basically could stick in."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 445000
+			},
+			"text": " It's protocol that are based on risk management. It's protocol that are based on bonds for security."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 452000
+			},
+			"text": " They are hyper-compliant protocols and marketplace types protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 458000
+			},
+			"text": " So, custodial, yeah, I'm listing them in the order of adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 466000
+			},
+			"text": " Custodial liquid-staking, like, exchange liquid-staking is the largest one, if you combine, like, even on a deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 474000
+			},
+			"text": " If you combine together all the exchange-staking options, it's like a lot of market share."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 484000
+			},
+			"text": " They exchange your custody-based, very simple to use for users because, like, centralized solution are, like, very good for user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 487000
+			},
+			"text": " Usually, you can do a lot to make it simpler."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 494000
+			},
+			"text": " They have no additional risk if you already tried the exchange in question with the capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 503000
+			},
+			"text": " Often, they have included the options for margin-tranging, landing, money markets, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 515000
+			},
+			"text": " And because the operator of custodial liquid-staking, like, change or something, they are double-deeping, so they're engaging in staking rewards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 521000
+			},
+			"text": " and, like, fee-on-staking rewards, and they are also getting a fee-on-traging or maybe cast-a-gifties or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 525000
+			},
+			"text": " They can offer very competitive rates compared to other..."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 529000
+			},
+			"text": " This option will likely win on profitability going forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 543000
+			},
+			"text": " It's not the case right now because, like, Coinbase takes a lot of fees, but they have much more options to go over on fees because they can double-deeping the vertical integrations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 550000
+			},
+			"text": " They have usually sub-provalied datasets, so, like, they don't provide that much value for the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 563000
+			},
+			"text": " As much value as they could for the protocol because they select fee operators with little diversity in jurisdictions, physical locations, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 573000
+			},
+			"text": " And it's not transparent, and they are suspectible to regulatory capture because, like, CFI solution are, like, extremely regulated."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 586000
+			},
+			"text": " Risk management-based protocols, they are non-castodial, they manage slash-ner-isks protocol-wide by creating creative-related datasets that, like, minimize slash-ner-isks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 595000
+			},
+			"text": " Therefore, they are usually capital-efficient, so they're easy to grow, they're easy to accept stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 612000
+			},
+			"text": " And for, like, for the competitive advantage of the user-side, they rely on Defi-A-CAS system, so, like, when Defi-A-CAS system is better than any single wallet garden of exchange,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 620000
+			},
+			"text": " they can offer a good alternative to centralized exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 626000
+			},
+			"text": " Validate-a-set, they have, like, very different in design because..."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 635000
+			},
+			"text": " And in quality, they can be big, they can be small, they can be, like, consists of one operator which is, like, the protocol operators, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 653000
+			},
+			"text": " And they... that's because, like, the managed protocol-set is the Validate-a-set, is basically the major part of the product here, and that's where they differ very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 657000
+			},
+			"text": " It can be good, it can be bad, it, like, depends on the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 664000
+			},
+			"text": " Bonded protocol are also non-castorial, they manage slash-ner-isks by acquiring Validate-a-Bonds."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 674000
+			},
+			"text": " That makes them capital-efficient, because Validate-as, like, the good-value, like, the not-operators community, they don't usually have a lot of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 684000
+			},
+			"text": " And when they are required to provide bonds, this is limited by, basically, the amount of capital operators, or the amount of depth they're willing to take from outside sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 698000
+			},
+			"text": " And the Validate-a-set management is left to the market, like, basically, if you have capital, you can participate as an operator, you can provide your own validation, and that's the only thing that's required."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 705000
+			},
+			"text": " Which, I think, at scale, delivers centralized Validate-a-set, because capital is centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 713000
+			},
+			"text": " Like, if you take a look at the gene coefficient of Ethereum, for example, which is, like, one of the best ones, it's really high, like, most of the well-set, multiplied by the same amount of capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 720000
+			},
+			"text": " And then, if you take a look at the same amount of capital, you can also provide, like, a few dozens of wells."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 732000
+			},
+			"text": " When the protocol is at scale, they are either providing a loan or they operate themselves at that scale and take the majority of the Validate-a-set."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 742000
+			},
+			"text": " And the value-data-set management, or hyper-compliant one, is not very different in tech side from risk management."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 759000
+			},
+			"text": " It's a different approach, because, like, it's a selling point, and main feature is that the Validate-a-set is extensively a K-A-C-ed and certified and regulated."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 789000
+			},
+			"text": " And I think it's very clear that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-A-C-ed is a very good thing to say that the K-"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:13,080"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 793080
+			},
+			"text": " So, the biggest thing about the Validate-a-set management is that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,080",
+				"to": "00:13:13,080"
+			},
+			"offsets": {
+				"from": 793080,
+				"to": 793080
+			},
+			"text": " market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-based market-"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,080",
+				"to": "00:13:23,080"
+			},
+			"offsets": {
+				"from": 793080,
+				"to": 803080
+			},
+			"text": " different risk profiles, features, and costs, and when they do a liquid-staken token, they have to fund it in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,080",
+				"to": "00:13:42,080"
+			},
+			"offsets": {
+				"from": 803080,
+				"to": 822080
+			},
+			"text": " Either they do risk management on options, like to make a fungible basket of different options in the marketplace, or do the bond type, or just do a naive, like, assuming every risk profile is the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,080",
+				"to": "00:13:54,080"
+			},
+			"offsets": {
+				"from": 822080,
+				"to": 834080
+			},
+			"text": " The current state on Ethereum is that risk management is the largest protocol, like its LIDO, its risk management type."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,080",
+				"to": "00:14:08,080"
+			},
+			"offsets": {
+				"from": 834080,
+				"to": 848080
+			},
+			"text": " The second, by size, is custodial, but it will very quickly jump to 1.1 when withdrawals are possible, and every change can be staked more safely than it right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,080",
+				"to": "00:14:14,080"
+			},
+			"offsets": {
+				"from": 848080,
+				"to": 854080
+			},
+			"text": " The third type is bonded, its rocket pole is the third position."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,080",
+				"to": "00:14:23,080"
+			},
+			"offsets": {
+				"from": 854080,
+				"to": 863080
+			},
+			"text": " And, by growth beat right now, Coinbase, liquid-staken token grows the fastest."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,080",
+				"to": "00:14:35,080"
+			},
+			"offsets": {
+				"from": 863080,
+				"to": 875080
+			},
+			"text": " LIDO has the second place, and the rocket pole is the third, so this is the current trend."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,080",
+				"to": "00:15:03,080"
+			},
+			"offsets": {
+				"from": 875080,
+				"to": 903080
+			},
+			"text": " I think that the only non-custodial trust-minimized options can be designed with the Condo Evil principle mind, so liquid-staken protocols that are sufficiently limited in what they can do to, like, those takes a little Validate-a-set selection to force or entice operators to operate in a certain way when they are limited in that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,080",
+				"to": "00:15:08,080"
+			},
+			"offsets": {
+				"from": 903080,
+				"to": 908080
+			},
+			"text": " They can be entirely harmless for the protocol and not the threat."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,080",
+				"to": "00:15:31,080"
+			},
+			"offsets": {
+				"from": 908080,
+				"to": 931080
+			},
+			"text": " Custodial solutions can't do that because they can act with their values, but they are extremely suspectible to regulations, which can be not aligned with companies, I think the only risk management-based protocols can deliver a good Validate-a-set at scale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,080",
+				"to": "00:15:37,080"
+			},
+			"offsets": {
+				"from": 931080,
+				"to": 937080
+			},
+			"text": " the main thing that you deliver for a protocol is a good Validate-a-set."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,080",
+				"to": "00:15:45,080"
+			},
+			"offsets": {
+				"from": 937080,
+				"to": 945080
+			},
+			"text": " And if you don't have an opinionated selection algorithm that says that the good Validate-a-set should be defined,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,080",
+				"to": "00:16:03,080"
+			},
+			"offsets": {
+				"from": 945080,
+				"to": 963080
+			},
+			"text": " like, sort of diverse, sort of diverse and jurisdiction in the truth should be pretty flat and distribution of stakes, should be diverse geographically and like in cloud and on-premise operations, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,080",
+				"to": "00:16:12,080"
+			},
+			"offsets": {
+				"from": 963080,
+				"to": 972080
+			},
+			"text": " That's essentially what, like, risk management is, you're monitoring for the protocol as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,080",
+				"to": "00:16:17,080"
+			},
+			"offsets": {
+				"from": 972080,
+				"to": 977080
+			},
+			"text": " So, I think there are two possible outcomes for the future of Vidiram."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,080",
+				"to": "00:16:29,080"
+			},
+			"offsets": {
+				"from": 977080,
+				"to": 989080
+			},
+			"text": " One is that, like, most of the stakes in the risk management protocol that provides a good Validate-a-set, minorities in Custodial, and bond-a-tays on the third place."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,080",
+				"to": "00:16:39,080"
+			},
+			"offsets": {
+				"from": 989080,
+				"to": 999080
+			},
+			"text": " And the better outcome is vice versa when most of the stakes are Custodial and the rest is in protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,080",
+				"to": "00:16:53,080"
+			},
+			"offsets": {
+				"from": 999080,
+				"to": 1013080
+			},
+			"text": " So, anyway, whatever I think on that, it doesn't matter much because I am not the one who decides who will win and who will lose and what will be the biggest, the largest options."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,080",
+				"to": "00:16:56,080"
+			},
+			"offsets": {
+				"from": 1013080,
+				"to": 1016080
+			},
+			"text": " It's a staker who decides the outcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,080",
+				"to": "00:17:00,080"
+			},
+			"offsets": {
+				"from": 1016080,
+				"to": 1020080
+			},
+			"text": " Like, not operators. They are agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,080",
+				"to": "00:17:11,080"
+			},
+			"offsets": {
+				"from": 1020080,
+				"to": 1031080
+			},
+			"text": " They operate, like, either very small amounts of their own stake or, like, large amounts of other people's money. They do not decide, like, who is going to be the winner."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,080",
+				"to": "00:17:20,080"
+			},
+			"offsets": {
+				"from": 1031080,
+				"to": 1040080
+			},
+			"text": " It's not stake aggregators, like, protocols or castagists because users' stakers actually decide which aggregated to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,080",
+				"to": "00:17:30,080"
+			},
+			"offsets": {
+				"from": 1040080,
+				"to": 1050080
+			},
+			"text": " It's not protocol researchers or developers because they design, like, a neutral protocol that can be used by other people which has stakers to have the desired outcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,080",
+				"to": "00:17:37,080"
+			},
+			"offsets": {
+				"from": 1050080,
+				"to": 1057080
+			},
+			"text": " It's not voices on Krita Twitter or, like, protocol governance. It's going to be less stakers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,080",
+				"to": "00:17:52,080"
+			},
+			"offsets": {
+				"from": 1057080,
+				"to": 1072080
+			},
+			"text": " The current state of idiom stakers is the direct result of stakers making their choice in the past. Why is the big because people stick with Lido? Why is, like, coin-based big because people decide to stick with coin-based?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,080",
+				"to": "00:17:57,080"
+			},
+			"offsets": {
+				"from": 1072080,
+				"to": 1077080
+			},
+			"text": " The future will be a result of stakers making the decision going forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,080",
+				"to": "00:18:06,080"
+			},
+			"offsets": {
+				"from": 1077080,
+				"to": 1086080
+			},
+			"text": " So what I'm asking you, folks, is to select a bit west to stake based on your ethos, your needs, your capabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,080",
+				"to": "00:18:10,080"
+			},
+			"offsets": {
+				"from": 1086080,
+				"to": 1090080
+			},
+			"text": " Like, if you want and you can run your own node, run your own node."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,080",
+				"to": "00:18:18,080"
+			},
+			"offsets": {
+				"from": 1090080,
+				"to": 1098080
+			},
+			"text": " If you see a good option for sticking with the protocol, like, stick with the protocol or with the not operator you trust or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,080",
+				"to": "00:18:31,080"
+			},
+			"offsets": {
+				"from": 1098080,
+				"to": 1111080
+			},
+			"text": " Because, like, stakers will be deciding the future of a validator set on the idiom, like, how the idiom will be operating in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,080",
+				"to": "00:18:45,080"
+			},
+			"offsets": {
+				"from": 1111080,
+				"to": 1125080
+			},
+			"text": " At a bonus thing, I made a few predictions, but there are a few curveballs that can invalidate all of that very unexpectedly."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,080",
+				"to": "00:18:55,080"
+			},
+			"offsets": {
+				"from": 1125080,
+				"to": 1135080
+			},
+			"text": " One thing that, like, is obviously can be, can change the capid very much is regulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,080",
+				"to": "00:19:04,080"
+			},
+			"offsets": {
+				"from": 1135080,
+				"to": 1144080
+			},
+			"text": " Like, regulators can force most of idiom stakers and most of, like, a lot of idiom is, like, in regulated jurisdictions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,080",
+				"to": "00:19:12,080"
+			},
+			"offsets": {
+				"from": 1144080,
+				"to": 1152080
+			},
+			"text": " A lot of idiom is holders are in regulated jurisdictions to comply to local RX."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,080",
+				"to": "00:19:18,080"
+			},
+			"offsets": {
+				"from": 1152080,
+				"to": 1158080
+			},
+			"text": " And if local RX say them to stake in a specific way, they will likely to comply."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,080",
+				"to": "00:19:24,080"
+			},
+			"offsets": {
+				"from": 1158080,
+				"to": 1164080
+			},
+			"text": " The funds, like, the cost that you etc. etc. they will have to."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,080",
+				"to": "00:19:32,080"
+			},
+			"offsets": {
+				"from": 1164080,
+				"to": 1172080
+			},
+			"text": " The second curveball is mistaken."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,080",
+				"to": "00:19:34,080"
+			},
+			"offsets": {
+				"from": 1172080,
+				"to": 1174080
+			},
+			"text": " Shout out to Angular."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,080",
+				"to": "00:19:39,080"
+			},
+			"offsets": {
+				"from": 1174080,
+				"to": 1179080
+			},
+			"text": " It's basically using the same stake on multiple protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,080",
+				"to": "00:19:52,080"
+			},
+			"offsets": {
+				"from": 1179080,
+				"to": 1192080
+			},
+			"text": " The main idea is, like, you can stick in the un-protocol and then can use the voucher to the stake stator, like, stick to the token or, like, every stock or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,080",
+				"to": "00:20:02,080"
+			},
+			"offsets": {
+				"from": 1192080,
+				"to": 1202080
+			},
+			"text": " As a stake in a different protocol that does something different and is subject to additional slashing if something goes wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,080",
+				"to": "00:20:07,080"
+			},
+			"offsets": {
+				"from": 1202080,
+				"to": 1207080
+			},
+			"text": " That leads to a combinator explosion in potential risk and rewards profiles."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,080",
+				"to": "00:20:21,080"
+			},
+			"offsets": {
+				"from": 1207080,
+				"to": 1221080
+			},
+			"text": " So, right now, it's pretty easy to punch than fungible, like, the stake in positions, like, you manage the risk and rewards, and that you get, can get liquid talking out of it, like, or make it bonded or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,080",
+				"to": "00:20:38,080"
+			},
+			"offsets": {
+				"from": 1221080,
+				"to": 1238080
+			},
+			"text": " When there is a lot of options for getting additional rewards for taking additional risks, which is going to happen if Angular takes off, that makes the space very diverse and for possibilities of using your other in different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,080",
+				"to": "00:20:44,080"
+			},
+			"offsets": {
+				"from": 1238080,
+				"to": 1244080
+			},
+			"text": " And it's becoming much harder to punch than fungible."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,080",
+				"to": "00:20:54,080"
+			},
+			"offsets": {
+				"from": 1244080,
+				"to": 1254080
+			},
+			"text": " And it makes a risk management based protocol harder to design and marketplace is more suitable to the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,080",
+				"to": "00:20:58,080"
+			},
+			"offsets": {
+				"from": 1254080,
+				"to": 1258080
+			},
+			"text": " There is a lot of differentiation in different options for staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,080",
+				"to": "00:21:03,080"
+			},
+			"offsets": {
+				"from": 1258080,
+				"to": 1263080
+			},
+			"text": " Marketplaces are better suited to that than risk management."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,080",
+				"to": "00:21:14,080"
+			},
+			"offsets": {
+				"from": 1263080,
+				"to": 1274080
+			},
+			"text": " And the elephant in the room is second order effects of the movie because, like, that's a very, it's filled with emergent rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,080",
+				"to": "00:21:21,080"
+			},
+			"offsets": {
+				"from": 1274080,
+				"to": 1281080
+			},
+			"text": " We don't understand how it works and kill it works and specifically, usually we can predict some things but not all things."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,080",
+				"to": "00:21:30,080"
+			},
+			"offsets": {
+				"from": 1281080,
+				"to": 1290080
+			},
+			"text": " And it's hard to see the future clearly, and it clearly has a lot of requirements for latency and benefits a lot from exludiate yields,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,080",
+				"to": "00:21:35,080"
+			},
+			"offsets": {
+				"from": 1290080,
+				"to": 1295080
+			},
+			"text": " which can force centralization somewhere in some place."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,080",
+				"to": "00:21:47,080"
+			},
+			"offsets": {
+				"from": 1295080,
+				"to": 1307080
+			},
+			"text": " And it can happen that it will force centralization, like on protocol management, like on pro, on state management level or like on staking layer or wherever we don't know yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,080",
+				"to": "00:21:49,080"
+			},
+			"offsets": {
+				"from": 1307080,
+				"to": 1309080
+			},
+			"text": " At least I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,080",
+				"to": "00:21:53,080"
+			},
+			"offsets": {
+				"from": 1309080,
+				"to": 1313080
+			},
+			"text": " I don't quite understand how it will end up."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,080",
+				"to": "00:21:57,080"
+			},
+			"offsets": {
+				"from": 1313080,
+				"to": 1317080
+			},
+			"text": " And I think that we will see it when we'll see it not before."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,080",
+				"to": "00:22:06,080"
+			},
+			"offsets": {
+				"from": 1317080,
+				"to": 1326080
+			},
+			"text": " I think the best way to counter that on staking level will be to transform validators and protocol to dumb pipes that don't make any decisions basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,080",
+				"to": "00:22:15,080"
+			},
+			"offsets": {
+				"from": 1326080,
+				"to": 1335080
+			},
+			"text": " or make as like, can opt out of making decisions at least, something like PBS design with CR lists, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,080",
+				"to": "00:22:20,080"
+			},
+			"offsets": {
+				"from": 1335080,
+				"to": 1340080
+			},
+			"text": " But like, as I said, it's curable."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,080",
+				"to": "00:22:26,080"
+			},
+			"offsets": {
+				"from": 1340080,
+				"to": 1346080
+			},
+			"text": " I am not completely sure how it's going to play out."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,080",
+				"to": "00:22:33,080"
+			},
+			"offsets": {
+				"from": 1346080,
+				"to": 1353080
+			},
+			"text": " So that's it. Thank you for coming. I'm really hyped with seeing such a good crowd."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,080",
+				"to": "00:22:36,080"
+			},
+			"offsets": {
+				"from": 1353080,
+				"to": 1356080
+			},
+			"text": " Hello, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,080",
+				"to": "00:22:49,080"
+			},
+			"offsets": {
+				"from": 1356080,
+				"to": 1369080
+			},
+			"text": " You mentioned in Lydo of the risk management reference of as LSTs, how is this related to the insurance of Lydo in relation to the TVL?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,080",
+				"to": "00:22:54,080"
+			},
+			"offsets": {
+				"from": 1369080,
+				"to": 1374080
+			},
+			"text": " I don't quite get the question. I'm going to answer the question as I can."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,080",
+				"to": "00:23:06,080"
+			},
+			"offsets": {
+				"from": 1374080,
+				"to": 1386080
+			},
+			"text": " So Lydo is a protocol that takes stakers ever and it distributed to a validator set in a specific way."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,080",
+				"to": "00:23:15,080"
+			},
+			"offsets": {
+				"from": 1386080,
+				"to": 1395080
+			},
+			"text": " This validator set is selected in a way to the risk the stake that the holders, so like, are used to hash on risks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,080",
+				"to": "00:23:18,080"
+			},
+			"offsets": {
+				"from": 1395080,
+				"to": 1398080
+			},
+			"text": " and to make the validator set of a dumb beta as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,080",
+				"to": "00:23:27,080"
+			},
+			"offsets": {
+				"from": 1398080,
+				"to": 1407080
+			},
+			"text": " So like, we try to distribute it in a way that will be an increased diversity of validators and like the stake distribution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,080",
+				"to": "00:23:29,080"
+			},
+			"offsets": {
+				"from": 1407080,
+				"to": 1409080
+			},
+			"text": " make better stake distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,080",
+				"to": "00:23:35,080"
+			},
+			"offsets": {
+				"from": 1409080,
+				"to": 1415080
+			},
+			"text": " We don't require operators to bond the capital to operate."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,080",
+				"to": "00:23:45,080"
+			},
+			"offsets": {
+				"from": 1415080,
+				"to": 1425080
+			},
+			"text": " And that makes scaling for Lydo really easy because all the operators need to do is to upload some more keys into Lydo and accept mistake."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,080",
+				"to": "00:23:54,080"
+			},
+			"offsets": {
+				"from": 1425080,
+				"to": 1434080
+			},
+			"text": " And that's why when there was a lot of demand for staking in the ecosystem, it went to Lydo and not say to Coinbase."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,080",
+				"to": "00:24:05,080"
+			},
+			"offsets": {
+				"from": 1434080,
+				"to": 1445080
+			},
+			"text": " When the growth is limited by not operators having enough capital or having enough cheap loans options or something like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,080",
+				"to": "00:24:13,080"
+			},
+			"offsets": {
+				"from": 1445080,
+				"to": 1453080
+			},
+			"text": " it's not being able to write these waves of stake in demands."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,080",
+				"to": "00:24:21,080"
+			},
+			"offsets": {
+				"from": 1453080,
+				"to": 1461080
+			},
+			"text": " So I guess the TVL of Lydo is the direct results of the design."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,080",
+				"to": "00:24:29,080"
+			},
+			"offsets": {
+				"from": 1461080,
+				"to": 1469080
+			},
+			"text": " Okay, I was wondering, like one of the curveballs that maybe could happen is what if it becomes dramatically easier to operate now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,080",
+				"to": "00:24:33,080"
+			},
+			"offsets": {
+				"from": 1469080,
+				"to": 1473080
+			},
+			"text": " Like, it's pretty complex to like spin up your own like beacon currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,080",
+				"to": "00:24:35,080"
+			},
+			"offsets": {
+				"from": 1473080,
+				"to": 1475080
+			},
+			"text": " But what if it was much, much easier?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,080",
+				"to": "00:24:38,080"
+			},
+			"offsets": {
+				"from": 1475080,
+				"to": 1478080
+			},
+			"text": " How would that impact the overall market?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,080",
+				"to": "00:24:50,080"
+			},
+			"offsets": {
+				"from": 1478080,
+				"to": 1490080
+			},
+			"text": " So I think that it's not going to become dramatically easier for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,080",
+				"to": "00:25:01,080"
+			},
+			"offsets": {
+				"from": 1490080,
+				"to": 1501080
+			},
+			"text": " The reason is, like before protocolizedification, it's really hard to maintain the notes in a good state because they are a lot of grades and hot fixes and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,080",
+				"to": "00:25:09,080"
+			},
+			"offsets": {
+				"from": 1501080,
+				"to": 1509080
+			},
+			"text": " But I mentioned it is becoming dramatically easier than on liquid staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,080",
+				"to": "00:25:21,080"
+			},
+			"offsets": {
+				"from": 1509080,
+				"to": 1521080
+			},
+			"text": " I think it will result will be that there will be more solar operators in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,080",
+				"to": "00:25:31,080"
+			},
+			"offsets": {
+				"from": 1521080,
+				"to": 1531080
+			},
+			"text": " Like every protocol that will be a big enough will converge on some hybrid model of having most of the stake in risk management and less stake in bonded solution for permission as operators just to promote the solar stakers."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,080",
+				"to": "00:25:42,080"
+			},
+			"offsets": {
+				"from": 1531080,
+				"to": 1542080
+			},
+			"text": " And the removing of barriers will lead to more solar stakers and like a bit more important for to have this feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,080",
+				"to": "00:25:44,080"
+			},
+			"offsets": {
+				"from": 1542080,
+				"to": 1544080
+			},
+			"text": " That's my guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,080",
+				"to": "00:25:48,080"
+			},
+			"offsets": {
+				"from": 1544080,
+				"to": 1548080
+			},
+			"text": " Hello, Vasily. It's really nice to meet you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,080",
+				"to": "00:25:49,080"
+			},
+			"offsets": {
+				"from": 1548080,
+				"to": 1549080
+			},
+			"text": " I have two questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,080",
+				"to": "00:25:59,080"
+			},
+			"offsets": {
+				"from": 1549080,
+				"to": 1559080
+			},
+			"text": " Actually, first of all, first one, I would like to understand what do you see as the biggest risk for the liquid is taking industry or the is taking industry as a whole right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,080",
+				"to": "00:26:05,080"
+			},
+			"offsets": {
+				"from": 1559080,
+				"to": 1565080
+			},
+			"text": " And second one, what do you see as the biggest risk for LIDO right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,080",
+				"to": "00:26:10,080"
+			},
+			"offsets": {
+				"from": 1565080,
+				"to": 1570080
+			},
+			"text": " I think the answer to both is smart contract risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,080",
+				"to": "00:26:22,080"
+			},
+			"offsets": {
+				"from": 1570080,
+				"to": 1582080
+			},
+			"text": " Like if I protocols are like very robust, I think it's the most like the most box free for code in the world like right now, like better than aerospace, better than medical code, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,080",
+				"to": "00:26:31,080"
+			},
+			"offsets": {
+				"from": 1582080,
+				"to": 1591080
+			},
+			"text": " But it's like existing in a very toxic environment where any mistakes gets exploited like very fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,080",
+				"to": "00:26:36,080"
+			},
+			"offsets": {
+				"from": 1591080,
+				"to": 1596080
+			},
+			"text": " So smart contract risk is probably like the major risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,080",
+				"to": "00:26:51,080"
+			},
+			"offsets": {
+				"from": 1596080,
+				"to": 1611080
+			},
+			"text": " And on a more like economical side, I think like I'm really thinking that exchanges wallet God like CFI are really like a very strong competitor."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,080",
+				"to": "00:26:57,080"
+			},
+			"offsets": {
+				"from": 1611080,
+				"to": 1617080
+			},
+			"text": " So I think it's a very strong competitor to protocol based liquid state."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,080",
+				"to": "00:27:02,080"
+			},
+			"offsets": {
+				"from": 1617080,
+				"to": 1622080
+			},
+			"text": " Because centralization is more like it's cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,080",
+				"to": "00:27:06,080"
+			},
+			"offsets": {
+				"from": 1622080,
+				"to": 1626080
+			},
+			"text": " And people care a lot about API."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,080",
+				"to": "00:27:13,080"
+			},
+			"offsets": {
+				"from": 1626080,
+				"to": 1633080
+			},
+			"text": " So I have some statistics on the LIDO token emission is kind of like outdated, but it's something to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,080",
+				"to": "00:27:20,080"
+			},
+			"offsets": {
+				"from": 1633080,
+				"to": 1640080
+			},
+			"text": " So the token incentives that the emissions in the last seven days is five millions in terms of TVL while the revenues is only 600k."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,080",
+				"to": "00:27:27,080"
+			},
+			"offsets": {
+				"from": 1640080,
+				"to": 1647080
+			},
+			"text": " That people actually value the governance of LIDO itself as a liquid sticker or it's kind of like being overvalued."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,080",
+				"to": "00:27:37,080"
+			},
+			"offsets": {
+				"from": 1647080,
+				"to": 1657080
+			},
+			"text": " Do you see any attack factors, a governance if it were to like it's kind of like go down if people don't value it as much as right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,080",
+				"to": "00:27:40,080"
+			},
+			"offsets": {
+				"from": 1657080,
+				"to": 1660080
+			},
+			"text": " Let me rephrase and say if I understood it right."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:40,080",
+				"to": "00:27:53,080"
+			},
+			"offsets": {
+				"from": 1660080,
+				"to": 1673080
+			},
+			"text": " So you're saying that we have a lot of incentives and LIDO's TVL is probably because of incentives and not because of like people because of the fact that people want it right."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,080",
+				"to": "00:27:57,080"
+			},
+			"offsets": {
+				"from": 1673080,
+				"to": 1677080
+			},
+			"text": " Okay, why would the token incentives is five minutes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,080",
+				"to": "00:28:08,080"
+			},
+			"offsets": {
+				"from": 1677080,
+				"to": 1688080
+			},
+			"text": " So the incentives are not that beacon in the overall protocol like compared to overall protocol revenue."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,080",
+				"to": "00:28:18,080"
+			},
+			"offsets": {
+				"from": 1688080,
+				"to": 1698080
+			},
+			"text": " And they are needed to maintain good liquid pools for liquidations to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,080",
+				"to": "00:28:21,080"
+			},
+			"offsets": {
+				"from": 1698080,
+				"to": 1701080
+			},
+			"text": " That's the only reason they exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,080",
+				"to": "00:28:26,080"
+			},
+			"offsets": {
+				"from": 1701080,
+				"to": 1706080
+			},
+			"text": " The stake rewards are the main reason people have stakes."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,080",
+				"to": "00:28:41,080"
+			},
+			"offsets": {
+				"from": 1706080,
+				"to": 1721080
+			},
+			"text": " If there is like over like 4 million of weather in LIDO I think about between 200, 600, 600 of stake that is locked in maybe 700."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,080",
+				"to": "00:28:45,080"
+			},
+			"offsets": {
+				"from": 1721080,
+				"to": 1725080
+			},
+			"text": " I don't know is locked in into incentivize pools."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,080",
+				"to": "00:29:00,080"
+			},
+			"offsets": {
+				"from": 1725080,
+				"to": 1740080
+			},
+			"text": " So I think that whenever there are other like Arin that will be completely unnecessary and will change everything like the incentives for the slow but the protocol will be just as useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:01,080",
+				"to": "00:29:06,080"
+			},
+			"offsets": {
+				"from": 1741080,
+				"to": 1746080
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:06,080",
+				"to": "00:29:16,080"
+			},
+			"offsets": {
+				"from": 1746080,
+				"to": 1756080
+			},
+			"text": " [Music]"
+		}
+	]
+}

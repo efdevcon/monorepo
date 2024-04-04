@@ -1,0 +1,2298 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " I'm Greg Colvin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:25,600"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 25600
+			},
+			"text": " I spend my time for Ethereum working on the virtual machine, working on improving its"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,600",
+				"to": "00:00:35,600"
+			},
+			"offsets": {
+				"from": 25600,
+				"to": 35600
+			},
+			"text": " performance and working on designs for possible successors to what we have in order to solve"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,600",
+				"to": "00:00:40,720"
+			},
+			"offsets": {
+				"from": 35600,
+				"to": 40720
+			},
+			"text": " some of the performance problems that we're running into."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,720",
+				"to": "00:00:45,040"
+			},
+			"offsets": {
+				"from": 40720,
+				"to": 45040
+			},
+			"text": " If this works, there will be another slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,040",
+				"to": "00:00:47,520"
+			},
+			"offsets": {
+				"from": 45040,
+				"to": 47520
+			},
+			"text": " How about that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,520",
+				"to": "00:00:53,840"
+			},
+			"offsets": {
+				"from": 47520,
+				"to": 53840
+			},
+			"text": " The first problem you run into in any sort of optimization work, according to my old"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,840",
+				"to": "00:00:58,520"
+			},
+			"offsets": {
+				"from": 53840,
+				"to": 58520
+			},
+			"text": " friend Jerry Schwartz is one, all benchmarks are bogus."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,520",
+				"to": "00:01:03,720"
+			},
+			"offsets": {
+				"from": 58520,
+				"to": 63720
+			},
+			"text": " You'll never have a set of benchmarks that actually represents the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,720",
+				"to": "00:01:07,560"
+			},
+			"offsets": {
+				"from": 63720,
+				"to": 67560
+			},
+			"text": " But if you don't have benchmarks, you will just go in circles."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,560",
+				"to": "00:01:10,040"
+			},
+			"offsets": {
+				"from": 67560,
+				"to": 70040
+			},
+			"text": " You'll never make progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,040",
+				"to": "00:01:17,720"
+			},
+			"offsets": {
+				"from": 70040,
+				"to": 77720
+			},
+			"text": " So the benchmarks I'm working with are a few algorithm kernels that are relevant to what"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,720",
+				"to": "00:01:27,160"
+			},
+			"offsets": {
+				"from": 77720,
+				"to": 87160
+			},
+			"text": " we're doing, RC5s and old and useless cipher, but it's a good example of a cipher that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,160",
+				"to": "00:01:35,160"
+			},
+			"offsets": {
+				"from": 87160,
+				"to": 95160
+			},
+			"text": " uses a lot of 32 and 64-bit arithmetic, a lot of complex logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,160",
+				"to": "00:01:39,080"
+			},
+			"offsets": {
+				"from": 95160,
+				"to": 99080
+			},
+			"text": " And Blake 2B is still an important hash function."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,080",
+				"to": "00:01:44,080"
+			},
+			"offsets": {
+				"from": 99080,
+				"to": 104080
+			},
+			"text": " It's also a lot of 64-bit logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,080",
+				"to": "00:01:49,800"
+			},
+			"offsets": {
+				"from": 104080,
+				"to": 109800
+			},
+			"text": " Blum Blum Shab is cryptographic random number generator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,800",
+				"to": "00:01:53,480"
+			},
+			"offsets": {
+				"from": 109800,
+				"to": 113480
+			},
+			"text": " I think it's one of the slowest in the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,480",
+				"to": "00:02:02,720"
+			},
+			"offsets": {
+				"from": 113480,
+				"to": 122720
+			},
+			"text": " It operates on big registers, so we can use the 256-bit registers of the VAM effectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,720",
+				"to": "00:02:08,760"
+			},
+			"offsets": {
+				"from": 122720,
+				"to": 128760
+			},
+			"text": " and ECMALL also can use big registers effectively."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,760",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 128760,
+				"to": 135000
+			},
+			"text": " And then I have a few tests of individual EVM operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:25,200"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 145200
+			},
+			"text": " Those are small EVM assembly programs to try to isolate individual operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,200",
+				"to": "00:02:32,520"
+			},
+			"offsets": {
+				"from": 145200,
+				"to": 152520
+			},
+			"text": " And this is a graph of what I got with the whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,520",
+				"to": "00:02:41,560"
+			},
+			"offsets": {
+				"from": 152520,
+				"to": 161560
+			},
+			"text": " And it's a bit complex, but what you can see down along the bottom is the different benchmarks"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,560",
+				"to": "00:02:47,480"
+			},
+			"offsets": {
+				"from": 161560,
+				"to": 167480
+			},
+			"text": " and along the right are the first three are some major clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,480",
+				"to": "00:02:49,840"
+			},
+			"offsets": {
+				"from": 167480,
+				"to": 169840
+			},
+			"text": " EVM is our Go Client."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,840",
+				"to": "00:02:52,480"
+			},
+			"offsets": {
+				"from": 169840,
+				"to": 172480
+			},
+			"text": " Parity is a Rust Client."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,480",
+				"to": "00:02:57,640"
+			},
+			"offsets": {
+				"from": 172480,
+				"to": 177640
+			},
+			"text": " ETH M is the C++ client."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,640",
+				"to": "00:03:05,040"
+			},
+			"offsets": {
+				"from": 177640,
+				"to": 185040
+			},
+			"text": " The Rust Art clients yet, but EVM to Wasm is part of the Wasm research."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,040",
+				"to": "00:03:11,240"
+			},
+			"offsets": {
+				"from": 185040,
+				"to": 191240
+			},
+			"text": " It's a program that takes EVM code, translates it into Wasm code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,240",
+				"to": "00:03:18,280"
+			},
+			"offsets": {
+				"from": 191240,
+				"to": 198280
+			},
+			"text": " And then I fed that to Google's V8 engine, which generates assembly code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,280",
+				"to": "00:03:26,840"
+			},
+			"offsets": {
+				"from": 198280,
+				"to": 206840
+			},
+			"text": " EVM JIT, Pavel was just talking about, it generates assembly code directly from EVM code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,840",
+				"to": "00:03:37,240"
+			},
+			"offsets": {
+				"from": 206840,
+				"to": 217240
+			},
+			"text": " And then the native C++ is I rewrote the benchmark programs in C++ instead of Solidity or EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,240",
+				"to": "00:03:41,680"
+			},
+			"offsets": {
+				"from": 217240,
+				"to": 221680
+			},
+			"text": " assembly and compiled those to assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,680",
+				"to": "00:03:48,200"
+			},
+			"offsets": {
+				"from": 221680,
+				"to": 228200
+			},
+			"text": " So pretty clearly the C++ wins the race."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,200",
+				"to": "00:03:57,280"
+			},
+			"offsets": {
+				"from": 228200,
+				"to": 237280
+			},
+			"text": " Pretty clearly, exponentiation is pretty hard for everybody, which isn't surprising."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,280",
+				"to": "00:03:59,080"
+			},
+			"offsets": {
+				"from": 237280,
+				"to": 239080
+			},
+			"text": " But it's a little concerning."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,080",
+				"to": "00:04:06,280"
+			},
+			"offsets": {
+				"from": 239080,
+				"to": 246280
+			},
+			"text": " There might actually be possible exploits by writing contracts that do exponentiation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,280",
+				"to": "00:04:12,760"
+			},
+			"offsets": {
+				"from": 246280,
+				"to": 252760
+			},
+			"text": " and get charged only a few gas, but take a whole lot of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,760",
+				"to": "00:04:22,480"
+			},
+			"offsets": {
+				"from": 252760,
+				"to": 262480
+			},
+			"text": " And RC5 looks pretty hard because RC5 works on dynamic shifting and EVM does not yet have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,480",
+				"to": "00:04:24,320"
+			},
+			"offsets": {
+				"from": 262480,
+				"to": 264320
+			},
+			"text": " a shift operator."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,320",
+				"to": "00:04:30,360"
+			},
+			"offsets": {
+				"from": 264320,
+				"to": 270360
+			},
+			"text": " And so it gets imitated with exponentiation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,360",
+				"to": "00:04:35,040"
+			},
+			"offsets": {
+				"from": 270360,
+				"to": 275040
+			},
+			"text": " And in between, things are relatively regular."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,040",
+				"to": "00:04:42,080"
+			},
+			"offsets": {
+				"from": 275040,
+				"to": 282080
+			},
+			"text": " And the speed you could actually predict by the language that the client is written in."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,080",
+				"to": "00:04:47,280"
+			},
+			"offsets": {
+				"from": 282080,
+				"to": 287280
+			},
+			"text": " Oh, where did that come from?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,280",
+				"to": "00:04:52,040"
+			},
+			"offsets": {
+				"from": 287280,
+				"to": 292040
+			},
+			"text": " Next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,040",
+				"to": "00:04:56,040"
+			},
+			"offsets": {
+				"from": 292040,
+				"to": 296040
+			},
+			"text": " I can't see the screen with these glasses on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,040",
+				"to": "00:05:03,120"
+			},
+			"offsets": {
+				"from": 296040,
+				"to": 303120
+			},
+			"text": " So to simplify it, this is looking at one angle, a harmonic mean of the performance of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,120",
+				"to": "00:05:05,600"
+			},
+			"offsets": {
+				"from": 303120,
+				"to": 305600
+			},
+			"text": " each client."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,600",
+				"to": "00:05:09,800"
+			},
+			"offsets": {
+				"from": 305600,
+				"to": 309800
+			},
+			"text": " And it shows pretty much the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,800",
+				"to": "00:05:19,040"
+			},
+			"offsets": {
+				"from": 309800,
+				"to": 319040
+			},
+			"text": " So clearly the interpreters are not as fast as going straight to machine code by any root."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,040",
+				"to": "00:05:23,160"
+			},
+			"offsets": {
+				"from": 319040,
+				"to": 323160
+			},
+			"text": " And clearly some interpreters are better than others."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,160",
+				"to": "00:05:28,720"
+			},
+			"offsets": {
+				"from": 323160,
+				"to": 328720
+			},
+			"text": " But they've all been good enough so far for our purposes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,720",
+				"to": "00:05:32,400"
+			},
+			"offsets": {
+				"from": 328720,
+				"to": 332400
+			},
+			"text": " And of course I love car races as examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,400",
+				"to": "00:05:37,720"
+			},
+			"offsets": {
+				"from": 332400,
+				"to": 337720
+			},
+			"text": " Last year, somebody in the audience shouted out that instead of using classic cars burning"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,720",
+				"to": "00:05:42,880"
+			},
+			"offsets": {
+				"from": 337720,
+				"to": 342880
+			},
+			"text": " tons of gasoline, I should be using Tesla."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,880",
+				"to": "00:05:45,160"
+			},
+			"offsets": {
+				"from": 342880,
+				"to": 345160
+			},
+			"text": " And Teslas are nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,160",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 345160,
+				"to": 347000
+			},
+			"text": " George Hallam here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:49,120"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 349120
+			},
+			"text": " Are you here, George?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,120",
+				"to": "00:05:52,720"
+			},
+			"offsets": {
+				"from": 349120,
+				"to": 352720
+			},
+			"text": " George would agree that rather than a Tesla, this would be much cooler."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,720",
+				"to": "00:05:56,680"
+			},
+			"offsets": {
+				"from": 352720,
+				"to": 356680
+			},
+			"text": " This is a '68 Mustang hatchback."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,680",
+				"to": "00:06:00,880"
+			},
+			"offsets": {
+				"from": 356680,
+				"to": 360880
+			},
+			"text": " Under the hood is actually some powerful electric motors."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,880",
+				"to": "00:06:06,120"
+			},
+			"offsets": {
+				"from": 360880,
+				"to": 366120
+			},
+			"text": " And the trunk is full of lithium-ion batteries."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,120",
+				"to": "00:06:13,800"
+			},
+			"offsets": {
+				"from": 366120,
+				"to": 373800
+			},
+			"text": " And if this works, where's the button?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,800",
+				"to": "00:06:16,760"
+			},
+			"offsets": {
+				"from": 373800,
+				"to": 376760
+			},
+			"text": " We will see how this does against Tesla."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,760",
+				"to": "00:06:18,920"
+			},
+			"offsets": {
+				"from": 376760,
+				"to": 378920
+			},
+			"text": " It's ready, sound."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,920",
+				"to": "00:06:22,920"
+			},
+			"offsets": {
+				"from": 378920,
+				"to": 382920
+			},
+			"text": " No such luck."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,920",
+				"to": "00:06:28,240"
+			},
+			"offsets": {
+				"from": 382920,
+				"to": 388240
+			},
+			"text": " But there goes the Mustang."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,240",
+				"to": "00:06:34,240"
+			},
+			"offsets": {
+				"from": 388240,
+				"to": 394240
+			},
+			"text": " Tesla doesn't have a chance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,240",
+				"to": "00:06:40,200"
+			},
+			"offsets": {
+				"from": 394240,
+				"to": 400200
+			},
+			"text": " So, it did just missing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,200",
+				"to": "00:06:46,560"
+			},
+			"offsets": {
+				"from": 400200,
+				"to": 406560
+			},
+			"text": " But after a quarter mile it had gotten to 140 miles an hour."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,560",
+				"to": "00:06:50,440"
+			},
+			"offsets": {
+				"from": 406560,
+				"to": 410440
+			},
+			"text": " That's a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,440",
+				"to": "00:06:56,160"
+			},
+			"offsets": {
+				"from": 410440,
+				"to": 416160
+			},
+			"text": " So what keeps those interpreters from reaching native speed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,160",
+				"to": "00:07:01,040"
+			},
+			"offsets": {
+				"from": 416160,
+				"to": 421040
+			},
+			"text": " And the first answer is they're interpreters, so they've got that overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,040",
+				"to": "00:07:08,600"
+			},
+			"offsets": {
+				"from": 421040,
+				"to": 428600
+			},
+			"text": " You can work hard, you can reduce the overhead, but generally you can't do better than about"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,600",
+				"to": "00:07:13,840"
+			},
+			"offsets": {
+				"from": 428600,
+				"to": 433840
+			},
+			"text": " three or four to one compared to native code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,840",
+				"to": "00:07:22,200"
+			},
+			"offsets": {
+				"from": 433840,
+				"to": 442200
+			},
+			"text": " For our particular interpreter, the 256-bit register slow us down because real hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,200",
+				"to": "00:07:27,120"
+			},
+			"offsets": {
+				"from": 442200,
+				"to": 447120
+			},
+			"text": " has 32, 64-bit registers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,120",
+				"to": "00:07:30,680"
+			},
+			"offsets": {
+				"from": 447120,
+				"to": 450680
+			},
+			"text": " And the unconstrained control flow hurts us a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,680",
+				"to": "00:07:35,480"
+			},
+			"offsets": {
+				"from": 450680,
+				"to": 455480
+			},
+			"text": " And I'll get to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,480",
+				"to": "00:07:46,240"
+			},
+			"offsets": {
+				"from": 455480,
+				"to": 466240
+			},
+			"text": " The 256-hertz, if you remember, grade school math, adding multiplying, two numbers is pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,240",
+				"to": "00:07:47,240"
+			},
+			"offsets": {
+				"from": 466240,
+				"to": 467240
+			},
+			"text": " easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,240",
+				"to": "00:07:50,160"
+			},
+			"offsets": {
+				"from": 467240,
+				"to": 470160
+			},
+			"text": " You can do it in your head."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,160",
+				"to": "00:07:57,560"
+			},
+			"offsets": {
+				"from": 470160,
+				"to": 477560
+			},
+			"text": " If you have four numbers, suddenly it gets a lot harder and it's quadratic, so it gets"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,560",
+				"to": "00:08:00,160"
+			},
+			"offsets": {
+				"from": 477560,
+				"to": 480160
+			},
+			"text": " worse and worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,160",
+				"to": "00:08:06,080"
+			},
+			"offsets": {
+				"from": 480160,
+				"to": 486080
+			},
+			"text": " 256-squared is a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,080",
+				"to": "00:08:15,120"
+			},
+			"offsets": {
+				"from": 486080,
+				"to": 495120
+			},
+			"text": " Control flow, the jump operator and EVM, I mean, go-tos are considered harmful, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,120",
+				"to": "00:08:22,880"
+			},
+			"offsets": {
+				"from": 495120,
+				"to": 502880
+			},
+			"text": " at least if you say go to label, it will go to one and exactly one label."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,880",
+				"to": "00:08:30,080"
+			},
+			"offsets": {
+				"from": 502880,
+				"to": 510080
+			},
+			"text": " In the EVM, you say go to whatever's on the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,080",
+				"to": "00:08:37,240"
+			},
+			"offsets": {
+				"from": 510080,
+				"to": 517240
+			},
+			"text": " So there's no way of knowing often statically where it's going to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,240",
+				"to": "00:08:43,080"
+			},
+			"offsets": {
+				"from": 517240,
+				"to": 523080
+			},
+			"text": " So you can have a nice little program like this, and F calls G and H and returns, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,080",
+				"to": "00:08:46,280"
+			},
+			"offsets": {
+				"from": 523080,
+				"to": 526280
+			},
+			"text": " it calls I and returns, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,280",
+				"to": "00:08:47,600"
+			},
+			"offsets": {
+				"from": 526280,
+				"to": 527600
+			},
+			"text": " Nice clean structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,600",
+				"to": "00:08:48,600"
+			},
+			"offsets": {
+				"from": 527600,
+				"to": 528600
+			},
+			"text": " No trouble."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,600",
+				"to": "00:08:53,680"
+			},
+			"offsets": {
+				"from": 528600,
+				"to": 533680
+			},
+			"text": " No trouble to understand static analysis, anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,680",
+				"to": "00:08:55,320"
+			},
+			"offsets": {
+				"from": 533680,
+				"to": 535320
+			},
+			"text": " No trouble."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,320",
+				"to": "00:08:58,120"
+			},
+			"offsets": {
+				"from": 535320,
+				"to": 538120
+			},
+			"text": " What's it actually look like to the EVM?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,120",
+				"to": "00:09:01,520"
+			},
+			"offsets": {
+				"from": 538120,
+				"to": 541520
+			},
+			"text": " That's what it looks like to the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,520",
+				"to": "00:09:05,640"
+			},
+			"offsets": {
+				"from": 541520,
+				"to": 545640
+			},
+			"text": " So if you're trying to do formal analysis, if you're trying to write a compiler, if you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,640",
+				"to": "00:09:12,720"
+			},
+			"offsets": {
+				"from": 545640,
+				"to": 552720
+			},
+			"text": " trying to do anything with it, again, the number of paths goes up quadratically and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,720",
+				"to": "00:09:15,960"
+			},
+			"offsets": {
+				"from": 552720,
+				"to": 555960
+			},
+			"text": " you're in trouble."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,960",
+				"to": "00:09:22,760"
+			},
+			"offsets": {
+				"from": 555960,
+				"to": 562760
+			},
+			"text": " It's pretty much if you can't do it in linear time or at least analog end time on the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,760",
+				"to": "00:09:30,280"
+			},
+			"offsets": {
+				"from": 562760,
+				"to": 570280
+			},
+			"text": " chain, at deployment time or at runtime, you can't do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,280",
+				"to": "00:09:32,680"
+			},
+			"offsets": {
+				"from": 570280,
+				"to": 572680
+			},
+			"text": " So how do we do better?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,680",
+				"to": "00:09:38,040"
+			},
+			"offsets": {
+				"from": 572680,
+				"to": 578040
+			},
+			"text": " Well, EVM JIT is already doing better."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,040",
+				"to": "00:09:44,720"
+			},
+			"offsets": {
+				"from": 578040,
+				"to": 584720
+			},
+			"text": " I won't back up, but if you look at the slide, the EVM JIT is actually pretty close to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,720",
+				"to": "00:09:46,840"
+			},
+			"offsets": {
+				"from": 584720,
+				"to": 586840
+			},
+			"text": " negative speed."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,840",
+				"to": "00:09:55,240"
+			},
+			"offsets": {
+				"from": 586840,
+				"to": 595240
+			},
+			"text": " It does very well on the wide arithmetic and not so well on narrow arithmetic and complex"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,240",
+				"to": "00:09:57,600"
+			},
+			"offsets": {
+				"from": 595240,
+				"to": 597600
+			},
+			"text": " logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,600",
+				"to": "00:10:00,920"
+			},
+			"offsets": {
+				"from": 597600,
+				"to": 600920
+			},
+			"text": " But it's a very good JIT."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,920",
+				"to": "00:10:03,840"
+			},
+			"offsets": {
+				"from": 600920,
+				"to": 603840
+			},
+			"text": " I've told Pavel he gets to be the electric fox."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,840",
+				"to": "00:10:09,720"
+			},
+			"offsets": {
+				"from": 603840,
+				"to": 609720
+			},
+			"text": " He's tired of these little three and four letter names that don't mean anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,720",
+				"to": "00:10:12,880"
+			},
+			"offsets": {
+				"from": 609720,
+				"to": 612880
+			},
+			"text": " This is a racing team out of Latvia."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,880",
+				"to": "00:10:17,440"
+			},
+			"offsets": {
+				"from": 612880,
+				"to": 617440
+			},
+			"text": " It's a completely electric dragster."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,440",
+				"to": "00:10:24,240"
+			},
+			"offsets": {
+				"from": 617440,
+				"to": 624240
+			},
+			"text": " And here it is winning the European World Record."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,240",
+				"to": "00:10:30,560"
+			},
+			"offsets": {
+				"from": 624240,
+				"to": 630560
+			},
+			"text": " There it goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,560",
+				"to": "00:10:33,680"
+			},
+			"offsets": {
+				"from": 630560,
+				"to": 633680
+			},
+			"text": " Drag races are fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,680",
+				"to": "00:10:36,160"
+			},
+			"offsets": {
+				"from": 633680,
+				"to": 636160
+			},
+			"text": " It's not impressive, is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,160",
+				"to": "00:10:38,080"
+			},
+			"offsets": {
+				"from": 636160,
+				"to": 638080
+			},
+			"text": " It's over."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,080",
+				"to": "00:10:40,280"
+			},
+			"offsets": {
+				"from": 638080,
+				"to": 640280
+			},
+			"text": " Hello?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,280",
+				"to": "00:10:44,680"
+			},
+			"offsets": {
+				"from": 640280,
+				"to": 644680
+			},
+			"text": " 275 miles an hour."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,680",
+				"to": "00:10:47,200"
+			},
+			"offsets": {
+				"from": 644680,
+				"to": 647200
+			},
+			"text": " Just a few seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,200",
+				"to": "00:10:51,160"
+			},
+			"offsets": {
+				"from": 647200,
+				"to": 651160
+			},
+			"text": " Love these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,160",
+				"to": "00:11:00,520"
+			},
+			"offsets": {
+				"from": 651160,
+				"to": 660520
+			},
+			"text": " So we've got two research programs that have been going on how to improve things."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,520",
+				"to": "00:11:09,400"
+			},
+			"offsets": {
+				"from": 660520,
+				"to": 669400
+			},
+			"text": " They've been nicknamed EVM 1.5 and EVM 2.0, which doesn't really mean anything except"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,400",
+				"to": "00:11:15,240"
+			},
+			"offsets": {
+				"from": 669400,
+				"to": 675240
+			},
+			"text": " those are the nicknames."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,240",
+				"to": "00:11:30,120"
+			},
+			"offsets": {
+				"from": 675240,
+				"to": 690120
+			},
+			"text": " For 1.5, that's a suggestion to extend the current EVM by adding new opcodes and requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,120",
+				"to": "00:11:34,600"
+			},
+			"offsets": {
+				"from": 690120,
+				"to": 694600
+			},
+			"text": " So we forbid those unconstrained jobs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,600",
+				"to": "00:11:38,520"
+			},
+			"offsets": {
+				"from": 694600,
+				"to": 698520
+			},
+			"text": " We will not allow you to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,520",
+				"to": "00:11:45,800"
+			},
+			"offsets": {
+				"from": 698520,
+				"to": 705800
+			},
+			"text": " And we then have to provide a way to do the things that you otherwise do with those jumps."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,800",
+				"to": "00:11:51,320"
+			},
+			"offsets": {
+				"from": 705800,
+				"to": 711320
+			},
+			"text": " So there's opcodes for subroutines."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,320",
+				"to": "00:11:57,280"
+			},
+			"offsets": {
+				"from": 711320,
+				"to": 717280
+			},
+			"text": " And then we've got to get away from having nothing but 256-bit registers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,280",
+				"to": "00:12:03,400"
+			},
+			"offsets": {
+				"from": 717280,
+				"to": 723400
+			},
+			"text": " So we've got opcodes for native scalers and opcodes for SIMD."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,400",
+				"to": "00:12:09,680"
+			},
+			"offsets": {
+				"from": 723400,
+				"to": 729680
+			},
+			"text": " Because real hardware has all this silicon devoted to SIMD registers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,680",
+				"to": "00:12:16,760"
+			},
+			"offsets": {
+				"from": 729680,
+				"to": 736760
+			},
+			"text": " And if you go to Google and type SIMD crypto, you get a lot of results."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,760",
+				"to": "00:12:21,520"
+			},
+			"offsets": {
+				"from": 736760,
+				"to": 741520
+			},
+			"text": " So it would be useful to make that hardware available."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,520",
+				"to": "00:12:27,080"
+			},
+			"offsets": {
+				"from": 741520,
+				"to": 747080
+			},
+			"text": " And at deployment time, there's a validation phase that goes through the code and makes"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,080",
+				"to": "00:12:32,240"
+			},
+			"offsets": {
+				"from": 747080,
+				"to": 752240
+			},
+			"text": " sure that it actually does follow the rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,240",
+				"to": "00:12:35,320"
+			},
+			"offsets": {
+				"from": 752240,
+				"to": 755320
+			},
+			"text": " What a concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,320",
+				"to": "00:12:45,680"
+			},
+			"offsets": {
+				"from": 755320,
+				"to": 765680
+			},
+			"text": " And then 2.0, well, gee, it provides opcodes for structured control flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,680",
+				"to": "00:12:48,080"
+			},
+			"offsets": {
+				"from": 765680,
+				"to": 768080
+			},
+			"text": " It's stricter than 1.5."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,080",
+				"to": "00:12:54,600"
+			},
+			"offsets": {
+				"from": 768080,
+				"to": 774600
+			},
+			"text": " It actually looks like a high-level language with if-else and such."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,600",
+				"to": "00:12:58,360"
+			},
+			"offsets": {
+				"from": 774600,
+				"to": 778360
+			},
+			"text": " And it provides opcodes for native scalers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,360",
+				"to": "00:13:03,720"
+			},
+			"offsets": {
+				"from": 778360,
+				"to": 783720
+			},
+			"text": " SIMD is coming later, but there's a SIMD proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,720",
+				"to": "00:13:09,600"
+			},
+			"offsets": {
+				"from": 783720,
+				"to": 789600
+			},
+			"text": " And it also has a validation phase where it validates control flow and stack discipline"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,600",
+				"to": "00:13:12,680"
+			},
+			"offsets": {
+				"from": 789600,
+				"to": 792680
+			},
+			"text": " and type safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,680",
+				"to": "00:13:19,280"
+			},
+			"offsets": {
+				"from": 792680,
+				"to": 799280
+			},
+			"text": " So they're very similar at that level."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,280",
+				"to": "00:13:24,320"
+			},
+			"offsets": {
+				"from": 799280,
+				"to": 804320
+			},
+			"text": " So we've got some technically very, very similar proposals."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,320",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 804320,
+				"to": 812000
+			},
+			"text": " They both provide for very fast copulations in native code."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:35,280"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 815280
+			},
+			"text": " It could be done as a JIT."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,280",
+				"to": "00:13:42,240"
+			},
+			"offsets": {
+				"from": 815280,
+				"to": 822240
+			},
+			"text": " We've come to realize Ethereum cannot do JITs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,240",
+				"to": "00:13:45,840"
+			},
+			"offsets": {
+				"from": 822240,
+				"to": 825840
+			},
+			"text": " They are actually exploitable."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,840",
+				"to": "00:13:58,200"
+			},
+			"offsets": {
+				"from": 825840,
+				"to": 838200
+			},
+			"text": " That is, if you find or write a contract, which takes a long time to compile with a JIT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,200",
+				"to": "00:14:03,920"
+			},
+			"offsets": {
+				"from": 838200,
+				"to": 843920
+			},
+			"text": " but requires very little gas to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,920",
+				"to": "00:14:09,320"
+			},
+			"offsets": {
+				"from": 843920,
+				"to": 849320
+			},
+			"text": " And you start hammering those contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,320",
+				"to": "00:14:13,360"
+			},
+			"offsets": {
+				"from": 849320,
+				"to": 853360
+			},
+			"text": " You can do a really nice, you know, DOS attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,360",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 853360,
+				"to": 863000
+			},
+			"text": " So if you're going to do any compiling, you've got to do it upfront at deployment time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:35,840"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 875840
+			},
+			"text": " And Martin's notion of transpilers, I think, is very important here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,840",
+				"to": "00:14:40,400"
+			},
+			"offsets": {
+				"from": 875840,
+				"to": 880400
+			},
+			"text": " 1.5 could be transpiled to 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,400",
+				"to": "00:14:43,840"
+			},
+			"offsets": {
+				"from": 880400,
+				"to": 883840
+			},
+			"text": " 2.0 can be transpiled to 1.5."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,840",
+				"to": "00:14:48,680"
+			},
+			"offsets": {
+				"from": 883840,
+				"to": 888680
+			},
+			"text": " 1.5 or 2.0 can be transpiled to 1.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,680",
+				"to": "00:14:52,240"
+			},
+			"offsets": {
+				"from": 888680,
+				"to": 892240
+			},
+			"text": " Either of them can be transferred to the JVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,240",
+				"to": "00:14:55,280"
+			},
+			"offsets": {
+				"from": 892240,
+				"to": 895280
+			},
+			"text": " You can make up new ones pretty much."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,280",
+				"to": "00:15:02,280"
+			},
+			"offsets": {
+				"from": 895280,
+				"to": 902280
+			},
+			"text": " You know, you can compile any VM you wanted to some other VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,280",
+				"to": "00:15:05,800"
+			},
+			"offsets": {
+				"from": 902280,
+				"to": 905800
+			},
+			"text": " And he also has a notion of gas injection."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,800",
+				"to": "00:15:13,080"
+			},
+			"offsets": {
+				"from": 905800,
+				"to": 913080
+			},
+			"text": " So you put little pieces of code into the right places to count the gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,080",
+				"to": "00:15:23,800"
+			},
+			"offsets": {
+				"from": 913080,
+				"to": 923800
+			},
+			"text": " What this means to me is it doesn't matter what execution engine a client chooses."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,800",
+				"to": "00:15:36,920"
+			},
+			"offsets": {
+				"from": 923800,
+				"to": 936920
+			},
+			"text": " Because on the blockchain you can put a contract that translates into that execution engine."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,920",
+				"to": "00:15:41,080"
+			},
+			"offsets": {
+				"from": 936920,
+				"to": 941080
+			},
+			"text": " So these are, these can be completely independent choices."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,080",
+				"to": "00:15:47,280"
+			},
+			"offsets": {
+				"from": 941080,
+				"to": 947280
+			},
+			"text": " And we could actually choose to support a number of VMs if we wanted to."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,280",
+				"to": "00:15:52,560"
+			},
+			"offsets": {
+				"from": 947280,
+				"to": 952560
+			},
+			"text": " And independent parties could decide to support a different VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,560",
+				"to": "00:15:58,840"
+			},
+			"offsets": {
+				"from": 952560,
+				"to": 958840
+			},
+			"text": " Put a transpiler on the blockchain and away they go."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,840",
+				"to": "00:16:06,960"
+			},
+			"offsets": {
+				"from": 958840,
+				"to": 966960
+			},
+			"text": " Gee, I'm almost out of slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,960",
+				"to": "00:16:09,680"
+			},
+			"offsets": {
+				"from": 966960,
+				"to": 969680
+			},
+			"text": " And there's no sound."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,680",
+				"to": "00:16:12,880"
+			},
+			"offsets": {
+				"from": 969680,
+				"to": 972880
+			},
+			"text": " That's really too bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,880",
+				"to": "00:16:17,200"
+			},
+			"offsets": {
+				"from": 972880,
+				"to": 977200
+			},
+			"text": " So what is the big deal about native performance?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,200",
+				"to": "00:16:22,040"
+			},
+			"offsets": {
+				"from": 977200,
+				"to": 982040
+			},
+			"text": " And what's the big deal about being lean and mean and close to the metal?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,040",
+				"to": "00:16:25,200"
+			},
+			"offsets": {
+				"from": 982040,
+				"to": 985200
+			},
+			"text": " Well, we saw the electric dragsters."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,200",
+				"to": "00:16:28,440"
+			},
+			"offsets": {
+				"from": 985200,
+				"to": 988440
+			},
+			"text": " Here's like a real top fuel dragster."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,440",
+				"to": "00:16:37,800"
+			},
+			"offsets": {
+				"from": 988440,
+				"to": 997800
+			},
+			"text": " They run on a mixture of diesel fuel and nitro methane."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,800",
+				"to": "00:16:47,160"
+			},
+			"offsets": {
+				"from": 997800,
+				"to": 1007160
+			},
+			"text": " And just about a month and a half ago, not too far from Ming's place in Michigan, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,160",
+				"to": "00:16:55,360"
+			},
+			"offsets": {
+				"from": 1007160,
+				"to": 1015360
+			},
+			"text": " guy got the world record."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,360",
+				"to": "00:16:57,800"
+			},
+			"offsets": {
+				"from": 1015360,
+				"to": 1017800
+			},
+			"text": " And it's over."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,800",
+				"to": "00:17:02,200"
+			},
+			"offsets": {
+				"from": 1017800,
+				"to": 1022200
+			},
+			"text": " 338 miles per hour and a quarter mile."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,200",
+				"to": "00:17:09,880"
+			},
+			"offsets": {
+				"from": 1022200,
+				"to": 1029880
+			},
+			"text": " These guys pull about five or six G's which is about the same as an astronaut taking off"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,880",
+				"to": "00:17:17,960"
+			},
+			"offsets": {
+				"from": 1029880,
+				"to": 1037960
+			},
+			"text": " in the space shuttle."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,960",
+				"to": "00:17:22,320"
+			},
+			"offsets": {
+				"from": 1037960,
+				"to": 1042320
+			},
+			"text": " But there's a problem with going fully native."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,320",
+				"to": "00:17:28,600"
+			},
+			"offsets": {
+				"from": 1042320,
+				"to": 1048600
+			},
+			"text": " In the seabworld we call it undefined behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,600",
+				"to": "00:17:31,040"
+			},
+			"offsets": {
+				"from": 1048600,
+				"to": 1051040
+			},
+			"text": " Hello?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,040",
+				"to": "00:17:38,040"
+			},
+			"offsets": {
+				"from": 1051040,
+				"to": 1058040
+			},
+			"text": " No, that's the last."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,040",
+				"to": "00:17:41,280"
+			},
+			"offsets": {
+				"from": 1058040,
+				"to": 1061280
+			},
+			"text": " Come here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,280",
+				"to": "00:17:44,480"
+			},
+			"offsets": {
+				"from": 1061280,
+				"to": 1064480
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,480",
+				"to": "00:17:47,040"
+			},
+			"offsets": {
+				"from": 1064480,
+				"to": 1067040
+			},
+			"text": " Play, play."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,040",
+				"to": "00:17:48,680"
+			},
+			"offsets": {
+				"from": 1067040,
+				"to": 1068680
+			},
+			"text": " There it goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,680",
+				"to": "00:17:56,120"
+			},
+			"offsets": {
+				"from": 1068680,
+				"to": 1076120
+			},
+			"text": " What's going on my screen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,120",
+				"to": "00:18:02,920"
+			},
+			"offsets": {
+				"from": 1076120,
+				"to": 1082920
+			},
+			"text": " We'll try it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,920",
+				"to": "00:18:09,320"
+			},
+			"offsets": {
+				"from": 1082920,
+				"to": 1089320
+			},
+			"text": " The driver actually walked away unscratched."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,320",
+				"to": "00:18:10,320"
+			},
+			"offsets": {
+				"from": 1089320,
+				"to": 1090320
+			},
+			"text": " I love this guy."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,320",
+				"to": "00:18:18,480"
+			},
+			"offsets": {
+				"from": 1090320,
+				"to": 1098480
+			},
+			"text": " We'll give you one more."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,480",
+				"to": "00:18:20,600"
+			},
+			"offsets": {
+				"from": 1098480,
+				"to": 1100600
+			},
+			"text": " Boom."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,600",
+				"to": "00:18:26,600"
+			},
+			"offsets": {
+				"from": 1100600,
+				"to": 1106600
+			},
+			"text": " And it turns out I'm done."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,600",
+				"to": "00:18:37,560"
+			},
+			"offsets": {
+				"from": 1106600,
+				"to": 1117560
+			},
+			"text": " I knew it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,560",
+				"to": "00:18:43,880"
+			},
+			"offsets": {
+				"from": 1117560,
+				"to": 1123880
+			},
+			"text": " Audiences love explosions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,880",
+				"to": "00:18:44,160"
+			},
+			"offsets": {
+				"from": 1123880,
+				"to": 1124160
+			},
+			"text": " I'm done."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,160",
+				"to": "00:18:51,160"
+			},
+			"offsets": {
+				"from": 1124160,
+				"to": 1131160
+			},
+			"text": " I'm done."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,160",
+				"to": "00:18:53,900"
+			},
+			"offsets": {
+				"from": 1131160,
+				"to": 1133900
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

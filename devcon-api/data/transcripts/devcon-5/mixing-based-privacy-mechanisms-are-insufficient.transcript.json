@@ -1,0 +1,923 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " Hello everyone, I am Adelkopta from Palima and I will be talking about mixing based privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:21,080"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 21080
+			},
+			"text": " mechanisms and why they are insufficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,080",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 21080,
+				"to": 26000
+			},
+			"text": " So we had to put in awe of what mixing based privacy mechanisms are, just a few minutes"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:28,760"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 28760
+			},
+			"text": " above but I will still go but I am brief read."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,760",
+				"to": "00:00:31,120"
+			},
+			"offsets": {
+				"from": 28760,
+				"to": 31120
+			},
+			"text": " So there are two components to the mixers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,120",
+				"to": "00:00:37,320"
+			},
+			"offsets": {
+				"from": 31120,
+				"to": 37320
+			},
+			"text": " One is asking the sender and receivers and their component is hiding the amount done"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,320",
+				"to": "00:00:38,320"
+			},
+			"offsets": {
+				"from": 37320,
+				"to": 38320
+			},
+			"text": " in the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,320",
+				"to": "00:00:43,640"
+			},
+			"offsets": {
+				"from": 38320,
+				"to": 43640
+			},
+			"text": " The second component is actually done nicely in zero knowledge based mixers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,640",
+				"to": "00:00:46,960"
+			},
+			"offsets": {
+				"from": 43640,
+				"to": 46960
+			},
+			"text": " So I will be talking more about the first concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,960",
+				"to": "00:00:53,400"
+			},
+			"offsets": {
+				"from": 46960,
+				"to": 53400
+			},
+			"text": " In how mixers work is basically they take different transactions and they put them in"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,400",
+				"to": "00:00:57,200"
+			},
+			"offsets": {
+				"from": 53400,
+				"to": 57200
+			},
+			"text": " a terminal that mixes them together and then releases the funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,200",
+				"to": "00:01:01,960"
+			},
+			"offsets": {
+				"from": 57200,
+				"to": 61960
+			},
+			"text": " So at the end of the transaction you can never know which transaction was sent by whom to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,960",
+				"to": "00:01:02,960"
+			},
+			"offsets": {
+				"from": 61960,
+				"to": 62960
+			},
+			"text": " whom."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,960",
+				"to": "00:01:08,400"
+			},
+			"offsets": {
+				"from": 62960,
+				"to": 68400
+			},
+			"text": " So like for example in this one you can see green is supposed to send the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,400",
+				"to": "00:01:11,640"
+			},
+			"offsets": {
+				"from": 68400,
+				"to": 71640
+			},
+			"text": " to green, yellow to yellow, blue to you, blue to blue."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,640",
+				"to": "00:01:16,320"
+			},
+			"offsets": {
+				"from": 71640,
+				"to": 76320
+			},
+			"text": " But after the mixture is done everyone will receive this fund but the outside world will"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,320",
+				"to": "00:01:21,840"
+			},
+			"offsets": {
+				"from": 76320,
+				"to": 81840
+			},
+			"text": " never be able to know that green sent to the transaction to green, blue or yellow."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,840",
+				"to": "00:01:24,880"
+			},
+			"offsets": {
+				"from": 81840,
+				"to": 84880
+			},
+			"text": " It could have been any one of those three."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,880",
+				"to": "00:01:30,560"
+			},
+			"offsets": {
+				"from": 84880,
+				"to": 90560
+			},
+			"text": " Now in this example the anonymity set is three that is basically the number of possibilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,560",
+				"to": "00:01:33,920"
+			},
+			"offsets": {
+				"from": 90560,
+				"to": 93920
+			},
+			"text": " that a transaction can actually be."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,920",
+				"to": "00:01:40,480"
+			},
+			"offsets": {
+				"from": 93920,
+				"to": 100480
+			},
+			"text": " So the first disadvantage of such mixers is that the anonymity set is limited in size."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,480",
+				"to": "00:01:43,600"
+			},
+			"offsets": {
+				"from": 100480,
+				"to": 103600
+			},
+			"text": " So it is quite easy to adapt."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,600",
+				"to": "00:01:47,840"
+			},
+			"offsets": {
+				"from": 103600,
+				"to": 107840
+			},
+			"text": " And churning can help in applications like Monero it is just a prototype."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,840",
+				"to": "00:01:52,040"
+			},
+			"offsets": {
+				"from": 107840,
+				"to": 112040
+			},
+			"text": " I do not have time to talk about this but churning can help if you are doing private transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,040",
+				"to": "00:01:53,040"
+			},
+			"offsets": {
+				"from": 112040,
+				"to": 113040
+			},
+			"text": " do churning."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,040",
+				"to": "00:01:58,520"
+			},
+			"offsets": {
+				"from": 113040,
+				"to": 118520
+			},
+			"text": " Then the other thing is that analytic companies have more information than a normal user."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,520",
+				"to": "00:02:03,880"
+			},
+			"offsets": {
+				"from": 118520,
+				"to": 123880
+			},
+			"text": " For a normal user maybe for me and you as well a Monero transaction will probably be"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,880",
+				"to": "00:02:05,520"
+			},
+			"offsets": {
+				"from": 123880,
+				"to": 125520
+			},
+			"text": " secure enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,520",
+				"to": "00:02:11,120"
+			},
+			"offsets": {
+				"from": 125520,
+				"to": 131120
+			},
+			"text": " But when the analytic companies get involved they take the issue of all the accounts they"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,120",
+				"to": "00:02:14,160"
+			},
+			"offsets": {
+				"from": 131120,
+				"to": 134160
+			},
+			"text": " can get data from daily exchanges and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,160",
+				"to": "00:02:18,160"
+			},
+			"offsets": {
+				"from": 134160,
+				"to": 138160
+			},
+			"text": " So they have more data to de-enronomize your transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,160",
+				"to": "00:02:24,720"
+			},
+			"offsets": {
+				"from": 138160,
+				"to": 144720
+			},
+			"text": " So in mixer based transactions if one transaction gets de-enronomized the anonymity of other"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,720",
+				"to": "00:02:26,920"
+			},
+			"offsets": {
+				"from": 144720,
+				"to": 146920
+			},
+			"text": " transactions is also reduced."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,920",
+				"to": "00:02:30,920"
+			},
+			"offsets": {
+				"from": 146920,
+				"to": 150920
+			},
+			"text": " So as I said in the last example there were three people doing the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,920",
+				"to": "00:02:36,880"
+			},
+			"offsets": {
+				"from": 150920,
+				"to": 156880
+			},
+			"text": " If the third party knows one of those three people even one of those then the anonymity"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,880",
+				"to": "00:02:38,880"
+			},
+			"offsets": {
+				"from": 156880,
+				"to": 158880
+			},
+			"text": " of the other two is reduced."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,880",
+				"to": "00:02:44,920"
+			},
+			"offsets": {
+				"from": 158880,
+				"to": 164920
+			},
+			"text": " Because the anonymity set is then essentially reduced to two transactions rather than three."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,920",
+				"to": "00:02:50,120"
+			},
+			"offsets": {
+				"from": 164920,
+				"to": 170120
+			},
+			"text": " So when the big cops are involved they know about transactions run by different people"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,120",
+				"to": "00:02:52,840"
+			},
+			"offsets": {
+				"from": 170120,
+				"to": 172840
+			},
+			"text": " they know the information about many transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,840",
+				"to": "00:02:56,600"
+			},
+			"offsets": {
+				"from": 172840,
+				"to": 176600
+			},
+			"text": " So the anonymity set is reduced for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,600",
+				"to": "00:03:01,760"
+			},
+			"offsets": {
+				"from": 176600,
+				"to": 181760
+			},
+			"text": " Like they know most of the transactions are already they just need to figure out the remaining"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,760",
+				"to": "00:03:02,760"
+			},
+			"offsets": {
+				"from": 181760,
+				"to": 182760
+			},
+			"text": " ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,760",
+				"to": "00:03:05,560"
+			},
+			"offsets": {
+				"from": 182760,
+				"to": 185560
+			},
+			"text": " Then the bad actors can poison the anonymity set."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,560",
+				"to": "00:03:10,240"
+			},
+			"offsets": {
+				"from": 185560,
+				"to": 190240
+			},
+			"text": " So if I am a bad actor I can spam the network with my own three transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,240",
+				"to": "00:03:13,880"
+			},
+			"offsets": {
+				"from": 190240,
+				"to": 193880
+			},
+			"text": " So in those transactions I obviously know the sender and the receiver."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,880",
+				"to": "00:03:19,560"
+			},
+			"offsets": {
+				"from": 193880,
+				"to": 199560
+			},
+			"text": " So if the other party will use my transactions to mask their own transactions in an anonymity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,560",
+				"to": "00:03:25,480"
+			},
+			"offsets": {
+				"from": 199560,
+				"to": 205480
+			},
+			"text": " set then they anonymity will be reduced because they are actually using known information"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,480",
+				"to": "00:03:28,680"
+			},
+			"offsets": {
+				"from": 205480,
+				"to": 208680
+			},
+			"text": " rather than private transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,680",
+				"to": "00:03:30,160"
+			},
+			"offsets": {
+				"from": 208680,
+				"to": 210160
+			},
+			"text": " A big enough network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,160",
+				"to": "00:03:36,880"
+			},
+			"offsets": {
+				"from": 210160,
+				"to": 216880
+			},
+			"text": " Now this one is actually not an on-chain exploitation but something that can happen and I have seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,880",
+				"to": "00:03:38,640"
+			},
+			"offsets": {
+				"from": 216880,
+				"to": 218640
+			},
+			"text": " it being used."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,640",
+				"to": "00:03:44,720"
+			},
+			"offsets": {
+				"from": 218640,
+				"to": 224720
+			},
+			"text": " So when in a system like Monero you can deploy 50 nodes and then you will have a good view"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,720",
+				"to": "00:03:46,280"
+			},
+			"offsets": {
+				"from": 224720,
+				"to": 226280
+			},
+			"text": " of the whole network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,280",
+				"to": "00:03:50,800"
+			},
+			"offsets": {
+				"from": 226280,
+				"to": 230800
+			},
+			"text": " And then you can start listening to transactions involving let's say Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,800",
+				"to": "00:03:53,600"
+			},
+			"offsets": {
+				"from": 230800,
+				"to": 233600
+			},
+			"text": " So you see Alice is involved in 100 transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,600",
+				"to": "00:03:59,280"
+			},
+			"offsets": {
+				"from": 233600,
+				"to": 239280
+			},
+			"text": " Then to figure out which of the Monero nodes got those Alice transactions before others."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,280",
+				"to": "00:04:04,440"
+			},
+			"offsets": {
+				"from": 239280,
+				"to": 244440
+			},
+			"text": " So with enough data you can figure out like if Alice is using only one of the private nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,440",
+				"to": "00:04:08,240"
+			},
+			"offsets": {
+				"from": 244440,
+				"to": 248240
+			},
+			"text": " you can figure out which node Alice is using."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,240",
+				"to": "00:04:12,040"
+			},
+			"offsets": {
+				"from": 248240,
+				"to": 252040
+			},
+			"text": " It's not a full proof method but it can be done with enough resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,040",
+				"to": "00:04:17,280"
+			},
+			"offsets": {
+				"from": 252040,
+				"to": 257280
+			},
+			"text": " Once you figure out which node is Alice you can get more information using the IP address"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,280",
+				"to": "00:04:20,040"
+			},
+			"offsets": {
+				"from": 257280,
+				"to": 260040
+			},
+			"text": " of that node and other stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,040",
+				"to": "00:04:25,320"
+			},
+			"offsets": {
+				"from": 260040,
+				"to": 265320
+			},
+			"text": " Now some examples of the previous attacks one was an attack done on the sub which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,320",
+				"to": "00:04:26,520"
+			},
+			"offsets": {
+				"from": 265320,
+				"to": 266520
+			},
+			"text": " a few months back."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,520",
+				"to": "00:04:31,600"
+			},
+			"offsets": {
+				"from": 266520,
+				"to": 271600
+			},
+			"text": " So one of the attackers started reusing addresses that is bad for everyone else because a reuse"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,600",
+				"to": "00:04:35,600"
+			},
+			"offsets": {
+				"from": 271600,
+				"to": 275600
+			},
+			"text": " address reduces anonymity of every transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,600",
+				"to": "00:04:41,160"
+			},
+			"offsets": {
+				"from": 275600,
+				"to": 281160
+			},
+			"text": " So yeah and you can read more about this in this tweet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,160",
+				"to": "00:04:45,120"
+			},
+			"offsets": {
+				"from": 281160,
+				"to": 285120
+			},
+			"text": " The other attack I want to talk about is more interesting flat XMR."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,120",
+				"to": "00:04:52,360"
+			},
+			"offsets": {
+				"from": 285120,
+				"to": 292360
+			},
+			"text": " So it was basically a similar attack in which the attacker flooded Monero with transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,360",
+				"to": "00:04:58,280"
+			},
+			"offsets": {
+				"from": 292360,
+				"to": 298280
+			},
+			"text": " over 12 months and by using only 1,800 US dollars they were able to flood Monero with"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,280",
+				"to": "00:05:03,760"
+			},
+			"offsets": {
+				"from": 298280,
+				"to": 303760
+			},
+			"text": " enough transactions to completely de-anonymize almost 50% of Monero transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,760",
+				"to": "00:05:10,240"
+			},
+			"offsets": {
+				"from": 303760,
+				"to": 310240
+			},
+			"text": " And they reduced anonymity of 90% of the transactions and Monero is right now the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,240",
+				"to": "00:05:32,160"
+			},
+			"offsets": {
+				"from": 310240,
+				"to": 332160
+			},
+			"text": " of the art when it comes to like"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,160",
+				"to": "00:05:34,160"
+			},
+			"offsets": {
+				"from": 332160,
+				"to": 334160
+			},
+			"text": " the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,160",
+				"to": "00:05:35,160"
+			},
+			"offsets": {
+				"from": 334160,
+				"to": 335160
+			},
+			"text": " time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,160",
+				"to": "00:05:36,160"
+			},
+			"offsets": {
+				"from": 335160,
+				"to": 336160
+			},
+			"text": " So that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,160",
+				"to": "00:05:37,160"
+			},
+			"offsets": {
+				"from": 336160,
+				"to": 337160
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,160",
+				"to": "00:05:37,160"
+			},
+			"offsets": {
+				"from": 337160,
+				"to": 337160
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,160",
+				"to": "00:05:39,160"
+			},
+			"offsets": {
+				"from": 337160,
+				"to": 339160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,160",
+				"to": "00:05:46,160"
+			},
+			"offsets": {
+				"from": 339160,
+				"to": 346160
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,160",
+				"to": "00:05:53,160"
+			},
+			"offsets": {
+				"from": 346160,
+				"to": 353160
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,160",
+				"to": "00:05:55,900"
+			},
+			"offsets": {
+				"from": 353160,
+				"to": 355900
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

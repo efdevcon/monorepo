@@ -1,0 +1,4476 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,620"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12620
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,620",
+				"to": "00:00:15,020"
+			},
+			"offsets": {
+				"from": 12620,
+				"to": 15020
+			},
+			"text": " For those that don't know, I'm Taylor Monahan."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,020",
+				"to": "00:00:19,360"
+			},
+			"offsets": {
+				"from": 15020,
+				"to": 19360
+			},
+			"text": " I'm going to be talking about the original SIN, basically some"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,360",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 19360,
+				"to": 22000
+			},
+			"text": " of our early choices and how they've shaped this ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:25,640"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 25640
+			},
+			"text": " And more importantly, how can we make better choices"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,640",
+				"to": "00:00:27,800"
+			},
+			"offsets": {
+				"from": 25640,
+				"to": 27800
+			},
+			"text": " so that the world is better tomorrow?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,720",
+				"to": "00:00:29,720"
+			},
+			"offsets": {
+				"from": 28720,
+				"to": 29720
+			},
+			"text": " A little bit about me."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,720",
+				"to": "00:00:31,760"
+			},
+			"offsets": {
+				"from": 29720,
+				"to": 31760
+			},
+			"text": " Again, my name is Taylor Monahan."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,760",
+				"to": "00:00:34,160"
+			},
+			"offsets": {
+				"from": 31760,
+				"to": 34160
+			},
+			"text": " I've been in this space since 2013."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,160",
+				"to": "00:00:36,840"
+			},
+			"offsets": {
+				"from": 34160,
+				"to": 36840
+			},
+			"text": " I got in right before the Mt. Gox Crash."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,840",
+				"to": "00:00:39,600"
+			},
+			"offsets": {
+				"from": 36840,
+				"to": 39600
+			},
+			"text": " I've been building wallets since 2015."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,600",
+				"to": "00:00:41,160"
+			},
+			"offsets": {
+				"from": 39600,
+				"to": 41160
+			},
+			"text": " I started my ether wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,160",
+				"to": "00:00:44,280"
+			},
+			"offsets": {
+				"from": 41160,
+				"to": 44280
+			},
+			"text": " We then did like a brand fork into my crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,280",
+				"to": "00:00:47,120"
+			},
+			"offsets": {
+				"from": 44280,
+				"to": 47120
+			},
+			"text": " And we were acquired by Metamask earlier this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,120",
+				"to": "00:00:51,120"
+			},
+			"offsets": {
+				"from": 47120,
+				"to": 51120
+			},
+			"text": " It's been a ride, that's for sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,120",
+				"to": "00:00:55,360"
+			},
+			"offsets": {
+				"from": 51120,
+				"to": 55360
+			},
+			"text": " But I'm basically like an expert in how to like build wallets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,360",
+				"to": "00:00:57,800"
+			},
+			"offsets": {
+				"from": 55360,
+				"to": 57800
+			},
+			"text": " also how not to build wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,280",
+				"to": "00:01:00,640"
+			},
+			"offsets": {
+				"from": 58280,
+				"to": 60640
+			},
+			"text": " So maybe I can like share some expertise today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,640",
+				"to": "00:01:03,200"
+			},
+			"offsets": {
+				"from": 60640,
+				"to": 63200
+			},
+			"text": " So I have a four-year-old now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,200",
+				"to": "00:01:05,680"
+			},
+			"offsets": {
+				"from": 63200,
+				"to": 65680
+			},
+			"text": " And this is one of our favorite books."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,680",
+				"to": "00:01:09,120"
+			},
+			"offsets": {
+				"from": 65680,
+				"to": 69120
+			},
+			"text": " And it's like quite ironic because it's basically the story of my life."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,120",
+				"to": "00:01:14,160"
+			},
+			"offsets": {
+				"from": 69120,
+				"to": 74160
+			},
+			"text": " When I first started out, I was just building."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,160",
+				"to": "00:01:15,520"
+			},
+			"offsets": {
+				"from": 74160,
+				"to": 75520
+			},
+			"text": " I was building something amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,520",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 75520,
+				"to": 79000
+			},
+			"text": " And I think a lot of you here are probably in the same boat, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:20,100"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 80100
+			},
+			"text": " You're in the early days."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,100",
+				"to": "00:01:21,200"
+			},
+			"offsets": {
+				"from": 80100,
+				"to": 81200
+			},
+			"text": " You're in the early stages."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,200",
+				"to": "00:01:25,960"
+			},
+			"offsets": {
+				"from": 81200,
+				"to": 85960
+			},
+			"text": " You're building something inspirational, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,960",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 85960,
+				"to": 87000
+			},
+			"text": " That's going to change the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:29,440"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 89440
+			},
+			"text": " It's going to make people's lives better."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,440",
+				"to": "00:01:30,560"
+			},
+			"offsets": {
+				"from": 89440,
+				"to": 90560
+			},
+			"text": " It's going to make society better."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,560",
+				"to": "00:01:34,280"
+			},
+			"offsets": {
+				"from": 90560,
+				"to": 94280
+			},
+			"text": " And I hope that you're really proud of what you're building, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,280",
+				"to": "00:01:37,640"
+			},
+			"offsets": {
+				"from": 94280,
+				"to": 97640
+			},
+			"text": " Like you create something, you brought something new into this world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,640",
+				"to": "00:01:43,560"
+			},
+			"offsets": {
+				"from": 97640,
+				"to": 103560
+			},
+			"text": " And this space specifically is like truly remarkable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,560",
+				"to": "00:01:47,760"
+			},
+			"offsets": {
+				"from": 103560,
+				"to": 107760
+			},
+			"text": " It is next level in terms of like what we are actually doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,760",
+				"to": "00:01:50,640"
+			},
+			"offsets": {
+				"from": 107760,
+				"to": 110640
+			},
+			"text": " and the impact that our products can have."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,640",
+				"to": "00:01:55,600"
+			},
+			"offsets": {
+				"from": 110640,
+				"to": 115600
+			},
+			"text": " These are all of the best web3 words."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,080",
+				"to": "00:02:00,240"
+			},
+			"offsets": {
+				"from": 116080,
+				"to": 120240
+			},
+			"text": " All of the most amazing things that we can do with the technology and our products."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,240",
+				"to": "00:02:05,880"
+			},
+			"offsets": {
+				"from": 120240,
+				"to": 125880
+			},
+			"text": " And most importantly, like I think, you know, at the end there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,880",
+				"to": "00:02:09,680"
+			},
+			"offsets": {
+				"from": 125880,
+				"to": 129680
+			},
+			"text": " we have the inclusive community and we have the genius people and the good vibes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,680",
+				"to": "00:02:11,320"
+			},
+			"offsets": {
+				"from": 129680,
+				"to": 131320
+			},
+			"text": " Like that's what I'm here for."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,320",
+				"to": "00:02:16,520"
+			},
+			"offsets": {
+				"from": 131320,
+				"to": 136520
+			},
+			"text": " And that's kind of what I like to focus on most, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,520",
+				"to": "00:02:19,880"
+			},
+			"offsets": {
+				"from": 136520,
+				"to": 139880
+			},
+			"text": " Like when I get on stage, I like to talk about people."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,880",
+				"to": "00:02:25,320"
+			},
+			"offsets": {
+				"from": 139880,
+				"to": 145320
+			},
+			"text": " Because if we only think about the technology and the products that we're building,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,320",
+				"to": "00:02:29,320"
+			},
+			"offsets": {
+				"from": 146320,
+				"to": 149320
+			},
+			"text": " well, you're going to end up in this situation quite a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,320",
+				"to": "00:02:35,120"
+			},
+			"offsets": {
+				"from": 149320,
+				"to": 155120
+			},
+			"text": " Because the second that you sort of, I don't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,120",
+				"to": "00:02:38,720"
+			},
+			"offsets": {
+				"from": 155120,
+				"to": 158720
+			},
+			"text": " the second your dreams start to come to fruition,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,720",
+				"to": "00:02:43,520"
+			},
+			"offsets": {
+				"from": 158720,
+				"to": 163520
+			},
+			"text": " the second that everything starts to line up and you feel like you might have a grasp on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,520",
+				"to": "00:02:46,120"
+			},
+			"offsets": {
+				"from": 163520,
+				"to": 166120
+			},
+			"text": " It really does seem that then out of nowhere,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,120",
+				"to": "00:02:49,320"
+			},
+			"offsets": {
+				"from": 166120,
+				"to": 169320
+			},
+			"text": " everything comes crashing down."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,320",
+				"to": "00:02:52,520"
+			},
+			"offsets": {
+				"from": 169320,
+				"to": 172520
+			},
+			"text": " Because building should is really, really hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,520",
+				"to": "00:02:57,120"
+			},
+			"offsets": {
+				"from": 172520,
+				"to": 177120
+			},
+			"text": " And especially when you're a wallet and, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,120",
+				"to": "00:03:02,320"
+			},
+			"offsets": {
+				"from": 177120,
+				"to": 182320
+			},
+			"text": " you're the product that people are using to access and manage all of their digital assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,320",
+				"to": "00:03:04,120"
+			},
+			"offsets": {
+				"from": 182320,
+				"to": 184120
+			},
+			"text": " it's really hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,120",
+				"to": "00:03:06,720"
+			},
+			"offsets": {
+				"from": 184120,
+				"to": 186720
+			},
+			"text": " Things come crashing down a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,720",
+				"to": "00:03:15,520"
+			},
+			"offsets": {
+				"from": 186720,
+				"to": 195520
+			},
+			"text": " And the worst part of failing, like building a good product is actually like the failing people, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,520",
+				"to": "00:03:17,920"
+			},
+			"offsets": {
+				"from": 195520,
+				"to": 197920
+			},
+			"text": " We're failing the newcomers that enter the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,920",
+				"to": "00:03:19,920"
+			},
+			"offsets": {
+				"from": 197920,
+				"to": 199920
+			},
+			"text": " They're getting fished."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,920",
+				"to": "00:03:21,520"
+			},
+			"offsets": {
+				"from": 199920,
+				"to": 201520
+			},
+			"text": " They're getting scammed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,520",
+				"to": "00:03:24,120"
+			},
+			"offsets": {
+				"from": 202520,
+				"to": 204120
+			},
+			"text": " They're optimistic one day."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,120",
+				"to": "00:03:27,720"
+			},
+			"offsets": {
+				"from": 204120,
+				"to": 207720
+			},
+			"text": " And then they have their hopes in Dream Crush the next day."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,720",
+				"to": "00:03:33,120"
+			},
+			"offsets": {
+				"from": 207720,
+				"to": 213120
+			},
+			"text": " And that's what basically the last, I don't know, like seven years of my life have been, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,120",
+				"to": "00:03:37,920"
+			},
+			"offsets": {
+				"from": 213120,
+				"to": 217920
+			},
+			"text": " Like trying to be better every single day, trying to help people understand the technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,920",
+				"to": "00:03:42,920"
+			},
+			"offsets": {
+				"from": 217920,
+				"to": 222920
+			},
+			"text": " trying to get people to understand how they can use this technology to actually improve people's lives."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,920",
+				"to": "00:03:49,720"
+			},
+			"offsets": {
+				"from": 222920,
+				"to": 229720
+			},
+			"text": " Because this shit is fucked up sometimes as hopeful and as optimistic and lovely."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,720",
+				"to": "00:03:52,720"
+			},
+			"offsets": {
+				"from": 229720,
+				"to": 232720
+			},
+			"text": " And as much as we want to believe that we are building a better world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,720",
+				"to": "00:03:56,520"
+			},
+			"offsets": {
+				"from": 232720,
+				"to": 236520
+			},
+			"text": " it also means that sometimes you have to face the reality"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,520",
+				"to": "00:04:02,320"
+			},
+			"offsets": {
+				"from": 236520,
+				"to": 242320
+			},
+			"text": " that our world is one where like, this is money, this is people's livelihoods."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,320",
+				"to": "00:04:04,520"
+			},
+			"offsets": {
+				"from": 242320,
+				"to": 244520
+			},
+			"text": " This is their financial well-being."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,520",
+				"to": "00:04:07,720"
+			},
+			"offsets": {
+				"from": 244520,
+				"to": 247720
+			},
+			"text": " This is their families, their mortgages, their children's colleges."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,720",
+				"to": "00:04:12,720"
+			},
+			"offsets": {
+				"from": 247720,
+				"to": 252720
+			},
+			"text": " And this ecosystem specifically, the entire ecosystem from the get-go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,720",
+				"to": "00:04:19,120"
+			},
+			"offsets": {
+				"from": 252720,
+				"to": 259120
+			},
+			"text": " has really been built on top of these public private key pairs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,520",
+				"to": "00:04:22,520"
+			},
+			"offsets": {
+				"from": 259520,
+				"to": 262520
+			},
+			"text": " Like every single thing that we do traces back to the private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,520",
+				"to": "00:04:25,920"
+			},
+			"offsets": {
+				"from": 262520,
+				"to": 265920
+			},
+			"text": " And that private key is just like a single string of characters."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,920",
+				"to": "00:04:33,320"
+			},
+			"offsets": {
+				"from": 265920,
+				"to": 273320
+			},
+			"text": " And it's so important that I've spent countless hours trying to educate people about the importance of this private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,320",
+				"to": "00:04:37,520"
+			},
+			"offsets": {
+				"from": 273320,
+				"to": 277520
+			},
+			"text": " I worked with MetaMask years ago to rename it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,520",
+				"to": "00:04:43,720"
+			},
+			"offsets": {
+				"from": 277520,
+				"to": 283720
+			},
+			"text": " Now we call it a secret recovery phrase so that we can like hopefully have people understand the importance of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,720",
+				"to": "00:04:46,120"
+			},
+			"offsets": {
+				"from": 283720,
+				"to": 286120
+			},
+			"text": " and the secretness of it earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,520",
+				"to": "00:04:51,520"
+			},
+			"offsets": {
+				"from": 287520,
+				"to": 291520
+			},
+			"text": " But the reality is like the products that I've built are responsible for a lot of money getting lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,520",
+				"to": "00:04:58,520"
+			},
+			"offsets": {
+				"from": 291520,
+				"to": 298520
+			},
+			"text": " And if we don't get significantly better and make web 3 significantly easier to access in the coming years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,520",
+				"to": "00:05:06,520"
+			},
+			"offsets": {
+				"from": 298520,
+				"to": 306520
+			},
+			"text": " it means that the products I build and we build are going to be responsible for billions more dollars lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,520",
+				"to": "00:05:11,520"
+			},
+			"offsets": {
+				"from": 306520,
+				"to": 311520
+			},
+			"text": " And that's like a hard thing to wrap your brain around."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,520",
+				"to": "00:05:13,520"
+			},
+			"offsets": {
+				"from": 311520,
+				"to": 313520
+			},
+			"text": " It's not super pleasant."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,520",
+				"to": "00:05:15,520"
+			},
+			"offsets": {
+				"from": 313520,
+				"to": 315520
+			},
+			"text": " I would say it's pretty fucked up."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,520",
+				"to": "00:05:18,520"
+			},
+			"offsets": {
+				"from": 316520,
+				"to": 318520
+			},
+			"text": " And it's been pretty fucked for a while actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,520",
+				"to": "00:05:20,520"
+			},
+			"offsets": {
+				"from": 318520,
+				"to": 320520
+			},
+			"text": " This is a comment I made in 2018."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,520",
+				"to": "00:05:27,520"
+			},
+			"offsets": {
+				"from": 320520,
+				"to": 327520
+			},
+			"text": " One of the earliest mistakes I ever made was when we created my ether wallet, we didn't really understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,520",
+				"to": "00:05:32,520"
+			},
+			"offsets": {
+				"from": 327520,
+				"to": 332520
+			},
+			"text": " why you shouldn't let people enter their private keys in the browser on a website."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,520",
+				"to": "00:05:35,520"
+			},
+			"offsets": {
+				"from": 332520,
+				"to": 335520
+			},
+			"text": " And so we did exactly that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,520",
+				"to": "00:05:40,520"
+			},
+			"offsets": {
+				"from": 335520,
+				"to": 340520
+			},
+			"text": " You would generate your private key, you would enter it on the website, and that's how you access all of your money."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,520",
+				"to": "00:05:43,520"
+			},
+			"offsets": {
+				"from": 340520,
+				"to": 343520
+			},
+			"text": " That was a terrible idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,520",
+				"to": "00:05:44,520"
+			},
+			"offsets": {
+				"from": 343520,
+				"to": 344520
+			},
+			"text": " Don't do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,520",
+				"to": "00:05:45,520"
+			},
+			"offsets": {
+				"from": 344520,
+				"to": 345520
+			},
+			"text": " Seriously."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,520",
+				"to": "00:05:46,520"
+			},
+			"offsets": {
+				"from": 345520,
+				"to": 346520
+			},
+			"text": " This is Dan."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,520",
+				"to": "00:05:54,520"
+			},
+			"offsets": {
+				"from": 346520,
+				"to": 354520
+			},
+			"text": " Dan is one of the founders of MetaMask."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,520",
+				"to": "00:05:58,520"
+			},
+			"offsets": {
+				"from": 354520,
+				"to": 358520
+			},
+			"text": " And he has a bit more optimistic take."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,520",
+				"to": "00:06:03,520"
+			},
+			"offsets": {
+				"from": 358520,
+				"to": 363520
+			},
+			"text": " The way he kind of looks at the world around us and the things that we're building is he faces in us."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,520",
+				"to": "00:06:08,520"
+			},
+			"offsets": {
+				"from": 363520,
+				"to": 368520
+			},
+			"text": " We're basically at the eating poisonous mushrooms phase of product development."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,520",
+				"to": "00:06:10,520"
+			},
+			"offsets": {
+				"from": 368520,
+				"to": 370520
+			},
+			"text": " And we're all just leaping."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,520",
+				"to": "00:06:12,520"
+			},
+			"offsets": {
+				"from": 370520,
+				"to": 372520
+			},
+			"text": " We're taking the leap of faith."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,520",
+				"to": "00:06:22,520"
+			},
+			"offsets": {
+				"from": 374520,
+				"to": 382520
+			},
+			"text": " Hopefully we're coming back and letting our product creators know what hurt and what worked and what didn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,520",
+				"to": "00:06:28,520"
+			},
+			"offsets": {
+				"from": 382520,
+				"to": 388520
+			},
+			"text": " And hopefully the people that are building those products are listening to the people who are adventuring out there into the abyss."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,520",
+				"to": "00:06:36,520"
+			},
+			"offsets": {
+				"from": 388520,
+				"to": 396520
+			},
+			"text": " And updating and improving and iterating on all of their products so that ultimately it hurts less in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,520",
+				"to": "00:06:40,520"
+			},
+			"offsets": {
+				"from": 396520,
+				"to": 400520
+			},
+			"text": " Because what we are doing is truly like a new paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,520",
+				"to": "00:06:44,520"
+			},
+			"offsets": {
+				"from": 400520,
+				"to": 404520
+			},
+			"text": " Like web 3, we are really starting at the ground floor."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,520",
+				"to": "00:06:47,520"
+			},
+			"offsets": {
+				"from": 404520,
+				"to": 407520
+			},
+			"text": " We are creating entire new systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,520",
+				"to": "00:06:49,520"
+			},
+			"offsets": {
+				"from": 407520,
+				"to": 409520
+			},
+			"text": " We're creating new tech systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,520",
+				"to": "00:06:52,520"
+			},
+			"offsets": {
+				"from": 409520,
+				"to": 412520
+			},
+			"text": " We're creating new social systems, financial systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,520",
+				"to": "00:06:54,520"
+			},
+			"offsets": {
+				"from": 412520,
+				"to": 414520
+			},
+			"text": " Everything is brand new."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,520",
+				"to": "00:06:56,520"
+			},
+			"offsets": {
+				"from": 414520,
+				"to": 416520
+			},
+			"text": " Unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,520",
+				"to": "00:07:01,520"
+			},
+			"offsets": {
+				"from": 416520,
+				"to": 421520
+			},
+			"text": " Sometimes these new paradigms just, you know, they come with some struggles."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,520",
+				"to": "00:07:09,520"
+			},
+			"offsets": {
+				"from": 421520,
+				"to": 429520
+			},
+			"text": " And I think one thing that took me years to really comprehend and really grok was the fact that there is such a huge and interesting thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,520",
+				"to": "00:07:17,520"
+			},
+			"offsets": {
+				"from": 429520,
+				"to": 437520
+			},
+			"text": " And it's a huge incentive for bad actors to get your private key to get your secret or heavy phrase."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,520",
+				"to": "00:07:24,520"
+			},
+			"offsets": {
+				"from": 437520,
+				"to": 444520
+			},
+			"text": " Like it is so huge that, I don't know, hundreds of thousands of like random scammers around the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,520",
+				"to": "00:07:26,520"
+			},
+			"offsets": {
+				"from": 444520,
+				"to": 446520
+			},
+			"text": " North Korean hackers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,520",
+				"to": "00:07:31,520"
+			},
+			"offsets": {
+				"from": 446520,
+				"to": 451520
+			},
+			"text": " Like literally like nation state actors are trying to get your private keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,520",
+				"to": "00:07:33,520"
+			},
+			"offsets": {
+				"from": 451520,
+				"to": 453520
+			},
+			"text": " And we're building the product."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,520",
+				"to": "00:07:37,520"
+			},
+			"offsets": {
+				"from": 453520,
+				"to": 457520
+			},
+			"text": " That houses that thing that has all the people's money."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,520",
+				"to": "00:07:39,520"
+			},
+			"offsets": {
+				"from": 457520,
+				"to": 459520
+			},
+			"text": " That's cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,520",
+				"to": "00:07:45,520"
+			},
+			"offsets": {
+				"from": 459520,
+				"to": 465520
+			},
+			"text": " Over the years we've seen like an increasing number of scams and sin swaps and social engineering, phishing, spear phishing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,520",
+				"to": "00:07:56,520"
+			},
+			"offsets": {
+				"from": 465520,
+				"to": 476520
+			},
+			"text": " account takeovers, web 2 account takeovers, web 3 account takeovers, supply chain attacks, DNS hijacks, BGP hijacks, injection attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,520",
+				"to": "00:08:02,520"
+			},
+			"offsets": {
+				"from": 476520,
+				"to": 482520
+			},
+			"text": " And even at the root, the cryptography itself, we've even screwed that up a couple of times."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,520",
+				"to": "00:08:07,520"
+			},
+			"offsets": {
+				"from": 482520,
+				"to": 487520
+			},
+			"text": " Resulting in keys either being stolen or inaccessible."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,520",
+				"to": "00:08:10,520"
+			},
+			"offsets": {
+				"from": 487520,
+				"to": 490520
+			},
+			"text": " And this incentive is so, so, so large."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,520",
+				"to": "00:08:15,520"
+			},
+			"offsets": {
+				"from": 490520,
+				"to": 495520
+			},
+			"text": " Like I cannot emphasize the traditional world just does not operate like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,520",
+				"to": "00:08:23,520"
+			},
+			"offsets": {
+				"from": 495520,
+				"to": 503520
+			},
+			"text": " There's almost nothing in the traditional world where if you lose it, like that's game over and there's no like path to recourse."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,520",
+				"to": "00:08:25,520"
+			},
+			"offsets": {
+				"from": 503520,
+				"to": 505520
+			},
+			"text": " Like that doesn't exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,520",
+				"to": "00:08:28,520"
+			},
+			"offsets": {
+				"from": 505520,
+				"to": 508520
+			},
+			"text": " We have so many layers to protect people."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,520",
+				"to": "00:08:31,520"
+			},
+			"offsets": {
+				"from": 508520,
+				"to": 511520
+			},
+			"text": " And in crypto we just don't have those yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,520",
+				"to": "00:08:42,520"
+			},
+			"offsets": {
+				"from": 511520,
+				"to": 522520
+			},
+			"text": " And the hardest thing about this is the reality that truly people don't understand that this like this string of characters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,520",
+				"to": "00:08:49,520"
+			},
+			"offsets": {
+				"from": 522520,
+				"to": 529520
+			},
+			"text": " these like random numbers and letters or these words, like if they lose that or if it's stolen, it's game over."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,520",
+				"to": "00:08:56,520"
+			},
+			"offsets": {
+				"from": 529520,
+				"to": 536520
+			},
+			"text": " And increasingly, especially with this last bull run, it's not just their ETH, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,520",
+				"to": "00:09:01,520"
+			},
+			"offsets": {
+				"from": 536520,
+				"to": 541520
+			},
+			"text": " It's their tokens, it's their NFTs, it's their collectibles, it's their soul bound tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,520",
+				"to": "00:09:09,520"
+			},
+			"offsets": {
+				"from": 541520,
+				"to": 549520
+			},
+			"text": " It's access to communities and games, it's everything, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,520",
+				"to": "00:09:12,520"
+			},
+			"offsets": {
+				"from": 549520,
+				"to": 552520
+			},
+			"text": " It's like basically turning into their identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,520",
+				"to": "00:09:24,520"
+			},
+			"offsets": {
+				"from": 552520,
+				"to": 564520
+			},
+			"text": " Like we're getting dangerously close to turning that key, that string of characters that nobody really understands into people's identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,520",
+				"to": "00:09:32,520"
+			},
+			"offsets": {
+				"from": 564520,
+				"to": 572520
+			},
+			"text": " And I think that we think a lot about education, we think a lot about UX, we think a lot about the UI, we think a lot about the things that we can do to fix it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,520",
+				"to": "00:09:40,520"
+			},
+			"offsets": {
+				"from": 572520,
+				"to": 580520
+			},
+			"text": " I've given probably like 15 talks covering how you should educate people more and fix your UIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,520",
+				"to": "00:09:45,520"
+			},
+			"offsets": {
+				"from": 580520,
+				"to": 585520
+			},
+			"text": " And it's had some impact, but not enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,520",
+				"to": "00:09:52,520"
+			},
+			"offsets": {
+				"from": 585520,
+				"to": 592520
+			},
+			"text": " And the thing is that the people in this ecosystem are creating real value and they're creating it so quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,520",
+				"to": "00:09:58,520"
+			},
+			"offsets": {
+				"from": 592520,
+				"to": 598520
+			},
+			"text": " that I'm not sure that just like, you know, updating some copy is going to cut it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,520",
+				"to": "00:10:06,520"
+			},
+			"offsets": {
+				"from": 598520,
+				"to": 606520
+			},
+			"text": " Because again, at the end of the day, the whole entire ecosystem is relying on these freaking characters, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,520",
+				"to": "00:10:10,520"
+			},
+			"offsets": {
+				"from": 606520,
+				"to": 610520
+			},
+			"text": " This string, this string, that's a private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,520",
+				"to": "00:10:12,520"
+			},
+			"offsets": {
+				"from": 610520,
+				"to": 612520
+			},
+			"text": " Don't lose it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,520",
+				"to": "00:10:17,520"
+			},
+			"offsets": {
+				"from": 612520,
+				"to": 617520
+			},
+			"text": " That's you, that's your identity and all your money and everything you have in your children's future."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,520",
+				"to": "00:10:19,520"
+			},
+			"offsets": {
+				"from": 617520,
+				"to": 619520
+			},
+			"text": " Don't lose it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,520",
+				"to": "00:10:22,520"
+			},
+			"offsets": {
+				"from": 619520,
+				"to": 622520
+			},
+			"text": " It might look like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,520",
+				"to": "00:10:24,520"
+			},
+			"offsets": {
+				"from": 622520,
+				"to": 624520
+			},
+			"text": " That's the secret recovery phrase."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,520",
+				"to": "00:10:26,520"
+			},
+			"offsets": {
+				"from": 624520,
+				"to": 626520
+			},
+			"text": " It's the same, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,520",
+				"to": "00:10:29,520"
+			},
+			"offsets": {
+				"from": 626520,
+				"to": 629520
+			},
+			"text": " Don't lose that either."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,520",
+				"to": "00:10:32,520"
+			},
+			"offsets": {
+				"from": 629520,
+				"to": 632520
+			},
+			"text": " That's everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,520",
+				"to": "00:10:34,520"
+			},
+			"offsets": {
+				"from": 632520,
+				"to": 634520
+			},
+			"text": " It's kind of absurd."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,520",
+				"to": "00:10:39,520"
+			},
+			"offsets": {
+				"from": 634520,
+				"to": 639520
+			},
+			"text": " Like when you really just like cut down to the core of it, it's absurd."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,520",
+				"to": "00:10:46,520"
+			},
+			"offsets": {
+				"from": 639520,
+				"to": 646520
+			},
+			"text": " And we have such big brains in this space, like truly remarkable innovation happening every day."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,520",
+				"to": "00:10:53,520"
+			},
+			"offsets": {
+				"from": 646520,
+				"to": 653520
+			},
+			"text": " We talk about game theory, we talk about incentives, we talk about economics, we talk about so many different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,520",
+				"to": "00:11:02,520"
+			},
+			"offsets": {
+				"from": 653520,
+				"to": 662520
+			},
+			"text": " And yet somehow we haven't really been able to come to the conclusion that like, hmm, maybe we should focus for a second"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,520",
+				"to": "00:11:09,520"
+			},
+			"offsets": {
+				"from": 662520,
+				"to": 669520
+			},
+			"text": " on how do we actually improve users' lives on the whole at the core protocol layer, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,520",
+				"to": "00:11:11,520"
+			},
+			"offsets": {
+				"from": 669520,
+				"to": 671520
+			},
+			"text": " We're like solving scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,520",
+				"to": "00:11:15,520"
+			},
+			"offsets": {
+				"from": 671520,
+				"to": 675520
+			},
+			"text": " We're solving, we have thousands of VIPs"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,520",
+				"to": "00:11:17,520"
+			},
+			"offsets": {
+				"from": 675520,
+				"to": 677520
+			},
+			"text": " that are solving every single thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,520",
+				"to": "00:11:19,520"
+			},
+			"offsets": {
+				"from": 677520,
+				"to": 679520
+			},
+			"text": " Can we do something for like the end user though?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,520",
+				"to": "00:11:25,520"
+			},
+			"offsets": {
+				"from": 679520,
+				"to": 685520
+			},
+			"text": " That's going to directly impact their lives and save them hundreds of millions of billions of dollars over the coming years?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,520",
+				"to": "00:11:33,520"
+			},
+			"offsets": {
+				"from": 685520,
+				"to": 693520
+			},
+			"text": " Because right now, migrating all of your assets from one account to the next is basically the best thing you've got."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,520",
+				"to": "00:11:38,520"
+			},
+			"offsets": {
+				"from": 693520,
+				"to": 698520
+			},
+			"text": " Earlier this year, MetaMask had 30 million monthly active users."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,520",
+				"to": "00:11:41,520"
+			},
+			"offsets": {
+				"from": 698520,
+				"to": 701520
+			},
+			"text": " That's a lot of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,520",
+				"to": "00:11:51,520"
+			},
+			"offsets": {
+				"from": 701520,
+				"to": 711520
+			},
+			"text": " There's a lot of private keys out there with Ethan them, with some asset on any of the other 23 EVM compatible chains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,520",
+				"to": "00:11:57,520"
+			},
+			"offsets": {
+				"from": 711520,
+				"to": 717520
+			},
+			"text": " tokens, NFTs, non-standard tokens, standard tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,520",
+				"to": "00:12:01,520"
+			},
+			"offsets": {
+				"from": 717520,
+				"to": 721520
+			},
+			"text": " There's open positions, there's open positions across chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,520",
+				"to": "00:12:04,520"
+			},
+			"offsets": {
+				"from": 721520,
+				"to": 724520
+			},
+			"text": " There's synthetic assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,520",
+				"to": "00:12:14,520"
+			},
+			"offsets": {
+				"from": 724520,
+				"to": 734520
+			},
+			"text": " Right now, if you get into the space and start doing stuff, and then something happens, right, your computer is hacked, you're physically attacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,520",
+				"to": "00:12:17,520"
+			},
+			"offsets": {
+				"from": 734520,
+				"to": 737520
+			},
+			"text": " Your entire infrastructure is taken over by North Korea."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,520",
+				"to": "00:12:27,520"
+			},
+			"offsets": {
+				"from": 737520,
+				"to": 747520
+			},
+			"text": " Your only path of recourse is to try to front-run the people who have stolen that phrase and move all your stuff really fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,520",
+				"to": "00:12:36,520"
+			},
+			"offsets": {
+				"from": 747520,
+				"to": 756520
+			},
+			"text": " And that not only is observed, it also has a real cost. It's hard, it's just full, it's time consuming."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,520",
+				"to": "00:12:39,520"
+			},
+			"offsets": {
+				"from": 756520,
+				"to": 759520
+			},
+			"text": " It punishes the people that are most engaged."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,520",
+				"to": "00:12:45,520"
+			},
+			"offsets": {
+				"from": 759520,
+				"to": 765520
+			},
+			"text": " The people that we want in this ecosystem the most, the ones that are total de-gens."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,520",
+				"to": "00:12:56,520"
+			},
+			"offsets": {
+				"from": 765520,
+				"to": 776520
+			},
+			"text": " It's punishing those people because when something happens, which it will, they are the ones who have to spend the most amount of time and the most amount of real money to move their assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,520",
+				"to": "00:13:00,520"
+			},
+			"offsets": {
+				"from": 776520,
+				"to": 780520
+			},
+			"text": " And frankly, it should not be like this because we can do better."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,520",
+				"to": "00:13:04,520"
+			},
+			"offsets": {
+				"from": 780520,
+				"to": 784520
+			},
+			"text": " Because this entire ecosystem builds magical shit all day, every day."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,520",
+				"to": "00:13:08,520"
+			},
+			"offsets": {
+				"from": 784520,
+				"to": 788520
+			},
+			"text": " We literally create billions of dollars out of thin air like nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,520",
+				"to": "00:13:10,520"
+			},
+			"offsets": {
+				"from": 788520,
+				"to": 790520
+			},
+			"text": " We can do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,520",
+				"to": "00:13:22,520"
+			},
+			"offsets": {
+				"from": 790520,
+				"to": 802520
+			},
+			"text": " It's like it's quite remarkable how limitless our imaginations are in some ways and how limited we seem to be in the other ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,520",
+				"to": "00:13:27,520"
+			},
+			"offsets": {
+				"from": 802520,
+				"to": 807520
+			},
+			"text": " So this is the original set."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,520",
+				"to": "00:13:41,520"
+			},
+			"offsets": {
+				"from": 807520,
+				"to": 821520
+			},
+			"text": " We need to understand collectively whether you're building wallets, whether you're building smart wallets, dumb wallets, whether you're building jobs, whatever you're doing, whatever layer you're stuck you're in."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,520",
+				"to": "00:13:45,520"
+			},
+			"offsets": {
+				"from": 821520,
+				"to": 825520
+			},
+			"text": " We are responsible for what we create."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,520",
+				"to": "00:13:51,520"
+			},
+			"offsets": {
+				"from": 825520,
+				"to": 831520
+			},
+			"text": " We're responsible for how that impacts people's lives."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,520",
+				"to": "00:13:59,520"
+			},
+			"offsets": {
+				"from": 831520,
+				"to": 839520
+			},
+			"text": " Technology is incredibly, incredibly powerful, but it is not like the end all be all solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,520",
+				"to": "00:14:05,520"
+			},
+			"offsets": {
+				"from": 839520,
+				"to": 845520
+			},
+			"text": " We can't just like put technology or code like in a bubble and say like, oh, that's just that thing over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,520",
+				"to": "00:14:11,520"
+			},
+			"offsets": {
+				"from": 845520,
+				"to": 851520
+			},
+			"text": " It's immoral. It's a political, it's like just this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,520",
+				"to": "00:14:18,520"
+			},
+			"offsets": {
+				"from": 851520,
+				"to": 858520
+			},
+			"text": " What we're building is not about, I don't know, whatever is on your landing page, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,520",
+				"to": "00:14:27,520"
+			},
+			"offsets": {
+				"from": 858520,
+				"to": 867520
+			},
+			"text": " Like what we're building is trying to make people's lives better, make societies lives better."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,520",
+				"to": "00:14:32,520"
+			},
+			"offsets": {
+				"from": 867520,
+				"to": 872520
+			},
+			"text": " What we're trying to do is solve really messy problems, social problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,520",
+				"to": "00:14:36,520"
+			},
+			"offsets": {
+				"from": 872520,
+				"to": 876520
+			},
+			"text": " We're trying to improve how people can coordinate with one another."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,520",
+				"to": "00:14:44,520"
+			},
+			"offsets": {
+				"from": 876520,
+				"to": 884520
+			},
+			"text": " We're trying to allow people to take control over their lives and their futures and not be restricted by some governments and the people who are in the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,520",
+				"to": "00:14:52,520"
+			},
+			"offsets": {
+				"from": 884520,
+				"to": 892520
+			},
+			"text": " We're trying to be restricted by some governments and state, some corporation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,520",
+				"to": "00:15:00,520"
+			},
+			"offsets": {
+				"from": 892520,
+				"to": 900520
+			},
+			"text": " In order to do that, we really need to value people and we should be putting people and the problems that people are encountering every single day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,520",
+				"to": "00:15:05,520"
+			},
+			"offsets": {
+				"from": 900520,
+				"to": 905520
+			},
+			"text": " sort of front and center, like what are we doing to fix that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,520",
+				"to": "00:15:08,520"
+			},
+			"offsets": {
+				"from": 905520,
+				"to": 908520
+			},
+			"text": " Our products are a mechanism that we use."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,520",
+				"to": "00:15:13,520"
+			},
+			"offsets": {
+				"from": 908520,
+				"to": 913520
+			},
+			"text": " The technology is the tool, but the choices, those are ours."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,520",
+				"to": "00:15:20,520"
+			},
+			"offsets": {
+				"from": 913520,
+				"to": 920520
+			},
+			"text": " Those are ours and those have to be about people and they cannot shy away from the hard things."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,520",
+				"to": "00:15:24,520"
+			},
+			"offsets": {
+				"from": 920520,
+				"to": 924520
+			},
+			"text": " This book is really real guys. I highly recommend it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,520",
+				"to": "00:15:28,520"
+			},
+			"offsets": {
+				"from": 924520,
+				"to": 928520
+			},
+			"text": " All right, so new paradigms."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,520",
+				"to": "00:15:30,520"
+			},
+			"offsets": {
+				"from": 928520,
+				"to": 930520
+			},
+			"text": " This is a new world."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,520",
+				"to": "00:15:33,520"
+			},
+			"offsets": {
+				"from": 930520,
+				"to": 933520
+			},
+			"text": " We are actually successfully creating a new world."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,520",
+				"to": "00:15:39,520"
+			},
+			"offsets": {
+				"from": 933520,
+				"to": 939520
+			},
+			"text": " We have successfully onboarded a remarkable millions and millions and millions of millions of people into this new world."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,520",
+				"to": "00:15:43,520"
+			},
+			"offsets": {
+				"from": 939520,
+				"to": 943520
+			},
+			"text": " We have successfully just intermated a ton of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,520",
+				"to": "00:15:48,520"
+			},
+			"offsets": {
+				"from": 943520,
+				"to": 948520
+			},
+			"text": " We've given people control, full control, we're nothing inside them."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,520",
+				"to": "00:16:00,520"
+			},
+			"offsets": {
+				"from": 948520,
+				"to": 960520
+			},
+			"text": " What we need to be heading towards is saying that this stuff, this key, this whatever you want to call it, whatever it turns into, tangibly, this is mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,520",
+				"to": "00:16:07,520"
+			},
+			"offsets": {
+				"from": 960520,
+				"to": 967520
+			},
+			"text": " When we talk about identity, when we talk about our things, it's mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,520",
+				"to": "00:16:14,520"
+			},
+			"offsets": {
+				"from": 967520,
+				"to": 974520
+			},
+			"text": " What we should be striving for is it cannot be hacked or stolen because it's mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,520",
+				"to": "00:16:19,520"
+			},
+			"offsets": {
+				"from": 974520,
+				"to": 979520
+			},
+			"text": " I have full control over it. I can use it. I can access it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,520",
+				"to": "00:16:29,520"
+			},
+			"offsets": {
+				"from": 979520,
+				"to": 989520
+			},
+			"text": " I can revoke it. If I think it might be compromised, I can be like, let's just pause for a second and reevaluate the situation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,520",
+				"to": "00:16:33,520"
+			},
+			"offsets": {
+				"from": 989520,
+				"to": 993520
+			},
+			"text": " Let's not let those hackers take that thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,520",
+				"to": "00:16:37,520"
+			},
+			"offsets": {
+				"from": 993520,
+				"to": 997520
+			},
+			"text": " Once I've secured the perimeter, I can recover it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,520",
+				"to": "00:16:46,520"
+			},
+			"offsets": {
+				"from": 997520,
+				"to": 1006520
+			},
+			"text": " The things that I do, they don't just happen on my behalf, but I'm giving my full consent."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,520",
+				"to": "00:16:52,520"
+			},
+			"offsets": {
+				"from": 1006520,
+				"to": 1012520
+			},
+			"text": " That consent has to be informed. I have to know what I'm consenting to."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,520",
+				"to": "00:16:55,520"
+			},
+			"offsets": {
+				"from": 1012520,
+				"to": 1015520
+			},
+			"text": " I have to have a choice in that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,520",
+				"to": "00:17:00,520"
+			},
+			"offsets": {
+				"from": 1015520,
+				"to": 1020520
+			},
+			"text": " I can choose consent or to not consent."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,520",
+				"to": "00:17:11,520"
+			},
+			"offsets": {
+				"from": 1020520,
+				"to": 1031520
+			},
+			"text": " Ultimately, we all need to choose how we interact with the world and also how we impact the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,520",
+				"to": "00:17:17,520"
+			},
+			"offsets": {
+				"from": 1031520,
+				"to": 1037520
+			},
+			"text": " Because it's our choices that shape this world. Every single choice that we make."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,520",
+				"to": "00:17:23,520"
+			},
+			"offsets": {
+				"from": 1037520,
+				"to": 1043520
+			},
+			"text": " Sorry. There are a couple of IPs out there that are trying to tackle this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,520",
+				"to": "00:17:32,520"
+			},
+			"offsets": {
+				"from": 1043520,
+				"to": 1052520
+			},
+			"text": " I'm not going to say which one is best. I think that the solution is probably not one of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,520",
+				"to": "00:17:38,520"
+			},
+			"offsets": {
+				"from": 1052520,
+				"to": 1058520
+			},
+			"text": " It's probably a few more conversations, some online debates and whatever evolves from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,520",
+				"to": "00:17:43,520"
+			},
+			"offsets": {
+				"from": 1058520,
+				"to": 1063520
+			},
+			"text": " I trust the big brains to figure it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,520",
+				"to": "00:17:46,520"
+			},
+			"offsets": {
+				"from": 1063520,
+				"to": 1066520
+			},
+			"text": " But these are the ones that will get you started. They're the most recent ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,520",
+				"to": "00:17:51,520"
+			},
+			"offsets": {
+				"from": 1066520,
+				"to": 1071520
+			},
+			"text": " If you want to go down the rabbit hole, there's like ten other ones that really did some deep research."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,520",
+				"to": "00:17:54,520"
+			},
+			"offsets": {
+				"from": 1071520,
+				"to": 1074520
+			},
+			"text": " These are the ones that are out there right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,520",
+				"to": "00:17:57,520"
+			},
+			"offsets": {
+				"from": 1074520,
+				"to": 1077520
+			},
+			"text": " ERC 4337."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,520",
+				"to": "00:18:01,520"
+			},
+			"offsets": {
+				"from": 1077520,
+				"to": 1081520
+			},
+			"text": " This is operating -- it doesn't require protocol change."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,520",
+				"to": "00:18:04,520"
+			},
+			"offsets": {
+				"from": 1081520,
+				"to": 1084520
+			},
+			"text": " It will be implemented probably by flash bots."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,520",
+				"to": "00:18:10,520"
+			},
+			"offsets": {
+				"from": 1084520,
+				"to": 1090520
+			},
+			"text": " It gives some -- quote unquote -- a kind of abstraction stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,520",
+				"to": "00:18:17,520"
+			},
+			"offsets": {
+				"from": 1090520,
+				"to": 1097520
+			},
+			"text": " Then you have 3074. This is the one that if you have an account, you have a private key right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,520",
+				"to": "00:18:21,520"
+			},
+			"offsets": {
+				"from": 1097520,
+				"to": 1101520
+			},
+			"text": " You can delegate control."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,520",
+				"to": "00:18:23,520"
+			},
+			"offsets": {
+				"from": 1101520,
+				"to": 1103520
+			},
+			"text": " That's one half of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,520",
+				"to": "00:18:30,520"
+			},
+			"offsets": {
+				"from": 1103520,
+				"to": 1110520
+			},
+			"text": " When we talk about key revocation or key revocation or key recovery, you have to assign that authority somewhere else."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,520",
+				"to": "00:18:34,520"
+			},
+			"offsets": {
+				"from": 1110520,
+				"to": 1114520
+			},
+			"text": " Then the original thing you want to revoke the authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,520",
+				"to": "00:18:39,520"
+			},
+			"offsets": {
+				"from": 1114520,
+				"to": 1119520
+			},
+			"text": " 3074 is the one where you can -- it's the rules for how to delegate."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,520",
+				"to": "00:18:47,520"
+			},
+			"offsets": {
+				"from": 1119520,
+				"to": 1127520
+			},
+			"text": " And then EIP5003 is the new one."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,520",
+				"to": "00:18:51,520"
+			},
+			"offsets": {
+				"from": 1127520,
+				"to": 1131520
+			},
+			"text": " Think we're calling it AuthU SERP."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,520",
+				"to": "00:18:54,520"
+			},
+			"offsets": {
+				"from": 1131520,
+				"to": 1134520
+			},
+			"text": " This is -- basically you're going to deploy some like code."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,520",
+				"to": "00:18:57,520"
+			},
+			"offsets": {
+				"from": 1134520,
+				"to": 1137520
+			},
+			"text": " We imagine that in the beginning it will be some simple code."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,520",
+				"to": "00:19:02,520"
+			},
+			"offsets": {
+				"from": 1137520,
+				"to": 1142520
+			},
+			"text": " But it will basically take your current account, your current private key, and it will give it some like smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,520",
+				"to": "00:19:08,520"
+			},
+			"offsets": {
+				"from": 1142520,
+				"to": 1148520
+			},
+			"text": " security."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,520",
+				"to": "00:19:13,520"
+			},
+			"offsets": {
+				"from": 1148520,
+				"to": 1153520
+			},
+			"text": " It doesn't really -- there's better ways to do it without 3074."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,520",
+				"to": "00:19:19,520"
+			},
+			"offsets": {
+				"from": 1153520,
+				"to": 1159520
+			},
+			"text": " But most importantly, there's a lot of mechanisms and a lot of things we can learn from all the history and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,520",
+				"to": "00:19:24,520"
+			},
+			"offsets": {
+				"from": 1159520,
+				"to": 1164520
+			},
+			"text": " all the research that's been done, the conversations that have happened around these."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,520",
+				"to": "00:19:31,520"
+			},
+			"offsets": {
+				"from": 1164520,
+				"to": 1171520
+			},
+			"text": " And we can talk and discuss and put our big brains together to hopefully come up with a really"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,520",
+				"to": "00:19:39,520"
+			},
+			"offsets": {
+				"from": 1171520,
+				"to": 1179520
+			},
+			"text": " strong, powerful solution that will actually serve real people."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,520",
+				"to": "00:19:43,520"
+			},
+			"offsets": {
+				"from": 1179520,
+				"to": 1183520
+			},
+			"text": " Because that's the goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,520",
+				"to": "00:19:46,520"
+			},
+			"offsets": {
+				"from": 1183520,
+				"to": 1186520
+			},
+			"text": " We can do anything we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,520",
+				"to": "00:19:52,520"
+			},
+			"offsets": {
+				"from": 1186520,
+				"to": 1192520
+			},
+			"text": " And the most important thing that we do is continue to dream."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,520",
+				"to": "00:19:58,520"
+			},
+			"offsets": {
+				"from": 1192520,
+				"to": 1198520
+			},
+			"text": " Don't be limited by some -- I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,520",
+				"to": "00:20:01,520"
+			},
+			"offsets": {
+				"from": 1198520,
+				"to": 1201520
+			},
+			"text": " Stupid tweetable phrase like code is law."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,520",
+				"to": "00:20:07,520"
+			},
+			"offsets": {
+				"from": 1201520,
+				"to": 1207520
+			},
+			"text": " Don't have your imaginations limited by this ecosystem's obsession with"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,520",
+				"to": "00:20:15,520"
+			},
+			"offsets": {
+				"from": 1207520,
+				"to": 1215520
+			},
+			"text": " immutability or like trying to put technology and code over here and pretending that's separate from the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,520",
+				"to": "00:20:17,520"
+			},
+			"offsets": {
+				"from": 1215520,
+				"to": 1217520
+			},
+			"text": " over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,520",
+				"to": "00:20:19,520"
+			},
+			"offsets": {
+				"from": 1217520,
+				"to": 1219520
+			},
+			"text": " Everything has to work together, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,520",
+				"to": "00:20:23,520"
+			},
+			"offsets": {
+				"from": 1219520,
+				"to": 1223520
+			},
+			"text": " The whole system is where the magic comes from."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,520",
+				"to": "00:20:25,520"
+			},
+			"offsets": {
+				"from": 1223520,
+				"to": 1225520
+			},
+			"text": " And so we all have to work together."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,520",
+				"to": "00:20:28,520"
+			},
+			"offsets": {
+				"from": 1225520,
+				"to": 1228520
+			},
+			"text": " We have to use the tools available to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,520",
+				"to": "00:20:30,520"
+			},
+			"offsets": {
+				"from": 1228520,
+				"to": 1230520
+			},
+			"text": " We have to use each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,520",
+				"to": "00:20:31,520"
+			},
+			"offsets": {
+				"from": 1230520,
+				"to": 1231520
+			},
+			"text": " We have to collaborate."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,520",
+				"to": "00:20:33,520"
+			},
+			"offsets": {
+				"from": 1231520,
+				"to": 1233520
+			},
+			"text": " We have to get really, really creative."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,520",
+				"to": "00:20:37,520"
+			},
+			"offsets": {
+				"from": 1233520,
+				"to": 1237520
+			},
+			"text": " And we can't be limited by anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,520",
+				"to": "00:20:44,520"
+			},
+			"offsets": {
+				"from": 1237520,
+				"to": 1244520
+			},
+			"text": " So I encourage everyone of you to keep on dreaming because that's the only way we're ever going to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,520",
+				"to": "00:20:45,520"
+			},
+			"offsets": {
+				"from": 1244520,
+				"to": 1245520
+			},
+			"text": " a better world."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,520",
+				"to": "00:20:47,520"
+			},
+			"offsets": {
+				"from": 1245520,
+				"to": 1247520
+			},
+			"text": " And we're well on our way."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,520",
+				"to": "00:20:54,520"
+			},
+			"offsets": {
+				"from": 1247520,
+				"to": 1254520
+			},
+			"text": " The amount of people that are actually using this technology that we're building, it's truly"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,520",
+				"to": "00:20:55,520"
+			},
+			"offsets": {
+				"from": 1254520,
+				"to": 1255520
+			},
+			"text": " impressive."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,520",
+				"to": "00:20:58,520"
+			},
+			"offsets": {
+				"from": 1255520,
+				"to": 1258520
+			},
+			"text": " I never thought that we would get here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,520",
+				"to": "00:21:04,520"
+			},
+			"offsets": {
+				"from": 1258520,
+				"to": 1264520
+			},
+			"text": " But I do hope that we're going to be able to make some real improvements before the next wave."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,520",
+				"to": "00:21:13,520"
+			},
+			"offsets": {
+				"from": 1264520,
+				"to": 1273520
+			},
+			"text": " Because as of right now, we're simply not ready for 100 million or a billion people to have their identities"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,520",
+				"to": "00:21:16,520"
+			},
+			"offsets": {
+				"from": 1273520,
+				"to": 1276520
+			},
+			"text": " tied to that single string of characters."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,520",
+				"to": "00:21:17,520"
+			},
+			"offsets": {
+				"from": 1276520,
+				"to": 1277520
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,520",
+				"to": "00:21:19,520"
+			},
+			"offsets": {
+				"from": 1277520,
+				"to": 1279520
+			},
+			"text": " I also have to show some stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,520",
+				"to": "00:21:20,520"
+			},
+			"offsets": {
+				"from": 1279520,
+				"to": 1280520
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,520",
+				"to": "00:21:23,520"
+			},
+			"offsets": {
+				"from": 1280520,
+				"to": 1283520
+			},
+			"text": " So for those that don't know, I'm at Metamask -- Metamask is part of consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,520",
+				"to": "00:21:26,520"
+			},
+			"offsets": {
+				"from": 1283520,
+				"to": 1286520
+			},
+			"text": " Consensus has a ton of amazing things going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,520",
+				"to": "00:21:28,520"
+			},
+			"offsets": {
+				"from": 1286520,
+				"to": 1288520
+			},
+			"text": " One of them is village dow."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,520",
+				"to": "00:21:34,520"
+			},
+			"offsets": {
+				"from": 1288520,
+				"to": 1294520
+			},
+			"text": " So remember how we're talking about incentives and getting people working together and collaborating"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,520",
+				"to": "00:21:36,520"
+			},
+			"offsets": {
+				"from": 1294520,
+				"to": 1296520
+			},
+			"text": " so that everyone can be better and more empowered."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,520",
+				"to": "00:21:39,520"
+			},
+			"offsets": {
+				"from": 1296520,
+				"to": 1299520
+			},
+			"text": " Village dow is one of our various attempts to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,520",
+				"to": "00:21:41,520"
+			},
+			"offsets": {
+				"from": 1299520,
+				"to": 1301520
+			},
+			"text": " It's really, really exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,520",
+				"to": "00:21:46,520"
+			},
+			"offsets": {
+				"from": 1301520,
+				"to": 1306520
+			},
+			"text": " Whereas village dow in the house makes some noise."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,520",
+				"to": "00:21:47,520"
+			},
+			"offsets": {
+				"from": 1306520,
+				"to": 1307520
+			},
+			"text": " Find them."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,520",
+				"to": "00:21:49,520"
+			},
+			"offsets": {
+				"from": 1307520,
+				"to": 1309520
+			},
+			"text": " They're freaking cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,520",
+				"to": "00:21:51,520"
+			},
+			"offsets": {
+				"from": 1309520,
+				"to": 1311520
+			},
+			"text": " They'll explain everything to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,520",
+				"to": "00:21:56,520"
+			},
+			"offsets": {
+				"from": 1311520,
+				"to": 1316520
+			},
+			"text": " It's such a cool initiative."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,520",
+				"to": "00:21:59,520"
+			},
+			"offsets": {
+				"from": 1316520,
+				"to": 1319520
+			},
+			"text": " I'm so excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,520",
+				"to": "00:22:05,520"
+			},
+			"offsets": {
+				"from": 1319520,
+				"to": 1325520
+			},
+			"text": " Next, in FURA, you know that evil centralize thing that the whole ecosystem is relying on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,520",
+				"to": "00:22:08,520"
+			},
+			"offsets": {
+				"from": 1325520,
+				"to": 1328520
+			},
+			"text": " It's going to be our death."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,520",
+				"to": "00:22:10,520"
+			},
+			"offsets": {
+				"from": 1328520,
+				"to": 1330520
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,520",
+				"to": "00:22:14,520"
+			},
+			"offsets": {
+				"from": 1330520,
+				"to": 1334520
+			},
+			"text": " Well on its way to being decentralized, we cannot be more excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,520",
+				"to": "00:22:25,520"
+			},
+			"offsets": {
+				"from": 1334520,
+				"to": 1345520
+			},
+			"text": " E.G. and the team have been working on this for as long as I've known him."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,520",
+				"to": "00:22:29,520"
+			},
+			"offsets": {
+				"from": 1345520,
+				"to": 1349520
+			},
+			"text": " I don't know where that code goes to, but I assume it will give you more information."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,520",
+				"to": "00:22:32,520"
+			},
+			"offsets": {
+				"from": 1349520,
+				"to": 1352520
+			},
+			"text": " Or maybe a party favor?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,520",
+				"to": "00:22:34,520"
+			},
+			"offsets": {
+				"from": 1352520,
+				"to": 1354520
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,520",
+				"to": "00:22:35,520"
+			},
+			"offsets": {
+				"from": 1354520,
+				"to": 1355520
+			},
+			"text": " Find out."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,520",
+				"to": "00:22:38,520"
+			},
+			"offsets": {
+				"from": 1355520,
+				"to": 1358520
+			},
+			"text": " Is in FURA in the house?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,520",
+				"to": "00:22:40,520"
+			},
+			"offsets": {
+				"from": 1358520,
+				"to": 1360520
+			},
+			"text": " It's Patrick here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,520",
+				"to": "00:22:41,520"
+			},
+			"offsets": {
+				"from": 1360520,
+				"to": 1361520
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,520",
+				"to": "00:22:44,520"
+			},
+			"offsets": {
+				"from": 1361520,
+				"to": 1364520
+			},
+			"text": " I'm not going to be a fan of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,520",
+				"to": "00:22:47,520"
+			},
+			"offsets": {
+				"from": 1364520,
+				"to": 1367520
+			},
+			"text": " I'm not going to be a fan of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,520",
+				"to": "00:22:50,520"
+			},
+			"offsets": {
+				"from": 1367520,
+				"to": 1370520
+			},
+			"text": " I'm not going to be a fan of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,520",
+				"to": "00:22:53,520"
+			},
+			"offsets": {
+				"from": 1370520,
+				"to": 1373520
+			},
+			"text": " I'm not going to be a fan of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,520",
+				"to": "00:22:56,520"
+			},
+			"offsets": {
+				"from": 1373520,
+				"to": 1376520
+			},
+			"text": " I'm not going to be a fan of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,520",
+				"to": "00:22:59,520"
+			},
+			"offsets": {
+				"from": 1376520,
+				"to": 1379520
+			},
+			"text": " I'm not going to be a fan of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,520",
+				"to": "00:23:02,520"
+			},
+			"offsets": {
+				"from": 1379520,
+				"to": 1382520
+			},
+			"text": " I'm not going to be a fan of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,520",
+				"to": "00:23:05,520"
+			},
+			"offsets": {
+				"from": 1382520,
+				"to": 1385520
+			},
+			"text": " I'm not going to be a fan of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,520",
+				"to": "00:23:08,520"
+			},
+			"offsets": {
+				"from": 1385520,
+				"to": 1388520
+			},
+			"text": " I'm not going to be a fan of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,520",
+				"to": "00:23:12,800"
+			},
+			"offsets": {
+				"from": 1388520,
+				"to": 1392800
+			},
+			"text": " I sit there and go like, \"Why do you do this to me, Metamask?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,800",
+				"to": "00:23:16,840"
+			},
+			"offsets": {
+				"from": 1392800,
+				"to": 1396840
+			},
+			"text": " And I'm building Metamask."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,840",
+				"to": "00:23:21,520"
+			},
+			"offsets": {
+				"from": 1396840,
+				"to": 1401520
+			},
+			"text": " And then I tell people to fix it and then like I yell at Metamask more."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,520",
+				"to": "00:23:24,520"
+			},
+			"offsets": {
+				"from": 1401520,
+				"to": 1404520
+			},
+			"text": " I know that you've all been in this boat with me."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,520",
+				"to": "00:23:29,080"
+			},
+			"offsets": {
+				"from": 1404520,
+				"to": 1409080
+			},
+			"text": " Metamask snaps is actually the solution though, because we can't keep making Metamask bigger."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,080",
+				"to": "00:23:33,520"
+			},
+			"offsets": {
+				"from": 1409080,
+				"to": 1413520
+			},
+			"text": " We can't keep running around like doing whatever Taylor says to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,520",
+				"to": "00:23:35,720"
+			},
+			"offsets": {
+				"from": 1413520,
+				"to": 1415720
+			},
+			"text": " I think that's not scalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,720",
+				"to": "00:23:37,640"
+			},
+			"offsets": {
+				"from": 1415720,
+				"to": 1417640
+			},
+			"text": " We are building for billions of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,640",
+				"to": "00:23:42,640"
+			},
+			"offsets": {
+				"from": 1417640,
+				"to": 1422640
+			},
+			"text": " What Stabs does is it enables every single person to extend the Metamask functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,640",
+				"to": "00:23:50,000"
+			},
+			"offsets": {
+				"from": 1422640,
+				"to": 1430000
+			},
+			"text": " So instead of Metamask having to like build and maintain something for your custom thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,000",
+				"to": "00:23:55,280"
+			},
+			"offsets": {
+				"from": 1430000,
+				"to": 1435280
+			},
+			"text": " and try to keep up with this ecosystem that moves so freaking fast, what we're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,280",
+				"to": "00:23:59,360"
+			},
+			"offsets": {
+				"from": 1435280,
+				"to": 1439360
+			},
+			"text": " do is we're going to put the power in the builder's hands to actually extend Metamask"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,360",
+				"to": "00:24:05,920"
+			},
+			"offsets": {
+				"from": 1439360,
+				"to": 1445920
+			},
+			"text": " to better serve you as the builder and also better serve your users, because you actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,920",
+				"to": "00:24:09,160"
+			},
+			"offsets": {
+				"from": 1445920,
+				"to": 1449160
+			},
+			"text": " know best, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,160",
+				"to": "00:24:12,680"
+			},
+			"offsets": {
+				"from": 1449160,
+				"to": 1452680
+			},
+			"text": " We can grow our team bigger and bigger and bigger and we still won't be able to keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,680",
+				"to": "00:24:18,600"
+			},
+			"offsets": {
+				"from": 1452680,
+				"to": 1458600
+			},
+			"text": " up because the innovation that is happening in this ecosystem is so, so remarkable."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,600",
+				"to": "00:24:19,760"
+			},
+			"offsets": {
+				"from": 1458600,
+				"to": 1459760
+			},
+			"text": " And that's what Snabs aims to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,760",
+				"to": "00:24:26,360"
+			},
+			"offsets": {
+				"from": 1459760,
+				"to": 1466360
+			},
+			"text": " It aims to give everyone the builders, the smart big brains in the room the power to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,360",
+				"to": "00:24:29,560"
+			},
+			"offsets": {
+				"from": 1466360,
+				"to": 1469560
+			},
+			"text": " Metamask work better for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,560",
+				"to": "00:24:31,880"
+			},
+			"offsets": {
+				"from": 1469560,
+				"to": 1471880
+			},
+			"text": " Like you heard earlier, there's a bunch of Snabs people here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,880",
+				"to": "00:24:35,760"
+			},
+			"offsets": {
+				"from": 1471880,
+				"to": 1475760
+			},
+			"text": " If you're a builder and you're frustrated with Metamask, talk to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,760",
+				"to": "00:24:39,720"
+			},
+			"offsets": {
+				"from": 1475760,
+				"to": 1479720
+			},
+			"text": " They will explain it all to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,720",
+				"to": "00:24:40,720"
+			},
+			"offsets": {
+				"from": 1479720,
+				"to": 1480720
+			},
+			"text": " And that's all I've got."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,720",
+				"to": "00:24:42,600"
+			},
+			"offsets": {
+				"from": 1480720,
+				"to": 1482600
+			},
+			"text": " Just want to say thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,600",
+				"to": "00:24:44,160"
+			},
+			"offsets": {
+				"from": 1482600,
+				"to": 1484160
+			},
+			"text": " Amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,160",
+				"to": "00:24:45,520"
+			},
+			"offsets": {
+				"from": 1484160,
+				"to": 1485520
+			},
+			"text": " That was an excellent talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,520",
+				"to": "00:24:47,720"
+			},
+			"offsets": {
+				"from": 1485520,
+				"to": 1487720
+			},
+			"text": " We have time for just one question."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,720",
+				"to": "00:24:52,840"
+			},
+			"offsets": {
+				"from": 1487720,
+				"to": 1492840
+			},
+			"text": " If anybody has a quick question, if so, please raise your hand and we'll get a My2Asap."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,840",
+				"to": "00:24:56,240"
+			},
+			"offsets": {
+				"from": 1492840,
+				"to": 1496240
+			},
+			"text": " Do I see a hand?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,240",
+				"to": "00:24:58,160"
+			},
+			"offsets": {
+				"from": 1496240,
+				"to": 1498160
+			},
+			"text": " I saw one and then I went down."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,160",
+				"to": "00:24:59,160"
+			},
+			"offsets": {
+				"from": 1498160,
+				"to": 1499160
+			},
+			"text": " There you go."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,160",
+				"to": "00:25:00,160"
+			},
+			"offsets": {
+				"from": 1499160,
+				"to": 1500160
+			},
+			"text": " I'm just blind."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,160",
+				"to": "00:25:02,560"
+			},
+			"offsets": {
+				"from": 1500160,
+				"to": 1502560
+			},
+			"text": " The lights are crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,560",
+				"to": "00:25:04,560"
+			},
+			"offsets": {
+				"from": 1502560,
+				"to": 1504560
+			},
+			"text": " Yeah, hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,560",
+				"to": "00:25:06,600"
+			},
+			"offsets": {
+				"from": 1504560,
+				"to": 1506600
+			},
+			"text": " Just a quick question."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,600",
+				"to": "00:25:13,440"
+			},
+			"offsets": {
+				"from": 1506600,
+				"to": 1513440
+			},
+			"text": " What will be your perfect world for perfect users, perfect user system for you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,440",
+				"to": "00:25:17,880"
+			},
+			"offsets": {
+				"from": 1513440,
+				"to": 1517880
+			},
+			"text": " In terms of like the accounts and the private users?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,880",
+				"to": "00:25:18,880"
+			},
+			"offsets": {
+				"from": 1517880,
+				"to": 1518880
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,880",
+				"to": "00:25:24,040"
+			},
+			"offsets": {
+				"from": 1518880,
+				"to": 1524040
+			},
+			"text": " For example, on what thing can we back the user information?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,040",
+				"to": "00:25:29,360"
+			},
+			"offsets": {
+				"from": 1524040,
+				"to": 1529360
+			},
+			"text": " So right now we, in the physical world, we back up with the people's bodies."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,360",
+				"to": "00:25:33,080"
+			},
+			"offsets": {
+				"from": 1529360,
+				"to": 1533080
+			},
+			"text": " I know that person because I see that person physically beside me."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,080",
+				"to": "00:25:43,920"
+			},
+			"offsets": {
+				"from": 1533080,
+				"to": 1543920
+			},
+			"text": " So I will need something based on the physicality of the person or something like a second factor"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,920",
+				"to": "00:25:44,920"
+			},
+			"offsets": {
+				"from": 1543920,
+				"to": 1544920
+			},
+			"text": " of the occasion."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,920",
+				"to": "00:25:45,920"
+			},
+			"offsets": {
+				"from": 1544920,
+				"to": 1545920
+			},
+			"text": " But then..."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,920",
+				"to": "00:25:46,920"
+			},
+			"offsets": {
+				"from": 1545920,
+				"to": 1546920
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,920",
+				"to": "00:25:54,880"
+			},
+			"offsets": {
+				"from": 1546920,
+				"to": 1554880
+			},
+			"text": " So the reason why I kind of shy away from saying like this one technology, this one thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,880",
+				"to": "00:25:59,040"
+			},
+			"offsets": {
+				"from": 1554880,
+				"to": 1559040
+			},
+			"text": " or this one thing that these one groups of people or this standards body is working"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,040",
+				"to": "00:26:05,000"
+			},
+			"offsets": {
+				"from": 1559040,
+				"to": 1565000
+			},
+			"text": " on is like the solution is that I think, frankly, I think it's ignorant to think that"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,000",
+				"to": "00:26:09,480"
+			},
+			"offsets": {
+				"from": 1565000,
+				"to": 1569480
+			},
+			"text": " like any one party or any one group of people can serve like the entire world perfectly"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,480",
+				"to": "00:26:13,920"
+			},
+			"offsets": {
+				"from": 1569480,
+				"to": 1573920
+			},
+			"text": " and especially at the pace of innovation that we're seeing."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,920",
+				"to": "00:26:17,240"
+			},
+			"offsets": {
+				"from": 1573920,
+				"to": 1577240
+			},
+			"text": " I think that there's like a couple important factors and I think the conversation is often"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,240",
+				"to": "00:26:21,440"
+			},
+			"offsets": {
+				"from": 1577240,
+				"to": 1581440
+			},
+			"text": " marred in this like, like account abstraction is the word if you want to Google it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,440",
+				"to": "00:26:24,520"
+			},
+			"offsets": {
+				"from": 1581440,
+				"to": 1584520
+			},
+			"text": " Like Ethereum account abstraction, you can get the whole history."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,520",
+				"to": "00:26:25,840"
+			},
+			"offsets": {
+				"from": 1584520,
+				"to": 1585840
+			},
+			"text": " It's such a big thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,840",
+				"to": "00:26:28,920"
+			},
+			"offsets": {
+				"from": 1585840,
+				"to": 1588920
+			},
+			"text": " It has so many goals at this point."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,920",
+				"to": "00:26:34,920"
+			},
+			"offsets": {
+				"from": 1588920,
+				"to": 1594920
+			},
+			"text": " But the thing that I'm most focused on is like I think we need to provide a migration"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,920",
+				"to": "00:26:38,520"
+			},
+			"offsets": {
+				"from": 1594920,
+				"to": 1598520
+			},
+			"text": " path for users that is as cheap as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,520",
+				"to": "00:26:43,240"
+			},
+			"offsets": {
+				"from": 1598520,
+				"to": 1603240
+			},
+			"text": " So not migrating all their assets but going from whatever this old way of doing things"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,240",
+				"to": "00:26:45,880"
+			},
+			"offsets": {
+				"from": 1603240,
+				"to": 1605880
+			},
+			"text": " to the new way of doing things has a low cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,880",
+				"to": "00:26:52,160"
+			},
+			"offsets": {
+				"from": 1605880,
+				"to": 1612160
+			},
+			"text": " Secondly, I think that people should be able to like revoke whether that's like permissions"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,160",
+				"to": "00:26:55,400"
+			},
+			"offsets": {
+				"from": 1612160,
+				"to": 1615400
+			},
+			"text": " or their entire key or whatever it may be."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,400",
+				"to": "00:26:58,480"
+			},
+			"offsets": {
+				"from": 1615400,
+				"to": 1618480
+			},
+			"text": " They should be able to say like, no, that's not valid anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,480",
+				"to": "00:27:00,640"
+			},
+			"offsets": {
+				"from": 1618480,
+				"to": 1620640
+			},
+			"text": " That's not me anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,640",
+				"to": "00:27:05,520"
+			},
+			"offsets": {
+				"from": 1620640,
+				"to": 1625520
+			},
+			"text": " And then I think that obviously there's in order to make those two happen there has to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,520",
+				"to": "00:27:12,400"
+			},
+			"offsets": {
+				"from": 1625520,
+				"to": 1632400
+			},
+			"text": " be some delegation, some permissioning system, something where, because like if you revoke"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,400",
+				"to": "00:27:15,320"
+			},
+			"offsets": {
+				"from": 1632400,
+				"to": 1635320
+			},
+			"text": " all the permissions, then you don't have anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,320",
+				"to": "00:27:16,320"
+			},
+			"offsets": {
+				"from": 1635320,
+				"to": 1636320
+			},
+			"text": " You can't do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,320",
+				"to": "00:27:18,960"
+			},
+			"offsets": {
+				"from": 1636320,
+				"to": 1638960
+			},
+			"text": " So you have to like give them somewhere else."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,960",
+				"to": "00:27:22,240"
+			},
+			"offsets": {
+				"from": 1638960,
+				"to": 1642240
+			},
+			"text": " And there's a ton of people that have been doing a ton of work on this over the years."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,240",
+				"to": "00:27:26,120"
+			},
+			"offsets": {
+				"from": 1642240,
+				"to": 1646120
+			},
+			"text": " The Ethereum account of traction research is in conversations like those."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,120",
+				"to": "00:27:27,120"
+			},
+			"offsets": {
+				"from": 1646120,
+				"to": 1647120
+			},
+			"text": " That's one thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,120",
+				"to": "00:27:31,560"
+			},
+			"offsets": {
+				"from": 1647120,
+				"to": 1651560
+			},
+			"text": " But if you look at decentralized identity, which has been a decades long effort by some"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,560",
+				"to": "00:27:37,480"
+			},
+			"offsets": {
+				"from": 1651560,
+				"to": 1657480
+			},
+			"text": " remarkable organizations around the world that really focus on this, that's like a whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,480",
+				"to": "00:27:39,440"
+			},
+			"offsets": {
+				"from": 1657480,
+				"to": 1659440
+			},
+			"text": " another rabbit hole that you can go down."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,440",
+				"to": "00:27:47,000"
+			},
+			"offsets": {
+				"from": 1659440,
+				"to": 1667000
+			},
+			"text": " And I will not pretend to think that like I deeply understand this design space as much"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,000",
+				"to": "00:27:48,000"
+			},
+			"offsets": {
+				"from": 1667000,
+				"to": 1668000
+			},
+			"text": " as them."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:48,000",
+				"to": "00:27:52,120"
+			},
+			"offsets": {
+				"from": 1668000,
+				"to": 1672120
+			},
+			"text": " So if this is something that like really interests you and you want to start working on it, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,120",
+				"to": "00:27:55,720"
+			},
+			"offsets": {
+				"from": 1672120,
+				"to": 1675720
+			},
+			"text": " would definitely recommend like starting there and looking for the experts and the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,720",
+				"to": "00:28:00,360"
+			},
+			"offsets": {
+				"from": 1675720,
+				"to": 1680360
+			},
+			"text": " who are talking about it because they are way smarter than me."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,360",
+				"to": "00:28:01,360"
+			},
+			"offsets": {
+				"from": 1680360,
+				"to": 1681360
+			},
+			"text": " Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,360",
+				"to": "00:28:02,360"
+			},
+			"offsets": {
+				"from": 1681360,
+				"to": 1682360
+			},
+			"text": " That's all the time we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,360",
+				"to": "00:28:03,360"
+			},
+			"offsets": {
+				"from": 1682360,
+				"to": 1683360
+			},
+			"text": " Please give Taylor a big round of applause."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,360",
+				"to": "00:28:04,360"
+			},
+			"offsets": {
+				"from": 1683360,
+				"to": 1684360
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,360",
+				"to": "00:28:04,560"
+			},
+			"offsets": {
+				"from": 1684360,
+				"to": 1684560
+			},
+			"text": " Love you."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,560",
+				"to": "00:28:05,560"
+			},
+			"offsets": {
+				"from": 1684560,
+				"to": 1685560
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,560",
+				"to": "00:28:07,560"
+			},
+			"offsets": {
+				"from": 1685560,
+				"to": 1687560
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,560",
+				"to": "00:28:09,560"
+			},
+			"offsets": {
+				"from": 1687560,
+				"to": 1689560
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,560",
+				"to": "00:28:10,560"
+			},
+			"offsets": {
+				"from": 1689560,
+				"to": 1690560
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,560",
+				"to": "00:28:11,560"
+			},
+			"offsets": {
+				"from": 1690560,
+				"to": 1691560
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:11,560",
+				"to": "00:28:12,560"
+			},
+			"offsets": {
+				"from": 1691560,
+				"to": 1692560
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,560",
+				"to": "00:28:13,560"
+			},
+			"offsets": {
+				"from": 1692560,
+				"to": 1693560
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,560",
+				"to": "00:28:14,560"
+			},
+			"offsets": {
+				"from": 1693560,
+				"to": 1694560
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,560",
+				"to": "00:28:15,560"
+			},
+			"offsets": {
+				"from": 1694560,
+				"to": 1695560
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:15,560",
+				"to": "00:28:16,560"
+			},
+			"offsets": {
+				"from": 1695560,
+				"to": 1696560
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,560",
+				"to": "00:28:17,560"
+			},
+			"offsets": {
+				"from": 1696560,
+				"to": 1697560
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,560",
+				"to": "00:28:18,560"
+			},
+			"offsets": {
+				"from": 1697560,
+				"to": 1698560
+			},
+			"text": " [MUSIC]"
+		}
+	]
+}

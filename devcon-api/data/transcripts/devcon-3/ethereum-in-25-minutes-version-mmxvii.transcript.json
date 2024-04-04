@@ -1,0 +1,2144 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:26,140"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 26140
+			},
+			"text": " Okay, so this is intended to be a kind of introduction that's as simple as possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,140",
+				"to": "00:00:32,880"
+			},
+			"offsets": {
+				"from": 26140,
+				"to": 32880
+			},
+			"text": " while at the same time covering all of the important bits of basically what the Ethereum protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,880",
+				"to": "00:00:35,840"
+			},
+			"offsets": {
+				"from": 32880,
+				"to": 35840
+			},
+			"text": " actually looks like from a technical standpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,840",
+				"to": "00:00:43,360"
+			},
+			"offsets": {
+				"from": 35840,
+				"to": 43360
+			},
+			"text": " So I'll just kind of dive straight into it and start off with the, basically the background,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,360",
+				"to": "00:00:46,220"
+			},
+			"offsets": {
+				"from": 43360,
+				"to": 46220
+			},
+			"text": " which is, you know, why does Ethereum need to exist?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,220",
+				"to": "00:00:52,520"
+			},
+			"offsets": {
+				"from": 46220,
+				"to": 52520
+			},
+			"text": " So back when I came up with the original white paper at the end of 2013,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,520",
+				"to": "00:00:58,520"
+			},
+			"offsets": {
+				"from": 52520,
+				"to": 58520
+			},
+			"text": " there was already a large amount of interest from the public in blockchain technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,520",
+				"to": "00:01:04,520"
+			},
+			"offsets": {
+				"from": 58520,
+				"to": 64520
+			},
+			"text": " and particularly people starting to look at using blockchain technology going beyond"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,520",
+				"to": "00:01:07,020"
+			},
+			"offsets": {
+				"from": 64520,
+				"to": 67020
+			},
+			"text": " what was then just Bitcoin currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,020",
+				"to": "00:01:09,520"
+			},
+			"offsets": {
+				"from": 67020,
+				"to": 69520
+			},
+			"text": " And people are looking at various applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,520",
+				"to": "00:01:15,520"
+			},
+			"offsets": {
+				"from": 69520,
+				"to": 75520
+			},
+			"text": " issuing assets on the blockchain, crowdfunding, domain registration, projects like Namecoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,520",
+				"to": "00:01:20,520"
+			},
+			"offsets": {
+				"from": 75520,
+				"to": 80520
+			},
+			"text": " Land Title Registration, gambling, prediction markets, IoT applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,520",
+				"to": "00:01:25,520"
+			},
+			"offsets": {
+				"from": 80520,
+				"to": 85520
+			},
+			"text": " healthcare applications, many different applications of blockchains that go beyond,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,520",
+				"to": "00:01:30,520"
+			},
+			"offsets": {
+				"from": 85520,
+				"to": 90520
+			},
+			"text": " you know, like, I have 50 bitcoins, I send 20 bitcoins to you, you now have 20 bitcoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,520",
+				"to": "00:01:37,520"
+			},
+			"offsets": {
+				"from": 90520,
+				"to": 97520
+			},
+			"text": " So the problem is most existing blockchain protocols at the time were designed like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,520",
+				"to": "00:01:40,520"
+			},
+			"offsets": {
+				"from": 97520,
+				"to": 100520
+			},
+			"text": " So what properties does a blockchain calculator have?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,520",
+				"to": "00:01:46,520"
+			},
+			"offsets": {
+				"from": 100520,
+				"to": 106520
+			},
+			"text": " It could do one thing, and it could do one thing fairly well, but that's the only thing that it can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,520",
+				"to": "00:01:52,520"
+			},
+			"offsets": {
+				"from": 106520,
+				"to": 112520
+			},
+			"text": " Now granted if you have some super fancy TI80 whatever, you can probably come up with some way"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,520",
+				"to": "00:01:56,520"
+			},
+			"offsets": {
+				"from": 112520,
+				"to": 116520
+			},
+			"text": " to program a video game on top of it, but like nobody really wants to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,520",
+				"to": "00:02:01,520"
+			},
+			"offsets": {
+				"from": 116520,
+				"to": 121520
+			},
+			"text": " So in general it just ends up being one tool that can do one thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,520",
+				"to": "00:02:05,520"
+			},
+			"offsets": {
+				"from": 121520,
+				"to": 125520
+			},
+			"text": " So problem is, what if he wants to do more than one thing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,520",
+				"to": "00:02:08,520"
+			},
+			"offsets": {
+				"from": 125520,
+				"to": 128520
+			},
+			"text": " Well, you could buy five different devices for five different purposes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,520",
+				"to": "00:02:10,520"
+			},
+			"offsets": {
+				"from": 128520,
+				"to": 130520
+			},
+			"text": " but it very quickly becomes too clunky."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,520",
+				"to": "00:02:15,520"
+			},
+			"offsets": {
+				"from": 130520,
+				"to": 135520
+			},
+			"text": " So the next step is that people were starting to create protocols that worked like a Swiss army knife."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,520",
+				"to": "00:02:23,520"
+			},
+			"offsets": {
+				"from": 135520,
+				"to": 143520
+			},
+			"text": " So you might imagine a group of people come into a room and they brainstorm for an hour"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,520",
+				"to": "00:02:27,520"
+			},
+			"offsets": {
+				"from": 143520,
+				"to": 147520
+			},
+			"text": " and they come up with 25 different blockchain applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,520",
+				"to": "00:02:31,520"
+			},
+			"offsets": {
+				"from": 147520,
+				"to": 151520
+			},
+			"text": " And then they come up with 25 different transaction types."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,520",
+				"to": "00:02:34,520"
+			},
+			"offsets": {
+				"from": 151520,
+				"to": 154520
+			},
+			"text": " Transaction type one, create a crowd fund,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,520",
+				"to": "00:02:37,520"
+			},
+			"offsets": {
+				"from": 154520,
+				"to": 157520
+			},
+			"text": " create transaction type two, participate at a crowd fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,520",
+				"to": "00:02:41,520"
+			},
+			"offsets": {
+				"from": 157520,
+				"to": 161520
+			},
+			"text": " Transaction type three, create an insurance contract, transaction type four,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,520",
+				"to": "00:02:46,520"
+			},
+			"offsets": {
+				"from": 161520,
+				"to": 166520
+			},
+			"text": " create a two person bet, transaction type five, register a domain name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,520",
+				"to": "00:02:49,520"
+			},
+			"offsets": {
+				"from": 166520,
+				"to": 169520
+			},
+			"text": " and so on and so forth for every application they can think of."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,520",
+				"to": "00:02:57,520"
+			},
+			"offsets": {
+				"from": 169520,
+				"to": 177520
+			},
+			"text": " So this is what I mean by a Swiss army knife protocol and at the time there are actually quite a few of these that were being created."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,520",
+				"to": "00:03:06,520"
+			},
+			"offsets": {
+				"from": 177520,
+				"to": 186520
+			},
+			"text": " The problem is though that if you have a Swiss army knife protocol and you have these people come up with 25 different projects sitting together in a room,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,520",
+				"to": "00:03:15,520"
+			},
+			"offsets": {
+				"from": 186520,
+				"to": 195520
+			},
+			"text": " they create this protocol, release the protocol, one week later some teenager from Finland comes up with the 26th blockchain application."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,520",
+				"to": "00:03:19,520"
+			},
+			"offsets": {
+				"from": 195520,
+				"to": 199520
+			},
+			"text": " And then you have to change around the entire protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,520",
+				"to": "00:03:24,520"
+			},
+			"offsets": {
+				"from": 199520,
+				"to": 204520
+			},
+			"text": " So why not make a protocol that works like this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,520",
+				"to": "00:03:27,520"
+			},
+			"offsets": {
+				"from": 204520,
+				"to": 207520
+			},
+			"text": " So..."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,520",
+				"to": "00:03:38,520"
+			},
+			"offsets": {
+				"from": 212520,
+				"to": 218520
+			},
+			"text": " So basically, why not make a blockchain protocol that basically works like a smartphone?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,520",
+				"to": "00:03:47,520"
+			},
+			"offsets": {
+				"from": 218520,
+				"to": 227520
+			},
+			"text": " It's instead of the blockchain protocol supporting just a very small suite of applications and that's all that you can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,520",
+				"to": "00:03:56,520"
+			},
+			"offsets": {
+				"from": 227520,
+				"to": 236520
+			},
+			"text": " Instead we have a blockchain protocol where the blockchain protocol supports a programming language which gives you the ability to create applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,520",
+				"to": "00:04:05,520"
+			},
+			"offsets": {
+				"from": 236520,
+				"to": 245520
+			},
+			"text": " And what is an application? Well, anyone can write a piece of code and package that code up and upload it and you have an app."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,520",
+				"to": "00:04:12,520"
+			},
+			"offsets": {
+				"from": 245520,
+				"to": 252520
+			},
+			"text": " And if anyone else wants to use your app, they can just download the app and it appears on their phone and they can use it and run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,520",
+				"to": "00:04:24,520"
+			},
+			"offsets": {
+				"from": 252520,
+				"to": 264520
+			},
+			"text": " So this is basically the reason why one single phone can make phone calls, browse the internet, listen to music, have text conversations with people, play games,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,520",
+				"to": "00:04:28,520"
+			},
+			"offsets": {
+				"from": 264520,
+				"to": 268520
+			},
+			"text": " and just basically do thousands of things all in one device."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,520",
+				"to": "00:04:31,520"
+			},
+			"offsets": {
+				"from": 268520,
+				"to": 271520
+			},
+			"text": " This is the power of general purpose computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,520",
+				"to": "00:04:35,520"
+			},
+			"offsets": {
+				"from": 271520,
+				"to": 275520
+			},
+			"text": " And this is the kind of spirit I wanted to bring to the blockchain world."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,520",
+				"to": "00:04:41,520"
+			},
+			"offsets": {
+				"from": 275520,
+				"to": 281520
+			},
+			"text": " So the concept, right? So first of all, Ethereum is a blockchain. Yay!"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,520",
+				"to": "00:04:49,520"
+			},
+			"offsets": {
+				"from": 281520,
+				"to": 289520
+			},
+			"text": " But, you know, there is a few tiny additions, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,520",
+				"to": "00:04:59,520"
+			},
+			"offsets": {
+				"from": 289520,
+				"to": 299520
+			},
+			"text": " So first of all, Ethereum has this built-in general purpose programming language that allows you to program a very wide array of applications inside of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,520",
+				"to": "00:05:07,520"
+			},
+			"offsets": {
+				"from": 299520,
+				"to": 307520
+			},
+			"text": " Now, in a blockchain that is intended only to support money transfers, then there will be one type of account."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,520",
+				"to": "00:05:14,520"
+			},
+			"offsets": {
+				"from": 307520,
+				"to": 314520
+			},
+			"text": " And that type of account would just be an account that's controlled by some user and that account would hold coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,520",
+				"to": "00:05:18,520"
+			},
+			"offsets": {
+				"from": 314520,
+				"to": 318520
+			},
+			"text": " And you would be able to pass those coins from one account to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,520",
+				"to": "00:05:21,520"
+			},
+			"offsets": {
+				"from": 318520,
+				"to": 321520
+			},
+			"text": " In Ethereum, we have two types of accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,520",
+				"to": "00:05:25,520"
+			},
+			"offsets": {
+				"from": 321520,
+				"to": 325520
+			},
+			"text": " The first type of an account is an account that is controlled by a user."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,520",
+				"to": "00:05:30,520"
+			},
+			"offsets": {
+				"from": 325520,
+				"to": 330520
+			},
+			"text": " So you have a cryptographic private key and there exists a corresponding Ethereum address."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,520",
+				"to": "00:05:40,520"
+			},
+			"offsets": {
+				"from": 330520,
+				"to": 340520
+			},
+			"text": " And if you have the cryptographic private key, you can use this to digitally sign messages that perform operations on behalf of this address."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,520",
+				"to": "00:05:45,520"
+			},
+			"offsets": {
+				"from": 340520,
+				"to": 345520
+			},
+			"text": " And these operations are called transactions. They can be broadcasted to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,520",
+				"to": "00:05:50,520"
+			},
+			"offsets": {
+				"from": 345520,
+				"to": 350520
+			},
+			"text": " And if they get included in a block, then those operations get executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,520",
+				"to": "00:06:02,520"
+			},
+			"offsets": {
+				"from": 350520,
+				"to": 362520
+			},
+			"text": " The other type of account is basically an account controlled by a piece of code that is run inside of the blockchain itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,520",
+				"to": "00:06:08,520"
+			},
+			"offsets": {
+				"from": 362520,
+				"to": 368520
+			},
+			"text": " So you could have a account which is controlled by a computer program."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,520",
+				"to": "00:06:15,520"
+			},
+			"offsets": {
+				"from": 368520,
+				"to": 375520
+			},
+			"text": " And this computer program has some set of rules. And the rules might say, if thing A happens, then send some coins to person X."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,520",
+				"to": "00:06:22,520"
+			},
+			"offsets": {
+				"from": 375520,
+				"to": 382520
+			},
+			"text": " If thing B happens, then send some coins to person Y. If thing C happens, then just hold on to the coins for now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,520",
+				"to": "00:06:34,520"
+			},
+			"offsets": {
+				"from": 382520,
+				"to": 394520
+			},
+			"text": " And if you then send coins into this account, then the code of that account is the only thing that has the power to make those coins move anywhere else from then on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,520",
+				"to": "00:06:39,520"
+			},
+			"offsets": {
+				"from": 394520,
+				"to": 399520
+			},
+			"text": " So it is literally digital assets that are under the direct control of a computer program."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,520",
+				"to": "00:06:46,520"
+			},
+			"offsets": {
+				"from": 399520,
+				"to": 406520
+			},
+			"text": " Now, of course, these contracts can be used for many more things than just controlling digital assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,520",
+				"to": "00:06:53,520"
+			},
+			"offsets": {
+				"from": 406520,
+				"to": 413520
+			},
+			"text": " They can be used to represent the business logic of basically arbitrarily complex unblock in applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,520",
+				"to": "00:06:58,520"
+			},
+			"offsets": {
+				"from": 413520,
+				"to": 418520
+			},
+			"text": " So this includes things like ENS, the Ethereum name system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,520",
+				"to": "00:07:10,520"
+			},
+			"offsets": {
+				"from": 418520,
+				"to": 430520
+			},
+			"text": " This could be used to keep track of some kind of unblock in voting scheme. This could be used to keep track of various on-chain issuer back to assets and missed lots of different use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,520",
+				"to": "00:07:16,520"
+			},
+			"offsets": {
+				"from": 430520,
+				"to": 436520
+			},
+			"text": " So anyone can create an application with any rules basically just by defining it as a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,520",
+				"to": "00:07:27,520"
+			},
+			"offsets": {
+				"from": 436520,
+				"to": 447520
+			},
+			"text": " So DNS, the Hello World of Ethereum, this is basically one of the simplest contracts you can write that still does something reasonably useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,520",
+				"to": "00:07:33,520"
+			},
+			"offsets": {
+				"from": 447520,
+				"to": 453520
+			},
+			"text": " So the idea is that this is a piece of code. And you might notice that the code has changed somewhat from last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,520",
+				"to": "00:07:40,520"
+			},
+			"offsets": {
+				"from": 453520,
+				"to": 460520
+			},
+			"text": " Basically, the reason why is that last year's code was written in serpent. And we now have Viper, which is much better than serpent."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,520",
+				"to": "00:07:43,520"
+			},
+			"offsets": {
+				"from": 460520,
+				"to": 463520
+			},
+			"text": " And maybe some people will talk about it later."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,520",
+				"to": "00:07:51,520"
+			},
+			"offsets": {
+				"from": 463520,
+				"to": 471520
+			},
+			"text": " So basically, you have two functions. And these two functions represent things that you can do with the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,520",
+				"to": "00:07:56,520"
+			},
+			"offsets": {
+				"from": 471520,
+				"to": 476520
+			},
+			"text": " And at the top, you have a declaration of basically what the contract stores."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,520",
+				"to": "00:08:06,520"
+			},
+			"offsets": {
+				"from": 476520,
+				"to": 486520
+			},
+			"text": " So the contract stores a mapping of basically a domain to what is the owner of the domain and what IP address the domain is supposed to point to."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,520",
+				"to": "00:08:17,520"
+			},
+			"offsets": {
+				"from": 486520,
+				"to": 497520
+			},
+			"text": " There is a function called register. And if a domain does not yet have an owner, then the owner gets set to basically whoever sent the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,520",
+				"to": "00:08:21,520"
+			},
+			"offsets": {
+				"from": 497520,
+				"to": 501520
+			},
+			"text": " So whoever sent the transaction that made that function call."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,520",
+				"to": "00:08:31,520"
+			},
+			"offsets": {
+				"from": 501520,
+				"to": 511520
+			},
+			"text": " And you have another function set IP. And that function call is fairly simple. It basically just checks if you own the domain that you're trying to set the IP address of."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,520",
+				"to": "00:08:42,520"
+			},
+			"offsets": {
+				"from": 511520,
+				"to": 522520
+			},
+			"text": " And if it does, then it sets the IP address to whatever you want. So in a contract, basically where does all this information get stored?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,520",
+				"to": "00:08:52,520"
+			},
+			"offsets": {
+				"from": 522520,
+				"to": 532520
+			},
+			"text": " So in a simple blockchain, you can think of the state that the blockchain keeps track of as just basically being a simple mapping of accounts to balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,520",
+				"to": "00:08:59,520"
+			},
+			"offsets": {
+				"from": 532520,
+				"to": 539520
+			},
+			"text": " Address 1, 2, 3, 4, 5 has 70 coins. Address B7, 8, 8, 4 has 20,000 coins and so on and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,520",
+				"to": "00:09:05,520"
+			},
+			"offsets": {
+				"from": 539520,
+				"to": 545520
+			},
+			"text": " The Ethereum state is a bit richer. So it's still a mapping of accounts to thing inside that account."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,520",
+				"to": "00:09:08,520"
+			},
+			"offsets": {
+				"from": 545520,
+				"to": 548520
+			},
+			"text": " But the thing inside that account can be considerably more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,520",
+				"to": "00:09:18,520"
+			},
+			"offsets": {
+				"from": 548520,
+				"to": 558520
+			},
+			"text": " So first of all, you have the account balance. So how much ether does the account have? You have the nonce, which is basically a counter that gets used for replay protection."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,520",
+				"to": "00:09:26,520"
+			},
+			"offsets": {
+				"from": 558520,
+				"to": 566520
+			},
+			"text": " And you have the code of the contract. If that account is a contract. And you have the contract storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,520",
+				"to": "00:09:33,520"
+			},
+			"offsets": {
+				"from": 566520,
+				"to": 573520
+			},
+			"text": " And a contract storage is this kind of mini database that basically any contract on the Ethereum blockchain can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,520",
+				"to": "00:09:40,520"
+			},
+			"offsets": {
+				"from": 573520,
+				"to": 580520
+			},
+			"text": " So in this case, the mapping of domains to who owns the domain, what is the IP address, would actually get stored in contract storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,520",
+				"to": "00:09:48,520"
+			},
+			"offsets": {
+				"from": 580520,
+				"to": 588520
+			},
+			"text": " Now the history in a blockchain is things that happen. So you have transactions and in Ethereum, you have this concept called receipts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,520",
+				"to": "00:09:59,520"
+			},
+			"offsets": {
+				"from": 588520,
+				"to": 599520
+			},
+			"text": " So currently, all full nodes store state. Some full nodes store history and there is the possibility of full nodes that do not store history."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,520",
+				"to": "00:10:10,520"
+			},
+			"offsets": {
+				"from": 601520,
+				"to": 610520
+			},
+			"text": " So there we go. Every account object contains four pieces of data. I'll leave that open for about five seconds in case anyone wants to photo it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,520",
+				"to": "00:10:20,520"
+			},
+			"offsets": {
+				"from": 610520,
+				"to": 620520
+			},
+			"text": " Five, four, three, two, one. Okay. Now code execution. So every transaction specifies a two address."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,520",
+				"to": "00:10:26,520"
+			},
+			"offsets": {
+				"from": 620520,
+				"to": 626520
+			},
+			"text": " So every transaction specifies basically what is the destination or the target of that transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,520",
+				"to": "00:10:41,520"
+			},
+			"offsets": {
+				"from": 626520,
+				"to": 641520
+			},
+			"text": " Now if the target of a transaction is just a regular account or really in any case, and if that transaction contains ether, then that transaction also is a transfer from one account to another account."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,520",
+				"to": "00:10:53,520"
+			},
+			"offsets": {
+				"from": 641520,
+				"to": 653520
+			},
+			"text": " Now if the target of the transaction has code, so if the target of the transaction is a contract, then the code of the target address executes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,520",
+				"to": "00:11:00,520"
+			},
+			"offsets": {
+				"from": 653520,
+				"to": 660520
+			},
+			"text": " And the code has the ability to do a bunch of things. So the code has the ability to send ether to other contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,520",
+				"to": "00:11:13,520"
+			},
+			"offsets": {
+				"from": 660520,
+				"to": 673520
+			},
+			"text": " It has the ability to read and write to a contract's own internal storage. So if you were to look at this example, then a call of the register function would be a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,520",
+				"to": "00:11:22,520"
+			},
+			"offsets": {
+				"from": 673520,
+				"to": 682520
+			},
+			"text": " And this transaction would basically lead to the owner of the domain being set, and that actually is writing to storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,520",
+				"to": "00:11:32,520"
+			},
+			"offsets": {
+				"from": 682520,
+				"to": 692520
+			},
+			"text": " And if statement actually also is reading from the contract's storage. So it can read and write to storage, and it can even call other contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,520",
+				"to": "00:11:42,520"
+			},
+			"offsets": {
+				"from": 692520,
+				"to": 702520
+			},
+			"text": " So this is also called an internal transaction. Basically contracts can talk to other contracts in the exact same way that external users can talk to contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,520",
+				"to": "00:11:51,520"
+			},
+			"offsets": {
+				"from": 702520,
+				"to": 711520
+			},
+			"text": " Every full node on the blockchain processes every transaction and stores the entire state. It's bold because it's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,520",
+				"to": "00:12:04,520"
+			},
+			"offsets": {
+				"from": 711520,
+				"to": 724520
+			},
+			"text": " So gas in Ethereum. So in general there's something called the halting problem, which basically says you can't really tell in general whether or not a program will just keep running forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,520",
+				"to": "00:12:16,520"
+			},
+			"offsets": {
+				"from": 724520,
+				"to": 736520
+			},
+			"text": " So you can make a program where basically figuring out whether that program will stop after a certain number of steps, or whether it will keep going forever, is something that just mathematically cannot be proven one way or the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,520",
+				"to": "00:12:25,520"
+			},
+			"offsets": {
+				"from": 736520,
+				"to": 745520
+			},
+			"text": " So the solution that we have is this mechanism where we charge a transaction fee basically per computational step that a transaction consumes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,520",
+				"to": "00:12:36,520"
+			},
+			"offsets": {
+				"from": 745520,
+				"to": 756520
+			},
+			"text": " And the unit in which we measure the computational steps is called gas. So gas is not a currency, right? Gas is not kind of something that you can transfer or hold."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,520",
+				"to": "00:12:45,520"
+			},
+			"offsets": {
+				"from": 756520,
+				"to": 765520
+			},
+			"text": " Gas is basically a unit of measurement. It says this computation, if it consumes 30,000 units of gas, then that means that the protocol says that this computation is not a currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,520",
+				"to": "00:12:50,520"
+			},
+			"offsets": {
+				"from": 765520,
+				"to": 770520
+			},
+			"text": " So that means that this computation takes about 30,000 units of effort in order to execute."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,520",
+				"to": "00:12:58,520"
+			},
+			"offsets": {
+				"from": 770520,
+				"to": 778520
+			},
+			"text": " So there's also special gas fees that are applied to operations that take up storage, transactions that take up space."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,520",
+				"to": "00:13:05,520"
+			},
+			"offsets": {
+				"from": 778520,
+				"to": 785520
+			},
+			"text": " Basically any kind of cost that gets incurred by the Ethereum network is translated into some kind of gas expenditure."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,520",
+				"to": "00:13:15,520"
+			},
+			"offsets": {
+				"from": 785520,
+				"to": 795520
+			},
+			"text": " So every transaction has to specify the gas limit. A transaction has to specify the amount of maximum gas that that transaction can consume."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,520",
+				"to": "00:13:21,520"
+			},
+			"offsets": {
+				"from": 795520,
+				"to": 801520
+			},
+			"text": " Then when the code executes, the execution starts using up the gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,520",
+				"to": "00:13:26,520"
+			},
+			"offsets": {
+				"from": 801520,
+				"to": 806520
+			},
+			"text": " And if the code execution stops before the gas is used up, then everything is good."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,520",
+				"to": "00:13:34,520"
+			},
+			"offsets": {
+				"from": 806520,
+				"to": 814520
+			},
+			"text": " But if the code execution gets to the point where all the gas is spent, then the transaction basically reverts exit with an error."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,520",
+				"to": "00:13:37,520"
+			},
+			"offsets": {
+				"from": 814520,
+				"to": 817520
+			},
+			"text": " But the sender of the transaction still has to pay a fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,520",
+				"to": "00:13:46,520"
+			},
+			"offsets": {
+				"from": 817520,
+				"to": 826520
+			},
+			"text": " So the gas limit in Ethereum is a counterpart to the block size limit in Bitcoin, and the way that it's set is fairly simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,520",
+				"to": "00:13:51,520"
+			},
+			"offsets": {
+				"from": 826520,
+				"to": 831520
+			},
+			"text": " Basically miners vote on it. And currently the gas limit is at 6.7 million."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,520",
+				"to": "00:13:58,520"
+			},
+			"offsets": {
+				"from": 831520,
+				"to": 838520
+			},
+			"text": " And if there comes a need to raise it, then miners can vote to raise it. Fairly simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,520",
+				"to": "00:14:07,520"
+			},
+			"offsets": {
+				"from": 838520,
+				"to": 847520
+			},
+			"text": " So transactions in Ethereum have seven parts to them. So there is the transaction nonce, which is basically anti-transaction replay."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,520",
+				"to": "00:14:21,520"
+			},
+			"offsets": {
+				"from": 847520,
+				"to": 861520
+			},
+			"text": " So if you send a transaction, so if let's say I send 10 Ether to Bob, then this prevents Bob from taking my transaction and including it in the blockchain 100 times so that instead I send 1000 Ether to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,520",
+				"to": "00:14:32,520"
+			},
+			"offsets": {
+				"from": 861520,
+				"to": 872520
+			},
+			"text": " Every transaction so far can only be included once. Gas price is the amount of Ether that you pay per unit of gas that your transaction takes up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,520",
+				"to": "00:14:42,520"
+			},
+			"offsets": {
+				"from": 872520,
+				"to": 882520
+			},
+			"text": " So this is the transaction fee, it goes to miners. Start gas the maximum amount of gas, so the maximum amount of computational resource that the transaction can consume."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,520",
+				"to": "00:14:54,520"
+			},
+			"offsets": {
+				"from": 882520,
+				"to": 894520
+			},
+			"text": " To the target value transactions can send Ether, data, which is if your transaction has a target which is a contract, then the contract can read the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,520",
+				"to": "00:15:07,520"
+			},
+			"offsets": {
+				"from": 894520,
+				"to": 907520
+			},
+			"text": " So this is a way of doing things like specifying function arguments. And VRS, which is an ECDSA signature for the cryptographers here, the VIS in there, because you need an extra bit in order to recover the public key from the signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,520",
+				"to": "00:15:13,520"
+			},
+			"offsets": {
+				"from": 907520,
+				"to": 913520
+			},
+			"text": " You do the public key recovery thing and not kind of verification the way that say Bitcoin does it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,520",
+				"to": "00:15:20,520"
+			},
+			"offsets": {
+				"from": 913520,
+				"to": 920520
+			},
+			"text": " Logs, so logs are this kind of append only form of storage which is not readable by contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,520",
+				"to": "00:15:34,520"
+			},
+			"offsets": {
+				"from": 920520,
+				"to": 934520
+			},
+			"text": " And the point of logs is basically to say here is an event that occurred during contract execution and we want it to be very easy for people to search for these events and to detect that these events have taken place."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,520",
+				"to": "00:15:41,520"
+			},
+			"offsets": {
+				"from": 934520,
+				"to": 941520
+			},
+			"text": " So a log has up to four topics and there's a bloom filter so you can search for topics very easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,520",
+				"to": "00:15:45,520"
+			},
+			"offsets": {
+				"from": 941520,
+				"to": 945520
+			},
+			"text": " And it also allows you to store any amount of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,520",
+				"to": "00:15:51,520"
+			},
+			"offsets": {
+				"from": 945520,
+				"to": 951520
+			},
+			"text": " The logs get put into a Merkle tree which allows very efficient light client access to logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,520",
+				"to": "00:16:01,520"
+			},
+			"offsets": {
+				"from": 951520,
+				"to": 961520
+			},
+			"text": " So if you have a light client then you can search through logs and you can use topics as a keyword and this lets you very easily find events that contracts have created of a certain type."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,520",
+				"to": "00:16:05,520"
+			},
+			"offsets": {
+				"from": 961520,
+				"to": 965520
+			},
+			"text": " So very useful for decentralized application programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,520",
+				"to": "00:16:11,520"
+			},
+			"offsets": {
+				"from": 965520,
+				"to": 971520
+			},
+			"text": " Ethereum Virtual Machine, so basically you have a stack and numbers can be pushed and popped from the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,520",
+				"to": "00:16:17,520"
+			},
+			"offsets": {
+				"from": 971520,
+				"to": 977520
+			},
+			"text": " You have memory. Memory is a temporary array of data that the VM can access."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,520",
+				"to": "00:16:22,520"
+			},
+			"offsets": {
+				"from": 977520,
+				"to": 982520
+			},
+			"text": " So memory only kind of exists ephemerally within one execution context."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,520",
+				"to": "00:16:27,520"
+			},
+			"offsets": {
+				"from": 982520,
+				"to": 987520
+			},
+			"text": " Once the execution finishes then the memory stops existing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,520",
+				"to": "00:16:33,520"
+			},
+			"offsets": {
+				"from": 987520,
+				"to": 993520
+			},
+			"text": " Storage is like the contracts database. It's permanent storage environment variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,520",
+				"to": "00:16:38,520"
+			},
+			"offsets": {
+				"from": 993520,
+				"to": 998520
+			},
+			"text": " So contracts in the EVM can access things like the block number and the timestamp."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,520",
+				"to": "00:16:46,520"
+			},
+			"offsets": {
+				"from": 998520,
+				"to": 1006520
+			},
+			"text": " You have logs and sub-calling so contracts have the ability to call contracts by sending what we call these internal transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,520",
+				"to": "00:16:56,520"
+			},
+			"offsets": {
+				"from": 1006520,
+				"to": 1016520
+			},
+			"text": " Now most of the time you're not going to be writing in Ethereum Virtual Machine code directly because Ethereum Virtual Machine code directly is very cumbersome to write in."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,520",
+				"to": "00:17:01,520"
+			},
+			"offsets": {
+				"from": 1016520,
+				"to": 1021520
+			},
+			"text": " Instead you'll be writing in high-level languages that can pile down into EVM code."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,520",
+				"to": "00:17:06,520"
+			},
+			"offsets": {
+				"from": 1021520,
+				"to": 1026520
+			},
+			"text": " And there's a bunch of them. You have Viper, you have Solidity, you have LLL, you have Bamboo."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,520",
+				"to": "00:17:13,520"
+			},
+			"offsets": {
+				"from": 1026520,
+				"to": 1033520
+			},
+			"text": " Once again you might notice Serpent is no longer on the list. If you are still using Serpent I suggest you switch to Viper."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,520",
+				"to": "00:17:20,520"
+			},
+			"offsets": {
+				"from": 1033520,
+				"to": 1040520
+			},
+			"text": " So the ABI. So this is the way that function calls get compiled or encoded into transaction data."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,520",
+				"to": "00:17:25,520"
+			},
+			"offsets": {
+				"from": 1040520,
+				"to": 1045520
+			},
+			"text": " So if you're calling a contract then what that's actually doing is it's making this function call."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,520",
+				"to": "00:17:30,520"
+			},
+			"offsets": {
+				"from": 1045520,
+				"to": 1050520
+			},
+			"text": " And or sorry if you're making a function call that's actually doing is it's creating a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,520",
+				"to": "00:17:34,520"
+			},
+			"offsets": {
+				"from": 1050520,
+				"to": 1054520
+			},
+			"text": " And the transaction has data which is specified in this format."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,520",
+				"to": "00:17:40,520"
+			},
+			"offsets": {
+				"from": 1054520,
+				"to": 1060520
+			},
+			"text": " So you have four bytes for a function ID, you have 32 bytes for one argument, 32 bytes for another argument."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,520",
+				"to": "00:17:46,520"
+			},
+			"offsets": {
+				"from": 1060520,
+				"to": 1066520
+			},
+			"text": " And if you try to call a function of a contract then your client would create this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,520",
+				"to": "00:17:54,520"
+			},
+			"offsets": {
+				"from": 1066520,
+				"to": 1074520
+			},
+			"text": " So you have to broadcast the transaction to the network and the contract's code has the ability to read the transaction data."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,520",
+				"to": "00:18:03,520"
+			},
+			"offsets": {
+				"from": 1074520,
+				"to": 1083520
+			},
+			"text": " And it interprets the first four bytes of the transaction data as which function is getting called and the other bytes as well what are the arguments."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,520",
+				"to": "00:18:06,520"
+			},
+			"offsets": {
+				"from": 1083520,
+				"to": 1086520
+			},
+			"text": " So that's basically how function calling works in a nutshell."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,520",
+				"to": "00:18:16,520"
+			},
+			"offsets": {
+				"from": 1086520,
+				"to": 1096520
+			},
+			"text": " So Merkle Tree is everyone please bow down and pray to Ralph Merkle."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,520",
+				"to": "00:18:21,520"
+			},
+			"offsets": {
+				"from": 1096520,
+				"to": 1101520
+			},
+			"text": " Okay. Ralph Merkle is single handedly basic."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,520",
+				"to": "00:18:26,520"
+			},
+			"offsets": {
+				"from": 1101520,
+				"to": 1106520
+			},
+			"text": " Well his Merkle Tree is single handedly responsible for making light clients possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,520",
+				"to": "00:18:30,520"
+			},
+			"offsets": {
+				"from": 1106520,
+				"to": 1110520
+			},
+			"text": " So it's very important to show the technology a huge amount of respect."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,520",
+				"to": "00:18:48,520"
+			},
+			"offsets": {
+				"from": 1110520,
+				"to": 1128520
+			},
+			"text": " And basically the idea is that it's Merkle Tree is allowed for efficiently verifiable proofs that a transaction was included in a block or generally efficiently verifiable proofs that any particular piece of data is included in a much larger piece of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,520",
+				"to": "00:18:54,520"
+			},
+			"offsets": {
+				"from": 1128520,
+				"to": 1134520
+			},
+			"text": " So if you have a huge hunk of data then you can make this data structure called a Merkle Tree out of the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,520",
+				"to": "00:19:07,520"
+			},
+			"offsets": {
+				"from": 1134520,
+				"to": 1147520
+			},
+			"text": " And with a Merkle Tree you can then for any given piece of data in the tree make what's called a Merkle branch which is basically just these kind of hashes going up the tree at all of these intermediate levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,520",
+				"to": "00:19:14,520"
+			},
+			"offsets": {
+				"from": 1147520,
+				"to": 1154520
+			},
+			"text": " And by checking the hashes against each other you can basically check that this piece of data actually is in this tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,520",
+				"to": "00:19:23,520"
+			},
+			"offsets": {
+				"from": 1154520,
+				"to": 1163520
+			},
+			"text": " Right. So to build up the tree you would basically take your data hash two pieces together then hash for every two pieces then you'd hash the hashes hash the hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,520",
+				"to": "00:19:31,520"
+			},
+			"offsets": {
+				"from": 1163520,
+				"to": 1171520
+			},
+			"text": " So it's well eventually have one hash at the top. And then to prove the membership of any one particular piece you would get this kind of branch of hashes and check them against each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,520",
+				"to": "00:19:41,520"
+			},
+			"offsets": {
+				"from": 1171520,
+				"to": 1181520
+			},
+			"text": " If there is even one error so if you try to make a proof of a piece of data which is not actually there then at least one of the hashes will not match up."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,520",
+				"to": "00:19:51,520"
+			},
+			"offsets": {
+				"from": 1181520,
+				"to": 1191520
+			},
+			"text": " In Ethereum this gets used in order to prove that some particular transaction is in a block but there is also something called the state tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,520",
+				"to": "00:19:56,520"
+			},
+			"offsets": {
+				"from": 1191520,
+				"to": 1196520
+			},
+			"text": " So the state tree is a Merkle Tree of the entire Ethereum state."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,520",
+				"to": "00:20:12,520"
+			},
+			"offsets": {
+				"from": 1196520,
+				"to": 1212520
+			},
+			"text": " So basically every account, every contract, the balance, the nonce, the contract code, contract storage, the entire state all the data in Ethereum is hashed in this tree structure and the root hash of this tree structure goes into the block header and this is called the state root."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,520",
+				"to": "00:20:31,520"
+			},
+			"offsets": {
+				"from": 1212520,
+				"to": 1231520
+			},
+			"text": " So from one block to the next block there are going to be some parts of the state that get modified and so the Merkle Tree will change but we have a specific kind of tree called the Merkle Patricia Tree which basically means that when the state gets changed the number of updates to the Merkle Tree that have to be made is actually fairly small."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,520",
+				"to": "00:20:48,520"
+			},
+			"offsets": {
+				"from": 1231520,
+				"to": 1248520
+			},
+			"text": " It's basically like a logarithmic per update. So with this basically a light client can ask the network for, you know, give me a Merkle branch for one particular account and some of a full node can reply back with this branch and the light client can itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,520",
+				"to": "00:21:00,520"
+			},
+			"offsets": {
+				"from": 1248520,
+				"to": 1260520
+			},
+			"text": " basically check the hashes of the branch going all the way from the top to the bottom and if all the hashes match up then you know, great and the light client is just a basically accepts and has this confirmation that this particular account is not a good thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,520",
+				"to": "00:21:09,520"
+			},
+			"offsets": {
+				"from": 1260520,
+				"to": 1269520
+			},
+			"text": " So we have this particular piece of data representing, you know, the balance of some account or some storage key actually is in the Merkle Tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,520",
+				"to": "00:21:21,520"
+			},
+			"offsets": {
+				"from": 1269520,
+				"to": 1281520
+			},
+			"text": " So Merkle Trees in Ethereum are used for transactions, state receipts, Patricia Trees allow for efficient and certain delete operations, block headers contain these three trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,520",
+				"to": "00:21:34,520"
+			},
+			"offsets": {
+				"from": 1281520,
+				"to": 1294520
+			},
+			"text": " So what's new in Byzantium? So Byzantium was this hard fork that we did that went live on October the 16th and it introduced a much of wonderful new privacy features."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,520",
+				"to": "00:21:49,520"
+			},
+			"offsets": {
+				"from": 1294520,
+				"to": 1309520
+			},
+			"text": " So these are kind of the three main, probably most interesting features in Byzantium. So basically, you know, if there are features directly, but these are the some three interesting things that just become enabled by the new features in Byzantium."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,520",
+				"to": "00:22:04,520"
+			},
+			"offsets": {
+				"from": 1309520,
+				"to": 1324520
+			},
+			"text": " So basically in Byzantium we have what are called pre-compiles, so basically we think kind of optimized virtual contracts that let you do elliptic curve addition elliptic curve multiplication elliptic curve pairing and big number math."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,520",
+				"to": "00:22:13,520"
+			},
+			"offsets": {
+				"from": 1324520,
+				"to": 1333520
+			},
+			"text": " And this allows you to write contracts in Ethereum that do things like verifying ring signatures, verifying ZK SNARKs, verifying RSA signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,520",
+				"to": "00:22:24,520"
+			},
+			"offsets": {
+				"from": 1333520,
+				"to": 1344520
+			},
+			"text": " So this could be used to really increase Ethereum's compatibility with existing systems that use just via public keys and certificate authorities and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,520",
+				"to": "00:22:31,520"
+			},
+			"offsets": {
+				"from": 1344520,
+				"to": 1351520
+			},
+			"text": " Ring signatures and ZK SNARKs are both very powerful privacy technologies and you'll be hearing about these later."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,520",
+				"to": "00:22:46,520"
+			},
+			"offsets": {
+				"from": 1351520,
+				"to": 1366520
+			},
+			"text": " And aside from this, there are also a bunch of important features, things like the static call opcode, which allows you to write safer contracts that don't have the same kind of mutability and re-entering the issues in some cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,520",
+				"to": "00:23:02,520"
+			},
+			"offsets": {
+				"from": 1366520,
+				"to": 1382520
+			},
+			"text": " So this also lets you do pure functional programming more easily. You have a return data copy, revert, opcodes that help you save gas, opcodes that make the EVM more efficient in some cases, and a bunch of this fairly long tail of smaller improvements."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,520",
+				"to": "00:23:13,520"
+			},
+			"offsets": {
+				"from": 1382520,
+				"to": 1393520
+			},
+			"text": " But, you know, basically, I would say the sort of main theme of the by Z&TM hard work is adding in this kind of strong cryptography that makes powerful privacy preserving applications possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,520",
+				"to": "00:23:26,520"
+			},
+			"offsets": {
+				"from": 1393520,
+				"to": 1406520
+			},
+			"text": " So, and there are already lots of interesting things that are being built on top of it. There's already, you know, like, I mean, ZK SNARK based reputation system that I've heard about yesterday, so this is moving forward quite quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,520",
+				"to": "00:23:40,520"
+			},
+			"offsets": {
+				"from": 1406520,
+				"to": 1420520
+			},
+			"text": " So future directions. So, CASPER, C. Cheng Wu presenting right after me. Vlad is going to also present about his version of CASPER called CASPER CBC, sharding."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,520",
+				"to": "00:23:49,520"
+			},
+			"offsets": {
+				"from": 1420520,
+				"to": 1429520
+			},
+			"text": " So, CMI presentation, basically right at the end of today. Though, I will say that it's not just about sharding, and it actually does kind of get significantly broader than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,520",
+				"to": "00:23:55,520"
+			},
+			"offsets": {
+				"from": 1429520,
+				"to": 1435520
+			},
+			"text": " Also, just a long tail of kind of EVM upgrades, much smaller protocol upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,520",
+				"to": "00:24:01,520"
+			},
+			"offsets": {
+				"from": 1435520,
+				"to": 1441520
+			},
+			"text": " Now, this is future directions for the Ethereum blockchain kind of core specifically."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,520",
+				"to": "00:24:10,520"
+			},
+			"offsets": {
+				"from": 1441520,
+				"to": 1450520
+			},
+			"text": " There is now a much larger list of future directions for second layer architecture, intermediate tool systems that can be built on top of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,520",
+				"to": "00:24:21,520"
+			},
+			"offsets": {
+				"from": 1450520,
+				"to": 1461520
+			},
+			"text": " This includes scalability solutions like Plasma. This includes all of the stuff that can be built on top of Ring Signage, you know, elliptic curve, multiplication, pairing ZK SNARKs."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,520",
+				"to": "00:24:34,520"
+			},
+			"offsets": {
+				"from": 1461520,
+				"to": 1474520
+			},
+			"text": " This includes various other privacy preserving protocols. This includes state channel systems, and all of these are also wonderful and really important advancements that I'll hope that we'll hear more about as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,520",
+				"to": "00:24:40,520"
+			},
+			"offsets": {
+				"from": 1474520,
+				"to": 1480520
+			},
+			"text": " So, thank you and once again, hope you enjoy the conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,520",
+				"to": "00:24:50,520"
+			},
+			"offsets": {
+				"from": 1480520,
+				"to": 1490520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,520",
+				"to": "00:24:52,520"
+			},
+			"offsets": {
+				"from": 1490520,
+				"to": 1492520
+			},
+			"text": " ( )"
+		}
+	]
+}

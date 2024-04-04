@@ -1,0 +1,2320 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:13,440"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 13440
+			},
+			"text": " Hi, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,440",
+				"to": "00:00:14,680"
+			},
+			"offsets": {
+				"from": 13440,
+				"to": 14680
+			},
+			"text": " So my name is Yusef Hausni."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,680",
+				"to": "00:00:16,960"
+			},
+			"offsets": {
+				"from": 14680,
+				"to": 16960
+			},
+			"text": " I work at Consensus on GNAK."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,960",
+				"to": "00:00:18,680"
+			},
+			"offsets": {
+				"from": 16960,
+				"to": 18680
+			},
+			"text": " And I'm going to try to set you GNAK."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,680",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 18680,
+				"to": 23000
+			},
+			"text": " Well, actually, I'm going to talk about some of the algorithmic optimizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:25,760"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 25760
+			},
+			"text": " we have in GNAK that makes it fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,760",
+				"to": "00:00:29,240"
+			},
+			"offsets": {
+				"from": 25760,
+				"to": 29240
+			},
+			"text": " So we are a team of five so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,240",
+				"to": "00:00:31,720"
+			},
+			"offsets": {
+				"from": 29240,
+				"to": 31720
+			},
+			"text": " And we are building two libraries in Go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,720",
+				"to": "00:00:36,840"
+			},
+			"offsets": {
+				"from": 31720,
+				"to": 36840
+			},
+			"text": " So one is called GNAK, which is an easy to use open source library for snacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,840",
+				"to": "00:00:41,960"
+			},
+			"offsets": {
+				"from": 36840,
+				"to": 41960
+			},
+			"text": " And the other one is GNAK crypto, which is a cryptographic library in Go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,960",
+				"to": "00:00:46,640"
+			},
+			"offsets": {
+				"from": 41960,
+				"to": 46640
+			},
+			"text": " So GNAK under the hood is basically composed of these components."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,640",
+				"to": "00:00:49,840"
+			},
+			"offsets": {
+				"from": 46640,
+				"to": 49840
+			},
+			"text": " So you have a front end when you write your circuits, a backend for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,840",
+				"to": "00:00:51,720"
+			},
+			"offsets": {
+				"from": 49840,
+				"to": 51720
+			},
+			"text": " pro-generation pro-vivigation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,720",
+				"to": "00:00:56,360"
+			},
+			"offsets": {
+				"from": 51720,
+				"to": 56360
+			},
+			"text": " And then underneath you have this GNAK crypto library, which is pairing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,360",
+				"to": "00:01:01,120"
+			},
+			"offsets": {
+				"from": 56360,
+				"to": 61120
+			},
+			"text": " based cryptography on the elliptic curve based cryptography and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,120",
+				"to": "00:01:03,760"
+			},
+			"offsets": {
+				"from": 61120,
+				"to": 63760
+			},
+			"text": " finite field arithmetic library."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,760",
+				"to": "00:01:06,840"
+			},
+			"offsets": {
+				"from": 63760,
+				"to": 66840
+			},
+			"text": " So we have all the stack written in Go, no dependencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,840",
+				"to": "00:01:11,440"
+			},
+			"offsets": {
+				"from": 66840,
+				"to": 71440
+			},
+			"text": " So in the backend, we have so far, GOS 16 and Planck with two polynomial"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,440",
+				"to": "00:01:15,680"
+			},
+			"offsets": {
+				"from": 71440,
+				"to": 75680
+			},
+			"text": " commitments, so KZG and Fi."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,680",
+				"to": "00:01:21,440"
+			},
+			"offsets": {
+				"from": 75680,
+				"to": 81440
+			},
+			"text": " We have in the front a standard library with the MIMC, ECDSA, EDDSA,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,440",
+				"to": "00:01:24,040"
+			},
+			"offsets": {
+				"from": 81440,
+				"to": 84040
+			},
+			"text": " banks in circuits, BRS in circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,040",
+				"to": "00:01:28,960"
+			},
+			"offsets": {
+				"from": 84040,
+				"to": 88960
+			},
+			"text": " And we have both APIs for native field and non-native field arithmetic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,960",
+				"to": "00:01:34,600"
+			},
+			"offsets": {
+				"from": 88960,
+				"to": 94600
+			},
+			"text": " And in GNAK crypto, we have a bunch of elliptic curves, BNS12, BLS24,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,600",
+				"to": "00:01:38,280"
+			},
+			"offsets": {
+				"from": 94600,
+				"to": 98280
+			},
+			"text": " two chains with BLS12, 24, all twisted networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,280",
+				"to": "00:01:43,480"
+			},
+			"offsets": {
+				"from": 98280,
+				"to": 103480
+			},
+			"text": " We have fast multi-scour multiplication, fast bearings, KZG, Fi,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,480",
+				"to": "00:01:48,440"
+			},
+			"offsets": {
+				"from": 103480,
+				"to": 108440
+			},
+			"text": " pilucaps, and we have already recently implemented some check protocol, GKR."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,440",
+				"to": "00:01:53,760"
+			},
+			"offsets": {
+				"from": 108440,
+				"to": 113760
+			},
+			"text": " And in the finite field arithmetic, we have different sizes running from"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,760",
+				"to": "00:01:58,040"
+			},
+			"offsets": {
+				"from": 113760,
+				"to": 118040
+			},
+			"text": " 768 to 256 to call deluxe as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,040",
+				"to": "00:02:00,800"
+			},
+			"offsets": {
+				"from": 118040,
+				"to": 120800
+			},
+			"text": " And it performs very well on different targets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,800",
+				"to": "00:02:07,520"
+			},
+			"offsets": {
+				"from": 120800,
+				"to": 127520
+			},
+			"text": " So the usual workflow of Snark, so same in GNAK."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,520",
+				"to": "00:02:12,640"
+			},
+			"offsets": {
+				"from": 127520,
+				"to": 132640
+			},
+			"text": " So we have a circuit that we write in plain go, so it's not in our DSL."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,640",
+				"to": "00:02:16,880"
+			},
+			"offsets": {
+				"from": 132640,
+				"to": 136880
+			},
+			"text": " And then we compile it to some constraint system, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,880",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 136880,
+				"to": 140000
+			},
+			"text": " then you call setup, prove, and verify API."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:23,640"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 143640
+			},
+			"text": " So it is fairly easy to change the elliptical you want to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,640",
+				"to": "00:02:24,920"
+			},
+			"offsets": {
+				"from": 143640,
+				"to": 144920
+			},
+			"text": " And the constraint system you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,920",
+				"to": "00:02:28,120"
+			},
+			"offsets": {
+				"from": 144920,
+				"to": 148120
+			},
+			"text": " So we just change, for example, here, BN2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,120",
+				"to": "00:02:29,760"
+			},
+			"offsets": {
+				"from": 148120,
+				"to": 149760
+			},
+			"text": " FIFCTOR4 by BNS12."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,760",
+				"to": "00:02:36,480"
+			},
+			"offsets": {
+				"from": 149760,
+				"to": 156480
+			},
+			"text": " And L1CS, which is Gaussian by SES, which stands for sparse constraints,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,480",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 156480,
+				"to": 159000
+			},
+			"text": " and which is small."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 164000
+			},
+			"text": " So we have a playground where you can play with it in the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:48,160"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 168160
+			},
+			"text": " We go 69-plonk to see how you can write your circuit in go."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,040",
+				"to": "00:02:55,200"
+			},
+			"offsets": {
+				"from": 170040,
+				"to": 175200
+			},
+			"text": " And then you can download the constraints and look at what they look like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,200",
+				"to": "00:02:56,640"
+			},
+			"offsets": {
+				"from": 175200,
+				"to": 176640
+			},
+			"text": " both in go 69-slark."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,640",
+				"to": "00:03:00,360"
+			},
+			"offsets": {
+				"from": 176640,
+				"to": 180360
+			},
+			"text": " So why Glark?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,360",
+				"to": "00:03:04,440"
+			},
+			"offsets": {
+				"from": 180360,
+				"to": 184440
+			},
+			"text": " So we have no DSL, plain go, so no dependencies at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,440",
+				"to": "00:03:07,360"
+			},
+			"offsets": {
+				"from": 184440,
+				"to": 187360
+			},
+			"text": " We compile large circuits in a few seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,360",
+				"to": "00:03:12,040"
+			},
+			"offsets": {
+				"from": 187360,
+				"to": 192040
+			},
+			"text": " So when you write your circuits in plain go, you can use go toolings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,040",
+				"to": "00:03:15,080"
+			},
+			"offsets": {
+				"from": 192040,
+				"to": 195080
+			},
+			"text": " standard go toolings to debug test benchmark your circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,080",
+				"to": "00:03:19,080"
+			},
+			"offsets": {
+				"from": 195080,
+				"to": 199080
+			},
+			"text": " But also we developed a cool thing, which we call constraint profiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,080",
+				"to": "00:03:24,040"
+			},
+			"offsets": {
+				"from": 199080,
+				"to": 204040
+			},
+			"text": " So by just adding tool lines of code, you can have this figure here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,040",
+				"to": "00:03:27,160"
+			},
+			"offsets": {
+				"from": 204040,
+				"to": 207160
+			},
+			"text": " where you see in each function how many constraints does it consume."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,160",
+				"to": "00:03:35,600"
+			},
+			"offsets": {
+				"from": 207160,
+				"to": 215600
+			},
+			"text": " And several packages are already audited by Algon and fast tested by Geth for one year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,600",
+				"to": "00:03:36,600"
+			},
+			"offsets": {
+				"from": 215600,
+				"to": 216600
+			},
+			"text": " I guess now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,600",
+				"to": "00:03:41,680"
+			},
+			"offsets": {
+				"from": 216600,
+				"to": 221680
+			},
+			"text": " And there is one code base that performs well in different architectures."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,680",
+				"to": "00:03:43,160"
+			},
+			"offsets": {
+				"from": 221680,
+				"to": 223160
+			},
+			"text": " CPU, mobile, was them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,160",
+				"to": "00:03:47,560"
+			},
+			"offsets": {
+				"from": 223160,
+				"to": 227560
+			},
+			"text": " So in the mobile, we are 70% faster than the baseline in the Z-pies."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,560",
+				"to": "00:03:51,680"
+			},
+			"offsets": {
+				"from": 228560,
+				"to": 231680
+			},
+			"text": " So the question is why Glark is that fast?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,680",
+				"to": "00:03:56,880"
+			},
+			"offsets": {
+				"from": 231680,
+				"to": 236880
+			},
+			"text": " So here I give an example of course 16-slark pover on B and 254 curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,880",
+				"to": "00:04:01,440"
+			},
+			"offsets": {
+				"from": 236880,
+				"to": 241440
+			},
+			"text": " So this means MSM's fFT computations and parallelism."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,440",
+				"to": "00:04:04,600"
+			},
+			"offsets": {
+				"from": 241440,
+				"to": 244600
+			},
+			"text": " So I took the examples of two of the most used libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,600",
+				"to": "00:04:10,800"
+			},
+			"offsets": {
+				"from": 244600,
+				"to": 250800
+			},
+			"text": " So R-quarks in us and say come with rapid snark back in C++."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,800",
+				"to": "00:04:14,360"
+			},
+			"offsets": {
+				"from": 250800,
+				"to": 254360
+			},
+			"text": " So two kind of circuit sizes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,360",
+				"to": "00:04:16,560"
+			},
+			"offsets": {
+				"from": 254360,
+				"to": 256560
+			},
+			"text": " So one is 65K."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,560",
+				"to": "00:04:19,880"
+			},
+			"offsets": {
+				"from": 256560,
+				"to": 259880
+			},
+			"text": " The other one is 8 million constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,880",
+				"to": "00:04:26,440"
+			},
+			"offsets": {
+				"from": 259880,
+				"to": 266440
+			},
+			"text": " So this is an AWS AMD machine and we see that Gnark performs very well for both kind of circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,440",
+				"to": "00:04:30,720"
+			},
+			"offsets": {
+				"from": 266440,
+				"to": 270720
+			},
+			"text": " So there are some libraries that are heavily optimized for large circuits for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,720",
+				"to": "00:04:32,760"
+			},
+			"offsets": {
+				"from": 270720,
+				"to": 272760
+			},
+			"text": " Glark is optimized for both."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,760",
+				"to": "00:04:35,320"
+			},
+			"offsets": {
+				"from": 272760,
+				"to": 275320
+			},
+			"text": " So this is for the pover side."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,320",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 275320,
+				"to": 279000
+			},
+			"text": " For the verifier side, which is GOS 16-slark verifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:43,880"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 283880
+			},
+			"text": " so which is mainly pairing computation over BN 254."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,880",
+				"to": "00:04:48,240"
+			},
+			"offsets": {
+				"from": 283880,
+				"to": 288240
+			},
+			"text": " So again, we see that on the same machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,240",
+				"to": "00:04:49,640"
+			},
+			"offsets": {
+				"from": 288240,
+				"to": 289640
+			},
+			"text": " Glark is very fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,640",
+				"to": "00:04:56,240"
+			},
+			"offsets": {
+				"from": 289640,
+				"to": 296240
+			},
+			"text": " So it's a bit more than one millisecond on this machine to verify a poverifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,240",
+				"to": "00:05:02,680"
+			},
+			"offsets": {
+				"from": 296240,
+				"to": 302680
+			},
+			"text": " which is merely a multi-expand pairing computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,680",
+				"to": "00:05:04,240"
+			},
+			"offsets": {
+				"from": 302680,
+				"to": 304240
+			},
+			"text": " Yeah, so it's a PDF."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,240",
+				"to": "00:05:06,400"
+			},
+			"offsets": {
+				"from": 304240,
+				"to": 306400
+			},
+			"text": " It was interactive."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,400",
+				"to": "00:05:09,880"
+			},
+			"offsets": {
+				"from": 306400,
+				"to": 309880
+			},
+			"text": " So the question is why Gnark is that fast?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,880",
+				"to": "00:05:11,880"
+			},
+			"offsets": {
+				"from": 309880,
+				"to": 311880
+			},
+			"text": " So remember this diagram from the very beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,880",
+				"to": "00:05:15,080"
+			},
+			"offsets": {
+				"from": 311880,
+				"to": 315080
+			},
+			"text": " So we have a front end, back end, Gnark crypto underneath."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,080",
+				"to": "00:05:20,440"
+			},
+			"offsets": {
+				"from": 315080,
+				"to": 320440
+			},
+			"text": " And the question is, so I will go through some of the algorithms that are highly optimized in Gnark."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,440",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 320440,
+				"to": 323000
+			},
+			"text": " So we start by writing a circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:29,360"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 329360
+			},
+			"text": " C, we generate the proof by of C, which means that we will call Gnark crypto to compute FFTs"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,360",
+				"to": "00:05:32,200"
+			},
+			"offsets": {
+				"from": 329360,
+				"to": 332200
+			},
+			"text": " and mostly MSMs over so yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,200",
+				"to": "00:05:37,520"
+			},
+			"offsets": {
+				"from": 332200,
+				"to": 337520
+			},
+			"text": " So I'm giving the example of a GOS 16 proof and just to concentrate over the algorithmic optimizations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,520",
+				"to": "00:05:38,320"
+			},
+			"offsets": {
+				"from": 337520,
+				"to": 338320
+			},
+			"text": " I'm using a 2.0 chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,320",
+				"to": "00:05:40,720"
+			},
+			"offsets": {
+				"from": 338320,
+				"to": 340720
+			},
+			"text": " So there is no wrong field arithmetic."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,720",
+				"to": "00:05:44,040"
+			},
+			"offsets": {
+				"from": 340720,
+				"to": 344040
+			},
+			"text": " But it works also with the wrong field arithmetic."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,040",
+				"to": "00:05:47,840"
+			},
+			"offsets": {
+				"from": 344040,
+				"to": 347840
+			},
+			"text": " So it calls an MSM over a BLS-WF377."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,840",
+				"to": "00:05:53,160"
+			},
+			"offsets": {
+				"from": 347840,
+				"to": 353160
+			},
+			"text": " And then we write a circuit C prime of the proof by."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,160",
+				"to": "00:05:58,320"
+			},
+			"offsets": {
+				"from": 353160,
+				"to": 358320
+			},
+			"text": " We generate the proof by prime of this circuit C prime, so the aggregation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,320",
+				"to": "00:06:04,040"
+			},
+			"offsets": {
+				"from": 358320,
+				"to": 364040
+			},
+			"text": " which means that we will call Gnark crypto to compute a multi-scala multiplication"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,040",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 364040,
+				"to": 368000
+			},
+			"text": " over the BW 676 T1 curve, which is the object curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:14,440"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 374440
+			},
+			"text": " And we verify the proof, step 5, which means that we will call Gnark crypto to compute the pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,440",
+				"to": "00:06:19,920"
+			},
+			"offsets": {
+				"from": 374440,
+				"to": 379920
+			},
+			"text": " So I will be talking about the optimizations in those points that are in boxes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,920",
+				"to": "00:06:25,400"
+			},
+			"offsets": {
+				"from": 379920,
+				"to": 385400
+			},
+			"text": " So mainly MSMs and pairings and writing circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,400",
+				"to": "00:06:28,240"
+			},
+			"offsets": {
+				"from": 385400,
+				"to": 388240
+			},
+			"text": " So MSMs over a BLS-WF377."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,240",
+				"to": "00:06:33,880"
+			},
+			"offsets": {
+				"from": 388240,
+				"to": 393880
+			},
+			"text": " So this is a graph from the Z-PICE submission."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,880",
+				"to": "00:06:38,120"
+			},
+			"offsets": {
+				"from": 393880,
+				"to": 398120
+			},
+			"text": " So I'm comparing it to arcworks because it implemented BLS-WF377."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,120",
+				"to": "00:06:48,880"
+			},
+			"offsets": {
+				"from": 398120,
+				"to": 408880
+			},
+			"text": " So we are up to 47% faster for a point surrounding from 2 to the 8 to 2 to the 18."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,880",
+				"to": "00:06:52,800"
+			},
+			"offsets": {
+				"from": 408880,
+				"to": 412800
+			},
+			"text": " So this is tested on mobile, so on a Samsung Galaxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,800",
+				"to": "00:06:53,520"
+			},
+			"offsets": {
+				"from": 412800,
+				"to": 413520
+			},
+			"text": " And we have two."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,520",
+				"to": "00:06:56,680"
+			},
+			"offsets": {
+				"from": 413520,
+				"to": 416680
+			},
+			"text": " So here I have two versions of Gnark, one using twisted Edward curves."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,680",
+				"to": "00:06:59,560"
+			},
+			"offsets": {
+				"from": 416680,
+				"to": 419560
+			},
+			"text": " And the other one is using short-wise task curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,560",
+				"to": "00:07:03,920"
+			},
+			"offsets": {
+				"from": 419560,
+				"to": 423920
+			},
+			"text": " So the one is 40 to 47, and the other one is 20 to 35% faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,920",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 423920,
+				"to": 425000
+			},
+			"text": " And the question is why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:13,600"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 433600
+			},
+			"text": " So both implementations do not use very computations but use parallelisms, but in a different way."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,600",
+				"to": "00:07:15,200"
+			},
+			"offsets": {
+				"from": 433600,
+				"to": 435200
+			},
+			"text": " I'm not going to talk about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,200",
+				"to": "00:07:19,840"
+			},
+			"offsets": {
+				"from": 435200,
+				"to": 439840
+			},
+			"text": " So we use 2 and 1/2 buckets, which reduces the size of the buckets by twice."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,840",
+				"to": "00:07:21,320"
+			},
+			"offsets": {
+				"from": 439840,
+				"to": 441320
+			},
+			"text": " This is not using arcworks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,320",
+				"to": "00:07:24,760"
+			},
+			"offsets": {
+				"from": 441320,
+				"to": 444760
+			},
+			"text": " But most importantly here is the curve form and coordinate system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,760",
+				"to": "00:07:30,960"
+			},
+			"offsets": {
+				"from": 444760,
+				"to": 450960
+			},
+			"text": " So we prove that any inner curve can be written in a twisted Edward's curve with a equal to minus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,960",
+				"to": "00:07:39,040"
+			},
+			"offsets": {
+				"from": 450960,
+				"to": 459040
+			},
+			"text": " And we extended the coordinate system, so we call it custom X, Y, T, in order to make computations faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,040",
+				"to": "00:07:42,200"
+			},
+			"offsets": {
+				"from": 459040,
+				"to": 462200
+			},
+			"text": " So why is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,200",
+				"to": "00:07:48,720"
+			},
+			"offsets": {
+				"from": 462200,
+				"to": 468720
+			},
+			"text": " So I call a B-bit MSM, is an MSM of size n with scalars of B-bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,720",
+				"to": "00:07:54,080"
+			},
+			"offsets": {
+				"from": 468720,
+				"to": 474080
+			},
+			"text": " So all libraries implement this variant of Pipunger, which is bucket list method."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,080",
+				"to": "00:07:55,720"
+			},
+			"offsets": {
+				"from": 474080,
+				"to": 475720
+			},
+			"text": " So it's causing three steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,720",
+				"to": "00:08:01,360"
+			},
+			"offsets": {
+				"from": 475720,
+				"to": 481360
+			},
+			"text": " So we use the B-bit MSM into C-bit MSM for some fixed C."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,360",
+				"to": "00:08:06,720"
+			},
+			"offsets": {
+				"from": 481360,
+				"to": 486720
+			},
+			"text": " We solve each C-bit MSM efficiently, and then we combine the C-bit MSM into the final B-bit MSM."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,720",
+				"to": "00:08:08,440"
+			},
+			"offsets": {
+				"from": 486720,
+				"to": 488440
+			},
+			"text": " So the overall cost is this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,440",
+				"to": "00:08:13,760"
+			},
+			"offsets": {
+				"from": 488440,
+				"to": 493760
+			},
+			"text": " So minus one in blue is when you use this enough encoding of the scalars."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,760",
+				"to": "00:08:16,960"
+			},
+			"offsets": {
+				"from": 493760,
+				"to": 496960
+			},
+			"text": " Otherwise, so you have 2 to the C."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,960",
+				"to": "00:08:29,200"
+			},
+			"offsets": {
+				"from": 496960,
+				"to": 509200
+			},
+			"text": " But this overall cost can be explicitly broken into what I call mixed additions, additions and dabblings."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,200",
+				"to": "00:08:38,640"
+			},
+			"offsets": {
+				"from": 509200,
+				"to": 518640
+			},
+			"text": " So for large MSMs, what's most important is the mixed reactions because they scale with the number of points."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,640",
+				"to": "00:08:40,640"
+			},
+			"offsets": {
+				"from": 518640,
+				"to": 520640
+			},
+			"text": " And the others are constants."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,640",
+				"to": "00:08:45,680"
+			},
+			"offsets": {
+				"from": 520640,
+				"to": 525680
+			},
+			"text": " So if you look at all the shapes of the elliptic curves and all the coordinate systems that are over there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,680",
+				"to": "00:08:53,080"
+			},
+			"offsets": {
+				"from": 525680,
+				"to": 533080
+			},
+			"text": " so you can look at EFD webpage, so twisted it what with A equal to minus one with extended coordinate system"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,080",
+				"to": "00:09:02,920"
+			},
+			"offsets": {
+				"from": 533080,
+				"to": 542920
+			},
+			"text": " have seven multiplication for the dedicated addition compared to, for example, 11 in Alquocs with Jacobian coordinates."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,920",
+				"to": "00:09:10,480"
+			},
+			"offsets": {
+				"from": 542920,
+				"to": 550480
+			},
+			"text": " So what we did is basically, when I say re-addition is, so those points are re-added in the bucket."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,480",
+				"to": "00:09:11,480"
+			},
+			"offsets": {
+				"from": 550480,
+				"to": 551480
+			},
+			"text": " So they are the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,480",
+				"to": "00:09:20,480"
+			},
+			"offsets": {
+				"from": 551480,
+				"to": 560480
+			},
+			"text": " So when you look at this unified addition, so which means that we will not have any advanced branches to handle exception case."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,480",
+				"to": "00:09:25,920"
+			},
+			"offsets": {
+				"from": 560480,
+				"to": 565920
+			},
+			"text": " So it is one multiplication plus, but multiplication is a multiplication by a constant, which is 2 to the d."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,920",
+				"to": "00:09:30,880"
+			},
+			"offsets": {
+				"from": 565920,
+				"to": 570880
+			},
+			"text": " So we come up with a custom coordinate system, which is, instead of having the tuple x and y,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,880",
+				"to": "00:09:35,800"
+			},
+			"offsets": {
+				"from": 570880,
+				"to": 575800
+			},
+			"text": " you have y minus x, y plus x, and 2 times d times x times y."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,800",
+				"to": "00:09:45,520"
+			},
+			"offsets": {
+				"from": 575800,
+				"to": 585520
+			},
+			"text": " So you can do unified additions without branching at the same cost of the dedicated addition to seven multiplication."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,520",
+				"to": "00:09:52,080"
+			},
+			"offsets": {
+				"from": 585520,
+				"to": 592080
+			},
+			"text": " Yeah, and this is basically one of the optimizations that makes MSM faster in GARC."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,080",
+				"to": "00:09:55,760"
+			},
+			"offsets": {
+				"from": 592080,
+				"to": 595760
+			},
+			"text": " The second box was writing the circuit C-prime of the verification of PIPE."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,760",
+				"to": "00:10:01,960"
+			},
+			"offsets": {
+				"from": 595760,
+				"to": 601960
+			},
+			"text": " So in the previous presentations, we've talked about pairing, checking, sila circuit, and how much it is expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,960",
+				"to": "00:10:08,160"
+			},
+			"offsets": {
+				"from": 601960,
+				"to": 608160
+			},
+			"text": " So there is a long line of research of pairing computation outside of the circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,160",
+				"to": "00:10:15,280"
+			},
+			"offsets": {
+				"from": 608160,
+				"to": 615280
+			},
+			"text": " and we can do computations of bearing of BLS-2, or 377 outside of circuit in less than 1 millisecond."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,280",
+				"to": "00:10:23,200"
+			},
+			"offsets": {
+				"from": 615280,
+				"to": 623200
+			},
+			"text": " But if you put Mutatis Mutatis into those optimizations inside of a circuit, the number of constraints is roughly 80,000 in MSM."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,200",
+				"to": "00:10:27,840"
+			},
+			"offsets": {
+				"from": 623200,
+				"to": 627840
+			},
+			"text": " So we were able to reduce it to 11.5 constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,840",
+				"to": "00:10:38,640"
+			},
+			"offsets": {
+				"from": 627840,
+				"to": 638640
+			},
+			"text": " So there are a few implementations so far, so there is one in R-quarks, one in Libsnocks, and I believe one in a new one in the ZK pairing by zero x-park."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,640",
+				"to": "00:10:47,080"
+			},
+			"offsets": {
+				"from": 638640,
+				"to": 647080
+			},
+			"text": " In R-quarks, which was the state of the R for this computation, it was 19,000 constraints, but we were able to reduce it to 11.5."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,080",
+				"to": "00:10:49,880"
+			},
+			"offsets": {
+				"from": 647080,
+				"to": 649880
+			},
+			"text": " So the paper is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,880",
+				"to": "00:10:51,600"
+			},
+			"offsets": {
+				"from": 649880,
+				"to": 651600
+			},
+			"text": " You can check it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,600",
+				"to": "00:10:59,560"
+			},
+			"offsets": {
+				"from": 651600,
+				"to": 659560
+			},
+			"text": " But the main ideas are basically...so the inverse is not costly in R-1CS, so you can do double and add enough fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,560",
+				"to": "00:11:02,280"
+			},
+			"offsets": {
+				"from": 659560,
+				"to": 662280
+			},
+			"text": " So not double and add, but double and add."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,280",
+				"to": "00:11:11,200"
+			},
+			"offsets": {
+				"from": 662280,
+				"to": 671200
+			},
+			"text": " And we have a different representation of the line, so that we have sparse multiplications by the line in R-1CS-wise."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,200",
+				"to": "00:11:19,920"
+			},
+			"offsets": {
+				"from": 671200,
+				"to": 679920
+			},
+			"text": " We use toys based arithmetic inside of the circuit, so it uses inverses, that's why it wasn't used outside of the circuit, but inside of the circuit makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,920",
+				"to": "00:11:27,200"
+			},
+			"offsets": {
+				"from": 679920,
+				"to": 687200
+			},
+			"text": " And the final exponentiation is also using Kalabina, Civil Automation Square, instead of Gunja Scott, which is not used outside of the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,200",
+				"to": "00:11:42,920"
+			},
+			"offsets": {
+				"from": 687200,
+				"to": 702920
+			},
+			"text": " And for both the milli-o-loop and the final exponentiation, we use short addition chains, but the trick here is that normally in a short addition chain, you would like to optimize the double links, because double links are faster than additions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,920",
+				"to": "00:11:54,360"
+			},
+			"offsets": {
+				"from": 702920,
+				"to": 714360
+			},
+			"text": " But constraint-wise, it's the opposite. A doubling cost more constraint than addition, because the line slope has a square, so it costs 2 constraints instead of 1, just with division."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,360",
+				"to": "00:12:08,680"
+			},
+			"offsets": {
+				"from": 714360,
+				"to": 728680
+			},
+			"text": " So the idea is, Gauss 16 is only in 19k constraints, BLS signature is 14.8 constraint, kcj-value-fire is just 20,000 constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,680",
+				"to": "00:12:14,440"
+			},
+			"offsets": {
+				"from": 728680,
+				"to": 734440
+			},
+			"text": " The last box, so pairings over BW6761."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,440",
+				"to": "00:12:27,080"
+			},
+			"offsets": {
+				"from": 734440,
+				"to": 747080
+			},
+			"text": " So we can compute this on an Intel machine here in 1.22 milliseconds compared to 1.71 milliseconds, and the question is why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,080",
+				"to": "00:12:31,080"
+			},
+			"offsets": {
+				"from": 747080,
+				"to": 751080
+			},
+			"text": " So actually we do not implement the same formula."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,080",
+				"to": "00:12:39,320"
+			},
+			"offsets": {
+				"from": 751080,
+				"to": 759320
+			},
+			"text": " So a pairing of p and q is this m of p and q, which is what we call the milli-o-loop, which is a loop."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,320",
+				"to": "00:12:44,360"
+			},
+			"offsets": {
+				"from": 759320,
+				"to": 764360
+			},
+			"text": " And a finite exponentiation, which is the exponentiation by q to the 6 minus 1 out of r."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,360",
+				"to": "00:12:47,080"
+			},
+			"offsets": {
+				"from": 764360,
+				"to": 767080
+			},
+			"text": " So the optimization comes from the milli-o-loop."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,080",
+				"to": "00:12:58,120"
+			},
+			"offsets": {
+				"from": 767080,
+				"to": 778120
+			},
+			"text": " So the original paper of BW6761 has this formula for computing a pairing, which is f of u plus 1, and f of u q minus u square minus u."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,120",
+				"to": "00:13:03,720"
+			},
+			"offsets": {
+				"from": 778120,
+				"to": 783720
+			},
+			"text": " So we talk 2 milli-o-loops of size u plus 1, and u q minus u square minus u."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,720",
+				"to": "00:13:13,240"
+			},
+			"offsets": {
+				"from": 783720,
+				"to": 793240
+			},
+			"text": " So when you see those, so they have bit size 64 and 190, and the hamming weight in 2.5 is 7 and 31."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,240",
+				"to": "00:13:21,080"
+			},
+			"offsets": {
+				"from": 793240,
+				"to": 801080
+			},
+			"text": " So what we did in Gauss is that we observed that u minus 1 square, the hamming weight of it in 2.5 is just 12 compared to 31."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,080",
+				"to": "00:13:33,840"
+			},
+			"offsets": {
+				"from": 801080,
+				"to": 813840
+			},
+			"text": " And we rearrange the equations so that we have this second equation. And basically you have 2 milli-o-loops still, but the second milli-o-loop, this one, is using the result of this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,840",
+				"to": "00:13:41,080"
+			},
+			"offsets": {
+				"from": 813840,
+				"to": 821080
+			},
+			"text": " And it's not starting at one as in these two. And this is just a line computation, and this point is already computed in this milli-o-loops."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,080",
+				"to": "00:13:49,080"
+			},
+			"offsets": {
+				"from": 821080,
+				"to": 829080
+			},
+			"text": " So you have really just 2 milli-o-loops as in here, but with size, with the loop size, way smaller."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,080",
+				"to": "00:13:55,080"
+			},
+			"offsets": {
+				"from": 829080,
+				"to": 835080
+			},
+			"text": " The exponentiation by q are cheap because these are just for bineus."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,080",
+				"to": "00:13:59,080"
+			},
+			"offsets": {
+				"from": 835080,
+				"to": 839080
+			},
+			"text": " So we have also a paper about this. It is only planned. You can check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,080",
+				"to": "00:14:05,080"
+			},
+			"offsets": {
+				"from": 839080,
+				"to": 845080
+			},
+			"text": " And we have a hackMD here, block, where it explains the changes between these two and other algorithms."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,080",
+				"to": "00:14:09,080"
+			},
+			"offsets": {
+				"from": 845080,
+				"to": 849080
+			},
+			"text": " Because this one is just for one pairing, and for multi-perings we have other algorithms."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,080",
+				"to": "00:14:17,080"
+			},
+			"offsets": {
+				"from": 849080,
+				"to": 857080
+			},
+			"text": " So a novel algorithm that we call Twisted Tades, it was because in this kind of ellipticus, BW6, G1 and G2 are on the same field."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,080",
+				"to": "00:14:23,080"
+			},
+			"offsets": {
+				"from": 857080,
+				"to": 863080
+			},
+			"text": " So you can use it instead of 8. And you can use the endomorphism there for multi-perings."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,080",
+				"to": "00:14:27,080"
+			},
+			"offsets": {
+				"from": 863080,
+				"to": 867080
+			},
+			"text": " It was way faster than what we had previously."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,080",
+				"to": "00:14:32,080"
+			},
+			"offsets": {
+				"from": 867080,
+				"to": 872080
+			},
+			"text": " So this is just a couple of optimizations that I talked about in GNARC."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,080",
+				"to": "00:14:36,080"
+			},
+			"offsets": {
+				"from": 872080,
+				"to": 876080
+			},
+			"text": " So it is really optimized in all the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,080",
+				"to": "00:14:40,080"
+			},
+			"offsets": {
+				"from": 876080,
+				"to": 880080
+			},
+			"text": " If you have any questions, please contact us by email or Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,080",
+				"to": "00:14:45,080"
+			},
+			"offsets": {
+				"from": 880080,
+				"to": 885080
+			},
+			"text": " There are some useful links here, and I'm happy to take any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,080",
+				"to": "00:14:47,080"
+			},
+			"offsets": {
+				"from": 885080,
+				"to": 887080
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,080",
+				"to": "00:14:51,080"
+			},
+			"offsets": {
+				"from": 887080,
+				"to": 891080
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,080",
+				"to": "00:15:07,080"
+			},
+			"offsets": {
+				"from": 891080,
+				"to": 907080
+			},
+			"text": " Hi, good talk. Thank you. I want to know why did you choose Go instead of Rust, for example?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,080",
+				"to": "00:15:12,080"
+			},
+			"offsets": {
+				"from": 907080,
+				"to": 912080
+			},
+			"text": " Good question. So this work was started before I joined."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,080",
+				"to": "00:15:14,080"
+			},
+			"offsets": {
+				"from": 912080,
+				"to": 914080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,080",
+				"to": "00:15:16,080"
+			},
+			"offsets": {
+				"from": 914080,
+				"to": 916080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,080",
+				"to": "00:15:18,080"
+			},
+			"offsets": {
+				"from": 916080,
+				"to": 918080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,080",
+				"to": "00:15:20,080"
+			},
+			"offsets": {
+				"from": 918080,
+				"to": 920080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,080",
+				"to": "00:15:22,080"
+			},
+			"offsets": {
+				"from": 920080,
+				"to": 922080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,080",
+				"to": "00:15:24,080"
+			},
+			"offsets": {
+				"from": 922080,
+				"to": 924080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,080",
+				"to": "00:15:26,080"
+			},
+			"offsets": {
+				"from": 924080,
+				"to": 926080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,080",
+				"to": "00:15:28,080"
+			},
+			"offsets": {
+				"from": 926080,
+				"to": 928080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,080",
+				"to": "00:15:30,080"
+			},
+			"offsets": {
+				"from": 928080,
+				"to": 930080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,080",
+				"to": "00:15:32,080"
+			},
+			"offsets": {
+				"from": 930080,
+				"to": 932080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,080",
+				"to": "00:15:34,080"
+			},
+			"offsets": {
+				"from": 932080,
+				"to": 934080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,080",
+				"to": "00:15:36,080"
+			},
+			"offsets": {
+				"from": 934080,
+				"to": 936080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,080",
+				"to": "00:15:38,080"
+			},
+			"offsets": {
+				"from": 936080,
+				"to": 938080
+			},
+			"text": " I'm not sure if you can get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,080",
+				"to": "00:15:42,080"
+			},
+			"offsets": {
+				"from": 938080,
+				"to": 942080
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,080",
+				"to": "00:15:46,080"
+			},
+			"offsets": {
+				"from": 942080,
+				"to": 946080
+			},
+			"text": " You mentioned you guys had support for lookups in GARC?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,080",
+				"to": "00:15:47,080"
+			},
+			"offsets": {
+				"from": 946080,
+				"to": 947080
+			},
+			"text": " Is that already released?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,080",
+				"to": "00:15:49,080"
+			},
+			"offsets": {
+				"from": 947080,
+				"to": 949080
+			},
+			"text": " Yeah, so it is in Gannar-Cato, P-Lucabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,080",
+				"to": "00:15:51,080"
+			},
+			"offsets": {
+				"from": 949080,
+				"to": 951080
+			},
+			"text": " But we do not have Plunk with P-Lucabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,080",
+				"to": "00:15:54,080"
+			},
+			"offsets": {
+				"from": 951080,
+				"to": 954080
+			},
+			"text": " We have just the P-Lucab argument in Gannar-Cato."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,080",
+				"to": "00:15:56,080"
+			},
+			"offsets": {
+				"from": 954080,
+				"to": 956080
+			},
+			"text": " That we will use for the ZK EVR."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,080",
+				"to": "00:15:58,080"
+			},
+			"offsets": {
+				"from": 956080,
+				"to": 958080
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,080",
+				"to": "00:16:04,080"
+			},
+			"offsets": {
+				"from": 958080,
+				"to": 964080
+			},
+			"text": " I guess so you're saying you can use P-Lucab, but how do you use it without the Plunk integration?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,080",
+				"to": "00:16:08,080"
+			},
+			"offsets": {
+				"from": 964080,
+				"to": 968080
+			},
+			"text": " So we do not have the integration so far, but we have just the P-Lucab arguments."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,080",
+				"to": "00:16:10,080"
+			},
+			"offsets": {
+				"from": 968080,
+				"to": 970080
+			},
+			"text": " OK, got it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,080",
+				"to": "00:16:20,080"
+			},
+			"offsets": {
+				"from": 970080,
+				"to": 980080
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,080",
+				"to": "00:16:49,080"
+			},
+			"offsets": {
+				"from": 980080,
+				"to": 1009080
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,3354 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,280"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12280
+			},
+			"text": " I'm Oren. I'm from Starquare. Our mission at Starquare is to use proof systems to bring"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,280",
+				"to": "00:00:18,760"
+			},
+			"offsets": {
+				"from": 12280,
+				"to": 18760
+			},
+			"text": " scalability and privacy to blockchains. We are a team of slightly over 30, based in Israel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,760",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 18760,
+				"to": 24000
+			},
+			"text": " We've raised slightly over $40 million to equity rounds plus a generous grant from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:28,800"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 28800
+			},
+			"text": " Ethereum Foundation. And the first product we're focusing on right now is a start-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,800",
+				"to": "00:00:34,280"
+			},
+			"offsets": {
+				"from": 28800,
+				"to": 34280
+			},
+			"text": " scalability engine for exchanges. And what I'm going to talk about today is how Starquare"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,280",
+				"to": "00:00:39,160"
+			},
+			"offsets": {
+				"from": 34280,
+				"to": 39160
+			},
+			"text": " can help solve the blockchain scalability problem. And then I'm going to describe the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,160",
+				"to": "00:00:45,360"
+			},
+			"offsets": {
+				"from": 39160,
+				"to": 45360
+			},
+			"text": " Starquare-based exchange engine that we've developed."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,360",
+				"to": "00:00:50,760"
+			},
+			"offsets": {
+				"from": 45360,
+				"to": 50760
+			},
+			"text": " So in January 2018, in the middle of the US government shutdown, rather than Trump took"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,760",
+				"to": "00:00:55,160"
+			},
+			"offsets": {
+				"from": 50760,
+				"to": 55160
+			},
+			"text": " his first state of the union address. And for some reason he neglected to mention two"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,160",
+				"to": "00:00:59,320"
+			},
+			"offsets": {
+				"from": 55160,
+				"to": 59320
+			},
+			"text": " of the most important things that happened right about then, which is that the start paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,320",
+				"to": "00:01:05,480"
+			},
+			"offsets": {
+				"from": 59320,
+				"to": 65480
+			},
+			"text": " was being published. And Starquare, the company, was incorporated. And we started working."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,480",
+				"to": "00:01:10,360"
+			},
+			"offsets": {
+				"from": 65480,
+				"to": 70360
+			},
+			"text": " At Last DevCon, we demonstrated for the first time a working implementation of a stark"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,360",
+				"to": "00:01:17,160"
+			},
+			"offsets": {
+				"from": 70360,
+				"to": 77160
+			},
+			"text": " prover and verifier running in a browser on a smartphone using WebAssembly. This was"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,160",
+				"to": "00:01:20,760"
+			},
+			"offsets": {
+				"from": 77160,
+				"to": 80760
+			},
+			"text": " the first time this was demonstrated up until then Starquare was widely regarded as a very"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,760",
+				"to": "00:01:25,960"
+			},
+			"offsets": {
+				"from": 80760,
+				"to": 85960
+			},
+			"text": " promising technology, but one that would take years until any practical implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,960",
+				"to": "00:01:36,800"
+			},
+			"offsets": {
+				"from": 85960,
+				"to": 96800
+			},
+			"text": " come out. In January this year, we demonstrated a first demo of a stark exchange, Starquare,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,800",
+				"to": "00:01:42,280"
+			},
+			"offsets": {
+				"from": 96800,
+				"to": 102280
+			},
+			"text": " which for the first time had a verifier running as an Ethereum smart contract. At that time"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,280",
+				"to": "00:01:46,600"
+			},
+			"offsets": {
+				"from": 102280,
+				"to": 106600
+			},
+			"text": " the scale of the system was 10x data of Ethereum. The throughput the system could support"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,600",
+				"to": "00:01:51,560"
+			},
+			"offsets": {
+				"from": 106600,
+				"to": 111560
+			},
+			"text": " is 10x data of Ethereum. We're constantly working on improving that. And two months later that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,560",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 111560,
+				"to": 119000
+			},
+			"text": " jumped from 10x to 200x. In June, we ran in collaboration with zerox on Robston on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:05,560"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 125560
+			},
+			"text": " testnet, the alpha version, an alpha version of a stark exchange, a stark exchange, a stark"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,560",
+				"to": "00:02:12,440"
+			},
+			"offsets": {
+				"from": 125560,
+				"to": 132440
+			},
+			"text": " powered exchange, which ran a few weeks of actual live traffic from Binance. Only last"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,440",
+				"to": "00:02:17,360"
+			},
+			"offsets": {
+				"from": 132440,
+				"to": 137360
+			},
+			"text": " month we hosted in Tel Aviv the stark war sessions conference, which also included a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,360",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 137360,
+				"to": 144000
+			},
+			"text": " stark 101 open workshop for developers where participants could build a stark prover from"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:30,600"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 150600
+			},
+			"text": " scratch. And we're constantly working on improving the system scale, as I said before."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,600",
+				"to": "00:02:36,760"
+			},
+			"offsets": {
+				"from": 150600,
+				"to": 156760
+			},
+			"text": " The best running implementation we have today is 700x. The throughput of Ethereum, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,760",
+				"to": "00:02:42,320"
+			},
+			"offsets": {
+				"from": 156760,
+				"to": 162320
+			},
+			"text": " brings us to over 2,000 trades per second that we could run, which means that the average"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,320",
+				"to": "00:02:49,440"
+			},
+			"offsets": {
+				"from": 162320,
+				"to": 169440
+			},
+			"text": " cost in terms of gas per trade is under 200x. Now this is always going down, and specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,440",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 169440,
+				"to": 175000
+			},
+			"text": " with the AP2028 coming in Istanbul, which we're very proud to have shepherded through,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:59,920"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 179920
+			},
+			"text": " it's going to go significantly lower than that. And our next milestone, and this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,920",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 179920,
+				"to": 185000
+			},
+			"text": " in large part what I'm going to talk about today, is to deploy on mainnet to launch first"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:13,080"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 193080
+			},
+			"text": " commercial release of a stark powered exchange come January with a partner. But first what"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,080",
+				"to": "00:03:20,280"
+			},
+			"offsets": {
+				"from": 193080,
+				"to": 200280
+			},
+			"text": " stark? So stark is a zero knowledge proof protocol with specifically nice characteristics."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,280",
+				"to": "00:03:27,160"
+			},
+			"offsets": {
+				"from": 200280,
+				"to": 207160
+			},
+			"text": " The main ones are that both verify running time, and the proof size itself are only logarithmic"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,160",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 207160,
+				"to": 214000
+			},
+			"text": " with regards to the original computation. The proof of running time is nearly linear,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:39,120"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 219120
+			},
+			"text": " and with nice constants, actually against any other protocol that we've compared it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,120",
+				"to": "00:03:45,200"
+			},
+			"offsets": {
+				"from": 219120,
+				"to": 225200
+			},
+			"text": " against today, it's at least one order of magnitude faster. Stark is also applicable"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,200",
+				"to": "00:03:52,440"
+			},
+			"offsets": {
+				"from": 225200,
+				"to": 232440
+			},
+			"text": " to any general computation, so generally anything you could code, stark could also prove. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,440",
+				"to": "00:03:58,360"
+			},
+			"offsets": {
+				"from": 232440,
+				"to": 238360
+			},
+			"text": " then there are two cherries on top of that. One is that stark requires no trusted setup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,360",
+				"to": "00:04:04,440"
+			},
+			"offsets": {
+				"from": 238360,
+				"to": 244440
+			},
+			"text": " and the other is that stark has hardly any cryptographic assumptions. So the only thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,440",
+				"to": "00:04:12,120"
+			},
+			"offsets": {
+				"from": 244440,
+				"to": 252120
+			},
+			"text": " you need to work for stark to work well is the existence of cryptographic hash functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,120",
+				"to": "00:04:17,840"
+			},
+			"offsets": {
+				"from": 252120,
+				"to": 257840
+			},
+			"text": " which makes it very future proof in two aspects. One is that it rests on the same lean and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,840",
+				"to": "00:04:22,400"
+			},
+			"offsets": {
+				"from": 257840,
+				"to": 262400
+			},
+			"text": " battle harden crypto, that's pretty much the rest of e-commerce that's been around since"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,400",
+				"to": "00:04:30,480"
+			},
+			"offsets": {
+				"from": 262400,
+				"to": 270480
+			},
+			"text": " the 70s really, and two it also makes it plausibly post quantum secure. So how can proof systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,480",
+				"to": "00:04:35,920"
+			},
+			"offsets": {
+				"from": 270480,
+				"to": 275920
+			},
+			"text": " and starks in particularly help with scaling blockchains? So permissionless blockchains are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,920",
+				"to": "00:04:40,520"
+			},
+			"offsets": {
+				"from": 275920,
+				"to": 280520
+			},
+			"text": " often referred to as a distributed system. But actually if you look at them more closely,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,520",
+				"to": "00:04:45,320"
+			},
+			"offsets": {
+				"from": 280520,
+				"to": 285320
+			},
+			"text": " you can see they're actually more of a duplicated system. You have a large number of nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,320",
+				"to": "00:04:49,960"
+			},
+			"offsets": {
+				"from": 285320,
+				"to": 289960
+			},
+			"text": " but each and every one of these nodes actually performs all the computations and stores the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,960",
+				"to": "00:04:56,920"
+			},
+			"offsets": {
+				"from": 289960,
+				"to": 296920
+			},
+			"text": " full state of the entire network. So this boils down to a very low glass ceiling in terms of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,920",
+				"to": "00:05:01,040"
+			},
+			"offsets": {
+				"from": 296920,
+				"to": 301040
+			},
+			"text": " the amount of operations the network could actually carry. For instance, in the case of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,040",
+				"to": "00:05:06,400"
+			},
+			"offsets": {
+				"from": 301040,
+				"to": 306400
+			},
+			"text": " trade that we're handling right now, typical on-chain trade today costs something between"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,400",
+				"to": "00:05:11,280"
+			},
+			"offsets": {
+				"from": 306400,
+				"to": 311280
+			},
+			"text": " 150 and 200,000 gas, which means the network can't do more than three or four trades per"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,280",
+				"to": "00:05:17,840"
+			},
+			"offsets": {
+				"from": 311280,
+				"to": 317840
+			},
+			"text": " second, in theory. But what if we shift this balance, and for a given computation we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,840",
+				"to": "00:05:23,480"
+			},
+			"offsets": {
+				"from": 317840,
+				"to": 323480
+			},
+			"text": " have one party run the heavy computation. And on top of running the computation itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,480",
+				"to": "00:05:28,080"
+			},
+			"offsets": {
+				"from": 323480,
+				"to": 328080
+			},
+			"text": " we'll also do some extra work and produce a proof, a stark proof, attesting to the validity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,080",
+				"to": "00:05:33,880"
+			},
+			"offsets": {
+				"from": 328080,
+				"to": 333880
+			},
+			"text": " of those computation. Now what the rest of the parties need to do is just to verify that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,880",
+				"to": "00:05:38,320"
+			},
+			"offsets": {
+				"from": 333880,
+				"to": 338320
+			},
+			"text": " proof, which like I said before is a whole lot less work than the original computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,320",
+				"to": "00:05:43,440"
+			},
+			"offsets": {
+				"from": 338320,
+				"to": 343440
+			},
+			"text": " itself. Note that with proof systems there is no trust assumption with regards to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,440",
+				"to": "00:05:52,400"
+			},
+			"offsets": {
+				"from": 343440,
+				"to": 352400
+			},
+			"text": " proof. The verify never accepts invalid proofs. So you only need to trust the verifier and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,400",
+				"to": "00:05:59,080"
+			},
+			"offsets": {
+				"from": 352400,
+				"to": 359080
+			},
+			"text": " it would never accept any false claims. So this is not a fraud proof mechanism where"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,080",
+				"to": "00:06:04,840"
+			},
+			"offsets": {
+				"from": 359080,
+				"to": 364840
+			},
+			"text": " false claims may be accepted and hopefully later overturned. In this case only valid statements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,840",
+				"to": "00:06:11,160"
+			},
+			"offsets": {
+				"from": 364840,
+				"to": 371160
+			},
+			"text": " only valid states will be updated on-chain. So in the block chain case, instead of running"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,160",
+				"to": "00:06:16,400"
+			},
+			"offsets": {
+				"from": 371160,
+				"to": 376400
+			},
+			"text": " all these heavy operations many times on-chain, you could basically take the heavy lifting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,400",
+				"to": "00:06:22,160"
+			},
+			"offsets": {
+				"from": 376400,
+				"to": 382160
+			},
+			"text": " computation-wise off-chain. It will still be heavy, but it will be done at AWS costs"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,160",
+				"to": "00:06:27,160"
+			},
+			"offsets": {
+				"from": 382160,
+				"to": 387160
+			},
+			"text": " rather than at block chain costs. And all that's left to do on-chain is just the verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,160",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 387160,
+				"to": 393000
+			},
+			"text": " this requires very little resources. Now, Stark is especially a good fit for this because"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:37,560"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 397560
+			},
+			"text": " of these nice attributes that I mentioned before. This way you could actually increase"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,560",
+				"to": "00:06:41,760"
+			},
+			"offsets": {
+				"from": 397560,
+				"to": 401760
+			},
+			"text": " the network through it by several orders of magnitude while still enjoying the security"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,760",
+				"to": "00:06:48,240"
+			},
+			"offsets": {
+				"from": 401760,
+				"to": 408240
+			},
+			"text": " of the main chain. But you may say, well, this is nice, but this is good for big computations"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,240",
+				"to": "00:06:52,800"
+			},
+			"offsets": {
+				"from": 408240,
+				"to": 412800
+			},
+			"text": " and there aren't any big computations on Ethereum today. And you'd be right, actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,800",
+				"to": "00:06:57,080"
+			},
+			"offsets": {
+				"from": 412800,
+				"to": 417080
+			},
+			"text": " the network stay-ac-scale limitations actually prevent big computations from being run on"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,080",
+				"to": "00:07:03,880"
+			},
+			"offsets": {
+				"from": 417080,
+				"to": 423880
+			},
+			"text": " it today. So to this I say two things. One is that using a Stark-based system, you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,880",
+				"to": "00:07:09,240"
+			},
+			"offsets": {
+				"from": 423880,
+				"to": 429240
+			},
+			"text": " have big computations. So if you're a developer who's not developing some DAP today because"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,240",
+				"to": "00:07:13,200"
+			},
+			"offsets": {
+				"from": 429240,
+				"to": 433200
+			},
+			"text": " you're concerned the network won't be able to carry it, then you're highly welcome to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,200",
+				"to": "00:07:18,680"
+			},
+			"offsets": {
+				"from": 433200,
+				"to": 438680
+			},
+			"text": " come and talk to us. And the second thing is that for simpler computations, such as trades,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,680",
+				"to": "00:07:23,560"
+			},
+			"offsets": {
+				"from": 438680,
+				"to": 443560
+			},
+			"text": " for instance, what we could do is we could batch a large number of small operations together"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,560",
+				"to": "00:07:29,080"
+			},
+			"offsets": {
+				"from": 443560,
+				"to": 449080
+			},
+			"text": " in a big batch and prepare one proof, attesting to the validity of the entire batch and get"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,080",
+				"to": "00:07:33,680"
+			},
+			"offsets": {
+				"from": 449080,
+				"to": 453680
+			},
+			"text": " the same scale effect that way. Because again, it's the same logarithmic quality of the verifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,680",
+				"to": "00:07:38,880"
+			},
+			"offsets": {
+				"from": 453680,
+				"to": 458880
+			},
+			"text": " so verifying a proof for a very large batch hardly costs more than verifying one for a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,880",
+				"to": "00:07:45,520"
+			},
+			"offsets": {
+				"from": 458880,
+				"to": 465520
+			},
+			"text": " smaller batch. So up until now I described how proof systems in Stark could help scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,520",
+				"to": "00:07:50,840"
+			},
+			"offsets": {
+				"from": 465520,
+				"to": 470840
+			},
+			"text": " blockchains in general. Now I turn to the engine that we've built on top of this, which is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,840",
+				"to": "00:07:56,280"
+			},
+			"offsets": {
+				"from": 470840,
+				"to": 476280
+			},
+			"text": " scalability engine for exchanges. And I'll briefly explain how that works. So these are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,280",
+				"to": "00:08:01,840"
+			},
+			"offsets": {
+				"from": 476280,
+				"to": 481840
+			},
+			"text": " the main players in this drama. At the top left, you have Alice and Bob. There are stars"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,840",
+				"to": "00:08:05,600"
+			},
+			"offsets": {
+				"from": 481840,
+				"to": 485600
+			},
+			"text": " in pretty much any presentation here. They're moving from room to room. So there are the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,600",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 485600,
+				"to": 491000
+			},
+			"text": " users. You have the exchange itself. Then you have the Stark scalability engine that includes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:16,320"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 496320
+			},
+			"text": " the prover. All this is off chain. And then on chain you have two main contracts. One is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,320",
+				"to": "00:08:21,160"
+			},
+			"offsets": {
+				"from": 496320,
+				"to": 501160
+			},
+			"text": " the Stark verifier. And the other is the Stark exchange main contract that keeps the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,160",
+				"to": "00:08:28,560"
+			},
+			"offsets": {
+				"from": 501160,
+				"to": 508560
+			},
+			"text": " state. So users trade on the exchange pretty much as they would today on any centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,560",
+				"to": "00:08:33,500"
+			},
+			"offsets": {
+				"from": 508560,
+				"to": 513500
+			},
+			"text": " exchange. The main difference is that they need to sign each and every order with their"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,500",
+				"to": "00:08:38,440"
+			},
+			"offsets": {
+				"from": 513500,
+				"to": 518440
+			},
+			"text": " own private key. Now this is an important feature because this is basically the core"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,440",
+				"to": "00:08:44,400"
+			},
+			"offsets": {
+				"from": 518440,
+				"to": 524400
+			},
+			"text": " of the system being non-custodial, which means that neither the exchange nor the Stark exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,400",
+				"to": "00:08:49,040"
+			},
+			"offsets": {
+				"from": 524400,
+				"to": 529040
+			},
+			"text": " engine can actually move people's funds around without their signatures. So if the exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,040",
+				"to": "00:08:56,760"
+			},
+			"offsets": {
+				"from": 529040,
+				"to": 536760
+			},
+			"text": " is hacked, nobody could actually touch the funds of all the people that are there. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,760",
+				"to": "00:09:02,760"
+			},
+			"offsets": {
+				"from": 536760,
+				"to": 542760
+			},
+			"text": " exchange also pretty much the same as today does the matching. And then it sends the Stark"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,760",
+				"to": "00:09:08,880"
+			},
+			"offsets": {
+				"from": 542760,
+				"to": 548880
+			},
+			"text": " exchange engine all the trades to be settled later on chain. So the users in the exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,880",
+				"to": "00:09:12,760"
+			},
+			"offsets": {
+				"from": 548880,
+				"to": 552760
+			},
+			"text": " are pretty much as any exchange today. The users don't need to wait for anything coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,760",
+				"to": "00:09:17,400"
+			},
+			"offsets": {
+				"from": 552760,
+				"to": 557400
+			},
+			"text": " later. They could continue trading immediately. What the Stark exchange does, first it batches"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,400",
+				"to": "00:09:22,400"
+			},
+			"offsets": {
+				"from": 557400,
+				"to": 562400
+			},
+			"text": " a large number of transactions of trades like I said before. And then for each of these trades"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,400",
+				"to": "00:09:28,680"
+			},
+			"offsets": {
+				"from": 562400,
+				"to": 568680
+			},
+			"text": " it inserts within the proof that the trade itself was valid. So we need to prove things"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,680",
+				"to": "00:09:34,600"
+			},
+			"offsets": {
+				"from": 568680,
+				"to": 574600
+			},
+			"text": " like the orders were signed correctly and the users had enough tokens to transact and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,600",
+				"to": "00:09:39,720"
+			},
+			"offsets": {
+				"from": 574600,
+				"to": 579720
+			},
+			"text": " the transaction balances each other out, things like that for every trade. Once the proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,720",
+				"to": "00:09:45,160"
+			},
+			"offsets": {
+				"from": 579720,
+				"to": 585160
+			},
+			"text": " is ready it's sent on chain and then the on chain verifier accepts that proof if and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,160",
+				"to": "00:09:50,760"
+			},
+			"offsets": {
+				"from": 585160,
+				"to": 590760
+			},
+			"text": " only if it's valid. And once accepted it also updates the Stark exchange main contract and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,760",
+				"to": "00:09:55,800"
+			},
+			"offsets": {
+				"from": 590760,
+				"to": 595800
+			},
+			"text": " updates the state. Now this would be a good time to explain how we don't just take most"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,800",
+				"to": "00:10:01,160"
+			},
+			"offsets": {
+				"from": 595800,
+				"to": 601160
+			},
+			"text": " of the computation work off chain but actually also most of the storage. So instead of keeping"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,160",
+				"to": "00:10:06,040"
+			},
+			"offsets": {
+				"from": 601160,
+				"to": 606040
+			},
+			"text": " the up to date balances of all the users on chain which costs a lot, we take that off"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,040",
+				"to": "00:10:10,840"
+			},
+			"offsets": {
+				"from": 606040,
+				"to": 610840
+			},
+			"text": " chain, we store that as part of the Stark exchange engine, we organize that as a Merkle"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,840",
+				"to": "00:10:16,800"
+			},
+			"offsets": {
+				"from": 610840,
+				"to": 616800
+			},
+			"text": " tree and only the root of that Merkle tree is updated on chain. So this means that within"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,800",
+				"to": "00:10:21,720"
+			},
+			"offsets": {
+				"from": 616800,
+				"to": 621720
+			},
+			"text": " the proof in addition to attesting to the validity of each individual trade, we also"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,720",
+				"to": "00:10:27,080"
+			},
+			"offsets": {
+				"from": 621720,
+				"to": 627080
+			},
+			"text": " attests to the validity of the change in states. So the state before the batch, the state after"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,080",
+				"to": "00:10:33,520"
+			},
+			"offsets": {
+				"from": 627080,
+				"to": 633520
+			},
+			"text": " the batch correctly depict the actual changes that are part of the batch. One of the nice"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,520",
+				"to": "00:10:38,440"
+			},
+			"offsets": {
+				"from": 633520,
+				"to": 638440
+			},
+			"text": " things about the Stark power exchange is that users can now trade on the exchange from their"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,440",
+				"to": "00:10:43,480"
+			},
+			"offsets": {
+				"from": 638440,
+				"to": 643480
+			},
+			"text": " own private wallets. So the way this works is when the users, let's say Alice wants to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,480",
+				"to": "00:10:48,200"
+			},
+			"offsets": {
+				"from": 643480,
+				"to": 648200
+			},
+			"text": " trade on the exchange, she first deposits funds to the exchange. This is a regular theorem"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,200",
+				"to": "00:10:52,640"
+			},
+			"offsets": {
+				"from": 648200,
+				"to": 652640
+			},
+			"text": " transaction to do deposits to the exchange contract and then it's picked up and written"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,640",
+				"to": "00:10:58,240"
+			},
+			"offsets": {
+				"from": 652640,
+				"to": 658240
+			},
+			"text": " on chain as well under her private key. So this is pretty quick, hence the rabbit in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,240",
+				"to": "00:11:03,440"
+			},
+			"offsets": {
+				"from": 658240,
+				"to": 663440
+			},
+			"text": " the picture. And then while on the exchange, everything is very fast. It's again the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,440",
+				"to": "00:11:08,760"
+			},
+			"offsets": {
+				"from": 663440,
+				"to": 668760
+			},
+			"text": " as any centralized exchange today. Hence we have three rabbits here. But here we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,760",
+				"to": "00:11:13,640"
+			},
+			"offsets": {
+				"from": 668760,
+				"to": 673640
+			},
+			"text": " a small issue. What if Alice needs this money on chain now? For instance, to pay Carol for"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,640",
+				"to": "00:11:18,960"
+			},
+			"offsets": {
+				"from": 673640,
+				"to": 678960
+			},
+			"text": " something. So paying Carol is also a regular theorem transaction which is pretty fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,960",
+				"to": "00:11:23,960"
+			},
+			"offsets": {
+				"from": 678960,
+				"to": 683960
+			},
+			"text": " But to get her funds off the exchange, she'd need to withdraw. And to withdraw is a slightly"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,960",
+				"to": "00:11:29,400"
+			},
+			"offsets": {
+				"from": 683960,
+				"to": 689400
+			},
+			"text": " longer process because she'd have to wait until the proof is actually accepted on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,400",
+				"to": "00:11:36,760"
+			},
+			"offsets": {
+				"from": 689400,
+				"to": 696760
+			},
+			"text": " Hence the turtle. So what we need here is a fast turtle. So luckily we've found one. By"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,760",
+				"to": "00:11:42,400"
+			},
+			"offsets": {
+				"from": 696760,
+				"to": 702400
+			},
+			"text": " the way, turtles actually walk very, very slowly but they swim quite fast. Almost as fast as"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,400",
+				"to": "00:11:47,560"
+			},
+			"offsets": {
+				"from": 702400,
+				"to": 707560
+			},
+			"text": " you say in boat runs. So the equivalent of the turtle is this neat mechanism that we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,560",
+				"to": "00:11:53,200"
+			},
+			"offsets": {
+				"from": 707560,
+				"to": 713200
+			},
+			"text": " devised that we call conditional transaction. So a conditional transaction is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,200",
+				"to": "00:11:59,480"
+			},
+			"offsets": {
+				"from": 713200,
+				"to": 719480
+			},
+			"text": " that happens off chain only if something else occurred previously on chain. And I'll give"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,480",
+				"to": "00:12:04,680"
+			},
+			"offsets": {
+				"from": 719480,
+				"to": 724680
+			},
+			"text": " an example with this case of a fast withdrawal. So Alice wants her money fast on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,680",
+				"to": "00:12:11,320"
+			},
+			"offsets": {
+				"from": 724680,
+				"to": 731320
+			},
+			"text": " So the first thing she does is she signs the conditional transaction transferring money"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,320",
+				"to": "00:12:17,600"
+			},
+			"offsets": {
+				"from": 731320,
+				"to": 737600
+			},
+			"text": " from her off chain account to the exchanges off chain account. Pending the exchange did"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,600",
+				"to": "00:12:22,920"
+			},
+			"offsets": {
+				"from": 737600,
+				"to": 742920
+			},
+			"text": " a similar transfer on chain earlier. So she signs that and provides that to the exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,920",
+				"to": "00:12:27,520"
+			},
+			"offsets": {
+				"from": 742920,
+				"to": 747520
+			},
+			"text": " operator. The operator first checks that she has enough funds off chain to do this. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,520",
+				"to": "00:12:33,360"
+			},
+			"offsets": {
+				"from": 747520,
+				"to": 753360
+			},
+			"text": " if she does, it just moves the money on on chain to her account. So Alice now got the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,360",
+				"to": "00:12:39,360"
+			},
+			"offsets": {
+				"from": 753360,
+				"to": 759360
+			},
+			"text": " money within one Ethereum block. Now the exchange could actually submit this operation, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,360",
+				"to": "00:12:44,040"
+			},
+			"offsets": {
+				"from": 759360,
+				"to": 764040
+			},
+			"text": " off chain operation to the proof. And since the on chain operation it relies on has already"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,040",
+				"to": "00:12:52,360"
+			},
+			"offsets": {
+				"from": 764040,
+				"to": 772360
+			},
+			"text": " happened, this will now be accepted. So the transaction will be executed and now the exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,360",
+				"to": "00:13:02,080"
+			},
+			"offsets": {
+				"from": 772360,
+				"to": 782080
+			},
+			"text": " will get the same funds off chain. So Alice could use this mechanism to get a quick withdrawal."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,080",
+				"to": "00:13:06,200"
+			},
+			"offsets": {
+				"from": 782080,
+				"to": 786200
+			},
+			"text": " The other thing she could do is she could actually ask the exchange to transfer the money on"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,200",
+				"to": "00:13:14,280"
+			},
+			"offsets": {
+				"from": 786200,
+				"to": 794280
+			},
+			"text": " chain directly to Carol. And then the conditional transaction will rely on that on chain transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,280",
+				"to": "00:13:19,920"
+			},
+			"offsets": {
+				"from": 794280,
+				"to": 799920
+			},
+			"text": " So what happened here is that Alice actually paid Carol on chain directly from her off chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,920",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 799920,
+				"to": 808000
+			},
+			"text": " account. This could actually work with anything not necessarily just paying Carol, but anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:33,880"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 813880
+			},
+			"text": " you could actually do on chain on layer one. Or that could be attested to on Ethereum. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,880",
+				"to": "00:13:39,640"
+			},
+			"offsets": {
+				"from": 813880,
+				"to": 819640
+			},
+			"text": " it could even be things like paying Dave on the Bitcoin network. Since the Bitcoin transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,640",
+				"to": "00:13:46,240"
+			},
+			"offsets": {
+				"from": 819640,
+				"to": 826240
+			},
+			"text": " is something that could be attested on Ethereum. Or it could be open a CDP on maker or any"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,240",
+				"to": "00:13:50,880"
+			},
+			"offsets": {
+				"from": 826240,
+				"to": 830880
+			},
+			"text": " other DeFi application that relies on layer one. Alice could actually directly access that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,880",
+				"to": "00:13:57,840"
+			},
+			"offsets": {
+				"from": 830880,
+				"to": 837840
+			},
+			"text": " directly from her off chain account at the exchange. Okay, so far I was talking with my"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,840",
+				"to": "00:14:04,240"
+			},
+			"offsets": {
+				"from": 837840,
+				"to": 844240
+			},
+			"text": " engineer hat on. But now let's all put our business hats on and take a look at crypto trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,240",
+				"to": "00:14:09,200"
+			},
+			"offsets": {
+				"from": 844240,
+				"to": 849200
+			},
+			"text": " today from the perspectives of both the exchange and of traders. And I want to briefly touch"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,200",
+				"to": "00:14:16,800"
+			},
+			"offsets": {
+				"from": 849200,
+				"to": 856800
+			},
+			"text": " what a start powered exchange can provide them with. So today when people trade they pretty much"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,800",
+				"to": "00:14:23,920"
+			},
+			"offsets": {
+				"from": 856800,
+				"to": 863920
+			},
+			"text": " trade on centralized exchanges. A centralized exchange being fully custodial is basically just"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,920",
+				"to": "00:14:30,800"
+			},
+			"offsets": {
+				"from": 863920,
+				"to": 870800
+			},
+			"text": " one big honey pots of tokens, which is highly risky. Now what a trader could do with this risk is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,800",
+				"to": "00:14:35,200"
+			},
+			"offsets": {
+				"from": 870800,
+				"to": 875200
+			},
+			"text": " one thing they could do is they could just accept it as part of the cost of doing business and take"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,200",
+				"to": "00:14:39,840"
+			},
+			"offsets": {
+				"from": 875200,
+				"to": 879840
+			},
+			"text": " the risk. Note this is not just a theoretical risk. It's estimated that last year somewhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,840",
+				"to": "00:14:46,160"
+			},
+			"offsets": {
+				"from": 879840,
+				"to": 886160
+			},
+			"text": " between one and one half billion dollars worth of token were hacked off exchanges. Another option"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,160",
+				"to": "00:14:51,440"
+			},
+			"offsets": {
+				"from": 886160,
+				"to": 891440
+			},
+			"text": " for traders is to limit their exposure to any one specific exchange and split their funds between"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,440",
+				"to": "00:14:56,480"
+			},
+			"offsets": {
+				"from": 891440,
+				"to": 896480
+			},
+			"text": " several different ones. This is not necessarily capital efficient and it basically boils down"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,480",
+				"to": "00:15:03,200"
+			},
+			"offsets": {
+				"from": 896480,
+				"to": 903200
+			},
+			"text": " to both trader and exchanges leaving money on the table. But with a start where powered exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,200",
+				"to": "00:15:08,880"
+			},
+			"offsets": {
+				"from": 903200,
+				"to": 908880
+			},
+			"text": " you have other options in terms of custody. You could do self custody like I explained before."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,880",
+				"to": "00:15:15,600"
+			},
+			"offsets": {
+				"from": 908880,
+				"to": 915600
+			},
+			"text": " You could have your custodian trade for you on the exchange. You could have even more complex"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,600",
+				"to": "00:15:21,200"
+			},
+			"offsets": {
+				"from": 915600,
+				"to": 921200
+			},
+			"text": " schemes in terms of custody. All these boil down to this honey pot being eliminated and the risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,200",
+				"to": "00:15:27,920"
+			},
+			"offsets": {
+				"from": 921200,
+				"to": 927920
+			},
+			"text": " being greatly lowered. Another benefit of a start powered exchange is that it's much easier in"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,920",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 927920,
+				"to": 934000
+			},
+			"text": " this scenario to move funds to an exchange, often exchange in between exchanges. So this will also"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:45,520"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 945520
+			},
+			"text": " greatly help traders from a capital perspective. So today if you trade crypto you have the option"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,520",
+				"to": "00:15:50,640"
+			},
+			"offsets": {
+				"from": 945520,
+				"to": 950640
+			},
+			"text": " you could choose between risking your money at a centralized exchange or enjoying low liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,640",
+				"to": "00:15:56,480"
+			},
+			"offsets": {
+				"from": 950640,
+				"to": 956480
+			},
+			"text": " in a poor user experience at a decentralized one. With a start powered exchange we essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,480",
+				"to": "00:16:01,120"
+			},
+			"offsets": {
+				"from": 956480,
+				"to": 961120
+			},
+			"text": " break this trade off and you can enjoy the scale, the liquidity and user experience of a centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,120",
+				"to": "00:16:08,720"
+			},
+			"offsets": {
+				"from": 961120,
+				"to": 968720
+			},
+			"text": " exchange without taking this honey pot counterparty risk. Now note that what we've been building"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,720",
+				"to": "00:16:15,040"
+			},
+			"offsets": {
+				"from": 968720,
+				"to": 975040
+			},
+			"text": " these last few months is a production grade system. It's not just a stark stack. It's a heavy duty"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,040",
+				"to": "00:16:20,240"
+			},
+			"offsets": {
+				"from": 975040,
+				"to": 980240
+			},
+			"text": " system that could actually handle a large scale in production and could be integrated to any"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,240",
+				"to": "00:16:29,680"
+			},
+			"offsets": {
+				"from": 980240,
+				"to": 989680
+			},
+			"text": " exchange. So we already saw that in addition to this using these neat mechanisms such as conditional"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,680",
+				"to": "00:16:34,960"
+			},
+			"offsets": {
+				"from": 989680,
+				"to": 994960
+			},
+			"text": " transaction and some others that I haven't described here, users can also seamlessly move"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,960",
+				"to": "00:16:40,880"
+			},
+			"offsets": {
+				"from": 994960,
+				"to": 1000880
+			},
+			"text": " between their off chain account at the exchange and all the wealth of the DeFi application that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,880",
+				"to": "00:16:47,280"
+			},
+			"offsets": {
+				"from": 1000880,
+				"to": 1007280
+			},
+			"text": " currently exist on Ethereum. They could use them directly. We also talked about how in addition to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,280",
+				"to": "00:16:52,960"
+			},
+			"offsets": {
+				"from": 1007280,
+				"to": 1012960
+			},
+			"text": " trading the system also supports payments to Ethereum or even to other blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,960",
+				"to": "00:16:59,440"
+			},
+			"offsets": {
+				"from": 1012960,
+				"to": 1019440
+			},
+			"text": " But it doesn't stop here. Stark is a generally applicable protocol like I said before. So pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,440",
+				"to": "00:17:05,360"
+			},
+			"offsets": {
+				"from": 1019440,
+				"to": 1025360
+			},
+			"text": " much anything, any financial feature the exchange we'd want to offer we could also include in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,360",
+				"to": "00:17:11,760"
+			},
+			"offsets": {
+				"from": 1025360,
+				"to": 1031760
+			},
+			"text": " stark proof. So we can for instance include things like interest bearing accounts and margin trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,040",
+				"to": "00:17:21,120"
+			},
+			"offsets": {
+				"from": 1033040,
+				"to": 1041120
+			},
+			"text": " and do that at scale while still remaining trustless. But this is not the end of it. On top of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,120",
+				"to": "00:17:24,800"
+			},
+			"offsets": {
+				"from": 1041120,
+				"to": 1044800
+			},
+			"text": " you could also add front running protection. I won't have time to go into that right now but"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,800",
+				"to": "00:17:31,040"
+			},
+			"offsets": {
+				"from": 1044800,
+				"to": 1051040
+			},
+			"text": " you can come and talk to us later. And notice that up until now we haven't even used yet the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,040",
+				"to": "00:17:37,120"
+			},
+			"offsets": {
+				"from": 1051040,
+				"to": 1057120
+			},
+			"text": " zero knowledge quality of Stark. Add that to the miss, mix and things start getting really interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,120",
+				"to": "00:17:42,880"
+			},
+			"offsets": {
+				"from": 1057120,
+				"to": 1062880
+			},
+			"text": " because you could start having privacy. Now today as far as privacy goes, you have the exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,880",
+				"to": "00:17:47,920"
+			},
+			"offsets": {
+				"from": 1062880,
+				"to": 1067920
+			},
+			"text": " operator basically telling you trust me, I'm not going to use this to your disadvantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,920",
+				"to": "00:17:54,240"
+			},
+			"offsets": {
+				"from": 1067920,
+				"to": 1074240
+			},
+			"text": " Now with the Stark based system you could actually have real privacy including privacy from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,240",
+				"to": "00:17:59,920"
+			},
+			"offsets": {
+				"from": 1074240,
+				"to": 1079920
+			},
+			"text": " operator itself. So from this perspective Stark could do to privacy the same thing that it did"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,920",
+				"to": "00:18:04,800"
+			},
+			"offsets": {
+				"from": 1079920,
+				"to": 1084800
+			},
+			"text": " to custody before. Now you don't need to trust the operator because they're good because they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,800",
+				"to": "00:18:12,240"
+			},
+			"offsets": {
+				"from": 1084800,
+				"to": 1092240
+			},
+			"text": " a good guy. But you can trust them not to cheat because they can't. Even more importantly you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,240",
+				"to": "00:18:16,720"
+			},
+			"offsets": {
+				"from": 1092240,
+				"to": 1096720
+			},
+			"text": " could have regulated privacy. So you could have privacy including from the operator while still"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,720",
+				"to": "00:18:23,280"
+			},
+			"offsets": {
+				"from": 1096720,
+				"to": 1103280
+			},
+			"text": " ensuring that all regulatory requirements are being met. So things like truly dark pools suddenly"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,280",
+				"to": "00:18:30,480"
+			},
+			"offsets": {
+				"from": 1103280,
+				"to": 1110480
+			},
+			"text": " become possible. Note that with these features that actually makes a Stark powered exchange not"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,480",
+				"to": "00:18:35,840"
+			},
+			"offsets": {
+				"from": 1110480,
+				"to": 1115840
+			},
+			"text": " just the best crypto exchange. It actually has features that don't currently exist on any"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,840",
+				"to": "00:18:42,240"
+			},
+			"offsets": {
+				"from": 1115840,
+				"to": 1122240
+			},
+			"text": " traditional exchange as well. So with this an exchange powered by Stark where it will not just"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,240",
+				"to": "00:18:48,720"
+			},
+			"offsets": {
+				"from": 1122240,
+				"to": 1128720
+			},
+			"text": " be the best crypto exchange out there but actually the best exchange out there. Crypto or non-crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,720",
+				"to": "00:18:58,320"
+			},
+			"offsets": {
+				"from": 1128720,
+				"to": 1138320
+			},
+			"text": " So one more thing we are very happy to announce our first commercial partnership. We have partnered"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,320",
+				"to": "00:19:04,480"
+			},
+			"offsets": {
+				"from": 1138320,
+				"to": 1144480
+			},
+			"text": " with diversifying to bring a Stark powered exchange to real users on production come January."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,280",
+				"to": "00:19:10,720"
+			},
+			"offsets": {
+				"from": 1145280,
+				"to": 1150720
+			},
+			"text": " And I'm very glad to invite Dan Yanov the COO of diversify to talk about our cooperation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,720",
+				"to": "00:19:24,640"
+			},
+			"offsets": {
+				"from": 1150720,
+				"to": 1164640
+			},
+			"text": " Thank you, Oren, for the fantastic introduction. Here at diversify we believe that users should"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,640",
+				"to": "00:19:30,800"
+			},
+			"offsets": {
+				"from": 1164640,
+				"to": 1170800
+			},
+			"text": " always have control of their funds accessing applications through the safety of their choice"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,800",
+				"to": "00:19:37,440"
+			},
+			"offsets": {
+				"from": 1170800,
+				"to": 1177440
+			},
+			"text": " of wallets. Now when it comes to trading so far this has come at the cost of a great trade-off."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,440",
+				"to": "00:19:46,560"
+			},
+			"offsets": {
+				"from": 1177440,
+				"to": 1186560
+			},
+			"text": " As Oren mentioned the trade-off with speed, liquidity, user experience and even gas costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,560",
+				"to": "00:19:56,960"
+			},
+			"offsets": {
+				"from": 1186560,
+				"to": 1196960
+			},
+			"text": " Now over the last 12 months we have worked hard to bring our users a great user interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,960",
+				"to": "00:20:03,280"
+			},
+			"offsets": {
+				"from": 1196960,
+				"to": 1203280
+			},
+			"text": " getting feedback from our lovely users. We have developed a way to match against the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,280",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1203280,
+				"to": 1210000
+			},
+			"text": " external liquidity pools to bring traders fantastic markets. And now with the help of our friends"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,000",
+				"to": "00:20:17,440"
+			},
+			"offsets": {
+				"from": 1210000,
+				"to": 1217440
+			},
+			"text": " from Stark where we have the last piece of the puzzle. Instant settlements, low fees and high"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,440",
+				"to": "00:20:24,640"
+			},
+			"offsets": {
+				"from": 1217440,
+				"to": 1224640
+			},
+			"text": " scalability. So the days of trade-offs when it comes to non-custodial trading will soon be over."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,760",
+				"to": "00:20:32,880"
+			},
+			"offsets": {
+				"from": 1225760,
+				"to": 1232880
+			},
+			"text": " Now I'm going to do a quick demo to show you what this looks like practically."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,880",
+				"to": "00:20:38,240"
+			},
+			"offsets": {
+				"from": 1232880,
+				"to": 1238240
+			},
+			"text": " This is a pre-recorded demo. Those of you who have tried using the internet will probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,240",
+				"to": "00:20:50,240"
+			},
+			"offsets": {
+				"from": 1238240,
+				"to": 1250240
+			},
+			"text": " understand why. So here we have the diversify trading interface. On the right hand side we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,240",
+				"to": "00:20:56,480"
+			},
+			"offsets": {
+				"from": 1250240,
+				"to": 1256480
+			},
+			"text": " see our balances. So here we have our on-chain balances and our off-chain balances locked in"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,480",
+				"to": "00:21:03,360"
+			},
+			"offsets": {
+				"from": 1256480,
+				"to": 1263360
+			},
+			"text": " Stark in green. So we have just under a thousand bucks ready here. We're going to do a trade to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,360",
+				"to": "00:21:09,360"
+			},
+			"offsets": {
+				"from": 1263360,
+				"to": 1269360
+			},
+			"text": " show you what that looks like. So the green is basically what we have available to trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,360",
+				"to": "00:21:15,360"
+			},
+			"offsets": {
+				"from": 1269360,
+				"to": 1275360
+			},
+			"text": " Now we're going to be placing a trade. Let's have a look at the order book. Now this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,400",
+				"to": "00:21:22,560"
+			},
+			"offsets": {
+				"from": 1276400,
+				"to": 1282560
+			},
+			"text": " you can see this order book is incredibly thick. So we can place a trade of like over 100 ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,560",
+				"to": "00:21:28,720"
+			},
+			"offsets": {
+				"from": 1282560,
+				"to": 1288720
+			},
+			"text": " without moving the price at all. And the reason why we're able to do this is because since the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,720",
+				"to": "00:21:34,880"
+			},
+			"offsets": {
+				"from": 1288720,
+				"to": 1294880
+			},
+			"text": " user's funds are locked in Stark we can guarantee settlement, i.e. everyone has followed the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,880",
+				"to": "00:21:41,600"
+			},
+			"offsets": {
+				"from": 1294880,
+				"to": 1301600
+			},
+			"text": " end of the deal. So we can match against an external liquidity pool. In this case a centralized exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,800",
+				"to": "00:21:52,720"
+			},
+			"offsets": {
+				"from": 1302800,
+				"to": 1312720
+			},
+			"text": " which allows us to bring this to our traders. Now let's go ahead and actually place the trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,720",
+				"to": "00:21:58,720"
+			},
+			"offsets": {
+				"from": 1312720,
+				"to": 1318720
+			},
+			"text": " We're going to be buying some ETH which this from a few days ago. So this person is happy that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,720",
+				"to": "00:22:04,480"
+			},
+			"offsets": {
+				"from": 1318720,
+				"to": 1324480
+			},
+			"text": " they did this probably. And so we're going to do a simple order just to execute quickly at market"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,480",
+				"to": "00:22:11,840"
+			},
+			"offsets": {
+				"from": 1324480,
+				"to": 1331840
+			},
+			"text": " price. And we're going to select the amount and we're going to buy. Now we're going to sign this"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,840",
+				"to": "00:22:19,520"
+			},
+			"offsets": {
+				"from": 1331840,
+				"to": 1339520
+			},
+			"text": " with our signature. And it's already executed actually. We missed it. So it's been executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,520",
+				"to": "00:22:25,840"
+			},
+			"offsets": {
+				"from": 1339520,
+				"to": 1345840
+			},
+			"text": " We can see it in our history instantly. And more importantly it has been also settled instantly."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,840",
+				"to": "00:22:30,560"
+			},
+			"offsets": {
+				"from": 1345840,
+				"to": 1350560
+			},
+			"text": " So again if we look at our balances we have our new balance available to trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,560",
+				"to": "00:22:40,240"
+			},
+			"offsets": {
+				"from": 1350560,
+				"to": 1360240
+			},
+			"text": " So as we mentioned earlier the trade-offs in experience when it comes to non-custodial trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,240",
+				"to": "00:22:46,800"
+			},
+			"offsets": {
+				"from": 1360240,
+				"to": 1366800
+			},
+			"text": " will soon be over. Now this has been a demo. However this will be live the beginning of next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,800",
+				"to": "00:22:51,600"
+			},
+			"offsets": {
+				"from": 1366800,
+				"to": 1371600
+			},
+			"text": " So please stay tuned and give it up for Starkware."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,600",
+				"to": "00:23:02,400"
+			},
+			"offsets": {
+				"from": 1371600,
+				"to": 1382400
+			},
+			"text": " I think we have some. Yeah that's it. I think we do have time for questions if anybody wants to ask."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,400",
+				"to": "00:23:09,280"
+			},
+			"offsets": {
+				"from": 1386400,
+				"to": 1389280
+			},
+			"text": " Oh sorry. Just step up to the microphones when you ask."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,280",
+				"to": "00:23:16,400"
+			},
+			"offsets": {
+				"from": 1389280,
+				"to": 1396400
+			},
+			"text": " Yeah great great talk. I'm curious like what do you see as the advantages of Ethereum for"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,400",
+				"to": "00:23:23,040"
+			},
+			"offsets": {
+				"from": 1396400,
+				"to": 1403040
+			},
+			"text": " Starkware to build on? Like what you know got you all to build on this and what do you see as"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,040",
+				"to": "00:23:29,840"
+			},
+			"offsets": {
+				"from": 1403040,
+				"to": 1409840
+			},
+			"text": " potential sort of downsides to Ethereum that might make you want to move this technology elsewhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,840",
+				"to": "00:23:36,480"
+			},
+			"offsets": {
+				"from": 1409840,
+				"to": 1416480
+			},
+			"text": " if either if they're present today or if they became present. So Stark is not specific to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,480",
+				"to": "00:23:41,920"
+			},
+			"offsets": {
+				"from": 1416480,
+				"to": 1421920
+			},
+			"text": " It's a general technology. It's not even specific to blockchain. The reason we chose to focus on"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,920",
+				"to": "00:23:48,560"
+			},
+			"offsets": {
+				"from": 1421920,
+				"to": 1428560
+			},
+			"text": " Ethereum is because it has a few things we need. One has a rich enough language for us to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,560",
+				"to": "00:23:55,040"
+			},
+			"offsets": {
+				"from": 1428560,
+				"to": 1435040
+			},
+			"text": " build a verifier that can run on chain. For instance Bitcoin doesn't but other chains do have it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,160",
+				"to": "00:24:00,560"
+			},
+			"offsets": {
+				"from": 1436160,
+				"to": 1440560
+			},
+			"text": " And also has a very big developer community. So there are a lot of applications being developed."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,560",
+				"to": "00:24:06,720"
+			},
+			"offsets": {
+				"from": 1440560,
+				"to": 1446720
+			},
+			"text": " There are exchanges running on top of Ethereum. There's a bigger ecosystem. But like looking forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,720",
+				"to": "00:24:11,120"
+			},
+			"offsets": {
+				"from": 1446720,
+				"to": 1451120
+			},
+			"text": " we're not going to stop specifically Ethereum. We could build similar things and other chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,120",
+				"to": "00:24:18,960"
+			},
+			"offsets": {
+				"from": 1451120,
+				"to": 1458960
+			},
+			"text": " as long as they have a rich enough language. Cool thanks. Can you tell us about the data availability"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,960",
+				"to": "00:24:26,000"
+			},
+			"offsets": {
+				"from": 1458960,
+				"to": 1466000
+			},
+			"text": " problem for the America tree that holds the state of the exchange? So at this first phase the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,000",
+				"to": "00:24:30,400"
+			},
+			"offsets": {
+				"from": 1466000,
+				"to": 1470400
+			},
+			"text": " we're going to handle data availability is they're going to have basically a committee of a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,400",
+				"to": "00:24:36,560"
+			},
+			"offsets": {
+				"from": 1470400,
+				"to": 1476560
+			},
+			"text": " trusted parties that's going to accept all the data. And for each proof that we submit on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,560",
+				"to": "00:24:41,760"
+			},
+			"offsets": {
+				"from": 1476560,
+				"to": 1481760
+			},
+			"text": " the proof will only be accepted not just if it's not valid but also it needs to be signed by"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,760",
+				"to": "00:24:48,160"
+			},
+			"offsets": {
+				"from": 1481760,
+				"to": 1488160
+			},
+			"text": " enough committee members that have indeed attested to the fact that they have the data and that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,160",
+				"to": "00:24:52,880"
+			},
+			"offsets": {
+				"from": 1488160,
+				"to": 1492880
+			},
+			"text": " they have indeed calculated and saw that this data maps to what we've submitted as part of the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,880",
+				"to": "00:25:03,360"
+			},
+			"offsets": {
+				"from": 1492880,
+				"to": 1503360
+			},
+			"text": " Thanks for the talk. Did I get it right that the match agent is centralized and you just can say"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,360",
+				"to": "00:25:08,320"
+			},
+			"offsets": {
+				"from": 1503360,
+				"to": 1508320
+			},
+			"text": " I don't want to execute this order? That is true. At this phase we're just we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,320",
+				"to": "00:25:13,440"
+			},
+			"offsets": {
+				"from": 1508320,
+				"to": 1513440
+			},
+			"text": " startifying the settlement process. The matching is centralized. Now this has ups and downs. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,440",
+				"to": "00:25:19,600"
+			},
+			"offsets": {
+				"from": 1513440,
+				"to": 1519600
+			},
+			"text": " main benefit that you have here is a lot quicker and you can't front run it. The downside is yes"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,600",
+				"to": "00:25:24,880"
+			},
+			"offsets": {
+				"from": 1519600,
+				"to": 1524880
+			},
+			"text": " it's still transferable. Do you have any kind of solutions for it? So we have thoughts about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,880",
+				"to": "00:25:31,120"
+			},
+			"offsets": {
+				"from": 1524880,
+				"to": 1531120
+			},
+			"text": " we could start to find the matching as well but we're not there yet. Thank you. That will be coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,120",
+				"to": "00:25:42,080"
+			},
+			"offsets": {
+				"from": 1531120,
+				"to": 1542080
+			},
+			"text": " sometimes late. Thank you for talk. It sounded very bright and shiny like kind of without disadvantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,080",
+				"to": "00:25:48,560"
+			},
+			"offsets": {
+				"from": 1542080,
+				"to": 1548560
+			},
+			"text": " solving a lot of problems and even for me it sounded like it's going even into layer 2 territory"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,560",
+				"to": "00:25:55,360"
+			},
+			"offsets": {
+				"from": 1548560,
+				"to": 1555360
+			},
+			"text": " by problems it solves. So there should be some drawbacks. First of all it is the layer 2 solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,360",
+				"to": "00:26:01,680"
+			},
+			"offsets": {
+				"from": 1555360,
+				"to": 1561680
+			},
+			"text": " you're right. The reason it's like it's a lot simpler than many of the other layer 2 solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,680",
+				"to": "00:26:06,640"
+			},
+			"offsets": {
+				"from": 1561680,
+				"to": 1566640
+			},
+			"text": " like in layer 2 you have I refer to you briefly before you have two major concepts. You actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,640",
+				"to": "00:26:11,520"
+			},
+			"offsets": {
+				"from": 1566640,
+				"to": 1571520
+			},
+			"text": " use fraud proofs or validity proofs. So fraud proofs is where you say okay let's say we have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,520",
+				"to": "00:26:17,280"
+			},
+			"offsets": {
+				"from": 1571520,
+				"to": 1577280
+			},
+			"text": " channel of something in layer 2. We update that on chain and we're optimistic about it. So we may"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,280",
+				"to": "00:26:23,440"
+			},
+			"offsets": {
+				"from": 1577280,
+				"to": 1583440
+			},
+			"text": " update things that are false but we expect somebody to catch that and contest that and then overturn it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,440",
+				"to": "00:26:28,480"
+			},
+			"offsets": {
+				"from": 1583440,
+				"to": 1588480
+			},
+			"text": " That's a much more complex system of what we're doing here and it has a lot more drawbacks. What"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,480",
+				"to": "00:26:34,480"
+			},
+			"offsets": {
+				"from": 1588480,
+				"to": 1594480
+			},
+			"text": " we have here is since we have the power of Stark or proof systems basically this means that whenever"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,480",
+				"to": "00:26:39,360"
+			},
+			"offsets": {
+				"from": 1594480,
+				"to": 1599360
+			},
+			"text": " we submit a proof only valid proofs will actually be accepted and only valid states will be updated"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,360",
+				"to": "00:26:44,160"
+			},
+			"offsets": {
+				"from": 1599360,
+				"to": 1604160
+			},
+			"text": " on chain. So it makes things actually a lot simpler because there are a lot less cases to consider."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,160",
+				"to": "00:26:51,040"
+			},
+			"offsets": {
+				"from": 1604160,
+				"to": 1611040
+			},
+			"text": " It's not a simple system altogether but that's why we were working hard on it for the last few"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,040",
+				"to": "00:26:56,720"
+			},
+			"offsets": {
+				"from": 1611040,
+				"to": 1616720
+			},
+			"text": " month and slightly more than that and we believe it the user experience at the end of the day is"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,720",
+				"to": "00:27:00,800"
+			},
+			"offsets": {
+				"from": 1616720,
+				"to": 1620800
+			},
+			"text": " pretty seamless. It won't feel that you're running on top of something complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,160",
+				"to": "00:27:09,440"
+			},
+			"offsets": {
+				"from": 1622160,
+				"to": 1629440
+			},
+			"text": " Then one more quick question. Do you need some kind of set of validators or some separate network"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,440",
+				"to": "00:27:15,840"
+			},
+			"offsets": {
+				"from": 1629440,
+				"to": 1635840
+			},
+			"text": " that will be doing some things or it just works completely on normal smart contracts in Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,840",
+				"to": "00:27:20,640"
+			},
+			"offsets": {
+				"from": 1635840,
+				"to": 1640640
+			},
+			"text": " So on chain it's just a regular smart contract. There's a verified contract. There is a main"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,640",
+				"to": "00:27:27,120"
+			},
+			"offsets": {
+				"from": 1640640,
+				"to": 1647120
+			},
+			"text": " contract of the exchange all on chain. Off chain we have this Stark engine that we're operating"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,120",
+				"to": "00:27:32,480"
+			},
+			"offsets": {
+				"from": 1647120,
+				"to": 1652480
+			},
+			"text": " that runs as part of the reverseifying this case. The only thing you have on top of that is this"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,480",
+				"to": "00:27:35,760"
+			},
+			"offsets": {
+				"from": 1652480,
+				"to": 1655760
+			},
+			"text": " committee that I mentioned before that you're going to have several other parties that are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,760",
+				"to": "00:27:40,640"
+			},
+			"offsets": {
+				"from": 1655760,
+				"to": 1660640
+			},
+			"text": " us that will actually need to get the data and the test to the fact that they've seen it in its"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:40,640",
+				"to": "00:27:43,440"
+			},
+			"offsets": {
+				"from": 1660640,
+				"to": 1663440
+			},
+			"text": " value. Thank you. That's all."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,440",
+				"to": "00:27:53,360"
+			},
+			"offsets": {
+				"from": 1663440,
+				"to": 1673360
+			},
+			"text": " So how do you compare yourself with iDEX? With iDEX? Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,880",
+				"to": "00:28:00,880"
+			},
+			"offsets": {
+				"from": 1674880,
+				"to": 1680880
+			},
+			"text": " Well iDEX today as far as i know don't yet have any such scalability solutions. They actually do"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,880",
+				"to": "00:28:06,400"
+			},
+			"offsets": {
+				"from": 1680880,
+				"to": 1686400
+			},
+			"text": " the settlement on chain. I think they're planning to. What did you announce a later two solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,400",
+				"to": "00:28:12,240"
+			},
+			"offsets": {
+				"from": 1686400,
+				"to": 1692240
+			},
+			"text": " yesterday? Okay I'm not too familiar with the solution. As far as i know it's not proof system"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,240",
+				"to": "00:28:17,280"
+			},
+			"offsets": {
+				"from": 1692240,
+				"to": 1697280
+			},
+			"text": " based which means it's like in this category I just referred to that's called fraud proofs which"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,280",
+				"to": "00:28:22,560"
+			},
+			"offsets": {
+				"from": 1697280,
+				"to": 1702560
+			},
+			"text": " means you could actually update false things on chain and hopefully later overturn them."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,120",
+				"to": "00:28:29,600"
+			},
+			"offsets": {
+				"from": 1703120,
+				"to": 1709600
+			},
+			"text": " Which makes it a bit more prone to attack and complex but I'm not too knowledgeable about exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:29,600",
+				"to": "00:28:41,040"
+			},
+			"offsets": {
+				"from": 1709600,
+				"to": 1721040
+			},
+			"text": " what they do. Well do you start x0 kyc and also would you open like margin trading in the future"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,040",
+				"to": "00:28:46,320"
+			},
+			"offsets": {
+				"from": 1721040,
+				"to": 1726320
+			},
+			"text": " or it's on the roadmap? So kyc is really a question to you it's not a matter of Stark Dix."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,320",
+				"to": "00:28:54,240"
+			},
+			"offsets": {
+				"from": 1726320,
+				"to": 1734240
+			},
+			"text": " Yes so yeah kyc i guess depends on the on the exchange itself and in our case we don't require"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,240",
+				"to": "00:29:00,640"
+			},
+			"offsets": {
+				"from": 1734240,
+				"to": 1740640
+			},
+			"text": " kyc because all the assets traded on the verse 5 are basically crypto to cryptos it's only digital"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,640",
+				"to": "00:29:09,120"
+			},
+			"offsets": {
+				"from": 1740640,
+				"to": 1749120
+			},
+			"text": " assets and we don't include securities and certain jurisdictions are excluded to be able to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:09,120",
+				"to": "00:29:16,240"
+			},
+			"offsets": {
+				"from": 1749120,
+				"to": 1756240
+			},
+			"text": " this kind of friction this connection the exchange. Now margin trading from the Stark perspective"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,240",
+				"to": "00:29:20,800"
+			},
+			"offsets": {
+				"from": 1756240,
+				"to": 1760800
+			},
+			"text": " we're definitely planning to handle that which means that the Stark engine will be able to support"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:20,800",
+				"to": "00:29:26,560"
+			},
+			"offsets": {
+				"from": 1760800,
+				"to": 1766560
+			},
+			"text": " it. Again it's a matter of it's up to the exchange of when and how exactly they support any feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,560",
+				"to": "00:29:28,240"
+			},
+			"offsets": {
+				"from": 1766560,
+				"to": 1768240
+			},
+			"text": " I know if you have a statement on that. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,240",
+				"to": "00:29:35,120"
+			},
+			"offsets": {
+				"from": 1768240,
+				"to": 1775120
+			},
+			"text": " So thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:35,120",
+				"to": "00:29:39,120"
+			},
+			"offsets": {
+				"from": 1775120,
+				"to": 1779120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:39,120",
+				"to": "00:29:41,120"
+			},
+			"offsets": {
+				"from": 1779120,
+				"to": 1781120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:41,120",
+				"to": "00:29:43,120"
+			},
+			"offsets": {
+				"from": 1781120,
+				"to": 1783120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,120",
+				"to": "00:29:45,120"
+			},
+			"offsets": {
+				"from": 1783120,
+				"to": 1785120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,120",
+				"to": "00:29:47,120"
+			},
+			"offsets": {
+				"from": 1785120,
+				"to": 1787120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,120",
+				"to": "00:29:49,120"
+			},
+			"offsets": {
+				"from": 1787120,
+				"to": 1789120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,120",
+				"to": "00:29:51,120"
+			},
+			"offsets": {
+				"from": 1789120,
+				"to": 1791120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,120",
+				"to": "00:29:53,120"
+			},
+			"offsets": {
+				"from": 1791120,
+				"to": 1793120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,120",
+				"to": "00:29:55,120"
+			},
+			"offsets": {
+				"from": 1793120,
+				"to": 1795120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,120",
+				"to": "00:29:57,120"
+			},
+			"offsets": {
+				"from": 1795120,
+				"to": 1797120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,120",
+				"to": "00:30:15,120"
+			},
+			"offsets": {
+				"from": 1797120,
+				"to": 1815120
+			},
+			"text": " [Music]"
+		}
+	]
+}

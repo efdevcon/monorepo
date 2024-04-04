@@ -1,0 +1,2892 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 19000
+			},
+			"text": " >> Hi guys, I'm a researcher at UCL."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 22000
+			},
+			"text": " And for the past year I've been building this cryptography"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 27000
+			},
+			"text": " library and there's going to be a disclaimer for this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 30000
+			},
+			"text": " I'm not going to go deep into the math."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 33000
+			},
+			"text": " The ZCAS Foundation, how I've provided some useful workshops"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 35000
+			},
+			"text": " that will do that later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 37000
+			},
+			"text": " And I only have 20 minutes and the T-scaptography"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 38000
+			},
+			"text": " need more than 20 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 41000
+			},
+			"text": " So instead what I want to do is I want to leave you with an impression"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 45000
+			},
+			"text": " that cryptography can be really useful for smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 47000
+			},
+			"text": " if nearly essential as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 50000
+			},
+			"text": " But first, what is cryptography?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 53000
+			},
+			"text": " Well, when I talked in on experts, they tend to say"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 56000
+			},
+			"text": " that cryptography is about designing ciphers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 58000
+			},
+			"text": " i.e. encryption and decryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 60000
+			},
+			"text": " But hopefully some people in this room know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 63000
+			},
+			"text": " over the past 30 years, and with the rise of the internet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 65000
+			},
+			"text": " cryptography assumes more."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 68000
+			},
+			"text": " It's about authenticating people on the internet, i.e."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 72000
+			},
+			"text": " your theorem account, or endorsing information, i.e."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 75000
+			},
+			"text": " a digital signature, you know, that's authorized your transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 76000
+			},
+			"text": " and spans some coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 80000
+			},
+			"text": " And even more, it's about building publicly verifiable protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 84000
+			},
+			"text": " We're a group of people, run a protocol, and I'm not involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 87000
+			},
+			"text": " They can send me the transcript, and I can have fifth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 91000
+			},
+			"text": " or actually I can be certain that that protocol was run correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 94000
+			},
+			"text": " So as a cartographer, when you look at Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 96000
+			},
+			"text": " you wonder what does Ethereum offer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 100000
+			},
+			"text": " Well, another goal of cryptography is to minimize trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 104000
+			},
+			"text": " We want to remove as much trust from this system as we can."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 107000
+			},
+			"text": " But in every system, there's always a little bit of trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 111000
+			},
+			"text": " So when we design a system, sometimes there's a trust at third party."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 116000
+			},
+			"text": " But what's really cool about Ethereum is that a smart contract can be your trust at third party,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 118000
+			},
+			"text": " with public state."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 122000
+			},
+			"text": " So because it has public state, and it's a little robot over there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 125000
+			},
+			"text": " it gossips, it reveals all our secrets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 131000
+			},
+			"text": " But it never modifies the protocol, and it will always faithfully execute our protocol in our behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 135000
+			},
+			"text": " And it's atomic, either it runs the function or it won't."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 138000
+			},
+			"text": " And using smart contracts, we can build really cool things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 143000
+			},
+			"text": " But first, let's consider a really simple example, rock-paper-scissors."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 147000
+			},
+			"text": " I'll also consider it where we don't use any cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 150000
+			},
+			"text": " So our contract is a matchmaking service."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154000
+			},
+			"text": " If I want to start a game for rock-paper-scissors, I can start a game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 159000
+			},
+			"text": " somebody can fame my game on this smart contract, and then they can play against me."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 162000
+			},
+			"text": " So I'll list with the little Mexican hut."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 165000
+			},
+			"text": " See, it starts a game, and because we're not using any cryptography,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 170000
+			},
+			"text": " she's going to leak rock, so she'll reveal rock and say, \"I want to bat five pound,\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 173000
+			},
+			"text": " or, \"five dollars in my rock-paper-scissors game.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 177000
+			},
+			"text": " Bob can look at the contract and say, \"Well, I'll just play at rock,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 181000
+			},
+			"text": " so, you know, I'm just going to play paper, I'm going to win five dollars.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 186000
+			},
+			"text": " You know, the contract evaluate started, it comes back to say, \"Oh, well, you won the ten dollars, you won the prize.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 192000
+			},
+			"text": " So really, we can't actually play rock-paper-scissors in a public setting, like a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 194000
+			},
+			"text": " without using any cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 196000
+			},
+			"text": " So what do we need to actually build this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 202000
+			},
+			"text": " We need a function where, or we need some cryptography where I can hate my choice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 206000
+			},
+			"text": " but then I can lead or reveal my choice, and I cannot change my mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 210000
+			},
+			"text": " And we can do this using trivial crypto, and as most people in this room are probably aware of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 212000
+			},
+			"text": " there's cryptographic house functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 216000
+			},
+			"text": " So if I want to choose rock, I put it through the house function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 220000
+			},
+			"text": " I'll get 32 bytes of random data, I'll store that in the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 225000
+			},
+			"text": " and later on, when I reveal rock, the contract will hush it again"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 229000
+			},
+			"text": " and compare the result with the output of what it hushed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 230000
+			},
+			"text": " So that's really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 234000
+			},
+			"text": " And what I also want to add are two really cool features of smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 235000
+			},
+			"text": " deposits and refunds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 239000
+			},
+			"text": " So the idea is that when you start a game, you send a deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 242000
+			},
+			"text": " And then when you finish the game, you get your deposit back."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 246000
+			},
+			"text": " And this will provide a financial incentive for people to finish the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 250000
+			},
+			"text": " So let's go back to our little simple example of rock paper scissors."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 255000
+			},
+			"text": " Alice will make a choice, so run it through the house function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 260000
+			},
+			"text": " and then she'll send the house of her choice, $5, and that small little deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 264000
+			},
+			"text": " Now Bob comes along, and Bob can look at the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 268000
+			},
+			"text": " You can see that Alice wants to play, but now he can't see your choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 272000
+			},
+			"text": " So there's a bit of risk. It could be rock paper as scissors."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 277000
+			},
+			"text": " So he'll make a choice, he'll send the house of his choice, $5, on a deposit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 282000
+			},
+			"text": " and he'll tell the contract that he wants to play rock paper scissors with Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 288000
+			},
+			"text": " Now in the second round of this protocol, everyone must reveal their choice before time T."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 292000
+			},
+			"text": " If you don't reveal your choice, you forfeit your deposit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 296000
+			},
+			"text": " and likelihood the country party will probably automatically win."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 300000
+			},
+			"text": " So next, Alice will reveal scissors."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 304000
+			},
+			"text": " The contract will evaluate to say that well, scissors was her commitment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 306000
+			},
+			"text": " it matches the hash that she gave me."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 310000
+			},
+			"text": " Next, Bob can see that Alice's choice was scissors."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 312000
+			},
+			"text": " So now he has two decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 316000
+			},
+			"text": " A, he aborts the protocol because he's lost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 320000
+			},
+			"text": " or two, he plays the protocol every wins or loses."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 325000
+			},
+			"text": " Now because he's left with a deposit, he's going to reveal paper, and he's lost the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 328000
+			},
+			"text": " But he does this because he wants to get his deposit back."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 332000
+			},
+			"text": " The contract will evaluate this and say, okay, I'm sorry, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 339000
+			},
+			"text": " a scissor speech paper. Bob gets his deposit back, and Alice wins and gets $10."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 343000
+			},
+			"text": " Now to the security experts in the room, as my little disclaimer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 345000
+			},
+			"text": " you should normally use a announce when you do this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 348000
+			},
+			"text": " but I want to avoid these details because I'm not here to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 353000
+			},
+			"text": " present exact secure protocols, just the intuition of why cryptography is useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 357000
+			},
+			"text": " So what's really cool about the previous example is that the deposit and refund scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 360000
+			},
+			"text": " provided this financial incentive for people to participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 365000
+			},
+			"text": " And more, the Haas function pervades that ability to hide my choice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 369000
+			},
+			"text": " but also commit me to my choice in a public setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 374000
+			},
+			"text": " What's not really good is that when Alice sends her hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 378000
+			},
+			"text": " there's no way to verify that was either rock, paper, or scissors."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 382000
+			},
+			"text": " Alice could have sent Spock, and then later revealed Spock."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 385000
+			},
+			"text": " But in this setting, that doesn't really matter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 389000
+			},
+			"text": " because if Alice did choose Spock, the contract would say, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 393000
+			},
+			"text": " Spock wasn't of all a choice, so Bob automatically wins."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 400000
+			},
+			"text": " But what do we have a protocol or an application where a user can't reveal their choice?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 403000
+			},
+			"text": " So all the contract houses encrypted information."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 408000
+			},
+			"text": " And the classic example is e-voting, where we want to maximize voter privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 414000
+			},
+			"text": " So the idea is that you should be able to see that Patrick has caused his vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 418000
+			},
+			"text": " but is encrypted, so you should never be able to see what I voted."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 424000
+			},
+			"text": " And Alice and Mars may have four encrypted votes, and these are stored on the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 426000
+			},
+			"text": " And now we want to compute the tally."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 429000
+			},
+			"text": " We should be able to simply add these votes together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 432000
+			},
+			"text": " and once all the encrypted votes are added together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 436000
+			},
+			"text": " there'll be some crypto magic, and it will automatically perform the decryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 440000
+			},
+			"text": " So then we get the tally that's one yes vote and three no votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 443000
+			},
+			"text": " Now in this setting, voters cannot reveal their vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 448000
+			},
+			"text": " so we can't do that really nice, committed, and reveal trick that we did with Haas functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 453000
+			},
+			"text": " We also need to be confident that every encrypted vote is either yes or no."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 459000
+			},
+			"text": " If we don't have our guarantee, then an attacker could create an encrypted vote in such a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 463000
+			},
+			"text": " where they change somebody else's vote, they cancel somebody else's vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 465000
+			},
+			"text": " or they just vote multiple times."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 468000
+			},
+			"text": " Because remember, these are encrypted votes, and under the hood is all mathematics."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 472000
+			},
+			"text": " They're doing additions, subtracts them, multiplicates, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 476000
+			},
+			"text": " So one way to get around this is to use a zero-nolly's proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 482000
+			},
+			"text": " And what I can prove to you is that my encrypted vote is either yes or zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 487000
+			},
+			"text": " And with this proof, that's the only thing I reveal about this encrypted vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 491000
+			},
+			"text": " I don't reveal the vote itself, I just reveal that it's well formed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 494000
+			},
+			"text": " and it satisfies some type of criteria."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 500000
+			},
+			"text": " So now we can build a contract where each voter, they'll do an algomile encrypted vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 505000
+			},
+			"text": " and they'll send it to the contract alongside a one out of two zero-nolly's proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 507000
+			},
+			"text": " that this vote is either yes or no."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 510000
+			},
+			"text": " The contract will accept it and store the encrypted vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 514000
+			},
+			"text": " And every single voter will do this, then at the end of the election,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 517000
+			},
+			"text": " we can add the votes together and it will leak the tally."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 521000
+			},
+			"text": " Now, if people want to know more about this type of e-voting smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 526000
+			},
+			"text": " I'll be giving a full talk about it on Friday morning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 530000
+			},
+			"text": " so that's a little advertisement for my talk later this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 533000
+			},
+			"text": " But let's consider another application."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 536000
+			},
+			"text": " Let's say we want to outsource some type of computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 540000
+			},
+			"text": " So, Alice has his large computations, he can't do herself."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 544000
+			},
+			"text": " And now, he finds two different cloud providers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 546000
+			},
+			"text": " but he doesn't necessarily trust them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 550000
+			},
+			"text": " So he makes each cloud do the same exact computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 554000
+			},
+			"text": " and then if she's given the same result from both clouds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 558000
+			},
+			"text": " then she has some confidence that the computation was done correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 560000
+			},
+			"text": " So what she wants to do is set up a bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 563000
+			},
+			"text": " So neither does smart contract out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 570000
+			},
+			"text": " And if the two clouds can prove that they did the same computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 574000
+			},
+			"text": " and they got the same result, the contract will reward the clouds for their work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 578000
+			},
+			"text": " So what we can do now is use a Peterson commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 581000
+			},
+			"text": " So this is different than a Haas function."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 585000
+			},
+			"text": " So with a Peterson commitment, we can do some type of computation on it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 587000
+			},
+			"text": " which is known as a homomorphic encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 589000
+			},
+			"text": " And the idea is that it's computationally binding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 591000
+			},
+			"text": " and it's kind of really pronounced it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 593000
+			},
+			"text": " information theoretically hiding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 595000
+			},
+			"text": " but we don't have to worry about those two properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 598000
+			},
+			"text": " The idea is that we can do some type of commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 600000
+			},
+			"text": " on the final result of the computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 604000
+			},
+			"text": " So now, each cloud will send their commitment to the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 606000
+			},
+			"text": " and that will be stored."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 610000
+			},
+			"text": " And later on, they will reveal an open-up commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 613000
+			},
+			"text": " to Alice via some private channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 616000
+			},
+			"text": " Alice can then compare both of the open commitments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 622000
+			},
+			"text": " and so you can see that they've both done the same computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 624000
+			},
+			"text": " and got the same result,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 627000
+			},
+			"text": " and they've both committed to this end result in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 631000
+			},
+			"text": " Now, what Alice needs to do is that Alice needs to convince the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 635000
+			},
+			"text": " that both of the clouds did the computation correctly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 638000
+			},
+			"text": " and that they did both indeed commit to the same result."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 642000
+			},
+			"text": " And we can do this using an equality, zero-nolly's proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 645000
+			},
+			"text": " So the idea is that given two Peterson commitments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 650000
+			},
+			"text": " I can prove to you that they both commit to the same message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 653000
+			},
+			"text": " without revealing what the message is about."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 656000
+			},
+			"text": " So essentially, what Alice can do is that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 659000
+			},
+			"text": " so you can say, \"Okay, yes, both of the clouds did the work.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 663000
+			},
+			"text": " See, sans the robot or smart contract is equality-proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 666000
+			},
+			"text": " and then the contract will get the two commitments"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 668000
+			},
+			"text": " it received from the cloud,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 671000
+			},
+			"text": " and then it will use that as input to the proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 676000
+			},
+			"text": " and then the contract will be convinced that both of the clouds did the same work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 679000
+			},
+			"text": " and then it will reward the cloud for the hard work."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 682000
+			},
+			"text": " So that's really cool that we can actually do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 684000
+			},
+			"text": " Now, of course, in this application, you could argue,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 688000
+			},
+			"text": " \"Well, both of the clouds can collude and not do the computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 690000
+			},
+			"text": " but then get the money from Alice.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 692000
+			},
+			"text": " We're going to ignore that for the security experts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 694000
+			},
+			"text": " but we have done some work in this area,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 698000
+			},
+			"text": " so we're interested afterwards, I can talk about it offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 702000
+			},
+			"text": " But essentially, what I now want to talk about is localcrypto.sol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 705000
+			},
+			"text": " so these cryptographic primitives are implemented in Solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 708000
+			},
+			"text": " and they're available for experiments."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 711000
+			},
+			"text": " So the first three were used for my voting system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 716000
+			},
+			"text": " The second two were used in that anti-collusion smart contract I just spoke about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 718000
+			},
+			"text": " and there's another one that's under review,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 720000
+			},
+			"text": " but I won't go into that too much at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 723000
+			},
+			"text": " But what would be really cool is that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 726000
+			},
+			"text": " ideally, what I wanted to do now, and this is my disclaimer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 731000
+			},
+			"text": " I wanted to have gas costs off before and after the hard fork,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 735000
+			},
+			"text": " because Niagara Ethereum supports elliptic earth mathematics natively."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 738000
+			},
+			"text": " Unfortunately, I've not managed to get the new upcodes to work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 740000
+			},
+			"text": " so if someone in the room is very familiar with that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 743000
+			},
+			"text": " you can talk to me afterwards, and hopefully, for Freddy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 746000
+			},
+			"text": " I can have updated gas costs and how expensive this is."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 748000
+			},
+			"text": " And I'll give you an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 750000
+			},
+			"text": " So the one out of two is Yernali's proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 754000
+			},
+			"text": " Before the hard fork would cost 2.5 million gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 758000
+			},
+			"text": " which is really expensive considering a block only contained 7 million gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 761000
+			},
+			"text": " I think it was roughly like three or four dollars or something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 763000
+			},
+			"text": " where now that the hard forks happened,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 767000
+			},
+			"text": " the gas costs should hopefully be in the region of 200, 300,000 gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 770000
+			},
+			"text": " But I still need to get experimental results to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 773000
+			},
+			"text": " yes, that is actually the real gas cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 778000
+			},
+			"text": " Now, I like the Finis talking about other pieces of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 782000
+			},
+			"text": " So I'm not the only researcher who's been looking at applications of cryptography on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 786000
+			},
+			"text": " And I'm going to highlight some papers that I thought were really interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 789000
+			},
+			"text": " So one was by Andre Miller, called Decentralized Poker,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 793000
+			},
+			"text": " and the idea is that a group of people can play poker as a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 796000
+			},
+			"text": " and everything's done using cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 800000
+			},
+			"text": " So we can ensure that the cards are shuffled correctly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 803000
+			},
+			"text": " and that I have two private cards, and we're actually playing this game"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 806000
+			},
+			"text": " in a way where everybody can verify that it's correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 810000
+			},
+			"text": " The second one is by Sarah Mikkeljohn, who works for me at UCL."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 813000
+			},
+			"text": " And the other scheme was a bit similar to the coin join."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 817000
+			},
+			"text": " So everyone can deposit coins in the essential smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 819000
+			},
+			"text": " and then using ring signatures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 824000
+			},
+			"text": " they can withdraw their coins back from the contract in such a way where they're hiding in a group."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 827000
+			},
+			"text": " So that's to achieve some type of financial privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 830000
+			},
+			"text": " And it's actually really cool, so I highly recommend reading that one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 834000
+			},
+			"text": " The third one's done by Arthur's group at ETH Zurich,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 838000
+			},
+			"text": " and the idea is that let's us have a contract, is a batting contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 842000
+			},
+			"text": " and I embody that New Castle Unit is finally going to win the Premier League,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 843000
+			},
+			"text": " which they'll never do."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 846000
+			},
+			"text": " But let's us say I go on the BBC website,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 851000
+			},
+			"text": " and then the BBC confirms that while New Castle Unit actually did win the Premier League,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 854000
+			},
+			"text": " I can then prove to the contract that the BBC said that to me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 859000
+			},
+			"text": " and that's really useful for any Oracle-type service."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 863000
+			},
+			"text": " The fourth one is publicly verifiable secret sharing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 865000
+			},
+			"text": " so this is the scraped protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 867000
+			},
+			"text": " and the idea is that they designed this scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 871000
+			},
+			"text": " to work towards building a publicly verifiable random beacon."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 876000
+			},
+			"text": " And this means that you can have some type of random number on Ethereum every so often,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 879000
+			},
+			"text": " and that's really useful for gambling games and everything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 885000
+			},
+			"text": " I built that in its solidity, but it's only towards that goal and doesn't achieve it yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 888000
+			},
+			"text": " Of course, there's my anonymous voting protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 891000
+			},
+			"text": " and the counter-collosing contracts that I spoke about just before."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 894000
+			},
+			"text": " So thank you very much for listening to this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 897000
+			},
+			"text": " Before I finish, I have one takeaway message."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 900000
+			},
+			"text": " Cryptography is only one tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 903000
+			},
+			"text": " and our toolbox is engineers to solve problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 907000
+			},
+			"text": " And if you think cryptography can solve your problem alone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 909000
+			},
+			"text": " then there's a really good cope by Roger Needham,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 915000
+			},
+			"text": " who was a professor at Cambridge in the '80s, '90s, and eventually in the early 2000s."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 918000
+			},
+			"text": " And he said, if you think cryptography can solve your problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 922000
+			},
+			"text": " you either do an understand cryptography, or you do an understand your problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 924000
+			},
+			"text": " Thank you for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 931000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 941000
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:43,260"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 943260
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

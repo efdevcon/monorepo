@@ -1,0 +1,3409 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 18000
+			},
+			"text": " >> It's part contracts and how inductive invariance help"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 24000
+			},
+			"text": " improve assertions that should be true on the contract level"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 27000
+			},
+			"text": " concerning an unbounded number of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 30000
+			},
+			"text": " So this is all implemented inside of the compiler in the module"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 34000
+			},
+			"text": " called S&T checker, which runs to use a program experimental"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 37000
+			},
+			"text": " S&T checker and simply run the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 40000
+			},
+			"text": " The static analysis is trying to prove that the assertions we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 48000
+			},
+			"text": " in your contract are never violated, no matter the number of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 51000
+			},
+			"text": " So first, I'm going to start with the demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 54000
+			},
+			"text": " It's pretty small, I'm not sure if you guys can read this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 57000
+			},
+			"text": " but I have a really tiny contract that's assuming that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 60000
+			},
+			"text": " per-familiar is a related toy state machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 65000
+			},
+			"text": " so have a state variable x, a function and that changes x from 0 to 1,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 70000
+			},
+			"text": " so x starts with 0 in the constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 73000
+			},
+			"text": " G changes 1 back to 0, so you have the state machine that starts with 0,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 78000
+			},
+			"text": " and then you can go to 1 and go back to 0 and just keep doing this forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 81000
+			},
+			"text": " And then you have this third function called ingredient,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 87000
+			},
+			"text": " and it starts with x less or equal 1, and this function varies public,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 89000
+			},
+			"text": " so whenever you call it, it should be true,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 93000
+			},
+			"text": " otherwise the rest are going to be true."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 98000
+			},
+			"text": " So the thing is the assertion is true."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 106000
+			},
+			"text": " So because of the implicit constructor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 109000
+			},
+			"text": " x is the internalized of 0, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 113000
+			},
+			"text": " So it will start at 0, you might go to 1, if you call f,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 116000
+			},
+			"text": " you might go back to 0 if you call a j after calling f,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 118000
+			},
+			"text": " so it is true, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 120000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 123000
+			},
+			"text": " And this is what the absentee checker is going to try to prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 126000
+			},
+			"text": " that the assertion is always true."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 130000
+			},
+			"text": " So if you look at this program as the actual state machine as a scontroflora,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 133000
+			},
+			"text": " we have the constructor initialized to 0,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 135000
+			},
+			"text": " and then it goes to this block called,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 138000
+			},
+			"text": " this word's official, now that I call the interface,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 141000
+			},
+			"text": " which is the idle state of the optimal contract, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 144000
+			},
+			"text": " It doesn't have an active execution, you have to call it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 148000
+			},
+			"text": " So it's late in this interface until you call a function from the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 151000
+			},
+			"text": " which could be f, g, or invariant."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 155000
+			},
+			"text": " So if my change acts, it goes back to interface, g, saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 160000
+			},
+			"text": " any invariant can go to sink error state if the assertion is false."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 163000
+			},
+			"text": " So what does the absentee checker is going to try to do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 169000
+			},
+			"text": " statically see if you can have a path from the constructor all the way to the nearest state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 175000
+			},
+			"text": " And for that, you might actually go through this loop a bunch of times, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 179000
+			},
+			"text": " So it's going to try to see if you can get from the constructor to the nearest state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 183000
+			},
+			"text": " no matter the number of transactions you might have to go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 186000
+			},
+			"text": " So I'm going to try it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 192000
+			},
+			"text": " So this is, yeah, this is a code, it's basically saying good."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 196000
+			},
+			"text": " And I'm just going to run compiler on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 202000
+			},
+			"text": " And it does not say that it's wrong, therefore it's, sorry, it does not say wrong, therefore it's safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 205000
+			},
+			"text": " But compiler also puts a bunch of weird stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 208000
+			},
+			"text": " That's always what it's going to look nice eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 215000
+			},
+			"text": " But as part of it, what it tells us is this thing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 219000
+			},
+			"text": " So what this is telling us, this is a contract invariant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 225000
+			},
+			"text": " because it's an invariant on the interface node."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 232000
+			},
+			"text": " So what this is telling us that on the interface node, it's always true for all values that x can have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 236000
+			},
+			"text": " that x is less than 2, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 242000
+			},
+			"text": " And because we're talking about integers, this means it's the same as x less or equal 1, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 252000
+			},
+			"text": " Which in this case is, which in this case is the same as our assertion here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 260000
+			},
+			"text": " But if we change the code slightly here, so I added this function h,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 264000
+			},
+			"text": " that now it's a new rule in our same machine that says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 267000
+			},
+			"text": " now if x equals 7, make it 100."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 272000
+			},
+			"text": " And then I change the assertion to x less or equal 7."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 275000
+			},
+			"text": " Is the assertion correct?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 280000
+			},
+			"text": " Yes, I'm going to show you the exact same."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 281000
+			},
+			"text": " Exactly, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 288000
+			},
+			"text": " So this is a weird local state, but considering the global contract state, it's useless, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 291000
+			},
+			"text": " But still we try to prove the assertion anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 301000
+			},
+			"text": " And when we do that, the compiler also says it's safe and it also gives us a bunch of information again"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 306000
+			},
+			"text": " about things that are true at certain points in the global graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 311000
+			},
+			"text": " And similarly, we can check what's going on with the interface node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 314000
+			},
+			"text": " and it gives us the same invariant again."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 320000
+			},
+			"text": " So before I tried to prove x less or equal 1, it gave me x less or equal 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 321000
+			},
+			"text": " So it learned that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 330000
+			},
+			"text": " But now I'm trying to prove x less or equal 7, and it still gives me x less or equal 1, even though I'm trying to prove something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 334000
+			},
+			"text": " So both these two properties are invariant of the contract, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 339000
+			},
+			"text": " So you can probably prove that they're true, but they have to be different somehow."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 345000
+			},
+			"text": " So what is the difference between x less or equal 2 and x less or equal 7?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 346000
+			},
+			"text": " Wow."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 349000
+			},
+			"text": " You know the answer ever doesn't count."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 351000
+			},
+			"text": " 7 minus 2 is fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 352000
+			},
+			"text": " That's true."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 361000
+			},
+			"text": " So to check the difference, to understand what's fundamental is different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 365000
+			},
+			"text": " in this case between x less or equal 2 and x less or equal 7,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 374000
+			},
+			"text": " we need to analyze each of those invariants with respect to each function separately without considering the rest of the state of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 383000
+			},
+			"text": " So we analyze each invariant only looking at each function without carrying as if any other as if they don't really exist at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 390000
+			},
+			"text": " So if you put in this invariant before body of F and then after as opposed to condition for F,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 393000
+			},
+			"text": " thus they vary still hold after F."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 395000
+			},
+			"text": " It does, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 399000
+			},
+			"text": " Because even if a change is still hold and same here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 404000
+			},
+			"text": " This also holds. It's less or equal 7. If you change it to 1, it's still hold."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 406000
+			},
+			"text": " What about g?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 409000
+			},
+			"text": " This is invariant still holds, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 414000
+			},
+			"text": " So even if it was 1, which would fit, invariant, if it changes to 0, it's still hold."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 416000
+			},
+			"text": " And it's the same here for 7."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 421000
+			},
+			"text": " You use it as precondition, even if it changes still holds."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 423000
+			},
+			"text": " But now here's a catch."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 429000
+			},
+			"text": " So here for ax less or equal 2 for the artificial useless function that I added,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 436000
+			},
+			"text": " if we execute this function with this invariant, is it still true afterwards?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 437000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 438000
+			},
+			"text": " It is, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 444000
+			},
+			"text": " So here you can see that ax less or equal 2 really makes this function useless because it's not really going to be changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 450000
+			},
+			"text": " But with this invariant, we see that the invariant does not hold after the function is locally executed"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 453000
+			},
+			"text": " when using invariant itself as a precondition."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 459000
+			},
+			"text": " So what this tells us is basically that ax less or equal to is inductive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 462000
+			},
+			"text": " whereas ax less or equal 7 is not."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 470000
+			},
+			"text": " And what that means in a higher level is that you can take invariant and conjoin it with the local behavior of the function alone without caring about the rest."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 475000
+			},
+			"text": " The invariant should still hold after that execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 479000
+			},
+			"text": " This is what differentiates the inductive invariant from normal invariant."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 483000
+			},
+			"text": " So the inductive has to be true after the execution as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 490000
+			},
+			"text": " So it implies itself with the variables being in the next state."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 493000
+			},
+			"text": " So inductive invariance is, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 497000
+			},
+			"text": " Actually, we will have to do this line."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 504000
+			},
+			"text": " So in this way, the fact that the public variable can be changed the variable to maybe 7 and then..."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 506000
+			},
+			"text": " Oh, but the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 508000
+			},
+			"text": " Sorry?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 509000
+			},
+			"text": " Probably in 7."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 511000
+			},
+			"text": " Yeah, this is the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 512000
+			},
+			"text": " We have change."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 513000
+			},
+			"text": " Okay, so it's not public."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 515000
+			},
+			"text": " Yeah, I mean, yeah, the variable is not..."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 518000
+			},
+			"text": " But even if it's public, you couldn't change it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 523000
+			},
+			"text": " If the variable is exactly right, public, you've got a public getter, but it can't change it quite together."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 524000
+			},
+			"text": " You would need to..."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 527000
+			},
+			"text": " Can you show the code of the 7 in it again?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 538000
+			},
+			"text": " So how... so here you're starting at the invariant x is less than or equal to 7, but how does it learn the 2 or the actual inductive invariant?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 542000
+			},
+			"text": " Because these two are the only ones that hold, right? That doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 545000
+			},
+			"text": " But I just don't see two anywhere in the code, so where does it come out of the 2?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 546000
+			},
+			"text": " Oh, with the 1 here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 550000
+			},
+			"text": " It's less than 2 because of integers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 553000
+			},
+			"text": " It's less or equal 1 or less than 2, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 556000
+			},
+			"text": " I guess I'm just not understanding the characteristic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 559000
+			},
+			"text": " It picks up or is it just picking a model or how is it..."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 563000
+			},
+			"text": " Z3 is just picking a model that says 2 is the smallest number I can find that is true for..."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 565000
+			},
+			"text": " How does it come out with 2 specifically?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 567000
+			},
+			"text": " Because that's inductive 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 569000
+			},
+			"text": " Daters are not inductive."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 572000
+			},
+			"text": " But every big grid in 2 is not going to be inductive."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 576000
+			},
+			"text": " I think he's asking a lower level question, which is algorithmically, how do I write a solver?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 579000
+			},
+			"text": " Like this thing from this code?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 581000
+			},
+			"text": " No, but the reason the character 2 is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 584000
+			},
+			"text": " Yeah, but the reason for that is that it looks very inductive and very nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 587000
+			},
+			"text": " But 3 would be an R2, right? Like if you were to say x less than or equal to..."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 589000
+			},
+			"text": " 3 would have been inductive, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 591000
+			},
+			"text": " So why doesn't it be free?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 593000
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 595000
+			},
+			"text": " It's barely right. It's barely... it's barely... it looks for the strongest one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 596000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 598000
+			},
+			"text": " Yeah, because 3 would be weaker than the 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 599000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 601000
+			},
+			"text": " In the sense that x less or equal to would imply..."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 603000
+			},
+			"text": " But there's no longer than u wrote that does that true."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 604000
+			},
+			"text": " Oh no, I didn't write that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 611000
+			},
+			"text": " That comes from... from the mixer. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 614000
+			},
+			"text": " Any other questions here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 615000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 620000
+			},
+			"text": " So loop invariance... sorry, inductive invariance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 625000
+			},
+			"text": " There used to summarize a relevant piece of code without really caring about the rest of the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 629000
+			},
+			"text": " So you were interested in a single piece of code and you want to summarize that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 634000
+			},
+			"text": " And you might have information or you might not have information about the rest of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 637000
+			},
+			"text": " So you want to summarize that a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 642000
+			},
+			"text": " And this is particularly and actually classically useful for loops."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 646000
+			},
+			"text": " Because loops are the core of the challenges in programification."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 648000
+			},
+			"text": " That's the termination part."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 652000
+			},
+			"text": " That's why you don't really know how to solve a nice way."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 658000
+			},
+			"text": " So we try to... not really... just people in general have to summarize loops"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 663000
+			},
+			"text": " in a way that it can still go on and prove your program."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 668000
+			},
+			"text": " So now I'm going to show a little loop example."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 676000
+			},
+			"text": " Is this assertion correct?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 680000
+			},
+			"text": " It is, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 684000
+			},
+			"text": " Yeah, so there... I'm not signing the address, so the least value is zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 686000
+			},
+			"text": " So that's safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 689000
+			},
+			"text": " But I'm going to run a new value new way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 693000
+			},
+			"text": " And it tells us it's safe and also a bunch more stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 702000
+			},
+			"text": " And when if we look for the information that it gives us about the loop pattern, we see this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 705000
+			},
+			"text": " So this is an invariant on the loop pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 708000
+			},
+			"text": " And this is an inductive invariant for the loop."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 711000
+			},
+			"text": " And this says that this is actually y and this is x."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 717000
+			},
+			"text": " So this is telling me y less than or equal x."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 720000
+			},
+			"text": " And here we see the condition is y less than x."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725000
+			},
+			"text": " So the difference between this two is that y less than or equal x is an inductive invariant on the loop."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 729000
+			},
+			"text": " It still holds after the loop is executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 735000
+			},
+			"text": " So y less than or equal x is the core property of this loop here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 738000
+			},
+			"text": " And after the loop, the control flow of this program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 741000
+			},
+			"text": " the condition of the loop has to be false, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 745000
+			},
+			"text": " At this point here in the code, this has to be false,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 748000
+			},
+			"text": " but otherwise it would still be in the loop, correct?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 751000
+			},
+			"text": " So we have that this is also true at that point."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 757000
+			},
+			"text": " y greater or equal x, which is an negation of this condition here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 763000
+			},
+			"text": " So if we have these two things together, we can imply that y equals x, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 769000
+			},
+			"text": " So deriving an inductive invariant for the loop right away enables us to prove a property"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 775000
+			},
+			"text": " that happily uses the computation of the loop."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 779000
+			},
+			"text": " And in that manner, the inductive variance can also be used to prove recursive programs"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 785000
+			},
+			"text": " where you can plug the inductive invariant as the inductive hypothesis of the recursive function."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 796000
+			},
+			"text": " But then how exactly does the high-executive inductive invariants help us prove contract invariants"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 799000
+			},
+			"text": " and invariants that hold on the contract level and state variables?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 804000
+			},
+			"text": " So invariants that are true before and after the execution of any public function."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 808000
+			},
+			"text": " And here when it's invariants, actually in contract invariants,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 812000
+			},
+			"text": " in this sense before and after each function, and not the classical invariant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 816000
+			},
+			"text": " the definition that it has to be true at ever-growing counter."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 822000
+			},
+			"text": " So as I showed in the beginning, you can model the contract as this contract will be here"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 824000
+			},
+			"text": " containing a loop, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 831000
+			},
+			"text": " Where you go to interface after the constructor and you always go back to interface after the execution of a public function."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 840000
+			},
+			"text": " And here the really nice thing about this way of modeling it or this way of seeing it"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 848000
+			},
+			"text": " is that we can model each of these transitions from these nodes to horn clauses."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 854000
+			},
+			"text": " Horn clauses are first-real logic formulas that have a very particular shape."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 862000
+			},
+			"text": " This one, it's an implication where the head or the implied part of the implication is then here"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 868000
+			},
+			"text": " going to be the predicate of the block you're going to where the parameters are here are the state variables, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 874000
+			},
+			"text": " So here, x is going to be the parameter for all my predicates here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 885000
+			},
+			"text": " And the predicate is true if that, the predicate is true for a certain value, if that block is reachable for that value for x."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 891000
+			},
+			"text": " The rest of the horn clause here, on the left side of the implication, we have constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 895000
+			},
+			"text": " And here I get constraints from the execution of the constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 908000
+			},
+			"text": " And the predicate of the block I'm coming from, also on the variables that, the value that entered that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 914000
+			},
+			"text": " Yes, so if there's only one predicate on the left side, it's called linear horn clause."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 918000
+			},
+			"text": " And if there's more than one, it's still a horn clause, but it's called a nonlinear horn clause."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 921000
+			},
+			"text": " And it's a lot harder to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 931000
+			},
+			"text": " And this is just an example of a bunch of water rules that we generate from encoding this contour flow graph into horn clauses."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 935000
+			},
+			"text": " Not all of them are here. This is just to show some of them for lack of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 940000
+			},
+			"text": " I'm not going to go by each of them. We can talk later."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 947000
+			},
+			"text": " Okay, so as I mentioned before, the problem that we're trying to solve is can we get from the constructor to the error state?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 951000
+			},
+			"text": " And in the first example that I showed, there is a little bit of ritual."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 960000
+			},
+			"text": " And the way it finds out is that all these green nodes form a fixed point where every transition leads to a node that is already in that set."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 965000
+			},
+			"text": " So you never get out of that set and you finally see that the error state is not reachable at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 973000
+			},
+			"text": " And this is all possible because of this really nice encoding that we can do directly from the contour flow graph to the horn clauses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 977000
+			},
+			"text": " which looks very, very, very similar. And this is only possible because of these two results."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 987000
+			},
+			"text": " So we go all the way from more logic to the existential positive least fixed point logic, which is actually what we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:35,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 995000
+			},
+			"text": " But there is a connection between this logic and constraint horn clauses, which gives us this really nice encoding."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 995000,
+				"to": 1003000
+			},
+			"text": " But what if now I change my first example from G changing y from 1 to 0 to 2 now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1008000
+			},
+			"text": " Is the error state still unreachable or is it reachable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1021000
+			},
+			"text": " It's reachable, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1026000
+			},
+			"text": " Yeah, so I'm just going to run quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1029000
+			},
+			"text": " And here it says, yeah, it's reachable, your assertion is wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1038000
+			},
+			"text": " X can also be 2 and what it also tells us, and it's going to look better eventually, which is really important, is these things here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1045000
+			},
+			"text": " This is telling us backwards which transactions or which loop iterations led to the whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1046000
+			},
+			"text": " And this is just encoding of that thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1055000
+			},
+			"text": " So this is telling us that we can call invariant and make it error reachable, because access to, there was a transaction that made access to."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1061000
+			},
+			"text": " Before that there was a transaction that made x1, and before that there was a transaction that made x0."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:49,000"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1069000
+			},
+			"text": " And if we look back in the graph, so this would be the first one."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1069000,
+				"to": 1074000
+			},
+			"text": " So we deploy the contract, right? So access 0, this is the fluid we go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1076000
+			},
+			"text": " So we go from the constructor to interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1081000
+			},
+			"text": " The next one we call function half, which then changes x from 1 to 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1085000
+			},
+			"text": " And we're back at the interface. The next one, g, changes into 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1093000
+			},
+			"text": " Now we finally call function invariant and reach the error, where the sequence here is deployment at g and invariant."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1099000
+			},
+			"text": " So this is how a destination accurate does things."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1105000
+			},
+			"text": " And in the back end it uses these tools called for-and-slowers, which is similar to similar in a way."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1108000
+			},
+			"text": " To SN2 slowers, but also uses SN2 slowers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1114000
+			},
+			"text": " And for-and-slowers basically they take all these rules that I wrote and a reachability query."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1118000
+			},
+			"text": " So they say, can I get to predicate error?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1121000
+			},
+			"text": " And it tells you yes or no."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1129000
+			},
+			"text": " And the way these horns-lowers do this is in this predicate instruction, all these techniques here."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:55,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1135000
+			},
+			"text": " But the one we use is actually a tool called spacer that has a SN2 based un-vamorochagging with a technique called PDR,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1135000,
+				"to": 1137000
+			},
+			"text": " meaning property, direct-perageability."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1145000
+			},
+			"text": " What it does is from the error state, it tries to, does a back-perageability check, trying to get all the way to the constructor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1150000
+			},
+			"text": " which is the only fact. It's the only predicate that is not actually applied with any other predicate."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1157000
+			},
+			"text": " And it does that by generating a bunch of quantifier free SMT queries in the invoke and SMT slower."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1164000
+			},
+			"text": " And it's interpolation as a method for obstruction to find predecessors in the state doing it backwards of utility"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1168000
+			},
+			"text": " and generate new lemons and ingredients."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1174000
+			},
+			"text": " So this is implemented in this little compiler in the module called SMT checker."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1176000
+			},
+			"text": " By now there's a lot of support in the language."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1181000
+			},
+			"text": " There's a few things missing, but it can verify a lot of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1198000
+			},
+			"text": " And this module, this part of it, the horn-based algorithms, can already find bugs or proof-in-variance for multi-transactions properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1200000
+			},
+			"text": " So multi-transactions safety properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1203000
+			},
+			"text": " But there's still things missing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1209000
+			},
+			"text": " So what's next? Function calls are really important, and we wanted to do that by creating one-and-go function summary."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1216000
+			},
+			"text": " So you create this function summaries, and then you can assert that that summary is true for a certain set of variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1222000
+			},
+			"text": " And this can also be nice to show that there's no changes in the state of the caller contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1225000
+			},
+			"text": " So this is, of course, related to re-entering."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1232000
+			},
+			"text": " Since this is of external functions, that don't have access to the code, might also be nice, but generating kind of examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:40,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1240000
+			},
+			"text": " This all would lead to the possibility of very fine, really complex contracts and setups."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,000",
+				"to": "00:20:48,000"
+			},
+			"offsets": {
+				"from": 1240000,
+				"to": 1248000
+			},
+			"text": " When you have multi-contract, multi-transactions properties, that might be really hard to find otherwise."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,000",
+				"to": "00:20:53,000"
+			},
+			"offsets": {
+				"from": 1248000,
+				"to": 1253000
+			},
+			"text": " And maybe eventually modeled in the entire state of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,000",
+				"to": "00:20:57,000"
+			},
+			"offsets": {
+				"from": 1253000,
+				"to": 1257000
+			},
+			"text": " Another thing is showing nice looking other examples in the variance."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1257000,
+				"to": 1264000
+			},
+			"text": " So I showed output from the compiler, so that's of course, I had to change something really hard to output all that stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:08,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1268000
+			},
+			"text": " That's not supposed to show all that that way, so it has to be nicer."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1268000,
+				"to": 1279000
+			},
+			"text": " Better usability in terms of right now, the only way to use this in the attacker is actually compiling the compiler yourself with C3 or CVC4 linked to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:29,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1289000
+			},
+			"text": " But we are working on having enabled by a SLCJS and the JavaScript version, which I guess is what most people use by the JavaScript frameworks."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,000",
+				"to": "00:21:38,000"
+			},
+			"offsets": {
+				"from": 1289000,
+				"to": 1298000
+			},
+			"text": " And we are also working with other people from consistent authentication in other projects on creating a very, very simple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,000",
+				"to": "00:21:46,000"
+			},
+			"offsets": {
+				"from": 1298000,
+				"to": 1306000
+			},
+			"text": " formal specification language. And we welcome anyone and everyone to be part of creating this language."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,000",
+				"to": "00:21:52,000"
+			},
+			"offsets": {
+				"from": 1306000,
+				"to": 1312000
+			},
+			"text": " We are discussing things in this repo, so feel free to come in and give ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1312000,
+				"to": 1319000
+			},
+			"text": " So finally, to conclude my talk, SSSM's developers are very powerful and very fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1322000
+			},
+			"text": " At least we try to solve them that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1327000
+			},
+			"text": " Eventually it will stop me that fast, because we try too hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1335000
+			},
+			"text": " The technique we use here is VDR. It's an unbotted model check-in technique to solve the horned plazas that model our control flow graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:26,000"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1346000
+			},
+			"text": " And the goal we have here is to prove that safety properties are sound even under consider an unbalanced number of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,000",
+				"to": "00:22:34,000"
+			},
+			"offsets": {
+				"from": 1346000,
+				"to": 1354000
+			},
+			"text": " This is all in the solidity compiler. You get it for free, simply by using the programming and external safety checker, but you need to have assertions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,000",
+				"to": "00:22:39,000"
+			},
+			"offsets": {
+				"from": 1354000,
+				"to": 1359000
+			},
+			"text": " It's a property directly with stability. It's a machine deforesto. It needs to have a property to verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,000",
+				"to": "00:22:46,000"
+			},
+			"offsets": {
+				"from": 1359000,
+				"to": 1366000
+			},
+			"text": " It's not going to tell you random things just out of the code itself. You need to have safety properties in the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,000",
+				"to": "00:22:56,000"
+			},
+			"offsets": {
+				"from": 1366000,
+				"to": 1376000
+			},
+			"text": " And finally, the contract conductive variance that we generate and without good from the compiler can also help refugation of byte code afterwards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1376000,
+				"to": 1380000
+			},
+			"text": " which is something that's a separate part of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1382000
+			},
+			"text": " Thank you everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:06,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1386000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,000",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1386000,
+				"to": 1388000
+			},
+			"text": " -We have time for questions. -Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1390000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:23,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1403000
+			},
+			"text": " So only asserts work or also requires would be a-"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,000",
+				"to": "00:23:26,000"
+			},
+			"offsets": {
+				"from": 1403000,
+				"to": 1406000
+			},
+			"text": " So requires are used as assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1406000,
+				"to": 1407000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,000",
+				"to": "00:23:37,000"
+			},
+			"offsets": {
+				"from": 1411000,
+				"to": 1417000
+			},
+			"text": " -So right now this only works at the level of a single contract in Europe where we send the multi-function-"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,000",
+				"to": "00:23:38,000"
+			},
+			"offsets": {
+				"from": 1417000,
+				"to": 1418000
+			},
+			"text": " -Yeah, exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1418000,
+				"to": 1419000
+			},
+			"text": " -Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:44,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1424000
+			},
+			"text": " -I will have a call. It's like what assertions are for that or-"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,000",
+				"to": "00:23:53,000"
+			},
+			"offsets": {
+				"from": 1424000,
+				"to": 1433000
+			},
+			"text": " -Well, if you have a search in the first contract and you're calling a second contract, the difference is that the second contract might do things you're not really done with."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,000",
+				"to": "00:24:04,000"
+			},
+			"offsets": {
+				"from": 1433000,
+				"to": 1444000
+			},
+			"text": " And then what's doing, or sometimes you do, and there might be re-entering things that changes the state of the first contract and then with the fact the property that you want to prove afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,000",
+				"to": "00:24:08,000"
+			},
+			"offsets": {
+				"from": 1444000,
+				"to": 1448000
+			},
+			"text": " So, yeah, this is how it can change."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,000",
+				"to": "00:24:12,000"
+			},
+			"offsets": {
+				"from": 1448000,
+				"to": 1452000
+			},
+			"text": " But by now it's mostly implementation effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,000",
+				"to": "00:24:15,000"
+			},
+			"offsets": {
+				"from": 1452000,
+				"to": 1455000
+			},
+			"text": " Just put it in the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,000",
+				"to": "00:24:24,000"
+			},
+			"offsets": {
+				"from": 1462000,
+				"to": 1464000
+			},
+			"text": " Thanks, Zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,000",
+				"to": "00:24:39,000"
+			},
+			"offsets": {
+				"from": 1464000,
+				"to": 1479000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,000",
+				"to": "00:24:41,340"
+			},
+			"offsets": {
+				"from": 1479000,
+				"to": 1481340
+			},
+			"text": " (drum roll)"
+		}
+	]
+}

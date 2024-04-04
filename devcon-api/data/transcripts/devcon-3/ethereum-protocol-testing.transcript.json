@@ -1,0 +1,1451 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 16000
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 18000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20000
+			},
+			"text": " Hi, my name is Dimitri."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 23000
+			},
+			"text": " I work in the foundation for about three years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 26000
+			},
+			"text": " And for a long time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 30000
+			},
+			"text": " a serum testing was performed by one person, Christoph Jenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 34000
+			},
+			"text": " He initially invited me to the Ethereum Foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 37000
+			},
+			"text": " and then I continued his work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 43000
+			},
+			"text": " So today I will describe you for you how the testing process goes in the serum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 48000
+			},
+			"text": " and what we achieved for the last year, science, Shanghai."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 54000
+			},
+			"text": " So what we have is a yellow paper, which is a protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 60000
+			},
+			"text": " A yellow paper describes the serum protocol, but it doesn't make it easier to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 64000
+			},
+			"text": " Actually, this picture represents yellow paper really well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 70000
+			},
+			"text": " Nobody able to understand this unless it's a little like maybe there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 76000
+			},
+			"text": " And we have lots of implementation of this protocol, written on different languages, different clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 83000
+			},
+			"text": " And the testing problem is to make sure that every of the client is in consensus with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 94000
+			},
+			"text": " And they interpreted -- they implemented this yellow paper rules in a way that there are no consensus issues"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 96000
+			},
+			"text": " between themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 102000
+			},
+			"text": " So to do that, we have our testing suite."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 110000
+			},
+			"text": " Each test file is a JSON instructions and code it in JSON file."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 115000
+			},
+			"text": " And we could select three main types of the tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 118000
+			},
+			"text": " So the first one is a VM test."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 124000
+			},
+			"text": " It's basically a number of instructions for an EVM white machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 127000
+			},
+			"text": " It's the most simple test in the whole test here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 135000
+			},
+			"text": " So if there is any developers here, you could -- if you implement an EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 139000
+			},
+			"text": " you could start with the EVM test, the most simple ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 141000
+			},
+			"text": " The next is a state test."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 144000
+			},
+			"text": " It's a bit more complex than an EVM test."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 153000
+			},
+			"text": " It has accounts, transactions, and state changes, state hashes, and so it's a bit more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 156000
+			},
+			"text": " And the most sophisticated test is a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 160000
+			},
+			"text": " It has actual mining difficulty and thus our algorithm is implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 166000
+			},
+			"text": " Well, and for a long time, we required all the clients to implement custom test tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 174000
+			},
+			"text": " So they had to read this JSON files and implement this and compare the results."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 179000
+			},
+			"text": " It was not so good."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 190000
+			},
+			"text": " So we use a C++ client to run a test source, which is my job is to keep those sources -- test sources"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 193000
+			},
+			"text": " updated with the most recent issues discovered."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 199000
+			},
+			"text": " And what we are trying to achieve is to create lots of different tests, source files,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 206000
+			},
+			"text": " describing all of the possible situation which we could get in an EVM execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 212000
+			},
+			"text": " And then C++ client executes those instructions and it creates a final test."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 219000
+			},
+			"text": " Final test is being processed by other clients and they compare their results to the C++ clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 225000
+			},
+			"text": " That's how we see if everyone agrees with C++ client, which is a golden starter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 230000
+			},
+			"text": " If there is an issue, we open a dispute and discuss whether we have to make a change in"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 236000
+			},
+			"text": " a C++ client or other clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 241000
+			},
+			"text": " So we had a couple of problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 247000
+			},
+			"text": " The first problem is to create an ultimate test suite which covers all of the code -- all"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 253000
+			},
+			"text": " of the possible situations which we could run and possibly find all of the bugs and consensus issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 259000
+			},
+			"text": " The second problem is that clients should execute our tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 268000
+			},
+			"text": " And because before we required to make the clients custom tool, I had to manually ask every"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 270000
+			},
+			"text": " client developer, \"Have you run this test?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 272000
+			},
+			"text": " Have you updated the test repository?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 273000
+			},
+			"text": " Is it updated?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 279000
+			},
+			"text": " One time I discovered that the goal client wasn't running the recent test for about half of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 280000
+			},
+			"text": " an year."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 286000
+			},
+			"text": " There was a hard for color-related and it still not kept -- not catching up with the test."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 295000
+			},
+			"text": " Not to mention that I don't know the status of other clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 299000
+			},
+			"text": " So how we solve those issues?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 306000
+			},
+			"text": " To get the best code coverage, first we have a test cases list which could be found on"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 309000
+			},
+			"text": " Google documents."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 311000
+			},
+			"text": " This is a manual test case."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 318000
+			},
+			"text": " If you came up with an idea for test cases, you could manually add this to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 325000
+			},
+			"text": " Also, I want to mention, if you think you know how to make a consensus issue, there is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 329000
+			},
+			"text": " code for bug bounty from the foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 336000
+			},
+			"text": " If you discover a consensus issue, you could get money."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 343000
+			},
+			"text": " To cover even more cases, you can possibly come up with every situation, but I think it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 344000
+			},
+			"text": " impossible."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 352000
+			},
+			"text": " We did some tools that basically run random code, random even byte code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 357000
+			},
+			"text": " Not really random, like fast testing is a smart random code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 363000
+			},
+			"text": " And this code, we hope that it will find some consensus ratio and it did."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 371000
+			},
+			"text": " Another approach will be to use a fancy tool that you analyze stores of a client and run"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 379000
+			},
+			"text": " different byte code executions and maybe some fancy algorithms and will produce a very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 385000
+			},
+			"text": " very good test."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 391000
+			},
+			"text": " To solve the next issue, with the clients being updated, last year I mentioned that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 395000
+			},
+			"text": " a Hive tool in development and now it's life and working."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 399000
+			},
+			"text": " Now we no longer require every client to implement the custom test tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 404000
+			},
+			"text": " They just need to provide a client and an RPC interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 408000
+			},
+			"text": " Then any client could be integrated in a Hive tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 414000
+			},
+			"text": " This Hive tool performed a test execution automatically and we have results."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 422000
+			},
+			"text": " You could see on a Hive start space, the results of all the tests execution on every client."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 426000
+			},
+			"text": " Also clients have continuous integration builds in a GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 433000
+			},
+			"text": " Each commits, executes this continuous integration test in a GitHub, which syncs with our test"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 438000
+			},
+			"text": " repo, serum tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 444000
+			},
+			"text": " I still personally do ask people on Skype or other channels versus they perform more"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 447000
+			},
+			"text": " stress and test executions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 458000
+			},
+			"text": " And also, field of work, which was performed by Casey, he did standardization of IBM logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 464000
+			},
+			"text": " We could now compare that not only we have the same hash after the test execution, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 469000
+			},
+			"text": " the way we get to that hash is exactly the same on every client."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 477000
+			},
+			"text": " For the last year we added some debugging for the test itself, which I'm a developer of."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 488000
+			},
+			"text": " This is basically a whole new field of work with those traces for IBM and better debugging."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 497000
+			},
+			"text": " Another update for this year will be my personal fork coverage."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 504000
+			},
+			"text": " By fork I mean serum has certain hard fork points like homestead."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 512000
+			},
+			"text": " And other proposals, which we actually don't have a consensus about naming those forks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 524000
+			},
+			"text": " I call it EAP 158 and other codes and some kind of pillars, and those points means that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 532000
+			},
+			"text": " from this particular block the protocol has changed and we have to test all of the changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 540000
+			},
+			"text": " and all of the clients implemented correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 551000
+			},
+			"text": " But we have a test cases and there I had many a lead to copy all of the test cases for each"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 558000
+			},
+			"text": " hard fork and then I came up with an idea of a general test format."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 566000
+			},
+			"text": " So now I describe one single test case and then C++ converts this test and executes it on every"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 574000
+			},
+			"text": " fork and produces a couple of output final tests, which actually a result of this particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 576000
+			},
+			"text": " test cases on every fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 578000
+			},
+			"text": " That is what I call general tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 584000
+			},
+			"text": " And for the past year I realized state tests, which is now a general, every state test being"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 591000
+			},
+			"text": " executed on every fork and in future, all of the test cases that we have will be executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 597000
+			},
+			"text": " I just have to run one comment and all of the test cases will be generated on the recent"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 598000
+			},
+			"text": " forks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 604000
+			},
+			"text": " Same with blockchain tests and next will be the transaction test."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 617000
+			},
+			"text": " Also, thanks to Yoichi, he did an awesome documentation about how he learned because he"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 619000
+			},
+			"text": " has joined from us this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 627000
+			},
+			"text": " He created a documentation of his steps when he was learning the process of test generator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 632000
+			},
+			"text": " generating the test and then he created this documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 639000
+			},
+			"text": " If you're interested in running the test execution yourself or if you're a developer and you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 646000
+			},
+			"text": " to know how this works, there's now an updated documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 653000
+			},
+			"text": " You could take the picture of the links and you could see that now our testing team is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 654000
+			},
+			"text": " not a single person."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 661000
+			},
+			"text": " There are lots of people joining us this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 668000
+			},
+			"text": " So, special thanks to all of them working together on tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 669000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 673000
+			},
+			"text": " We still have time for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 688000
+			},
+			"text": " >> [Inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 695000
+			},
+			"text": " >> Not all of the tests are running on the high unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 699000
+			},
+			"text": " So, general state tests are being converted in a blockchain test."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 701000
+			},
+			"text": " This is another update."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 705000
+			},
+			"text": " So, I just run a comment and all of the general state is being converted in blockchain tests"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 709000
+			},
+			"text": " which then will be run on Hive."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 710000
+			},
+			"text": " >> Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 711000
+			},
+			"text": " >> Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 712000
+			},
+			"text": " Thanks, Dimitri."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 716000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 728000
+			},
+			"text": " [ Music ]"
+		}
+	]
+}

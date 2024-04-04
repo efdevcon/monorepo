@@ -1,0 +1,1308 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 25000
+			},
+			"text": " Thank you. Thank you. Ladies and gentlemen, I'm the last speaker. I'm the only thing between all of you and a drink."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 40000
+			},
+			"text": " So I'll try to be fast. Thank you for inviting me. I'm going to talk at a very high level about some very abstract stuff in another part of computer science, which I think has relevance, but probably not immediate relevance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 49000
+			},
+			"text": " So I'm going to throw in some ideas and take with them as, do with them what you will. They may not be relevant for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 60000
+			},
+			"text": " So starting with the idea that shared ledges are just databases with a communication protocol, it made me think that there's been lots of work. Most people don't know about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 78000
+			},
+			"text": " But a lot of work on communication protocols between autonomous intelligent agents. Agents, if you're not aware, are just objects with attitude, objects that have the capability to decide for themselves, whether or not they will execute when you invoke it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 90000
+			},
+			"text": " The goal of this research has been trying to automate communications between software agents. So having automated dialogues between autonomous agents. The status of that work, it's still ongoing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 98000
+			},
+			"text": " The status is that we understand well different types of dialogues, drawing on work in the philosophy of language and the philosophy of argumentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 112000
+			},
+			"text": " We also especially understand dialogues about beliefs. So dialogues about facts. Dialogues such as where one agent tries to persuade another agent of something. A dialogue where agents collectively try and resolve a factual question."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 121000
+			},
+			"text": " We understand those dialogues very well and we can automate most of them. We can automate negotiations in the case of simple negotiations."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 137000
+			},
+			"text": " A lot of the complex negotiations, by simple I mean things where you can define the objects of the negotiation very easily. For example, negotiations over the price of something for a well-defined commodity or a well-defined object. We can automate those very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 154000
+			},
+			"text": " We don't however yet understand dialogues over actions. The fundamental reason for this in my opinion is that the philosophers have spent something like two and a half thousand years studying beliefs and only a little bit of that time studying actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 167000
+			},
+			"text": " We don't have good theories. Only recently have we started to have theories about intentionality and intentions and their relationship to actions. So we therefore we don't understand dialogues over actions because we don't understand actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 176000
+			},
+			"text": " How's that relevant? Well, in computer protocols we have utterances. Things are said. Messages are sent in computer protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 187000
+			},
+			"text": " These utterances are a means of communication either between the people behind the programs or the programs themselves in the case of agents. So linguistics is relevant here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 199000
+			},
+			"text": " That human natural language linguistics is relevant because of communications. But if they're computer protocols then they will be defined or they'll have a defined syntax. Hopefully machine readable. It will be formal."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 205000
+			},
+			"text": " And therefore logic is relevant. Mathematical logic in particular."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 217000
+			},
+			"text": " Computer protocols with utterances may be viewed in another way and that is that the utterances themselves aim to change the state of some system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 226000
+			},
+			"text": " So a message being sent generally has the purpose that it wants some state change or it tends to create some state change."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 232000
+			},
+			"text": " So we might imagine and we can imagine utterances as being commands in some programming language."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 242000
+			},
+			"text": " In the case of software agents the agent is intending to do something, intending to change the opinion of some other agent or intending to pass some factual information."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 252000
+			},
+			"text": " So of relevance, if you view it this way, of relevance is program language theory, the theory of programming languages. In particular the formal semantics of programming languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 262000
+			},
+			"text": " So because of those three different ways of viewing utterances in protocols, communication protocols, we have lots of different techniques to come to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 267000
+			},
+			"text": " And one of those techniques comes from all three of them is the concept of semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 278000
+			},
+			"text": " But all three disciplines, linguistics, logic and program language theory, use that word semantics in different ways. In this field, in agent communications, we use it in all those ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 288000
+			},
+			"text": " If we think about utterances on the blockchain, then the blockchain initially as we all know was a record of Bitcoin and it still is a record of Bitcoin transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 295000
+			},
+			"text": " But in the last year, perhaps the last six months even, there's been a transformation in how people view those utterances."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 300000
+			},
+			"text": " So if we're recording Bitcoin transactions, then we can easily record transactions in any currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 306000
+			},
+			"text": " People quickly realize that we could record transactions of any exchange of assets. It doesn't have to be currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 316000
+			},
+			"text": " Then they realize we can record any information. And then people have started to realize just recently, we can record promises and commitments to future actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 324000
+			},
+			"text": " So not just information about facts, about the world, but actions about our intentions or the intentions of some entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 333000
+			},
+			"text": " And then we can use these ideas just to be the ledger as a way to enable multiple parties to make decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 344000
+			},
+			"text": " So where there's an action that requires two or more parties to act jointly, we just saw an example in the previous couple of talks, then this is a distributed ledger idea or the blockchain idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 357000
+			},
+			"text": " It is a very powerful way of enabling that. Just as an aside, perhaps the most crucial example of actions that require multiple parties to act is the launch of nuclear missiles."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 365000
+			},
+			"text": " You need to have at least two people turn the key, and those two people must be more than an arm's length away from one another so that one can't force the other to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 373000
+			},
+			"text": " Okay. How might we think about this? So we've seen quite a few different lab stack diagrams today, and there are many floating around."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 378000
+			},
+			"text": " This is the one I like to use to consider, to consider this idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 383000
+			},
+			"text": " At the bottom we have real world events, things that happen in the real world, real world events and actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 389000
+			},
+			"text": " Above that we have dialogues, we can think about them as being separate, dialogues about those events and actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 397000
+			},
+			"text": " So they might be dialogues between humans, they might be dialogues between machines, for our purposes that doesn't matter, they're dialogues."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 408000
+			},
+			"text": " Those dialogues and those events in the bottom layer end up creating records on some shared database, so for example the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 416000
+			},
+			"text": " And then we might imagine inference over those records, so the inferences might be smart contracts, they might be reputation systems, they might be some combination of both."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 427000
+			},
+			"text": " So if we separate out the different components like this, I think that helps us understand what we're modeling and where our records being created and what's happening to those records."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 436000
+			},
+			"text": " Okay. So from linguistics, I said linguistics was a roller here, we talk about, linguists talk about syntax, semantics and pragmatics."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 445000
+			},
+			"text": " So syntax is the logical form of some utterance. So I have a hundred pound, that's an English sentence, it has a subject, an object and a verb,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 453000
+			},
+			"text": " have is the verb and we, English grammar exists, we have rules about how we formulate and express sentences."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 467000
+			},
+			"text": " Linguists are not agreed about the definition of the differences between semantics and pragmatics, but one common approach is to say that semantics is the relationship between the syntax on the one hand and real world on the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 473000
+			},
+			"text": " So whether the statement is true or false, for example, is a semantic question, a question about the meaning of the statement."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 483000
+			},
+			"text": " So do I have a hundred pound? Well, if I needed to verify that statement, I'd have to show the money or point to a bank account balance that showed that I have that money."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 489000
+			},
+			"text": " So semantics is about the relationship between the statement, the syntax on the one hand and the reality on the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 496000
+			},
+			"text": " Pragmatics is about anything else related to the meaning of the statement that's not about the truth or falsity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 510000
+			},
+			"text": " So pragmatics is often about how is a statement correctly used. So a statement such as I promise to give you fifty pound, that's a promise, that has no truth value, there's no sensible way to say that's true or false."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 514000
+			},
+			"text": " Who knows what's inside my head, you can't verify what's inside my head."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 523000
+			},
+			"text": " Promise requires, we'll see in a moment, a promise requires some participation from the audience, from the person to whom the promise is made."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 535000
+			},
+			"text": " And in many situations, in many real world situations, the pragmatics, the rules under which statements might be made and the rules under which they turn into commitments become very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 544000
+			},
+			"text": " So why do we look at semantics and pragmatics? Well, I thought I might have to justify this, but we had a couple of talks today, really good talks about formal semantics and formal verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 552000
+			},
+			"text": " Here we're talking about communication protocols. In any communication, we want the entities that are doing the communicating, either agents or people."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 566000
+			},
+			"text": " We want them to have a shared understanding of what they're communicating about. That's not necessarily as easy as I make it sound, but we need, if there are agent communications, the agents involved have to think that meaning the same thing when they make utterances to one another."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 576000
+			},
+			"text": " In computer protocols, there's typically different entities in the system are developed by different development teams, so they too need a shared understanding."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 586000
+			},
+			"text": " They need the same, hopefully, the same shared understanding of what they're saying. So this is linguistic semantics, what a common meaning for statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 596000
+			},
+			"text": " It turns out that having a good formal semantics for communication protocols also helps with the specification design and the coding of those protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 604000
+			},
+			"text": " So one of the talks this morning, we heard about formal verification where there was proof by construction."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 610000
+			},
+			"text": " So just by doing the design in the appropriate formal language, you could automatically generate the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 624000
+			},
+			"text": " The similar thing happens here. We want also to verify properties of protocols. So questions like fairness and termination, the protocol terminates or ends or doesn't end if you don't want that, or that no gridlock state comes about."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 631000
+			},
+			"text": " So formal verification, as in the talk, two or three talks ago, we want that, generally we want that for communication protocols as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 644000
+			},
+			"text": " And if we're going to do automated inferences, if we're going to go back to this picture, go to the top layer, if we want those inferences at the top layer to be themselves automated, then we need a formal semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 650000
+			},
+			"text": " Typically, we need a formal semantics for the protocol, so that a machine can read those and make sense of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 664000
+			},
+			"text": " So quite often, there's often a tension between developers on the one hand who just want to go ahead code and people who come along later can ask computer scientists to come along later and say, \"Hey, wait a minute. You need to formalize what you're doing.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 671000
+			},
+			"text": " And people in AI are particularly keen on formalizing because that's how we do automation, how we do anything automated."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 679000
+			},
+			"text": " In program language theory, we talk about semantics as well, and there are three main types of semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 683000
+			},
+			"text": " So I'm just giving you a very brief overview. This is a whole subject in itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 688000
+			},
+			"text": " We talk about axiomatic semantics for, in this case utterances."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 693000
+			},
+			"text": " So those are the preconditions and the post-conditions for each type of utterance."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 705000
+			},
+			"text": " There's a common agent language called the FIPA ACL, and in the FIPA ACL, one agent cannot tell a fact to another agent unless the first agent believes that fact."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 714000
+			},
+			"text": " So the first agent has to believe it to be true. This is supposedly to prohibit agents lying to one another, but it prevents any negotiation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 718000
+			},
+			"text": " You don't want to give away your price before you start the negotiation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 722000
+			},
+			"text": " So the axiomatic's can be quite tricky, it can be quite subtle to get."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 732000
+			},
+			"text": " An operational semantics is basically thinking of the utterances as being commands in some language, and that language acts on the state of some big virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 742000
+			},
+			"text": " The machine doesn't exist in reality, but it's a conceptual trick to help us understand what the impact of an utterance is and what its impact its consequences might be."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 750000
+			},
+			"text": " So it occurred to me during the talks today that if we have a true global state, if we adopt this policy that we were hearing about earlier in the day about sharding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 766000
+			},
+			"text": " where we have a true global state at the top level, but within each shard there might be local states, then it will be interesting to see what operational semantics, how that would play out, because the commands at the local level may not be operating on the global state until they are hashed up to go all the way up."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 772000
+			},
+			"text": " And then a denotational semantics is a semantics that maps the syntax to some mathematical objects."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 782000
+			},
+			"text": " Why do we want to map things to mathematical objects? Well, one reason is that we've got a couple of thousand years of experience of reasoning about mathematical objects."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 786000
+			},
+			"text": " We know how to manage mathematical objects with humans."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 793000
+			},
+			"text": " And by doing this, we are then able to reason about the programs and the formal verification talk about the South Moon was an example of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 799000
+			},
+			"text": " One type of mathematical object we have used a lot in the AGC communications is games, particular games."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 804000
+			},
+			"text": " We map utterances to games and study the properties of those games."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 811000
+			},
+			"text": " An example of this is with promises. So promises require an audience. You can't make an effective promise to yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 815000
+			},
+			"text": " It makes philosophers have looked at this and they say it makes no sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 825000
+			},
+			"text": " So if Proson A promises to wash the car of person B, then there has to be an audience. B has to hear this promise or has to learn about this promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 834000
+			},
+			"text": " There's a concept called uptake. In most cultures, English in particular, a promise doesn't become a commitment on the person making the promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 843000
+			},
+			"text": " In this case A, commitment is only created when B accepts the promise. So B says, \"Okay, yes, you can wash my car, accept that promise.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 849000
+			},
+			"text": " So the promise in the jargon of the field is said to be \"up taken.\" It's taken up by B."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 856000
+			},
+			"text": " So notice that the promise was made by person A, but the uptake was by person B. Two parties involved there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 865000
+			},
+			"text": " Now if we want to revoke the promise or cancel it, then typically in most cultures, a promise can only be cancelled by the party who took it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 875000
+			},
+			"text": " So if I make a promise to wash your car and you say yes, please do, then I can't come to you later and say, \"Sorry, I don't want to make that promise anymore.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 881000
+			},
+			"text": " So in many social situations I can, but there will be a consequence to me. You might no longer trust me."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 884000
+			},
+			"text": " You might think, \"I'm not going to take promises from him anymore.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 889000
+			},
+			"text": " In legal or financial domains, there might be other consequences, more severe consequences."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 895000
+			},
+			"text": " So this is an example where there's an uptrends about an action. There's two parties involved here, A and B."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 902000
+			},
+			"text": " One is doing the promising. A, party B can uptake it and revoke it at any time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 909000
+			},
+			"text": " They also have the power to say it's fulfilled. For some utterances about action, there might be three parties involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 916000
+			},
+			"text": " One party has the power to promise or to make the utterance. Another party has the power to update and a third party has the power to revoke."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 922000
+			},
+			"text": " Quite often with legal domains, that's the situation. We have multiple parties involved. There might be a regulator involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 926000
+			},
+			"text": " Once a commitment has been made, only the regulator can cancel it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 933000
+			},
+			"text": " Once a trade is executed on the New York Stock Exchange, for example, it can be canceled, it can be revoked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 936000
+			},
+			"text": " but only the New York Stock Exchange itself can revoke it, can cancel it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 941000
+			},
+			"text": " And apparently they do cancel them about one a week under special circumstances."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 945000
+			},
+			"text": " So we can represent this particular situation because there's two parties involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 950000
+			},
+			"text": " We can represent it as a game, a two-party game, and we can study the properties of that game."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 955000
+			},
+			"text": " And that's an example of a denotation of semantics, so that we understand what's going on between those two parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 960000
+			},
+			"text": " In a particular way, that actually helps us with the implementation with coding it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 963000
+			},
+			"text": " So that's the end. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 970000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 977000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 1006000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,4157 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12880
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,880",
+				"to": "00:00:14,800"
+			},
+			"offsets": {
+				"from": 12880,
+				"to": 14800
+			},
+			"text": " >> My name is Stephen Valerri."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,800",
+				"to": "00:00:18,920"
+			},
+			"offsets": {
+				"from": 14800,
+				"to": 18920
+			},
+			"text": " I am a smart contract dev at the Aave companies."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,920",
+				"to": "00:00:21,280"
+			},
+			"offsets": {
+				"from": 18920,
+				"to": 21280
+			},
+			"text": " Been there for about a year and a half."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,280",
+				"to": "00:00:25,900"
+			},
+			"offsets": {
+				"from": 21280,
+				"to": 25900
+			},
+			"text": " I've worked on some things like our cross chain governance bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,900",
+				"to": "00:00:28,800"
+			},
+			"offsets": {
+				"from": 25900,
+				"to": 28800
+			},
+			"text": " our V3 deployment, and most recently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,200",
+				"to": "00:00:33,600"
+			},
+			"offsets": {
+				"from": 29200,
+				"to": 33600
+			},
+			"text": " I have been spending time working on our stablecoin project Go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,600",
+				"to": "00:00:37,240"
+			},
+			"offsets": {
+				"from": 33600,
+				"to": 37240
+			},
+			"text": " And I'm really excited to tell you guys all about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,240",
+				"to": "00:00:41,080"
+			},
+			"offsets": {
+				"from": 37240,
+				"to": 41080
+			},
+			"text": " But before I get into Go, I kind of want to take a step back"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,080",
+				"to": "00:00:44,260"
+			},
+			"offsets": {
+				"from": 41080,
+				"to": 44260
+			},
+			"text": " and walk through the current stablecoin landscape."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,260",
+				"to": "00:00:48,880"
+			},
+			"offsets": {
+				"from": 44260,
+				"to": 48880
+			},
+			"text": " And in doing that, I think that will give some helpful context as to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,880",
+				"to": "00:00:53,040"
+			},
+			"offsets": {
+				"from": 48880,
+				"to": 53040
+			},
+			"text": " what is Go and how it fits into that broader ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,040",
+				"to": "00:00:57,220"
+			},
+			"offsets": {
+				"from": 53040,
+				"to": 57220
+			},
+			"text": " And I don't know if who else was here for the previous talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,580",
+				"to": "00:01:00,940"
+			},
+			"offsets": {
+				"from": 57580,
+				"to": 60940
+			},
+			"text": " but it's a great talk about rye, which is a stablecoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,940",
+				"to": "00:01:05,600"
+			},
+			"offsets": {
+				"from": 60940,
+				"to": 65600
+			},
+			"text": " And I think it perfectly kind of highlights why understanding the landscape is important,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,600",
+				"to": "00:01:07,620"
+			},
+			"offsets": {
+				"from": 65600,
+				"to": 67620
+			},
+			"text": " because what the heck is a stablecoin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,620",
+				"to": "00:01:13,300"
+			},
+			"offsets": {
+				"from": 67620,
+				"to": 73300
+			},
+			"text": " There's so many things that fall under this definition that it creates confusion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,300",
+				"to": "00:01:14,180"
+			},
+			"offsets": {
+				"from": 73300,
+				"to": 74180
+			},
+			"text": " it creates risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,180",
+				"to": "00:01:18,900"
+			},
+			"offsets": {
+				"from": 74180,
+				"to": 78900
+			},
+			"text": " And, you know, just saying that you're working with a stablecoin isn't sufficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,900",
+				"to": "00:01:22,060"
+			},
+			"offsets": {
+				"from": 78900,
+				"to": 82060
+			},
+			"text": " to understand what the heck type of asset you're working with."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,060",
+				"to": "00:01:26,420"
+			},
+			"offsets": {
+				"from": 82060,
+				"to": 86420
+			},
+			"text": " So let's try to answer some basic questions around stablecoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,420",
+				"to": "00:01:30,340"
+			},
+			"offsets": {
+				"from": 86420,
+				"to": 90340
+			},
+			"text": " And I think we'll pretty quickly identify why it's so challenging"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,340",
+				"to": "00:01:32,540"
+			},
+			"offsets": {
+				"from": 90340,
+				"to": 92540
+			},
+			"text": " to understand what people are talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,540",
+				"to": "00:01:34,900"
+			},
+			"offsets": {
+				"from": 92540,
+				"to": 94900
+			},
+			"text": " So what is a stablecoin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,900",
+				"to": "00:01:39,980"
+			},
+			"offsets": {
+				"from": 94900,
+				"to": 99980
+			},
+			"text": " I think at the broadest level, you could say, a stablecoin is an asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,980",
+				"to": "00:01:42,940"
+			},
+			"offsets": {
+				"from": 99980,
+				"to": 102940
+			},
+			"text": " that attempts to maintain a stable price."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,940",
+				"to": "00:01:47,180"
+			},
+			"offsets": {
+				"from": 102940,
+				"to": 107180
+			},
+			"text": " I think very commonly we're seeing peg stablecoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,180",
+				"to": "00:01:51,540"
+			},
+			"offsets": {
+				"from": 107180,
+				"to": 111540
+			},
+			"text": " So they're pegged to some other assets value."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,060",
+				"to": "00:01:56,620"
+			},
+			"offsets": {
+				"from": 112060,
+				"to": 116620
+			},
+			"text": " Most commonly, I think, and most dominant in the market is US dollar peg stablecoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,620",
+				"to": "00:02:04,780"
+			},
+			"offsets": {
+				"from": 116620,
+				"to": 124780
+			},
+			"text": " But we're also starting to see stablecoins that are pegged to other effects tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,780",
+				"to": "00:02:09,620"
+			},
+			"offsets": {
+				"from": 124780,
+				"to": 129620
+			},
+			"text": " And there's also tokens that just aren't pegged."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,620",
+				"to": "00:02:11,260"
+			},
+			"offsets": {
+				"from": 129620,
+				"to": 131260
+			},
+			"text": " So again, rye is an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,260",
+				"to": "00:02:16,140"
+			},
+			"offsets": {
+				"from": 131260,
+				"to": 136140
+			},
+			"text": " It's a stablecoin, but it's not pegged to a specific price."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,140",
+				"to": "00:02:19,780"
+			},
+			"offsets": {
+				"from": 136140,
+				"to": 139780
+			},
+			"text": " So it's a token that aims to have less volatility."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,260",
+				"to": "00:02:23,820"
+			},
+			"offsets": {
+				"from": 140260,
+				"to": 143820
+			},
+			"text": " But I think generally at this point, if someone were to say, yeah, I traded"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,820",
+				"to": "00:02:27,180"
+			},
+			"offsets": {
+				"from": 143820,
+				"to": 147180
+			},
+			"text": " into a bunch of stables, you would probably assume that they're talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,180",
+				"to": "00:02:29,180"
+			},
+			"offsets": {
+				"from": 147180,
+				"to": 149180
+			},
+			"text": " about a US dollar pegged stablecoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,180",
+				"to": "00:02:31,260"
+			},
+			"offsets": {
+				"from": 149180,
+				"to": 151260
+			},
+			"text": " How does a stablecoin work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,260",
+				"to": "00:02:34,500"
+			},
+			"offsets": {
+				"from": 151260,
+				"to": 154500
+			},
+			"text": " We answered one question of what is a stablecoin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,500",
+				"to": "00:02:39,020"
+			},
+			"offsets": {
+				"from": 154500,
+				"to": 159020
+			},
+			"text": " And I think here at a second question, it's pretty obvious that there's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,020",
+				"to": "00:02:40,140"
+			},
+			"offsets": {
+				"from": 159020,
+				"to": 160140
+			},
+			"text": " really a straightforward answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,140",
+				"to": "00:02:40,780"
+			},
+			"offsets": {
+				"from": 160140,
+				"to": 160780
+			},
+			"text": " It depends."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,780",
+				"to": "00:02:44,220"
+			},
+			"offsets": {
+				"from": 160780,
+				"to": 164220
+			},
+			"text": " It's totally different depending on the type of asset that you're working with."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,220",
+				"to": "00:02:49,940"
+			},
+			"offsets": {
+				"from": 164220,
+				"to": 169940
+			},
+			"text": " And this creates some challenges and presents risks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,140",
+				"to": "00:02:53,940"
+			},
+			"offsets": {
+				"from": 170140,
+				"to": 173940
+			},
+			"text": " Right. If you just assume that the token that you're using is in fact stable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,940",
+				"to": "00:03:00,300"
+			},
+			"offsets": {
+				"from": 173940,
+				"to": 180300
+			},
+			"text": " without understanding how the underlying stability mechanism works or other risks"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,300",
+				"to": "00:03:04,900"
+			},
+			"offsets": {
+				"from": 180300,
+				"to": 184900
+			},
+			"text": " that are present in that asset, you may be taking on far more risk in your"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,900",
+				"to": "00:03:08,220"
+			},
+			"offsets": {
+				"from": 184900,
+				"to": 188220
+			},
+			"text": " portfolio or whatever you're trying to do than you're intending."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,220",
+				"to": "00:03:12,580"
+			},
+			"offsets": {
+				"from": 188220,
+				"to": 192580
+			},
+			"text": " So yeah, again, just these things are so different."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,580",
+				"to": "00:03:17,780"
+			},
+			"offsets": {
+				"from": 192580,
+				"to": 197780
+			},
+			"text": " You can't compare apples and oranges to the users here who know it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,780",
+				"to": "00:03:21,260"
+			},
+			"offsets": {
+				"from": 197780,
+				"to": 201260
+			},
+			"text": " So what diets, USDC are, if you were to ask them, are these the same?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,260",
+				"to": "00:03:23,100"
+			},
+			"offsets": {
+				"from": 201260,
+				"to": 203100
+			},
+			"text": " People will be like, no, very different."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,100",
+				"to": "00:03:26,260"
+			},
+			"offsets": {
+				"from": 203100,
+				"to": 206260
+			},
+			"text": " And I thought this analogy played very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,260",
+				"to": "00:03:30,540"
+			},
+			"offsets": {
+				"from": 206260,
+				"to": 210540
+			},
+			"text": " And I've just realized that I'm going to, in fact, be comparing stablecoins"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,540",
+				"to": "00:03:31,820"
+			},
+			"offsets": {
+				"from": 210540,
+				"to": 211820
+			},
+			"text": " throughout this presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,820",
+				"to": "00:03:33,780"
+			},
+			"offsets": {
+				"from": 211820,
+				"to": 213780
+			},
+			"text": " So maybe not the best analogy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,780",
+				"to": "00:03:38,540"
+			},
+			"offsets": {
+				"from": 213780,
+				"to": 218540
+			},
+			"text": " So let's take a look at the current landscape."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,540",
+				"to": "00:03:46,340"
+			},
+			"offsets": {
+				"from": 218540,
+				"to": 226340
+			},
+			"text": " As you can see here, the one-to-one backed centralized stablecoins are totally dominant."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,020",
+				"to": "00:03:53,460"
+			},
+			"offsets": {
+				"from": 227020,
+				"to": 233460
+			},
+			"text": " You can see tether, USDC, BUSD are in the tens of billions in terms of market cap."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,460",
+				"to": "00:03:57,420"
+			},
+			"offsets": {
+				"from": 233460,
+				"to": 237420
+			},
+			"text": " Just kind of totally far and away dominant."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,420",
+				"to": "00:04:00,660"
+			},
+			"offsets": {
+				"from": 237420,
+				"to": 240660
+			},
+			"text": " Next in line is die."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,660",
+				"to": "00:04:06,300"
+			},
+			"offsets": {
+				"from": 240660,
+				"to": 246300
+			},
+			"text": " So die is a decentralized, over collateralized cryptocurrency backed stablecoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,300",
+				"to": "00:04:12,580"
+			},
+			"offsets": {
+				"from": 246300,
+				"to": 252580
+			},
+			"text": " And that's really the next leader in the pack and definitely the leader in the pack"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,580",
+				"to": "00:04:14,300"
+			},
+			"offsets": {
+				"from": 252580,
+				"to": 254300
+			},
+			"text": " in terms of this type of asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,460",
+				"to": "00:04:18,700"
+			},
+			"offsets": {
+				"from": 255460,
+				"to": 258700
+			},
+			"text": " There are other types, there are other assets in this category,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,700",
+				"to": "00:04:22,580"
+			},
+			"offsets": {
+				"from": 258700,
+				"to": 262580
+			},
+			"text": " like MIM, Magic Internet Money, and then Go."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,580",
+				"to": "00:04:30,220"
+			},
+			"offsets": {
+				"from": 262580,
+				"to": 270220
+			},
+			"text": " Aave's native stablecoin, which we're developing, will fit into this category as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,220",
+				"to": "00:04:36,940"
+			},
+			"offsets": {
+				"from": 270220,
+				"to": 276940
+			},
+			"text": " Also here, there's other stablecoins that have much smaller market caps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,940",
+				"to": "00:04:41,780"
+			},
+			"offsets": {
+				"from": 276940,
+				"to": 281780
+			},
+			"text": " but are using new stability mechanisms, things like fracks, things like rye,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,780",
+				"to": "00:04:43,060"
+			},
+			"offsets": {
+				"from": 281780,
+				"to": 283060
+			},
+			"text": " which we'll talk about as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,980",
+				"to": "00:04:49,300"
+			},
+			"offsets": {
+				"from": 283980,
+				"to": 289300
+			},
+			"text": " And these things are just so different that even having them in the same category"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,300",
+				"to": "00:04:52,220"
+			},
+			"offsets": {
+				"from": 289300,
+				"to": 292220
+			},
+			"text": " presents challenges in talking about them and comparing them"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,220",
+				"to": "00:04:55,580"
+			},
+			"offsets": {
+				"from": 292220,
+				"to": 295580
+			},
+			"text": " and trying to use them for the same purpose."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,580",
+				"to": "00:05:00,060"
+			},
+			"offsets": {
+				"from": 295580,
+				"to": 300060
+			},
+			"text": " So one other thing I'd like to call here, and I think that's probably the biggest"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,060",
+				"to": "00:05:07,500"
+			},
+			"offsets": {
+				"from": 300060,
+				"to": 307500
+			},
+			"text": " example of why this stuff is important, is an asset that's not included here, which is UST."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,500",
+				"to": "00:05:10,380"
+			},
+			"offsets": {
+				"from": 307500,
+				"to": 310380
+			},
+			"text": " So the stablecoin associated with the Terra project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,580",
+				"to": "00:05:16,260"
+			},
+			"offsets": {
+				"from": 311580,
+				"to": 316260
+			},
+			"text": " it was approximately $18 billion worth of value at its top market cap."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,260",
+				"to": "00:05:19,460"
+			},
+			"offsets": {
+				"from": 316260,
+				"to": 319460
+			},
+			"text": " That has essentially disappeared, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,460",
+				"to": "00:05:26,660"
+			},
+			"offsets": {
+				"from": 319460,
+				"to": 326660
+			},
+			"text": " And that is comprised of users and people not really double clicking into what is this stablecoin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,660",
+				"to": "00:05:27,740"
+			},
+			"offsets": {
+				"from": 326660,
+				"to": 327740
+			},
+			"text": " How does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,740",
+				"to": "00:05:28,740"
+			},
+			"offsets": {
+				"from": 327740,
+				"to": 328740
+			},
+			"text": " What are the risks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,740",
+				"to": "00:05:30,660"
+			},
+			"offsets": {
+				"from": 328740,
+				"to": 330660
+			},
+			"text": " How does it compare to other stablecoins?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,660",
+				"to": "00:05:35,980"
+			},
+			"offsets": {
+				"from": 330660,
+				"to": 335980
+			},
+			"text": " So I think that's kind of the ultimate example of why we're even having this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,980",
+				"to": "00:05:39,660"
+			},
+			"offsets": {
+				"from": 335980,
+				"to": 339660
+			},
+			"text": " conversation around, you know, well, what really is a stablecoin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,460",
+				"to": "00:05:42,020"
+			},
+			"offsets": {
+				"from": 340460,
+				"to": 342020
+			},
+			"text": " We talked about those top three."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,020",
+				"to": "00:05:47,900"
+			},
+			"offsets": {
+				"from": 342020,
+				"to": 347900
+			},
+			"text": " They're one type of stablecoin, which is a centralized one-to-one backed stablecoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,900",
+				"to": "00:05:54,740"
+			},
+			"offsets": {
+				"from": 347900,
+				"to": 354740
+			},
+			"text": " Examples are USDC, USDT, BUSDT, DTRU, USD."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,740",
+				"to": "00:06:01,660"
+			},
+			"offsets": {
+				"from": 354740,
+				"to": 361660
+			},
+			"text": " In this case, they are generally assets in which you trust a centralized institution"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,660",
+				"to": "00:06:09,460"
+			},
+			"offsets": {
+				"from": 361660,
+				"to": 369460
+			},
+			"text": " to custody in the case of a US dollar peg stablecoin, one US dollar per each stablecoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,460",
+				"to": "00:06:11,020"
+			},
+			"offsets": {
+				"from": 369460,
+				"to": 371020
+			},
+			"text": " that they mint or issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,020",
+				"to": "00:06:13,820"
+			},
+			"offsets": {
+				"from": 371020,
+				"to": 373820
+			},
+			"text": " There's caveats around this though, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,820",
+				"to": "00:06:22,340"
+			},
+			"offsets": {
+				"from": 373820,
+				"to": 382340
+			},
+			"text": " You're trusting them to maybe hold about one dollars worth of assets in the reserve"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,340",
+				"to": "00:06:23,580"
+			},
+			"offsets": {
+				"from": 382340,
+				"to": 383580
+			},
+			"text": " for each thing that they mint."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,580",
+				"to": "00:06:30,940"
+			},
+			"offsets": {
+				"from": 383580,
+				"to": 390940
+			},
+			"text": " And you're also, in some cases, trusting them to hold about one dollars worth of US dollar"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,940",
+				"to": "00:06:32,020"
+			},
+			"offsets": {
+				"from": 390940,
+				"to": 392020
+			},
+			"text": " equivalents."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,020",
+				"to": "00:06:38,260"
+			},
+			"offsets": {
+				"from": 392020,
+				"to": 398260
+			},
+			"text": " So again, per each of these institutions and their processes and how they work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,900",
+				"to": "00:06:43,300"
+			},
+			"offsets": {
+				"from": 398900,
+				"to": 403300
+			},
+			"text": " kind of double clicking into what this asset's actually backed by, is it one-to-one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,300",
+				"to": "00:06:44,020"
+			},
+			"offsets": {
+				"from": 403300,
+				"to": 404020
+			},
+			"text": " What are they doing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,020",
+				"to": "00:06:45,180"
+			},
+			"offsets": {
+				"from": 404020,
+				"to": 405180
+			},
+			"text": " Are they using treasuries?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,180",
+				"to": "00:06:46,460"
+			},
+			"offsets": {
+				"from": 405180,
+				"to": 406460
+			},
+			"text": " Is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,460",
+				"to": "00:06:53,380"
+			},
+			"offsets": {
+				"from": 406460,
+				"to": 413380
+			},
+			"text": " So here we can highlight some of the risks of working with an asset like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,380",
+				"to": "00:06:59,140"
+			},
+			"offsets": {
+				"from": 413380,
+				"to": 419140
+			},
+			"text": " You know, obviously it being centralized is to some extent counter to the general"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,140",
+				"to": "00:07:01,820"
+			},
+			"offsets": {
+				"from": 419140,
+				"to": 421820
+			},
+			"text": " decentralized ethos of blockchain environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,820",
+				"to": "00:07:06,580"
+			},
+			"offsets": {
+				"from": 421820,
+				"to": 426580
+			},
+			"text": " And in having this trusted entity, we take on risk, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,580",
+				"to": "00:07:11,380"
+			},
+			"offsets": {
+				"from": 426580,
+				"to": 431380
+			},
+			"text": " We're trusting this entity to be managing their reserves appropriately, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,380",
+				"to": "00:07:16,420"
+			},
+			"offsets": {
+				"from": 431380,
+				"to": 436420
+			},
+			"text": " Like they aren't just investing all of that reserves into risky assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,420",
+				"to": "00:07:19,180"
+			},
+			"offsets": {
+				"from": 436420,
+				"to": 439180
+			},
+			"text": " So that's very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,180",
+				"to": "00:07:24,060"
+			},
+			"offsets": {
+				"from": 439180,
+				"to": 444060
+			},
+			"text": " To mitigate this, some companies are using audit firms."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,060",
+				"to": "00:07:29,380"
+			},
+			"offsets": {
+				"from": 444060,
+				"to": 449380
+			},
+			"text": " So center with Circle, they hire Grant Thornton, top five accounting firm in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,380",
+				"to": "00:07:36,100"
+			},
+			"offsets": {
+				"from": 449380,
+				"to": 456100
+			},
+			"text": " world to publish reports to give users confidence that they have reserves of US"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,100",
+				"to": "00:07:41,700"
+			},
+			"offsets": {
+				"from": 456100,
+				"to": 461700
+			},
+			"text": " dollars, US dollar equivalents that are equal to or more than the amount of value"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,700",
+				"to": "00:07:43,140"
+			},
+			"offsets": {
+				"from": 461700,
+				"to": 463140
+			},
+			"text": " they've issued on chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,140",
+				"to": "00:07:48,940"
+			},
+			"offsets": {
+				"from": 463140,
+				"to": 468940
+			},
+			"text": " Another risk you're taking with this trusted entity is just generally, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,940",
+				"to": "00:07:50,660"
+			},
+			"offsets": {
+				"from": 468940,
+				"to": 470660
+			},
+			"text": " how do they function as a business?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,660",
+				"to": "00:07:53,140"
+			},
+			"offsets": {
+				"from": 470660,
+				"to": 473140
+			},
+			"text": " You could think of things like IT security, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,140",
+				"to": "00:07:57,140"
+			},
+			"offsets": {
+				"from": 473140,
+				"to": 477140
+			},
+			"text": " Who has access within their systems to make transfers for their reserves?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,140",
+				"to": "00:08:00,260"
+			},
+			"offsets": {
+				"from": 477140,
+				"to": 480260
+			},
+			"text": " This is something, you know, kind of basic, but very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,300",
+				"to": "00:08:06,740"
+			},
+			"offsets": {
+				"from": 481300,
+				"to": 486740
+			},
+			"text": " And then IT security specific to Web 3, who has access and how do they manage"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,740",
+				"to": "00:08:12,300"
+			},
+			"offsets": {
+				"from": 486740,
+				"to": 492300
+			},
+			"text": " their wallets that can make really important transactions or freeze users?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,300",
+				"to": "00:08:17,980"
+			},
+			"offsets": {
+				"from": 492300,
+				"to": 497980
+			},
+			"text": " Oh, one other point on the reserve ecosystem and getting confidence that these"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,980",
+				"to": "00:08:18,900"
+			},
+			"offsets": {
+				"from": 497980,
+				"to": 498900
+			},
+			"text": " reserves are backed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,900",
+				"to": "00:08:25,700"
+			},
+			"offsets": {
+				"from": 498900,
+				"to": 505700
+			},
+			"text": " True USD instead of having an auditor has introduced a solution with Chainlink"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,100",
+				"to": "00:08:31,900"
+			},
+			"offsets": {
+				"from": 506100,
+				"to": 511900
+			},
+			"text": " called proof of reserves in which they have oracles that report the status of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,900",
+				"to": "00:08:33,020"
+			},
+			"offsets": {
+				"from": 511900,
+				"to": 513020
+			},
+			"text": " all of their accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,020",
+				"to": "00:08:41,420"
+			},
+			"offsets": {
+				"from": 513020,
+				"to": 521420
+			},
+			"text": " So by doing that, the system can never mint more than, you know, the reserves that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,420",
+				"to": "00:08:42,220"
+			},
+			"offsets": {
+				"from": 521420,
+				"to": 522220
+			},
+			"text": " they have."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,220",
+				"to": "00:08:46,260"
+			},
+			"offsets": {
+				"from": 522220,
+				"to": 526260
+			},
+			"text": " So that's another interesting solution and attempt to give users confidence that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,260",
+				"to": "00:08:48,740"
+			},
+			"offsets": {
+				"from": 526260,
+				"to": 528740
+			},
+			"text": " these assets are in fact backed and redeemable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,740",
+				"to": "00:08:55,620"
+			},
+			"offsets": {
+				"from": 528740,
+				"to": 535620
+			},
+			"text": " Another risk here in trusting this institution and entity is that these"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,820",
+				"to": "00:09:01,260"
+			},
+			"offsets": {
+				"from": 535820,
+				"to": 541260
+			},
+			"text": " stablecoins often have the ability to freeze an address or it could also be a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,260",
+				"to": "00:09:01,740"
+			},
+			"offsets": {
+				"from": 541260,
+				"to": 541740
+			},
+			"text": " pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,740",
+				"to": "00:09:06,460"
+			},
+			"offsets": {
+				"from": 541740,
+				"to": 546460
+			},
+			"text": " And in doing that, you know, you could potentially lose access to your funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,460",
+				"to": "00:09:09,460"
+			},
+			"offsets": {
+				"from": 546460,
+				"to": 549460
+			},
+			"text": " at the discretion of these institutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,460",
+				"to": "00:09:13,060"
+			},
+			"offsets": {
+				"from": 549460,
+				"to": 553060
+			},
+			"text": " You know, of course, there are times when this makes sense, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,060",
+				"to": "00:09:18,660"
+			},
+			"offsets": {
+				"from": 553060,
+				"to": 558660
+			},
+			"text": " In the most recent B&B hack, Tether was quite early to freezing the hackers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,660",
+				"to": "00:09:19,140"
+			},
+			"offsets": {
+				"from": 558660,
+				"to": 559140
+			},
+			"text": " funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,140",
+				"to": "00:09:22,980"
+			},
+			"offsets": {
+				"from": 559140,
+				"to": 562980
+			},
+			"text": " But, you know, you're dependent on this institution making the appropriate"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,980",
+				"to": "00:09:26,660"
+			},
+			"offsets": {
+				"from": 562980,
+				"to": 566660
+			},
+			"text": " decisions in the future, which you might be hesitant to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,660",
+				"to": "00:09:31,860"
+			},
+			"offsets": {
+				"from": 566660,
+				"to": 571860
+			},
+			"text": " So the next type, decentralized, over collateralized, crypto backed stablecoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,860",
+				"to": "00:09:35,260"
+			},
+			"offsets": {
+				"from": 571860,
+				"to": 575260
+			},
+			"text": " The most obvious example of this is die."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,260",
+				"to": "00:09:37,220"
+			},
+			"offsets": {
+				"from": 575260,
+				"to": 577220
+			},
+			"text": " There's also magic internet money."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,220",
+				"to": "00:09:42,260"
+			},
+			"offsets": {
+				"from": 577220,
+				"to": 582260
+			},
+			"text": " Each of these tokens gets minted."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,260",
+				"to": "00:09:45,420"
+			},
+			"offsets": {
+				"from": 582260,
+				"to": 585420
+			},
+			"text": " That's minted is backed by crypto collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,420",
+				"to": "00:09:51,420"
+			},
+			"offsets": {
+				"from": 585420,
+				"to": 591420
+			},
+			"text": " This can be, you know, Ethereum, Bitcoin, other one to one stablecoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,900",
+				"to": "00:09:57,580"
+			},
+			"offsets": {
+				"from": 592900,
+				"to": 597580
+			},
+			"text": " And when they, in order to mint them, you need to deposit your collateral to a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,580",
+				"to": "00:09:58,500"
+			},
+			"offsets": {
+				"from": 597580,
+				"to": 598500
+			},
+			"text": " smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,500",
+				"to": "00:10:01,740"
+			},
+			"offsets": {
+				"from": 598500,
+				"to": 601740
+			},
+			"text": " So this is a clear difference from the previous example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,740",
+				"to": "00:10:04,500"
+			},
+			"offsets": {
+				"from": 601740,
+				"to": 604500
+			},
+			"text": " This smart contract is on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,500",
+				"to": "00:10:09,860"
+			},
+			"offsets": {
+				"from": 604500,
+				"to": 609860
+			},
+			"text": " You can clearly see and have confidence that the smart contract holds enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,860",
+				"to": "00:10:14,100"
+			},
+			"offsets": {
+				"from": 609860,
+				"to": 614100
+			},
+			"text": " assets to collateralize the stablecoin, which has been minted."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,100",
+				"to": "00:10:18,220"
+			},
+			"offsets": {
+				"from": 614100,
+				"to": 618220
+			},
+			"text": " You also have confidence around the rules in which the system works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,220",
+				"to": "00:10:20,620"
+			},
+			"offsets": {
+				"from": 618220,
+				"to": 620620
+			},
+			"text": " The, it's controlled by a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,540",
+				"to": "00:10:25,900"
+			},
+			"offsets": {
+				"from": 622540,
+				"to": 625900
+			},
+			"text": " Which is open source software, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,900",
+				"to": "00:10:27,020"
+			},
+			"offsets": {
+				"from": 625900,
+				"to": 627020
+			},
+			"text": " You can see the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,020",
+				"to": "00:10:28,900"
+			},
+			"offsets": {
+				"from": 627020,
+				"to": 628900
+			},
+			"text": " You know how the reserves will be handled."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,900",
+				"to": "00:10:33,300"
+			},
+			"offsets": {
+				"from": 628900,
+				"to": 633300
+			},
+			"text": " So, you know, you have confidence around how that will work."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,300",
+				"to": "00:10:40,100"
+			},
+			"offsets": {
+				"from": 633300,
+				"to": 640100
+			},
+			"text": " In addition to the smart contract, in some cases, you have certain parameters"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,100",
+				"to": "00:10:42,140"
+			},
+			"offsets": {
+				"from": 640100,
+				"to": 642140
+			},
+			"text": " within the system that can be configurable."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,140",
+				"to": "00:10:45,980"
+			},
+			"offsets": {
+				"from": 642140,
+				"to": 645980
+			},
+			"text": " Or it could, in fact, be an immutable smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,980",
+				"to": "00:10:49,780"
+			},
+			"offsets": {
+				"from": 645980,
+				"to": 649780
+			},
+			"text": " So once the system's deployed, there's no configurations to change."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,980",
+				"to": "00:10:53,100"
+			},
+			"offsets": {
+				"from": 649980,
+				"to": 653100
+			},
+			"text": " I think more commonly, most of these systems have a few configuration"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,100",
+				"to": "00:10:54,100"
+			},
+			"offsets": {
+				"from": 653100,
+				"to": 654100
+			},
+			"text": " variables, at least."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,100",
+				"to": "00:11:00,100"
+			},
+			"offsets": {
+				"from": 654100,
+				"to": 660100
+			},
+			"text": " And these are often set by DAOs, which is a decentralized set of token holders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,100",
+				"to": "00:11:05,100"
+			},
+			"offsets": {
+				"from": 660100,
+				"to": 665100
+			},
+			"text": " hopefully incentivized to maintain the stablecoins peg."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,100",
+				"to": "00:11:13,980"
+			},
+			"offsets": {
+				"from": 665100,
+				"to": 673980
+			},
+			"text": " And this encourages and helps de-risk the fact that and not be dependent on one"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,980",
+				"to": "00:11:18,340"
+			},
+			"offsets": {
+				"from": 673980,
+				"to": 678340
+			},
+			"text": " single entity for the stability of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,340",
+				"to": "00:11:20,700"
+			},
+			"offsets": {
+				"from": 678340,
+				"to": 680700
+			},
+			"text": " That being said, these also have a lot of risks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,700",
+				"to": "00:11:25,140"
+			},
+			"offsets": {
+				"from": 680700,
+				"to": 685140
+			},
+			"text": " You know, just because you move away from some of those centralized concerns,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,140",
+				"to": "00:11:29,820"
+			},
+			"offsets": {
+				"from": 685140,
+				"to": 689820
+			},
+			"text": " there's still risks with this different type of asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,820",
+				"to": "00:11:33,460"
+			},
+			"offsets": {
+				"from": 689820,
+				"to": 693460
+			},
+			"text": " So first of all, there's the stability mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,460",
+				"to": "00:11:37,020"
+			},
+			"offsets": {
+				"from": 693460,
+				"to": 697020
+			},
+			"text": " How does this token maintain its peg?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,020",
+				"to": "00:11:44,140"
+			},
+			"offsets": {
+				"from": 697020,
+				"to": 704140
+			},
+			"text": " So some common ways in which this is done is an oracle within the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,140",
+				"to": "00:11:48,260"
+			},
+			"offsets": {
+				"from": 704140,
+				"to": 708260
+			},
+			"text": " That's responsible for telling the system how much this stablecoin is worth."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,700",
+				"to": "00:11:50,260"
+			},
+			"offsets": {
+				"from": 708700,
+				"to": 710260
+			},
+			"text": " Gets pegged to $1."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,260",
+				"to": "00:11:56,500"
+			},
+			"offsets": {
+				"from": 710260,
+				"to": 716500
+			},
+			"text": " And that's regardless of whether the market price is above $1, less than $1."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,500",
+				"to": "00:12:01,380"
+			},
+			"offsets": {
+				"from": 716500,
+				"to": 721380
+			},
+			"text": " And by doing that, it creates arbitrage opportunities in which,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,380",
+				"to": "00:12:05,260"
+			},
+			"offsets": {
+				"from": 721380,
+				"to": 725260
+			},
+			"text": " which helps stabilize the token."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,260",
+				"to": "00:12:08,220"
+			},
+			"offsets": {
+				"from": 725260,
+				"to": 728220
+			},
+			"text": " And if we have time later, we'll talk through some examples of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,220",
+				"to": "00:12:11,140"
+			},
+			"offsets": {
+				"from": 728220,
+				"to": 731140
+			},
+			"text": " Additionally, interest rates can be used."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,140",
+				"to": "00:12:16,860"
+			},
+			"offsets": {
+				"from": 731140,
+				"to": 736860
+			},
+			"text": " So you can help manage the supply of the asset based on interest rates."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,940",
+				"to": "00:12:20,340"
+			},
+			"offsets": {
+				"from": 736940,
+				"to": 740340
+			},
+			"text": " With high interest rates, people will be paying back their positions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,340",
+				"to": "00:12:23,420"
+			},
+			"offsets": {
+				"from": 740340,
+				"to": 743420
+			},
+			"text": " which will decrease the supply impacting the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,420",
+				"to": "00:12:25,140"
+			},
+			"offsets": {
+				"from": 743420,
+				"to": 745140
+			},
+			"text": " Same with low interest rates."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,140",
+				"to": "00:12:29,140"
+			},
+			"offsets": {
+				"from": 745140,
+				"to": 749140
+			},
+			"text": " If you have low interest rates, more people will be interested in taking out"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,140",
+				"to": "00:12:32,900"
+			},
+			"offsets": {
+				"from": 749140,
+				"to": 752900
+			},
+			"text": " positions, increasing the supply, again, impacting price."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,900",
+				"to": "00:12:39,460"
+			},
+			"offsets": {
+				"from": 752900,
+				"to": 759460
+			},
+			"text": " Another risk here is the collateral that's being used for this decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,460",
+				"to": "00:12:41,460"
+			},
+			"offsets": {
+				"from": 759460,
+				"to": 761460
+			},
+			"text": " cryptocurrency backed stablecoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,460",
+				"to": "00:12:46,380"
+			},
+			"offsets": {
+				"from": 761460,
+				"to": 766380
+			},
+			"text": " The stability of the token and its collateral is dependent on the value"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,380",
+				"to": "00:12:47,060"
+			},
+			"offsets": {
+				"from": 766380,
+				"to": 767060
+			},
+			"text": " of its collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,060",
+				"to": "00:12:53,660"
+			},
+			"offsets": {
+				"from": 767060,
+				"to": 773660
+			},
+			"text": " So if a, in some cases, those, all the risks of the collateral come through"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,660",
+				"to": "00:12:56,980"
+			},
+			"offsets": {
+				"from": 773660,
+				"to": 776980
+			},
+			"text": " and are present within the stablecoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,980",
+				"to": "00:13:01,460"
+			},
+			"offsets": {
+				"from": 776980,
+				"to": 781460
+			},
+			"text": " So for example, we said we've de-risked these types of coins by removing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,460",
+				"to": "00:13:04,140"
+			},
+			"offsets": {
+				"from": 781460,
+				"to": 784140
+			},
+			"text": " centralized entity and how the system is controlled."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,140",
+				"to": "00:13:09,420"
+			},
+			"offsets": {
+				"from": 784140,
+				"to": 789420
+			},
+			"text": " But that being said, while there's collateral that backs a decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,420",
+				"to": "00:13:14,540"
+			},
+			"offsets": {
+				"from": 789420,
+				"to": 794540
+			},
+			"text": " stablecoin, which is a one to one centralized stablecoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,980",
+				"to": "00:13:21,260"
+			},
+			"offsets": {
+				"from": 795980,
+				"to": 801260
+			},
+			"text": " you're still exposed to those risks of how that centralized entity is managing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,260",
+				"to": "00:13:24,060"
+			},
+			"offsets": {
+				"from": 801260,
+				"to": 804060
+			},
+			"text": " their stablecoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,060",
+				"to": "00:13:28,060"
+			},
+			"offsets": {
+				"from": 804060,
+				"to": 808060
+			},
+			"text": " Additionally, you generally don't want volatile assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,060",
+				"to": "00:13:36,060"
+			},
+			"offsets": {
+				"from": 808060,
+				"to": 816060
+			},
+			"text": " You would like assets that are relatively stable in order to minimize the amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,060",
+				"to": "00:13:39,780"
+			},
+			"offsets": {
+				"from": 816060,
+				"to": 819780
+			},
+			"text": " of liquidations that are required and reduce the possibility of having"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,780",
+				"to": "00:13:42,100"
+			},
+			"offsets": {
+				"from": 819780,
+				"to": 822100
+			},
+			"text": " under collateralized positions within the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,900",
+				"to": "00:13:45,660"
+			},
+			"offsets": {
+				"from": 823900,
+				"to": 825660
+			},
+			"text": " I think that gets to flash crashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,660",
+				"to": "00:13:53,380"
+			},
+			"offsets": {
+				"from": 825660,
+				"to": 833380
+			},
+			"text": " Again, around the price of your stablecoin, when you have an over collateralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,380",
+				"to": "00:14:00,380"
+			},
+			"offsets": {
+				"from": 833380,
+				"to": 840380
+			},
+			"text": " stablecoin, you need the collateral to be worth more than your, the amount that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,380",
+				"to": "00:14:01,140"
+			},
+			"offsets": {
+				"from": 840380,
+				"to": 841140
+			},
+			"text": " you have minted."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,140",
+				"to": "00:14:06,300"
+			},
+			"offsets": {
+				"from": 841140,
+				"to": 846300
+			},
+			"text": " Over time, generally, if assets, if the price of assets decreases"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,300",
+				"to": "00:14:08,660"
+			},
+			"offsets": {
+				"from": 846300,
+				"to": 848660
+			},
+			"text": " that are your collateral, that's OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,660",
+				"to": "00:14:12,740"
+			},
+			"offsets": {
+				"from": 848660,
+				"to": 852740
+			},
+			"text": " There's liquidation processes in place in which someone can come, they'll pay off"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,740",
+				"to": "00:14:16,580"
+			},
+			"offsets": {
+				"from": 852740,
+				"to": 856580
+			},
+			"text": " your debt and they get your collateral and the collateral is worth more than your"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,580",
+				"to": "00:14:18,900"
+			},
+			"offsets": {
+				"from": 856580,
+				"to": 858900
+			},
+			"text": " debt, so they make out a little bit of extra money."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,900",
+				"to": "00:14:24,020"
+			},
+			"offsets": {
+				"from": 858900,
+				"to": 864020
+			},
+			"text": " Really where a risk comes into play is if the price of your asset crashes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,020",
+				"to": "00:14:28,700"
+			},
+			"offsets": {
+				"from": 864020,
+				"to": 868700
+			},
+			"text": " the collateral asset crashes so quickly that liquidators do not have time to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,700",
+				"to": "00:14:30,180"
+			},
+			"offsets": {
+				"from": 868700,
+				"to": 870180
+			},
+			"text": " perform those liquidations."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,180",
+				"to": "00:14:35,540"
+			},
+			"offsets": {
+				"from": 870180,
+				"to": 875540
+			},
+			"text": " In that case, you result in under collateralized positions, which likely"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,540",
+				"to": "00:14:39,420"
+			},
+			"offsets": {
+				"from": 875540,
+				"to": 879420
+			},
+			"text": " result in a deep egg of your coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,740",
+				"to": "00:14:45,140"
+			},
+			"offsets": {
+				"from": 880740,
+				"to": 885140
+			},
+			"text": " Again, we talked about, you know, there's different aspects of these protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,140",
+				"to": "00:14:49,860"
+			},
+			"offsets": {
+				"from": 885140,
+				"to": 889860
+			},
+			"text": " that are configurable, so making sure that A, it's configured appropriately and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,860",
+				"to": "00:14:55,140"
+			},
+			"offsets": {
+				"from": 889860,
+				"to": 895140
+			},
+			"text": " the person or the entity or DAO who is configuring them is knowledgeable in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,140",
+				"to": "00:14:58,700"
+			},
+			"offsets": {
+				"from": 895140,
+				"to": 898700
+			},
+			"text": " space and is making informed decisions is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,700",
+				"to": "00:15:01,660"
+			},
+			"offsets": {
+				"from": 898700,
+				"to": 901660
+			},
+			"text": " And then finally, there's smart contract risk, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,660",
+				"to": "00:15:04,620"
+			},
+			"offsets": {
+				"from": 901660,
+				"to": 904620
+			},
+			"text": " There's always a risk that there's going to be a bug in the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,620",
+				"to": "00:15:09,540"
+			},
+			"offsets": {
+				"from": 904620,
+				"to": 909540
+			},
+			"text": " You can do as much as you can to try to eliminate and mitigate this risk from"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,820",
+				"to": "00:15:16,140"
+			},
+			"offsets": {
+				"from": 909820,
+				"to": 916140
+			},
+			"text": " responsible development practices, internally, internal reviews, external audits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,140",
+				"to": "00:15:18,740"
+			},
+			"offsets": {
+				"from": 916140,
+				"to": 918740
+			},
+			"text": " which I think we see throughout the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,740",
+				"to": "00:15:23,220"
+			},
+			"offsets": {
+				"from": 918740,
+				"to": 923220
+			},
+			"text": " Yeah, so you can do as much as you can to try to reduce the risk of smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,220",
+				"to": "00:15:27,100"
+			},
+			"offsets": {
+				"from": 923220,
+				"to": 927100
+			},
+			"text": " contract bugs, but at the end of the day, they'll exist in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,100",
+				"to": "00:15:31,260"
+			},
+			"offsets": {
+				"from": 927100,
+				"to": 931260
+			},
+			"text": " So briefly, other types of stablecoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,260",
+				"to": "00:15:34,940"
+			},
+			"offsets": {
+				"from": 931260,
+				"to": 934940
+			},
+			"text": " I think we already can see there's a huge difference between one to one"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,940",
+				"to": "00:15:39,420"
+			},
+			"offsets": {
+				"from": 934940,
+				"to": 939420
+			},
+			"text": " backed centralized stablecoins, decentralized over collateralized stablecoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,100",
+				"to": "00:15:44,260"
+			},
+			"offsets": {
+				"from": 940100,
+				"to": 944260
+			},
+			"text": " And now a couple of others that I hesitate to even try to name what type they are"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,260",
+				"to": "00:15:48,860"
+			},
+			"offsets": {
+				"from": 944260,
+				"to": 948860
+			},
+			"text": " because they're so different and function, you know, very interestingly."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,860",
+				"to": "00:15:51,060"
+			},
+			"offsets": {
+				"from": 948860,
+				"to": 951060
+			},
+			"text": " So one is frax."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,060",
+				"to": "00:15:58,460"
+			},
+			"offsets": {
+				"from": 951060,
+				"to": 958460
+			},
+			"text": " Frax is a stablecoin that is partially backed by collateral and then also partially"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,460",
+				"to": "00:16:01,140"
+			},
+			"offsets": {
+				"from": 958460,
+				"to": 961140
+			},
+			"text": " maintains its stability through algorithmically."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,140",
+				"to": "00:16:06,220"
+			},
+			"offsets": {
+				"from": 961140,
+				"to": 966220
+			},
+			"text": " Obviously, that's quite different than a DAI or USDC, or you could look at"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,220",
+				"to": "00:16:10,700"
+			},
+			"offsets": {
+				"from": 966220,
+				"to": 970700
+			},
+			"text": " REI, which is a stablecoin that is not pegged to any specific asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,700",
+				"to": "00:16:15,820"
+			},
+			"offsets": {
+				"from": 970700,
+				"to": 975820
+			},
+			"text": " And its stability mechanism works through understanding the reduction rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,820",
+				"to": "00:16:19,740"
+			},
+			"offsets": {
+				"from": 975820,
+				"to": 979740
+			},
+			"text": " So how often are people taking out positions, how often are people"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,740",
+				"to": "00:16:23,580"
+			},
+			"offsets": {
+				"from": 979740,
+				"to": 983580
+			},
+			"text": " repaying their positions, and based on the rate under which that is occurring,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,580",
+				"to": "00:16:27,100"
+			},
+			"offsets": {
+				"from": 983580,
+				"to": 987100
+			},
+			"text": " the price of the asset will slowly vary one way or the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,100",
+				"to": "00:16:32,300"
+			},
+			"offsets": {
+				"from": 987100,
+				"to": 992300
+			},
+			"text": " And this isn't to give you a full understanding of what these systems are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,300",
+				"to": "00:16:37,060"
+			},
+			"offsets": {
+				"from": 992300,
+				"to": 997060
+			},
+			"text": " and how they work, but it's to say these are totally different types of assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,060",
+				"to": "00:16:40,140"
+			},
+			"offsets": {
+				"from": 997060,
+				"to": 1000140
+			},
+			"text": " that we're talking about in the same category of stablecoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,140",
+				"to": "00:16:44,740"
+			},
+			"offsets": {
+				"from": 1000140,
+				"to": 1004740
+			},
+			"text": " And now if you go to think about stablecoins or work with a stablecoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,740",
+				"to": "00:16:47,020"
+			},
+			"offsets": {
+				"from": 1004740,
+				"to": 1007020
+			},
+			"text": " you should say, what is the stability mechanism?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,020",
+				"to": "00:16:48,260"
+			},
+			"offsets": {
+				"from": 1007020,
+				"to": 1008260
+			},
+			"text": " How does this actually work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,260",
+				"to": "00:16:48,860"
+			},
+			"offsets": {
+				"from": 1008260,
+				"to": 1008860
+			},
+			"text": " Is it pegged?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,860",
+				"to": "00:16:49,740"
+			},
+			"offsets": {
+				"from": 1008860,
+				"to": 1009740
+			},
+			"text": " Does it not pegged?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,740",
+				"to": "00:16:57,180"
+			},
+			"offsets": {
+				"from": 1009740,
+				"to": 1017180
+			},
+			"text": " It's more to kind of promote that thinking of what are the risks of this coin"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,180",
+				"to": "00:17:00,460"
+			},
+			"offsets": {
+				"from": 1017180,
+				"to": 1020460
+			},
+			"text": " and is it actually going to maintain its stability?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,460",
+				"to": "00:17:00,860"
+			},
+			"offsets": {
+				"from": 1020460,
+				"to": 1020860
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,540",
+				"to": "00:17:07,540"
+			},
+			"offsets": {
+				"from": 1021540,
+				"to": 1027540
+			},
+			"text": " So now I get to talk a little bit about GO, which falls into that category of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,540",
+				"to": "00:17:14,260"
+			},
+			"offsets": {
+				"from": 1027540,
+				"to": 1034260
+			},
+			"text": " decentralized, over collateralized, crypto-backed stablecoins, and it will fit"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,260",
+				"to": "00:17:16,100"
+			},
+			"offsets": {
+				"from": 1034260,
+				"to": 1036100
+			},
+			"text": " natively into the AVE market."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,100",
+				"to": "00:17:22,060"
+			},
+			"offsets": {
+				"from": 1036100,
+				"to": 1042060
+			},
+			"text": " So one thing we recognize that AVE, looking at our existing liquidity pool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,060",
+				"to": "00:17:27,460"
+			},
+			"offsets": {
+				"from": 1042060,
+				"to": 1047460
+			},
+			"text": " protocol, was that there's a lot of functionality in our general market"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,460",
+				"to": "00:17:30,740"
+			},
+			"offsets": {
+				"from": 1047460,
+				"to": 1050740
+			},
+			"text": " that would be required for this type of stablecoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,620",
+				"to": "00:17:35,460"
+			},
+			"offsets": {
+				"from": 1051620,
+				"to": 1055460
+			},
+			"text": " Things like depositing collateral, things like liquidation processes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,460",
+				"to": "00:17:41,020"
+			},
+			"offsets": {
+				"from": 1055460,
+				"to": 1061020
+			},
+			"text": " These things exist within the AVE protocol and also are exactly what you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,020",
+				"to": "00:17:43,780"
+			},
+			"offsets": {
+				"from": 1061020,
+				"to": 1063780
+			},
+			"text": " to facilitate a decentralized stablecoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,780",
+				"to": "00:17:48,300"
+			},
+			"offsets": {
+				"from": 1063780,
+				"to": 1068300
+			},
+			"text": " So I think that's something that's really nice even on the development side"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,300",
+				"to": "00:17:53,940"
+			},
+			"offsets": {
+				"from": 1068300,
+				"to": 1073940
+			},
+			"text": " is that GO fits into the existing AVE market."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,940",
+				"to": "00:17:58,580"
+			},
+			"offsets": {
+				"from": 1073940,
+				"to": 1078580
+			},
+			"text": " So a lot of the processes and ways that you will interact with it"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,580",
+				"to": "00:18:02,540"
+			},
+			"offsets": {
+				"from": 1078580,
+				"to": 1082540
+			},
+			"text": " should be very familiar to interacting with GO."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,540",
+				"to": "00:18:06,620"
+			},
+			"offsets": {
+				"from": 1082540,
+				"to": 1086620
+			},
+			"text": " It's really a new custom asset that's getting added to the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,620",
+				"to": "00:18:12,300"
+			},
+			"offsets": {
+				"from": 1086620,
+				"to": 1092300
+			},
+			"text": " So while there are differences in the implementation and we'll go through those"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,300",
+				"to": "00:18:19,300"
+			},
+			"offsets": {
+				"from": 1092300,
+				"to": 1099300
+			},
+			"text": " in some detail, at a high level, when you go to interact with AVE and borrow GO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,300",
+				"to": "00:18:22,980"
+			},
+			"offsets": {
+				"from": 1099300,
+				"to": 1102980
+			},
+			"text": " it's pretty much the same as borrowing another asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,980",
+				"to": "00:18:26,140"
+			},
+			"offsets": {
+				"from": 1102980,
+				"to": 1106140
+			},
+			"text": " You deposit your collateral, you borrow GO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,140",
+				"to": "00:18:31,220"
+			},
+			"offsets": {
+				"from": 1107140,
+				"to": 1111220
+			},
+			"text": " you hold it for some amount of time, it accrues interest, and eventually you pay it back."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,220",
+				"to": "00:18:34,860"
+			},
+			"offsets": {
+				"from": 1111220,
+				"to": 1114860
+			},
+			"text": " So that's pretty much the same process as any other asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,860",
+				"to": "00:18:40,700"
+			},
+			"offsets": {
+				"from": 1114860,
+				"to": 1120700
+			},
+			"text": " That being said, when it gets added, the way that this asset is configured"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,700",
+				"to": "00:18:46,300"
+			},
+			"offsets": {
+				"from": 1120700,
+				"to": 1126300
+			},
+			"text": " has differences and the differences are what help it maintain its stability."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,300",
+				"to": "00:18:49,460"
+			},
+			"offsets": {
+				"from": 1126300,
+				"to": 1129460
+			},
+			"text": " So let's walk through those."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,460",
+				"to": "00:18:54,100"
+			},
+			"offsets": {
+				"from": 1129460,
+				"to": 1134100
+			},
+			"text": " The first is that this asset isn't supplied to the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,220",
+				"to": "00:19:00,580"
+			},
+			"offsets": {
+				"from": 1134220,
+				"to": 1140580
+			},
+			"text": " So if you think about borrowing some other asset, if you deposit Weth and borrow"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,580",
+				"to": "00:19:05,900"
+			},
+			"offsets": {
+				"from": 1140580,
+				"to": 1145900
+			},
+			"text": " wrapped Bitcoin, somebody else has to have deposited that wrapped Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,900",
+				"to": "00:19:08,100"
+			},
+			"offsets": {
+				"from": 1145900,
+				"to": 1148100
+			},
+			"text": " in order for you to later borrow it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,100",
+				"to": "00:19:12,020"
+			},
+			"offsets": {
+				"from": 1148100,
+				"to": 1152020
+			},
+			"text": " In terms of GO, that's not required."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,020",
+				"to": "00:19:17,620"
+			},
+			"offsets": {
+				"from": 1152020,
+				"to": 1157620
+			},
+			"text": " When you deposit your wrapped ETH and borrow GO, nobody has to have deposited it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,620",
+				"to": "00:19:23,020"
+			},
+			"offsets": {
+				"from": 1157620,
+				"to": 1163020
+			},
+			"text": " Instead, the protocol reaches out to the GO contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,060",
+				"to": "00:19:25,100"
+			},
+			"offsets": {
+				"from": 1163060,
+				"to": 1165100
+			},
+			"text": " and mince that GO on demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,100",
+				"to": "00:19:29,100"
+			},
+			"offsets": {
+				"from": 1165100,
+				"to": 1169100
+			},
+			"text": " Same goes for when you repay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,100",
+				"to": "00:19:34,860"
+			},
+			"offsets": {
+				"from": 1169100,
+				"to": 1174860
+			},
+			"text": " That GO is actually burned rather than going back to the suppliers."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,860",
+				"to": "00:19:39,100"
+			},
+			"offsets": {
+				"from": 1174860,
+				"to": 1179100
+			},
+			"text": " The Oracle price is fixed to $1."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,100",
+				"to": "00:19:44,220"
+			},
+			"offsets": {
+				"from": 1179100,
+				"to": 1184220
+			},
+			"text": " So of course, other assets, the Oracle reports the actual market price"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,220",
+				"to": "00:19:49,100"
+			},
+			"offsets": {
+				"from": 1184220,
+				"to": 1189100
+			},
+			"text": " so that the protocol knows how much value is this asset,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,100",
+				"to": "00:19:53,660"
+			},
+			"offsets": {
+				"from": 1189100,
+				"to": 1193660
+			},
+			"text": " how much can you borrow against it, maintaining that over collateralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,660",
+				"to": "00:19:59,620"
+			},
+			"offsets": {
+				"from": 1193660,
+				"to": 1199620
+			},
+			"text": " In this case, GO is pegged to one USD despite what the market price is."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,620",
+				"to": "00:20:02,180"
+			},
+			"offsets": {
+				"from": 1199620,
+				"to": 1202180
+			},
+			"text": " So this helps maintain stability."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,180",
+				"to": "00:20:08,220"
+			},
+			"offsets": {
+				"from": 1202180,
+				"to": 1208220
+			},
+			"text": " It creates arbitrage opportunities, say the price is above $1 in the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,220",
+				"to": "00:20:13,300"
+			},
+			"offsets": {
+				"from": 1208220,
+				"to": 1213300
+			},
+			"text": " When the protocol thinks it's just $1, you can mint a bunch of GO."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,300",
+				"to": "00:20:16,740"
+			},
+			"offsets": {
+				"from": 1213300,
+				"to": 1216740
+			},
+			"text": " That is debt at the cost of $1."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,060",
+				"to": "00:20:20,300"
+			},
+			"offsets": {
+				"from": 1217060,
+				"to": 1220300
+			},
+			"text": " You can sell it at the market, say for $1.5."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,300",
+				"to": "00:20:23,500"
+			},
+			"offsets": {
+				"from": 1220300,
+				"to": 1223500
+			},
+			"text": " That increases supply, which should reduce the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,500",
+				"to": "00:20:29,900"
+			},
+			"offsets": {
+				"from": 1223500,
+				"to": 1229900
+			},
+			"text": " And then eventually, you can buy back that GO at $1, payback your debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,900",
+				"to": "00:20:33,060"
+			},
+			"offsets": {
+				"from": 1229900,
+				"to": 1233060
+			},
+			"text": " And $0.5 on the dollar is arbitrage."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,060",
+				"to": "00:20:38,060"
+			},
+			"offsets": {
+				"from": 1233060,
+				"to": 1238060
+			},
+			"text": " Stability mechanism and difference in how this asset works is in its interest rates."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,060",
+				"to": "00:20:44,100"
+			},
+			"offsets": {
+				"from": 1238060,
+				"to": 1244100
+			},
+			"text": " Normal assets, the interest rates are based on the utilization of a pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,460",
+				"to": "00:20:50,900"
+			},
+			"offsets": {
+				"from": 1244460,
+				"to": 1250900
+			},
+			"text": " So if you have 100 tokens supplied and 10 of them borrowed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,900",
+				"to": "00:20:52,820"
+			},
+			"offsets": {
+				"from": 1250900,
+				"to": 1252820
+			},
+			"text": " the interest rate will be relatively low."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,820",
+				"to": "00:20:56,540"
+			},
+			"offsets": {
+				"from": 1252820,
+				"to": 1256540
+			},
+			"text": " If you have 100 tokens supplied and 90 assets borrowed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,540",
+				"to": "00:20:58,220"
+			},
+			"offsets": {
+				"from": 1256540,
+				"to": 1258220
+			},
+			"text": " the interest rate will be quite high."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,220",
+				"to": "00:21:01,020"
+			},
+			"offsets": {
+				"from": 1258220,
+				"to": 1261020
+			},
+			"text": " In this case, there are no suppliers."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,020",
+				"to": "00:21:03,660"
+			},
+			"offsets": {
+				"from": 1261020,
+				"to": 1263660
+			},
+			"text": " So interest rates work differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,660",
+				"to": "00:21:07,140"
+			},
+			"offsets": {
+				"from": 1263660,
+				"to": 1267140
+			},
+			"text": " To start, interest rates will be set by governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,140",
+				"to": "00:21:10,620"
+			},
+			"offsets": {
+				"from": 1267140,
+				"to": 1270620
+			},
+			"text": " And again, this serves as a stability mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,020",
+				"to": "00:21:17,300"
+			},
+			"offsets": {
+				"from": 1272020,
+				"to": 1277300
+			},
+			"text": " You can increase supply by reducing interest rates and the inverse holds true as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,300",
+				"to": "00:21:21,660"
+			},
+			"offsets": {
+				"from": 1277300,
+				"to": 1281660
+			},
+			"text": " Another difference to highlight is that interest that accrues on positions"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,660",
+				"to": "00:21:25,540"
+			},
+			"offsets": {
+				"from": 1281660,
+				"to": 1285540
+			},
+			"text": " will be repaid to the AVE governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,540",
+				"to": "00:21:32,580"
+			},
+			"offsets": {
+				"from": 1285540,
+				"to": 1292580
+			},
+			"text": " So rather than having to pay suppliers, because there are no suppliers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,580",
+				"to": "00:21:34,820"
+			},
+			"offsets": {
+				"from": 1292580,
+				"to": 1294820
+			},
+			"text": " that interest can be redirected."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,820",
+				"to": "00:21:40,500"
+			},
+			"offsets": {
+				"from": 1294820,
+				"to": 1300500
+			},
+			"text": " Some other differentiating factors for this token is that discounts are available"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,580",
+				"to": "00:21:43,460"
+			},
+			"offsets": {
+				"from": 1300580,
+				"to": 1303460
+			},
+			"text": " to users who stake AVE in the safety module."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,460",
+				"to": "00:21:49,180"
+			},
+			"offsets": {
+				"from": 1303460,
+				"to": 1309180
+			},
+			"text": " So if governance has set the interest rate to 3%, by staking AVE,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,180",
+				"to": "00:21:51,660"
+			},
+			"offsets": {
+				"from": 1309180,
+				"to": 1311660
+			},
+			"text": " you can get some discount on that interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,660",
+				"to": "00:21:54,500"
+			},
+			"offsets": {
+				"from": 1311660,
+				"to": 1314500
+			},
+			"text": " There's also a multicolateral positions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,500",
+				"to": "00:22:01,620"
+			},
+			"offsets": {
+				"from": 1314500,
+				"to": 1321620
+			},
+			"text": " So you have the flexibility to use different assets as collateral within the same position."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,620",
+				"to": "00:22:05,620"
+			},
+			"offsets": {
+				"from": 1321620,
+				"to": 1325620
+			},
+			"text": " This is different than DIBE, where you have a single vault."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,620",
+				"to": "00:22:07,380"
+			},
+			"offsets": {
+				"from": 1325620,
+				"to": 1327380
+			},
+			"text": " You have one collateral type."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,500",
+				"to": "00:22:11,500"
+			},
+			"offsets": {
+				"from": 1328500,
+				"to": 1331500
+			},
+			"text": " So this introduces a little bit more flexibility for some use cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,500",
+				"to": "00:22:15,300"
+			},
+			"offsets": {
+				"from": 1331500,
+				"to": 1335300
+			},
+			"text": " that might make sense where if you need to re-up your collateral,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,300",
+				"to": "00:22:19,820"
+			},
+			"offsets": {
+				"from": 1335300,
+				"to": 1339820
+			},
+			"text": " you don't necessarily need to swap between assets to fund that position."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,820",
+				"to": "00:22:23,460"
+			},
+			"offsets": {
+				"from": 1339820,
+				"to": 1343460
+			},
+			"text": " And then thirdly, you can earn interest on these positions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,460",
+				"to": "00:22:27,300"
+			},
+			"offsets": {
+				"from": 1343460,
+				"to": 1347300
+			},
+			"text": " So by supplying your collateral to the AVE protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,300",
+				"to": "00:22:32,060"
+			},
+			"offsets": {
+				"from": 1347300,
+				"to": 1352060
+			},
+			"text": " other users will be borrowing it and you'll earn interest on that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,060",
+				"to": "00:22:37,180"
+			},
+			"offsets": {
+				"from": 1352060,
+				"to": 1357180
+			},
+			"text": " which effectively reduces the interest that you're paying on your borrowed positions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,180",
+				"to": "00:22:42,580"
+			},
+			"offsets": {
+				"from": 1358180,
+				"to": 1362580
+			},
+			"text": " We highlighted in a lot of the earlier part of this talk was around risks, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,580",
+				"to": "00:22:48,260"
+			},
+			"offsets": {
+				"from": 1362580,
+				"to": 1368260
+			},
+			"text": " So let's talk through what are the risks here and how are they mitigated in the AVE market?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,260",
+				"to": "00:22:50,460"
+			},
+			"offsets": {
+				"from": 1368260,
+				"to": 1370460
+			},
+			"text": " So collateral asset risk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,460",
+				"to": "00:22:56,460"
+			},
+			"offsets": {
+				"from": 1370460,
+				"to": 1376460
+			},
+			"text": " the AVE protocol has a pretty strong history of being relatively conservative"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,460",
+				"to": "00:23:00,460"
+			},
+			"offsets": {
+				"from": 1376460,
+				"to": 1380460
+			},
+			"text": " and effective in managing the assets that are used for collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,460",
+				"to": "00:23:03,060"
+			},
+			"offsets": {
+				"from": 1380460,
+				"to": 1383060
+			},
+			"text": " and setting the configurations around those."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,100",
+				"to": "00:23:08,540"
+			},
+			"offsets": {
+				"from": 1383100,
+				"to": 1388540
+			},
+			"text": " So making sure you have safe over collateralization ratios, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,540",
+				"to": "00:23:11,580"
+			},
+			"offsets": {
+				"from": 1388540,
+				"to": 1391580
+			},
+			"text": " Similar goes to the flash crash risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,580",
+				"to": "00:23:14,700"
+			},
+			"offsets": {
+				"from": 1391580,
+				"to": 1394700
+			},
+			"text": " This risk exists,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,700",
+				"to": "00:23:21,180"
+			},
+			"offsets": {
+				"from": 1394700,
+				"to": 1401180
+			},
+			"text": " but we've seen that the AVE protocol is a relatively resilient market"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,180",
+				"to": "00:23:25,900"
+			},
+			"offsets": {
+				"from": 1401180,
+				"to": 1405900
+			},
+			"text": " that has gone through pretty turbulent times already."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,900",
+				"to": "00:23:30,140"
+			},
+			"offsets": {
+				"from": 1405900,
+				"to": 1410140
+			},
+			"text": " And protocol configuration is pretty similar to collateral asset risk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,180",
+				"to": "00:23:33,300"
+			},
+			"offsets": {
+				"from": 1410180,
+				"to": 1413300
+			},
+			"text": " where we work with the DAO, the DAO works with gauntlet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,300",
+				"to": "00:23:36,100"
+			},
+			"offsets": {
+				"from": 1413300,
+				"to": 1416100
+			},
+			"text": " and it was relatively conservative."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,100",
+				"to": "00:23:41,100"
+			},
+			"offsets": {
+				"from": 1416100,
+				"to": 1421100
+			},
+			"text": " There's the smart contract risks and stability mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,100",
+				"to": "00:23:42,820"
+			},
+			"offsets": {
+				"from": 1421100,
+				"to": 1422820
+			},
+			"text": " I think we've covered those enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,820",
+				"to": "00:23:47,100"
+			},
+			"offsets": {
+				"from": 1422820,
+				"to": 1427100
+			},
+			"text": " So when go soon, TM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,100",
+				"to": "00:23:51,020"
+			},
+			"offsets": {
+				"from": 1427100,
+				"to": 1431020
+			},
+			"text": " there's a few dependencies and governance right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,020",
+				"to": "00:23:53,140"
+			},
+			"offsets": {
+				"from": 1431020,
+				"to": 1433140
+			},
+			"text": " including deploying the V3 market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,140",
+				"to": "00:23:57,340"
+			},
+			"offsets": {
+				"from": 1433140,
+				"to": 1437340
+			},
+			"text": " whether we'll be upgrading the V2 market in place"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,340",
+				"to": "00:23:59,980"
+			},
+			"offsets": {
+				"from": 1437340,
+				"to": 1439980
+			},
+			"text": " or deploying a new market for V3."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,740",
+				"to": "00:24:02,500"
+			},
+			"offsets": {
+				"from": 1440740,
+				"to": 1442500
+			},
+			"text": " So there's some dependencies around that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,500",
+				"to": "00:24:04,820"
+			},
+			"offsets": {
+				"from": 1442500,
+				"to": 1444820
+			},
+			"text": " which will,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,820",
+				"to": "00:24:09,540"
+			},
+			"offsets": {
+				"from": 1444820,
+				"to": 1449540
+			},
+			"text": " as soon as those are done, we'll look to move forward with Go."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,540",
+				"to": "00:24:11,740"
+			},
+			"offsets": {
+				"from": 1449540,
+				"to": 1451740
+			},
+			"text": " And Go's future."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,740",
+				"to": "00:24:16,500"
+			},
+			"offsets": {
+				"from": 1451740,
+				"to": 1456500
+			},
+			"text": " We're hopeful that we can move Go to L2s."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,500",
+				"to": "00:24:20,020"
+			},
+			"offsets": {
+				"from": 1456500,
+				"to": 1460020
+			},
+			"text": " I think we think there's a really large opportunity there with lower fees"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,020",
+				"to": "00:24:24,340"
+			},
+			"offsets": {
+				"from": 1460020,
+				"to": 1464340
+			},
+			"text": " to have this as a token that's used widely,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,340",
+				"to": "00:24:26,340"
+			},
+			"offsets": {
+				"from": 1464340,
+				"to": 1466340
+			},
+			"text": " both by crypto-native users"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,380",
+				"to": "00:24:30,220"
+			},
+			"offsets": {
+				"from": 1466380,
+				"to": 1470220
+			},
+			"text": " and more of the general population."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,220",
+				"to": "00:24:34,100"
+			},
+			"offsets": {
+				"from": 1470220,
+				"to": 1474100
+			},
+			"text": " Another interesting functionality is that we have facilitators."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,100",
+				"to": "00:24:39,220"
+			},
+			"offsets": {
+				"from": 1474100,
+				"to": 1479220
+			},
+			"text": " So Go, Ave is the first facilitator of Go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,220",
+				"to": "00:24:45,180"
+			},
+			"offsets": {
+				"from": 1479220,
+				"to": 1485180
+			},
+			"text": " which means that they have permission to mint more Go."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,180",
+				"to": "00:24:49,340"
+			},
+			"offsets": {
+				"from": 1485180,
+				"to": 1489340
+			},
+			"text": " And in the future, Ave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,340",
+				"to": "00:24:51,420"
+			},
+			"offsets": {
+				"from": 1489340,
+				"to": 1491420
+			},
+			"text": " I'm getting the Times up, let's talk fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,420",
+				"to": "00:24:54,380"
+			},
+			"offsets": {
+				"from": 1491420,
+				"to": 1494380
+			},
+			"text": " Ave governance can add additional facilitators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,420",
+				"to": "00:24:58,700"
+			},
+			"offsets": {
+				"from": 1494420,
+				"to": 1498700
+			},
+			"text": " which will have the ability to mint Go"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,700",
+				"to": "00:25:01,620"
+			},
+			"offsets": {
+				"from": 1498700,
+				"to": 1501620
+			},
+			"text": " if they are approved."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,620",
+				"to": "00:25:04,340"
+			},
+			"offsets": {
+				"from": 1501620,
+				"to": 1504340
+			},
+			"text": " So obviously, there's a lot that goes into that, a lot of reviewing."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,340",
+				"to": "00:25:06,180"
+			},
+			"offsets": {
+				"from": 1504340,
+				"to": 1506180
+			},
+			"text": " I think that will probably be more long-term,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,180",
+				"to": "00:25:08,500"
+			},
+			"offsets": {
+				"from": 1506180,
+				"to": 1508500
+			},
+			"text": " but something cool to look forward to."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,500",
+				"to": "00:25:10,380"
+			},
+			"offsets": {
+				"from": 1508500,
+				"to": 1510380
+			},
+			"text": " That's it. Thank you, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,380",
+				"to": "00:25:12,380"
+			},
+			"offsets": {
+				"from": 1510380,
+				"to": 1512380
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,380",
+				"to": "00:25:14,380"
+			},
+			"offsets": {
+				"from": 1512380,
+				"to": 1514380
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,380",
+				"to": "00:25:16,380"
+			},
+			"offsets": {
+				"from": 1514380,
+				"to": 1516380
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,380",
+				"to": "00:25:18,380"
+			},
+			"offsets": {
+				"from": 1516380,
+				"to": 1518380
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,380",
+				"to": "00:25:20,380"
+			},
+			"offsets": {
+				"from": 1518380,
+				"to": 1520380
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,380",
+				"to": "00:25:24,380"
+			},
+			"offsets": {
+				"from": 1520380,
+				"to": 1524380
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,2705 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 23000
+			},
+			"text": " >> So I'm going to be talking about something a little bit different today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 26000
+			},
+			"text": " As Jesse mentioned, my name is Taylor Garing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 30000
+			},
+			"text": " I've been working with the Ethereum Project for about two years now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 33000
+			},
+			"text": " It's quite a long time in this space, I suppose."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 39000
+			},
+			"text": " I've been doing a variety of things from server administration to working on the website."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 44000
+			},
+			"text": " I've helped with the Go client on Jeffrey Wilkes team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 46000
+			},
+			"text": " I've written some blog posts. I'm active on Reddit."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 49000
+			},
+			"text": " So you might have seen my name around there a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 54000
+			},
+			"text": " But I'm not going to talk about what we've worked on too late so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 56000
+			},
+			"text": " I want to talk about the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 62000
+			},
+			"text": " And where Ethereum could bring us in two, four, five, ten years."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 65000
+			},
+			"text": " There's a lot of interest from enterprises out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 71000
+			},
+			"text": " And although the public blockchain gets a lot of the spotlight in the limelight,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 76000
+			},
+			"text": " I think there is a case to be made that Ethereum can be used in an enterprise environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 79000
+			},
+			"text": " And not just for removing trust and removing intermediaries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 85000
+			},
+			"text": " but I think in a general sense as technology stack, Ethereum is really powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 89000
+			},
+			"text": " So the things I think that it can bring to you your environment if you're an IT manager"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 95000
+			},
+			"text": " or an executive, basically my sell to you is that Ethereum can increase agility,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 100000
+			},
+			"text": " reduce risk, and lower costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 108000
+			},
+			"text": " So really the first question is, do blockchains have a role in the private environment?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 113000
+			},
+			"text": " To answer this, we really need to understand a little bit more about what is a blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 116000
+			},
+			"text": " where it came from, how it got here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 120000
+			},
+			"text": " And to do that, we need to know that blockchains are really a culmination of prior work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 125000
+			},
+			"text": " Satoshi didn't just come up with this randomly one day, all this magic, boom, there it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 133000
+			},
+			"text": " No, it goes back to the '70s, Ralph Merkel inventing Merkel hash trees, patenting that in 1979."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 137000
+			},
+			"text": " We also have distributed hash tables, became really popular in the '90s."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 143000
+			},
+			"text": " Napster was a big way that this kind of made it into the public mind share."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 151000
+			},
+			"text": " And eventually we had the proof of work system, which as I read was first developed around '93"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 154000
+			},
+			"text": " and then finally formalized in 1999."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 159000
+			},
+			"text": " And these three components are kind of interesting in particular in certain ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 165000
+			},
+			"text": " The way I look at it, the hash trees are effectively this data structure that the blockchain's built on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 171000
+			},
+			"text": " The distributed hash tables or DHTs is kind of this networking component."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 173000
+			},
+			"text": " And finally we have this proof of work thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 178000
+			},
+			"text": " And this seems to be the most confusing part of it all."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 181000
+			},
+			"text": " What are miners? What are they doing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 185000
+			},
+			"text": " People kind of call it validators sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 192000
+			},
+			"text": " In some circles this seems to be a huge point of contention that only proof of work can exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 197000
+			},
+			"text": " But even with an Ethereum we're trying to look at solutions of proof of stake and CASPER and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 204000
+			},
+			"text": " So that's great. You've told me what blockchains are made of."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 208000
+			},
+			"text": " But what do they really do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 214000
+			},
+			"text": " Now, when I started thinking about this, it kind of reminded me about the scene"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 216000
+			},
+			"text": " of this movie \"Idiocracy.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 218000
+			},
+			"text": " Really fantastic movie if you haven't seen it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 222000
+			},
+			"text": " It wasn't terribly popular but hilarious in its own right."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 229000
+			},
+			"text": " And just to set up this scene for you a little bit, the main character is kind of trying to explain to his colleagues"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 235000
+			},
+			"text": " that putting sports drink on plants will not help them grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 239000
+			},
+			"text": " They don't quite seem to understand why."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 244000
+			},
+			"text": " So let me just let you watch this and maybe you'll get the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " I'm pretty sure what's killing the crops is this Brando stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 251000
+			},
+			"text": " The Brando's got what plants crave. It's got electrolytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 257000
+			},
+			"text": " So wait a minute. What you're saying is that you want us to put water on the crops."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 258000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 260000
+			},
+			"text": " Water. Like out the toilet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 264000
+			},
+			"text": " Well, I mean it doesn't have to be out of the toilet but yeah, that's the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 266000
+			},
+			"text": " But Brando's got what plants crave."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 269000
+			},
+			"text": " It's got electrolytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 272000
+			},
+			"text": " Okay, look. The plants aren't growing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 274000
+			},
+			"text": " So I'm pretty sure that the Brando's not working."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 278000
+			},
+			"text": " Now I'm no botanist but I do know that if you put water on plants they grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 282000
+			},
+			"text": " Well, I've never seen no plants grow out of no toilet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 286000
+			},
+			"text": " That's good. You sure you ain't the smartest guy in the world?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 289000
+			},
+			"text": " Okay, look. You want to solve this problem? I want to get my pardon."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 294000
+			},
+			"text": " So why don't we just try it, okay? And not worry about what plants crave."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 297000
+			},
+			"text": " Brando's got what plants crave."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 299000
+			},
+			"text": " Yeah, it's got electrolytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 304000
+			},
+			"text": " What are electrolytes? Do you even know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 309000
+			},
+			"text": " So what are blockchains? Do we even know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 313000
+			},
+			"text": " That's when I want to ask these people who don't seem to understand what I understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 318000
+			},
+			"text": " They seem to have a slightly different perspective on the view than I do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 323000
+			},
+			"text": " For me, blockchains are a tool. They're a really wonderful tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 325000
+			},
+			"text": " They're not going to replace all other tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 331000
+			},
+			"text": " They'll hopefully maybe join an arsenal of other solutions that are out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 335000
+			},
+			"text": " But really the properties of the blockchain dictate the use case."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 339000
+			},
+			"text": " My opinion is, bitcoins are really good at value transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 341000
+			},
+			"text": " Ethereum is really good at trusted computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 344000
+			},
+			"text": " Both can probably do the other thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 346000
+			},
+			"text": " But really they have their niche."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 349000
+			},
+			"text": " And that's kind of, it makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 352000
+			},
+			"text": " We see software serves different roles for different needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 356000
+			},
+			"text": " You shouldn't really surprise anybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 363000
+			},
+			"text": " So I would say, really, blockchains excel at coordination."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 365000
+			},
+			"text": " But it's not just about the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 373000
+			},
+			"text": " Ethereum's written about more components than just this distributed shared ledger idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 376000
+			},
+			"text": " We've written about the idea of swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 380000
+			},
+			"text": " And we're not the only company or organization out there trying to tackle this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 384000
+			},
+			"text": " There are lots of companies trying to do distributed storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 388000
+			},
+			"text": " BitTorrent is obvious kind of predecessor to all of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 393000
+			},
+			"text": " We've also talked about whisper for dynamic comms, messaging, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 397000
+			},
+			"text": " And this is kind of important because it goes back to this properties idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 400000
+			},
+			"text": " Blockchains are really good at coordination."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 404000
+			},
+			"text": " They can do storage for very, very expensive costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 409000
+			},
+			"text": " They can do messaging for very, very slow block times."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 413000
+			},
+			"text": " So if we kind of build in a couple extra components,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 418000
+			},
+			"text": " we can actually have a more diverse ecosystem of tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 423000
+			},
+			"text": " And when we start looking at it in this way, we can kind of see it as perhaps a network database."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 426000
+			},
+			"text": " Something that the NAIC group has written about a few times."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 428000
+			},
+			"text": " We've done some speeches on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 432000
+			},
+			"text": " This is basically the scenario where code is data."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 435000
+			},
+			"text": " They're kind of both first class citizens in this environment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 439000
+			},
+			"text": " which I think is a hugely powerful idea that we don't fully yet appreciate."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 444000
+			},
+			"text": " You get automatic synchronization, fault tolerance, identity for free."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 447000
+			},
+			"text": " And it's all cryptographically secured and validated."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 453000
+			},
+			"text": " To me, as an IT person who might be implementing a project in an organization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 455000
+			},
+			"text": " these are really great things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 457000
+			},
+			"text": " It makes my life much easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 462000
+			},
+			"text": " And I'd like to bring it into my organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 466000
+			},
+			"text": " Why? Well, cryptography gives us nice properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 471000
+			},
+			"text": " Data confidentiality, data integrity, authentication, non-repudiation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 474000
+			},
+			"text": " But it's kind of complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 479000
+			},
+			"text": " If you've ever tried to develop Bitcoin, it's not the easiest platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 486000
+			},
+			"text": " If you've ever tried to extend the idea of value transfer and do multi-sig or arbitrary computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 489000
+			},
+			"text": " maybe you can get away with a few things."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 493000
+			},
+			"text": " But really it excels at value transfer and storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 500000
+			},
+			"text": " What we really need for blockchains to take off is for it to be as easy as web development, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 501000
+			},
+			"text": " JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 503000
+			},
+			"text": " Almost every developer can program in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 508000
+			},
+			"text": " If we can make blockchains as easy as JavaScript, everybody can use blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 512000
+			},
+			"text": " In addition to that, we've got organizations building other tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 515000
+			},
+			"text": " services, frameworks, toolkits."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 518000
+			},
+			"text": " Consensus is building lots of tools and frameworks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 522000
+			},
+			"text": " We now have Ethereum blockchain as a service on Azure."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 524000
+			},
+			"text": " So you don't even have to care about setting up."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 529000
+			},
+			"text": " You can just spin up a VM in the cloud, start playing with it, testing it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 536000
+			},
+			"text": " figuring out in the ways in which Ethereum or blockchains can help you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 541000
+			},
+			"text": " So the benefits that I would say you want to take away with this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 545000
+			},
+			"text": " take back to your organization, your IT managers, your executives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 553000
+			},
+			"text": " is that shared code in this distributed EVM means consistent and predictable execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 556000
+			},
+			"text": " an append-only database that's cryptographically verified,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 560000
+			},
+			"text": " it cannot be tampered with even by system administrators."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 564000
+			},
+			"text": " That's huge for regulators."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 568000
+			},
+			"text": " Anybody that's in the business of auditing, accounting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 571000
+			},
+			"text": " they're going to love this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 575000
+			},
+			"text": " And finally, automatic and low-cost distribution using peer-to-peer technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 580000
+			},
+			"text": " And this is where the other components like swarm and whisper will come in."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 584000
+			},
+			"text": " If you couple a blockchain as a coordination mechanism with something like BitTorrent"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 590000
+			},
+			"text": " as a data distribution mechanism and then use something like telehash for messaging,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 595000
+			},
+			"text": " you have a really diverse set of tools all interlinked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 598000
+			},
+			"text": " knowing about each other, cooperating with each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 602000
+			},
+			"text": " and giving you this kind of mesh distributed type network"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 607000
+			},
+			"text": " that when an office goes down or you have a mobile client that is only partially connected,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 610000
+			},
+			"text": " having to deal with these kinds of problems goes away."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 615000
+			},
+			"text": " You don't have to set up database replication, it's given to you for free."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 622000
+			},
+			"text": " So these are the reasons that I think Ethereum really beneficial for the enterprise environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 625000
+			},
+			"text": " and why you should want to investigate this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 630000
+			},
+			"text": " not because blockchains just can remove trust or can remove intermediaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 635000
+			},
+			"text": " Yes, they can do those things, but it's in a general sense of coordination mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 640000
+			},
+			"text": " And having this code and data coupled together is a really powerful idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 643000
+			},
+			"text": " I've talked to a few of you throughout the week."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 646000
+			},
+			"text": " I've been working on a project in my spare time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 650000
+			},
+			"text": " It's got this really awful name, but essentially it's a DAP generator."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 657000
+			},
+			"text": " If you've started working on ADAP at all, you'll know that you have to write some JavaScript,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 661000
+			},
+			"text": " put some HTML elements in front of it to give it a UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 667000
+			},
+			"text": " I found that a bit annoying, and I tend to find myself as a general programmer does,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 670000
+			},
+			"text": " you know, abstracting, making things more generic."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 674000
+			},
+			"text": " So I wrote an interface to generate interfaces basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 678000
+			},
+			"text": " You can just give it the ABI generated from the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 682000
+			},
+			"text": " and it will give you a free HTML interface, which you can just tweak with some CSS."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 684000
+			},
+			"text": " You don't have to tell anything about the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 686000
+			},
+			"text": " It just figures it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 688000
+			},
+			"text": " It knows what events to watch for."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 689000
+			},
+			"text": " It's really, really nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 696000
+			},
+			"text": " So I think as tools like this are built up, we can really see more proliferation of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 700000
+			},
+			"text": " I tried to record this as a movie to save me the headache of having to do this live,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 705000
+			},
+			"text": " but my tools refuse to, like, export and put it in the presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 709000
+			},
+			"text": " so I'm going to try to do it live here locally just to kind of show you the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 715000
+			},
+			"text": " I'm running this on my local machine, so hopefully I won't have too many network problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 717000
+			},
+			"text": " but we'll see."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 719000
+			},
+			"text": " So, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 724000
+			},
+			"text": " I'm just going to start my minor."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 727000
+			},
+			"text": " So I've just loaded a page here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 730000
+			},
+			"text": " It's connected to our Geth instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 733000
+			},
+			"text": " We're watching for new incoming blocks, and when blocks are mined,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 736000
+			},
+			"text": " we should see a little update here at the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 737000
+			},
+			"text": " Here we have our contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 742000
+			},
+			"text": " This is just a wallet written in Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 744000
+			},
+			"text": " We can compile this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 750000
+			},
+			"text": " It gives us this ABI here, and from this ABI, we get this kind of free interface down here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 755000
+			},
+			"text": " I've made it look like this tab kind of interface, but really, this is just CSS."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 759000
+			},
+			"text": " Making it look like that, you can do anything you want to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 760000
+			},
+			"text": " This is all for free."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 762000
+			},
+			"text": " I didn't have to write any of this custom."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 763000
+			},
+			"text": " It's really nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 764000
+			},
+			"text": " I can deploy a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 768000
+			},
+			"text": " Let's see if I can do that now."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 769000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 770000
+			},
+			"text": " So I've deployed the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 772000
+			},
+			"text": " I'm going to wait for it to mine here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 773000
+			},
+			"text": " There we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 776000
+			},
+			"text": " So it's been mined in Block 7226."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 781000
+			},
+			"text": " I have the address there, which I can see has been set in the two field here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 784000
+			},
+			"text": " making it convenient for me to interact with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 788000
+			},
+			"text": " Let me just grab my address here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 792000
+			},
+			"text": " I want to check and verify that I'm actually the owner of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 796000
+			},
+			"text": " So go down to his owner, paste in my address."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 801000
+			},
+			"text": " You can see it's pulling the fields together from the actual contract fields."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 802000
+			},
+			"text": " Hit call."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 804000
+			},
+			"text": " It turns true."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 805000
+			},
+			"text": " Nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 809000
+			},
+			"text": " Can check our daily limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 811000
+			},
+			"text": " So for multi-sig, we have no limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 814000
+			},
+			"text": " We want to kind of raise that a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 830000
+			},
+			"text": " So come down here, set it, send the transaction, wait for a block to be mined, or two."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 831000
+			},
+			"text": " There we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 833000
+			},
+			"text": " We have a confirmation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 834000
+			},
+			"text": " Really nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 836000
+			},
+			"text": " We can go back to check the daily limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 837000
+			},
+			"text": " Hit call."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 840000
+			},
+			"text": " It returns 100 as we'd expect."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 841000
+			},
+			"text": " It's really neat."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 845000
+			},
+			"text": " I can even go into the logs and check for my confirmation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 847000
+			},
+			"text": " So I see it's in block 7234."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 849000
+			},
+			"text": " Get logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 854000
+			},
+			"text": " There's my confirmation information, what transaction, where exactly the chain had occurred,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 859000
+			},
+			"text": " the block height, the transaction index, and, you know, the log index the gas used."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 861000
+			},
+			"text": " And this particular field on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 866000
+			},
+			"text": " Now, I haven't done anything to tell it about this contract or the functions or methods."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 869000
+			},
+			"text": " It's been all automatically generated from this ABI."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:33,440"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 873440
+			},
+			"text": " And this is really where this value comes in of having code as data, having it in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,440",
+				"to": "00:14:35,080"
+			},
+			"offsets": {
+				"from": 873440,
+				"to": 875080
+			},
+			"text": " shared location, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,080",
+				"to": "00:14:37,680"
+			},
+			"offsets": {
+				"from": 875080,
+				"to": 877680
+			},
+			"text": " We have it in this one spot."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,680",
+				"to": "00:14:40,440"
+			},
+			"offsets": {
+				"from": 877680,
+				"to": 880440
+			},
+			"text": " We are given an interface on how to interact with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,440",
+				"to": "00:14:44,120"
+			},
+			"offsets": {
+				"from": 880440,
+				"to": 884120
+			},
+			"text": " And no matter who you are or where you are, you can interact with it in the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,120",
+				"to": "00:14:48,440"
+			},
+			"offsets": {
+				"from": 884120,
+				"to": 888440
+			},
+			"text": " If you were to run this here on your machine, you would get the same exact results."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,440",
+				"to": "00:14:52,080"
+			},
+			"offsets": {
+				"from": 888440,
+				"to": 892080
+			},
+			"text": " I think as we push forward these kind of tools more and more, we'll see more adoption"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,080",
+				"to": "00:14:53,640"
+			},
+			"offsets": {
+				"from": 892080,
+				"to": 893640
+			},
+			"text": " of this in the enterprise."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,640",
+				"to": "00:15:01,480"
+			},
+			"offsets": {
+				"from": 893640,
+				"to": 901480
+			},
+			"text": " And for me, that's where the huge adoption comes beyond the cryptographic space."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,480",
+				"to": "00:15:02,480"
+			},
+			"offsets": {
+				"from": 901480,
+				"to": 902480
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,480",
+				"to": "00:15:12,720"
+			},
+			"offsets": {
+				"from": 902480,
+				"to": 912720
+			},
+			"text": " That's all I have today."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,720",
+				"to": "00:15:14,800"
+			},
+			"offsets": {
+				"from": 912720,
+				"to": 914800
+			},
+			"text": " Time for questions if anybody has any."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,800",
+				"to": "00:15:19,160"
+			},
+			"offsets": {
+				"from": 914800,
+				"to": 919160
+			},
+			"text": " We have a minute or two?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,160",
+				"to": "00:15:20,160"
+			},
+			"offsets": {
+				"from": 919160,
+				"to": 920160
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,160",
+				"to": "00:15:23,480"
+			},
+			"offsets": {
+				"from": 920160,
+				"to": 923480
+			},
+			"text": " Where can we get your code?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,480",
+				"to": "00:15:26,440"
+			},
+			"offsets": {
+				"from": 923480,
+				"to": 926440
+			},
+			"text": " This is on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,440",
+				"to": "00:15:30,080"
+			},
+			"offsets": {
+				"from": 926440,
+				"to": 930080
+			},
+			"text": " My GitHub name is T.Garing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,080",
+				"to": "00:15:35,280"
+			},
+			"offsets": {
+				"from": 930080,
+				"to": 935280
+			},
+			"text": " I have it running also on the GitHub pages, but due to the limitations of browsers between"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,280",
+				"to": "00:15:39,320"
+			},
+			"offsets": {
+				"from": 935280,
+				"to": 939320
+			},
+			"text": " HTTPS and HTTP, it doesn't really work so well."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,320",
+				"to": "00:15:43,040"
+			},
+			"offsets": {
+				"from": 939320,
+				"to": 943040
+			},
+			"text": " But all you have to do is get clone and open up index.html and it's there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,040",
+				"to": "00:15:49,400"
+			},
+			"offsets": {
+				"from": 943040,
+				"to": 949400
+			},
+			"text": " I will warn you, it is under heavy development and not perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,400",
+				"to": "00:15:56,400"
+			},
+			"offsets": {
+				"from": 949400,
+				"to": 956400
+			},
+			"text": " The code is on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,400",
+				"to": "00:16:00,400"
+			},
+			"offsets": {
+				"from": 956400,
+				"to": 960400
+			},
+			"text": " Any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,400",
+				"to": "00:16:02,400"
+			},
+			"offsets": {
+				"from": 960400,
+				"to": 962400
+			},
+			"text": " Thank you, T.G."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,400",
+				"to": "00:16:03,400"
+			},
+			"offsets": {
+				"from": 962400,
+				"to": 963400
+			},
+			"text": " [APPLAUSE]"
+		}
+	]
+}

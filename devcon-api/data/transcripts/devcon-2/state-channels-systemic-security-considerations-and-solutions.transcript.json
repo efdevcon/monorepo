@@ -1,0 +1,1440 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:22,200"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 22200
+			},
+			"text": " We're very pleased to have Joseph Poon, a co-founder of the Lightning Network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,200",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 22200,
+				"to": 29000
+			},
+			"text": " to present today on state channels, systemic security considerations and solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 31000
+			},
+			"text": " Do you have a clicker?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 36000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 38000
+			},
+			"text": " Hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 44000
+			},
+			"text": " Today I'm going to talk about how to construct state channels in a secure way."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 51000
+			},
+			"text": " As a lot of the channel type constructions are going to become more popular in the coming months and years ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 57000
+			},
+			"text": " State channels perhaps have some greater complexity when it comes to certain aspects of the design."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 65000
+			},
+			"text": " But the general promise is fairly interesting insofar as perhaps I have five channels with some end participants"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 71000
+			},
+			"text": " and I could potentially do contracts with potentially everyone in the room off-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 75000
+			},
+			"text": " but ultimately enforceable on-chain by having the payments flow through"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 79000
+			},
+			"text": " and the contract states flow through between multiple participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 91000
+			},
+			"text": " The clicker doesn't work though."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 93000
+			},
+			"text": " This one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 94000
+			},
+			"text": " Got it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 96000
+			},
+			"text": " All right, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 101000
+			},
+			"text": " So on the blockchain economic considerations are --"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 110000
+			},
+			"text": " I mean, on the blockchain, adversarial economic considerations are functionally security considerations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 118000
+			},
+			"text": " The primary issue is related to off-chain contract consensus because this is sort of off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 122000
+			},
+			"text": " You don't have the blockchain itself to resolve the double-spend problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 126000
+			},
+			"text": " so you resolve that through economic incentives and structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 134000
+			},
+			"text": " And that requires penalties to operate -- to be structured when you are not operating correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 143000
+			},
+			"text": " And that requires a great deal of presupposition when it comes to the design."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 149000
+			},
+			"text": " And there's a lot of structure that you have to consider when it comes to the cost of the enforcement itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 157000
+			},
+			"text": " Much like how you can write a thousand-page contract, but your legal toss will probably add up"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 166000
+			},
+			"text": " when you ultimately require enforcement within the court system, which in this case is the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 171000
+			},
+			"text": " Now, consensus faults between channel participants are not that interesting when one person is acting faulty"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 174000
+			},
+			"text": " and it's not enforceable on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 182000
+			},
+			"text": " But there are possibilities where you can enforce multiple states on-chain if you design the contract incorrectly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 189000
+			},
+			"text": " And this is a huge problem if this actually happens because let's say you have some option contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193000
+			},
+			"text": " and it can be resolved at $5 or $10."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 198000
+			},
+			"text": " And one person preferentially wants to have it resolve at $10."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 203000
+			},
+			"text": " You're going to want to enforce that contract on the blockchain as soon as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 206000
+			},
+			"text": " because you make a lot more money."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 212000
+			},
+			"text": " So that certainly there's a lot of information costs associated to that due to the uncertainty."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 214000
+			},
+			"text": " But these are also explicit costs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 223000
+			},
+			"text": " You will outright pay the minor or validator set a higher amount purely because you're going to make more money."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 232000
+			},
+			"text": " So the solution is to only allow one participant to enforce a set of states within some larger set of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 238000
+			},
+			"text": " And there may be alternate solutions, but this is a good rule of thumb for now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 253000
+			},
+			"text": " You could do other constructions using different types of cascading bonding structures, but that could end up being fairly complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 257000
+			},
+			"text": " Additionally, penalties need to be predefined."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 267000
+			},
+			"text": " You could have some type of adjudicator, third party, end participants, but usually if it's a two party contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 271000
+			},
+			"text": " you need to predefined everything using fidelity bonds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 278000
+			},
+			"text": " And what you're functionally doing is you're creating the incentives for the participants to be staying off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 284000
+			},
+			"text": " If you have the incentive structure aligned correctly, then we can attest to the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 290000
+			},
+			"text": " We both agree on the current state and we both know if we deviate that we will not win."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 298000
+			},
+			"text": " Systemic risks are also something to seriously consider, mass spam risks, etc., etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 303000
+			},
+			"text": " You know, like there are different solutions for these types of things, like time-stop constructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 305000
+			},
+			"text": " This is a current area of research."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 307000
+			},
+			"text": " But this is not specific to channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 310000
+			},
+			"text": " Anything with fidelity bonds are going to have this issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 313000
+			},
+			"text": " And it's a fairly interesting thing to resolve."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 318000
+			},
+			"text": " And the most clean way to resolve a lot of this is to be using relative timestamps."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 325000
+			},
+			"text": " When you're using a relative timestamp in your contract, generally the cost of enforcement is going to be relatively persistent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 333000
+			},
+			"text": " provided that the size of the enforcement of the attestation is smaller, functionally."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 342000
+			},
+			"text": " So if you're making a large attestation and you're making an incorrect attestation, the enforcement of that is probably going to be smaller,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 344000
+			},
+			"text": " but it's good to make sure that it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 350000
+			},
+			"text": " That way the blockchain costs are commesurate."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 355000
+			},
+			"text": " Additionally, it's really important to keep it simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 360000
+			},
+			"text": " You know, like a contract can be easily split into many smaller contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 367000
+			},
+			"text": " And when you do that, that allows for a great deal of isolation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 376000
+			},
+			"text": " Modularity in this case is more of like a UTXO model."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 383000
+			},
+			"text": " And that's fairly -- the UTX model is interesting in so far as you have predefined inputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 396000
+			},
+			"text": " you have some set predefined outputs, and you have a net potential network of contracts that can sort of build some kind of circuit path."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 400000
+			},
+			"text": " And -- oh, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 402000
+			},
+			"text": " There you go."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 411000
+			},
+			"text": " So ultimately you always do want to be able to enforce things on chain and cannot ignore that aspect."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 417000
+			},
+			"text": " And when you compute across a network of participants, the costs multiply."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 425000
+			},
+			"text": " Now a lot of this sounds really, really scary, and this is about risks and solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 436000
+			},
+			"text": " And I think when you look at these types of constructions, what you have are you have multiple participants that want to be able to transact with anyone else in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 445000
+			},
+			"text": " So I have -- let's say I'm Alice, I want to have some type of financial contract, let's say it's some options contract of some kind or some futures contract, whatever it may be."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 461000
+			},
+			"text": " And it's a conditional payment with some terms, HTLC referring to, you have some contract term and some expiry that can be refunded and cancellation of that contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 470000
+			},
+			"text": " So ideally you want to be constructing this off chain, so if I'm Alice, I don't have any communication on chain with Dave."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 479000
+			},
+			"text": " So I have some on chain record, some contract with Bob, and ultimately the funds will eventually propagate through to Dave."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 487000
+			},
+			"text": " I have the option of enforcing this on chain, but I elect to do it off chain because it's cheaper, etc., etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 504000
+			},
+			"text": " If at any time either party can prove the attestations on chain, so let's say if Bob and Carol's disconnected, they can go talk to the blockchain, but Alice and Dave still remain off chain and it's fairly efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 511000
+			},
+			"text": " However, the problem from this is that when you attest on chain, the cost can be higher."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 520000
+			},
+			"text": " A lot of the benefits of this technology is that you can resolve a lot of incentive structures on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 529000
+			},
+			"text": " So an example would be -- I was talking -- Zuko was talking to me about the free option problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 541000
+			},
+			"text": " Last night we were talking about that, and the free option problem is functionally that one person can start a contract and the other person can -- they have a free option of whether to accept it or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 550000
+			},
+			"text": " And even if you resolve, like with the Douglas talk, even if you resolve certain aspects of sharding and efficiencies related to that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 565000
+			},
+			"text": " what a lot of the channel technology gives you is the ability to atomize a lot of the contracts themselves so that you can make the individual contract terms incredibly small and do a tit for tat increase of the actual contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 571000
+			},
+			"text": " So let's say I wanted to enter into an options contract with someone or some futures contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 582000
+			},
+			"text": " I can design a contract for 10 cents, and the free option problem starts becoming negligible to the point where it doesn't even matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 590000
+			},
+			"text": " And you can do that 10,000 times to create something with real value and ultimately have it enforceable on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 601000
+			},
+			"text": " However, with complex contracts, there is some issues when it comes to requiring the participants to enforce a lot of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 607000
+			},
+			"text": " But instead of computing the net or contract on chain, you should be attesting to the result."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 618000
+			},
+			"text": " And earlier in the day there was a talk about true bits, so let's talk about doing a true bit type construction on channels, and especially a network of channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 629000
+			},
+			"text": " Instead, in this case, when you are attesting on chain, both participants end up funding with Carol doing like she just selects where the funds come from."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 631000
+			},
+			"text": " In this case, it's her own funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 636000
+			},
+			"text": " And Carol is functionally saying, \"Okay, here is the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 638000
+			},
+			"text": " Here are the inputs to that contract.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 645000
+			},
+			"text": " I'm saying, and Carol is saying, \"Here are also the end computed results of this contract.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 656000
+			},
+			"text": " So Carol actually isn't asking the blockchain to compute anything beyond this attestation, because this individual contract, let's say, is incredibly complex in some manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 669000
+			},
+			"text": " But she's saying the blockchain, \"Hey, I'm putting up, let's say the contract is $100 equivalent, and she puts up another $100 equivalent and says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 678000
+			},
+			"text": " \"I am saying that I get $100, I'm also bonding $100 with some time component before I get refunded.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 688000
+			},
+			"text": " So let's say she has to wait another day, so perhaps three or four, however long it is, before she can get her money back."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 696000
+			},
+			"text": " So what she's saying is, \"If I'm wrong, we can do the full computation on chain, but we don't need to right now.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 700000
+			},
+			"text": " I'm saying, \"This is the result, I'm telling you this is the result.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 706000
+			},
+			"text": " Every single node on the blockchain does not need to compute this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 713000
+			},
+			"text": " So she puts up the bond, and after some end period of time, let's say over these four days, she gets her payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 720000
+			},
+			"text": " Alison Bob normally computes it off blockchain, because they're communicating normally."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725000
+			},
+			"text": " In this case, Bob and Carol are not communicating normally, so they need to go to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 728000
+			},
+			"text": " And that's kind of a good situation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 737000
+			},
+			"text": " If you're Carol, you put up some bond, you get your bond back, you also get the payment from Bob, and then you can deliver the payment to Dave."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 743000
+			},
+			"text": " Remember in this case, Bob and Carol are sort of like intermediary actors who you don't really trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 755000
+			},
+			"text": " In this situation, Alice is paying Dave, but Alice doesn't have a blockchain construction with Dave, so Alice has the contract flow through Bob and then to Carol, then to Dave."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 760000
+			},
+			"text": " But let's say Carol is a malicious actor and wants to deceive the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 762000
+			},
+			"text": " What happens in this case?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 772000
+			},
+			"text": " In this case, Bob enforces this and tells the blockchain, \"Hey, Carol is lying, you should compute this.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 782000
+			},
+			"text": " And Bob can similarly put up a separate bond to discourage Bob from overly requiring the blockchain to compute too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 791000
+			},
+			"text": " Let's say Bob is correct, everyone on all the notes compute this, and they say, \"Oh yeah, Carol made an incorrect attestation. Carol should lose her bond.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 793000
+			},
+			"text": " And she loses her bond to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 800000
+			},
+			"text": " And this construction allows for a minimization of the amount of computation that you need to do on the blockchain entirely."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 811000
+			},
+			"text": " And this is using a construction on top of this type of construction allows for you to do this in a network of channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 821000
+			},
+			"text": " Additionally, if a concern would be, \"Well, if I'm Carol, I don't have enough money. I want to put up this bond. What do I do if your third party is not an issue?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 830000
+			},
+			"text": " Because, well, you know the outputs, you can compute it, you know this bond is good, Bob can't dispute it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 836000
+			},
+			"text": " So you can put up really any amount of money provided that you're computing correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 845000
+			},
+			"text": " The bond is an interesting structure because what it gives you is the ability to account for the cost of high computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 855000
+			},
+			"text": " So what happens is if the contract is a very costly contract to compute, you can attach a similarly expensive bond."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 859000
+			},
+			"text": " But the benefit of this type of construction is you get your money back."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 869000
+			},
+			"text": " So it's sort of like paying for computation, but because you don't have to actually pay for it, because you attested to the correct state, you get refunded."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 875000
+			},
+			"text": " Whereas if you attested to an incorrect state, you actually have to pay for the computation itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 882000
+			},
+			"text": " So what we're really doing here is we're reducing and eliminating the need to do full on-chain computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 889000
+			},
+			"text": " And I can have a channel with end participants and be able to do complex contracts with anyone on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 892000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 894000
+			},
+			"text": " [APPLAUSE]"
+		}
+	]
+}

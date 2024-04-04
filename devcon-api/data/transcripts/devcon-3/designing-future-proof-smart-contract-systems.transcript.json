@@ -1,0 +1,1880 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2000
+			},
+			"text": " >> Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,000",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 2000,
+				"to": 7000
+			},
+			"text": " >> Hi, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 19000
+			},
+			"text": " It's so exciting to be talking to all of you here at DEF CON and especially talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 25000
+			},
+			"text": " after JORDI and all the incredible efforts that they have been doing with the YHAT."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:31,200"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 31200
+			},
+			"text": " I'm Jorge, I'm from the Argon team and to start framing the talk, I will talk a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,200",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 31200,
+				"to": 33000
+			},
+			"text": " bit about what Argon is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 38000
+			},
+			"text": " Argon is basically a decentralized organization platform built on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 43000
+			},
+			"text": " We built the software and infrastructure so running decentralized organizations can become"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 45000
+			},
+			"text": " a reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 52000
+			},
+			"text": " We are focusing on non-technical users or people that might not have heard about Ethereum as"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 57000
+			},
+			"text": " a user, so we are very careful that they will be able to use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 63000
+			},
+			"text": " Also, it's very important for us that this system is extendable enough so it can be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 70000
+			},
+			"text": " for very large-scale systems but also for more tiny things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 75000
+			},
+			"text": " When we talk about future proof-smart contracts, what we really mean is how can we make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 80000
+			},
+			"text": " that the contracts that we are building today for these organizations are going to stand"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 84000
+			},
+			"text": " at the moment of time and can be used by organizations for many years."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 90000
+			},
+			"text": " These are kind of three very obvious points but the first one is the DAM contracts are"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 96000
+			},
+			"text": " the best smart contracts and what this means is the easiest and the clearer than smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 101000
+			},
+			"text": " contract is the better because everyone will know what are the implications of every action"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 105000
+			},
+			"text": " and also it decreases the attack vector for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 110000
+			},
+			"text": " Also, something very important for us is to make sure that we only do in the smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 116000
+			},
+			"text": " the minimum amount necessary for the system to work and this is also because this cost"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 121000
+			},
+			"text": " will be paid by our users and this will be the baseline cost for using Argonne."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 126000
+			},
+			"text": " Also, the third point and the one that I will spend more time during the talk talking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 131000
+			},
+			"text": " is we really feel very strongly that smart contracts need to be upgraded."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 136000
+			},
+			"text": " This is kind of a controversial point because there are many things that could go wrong"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 138000
+			},
+			"text": " with smart contracts' upgrade ability."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 143000
+			},
+			"text": " The first thing is we are building these awesome trustless systems but if we put one entity"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 147000
+			},
+			"text": " that cannot be tried to change the rules of the game while everyone is doing it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 155000
+			},
+			"text": " we are basically having these trustful contracts again but of course we would see what the path"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 157000
+			},
+			"text": " to upgrading is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 162000
+			},
+			"text": " Also, there is this interesting attack vector that could happen in which someone could"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 167000
+			},
+			"text": " front-run a very important transaction to a smart contract by doing an upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 172000
+			},
+			"text": " What this means here is you might be doing a transaction expecting that the system works"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 176000
+			},
+			"text": " in one way but before the transaction is mined, an upgrade to a smart contract happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 180000
+			},
+			"text": " This is something to take care of."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 186000
+			},
+			"text": " Anyway, why do we need smart contract upgrade?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 191000
+			},
+			"text": " It's because as we all know, this is an extremely young technology and there will be probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 195000
+			},
+			"text": " bags that are better solved at the contract level, the energy, the protocol level."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 202000
+			},
+			"text": " Also, we are very young so we will probably need to upgrade our contracts for adding"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 207000
+			},
+			"text": " features that our users request in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 212000
+			},
+			"text": " Doing upgrades is something that we are very passionate about at Argonne."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 217000
+			},
+			"text": " I think these are also very obvious points but it's very important that these smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 222000
+			},
+			"text": " contract upgrades are not controlled by just one entity and a very important point is if"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 227000
+			},
+			"text": " they are time-delayed, people can then explore the new contract and decide what to do with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 235000
+			},
+			"text": " it and also having an efficient governance process before doing an upgrade is very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 243000
+			},
+			"text": " In this road of doing this better and future Prisma contracts, we started early this year"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 246000
+			},
+			"text": " focusing a lot on the Solidity Library approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 252000
+			},
+			"text": " Solidity libraries are great because they allow you to really isolate different logic domains"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 258000
+			},
+			"text": " that your contract might have but something that we found is like the problem with libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 264000
+			},
+			"text": " is that they are linked at compile time so you cannot really upgrade them after deploying"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 266000
+			},
+			"text": " your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 272000
+			},
+			"text": " So we work with disabling guys on kind of doing this approach to operating like Solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 274000
+			},
+			"text": " Libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 279000
+			},
+			"text": " What basically works is that instead of linking to a specific version of one library, we would"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 288000
+			},
+			"text": " link it to a proxy library that would then dispatch the library call to the correct my contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 294000
+			},
+			"text": " This was interesting because it allowed us to change the business logic after the contract was deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 300000
+			},
+			"text": " But the problem with it is like it didn't allow us to modify this smart contract AVI once it was deployed"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 305000
+			},
+			"text": " so it is not possible to add new functions to the contract or to like change one of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 310000
+			},
+			"text": " function parameters and also the data structures that you have are going to be fixed forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 317000
+			},
+			"text": " So this is very interesting for solving business logic bugs but it isn't as flexible as we would"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 319000
+			},
+			"text": " like it to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 326000
+			},
+			"text": " So with this in mind we went to an even simpler approach that we call the delegate proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 332000
+			},
+			"text": " That how it basically works is like instead of having your contract logic in your contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 337000
+			},
+			"text": " do you delegate this contract logic to a different contract by using a delegate call?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 345000
+			},
+			"text": " This goes especially better with the -- after the by sentium hard fork by when the EIP 211 got"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 351000
+			},
+			"text": " included because right now it allows us to -- by using the return data size and return data copy"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 357000
+			},
+			"text": " new upcodes we can check after doing a delegate call or whatever call we can see how many bytes"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 361000
+			},
+			"text": " did the underlying call return and then return that many data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 367000
+			},
+			"text": " Because before this you kind of had to specify how many bytes you were expecting from the call"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 373000
+			},
+			"text": " and for function calls every turn dynamic data types this wasn't really a good idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 379000
+			},
+			"text": " And using this technique there are like two things that we can do here which we call like flavors"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 383000
+			},
+			"text": " but they're like based on this same idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 388000
+			},
+			"text": " The first one is like this was introduced by Vitalik in Waredy Post back in the summer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 395000
+			},
+			"text": " And it's this idea of static forward so it doesn't really solve the ability feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 400000
+			},
+			"text": " But the idea is like we can deploy these very, very cheap contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 404000
+			},
+			"text": " And this is actually an implementation -- they are so simple that this implementation was done"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 406000
+			},
+			"text": " directly in EVM code."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 412000
+			},
+			"text": " So this allows us to really -- like to deploy clump contracts of one contract for a very tiny"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 414000
+			},
+			"text": " amount of -- of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 418000
+			},
+			"text": " And this actually the -- this is actually the -- the selected implementation down with the -- from the code"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 420000
+			},
+			"text": " that we -- that we saw before."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 425000
+			},
+			"text": " So these are like very, very cheap to deploy contracts and it's -- like as you can see it's very trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 431000
+			},
+			"text": " Deployment with this is like for every call to these contracts we add an overhead of gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 434000
+			},
+			"text": " because we need to do this -- this delegate call."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 440000
+			},
+			"text": " So for example this is not a good idea for a token contract that gets interacted with in many instances."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 446000
+			},
+			"text": " The gas cost is like 700 gas for every additional delegate call that we have to pay in every -- in every call."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 451000
+			},
+			"text": " But on the flip side we get very, very cheap contract deployment costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 458000
+			},
+			"text": " So for example for a contract that takes one million gas to deploy, the moment that we do more than"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 465000
+			},
+			"text": " 1300 contracts called to this contract, it will no longer be worth it in gas wise to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 471000
+			},
+			"text": " But for example, an -- an example of a contract that I think it's a perfect example to how this can be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 477000
+			},
+			"text": " is with the ENSD contract that gets basically created every time an ENSB is done."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 485000
+			},
+			"text": " So with this contract if instead of creating a full contract with its code that gets stored into the blockchain every time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 493000
+			},
+			"text": " we created a proxy contract like this, these would have been -- the gas savings would have been very, very significant."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 501000
+			},
+			"text": " And I think this is the perfect example for this because it's a contract that gets deployed many times but gets used individually very little times."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 514000
+			},
+			"text": " So with this same idea, we can -- like if instead of these address that we're doing the call is being a constant, if we make it flexible and verbal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 518000
+			},
+			"text": " we can actually do upgrade ability in this -- in this same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 522000
+			},
+			"text": " So here is like an implementation of how this would look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 526000
+			},
+			"text": " As you can see, this is also like using the code that we presented before."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 535000
+			},
+			"text": " But here instead of doing the -- the code was the same constant address every time, we're doing it to an address that we can change."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 542000
+			},
+			"text": " So basically calling the upgrade function here would change the code where the contract is using."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 549000
+			},
+			"text": " The problem with this is like because we're using delegate calls which is basically telling the contract, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 558000
+			},
+			"text": " don't run my code -- my contract out here, I want to delegate this to this address, we need to make sure that this storage, like we're in the correct version of this storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 567000
+			},
+			"text": " So for example, in the previous slide, we see that both contracts like inherit the same -- the same storage contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 570000
+			},
+			"text": " That's because they would need to know where the -- where the storage is."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 580000
+			},
+			"text": " And for more complex cases in which you're introducing inheritance and all that, you need to be very careful with how you add the storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 586000
+			},
+			"text": " So this is actually important to understand how solid it is storing or data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 590000
+			},
+			"text": " So basically it's a very simple idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 598000
+			},
+			"text": " It starts counting like how many storage slots do you have in your contract, starting from the most basic contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 603000
+			},
+			"text": " So it would start like counting -- like this would be stored at the -- at the zero slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 607000
+			},
+			"text": " We're talking about these contract storage, but it inherits from this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 609000
+			},
+			"text": " So this would be stored at the zero slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 615000
+			},
+			"text": " This would be stored at the first slot of the contract and so on and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 625000
+			},
+			"text": " But for example, in the case of an extract, this would be like as if we put this in line right here and distract, like quote unquote, didn't exist at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 629000
+			},
+			"text": " In the case of -- the case of arrays is a little bit more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 636000
+			},
+			"text": " For static length arrays, like this behaves exactly in the same way as a extract does and it just puts it in line."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 643000
+			},
+			"text": " But for a dynamically length array, it would put the array length in the storage slot that it would be."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 650000
+			},
+			"text": " But then these array values are stored in the hash of the pointer there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 654000
+			},
+			"text": " In the case of mappings, it's actually a bit simpler."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 659000
+			},
+			"text": " It just stores the value at the hash of the key and the position."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 671000
+			},
+			"text": " So the warnings from this is if you're like abrading from one contract to another, it's -- it's better to like not add storage in the middle because as we saw,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 674000
+			},
+			"text": " the all the storage depends on what the position is inside the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 679000
+			},
+			"text": " So if we add something in the middle, all the storage would be broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 682000
+			},
+			"text": " And the problem with this is like this failing will be silent."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 688000
+			},
+			"text": " So it won't -- if you don't do it, like nothing will say this is going to break your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 693000
+			},
+			"text": " But whenever you start using the contract, all the storage will be broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 698000
+			},
+			"text": " So an example of an upgrade that goes wrong is this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 707000
+			},
+			"text": " So because of how the -- how the extracts get stored in arrays, we have this initial contracting which we are storing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 710000
+			},
+			"text": " in a string of employee."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 715000
+			},
+			"text": " And then we create like a couple of employees here with their salary."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 722000
+			},
+			"text": " If after this, we upgrade this contract to the speral to contract in which we had a new member to the extract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 732000
+			},
+			"text": " What will happen when we try to fetch the second employee salary is that it will be stored where the employees --"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 736000
+			},
+			"text": " where the first employee is joined at it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 741000
+			},
+			"text": " So it will turn its salary into zero and the salary will be into joined at."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 749000
+			},
+			"text": " But if, for example, we use the mapping to store this information because mapping stores the values subsequently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 751000
+			},
+			"text": " value from value, but they're in the hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 760000
+			},
+			"text": " If we do this exact same thing, when after upgrading to this second contract in which we track the employee here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 767000
+			},
+			"text": " both salaries would be correct, but both join dates would be zero because we never -- we never set them."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 775000
+			},
+			"text": " So with all this, we are using this upgrade ability paradigm in our own contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 777000
+			},
+			"text": " We call it Ragon OS."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 780000
+			},
+			"text": " And the implementation is actually very, very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 787000
+			},
+			"text": " We have this tiny kernel contract which actually keeps track of all what the -- how all the contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 790000
+			},
+			"text": " depend on that organization get stored."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 799000
+			},
+			"text": " And we basically store all the important business logic in an organization is stored in apps that are at the edges of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 803000
+			},
+			"text": " In this way, we can keep the kernel very, very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 811000
+			},
+			"text": " So this is like kind of the lifecycle for a new contract call that gets done to an Ragon OS contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 820000
+			},
+			"text": " So we will have the initial call here. This will go to the upgradeable proxy contract, but instead of knowing what its code is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 827000
+			},
+			"text": " it just has the kernel, whether there has been an upgrade and what is the code implementation for this app."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 832000
+			},
+			"text": " When it gets it, it does a delegate call to reveal implementation of the app."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 835000
+			},
+			"text": " In this case, it would be app version one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 843000
+			},
+			"text": " After that, if it's a productive function that it's being performed, this will last the kernel again."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 847000
+			},
+			"text": " Oh, hey, can this action be performed right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 858000
+			},
+			"text": " So with this system of the access control list and the end kernel, what we can do is we can use these complex governance mechanisms"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 865000
+			},
+			"text": " that you could have in your organization to decide whether or not an upgrade should happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 871000
+			},
+			"text": " So we are protecting all the upgrade to the kernel's and apps, too, like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 876000
+			},
+			"text": " So how would an app look like? It's very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 884000
+			},
+			"text": " By running this app in top of your organization, let's say you're running this counter app to check how many ICOs there were today."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 892000
+			},
+			"text": " So we have these kind of roles inside the app that define what are the different actions that can happen inside the app."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 895000
+			},
+			"text": " And then we just protect them here with the out modifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 904000
+			},
+			"text": " What this will do is this will plug into the organization ACL and basically any governance mechanism that the organization has"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 909000
+			},
+			"text": " can decide who can perform this and their work condition."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 918000
+			},
+			"text": " And by doing this, we can actually upgrade the app very simple and add a new storage value and a couple new functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 925000
+			},
+			"text": " And this will work. And after performing the app rate, everyone that is in the app will be using this easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 929000
+			},
+			"text": " And this is actually how it's going to look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 938000
+			},
+			"text": " By making this very, very tiny app, you can plug this counter app that you can write very, very simply and plug it into your organization"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 943000
+			},
+			"text": " and use it with all the other features that Argon has."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 949000
+			},
+			"text": " And yeah, that's everything for us. If you are curious about this, you can contact us there. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 963000
+			},
+			"text": " [Applause]"
+		}
+	]
+}

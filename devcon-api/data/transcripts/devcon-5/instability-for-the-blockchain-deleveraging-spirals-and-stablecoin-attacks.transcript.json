@@ -1,0 +1,2727 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 14000
+			},
+			"text": " Are we going to go out through the course side?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 16000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 22000
+			},
+			"text": " So, hey everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 25000
+			},
+			"text": " I'm Ariana Klagismont, PhD student at Cornell."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 28000
+			},
+			"text": " I'm going to walk you guys through some of our work today"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 32000
+			},
+			"text": " on understanding risks of non-custorial stable plants."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 34000
+			},
+			"text": " So, that's what I'm going to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 36000
+			},
+			"text": " The others' spirals and attacking centers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 40000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 42000
+			},
+			"text": " Is it a blame? Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 46000
+			},
+			"text": " They're going to be a bit closer, but let me know if there's a problem there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 50000
+			},
+			"text": " So, stable coins are a centerpiece of decentralized finance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 53000
+			},
+			"text": " which is rapidly growing and increasingly complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 57000
+			},
+			"text": " So, in just two years, it's grown to $500 million in assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 60000
+			},
+			"text": " and it's evolved into a pretty complicated system"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 63000
+			},
+			"text": " of the most ability between a number of different variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 69000
+			},
+			"text": " And in the financial world, complex systems usually come with complex risks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 73000
+			},
+			"text": " So, an example that everybody's aware of is the 2008 financial crisis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 77000
+			},
+			"text": " where we had some contracts that were intended to really stabilize the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 80000
+			},
+			"text": " but ended up having a huge destabilizing force."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 84000
+			},
+			"text": " But decentralized finance and blockchain is different."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 87000
+			},
+			"text": " The whole idea is to try to correct some of the problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 89000
+			},
+			"text": " from the traditional financial system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 93000
+			},
+			"text": " Well, it turns out that DeFi indeed has some complex risks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 96000
+			},
+			"text": " So, here's Newitz, one of the first stable coins,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 100000
+			},
+			"text": " which is plotted and trading at cents on the dollars these days."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 105000
+			},
+			"text": " Here's BitUSD, which had a major debugging event to last December."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 110000
+			},
+			"text": " Here's Steam Dollars, which has struggled to maintain its bag over the last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 114000
+			},
+			"text": " Here's BitBTC, a synthetic asset, trying to attract Bitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 116000
+			},
+			"text": " which has also collapsed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 121000
+			},
+			"text": " In more recent years, this past summer, synthetic suffer an Oracle attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 126000
+			},
+			"text": " And a month later, Tara, another stable coin, suffered two Oracle attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 131000
+			},
+			"text": " The problem with these systems is that if we really have sort of little formal understanding of how they work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 134000
+			},
+			"text": " they end up having some complex feedback effects."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 138000
+			},
+			"text": " There's no truly stable asset that's efficiently accessible within these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 142000
+			},
+			"text": " This is actually literally trying to create in the first place with stable coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 146000
+			},
+			"text": " And involves complex interaction into different agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 150000
+			},
+			"text": " So, in this talk, we're going to go through a little bit about understanding stable coins,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154000
+			},
+			"text": " sort of motivating other different from existing currency models,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157000
+			},
+			"text": " and then go through a high level overview of our paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 162000
+			},
+			"text": " which introduces a new model to try to understand these stable coin systems a little better."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 167000
+			},
+			"text": " So, a stable coin aims to be a protocol that stabilizes the market price,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 173000
+			},
+			"text": " or purchasing power of the coin, to become more usable and adoptable cryptocurrency."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 175000
+			},
+			"text": " And there are two main types of stable coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 181000
+			},
+			"text": " One is a custodial coin, where some custodian holds the reserve asset soft chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 186000
+			},
+			"text": " This is something like Tether, which reintroduces counterparty risk back in their cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 188000
+			},
+			"text": " And then there are custodial systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 191000
+			},
+			"text": " These systems, which is what we're starting with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 195000
+			},
+			"text": " involve on-chain mechanisms to try to target stability."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 198000
+			},
+			"text": " So, example here is make or down, die."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 202000
+			},
+			"text": " And this is like the systems we saw in the slides earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 205000
+			},
+			"text": " They end up having very similar designs, currently are very ad hoc,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 208000
+			},
+			"text": " because we don't really understand these systems very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 211000
+			},
+			"text": " And so, amenable to potential family."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 215000
+			},
+			"text": " So, let's go through a simple example of one of these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 217000
+			},
+			"text": " This is a simple contract for dividends."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 220000
+			},
+			"text": " So, here, we have a contract that's preparing two different agents,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 222000
+			},
+			"text": " a stable coin holder and a speculator."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 227000
+			},
+			"text": " So, let's say that each put in one e-third, currently more than $100 into the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 230000
+			},
+			"text": " So, now there's two e-thirds worth $200 in contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 236000
+			},
+			"text": " And now, as time moves forward, the price oracle updates the contract with the new price of e-third,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 239000
+			},
+			"text": " let's say it's $80, and then the contract settles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 244000
+			},
+			"text": " returning $100 worth of e-third now, 1.25 e-thirds, the stable coin holder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 246000
+			},
+			"text": " and the remainder to the speculator."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 249000
+			},
+			"text": " But, of course, if the direction of the price movement is a bit different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 252000
+			},
+			"text": " the speculator would have made a problem with keeping, and that's what they're really betting on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 254000
+			},
+			"text": " That's why they've taken these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 257000
+			},
+			"text": " So, this is similar to a forward contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 261000
+			},
+			"text": " Importantly, except the price is really on my fixed e-thirds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 264000
+			},
+			"text": " Well, the payout is in this risky collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 270000
+			},
+			"text": " And you can't really settle the US dollars on blockchain, so that's one limitation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 277000
+			},
+			"text": " And in these markets, they're usually heavy frictions between converting between the Chinese risky assets and fiat."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 280000
+			},
+			"text": " And in many jurisdictions, it may not be impossible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 283000
+			},
+			"text": " And so, if you're a stable coin holder and there's a settlement event,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 287000
+			},
+			"text": " it may actually be undesirable for you, because now you're holding a risky asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 291000
+			},
+			"text": " and to maintain a stable coin position,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 295000
+			},
+			"text": " but involved by back into stable coins, a similar stable coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 300000
+			},
+			"text": " And there's no guarantee that a good market for that continues to exist in all environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 305000
+			},
+			"text": " So, this has motivated some of the new designs, which is what we're focusing on in our modeling work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 312000
+			},
+			"text": " to make stable coins that perform in this sort of way, but don't have sort of a set expiration date."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 315000
+			},
+			"text": " So, in these systems, you again have a speculator."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 320000
+			},
+			"text": " Let's say they currently lock one e-th worth $100 into your contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 325000
+			},
+			"text": " and they create 50 stable coins against or some amount to some over plateau threshold."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 330000
+			},
+			"text": " So, if you think in terms of balance sheets, this is what the speculator's balance sheet looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 335000
+			},
+			"text": " And then they can take those 50 stable coins and go to a stable coin market"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 338000
+			},
+			"text": " and trade for about 0.5 e."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 341000
+			},
+			"text": " And I say about because it depends on what the market is willing to bear,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 345000
+			},
+			"text": " and that turns out to be pretty complex to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 349000
+			},
+			"text": " And this stable coin market works through some idea of arbitrage."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 353000
+			},
+			"text": " But, importantly, it's not real arbitrage because it depends on sort of assumptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 356000
+			},
+			"text": " about how the system continues to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 361000
+			},
+			"text": " And then, at any time, the speculator can repurchase those 50 stable coins"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 365000
+			},
+			"text": " to unlock their collateral, but they're essentially getting as a leveraged position"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 371000
+			},
+			"text": " to make the leveraged bet on this risky asset, and at some point they may want to exit that leveraged position."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 375000
+			},
+			"text": " And then the other side of the stable coin market is taken by these stable coin holders"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 385000
+			},
+			"text": " who buy the stable coins and want to maintain a stable position for some sort of risk or potentially in the future for purchasing reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 390000
+			},
+			"text": " So now, as time evolves, a price oracle again updates this contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 396000
+			},
+			"text": " to tell what the new price of ether is, and if the collateral value decreases below some threshold,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 402000
+			},
+			"text": " then the speculator can be partially liquidated to try to bring them back within that threshold."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 406000
+			},
+			"text": " And so you can see two main sort of areas of weaknesses evolving in these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 411000
+			},
+			"text": " One is around the price oracle, which if you can manipulate it, you can manipulate the entire system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 416000
+			},
+			"text": " And the other is around the stable coin market, which if it collapses, it also brings down the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 422000
+			},
+			"text": " And then, at any point, there could be some idea of this global settlement"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 426000
+			},
+			"text": " where this is getting back to what would happen in the original contract for difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 431000
+			},
+			"text": " The contract is settled, the stable coin holders can exchange their stable coins for ether at the last oracle price,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 434000
+			},
+			"text": " and the remainder goes to speculators."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 440000
+			},
+			"text": " But this is meant as sort of a last resort sort of thing, and not intended to really take effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 447000
+			},
+			"text": " So an important question in these models is, can we use the existing literature on currency peg models to try to understand these?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 450000
+			},
+			"text": " And unfortunately, the answer is no."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 455000
+			},
+			"text": " So in traditional currency peg models, we're really looking at a gameplay between currency holders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 459000
+			},
+			"text": " and there's a government issuer, which is not really a player in the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 463000
+			},
+			"text": " They're sort of mechanically committed to maintaining stability for its own city."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 471000
+			},
+			"text": " But now, in the stable coin systems, we're really replacing the government issuer with decentralized speculators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 473000
+			},
+			"text": " who are now players in the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 477000
+			},
+			"text": " So they issue and withdraw stable coins to optimize their profits over the long term."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 481000
+			},
+			"text": " They're not, they're importantly not committed to maintaining any idea for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 485000
+			},
+			"text": " And the best we can hope for is that the protocols were assigned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 491000
+			},
+			"text": " and the peg is maintained through incentive with some high probability."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 502000
+			},
+			"text": " And so this motivates the model that we're building, which, we're building up a model of the setting we put forward in the previous slides in those pictures."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 506000
+			},
+			"text": " And so we have two agents, these stable coin holders, who are seeking stability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 512000
+			},
+			"text": " and provide sort of the demand side of the equation with some elasticity and speculators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 516000
+			},
+			"text": " who choose leveraged bets that are backing the stable coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 521000
+			},
+			"text": " And there are two net sets, Ether, which is our risky asset, with an exogenous price,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 525000
+			},
+			"text": " and stable coin, which has our endogenous price that we're trying to understand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 529000
+			},
+			"text": " which is over collateralized in the risky asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 535000
+			},
+			"text": " And then there's a stable coin market, which clears by setting the demand equal to the supply in the target terms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 537000
+			},
+			"text": " in this case, to the simple distribution of dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 542000
+			},
+			"text": " And this is similar in concept to how clearing works done, yes well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 548000
+			},
+			"text": " And so in our paper, we're focusing on understanding how speculators make the city."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 554000
+			},
+			"text": " And so in our model, the speculators decide how to change the stable coin supply,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 560000
+			},
+			"text": " to maximize their next period expected returns, subject to some constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 565000
+			},
+			"text": " So this is in some idea, an idea of honest behavior in these systems, of these speculators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 570000
+			},
+			"text": " because the system designers really intend on a system to be maintained to this idea of arbitrage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 575000
+			},
+			"text": " If the price of the stable coin is trading too high or too low, then there's some idea of incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 582000
+			},
+			"text": " for these stable coin issuers and speculators to change the supply to bring the back in line with the target."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 589000
+			},
+			"text": " But as we mentioned earlier, this is not really true arbitrage, it depends on some assumptions the system's continue reforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 595000
+			},
+			"text": " So these speculators are then subject first to liquidation constraint."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 600000
+			},
+			"text": " And this is inherent to the protocol, it says how over collateralized their positions have to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 605000
+			},
+			"text": " And then in our model, they're also subject to a risk constraint, which is self-imposed by the speculator."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 610000
+			},
+			"text": " It says how much does speculator want to avoid liquidation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 614000
+			},
+			"text": " So some examples of how to formulate this might be a value of a risk constraint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 619000
+			},
+			"text": " which is consistent with an idea of like a margin of safety, you want to avoid liquidations with some probability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 624000
+			},
+			"text": " but importantly, we can consider a number of other formulations in our model."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 631000
+			},
+			"text": " So from our model, we're able to come back out some analytic waters that will set up a center-side system."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 636000
+			},
+			"text": " So the first is that there's a bound to the speculator's ability to maintain the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 643000
+			},
+			"text": " It looks something like this, but the exact form is not really important for this topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 648000
+			},
+			"text": " The second result is that speculators space the limits on how quickly they can reduce leverage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 651000
+			},
+			"text": " even if they're bringing in capital from outside the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 657000
+			},
+			"text": " And this leads to what we call deleveraging spirals, where a speculator can end up having to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 662000
+			},
+			"text": " refurchase stablecoins at an increasing price as liquidity tries up in the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 666000
+			},
+			"text": " So let's walk through intuitively how this sort of works."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 672000
+			},
+			"text": " So here, we're looking at a measure of price of the stablecoin, so measures of demand and supply in the stablecoin market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 675000
+			},
+			"text": " and on the far side, the collateral in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 682000
+			},
+			"text": " And so now, if there's a liquidation, collateral is used to reduce the supply by buying back stablecoins,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 686000
+			},
+			"text": " which leads to an imbalance between supply and demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 694000
+			},
+			"text": " And to make up for that, there needs to increase in price in the stablecoin and a decrease in the demand to bring things back in line."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 699000
+			},
+			"text": " But now, if we're starting at this state, if there's another wave of liquidations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 709000
+			},
+			"text": " because the price is higher, there's less liquidity in the market, the more collateral is used to buy back the same amount of supply to its have the same effects."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 717000
+			},
+			"text": " And so we have sort of a potential amplification effect to how much collateral and how quickly it's used."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 724000
+			},
+			"text": " Our third analytical result describes when these systems are stable versus unstable."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 733000
+			},
+			"text": " If we add a couple more assumptions, we can tractively show that if the leverage constraint for these speculators is never reactive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 739000
+			},
+			"text": " then the system converges to a steady state where we have a stable price and zero variance."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 747000
+			},
+			"text": " And an important observation here is that this steady state may not have a price of $1, or maybe below, put their potentialy above,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 758000
+			},
+			"text": " and then sort of outside of this stable region, when this constraint is activated, then we can check if the volatility is bounded to above zero with high probability."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 765000
+			},
+			"text": " And the reason here is that when you're outside of this region, you're more likely to remain outside because of this feedback effect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 771000
+			},
+			"text": " which leads to something like a kink in the probability distribution at this boundary."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 778000
+			},
+			"text": " And so we can actually see some of these effects in real-die data. This is just a preliminary analysis of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 788000
+			},
+			"text": " Here on this side here, we're seeing an either decline in December of last year, leading to a large reduction in the supply of die,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 794000
+			},
+			"text": " and the accompanying increase in the price of die, consistent with potentially an early stage of a deleveraged supply bill."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 799000
+			},
+			"text": " And so if that had continued for a while, we might see more extreme effects after the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 810000
+			},
+			"text": " And then on the far side here, in sort of more normal times for die, you can see that the normal trading price of die can be below the $1 target,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 821000
+			},
+			"text": " which is sort of in line with our stable region results, and sort of effects from liquidations can cause spike increases to the trading prices of die."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 831000
+			},
+			"text": " Our system also lets us do some simulations. So in these simulations, we can see these stable and unstable regions as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 838000
+			},
+			"text": " We can also look at the effects of different speculator behaviors on volatility and survival rates of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 843000
+			},
+			"text": " I'll leave that to sort of more details in the paper if you want to check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 848000
+			},
+			"text": " Another important thing from our results is that they can lead to new attack incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 856000
+			},
+			"text": " So the first important thing is that attacking a stable point is a different idea from a traditional policy tax tax."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 861000
+			},
+			"text": " The focus here is not on breaking the willingness of the central bank to maintain a bank."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 867000
+			},
+			"text": " It's instead involving manipulating the interaction of a number of speculators."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 871000
+			},
+			"text": " And there are three sort of attack primitives that allow these attacks to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 877000
+			},
+			"text": " The first is that these deleveraging spirals can lead to arbitrage-like trades around liquidations."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 882000
+			},
+			"text": " These can be supplemented with the fact that real implementations are stable points."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 885000
+			},
+			"text": " And arbitrage to try to automate these liquidations."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 892000
+			},
+			"text": " And then third, miners have the ability to censor and reorder transactions to extract problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 900000
+			},
+			"text": " So the first attack we consider is if there's an either decline, an attacker can manipulate the market to trigger and profit from these liquidations."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 904000
+			},
+			"text": " So this is similar to a short squeeze like attack on existing speculators."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 910000
+			},
+			"text": " It could be supplemented also with a bribe to miners to try to freeze collateral top-up transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:12,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 912000
+			},
+			"text": " And it sort of works like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 912000,
+				"to": 918000
+			},
+			"text": " So the attacker would buy stable points early, sort of dry-up, put it in the market during the ether decline."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 920000
+			},
+			"text": " Liquidations are triggered."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 924000
+			},
+			"text": " And then the attacker can potentially earn a spread by selling at the post-liquidation prices."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 932000
+			},
+			"text": " And also potentially can enter as a new speculator at high prices, which is good for speculator position potentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 936000
+			},
+			"text": " And so we're looking at this in our model through some examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 939000
+			},
+			"text": " This could potentially be very profitable."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 943000
+			},
+			"text": " The second attack is after there's an either decline."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 948000
+			},
+			"text": " An attacker could try to re-argil launching to trigger a profit from spiraling liquidations."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 967000
+			},
+			"text": " And so the idea here is that a change in transaction ordering can cause more liquidations and extractable value for the speculator, which leads to the fact that for reverse incentives, for these attacks for miners, if those rewards are greater than the mining rewards, then there's an incentive for them to do this attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:09,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 969000
+			},
+			"text": " So what does this kind of look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,000",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 969000,
+				"to": 981000
+			},
+			"text": " So in the current state of the system, we might have a timeline of the transaction history and say this is the horrible price speed, and now the attacker, and then there are liquidations in the current timeline here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 985000
+			},
+			"text": " And now the attacker wants to branch the blockchain here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 990000
+			},
+			"text": " And importantly, they can inherit the price speed because those transactions are already signed."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 996000
+			},
+			"text": " They can inherit the liquidations as well and place themselves in the position to perform those and benefit from those."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 1006000
+			},
+			"text": " And in fact, they can reorder and censor transactions to trigger even more liquidations and put themselves in the position to profit from those as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1012000
+			},
+			"text": " Sorry, if you want to mention it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1018000
+			},
+			"text": " So there are also some design insights that come from our work."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1028000
+			},
+			"text": " So one idea is that if we're trying to figure out how to design these, the focus could be on widening the stable region and limiting the severity of the unstable region."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1032000
+			},
+			"text": " And there are some specific considerations for dye in particular."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1039000
+			},
+			"text": " So there are fees in the dye system, which can actually have the effect of amplifying these two leveraging spirals."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1045000
+			},
+			"text": " But there's potentially ways that this could be reformatted in a countercyclical way."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1046000
+			},
+			"text": " So that's where it gets more."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1054000
+			},
+			"text": " A good fee mechanism could also reduce speculator/herit behavior and also reduce the effect of these two leveraging spirals."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1062000
+			},
+			"text": " And also there are potential better uses for a last resort's idea of MKR insurance to try to do qualities to leveraging spirals."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1064000
+			},
+			"text": " And I'll talk about these a little bit more."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1073000
+			},
+			"text": " A key factor in how severe these two leveraging spirals can be is how exchangeable is this stable point to alternatives outside the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1079000
+			},
+			"text": " So things like stable fiat currencies or stable fiat backed crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1091000
+			},
+			"text": " And the higher this exchangeability is, the lower the feedback effects, but it introduces an idea of shutdown risk because you're really relying on these flows outside the system to help to stabilize the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1095000
+			},
+			"text": " And in many jurisdictions, this may not be an option."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1102000
+			},
+			"text": " So there's a couple sort of open questions that I'm continuing to look at on these lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1114000
+			},
+			"text": " The first is expanding the strategy space of the speculators and tactics, understanding what else could be possible in this space, and understanding governance and our core risks, how that relates to these risks as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1125000
+			},
+			"text": " And then connecting back to the first slide, understanding sort of composability of risks between all these protocols, where you can have layers upon layers of deleveraging that could potentially occur."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1131000
+			},
+			"text": " And then eventually we want to learn how to design more crash resistant systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1134000
+			},
+			"text": " So that wraps up the talk here."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:19:02,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1142000
+			},
+			"text": " So key takeaways you can take away are that the stable coin collateral can potentially be consumed a lot faster because of these deleveraging sort of effects."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1142000,
+				"to": 1149000
+			},
+			"text": " And this can lead to arbitrage-like trades around liquidations and new attack incentives to consider."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1152000
+			},
+			"text": " So there are a couple more resources here to learn more."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1156000
+			},
+			"text": " And you can follow me to see some of the subsequent work that I'm working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1162000
+			},
+			"text": " And then we have a minute to open up for questions so you can talk to me after as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1168000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1181000
+			},
+			"text": " So I think one key thing that you're analysis kind of is that you can start a pretty high interest rate, and that seems to drive by these problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:42,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1182000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1182000,
+				"to": 1187000
+			},
+			"text": " So, yeah, that would factor into understanding how the demand side works."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1191000
+			},
+			"text": " Yeah, more work is to go on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:19:56,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1196000
+			},
+			"text": " Excellent."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1196000,
+				"to": 1201000
+			},
+			"text": " I will get right why that's a module to entertain the external world, the business system."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1204000
+			},
+			"text": " If you go back, like four or five slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1205000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1206000
+			},
+			"text": " Actually, I think we have to wrap up."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1207000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1209000
+			},
+			"text": " Come talk to me right after answering the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1211000
+			},
+			"text": " And anyone else can talk as well?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1212000
+			},
+			"text": " Or get in touch."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:13,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1213000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,000",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1213000,
+				"to": 1216000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1231000
+			},
+			"text": " [music]"
+		}
+	]
+}

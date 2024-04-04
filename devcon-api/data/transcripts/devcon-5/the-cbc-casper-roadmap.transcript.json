@@ -1,0 +1,4146 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:08,680"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 8680
+			},
+			"text": " So we're going to talk today about the CDC CASPER roadmap and it's going to be a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,680",
+				"to": "00:00:13,680"
+			},
+			"offsets": {
+				"from": 8680,
+				"to": 13680
+			},
+			"text": " bit less action-packed than the normal DevCon talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,680",
+				"to": "00:00:16,320"
+			},
+			"offsets": {
+				"from": 13680,
+				"to": 16320
+			},
+			"text": " So here is my little outline."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,320",
+				"to": "00:00:23,520"
+			},
+			"offsets": {
+				"from": 16320,
+				"to": 23520
+			},
+			"text": " I'm going to be talking about the roadmap as a research roadmap as opposed to an implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,520",
+				"to": "00:00:30,800"
+			},
+			"offsets": {
+				"from": 23520,
+				"to": 30800
+			},
+			"text": " roadmap or like roadmap for developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,800",
+				"to": "00:00:34,400"
+			},
+			"offsets": {
+				"from": 30800,
+				"to": 34400
+			},
+			"text": " I'm going to talk about the relationship between my roadmap and the Ethereum roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,400",
+				"to": "00:00:38,120"
+			},
+			"offsets": {
+				"from": 34400,
+				"to": 38120
+			},
+			"text": " I'm going to talk about our past and future work because somehow the roadmap is made up"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,120",
+				"to": "00:00:42,800"
+			},
+			"offsets": {
+				"from": 38120,
+				"to": 42800
+			},
+			"text": " of all the stuff we've done and all the stuff we're going to do or planning to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,800",
+				"to": "00:00:47,200"
+			},
+			"offsets": {
+				"from": 42800,
+				"to": 47200
+			},
+			"text": " And then I'm going to talk about -- and I'm going to give some resources and announcements."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,200",
+				"to": "00:00:54,200"
+			},
+			"offsets": {
+				"from": 47200,
+				"to": 54200
+			},
+			"text": " So the CDC CASPER roadmap is saying it's a research and architecture roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,200",
+				"to": "00:00:58,600"
+			},
+			"offsets": {
+				"from": 54200,
+				"to": 58600
+			},
+			"text": " The outputs of this roadmap are research and specifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,600",
+				"to": "00:01:05,760"
+			},
+			"offsets": {
+				"from": 58600,
+				"to": 65760
+			},
+			"text": " We don't -- the goal of the roadmap is to produce architecture, to produce research"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,760",
+				"to": "00:01:13,920"
+			},
+			"offsets": {
+				"from": 65760,
+				"to": 73920
+			},
+			"text": " in the form of distributed systems, computer science, like theoretical computer science,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,920",
+				"to": "00:01:21,240"
+			},
+			"offsets": {
+				"from": 73920,
+				"to": 81240
+			},
+			"text": " and also to produce specifications which serve as abstract descriptions of protocols which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,240",
+				"to": "00:01:25,240"
+			},
+			"offsets": {
+				"from": 81240,
+				"to": 85240
+			},
+			"text": " if you can implement anything that matches the specifications, you'll get all the benefits"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,240",
+				"to": "00:01:26,520"
+			},
+			"offsets": {
+				"from": 85240,
+				"to": 86520
+			},
+			"text": " of the architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,520",
+				"to": "00:01:33,720"
+			},
+			"offsets": {
+				"from": 86520,
+				"to": 93720
+			},
+			"text": " So somehow the CDC CASPER roadmap produces architecture and research and then it's up"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,720",
+				"to": "00:01:38,400"
+			},
+			"offsets": {
+				"from": 93720,
+				"to": 98400
+			},
+			"text": " to engineers to implement the architecture in a way that works for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,400",
+				"to": "00:01:42,640"
+			},
+			"offsets": {
+				"from": 98400,
+				"to": 102640
+			},
+			"text": " And any way that you implement the architecture will inherit the properties of the architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,640",
+				"to": "00:01:49,280"
+			},
+			"offsets": {
+				"from": 102640,
+				"to": 109280
+			},
+			"text": " So if we prove that architecture has a property, then any of the many ways that it can be implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,280",
+				"to": "00:01:51,200"
+			},
+			"offsets": {
+				"from": 109280,
+				"to": 111200
+			},
+			"text": " will benefit from that property."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,200",
+				"to": "00:01:56,040"
+			},
+			"offsets": {
+				"from": 111200,
+				"to": 116040
+			},
+			"text": " And so the CDC CASPER research doesn't produce complete protocol specifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,040",
+				"to": "00:02:01,160"
+			},
+			"offsets": {
+				"from": 116040,
+				"to": 121160
+			},
+			"text": " It produces architecture level specifications for which it's guaranteed that any implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,160",
+				"to": "00:02:09,400"
+			},
+			"offsets": {
+				"from": 121160,
+				"to": 129400
+			},
+			"text": " that matches the architecture will benefit from the features or the properties of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,400",
+				"to": "00:02:10,600"
+			},
+			"offsets": {
+				"from": 129400,
+				"to": 130600
+			},
+			"text": " protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,600",
+				"to": "00:02:20,280"
+			},
+			"offsets": {
+				"from": 130600,
+				"to": 140280
+			},
+			"text": " They are -- but we are going to -- so we're kind of independent from the engineering"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,280",
+				"to": "00:02:21,280"
+			},
+			"offsets": {
+				"from": 140280,
+				"to": 141280
+			},
+			"text": " efforts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,280",
+				"to": "00:02:25,120"
+			},
+			"offsets": {
+				"from": 141280,
+				"to": 145120
+			},
+			"text": " We end the architecture and then engineering happens after."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,120",
+				"to": "00:02:31,800"
+			},
+			"offsets": {
+				"from": 145120,
+				"to": 151800
+			},
+			"text": " But it doesn't mean we don't provide support to software developers and help them interpret"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,800",
+				"to": "00:02:37,800"
+			},
+			"offsets": {
+				"from": 151800,
+				"to": 157800
+			},
+			"text": " the architecture or -- we're going to provide support even though it's not the roadmap to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,800",
+				"to": "00:02:42,800"
+			},
+			"offsets": {
+				"from": 157800,
+				"to": 162800
+			},
+			"text": " implement it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,800",
+				"to": "00:02:45,200"
+			},
+			"offsets": {
+				"from": 162800,
+				"to": 165200
+			},
+			"text": " It's a research roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,200",
+				"to": "00:02:48,960"
+			},
+			"offsets": {
+				"from": 165200,
+				"to": 168960
+			},
+			"text": " It's all about building correct by construction and consensus protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,960",
+				"to": "00:02:53,960"
+			},
+			"offsets": {
+				"from": 168960,
+				"to": 173960
+			},
+			"text": " We -- correct by construction engineering is about designing your systems in a way that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,960",
+				"to": "00:02:58,440"
+			},
+			"offsets": {
+				"from": 173960,
+				"to": 178440
+			},
+			"text": " is guaranteed by the process you design them to be correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,440",
+				"to": "00:03:02,600"
+			},
+			"offsets": {
+				"from": 178440,
+				"to": 182600
+			},
+			"text": " It's about not the correctness."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,600",
+				"to": "00:03:08,120"
+			},
+			"offsets": {
+				"from": 182600,
+				"to": 188120
+			},
+			"text": " It's about the process that is used to develop these protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,120",
+				"to": "00:03:17,680"
+			},
+			"offsets": {
+				"from": 188120,
+				"to": 197680
+			},
+			"text": " So we really formally state the design requirements and abstractly state protocol statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,680",
+				"to": "00:03:22,400"
+			},
+			"offsets": {
+				"from": 197680,
+				"to": 202400
+			},
+			"text": " And then we define them in order to derive from the problem statements a solution to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,400",
+				"to": "00:03:27,520"
+			},
+			"offsets": {
+				"from": 202400,
+				"to": 207520
+			},
+			"text": " problem that is guaranteed by the way that it was derived to be correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,520",
+				"to": "00:03:32,480"
+			},
+			"offsets": {
+				"from": 207520,
+				"to": 212480
+			},
+			"text": " And so we state the design requirements and then we kind of -- we'll derive a solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,480",
+				"to": "00:03:38,560"
+			},
+			"offsets": {
+				"from": 212480,
+				"to": 218560
+			},
+			"text": " to satisfy them directly from the design requirements which are in terms of abstract protocol specifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,560",
+				"to": "00:03:41,560"
+			},
+			"offsets": {
+				"from": 218560,
+				"to": 221560
+			},
+			"text": " So -- and specifically we're interested in not just any consensus protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,560",
+				"to": "00:03:45,440"
+			},
+			"offsets": {
+				"from": 221560,
+				"to": 225440
+			},
+			"text": " We want scalable proof of state consensus protocols to have the same overhead as Nakamoto"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,440",
+				"to": "00:03:47,400"
+			},
+			"offsets": {
+				"from": 225440,
+				"to": 227400
+			},
+			"text": " consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,400",
+				"to": "00:03:51,920"
+			},
+			"offsets": {
+				"from": 227400,
+				"to": 231920
+			},
+			"text": " We want to be able to have blockchains that work on an internet scale that don't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,920",
+				"to": "00:03:56,080"
+			},
+			"offsets": {
+				"from": 231920,
+				"to": 236080
+			},
+			"text": " a crazy overhead like a traditional consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,080",
+				"to": "00:03:59,840"
+			},
+			"offsets": {
+				"from": 236080,
+				"to": 239840
+			},
+			"text": " That actually has the same overhead as Nakamoto consensus or comparable to the overhead of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,840",
+				"to": "00:04:01,840"
+			},
+			"offsets": {
+				"from": 239840,
+				"to": 241840
+			},
+			"text": " current Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,840",
+				"to": "00:04:04,840"
+			},
+			"offsets": {
+				"from": 241840,
+				"to": 244840
+			},
+			"text": " So basically we want to be able to make -- to meet all the normal requirements, all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,840",
+				"to": "00:04:09,720"
+			},
+			"offsets": {
+				"from": 244840,
+				"to": 249720
+			},
+			"text": " traditional requirements of a consensus protocol like safety, non-triviality and liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,720",
+				"to": "00:04:15,520"
+			},
+			"offsets": {
+				"from": 249720,
+				"to": 255520
+			},
+			"text": " And also a bunch of other requirements like, for example, being able to make this ideal"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,520",
+				"to": "00:04:17,960"
+			},
+			"offsets": {
+				"from": 255520,
+				"to": 257960
+			},
+			"text": " theoretically optimal overhead trade-off."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,960",
+				"to": "00:04:23,480"
+			},
+			"offsets": {
+				"from": 257960,
+				"to": 263480
+			},
+			"text": " And also we're interested in scalability in, you know, moving and starting and basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,480",
+				"to": "00:04:28,960"
+			},
+			"offsets": {
+				"from": 263480,
+				"to": 268960
+			},
+			"text": " we understand entirely inside a consensus protocol framework where, you know, if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,960",
+				"to": "00:04:33,040"
+			},
+			"offsets": {
+				"from": 268960,
+				"to": 273040
+			},
+			"text": " went to the starting workshop yesterday, that was all about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,040",
+				"to": "00:04:36,280"
+			},
+			"offsets": {
+				"from": 273040,
+				"to": 276280
+			},
+			"text": " So I'm not going to really touch on it now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,280",
+				"to": "00:04:40,640"
+			},
+			"offsets": {
+				"from": 276280,
+				"to": 280640
+			},
+			"text": " So we have a really deeply formalistic approach to protocol design."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,640",
+				"to": "00:04:43,800"
+			},
+			"offsets": {
+				"from": 280640,
+				"to": 283800
+			},
+			"text": " We are formal from the very start."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,800",
+				"to": "00:04:51,520"
+			},
+			"offsets": {
+				"from": 283800,
+				"to": 291520
+			},
+			"text": " We never engage in trial and error in the normal kind of development fashion."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,520",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 291520,
+				"to": 296000
+			},
+			"text": " We don't implement stuff until we know for sure that it's correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:04:59,560"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 299560
+			},
+			"text": " We do a lot of math before there's a single line of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,560",
+				"to": "00:05:02,880"
+			},
+			"offsets": {
+				"from": 299560,
+				"to": 302880
+			},
+			"text": " There's a ton of math before there's a single line of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,880",
+				"to": "00:05:07,400"
+			},
+			"offsets": {
+				"from": 302880,
+				"to": 307400
+			},
+			"text": " It's a deeply, deeply formalistic process and it takes quite a lot of time to produce"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,400",
+				"to": "00:05:10,960"
+			},
+			"offsets": {
+				"from": 307400,
+				"to": 310960
+			},
+			"text": " a specification this way, especially if you mean like a complete specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,960",
+				"to": "00:05:15,760"
+			},
+			"offsets": {
+				"from": 310960,
+				"to": 315760
+			},
+			"text": " But it's guaranteed to be correct because of the process by which it was derived."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,760",
+				"to": "00:05:19,960"
+			},
+			"offsets": {
+				"from": 315760,
+				"to": 319960
+			},
+			"text": " It's, you know, it's correct by construction process."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,960",
+				"to": "00:05:24,760"
+			},
+			"offsets": {
+				"from": 319960,
+				"to": 324760
+			},
+			"text": " It's also guaranteed to have a certain aesthetic appeal that is like common in mathematics where"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,760",
+				"to": "00:05:29,480"
+			},
+			"offsets": {
+				"from": 324760,
+				"to": 329480
+			},
+			"text": " you kind of only make the minimum, most natural choices and nothing more and everything is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,480",
+				"to": "00:05:33,720"
+			},
+			"offsets": {
+				"from": 329480,
+				"to": 333720
+			},
+			"text": " kind of natural and elegant and everything is symmetric and, you know, it has like this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,720",
+				"to": "00:05:41,840"
+			},
+			"offsets": {
+				"from": 333720,
+				"to": 341840
+			},
+			"text": " nice math feeling that you get from looking at any, well, any good field of math."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,840",
+				"to": "00:05:46,360"
+			},
+			"offsets": {
+				"from": 341840,
+				"to": 346360
+			},
+			"text": " And that is like one of the big appeals I think of the roadmap is that the aesthetic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,360",
+				"to": "00:05:51,160"
+			},
+			"offsets": {
+				"from": 346360,
+				"to": 351160
+			},
+			"text": " appeal is very, very high because everything is like derived from math objects in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,160",
+				"to": "00:05:56,040"
+			},
+			"offsets": {
+				"from": 351160,
+				"to": 356040
+			},
+			"text": " that's very careful and it doesn't involve weird arbitrary choices except for to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,040",
+				"to": "00:06:00,320"
+			},
+			"offsets": {
+				"from": 356040,
+				"to": 360320
+			},
+			"text": " minimum possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,320",
+				"to": "00:06:02,240"
+			},
+			"offsets": {
+				"from": 360320,
+				"to": 362240
+			},
+			"text": " So that's the basic, that's the basic idea of like what it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,240",
+				"to": "00:06:03,240"
+			},
+			"offsets": {
+				"from": 362240,
+				"to": 363240
+			},
+			"text": " It's a research roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,240",
+				"to": "00:06:04,600"
+			},
+			"offsets": {
+				"from": 363240,
+				"to": 364600
+			},
+			"text": " It doesn't tell you too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,600",
+				"to": "00:06:08,800"
+			},
+			"offsets": {
+				"from": 364600,
+				"to": 368800
+			},
+			"text": " But before I go into the items of the roadmap, we're going to talk about the relationship"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,800",
+				"to": "00:06:12,400"
+			},
+			"offsets": {
+				"from": 368800,
+				"to": 372400
+			},
+			"text": " between the CBC CASPER roadmap and the Ethereum roadmaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,400",
+				"to": "00:06:15,480"
+			},
+			"offsets": {
+				"from": 372400,
+				"to": 375480
+			},
+			"text": " So in some ways we're completely independent of the Ethereum roadmaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,480",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 375480,
+				"to": 380000
+			},
+			"text": " You know, we're a research roadmap, the Ethereum roadmaps are a roadmap for deployment on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:22,840"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 382840
+			},
+			"text": " and maintenance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,840",
+				"to": "00:06:35,280"
+			},
+			"offsets": {
+				"from": 382840,
+				"to": 395280
+			},
+			"text": " But you know, some ways, you know, CBC CASPER research has made its way into Ethereum 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,280",
+				"to": "00:06:39,960"
+			},
+			"offsets": {
+				"from": 395280,
+				"to": 399960
+			},
+			"text": " And maybe it'll make its way into Ethereum 3.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,960",
+				"to": "00:06:45,600"
+			},
+			"offsets": {
+				"from": 399960,
+				"to": 405600
+			},
+			"text": " And that's a good idea to make it a little bit more efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,600",
+				"to": "00:06:49,040"
+			},
+			"offsets": {
+				"from": 405600,
+				"to": 409040
+			},
+			"text": " One of the things that is probably the most painless that came out of CBC CASPER research"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,040",
+				"to": "00:06:55,480"
+			},
+			"offsets": {
+				"from": 409040,
+				"to": 415480
+			},
+			"text": " is the latest message driven ghost poor choice rule that is featured in the beacon chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,480",
+				"to": "00:07:00,600"
+			},
+			"offsets": {
+				"from": 415480,
+				"to": 420600
+			},
+			"text": " Another thing is to make a proposal to add the CBC CASPER finality mechanism to the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,600",
+				"to": "00:07:02,880"
+			},
+			"offsets": {
+				"from": 420600,
+				"to": 422880
+			},
+			"text": " chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,880",
+				"to": "00:07:08,160"
+			},
+			"offsets": {
+				"from": 422880,
+				"to": 428160
+			},
+			"text": " So somehow the CBC CASPER research flow, if when the research roadmap flows into Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,160",
+				"to": "00:07:12,080"
+			},
+			"offsets": {
+				"from": 428160,
+				"to": 432080
+			},
+			"text": " 2.0 research, at least a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,080",
+				"to": "00:07:15,760"
+			},
+			"offsets": {
+				"from": 432080,
+				"to": 435760
+			},
+			"text": " In some ways, you know, so in some ways actually the Ethereum roadmaps are not really independent"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,760",
+				"to": "00:07:20,160"
+			},
+			"offsets": {
+				"from": 435760,
+				"to": 440160
+			},
+			"text": " of the CBC CASPER roadmap, at least as long as we continue to produce stuff that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,160",
+				"to": "00:07:22,760"
+			},
+			"offsets": {
+				"from": 440160,
+				"to": 442760
+			},
+			"text": " want to implement."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,760",
+				"to": "00:07:24,480"
+			},
+			"offsets": {
+				"from": 442760,
+				"to": 444480
+			},
+			"text": " And you know, that's our goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,480",
+				"to": "00:07:28,240"
+			},
+			"offsets": {
+				"from": 444480,
+				"to": 448240
+			},
+			"text": " We want to build protocols that people really want to implement because of their simplicity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,240",
+				"to": "00:07:31,920"
+			},
+			"offsets": {
+				"from": 448240,
+				"to": 451920
+			},
+			"text": " elegance, utility, properties, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,920",
+				"to": "00:07:37,200"
+			},
+			"offsets": {
+				"from": 451920,
+				"to": 457200
+			},
+			"text": " So we have, but the Ethereum roadmaps are not in any way blocked on the CBC CASPER roadmaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,200",
+				"to": "00:07:42,040"
+			},
+			"offsets": {
+				"from": 457200,
+				"to": 462040
+			},
+			"text": " You know, there's no one's waiting for us to finish our research before implementing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,040",
+				"to": "00:07:43,600"
+			},
+			"offsets": {
+				"from": 462040,
+				"to": 463600
+			},
+			"text": " protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,600",
+				"to": "00:07:47,720"
+			},
+			"offsets": {
+				"from": 463600,
+				"to": 467720
+			},
+			"text": " So there really are in some ways very independent of us."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,720",
+				"to": "00:07:48,720"
+			},
+			"offsets": {
+				"from": 467720,
+				"to": 468720
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,720",
+				"to": "00:07:53,640"
+			},
+			"offsets": {
+				"from": 468720,
+				"to": 473640
+			},
+			"text": " So now I'm going to talk about CBC CASPER, the CBC CASPER roadmap in terms of, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,640",
+				"to": "00:07:58,600"
+			},
+			"offsets": {
+				"from": 473640,
+				"to": 478600
+			},
+			"text": " what have actually been done so far and, you know, what are we going to do in the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,600",
+				"to": "00:08:04,600"
+			},
+			"offsets": {
+				"from": 478600,
+				"to": 484600
+			},
+			"text": " Before I start, I'm just going to mention that the CBC, the CASPER research started before"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,600",
+				"to": "00:08:08,240"
+			},
+			"offsets": {
+				"from": 484600,
+				"to": 488240
+			},
+			"text": " the split between CBC CASPER and CASPER FFG."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,240",
+				"to": "00:08:12,240"
+			},
+			"offsets": {
+				"from": 488240,
+				"to": 492240
+			},
+			"text": " CASPER research started off as proof of stake research into, you know, economically secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,240",
+				"to": "00:08:16,520"
+			},
+			"offsets": {
+				"from": 492240,
+				"to": 496520
+			},
+			"text": " proof of stake where we can have like a equilibrium to follow the protocol that's really robust,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,520",
+				"to": "00:08:21,720"
+			},
+			"offsets": {
+				"from": 496520,
+				"to": 501720
+			},
+			"text": " where we use security deposits in order to make the equilibrium as robust as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,720",
+				"to": "00:08:28,040"
+			},
+			"offsets": {
+				"from": 501720,
+				"to": 508040
+			},
+			"text": " so we can have penalties to make it so that the equilibrium is not just an epsilon equilibrium,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,040",
+				"to": "00:08:31,120"
+			},
+			"offsets": {
+				"from": 508040,
+				"to": 511120
+			},
+			"text": " but like a very robust equilibrium."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,120",
+				"to": "00:08:35,600"
+			},
+			"offsets": {
+				"from": 511120,
+				"to": 515600
+			},
+			"text": " And then basically what happens is at some point after you do the incentivization research,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,600",
+				"to": "00:08:38,960"
+			},
+			"offsets": {
+				"from": 515600,
+				"to": 518960
+			},
+			"text": " you realize you have to have some specific thing you're telling them that you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,960",
+				"to": "00:08:41,240"
+			},
+			"offsets": {
+				"from": 518960,
+				"to": 521240
+			},
+			"text": " incentivize like a specific protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,240",
+				"to": "00:08:48,680"
+			},
+			"offsets": {
+				"from": 521240,
+				"to": 528680
+			},
+			"text": " And so the CBC CASPER roadmap really represents the distributed systems research that is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,680",
+				"to": "00:08:50,280"
+			},
+			"offsets": {
+				"from": 528680,
+				"to": 530280
+			},
+			"text": " to be incentivized through stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,280",
+				"to": "00:08:51,880"
+			},
+			"offsets": {
+				"from": 530280,
+				"to": 531880
+			},
+			"text": " It doesn't represent proof of stake research."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,880",
+				"to": "00:08:55,720"
+			},
+			"offsets": {
+				"from": 531880,
+				"to": 535720
+			},
+			"text": " It just represents consensus protocol research like distributed systems research, although"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,720",
+				"to": "00:09:00,720"
+			},
+			"offsets": {
+				"from": 535720,
+				"to": 540720
+			},
+			"text": " absolutely the product requirements in CBC CASPER are driven entirely and determined entirely"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,720",
+				"to": "00:09:02,840"
+			},
+			"offsets": {
+				"from": 540720,
+				"to": 542840
+			},
+			"text": " by the proof of stake research that came before it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,840",
+				"to": "00:09:06,200"
+			},
+			"offsets": {
+				"from": 542840,
+				"to": 546200
+			},
+			"text": " So we get proof of stake research and then distributed system research where Vitalik and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,200",
+				"to": "00:09:12,320"
+			},
+			"offsets": {
+				"from": 546200,
+				"to": 552320
+			},
+			"text": " I split off into different protocols, the CASPER FFG versus CASPER CBC."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,320",
+				"to": "00:09:14,120"
+			},
+			"offsets": {
+				"from": 552320,
+				"to": 554120
+			},
+			"text": " And so this is going to be about distributed systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,120",
+				"to": "00:09:16,440"
+			},
+			"offsets": {
+				"from": 554120,
+				"to": 556440
+			},
+			"text": " This is going to be distributed systems roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,440",
+				"to": "00:09:19,400"
+			},
+			"offsets": {
+				"from": 556440,
+				"to": 559400
+			},
+			"text": " You're not going to see anything about the stake incentives here, not because it's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,400",
+				"to": "00:09:21,880"
+			},
+			"offsets": {
+				"from": 559400,
+				"to": 561880
+			},
+			"text": " in like some other roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,880",
+				"to": "00:09:27,360"
+			},
+			"offsets": {
+				"from": 561880,
+				"to": 567360
+			},
+			"text": " It's just that CBC CASPER is specifically a distributed systems roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,360",
+				"to": "00:09:28,360"
+			},
+			"offsets": {
+				"from": 567360,
+				"to": 568360
+			},
+			"text": " So basically what is the roadmap?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,360",
+				"to": "00:09:31,720"
+			},
+			"offsets": {
+				"from": 568360,
+				"to": 571720
+			},
+			"text": " Well any roadmap is basically everything you've done already and everything you're planning"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,720",
+				"to": "00:09:34,440"
+			},
+			"offsets": {
+				"from": 571720,
+				"to": 574440
+			},
+			"text": " to do in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,440",
+				"to": "00:09:39,960"
+			},
+			"offsets": {
+				"from": 574440,
+				"to": 579960
+			},
+			"text": " It's kind of like a map though over time, you know what you're supposed to accomplish"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,960",
+				"to": "00:09:43,240"
+			},
+			"offsets": {
+				"from": 579960,
+				"to": 583240
+			},
+			"text": " to get to your goals."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,240",
+				"to": "00:09:46,920"
+			},
+			"offsets": {
+				"from": 583240,
+				"to": 586920
+			},
+			"text": " And so I'm going to talk about all the past work that we've done."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,920",
+				"to": "00:09:49,680"
+			},
+			"offsets": {
+				"from": 586920,
+				"to": 589680
+			},
+			"text": " This is going to be the milestones, like important milestones."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,680",
+				"to": "00:09:53,120"
+			},
+			"offsets": {
+				"from": 589680,
+				"to": 593120
+			},
+			"text": " There's lots of struggling behind the scenes that isn't listed here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,120",
+				"to": "00:09:58,560"
+			},
+			"offsets": {
+				"from": 593120,
+				"to": 598560
+			},
+			"text": " Lots of just a ton of work that isn't in here because you know just not all work ends"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,560",
+				"to": "00:10:02,960"
+			},
+			"offsets": {
+				"from": 598560,
+				"to": 602960
+			},
+			"text": " up leading to a milestone that is like especially in research."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,960",
+				"to": "00:10:05,840"
+			},
+			"offsets": {
+				"from": 602960,
+				"to": 605840
+			},
+			"text": " That is like something that you can present, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,840",
+				"to": "00:10:13,360"
+			},
+			"offsets": {
+				"from": 605840,
+				"to": 613360
+			},
+			"text": " So the first thing that really kicked off CBC CASPER research was, well beyond just me"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,360",
+				"to": "00:10:20,160"
+			},
+			"offsets": {
+				"from": 613360,
+				"to": 620160
+			},
+			"text": " hearing about and learning about CBC protocol design is the CBC CASPER message type."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,160",
+				"to": "00:10:25,480"
+			},
+			"offsets": {
+				"from": 620160,
+				"to": 625480
+			},
+			"text": " This is something Greg Meredith and I came up with in August 2016 when we were trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,480",
+				"to": "00:10:32,320"
+			},
+			"offsets": {
+				"from": 625480,
+				"to": 632320
+			},
+			"text": " to come up with just the preliminary infrastructure so that we can state a CBC consensus problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,320",
+				"to": "00:10:40,360"
+			},
+			"offsets": {
+				"from": 632320,
+				"to": 640360
+			},
+			"text": " In August, just a month later, came up with for the first time this safe and non-trivial"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,360",
+				"to": "00:10:46,640"
+			},
+			"offsets": {
+				"from": 640360,
+				"to": 646640
+			},
+			"text": " binary consensus protocol which I presented at DevCon in Shanghai."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,640",
+				"to": "00:10:55,200"
+			},
+			"offsets": {
+				"from": 646640,
+				"to": 655200
+			},
+			"text": " It you know used this idea of an ideal adversary to argue about security which now we replace"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,200",
+				"to": "00:10:58,040"
+			},
+			"offsets": {
+				"from": 655200,
+				"to": 658040
+			},
+			"text": " with this idea of safety oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,040",
+				"to": "00:11:03,400"
+			},
+			"offsets": {
+				"from": 658040,
+				"to": 663400
+			},
+			"text": " And but it was like you know the real milestone like a safe and non-trivial consensus protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,400",
+				"to": "00:11:06,520"
+			},
+			"offsets": {
+				"from": 663400,
+				"to": 666520
+			},
+			"text": " is like a real mile real milestone."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,520",
+				"to": "00:11:12,480"
+			},
+			"offsets": {
+				"from": 666520,
+				"to": 672480
+			},
+			"text": " June 2017, so a few months later, LMD Ghost was first specified."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,480",
+				"to": "00:11:19,320"
+			},
+			"offsets": {
+				"from": 672480,
+				"to": 679320
+			},
+			"text": " This happened when Carl who just spoke asked me how we're ever going to turn from binary"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,320",
+				"to": "00:11:21,480"
+			},
+			"offsets": {
+				"from": 679320,
+				"to": 681480
+			},
+			"text": " consensus to blockchain consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,480",
+				"to": "00:11:23,440"
+			},
+			"offsets": {
+				"from": 681480,
+				"to": 683440
+			},
+			"text": " He was like frustrated and concerned."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,440",
+				"to": "00:11:27,240"
+			},
+			"offsets": {
+				"from": 683440,
+				"to": 687240
+			},
+			"text": " Carl and I were working together at the time on this binary consensus protocol and I was"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,240",
+				"to": "00:11:30,200"
+			},
+			"offsets": {
+				"from": 687240,
+				"to": 690200
+			},
+			"text": " like I just gave it a try and somehow."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,200",
+				"to": "00:11:32,360"
+			},
+			"offsets": {
+				"from": 690200,
+				"to": 692360
+			},
+			"text": " Oh, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,360",
+				"to": "00:11:35,560"
+			},
+			"offsets": {
+				"from": 692360,
+				"to": 695560
+			},
+			"text": " I'm looking over here at the next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,560",
+				"to": "00:11:41,600"
+			},
+			"offsets": {
+				"from": 695560,
+				"to": 701600
+			},
+			"text": " So actually before the before the four choice rule came up, Yowishi did a formal verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,600",
+				"to": "00:11:46,560"
+			},
+			"offsets": {
+				"from": 701600,
+				"to": 706560
+			},
+			"text": " of the safety of the binary consensus protocol in March 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,560",
+				"to": "00:11:52,600"
+			},
+			"offsets": {
+				"from": 706560,
+				"to": 712600
+			},
+			"text": " And then in June, the latest message driven ghost made its first appearance as a specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,600",
+				"to": "00:11:55,680"
+			},
+			"offsets": {
+				"from": 712600,
+				"to": 715680
+			},
+			"text": " you know when Carl asked me this question and I went and adapted the binary consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,680",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 715680,
+				"to": 721000
+			},
+			"text": " protocol to the latest message driven ghost protocol with very, very minor change."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:07,640"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 727640
+			},
+			"text": " And in July 2017 at the IC3 Ethereum boot camp, the LMD Ghost was first implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,640",
+				"to": "00:12:10,800"
+			},
+			"offsets": {
+				"from": 727640,
+				"to": 730800
+			},
+			"text": " I worked together with John Levy to implement it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,800",
+				"to": "00:12:17,120"
+			},
+			"offsets": {
+				"from": 730800,
+				"to": 737120
+			},
+			"text": " I did most of the work but he was definitely there and contributing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,120",
+				"to": "00:12:22,040"
+			},
+			"offsets": {
+				"from": 737120,
+				"to": 742040
+			},
+			"text": " In November 2017, we came up with our first atomic cross shard four choice proposal that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,040",
+				"to": "00:12:28,560"
+			},
+			"offsets": {
+				"from": 742040,
+				"to": 748560
+			},
+			"text": " guarantees that you know cross shard communications are our atomic."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,560",
+				"to": "00:12:32,200"
+			},
+			"offsets": {
+				"from": 748560,
+				"to": 752200
+			},
+			"text": " It's like super important property."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,200",
+				"to": "00:12:39,080"
+			},
+			"offsets": {
+				"from": 752200,
+				"to": 759080
+			},
+			"text": " And this is actually the first sharding solution that ever came across, the IC3 research is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,080",
+				"to": "00:12:43,160"
+			},
+			"offsets": {
+				"from": 759080,
+				"to": 763160
+			},
+			"text": " this atomic cross shard solution with merge blocks which are blocks that exist on two"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,160",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 763160,
+				"to": 766000
+			},
+			"text": " chains at once and they are in the chains of both of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:50,480"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 770480
+			},
+			"text": " So they have to kind of synchronize exactly at that height."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,480",
+				"to": "00:13:02,920"
+			},
+			"offsets": {
+				"from": 770480,
+				"to": 782920
+			},
+			"text": " And then later, quite a lot later, we came up with the cross shard message model which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,920",
+				"to": "00:13:07,520"
+			},
+			"offsets": {
+				"from": 782920,
+				"to": 787520
+			},
+			"text": " has the ability to send a message and not have it be received right away but have it"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,520",
+				"to": "00:13:09,680"
+			},
+			"offsets": {
+				"from": 787520,
+				"to": 789680
+			},
+			"text": " received just in some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,680",
+				"to": "00:13:14,960"
+			},
+			"offsets": {
+				"from": 789680,
+				"to": 794960
+			},
+			"text": " You know and this is much more friendly to prevent blocks from being orphaned."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,960",
+				"to": "00:13:18,560"
+			},
+			"offsets": {
+				"from": 794960,
+				"to": 798560
+			},
+			"text": " It's a much more realistic cross shard communication model."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,560",
+				"to": "00:13:22,080"
+			},
+			"offsets": {
+				"from": 798560,
+				"to": 802080
+			},
+			"text": " Still, we have atomicity although a slightly different notion."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,080",
+				"to": "00:13:26,360"
+			},
+			"offsets": {
+				"from": 802080,
+				"to": 806360
+			},
+			"text": " It's more like atomicity at finality than atomicity just in the four choice rule the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,360",
+				"to": "00:13:29,840"
+			},
+			"offsets": {
+				"from": 806360,
+				"to": 809840
+			},
+			"text": " way that the merge block, the merge block thing, any fortress rule at any moment you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,840",
+				"to": "00:13:34,400"
+			},
+			"offsets": {
+				"from": 809840,
+				"to": 814400
+			},
+			"text": " have this atomicity property with this one is a time when you're when it's sent but not"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,400",
+				"to": "00:13:38,200"
+			},
+			"offsets": {
+				"from": 814400,
+				"to": 818200
+			},
+			"text": " yet received where the atomicity is not really there but at finality it's guaranteed to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,200",
+				"to": "00:13:42,680"
+			},
+			"offsets": {
+				"from": 818200,
+				"to": 822680
+			},
+			"text": " there like you can never finalize a send without the receive being eventually finalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,680",
+				"to": "00:13:47,520"
+			},
+			"offsets": {
+				"from": 822680,
+				"to": 827520
+			},
+			"text": " You can never you know have a finalized not sent and a finalized receive."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,520",
+				"to": "00:13:50,760"
+			},
+			"offsets": {
+				"from": 827520,
+				"to": 830760
+			},
+			"text": " It would just be a violation of the protocol that kind of I mean the protocol guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,760",
+				"to": "00:13:51,840"
+			},
+			"offsets": {
+				"from": 830760,
+				"to": 831840
+			},
+			"text": " that more happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,840",
+				"to": "00:13:56,080"
+			},
+			"offsets": {
+				"from": 831840,
+				"to": 836080
+			},
+			"text": " So like if you follow protocol that's just impossible."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,080",
+				"to": "00:14:02,160"
+			},
+			"offsets": {
+				"from": 836080,
+				"to": 842160
+			},
+			"text": " In August of 2018, we came up with the first correct and complete safety oracle decision"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,160",
+				"to": "00:14:09,720"
+			},
+			"offsets": {
+				"from": 842160,
+				"to": 849720
+			},
+			"text": " detector and this is an Ethereum Stanford like math Olympics workshop."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,720",
+				"to": "00:14:12,640"
+			},
+			"offsets": {
+				"from": 849720,
+				"to": 852640
+			},
+			"text": " I don't really know what I don't remember what it's called."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,640",
+				"to": "00:14:17,440"
+			},
+			"offsets": {
+				"from": 852640,
+				"to": 857440
+			},
+			"text": " Greg Price came up with this who isn't in the community but he's you know he comes to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,440",
+				"to": "00:14:23,600"
+			},
+			"offsets": {
+				"from": 857440,
+				"to": 863600
+			},
+			"text": " these hackathon kind of like your math hacking events and we have a long history of struggling"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,600",
+				"to": "00:14:29,080"
+			},
+			"offsets": {
+				"from": 863600,
+				"to": 869080
+			},
+			"text": " for a very long time before this this one specification for detecting safety especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,080",
+				"to": "00:14:34,640"
+			},
+			"offsets": {
+				"from": 869080,
+				"to": 874640
+			},
+			"text": " because especially in the cases of all the cases of equivocations you know of like who"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,640",
+				"to": "00:14:39,080"
+			},
+			"offsets": {
+				"from": 874640,
+				"to": 879080
+			},
+			"text": " sees what equivocations because it gets complicated when different validators see different equivocations"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,080",
+				"to": "00:14:43,680"
+			},
+			"offsets": {
+				"from": 879080,
+				"to": 883680
+			},
+			"text": " and when you have to reason about the proof while they're equivocating."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,680",
+				"to": "00:14:47,260"
+			},
+			"offsets": {
+				"from": 883680,
+				"to": 887260
+			},
+			"text": " So it turns out this was this was a really challenging thing and we had a real professional"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,260",
+				"to": "00:14:51,680"
+			},
+			"offsets": {
+				"from": 887260,
+				"to": 891680
+			},
+			"text": " mathematician like Math Olympian solve it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,680",
+				"to": "00:14:57,920"
+			},
+			"offsets": {
+				"from": 891680,
+				"to": 897920
+			},
+			"text": " September 2018 we did the first implementation of the cross-hard message system and here's"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,920",
+				"to": "00:15:02,080"
+			},
+			"offsets": {
+				"from": 897920,
+				"to": 902080
+			},
+			"text": " this gift that we have it's really beautiful of the system and basically what's happening"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,080",
+				"to": "00:15:06,400"
+			},
+			"offsets": {
+				"from": 902080,
+				"to": 906400
+			},
+			"text": " in the bottom is that blocks are being orphaned in order to guarantee the atomicity of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,400",
+				"to": "00:15:10,560"
+			},
+			"offsets": {
+				"from": 906400,
+				"to": 910560
+			},
+			"text": " communications between the two shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,560",
+				"to": "00:15:16,480"
+			},
+			"offsets": {
+				"from": 910560,
+				"to": 916480
+			},
+			"text": " In October 2018 we did our first specification of sorry for implementation I don't know when"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,480",
+				"to": "00:15:20,920"
+			},
+			"offsets": {
+				"from": 916480,
+				"to": 920920
+			},
+			"text": " this specification happened I guess of the multi-level shard hierarchy with message routing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,920",
+				"to": "00:15:21,920"
+			},
+			"offsets": {
+				"from": 920920,
+				"to": 921920
+			},
+			"text": " and shard balancing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,920",
+				"to": "00:15:25,160"
+			},
+			"offsets": {
+				"from": 921920,
+				"to": 925160
+			},
+			"text": " So this is like taking it to the next level rather than just having two shards that communicate"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,160",
+				"to": "00:15:30,520"
+			},
+			"offsets": {
+				"from": 925160,
+				"to": 930520
+			},
+			"text": " a little bit you know between them we want to have many shards that do routing and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,520",
+				"to": "00:15:34,360"
+			},
+			"offsets": {
+				"from": 930520,
+				"to": 934360
+			},
+			"text": " want to have a fixed shard hierarchy we want to have an ability to change shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,360",
+				"to": "00:15:38,480"
+			},
+			"offsets": {
+				"from": 934360,
+				"to": 938480
+			},
+			"text": " This is an example of a two-shard system with the root shard and the child shard changing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,480",
+				"to": "00:15:39,480"
+			},
+			"offsets": {
+				"from": 938480,
+				"to": 939480
+			},
+			"text": " positions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,480",
+				"to": "00:15:42,040"
+			},
+			"offsets": {
+				"from": 939480,
+				"to": 942040
+			},
+			"text": " In some way there's no such thing as a root shard and child shard anymore there's only"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,040",
+				"to": "00:15:46,800"
+			},
+			"offsets": {
+				"from": 942040,
+				"to": 946800
+			},
+			"text": " root blocks and child blocks at every moment in the forechoice rule maybe one of them is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,800",
+				"to": "00:15:50,720"
+			},
+			"offsets": {
+				"from": 946800,
+				"to": 950720
+			},
+			"text": " the root but it may be at some moments there's both of them are the root like you see when"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,720",
+				"to": "00:15:54,400"
+			},
+			"offsets": {
+				"from": 950720,
+				"to": 954400
+			},
+			"text": " they're sideways like that it's like at the moment that moment in the forechoice the parent"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,400",
+				"to": "00:15:59,320"
+			},
+			"offsets": {
+				"from": 954400,
+				"to": 959320
+			},
+			"text": " has said look I'm not the root anymore and then the child hasn't picked that up yet and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,320",
+				"to": "00:16:03,480"
+			},
+			"offsets": {
+				"from": 959320,
+				"to": 963480
+			},
+			"text": " so they're both the children of the root actually there is no root for that wide moment but then"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,480",
+				"to": "00:16:07,240"
+			},
+			"offsets": {
+				"from": 963480,
+				"to": 967240
+			},
+			"text": " when the child eventually receives that message what they have to do because of the nature"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,240",
+				"to": "00:16:11,880"
+			},
+			"offsets": {
+				"from": 967240,
+				"to": 971880
+			},
+			"text": " of the forechoice rule you know the child becomes the parent."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,880",
+				"to": "00:16:16,720"
+			},
+			"offsets": {
+				"from": 971880,
+				"to": 976720
+			},
+			"text": " And then and with single message hops like this that are atomic you can implement routing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,720",
+				"to": "00:16:21,560"
+			},
+			"offsets": {
+				"from": 976720,
+				"to": 981560
+			},
+			"text": " which guarantees with the same atomicity property that we can go from one shard to another through"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,560",
+				"to": "00:16:26,680"
+			},
+			"offsets": {
+				"from": 981560,
+				"to": 986680
+			},
+			"text": " any number of shards this uses routing protocol this uses like a routing table system and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,680",
+				"to": "00:16:30,480"
+			},
+			"offsets": {
+				"from": 986680,
+				"to": 990480
+			},
+			"text": " this is the tables get updated as the shards change position I mean if the shards are a"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,480",
+				"to": "00:16:35,280"
+			},
+			"offsets": {
+				"from": 990480,
+				"to": 995280
+			},
+			"text": " fixed position you kind of have static routing tables you have just do source routing calculate"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,280",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 995280,
+				"to": 999000
+			},
+			"text": " from the source exactly what the route is going to be but because the shards are moving and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:42,240"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1002240
+			},
+			"text": " the shards over here may not know about the changes in the shards shape over there we"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,240",
+				"to": "00:16:47,600"
+			},
+			"offsets": {
+				"from": 1002240,
+				"to": 1007600
+			},
+			"text": " need to have a dynamic routing table system in this in this solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,600",
+				"to": "00:16:55,880"
+			},
+			"offsets": {
+				"from": 1007600,
+				"to": 1015880
+			},
+			"text": " In November 2018 at last step on I released this minimal CBC Casper protocol paper which"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,880",
+				"to": "00:17:01,520"
+			},
+			"offsets": {
+				"from": 1015880,
+				"to": 1021520
+			},
+			"text": " described abstractly a family of consensus protocols really really formally and this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,520",
+				"to": "00:17:06,960"
+			},
+			"offsets": {
+				"from": 1021520,
+				"to": 1026960
+			},
+			"text": " kind of represented a very general abstraction of what we had done before with like the binary"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,960",
+				"to": "00:17:10,040"
+			},
+			"offsets": {
+				"from": 1026960,
+				"to": 1030040
+			},
+			"text": " consensus protocol or the block chases protocol or we had a whole bunch of other ones like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,040",
+				"to": "00:17:16,240"
+			},
+			"offsets": {
+				"from": 1030040,
+				"to": 1036240
+			},
+			"text": " an integer consensus protocol and then this kind of really abstracted them and formalized"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,240",
+				"to": "00:17:24,400"
+			},
+			"offsets": {
+				"from": 1036240,
+				"to": 1044400
+			},
+			"text": " it in a way and when we wrote the proofs down in incredible detail it's way too much detail"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,400",
+				"to": "00:17:30,880"
+			},
+			"offsets": {
+				"from": 1044400,
+				"to": 1050880
+			},
+			"text": " and then next month we had the first formal CBC Casper light client specification which"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,880",
+				"to": "00:17:36,400"
+			},
+			"offsets": {
+				"from": 1050880,
+				"to": 1056400
+			},
+			"text": " won't see the light of day until today actually and this is kind of cool because originally"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,400",
+				"to": "00:17:42,920"
+			},
+			"offsets": {
+				"from": 1056400,
+				"to": 1062920
+			},
+			"text": " the CBC Casper specification it has message nesting instead of message linking and so"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,920",
+				"to": "00:17:46,360"
+			},
+			"offsets": {
+				"from": 1062920,
+				"to": 1066360
+			},
+			"text": " the messages just get really big and that's not really practical people don't like to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,360",
+				"to": "00:17:50,200"
+			},
+			"offsets": {
+				"from": 1066360,
+				"to": 1070200
+			},
+			"text": " see that even though from the point of view of like the semantics in the math like it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,200",
+				"to": "00:17:56,400"
+			},
+			"offsets": {
+				"from": 1070200,
+				"to": 1076400
+			},
+			"text": " still a non-trivial safe whatever consensus protocol so we have like client specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,400",
+				"to": "00:18:06,880"
+			},
+			"offsets": {
+				"from": 1076400,
+				"to": 1086880
+			},
+			"text": " as of November 28 2018 February 2019 another one of these ethereum Stanford math Olympic"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,880",
+				"to": "00:18:13,560"
+			},
+			"offsets": {
+				"from": 1086880,
+				"to": 1093560
+			},
+			"text": " hack things I wish I knew what they were called we came up with Daniel Kane with working"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,560",
+				"to": "00:18:18,080"
+			},
+			"offsets": {
+				"from": 1093560,
+				"to": 1098080
+			},
+			"text": " with Greg Price who came up with the original complete correct safety detector slash decision"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,080",
+				"to": "00:18:25,320"
+			},
+			"offsets": {
+				"from": 1098080,
+				"to": 1105320
+			},
+			"text": " detector came up with the efficient oracle making decisions which is a big deal because"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,320",
+				"to": "00:18:30,360"
+			},
+			"offsets": {
+				"from": 1105320,
+				"to": 1110360
+			},
+			"text": " that other one is computationally quite inefficient and this is also quite heavy lifting that was"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,360",
+				"to": "00:18:39,600"
+			},
+			"offsets": {
+				"from": 1110360,
+				"to": 1119600
+			},
+			"text": " done in May 2019 the first two live in strategies based on the leaders for CBC Casper were specified"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,600",
+				"to": "00:18:46,320"
+			},
+			"offsets": {
+				"from": 1119600,
+				"to": 1126320
+			},
+			"text": " by researchers at the Casper lives team actually Daniel Kane who is on contract with them and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,320",
+				"to": "00:18:51,520"
+			},
+			"offsets": {
+				"from": 1126320,
+				"to": 1131520
+			},
+			"text": " Andrea's faculty they were both produced almost immediate sequence like within like"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,520",
+				"to": "00:18:56,560"
+			},
+			"offsets": {
+				"from": 1131520,
+				"to": 1136560
+			},
+			"text": " a week of each other it's like a leader based CBC Casper live in strategy where the leader"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,560",
+				"to": "00:19:00,280"
+			},
+			"offsets": {
+				"from": 1136560,
+				"to": 1140280
+			},
+			"text": " synchronizes everyone and guarantees that they go through the same states in order to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,280",
+				"to": "00:19:10,320"
+			},
+			"offsets": {
+				"from": 1140280,
+				"to": 1150320
+			},
+			"text": " make decisions also the same month but towards the end came up with the first live in strategy"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,320",
+				"to": "00:19:15,320"
+			},
+			"offsets": {
+				"from": 1150320,
+				"to": 1155320
+			},
+			"text": " based on fault rejection for CBC Casper which is quite a different strategy it has to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,320",
+				"to": "00:19:20,480"
+			},
+			"offsets": {
+				"from": 1155320,
+				"to": 1160480
+			},
+			"text": " with you know validators detecting whether each other are faulty and using information"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,480",
+				"to": "00:19:26,800"
+			},
+			"offsets": {
+				"from": 1160480,
+				"to": 1166800
+			},
+			"text": " about the faults in order to come up with a live in strategy then at the IC3 theory and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,800",
+				"to": "00:19:31,680"
+			},
+			"offsets": {
+				"from": 1166800,
+				"to": 1171680
+			},
+			"text": " boot camp in 2019 we came up with and did oh I forgot I remember now sorry I should have"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,680",
+				"to": "00:19:36,520"
+			},
+			"offsets": {
+				"from": 1171680,
+				"to": 1176520
+			},
+			"text": " mentioned so the sharding specification for the cross-hard messages was at the 2018"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,520",
+				"to": "00:19:42,800"
+			},
+			"offsets": {
+				"from": 1176520,
+				"to": 1182800
+			},
+			"text": " 2018 IC3 theory and boot camp and this is where it did you came on to the CBC Casper team"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,800",
+				"to": "00:19:46,200"
+			},
+			"offsets": {
+				"from": 1182800,
+				"to": 1186200
+			},
+			"text": " and like immediately started writing proofs and he really helped with the sharding stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,200",
+				"to": "00:19:51,240"
+			},
+			"offsets": {
+				"from": 1186200,
+				"to": 1191240
+			},
+			"text": " and has been helping with it ever since so and then the implementation happened obviously"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,240",
+				"to": "00:19:55,680"
+			},
+			"offsets": {
+				"from": 1191240,
+				"to": 1195680
+			},
+			"text": " after the specification and I was I guess like June 2018 or something like that so now"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,680",
+				"to": "00:20:01,240"
+			},
+			"offsets": {
+				"from": 1195680,
+				"to": 1201240
+			},
+			"text": " June 2019 we came up with like the efficient efficient algorithms for LMD ghost updating"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,240",
+				"to": "00:20:07,840"
+			},
+			"offsets": {
+				"from": 1201240,
+				"to": 1207840
+			},
+			"text": " the safety detector and you know other other kind of efficiency stuff to do with with Casper"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,840",
+				"to": "00:20:13,920"
+			},
+			"offsets": {
+				"from": 1207840,
+				"to": 1213920
+			},
+			"text": " in July 2019 Sebastian Zany came up with the first asynchronous probabilistic live in"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,920",
+				"to": "00:20:22,320"
+			},
+			"offsets": {
+				"from": 1213920,
+				"to": 1222320
+			},
+			"text": " a strategy for CBC Casper which is you know it's probabilistic and it uses the common"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,320",
+				"to": "00:20:25,560"
+			},
+			"offsets": {
+				"from": 1222320,
+				"to": 1225560
+			},
+			"text": " coin model where basically everyone's flipping coins and then eventually they all flip the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,560",
+				"to": "00:20:31,160"
+			},
+			"offsets": {
+				"from": 1225560,
+				"to": 1231160
+			},
+			"text": " same coin and it ends up being live."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,160",
+				"to": "00:20:37,040"
+			},
+			"offsets": {
+				"from": 1231160,
+				"to": 1237040
+			},
+			"text": " The first partial synchrony thing first partial synchrony specification for CBC Casper I came"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,040",
+				"to": "00:20:43,800"
+			},
+			"offsets": {
+				"from": 1237040,
+				"to": 1243800
+			},
+			"text": " up with in July 2019 and this was also based on fault detection but now instead of faults"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,800",
+				"to": "00:20:47,880"
+			},
+			"offsets": {
+				"from": 1243800,
+				"to": 1247880
+			},
+			"text": " being perfectly reliably detectable as in synchrony they're not and so it's quite a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,880",
+				"to": "00:20:56,360"
+			},
+			"offsets": {
+				"from": 1247880,
+				"to": 1256360
+			},
+			"text": " lot more complicated and then the oh we got the first formal verification of safety and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,360",
+				"to": "00:21:02,280"
+			},
+			"offsets": {
+				"from": 1256360,
+				"to": 1262280
+			},
+			"text": " untriviality of the full and light clients the abstract ones this is done by runtime"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,280",
+				"to": "00:21:08,640"
+			},
+			"offsets": {
+				"from": 1262280,
+				"to": 1268640
+			},
+			"text": " verification including a bunch of people who you're going to see listed later so I don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,640",
+				"to": "00:21:14,960"
+			},
+			"offsets": {
+				"from": 1268640,
+				"to": 1274960
+			},
+			"text": " know I'll just say a little time here the we also had the same same and same month the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,960",
+				"to": "00:21:21,440"
+			},
+			"offsets": {
+				"from": 1274960,
+				"to": 1281440
+			},
+			"text": " first formal verification of efficient safety safety oracle detection by Ruria Nakamura"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,440",
+				"to": "00:21:29,680"
+			},
+			"offsets": {
+				"from": 1281440,
+				"to": 1289680
+			},
+			"text": " who is here also and also we had in the same month the first partial synchrony specifications"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,680",
+				"to": "00:21:37,640"
+			},
+			"offsets": {
+				"from": 1289680,
+				"to": 1297640
+			},
+			"text": " for the leader protocols that Daniel came basically pioneered and that's kind of all"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,640",
+				"to": "00:21:43,560"
+			},
+			"offsets": {
+				"from": 1297640,
+				"to": 1303560
+			},
+			"text": " the major roadmaps maybe milestones on the road map maybe if not all almost all until"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,560",
+				"to": "00:21:48,800"
+			},
+			"offsets": {
+				"from": 1303560,
+				"to": 1308800
+			},
+			"text": " today but we have a lot of future work we have to continue a lot of stuff that we were"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,800",
+				"to": "00:21:52,840"
+			},
+			"offsets": {
+				"from": 1308800,
+				"to": 1312840
+			},
+			"text": " doing a lot of stuff that we've done you maybe noticed that I haven't published and you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,840",
+				"to": "00:21:58,200"
+			},
+			"offsets": {
+				"from": 1312840,
+				"to": 1318200
+			},
+			"text": " you haven't seen yet so we need to you know some some of this stuff needs to be formalized"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,200",
+				"to": "00:22:04,520"
+			},
+			"offsets": {
+				"from": 1318200,
+				"to": 1324520
+			},
+			"text": " that's abstracted verified you know it's not really clear if all of this is you know like"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,520",
+				"to": "00:22:10,520"
+			},
+			"offsets": {
+				"from": 1324520,
+				"to": 1330520
+			},
+			"text": " we haven't really done the kinds of verification that we love to have where like you're paranoid"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,520",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1330520,
+				"to": 1335000
+			},
+			"text": " absolutely sure under any circumstance that is correct with all of it we also have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:19,760"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1339760
+			},
+			"text": " you know abstracted and so we have like the results that we have in the most general"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,760",
+				"to": "00:22:25,080"
+			},
+			"offsets": {
+				"from": 1339760,
+				"to": 1345080
+			},
+			"text": " terms possible so that we're as useful as possible for providing the most general architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,080",
+				"to": "00:22:30,680"
+			},
+			"offsets": {
+				"from": 1345080,
+				"to": 1350680
+			},
+			"text": " that which basically provides the guarantees the most possible implementations and we also"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,680",
+				"to": "00:22:37,200"
+			},
+			"offsets": {
+				"from": 1350680,
+				"to": 1357200
+			},
+			"text": " have to do a lot of documentation in peer review of past work you know you know I claim we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,200",
+				"to": "00:22:44,940"
+			},
+			"offsets": {
+				"from": 1357200,
+				"to": 1364940
+			},
+			"text": " done but you guys can't really tell at this point really not that much here's some more"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,940",
+				"to": "00:22:50,400"
+			},
+			"offsets": {
+				"from": 1364940,
+				"to": 1370400
+			},
+			"text": " past work you know validator rotation load balancing sharding client strategies these"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,400",
+				"to": "00:22:56,280"
+			},
+			"offsets": {
+				"from": 1370400,
+				"to": 1376280
+			},
+			"text": " are things that are not done but which are necessary for the scalable proof of stake or"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,280",
+				"to": "00:23:03,160"
+			},
+			"offsets": {
+				"from": 1376280,
+				"to": 1383160
+			},
+			"text": " scalable distributed system think you know also and you know I would say that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,160",
+				"to": "00:23:10,200"
+			},
+			"offsets": {
+				"from": 1383160,
+				"to": 1390200
+			},
+			"text": " we have I mean we have solutions to some extent but it's not fully you know at the level of"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,200",
+				"to": "00:23:17,680"
+			},
+			"offsets": {
+				"from": 1390200,
+				"to": 1397680
+			},
+			"text": " formality completeness etc that we're used to and that we expect we also have like just"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,680",
+				"to": "00:23:23,320"
+			},
+			"offsets": {
+				"from": 1397680,
+				"to": 1403320
+			},
+			"text": " future work that is just hasn't really been started that much yet abstraction of all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,320",
+				"to": "00:23:26,760"
+			},
+			"offsets": {
+				"from": 1403320,
+				"to": 1406760
+			},
+			"text": " live in the stuff you know right now we have like a few specific live protocols we don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,760",
+				"to": "00:23:30,600"
+			},
+			"offsets": {
+				"from": 1406760,
+				"to": 1410600
+			},
+			"text": " really have that much of general infrastructure for generating live consensus protocols but"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,600",
+				"to": "00:23:34,320"
+			},
+			"offsets": {
+				"from": 1410600,
+				"to": 1414320
+			},
+			"text": " we'd like to abstract all of our live in the research so we can have the most general"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,320",
+				"to": "00:23:39,120"
+			},
+			"offsets": {
+				"from": 1414320,
+				"to": 1419120
+			},
+			"text": " infrastructure possible we have to verify all of our live in the proofs you know both by"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,120",
+				"to": "00:23:45,120"
+			},
+			"offsets": {
+				"from": 1419120,
+				"to": 1425120
+			},
+			"text": " hand and formally to the much bigger extent than we have already and we want to talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,120",
+				"to": "00:23:49,440"
+			},
+			"offsets": {
+				"from": 1425120,
+				"to": 1429440
+			},
+			"text": " performance you know I mentioned earlier that like we want to have the same network overhead"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,440",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1429440,
+				"to": 1435000
+			},
+			"text": " as Nakamoto consensus and you know there's there's all sorts of other considerations for performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:23:59,320"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1439320
+			},
+			"text": " like for example the latency to finality latency to inclusion in the first block which under"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,320",
+				"to": "00:24:06,000"
+			},
+			"offsets": {
+				"from": 1439320,
+				"to": 1446000
+			},
+			"text": " normal execution is later finalized you know the number of like operations per second that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,000",
+				"to": "00:24:10,960"
+			},
+			"offsets": {
+				"from": 1446000,
+				"to": 1450960
+			},
+			"text": " you need to do like in terms of signature verification and like compute there's as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,960",
+				"to": "00:24:14,920"
+			},
+			"offsets": {
+				"from": 1450960,
+				"to": 1454920
+			},
+			"text": " as like the overhead the message overhead which is kind of what I was referring to and I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,920",
+				"to": "00:24:18,560"
+			},
+			"offsets": {
+				"from": 1454920,
+				"to": 1458560
+			},
+			"text": " thinking about the overhead of Nakamoto consensus I wasn't thinking about mining just thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,560",
+				"to": "00:24:22,320"
+			},
+			"offsets": {
+				"from": 1458560,
+				"to": 1462320
+			},
+			"text": " about the clients and how they just have to download like one header per block or very"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,320",
+				"to": "00:24:28,840"
+			},
+			"offsets": {
+				"from": 1462320,
+				"to": 1468840
+			},
+			"text": " little information you know we have in CBC Casper we have this requirement that the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,840",
+				"to": "00:24:33,560"
+			},
+			"offsets": {
+				"from": 1468840,
+				"to": 1473560
+			},
+			"text": " fault that the fault tolerance thresholds of the protocol are not in the consensus protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,560",
+				"to": "00:24:38,080"
+			},
+			"offsets": {
+				"from": 1473560,
+				"to": 1478080
+			},
+			"text": " but their clients and validator side and so we have to give strategies for clients or"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,080",
+				"to": "00:24:42,640"
+			},
+			"offsets": {
+				"from": 1478080,
+				"to": 1482640
+			},
+			"text": " give at least some best practices for clients for choosing these thresholds because not"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,640",
+				"to": "00:24:49,360"
+			},
+			"offsets": {
+				"from": 1482640,
+				"to": 1489360
+			},
+			"text": " all thresholds are going to be equally good or equally useful so you know this is like"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,360",
+				"to": "00:24:52,920"
+			},
+			"offsets": {
+				"from": 1489360,
+				"to": 1492920
+			},
+			"text": " an just a whole bunch of stuff that needs to be done there's probably more future work"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,920",
+				"to": "00:24:59,160"
+			},
+			"offsets": {
+				"from": 1492920,
+				"to": 1499160
+			},
+			"text": " that isn't listed here but but but if this if this is all done then and all the stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,160",
+				"to": "00:25:03,640"
+			},
+			"offsets": {
+				"from": 1499160,
+				"to": 1503640
+			},
+			"text": " that we already claimed is done so far as done that actually we're pretty pretty close"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,640",
+				"to": "00:25:11,360"
+			},
+			"offsets": {
+				"from": 1503640,
+				"to": 1511360
+			},
+			"text": " to having a scalable distributed consensus protocol that has all of the security and"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,360",
+				"to": "00:25:17,880"
+			},
+			"offsets": {
+				"from": 1511360,
+				"to": 1517880
+			},
+			"text": " overhead properties that we want and also live list which is super important property"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,880",
+				"to": "00:25:26,240"
+			},
+			"offsets": {
+				"from": 1517880,
+				"to": 1526240
+			},
+			"text": " that is shockingly difficult to provide basically you have to prove that if you exhaust you"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,240",
+				"to": "00:25:29,320"
+			},
+			"offsets": {
+				"from": 1526240,
+				"to": 1529320
+			},
+			"text": " basically have to prove that there is no way to execute the protocol that doesn't eventually"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,320",
+				"to": "00:25:33,400"
+			},
+			"offsets": {
+				"from": 1529320,
+				"to": 1533400
+			},
+			"text": " meet the decision because you have to kind of exhaust every single possible state transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,400",
+				"to": "00:25:38,480"
+			},
+			"offsets": {
+				"from": 1533400,
+				"to": 1538480
+			},
+			"text": " to the protocol until you're forced to make to make a decision and that turns out to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,480",
+				"to": "00:25:44,960"
+			},
+			"offsets": {
+				"from": 1538480,
+				"to": 1544960
+			},
+			"text": " quite a difficult thing to argue so we have some announces announcements and resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,960",
+				"to": "00:25:51,480"
+			},
+			"offsets": {
+				"from": 1544960,
+				"to": 1551480
+			},
+			"text": " to share so we're collaborating with runtime verification to abstract and verify our protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,480",
+				"to": "00:25:59,120"
+			},
+			"offsets": {
+				"from": 1551480,
+				"to": 1559120
+			},
+			"text": " it's a pretty exciting collaboration and you know they're really amazing at this work"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,120",
+				"to": "00:26:06,280"
+			},
+			"offsets": {
+				"from": 1559120,
+				"to": 1566280
+			},
+			"text": " they have a paper that's being released right now and here you see the main contributors"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,280",
+				"to": "00:26:12,360"
+			},
+			"offsets": {
+				"from": 1566280,
+				"to": 1572360
+			},
+			"text": " on the CVC on the runtime verification on this research and they basically did a proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,360",
+				"to": "00:26:21,080"
+			},
+			"offsets": {
+				"from": 1572360,
+				"to": 1581080
+			},
+			"text": " in the cock of the safety and non-triviality properties of the abstract consensus protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,080",
+				"to": "00:26:28,160"
+			},
+			"offsets": {
+				"from": 1581080,
+				"to": 1588160
+			},
+			"text": " for the full node and the light node and here is the paper give you a moment if you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,160",
+				"to": "00:26:36,840"
+			},
+			"offsets": {
+				"from": 1588160,
+				"to": 1596840
+			},
+			"text": " to take a photo of that there it is this is the paper this is cock proofs it goes in detail"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,840",
+				"to": "00:26:41,840"
+			},
+			"offsets": {
+				"from": 1596840,
+				"to": 1601840
+			},
+			"text": " about the formal verification of these light and full client protocols these are abstract"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,840",
+				"to": "00:26:47,040"
+			},
+			"offsets": {
+				"from": 1601840,
+				"to": 1607040
+			},
+			"text": " they only have safety and non-triviality they're not live at this level of specification and"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,040",
+				"to": "00:26:51,080"
+			},
+			"offsets": {
+				"from": 1607040,
+				"to": 1611080
+			},
+			"text": " you also look check out the cock proofs here this is like a github link to the actual proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,080",
+				"to": "00:26:55,280"
+			},
+			"offsets": {
+				"from": 1611080,
+				"to": 1615280
+			},
+			"text": " if you're interested in that"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,280",
+				"to": "00:27:00,760"
+			},
+			"offsets": {
+				"from": 1615280,
+				"to": 1620760
+			},
+			"text": " you know like a mora like I mentioned had has this formal verification of the decision"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,760",
+				"to": "00:27:06,880"
+			},
+			"offsets": {
+				"from": 1620760,
+				"to": 1626880
+			},
+			"text": " detector I didn't make a QR code for this as kind of dumb I'm sorry go check them out"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,880",
+				"to": "00:27:13,240"
+			},
+			"offsets": {
+				"from": 1626880,
+				"to": 1633240
+			},
+			"text": " on twitter look for this tweet click on that link maybe see him after and get it from him"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,240",
+				"to": "00:27:16,120"
+			},
+			"offsets": {
+				"from": 1633240,
+				"to": 1636120
+			},
+			"text": " sorry about the lack of QR code I don't know what happened"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,120",
+				"to": "00:27:21,760"
+			},
+			"offsets": {
+				"from": 1636120,
+				"to": 1641760
+			},
+			"text": " CASPER Labs is implementing the CBC a CBC CASPER blockchain for production you know quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,760",
+				"to": "00:27:27,320"
+			},
+			"offsets": {
+				"from": 1641760,
+				"to": 1647320
+			},
+			"text": " different than a research roadmap and they have like a github that you can follow and"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,320",
+				"to": "00:27:34,960"
+			},
+			"offsets": {
+				"from": 1647320,
+				"to": 1654960
+			},
+			"text": " is quite active and they came up with this paper which also released today is gives this"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:34,960",
+				"to": "00:27:44,160"
+			},
+			"offsets": {
+				"from": 1654960,
+				"to": 1664160
+			},
+			"text": " leader based live in a strategy for our partial synchronous networks and you know it's basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,160",
+				"to": "00:27:51,520"
+			},
+			"offsets": {
+				"from": 1664160,
+				"to": 1671520
+			},
+			"text": " gives I think both the live strategy and the finality criteria and here is the QR code"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,520",
+				"to": "00:28:01,400"
+			},
+			"offsets": {
+				"from": 1671520,
+				"to": 1681400
+			},
+			"text": " for that paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,400",
+				"to": "00:28:05,440"
+			},
+			"offsets": {
+				"from": 1681400,
+				"to": 1685440
+			},
+			"text": " the theorem foundation continues to support our work sometimes I have to say this people"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,440",
+				"to": "00:28:10,440"
+			},
+			"offsets": {
+				"from": 1685440,
+				"to": 1690440
+			},
+			"text": " get confused you know still very much being supported by the theorem foundation in our"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,440",
+				"to": "00:28:17,400"
+			},
+			"offsets": {
+				"from": 1690440,
+				"to": 1697400
+			},
+			"text": " research both directly and indirectly through grants I have a paper which I was planning"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,400",
+				"to": "00:28:23,320"
+			},
+			"offsets": {
+				"from": 1697400,
+				"to": 1703320
+			},
+			"text": " on enough releasing today but which unfortunately I haven't been able to finish but I broke"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,320",
+				"to": "00:28:29,080"
+			},
+			"offsets": {
+				"from": 1703320,
+				"to": 1709080
+			},
+			"text": " my back trying and I'm going to try to finish it super soon for all of you to see and this"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:29,080",
+				"to": "00:28:36,280"
+			},
+			"offsets": {
+				"from": 1709080,
+				"to": 1716280
+			},
+			"text": " is basically a abstract kind of in a similar to the minimal consensus for the paper style"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:36,280",
+				"to": "00:28:40,520"
+			},
+			"offsets": {
+				"from": 1716280,
+				"to": 1720520
+			},
+			"text": " but which also has live as properties in a synchronous network it's a it's a really"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,520",
+				"to": "00:28:48,120"
+			},
+			"offsets": {
+				"from": 1720520,
+				"to": 1728120
+			},
+			"text": " really it's a it's quite a cool paper it does it gives formal problem statements for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:48,120",
+				"to": "00:28:54,160"
+			},
+			"offsets": {
+				"from": 1728120,
+				"to": 1734160
+			},
+			"text": " consensus problem and goes through the correct by construction process to show kind of how"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,160",
+				"to": "00:28:58,200"
+			},
+			"offsets": {
+				"from": 1734160,
+				"to": 1738200
+			},
+			"text": " the protocol can be derived from the problem statements in a way that is guaranteed to"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:58,200",
+				"to": "00:29:03,200"
+			},
+			"offsets": {
+				"from": 1738200,
+				"to": 1743200
+			},
+			"text": " be correct and it kind of justifies a lot of the like the minimal CBC Casper paper and"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,200",
+				"to": "00:29:06,640"
+			},
+			"offsets": {
+				"from": 1743200,
+				"to": 1746640
+			},
+			"text": " this one with the liveness"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:06,640",
+				"to": "00:29:12,600"
+			},
+			"offsets": {
+				"from": 1746640,
+				"to": 1752600
+			},
+			"text": " so finally you know right after this I'm hoping we will or some of us you know anyone who's"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:12,600",
+				"to": "00:29:17,960"
+			},
+			"offsets": {
+				"from": 1752600,
+				"to": 1757960
+			},
+			"text": " contributed to CBC Casper research will hopefully meet us right out here and we'll have like"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:17,960",
+				"to": "00:29:24,600"
+			},
+			"offsets": {
+				"from": 1757960,
+				"to": 1764600
+			},
+			"text": " a little conversation about CBC Casper research if you have any questions that you want answered"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:24,600",
+				"to": "00:29:28,240"
+			},
+			"offsets": {
+				"from": 1764600,
+				"to": 1768240
+			},
+			"text": " please come talk to us hopefully it won't be just me and the other researchers will"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,240",
+				"to": "00:29:34,760"
+			},
+			"offsets": {
+				"from": 1768240,
+				"to": 1774760
+			},
+			"text": " come too but you know it's up to them we're going to do an asking anything online soon"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:34,760",
+				"to": "00:29:42,200"
+			},
+			"offsets": {
+				"from": 1774760,
+				"to": 1782200
+			},
+			"text": " also I have t-shirts limited edition t-shirts that I'm giving away not to everyone please"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:42,200",
+				"to": "00:29:45,640"
+			},
+			"offsets": {
+				"from": 1782200,
+				"to": 1785640
+			},
+			"text": " first I have to give away to contributors so I know there's some of you here give away"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,640",
+				"to": "00:29:50,240"
+			},
+			"offsets": {
+				"from": 1785640,
+				"to": 1790240
+			},
+			"text": " to contributors first and then I'll and then I'll do a first come first serve after so"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:50,240",
+				"to": "00:29:53,240"
+			},
+			"offsets": {
+				"from": 1790240,
+				"to": 1793240
+			},
+			"text": " the first come first serve will be tomorrow but for now if you're a contributor and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,240",
+				"to": "00:29:57,920"
+			},
+			"offsets": {
+				"from": 1793240,
+				"to": 1797920
+			},
+			"text": " want a shirt come get it thank you so much really appreciate it"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,920",
+				"to": "00:29:59,980"
+			},
+			"offsets": {
+				"from": 1797920,
+				"to": 1799980
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,980",
+				"to": "00:30:02,040"
+			},
+			"offsets": {
+				"from": 1799980,
+				"to": 1802040
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:02,040",
+				"to": "00:30:04,100"
+			},
+			"offsets": {
+				"from": 1802040,
+				"to": 1804100
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:04,100",
+				"to": "00:30:06,100"
+			},
+			"offsets": {
+				"from": 1804100,
+				"to": 1806100
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,100",
+				"to": "00:30:08,160"
+			},
+			"offsets": {
+				"from": 1806100,
+				"to": 1808160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,160",
+				"to": "00:30:23,160"
+			},
+			"offsets": {
+				"from": 1808160,
+				"to": 1823160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:23,160",
+				"to": "00:30:25,160"
+			},
+			"offsets": {
+				"from": 1823160,
+				"to": 1825160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:25,160",
+				"to": "00:30:27,160"
+			},
+			"offsets": {
+				"from": 1825160,
+				"to": 1827160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:27,160",
+				"to": "00:30:29,160"
+			},
+			"offsets": {
+				"from": 1827160,
+				"to": 1829160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:29,160",
+				"to": "00:30:31,160"
+			},
+			"offsets": {
+				"from": 1829160,
+				"to": 1831160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:31,160",
+				"to": "00:30:35,160"
+			},
+			"offsets": {
+				"from": 1831160,
+				"to": 1835160
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

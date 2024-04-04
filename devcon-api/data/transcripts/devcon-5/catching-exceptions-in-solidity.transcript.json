@@ -1,0 +1,428 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 17000
+			},
+			"text": " I am Madhya Gupta from Balaena and I will be talking about a short topic of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " finding reward exceptions in solidarity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 26000
+			},
+			"text": " So by default, if a transaction rewards the whole state is rewarded and everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31000
+			},
+			"text": " done before that is rewarded in India. So for example, if you are doing a patch"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 36000
+			},
+			"text": " transfer and one of the transfer fees, all the other transfers will be free"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 41000
+			},
+			"text": " raised money. Sometimes you might want to just skip that transfer and let the others continue."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 48000
+			},
+			"text": " It's not needed to be possible in solidarity 0.5 and earlier versions, but it is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 52000
+			},
+			"text": " planned feature in solidarity 0.6. That is the upcoming major version."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 58000
+			},
+			"text": " But even now, right now we can emulate this strategy as behavior using low level"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 63000
+			},
+			"text": " calls. So I will be talking about how to do that. One disadvantage of using low level"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 67000
+			},
+			"text": " calls is that it will bypass some of these tactics that these solve become"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 72000
+			},
+			"text": " highly provides. So if you use this technique, you should know that you might be missing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 79000
+			},
+			"text": " some strategy. So this is a sample code I know you might not be able to see, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 86000
+			},
+			"text": " how it essentially works is that it's a two step process. First you generate the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 91000
+			},
+			"text": " code data that you have to use to call low level smart contract and use a low level"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 96000
+			},
+			"text": " call. In that you enter the function name and the parameters and the data that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 101000
+			},
+			"text": " have to pass for the call. Then, solidarity using the function in code with"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 107000
+			},
+			"text": " selector will generate a code data that will be passed on in the next step to call"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 112000
+			},
+			"text": " any that can be used to call any smart contract. The next step is to essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 117000
+			},
+			"text": " just call this smart contract using the low level call. So how low level call"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 123000
+			},
+			"text": " works is that it will never revert. If these subsequent call rewards, it will return"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 130000
+			},
+			"text": " false as a result and then you will be able to handle the reward yourself. So in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 136000
+			},
+			"text": " case, you can see I'm doing the low level call and if it returns, it will return the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 141000
+			},
+			"text": " response. If it goes successfully, it will return the result as true. If it returns"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 146000
+			},
+			"text": " false, then I'll have to handle that case, maybe log it somewhere that this transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 151000
+			},
+			"text": " will. And if it was true, I can just continue with my process, my batch function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 156000
+			},
+			"text": " and I don't have to worry about it anymore. It's a bit clunky right now, but in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 163000
+			},
+			"text": " solidarity 0.6, it's very clean and like it's something that I'd really have to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 168000
+			},
+			"text": " in future back. Batch printing, batch functions will become really easier with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 174000
+			},
+			"text": " So this issue on Gator, you can follow. It tracks the progress of the implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 181000
+			},
+			"text": " in solidarity 0.6 and hopefully you will be able to enjoy it. If you need more info"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 186000
+			},
+			"text": " about that, there's more info on my blog, not a dot log, you can visit that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 189000
+			},
+			"text": " And that's my short talk. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 208000
+			},
+			"text": " [Music]"
+		}
+	]
+}

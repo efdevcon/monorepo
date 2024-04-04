@@ -1,0 +1,835 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,840"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4840
+			},
+			"text": " Hey everyone, I'm Andrew Cravino with POA Network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,840",
+				"to": "00:00:10,120"
+			},
+			"offsets": {
+				"from": 4840,
+				"to": 10120
+			},
+			"text": " I'm going to be talking about an app we've been building called BloxGout."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,120",
+				"to": "00:00:14,040"
+			},
+			"offsets": {
+				"from": 10120,
+				"to": 14040
+			},
+			"text": " BloxGout is an open source EVM blockchain explorer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,040",
+				"to": "00:00:17,600"
+			},
+			"offsets": {
+				"from": 14040,
+				"to": 17600
+			},
+			"text": " It's currently live at BloxGout.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,600",
+				"to": "00:00:26,800"
+			},
+			"offsets": {
+				"from": 17600,
+				"to": 26800
+			},
+			"text": " If you'd like to contribute to the project, you can do so at github.com/POANetwork/BloxGout."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,800",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 26800,
+				"to": 33000
+			},
+			"text": " All right, so we support eight networks currently, most importantly, Ethereum Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:38,920"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 38920
+			},
+			"text": " We also support the three test nets of Ethereum, COVID, Ropston and Brinkby."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,920",
+				"to": "00:00:44,560"
+			},
+			"offsets": {
+				"from": 38920,
+				"to": 44560
+			},
+			"text": " Brinkby will go live early next week, and we had to make some customizations there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,560",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 44560,
+				"to": 55000
+			},
+			"text": " We also support Ethereum Classic, POA Core, POA SoCo, and one of our hard spoons of Ethereum Mainnet, XDyeChain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 60000
+			},
+			"text": " We support Parity, Geth and Ganache."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 66000
+			},
+			"text": " We are working on the internal transactions for Geth, so that should be enabled late next week."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 70000
+			},
+			"text": " So why we built BloxGout?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 75000
+			},
+			"text": " As a sidechain, we don't have access to Etherscan."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 81000
+			},
+			"text": " Everybody knows and loves Etherscan, so we needed to change this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 92000
+			},
+			"text": " We're friendly to fork sidechains, private networks, and we wanted to allow users of the Ethereum ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 101000
+			},
+			"text": " to spin up their own full-featured block explorer connected to their nodes so they can check the balances of their addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 105000
+			},
+			"text": " We thought it was very important for decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 107000
+			},
+			"text": " Here are some features of BloxGout."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 114000
+			},
+			"text": " We have the typical Blox transactions, everything you'd expect from a typical blockchain explorer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 118000
+			},
+			"text": " The exciting things happen when you get into Block Reorgs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 122000
+			},
+			"text": " We have ERC20 and ERC721 token support."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 124000
+			},
+			"text": " We have contract verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 130000
+			},
+			"text": " You're also able to query those verified smart contracts directly from BloxGout."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 136000
+			},
+			"text": " Realtime UI API, so we have an Etherscan compatible RESTful API"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 142000
+			},
+			"text": " so you could port your application from using Etherscan's API to using BloxGout if you chose to."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 150000
+			},
+			"text": " And really exciting, we just added yesterday to master GraphQL, some GraphQL API endpoints,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 153000
+			},
+			"text": " which also includes some webhooks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 158000
+			},
+			"text": " We'll be building more on top of that in the next couple of weeks as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 165000
+			},
+			"text": " For our development stack, we're using Elixir on the Erlang VM with a Postgres database."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 171000
+			},
+			"text": " Erlang is great for running fault tolerance systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 180000
+			},
+			"text": " Some other apps that use Erlang were WhatsApp and Heroku, so we thought it was a great choice for BloxGout."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 185000
+			},
+			"text": " I want to talk a little bit about where we're heading and what we're doing right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 188000
+			},
+			"text": " We just launched a couple of weeks ago, BloxGout."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 192000
+			},
+			"text": " We're still indexing Ethereum Mainnet, and we wanted to provide better user experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 197000
+			},
+			"text": " such as like faster page load speeds, faster indexing times."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 203000
+			},
+			"text": " When a block is mined, we want immediately to be available and imported into BloxGout."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 205000
+			},
+			"text": " So we're working on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 211000
+			},
+			"text": " A lot of it right now is we're de-dossing our own nodes, so we're building up more nodes on the back end"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 214000
+			},
+			"text": " so we can hit it a little harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 221000
+			},
+			"text": " We're reduced by 90% because we keep de-dossing our node with all the data on Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 223000
+			},
+			"text": " We're working on that right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 231000
+			},
+			"text": " As far as our indexer, we've had many user requests to define a set of blocks on any EVM chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 232000
+			},
+			"text": " and just index those."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 235000
+			},
+			"text": " It's good for analyzing certain sets of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 239000
+			},
+			"text": " We're also, we have our best engineer working on guest internal transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 244000
+			},
+			"text": " so that should be available late next week, and as I mentioned before, faster indexing times."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 249000
+			},
+			"text": " BloxGout comes with many customizable features, but if you're not familiar with the app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 254000
+			},
+			"text": " it's difficult to find in the files where these customization settings are."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 257000
+			},
+			"text": " So we're building a back end admin panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 260000
+			},
+			"text": " Actually, the admin panel is actually done, but over the next couple of weeks we'll be including"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 267000
+			},
+			"text": " all these configuration settings such as if you deploy BloxGout, you can change the CSS colors, the logo."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 272000
+			},
+			"text": " You're able to adjust how much memory you want the application to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 276000
+			},
+			"text": " It'll just shrink any of the processes that are too large."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 282000
+			},
+			"text": " It's just a small portion of the available configuration settings you'll be able to change."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 284000
+			},
+			"text": " We'll also be offering data exports."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 291000
+			},
+			"text": " So you'll be able to download your transactions, tokens, your coin, and token balance history."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 294000
+			},
+			"text": " So you'll be able to do that very soon to CSV."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 299000
+			},
+			"text": " Some other things we're excited about is we have our GraphQL."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 305000
+			},
+			"text": " We think it'll be great for the Ethereum ecosystem to be able to utilize web hooks"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 313000
+			},
+			"text": " and other type of endpoints and use our data to build some great applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 318000
+			},
+			"text": " We'll also have continued development around ERC721 data attributes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 326000
+			},
+			"text": " So users can analyze ERC721 non-fungible tokens better right on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 336000
+			},
+			"text": " And finally, right now we're working on input data and logs decoding them by the contract ABI."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 339000
+			},
+			"text": " So that should be finished late next week."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 348000
+			},
+			"text": " But I also want to thank ETHPRISE for their both monetary contribution and their community support."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 353000
+			},
+			"text": " If you guys have any questions, I'll be around after and be happy to answer them for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 354000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 356000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 358000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 360000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 362000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 384000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 386000
+			},
+			"text": " [ ]"
+		}
+	]
+}

@@ -1,0 +1,2881 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 22000
+			},
+			"text": " >> My name is Rain Revere and I'm a smart contract developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 29000
+			},
+			"text": " I'm the lead architect at Shapeshift Prism and I'm also the co-founder of Maiden."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 35000
+			},
+			"text": " I've been doing smart contract development for a couple of years"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 41000
+			},
+			"text": " and our team has learned so much along the way and it's really an honor to be here"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 45000
+			},
+			"text": " and to be able to share some of those lessons with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 49000
+			},
+			"text": " And it's especially an honor to be one of the few women up on stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 56000
+			},
+			"text": " I'm a trans woman and I love this work and the community is so amazing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 60000
+			},
+			"text": " and so it's such an honor to be able to share some of this expertise"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 62000
+			},
+			"text": " and really dig into the details."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 66000
+			},
+			"text": " So when I was thinking about what I could possibly share,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 70000
+			},
+			"text": " I wanted to give something that was really practical"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 73000
+			},
+			"text": " and so this talk is going to be pretty straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 78000
+			},
+			"text": " We've got lots of things that we learned doing smart contract development"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 79000
+			},
+			"text": " in the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 85000
+			},
+			"text": " So that means production level handling lots of ether on the live network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 91000
+			},
+			"text": " which as you can imagine has a lot of responsibility that comes with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 98000
+			},
+			"text": " So what you can expect from this talk is that I'm going to go from low level to high level."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 103000
+			},
+			"text": " So all of these are pretty practical tips for all the smart contract developers in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 108000
+			},
+			"text": " And I'm going to start with the code and we're going to go over some details,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 111000
+			},
+			"text": " some patterns that I've learned and our team has learned from."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 115000
+			},
+			"text": " And then we're going to end on some higher level patterns,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 120000
+			},
+			"text": " especially when it comes to being a leader on your team."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 125000
+			},
+			"text": " How do you lead as a smart contract development engineer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 128000
+			},
+			"text": " So first the low level patterns."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 135000
+			},
+			"text": " Central logging is something that took me a little while to find my way to."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 139000
+			},
+			"text": " And when you design your smart contracts, you want to modularize things, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 141000
+			},
+			"text": " We all know that as software developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 145000
+			},
+			"text": " But there's some quirks in the EVM, at least at this time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 150000
+			},
+			"text": " that you may not think about ahead of time, but actually lead to a system"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 156000
+			},
+			"text": " that is more maintainable and is able to respond and communicate with your server"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 158000
+			},
+			"text": " or whatever other architecture you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 162000
+			},
+			"text": " And one of those is what I call central logging."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 169000
+			},
+			"text": " In a multi-contract system, logs or events that are fired"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 173000
+			},
+			"text": " are really an important way to track what's happening on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 177000
+			},
+			"text": " All of your off-chain activity is going to be based on different events that are firing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 183000
+			},
+			"text": " And when you are firing events from different contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 187000
+			},
+			"text": " you generally have to monitor those events separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 190000
+			},
+			"text": " So each contract you're going to be watching those events."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 193000
+			},
+			"text": " And so if you have a multi-contract system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 198000
+			},
+			"text": " there's actually a lot of benefits to using a single logger contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 201000
+			},
+			"text": " And so when you have a single logger contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 205000
+			},
+			"text": " all of those events will fire from the same contract and are easier to monitor."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 207000
+			},
+			"text": " So let me just show you how that looks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 212000
+			},
+			"text": " So here's an example of the logger contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 221000
+			},
+			"text": " And what we have here is a whitelist that maps addresses of contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 225000
+			},
+			"text": " to just simple Boolean that says whether it's been approved or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 228000
+			},
+			"text": " So this is where it handles multiple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 230000
+			},
+			"text": " So those addresses are of contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 238000
+			},
+			"text": " And you have a modifier that's a simple requirement that the sender is indeed in that whitelist."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 242000
+			},
+			"text": " And so the modifier whitlisted is provided here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 245000
+			},
+			"text": " And then you can have any event."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 247000
+			},
+			"text": " Here the event is called registered."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 251000
+			},
+			"text": " So that's the red text with the two superscripts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 257000
+			},
+			"text": " And the registered event is simply forwarded from the log-registered function."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 263000
+			},
+			"text": " So if you have the owner, which is provided with the owner super contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 267000
+			},
+			"text": " and then the only owner modifier, pretty standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 274000
+			},
+			"text": " you can have an owner contract that is able to register all the contracts in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 279000
+			},
+			"text": " So contract A, contract B, contract C, all of those would be an authorized contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 281000
+			},
+			"text": " to be able to register those."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 285000
+			},
+			"text": " And if that authorized address was set in creation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 290000
+			},
+			"text": " then you know exactly who has the ability to register new contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 297000
+			},
+			"text": " And then those contracts have the ability to call log-registered or any event."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 299000
+			},
+			"text": " So that's an example of central logging."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 305000
+			},
+			"text": " And that's been super helpful for us to be able to handle large numbers of events"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 309000
+			},
+			"text": " from lots of different contracts in a multi-contract system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 314000
+			},
+			"text": " The next one I want to show you is the idea of modular libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 322000
+			},
+			"text": " So libraries in Solidity, if you're not aware already, are a way of deploying code once"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 326000
+			},
+			"text": " that other contracts can use over and over."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 331000
+			},
+			"text": " And when you have a multi-contract system or you're deploying a new contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 336000
+			},
+			"text": " for every iteration of something, there's a lot of gas costs in that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 340000
+			},
+			"text": " And if you can reference, if you can link a library, that's going to save a lot of gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 345000
+			},
+			"text": " compared to implementing and compared to deploying all of the contracts again."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 351000
+			},
+			"text": " So libraries are known as well known to provide that gas saving mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 356000
+			},
+			"text": " And the idea of modular libraries is the idea that you can link multiple libraries together"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 359000
+			},
+			"text": " in order to provide some abstraction layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 364000
+			},
+			"text": " So these are all architectural patterns for you to have more maintainable smart contract code."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 365000
+			},
+			"text": " So what does this look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 374000
+			},
+			"text": " The modular library is one in which the contract itself doesn't have to know about all of the different modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 379000
+			},
+			"text": " And so it's a way to encapsulate functionality within a library in order to have some separation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 385000
+			},
+			"text": " Now libraries are linked and all of the calls end up appearing internal."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 390000
+			},
+			"text": " So this doesn't actually provide, this is more of an organizational strategy"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 396000
+			},
+			"text": " and architectural strategy than changing the actual access levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 400000
+			},
+			"text": " So here's an example for the PRISM projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 403000
+			},
+			"text": " We have a library called PRISMLib."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 409000
+			},
+			"text": " And there's a lot of different pieces of data and libraries that have functions that operate on that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 419000
+			},
+			"text": " And as a way to break it into smaller pieces, one good method is to have a data struct in each of the libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 422000
+			},
+			"text": " That's defined in each of the libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 424000
+			},
+			"text": " And then that can be included in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 426000
+			},
+			"text": " And so you have nested levels of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 432000
+			},
+			"text": " So the struct is defined, you can see in the blue with the number one is the data struct."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 436000
+			},
+			"text": " And then that's being expected to pass into each of the functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 444000
+			},
+			"text": " So the rebalance function on the PRISMLib is going to ask for the PRISMLib.data."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 452000
+			},
+			"text": " And then the nested nature comes from the fact that PRISMLib has its own portfolio lib."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 457000
+			},
+			"text": " We can assume is that libb, and it's being imported somewhere else."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 462000
+			},
+			"text": " So PRISMLib, we can assume has its own data struct."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 469000
+			},
+			"text": " So PRISMLib can be accessed, the functions can be called in PRISMLib,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 473000
+			},
+			"text": " and the data is contained within that lib."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 475000
+			},
+			"text": " And so there's an abstraction there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 485000
+			},
+			"text": " If you notice, we're not passing the entire PRISMLib.data to the rebalance portfolio lib.rebalance function."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 492000
+			},
+			"text": " We're only passing self.portfoliolib, so the second red instance number two."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 500000
+			},
+			"text": " And so that way portfoliolib.rebalance or any other functions in portfolio lib don't have to know about anything else in the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 504000
+			},
+			"text": " So this ends up being a pretty standard abstraction and hiding mechanism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 510000
+			},
+			"text": " but something that we haven't seen a lot of out in the wilds with library development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 517000
+			},
+			"text": " but we found it to be a really great architectural pattern for PRISM."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 522000
+			},
+			"text": " So now we get to the last of the low-level patterns that I want to share with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 526000
+			},
+			"text": " And this is a higher lower-level pattern,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 530000
+			},
+			"text": " and this is an idea that has been shared in other talks here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 533000
+			},
+			"text": " the idea of the blockchain as a court system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 537000
+			},
+			"text": " And this didn't come to me until much later in the development of PRISM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 544000
+			},
+			"text": " but the opportunity to save a massive amount of on-chain computation exists"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 549000
+			},
+			"text": " when you treat the blockchain as a court system or an arbiter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 560000
+			},
+			"text": " which means that you assume that parties are acting in best in good with good will and best interest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 563000
+			},
+			"text": " but you have a mechanism that if something goes wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 568000
+			},
+			"text": " if one party says the other is not fulfilling their obligation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 575000
+			},
+			"text": " then you can run an actual smart contract as if you're bringing it to court."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 578000
+			},
+			"text": " And when you run that, when you execute that smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 584000
+			},
+			"text": " then you're using the blockchain to arbiter of that transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 586000
+			},
+			"text": " So what does that look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 590000
+			},
+			"text": " So here we have a contract. This is just a general."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 595000
+			},
+			"text": " You have some users, and there's going to be a counterparty, the other end of the deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 599000
+			},
+			"text": " And you're using the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 605000
+			},
+			"text": " The naive approach would be to execute everything on the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 610000
+			},
+			"text": " When you have arbitration built in, then instead, as I described,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 615000
+			},
+			"text": " you assume that both parties are acting cooperatively and correctly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 619000
+			},
+			"text": " but you have the mechanism in place for a dispute resolution process."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 625000
+			},
+			"text": " So the top interaction here is where the user, through the smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 629000
+			},
+			"text": " interacts with the counterparty. There's not any execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 633000
+			},
+			"text": " There's really nothing happening there. There's not code that's being executed on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 641000
+			},
+			"text": " maybe just a hash that's stored, that both parties can use to evaluate off-chain what's happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 645000
+			},
+			"text": " So user A maybe sends some ether to the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 649000
+			},
+			"text": " After a certain amount of time, the counterparty is expected to send ether back,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 654000
+			},
+			"text": " or some transaction occurs. And at this level, it's really up to the counterparty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 657000
+			},
+			"text": " and they want to do that or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 663000
+			},
+			"text": " Now, if the counterparty doesn't do their part, you have a time window,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 670000
+			},
+			"text": " a week, a month, whatever the time window is, where the user can file a dispute."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 674000
+			},
+			"text": " And that's all on-chain. So there's a time window, the funds are locked up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 680000
+			},
+			"text": " and so imagine user B has a problem and says, yeah, the counterparty didn't do their job."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 684000
+			},
+			"text": " So they send a dispute resolution transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 689000
+			},
+			"text": " and this time, whatever business logic needed to be executed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 693000
+			},
+			"text": " which could be quite expensive, is going to be fully executed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 700000
+			},
+			"text": " and because it is deterministic, the winner of the dispute will always win."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 704000
+			},
+			"text": " So the beauty of this is that the incentivization is such that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 708000
+			},
+			"text": " if you know you're going to lose, you would never --"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 712000
+			},
+			"text": " you would never do the wrong thing. So the counterparty has zero interest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 717000
+			},
+			"text": " and the reason you force that incentivization to be aligned so strictly"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 723000
+			},
+			"text": " is that you say if you lose the dispute, you basically lose all of your money."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 730000
+			},
+			"text": " So you punish the person for behaving against the expected behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 735000
+			},
+			"text": " And so when done right, there's really no incentive to go against the expected behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 741000
+			},
+			"text": " You have user A acting, expecting a certain thing back from the counterparty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 746000
+			},
+			"text": " or the counterparty doing their job, the threat of the dispute resolution process"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 750000
+			},
+			"text": " incentivizes the counterparty to do their part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 757000
+			},
+			"text": " and the beauty here is that you're not actually executing the full contract logic on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 762000
+			},
+			"text": " It's just user A doing their thing, and the counterparty doing their thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 769000
+			},
+			"text": " So I see this as a potentially huge pattern that can be used across smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 773000
+			},
+			"text": " in order to optimize, reduce execution time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 777000
+			},
+			"text": " and this is something that could be put to good effect on a lot of projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 781000
+			},
+			"text": " Okay. How's everybody doing? You still with me?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 786000
+			},
+			"text": " The developers are -- the developers are like, \"Yeah, this is cool.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 790000
+			},
+			"text": " Okay, so we have some higher-level patterns, and these are for you as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 792000
+			},
+			"text": " These are also for developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 797000
+			},
+			"text": " If you spend more than a couple years working in the software industry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 802000
+			},
+			"text": " I hate to break it to you, but you're going to have to do some things other than coding."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 807000
+			},
+			"text": " You're going to have to learn some other skills, and some of those are going to be technical skills,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 809000
+			},
+			"text": " and some of those are less technical."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 812000
+			},
+			"text": " But what are the higher-level patterns that allow you to be successful"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 817000
+			},
+			"text": " as a smart contract developer, not just when you're in solidity land,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 821000
+			},
+			"text": " but when you're working with your team, when you're making judgment calls,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 826000
+			},
+			"text": " when you're making important decisions about the direction of your product,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 831000
+			},
+			"text": " that the rest of your team is looking to you for."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 837000
+			},
+			"text": " So one is something that I call role analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 840000
+			},
+			"text": " This isn't a technical term, but role analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 843000
+			},
+			"text": " How do you analyze the roles in the smart contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 846000
+			},
+			"text": " And this is something that you can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 850000
+			},
+			"text": " This is simply an approach to smart contract development and design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 853000
+			},
+			"text": " and you can use it at any stage of the process."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 856000
+			},
+			"text": " So if you're designing a smart contract from scratch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 859000
+			},
+			"text": " who is interacting with the system?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 862000
+			},
+			"text": " That's the main question you're asking here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 867000
+			},
+			"text": " Who is interacting with the system, and what are their incentives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 872000
+			},
+			"text": " and how are their behaviors going to derive from"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 877000
+			},
+			"text": " the functions that you expose to these different roles?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 880000
+			},
+			"text": " So I use this both in the design process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 885000
+			},
+			"text": " but I also use this throughout the entire career of the smart contract system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 888000
+			},
+			"text": " When you're iterating and you're adding new features,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:53,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 893000
+			},
+			"text": " there's always going to be adjustments to the behaviors of the different users"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 893000,
+				"to": 897000
+			},
+			"text": " and the different roles that are interacting with your system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 901000
+			},
+			"text": " So to be a really good smart contract developer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 907000
+			},
+			"text": " you have to understand all of the roles of individuals interacting with your contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 913000
+			},
+			"text": " what their different incentives are, and how that affects the overall functioning of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 918000
+			},
+			"text": " This is like the essence of the game theoretic nature of decentralized smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 920000
+			},
+			"text": " So just some examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 925000
+			},
+			"text": " The PRISM contract for Shapeship PRISM has a few simple roles."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 928000
+			},
+			"text": " It has a buyer, a seller, and an oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 938000
+			},
+			"text": " And with PRISM, the buyer purchases a contract, a portfolio of different digital assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 943000
+			},
+			"text": " The seller is putting up collateral to ensure that those assets can be paid off"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 946000
+			},
+			"text": " depending on whether the portfolio goes up or down."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 953000
+			},
+			"text": " And then the oracle is another entity that's providing the prices that determines the value of the portfolio."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 959000
+			},
+			"text": " So different roles, and even these simple three roles have involved a high level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 966000
+			},
+			"text": " a high degree of analysis, an ongoing analysis to make sure that the trust implications are well understood"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 970000
+			},
+			"text": " as the contract develops and becomes more sophisticated."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 973000
+			},
+			"text": " Another example is a salt loan."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 979000
+			},
+			"text": " Let's say you were doing a loan that was backed by digital assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 985000
+			},
+			"text": " That was collateralized by digital assets. In this case, you have a borrower, someone who's borrowing cash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 990000
+			},
+			"text": " and then you have a lender who's offering that cash, but then locking up the collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 999000
+			},
+			"text": " And in this case, you have salt as a kind of multi-sig arbiter to make sure that if anything funky happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1004000
+			},
+			"text": " with the other two, salt is in there and can have the last word."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1008000
+			},
+			"text": " This is an example from a talk yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1016000
+			},
+			"text": " The liquid pledging contract was really, I thought, really a brilliant idea to combine fund management"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1020000
+			},
+			"text": " with liquid democracy."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1027000
+			},
+			"text": " And here, there could be many arrangements, but a simple arrangement is to have a giver who's providing some ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1030000
+			},
+			"text": " and they want that to go to a good cause or a good project."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1033000
+			},
+			"text": " They don't have time to do that themselves or they want to trust someone else,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1036000
+			},
+			"text": " so they delegate that to another role."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1042000
+			},
+			"text": " And that delegate is going to choose the project, and eventually a reviewer is going to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1046000
+			},
+			"text": " \"Yes, these milestones have been accomplished,\" and that goes through."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1053000
+			},
+			"text": " So this is a simple concept, but it goes really far and it really is what can separate someone who just knows"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1062000
+			},
+			"text": " solidity from someone who can design, maintain, and scale smart contracts on a live network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1070000
+			},
+			"text": " Context dependence is another skill that comes with experience and is something that is really valued on a team."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1079000
+			},
+			"text": " And by this, I mean analyzing when one action is true in one situation and the same action might not be true in another situation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1082000
+			},
+			"text": " I know this is really scary for a lot of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1086000
+			},
+			"text": " I didn't get into development to deal with fuzziness and ambiguity either."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1090000
+			},
+			"text": " I love really straightforward and deterministic systems, but the truth is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1095000
+			},
+			"text": " any complicated problem is going to depend on a lot of context."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1100000
+			},
+			"text": " So one example in this space is that you hear a lot of best practices."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1106000
+			},
+			"text": " Best practices are great, but when they turn into hard and fast rules, you can really miss out on the nuances of the situation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1110000
+			},
+			"text": " So one I see a lot is send versus withdraw patterns."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1114000
+			},
+			"text": " And the advice out there is to always have the user withdraw."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1115000
+			},
+			"text": " Never do a send."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1117000
+			},
+			"text": " So there's like push versus pull."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1123000
+			},
+			"text": " And I actually don't like this advice because it's often just taken without much thought."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1125000
+			},
+			"text": " Why don't we do a send?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1130000
+			},
+			"text": " Well, we don't do a send because there's vulnerabilities if you're trying to send to multiple people."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:55,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1135000
+			},
+			"text": " You have to be aware that any one person, their fallback function could throw."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1135000,
+				"to": 1136000
+			},
+			"text": " They could use up all the gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1138000
+			},
+			"text": " They could use up most of the gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1141000
+			},
+			"text": " So there's risks to sending to multiple parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1143000
+			},
+			"text": " Okay, I understand that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1150000
+			},
+			"text": " There are also situations where maybe you don't want for the user experience, they don't have another transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1152000
+			},
+			"text": " You don't want them to have to do that transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:15,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1155000
+			},
+			"text": " So maybe the send would be appropriate in those cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1155000,
+				"to": 1160000
+			},
+			"text": " Keeping in mind this dictum of it depends."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1168000
+			},
+			"text": " I had a professor in grad school who, this was in my counseling program, and it was beautiful."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:32,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1172000
+			},
+			"text": " Every time anybody asked, well, what if you're working with this client and they do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1172000,
+				"to": 1174000
+			},
+			"text": " What should I do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1180000
+			},
+			"text": " She always answered, she thought about it, and then she said, well, it depends."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1180000,
+				"to": 1183000
+			},
+			"text": " And that would be her answer every time."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1188000
+			},
+			"text": " So with skill and experience comes an incredible awareness of context."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1191000
+			},
+			"text": " So I encourage you to think about context dependence."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1200000
+			},
+			"text": " And lastly, I want to say leadership in blockchain at the developer level because contracts are immutable, technical debt is much costlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:08,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1208000
+			},
+			"text": " So when you're making decisions as a lead engineer, you have to make a lot of judgment calls because that code might be on chain for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,000",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1208000,
+				"to": 1210000
+			},
+			"text": " And that's something to keep in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1210000,
+				"to": 1212000
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1216000
+			},
+			"text": " I'm going to go over the patterns just to name them."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1222000
+			},
+			"text": " We talked about central logging, modular libraries and arbitration as architectural patterns at a lower level."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1229000
+			},
+			"text": " And then at the higher level, I hope you can take some of these concepts away about leading your team, being more dependent on context."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1232000
+			},
+			"text": " And then bringing role analysis to everything you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1234000
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:44,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1244000
+			},
+			"text": " [MUSIC]"
+		}
+	]
+}

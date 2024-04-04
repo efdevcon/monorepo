@@ -1,0 +1,1308 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:08,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 8480
+			},
+			"text": " Let's begin. This is me. My name is Reese. I work for the Digital Currency Initiative at the MIT Media Lab, and I helped"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,480",
+				"to": "00:00:15,880"
+			},
+			"offsets": {
+				"from": 8480,
+				"to": 15880
+			},
+			"text": " help to curate the systems and society track here at DevCon this year, and that's my Twitter handle."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,880",
+				"to": "00:00:22,920"
+			},
+			"offsets": {
+				"from": 15880,
+				"to": 22920
+			},
+			"text": " So, as I said, these are the five talks that we're going to be chatting about today, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,920",
+				"to": "00:00:26,240"
+			},
+			"offsets": {
+				"from": 22920,
+				"to": 26240
+			},
+			"text": " we will..."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,240",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 26240,
+				"to": 35000
+			},
+			"text": " Yeah, a way that I like to think about them is that the top three, and I'll discuss this a bit, the top three, are about how things are affecting kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:45,240"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 45240
+			},
+			"text": " personal, like kind of at the micro-personal level, while the bottom two, thinking about international law and thinking about nation-state governance, are thinking about kind of macro-institutional macro-societal."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,240",
+				"to": "00:00:54,160"
+			},
+			"offsets": {
+				"from": 45240,
+				"to": 54160
+			},
+			"text": " So, that's what we're going to be chatting about today, and I just want to remind everybody that how, like, where this falls in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,520",
+				"to": "00:01:03,160"
+			},
+			"offsets": {
+				"from": 54520,
+				"to": 63160
+			},
+			"text": " -- there's this big bucket of, like, how technology impacts society, and that's kind of a difficult thing to understand, and it doesn't have that much texture on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,160",
+				"to": "00:01:09,160"
+			},
+			"offsets": {
+				"from": 63160,
+				"to": 69160
+			},
+			"text": " You can just be like, \"What is philosophy? What is society? How does it impact?\" So, I just want to be clear about what we're discussing today and where it fits in."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,160",
+				"to": "00:01:16,160"
+			},
+			"offsets": {
+				"from": 69160,
+				"to": 76160
+			},
+			"text": " So, if you saw the thing that I gave at the opening keynote, the general idea here is that we have --"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,160",
+				"to": "00:01:23,160"
+			},
+			"offsets": {
+				"from": 76160,
+				"to": 83160
+			},
+			"text": " oh, yeah, so we have \"biddle\" in the middle, which is the tech side of things, where we're building things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,160",
+				"to": "00:01:30,160"
+			},
+			"offsets": {
+				"from": 83160,
+				"to": 90160
+			},
+			"text": " The wide-biddle piece is asking yourself, \"Why are you building these things? What is your mindset? What are your goals? What are your values?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,160",
+				"to": "00:01:40,160"
+			},
+			"offsets": {
+				"from": 90160,
+				"to": 100160
+			},
+			"text": " That happens kind of before you actually start building, and we've had discussions -- there's a values breakout this morning, there's been discussions about goals and how to think about high impact"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,160",
+				"to": "00:01:55,160"
+			},
+			"offsets": {
+				"from": 100160,
+				"to": 115160
+			},
+			"text": " before, and then -- but what we're going to be chatting about today is actually -- so that's in the other tracks -- what we're chatting about today is the impact side, the impact goal, which is kind of dumb, but thinking about when we actually make the tech, how does it impact society?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,160",
+				"to": "00:01:59,160"
+			},
+			"offsets": {
+				"from": 115160,
+				"to": 119160
+			},
+			"text": " Okay, so that's how you should kind of buck it in your mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,160",
+				"to": "00:02:09,160"
+			},
+			"offsets": {
+				"from": 119160,
+				"to": 129160
+			},
+			"text": " As an example of this, when Vitalik, when he tweeted this stuff, I guess, December of last year, he was thinking about this impact goal thing, thinking about, like, you know, the second one here, how many unbanked people have to think about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,160",
+				"to": "00:02:16,160"
+			},
+			"offsets": {
+				"from": 129160,
+				"to": 136160
+			},
+			"text": " How many unbanked people have we banked? That's an impact question, right? That's not a -- that is not a values question, necessarily."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,160",
+				"to": "00:02:32,160"
+			},
+			"offsets": {
+				"from": 136160,
+				"to": 152160
+			},
+			"text": " So, in terms of impact -- and again, a quick reminder here for everybody that this is in a loop, there's a reinforcing loop here where after you have impact on the world, then you reevaluate and go back to wide-biddle and then redetermine your goals, redetermine what you're trying to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,160",
+				"to": "00:02:38,160"
+			},
+			"offsets": {
+				"from": 152160,
+				"to": 158160
+			},
+			"text": " So, that -- this is kind of sad. I've had emoji issues recently."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,160",
+				"to": "00:02:48,160"
+			},
+			"offsets": {
+				"from": 158160,
+				"to": 168160
+			},
+			"text": " In between, that square is supposed to be a beautiful systems emoji that says tech impact society, society impacts tech."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,160",
+				"to": "00:02:55,160"
+			},
+			"offsets": {
+				"from": 168160,
+				"to": 175160
+			},
+			"text": " And as I said this in the kind of the intro as well, this is a question of why should we care about these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,160",
+				"to": "00:03:12,160"
+			},
+			"offsets": {
+				"from": 175160,
+				"to": 192160
+			},
+			"text": " There was -- after I gave my thing during the opening kind of keynote area, there was someone said, hey, it's important to care about these things, but -- or else just trying to, like, build deep-level infrastructure and actually get, like, actual, like, many daily active users, which you don't have right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,160",
+				"to": "00:03:18,160"
+			},
+			"offsets": {
+				"from": 192160,
+				"to": 198160
+			},
+			"text": " But we should begin to care about how our tech will impact society because we're building pretty powerful technology here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,160",
+				"to": "00:03:32,160"
+			},
+			"offsets": {
+				"from": 198160,
+				"to": 212160
+			},
+			"text": " And when that technology goes down to the world, it will have big impacts. And we can see this with the Web 2.0 world with stuff like the Arab Spring and that's to hear square, where the technology enabled to some extent, some of the protests that happened there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,160",
+				"to": "00:03:42,160"
+			},
+			"offsets": {
+				"from": 212160,
+				"to": 222160
+			},
+			"text": " and then something like surveillance capitalism or the incentives in the affordances of Web 2.0 technology gave birth to the rise of surveillance and addiction capitalism."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,160",
+				"to": "00:03:58,160"
+			},
+			"offsets": {
+				"from": 222160,
+				"to": 238160
+			},
+			"text": " So for an easy example of this happening already within the Bitcoin and Ethereum world, within the blockchain world, this is the classic energy consumption graph where proof of work is a very expensive -- is very energy-intensive thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,160",
+				"to": "00:04:08,160"
+			},
+			"offsets": {
+				"from": 238160,
+				"to": 248160
+			},
+			"text": " And so you can see right now, Ethereum uses about 20 terawatt hours per year of electricity, which is in between Iceland and Azerbaijan."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,160",
+				"to": "00:04:21,160"
+			},
+			"offsets": {
+				"from": 248160,
+				"to": 261160
+			},
+			"text": " So this is an example where you just put some incentives out into the world and the world kind of congregates around them, and before long you're spending lots of electricity keeping the consensus of a global blockchain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,160",
+				"to": "00:04:25,160"
+			},
+			"offsets": {
+				"from": 261160,
+				"to": 265160
+			},
+			"text": " So this is why we should care. It is because it will impact society."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,160",
+				"to": "00:04:36,160"
+			},
+			"offsets": {
+				"from": 265160,
+				"to": 276160
+			},
+			"text": " When we think about it, as I said, I think it's very helpful, both as we try to understand it in terms of the talks that we're going to listen to today, but also just in general,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,160",
+				"to": "00:04:47,160"
+			},
+			"offsets": {
+				"from": 276160,
+				"to": 287160
+			},
+			"text": " thinking about when tech impacts society, especially the impact side, thinking about this from a macro systemic or macro institutional perspective, but also from a micro personal perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,160",
+				"to": "00:04:55,160"
+			},
+			"offsets": {
+				"from": 287160,
+				"to": 295160
+			},
+			"text": " So here's what I mean by each of those. So from a macro systemic perspective, we could think of this as like institutional co-evolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,160",
+				"to": "00:05:04,160"
+			},
+			"offsets": {
+				"from": 295160,
+				"to": 304160
+			},
+			"text": " And what I mean by that is, if you think about the institutions that existed before the information revolution, we had stuff like markets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,160",
+				"to": "00:05:15,160"
+			},
+			"offsets": {
+				"from": 304160,
+				"to": 315160
+			},
+			"text": " and we had things like religion and states and firms, and these were things that are on this axis of how good they are at coordinating people and how good they are at motivating people."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,160",
+				"to": "00:05:24,160"
+			},
+			"offsets": {
+				"from": 315160,
+				"to": 324160
+			},
+			"text": " So there's something called the \"courses, Ronald Coss' theory of the firm\" says, \"Hey, why do firms exist? Why isn't everything a market?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,160",
+				"to": "00:05:30,160"
+			},
+			"offsets": {
+				"from": 324160,
+				"to": 330160
+			},
+			"text": " Well, it's because firms are really good at coordinating people together, the transaction costs within the firm are less."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,160",
+				"to": "00:05:37,160"
+			},
+			"offsets": {
+				"from": 330160,
+				"to": 337160
+			},
+			"text": " So these are the kind of institutions that existed pre-information revolution, but those were not always true."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,160",
+				"to": "00:05:44,160"
+			},
+			"offsets": {
+				"from": 337160,
+				"to": 344160
+			},
+			"text": " So has anybody in this room read the sovereign individual? Nice, we got ten."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,160",
+				"to": "00:05:56,160"
+			},
+			"offsets": {
+				"from": 344160,
+				"to": 356160
+			},
+			"text": " So this is essentially from that book where it said, \"Hey, when we had these institutions, they can leverage a couple of different things, and one of them they can leverage is the information in the myths.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,160",
+				"to": "00:06:23,160"
+			},
+			"offsets": {
+				"from": 356160,
+				"to": 383160
+			},
+			"text": " And so at the beginning of the, when the printing press came out, at that time the church essentially had a monopoly on the written word and on the word of God, but as you can see from this graph on the left, boom, the printing press came out, and then there were so many more printed books, and that's crazy, and that essentially took this defensible monopoly that the church had around information and myths and broke that monopoly and said, \"You don't have this anymore.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,160",
+				"to": "00:06:34,160"
+			},
+			"offsets": {
+				"from": 383160,
+				"to": 394160
+			},
+			"text": " And I love this stat from, in the early 1500s, from 1518 to 1525, Luther's works accounted for no less than a third of all German language books sold."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,160",
+				"to": "00:06:42,160"
+			},
+			"offsets": {
+				"from": 394160,
+				"to": 402160
+			},
+			"text": " So that's just like an example of, you release this into the wild, it changes the way that information flows, and the myths that people can create with that information."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,160",
+				"to": "00:06:55,160"
+			},
+			"offsets": {
+				"from": 402160,
+				"to": 415160
+			},
+			"text": " And this created competition essentially among, this is an example of institutional co-evolution where there's competition among Catholic and Protestant religions as a result of the technology, the printing press."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,160",
+				"to": "00:07:09,160"
+			},
+			"offsets": {
+				"from": 415160,
+				"to": 429160
+			},
+			"text": " So we can kind of use a similar mindset, but instead to think about post-information revolution, so if you saw the first one here, there were about four things, and now we have, I've added three."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,160",
+				"to": "00:07:26,160"
+			},
+			"offsets": {
+				"from": 429160,
+				"to": 446160
+			},
+			"text": " So now, after the information revolution, after we have these digital computers and network computers, the interwebs, we have things like networks, these are like Airbnb, Facebook, Uber, things of that variety that connect people, these big massive platform, these aggregators."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,160",
+				"to": "00:07:32,160"
+			},
+			"offsets": {
+				"from": 446160,
+				"to": 452160
+			},
+			"text": " We have things like blockchains, which we're going to talk about some extent today, which are new ways to coordinate and motivate people."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,160",
+				"to": "00:07:45,160"
+			},
+			"offsets": {
+				"from": 452160,
+				"to": 465160
+			},
+			"text": " And then we also have things like memes, and this is kind of a weird one, but this, you can think of something like, I think I say this in this next graph, something like me too is a great interesting example of a meme."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,160",
+				"to": "00:07:54,160"
+			},
+			"offsets": {
+				"from": 465160,
+				"to": 474160
+			},
+			"text": " This is a, this shows the power of the meme, this is a history within the United States of America of reasons why people in Congress resigned over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,160",
+				"to": "00:08:07,160"
+			},
+			"offsets": {
+				"from": 474160,
+				"to": 487160
+			},
+			"text": " And you can see in the back in the day, in the 1900s, there were some things that happened, and then like in World War II, a bunch of them went to left for military service, and you go further to the right, further to the right, changes in pension laws, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,160",
+				"to": "00:08:16,160"
+			},
+			"offsets": {
+				"from": 487160,
+				"to": 496160
+			},
+			"text": " But at the far right there, me too, me too as a meme was something that was able to, was created a bunch of congressional resignations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,160",
+				"to": "00:08:29,160"
+			},
+			"offsets": {
+				"from": 496160,
+				"to": 509160
+			},
+			"text": " So as we see stuff like me too, or Black Lives Matter, or make America great again, those kinds of memes are powerful, kind of institutions that people can coordinate and motivate around, and with something like Biddle as another example."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,160",
+				"to": "00:08:35,160"
+			},
+			"offsets": {
+				"from": 509160,
+				"to": 515160
+			},
+			"text": " So this is what we mean by institutional co-evolution, it's these institutions co-evolving with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,160",
+				"to": "00:08:47,160"
+			},
+			"offsets": {
+				"from": 515160,
+				"to": 527160
+			},
+			"text": " And as we listen to some of the talks they think about the new ways that blockchain enables information and especially capital to move around, and how that enables new institutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,160",
+				"to": "00:08:58,160"
+			},
+			"offsets": {
+				"from": 527160,
+				"to": 538160
+			},
+			"text": " As a funny example of this, just with what we've seen today, this is an example of these institutions, these new internet enabled businesses co-evolving from an institutional level."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,160",
+				"to": "00:09:05,160"
+			},
+			"offsets": {
+				"from": 538160,
+				"to": 545160
+			},
+			"text": " This is just a tweet from this person who I don't know, but he says, \"So how long until GoFundMe is our nation's leading healthcare provider?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,160",
+				"to": "00:09:17,160"
+			},
+			"offsets": {
+				"from": 545160,
+				"to": 557160
+			},
+			"text": " And that's kind of funny, kind of sad, but the reason why he says this is because in 2017, GoFundMe hosted more than 250,000 medical campaigns, which raised over $650 million combined."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,160",
+				"to": "00:09:27,160"
+			},
+			"offsets": {
+				"from": 557160,
+				"to": 567160
+			},
+			"text": " So what traditionally was an institution, the nation state, providing a public good, something like healthcare, now something like GoFundMe, one of these internet enabled platforms, one of these internet enabled businesses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,160",
+				"to": "00:09:35,160"
+			},
+			"offsets": {
+				"from": 567160,
+				"to": 575160
+			},
+			"text": " now is providing that public good. So it's kind of a competition or co-evolution among who's going to provide the public good."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,160",
+				"to": "00:09:44,160"
+			},
+			"offsets": {
+				"from": 575160,
+				"to": 584160
+			},
+			"text": " Another example of this is something like this lady who says, \"Hey, a $10 Uber ride is a lot, a lot cheaper than $3,000 for an ambulance.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,160",
+				"to": "00:09:55,160"
+			},
+			"offsets": {
+				"from": 584160,
+				"to": 595160
+			},
+			"text": " And this is because of the study that she's referencing here, where they showed that when Uber came into a city, the amount of people that took Uber's for ambulance visits went way up."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,160",
+				"to": "00:10:06,160"
+			},
+			"offsets": {
+				"from": 595160,
+				"to": 606160
+			},
+			"text": " Because, hey, something like these new platforms can compete with something like the traditional nation state government way to provide a public good of an ambulance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,160",
+				"to": "00:10:18,160"
+			},
+			"offsets": {
+				"from": 606160,
+				"to": 618160
+			},
+			"text": " Jonathan Zitrain, who's a great person from the Berkman Klein Center at Harvard, which studies how internet, it's an internet society center at Harvard, he captures this well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,160",
+				"to": "00:10:24,160"
+			},
+			"offsets": {
+				"from": 618160,
+				"to": 624160
+			},
+			"text": " This is at Davos and it says, \"What if public infrastructure was funded by the crowd? Wouldn't that be so crazy and cool?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,160",
+				"to": "00:10:38,160"
+			},
+			"offsets": {
+				"from": 624160,
+				"to": 638160
+			},
+			"text": " Or someone would call it taxes. So these are all just ways to think about how these institutions, these new internet enabled institutions, are co-evolving with existing pre-internet institutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,160",
+				"to": "00:10:48,160"
+			},
+			"offsets": {
+				"from": 638160,
+				"to": 648160
+			},
+			"text": " As an example of this, you can think like which institution has more power. And so on the left side are all the institutions and different types of institutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,160",
+				"to": "00:10:56,160"
+			},
+			"offsets": {
+				"from": 648160,
+				"to": 656160
+			},
+			"text": " On the right side, there's a bunch of different metrics, which they're not correlated with each other. They're not this shared metric, unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,160",
+				"to": "00:11:01,160"
+			},
+			"offsets": {
+				"from": 656160,
+				"to": 661160
+			},
+			"text": " But something like Christianity, the religion, has 2.4 billion people. That is an institution."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,160",
+				"to": "00:11:06,160"
+			},
+			"offsets": {
+				"from": 661160,
+				"to": 666160
+			},
+			"text": " Something like Facebook as a network has 2.2 billion monthly active users that more or less powerful than Christianity."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,160",
+				"to": "00:11:15,160"
+			},
+			"offsets": {
+				"from": 666160,
+				"to": 675160
+			},
+			"text": " So in China, the nation state has 1.2 billion people. Something like the Bitcoin as a blockchain has a large $125 billion market cap."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,160",
+				"to": "00:11:28,160"
+			},
+			"offsets": {
+				"from": 675160,
+				"to": 688160
+			},
+			"text": " Something like Black Lives Matter, that meme had 300 million tweets in 2017. So these are examples like, \"Hmm, who has more power here?\" It is difficult to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,160",
+				"to": "00:11:40,160"
+			},
+			"offsets": {
+				"from": 688160,
+				"to": 700160
+			},
+			"text": " One final note here is, so especially think about this institutional co-evolution during the 5th talk today, during Santiago's series talk at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,160",
+				"to": "00:11:53,160"
+			},
+			"offsets": {
+				"from": 700160,
+				"to": 713160
+			},
+			"text": " One before his, Catherine from Massari's going to be talking about law, and law is another way that these institutions, and especially the digital space, kind of co-evolve with meat space."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,160",
+				"to": "00:12:00,160"
+			},
+			"offsets": {
+				"from": 713160,
+				"to": 720160
+			},
+			"text": " And this is something that was referenced yesterday by Corey Doctorow, was this guy Lawrence Lessig, who also works at the Berkman Klein Center at Harvard."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,160",
+				"to": "00:12:08,160"
+			},
+			"offsets": {
+				"from": 720160,
+				"to": 728160
+			},
+			"text": " He has this pathetic dot, and he says, \"These are essentially the things that can change a given outcome in the world.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,160",
+				"to": "00:12:14,160"
+			},
+			"offsets": {
+				"from": 728160,
+				"to": 734160
+			},
+			"text": " And there are, by architecture on the left he means codes. You can actually have code that changes how things occur."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,160",
+				"to": "00:12:25,160"
+			},
+			"offsets": {
+				"from": 734160,
+				"to": 745160
+			},
+			"text": " You can have the market or incentives that change how things happen. You can have law that constrains how people operate, or you can have norms, and kind of like the mindset piece."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,160",
+				"to": "00:12:37,160"
+			},
+			"offsets": {
+				"from": 745160,
+				"to": 757160
+			},
+			"text": " And so this is just another, yeah, so this is another way to think about this is, there's institutional co-evolution, and there's a question of how does the law respond to things."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,160",
+				"to": "00:12:45,160"
+			},
+			"offsets": {
+				"from": 757160,
+				"to": 765160
+			},
+			"text": " So the tech that we're building is all on the architecture side, the coding architecture side, and on the market side, the new incentive side."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,160",
+				"to": "00:12:54,160"
+			},
+			"offsets": {
+				"from": 765160,
+				"to": 774160
+			},
+			"text": " Different than that is the wide-bittles side, which are the norms, what norms are we trying to create, and then also how does the law kind of constrain this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,160",
+				"to": "00:13:06,160"
+			},
+			"offsets": {
+				"from": 774160,
+				"to": 786160
+			},
+			"text": " So, when we talk about the two buckets of impact, there's the big bucket of the macro systemic macro institutional bucket, and we chat about that here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,160",
+				"to": "00:13:17,160"
+			},
+			"offsets": {
+				"from": 786160,
+				"to": 797160
+			},
+			"text": " But remember that bucket, which is on the left here, we don't actually care about that bucket. And what I mean by that is, we don't care what happens to, in the end we care about people."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,160",
+				"to": "00:13:26,160"
+			},
+			"offsets": {
+				"from": 797160,
+				"to": 806160
+			},
+			"text": " A company does not have, a company cannot be hurt, a company does not have dopamine receptors, a company does not have pain or suffering or those kinds of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,160",
+				"to": "00:13:35,160"
+			},
+			"offsets": {
+				"from": 806160,
+				"to": 815160
+			},
+			"text": " And so in the end we care about people, and people exist in institutions, which is why I care about them, but we should also be deeply thinking about the kind of micro-personal side as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,160",
+				"to": "00:13:38,160"
+			},
+			"offsets": {
+				"from": 815160,
+				"to": 818160
+			},
+			"text": " So let's make sure we understand that too."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,160",
+				"to": "00:13:43,160"
+			},
+			"offsets": {
+				"from": 818160,
+				"to": 823160
+			},
+			"text": " So on the micro-personal side, there are a couple, I like to bucket this in three main categories."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,160",
+				"to": "00:13:50,160"
+			},
+			"offsets": {
+				"from": 823160,
+				"to": 830160
+			},
+			"text": " The first is power, and how new kinds of technology change your relationship with power."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,160",
+				"to": "00:14:00,160"
+			},
+			"offsets": {
+				"from": 830160,
+				"to": 840160
+			},
+			"text": " So, as an example of this, within the general blockchain ecosystem, we talk about the decentralization of all the things, and especially the decentralization of power or wealth."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,160",
+				"to": "00:14:11,160"
+			},
+			"offsets": {
+				"from": 840160,
+				"to": 851160
+			},
+			"text": " And this is this great graph from biology, from the CTO of Coinbase, that looks at the genie coefficients over time of various different blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,160",
+				"to": "00:14:22,160"
+			},
+			"offsets": {
+				"from": 851160,
+				"to": 862160
+			},
+			"text": " And here's the one for the, for Ethereum. So the ideal line of decentralization, if everybody had the same essentially amount of wealth, then that would be correlated with that yellow line."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,160",
+				"to": "00:14:29,160"
+			},
+			"offsets": {
+				"from": 862160,
+				"to": 869160
+			},
+			"text": " But in fact, it's much worse. We have a very bad genie coefficient. I think the top 100 addresses control, I think it's 39%."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,160",
+				"to": "00:14:40,160"
+			},
+			"offsets": {
+				"from": 869160,
+				"to": 880160
+			},
+			"text": " Or 50% of all the Ethereum. So we should think about this as our relationship with power, and how something like these new blockchain networks change our relationship with power."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,160",
+				"to": "00:14:44,160"
+			},
+			"offsets": {
+				"from": 880160,
+				"to": 884160
+			},
+			"text": " And wealth is always a good way to think about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,160",
+				"to": "00:14:56,160"
+			},
+			"offsets": {
+				"from": 884160,
+				"to": 896160
+			},
+			"text": " Another way to think about power is kind of what the technology gives us the ability to do in the academic world, kind of calls these affordances."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,160",
+				"to": "00:15:01,160"
+			},
+			"offsets": {
+				"from": 896160,
+				"to": 901160
+			},
+			"text": " So when you have the new technology, what does it allow you to do? What does it afford you to do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,160",
+				"to": "00:15:08,160"
+			},
+			"offsets": {
+				"from": 901160,
+				"to": 908160
+			},
+			"text": " And there's this great book by Zainab Tufeki called Twitter and tear gas, the power and fragility of networked protest."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,160",
+				"to": "00:15:23,160"
+			},
+			"offsets": {
+				"from": 908160,
+				"to": 923160
+			},
+			"text": " And in that, she talks about how the internet with its zero marginal cost of transmitting information allowed people to come together around and have 100,000 person protest in a much cheaper way than they were before."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,160",
+				"to": "00:15:30,160"
+			},
+			"offsets": {
+				"from": 923160,
+				"to": 930160
+			},
+			"text": " So that's another way to think about power is these affordances can kind of empower people within these systems to do new kinds of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,160",
+				"to": "00:15:41,160"
+			},
+			"offsets": {
+				"from": 930160,
+				"to": 941160
+			},
+			"text": " So start thinking about that as we hear from our speakers later today, how do these new kinds of blockchain enabled systems empower us and afford us new kinds of power?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,160",
+				"to": "00:15:51,160"
+			},
+			"offsets": {
+				"from": 941160,
+				"to": 951160
+			},
+			"text": " So if power is one bucket, another bucket here is needs and how a given technology changes our needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,160",
+				"to": "00:16:01,160"
+			},
+			"offsets": {
+				"from": 951160,
+				"to": 961160
+			},
+			"text": " So when I'm talking about needs, I'm mostly talking about like Maslow's hierarchy of needs with physiological at the bottom, i.e. your basic needs and something like self actualization at the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,160",
+				"to": "00:16:15,160"
+			},
+			"offsets": {
+				"from": 961160,
+				"to": 975160
+			},
+			"text": " And this is a good, funny graph of a funny pyramid of different startups that go for different levels on Maslow's hierarchy of needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,160",
+				"to": "00:16:28,160"
+			},
+			"offsets": {
+				"from": 975160,
+				"to": 988160
+			},
+			"text": " So something like at the bottom here, something like Yelp is really good for finding your base level needs of food, while something at the very top, like Kickstarter is better for the self actualization needs of like, I'm going to do this creative project."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,160",
+				"to": "00:16:43,160"
+			},
+			"offsets": {
+				"from": 988160,
+				"to": 1003160
+			},
+			"text": " So with that in mind, think about how the blockchain ecosystem, what kinds of needs from a personal level, blockchain technology allows you to kind of meet what needs does blockchain allow you to meet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,160",
+				"to": "00:16:51,160"
+			},
+			"offsets": {
+				"from": 1003160,
+				"to": 1011160
+			},
+			"text": " And then the final piece here is so if there's power and then there's need meeting and there's also identity is the final one here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,160",
+				"to": "00:16:56,160"
+			},
+			"offsets": {
+				"from": 1011160,
+				"to": 1016160
+			},
+			"text": " And identity, let me see if I have this slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,160",
+				"to": "00:17:07,160"
+			},
+			"offsets": {
+				"from": 1016160,
+				"to": 1027160
+			},
+			"text": " So identity is a pretty, what I say, it has lots of, there's lots of stuff wrapped into identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,160",
+				"to": "00:17:20,160"
+			},
+			"offsets": {
+				"from": 1027160,
+				"to": 1040160
+			},
+			"text": " And you can see this happening on the web 2.0 world with the internet essentially enabling filter bubbles and things of that variety that deeply change people's identity and get them in these networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,160",
+				"to": "00:17:25,160"
+			},
+			"offsets": {
+				"from": 1040160,
+				"to": 1045160
+			},
+			"text": " Get them in these new kinds of identity that they did not have 10 years before."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,160",
+				"to": "00:17:37,160"
+			},
+			"offsets": {
+				"from": 1045160,
+				"to": 1057160
+			},
+			"text": " Identity also exists within the crypto world as we well know we are here at an Ethereum conference and Lane Redick gave a great talk on day one about how like I am an Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,160",
+				"to": "00:17:43,160"
+			},
+			"offsets": {
+				"from": 1057160,
+				"to": 1063160
+			},
+			"text": " So that's like a part of your identity is like, I am connected to the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,160",
+				"to": "00:17:45,160"
+			},
+			"offsets": {
+				"from": 1063160,
+				"to": 1065160
+			},
+			"text": " I am defining myself as an Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,160",
+				"to": "00:17:52,160"
+			},
+			"offsets": {
+				"from": 1065160,
+				"to": 1072160
+			},
+			"text": " So you have all these different identities that show up whether it's the doge, whether you love the doge meme and that is now part of your identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,160",
+				"to": "00:18:02,160"
+			},
+			"offsets": {
+				"from": 1072160,
+				"to": 1082160
+			},
+			"text": " So this is the final piece here is as we think about these technologies, they will almost certainly then be connected into your identity as you go forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,160",
+				"to": "00:18:12,160"
+			},
+			"offsets": {
+				"from": 1082160,
+				"to": 1092160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,160",
+				"to": "00:18:22,160"
+			},
+			"offsets": {
+				"from": 1092160,
+				"to": 1102160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,160",
+				"to": "00:18:32,160"
+			},
+			"offsets": {
+				"from": 1102160,
+				"to": 1112160
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

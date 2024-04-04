@@ -1,0 +1,5576 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:13,760"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 13760
+			},
+			"text": " That's true."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,760",
+				"to": "00:00:15,840"
+			},
+			"offsets": {
+				"from": 13760,
+				"to": 15840
+			},
+			"text": " [LAUGH]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,840",
+				"to": "00:00:18,720"
+			},
+			"offsets": {
+				"from": 15840,
+				"to": 18720
+			},
+			"text": " All right, hi everyone, I'm Hudson Jamison."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,720",
+				"to": "00:00:22,360"
+			},
+			"offsets": {
+				"from": 18720,
+				"to": 22360
+			},
+			"text": " I work for the Ethereum Foundation, doing some DevOps and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,360",
+				"to": "00:00:23,920"
+			},
+			"offsets": {
+				"from": 22360,
+				"to": 23920
+			},
+			"text": " core developer liaison work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,920",
+				"to": "00:00:27,960"
+			},
+			"offsets": {
+				"from": 23920,
+				"to": 27960
+			},
+			"text": " Actually, let's go, I guess, do the intro real quick and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,960",
+				"to": "00:00:31,120"
+			},
+			"offsets": {
+				"from": 27960,
+				"to": 31120
+			},
+			"text": " then I'll get started on kind of an overview prop panel and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,120",
+				"to": "00:00:34,400"
+			},
+			"offsets": {
+				"from": 31120,
+				"to": 34400
+			},
+			"text": " we'll jump into some of the other stuff around it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,400",
+				"to": "00:00:35,640"
+			},
+			"offsets": {
+				"from": 34400,
+				"to": 35640
+			},
+			"text": " So that's my intro."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,640",
+				"to": "00:00:39,280"
+			},
+			"offsets": {
+				"from": 35640,
+				"to": 39280
+			},
+			"text": " >> Hi, I'm Martin Olis Spender."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,280",
+				"to": "00:00:42,640"
+			},
+			"offsets": {
+				"from": 39280,
+				"to": 42640
+			},
+			"text": " And I work as a programmer on the get team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,640",
+				"to": "00:00:48,400"
+			},
+			"offsets": {
+				"from": 42640,
+				"to": 48400
+			},
+			"text": " And I'm also the security lead for the foundation in regards to the Ethereum infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,400",
+				"to": "00:00:51,640"
+			},
+			"offsets": {
+				"from": 48400,
+				"to": 51640
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,640",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 51640,
+				"to": 55000
+			},
+			"text": " >> Hi, I'm Ram from least authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:58,720"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 58720
+			},
+			"text": " I did the prop party, I work as a programmer and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,720",
+				"to": "00:00:59,760"
+			},
+			"offsets": {
+				"from": 58720,
+				"to": 59760
+			},
+			"text": " security associate."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,760",
+				"to": "00:01:04,120"
+			},
+			"offsets": {
+				"from": 59760,
+				"to": 64120
+			},
+			"text": " >> Hi, I'm Liz Steiner, also from least authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,120",
+				"to": "00:01:07,600"
+			},
+			"offsets": {
+				"from": 64120,
+				"to": 67600
+			},
+			"text": " >> Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,600",
+				"to": "00:01:11,440"
+			},
+			"offsets": {
+				"from": 67600,
+				"to": 71440
+			},
+			"text": " >> All right, so how many of you in here are familiar with prop-pow?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,440",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 71440,
+				"to": 77000
+			},
+			"text": " Is that almost, okay, you got at least one person, so I want to explain it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:18,360"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 78360
+			},
+			"text": " [LAUGH]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,360",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 78360,
+				"to": 81000
+			},
+			"text": " So, I'll hear some other people coming in."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:26,640"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 86640
+			},
+			"text": " So, prop-pow is stands for programmatic proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,640",
+				"to": "00:01:30,560"
+			},
+			"offsets": {
+				"from": 86640,
+				"to": 90560
+			},
+			"text": " And basically, in the Ethereum white paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,560",
+				"to": "00:01:35,320"
+			},
+			"offsets": {
+				"from": 90560,
+				"to": 95320
+			},
+			"text": " it was mentioned that Ethereum was designed to be ASIC resistant."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,320",
+				"to": "00:01:40,720"
+			},
+			"offsets": {
+				"from": 95320,
+				"to": 100720
+			},
+			"text": " ACB has specialized hardware chip that's meant to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,720",
+				"to": "00:01:46,560"
+			},
+			"offsets": {
+				"from": 100720,
+				"to": 106560
+			},
+			"text": " I guess in the cryptocurrency world, minus specific cryptocurrency algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,560",
+				"to": "00:01:49,320"
+			},
+			"offsets": {
+				"from": 106560,
+				"to": 109320
+			},
+			"text": " So, there's supposed to be ASIC resistance, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,320",
+				"to": "00:01:52,640"
+			},
+			"offsets": {
+				"from": 109320,
+				"to": 112640
+			},
+			"text": " there's this thing called the T hash or at hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,640",
+				"to": "00:01:59,760"
+			},
+			"offsets": {
+				"from": 112640,
+				"to": 119760
+			},
+			"text": " People call it different things and it is the proof of work algorithm that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,760",
+				"to": "00:02:00,680"
+			},
+			"offsets": {
+				"from": 119760,
+				"to": 120680
+			},
+			"text": " used in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,680",
+				"to": "00:02:04,880"
+			},
+			"offsets": {
+				"from": 120680,
+				"to": 124880
+			},
+			"text": " So, when ASICs came online, in the last year, I guess, year and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,880",
+				"to": "00:02:09,760"
+			},
+			"offsets": {
+				"from": 124880,
+				"to": 129760
+			},
+			"text": " a half, people started getting worried to some people because"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,760",
+				"to": "00:02:13,640"
+			},
+			"offsets": {
+				"from": 129760,
+				"to": 133640
+			},
+			"text": " there was, because ASICs were originally not supposed to be on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,640",
+				"to": "00:02:17,160"
+			},
+			"offsets": {
+				"from": 133640,
+				"to": 137160
+			},
+			"text": " And there was some concerns from other cryptocurrency communities like"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,160",
+				"to": "00:02:22,880"
+			},
+			"offsets": {
+				"from": 137160,
+				"to": 142880
+			},
+			"text": " Narrow and Zcash that ASICs would join the network in a way that was not as"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,880",
+				"to": "00:02:27,560"
+			},
+			"offsets": {
+				"from": 142880,
+				"to": 147560
+			},
+			"text": " altruistic as GPU mining pools or would attack the network or"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,560",
+				"to": "00:02:30,880"
+			},
+			"offsets": {
+				"from": 147560,
+				"to": 150880
+			},
+			"text": " form these secret mining groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,880",
+				"to": "00:02:34,480"
+			},
+			"offsets": {
+				"from": 150880,
+				"to": 154480
+			},
+			"text": " And the fact that it would push GPU miners out of the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,480",
+				"to": "00:02:40,200"
+			},
+			"offsets": {
+				"from": 154480,
+				"to": 160200
+			},
+			"text": " So, GPU miners were pretty put on not having those in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,200",
+				"to": "00:02:46,800"
+			},
+			"offsets": {
+				"from": 160200,
+				"to": 166800
+			},
+			"text": " So, that's kind of where PowerPow came from, a group called IfDefLs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,800",
+				"to": "00:02:50,440"
+			},
+			"offsets": {
+				"from": 166800,
+				"to": 170440
+			},
+			"text": " who was semi anonymous, created PowerPow."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,440",
+				"to": "00:02:57,360"
+			},
+			"offsets": {
+				"from": 170440,
+				"to": 177360
+			},
+			"text": " The IfDefLs was a ChristiGly mine hand, who's been the spokesperson for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,360",
+				"to": "00:02:58,920"
+			},
+			"offsets": {
+				"from": 177360,
+				"to": 178920
+			},
+			"text": " PowerPow for this time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,920",
+				"to": "00:03:04,200"
+			},
+			"offsets": {
+				"from": 178920,
+				"to": 184200
+			},
+			"text": " The other developers have not been revealed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,200",
+				"to": "00:03:08,960"
+			},
+			"offsets": {
+				"from": 184200,
+				"to": 188960
+			},
+			"text": " Since then, there's been a lot of politics and some technical argument on"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,960",
+				"to": "00:03:14,400"
+			},
+			"offsets": {
+				"from": 188960,
+				"to": 194400
+			},
+			"text": " PowerPow in general, including some conspiracy theories, some fun,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,920",
+				"to": "00:03:18,360"
+			},
+			"offsets": {
+				"from": 195920,
+				"to": 198360
+			},
+			"text": " stuff like this and that and back and forth on Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,360",
+				"to": "00:03:22,960"
+			},
+			"offsets": {
+				"from": 198360,
+				"to": 202960
+			},
+			"text": " A lot of research has been done on PowerPow because of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,960",
+				"to": "00:03:26,800"
+			},
+			"offsets": {
+				"from": 202960,
+				"to": 206800
+			},
+			"text": " I believe it was first made in March of 2018."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,800",
+				"to": "00:03:33,040"
+			},
+			"offsets": {
+				"from": 206800,
+				"to": 213040
+			},
+			"text": " I first started being developed and we're here now in, I guess November."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,040",
+				"to": "00:03:36,640"
+			},
+			"offsets": {
+				"from": 213040,
+				"to": 216640
+			},
+			"text": " I don't think it's November, 2019, October,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,640",
+				"to": "00:03:38,720"
+			},
+			"offsets": {
+				"from": 216640,
+				"to": 218720
+			},
+			"text": " and October, 2019."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,720",
+				"to": "00:03:40,840"
+			},
+			"offsets": {
+				"from": 218720,
+				"to": 220840
+			},
+			"text": " And we're still talking about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,840",
+				"to": "00:03:44,240"
+			},
+			"offsets": {
+				"from": 220840,
+				"to": 224240
+			},
+			"text": " So, it's very, I would say, that a contentious topic within the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,240",
+				"to": "00:03:46,520"
+			},
+			"offsets": {
+				"from": 224240,
+				"to": 226520
+			},
+			"text": " community."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,520",
+				"to": "00:03:49,600"
+			},
+			"offsets": {
+				"from": 226520,
+				"to": 229600
+			},
+			"text": " Back when the core developers were deciding whether or not to implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,600",
+				"to": "00:03:54,680"
+			},
+			"offsets": {
+				"from": 229600,
+				"to": 234680
+			},
+			"text": " PowerPow once it was at a point of being decided for implementation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,680",
+				"to": "00:03:59,320"
+			},
+			"offsets": {
+				"from": 234680,
+				"to": 239320
+			},
+			"text": " the core developers made the decision to implement it into a future hard fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,320",
+				"to": "00:04:06,520"
+			},
+			"offsets": {
+				"from": 239320,
+				"to": 246520
+			},
+			"text": " But because there was all this noise around the development of PowerPow itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,520",
+				"to": "00:04:12,840"
+			},
+			"offsets": {
+				"from": 246520,
+				"to": 252840
+			},
+			"text": " the back in January, the Ethereum cat herders were assigned to have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,840",
+				"to": "00:04:17,440"
+			},
+			"offsets": {
+				"from": 252840,
+				"to": 257440
+			},
+			"text": " audits done or basically to organize audits around PowerPow."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,440",
+				"to": "00:04:22,840"
+			},
+			"offsets": {
+				"from": 257440,
+				"to": 262840
+			},
+			"text": " And we selected at least authority for the primarily software part of the audit"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,840",
+				"to": "00:04:28,880"
+			},
+			"offsets": {
+				"from": 262840,
+				"to": 268880
+			},
+			"text": " and Bob Rao as the person doing the more hardware piece of the audit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,880",
+				"to": "00:04:31,800"
+			},
+			"offsets": {
+				"from": 268880,
+				"to": 271800
+			},
+			"text": " And those were completed months ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,800",
+				"to": "00:04:34,680"
+			},
+			"offsets": {
+				"from": 271800,
+				"to": 274680
+			},
+			"text": " And yeah, I'll have least authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,680",
+				"to": "00:04:37,160"
+			},
+			"offsets": {
+				"from": 274680,
+				"to": 277160
+			},
+			"text": " Obviously, talk about their end of the deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,160",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 277160,
+				"to": 282000
+			},
+			"text": " And Martin has been helping with the gas implementation of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:45,280"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 285280
+			},
+			"text": " It also started a test net, which he could talk about a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,280",
+				"to": "00:04:47,720"
+			},
+			"offsets": {
+				"from": 285280,
+				"to": 287720
+			},
+			"text": " I think it's called gangnam, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,720",
+				"to": "00:04:53,480"
+			},
+			"offsets": {
+				"from": 287720,
+				"to": 293480
+			},
+			"text": " Test net for PowerPow to make sure that it is viable for the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,480",
+				"to": "00:04:58,120"
+			},
+			"offsets": {
+				"from": 293480,
+				"to": 298120
+			},
+			"text": " So, we'll get into some discussion kind of around a little bit of the technicals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,120",
+				"to": "00:05:04,800"
+			},
+			"offsets": {
+				"from": 298120,
+				"to": 304800
+			},
+			"text": " a little bit of the politics and kind of reach out to you all to see who is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,800",
+				"to": "00:05:07,920"
+			},
+			"offsets": {
+				"from": 304800,
+				"to": 307920
+			},
+			"text": " wanting to ask questions and where do you want these topics to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,920",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 307920,
+				"to": 311000
+			},
+			"text": " So, I'll throw at least authority and then they can throw it to Martin and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 313000
+			},
+			"text": " you can go from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:20,200"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 320200
+			},
+			"text": " So, yeah, we were selected basically to do this audit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,200",
+				"to": "00:05:25,520"
+			},
+			"offsets": {
+				"from": 320200,
+				"to": 325520
+			},
+			"text": " And we know that sometimes that while we knew we were aware that this is a pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,520",
+				"to": "00:05:31,880"
+			},
+			"offsets": {
+				"from": 325520,
+				"to": 331880
+			},
+			"text": " contentious topic, but we do see our role as auditors to just look and report on what"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,880",
+				"to": "00:05:32,880"
+			},
+			"offsets": {
+				"from": 331880,
+				"to": 332880
+			},
+			"text": " we see."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,880",
+				"to": "00:05:37,960"
+			},
+			"offsets": {
+				"from": 332880,
+				"to": 337960
+			},
+			"text": " So, we can't really offer too much in terms of what the community should do and how it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,960",
+				"to": "00:05:38,960"
+			},
+			"offsets": {
+				"from": 337960,
+				"to": 338960
+			},
+			"text": " should handle and everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,960",
+				"to": "00:05:43,360"
+			},
+			"offsets": {
+				"from": 338960,
+				"to": 343360
+			},
+			"text": " But it was more about just reflecting on what we found with PowerPow."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,360",
+				"to": "00:05:46,840"
+			},
+			"offsets": {
+				"from": 343360,
+				"to": 346840
+			},
+			"text": " So, we looked at it for I think a little bit over a month."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,840",
+				"to": "00:05:48,400"
+			},
+			"offsets": {
+				"from": 346840,
+				"to": 348400
+			},
+			"text": " I think it was about five weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,400",
+				"to": "00:05:52,280"
+			},
+			"offsets": {
+				"from": 348400,
+				"to": 352280
+			},
+			"text": " And then we produced a report in mid-August and I believe we got published"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,280",
+				"to": "00:05:55,440"
+			},
+			"offsets": {
+				"from": 352280,
+				"to": 355440
+			},
+			"text": " towards the end of August or in September, but it's public now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,440",
+				"to": "00:05:58,120"
+			},
+			"offsets": {
+				"from": 355440,
+				"to": 358120
+			},
+			"text": " So, that report is out there for people to read."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,120",
+				"to": "00:06:01,080"
+			},
+			"offsets": {
+				"from": 358120,
+				"to": 361080
+			},
+			"text": " Some of the feedback that we've gotten on the report is that people"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,080",
+				"to": "00:06:03,440"
+			},
+			"offsets": {
+				"from": 361080,
+				"to": 363440
+			},
+			"text": " understand it but kind of don't understand it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,440",
+				"to": "00:06:07,840"
+			},
+			"offsets": {
+				"from": 363440,
+				"to": 367840
+			},
+			"text": " But it's just because it's really, we had to get into really technical stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,840",
+				"to": "00:06:11,960"
+			},
+			"offsets": {
+				"from": 367840,
+				"to": 371960
+			},
+			"text": " when doing the security audit to really just dig deep and try to figure out what exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,960",
+				"to": "00:06:13,760"
+			},
+			"offsets": {
+				"from": 371960,
+				"to": 373760
+			},
+			"text": " was going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,760",
+				"to": "00:06:19,320"
+			},
+			"offsets": {
+				"from": 373760,
+				"to": 379320
+			},
+			"text": " And we report things on a high level and then we also gave suggestions of what should be"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,320",
+				"to": "00:06:21,200"
+			},
+			"offsets": {
+				"from": 379320,
+				"to": 381200
+			},
+			"text": " potentially improved about PowerPow."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,200",
+				"to": "00:06:28,720"
+			},
+			"offsets": {
+				"from": 381200,
+				"to": 388720
+			},
+			"text": " But I mean basically that we found that it achieved its goal of making ASICS basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,720",
+				"to": "00:06:35,240"
+			},
+			"offsets": {
+				"from": 388720,
+				"to": 395240
+			},
+			"text": " need to be like GPUs in order to work with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,240",
+				"to": "00:06:41,880"
+			},
+			"offsets": {
+				"from": 395240,
+				"to": 401880
+			},
+			"text": " And so that really disadvantaged any kind of ASIC production to, I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,880",
+				"to": "00:06:44,440"
+			},
+			"offsets": {
+				"from": 401880,
+				"to": 404440
+			},
+			"text": " ASIC advantage when they were produced."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,440",
+				"to": "00:06:52,200"
+			},
+			"offsets": {
+				"from": 404440,
+				"to": 412200
+			},
+			"text": " So we also looked at what, like the, so knowing that we also wanted to really analyze"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,200",
+				"to": "00:06:56,680"
+			},
+			"offsets": {
+				"from": 412200,
+				"to": 416680
+			},
+			"text": " what would happen in hardware, advanced in the future in particular ways,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,680",
+				"to": "00:07:00,640"
+			},
+			"offsets": {
+				"from": 416680,
+				"to": 420640
+			},
+			"text": " how that would also impact ProPow to also like kind of extend the life of the audit"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,640",
+				"to": "00:07:03,080"
+			},
+			"offsets": {
+				"from": 420640,
+				"to": 423080
+			},
+			"text": " information that we provide to the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,080",
+				"to": "00:07:07,240"
+			},
+			"offsets": {
+				"from": 423080,
+				"to": 427240
+			},
+			"text": " So because, you know, there's only so much you can write about like, hey, this is just"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,240",
+				"to": "00:07:08,240"
+			},
+			"offsets": {
+				"from": 427240,
+				"to": 428240
+			},
+			"text": " how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,240",
+				"to": "00:07:09,920"
+			},
+			"offsets": {
+				"from": 428240,
+				"to": 429920
+			},
+			"text": " So we wanted to really look at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,920",
+				"to": "00:07:14,600"
+			},
+			"offsets": {
+				"from": 429920,
+				"to": 434600
+			},
+			"text": " So we tried to capture some things in the report too that said, if this specific hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,600",
+				"to": "00:07:18,680"
+			},
+			"offsets": {
+				"from": 434600,
+				"to": 438680
+			},
+			"text": " advancement happens in the future, then this is the potential issue that might result."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,680",
+				"to": "00:07:25,840"
+			},
+			"offsets": {
+				"from": 438680,
+				"to": 445840
+			},
+			"text": " And more specifically that was around the light evaluation mining attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,840",
+				"to": "00:07:30,600"
+			},
+			"offsets": {
+				"from": 445840,
+				"to": 450600
+			},
+			"text": " And then we also had some meta-surgessioner on Kechek function too."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,600",
+				"to": "00:07:33,960"
+			},
+			"offsets": {
+				"from": 450600,
+				"to": 453960
+			},
+			"text": " And those two items seem to be the ones that are, you know, most up for discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,960",
+				"to": "00:07:38,920"
+			},
+			"offsets": {
+				"from": 453960,
+				"to": 458920
+			},
+			"text": " because besides that we also did some other suggestion there that were, so about documentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,920",
+				"to": "00:07:40,760"
+			},
+			"offsets": {
+				"from": 458920,
+				"to": 460760
+			},
+			"text": " and so on that too."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,760",
+				"to": "00:07:45,160"
+			},
+			"offsets": {
+				"from": 460760,
+				"to": 465160
+			},
+			"text": " Yeah, so you all can read the report from more details but we're also here to talk today"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,160",
+				"to": "00:07:49,200"
+			},
+			"offsets": {
+				"from": 465160,
+				"to": 469200
+			},
+			"text": " if there's not many specific questions about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,200",
+				"to": "00:08:01,080"
+			},
+			"offsets": {
+				"from": 469200,
+				"to": 481080
+			},
+			"text": " I can just mention that test that so there was a test that started a long, long time ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,080",
+				"to": "00:08:04,880"
+			},
+			"offsets": {
+				"from": 481080,
+				"to": 484880
+			},
+			"text": " I can't exactly remember when it was."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,880",
+				"to": "00:08:11,160"
+			},
+			"offsets": {
+				"from": 484880,
+				"to": 491160
+			},
+			"text": " It was based on a perp-soperity, a done on implementation which was later merged into"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,160",
+				"to": "00:08:14,720"
+			},
+			"offsets": {
+				"from": 491160,
+				"to": 494720
+			},
+			"text": " the peric client so it can be activated by a genesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,720",
+				"to": "00:08:17,560"
+			},
+			"offsets": {
+				"from": 494720,
+				"to": 497560
+			},
+			"text": " For Geth it was never merged into the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,560",
+				"to": "00:08:25,120"
+			},
+			"offsets": {
+				"from": 497560,
+				"to": 505120
+			},
+			"text": " So the Geth clients that participate in the test that were basically based off Geth a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,120",
+				"to": "00:08:30,600"
+			},
+			"offsets": {
+				"from": 505120,
+				"to": 510600
+			},
+			"text": " PR which by now is kind of stale."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,600",
+				"to": "00:08:34,600"
+			},
+			"offsets": {
+				"from": 510600,
+				"to": 514600
+			},
+			"text": " As far as I know the test that's still up and running it and the miners are running it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,600",
+				"to": "00:08:41,760"
+			},
+			"offsets": {
+				"from": 514600,
+				"to": 521760
+			},
+			"text": " they are also running it on a dedicated GPU mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,760",
+				"to": "00:08:47,320"
+			},
+			"offsets": {
+				"from": 521760,
+				"to": 527320
+			},
+			"text": " And I don't know at this point how many epochs it has transition through but it's quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,320",
+				"to": "00:08:48,320"
+			},
+			"offsets": {
+				"from": 527320,
+				"to": 528320
+			},
+			"text": " a long time ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,320",
+				"to": "00:08:52,600"
+			},
+			"offsets": {
+				"from": 528320,
+				"to": 532600
+			},
+			"text": " As far as I know there's been no problems with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,600",
+				"to": "00:08:57,240"
+			},
+			"offsets": {
+				"from": 532600,
+				"to": 537240
+			},
+			"text": " But that's the only."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,240",
+				"to": "00:09:01,160"
+			},
+			"offsets": {
+				"from": 537240,
+				"to": 541160
+			},
+			"text": " Great, so yeah that's how I understood it as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,160",
+				"to": "00:09:09,600"
+			},
+			"offsets": {
+				"from": 541160,
+				"to": 549600
+			},
+			"text": " So diving into the politics a little bit, the latest on that I guess or maybe even a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,600",
+				"to": "00:09:10,600"
+			},
+			"offsets": {
+				"from": 549600,
+				"to": 550600
+			},
+			"text": " background."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,600",
+				"to": "00:09:17,480"
+			},
+			"offsets": {
+				"from": 550600,
+				"to": 557480
+			},
+			"text": " There has been some back and forth, just to kind of air this all out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,480",
+				"to": "00:09:24,800"
+			},
+			"offsets": {
+				"from": 557480,
+				"to": 564800
+			},
+			"text": " Kristi Meinhan is a very sort of magnetic figure like a controversial figure in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,800",
+				"to": "00:09:31,320"
+			},
+			"offsets": {
+				"from": 564800,
+				"to": 571320
+			},
+			"text": " space because of her past affiliations and the way she's kind of handled communications"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,320",
+				"to": "00:09:36,240"
+			},
+			"offsets": {
+				"from": 571320,
+				"to": 576240
+			},
+			"text": " in the back and forth that they've had with the ACID manufacturers which I should mention"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,240",
+				"to": "00:09:44,160"
+			},
+			"offsets": {
+				"from": 576240,
+				"to": 584160
+			},
+			"text": " the ACID manufacturers at times have also been a little bit like as rowdy with their communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,160",
+				"to": "00:09:49,200"
+			},
+			"offsets": {
+				"from": 584160,
+				"to": 589200
+			},
+			"text": " as far as being anti-prog pow obviously because their ACID manufacturers they aren't going"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,200",
+				"to": "00:09:50,200"
+			},
+			"offsets": {
+				"from": 589200,
+				"to": 590200
+			},
+			"text": " to want it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,200",
+				"to": "00:09:57,040"
+			},
+			"offsets": {
+				"from": 590200,
+				"to": 597040
+			},
+			"text": " So I don't really want to go into like super detail about that but there's a lot of interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,040",
+				"to": "00:09:58,560"
+			},
+			"offsets": {
+				"from": 597040,
+				"to": 598560
+			},
+			"text": " articles in that and forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,560",
+				"to": "00:10:03,560"
+			},
+			"offsets": {
+				"from": 598560,
+				"to": 603560
+			},
+			"text": " Some Twitter conversations you can dive into to get more information on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,560",
+				"to": "00:10:09,640"
+			},
+			"offsets": {
+				"from": 603560,
+				"to": 609640
+			},
+			"text": " And I think that there are two sides to this obviously the technical and the political"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,640",
+				"to": "00:10:15,040"
+			},
+			"offsets": {
+				"from": 609640,
+				"to": 615040
+			},
+			"text": " and the technical has been fleshed out using the audits and technical discussion and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,040",
+				"to": "00:10:19,560"
+			},
+			"offsets": {
+				"from": 615040,
+				"to": 619560
+			},
+			"text": " political side has not been fleshed out because there's a lot of very strong opinions from"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,560",
+				"to": "00:10:22,360"
+			},
+			"offsets": {
+				"from": 619560,
+				"to": 622360
+			},
+			"text": " certain people."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,360",
+				"to": "00:10:23,880"
+			},
+			"offsets": {
+				"from": 622360,
+				"to": 623880
+			},
+			"text": " There's so many sides of the debate."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,880",
+				"to": "00:10:28,760"
+			},
+			"offsets": {
+				"from": 623880,
+				"to": 628760
+			},
+			"text": " It's even a debate as to whether the community is loud about it or whether it's just a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,760",
+				"to": "00:10:35,880"
+			},
+			"offsets": {
+				"from": 628760,
+				"to": 635880
+			},
+			"text": " very global minority groups that are just really loud about it in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,880",
+				"to": "00:10:41,200"
+			},
+			"offsets": {
+				"from": 635880,
+				"to": 641200
+			},
+			"text": " So it's really hard to parse the signals out of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,200",
+				"to": "00:10:46,480"
+			},
+			"offsets": {
+				"from": 641200,
+				"to": 646480
+			},
+			"text": " And as someone who's kind of a community manager in the space this has been one of the hardest"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,480",
+				"to": "00:10:53,640"
+			},
+			"offsets": {
+				"from": 646480,
+				"to": 653640
+			},
+			"text": " things to reason with is getting the signals from the community about whether or not prog"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,640",
+				"to": "00:10:57,840"
+			},
+			"offsets": {
+				"from": 653640,
+				"to": 657840
+			},
+			"text": " pow is wanted or needed or things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,840",
+				"to": "00:11:00,160"
+			},
+			"offsets": {
+				"from": 657840,
+				"to": 660160
+			},
+			"text": " We know the GP e-miners positions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,160",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 660160,
+				"to": 663000
+			},
+			"text": " We know some of the individuals in the community, their positions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:06,560"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 666560
+			},
+			"text": " We for the most part know the core developers position."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,560",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 666560,
+				"to": 671000
+			},
+			"text": " You know the ones who have spoken out for prog pow."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:17,440"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 677440
+			},
+			"text": " A lot of it is kind of abstaining from an opinion as well which is a choice and is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,440",
+				"to": "00:11:23,800"
+			},
+			"offsets": {
+				"from": 677440,
+				"to": 683800
+			},
+			"text": " that is important in being able to make that choice and that decision when you are deciding"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,800",
+				"to": "00:11:25,280"
+			},
+			"offsets": {
+				"from": 683800,
+				"to": 685280
+			},
+			"text": " something."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,280",
+				"to": "00:11:28,200"
+			},
+			"offsets": {
+				"from": 685280,
+				"to": 688200
+			},
+			"text": " So I think it is a really important discussion."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,200",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 688200,
+				"to": 693000
+			},
+			"text": " I think that front lip we might want to do this for the panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:37,200"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 697200
+			},
+			"text": " We might want to just like have technical questions from the audience or something and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,200",
+				"to": "00:11:41,880"
+			},
+			"offsets": {
+				"from": 697200,
+				"to": 701880
+			},
+			"text": " discussion and then if people want to throw in some politics discussion later which will"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,880",
+				"to": "00:11:46,320"
+			},
+			"offsets": {
+				"from": 701880,
+				"to": 706320
+			},
+			"text": " probably happen because more people are more familiar with that side of it I think then"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,320",
+				"to": "00:11:47,680"
+			},
+			"offsets": {
+				"from": 706320,
+				"to": 707680
+			},
+			"text": " that would be cool too."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,680",
+				"to": "00:11:54,520"
+			},
+			"offsets": {
+				"from": 707680,
+				"to": 714520
+			},
+			"text": " So if anyone has questions on more of the specifics that Liz mentioned or any technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,520",
+				"to": "00:11:59,200"
+			},
+			"offsets": {
+				"from": 714520,
+				"to": 719200
+			},
+			"text": " questions feel free and just if you don't mind come up to the microphone so it can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,200",
+				"to": "00:12:01,400"
+			},
+			"offsets": {
+				"from": 719200,
+				"to": 721400
+			},
+			"text": " on the recording or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,400",
+				"to": "00:12:02,720"
+			},
+			"offsets": {
+				"from": 721400,
+				"to": 722720
+			},
+			"text": " You don't have to show your face."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,720",
+				"to": "00:12:05,800"
+			},
+			"offsets": {
+				"from": 722720,
+				"to": 725800
+			},
+			"text": " I'll just hand the microphone to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,800",
+				"to": "00:12:09,040"
+			},
+			"offsets": {
+				"from": 725800,
+				"to": 729040
+			},
+			"text": " So does anyone have any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,040",
+				"to": "00:12:12,040"
+			},
+			"offsets": {
+				"from": 729040,
+				"to": 732040
+			},
+			"text": " Yeah, Jeff."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,040",
+				"to": "00:12:14,480"
+			},
+			"offsets": {
+				"from": 732040,
+				"to": 734480
+			},
+			"text": " I already added you to whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,480",
+				"to": "00:12:19,360"
+			},
+			"offsets": {
+				"from": 734480,
+				"to": 739360
+			},
+			"text": " So I know we can read the report from this authority but I think like one of the technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,360",
+				"to": "00:12:26,600"
+			},
+			"offsets": {
+				"from": 739360,
+				"to": 746600
+			},
+			"text": " questions that I've seen come up a couple of times is this notion of like if the creators"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,600",
+				"to": "00:12:31,200"
+			},
+			"offsets": {
+				"from": 746600,
+				"to": 751200
+			},
+			"text": " of park harsh these shadowy figures like what if there's some secret acetic ability you"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,200",
+				"to": "00:12:37,240"
+			},
+			"offsets": {
+				"from": 751200,
+				"to": 757240
+			},
+			"text": " know in here and I want to just kind of like summarize like basically the rough conclusion"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,240",
+				"to": "00:12:45,520"
+			},
+			"offsets": {
+				"from": 757240,
+				"to": 765520
+			},
+			"text": " of the report on this idea of like is it possible that the developers that have a secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,520",
+				"to": "00:12:54,600"
+			},
+			"offsets": {
+				"from": 765520,
+				"to": 774600
+			},
+			"text": " basic up their sleeves?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,600",
+				"to": "00:13:01,080"
+			},
+			"offsets": {
+				"from": 774600,
+				"to": 781080
+			},
+			"text": " On a high level not that we could find I mean security audits are a perfect thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,080",
+				"to": "00:13:04,920"
+			},
+			"offsets": {
+				"from": 781080,
+				"to": 784920
+			},
+			"text": " We spend a certain amount of time and we look as hard as we can."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,920",
+				"to": "00:13:10,720"
+			},
+			"offsets": {
+				"from": 784920,
+				"to": 790720
+			},
+			"text": " Also Bob spent a while weeks, months maybe a couple months."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,720",
+				"to": "00:13:40,440"
+			},
+			"offsets": {
+				"from": 790720,
+				"to": 820440
+			},
+			"text": " So Bob Rau"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,440",
+				"to": "00:13:47,440"
+			},
+			"offsets": {
+				"from": 820440,
+				"to": 827440
+			},
+			"text": " is a very important thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,440",
+				"to": "00:13:55,440"
+			},
+			"offsets": {
+				"from": 827440,
+				"to": 835440
+			},
+			"text": " So I think that the other thing that I think is a very important thing is that we can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,440",
+				"to": "00:14:02,440"
+			},
+			"offsets": {
+				"from": 835440,
+				"to": 842440
+			},
+			"text": " certain things but as far as this project is concerned it cannot really affect anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,440",
+				"to": "00:14:07,440"
+			},
+			"offsets": {
+				"from": 842440,
+				"to": 847440
+			},
+			"text": " other than that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,440",
+				"to": "00:14:13,440"
+			},
+			"offsets": {
+				"from": 847440,
+				"to": 853440
+			},
+			"text": " It cannot really affect anything more than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,440",
+				"to": "00:14:23,440"
+			},
+			"offsets": {
+				"from": 853440,
+				"to": 863440
+			},
+			"text": " It can only just slow down the processing like that hashes and just loads of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,440",
+				"to": "00:14:31,880"
+			},
+			"offsets": {
+				"from": 863440,
+				"to": 871880
+			},
+			"text": " And the point of the report is the lease that the light evaluation mining attack which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,880",
+				"to": "00:14:37,440"
+			},
+			"offsets": {
+				"from": 871880,
+				"to": 877440
+			},
+			"text": " possible in the current group of work that will be sent in a hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,440",
+				"to": "00:14:43,440"
+			},
+			"offsets": {
+				"from": 877440,
+				"to": 883440
+			},
+			"text": " So that's probably of interest to the product."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,440",
+				"to": "00:14:50,440"
+			},
+			"offsets": {
+				"from": 883440,
+				"to": 890440
+			},
+			"text": " So that is like just so currently we have the cache and then a tag is calculated from"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,440",
+				"to": "00:14:51,440"
+			},
+			"offsets": {
+				"from": 890440,
+				"to": 891440
+			},
+			"text": " the cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,440",
+				"to": "00:15:06,440"
+			},
+			"offsets": {
+				"from": 891440,
+				"to": 906440
+			},
+			"text": " So cache is a small like 30 and we start with and just close and then you have the bag which"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,440",
+				"to": "00:15:13,440"
+			},
+			"offsets": {
+				"from": 906440,
+				"to": 913440
+			},
+			"text": " is much bigger like a 4GB starting for like a 1GB or something and then it grows over"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,440",
+				"to": "00:15:14,440"
+			},
+			"offsets": {
+				"from": 913440,
+				"to": 914440
+			},
+			"text": " time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,440",
+				"to": "00:15:22,440"
+			},
+			"offsets": {
+				"from": 914440,
+				"to": 922440
+			},
+			"text": " Now what if you can evaluate the tag on the fly."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,440",
+				"to": "00:15:29,440"
+			},
+			"offsets": {
+				"from": 922440,
+				"to": 929440
+			},
+			"text": " So currently the tag is pre-calculated before a period and then for the next period you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,440",
+				"to": "00:15:34,440"
+			},
+			"offsets": {
+				"from": 929440,
+				"to": 934440
+			},
+			"text": " pre-calculate the tag and switch to it so that you don't suffer and utilize when you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,440",
+				"to": "00:15:36,440"
+			},
+			"offsets": {
+				"from": 934440,
+				"to": 936440
+			},
+			"text": " switch the new period."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,440",
+				"to": "00:15:43,440"
+			},
+			"offsets": {
+				"from": 936440,
+				"to": 943440
+			},
+			"text": " So now what if you can calculate the tag on the fly from the cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,440",
+				"to": "00:15:49,440"
+			},
+			"offsets": {
+				"from": 943440,
+				"to": 949440
+			},
+			"text": " So for that you need to store the entire cache on chip."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,440",
+				"to": "00:15:56,440"
+			},
+			"offsets": {
+				"from": 949440,
+				"to": 956440
+			},
+			"text": " So right now the on chip SRAM is very expensive on hardware so it is really expensive to put"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,440",
+				"to": "00:15:57,440"
+			},
+			"offsets": {
+				"from": 956440,
+				"to": 957440
+			},
+			"text": " higher."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,440",
+				"to": "00:16:06,440"
+			},
+			"offsets": {
+				"from": 957440,
+				"to": 966440
+			},
+			"text": " Right now if you see the current CPUs and GPUs are like few kilobytes of SRAM available."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,440",
+				"to": "00:16:13,440"
+			},
+			"offsets": {
+				"from": 966440,
+				"to": 973440
+			},
+			"text": " And there is also the power equal to the power to access the external memory is much higher"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,440",
+				"to": "00:16:15,440"
+			},
+			"offsets": {
+				"from": 973440,
+				"to": 975440
+			},
+			"text": " than the power to access the internal memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,440",
+				"to": "00:16:21,440"
+			},
+			"offsets": {
+				"from": 975440,
+				"to": 981440
+			},
+			"text": " So there is a big advantage when things are in the internal way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,440",
+				"to": "00:16:29,440"
+			},
+			"offsets": {
+				"from": 981440,
+				"to": 989440
+			},
+			"text": " So now according to Bob who is an expert in hardware after few years maybe 4 or 5 years"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,440",
+				"to": "00:16:37,440"
+			},
+			"offsets": {
+				"from": 989440,
+				"to": 997440
+			},
+			"text": " down the lane maybe 20, 23, 24 we may see higher and higher capacity of on chip SRAM."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,440",
+				"to": "00:16:46,440"
+			},
+			"offsets": {
+				"from": 997440,
+				"to": 1006440
+			},
+			"text": " It will become cost effective to put SRAM more and more SRAM on the CPU on the die."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,440",
+				"to": "00:16:51,440"
+			},
+			"offsets": {
+				"from": 1006440,
+				"to": 1011440
+			},
+			"text": " So that is probably a point where these attacks will be more practical."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,440",
+				"to": "00:16:56,440"
+			},
+			"offsets": {
+				"from": 1011440,
+				"to": 1016440
+			},
+			"text": " So there are ways to mitigate that you could increase the number of parents that are going"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,440",
+				"to": "00:17:02,440"
+			},
+			"offsets": {
+				"from": 1016440,
+				"to": 1022440
+			},
+			"text": " into the bag so that the computation part of it dominates the memory part of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,440",
+				"to": "00:17:09,440"
+			},
+			"offsets": {
+				"from": 1022440,
+				"to": 1029440
+			},
+			"text": " So because you are also doing some computation to F and B the values together and then hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,440",
+				"to": "00:17:16,440"
+			},
+			"offsets": {
+				"from": 1029440,
+				"to": 1036440
+			},
+			"text": " them so you could increase the number of parents that are fetching logs from the cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,440",
+				"to": "00:17:20,440"
+			},
+			"offsets": {
+				"from": 1036440,
+				"to": 1040440
+			},
+			"text": " So that is one way to mitigate that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,440",
+				"to": "00:17:25,440"
+			},
+			"offsets": {
+				"from": 1040440,
+				"to": 1045440
+			},
+			"text": " And also the size of the cache and the diasing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,440",
+				"to": "00:17:30,440"
+			},
+			"offsets": {
+				"from": 1045440,
+				"to": 1050440
+			},
+			"text": " So that would also be working against this hardware advances because on one side hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,440",
+				"to": "00:17:36,440"
+			},
+			"offsets": {
+				"from": 1050440,
+				"to": 1056440
+			},
+			"text": " is advancing the it will become more and more feasible to put the memory more and more memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,440",
+				"to": "00:17:38,440"
+			},
+			"offsets": {
+				"from": 1056440,
+				"to": 1058440
+			},
+			"text": " into the on die."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,440",
+				"to": "00:17:46,440"
+			},
+			"offsets": {
+				"from": 1058440,
+				"to": 1066440
+			},
+			"text": " Whereas if you increase the cache size for example, say next iteration we are going to have say"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,440",
+				"to": "00:17:48,440"
+			},
+			"offsets": {
+				"from": 1066440,
+				"to": 1068440
+			},
+			"text": " 200 Mb or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,440",
+				"to": "00:17:54,440"
+			},
+			"offsets": {
+				"from": 1068440,
+				"to": 1074440
+			},
+			"text": " So then it will become more difficult to put that and the cost will work against you too."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,440",
+				"to": "00:17:58,440"
+			},
+			"offsets": {
+				"from": 1074440,
+				"to": 1078440
+			},
+			"text": " And did I answer similar?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,440",
+				"to": "00:17:59,440"
+			},
+			"offsets": {
+				"from": 1078440,
+				"to": 1079440
+			},
+			"text": " That was a great answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,440",
+				"to": "00:18:00,440"
+			},
+			"offsets": {
+				"from": 1079440,
+				"to": 1080440
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,440",
+				"to": "00:18:06,440"
+			},
+			"offsets": {
+				"from": 1080440,
+				"to": 1086440
+			},
+			"text": " Okay, do we have other technical questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,440",
+				"to": "00:18:13,440"
+			},
+			"offsets": {
+				"from": 1086440,
+				"to": 1093440
+			},
+			"text": " So when you say that there is a light mining attack or can people..."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,440",
+				"to": "00:18:15,440"
+			},
+			"offsets": {
+				"from": 1093440,
+				"to": 1095440
+			},
+			"text": " I like my bio-issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,440",
+				"to": "00:18:18,440"
+			},
+			"offsets": {
+				"from": 1095440,
+				"to": 1098440
+			},
+			"text": " Did you like an overview or was that pretty much the same?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,440",
+				"to": "00:18:19,440"
+			},
+			"offsets": {
+				"from": 1098440,
+				"to": 1099440
+			},
+			"text": " Okay, good."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,440",
+				"to": "00:18:21,440"
+			},
+			"offsets": {
+				"from": 1099440,
+				"to": 1101440
+			},
+			"text": " I can do my summarize."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,440",
+				"to": "00:18:22,440"
+			},
+			"offsets": {
+				"from": 1101440,
+				"to": 1102440
+			},
+			"text": " Yeah, that'd be perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,440",
+				"to": "00:18:25,440"
+			},
+			"offsets": {
+				"from": 1102440,
+				"to": 1105440
+			},
+			"text": " Do you have to summarize what it means for a product?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,440",
+				"to": "00:18:31,440"
+			},
+			"offsets": {
+				"from": 1105440,
+				"to": 1111440
+			},
+			"text": " I guess basically what that means right now is that it's not possible right now that we think it could be possible in four to five years."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,440",
+				"to": "00:18:37,440"
+			},
+			"offsets": {
+				"from": 1111440,
+				"to": 1117440
+			},
+			"text": " But there is a mitigation strategy that could be implemented now and it also affects e-hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,440",
+				"to": "00:18:39,440"
+			},
+			"offsets": {
+				"from": 1117440,
+				"to": 1119440
+			},
+			"text": " So not just about the e-hash too."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,440",
+				"to": "00:18:45,440"
+			},
+			"offsets": {
+				"from": 1119440,
+				"to": 1125440
+			},
+			"text": " Well, anyone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,440",
+				"to": "00:18:47,440"
+			},
+			"offsets": {
+				"from": 1125440,
+				"to": 1127440
+			},
+			"text": " Yeah, sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,440",
+				"to": "00:18:57,440"
+			},
+			"offsets": {
+				"from": 1127440,
+				"to": 1137440
+			},
+			"text": " I mean, this might be too broad, but I'm just wondering if you could do like the mile high in explanation of how product power works like a contact with the level."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,440",
+				"to": "00:19:00,440"
+			},
+			"offsets": {
+				"from": 1137440,
+				"to": 1140440
+			},
+			"text": " If that's not too far as cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,440",
+				"to": "00:19:01,440"
+			},
+			"offsets": {
+				"from": 1140440,
+				"to": 1141440
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,440",
+				"to": "00:19:02,440"
+			},
+			"offsets": {
+				"from": 1141440,
+				"to": 1142440
+			},
+			"text": " Really?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,440",
+				"to": "00:19:04,440"
+			},
+			"offsets": {
+				"from": 1142440,
+				"to": 1144440
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,440",
+				"to": "00:19:06,440"
+			},
+			"offsets": {
+				"from": 1144440,
+				"to": 1146440
+			},
+			"text": " Dan, you're welcome to..."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,440",
+				"to": "00:19:09,440"
+			},
+			"offsets": {
+				"from": 1146440,
+				"to": 1149440
+			},
+			"text": " I'm welcome to battle up here."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,440",
+				"to": "00:19:12,440"
+			},
+			"offsets": {
+				"from": 1149440,
+				"to": 1152440
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,440",
+				"to": "00:19:13,440"
+			},
+			"offsets": {
+				"from": 1152440,
+				"to": 1153440
+			},
+			"text": " Do you have a chair?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,440",
+				"to": "00:19:18,440"
+			},
+			"offsets": {
+				"from": 1153440,
+				"to": 1158440
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,440",
+				"to": "00:19:22,440"
+			},
+			"offsets": {
+				"from": 1158440,
+				"to": 1162440
+			},
+			"text": " So, prop power is a variation of e-hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,440",
+				"to": "00:19:24,440"
+			},
+			"offsets": {
+				"from": 1162440,
+				"to": 1164440
+			},
+			"text": " It was... it's implemented in Java."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,440",
+				"to": "00:19:25,440"
+			},
+			"offsets": {
+				"from": 1164440,
+				"to": 1165440
+			},
+			"text": " It's been a few months."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,440",
+				"to": "00:19:28,440"
+			},
+			"offsets": {
+				"from": 1165440,
+				"to": 1168440
+			},
+			"text": " Some of this may be a bit rusty memory from my memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,440",
+				"to": "00:19:30,440"
+			},
+			"offsets": {
+				"from": 1168440,
+				"to": 1170440
+			},
+			"text": " But..."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,440",
+				"to": "00:19:36,440"
+			},
+			"offsets": {
+				"from": 1170440,
+				"to": 1176440
+			},
+			"text": " So first you need to get some seed values near mixers from this DAG. And that's where the main memory access comes from."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,440",
+				"to": "00:19:45,440"
+			},
+			"offsets": {
+				"from": 1176440,
+				"to": 1185440
+			},
+			"text": " And then you load those up and you start, I think, 32 lanes. And each one of those lanes, there's like some 16 or 32 things that you do of math."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,440",
+				"to": "00:19:48,440"
+			},
+			"offsets": {
+				"from": 1185440,
+				"to": 1188440
+			},
+			"text": " And these parameters change all the time. So I'm sure we can never draw them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,440",
+				"to": "00:19:50,440"
+			},
+			"offsets": {
+				"from": 1188440,
+				"to": 1190440
+			},
+			"text": " But with some of the numbers you do some math."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,440",
+				"to": "00:19:57,440"
+			},
+			"offsets": {
+				"from": 1190440,
+				"to": 1197440
+			},
+			"text": " And to do that math, you also take in each lane stuff from various parts of the DAG all over the place to do that math."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,440",
+				"to": "00:20:03,440"
+			},
+			"offsets": {
+				"from": 1197440,
+				"to": 1203440
+			},
+			"text": " And you do this some number of times. There's more cache reads and there are math executions right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,440",
+				"to": "00:20:10,440"
+			},
+			"offsets": {
+				"from": 1203440,
+				"to": 1210440
+			},
+			"text": " So you do this and each lane is entirely independent. There's like supposed to be 32 lanes, I think, or 16."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,440",
+				"to": "00:20:18,440"
+			},
+			"offsets": {
+				"from": 1210440,
+				"to": 1218440
+			},
+			"text": " So each independent lane will take its math from its mix day, take some stuff from the DAG, do some math together, and then send it to another lane."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,440",
+				"to": "00:20:26,440"
+			},
+			"offsets": {
+				"from": 1218440,
+				"to": 1226440
+			},
+			"text": " And you do this about 30 or 40 times. And you get that mix day together. So it's designed so that the computation is very recognizable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,440",
+				"to": "00:20:34,440"
+			},
+			"offsets": {
+				"from": 1226440,
+				"to": 1234440
+			},
+			"text": " especially in context of a GPU architecture. And it saturates the whole GPU by using all of the functions a GPU might have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,440",
+				"to": "00:20:40,440"
+			},
+			"offsets": {
+				"from": 1234440,
+				"to": 1240440
+			},
+			"text": " except for floating point because floating points kind of a murky thing across all the vendors."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,440",
+				"to": "00:20:45,440"
+			},
+			"offsets": {
+				"from": 1240440,
+				"to": 1245440
+			},
+			"text": " Inagers is, you know, if you can't do integer math, you should get out of computer science. It's pretty simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,440",
+				"to": "00:20:52,440"
+			},
+			"offsets": {
+				"from": 1245440,
+				"to": 1252440
+			},
+			"text": " Floating points is where things get weird. So they love that out of respect because it's not certain enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,440",
+				"to": "00:20:58,440"
+			},
+			"offsets": {
+				"from": 1252440,
+				"to": 1258440
+			},
+			"text": " So you take all that stuff, you hash it together. And at the end, you take that final hash date, and you're in a final check hash against it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,440",
+				"to": "00:21:05,440"
+			},
+			"offsets": {
+				"from": 1258440,
+				"to": 1265440
+			},
+			"text": " And that's what you, that's the result of the hash that you get. And then you do the regular old mining stuff where you check it against the difficulty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,440",
+				"to": "00:21:14,440"
+			},
+			"offsets": {
+				"from": 1265440,
+				"to": 1274440
+			},
+			"text": " see if it's successful enough, if not, you pinch it back. And if you're a minor out there, you have a less difficult difficulty to prove that you tried and failed."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,440",
+				"to": "00:21:24,440"
+			},
+			"offsets": {
+				"from": 1274440,
+				"to": 1284440
+			},
+			"text": " So there's, you know, the regular old mining techniques that go on from that. That's a high level overview of kind of what happens, a half code if you want to look at it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,440",
+				"to": "00:21:35,440"
+			},
+			"offsets": {
+				"from": 1284440,
+				"to": 1295440
+			},
+			"text": " So that's also how it's implemented in like Go There and Empowering. When you implement this for a GPU, there's also this internal period of 50 books, I think, in the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,440",
+				"to": "00:21:53,440"
+			},
+			"offsets": {
+				"from": 1295440,
+				"to": 1313440
+			},
+			"text": " And then it went down to that for the next spec of Propa. And yeah, one of the reasons that the gap Propa hasn't been merged is that we're not sure if we should merge the 091 or 09."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,440",
+				"to": "00:22:07,440"
+			},
+			"offsets": {
+				"from": 1313440,
+				"to": 1327440
+			},
+			"text": " Anyway, so the thing is, if you run from GPU, what you do is that every 50 blocks, you recompile the GPU program and you reprogram the GPU for the next 50 blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,440",
+				"to": "00:22:20,440"
+			},
+			"offsets": {
+				"from": 1327440,
+				"to": 1340440
+			},
+			"text": " And that's the kind of programmatic part, this cheat that the GPUs can do, but which makes it harder to implement this as a specific circuit and basic."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,440",
+				"to": "00:22:24,440"
+			},
+			"offsets": {
+				"from": 1340440,
+				"to": 1344440
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,440",
+				"to": "00:22:26,440"
+			},
+			"offsets": {
+				"from": 1344440,
+				"to": 1346440
+			},
+			"text": " Want to add to that, probably?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,440",
+				"to": "00:22:32,440"
+			},
+			"offsets": {
+				"from": 1346440,
+				"to": 1352440
+			},
+			"text": " You covered the program, I totally, I mean, I totally skipped the programmatic part, there's so many million pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,440",
+				"to": "00:22:39,440"
+			},
+			"offsets": {
+				"from": 1352440,
+				"to": 1359440
+			},
+			"text": " But one of the interesting things that one of the implementations found is they actually found a bug in a GPU compiler when they were running the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,440",
+				"to": "00:22:49,440"
+			},
+			"offsets": {
+				"from": 1359440,
+				"to": 1369440
+			},
+			"text": " And it had a very simple fix. But the thing about these programs is they are, it's not really random, it's pseudorandom, and the seed is the block number of the period that's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,440",
+				"to": "00:22:58,440"
+			},
+			"offsets": {
+				"from": 1369440,
+				"to": 1378440
+			},
+			"text": " So you can totally run all your compilations up to 10 million, 20 million blocks to make sure that your CPU can handle it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,440",
+				"to": "00:23:05,440"
+			},
+			"offsets": {
+				"from": 1378440,
+				"to": 1385440
+			},
+			"text": " So there was some concern initially that this might break the CPU things are at risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,440",
+				"to": "00:23:12,440"
+			},
+			"offsets": {
+				"from": 1385440,
+				"to": 1392440
+			},
+			"text": " And any responsible minor would be running these programs out in a day or two to advance to see if stuff blows up or one to advance."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,440",
+				"to": "00:23:18,440"
+			},
+			"offsets": {
+				"from": 1392440,
+				"to": 1398440
+			},
+			"text": " You just need to have one rig to test and make sure that your stuff works."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,440",
+				"to": "00:23:28,440"
+			},
+			"offsets": {
+				"from": 1398440,
+				"to": 1408440
+			},
+			"text": " Awesome answers. All right, any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,440",
+				"to": "00:23:35,440"
+			},
+			"offsets": {
+				"from": 1408440,
+				"to": 1415440
+			},
+			"text": " I just wonder, is all the controversy non-technical? Are there any technical controversies?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,440",
+				"to": "00:23:47,440"
+			},
+			"offsets": {
+				"from": 1415440,
+				"to": 1427440
+			},
+			"text": " And then I was curious about your description of the test that it seemed that to me you'd want to have a very rigorous test that it was such a rigorous test."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,440",
+				"to": "00:23:52,440"
+			},
+			"offsets": {
+				"from": 1427440,
+				"to": 1432440
+			},
+			"text": " So that's the first, the second question first."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,440",
+				"to": "00:23:59,440"
+			},
+			"offsets": {
+				"from": 1432440,
+				"to": 1439440
+			},
+			"text": " So in general, when we set up the test test test, try to do hard work."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,440",
+				"to": "00:24:14,440"
+			},
+			"offsets": {
+				"from": 1439440,
+				"to": 1454440
+			},
+			"text": " What we want is a very lively test test test so that we can, like for example, for Gropston, then we can execute transaction and see that the execution transaction still happens the way it would, the way they should, and that the way all the consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,440",
+				"to": "00:24:18,440"
+			},
+			"offsets": {
+				"from": 1454440,
+				"to": 1458440
+			},
+			"text": " For ProPal, that's totally not needed at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,440",
+				"to": "00:24:28,440"
+			},
+			"offsets": {
+				"from": 1458440,
+				"to": 1468440
+			},
+			"text": " The only thing that we want to verify is the envelope of the blocks, the group of work and the verification and the mining of this group of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,440",
+				"to": "00:24:32,440"
+			},
+			"offsets": {
+				"from": 1468440,
+				"to": 1472440
+			},
+			"text": " So we totally don't care anything at all about the content of the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,440",
+				"to": "00:24:43,440"
+			},
+			"offsets": {
+				"from": 1472440,
+				"to": 1483440
+			},
+			"text": " So as long as, so what we wanted to do was to get maximum coverage of EPOP transitions because we realized that one of the interesting points were thinking about the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,440",
+				"to": "00:24:49,440"
+			},
+			"offsets": {
+				"from": 1483440,
+				"to": 1489440
+			},
+			"text": " The point where things could break is in EPOP transitions because that's when the DAC changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,440",
+				"to": "00:25:06,440"
+			},
+			"offsets": {
+				"from": 1489440,
+				"to": 1506440
+			},
+			"text": " And if I recall correctly, there was, there is some minor tweak to improv power which made it interesting to just see that we would be able to manage moving across EPOPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,440",
+				"to": "00:25:11,440"
+			},
+			"offsets": {
+				"from": 1506440,
+				"to": 1511440
+			},
+			"text": " And this whole thing about the block period of 50 blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,440",
+				"to": "00:25:26,440"
+			},
+			"offsets": {
+				"from": 1511440,
+				"to": 1526440
+			},
+			"text": " So the main concern about the test net is to have it running over long sequence of blocks and have GPU minus mine them."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,440",
+				"to": "00:25:35,440"
+			},
+			"offsets": {
+				"from": 1526440,
+				"to": 1535440
+			},
+			"text": " And then it doesn't really matter how many clients are on the test net. Not even matters which clients are on the test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,440",
+				"to": "00:25:53,100"
+			},
+			"offsets": {
+				"from": 1535440,
+				"to": 1553100
+			},
+			"text": " As long as at some point when we take the parent implementation, we check that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,100",
+				"to": "00:25:58,100"
+			},
+			"offsets": {
+				"from": 1553100,
+				"to": 1558100
+			},
+			"text": " problem is that we have to take some of the technical controversy questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,100",
+				"to": "00:26:03,100"
+			},
+			"offsets": {
+				"from": 1558100,
+				"to": 1563100
+			},
+			"text": " That's what I was fairly new to core development when Proctile was really getting its main push."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,100",
+				"to": "00:26:08,100"
+			},
+			"offsets": {
+				"from": 1563100,
+				"to": 1568100
+			},
+			"text": " So I was drawn to that and I want to make sure that there are any technical concerns about how to iron out quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,100",
+				"to": "00:26:11,100"
+			},
+			"offsets": {
+				"from": 1568100,
+				"to": 1571100
+			},
+			"text": " One of the first problems that I had is the spec is initially written."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,100",
+				"to": "00:26:21,100"
+			},
+			"offsets": {
+				"from": 1571100,
+				"to": 1581100
+			},
+			"text": " Was it really clean or implementable? It was depending upon code blocks and test vectors that weren't very well specked out test wise."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,100",
+				"to": "00:26:27,100"
+			},
+			"offsets": {
+				"from": 1581100,
+				"to": 1587100
+			},
+			"text": " When I implemented in Java, I had to use Powerless implementation to get some test vectors out of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,100",
+				"to": "00:26:33,100"
+			},
+			"offsets": {
+				"from": 1587100,
+				"to": 1593100
+			},
+			"text": " Java has got some of its own issues. It doesn't have unsigned integers which were most of my bugs came from."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,100",
+				"to": "00:26:41,100"
+			},
+			"offsets": {
+				"from": 1593100,
+				"to": 1601100
+			},
+			"text": " But from those I was able to create some unit tests and some data tests for transition to prove that you can get the particular block."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,100",
+				"to": "00:26:46,100"
+			},
+			"offsets": {
+				"from": 1601100,
+				"to": 1606100
+			},
+			"text": " There are so many different functions. There is a test vector now for each of the functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,100",
+				"to": "00:26:53,100"
+			},
+			"offsets": {
+				"from": 1606100,
+				"to": 1613100
+			},
+			"text": " I tightened up some of that. The bit I mentioned about the concern about compiler bugs was another technical controversy."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,100",
+				"to": "00:26:57,100"
+			},
+			"offsets": {
+				"from": 1613100,
+				"to": 1617100
+			},
+			"text": " But that is basically how good are miners at their DevOps."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,100",
+				"to": "00:27:02,100"
+			},
+			"offsets": {
+				"from": 1617100,
+				"to": 1622100
+			},
+			"text": " This is their business. The only thing is there is another thing that they might need to pay attention to."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,100",
+				"to": "00:27:05,100"
+			},
+			"offsets": {
+				"from": 1622100,
+				"to": 1625100
+			},
+			"text": " The good ones will know what's going on with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,100",
+				"to": "00:27:12,100"
+			},
+			"offsets": {
+				"from": 1625100,
+				"to": 1632100
+			},
+			"text": " As long as you're in communication with each other like a lot of them are, it's another thing you have to worry about."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,100",
+				"to": "00:27:16,100"
+			},
+			"offsets": {
+				"from": 1632100,
+				"to": 1636100
+			},
+			"text": " That's totally within their own way of what they can handle."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,100",
+				"to": "00:27:21,100"
+			},
+			"offsets": {
+				"from": 1636100,
+				"to": 1641100
+			},
+			"text": " I think that covers most of the technical controversies. Are you aware of any others?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,100",
+				"to": "00:27:23,100"
+			},
+			"offsets": {
+				"from": 1641100,
+				"to": 1643100
+			},
+			"text": " I've had one."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,100",
+				"to": "00:27:29,100"
+			},
+			"offsets": {
+				"from": 1643100,
+				"to": 1649100
+			},
+			"text": " I think someone said that NVIDIA GPUs were faster than AMD GPUs."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,100",
+				"to": "00:27:32,100"
+			},
+			"offsets": {
+				"from": 1649100,
+				"to": 1652100
+			},
+			"text": " I think there was benchmarking done to prove that wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,100",
+				"to": "00:27:34,100"
+			},
+			"offsets": {
+				"from": 1652100,
+				"to": 1654100
+			},
+			"text": " Does anyone remember?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:34,100",
+				"to": "00:27:36,100"
+			},
+			"offsets": {
+				"from": 1654100,
+				"to": 1656100
+			},
+			"text": " Is there a chain that's like weak or..."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,100",
+				"to": "00:27:38,100"
+			},
+			"offsets": {
+				"from": 1656100,
+				"to": 1658100
+			},
+			"text": " There was a chugging on AMD or something like that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,100",
+				"to": "00:27:41,100"
+			},
+			"offsets": {
+				"from": 1658100,
+				"to": 1661100
+			},
+			"text": " Yeah, there was something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,100",
+				"to": "00:27:45,100"
+			},
+			"offsets": {
+				"from": 1661100,
+				"to": 1665100
+			},
+			"text": " I think that's where the O9-3 spec came from because they dropped some of the numbers to make sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,100",
+				"to": "00:27:49,100"
+			},
+			"offsets": {
+				"from": 1665100,
+				"to": 1669100
+			},
+			"text": " To say that the AMDs and the NVIDIAs are stronger, it's really..."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,100",
+				"to": "00:27:54,100"
+			},
+			"offsets": {
+				"from": 1669100,
+				"to": 1674100
+			},
+			"text": " For a particular AMD model, there's like NVIDIA one is much lower than the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,100",
+				"to": "00:27:59,100"
+			},
+			"offsets": {
+				"from": 1674100,
+				"to": 1679100
+			},
+			"text": " The question is, is that the NVIDIAs are better detached or the AMDs worse?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,100",
+				"to": "00:28:03,100"
+			},
+			"offsets": {
+				"from": 1679100,
+				"to": 1683100
+			},
+			"text": " Do we make it so you got the same sort of adjustment?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,100",
+				"to": "00:28:06,100"
+			},
+			"offsets": {
+				"from": 1683100,
+				"to": 1686100
+			},
+			"text": " It's a lot more within ballpark now between those two."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,100",
+				"to": "00:28:11,100"
+			},
+			"offsets": {
+				"from": 1686100,
+				"to": 1691100
+			},
+			"text": " There's no architectural design decisions done that particularly favor NVIDIA or AMD,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:11,100",
+				"to": "00:28:13,100"
+			},
+			"offsets": {
+				"from": 1691100,
+				"to": 1693100
+			},
+			"text": " and I said, \"I know anything about how to do other architectures.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,100",
+				"to": "00:28:16,100"
+			},
+			"offsets": {
+				"from": 1693100,
+				"to": 1696100
+			},
+			"text": " The big changes were to take a lot of stuff down at 32 bits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,100",
+				"to": "00:28:19,100"
+			},
+			"offsets": {
+				"from": 1696100,
+				"to": 1699100
+			},
+			"text": " and all GPUs nowadays are 32 bit GPUs."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:19,100",
+				"to": "00:28:23,100"
+			},
+			"offsets": {
+				"from": 1699100,
+				"to": 1703100
+			},
+			"text": " So if there was a 32 bit version of a particular algorithm, that's long as preferred."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,100",
+				"to": "00:28:28,100"
+			},
+			"offsets": {
+				"from": 1703100,
+				"to": 1708100
+			},
+			"text": " And that's why they went to get checked at 800, is because it's 32 bit based."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,100",
+				"to": "00:28:34,100"
+			},
+			"offsets": {
+				"from": 1708100,
+				"to": 1714100
+			},
+			"text": " And you put that through a GPU through the 32 bit integers, those things are like optimized to know what the NIN just blazes right through."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,100",
+				"to": "00:28:42,100"
+			},
+			"offsets": {
+				"from": 1714100,
+				"to": 1722100
+			},
+			"text": " So that was part of the decision of why they did a lot of their changes was to make it optimized for the general class of GPUs, not one over the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:42,100",
+				"to": "00:28:52,100"
+			},
+			"offsets": {
+				"from": 1722100,
+				"to": 1732100
+			},
+			"text": " And another technical... I wouldn't say controversy per se, but maybe the question still to be solved is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,100",
+				"to": "00:29:02,100"
+			},
+			"offsets": {
+				"from": 1732100,
+				"to": 1742100
+			},
+			"text": " if going from ithashmoto to prokpal, there is still the difficulty."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,100",
+				"to": "00:29:08,100"
+			},
+			"offsets": {
+				"from": 1742100,
+				"to": 1748100
+			},
+			"text": " So there is a therem uses a difficulty formula, which is totally dependent on the previous block."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,100",
+				"to": "00:29:26,100"
+			},
+			"offsets": {
+				"from": 1748100,
+				"to": 1766100
+			},
+			"text": " And if the prokpal hashing engine is half as fast, that means that it will take quite a bit longer to find an appropriately difficult block."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,100",
+				"to": "00:29:36,100"
+			},
+			"offsets": {
+				"from": 1766100,
+				"to": 1776100
+			},
+			"text": " So there will be very slow blocks, unless maybe a halving or a modification to the difficulty formula,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,100",
+				"to": "00:29:41,100"
+			},
+			"offsets": {
+				"from": 1776100,
+				"to": 1781100
+			},
+			"text": " difficult calculation at the point where we switch is made."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:41,100",
+				"to": "00:29:48,100"
+			},
+			"offsets": {
+				"from": 1781100,
+				"to": 1788100
+			},
+			"text": " So that's still something that can be elaborate with to ensure that block progresses nicely."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:50,100",
+				"to": "00:29:56,100"
+			},
+			"offsets": {
+				"from": 1790100,
+				"to": 1796100
+			},
+			"text": " So I'm going to take a picture of all of us before Martin has to leave."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:56,100",
+				"to": "00:30:00,100"
+			},
+			"offsets": {
+				"from": 1796100,
+				"to": 1800100
+			},
+			"text": " And then tweet it, which is to have us."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:00,100",
+				"to": "00:30:03,100"
+			},
+			"offsets": {
+				"from": 1800100,
+				"to": 1803100
+			},
+			"text": " See that one first."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:03,100",
+				"to": "00:30:06,100"
+			},
+			"offsets": {
+				"from": 1803100,
+				"to": 1806100
+			},
+			"text": " Thanks, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,100",
+				"to": "00:30:09,100"
+			},
+			"offsets": {
+				"from": 1806100,
+				"to": 1809100
+			},
+			"text": " Okay, and yeah, you got to make your next one."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:09,100",
+				"to": "00:30:12,100"
+			},
+			"offsets": {
+				"from": 1809100,
+				"to": 1812100
+			},
+			"text": " Oh, there is a pole on the other leg."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:12,100",
+				"to": "00:30:13,100"
+			},
+			"offsets": {
+				"from": 1812100,
+				"to": 1813100
+			},
+			"text": " Okay, perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:13,100",
+				"to": "00:30:16,100"
+			},
+			"offsets": {
+				"from": 1813100,
+				"to": 1816100
+			},
+			"text": " All right, any more technical, otherwise we'll jump into political."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:16,100",
+				"to": "00:30:18,100"
+			},
+			"offsets": {
+				"from": 1816100,
+				"to": 1818100
+			},
+			"text": " That'll be fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,100",
+				"to": "00:30:22,100"
+			},
+			"offsets": {
+				"from": 1818100,
+				"to": 1822100
+			},
+			"text": " So the blockchain, if we did nothing, it would take about three or four hours to get in half."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:22,100",
+				"to": "00:30:25,100"
+			},
+			"offsets": {
+				"from": 1822100,
+				"to": 1825100
+			},
+			"text": " There's also a slight impact on the ice age."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:25,100",
+				"to": "00:30:32,100"
+			},
+			"offsets": {
+				"from": 1825100,
+				"to": 1832100
+			},
+			"text": " And that impact there is it would only be felt like two weeks to a month earlier because of the exponential nature of the ice age."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,100",
+				"to": "00:30:38,100"
+			},
+			"offsets": {
+				"from": 1832100,
+				"to": 1838100
+			},
+			"text": " And I think there was a third thing related to the bump that might have gone in, but it's not too critical."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:38,100",
+				"to": "00:30:44,100"
+			},
+			"offsets": {
+				"from": 1838100,
+				"to": 1844100
+			},
+			"text": " It's no worse than what happened when they thought the transaction rate at the beginning of the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:44,100",
+				"to": "00:30:51,100"
+			},
+			"offsets": {
+				"from": 1844100,
+				"to": 1851100
+			},
+			"text": " So we communicated it at the time, it won't be fine, or we went ahead and do a difficulty cut and combined that with an ice age cut."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:51,100",
+				"to": "00:30:54,100"
+			},
+			"offsets": {
+				"from": 1851100,
+				"to": 1854100
+			},
+			"text": " I think it'll be fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:54,100",
+				"to": "00:30:59,100"
+			},
+			"offsets": {
+				"from": 1854100,
+				"to": 1859100
+			},
+			"text": " Hi, how are you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:59,100",
+				"to": "00:31:03,100"
+			},
+			"offsets": {
+				"from": 1859100,
+				"to": 1863100
+			},
+			"text": " Can you talk a little bit about the FPG resistance of prop power?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:03,100",
+				"to": "00:31:08,100"
+			},
+			"offsets": {
+				"from": 1863100,
+				"to": 1868100
+			},
+			"text": " If it's cost effective, actually try to run prop power FPGA."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:10,100",
+				"to": "00:31:14,100"
+			},
+			"offsets": {
+				"from": 1870100,
+				"to": 1874100
+			},
+			"text": " You have a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:14,100",
+				"to": "00:31:28,100"
+			},
+			"offsets": {
+				"from": 1874100,
+				"to": 1888100
+			},
+			"text": " I think the top level of the 10, the period, the 50 blocks, the random math period, we need to recompile the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:28,100",
+				"to": "00:31:30,100"
+			},
+			"offsets": {
+				"from": 1888100,
+				"to": 1890100
+			},
+			"text": " There can be a few blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:30,100",
+				"to": "00:31:36,100"
+			},
+			"offsets": {
+				"from": 1890100,
+				"to": 1896100
+			},
+			"text": " The block period is too small to really recompile FPGA programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:36,100",
+				"to": "00:31:44,100"
+			},
+			"offsets": {
+				"from": 1896100,
+				"to": 1904100
+			},
+			"text": " And furthermore, the power requirements in FPGA is a lot more than FPGA right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:44,100",
+				"to": "00:31:52,100"
+			},
+			"offsets": {
+				"from": 1904100,
+				"to": 1912100
+			},
+			"text": " So it definitely is looking much harder than we were also looking at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:52,100",
+				"to": "00:31:56,100"
+			},
+			"offsets": {
+				"from": 1912100,
+				"to": 1916100
+			},
+			"text": " So it definitely looks like it's a lot harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:56,100",
+				"to": "00:32:01,100"
+			},
+			"offsets": {
+				"from": 1916100,
+				"to": 1921100
+			},
+			"text": " It seems invisible right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:01,100",
+				"to": "00:32:13,100"
+			},
+			"offsets": {
+				"from": 1921100,
+				"to": 1933100
+			},
+			"text": " So to add a little bit, today there exists FPGA accelerators that you can plug into the GPU to offload CAD check."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:13,100",
+				"to": "00:32:15,100"
+			},
+			"offsets": {
+				"from": 1933100,
+				"to": 1935100
+			},
+			"text": " That's the CAD check port, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:15,100",
+				"to": "00:32:16,100"
+			},
+			"offsets": {
+				"from": 1935100,
+				"to": 1936100
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:16,100",
+				"to": "00:32:21,100"
+			},
+			"offsets": {
+				"from": 1936100,
+				"to": 1941100
+			},
+			"text": " So to offload the CAD check calculation from the GPU to an FPGA."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:21,100",
+				"to": "00:32:24,100"
+			},
+			"offsets": {
+				"from": 1941100,
+				"to": 1944100
+			},
+			"text": " And so that works really well for ETA."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:24,100",
+				"to": "00:32:29,100"
+			},
+			"offsets": {
+				"from": 1944100,
+				"to": 1949100
+			},
+			"text": " It does, I think, two portions of CAD check."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:29,100",
+				"to": "00:32:32,100"
+			},
+			"offsets": {
+				"from": 1949100,
+				"to": 1952100
+			},
+			"text": " I thought CAD check is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:32,100",
+				"to": "00:32:33,100"
+			},
+			"offsets": {
+				"from": 1952100,
+				"to": 1953100
+			},
+			"text": " A VCCHA?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:33,100",
+				"to": "00:32:34,100"
+			},
+			"offsets": {
+				"from": 1953100,
+				"to": 1954100
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:34,100",
+				"to": "00:32:35,100"
+			},
+			"offsets": {
+				"from": 1954100,
+				"to": 1955100
+			},
+			"text": " Yeah, it's CAD check, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:35,100",
+				"to": "00:32:36,100"
+			},
+			"offsets": {
+				"from": 1955100,
+				"to": 1956100
+			},
+			"text": " I don't say it."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:36,100",
+				"to": "00:32:37,100"
+			},
+			"offsets": {
+				"from": 1956100,
+				"to": 1957100
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:37,100",
+				"to": "00:32:49,100"
+			},
+			"offsets": {
+				"from": 1957100,
+				"to": 1969100
+			},
+			"text": " So using one of these accelerators on ETA hash, it definitely can make it more effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:49,100",
+				"to": "00:32:59,100"
+			},
+			"offsets": {
+				"from": 1969100,
+				"to": 1979100
+			},
+			"text": " And on the prop-pow, it's a lot harder to get that kind of boost from an FPGA accelerator"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,100",
+				"to": "00:33:12,100"
+			},
+			"offsets": {
+				"from": 1979100,
+				"to": 1992100
+			},
+			"text": " because the portion of power that is spent on that operation is a lot less."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:12,100",
+				"to": "00:33:13,100"
+			},
+			"offsets": {
+				"from": 1992100,
+				"to": 1993100
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:13,100",
+				"to": "00:33:17,100"
+			},
+			"offsets": {
+				"from": 1993100,
+				"to": 1997100
+			},
+			"text": " So we have about 10 minutes left, a little less than that, maybe 7."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:17,100",
+				"to": "00:33:19,100"
+			},
+			"offsets": {
+				"from": 1997100,
+				"to": 1999100
+			},
+			"text": " So let's go into politics, I guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:19,100",
+				"to": "00:33:25,100"
+			},
+			"offsets": {
+				"from": 1999100,
+				"to": 2005100
+			},
+			"text": " So for the politics of it, does anyone have any questions or comments?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:25,100",
+				"to": "00:33:27,100"
+			},
+			"offsets": {
+				"from": 2005100,
+				"to": 2007100
+			},
+			"text": " And then everyone looks to them all."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:27,100",
+				"to": "00:33:31,100"
+			},
+			"offsets": {
+				"from": 2007100,
+				"to": 2011100
+			},
+			"text": " I'm not going to say anything, I'll just say it."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:31,100",
+				"to": "00:33:33,100"
+			},
+			"offsets": {
+				"from": 2011100,
+				"to": 2013100
+			},
+			"text": " I have a really general question."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:33,100",
+				"to": "00:33:39,100"
+			},
+			"offsets": {
+				"from": 2013100,
+				"to": 2019100
+			},
+			"text": " Is Prog-Pow the last mining algorithm that ETA1.x will ever need?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:39,100",
+				"to": "00:33:41,100"
+			},
+			"offsets": {
+				"from": 2019100,
+				"to": 2021100
+			},
+			"text": " It was in the last algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:41,100",
+				"to": "00:33:46,900"
+			},
+			"offsets": {
+				"from": 2021100,
+				"to": 2026900
+			},
+			"text": " So I've heard that they have little knobs in it that you can adjust to make it more"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:46,900",
+				"to": "00:33:47,900"
+			},
+			"offsets": {
+				"from": 2026900,
+				"to": 2027900
+			},
+			"text": " harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:47,900",
+				"to": "00:33:50,900"
+			},
+			"offsets": {
+				"from": 2027900,
+				"to": 2030900
+			},
+			"text": " Yeah, I don't understand it."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:50,900",
+				"to": "00:33:56,900"
+			},
+			"offsets": {
+				"from": 2030900,
+				"to": 2036900
+			},
+			"text": " But you know, that's a question for the answers to that is we would even know the answer"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:56,900",
+				"to": "00:33:59,900"
+			},
+			"offsets": {
+				"from": 2036900,
+				"to": 2039900
+			},
+			"text": " when ETA1.x was happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:59,900",
+				"to": "00:34:04,900"
+			},
+			"offsets": {
+				"from": 2039900,
+				"to": 2044900
+			},
+			"text": " And even then, we need to know all the details which we're getting really close to having"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:04,900",
+				"to": "00:34:08,900"
+			},
+			"offsets": {
+				"from": 2044900,
+				"to": 2048900
+			},
+			"text": " all the details about how ETA1.x was going to interface with ETA2.x."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:08,900",
+				"to": "00:34:13,900"
+			},
+			"offsets": {
+				"from": 2048900,
+				"to": 2053900
+			},
+			"text": " And I believe the latest answer is it's going to be an execution environment or an ETA,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:13,900",
+				"to": "00:34:19,900"
+			},
+			"offsets": {
+				"from": 2053900,
+				"to": 2059900
+			},
+			"text": " which will then, I guess, be decided if it will go indefinitely, which it'll go for"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:19,900",
+				"to": "00:34:22,900"
+			},
+			"offsets": {
+				"from": 2059900,
+				"to": 2062900
+			},
+			"text": " a while stills my understanding."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:22,900",
+				"to": "00:34:28,900"
+			},
+			"offsets": {
+				"from": 2062900,
+				"to": 2068900
+			},
+			"text": " And then it might phase out naturally or there might be a push to do everything from"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:28,900",
+				"to": "00:34:31,900"
+			},
+			"offsets": {
+				"from": 2068900,
+				"to": 2071900
+			},
+			"text": " 1.0 to 2.0 or it'll be its own shard."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:31,900",
+				"to": "00:34:32,900"
+			},
+			"offsets": {
+				"from": 2071900,
+				"to": 2072900
+			},
+			"text": " I've heard many different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:32,900",
+				"to": "00:34:33,900"
+			},
+			"offsets": {
+				"from": 2072900,
+				"to": 2073900
+			},
+			"text": " Does anyone have any?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:33,900",
+				"to": "00:34:34,900"
+			},
+			"offsets": {
+				"from": 2073900,
+				"to": 2074900
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,900",
+				"to": "00:34:39,900"
+			},
+			"offsets": {
+				"from": 2074900,
+				"to": 2079900
+			},
+			"text": " So my answer to that would be most likely."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:39,900",
+				"to": "00:34:47,900"
+			},
+			"offsets": {
+				"from": 2079900,
+				"to": 2087900
+			},
+			"text": " But it's really nice if we keep the freedom to say, hey, we don't commit to anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:47,900",
+				"to": "00:34:54,900"
+			},
+			"offsets": {
+				"from": 2087900,
+				"to": 2094900
+			},
+			"text": " We might swap out Prokka a year from now with something really silly that is trivial to"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:54,900",
+				"to": "00:34:55,900"
+			},
+			"offsets": {
+				"from": 2094900,
+				"to": 2095900
+			},
+			"text": " implement."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:55,900",
+				"to": "00:34:57,900"
+			},
+			"offsets": {
+				"from": 2095900,
+				"to": 2097900
+			},
+			"text": " Or we might do something totally different."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:57,900",
+				"to": "00:34:59,900"
+			},
+			"offsets": {
+				"from": 2097900,
+				"to": 2099900
+			},
+			"text": " You never know."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:59,900",
+				"to": "00:35:00,900"
+			},
+			"offsets": {
+				"from": 2099900,
+				"to": 2100900
+			},
+			"text": " Just."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:00,900",
+				"to": "00:35:06,900"
+			},
+			"offsets": {
+				"from": 2100900,
+				"to": 2106900
+			},
+			"text": " And realistically, yeah, I don't think, I don't think, I mean, if we switch Prokka now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:06,900",
+				"to": "00:35:13,900"
+			},
+			"offsets": {
+				"from": 2106900,
+				"to": 2113900
+			},
+			"text": " I don't think it will be simple to do another switch later."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:13,900",
+				"to": "00:35:17,900"
+			},
+			"offsets": {
+				"from": 2113900,
+				"to": 2117900
+			},
+			"text": " Obviously, I thought Prokka would be kind of uncontroversial and pretty easy thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:17,900",
+				"to": "00:35:20,900"
+			},
+			"offsets": {
+				"from": 2117900,
+				"to": 2120900
+			},
+			"text": " And most people would be like, yeah, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:20,900",
+				"to": "00:35:25,900"
+			},
+			"offsets": {
+				"from": 2120900,
+				"to": 2125900
+			},
+			"text": " So, ah, we don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:25,900",
+				"to": "00:35:27,900"
+			},
+			"offsets": {
+				"from": 2125900,
+				"to": 2127900
+			},
+			"text": " Anybody else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:27,900",
+				"to": "00:35:28,900"
+			},
+			"offsets": {
+				"from": 2127900,
+				"to": 2128900
+			},
+			"text": " Anybody else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:28,900",
+				"to": "00:35:29,900"
+			},
+			"offsets": {
+				"from": 2128900,
+				"to": 2129900
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:29,900",
+				"to": "00:35:30,900"
+			},
+			"offsets": {
+				"from": 2129900,
+				"to": 2130900
+			},
+			"text": " Other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:30,900",
+				"to": "00:35:31,900"
+			},
+			"offsets": {
+				"from": 2130900,
+				"to": 2131900
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:31,900",
+				"to": "00:35:36,900"
+			},
+			"offsets": {
+				"from": 2131900,
+				"to": 2136900
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:36,900",
+				"to": "00:35:42,900"
+			},
+			"offsets": {
+				"from": 2136900,
+				"to": 2142900
+			},
+			"text": " Yeah, I just, I didn't know if, you know, the biggest concern for me is a, is a fork or a"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:42,900",
+				"to": "00:35:43,900"
+			},
+			"offsets": {
+				"from": 2142900,
+				"to": 2143900
+			},
+			"text": " contentious fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:43,900",
+				"to": "00:35:48,900"
+			},
+			"offsets": {
+				"from": 2143900,
+				"to": 2148900
+			},
+			"text": " So, I mean, is there any evidence, and I apologize, I've read the report that a six"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:48,900",
+				"to": "00:35:52,900"
+			},
+			"offsets": {
+				"from": 2148900,
+				"to": 2152900
+			},
+			"text": " pose a systemic risk to the system, or there is something wrong that poses a systemic risk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:52,900",
+				"to": "00:35:55,900"
+			},
+			"offsets": {
+				"from": 2152900,
+				"to": 2155900
+			},
+			"text": " or is this just to really appease the GTU minors?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:55,900",
+				"to": "00:36:00,900"
+			},
+			"offsets": {
+				"from": 2155900,
+				"to": 2160900
+			},
+			"text": " And if this is, you know, a short term thing before we would prove a stake is all of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:00,900",
+				"to": "00:36:05,900"
+			},
+			"offsets": {
+				"from": 2160900,
+				"to": 2165900
+			},
+			"text": " really, you know, needed to have potential credentials for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:05,900",
+				"to": "00:36:10,900"
+			},
+			"offsets": {
+				"from": 2165900,
+				"to": 2170900
+			},
+			"text": " So, my personal opinion has been developing over time on this, and personally, and this"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:10,900",
+				"to": "00:36:15,900"
+			},
+			"offsets": {
+				"from": 2170900,
+				"to": 2175900
+			},
+			"text": " is not necessarily a community perspective, but one of the most interesting, I guess,"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:15,900",
+				"to": "00:36:21,900"
+			},
+			"offsets": {
+				"from": 2175900,
+				"to": 2181900
+			},
+			"text": " ideas behind this is the fact that right now the GP mining pools the major ones, we know"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:21,900",
+				"to": "00:36:22,900"
+			},
+			"offsets": {
+				"from": 2181900,
+				"to": 2182900
+			},
+			"text": " them."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:22,900",
+				"to": "00:36:28,900"
+			},
+			"offsets": {
+				"from": 2182900,
+				"to": 2188900
+			},
+			"text": " As in, you can go to a chart of them on Etherscan or any of the other blog explorers, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:28,900",
+				"to": "00:36:34,900"
+			},
+			"offsets": {
+				"from": 2188900,
+				"to": 2194900
+			},
+			"text": " can see in the chart pie chart it says like Ethermine and F2 pool and Spark pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:34,900",
+				"to": "00:36:38,900"
+			},
+			"offsets": {
+				"from": 2194900,
+				"to": 2198900
+			},
+			"text": " And so we know them, we know that Spark pool has helped out in the community, we know"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:38,900",
+				"to": "00:36:43,900"
+			},
+			"offsets": {
+				"from": 2198900,
+				"to": 2203900
+			},
+			"text": " that F2 pool has helped out a little bit, and we know that Ethermine's helped out a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:43,900",
+				"to": "00:36:45,900"
+			},
+			"offsets": {
+				"from": 2203900,
+				"to": 2205900
+			},
+			"text": " with the technical stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:45,900",
+				"to": "00:36:48,900"
+			},
+			"offsets": {
+				"from": 2205900,
+				"to": 2208900
+			},
+			"text": " So I guess Ethermine would be more technical help."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:48,900",
+				"to": "00:36:53,900"
+			},
+			"offsets": {
+				"from": 2208900,
+				"to": 2213900
+			},
+			"text": " Spark pool would be both technical and community help with their initiatives to do stuff in"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:53,900",
+				"to": "00:37:02,900"
+			},
+			"offsets": {
+				"from": 2213900,
+				"to": 2222900
+			},
+			"text": " the ecosystem with co-working spaces in China and conferences and educational sessions."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:02,900",
+				"to": "00:37:04,900"
+			},
+			"offsets": {
+				"from": 2222900,
+				"to": 2224900
+			},
+			"text": " So we know they're all good actors."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:04,900",
+				"to": "00:37:08,900"
+			},
+			"offsets": {
+				"from": 2224900,
+				"to": 2228900
+			},
+			"text": " The thing with, I always think back to this, I mean, in the narrow, when suddenly there"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:08,900",
+				"to": "00:37:13,900"
+			},
+			"offsets": {
+				"from": 2228900,
+				"to": 2233900
+			},
+			"text": " was a lot of hash rate that dropped off after their fork that we had no idea who they were,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:13,900",
+				"to": "00:37:16,900"
+			},
+			"offsets": {
+				"from": 2233900,
+				"to": 2236900
+			},
+			"text": " and they didn't know there wasn't the narrow asick and it wasn't public."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:16,900",
+				"to": "00:37:21,900"
+			},
+			"offsets": {
+				"from": 2236900,
+				"to": 2241900
+			},
+			"text": " So someone built an asick, they started mining on there, and so they could basically be"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:21,900",
+				"to": "00:37:23,900"
+			},
+			"offsets": {
+				"from": 2241900,
+				"to": 2243900
+			},
+			"text": " able to do it anonymously."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:23,900",
+				"to": "00:37:28,900"
+			},
+			"offsets": {
+				"from": 2243900,
+				"to": 2248900
+			},
+			"text": " So as we know all the actors now, if Spark pool tried to do a double spend or they tried to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:28,900",
+				"to": "00:37:32,900"
+			},
+			"offsets": {
+				"from": 2248900,
+				"to": 2252900
+			},
+			"text": " I used to think there might be a way that like they could mess up the 2.0 transition,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:32,900",
+				"to": "00:37:35,900"
+			},
+			"offsets": {
+				"from": 2252900,
+				"to": 2255900
+			},
+			"text": " that is less likely now after talking to Danny Ryan."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:35,900",
+				"to": "00:37:41,900"
+			},
+			"offsets": {
+				"from": 2255900,
+				"to": 2261900
+			},
+			"text": " But there are some things that an anonymous large percentage of hash power could do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:41,900",
+				"to": "00:37:46,900"
+			},
+			"offsets": {
+				"from": 2261900,
+				"to": 2266900
+			},
+			"text": " like double spending right before, because they know that their investments about to drop off completely."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:46,900",
+				"to": "00:37:51,900"
+			},
+			"offsets": {
+				"from": 2266900,
+				"to": 2271900
+			},
+			"text": " So they're not going to have to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:51,900",
+				"to": "00:37:54,900"
+			},
+			"offsets": {
+				"from": 2271900,
+				"to": 2274900
+			},
+			"text": " So they're not going to have to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:54,900",
+				"to": "00:37:57,900"
+			},
+			"offsets": {
+				"from": 2274900,
+				"to": 2277900
+			},
+			"text": " So they're not going to have to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:57,900",
+				"to": "00:38:00,900"
+			},
+			"offsets": {
+				"from": 2277900,
+				"to": 2280900
+			},
+			"text": " So they're not going to have to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:00,900",
+				"to": "00:38:03,900"
+			},
+			"offsets": {
+				"from": 2280900,
+				"to": 2283900
+			},
+			"text": " So they're not going to have to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:03,900",
+				"to": "00:38:06,900"
+			},
+			"offsets": {
+				"from": 2283900,
+				"to": 2286900
+			},
+			"text": " So they're not going to have to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:06,900",
+				"to": "00:38:09,900"
+			},
+			"offsets": {
+				"from": 2286900,
+				"to": 2289900
+			},
+			"text": " So they're not going to have to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:09,900",
+				"to": "00:38:12,900"
+			},
+			"offsets": {
+				"from": 2289900,
+				"to": 2292900
+			},
+			"text": " So they're not going to have to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:12,900",
+				"to": "00:38:24,900"
+			},
+			"offsets": {
+				"from": 2292900,
+				"to": 2304900
+			},
+			"text": " And the fact that I do shoot down the idea that we made a deal with GP miners or that because of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:24,900",
+				"to": "00:38:29,900"
+			},
+			"offsets": {
+				"from": 2304900,
+				"to": 2309900
+			},
+			"text": " issuance reduction that there was this implication that we would be doing Prague Pao,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:29,900",
+				"to": "00:38:35,900"
+			},
+			"offsets": {
+				"from": 2309900,
+				"to": 2315900
+			},
+			"text": " because I know at the time there were some people saying that, but I did a huge blog or Reddit post that kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:35,900",
+				"to": "00:38:42,900"
+			},
+			"offsets": {
+				"from": 2315900,
+				"to": 2322900
+			},
+			"text": " dispelled that and included time stamps to core developer calls and things like that where we discussed not doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:42,900",
+				"to": "00:38:46,900"
+			},
+			"offsets": {
+				"from": 2322900,
+				"to": 2326900
+			},
+			"text": " So as far as is there going to be a fork or not, there's no way to know."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:46,900",
+				"to": "00:38:52,900"
+			},
+			"offsets": {
+				"from": 2326900,
+				"to": 2332900
+			},
+			"text": " And it's going to depend on, I guess my main opinion on a personal level is that there won't be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:52,900",
+				"to": "00:39:01,900"
+			},
+			"offsets": {
+				"from": 2332900,
+				"to": 2341900
+			},
+			"text": " because to have a successful fork, you need a dedicated team of developers who can at least code one client."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:01,900",
+				"to": "00:39:07,900"
+			},
+			"offsets": {
+				"from": 2341900,
+				"to": 2347900
+			},
+			"text": " And there would be people maybe from ETC or other forks of Ethereum that could pick that up."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:07,900",
+				"to": "00:39:10,900"
+			},
+			"offsets": {
+				"from": 2347900,
+				"to": 2350900
+			},
+			"text": " But I don't see any of them speaking up right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:10,900",
+				"to": "00:39:16,900"
+			},
+			"offsets": {
+				"from": 2350900,
+				"to": 2356900
+			},
+			"text": " Maybe if it gets closer, someone will speak up and they'll say, \"Yeah, we're ready to take on a fork of this and we're very"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:16,900",
+				"to": "00:39:21,900"
+			},
+			"offsets": {
+				"from": 2356900,
+				"to": 2361900
+			},
+			"text": " \"wergens this so much. It's the principles of it that we're going to do it, but I just haven't seen that yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:21,900",
+				"to": "00:39:23,900"
+			},
+			"offsets": {
+				"from": 2361900,
+				"to": 2363900
+			},
+			"text": " \"So it's hard for me to believe.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:39:23,900",
+				"to": "00:39:26,900"
+			},
+			"offsets": {
+				"from": 2363900,
+				"to": 2366900
+			},
+			"text": " People underestimated that with ETC. We had never had that before again."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:26,900",
+				"to": "00:39:32,900"
+			},
+			"offsets": {
+				"from": 2366900,
+				"to": 2372900
+			},
+			"text": " So I'm not saying it's impossible at all. It's definitely possible. But I don't know the percentage right now possibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:32,900",
+				"to": "00:39:41,900"
+			},
+			"offsets": {
+				"from": 2372900,
+				"to": 2381900
+			},
+			"text": " No, I mean, if that did happen, I'd see that arising organically in that same kind of ETC kind of way."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:41,900",
+				"to": "00:39:42,900"
+			},
+			"offsets": {
+				"from": 2381900,
+				"to": 2382900
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:42,900",
+				"to": "00:39:51,900"
+			},
+			"offsets": {
+				"from": 2382900,
+				"to": 2391900
+			},
+			"text": " Which is that there's a lot of people who can fork a repo, can run continuous integration, can tweak parameters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:51,900",
+				"to": "00:39:56,900"
+			},
+			"offsets": {
+				"from": 2391900,
+				"to": 2396900
+			},
+			"text": " make on have the ability to move things more much beyond that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:56,900",
+				"to": "00:40:05,900"
+			},
+			"offsets": {
+				"from": 2396900,
+				"to": 2405900
+			},
+			"text": " but they can at least keep the network going. They can do a simple fork and then group together an army behind them."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:05,900",
+				"to": "00:40:11,900"
+			},
+			"offsets": {
+				"from": 2405900,
+				"to": 2411900
+			},
+			"text": " And that's how I'd see that contention happening. They could happen in either direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:11,900",
+				"to": "00:40:17,900"
+			},
+			"offsets": {
+				"from": 2411900,
+				"to": 2417900
+			},
+			"text": " There was actually code. There was actually a developer who was on the Discord back in January February."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:17,900",
+				"to": "00:40:21,900"
+			},
+			"offsets": {
+				"from": 2417900,
+				"to": 2421900
+			},
+			"text": " He was about to do a prop how fork and he had code ready and he had dates picked."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:21,900",
+				"to": "00:40:25,900"
+			},
+			"offsets": {
+				"from": 2421900,
+				"to": 2425900
+			},
+			"text": " I don't know why he backed off. Maybe we persuaded him that prop how wasn't dead."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:25,900",
+				"to": "00:40:31,900"
+			},
+			"offsets": {
+				"from": 2425900,
+				"to": 2431900
+			},
+			"text": " But he was very committed to make it happen. So he actually had code in place and people in place and connections actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:31,900",
+				"to": "00:40:35,900"
+			},
+			"offsets": {
+				"from": 2431900,
+				"to": 2435900
+			},
+			"text": " Or he was really good at bluffing a target cell without an actual fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:35,900",
+				"to": "00:40:42,900"
+			},
+			"offsets": {
+				"from": 2435900,
+				"to": 2442900
+			},
+			"text": " I mean, the other thing that happened at the time of the Dow fork is that there was another proposal which was sort of like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:42,900",
+				"to": "00:40:47,900"
+			},
+			"offsets": {
+				"from": 2442900,
+				"to": 2447900
+			},
+			"text": " \"Hey, let's make a new one.\" So we're not going to fork but we want an Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:47,900",
+				"to": "00:40:51,900"
+			},
+			"offsets": {
+				"from": 2447900,
+				"to": 2451900
+			},
+			"text": " But we're basically going to start from scratch. We're making new genesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:51,900",
+				"to": "00:40:53,900"
+			},
+			"offsets": {
+				"from": 2451900,
+				"to": 2453900
+			},
+			"text": " Yeah. That's the point."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:53,900",
+				"to": "00:40:55,900"
+			},
+			"offsets": {
+				"from": 2453900,
+				"to": 2455900
+			},
+			"text": " The point is another possibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:55,900",
+				"to": "00:41:00,900"
+			},
+			"offsets": {
+				"from": 2455900,
+				"to": 2460900
+			},
+			"text": " So our time is up, unfortunately. I'll be in the hallway to talk more and Martin has to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:00,900",
+				"to": "00:41:05,900"
+			},
+			"offsets": {
+				"from": 2460900,
+				"to": 2465900
+			},
+			"text": " So yeah, time to go to Twitter if you took a pick. I'd love to see my face everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:05,900",
+				"to": "00:41:11,900"
+			},
+			"offsets": {
+				"from": 2465900,
+				"to": 2471900
+			},
+			"text": " Very, very humble. So yeah. Thank you all for coming so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:11,900",
+				"to": "00:41:13,900"
+			},
+			"offsets": {
+				"from": 2471900,
+				"to": 2473900
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:13,900",
+				"to": "00:41:28,900"
+			},
+			"offsets": {
+				"from": 2473900,
+				"to": 2488900
+			},
+			"text": " [music]"
+		}
+	]
+}

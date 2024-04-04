@@ -1,0 +1,5334 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:13,780"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 13780
+			},
+			"text": " OK, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,780",
+				"to": "00:00:14,780"
+			},
+			"offsets": {
+				"from": 13780,
+				"to": 14780
+			},
+			"text": " Hi, I'm Daniel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,780",
+				"to": "00:00:16,320"
+			},
+			"offsets": {
+				"from": 14780,
+				"to": 16320
+			},
+			"text": " I'm in the compiler team for--"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,320",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 16320,
+				"to": 18000
+			},
+			"text": " Yeah, over four years now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:19,720"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 19720
+			},
+			"text": " And yeah, originally the plan was"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,720",
+				"to": "00:00:21,100"
+			},
+			"offsets": {
+				"from": 19720,
+				"to": 21100
+			},
+			"text": " what they talked about, Chris, who"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,100",
+				"to": "00:00:22,080"
+			},
+			"offsets": {
+				"from": 21100,
+				"to": 22080
+			},
+			"text": " couldn't make it to Bogota."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,080",
+				"to": "00:00:23,760"
+			},
+			"offsets": {
+				"from": 22080,
+				"to": 23760
+			},
+			"text": " So I have to improvise a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,760",
+				"to": "00:00:25,920"
+			},
+			"offsets": {
+				"from": 23760,
+				"to": 25920
+			},
+			"text": " I brought a lot of code snippets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,920",
+				"to": "00:00:27,920"
+			},
+			"offsets": {
+				"from": 25920,
+				"to": 27920
+			},
+			"text": " which will explain what we have currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,920",
+				"to": "00:00:29,880"
+			},
+			"offsets": {
+				"from": 27920,
+				"to": 29880
+			},
+			"text": " in the compiler, currently the state of the language."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,880",
+				"to": "00:00:32,080"
+			},
+			"offsets": {
+				"from": 29880,
+				"to": 32080
+			},
+			"text": " And where we are headed with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,080",
+				"to": "00:00:34,080"
+			},
+			"offsets": {
+				"from": 32080,
+				"to": 34080
+			},
+			"text": " Yeah, I guess if you're familiar with Solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,080",
+				"to": "00:00:35,680"
+			},
+			"offsets": {
+				"from": 34080,
+				"to": 35680
+			},
+			"text": " which I hope most of you are, probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,680",
+				"to": "00:00:36,680"
+			},
+			"offsets": {
+				"from": 35680,
+				"to": 36680
+			},
+			"text": " no a mutables by now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,680",
+				"to": "00:00:38,760"
+			},
+			"offsets": {
+				"from": 36680,
+				"to": 38760
+			},
+			"text": " It's been around for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,760",
+				"to": "00:00:40,920"
+			},
+			"offsets": {
+				"from": 38760,
+				"to": 40920
+			},
+			"text": " And it's a very highly appreciated feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,920",
+				"to": "00:00:43,640"
+			},
+			"offsets": {
+				"from": 40920,
+				"to": 43640
+			},
+			"text": " from our impression, which, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,640",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 43640,
+				"to": 47000
+			},
+			"text": " still will quickly explain how they work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:49,360"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 49360
+			},
+			"text": " The owner variable here looks like a state variable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,360",
+				"to": "00:00:52,760"
+			},
+			"offsets": {
+				"from": 49360,
+				"to": 52760
+			},
+			"text": " but it's not a really proper state variable in storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,760",
+				"to": "00:00:55,040"
+			},
+			"offsets": {
+				"from": 52760,
+				"to": 55040
+			},
+			"text": " But a mutable variable, which can only"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,040",
+				"to": "00:00:57,440"
+			},
+			"offsets": {
+				"from": 55040,
+				"to": 57440
+			},
+			"text": " be assigned to once in the constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,440",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 57440,
+				"to": 59000
+			},
+			"text": " And then can use this many times as one"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:02,280"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 62280
+			},
+			"text": " once read only in the runtime code of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,280",
+				"to": "00:01:04,160"
+			},
+			"offsets": {
+				"from": 62280,
+				"to": 64160
+			},
+			"text": " But there the access is very cheap."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,160",
+				"to": "00:01:07,040"
+			},
+			"offsets": {
+				"from": 64160,
+				"to": 67040
+			},
+			"text": " It doesn't require an S load, but it's basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,040",
+				"to": "00:01:11,760"
+			},
+			"offsets": {
+				"from": 67040,
+				"to": 71760
+			},
+			"text": " inlined in the code as if it was a literal."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,760",
+				"to": "00:01:13,880"
+			},
+			"offsets": {
+				"from": 71760,
+				"to": 73880
+			},
+			"text": " So yeah, you probably know this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,880",
+				"to": "00:01:15,800"
+			},
+			"offsets": {
+				"from": 73880,
+				"to": 75800
+			},
+			"text": " And people liked it a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,800",
+				"to": "00:01:21,600"
+			},
+			"offsets": {
+				"from": 75800,
+				"to": 81600
+			},
+			"text": " And a very obvious extension to ask for is, why do we only"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,600",
+				"to": "00:01:22,840"
+			},
+			"offsets": {
+				"from": 81600,
+				"to": 82840
+			},
+			"text": " support that for value types?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,840",
+				"to": "00:01:24,560"
+			},
+			"offsets": {
+				"from": 82840,
+				"to": 84560
+			},
+			"text": " That's the restriction we had so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,560",
+				"to": "00:01:26,360"
+			},
+			"offsets": {
+				"from": 84560,
+				"to": 86360
+			},
+			"text": " That it's only integers, only addresses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,360",
+				"to": "00:01:28,880"
+			},
+			"offsets": {
+				"from": 86360,
+				"to": 88880
+			},
+			"text": " but not a race of things, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,880",
+				"to": "00:01:31,360"
+			},
+			"offsets": {
+				"from": 88880,
+				"to": 91360
+			},
+			"text": " So this was, for example, it's taken from a GitHub issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,360",
+				"to": "00:01:56,200"
+			},
+			"offsets": {
+				"from": 91360,
+				"to": 116200
+			},
+			"text": " that a thing opens up in Open"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,200",
+				"to": "00:01:58,360"
+			},
+			"offsets": {
+				"from": 116200,
+				"to": 118360
+			},
+			"text": " the elements of this array."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,360",
+				"to": "00:02:01,040"
+			},
+			"offsets": {
+				"from": 118360,
+				"to": 121040
+			},
+			"text": " And in general, I cannot check that this is really assigned"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,040",
+				"to": "00:02:01,720"
+			},
+			"offsets": {
+				"from": 121040,
+				"to": 121720
+			},
+			"text": " only once."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,720",
+				"to": "00:02:04,640"
+			},
+			"offsets": {
+				"from": 121720,
+				"to": 124640
+			},
+			"text": " I mean, the question is, is this still an immutable thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,640",
+				"to": "00:02:06,640"
+			},
+			"offsets": {
+				"from": 124640,
+				"to": 126640
+			},
+			"text": " in that sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,640",
+				"to": "00:02:09,720"
+			},
+			"offsets": {
+				"from": 126640,
+				"to": 129720
+			},
+			"text": " Also, if I start having a race as a mutables,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,720",
+				"to": "00:02:12,160"
+			},
+			"offsets": {
+				"from": 129720,
+				"to": 132160
+			},
+			"text": " I will want to have local references to them, which I"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,160",
+				"to": "00:02:13,440"
+			},
+			"offsets": {
+				"from": 132160,
+				"to": 133440
+			},
+			"text": " could then reassign."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,440",
+				"to": "00:02:16,200"
+			},
+			"offsets": {
+				"from": 133440,
+				"to": 136200
+			},
+			"text": " So if I keep the name immutable, I just changed what this points"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,200",
+				"to": "00:02:16,600"
+			},
+			"offsets": {
+				"from": 136200,
+				"to": 136600
+			},
+			"text": " to."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,600",
+				"to": "00:02:18,640"
+			},
+			"offsets": {
+				"from": 136600,
+				"to": 138640
+			},
+			"text": " So this is really-- it doesn't look immutable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,640",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 138640,
+				"to": 143000
+			},
+			"text": " Immutable doesn't fit this concept anymore properly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:28,320"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 148320
+			},
+			"text": " So let me explain a bit further how immutable does actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,320",
+				"to": "00:02:29,840"
+			},
+			"offsets": {
+				"from": 148320,
+				"to": 149840
+			},
+			"text": " work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,840",
+				"to": "00:02:34,480"
+			},
+			"offsets": {
+				"from": 149840,
+				"to": 154480
+			},
+			"text": " In the constructor, owner is actually a position in memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,480",
+				"to": "00:02:38,880"
+			},
+			"offsets": {
+				"from": 154480,
+				"to": 158880
+			},
+			"text": " So we store whatever you write to this variable in memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,880",
+				"to": "00:02:42,240"
+			},
+			"offsets": {
+				"from": 158880,
+				"to": 162240
+			},
+			"text": " And then when the actual runtime code of the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,240",
+				"to": "00:02:44,400"
+			},
+			"offsets": {
+				"from": 162240,
+				"to": 164400
+			},
+			"text": " you're part of deploy is copied to memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,400",
+				"to": "00:02:45,720"
+			},
+			"offsets": {
+				"from": 164400,
+				"to": 165720
+			},
+			"text": " to be returned by the constructor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,720",
+				"to": "00:02:48,480"
+			},
+			"offsets": {
+				"from": 165720,
+				"to": 168480
+			},
+			"text": " we fill in from this memory location"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,480",
+				"to": "00:02:50,520"
+			},
+			"offsets": {
+				"from": 168480,
+				"to": 170520
+			},
+			"text": " into the bytecode, the value that is there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,520",
+				"to": "00:02:52,840"
+			},
+			"offsets": {
+				"from": 170520,
+				"to": 172840
+			},
+			"text": " which in the end results in the runtime code"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,840",
+				"to": "00:02:57,360"
+			},
+			"offsets": {
+				"from": 172840,
+				"to": 177360
+			},
+			"text": " to actually have it as a literal in the bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,360",
+				"to": "00:02:59,600"
+			},
+			"offsets": {
+				"from": 177360,
+				"to": 179600
+			},
+			"text": " So this variable in the constructor actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,600",
+				"to": "00:03:01,200"
+			},
+			"offsets": {
+				"from": 179600,
+				"to": 181200
+			},
+			"text": " is a memory variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,200",
+				"to": "00:03:04,120"
+			},
+			"offsets": {
+				"from": 181200,
+				"to": 184120
+			},
+			"text": " In runtime, it's actually something that lives in code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,120",
+				"to": "00:03:06,280"
+			},
+			"offsets": {
+				"from": 184120,
+				"to": 186280
+			},
+			"text": " But filling in literal values in some sort,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,280",
+				"to": "00:03:08,560"
+			},
+			"offsets": {
+				"from": 186280,
+				"to": 188560
+			},
+			"text": " basically the push argument into the bytecode"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,560",
+				"to": "00:03:10,960"
+			},
+			"offsets": {
+				"from": 188560,
+				"to": 190960
+			},
+			"text": " won't work anymore for the Nanik types."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,960",
+				"to": "00:03:12,280"
+			},
+			"offsets": {
+				"from": 190960,
+				"to": 192280
+			},
+			"text": " If we have statically sized arrays,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,280",
+				"to": "00:03:13,720"
+			},
+			"offsets": {
+				"from": 192280,
+				"to": 193720
+			},
+			"text": " we could still do that, and we probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,720",
+				"to": "00:03:15,040"
+			},
+			"offsets": {
+				"from": 193720,
+				"to": 195040
+			},
+			"text": " will, for efficiency reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,040",
+				"to": "00:03:18,080"
+			},
+			"offsets": {
+				"from": 195040,
+				"to": 198080
+			},
+			"text": " But at least for the Nanik types, if we go full way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,080",
+				"to": "00:03:19,760"
+			},
+			"offsets": {
+				"from": 198080,
+				"to": 199760
+			},
+			"text": " we cannot do that anymore because we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,760",
+				"to": "00:03:20,800"
+			},
+			"offsets": {
+				"from": 199760,
+				"to": 200800
+			},
+			"text": " don't know the length of the thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,800",
+				"to": "00:03:23,720"
+			},
+			"offsets": {
+				"from": 200800,
+				"to": 203720
+			},
+			"text": " so we can't reserve space in bytecode for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,720",
+				"to": "00:03:26,960"
+			},
+			"offsets": {
+				"from": 203720,
+				"to": 206960
+			},
+			"text": " So instead, we need to rely on code copy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,960",
+				"to": "00:03:29,240"
+			},
+			"offsets": {
+				"from": 206960,
+				"to": 209240
+			},
+			"text": " And, yeah, I already mentioned, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,240",
+				"to": "00:03:32,320"
+			},
+			"offsets": {
+				"from": 209240,
+				"to": 212320
+			},
+			"text": " will probably want to pass the immutable's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,320",
+				"to": "00:03:33,360"
+			},
+			"offsets": {
+				"from": 212320,
+				"to": 213360
+			},
+			"text": " by reference."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,360",
+				"to": "00:03:37,440"
+			},
+			"offsets": {
+				"from": 213360,
+				"to": 217440
+			},
+			"text": " We will want to slice them, which, if you think about all that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,440",
+				"to": "00:03:41,520"
+			},
+			"offsets": {
+				"from": 217440,
+				"to": 221520
+			},
+			"text": " together, makes immutable's not an annotation for a safer"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,520",
+				"to": "00:03:44,640"
+			},
+			"offsets": {
+				"from": 221520,
+				"to": 224640
+			},
+			"text": " variable anymore, but it will become a proper whole data"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,640",
+				"to": "00:03:46,400"
+			},
+			"offsets": {
+				"from": 224640,
+				"to": 226400
+			},
+			"text": " location."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,400",
+				"to": "00:03:49,600"
+			},
+			"offsets": {
+				"from": 226400,
+				"to": 229600
+			},
+			"text": " But this will probably look like this in the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,600",
+				"to": "00:03:52,200"
+			},
+			"offsets": {
+				"from": 229600,
+				"to": 232200
+			},
+			"text": " As I said, the variable in the end will live in code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,200",
+				"to": "00:03:54,840"
+			},
+			"offsets": {
+				"from": 232200,
+				"to": 234840
+			},
+			"text": " So code, and the opcode that will access it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,840",
+				"to": "00:03:57,680"
+			},
+			"offsets": {
+				"from": 234840,
+				"to": 237680
+			},
+			"text": " is code copy, so code is a natural name for these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,680",
+				"to": "00:04:02,560"
+			},
+			"offsets": {
+				"from": 237680,
+				"to": 242560
+			},
+			"text": " So here, the data variable abides the Nanik array"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,560",
+				"to": "00:04:05,360"
+			},
+			"offsets": {
+				"from": 242560,
+				"to": 245360
+			},
+			"text": " in code, which I can then, in the constructor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,360",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 245360,
+				"to": 248000
+			},
+			"text": " just treat like any old memory variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:11,080"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 251080
+			},
+			"text": " Assign to it, modify it freely."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,080",
+				"to": "00:04:13,760"
+			},
+			"offsets": {
+				"from": 251080,
+				"to": 253760
+			},
+			"text": " You can drop the requirement that it's only written to once"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,760",
+				"to": "00:04:15,200"
+			},
+			"offsets": {
+				"from": 253760,
+				"to": 255200
+			},
+			"text": " in the constructor because that was always"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,200",
+				"to": "00:04:17,080"
+			},
+			"offsets": {
+				"from": 255200,
+				"to": 257080
+			},
+			"text": " an artificial requirement."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,080",
+				"to": "00:04:22,160"
+			},
+			"offsets": {
+				"from": 257080,
+				"to": 262160
+			},
+			"text": " So if we actually call it what it is, a code variable that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,160",
+				"to": "00:04:26,560"
+			},
+			"offsets": {
+				"from": 262160,
+				"to": 266560
+			},
+			"text": " will actually be inserted or used in the code in the end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,560",
+				"to": "00:04:28,720"
+			},
+			"offsets": {
+				"from": 266560,
+				"to": 268720
+			},
+			"text": " we can freely modify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,720",
+				"to": "00:04:31,120"
+			},
+			"offsets": {
+				"from": 268720,
+				"to": 271120
+			},
+			"text": " And then in the runtime code, it basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,120",
+				"to": "00:04:33,520"
+			},
+			"offsets": {
+				"from": 271120,
+				"to": 273520
+			},
+			"text": " behaves like a call data reference, a read only reference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,520",
+				"to": "00:04:36,400"
+			},
+			"offsets": {
+				"from": 273520,
+				"to": 276400
+			},
+			"text": " only that it doesn't come from call data but from code."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,400",
+				"to": "00:04:40,640"
+			},
+			"offsets": {
+				"from": 276400,
+				"to": 280640
+			},
+			"text": " So I can slice it, have local references to it, and pass it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,640",
+				"to": "00:04:45,640"
+			},
+			"offsets": {
+				"from": 280640,
+				"to": 285640
+			},
+			"text": " around the functions, all with very little cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,640",
+				"to": "00:04:47,920"
+			},
+			"offsets": {
+				"from": 285640,
+				"to": 287920
+			},
+			"text": " This will be a bit tricky to type check in the end"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,920",
+				"to": "00:04:51,040"
+			},
+			"offsets": {
+				"from": 287920,
+				"to": 291040
+			},
+			"text": " because, yeah, in the constructor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,040",
+				"to": "00:04:54,080"
+			},
+			"offsets": {
+				"from": 291040,
+				"to": 294080
+			},
+			"text": " it is a memory variable in the runtime code."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,080",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 294080,
+				"to": 295000
+			},
+			"text": " It behaves differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:57,200"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 297200
+			},
+			"text": " So if the constructor calls functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,200",
+				"to": "00:04:58,680"
+			},
+			"offsets": {
+				"from": 297200,
+				"to": 298680
+			},
+			"text": " we need to type check everything twice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,680",
+				"to": "00:05:02,280"
+			},
+			"offsets": {
+				"from": 298680,
+				"to": 302280
+			},
+			"text": " But we have different calls for refactoring the type checker"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,280",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 302280,
+				"to": 304000
+			},
+			"text": " to actually do that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:06,320"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 306320
+			},
+			"text": " So we will do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,320",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 306320,
+				"to": 308000
+			},
+			"text": " And there's still some considerations of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:11,680"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 311680
+			},
+			"text": " It would be very handy if I had a code load opcode similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,680",
+				"to": "00:05:16,520"
+			},
+			"offsets": {
+				"from": 311680,
+				"to": 316520
+			},
+			"text": " to a call data opcode to actually read single words"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,520",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 316520,
+				"to": 319000
+			},
+			"text": " from code, but we don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:21,840"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 321840
+			},
+			"text": " So we will, whenever possible, probably still"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,840",
+				"to": "00:05:23,760"
+			},
+			"offsets": {
+				"from": 321840,
+				"to": 323760
+			},
+			"text": " use the same mechanism as a mutables use now"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,760",
+				"to": "00:05:27,880"
+			},
+			"offsets": {
+				"from": 323760,
+				"to": 327880
+			},
+			"text": " to actually fill it into a push argument in bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,880",
+				"to": "00:05:31,400"
+			},
+			"offsets": {
+				"from": 327880,
+				"to": 331400
+			},
+			"text": " If not, we will probably, yeah, code copy either"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,400",
+				"to": "00:05:34,160"
+			},
+			"offsets": {
+				"from": 331400,
+				"to": 334160
+			},
+			"text": " in an entire memory region or if you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,160",
+				"to": "00:05:38,720"
+			},
+			"offsets": {
+				"from": 334160,
+				"to": 338720
+			},
+			"text": " need a snippet of a dynamic array code copy to scratch space"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,720",
+				"to": "00:05:40,800"
+			},
+			"offsets": {
+				"from": 338720,
+				"to": 340800
+			},
+			"text": " and upload from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,800",
+				"to": "00:05:42,960"
+			},
+			"offsets": {
+				"from": 340800,
+				"to": 342960
+			},
+			"text": " So it will still be significantly cheaper than anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,960",
+				"to": "00:05:44,120"
+			},
+			"offsets": {
+				"from": 342960,
+				"to": 344120
+			},
+			"text": " in storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,120",
+				"to": "00:05:47,400"
+			},
+			"offsets": {
+				"from": 344120,
+				"to": 347400
+			},
+			"text": " OK, yeah, that was the first topic I wanted to talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,400",
+				"to": "00:05:50,520"
+			},
+			"offsets": {
+				"from": 347400,
+				"to": 350520
+			},
+			"text": " The second thing that you may have noticed in the recent versions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,520",
+				"to": "00:05:54,520"
+			},
+			"offsets": {
+				"from": 350520,
+				"to": 354520
+			},
+			"text": " is our move to allow user-defined value types."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,520",
+				"to": "00:05:57,560"
+			},
+			"offsets": {
+				"from": 354520,
+				"to": 357560
+			},
+			"text": " Go to test case for this concept was always fixed point"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,560",
+				"to": "00:06:00,560"
+			},
+			"offsets": {
+				"from": 357560,
+				"to": 360560
+			},
+			"text": " types, which we decided to not implement as a first citizen"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,560",
+				"to": "00:06:02,640"
+			},
+			"offsets": {
+				"from": 360560,
+				"to": 362640
+			},
+			"text": " type in the latest type system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,640",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 362640,
+				"to": 365000
+			},
+			"text": " But to build the infrastructure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:06,920"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 366920
+			},
+			"text": " to define it as a user-defined type."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,920",
+				"to": "00:06:09,920"
+			},
+			"offsets": {
+				"from": 366920,
+				"to": 369920
+			},
+			"text": " Yeah, I'm assuming that you're familiar with those."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,920",
+				"to": "00:06:11,360"
+			},
+			"offsets": {
+				"from": 369920,
+				"to": 371360
+			},
+			"text": " So I won't go into that much more"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,360",
+				"to": "00:06:17,480"
+			},
+			"offsets": {
+				"from": 371360,
+				"to": 377480
+			},
+			"text": " that you saw in the basic concept, which what we recently added"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,480",
+				"to": "00:06:20,040"
+			},
+			"offsets": {
+				"from": 377480,
+				"to": 380040
+			},
+			"text": " or more recently added is this global keyword"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,040",
+				"to": "00:06:22,120"
+			},
+			"offsets": {
+				"from": 380040,
+				"to": 382120
+			},
+			"text": " you see in the first using statement, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,120",
+				"to": "00:06:26,560"
+			},
+			"offsets": {
+				"from": 382120,
+				"to": 386560
+			},
+			"text": " means that currently a using statement is only locally"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,560",
+				"to": "00:06:30,640"
+			},
+			"offsets": {
+				"from": 386560,
+				"to": 390640
+			},
+			"text": " effective, whereas a using statement with a global at the end"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,640",
+				"to": "00:06:35,080"
+			},
+			"offsets": {
+				"from": 390640,
+				"to": 395080
+			},
+			"text": " will only be allowed in the very same source file"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,080",
+				"to": "00:06:37,040"
+			},
+			"offsets": {
+				"from": 395080,
+				"to": 397040
+			},
+			"text": " in which you define the type."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,040",
+				"to": "00:06:39,080"
+			},
+			"offsets": {
+				"from": 397040,
+				"to": 399080
+			},
+			"text": " But we'll have that as the effect that wherever the type is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,080",
+				"to": "00:06:41,920"
+			},
+			"offsets": {
+				"from": 399080,
+				"to": 401920
+			},
+			"text": " available, the functions you bound to the type"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,920",
+				"to": "00:06:43,240"
+			},
+			"offsets": {
+				"from": 401920,
+				"to": 403240
+			},
+			"text": " will also be available."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,240",
+				"to": "00:06:46,440"
+			},
+			"offsets": {
+				"from": 403240,
+				"to": 406440
+			},
+			"text": " So this is what you can do then in the end, practically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,440",
+				"to": "00:06:48,720"
+			},
+			"offsets": {
+				"from": 406440,
+				"to": 408720
+			},
+			"text": " to write type libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,720",
+				"to": "00:06:51,320"
+			},
+			"offsets": {
+				"from": 408720,
+				"to": 411320
+			},
+			"text": " Where you're in that library, you define the type,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,320",
+				"to": "00:06:53,920"
+			},
+			"offsets": {
+				"from": 411320,
+				"to": 413920
+			},
+			"text": " equipped with some functions, and then anyone importing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,920",
+				"to": "00:06:57,360"
+			},
+			"offsets": {
+				"from": 413920,
+				"to": 417360
+			},
+			"text": " the type only can still use all the functions on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,360",
+				"to": "00:06:59,640"
+			},
+			"offsets": {
+				"from": 417360,
+				"to": 419640
+			},
+			"text": " Still, of course, one major inconvenience"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,640",
+				"to": "00:07:01,680"
+			},
+			"offsets": {
+				"from": 419640,
+				"to": 421680
+			},
+			"text": " with that for defining, for example, fixed point times"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,680",
+				"to": "00:07:03,400"
+			},
+			"offsets": {
+				"from": 421680,
+				"to": 423400
+			},
+			"text": " that are actually nice and usable"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,400",
+				"to": "00:07:07,160"
+			},
+			"offsets": {
+				"from": 423400,
+				"to": 427160
+			},
+			"text": " is that we have only functions that can be defined"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,160",
+				"to": "00:07:10,720"
+			},
+			"offsets": {
+				"from": 427160,
+				"to": 430720
+			},
+			"text": " and equipped to the type with the using statements, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,720",
+				"to": "00:07:13,960"
+			},
+			"offsets": {
+				"from": 430720,
+				"to": 433960
+			},
+			"text": " is what we will soon change."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,960",
+				"to": "00:07:17,520"
+			},
+			"offsets": {
+				"from": 433960,
+				"to": 437520
+			},
+			"text": " So this is open PRs currently that are under review, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,520",
+				"to": "00:07:18,840"
+			},
+			"offsets": {
+				"from": 437520,
+				"to": 438840
+			},
+			"text": " will probably--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,840",
+				"to": "00:07:22,440"
+			},
+			"offsets": {
+				"from": 438840,
+				"to": 442440
+			},
+			"text": " yeah, in finite amount of time, we actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,440",
+				"to": "00:07:25,840"
+			},
+			"offsets": {
+				"from": 442440,
+				"to": 445840
+			},
+			"text": " merge and come through, which will allow you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,840",
+				"to": "00:07:30,080"
+			},
+			"offsets": {
+				"from": 445840,
+				"to": 450080
+			},
+			"text": " to define operators and literals in the first versions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,080",
+				"to": "00:07:31,240"
+			},
+			"offsets": {
+				"from": 450080,
+				"to": 451240
+			},
+			"text": " in a very limited setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,240",
+				"to": "00:07:33,120"
+			},
+			"offsets": {
+				"from": 451240,
+				"to": 453120
+			},
+			"text": " So the addition, for example, can only"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,120",
+				"to": "00:07:36,680"
+			},
+			"offsets": {
+				"from": 453120,
+				"to": 456680
+			},
+			"text": " be between the two expressions of the type"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,680",
+				"to": "00:07:39,120"
+			},
+			"offsets": {
+				"from": 456680,
+				"to": 459120
+			},
+			"text": " that you define such that it's not getting messy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,120",
+				"to": "00:07:43,200"
+			},
+			"offsets": {
+				"from": 459120,
+				"to": 463200
+			},
+			"text": " and no longer know what function will actually be executed"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,200",
+				"to": "00:07:45,600"
+			},
+			"offsets": {
+				"from": 463200,
+				"to": 465600
+			},
+			"text": " if you have an operator expression."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,600",
+				"to": "00:07:49,800"
+			},
+			"offsets": {
+				"from": 465600,
+				"to": 469800
+			},
+			"text": " But it will still already be very useful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,800",
+				"to": "00:07:54,120"
+			},
+			"offsets": {
+				"from": 469800,
+				"to": 474120
+			},
+			"text": " I hope, in making these user-defined types more."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,120",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 474120,
+				"to": 476000
+			},
+			"text": " Yeah, convenient to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:00,200"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 480200
+			},
+			"text": " Literally, similarly, we will introduce a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,200",
+				"to": "00:08:05,200"
+			},
+			"offsets": {
+				"from": 480200,
+				"to": 485200
+			},
+			"text": " to define functions that can take up, as argument,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,200",
+				"to": "00:08:10,560"
+			},
+			"offsets": {
+				"from": 485200,
+				"to": 490560
+			},
+			"text": " a mantissa, in that sense, and an exponent, which is basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,560",
+				"to": "00:08:12,960"
+			},
+			"offsets": {
+				"from": 490560,
+				"to": 492960
+			},
+			"text": " yeah, here, for example, for the example below,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,960",
+				"to": "00:08:17,560"
+			},
+			"offsets": {
+				"from": 492960,
+				"to": 497560
+			},
+			"text": " it would be 115, and the exponent is 10"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,560",
+				"to": "00:08:21,760"
+			},
+			"offsets": {
+				"from": 497560,
+				"to": 501760
+			},
+			"text": " to the power of minus 2, which will allow to, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,760",
+				"to": "00:08:25,120"
+			},
+			"offsets": {
+				"from": 501760,
+				"to": 505120
+			},
+			"text": " then deal with, for example, a fixed point setting"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,120",
+				"to": "00:08:28,880"
+			},
+			"offsets": {
+				"from": 505120,
+				"to": 508880
+			},
+			"text": " rather gracefully and have literals without, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,880",
+				"to": "00:08:31,480"
+			},
+			"offsets": {
+				"from": 508880,
+				"to": 511480
+			},
+			"text": " especially code constructs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,480",
+				"to": "00:08:33,760"
+			},
+			"offsets": {
+				"from": 511480,
+				"to": 513760
+			},
+			"text": " Eventually, we will have a proper rational,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,760",
+				"to": "00:08:37,400"
+			},
+			"offsets": {
+				"from": 513760,
+				"to": 517400
+			},
+			"text": " a rational, literal type instead of splitting it up"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,400",
+				"to": "00:08:40,560"
+			},
+			"offsets": {
+				"from": 517400,
+				"to": 520560
+			},
+			"text": " in a mantissa and an exponent here, I think at least."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,560",
+				"to": "00:08:43,280"
+			},
+			"offsets": {
+				"from": 520560,
+				"to": 523280
+			},
+			"text": " But for now, this is the fastest path to get this work."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,280",
+				"to": "00:08:45,680"
+			},
+			"offsets": {
+				"from": 523280,
+				"to": 525680
+			},
+			"text": " But yeah, so far, these user-defined types"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,680",
+				"to": "00:08:49,720"
+			},
+			"offsets": {
+				"from": 525680,
+				"to": 529720
+			},
+			"text": " we have only are value types."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,720",
+				"to": "00:08:53,280"
+			},
+			"offsets": {
+				"from": 529720,
+				"to": 533280
+			},
+			"text": " This might be equal cause to want to encapsulate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,280",
+				"to": "00:08:57,680"
+			},
+			"offsets": {
+				"from": 533280,
+				"to": 537680
+			},
+			"text": " and abstract dynamic types, arrays, structs, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,680",
+				"to": "00:09:03,200"
+			},
+			"offsets": {
+				"from": 537680,
+				"to": 543200
+			},
+			"text": " And there's also, of course, yeah, the desire"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,200",
+				"to": "00:09:07,080"
+			},
+			"offsets": {
+				"from": 543200,
+				"to": 547080
+			},
+			"text": " to have proper algebraic data types in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,080",
+				"to": "00:09:10,120"
+			},
+			"offsets": {
+				"from": 547080,
+				"to": 550120
+			},
+			"text": " So the more user-defined data types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,120",
+				"to": "00:09:15,800"
+			},
+			"offsets": {
+				"from": 550120,
+				"to": 555800
+			},
+			"text": " we have the easier it is to write a usable code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,800",
+				"to": "00:09:17,600"
+			},
+			"offsets": {
+				"from": 555800,
+				"to": 557600
+			},
+			"text": " And yeah, there's questions about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,600",
+				"to": "00:09:20,200"
+			},
+			"offsets": {
+				"from": 557600,
+				"to": 560200
+			},
+			"text": " For example, where data locations would go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,200",
+				"to": "00:09:23,160"
+			},
+			"offsets": {
+				"from": 560200,
+				"to": 563160
+			},
+			"text": " currently data locations are associated with variables"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,160",
+				"to": "00:09:27,840"
+			},
+			"offsets": {
+				"from": 563160,
+				"to": 567840
+			},
+			"text": " and not types, which makes that a hassle, which we will also"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,840",
+				"to": "00:09:30,880"
+			},
+			"offsets": {
+				"from": 567840,
+				"to": 570880
+			},
+			"text": " probably change for independent reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,880",
+				"to": "00:09:36,480"
+			},
+			"offsets": {
+				"from": 570880,
+				"to": 576480
+			},
+			"text": " But yeah, you may see where I'm going with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,480",
+				"to": "00:09:38,160"
+			},
+			"offsets": {
+				"from": 576480,
+				"to": 578160
+			},
+			"text": " If we have all these kinds of types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,160",
+				"to": "00:09:41,480"
+			},
+			"offsets": {
+				"from": 578160,
+				"to": 581480
+			},
+			"text": " and maybe also user-defined containers and all that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,480",
+				"to": "00:09:44,920"
+			},
+			"offsets": {
+				"from": 581480,
+				"to": 584920
+			},
+			"text": " it will no longer be feasible to write functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,920",
+				"to": "00:09:45,800"
+			},
+			"offsets": {
+				"from": 584920,
+				"to": 585800
+			},
+			"text": " to cover all these types."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,800",
+				"to": "00:09:47,400"
+			},
+			"offsets": {
+				"from": 585800,
+				"to": 587400
+			},
+			"text": " And there's several functions for all these types."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,400",
+				"to": "00:09:51,720"
+			},
+			"offsets": {
+				"from": 587400,
+				"to": 591720
+			},
+			"text": " So all this increases the need for having a construct"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,720",
+				"to": "00:09:53,840"
+			},
+			"offsets": {
+				"from": 591720,
+				"to": 593840
+			},
+			"text": " of generics in the language, which has been a long"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,840",
+				"to": "00:09:55,440"
+			},
+			"offsets": {
+				"from": 593840,
+				"to": 595440
+			},
+			"text": " an idea to introduce to the language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,440",
+				"to": "00:09:59,360"
+			},
+			"offsets": {
+				"from": 595440,
+				"to": 599360
+			},
+			"text": " and which, yeah, we're finally now making moves towards."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,360",
+				"to": "00:10:04,360"
+			},
+			"offsets": {
+				"from": 600360,
+				"to": 604360
+			},
+			"text": " But yeah, this, if we have that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,360",
+				"to": "00:10:07,360"
+			},
+			"offsets": {
+				"from": 604360,
+				"to": 607360
+			},
+			"text": " the natural question is if even the built-in types we have now"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,360",
+				"to": "00:10:10,360"
+			},
+			"offsets": {
+				"from": 607360,
+				"to": 610360
+			},
+			"text": " can be user-defined instead, which leads me to another topic"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,360",
+				"to": "00:10:14,360"
+			},
+			"offsets": {
+				"from": 610360,
+				"to": 614360
+			},
+			"text": " that we already started, just a standard library."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,360",
+				"to": "00:10:19,360"
+			},
+			"offsets": {
+				"from": 614360,
+				"to": 619360
+			},
+			"text": " The idea here is to move whatever manually hard-coded"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,360",
+				"to": "00:10:21,360"
+			},
+			"offsets": {
+				"from": 619360,
+				"to": 621360
+			},
+			"text": " constructs we have in the compiler now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,360",
+				"to": "00:10:23,360"
+			},
+			"offsets": {
+				"from": 621360,
+				"to": 623360
+			},
+			"text": " or as many of them as possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,360",
+				"to": "00:10:27,360"
+			},
+			"offsets": {
+				"from": 623360,
+				"to": 627360
+			},
+			"text": " to actual implementations in Solidity written user code."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,360",
+				"to": "00:10:30,360"
+			},
+			"offsets": {
+				"from": 627360,
+				"to": 630360
+			},
+			"text": " And then to ship that as an standard library"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,360",
+				"to": "00:10:32,360"
+			},
+			"offsets": {
+				"from": 630360,
+				"to": 632360
+			},
+			"text": " that's integrated into the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,360",
+				"to": "00:10:35,360"
+			},
+			"offsets": {
+				"from": 632360,
+				"to": 635360
+			},
+			"text": " So yeah, this is what this is in the first instance"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,360",
+				"to": "00:10:38,360"
+			},
+			"offsets": {
+				"from": 635360,
+				"to": 638360
+			},
+			"text": " going to look like, that you can enable"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,360",
+				"to": "00:10:41,360"
+			},
+			"offsets": {
+				"from": 638360,
+				"to": 641360
+			},
+			"text": " the standard library version of the compiler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,360",
+				"to": "00:10:43,360"
+			},
+			"offsets": {
+				"from": 641360,
+				"to": 643360
+			},
+			"text": " which in the event we will move towards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,360",
+				"to": "00:10:48,360"
+			},
+			"offsets": {
+				"from": 643360,
+				"to": 648360
+			},
+			"text": " and then import built-in constructs from the standard library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,360",
+				"to": "00:10:51,360"
+			},
+			"offsets": {
+				"from": 648360,
+				"to": 651360
+			},
+			"text": " and it will be possible to export the standard library"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,360",
+				"to": "00:10:54,360"
+			},
+			"offsets": {
+				"from": 651360,
+				"to": 654360
+			},
+			"text": " as a set of files out of the compiler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,360",
+				"to": "00:10:56,360"
+			},
+			"offsets": {
+				"from": 654360,
+				"to": 656360
+			},
+			"text": " and there you can then inspect what this function"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,360",
+				"to": "00:10:57,360"
+			},
+			"offsets": {
+				"from": 656360,
+				"to": 657360
+			},
+			"text": " actually does."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,360",
+				"to": "00:10:59,360"
+			},
+			"offsets": {
+				"from": 657360,
+				"to": 659360
+			},
+			"text": " For example, ADMO does a simple example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,360",
+				"to": "00:11:02,360"
+			},
+			"offsets": {
+				"from": 659360,
+				"to": 662360
+			},
+			"text": " which can then actually be implemented in Inland Assembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,360",
+				"to": "00:11:04,360"
+			},
+			"offsets": {
+				"from": 662360,
+				"to": 664360
+			},
+			"text": " with additional checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,360",
+				"to": "00:11:09,360"
+			},
+			"offsets": {
+				"from": 664360,
+				"to": 669360
+			},
+			"text": " That works to reduce the footprint of the compiler"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,360",
+				"to": "00:11:12,360"
+			},
+			"offsets": {
+				"from": 669360,
+				"to": 672360
+			},
+			"text": " and to make it easier for people to inspect"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,360",
+				"to": "00:11:15,360"
+			},
+			"offsets": {
+				"from": 672360,
+				"to": 675360
+			},
+			"text": " what's actually happened and to extend it even."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,360",
+				"to": "00:11:20,360"
+			},
+			"offsets": {
+				"from": 675360,
+				"to": 680360
+			},
+			"text": " But the problem there again is this is, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,360",
+				"to": "00:11:22,360"
+			},
+			"offsets": {
+				"from": 680360,
+				"to": 682360
+			},
+			"text": " very restricted in the scope in which we,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,360",
+				"to": "00:11:24,360"
+			},
+			"offsets": {
+				"from": 682360,
+				"to": 684360
+			},
+			"text": " what we can move into the standard library"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,360",
+				"to": "00:11:27,360"
+			},
+			"offsets": {
+				"from": 684360,
+				"to": 687360
+			},
+			"text": " as long as our functions is the idea of monomorphic."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,360",
+				"to": "00:11:29,360"
+			},
+			"offsets": {
+				"from": 687360,
+				"to": 689360
+			},
+			"text": " So we don't have generic functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,360",
+				"to": "00:11:31,360"
+			},
+			"offsets": {
+				"from": 689360,
+				"to": 691360
+			},
+			"text": " that can handle multiple types."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,360",
+				"to": "00:11:33,360"
+			},
+			"offsets": {
+				"from": 691360,
+				"to": 693360
+			},
+			"text": " So the full potential of the standard library"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,360",
+				"to": "00:11:35,360"
+			},
+			"offsets": {
+				"from": 693360,
+				"to": 695360
+			},
+			"text": " will only be unleashed if we have generics."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,360",
+				"to": "00:11:40,360"
+			},
+			"offsets": {
+				"from": 695360,
+				"to": 700360
+			},
+			"text": " Yeah, and the question is also whether we can not only"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,360",
+				"to": "00:11:43,360"
+			},
+			"offsets": {
+				"from": 700360,
+				"to": 703360
+			},
+			"text": " move built-in functions, but also built-in types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,360",
+				"to": "00:11:45,360"
+			},
+			"offsets": {
+				"from": 703360,
+				"to": 705360
+			},
+			"text": " which would end then as, yeah, earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,360",
+				"to": "00:11:48,360"
+			},
+			"offsets": {
+				"from": 705360,
+				"to": 708360
+			},
+			"text": " it's usually defined types in the standard library."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,360",
+				"to": "00:11:50,360"
+			},
+			"offsets": {
+				"from": 708360,
+				"to": 710360
+			},
+			"text": " So the end go with the standard library"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,360",
+				"to": "00:11:52,360"
+			},
+			"offsets": {
+				"from": 710360,
+				"to": 712360
+			},
+			"text": " is reduce the language to a small, simple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,360",
+				"to": "00:11:55,360"
+			},
+			"offsets": {
+				"from": 712360,
+				"to": 715360
+			},
+			"text": " cool language and have most of the current features"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,360",
+				"to": "00:11:59,360"
+			},
+			"offsets": {
+				"from": 715360,
+				"to": 719360
+			},
+			"text": " that we have in the language defined in a standard library"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,360",
+				"to": "00:12:02,360"
+			},
+			"offsets": {
+				"from": 719360,
+				"to": 722360
+			},
+			"text": " that is written in solidity can be quickly iterated on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,360",
+				"to": "00:12:05,360"
+			},
+			"offsets": {
+				"from": 722360,
+				"to": 725360
+			},
+			"text": " can be extended by the community and can be audited"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,360",
+				"to": "00:12:08,360"
+			},
+			"offsets": {
+				"from": 725360,
+				"to": 728360
+			},
+			"text": " and so on and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,360",
+				"to": "00:12:14,360"
+			},
+			"offsets": {
+				"from": 728360,
+				"to": 734360
+			},
+			"text": " But to get to that point in full, in each generics."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,360",
+				"to": "00:12:19,360"
+			},
+			"offsets": {
+				"from": 734360,
+				"to": 739360
+			},
+			"text": " So the idea is to, yeah, get inspired by a nice system"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,360",
+				"to": "00:12:23,360"
+			},
+			"offsets": {
+				"from": 739360,
+				"to": 743360
+			},
+			"text": " of generics which is based on a logically grounded type system."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,360",
+				"to": "00:12:25,360"
+			},
+			"offsets": {
+				"from": 743360,
+				"to": 745360
+			},
+			"text": " We have products, hives, some types, function types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,360",
+				"to": "00:12:28,360"
+			},
+			"offsets": {
+				"from": 745360,
+				"to": 748360
+			},
+			"text": " which, if you're a mathematician or category theorist,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,360",
+				"to": "00:12:31,360"
+			},
+			"offsets": {
+				"from": 748360,
+				"to": 751360
+			},
+			"text": " the type system will probably form a petition-close category,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,360",
+				"to": "00:12:35,360"
+			},
+			"offsets": {
+				"from": 751360,
+				"to": 755360
+			},
+			"text": " which is how these things work usually in probably designed"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,360",
+				"to": "00:12:39,360"
+			},
+			"offsets": {
+				"from": 755360,
+				"to": 759360
+			},
+			"text": " generics like Haskell or like the trade system in Rust"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,360",
+				"to": "00:12:41,360"
+			},
+			"offsets": {
+				"from": 759360,
+				"to": 761360
+			},
+			"text": " or the generics system in Rust."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,360",
+				"to": "00:12:43,360"
+			},
+			"offsets": {
+				"from": 761360,
+				"to": 763360
+			},
+			"text": " And yeah, we will have polymorphic functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,360",
+				"to": "00:12:46,360"
+			},
+			"offsets": {
+				"from": 763360,
+				"to": 766360
+			},
+			"text": " that can take arbitrary types and, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,360",
+				"to": "00:12:49,360"
+			},
+			"offsets": {
+				"from": 766360,
+				"to": 769360
+			},
+			"text": " add hoc polymorphism using type classes or, let's, in Rust,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,360",
+				"to": "00:12:54,360"
+			},
+			"offsets": {
+				"from": 769360,
+				"to": 774360
+			},
+			"text": " maybe a few more familiar with that, great."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,360",
+				"to": "00:12:56,360"
+			},
+			"offsets": {
+				"from": 774360,
+				"to": 776360
+			},
+			"text": " And yeah, we will also, for this to work out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,360",
+				"to": "00:13:01,360"
+			},
+			"offsets": {
+				"from": 776360,
+				"to": 781360
+			},
+			"text": " you kind of need to go all in on it and go for the whole way."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,360",
+				"to": "00:13:06,360"
+			},
+			"offsets": {
+				"from": 781360,
+				"to": 786360
+			},
+			"text": " We will also have algebraic data types and, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,360",
+				"to": "00:13:09,360"
+			},
+			"offsets": {
+				"from": 786360,
+				"to": 789360
+			},
+			"text": " all of this will also be only really useful if you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,360",
+				"to": "00:13:11,360"
+			},
+			"offsets": {
+				"from": 789360,
+				"to": 791360
+			},
+			"text": " compile time constant expression evaluation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,360",
+				"to": "00:13:15,360"
+			},
+			"offsets": {
+				"from": 791360,
+				"to": 795360
+			},
+			"text": " because you will, in generic functions, have, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,360",
+				"to": "00:13:18,360"
+			},
+			"offsets": {
+				"from": 795360,
+				"to": 798360
+			},
+			"text": " structured parameters that should be evaluated compile time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,360",
+				"to": "00:13:22,360"
+			},
+			"offsets": {
+				"from": 798360,
+				"to": 802360
+			},
+			"text": " So, yeah, that's also something."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,360",
+				"to": "00:13:25,360"
+			},
+			"offsets": {
+				"from": 802360,
+				"to": 805360
+			},
+			"text": " We will have, which is, as I said earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,360",
+				"to": "00:13:27,360"
+			},
+			"offsets": {
+				"from": 805360,
+				"to": 807360
+			},
+			"text": " for the code data location, we will need to refactor the type"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,360",
+				"to": "00:13:29,360"
+			},
+			"offsets": {
+				"from": 807360,
+				"to": 809360
+			},
+			"text": " checker to have, be more flexible for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,360",
+				"to": "00:13:33,360"
+			},
+			"offsets": {
+				"from": 809360,
+				"to": 813360
+			},
+			"text": " We will need that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,360",
+				"to": "00:13:35,360"
+			},
+			"offsets": {
+				"from": 813360,
+				"to": 815360
+			},
+			"text": " And yeah, maybe we will also have linear types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,360",
+				"to": "00:13:40,360"
+			},
+			"offsets": {
+				"from": 815360,
+				"to": 820360
+			},
+			"text": " which is how Rust's forward checker is constructed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,360",
+				"to": "00:13:44,360"
+			},
+			"offsets": {
+				"from": 820360,
+				"to": 824360
+			},
+			"text": " But yeah, I will now have some examples with some made-up syntax"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,360",
+				"to": "00:13:48,360"
+			},
+			"offsets": {
+				"from": 824360,
+				"to": 828360
+			},
+			"text": " and some made-up constructs, but I'm going to say this is all"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,360",
+				"to": "00:13:51,360"
+			},
+			"offsets": {
+				"from": 828360,
+				"to": 831360
+			},
+			"text": " early research stage, so we have nothing fixed here yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,360",
+				"to": "00:13:55,360"
+			},
+			"offsets": {
+				"from": 831360,
+				"to": 835360
+			},
+			"text": " I'm just telling you where we had it and what we want to do in the next."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,360",
+				"to": "00:13:58,360"
+			},
+			"offsets": {
+				"from": 835360,
+				"to": 838360
+			},
+			"text": " However long it will take."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,360",
+				"to": "00:14:01,360"
+			},
+			"offsets": {
+				"from": 838360,
+				"to": 841360
+			},
+			"text": " So, yeah, the go-to, down-to-earth example of a use of generics"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,360",
+				"to": "00:14:04,360"
+			},
+			"offsets": {
+				"from": 841360,
+				"to": 844360
+			},
+			"text": " is something like a resizable arrays, some container,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,360",
+				"to": "00:14:08,360"
+			},
+			"offsets": {
+				"from": 844360,
+				"to": 848360
+			},
+			"text": " which, yeah, in this case, it's just an array that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,360",
+				"to": "00:14:12,360"
+			},
+			"offsets": {
+				"from": 848360,
+				"to": 852360
+			},
+			"text": " if you want to append something to it and it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,360",
+				"to": "00:14:16,360"
+			},
+			"offsets": {
+				"from": 852360,
+				"to": 856360
+			},
+			"text": " see the array is already full, you just relocate with twice the size,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,360",
+				"to": "00:14:20,360"
+			},
+			"offsets": {
+				"from": 856360,
+				"to": 860360
+			},
+			"text": " copy things over, and yeah, otherwise you can just add"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,360",
+				"to": "00:14:23,360"
+			},
+			"offsets": {
+				"from": 860360,
+				"to": 863360
+			},
+			"text": " the element to the end of the array."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,360",
+				"to": "00:14:29,360"
+			},
+			"offsets": {
+				"from": 863360,
+				"to": 869360
+			},
+			"text": " And yeah, then we can also define an index access as a user-defined"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,360",
+				"to": "00:14:33,360"
+			},
+			"offsets": {
+				"from": 869360,
+				"to": 873360
+			},
+			"text": " operator, which will then have this thing actually work nicely."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,360",
+				"to": "00:14:36,360"
+			},
+			"offsets": {
+				"from": 873360,
+				"to": 876360
+			},
+			"text": " Yeah, one would need an allocation function and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,360",
+				"to": "00:14:40,360"
+			},
+			"offsets": {
+				"from": 876360,
+				"to": 880360
+			},
+			"text": " Equipped with that, we can then build a library to actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,360",
+				"to": "00:14:46,360"
+			},
+			"offsets": {
+				"from": 880360,
+				"to": 886360
+			},
+			"text": " build these things without having special casing for each kind of base type."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,360",
+				"to": "00:14:50,360"
+			},
+			"offsets": {
+				"from": 886360,
+				"to": 890360
+			},
+			"text": " But I have here a bit cheated though, because in reality things are more complicated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,360",
+				"to": "00:14:53,360"
+			},
+			"offsets": {
+				"from": 890360,
+				"to": 893360
+			},
+			"text": " of course, because we have data locations again."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,360",
+				"to": "00:14:57,360"
+			},
+			"offsets": {
+				"from": 893360,
+				"to": 897360
+			},
+			"text": " Maybe I need to restrict the base type as, by some trade mechanism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,360",
+				"to": "00:15:01,360"
+			},
+			"offsets": {
+				"from": 897360,
+				"to": 901360
+			},
+			"text": " to something that can live in memory, which may be a value type or another memory array,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,360",
+				"to": "00:15:05,360"
+			},
+			"offsets": {
+				"from": 901360,
+				"to": 905360
+			},
+			"text": " something like that. So, in the end, it will get complicated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,360",
+				"to": "00:15:08,360"
+			},
+			"offsets": {
+				"from": 905360,
+				"to": 908360
+			},
+			"text": " but it will be worthwhile."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,360",
+				"to": "00:15:14,360"
+			},
+			"offsets": {
+				"from": 908360,
+				"to": 914360
+			},
+			"text": " And yeah, if one wants to take this upper notch and all the way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,360",
+				"to": "00:15:20,360"
+			},
+			"offsets": {
+				"from": 914360,
+				"to": 920360
+			},
+			"text": " one can actually then think about even defining the most basic types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,360",
+				"to": "00:15:25,360"
+			},
+			"offsets": {
+				"from": 920360,
+				"to": 925360
+			},
+			"text": " Insolidity itself. This would be the definition of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,360",
+				"to": "00:15:29,360"
+			},
+			"offsets": {
+				"from": 925360,
+				"to": 929360
+			},
+			"text": " current representation of memory arrays in Solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,360",
+				"to": "00:15:34,360"
+			},
+			"offsets": {
+				"from": 929360,
+				"to": 934360
+			},
+			"text": " written as user-defined type with the customly defined index access to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,360",
+				"to": "00:15:39,360"
+			},
+			"offsets": {
+				"from": 934360,
+				"to": 939360
+			},
+			"text": " So, in the end, for any base type of memory array, it's just one stack slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,360",
+				"to": "00:15:42,360"
+			},
+			"offsets": {
+				"from": 939360,
+				"to": 942360
+			},
+			"text": " You refer to memory arrays just as one stack slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,360",
+				"to": "00:15:47,360"
+			},
+			"offsets": {
+				"from": 942360,
+				"to": 947360
+			},
+			"text": " We index access by it by fetching, I mean, the stack slot points to some memory area"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,360",
+				"to": "00:15:50,360"
+			},
+			"offsets": {
+				"from": 947360,
+				"to": 950360
+			},
+			"text": " where there is a size of the array and followed by the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,360",
+				"to": "00:15:52,360"
+			},
+			"offsets": {
+				"from": 950360,
+				"to": 952360
+			},
+			"text": " It's the current layout at least."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,360",
+				"to": "00:15:56,360"
+			},
+			"offsets": {
+				"from": 952360,
+				"to": 956360
+			},
+			"text": " And yeah, in index access, we can just fetch the size,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,360",
+				"to": "00:16:01,360"
+			},
+			"offsets": {
+				"from": 956360,
+				"to": 961360
+			},
+			"text": " do the bounce tracking and fetch whatever result we have at the offset that the index"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,360",
+				"to": "00:16:07,360"
+			},
+			"offsets": {
+				"from": 961360,
+				"to": 967360
+			},
+			"text": " pointed to. And again, we could define then that index accesses work as expected,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,360",
+				"to": "00:16:13,360"
+			},
+			"offsets": {
+				"from": 967360,
+				"to": 973360
+			},
+			"text": " and yeah, a length field could be added to that, or defined in language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,360",
+				"to": "00:16:18,360"
+			},
+			"offsets": {
+				"from": 973360,
+				"to": 978360
+			},
+			"text": " which has the advantage, we had often the request to allow slicing for memory types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,360",
+				"to": "00:16:23,360"
+			},
+			"offsets": {
+				"from": 978360,
+				"to": 983360
+			},
+			"text": " which we can't, because the representation I show here doesn't allow it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,360",
+				"to": "00:16:27,360"
+			},
+			"offsets": {
+				"from": 983360,
+				"to": 987360
+			},
+			"text": " Since we expect the size to be at the first memory offset,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,360",
+				"to": "00:16:33,360"
+			},
+			"offsets": {
+				"from": 987360,
+				"to": 993360
+			},
+			"text": " we are the memory pointer that is the representation type of this points to is the size."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,360",
+				"to": "00:16:36,360"
+			},
+			"offsets": {
+				"from": 993360,
+				"to": 996360
+			},
+			"text": " We can't just slice away from the first element."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,360",
+				"to": "00:16:40,360"
+			},
+			"offsets": {
+				"from": 996360,
+				"to": 1000360
+			},
+			"text": " For that to work, memory arrays would have to work different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,360",
+				"to": "00:16:46,360"
+			},
+			"offsets": {
+				"from": 1000360,
+				"to": 1006360
+			},
+			"text": " similarly to call data types. There you have offset and size on stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,360",
+				"to": "00:16:50,360"
+			},
+			"offsets": {
+				"from": 1006360,
+				"to": 1010360
+			},
+			"text": " It would be a huge effort, was currently to change the entire compiler"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,360",
+				"to": "00:16:53,360"
+			},
+			"offsets": {
+				"from": 1010360,
+				"to": 1013360
+			},
+			"text": " to change the representation of memory types."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,360",
+				"to": "00:16:58,360"
+			},
+			"offsets": {
+				"from": 1013360,
+				"to": 1018360
+			},
+			"text": " If we had things defined like this, it's minimal changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,360",
+				"to": "00:17:02,360"
+			},
+			"offsets": {
+				"from": 1018360,
+				"to": 1022360
+			},
+			"text": " I can just say now the memory array is defined as a two-plus stack clause."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,360",
+				"to": "00:17:06,360"
+			},
+			"offsets": {
+				"from": 1022360,
+				"to": 1026360
+			},
+			"text": " One of them is pointed to data area, is the size."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,360",
+				"to": "00:17:12,360"
+			},
+			"offsets": {
+				"from": 1026360,
+				"to": 1032360
+			},
+			"text": " And yeah, have a similar definition as before, slight changes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,360",
+				"to": "00:17:20,360"
+			},
+			"offsets": {
+				"from": 1032360,
+				"to": 1040360
+			},
+			"text": " but a few source changes in our standard library would then be the same as changing"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,360",
+				"to": "00:17:26,360"
+			},
+			"offsets": {
+				"from": 1040360,
+				"to": 1046360
+			},
+			"text": " the entire layout of memory types, which would be, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,360",
+				"to": "00:17:32,360"
+			},
+			"offsets": {
+				"from": 1046360,
+				"to": 1052360
+			},
+			"text": " Month of work, why we maintained everything hard-coded in the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,360",
+				"to": "00:17:35,360"
+			},
+			"offsets": {
+				"from": 1052360,
+				"to": 1055360
+			},
+			"text": " Of course, it has all the disadvantages."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,360",
+				"to": "00:17:38,360"
+			},
+			"offsets": {
+				"from": 1055360,
+				"to": 1058360
+			},
+			"text": " If you actually keep this extremely generic like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,360",
+				"to": "00:17:40,360"
+			},
+			"offsets": {
+				"from": 1058360,
+				"to": 1060360
+			},
+			"text": " you will lose semantic information."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,360",
+				"to": "00:17:42,360"
+			},
+			"offsets": {
+				"from": 1060360,
+				"to": 1062360
+			},
+			"text": " This will actually make memory optimization harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,360",
+				"to": "00:17:45,360"
+			},
+			"offsets": {
+				"from": 1062360,
+				"to": 1065360
+			},
+			"text": " But the compiler sees it's just a bunch of stack slots."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,360",
+				"to": "00:17:49,360"
+			},
+			"offsets": {
+				"from": 1065360,
+				"to": 1069360
+			},
+			"text": " There's no idea that that's actually memory areas you're talking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,360",
+				"to": "00:17:53,360"
+			},
+			"offsets": {
+				"from": 1069360,
+				"to": 1073360
+			},
+			"text": " allocated may only be allocated temporarily and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,360",
+				"to": "00:17:56,360"
+			},
+			"offsets": {
+				"from": 1073360,
+				"to": 1076360
+			},
+			"text": " I'm not sure whether we will actually go this far."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,360",
+				"to": "00:18:01,360"
+			},
+			"offsets": {
+				"from": 1076360,
+				"to": 1081360
+			},
+			"text": " If so, we will maybe probably do this in a compiler internal manner,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,360",
+				"to": "00:18:05,360"
+			},
+			"offsets": {
+				"from": 1081360,
+				"to": 1085360
+			},
+			"text": " we will still assume certain semantic properties about these functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,360",
+				"to": "00:18:10,360"
+			},
+			"offsets": {
+				"from": 1085360,
+				"to": 1090360
+			},
+			"text": " without supporting similar optimizations that we can do if we know what these things do"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,360",
+				"to": "00:18:14,360"
+			},
+			"offsets": {
+				"from": 1090360,
+				"to": 1094360
+			},
+			"text": " in user code."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,360",
+				"to": "00:18:17,360"
+			},
+			"offsets": {
+				"from": 1094360,
+				"to": 1097360
+			},
+			"text": " Why did I say stack slot all the time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,360",
+				"to": "00:18:24,360"
+			},
+			"offsets": {
+				"from": 1097360,
+				"to": 1104360
+			},
+			"text": " Maybe obvious, but just to mention, the stack slot would be the one primitive type,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,360",
+				"to": "00:18:31,360"
+			},
+			"offsets": {
+				"from": 1104360,
+				"to": 1111360
+			},
+			"text": " maybe apart from product types, and even the basic integer types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,360",
+				"to": "00:18:37,360"
+			},
+			"offsets": {
+				"from": 1111360,
+				"to": 1117360
+			},
+			"text": " size, integer types we have right now can be defined generically just."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,360",
+				"to": "00:18:40,360"
+			},
+			"offsets": {
+				"from": 1117360,
+				"to": 1120360
+			},
+			"text": " Like the other cases we had."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,360",
+				"to": "00:18:42,360"
+			},
+			"offsets": {
+				"from": 1120360,
+				"to": 1122360
+			},
+			"text": " I mean, this will really reduce the footprint."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,360",
+				"to": "00:18:48,360"
+			},
+			"offsets": {
+				"from": 1122360,
+				"to": 1128360
+			},
+			"text": " You can hear, could also then distinguish between types that are checked arithmetic and uncheck"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,360",
+				"to": "00:18:53,360"
+			},
+			"offsets": {
+				"from": 1128360,
+				"to": 1133360
+			},
+			"text": " arithmetic by having very few functions that are genetically written."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,360",
+				"to": "00:18:56,360"
+			},
+			"offsets": {
+				"from": 1133360,
+				"to": 1136360
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,360",
+				"to": "00:19:04,360"
+			},
+			"offsets": {
+				"from": 1136360,
+				"to": 1144360
+			},
+			"text": " So, yeah, but not to give to make you expect this to happen too soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,360",
+				"to": "00:19:06,360"
+			},
+			"offsets": {
+				"from": 1144360,
+				"to": 1146360
+			},
+			"text": " We are still in early design phase for generics."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,360",
+				"to": "00:19:07,360"
+			},
+			"offsets": {
+				"from": 1146360,
+				"to": 1147360
+			},
+			"text": " There's a lot of questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,360",
+				"to": "00:19:12,360"
+			},
+			"offsets": {
+				"from": 1147360,
+				"to": 1152360
+			},
+			"text": " This is a very complex thing to do and a very dangerous thing to do because, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,360",
+				"to": "00:19:16,360"
+			},
+			"offsets": {
+				"from": 1152360,
+				"to": 1156360
+			},
+			"text": " all of this needs to be logically well-defined to not bite you in the back in the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,360",
+				"to": "00:19:22,360"
+			},
+			"offsets": {
+				"from": 1156360,
+				"to": 1162360
+			},
+			"text": " So, I mean, we will take some time to design this properly, and syntax is also a question"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,360",
+				"to": "00:19:26,360"
+			},
+			"offsets": {
+				"from": 1162360,
+				"to": 1166360
+			},
+			"text": " that's very much differing opinions on how the syntax for these kinds of things will end up being."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,360",
+				"to": "00:19:28,360"
+			},
+			"offsets": {
+				"from": 1166360,
+				"to": 1168360
+			},
+			"text": " I'm not that concerned by that now."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,360",
+				"to": "00:19:33,360"
+			},
+			"offsets": {
+				"from": 1168360,
+				"to": 1173360
+			},
+			"text": " I would first want to get the semantics, right, but, we usually also need a good syntax for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,360",
+				"to": "00:19:38,360"
+			},
+			"offsets": {
+				"from": 1173360,
+				"to": 1178360
+			},
+			"text": " And, yeah, what I just said, we need to decide what to do with this trade-off between making"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,360",
+				"to": "00:19:45,360"
+			},
+			"offsets": {
+				"from": 1178360,
+				"to": 1185360
+			},
+			"text": " this the language really self-defined in the very deepest sense or to have some fixed functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,360",
+				"to": "00:19:50,360"
+			},
+			"offsets": {
+				"from": 1185360,
+				"to": 1190360
+			},
+			"text": " which are fixed in the compiler, which means we can assume there's semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,360",
+				"to": "00:19:55,360"
+			},
+			"offsets": {
+				"from": 1190360,
+				"to": 1195360
+			},
+			"text": " Or there are compromises between that, but we'll see."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,360",
+				"to": "00:20:01,360"
+			},
+			"offsets": {
+				"from": 1195360,
+				"to": 1201360
+			},
+			"text": " So, yeah, to summarize what I was talking about and what I wasn't talking about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,360",
+				"to": "00:20:03,360"
+			},
+			"offsets": {
+				"from": 1201360,
+				"to": 1203360
+			},
+			"text": " we will still do, hopefully."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,360",
+				"to": "00:20:09,360"
+			},
+			"offsets": {
+				"from": 1203360,
+				"to": 1209360
+			},
+			"text": " We will in the future try to allow more pre-competiation either in the constructor"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,360",
+				"to": "00:20:13,360"
+			},
+			"offsets": {
+				"from": 1209360,
+				"to": 1213360
+			},
+			"text": " by the code data location or in compile time by compile time constant expression evaluation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,360",
+				"to": "00:20:20,360"
+			},
+			"offsets": {
+				"from": 1213360,
+				"to": 1220360
+			},
+			"text": " which is something a lot of people have asked for and which obviously makes it easier to write things"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,360",
+				"to": "00:20:24,360"
+			},
+			"offsets": {
+				"from": 1220360,
+				"to": 1224360
+			},
+			"text": " in that you don't need, for example, magic constants embedded in a contract or whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,360",
+				"to": "00:20:30,360"
+			},
+			"offsets": {
+				"from": 1224360,
+				"to": 1230360
+			},
+			"text": " because you can compute them on the fly without it costing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,360",
+				"to": "00:20:35,360"
+			},
+			"offsets": {
+				"from": 1230360,
+				"to": 1235360
+			},
+			"text": " And, yeah, the huge topic for the future will be to make the language"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,360",
+				"to": "00:20:41,360"
+			},
+			"offsets": {
+				"from": 1235360,
+				"to": 1241360
+			},
+			"text": " extensible and self-defining by means of improving user-defined data types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,360",
+				"to": "00:20:46,360"
+			},
+			"offsets": {
+				"from": 1241360,
+				"to": 1246360
+			},
+			"text": " pushing the standard library and making a move for generics."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,360",
+				"to": "00:20:51,360"
+			},
+			"offsets": {
+				"from": 1246360,
+				"to": 1251360
+			},
+			"text": " But we also, of course, can't just ignore if we're still wasting a lot of memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,360",
+				"to": "00:20:58,360"
+			},
+			"offsets": {
+				"from": 1251360,
+				"to": 1258360
+			},
+			"text": " I mean, whoever has used memory and solidity will know that we basically don't free memory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,360",
+				"to": "00:21:03,360"
+			},
+			"offsets": {
+				"from": 1258360,
+				"to": 1263360
+			},
+			"text": " which, for a long time, wasn't the main concern, but in the meantime,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,360",
+				"to": "00:21:09,360"
+			},
+			"offsets": {
+				"from": 1263360,
+				"to": 1269360
+			},
+			"text": " it's a very huge pain point for cost of contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,360",
+				"to": "00:21:16,360"
+			},
+			"offsets": {
+				"from": 1269360,
+				"to": 1276360
+			},
+			"text": " There were several approaches we discussed so far for improving saturation there."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,360",
+				"to": "00:21:22,360"
+			},
+			"offsets": {
+				"from": 1276360,
+				"to": 1282360
+			},
+			"text": " A long time we wanted to deal with this on the usual level."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,360",
+				"to": "00:21:24,360"
+			},
+			"offsets": {
+				"from": 1282360,
+				"to": 1284360
+			},
+			"text": " It turns out that may not be as simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,360",
+				"to": "00:21:30,360"
+			},
+			"offsets": {
+				"from": 1284360,
+				"to": 1290360
+			},
+			"text": " So maybe we will move actually to analyzing solidity, which has the properties right there."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,360",
+				"to": "00:21:33,360"
+			},
+			"offsets": {
+				"from": 1290360,
+				"to": 1293360
+			},
+			"text": " We shied away of doing that for solidity being more complex,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,360",
+				"to": "00:21:35,360"
+			},
+			"offsets": {
+				"from": 1293360,
+				"to": 1295360
+			},
+			"text": " saying to analyze, but maybe it's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,360",
+				"to": "00:21:37,360"
+			},
+			"offsets": {
+				"from": 1295360,
+				"to": 1297360
+			},
+			"text": " We will see."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,360",
+				"to": "00:21:41,360"
+			},
+			"offsets": {
+				"from": 1297360,
+				"to": 1301360
+			},
+			"text": " And, yeah, we will also, of course, try to move completely towards via our approach generation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,360",
+				"to": "00:21:47,360"
+			},
+			"offsets": {
+				"from": 1301360,
+				"to": 1307360
+			},
+			"text": " but we have some herd burdens there to overcome still, like the performance of the optimizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,360",
+				"to": "00:21:52,360"
+			},
+			"offsets": {
+				"from": 1307360,
+				"to": 1312360
+			},
+			"text": " Better tooling support, you still need to define, but the background data for the tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,360",
+				"to": "00:21:57,360"
+			},
+			"offsets": {
+				"from": 1312360,
+				"to": 1317360
+			},
+			"text": " is going to consume to actually make the experience nice as with legacy code generation."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,360",
+				"to": "00:22:02,360"
+			},
+			"offsets": {
+				"from": 1317360,
+				"to": 1322360
+			},
+			"text": " The details there would be that the tooling expects certain patterns to remain in the bytecode"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,360",
+				"to": "00:22:08,360"
+			},
+			"offsets": {
+				"from": 1322360,
+				"to": 1328360
+			},
+			"text": " in the end, whereas the new optimization pipeline will mess them up by optimizing better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,360",
+				"to": "00:22:15,360"
+			},
+			"offsets": {
+				"from": 1328360,
+				"to": 1335360
+			},
+			"text": " but tooling needs to understand that we need to output data for it being able to understand that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,360",
+				"to": "00:22:18,360"
+			},
+			"offsets": {
+				"from": 1335360,
+				"to": 1338360
+			},
+			"text": " But, yeah, that's hopefully where we had it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,360",
+				"to": "00:22:23,360"
+			},
+			"offsets": {
+				"from": 1338360,
+				"to": 1343360
+			},
+			"text": " And, yeah, I'll close with that if you want to give us any feedback,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,360",
+				"to": "00:22:30,360"
+			},
+			"offsets": {
+				"from": 1343360,
+				"to": 1350360
+			},
+			"text": " help us with designing generics or criticize what we are planning and saying we are crazy to do any of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,360",
+				"to": "00:22:32,360"
+			},
+			"offsets": {
+				"from": 1350360,
+				"to": 1352360
+			},
+			"text": " Reach out to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,360",
+				"to": "00:22:34,360"
+			},
+			"offsets": {
+				"from": 1352360,
+				"to": 1354360
+			},
+			"text": " That's the chance we've reached us in."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,360",
+				"to": "00:22:37,360"
+			},
+			"offsets": {
+				"from": 1354360,
+				"to": 1357360
+			},
+			"text": " And, yeah, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,360",
+				"to": "00:22:42,360"
+			},
+			"offsets": {
+				"from": 1357360,
+				"to": 1362360
+			},
+			"text": " Yeah, it used to be the case that the compiler is too back-end path at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,360",
+				"to": "00:22:46,360"
+			},
+			"offsets": {
+				"from": 1362360,
+				"to": 1366360
+			},
+			"text": " So, I mean, it used to be the case that solidity was directed, translated to EVM bytecode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,360",
+				"to": "00:22:54,360"
+			},
+			"offsets": {
+				"from": 1366360,
+				"to": 1374360
+			},
+			"text": " and then only of the only optimizations that took place were on the bytecode level."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,360",
+				"to": "00:23:00,360"
+			},
+			"offsets": {
+				"from": 1374360,
+				"to": 1380360
+			},
+			"text": " For the past years, we have moved away from that and have a different new code generation pipeline"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,360",
+				"to": "00:23:03,360"
+			},
+			"offsets": {
+				"from": 1380360,
+				"to": 1383360
+			},
+			"text": " that translates solidity first into Yule and in the immediate language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,360",
+				"to": "00:23:07,360"
+			},
+			"offsets": {
+				"from": 1383360,
+				"to": 1387360
+			},
+			"text": " which preserves some structure and allows for more complex optimizations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,360",
+				"to": "00:23:15,360"
+			},
+			"offsets": {
+				"from": 1387360,
+				"to": 1395360
+			},
+			"text": " for inlining more analysis, and then only to translate Yule to EVM bytecode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,360",
+				"to": "00:23:20,360"
+			},
+			"offsets": {
+				"from": 1395360,
+				"to": 1400360
+			},
+			"text": " as a second step, which can reduce the access significantly in some cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,360",
+				"to": "00:23:25,360"
+			},
+			"offsets": {
+				"from": 1400360,
+				"to": 1405360
+			},
+			"text": " In some cases, it's the same as before, but, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,360",
+				"to": "00:23:29,360"
+			},
+			"offsets": {
+				"from": 1405360,
+				"to": 1409360
+			},
+			"text": " And, yeah, the new pipeline, the via IRS, via the intermediate representation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,360",
+				"to": "00:23:31,360"
+			},
+			"offsets": {
+				"from": 1409360,
+				"to": 1411360
+			},
+			"text": " so compilation via Yule."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,360",
+				"to": "00:23:32,360"
+			},
+			"offsets": {
+				"from": 1411360,
+				"to": 1412360
+			},
+			"text": " Thank you for the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,360",
+				"to": "00:23:33,360"
+			},
+			"offsets": {
+				"from": 1412360,
+				"to": 1413360
+			},
+			"text": " You mentioned generics."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,360",
+				"to": "00:23:35,360"
+			},
+			"offsets": {
+				"from": 1413360,
+				"to": 1415360
+			},
+			"text": " I'm wondering if you could speak to how you're planning on implementing that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,360",
+				"to": "00:23:42,360"
+			},
+			"offsets": {
+				"from": 1415360,
+				"to": 1422360
+			},
+			"text": " whether you're going through monomorphization, because I worry that the code contract size will balloon."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,360",
+				"to": "00:23:47,360"
+			},
+			"offsets": {
+				"from": 1422360,
+				"to": 1427360
+			},
+			"text": " If you start doing the C++ style duplication of implementations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,360",
+				"to": "00:23:54,360"
+			},
+			"offsets": {
+				"from": 1427360,
+				"to": 1434360
+			},
+			"text": " or if there are some uniform representations, you can do a la ocamel or Java."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,360",
+				"to": "00:23:56,360"
+			},
+			"offsets": {
+				"from": 1434360,
+				"to": 1436360
+			},
+			"text": " I think that's not much you can do, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,360",
+				"to": "00:24:02,360"
+			},
+			"offsets": {
+				"from": 1436360,
+				"to": 1442360
+			},
+			"text": " I mean, the generics of C++ are different in the sense that they're analyzed differently"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,360",
+				"to": "00:24:08,360"
+			},
+			"offsets": {
+				"from": 1442360,
+				"to": 1448360
+			},
+			"text": " and you only get errors on instantiations, but we will still need to instantiate"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,360",
+				"to": "00:24:14,360"
+			},
+			"offsets": {
+				"from": 1448360,
+				"to": 1454360
+			},
+			"text": " and generate code for each specific case, but that's not worth worse than what you get now."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,360",
+				"to": "00:24:20,360"
+			},
+			"offsets": {
+				"from": 1454360,
+				"to": 1460360
+			},
+			"text": " What you get now is writing by hand for different types, different functions that would end up separately in bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,360",
+				"to": "00:24:24,360"
+			},
+			"offsets": {
+				"from": 1460360,
+				"to": 1464360
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,360",
+				"to": "00:24:26,360"
+			},
+			"offsets": {
+				"from": 1464360,
+				"to": 1466360
+			},
+			"text": " It's not -- nothing is worse than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,360",
+				"to": "00:24:28,360"
+			},
+			"offsets": {
+				"from": 1466360,
+				"to": 1468360
+			},
+			"text": " That's duplication in code and in bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,360",
+				"to": "00:24:34,360"
+			},
+			"offsets": {
+				"from": 1468360,
+				"to": 1474360
+			},
+			"text": " If we have generics, at least only have it in source, only in the bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,360",
+				"to": "00:24:40,360"
+			},
+			"offsets": {
+				"from": 1474360,
+				"to": 1480360
+			},
+			"text": " So, my question is related to that question regarding generics, but from a different aspect."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,360",
+				"to": "00:24:46,360"
+			},
+			"offsets": {
+				"from": 1480360,
+				"to": 1486360
+			},
+			"text": " So, type system I understand, but once we get generics into solidarity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,360",
+				"to": "00:24:53,360"
+			},
+			"offsets": {
+				"from": 1486360,
+				"to": 1493360
+			},
+			"text": " wouldn't the developer have to focus on 10 more things instead of focusing on writing business logic?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,360",
+				"to": "00:24:56,360"
+			},
+			"offsets": {
+				"from": 1493360,
+				"to": 1496360
+			},
+			"text": " Good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,360",
+				"to": "00:25:03,360"
+			},
+			"offsets": {
+				"from": 1496360,
+				"to": 1503360
+			},
+			"text": " I would think that the -- yeah, down to Earth code, a smart contract provider will not bother with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,360",
+				"to": "00:25:09,360"
+			},
+			"offsets": {
+				"from": 1503360,
+				"to": 1509360
+			},
+			"text": " It's mainly something for us for defining a senate library and for people writing libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,360",
+				"to": "00:25:11,360"
+			},
+			"offsets": {
+				"from": 1509360,
+				"to": 1511360
+			},
+			"text": " to support smart contract developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,360",
+				"to": "00:25:19,360"
+			},
+			"offsets": {
+				"from": 1511360,
+				"to": 1519360
+			},
+			"text": " So, I mean, the language supporting generics and having generics doesn't force you to use them"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,360",
+				"to": "00:25:25,360"
+			},
+			"offsets": {
+				"from": 1519360,
+				"to": 1525360
+			},
+			"text": " and it doesn't mean that anybody has to use them, but it will make the language and the evolution of language"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,360",
+				"to": "00:25:29,360"
+			},
+			"offsets": {
+				"from": 1525360,
+				"to": 1529360
+			},
+			"text": " much faster and more streamlined."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,360",
+				"to": "00:25:35,360"
+			},
+			"offsets": {
+				"from": 1529360,
+				"to": 1535360
+			},
+			"text": " In the future, ask people if they propose a feature to implement it in a standard library way and standardize it"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,360",
+				"to": "00:25:39,360"
+			},
+			"offsets": {
+				"from": 1535360,
+				"to": 1539360
+			},
+			"text": " in the end if it works out, which will -- yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,360",
+				"to": "00:25:44,360"
+			},
+			"offsets": {
+				"from": 1539360,
+				"to": 1544360
+			},
+			"text": " All the advantages we can think about that, but for user code, for the in smart contract code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,360",
+				"to": "00:25:49,360"
+			},
+			"offsets": {
+				"from": 1544360,
+				"to": 1549360
+			},
+			"text": " the difference is not that large, probably."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,360",
+				"to": "00:25:53,360"
+			},
+			"offsets": {
+				"from": 1549360,
+				"to": 1553360
+			},
+			"text": " >> Are you going to implement lambda functions just with this equation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,360",
+				"to": "00:25:55,360"
+			},
+			"offsets": {
+				"from": 1553360,
+				"to": 1555360
+			},
+			"text": " >> Definitely, eventually, I would say."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,360",
+				"to": "00:26:02,360"
+			},
+			"offsets": {
+				"from": 1555360,
+				"to": 1562360
+			},
+			"text": " I'm not sure whether -- I mean, getting the basic type system going and all that will already take some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,360",
+				"to": "00:26:08,360"
+			},
+			"offsets": {
+				"from": 1562360,
+				"to": 1568360
+			},
+			"text": " But yeah, eventually, this is, of course, something that will make things easier to read,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,360",
+				"to": "00:26:11,360"
+			},
+			"offsets": {
+				"from": 1568360,
+				"to": 1571360
+			},
+			"text": " easier to write and are beautiful."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,360",
+				"to": "00:26:16,360"
+			},
+			"offsets": {
+				"from": 1571360,
+				"to": 1576360
+			},
+			"text": " And maybe not -- I mean, as long as you don't want these things to capture variables, it's easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,360",
+				"to": "00:26:22,360"
+			},
+			"offsets": {
+				"from": 1576360,
+				"to": 1582360
+			},
+			"text": " Capturing even maybe something at some point we can also consider, but yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,360",
+				"to": "00:26:25,360"
+			},
+			"offsets": {
+				"from": 1582360,
+				"to": 1585360
+			},
+			"text": " >> Not the first thing you will do, but eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,360",
+				"to": "00:26:33,360"
+			},
+			"offsets": {
+				"from": 1585360,
+				"to": 1593360
+			},
+			"text": " >> Have you been thinking about integrating all chain computation and off-chain computation in the one source file?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,360",
+				"to": "00:26:39,360"
+			},
+			"offsets": {
+				"from": 1593360,
+				"to": 1599360
+			},
+			"text": " This is, of course, very problematic, but in some moment in future, we might need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,360",
+				"to": "00:26:46,360"
+			},
+			"offsets": {
+				"from": 1599360,
+				"to": 1606360
+			},
+			"text": " Not necessarily in solidity, but maybe you should try to think about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,360",
+				"to": "00:26:55,360"
+			},
+			"offsets": {
+				"from": 1606360,
+				"to": 1615360
+			},
+			"text": " >> Yeah, I mean, on the solidity level, we don't yet interact that much with off-chain computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,360",
+				"to": "00:26:57,360"
+			},
+			"offsets": {
+				"from": 1615360,
+				"to": 1617360
+			},
+			"text": " They are too stuff or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,360",
+				"to": "00:27:03,360"
+			},
+			"offsets": {
+				"from": 1617360,
+				"to": 1623360
+			},
+			"text": " But yeah, we are aware that we need to interact with that and support that where we can."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,360",
+				"to": "00:27:09,360"
+			},
+			"offsets": {
+				"from": 1623360,
+				"to": 1629360
+			},
+			"text": " >> I think you mentioned something about the performance of Viya AR."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,360",
+				"to": "00:27:12,360"
+			},
+			"offsets": {
+				"from": 1629360,
+				"to": 1632360
+			},
+			"text": " Did you mean how long it takes to actually use it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,360",
+				"to": "00:27:14,360"
+			},
+			"offsets": {
+				"from": 1632360,
+				"to": 1634360
+			},
+			"text": " >> Yeah, I mean, the compilation time."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,360",
+				"to": "00:27:18,360"
+			},
+			"offsets": {
+				"from": 1634360,
+				"to": 1638360
+			},
+			"text": " >> Yeah, so -- >> So, the compilation time is kind of ten times or even worse in some complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,360",
+				"to": "00:27:19,360"
+			},
+			"offsets": {
+				"from": 1638360,
+				"to": 1639360
+			},
+			"text": " >> Yeah, exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,360",
+				"to": "00:27:23,360"
+			},
+			"offsets": {
+				"from": 1639360,
+				"to": 1643360
+			},
+			"text": " Anyone that's used Viya AR today has experienced that."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,360",
+				"to": "00:27:28,360"
+			},
+			"offsets": {
+				"from": 1643360,
+				"to": 1648360
+			},
+			"text": " So, how much of an improvement do you think we are going to see?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:28,360",
+				"to": "00:27:36,360"
+			},
+			"offsets": {
+				"from": 1648360,
+				"to": 1656360
+			},
+			"text": " >> I mean, so far, the Viya AR compilation pipeline has not been written with any performance considerations in mind at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,360",
+				"to": "00:27:43,360"
+			},
+			"offsets": {
+				"from": 1656360,
+				"to": 1663360
+			},
+			"text": " They've written it for correctness first, and only now we're starting to realize how bad that got"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,360",
+				"to": "00:27:44,360"
+			},
+			"offsets": {
+				"from": 1663360,
+				"to": 1664360
+			},
+			"text": " us to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,360",
+				"to": "00:27:49,360"
+			},
+			"offsets": {
+				"from": 1664360,
+				"to": 1669360
+			},
+			"text": " >> Yeah, so, I think we're going to be able to do something about performance there."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,360",
+				"to": "00:27:58,360"
+			},
+			"offsets": {
+				"from": 1669360,
+				"to": 1678360
+			},
+			"text": " So, I couldn't mention that we can get quite away, but yeah, it's hard to tell before we're actually doing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,360",
+				"to": "00:28:03,360"
+			},
+			"offsets": {
+				"from": 1678360,
+				"to": 1683360
+			},
+			"text": " >> Regarding generics, how much thought is put into the auditability for external code"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,360",
+				"to": "00:28:04,360"
+			},
+			"offsets": {
+				"from": 1683360,
+				"to": 1684360
+			},
+			"text": " auditors?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,360",
+				"to": "00:28:09,360"
+			},
+			"offsets": {
+				"from": 1684360,
+				"to": 1689360
+			},
+			"text": " Will it improve the story, make it worse, more training, can they forget stuff?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,360",
+				"to": "00:28:14,360"
+			},
+			"offsets": {
+				"from": 1689360,
+				"to": 1694360
+			},
+			"text": " >> I think it will actually improve things."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,360",
+				"to": "00:28:17,360"
+			},
+			"offsets": {
+				"from": 1694360,
+				"to": 1697360
+			},
+			"text": " We will be able to have the standard library definitions of all the built-in functionality, which can be exported, which can be analyzed."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,360",
+				"to": "00:28:28,360"
+			},
+			"offsets": {
+				"from": 1697360,
+				"to": 1708360
+			},
+			"text": " I think at the point where we have generics going and standard library going, we will actually, at some point, not promising that happening soon either, but at some point, be able to define the"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,360",
+				"to": "00:28:35,360"
+			},
+			"offsets": {
+				"from": 1708360,
+				"to": 1715360
+			},
+			"text": " form of semantics for the core language that remains, which can actually help form of verification a lot and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:35,360",
+				"to": "00:28:42,360"
+			},
+			"offsets": {
+				"from": 1715360,
+				"to": 1722360
+			},
+			"text": " >> So, you mentioned that the data location is going to be part of the type instead of being associated with the variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:42,360",
+				"to": "00:28:52,360"
+			},
+			"offsets": {
+				"from": 1722360,
+				"to": 1732360
+			},
+			"text": " Does that mean that we are going to be able to start writing things like an in-memory array of storage pointers or a in-storage array of code data pointers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,360",
+				"to": "00:28:59,360"
+			},
+			"offsets": {
+				"from": 1732360,
+				"to": 1739360
+			},
+			"text": " Those are all well formed, but something like a storage array of call data pointers makes no sense, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,360",
+				"to": "00:29:02,360"
+			},
+			"offsets": {
+				"from": 1739360,
+				"to": 1742360
+			},
+			"text": " So, what does the well-forminists look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,360",
+				"to": "00:29:07,360"
+			},
+			"offsets": {
+				"from": 1742360,
+				"to": 1747360
+			},
+			"text": " How does that sort of -- you see that restricting that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,360",
+				"to": "00:29:12,360"
+			},
+			"offsets": {
+				"from": 1747360,
+				"to": 1752360
+			},
+			"text": " >> First part of the question, yes, this is what this means."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:12,360",
+				"to": "00:29:15,360"
+			},
+			"offsets": {
+				"from": 1752360,
+				"to": 1755360
+			},
+			"text": " This is what will be allowed."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,360",
+				"to": "00:29:19,360"
+			},
+			"offsets": {
+				"from": 1755360,
+				"to": 1759360
+			},
+			"text": " Second part, of course, there are invalid combinations."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,360",
+				"to": "00:29:24,360"
+			},
+			"offsets": {
+				"from": 1759360,
+				"to": 1764360
+			},
+			"text": " Combinations that don't make sense, which then the type is to be checked."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:24,360",
+				"to": "00:29:25,360"
+			},
+			"offsets": {
+				"from": 1764360,
+				"to": 1765360
+			},
+			"text": " >> Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:25,360",
+				"to": "00:29:27,360"
+			},
+			"offsets": {
+				"from": 1765360,
+				"to": 1767360
+			},
+			"text": " Then, thank you again."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:27,360",
+				"to": "00:29:29,360"
+			},
+			"offsets": {
+				"from": 1767360,
+				"to": 1769360
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,360",
+				"to": "00:29:39,360"
+			},
+			"offsets": {
+				"from": 1769360,
+				"to": 1779360
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

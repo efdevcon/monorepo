@@ -1,0 +1,3024 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 19000
+			},
+			"text": " >> Good day to you all, Buenos Días."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 20000
+			},
+			"text": " My name is Ken Smith."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 26000
+			},
+			"text": " I'll be talking about does it make sense to aggregate an average fee recipient rewards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31000
+			},
+			"text": " commonly referred to as MEV using a smoothing pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 34000
+			},
+			"text": " And I'm very glad to talk about a number of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 38000
+			},
+			"text": " I'm with a firm of my own called Next Block Solutions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 41000
+			},
+			"text": " but I'm also a rocket scientist with the Rocket Pool Protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 47000
+			},
+			"text": " and most importantly, a member of the Node Operators Association."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 51000
+			},
+			"text": " So one of the things you can do is you can download a copy of this report"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 53000
+			},
+			"text": " that was published early summer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 56000
+			},
+			"text": " There's a QR code here in the corner that you can grab,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 59000
+			},
+			"text": " but this presentation will cover the highlights of that report,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 62000
+			},
+			"text": " or at least give you a good orientation to read it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 65000
+			},
+			"text": " But I do encourage you to go there for more additional information"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 70000
+			},
+			"text": " that I can't cover in 24 minutes and 9 seconds here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 77000
+			},
+			"text": " So to begin with, let's just be a short second talking about the taxonomy of MEV, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 79000
+			},
+			"text": " You've heard a lot of talks about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 83000
+			},
+			"text": " One of the first things you might be asking is, why would it make sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 86000
+			},
+			"text": " to aggregate rewards in a smoothing pool?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 89000
+			},
+			"text": " This is something that kind of comes from the mining industry, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 93000
+			},
+			"text": " where the chances of you actually solving a cryptographic cash"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 97000
+			},
+			"text": " and being rewarded is so rare that it makes sense to go in collectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 101000
+			},
+			"text": " with other individuals to have a constant income stream."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 106000
+			},
+			"text": " This here is a graph that shows the probability over five years"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 109000
+			},
+			"text": " of receiving a block proposal, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 112000
+			},
+			"text": " So if you have a single validator, and sometimes I might refer to those"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 115000
+			},
+			"text": " as mini-poles in rocket-pulled terminology, but validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 120000
+			},
+			"text": " over five years, given 4,025 validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 123000
+			},
+			"text": " we're a little bit more than that now on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 128000
+			},
+			"text": " you will receive on average about 30 proposals over that five-year period."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 130000
+			},
+			"text": " Now again, that's just an average, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 133000
+			},
+			"text": " You can see in the probability histogram, you might be unlucky"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136000
+			},
+			"text": " and might only receive 12 proposals over that five years."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 139000
+			},
+			"text": " You might also receive 50 or so, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 140000
+			},
+			"text": " And it scales linearly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 144000
+			},
+			"text": " If you have two validators, you can see here that the average is going to be 60."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 149000
+			},
+			"text": " You would think that there's no advantage to having more validators in there"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 154000
+			},
+			"text": " if each proposal was rewarded uniformly with the same amount of beacon rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157000
+			},
+			"text": " But obviously, in addition to get beacon rewards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 160000
+			},
+			"text": " you'll also get a chance at MEV, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 163000
+			},
+			"text": " So let's just take a little bit at looking at MEV, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 165000
+			},
+			"text": " You know the definition, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 168000
+			},
+			"text": " I think one of the things we lose a little bit though is that it's viewed somewhat"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 170000
+			},
+			"text": " as a theoretical limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 172000
+			},
+			"text": " It's the maximum extractable value."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 174000
+			},
+			"text": " And I would argue, and I think a lot of the data supports,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 177000
+			},
+			"text": " that we're not actually extracting that full amount, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 180000
+			},
+			"text": " So the Flashbots team has used this term, I don't think it's quite as catchy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 185000
+			},
+			"text": " called rev, which is the actual amount that we're able to extract from the block, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 189000
+			},
+			"text": " And there's some amount of earnings, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 191000
+			},
+			"text": " That is not captured, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 194000
+			},
+			"text": " It's just left on the blockchain for the next block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 198000
+			},
+			"text": " I'm just going to call that Yule-ledge until somebody comes up with a better name, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 202000
+			},
+			"text": " There's some really great metrics coming out now, post-merge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 207000
+			},
+			"text": " about if we look at this rev, how much of it is actually going to the searcher, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 211000
+			},
+			"text": " How much of it is going to the block builder, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 213000
+			},
+			"text": " What part of it may go to the relayer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 217000
+			},
+			"text": " Right now, the relayers seem to be providing that as a no fee service, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 220000
+			},
+			"text": " But there's a potential they might capture some revenue from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 225000
+			},
+			"text": " And most of it, from the metrics we're seeing right now, is going to the block proposal, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 226000
+			},
+			"text": " That's the validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 231000
+			},
+			"text": " And so I've been calling this term in my report here the \"proposer payment value.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 238000
+			},
+			"text": " It's the amount paid to the validator to put those transactions into the block, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 243000
+			},
+			"text": " One of the things that we did is performed a Monte Carlo simulation, looking at it pre-merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 246000
+			},
+			"text": " We looked over a period of 60 days."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 249000
+			},
+			"text": " We looked at the amount of MEV that was extracted by miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 257000
+			},
+			"text": " Now this was done in the kind of May/June time period, but MEV seems to be about pretty much stable in that time period."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 260000
+			},
+			"text": " It's not maybe declining slightly, but pretty much in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 263000
+			},
+			"text": " And it is this long-tail distribution, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 268000
+			},
+			"text": " Most of the MEV, this line right here, this is the median value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 276000
+			},
+			"text": " So 50% of the blocks received a value that's less than 0.05 ETH in their block, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 284000
+			},
+			"text": " 50% of the blocks had ETH payments and MEV payments or proposal payment values that are greater than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 288000
+			},
+			"text": " The average is actually quite a bit higher than the median."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 291000
+			},
+			"text": " And the reason for that is of this long-tail distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 295000
+			},
+			"text": " In fact, it's so much that, you know, in looking at some of these metrics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 299000
+			},
+			"text": " if we just look at the top 0.1%, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 301000
+			},
+			"text": " Let me get it here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 308000
+			},
+			"text": " 30% of all the ETH values is in that top 0.1% of the blocks there, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 310000
+			},
+			"text": " And it's because it's just so long-tailed here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 313000
+			},
+			"text": " I mean, that ends right here at 1 ETH, but it actually continues on, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 318000
+			},
+			"text": " We heard earlier that, you know, some of the blocks would be, you know, near 3 digits ETH, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 322000
+			},
+			"text": " Okay, adds tremendous value to it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 329000
+			},
+			"text": " So because of that long-tail, right, even the top 1% have 45% of the proposal payment value in there, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 336000
+			},
+			"text": " It creates these very rich ETH blocks, right, that we've been calling lottery blocks, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 343000
+			},
+			"text": " And if you win a lottery block, it could be very rewarding in terms of an income stream, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 348000
+			},
+			"text": " So this is why it makes sense to start aggregating them into a smoothing pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 352000
+			},
+			"text": " So one of the things we did pre-merge is we started looking at, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 354000
+			},
+			"text": " I think this was originally proposed by Flashbots."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 361000
+			},
+			"text": " There was a dev on the Rocket Bowl team that actually came up with an ideal and a mechanism to implement it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 364000
+			},
+			"text": " Joe Kappas."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 369000
+			},
+			"text": " And so what we did is we created a Python program, and you can get it from the GitHub,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 374000
+			},
+			"text": " that went ahead and it went through a morning-carler simulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 377000
+			},
+			"text": " And so just briefly what it did is it said, okay, let's figure out some time period."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 379000
+			},
+			"text": " And that's important, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 385000
+			},
+			"text": " Because the way that this works is that if you validate for an indefinite period of time, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 387000
+			},
+			"text": " you all approach the average, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 390000
+			},
+			"text": " But we're not going to validate for an indefinite period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 391000
+			},
+			"text": " There's some investment, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 396000
+			},
+			"text": " Maybe you start staking, you earn income, but maybe it's a five-year, maybe it's a ten-year or twenty-year."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 398000
+			},
+			"text": " There's some limitation of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 402000
+			},
+			"text": " Perhaps it's even much shorter with proposal builder separation, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 405000
+			},
+			"text": " Maybe that will come in three years or four years, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 411000
+			},
+			"text": " Or as we heard in the other talk, maybe there are other technologies that could prevent a lot of this map from occurring."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 414000
+			},
+			"text": " So there's some finite determination."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 417000
+			},
+			"text": " The software goes ahead and it performs a triad."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 418000
+			},
+			"text": " It grabs a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 426000
+			},
+			"text": " It makes a guesstimate about the number of proposals that it will get over that five-year period for most of my graphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 435000
+			},
+			"text": " It then for each of those proposals randomly assigns an amount of MEV based upon that 60-day historical period,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 437000
+			},
+			"text": " okay, because MEV seems to be somewhat random."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 441000
+			},
+			"text": " We don't know when the NFTs are going to drop, when the arbitrage is going to happen, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 446000
+			},
+			"text": " It then goes ahead and does that for a validator or a set of validators that you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 451000
+			},
+			"text": " It then also compares another set, like type, you know, set A, set B."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 457000
+			},
+			"text": " Set B is where that validator instead of running by itself, something I call a solitarious mode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 460000
+			},
+			"text": " is now running as part of a smoothing pool, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 469000
+			},
+			"text": " And the size that I chose for the smoothing pool initially was about 3,000 validators that are working collectively sharing their proposal or payment values."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 476000
+			},
+			"text": " And then it did that for the entire validating period and it simply compared."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 480000
+			},
+			"text": " It said, okay, would you, in this case, in this triad,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 489000
+			},
+			"text": " did the solitarious mini-pull earn more income and propose repayment value than if it was in a smoothing pool, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 492000
+			},
+			"text": " And so we've got some results that we could share about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 495000
+			},
+			"text": " It records it and then it repeats it a whole bunch of times."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 500000
+			},
+			"text": " And you can set that number for anything, but you get enough power at about 1,000 tries running through this in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 503000
+			},
+			"text": " And then finally it produces a lot of, a lot of any graphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 506000
+			},
+			"text": " So let's go ahead and let's take a look at those graphs, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 509000
+			},
+			"text": " So let me walk through it with you a couple of times."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 510000
+			},
+			"text": " Let's just start with one."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 517000
+			},
+			"text": " We have one validator who, over the course of five years, produces on average about 60 blocks, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 520000
+			},
+			"text": " And you can see here that it runs for a period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 524000
+			},
+			"text": " It gets a block and it receives a small amount of MAV."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 527000
+			},
+			"text": " Here it got it proposed again and received a larger amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 530000
+			},
+			"text": " And you can see as it steps up here, it's not receiving any blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 533000
+			},
+			"text": " It was never selected to be a block proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 537000
+			},
+			"text": " Here it's a block proposal and it went up and so it just goes up every period, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 541000
+			},
+			"text": " And I had the periods kind of slice in 28 day periods."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 549000
+			},
+			"text": " And at the end of it, you can see over that five year period, this run of the signal validator earned about 2.5 ETH in MAV."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 551000
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 560000
+			},
+			"text": " We could run it again and we could say, given that same performance, what about if it was in a group of 2,999 other validators?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 564000
+			},
+			"text": " And so therefore the mini pool had 3,000 validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 570000
+			},
+			"text": " And we can see here that if I put both of those slides together, that it outperformed, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 575000
+			},
+			"text": " It was much better to get a small constant share of a larger pull over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:37,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 577000
+			},
+			"text": " Now this was just one run, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 577000,
+				"to": 578000
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 581000
+			},
+			"text": " Maybe it just so happened, I picked one that it outperformed it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 583000
+			},
+			"text": " We need to repeat that a little bit more, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 586000
+			},
+			"text": " So let's look at that a little bit more here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 589000
+			},
+			"text": " So again, I said, well, try it 10 times, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 598000
+			},
+			"text": " And you can see here back to the solitarious validator that maybe it only earned 2 ETH, maybe over here in this trial it earned about 6 ETH, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 599000
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 605000
+			},
+			"text": " There's greater variance because of just the long tail randomness of the MAV."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 615000
+			},
+			"text": " But if it's part of a smoothing pool, you can see here even at 10 tries of a smoothing pool, the variance is much less because now we're averaging a share over 3,000 validators, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 632000
+			},
+			"text": " And when you put them together on the same chart and the same axis this year, you can see that at least in this trial of 10 runs at 9 times out of 10, being in a smoothing pool, you earned more income over that 5 year period than if you just ran in a defendantly."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 641000
+			},
+			"text": " Only in one time you had a very lucky solitarious mini pull that it actually outperformed the smoothing pool, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 658000
+			},
+			"text": " So this is just another chart that's looking at it where I normalized if you were by yourself and you could see that most of the runs you earned, you know, in this case about 3 ETH more over that 5 year period than if you had ran solitariously, that's the red line."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 659000
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 661000
+			},
+			"text": " Well, again, 10 times is not a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 668000
+			},
+			"text": " You need to start increasing that very large to get your orders of power in terms of your ability to see resolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 681000
+			},
+			"text": " So here I ran it again, now all these lines start to overlap, and it looks like from here, again, the blue lines here are the smoothing pool, and you might say, \"Wow, look at all these here that are up here earning hundreds of ETH over the smoothing pool,\" right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 684000
+			},
+			"text": " But it's a little bit of an optical illusion, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 690000
+			},
+			"text": " Because the majority of the lines are here in this very dark purple at the bottom, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 691000
+			},
+			"text": " In fact, how many of those are there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 694000
+			},
+			"text": " We can start looking at it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 714000
+			},
+			"text": " And I'll just point to this one spot here, if you had one mini pool of your own, and you were in a -- enjoying a smoothing pool of only 100 other mini pools, 78% of the time -- in this run of a thousand surprise -- 78% of the time, the smoothing pool outperformed a solitarious mini pool, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 723000
+			},
+			"text": " We could show the same chart here just showing on a line here, and you could see that it will underperform in kind of a unique case when you are the smoothing pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 727000
+			},
+			"text": " If you join a smoothing pool before you reach the 50% mode, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 729000
+			},
+			"text": " So don't join a smoothing pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 733000
+			},
+			"text": " If you have one validator, don't join until there's at least two or three validators in the pool, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 737000
+			},
+			"text": " But as soon as you become the small fish in the pool, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 743000
+			},
+			"text": " If you join a pool of, let's say, 3,000 mini pools, and you only have 10 or 15 validators, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 752000
+			},
+			"text": " You can join -- you could expect about 80% of the time that that smoothing pool will outperform your solitarious mini pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 762000
+			},
+			"text": " So it does provide that -- you know, the kind of takeaway here is that a fractional share is going to outperform most of the time, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 773000
+			},
+			"text": " Now, another rocket scientist in Rocket Pool, Val Droff, I think looked at the report when it was in the early phases, and he said, \"Ken, that was pretty interesting stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 776000
+			},
+			"text": " I love the code, but he says, \"I think I could show it in one graph.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 777000
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 779000
+			},
+			"text": " And so he put together this graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 780000
+			},
+			"text": " I got to give him the full credit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 787000
+			},
+			"text": " And what it shows here is it shows the probability of you earning an amount of ETH given whether or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 793000
+			},
+			"text": " And we'll just look here at the blue line, which is one validator versus joining the purple line of 3,000 validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 801000
+			},
+			"text": " And so in this blue line, you can see that there's some probability, right, that you might even get up to 10 ETH over the five years, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 805000
+			},
+			"text": " But most of your probability is that you are going to get less than 5 ETH, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 809000
+			},
+			"text": " Versus if you're in a smoothing pool, you're in the purple line, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 817000
+			},
+			"text": " You're almost assured not to get these low values. Most of your probability is getting some value close to 5 or 6 ETH over that period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 821000
+			},
+			"text": " And then again, it becomes very unlikely that you're going to win the lottery, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 824000
+			},
+			"text": " Because the pool won the lottery and you're just getting a share."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 835000
+			},
+			"text": " It's also shown down here or lower below here, which is that if you're in the pool, right, you're nearly guaranteed to get at least one ETH, two ETH, three ETH, five ETH, six ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 839000
+			},
+			"text": " And then it starts dropping down to almost a negative probability, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 849000
+			},
+			"text": " Versus the blue line, you can see that, yes, you know, the chances are I'm going to get much less than 5, but I give up some chance of winning the lottery, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 860000
+			},
+			"text": " So it does provide, you know, the takeaway here is that if you participate in a smoothing pool, right, you are more likely to receive larger, larger monthly ETH rewards, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 866000
+			},
+			"text": " Especially if it pays out on a monthly process, then running your own mini pools by yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 867000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 872000
+			},
+			"text": " Now, why is this important kind of post merge? Well, let me share a couple things post merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 879000
+			},
+			"text": " I mentioned that Rocket Pool already has a smoothing pool for its node operators. They can opt in to it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 888000
+			},
+			"text": " You're not required to, and there's a great tool, again, you can scan the QR code, a great tool called Rocket Scan by another rocket scientist, Peter S."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 901000
+			},
+			"text": " That actually shows the Rocket Pool validators, and I did this last night when I was putting these slides together, and you can see what proposers or what blocks they proposed, and if they have a little, looks like a smoothie, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 903000
+			},
+			"text": " They're in the smoothing pool, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 908000
+			},
+			"text": " And you can see here this person got pretty close to a lottery block, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 911000
+			},
+			"text": " But they're in the smoothing pool, so we all benefited from it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 921000
+			},
+			"text": " But you can see most of them here are these just smaller mev amounts, and you can see what mevory lay, you know, one, that block auction in there, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 934000
+			},
+			"text": " There's also another great dashboard here by GenX, another Rocket Pool member who put together a Dune dashboard that was showing since the smoothing pool launch, which was a few days, I think, after the merge happened, so about 30 days ago or so,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 939000
+			},
+			"text": " that, you know, it is trending very close to our model predictions, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 950000
+			},
+			"text": " We have, you know, a median of about 0.6 ETH, so if you were a solitary, that is what you would expect in terms of your rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 955000
+			},
+			"text": " And then if you were in the smoothing pool, you can see the performance enhancement from it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 957000
+			},
+			"text": " In the smoothing pool, you get the average."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 971000
+			},
+			"text": " If you run by yourself, you get the median, basically kind of how it works. And they're adding about 1.5% if you're in the smoothing pool in terms of your APR to have a validator in the smoothing pool because of mev."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 982000
+			},
+			"text": " They're tracking it very much like our model predictions that we can see most of the mev are these very small amounts that occur, but you may not see it here, but I'll just kind of point, there's one around four, one around five."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 987000
+			},
+			"text": " And the biggest mev block we've got so far in the last 30 days is about 8.4 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 994000
+			},
+			"text": " That was right after the merge. There was a very fortunate block proposal that came in and got vetted."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 998000
+			},
+			"text": " But it models very close to our predictions, so that's good to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1001000
+			},
+			"text": " Now we only have 30 days of data. It needs to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1005000
+			},
+			"text": " There's a great command here in the Rocketbook Discord, the Envis Bot."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1008000
+			},
+			"text": " It actually shows the number of Rocketbook nodes that have opted in."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1013000
+			},
+			"text": " It seems to be very popular with about 70% of the node operators in the network joining it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1025000
+			},
+			"text": " We've been told, or at least seen chance, that one of the reasons some of the larger nodes are not joining it is they do not require yet that mev boost be running on these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1031000
+			},
+			"text": " But that is the plan to make it that if you're in this smoothing pool, it's a mev boost smoothing pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1037000
+			},
+			"text": " But already it's performing quite well. It pays out every 30 days. This is only in the last 14 days."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1046000
+			},
+			"text": " We're about halfway through the reward cycle. It's already generated 70 ETH among these participating 4,000 miniples that are in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1050000
+			},
+			"text": " Now obviously this is a model that showed how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1055000
+			},
+			"text": " It's an example from the Rocketbook protocol about how a smoothing pool can work."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1059000
+			},
+			"text": " But actually I think it's a value to other staking services."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1066000
+			},
+			"text": " I can certainly see a need for solo validators to perhaps aggregate in a smoothing pool of their own."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1070000
+			},
+			"text": " I could see other protocols begin to create their own smoothing pools."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1081000
+			},
+			"text": " One of the interesting things is I know that the Ethereum Foundation and the research site is looking as one of the possible solutions to Proposer Builder Separations is the establishment of a protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1089000
+			},
+			"text": " including smoothing pool that redirects those mev rewards. This could be an excellent model for them to look at in terms of getting data."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1092000
+			},
+			"text": " That was one of the reasons I wanted to present it here at DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1095000
+			},
+			"text": " I think it does offer some example on stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1098000
+			},
+			"text": " Last but not least, so I have time for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1104000
+			},
+			"text": " I would like to thank the Node Operators Association with their financial support that I was able to attend here and present this paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1113000
+			},
+			"text": " Shout out to all those in the Rocketbook trading discord that gave me a lot of support to actually submit and present this in Write the Paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1119000
+			},
+			"text": " With that I'll conclude my prepared talk and open it to questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1125000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1128000
+			},
+			"text": " Hi there, thank you, great talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1130000
+			},
+			"text": " Simple question."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1133000
+			},
+			"text": " What's the right number of validators to have in a smoothing pool?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1139000
+			},
+			"text": " At what point does the probability of rewards begin to approximate your 3,000 validators?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:02,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1142000
+			},
+			"text": " Would you get the same effect at 3300?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1142000,
+				"to": 1147000
+			},
+			"text": " Yeah, I think the numbers on a slide, maybe I can pull it back up here, well maybe not."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1157000
+			},
+			"text": " But if you look at the slide that shows that even at about 100, many pools, right, as I go back for it, you start to get it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1162000
+			},
+			"text": " Even at 3,000 and so forth, the numbers, maybe this is a better slide over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1165000
+			},
+			"text": " I mean, you're at 78, 80 percent, right, which is pretty close to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1168000
+			},
+			"text": " It does not take that much to start getting those rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1179000
+			},
+			"text": " Obviously, the more you have in the pool, the less variance you get, and it becomes a very predictable stream of income."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:42,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1182000
+			},
+			"text": " I'll wait for the mic to get back there."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,000",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1182000,
+				"to": 1190000
+			},
+			"text": " Well, it does all add over here that certainly if you join where you're a small part and you can see the numbers, you start moving more."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1192000
+			},
+			"text": " Again, it's Monte Carlo simulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1197000
+			},
+			"text": " So if you see little variances as to why this is lighter shade and not, it's just you run it again on another 1,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1200000
+			},
+			"text": " You get a slightly different picture, but it all looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1210000
+			},
+			"text": " In my report, there's a really nice one where I let it run over the weekend and generate a number of Monte Carlo tries."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,000",
+				"to": "00:20:26,000"
+			},
+			"offsets": {
+				"from": 1210000,
+				"to": 1226000
+			},
+			"text": " Is there anything special about Rocket Pool that makes it only work for them, a smoothing pool, or could potentially other home stakers join the Rocket Pool smoothing pool, or could they have their own?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1226000,
+				"to": 1232000
+			},
+			"text": " You need oracles for it to check participation of the validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:40,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1240000
+			},
+			"text": " Yeah, no, the math and the mechanism works regardless of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1240000,
+				"to": 1247000
+			},
+			"text": " So just if you get enough validators together working collectively to share the rewards, the math all follows."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1250000
+			},
+			"text": " I understand it's actually come up a couple of times."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:20:54,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1254000
+			},
+			"text": " I understand from the Rocket Pool community if they would open the Rocket Pool smoothing pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1254000,
+				"to": 1258000
+			},
+			"text": " Right now they have it only to Rocket Pool validators that are with their protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:21:09,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1269000
+			},
+			"text": " But I know it's been talked about, you'll have to ask some of the dev team in the front row about what their current thoughts are, but it doesn't surprise me if others start creating similar approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,000",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1269000,
+				"to": 1274000
+			},
+			"text": " You mentioned that joining is voluntary and I was wondering of like the people that know about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:16,000"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1276000
+			},
+			"text": " How many people actually joined what you say?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,000",
+				"to": "00:21:22,000"
+			},
+			"offsets": {
+				"from": 1276000,
+				"to": 1282000
+			},
+			"text": " Yeah, I think my slide said that there was about 70% of the existing node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,000",
+				"to": "00:21:31,000"
+			},
+			"offsets": {
+				"from": 1282000,
+				"to": 1291000
+			},
+			"text": " So a little bit of terminology here, a node operator is an individual who has a single piece of hardware, maybe, I guess it would be a single piece of hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,000",
+				"to": "00:21:34,000"
+			},
+			"offsets": {
+				"from": 1291000,
+				"to": 1294000
+			},
+			"text": " And about them, 70% of them have joined, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,000",
+				"to": "00:21:41,000"
+			},
+			"offsets": {
+				"from": 1294000,
+				"to": 1301000
+			},
+			"text": " So out of the 1600 node operators in Rocket Pool, just a little bit more than 1100 have joined."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,000",
+				"to": "00:21:49,000"
+			},
+			"offsets": {
+				"from": 1301000,
+				"to": 1309000
+			},
+			"text": " We do think that from some of the other node operators, I think they are waiting for med extraction to be required."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,000",
+				"to": "00:21:55,000"
+			},
+			"offsets": {
+				"from": 1309000,
+				"to": 1315000
+			},
+			"text": " Like right now, I believe it's about 90% of those in the smoothing pool have memboost on, but 10% don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,000",
+				"to": "00:22:00,000"
+			},
+			"offsets": {
+				"from": 1315000,
+				"to": 1320000
+			},
+			"text": " And so you can kind of think of it if, you know, somewhat as a strain on it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,000",
+				"to": "00:22:05,000"
+			},
+			"offsets": {
+				"from": 1320000,
+				"to": 1325000
+			},
+			"text": " Because they're not actually going after any MEV, but they are getting a share of the rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,000",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1325000,
+				"to": 1330000
+			},
+			"text": " The plan in Rocket Pool is to make it mandatory as part of joining the pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1336000
+			},
+			"text": " But because of the merge and the new technology on MEV and the relays, right now, it's just truly an opt-in."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1342000
+			},
+			"text": " But most of the node operators are obviously profit-seeking, and they are turning on the MEV boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1345000
+			},
+			"text": " An excellent question, by the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:34,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1354000
+			},
+			"text": " All right, well, I don't see any more questions, so I thank you very much for allowing me to present here at DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,000",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1354000,
+				"to": 1356000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:46,000"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1366000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1366000,
+				"to": 1395000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

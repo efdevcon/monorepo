@@ -1,0 +1,8029 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,580"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2580
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,580",
+				"to": "00:00:14,400"
+			},
+			"offsets": {
+				"from": 2580,
+				"to": 14400
+			},
+			"text": " - Good morning everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,400",
+				"to": "00:00:17,520"
+			},
+			"offsets": {
+				"from": 14400,
+				"to": 17520
+			},
+			"text": " My name is Justin and along with Alvarious"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,520",
+				"to": "00:00:19,640"
+			},
+			"offsets": {
+				"from": 17520,
+				"to": 19640
+			},
+			"text": " and our friend Kelvin from Optimism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,640",
+				"to": "00:00:22,840"
+			},
+			"offsets": {
+				"from": 19640,
+				"to": 22840
+			},
+			"text": " we're gonna go over new technologies for ancient gaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,840",
+				"to": "00:00:27,320"
+			},
+			"offsets": {
+				"from": 22840,
+				"to": 27320
+			},
+			"text": " So Alvarious and I work on Lares, among with many others."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,320",
+				"to": "00:00:29,360"
+			},
+			"offsets": {
+				"from": 27320,
+				"to": 29360
+			},
+			"text": " It's a project that's put on a Zurich Spark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,360",
+				"to": "00:00:32,480"
+			},
+			"offsets": {
+				"from": 29360,
+				"to": 32480
+			},
+			"text": " in order to push the envelope of ancient gaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,480",
+				"to": "00:00:35,280"
+			},
+			"offsets": {
+				"from": 32480,
+				"to": 35280
+			},
+			"text": " We basically want to enable people"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,280",
+				"to": "00:00:37,360"
+			},
+			"offsets": {
+				"from": 35280,
+				"to": 37360
+			},
+			"text": " to build crazy things on top of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,360",
+				"to": "00:00:41,520"
+			},
+			"offsets": {
+				"from": 37360,
+				"to": 41520
+			},
+			"text": " And things like full on virtual worlds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,520",
+				"to": "00:00:44,120"
+			},
+			"offsets": {
+				"from": 41520,
+				"to": 44120
+			},
+			"text": " worlds whose rules run on the EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,120",
+				"to": "00:00:46,800"
+			},
+			"offsets": {
+				"from": 44120,
+				"to": 46800
+			},
+			"text": " and whose state is secured by Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,800",
+				"to": "00:00:49,480"
+			},
+			"offsets": {
+				"from": 46800,
+				"to": 49480
+			},
+			"text": " People usually refer to those projects as ancient games,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,480",
+				"to": "00:00:51,520"
+			},
+			"offsets": {
+				"from": 49480,
+				"to": 51520
+			},
+			"text": " but we prefer to call them autonomous worlds"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,520",
+				"to": "00:00:53,280"
+			},
+			"offsets": {
+				"from": 51520,
+				"to": 53280
+			},
+			"text": " because we think it goes well beyond gaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,280",
+				"to": "00:00:54,920"
+			},
+			"offsets": {
+				"from": 53280,
+				"to": 54920
+			},
+			"text": " It's about giving autonomy and sovereignty"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,920",
+				"to": "00:00:56,160"
+			},
+			"offsets": {
+				"from": 54920,
+				"to": 56160
+			},
+			"text": " to complex systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,200",
+				"to": "00:00:59,880"
+			},
+			"offsets": {
+				"from": 57200,
+				"to": 59880
+			},
+			"text": " So the problem is building large on-chain projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,880",
+				"to": "00:01:01,320"
+			},
+			"offsets": {
+				"from": 59880,
+				"to": 61320
+			},
+			"text": " actually really hard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,320",
+				"to": "00:01:02,800"
+			},
+			"offsets": {
+				"from": 61320,
+				"to": 62800
+			},
+			"text": " which is why today we're gonna go over"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,800",
+				"to": "00:01:04,720"
+			},
+			"offsets": {
+				"from": 62800,
+				"to": 64720
+			},
+			"text": " two new key pieces of technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,720",
+				"to": "00:01:06,440"
+			},
+			"offsets": {
+				"from": 64720,
+				"to": 66440
+			},
+			"text": " built by Lares in Optimism"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,440",
+				"to": "00:01:08,320"
+			},
+			"offsets": {
+				"from": 66440,
+				"to": 68320
+			},
+			"text": " in order to enable autonomous worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,320",
+				"to": "00:01:11,160"
+			},
+			"offsets": {
+				"from": 68320,
+				"to": 71160
+			},
+			"text": " And I'm gonna pass it to Alvarious to go over the first one."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,160",
+				"to": "00:01:13,560"
+			},
+			"offsets": {
+				"from": 71160,
+				"to": 73560
+			},
+			"text": " - Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,560",
+				"to": "00:01:15,320"
+			},
+			"offsets": {
+				"from": 73560,
+				"to": 75320
+			},
+			"text": " So the first key piece of technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,320",
+				"to": "00:01:17,560"
+			},
+			"offsets": {
+				"from": 75320,
+				"to": 77560
+			},
+			"text": " that we want to introduce today is Mat."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,560",
+				"to": "00:01:19,280"
+			},
+			"offsets": {
+				"from": 77560,
+				"to": 79280
+			},
+			"text": " Mat is an on-chain game engine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,280",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 79280,
+				"to": 82000
+			},
+			"text": " or how we like to call it an engine for autonomous worlds"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:24,160"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 84160
+			},
+			"text": " that we develop here at Lares."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,160",
+				"to": "00:01:26,880"
+			},
+			"offsets": {
+				"from": 84160,
+				"to": 86880
+			},
+			"text": " And when we started working on on-chain games,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,880",
+				"to": "00:01:28,240"
+			},
+			"offsets": {
+				"from": 86880,
+				"to": 88240
+			},
+			"text": " there was no engine to build upon."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,240",
+				"to": "00:01:30,920"
+			},
+			"offsets": {
+				"from": 88240,
+				"to": 90920
+			},
+			"text": " So we had to run through all of these very common,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,920",
+				"to": "00:01:32,960"
+			},
+			"offsets": {
+				"from": 90920,
+				"to": 92960
+			},
+			"text": " very like general problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,960",
+				"to": "00:01:34,320"
+			},
+			"offsets": {
+				"from": 92960,
+				"to": 94320
+			},
+			"text": " very non-trivial problems as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,320",
+				"to": "00:01:36,640"
+			},
+			"offsets": {
+				"from": 94320,
+				"to": 96640
+			},
+			"text": " but they were common in all the games we were building."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,640",
+				"to": "00:01:39,920"
+			},
+			"offsets": {
+				"from": 96640,
+				"to": 99920
+			},
+			"text": " So we set out to build this key missing piece of infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,920",
+				"to": "00:01:42,080"
+			},
+			"offsets": {
+				"from": 99920,
+				"to": 102080
+			},
+			"text": " and build Mat with the goal of solving"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,080",
+				"to": "00:01:44,600"
+			},
+			"offsets": {
+				"from": 102080,
+				"to": 104600
+			},
+			"text": " all the hard problems of building on-chain games."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,600",
+				"to": "00:01:48,320"
+			},
+			"offsets": {
+				"from": 104600,
+				"to": 108320
+			},
+			"text": " So what are the hard problems of building on-chain games?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,320",
+				"to": "00:01:50,680"
+			},
+			"offsets": {
+				"from": 108320,
+				"to": 110680
+			},
+			"text": " Well, they fall into mainly three categories."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,680",
+				"to": "00:01:53,160"
+			},
+			"offsets": {
+				"from": 110680,
+				"to": 113160
+			},
+			"text": " The first one is how to make sure that your clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,160",
+				"to": "00:01:55,440"
+			},
+			"offsets": {
+				"from": 113160,
+				"to": 115440
+			},
+			"text": " and your contract state are always in sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,440",
+				"to": "00:01:58,920"
+			},
+			"offsets": {
+				"from": 115440,
+				"to": 118920
+			},
+			"text": " And then the next one is how to architect your game in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,920",
+				"to": "00:02:01,320"
+			},
+			"offsets": {
+				"from": 118920,
+				"to": 121320
+			},
+			"text": " that makes it easy to add more content later"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,320",
+				"to": "00:02:03,920"
+			},
+			"offsets": {
+				"from": 121320,
+				"to": 123920
+			},
+			"text": " without having to refactor the entire code base."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,920",
+				"to": "00:02:07,040"
+			},
+			"offsets": {
+				"from": 123920,
+				"to": 127040
+			},
+			"text": " And then the third thing, if you care about impact"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,040",
+				"to": "00:02:08,520"
+			},
+			"offsets": {
+				"from": 127040,
+				"to": 128520
+			},
+			"text": " beyond just an individual game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,520",
+				"to": "00:02:10,400"
+			},
+			"offsets": {
+				"from": 128520,
+				"to": 130400
+			},
+			"text": " then how do you make sure that your game"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,400",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 130400,
+				"to": 133000
+			},
+			"text": " is interoperable with all the other games out there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 138000
+			},
+			"text": " So before I go into how Mat solves all of these problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:21,920"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 141920
+			},
+			"text": " let me quickly go over the previous common approach of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,920",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141920,
+				"to": 145000
+			},
+			"text": " yeah, approaching these challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:27,200"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 147200
+			},
+			"text": " Usually the most common approach before was"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,200",
+				"to": "00:02:30,240"
+			},
+			"offsets": {
+				"from": 147200,
+				"to": 150240
+			},
+			"text": " you have one struct per entity type on your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,240",
+				"to": "00:02:31,600"
+			},
+			"offsets": {
+				"from": 150240,
+				"to": 151600
+			},
+			"text": " Like if you wanna have a monster,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,600",
+				"to": "00:02:32,800"
+			},
+			"offsets": {
+				"from": 151600,
+				"to": 152800
+			},
+			"text": " then you have a monster struct."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,800",
+				"to": "00:02:37,800"
+			},
+			"offsets": {
+				"from": 152800,
+				"to": 157800
+			},
+			"text": " And in that struct, you store all the data for that entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,800",
+				"to": "00:02:39,240"
+			},
+			"offsets": {
+				"from": 157800,
+				"to": 159240
+			},
+			"text": " And then of course, on the client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,240",
+				"to": "00:02:41,760"
+			},
+			"offsets": {
+				"from": 159240,
+				"to": 161760
+			},
+			"text": " you have to replicate that interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,760",
+				"to": "00:02:43,720"
+			},
+			"offsets": {
+				"from": 161760,
+				"to": 163720
+			},
+			"text": " in order to represent the state there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,720",
+				"to": "00:02:46,320"
+			},
+			"offsets": {
+				"from": 163720,
+				"to": 166320
+			},
+			"text": " And then you have getter functions for each individual"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,320",
+				"to": "00:02:49,200"
+			},
+			"offsets": {
+				"from": 166320,
+				"to": 169200
+			},
+			"text": " like type of entity that you wanna sync to your client"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,200",
+				"to": "00:02:52,360"
+			},
+			"offsets": {
+				"from": 169200,
+				"to": 172360
+			},
+			"text": " and you implement your logic based on these specific structs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,360",
+				"to": "00:02:55,320"
+			},
+			"offsets": {
+				"from": 172360,
+				"to": 175320
+			},
+			"text": " And every time you modify one of these data structures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,320",
+				"to": "00:02:57,280"
+			},
+			"offsets": {
+				"from": 175320,
+				"to": 177280
+			},
+			"text": " you have to emit a custom event"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,280",
+				"to": "00:02:59,120"
+			},
+			"offsets": {
+				"from": 177280,
+				"to": 179120
+			},
+			"text": " that then can be caught by the client"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,120",
+				"to": "00:03:01,420"
+			},
+			"offsets": {
+				"from": 179120,
+				"to": 181420
+			},
+			"text": " to then like update the local client state."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,420",
+				"to": "00:03:05,240"
+			},
+			"offsets": {
+				"from": 181420,
+				"to": 185240
+			},
+			"text": " And this is already, this sounds already pretty annoying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,240",
+				"to": "00:03:06,480"
+			},
+			"offsets": {
+				"from": 185240,
+				"to": 186480
+			},
+			"text": " but it gets even more annoying"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,480",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 186480,
+				"to": 188000
+			},
+			"text": " when you wanna now add content."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:10,160"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 190160
+			},
+			"text": " Because now you have to add a new struct"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,160",
+				"to": "00:03:12,680"
+			},
+			"offsets": {
+				"from": 190160,
+				"to": 192680
+			},
+			"text": " and you basically have to edit your entire network stack"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,680",
+				"to": "00:03:15,160"
+			},
+			"offsets": {
+				"from": 192680,
+				"to": 195160
+			},
+			"text": " in order to make it compatible with this new struct."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,160",
+				"to": "00:03:18,440"
+			},
+			"offsets": {
+				"from": 195160,
+				"to": 198440
+			},
+			"text": " From the events over the getter functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,440",
+				"to": "00:03:21,840"
+			},
+			"offsets": {
+				"from": 198440,
+				"to": 201840
+			},
+			"text": " to like the event handling on the client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,840",
+				"to": "00:03:23,880"
+			},
+			"offsets": {
+				"from": 201840,
+				"to": 203880
+			},
+			"text": " you have to modify everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,880",
+				"to": "00:03:25,920"
+			},
+			"offsets": {
+				"from": 203880,
+				"to": 205920
+			},
+			"text": " And then on the interoperability side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,920",
+				"to": "00:03:28,120"
+			},
+			"offsets": {
+				"from": 205920,
+				"to": 208120
+			},
+			"text": " basically all you have are existing interfaces"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,120",
+				"to": "00:03:30,960"
+			},
+			"offsets": {
+				"from": 208120,
+				"to": 210960
+			},
+			"text": " like ERC 20, ERC 721, et cetera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,960",
+				"to": "00:03:32,720"
+			},
+			"offsets": {
+				"from": 210960,
+				"to": 212720
+			},
+			"text": " which we're not built for on-chain games"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,720",
+				"to": "00:03:35,560"
+			},
+			"offsets": {
+				"from": 212720,
+				"to": 215560
+			},
+			"text": " and are very limited in what they can express, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,560",
+				"to": "00:03:40,520"
+			},
+			"offsets": {
+				"from": 215560,
+				"to": 220520
+			},
+			"text": " So our goal with MUT is to solve all of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,520",
+				"to": "00:03:43,280"
+			},
+			"offsets": {
+				"from": 220520,
+				"to": 223280
+			},
+			"text": " like general problems so that you as game developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,280",
+				"to": "00:03:45,160"
+			},
+			"offsets": {
+				"from": 223280,
+				"to": 225160
+			},
+			"text": " on-chain game developers can just focus"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,160",
+				"to": "00:03:46,780"
+			},
+			"offsets": {
+				"from": 225160,
+				"to": 226780
+			},
+			"text": " on making a fun game."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,780",
+				"to": "00:03:50,320"
+			},
+			"offsets": {
+				"from": 226780,
+				"to": 230320
+			},
+			"text": " All right, so this is for the why."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,320",
+				"to": "00:03:51,480"
+			},
+			"offsets": {
+				"from": 230320,
+				"to": 231480
+			},
+			"text": " Now let's go into the how."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,480",
+				"to": "00:03:53,800"
+			},
+			"offsets": {
+				"from": 231480,
+				"to": 233800
+			},
+			"text": " How does MUT solve these problems?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,800",
+				"to": "00:03:56,120"
+			},
+			"offsets": {
+				"from": 233800,
+				"to": 236120
+			},
+			"text": " MUT is built around an architecture pattern"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,120",
+				"to": "00:03:57,800"
+			},
+			"offsets": {
+				"from": 236120,
+				"to": 237800
+			},
+			"text": " called entity component system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,800",
+				"to": "00:03:59,720"
+			},
+			"offsets": {
+				"from": 237800,
+				"to": 239720
+			},
+			"text": " This is a very popular pattern"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,720",
+				"to": "00:04:02,600"
+			},
+			"offsets": {
+				"from": 239720,
+				"to": 242600
+			},
+			"text": " in the traditional gaming industry for a reason,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,600",
+				"to": "00:04:03,760"
+			},
+			"offsets": {
+				"from": 242600,
+				"to": 243760
+			},
+			"text": " but if you're not familiar with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,760",
+				"to": "00:04:07,080"
+			},
+			"offsets": {
+				"from": 243760,
+				"to": 247080
+			},
+			"text": " I'm gonna give you a brief crash crawson on ECS."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,080",
+				"to": "00:04:11,280"
+			},
+			"offsets": {
+				"from": 247080,
+				"to": 251280
+			},
+			"text": " In ECS an entity is just a numeric ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,280",
+				"to": "00:04:13,680"
+			},
+			"offsets": {
+				"from": 251280,
+				"to": 253680
+			},
+			"text": " So in our case, it's just a U-256."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,680",
+				"to": "00:04:17,560"
+			},
+			"offsets": {
+				"from": 253680,
+				"to": 257560
+			},
+			"text": " And then you have components, you have components,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,560",
+				"to": "00:04:20,440"
+			},
+			"offsets": {
+				"from": 257560,
+				"to": 260440
+			},
+			"text": " oops, you have components that store the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,440",
+				"to": "00:04:21,680"
+			},
+			"offsets": {
+				"from": 260440,
+				"to": 261680
+			},
+			"text": " for this entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,680",
+				"to": "00:04:23,640"
+			},
+			"offsets": {
+				"from": 261680,
+				"to": 263640
+			},
+			"text": " So in our case, we could have a component"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,640",
+				"to": "00:04:25,960"
+			},
+			"offsets": {
+				"from": 263640,
+				"to": 265960
+			},
+			"text": " that stores the data, like you can think of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,960",
+				"to": "00:04:29,120"
+			},
+			"offsets": {
+				"from": 265960,
+				"to": 269120
+			},
+			"text": " as a mapping from the entity ID to the component value."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,120",
+				"to": "00:04:32,480"
+			},
+			"offsets": {
+				"from": 269120,
+				"to": 272480
+			},
+			"text": " You can think of it as a fancy like standard Ethereum mapping."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,480",
+				"to": "00:04:36,160"
+			},
+			"offsets": {
+				"from": 272480,
+				"to": 276160
+			},
+			"text": " And then you have the systems which implement the logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,160",
+				"to": "00:04:39,040"
+			},
+			"offsets": {
+				"from": 276160,
+				"to": 279040
+			},
+			"text": " So components are only data systems implement the logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,040",
+				"to": "00:04:41,880"
+			},
+			"offsets": {
+				"from": 279040,
+				"to": 281880
+			},
+			"text": " And systems don't act on specific entity types"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,880",
+				"to": "00:04:44,600"
+			},
+			"offsets": {
+				"from": 281880,
+				"to": 284600
+			},
+			"text": " because there are no specific entity types in ECS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,600",
+				"to": "00:04:47,120"
+			},
+			"offsets": {
+				"from": 284600,
+				"to": 287120
+			},
+			"text": " but rather an entity is just the collection"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,120",
+				"to": "00:04:50,120"
+			},
+			"offsets": {
+				"from": 287120,
+				"to": 290120
+			},
+			"text": " of components that are attached to it basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,120",
+				"to": "00:04:52,320"
+			},
+			"offsets": {
+				"from": 290120,
+				"to": 292320
+			},
+			"text": " And so your move system as an example"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,320",
+				"to": "00:04:55,240"
+			},
+			"offsets": {
+				"from": 292320,
+				"to": 295240
+			},
+			"text": " doesn't care about whether it's moving a donkey or a dog."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,240",
+				"to": "00:04:57,200"
+			},
+			"offsets": {
+				"from": 295240,
+				"to": 297200
+			},
+			"text": " It only cares about whether this entity"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,200",
+				"to": "00:04:59,960"
+			},
+			"offsets": {
+				"from": 297200,
+				"to": 299960
+			},
+			"text": " that it is moving has a position component attached to it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,960",
+				"to": "00:05:02,720"
+			},
+			"offsets": {
+				"from": 299960,
+				"to": 302720
+			},
+			"text": " and then it can modify that position component."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,720",
+				"to": "00:05:04,560"
+			},
+			"offsets": {
+				"from": 302720,
+				"to": 304560
+			},
+			"text": " And if you think about it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,560",
+				"to": "00:05:08,520"
+			},
+			"offsets": {
+				"from": 304560,
+				"to": 308520
+			},
+			"text": " that's actually in a way how Ethereum already works today."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,520",
+				"to": "00:05:10,960"
+			},
+			"offsets": {
+				"from": 308520,
+				"to": 310960
+			},
+			"text": " You can think of addresses as entities"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,960",
+				"to": "00:05:15,360"
+			},
+			"offsets": {
+				"from": 310960,
+				"to": 315360
+			},
+			"text": " and then a token contract like a ERC721 token contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,360",
+				"to": "00:05:18,800"
+			},
+			"offsets": {
+				"from": 315360,
+				"to": 318800
+			},
+			"text": " can be thought of as a component and a system mixed together"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,800",
+				"to": "00:05:21,600"
+			},
+			"offsets": {
+				"from": 318800,
+				"to": 321600
+			},
+			"text": " and attached to this entity to this address."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,600",
+				"to": "00:05:24,200"
+			},
+			"offsets": {
+				"from": 321600,
+				"to": 324200
+			},
+			"text": " If you wanted to model this in like pure ECS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,200",
+				"to": "00:05:25,960"
+			},
+			"offsets": {
+				"from": 324200,
+				"to": 325960
+			},
+			"text": " then you would just have a balanced component"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,960",
+				"to": "00:05:28,320"
+			},
+			"offsets": {
+				"from": 325960,
+				"to": 328320
+			},
+			"text": " that stores the data and then a transfer system"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,320",
+				"to": "00:05:30,840"
+			},
+			"offsets": {
+				"from": 328320,
+				"to": 330840
+			},
+			"text": " that implements the logic of transferring stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,840",
+				"to": "00:05:34,560"
+			},
+			"offsets": {
+				"from": 330840,
+				"to": 334560
+			},
+			"text": " All right, so with ECS in mind,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,560",
+				"to": "00:05:36,920"
+			},
+			"offsets": {
+				"from": 334560,
+				"to": 336920
+			},
+			"text": " how does Martan will the state sync?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,920",
+				"to": "00:05:39,680"
+			},
+			"offsets": {
+				"from": 336920,
+				"to": 339680
+			},
+			"text": " In Matha is a very central contract, the world contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,680",
+				"to": "00:05:41,720"
+			},
+			"offsets": {
+				"from": 339680,
+				"to": 341720
+			},
+			"text": " And every time you add a contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,720",
+				"to": "00:05:43,160"
+			},
+			"offsets": {
+				"from": 341720,
+				"to": 343160
+			},
+			"text": " in every time you add a component,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,160",
+				"to": "00:05:44,800"
+			},
+			"offsets": {
+				"from": 343160,
+				"to": 344800
+			},
+			"text": " which is also a contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,800",
+				"to": "00:05:47,040"
+			},
+			"offsets": {
+				"from": 344800,
+				"to": 347040
+			},
+			"text": " it gets registered on the world contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,040",
+				"to": "00:05:49,200"
+			},
+			"offsets": {
+				"from": 347040,
+				"to": 349200
+			},
+			"text": " And then every time that component gets updated"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,200",
+				"to": "00:05:52,360"
+			},
+			"offsets": {
+				"from": 349200,
+				"to": 352360
+			},
+			"text": " an event is emitted automatically through the world contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,360",
+				"to": "00:05:54,520"
+			},
+			"offsets": {
+				"from": 352360,
+				"to": 354520
+			},
+			"text": " That means the client only has to listen"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,520",
+				"to": "00:05:56,160"
+			},
+			"offsets": {
+				"from": 354520,
+				"to": 356160
+			},
+			"text": " to this one central stream of events"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,160",
+				"to": "00:05:57,480"
+			},
+			"offsets": {
+				"from": 356160,
+				"to": 357480
+			},
+			"text": " coming from the world contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,480",
+				"to": "00:06:00,820"
+			},
+			"offsets": {
+				"from": 357480,
+				"to": 360820
+			},
+			"text": " and can then like keep the local state in sync basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,820",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 360820,
+				"to": 363000
+			},
+			"text": " And the great thing is with Marta,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:05,240"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 365240
+			},
+			"text": " you don't have to worry about any of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,240",
+				"to": "00:06:07,720"
+			},
+			"offsets": {
+				"from": 365240,
+				"to": 367720
+			},
+			"text": " because Mart handles all of that for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,720",
+				"to": "00:06:10,040"
+			},
+			"offsets": {
+				"from": 367720,
+				"to": 370040
+			},
+			"text": " What you have to do as a game developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,040",
+				"to": "00:06:13,720"
+			},
+			"offsets": {
+				"from": 370040,
+				"to": 373720
+			},
+			"text": " is just create a component contract, give it some ID"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,720",
+				"to": "00:06:15,480"
+			},
+			"offsets": {
+				"from": 373720,
+				"to": 375480
+			},
+			"text": " and then create a component on the client"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,480",
+				"to": "00:06:16,720"
+			},
+			"offsets": {
+				"from": 375480,
+				"to": 376720
+			},
+			"text": " and give it the same ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,720",
+				"to": "00:06:19,120"
+			},
+			"offsets": {
+				"from": 376720,
+				"to": 379120
+			},
+			"text": " And Mart handles the state sync automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,120",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 379120,
+				"to": 383000
+			},
+			"text": " And the great thing with this general approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:25,520"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 385520
+			},
+			"text": " is also that we can provide generic indexes"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,520",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 385520,
+				"to": 388000
+			},
+			"text": " that help your client catch up faster"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:29,600"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 389600
+			},
+			"text": " and reduce their RPC load."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,600",
+				"to": "00:06:32,080"
+			},
+			"offsets": {
+				"from": 389600,
+				"to": 392080
+			},
+			"text": " And you don't have to write any like custom sub graphs"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,080",
+				"to": "00:06:34,720"
+			},
+			"offsets": {
+				"from": 392080,
+				"to": 394720
+			},
+			"text": " because all the data is stored in a very generic way."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,720",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 394720,
+				"to": 398000
+			},
+			"text": " And that's why we can have indexes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:43,440"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 403440
+			},
+			"text": " Cool, now to the fun part of adding content."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,440",
+				"to": "00:06:45,280"
+			},
+			"offsets": {
+				"from": 403440,
+				"to": 405280
+			},
+			"text": " As a quick reminder in ECS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,280",
+				"to": "00:06:47,760"
+			},
+			"offsets": {
+				"from": 405280,
+				"to": 407760
+			},
+			"text": " entities are just a collection of components."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,760",
+				"to": "00:06:50,960"
+			},
+			"offsets": {
+				"from": 407760,
+				"to": 410960
+			},
+			"text": " So our fighter entity here is actually just a collection"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,960",
+				"to": "00:06:53,040"
+			},
+			"offsets": {
+				"from": 410960,
+				"to": 413040
+			},
+			"text": " of a health component and a tech component"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,040",
+				"to": "00:06:54,480"
+			},
+			"offsets": {
+				"from": 413040,
+				"to": 414480
+			},
+			"text": " and a movable component."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,480",
+				"to": "00:06:56,520"
+			},
+			"offsets": {
+				"from": 414480,
+				"to": 416520
+			},
+			"text": " And now if we want to add more entities"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,520",
+				"to": "00:06:58,520"
+			},
+			"offsets": {
+				"from": 416520,
+				"to": 418520
+			},
+			"text": " or stronger entities like a dragon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,520",
+				"to": "00:07:01,080"
+			},
+			"offsets": {
+				"from": 418520,
+				"to": 421080
+			},
+			"text": " then we can just modify those component values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,080",
+				"to": "00:07:02,560"
+			},
+			"offsets": {
+				"from": 421080,
+				"to": 422560
+			},
+			"text": " give it more health, give it more attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,560",
+				"to": "00:07:04,240"
+			},
+			"offsets": {
+				"from": 422560,
+				"to": 424240
+			},
+			"text": " and suddenly we have a dragon."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,240",
+				"to": "00:07:06,440"
+			},
+			"offsets": {
+				"from": 424240,
+				"to": 426440
+			},
+			"text": " Another way to add more content is to modify"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,440",
+				"to": "00:07:09,280"
+			},
+			"offsets": {
+				"from": 426440,
+				"to": 429280
+			},
+			"text": " or like recombine existing components together."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,280",
+				"to": "00:07:11,720"
+			},
+			"offsets": {
+				"from": 429280,
+				"to": 431720
+			},
+			"text": " For example, remove the movable component"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,720",
+				"to": "00:07:13,600"
+			},
+			"offsets": {
+				"from": 431720,
+				"to": 433600
+			},
+			"text": " and suddenly you have a defense tower."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,680",
+				"to": "00:07:18,800"
+			},
+			"offsets": {
+				"from": 434680,
+				"to": 438800
+			},
+			"text": " And the last way of adding content is adding new components."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,800",
+				"to": "00:07:20,760"
+			},
+			"offsets": {
+				"from": 438800,
+				"to": 440760
+			},
+			"text": " Every time you add a new component,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,760",
+				"to": "00:07:24,120"
+			},
+			"offsets": {
+				"from": 440760,
+				"to": 444120
+			},
+			"text": " the number of possibilities of combining your components"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,120",
+				"to": "00:07:25,240"
+			},
+			"offsets": {
+				"from": 444120,
+				"to": 445240
+			},
+			"text": " actually doubles."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,240",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 445240,
+				"to": 448000
+			},
+			"text": " So you can just recombine your components in a new way."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:29,360"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 449360
+			},
+			"text": " You have double the amount of entities"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,360",
+				"to": "00:07:31,040"
+			},
+			"offsets": {
+				"from": 449360,
+				"to": 451040
+			},
+			"text": " you can now represent."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,040",
+				"to": "00:07:33,240"
+			},
+			"offsets": {
+				"from": 451040,
+				"to": 453240
+			},
+			"text": " As an example, you add a healing component,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,240",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 453240,
+				"to": 455000
+			},
+			"text": " now you can build a healing shrine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:36,520"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 456520
+			},
+			"text": " a healer and a healing potion"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,520",
+				"to": "00:07:39,040"
+			},
+			"offsets": {
+				"from": 456520,
+				"to": 459040
+			},
+			"text": " without changing any of the existing logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,040",
+				"to": "00:07:43,440"
+			},
+			"offsets": {
+				"from": 459040,
+				"to": 463440
+			},
+			"text": " And then when it comes to interoperability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,440",
+				"to": "00:07:45,440"
+			},
+			"offsets": {
+				"from": 463440,
+				"to": 465440
+			},
+			"text": " in theory, everything that you build on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,440",
+				"to": "00:07:47,520"
+			},
+			"offsets": {
+				"from": 465440,
+				"to": 467520
+			},
+			"text": " is interoperable to everything else already."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,520",
+				"to": "00:07:50,880"
+			},
+			"offsets": {
+				"from": 467520,
+				"to": 470880
+			},
+			"text": " You just have to make like a custom integration for everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,880",
+				"to": "00:07:52,680"
+			},
+			"offsets": {
+				"from": 470880,
+				"to": 472680
+			},
+			"text": " which gets obviously kind of annoying"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,680",
+				"to": "00:07:53,560"
+			},
+			"offsets": {
+				"from": 472680,
+				"to": 473560
+			},
+			"text": " and is not scalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,560",
+				"to": "00:07:58,040"
+			},
+			"offsets": {
+				"from": 473560,
+				"to": 478040
+			},
+			"text": " So in other words, interoperability needs interfaces to scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,040",
+				"to": "00:08:00,240"
+			},
+			"offsets": {
+				"from": 478040,
+				"to": 480240
+			},
+			"text": " And you can think of mud as an interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,240",
+				"to": "00:08:02,400"
+			},
+			"offsets": {
+				"from": 480240,
+				"to": 482400
+			},
+			"text": " for those on chain worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,400",
+				"to": "00:08:04,520"
+			},
+			"offsets": {
+				"from": 482400,
+				"to": 484520
+			},
+			"text": " You can read the state from your own world"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,520",
+				"to": "00:08:06,520"
+			},
+			"offsets": {
+				"from": 484520,
+				"to": 486520
+			},
+			"text": " in the exact same way as you can read the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,520",
+				"to": "00:08:07,360"
+			},
+			"offsets": {
+				"from": 486520,
+				"to": 487360
+			},
+			"text": " from other worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,360",
+				"to": "00:08:09,480"
+			},
+			"offsets": {
+				"from": 487360,
+				"to": 489480
+			},
+			"text": " So all those worlds are just by default interoperable"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,480",
+				"to": "00:08:10,320"
+			},
+			"offsets": {
+				"from": 489480,
+				"to": 490320
+			},
+			"text": " with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:15,440"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 495440
+			},
+			"text": " And you can think of existing interfaces like ERC721"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,440",
+				"to": "00:08:17,800"
+			},
+			"offsets": {
+				"from": 495440,
+				"to": 497800
+			},
+			"text": " as an interface for ownership."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,800",
+				"to": "00:08:19,760"
+			},
+			"offsets": {
+				"from": 497800,
+				"to": 499760
+			},
+			"text": " But mud on the other hand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,760",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 499760,
+				"to": 502000
+			},
+			"text": " since every component is a standardized way"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:22,920"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 502920
+			},
+			"text": " of storing the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,920",
+				"to": "00:08:25,400"
+			},
+			"offsets": {
+				"from": 502920,
+				"to": 505400
+			},
+			"text": " and we have the standardized query system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,400",
+				"to": "00:08:27,680"
+			},
+			"offsets": {
+				"from": 505400,
+				"to": 507680
+			},
+			"text": " basically mud is an interface for anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,680",
+				"to": "00:08:30,440"
+			},
+			"offsets": {
+				"from": 507680,
+				"to": 510440
+			},
+			"text": " Like you can just write a query for any world out there"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,440",
+				"to": "00:08:32,920"
+			},
+			"offsets": {
+				"from": 510440,
+				"to": 512920
+			},
+			"text": " and just represent whatever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,920",
+				"to": "00:08:35,120"
+			},
+			"offsets": {
+				"from": 512920,
+				"to": 515120
+			},
+			"text": " Basically this query, this very simple query,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,120",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 515120,
+				"to": 517000
+			},
+			"text": " gives you all the movable attack entities"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:38,200"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 518200
+			},
+			"text": " owned by this address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,200",
+				"to": "00:08:40,520"
+			},
+			"offsets": {
+				"from": 518200,
+				"to": 520520
+			},
+			"text": " but you can get arbitrarily complex with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,120",
+				"to": "00:08:44,280"
+			},
+			"offsets": {
+				"from": 521120,
+				"to": 524280
+			},
+			"text": " So this is how mud solves all the problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,280",
+				"to": "00:08:45,520"
+			},
+			"offsets": {
+				"from": 524280,
+				"to": 525520
+			},
+			"text": " for building on-chain games."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,520",
+				"to": "00:08:47,880"
+			},
+			"offsets": {
+				"from": 525520,
+				"to": 527880
+			},
+			"text": " But the great thing for mud is that it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,880",
+				"to": "00:08:49,520"
+			},
+			"offsets": {
+				"from": 527880,
+				"to": 529520
+			},
+			"text": " completely genre agnostic."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,520",
+				"to": "00:08:53,520"
+			},
+			"offsets": {
+				"from": 529520,
+				"to": 533520
+			},
+			"text": " We build two different games in-house at Laddis"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,520",
+				"to": "00:08:54,520"
+			},
+			"offsets": {
+				"from": 533520,
+				"to": 534520
+			},
+			"text": " over the last couple of weeks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,520",
+				"to": "00:08:56,520"
+			},
+			"offsets": {
+				"from": 534520,
+				"to": 536520
+			},
+			"text": " two completely different drawers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,520",
+				"to": "00:08:58,520"
+			},
+			"offsets": {
+				"from": 536520,
+				"to": 538520
+			},
+			"text": " The first one is called Skystripe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,520",
+				"to": "00:09:00,520"
+			},
+			"offsets": {
+				"from": 538520,
+				"to": 540520
+			},
+			"text": " and it's an on-chain RTS."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,520",
+				"to": "00:09:03,520"
+			},
+			"offsets": {
+				"from": 540520,
+				"to": 543520
+			},
+			"text": " The goal is to build your army, to defeat your opponents,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,520",
+				"to": "00:09:05,520"
+			},
+			"offsets": {
+				"from": 543520,
+				"to": 545520
+			},
+			"text": " and then steal the loot from the center of the island"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,520",
+				"to": "00:09:08,520"
+			},
+			"offsets": {
+				"from": 545520,
+				"to": 548520
+			},
+			"text": " and then escape with the loot as the first person."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,520",
+				"to": "00:09:11,520"
+			},
+			"offsets": {
+				"from": 548520,
+				"to": 551520
+			},
+			"text": " It uses 39 components, 20 systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,520",
+				"to": "00:09:13,520"
+			},
+			"offsets": {
+				"from": 551520,
+				"to": 553520
+			},
+			"text": " and not a single line of networking code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,520",
+				"to": "00:09:15,520"
+			},
+			"offsets": {
+				"from": 553520,
+				"to": 555520
+			},
+			"text": " because mud handles all of that for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,520",
+				"to": "00:09:18,520"
+			},
+			"offsets": {
+				"from": 555520,
+				"to": 558520
+			},
+			"text": " And we're actually going to play tonight, or not tonight,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,520",
+				"to": "00:09:20,520"
+			},
+			"offsets": {
+				"from": 558520,
+				"to": 560520
+			},
+			"text": " this afternoon at the hacker basement at 4pm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,520",
+				"to": "00:09:22,520"
+			},
+			"offsets": {
+				"from": 560520,
+				"to": 562520
+			},
+			"text": " so if you want to check it out, come there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,520",
+				"to": "00:09:26,520"
+			},
+			"offsets": {
+				"from": 562520,
+				"to": 566520
+			},
+			"text": " And then the other game we've built is yet to be announced."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,520",
+				"to": "00:09:28,520"
+			},
+			"offsets": {
+				"from": 566520,
+				"to": 568520
+			},
+			"text": " It's an on-chain, box-style game."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,520",
+				"to": "00:09:31,520"
+			},
+			"offsets": {
+				"from": 568520,
+				"to": 571520
+			},
+			"text": " It features an infinitely, procedurally generated world."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,520",
+				"to": "00:09:34,520"
+			},
+			"offsets": {
+				"from": 571520,
+				"to": 574520
+			},
+			"text": " You can mine, you can build stuff, you can craft stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,520",
+				"to": "00:09:37,520"
+			},
+			"offsets": {
+				"from": 574520,
+				"to": 577520
+			},
+			"text": " And it only has eight components and seven systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,520",
+				"to": "00:09:40,520"
+			},
+			"offsets": {
+				"from": 577520,
+				"to": 580520
+			},
+			"text": " And also here, zero networking code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,520",
+				"to": "00:09:43,520"
+			},
+			"offsets": {
+				"from": 580520,
+				"to": 583520
+			},
+			"text": " And those two games are completely different drawers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,520",
+				"to": "00:09:46,520"
+			},
+			"offsets": {
+				"from": 583520,
+				"to": 586520
+			},
+			"text": " but they build on the exact same infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,520",
+				"to": "00:09:48,520"
+			},
+			"offsets": {
+				"from": 586520,
+				"to": 588520
+			},
+			"text": " They just use different components and combine them"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,520",
+				"to": "00:09:50,520"
+			},
+			"offsets": {
+				"from": 588520,
+				"to": 590520
+			},
+			"text": " in a different way."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,520",
+				"to": "00:09:52,520"
+			},
+			"offsets": {
+				"from": 590520,
+				"to": 592520
+			},
+			"text": " Yeah, and this is mud."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,520",
+				"to": "00:09:54,520"
+			},
+			"offsets": {
+				"from": 592520,
+				"to": 594520
+			},
+			"text": " As a summary, with mud, you don't have to write a single line"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,520",
+				"to": "00:09:57,520"
+			},
+			"offsets": {
+				"from": 594520,
+				"to": 597520
+			},
+			"text": " of networking code, because mud handles all of that for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,520",
+				"to": "00:09:59,520"
+			},
+			"offsets": {
+				"from": 597520,
+				"to": 599520
+			},
+			"text": " Adding content is completely trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,520",
+				"to": "00:10:01,520"
+			},
+			"offsets": {
+				"from": 599520,
+				"to": 601520
+			},
+			"text": " Adding a new component doubles the amount of entities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,520",
+				"to": "00:10:03,520"
+			},
+			"offsets": {
+				"from": 601520,
+				"to": 603520
+			},
+			"text": " the types of entities you can represent."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,520",
+				"to": "00:10:06,520"
+			},
+			"offsets": {
+				"from": 603520,
+				"to": 606520
+			},
+			"text": " And any mud world is by default interoperable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,520",
+				"to": "00:10:08,520"
+			},
+			"offsets": {
+				"from": 606520,
+				"to": 608520
+			},
+			"text": " with any other mud world."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,520",
+				"to": "00:10:10,520"
+			},
+			"offsets": {
+				"from": 608520,
+				"to": 610520
+			},
+			"text": " And that is how we solve all the problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,520",
+				"to": "00:10:16,520"
+			},
+			"offsets": {
+				"from": 610520,
+				"to": 616520
+			},
+			"text": " Cool. All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,520",
+				"to": "00:10:18,520"
+			},
+			"offsets": {
+				"from": 616520,
+				"to": 618520
+			},
+			"text": " I'm going to drop some more crazy stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,520",
+				"to": "00:10:20,520"
+			},
+			"offsets": {
+				"from": 618520,
+				"to": 620520
+			},
+			"text": " Full nodes are great."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,520",
+				"to": "00:10:23,520"
+			},
+			"offsets": {
+				"from": 620520,
+				"to": 623520
+			},
+			"text": " So after this short introduction to mud,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,520",
+				"to": "00:10:26,520"
+			},
+			"offsets": {
+				"from": 623520,
+				"to": 626520
+			},
+			"text": " I want to go over two kind of advanced features"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,520",
+				"to": "00:10:29,520"
+			},
+			"offsets": {
+				"from": 626520,
+				"to": 629520
+			},
+			"text": " slash mental model from what mud is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,520",
+				"to": "00:10:32,520"
+			},
+			"offsets": {
+				"from": 629520,
+				"to": 632520
+			},
+			"text": " So the interesting thing with full nodes is that they give you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,520",
+				"to": "00:10:35,520"
+			},
+			"offsets": {
+				"from": 632520,
+				"to": 635520
+			},
+			"text": " access to the entire chain directly from the node database."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,520",
+				"to": "00:10:38,520"
+			},
+			"offsets": {
+				"from": 635520,
+				"to": 638520
+			},
+			"text": " With a node, you can do things like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,520",
+				"to": "00:10:40,520"
+			},
+			"offsets": {
+				"from": 638520,
+				"to": 640520
+			},
+			"text": " \"Oh, what is the counterfactual of this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,520",
+				"to": "00:10:42,520"
+			},
+			"offsets": {
+				"from": 640520,
+				"to": 642520
+			},
+			"text": " Can I execute a transaction but slightly change the storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,520",
+				"to": "00:10:43,520"
+			},
+			"offsets": {
+				"from": 642520,
+				"to": 643520
+			},
+			"text": " of that contract?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,520",
+				"to": "00:10:46,520"
+			},
+			"offsets": {
+				"from": 643520,
+				"to": 646520
+			},
+			"text": " Like, what would happen if I were to make a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,520",
+				"to": "00:10:49,520"
+			},
+			"offsets": {
+				"from": 646520,
+				"to": 649520
+			},
+			"text": " in Uniswap and I have a billion die instead of like 10?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,520",
+				"to": "00:10:52,520"
+			},
+			"offsets": {
+				"from": 649520,
+				"to": 652520
+			},
+			"text": " The problem is that traditional DAP clients today"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,520",
+				"to": "00:10:54,520"
+			},
+			"offsets": {
+				"from": 652520,
+				"to": 654520
+			},
+			"text": " are not full nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,520",
+				"to": "00:10:58,520"
+			},
+			"offsets": {
+				"from": 654520,
+				"to": 658520
+			},
+			"text": " They rely on things like Infra or Alchemy to serve their data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,520",
+				"to": "00:11:00,520"
+			},
+			"offsets": {
+				"from": 658520,
+				"to": 660520
+			},
+			"text": " and then they have to build this like complex state machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,520",
+				"to": "00:11:03,520"
+			},
+			"offsets": {
+				"from": 660520,
+				"to": 663520
+			},
+			"text": " of indexers and events in order to serve the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,520",
+				"to": "00:11:05,520"
+			},
+			"offsets": {
+				"from": 663520,
+				"to": 665520
+			},
+			"text": " they need to their users."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,520",
+				"to": "00:11:08,520"
+			},
+			"offsets": {
+				"from": 665520,
+				"to": 668520
+			},
+			"text": " As an example, the Uniswap client has to connect to a full node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,520",
+				"to": "00:11:11,520"
+			},
+			"offsets": {
+				"from": 668520,
+				"to": 671520
+			},
+			"text": " and it has to fetch the state that is interested in just in time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,520",
+				"to": "00:11:13,520"
+			},
+			"offsets": {
+				"from": 671520,
+				"to": 673520
+			},
+			"text": " because otherwise it would take way too long."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,520",
+				"to": "00:11:15,520"
+			},
+			"offsets": {
+				"from": 673520,
+				"to": 675520
+			},
+			"text": " So as you move around on Uniswap and you select different ports,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,520",
+				"to": "00:11:18,520"
+			},
+			"offsets": {
+				"from": 675520,
+				"to": 678520
+			},
+			"text": " you have to wait every single time to know what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,520",
+				"to": "00:11:21,520"
+			},
+			"offsets": {
+				"from": 678520,
+				"to": 681520
+			},
+			"text": " I don't know if you've ever read the Uniswap client code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,520",
+				"to": "00:11:25,520"
+			},
+			"offsets": {
+				"from": 681520,
+				"to": 685520
+			},
+			"text": " but it's pretty insane just to be able to keep such a simple state machine in sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,520",
+				"to": "00:11:28,520"
+			},
+			"offsets": {
+				"from": 685520,
+				"to": 688520
+			},
+			"text": " And there needs to be a lot of custom code in indexers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,520",
+				"to": "00:11:31,520"
+			},
+			"offsets": {
+				"from": 688520,
+				"to": 691520
+			},
+			"text": " Additionally, the Uniswap client cannot actually simulate transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,520",
+				"to": "00:11:35,520"
+			},
+			"offsets": {
+				"from": 691520,
+				"to": 695520
+			},
+			"text": " and it doesn't know what will happen if you execute that single swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,520",
+				"to": "00:11:39,520"
+			},
+			"offsets": {
+				"from": 695520,
+				"to": 699520
+			},
+			"text": " So the way it actually works is you have the Uniswap client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,520",
+				"to": "00:11:42,520"
+			},
+			"offsets": {
+				"from": 699520,
+				"to": 702520
+			},
+			"text": " and then remotely you have a full node and you have a bunch of indexers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,520",
+				"to": "00:11:45,520"
+			},
+			"offsets": {
+				"from": 702520,
+				"to": 705520
+			},
+			"text": " and the Uniswap client has to make very slow network requests"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,520",
+				"to": "00:11:48,520"
+			},
+			"offsets": {
+				"from": 705520,
+				"to": 708520
+			},
+			"text": " in order to be able to populate the information that the user needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,520",
+				"to": "00:11:52,520"
+			},
+			"offsets": {
+				"from": 708520,
+				"to": 712520
+			},
+			"text": " So why don't we put the full node and the indexer inside the client, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,520",
+				"to": "00:11:55,520"
+			},
+			"offsets": {
+				"from": 712520,
+				"to": 715520
+			},
+			"text": " Like that would allow you to make instant queries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,520",
+				"to": "00:11:58,520"
+			},
+			"offsets": {
+				"from": 715520,
+				"to": 718520
+			},
+			"text": " you would be able to index the chain however you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,520",
+				"to": "00:12:01,520"
+			},
+			"offsets": {
+				"from": 718520,
+				"to": 721520
+			},
+			"text": " and it would delay anymore after you're synced, and then you can simulate transactions, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,520",
+				"to": "00:12:03,520"
+			},
+			"offsets": {
+				"from": 721520,
+				"to": 723520
+			},
+			"text": " That would be amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,520",
+				"to": "00:12:06,520"
+			},
+			"offsets": {
+				"from": 723520,
+				"to": 726520
+			},
+			"text": " And actually, for like the Ethereum OGE here, that's how Myst was working,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,520",
+				"to": "00:12:09,520"
+			},
+			"offsets": {
+				"from": 726520,
+				"to": 729520
+			},
+			"text": " which was the Ethereum browser like five years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,520",
+				"to": "00:12:11,520"
+			},
+			"offsets": {
+				"from": 729520,
+				"to": 731520
+			},
+			"text": " But the thing is full nodes are super expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,520",
+				"to": "00:12:13,520"
+			},
+			"offsets": {
+				"from": 731520,
+				"to": 733520
+			},
+			"text": " They're a coral of bandwidth and storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,520",
+				"to": "00:12:18,520"
+			},
+			"offsets": {
+				"from": 733520,
+				"to": 738520
+			},
+			"text": " They have very expensive cryptographic data structures that are needed in order to serve light clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,520",
+				"to": "00:12:23,520"
+			},
+			"offsets": {
+				"from": 738520,
+				"to": 743520
+			},
+			"text": " So it's pretty much like it's not really practical today to put full nodes in the clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,520",
+				"to": "00:12:29,520"
+			},
+			"offsets": {
+				"from": 743520,
+				"to": 749520
+			},
+			"text": " And so because of that, most dabs today, like if you use DeFi or whatever kind of stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,520",
+				"to": "00:12:33,520"
+			},
+			"offsets": {
+				"from": 749520,
+				"to": 753520
+			},
+			"text": " usually the UX hurting network calls, you have to wait a lot for every single thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,520",
+				"to": "00:12:37,520"
+			},
+			"offsets": {
+				"from": 753520,
+				"to": 757520
+			},
+			"text": " You have to wait for the TX to be mine in order to know what the side effects of what you have done,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,520",
+				"to": "00:12:39,520"
+			},
+			"offsets": {
+				"from": 757520,
+				"to": 759520
+			},
+			"text": " like actually is."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,520",
+				"to": "00:12:42,520"
+			},
+			"offsets": {
+				"from": 759520,
+				"to": 762520
+			},
+			"text": " There are services today like tenderly and stuff that allow you to simulate transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,520",
+				"to": "00:12:44,520"
+			},
+			"offsets": {
+				"from": 762520,
+				"to": 764520
+			},
+			"text": " with the add additional complexity to the code base."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,520",
+				"to": "00:12:47,520"
+			},
+			"offsets": {
+				"from": 764520,
+				"to": 767520
+			},
+			"text": " And more often than not, they need to use remote indexers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,520",
+				"to": "00:12:51,520"
+			},
+			"offsets": {
+				"from": 767520,
+				"to": 771520
+			},
+			"text": " which add yet another like surface of things that can possibly go down in complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,520",
+				"to": "00:12:54,520"
+			},
+			"offsets": {
+				"from": 771520,
+				"to": 774520
+			},
+			"text": " So can we do better?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,520",
+				"to": "00:13:02,520"
+			},
+			"offsets": {
+				"from": 774520,
+				"to": 782520
+			},
+			"text": " Now that we have like slightly better infrastructure than when Web3.js and Ethers.js was invented,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,520",
+				"to": "00:13:05,520"
+			},
+			"offsets": {
+				"from": 782520,
+				"to": 785520
+			},
+			"text": " is there a way to essentially have archaic and needed to?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,520",
+				"to": "00:13:09,520"
+			},
+			"offsets": {
+				"from": 785520,
+				"to": 789520
+			},
+			"text": " The one interesting fact about autonomous worlds or on-chain games"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,520",
+				"to": "00:13:13,520"
+			},
+			"offsets": {
+				"from": 789520,
+				"to": 793520
+			},
+			"text": " is that they're more often than not standalone, unlike traditional dabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,520",
+				"to": "00:13:18,520"
+			},
+			"offsets": {
+				"from": 793520,
+				"to": 798520
+			},
+			"text": " What that means is that the state transition function of an autonomous world"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,520",
+				"to": "00:13:21,520"
+			},
+			"offsets": {
+				"from": 798520,
+				"to": 801520
+			},
+			"text": " almost always only depend on its own state."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,520",
+				"to": "00:13:24,520"
+			},
+			"offsets": {
+				"from": 801520,
+				"to": 804520
+			},
+			"text": " So as an example, when Darkfress was running on X-Dye,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,520",
+				"to": "00:13:27,520"
+			},
+			"offsets": {
+				"from": 804520,
+				"to": 807520
+			},
+			"text": " Darkfress could have run on a chain with nothing else but Darkfress."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,520",
+				"to": "00:13:30,520"
+			},
+			"offsets": {
+				"from": 807520,
+				"to": 810520
+			},
+			"text": " Darkfress didn't care about the other things on X-Dye, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,520",
+				"to": "00:13:36,520"
+			},
+			"offsets": {
+				"from": 810520,
+				"to": 816520
+			},
+			"text": " That's unlike most dabs today, which rely heavily on like a plethora of different services on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,520",
+				"to": "00:13:40,520"
+			},
+			"offsets": {
+				"from": 816520,
+				"to": 820520
+			},
+			"text": " that they connect to, things like Oracle's, things like ERC20 contracts and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,520",
+				"to": "00:13:46,520"
+			},
+			"offsets": {
+				"from": 820520,
+				"to": 826520
+			},
+			"text": " And again, this is unlike as an example, Uniswap, where if you were to want to simulate the transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,520",
+				"to": "00:13:50,520"
+			},
+			"offsets": {
+				"from": 826520,
+				"to": 830520
+			},
+			"text": " of like a Uniswap trade, you would need to know about the other smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,520",
+				"to": "00:13:54,520"
+			},
+			"offsets": {
+				"from": 830520,
+				"to": 834520
+			},
+			"text": " like the ERC20 is on each side of the pool because they could be implemented slightly differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,520",
+				"to": "00:14:00,520"
+			},
+			"offsets": {
+				"from": 834520,
+				"to": 840520
+			},
+			"text": " So one like Montel model for what modus is that it's a namespace full node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,520",
+				"to": "00:14:02,520"
+			},
+			"offsets": {
+				"from": 840520,
+				"to": 842520
+			},
+			"text": " which is why we think this goes like well beyond gaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,520",
+				"to": "00:14:05,520"
+			},
+			"offsets": {
+				"from": 842520,
+				"to": 845520
+			},
+			"text": " It's a way to build actually like better clients than what exists today."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,520",
+				"to": "00:14:09,520"
+			},
+			"offsets": {
+				"from": 845520,
+				"to": 849520
+			},
+			"text": " And the reason we can build a namespace full node is because as I said earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,520",
+				"to": "00:14:11,520"
+			},
+			"offsets": {
+				"from": 849520,
+				"to": 851520
+			},
+			"text": " autonomous worlds are mostly standalone."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,520",
+				"to": "00:14:15,520"
+			},
+			"offsets": {
+				"from": 851520,
+				"to": 855520
+			},
+			"text": " So mud sinks a world, the word contract that Alvarie talked about."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,520",
+				"to": "00:14:17,520"
+			},
+			"offsets": {
+				"from": 855520,
+				"to": 857520
+			},
+			"text": " It's a namespace for data and logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,520",
+				"to": "00:14:20,520"
+			},
+			"offsets": {
+				"from": 857520,
+				"to": 860520
+			},
+			"text": " So data are components and logic are systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,520",
+				"to": "00:14:25,520"
+			},
+			"offsets": {
+				"from": 860520,
+				"to": 865520
+			},
+			"text": " So mud can sink the data of every single component connected to every single entity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,520",
+				"to": "00:14:28,520"
+			},
+			"offsets": {
+				"from": 865520,
+				"to": 868520
+			},
+			"text": " and download the EVM by code of every single system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,520",
+				"to": "00:14:33,520"
+			},
+			"offsets": {
+				"from": 868520,
+				"to": 873520
+			},
+			"text": " And the way it does it is it does its initial saying via a general mod indexer or a full node"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,520",
+				"to": "00:14:38,520"
+			},
+			"offsets": {
+				"from": 873520,
+				"to": 878520
+			},
+			"text": " and it keeps it state up to date via a full node or a mud stream service."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,520",
+				"to": "00:14:41,520"
+			},
+			"offsets": {
+				"from": 878520,
+				"to": 881520
+			},
+			"text": " Mud doesn't need the cryptographic data structures that are usually in a full node"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,520",
+				"to": "00:14:43,520"
+			},
+			"offsets": {
+				"from": 881520,
+				"to": 883520
+			},
+			"text": " because we don't want to serve light clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,520",
+				"to": "00:14:46,520"
+			},
+			"offsets": {
+				"from": 883520,
+				"to": 886520
+			},
+			"text": " We don't want to trust a node remotely, but what we want to be able to do is like give"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,520",
+				"to": "00:14:51,520"
+			},
+			"offsets": {
+				"from": 886520,
+				"to": 891520
+			},
+			"text": " like build extremely snappy applications by having the entire state and logic client side."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,520",
+				"to": "00:14:55,520"
+			},
+			"offsets": {
+				"from": 891520,
+				"to": 895520
+			},
+			"text": " So I think that is interesting with mud is that components are self descriptive."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,520",
+				"to": "00:15:01,520"
+			},
+			"offsets": {
+				"from": 895520,
+				"to": 901520
+			},
+			"text": " Components of on-chain schema that explains how to interpret their actual like row bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,520",
+				"to": "00:15:03,520"
+			},
+			"offsets": {
+				"from": 901520,
+				"to": 903520
+			},
+			"text": " And so the mud client can read the on-chain schema."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,520",
+				"to": "00:15:05,520"
+			},
+			"offsets": {
+				"from": 903520,
+				"to": 905520
+			},
+			"text": " And so compare that to a full node."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,520",
+				"to": "00:15:09,520"
+			},
+			"offsets": {
+				"from": 905520,
+				"to": 909520
+			},
+			"text": " With a full node, you know the actual storage lots of every single contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,520",
+				"to": "00:15:12,520"
+			},
+			"offsets": {
+				"from": 909520,
+				"to": 912520
+			},
+			"text": " but then you just have like 256 bits of like you don't know what that is."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,520",
+				"to": "00:15:16,520"
+			},
+			"offsets": {
+				"from": 912520,
+				"to": 916520
+			},
+			"text": " This is why people write view functions in their contracts in order to be able to like load"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,520",
+				"to": "00:15:18,520"
+			},
+			"offsets": {
+				"from": 916520,
+				"to": 918520
+			},
+			"text": " actually contextual data from those applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,520",
+				"to": "00:15:22,520"
+			},
+			"offsets": {
+				"from": 918520,
+				"to": 922520
+			},
+			"text": " With mud what you get is a key value database of entities mapping to a bunch of components."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,520",
+				"to": "00:15:25,520"
+			},
+			"offsets": {
+				"from": 922520,
+				"to": 925520
+			},
+			"text": " And it doesn't matter who deployed those components."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,520",
+				"to": "00:15:26,520"
+			},
+			"offsets": {
+				"from": 925520,
+				"to": 926520
+			},
+			"text": " The client just knows what they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,520",
+				"to": "00:15:27,520"
+			},
+			"offsets": {
+				"from": 926520,
+				"to": 927520
+			},
+			"text": " It knows what their name is."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,520",
+				"to": "00:15:28,520"
+			},
+			"offsets": {
+				"from": 927520,
+				"to": 928520
+			},
+			"text": " It knows what their structure is."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,520",
+				"to": "00:15:32,520"
+			},
+			"offsets": {
+				"from": 928520,
+				"to": 932520
+			},
+			"text": " So as example when you think like a mud full node, so a mud client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,520",
+				"to": "00:15:38,520"
+			},
+			"offsets": {
+				"from": 932520,
+				"to": 938520
+			},
+			"text": " you would know that the first entity zero x zero has position 1245 and health 200."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,520",
+				"to": "00:15:41,520"
+			},
+			"offsets": {
+				"from": 938520,
+				"to": 941520
+			},
+			"text": " So it's way more contextual than the way full nodes are done today."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,520",
+				"to": "00:15:44,520"
+			},
+			"offsets": {
+				"from": 941520,
+				"to": 944520
+			},
+			"text": " It's because I mean Ethereum is trying to be as general as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,520",
+				"to": "00:15:47,520"
+			},
+			"offsets": {
+				"from": 944520,
+				"to": 947520
+			},
+			"text": " Where I see we impose constraints in order to get features."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,520",
+				"to": "00:15:52,520"
+			},
+			"offsets": {
+				"from": 947520,
+				"to": 952520
+			},
+			"text": " This allows a client to run complex queries on components without any network delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,520",
+				"to": "00:15:56,520"
+			},
+			"offsets": {
+				"from": 952520,
+				"to": 956520
+			},
+			"text": " So you can run aggregated queries like oh give me all the entities that have a position"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,520",
+				"to": "00:15:58,520"
+			},
+			"offsets": {
+				"from": 956520,
+				"to": 958520
+			},
+			"text": " and a health with value 10."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,520",
+				"to": "00:16:01,520"
+			},
+			"offsets": {
+				"from": 958520,
+				"to": 961520
+			},
+			"text": " You can do crazy stuff like aggregates and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,520",
+				"to": "00:16:05,520"
+			},
+			"offsets": {
+				"from": 961520,
+				"to": 965520
+			},
+			"text": " But all of these are executed instantly in like one millisecond on the actual state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,520",
+				"to": "00:16:08,520"
+			},
+			"offsets": {
+				"from": 965520,
+				"to": 968520
+			},
+			"text": " So if you were to rebuild Uniswap with mud today or at least the Uniswap client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,520",
+				"to": "00:16:12,520"
+			},
+			"offsets": {
+				"from": 968520,
+				"to": 972520
+			},
+			"text": " you would be able to move around and do things without any network delay when it syncs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,520",
+				"to": "00:16:16,520"
+			},
+			"offsets": {
+				"from": 972520,
+				"to": 976520
+			},
+			"text": " And don't think the actual SNIT snapshot usually takes like less than a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,520",
+				"to": "00:16:21,520"
+			},
+			"offsets": {
+				"from": 976520,
+				"to": 981520
+			},
+			"text": " So the other thing that is pretty interesting with mud is that it ships with a local EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,520",
+				"to": "00:16:25,520"
+			},
+			"offsets": {
+				"from": 981520,
+				"to": 985520
+			},
+			"text": " So when you make a transaction in mud, that is when you call a system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,520",
+				"to": "00:16:30,520"
+			},
+			"offsets": {
+				"from": 985520,
+				"to": 990520
+			},
+			"text": " what mud does is it runs an EVM on that system given it knows its bytecode"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,520",
+				"to": "00:16:35,520"
+			},
+			"offsets": {
+				"from": 990520,
+				"to": 995520
+			},
+			"text": " and it injects the easiest state when that actual like EVM bytecode needs to read the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,520",
+				"to": "00:16:36,520"
+			},
+			"offsets": {
+				"from": 995520,
+				"to": 996520
+			},
+			"text": " It needs to read the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,520",
+				"to": "00:16:38,520"
+			},
+			"offsets": {
+				"from": 996520,
+				"to": 998520
+			},
+			"text": " It registers all the side effects that happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,520",
+				"to": "00:16:44,520"
+			},
+			"offsets": {
+				"from": 998520,
+				"to": 1004520
+			},
+			"text": " So as an example, if you were to like call the move system on entity one and you say move to x10y-3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,520",
+				"to": "00:16:48,520"
+			},
+			"offsets": {
+				"from": 1004520,
+				"to": 1008520
+			},
+			"text": " mud can run that into an EVM and know that the side effect is that like oh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,520",
+				"to": "00:16:51,520"
+			},
+			"offsets": {
+				"from": 1008520,
+				"to": 1011520
+			},
+			"text": " now the position component of entity 01 is 10-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,520",
+				"to": "00:16:54,520"
+			},
+			"offsets": {
+				"from": 1011520,
+				"to": 1014520
+			},
+			"text": " It also sends a transaction on chain of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,520",
+				"to": "00:16:58,520"
+			},
+			"offsets": {
+				"from": 1014520,
+				"to": 1018520
+			},
+			"text": " And then when the transaction has been mined on chain, it compares the side effects that happen on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,520",
+				"to": "00:16:59,520"
+			},
+			"offsets": {
+				"from": 1018520,
+				"to": 1019520
+			},
+			"text": " with the one that were predicted."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,520",
+				"to": "00:17:01,520"
+			},
+			"offsets": {
+				"from": 1019520,
+				"to": 1021520
+			},
+			"text": " If they match, nothing happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,520",
+				"to": "00:17:05,520"
+			},
+			"offsets": {
+				"from": 1021520,
+				"to": 1025520
+			},
+			"text": " And so from the user's perspective, it seems like the transaction was essentially executed instantly."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,520",
+				"to": "00:17:07,520"
+			},
+			"offsets": {
+				"from": 1025520,
+				"to": 1027520
+			},
+			"text": " Which like gives way better UX."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,520",
+				"to": "00:17:10,520"
+			},
+			"offsets": {
+				"from": 1027520,
+				"to": 1030520
+			},
+			"text": " And when it's not the case, when the prediction fails."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,520",
+				"to": "00:17:17,520"
+			},
+			"offsets": {
+				"from": 1030520,
+				"to": 1037520
+			},
+			"text": " So as an example, if someone else kind of like clash with our state by having their transaction execute before"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,520",
+				"to": "00:17:21,520"
+			},
+			"offsets": {
+				"from": 1037520,
+				"to": 1041520
+			},
+			"text": " ours or if we're behind the tip of the chain, we just revert the side effects and apply the actual ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,520",
+				"to": "00:17:23,520"
+			},
+			"offsets": {
+				"from": 1041520,
+				"to": 1043520
+			},
+			"text": " But that happens quite rarely actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,520",
+				"to": "00:17:25,520"
+			},
+			"offsets": {
+				"from": 1043520,
+				"to": 1045520
+			},
+			"text": " This is how modern MMOs work."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,520",
+				"to": "00:17:27,520"
+			},
+			"offsets": {
+				"from": 1045520,
+				"to": 1047520
+			},
+			"text": " They do prediction and rollbacks all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,520",
+				"to": "00:17:32,520"
+			},
+			"offsets": {
+				"from": 1047520,
+				"to": 1052520
+			},
+			"text": " So yeah, with mud, you can essentially read an index components without network delay, client side."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,520",
+				"to": "00:17:36,520"
+			},
+			"offsets": {
+				"from": 1052520,
+				"to": 1056520
+			},
+			"text": " And you can also simulate transactions without waiting."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,520",
+				"to": "00:17:43,520"
+			},
+			"offsets": {
+				"from": 1056520,
+				"to": 1063520
+			},
+			"text": " And we think that, oh, sorry, we think that this actual like increase in user experience is pretty insane."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,520",
+				"to": "00:17:46,520"
+			},
+			"offsets": {
+				"from": 1063520,
+				"to": 1066520
+			},
+			"text": " We've seen it for games because that's what we're trying to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,520",
+				"to": "00:17:53,520"
+			},
+			"offsets": {
+				"from": 1066520,
+				"to": 1073520
+			},
+			"text": " But I can't wait for someone to be able to defy protocol and mud and make it like the snap-yes swapping protocol ever."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,520",
+				"to": "00:17:59,520"
+			},
+			"offsets": {
+				"from": 1073520,
+				"to": 1079520
+			},
+			"text": " Another thing I'd like to talk about is this concept of extending worlds with mud."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,520",
+				"to": "00:18:06,520"
+			},
+			"offsets": {
+				"from": 1079520,
+				"to": 1086520
+			},
+			"text": " So today with like fully on-chain permission is up things like Uniswap or DocFress,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,520",
+				"to": "00:18:09,520"
+			},
+			"offsets": {
+				"from": 1086520,
+				"to": 1089520
+			},
+			"text": " developers can extend the protocol via new contracts and custom client, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,520",
+				"to": "00:18:11,520"
+			},
+			"offsets": {
+				"from": 1089520,
+				"to": 1091520
+			},
+			"text": " That's the power of those applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,520",
+				"to": "00:18:19,520"
+			},
+			"offsets": {
+				"from": 1091520,
+				"to": 1099520
+			},
+			"text": " So as an example, in Uniswap, you can build an LP kind of like liquidity mining program on top of Uniswap permission."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,520",
+				"to": "00:18:23,520"
+			},
+			"offsets": {
+				"from": 1099520,
+				"to": 1103520
+			},
+			"text": " You don't have to like phone the Uniswap company in New York to ask if you can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,520",
+				"to": "00:18:29,520"
+			},
+			"offsets": {
+				"from": 1103520,
+				"to": 1109520
+			},
+			"text": " Similarly with DocFress, you can create smart contract players or new features."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,520",
+				"to": "00:18:34,520"
+			},
+			"offsets": {
+				"from": 1109520,
+				"to": 1114520
+			},
+			"text": " However, the problem is that developers that do that, they need to ship new clients and indexers when they do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,520",
+				"to": "00:18:40,520"
+			},
+			"offsets": {
+				"from": 1114520,
+				"to": 1120520
+			},
+			"text": " So as an example, if you want to build a yield, sorry, not a yield, a swapping kind of like aggregator that finds the best prices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,520",
+				"to": "00:18:42,520"
+			},
+			"offsets": {
+				"from": 1120520,
+				"to": 1122520
+			},
+			"text": " well, you need to build one inch."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,520",
+				"to": "00:18:44,520"
+			},
+			"offsets": {
+				"from": 1122520,
+				"to": 1124520
+			},
+			"text": " You need to build a new client."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,520",
+				"to": "00:18:46,520"
+			},
+			"offsets": {
+				"from": 1124520,
+				"to": 1126520
+			},
+			"text": " Also, users need to know where those new features are."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,520",
+				"to": "00:18:52,520"
+			},
+			"offsets": {
+				"from": 1126520,
+				"to": 1132520
+			},
+			"text": " They have no idea that someone out there built new contracts and new features for that specific D app."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,520",
+				"to": "00:18:57,520"
+			},
+			"offsets": {
+				"from": 1132520,
+				"to": 1137520
+			},
+			"text": " And that actually creates a clear distinction between first party code and third party code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,520",
+				"to": "00:19:02,520"
+			},
+			"offsets": {
+				"from": 1137520,
+				"to": 1142520
+			},
+			"text": " which in our opinion like greatly hurt like interoperability and like creativity."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,520",
+				"to": "00:19:12,520"
+			},
+			"offsets": {
+				"from": 1142520,
+				"to": 1152520
+			},
+			"text": " So as an example, in DocFress, you can do something like, \"Hey, I'm Team XYZ and I'm going to deploy a thing that marks some planets as rewarding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,520",
+				"to": "00:19:15,520"
+			},
+			"offsets": {
+				"from": 1152520,
+				"to": 1155520
+			},
+			"text": " and if players captures them, they get some ETH.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,520",
+				"to": "00:19:17,520"
+			},
+			"offsets": {
+				"from": 1155520,
+				"to": 1157520
+			},
+			"text": " That's pretty cool, you can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,520",
+				"to": "00:19:20,520"
+			},
+			"offsets": {
+				"from": 1157520,
+				"to": 1160520
+			},
+			"text": " But now, how do users know that this exists?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,520",
+				"to": "00:19:23,520"
+			},
+			"offsets": {
+				"from": 1160520,
+				"to": 1163520
+			},
+			"text": " Like, where are the contracts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,520",
+				"to": "00:19:27,520"
+			},
+			"offsets": {
+				"from": 1163520,
+				"to": 1167520
+			},
+			"text": " Even if you had that information in your client, how does your client know what to do with that data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,520",
+				"to": "00:19:30,520"
+			},
+			"offsets": {
+				"from": 1167520,
+				"to": 1170520
+			},
+			"text": " Does it render a button? Does it trigger a shader?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,520",
+				"to": "00:19:32,520"
+			},
+			"offsets": {
+				"from": 1170520,
+				"to": 1172520
+			},
+			"text": " Similarly, you probably have to rebuild all your indexers from scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,520",
+				"to": "00:19:36,520"
+			},
+			"offsets": {
+				"from": 1172520,
+				"to": 1176520
+			},
+			"text": " So you get a fragmentation essentially between first party code and third party code."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,520",
+				"to": "00:19:39,520"
+			},
+			"offsets": {
+				"from": 1176520,
+				"to": 1179520
+			},
+			"text": " So again, can we do better?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,520",
+				"to": "00:19:43,520"
+			},
+			"offsets": {
+				"from": 1179520,
+				"to": 1183520
+			},
+			"text": " In mud, the central contract is the world contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,520",
+				"to": "00:19:45,520"
+			},
+			"offsets": {
+				"from": 1183520,
+				"to": 1185520
+			},
+			"text": " You know the address of the world contract, you know everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,520",
+				"to": "00:19:49,520"
+			},
+			"offsets": {
+				"from": 1185520,
+				"to": 1189520
+			},
+			"text": " You know about all the components, you know about all the systems, you know about all the entities."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,520",
+				"to": "00:19:53,520"
+			},
+			"offsets": {
+				"from": 1189520,
+				"to": 1193520
+			},
+			"text": " And the thing that is interesting with the world contract is that it actually has no owner."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,520",
+				"to": "00:20:01,520"
+			},
+			"offsets": {
+				"from": 1193520,
+				"to": 1201520
+			},
+			"text": " If you deploy, yeah, so it has no owner, it's permissionless, and so that means there's no difference between first party code and third party code anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,520",
+				"to": "00:20:03,520"
+			},
+			"offsets": {
+				"from": 1201520,
+				"to": 1203520
+			},
+			"text": " Everybody's first party."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,520",
+				"to": "00:20:08,520"
+			},
+			"offsets": {
+				"from": 1203520,
+				"to": 1208520
+			},
+			"text": " So the creators of the world contract, the deployers of that contract, actually, if no special kind of access to it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,520",
+				"to": "00:20:10,520"
+			},
+			"offsets": {
+				"from": 1208520,
+				"to": 1210520
+			},
+			"text": " they're not privileged in any mean."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,520",
+				"to": "00:20:12,520"
+			},
+			"offsets": {
+				"from": 1210520,
+				"to": 1212520
+			},
+			"text": " The world contract is non-gradable."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,520",
+				"to": "00:20:16,520"
+			},
+			"offsets": {
+				"from": 1212520,
+				"to": 1216520
+			},
+			"text": " So the rule is anyone can create components and systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,520",
+				"to": "00:20:21,520"
+			},
+			"offsets": {
+				"from": 1216520,
+				"to": 1221520
+			},
+			"text": " So when Alvarez was talking earlier about the health component, the position component, and the move system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,520",
+				"to": "00:20:25,520"
+			},
+			"offsets": {
+				"from": 1221520,
+				"to": 1225520
+			},
+			"text": " anyone can register those components and those systems on the world itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,520",
+				"to": "00:20:31,520"
+			},
+			"offsets": {
+				"from": 1225520,
+				"to": 1231520
+			},
+			"text": " And when you do that, when you create new components that is like new data or new systems, that is new logic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,520",
+				"to": "00:20:36,520"
+			},
+			"offsets": {
+				"from": 1231520,
+				"to": 1236520
+			},
+			"text": " they're accessible in the client, they're indexed, they can be found in a debugger, and they can be executed in local EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,520",
+				"to": "00:20:43,520"
+			},
+			"offsets": {
+				"from": 1236520,
+				"to": 1243520
+			},
+			"text": " And there's actually no difference between what the core team deployed and what any other people did deploy as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,520",
+				"to": "00:20:49,520"
+			},
+			"offsets": {
+				"from": 1243520,
+				"to": 1249520
+			},
+			"text": " So the only rule is that all systems can read from any components, and those components can be deployed by different teams."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,520",
+				"to": "00:20:56,520"
+			},
+			"offsets": {
+				"from": 1249520,
+				"to": 1256520
+			},
+			"text": " So as an example, you could write a system that runs a query on the world that queries a component deployed by Team XYZ"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,520",
+				"to": "00:21:00,520"
+			},
+			"offsets": {
+				"from": 1256520,
+				"to": 1260520
+			},
+			"text": " and a component deployed by Team TTT, and they can actually aggregate those data together."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,520",
+				"to": "00:21:07,520"
+			},
+			"offsets": {
+				"from": 1260520,
+				"to": 1267520
+			},
+			"text": " The only rule is that components have to whitelist which systems can write to their states. And that's really important because otherwise an attacker could deploy a system"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,520",
+				"to": "00:21:13,520"
+			},
+			"offsets": {
+				"from": 1267520,
+				"to": 1273520
+			},
+			"text": " that just resets everybody's inventories. So the way it looks like is you have this graph of components and systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,520",
+				"to": "00:21:19,520"
+			},
+			"offsets": {
+				"from": 1273520,
+				"to": 1279520
+			},
+			"text": " that kind of like trust each other, but also you have this interesting social phenomenon where users of those applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,520",
+				"to": "00:21:25,520"
+			},
+			"offsets": {
+				"from": 1279520,
+				"to": 1285520
+			},
+			"text": " decide what is real. So if you have two position components that don't match with each other, the users have to decide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,520",
+				"to": "00:21:29,520"
+			},
+			"offsets": {
+				"from": 1285520,
+				"to": 1289520
+			},
+			"text": " okay, do we believe in position one or in position two? And that's already what happens to the only theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,520",
+				"to": "00:21:36,520"
+			},
+			"offsets": {
+				"from": 1289520,
+				"to": 1296520
+			},
+			"text": " If I deploy a new die contract, my die is worthless. So it's all based on essentially what you think is real."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,520",
+				"to": "00:21:42,520"
+			},
+			"offsets": {
+				"from": 1296520,
+				"to": 1302520
+			},
+			"text": " But it is made in like modest, architected in such a way that you never have the problem where you need to create some form like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,520",
+				"to": "00:21:46,520"
+			},
+			"offsets": {
+				"from": 1302520,
+				"to": 1306520
+			},
+			"text": " oh, like we need to like give or upgrade keys to a down in order to let our players upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,520",
+				"to": "00:21:52,520"
+			},
+			"offsets": {
+				"from": 1306520,
+				"to": 1312520
+			},
+			"text": " It's not this can emerge naturally, essentially, from the web of trust of the players themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,520",
+				"to": "00:21:57,520"
+			},
+			"offsets": {
+				"from": 1312520,
+				"to": 1317520
+			},
+			"text": " And this leads us into like an interesting kind of like idea of augmented reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,520",
+				"to": "00:22:06,520"
+			},
+			"offsets": {
+				"from": 1317520,
+				"to": 1326520
+			},
+			"text": " So this is not the augmented reality you know with fancy glasses and hardware. It's more about layering base rules with new interpretations."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,520",
+				"to": "00:22:13,520"
+			},
+			"offsets": {
+				"from": 1326520,
+				"to": 1333520
+			},
+			"text": " So beyond the core components and systems, all players believe in probably the ones that have been deployed by the core team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,520",
+				"to": "00:22:21,520"
+			},
+			"offsets": {
+				"from": 1333520,
+				"to": 1341520
+			},
+			"text": " the low level physics, it is possible for anyone to create augmented reality layers that only a subset of players engage in."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,520",
+				"to": "00:22:25,520"
+			},
+			"offsets": {
+				"from": 1341520,
+				"to": 1345520
+			},
+			"text": " And that permissionlessly. So we're going to illustrate this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,520",
+				"to": "00:22:35,520"
+			},
+			"offsets": {
+				"from": 1345520,
+				"to": 1355520
+			},
+			"text": " Imagine a game, a very simple game, it was deployed by the core team, it has three components, position, moveable and resource."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,520",
+				"to": "00:22:39,520"
+			},
+			"offsets": {
+				"from": 1355520,
+				"to": 1359520
+			},
+			"text": " There's three systems, you can move, you can pick up a resource and you can drop it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,520",
+				"to": "00:22:44,520"
+			},
+			"offsets": {
+				"from": 1359520,
+				"to": 1364520
+			},
+			"text": " And you can see there are three players there, 0x01, 0x07, 0x05, there are little characters riding horses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,520",
+				"to": "00:22:48,520"
+			},
+			"offsets": {
+				"from": 1364520,
+				"to": 1368520
+			},
+			"text": " and you have a bunch of resources on the floor. What players do is they can ferry resources around."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,520",
+				"to": "00:22:52,520"
+			},
+			"offsets": {
+				"from": 1368520,
+				"to": 1372520
+			},
+			"text": " This game doesn't actually have any goal, it's just some rules of physics essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,520",
+				"to": "00:22:58,520"
+			},
+			"offsets": {
+				"from": 1372520,
+				"to": 1378520
+			},
+			"text": " And like as an example, I can call move on my player and I would move my horse from one place to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,520",
+				"to": "00:23:05,520"
+			},
+			"offsets": {
+				"from": 1378520,
+				"to": 1385520
+			},
+			"text": " Now team TTT, team Tic Tic Tac To comes in and they deploy two new components on the world because they can, you know, they don't have to ask anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,520",
+				"to": "00:23:08,520"
+			},
+			"offsets": {
+				"from": 1385520,
+				"to": 1388520
+			},
+			"text": " Those two components are the stake component and the board component."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,520",
+				"to": "00:23:13,520"
+			},
+			"offsets": {
+				"from": 1388520,
+				"to": 1393520
+			},
+			"text": " And they add three systems, challenge, accept challenge and resolve."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,520",
+				"to": "00:23:19,520"
+			},
+			"offsets": {
+				"from": 1393520,
+				"to": 1399520
+			},
+			"text": " Now all clients are aware of those new components and systems, they just don't know what to do with it yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,520",
+				"to": "00:23:28,520"
+			},
+			"offsets": {
+				"from": 1399520,
+				"to": 1408520
+			},
+			"text": " If you open your game at that time, you'll see a little install box, it's like, hey, there is some piece of JavaScript that is linked with those components and systems, do you want to use them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,520",
+				"to": "00:23:35,520"
+			},
+			"offsets": {
+				"from": 1408520,
+				"to": 1415520
+			},
+			"text": " If you do, now you can play a radically different game while still being compatible with the low level rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,520",
+				"to": "00:23:44,520"
+			},
+			"offsets": {
+				"from": 1415520,
+				"to": 1424520
+			},
+			"text": " So as an example, I can take my player, I can move to the goal at 0.03, I can pick it up, move again, and I can come next to that player at 0.07 and call the challenge system on that player."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,520",
+				"to": "00:23:49,520"
+			},
+			"offsets": {
+				"from": 1424520,
+				"to": 1429520
+			},
+			"text": " That challenge system is new, it was deployed by the team Tic Tac To, and I attach one ETH in my transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,520",
+				"to": "00:23:55,520"
+			},
+			"offsets": {
+				"from": 1429520,
+				"to": 1435520
+			},
+			"text": " The other player, if they're aware of that augmented reality layer, can accept the challenge, stake the same amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,520",
+				"to": "00:24:03,520"
+			},
+			"offsets": {
+				"from": 1435520,
+				"to": 1443520
+			},
+			"text": " And now my, like this new system is going to create a new entity, 0.09, because anyone can create entities and attach the stake component and the board component to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,520",
+				"to": "00:24:12,520"
+			},
+			"offsets": {
+				"from": 1443520,
+				"to": 1452520
+			},
+			"text": " So now, for the players that have the actual code that allows them to experience the Tic Tac To augmented reality, they can see a board on the floor, and on the complete Tic Tac To."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,520",
+				"to": "00:24:20,520"
+			},
+			"offsets": {
+				"from": 1452520,
+				"to": 1460520
+			},
+			"text": " They can drop the resources in order to play Tic Tac To, and someone can win, they can call the resolve system and they can take the stake and destroy that entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,520",
+				"to": "00:24:24,520"
+			},
+			"offsets": {
+				"from": 1460520,
+				"to": 1464520
+			},
+			"text": " And you can do that without clashing with the rules that all other players believe in."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,520",
+				"to": "00:24:30,520"
+			},
+			"offsets": {
+				"from": 1464520,
+				"to": 1470520
+			},
+			"text": " So Tic Tac To is just like tennis, like tennis is an augmented reality layer on top of our physics."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,520",
+				"to": "00:24:39,520"
+			},
+			"offsets": {
+				"from": 1470520,
+				"to": 1479520
+			},
+			"text": " So I can drive in my car and look at tennis players, and we're not breaching the rules, like we're all living according to the same rules, but we're just like experiencing the world in different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,520",
+				"to": "00:24:41,520"
+			},
+			"offsets": {
+				"from": 1479520,
+				"to": 1481520
+			},
+			"text": " So it's an augmented reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,520",
+				"to": "00:24:44,520"
+			},
+			"offsets": {
+				"from": 1481520,
+				"to": 1484520
+			},
+			"text": " And from the perspective of other players, they're just like what the hell is going on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,520",
+				"to": "00:24:48,520"
+			},
+			"offsets": {
+				"from": 1484520,
+				"to": 1488520
+			},
+			"text": " Why are people dropping resources on the floor, on the grid?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,520",
+				"to": "00:24:50,520"
+			},
+			"offsets": {
+				"from": 1488520,
+				"to": 1490520
+			},
+			"text": " But they can still coexist together."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,520",
+				"to": "00:24:53,520"
+			},
+			"offsets": {
+				"from": 1490520,
+				"to": 1493520
+			},
+			"text": " So there are a lot of augmented reality out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,520",
+				"to": "00:24:56,520"
+			},
+			"offsets": {
+				"from": 1493520,
+				"to": 1496520
+			},
+			"text": " The main one is capitalism, it was made up."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,520",
+				"to": "00:25:02,520"
+			},
+			"offsets": {
+				"from": 1496520,
+				"to": 1502520
+			},
+			"text": " We all wear the glasses that allows us to see capitalism, but I can interact with an anarchist that doesn't believe in money."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,520",
+				"to": "00:25:09,520"
+			},
+			"offsets": {
+				"from": 1502520,
+				"to": 1509520
+			},
+			"text": " I can go and like have dinner with them, and we won't actually experience the same augmented reality, but we share the same low level rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,520",
+				"to": "00:25:11,520"
+			},
+			"offsets": {
+				"from": 1509520,
+				"to": 1511520
+			},
+			"text": " Competition is also an augmented reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,520",
+				"to": "00:25:16,520"
+			},
+			"offsets": {
+				"from": 1511520,
+				"to": 1516520
+			},
+			"text": " The thing that is interesting with this game is that it has no goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,520",
+				"to": "00:25:24,520"
+			},
+			"offsets": {
+				"from": 1516520,
+				"to": 1524520
+			},
+			"text": " Some people just made a set of interesting rules and resources, but now anyone can come in and essentially puts a competitive layer on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,520",
+				"to": "00:25:26,520"
+			},
+			"offsets": {
+				"from": 1524520,
+				"to": 1526520
+			},
+			"text": " Many games are also augmented reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,520",
+				"to": "00:25:31,520"
+			},
+			"offsets": {
+				"from": 1526520,
+				"to": 1531520
+			},
+			"text": " So for the people here that have played Minecraft, in Minecraft servers, a lot of people build mini games."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,520",
+				"to": "00:25:35,520"
+			},
+			"offsets": {
+				"from": 1531520,
+				"to": 1535520
+			},
+			"text": " You have to break the wall underneath people's feet and fall into lava."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,520",
+				"to": "00:25:37,520"
+			},
+			"offsets": {
+				"from": 1535520,
+				"to": 1537520
+			},
+			"text": " Those mini games actually don't clash with the rules of Minecraft."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,520",
+				"to": "00:25:40,520"
+			},
+			"offsets": {
+				"from": 1537520,
+				"to": 1540520
+			},
+			"text": " They're just like new systems that have been created on top."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,520",
+				"to": "00:25:42,520"
+			},
+			"offsets": {
+				"from": 1540520,
+				"to": 1542520
+			},
+			"text": " And you can do that permissionlessly."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,520",
+				"to": "00:25:45,520"
+			},
+			"offsets": {
+				"from": 1542520,
+				"to": 1545520
+			},
+			"text": " You don't need a governance for the world because the world is onerous."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,520",
+				"to": "00:25:50,520"
+			},
+			"offsets": {
+				"from": 1545520,
+				"to": 1550520
+			},
+			"text": " Anyone can deploy new components and systems and players believe in whatever components the system they care about."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,520",
+				"to": "00:25:57,520"
+			},
+			"offsets": {
+				"from": 1550520,
+				"to": 1557520
+			},
+			"text": " And I'm going to pass it to our friend Kelvin, who is going to drop some more cool stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,520",
+				"to": "00:26:02,520"
+			},
+			"offsets": {
+				"from": 1557520,
+				"to": 1562520
+			},
+			"text": " So you want to build an autonomous world?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,520",
+				"to": "00:26:03,520"
+			},
+			"offsets": {
+				"from": 1562520,
+				"to": 1563520
+			},
+			"text": " Good luck."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,520",
+				"to": "00:26:04,520"
+			},
+			"offsets": {
+				"from": 1563520,
+				"to": 1564520
+			},
+			"text": " Good luck."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,520",
+				"to": "00:26:05,520"
+			},
+			"offsets": {
+				"from": 1564520,
+				"to": 1565520
+			},
+			"text": " Have fun trying."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,520",
+				"to": "00:26:06,520"
+			},
+			"offsets": {
+				"from": 1565520,
+				"to": 1566520
+			},
+			"text": " Just kidding."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,520",
+				"to": "00:26:07,520"
+			},
+			"offsets": {
+				"from": 1566520,
+				"to": 1567520
+			},
+			"text": " Of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,520",
+				"to": "00:26:12,520"
+			},
+			"offsets": {
+				"from": 1567520,
+				"to": 1572520
+			},
+			"text": " I'm going to be talking to you today about the OP stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,520",
+				"to": "00:26:18,520"
+			},
+			"offsets": {
+				"from": 1572520,
+				"to": 1578520
+			},
+			"text": " Technically, we were originally hoping that this talk would be after the other talk about the OP stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,520",
+				"to": "00:26:22,520"
+			},
+			"offsets": {
+				"from": 1578520,
+				"to": 1582520
+			},
+			"text": " So just pretend that you're five hours in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,520",
+				"to": "00:26:29,520"
+			},
+			"offsets": {
+				"from": 1582520,
+				"to": 1589520
+			},
+			"text": " You've watched the other talk and whatever time doesn't matter anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,520",
+				"to": "00:26:34,520"
+			},
+			"offsets": {
+				"from": 1589520,
+				"to": 1594520
+			},
+			"text": " So introducing the OP stack, except Carl has already done it five hours from now."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,520",
+				"to": "00:26:35,520"
+			},
+			"offsets": {
+				"from": 1594520,
+				"to": 1595520
+			},
+			"text": " Kind of."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,520",
+				"to": "00:26:36,520"
+			},
+			"offsets": {
+				"from": 1595520,
+				"to": 1596520
+			},
+			"text": " We still need to write all the docs."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,520",
+				"to": "00:26:40,520"
+			},
+			"offsets": {
+				"from": 1596520,
+				"to": 1600520
+			},
+			"text": " So if you want to use this, you're going to have to dig deep a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,520",
+				"to": "00:26:44,520"
+			},
+			"offsets": {
+				"from": 1600520,
+				"to": 1604520
+			},
+			"text": " You can talk to me afterwards about how you can actually achieve this."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,520",
+				"to": "00:26:45,520"
+			},
+			"offsets": {
+				"from": 1604520,
+				"to": 1605520
+			},
+			"text": " But, all right."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,520",
+				"to": "00:26:55,520"
+			},
+			"offsets": {
+				"from": 1605520,
+				"to": 1615520
+			},
+			"text": " So, using the OP stack, I want to talk to you a little bit about basically how you can achieve this, build your own system today and get really good security guarantees at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,520",
+				"to": "00:26:56,520"
+			},
+			"offsets": {
+				"from": 1615520,
+				"to": 1616520
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,520",
+				"to": "00:26:57,520"
+			},
+			"offsets": {
+				"from": 1616520,
+				"to": 1617520
+			},
+			"text": " So, boom."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,520",
+				"to": "00:26:59,520"
+			},
+			"offsets": {
+				"from": 1617520,
+				"to": 1619520
+			},
+			"text": " What is the OP stack?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,520",
+				"to": "00:27:02,520"
+			},
+			"offsets": {
+				"from": 1619520,
+				"to": 1622520
+			},
+			"text": " Essentially, the OP stack is Roll-Ups Gone Modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,520",
+				"to": "00:27:09,520"
+			},
+			"offsets": {
+				"from": 1622520,
+				"to": 1629520
+			},
+			"text": " Over the last year, we've been designing and building this thing called Bedrock, which is the next major upgrade to optimism."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,520",
+				"to": "00:27:18,520"
+			},
+			"offsets": {
+				"from": 1629520,
+				"to": 1638520
+			},
+			"text": " And while we were doing that, I think we realized that the key part of building a solid Roll-Up client was to make it as modular as you can possibly make it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,520",
+				"to": "00:27:23,520"
+			},
+			"offsets": {
+				"from": 1638520,
+				"to": 1643520
+			},
+			"text": " And we sort of, we'll talk about this a lot in the talk later today, the back-to-back talk that I have with Carl."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,520",
+				"to": "00:27:35,520"
+			},
+			"offsets": {
+				"from": 1643520,
+				"to": 1655520
+			},
+			"text": " But we kind of realized at a certain point that if you really want to maintain one of these things, you can't allow different parts of the system to bleed complexity into other parts of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,520",
+				"to": "00:27:42,520"
+			},
+			"offsets": {
+				"from": 1655520,
+				"to": 1662520
+			},
+			"text": " And the classic example that we saw over the last two years was we separated execution from proving."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,520",
+				"to": "00:27:43,520"
+			},
+			"offsets": {
+				"from": 1662520,
+				"to": 1663520
+			},
+			"text": " This was the big thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,520",
+				"to": "00:27:48,520"
+			},
+			"offsets": {
+				"from": 1663520,
+				"to": 1668520
+			},
+			"text": " This is what basically, optimism's EVM equivalence upgrade, arbitrage, nitro upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:48,520",
+				"to": "00:27:56,520"
+			},
+			"offsets": {
+				"from": 1668520,
+				"to": 1676520
+			},
+			"text": " They all follow the same pattern, which is, let's build the client the way that we want to build the client, and then let's make execution work on top."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,520",
+				"to": "00:28:03,520"
+			},
+			"offsets": {
+				"from": 1676520,
+				"to": 1683520
+			},
+			"text": " So, the end result of all of this, overall this time, is that we've broken up our system into a highly modular system with lots of different pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,520",
+				"to": "00:28:07,520"
+			},
+			"offsets": {
+				"from": 1683520,
+				"to": 1687520
+			},
+			"text": " We think that there's three simple layers that kind of follow what you think."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,520",
+				"to": "00:28:11,520"
+			},
+			"offsets": {
+				"from": 1687520,
+				"to": 1691520
+			},
+			"text": " Oh, there we go. Look, you've seen these things before. Consensus, execution, settlement."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:11,520",
+				"to": "00:28:24,520"
+			},
+			"offsets": {
+				"from": 1691520,
+				"to": 1704520
+			},
+			"text": " You've seen these things before. If you've heard anything about modular blockchains, you kind of have an idea of what the OP stack is all about, except the OP stack is putting this modular theory into practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:24,520",
+				"to": "00:28:32,520"
+			},
+			"offsets": {
+				"from": 1704520,
+				"to": 1712520
+			},
+			"text": " So, the real difference here is it's not just charts on a blog post about, okay, if you plugged in this data availability layer, you get this back-to-back."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:32,520",
+				"to": "00:28:36,520"
+			},
+			"offsets": {
+				"from": 1712520,
+				"to": 1716520
+			},
+			"text": " You get this behavior, and if you plugged in this data availability layer, you get this other behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:36,520",
+				"to": "00:28:43,520"
+			},
+			"offsets": {
+				"from": 1716520,
+				"to": 1723520
+			},
+			"text": " Instead, it's actually concrete components that you can implement, and you can switch out to get the behavior that you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,520",
+				"to": "00:28:56,520"
+			},
+			"offsets": {
+				"from": 1723520,
+				"to": 1736520
+			},
+			"text": " So, I'm going to talk to you about the core concepts, the different components that you can switch out, and sort of what you might do if you wanted to build a game to use these different components and do something really interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,520",
+				"to": "00:29:03,520"
+			},
+			"offsets": {
+				"from": 1736520,
+				"to": 1743520
+			},
+			"text": " So, the first layer that we like to break out of these different, there's obviously the three primary layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,520",
+				"to": "00:29:11,520"
+			},
+			"offsets": {
+				"from": 1743520,
+				"to": 1751520
+			},
+			"text": " Inside of consensus, we think of two sub layers quickly here. We've got what we call data availability and derivation, but I'll start with data availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:11,520",
+				"to": "00:29:15,520"
+			},
+			"offsets": {
+				"from": 1751520,
+				"to": 1755520
+			},
+			"text": " So, you've probably heard about this. You probably have a basic idea of how this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,520",
+				"to": "00:29:18,520"
+			},
+			"offsets": {
+				"from": 1755520,
+				"to": 1758520
+			},
+			"text": " Data availability is where you publish your data, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,520",
+				"to": "00:29:22,520"
+			},
+			"offsets": {
+				"from": 1758520,
+				"to": 1762520
+			},
+			"text": " So, the idea is, well, people don't always want to publish their data to Ethereum. All the roll-ups originally were built under the idea that, okay, we're all going to publish their data to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:22,520",
+				"to": "00:29:43,520"
+			},
+			"offsets": {
+				"from": 1762520,
+				"to": 1783520
+			},
+			"text": " So, let's just build our architecture under that assumption. And so, the OP stack basically says, well, actually, whatever, as long as you kind of have an array of blobs, that's what we call them, they can be blocks if you're Ethereum, they can be blocks if you're Celesia, they can be all sorts of different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,520",
+				"to": "00:29:55,520"
+			},
+			"offsets": {
+				"from": 1783520,
+				"to": 1795520
+			},
+			"text": " But essentially, what you want is an array of things where you can publish data to. And ideally, you have some properties about this data availability layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,520",
+				"to": "00:30:01,520"
+			},
+			"offsets": {
+				"from": 1795520,
+				"to": 1801520
+			},
+			"text": " Ideally, it's somewhat immutable, otherwise, the whole thing is just going to keep reorging itself, and that's going to be really annoying."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:01,520",
+				"to": "00:30:05,520"
+			},
+			"offsets": {
+				"from": 1801520,
+				"to": 1805520
+			},
+			"text": " Ideally, the data is actually available, otherwise, you can't do anything with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,520",
+				"to": "00:30:12,520"
+			},
+			"offsets": {
+				"from": 1805520,
+				"to": 1812520
+			},
+			"text": " So, there's some properties that you want about this. But the nice thing is, the OP stack basically says, well, whatever, you can define any data availability layer, as long as it fails, you can find any data availability layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:12,520",
+				"to": "00:30:20,520"
+			},
+			"offsets": {
+				"from": 1812520,
+				"to": 1820520
+			},
+			"text": " As long as it fits this basic idea that it's an array of byte strings, you can slot it in as your data availability layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:20,520",
+				"to": "00:30:31,520"
+			},
+			"offsets": {
+				"from": 1820520,
+				"to": 1831520
+			},
+			"text": " So, concretely, what can you do with this? I think the easy example is, instead of putting all your data onto Ethereum, you can use something like a data availability committee instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:31,520",
+				"to": "00:30:41,520"
+			},
+			"offsets": {
+				"from": 1831520,
+				"to": 1841520
+			},
+			"text": " Reduce your costs, make your system cheaper. I think this is a really good application for gaming because you basically, you don't need those sort of ridiculously high security guarantees that you do when you're in a system."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,520",
+				"to": "00:30:47,520"
+			},
+			"offsets": {
+				"from": 1841520,
+				"to": 1847520
+			},
+			"text": " You can use these guarantees that you do when you have a basic roll-up, where you're just putting data on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:47,520",
+				"to": "00:31:02,520"
+			},
+			"offsets": {
+				"from": 1847520,
+				"to": 1862520
+			},
+			"text": " The ability to switch this out for a data availability committee or a different data availability layer altogether is really important to get the exact sort of security properties that you want, depending on the amount of value that you actually need to secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:02,520",
+				"to": "00:31:17,520"
+			},
+			"offsets": {
+				"from": 1862520,
+				"to": 1877520
+			},
+			"text": " So, I think that's a good question. Derivation is interesting. I think derivation is one of the coolest parts of the OP stack design, and essentially the idea is that derivation is how you are pulling inputs for your blockchain from the data availability layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:17,520",
+				"to": "00:31:29,520"
+			},
+			"offsets": {
+				"from": 1877520,
+				"to": 1889520
+			},
+			"text": " It's a way of the structure of the data availability layer. It's like, let's say we're putting data on Ethereum. It's a way of the block structure. It's a way of how data is put onto Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:29,520",
+				"to": "00:31:41,520"
+			},
+			"offsets": {
+				"from": 1889520,
+				"to": 1901520
+			},
+			"text": " It parses that data, it pulls it out, and it turns it into inputs to your layer to execution engine. Derivation is really important, and it's, you know, generically, you can understand why this is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:41,520",
+				"to": "00:31:47,520"
+			},
+			"offsets": {
+				"from": 1901520,
+				"to": 1907520
+			},
+			"text": " Let's say we're a roll-up, you know, the same thing that we're doing for unannounced game will be announced soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:47,520",
+				"to": "00:31:59,520"
+			},
+			"offsets": {
+				"from": 1907520,
+				"to": 1919520
+			},
+			"text": " If you're one of these systems, what you do generically is you post data to an address on layer one, and maybe you have deposits and maybe you have some other sort of information, and you transform all of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:59,520",
+				"to": "00:32:10,520"
+			},
+			"offsets": {
+				"from": 1919520,
+				"to": 1930520
+			},
+			"text": " Maybe, you know, if it's data posted to layer one by the sequencer, let's say you decompress all of that data, you transform it into inputs on layer two, and then you're going to execute those inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:10,520",
+				"to": "00:32:18,520"
+			},
+			"offsets": {
+				"from": 1930520,
+				"to": 1938520
+			},
+			"text": " Derivation is really interesting. I think there's a lot of, like, hidden things that you can do inside of here that maybe aren't always obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:18,520",
+				"to": "00:32:29,520"
+			},
+			"offsets": {
+				"from": 1938520,
+				"to": 1949520
+			},
+			"text": " One of the things that I think people can achieve with this is have in-game events or have events on your chain happen when things happen on the layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:29,520",
+				"to": "00:32:36,520"
+			},
+			"offsets": {
+				"from": 1949520,
+				"to": 1956520
+			},
+			"text": " So let's say you want to have an in-game event happen every time there's a Uniswap swap event on layer one over a certain value."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:36,520",
+				"to": "00:32:44,520"
+			},
+			"offsets": {
+				"from": 1956520,
+				"to": 1964520
+			},
+			"text": " What you can literally do is in your derivation function, you can take our derivation function, you can tweak it slightly, and you can say, \"Okay, I'm also going to look for Uniswap swap events.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:32:44,520",
+				"to": "00:32:53,520"
+			},
+			"offsets": {
+				"from": 1964520,
+				"to": 1973520
+			},
+			"text": " And then whenever there's a Uniswap swap event, I'm going to generate a transaction on layer two that makes this thing happen, and the end result is that in my game fireworks go off whatever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:53,520",
+				"to": "00:33:00,520"
+			},
+			"offsets": {
+				"from": 1973520,
+				"to": 1980520
+			},
+			"text": " You can basically modify this however you want to have the state of your layer one define what's going on on your layer two."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:00,520",
+				"to": "00:33:08,520"
+			},
+			"offsets": {
+				"from": 1980520,
+				"to": 1988520
+			},
+			"text": " It doesn't just have to be transactions, you can build amazing things with this, and it can be very, very stateful, so you can do a lot of cool stuff here."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:08,520",
+				"to": "00:33:19,520"
+			},
+			"offsets": {
+				"from": 1988520,
+				"to": 1999520
+			},
+			"text": " Boom, execution. Okay, execution is probably what you think execution is. It's your execution engine on layer two. It's your state transition function."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:19,520",
+				"to": "00:33:29,520"
+			},
+			"offsets": {
+				"from": 1999520,
+				"to": 2009520
+			},
+			"text": " It's the thing that takes the inputs that were generated by the derivation layer, and it takes the current state, and it's going to translate that state into a new state."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:29,520",
+				"to": "00:33:36,520"
+			},
+			"offsets": {
+				"from": 2009520,
+				"to": 2016520
+			},
+			"text": " It's going to take that state to a new state, and that state's going to be used to derive new inputs, and it's going to be, you know, you get it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:36,520",
+				"to": "00:33:44,520"
+			},
+			"offsets": {
+				"from": 2016520,
+				"to": 2024520
+			},
+			"text": " Every time I make a transaction and something happens in my voxel game and the world updates, that's what's happening under the hood and the execution engine."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:44,520",
+				"to": "00:33:49,520"
+			},
+			"offsets": {
+				"from": 2024520,
+				"to": 2029520
+			},
+			"text": " The execution engine in the OP stack lives behind the engine API, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:49,520",
+				"to": "00:33:58,520"
+			},
+			"offsets": {
+				"from": 2029520,
+				"to": 2038520
+			},
+			"text": " So what we decided to do was Ethereum, while it was going to the merge, needed consensus clients, and then needed execution clients, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:58,520",
+				"to": "00:34:07,520"
+			},
+			"offsets": {
+				"from": 2038520,
+				"to": 2047520
+			},
+			"text": " So you need a way to talk between the consensus client and the execution client, and that interface between the two clients is the engine API."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:07,520",
+				"to": "00:34:21,520"
+			},
+			"offsets": {
+				"from": 2047520,
+				"to": 2061520
+			},
+			"text": " So what we did was basically take the same API, and you stick the data availability and the derivation thing, and you separate that from execution by that same exact API, so it looks exactly like Ethereum looks."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:21,520",
+				"to": "00:34:27,520"
+			},
+			"offsets": {
+				"from": 2061520,
+				"to": 2067520
+			},
+			"text": " The nice thing about this is that you can plug in absolutely anything in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:27,520",
+				"to": "00:34:32,520"
+			},
+			"offsets": {
+				"from": 2067520,
+				"to": 2072520
+			},
+			"text": " It doesn't have to be the EVM. You can take the EVM, and maybe you can make some easy tweaks."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:32,520",
+				"to": "00:34:38,520"
+			},
+			"offsets": {
+				"from": 2072520,
+				"to": 2078520
+			},
+			"text": " You can add a new precompile. You can tweak a few opcodes if you really want, and that'll just work really easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:38,520",
+				"to": "00:34:44,520"
+			},
+			"offsets": {
+				"from": 2078520,
+				"to": 2084520
+			},
+			"text": " In Optimism, in Bedrock, we add a new transaction type. We add this deposit transaction type. That's really easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:44,520",
+				"to": "00:34:50,520"
+			},
+			"offsets": {
+				"from": 2084520,
+				"to": 2090520
+			},
+			"text": " But it really can be whatever you want. It could be Bitcoin. It could be a Game Boy."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:50,520",
+				"to": "00:34:57,520"
+			},
+			"offsets": {
+				"from": 2090520,
+				"to": 2097520
+			},
+			"text": " As long as you have a state transition function and you wrap it inside of the engine API, you can do whatever you want, and it should just work."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:57,520",
+				"to": "00:35:11,520"
+			},
+			"offsets": {
+				"from": 2097520,
+				"to": 2111520
+			},
+			"text": " The whole thing should just work. So if you want to build a game, and you want to use the EVM, and you want to add a new precompile, because you have some complicated game state function that's just too expensive to run inside Solidity, then, you know, just modify the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:11,520",
+				"to": "00:35:16,520"
+			},
+			"offsets": {
+				"from": 2111520,
+				"to": 2116520
+			},
+			"text": " You want to run a totally different execution client altogether. You can also do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:16,520",
+				"to": "00:35:26,520"
+			},
+			"offsets": {
+				"from": 2116520,
+				"to": 2126520
+			},
+			"text": " It just sits behind the same API, and all the rest of the stack, all the roll-up stuff, all the transaction stuff, it just keeps working as if you didn't do anything at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:26,520",
+				"to": "00:35:33,520"
+			},
+			"offsets": {
+				"from": 2126520,
+				"to": 2133520
+			},
+			"text": " Then finally, Settlement. Settlement is this weird one. It's a little fake. What does this really mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:33,520",
+				"to": "00:35:41,520"
+			},
+			"offsets": {
+				"from": 2133520,
+				"to": 2141520
+			},
+			"text": " I like to say that Settlement is about establishing a view of your system on some other system. It's all about making claims."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:41,520",
+				"to": "00:35:47,520"
+			},
+			"offsets": {
+				"from": 2141520,
+				"to": 2147520
+			},
+			"text": " I'm making a claim about the state of my system onto another system. Settlement is really useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:47,520",
+				"to": "00:35:52,520"
+			},
+			"offsets": {
+				"from": 2147520,
+				"to": 2152520
+			},
+			"text": " Obviously, in traditional roll-up, Settlement is really useful if you want to do withdrawals."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:52,520",
+				"to": "00:36:02,520"
+			},
+			"offsets": {
+				"from": 2152520,
+				"to": 2162520
+			},
+			"text": " If you want to be able to move funds out of your roll-up onto, let's say, layer one, you need to be able to settle the state of layer two onto layer one so that I can say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:02,520",
+				"to": "00:36:10,520"
+			},
+			"offsets": {
+				"from": 2162520,
+				"to": 2170520
+			},
+			"text": " \"Okay, that is the true state of layer two. Let me pull it out. Let me operate on it, and maybe I'll give you a withdrawal as a result.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:36:10,520",
+				"to": "00:36:13,520"
+			},
+			"offsets": {
+				"from": 2170520,
+				"to": 2173520
+			},
+			"text": " But the thing is you can do a lot of really interesting things with Settlement."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:13,520",
+				"to": "00:36:17,520"
+			},
+			"offsets": {
+				"from": 2173520,
+				"to": 2177520
+			},
+			"text": " You don't just have to make claims about, let's say, the total state of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:17,520",
+				"to": "00:36:25,520"
+			},
+			"offsets": {
+				"from": 2177520,
+				"to": 2185520
+			},
+			"text": " I think a really interesting way to think about Settlement for Gaming is that you can have a short-lived chain that plays some game."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:25,520",
+				"to": "00:36:31,520"
+			},
+			"offsets": {
+				"from": 2185520,
+				"to": 2191520
+			},
+			"text": " Let's say we all want to play a chess tournament, right? We can play a short-lived game, and then at the end of the game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:31,520",
+				"to": "00:36:38,520"
+			},
+			"offsets": {
+				"from": 2191520,
+				"to": 2198520
+			},
+			"text": " we can all, you know, we see who wins the whole tournament, and we can make a claim, and we can say, \"Kelvin won the whole tournament.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:36:38,520",
+				"to": "00:36:47,520"
+			},
+			"offsets": {
+				"from": 2198520,
+				"to": 2207520
+			},
+			"text": " That's the claim that I'm settling. Then you can have this generic proof system that will just prove arbitrary claims about the state of your layer two."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:47,520",
+				"to": "00:36:54,520"
+			},
+			"offsets": {
+				"from": 2207520,
+				"to": 2214520
+			},
+			"text": " You can prove this idea that, \"Okay, Kelvin won.\" Then we can resolve that winner back to layer one, and we can pay that person out."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:54,520",
+				"to": "00:36:57,520"
+			},
+			"offsets": {
+				"from": 2214520,
+				"to": 2217520
+			},
+			"text": " Then we can throw the chain away because we don't need it anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:57,520",
+				"to": "00:37:04,520"
+			},
+			"offsets": {
+				"from": 2217520,
+				"to": 2224520
+			},
+			"text": " But the short-lived verifiable system, right, this game that we know that the whole thing ran as it should have ran,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:04,520",
+				"to": "00:37:10,520"
+			},
+			"offsets": {
+				"from": 2224520,
+				"to": 2230520
+			},
+			"text": " there's no weird state coming out of it. We prove that back to the base layer, and then we can throw the whole chain away,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:10,520",
+				"to": "00:37:15,520"
+			},
+			"offsets": {
+				"from": 2230520,
+				"to": 2235520
+			},
+			"text": " and we don't have to worry about storing it. So, for short-lived, you know, high-capacity games,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:15,520",
+				"to": "00:37:21,520"
+			},
+			"offsets": {
+				"from": 2235520,
+				"to": 2241520
+			},
+			"text": " you can really bump up the gas limit, you can do crazy stuff because you're not worried about state bloating to infinity."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:21,520",
+				"to": "00:37:27,520"
+			},
+			"offsets": {
+				"from": 2241520,
+				"to": 2247520
+			},
+			"text": " Then you can just settle any sort of information about the state of your layer two back to layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:27,520",
+				"to": "00:37:37,520"
+			},
+			"offsets": {
+				"from": 2247520,
+				"to": 2257520
+			},
+			"text": " No sequencer, no problem, actually, currently a very big problem, but this is just an idea of basically where we imagine this system going in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:37,520",
+				"to": "00:37:44,520"
+			},
+			"offsets": {
+				"from": 2257520,
+				"to": 2264520
+			},
+			"text": " because there's a big issue, which is that every single time I talk about this idea, somebody comes up to me and they ask me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:44,520",
+				"to": "00:37:50,520"
+			},
+			"offsets": {
+				"from": 2264520,
+				"to": 2270520
+			},
+			"text": " \"Doesn't that mean you still have to run all this sequencing infrastructure?\" The reality right now is, \"Yes.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:37:50,520",
+				"to": "00:37:56,520"
+			},
+			"offsets": {
+				"from": 2270520,
+				"to": 2276520
+			},
+			"text": " But we want to get to a future where the answer is no, right, because most people don't really want to run this infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:56,520",
+				"to": "00:38:02,520"
+			},
+			"offsets": {
+				"from": 2276520,
+				"to": 2282520
+			},
+			"text": " You want to focus on building a game, especially let's say you just want to build something small, you want to run it for a couple of days,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:02,520",
+				"to": "00:38:10,520"
+			},
+			"offsets": {
+				"from": 2282520,
+				"to": 2290520
+			},
+			"text": " you want to put it up there. The reality is, if you're, you know, I'm sure that the average person does not want to deal with the level of stuff that we have to deal with"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:10,520",
+				"to": "00:38:16,520"
+			},
+			"offsets": {
+				"from": 2290520,
+				"to": 2296520
+			},
+			"text": " at optimism to keep the sequencer running. So, we have this concept that we're exploring called shared sequencing."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:16,520",
+				"to": "00:38:23,520"
+			},
+			"offsets": {
+				"from": 2296520,
+				"to": 2303520
+			},
+			"text": " Basically, shared sequencing is taking all the headache of running your own sequencer, and it's deleting all of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:23,520",
+				"to": "00:38:29,520"
+			},
+			"offsets": {
+				"from": 2303520,
+				"to": 2309520
+			},
+			"text": " And the basic idea is that all of these different autonomous worlds can share a single sequencer."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:29,520",
+				"to": "00:38:34,520"
+			},
+			"offsets": {
+				"from": 2309520,
+				"to": 2314520
+			},
+			"text": " And, of course, when I talk about this as a single sequencer, you can see there's multiple machines there."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:34,520",
+				"to": "00:38:41,520"
+			},
+			"offsets": {
+				"from": 2314520,
+				"to": 2321520
+			},
+			"text": " I'd like to think about the sequencer as sort of a single logical entity, but in the future, what's going to happen is you're going to get decentralized sequencing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:41,520",
+				"to": "00:38:46,520"
+			},
+			"offsets": {
+				"from": 2321520,
+				"to": 2326520
+			},
+			"text": " you're going to have something that looks like a leader election, where at any given time slot there's a specific sequencer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:46,520",
+				"to": "00:38:52,520"
+			},
+			"offsets": {
+				"from": 2326520,
+				"to": 2332520
+			},
+			"text": " and that sequencer is sequencing your roll-up, and then there's the next time slot, and the next sequencer comes in."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:52,520",
+				"to": "00:39:02,520"
+			},
+			"offsets": {
+				"from": 2332520,
+				"to": 2342520
+			},
+			"text": " So, the thing with this is you can do something really, really interesting. If you have one sequencer sequencing all of these different chains at the same time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:02,520",
+				"to": "00:39:09,520"
+			},
+			"offsets": {
+				"from": 2342520,
+				"to": 2349520
+			},
+			"text": " instead of having multiple different chains that are talking to each other, the problem today is if I have, let's say I'm a theorem and I have cosmos,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:09,520",
+				"to": "00:39:14,520"
+			},
+			"offsets": {
+				"from": 2349520,
+				"to": 2354520
+			},
+			"text": " right now, I want to sort of, I want to interact between a cosmos chain from a theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:14,520",
+				"to": "00:39:21,520"
+			},
+			"offsets": {
+				"from": 2354520,
+				"to": 2361520
+			},
+			"text": " They don't share a validator set, which means that my communication inherently has to be asynchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:21,520",
+				"to": "00:39:26,520"
+			},
+			"offsets": {
+				"from": 2361520,
+				"to": 2366520
+			},
+			"text": " But if you have a single sequencer producing the blocks on many different autonomous chains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:26,520",
+				"to": "00:39:34,520"
+			},
+			"offsets": {
+				"from": 2366520,
+				"to": 2374520
+			},
+			"text": " as autonomous worlds at the same time, you can get this amazing property of atomic composability between all these different chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:34,520",
+				"to": "00:39:41,520"
+			},
+			"offsets": {
+				"from": 2374520,
+				"to": 2381520
+			},
+			"text": " You basically have a single sequencer saying, okay, there's a transaction coming in on chain A, and there's a transaction coming in on chain B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:41,520",
+				"to": "00:39:47,520"
+			},
+			"offsets": {
+				"from": 2381520,
+				"to": 2387520
+			},
+			"text": " and I'm supposed to guarantee that they can come in atomically, and I can do that because I sequence all the chains at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:47,520",
+				"to": "00:39:52,520"
+			},
+			"offsets": {
+				"from": 2387520,
+				"to": 2392520
+			},
+			"text": " So now you have different games, different worlds, different realities that can interact with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:52,520",
+				"to": "00:39:59,520"
+			},
+			"offsets": {
+				"from": 2392520,
+				"to": 2399520
+			},
+			"text": " They're their own states, right? The validation is separated. None of the validity of one of these chains depends on the validity of the other chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:59,520",
+				"to": "00:40:04,520"
+			},
+			"offsets": {
+				"from": 2399520,
+				"to": 2404520
+			},
+			"text": " But they can talk to each other as if they're on one unified chain. That's crazy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:04,520",
+				"to": "00:40:15,520"
+			},
+			"offsets": {
+				"from": 2404520,
+				"to": 2415520
+			},
+			"text": " Now you can have an action in one game, all of a sudden create some simultaneous action in another world at the same exact time if those two worlds want to talk to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:15,520",
+				"to": "00:40:20,520"
+			},
+			"offsets": {
+				"from": 2415520,
+				"to": 2420520
+			},
+			"text": " So this is part of something that optimism is playing with, that we're calling the super chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:20,520",
+				"to": "00:40:24,520"
+			},
+			"offsets": {
+				"from": 2420520,
+				"to": 2424520
+			},
+			"text": " We think that this extends a little bit more than just it shared infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:24,520",
+				"to": "00:40:34,520"
+			},
+			"offsets": {
+				"from": 2424520,
+				"to": 2434520
+			},
+			"text": " I think that the incentive here is not just to share infrastructure, it's to share code, it's to share a set of values, it's to basically collaborate on having all of these different games and all these different worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:34,520",
+				"to": "00:40:37,520"
+			},
+			"offsets": {
+				"from": 2434520,
+				"to": 2437520
+			},
+			"text": " Maybe it's not games, maybe it's entirely different roll-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:37,520",
+				"to": "00:40:53,520"
+			},
+			"offsets": {
+				"from": 2437520,
+				"to": 2453520
+			},
+			"text": " But they basically, I think we think that there's a strong incentive for these systems to not just be able to transact atomically, but to really be able to collaborate with one another towards some coherent vision because you're much better joining in on this system"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:53,520",
+				"to": "00:41:03,520"
+			},
+			"offsets": {
+				"from": 2453520,
+				"to": 2463520
+			},
+			"text": " than you are trying to build your own chain separately with your own sequencer set and you have to run all the infrastructure and you don't get to talk atomically with the rest of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:03,520",
+				"to": "00:41:06,520"
+			},
+			"offsets": {
+				"from": 2463520,
+				"to": 2466520
+			},
+			"text": " So long live the super chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:06,520",
+				"to": "00:41:10,520"
+			},
+			"offsets": {
+				"from": 2466520,
+				"to": 2470520
+			},
+			"text": " I would highly recommend if you're interested in this, how this might work in more detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:10,520",
+				"to": "00:41:17,520"
+			},
+			"offsets": {
+				"from": 2470520,
+				"to": 2477520
+			},
+			"text": " Come to the back-to-back talk with Carl and me later this afternoon, we'll go into much more detail about how all this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:17,520",
+				"to": "00:41:18,520"
+			},
+			"offsets": {
+				"from": 2477520,
+				"to": 2478520
+			},
+			"text": " All right, where are we?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:18,520",
+				"to": "00:41:22,520"
+			},
+			"offsets": {
+				"from": 2478520,
+				"to": 2482520
+			},
+			"text": " All right, so the other question I get is why make it free and open source, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:22,520",
+				"to": "00:41:28,520"
+			},
+			"offsets": {
+				"from": 2482520,
+				"to": 2488520
+			},
+			"text": " So, I think that there's a lot of people who aren't you basically just letting people compete with optimism and build their own roll-up."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:28,520",
+				"to": "00:41:31,520"
+			},
+			"offsets": {
+				"from": 2488520,
+				"to": 2491520
+			},
+			"text": " And the answer is like, kind of, yeah, right, this is the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:31,520",
+				"to": "00:41:37,520"
+			},
+			"offsets": {
+				"from": 2491520,
+				"to": 2497520
+			},
+			"text": " And basically the argument is that the reason we have to do this is because there's just no other way to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:37,520",
+				"to": "00:41:45,520"
+			},
+			"offsets": {
+				"from": 2497520,
+				"to": 2505520
+			},
+			"text": " We need, we think that there's going to be this explosion of people who are interested in building layer 2s, interested in building layer 3s, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:45,520",
+				"to": "00:41:52,520"
+			},
+			"offsets": {
+				"from": 2505520,
+				"to": 2512520
+			},
+			"text": " And we're going to be seeing all these, you know, big L1 systems come in and they're experimenting on the execution layer, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:52,520",
+				"to": "00:41:55,520"
+			},
+			"offsets": {
+				"from": 2512520,
+				"to": 2515520
+			},
+			"text": " They're competing with Ethereum on the execution layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:55,520",
+				"to": "00:41:59,520"
+			},
+			"offsets": {
+				"from": 2515520,
+				"to": 2519520
+			},
+			"text": " They're saying we're going to build a parallelized VM and that's our advantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:59,520",
+				"to": "00:42:04,520"
+			},
+			"offsets": {
+				"from": 2519520,
+				"to": 2524520
+			},
+			"text": " And if you really want to survive, you're going to need to be able to compete on this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:04,520",
+				"to": "00:42:12,520"
+			},
+			"offsets": {
+				"from": 2524520,
+				"to": 2532520
+			},
+			"text": " And we think you're going to need to be able to compete on this stuff without having to have 25 engineers work on this problem like three years, like, for three years like we did."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:12,520",
+				"to": "00:42:18,520"
+			},
+			"offsets": {
+				"from": 2532520,
+				"to": 2538520
+			},
+			"text": " And instead, you're going to want the ability to have three engineers figure out how to do this in three months and start a business out of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:18,520",
+				"to": "00:42:20,520"
+			},
+			"offsets": {
+				"from": 2538520,
+				"to": 2540520
+			},
+			"text": " So this is basically the argument."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:20,520",
+				"to": "00:42:32,520"
+			},
+			"offsets": {
+				"from": 2540520,
+				"to": 2552520
+			},
+			"text": " If you want to really make it possible for Ethereum to continue to compete and for people to experiment on the execution layer, experiment on the derivation layer, experiment on all these different layers, it just has to be available, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:32,520",
+				"to": "00:42:35,520"
+			},
+			"offsets": {
+				"from": 2552520,
+				"to": 2555520
+			},
+			"text": " If there's not a permissive license on it, you can't use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:35,520",
+				"to": "00:42:42,520"
+			},
+			"offsets": {
+				"from": 2555520,
+				"to": 2562520
+			},
+			"text": " If it's not modular enough, if it's too hectic to try to hack in your modifications to the execution layer, you can't use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:42,520",
+				"to": "00:42:52,520"
+			},
+			"offsets": {
+				"from": 2562520,
+				"to": 2572520
+			},
+			"text": " So the goal is just make it as available as possible so that Ethereum can continue to compete on every single layer of the stack, but you can still stay within the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:52,520",
+				"to": "00:42:54,520"
+			},
+			"offsets": {
+				"from": 2572520,
+				"to": 2574520
+			},
+			"text": " And this is us today."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:54,520",
+				"to": "00:42:55,520"
+			},
+			"offsets": {
+				"from": 2574520,
+				"to": 2575520
+			},
+			"text": " This is where we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:55,520",
+				"to": "00:42:56,520"
+			},
+			"offsets": {
+				"from": 2575520,
+				"to": 2576520
+			},
+			"text": " We got Laddis."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:56,520",
+				"to": "00:42:58,520"
+			},
+			"offsets": {
+				"from": 2576520,
+				"to": 2578520
+			},
+			"text": " We got a couple other people."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:58,520",
+				"to": "00:43:00,520"
+			},
+			"offsets": {
+				"from": 2578520,
+				"to": 2580520
+			},
+			"text": " And this is the world that we're imagining, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:00,520",
+				"to": "00:43:07,520"
+			},
+			"offsets": {
+				"from": 2580520,
+				"to": 2587520
+			},
+			"text": " We're imagining that basically everybody is building on a system like this and they're collaborating and they're working on a shared infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:07,520",
+				"to": "00:43:11,520"
+			},
+			"offsets": {
+				"from": 2587520,
+				"to": 2591520
+			},
+			"text": " And by working on a shared infrastructure, you share audits, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:11,520",
+				"to": "00:43:13,520"
+			},
+			"offsets": {
+				"from": 2591520,
+				"to": 2593520
+			},
+			"text": " You can share engineering time."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:13,520",
+				"to": "00:43:22,520"
+			},
+			"offsets": {
+				"from": 2593520,
+				"to": 2602520
+			},
+			"text": " It basically takes you a hundred times less effort to build a hundred companies instead of having every single company fragment and build their own system."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:22,520",
+				"to": "00:43:29,520"
+			},
+			"offsets": {
+				"from": 2602520,
+				"to": 2609520
+			},
+			"text": " You basically have all the freedom in the world without actually worrying about the low level technical details about how are you going to publish transactions to layer one in the world?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:29,520",
+				"to": "00:43:31,520"
+			},
+			"offsets": {
+				"from": 2609520,
+				"to": 2611520
+			},
+			"text": " And how are you going to make the proof work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:31,520",
+				"to": "00:43:33,520"
+			},
+			"offsets": {
+				"from": 2611520,
+				"to": 2613520
+			},
+			"text": " Because all that stuff is extraordinarily complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:33,520",
+				"to": "00:43:40,520"
+			},
+			"offsets": {
+				"from": 2613520,
+				"to": 2620520
+			},
+			"text": " There's no reason why every single person who wants to build one of these chains should have to basically build it from scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:40,520",
+				"to": "00:43:41,520"
+			},
+			"offsets": {
+				"from": 2620520,
+				"to": 2621520
+			},
+			"text": " Doesn't make any sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:41,520",
+				"to": "00:43:42,520"
+			},
+			"offsets": {
+				"from": 2621520,
+				"to": 2622520
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:42,520",
+				"to": "00:43:44,520"
+			},
+			"offsets": {
+				"from": 2622520,
+				"to": 2624520
+			},
+			"text": " So some closing remarks here."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:44,520",
+				"to": "00:43:46,520"
+			},
+			"offsets": {
+				"from": 2624520,
+				"to": 2626520
+			},
+			"text": " Basically, go nuts, build something crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:46,520",
+				"to": "00:43:49,520"
+			},
+			"offsets": {
+				"from": 2626520,
+				"to": 2629520
+			},
+			"text": " You can do so much with this architecture, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:49,520",
+				"to": "00:43:52,520"
+			},
+			"offsets": {
+				"from": 2629520,
+				"to": 2632520
+			},
+			"text": " You can swap out the data availability layer, make your chain cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:52,520",
+				"to": "00:43:55,520"
+			},
+			"offsets": {
+				"from": 2632520,
+				"to": 2635520
+			},
+			"text": " You can swap out the execution layer, build an entirely on chain game."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:55,520",
+				"to": "00:43:59,520"
+			},
+			"offsets": {
+				"from": 2635520,
+				"to": 2639520
+			},
+			"text": " You can literally take an emulator of some system."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:59,520",
+				"to": "00:44:05,520"
+			},
+			"offsets": {
+				"from": 2639520,
+				"to": 2645520
+			},
+			"text": " You can put it into the execution layer and you can even prove that the whole emulator functioned properly."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:05,520",
+				"to": "00:44:07,520"
+			},
+			"offsets": {
+				"from": 2645520,
+				"to": 2647520
+			},
+			"text": " You can do an enormous amount of stuff with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:07,520",
+				"to": "00:44:12,520"
+			},
+			"offsets": {
+				"from": 2647520,
+				"to": 2652520
+			},
+			"text": " And the nice thing is you don't have to worry about how are you going to go build the sequencer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:12,520",
+				"to": "00:44:15,520"
+			},
+			"offsets": {
+				"from": 2652520,
+				"to": 2655520
+			},
+			"text": " How are you going to go build the proof and all these different things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:15,520",
+				"to": "00:44:17,520"
+			},
+			"offsets": {
+				"from": 2655520,
+				"to": 2657520
+			},
+			"text": " You basically get all that for free."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:17,520",
+				"to": "00:44:19,520"
+			},
+			"offsets": {
+				"from": 2657520,
+				"to": 2659520
+			},
+			"text": " So that's the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:19,520",
+				"to": "00:44:20,520"
+			},
+			"offsets": {
+				"from": 2659520,
+				"to": 2660520
+			},
+			"text": " Where are we?"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:20,520",
+				"to": "00:44:21,520"
+			},
+			"offsets": {
+				"from": 2660520,
+				"to": 2661520
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:21,520",
+				"to": "00:44:22,520"
+			},
+			"offsets": {
+				"from": 2661520,
+				"to": 2662520
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:22,520",
+				"to": "00:44:26,520"
+			},
+			"offsets": {
+				"from": 2662520,
+				"to": 2666520
+			},
+			"text": " Thanks for coming to my TED Talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:26,520",
+				"to": "00:44:28,520"
+			},
+			"offsets": {
+				"from": 2666520,
+				"to": 2668520
+			},
+			"text": " Where are we right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:28,520",
+				"to": "00:44:30,520"
+			},
+			"offsets": {
+				"from": 2668520,
+				"to": 2670520
+			},
+			"text": " So the code is all there."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:30,520",
+				"to": "00:44:32,520"
+			},
+			"offsets": {
+				"from": 2670520,
+				"to": 2672520
+			},
+			"text": " It's possible to hack on this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:32,520",
+				"to": "00:44:37,520"
+			},
+			"offsets": {
+				"from": 2672520,
+				"to": 2677520
+			},
+			"text": " The real of the next goal is to take all these modules and make really, really clean documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:37,520",
+				"to": "00:44:41,520"
+			},
+			"offsets": {
+				"from": 2677520,
+				"to": 2681520
+			},
+			"text": " So it's clear what you have to change, where you have to change it to make all this possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:41,520",
+				"to": "00:44:50,520"
+			},
+			"offsets": {
+				"from": 2681520,
+				"to": 2690520
+			},
+			"text": " If you go in today, Lattice has been extraordinarily brave to go in and basically hack this system together and really make it work."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:50,520",
+				"to": "00:44:53,520"
+			},
+			"offsets": {
+				"from": 2690520,
+				"to": 2693520
+			},
+			"text": " And we've seen other people do it as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:53,520",
+				"to": "00:44:57,520"
+			},
+			"offsets": {
+				"from": 2693520,
+				"to": 2697520
+			},
+			"text": " If you're interested in doing this, come talk to me later and I can give you pointers."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:57,520",
+				"to": "00:45:00,520"
+			},
+			"offsets": {
+				"from": 2697520,
+				"to": 2700520
+			},
+			"text": " But the goal is, right now it's still a little early."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:00,520",
+				"to": "00:45:04,520"
+			},
+			"offsets": {
+				"from": 2700520,
+				"to": 2704520
+			},
+			"text": " We're looking for people to come in, help us figure out where the APIs aren't clean enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:04,520",
+				"to": "00:45:07,520"
+			},
+			"offsets": {
+				"from": 2704520,
+				"to": 2707520
+			},
+			"text": " Help us figure out where the documentation isn't clean enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:07,520",
+				"to": "00:45:13,520"
+			},
+			"offsets": {
+				"from": 2707520,
+				"to": 2713520
+			},
+			"text": " If you know what you're doing and you're really interested in hacking on something new, come find me."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:13,520",
+				"to": "00:45:16,520"
+			},
+			"offsets": {
+				"from": 2713520,
+				"to": 2716520
+			},
+			"text": " And I will try to help you get started with this whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:16,520",
+				"to": "00:45:25,520"
+			},
+			"offsets": {
+				"from": 2716520,
+				"to": 2725520
+			},
+			"text": " And the goal is make this accessible to the average person who just doesn't want to deeply understand how this whole architecture works."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:25,520",
+				"to": "00:45:26,520"
+			},
+			"offsets": {
+				"from": 2725520,
+				"to": 2726520
+			},
+			"text": " So that's me."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:26,520",
+				"to": "00:45:29,520"
+			},
+			"offsets": {
+				"from": 2726520,
+				"to": 2729520
+			},
+			"text": " I'm going to hand it off now."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:29,520",
+				"to": "00:45:30,520"
+			},
+			"offsets": {
+				"from": 2729520,
+				"to": 2730520
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:30,520",
+				"to": "00:45:31,520"
+			},
+			"offsets": {
+				"from": 2730520,
+				"to": 2731520
+			},
+			"text": " All right, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:31,520",
+				"to": "00:45:33,520"
+			},
+			"offsets": {
+				"from": 2731520,
+				"to": 2733520
+			},
+			"text": " Three minutes left."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:33,520",
+				"to": "00:45:35,520"
+			},
+			"offsets": {
+				"from": 2733520,
+				"to": 2735520
+			},
+			"text": " Announcement time."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:35,520",
+				"to": "00:45:36,520"
+			},
+			"offsets": {
+				"from": 2735520,
+				"to": 2736520
+			},
+			"text": " Announcement time."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:36,520",
+				"to": "00:45:45,520"
+			},
+			"offsets": {
+				"from": 2736520,
+				"to": 2745520
+			},
+			"text": " So just like the OP stack is meant to like essentially increase pluralism by making something free and open source and easy to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:45,520",
+				"to": "00:45:47,520"
+			},
+			"offsets": {
+				"from": 2745520,
+				"to": 2747520
+			},
+			"text": " We kind of did the same thing with MUD."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:47,520",
+				"to": "00:45:48,520"
+			},
+			"offsets": {
+				"from": 2747520,
+				"to": 2748520
+			},
+			"text": " MUD is MIT licensed."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:48,520",
+				"to": "00:45:49,520"
+			},
+			"offsets": {
+				"from": 2748520,
+				"to": 2749520
+			},
+			"text": " It's soft launch today."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:49,520",
+				"to": "00:46:01,520"
+			},
+			"offsets": {
+				"from": 2749520,
+				"to": 2761520
+			},
+			"text": " And to kind of like pave the way forward, Ladd is an optimism I've been working together over the last month and a half on an autonomous world that was built on MUD and runs on the OP stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:01,520",
+				"to": "00:46:06,520"
+			},
+			"offsets": {
+				"from": 2761520,
+				"to": 2766520
+			},
+			"text": " So we're like pretty excited to show OP craft to everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:06,520",
+				"to": "00:46:13,520"
+			},
+			"offsets": {
+				"from": 2766520,
+				"to": 2773520
+			},
+			"text": " It's a 3D voxel game, poured by MUD running on a crazy to generate OP chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:13,520",
+				"to": "00:46:14,520"
+			},
+			"offsets": {
+				"from": 2773520,
+				"to": 2774520
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:14,520",
+				"to": "00:46:16,520"
+			},
+			"offsets": {
+				"from": 2774520,
+				"to": 2776520
+			},
+			"text": " I even have a video."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:16,520",
+				"to": "00:46:19,520"
+			},
+			"offsets": {
+				"from": 2776520,
+				"to": 2779520
+			},
+			"text": " Well, I won't see if it plays, but Alvar is in I yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:19,520",
+				"to": "00:46:21,520"
+			},
+			"offsets": {
+				"from": 2779520,
+				"to": 2781520
+			},
+			"text": " We're trying to build the house."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:21,520",
+				"to": "00:46:25,520"
+			},
+			"offsets": {
+				"from": 2781520,
+				"to": 2785520
+			},
+			"text": " So yeah, that's that's that's running on devium guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:25,520",
+				"to": "00:46:28,520"
+			},
+			"offsets": {
+				"from": 2785520,
+				"to": 2788520
+			},
+			"text": " It's it's procedurally generated world."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:28,520",
+				"to": "00:46:31,520"
+			},
+			"offsets": {
+				"from": 2788520,
+				"to": 2791520
+			},
+			"text": " I can't wait to see what people will do with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:31,520",
+				"to": "00:46:38,520"
+			},
+			"offsets": {
+				"from": 2791520,
+				"to": 2798520
+			},
+			"text": " You can deploy marketplaces or calls, extended, augmented reality, tennis, capitalism, whatever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:38,520",
+				"to": "00:46:40,520"
+			},
+			"offsets": {
+				"from": 2798520,
+				"to": 2800520
+			},
+			"text": " It's going to be open source soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:40,520",
+				"to": "00:46:42,520"
+			},
+			"offsets": {
+				"from": 2800520,
+				"to": 2802520
+			},
+			"text": " It's playable today."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:42,520",
+				"to": "00:46:45,520"
+			},
+			"offsets": {
+				"from": 2802520,
+				"to": 2805520
+			},
+			"text": " Let's let's let's let's actually see how we build the house."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:45,520",
+				"to": "00:46:57,520"
+			},
+			"offsets": {
+				"from": 2805520,
+				"to": 2817520
+			},
+			"text": " I remember it was quite quite hard given we didn't really have consensus on how to how should look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:57,520",
+				"to": "00:46:58,520"
+			},
+			"offsets": {
+				"from": 2817520,
+				"to": 2818520
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:58,520",
+				"to": "00:46:59,520"
+			},
+			"offsets": {
+				"from": 2818520,
+				"to": 2819520
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:59,520",
+				"to": "00:47:00,520"
+			},
+			"offsets": {
+				"from": 2819520,
+				"to": 2820520
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:00,520",
+				"to": "00:47:02,520"
+			},
+			"offsets": {
+				"from": 2820520,
+				"to": 2822520
+			},
+			"text": " We did it."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:02,520",
+				"to": "00:47:14,520"
+			},
+			"offsets": {
+				"from": 2822520,
+				"to": 2834520
+			},
+			"text": " OP craft is going to be soft launch and playable at the autonomous world arcade at 4pm today at the hacker basement."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:14,520",
+				"to": "00:47:17,520"
+			},
+			"offsets": {
+				"from": 2834520,
+				"to": 2837520
+			},
+			"text": " So if you want to play it, come there."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:17,520",
+				"to": "00:47:20,520"
+			},
+			"offsets": {
+				"from": 2837520,
+				"to": 2840520
+			},
+			"text": " Additionally, we're going to have a tournament of Skystripe, which is the earth."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:20,520",
+				"to": "00:47:21,520"
+			},
+			"offsets": {
+				"from": 2840520,
+				"to": 2841520
+			},
+			"text": " Yes, that was built with MUD."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:21,520",
+				"to": "00:47:24,520"
+			},
+			"offsets": {
+				"from": 2841520,
+				"to": 2844520
+			},
+			"text": " We have played us did it weekly for like the last month."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:24,520",
+				"to": "00:47:29,520"
+			},
+			"offsets": {
+				"from": 2844520,
+				"to": 2849520
+			},
+			"text": " I really like it."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:29,520",
+				"to": "00:47:34,520"
+			},
+			"offsets": {
+				"from": 2849520,
+				"to": 2854520
+			},
+			"text": " There are stock off players that don't even know that it's running on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:34,520",
+				"to": "00:47:35,520"
+			},
+			"offsets": {
+				"from": 2854520,
+				"to": 2855520
+			},
+			"text": " They just like the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:35,520",
+				"to": "00:47:37,520"
+			},
+			"offsets": {
+				"from": 2855520,
+				"to": 2857520
+			},
+			"text": " So yeah, we're going to try to hit 64 players."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:37,520",
+				"to": "00:47:38,520"
+			},
+			"offsets": {
+				"from": 2857520,
+				"to": 2858520
+			},
+			"text": " So come along as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:38,520",
+				"to": "00:47:39,520"
+			},
+			"offsets": {
+				"from": 2858520,
+				"to": 2859520
+			},
+			"text": " Hacker basement 4pm."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:39,520",
+				"to": "00:47:41,520"
+			},
+			"offsets": {
+				"from": 2859520,
+				"to": 2861520
+			},
+			"text": " So what about the other stuff?"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:41,520",
+				"to": "00:47:43,520"
+			},
+			"offsets": {
+				"from": 2861520,
+				"to": 2863520
+			},
+			"text": " Well, MUD is actually already available."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:43,520",
+				"to": "00:47:46,520"
+			},
+			"offsets": {
+				"from": 2863520,
+				"to": 2866520
+			},
+			"text": " We just don't really talk about it because it's not very documented."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:46,520",
+				"to": "00:47:47,520"
+			},
+			"offsets": {
+				"from": 2866520,
+				"to": 2867520
+			},
+			"text": " It's like the OP stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:47,520",
+				"to": "00:47:48,520"
+			},
+			"offsets": {
+				"from": 2867520,
+				"to": 2868520
+			},
+			"text": " It's a mud.dev."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:48,520",
+				"to": "00:47:50,520"
+			},
+			"offsets": {
+				"from": 2868520,
+				"to": 2870520
+			},
+			"text": " The code is on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:50,520",
+				"to": "00:47:53,520"
+			},
+			"offsets": {
+				"from": 2870520,
+				"to": 2873520
+			},
+			"text": " We have a bunch of teams building stuff with it, but it's yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:53,520",
+				"to": "00:47:58,520"
+			},
+			"offsets": {
+				"from": 2873520,
+				"to": 2878520
+			},
+			"text": " It's going to be announced soon by Carl at 1.30pm on the main stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:58,520",
+				"to": "00:48:00,520"
+			},
+			"offsets": {
+				"from": 2878520,
+				"to": 2880520
+			},
+			"text": " And yeah, that's us."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:00,520",
+				"to": "00:48:01,520"
+			},
+			"offsets": {
+				"from": 2880520,
+				"to": 2881520
+			},
+			"text": " Thank you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:01,520",
+				"to": "00:48:14,520"
+			},
+			"offsets": {
+				"from": 2881520,
+				"to": 2894520
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,4091 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,280"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7280
+			},
+			"text": " >> Thank you very much for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,280",
+				"to": "00:00:10,720"
+			},
+			"offsets": {
+				"from": 7280,
+				"to": 10720
+			},
+			"text": " So today we're going to talk about side chains and layer two."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,720",
+				"to": "00:00:15,600"
+			},
+			"offsets": {
+				"from": 10720,
+				"to": 15600
+			},
+			"text": " And the talk is about how they're different, yet very similar in some ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,600",
+				"to": "00:00:16,880"
+			},
+			"offsets": {
+				"from": 15600,
+				"to": 16880
+			},
+			"text": " My name is Georgios."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,880",
+				"to": "00:00:20,320"
+			},
+			"offsets": {
+				"from": 16880,
+				"to": 20320
+			},
+			"text": " I do consulting and research on off-chain protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,320",
+				"to": "00:00:24,400"
+			},
+			"offsets": {
+				"from": 20320,
+				"to": 24400
+			},
+			"text": " My main focus on interoperability and scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,400",
+				"to": "00:00:27,560"
+			},
+			"offsets": {
+				"from": 24400,
+				"to": 27560
+			},
+			"text": " So the big question is why do we want to interoperate?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,560",
+				"to": "00:00:28,560"
+			},
+			"offsets": {
+				"from": 27560,
+				"to": 28560
+			},
+			"text": " And this is the answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,560",
+				"to": "00:00:30,320"
+			},
+			"offsets": {
+				"from": 28560,
+				"to": 30320
+			},
+			"text": " There's a lot of currencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,320",
+				"to": "00:00:31,720"
+			},
+			"offsets": {
+				"from": 30320,
+				"to": 31720
+			},
+			"text": " They all want to talk with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,720",
+				"to": "00:00:36,400"
+			},
+			"offsets": {
+				"from": 31720,
+				"to": 36400
+			},
+			"text": " And if the multichinthus is to survive in the long term, we have to figure something"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,400",
+				"to": "00:00:37,400"
+			},
+			"offsets": {
+				"from": 36400,
+				"to": 37400
+			},
+			"text": " out."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,400",
+				"to": "00:00:38,880"
+			},
+			"offsets": {
+				"from": 37400,
+				"to": 38880
+			},
+			"text": " Why do we want to scale?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,880",
+				"to": "00:00:42,520"
+			},
+			"offsets": {
+				"from": 38880,
+				"to": 42520
+			},
+			"text": " So I just learned that there's a talk by Joe Lubin happening right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,520",
+				"to": "00:00:45,400"
+			},
+			"offsets": {
+				"from": 42520,
+				"to": 45400
+			},
+			"text": " Like when one million is devs, who cares about the devs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,400",
+				"to": "00:00:46,600"
+			},
+			"offsets": {
+				"from": 45400,
+				"to": 46600
+			},
+			"text": " What about the users?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,600",
+				"to": "00:00:51,360"
+			},
+			"offsets": {
+				"from": 46600,
+				"to": 51360
+			},
+			"text": " So there's no way to get the users without being able to scale with quick confirmation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,360",
+				"to": "00:00:53,440"
+			},
+			"offsets": {
+				"from": 51360,
+				"to": 53440
+			},
+			"text": " and quick low fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,440",
+				"to": "00:00:56,440"
+			},
+			"offsets": {
+				"from": 53440,
+				"to": 56440
+			},
+			"text": " So let's go back to where it all started."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,440",
+				"to": "00:00:58,760"
+			},
+			"offsets": {
+				"from": 56440,
+				"to": 58760
+			},
+			"text": " So block stream lists this paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,760",
+				"to": "00:01:03,320"
+			},
+			"offsets": {
+				"from": 58760,
+				"to": 63320
+			},
+			"text": " And I think it's the first time that side chains was mentioned in the term."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,320",
+				"to": "00:01:04,840"
+			},
+			"offsets": {
+				"from": 63320,
+				"to": 64840
+			},
+			"text": " Turns out I'm wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,840",
+				"to": "00:01:06,440"
+			},
+			"offsets": {
+				"from": 64840,
+				"to": 66440
+			},
+			"text": " Like this never happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,440",
+				"to": "00:01:13,440"
+			},
+			"offsets": {
+				"from": 66440,
+				"to": 73440
+			},
+			"text": " The first mention of side chains was by Satoshi in 2010, which he mentioned on Bitcoin Talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,440",
+				"to": "00:01:17,080"
+			},
+			"offsets": {
+				"from": 73440,
+				"to": 77080
+			},
+			"text": " as usual, like that side chains to do interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,080",
+				"to": "00:01:21,160"
+			},
+			"offsets": {
+				"from": 77080,
+				"to": 81160
+			},
+			"text": " However, what he actually was talking about was merge mining, which is a completely different"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,160",
+				"to": "00:01:22,160"
+			},
+			"offsets": {
+				"from": 81160,
+				"to": 82160
+			},
+			"text": " technique."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,160",
+				"to": "00:01:28,320"
+			},
+			"offsets": {
+				"from": 82160,
+				"to": 88320
+			},
+			"text": " Three years later, we have Greg Maxwell, a very prominent Bitcoin core contributor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,320",
+				"to": "00:01:33,560"
+			},
+			"offsets": {
+				"from": 88320,
+				"to": 93560
+			},
+			"text": " who describes this game called Coin Witness, which was very similar to what people call"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,560",
+				"to": "00:01:36,080"
+			},
+			"offsets": {
+				"from": 93560,
+				"to": 96080
+			},
+			"text": " today ZK Roll Up."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,080",
+				"to": "00:01:43,020"
+			},
+			"offsets": {
+				"from": 96080,
+				"to": 103020
+			},
+			"text": " And then we have this guy called Killer Storm, who actually described the first like side"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,020",
+				"to": "00:01:47,400"
+			},
+			"offsets": {
+				"from": 103020,
+				"to": 107400
+			},
+			"text": " chain construction by utilizing certain types of proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,400",
+				"to": "00:01:51,240"
+			},
+			"offsets": {
+				"from": 107400,
+				"to": 111240
+			},
+			"text": " So the two way peg is described in the blockchain paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,240",
+				"to": "00:01:56,560"
+			},
+			"offsets": {
+				"from": 111240,
+				"to": 116560
+			},
+			"text": " And by Killer Storm describes a mechanism by which somebody locks some money in an escrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,560",
+				"to": "00:02:01,360"
+			},
+			"offsets": {
+				"from": 116560,
+				"to": 121360
+			},
+			"text": " And then via peg in transaction, you create the same amount of money on another chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,360",
+				"to": "00:02:03,120"
+			},
+			"offsets": {
+				"from": 121360,
+				"to": 123120
+			},
+			"text": " And that is a side chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,120",
+				"to": "00:02:05,200"
+			},
+			"offsets": {
+				"from": 123120,
+				"to": 125200
+			},
+			"text": " And in that side chain, you may have a different rule set."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,200",
+				"to": "00:02:07,040"
+			},
+			"offsets": {
+				"from": 125200,
+				"to": 127040
+			},
+			"text": " Like maybe the chain progresses faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,040",
+				"to": "00:02:09,120"
+			},
+			"offsets": {
+				"from": 127040,
+				"to": 129120
+			},
+			"text": " Maybe it has smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,120",
+				"to": "00:02:13,040"
+			},
+			"offsets": {
+				"from": 129120,
+				"to": 133040
+			},
+			"text": " And then when you want to get your money out, like you provide a burn transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,040",
+				"to": "00:02:16,880"
+			},
+			"offsets": {
+				"from": 133040,
+				"to": 136880
+			},
+			"text": " And then the people of that side chain, they allow you to withdraw your money back on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,880",
+				"to": "00:02:18,080"
+			},
+			"offsets": {
+				"from": 136880,
+				"to": 138080
+			},
+			"text": " original escrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,080",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 138080,
+				"to": 140000
+			},
+			"text": " And there's multiple ways that you can implement that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:22,520"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 142520
+			},
+			"text": " So like let's dive into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,520",
+				"to": "00:02:26,840"
+			},
+			"offsets": {
+				"from": 142520,
+				"to": 146840
+			},
+			"text": " The main problem that we're trying to solve is like how we can observe another chain state"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,840",
+				"to": "00:02:32,400"
+			},
+			"offsets": {
+				"from": 146840,
+				"to": 152400
+			},
+			"text": " and convince ourselves that this chain that we're being shown is legit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,400",
+				"to": "00:02:34,080"
+			},
+			"offsets": {
+				"from": 152400,
+				"to": 154080
+			},
+			"text": " In Bitcoin, that's very easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,080",
+				"to": "00:02:35,080"
+			},
+			"offsets": {
+				"from": 154080,
+				"to": 155080
+			},
+			"text": " Work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,080",
+				"to": "00:02:36,640"
+			},
+			"offsets": {
+				"from": 155080,
+				"to": 156640
+			},
+			"text": " Hash is very easy to reason about."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,640",
+				"to": "00:02:37,640"
+			},
+			"offsets": {
+				"from": 156640,
+				"to": 157640
+			},
+			"text": " They're quantifiable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,640",
+				"to": "00:02:42,240"
+			},
+			"offsets": {
+				"from": 157640,
+				"to": 162240
+			},
+			"text": " You can do some math and can figure out exactly how hard it is to attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,240",
+				"to": "00:02:46,960"
+			},
+			"offsets": {
+				"from": 162240,
+				"to": 166960
+			},
+			"text": " The trick here is that however, if the proof of work algorithm is very expensive, like"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,960",
+				"to": "00:02:48,560"
+			},
+			"offsets": {
+				"from": 166960,
+				"to": 168560
+			},
+			"text": " you need to be able to verify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,560",
+				"to": "00:02:52,440"
+			},
+			"offsets": {
+				"from": 168560,
+				"to": 172440
+			},
+			"text": " And doing it with any fancier proof of work algorithm is very hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,440",
+				"to": "00:02:56,600"
+			},
+			"offsets": {
+				"from": 172440,
+				"to": 176600
+			},
+			"text": " And you cannot verify a script, for example, on EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,600",
+				"to": "00:03:00,320"
+			},
+			"offsets": {
+				"from": 176600,
+				"to": 180320
+			},
+			"text": " And the way that you do this is we are I think of the SPV proofs, the way that most light"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,320",
+				"to": "00:03:01,320"
+			},
+			"offsets": {
+				"from": 180320,
+				"to": 181320
+			},
+			"text": " clients work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,320",
+				"to": "00:03:04,960"
+			},
+			"offsets": {
+				"from": 181320,
+				"to": 184960
+			},
+			"text": " And there's a very close interaction between side chains and light clients that I will"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,960",
+				"to": "00:03:07,280"
+			},
+			"offsets": {
+				"from": 184960,
+				"to": 187280
+			},
+			"text": " get to in the very soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,280",
+				"to": "00:03:11,160"
+			},
+			"offsets": {
+				"from": 187280,
+				"to": 191160
+			},
+			"text": " So instead of providing like the full chain, you provide the chain of headers along with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,160",
+				"to": "00:03:13,440"
+			},
+			"offsets": {
+				"from": 191160,
+				"to": 193440
+			},
+			"text": " marital proofs of your transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,440",
+				"to": "00:03:16,560"
+			},
+			"offsets": {
+				"from": 193440,
+				"to": 196560
+			},
+			"text": " And what you're trying to convince is that the chain that you're giving is actually the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,560",
+				"to": "00:03:18,760"
+			},
+			"offsets": {
+				"from": 196560,
+				"to": 198760
+			},
+			"text": " longest chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,760",
+				"to": "00:03:19,840"
+			},
+			"offsets": {
+				"from": 198760,
+				"to": 199840
+			},
+			"text": " This is too expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,840",
+				"to": "00:03:20,840"
+			},
+			"offsets": {
+				"from": 199840,
+				"to": 200840
+			},
+			"text": " This is too long."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,840",
+				"to": "00:03:21,840"
+			},
+			"offsets": {
+				"from": 200840,
+				"to": 201840
+			},
+			"text": " It's linear."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,840",
+				"to": "00:03:25,080"
+			},
+			"offsets": {
+				"from": 201840,
+				"to": 205080
+			},
+			"text": " I need to provide you like so that you're guaranteed that I'm giving you the best chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,080",
+				"to": "00:03:27,360"
+			},
+			"offsets": {
+				"from": 205080,
+				"to": 207360
+			},
+			"text": " like without ever having any trusted checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,360",
+				"to": "00:03:31,440"
+			},
+			"offsets": {
+				"from": 207360,
+				"to": 211440
+			},
+			"text": " I need to give you genesis, a bunch of marital proofs, and you should be convinced."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,440",
+				"to": "00:03:32,440"
+			},
+			"offsets": {
+				"from": 211440,
+				"to": 212440
+			},
+			"text": " That's way too expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,440",
+				"to": "00:03:36,720"
+			},
+			"offsets": {
+				"from": 212440,
+				"to": 216720
+			},
+			"text": " So there's some techniques called Nipo Paus, the one technique called Superblox Nipo Paus"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,720",
+				"to": "00:03:40,520"
+			},
+			"offsets": {
+				"from": 216720,
+				"to": 220520
+			},
+			"text": " by the Onices and Interos, and Flycline by Benedict Boons, who should be around this"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,520",
+				"to": "00:03:42,720"
+			},
+			"offsets": {
+				"from": 220520,
+				"to": 222720
+			},
+			"text": " area, so you should talk to them about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,720",
+				"to": "00:03:47,120"
+			},
+			"offsets": {
+				"from": 222720,
+				"to": 227120
+			},
+			"text": " Snarks, which Barry alluded to earlier, and stateless PVs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,120",
+				"to": "00:03:51,080"
+			},
+			"offsets": {
+				"from": 227120,
+				"to": 231080
+			},
+			"text": " So stateless PVs, an art technique by James Pashtitz, who's also around, and you should"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,080",
+				"to": "00:03:53,320"
+			},
+			"offsets": {
+				"from": 231080,
+				"to": 233320
+			},
+			"text": " talk to him about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,320",
+				"to": "00:03:55,960"
+			},
+			"offsets": {
+				"from": 233320,
+				"to": 235960
+			},
+			"text": " The problem here is that all work is not equal."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,960",
+				"to": "00:04:00,160"
+			},
+			"offsets": {
+				"from": 235960,
+				"to": 240160
+			},
+			"text": " If I have the Bitcoin chain with a bunch of hash rate and a bunch of physics and a theorem"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,160",
+				"to": "00:04:04,920"
+			},
+			"offsets": {
+				"from": 240160,
+				"to": 244920
+			},
+			"text": " chain with a GPU and like a different hash rate, having an asset on the one chain and on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,920",
+				"to": "00:04:09,880"
+			},
+			"offsets": {
+				"from": 244920,
+				"to": 249880
+			},
+			"text": " other chain, even if it represents the same kind of collateral, it's not actually the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,880",
+				"to": "00:04:11,080"
+			},
+			"offsets": {
+				"from": 249880,
+				"to": 251080
+			},
+			"text": " same."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,080",
+				"to": "00:04:15,520"
+			},
+			"offsets": {
+				"from": 251080,
+				"to": 255520
+			},
+			"text": " And I have a developmental model where I want to think of cross-chain assets as alloys."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,520",
+				"to": "00:04:20,360"
+			},
+			"offsets": {
+				"from": 255520,
+				"to": 260360
+			},
+			"text": " So it's similar to how in chemistry you can combine one metal with another and get some"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,360",
+				"to": "00:04:21,360"
+			},
+			"offsets": {
+				"from": 260360,
+				"to": 261360
+			},
+			"text": " different properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,360",
+				"to": "00:04:26,640"
+			},
+			"offsets": {
+				"from": 261360,
+				"to": 266640
+			},
+			"text": " I think that moving a Bitcoin from the Bitcoin chain to some other proof of word change,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,640",
+				"to": "00:04:32,560"
+			},
+			"offsets": {
+				"from": 266640,
+				"to": 272560
+			},
+			"text": " perhaps like tokenizing Bitcoin on the Litecoin, for example, for faster confirmation times,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,560",
+				"to": "00:04:33,560"
+			},
+			"offsets": {
+				"from": 272560,
+				"to": 273560
+			},
+			"text": " is an option."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,560",
+				"to": "00:04:37,720"
+			},
+			"offsets": {
+				"from": 273560,
+				"to": 277720
+			},
+			"text": " But however, due to the difference in the hash rate, you're no longer as secure as you were"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,720",
+				"to": "00:04:38,720"
+			},
+			"offsets": {
+				"from": 277720,
+				"to": 278720
+			},
+			"text": " before."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,720",
+				"to": "00:04:40,600"
+			},
+			"offsets": {
+				"from": 278720,
+				"to": 280600
+			},
+			"text": " You're all at BTC30."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,600",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 280600,
+				"to": 284000
+			},
+			"text": " And what about the BTCX, where X can be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:46,200"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 286200
+			},
+			"text": " TBTC, WBTC, you pick it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,200",
+				"to": "00:04:51,800"
+			},
+			"offsets": {
+				"from": 286200,
+				"to": 291800
+			},
+			"text": " Some derivative off of the Bitcoin, which tries to peg the price to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,800",
+				"to": "00:04:54,640"
+			},
+			"offsets": {
+				"from": 291800,
+				"to": 294640
+			},
+			"text": " And it's going to be used in the DeFi space, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,640",
+				"to": "00:04:59,760"
+			},
+			"offsets": {
+				"from": 294640,
+				"to": 299760
+			},
+			"text": " However, the assumption here changes from the honest majority of the miners to the honest"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,760",
+				"to": "00:05:04,440"
+			},
+			"offsets": {
+				"from": 299760,
+				"to": 304440
+			},
+			"text": " federation, for example, if you're doing a federated peg or to the whole mechanism around"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,440",
+				"to": "00:05:05,440"
+			},
+			"offsets": {
+				"from": 304440,
+				"to": 305440
+			},
+			"text": " it working."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,440",
+				"to": "00:05:07,200"
+			},
+			"offsets": {
+				"from": 305440,
+				"to": 307200
+			},
+			"text": " So you have technical risk arising."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,200",
+				"to": "00:05:10,040"
+			},
+			"offsets": {
+				"from": 307200,
+				"to": 310040
+			},
+			"text": " So each solution has a different, like, trade-off space."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,040",
+				"to": "00:05:11,880"
+			},
+			"offsets": {
+				"from": 310040,
+				"to": 311880
+			},
+			"text": " There's no for lunch."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,880",
+				"to": "00:05:13,760"
+			},
+			"offsets": {
+				"from": 311880,
+				"to": 313760
+			},
+			"text": " But about proof of stake sidechains."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,760",
+				"to": "00:05:17,520"
+			},
+			"offsets": {
+				"from": 313760,
+				"to": 317520
+			},
+			"text": " So proof of stake sidechains like non-exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,520",
+				"to": "00:05:19,400"
+			},
+			"offsets": {
+				"from": 317520,
+				"to": 319400
+			},
+			"text": " What about proof of stake like clients?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,400",
+				"to": "00:05:21,680"
+			},
+			"offsets": {
+				"from": 319400,
+				"to": 321680
+			},
+			"text": " Which the argument is that it's equivalent."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,680",
+				"to": "00:05:24,920"
+			},
+			"offsets": {
+				"from": 321680,
+				"to": 324920
+			},
+			"text": " This is a proof of work block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,920",
+				"to": "00:05:26,160"
+			},
+			"offsets": {
+				"from": 324920,
+				"to": 326160
+			},
+			"text": " Many proof of work chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,160",
+				"to": "00:05:28,280"
+			},
+			"offsets": {
+				"from": 326160,
+				"to": 328280
+			},
+			"text": " Many proof of work blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,280",
+				"to": "00:05:32,640"
+			},
+			"offsets": {
+				"from": 328280,
+				"to": 332640
+			},
+			"text": " And you accept proof of work block only if the hash of the block header plus some non-sthat"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,640",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 332640,
+				"to": 335000
+			},
+			"text": " you change is less than the number."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:39,760"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 339760
+			},
+			"text": " So let's take this and switch this in the proof of stake situation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,760",
+				"to": "00:05:44,080"
+			},
+			"offsets": {
+				"from": 339760,
+				"to": 344080
+			},
+			"text": " You replace the non-sthat signatures and you accept, like, the block only if the blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,080",
+				"to": "00:05:48,640"
+			},
+			"offsets": {
+				"from": 344080,
+				"to": 348640
+			},
+			"text": " that you have received have signed, like, more than two-thirds of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,640",
+				"to": "00:05:49,880"
+			},
+			"offsets": {
+				"from": 348640,
+				"to": 349880
+			},
+			"text": " So how does this look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,880",
+				"to": "00:05:52,640"
+			},
+			"offsets": {
+				"from": 349880,
+				"to": 352640
+			},
+			"text": " How am I going to do a proof of proof of stake?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,640",
+				"to": "00:05:55,600"
+			},
+			"offsets": {
+				"from": 352640,
+				"to": 355600
+			},
+			"text": " I will pick some blocks, like, every some amount of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,600",
+				"to": "00:05:59,480"
+			},
+			"offsets": {
+				"from": 355600,
+				"to": 359480
+			},
+			"text": " I will check that each time the validator set would have changed in this proof of stake"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,480",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 359480,
+				"to": 363000
+			},
+			"text": " sidechain, I'll verify that they signed on the latest block."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:07,560"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 367560
+			},
+			"text": " This means that also, of course, it's linear because I have to give you still linear to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,560",
+				"to": "00:06:10,120"
+			},
+			"offsets": {
+				"from": 367560,
+				"to": 370120
+			},
+			"text": " the size of the chain blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,120",
+				"to": "00:06:14,160"
+			},
+			"offsets": {
+				"from": 370120,
+				"to": 374160
+			},
+			"text": " But also the sidechains, smart contract or the light client, must always be aware of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,160",
+				"to": "00:06:16,040"
+			},
+			"offsets": {
+				"from": 374160,
+				"to": 376040
+			},
+			"text": " the latest stake distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,040",
+				"to": "00:06:20,120"
+			},
+			"offsets": {
+				"from": 376040,
+				"to": 380120
+			},
+			"text": " Because how will I know that who is the two-thirds that I'm receiving the money from?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,120",
+				"to": "00:06:21,120"
+			},
+			"offsets": {
+				"from": 380120,
+				"to": 381120
+			},
+			"text": " The signature from."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,120",
+				"to": "00:06:25,160"
+			},
+			"offsets": {
+				"from": 381120,
+				"to": 385160
+			},
+			"text": " There's an attack here which I want to call the cross-chain nothing-it-stake attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,160",
+				"to": "00:06:29,480"
+			},
+			"offsets": {
+				"from": 385160,
+				"to": 389480
+			},
+			"text": " which basically says, usually in proof of stake change, you have the nothing-it-stake problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,480",
+				"to": "00:06:33,960"
+			},
+			"offsets": {
+				"from": 389480,
+				"to": 393960
+			},
+			"text": " where validators start building on two chains, and basically, if you can take the data from"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,960",
+				"to": "00:06:38,960"
+			},
+			"offsets": {
+				"from": 393960,
+				"to": 398960
+			},
+			"text": " one chain and put it on the other, you can slash them for equivocating, for double signing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,960",
+				"to": "00:06:42,680"
+			},
+			"offsets": {
+				"from": 398960,
+				"to": 402680
+			},
+			"text": " However, what if I have a chain, like I'm a validator, I have a chain that I'm building"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,680",
+				"to": "00:06:46,480"
+			},
+			"offsets": {
+				"from": 402680,
+				"to": 406480
+			},
+			"text": " on, and then I'm just having a hidden chain that I'm also building on, but I'm not sending"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,480",
+				"to": "00:06:48,840"
+			},
+			"offsets": {
+				"from": 406480,
+				"to": 408840
+			},
+			"text": " it to anybody except like clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,840",
+				"to": "00:06:53,320"
+			},
+			"offsets": {
+				"from": 408840,
+				"to": 413320
+			},
+			"text": " The light client must be able to take the signatures that they gave them off, out of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,320",
+				"to": "00:06:56,520"
+			},
+			"offsets": {
+				"from": 413320,
+				"to": 416520
+			},
+			"text": " band, and put them on the main chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,520",
+				"to": "00:07:00,120"
+			},
+			"offsets": {
+				"from": 416520,
+				"to": 420120
+			},
+			"text": " I'm not aware of any chain currently that has this mechanism implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,120",
+				"to": "00:07:04,720"
+			},
+			"offsets": {
+				"from": 420120,
+				"to": 424720
+			},
+			"text": " Tenderment right now has a few documentation, has some documentation exploring this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,720",
+				"to": "00:07:09,160"
+			},
+			"offsets": {
+				"from": 424720,
+				"to": 429160
+			},
+			"text": " They call this if I'm not mistaken, the phantom validator, because you're a validator, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,160",
+				"to": "00:07:13,080"
+			},
+			"offsets": {
+				"from": 429160,
+				"to": 433080
+			},
+			"text": " not really because you're sending stuff out of band."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,080",
+				"to": "00:07:18,360"
+			},
+			"offsets": {
+				"from": 433080,
+				"to": 438360
+			},
+			"text": " The issue also with this is the long-range attack, because what if, how, like, you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,360",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 438360,
+				"to": 443000
+			},
+			"text": " to, in order to incentive a line this mechanism, you need to slash."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:28,520"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 448520
+			},
+			"text": " How do you slash if the person that fed you with the signatures is now unbunded?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,520",
+				"to": "00:07:30,120"
+			},
+			"offsets": {
+				"from": 448520,
+				"to": 450120
+			},
+			"text": " It's complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,120",
+				"to": "00:07:35,720"
+			},
+			"offsets": {
+				"from": 450120,
+				"to": 455720
+			},
+			"text": " So, like, the rule that you must say is that you will only accept proofs, like signatures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,720",
+				"to": "00:07:37,960"
+			},
+			"offsets": {
+				"from": 455720,
+				"to": 457960
+			},
+			"text": " from people that are still bonded."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,960",
+				"to": "00:07:40,080"
+			},
+			"offsets": {
+				"from": 457960,
+				"to": 460080
+			},
+			"text": " You reject from unbunded validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,080",
+				"to": "00:07:42,440"
+			},
+			"offsets": {
+				"from": 460080,
+				"to": 462440
+			},
+			"text": " How do you know which validators are unbunded?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,440",
+				"to": "00:07:43,440"
+			},
+			"offsets": {
+				"from": 462440,
+				"to": 463440
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,440",
+				"to": "00:07:47,840"
+			},
+			"offsets": {
+				"from": 463440,
+				"to": 467840
+			},
+			"text": " Like, currently the dominant approach is having a trusted checkpoint via, like, so that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,840",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 467840,
+				"to": 472000
+			},
+			"text": " always know what is the latest, like, bonded set of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 473000
+			},
+			"text": " This is an open problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:54,160"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 474160
+			},
+			"text": " There's many solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,160",
+				"to": "00:07:57,520"
+			},
+			"offsets": {
+				"from": 474160,
+				"to": 477520
+			},
+			"text": " There's many other solutions that you can take, but they all, again, they all, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,520",
+				"to": "00:08:02,760"
+			},
+			"offsets": {
+				"from": 477520,
+				"to": 482760
+			},
+			"text": " tend to some subjectivity which does not exist in proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,760",
+				"to": "00:08:08,160"
+			},
+			"offsets": {
+				"from": 482760,
+				"to": 488160
+			},
+			"text": " Everything so far, we assume that each chain is individually secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,160",
+				"to": "00:08:13,320"
+			},
+			"offsets": {
+				"from": 488160,
+				"to": 493320
+			},
+			"text": " If we're both, like, if both chains are secure, then sure, you can do, you can make them communicate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,320",
+				"to": "00:08:14,880"
+			},
+			"offsets": {
+				"from": 493320,
+				"to": 494880
+			},
+			"text": " with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,880",
+				"to": "00:08:21,080"
+			},
+			"offsets": {
+				"from": 494880,
+				"to": 501080
+			},
+			"text": " Security and, like, requires that you have something that is high cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,080",
+				"to": "00:08:22,800"
+			},
+			"offsets": {
+				"from": 501080,
+				"to": 502800
+			},
+			"text": " Something that is high cost is not scalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,800",
+				"to": "00:08:24,840"
+			},
+			"offsets": {
+				"from": 502800,
+				"to": 504840
+			},
+			"text": " That has high cost is not scalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,840",
+				"to": "00:08:27,120"
+			},
+			"offsets": {
+				"from": 504840,
+				"to": 507120
+			},
+			"text": " So, side chain, consider harmful."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,120",
+				"to": "00:08:33,520"
+			},
+			"offsets": {
+				"from": 507120,
+				"to": 513520
+			},
+			"text": " What if the side chain, like, mechanism, if you try to use it for scalability, and if"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,520",
+				"to": "00:08:37,840"
+			},
+			"offsets": {
+				"from": 513520,
+				"to": 517840
+			},
+			"text": " you try to use it for scalability inherently, it will be less secure, does not want you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,840",
+				"to": "00:08:38,840"
+			},
+			"offsets": {
+				"from": 517840,
+				"to": 518840
+			},
+			"text": " get out."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,840",
+				"to": "00:08:43,240"
+			},
+			"offsets": {
+				"from": 518840,
+				"to": 523240
+			},
+			"text": " So, what if the liquid side chain suddenly becomes a devil and, like they say, no."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,240",
+				"to": "00:08:44,240"
+			},
+			"offsets": {
+				"from": 523240,
+				"to": 524240
+			},
+			"text": " Like, your money is gone."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,240",
+				"to": "00:08:45,240"
+			},
+			"offsets": {
+				"from": 524240,
+				"to": 525240
+			},
+			"text": " You're done."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,240",
+				"to": "00:08:48,080"
+			},
+			"offsets": {
+				"from": 525240,
+				"to": 528080
+			},
+			"text": " So, we don't want that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,080",
+				"to": "00:08:53,320"
+			},
+			"offsets": {
+				"from": 528080,
+				"to": 533320
+			},
+			"text": " The kind of taxonomy that we have for side chains means that we have the federated side"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,320",
+				"to": "00:08:59,280"
+			},
+			"offsets": {
+				"from": 533320,
+				"to": 539280
+			},
+			"text": " chain, which is the multisig liquid, the proof of work side chain, which is with nipple"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,280",
+				"to": "00:09:05,080"
+			},
+			"offsets": {
+				"from": 539280,
+				"to": 545080
+			},
+			"text": " pals for logarithmic SPV proofs, and some reorganization proofs, because, as we all know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,080",
+				"to": "00:09:09,280"
+			},
+			"offsets": {
+				"from": 545080,
+				"to": 549280
+			},
+			"text": " I hope, when you have a proof of work chain that works, like, you want to be able to punish"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,280",
+				"to": "00:09:10,280"
+			},
+			"offsets": {
+				"from": 549280,
+				"to": 550280
+			},
+			"text": " for that work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,280",
+				"to": "00:09:15,320"
+			},
+			"offsets": {
+				"from": 550280,
+				"to": 555320
+			},
+			"text": " And you have proof of stake side chains where you have basically a multisig which gets rotated"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,320",
+				"to": "00:09:21,120"
+			},
+			"offsets": {
+				"from": 555320,
+				"to": 561120
+			},
+			"text": " each time the stake changes during elections, or -- and you also add the sum of liquid"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,120",
+				"to": "00:09:22,120"
+			},
+			"offsets": {
+				"from": 561120,
+				"to": 562120
+			},
+			"text": " location."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,120",
+				"to": "00:09:26,520"
+			},
+			"offsets": {
+				"from": 562120,
+				"to": 566520
+			},
+			"text": " And the thing is that you trade always security for scalability if you want to use it that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,520",
+				"to": "00:09:27,520"
+			},
+			"offsets": {
+				"from": 566520,
+				"to": 567520
+			},
+			"text": " way."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,520",
+				"to": "00:09:32,320"
+			},
+			"offsets": {
+				"from": 567520,
+				"to": 572320
+			},
+			"text": " There is a great paper list, like, last week, actually, by, like, say, and friends on communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,320",
+				"to": "00:09:33,520"
+			},
+			"offsets": {
+				"from": 572320,
+				"to": 573520
+			},
+			"text": " and, of course, distribute ledger."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,520",
+				"to": "00:09:37,200"
+			},
+			"offsets": {
+				"from": 573520,
+				"to": 577200
+			},
+			"text": " Right now, they're doing a workshop on it, which was very unfortunate because it conflicts"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,200",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 577200,
+				"to": 582000
+			},
+			"text": " with this talk, so make sure you read this paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:46,040"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 586040
+			},
+			"text": " To, like, elaborate on -- to conclude on my point about side chains and interoperability"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,040",
+				"to": "00:09:48,360"
+			},
+			"offsets": {
+				"from": 586040,
+				"to": 588360
+			},
+			"text": " solution, it's not a scalability solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,360",
+				"to": "00:09:50,680"
+			},
+			"offsets": {
+				"from": 588360,
+				"to": 590680
+			},
+			"text": " You need an independent security model."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,680",
+				"to": "00:09:53,800"
+			},
+			"offsets": {
+				"from": 590680,
+				"to": 593800
+			},
+			"text": " And the moment that you have independent security model, my argument is that you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,800",
+				"to": "00:09:56,120"
+			},
+			"offsets": {
+				"from": 593800,
+				"to": 596120
+			},
+			"text": " not in the layer two domain space."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,120",
+				"to": "00:09:58,040"
+			},
+			"offsets": {
+				"from": 596120,
+				"to": 598040
+			},
+			"text": " It's a layer one that talks with other layer ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,040",
+				"to": "00:10:01,120"
+			},
+			"offsets": {
+				"from": 598040,
+				"to": 601120
+			},
+			"text": " It's, like, on the same level."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,120",
+				"to": "00:10:02,320"
+			},
+			"offsets": {
+				"from": 601120,
+				"to": 602320
+			},
+			"text": " How do we scale them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,320",
+				"to": "00:10:04,160"
+			},
+			"offsets": {
+				"from": 602320,
+				"to": 604160
+			},
+			"text": " What's going to happen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,160",
+				"to": "00:10:05,160"
+			},
+			"offsets": {
+				"from": 604160,
+				"to": 605160
+			},
+			"text": " Off the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,160",
+				"to": "00:10:09,320"
+			},
+			"offsets": {
+				"from": 605160,
+				"to": 609320
+			},
+			"text": " So, patty mock curries around here, like, the -- everything that's working on, like, off"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,320",
+				"to": "00:10:13,680"
+			},
+			"offsets": {
+				"from": 609320,
+				"to": 613680
+			},
+			"text": " chain scalability requires that you have a layer one, a layer two, and some mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,680",
+				"to": "00:10:15,720"
+			},
+			"offsets": {
+				"from": 613680,
+				"to": 615720
+			},
+			"text": " to make them communicate."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,720",
+				"to": "00:10:20,960"
+			},
+			"offsets": {
+				"from": 615720,
+				"to": 620960
+			},
+			"text": " You need to put the minimum amount of data on chain because the chain has a finite amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,960",
+				"to": "00:10:21,960"
+			},
+			"offsets": {
+				"from": 620960,
+				"to": 621960
+			},
+			"text": " of space."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,960",
+				"to": "00:10:25,640"
+			},
+			"offsets": {
+				"from": 621960,
+				"to": 625640
+			},
+			"text": " And if you're going to support 1 million F devs, you're not going to be able to hold"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,640",
+				"to": "00:10:26,640"
+			},
+			"offsets": {
+				"from": 625640,
+				"to": 626640
+			},
+			"text": " all that capacity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,640",
+				"to": "00:10:29,800"
+			},
+			"offsets": {
+				"from": 626640,
+				"to": 629800
+			},
+			"text": " And maybe Ethereum, too, is going to do it, but whatever it doesn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,800",
+				"to": "00:10:31,600"
+			},
+			"offsets": {
+				"from": 629800,
+				"to": 631600
+			},
+			"text": " So -- but what's layer two?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,600",
+				"to": "00:10:35,880"
+			},
+			"offsets": {
+				"from": 631600,
+				"to": 635880
+			},
+			"text": " So, I call it a delayed settlement protocol with layer one guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,880",
+				"to": "00:10:39,720"
+			},
+			"offsets": {
+				"from": 635880,
+				"to": 639720
+			},
+			"text": " So, you have a protocol where you lock some money on the layer one, then you perform some"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,720",
+				"to": "00:10:45,080"
+			},
+			"offsets": {
+				"from": 639720,
+				"to": 645080
+			},
+			"text": " off chain operations, and then you have guarantees that are, like, equivalent to your layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,080",
+				"to": "00:10:48,680"
+			},
+			"offsets": {
+				"from": 645080,
+				"to": 648680
+			},
+			"text": " one security model that you'll be able to get your money out."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,680",
+				"to": "00:10:51,920"
+			},
+			"offsets": {
+				"from": 648680,
+				"to": 651920
+			},
+			"text": " And there's two, like, dominant approaches right now, which is the commit change approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,920",
+				"to": "00:10:56,560"
+			},
+			"offsets": {
+				"from": 651920,
+				"to": 656560
+			},
+			"text": " which is, like, what plasmas, rollups, no-coosts, and they have, like, some certain different"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,560",
+				"to": "00:11:00,360"
+			},
+			"offsets": {
+				"from": 656560,
+				"to": 660360
+			},
+			"text": " tradeoffs, whether they can do smart contracts or not, and there's channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,360",
+				"to": "00:11:03,880"
+			},
+			"offsets": {
+				"from": 660360,
+				"to": 663880
+			},
+			"text": " And then dominant channel approach is the lightning for Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,880",
+				"to": "00:11:07,440"
+			},
+			"offsets": {
+				"from": 663880,
+				"to": 667440
+			},
+			"text": " And as far as I can tell, there's some state channels initiative, which, like, everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,440",
+				"to": "00:11:11,120"
+			},
+			"offsets": {
+				"from": 667440,
+				"to": 671120
+			},
+			"text": " merged and could do to them because it was a very hard task."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,120",
+				"to": "00:11:13,960"
+			},
+			"offsets": {
+				"from": 671120,
+				"to": 673960
+			},
+			"text": " So -- and they have, like, different properties, but we're not going to talk about channels"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,960",
+				"to": "00:11:14,960"
+			},
+			"offsets": {
+				"from": 673960,
+				"to": 674960
+			},
+			"text": " in this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,960",
+				"to": "00:11:16,760"
+			},
+			"offsets": {
+				"from": 674960,
+				"to": 676760
+			},
+			"text": " So let's dive into the commit change."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,760",
+				"to": "00:11:20,880"
+			},
+			"offsets": {
+				"from": 676760,
+				"to": 680880
+			},
+			"text": " So, firstly, we had plasma, like, 2017 with TALK Joseph."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,880",
+				"to": "00:11:22,360"
+			},
+			"offsets": {
+				"from": 680880,
+				"to": 682360
+			},
+			"text": " They published this paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,360",
+				"to": "00:11:23,960"
+			},
+			"offsets": {
+				"from": 682360,
+				"to": 683960
+			},
+			"text": " Nothing in the paper worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,960",
+				"to": "00:11:28,080"
+			},
+			"offsets": {
+				"from": 683960,
+				"to": 688080
+			},
+			"text": " And it describes, basically, a mechanism where you have an operator that takes hashes of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,080",
+				"to": "00:11:31,320"
+			},
+			"offsets": {
+				"from": 688080,
+				"to": 691320
+			},
+			"text": " the side chain, and it puts them on the layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,320",
+				"to": "00:11:37,840"
+			},
+			"offsets": {
+				"from": 691320,
+				"to": 697840
+			},
+			"text": " But -- and the security of the commit chain or the plasma, like, it comes under the assumption"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,840",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 697840,
+				"to": 702000
+			},
+			"text": " that you're able that any time that, like, something bad happens, you can take some fraud"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:46,800"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 706800
+			},
+			"text": " proof from the plasma chain state, put it on the layer one, compare it to the hash that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,800",
+				"to": "00:11:50,840"
+			},
+			"offsets": {
+				"from": 706800,
+				"to": 710840
+			},
+			"text": " was committed earlier, and you can get your money out, like, within some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,840",
+				"to": "00:11:54,680"
+			},
+			"offsets": {
+				"from": 710840,
+				"to": 714680
+			},
+			"text": " And it has some secondary assumption that, like, you must be able, like, to get your money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,680",
+				"to": "00:11:58,320"
+			},
+			"offsets": {
+				"from": 714680,
+				"to": 718320
+			},
+			"text": " to get the fraud proof in within a week's time or two weeks' time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,320",
+				"to": "00:12:03,640"
+			},
+			"offsets": {
+				"from": 718320,
+				"to": 723640
+			},
+			"text": " So this is, like, a secondary assumption that very security-oriented folks will argue against,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,640",
+				"to": "00:12:06,960"
+			},
+			"offsets": {
+				"from": 723640,
+				"to": 726960
+			},
+			"text": " but again, that's not the topic of the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,960",
+				"to": "00:12:11,760"
+			},
+			"offsets": {
+				"from": 726960,
+				"to": 731760
+			},
+			"text": " The problem with the plasma construction is that the operator, it's at their sole discretion"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,760",
+				"to": "00:12:12,760"
+			},
+			"offsets": {
+				"from": 731760,
+				"to": 732760
+			},
+			"text": " to give you the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,760",
+				"to": "00:12:13,760"
+			},
+			"offsets": {
+				"from": 732760,
+				"to": 733760
+			},
+			"text": " So what if they don't?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,760",
+				"to": "00:12:15,280"
+			},
+			"offsets": {
+				"from": 733760,
+				"to": 735280
+			},
+			"text": " Like, you have some state."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,280",
+				"to": "00:12:19,080"
+			},
+			"offsets": {
+				"from": 735280,
+				"to": 739080
+			},
+			"text": " They create a military of the state or of the latest UTXO set."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,080",
+				"to": "00:12:20,760"
+			},
+			"offsets": {
+				"from": 739080,
+				"to": 740760
+			},
+			"text": " They commit it, but they don't give you the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,760",
+				"to": "00:12:24,840"
+			},
+			"offsets": {
+				"from": 740760,
+				"to": 744840
+			},
+			"text": " You have a problem then, because in certain they can commit, they can create an invalid"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,840",
+				"to": "00:12:25,840"
+			},
+			"offsets": {
+				"from": 744840,
+				"to": 745840
+			},
+			"text": " state transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,840",
+				"to": "00:12:29,600"
+			},
+			"offsets": {
+				"from": 745840,
+				"to": 749600
+			},
+			"text": " And this invalid state transition will never be revealed, and, like, you will never know"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,600",
+				"to": "00:12:31,760"
+			},
+			"offsets": {
+				"from": 749600,
+				"to": 751760
+			},
+			"text": " that you know, long, you have your money."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,760",
+				"to": "00:12:38,760"
+			},
+			"offsets": {
+				"from": 751760,
+				"to": 758760
+			},
+			"text": " So there have been, like, changes to, lately, to the plasma, like, protocols to fix that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,760",
+				"to": "00:12:41,800"
+			},
+			"offsets": {
+				"from": 758760,
+				"to": 761800
+			},
+			"text": " And it turns out that maybe, yes, maybe, plasma was a premature optimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,800",
+				"to": "00:12:45,560"
+			},
+			"offsets": {
+				"from": 761800,
+				"to": 765560
+			},
+			"text": " Maybe, like, many people might have raised money on plasma on something that might be"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,560",
+				"to": "00:12:46,720"
+			},
+			"offsets": {
+				"from": 765560,
+				"to": 766720
+			},
+			"text": " broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,720",
+				"to": "00:12:47,720"
+			},
+			"offsets": {
+				"from": 766720,
+				"to": 767720
+			},
+			"text": " What can we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,720",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 767720,
+				"to": 769000
+			},
+			"text": " That's how technology will move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:53,080"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 773080
+			},
+			"text": " So how are we going to solve the data availability problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,080",
+				"to": "00:12:54,080"
+			},
+			"offsets": {
+				"from": 773080,
+				"to": 774080
+			},
+			"text": " We cannot."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,080",
+				"to": "00:12:59,240"
+			},
+			"offsets": {
+				"from": 774080,
+				"to": 779240
+			},
+			"text": " What we're going to do, instead of having off-chain data, fraud proofs, will put data on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,240",
+				"to": "00:13:00,240"
+			},
+			"offsets": {
+				"from": 779240,
+				"to": 780240
+			},
+			"text": " with fraud proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,240",
+				"to": "00:13:01,960"
+			},
+			"offsets": {
+				"from": 780240,
+				"to": 781960
+			},
+			"text": " And that's what we call optimistic roll-up."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,960",
+				"to": "00:13:06,920"
+			},
+			"offsets": {
+				"from": 781960,
+				"to": 786920
+			},
+			"text": " And this is what the currently the Cryptoconomics Lab and the plasma group teams are working on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,920",
+				"to": "00:13:11,520"
+			},
+			"offsets": {
+				"from": 786920,
+				"to": 791520
+			},
+			"text": " which is basically that you take all the data that is off-chain, you create a smart, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,520",
+				"to": "00:13:15,120"
+			},
+			"offsets": {
+				"from": 791520,
+				"to": 795120
+			},
+			"text": " encoding of them, and you dump it on the cold data of the layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,120",
+				"to": "00:13:17,920"
+			},
+			"offsets": {
+				"from": 795120,
+				"to": 797920
+			},
+			"text": " And that's kind of cheap, because the data is not part of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,920",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 797920,
+				"to": 801000
+			},
+			"text": " It's just part of the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 802000
+			},
+			"text": " Like here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:28,080"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 808080
+			},
+			"text": " And the other people that are working on this, like, another, like, independently, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,080",
+				"to": "00:13:32,120"
+			},
+			"offsets": {
+				"from": 808080,
+				"to": 812120
+			},
+			"text": " thought of construction was called MERS Consensus by Minkarian John Adler, which basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,120",
+				"to": "00:13:33,120"
+			},
+			"offsets": {
+				"from": 812120,
+				"to": 813120
+			},
+			"text": " says what I just said."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,120",
+				"to": "00:13:37,920"
+			},
+			"offsets": {
+				"from": 813120,
+				"to": 817920
+			},
+			"text": " You have, you commit, like, all the, like, the marital root, and also you put an encoding"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,920",
+				"to": "00:13:39,020"
+			},
+			"offsets": {
+				"from": 817920,
+				"to": 819020
+			},
+			"text": " of the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,020",
+				"to": "00:13:43,200"
+			},
+			"offsets": {
+				"from": 819020,
+				"to": 823200
+			},
+			"text": " And you use basically the layer one as a data availability or a tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,200",
+				"to": "00:13:47,080"
+			},
+			"offsets": {
+				"from": 823200,
+				"to": 827080
+			},
+			"text": " And then if you plug out the fraud proof and you put the validity proof, as you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,080",
+				"to": "00:13:52,760"
+			},
+			"offsets": {
+				"from": 827080,
+				"to": 832760
+			},
+			"text": " start, like, whatever you want, whatever they call it these days, you have a ZK roll-up."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,760",
+				"to": "00:13:56,560"
+			},
+			"offsets": {
+				"from": 832760,
+				"to": 836560
+			},
+			"text": " Like, and I'm saying this, like, just so that we can get over the word salad and, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,560",
+				"to": "00:14:00,600"
+			},
+			"offsets": {
+				"from": 836560,
+				"to": 840600
+			},
+			"text": " understand, like, the bits and pieces that make a mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,600",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 840600,
+				"to": 847000
+			},
+			"text": " ZK roll-up means that you have the commit, the new marital root or the latest state or"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:09,040"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 849040
+			},
+			"text": " the transaction that happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,040",
+				"to": "00:14:13,360"
+			},
+			"offsets": {
+				"from": 849040,
+				"to": 853360
+			},
+			"text": " You take the knowledge proof, which attests that this state transition is valid, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,360",
+				"to": "00:14:14,440"
+			},
+			"offsets": {
+				"from": 853360,
+				"to": 854440
+			},
+			"text": " put it on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,440",
+				"to": "00:14:19,520"
+			},
+			"offsets": {
+				"from": 854440,
+				"to": 859520
+			},
+			"text": " The smart contract verifies that the state transition was valid with moon mass."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,520",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 859520,
+				"to": 865000
+			},
+			"text": " The problem with this is that maybe you need a trusted setup, as we saw in SNARK September,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:30,920"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 870920
+			},
+			"text": " where, like, five new SNARKs were, like, released, maybe we can remove the trusted setup, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,920",
+				"to": "00:14:34,840"
+			},
+			"offsets": {
+				"from": 870920,
+				"to": 874840
+			},
+			"text": " I wouldn't build our cryptography that is released in 2019."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,840",
+				"to": "00:14:39,920"
+			},
+			"offsets": {
+				"from": 874840,
+				"to": 879920
+			},
+			"text": " And they can be expensive, like, proving times are expensive, verifiers are also expensive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,920",
+				"to": "00:14:40,920"
+			},
+			"offsets": {
+				"from": 879920,
+				"to": 880920
+			},
+			"text": " and they can be slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,920",
+				"to": "00:14:44,600"
+			},
+			"offsets": {
+				"from": 880920,
+				"to": 884600
+			},
+			"text": " Again, no free lunch."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,600",
+				"to": "00:14:49,360"
+			},
+			"offsets": {
+				"from": 884600,
+				"to": 889360
+			},
+			"text": " And note on the on-chain data availability, because it has been, like, pumped as an idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,360",
+				"to": "00:14:51,840"
+			},
+			"offsets": {
+				"from": 889360,
+				"to": 891840
+			},
+			"text": " that, like, it's going to solve all our problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,840",
+				"to": "00:14:56,680"
+			},
+			"offsets": {
+				"from": 891840,
+				"to": 896680
+			},
+			"text": " I'm not a fan, because the blockchain is supposed to be the verification layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,680",
+				"to": "00:15:00,920"
+			},
+			"offsets": {
+				"from": 896680,
+				"to": 900920
+			},
+			"text": " The blockchain is not a file storage, like, and Fileco and another chains that are going"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,920",
+				"to": "00:15:05,280"
+			},
+			"offsets": {
+				"from": 900920,
+				"to": 905280
+			},
+			"text": " to do that do not exist yet, so we know that, like, this is a hard problem and maybe one"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,280",
+				"to": "00:15:06,680"
+			},
+			"offsets": {
+				"from": 905280,
+				"to": 906680
+			},
+			"text": " gets solved."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,680",
+				"to": "00:15:10,360"
+			},
+			"offsets": {
+				"from": 906680,
+				"to": 910360
+			},
+			"text": " The solution, solving the data availability problem, like, will give us the ability to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,360",
+				"to": "00:15:14,200"
+			},
+			"offsets": {
+				"from": 910360,
+				"to": 914200
+			},
+			"text": " do, like, define all the other, like, use cases that we're trying to figure out for this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,200",
+				"to": "00:15:20,800"
+			},
+			"offsets": {
+				"from": 914200,
+				"to": 920800
+			},
+			"text": " industry on the layer two, cheap and fast, but, like, on-chain data availability reduces"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,800",
+				"to": "00:15:22,160"
+			},
+			"offsets": {
+				"from": 920800,
+				"to": 922160
+			},
+			"text": " your scalability benefits."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,160",
+				"to": "00:15:27,600"
+			},
+			"offsets": {
+				"from": 922160,
+				"to": 927600
+			},
+			"text": " Like, you cannot have, like, infinite throughput, like, with other layer two, because, again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,600",
+				"to": "00:15:31,040"
+			},
+			"offsets": {
+				"from": 927600,
+				"to": 931040
+			},
+			"text": " you're bounded by the layer one's capacity."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,040",
+				"to": "00:15:33,560"
+			},
+			"offsets": {
+				"from": 931040,
+				"to": 933560
+			},
+			"text": " So it's really a constant size improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,560",
+				"to": "00:15:39,480"
+			},
+			"offsets": {
+				"from": 933560,
+				"to": 939480
+			},
+			"text": " And also, it's parasitic, in my view, by parasitic, I mean that, like, the moment that you start"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,480",
+				"to": "00:15:43,640"
+			},
+			"offsets": {
+				"from": 939480,
+				"to": 943640
+			},
+			"text": " utilizing the chains so heavily, what about the other apps that are not on your layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,640",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 943640,
+				"to": 946000
+			},
+			"text": " two, your roll-up or whatever you call it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:47,800"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 947800
+			},
+			"text": " Are they all going to come to your roll-up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,800",
+				"to": "00:15:50,880"
+			},
+			"offsets": {
+				"from": 947800,
+				"to": 950880
+			},
+			"text": " Like, I think that's too, like, ambitious."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,880",
+				"to": "00:15:55,080"
+			},
+			"offsets": {
+				"from": 950880,
+				"to": 955080
+			},
+			"text": " And there is a post by Vitalik recently where he, like, elaborates on this, and he's a fan"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,080",
+				"to": "00:15:58,440"
+			},
+			"offsets": {
+				"from": 955080,
+				"to": 958440
+			},
+			"text": " about this idea which, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,440",
+				"to": "00:16:03,400"
+			},
+			"offsets": {
+				"from": 958440,
+				"to": 963400
+			},
+			"text": " Some takeaways from this talk is that we know how to do both proof-of-work and proof-of-stake"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,400",
+				"to": "00:16:04,400"
+			},
+			"offsets": {
+				"from": 963400,
+				"to": 964400
+			},
+			"text": " sidechains."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,400",
+				"to": "00:16:06,760"
+			},
+			"offsets": {
+				"from": 964400,
+				"to": 966760
+			},
+			"text": " It's hard to implement them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,760",
+				"to": "00:16:10,360"
+			},
+			"offsets": {
+				"from": 966760,
+				"to": 970360
+			},
+			"text": " You need them to both be individually secure and having an honest majority assumption for"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,360",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 970360,
+				"to": 977000
+			},
+			"text": " more than one layer one is hard, as we have seen for multiple 51% attacks on smaller, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 978000
+			},
+			"text": " chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:22,240"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 982240
+			},
+			"text": " Layer two inherits security from layer one, and, like, I have a small taxonomy of, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,240",
+				"to": "00:16:23,160"
+			},
+			"offsets": {
+				"from": 982240,
+				"to": 983160
+			},
+			"text": " what goes where."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,160",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 983160,
+				"to": 987000
+			},
+			"text": " I'm a fan of the, like, direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:29,920"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 989920
+			},
+			"text": " This is, like, the current direction that we're going, it seems."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,920",
+				"to": "00:16:34,080"
+			},
+			"offsets": {
+				"from": 989920,
+				"to": 994080
+			},
+			"text": " But we should be, like, very skeptic about how much, like, we're just dumping on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,080",
+				"to": "00:16:38,240"
+			},
+			"offsets": {
+				"from": 994080,
+				"to": 998240
+			},
+			"text": " layer one because nobody can sing an Ethereum full note, and this is not going to help with"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,240",
+				"to": "00:16:39,920"
+			},
+			"offsets": {
+				"from": 998240,
+				"to": 999920
+			},
+			"text": " it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,920",
+				"to": "00:16:42,920"
+			},
+			"offsets": {
+				"from": 999920,
+				"to": 1002920
+			},
+			"text": " The conclusion is, sidechains are for indeterminability."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,920",
+				"to": "00:16:44,920"
+			},
+			"offsets": {
+				"from": 1002920,
+				"to": 1004920
+			},
+			"text": " Layer two is for scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,920",
+				"to": "00:16:46,480"
+			},
+			"offsets": {
+				"from": 1004920,
+				"to": 1006480
+			},
+			"text": " Sidechains are not layer two."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,480",
+				"to": "00:16:52,800"
+			},
+			"offsets": {
+				"from": 1006480,
+				"to": 1012800
+			},
+			"text": " Thank you very much, and I'll be happy to take some questions for three minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,800",
+				"to": "00:16:54,600"
+			},
+			"offsets": {
+				"from": 1012800,
+				"to": 1014600
+			},
+			"text": " And also, yeah, I should have changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,600",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1014600,
+				"to": 1018000
+			},
+			"text": " We can find a talk at, uh, scaling at sidechains2019.pdf."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:02,080"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1022080
+			},
+			"text": " There's a microphone, if anybody wants to do a question, we'll have a few minutes of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,080",
+				"to": "00:17:09,080"
+			},
+			"offsets": {
+				"from": 1022080,
+				"to": 1029080
+			},
+			"text": " the chat."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,080",
+				"to": "00:17:17,200"
+			},
+			"offsets": {
+				"from": 1029080,
+				"to": 1037200
+			},
+			"text": " Hi, thank you very much for the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,200",
+				"to": "00:17:26,400"
+			},
+			"offsets": {
+				"from": 1037200,
+				"to": 1046400
+			},
+			"text": " So you gave, I think, very detailed criticisms of both layer two and sidechain solutions without"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,400",
+				"to": "00:17:32,680"
+			},
+			"offsets": {
+				"from": 1046400,
+				"to": 1052680
+			},
+			"text": " highlighting too much of their positive aspects."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,680",
+				"to": "00:17:35,760"
+			},
+			"offsets": {
+				"from": 1052680,
+				"to": 1055760
+			},
+			"text": " What solutions are you actually fond of?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,760",
+				"to": "00:17:41,760"
+			},
+			"offsets": {
+				"from": 1055760,
+				"to": 1061760
+			},
+			"text": " I'm fond of the plasma construction for simple state transition for payments because this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,760",
+				"to": "00:17:48,320"
+			},
+			"offsets": {
+				"from": 1061760,
+				"to": 1068320
+			},
+			"text": " industry solves payments, and I'm happy, like, if I can get a construction that can do multi-sig"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,320",
+				"to": "00:17:50,480"
+			},
+			"offsets": {
+				"from": 1068320,
+				"to": 1070480
+			},
+			"text": " time looks, like, and that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,480",
+				"to": "00:17:53,320"
+			},
+			"offsets": {
+				"from": 1070480,
+				"to": 1073320
+			},
+			"text": " And plasma does that fine right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,320",
+				"to": "00:17:54,920"
+			},
+			"offsets": {
+				"from": 1073320,
+				"to": 1074920
+			},
+			"text": " So plasma for..."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,920",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1074920,
+				"to": 1076000
+			},
+			"text": " Plasma for simple payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:17:59,600"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1079600
+			},
+			"text": " I do not care much about smart contracts, like smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,600",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1079600,
+				"to": 1082000
+			},
+			"text": " Multi-sig time looks also efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:14,560"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1094560
+			},
+			"text": " Okay, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,560",
+				"to": "00:18:16,600"
+			},
+			"offsets": {
+				"from": 1094560,
+				"to": 1096600
+			},
+			"text": " Thanks for the breakdown."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,600",
+				"to": "00:18:19,560"
+			},
+			"offsets": {
+				"from": 1096600,
+				"to": 1099560
+			},
+			"text": " One thing that you didn't talk about, which I thought would be interesting to hear perspective"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,560",
+				"to": "00:18:22,960"
+			},
+			"offsets": {
+				"from": 1099560,
+				"to": 1102960
+			},
+			"text": " on, is hybrid approaches for roll-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,960",
+				"to": "00:18:27,600"
+			},
+			"offsets": {
+				"from": 1102960,
+				"to": 1107600
+			},
+			"text": " So where we use, you know, proofs of work from other chains to make the data availability"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,600",
+				"to": "00:18:30,920"
+			},
+			"offsets": {
+				"from": 1107600,
+				"to": 1110920
+			},
+			"text": " there, but do the fraud proofs on another chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,920",
+				"to": "00:18:32,960"
+			},
+			"offsets": {
+				"from": 1110920,
+				"to": 1112960
+			},
+			"text": " Right, so, with..."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,960",
+				"to": "00:18:38,480"
+			},
+			"offsets": {
+				"from": 1112960,
+				"to": 1118480
+			},
+			"text": " It's a question that I have a roll-up where I don't post all the data on chain, but only"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,480",
+				"to": "00:18:39,720"
+			},
+			"offsets": {
+				"from": 1118480,
+				"to": 1119720
+			},
+			"text": " for specific state transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,720",
+				"to": "00:18:43,880"
+			},
+			"offsets": {
+				"from": 1119720,
+				"to": 1123880
+			},
+			"text": " So it's using availability from something other than the L1 that you're..."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,880",
+				"to": "00:18:45,720"
+			},
+			"offsets": {
+				"from": 1123880,
+				"to": 1125720
+			},
+			"text": " No, I do not think that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,720",
+				"to": "00:18:49,040"
+			},
+			"offsets": {
+				"from": 1125720,
+				"to": 1129040
+			},
+			"text": " Because the security model changes wildly."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,040",
+				"to": "00:18:51,520"
+			},
+			"offsets": {
+				"from": 1129040,
+				"to": 1131520
+			},
+			"text": " There's a security model that I want as..."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,520",
+				"to": "00:18:52,520"
+			},
+			"offsets": {
+				"from": 1131520,
+				"to": 1132520
+			},
+			"text": " I have a layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,520",
+				"to": "00:18:54,320"
+			},
+			"offsets": {
+				"from": 1132520,
+				"to": 1134320
+			},
+			"text": " I know exactly how secure it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,320",
+				"to": "00:18:56,120"
+			},
+			"offsets": {
+				"from": 1134320,
+				"to": 1136120
+			},
+			"text": " I know that I have the Bitcoin chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,120",
+				"to": "00:18:59,240"
+			},
+			"offsets": {
+				"from": 1136120,
+				"to": 1139240
+			},
+			"text": " It has this much sense of resistance, this much capacity."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,240",
+				"to": "00:19:00,800"
+			},
+			"offsets": {
+				"from": 1139240,
+				"to": 1140800
+			},
+			"text": " I can dump all this data."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,800",
+				"to": "00:19:04,840"
+			},
+			"offsets": {
+				"from": 1140800,
+				"to": 1144840
+			},
+			"text": " The moment that I'm going to use Bitcoin Cash as a data availability layer, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,840",
+				"to": "00:19:10,400"
+			},
+			"offsets": {
+				"from": 1144840,
+				"to": 1150400
+			},
+			"text": " what you're talking about, means that I have to trust Bitcoin Cash as miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,400",
+				"to": "00:19:13,200"
+			},
+			"offsets": {
+				"from": 1150400,
+				"to": 1153200
+			},
+			"text": " And do you know how is it to censor Bitcoin Cash?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,200",
+				"to": "00:19:14,200"
+			},
+			"offsets": {
+				"from": 1153200,
+				"to": 1154200
+			},
+			"text": " Very easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,200",
+				"to": "00:19:15,960"
+			},
+			"offsets": {
+				"from": 1154200,
+				"to": 1155960
+			},
+			"text": " Like 10% of Bitcoin's hash rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,960",
+				"to": "00:19:17,400"
+			},
+			"offsets": {
+				"from": 1155960,
+				"to": 1157400
+			},
+			"text": " So no."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,400",
+				"to": "00:19:18,760"
+			},
+			"offsets": {
+				"from": 1157400,
+				"to": 1158760
+			},
+			"text": " Like one chain for..."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,760",
+				"to": "00:19:22,040"
+			},
+			"offsets": {
+				"from": 1158760,
+				"to": 1162040
+			},
+			"text": " If you're gonna dump data somewhere, dump it on one chain, in my view."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,040",
+				"to": "00:19:23,040"
+			},
+			"offsets": {
+				"from": 1162040,
+				"to": 1163040
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,040",
+				"to": "00:19:24,040"
+			},
+			"offsets": {
+				"from": 1163040,
+				"to": 1164040
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,040",
+				"to": "00:19:27,040"
+			},
+			"offsets": {
+				"from": 1164040,
+				"to": 1167040
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,040",
+				"to": "00:19:28,040"
+			},
+			"offsets": {
+				"from": 1167040,
+				"to": 1168040
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,040",
+				"to": "00:19:30,040"
+			},
+			"offsets": {
+				"from": 1168040,
+				"to": 1170040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,040",
+				"to": "00:19:32,040"
+			},
+			"offsets": {
+				"from": 1170040,
+				"to": 1172040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,040",
+				"to": "00:19:34,040"
+			},
+			"offsets": {
+				"from": 1172040,
+				"to": 1174040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,040",
+				"to": "00:19:36,040"
+			},
+			"offsets": {
+				"from": 1174040,
+				"to": 1176040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,040",
+				"to": "00:19:38,040"
+			},
+			"offsets": {
+				"from": 1176040,
+				"to": 1178040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,040",
+				"to": "00:19:40,040"
+			},
+			"offsets": {
+				"from": 1178040,
+				"to": 1180040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,040",
+				"to": "00:19:42,040"
+			},
+			"offsets": {
+				"from": 1180040,
+				"to": 1182040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,040",
+				"to": "00:19:44,040"
+			},
+			"offsets": {
+				"from": 1182040,
+				"to": 1184040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,040",
+				"to": "00:19:46,040"
+			},
+			"offsets": {
+				"from": 1184040,
+				"to": 1186040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,040",
+				"to": "00:19:48,040"
+			},
+			"offsets": {
+				"from": 1186040,
+				"to": 1188040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,040",
+				"to": "00:19:50,040"
+			},
+			"offsets": {
+				"from": 1188040,
+				"to": 1190040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,040",
+				"to": "00:19:52,040"
+			},
+			"offsets": {
+				"from": 1190040,
+				"to": 1192040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,040",
+				"to": "00:19:54,040"
+			},
+			"offsets": {
+				"from": 1192040,
+				"to": 1194040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,040",
+				"to": "00:20:04,040"
+			},
+			"offsets": {
+				"from": 1194040,
+				"to": 1204040
+			},
+			"text": " [Music]"
+		}
+	]
+}

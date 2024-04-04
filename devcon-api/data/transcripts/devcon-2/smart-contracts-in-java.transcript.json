@@ -1,0 +1,1407 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:09,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 9000
+			},
+			"text": " Okay, hi everyone. I think it was so emotional to talk about Java, but I hope it's okay for everybody else."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 9000,
+				"to": 20000
+			},
+			"text": " So I hope it will be okay because I see it's a bit too large, but maybe we can just..."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 32000
+			},
+			"text": " Oh, I see. Yeah, I should go. Like that should be okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 43000
+			},
+			"text": " Okay, so hi again everyone, and I'm gonna talk today about smart contracts in Java and what I've been doing lately."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 52000
+			},
+			"text": " So just to give a context of who I am, where I come from, so I'm on the functional programming and type system lover."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 61000
+			},
+			"text": " I like my types, I like the compiler working for me. I'm really into distributed systems, and this is actually what brought me to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 74000
+			},
+			"text": " I was working on a distributed open data application. I was looking for a way to have distributed metadata management system with provenance verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 90000
+			},
+			"text": " And while looking for it, I discovered Ethereum about years ago, and that made me a blockchain addict because it was so great to suddenly you can do all this security and proof and just amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 108000
+			},
+			"text": " And what I want is a strong Java community on Ethereum. I think that as the Java people are a bit alone in all the Ethereum stuff and would be nice to come along and do awesome application together."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 121000
+			},
+			"text": " So what is this library and why it exists? So as I said, when I started to try to do stuff in Ethereum, I looked at Ethereum J for any Java guys who tried it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 131000
+			},
+			"text": " It's great, but it's not so easy to use. It was really hard to set up. It's really hard to connect to a network. Really hard to have a key pair on it. It was really frustrating."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 147000
+			},
+			"text": " And so I started to build on that, trying to build stuff with it, and it became slowly my personal learning tool. I learned a lot with Ethereum, with this library on Ethereum, how it works, the internal, the sound use, the transaction and so on and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 158000
+			},
+			"text": " And so it became more and more important for me to help other people trying to experiment with Ethereum and doing dabs on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 176000
+			},
+			"text": " So what is this ETH contract API? So it's more of an integration library. It's a way to have in your Java some smart contracts as a service. Same with your bread services or I don't know which services that you know in the Java world, then you can have smart contracts as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 195000
+			},
+			"text": " With an emphasis on type safety, so that the compiler helps you and works for you and is integration so that you shouldn't have to think about, okay, what are the types of types that you have in Solidity and how do they translate in Java? It'll be automatic."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 214000
+			},
+			"text": " So I've been working on it for quite some time and today what you can already do is that your smart contract is represented by an interface, a Java interface that will be validated against the API so that the parameters, input and output are correct and work with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 232000
+			},
+			"text": " All the communication is abstracted away, so it means that you don't need to think about how to set up your node or how to connect on RPC, all these things, you will have a provider to connect to it, and then you simply use it, you don't have to think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 244000
+			},
+			"text": " Because I was working with the existing networks, there is a pre-defined providers for the ethercan testnet, the modern testnet and the mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 255000
+			},
+			"text": " It's fully non-blocking, so you don't have to do all this synchronization, whether your transaction has been mine or anything, you get a future back and then when it's done, it's done."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 263000
+			},
+			"text": " And as much as possible, implicit data conversion."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 268000
+			},
+			"text": " So let's see some codes of how does it work and how you do something on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 277000
+			},
+			"text": " So basically you create a binary here, so it's this Ethereum assay, and then you get your key."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 297000
+			},
+			"text": " Of course, because I don't know if you guys have done something on ethercan, but they are using all of this brain wallet, so you don't really have a key store, but you can use the same concept to take your key store from this, so you would have to give the key store here and give the password afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 307000
+			},
+			"text": " And then you start your Ethereum net node or environment. You read your solid key code you want to work against."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 315000
+			},
+			"text": " In this case, I published a contract, but you don't have to, you can also simply use the existing address."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 319000
+			},
+			"text": " And then you create the proxy object, and then you use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 329000
+			},
+			"text": " Here, for example, I've created a function called register. This is another project I'm working on to distribute that app store."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 334000
+			},
+			"text": " So here you would publish your new app and the way to get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 339000
+			},
+			"text": " We'll check some to make sure that when people don't know it, they don't know the right stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 341000
+			},
+			"text": " And here you will have the interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 352000
+			},
+			"text": " So I'm not going to show the exact interface, but I will show another one and explain a bit the convention of how an interface has to be written."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 363000
+			},
+			"text": " So basically, the rule is like that. If you give back a completeable future, it means that it only a constant call, but a one that will create a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 367000
+			},
+			"text": " And you define what kind of value you want to get in return."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 375000
+			},
+			"text": " If it's a void, it's a fire and forget. It means that you want to get a transaction, but you don't really care when it's going to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 379000
+			},
+			"text": " And otherwise, you have all the constant calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 385000
+			},
+			"text": " And here, as I said, there is some increasing conversion. So string is stringed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 388000
+			},
+			"text": " You can also have the arrays we get to list."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 396000
+			},
+			"text": " And if you have your own return type, it will take all the parameters that you get back, find a constructor, and if there is one matching,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 398000
+			},
+			"text": " it will create the object."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 410000
+			},
+			"text": " So this way, all these things that can be sometimes frustrating that you cannot return struct and that you have to make them back again."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 415000
+			},
+			"text": " Here it's done automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 419000
+			},
+			"text": " And so where do I want to go with this array?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 424000
+			},
+			"text": " The biggest thing would be that it's compatible with Android. You know what I think?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 429000
+			},
+			"text": " That doing mobile apps could be really, really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 433000
+			},
+			"text": " Better error handling because I've been doing that for not so long."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 437000
+			},
+			"text": " So some errors are still silent. It is not that good."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 440000
+			},
+			"text": " Sometimes also tricky to find them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 453000
+			},
+			"text": " The usual suspect, better documentation so that people can jump on it even faster, easier setup and configuration, especially with the configuration Ethereum J."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 457000
+			},
+			"text": " It's not so it can be a bit tricky. So like to help people do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 461000
+			},
+			"text": " And whatever you need, I mean, I start already talking with a lot of developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 464000
+			},
+			"text": " People have great ideas, different needs also."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 480000
+			},
+			"text": " Sometimes you do an application that will be mobile. Some people will do data analysis. Some people will do some, any of the business needs that they would have in their company big or small."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 493000
+			},
+			"text": " And so the vision of the library is that it has to be focused on ease of use. It should be easy for anyone, even if he doesn't have a PhD in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 503000
+			},
+			"text": " Meaning, if he is not reimbursing it, he doesn't understand. All the mining process and everything should be still able to use it and always open to ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 510000
+			},
+			"text": " Always interesting to see how people use the system in different ways, different needs, different ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 517000
+			},
+			"text": " And so my dream is that a lot of projects are coding in the GVM and we should help them use the Ethereum to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 522000
+			},
+			"text": " And a lot of companies are using Java and we should help them do that as well, use Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 534000
+			},
+			"text": " And I know that a lot of developers love the GVM and they also love Ethereum. We need to help them join the club and have fun with all of us."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 549000
+			},
+			"text": " And for that, I'm going to try to create a Java community. I would like to have more and more Java developers come, do DAPs, do things in the Ethereum community in the Ethereum ecosystem and do things together."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 555000
+			},
+			"text": " And for that, I know it's always, if you try to do something at work, you always look at the licensing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 561000
+			},
+			"text": " So licensing should be as friendly as possible for people to do stuff with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 574000
+			},
+			"text": " And my dream is to see many companies begin small to adopt Ethereum because of all the work we would do together."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 580000
+			},
+			"text": " And for that, we need you, we need the developers to do stuff on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 593000
+			},
+			"text": " We need feedback for people who try the library to try it, to tell me what is good, what is bad, what should be changed, what is missing, so on and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 601000
+			},
+			"text": " Actually creating DAPs, I think that the best way to understand how everything works is to actually do something."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 612000
+			},
+			"text": " So the thing is done in Java, but actually I'm a Scala lover, so I can guarantee you it works with Scala as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 625000
+			},
+			"text": " And the actual talk about each show to everyone, I think it's something that the livelier we're going to get more productive and we're going to be together."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 633000
+			},
+			"text": " As a note, there will be a next event at the end of November 26 and 27, the DAP hack in Berlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 642000
+			},
+			"text": " It would be a two day long event where people can both found out about new technologies and also try and write some apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 651000
+			},
+			"text": " I will be there, there will be also other projects there that will show what they're doing and show how you can play with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 659000
+			},
+			"text": " So Senya is here, you can ask her everything if you want to know anything else on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 672000
+			},
+			"text": " And to finish all the usual suspects, how to contact me if you want to follow, write, send issues or try something, please feel free."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 676000
+			},
+			"text": " I try to be friendly, I hope I will be."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 681000
+			},
+			"text": " And so thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 691000
+			},
+			"text": " Are there any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 698000
+			},
+			"text": " How can we go to Ethereum J, like you said, we use RPC in between, like it says no, like, like, for Ethereum J."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 710000
+			},
+			"text": " Yeah, so right now it's working mainly on Ethereum J and I started our branch to work with Web3J, which is an RPC implementation in Java."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 715000
+			},
+			"text": " And the idea is that for anyone using the library, it shouldn't make any difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 720000
+			},
+			"text": " So they can still use this interface to talk with a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725000
+			},
+			"text": " Just so happened that it goes through the RPC and not through the note."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 731000
+			},
+			"text": " So of course there will be some limitation because today there's some stuff that are not coming back from the RPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 739000
+			},
+			"text": " For example, the return value is not available if it's through a transaction with the RPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 745000
+			},
+			"text": " But otherwise it would be totally transparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 748000
+			},
+			"text": " Is it un-production okay or?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 756000
+			},
+			"text": " No, right now there's not in production, but hopefully there will be a lot of project in production."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 762000
+			},
+			"text": " And if I did this for Java, so no, it is written in Java."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 767000
+			},
+			"text": " The reason is that so that as many people as possible can use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 768000
+			},
+			"text": " But yeah, I'm a scalar over."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 777000
+			},
+			"text": " If I could have written that in Scala, I would have."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 779000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 780000
+			},
+			"text": " Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 785000
+			},
+			"text": " If you contact interfaces, you need to provide some more."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 788000
+			},
+			"text": " This is going to be capable of generating."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 790000
+			},
+			"text": " So you have to provide them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 795000
+			},
+			"text": " The main reason it is done like that, for example, Web3J, they have generators to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 802000
+			},
+			"text": " The reason I prefer that you define them is that you can define what kind of value you're expecting."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 804000
+			},
+			"text": " And then the conversion will take place."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 808000
+			},
+			"text": " That when it's generated, you cannot."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 815000
+			},
+			"text": " So are you basically implementing on Ethereum, but this is going on their own blockchain or how does it different?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 820000
+			},
+			"text": " No, not really, because here Solidity is still here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 824000
+			},
+			"text": " I mean, on the Ethereum part, I haven't changed anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 827000
+			},
+			"text": " Here it's an integration part that is different."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 833000
+			},
+			"text": " Let's say that it's more an alternative to Web3J's kind of."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 836000
+			},
+			"text": " Today, usually people will integrate with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 842000
+			},
+			"text": " And here it's another way in Java that I think is also nice because you have all the Java."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 848000
+			},
+			"text": " Like you are in your environment with the type system that you don't have with Web3J's."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 857000
+			},
+			"text": " I'm going to put in the slide with the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 858000
+			},
+			"text": " What what what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 861000
+			},
+			"text": " On the slide with the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 869000
+			},
+			"text": " There's a user method where it's under the controller."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 871000
+			},
+			"text": " So here it's just an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 880000
+			},
+			"text": " Because I'm working on this decentralized app store and the idea is that you have your organization and you can publish their way to get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 887000
+			},
+			"text": " So here would be like the HTTP, like the URL to download the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 894000
+			},
+			"text": " The idea is that you can put HTTP and then you can put IPFS and put it around whatever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 900000
+			},
+			"text": " But it's always the same checksum to make sure that we're talking always about the same the same buyer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 902000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 904000
+			},
+			"text": " Just again."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 911000
+			},
+			"text": " And the node which is connected is an LPC node."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 914000
+			},
+			"text": " So the question is about the nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 919000
+			},
+			"text": " The back end is the idea that the back end is abstracted away."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 923000
+			},
+			"text": " So the back end can be RPC if you choose it to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 929000
+			},
+			"text": " But for example today it's an actual node using it on tray."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 932000
+			},
+			"text": " So you have an actual node that is syncing locally."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 937000
+			},
+			"text": " But you can choose which one you want depending on your needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 939000
+			},
+			"text": " [ ]"
+		}
+	]
+}

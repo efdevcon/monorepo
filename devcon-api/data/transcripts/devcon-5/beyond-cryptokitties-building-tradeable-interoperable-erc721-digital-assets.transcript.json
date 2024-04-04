@@ -1,0 +1,5587 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:14,600"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 14600
+			},
+			"text": " It was intended to be sort of a workshop."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,600",
+				"to": "00:00:18,960"
+			},
+			"offsets": {
+				"from": 14600,
+				"to": 18960
+			},
+			"text": " So if anyone wants to, like, sort of halfway through,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,960",
+				"to": "00:00:20,280"
+			},
+			"offsets": {
+				"from": 18960,
+				"to": 20280
+			},
+			"text": " will be doing some coding."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,280",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 20280,
+				"to": 23000
+			},
+			"text": " If anyone wants to take out their laptop"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:27,720"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 27720
+			},
+			"text": " and try some stuff out, if not, no worries."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,720",
+				"to": "00:00:29,040"
+			},
+			"offsets": {
+				"from": 27720,
+				"to": 29040
+			},
+			"text": " But yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,040",
+				"to": "00:00:33,320"
+			},
+			"offsets": {
+				"from": 29040,
+				"to": 33320
+			},
+			"text": " So this workshop overview, the introduction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,320",
+				"to": "00:00:36,640"
+			},
+			"offsets": {
+				"from": 33320,
+				"to": 36640
+			},
+			"text": " is just a little bit of background on NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,640",
+				"to": "00:00:39,920"
+			},
+			"offsets": {
+				"from": 36640,
+				"to": 39920
+			},
+			"text": " For those of you who aren't as familiar with them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,920",
+				"to": "00:00:42,880"
+			},
+			"offsets": {
+				"from": 39920,
+				"to": 42880
+			},
+			"text": " a little bit of background on OpenSea."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,880",
+				"to": "00:00:45,720"
+			},
+			"offsets": {
+				"from": 42880,
+				"to": 45720
+			},
+			"text": " And then the second part of the presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,720",
+				"to": "00:00:48,720"
+			},
+			"offsets": {
+				"from": 45720,
+				"to": 48720
+			},
+			"text": " will be the development goal of deploying"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,720",
+				"to": "00:00:54,160"
+			},
+			"offsets": {
+				"from": 48720,
+				"to": 54160
+			},
+			"text": " a tradable NFT conference ticket with the sub goals"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,160",
+				"to": "00:01:00,280"
+			},
+			"offsets": {
+				"from": 54160,
+				"to": 60280
+			},
+			"text": " of implementing a simple ERC721 contract, viewing the tickets"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,280",
+				"to": "00:01:02,400"
+			},
+			"offsets": {
+				"from": 60280,
+				"to": 62400
+			},
+			"text": " on marketplace, putting them on sale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,400",
+				"to": "00:01:06,560"
+			},
+			"offsets": {
+				"from": 62400,
+				"to": 66560
+			},
+			"text": " and then maybe as a take home task programmatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,560",
+				"to": "00:01:11,160"
+			},
+			"offsets": {
+				"from": 66560,
+				"to": 71160
+			},
+			"text": " selling the tickets using something like the OpenSea SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,160",
+				"to": "00:01:19,920"
+			},
+			"offsets": {
+				"from": 71160,
+				"to": 79920
+			},
+			"text": " So how many of you are familiar with ERC721?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,920",
+				"to": "00:01:20,440"
+			},
+			"offsets": {
+				"from": 79920,
+				"to": 80440
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,440",
+				"to": "00:01:22,480"
+			},
+			"offsets": {
+				"from": 80440,
+				"to": 82480
+			},
+			"text": " So make sure to your room."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,480",
+				"to": "00:01:24,880"
+			},
+			"offsets": {
+				"from": 82480,
+				"to": 84880
+			},
+			"text": " So this is probably just a refresher."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,880",
+				"to": "00:01:30,440"
+			},
+			"offsets": {
+				"from": 84880,
+				"to": 90440
+			},
+			"text": " But ERC20 represents what are called fungible assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,440",
+				"to": "00:01:32,360"
+			},
+			"offsets": {
+				"from": 90440,
+				"to": 92360
+			},
+			"text": " So currencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,360",
+				"to": "00:01:36,760"
+			},
+			"offsets": {
+				"from": 92360,
+				"to": 96760
+			},
+			"text": " And ERC721 was designed to represent"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,760",
+				"to": "00:01:39,720"
+			},
+			"offsets": {
+				"from": 96760,
+				"to": 99720
+			},
+			"text": " unique or non-fungible digital assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,720",
+				"to": "00:01:44,160"
+			},
+			"offsets": {
+				"from": 99720,
+				"to": 104160
+			},
+			"text": " So each one was associated with a unique identifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,160",
+				"to": "00:01:47,640"
+			},
+			"offsets": {
+				"from": 104160,
+				"to": 107640
+			},
+			"text": " And the space of-- or one of the reasons"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,640",
+				"to": "00:01:49,800"
+			},
+			"offsets": {
+				"from": 107640,
+				"to": 109800
+			},
+			"text": " we're excited about non-fungible assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,800",
+				"to": "00:01:52,640"
+			},
+			"offsets": {
+				"from": 109800,
+				"to": 112640
+			},
+			"text": " is we actually think that the number of currencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,640",
+				"to": "00:01:54,960"
+			},
+			"offsets": {
+				"from": 112640,
+				"to": 114960
+			},
+			"text": " that individuals will use on a data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,960",
+				"to": "00:02:01,080"
+			},
+			"offsets": {
+				"from": 114960,
+				"to": 121080
+			},
+			"text": " basis is limited to maybe stable plans, maybe in-game currencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,080",
+				"to": "00:02:01,920"
+			},
+			"offsets": {
+				"from": 121080,
+				"to": 121920
+			},
+			"text": " things like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,920",
+				"to": "00:02:04,240"
+			},
+			"offsets": {
+				"from": 121920,
+				"to": 124240
+			},
+			"text": " But the number of digital assets that we already"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,240",
+				"to": "00:02:07,200"
+			},
+			"offsets": {
+				"from": 124240,
+				"to": 127200
+			},
+			"text": " use on a data basis is very wide."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,200",
+				"to": "00:02:10,360"
+			},
+			"offsets": {
+				"from": 127200,
+				"to": 130360
+			},
+			"text": " So things like game items, things like domain names,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,360",
+				"to": "00:02:11,480"
+			},
+			"offsets": {
+				"from": 130360,
+				"to": 131480
+			},
+			"text": " things like event tickets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,480",
+				"to": "00:02:14,840"
+			},
+			"offsets": {
+				"from": 131480,
+				"to": 134840
+			},
+			"text": " And then when you start connecting these digital assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,840",
+				"to": "00:02:19,240"
+			},
+			"offsets": {
+				"from": 134840,
+				"to": 139240
+			},
+			"text": " to the real world, you have things like real estate"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,240",
+				"to": "00:02:22,160"
+			},
+			"offsets": {
+				"from": 139240,
+				"to": 142160
+			},
+			"text": " or physical items as well that could be represented"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,160",
+				"to": "00:02:22,920"
+			},
+			"offsets": {
+				"from": 142160,
+				"to": 142920
+			},
+			"text": " using this standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,920",
+				"to": "00:02:29,800"
+			},
+			"offsets": {
+				"from": 142920,
+				"to": 149800
+			},
+			"text": " So a little bit of history of ERC721."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,800",
+				"to": "00:02:34,120"
+			},
+			"offsets": {
+				"from": 149800,
+				"to": 154120
+			},
+			"text": " So in 2017, has anyone heard of crypto punks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,120",
+				"to": "00:02:34,400"
+			},
+			"offsets": {
+				"from": 154120,
+				"to": 154400
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,400",
+				"to": "00:02:38,680"
+			},
+			"offsets": {
+				"from": 154400,
+				"to": 158680
+			},
+			"text": " So most people-- so crypto punks was sort of the first non-fungible"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,680",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 158680,
+				"to": 160000
+			},
+			"text": " asset on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:45,400"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 165400
+			},
+			"text": " There were non-fungible assets using Bitcoin counterparty."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,400",
+				"to": "00:02:49,440"
+			},
+			"offsets": {
+				"from": 165400,
+				"to": 169440
+			},
+			"text": " It was sort of the first one that was the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,440",
+				"to": "00:02:51,240"
+			},
+			"offsets": {
+				"from": 169440,
+				"to": 171240
+			},
+			"text": " of a crypto collectible on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,240",
+				"to": "00:02:53,520"
+			},
+			"offsets": {
+				"from": 171240,
+				"to": 173520
+			},
+			"text": " But there was no standard around it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,520",
+				"to": "00:02:55,440"
+			},
+			"offsets": {
+				"from": 173520,
+				"to": 175440
+			},
+			"text": " And what CryptoKitties did was, number one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,440",
+				"to": "00:02:58,440"
+			},
+			"offsets": {
+				"from": 175440,
+				"to": 178440
+			},
+			"text": " they built a game around these assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,440",
+				"to": "00:03:02,880"
+			},
+			"offsets": {
+				"from": 178440,
+				"to": 182880
+			},
+			"text": " But they also pioneered the ERC721 standard, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,880",
+				"to": "00:03:06,880"
+			},
+			"offsets": {
+				"from": 182880,
+				"to": 186880
+			},
+			"text": " was refined by the Ethereum community, such that it could"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,880",
+				"to": "00:03:09,640"
+			},
+			"offsets": {
+				"from": 186880,
+				"to": 189640
+			},
+			"text": " be leveraged by other projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,640",
+				"to": "00:03:11,960"
+			},
+			"offsets": {
+				"from": 189640,
+				"to": 191960
+			},
+			"text": " So one of those early projects was a product called"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,960",
+				"to": "00:03:15,800"
+			},
+			"offsets": {
+				"from": 191960,
+				"to": 195800
+			},
+			"text": " the Central Land, which represented their virtual land"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,800",
+				"to": "00:03:17,680"
+			},
+			"offsets": {
+				"from": 195800,
+				"to": 197680
+			},
+			"text": " using the ERC721 standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,680",
+				"to": "00:03:20,960"
+			},
+			"offsets": {
+				"from": 197680,
+				"to": 200960
+			},
+			"text": " That was in late 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,960",
+				"to": "00:03:24,880"
+			},
+			"offsets": {
+				"from": 200960,
+				"to": 204880
+			},
+			"text": " In early 2018, we sort of had a miniature craze"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,880",
+				"to": "00:03:27,600"
+			},
+			"offsets": {
+				"from": 204880,
+				"to": 207600
+			},
+			"text": " around non-fungible tokens that was a lot more"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,600",
+				"to": "00:03:31,400"
+			},
+			"offsets": {
+				"from": 207600,
+				"to": 211400
+			},
+			"text": " isolated to the early adopter tech enthusiasts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,400",
+				"to": "00:03:36,200"
+			},
+			"offsets": {
+				"from": 211400,
+				"to": 216200
+			},
+			"text": " than relative to the craze that we saw around ICOs and ERC20s."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,200",
+				"to": "00:03:38,680"
+			},
+			"offsets": {
+				"from": 216200,
+				"to": 218680
+			},
+			"text": " But there were a lot of crypto Kittie clones,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,680",
+				"to": "00:03:41,200"
+			},
+			"offsets": {
+				"from": 218680,
+				"to": 221200
+			},
+			"text": " like crypto bots, crypto fighters."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,200",
+				"to": "00:03:44,080"
+			},
+			"offsets": {
+				"from": 221200,
+				"to": 224080
+			},
+			"text": " And there were also these games called Hot Potato Games,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,080",
+				"to": "00:03:46,640"
+			},
+			"offsets": {
+				"from": 224080,
+				"to": 226640
+			},
+			"text": " which were kind of these games where"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,640",
+				"to": "00:03:50,120"
+			},
+			"offsets": {
+				"from": 226640,
+				"to": 230120
+			},
+			"text": " you would buy a collectible with the intention of selling it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,120",
+				"to": "00:03:51,160"
+			},
+			"offsets": {
+				"from": 230120,
+				"to": 231160
+			},
+			"text": " at a higher price."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,160",
+				"to": "00:03:54,840"
+			},
+			"offsets": {
+				"from": 231160,
+				"to": 234840
+			},
+			"text": " So it was kind of this even more experimental period"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,840",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 234840,
+				"to": 239000
+			},
+			"text": " than we're going through right now with a lot of scammy"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 241000
+			},
+			"text": " projects as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:06,640"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 246640
+			},
+			"text": " In mid-2018, we started seeing higher quality projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,640",
+				"to": "00:04:07,880"
+			},
+			"offsets": {
+				"from": 246640,
+				"to": 247880
+			},
+			"text": " enter the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,880",
+				"to": "00:04:10,920"
+			},
+			"offsets": {
+				"from": 247880,
+				"to": 250920
+			},
+			"text": " So the two right there-- and there were a lot--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,920",
+				"to": "00:04:14,120"
+			},
+			"offsets": {
+				"from": 250920,
+				"to": 254120
+			},
+			"text": " are Gods Unchained, which is a trading card game that used"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,120",
+				"to": "00:04:16,800"
+			},
+			"offsets": {
+				"from": 254120,
+				"to": 256800
+			},
+			"text": " ERC721 to represent their assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,800",
+				"to": "00:04:18,920"
+			},
+			"offsets": {
+				"from": 256800,
+				"to": 258920
+			},
+			"text": " And then MLB Crypto, which was actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,920",
+				"to": "00:04:22,600"
+			},
+			"offsets": {
+				"from": 258920,
+				"to": 262600
+			},
+			"text": " an officially licensed game from the MLD"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,600",
+				"to": "00:04:26,840"
+			},
+			"offsets": {
+				"from": 262600,
+				"to": 266840
+			},
+			"text": " that had these crypto collectibles associated with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,840",
+				"to": "00:04:30,520"
+			},
+			"offsets": {
+				"from": 266840,
+				"to": 270520
+			},
+			"text": " And that brings us to 2019, where actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,520",
+				"to": "00:04:35,600"
+			},
+			"offsets": {
+				"from": 270520,
+				"to": 275600
+			},
+			"text": " it's less of a well-known space in the crypto sphere."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,600",
+				"to": "00:04:37,520"
+			},
+			"offsets": {
+				"from": 275600,
+				"to": 277520
+			},
+			"text": " But there's actually quite a lot of activity"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,520",
+				"to": "00:04:40,320"
+			},
+			"offsets": {
+				"from": 277520,
+				"to": 280320
+			},
+			"text": " happening in the NFT space right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,320",
+				"to": "00:04:55,480"
+			},
+			"offsets": {
+				"from": 280320,
+				"to": 295480
+			},
+			"text": " So formula one recently auctioned off some cards"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,480",
+				"to": "00:04:57,480"
+			},
+			"offsets": {
+				"from": 295480,
+				"to": 297480
+			},
+			"text": " using our marketplace, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,480",
+				"to": "00:04:59,960"
+			},
+			"offsets": {
+				"from": 297480,
+				"to": 299960
+			},
+			"text": " There's a couple Japanese games that are becoming really"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,960",
+				"to": "00:05:00,920"
+			},
+			"offsets": {
+				"from": 299960,
+				"to": 300920
+			},
+			"text": " popular."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,920",
+				"to": "00:05:06,400"
+			},
+			"offsets": {
+				"from": 300920,
+				"to": 306400
+			},
+			"text": " There is a space game that is kind of like Eve Online,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,400",
+				"to": "00:05:07,360"
+			},
+			"offsets": {
+				"from": 306400,
+				"to": 307360
+			},
+			"text": " if anyone's played that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,360",
+				"to": "00:05:10,880"
+			},
+			"offsets": {
+				"from": 307360,
+				"to": 310880
+			},
+			"text": " And then there are starting to be assets that are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,880",
+				"to": "00:05:12,680"
+			},
+			"offsets": {
+				"from": 310880,
+				"to": 312680
+			},
+			"text": " in just collectibles and gaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,680",
+				"to": "00:05:17,120"
+			},
+			"offsets": {
+				"from": 312680,
+				"to": 317120
+			},
+			"text": " So ENS is one of those that is using the ERC721 standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,120",
+				"to": "00:05:22,800"
+			},
+			"offsets": {
+				"from": 317120,
+				"to": 322800
+			},
+			"text": " to allow their names to be tradable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,800",
+				"to": "00:05:27,400"
+			},
+			"offsets": {
+				"from": 322800,
+				"to": 327400
+			},
+			"text": " So one question one might ask is, why is gaming kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,400",
+				"to": "00:05:29,120"
+			},
+			"offsets": {
+				"from": 327400,
+				"to": 329120
+			},
+			"text": " of the leader here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,120",
+				"to": "00:05:33,480"
+			},
+			"offsets": {
+				"from": 329120,
+				"to": 333480
+			},
+			"text": " So why is this an interesting fit for gaming?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,480",
+				"to": "00:05:35,680"
+			},
+			"offsets": {
+				"from": 333480,
+				"to": 335680
+			},
+			"text": " Number one, I think gaming is often"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,680",
+				"to": "00:05:39,320"
+			},
+			"offsets": {
+				"from": 335680,
+				"to": 339320
+			},
+			"text": " like a digital-- sort of a playground for new technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,320",
+				"to": "00:05:41,760"
+			},
+			"offsets": {
+				"from": 339320,
+				"to": 341760
+			},
+			"text": " We saw this with the mobile phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,760",
+				"to": "00:05:43,880"
+			},
+			"offsets": {
+				"from": 341760,
+				"to": 343880
+			},
+			"text": " We saw this with the early internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,880",
+				"to": "00:05:49,200"
+			},
+			"offsets": {
+				"from": 343880,
+				"to": 349200
+			},
+			"text": " But the shift in gaming that folks are excited about"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,200",
+				"to": "00:05:52,560"
+			},
+			"offsets": {
+				"from": 349200,
+				"to": 352560
+			},
+			"text": " is this idea that as a game developer, you sort of manage"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,560",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 352560,
+				"to": 355000
+			},
+			"text": " every piece of your economy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:57,280"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 357280
+			},
+			"text": " You manage the supply of your items."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,280",
+				"to": "00:06:01,280"
+			},
+			"offsets": {
+				"from": 357280,
+				"to": 361280
+			},
+			"text": " You usually don't allow other items to be imported into your game."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,280",
+				"to": "00:06:03,560"
+			},
+			"offsets": {
+				"from": 361280,
+				"to": 363560
+			},
+			"text": " There's nothing really exported from the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,560",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 363560,
+				"to": 369000
+			},
+			"text": " It's sort of this highly controlled isolationist economy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:11,920"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 371920
+			},
+			"text": " And what's exciting is that with blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,920",
+				"to": "00:06:15,600"
+			},
+			"offsets": {
+				"from": 371920,
+				"to": 375600
+			},
+			"text": " and digital ownership, you could have an open economy"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,600",
+				"to": "00:06:18,360"
+			},
+			"offsets": {
+				"from": 375600,
+				"to": 378360
+			},
+			"text": " where you could export things from the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,360",
+				"to": "00:06:20,720"
+			},
+			"offsets": {
+				"from": 378360,
+				"to": 380720
+			},
+			"text": " You could trade them on open marketplaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,720",
+				"to": "00:06:22,760"
+			},
+			"offsets": {
+				"from": 380720,
+				"to": 382760
+			},
+			"text": " You could do all these interesting things."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,760",
+				"to": "00:06:24,920"
+			},
+			"offsets": {
+				"from": 382760,
+				"to": 384920
+			},
+			"text": " And so this is kind of the shift that people"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,920",
+				"to": "00:06:27,480"
+			},
+			"offsets": {
+				"from": 384920,
+				"to": 387480
+			},
+			"text": " are excited about in the gaming community."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,480",
+				"to": "00:06:33,360"
+			},
+			"offsets": {
+				"from": 387480,
+				"to": 393360
+			},
+			"text": " So a little background on OpenSea."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,360",
+				"to": "00:06:39,080"
+			},
+			"offsets": {
+				"from": 393360,
+				"to": 399080
+			},
+			"text": " So OpenSea is a marketplace for all of these items."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,080",
+				"to": "00:06:42,240"
+			},
+			"offsets": {
+				"from": 399080,
+				"to": 402240
+			},
+			"text": " So starting with the year 2721, but we recently"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,240",
+				"to": "00:06:46,640"
+			},
+			"offsets": {
+				"from": 402240,
+				"to": 406640
+			},
+			"text": " did add support for a new standard called an 1155."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,640",
+				"to": "00:06:49,680"
+			},
+			"offsets": {
+				"from": 406640,
+				"to": 409680
+			},
+			"text": " We have around 700,000 monthly volumes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,680",
+				"to": "00:06:53,720"
+			},
+			"offsets": {
+				"from": 409680,
+				"to": 413720
+			},
+			"text": " So on the lower side of decentralized exchanges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,720",
+				"to": "00:06:56,600"
+			},
+			"offsets": {
+				"from": 413720,
+				"to": 416600
+			},
+			"text": " but this is volume that people-- this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,600",
+				"to": "00:06:59,800"
+			},
+			"offsets": {
+				"from": 416600,
+				"to": 419800
+			},
+			"text": " is actual unique digital assets that are being traded."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,800",
+				"to": "00:07:04,920"
+			},
+			"offsets": {
+				"from": 419800,
+				"to": 424920
+			},
+			"text": " It's not just token, which there is a lot of wash trading for."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,920",
+				"to": "00:07:06,640"
+			},
+			"offsets": {
+				"from": 424920,
+				"to": 426640
+			},
+			"text": " We also provide an API."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,640",
+				"to": "00:07:10,040"
+			},
+			"offsets": {
+				"from": 426640,
+				"to": 430040
+			},
+			"text": " This is more of a convenience for wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,040",
+				"to": "00:07:13,040"
+			},
+			"offsets": {
+				"from": 430040,
+				"to": 433040
+			},
+			"text": " that are trying to show your C721 items."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,040",
+				"to": "00:07:15,520"
+			},
+			"offsets": {
+				"from": 433040,
+				"to": 435520
+			},
+			"text": " So this is used by Coinbase wallet, Trust Wallet, Opera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,520",
+				"to": "00:07:20,080"
+			},
+			"offsets": {
+				"from": 435520,
+				"to": 440080
+			},
+			"text": " and maybe 20 other different wallets, all of these are really good."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,080",
+				"to": "00:07:21,680"
+			},
+			"offsets": {
+				"from": 440080,
+				"to": 441680
+			},
+			"text": " And then we partner with a lot of games"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,680",
+				"to": "00:07:26,800"
+			},
+			"offsets": {
+				"from": 441680,
+				"to": 446800
+			},
+			"text": " to build customized white labeled marketplaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,800",
+				"to": "00:07:29,320"
+			},
+			"offsets": {
+				"from": 446800,
+				"to": 449320
+			},
+			"text": " So this is kind of what OpenSea looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,320",
+				"to": "00:07:31,920"
+			},
+			"offsets": {
+				"from": 449320,
+				"to": 451920
+			},
+			"text": " The moment you have the DRC721 item,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,920",
+				"to": "00:07:33,880"
+			},
+			"offsets": {
+				"from": 451920,
+				"to": 453880
+			},
+			"text": " you can put it on sale."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,880",
+				"to": "00:07:36,880"
+			},
+			"offsets": {
+				"from": 453880,
+				"to": 456880
+			},
+			"text": " It's kind of like eBay."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,880",
+				"to": "00:07:40,200"
+			},
+			"offsets": {
+				"from": 456880,
+				"to": 460200
+			},
+			"text": " Trades are wallet to wallet, so they never"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,200",
+				"to": "00:07:40,960"
+			},
+			"offsets": {
+				"from": 460200,
+				"to": 460960
+			},
+			"text": " leave your account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,960",
+				"to": "00:07:43,680"
+			},
+			"offsets": {
+				"from": 460960,
+				"to": 463680
+			},
+			"text": " They're never escrowed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,680",
+				"to": "00:07:46,640"
+			},
+			"offsets": {
+				"from": 463680,
+				"to": 466640
+			},
+			"text": " And we also provide a lot of the functionality"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,640",
+				"to": "00:07:49,400"
+			},
+			"offsets": {
+				"from": 466640,
+				"to": 469400
+			},
+			"text": " that eBay provides for digital assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,400",
+				"to": "00:07:51,840"
+			},
+			"offsets": {
+				"from": 469400,
+				"to": 471840
+			},
+			"text": " So this is the Formula 1 car."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,840",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 471840,
+				"to": 475000
+			},
+			"text": " You can see it was actually last sold for a 415 ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:59,280"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 479280
+			},
+			"text": " I think this is a record sale in that FT community."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,280",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 479280,
+				"to": 483000
+			},
+			"text": " And basically, we provide an interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:06,960"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 486960
+			},
+			"text": " for allowing people to do eBay style options for these items."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,960",
+				"to": "00:08:15,880"
+			},
+			"offsets": {
+				"from": 486960,
+				"to": 495880
+			},
+			"text": " So if you were to build your own marketplace on OpenSea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,880",
+				"to": "00:08:17,480"
+			},
+			"offsets": {
+				"from": 495880,
+				"to": 497480
+			},
+			"text": " essentially what you get out of the box"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,480",
+				"to": "00:08:18,960"
+			},
+			"offsets": {
+				"from": 497480,
+				"to": 498960
+			},
+			"text": " is all of those functionality that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,960",
+				"to": "00:08:23,560"
+			},
+			"offsets": {
+				"from": 498960,
+				"to": 503560
+			},
+			"text": " built into the OpenSea website, every single OpenSea feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,560",
+				"to": "00:08:25,360"
+			},
+			"offsets": {
+				"from": 503560,
+				"to": 505360
+			},
+			"text": " You can customize it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,360",
+				"to": "00:08:27,960"
+			},
+			"offsets": {
+				"from": 505360,
+				"to": 507960
+			},
+			"text": " And actually, I'll talk about some of these other pictures."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,760",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 508760,
+				"to": 513000
+			},
+			"text": " So this is what it looks like for this game CryptoSpace"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:33,920"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 513920
+			},
+			"text": " commanders."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,920",
+				"to": "00:08:37,280"
+			},
+			"offsets": {
+				"from": 513920,
+				"to": 517280
+			},
+			"text": " You have this browser view of your items."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,280",
+				"to": "00:08:39,640"
+			},
+			"offsets": {
+				"from": 517280,
+				"to": 519640
+			},
+			"text": " You can add rich metadata to them"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,640",
+				"to": "00:08:45,480"
+			},
+			"offsets": {
+				"from": 519640,
+				"to": 525480
+			},
+			"text": " to kind of control how they're displayed on the marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,480",
+				"to": "00:08:48,480"
+			},
+			"offsets": {
+				"from": 525480,
+				"to": 528480
+			},
+			"text": " And then the most important element of this model"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,480",
+				"to": "00:08:51,960"
+			},
+			"offsets": {
+				"from": 528480,
+				"to": 531960
+			},
+			"text": " is that we allow the developer of an NMT"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,960",
+				"to": "00:08:56,040"
+			},
+			"offsets": {
+				"from": 531960,
+				"to": 536040
+			},
+			"text": " to take a cut of every secondary sale on their marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,040",
+				"to": "00:08:58,440"
+			},
+			"offsets": {
+				"from": 536040,
+				"to": 538440
+			},
+			"text": " So our model right now is transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,440",
+				"to": "00:09:00,400"
+			},
+			"offsets": {
+				"from": 538440,
+				"to": 540400
+			},
+			"text": " fee-based that might change in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,400",
+				"to": "00:09:03,640"
+			},
+			"offsets": {
+				"from": 540400,
+				"to": 543640
+			},
+			"text": " But we think that there should be an incentive for developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,640",
+				"to": "00:09:05,520"
+			},
+			"offsets": {
+				"from": 543640,
+				"to": 545520
+			},
+			"text": " to promote their marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,520",
+				"to": "00:09:11,680"
+			},
+			"offsets": {
+				"from": 545520,
+				"to": 551680
+			},
+			"text": " We also provide a toolkit for--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,680",
+				"to": "00:09:14,680"
+			},
+			"offsets": {
+				"from": 551680,
+				"to": 554680
+			},
+			"text": " which we'll talk a little bit about in the workshop--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,680",
+				"to": "00:09:18,840"
+			},
+			"offsets": {
+				"from": 554680,
+				"to": 558840
+			},
+			"text": " piece for programmatically creating marketplaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,840",
+				"to": "00:09:22,520"
+			},
+			"offsets": {
+				"from": 558840,
+				"to": 562520
+			},
+			"text": " So this is a marketplace created by Ethereum, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,520",
+				"to": "00:09:24,600"
+			},
+			"offsets": {
+				"from": 562520,
+				"to": 564600
+			},
+			"text": " is a trading card game."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,600",
+				"to": "00:09:28,360"
+			},
+			"offsets": {
+				"from": 564600,
+				"to": 568360
+			},
+			"text": " And you can see that the marketplace that they've created"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,360",
+				"to": "00:09:31,200"
+			},
+			"offsets": {
+				"from": 568360,
+				"to": 571200
+			},
+			"text": " and the OpenSea marketplace are actually synchronized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,200",
+				"to": "00:09:34,400"
+			},
+			"offsets": {
+				"from": 571200,
+				"to": 574400
+			},
+			"text": " such that every sale or every auction that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,400",
+				"to": "00:09:37,640"
+			},
+			"offsets": {
+				"from": 574400,
+				"to": 577640
+			},
+			"text": " happens on their marketplace also happens on OpenSea."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,640",
+				"to": "00:09:40,960"
+			},
+			"offsets": {
+				"from": 577640,
+				"to": 580960
+			},
+			"text": " It shares the same contracts and the same order books."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,960",
+				"to": "00:09:47,840"
+			},
+			"offsets": {
+				"from": 580960,
+				"to": 587840
+			},
+			"text": " So a couple examples of interesting entity projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,840",
+				"to": "00:09:52,840"
+			},
+			"offsets": {
+				"from": 587840,
+				"to": 592840
+			},
+			"text": " to kind of make some of this a little more concrete."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,840",
+				"to": "00:09:55,640"
+			},
+			"offsets": {
+				"from": 592840,
+				"to": 595640
+			},
+			"text": " So this is a project called CryptoVoxels."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,640",
+				"to": "00:09:57,880"
+			},
+			"offsets": {
+				"from": 595640,
+				"to": 597880
+			},
+			"text": " Who here has heard of CryptoVoxels?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,880",
+				"to": "00:10:00,840"
+			},
+			"offsets": {
+				"from": 597880,
+				"to": 600840
+			},
+			"text": " OK, so not that many people."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,840",
+				"to": "00:10:04,600"
+			},
+			"offsets": {
+				"from": 600840,
+				"to": 604600
+			},
+			"text": " So CryptoVoxels is a virtual world"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,600",
+				"to": "00:10:09,840"
+			},
+			"offsets": {
+				"from": 604600,
+				"to": 609840
+			},
+			"text": " where the land is represented as ERC721 NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,840",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 609840,
+				"to": 613000
+			},
+			"text": " And it actually just started as one developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:16,160"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 616160
+			},
+			"text": " And he just started selling this virtual land."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,160",
+				"to": "00:10:18,440"
+			},
+			"offsets": {
+				"from": 616160,
+				"to": 618440
+			},
+			"text": " He sold it at a pretty low price."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,440",
+				"to": "00:10:21,080"
+			},
+			"offsets": {
+				"from": 618440,
+				"to": 621080
+			},
+			"text": " And when you own this land, it's kind of like minecrafts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,080",
+				"to": "00:10:24,160"
+			},
+			"offsets": {
+				"from": 621080,
+				"to": 624160
+			},
+			"text": " You could build things on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,160",
+				"to": "00:10:27,320"
+			},
+			"offsets": {
+				"from": 624160,
+				"to": 627320
+			},
+			"text": " So the other interesting thing the developer did"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,320",
+				"to": "00:10:30,160"
+			},
+			"offsets": {
+				"from": 627320,
+				"to": 630160
+			},
+			"text": " was he allowed you to pull in your assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,160",
+				"to": "00:10:31,360"
+			},
+			"offsets": {
+				"from": 630160,
+				"to": 631360
+			},
+			"text": " into this virtual world."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,360",
+				"to": "00:10:37,080"
+			},
+			"offsets": {
+				"from": 631360,
+				"to": 637080
+			},
+			"text": " So this is a CryptoKitties museum inside of CryptoVoxels"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,080",
+				"to": "00:10:39,880"
+			},
+			"offsets": {
+				"from": 637080,
+				"to": 639880
+			},
+			"text": " where you could actually go and purchase these CryptoKitties"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,880",
+				"to": "00:10:42,520"
+			},
+			"offsets": {
+				"from": 639880,
+				"to": 642520
+			},
+			"text": " inside of the virtual world."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,520",
+				"to": "00:10:44,880"
+			},
+			"offsets": {
+				"from": 642520,
+				"to": 644880
+			},
+			"text": " So I'll do a quick demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,880",
+				"to": "00:10:53,080"
+			},
+			"offsets": {
+				"from": 644880,
+				"to": 653080
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,080",
+				"to": "00:10:56,880"
+			},
+			"offsets": {
+				"from": 653080,
+				"to": 656880
+			},
+			"text": " So one interesting thing that has happened"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,880",
+				"to": "00:11:01,240"
+			},
+			"offsets": {
+				"from": 656880,
+				"to": 661240
+			},
+			"text": " is there are now folks who are curators"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,240",
+				"to": "00:11:03,720"
+			},
+			"offsets": {
+				"from": 661240,
+				"to": 663720
+			},
+			"text": " of digital collectibles."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,720",
+				"to": "00:11:10,160"
+			},
+			"offsets": {
+				"from": 663720,
+				"to": 670160
+			},
+			"text": " And they have started creating galleries"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,160",
+				"to": "00:11:14,040"
+			},
+			"offsets": {
+				"from": 670160,
+				"to": 674040
+			},
+			"text": " in CryptoVoxels to explore these artwork."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,040",
+				"to": "00:11:18,680"
+			},
+			"offsets": {
+				"from": 674040,
+				"to": 678680
+			},
+			"text": " So this is a gallery from someone who basically thinks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,680",
+				"to": "00:11:22,280"
+			},
+			"offsets": {
+				"from": 678680,
+				"to": 682280
+			},
+			"text": " of themselves as a digital art curator."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,280",
+				"to": "00:11:24,360"
+			},
+			"offsets": {
+				"from": 682280,
+				"to": 684360
+			},
+			"text": " And it's sort of created this museum."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,360",
+				"to": "00:11:38,440"
+			},
+			"offsets": {
+				"from": 684360,
+				"to": 698440
+			},
+			"text": " Another interesting NFT project was CryptoStamp."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,440",
+				"to": "00:11:42,280"
+			},
+			"offsets": {
+				"from": 698440,
+				"to": 702280
+			},
+			"text": " So CryptoStamp is an interesting one"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,280",
+				"to": "00:11:47,080"
+			},
+			"offsets": {
+				"from": 702280,
+				"to": 707080
+			},
+			"text": " because it was actually coupled to a physical stamp."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,080",
+				"to": "00:11:50,200"
+			},
+			"offsets": {
+				"from": 707080,
+				"to": 710200
+			},
+			"text": " So the Austrian Postal Service basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,200",
+				"to": "00:11:52,800"
+			},
+			"offsets": {
+				"from": 710200,
+				"to": 712800
+			},
+			"text": " created this line of collectible stamps"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,800",
+				"to": "00:11:55,520"
+			},
+			"offsets": {
+				"from": 712800,
+				"to": 715520
+			},
+			"text": " where if you purchase one, you would not only"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,520",
+				"to": "00:11:58,480"
+			},
+			"offsets": {
+				"from": 715520,
+				"to": 718480
+			},
+			"text": " get a real usable stamp."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,480",
+				"to": "00:11:59,600"
+			},
+			"offsets": {
+				"from": 718480,
+				"to": 719600
+			},
+			"text": " You know, a lot of people probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,600",
+				"to": "00:12:02,240"
+			},
+			"offsets": {
+				"from": 719600,
+				"to": 722240
+			},
+			"text": " don't use it these days, but you would get a stamp."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,240",
+				"to": "00:12:05,200"
+			},
+			"offsets": {
+				"from": 722240,
+				"to": 725200
+			},
+			"text": " And then you'd also get a CryptoCollectible"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,200",
+				"to": "00:12:08,360"
+			},
+			"offsets": {
+				"from": 725200,
+				"to": 728360
+			},
+			"text": " that you could trade on a marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,360",
+				"to": "00:12:10,280"
+			},
+			"offsets": {
+				"from": 728360,
+				"to": 730280
+			},
+			"text": " And this was kind of an interesting way"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,280",
+				"to": "00:12:14,360"
+			},
+			"offsets": {
+				"from": 730280,
+				"to": 734360
+			},
+			"text": " to engage an existing community of stamp collectors"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,360",
+				"to": "00:12:16,360"
+			},
+			"offsets": {
+				"from": 734360,
+				"to": 736360
+			},
+			"text": " in digital assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,360",
+				"to": "00:12:20,600"
+			},
+			"offsets": {
+				"from": 736360,
+				"to": 740600
+			},
+			"text": " And we think we'll see a lot of that kind of tethering"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,600",
+				"to": "00:12:24,600"
+			},
+			"offsets": {
+				"from": 740600,
+				"to": 744600
+			},
+			"text": " these virtual assets to a real life physical asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,600",
+				"to": "00:12:34,480"
+			},
+			"offsets": {
+				"from": 744600,
+				"to": 754480
+			},
+			"text": " And then, of course, the most recent one is the ENS project."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,480",
+				"to": "00:12:38,040"
+			},
+			"offsets": {
+				"from": 754480,
+				"to": 758040
+			},
+			"text": " So ENS is a name system for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,040",
+				"to": "00:12:41,680"
+			},
+			"offsets": {
+				"from": 758040,
+				"to": 761680
+			},
+			"text": " So you can think of it kind of like .coms."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,680",
+				"to": "00:12:46,800"
+			},
+			"offsets": {
+				"from": 761680,
+				"to": 766800
+			},
+			"text": " And right now, these assets are tradable as ERC721s."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,800",
+				"to": "00:12:50,080"
+			},
+			"offsets": {
+				"from": 766800,
+				"to": 770080
+			},
+			"text": " Most recently, we collaborated with the ENS team"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,080",
+				"to": "00:12:54,680"
+			},
+			"offsets": {
+				"from": 770080,
+				"to": 774680
+			},
+			"text": " on doing the auctions for their short name."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,680",
+				"to": "00:12:58,200"
+			},
+			"offsets": {
+				"from": 774680,
+				"to": 778200
+			},
+			"text": " So these were basically names like set.eth"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,200",
+				"to": "00:13:04,440"
+			},
+			"offsets": {
+				"from": 778200,
+				"to": 784440
+			},
+			"text": " that were reserved for an auction system that is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,440",
+				"to": "00:13:05,800"
+			},
+			"offsets": {
+				"from": 784440,
+				"to": 785800
+			},
+			"text": " currently taking place right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,800",
+				"to": "00:13:09,280"
+			},
+			"offsets": {
+				"from": 785800,
+				"to": 789280
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,280",
+				"to": "00:13:15,040"
+			},
+			"offsets": {
+				"from": 789280,
+				"to": 795040
+			},
+			"text": " So I guess any questions about NFTs or ERC721"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,040",
+				"to": "00:13:18,760"
+			},
+			"offsets": {
+				"from": 795040,
+				"to": 798760
+			},
+			"text": " before I hop into the workshop part?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,760",
+				"to": "00:13:25,080"
+			},
+			"offsets": {
+				"from": 798760,
+				"to": 805080
+			},
+			"text": " Is there a conference about NFTs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,080",
+				"to": "00:13:26,560"
+			},
+			"offsets": {
+				"from": 805080,
+				"to": 806560
+			},
+			"text": " NFT.NYC."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,560",
+				"to": "00:13:28,480"
+			},
+			"offsets": {
+				"from": 806560,
+				"to": 808480
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,480",
+				"to": "00:13:29,480"
+			},
+			"offsets": {
+				"from": 808480,
+				"to": 809480
+			},
+			"text": " February?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,480",
+				"to": "00:13:32,480"
+			},
+			"offsets": {
+				"from": 809480,
+				"to": 812480
+			},
+			"text": " 20."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,480",
+				"to": "00:13:33,480"
+			},
+			"offsets": {
+				"from": 812480,
+				"to": 813480
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,480",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 813480,
+				"to": 816000
+			},
+			"text": " How-- what's the growth coming up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:38,040"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 818040
+			},
+			"text": " You've seen the survey?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,040",
+				"to": "00:13:44,120"
+			},
+			"offsets": {
+				"from": 818040,
+				"to": 824120
+			},
+			"text": " So the initial spike in usage of NFTs was cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,120",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 824120,
+				"to": 830000
+			},
+			"text": " And you probably remember these cats selling for $50,000 each."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:55,840"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 835840
+			},
+			"text": " And nothing has risen to that level of market volume."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,840",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 835840,
+				"to": 839000
+			},
+			"text": " But I think that was, to some extent, an anomaly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:01,680"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 841680
+			},
+			"text": " In terms of market volume growth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,680",
+				"to": "00:14:05,120"
+			},
+			"offsets": {
+				"from": 841680,
+				"to": 845120
+			},
+			"text": " it's sort of slow and steady linear growth at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,120",
+				"to": "00:14:09,520"
+			},
+			"offsets": {
+				"from": 845120,
+				"to": 849520
+			},
+			"text": " So we're seeing high growth in the number of projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,520",
+				"to": "00:14:10,760"
+			},
+			"offsets": {
+				"from": 849520,
+				"to": 850760
+			},
+			"text": " that enter the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,760",
+				"to": "00:14:14,520"
+			},
+			"offsets": {
+				"from": 850760,
+				"to": 854520
+			},
+			"text": " We're seeing sort of gradual growth in the number of users"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,520",
+				"to": "00:14:15,360"
+			},
+			"offsets": {
+				"from": 854520,
+				"to": 855360
+			},
+			"text": " that are trying them out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,360",
+				"to": "00:14:17,840"
+			},
+			"offsets": {
+				"from": 855360,
+				"to": 857840
+			},
+			"text": " So it's a lot of the same early adopter type"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,840",
+				"to": "00:14:20,600"
+			},
+			"offsets": {
+				"from": 857840,
+				"to": 860600
+			},
+			"text": " folks who are kind of trying these out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,600",
+				"to": "00:14:22,560"
+			},
+			"offsets": {
+				"from": 860600,
+				"to": 862560
+			},
+			"text": " And there's a variety of reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,560",
+				"to": "00:14:23,400"
+			},
+			"offsets": {
+				"from": 862560,
+				"to": 863400
+			},
+			"text": " That's the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,400",
+				"to": "00:14:25,800"
+			},
+			"offsets": {
+				"from": 863400,
+				"to": 865800
+			},
+			"text": " Usability, scalability, all of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,800",
+				"to": "00:14:28,520"
+			},
+			"offsets": {
+				"from": 865800,
+				"to": 868520
+			},
+			"text": " Is it gaming or is it--"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,520",
+				"to": "00:14:29,680"
+			},
+			"offsets": {
+				"from": 868520,
+				"to": 869680
+			},
+			"text": " Yeah, it's all gaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,680",
+				"to": "00:14:31,160"
+			},
+			"offsets": {
+				"from": 869680,
+				"to": 871160
+			},
+			"text": " Pretty much."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,160",
+				"to": "00:14:32,960"
+			},
+			"offsets": {
+				"from": 871160,
+				"to": 872960
+			},
+			"text": " Is it the art?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,960",
+				"to": "00:14:35,440"
+			},
+			"offsets": {
+				"from": 872960,
+				"to": 875440
+			},
+			"text": " Oh, the art."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,440",
+				"to": "00:14:40,440"
+			},
+			"offsets": {
+				"from": 875440,
+				"to": 880440
+			},
+			"text": " It's also interesting, but still pretty small."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,440",
+				"to": "00:14:42,480"
+			},
+			"offsets": {
+				"from": 880440,
+				"to": 882480
+			},
+			"text": " I think for art, the biggest thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,480",
+				"to": "00:14:44,760"
+			},
+			"offsets": {
+				"from": 882480,
+				"to": 884760
+			},
+			"text": " is having a place to display the art."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,760",
+				"to": "00:14:47,480"
+			},
+			"offsets": {
+				"from": 884760,
+				"to": 887480
+			},
+			"text": " So projects like CryptoVoxels and The Central Land"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,480",
+				"to": "00:14:49,560"
+			},
+			"offsets": {
+				"from": 887480,
+				"to": 889560
+			},
+			"text": " kind of add that utility to the art."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,560",
+				"to": "00:14:52,120"
+			},
+			"offsets": {
+				"from": 889560,
+				"to": 892120
+			},
+			"text": " But there are a number of crypto artists"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,120",
+				"to": "00:14:57,040"
+			},
+			"offsets": {
+				"from": 892120,
+				"to": 897040
+			},
+			"text": " who have sold works for five to 10 ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,040",
+				"to": "00:15:00,680"
+			},
+			"offsets": {
+				"from": 897040,
+				"to": 900680
+			},
+			"text": " because they have such a solid reputation in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,680",
+				"to": "00:15:02,200"
+			},
+			"offsets": {
+				"from": 900680,
+				"to": 902200
+			},
+			"text": " So it is starting to be interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,200",
+				"to": "00:15:03,280"
+			},
+			"offsets": {
+				"from": 902200,
+				"to": 903280
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,280",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 903280,
+				"to": 905000
+			},
+			"text": " Other role sport in operating was"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:08,520"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 908520
+			},
+			"text": " well NFTs and electrification telepaths."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,520",
+				"to": "00:15:14,760"
+			},
+			"offsets": {
+				"from": 908520,
+				"to": 914760
+			},
+			"text": " Yeah, so there was a standard called ERC998 that did that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,760",
+				"to": "00:15:18,680"
+			},
+			"offsets": {
+				"from": 914760,
+				"to": 918680
+			},
+			"text": " I'm not aware of any easy to use tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,680",
+				"to": "00:15:21,600"
+			},
+			"offsets": {
+				"from": 918680,
+				"to": 921600
+			},
+			"text": " that allow you to like, bundle."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,600",
+				"to": "00:15:23,720"
+			},
+			"offsets": {
+				"from": 921600,
+				"to": 923720
+			},
+			"text": " Well, so we have bundles, which basically allow you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,720",
+				"to": "00:15:25,560"
+			},
+			"offsets": {
+				"from": 923720,
+				"to": 925560
+			},
+			"text": " to sell a bunch of NFTs at the same time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,560",
+				"to": "00:15:27,120"
+			},
+			"offsets": {
+				"from": 925560,
+				"to": 927120
+			},
+			"text": " but that's a little bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,120",
+				"to": "00:15:29,320"
+			},
+			"offsets": {
+				"from": 927120,
+				"to": 929320
+			},
+			"text": " I don't know of any websites at the moment"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,320",
+				"to": "00:15:32,680"
+			},
+			"offsets": {
+				"from": 929320,
+				"to": 932680
+			},
+			"text": " that are making it really easy to compose NFTs together."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,680",
+				"to": "00:15:34,720"
+			},
+			"offsets": {
+				"from": 932680,
+				"to": 934720
+			},
+			"text": " But it can be the interesting projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,720",
+				"to": "00:15:35,520"
+			},
+			"offsets": {
+				"from": 934720,
+				"to": 935520
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,520",
+				"to": "00:15:37,680"
+			},
+			"offsets": {
+				"from": 935520,
+				"to": 937680
+			},
+			"text": " What do you think of Mr. Happen, the global agency,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,680",
+				"to": "00:15:40,680"
+			},
+			"offsets": {
+				"from": 937680,
+				"to": 940680
+			},
+			"text": " like most pro of the global growth?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,680",
+				"to": "00:15:41,680"
+			},
+			"offsets": {
+				"from": 940680,
+				"to": 941680
+			},
+			"text": " Before we see growth."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,680",
+				"to": "00:15:45,080"
+			},
+			"offsets": {
+				"from": 941680,
+				"to": 945080
+			},
+			"text": " The global high growth is like quality transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,080",
+				"to": "00:15:46,360"
+			},
+			"offsets": {
+				"from": 945080,
+				"to": 946360
+			},
+			"text": " On this open market."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,360",
+				"to": "00:15:47,200"
+			},
+			"offsets": {
+				"from": 946360,
+				"to": 947200
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,200",
+				"to": "00:15:52,360"
+			},
+			"offsets": {
+				"from": 947200,
+				"to": 952360
+			},
+			"text": " Um, that's like a common question, I think, for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,360",
+				"to": "00:15:54,600"
+			},
+			"offsets": {
+				"from": 952360,
+				"to": 954600
+			},
+			"text": " And it's asked at nearly every panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,600",
+				"to": "00:15:56,480"
+			},
+			"offsets": {
+				"from": 954600,
+				"to": 956480
+			},
+			"text": " What specific do you want to have tea then?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,480",
+				"to": "00:15:57,800"
+			},
+			"offsets": {
+				"from": 956480,
+				"to": 957800
+			},
+			"text": " Yeah, for NFTs, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,800",
+				"to": "00:16:01,360"
+			},
+			"offsets": {
+				"from": 957800,
+				"to": 961360
+			},
+			"text": " Um, maybe a couple different axes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,360",
+				"to": "00:16:06,120"
+			},
+			"offsets": {
+				"from": 961360,
+				"to": 966120
+			},
+			"text": " So one is quality of the games, which is steadily growing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,120",
+				"to": "00:16:08,840"
+			},
+			"offsets": {
+				"from": 966120,
+				"to": 968840
+			},
+			"text": " But the life site or the development time of the game"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,840",
+				"to": "00:16:11,360"
+			},
+			"offsets": {
+				"from": 968840,
+				"to": 971360
+			},
+			"text": " is actually typically pretty long."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,360",
+				"to": "00:16:14,240"
+			},
+			"offsets": {
+				"from": 971360,
+				"to": 974240
+			},
+			"text": " Um, so I think the quality of the experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,240",
+				"to": "00:16:17,240"
+			},
+			"offsets": {
+				"from": 974240,
+				"to": 977240
+			},
+			"text": " is have to be high enough for people to want to use them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,240",
+				"to": "00:16:19,360"
+			},
+			"offsets": {
+				"from": 977240,
+				"to": 979360
+			},
+			"text": " And right now they're just, they're getting there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,360",
+				"to": "00:16:20,560"
+			},
+			"offsets": {
+				"from": 979360,
+				"to": 980560
+			},
+			"text": " but they're not quite there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,560",
+				"to": "00:16:24,920"
+			},
+			"offsets": {
+				"from": 980560,
+				"to": 984920
+			},
+			"text": " Um, and then, uh, use, just usability of the network in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,920",
+				"to": "00:16:30,320"
+			},
+			"offsets": {
+				"from": 984920,
+				"to": 990320
+			},
+			"text": " So things, you know, better wallets, uh, um, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,320",
+				"to": "00:16:35,120"
+			},
+			"offsets": {
+				"from": 990320,
+				"to": 995120
+			},
+			"text": " potentially better blockchains for people to build these assets on."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,120",
+				"to": "00:16:38,640"
+			},
+			"offsets": {
+				"from": 995120,
+				"to": 998640
+			},
+			"text": " What's preventing, preventing existing or high quality games"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,640",
+				"to": "00:16:40,880"
+			},
+			"offsets": {
+				"from": 998640,
+				"to": 1000880
+			},
+			"text": " or global growth?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,880",
+				"to": "00:16:46,920"
+			},
+			"offsets": {
+				"from": 1000880,
+				"to": 1006920
+			},
+			"text": " Um, I think the main thing preventing them is, well, I guess,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,920",
+				"to": "00:16:47,880"
+			},
+			"offsets": {
+				"from": 1006920,
+				"to": 1007880
+			},
+			"text": " a couple of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,880",
+				"to": "00:16:52,480"
+			},
+			"offsets": {
+				"from": 1007880,
+				"to": 1012480
+			},
+			"text": " One is, I think it's kind of tricky to, for an existing game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,480",
+				"to": "00:16:54,440"
+			},
+			"offsets": {
+				"from": 1012480,
+				"to": 1014440
+			},
+			"text": " to just move their assets to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,440",
+				"to": "00:16:55,440"
+			},
+			"offsets": {
+				"from": 1014440,
+				"to": 1015440
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,440",
+				"to": "00:16:57,240"
+			},
+			"offsets": {
+				"from": 1015440,
+				"to": 1017240
+			},
+			"text": " Um, especially if it was a really big game"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,240",
+				"to": "00:17:00,720"
+			},
+			"offsets": {
+				"from": 1017240,
+				"to": 1020720
+			},
+			"text": " and they wanted the same user experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,720",
+				"to": "00:17:03,280"
+			},
+			"offsets": {
+				"from": 1020720,
+				"to": 1023280
+			},
+			"text": " you know, they could hide away all the Ethereum stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,280",
+				"to": "00:17:05,560"
+			},
+			"offsets": {
+				"from": 1023280,
+				"to": 1025560
+			},
+			"text": " but then, you know, they're just basically using"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,560",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1025560,
+				"to": 1028000
+			},
+			"text": " a really expensive database for their game."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:12,160"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1032160
+			},
+			"text": " Um, so I think it, I think the games that are most effective"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,160",
+				"to": "00:17:13,760"
+			},
+			"offsets": {
+				"from": 1032160,
+				"to": 1033760
+			},
+			"text": " have to be new games."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,760",
+				"to": "00:17:19,080"
+			},
+			"offsets": {
+				"from": 1033760,
+				"to": 1039080
+			},
+			"text": " And those new games suffer from the, like, onboarding experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,080",
+				"to": "00:17:21,520"
+			},
+			"offsets": {
+				"from": 1039080,
+				"to": 1041520
+			},
+			"text": " of getting either some, some hide it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,520",
+				"to": "00:17:25,120"
+			},
+			"offsets": {
+				"from": 1041520,
+				"to": 1045120
+			},
+			"text": " Um, but then, you know, they, they use everything and then,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,120",
+				"to": "00:17:27,800"
+			},
+			"offsets": {
+				"from": 1045120,
+				"to": 1047800
+			},
+			"text": " sort of, they're kind of competing with every other game."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,800",
+				"to": "00:17:30,600"
+			},
+			"offsets": {
+				"from": 1047800,
+				"to": 1050600
+			},
+			"text": " Um, but if they're leveraged to blockchain in an interesting way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,600",
+				"to": "00:17:33,840"
+			},
+			"offsets": {
+				"from": 1050600,
+				"to": 1053840
+			},
+			"text": " then, um, you know, there are some, like, really interesting user"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,840",
+				"to": "00:17:36,720"
+			},
+			"offsets": {
+				"from": 1053840,
+				"to": 1056720
+			},
+			"text": " benefits, like, trading on those marketplaces using a mental"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,720",
+				"to": "00:17:37,720"
+			},
+			"offsets": {
+				"from": 1056720,
+				"to": 1057720
+			},
+			"text": " or a wealth deficit."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,720",
+				"to": "00:17:38,720"
+			},
+			"offsets": {
+				"from": 1057720,
+				"to": 1058720
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,720",
+				"to": "00:17:43,600"
+			},
+			"offsets": {
+				"from": 1058720,
+				"to": 1063600
+			},
+			"text": " Well, we see any adoption from, um, virtual reality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,600",
+				"to": "00:17:48,320"
+			},
+			"offsets": {
+				"from": 1063600,
+				"to": 1068320
+			},
+			"text": " mainstays or augmented reality, um, producers, not just the games,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,320",
+				"to": "00:17:52,320"
+			},
+			"offsets": {
+				"from": 1068320,
+				"to": 1072320
+			},
+			"text": " but maybe even, like, interest from the manufacturers and the headsets"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,320",
+				"to": "00:17:53,320"
+			},
+			"offsets": {
+				"from": 1072320,
+				"to": 1073320
+			},
+			"text": " and such."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,320",
+				"to": "00:17:54,320"
+			},
+			"offsets": {
+				"from": 1073320,
+				"to": 1074320
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,320",
+				"to": "00:17:55,320"
+			},
+			"offsets": {
+				"from": 1074320,
+				"to": 1075320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,320",
+				"to": "00:17:59,320"
+			},
+			"offsets": {
+				"from": 1075320,
+				"to": 1079320
+			},
+			"text": " Uh, other than the virtual reality projects, I'm not, I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,320",
+				"to": "00:18:04,320"
+			},
+			"offsets": {
+				"from": 1079320,
+				"to": 1084320
+			},
+			"text": " How do you think about, like, that, you know, global scarcity"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,320",
+				"to": "00:18:05,320"
+			},
+			"offsets": {
+				"from": 1084320,
+				"to": 1085320
+			},
+			"text": " in the inner case?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,320",
+				"to": "00:18:08,320"
+			},
+			"offsets": {
+				"from": 1085320,
+				"to": 1088320
+			},
+			"text": " Because it, it seems to be, like, one property that they have is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,320",
+				"to": "00:18:11,320"
+			},
+			"offsets": {
+				"from": 1088320,
+				"to": 1091320
+			},
+			"text": " that they're, they're unique individually, but collectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,320",
+				"to": "00:18:14,320"
+			},
+			"offsets": {
+				"from": 1091320,
+				"to": 1094320
+			},
+			"text": " they die with each other because I'm like collectibles in the real world"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,320",
+				"to": "00:18:16,320"
+			},
+			"offsets": {
+				"from": 1094320,
+				"to": 1096320
+			},
+			"text": " and it's just kind of, like, minimal cost of production."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,320",
+				"to": "00:18:17,320"
+			},
+			"offsets": {
+				"from": 1096320,
+				"to": 1097320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,320",
+				"to": "00:18:20,320"
+			},
+			"offsets": {
+				"from": 1097320,
+				"to": 1100320
+			},
+			"text": " So it's really easy for a lot of people to start creating these and, and they all"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,320",
+				"to": "00:18:22,320"
+			},
+			"offsets": {
+				"from": 1100320,
+				"to": 1102320
+			},
+			"text": " just end up having to die with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,320",
+				"to": "00:18:25,320"
+			},
+			"offsets": {
+				"from": 1102320,
+				"to": 1105320
+			},
+			"text": " So where, where do you think the value of the brilliance of, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,320",
+				"to": "00:18:29,320"
+			},
+			"offsets": {
+				"from": 1105320,
+				"to": 1109320
+			},
+			"text": " around the utility of the entity because you can't kind of think that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,320",
+				"to": "00:18:31,320"
+			},
+			"offsets": {
+				"from": 1109320,
+				"to": 1111320
+			},
+			"text": " or are there brands, like, that's fine?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,320",
+				"to": "00:18:33,320"
+			},
+			"offsets": {
+				"from": 1111320,
+				"to": 1113320
+			},
+			"text": " I think, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,320",
+				"to": "00:18:38,320"
+			},
+			"offsets": {
+				"from": 1113320,
+				"to": 1118320
+			},
+			"text": " Um, utility and provenance, uh, and maybe some other things, but, uh, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,320",
+				"to": "00:18:40,320"
+			},
+			"offsets": {
+				"from": 1118320,
+				"to": 1120320
+			},
+			"text": " utility of the NFT and a game, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,320",
+				"to": "00:18:44,320"
+			},
+			"offsets": {
+				"from": 1120320,
+				"to": 1124320
+			},
+			"text": " So, um, you know, if you can, if you can, if you can, with statements, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,320",
+				"to": "00:18:48,320"
+			},
+			"offsets": {
+				"from": 1124320,
+				"to": 1128320
+			},
+			"text": " if you can wear a legendary or a, a well-known skin, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,320",
+				"to": "00:18:49,320"
+			},
+			"offsets": {
+				"from": 1128320,
+				"to": 1129320
+			},
+			"text": " that's cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,320",
+				"to": "00:18:50,320"
+			},
+			"offsets": {
+				"from": 1129320,
+				"to": 1130320
+			},
+			"text": " You can show it off."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,320",
+				"to": "00:18:52,320"
+			},
+			"offsets": {
+				"from": 1130320,
+				"to": 1132320
+			},
+			"text": " Uh, so that's sort of utility."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,320",
+				"to": "00:18:57,320"
+			},
+			"offsets": {
+				"from": 1132320,
+				"to": 1137320
+			},
+			"text": " Um, and then provenance is like, oh, this was the officially endorsed Disney"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,320",
+				"to": "00:19:02,320"
+			},
+			"offsets": {
+				"from": 1137320,
+				"to": 1142320
+			},
+			"text": " collectible and hence, and like Disney has, has said, this is a smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,320",
+				"to": "00:19:03,320"
+			},
+			"offsets": {
+				"from": 1142320,
+				"to": 1143320
+			},
+			"text": " contract we're using."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,320",
+				"to": "00:19:05,320"
+			},
+			"offsets": {
+				"from": 1143320,
+				"to": 1145320
+			},
+			"text": " There will only be this number of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,320",
+				"to": "00:19:08,320"
+			},
+			"offsets": {
+				"from": 1145320,
+				"to": 1148320
+			},
+			"text": " I think that kind of with the Austrian postal service, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,320",
+				"to": "00:19:12,320"
+			},
+			"offsets": {
+				"from": 1148320,
+				"to": 1152320
+			},
+			"text": " Not a huge brand, but, um, you know, they basically said this is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,320",
+				"to": "00:19:15,320"
+			},
+			"offsets": {
+				"from": 1152320,
+				"to": 1155320
+			},
+			"text": " official crypto stamp for the Austrian postal service."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,320",
+				"to": "00:19:21,320"
+			},
+			"offsets": {
+				"from": 1155320,
+				"to": 1161320
+			},
+			"text": " There's only five, like, red stamps, hence, those might be valuable for collectors."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,320",
+				"to": "00:19:26,320"
+			},
+			"offsets": {
+				"from": 1161320,
+				"to": 1166320
+			},
+			"text": " Have you seen anyone trying to create, like, a kind of, or, uh, import"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,320",
+				"to": "00:19:29,320"
+			},
+			"offsets": {
+				"from": 1166320,
+				"to": 1169320
+			},
+			"text": " scarcity to be able to, like, kind of burn some other assets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,320",
+				"to": "00:19:30,320"
+			},
+			"offsets": {
+				"from": 1169320,
+				"to": 1170320
+			},
+			"text": " And he's a nice guy."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,320",
+				"to": "00:19:35,320"
+			},
+			"offsets": {
+				"from": 1170320,
+				"to": 1175320
+			},
+			"text": " Yeah, so there have been a lot of, like, swap your crypto kitty, or burn your"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,320",
+				"to": "00:19:40,320"
+			},
+			"offsets": {
+				"from": 1175320,
+				"to": 1180320
+			},
+			"text": " crypto kitty to receive, uh, crypto, I think it was, like, crypto strikers that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,320",
+				"to": "00:19:41,320"
+			},
+			"offsets": {
+				"from": 1180320,
+				"to": 1181320
+			},
+			"text": " did this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,320",
+				"to": "00:19:44,320"
+			},
+			"offsets": {
+				"from": 1181320,
+				"to": 1184320
+			},
+			"text": " So that is a really, that's a really good point."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,320",
+				"to": "00:19:50,320"
+			},
+			"offsets": {
+				"from": 1184320,
+				"to": 1190320
+			},
+			"text": " I think a very interesting way to, um, to engage the existing community is to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,320",
+				"to": "00:19:53,320"
+			},
+			"offsets": {
+				"from": 1190320,
+				"to": 1193320
+			},
+			"text": " leverage, like, the existing set of NFTs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,320",
+				"to": "00:19:56,320"
+			},
+			"offsets": {
+				"from": 1193320,
+				"to": 1196320
+			},
+			"text": " So go to crypto kitties and say, oh, now they're useful in this other game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,320",
+				"to": "00:20:00,320"
+			},
+			"offsets": {
+				"from": 1196320,
+				"to": 1200320
+			},
+			"text": " or, you know, you can trade them in for our game asset that's better, or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,320",
+				"to": "00:20:06,320"
+			},
+			"offsets": {
+				"from": 1200320,
+				"to": 1206320
+			},
+			"text": " Um, uh, yeah, and then there's, there's also, like, NFT air drops now."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,320",
+				"to": "00:20:10,320"
+			},
+			"offsets": {
+				"from": 1206320,
+				"to": 1210320
+			},
+			"text": " So people will, like, air drop a promotional NFT in your account."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,320",
+				"to": "00:20:12,320"
+			},
+			"offsets": {
+				"from": 1210320,
+				"to": 1212320
+			},
+			"text": " So there's, like, tons of things you could do."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,320",
+				"to": "00:20:14,320"
+			},
+			"offsets": {
+				"from": 1212320,
+				"to": 1214320
+			},
+			"text": " Um, it's pretty interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,320",
+				"to": "00:20:15,320"
+			},
+			"offsets": {
+				"from": 1214320,
+				"to": 1215320
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,320",
+				"to": "00:20:20,320"
+			},
+			"offsets": {
+				"from": 1215320,
+				"to": 1220320
+			},
+			"text": " Have you seen much, um, have you seen any way to kind of use NFTs as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,320",
+				"to": "00:20:21,320"
+			},
+			"offsets": {
+				"from": 1220320,
+				"to": 1221320
+			},
+			"text": " commission-based system?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,320",
+				"to": "00:20:25,320"
+			},
+			"offsets": {
+				"from": 1221320,
+				"to": 1225320
+			},
+			"text": " Like, I have this asset, so therefore I have the right to teach this."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,320",
+				"to": "00:20:32,320"
+			},
+			"offsets": {
+				"from": 1225320,
+				"to": 1232320
+			},
+			"text": " Yeah, so there's the unlock protocol, uh, which is, um, basically sort of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,320",
+				"to": "00:20:34,320"
+			},
+			"offsets": {
+				"from": 1232320,
+				"to": 1234320
+			},
+			"text": " subscription service."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,320",
+				"to": "00:20:39,320"
+			},
+			"offsets": {
+				"from": 1234320,
+				"to": 1239320
+			},
+			"text": " Um, that you, you buy an NFT and then you get access to content, personally."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,320",
+				"to": "00:20:43,320"
+			},
+			"offsets": {
+				"from": 1239320,
+				"to": 1243320
+			},
+			"text": " So that's kind of what they're going after, is they're talking to publishers and saying, um,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,320",
+				"to": "00:20:45,320"
+			},
+			"offsets": {
+				"from": 1243320,
+				"to": 1245320
+			},
+			"text": " gives us for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,320",
+				"to": "00:20:51,320"
+			},
+			"offsets": {
+				"from": 1245320,
+				"to": 1251320
+			},
+			"text": " Uh, also a DEVCON ticket sold on, on, on OpenSea for 70th the other day."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,320",
+				"to": "00:20:54,320"
+			},
+			"offsets": {
+				"from": 1251320,
+				"to": 1254320
+			},
+			"text": " Um, so tickets are kind of a commissioning system, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,320",
+				"to": "00:20:57,320"
+			},
+			"offsets": {
+				"from": 1254320,
+				"to": 1257320
+			},
+			"text": " Um, so there's, there's stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,320",
+				"to": "00:21:06,320"
+			},
+			"offsets": {
+				"from": 1257320,
+				"to": 1266320
+			},
+			"text": " Alright, so now digging into the nitty gritty."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,320",
+				"to": "00:21:14,320"
+			},
+			"offsets": {
+				"from": 1266320,
+				"to": 1274320
+			},
+			"text": " Um, so if anyone has their laptop, they can follow along if not, um, just watch me do stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,320",
+				"to": "00:21:19,320"
+			},
+			"offsets": {
+				"from": 1274320,
+				"to": 1279320
+			},
+			"text": " So, uh, this is the ERC721 interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,320",
+				"to": "00:21:32,320"
+			},
+			"offsets": {
+				"from": 1279320,
+				"to": 1292320
+			},
+			"text": " Um, it's basically a lot like ERC20, um, except that, uh, the key method is sort of this owner of token ID, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,320",
+				"to": "00:21:41,320"
+			},
+			"offsets": {
+				"from": 1292320,
+				"to": 1301320
+			},
+			"text": " So the token ID you can think of as, for example, like an individual crypto kitty would have a token ID of something."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,320",
+				"to": "00:21:45,320"
+			},
+			"offsets": {
+				"from": 1301320,
+				"to": 1305320
+			},
+			"text": " And to check who owns that crypto kitty, the call owner of."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,320",
+				"to": "00:21:56,320"
+			},
+			"offsets": {
+				"from": 1305320,
+				"to": 1316320
+			},
+			"text": " Um, and then, uh, maybe some of you are familiar with the idea of approved, um, in ERC20, but basically this is a way for, uh, an individual to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,320",
+				"to": "00:22:17,320"
+			},
+			"offsets": {
+				"from": 1316320,
+				"to": 1337320
+			},
+			"text": " \"I approve this account to transfer my item.\" Um, so for exchanges this is very useful because you can approve, um, OpenSea are actually a proxy, but, um, that's kind of a detail, uh, to transfer your items, uh, in the event of a sale, so that they don't have to actually leave your wallet while they're on sale."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,320",
+				"to": "00:22:28,320"
+			},
+			"offsets": {
+				"from": 1337320,
+				"to": 1348320
+			},
+			"text": " Um, and then this transfer from is obviously a really key one. This is basically the ability to transfer a crypto kitty or what have you from an address to another address."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,320",
+				"to": "00:22:46,320"
+			},
+			"offsets": {
+				"from": 1348320,
+				"to": 1366320
+			},
+			"text": " Then the kind of interesting, very interesting, uh, part of ERC721 is, you know, you have these token IDs, but how do you actually represent, uh, you know, what a crypto kitty is, which is, you know, has a name and a name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,320",
+				"to": "00:23:08,320"
+			},
+			"offsets": {
+				"from": 1366320,
+				"to": 1388320
+			},
+			"text": " it has an image, it has a description, it has maybe some traits, so where does that live? Um, and at the moment, all that lives off chain. Um, I don't think there's, can't think of a single ERC721 that has put, um, a lot of data on chain, there are 721s that put some data on chain, but most have some off chain component."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,320",
+				"to": "00:23:26,320"
+			},
+			"offsets": {
+				"from": 1388320,
+				"to": 1406320
+			},
+			"text": " So that's where this token URI comes into play. So token URI, uh, is basically, um, a way for the ERC721 developer to say, uh, this is where you can grab all the data for my item."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,320",
+				"to": "00:23:30,320"
+			},
+			"offsets": {
+				"from": 1406320,
+				"to": 1410320
+			},
+			"text": " So this takes in a token ID and returns a URL."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,320",
+				"to": "00:23:46,320"
+			},
+			"offsets": {
+				"from": 1410320,
+				"to": 1426320
+			},
+			"text": " So here's an example of some data that would be returned from the URL when you hit it that represents the asset. So this is what is actually one of our test assets called an open C creature."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,320",
+				"to": "00:24:06,320"
+			},
+			"offsets": {
+				"from": 1426320,
+				"to": 1446320
+			},
+			"text": " And you can see it has a description, a image, a name, an external URL, and these all map to this item, right? So you can see the image, this view on open C creature is basically the external URL that you would kind of click into."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,320",
+				"to": "00:24:17,320"
+			},
+			"offsets": {
+				"from": 1446320,
+				"to": 1457320
+			},
+			"text": " And then it has these properties, which this is kind of an addition that open C made up to allow you to add a little more rich data to your items."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,320",
+				"to": "00:24:28,320"
+			},
+			"offsets": {
+				"from": 1457320,
+				"to": 1468320
+			},
+			"text": " But what's cool is that, you know, as long as you implement the token URI and you've conformed to the ERC721 standard, you kind of get it all for free."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,320",
+				"to": "00:24:36,320"
+			},
+			"offsets": {
+				"from": 1468320,
+				"to": 1476320
+			},
+			"text": " And as you can see, like this is automatically tradable, all that stuff because it is the ERC721."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,320",
+				"to": "00:24:50,320"
+			},
+			"offsets": {
+				"from": 1476320,
+				"to": 1490320
+			},
+			"text": " And then what the other interesting thing is this is also what is allowing for limited degrees of interoperability. So this is that same open C creature inside of that crypto boxable scheme that I was mentioning, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,320",
+				"to": "00:25:08,320"
+			},
+			"offsets": {
+				"from": 1490320,
+				"to": 1508320
+			},
+			"text": " So now because that metadata is standardized, crypto boxable or whatever site can go and pull it or use the open C API, which makes it a little more convenient to grab this asset and display it in the virtual world."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,320",
+				"to": "00:25:29,320"
+			},
+			"offsets": {
+				"from": 1508320,
+				"to": 1529320
+			},
+			"text": " And Etherscan as well has actually recently just started listing all the inventory of ERC721, which I think is an interesting sign that these are sort of starting to achieve the same level of significance as ERC20, which has had a nice Etherscan interface for awhile."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,320",
+				"to": "00:25:36,320"
+			},
+			"offsets": {
+				"from": 1529320,
+				"to": 1536320
+			},
+			"text": " Did crypto boxable need any kind of permission or anything to grab and display it? Is there any kind of control over the look at it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,320",
+				"to": "00:25:39,320"
+			},
+			"offsets": {
+				"from": 1536320,
+				"to": 1539320
+			},
+			"text": " They don't come in it. Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,320",
+				"to": "00:25:51,320"
+			},
+			"offsets": {
+				"from": 1539320,
+				"to": 1551320
+			},
+			"text": " So they did not need permission to check who the owner of that entity is. They didn't need permission to call the API to get the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,320",
+				"to": "00:26:02,320"
+			},
+			"offsets": {
+				"from": 1551320,
+				"to": 1562320
+			},
+			"text": " In crypto boxable's case, they use our API as kind of a convenience thing. We kind of aggregate some data nicely. But yeah, no, they don't need any permission."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,320",
+				"to": "00:26:05,320"
+			},
+			"offsets": {
+				"from": 1562320,
+				"to": 1565320
+			},
+			"text": " How many of you change by an audience?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,320",
+				"to": "00:26:06,320"
+			},
+			"offsets": {
+				"from": 1565320,
+				"to": 1566320
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,320",
+				"to": "00:26:16,320"
+			},
+			"offsets": {
+				"from": 1566320,
+				"to": 1576320
+			},
+			"text": " So we'll see if I get to the coding part of this that it can be changed depending on where it's hosted."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,320",
+				"to": "00:26:28,320"
+			},
+			"offsets": {
+				"from": 1576320,
+				"to": 1588320
+			},
+			"text": " So if you hosted on an HTTP server, you can certainly change it. There's not really a good standard around the metadata changing and then everything updating and just like whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,320",
+				"to": "00:26:35,320"
+			},
+			"offsets": {
+				"from": 1588320,
+				"to": 1595320
+			},
+			"text": " But if you posted on some decentralized, I mean, whole file storage thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,320",
+				"to": "00:26:42,320"
+			},
+			"offsets": {
+				"from": 1595320,
+				"to": 1602320
+			},
+			"text": " Obviously."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,320",
+				"to": "00:26:49,320"
+			},
+			"offsets": {
+				"from": 1602320,
+				"to": 1609320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,320",
+				"to": "00:26:56,320"
+			},
+			"offsets": {
+				"from": 1609320,
+				"to": 1616320
+			},
+			"text": " So you could also before it gets old. Can you transfer it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,320",
+				"to": "00:27:03,320"
+			},
+			"offsets": {
+				"from": 1616320,
+				"to": 1623320
+			},
+			"text": " Can you call for something to be sold?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,320",
+				"to": "00:27:10,320"
+			},
+			"offsets": {
+				"from": 1623320,
+				"to": 1630320
+			},
+			"text": " For someone to think they're buying something, but you actually just need to have it for all."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:10,320",
+				"to": "00:27:26,320"
+			},
+			"offsets": {
+				"from": 1630320,
+				"to": 1646320
+			},
+			"text": " So if I put a sale up on OpenSea, for example, that says, \"I'm going to sell this,\" but then I transfer it somewhere else, then that sale will be kind of cancelled by us."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,320",
+				"to": "00:27:36,320"
+			},
+			"offsets": {
+				"from": 1646320,
+				"to": 1656320
+			},
+			"text": " Or we'll keep track of like, \"Is this sale valid?\" And then there's maybe the more of an attack is transferring it right before it gets bought."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,320",
+				"to": "00:27:44,320"
+			},
+			"offsets": {
+				"from": 1656320,
+				"to": 1664320
+			},
+			"text": " So in that case, the sale transaction would fail because it would try to transfer something that no longer is in that account."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,320",
+				"to": "00:27:55,320"
+			},
+			"offsets": {
+				"from": 1664320,
+				"to": 1675320
+			},
+			"text": " So it's an atomic swap, right? So there's no sort of scenario where in the middle of the sale transaction, something gets transferred because this is like a blockchain, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,320",
+				"to": "00:27:59,320"
+			},
+			"offsets": {
+				"from": 1675320,
+				"to": 1679320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,320",
+				"to": "00:28:02,320"
+			},
+			"offsets": {
+				"from": 1679320,
+				"to": 1682320
+			},
+			"text": " Oh, turn this off there."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,320",
+				"to": "00:28:07,320"
+			},
+			"offsets": {
+				"from": 1682320,
+				"to": 1687320
+			},
+			"text": " So did the token metadata?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,320",
+				"to": "00:28:23,320"
+			},
+			"offsets": {
+				"from": 1687320,
+				"to": 1703320
+			},
+			"text": " Yeah, so if anyone wants to try out deploying an ERC721 contract, I made a starter repo that works our basic demo repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,320",
+				"to": "00:28:37,320"
+			},
+			"offsets": {
+				"from": 1703320,
+				"to": 1717320
+			},
+			"text": " For folks who are non-technical, we also have tons of ways to mint NFTs, which I encourage you to recommend, or encourage you to try out."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,320",
+				"to": "00:28:49,320"
+			},
+			"offsets": {
+				"from": 1717320,
+				"to": 1729320
+			},
+			"text": " So one example here is our Rinkaby instance of OpenSea, which is basically kind of a playground for creating NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:49,320",
+				"to": "00:28:57,320"
+			},
+			"offsets": {
+				"from": 1729320,
+				"to": 1737320
+			},
+			"text": " You can go in our storefront manager and actually deploy a new contract and then mint NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:57,320",
+				"to": "00:29:05,320"
+			},
+			"offsets": {
+				"from": 1737320,
+				"to": 1745320
+			},
+			"text": " There's also MintBase, I think I saw it in the video. MintBase, which is a much better tool for deploying..."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,320",
+				"to": "00:29:07,320"
+			},
+			"offsets": {
+				"from": 1745320,
+				"to": 1747320
+			},
+			"text": " No, we're going to see that."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,320",
+				"to": "00:29:10,320"
+			},
+			"offsets": {
+				"from": 1747320,
+				"to": 1750320
+			},
+			"text": " Yeah, and MintBase.io is right there."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,320",
+				"to": "00:29:19,320"
+			},
+			"offsets": {
+				"from": 1750320,
+				"to": 1759320
+			},
+			"text": " So MintBase is a much more feature-rich way of deploying interesting NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,320",
+				"to": "00:29:31,320"
+			},
+			"offsets": {
+				"from": 1759320,
+				"to": 1771320
+			},
+			"text": " R storefront manager, this is one that I was deploying earlier this morning, but I'm pretending that these are the picket before NFTNYC."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:31,320",
+				"to": "00:29:49,320"
+			},
+			"offsets": {
+				"from": 1771320,
+				"to": 1789320
+			},
+			"text": " And for the non-technical folks, you can go to the develop menu, storefront manager, and sort of go through the process with MintBase for deploying an ERC721 with an image and a name and description."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,320",
+				"to": "00:30:02,320"
+			},
+			"offsets": {
+				"from": 1789320,
+				"to": 1802320
+			},
+			"text": " So what's interesting about this is you can deploy a ERC721 using any of these tools and they're all compatible with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:02,320",
+				"to": "00:30:18,320"
+			},
+			"offsets": {
+				"from": 1802320,
+				"to": 1818320
+			},
+			"text": " So it doesn't really matter if you use OpenSea to deploy it, if you use MintBase, or if you do it yourself, and for the developers, I'll go into a little bit of code to show what this would actually look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,320",
+				"to": "00:30:26,320"
+			},
+			"offsets": {
+				"from": 1818320,
+				"to": 1826320
+			},
+			"text": " So this is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:26,320",
+				"to": "00:30:27,320"
+			},
+			"offsets": {
+				"from": 1826320,
+				"to": 1827320
+			},
+			"text": " Can you pull it out?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:27,320",
+				"to": "00:30:29,320"
+			},
+			"offsets": {
+				"from": 1827320,
+				"to": 1829320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:29,320",
+				"to": "00:30:43,320"
+			},
+			"offsets": {
+				"from": 1829320,
+				"to": 1843320
+			},
+			"text": " So this is an example of an ERC721 token."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:43,320",
+				"to": "00:30:48,320"
+			},
+			"offsets": {
+				"from": 1843320,
+				"to": 1848320
+			},
+			"text": " It's tradable, you're a certain token, don't think of it as anything really special."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:48,320",
+				"to": "00:30:51,320"
+			},
+			"offsets": {
+				"from": 1848320,
+				"to": 1851320
+			},
+			"text": " We just added some utility functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:51,320",
+				"to": "00:30:53,320"
+			},
+			"offsets": {
+				"from": 1851320,
+				"to": 1853320
+			},
+			"text": " Oh, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:53,320",
+				"to": "00:30:55,320"
+			},
+			"offsets": {
+				"from": 1853320,
+				"to": 1855320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:55,320",
+				"to": "00:31:02,320"
+			},
+			"offsets": {
+				"from": 1855320,
+				"to": 1862320
+			},
+			"text": " So also my, like, linters, not very happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:02,320",
+				"to": "00:31:13,320"
+			},
+			"offsets": {
+				"from": 1862320,
+				"to": 1873320
+			},
+			"text": " But so, you know, just a simple way to Mint. If you go to our documentation, you'll also see some special stuff we do with pre-approving tokens for trading."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,320",
+				"to": "00:31:25,320"
+			},
+			"offsets": {
+				"from": 1873320,
+				"to": 1885320
+			},
+			"text": " But basically it's just an ERC721 inherited from the OpenZeplin ERC721 full, which has all sorts of nice things associated with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:25,320",
+				"to": "00:31:34,320"
+			},
+			"offsets": {
+				"from": 1885320,
+				"to": 1894320
+			},
+			"text": " It has, like, the token URI, it has, like, easy ways to Mint, easy ways to burn, all of that stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:34,320",
+				"to": "00:31:46,320"
+			},
+			"offsets": {
+				"from": 1894320,
+				"to": 1906320
+			},
+			"text": " So it's now, I mean, it's very simple to deploy a 7.1 unit for non-coder, but even as a coder, you can do it pretty easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:46,320",
+				"to": "00:32:03,320"
+			},
+			"offsets": {
+				"from": 1906320,
+				"to": 1923320
+			},
+			"text": " So I will attempt to pull this."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:03,320",
+				"to": "00:32:09,320"
+			},
+			"offsets": {
+				"from": 1923320,
+				"to": 1929320
+			},
+			"text": " So I won't, like, try to have everyone do it because we don't have that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,320",
+				"to": "00:32:26,320"
+			},
+			"offsets": {
+				"from": 1929320,
+				"to": 1946320
+			},
+			"text": " But basically you could create a .env file and that would sort of configure all the accounts that you want to use to deploy your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:26,320",
+				"to": "00:32:34,320"
+			},
+			"offsets": {
+				"from": 1946320,
+				"to": 1954320
+			},
+			"text": " So it also sets up a, if you're, you can get a Fure key and inject it in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:34,320",
+				"to": "00:32:56,320"
+			},
+			"offsets": {
+				"from": 1954320,
+				"to": 1976320
+			},
+			"text": " And then if you run the minting script, or sorry, if you run the deployment script, then in theory this will give you a new ERC721 contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:56,320",
+				"to": "00:33:05,320"
+			},
+			"offsets": {
+				"from": 1976320,
+				"to": 1985320
+			},
+			"text": " And one cool thing is that OpenSea will actually pick up, kind of like Etherscan, will pick up any new ERC721-coder deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:05,320",
+				"to": "00:33:17,320"
+			},
+			"offsets": {
+				"from": 1985320,
+				"to": 1997320
+			},
+			"text": " So once you mint our first asset on this ERC721 contract, it will automatically show up and openSea, and you can go and trade it."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:17,320",
+				"to": "00:33:25,320"
+			},
+			"offsets": {
+				"from": 1997320,
+				"to": 2005320
+			},
+			"text": " So we'll wait for the contract to deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:25,320",
+				"to": "00:33:45,320"
+			},
+			"offsets": {
+				"from": 2005320,
+				"to": 2025320
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:45,320",
+				"to": "00:33:54,320"
+			},
+			"offsets": {
+				"from": 2025320,
+				"to": 2034320
+			},
+			"text": " In the meantime, I can start talking about the minting script."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:54,320",
+				"to": "00:34:01,320"
+			},
+			"offsets": {
+				"from": 2034320,
+				"to": 2041320
+			},
+			"text": " So here's our contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:01,320",
+				"to": "00:34:11,320"
+			},
+			"offsets": {
+				"from": 2041320,
+				"to": 2051320
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:11,320",
+				"to": "00:34:23,320"
+			},
+			"offsets": {
+				"from": 2051320,
+				"to": 2063320
+			},
+			"text": " So the minting script, this is kind of where the token URI, immutable versus non-imutable data storage becomes kind of interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:23,320",
+				"to": "00:34:34,320"
+			},
+			"offsets": {
+				"from": 2063320,
+				"to": 2074320
+			},
+			"text": " So this minting script I made earlier today, and it basically just uses some JSON storage site that I found."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,320",
+				"to": "00:34:45,320"
+			},
+			"offsets": {
+				"from": 2074320,
+				"to": 2085320
+			},
+			"text": " So if we go to this, I just, I literally just, like, I just created a little bit of JSON, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:45,320",
+				"to": "00:34:55,320"
+			},
+			"offsets": {
+				"from": 2085320,
+				"to": 2095320
+			},
+			"text": " So name, hello, description, hi there, and then an image, and this is really good enough for the metadata standard technically."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:55,320",
+				"to": "00:35:00,320"
+			},
+			"offsets": {
+				"from": 2095320,
+				"to": 2100320
+			},
+			"text": " But to the point back there, I could go and, like, modify this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:00,320",
+				"to": "00:35:07,320"
+			},
+			"offsets": {
+				"from": 2100320,
+				"to": 2107320
+			},
+			"text": " So if you're trying to create an NFT that is immutably, like, has an immutable image associated with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:07,320",
+				"to": "00:35:22,320"
+			},
+			"offsets": {
+				"from": 2107320,
+				"to": 2122320
+			},
+			"text": " it's always the same name, etc., then you'll probably want to look into something like IPFS, so that, you know, your customers can have this guarantee that their items won't be changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:22,320",
+				"to": "00:35:43,320"
+			},
+			"offsets": {
+				"from": 2122320,
+				"to": 2143320
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:43,320",
+				"to": "00:35:58,320"
+			},
+			"offsets": {
+				"from": 2143320,
+				"to": 2158320
+			},
+			"text": " Yeah, so certainly, like, we have support for IPFS. There's not that many, like, NFT readers, they all, like, most of them use their API, because in their early days, like with CryptoKitties, there was actually no token URI standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:58,320",
+				"to": "00:36:08,320"
+			},
+			"offsets": {
+				"from": 2158320,
+				"to": 2168320
+			},
+			"text": " and so everyone just had their own, like, weird API, right? Like, then showed data in some random way, and people still deploy your C7 new ones without performing to the metadata standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:08,320",
+				"to": "00:36:19,320"
+			},
+			"offsets": {
+				"from": 2168320,
+				"to": 2179320
+			},
+			"text": " So a lot of folks use our API, which is not, you know, a very good thing. Like, we don't want to be the central point of, like, NFT management or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:19,320",
+				"to": "00:36:30,320"
+			},
+			"offsets": {
+				"from": 2179320,
+				"to": 2190320
+			},
+			"text": " But, but yeah, if you were building a, like, open source NFT aggregator, you would definitely want to support something like IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:33,320",
+				"to": "00:36:38,320"
+			},
+			"offsets": {
+				"from": 2193320,
+				"to": 2198320
+			},
+			"text": " So, yeah, so, my other time, forward, it's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:38,320",
+				"to": "00:36:53,320"
+			},
+			"offsets": {
+				"from": 2198320,
+				"to": 2213320
+			},
+			"text": " So we do have our ERC721 contract. We can go on rankabed.eaterscan, and check it out. I can do that. Exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:53,320",
+				"to": "00:37:06,320"
+			},
+			"offsets": {
+				"from": 2213320,
+				"to": 2226320
+			},
+			"text": " And then we could mint some items on here. So don't worry, this, like, environment stuff is not."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:06,320",
+				"to": "00:37:15,320"
+			},
+			"offsets": {
+				"from": 2226320,
+				"to": 2235320
+			},
+			"text": " It's all just like, throw it away. So I'm going to replace this after us here."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:15,320",
+				"to": "00:37:35,320"
+			},
+			"offsets": {
+				"from": 2235320,
+				"to": 2255320
+			},
+			"text": " And then, hopefully, if I run the minting script, it will mint some items with that metadata that I showed you."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:35,320",
+				"to": "00:38:01,320"
+			},
+			"offsets": {
+				"from": 2255320,
+				"to": 2281320
+			},
+			"text": " And after it's done that, you can view an item on OpenSea if you just use a little bit of URL with your tree by hitting /assets/address/token-id."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:01,320",
+				"to": "00:38:08,320"
+			},
+			"offsets": {
+				"from": 2281320,
+				"to": 2288320
+			},
+			"text": " And I think we have to wait for it to deploy. So it has minted an item."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:08,320",
+				"to": "00:38:15,320"
+			},
+			"offsets": {
+				"from": 2288320,
+				"to": 2295320
+			},
+			"text": " So, it has minted an item."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:15,320",
+				"to": "00:38:21,320"
+			},
+			"offsets": {
+				"from": 2295320,
+				"to": 2301320
+			},
+			"text": " Oops."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:21,320",
+				"to": "00:38:28,320"
+			},
+			"offsets": {
+				"from": 2301320,
+				"to": 2308320
+			},
+			"text": " So, it has minted token-id number one."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:28,320",
+				"to": "00:38:37,320"
+			},
+			"offsets": {
+				"from": 2308320,
+				"to": 2317320
+			},
+			"text": " And now we can go to rankabed/one, and hopefully it should show up."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:37,320",
+				"to": "00:38:41,320"
+			},
+			"offsets": {
+				"from": 2317320,
+				"to": 2321320
+			},
+			"text": " So that's the image I used. It was called Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:41,320",
+				"to": "00:38:50,320"
+			},
+			"offsets": {
+				"from": 2321320,
+				"to": 2330320
+			},
+			"text": " And then some other interesting things you can do here are you can immediately put this on sale, both through the OpenSea UI or programmatically through our SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:50,320",
+				"to": "00:38:55,320"
+			},
+			"offsets": {
+				"from": 2330320,
+				"to": 2335320
+			},
+			"text": " You can sell it in a different token. On made net, we support stablecoins and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:55,320",
+				"to": "00:39:02,320"
+			},
+			"offsets": {
+				"from": 2335320,
+				"to": 2342320
+			},
+			"text": " On tests net, we support this test token. You could create sort of a Dutch auction where you started at a certain price."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:02,320",
+				"to": "00:39:07,320"
+			},
+			"offsets": {
+				"from": 2342320,
+				"to": 2347320
+			},
+			"text": " And then another price, you could create a private sale, eBay style auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:07,320",
+				"to": "00:39:16,320"
+			},
+			"offsets": {
+				"from": 2347320,
+				"to": 2356320
+			},
+			"text": " You could bundle it together with other NFTs, even from other contracts and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:16,320",
+				"to": "00:39:20,320"
+			},
+			"offsets": {
+				"from": 2356320,
+				"to": 2360320
+			},
+			"text": " So there's all these things you can immediately do with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:20,320",
+				"to": "00:39:29,320"
+			},
+			"offsets": {
+				"from": 2360320,
+				"to": 2369320
+			},
+			"text": " And you can see the history for it. So it was born a minute ago to my account."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:29,320",
+				"to": "00:39:35,320"
+			},
+			"offsets": {
+				"from": 2369320,
+				"to": 2375320
+			},
+			"text": " And lastly, as I think I'm running out of time, you can configure this."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:35,320",
+				"to": "00:39:43,320"
+			},
+			"offsets": {
+				"from": 2375320,
+				"to": 2383320
+			},
+			"text": " So you get a free storefront. So, to play a lot of contracts called Creature, but assets/creature-49."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:43,320",
+				"to": "00:39:55,320"
+			},
+			"offsets": {
+				"from": 2383320,
+				"to": 2395320
+			},
+			"text": " And you can actually edit this storefront. And what's interesting here is we use the ownable owner of the contract to permission who can edit their storefront."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:55,320",
+				"to": "00:40:03,320"
+			},
+			"offsets": {
+				"from": 2395320,
+				"to": 2403320
+			},
+			"text": " So if I go to edit storefront, I can add an image for the storefront in description."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:03,320",
+				"to": "00:40:13,320"
+			},
+			"offsets": {
+				"from": 2403320,
+				"to": 2413320
+			},
+			"text": " And then my marketplace fees, which are basically whenever something sells, I'll take a cut of those sales to a payout address."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:13,320",
+				"to": "00:40:18,320"
+			},
+			"offsets": {
+				"from": 2413320,
+				"to": 2418320
+			},
+			"text": " And then a little bit around how the items are displayed."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:18,320",
+				"to": "00:40:28,320"
+			},
+			"offsets": {
+				"from": 2418320,
+				"to": 2428320
+			},
+			"text": " Any last minute questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:28,320",
+				"to": "00:40:35,320"
+			},
+			"offsets": {
+				"from": 2428320,
+				"to": 2435320
+			},
+			"text": " Alright, thanks so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:35,320",
+				"to": "00:40:38,320"
+			},
+			"offsets": {
+				"from": 2435320,
+				"to": 2438320
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:38,320",
+				"to": "00:40:53,320"
+			},
+			"offsets": {
+				"from": 2438320,
+				"to": 2453320
+			},
+			"text": " [Music]"
+		}
+	]
+}

@@ -1,0 +1,1902 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,760"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10760
+			},
+			"text": " >> Hey, everybody. Thanks for coming to the ETH2 client summit. I know there's been a"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,760",
+				"to": "00:00:16,680"
+			},
+			"offsets": {
+				"from": 10760,
+				"to": 16680
+			},
+			"text": " lot of ETH2 talks, so maybe you're sick of it, but it's really special to be here. This"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,680",
+				"to": "00:00:22,440"
+			},
+			"offsets": {
+				"from": 16680,
+				"to": 22440
+			},
+			"text": " is my first DevCon. Didn't go last year. I really wanted to. All the rest of the Prismatics"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,440",
+				"to": "00:00:29,080"
+			},
+			"offsets": {
+				"from": 22440,
+				"to": 29080
+			},
+			"text": " team went, so it's truly an amazing opportunity to be here. So what I want to talk about is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,080",
+				"to": "00:00:35,720"
+			},
+			"offsets": {
+				"from": 29080,
+				"to": 35720
+			},
+			"text": " our test net. We've been running one for some time now, and we've actually learned a lot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,720",
+				"to": "00:00:43,360"
+			},
+			"offsets": {
+				"from": 35720,
+				"to": 43360
+			},
+			"text": " so let's dive into it. First of all, who are Prismatic Labs or who is Prismatic Labs? We're"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,360",
+				"to": "00:00:50,360"
+			},
+			"offsets": {
+				"from": 43360,
+				"to": 50360
+			},
+			"text": " a self-organized group of just dedicated blockchain engineers, people who really wanted to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,360",
+				"to": "00:00:59,440"
+			},
+			"offsets": {
+				"from": 50360,
+				"to": 59440
+			},
+			"text": " a part of scaling Ethereum and making this reach global adoption capacity. So there are"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,440",
+				"to": "00:01:04,240"
+			},
+			"offsets": {
+				"from": 59440,
+				"to": 64240
+			},
+			"text": " six of us today. Most of us are here, so come say hi if you see us, if you don't know us"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,240",
+				"to": "00:01:12,720"
+			},
+			"offsets": {
+				"from": 64240,
+				"to": 72720
+			},
+			"text": " already. We love to chat. What's interesting about this group is that we all formed really"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,720",
+				"to": "00:01:18,440"
+			},
+			"offsets": {
+				"from": 72720,
+				"to": 78440
+			},
+			"text": " organically online. Nobody knew anybody before any of this, and we were just inspired by"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,440",
+				"to": "00:01:24,200"
+			},
+			"offsets": {
+				"from": 78440,
+				"to": 84200
+			},
+			"text": " the Vitalix wiki article about sharding, and wanted to start making moves on that because"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,200",
+				"to": "00:01:32,280"
+			},
+			"offsets": {
+				"from": 84200,
+				"to": 92280
+			},
+			"text": " we felt that at the peak of 2017, when things were really maxing out, that we needed something"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,280",
+				"to": "00:01:37,440"
+			},
+			"offsets": {
+				"from": 92280,
+				"to": 97440
+			},
+			"text": " soon to keep this momentum going. So we were one of the first teams to come together to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,440",
+				"to": "00:01:42,440"
+			},
+			"offsets": {
+				"from": 97440,
+				"to": 102440
+			},
+			"text": " start building sharding, and then the proof of stake at CASPER, all these things merge"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,440",
+				"to": "00:01:50,440"
+			},
+			"offsets": {
+				"from": 102440,
+				"to": 110440
+			},
+			"text": " together. So it's been a pretty remarkable journey so far. One of our biggest achievements is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,440",
+				"to": "00:01:57,600"
+			},
+			"offsets": {
+				"from": 110440,
+				"to": 117600
+			},
+			"text": " to run an actual test net. This has been, we started doing this back in April of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,600",
+				"to": "00:02:05,040"
+			},
+			"offsets": {
+				"from": 117600,
+				"to": 125040
+			},
+			"text": " year, so we've been running it for I think six months now. What this is comprised of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,040",
+				"to": "00:02:10,960"
+			},
+			"offsets": {
+				"from": 125040,
+				"to": 130960
+			},
+			"text": " is several beacon chain nodes running in different environments, different areas of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,960",
+				"to": "00:02:18,320"
+			},
+			"offsets": {
+				"from": 130960,
+				"to": 138320
+			},
+			"text": " world. It's open to anybody, so anyone with a computer can join. It typically runs for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,320",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 138320,
+				"to": 144000
+			},
+			"text": " several weeks or several months, depending on if we run into some fatal bug, or if there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:30,920"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 150920
+			},
+			"text": " a new spec update where we have to rewrite everything, which just happened many times."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,920",
+				"to": "00:02:36,360"
+			},
+			"offsets": {
+				"from": 150920,
+				"to": 156360
+			},
+			"text": " It's also the full into an experience. There's nothing really mocked out here when we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,360",
+				"to": "00:02:44,600"
+			},
+			"offsets": {
+				"from": 156360,
+				"to": 164600
+			},
+			"text": " talking about this test net. There are real deposits coming from a real E3 chain, the POA"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,600",
+				"to": "00:02:52,560"
+			},
+			"offsets": {
+				"from": 164600,
+				"to": 172560
+			},
+			"text": " GORLY network. We've actually had hundreds of people join. We at one point accidentally"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,560",
+				"to": "00:02:59,160"
+			},
+			"offsets": {
+				"from": 172560,
+				"to": 179160
+			},
+			"text": " merged with the IPFS network, so we learned not to use default, the P2P parameters, because"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,160",
+				"to": "00:03:03,920"
+			},
+			"offsets": {
+				"from": 179160,
+				"to": 183920
+			},
+			"text": " that's what the P2P does, and we were wondering why do we have 500 nodes connected to us all"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,920",
+				"to": "00:03:11,080"
+			},
+			"offsets": {
+				"from": 183920,
+				"to": 191080
+			},
+			"text": " of a sudden. That was a cool thing to learn. But most of all, it's just been really, really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,080",
+				"to": "00:03:15,200"
+			},
+			"offsets": {
+				"from": 191080,
+				"to": 195200
+			},
+			"text": " fun, and it's actually really easy to get involved. If you wanted to be a validator to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,200",
+				"to": "00:03:21,200"
+			},
+			"offsets": {
+				"from": 195200,
+				"to": 201200
+			},
+			"text": " see what it's like to stake with Prisma Client, we have this test net website, which is super,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,200",
+				"to": "00:03:30,240"
+			},
+			"offsets": {
+				"from": 201200,
+				"to": 210240
+			},
+			"text": " super straightforward. When we're talking about test nets, I wanted to ask Vitalik what is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,240",
+				"to": "00:03:34,480"
+			},
+			"offsets": {
+				"from": 210240,
+				"to": 214480
+			},
+			"text": " the best test net of all time, and I didn't get a chance to ask him yet. This is what"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,480",
+				"to": "00:03:39,040"
+			},
+			"offsets": {
+				"from": 214480,
+				"to": 219040
+			},
+			"text": " I think he's going to say, is he's going to say, \"Prismatic Labs, best test network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,040",
+				"to": "00:03:44,160"
+			},
+			"offsets": {
+				"from": 219040,
+				"to": 224160
+			},
+			"text": " and the entire planet, and the entire universe.\" I challenged someone here to find him and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,160",
+				"to": "00:03:49,680"
+			},
+			"offsets": {
+				"from": 224160,
+				"to": 229680
+			},
+			"text": " ask him and see if he actually says this, but Vitalik has run it as far as we know, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,680",
+				"to": "00:03:57,040"
+			},
+			"offsets": {
+				"from": 229680,
+				"to": 237040
+			},
+			"text": " he's really enjoyed it as many other people. The first lesson that we learned is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,040",
+				"to": "00:04:03,760"
+			},
+			"offsets": {
+				"from": 237040,
+				"to": 243760
+			},
+			"text": " participation has to be very easy. You have users coming from all types of technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,760",
+				"to": "00:04:08,480"
+			},
+			"offsets": {
+				"from": 243760,
+				"to": 248480
+			},
+			"text": " backgrounds or non-technical background. People interested, and they want to check it out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,480",
+				"to": "00:04:13,520"
+			},
+			"offsets": {
+				"from": 248480,
+				"to": 253520
+			},
+			"text": " but they're really intimidated by adding a lot of tooling to the system just to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,520",
+				"to": "00:04:20,320"
+			},
+			"offsets": {
+				"from": 253520,
+				"to": 260320
+			},
+			"text": " the project and running into these weird errors where you, you know, it really depends on your"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,320",
+				"to": "00:04:29,840"
+			},
+			"offsets": {
+				"from": 260320,
+				"to": 269840
+			},
+			"text": " local environment. So what we've done is built this test net website that within six easy steps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,840",
+				"to": "00:04:36,960"
+			},
+			"offsets": {
+				"from": 269840,
+				"to": 276960
+			},
+			"text": " you can be validating on a real beacon chain and actually seeing rewards, balances, change,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,960",
+				"to": "00:04:43,280"
+			},
+			"offsets": {
+				"from": 276960,
+				"to": 283280
+			},
+			"text": " and even penalties if you go offline. So the approach we took was to use Docker images,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,920",
+				"to": "00:04:49,280"
+			},
+			"offsets": {
+				"from": 283920,
+				"to": 289280
+			},
+			"text": " and this is typically pretty easy for users to get on board. It still requires some"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,280",
+				"to": "00:04:55,280"
+			},
+			"offsets": {
+				"from": 289280,
+				"to": 295280
+			},
+			"text": " installation on your machine and some, you know, command line inputs, but overall you don't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,280",
+				"to": "00:05:01,440"
+			},
+			"offsets": {
+				"from": 295280,
+				"to": 301440
+			},
+			"text": " to spend 10 to 15 minutes building the project, as some of you may have seen from the interop"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,440",
+				"to": "00:05:06,480"
+			},
+			"offsets": {
+				"from": 301440,
+				"to": 306480
+			},
+			"text": " event if you try to build Prism for the first time, it takes a really long time. So downloading"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,480",
+				"to": "00:05:13,760"
+			},
+			"offsets": {
+				"from": 306480,
+				"to": 313760
+			},
+			"text": " these images, which are 15, 20 megabytes each, just seems to be a pretty straightforward approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,760",
+				"to": "00:05:19,600"
+			},
+			"offsets": {
+				"from": 313760,
+				"to": 319600
+			},
+			"text": " haven't had too many problems. We also made it so that within the website you can get some test"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,600",
+				"to": "00:05:26,480"
+			},
+			"offsets": {
+				"from": 319600,
+				"to": 326480
+			},
+			"text": " ether from the GORLI network. We have a faucet built in here, an interface so that you can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,480",
+				"to": "00:05:33,040"
+			},
+			"offsets": {
+				"from": 326480,
+				"to": 333040
+			},
+			"text": " paste in your deposit data key and then with MetaMask or Portis, you can send that transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,040",
+				"to": "00:05:39,920"
+			},
+			"offsets": {
+				"from": 333040,
+				"to": 339920
+			},
+			"text": " to the ETH1 chain and wait for that to be included into a block and then go through, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,920",
+				"to": "00:05:45,280"
+			},
+			"offsets": {
+				"from": 339920,
+				"to": 345280
+			},
+			"text": " go through the voting period and all these other things and eventually you do get activated"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,280",
+				"to": "00:05:48,240"
+			},
+			"offsets": {
+				"from": 345280,
+				"to": 348240
+			},
+			"text": " as a validator and you start receiving assignments from your beacon chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,240",
+				"to": "00:05:54,480"
+			},
+			"offsets": {
+				"from": 348240,
+				"to": 354480
+			},
+			"text": " It actually has like a really cool like progress bar so you can sort of like see something's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,480",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 354480,
+				"to": 360000
+			},
+			"text": " happening when nothing's happening. So it's been really cool and this has been our biggest"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:05,040"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 365040
+			},
+			"text": " value add for users and one of the biggest things that we started off with learning because"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,240",
+				"to": "00:06:12,320"
+			},
+			"offsets": {
+				"from": 366240,
+				"to": 372320
+			},
+			"text": " before we got here it was just running it on your own computer, running one client and then running"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,320",
+				"to": "00:06:19,200"
+			},
+			"offsets": {
+				"from": 372320,
+				"to": 379200
+			},
+			"text": " two clients on the same computer, then on different computers and all of this was, you know, crawl"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,200",
+				"to": "00:06:24,720"
+			},
+			"offsets": {
+				"from": 379200,
+				"to": 384720
+			},
+			"text": " before you can walk and then now we're starting to run. So this has been my favorite lesson so far"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,720",
+				"to": "00:06:33,680"
+			},
+			"offsets": {
+				"from": 384720,
+				"to": 393680
+			},
+			"text": " just to make onboarding easier. Probably the biggest lesson though is that when we're running,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,600",
+				"to": "00:06:43,520"
+			},
+			"offsets": {
+				"from": 395600,
+				"to": 403520
+			},
+			"text": " we're running multiple instances of the beacon chain in the cloud or whatever and those are"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,520",
+				"to": "00:06:48,800"
+			},
+			"offsets": {
+				"from": 403520,
+				"to": 408800
+			},
+			"text": " really hard to be monitoring. As you've seen from like screenshots from the in-up event when you see"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,800",
+				"to": "00:06:54,480"
+			},
+			"offsets": {
+				"from": 408800,
+				"to": 414480
+			},
+			"text": " seven terminals on one screen, it could be really hard to see that there's an error or even to catch"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,480",
+				"to": "00:07:01,920"
+			},
+			"offsets": {
+				"from": 414480,
+				"to": 421920
+			},
+			"text": " that one of those nodes was not even talking to any of the other six which did happen. So having"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,920",
+				"to": "00:07:07,760"
+			},
+			"offsets": {
+				"from": 421920,
+				"to": 427760
+			},
+			"text": " good monitoring in place is absolutely critical to understanding when errors are happening in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,760",
+				"to": "00:07:12,480"
+			},
+			"offsets": {
+				"from": 427760,
+				"to": 432480
+			},
+			"text": " your system and how to find the root cause of those errors. So let's take a look at a few strategies"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,480",
+				"to": "00:07:22,080"
+			},
+			"offsets": {
+				"from": 432480,
+				"to": 442080
+			},
+			"text": " we do for monitoring things. From the very beginning we have built out metrics collection and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,080",
+				"to": "00:07:30,240"
+			},
+			"offsets": {
+				"from": 442080,
+				"to": 450240
+			},
+			"text": " monitoring through these metrics. So here you can see a test network that's been running for 229,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,240",
+				"to": "00:07:36,400"
+			},
+			"offsets": {
+				"from": 450240,
+				"to": 456400
+			},
+			"text": " slots. It's starting to look a little weird because these graphs should be pretty flat and straight"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,400",
+				"to": "00:07:46,640"
+			},
+			"offsets": {
+				"from": 456400,
+				"to": 466640
+			},
+			"text": " line especially the CPU churn and on these kind of things. So here we might say like oh if there"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,640",
+				"to": "00:07:53,760"
+			},
+			"offsets": {
+				"from": 466640,
+				"to": 473760
+			},
+			"text": " hasn't been a new block in 30 seconds then we'll fire an alarm and we'll alert to that and make"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,760",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 473760,
+				"to": 480000
+			},
+			"text": " your phone ring or whatever. And then when you are woken up in the middle of the night and you see"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:07,680"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 487680
+			},
+			"text": " something like this, you have some clues of where to start looking. So to digest this for you guys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,680",
+				"to": "00:08:13,200"
+			},
+			"offsets": {
+				"from": 487680,
+				"to": 493200
+			},
+			"text": " you can see on the bottom right that there's chain reorging happening like every single block"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,200",
+				"to": "00:08:20,560"
+			},
+			"offsets": {
+				"from": 493200,
+				"to": 500560
+			},
+			"text": " just about. So that ended up being a bug in the for choice rule and we had like deviation"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,560",
+				"to": "00:08:26,560"
+			},
+			"offsets": {
+				"from": 500560,
+				"to": 506560
+			},
+			"text": " imbalances so nobody was agreeing on anything. We had hundreds of thousands of go routines"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,560",
+				"to": "00:08:32,480"
+			},
+			"offsets": {
+				"from": 506560,
+				"to": 512480
+			},
+			"text": " happening at the same time so these were concurrent processes and that's leading to the CPU maxing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,480",
+				"to": "00:08:38,960"
+			},
+			"offsets": {
+				"from": 512480,
+				"to": 518960
+			},
+			"text": " out and then this nice like up into the right line is starting to fall apart and this was like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,960",
+				"to": "00:08:46,320"
+			},
+			"offsets": {
+				"from": 518960,
+				"to": 526320
+			},
+			"text": " nightmare scenario. So having these resources is super super helpful. But now you know like what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,440",
+				"to": "00:08:53,040"
+			},
+			"offsets": {
+				"from": 527440,
+				"to": 533040
+			},
+			"text": " kind of going wrong? Like how do you dive into some very specific details? Like maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,040",
+				"to": "00:08:59,520"
+			},
+			"offsets": {
+				"from": 533040,
+				"to": 539520
+			},
+			"text": " block production is taking longer than expected and you want to identify the root cause of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,520",
+				"to": "00:09:08,480"
+			},
+			"offsets": {
+				"from": 539520,
+				"to": 548480
+			},
+			"text": " things. So what we do is we do a practice called code instrumentation. So we'll annotate pieces of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,480",
+				"to": "00:09:14,480"
+			},
+			"offsets": {
+				"from": 548480,
+				"to": 554480
+			},
+			"text": " the code that we think are expensive or really interesting to track. So here you can see the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,480",
+				"to": "00:09:20,720"
+			},
+			"offsets": {
+				"from": 554480,
+				"to": 560720
+			},
+			"text": " entire workflow for a block proposal. So starting at the top we have the validator client which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,720",
+				"to": "00:09:28,320"
+			},
+			"offsets": {
+				"from": 560720,
+				"to": 568320
+			},
+			"text": " a separate process from the beacon chain. Sending the block to the beacon chain. And then something"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,320",
+				"to": "00:09:36,160"
+			},
+			"offsets": {
+				"from": 568320,
+				"to": 576160
+			},
+			"text": " along here is taking 236 milliseconds and you know we kind of expected that to maybe be 50 milliseconds"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,160",
+				"to": "00:09:43,520"
+			},
+			"offsets": {
+				"from": 576160,
+				"to": 583520
+			},
+			"text": " typically so we can dive into each part and see why it took so long. This one took a long time"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,520",
+				"to": "00:09:50,160"
+			},
+			"offsets": {
+				"from": 583520,
+				"to": 590160
+			},
+			"text": " because it was processing a lot of slots. So we might say was there a long period of skip slots or"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,160",
+				"to": "00:09:56,640"
+			},
+			"offsets": {
+				"from": 590160,
+				"to": 596640
+			},
+			"text": " can we cache this somehow so that we don't have to do this work redundantly? Where can we find ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,640",
+				"to": "00:10:01,840"
+			},
+			"offsets": {
+				"from": 596640,
+				"to": 601840
+			},
+			"text": " to improve and make things faster? And some of these things like you know from your intuition and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,840",
+				"to": "00:10:06,880"
+			},
+			"offsets": {
+				"from": 601840,
+				"to": 606880
+			},
+			"text": " you can write tests for and kind of write you know benchmarks to see like okay I know this is a place"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,880",
+				"to": "00:10:10,880"
+			},
+			"offsets": {
+				"from": 606880,
+				"to": 610880
+			},
+			"text": " that could be bad and I can make it better but other times you won't know it until it happens in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,880",
+				"to": "00:10:20,400"
+			},
+			"offsets": {
+				"from": 610880,
+				"to": 620400
+			},
+			"text": " the real world. So this has been super helpful for us. Speaking of benchmarking we do profiling so"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,400",
+				"to": "00:10:25,920"
+			},
+			"offsets": {
+				"from": 620400,
+				"to": 625920
+			},
+			"text": " we'll take when we see that there are 100,000 go routines or something is taking a long time"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,920",
+				"to": "00:10:32,880"
+			},
+			"offsets": {
+				"from": 625920,
+				"to": 632880
+			},
+			"text": " using a lot of CPU we'll take maybe like a 30 second snapshot of the CPU profile and then look"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,880",
+				"to": "00:10:39,920"
+			},
+			"offsets": {
+				"from": 632880,
+				"to": 639920
+			},
+			"text": " at this this is called a flame graph because it looks kind of like a flame and you can dive into"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,920",
+				"to": "00:10:47,360"
+			},
+			"offsets": {
+				"from": 639920,
+				"to": 647360
+			},
+			"text": " the most expensive parts of things that took the longest and go and then reproduce this in a local"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,360",
+				"to": "00:10:52,400"
+			},
+			"offsets": {
+				"from": 647360,
+				"to": 652400
+			},
+			"text": " test and be able to iterate on that and make it a little bit better. It's been super helpful for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,400",
+				"to": "00:11:01,280"
+			},
+			"offsets": {
+				"from": 652400,
+				"to": 661280
+			},
+			"text": " Another key thing that we've done is this is kind of recent is to do log ingestion so when we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,280",
+				"to": "00:11:08,400"
+			},
+			"offsets": {
+				"from": 661280,
+				"to": 668400
+			},
+			"text": " running multiple processes and trying to understand errors and we have evidence we've users are filing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,400",
+				"to": "00:11:16,160"
+			},
+			"offsets": {
+				"from": 668400,
+				"to": 676160
+			},
+			"text": " bugs that the signatures are not verifying we can query the central repository of logs and see"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,160",
+				"to": "00:11:21,520"
+			},
+			"offsets": {
+				"from": 676160,
+				"to": 681520
+			},
+			"text": " on what frequencies are happening and did we really solve the problem. So here we can see that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,520",
+				"to": "00:11:26,800"
+			},
+			"offsets": {
+				"from": 681520,
+				"to": 686800
+			},
+			"text": " this should be zero because this is an error that we don't want to have but we can see it at like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,800",
+				"to": "00:11:32,320"
+			},
+			"offsets": {
+				"from": 686800,
+				"to": 692320
+			},
+			"text": " specific times and maybe correlate that with some other interesting data that will help us"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,320",
+				"to": "00:11:39,120"
+			},
+			"offsets": {
+				"from": 692320,
+				"to": 699120
+			},
+			"text": " identify the root cause of this because typically it's easy to make a problem go away but to really"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,120",
+				"to": "00:11:43,120"
+			},
+			"offsets": {
+				"from": 699120,
+				"to": 703120
+			},
+			"text": " understand what was the actual problem is how you're going to get the best solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,120",
+				"to": "00:11:53,120"
+			},
+			"offsets": {
+				"from": 703120,
+				"to": 713120
+			},
+			"text": " Lastly on monitoring we do something called canary analysis so we are always so when the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,120",
+				"to": "00:11:57,840"
+			},
+			"offsets": {
+				"from": 713120,
+				"to": 717840
+			},
+			"text": " testnet is running which is almost all the time we're pushing code out as frequently as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,040",
+				"to": "00:12:06,560"
+			},
+			"offsets": {
+				"from": 719040,
+				"to": 726560
+			},
+			"text": " and without catastrophically breaking it. So what we'll do is we'll run the new binary that we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,560",
+				"to": "00:12:13,680"
+			},
+			"offsets": {
+				"from": 726560,
+				"to": 733680
+			},
+			"text": " just cut the new image that we've just created. We'll run it alongside the existing binary"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,680",
+				"to": "00:12:19,200"
+			},
+			"offsets": {
+				"from": 733680,
+				"to": 739200
+			},
+			"text": " and start them at the same time and then see if there are any major regressions. So in this case"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,200",
+				"to": "00:12:26,240"
+			},
+			"offsets": {
+				"from": 739200,
+				"to": 746240
+			},
+			"text": " we see that memory usage is up by 56% and that is kind of concerning. So this canary report got a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,240",
+				"to": "00:12:33,520"
+			},
+			"offsets": {
+				"from": 746240,
+				"to": 753520
+			},
+			"text": " score of 77% which based on your tolerance you may want to fail immediately or not let this go"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,520",
+				"to": "00:12:41,440"
+			},
+			"offsets": {
+				"from": 753520,
+				"to": 761440
+			},
+			"text": " through maybe you want to have some manual approval before pushing it out. Our success or auto-approved"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,440",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 761440,
+				"to": 768000
+			},
+			"text": " criteria is 90% so anything that's almost perfect we'll go through. Anything above 50% we can look"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:54,240"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 774240
+			},
+			"text": " at and anything that's below 50% will just stop immediately and we'll take a look at it later."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,680",
+				"to": "00:12:59,760"
+			},
+			"offsets": {
+				"from": 775680,
+				"to": 779760
+			},
+			"text": " But that's been really great from keeping us from tearing down our testnet on accident."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,760",
+				"to": "00:13:11,040"
+			},
+			"offsets": {
+				"from": 779760,
+				"to": 791040
+			},
+			"text": " Okay and this is something that we really learned pretty recently. So our team is very"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,040",
+				"to": "00:13:16,080"
+			},
+			"offsets": {
+				"from": 791040,
+				"to": 796080
+			},
+			"text": " distributed across the world when nobody lives in the same city. It's uncommon that we're all in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,080",
+				"to": "00:13:24,160"
+			},
+			"offsets": {
+				"from": 796080,
+				"to": 804160
+			},
+			"text": " the same time zone so actually being all here in a devcon we're all in the same time zone so this"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,040",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 805040,
+				"to": 810000
+			},
+			"text": " monsters coming out of night is even more scary because what's actually happening is like when"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:36,480"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 816480
+			},
+			"text": " all of us in North America go to sleep the testnet starts to fall apart and then the people over here"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,480",
+				"to": "00:13:41,280"
+			},
+			"offsets": {
+				"from": 816480,
+				"to": 821280
+			},
+			"text": " in Asia are stuck with it and like kind of on their own by themselves where maybe they didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,280",
+				"to": "00:13:46,400"
+			},
+			"offsets": {
+				"from": 821280,
+				"to": 826400
+			},
+			"text": " have the same knowledge that we had learned that day and we go to sleep we try to pass off things"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,400",
+				"to": "00:13:52,480"
+			},
+			"offsets": {
+				"from": 826400,
+				"to": 832480
+			},
+			"text": " but it's always like when you when everything sounds really good and really nice and when you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,480",
+				"to": "00:13:58,320"
+			},
+			"offsets": {
+				"from": 832480,
+				"to": 838320
+			},
+			"text": " least expect it things start to fall apart. So that's been super interesting. When we landed here"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,320",
+				"to": "00:14:04,720"
+			},
+			"offsets": {
+				"from": 838320,
+				"to": 844720
+			},
+			"text": " or for devcon day one we were right all in the same time zone and when we woke up in the morning"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,720",
+				"to": "00:14:10,720"
+			},
+			"offsets": {
+				"from": 844720,
+				"to": 850720
+			},
+			"text": " the testnet had been stuck for two hours and no one was around to see it and we couldn't fix it"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,720",
+				"to": "00:14:17,360"
+			},
+			"offsets": {
+				"from": 850720,
+				"to": 857360
+			},
+			"text": " in time before it was just an unrecoverable amount of time since finality so we ended up just restarting"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,360",
+				"to": "00:14:23,440"
+			},
+			"offsets": {
+				"from": 857360,
+				"to": 863440
+			},
+			"text": " it but that was something something that we've learned is that to if you can put somebody so"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,440",
+				"to": "00:14:31,040"
+			},
+			"offsets": {
+				"from": 863440,
+				"to": 871040
+			},
+			"text": " you're always awake 24/7 or the actual solution we did for this was to have the alerting that goes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,040",
+				"to": "00:14:37,680"
+			},
+			"offsets": {
+				"from": 871040,
+				"to": 877680
+			},
+			"text": " to your phone you know pass through your do not disturb wake you up in the middle night and make"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,680",
+				"to": "00:14:43,040"
+			},
+			"offsets": {
+				"from": 877680,
+				"to": 883040
+			},
+			"text": " sure that like when when no finality has happened in 100 epochs that someone is there looking at"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,040",
+				"to": "00:14:51,120"
+			},
+			"offsets": {
+				"from": 883040,
+				"to": 891120
+			},
+			"text": " that because that that's a really really bad thing to happen. So lastly like why did we do a testnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,120",
+				"to": "00:14:56,880"
+			},
+			"offsets": {
+				"from": 891120,
+				"to": 896880
+			},
+			"text": " so early like I said we've been doing one since April and this was before we even had a networking"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,880",
+				"to": "00:15:01,200"
+			},
+			"offsets": {
+				"from": 896880,
+				"to": 901200
+			},
+			"text": " spec so we kind of made one up to get our clients to talk to each other and we knew it wasn't going"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,200",
+				"to": "00:15:07,120"
+			},
+			"offsets": {
+				"from": 901200,
+				"to": 907120
+			},
+			"text": " to be final we knew we were going to have to rewrite everything in that regards but why did we do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:13,440"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 913440
+			},
+			"text": " We actually learned a lot of things besides this few lessons so we were able to find race conditions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,440",
+				"to": "00:15:20,320"
+			},
+			"offsets": {
+				"from": 913440,
+				"to": 920320
+			},
+			"text": " which you can check for with race detection but it's not always perfect. One of the biggest things"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,320",
+				"to": "00:15:29,360"
+			},
+			"offsets": {
+				"from": 920320,
+				"to": 929360
+			},
+			"text": " is long lasting memory leaks so things that grow over many days will have a binary that runs for"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,360",
+				"to": "00:15:33,920"
+			},
+			"offsets": {
+				"from": 929360,
+				"to": 933920
+			},
+			"text": " maybe a week and we'll see that the memory usage is just slowly slowly slowly going up. When you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,920",
+				"to": "00:15:38,720"
+			},
+			"offsets": {
+				"from": 933920,
+				"to": 938720
+			},
+			"text": " running this on your laptop you don't ever see it or you don't never see it in a unit test so these"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,720",
+				"to": "00:15:45,040"
+			},
+			"offsets": {
+				"from": 938720,
+				"to": 945040
+			},
+			"text": " kind of things are super helpful. UX problems users come to us and say hey I don't understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,040",
+				"to": "00:15:50,800"
+			},
+			"offsets": {
+				"from": 945040,
+				"to": 950800
+			},
+			"text": " why you won't let me validate like what's going on and you know that's been great to just make the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,800",
+				"to": "00:15:55,840"
+			},
+			"offsets": {
+				"from": 950800,
+				"to": 955840
+			},
+			"text": " client better for everyone for usability so we can help understand what users are frustrated with"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,840",
+				"to": "00:16:02,560"
+			},
+			"offsets": {
+				"from": 955840,
+				"to": 962560
+			},
+			"text": " or what they want and then we even actually run into aggregation issues so some recent thing that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,560",
+				"to": "00:16:10,240"
+			},
+			"offsets": {
+				"from": 962560,
+				"to": 970240
+			},
+			"text": " learned is that you can't overlap aggregated attestations that are already aggregated so"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,240",
+				"to": "00:16:17,600"
+			},
+			"offsets": {
+				"from": 970240,
+				"to": 977600
+			},
+			"text": " we were trying to aggregate those and they were failing but silently failing for some reason and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,600",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 977600,
+				"to": 984000
+			},
+			"text": " then we were getting this is not very consistent graph of finality so that was something that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:30,480"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 990480
+			},
+			"text": " only realized by running the test network for a few weeks. And then lastly testing gaps things we"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,480",
+				"to": "00:16:37,120"
+			},
+			"offsets": {
+				"from": 990480,
+				"to": 997120
+			},
+			"text": " can do to make it better select the canary analysis and other like long-lasting tooling to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,120",
+				"to": "00:16:42,800"
+			},
+			"offsets": {
+				"from": 997120,
+				"to": 1002800
+			},
+			"text": " the code safer and to be able to have releases more frequently and just to make it a lot more"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,800",
+				"to": "00:16:49,680"
+			},
+			"offsets": {
+				"from": 1002800,
+				"to": 1009680
+			},
+			"text": " secure. So that's it for me. Thanks everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,680",
+				"to": "00:16:51,680"
+			},
+			"offsets": {
+				"from": 1009680,
+				"to": 1011680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,680",
+				"to": "00:16:53,680"
+			},
+			"offsets": {
+				"from": 1011680,
+				"to": 1013680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,680",
+				"to": "00:16:55,680"
+			},
+			"offsets": {
+				"from": 1013680,
+				"to": 1015680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,680",
+				"to": "00:16:57,680"
+			},
+			"offsets": {
+				"from": 1015680,
+				"to": 1017680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,680",
+				"to": "00:16:59,680"
+			},
+			"offsets": {
+				"from": 1017680,
+				"to": 1019680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,680",
+				"to": "00:17:01,680"
+			},
+			"offsets": {
+				"from": 1019680,
+				"to": 1021680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,680",
+				"to": "00:17:03,680"
+			},
+			"offsets": {
+				"from": 1021680,
+				"to": 1023680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,680",
+				"to": "00:17:05,680"
+			},
+			"offsets": {
+				"from": 1023680,
+				"to": 1025680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,680",
+				"to": "00:17:07,680"
+			},
+			"offsets": {
+				"from": 1025680,
+				"to": 1027680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,680",
+				"to": "00:17:09,680"
+			},
+			"offsets": {
+				"from": 1027680,
+				"to": 1029680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,680",
+				"to": "00:17:11,680"
+			},
+			"offsets": {
+				"from": 1029680,
+				"to": 1031680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,680",
+				"to": "00:17:13,680"
+			},
+			"offsets": {
+				"from": 1031680,
+				"to": 1033680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,680",
+				"to": "00:17:15,680"
+			},
+			"offsets": {
+				"from": 1033680,
+				"to": 1035680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,680",
+				"to": "00:17:17,680"
+			},
+			"offsets": {
+				"from": 1035680,
+				"to": 1037680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,680",
+				"to": "00:17:19,680"
+			},
+			"offsets": {
+				"from": 1037680,
+				"to": 1039680
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,680",
+				"to": "00:17:24,680"
+			},
+			"offsets": {
+				"from": 1039680,
+				"to": 1044680
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

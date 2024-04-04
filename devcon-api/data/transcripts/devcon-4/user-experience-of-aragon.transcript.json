@@ -1,0 +1,4850 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,760"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3760
+			},
+			"text": " I don't know if people know Aragon and have used it before."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,760",
+				"to": "00:00:09,560"
+			},
+			"offsets": {
+				"from": 3760,
+				"to": 9560
+			},
+			"text": " So I thought I'd do a live demo of what it looks like today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,560",
+				"to": "00:00:13,360"
+			},
+			"offsets": {
+				"from": 9560,
+				"to": 13360
+			},
+			"text": " So in the next 20 minutes, we're going to claim your dear name"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,360",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 13360,
+				"to": 15000
+			},
+			"text": " on Aragon Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:16,160"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 16160
+			},
+			"text": " You can actually do this yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,160",
+				"to": "00:00:19,480"
+			},
+			"offsets": {
+				"from": 16160,
+				"to": 19480
+			},
+			"text": " You can follow and just pick your name if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,480",
+				"to": "00:00:22,960"
+			},
+			"offsets": {
+				"from": 19480,
+				"to": 22960
+			},
+			"text": " I'm going to do one for something called Loricit, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,960",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 22960,
+				"to": 27000
+			},
+			"text": " is something I'm going to give you guys a sneak peek about."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:32,320"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 32320
+			},
+			"text": " This is, I guess, like a component toolkit and a design system"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,320",
+				"to": "00:00:35,720"
+			},
+			"offsets": {
+				"from": 32320,
+				"to": 35720
+			},
+			"text": " that we've been working on for Aragon specifically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,720",
+				"to": "00:00:38,960"
+			},
+			"offsets": {
+				"from": 35720,
+				"to": 38960
+			},
+			"text": " but we are open sourcing it more broadly"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,960",
+				"to": "00:00:43,840"
+			},
+			"offsets": {
+				"from": 38960,
+				"to": 43840
+			},
+			"text": " when other people to be able to use it as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,840",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 43840,
+				"to": 49000
+			},
+			"text": " So really briefly, I just wanted to introduce myself"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:51,840"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 51840
+			},
+			"text": " and my collaborator and friend, Pierre."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,840",
+				"to": "00:00:53,760"
+			},
+			"offsets": {
+				"from": 51840,
+				"to": 53760
+			},
+			"text": " So my name is Yeonu."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,760",
+				"to": "00:00:57,680"
+			},
+			"offsets": {
+				"from": 53760,
+				"to": 57680
+			},
+			"text": " And we've been working on a couple of different open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,680",
+				"to": "00:00:58,720"
+			},
+			"offsets": {
+				"from": 57680,
+				"to": 58720
+			},
+			"text": " bridges over the last few years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,720",
+				"to": "00:01:00,480"
+			},
+			"offsets": {
+				"from": 58720,
+				"to": 60480
+			},
+			"text": " So we worked on Ubuntu."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,480",
+				"to": "00:01:03,720"
+			},
+			"offsets": {
+				"from": 60480,
+				"to": 63720
+			},
+			"text": " Ubuntu phone mobile for about four years."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,720",
+				"to": "00:01:06,960"
+			},
+			"offsets": {
+				"from": 63720,
+				"to": 66960
+			},
+			"text": " And then recent redesign for a write-on matrix."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,960",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 66960,
+				"to": 69000
+			},
+			"text": " And most recently, I guess, last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:10,680"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 70680
+			},
+			"text": " So we've been working very hard on Aragon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,680",
+				"to": "00:01:18,040"
+			},
+			"offsets": {
+				"from": 70680,
+				"to": 78040
+			},
+			"text": " trying to make organizations on blockchain be very easy to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,040",
+				"to": "00:01:19,360"
+			},
+			"offsets": {
+				"from": 78040,
+				"to": 79360
+			},
+			"text": " So yeah, let's get into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,360",
+				"to": "00:01:20,840"
+			},
+			"offsets": {
+				"from": 79360,
+				"to": 80840
+			},
+			"text": " Let's claim your dear name."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,840",
+				"to": "00:01:25,080"
+			},
+			"offsets": {
+				"from": 80840,
+				"to": 85080
+			},
+			"text": " So if you want to try and follow it, you can do it yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,080",
+				"to": "00:01:26,440"
+			},
+			"offsets": {
+				"from": 85080,
+				"to": 86440
+			},
+			"text": " It takes about two minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,440",
+				"to": "00:01:28,880"
+			},
+			"offsets": {
+				"from": 86440,
+				"to": 88880
+			},
+			"text": " You'll get to issue your own token."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,880",
+				"to": "00:01:30,080"
+			},
+			"offsets": {
+				"from": 88880,
+				"to": 90080
+			},
+			"text": " You get to claim your name."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,080",
+				"to": "00:01:31,440"
+			},
+			"offsets": {
+				"from": 90080,
+				"to": 91440
+			},
+			"text": " So it's pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,440",
+				"to": "00:01:31,880"
+			},
+			"offsets": {
+				"from": 91440,
+				"to": 91880
+			},
+			"text": " Try that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,880",
+				"to": "00:01:37,880"
+			},
+			"offsets": {
+				"from": 91880,
+				"to": 97880
+			},
+			"text": " Let's go to the website."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,880",
+				"to": "00:01:40,960"
+			},
+			"offsets": {
+				"from": 97880,
+				"to": 100960
+			},
+			"text": " So for those of you who haven't seen or heard from Aragon"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,960",
+				"to": "00:01:46,560"
+			},
+			"offsets": {
+				"from": 100960,
+				"to": 106560
+			},
+			"text": " before, Aragon is a kind of a platform for the AOs, I guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,560",
+				"to": "00:01:49,560"
+			},
+			"offsets": {
+				"from": 106560,
+				"to": 109560
+			},
+			"text": " So it is very, very, very extensible, very broad."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,560",
+				"to": "00:01:50,800"
+			},
+			"offsets": {
+				"from": 109560,
+				"to": 110800
+			},
+			"text": " You can do a lot of things with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,800",
+				"to": "00:01:55,120"
+			},
+			"offsets": {
+				"from": 110800,
+				"to": 115120
+			},
+			"text": " But in this instance, I'm going to create a deal"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,120",
+				"to": "00:01:59,400"
+			},
+			"offsets": {
+				"from": 115120,
+				"to": 119400
+			},
+			"text": " from managing LORIKIT, which is the design system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,400",
+				"to": "00:02:01,440"
+			},
+			"offsets": {
+				"from": 119400,
+				"to": 121440
+			},
+			"text": " So in the future, we might want to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,440",
+				"to": "00:02:03,360"
+			},
+			"offsets": {
+				"from": 121440,
+				"to": 123360
+			},
+			"text": " able to vote on different choices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,360",
+				"to": "00:02:06,400"
+			},
+			"offsets": {
+				"from": 123360,
+				"to": 126400
+			},
+			"text": " like the participants in the open source project"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,400",
+				"to": "00:02:07,320"
+			},
+			"offsets": {
+				"from": 126400,
+				"to": 127320
+			},
+			"text": " want to go ahead with."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,320",
+				"to": "00:02:12,560"
+			},
+			"offsets": {
+				"from": 127320,
+				"to": 132560
+			},
+			"text": " So I think a die would be a great setup for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,560",
+				"to": "00:02:15,400"
+			},
+			"offsets": {
+				"from": 132560,
+				"to": 135400
+			},
+			"text": " So I'm going to do this on Mainnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,400",
+				"to": "00:02:19,600"
+			},
+			"offsets": {
+				"from": 135400,
+				"to": 139600
+			},
+			"text": " because we are live on Mainnet as of this week"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,600",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 139600,
+				"to": 142000
+			},
+			"text": " after quite a lot of hard work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:24,040"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 144040
+			},
+			"text": " And I'm going to create a new organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,040",
+				"to": "00:02:25,840"
+			},
+			"offsets": {
+				"from": 144040,
+				"to": 145840
+			},
+			"text": " So you can open existing ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,840",
+				"to": "00:02:27,880"
+			},
+			"offsets": {
+				"from": 145840,
+				"to": 147880
+			},
+			"text": " If you're just trying this out, maybe try the demo"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,880",
+				"to": "00:02:29,360"
+			},
+			"offsets": {
+				"from": 147880,
+				"to": 149360
+			},
+			"text": " first to see how the app looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,360",
+				"to": "00:02:30,840"
+			},
+			"offsets": {
+				"from": 149360,
+				"to": 150840
+			},
+			"text": " But I'm going to create a new one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,840",
+				"to": "00:02:32,960"
+			},
+			"offsets": {
+				"from": 150840,
+				"to": 152960
+			},
+			"text": " So we'll create a new org."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,960",
+				"to": "00:02:36,840"
+			},
+			"offsets": {
+				"from": 152960,
+				"to": 156840
+			},
+			"text": " And for this one, we want to have a democracy token project."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,840",
+				"to": "00:02:40,560"
+			},
+			"offsets": {
+				"from": 156840,
+				"to": 160560
+			},
+			"text": " We have a lot of people potentially on this project"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,560",
+				"to": "00:02:42,880"
+			},
+			"offsets": {
+				"from": 160560,
+				"to": 162880
+			},
+			"text": " who want to decide on things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,880",
+				"to": "00:02:48,120"
+			},
+			"offsets": {
+				"from": 162880,
+				"to": 168120
+			},
+			"text": " And we're going to call it LORIKIT, which is great."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,120",
+				"to": "00:02:50,520"
+			},
+			"offsets": {
+				"from": 168120,
+				"to": 170520
+			},
+			"text": " Nobody has scotted it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,520",
+				"to": "00:02:53,480"
+			},
+			"offsets": {
+				"from": 170520,
+				"to": 173480
+			},
+			"text": " Next, I'm going to just kind of breeze through."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,480",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 173480,
+				"to": 179000
+			},
+			"text": " This is kind of the settings for your voting"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:01,880"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 181880
+			},
+			"text": " that I'll just use the default for now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,880",
+				"to": "00:03:03,960"
+			},
+			"offsets": {
+				"from": 181880,
+				"to": 183960
+			},
+			"text": " but you can change this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,960",
+				"to": "00:03:05,480"
+			},
+			"offsets": {
+				"from": 183960,
+				"to": 185480
+			},
+			"text": " And I'll call it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,480",
+				"to": "00:03:08,720"
+			},
+			"offsets": {
+				"from": 185480,
+				"to": 188720
+			},
+			"text": " So when you're creating a deal with Aragon today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,720",
+				"to": "00:03:10,960"
+			},
+			"offsets": {
+				"from": 188720,
+				"to": 190960
+			},
+			"text": " you also get a token, ERC20 token."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,960",
+				"to": "00:03:13,400"
+			},
+			"offsets": {
+				"from": 190960,
+				"to": 193400
+			},
+			"text": " So I'm going to create--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,400",
+				"to": "00:03:14,400"
+			},
+			"offsets": {
+				"from": 193400,
+				"to": 194400
+			},
+			"text": " what could we call it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,400",
+				"to": "00:03:16,600"
+			},
+			"offsets": {
+				"from": 194400,
+				"to": 196600
+			},
+			"text": " Let's call it LORIKIT."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,600",
+				"to": "00:03:20,760"
+			},
+			"offsets": {
+				"from": 196600,
+				"to": 200760
+			},
+			"text": " And give it a ticker."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,760",
+				"to": "00:03:25,520"
+			},
+			"offsets": {
+				"from": 200760,
+				"to": 205520
+			},
+			"text": " And then, yeah, you just confirm the transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,520",
+				"to": "00:03:29,480"
+			},
+			"offsets": {
+				"from": 205520,
+				"to": 209480
+			},
+			"text": " and get a cup of coffee, I guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,480",
+				"to": "00:03:31,120"
+			},
+			"offsets": {
+				"from": 209480,
+				"to": 211120
+			},
+			"text": " And then you've got your DA ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,120",
+				"to": "00:03:33,520"
+			},
+			"offsets": {
+				"from": 211120,
+				"to": 213520
+			},
+			"text": " So to save some time, I'm just going"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,520",
+				"to": "00:03:38,200"
+			},
+			"offsets": {
+				"from": 213520,
+				"to": 218200
+			},
+			"text": " to jump into a demo org to show you guys what happens next,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,200",
+				"to": "00:03:41,840"
+			},
+			"offsets": {
+				"from": 218200,
+				"to": 221840
+			},
+			"text": " what you get when you finish with the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,840",
+				"to": "00:03:44,040"
+			},
+			"offsets": {
+				"from": 221840,
+				"to": 224040
+			},
+			"text": " And it looks like something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,040",
+				"to": "00:03:47,200"
+			},
+			"offsets": {
+				"from": 224040,
+				"to": 227200
+			},
+			"text": " So this is basically the Aragon menu I."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,200",
+				"to": "00:03:50,880"
+			},
+			"offsets": {
+				"from": 227200,
+				"to": 230880
+			},
+			"text": " So what you got here on the left is at least of apps"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,880",
+				"to": "00:03:52,080"
+			},
+			"offsets": {
+				"from": 230880,
+				"to": 232080
+			},
+			"text": " you have in your organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,080",
+				"to": "00:03:56,720"
+			},
+			"offsets": {
+				"from": 232080,
+				"to": 236720
+			},
+			"text": " So by default, you get apps like token managers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,720",
+				"to": "00:03:59,800"
+			},
+			"offsets": {
+				"from": 236720,
+				"to": 239800
+			},
+			"text": " manage your tokens, add people to your organization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,800",
+				"to": "00:04:00,280"
+			},
+			"offsets": {
+				"from": 239800,
+				"to": 240280
+			},
+			"text": " voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,280",
+				"to": "00:04:01,720"
+			},
+			"offsets": {
+				"from": 240280,
+				"to": 241720
+			},
+			"text": " You can vote in various things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,720",
+				"to": "00:04:03,560"
+			},
+			"offsets": {
+				"from": 241720,
+				"to": 243560
+			},
+			"text": " You can just do random votes on anything you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,560",
+				"to": "00:04:07,680"
+			},
+			"offsets": {
+				"from": 243560,
+				"to": 247680
+			},
+			"text": " or you can do voting relating to finance"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,680",
+				"to": "00:04:11,160"
+			},
+			"offsets": {
+				"from": 247680,
+				"to": 251160
+			},
+			"text": " if you want to make any kind of transactions from your DAO"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,160",
+				"to": "00:04:13,760"
+			},
+			"offsets": {
+				"from": 251160,
+				"to": 253760
+			},
+			"text": " to have to pass the voting first before they accept it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,760",
+				"to": "00:04:16,600"
+			},
+			"offsets": {
+				"from": 253760,
+				"to": 256600
+			},
+			"text": " Then that's a good use case."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,600",
+				"to": "00:04:19,240"
+			},
+			"offsets": {
+				"from": 256600,
+				"to": 259240
+			},
+			"text": " Actually, I'll show you really quickly how this work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,240",
+				"to": "00:04:21,640"
+			},
+			"offsets": {
+				"from": 259240,
+				"to": 261640
+			},
+			"text": " So in this demo DAO, we have two token holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,640",
+				"to": "00:04:27,480"
+			},
+			"offsets": {
+				"from": 261640,
+				"to": 267480
+			},
+			"text": " You can just add more people by just adding their Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,480",
+				"to": "00:04:30,360"
+			},
+			"offsets": {
+				"from": 267480,
+				"to": 270360
+			},
+			"text": " address and hopefully NS name pretty soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,360",
+				"to": "00:04:33,440"
+			},
+			"offsets": {
+				"from": 270360,
+				"to": 273440
+			},
+			"text": " Big fans of the NS."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,440",
+				"to": "00:04:34,440"
+			},
+			"offsets": {
+				"from": 273440,
+				"to": 274440
+			},
+			"text": " Voting looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,440",
+				"to": "00:04:40,120"
+			},
+			"offsets": {
+				"from": 274440,
+				"to": 280120
+			},
+			"text": " So yeah, you'll see what the current votes are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,120",
+				"to": "00:04:43,080"
+			},
+			"offsets": {
+				"from": 280120,
+				"to": 283080
+			},
+			"text": " what's been rejected, what's been approved."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,080",
+				"to": "00:04:45,040"
+			},
+			"offsets": {
+				"from": 283080,
+				"to": 285040
+			},
+			"text": " You can view the details of that vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,040",
+				"to": "00:04:48,160"
+			},
+			"offsets": {
+				"from": 285040,
+				"to": 288160
+			},
+			"text": " If there's an open vote, I don't think there is any on this demo"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,160",
+				"to": "00:04:52,040"
+			},
+			"offsets": {
+				"from": 288160,
+				"to": 292040
+			},
+			"text": " DAO that you can vote on it if you hold tokens in the organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,040",
+				"to": "00:05:00,480"
+			},
+			"offsets": {
+				"from": 292040,
+				"to": 300480
+			},
+			"text": " In the finance app, you hold different tokens on your organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,480",
+				"to": "00:05:04,080"
+			},
+			"offsets": {
+				"from": 300480,
+				"to": 304080
+			},
+			"text": " So you can do various things, whether you can pay for things."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,080",
+				"to": "00:05:08,160"
+			},
+			"offsets": {
+				"from": 304080,
+				"to": 308160
+			},
+			"text": " Not more stuff, but all this stuff can be linked to the voting app."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,160",
+				"to": "00:05:11,040"
+			},
+			"offsets": {
+				"from": 308160,
+				"to": 311040
+			},
+			"text": " So whenever you want to make decisions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,040",
+				"to": "00:05:15,240"
+			},
+			"offsets": {
+				"from": 311040,
+				"to": 315240
+			},
+			"text": " you can make sure that token holders approve those first."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,240",
+				"to": "00:05:19,280"
+			},
+			"offsets": {
+				"from": 315240,
+				"to": 319280
+			},
+			"text": " So make a new transfer so I can make a deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,280",
+				"to": "00:05:23,480"
+			},
+			"offsets": {
+				"from": 319280,
+				"to": 323480
+			},
+			"text": " So if I wanted to deposit some Ethereum into this org,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,480",
+				"to": "00:05:24,920"
+			},
+			"offsets": {
+				"from": 323480,
+				"to": 324920
+			},
+			"text": " I could just do it through here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,920",
+				"to": "00:05:28,720"
+			},
+			"offsets": {
+				"from": 324920,
+				"to": 328720
+			},
+			"text": " I can also send either directly but for different tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,720",
+				"to": "00:05:30,960"
+			},
+			"offsets": {
+				"from": 328720,
+				"to": 330960
+			},
+			"text": " better to do through the app."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,960",
+				"to": "00:05:33,760"
+			},
+			"offsets": {
+				"from": 330960,
+				"to": 333760
+			},
+			"text": " And if you want to withdraw, let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,760",
+				"to": "00:05:40,080"
+			},
+			"offsets": {
+				"from": 333760,
+				"to": 340080
+			},
+			"text": " I wanted to pay for flights to Zug."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,080",
+				"to": "00:05:43,880"
+			},
+			"offsets": {
+				"from": 340080,
+				"to": 343880
+			},
+			"text": " I just put in the airline that accepts Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,880",
+				"to": "00:05:48,320"
+			},
+			"offsets": {
+				"from": 343880,
+				"to": 348320
+			},
+			"text": " I just put the contract address here and then click this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,320",
+				"to": "00:05:50,720"
+			},
+			"offsets": {
+				"from": 348320,
+				"to": 350720
+			},
+			"text": " And depending on how you got your permission set up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,720",
+				"to": "00:05:56,920"
+			},
+			"offsets": {
+				"from": 350720,
+				"to": 356920
+			},
+			"text": " it either goes through a vote or if your account has the permission"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,920",
+				"to": "00:06:00,480"
+			},
+			"offsets": {
+				"from": 356920,
+				"to": 360480
+			},
+			"text": " to do these things directly, then you can also do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,480",
+				"to": "00:06:03,320"
+			},
+			"offsets": {
+				"from": 360480,
+				"to": 363320
+			},
+			"text": " We have an app story that's coming up, which is going to be really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,200",
+				"to": "00:06:07,360"
+			},
+			"offsets": {
+				"from": 364200,
+				"to": 367360
+			},
+			"text": " So people can create their own arrogant apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,360",
+				"to": "00:06:12,600"
+			},
+			"offsets": {
+				"from": 367360,
+				"to": 372600
+			},
+			"text": " This is just some examples for now, but hoping to have a lot of--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,600",
+				"to": "00:06:14,280"
+			},
+			"offsets": {
+				"from": 372600,
+				"to": 374280
+			},
+			"text": " and it's really quick to create this app as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,280",
+				"to": "00:06:16,640"
+			},
+			"offsets": {
+				"from": 374280,
+				"to": 376640
+			},
+			"text": " so hoping to have lots more in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,640",
+				"to": "00:06:22,120"
+			},
+			"offsets": {
+				"from": 376640,
+				"to": 382120
+			},
+			"text": " So yeah, that's kind of a sneak peek of arrogant 0.6, Alba."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,120",
+				"to": "00:06:24,320"
+			},
+			"offsets": {
+				"from": 382120,
+				"to": 384320
+			},
+			"text": " And yeah, try it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,320",
+				"to": "00:06:27,160"
+			},
+			"offsets": {
+				"from": 384320,
+				"to": 387160
+			},
+			"text": " It's very quick to use, very easy on Mainnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,160",
+				"to": "00:06:32,640"
+			},
+			"offsets": {
+				"from": 387160,
+				"to": 392640
+			},
+			"text": " so you can do real things now, which is cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,640",
+				"to": "00:06:36,880"
+			},
+			"offsets": {
+				"from": 392640,
+				"to": 396880
+			},
+			"text": " So the next thing I wanted to show you guys--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,880",
+				"to": "00:06:41,240"
+			},
+			"offsets": {
+				"from": 396880,
+				"to": 401240
+			},
+			"text": " oh, that's the wrong presentation--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,240",
+				"to": "00:06:45,800"
+			},
+			"offsets": {
+				"from": 401240,
+				"to": 405800
+			},
+			"text": " is Loricid."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,800",
+				"to": "00:06:52,600"
+			},
+			"offsets": {
+				"from": 405800,
+				"to": 412600
+			},
+			"text": " So Loricid is something we've been thinking for about for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,600",
+				"to": "00:07:00,640"
+			},
+			"offsets": {
+				"from": 412600,
+				"to": 420640
+			},
+			"text": " I guess this started off as just kind of an extension of--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,640",
+				"to": "00:07:02,840"
+			},
+			"offsets": {
+				"from": 420640,
+				"to": 422840
+			},
+			"text": " we built something for ourselves, we thought,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,840",
+				"to": "00:07:04,880"
+			},
+			"offsets": {
+				"from": 422840,
+				"to": 424880
+			},
+			"text": " it would be really cool if we could just expand this thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,880",
+				"to": "00:07:07,880"
+			},
+			"offsets": {
+				"from": 424880,
+				"to": 427880
+			},
+			"text": " to something that anybody can go with."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,880",
+				"to": "00:07:09,200"
+			},
+			"offsets": {
+				"from": 427880,
+				"to": 429200
+			},
+			"text": " People can contribute it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,200",
+				"to": "00:07:11,160"
+			},
+			"offsets": {
+				"from": 429200,
+				"to": 431160
+			},
+			"text": " I mean, basically, it'll just enable"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,160",
+				"to": "00:07:16,600"
+			},
+			"offsets": {
+				"from": 431160,
+				"to": 436600
+			},
+			"text": " you to create production-ready beautiful apps much quicker"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,600",
+				"to": "00:07:19,960"
+			},
+			"offsets": {
+				"from": 436600,
+				"to": 439960
+			},
+			"text": " because you have these good baseline components."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,960",
+				"to": "00:07:22,440"
+			},
+			"offsets": {
+				"from": 439960,
+				"to": 442440
+			},
+			"text": " And really, you can use this for throwaway prototypes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,440",
+				"to": "00:07:24,440"
+			},
+			"offsets": {
+				"from": 442440,
+				"to": 444440
+			},
+			"text": " if you want to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,440",
+				"to": "00:07:26,240"
+			},
+			"offsets": {
+				"from": 444440,
+				"to": 446240
+			},
+			"text": " We're using all the components on arrogant itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,240",
+				"to": "00:07:27,920"
+			},
+			"offsets": {
+				"from": 446240,
+				"to": 447920
+			},
+			"text": " so this is our production ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,920",
+				"to": "00:07:32,040"
+			},
+			"offsets": {
+				"from": 447920,
+				"to": 452040
+			},
+			"text": " So it's not really something that you have to worry about."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,040",
+				"to": "00:07:34,840"
+			},
+			"offsets": {
+				"from": 452040,
+				"to": 454840
+			},
+			"text": " Is it just good for a prototype and have to redo the whole thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,840",
+				"to": "00:07:35,840"
+			},
+			"offsets": {
+				"from": 454840,
+				"to": 455840
+			},
+			"text": " once I go to prod?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,840",
+				"to": "00:07:37,240"
+			},
+			"offsets": {
+				"from": 455840,
+				"to": 457240
+			},
+			"text": " You can actually use this in production."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,240",
+				"to": "00:07:39,840"
+			},
+			"offsets": {
+				"from": 457240,
+				"to": 459840
+			},
+			"text": " We do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,840",
+				"to": "00:07:42,680"
+			},
+			"offsets": {
+				"from": 459840,
+				"to": 462680
+			},
+			"text": " We've been working on these components for probably about a year"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,680",
+				"to": "00:07:43,840"
+			},
+			"offsets": {
+				"from": 462680,
+				"to": 463840
+			},
+			"text": " now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,840",
+				"to": "00:07:48,600"
+			},
+			"offsets": {
+				"from": 463840,
+				"to": 468600
+			},
+			"text": " This quite a lot of pull requests, mostly, thanks to PR over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,600",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 468600,
+				"to": 472000
+			},
+			"text": " And we have 11 contributors now, but we're really hoping"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:56,520"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 476520
+			},
+			"text": " to get more people building stuff on top of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,520",
+				"to": "00:08:01,800"
+			},
+			"offsets": {
+				"from": 476520,
+				"to": 481800
+			},
+			"text": " and just kind of benefiting from the work we already done"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,800",
+				"to": "00:08:04,480"
+			},
+			"offsets": {
+				"from": 481800,
+				"to": 484480
+			},
+			"text": " and being part of the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,480",
+				"to": "00:08:06,560"
+			},
+			"offsets": {
+				"from": 484480,
+				"to": 486560
+			},
+			"text": " So this is a sneak peek."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,560",
+				"to": "00:08:08,280"
+			},
+			"offsets": {
+				"from": 486560,
+				"to": 488280
+			},
+			"text": " There is a website coming pretty soon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,280",
+				"to": "00:08:12,240"
+			},
+			"offsets": {
+				"from": 488280,
+				"to": 492240
+			},
+			"text": " but just to give you more of an idea of what"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,240",
+				"to": "00:08:14,040"
+			},
+			"offsets": {
+				"from": 492240,
+				"to": 494040
+			},
+			"text": " we're hoping to achieve with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,040",
+				"to": "00:08:16,720"
+			},
+			"offsets": {
+				"from": 494040,
+				"to": 496720
+			},
+			"text": " So first and foremost, and I guess"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,720",
+				"to": "00:08:21,480"
+			},
+			"offsets": {
+				"from": 496720,
+				"to": 501480
+			},
+			"text": " this is where we are kind of right now on the project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,480",
+				"to": "00:08:25,240"
+			},
+			"offsets": {
+				"from": 501480,
+				"to": 505240
+			},
+			"text": " is we have a very modular component library"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,240",
+				"to": "00:08:27,080"
+			},
+			"offsets": {
+				"from": 505240,
+				"to": 507080
+			},
+			"text": " of React components."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,080",
+				"to": "00:08:30,840"
+			},
+			"offsets": {
+				"from": 507080,
+				"to": 510840
+			},
+			"text": " We also have some specific UX patterns and components"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,840",
+				"to": "00:08:32,800"
+			},
+			"offsets": {
+				"from": 510840,
+				"to": 512800
+			},
+			"text": " to decentralized web."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,800",
+				"to": "00:08:34,520"
+			},
+			"offsets": {
+				"from": 512800,
+				"to": 514520
+			},
+			"text": " A lot of these components are pretty generic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,520",
+				"to": "00:08:37,640"
+			},
+			"offsets": {
+				"from": 514520,
+				"to": 517640
+			},
+			"text": " like you'd imagine with a kind of React to your toolkit"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,640",
+				"to": "00:08:40,600"
+			},
+			"offsets": {
+				"from": 517640,
+				"to": 520600
+			},
+			"text": " to find like buttons and cards and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,600",
+				"to": "00:08:43,080"
+			},
+			"offsets": {
+				"from": 520600,
+				"to": 523080
+			},
+			"text": " But we also have some specific components"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,080",
+				"to": "00:08:46,280"
+			},
+			"offsets": {
+				"from": 523080,
+				"to": 526280
+			},
+			"text": " to blockchain, which I'm going to show you guys"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,280",
+				"to": "00:08:49,240"
+			},
+			"offsets": {
+				"from": 526280,
+				"to": 529240
+			},
+			"text": " a few of those in a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,240",
+				"to": "00:08:51,080"
+			},
+			"offsets": {
+				"from": 529240,
+				"to": 531080
+			},
+			"text": " These components are pretty performant."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,080",
+				"to": "00:08:53,680"
+			},
+			"offsets": {
+				"from": 531080,
+				"to": 533680
+			},
+			"text": " So we've done a lot of optimization for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,680",
+				"to": "00:08:55,680"
+			},
+			"offsets": {
+				"from": 533680,
+				"to": 535680
+			},
+			"text": " So especially mobile, you'll see the difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,680",
+				"to": "00:09:00,040"
+			},
+			"offsets": {
+				"from": 535680,
+				"to": 540040
+			},
+			"text": " This should really feel like native components."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,040",
+				"to": "00:09:04,440"
+			},
+			"offsets": {
+				"from": 540040,
+				"to": 544440
+			},
+			"text": " And animations is one thing that doesn't get used"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,440",
+				"to": "00:09:06,720"
+			},
+			"offsets": {
+				"from": 544440,
+				"to": 546720
+			},
+			"text": " by a lot of projects because maybe it's a bit daunting."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,720",
+				"to": "00:09:09,440"
+			},
+			"offsets": {
+				"from": 546720,
+				"to": 549440
+			},
+			"text": " I hope people don't really know what library to use or what"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,440",
+				"to": "00:09:09,720"
+			},
+			"offsets": {
+				"from": 549440,
+				"to": 549720
+			},
+			"text": " to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,720",
+				"to": "00:09:12,160"
+			},
+			"offsets": {
+				"from": 549720,
+				"to": 552160
+			},
+			"text": " So we're hoping to help with that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,160",
+				"to": "00:09:15,680"
+			},
+			"offsets": {
+				"from": 552160,
+				"to": 555680
+			},
+			"text": " We have some preset motion design done here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,680",
+				"to": "00:09:18,960"
+			},
+			"offsets": {
+				"from": 555680,
+				"to": 558960
+			},
+			"text": " and we're going to have a lot more kind of a user guidance"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,960",
+				"to": "00:09:20,240"
+			},
+			"offsets": {
+				"from": 558960,
+				"to": 560240
+			},
+			"text": " on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,240",
+				"to": "00:09:23,160"
+			},
+			"offsets": {
+				"from": 560240,
+				"to": 563160
+			},
+			"text": " It's easily extendable, so you can build your own."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,160",
+				"to": "00:09:25,480"
+			},
+			"offsets": {
+				"from": 563160,
+				"to": 565480
+			},
+			"text": " If you don't find the component you need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,480",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 565480,
+				"to": 568000
+			},
+			"text": " you can just build your own and add it to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:31,280"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 571280
+			},
+			"text": " hopefully submit a pull request for us to add in."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,280",
+				"to": "00:09:33,480"
+			},
+			"offsets": {
+				"from": 571280,
+				"to": 573480
+			},
+			"text": " And we've tried to go for a kind of a clean, clean"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,480",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 573480,
+				"to": 576000
+			},
+			"text": " UI design, which you can use for your own app"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:39,080"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 579080
+			},
+			"text": " without every app looking like Aragon, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,080",
+				"to": "00:09:41,320"
+			},
+			"offsets": {
+				"from": 579080,
+				"to": 581320
+			},
+			"text": " You can also theme these things pretty easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,320",
+				"to": "00:09:43,520"
+			},
+			"offsets": {
+				"from": 581320,
+				"to": 583520
+			},
+			"text": " So if you want to do something that looks very different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,520",
+				"to": "00:09:45,600"
+			},
+			"offsets": {
+				"from": 583520,
+				"to": 585600
+			},
+			"text": " that's totally doable as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,600",
+				"to": "00:09:46,760"
+			},
+			"offsets": {
+				"from": 585600,
+				"to": 586760
+			},
+			"text": " And yeah, I want to highlight the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,760",
+				"to": "00:09:50,560"
+			},
+			"offsets": {
+				"from": 586760,
+				"to": 590560
+			},
+			"text": " that we really want to do this as a community effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,560",
+				"to": "00:09:54,320"
+			},
+			"offsets": {
+				"from": 590560,
+				"to": 594320
+			},
+			"text": " because, yeah, it's a little ecosystem will benefit"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,320",
+				"to": "00:09:58,720"
+			},
+			"offsets": {
+				"from": 594320,
+				"to": 598720
+			},
+			"text": " if we have good kind of baseline components."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,720",
+				"to": "00:10:00,640"
+			},
+			"offsets": {
+				"from": 598720,
+				"to": 600640
+			},
+			"text": " And we're hoping you're going to build a tribute"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,640",
+				"to": "00:10:01,360"
+			},
+			"offsets": {
+				"from": 600640,
+				"to": 601360
+			},
+			"text": " your own."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,360",
+				"to": "00:10:03,840"
+			},
+			"offsets": {
+				"from": 601360,
+				"to": 603840
+			},
+			"text": " And it's not just for developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,840",
+				"to": "00:10:08,040"
+			},
+			"offsets": {
+				"from": 603840,
+				"to": 608040
+			},
+			"text": " Really, I'd love to see more designers getting involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,040",
+				"to": "00:10:12,160"
+			},
+			"offsets": {
+				"from": 608040,
+				"to": 612160
+			},
+			"text": " So we're actually going to submit a bunch of volunteers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,160",
+				"to": "00:10:13,960"
+			},
+			"offsets": {
+				"from": 612160,
+				"to": 613960
+			},
+			"text": " both with Dev and Design pretty soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,960",
+				"to": "00:10:16,360"
+			},
+			"offsets": {
+				"from": 613960,
+				"to": 616360
+			},
+			"text": " So if there's any designers in the room as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,360",
+				"to": "00:10:19,960"
+			},
+			"offsets": {
+				"from": 616360,
+				"to": 619960
+			},
+			"text": " who want to find this interesting and want to find them more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,960",
+				"to": "00:10:22,560"
+			},
+			"offsets": {
+				"from": 619960,
+				"to": 622560
+			},
+			"text": " maybe work with us on this band is come and talk to me"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,560",
+				"to": "00:10:23,760"
+			},
+			"offsets": {
+				"from": 622560,
+				"to": 623760
+			},
+			"text": " after the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,760",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 623760,
+				"to": 628000
+			},
+			"text": " And I'll add you guys to the band to list and product people"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:29,920"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 629920
+			},
+			"text": " as well, anybody, basically, who's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,920",
+				"to": "00:10:34,240"
+			},
+			"offsets": {
+				"from": 629920,
+				"to": 634240
+			},
+			"text": " interested in working on good experiences."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,240",
+				"to": "00:10:38,360"
+			},
+			"offsets": {
+				"from": 634240,
+				"to": 638360
+			},
+			"text": " So a couple of more things about the React component"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,360",
+				"to": "00:10:38,880"
+			},
+			"offsets": {
+				"from": 638360,
+				"to": 638880
+			},
+			"text": " specific."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,880",
+				"to": "00:10:41,920"
+			},
+			"offsets": {
+				"from": 638880,
+				"to": 641920
+			},
+			"text": " So I think I've gone through most of these already."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,920",
+				"to": "00:10:45,800"
+			},
+			"offsets": {
+				"from": 641920,
+				"to": 645800
+			},
+			"text": " But just to reiterate, this is used style components,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,800",
+				"to": "00:10:48,840"
+			},
+			"offsets": {
+				"from": 645800,
+				"to": 648840
+			},
+			"text": " which is we're styling a theme your React components."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,840",
+				"to": "00:10:49,880"
+			},
+			"offsets": {
+				"from": 648840,
+				"to": 649880
+			},
+			"text": " And they're very themeable."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,880",
+				"to": "00:10:54,040"
+			},
+			"offsets": {
+				"from": 649880,
+				"to": 654040
+			},
+			"text": " So you can really go to town on changing the look, if you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,040",
+				"to": "00:10:56,680"
+			},
+			"offsets": {
+				"from": 654040,
+				"to": 656680
+			},
+			"text": " We're targeting 60 frames per second native feeling"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,680",
+				"to": "00:11:01,360"
+			},
+			"offsets": {
+				"from": 656680,
+				"to": 661360
+			},
+			"text": " performance, so really want to optimize how well the stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,360",
+				"to": "00:11:03,960"
+			},
+			"offsets": {
+				"from": 661360,
+				"to": 663960
+			},
+			"text": " is promised."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,960",
+				"to": "00:11:06,960"
+			},
+			"offsets": {
+				"from": 663960,
+				"to": 666960
+			},
+			"text": " We have the documentation section coming on the website."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,960",
+				"to": "00:11:14,280"
+			},
+			"offsets": {
+				"from": 666960,
+				"to": 674280
+			},
+			"text": " So you'll see API docs to basically all these components."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,280",
+				"to": "00:11:18,520"
+			},
+			"offsets": {
+				"from": 674280,
+				"to": 678520
+			},
+			"text": " You'll also have guidance on principles"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,520",
+				"to": "00:11:22,200"
+			},
+			"offsets": {
+				"from": 678520,
+				"to": 682200
+			},
+			"text": " for designing for decentralized systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,200",
+				"to": "00:11:25,840"
+			},
+			"offsets": {
+				"from": 682200,
+				"to": 685840
+			},
+			"text": " dealing with latency, infamy users, all that kind of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,840",
+				"to": "00:11:30,200"
+			},
+			"offsets": {
+				"from": 685840,
+				"to": 690200
+			},
+			"text": " I'm going to show you a quick sneak peek of the Dev Docs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,200",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 690200,
+				"to": 693000
+			},
+			"text": " We've got it on uad.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:36,680"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 696680
+			},
+			"text": " For now, but it will be very soon moved to the lowercase side."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,680",
+				"to": "00:11:39,920"
+			},
+			"offsets": {
+				"from": 696680,
+				"to": 699920
+			},
+			"text": " So just wanted to give you--"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,920",
+				"to": "00:11:42,720"
+			},
+			"offsets": {
+				"from": 699920,
+				"to": 702720
+			},
+			"text": " oh, there you go."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,720",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 702720,
+				"to": 708000
+			},
+			"text": " A quick look into what the documentation looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:49,160"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 709160
+			},
+			"text": " So you've got code examples here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,160",
+				"to": "00:11:50,520"
+			},
+			"offsets": {
+				"from": 709160,
+				"to": 710520
+			},
+			"text": " How you use it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,520",
+				"to": "00:11:53,440"
+			},
+			"offsets": {
+				"from": 710520,
+				"to": 713440
+			},
+			"text": " You have-- when you have a code example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,440",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 713440,
+				"to": 716000
+			},
+			"text": " we'll have the rendered React component,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:59,480"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 719480
+			},
+			"text": " so you can mess around with it, just see how it performs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,480",
+				"to": "00:12:00,440"
+			},
+			"offsets": {
+				"from": 719480,
+				"to": 720440
+			},
+			"text": " You can scale it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,440",
+				"to": "00:12:03,360"
+			},
+			"offsets": {
+				"from": 720440,
+				"to": 723360
+			},
+			"text": " You can see how most of these components--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,360",
+				"to": "00:12:07,560"
+			},
+			"offsets": {
+				"from": 723360,
+				"to": 727560
+			},
+			"text": " I think actually all of them are responsive now."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,560",
+				"to": "00:12:10,160"
+			},
+			"offsets": {
+				"from": 727560,
+				"to": 730160
+			},
+			"text": " So I'll show you in a little bit a demo mobile."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,160",
+				"to": "00:12:12,640"
+			},
+			"offsets": {
+				"from": 730160,
+				"to": 732640
+			},
+			"text": " But yeah, you can just see how everything works."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,640",
+				"to": "00:12:22,200"
+			},
+			"offsets": {
+				"from": 732640,
+				"to": 742200
+			},
+			"text": " So yeah, we're really hoping to make this documentation really"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,200",
+				"to": "00:12:25,200"
+			},
+			"offsets": {
+				"from": 742200,
+				"to": 745200
+			},
+			"text": " thorough so people can really easily start using this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,200",
+				"to": "00:12:26,840"
+			},
+			"offsets": {
+				"from": 745200,
+				"to": 746840
+			},
+			"text": " And yeah, they'll just--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,840",
+				"to": "00:12:29,520"
+			},
+			"offsets": {
+				"from": 746840,
+				"to": 749520
+			},
+			"text": " you'll see you can pick, like, oh, I like this control,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,520",
+				"to": "00:12:31,360"
+			},
+			"offsets": {
+				"from": 749520,
+				"to": 751360
+			},
+			"text": " this I use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,360",
+				"to": "00:12:35,120"
+			},
+			"offsets": {
+				"from": 751360,
+				"to": 755120
+			},
+			"text": " And just go this straight away."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,120",
+				"to": "00:12:37,920"
+			},
+			"offsets": {
+				"from": 755120,
+				"to": 757920
+			},
+			"text": " So yeah, you'll see that there's a bunch of--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,920",
+				"to": "00:12:39,680"
+			},
+			"offsets": {
+				"from": 757920,
+				"to": 759680
+			},
+			"text": " the basic controls I already built."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,680",
+				"to": "00:12:43,840"
+			},
+			"offsets": {
+				"from": 759680,
+				"to": 763840
+			},
+			"text": " We'll probably need some more so hands-to-bunters."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,840",
+				"to": "00:12:46,200"
+			},
+			"offsets": {
+				"from": 763840,
+				"to": 766200
+			},
+			"text": " And if you have your own ideas, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,200",
+				"to": "00:12:49,560"
+			},
+			"offsets": {
+				"from": 766200,
+				"to": 769560
+			},
+			"text": " please go and touch with the GitHub pull request"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,560",
+				"to": "00:12:50,680"
+			},
+			"offsets": {
+				"from": 769560,
+				"to": 770680
+			},
+			"text": " if you build anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,680",
+				"to": "00:12:52,360"
+			},
+			"offsets": {
+				"from": 770680,
+				"to": 772360
+			},
+			"text": " Or just file an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,360",
+				"to": "00:12:53,200"
+			},
+			"offsets": {
+				"from": 772360,
+				"to": 773200
+			},
+			"text": " We'll start from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,200",
+				"to": "00:12:57,920"
+			},
+			"offsets": {
+				"from": 773200,
+				"to": 777920
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,920",
+				"to": "00:13:00,840"
+			},
+			"offsets": {
+				"from": 777920,
+				"to": 780840
+			},
+			"text": " So I want to talk a little bit more about mobile."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,840",
+				"to": "00:13:02,560"
+			},
+			"offsets": {
+				"from": 780840,
+				"to": 782560
+			},
+			"text": " I think mobile is super important."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,560",
+				"to": "00:13:07,560"
+			},
+			"offsets": {
+				"from": 782560,
+				"to": 787560
+			},
+			"text": " Like I was really curious to find, like Beltram mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,560",
+				"to": "00:13:09,560"
+			},
+			"offsets": {
+				"from": 787560,
+				"to": 789560
+			},
+			"text": " in the talk yesterday that--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,560",
+				"to": "00:13:11,600"
+			},
+			"offsets": {
+				"from": 789560,
+				"to": 791600
+			},
+			"text": " everyone kind of knows in the back of their mind that, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,600",
+				"to": "00:13:13,640"
+			},
+			"offsets": {
+				"from": 791600,
+				"to": 793640
+			},
+			"text": " actually, most of all users probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,640",
+				"to": "00:13:14,760"
+			},
+			"offsets": {
+				"from": 793640,
+				"to": 794760
+			},
+			"text": " are using mobile as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,760",
+				"to": "00:13:17,360"
+			},
+			"offsets": {
+				"from": 794760,
+				"to": 797360
+			},
+			"text": " But maybe have them built for you yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,360",
+				"to": "00:13:20,440"
+			},
+			"offsets": {
+				"from": 797360,
+				"to": 800440
+			},
+			"text": " So I think this is nice for you guys as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,440",
+				"to": "00:13:23,120"
+			},
+			"offsets": {
+				"from": 800440,
+				"to": 803120
+			},
+			"text": " If you use Locate, you get mobile through a straight-over"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,120",
+				"to": "00:13:27,480"
+			},
+			"offsets": {
+				"from": 803120,
+				"to": 807480
+			},
+			"text": " box because these components are responsive and really"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,480",
+				"to": "00:13:29,280"
+			},
+			"offsets": {
+				"from": 807480,
+				"to": 809280
+			},
+			"text": " well optimized for mobile performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,280",
+				"to": "00:13:35,400"
+			},
+			"offsets": {
+				"from": 809280,
+				"to": 815400
+			},
+			"text": " So I'll just show a quick demo of what that looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,400",
+				"to": "00:13:38,200"
+			},
+			"offsets": {
+				"from": 815400,
+				"to": 818200
+			},
+			"text": " So this is our voting app."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,200",
+				"to": "00:13:42,240"
+			},
+			"offsets": {
+				"from": 818200,
+				"to": 822240
+			},
+			"text": " And you can see the desktop version where"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,240",
+				"to": "00:13:43,840"
+			},
+			"offsets": {
+				"from": 822240,
+				"to": 823840
+			},
+			"text": " you have each vote as a card."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,840",
+				"to": "00:13:46,200"
+			},
+			"offsets": {
+				"from": 823840,
+				"to": 826200
+			},
+			"text": " And we just stack them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,200",
+				"to": "00:13:50,240"
+			},
+			"offsets": {
+				"from": 826200,
+				"to": 830240
+			},
+			"text": " And you'll see how it just--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,240",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 830240,
+				"to": 832000
+			},
+			"text": " yeah, we spend a lot of time trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:55,320"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 835320
+			},
+			"text": " to think what's the best user experience for mobile as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,320",
+				"to": "00:13:59,120"
+			},
+			"offsets": {
+				"from": 835320,
+				"to": 839120
+			},
+			"text": " going from a wider screen to a smaller screen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,120",
+				"to": "00:14:02,040"
+			},
+			"offsets": {
+				"from": 839120,
+				"to": 842040
+			},
+			"text": " just making sure that you can use all of this stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,040",
+				"to": "00:14:03,480"
+			},
+			"offsets": {
+				"from": 842040,
+				"to": 843480
+			},
+			"text": " for mobile too."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,480",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 843480,
+				"to": 846000
+			},
+			"text": " And I think mobile is going to be really important for blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:07,400"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 847400
+			},
+			"text": " in general, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,400",
+				"to": "00:14:09,840"
+			},
+			"offsets": {
+				"from": 847400,
+				"to": 849840
+			},
+			"text": " We need better mobile voice and et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,840",
+				"to": "00:14:12,200"
+			},
+			"offsets": {
+				"from": 849840,
+				"to": 852200
+			},
+			"text": " But I think we're trying to do our part"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,200",
+				"to": "00:14:15,720"
+			},
+			"offsets": {
+				"from": 852200,
+				"to": 855720
+			},
+			"text": " so focusing on the components, making sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,720",
+				"to": "00:14:18,040"
+			},
+			"offsets": {
+				"from": 855720,
+				"to": 858040
+			},
+			"text": " that they're really usable in mobile too and the layouts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,040",
+				"to": "00:14:25,800"
+			},
+			"offsets": {
+				"from": 858040,
+				"to": 865800
+			},
+			"text": " So I want to talk a little bit about design guidelines"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,800",
+				"to": "00:14:27,360"
+			},
+			"offsets": {
+				"from": 865800,
+				"to": 867360
+			},
+			"text": " and what we're hoping to achieve here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,360",
+				"to": "00:14:31,080"
+			},
+			"offsets": {
+				"from": 867360,
+				"to": 871080
+			},
+			"text": " So we are actually-- yeah, we're hoping to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,080",
+				"to": "00:14:33,480"
+			},
+			"offsets": {
+				"from": 871080,
+				"to": 873480
+			},
+			"text": " we saw the talk yesterday, which was really great."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,480",
+				"to": "00:14:36,200"
+			},
+			"offsets": {
+				"from": 873480,
+				"to": 876200
+			},
+			"text": " We're hoping to collaborate with more projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,200",
+				"to": "00:14:39,280"
+			},
+			"offsets": {
+				"from": 876200,
+				"to": 879280
+			},
+			"text": " working on this type of guidelines"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,280",
+				"to": "00:14:42,680"
+			},
+			"offsets": {
+				"from": 879280,
+				"to": 882680
+			},
+			"text": " to just have a better documentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,680",
+				"to": "00:14:45,720"
+			},
+			"offsets": {
+				"from": 882680,
+				"to": 885720
+			},
+			"text": " on what best practices are for designing--"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,720",
+				"to": "00:14:49,320"
+			},
+			"offsets": {
+				"from": 885720,
+				"to": 889320
+			},
+			"text": " designing in general and then also designing for Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,320",
+				"to": "00:14:52,640"
+			},
+			"offsets": {
+				"from": 889320,
+				"to": 892640
+			},
+			"text": " or decentralized systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,640",
+				"to": "00:14:56,080"
+			},
+			"offsets": {
+				"from": 892640,
+				"to": 896080
+			},
+			"text": " So we'll have things like do some don'ts on the website"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,080",
+				"to": "00:14:58,560"
+			},
+			"offsets": {
+				"from": 896080,
+				"to": 898560
+			},
+			"text": " of what you should do, what you shouldn't do."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,560",
+				"to": "00:15:01,640"
+			},
+			"offsets": {
+				"from": 898560,
+				"to": 901640
+			},
+			"text": " I think material design guidelines are amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,640",
+				"to": "00:15:04,160"
+			},
+			"offsets": {
+				"from": 901640,
+				"to": 904160
+			},
+			"text": " So I think to have something like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,160",
+				"to": "00:15:09,080"
+			},
+			"offsets": {
+				"from": 904160,
+				"to": 909080
+			},
+			"text": " but more focused towards decentralized use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,080",
+				"to": "00:15:11,360"
+			},
+			"offsets": {
+				"from": 909080,
+				"to": 911360
+			},
+			"text": " And yeah, obviously, templates and tools as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,360",
+				"to": "00:15:13,880"
+			},
+			"offsets": {
+				"from": 911360,
+				"to": 913880
+			},
+			"text": " I think is super important for designers"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,880",
+				"to": "00:15:17,840"
+			},
+			"offsets": {
+				"from": 913880,
+				"to": 917840
+			},
+			"text": " who are jumping into space to be able to just go in and download"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,840",
+				"to": "00:15:20,600"
+			},
+			"offsets": {
+				"from": 917840,
+				"to": 920600
+			},
+			"text": " like source files for these things and start messing around."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,600",
+				"to": "00:15:23,920"
+			},
+			"offsets": {
+				"from": 920600,
+				"to": 923920
+			},
+			"text": " And I think it just opens up so much more for contribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,920",
+				"to": "00:15:27,440"
+			},
+			"offsets": {
+				"from": 923920,
+				"to": 927440
+			},
+			"text": " So we have components built in design and sketch right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,440",
+				"to": "00:15:31,600"
+			},
+			"offsets": {
+				"from": 927440,
+				"to": 931600
+			},
+			"text": " but we have started putting some of these over to Figma."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,600",
+				"to": "00:15:34,400"
+			},
+			"offsets": {
+				"from": 931600,
+				"to": 934400
+			},
+			"text": " And I'm framer X for interactive version of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,400",
+				"to": "00:15:37,400"
+			},
+			"offsets": {
+				"from": 934400,
+				"to": 937400
+			},
+			"text": " So this is one area we'd be super keen on."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,400",
+				"to": "00:15:40,200"
+			},
+			"offsets": {
+				"from": 937400,
+				"to": 940200
+			},
+			"text": " And the designers in the crowd are watching this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,200",
+				"to": "00:15:43,720"
+			},
+			"offsets": {
+				"from": 940200,
+				"to": 943720
+			},
+			"text": " If you'd like to kind of get involved in putting this stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,720",
+				"to": "00:15:46,320"
+			},
+			"offsets": {
+				"from": 943720,
+				"to": 946320
+			},
+			"text": " over to Figma framer X, get in touch."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,320",
+				"to": "00:15:54,200"
+			},
+			"offsets": {
+				"from": 946320,
+				"to": 954200
+			},
+			"text": " So yeah, a couple of examples of the more blocks been--"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,200",
+				"to": "00:15:58,760"
+			},
+			"offsets": {
+				"from": 954200,
+				"to": 958760
+			},
+			"text": " sorry, blockchain specific components."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,760",
+				"to": "00:16:00,640"
+			},
+			"offsets": {
+				"from": 958760,
+				"to": 960640
+			},
+			"text": " One big thing, obviously, is dealing with latency"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,640",
+				"to": "00:16:06,480"
+			},
+			"offsets": {
+				"from": 960640,
+				"to": 966480
+			},
+			"text": " because the transactions take a very long time to mine right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,480",
+				"to": "00:16:08,480"
+			},
+			"offsets": {
+				"from": 966480,
+				"to": 968480
+			},
+			"text": " Even I think a year or two from now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,480",
+				"to": "00:16:11,040"
+			},
+			"offsets": {
+				"from": 968480,
+				"to": 971040
+			},
+			"text": " they still take a while to mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,040",
+				"to": "00:16:13,600"
+			},
+			"offsets": {
+				"from": 971040,
+				"to": 973600
+			},
+			"text": " So we need to somehow make sure that users are aware"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,600",
+				"to": "00:16:14,360"
+			},
+			"offsets": {
+				"from": 973600,
+				"to": 974360
+			},
+			"text": " of what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,360",
+				"to": "00:16:19,960"
+			},
+			"offsets": {
+				"from": 974360,
+				"to": 979960
+			},
+			"text": " They can anticipate how long it's going to take."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,960",
+				"to": "00:16:22,360"
+			},
+			"offsets": {
+				"from": 979960,
+				"to": 982360
+			},
+			"text": " So they can do something else in the meanwhile,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,360",
+				"to": "00:16:24,720"
+			},
+			"offsets": {
+				"from": 982360,
+				"to": 984720
+			},
+			"text": " or they're not blocked on just waiting for things"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,720",
+				"to": "00:16:28,080"
+			},
+			"offsets": {
+				"from": 984720,
+				"to": 988080
+			},
+			"text": " or wondering what just happened and where did this thing go."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,080",
+				"to": "00:16:29,680"
+			},
+			"offsets": {
+				"from": 988080,
+				"to": 989680
+			},
+			"text": " I'll just show you a quick example."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,680",
+				"to": "00:16:32,600"
+			},
+			"offsets": {
+				"from": 989680,
+				"to": 992600
+			},
+			"text": " This is our finance app."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,600",
+				"to": "00:16:36,600"
+			},
+			"offsets": {
+				"from": 992600,
+				"to": 996600
+			},
+			"text": " So just skipping through a couple of bets"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,600",
+				"to": "00:16:38,360"
+			},
+			"offsets": {
+				"from": 996600,
+				"to": 998360
+			},
+			"text": " of signing it with Metamaskia stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,360",
+				"to": "00:16:41,520"
+			},
+			"offsets": {
+				"from": 998360,
+				"to": 1001520
+			},
+			"text": " But when you submit the transfer, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,520",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 1001520,
+				"to": 1005000
+			},
+			"text": " we think it'd be really nice to just show"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:48,240"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1008240
+			},
+			"text": " kind of an optimistic US state straight away of, OK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,240",
+				"to": "00:16:50,160"
+			},
+			"offsets": {
+				"from": 1008240,
+				"to": 1010160
+			},
+			"text": " we know it's not signed yet, but we still"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,160",
+				"to": "00:16:52,080"
+			},
+			"offsets": {
+				"from": 1010160,
+				"to": 1012080
+			},
+			"text": " want to show you where you are right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,080",
+				"to": "00:16:55,200"
+			},
+			"offsets": {
+				"from": 1012080,
+				"to": 1015200
+			},
+			"text": " So kind of show a pending state of, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,200",
+				"to": "00:16:58,840"
+			},
+			"offsets": {
+				"from": 1015200,
+				"to": 1018840
+			},
+			"text": " your transactions being mined right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,840",
+				"to": "00:17:00,600"
+			},
+			"offsets": {
+				"from": 1018840,
+				"to": 1020600
+			},
+			"text": " You can roughly see how long you'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,600",
+				"to": "00:17:02,960"
+			},
+			"offsets": {
+				"from": 1020600,
+				"to": 1022960
+			},
+			"text": " take from the gas price you send."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,960",
+				"to": "00:17:06,360"
+			},
+			"offsets": {
+				"from": 1022960,
+				"to": 1026360
+			},
+			"text": " We'll be able to estimate a rough time."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,360",
+				"to": "00:17:07,640"
+			},
+			"offsets": {
+				"from": 1026360,
+				"to": 1027640
+			},
+			"text": " We'll just save you time."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,640",
+				"to": "00:17:11,480"
+			},
+			"offsets": {
+				"from": 1027640,
+				"to": 1031480
+			},
+			"text": " Like, you don't have to try and scurble around"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,480",
+				"to": "00:17:13,280"
+			},
+			"offsets": {
+				"from": 1031480,
+				"to": 1033280
+			},
+			"text": " for the contract risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,280",
+				"to": "00:17:15,200"
+			},
+			"offsets": {
+				"from": 1033280,
+				"to": 1035200
+			},
+			"text": " You can just see it directly in the scanner"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,200",
+				"to": "00:17:17,800"
+			},
+			"offsets": {
+				"from": 1035200,
+				"to": 1037800
+			},
+			"text": " as well if you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,800",
+				"to": "00:17:25,080"
+			},
+			"offsets": {
+				"from": 1037800,
+				"to": 1045080
+			},
+			"text": " And then once it's mined, and we'll just add it to the page"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,080",
+				"to": "00:17:27,720"
+			},
+			"offsets": {
+				"from": 1045080,
+				"to": 1047720
+			},
+			"text": " and, yeah, it'll just update straight away."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,720",
+				"to": "00:17:31,520"
+			},
+			"offsets": {
+				"from": 1047720,
+				"to": 1051520
+			},
+			"text": " So trying to keep users in the DAPN"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,520",
+				"to": "00:17:34,520"
+			},
+			"offsets": {
+				"from": 1051520,
+				"to": 1054520
+			},
+			"text": " and just keep them informed of progress all the time"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,520",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1054520,
+				"to": 1058000
+			},
+			"text": " so that they don't have to kind of switch around different apps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:41,360"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1061360
+			},
+			"text": " wondering what just happened and where we are basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,360",
+				"to": "00:17:46,280"
+			},
+			"offsets": {
+				"from": 1061360,
+				"to": 1066280
+			},
+			"text": " And similarly to that, we just think"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,280",
+				"to": "00:17:50,840"
+			},
+			"offsets": {
+				"from": 1066280,
+				"to": 1070840
+			},
+			"text": " there's a lot of things we could do for helping users feel"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,840",
+				"to": "00:17:53,400"
+			},
+			"offsets": {
+				"from": 1070840,
+				"to": 1073400
+			},
+			"text": " more secure and more informed."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,400",
+				"to": "00:17:56,400"
+			},
+			"offsets": {
+				"from": 1073400,
+				"to": 1076400
+			},
+			"text": " For instance, things like toast, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,400",
+				"to": "00:17:59,480"
+			},
+			"offsets": {
+				"from": 1076400,
+				"to": 1079480
+			},
+			"text": " could use very quick confirmations and notifications"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,480",
+				"to": "00:18:01,320"
+			},
+			"offsets": {
+				"from": 1079480,
+				"to": 1081320
+			},
+			"text": " for more on-chain activity."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,320",
+				"to": "00:18:03,520"
+			},
+			"offsets": {
+				"from": 1081320,
+				"to": 1083520
+			},
+			"text": " So I'll show you an example of the toast component"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,520",
+				"to": "00:18:07,080"
+			},
+			"offsets": {
+				"from": 1083520,
+				"to": 1087080
+			},
+			"text": " that we're just building right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,080",
+				"to": "00:18:10,400"
+			},
+			"offsets": {
+				"from": 1087080,
+				"to": 1090400
+			},
+			"text": " When you have quick interactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,400",
+				"to": "00:18:13,560"
+			},
+			"offsets": {
+				"from": 1090400,
+				"to": 1093560
+			},
+			"text": " you usually want to confirm to the user that, OK, what you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,560",
+				"to": "00:18:14,920"
+			},
+			"offsets": {
+				"from": 1093560,
+				"to": 1094920
+			},
+			"text": " did has actually--"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,920",
+				"to": "00:18:16,840"
+			},
+			"offsets": {
+				"from": 1094920,
+				"to": 1096840
+			},
+			"text": " some things happened with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,840",
+				"to": "00:18:21,440"
+			},
+			"offsets": {
+				"from": 1096840,
+				"to": 1101440
+			},
+			"text": " So this is probably more-- we could use this for on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,440",
+				"to": "00:18:23,840"
+			},
+			"offsets": {
+				"from": 1101440,
+				"to": 1103840
+			},
+			"text": " stuff as well, but I think anything where you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,840",
+				"to": "00:18:29,360"
+			},
+			"offsets": {
+				"from": 1103840,
+				"to": 1109360
+			},
+			"text": " need a quick confirmation of, OK, we got it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,360",
+				"to": "00:18:30,400"
+			},
+			"offsets": {
+				"from": 1109360,
+				"to": 1110400
+			},
+			"text": " Then we have something--"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,400",
+				"to": "00:18:33,560"
+			},
+			"offsets": {
+				"from": 1110400,
+				"to": 1113560
+			},
+			"text": " I'll show you a quick video of our transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,560",
+				"to": "00:18:34,520"
+			},
+			"offsets": {
+				"from": 1113560,
+				"to": 1114520
+			},
+			"text": " or notifications panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,520",
+				"to": "00:18:38,600"
+			},
+			"offsets": {
+				"from": 1114520,
+				"to": 1118600
+			},
+			"text": " So all the on-chain activity that you do"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,600",
+				"to": "00:18:42,040"
+			},
+			"offsets": {
+				"from": 1118600,
+				"to": 1122040
+			},
+			"text": " would go to kind of a place where you can always see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,040",
+				"to": "00:18:45,200"
+			},
+			"offsets": {
+				"from": 1122040,
+				"to": 1125200
+			},
+			"text": " like, this is stuff I've been interacted with on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,200",
+				"to": "00:18:49,040"
+			},
+			"offsets": {
+				"from": 1125200,
+				"to": 1129040
+			},
+			"text": " I can see in one place, it'll notify me"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,040",
+				"to": "00:18:53,480"
+			},
+			"offsets": {
+				"from": 1129040,
+				"to": 1133480
+			},
+			"text": " if the state of the transaction changes when they get mined,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,480",
+				"to": "00:18:54,960"
+			},
+			"offsets": {
+				"from": 1133480,
+				"to": 1134960
+			},
+			"text": " when they fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,960",
+				"to": "00:18:56,880"
+			},
+			"offsets": {
+				"from": 1134960,
+				"to": 1136880
+			},
+			"text": " So we have different states for failure, for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,880",
+				"to": "00:18:59,320"
+			},
+			"offsets": {
+				"from": 1136880,
+				"to": 1139320
+			},
+			"text": " So it's very clear that you can always go to one place"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,320",
+				"to": "00:19:05,680"
+			},
+			"offsets": {
+				"from": 1139320,
+				"to": 1145680
+			},
+			"text": " and just see what's been going on with your on-chain transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,680",
+				"to": "00:19:07,520"
+			},
+			"offsets": {
+				"from": 1145680,
+				"to": 1147520
+			},
+			"text": " Another thing we've been working on--"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,520",
+				"to": "00:19:09,080"
+			},
+			"offsets": {
+				"from": 1147520,
+				"to": 1149080
+			},
+			"text": " I haven't done too much work on you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,080",
+				"to": "00:19:10,240"
+			},
+			"offsets": {
+				"from": 1149080,
+				"to": 1150240
+			},
+			"text": " but I think it's worth plugging."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,240",
+				"to": "00:19:12,040"
+			},
+			"offsets": {
+				"from": 1150240,
+				"to": 1152040
+			},
+			"text": " I think it's really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,040",
+				"to": "00:19:16,880"
+			},
+			"offsets": {
+				"from": 1152040,
+				"to": 1156880
+			},
+			"text": " It's more a developer thing, but human readable transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,880",
+				"to": "00:19:20,800"
+			},
+			"offsets": {
+				"from": 1156880,
+				"to": 1160800
+			},
+			"text": " So right now, I'll show you what that looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,800",
+				"to": "00:19:24,160"
+			},
+			"offsets": {
+				"from": 1160800,
+				"to": 1164160
+			},
+			"text": " You're all probably familiar with this kind of scenario"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,160",
+				"to": "00:19:30,840"
+			},
+			"offsets": {
+				"from": 1164160,
+				"to": 1170840
+			},
+			"text": " where you have your meter mask message, and it just"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,840",
+				"to": "00:19:31,400"
+			},
+			"offsets": {
+				"from": 1170840,
+				"to": 1171400
+			},
+			"text": " doesn't make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,400",
+				"to": "00:19:36,120"
+			},
+			"offsets": {
+				"from": 1171400,
+				"to": 1176120
+			},
+			"text": " So we proposed this new thing called RUT spec,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,120",
+				"to": "00:19:38,640"
+			},
+			"offsets": {
+				"from": 1176120,
+				"to": 1178640
+			},
+			"text": " where you can basically make the transactions human readable."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,640",
+				"to": "00:19:42,440"
+			},
+			"offsets": {
+				"from": 1178640,
+				"to": 1182440
+			},
+			"text": " So we're working with meter mask right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,440",
+				"to": "00:19:44,800"
+			},
+			"offsets": {
+				"from": 1182440,
+				"to": 1184800
+			},
+			"text": " I think, to get this implemented there."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,800",
+				"to": "00:19:46,840"
+			},
+			"offsets": {
+				"from": 1184800,
+				"to": 1186840
+			},
+			"text": " So right now, this works in Aragon."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,840",
+				"to": "00:19:52,080"
+			},
+			"offsets": {
+				"from": 1186840,
+				"to": 1192080
+			},
+			"text": " We can basically tell the users where they are with--"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,080",
+				"to": "00:19:53,640"
+			},
+			"offsets": {
+				"from": 1192080,
+				"to": 1193640
+			},
+			"text": " so what the actions they are going to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,640",
+				"to": "00:19:56,560"
+			},
+			"offsets": {
+				"from": 1193640,
+				"to": 1196560
+			},
+			"text": " are going to do in plain English."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,560",
+				"to": "00:19:59,840"
+			},
+			"offsets": {
+				"from": 1196560,
+				"to": 1199840
+			},
+			"text": " I think this is really going to help."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,840",
+				"to": "00:20:02,160"
+			},
+			"offsets": {
+				"from": 1199840,
+				"to": 1202160
+			},
+			"text": " Another thing for decentralized components"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,160",
+				"to": "00:20:05,800"
+			},
+			"offsets": {
+				"from": 1202160,
+				"to": 1205800
+			},
+			"text": " is Ethereum addresses, that are kind of these really long,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,800",
+				"to": "00:20:06,880"
+			},
+			"offsets": {
+				"from": 1205800,
+				"to": 1206880
+			},
+			"text": " ugly strings right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,880",
+				"to": "00:20:09,040"
+			},
+			"offsets": {
+				"from": 1206880,
+				"to": 1209040
+			},
+			"text": " So we build this address badge component"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,040",
+				"to": "00:20:13,600"
+			},
+			"offsets": {
+				"from": 1209040,
+				"to": 1213600
+			},
+			"text": " where you have a clickable thing where we can show the whole address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,600",
+				"to": "00:20:16,480"
+			},
+			"offsets": {
+				"from": 1213600,
+				"to": 1216480
+			},
+			"text": " we can show a small version of it, especially mobile."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,480",
+				"to": "00:20:22,360"
+			},
+			"offsets": {
+				"from": 1216480,
+				"to": 1222360
+			},
+			"text": " You'll see the identifier, the block here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,360",
+				"to": "00:20:25,680"
+			},
+			"offsets": {
+				"from": 1222360,
+				"to": 1225680
+			},
+			"text": " and then you'll just be able to click on it"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,680",
+				"to": "00:20:29,200"
+			},
+			"offsets": {
+				"from": 1225680,
+				"to": 1229200
+			},
+			"text": " and copy this directly, which is very common use case."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,200",
+				"to": "00:20:31,680"
+			},
+			"offsets": {
+				"from": 1229200,
+				"to": 1231680
+			},
+			"text": " We just thought we'd save you a couple of clicks there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,680",
+				"to": "00:20:36,760"
+			},
+			"offsets": {
+				"from": 1231680,
+				"to": 1236760
+			},
+			"text": " See you on the other scan, same with ENS names and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,760",
+				"to": "00:20:39,200"
+			},
+			"offsets": {
+				"from": 1236760,
+				"to": 1239200
+			},
+			"text": " So yeah, another kind of blockchain specific component."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,000",
+				"to": "00:20:47,400"
+			},
+			"offsets": {
+				"from": 1242000,
+				"to": 1247400
+			},
+			"text": " Motion-- we use this library called React Spring a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,400",
+				"to": "00:20:52,520"
+			},
+			"offsets": {
+				"from": 1247400,
+				"to": 1252520
+			},
+			"text": " So I'm running out of time, but basically, motion, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,520",
+				"to": "00:20:55,560"
+			},
+			"offsets": {
+				"from": 1252520,
+				"to": 1255560
+			},
+			"text": " is a really important thing of the user experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,560",
+				"to": "00:20:56,800"
+			},
+			"offsets": {
+				"from": 1255560,
+				"to": 1256800
+			},
+			"text": " that people don't use enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,800",
+				"to": "00:20:58,440"
+			},
+			"offsets": {
+				"from": 1256800,
+				"to": 1258440
+			},
+			"text": " So we're hoping to help you with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,440",
+				"to": "00:21:02,720"
+			},
+			"offsets": {
+				"from": 1258440,
+				"to": 1262720
+			},
+			"text": " Should be quick and should be used for helping"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,720",
+				"to": "00:21:07,240"
+			},
+			"offsets": {
+				"from": 1262720,
+				"to": 1267240
+			},
+			"text": " you focus attention to certain things, not just for Flash."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,240",
+				"to": "00:21:11,840"
+			},
+			"offsets": {
+				"from": 1267240,
+				"to": 1271840
+			},
+			"text": " But yeah, I've got a quick video of what this could look like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,840",
+				"to": "00:21:15,080"
+			},
+			"offsets": {
+				"from": 1271840,
+				"to": 1275080
+			},
+			"text": " for instance, for transitions, I think it really helps"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,080",
+				"to": "00:21:18,520"
+			},
+			"offsets": {
+				"from": 1275080,
+				"to": 1278520
+			},
+			"text": " to show the user where things are coming from,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,520",
+				"to": "00:21:22,320"
+			},
+			"offsets": {
+				"from": 1278520,
+				"to": 1282320
+			},
+			"text": " where you should focus on your guys and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,320",
+				"to": "00:21:27,600"
+			},
+			"offsets": {
+				"from": 1282320,
+				"to": 1287600
+			},
+			"text": " Yeah, I think we're almost going to the answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,600",
+				"to": "00:21:32,240"
+			},
+			"offsets": {
+				"from": 1287600,
+				"to": 1292240
+			},
+			"text": " When can I use this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,240",
+				"to": "00:21:34,200"
+			},
+			"offsets": {
+				"from": 1292240,
+				"to": 1294200
+			},
+			"text": " We're hoping for an early Christmas."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,200",
+				"to": "00:21:40,080"
+			},
+			"offsets": {
+				"from": 1294200,
+				"to": 1300080
+			},
+			"text": " So late November, I think, depending on how busy it appears."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,080",
+				"to": "00:21:42,000"
+			},
+			"offsets": {
+				"from": 1300080,
+				"to": 1302000
+			},
+			"text": " But yeah, it's nearly done."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,000",
+				"to": "00:21:43,840"
+			},
+			"offsets": {
+				"from": 1302000,
+				"to": 1303840
+			},
+			"text": " Most of the components are ready to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,840",
+				"to": "00:21:45,640"
+			},
+			"offsets": {
+				"from": 1303840,
+				"to": 1305640
+			},
+			"text": " We just need to work a bit more on the website."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,640",
+				"to": "00:21:48,920"
+			},
+			"offsets": {
+				"from": 1305640,
+				"to": 1308920
+			},
+			"text": " And we're good."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,920",
+				"to": "00:21:51,880"
+			},
+			"offsets": {
+				"from": 1308920,
+				"to": 1311880
+			},
+			"text": " So yeah, last plug."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,880",
+				"to": "00:21:56,840"
+			},
+			"offsets": {
+				"from": 1311880,
+				"to": 1316840
+			},
+			"text": " If you're interested in Aragon or Go on us on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,840",
+				"to": "00:21:58,840"
+			},
+			"offsets": {
+				"from": 1316840,
+				"to": 1318840
+			},
+			"text": " you should come to Berlin in January."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,840",
+				"to": "00:22:01,400"
+			},
+			"offsets": {
+				"from": 1318840,
+				"to": 1321400
+			},
+			"text": " We have this amazing conference there called Aragon."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,400",
+				"to": "00:22:04,440"
+			},
+			"offsets": {
+				"from": 1321400,
+				"to": 1324440
+			},
+			"text": " You can go to Aragon.1 to find out more."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,440",
+				"to": "00:22:05,480"
+			},
+			"offsets": {
+				"from": 1324440,
+				"to": 1325480
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,480",
+				"to": "00:22:06,760"
+			},
+			"offsets": {
+				"from": 1325480,
+				"to": 1326760
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,760",
+				"to": "00:22:09,000"
+			},
+			"offsets": {
+				"from": 1326760,
+				"to": 1329000
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,000",
+				"to": "00:22:12,360"
+			},
+			"offsets": {
+				"from": 1329000,
+				"to": 1332360
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,360",
+				"to": "00:22:15,720"
+			},
+			"offsets": {
+				"from": 1332360,
+				"to": 1335720
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,720",
+				"to": "00:22:19,080"
+			},
+			"offsets": {
+				"from": 1335720,
+				"to": 1339080
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,080",
+				"to": "00:22:22,440"
+			},
+			"offsets": {
+				"from": 1339080,
+				"to": 1342440
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,440",
+				"to": "00:22:25,800"
+			},
+			"offsets": {
+				"from": 1342440,
+				"to": 1345800
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,800",
+				"to": "00:22:29,160"
+			},
+			"offsets": {
+				"from": 1345800,
+				"to": 1349160
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,160",
+				"to": "00:22:32,520"
+			},
+			"offsets": {
+				"from": 1349160,
+				"to": 1352520
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,520",
+				"to": "00:22:37,520"
+			},
+			"offsets": {
+				"from": 1352520,
+				"to": 1357520
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

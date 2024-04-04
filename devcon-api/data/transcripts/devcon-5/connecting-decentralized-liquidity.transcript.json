@@ -1,0 +1,2078 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:08,920"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 8920
+			},
+			"text": " >> Hello, everyone. My name is Loy Liu and I'm a co-founder of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,920",
+				"to": "00:00:15,720"
+			},
+			"offsets": {
+				"from": 8920,
+				"to": 15720
+			},
+			"text": " Kiber network. Today I'm super excited to be here to give you an update about what"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,720",
+				"to": "00:00:21,100"
+			},
+			"offsets": {
+				"from": 15720,
+				"to": 21100
+			},
+			"text": " Kiber has been doing, especially in connecting decentralized liquidity for decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,100",
+				"to": "00:00:34,860"
+			},
+			"offsets": {
+				"from": 21100,
+				"to": 34860
+			},
+			"text": " finance. Before we go to the details, let's define what is liquidity. I think a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,860",
+				"to": "00:00:42,260"
+			},
+			"offsets": {
+				"from": 34860,
+				"to": 42260
+			},
+			"text": " us have heard about liquidity, but not many of us understand what exactly that term means."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,260",
+				"to": "00:00:47,500"
+			},
+			"offsets": {
+				"from": 42260,
+				"to": 47500
+			},
+			"text": " So liquidity really represents the degree in which an asset can be sold quickly in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,500",
+				"to": "00:00:56,420"
+			},
+			"offsets": {
+				"from": 47500,
+				"to": 56420
+			},
+			"text": " market without impacting the price. For fiat currency, USD and shipping, they are super"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,420",
+				"to": "00:01:03,220"
+			},
+			"offsets": {
+				"from": 56420,
+				"to": 63220
+			},
+			"text": " liquid. For asset like Bitcoin and Ether, they are also very liquid. But for many of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,220",
+				"to": "00:01:11,100"
+			},
+			"offsets": {
+				"from": 63220,
+				"to": 71100
+			},
+			"text": " the years, they are not as liquid. When it comes to liquidity, there are two main parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,100",
+				"to": "00:01:17,140"
+			},
+			"offsets": {
+				"from": 71100,
+				"to": 77140
+			},
+			"text": " The liquidity techers are people who buy and sell the asset. They are also the liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,140",
+				"to": "00:01:25,020"
+			},
+			"offsets": {
+				"from": 77140,
+				"to": 85020
+			},
+			"text": " providers or people who actually make the offer a further to buy and sell. They work"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,020",
+				"to": "00:01:33,420"
+			},
+			"offsets": {
+				"from": 85020,
+				"to": 93420
+			},
+			"text": " closely together every time. The main incentive for the market makers is that they are going"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,420",
+				"to": "00:01:39,260"
+			},
+			"offsets": {
+				"from": 93420,
+				"to": 99260
+			},
+			"text": " to get the profit from the trading, but they also have the reach of holding the inventory"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,260",
+				"to": "00:01:47,780"
+			},
+			"offsets": {
+				"from": 99260,
+				"to": 107780
+			},
+			"text": " and sometimes the market moves against the direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,780",
+				"to": "00:01:52,660"
+			},
+			"offsets": {
+				"from": 107780,
+				"to": 112660
+			},
+			"text": " What is decentralized liquidity? There is literally no definition of this term on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,660",
+				"to": "00:01:59,320"
+			},
+			"offsets": {
+				"from": 112660,
+				"to": 119320
+			},
+			"text": " internet. This is really our first attempt. Decentralized liquidity in our definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,320",
+				"to": "00:02:04,900"
+			},
+			"offsets": {
+				"from": 119320,
+				"to": 124900
+			},
+			"text": " is the liquidity that is available in the decentralized ecosystem. There are two important"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,900",
+				"to": "00:02:11,060"
+			},
+			"offsets": {
+				"from": 124900,
+				"to": 131060
+			},
+			"text": " properties of decentralized liquidity. First of all, there has to be a trustless relationship"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,060",
+				"to": "00:02:16,140"
+			},
+			"offsets": {
+				"from": 131060,
+				"to": 136140
+			},
+			"text": " between the techers and the providers. That means when they do the trade, there is no"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,140",
+				"to": "00:02:24,540"
+			},
+			"offsets": {
+				"from": 136140,
+				"to": 144540
+			},
+			"text": " need for trust. There is no middleman sitting in the middle to settle the trade. All the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,540",
+				"to": "00:02:31,980"
+			},
+			"offsets": {
+				"from": 144540,
+				"to": 151980
+			},
+			"text": " parameters, including rates, amounts and all these things have to be transparent and verifiable"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,980",
+				"to": "00:02:40,220"
+			},
+			"offsets": {
+				"from": 151980,
+				"to": 160220
+			},
+			"text": " so that people can detect everything and verify everything before they enter the trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,220",
+				"to": "00:02:45,740"
+			},
+			"offsets": {
+				"from": 160220,
+				"to": 165740
+			},
+			"text": " Most importantly, it has to be utilizable by decentralized application or smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,740",
+				"to": "00:02:56,660"
+			},
+			"offsets": {
+				"from": 165740,
+				"to": 176660
+			},
+			"text": " on public blockchains. This is the current state of all the decentralized liquidity in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,660",
+				"to": "00:03:05,180"
+			},
+			"offsets": {
+				"from": 176660,
+				"to": 185180
+			},
+			"text": " the ecosystem. We have several players like Uniswap, Kyber, Reserve, Oasis, from Maker,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,180",
+				"to": "00:03:12,340"
+			},
+			"offsets": {
+				"from": 185180,
+				"to": 192340
+			},
+			"text": " Banko and Dash Act from NOSIS as well. The main problem is that all of them are working"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,340",
+				"to": "00:03:20,500"
+			},
+			"offsets": {
+				"from": 192340,
+				"to": 200500
+			},
+			"text": " in silo. If a dev wants to take liquidity from all of these players, they are able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,500",
+				"to": "00:03:29,740"
+			},
+			"offsets": {
+				"from": 200500,
+				"to": 209740
+			},
+			"text": " have such different integrations. It is going to take a lot of time. It is even really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,740",
+				"to": "00:03:34,620"
+			},
+			"offsets": {
+				"from": 209740,
+				"to": 214620
+			},
+			"text": " hardly to find enough liquidity because they don't have enough time and gas to talk to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,620",
+				"to": "00:03:42,540"
+			},
+			"offsets": {
+				"from": 214620,
+				"to": 222540
+			},
+			"text": " everyone. This is where Kyber comes in. We are building a decentralized liquidity protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,540",
+				"to": "00:03:52,020"
+			},
+			"offsets": {
+				"from": 222540,
+				"to": 232020
+			},
+			"text": " that connects all the on-chain liquidity sources, be it Uniswap, Kyber, Reserve, Banko, Oasis"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,020",
+				"to": "00:03:57,340"
+			},
+			"offsets": {
+				"from": 232020,
+				"to": 237340
+			},
+			"text": " and the main goal is to create one single liquidity pool for all the decentralized application"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,340",
+				"to": "00:04:05,820"
+			},
+			"offsets": {
+				"from": 237340,
+				"to": 245820
+			},
+			"text": " and wallets and websites to take the best rate available in the market. Basically, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,820",
+				"to": "00:04:09,980"
+			},
+			"offsets": {
+				"from": 245820,
+				"to": 249980
+			},
+			"text": " just talk to Kyber and Kyber will justify the best rate available for them and return"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,980",
+				"to": "00:04:20,580"
+			},
+			"offsets": {
+				"from": 249980,
+				"to": 260580
+			},
+			"text": " it to the dev. This is one example of how an on-chain index fund can use Kyber. For example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,580",
+				"to": "00:04:29,060"
+			},
+			"offsets": {
+				"from": 260580,
+				"to": 269060
+			},
+			"text": " here, they want to send the eater and convert this eater into an index that has 30% of value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,060",
+				"to": "00:04:37,900"
+			},
+			"offsets": {
+				"from": 269060,
+				"to": 277900
+			},
+			"text": " 30% of WBTC and 40% of link. They send the eater in a channel to the index fund and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,900",
+				"to": "00:04:44,420"
+			},
+			"offsets": {
+				"from": 277900,
+				"to": 284420
+			},
+			"text": " index fund will do for what the interruption and the fund to the Kyber contract and will"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,420",
+				"to": "00:04:50,420"
+			},
+			"offsets": {
+				"from": 284420,
+				"to": 290420
+			},
+			"text": " define the best rate according to each of the asset for the users. In one single-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,420",
+				"to": "00:04:56,700"
+			},
+			"offsets": {
+				"from": 290420,
+				"to": 296700
+			},
+			"text": " nation, we can return everything to the end users. That will reduce all the friction because"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,700",
+				"to": "00:05:02,420"
+			},
+			"offsets": {
+				"from": 296700,
+				"to": 302420
+			},
+			"text": " in a non-Kiber chain nation, they may have to do three different chain nations in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,420",
+				"to": "00:05:13,740"
+			},
+			"offsets": {
+				"from": 302420,
+				"to": 313740
+			},
+			"text": " to finish the trade. What are the good properties that we enable? First of all, this Kyber is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,740",
+				"to": "00:05:19,780"
+			},
+			"offsets": {
+				"from": 313740,
+				"to": 319780
+			},
+			"text": " just combine all the available liquidity sources and make it single in one single, make it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,780",
+				"to": "00:05:26,660"
+			},
+			"offsets": {
+				"from": 319780,
+				"to": 326660
+			},
+			"text": " available in one single interface for any application, any dev to integrate. That results"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,660",
+				"to": "00:05:35,220"
+			},
+			"offsets": {
+				"from": 326660,
+				"to": 335220
+			},
+			"text": " to make it easy for all of them. Secondly, we have flexible liquidity models so that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,220",
+				"to": "00:05:40,700"
+			},
+			"offsets": {
+				"from": 335220,
+				"to": 340700
+			},
+			"text": " can work with all of the liquidity sources. That's why Kyber is the only one that could"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,700",
+				"to": "00:05:46,060"
+			},
+			"offsets": {
+				"from": 340700,
+				"to": 346060
+			},
+			"text": " talk to Oasis, that could talk to Uniswap, that could talk to NOSIS and we could even"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,060",
+				"to": "00:05:58,020"
+			},
+			"offsets": {
+				"from": 346060,
+				"to": 358020
+			},
+			"text": " work with professional market makers. This really allow all the liquidity providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,020",
+				"to": "00:06:04,300"
+			},
+			"offsets": {
+				"from": 358020,
+				"to": 364300
+			},
+			"text": " to use different strategy when it comes to market making on chain. On the other hand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,300",
+				"to": "00:06:11,060"
+			},
+			"offsets": {
+				"from": 364300,
+				"to": 371060
+			},
+			"text": " if you are on Uniswap, there's only automatic market making model and if you subscribe to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,060",
+				"to": "00:06:18,060"
+			},
+			"offsets": {
+				"from": 371060,
+				"to": 378060
+			},
+			"text": " some liquidity pool, you have to follow that model. It's the same for Oasis next, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,060",
+				"to": "00:06:28,300"
+			},
+			"offsets": {
+				"from": 378060,
+				"to": 388300
+			},
+			"text": " And third, but also the most important property is that Kyber runs everything on chain that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,300",
+				"to": "00:06:35,220"
+			},
+			"offsets": {
+				"from": 388300,
+				"to": 395220
+			},
+			"text": " will make it super transparent and verifiable. That means there's no trusted third party"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,220",
+				"to": "00:06:42,220"
+			},
+			"offsets": {
+				"from": 395220,
+				"to": 402220
+			},
+			"text": " and this is the main reason why we designed Kyber to be fully on chain in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,220",
+				"to": "00:06:48,460"
+			},
+			"offsets": {
+				"from": 402220,
+				"to": 408460
+			},
+			"text": " But later on, when we started working with a few projects, we realized that running fully"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,460",
+				"to": "00:06:54,780"
+			},
+			"offsets": {
+				"from": 408460,
+				"to": 414780
+			},
+			"text": " on chain make it very easy to connect with others as well. That means there's a great"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,780",
+				"to": "00:07:01,140"
+			},
+			"offsets": {
+				"from": 414780,
+				"to": 421140
+			},
+			"text": " composability with many other on chain applications. And moving forward, I think this is one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,140",
+				"to": "00:07:08,140"
+			},
+			"offsets": {
+				"from": 421140,
+				"to": 428140
+			},
+			"text": " key concern when Ethereum switch to E2.0, when there are different sharps and running on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,140",
+				"to": "00:07:16,620"
+			},
+			"offsets": {
+				"from": 428140,
+				"to": 436620
+			},
+			"text": " doesn't mean that you could talk to a different smart contract easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,620",
+				"to": "00:07:27,980"
+			},
+			"offsets": {
+				"from": 436620,
+				"to": 447980
+			},
+			"text": " This is the start in the last few months. Okay, so we have more than 5,000 monthly unique"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,420",
+				"to": "00:07:36,420"
+			},
+			"offsets": {
+				"from": 449420,
+				"to": 456420
+			},
+			"text": " addresses that have been using Kyber. The number of liquidity providers that have been working"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,420",
+				"to": "00:07:43,540"
+			},
+			"offsets": {
+				"from": 456420,
+				"to": 463540
+			},
+			"text": " actively on Kyber is around 30. So value locking, this is the metric that a lot of people are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,540",
+				"to": "00:07:50,060"
+			},
+			"offsets": {
+				"from": 463540,
+				"to": 470060
+			},
+			"text": " talking on Twitter, but I don't think it's that important because for Kyber, the value"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,060",
+				"to": "00:07:54,700"
+			},
+			"offsets": {
+				"from": 470060,
+				"to": 474700
+			},
+			"text": " locking is actually much less than others, but we're processing in terms of the trade"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,700",
+				"to": "00:08:01,700"
+			},
+			"offsets": {
+				"from": 474700,
+				"to": 481700
+			},
+			"text": " volume, much more than others at the moment. And in the last six months, we are processing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,700",
+				"to": "00:08:09,220"
+			},
+			"offsets": {
+				"from": 481700,
+				"to": 489220
+			},
+			"text": " more than 800,000 ether. That is corresponding to around 150 million USD. The number of tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,220",
+				"to": "00:08:18,660"
+			},
+			"offsets": {
+				"from": 489220,
+				"to": 498660
+			},
+			"text": " that we are supporting is around 70, and we are adding more every month. So in terms of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,660",
+				"to": "00:08:25,100"
+			},
+			"offsets": {
+				"from": 498660,
+				"to": 505100
+			},
+			"text": " application integrated, I want to show this figure. So we have more than 65 different"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,100",
+				"to": "00:08:31,140"
+			},
+			"offsets": {
+				"from": 505100,
+				"to": 511140
+			},
+			"text": " applications, wallets that have been integrating with Kyber to utilize the liquidity pool that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,140",
+				"to": "00:08:38,140"
+			},
+			"offsets": {
+				"from": 511140,
+				"to": 518140
+			},
+			"text": " we have, and many of them are here today, like Toto and BZRX. And we can associate a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,140",
+				"to": "00:08:45,500"
+			},
+			"offsets": {
+				"from": 518140,
+				"to": 525500
+			},
+			"text": " of other DeFi players, like Set Protocol and NuwO and Instad app. In terms of wallets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,500",
+				"to": "00:08:51,660"
+			},
+			"offsets": {
+				"from": 525500,
+				"to": 531660
+			},
+			"text": " I think we are connected to most of the major wallets in the space already, including my"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,660",
+				"to": "00:08:58,660"
+			},
+			"offsets": {
+				"from": 531660,
+				"to": 538660
+			},
+			"text": " Toto wallet, ARM2K and Ben was here, and Ng and Kyber's wallet. And it's totally open"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,660",
+				"to": "00:09:09,260"
+			},
+			"offsets": {
+				"from": 538660,
+				"to": 549260
+			},
+			"text": " and permissionless to integrate with Kyber, use the scale to developer.kiber.net work to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,260",
+				"to": "00:09:16,260"
+			},
+			"offsets": {
+				"from": 549260,
+				"to": 556260
+			},
+			"text": " see the API. And you can just integrate with Kyber in a couple of hours. I just want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,260",
+				"to": "00:09:24,060"
+			},
+			"offsets": {
+				"from": 556260,
+				"to": 564060
+			},
+			"text": " share a couple of like, you know, spot-line integration that have been using Kyber so"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,060",
+				"to": "00:09:30,220"
+			},
+			"offsets": {
+				"from": 564060,
+				"to": 570220
+			},
+			"text": " that you can understand, you know, what they use Kyber for, right? The first one is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,220",
+				"to": "00:09:37,220"
+			},
+			"offsets": {
+				"from": 570220,
+				"to": 577220
+			},
+			"text": " in-house end users' decentralized chains, we call it Kyber swap. And the main advantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,220",
+				"to": "00:09:44,220"
+			},
+			"offsets": {
+				"from": 577220,
+				"to": 584220
+			},
+			"text": " is that it optimizes for the user-friendliness, right? We have many features that make it"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,220",
+				"to": "00:09:52,980"
+			},
+			"offsets": {
+				"from": 584220,
+				"to": 592980
+			},
+			"text": " super easy for the end users to start doing decentralized trading. Some of them are non-custodial"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,980",
+				"to": "00:10:00,820"
+			},
+			"offsets": {
+				"from": 592980,
+				"to": 600820
+			},
+			"text": " limit orders that allow them to create limit orders even when there's no custodial involved,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,260",
+				"to": "00:10:10,940"
+			},
+			"offsets": {
+				"from": 604260,
+				"to": 610940
+			},
+			"text": " but also like price alert. And we also have iOS and Android mobile apps so that the users"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,940",
+				"to": "00:10:17,940"
+			},
+			"offsets": {
+				"from": 610940,
+				"to": 617940
+			},
+			"text": " can just do it on the phone. And this is the Grow to Kyber swap in terms of straight volume."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,940",
+				"to": "00:10:25,980"
+			},
+			"offsets": {
+				"from": 617940,
+				"to": 625980
+			},
+			"text": " This is just like part of the Kyber volume because we have like many other partners that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,980",
+				"to": "00:10:30,020"
+			},
+			"offsets": {
+				"from": 625980,
+				"to": 630020
+			},
+			"text": " introduced volume to Kyber as well. But we could see that, you know, from February to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,020",
+				"to": "00:10:37,020"
+			},
+			"offsets": {
+				"from": 630020,
+				"to": 637020
+			},
+			"text": " June to July when the market was, you know, booming, we saw a lot of, you know, chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,020",
+				"to": "00:10:42,180"
+			},
+			"offsets": {
+				"from": 637020,
+				"to": 642180
+			},
+			"text": " chain and volume from Kyber swap. But in the last couple of months when it's crude,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,180",
+				"to": "00:10:49,180"
+			},
+			"offsets": {
+				"from": 642180,
+				"to": 649180
+			},
+			"text": " we see a doubt chain. But in the last six months, we, on Kyber swap, we have around like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,180",
+				"to": "00:10:57,820"
+			},
+			"offsets": {
+				"from": 649180,
+				"to": 657820
+			},
+			"text": " 10,000 new users and a lot of them coming from all the end users' marketing that Kyber"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,820",
+				"to": "00:11:03,660"
+			},
+			"offsets": {
+				"from": 657820,
+				"to": 663660
+			},
+			"text": " swap targeted at conference, at events. And one of the activities that Kyber swap team"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,660",
+				"to": "00:11:10,260"
+			},
+			"offsets": {
+				"from": 663660,
+				"to": 670260
+			},
+			"text": " did is that they just, you know, distribute the end user gift card with preloaded eater"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,260",
+				"to": "00:11:14,820"
+			},
+			"offsets": {
+				"from": 670260,
+				"to": 674820
+			},
+			"text": " so that the users can just start using the eaterium blockchain without, you know, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,820",
+				"to": "00:11:21,820"
+			},
+			"offsets": {
+				"from": 674820,
+				"to": 681820
+			},
+			"text": " concern of like acquiring eater or, you know, understanding what's gas and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,620",
+				"to": "00:11:30,620"
+			},
+			"offsets": {
+				"from": 683620,
+				"to": 690620
+			},
+			"text": " Another one is set protocol. And basically what they do is they allow people to manage"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,620",
+				"to": "00:11:35,100"
+			},
+			"offsets": {
+				"from": 690620,
+				"to": 695100
+			},
+			"text": " the asset in a different strategy. And one simple strategy is that they can just buy"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,100",
+				"to": "00:11:42,100"
+			},
+			"offsets": {
+				"from": 695100,
+				"to": 702100
+			},
+			"text": " in some index, right? Like, you know, there's a set of basket of asset and the users can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,100",
+				"to": "00:11:48,700"
+			},
+			"offsets": {
+				"from": 702100,
+				"to": 708700
+			},
+			"text": " just send eater and set up, users help them buy a basket of asset, including, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,700",
+				"to": "00:11:55,700"
+			},
+			"offsets": {
+				"from": 708700,
+				"to": 715700
+			},
+			"text": " it could be like, you know, eat, die or WVDC and you know, right? And set, use Kyber in"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,700",
+				"to": "00:12:01,980"
+			},
+			"offsets": {
+				"from": 715700,
+				"to": 721980
+			},
+			"text": " background when the users, you know, do that conversion and everything is fully on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,980",
+				"to": "00:12:08,980"
+			},
+			"offsets": {
+				"from": 721980,
+				"to": 728980
+			},
+			"text": " The users can also see all the channels on eater scan or any explorer, right? Another"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,980",
+				"to": "00:12:15,580"
+			},
+			"offsets": {
+				"from": 728980,
+				"to": 735580
+			},
+			"text": " one that is super interesting is Nuo. They allow people to, you know, borrow and land"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,580",
+				"to": "00:12:21,700"
+			},
+			"offsets": {
+				"from": 735580,
+				"to": 741700
+			},
+			"text": " crypto, trustlessly. So they basically, you know, if you have eater and you want to borrow"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,700",
+				"to": "00:12:27,580"
+			},
+			"offsets": {
+				"from": 741700,
+				"to": 747580
+			},
+			"text": " die, right? Users collateralize your eat. And when the price of eat, you know, goes down,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,580",
+				"to": "00:12:34,140"
+			},
+			"offsets": {
+				"from": 747580,
+				"to": 754140
+			},
+			"text": " which is unfortunate. Nuo was just liquidate the users' position on Kyber and everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,140",
+				"to": "00:12:41,140"
+			},
+			"offsets": {
+				"from": 754140,
+				"to": 761140
+			},
+			"text": " is done via the smart contract. And the users can also verify the activities. So in case"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,140",
+				"to": "00:12:48,140"
+			},
+			"offsets": {
+				"from": 761140,
+				"to": 768140
+			},
+			"text": " it's dispute, they can verify it, they can check it and it can be used as a proof. Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,140",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 768140,
+				"to": 779000
+			},
+			"text": " So that is on the technical side. Let's see how we are doing on the reserve side or on"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 786000
+			},
+			"text": " the liquidity provider side, right? So here's the list of like top 10 liquidity providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,180",
+				"to": "00:13:14,180"
+			},
+			"offsets": {
+				"from": 787180,
+				"to": 794180
+			},
+			"text": " on Kyber. So Kyber, we have our own reserve as well. But at the same time, we also work"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,180",
+				"to": "00:13:23,740"
+			},
+			"offsets": {
+				"from": 794180,
+				"to": 803740
+			},
+			"text": " with many other reserves, including Oasis, Uniswap. There are a few professional market"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,740",
+				"to": "00:13:30,740"
+			},
+			"offsets": {
+				"from": 803740,
+				"to": 810740
+			},
+			"text": " makers like their guys in the third position. They don't want to share their identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,140",
+				"to": "00:13:38,140"
+			},
+			"offsets": {
+				"from": 811140,
+				"to": 818140
+			},
+			"text": " Yeah. And we have different models for people to contribute their liquidity, including like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,140",
+				"to": "00:13:44,980"
+			},
+			"offsets": {
+				"from": 818140,
+				"to": 824980
+			},
+			"text": " you know, Fed price reserve. This is mainly used by the professional market maker. We"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,980",
+				"to": "00:13:51,980"
+			},
+			"offsets": {
+				"from": 824980,
+				"to": 831980
+			},
+			"text": " also have something similar to Uniswap that we call Automated Price Reserve. And of course"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,980",
+				"to": "00:13:59,940"
+			},
+			"offsets": {
+				"from": 831980,
+				"to": 839940
+			},
+			"text": " there's the bridge to Uniswap and Oasis as well. And the top share tokens are stable coins"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,940",
+				"to": "00:14:13,380"
+			},
+			"offsets": {
+				"from": 840940,
+				"to": 853380
+			},
+			"text": " of course, you know, DAI, USDC, and Ether and WBTC and USDT as well. There are a few other"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,380",
+				"to": "00:14:20,380"
+			},
+			"offsets": {
+				"from": 853380,
+				"to": 860380
+			},
+			"text": " liquid ERC 20 tokens like Maker, Omisego and KMC and Link and BAT as well. So one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,820",
+				"to": "00:14:30,340"
+			},
+			"offsets": {
+				"from": 864820,
+				"to": 870340
+			},
+			"text": " the initiatives that Kyber has been actively working on is, you know, crotchen, right? Like"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,340",
+				"to": "00:14:36,620"
+			},
+			"offsets": {
+				"from": 870340,
+				"to": 876620
+			},
+			"text": " our goal is to bring more and more asset from different blockchain like BitCoI and EOS and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,620",
+				"to": "00:14:42,900"
+			},
+			"offsets": {
+				"from": 876620,
+				"to": 882900
+			},
+			"text": " other blockchain to Ethereum so that the users on Ethereum can trade them, can use them in"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,900",
+				"to": "00:14:49,900"
+			},
+			"offsets": {
+				"from": 882900,
+				"to": 889900
+			},
+			"text": " a trustless and freely manner. So the first initiative that we launched together with"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,300",
+				"to": "00:14:56,100"
+			},
+			"offsets": {
+				"from": 890300,
+				"to": 896100
+			},
+			"text": " many other partners, I think six or seven months ago was WBTC. And the idea was very simple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,100",
+				"to": "00:15:03,100"
+			},
+			"offsets": {
+				"from": 896100,
+				"to": 903100
+			},
+			"text": " right? With this, you know, allow people to create a representative of BitCoI on Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,100",
+				"to": "00:15:10,100"
+			},
+			"offsets": {
+				"from": 903100,
+				"to": 910100
+			},
+			"text": " which is in a form of ERC 20 tokens. And the main question is, you know, who will castorly"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,100",
+				"to": "00:15:16,260"
+			},
+			"offsets": {
+				"from": 910100,
+				"to": 916260
+			},
+			"text": " the BitCoI for the users? For simplicity, which is not ideal, but, you know, it's very"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,260",
+				"to": "00:15:22,340"
+			},
+			"offsets": {
+				"from": 916260,
+				"to": 922340
+			},
+			"text": " simple and very easy to understand. With this, use BitCo as a custody. So the users deposit"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,340",
+				"to": "00:15:29,340"
+			},
+			"offsets": {
+				"from": 922340,
+				"to": 929340
+			},
+			"text": " Bitcoin, they will get, you know, the corresponding amount of ERC 20 WBTC on Ethereum. And if they"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,340",
+				"to": "00:15:36,620"
+			},
+			"offsets": {
+				"from": 929340,
+				"to": 936620
+			},
+			"text": " want to redeem it, this is Bernadouken and they will get back to BitCoI on BitCoI blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,620",
+				"to": "00:15:43,620"
+			},
+			"offsets": {
+				"from": 936620,
+				"to": 943620
+			},
+			"text": " This is a very widely supported initiative by all the project in the ecosystem. And, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,100",
+				"to": "00:15:52,340"
+			},
+			"offsets": {
+				"from": 946100,
+				"to": 952340
+			},
+			"text": " feel free to integrate WBTC in your project, in your DeFi project. Now, it's just like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,340",
+				"to": "00:15:59,340"
+			},
+			"offsets": {
+				"from": 952340,
+				"to": 959340
+			},
+			"text": " you know, adding any other ERC 20 token. Another one that we started not too long ago was the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,340",
+				"to": "00:16:07,020"
+			},
+			"offsets": {
+				"from": 959340,
+				"to": 967020
+			},
+			"text": " bridge between EOS and Ethereum. Basically, this is, you know, having, and this is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,020",
+				"to": "00:16:12,580"
+			},
+			"offsets": {
+				"from": 967020,
+				"to": 972580
+			},
+			"text": " to be a trustless bridge. And the idea here is that, like, we could, we essentially build"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,580",
+				"to": "00:16:19,580"
+			},
+			"offsets": {
+				"from": 972580,
+				"to": 979580
+			},
+			"text": " the like client of EOS on Ethereum and the like client of Ethereum on EOS. And we just allow"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,580",
+				"to": "00:16:26,140"
+			},
+			"offsets": {
+				"from": 979580,
+				"to": 986140
+			},
+			"text": " people to, you know, verify the transition of one blockchain on another, you know, trustless"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,140",
+				"to": "00:16:31,580"
+			},
+			"offsets": {
+				"from": 986140,
+				"to": 991580
+			},
+			"text": " manner. The detail of this, you can, you can search a Waterloo bridge, you know, EOS to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,580",
+				"to": "00:16:38,580"
+			},
+			"offsets": {
+				"from": 991580,
+				"to": 998580
+			},
+			"text": " Ethereum. You will find the blog post that our developer released a couple of months ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,580",
+				"to": "00:16:45,580"
+			},
+			"offsets": {
+				"from": 998580,
+				"to": 1005580
+			},
+			"text": " And you find all the technical details. Yeah, so final thought. I hope that I have convinced"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,580",
+				"to": "00:16:54,140"
+			},
+			"offsets": {
+				"from": 1005580,
+				"to": 1014140
+			},
+			"text": " you that decentralized liquidity is important for DeFi and, you know, they are still scattered."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,140",
+				"to": "00:17:01,540"
+			},
+			"offsets": {
+				"from": 1014140,
+				"to": 1021540
+			},
+			"text": " And we are doing our best in connecting all the liquidity sources on Ethereum. There's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,540",
+				"to": "00:17:07,340"
+			},
+			"offsets": {
+				"from": 1021540,
+				"to": 1027340
+			},
+			"text": " still a lot to do, especially in the cross chain space. We need to have a better mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,340",
+				"to": "00:17:14,340"
+			},
+			"offsets": {
+				"from": 1027340,
+				"to": 1034340
+			},
+			"text": " to, you know, to bring WDC on Ethereum. But, you know, WDC and TBDC as well. And Waterloo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,340",
+				"to": "00:17:22,140"
+			},
+			"offsets": {
+				"from": 1034340,
+				"to": 1042140
+			},
+			"text": " a good start. We can improve from there. And, yeah, we look forward to work with everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,140",
+				"to": "00:17:29,140"
+			},
+			"offsets": {
+				"from": 1042140,
+				"to": 1049140
+			},
+			"text": " on this. And thank you. Is there any Q&A? Oh, okay, sure. Have two minutes. Thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,180",
+				"to": "00:17:43,180"
+			},
+			"offsets": {
+				"from": 1056180,
+				"to": 1063180
+			},
+			"text": " so much for your talk. I have two questions. Our first one is about your index fund. I"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,180",
+				"to": "00:17:50,460"
+			},
+			"offsets": {
+				"from": 1063180,
+				"to": 1070460
+			},
+			"text": " thought like Ring, Chant Ring Talking is 40% consists of the index fund. I was wondering"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,460",
+				"to": "00:17:57,940"
+			},
+			"offsets": {
+				"from": 1070460,
+				"to": 1077940
+			},
+			"text": " why it was chosen. I think like Diane, WDC kind of makes sense, but the other is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,140",
+				"to": "00:18:05,140"
+			},
+			"offsets": {
+				"from": 1078140,
+				"to": 1085140
+			},
+			"text": " thing, talking, what's not. And then the other question is, I often hear from the DeFi community"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,140",
+				"to": "00:18:13,660"
+			},
+			"offsets": {
+				"from": 1085140,
+				"to": 1093660
+			},
+			"text": " that the Kuber's exchange rate is a little bit expensive. The exchange rate is not, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,660",
+				"to": "00:18:20,140"
+			},
+			"offsets": {
+				"from": 1093660,
+				"to": 1100140
+			},
+			"text": " know, really good compared to the Accentral exchange. It's probably due to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,140",
+				"to": "00:18:26,140"
+			},
+			"offsets": {
+				"from": 1100140,
+				"to": 1106140
+			},
+			"text": " on-chain transaction of everything. However, are you guys going to solve this issue in"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,140",
+				"to": "00:18:29,700"
+			},
+			"offsets": {
+				"from": 1106140,
+				"to": 1109700
+			},
+			"text": " the future or what are you walking on? Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,700",
+				"to": "00:18:34,140"
+			},
+			"offsets": {
+				"from": 1109700,
+				"to": 1114140
+			},
+			"text": " So, I think for the first question, it was just like, you know, out of nowhere. Is this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,140",
+				"to": "00:18:41,140"
+			},
+			"offsets": {
+				"from": 1114140,
+				"to": 1121140
+			},
+			"text": " like, for example, is this for example? Oh, okay. Right. And for the second one, I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,140",
+				"to": "00:18:50,220"
+			},
+			"offsets": {
+				"from": 1121140,
+				"to": 1130220
+			},
+			"text": " in the last few months, we have been working with a lot of professional market makers to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,220",
+				"to": "00:18:54,780"
+			},
+			"offsets": {
+				"from": 1130220,
+				"to": 1134780
+			},
+			"text": " work with them, to improve their rate and their liquidity on Kiber. I think one of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,780",
+				"to": "00:19:01,340"
+			},
+			"offsets": {
+				"from": 1134780,
+				"to": 1141340
+			},
+			"text": " challenges is that updating the price on-chain will cost you some gas, right? And a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,340",
+				"to": "00:19:06,260"
+			},
+			"offsets": {
+				"from": 1141340,
+				"to": 1146260
+			},
+			"text": " them don't update the price instantly because this cannot. Once you send the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,260",
+				"to": "00:19:11,700"
+			},
+			"offsets": {
+				"from": 1146260,
+				"to": 1151700
+			},
+			"text": " to update the price, you have to wait for like, you know, 15 or 20 seconds. So they have"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,700",
+				"to": "00:19:18,700"
+			},
+			"offsets": {
+				"from": 1151700,
+				"to": 1158700
+			},
+			"text": " like to have that in the pricing model to, to, to, yeah. But I think currently the rate"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,700",
+				"to": "00:19:23,780"
+			},
+			"offsets": {
+				"from": 1158700,
+				"to": 1163780
+			},
+			"text": " for stablecoins are quite good and they are quite competitive. I think it's as competitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,780",
+				"to": "00:19:28,860"
+			},
+			"offsets": {
+				"from": 1163780,
+				"to": 1168860
+			},
+			"text": " as centralized in this. I think one thing that is different in Kiber price is that that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,860",
+				"to": "00:19:35,860"
+			},
+			"offsets": {
+				"from": 1168860,
+				"to": 1175860
+			},
+			"text": " the final price that the user will get. There's no fees after that. So it's the post fee price,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,860",
+				"to": "00:19:41,820"
+			},
+			"offsets": {
+				"from": 1175860,
+				"to": 1181820
+			},
+			"text": " right? But the price on centralized in this, for example, they are like pre-feeced price."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,820",
+				"to": "00:19:47,220"
+			},
+			"offsets": {
+				"from": 1181820,
+				"to": 1187220
+			},
+			"text": " So that's the price you get and then, you know, that's the amount you get before the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,220",
+				"to": "00:19:53,060"
+			},
+			"offsets": {
+				"from": 1187220,
+				"to": 1193060
+			},
+			"text": " fees. So after the centralized in this, the deduct the fees, you may get, you know, less,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,060",
+				"to": "00:19:58,060"
+			},
+			"offsets": {
+				"from": 1193060,
+				"to": 1198060
+			},
+			"text": " less. Yeah. Okay. Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,060",
+				"to": "00:20:04,060"
+			},
+			"offsets": {
+				"from": 1198060,
+				"to": 1204060
+			},
+			"text": " Hey. Thanks for your talk. So Kiber and Uniswap are becoming the de facto price fees in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,060",
+				"to": "00:20:07,700"
+			},
+			"offsets": {
+				"from": 1204060,
+				"to": 1207700
+			},
+			"text": " DeFi space. One thing I'm concerned about and would like to understand what you're doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,700",
+				"to": "00:20:13,980"
+			},
+			"offsets": {
+				"from": 1207700,
+				"to": 1213980
+			},
+			"text": " is things like flash crashes. So if I want to lend some amount, I'm concerned that, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,980",
+				"to": "00:20:20,660"
+			},
+			"offsets": {
+				"from": 1213980,
+				"to": 1220660
+			},
+			"text": " know, due to thin order books, my, you know, position might get liquidated. What are your"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,660",
+				"to": "00:20:24,700"
+			},
+			"offsets": {
+				"from": 1220660,
+				"to": 1224700
+			},
+			"text": " thoughts on that and what do you want to do to prevent these things? Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,700",
+				"to": "00:20:30,220"
+			},
+			"offsets": {
+				"from": 1224700,
+				"to": 1230220
+			},
+			"text": " I think, for example, on, I think that's a good question. I think, for example, on Kiber,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,220",
+				"to": "00:20:35,300"
+			},
+			"offsets": {
+				"from": 1230220,
+				"to": 1235300
+			},
+			"text": " if you wanted to trade a very large amount, you won't be able to, because we just revert"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,300",
+				"to": "00:20:41,860"
+			},
+			"offsets": {
+				"from": 1235300,
+				"to": 1241860
+			},
+			"text": " the transaction. But on Uniswap, because the model, they allow you to scale to, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,860",
+				"to": "00:20:48,020"
+			},
+			"offsets": {
+				"from": 1241860,
+				"to": 1248020
+			},
+			"text": " infinitely, right? If you wanted to sell like 1,800, they could also allow you to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,020",
+				"to": "00:20:55,220"
+			},
+			"offsets": {
+				"from": 1248020,
+				"to": 1255220
+			},
+			"text": " But the price is very bad, because there's no, there's not enough liquid, inventory there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,220",
+				"to": "00:21:02,020"
+			},
+			"offsets": {
+				"from": 1255220,
+				"to": 1262020
+			},
+			"text": " So on Kiber, we just decided to revert the transaction if there's not enough liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,020",
+				"to": "00:21:06,540"
+			},
+			"offsets": {
+				"from": 1262020,
+				"to": 1266540
+			},
+			"text": " And I think the only way to address that is to work with more professional market makers"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,540",
+				"to": "00:21:13,140"
+			},
+			"offsets": {
+				"from": 1266540,
+				"to": 1273140
+			},
+			"text": " to bring them on chain and to, to help them, you know, provide more liquidity for the DeFi"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,140",
+				"to": "00:21:25,900"
+			},
+			"offsets": {
+				"from": 1273140,
+				"to": 1285900
+			},
+			"text": " ecosystem. Okay. If there's no other question, I'm going to be around, so feel free to ask"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,900",
+				"to": "00:21:25,900"
+			},
+			"offsets": {
+				"from": 1285900,
+				"to": 1285900
+			},
+			"text": " me."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,900",
+				"to": "00:21:43,900"
+			},
+			"offsets": {
+				"from": 1285900,
+				"to": 1303900
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,900",
+				"to": "00:21:50,900"
+			},
+			"offsets": {
+				"from": 1303900,
+				"to": 1310900
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,900",
+				"to": "00:21:57,900"
+			},
+			"offsets": {
+				"from": 1310900,
+				"to": 1317900
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,900",
+				"to": "00:22:26,900"
+			},
+			"offsets": {
+				"from": 1317900,
+				"to": 1346900
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

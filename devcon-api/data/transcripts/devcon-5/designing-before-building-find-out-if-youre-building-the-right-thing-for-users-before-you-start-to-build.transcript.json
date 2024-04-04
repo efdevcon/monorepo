@@ -1,0 +1,3805 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 17000
+			},
+			"text": " We're here to talk about designing before you build products."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 21000
+			},
+			"text": " And just before we kick off, who here is a designer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 23000
+			},
+			"text": " Just show your hands."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 25000
+			},
+			"text": " Less than I thought."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 30000
+			},
+			"text": " Well, there's more. Who here has worked with a designer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 32000
+			},
+			"text": " Okay, cool. That's pretty much everyone's day."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 36000
+			},
+			"text": " Everyone knows the experience. That's pretty good to know."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 38000
+			},
+			"text": " Cool. My name's Charlie."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 44000
+			},
+			"text": " I'm going to talk about the current state of design and what's currently happening with blockchain applications for design."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 51000
+			},
+			"text": " And awkwardly, Andre gets to talk about an exciting new future with Carla Bader-Jaw here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 56000
+			},
+			"text": " These are some of the companies that we've worked with, but this show is mainly about you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 58000
+			},
+			"text": " It's not about us."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 65000
+			},
+			"text": " And the reason you're the best is because you're building pretty incredible as developers technical infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 68000
+			},
+			"text": " I don't really understand this, but it's pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 73000
+			},
+			"text": " And there's numbers which are really starting to show through at the same time too."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 79000
+			},
+			"text": " And with that infrastructure, there's also techniques and methodologies from Web 2.0,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 84000
+			},
+			"text": " which means we can really quickly build quite amazing products on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 88000
+			},
+			"text": " And we all know that we can build things faster, better and cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 92000
+			},
+			"text": " Companies like Spotify have competition with Google, Amazon and Apple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 95000
+			},
+			"text": " and they're building significantly better products."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 100000
+			},
+			"text": " And our competition is even slower."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 104000
+			},
+			"text": " And maybe someone in the room might want to be doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 111000
+			},
+			"text": " The only thing is that my expectations of where we want to be are kind of a linear scale of where we should be going a little bit faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 117000
+			},
+			"text": " But in reality, we're probably somewhere underneath that, and I'm not very impressed with where products are at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 122000
+			},
+			"text": " The reality is that when you have technology innovation, it's an exponential curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 127000
+			},
+			"text": " Hopefully, we're going to go end up somewhere up there, and we don't know where that is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 133000
+			},
+			"text": " If we looked at the App Store launch, we had no idea that apps like Uber and Airbnb"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136000
+			},
+			"text": " would be the ones that would be most successful."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 141000
+			},
+			"text": " So these are the time that these companies get to a $1 billion market cap."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 147000
+			},
+			"text": " So generally, what happens with technology is things are just getting faster and faster and faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 152000
+			},
+			"text": " And that's when disruption comes in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 156000
+			},
+			"text": " So why is disruption not happening?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 162000
+			},
+			"text": " Applications in FinTech or just Web 2.0 have a really great user experience, and they're a pleasure to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 167000
+			},
+			"text": " But at the same time, they're not that technology-inivative."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 173000
+			},
+			"text": " Data users are that kind of speaks for itself, especially when you put it against traditional FinTech apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 178000
+			},
+			"text": " Six million users of Robinhood compared to 20,000 data users of Ethereum apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 183000
+			},
+			"text": " And if we do a Google search for best apps, things are looking incredibly exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 189000
+			},
+			"text": " If we do a Google search for that, we're asking who is still alive."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 191000
+			},
+			"text": " And I can kind of understand why."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 196000
+			},
+			"text": " Web at the question of losing a user's photo on social media is actually more valuable"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 200000
+			},
+			"text": " compared to losing some of these money is a conversation for another day."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 205000
+			},
+			"text": " But you are building things which have smart contracts which have value which you don't want to lose."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 211000
+			},
+			"text": " So this methodology doesn't necessarily work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 216000
+			},
+			"text": " And what this means is that it's additionally to get a product out or to validate an idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 220000
+			},
+			"text": " You build, you launch, you get data, and you validate it that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 224000
+			},
+			"text": " But in Web 3.0, that process is significantly longer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 230000
+			},
+			"text": " You want to think about token economics, wallet, integration, smart contracts, security, government,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 236000
+			},
+			"text": " or what it's a test-net list could go on for quite a long time before you actually launch your product."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 241000
+			},
+			"text": " Then, only then, you get the data and then you validate if the idea works."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 246000
+			},
+			"text": " And yeah, blockchain starts a little bit more like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 252000
+			},
+			"text": " We've got a process which takes an idea, gets data, and validates it as big as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 255000
+			},
+			"text": " And I'll hand it to one check."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 258000
+			},
+			"text": " Hello, I'm Andre. Nice to meet you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 263000
+			},
+			"text": " So, yeah, let me go through a couple of tools and things that we've discovered."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 266000
+			},
+			"text": " Or that we found to make this happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 270000
+			},
+			"text": " Who knows? Oh, yeah, this could be you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 273000
+			},
+			"text": " Who knows this guy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 276000
+			},
+			"text": " You know him? You know him personally?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 278000
+			},
+			"text": " Yeah, no, not personally."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 282000
+			},
+			"text": " He's very nice. He wrote this book. Who knows this book?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 285000
+			},
+			"text": " Okay, good. Nice. Then I don't have to."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 292000
+			},
+			"text": " This is basically the fundamentals of what, or like the beginning of what I'm going to talk about in a minute"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 295000
+			},
+			"text": " because that's where I guess all the process started."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 302000
+			},
+			"text": " We have developed by now, it came out in 2016, so actually only three years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 310000
+			},
+			"text": " And we've been working exclusively in Design Sprint to kind of work on them and make them as efficient as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 316000
+			},
+			"text": " And this is basically what it's about. It's shortcutting all this process into just having an idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 322000
+			},
+			"text": " or maybe not even having an idea and getting real life data before you actually have to implement stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 326000
+			},
+			"text": " It's like a super rapid process."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 329000
+			},
+			"text": " Just waiting for a nice, very important slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 334000
+			},
+			"text": " And it's basically just a structure for innovation in any type of industry, for any type of product."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 340000
+			},
+			"text": " It's broken down and the most essential steps that any product or any product development should have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 343000
+			},
+			"text": " which is ideation, which is like maps."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 348000
+			},
+			"text": " So basically whole team aligns on a concept or on an idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 353000
+			},
+			"text": " Then everybody sketches out what it's actually supposed to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 359000
+			},
+			"text": " Then you decide on what you want to build, build a prototype and then you test a prototype and then you have the whole cycle"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 361000
+			},
+			"text": " that you can do it again and again."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 364000
+			},
+			"text": " Or you just also develop it at some point."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 368000
+			},
+			"text": " And all of this leads to basically solving a lot of questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " So like, is it actually, as the product actually, I'm not standable for people."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 378000
+			},
+			"text": " Like this is a thing that we built for consensus that we got presented yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 382000
+			},
+			"text": " And we needed to figure out whether people understand the whole transition from ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 386000
+			},
+			"text": " from the current state of ETH to phase zero to phase two."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 393000
+			},
+			"text": " And we would actually invest in staking into the ETH 2.0 platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 396000
+			},
+			"text": " To figure out whether you're developing the right thing at all, this was humming."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 401000
+			},
+			"text": " But they only had a CLI interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 403000
+			},
+			"text": " A command line interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 409000
+			},
+			"text": " So they knew that they're just creating bots that people could run to get them at those best trades."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 414000
+			},
+			"text": " But they didn't know whether people would actually need a proper interface and play around with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 417000
+			},
+			"text": " They ended up not building it because they were prioritized."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 421000
+			},
+			"text": " But they learned that the actual demand exists."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 428000
+			},
+			"text": " Or molecule, they have this probably one of the most complicated and complex systems that we've worked on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 432000
+			},
+			"text": " Which is basically revolutionizing the entire medical industry, which is a huge task."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 434000
+			},
+			"text": " It's going to take a lot of years."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 437000
+			},
+			"text": " But we figured out how it could work."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 440000
+			},
+			"text": " We found out that it's going to take a lot of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 444000
+			},
+			"text": " And now they know exactly the roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 449000
+			},
+			"text": " Or at least more or less the roadmap of which steps they should make in order to make this a reality soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 455000
+			},
+			"text": " And yeah, also finding the best way to actually market a product."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 459000
+			},
+			"text": " And you can do this actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 461000
+			},
+			"text": " Yeah, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 463000
+			},
+			"text": " Some of you already know the book."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 470000
+			},
+			"text": " For those who don't know the book, how long do you think that all of these products took approximately?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 478000
+			},
+			"text": " So like, all of them took approximately the same amount of time as a product that I've just shown."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 488000
+			},
+			"text": " And it's like a product that's like several screens."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 489000
+			},
+			"text": " Six months."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 490000
+			},
+			"text": " Six months."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 491000
+			},
+			"text": " Three months."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 492000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 495000
+			},
+			"text": " Who is more? Who is less?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 498000
+			},
+			"text": " What did you say?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 501000
+			},
+			"text": " For a first, I would say a few weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 502000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 505000
+			},
+			"text": " What did you say?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 506000
+			},
+			"text": " One week."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 508000
+			},
+			"text": " You read the book."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 509000
+			},
+			"text": " You read the book?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 510000
+			},
+			"text": " No, you're not."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 511000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 512000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 513000
+			},
+			"text": " You want something?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 514000
+			},
+			"text": " You're..."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 515000
+			},
+			"text": " That's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 518000
+			},
+			"text": " It's a Sailor Moon candy I found."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 519000
+			},
+			"text": " It's a lot of fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 520000
+			},
+			"text": " Congratulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 521000
+			},
+			"text": " Oh!"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 522000
+			},
+			"text": " Nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 527000
+			},
+			"text": " Yeah, so basically all of these things take only one week."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 529000
+			},
+			"text": " After one week you have a lot of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 535000
+			},
+			"text": " And it's actually so much data that a lot of teams don't really know how to actually use that because"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 537000
+			},
+			"text": " it's so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 542000
+			},
+			"text": " And basically by the time, by the end of the week, we normally start off either another"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 546000
+			},
+			"text": " iteration week, so we figure out exactly what needs to be built and by then we are able"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 553000
+			},
+			"text": " to basically ship it or like implement and ship it or yeah, or they find out exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 554000
+			},
+			"text": " what they need to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 557000
+			},
+			"text": " It's a super short amount of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 559000
+			},
+			"text": " The only problem is the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 562000
+			},
+			"text": " Or it was, I would say."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 569000
+			},
+			"text": " Jake wrote this book and he was like, this is only an office structure because you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 570000
+			},
+			"text": " to have people in the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 574000
+			},
+			"text": " They need to put them all together so they work in like, yeah, in closed rooms so they"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 578000
+			},
+			"text": " understand the social interactions among each other so they understand how everybody works."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 581000
+			},
+			"text": " And he was like, \"Andre, this is not going to work remotely.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 585000
+			},
+			"text": " And I'm like, let me try it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 590000
+			},
+			"text": " And yeah, because the whole blockchain industry is completely split up, we are decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 595000
+			},
+			"text": " We are decentralized by nature and we have to figure out a way how to connect this and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 598000
+			},
+			"text": " some part of the challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 603000
+			},
+			"text": " Yeah, so I live in Ibiza and Spain and I'm always been nervous saying that because the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 608000
+			},
+			"text": " typical image comes to people's heads is something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 613000
+			},
+			"text": " I haven't been to one of these in about two years just to give you an idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 617000
+			},
+			"text": " The real reason I live there is because it's absolutely beautiful but I live outdoors and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 622000
+			},
+			"text": " it's all about prioritizing for me, health and being outdoors and being fit."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 626000
+			},
+			"text": " Now the problem with that is that skills and a theory are not spread out around the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 632000
+			},
+			"text": " like the best developers, the best technology isn't on the world's party capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 637000
+			},
+			"text": " Last year I met Andre at DevCon and he said, \"Hey, I've got a process which takes creative"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 639000
+			},
+			"text": " work and you can do it remotely.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 643000
+			},
+			"text": " I was a bit skeptical, I used to work for a startup and we tried to work remotely."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 648000
+			},
+			"text": " What we found is that the constant pillars, the constant changes you had to make, we had"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 653000
+			},
+			"text": " to talk about time zones, it just didn't work, it couldn't move fast enough to actually disrupt"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 656000
+			},
+			"text": " the competition."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 658000
+			},
+			"text": " I'm back to Andre."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 665000
+			},
+			"text": " So yeah, going back to this process, we wanted to work with a lot of tension."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 669000
+			},
+			"text": " Going back to this process, it's basically split up in five days, I mean, it kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 672000
+			},
+			"text": " makes sense by what you know by now."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 677000
+			},
+			"text": " So every single day in the book is one of these steps and that was the original design sprint"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 683000
+			},
+			"text": " from 2016, which is already pretty impressive, but every day takes a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 688000
+			},
+			"text": " So what we did was basically, in the last three years, shortened it down to four days,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 695000
+			},
+			"text": " split the collaborative sessions into approximately three hour sessions per bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 700000
+			},
+			"text": " So it would be like deciding on what you want to build in like about three hours, sketching"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 705000
+			},
+			"text": " out individual solutions in about two hours together, deciding on which of these elements"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 710000
+			},
+			"text": " are going to make the most sense and then storyboard it all together and pack the best"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 715000
+			},
+			"text": " ideas into one thing so that all of these things that are actually meant to happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 722000
+			},
+			"text": " collaboratively were bashed into much, much shorter amounts of time and the other ones,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 726000
+			},
+			"text": " we could just do a low on the prototyping, we can just sit down or electronic and sit down"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 728000
+			},
+			"text": " for a day and just do it back and all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 731000
+			},
+			"text": " Use the testing, you can also do it like in one day, like in one person."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 736000
+			},
+			"text": " But the point is that all of this structure made it possible to kind of split it up"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 739000
+			},
+			"text": " and make it usable across all the different time zones."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 742000
+			},
+			"text": " So this was actually a project, that was actually a calculator, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 747000
+			},
+			"text": " It was different, completely different time zones and it just works because people get up at different times."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 751000
+			},
+			"text": " Obviously there's a couple of sacrifices that some people might want to get up earlier"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 754000
+			},
+			"text": " or work until a little bit later."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 760000
+			},
+			"text": " But I mean we are in the world that's evolving and we're redefining the way we work"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 763000
+			},
+			"text": " and what is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 768000
+			},
+			"text": " Nine to five jobs are not a sustainable thing anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 773000
+			},
+			"text": " So I think this is a progression towards that in an area, in a creative area,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 779000
+			},
+			"text": " which is normally unquantifiable, but we can make it work if we apply the right structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 784000
+			},
+			"text": " Yeah, and we already have the basic guidelines for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 789000
+			},
+			"text": " We already have the infrastructure, obviously this is just a job, but these are the tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 792000
+			},
+			"text": " The main tools already exist and they're super user friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 797000
+			},
+			"text": " They work just combine them together to replace the natural office interactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 806000
+			},
+			"text": " with remote collaboration tools and you can work for whatever you like in SuperShow the amount of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 815000
+			},
+			"text": " So we can work remotely, but how do we get the right people solving problems?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 819000
+			},
+			"text": " And if you're in particular, I feel relaxed, it's a processional."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 822000
+			},
+			"text": " I'm glad to see this in Designers and Room."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 828000
+			},
+			"text": " I know that straight after this, Joe Lubin's doing a talk downstairs called \"When 1 Million Debs\"."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 834000
+			},
+			"text": " That's pretty cool, I really want that to happen, but we also need 1 million Debs and 1 million other people as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 836000
+			},
+			"text": " to make different skills to come in."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 843000
+			},
+			"text": " And I can understand it with Designers because what typically happens in the relationship is you understand the technical problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 848000
+			},
+			"text": " but you need somebody with design skills, so you give them a brief and they go away with their skills"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 851000
+			},
+			"text": " to design something like an interface or a solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 856000
+			},
+			"text": " And the end result is they come back with something and you have to give them this, which is feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 860000
+			},
+			"text": " And nobody really enjoys that process, it's not very nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 866000
+			},
+			"text": " The primary reason that happens is because designers tend to try and solve a problem they don't really understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 871000
+			},
+			"text": " The people who actually understand it are the developers themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 877000
+			},
+			"text": " So the design spirit process is collaborative, everybody becomes into the process, the design solutions together."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 883000
+			},
+			"text": " So when a designer brings in their skills, they're only bringing in their specific skills, not stuff they don't understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 889000
+			},
+			"text": " So the basic structure is actually just this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 896000
+			},
+			"text": " You have a team of people who all at the same time with zero discussion, it's actually kind of counterintuitive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 899000
+			},
+			"text": " so you don't actually talk in all this process."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 902000
+			},
+			"text": " So you only write down things, this is like the first bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 906000
+			},
+			"text": " Everybody writes their own thoughts and ideas into one space."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:12,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 912000
+			},
+			"text": " Then you move over and it's like time pressure, like time box, very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 912000,
+				"to": 916000
+			},
+			"text": " Everybody votes on the things that they think are the best."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 920000
+			},
+			"text": " So almost like, you can imagine that like a Dao or something, like a mini Dao."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 925000
+			},
+			"text": " Everybody suggests ideas and then everybody at the same time votes on them."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 930000
+			},
+			"text": " And then you prioritize because democratically you understand what's the best feeling in the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 937000
+			},
+			"text": " And if most people think that one idea or concept or solution is the most important one to go for,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 941000
+			},
+			"text": " then that's probably the best to go for for now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 948000
+			},
+			"text": " And so you can do that with obviously with text or solutions to problems that you write out."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 950000
+			},
+			"text": " But you can also do that with sketches."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 958000
+			},
+			"text": " So this is actually from this coming book example where everybody individually, and that was Project Manus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:04,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 964000
+			},
+			"text": " CEO, CTO, asked through a concept on paper what the interface should look like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 964000,
+				"to": 967000
+			},
+			"text": " our own version from our personal perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 974000
+			},
+			"text": " And I know this is super small, but this dots like little red dots on it to vote on the most important ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 981000
+			},
+			"text": " And all of these, all this heat map leads to us creating this storyboard based on all the best ideas from the sketch."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 983000
+			},
+			"text": " So yeah, they're more close."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 988000
+			},
+			"text": " I don't know if you can see them, but there's like a lot of tiny red dots scattered across."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 993000
+			},
+			"text": " So there's a lot of different roles that can combine from everybody's perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 1001000
+			},
+			"text": " So you only get the most valuable information for the best goal that everybody's working for from the experts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1007000
+			},
+			"text": " So yeah, and then you're basically finished with a storyboard."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1009000
+			},
+			"text": " I don't know if you've seen that before."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1011000
+			},
+			"text": " Okay, so this is on the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1016000
+			},
+			"text": " Then you finish with a storyboard that's precisely exactly what you want to build because it has exactly the words,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1019000
+			},
+			"text": " exactly the buttons, exactly the interface you would like to build."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1025000
+			},
+			"text": " So there's no back and forth between you and the designer or between the designer and product manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1027000
+			},
+			"text": " You don't go linear process anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1033000
+			},
+			"text": " You just do it all together and everything is super clear so that we can just go in and prototype this thing in one day"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1037000
+			},
+			"text": " by prioritizing the most important things and just build it in Figma."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1043000
+			},
+			"text": " And if we eat two people who work in Figma, even better, then a faster can make it look even prettier."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1045000
+			},
+			"text": " This is an example from Hameen Butt."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1053000
+			},
+			"text": " And it looks like your actual interface. This is probably not the biggest work of art, but it's a prototype that looks like the real thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1058000
+			},
+			"text": " And if you show that to someone who's never seen that thing before, they'll be like, \"How do I use that?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1060000
+			},
+			"text": " \"Start clicking around.\" That's exactly what you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1065000
+			},
+			"text": " You want people to believe that that's the real thing so they can gather actual valuable data."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1070000
+			},
+			"text": " And that leads us to the user testing. So that's how basically -- oh, yeah, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1071000
+			},
+			"text": " That's huge."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1072000
+			},
+			"text": " That's cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1077000
+			},
+			"text": " So, with user testing, it's kind of not done so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1080000
+			},
+			"text": " And I can just say this, which kind of explain why."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:07,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1087000
+			},
+			"text": " If you're a founder, you kind of think, say, for example, with blockchain technology, if you ask people what they wanted from their bank,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1087000,
+				"to": 1092000
+			},
+			"text": " it wouldn't necessarily come up with \"I want an Ethereum wallet, I want stable coins.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1095000
+			},
+			"text": " And that rings true from things like Steve Jobs."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1098000
+			},
+			"text": " It's not the customer's job to know what they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1103000
+			},
+			"text": " The problem is that at the moment in this space, we're all just high-fiving each other with what we think is cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1106000
+			},
+			"text": " Does anybody know what this actually is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1108000
+			},
+			"text": " Do you know it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1110000
+			},
+			"text": " You can smell freedom."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1113000
+			},
+			"text": " -It does, actually. -It's such a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1116000
+			},
+			"text": " You said \"Dorgia\" freshman."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1119000
+			},
+			"text": " -There you go. -It's an \"A\" freshman."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1120000
+			},
+			"text": " Hey!"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1122000
+			},
+			"text": " It's a little bit unfair, I could read it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1125000
+			},
+			"text": " -I know. -You're a little bit unfair."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1128000
+			},
+			"text": " -You're a bit unfair. -You're a fucking liar."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1130000
+			},
+			"text": " -You're a fucking liar. -I'm tired."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1137000
+			},
+			"text": " To take some of those boards from, like, web-between, to where I'm starting, this guy's a cool gram from white Combinator."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:02,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1142000
+			},
+			"text": " What tends to happen in this space is his strategy is against, which is big launches, actually tends to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1142000,
+				"to": 1146000
+			},
+			"text": " People go away and build products, they launch it in the space, and it actually gets great feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:08,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1148000
+			},
+			"text": " Everyone's like, \"Wow, that's so cool!\""
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1148000,
+				"to": 1151000
+			},
+			"text": " And it starts to get some initial contraction in the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1154000
+			},
+			"text": " The problem with that is it never moves outside the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1158000
+			},
+			"text": " What we want to do with user testing is actually ask real people who are going to be the end user"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1163000
+			},
+			"text": " what they think and how we can improve and iterate slowly as slow as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1168000
+			},
+			"text": " If we don't do that, what we do is we end up building products which have loads of features"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:32,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1172000
+			},
+			"text": " and we have no idea if users are actually going to love them in the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1172000,
+				"to": 1174000
+			},
+			"text": " That's what I could see in a lot of progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1181000
+			},
+			"text": " That's where my intention drop goes to first when I see products in the spaces that we work on our technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1184000
+			},
+			"text": " It's fucking amazing, yes we know we can do a lot of different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1187000
+			},
+			"text": " Let's just put them all into this app."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1190000
+			},
+			"text": " And then like, so what is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1192000
+			},
+			"text": " Then Frankenstein wants something."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:59,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1199000
+			},
+			"text": " So with the user testing you know exactly, you can just show all of these features that you think are good or not good"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1199000,
+				"to": 1201000
+			},
+			"text": " or whatever you can kind of came up with."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1206000
+			},
+			"text": " Show it to them and, oh shit, we're almost done."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1212000
+			},
+			"text": " And you basically that way you understand what people resonate to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1217000
+			},
+			"text": " and what they don't care at all about and then you know how to prioritize stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1219000
+			},
+			"text": " This is just a screenshot of how it looks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1220000
+			},
+			"text": " It's going super easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1222000
+			},
+			"text": " You just do it with five people, that's enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1227000
+			},
+			"text": " Normally four is also enough that you can see all of the overlap of what they think about this whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1229000
+			},
+			"text": " So like, can you have that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1232000
+			},
+			"text": " So, summary, you get unstuck."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1236000
+			},
+			"text": " If you're stuck, you align your team on a common goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1238000
+			},
+			"text": " I mean, you can also read this."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:41,000"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1241000
+			},
+			"text": " You can actually use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,000",
+				"to": "00:20:45,000"
+			},
+			"offsets": {
+				"from": 1241000,
+				"to": 1245000
+			},
+			"text": " So that's also quite valuable because the only next real step is actually shipping the product."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1245000,
+				"to": 1250000
+			},
+			"text": " So this is the closest you can get to understanding your target audience."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:20:53,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1253000
+			},
+			"text": " And it's real because they think it's real."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,000",
+				"to": "00:20:57,000"
+			},
+			"offsets": {
+				"from": 1253000,
+				"to": 1257000
+			},
+			"text": " And you're really quickly learned if that's actually what the people want."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1257000,
+				"to": 1266000
+			},
+			"text": " And that's super important before you implement it, before you put a lot of money into it and make it work."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1270000
+			},
+			"text": " So, yeah, this is one of the final slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1274000
+			},
+			"text": " We basically put together all the tools we need or you need, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:20,000"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1280000
+			},
+			"text": " If you want the tools we found, all the books, articles, there's one exercise that you can try which takes an hour."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1280000,
+				"to": 1281000
+			},
+			"text": " It's super cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:25,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1285000
+			},
+			"text": " We use it every single week in our own kind of studio."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,000",
+				"to": "00:21:32,000"
+			},
+			"offsets": {
+				"from": 1285000,
+				"to": 1292000
+			},
+			"text": " So, it's almost like a retrospective or you get to, it was this process that I showed you like the three step one."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,000",
+				"to": "00:21:37,000"
+			},
+			"offsets": {
+				"from": 1292000,
+				"to": 1297000
+			},
+			"text": " So basically, like you come up with problems in the team, you come up with solutions to the problems in the team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,000",
+				"to": "00:21:38,000"
+			},
+			"offsets": {
+				"from": 1297000,
+				"to": 1298000
+			},
+			"text": " and you just delegate them."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,000",
+				"to": "00:21:41,000"
+			},
+			"offsets": {
+				"from": 1298000,
+				"to": 1301000
+			},
+			"text": " It takes one hour, solves all your problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,000",
+				"to": "00:21:42,000"
+			},
+			"offsets": {
+				"from": 1301000,
+				"to": 1302000
+			},
+			"text": " Really?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,000",
+				"to": "00:21:46,000"
+			},
+			"offsets": {
+				"from": 1302000,
+				"to": 1306000
+			},
+			"text": " And also, like, yeah, just a lot of books that are nice, some articles."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,000",
+				"to": "00:21:47,000"
+			},
+			"offsets": {
+				"from": 1306000,
+				"to": 1307000
+			},
+			"text": " Have a look."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1307000,
+				"to": 1311000
+			},
+			"text": " Yeah, if you want to count the link to take a photo of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:53,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1313000
+			},
+			"text": " Or ask us later."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,000",
+				"to": "00:21:54,000"
+			},
+			"offsets": {
+				"from": 1313000,
+				"to": 1314000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1314000,
+				"to": 1319000
+			},
+			"text": " One more thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:01,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1321000
+			},
+			"text": " Sorry, I think I have one more."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,000",
+				"to": "00:22:05,000"
+			},
+			"offsets": {
+				"from": 1321000,
+				"to": 1325000
+			},
+			"text": " Okay, so this is one more thing that I actually find personally pretty fascinating."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,000",
+				"to": "00:22:06,000"
+			},
+			"offsets": {
+				"from": 1325000,
+				"to": 1326000
+			},
+			"text": " Just gonna move one more night."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,000",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1326000,
+				"to": 1327000
+			},
+			"text": " I'm almost done."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:11,000"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1331000
+			},
+			"text": " So this is one thing that I found very fascinating because I've been working on these things for three years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,000",
+				"to": "00:22:19,000"
+			},
+			"offsets": {
+				"from": 1331000,
+				"to": 1339000
+			},
+			"text": " and I know the structure and I think this can go all pretty much, first of all, obviously we can solve a lot of problems in products."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,000",
+				"to": "00:22:24,000"
+			},
+			"offsets": {
+				"from": 1339000,
+				"to": 1344000
+			},
+			"text": " And at this space we have that problem in the blockchain space that we need to make products really user focused."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,000",
+				"to": "00:22:27,000"
+			},
+			"offsets": {
+				"from": 1344000,
+				"to": 1347000
+			},
+			"text": " We need to get expertise to work together on one thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,000",
+				"to": "00:22:33,000"
+			},
+			"offsets": {
+				"from": 1347000,
+				"to": 1353000
+			},
+			"text": " So this can be applied to every of your products and make it, like, really amazing in a very short time."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,000",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1353000,
+				"to": 1357000
+			},
+			"text": " But what if we solve problems that are unrelated to product design?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:39,000"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1359000
+			},
+			"text": " We can do exactly the same process."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,000",
+				"to": "00:22:45,000"
+			},
+			"offsets": {
+				"from": 1359000,
+				"to": 1365000
+			},
+			"text": " We can think about how we can use in that work with different expertise to solve problems that are not actually just building a product,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,000",
+				"to": "00:22:50,000"
+			},
+			"offsets": {
+				"from": 1365000,
+				"to": 1370000
+			},
+			"text": " but maybe solving problems with governance, something that's not having, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,000",
+				"to": "00:22:56,000"
+			},
+			"offsets": {
+				"from": 1370000,
+				"to": 1376000
+			},
+			"text": " whether the result is not an interface or a product, but actually something that's a more fundamental solution to a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,000",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1376000,
+				"to": 1384000
+			},
+			"text": " Or things like creating cures for undiagnosable health diseases, like we actually did that two months ago with a team of different experts"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1390000
+			},
+			"text": " and had a patient just work on their health as having different people to work on one thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:18,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1398000
+			},
+			"text": " At the same time, instead of going to a doctor or maybe, you know, at some point we managed to plan changing."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,000",
+				"to": "00:23:25,000"
+			},
+			"offsets": {
+				"from": 1398000,
+				"to": 1405000
+			},
+			"text": " But yeah, either way, whatever your problem is, this is, like, I think this is one of the most fantastic processes and principles"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1405000,
+				"to": 1407000
+			},
+			"text": " that you should apply to your work."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:29,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1409000
+			},
+			"text": " You're all problem solvers."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,000",
+				"to": "00:23:30,000"
+			},
+			"offsets": {
+				"from": 1409000,
+				"to": 1410000
+			},
+			"text": " I love you all."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,000",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1410000,
+				"to": 1416000
+			},
+			"text": " You use the whole everything remotely and the reprogramming and people will love you for this too."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:37,000"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1417000
+			},
+			"text": " Bye!"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,000",
+				"to": "00:23:41,000"
+			},
+			"offsets": {
+				"from": 1417000,
+				"to": 1421000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,000",
+				"to": "00:23:56,000"
+			},
+			"offsets": {
+				"from": 1421000,
+				"to": 1436000
+			},
+			"text": " [music]"
+		}
+	]
+}

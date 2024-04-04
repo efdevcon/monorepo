@@ -1,0 +1,2617 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,860"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11860
+			},
+			"text": " >> Hey, everyone. I figured I'll start a minute longer. I have one more minute. Yes. So every"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,860",
+				"to": "00:00:16,640"
+			},
+			"offsets": {
+				"from": 11860,
+				"to": 16640
+			},
+			"text": " now and again, somebody sends me a message on messenger or wherever, and the message kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,640",
+				"to": "00:00:22,440"
+			},
+			"offsets": {
+				"from": 16640,
+				"to": 22440
+			},
+			"text": " of goes along, how do I debug gas? And I always have a follow-up question, what do you mean"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,440",
+				"to": "00:00:27,600"
+			},
+			"offsets": {
+				"from": 22440,
+				"to": 27600
+			},
+			"text": " debug gas? Just submit an issue. And it turns out that they actually don't have an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,600",
+				"to": "00:00:33,640"
+			},
+			"offsets": {
+				"from": 27600,
+				"to": 33640
+			},
+			"text": " Rather, they want to know how they can know if gas is actually working or if gas is working"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,640",
+				"to": "00:00:39,800"
+			},
+			"offsets": {
+				"from": 33640,
+				"to": 39800
+			},
+			"text": " properly or how healthy it is. And then usually what we refer people to is, well, just look"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,800",
+				"to": "00:00:45,040"
+			},
+			"offsets": {
+				"from": 39800,
+				"to": 45040
+			},
+			"text": " at the logs. How hard can that be? Okay, I'm being a bit ironic here. But the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,040",
+				"to": "00:00:52,240"
+			},
+			"offsets": {
+				"from": 45040,
+				"to": 52240
+			},
+			"text": " with looking at the logs is that we either arrive in this situation where gas is just"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,240",
+				"to": "00:00:57,160"
+			},
+			"offsets": {
+				"from": 52240,
+				"to": 57160
+			},
+			"text": " silent and there are no logs and you're just waiting and waiting. Or maybe there's a log"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,160",
+				"to": "00:01:02,480"
+			},
+			"offsets": {
+				"from": 57160,
+				"to": 62480
+			},
+			"text": " every 15 seconds but you still have no idea whether that's good or bad. Or we have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,480",
+				"to": "00:01:08,960"
+			},
+			"offsets": {
+				"from": 62480,
+				"to": 68960
+			},
+			"text": " more ingenious people who raised the log level and they still have no idea what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,960",
+				"to": "00:01:14,360"
+			},
+			"offsets": {
+				"from": 68960,
+				"to": 74360
+			},
+			"text": " So the problem is that logs are really, really useful if you know specifically something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,360",
+				"to": "00:01:18,560"
+			},
+			"offsets": {
+				"from": 74360,
+				"to": 78560
+			},
+			"text": " you're looking for. But if you just want to get general overview of what you know this"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,560",
+				"to": "00:01:28,960"
+			},
+			"offsets": {
+				"from": 78560,
+				"to": 88960
+			},
+			"text": " is doing, then logs are perfectly not useful. So what can we do instead? Well, first things"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,960",
+				"to": "00:01:34,280"
+			},
+			"offsets": {
+				"from": 88960,
+				"to": 94280
+			},
+			"text": " first, people mostly are interested in whether they know this working or not. And this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,280",
+				"to": "00:01:39,160"
+			},
+			"offsets": {
+				"from": 94280,
+				"to": 99160
+			},
+			"text": " not such a simple question to answer because it's never binary. Of course, if the no is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,160",
+				"to": "00:01:42,960"
+			},
+			"offsets": {
+				"from": 99160,
+				"to": 102960
+			},
+			"text": " not working, we see that it is not working. But if it's working, then that's an entire"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,960",
+				"to": "00:01:48,680"
+			},
+			"offsets": {
+				"from": 102960,
+				"to": 108680
+			},
+			"text": " spectrum. It might be working very well. It might be working just barely. But it's still"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,680",
+				"to": "00:01:52,880"
+			},
+			"offsets": {
+				"from": 108680,
+				"to": 112880
+			},
+			"text": " working. Now the issue is that if it's working very well, then everything is fine. If it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,880",
+				"to": "00:01:57,680"
+			},
+			"offsets": {
+				"from": 112880,
+				"to": 117680
+			},
+			"text": " just working barely, then you might have an issue at 3M in the morning and you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,680",
+				"to": "00:02:03,680"
+			},
+			"offsets": {
+				"from": 117680,
+				"to": 123680
+			},
+			"text": " be able to tell how healthy is your node. Now, let's suppose that we start with latest"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,680",
+				"to": "00:02:11,240"
+			},
+			"offsets": {
+				"from": 123680,
+				"to": 131240
+			},
+			"text": " release, it kind of works. But a lot of things can actually influence your node in one direction"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,240",
+				"to": "00:02:15,240"
+			},
+			"offsets": {
+				"from": 131240,
+				"to": 135240
+			},
+			"text": " or the other. For example, every time we do a bug fix release, hopefully it improves the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,240",
+				"to": "00:02:20,760"
+			},
+			"offsets": {
+				"from": 135240,
+				"to": 140760
+			},
+			"text": " situation. And of course, if you run it on more powerful hardware, that also papers over"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,760",
+				"to": "00:02:27,480"
+			},
+			"offsets": {
+				"from": 140760,
+				"to": 147480
+			},
+			"text": " any issues that we might have with flaky algorithms or suboptimal things. Network connectivity"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,480",
+				"to": "00:02:33,680"
+			},
+			"offsets": {
+				"from": 147480,
+				"to": 153680
+			},
+			"text": " and other externalities like workload, again, influence your operationality or however it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,680",
+				"to": "00:02:40,320"
+			},
+			"offsets": {
+				"from": 153680,
+				"to": 160320
+			},
+			"text": " is pronounced, sorry. Essentially, of course, if you run a girly node on your notebook,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,320",
+				"to": "00:02:44,800"
+			},
+			"offsets": {
+				"from": 160320,
+				"to": 164800
+			},
+			"text": " then it will perform really, really well. Whereas if you run mainnet, then you might run into"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,800",
+				"to": "00:02:50,080"
+			},
+			"offsets": {
+				"from": 164800,
+				"to": 170080
+			},
+			"text": " troubles. These are kind of natural. Now, the thing is when you start running a production"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,080",
+				"to": "00:02:54,560"
+			},
+			"offsets": {
+				"from": 170080,
+				"to": 174560
+			},
+			"text": " infrastructure, then just knowing that your node works is not really enough, you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,560",
+				"to": "00:03:00,320"
+			},
+			"offsets": {
+				"from": 174560,
+				"to": 180320
+			},
+			"text": " to know how well it works because it's kind of a game of trade-offs. If you are, yes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,320",
+				"to": "00:03:03,880"
+			},
+			"offsets": {
+				"from": 180320,
+				"to": 183880
+			},
+			"text": " you can put the most powerful virtual machine available on Amazon underneath it and it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,880",
+				"to": "00:03:07,800"
+			},
+			"offsets": {
+				"from": 183880,
+				"to": 187800
+			},
+			"text": " probably run perfectly, but it will cost you a lot. Or you can put a Raspberry Pi underneath"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,800",
+				"to": "00:03:14,680"
+			},
+			"offsets": {
+				"from": 187800,
+				"to": 194680
+			},
+			"text": " it and it won't run. So that's how do we find the middle ground? And the answer is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,680",
+				"to": "00:03:20,480"
+			},
+			"offsets": {
+				"from": 194680,
+				"to": 200480
+			},
+			"text": " metrics and monitoring. Now, from the very, very abstract perspective, metrics and monitoring"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,480",
+				"to": "00:03:26,040"
+			},
+			"offsets": {
+				"from": 200480,
+				"to": 206040
+			},
+			"text": " means measure everything that you can and visualize it. And this is not something new"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,040",
+				"to": "00:03:30,480"
+			},
+			"offsets": {
+				"from": 206040,
+				"to": 210480
+			},
+			"text": " in the Ethereum ecosystem. I mean, the stats page was available since forever and everybody"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,480",
+				"to": "00:03:36,200"
+			},
+			"offsets": {
+				"from": 210480,
+				"to": 216200
+			},
+			"text": " knows its usefulness. However, you want to measure something more, it's really hard to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,200",
+				"to": "00:03:40,080"
+			},
+			"offsets": {
+				"from": 216200,
+				"to": 220080
+			},
+			"text": " figure out, okay, what exactly do you measure? I mean, a software system, there are gazillions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,080",
+				"to": "00:03:45,440"
+			},
+			"offsets": {
+				"from": 220080,
+				"to": 225440
+			},
+			"text": " of things that it does. So what is important and what is not important? And to answer that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,440",
+				"to": "00:03:48,760"
+			},
+			"offsets": {
+				"from": 225440,
+				"to": 228760
+			},
+			"text": " you actually need to have specific questions. What kind of questions would you like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,760",
+				"to": "00:03:53,640"
+			},
+			"offsets": {
+				"from": 228760,
+				"to": 233640
+			},
+			"text": " answer to? And for example, us in the guest team, we usually have three questions. One"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,640",
+				"to": "00:03:59,040"
+			},
+			"offsets": {
+				"from": 233640,
+				"to": 239040
+			},
+			"text": " of them is how do the nodes behave across the globe? The second is that if some node"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,040",
+				"to": "00:04:04,480"
+			},
+			"offsets": {
+				"from": 239040,
+				"to": 244480
+			},
+			"text": " looks weird, then what is it doing, actually? And last but not least, if you found an anomaly"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,480",
+				"to": "00:04:08,400"
+			},
+			"offsets": {
+				"from": 244480,
+				"to": 248400
+			},
+			"text": " and we fixed it, then it is really important for us to see that, okay, the old version"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,400",
+				"to": "00:04:13,080"
+			},
+			"offsets": {
+				"from": 248400,
+				"to": 253080
+			},
+			"text": " did something weird. Does the new version fix it? Yes. And does the new version really"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,080",
+				"to": "00:04:20,760"
+			},
+			"offsets": {
+				"from": 253080,
+				"to": 260760
+			},
+			"text": " not ruin anything else? Yes or no? So if we dive into actual things, actual examples,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,760",
+				"to": "00:04:24,760"
+			},
+			"offsets": {
+				"from": 260760,
+				"to": 264760
+			},
+			"text": " the guest team is kind of running eight boot nodes globally across various continents."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,760",
+				"to": "00:04:30,960"
+			},
+			"offsets": {
+				"from": 264760,
+				"to": 270960
+			},
+			"text": " Now, first question that we want to answer is, are these boot nodes healthy? And what"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,960",
+				"to": "00:04:35,560"
+			},
+			"offsets": {
+				"from": 270960,
+				"to": 275560
+			},
+			"text": " is the cost? Now, whether the boot nodes are healthy or not, for us it is really simple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,560",
+				"to": "00:04:40,640"
+			},
+			"offsets": {
+				"from": 275560,
+				"to": 280640
+			},
+			"text": " are they in sync with the network or not? So we simply just visualize how many blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,640",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 280640,
+				"to": 285000
+			},
+			"text": " behind there are from the chain head. And immediately, if some boot node falls behind"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:49,080"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 289080
+			},
+			"text": " that, we know that something is wrong. But this just gives us the binary thing. We know"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,080",
+				"to": "00:04:53,520"
+			},
+			"offsets": {
+				"from": 289080,
+				"to": 293520
+			},
+			"text": " that it is healthy or not, but we don't know what is the cost or how healthy it is. Now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,520",
+				"to": "00:04:59,120"
+			},
+			"offsets": {
+				"from": 293520,
+				"to": 299120
+			},
+			"text": " if we, in order to find out actually how healthy it is, we actually need to also chart out"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,120",
+				"to": "00:05:04,560"
+			},
+			"offsets": {
+				"from": 299120,
+				"to": 304560
+			},
+			"text": " the resource consumption of it. And as a computing system, you have four major resources, CPU,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,560",
+				"to": "00:05:09,120"
+			},
+			"offsets": {
+				"from": 304560,
+				"to": 309120
+			},
+			"text": " memory, disk and network. And of course, you can split this cup of it and network cup of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,120",
+				"to": "00:05:15,560"
+			},
+			"offsets": {
+				"from": 309120,
+				"to": 315560
+			},
+			"text": " it in input output, et cetera. But only know if we chart all of our eight boot nodes across"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,560",
+				"to": "00:05:20,640"
+			},
+			"offsets": {
+				"from": 315560,
+				"to": 320640
+			},
+			"text": " these four matrix types, then immediately we can see anomalies. For example, on the memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,640",
+				"to": "00:05:25,200"
+			},
+			"offsets": {
+				"from": 320640,
+				"to": 325200
+			},
+			"text": " chart, we can see that the yellow boot node is actually using 2GB more memory than the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,200",
+				"to": "00:05:32,320"
+			},
+			"offsets": {
+				"from": 325200,
+				"to": 332320
+			},
+			"text": " rest. Or CPU wise, a similar thing. And immediately you have something to take care of. And the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,320",
+				"to": "00:05:38,840"
+			},
+			"offsets": {
+				"from": 332320,
+				"to": 338840
+			},
+			"text": " other interesting aspect of it is that if you know, your nodes have 13GB, sorry, 32GB"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,840",
+				"to": "00:05:42,640"
+			},
+			"offsets": {
+				"from": 338840,
+				"to": 342640
+			},
+			"text": " of memory and you are at eight, then you don't care about it. You're really far away from"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,640",
+				"to": "00:05:47,360"
+			},
+			"offsets": {
+				"from": 342640,
+				"to": 347360
+			},
+			"text": " crashing. However, once you start reaching your limits, that's when things will start"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,360",
+				"to": "00:05:52,160"
+			},
+			"offsets": {
+				"from": 347360,
+				"to": 352160
+			},
+			"text": " going wrong. So you can, just looking at this dashboard, you can immediately see how close"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,160",
+				"to": "00:05:59,400"
+			},
+			"offsets": {
+				"from": 352160,
+				"to": 359400
+			},
+			"text": " you are to failure. Cool. Now, just to dive into one of these examples, DevOps team a"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,400",
+				"to": "00:06:03,080"
+			},
+			"offsets": {
+				"from": 359400,
+				"to": 363080
+			},
+			"text": " couple weeks ago told us that, hey, you're kind of using too much bandwidth. I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,080",
+				"to": "00:06:07,440"
+			},
+			"offsets": {
+				"from": 363080,
+				"to": 367440
+			},
+			"text": " it costs too much. They care about the money not to bandwidth. And so we looked at our"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,440",
+				"to": "00:06:14,600"
+			},
+			"offsets": {
+				"from": 367440,
+				"to": 374600
+			},
+			"text": " charts. And yes, indeed, the boot nodes are actually pushing out 5, 6MB/s of data. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,600",
+				"to": "00:06:19,760"
+			},
+			"offsets": {
+				"from": 374600,
+				"to": 379760
+			},
+			"text": " we are wondering, okay, what does the boot node do? I mean, this chart tells us how much"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,760",
+				"to": "00:06:25,200"
+			},
+			"offsets": {
+				"from": 379760,
+				"to": 385200
+			},
+			"text": " it costs, resource-wise. But we don't know what it's actually doing with those resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,200",
+				"to": "00:06:29,760"
+			},
+			"offsets": {
+				"from": 385200,
+				"to": 389760
+			},
+			"text": " So those are actually our intermediate-level monitoring questions. Let's try to figure"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,760",
+				"to": "00:06:36,120"
+			},
+			"offsets": {
+				"from": 389760,
+				"to": 396120
+			},
+			"text": " out what Ethereum node is doing with its disk resources or other resources. Now, in case"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,120",
+				"to": "00:06:42,240"
+			},
+			"offsets": {
+				"from": 396120,
+				"to": 402240
+			},
+			"text": " of networking, what can we do? Well, first step, we have, previously we've measured the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,240",
+				"to": "00:06:47,880"
+			},
+			"offsets": {
+				"from": 402240,
+				"to": 407880
+			},
+			"text": " total bandwidth usage. But we would like to also measure the individual bandwidth usage"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,880",
+				"to": "00:06:52,800"
+			},
+			"offsets": {
+				"from": 407880,
+				"to": 412800
+			},
+			"text": " of individual protocols. Since the boot nodes are running Ethereum and Lite client protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,800",
+				"to": "00:06:57,600"
+			},
+			"offsets": {
+				"from": 412800,
+				"to": 417600
+			},
+			"text": " those two are the ones we want to run. But we can go even further down and actually measure"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,600",
+				"to": "00:07:04,320"
+			},
+			"offsets": {
+				"from": 417600,
+				"to": 424320
+			},
+			"text": " the network usage of each individual network packet, I mean, packet type within those protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,320",
+				"to": "00:07:09,840"
+			},
+			"offsets": {
+				"from": 424320,
+				"to": 429840
+			},
+			"text": " And if you chart these, we get these really nice fancy spikes. And immediately, we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,840",
+				"to": "00:07:17,040"
+			},
+			"offsets": {
+				"from": 429840,
+				"to": 437040
+			},
+			"text": " three things that are really, really obviously strange. For example, in the top two charts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,040",
+				"to": "00:07:21,320"
+			},
+			"offsets": {
+				"from": 437040,
+				"to": 441320
+			},
+			"text": " those are the input and upload and download speeds of the Ethereum protocol. And you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,320",
+				"to": "00:07:27,360"
+			},
+			"offsets": {
+				"from": 441320,
+				"to": 447360
+			},
+			"text": " immediately see that the Lite Blue thingy is causing quite a lot of traffic. And I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,360",
+				"to": "00:07:31,440"
+			},
+			"offsets": {
+				"from": 447360,
+				"to": 451440
+			},
+			"text": " not sure whether it's visible or not, but I will tell you, the white blue has the label"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,440",
+				"to": "00:07:36,880"
+			},
+			"offsets": {
+				"from": 451440,
+				"to": 456880
+			},
+			"text": " of transaction propagation. So just by looking at these charts, you can immediately see that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,880",
+				"to": "00:07:42,240"
+			},
+			"offsets": {
+				"from": 456880,
+				"to": 462240
+			},
+			"text": " there's something wrong with transaction propagation. It's taking about 1.1 megabyte per second"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,240",
+				"to": "00:07:48,880"
+			},
+			"offsets": {
+				"from": 462240,
+				"to": 468880
+			},
+			"text": " of traffic. And maybe this is enough for you. Maybe it is not enough for you to decide what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,880",
+				"to": "00:07:53,560"
+			},
+			"offsets": {
+				"from": 468880,
+				"to": 473560
+			},
+			"text": " the next step. But in our case, yes, we are kind of aware of how the transaction propagation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,560",
+				"to": "00:07:57,920"
+			},
+			"offsets": {
+				"from": 473560,
+				"to": 477920
+			},
+			"text": " works. And this means that we actually need to roll out a new Ethereum sub protocol, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,920",
+				"to": "00:08:03,400"
+			},
+			"offsets": {
+				"from": 477920,
+				"to": 483400
+			},
+			"text": " mean, a new version of the Ethereum protocol with an alternative way to propagate transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,400",
+				"to": "00:08:07,120"
+			},
+			"offsets": {
+				"from": 483400,
+				"to": 487120
+			},
+			"text": " because otherwise there's no way to get this down. But we immediately know what the fault"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,120",
+				"to": "00:08:14,200"
+			},
+			"offsets": {
+				"from": 487120,
+				"to": 494200
+			},
+			"text": " is, and we have an idea of how to fix it. Now, the other anomalies from these charts are"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,200",
+				"to": "00:08:19,080"
+			},
+			"offsets": {
+				"from": 494200,
+				"to": 499080
+			},
+			"text": " that the boot nodes are uploading a significant amount of data. And our guess, again, is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,080",
+				"to": "00:08:23,960"
+			},
+			"offsets": {
+				"from": 499080,
+				"to": 503960
+			},
+			"text": " since these are the boot nodes, everybody's trying to synchronize from them. So if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,960",
+				"to": "00:08:29,120"
+			},
+			"offsets": {
+				"from": 503960,
+				"to": 509120
+			},
+			"text": " want to stop people from synchronizing them, well, of course, we can nuke the boot nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,120",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 509120,
+				"to": 514000
+			},
+			"text": " halfway offline so that they refuse to give you the data, but that's not nice. Alternatively,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:39,440"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 519440
+			},
+			"text": " we need maybe a better discovery protocol so that you can find peers faster, better peers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,440",
+				"to": "00:08:45,240"
+			},
+			"offsets": {
+				"from": 519440,
+				"to": 525240
+			},
+			"text": " etc. Again, just we just looked at what the node is consuming. It's network bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,240",
+				"to": "00:08:50,680"
+			},
+			"offsets": {
+				"from": 525240,
+				"to": 530680
+			},
+			"text": " on and we can immediately make really nice guesses. Now, there are four resource families."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,680",
+				"to": "00:08:57,120"
+			},
+			"offsets": {
+				"from": 530680,
+				"to": 537120
+			},
+			"text": " So we can do a similar exercise for CPU usage. Now CPU usage, if somebody were to ask you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,120",
+				"to": "00:09:03,360"
+			},
+			"offsets": {
+				"from": 537120,
+				"to": 543360
+			},
+			"text": " what does a Ethereum node use CPU for? The no-brainer answer is block processing. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,360",
+				"to": "00:09:10,520"
+			},
+			"offsets": {
+				"from": 543360,
+				"to": 550520
+			},
+			"text": " this was our false assumption for many years, too. And about maybe half a year ago, some"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,520",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 550520,
+				"to": 557000
+			},
+			"text": " around January, we decided that, okay, something's not right. So let's try to split that block"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:21,320"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 561320
+			},
+			"text": " processing up. So we saw that, okay, block processing takes 100 milliseconds, but what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,320",
+				"to": "00:09:26,360"
+			},
+			"offsets": {
+				"from": 561320,
+				"to": 566360
+			},
+			"text": " inside that? And actually we figured that, well, when you run the transaction, there"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,360",
+				"to": "00:09:31,680"
+			},
+			"offsets": {
+				"from": 566360,
+				"to": 571680
+			},
+			"text": " is execution components. We also load data from this, and we also write it to this. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,680",
+				"to": "00:09:35,920"
+			},
+			"offsets": {
+				"from": 571680,
+				"to": 575920
+			},
+			"text": " we also do some hashing. So let's try to actually break it up and meet all these components"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,920",
+				"to": "00:09:43,400"
+			},
+			"offsets": {
+				"from": 575920,
+				"to": 583400
+			},
+			"text": " individually. And then the resulting chart was a bit, I don't know, a bit surprising."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,400",
+				"to": "00:09:48,840"
+			},
+			"offsets": {
+				"from": 583400,
+				"to": 588840
+			},
+			"text": " It turns out that if you run a full node, transaction execution, I mean actually CPU"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,840",
+				"to": "00:09:57,160"
+			},
+			"offsets": {
+				"from": 588840,
+				"to": 597160
+			},
+			"text": " running and computing stuff, that's 25% max of the block processing. So 75% of block processing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,160",
+				"to": "00:10:02,200"
+			},
+			"offsets": {
+				"from": 597160,
+				"to": 602200
+			},
+			"text": " is shuffling data around. And this is an extremely important thing to know, because all of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,200",
+				"to": "00:10:08,920"
+			},
+			"offsets": {
+				"from": 602200,
+				"to": 608920
+			},
+			"text": " sudden you realize that optimizing the EVM is not that important. So optimizing the database"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,920",
+				"to": "00:10:15,680"
+			},
+			"offsets": {
+				"from": 608920,
+				"to": 615680
+			},
+			"text": " makes a lot more sense than even caring about how much one on op code costs or the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,680",
+				"to": "00:10:20,480"
+			},
+			"offsets": {
+				"from": 615680,
+				"to": 620480
+			},
+			"text": " And in the case of the boot nodes, this gets even worse. Since everybody is constantly hammering"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,480",
+				"to": "00:10:26,640"
+			},
+			"offsets": {
+				"from": 620480,
+				"to": 626640
+			},
+			"text": " us with requests, in the case of boot nodes, the EVM actual execution is 10% of the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,640",
+				"to": "00:10:33,680"
+			},
+			"offsets": {
+				"from": 626640,
+				"to": 633680
+			},
+			"text": " processing time. So that's kind of scary. But again, we have a brilliant idea of where"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,680",
+				"to": "00:10:39,120"
+			},
+			"offsets": {
+				"from": 633680,
+				"to": 639120
+			},
+			"text": " we can optimize. So just a single chart, just some information, we can immediately see how"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,120",
+				"to": "00:10:46,800"
+			},
+			"offsets": {
+				"from": 639120,
+				"to": 646800
+			},
+			"text": " to proceed. Now other interesting facts that these charts allowed us to see is that transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,800",
+				"to": "00:10:52,240"
+			},
+			"offsets": {
+				"from": 646800,
+				"to": 652240
+			},
+			"text": " validation or propagation, I mean, Ethereum networks throughput is something like 20 transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,240",
+				"to": "00:10:58,120"
+			},
+			"offsets": {
+				"from": 652240,
+				"to": 658120
+			},
+			"text": " So you would expect that shuffling 20 transactions per second around is no big deal, except when"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,120",
+				"to": "00:11:03,360"
+			},
+			"offsets": {
+				"from": 658120,
+				"to": 663360
+			},
+			"text": " you chart it out and turns out that the boot node is receiving 11,000 transactions per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,360",
+				"to": "00:11:08,080"
+			},
+			"offsets": {
+				"from": 663360,
+				"to": 668080
+			},
+			"text": " Most of them are duplicates, half of them are invalid, half of them are, or some big"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,080",
+				"to": "00:11:13,200"
+			},
+			"offsets": {
+				"from": 668080,
+				"to": 673200
+			},
+			"text": " portion of them are underpriced that are get rejected. But it's really strange. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,200",
+				"to": "00:11:17,040"
+			},
+			"offsets": {
+				"from": 673200,
+				"to": 677040
+			},
+			"text": " when you look at that number, you all of a sudden realize that weight. So the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,040",
+				"to": "00:11:21,640"
+			},
+			"offsets": {
+				"from": 677040,
+				"to": 681640
+			},
+			"text": " pool needs to be really optimized for this throughput. So it's not the throughput of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,640",
+				"to": "00:11:26,840"
+			},
+			"offsets": {
+				"from": 681640,
+				"to": 686840
+			},
+			"text": " blockchain, rather the throughput of the junk data that's coming in that's defining how"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,840",
+				"to": "00:11:32,600"
+			},
+			"offsets": {
+				"from": 686840,
+				"to": 692600
+			},
+			"text": " much processing we're going to do. And of course, we have two more other big consumers"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,600",
+				"to": "00:11:38,320"
+			},
+			"offsets": {
+				"from": 692600,
+				"to": 698320
+			},
+			"text": " for the CPU, one of them are RPC calls, which we didn't chart yet. So that's something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,320",
+				"to": "00:11:44,120"
+			},
+			"offsets": {
+				"from": 698320,
+				"to": 704120
+			},
+			"text": " we want to do in the future. And network handshake requests, which might seem like why does that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,120",
+				"to": "00:11:48,960"
+			},
+			"offsets": {
+				"from": 704120,
+				"to": 708960
+			},
+			"text": " even take CPU? Well, if you run it on Raspberry Pi to a murder one core from your Raspberry"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,960",
+				"to": "00:11:54,240"
+			},
+			"offsets": {
+				"from": 708960,
+				"to": 714240
+			},
+			"text": " Pi, just doing the cryptographic handshakes in the network. So again, we need a new discovery"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,240",
+				"to": "00:12:01,600"
+			},
+			"offsets": {
+				"from": 714240,
+				"to": 721600
+			},
+			"text": " protocol to fix it. And the big third one, third category is disk. Now in the case of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,600",
+				"to": "00:12:07,280"
+			},
+			"offsets": {
+				"from": 721600,
+				"to": 727280
+			},
+			"text": " disk, it is extremely hard to measure because kind of when you run a program, you have all"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,280",
+				"to": "00:12:12,320"
+			},
+			"offsets": {
+				"from": 727280,
+				"to": 732320
+			},
+			"text": " these layers on top of one another operating systems, containers, libraries, and they all"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,320",
+				"to": "00:12:16,640"
+			},
+			"offsets": {
+				"from": 732320,
+				"to": 736640
+			},
+			"text": " like to be smart and all like to cache. And this kind of means that there's really hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,640",
+				"to": "00:12:21,200"
+			},
+			"offsets": {
+				"from": 736640,
+				"to": 741200
+			},
+			"text": " to measure the thing that you actually want to measure. We could measure how much data"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,200",
+				"to": "00:12:25,440"
+			},
+			"offsets": {
+				"from": 741200,
+				"to": 745440
+			},
+			"text": " we're pushing to disk, but that depends on how much RAM the operating system has and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,440",
+				"to": "00:12:30,240"
+			},
+			"offsets": {
+				"from": 745440,
+				"to": 750240
+			},
+			"text": " how aggressively it caches. We could check how much we could ask the operating system"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,240",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 750240,
+				"to": 755000
+			},
+			"text": " to tell it to us. But that also depends on if you run it in Docker, Docker also starts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:40,720"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 760720
+			},
+			"text": " screwing around with all kinds of caches. Now if you, after we figured out that we cannot"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,720",
+				"to": "00:12:45,200"
+			},
+			"offsets": {
+				"from": 760720,
+				"to": 765200
+			},
+			"text": " reliably measure, we decided, okay, screw it, we're going to measure how much data we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,200",
+				"to": "00:12:49,560"
+			},
+			"offsets": {
+				"from": 765200,
+				"to": 769560
+			},
+			"text": " pushing into the database. Well, it turns out that that's completely useless too, because"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,560",
+				"to": "00:12:55,440"
+			},
+			"offsets": {
+				"from": 769560,
+				"to": 775440
+			},
+			"text": " LevelDB has all these background processes around compactions and fancy storage models."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,440",
+				"to": "00:13:01,800"
+			},
+			"offsets": {
+				"from": 775440,
+				"to": 781800
+			},
+			"text": " So in the end, we actually needed to patch LevelDB and ship all our metrics into LevelDB"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,800",
+				"to": "00:13:06,920"
+			},
+			"offsets": {
+				"from": 781800,
+				"to": 786920
+			},
+			"text": " so that we can get an accurate measurement. And we're actually really happy for the author"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,920",
+				"to": "00:13:15,160"
+			},
+			"offsets": {
+				"from": 786920,
+				"to": 795160
+			},
+			"text": " of Go LevelDB for allowing us to keep patching his database. So this one I will probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,160",
+				"to": "00:13:21,880"
+			},
+			"offsets": {
+				"from": 795160,
+				"to": 801880
+			},
+			"text": " not go into, but the idea is that after you found an actual issue, so after you found"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,880",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 801880,
+				"to": 807000
+			},
+			"text": " that specific metric that is really out of place, then you need to find out why it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:32,080"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 812080
+			},
+			"text": " out of space, out of place. Here I gave you some ideas, so those are good ideas and are"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,080",
+				"to": "00:13:36,840"
+			},
+			"offsets": {
+				"from": 812080,
+				"to": 816840
+			},
+			"text": " enough. But if you don't know, if you can't, if you don't have any ideas, then the only"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,840",
+				"to": "00:13:42,760"
+			},
+			"offsets": {
+				"from": 816840,
+				"to": 822760
+			},
+			"text": " thing you can do is actually to just try to look into the details of the algorithms internally"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,760",
+				"to": "00:13:48,440"
+			},
+			"offsets": {
+				"from": 822760,
+				"to": 828440
+			},
+			"text": " and try to map out what the algorithms are doing and try to have better guesses. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,440",
+				"to": "00:13:53,920"
+			},
+			"offsets": {
+				"from": 828440,
+				"to": 833920
+			},
+			"text": " for example, this is maybe one third of the light servers charts that Gary put together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,920",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 833920,
+				"to": 839000
+			},
+			"text": " and there are lots and lots of these just to figure out individual tiny bugs. But I"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:04,440"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 844440
+			},
+			"text": " won't go into these because that's completely out of scope here. However, let's suppose"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,440",
+				"to": "00:14:11,680"
+			},
+			"offsets": {
+				"from": 844440,
+				"to": 851680
+			},
+			"text": " we did manage to find what the, or we did manage, we have an idea of what the, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,680",
+				"to": "00:14:16,720"
+			},
+			"offsets": {
+				"from": 851680,
+				"to": 856720
+			},
+			"text": " was the cause of the anomaly, and we have a poor request to fix it. So the next thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,720",
+				"to": "00:14:21,280"
+			},
+			"offsets": {
+				"from": 856720,
+				"to": 861280
+			},
+			"text": " is we just open a poor request, merge it in, and everything is fixed. Yeah, no, wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,280",
+				"to": "00:14:26,440"
+			},
+			"offsets": {
+				"from": 861280,
+				"to": 866440
+			},
+			"text": " The issue is that there are simply so many moving components in Ethereum node that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,440",
+				"to": "00:14:32,680"
+			},
+			"offsets": {
+				"from": 866440,
+				"to": 872680
+			},
+			"text": " fact that we fixed one thing might actually break others. So the lifetime of these performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,680",
+				"to": "00:14:37,840"
+			},
+			"offsets": {
+				"from": 872680,
+				"to": 877840
+			},
+			"text": " or these anomaly fixing poor requests kind of look like people open a PR, and then we"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,840",
+				"to": "00:14:43,040"
+			},
+			"offsets": {
+				"from": 877840,
+				"to": 883040
+			},
+			"text": " actually run a one week long benchmark to see what does it do. Now this is the perfect"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,040",
+				"to": "00:14:48,960"
+			},
+			"offsets": {
+				"from": 883040,
+				"to": 888960
+			},
+			"text": " case. We see something like this maybe once a year. These are the miracles of development."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,960",
+				"to": "00:14:54,920"
+			},
+			"offsets": {
+				"from": 888960,
+				"to": 894920
+			},
+			"text": " When this was actually a poor request created by Gary, disabling some internal data shuffling"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,920",
+				"to": "00:15:00,680"
+			},
+			"offsets": {
+				"from": 894920,
+				"to": 900680
+			},
+			"text": " within level DB, and what the, here actually the green lines were the master and the yellow"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,680",
+				"to": "00:15:07,400"
+			},
+			"offsets": {
+				"from": 900680,
+				"to": 907400
+			},
+			"text": " lines were Gary's experimental PR. Essentially by just swapping a few variables, he actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,400",
+				"to": "00:15:13,960"
+			},
+			"offsets": {
+				"from": 907400,
+				"to": 913960
+			},
+			"text": " managed to cut down the disk I/O by an order of magnitude. So that was, I mean, you don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,960",
+				"to": "00:15:18,600"
+			},
+			"offsets": {
+				"from": 913960,
+				"to": 918600
+			},
+			"text": " get these kinds of charts at all. These are just, you don't simply don't believe them"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,600",
+				"to": "00:15:25,880"
+			},
+			"offsets": {
+				"from": 918600,
+				"to": 925880
+			},
+			"text": " when everything is perfectly better than previously. What you get a lot more often, however, is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,880",
+				"to": "00:15:30,280"
+			},
+			"offsets": {
+				"from": 925880,
+				"to": 930280
+			},
+			"text": " these kinds of charts. This was from a previous monitoring system that we had, where somebody"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,280",
+				"to": "00:15:34,800"
+			},
+			"offsets": {
+				"from": 930280,
+				"to": 934800
+			},
+			"text": " opened a poor request that on Windows, Windows really chokes on folders that have many files"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,800",
+				"to": "00:15:40,800"
+			},
+			"offsets": {
+				"from": 934800,
+				"to": 940800
+			},
+			"text": " in them. So let's change level DB to use larger files. I mean, it seems like a pretty good"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,800",
+				"to": "00:15:47,120"
+			},
+			"offsets": {
+				"from": 940800,
+				"to": 947120
+			},
+			"text": " idea. Why would you use two megabytes files if you can use 100 megabyte files? So he implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,120",
+				"to": "00:15:52,280"
+			},
+			"offsets": {
+				"from": 947120,
+				"to": 952280
+			},
+			"text": " the PR, submitted it, and actually also submitted benchmark results that yes, the number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,280",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 952280,
+				"to": 958000
+			},
+			"text": " files go down, the number of used file descriptors go down, the PR got two reviews, everybody"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:02,320"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 962320
+			},
+			"text": " approved it almost got merged in. And then we said, yeah, okay, do you know what, let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,320",
+				"to": "00:16:09,960"
+			},
+			"offsets": {
+				"from": 962320,
+				"to": 969960
+			},
+			"text": " benchmark this because it's touching scary stuff. And then you go, you start to look"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,960",
+				"to": "00:16:15,200"
+			},
+			"offsets": {
+				"from": 969960,
+				"to": 975200
+			},
+			"text": " at the middle benchmarks and you realize that the disk writes simply exploded. So it"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,200",
+				"to": "00:16:23,400"
+			},
+			"offsets": {
+				"from": 975200,
+				"to": 983400
+			},
+			"text": " blew up by two orders of magnitude. And again, it was a perfectly good PR, just it didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,400",
+				"to": "00:16:28,200"
+			},
+			"offsets": {
+				"from": 983400,
+				"to": 988200
+			},
+			"text": " take into consideration some weird internal thing of level DB. And these are the PRs that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,200",
+				"to": "00:16:32,840"
+			},
+			"offsets": {
+				"from": 988200,
+				"to": 992840
+			},
+			"text": " can really, really bite your performance where everything that you do is perfectly logical"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,840",
+				"to": "00:16:40,640"
+			},
+			"offsets": {
+				"from": 992840,
+				"to": 1000640
+			},
+			"text": " except the result. And of course, these are still a good case because this PR you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,640",
+				"to": "00:16:46,720"
+			},
+			"offsets": {
+				"from": 1000640,
+				"to": 1006720
+			},
+			"text": " at least close. And then you get the really nasty ones. And these are generally, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,720",
+				"to": "00:16:55,560"
+			},
+			"offsets": {
+				"from": 1006720,
+				"to": 1015560
+			},
+			"text": " is the case that we see every time. So the charts that you see here, that blue peak, that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,560",
+				"to": "00:16:59,560"
+			},
+			"offsets": {
+				"from": 1015560,
+				"to": 1019560
+			},
+			"text": " actually the Shanghai dust attacks. So I just closed it on when we are processing, doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,560",
+				"to": "00:17:04,280"
+			},
+			"offsets": {
+				"from": 1019560,
+				"to": 1024280
+			},
+			"text": " a full sync and processing the Shanghai denial of service attacks. And that's the memory usage."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,280",
+				"to": "00:17:08,800"
+			},
+			"offsets": {
+				"from": 1024280,
+				"to": 1028800
+			},
+			"text": " So previously, that's the one eight release family of Geth. Every time you reached a Shanghai"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,800",
+				"to": "00:17:13,720"
+			},
+			"offsets": {
+				"from": 1028800,
+				"to": 1033720
+			},
+			"text": " attacks, we had this huge peak, huge memory peak. Simply, we had various caches in, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,720",
+				"to": "00:17:18,160"
+			},
+			"offsets": {
+				"from": 1033720,
+				"to": 1038160
+			},
+			"text": " used a lot of memory. You essentially, your machine needed 13 gigs of RAM to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,160",
+				"to": "00:17:24,120"
+			},
+			"offsets": {
+				"from": 1038160,
+				"to": 1044120
+			},
+			"text": " process those blocks. And of course, that's a lot. So we decided to replace that 13 gigs"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,120",
+				"to": "00:17:29,040"
+			},
+			"offsets": {
+				"from": 1044120,
+				"to": 1049040
+			},
+			"text": " of, I mean, that caching algorithm with something completely different. And yeah, it was complete"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,040",
+				"to": "00:17:36,440"
+			},
+			"offsets": {
+				"from": 1049040,
+				"to": 1056440
+			},
+			"text": " success. It completely wiped out the peak. And also even the general memory usage of Geth"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,440",
+				"to": "00:17:43,680"
+			},
+			"offsets": {
+				"from": 1056440,
+				"to": 1063680
+			},
+			"text": " went down. Except the disk usage went up by 30%. And now you have this huge problem and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,680",
+				"to": "00:17:52,560"
+			},
+			"offsets": {
+				"from": 1063680,
+				"to": 1072560
+			},
+			"text": " question, what do you do? I mean, 30% extra disk is horrible. 10 extra gigabytes of memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,560",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1072560,
+				"to": 1078000
+			},
+			"text": " usage is equally horrible. And then you need to make trade offs. You need to make really"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:03,200"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1083200
+			},
+			"text": " hard decisions at which is better. And then in the end, we went with the extra memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,200",
+				"to": "00:18:08,120"
+			},
+			"offsets": {
+				"from": 1083200,
+				"to": 1088120
+			},
+			"text": " usage is better simply because if you use a lot of, if you want to use more memory than"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,120",
+				"to": "00:18:12,720"
+			},
+			"offsets": {
+				"from": 1088120,
+				"to": 1092720
+			},
+			"text": " available, you crash. I mean, it's a hard failure. Whereas if you use more disk than"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,720",
+				"to": "00:18:18,120"
+			},
+			"offsets": {
+				"from": 1092720,
+				"to": 1098120
+			},
+			"text": " you would like, then things get slower, but they still function. So in the end, this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,120",
+				"to": "00:18:25,280"
+			},
+			"offsets": {
+				"from": 1098120,
+				"to": 1105280
+			},
+			"text": " why the actually the 1.90 release uses more disk than the 1.8, whatever the last one."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,280",
+				"to": "00:18:29,560"
+			},
+			"offsets": {
+				"from": 1105280,
+				"to": 1109560
+			},
+			"text": " But all in all, we think it was worth it. However, since Gary fixed it, now we're much"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,560",
+				"to": "00:18:38,400"
+			},
+			"offsets": {
+				"from": 1109560,
+				"to": 1118400
+			},
+			"text": " better. So this thing was fixed already. Cool. Now, that is kind of how the Geth team"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,400",
+				"to": "00:18:45,720"
+			},
+			"offsets": {
+				"from": 1118400,
+				"to": 1125720
+			},
+			"text": " pushes out these, how we monitor stuff, benchmark PR and push them out. Now, if you would like"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,720",
+				"to": "00:18:50,320"
+			},
+			"offsets": {
+				"from": 1125720,
+				"to": 1130320
+			},
+			"text": " to repeat a similar thing in your infrastructure, you kind of need to decide how you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,320",
+				"to": "00:18:54,920"
+			},
+			"offsets": {
+				"from": 1130320,
+				"to": 1134920
+			},
+			"text": " monitor things. You either pay for monitoring as a service via Datadog. We did that for"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,920",
+				"to": "00:19:00,240"
+			},
+			"offsets": {
+				"from": 1134920,
+				"to": 1140240
+			},
+			"text": " two years, but Datadog essentially had limitations. It didn't allow us to push all the metrics"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,240",
+				"to": "00:19:05,280"
+			},
+			"offsets": {
+				"from": 1140240,
+				"to": 1145280
+			},
+			"text": " that we had in. So in the end, we switched to our own node. We just ran Grafana. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,280",
+				"to": "00:19:09,960"
+			},
+			"offsets": {
+				"from": 1145280,
+				"to": 1149960
+			},
+			"text": " if you actually decide to run your own on-premise instances, then you need to decide also on"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,960",
+				"to": "00:19:15,160"
+			},
+			"offsets": {
+				"from": 1149960,
+				"to": 1155160
+			},
+			"text": " a database to push your data in. Either you go with Prometheus or InfluxDB. These are"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,160",
+				"to": "00:19:20,760"
+			},
+			"offsets": {
+				"from": 1155160,
+				"to": 1160760
+			},
+			"text": " kind of whatever you prefer. The reason I explicitly mentioned them is that monitoring infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,760",
+				"to": "00:19:25,240"
+			},
+			"offsets": {
+				"from": 1160760,
+				"to": 1165240
+			},
+			"text": " boils down to these four things. So you don't care about anything else in the world. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,240",
+				"to": "00:19:30,280"
+			},
+			"offsets": {
+				"from": 1165240,
+				"to": 1170280
+			},
+			"text": " from our part, Geth can actually push data either. It can -- we can export data into"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,280",
+				"to": "00:19:35,040"
+			},
+			"offsets": {
+				"from": 1170280,
+				"to": 1175040
+			},
+			"text": " Datadog format. We can push data into Grafana and Prometheus too. So whatever rocks your"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,040",
+				"to": "00:19:42,320"
+			},
+			"offsets": {
+				"from": 1175040,
+				"to": 1182320
+			},
+			"text": " boat, we can do it. And just for the sake of completeness, I also linked in our own dashboards."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,320",
+				"to": "00:19:47,560"
+			},
+			"offsets": {
+				"from": 1182320,
+				"to": 1187560
+			},
+			"text": " So we exported them. We used Grafana and InfluxDB, but you are welcome to use them, integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,560",
+				"to": "00:19:52,040"
+			},
+			"offsets": {
+				"from": 1187560,
+				"to": 1192040
+			},
+			"text": " them, do whatever you want with them. So all our configurations are published there. They"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,040",
+				"to": "00:19:57,880"
+			},
+			"offsets": {
+				"from": 1192040,
+				"to": 1197880
+			},
+			"text": " will probably also land in repo eventually. Cool. Now, what are kind of the lessons that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,880",
+				"to": "00:20:03,920"
+			},
+			"offsets": {
+				"from": 1197880,
+				"to": 1203920
+			},
+			"text": " we learned while creating these charts? They were that you must measure as low as you can,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,920",
+				"to": "00:20:07,920"
+			},
+			"offsets": {
+				"from": 1203920,
+				"to": 1207920
+			},
+			"text": " meaning that every abstraction is transforms your data. Everybody tries to be smart. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,920",
+				"to": "00:20:12,720"
+			},
+			"offsets": {
+				"from": 1207920,
+				"to": 1212720
+			},
+			"text": " those usually ruin your metrics. Now, you always must measure your worst case numbers. I get"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,720",
+				"to": "00:20:17,520"
+			},
+			"offsets": {
+				"from": 1212720,
+				"to": 1217520
+			},
+			"text": " it that the operating system is really smart and makes things more optimal for you. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,520",
+				"to": "00:20:21,760"
+			},
+			"offsets": {
+				"from": 1217520,
+				"to": 1221760
+			},
+			"text": " if you assume that you run out of memory, then your worst case numbers will be the ones"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,760",
+				"to": "00:20:27,240"
+			},
+			"offsets": {
+				"from": 1221760,
+				"to": 1227240
+			},
+			"text": " actually hitting you. So always be aware of what's the worst that can happen. And measure"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,240",
+				"to": "00:20:32,560"
+			},
+			"offsets": {
+				"from": 1227240,
+				"to": 1232560
+			},
+			"text": " everything that you can afford. As I shown you previously, you can gain a lot of information"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,560",
+				"to": "00:20:38,280"
+			},
+			"offsets": {
+				"from": 1232560,
+				"to": 1238280
+			},
+			"text": " with if you have a lot of tiny detailed metrics. But eventually it will become too expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,280",
+				"to": "00:20:42,760"
+			},
+			"offsets": {
+				"from": 1238280,
+				"to": 1242760
+			},
+			"text": " For example, Martin did a really awesome measurements where he actually measured the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,760",
+				"to": "00:20:47,280"
+			},
+			"offsets": {
+				"from": 1242760,
+				"to": 1247280
+			},
+			"text": " cost of each individual opcode. It's really insightful, but obviously you cannot run it"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,280",
+				"to": "00:20:51,640"
+			},
+			"offsets": {
+				"from": 1247280,
+				"to": 1251640
+			},
+			"text": " in live production environment. Still, if you have the numbers, you can debug an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,640",
+				"to": "00:20:56,400"
+			},
+			"offsets": {
+				"from": 1251640,
+				"to": 1256400
+			},
+			"text": " If you don't have the numbers, you will gather the numbers the next time you reproduce that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,400",
+				"to": "00:21:01,720"
+			},
+			"offsets": {
+				"from": 1256400,
+				"to": 1261720
+			},
+			"text": " issue. So there's no way to fix it without numbers. Yeah. And that's about it. Thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,720",
+				"to": "00:21:02,080"
+			},
+			"offsets": {
+				"from": 1261720,
+				"to": 1262080
+			},
+			"text": " very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,080",
+				"to": "00:21:07,080"
+			},
+			"offsets": {
+				"from": 1262080,
+				"to": 1267080
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,080",
+				"to": "00:21:17,080"
+			},
+			"offsets": {
+				"from": 1267080,
+				"to": 1277080
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,080",
+				"to": "00:21:27,080"
+			},
+			"offsets": {
+				"from": 1277080,
+				"to": 1287080
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,080",
+				"to": "00:21:37,080"
+			},
+			"offsets": {
+				"from": 1287080,
+				"to": 1297080
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,080",
+				"to": "00:21:41,080"
+			},
+			"offsets": {
+				"from": 1297080,
+				"to": 1301080
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

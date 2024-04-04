@@ -1,0 +1,2265 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20000
+			},
+			"text": " So, I'm Greg Colvin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 24000
+			},
+			"text": " I work mainly on the C++ EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 26000
+			},
+			"text": " Louder."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 29000
+			},
+			"text": " I work mainly on the C++ VBM."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 33000
+			},
+			"text": " This is my friend Martin, if you want to introduce yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 35000
+			},
+			"text": " Hi, I'm Martin Busy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 43000
+			},
+			"text": " I'm working on prototyping Ewasm, and I also work on Ethereum JS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 45000
+			},
+			"text": " And..."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 54000
+			},
+			"text": " Hi, I'm Pavo, and I'm working on a small sub-project called EVM GIT."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 65000
+			},
+			"text": " It's a kind of just-in-time compiler that translates EVM bytecode into machine code using LLVM project."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 67000
+			},
+			"text": " Hey, I'm Christian Wright-Easner."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 78000
+			},
+			"text": " I'm the team leader of the C++ implementation, and I'm also working on Solidity, which is basically the main user of the Ethereum virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 79000
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 87000
+			},
+			"text": " My name is Alex Brex-Sassie, and I work with Martin on Ewasm, as well as with Christian on Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 94000
+			},
+			"text": " And I'm really interested to improve both EVM 1 and the replacement of it called Ewasm."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 106000
+			},
+			"text": " So, what I wanted to do this morning is everybody got working so fast approaching the conference, getting things done to talk about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 110000
+			},
+			"text": " that I could no longer keep track of anything but my own work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 122000
+			},
+			"text": " So, I would sort of like to just hear from people what they've been doing the last few months, and what direction they intend for that to be heading in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 125000
+			},
+			"text": " Shall we start with Martin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 136000
+			},
+			"text": " Yeah, sure. So, the last couple months, I've been working on something called EVM 2Wasm, which takes EVM code in transcompiles to WebAssembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 143000
+			},
+			"text": " And we are now passing all the virtual machine tests and the official test repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 146000
+			},
+			"text": " And we also have online demo if you want to check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 147000
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 150000
+			},
+			"text": " What is a transpiler?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154000
+			},
+			"text": " Oh, okay, it's good to put. So, we have two types of bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 164000
+			},
+			"text": " We start out with Ethereum virtual machine bytecode, and we want to transform it to a new type of bytecode, WebAssembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 177000
+			},
+			"text": " So, the transcompiler you can think in math terms as a function that maps this one input, EVM, to a new output WebAssembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 180000
+			},
+			"text": " And why WebAssembly?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 182000
+			},
+			"text": " The interesting problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 194000
+			},
+			"text": " Okay, so WebAssembly is a new binary format that's designed and be targeted for the web browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 203000
+			},
+			"text": " And the interesting properties that it has, and whatever interested in it, is very fast and efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 213000
+			},
+			"text": " It's portable, it's size efficiency, so easy to press, easy to load."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 223000
+			},
+			"text": " And it also has, most importantly, built-in, it's designed to run the web, so designed to run in untrusted environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 228000
+			},
+			"text": " And that maps closely to what we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 233000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 234000
+			},
+			"text": " Who the X?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 238000
+			},
+			"text": " I can be next."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 247000
+			},
+			"text": " So, the EVM JIT, Ethereum virtual machine implementation, I'm carrying off."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 255000
+			},
+			"text": " It's fully compliant with the EVM from the launch of the Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 267000
+			},
+			"text": " But the problem I was trying to solve for about a couple of months is how to bring this implementation to other clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 283000
+			},
+			"text": " So, what I was working on is a new C-language interface for Ethereum virtual machine in general, what we call EVM C."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 303000
+			},
+			"text": " And it's like quite simple C interface, then you can pack your VM implementation with and bring it to other projects that might be interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 310000
+			},
+			"text": " So, just before the conference, I was able to plug EVM JIT to Python client."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 316000
+			},
+			"text": " It's still syncing, the blockchain, but I hope it can finish during this conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 330000
+			},
+			"text": " And, yeah, so I'm not focusing on optimizing the execution time, but mostly to bringing my project to other projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 341000
+			},
+			"text": " So, we now have a plug and play interface for both the C++ execution engine and the Python execution engine."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 343000
+			},
+			"text": " Yeah, that's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 355000
+			},
+			"text": " So, the C++ client and Python client are able to use the same interface for EVM JIT to be operational on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 359000
+			},
+			"text": " So, it's still experimental, but very promising."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 363000
+			},
+			"text": " That's really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 370000
+			},
+			"text": " So, basically, the idea is to have a common interface between the client and the virtual machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 373000
+			},
+			"text": " and in the end, be able to swap different virtual machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 380000
+			},
+			"text": " And we're also planning to refactor the C++ interpreter to use exactly the same interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 385000
+			},
+			"text": " So, you could seamlessly swap between just the time compiler and the interpreter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 393000
+			},
+			"text": " and you can use the interpreter with all client implementations that support that interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 394000
+			},
+			"text": " Very nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 395000
+			},
+			"text": " Very nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 399000
+			},
+			"text": " Like this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 403000
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 406000
+			},
+			"text": " Whoo!"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 409000
+			},
+			"text": " Rock and roll!"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 411000
+			},
+			"text": " That will be at the party later."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 416000
+			},
+			"text": " I have to go buy a guitar if anybody knows a good place."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 418000
+			},
+			"text": " [LAUGHTER]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 421000
+			},
+			"text": " What else here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 422000
+			},
+			"text": " Alec."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 423000
+			},
+			"text": " Is it me?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 425000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 429000
+			},
+			"text": " Yeah, you will learn about Ewasm later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 436000
+			},
+			"text": " It will be the first presentation today after lunch, and I invite everyone to listen to it because it will be very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 445000
+			},
+			"text": " But I can tell you up front a few details which connects to this panel that mostly we have been working on two different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 449000
+			},
+			"text": " First of all, as Martin has mentioned, Wasm is a different bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 457000
+			},
+			"text": " So, we need multiple languages to compile code to this bytecode because you don't want to write bytecode by hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 462000
+			},
+			"text": " And secondly, you want to run this bytecode on something."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 472000
+			},
+			"text": " On the language side, we have been working on getting C and Solidity ready, and we have written a lot of contracts in these languages already for Wasm."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 490000
+			},
+			"text": " And on the VM side, actually, we are really grateful to Pavel and his work on EVMC because we have implemented the VM on EVMC, and that means Ewasm can be used with C++ Ethereum without any major changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 492000
+			},
+			"text": " Thank you, Pavel."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 497000
+			},
+			"text": " Why would you want to write contracts in C?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 506000
+			},
+			"text": " You don't really want to write contracts as an end user in C, but there are certain contracts which probably make sense to be written in C."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 512000
+			},
+			"text": " And I don't really want to go into a lot of detail. You will see a bit more in the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 522000
+			},
+			"text": " But just think about the precompise we already have. The four precompise, like SHA-256, RIPEMD160, and EEC Recovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 529000
+			},
+			"text": " You want those to be written in a highly efficient way, and those should be included by all the VMs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 533000
+			},
+			"text": " And you don't really want to have them as a precompile anymore in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 540000
+			},
+			"text": " So those are written in C right now, and they are a limited set of code which you can much easily verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:07,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 547000
+			},
+			"text": " I wouldn't advise anyone to write a really complex contract in C, unless they know what they are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 547000,
+				"to": 551000
+			},
+			"text": " Solidity is hard enough, it turns out."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 559000
+			},
+			"text": " Yeah, I mean, the thing is also that a lot of code already exists in C, especially cryptographic libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 565000
+			},
+			"text": " They are already in C, they have been tested, they are working, and if you can just take them without modification, that's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 572000
+			},
+			"text": " The invots of crypto code is written in C and well, long since well tested."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 578000
+			},
+			"text": " That's the assumption that they have well tested."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 581000
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 584000
+			},
+			"text": " It's not always a good assumption."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 597000
+			},
+			"text": " When people complain about solidity being too hard, though, I point out that most of the world's most reliable software has been engineered in C."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 601000
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 613000
+			},
+			"text": " Most of your paychecks probably come out of an oracle system which was written in C, so that in the end it comes down to engineering discipline more than anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 633000
+			},
+			"text": " I really think the EVMC interface is really a powerful idea that's going to help us quite a lot in pulling together the different work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 640000
+			},
+			"text": " providing the diversity we've talked about without bulk."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 642000
+			},
+			"text": " Speak up, Greg."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 657000
+			},
+			"text": " How Balkanizing the work, we can have a diverse number of implementations of Ethereum without them being in separate silos that can't run together, that can't talk to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 671000
+			},
+			"text": " I think you can even do more about that, like having multiple implementations of VM itself, you can build quite complex strategies of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 684000
+			},
+			"text": " You can decide upfront which implementation you want to use for this particular code or just select randomly to avoid any crashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 687000
+			},
+			"text": " How's that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 696000
+			},
+			"text": " You can implement some kind of VM that actually composes other VM behind it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 707000
+			},
+			"text": " So, is it going to be part of the EVMC interface or the higher level that you do things like start out with an interpreter?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 721000
+			},
+			"text": " You can use the same interface for higher level, like you can write a VM that composes other VMs but still exports the same interface EVMC."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 740000
+			},
+			"text": " No, I mean, typically you start out running an interpreter, you notice the hotspots, you hand those up to a JIT for faster execution, you may do the compilation on a separate thread because it could take a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 744000
+			},
+			"text": " Is that part of the interface or will that be a level up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 749000
+			},
+			"text": " It's all possible with this EVMC interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 753000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 765000
+			},
+			"text": " So, basically the interface only defines the entry points and the way the VMs can ask for data from the blockchain and that's very generic and it only gives you the bare minimum you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 777000
+			},
+			"text": " Because of that you can compose multiple levels if you wanted."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 780000
+			},
+			"text": " If we wanted to, we could abstract that but we haven't yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 783000
+			},
+			"text": " No, it works on the same level."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 792000
+			},
+			"text": " Because basically you just get in the contract to execute and then you can initially run it as an interpreter if you wanted and you can change it over."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 795000
+			},
+			"text": " Right, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 798000
+			},
+			"text": " So what's the timing on this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 802000
+			},
+			"text": " I'm always asking and it's always fuzzy and changing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 820000
+			},
+			"text": " Yeah, so for web assembly specifically it depends on the WC through working group but as it stands now it's implemented in all the major browsers and it's on the 12th revision."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 822000
+			},
+			"text": " So I think it's getting pretty close."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 828000
+			},
+			"text": " I would expect it in 2017 to finalize the spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 834000
+			},
+			"text": " After that then we can move on to finalizing our EAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 840000
+			},
+			"text": " As we stand with a prototype we have most of the major components implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 844000
+			},
+			"text": " Next big thing we're going to be pushing out is the test network."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 857000
+			},
+			"text": " It's getting brought to us by facilitated by EVMC since we can just drop the WASM, the WASM JIT or interpreter into all the other clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 859000
+			},
+			"text": " Yeah, so that's pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 861000
+			},
+			"text": " That's great fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 864000
+			},
+			"text": " Now if we used to up our 20 minute shit."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 867000
+			},
+			"text": " You have six minutes left."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 868000
+			},
+			"text": " We have six whole minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 875000
+			},
+			"text": " I have a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 882000
+			},
+			"text": " I cannot see anything but the most blinding white lights I've ever seen in my life."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 886000
+			},
+			"text": " Did you want to see anything about security Christian?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 894000
+			},
+			"text": " So the original EVM was designed from the ground up to have fixed bounds on resource consumption and these bounds should coincide with the gas usage."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 899000
+			},
+			"text": " What do we know about existing EVM implementations in that regard?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 909000
+			},
+			"text": " Okay, so regarding security in the virtual machine I think the number one biggest security issue though is the trusted computing base."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 914000
+			},
+			"text": " And that's continually expanding with every pre-compiled that we add."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 926000
+			},
+			"text": " So the point of WebAssembly from a security perspective and it is from a security perspective is to minimize the overall trust in computing base."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 932000
+			},
+			"text": " Now security from the metering perspective is done by EVM to WASM."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 945000
+			},
+			"text": " Sorry, it's done by metering injection."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 955000
+			},
+			"text": " So it's easy to do static analysis on the flow control and inject metering statements at the beginning of each possible branch condition that will meter it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 958000
+			},
+			"text": " The same applies to memory usage."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 977000
+			},
+			"text": " So it provides the gas model and the memory model as far as metering is going to work the same way with added benefit that it's decoupled from the EVM by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 982000
+			},
+			"text": " So it's not, we have a nice separation of concerns there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 988000
+			},
+			"text": " And I think that also provides extra security because we can think about these two components separately now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 993000
+			},
+			"text": " We can think about, okay, here is our metering injection algorithm, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 994000
+			},
+			"text": " We can examine that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 1003000
+			},
+			"text": " And then we can have a separate team or separate module altogether examining and looking at our trusted computing base which would be the WASM VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1005000
+			},
+			"text": " So two-fold there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1013000
+			},
+			"text": " Minimizing the trusted computing base that I think is the biggest lowest hanging fruit most paying for the buck, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1016000
+			},
+			"text": " As far as increasing security in our network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1033000
+			},
+			"text": " Do we know whether the, I mean, so for example memory will probably be paid with regard to the memory of the virtual memory of the virtual machine and not with regards to the memory of the actual physical implementation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1043000
+			},
+			"text": " I mean, it's easy for memory because it probably won't scale quadratically, but there could be some other edge cases that, yeah, could hurt us at some point."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1047000
+			},
+			"text": " So, yeah, the memory is very explicitly allocated with WebAssembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1055000
+			},
+			"text": " You use expand memory and there's initial memory allocation so the program declares up front in the binary format."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:37,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1057000
+			},
+			"text": " Okay, we're starting with this amount of memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1057000,
+				"to": 1059000
+			},
+			"text": " Here's what we're going to have in memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1068000
+			},
+			"text": " So it's actually kind of like an L format if you're familiar with how, you know, L format initializes programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1074000
+			},
+			"text": " And then whenever you need more memory, there is an opcode, expand memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1082000
+			},
+			"text": " So it's very clear where all the memory expansions can happen and that's where we inject our metering."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1089000
+			},
+			"text": " Just like an S break up code, like the S break and old Unix."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1091000
+			},
+			"text": " Oh, I'm not familiar with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1093000
+			},
+			"text": " Yeah, you have to tell me about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1094000
+			},
+			"text": " It is similar to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1095000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1096000
+			},
+			"text": " SBRK."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1097000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1098000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1102000
+			},
+			"text": " Just a quick note on the metering part."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1106000
+			},
+			"text": " So it's entirely coupled from the execution time."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1112000
+			},
+			"text": " We have the input bytecode, which doesn't have metering because we don't trust the input compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1118000
+			},
+			"text": " So anyone who compiles the wasn't, we don't really want to trust them to include metering in the correct way."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1126000
+			},
+			"text": " So when it gets to the execution time, we will inject these metering statements into the right places in the bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1131000
+			},
+			"text": " And during runtime, there's no need to do anything special."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:18:55,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1135000
+			},
+			"text": " All those metering statements are just calls to a specific function."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,000",
+				"to": "00:19:00,000"
+			},
+			"offsets": {
+				"from": 1135000,
+				"to": 1140000
+			},
+			"text": " So this kind of works like how a JIT works."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1140000,
+				"to": 1143000
+			},
+			"text": " Like the LLVM JIT we have for EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1145000
+			},
+			"text": " But we do this upfront before execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:08,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1148000
+			},
+			"text": " So it should be much faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1148000,
+				"to": 1150000
+			},
+			"text": " And another interesting point, Greg."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1154000
+			},
+			"text": " So you were thinking about doing the metering in another thread, correct?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1157000
+			},
+			"text": " Yeah, I don't think that's going to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1161000
+			},
+			"text": " So it will work, but I don't think it's going to be any faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1162000
+			},
+			"text": " Oh, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1175000
+			},
+			"text": " That is, it would save time on the very most expensive instructions, which cost enough that it's not worth saving time."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1183000
+			},
+			"text": " And on long runs of just doing addition and multiplication and arithmetic, you're not going to save enough to bother."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1190000
+			},
+			"text": " Especially if you're going to push all of that to the end of a basic block."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1198000
+			},
+			"text": " But doing a call cost enough that's saving a bit of time doing the metering on the call."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1201000
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1205000
+			},
+			"text": " I was just going to say, we sort of can do that now."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1211000
+			},
+			"text": " It's a little bit hacky, but we sort of get the separation of concerns to free."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1219000
+			},
+			"text": " Because whenever we call out to the interface to do the metering, that's going to be possibly running on a separate thread."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:23,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1223000
+			},
+			"text": " But I don't know how much that's improving our performance either."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,000",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1223000,
+				"to": 1225000
+			},
+			"text": " How cheap are your threads?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:30,000"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1230000
+			},
+			"text": " Right now we're using the A2 prototype, so we get eight threads by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1230000,
+				"to": 1234000
+			},
+			"text": " And they're allocated when it starts up."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:37,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1237000
+			},
+			"text": " So they're fairly cheap, very cheap actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,000",
+				"to": "00:20:39,000"
+			},
+			"offsets": {
+				"from": 1237000,
+				"to": 1239000
+			},
+			"text": " Thanks guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,000",
+				"to": "00:20:40,000"
+			},
+			"offsets": {
+				"from": 1239000,
+				"to": 1240000
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1240000,
+				"to": 1243000
+			},
+			"text": " Thank you all. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:44,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1244000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1244000,
+				"to": 1250000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:20:52,240"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1252240
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

@@ -1,0 +1,1187 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,320"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6320
+			},
+			"text": " Hi, I'm Frankie from the R&D group of your friendly extension Metamask."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,320",
+				"to": "00:00:13,040"
+			},
+			"offsets": {
+				"from": 6320,
+				"to": 13040
+			},
+			"text": " Today, we're going to present to you our vision for a network of Ethereum-like clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,040",
+				"to": "00:00:16,640"
+			},
+			"offsets": {
+				"from": 13040,
+				"to": 16640
+			},
+			"text": " You may know some of us from other projects in the decentralized space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,640",
+				"to": "00:00:21,960"
+			},
+			"offsets": {
+				"from": 16640,
+				"to": 21960
+			},
+			"text": " We've been involved in Infura Metamask IPFS libp2p."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,960",
+				"to": "00:00:25,800"
+			},
+			"offsets": {
+				"from": 21960,
+				"to": 25800
+			},
+			"text": " So I'm sure some of you are wondering how long does it take to sync a full Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,800",
+				"to": "00:00:26,800"
+			},
+			"offsets": {
+				"from": 25800,
+				"to": 26800
+			},
+			"text": " node?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,800",
+				"to": "00:00:28,160"
+			},
+			"offsets": {
+				"from": 26800,
+				"to": 28160
+			},
+			"text": " Great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,160",
+				"to": "00:00:32,120"
+			},
+			"offsets": {
+				"from": 28160,
+				"to": 32120
+			},
+			"text": " In our experience, it takes anywhere from a couple hours to well over a week to sync"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,120",
+				"to": "00:00:33,920"
+			},
+			"offsets": {
+				"from": 32120,
+				"to": 33920
+			},
+			"text": " a full node from scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,920",
+				"to": "00:00:36,920"
+			},
+			"offsets": {
+				"from": 33920,
+				"to": 36920
+			},
+			"text": " Ethereum nodes are becoming more resource-intensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,920",
+				"to": "00:00:40,960"
+			},
+			"offsets": {
+				"from": 36920,
+				"to": 40960
+			},
+			"text": " A full node uses gigabytes of storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,960",
+				"to": "00:00:45,640"
+			},
+			"offsets": {
+				"from": 40960,
+				"to": 45640
+			},
+			"text": " It uses significant amounts of I/O's so much so that it requires an SSD at the very"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,640",
+				"to": "00:00:46,640"
+			},
+			"offsets": {
+				"from": 45640,
+				"to": 46640
+			},
+			"text": " least."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,640",
+				"to": "00:00:50,960"
+			},
+			"offsets": {
+				"from": 46640,
+				"to": 50960
+			},
+			"text": " Also, synchronizing state takes a long time to do network issues and having to process"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,960",
+				"to": "00:00:53,600"
+			},
+			"offsets": {
+				"from": 50960,
+				"to": 53600
+			},
+			"text": " every block to reconstruct the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,600",
+				"to": "00:00:59,360"
+			},
+			"offsets": {
+				"from": 53600,
+				"to": 59360
+			},
+			"text": " This and other issues is forcing users to rely on centralized infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,360",
+				"to": "00:01:01,960"
+			},
+			"offsets": {
+				"from": 59360,
+				"to": 61960
+			},
+			"text": " What about like clients, you must be asking."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,960",
+				"to": "00:01:05,840"
+			},
+			"offsets": {
+				"from": 61960,
+				"to": 65840
+			},
+			"text": " Current like client implementations provide solutions to some of these challenges, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,840",
+				"to": "00:01:09,480"
+			},
+			"offsets": {
+				"from": 65840,
+				"to": 69480
+			},
+			"text": " it also introduces its own limitations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,480",
+				"to": "00:01:14,480"
+			},
+			"offsets": {
+				"from": 69480,
+				"to": 74480
+			},
+			"text": " Relying on good nodes for most of its data, like clients are leeches and appear to peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,480",
+				"to": "00:01:15,640"
+			},
+			"offsets": {
+				"from": 74480,
+				"to": 75640
+			},
+			"text": " network sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,640",
+				"to": "00:01:18,840"
+			},
+			"offsets": {
+				"from": 75640,
+				"to": 78840
+			},
+			"text": " They don't seed any data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,840",
+				"to": "00:01:22,360"
+			},
+			"offsets": {
+				"from": 78840,
+				"to": 82360
+			},
+			"text": " They require syncing state before becoming usable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,360",
+				"to": "00:01:27,440"
+			},
+			"offsets": {
+				"from": 82360,
+				"to": 87440
+			},
+			"text": " This isn't as resource-intensive as syncing a full node, but it's still an important limitation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,440",
+				"to": "00:01:32,680"
+			},
+			"offsets": {
+				"from": 87440,
+				"to": 92680
+			},
+			"text": " that regular users aren't necessarily willing to bear."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,680",
+				"to": "00:01:38,520"
+			},
+			"offsets": {
+				"from": 92680,
+				"to": 98520
+			},
+			"text": " Imagine a user having to wait minutes before using her favorite depth in a time where webpage"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,520",
+				"to": "00:01:40,800"
+			},
+			"offsets": {
+				"from": 98520,
+				"to": 100800
+			},
+			"text": " loads are measured in milliseconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,800",
+				"to": "00:01:43,480"
+			},
+			"offsets": {
+				"from": 100800,
+				"to": 103480
+			},
+			"text": " This is not acceptable UX."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,480",
+				"to": "00:01:51,080"
+			},
+			"offsets": {
+				"from": 103480,
+				"to": 111080
+			},
+			"text": " On top of that, devp2p relies on UDP and TCP for data transfer and node discovery, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,080",
+				"to": "00:01:55,880"
+			},
+			"offsets": {
+				"from": 111080,
+				"to": 115880
+			},
+			"text": " works inherently incompatible with the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,880",
+				"to": "00:01:58,320"
+			},
+			"offsets": {
+				"from": 115880,
+				"to": 118320
+			},
+			"text": " Metamask is an important part of the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,320",
+				"to": "00:02:04,360"
+			},
+			"offsets": {
+				"from": 118320,
+				"to": 124360
+			},
+			"text": " It's responsible for helping drive the adoption of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,360",
+				"to": "00:02:09,400"
+			},
+			"offsets": {
+				"from": 124360,
+				"to": 129400
+			},
+			"text": " Users rely on Metamask to interact with the Ethereum blockchain, from daps to tokens, to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,400",
+				"to": "00:02:12,360"
+			},
+			"offsets": {
+				"from": 129400,
+				"to": 132360
+			},
+			"text": " transferring ether directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,360",
+				"to": "00:02:19,040"
+			},
+			"offsets": {
+				"from": 132360,
+				"to": 139040
+			},
+			"text": " Metamask, as well as other similar tools, rely heavily on centralized infrastructure, such"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,040",
+				"to": "00:02:22,560"
+			},
+			"offsets": {
+				"from": 139040,
+				"to": 142560
+			},
+			"text": " as things like inferior and other services."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,560",
+				"to": "00:02:29,240"
+			},
+			"offsets": {
+				"from": 142560,
+				"to": 149240
+			},
+			"text": " This was instrumental for bootstrapping the Ethereum ecosystem, but this breaks the premise"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,240",
+				"to": "00:02:32,360"
+			},
+			"offsets": {
+				"from": 149240,
+				"to": 152360
+			},
+			"text": " of decentralization and now we need to do better."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,360",
+				"to": "00:02:36,520"
+			},
+			"offsets": {
+				"from": 152360,
+				"to": 156520
+			},
+			"text": " The problem is building decentralized clients as the same performance characteristics that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,520",
+				"to": "00:02:40,520"
+			},
+			"offsets": {
+				"from": 156520,
+				"to": 160520
+			},
+			"text": " centralized infrastructure offers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,520",
+				"to": "00:02:44,320"
+			},
+			"offsets": {
+				"from": 160520,
+				"to": 164320
+			},
+			"text": " So what are our like-client requirements?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,320",
+				"to": "00:02:48,920"
+			},
+			"offsets": {
+				"from": 164320,
+				"to": 168920
+			},
+			"text": " We need a like-client that is fast, ready to use in seconds, seeds its data to other"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,920",
+				"to": "00:02:56,520"
+			},
+			"offsets": {
+				"from": 168920,
+				"to": 176520
+			},
+			"text": " peers so that it's not also relying on centralized infrastructure and has native browsers support,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,520",
+				"to": "00:03:01,240"
+			},
+			"offsets": {
+				"from": 176520,
+				"to": 181240
+			},
+			"text": " of course, because we're Metamask."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,240",
+				"to": "00:03:11,640"
+			},
+			"offsets": {
+				"from": 181240,
+				"to": 191640
+			},
+			"text": " So now I'd like to bring on Dima to talk about our solution, Mustacala."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,640",
+				"to": "00:03:13,640"
+			},
+			"offsets": {
+				"from": 191640,
+				"to": 193640
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,640",
+				"to": "00:03:22,200"
+			},
+			"offsets": {
+				"from": 193640,
+				"to": 202200
+			},
+			"text": " Mustacala is a light client for the browser and more."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,200",
+				"to": "00:03:28,880"
+			},
+			"offsets": {
+				"from": 202200,
+				"to": 208880
+			},
+			"text": " It's a way of partitioning the mercury into convenient units we call slices."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,880",
+				"to": "00:03:35,600"
+			},
+			"offsets": {
+				"from": 208880,
+				"to": 215600
+			},
+			"text": " It's a network of browser-based peer-to-peer nodes that help find and distribute slices."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,600",
+				"to": "00:03:40,040"
+			},
+			"offsets": {
+				"from": 215600,
+				"to": 220040
+			},
+			"text": " And it's a network of full nodes that provide the slices to the light-client peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,040",
+				"to": "00:03:46,800"
+			},
+			"offsets": {
+				"from": 220040,
+				"to": 226800
+			},
+			"text": " Right now, these are dedicated nodes, but in the future we're hoping to get this functionality"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,800",
+				"to": "00:03:48,840"
+			},
+			"offsets": {
+				"from": 226800,
+				"to": 228840
+			},
+			"text": " to become part of the full clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,840",
+				"to": "00:03:53,480"
+			},
+			"offsets": {
+				"from": 228840,
+				"to": 233480
+			},
+			"text": " Stay tuned for an EIP."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,480",
+				"to": "00:03:56,800"
+			},
+			"offsets": {
+				"from": 233480,
+				"to": 236800
+			},
+			"text": " So slices, what are they?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,800",
+				"to": "00:03:59,600"
+			},
+			"offsets": {
+				"from": 236800,
+				"to": 239600
+			},
+			"text": " They're convenient portions of the tier of mercury."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,600",
+				"to": "00:04:04,840"
+			},
+			"offsets": {
+				"from": 239600,
+				"to": 244840
+			},
+			"text": " They're composed of the stem, which are the nodes traversed to reach the beginning of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,840",
+				"to": "00:04:05,840"
+			},
+			"offsets": {
+				"from": 244840,
+				"to": 245840
+			},
+			"text": " slice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,840",
+				"to": "00:04:08,040"
+			},
+			"offsets": {
+				"from": 245840,
+				"to": 248040
+			},
+			"text": " We call it the head."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,040",
+				"to": "00:04:14,960"
+			},
+			"offsets": {
+				"from": 248040,
+				"to": 254960
+			},
+			"text": " The miracle tree nodes, leaf nodes, which contain accounts and a branch nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,960",
+				"to": "00:04:26,040"
+			},
+			"offsets": {
+				"from": 254960,
+				"to": 266040
+			},
+			"text": " And for convenience, we also pack the EVM code and storage root for each smart counter account."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,040",
+				"to": "00:04:29,320"
+			},
+			"offsets": {
+				"from": 266040,
+				"to": 269320
+			},
+			"text": " How do we identify a slice?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,320",
+				"to": "00:04:34,480"
+			},
+			"offsets": {
+				"from": 269320,
+				"to": 274480
+			},
+			"text": " We use the path, which is an offset into the tree, the first four nibbles of an address"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,480",
+				"to": "00:04:36,920"
+			},
+			"offsets": {
+				"from": 274480,
+				"to": 276920
+			},
+			"text": " or storage key."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,920",
+				"to": "00:04:43,480"
+			},
+			"offsets": {
+				"from": 276920,
+				"to": 283480
+			},
+			"text": " The depth of the slice, which tells us how many levels we descend from the head."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,480",
+				"to": "00:04:52,560"
+			},
+			"offsets": {
+				"from": 283480,
+				"to": 292560
+			},
+			"text": " The state or storage roots tell us which block the slice belongs to."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,560",
+				"to": "00:04:55,320"
+			},
+			"offsets": {
+				"from": 292560,
+				"to": 295320
+			},
+			"text": " Now what's the Kids-In-Ed network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,320",
+				"to": "00:05:01,160"
+			},
+			"offsets": {
+				"from": 295320,
+				"to": 301160
+			},
+			"text": " Kids-In-Ed is a network of peer-to-peer nodes that collaborate in distributing slices."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,160",
+				"to": "00:05:07,440"
+			},
+			"offsets": {
+				"from": 301160,
+				"to": 307440
+			},
+			"text": " We're using LibP2P, a modular peer-to-peer network stack with native browser support."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,440",
+				"to": "00:05:12,880"
+			},
+			"offsets": {
+				"from": 307440,
+				"to": 312880
+			},
+			"text": " It allows using a variety of mechanisms, from hybrid to full distributed, to create a peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,880",
+				"to": "00:05:15,480"
+			},
+			"offsets": {
+				"from": 312880,
+				"to": 315480
+			},
+			"text": " browser-based network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,480",
+				"to": "00:05:20,720"
+			},
+			"offsets": {
+				"from": 315480,
+				"to": 320720
+			},
+			"text": " And not only that, it also enables the diversity of devices to connect to this network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,720",
+				"to": "00:05:26,360"
+			},
+			"offsets": {
+				"from": 320720,
+				"to": 326360
+			},
+			"text": " From high-performance servers to low-resource devices, think IoT."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,360",
+				"to": "00:05:32,760"
+			},
+			"offsets": {
+				"from": 326360,
+				"to": 332760
+			},
+			"text": " We're also using Pub/Sub for new real-time data propagation in the Kids-In-Ed network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,760",
+				"to": "00:05:37,120"
+			},
+			"offsets": {
+				"from": 332760,
+				"to": 337120
+			},
+			"text": " We've been using LibP2P Flots-Up for internal prototyping."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,120",
+				"to": "00:05:45,480"
+			},
+			"offsets": {
+				"from": 337120,
+				"to": 345480
+			},
+			"text": " We're exploring more efficient alternatives, such as Epis-Up, Gossip-Sub, both from LibP2P"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,480",
+				"to": "00:05:54,080"
+			},
+			"offsets": {
+				"from": 345480,
+				"to": 354080
+			},
+			"text": " as well, Epidemic, Rochesterys, and others."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,080",
+				"to": "00:05:59,560"
+			},
+			"offsets": {
+				"from": 354080,
+				"to": 359560
+			},
+			"text": " So how does data propagation work in the Kids-In-Ed network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,560",
+				"to": "00:06:06,040"
+			},
+			"offsets": {
+				"from": 359560,
+				"to": 366040
+			},
+			"text": " Each peer-in-the-network tracks a subset of slices and also seats them to other peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,040",
+				"to": "00:06:13,360"
+			},
+			"offsets": {
+				"from": 366040,
+				"to": 373360
+			},
+			"text": " This is crucial to enable data availability across like nodes, and this also reduces reliance"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,360",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 373360,
+				"to": 378000
+			},
+			"text": " on full Ethereum nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:24,480"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 384480
+			},
+			"text": " We use a combination of parameters to determine which slides the peers track in."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,480",
+				"to": "00:06:30,880"
+			},
+			"offsets": {
+				"from": 384480,
+				"to": 390880
+			},
+			"text": " The user's account, dabs and tokens that the user interacts with, and also arbitrary"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,880",
+				"to": "00:06:35,680"
+			},
+			"offsets": {
+				"from": 390880,
+				"to": 395680
+			},
+			"text": " slices that the client gets assigned based on a notion of cryptographic distance of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,680",
+				"to": "00:06:41,640"
+			},
+			"offsets": {
+				"from": 395680,
+				"to": 401640
+			},
+			"text": " peers hash and the slice hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,640",
+				"to": "00:06:44,840"
+			},
+			"offsets": {
+				"from": 401640,
+				"to": 404840
+			},
+			"text": " So how secure is this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,840",
+				"to": "00:06:51,400"
+			},
+			"offsets": {
+				"from": 404840,
+				"to": 411400
+			},
+			"text": " In the state, the key is to know what's the canonical block header."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,400",
+				"to": "00:06:59,760"
+			},
+			"offsets": {
+				"from": 411400,
+				"to": 419760
+			},
+			"text": " It's a critical operation, but it's not necessarily a very intensive resource-intense one."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,760",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 419760,
+				"to": 422000
+			},
+			"text": " There are several ways to accomplish that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:08,400"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 428400
+			},
+			"text": " We can ask a bootstrap node for a canonical block header, for example, the number 5,000,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,400",
+				"to": "00:07:15,720"
+			},
+			"offsets": {
+				"from": 428400,
+				"to": 435720
+			},
+			"text": " or something, and then start sinking from there, or just receive the block headers, verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,720",
+				"to": "00:07:20,080"
+			},
+			"offsets": {
+				"from": 435720,
+				"to": 440080
+			},
+			"text": " the number and the seal, of course, and then ask for its parent and a parent of its parent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,080",
+				"to": "00:07:23,960"
+			},
+			"offsets": {
+				"from": 440080,
+				"to": 443960
+			},
+			"text": " so on and so forth until you reach a trusted point."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,960",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 443960,
+				"to": 452000
+			},
+			"text": " Or you can subscribe to some of the network of trust, not my favorite one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:36,800"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 456800
+			},
+			"text": " Or you can always run your own node and request data over a receipt."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,800",
+				"to": "00:07:42,480"
+			},
+			"offsets": {
+				"from": 456800,
+				"to": 462480
+			},
+			"text": " That's a joke."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,480",
+				"to": "00:07:48,160"
+			},
+			"offsets": {
+				"from": 462480,
+				"to": 468160
+			},
+			"text": " We maintain the security guarantees provided by Merkle trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,160",
+				"to": "00:07:56,560"
+			},
+			"offsets": {
+				"from": 468160,
+				"to": 476560
+			},
+			"text": " Slices contain all the required information to perform cryptographic verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,560",
+				"to": "00:08:00,280"
+			},
+			"offsets": {
+				"from": 476560,
+				"to": 480280
+			},
+			"text": " So what are the takeaways?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,280",
+				"to": "00:08:08,880"
+			},
+			"offsets": {
+				"from": 480280,
+				"to": 488880
+			},
+			"text": " We have slices which are conveniently packed Merkle sub trees that contain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,880",
+				"to": "00:08:16,360"
+			},
+			"offsets": {
+				"from": 488880,
+				"to": 496360
+			},
+			"text": " We have Kitsonet, which is a peer-to-peer network of flight clients sitting in slices."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,360",
+				"to": "00:08:17,680"
+			},
+			"offsets": {
+				"from": 496360,
+				"to": 497680
+			},
+			"text": " And we have full nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,680",
+				"to": "00:08:24,160"
+			},
+			"offsets": {
+				"from": 497680,
+				"to": 504160
+			},
+			"text": " Ethereum clients synchronize in state, making slices available for Kitsonet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,160",
+				"to": "00:08:25,160"
+			},
+			"offsets": {
+				"from": 504160,
+				"to": 505160
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,160",
+				"to": "00:08:32,160"
+			},
+			"offsets": {
+				"from": 505160,
+				"to": 512160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,160",
+				"to": "00:08:57,160"
+			},
+			"offsets": {
+				"from": 512160,
+				"to": 537160
+			},
+			"text": " [Music]"
+		}
+	]
+}

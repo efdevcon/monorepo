@@ -1,0 +1,2991 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,560"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7560
+			},
+			"text": " Hello everyone, it's great to see so many people on our purely mathematical and cryptographic"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,560",
+				"to": "00:00:08,560"
+			},
+			"offsets": {
+				"from": 7560,
+				"to": 8560
+			},
+			"text": " talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,560",
+				"to": "00:00:14,480"
+			},
+			"offsets": {
+				"from": 8560,
+				"to": 14480
+			},
+			"text": " So I try to rule out as many forum-less as possible but still many of them are left here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,480",
+				"to": "00:00:20,040"
+			},
+			"offsets": {
+				"from": 14480,
+				"to": 20040
+			},
+			"text": " So this talk is of course intentionally scientific to show up that we are doing something serious."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,040",
+				"to": "00:00:25,440"
+			},
+			"offsets": {
+				"from": 20040,
+				"to": 25440
+			},
+			"text": " But there will be also important numbers will be on the very last slide, like the slide"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,440",
+				"to": "00:00:26,520"
+			},
+			"offsets": {
+				"from": 25440,
+				"to": 26520
+			},
+			"text": " before last."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,520",
+				"to": "00:00:30,080"
+			},
+			"offsets": {
+				"from": 26520,
+				"to": 30080
+			},
+			"text": " So like number of constraints and this sort of stuff will be in the very end."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,080",
+				"to": "00:00:35,840"
+			},
+			"offsets": {
+				"from": 30080,
+				"to": 35840
+			},
+			"text": " So if you are just coming just for that you can wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,840",
+				"to": "00:00:42,280"
+			},
+			"offsets": {
+				"from": 35840,
+				"to": 42280
+			},
+			"text": " So this is a joint work of the company Simon Wold with Avernyman, ABDK Consulting and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,280",
+				"to": "00:00:47,160"
+			},
+			"offsets": {
+				"from": 42280,
+				"to": 47160
+			},
+			"text": " also our colleagues from universities of Bristol and grads."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,160",
+				"to": "00:00:50,200"
+			},
+			"offsets": {
+				"from": 47160,
+				"to": 50200
+			},
+			"text": " Arnab, Lorenzo, Kristian, Sebastian and Marcus."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,200",
+				"to": "00:00:55,680"
+			},
+			"offsets": {
+				"from": 50200,
+				"to": 55680
+			},
+			"text": " So this kind of work that was conducted a bit independently and then later merged and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,680",
+				"to": "00:00:59,120"
+			},
+			"offsets": {
+				"from": 55680,
+				"to": 59120
+			},
+			"text": " still it's kind of work in progress so we even have an event that the proper name for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,120",
+				"to": "00:01:01,120"
+			},
+			"offsets": {
+				"from": 59120,
+				"to": 61120
+			},
+			"text": " the hash function."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,120",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 61120,
+				"to": 69000
+			},
+			"text": " So okay, so you probably remember what the hash function is, what property should have."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:13,680"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 73680
+			},
+			"text": " The good hash function should process arbitrary large input, well up to Tom extend but pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,680",
+				"to": "00:01:14,680"
+			},
+			"offsets": {
+				"from": 73680,
+				"to": 74680
+			},
+			"text": " like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,680",
+				"to": "00:01:15,680"
+			},
+			"offsets": {
+				"from": 74680,
+				"to": 75680
+			},
+			"text": " Gigabytes should handle."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,680",
+				"to": "00:01:19,440"
+			},
+			"offsets": {
+				"from": 75680,
+				"to": 79440
+			},
+			"text": " It should be collision resistant meaning that it should be difficult to find x and y"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,440",
+				"to": "00:01:22,880"
+			},
+			"offsets": {
+				"from": 79440,
+				"to": 82880
+			},
+			"text": " difference so that the hash of them are identical."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,880",
+				"to": "00:01:29,520"
+			},
+			"offsets": {
+				"from": 82880,
+				"to": 89520
+			},
+			"text": " Well as long as hash function converts arbitrary large inputs to fixed size outputs collisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,520",
+				"to": "00:01:32,960"
+			},
+			"offsets": {
+				"from": 89520,
+				"to": 92960
+			},
+			"text": " are unavoidable but there must be difficult to find."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,960",
+				"to": "00:01:38,600"
+			},
+			"offsets": {
+				"from": 92960,
+				"to": 98600
+			},
+			"text": " Perumage resistant means that given y it must be difficult to find x so that h of x is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,600",
+				"to": "00:01:41,520"
+			},
+			"offsets": {
+				"from": 98600,
+				"to": 101520
+			},
+			"text": " y."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,520",
+				"to": "00:01:47,760"
+			},
+			"offsets": {
+				"from": 101520,
+				"to": 107760
+			},
+			"text": " Well hash functions, Ethereum, I think it hash functions everywhere of course mainly chafri."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,760",
+				"to": "00:01:56,280"
+			},
+			"offsets": {
+				"from": 107760,
+				"to": 116280
+			},
+			"text": " So chafri or ketchup, the hash function designed by Belgian team in, lead by John Diamond in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,280",
+				"to": "00:01:57,760"
+			},
+			"offsets": {
+				"from": 116280,
+				"to": 117760
+			},
+			"text": " about 10 years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,760",
+				"to": "00:02:02,920"
+			},
+			"offsets": {
+				"from": 117760,
+				"to": 122920
+			},
+			"text": " So chafri is used to build a partition tree to construct the rest out of the public key"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,920",
+				"to": "00:02:04,440"
+			},
+			"offsets": {
+				"from": 122920,
+				"to": 124440
+			},
+			"text": " and so on and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,440",
+				"to": "00:02:11,040"
+			},
+			"offsets": {
+				"from": 124440,
+				"to": 131040
+			},
+			"text": " So it's not like the best, like in terms of not the fastest hash function in the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,040",
+				"to": "00:02:20,880"
+			},
+			"offsets": {
+				"from": 131040,
+				"to": 140880
+			},
+			"text": " but it still can handle up to 500 bytes per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,880",
+				"to": "00:02:25,680"
+			},
+			"offsets": {
+				"from": 140880,
+				"to": 145680
+			},
+			"text": " Well to understand why we need a different hash function I'll go to the introduction how"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,680",
+				"to": "00:02:28,560"
+			},
+			"offsets": {
+				"from": 145680,
+				"to": 148560
+			},
+			"text": " hash functions are used in snarks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,560",
+				"to": "00:02:32,800"
+			},
+			"offsets": {
+				"from": 148560,
+				"to": 152800
+			},
+			"text": " So this is some sort of repetition, a bit of the previous stark talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,800",
+				"to": "00:02:40,880"
+			},
+			"offsets": {
+				"from": 152800,
+				"to": 160880
+			},
+			"text": " Well in Bitcoin we sign because usually I have to start with Bitcoin unfortunately because"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,880",
+				"to": "00:02:47,600"
+			},
+			"offsets": {
+				"from": 160880,
+				"to": 167600
+			},
+			"text": " the zero knowledge proofs apply usually to transaction output UTXO based systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,600",
+				"to": "00:02:52,520"
+			},
+			"offsets": {
+				"from": 167600,
+				"to": 172520
+			},
+			"text": " So we sign a transaction with some output and the hash function of transaction is included"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,520",
+				"to": "00:02:59,440"
+			},
+			"offsets": {
+				"from": 172520,
+				"to": 179440
+			},
+			"text": " in the block and after some point we spend the output by signing the transaction and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,440",
+				"to": "00:03:04,680"
+			},
+			"offsets": {
+				"from": 179440,
+				"to": 184680
+			},
+			"text": " the output with the private key that was in the hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,680",
+				"to": "00:03:12,680"
+			},
+			"offsets": {
+				"from": 184680,
+				"to": 192680
+			},
+			"text": " And the crucial point here is that the hash of the transaction is referred in clear text."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,680",
+				"to": "00:03:18,840"
+			},
+			"offsets": {
+				"from": 192680,
+				"to": 198840
+			},
+			"text": " When you want to introduce a zero knowledge payment system this is concealed, the hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,840",
+				"to": "00:03:23,360"
+			},
+			"offsets": {
+				"from": 198840,
+				"to": 203360
+			},
+			"text": " is concealed to break up the link between the original transaction to send and the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,360",
+				"to": "00:03:24,440"
+			},
+			"offsets": {
+				"from": 203360,
+				"to": 204440
+			},
+			"text": " to spend."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,440",
+				"to": "00:03:28,600"
+			},
+			"offsets": {
+				"from": 204440,
+				"to": 208600
+			},
+			"text": " So when the transaction is sent it's not only included in the block but also added to a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,600",
+				"to": "00:03:34,960"
+			},
+			"offsets": {
+				"from": 208600,
+				"to": 214960
+			},
+			"text": " specially crafted Merkold 3T and when you want to spend it you prove that there is you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,960",
+				"to": "00:03:42,800"
+			},
+			"offsets": {
+				"from": 214960,
+				"to": 222800
+			},
+			"text": " a transaction H which is in the Merkold 3T that it has special structure and you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,800",
+				"to": "00:03:50,240"
+			},
+			"offsets": {
+				"from": 222800,
+				"to": 230240
+			},
+			"text": " the private key that corresponds to the public key that is in this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,240",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 230240,
+				"to": 235000
+			},
+			"text": " And here the transaction H is referred to in zero knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:01,280"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 241280
+			},
+			"text": " And the most competitive expensive part in all protocols is to prove that the hash is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,280",
+				"to": "00:04:02,880"
+			},
+			"offsets": {
+				"from": 241280,
+				"to": 242880
+			},
+			"text": " part of the Merkold 3T."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,880",
+				"to": "00:04:06,840"
+			},
+			"offsets": {
+				"from": 242880,
+				"to": 246840
+			},
+			"text": " So all the others part of the proof are rather fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,840",
+				"to": "00:04:13,880"
+			},
+			"offsets": {
+				"from": 246840,
+				"to": 253880
+			},
+			"text": " They all even with previous original Zcash they can be managed within one second but when"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,880",
+				"to": "00:04:21,760"
+			},
+			"offsets": {
+				"from": 253880,
+				"to": 261760
+			},
+			"text": " you have like 29 or 32 layers in the Merkold 3T this becomes difficult to prove because"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,760",
+				"to": "00:04:28,280"
+			},
+			"offsets": {
+				"from": 261760,
+				"to": 268280
+			},
+			"text": " the performance of zero knowledge proving protocols they scale linearly or even super"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,280",
+				"to": "00:04:33,760"
+			},
+			"offsets": {
+				"from": 268280,
+				"to": 273760
+			},
+			"text": " linearly with the number of invocations of a hash function."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,760",
+				"to": "00:04:38,320"
+			},
+			"offsets": {
+				"from": 273760,
+				"to": 278320
+			},
+			"text": " And it turns out very quickly that traditional hash function like regular hash function are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,320",
+				"to": "00:04:44,400"
+			},
+			"offsets": {
+				"from": 278320,
+				"to": 284400
+			},
+			"text": " not quite suited for Snarks, Starks or bullet proofs because their circuits they are optimized"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,400",
+				"to": "00:04:54,680"
+			},
+			"offsets": {
+				"from": 284400,
+				"to": 294680
+			},
+			"text": " for Intel or AMD processors for modern architecture but they are not optimized for the environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,680",
+				"to": "00:04:57,080"
+			},
+			"offsets": {
+				"from": 294680,
+				"to": 297080
+			},
+			"text": " where Starks or Snarks operate."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,080",
+				"to": "00:05:00,200"
+			},
+			"offsets": {
+				"from": 297080,
+				"to": 300200
+			},
+			"text": " In this environments are big fields."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,200",
+				"to": "00:05:10,040"
+			},
+			"offsets": {
+				"from": 300200,
+				"to": 310040
+			},
+			"text": " So the fields are either prime fields meaning that all kind of our state is a vector of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,040",
+				"to": "00:05:16,200"
+			},
+			"offsets": {
+				"from": 310040,
+				"to": 316200
+			},
+			"text": " integers model some prime number and this prime number is 256 bit or 384 bit depends"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,200",
+				"to": "00:05:20,800"
+			},
+			"offsets": {
+				"from": 316200,
+				"to": 320800
+			},
+			"text": " how afraid you are of recent disk control of complex estimates."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,800",
+				"to": "00:05:31,880"
+			},
+			"offsets": {
+				"from": 320800,
+				"to": 331880
+			},
+			"text": " This for Snarks and bullet proofs and for Starks they are most helpful fields, better"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,880",
+				"to": "00:05:36,480"
+			},
+			"offsets": {
+				"from": 331880,
+				"to": 336480
+			},
+			"text": " best field to operate with as in Stent is a binary field but not that big."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,480",
+				"to": "00:05:45,520"
+			},
+			"offsets": {
+				"from": 336480,
+				"to": 345520
+			},
+			"text": " So it's like 32 to 64 that's like the easiest to construct Ritz-Almon proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,520",
+				"to": "00:05:53,520"
+			},
+			"offsets": {
+				"from": 345520,
+				"to": 353520
+			},
+			"text": " So we can simplify and say that in Snarks a trusted party just kind of applies a secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,520",
+				"to": "00:05:59,920"
+			},
+			"offsets": {
+				"from": 353520,
+				"to": 359920
+			},
+			"text": " input to the circuit and we can say that like intermediate states are hash not a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,920",
+				"to": "00:06:04,200"
+			},
+			"offsets": {
+				"from": 359920,
+				"to": 364200
+			},
+			"text": " true but still and all of them are published as a proven key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,200",
+				"to": "00:06:08,760"
+			},
+			"offsets": {
+				"from": 364200,
+				"to": 368760
+			},
+			"text": " And bullet proofs Starks this secret input does not need it so the proven key is just"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,760",
+				"to": "00:06:10,320"
+			},
+			"offsets": {
+				"from": 368760,
+				"to": 370320
+			},
+			"text": " the circuit itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,320",
+				"to": "00:06:18,440"
+			},
+			"offsets": {
+				"from": 370320,
+				"to": 378440
+			},
+			"text": " And for each proof to present a proof to create a proof you have to kind of match your execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,440",
+				"to": "00:06:24,560"
+			},
+			"offsets": {
+				"from": 378440,
+				"to": 384560
+			},
+			"text": " your computation with a proven key so with a circuit or with a circuit on secret input."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,560",
+				"to": "00:06:28,320"
+			},
+			"offsets": {
+				"from": 384560,
+				"to": 388320
+			},
+			"text": " So you have to like combine the two traces."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,320",
+				"to": "00:06:34,720"
+			},
+			"offsets": {
+				"from": 388320,
+				"to": 394720
+			},
+			"text": " And that's why the bigger the circuit is that longer it takes to construct a proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,720",
+				"to": "00:06:40,280"
+			},
+			"offsets": {
+				"from": 394720,
+				"to": 400280
+			},
+			"text": " And it depends on the circuit size it also depends on like if it's algebraic trace like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,280",
+				"to": "00:06:45,960"
+			},
+			"offsets": {
+				"from": 400280,
+				"to": 405960
+			},
+			"text": " in Snarks like a Starks then it depends on the width of the size of the state you operate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,960",
+				"to": "00:06:51,920"
+			},
+			"offsets": {
+				"from": 405960,
+				"to": 411920
+			},
+			"text": " with on the degree if you permit arbitrary degree so different parameters are invoked"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,920",
+				"to": "00:06:59,360"
+			},
+			"offsets": {
+				"from": 411920,
+				"to": 419360
+			},
+			"text": " and the formals might not be very simple but there is still some metric to optimize."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,360",
+				"to": "00:07:03,560"
+			},
+			"offsets": {
+				"from": 419360,
+				"to": 423560
+			},
+			"text": " And we know this metrics approximately for Snarks we know such metrics for bullet proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,560",
+				"to": "00:07:07,840"
+			},
+			"offsets": {
+				"from": 423560,
+				"to": 427840
+			},
+			"text": " and also such metrics for Starks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,840",
+				"to": "00:07:14,360"
+			},
+			"offsets": {
+				"from": 427840,
+				"to": 434360
+			},
+			"text": " So the question is the question that should have been put when Snarks and Starks were"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,360",
+				"to": "00:07:21,360"
+			},
+			"offsets": {
+				"from": 434360,
+				"to": 441360
+			},
+			"text": " designed so kind of weak cryptographic community missed this question this requirement that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,360",
+				"to": "00:07:27,640"
+			},
+			"offsets": {
+				"from": 441360,
+				"to": 447640
+			},
+			"text": " there is a need in hash functions that operate in big prime fields or big binary fields that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,640",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 447640,
+				"to": 454000
+			},
+			"text": " are best in certain metrics like circuit size or degree size products like in Starks and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:38,720"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 458720
+			},
+			"text": " that they are of course secure because the first two are easy to construct it's difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,720",
+				"to": "00:07:45,320"
+			},
+			"offsets": {
+				"from": 458720,
+				"to": 465320
+			},
+			"text": " to create a secure one and fortunately our cryptographic and cryptinaltic experience allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,320",
+				"to": "00:07:50,160"
+			},
+			"offsets": {
+				"from": 465320,
+				"to": 470160
+			},
+			"text": " us to create really fast hash functions because we know certain constructions that are reasonably"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,160",
+				"to": "00:07:59,880"
+			},
+			"offsets": {
+				"from": 470160,
+				"to": 479880
+			},
+			"text": " fast and that we have analyzed them with cryptanalysis for years for decades and we know like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,880",
+				"to": "00:08:03,640"
+			},
+			"offsets": {
+				"from": 479880,
+				"to": 483640
+			},
+			"text": " methods that could work the methods that usually do not work and we can quickly make"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,640",
+				"to": "00:08:09,440"
+			},
+			"offsets": {
+				"from": 483640,
+				"to": 489440
+			},
+			"text": " a hash function that is secure and that satisfies this requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,440",
+				"to": "00:08:14,400"
+			},
+			"offsets": {
+				"from": 489440,
+				"to": 494400
+			},
+			"text": " So one of the first approach was MIMC about three years ago and the idea of MIMC was"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,400",
+				"to": "00:08:19,480"
+			},
+			"offsets": {
+				"from": 494400,
+				"to": 499480
+			},
+			"text": " pretty simple so in the core of MIMC there is a permutation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,480",
+				"to": "00:08:25,240"
+			},
+			"offsets": {
+				"from": 499480,
+				"to": 505240
+			},
+			"text": " So originally it appeared as a cipher but if you want hash function the key can be a random"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,240",
+				"to": "00:08:26,240"
+			},
+			"offsets": {
+				"from": 505240,
+				"to": 506240
+			},
+			"text": " number."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,240",
+				"to": "00:08:28,720"
+			},
+			"offsets": {
+				"from": 506240,
+				"to": 508720
+			},
+			"text": " It's okay here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,720",
+				"to": "00:08:39,560"
+			},
+			"offsets": {
+				"from": 508720,
+				"to": 519560
+			},
+			"text": " So the idea is very simple so you have, you add some constant and then you end to operate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,560",
+				"to": "00:08:45,840"
+			},
+			"offsets": {
+				"from": 519560,
+				"to": 525840
+			},
+			"text": " in a big field by default some prime field and then you raise your result to the power"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,840",
+				"to": "00:08:50,400"
+			},
+			"offsets": {
+				"from": 525840,
+				"to": 530400
+			},
+			"text": " of three in this field so you square and then multiply again."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,400",
+				"to": "00:08:56,720"
+			},
+			"offsets": {
+				"from": 530400,
+				"to": 536720
+			},
+			"text": " Then you add the constant then you put to the power, raise to the power of three then"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,720",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 536720,
+				"to": 542000
+			},
+			"text": " add constant to the power of three and so on and each time the degree so if you express"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:08,360"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 548360
+			},
+			"text": " actually it's easy to show that typical cryptinaltic attacks like deferential linear cryptinals"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,360",
+				"to": "00:09:14,200"
+			},
+			"offsets": {
+				"from": 548360,
+				"to": 554200
+			},
+			"text": " don't work here because of algebraic instruction because the state is very wide but algebraic"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,200",
+				"to": "00:09:21,560"
+			},
+			"offsets": {
+				"from": 554200,
+				"to": 561560
+			},
+			"text": " attacks work and the thing is we have to make the degree of the polynomial that corresponds"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,560",
+				"to": "00:09:26,360"
+			},
+			"offsets": {
+				"from": 561560,
+				"to": 566360
+			},
+			"text": " to the output of the function we have to make that the polynomial is of high degree to prevent"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,360",
+				"to": "00:09:31,200"
+			},
+			"offsets": {
+				"from": 566360,
+				"to": 571200
+			},
+			"text": " various sorts of attacks and the degree increases like the degree multiplies by three each time"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,200",
+				"to": "00:09:40,160"
+			},
+			"offsets": {
+				"from": 571200,
+				"to": 580160
+			},
+			"text": " and the maximum possible degree is actually to the n when n is the width of the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,160",
+				"to": "00:09:48,040"
+			},
+			"offsets": {
+				"from": 580160,
+				"to": 588040
+			},
+			"text": " and we have to execute like a bit less than n steps to achieve maximum degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,040",
+				"to": "00:09:52,200"
+			},
+			"offsets": {
+				"from": 588040,
+				"to": 592200
+			},
+			"text": " Well actually actually a bit more but this is like the order so that you understand like"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,200",
+				"to": "00:10:00,840"
+			},
+			"offsets": {
+				"from": 592200,
+				"to": 600840
+			},
+			"text": " if you if you if your permutation is I know 250 bits wide then you need kind of at least"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,840",
+				"to": "00:10:04,600"
+			},
+			"offsets": {
+				"from": 600840,
+				"to": 604600
+			},
+			"text": " 100 something steps to achieve maximum degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,600",
+				"to": "00:10:15,600"
+			},
+			"offsets": {
+				"from": 604600,
+				"to": 615600
+			},
+			"text": " Okay so there are also Pedersen hash proposals but we can directly go to our contributions"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,600",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 615600,
+				"to": 621000
+			},
+			"text": " because the others are not exactly so they are in different paradigm constructed and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:26,800"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 626800
+			},
+			"text": " kind of interesting for us so our contributions consist of two parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,800",
+				"to": "00:10:32,040"
+			},
+			"offsets": {
+				"from": 626800,
+				"to": 632040
+			},
+			"text": " So the first part is more generic so it's about it's about Merkle trees and it turns"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,040",
+				"to": "00:10:37,320"
+			},
+			"offsets": {
+				"from": 632040,
+				"to": 637320
+			},
+			"text": " on that we can do we can handle Merkle trees substantially better than before."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,320",
+				"to": "00:10:44,080"
+			},
+			"offsets": {
+				"from": 637320,
+				"to": 644080
+			},
+			"text": " Recall well this is like three layer Merkle trees that handles eight messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,080",
+				"to": "00:10:51,880"
+			},
+			"offsets": {
+				"from": 644080,
+				"to": 651880
+			},
+			"text": " Well suppose for simplicity that the hash function it takes like two we consider a compression"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,880",
+				"to": "00:10:56,280"
+			},
+			"offsets": {
+				"from": 651880,
+				"to": 656280
+			},
+			"text": " function that compresses with their issue two to one and every message is of the size"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,280",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 656280,
+				"to": 662000
+			},
+			"text": " of the hash function output and then in this case you need n layers to hash to the n messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:11,800"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 671800
+			},
+			"text": " Okay and the thing is the very nice thing is you can do better because you can when you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,800",
+				"to": "00:11:16,560"
+			},
+			"offsets": {
+				"from": 671800,
+				"to": 676560
+			},
+			"text": " have form when you have two layers you can process more than four messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,560",
+				"to": "00:11:24,120"
+			},
+			"offsets": {
+				"from": 676560,
+				"to": 684120
+			},
+			"text": " You can take fifth one and then get carefully we absorb in several hash function outputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,120",
+				"to": "00:11:35,360"
+			},
+			"offsets": {
+				"from": 684120,
+				"to": 695360
+			},
+			"text": " in three and well you have to and using that you can for every like two layers you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,360",
+				"to": "00:11:40,480"
+			},
+			"offsets": {
+				"from": 695360,
+				"to": 700480
+			},
+			"text": " process not four messages but five messages and that's give you well not so big but something"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,480",
+				"to": "00:11:47,960"
+			},
+			"offsets": {
+				"from": 700480,
+				"to": 707960
+			},
+			"text": " like 20% in 15-20% increase in performance you should give and this works for every hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,960",
+				"to": "00:11:54,520"
+			},
+			"offsets": {
+				"from": 707960,
+				"to": 714520
+			},
+			"text": " function and collision pre-mesh resistance decreases but collision resistance remains"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,520",
+				"to": "00:12:01,040"
+			},
+			"offsets": {
+				"from": 714520,
+				"to": 721040
+			},
+			"text": " at the same point so generalized bird effect also doesn't seem to work and this construction"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,040",
+				"to": "00:12:03,920"
+			},
+			"offsets": {
+				"from": 721040,
+				"to": 723920
+			},
+			"text": " works for any hash function."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,920",
+				"to": "00:12:10,240"
+			},
+			"offsets": {
+				"from": 723920,
+				"to": 730240
+			},
+			"text": " Even more efficiently if we have a hash function that takes that can consume our bit very large"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,240",
+				"to": "00:12:16,680"
+			},
+			"offsets": {
+				"from": 730240,
+				"to": 736680
+			},
+			"text": " input well with regular hash function we already have that like we can we can feed very big"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,680",
+				"to": "00:12:24,960"
+			},
+			"offsets": {
+				"from": 736680,
+				"to": 744960
+			},
+			"text": " input to SHA3 but it will be yes a sort of sequential invocation and here suppose that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,960",
+				"to": "00:12:33,200"
+			},
+			"offsets": {
+				"from": 744960,
+				"to": 753200
+			},
+			"text": " our hash function is tailored to where large input size so the output size is small but"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,200",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 753200,
+				"to": 761000
+			},
+			"text": " what if the input size is big and we use this large width to achieve cryptographic security."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:45,900"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 765900
+			},
+			"text": " The thing is we can then decrease the number of layers of course so if for example you"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,900",
+				"to": "00:12:53,520"
+			},
+			"offsets": {
+				"from": 765900,
+				"to": 773520
+			},
+			"text": " process the ratio is four to one that you need to twice fewer layers and what do we"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,520",
+				"to": "00:13:01,520"
+			},
+			"offsets": {
+				"from": 773520,
+				"to": 781520
+			},
+			"text": " need how can we do that so what's the most optimal way of variation and it turns out"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,520",
+				"to": "00:13:08,360"
+			},
+			"offsets": {
+				"from": 781520,
+				"to": 788360
+			},
+			"text": " that if we want to process some very wide input with the hash function then a very secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,360",
+				"to": "00:13:13,920"
+			},
+			"offsets": {
+				"from": 788360,
+				"to": 793920
+			},
+			"text": " and construction is the framework it's a called sponge mode of operation and it's based on"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,920",
+				"to": "00:13:20,120"
+			},
+			"offsets": {
+				"from": 793920,
+				"to": 800120
+			},
+			"text": " permutations very wide permutation means permutation I mean that it's transformation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,120",
+				"to": "00:13:25,880"
+			},
+			"offsets": {
+				"from": 800120,
+				"to": 805880
+			},
+			"text": " easily invertible transformation that applies to very wide block here the blur the permutation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,880",
+				"to": "00:13:35,240"
+			},
+			"offsets": {
+				"from": 805880,
+				"to": 815240
+			},
+			"text": " is of with like 768 bits or more thousand bits 2000 bits 4000 bits we know how such permutations"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,240",
+				"to": "00:13:43,400"
+			},
+			"offsets": {
+				"from": 815240,
+				"to": 823400
+			},
+			"text": " can be constructed and the idea how they operate is very simple so messages sort not"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,400",
+				"to": "00:13:49,760"
+			},
+			"offsets": {
+				"from": 823400,
+				"to": 829760
+			},
+			"text": " onto the entire state but all the state but some so called capacity bits capacity is twice"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,760",
+				"to": "00:13:55,920"
+			},
+			"offsets": {
+				"from": 829760,
+				"to": 835920
+			},
+			"text": " the security level here if you security level is 128 bit that capacity should be 256 and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,920",
+				"to": "00:14:00,360"
+			},
+			"offsets": {
+				"from": 835920,
+				"to": 840360
+			},
+			"text": " the messages sort then you call permutation sort you call permutation sort you call permutation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,360",
+				"to": "00:14:07,360"
+			},
+			"offsets": {
+				"from": 840360,
+				"to": 847360
+			},
+			"text": " then messages consumed and then you output this with the same rate as you consume messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,360",
+				"to": "00:14:12,560"
+			},
+			"offsets": {
+				"from": 847360,
+				"to": 852560
+			},
+			"text": " and of course permutation should be like ideal permutation the sense that it should"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,560",
+				"to": "00:14:17,520"
+			},
+			"offsets": {
+				"from": 852560,
+				"to": 857520
+			},
+			"text": " be to some extent in the same from a random permutation well it's a constant function"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,520",
+				"to": "00:14:23,280"
+			},
+			"offsets": {
+				"from": 857520,
+				"to": 863280
+			},
+			"text": " but you should more or less understand what this means okay so the question is how to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,280",
+				"to": "00:14:29,880"
+			},
+			"offsets": {
+				"from": 863280,
+				"to": 869880
+			},
+			"text": " construct the permutation so that it will be start snark or stark friendly okay and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,880",
+				"to": "00:14:36,680"
+			},
+			"offsets": {
+				"from": 869880,
+				"to": 876680
+			},
+			"text": " goal is to come up with with the design that will be both stark and snark friendly to some"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,680",
+				"to": "00:14:43,120"
+			},
+			"offsets": {
+				"from": 876680,
+				"to": 883120
+			},
+			"text": " extent because the difference we know that in snark's we optimize we work in the prime"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,120",
+				"to": "00:14:50,200"
+			},
+			"offsets": {
+				"from": 883120,
+				"to": 890200
+			},
+			"text": " field in stark we optimize on we work in binary fields but apart from that our permutation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,200",
+				"to": "00:14:59,760"
+			},
+			"offsets": {
+				"from": 890200,
+				"to": 899760
+			},
+			"text": " can be built very similarly the first attempt what if we modify my MC and replace the power"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,760",
+				"to": "00:15:08,920"
+			},
+			"offsets": {
+				"from": 899760,
+				"to": 908920
+			},
+			"text": " of three with an inversion and this is of course a very tempting step and it's not it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,920",
+				"to": "00:15:17,360"
+			},
+			"offsets": {
+				"from": 908920,
+				"to": 917360
+			},
+			"text": " not actually trivial so when the MMC wasn't wasn't vented the authors tried this approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,360",
+				"to": "00:15:23,640"
+			},
+			"offsets": {
+				"from": 917360,
+				"to": 923640
+			},
+			"text": " and it doesn't work that's work why because it's actually very interesting exercise that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,640",
+				"to": "00:15:31,440"
+			},
+			"offsets": {
+				"from": 923640,
+				"to": 931440
+			},
+			"text": " you can demonstrate that if that no matter how many rounds you have if you're doing just"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,440",
+				"to": "00:15:37,800"
+			},
+			"offsets": {
+				"from": 931440,
+				"to": 937800
+			},
+			"text": " the constant addition between the inversions that the resultant function will be a rational"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,800",
+				"to": "00:15:45,200"
+			},
+			"offsets": {
+				"from": 937800,
+				"to": 945200
+			},
+			"text": " function of the input of degree one the thing is you can interpret your state as a fraction"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,200",
+				"to": "00:15:51,080"
+			},
+			"offsets": {
+				"from": 945200,
+				"to": 951080
+			},
+			"text": " of like a two linear one linear over another x plus b over six plus d and of course when"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,080",
+				"to": "00:15:57,040"
+			},
+			"offsets": {
+				"from": 951080,
+				"to": 957040
+			},
+			"text": " you invert then the denominator and denominator that just swaps and when you have the constant"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,040",
+				"to": "00:16:02,280"
+			},
+			"offsets": {
+				"from": 957040,
+				"to": 962280
+			},
+			"text": " the denominator changes but the degree doesn't change and the fortunes of the state will"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,280",
+				"to": "00:16:08,080"
+			},
+			"offsets": {
+				"from": 962280,
+				"to": 968080
+			},
+			"text": " be a rational function of degree one and collisions are easy because they're like simple linear"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,080",
+				"to": "00:16:13,520"
+			},
+			"offsets": {
+				"from": 968080,
+				"to": 973520
+			},
+			"text": " equation serving for the right kinds but they can be solved easily so and the recent design"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,520",
+				"to": "00:16:20,560"
+			},
+			"offsets": {
+				"from": 973520,
+				"to": 980560
+			},
+			"text": " Jarvis they decided to put some additional linear transformations after the inversion"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,560",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 980560,
+				"to": 986000
+			},
+			"text": " but it's yet not unclear for me if this is secure enough but I haven't managed to break"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:33,880"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 993880
+			},
+			"text": " it yet the solution that is still obvious to me because I would like to work with white"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,880",
+				"to": "00:16:42,720"
+			},
+			"offsets": {
+				"from": 993880,
+				"to": 1002720
+			},
+			"text": " permutation because I would like to leverage the permutation with to get a more efficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,720",
+				"to": "00:16:49,880"
+			},
+			"offsets": {
+				"from": 1002720,
+				"to": 1009880
+			},
+			"text": " circuit for a tree not for one hash function for for a tree because that's the bottleneck"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,880",
+				"to": "00:16:55,280"
+			},
+			"offsets": {
+				"from": 1009880,
+				"to": 1015280
+			},
+			"text": " and the idea is that why wouldn't we use multiple as boxes and to use a very wide permutation"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,280",
+				"to": "00:17:00,920"
+			},
+			"offsets": {
+				"from": 1015280,
+				"to": 1020920
+			},
+			"text": " then our function will be very similar to what we already have for example in AES or"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,920",
+				"to": "00:17:09,360"
+			},
+			"offsets": {
+				"from": 1020920,
+				"to": 1029360
+			},
+			"text": " other designs and well let's call it for example inversion hash and in this inversion hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,360",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1029360,
+				"to": 1038000
+			},
+			"text": " the parades as follows so it's you see like there are rounds and in this rounds we alternate"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:25,200"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1045200
+			},
+			"text": " nonlinear transformations which are denoted by S so each S is an inversion in some field"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,200",
+				"to": "00:17:31,800"
+			},
+			"offsets": {
+				"from": 1045200,
+				"to": 1051800
+			},
+			"text": " it's not actually important for the design which field it is because many attacks they"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,800",
+				"to": "00:17:38,360"
+			},
+			"offsets": {
+				"from": 1051800,
+				"to": 1058360
+			},
+			"text": " apply similarly so of course you substitute as a parameter the field size and in some"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,360",
+				"to": "00:17:44,560"
+			},
+			"offsets": {
+				"from": 1058360,
+				"to": 1064560
+			},
+			"text": " case the binary for binary field some attacks work just a bit differently but not tremendously"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,560",
+				"to": "00:17:48,640"
+			},
+			"offsets": {
+				"from": 1064560,
+				"to": 1068640
+			},
+			"text": " differently so generally if your function is if this contraction is secure for binary"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,640",
+				"to": "00:17:57,020"
+			},
+			"offsets": {
+				"from": 1068640,
+				"to": 1077020
+			},
+			"text": " field it will be like almost secure with the prime field unless your primes or binary"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,020",
+				"to": "00:18:01,680"
+			},
+			"offsets": {
+				"from": 1077020,
+				"to": 1081680
+			},
+			"text": " field is very small but the construction is like this so each S is an inversion in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,680",
+				"to": "00:18:09,120"
+			},
+			"offsets": {
+				"from": 1081680,
+				"to": 1089120
+			},
+			"text": " field and each A is a fine is an affine transformation in this field that's basically a linear combination"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,120",
+				"to": "00:18:17,600"
+			},
+			"offsets": {
+				"from": 1089120,
+				"to": 1097600
+			},
+			"text": " of inputs invertible one it's and the another very nice idea is that for the middle of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,600",
+				"to": "00:18:24,600"
+			},
+			"offsets": {
+				"from": 1097600,
+				"to": 1104600
+			},
+			"text": " construction we do not need full S box layer because the degree so the algebraic functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,600",
+				"to": "00:18:32,160"
+			},
+			"offsets": {
+				"from": 1104600,
+				"to": 1112160
+			},
+			"text": " the algebraic attacks we work with they they can be kind of mitigated they can be controlled"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,160",
+				"to": "00:18:41,160"
+			},
+			"offsets": {
+				"from": 1112160,
+				"to": 1121160
+			},
+			"text": " even with one S box in the middle or two but with one is fine and the parameters of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,160",
+				"to": "00:18:47,240"
+			},
+			"offsets": {
+				"from": 1121160,
+				"to": 1127240
+			},
+			"text": " design are of course the width of an S box and I say that this S box can be prime field"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,240",
+				"to": "00:18:53,160"
+			},
+			"offsets": {
+				"from": 1127240,
+				"to": 1133160
+			},
+			"text": " inversion for snarks or this can be binary field inversion for star X and each by you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,160",
+				"to": "00:18:57,960"
+			},
+			"offsets": {
+				"from": 1133160,
+				"to": 1137960
+			},
+			"text": " can take whatever binary field you want so if you realize that if you think now that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,960",
+				"to": "00:19:04,160"
+			},
+			"offsets": {
+				"from": 1137960,
+				"to": 1144160
+			},
+			"text": " two binary field is good for stark you can use it if later you realize that for like"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,160",
+				"to": "00:19:09,200"
+			},
+			"offsets": {
+				"from": 1144160,
+				"to": 1149200
+			},
+			"text": " root solomon performance you need 128 bit you can choose a bit different function if"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,200",
+				"to": "00:19:15,840"
+			},
+			"offsets": {
+				"from": 1149200,
+				"to": 1155840
+			},
+			"text": " they will work fine and the analysis analysis remains valid to most extent so of course"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,840",
+				"to": "00:19:21,720"
+			},
+			"offsets": {
+				"from": 1155840,
+				"to": 1161720
+			},
+			"text": " we conducted like mainly my colleagues conducted a number of different sorts of attacks on"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,720",
+				"to": "00:19:27,840"
+			},
+			"offsets": {
+				"from": 1161720,
+				"to": 1167840
+			},
+			"text": " this design because we already know this design from like 20 years old just this S boxes were"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,840",
+				"to": "00:19:35,480"
+			},
+			"offsets": {
+				"from": 1167840,
+				"to": 1175480
+			},
+			"text": " smaller and apparently algebraic attacks become the most effective here but when you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,480",
+				"to": "00:19:41,040"
+			},
+			"offsets": {
+				"from": 1175480,
+				"to": 1181040
+			},
+			"text": " are six ourselves for example to 128 bit security you don't need many rounds here so we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,040",
+				"to": "00:19:47,880"
+			},
+			"offsets": {
+				"from": 1181040,
+				"to": 1187880
+			},
+			"text": " talking about like six to eight rounds for outer rounds with full S boxes full box layers"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,880",
+				"to": "00:19:53,720"
+			},
+			"offsets": {
+				"from": 1187880,
+				"to": 1193720
+			},
+			"text": " and I know five 10 15 middle rounds so the total number of S boxes is not terribly big"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,720",
+				"to": "00:19:58,360"
+			},
+			"offsets": {
+				"from": 1193720,
+				"to": 1198360
+			},
+			"text": " but it's interesting to optimize it it's interesting to try to expand our permutation"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,360",
+				"to": "00:20:06,360"
+			},
+			"offsets": {
+				"from": 1198360,
+				"to": 1206360
+			},
+			"text": " to see how big it should be to give us the best circuits for trees and for stark setting"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,360",
+				"to": "00:20:17,800"
+			},
+			"offsets": {
+				"from": 1206360,
+				"to": 1217800
+			},
+			"text": " what we have so in our inversion hash here in the left calendar is width and we can calculate"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,800",
+				"to": "00:20:25,160"
+			},
+			"offsets": {
+				"from": 1217800,
+				"to": 1225160
+			},
+			"text": " the formula pretty much the same formula that Elle Benson is used has used for approximating"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,160",
+				"to": "00:20:33,000"
+			},
+			"offsets": {
+				"from": 1225160,
+				"to": 1233000
+			},
+			"text": " stark pervert performance and the result in performance predictable performance is on"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,000",
+				"to": "00:20:41,320"
+			},
+			"offsets": {
+				"from": 1233000,
+				"to": 1241320
+			},
+			"text": " the right most column and the slager if of time formula so this should be read that if"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,320",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1241320,
+				"to": 1249000
+			},
+			"text": " you shut the 56 for a tree of two to 32 elements then and you need 128 bit collision resistance"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:20:57,400"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1257400
+			},
+			"text": " then your that proven time should be about two to the 33 of something if you spatter"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,400",
+				"to": "00:21:04,280"
+			},
+			"offsets": {
+				"from": 1257400,
+				"to": 1264280
+			},
+			"text": " some hash then it should be like to the 22 so you see like almost a thousand times faster"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,280",
+				"to": "00:21:09,640"
+			},
+			"offsets": {
+				"from": 1264280,
+				"to": 1269640
+			},
+			"text": " but of course unfortunately in the real in the real world the performance increase from"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,640",
+				"to": "00:21:16,520"
+			},
+			"offsets": {
+				"from": 1269640,
+				"to": 1276520
+			},
+			"text": " shot 56 is not that big because the stratification circuit is very sparse but still"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,520",
+				"to": "00:21:26,040"
+			},
+			"offsets": {
+				"from": 1276520,
+				"to": 1286040
+			},
+			"text": " if we use our inversion hash we can if we use like default width of 1000 bits we can still be like"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,040",
+				"to": "00:21:38,360"
+			},
+			"offsets": {
+				"from": 1286040,
+				"to": 1298360
+			},
+			"text": " four times faster should be four times faster than Patterson hash if we if we use and interestingly"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,360",
+				"to": "00:21:47,240"
+			},
+			"offsets": {
+				"from": 1298360,
+				"to": 1307240
+			},
+			"text": " if we increase the width then we can do better and for 1500 bits and 200 2000 bits we can get"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,240",
+				"to": "00:21:58,440"
+			},
+			"offsets": {
+				"from": 1307240,
+				"to": 1318440
+			},
+			"text": " best results so 1536 is the best we can get it's like 60 percent faster than the smaller one so"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:08,360"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1328360
+			},
+			"text": " our current proposal is to use this with how many like not not very big number of rounds like eight"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,360",
+				"to": "00:22:15,560"
+			},
+			"offsets": {
+				"from": 1328360,
+				"to": 1335560
+			},
+			"text": " outer rounds and not that big number of internal rounds and the the tree will be twice smaller"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,560",
+				"to": "00:22:23,000"
+			},
+			"offsets": {
+				"from": 1335560,
+				"to": 1343000
+			},
+			"text": " for snarks we can estimate the number of constraints which is also interesting so"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,560",
+				"to": "00:22:33,320"
+			},
+			"offsets": {
+				"from": 1343560,
+				"to": 1353320
+			},
+			"text": " suppose that we use 255 bit as boxes if you want to use snarks on elliptic curves with 255 bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,320",
+				"to": "00:22:42,200"
+			},
+			"offsets": {
+				"from": 1353320,
+				"to": 1362200
+			},
+			"text": " primes if you want 30 384 bit primes then you should kind of yeah substitute them and it will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,200",
+				"to": "00:22:49,320"
+			},
+			"offsets": {
+				"from": 1362200,
+				"to": 1369320
+			},
+			"text": " somewhat similar and we can calculate the number of constraints and we can compare with Patterson"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,320",
+				"to": "00:22:57,400"
+			},
+			"offsets": {
+				"from": 1369320,
+				"to": 1377400
+			},
+			"text": " hash which is like 40 000 constraints for the entire tree is and if I counted correctly and for this"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,400",
+				"to": "00:23:07,560"
+			},
+			"offsets": {
+				"from": 1377400,
+				"to": 1387560
+			},
+			"text": " sort of hash for the entire tree if we use if we use six as boxes in parallel and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,560",
+				"to": "00:23:18,600"
+			},
+			"offsets": {
+				"from": 1387560,
+				"to": 1398600
+			},
+			"text": " for 127 bit collision resistance then we should have only 666 constraints well maybe indeed for"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,600",
+				"to": "00:23:25,880"
+			},
+			"offsets": {
+				"from": 1398600,
+				"to": 1405880
+			},
+			"text": " a fair comparison we should use bigger prime but I think the order will be the same so I think this"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,880",
+				"to": "00:23:35,640"
+			},
+			"offsets": {
+				"from": 1405880,
+				"to": 1415640
+			},
+			"text": " is quite promising and well of course we advocate some additions to a VAM or whatever will be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,640",
+				"to": "00:23:42,200"
+			},
+			"offsets": {
+				"from": 1415640,
+				"to": 1422200
+			},
+			"text": " to support natively support the operations in the field basically for verifiers because verifiers"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,200",
+				"to": "00:23:49,000"
+			},
+			"offsets": {
+				"from": 1422200,
+				"to": 1429000
+			},
+			"text": " in starks and bulletproofs they need some parts of the circuit and some some field operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,000",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1429000,
+				"to": 1435000
+			},
+			"text": " should be supported and optional I don't know if the entire permutations should be as a pre-compiled"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:24:02,440"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1442440
+			},
+			"text": " contract maybe it's not necessary but we will see it all depending on whether some checks against"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,440",
+				"to": "00:24:08,200"
+			},
+			"offsets": {
+				"from": 1442440,
+				"to": 1448200
+			},
+			"text": " the entire permutation are performed should be performed in a contract and if so then indeed"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,200",
+				"to": "00:24:15,240"
+			},
+			"offsets": {
+				"from": 1448200,
+				"to": 1455240
+			},
+			"text": " a pre-compiled contract would help so this is just the beginning the just beginning that's kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,240",
+				"to": "00:24:20,680"
+			},
+			"offsets": {
+				"from": 1455240,
+				"to": 1460680
+			},
+			"text": " the hash function that we cryptographers can design within a short time period but I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,680",
+				"to": "00:24:27,800"
+			},
+			"offsets": {
+				"from": 1460680,
+				"to": 1467800
+			},
+			"text": " there can be designed better better ones can be found so we can try other start friendly fields"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,800",
+				"to": "00:24:34,120"
+			},
+			"offsets": {
+				"from": 1467800,
+				"to": 1474120
+			},
+			"text": " we can work better with the algebraic attacks for example the granular group of business attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,120",
+				"to": "00:24:42,920"
+			},
+			"offsets": {
+				"from": 1474120,
+				"to": 1482920
+			},
+			"text": " are sort of and the founder explored and because and as far as they claim to be the best in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,920",
+				"to": "00:24:48,120"
+			},
+			"offsets": {
+				"from": 1482920,
+				"to": 1488120
+			},
+			"text": " settings it would be very interesting to apply existing grovener based labor libraries to"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,120",
+				"to": "00:24:55,880"
+			},
+			"offsets": {
+				"from": 1488120,
+				"to": 1495880
+			},
+			"text": " attacks and see if they indeed kind of perform as we expect and it would be also cool have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,880",
+				"to": "00:25:02,200"
+			},
+			"offsets": {
+				"from": 1495880,
+				"to": 1502200
+			},
+			"text": " to fix some metrics and have some kind of competition that like everyone can suggest a hash function"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,200",
+				"to": "00:25:08,280"
+			},
+			"offsets": {
+				"from": 1502200,
+				"to": 1508280
+			},
+			"text": " that optimize the number of constraints somewhere and withstands security attacks up to I know to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,280",
+				"to": "00:25:15,400"
+			},
+			"offsets": {
+				"from": 1508280,
+				"to": 1515400
+			},
+			"text": " do the 128 maybe designs a mercury oriented hashing they already exist to based hashing but"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,400",
+				"to": "00:25:23,480"
+			},
+			"offsets": {
+				"from": 1515400,
+				"to": 1523480
+			},
+			"text": " maybe there can be something more optimal and also for example maybe 120 security is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,480",
+				"to": "00:25:33,720"
+			},
+			"offsets": {
+				"from": 1523480,
+				"to": 1533720
+			},
+			"text": " needed that much maybe if the hash function if the proof should be like secure for only a short"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,720",
+				"to": "00:25:40,520"
+			},
+			"offsets": {
+				"from": 1533720,
+				"to": 1540520
+			},
+			"text": " period of time then maybe a lower security level would be nice for example 64 bit security level I"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,520",
+				"to": "00:25:46,840"
+			},
+			"offsets": {
+				"from": 1540520,
+				"to": 1546840
+			},
+			"text": " know maybe 56 bit security level just like this then we have we can have much again more compact"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,840",
+				"to": "00:25:53,880"
+			},
+			"offsets": {
+				"from": 1546840,
+				"to": 1553880
+			},
+			"text": " designs and maybe with faster proofs and sense faster notifications thank you very much"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,880",
+				"to": "00:26:02,840"
+			},
+			"offsets": {
+				"from": 1553880,
+				"to": 1562840
+			},
+			"text": " we have time for maybe one question"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,840",
+				"to": "00:26:14,840"
+			},
+			"offsets": {
+				"from": 1562840,
+				"to": 1574840
+			},
+			"text": " so I'm sure you've heard about the new designs coming out for the Starks with Jarvis and Friday"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,840",
+				"to": "00:26:19,480"
+			},
+			"offsets": {
+				"from": 1574840,
+				"to": 1579480
+			},
+			"text": " although they're confined to the binary field how would you describe the relationship between"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,480",
+				"to": "00:26:24,920"
+			},
+			"offsets": {
+				"from": 1579480,
+				"to": 1584920
+			},
+			"text": " your work and that how would you describe the relationship between your work and that how do"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,920",
+				"to": "00:26:33,320"
+			},
+			"offsets": {
+				"from": 1584920,
+				"to": 1593320
+			},
+			"text": " you see them I've just seen them two days ago and basically their idea is in the MIMC with only"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,320",
+				"to": "00:26:40,200"
+			},
+			"offsets": {
+				"from": 1593320,
+				"to": 1600200
+			},
+			"text": " one registered to insert a fine layer and that's not yet clear for me if this and did withstand"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,200",
+				"to": "00:26:46,040"
+			},
+			"offsets": {
+				"from": 1600200,
+				"to": 1606040
+			},
+			"text": " Selju break attacks because I have some doubt but I haven't found an actual attack so maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,040",
+				"to": "00:26:51,800"
+			},
+			"offsets": {
+				"from": 1606040,
+				"to": 1611800
+			},
+			"text": " maybe it's indeed secure but I would be very careful I think that that part of use I needed"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,800",
+				"to": "00:26:57,000"
+			},
+			"offsets": {
+				"from": 1611800,
+				"to": 1617000
+			},
+			"text": " another round of applause please"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,160",
+				"to": "00:26:57,720"
+			},
+			"offsets": {
+				"from": 1617160,
+				"to": 1617720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,720",
+				"to": "00:26:59,720"
+			},
+			"offsets": {
+				"from": 1617720,
+				"to": 1619720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,720",
+				"to": "00:27:01,720"
+			},
+			"offsets": {
+				"from": 1619720,
+				"to": 1621720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,720",
+				"to": "00:27:03,720"
+			},
+			"offsets": {
+				"from": 1621720,
+				"to": 1623720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,720",
+				"to": "00:27:05,720"
+			},
+			"offsets": {
+				"from": 1623720,
+				"to": 1625720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,720",
+				"to": "00:27:07,720"
+			},
+			"offsets": {
+				"from": 1625720,
+				"to": 1627720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,720",
+				"to": "00:27:09,720"
+			},
+			"offsets": {
+				"from": 1627720,
+				"to": 1629720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,720",
+				"to": "00:27:11,720"
+			},
+			"offsets": {
+				"from": 1629720,
+				"to": 1631720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,720",
+				"to": "00:27:13,720"
+			},
+			"offsets": {
+				"from": 1631720,
+				"to": 1633720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,720",
+				"to": "00:27:15,720"
+			},
+			"offsets": {
+				"from": 1633720,
+				"to": 1635720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,720",
+				"to": "00:27:17,720"
+			},
+			"offsets": {
+				"from": 1635720,
+				"to": 1637720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:17,720",
+				"to": "00:27:19,720"
+			},
+			"offsets": {
+				"from": 1637720,
+				"to": 1639720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,720",
+				"to": "00:27:21,720"
+			},
+			"offsets": {
+				"from": 1639720,
+				"to": 1641720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,720",
+				"to": "00:27:23,720"
+			},
+			"offsets": {
+				"from": 1641720,
+				"to": 1643720
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,720",
+				"to": "00:27:52,720"
+			},
+			"offsets": {
+				"from": 1643720,
+				"to": 1672720
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

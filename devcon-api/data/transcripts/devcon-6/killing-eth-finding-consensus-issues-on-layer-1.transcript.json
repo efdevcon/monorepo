@@ -1,0 +1,2595 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 18000
+			},
+			"text": " All right, so next up we have Mario's Vanderviden who is on the Geth team and works on fuzzing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:19,700"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 19700
+			},
+			"text": " and testing and some other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,700",
+				"to": "00:00:23,800"
+			},
+			"offsets": {
+				"from": 19700,
+				"to": 23800
+			},
+			"text": " I know Danny Ryan likes to take all the credit for the merge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,800",
+				"to": "00:00:26,960"
+			},
+			"offsets": {
+				"from": 23800,
+				"to": 26960
+			},
+			"text": " but these guys played a crucial role as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,460",
+				"to": "00:00:32,260"
+			},
+			"offsets": {
+				"from": 27460,
+				"to": 32260
+			},
+			"text": " And he's going to talk about some of the bugs that they found and maybe some of the things"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,260",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 32260,
+				"to": 35000
+			},
+			"text": " that could have gotten horribly wrong, but didn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:38,160"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 38160
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,160",
+				"to": "00:00:47,380"
+			},
+			"offsets": {
+				"from": 38160,
+				"to": 47380
+			},
+			"text": " Yeah, I was actually surprised that so little got wrong with the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,380",
+				"to": "00:00:55,320"
+			},
+			"offsets": {
+				"from": 47380,
+				"to": 55320
+			},
+			"text": " And I'm really happy to stand here today and say that we didn't kill Eeth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,600",
+				"to": "00:01:02,900"
+			},
+			"offsets": {
+				"from": 55600,
+				"to": 62900
+			},
+			"text": " but we tried to and this presentation is a bit about some of the strategies that we use"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,900",
+				"to": "00:01:10,220"
+			},
+			"offsets": {
+				"from": 62900,
+				"to": 70220
+			},
+			"text": " to kill Eeth and it's a big part of the presentation is about some of the bugs that we found,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,220",
+				"to": "00:01:16,440"
+			},
+			"offsets": {
+				"from": 70220,
+				"to": 76440
+			},
+			"text": " some of the interesting issues that have popped up during the merge testing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,440",
+				"to": "00:01:21,580"
+			},
+			"offsets": {
+				"from": 76440,
+				"to": 81580
+			},
+			"text": " and also before that during our normal testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,360",
+				"to": "00:01:26,260"
+			},
+			"offsets": {
+				"from": 82360,
+				"to": 86260
+			},
+			"text": " So today I'm going to talk a lot about consensus issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,260",
+				"to": "00:01:30,600"
+			},
+			"offsets": {
+				"from": 86260,
+				"to": 90600
+			},
+			"text": " Consensus issues are differences between the implementation and the spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,600",
+				"to": "00:01:34,300"
+			},
+			"offsets": {
+				"from": 90600,
+				"to": 94300
+			},
+			"text": " I think that's the big thing about Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,300",
+				"to": "00:01:40,180"
+			},
+			"offsets": {
+				"from": 94300,
+				"to": 100180
+			},
+			"text": " We have a specification and we have multiple clients implementing the specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,180",
+				"to": "00:01:44,440"
+			},
+			"offsets": {
+				"from": 100180,
+				"to": 104440
+			},
+			"text": " So for the execution layer we have four different clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,440",
+				"to": "00:01:49,460"
+			},
+			"offsets": {
+				"from": 104440,
+				"to": 109460
+			},
+			"text": " that implement exactly the same thing and we need to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,460",
+				"to": "00:01:58,840"
+			},
+			"offsets": {
+				"from": 109460,
+				"to": 118840
+			},
+			"text": " that they do exactly the same thing because if one implementation rejects a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,840",
+				"to": "00:02:03,120"
+			},
+			"offsets": {
+				"from": 118840,
+				"to": 123120
+			},
+			"text": " that the other implementations accept then the chain will split into two"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,120",
+				"to": "00:02:05,960"
+			},
+			"offsets": {
+				"from": 123120,
+				"to": 125960
+			},
+			"text": " and we want to prevent this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,960",
+				"to": "00:02:14,780"
+			},
+			"offsets": {
+				"from": 125960,
+				"to": 134780
+			},
+			"text": " And so we over the years we developed a bunch of testing strategies for exactly these problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,720",
+				"to": "00:02:23,820"
+			},
+			"offsets": {
+				"from": 135720,
+				"to": 143820
+			},
+			"text": " and one, the newest one that we developed for the merge are shadow forks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,820",
+				"to": "00:02:33,920"
+			},
+			"offsets": {
+				"from": 143820,
+				"to": 153920
+			},
+			"text": " Basically we take a copy of the blockchain, we configure some of our nodes with the new rules"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,920",
+				"to": "00:02:42,180"
+			},
+			"offsets": {
+				"from": 153920,
+				"to": 162180
+			},
+			"text": " and at the merge transition the new nodes create their own chain which is in parallel"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,180",
+				"to": "00:02:45,620"
+			},
+			"offsets": {
+				"from": 162180,
+				"to": 165620
+			},
+			"text": " to the main chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,620",
+				"to": "00:02:50,980"
+			},
+			"offsets": {
+				"from": 165620,
+				"to": 170980
+			},
+			"text": " What is really interesting about it, both chains share the same state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,980",
+				"to": "00:02:55,860"
+			},
+			"offsets": {
+				"from": 170980,
+				"to": 175860
+			},
+			"text": " So all of the transactions that are valid on one chain are also valid on the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,860",
+				"to": "00:03:05,140"
+			},
+			"offsets": {
+				"from": 175860,
+				"to": 185140
+			},
+			"text": " This means we can run tests with mainnet load which is sometimes very important"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,140",
+				"to": "00:03:12,620"
+			},
+			"offsets": {
+				"from": 185140,
+				"to": 192620
+			},
+			"text": " to test for performance and also later on we will see a bunch of issues that came"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,620",
+				"to": "00:03:15,820"
+			},
+			"offsets": {
+				"from": 192620,
+				"to": 195820
+			},
+			"text": " up during shadow forking that we wouldn't have found otherwise."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,820",
+				"to": "00:03:23,980"
+			},
+			"offsets": {
+				"from": 195820,
+				"to": 203980
+			},
+			"text": " Another big part of what we do is differential testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,980",
+				"to": "00:03:33,500"
+			},
+			"offsets": {
+				"from": 203980,
+				"to": 213500
+			},
+			"text": " Basically because we have these different implementations we have a really nice property"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,740",
+				"to": "00:03:35,900"
+			},
+			"offsets": {
+				"from": 213740,
+				"to": 215900
+			},
+			"text": " that we can verify them against each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,900",
+				"to": "00:03:42,780"
+			},
+			"offsets": {
+				"from": 215900,
+				"to": 222780
+			},
+			"text": " So we create an input, we give it to the different implementations and then we collect the outputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,780",
+				"to": "00:03:47,060"
+			},
+			"offsets": {
+				"from": 222780,
+				"to": 227060
+			},
+			"text": " of these different implementations and verify that everyone does exactly the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,060",
+				"to": "00:03:51,940"
+			},
+			"offsets": {
+				"from": 227060,
+				"to": 231940
+			},
+			"text": " And there are different strategies to generate this input."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,940",
+				"to": "00:03:58,100"
+			},
+			"offsets": {
+				"from": 231940,
+				"to": 238100
+			},
+			"text": " We have for example the theorem tests which are just static test cases where we know the answer"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,100",
+				"to": "00:04:09,420"
+			},
+			"offsets": {
+				"from": 238100,
+				"to": 249420
+			},
+			"text": " for the test case but we also created fuzzers for creating just random miss transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,420",
+				"to": "00:04:13,780"
+			},
+			"offsets": {
+				"from": 249420,
+				"to": 253780
+			},
+			"text": " and contracts to test the different implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,780",
+				"to": "00:04:22,180"
+			},
+			"offsets": {
+				"from": 253780,
+				"to": 262180
+			},
+			"text": " And something new that we also did during merge testing is create malicious nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,940",
+				"to": "00:04:31,660"
+			},
+			"offsets": {
+				"from": 262940,
+				"to": 271660
+			},
+			"text": " Malicious nodes are basically forks of client software that does, that changes some of the rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,660",
+				"to": "00:04:40,020"
+			},
+			"offsets": {
+				"from": 271660,
+				"to": 280020
+			},
+			"text": " And so malicious nodes can insert bad transactions, change header fields, send really big values"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,020",
+				"to": "00:04:47,100"
+			},
+			"offsets": {
+				"from": 280020,
+				"to": 287100
+			},
+			"text": " or no values and can try to break the other nodes on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,940",
+				"to": "00:04:54,020"
+			},
+			"offsets": {
+				"from": 287940,
+				"to": 294020
+			},
+			"text": " These malicious nodes, we have them for the consensus layer and execution layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,020",
+				"to": "00:04:59,940"
+			},
+			"offsets": {
+				"from": 294020,
+				"to": 299940
+			},
+			"text": " And malicious consensus layer nodes can for example double vote or vote on two different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,940",
+				"to": "00:05:04,700"
+			},
+			"offsets": {
+				"from": 299940,
+				"to": 304700
+			},
+			"text": " two conflicting blocks which would mean that they can be slashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,700",
+				"to": "00:05:12,340"
+			},
+			"offsets": {
+				"from": 304700,
+				"to": 312340
+			},
+			"text": " Or use take signatures, send something, some weird network packages"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,340",
+				"to": "00:05:16,100"
+			},
+			"offsets": {
+				"from": 312340,
+				"to": 316100
+			},
+			"text": " and just in general try to cause mayhem on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,260",
+				"to": "00:05:25,260"
+			},
+			"offsets": {
+				"from": 317260,
+				"to": 325260
+			},
+			"text": " And this is a non-conclusive list of some of the testing tools that we have built over the years."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,260",
+				"to": "00:05:36,740"
+			},
+			"offsets": {
+				"from": 325260,
+				"to": 336740
+			},
+			"text": " For example GoEVM lab is a toolkit for EVM testing that we use to create the test case executed"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,740",
+				"to": "00:05:40,660"
+			},
+			"offsets": {
+				"from": 336740,
+				"to": 340660
+			},
+			"text": " on a client and collect the output from the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,660",
+				"to": "00:05:45,860"
+			},
+			"offsets": {
+				"from": 340660,
+				"to": 345860
+			},
+			"text": " We have Hive which is a really nice continuous integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,700",
+				"to": "00:05:56,220"
+			},
+			"offsets": {
+				"from": 346700,
+				"to": 356220
+			},
+			"text": " A regression testing suite where we run these Ethereum tests which is a set of 48,000 test cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,220",
+				"to": "00:06:05,860"
+			},
+			"offsets": {
+				"from": 356220,
+				"to": 365860
+			},
+			"text": " every night against the different implementations and verify that nothing has gone wrong when they update something."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,860",
+				"to": "00:06:14,220"
+			},
+			"offsets": {
+				"from": 365860,
+				"to": 374220
+			},
+			"text": " And then we have these malicious nodes both on the CL and the EL node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,580",
+				"to": "00:06:17,580"
+			},
+			"offsets": {
+				"from": 375580,
+				"to": 377580
+			},
+			"text": " the CL and the EL layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,580",
+				"to": "00:06:21,780"
+			},
+			"offsets": {
+				"from": 377580,
+				"to": 381780
+			},
+			"text": " And then we have some companies that we work with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,780",
+				"to": "00:06:27,980"
+			},
+			"offsets": {
+				"from": 381780,
+				"to": 387980
+			},
+			"text": " Katoasis and Antisysys for fuzzing and test nets."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,980",
+				"to": "00:06:34,860"
+			},
+			"offsets": {
+				"from": 387980,
+				"to": 394860
+			},
+			"text": " These are like bigger test nets that we set up one time through the transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,860",
+				"to": "00:06:44,300"
+			},
+			"offsets": {
+				"from": 394860,
+				"to": 404300
+			},
+			"text": " and then verify that the transition was correctly and then we scrap the test net and start fresh."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,620",
+				"to": "00:06:53,300"
+			},
+			"offsets": {
+				"from": 404620,
+				"to": 413300
+			},
+			"text": " And then we have some kind of one of tools like TXFOS which is sent some interesting transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,300",
+				"to": "00:06:59,380"
+			},
+			"offsets": {
+				"from": 413300,
+				"to": 419380
+			},
+			"text": " It's not really for finding bugs but more for creating load on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,380",
+				"to": "00:07:08,620"
+			},
+			"offsets": {
+				"from": 419380,
+				"to": 428620
+			},
+			"text": " So if we create a test net, one of the first things that we do is use TXFOS to basically hammer the nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,620",
+				"to": "00:07:11,620"
+			},
+			"offsets": {
+				"from": 428620,
+				"to": 431620
+			},
+			"text": " and see if something breaks there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,100",
+				"to": "00:07:18,500"
+			},
+			"offsets": {
+				"from": 432100,
+				"to": 438500
+			},
+			"text": " And with merge fuzz was a one-off tool that we use to fuzz the engine API and we have the beacon fuzz"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,500",
+				"to": "00:07:25,820"
+			},
+			"offsets": {
+				"from": 438500,
+				"to": 445820
+			},
+			"text": " which is a tool that has been around very long and fuzzes the different beacon clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,820",
+				"to": "00:07:28,740"
+			},
+			"offsets": {
+				"from": 445820,
+				"to": 448740
+			},
+			"text": " and found a bunch of interesting bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,740",
+				"to": "00:07:35,660"
+			},
+			"offsets": {
+				"from": 448740,
+				"to": 455660
+			},
+			"text": " Okay, so the rest of the talks is just talking about some of the interesting bugs that we found over the years."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,180",
+				"to": "00:07:42,580"
+			},
+			"offsets": {
+				"from": 457180,
+				"to": 462580
+			},
+			"text": " This bug was found by Martin right before the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,580",
+				"to": "00:07:49,540"
+			},
+			"offsets": {
+				"from": 462580,
+				"to": 469540
+			},
+			"text": " So whenever we have a consensus upgrade, whenever we have a fork,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,540",
+				"to": "00:07:57,780"
+			},
+			"offsets": {
+				"from": 469540,
+				"to": 477780
+			},
+			"text": " we actually ramp up testing, we take out all the old tools that we have and try to break it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,780",
+				"to": "00:08:04,380"
+			},
+			"offsets": {
+				"from": 477780,
+				"to": 484380
+			},
+			"text": " Here the BISU client had a bug in the gas calculation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,380",
+				"to": "00:08:15,180"
+			},
+			"offsets": {
+				"from": 484380,
+				"to": 495180
+			},
+			"text": " As you can see there, the gas goes down and at some point there's an underflow and the gas goes extremely high."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,180",
+				"to": "00:08:20,380"
+			},
+			"offsets": {
+				"from": 495180,
+				"to": 500380
+			},
+			"text": " This is a consensus issue because other clients will compute this correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,380",
+				"to": "00:08:27,780"
+			},
+			"offsets": {
+				"from": 500380,
+				"to": 507780
+			},
+			"text": " And on networks where BISU is the only client, this would actually be a DOS vector on the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,780",
+				"to": "00:08:33,380"
+			},
+			"offsets": {
+				"from": 507780,
+				"to": 513380
+			},
+			"text": " because the nodes will keep running the transaction and never stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,380",
+				"to": "00:08:39,980"
+			},
+			"offsets": {
+				"from": 513380,
+				"to": 519980
+			},
+			"text": " Well, they stop once this amount of gas is run out which is basically never."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,980",
+				"to": "00:08:45,180"
+			},
+			"offsets": {
+				"from": 519980,
+				"to": 525180
+			},
+			"text": " Then we have the death of Kinsugi."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,180",
+				"to": "00:08:54,580"
+			},
+			"offsets": {
+				"from": 525180,
+				"to": 534580
+			},
+			"text": " So we set up the Kinsugi testnet which was the real big testnet that we had"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,580",
+				"to": "00:09:00,380"
+			},
+			"offsets": {
+				"from": 534580,
+				"to": 540380
+			},
+			"text": " where we also invited the community to participate in testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,380",
+				"to": "00:09:05,780"
+			},
+			"offsets": {
+				"from": 540380,
+				"to": 545780
+			},
+			"text": " And on this Kinsugi testnet we set up the bad block generator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,780",
+				"to": "00:09:13,180"
+			},
+			"offsets": {
+				"from": 545780,
+				"to": 553180
+			},
+			"text": " the bad block generator from the execution layer and it changed the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,180",
+				"to": "00:09:20,580"
+			},
+			"offsets": {
+				"from": 553180,
+				"to": 560580
+			},
+			"text": " So for example it created a block with invalid extra data and this actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,580",
+				"to": "00:09:26,380"
+			},
+			"offsets": {
+				"from": 560580,
+				"to": 566380
+			},
+			"text": " I think it actually set the extra data and Nimbus was unable to sync because of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,380",
+				"to": "00:09:34,980"
+			},
+			"offsets": {
+				"from": 566380,
+				"to": 574980
+			},
+			"text": " And then we had the TXFuzzer running, the TXFuzzer created a transaction that had the revert upcode in it"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,980",
+				"to": "00:09:42,180"
+			},
+			"offsets": {
+				"from": 574980,
+				"to": 582180
+			},
+			"text": " and this triggered a consensus issue in Ethereum.js and so they couldn't,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,180",
+				"to": "00:09:44,980"
+			},
+			"offsets": {
+				"from": 582180,
+				"to": 584980
+			},
+			"text": " there wasn't consensus issue there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,980",
+				"to": "00:09:50,180"
+			},
+			"offsets": {
+				"from": 584980,
+				"to": 590180
+			},
+			"text": " And then we had a three-way consensus split which actually broke the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,180",
+				"to": "00:09:58,580"
+			},
+			"offsets": {
+				"from": 590180,
+				"to": 598580
+			},
+			"text": " and this was a split between Geth, the Tiku Geth combination and Biso another mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,580",
+				"to": "00:10:11,980"
+			},
+			"offsets": {
+				"from": 598580,
+				"to": 611980
+			},
+			"text": " Yeah, so the three-way consensus split, basically we had the fuzzer replace a block hash with its parent hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,980",
+				"to": "00:10:18,580"
+			},
+			"offsets": {
+				"from": 611980,
+				"to": 618580
+			},
+			"text": " This block should be rejected because the hash doesn't match what we give it"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,580",
+				"to": "00:10:22,380"
+			},
+			"offsets": {
+				"from": 618580,
+				"to": 622380
+			},
+			"text": " within the engine API."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,380",
+				"to": "00:10:28,180"
+			},
+			"offsets": {
+				"from": 622380,
+				"to": 628180
+			},
+			"text": " This check was actually in the spec but some of the clients didn't implement it correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,180",
+				"to": "00:10:30,580"
+			},
+			"offsets": {
+				"from": 628180,
+				"to": 630580
+			},
+			"text": " So Biso did not have this check."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,580",
+				"to": "00:10:37,780"
+			},
+			"offsets": {
+				"from": 630580,
+				"to": 637780
+			},
+			"text": " Another mind actually had the check but it also cached the payloads by block hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,780",
+				"to": "00:10:44,380"
+			},
+			"offsets": {
+				"from": 637780,
+				"to": 644380
+			},
+			"text": " And so we looked up the block hash, the wrong block hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,380",
+				"to": "00:10:53,180"
+			},
+			"offsets": {
+				"from": 644380,
+				"to": 653180
+			},
+			"text": " and saw that it was in the cache and then the implementation just assumed that the payload was valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,180",
+				"to": "00:10:58,780"
+			},
+			"offsets": {
+				"from": 653180,
+				"to": 658780
+			},
+			"text": " So this split the network into Geth and another mind Biso."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,780",
+				"to": "00:11:04,380"
+			},
+			"offsets": {
+				"from": 658780,
+				"to": 664380
+			},
+			"text": " With another mind Biso being wrong, Geth being actually the correct client."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,380",
+				"to": "00:11:11,380"
+			},
+			"offsets": {
+				"from": 664380,
+				"to": 671380
+			},
+			"text": " And then we kind of thought, \"Okay, we're going to fix it and we're going to keep the network running"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,380",
+				"to": "00:11:17,180"
+			},
+			"offsets": {
+				"from": 671380,
+				"to": 677180
+			},
+			"text": " and try to get the network back again.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,180",
+				"to": "00:11:24,780"
+			},
+			"offsets": {
+				"from": 677180,
+				"to": 684780
+			},
+			"text": " But during this time, the bad block generator actually created another issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,780",
+				"to": "00:11:28,380"
+			},
+			"offsets": {
+				"from": 684780,
+				"to": 688380
+			},
+			"text": " It created the block where the block number was set to one."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,380",
+				"to": "00:11:34,980"
+			},
+			"offsets": {
+				"from": 688380,
+				"to": 694980
+			},
+			"text": " And in Geth we have a cache to check whether we need to sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,980",
+				"to": "00:11:40,380"
+			},
+			"offsets": {
+				"from": 694980,
+				"to": 700380
+			},
+			"text": " And one issue is with Tiku, they executed all forks of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,380",
+				"to": "00:11:44,380"
+			},
+			"offsets": {
+				"from": 700380,
+				"to": 704380
+			},
+			"text": " They were like 30 different competing forks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,380",
+				"to": "00:11:48,380"
+			},
+			"offsets": {
+				"from": 704380,
+				"to": 708380
+			},
+			"text": " Executed them simultaneously which flushed the cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,380",
+				"to": "00:11:54,980"
+			},
+			"offsets": {
+				"from": 708380,
+				"to": 714980
+			},
+			"text": " And so we created database by parent hash and block number minus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,980",
+				"to": "00:12:03,780"
+			},
+			"offsets": {
+				"from": 714980,
+				"to": 723780
+			},
+			"text": " Block number minus one was zero which failed and triggered another sync cycle."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,780",
+				"to": "00:12:07,780"
+			},
+			"offsets": {
+				"from": 723780,
+				"to": 727780
+			},
+			"text": " And because we were trying to sync to the genesis block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,780",
+				"to": "00:12:10,380"
+			},
+			"offsets": {
+				"from": 727780,
+				"to": 730380
+			},
+			"text": " that actually violated some preconditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,380",
+				"to": "00:12:18,180"
+			},
+			"offsets": {
+				"from": 730380,
+				"to": 738180
+			},
+			"text": " So Geth panicked and the Tiku Geth node shut down."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,180",
+				"to": "00:12:23,180"
+			},
+			"offsets": {
+				"from": 738180,
+				"to": 743180
+			},
+			"text": " So after we had this three-way consensus split, we decided at some point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,180",
+				"to": "00:12:31,780"
+			},
+			"offsets": {
+				"from": 743180,
+				"to": 751780
+			},
+			"text": " \"Okay, it's just too hard. We're going to deprecate the Kinsugi testnet.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,780",
+				"to": "00:12:37,780"
+			},
+			"offsets": {
+				"from": 751780,
+				"to": 757780
+			},
+			"text": " I already talked a bit about Hive."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,780",
+				"to": "00:12:41,780"
+			},
+			"offsets": {
+				"from": 757780,
+				"to": 761780
+			},
+			"text": " We use Hive to execute a bunch of tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,780",
+				"to": "00:12:44,780"
+			},
+			"offsets": {
+				"from": 761780,
+				"to": 764780
+			},
+			"text": " And most of them are spec tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,780",
+				"to": "00:12:49,780"
+			},
+			"offsets": {
+				"from": 764780,
+				"to": 769780
+			},
+			"text": " So for the specification we create test cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,780",
+				"to": "00:12:54,780"
+			},
+			"offsets": {
+				"from": 769780,
+				"to": 774780
+			},
+			"text": " And I've found an incredible amount of bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,780",
+				"to": "00:12:58,780"
+			},
+			"offsets": {
+				"from": 774780,
+				"to": 778780
+			},
+			"text": " So shout out to Mario if he's sitting here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,780",
+				"to": "00:13:06,780"
+			},
+			"offsets": {
+				"from": 778780,
+				"to": 786780
+			},
+			"text": " And so for example we had a division by zero in the exchange transition configuration call."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,780",
+				"to": "00:13:10,780"
+			},
+			"offsets": {
+				"from": 786780,
+				"to": 790780
+			},
+			"text": " Some rules around the time step didn't really work."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,780",
+				"to": "00:13:19,780"
+			},
+			"offsets": {
+				"from": 790780,
+				"to": 799780
+			},
+			"text": " And so Hive really found a lot of issues that we have between Geth and the spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,780",
+				"to": "00:13:24,780"
+			},
+			"offsets": {
+				"from": 799780,
+				"to": 804780
+			},
+			"text": " And then we had the testing the merge effort which was really nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,780",
+				"to": "00:13:27,780"
+			},
+			"offsets": {
+				"from": 804780,
+				"to": 807780
+			},
+			"text": " Over 400 people got involved with testing the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,780",
+				"to": "00:13:30,780"
+			},
+			"offsets": {
+				"from": 807780,
+				"to": 810780
+			},
+			"text": " They sent transactions on their testnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,780",
+				"to": "00:13:32,780"
+			},
+			"offsets": {
+				"from": 810780,
+				"to": 812780
+			},
+			"text": " They set up nodes, reported issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,780",
+				"to": "00:13:36,780"
+			},
+			"offsets": {
+				"from": 812780,
+				"to": 816780
+			},
+			"text": " And the most important thing, they created documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,780",
+				"to": "00:13:40,780"
+			},
+			"offsets": {
+				"from": 816780,
+				"to": 820780
+			},
+			"text": " So we should be better at this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,780",
+				"to": "00:13:44,780"
+			},
+			"offsets": {
+				"from": 820780,
+				"to": 824780
+			},
+			"text": " We should be better at creating documentation, but we are unfortunately not."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,780",
+				"to": "00:13:50,780"
+			},
+			"offsets": {
+				"from": 824780,
+				"to": 830780
+			},
+			"text": " So we kind of rely on the community to educate other people in the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,780",
+				"to": "00:13:59,780"
+			},
+			"offsets": {
+				"from": 830780,
+				"to": 839780
+			},
+			"text": " And they also found some interesting issues in Go Ethereum that were kind of related on"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,780",
+				"to": "00:14:01,780"
+			},
+			"offsets": {
+				"from": 839780,
+				"to": 841780
+			},
+			"text": " the usage of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,780",
+				"to": "00:14:07,780"
+			},
+			"offsets": {
+				"from": 841780,
+				"to": 847780
+			},
+			"text": " And I think they also found a bunch of other bugs, so the community found a bunch of other"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,780",
+				"to": "00:14:10,780"
+			},
+			"offsets": {
+				"from": 847780,
+				"to": 850780
+			},
+			"text": " bugs in different implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,780",
+				"to": "00:14:12,780"
+			},
+			"offsets": {
+				"from": 850780,
+				"to": 852780
+			},
+			"text": " And then we had the shadow forks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,780",
+				"to": "00:14:18,780"
+			},
+			"offsets": {
+				"from": 852780,
+				"to": 858780
+			},
+			"text": " And the cool thing about the shadow forks is we are actually testing with the real network"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,780",
+				"to": "00:14:20,780"
+			},
+			"offsets": {
+				"from": 858780,
+				"to": 860780
+			},
+			"text": " and the real data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,780",
+				"to": "00:14:30,780"
+			},
+			"offsets": {
+				"from": 860780,
+				"to": 870780
+			},
+			"text": " And so one thing that on the first shadow fork we saw that the gas limit was quickly dropping."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,780",
+				"to": "00:14:36,780"
+			},
+			"offsets": {
+				"from": 870780,
+				"to": 876780
+			},
+			"text": " And the issue there was the default gas limit in gas was actually 8 million."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,780",
+				"to": "00:14:39,780"
+			},
+			"offsets": {
+				"from": 876780,
+				"to": 879780
+			},
+			"text": " And we never caught that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,780",
+				"to": "00:14:46,780"
+			},
+			"offsets": {
+				"from": 879780,
+				"to": 886780
+			},
+			"text": " And we caught it for the first time during these shadow forks because on May net the miners"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,780",
+				"to": "00:14:52,780"
+			},
+			"offsets": {
+				"from": 886780,
+				"to": 892780
+			},
+			"text": " back then voted to increase the gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,780",
+				"to": "00:14:55,780"
+			},
+			"offsets": {
+				"from": 892780,
+				"to": 895780
+			},
+			"text": " Another issue was we had memory blow up during reorgs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,780",
+				"to": "00:15:02,780"
+			},
+			"offsets": {
+				"from": 895780,
+				"to": 902780
+			},
+			"text": " There was some weird issue where it would reorg the node 600,000 blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,780",
+				"to": "00:15:10,780"
+			},
+			"offsets": {
+				"from": 902780,
+				"to": 910780
+			},
+			"text": " And this like increased the memory until the node crashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,780",
+				"to": "00:15:15,780"
+			},
+			"offsets": {
+				"from": 910780,
+				"to": 915780
+			},
+			"text": " Reorging 600,000 blocks is not something that we are able to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,780",
+				"to": "00:15:22,780"
+			},
+			"offsets": {
+				"from": 915780,
+				"to": 922780
+			},
+			"text": " But finding this issue actually showed us that the reorg procedure was taking up to too much"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,780",
+				"to": "00:15:23,780"
+			},
+			"offsets": {
+				"from": 922780,
+				"to": 923780
+			},
+			"text": " memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,780",
+				"to": "00:15:25,780"
+			},
+			"offsets": {
+				"from": 923780,
+				"to": 925780
+			},
+			"text": " And so we changed it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,780",
+				"to": "00:15:30,780"
+			},
+			"offsets": {
+				"from": 925780,
+				"to": 930780
+			},
+			"text": " And then we had the base fee engineness."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,780",
+				"to": "00:15:37,780"
+			},
+			"offsets": {
+				"from": 930780,
+				"to": 937780
+			},
+			"text": " Basically the engineness between the execution layer and the consensus layer is different."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,780",
+				"to": "00:15:43,780"
+			},
+			"offsets": {
+				"from": 937780,
+				"to": 943780
+			},
+			"text": " So what consensus layer clients need to do is change the engineness of the fields."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,780",
+				"to": "00:15:47,780"
+			},
+			"offsets": {
+				"from": 943780,
+				"to": 947780
+			},
+			"text": " And Prism used the wrong engineness."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,780",
+				"to": "00:15:52,780"
+			},
+			"offsets": {
+				"from": 947780,
+				"to": 952780
+			},
+			"text": " Thus it created bad blocks when the base fee was over 255."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,780",
+				"to": "00:15:57,780"
+			},
+			"offsets": {
+				"from": 952780,
+				"to": 957780
+			},
+			"text": " Because one byte, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,780",
+				"to": "00:16:02,780"
+			},
+			"offsets": {
+				"from": 957780,
+				"to": 962780
+			},
+			"text": " Yeah, I would really like to get you guys involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,780",
+				"to": "00:16:08,780"
+			},
+			"offsets": {
+				"from": 962780,
+				"to": 968780
+			},
+			"text": " Testing the merge was a great way for the community to be part of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,780",
+				"to": "00:16:15,780"
+			},
+			"offsets": {
+				"from": 968780,
+				"to": 975780
+			},
+			"text": " And we have a bunch of new upgrades, a bunch of interesting stuff that we also want to test."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,780",
+				"to": "00:16:19,780"
+			},
+			"offsets": {
+				"from": 975780,
+				"to": 979780
+			},
+			"text": " So test the search, test the verge."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,780",
+				"to": "00:16:22,780"
+			},
+			"offsets": {
+				"from": 979780,
+				"to": 982780
+			},
+			"text": " And eventually we also want to test the purge."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,780",
+				"to": "00:16:29,780"
+			},
+			"offsets": {
+				"from": 982780,
+				"to": 989780
+			},
+			"text": " And this community effort makes me really happy that so many people are interested in this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,780",
+				"to": "00:16:32,780"
+			},
+			"offsets": {
+				"from": 989780,
+				"to": 992780
+			},
+			"text": " Are interested in contributing that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,780",
+				"to": "00:16:37,780"
+			},
+			"offsets": {
+				"from": 992780,
+				"to": 997780
+			},
+			"text": " So if you want to become part of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,780",
+				"to": "00:16:45,780"
+			},
+			"offsets": {
+				"from": 997780,
+				"to": 1005780
+			},
+			"text": " I want to give a special thanks to all of these clients, all of these client teams and people"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,780",
+				"to": "00:16:49,780"
+			},
+			"offsets": {
+				"from": 1005780,
+				"to": 1009780
+			},
+			"text": " involved in testing and testing the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,780",
+				"to": "00:16:53,780"
+			},
+			"offsets": {
+				"from": 1009780,
+				"to": 1013780
+			},
+			"text": " And I want to give a special shout out to Martin."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,780",
+				"to": "00:17:00,780"
+			},
+			"offsets": {
+				"from": 1013780,
+				"to": 1020780
+			},
+			"text": " I hope he's watching right now for keeping us and Ethereum stable."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,780",
+				"to": "00:17:08,780"
+			},
+			"offsets": {
+				"from": 1020780,
+				"to": 1028780
+			},
+			"text": " We're also currently hiring within the Ethereum Foundation to increase the testing efforts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,780",
+				"to": "00:17:10,780"
+			},
+			"offsets": {
+				"from": 1028780,
+				"to": 1030780
+			},
+			"text": " the testing team."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,780",
+				"to": "00:17:17,780"
+			},
+			"offsets": {
+				"from": 1030780,
+				"to": 1037780
+			},
+			"text": " So if you're interested in getting a job at the foundation and help us test the new updates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,780",
+				"to": "00:17:19,780"
+			},
+			"offsets": {
+				"from": 1037780,
+				"to": 1039780
+			},
+			"text": " contact Mario."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,780",
+				"to": "00:17:28,780"
+			},
+			"offsets": {
+				"from": 1039780,
+				"to": 1048780
+			},
+			"text": " And yeah, so for when I inevitably have too much time on my hands, I have another eight minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,780",
+				"to": "00:17:35,780"
+			},
+			"offsets": {
+				"from": 1048780,
+				"to": 1055780
+			},
+			"text": " I have a bunch of backup slides with more cool bugs and issues that we found."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,780",
+				"to": "00:17:41,780"
+			},
+			"offsets": {
+				"from": 1055780,
+				"to": 1061780
+			},
+			"text": " You might remember this one, the bug that took down in the mirror."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,780",
+				"to": "00:17:49,780"
+			},
+			"offsets": {
+				"from": 1061780,
+				"to": 1069780
+			},
+			"text": " Basically the memory returned by the return data copy opcode was shallow copied."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,780",
+				"to": "00:17:54,780"
+			},
+			"offsets": {
+				"from": 1069780,
+				"to": 1074780
+			},
+			"text": " And so when we modified it, broke something."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,780",
+				"to": "00:18:00,780"
+			},
+			"offsets": {
+				"from": 1074780,
+				"to": 1080780
+			},
+			"text": " And we actually found the bug rather quickly and fixed it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,780",
+				"to": "00:18:02,780"
+			},
+			"offsets": {
+				"from": 1080780,
+				"to": 1082780
+			},
+			"text": " But the fix wasn't announced."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,780",
+				"to": "00:18:07,780"
+			},
+			"offsets": {
+				"from": 1082780,
+				"to": 1087780
+			},
+			"text": " We created a new version of Geth and we kind of forgot about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,780",
+				"to": "00:18:22,780"
+			},
+			"offsets": {
+				"from": 1087780,
+				"to": 1102780
+			},
+			"text": " And someone actually found that bug and triggered it on Mainnet because they saw that only 1% of the nodes on Mainnet actually still have this version that's broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,780",
+				"to": "00:18:31,780"
+			},
+			"offsets": {
+				"from": 1102780,
+				"to": 1111780
+			},
+			"text": " And the problem was that these 1% of nodes were actually in the era, included in the era nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,780",
+				"to": "00:18:36,780"
+			},
+			"offsets": {
+				"from": 1111780,
+				"to": 1116780
+			},
+			"text": " So for three or four hours in the era, went down."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,780",
+				"to": "00:18:41,780"
+			},
+			"offsets": {
+				"from": 1116780,
+				"to": 1121780
+			},
+			"text": " That's why you shouldn't use a centralized RPC provider, but that's another issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,780",
+				"to": "00:18:44,780"
+			},
+			"offsets": {
+				"from": 1121780,
+				"to": 1124780
+			},
+			"text": " Go run your own nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,780",
+				"to": "00:18:50,780"
+			},
+			"offsets": {
+				"from": 1124780,
+				"to": 1130780
+			},
+			"text": " And yeah, we kind of had to take the blame for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,780",
+				"to": "00:18:53,780"
+			},
+			"offsets": {
+				"from": 1130780,
+				"to": 1133780
+			},
+			"text": " This one was also a really interesting one."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,780",
+				"to": "00:18:59,780"
+			},
+			"offsets": {
+				"from": 1133780,
+				"to": 1139780
+			},
+			"text": " So we have fuzzers that run on OSS fuzz continuously."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,780",
+				"to": "00:19:04,780"
+			},
+			"offsets": {
+				"from": 1139780,
+				"to": 1144780
+			},
+			"text": " And at some point we got an email, \"Hey, we have a panic.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,780",
+				"to": "00:19:16,780"
+			},
+			"offsets": {
+				"from": 1144780,
+				"to": 1156780
+			},
+			"text": " And whenever we get an email about a panic, that's usually pretty bad because then someone could just send a transaction to the network and all of the guest notes would go down."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,780",
+				"to": "00:19:19,780"
+			},
+			"offsets": {
+				"from": 1156780,
+				"to": 1159780
+			},
+			"text": " And that's not great."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,780",
+				"to": "00:19:29,780"
+			},
+			"offsets": {
+				"from": 1159780,
+				"to": 1169780
+			},
+			"text": " So the issue was that you can see the comment that says, \"Choose shift equals b minus 1.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,780",
+				"to": "00:19:33,780"
+			},
+			"offsets": {
+				"from": 1169780,
+				"to": 1173780
+			},
+			"text": " But the shift was actually b, not b minus 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,780",
+				"to": "00:19:36,780"
+			},
+			"offsets": {
+				"from": 1173780,
+				"to": 1176780
+			},
+			"text": " And so that's the fix for the issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,780",
+				"to": "00:19:48,780"
+			},
+			"offsets": {
+				"from": 1176780,
+				"to": 1188780
+			},
+			"text": " And we triggered this bug within the mod x pre-compare when the modular was extremely large."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,780",
+				"to": "00:19:56,780"
+			},
+			"offsets": {
+				"from": 1188780,
+				"to": 1196780
+			},
+			"text": " Then we have the sum bug that we've got via the bounty program."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,780",
+				"to": "00:20:03,780"
+			},
+			"offsets": {
+				"from": 1196780,
+				"to": 1203780
+			},
+			"text": " So we have the bounty program if you find something and instead of triggering it on mainnet, send us an email."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,780",
+				"to": "00:20:09,780"
+			},
+			"offsets": {
+				"from": 1203780,
+				"to": 1209780
+			},
+			"text": " We especially pissed if you send us an email and then go trigger the bug on mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,780",
+				"to": "00:20:15,780"
+			},
+			"offsets": {
+				"from": 1209780,
+				"to": 1215780
+			},
+			"text": " So send us an email first, talk to us, and you will actually get a bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,780",
+				"to": "00:20:23,780"
+			},
+			"offsets": {
+				"from": 1215780,
+				"to": 1223780
+			},
+			"text": " The bounty size was increased to 250k and we actually quadrupled it for the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,780",
+				"to": "00:20:30,780"
+			},
+			"offsets": {
+				"from": 1223780,
+				"to": 1230780
+			},
+			"text": " So there's a lot of money to be had in finding consensus bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,780",
+				"to": "00:20:56,780"
+			},
+			"offsets": {
+				"from": 1230780,
+				"to": 1256780
+			},
+			"text": " Here when we input in 256 min to the power of 255, it would -- the implementation of another mind for the modular operator would actually negate the result wise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,780",
+				"to": "00:20:58,780"
+			},
+			"offsets": {
+				"from": 1256780,
+				"to": 1258780
+			},
+			"text": " resulting in two instead of minus two."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,780",
+				"to": "00:21:08,780"
+			},
+			"offsets": {
+				"from": 1258780,
+				"to": 1268780
+			},
+			"text": " So all other nodes computed minus two, another mind node computed two, and so they would split on a different fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,780",
+				"to": "00:21:22,780"
+			},
+			"offsets": {
+				"from": 1268780,
+				"to": 1282780
+			},
+			"text": " And this one is a DOS via a malicious snap request that was found by Gary and Martin from the Gath team."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,780",
+				"to": "00:21:31,780"
+			},
+			"offsets": {
+				"from": 1282780,
+				"to": 1291780
+			},
+			"text": " And here the issue was that someone could craft a weird get-try-node packet."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,780",
+				"to": "00:21:40,780"
+			},
+			"offsets": {
+				"from": 1291780,
+				"to": 1300780
+			},
+			"text": " That's a network packet that requested a missing try-node and you could crash the Gath node with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,780",
+				"to": "00:21:45,780"
+			},
+			"offsets": {
+				"from": 1300780,
+				"to": 1305780
+			},
+			"text": " These kind of issues are not that bad because you only crash one node."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,780",
+				"to": "00:21:55,780"
+			},
+			"offsets": {
+				"from": 1305780,
+				"to": 1315780
+			},
+			"text": " If we have crashes within the EVM, those are usually worse because you can crash a bunch of nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,780",
+				"to": "00:22:04,780"
+			},
+			"offsets": {
+				"from": 1315780,
+				"to": 1324780
+			},
+			"text": " And actually during investigating of this, we created a fuzzer for it and a fuzzer for the second panic."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,780",
+				"to": "00:22:15,780"
+			},
+			"offsets": {
+				"from": 1324780,
+				"to": 1335780
+			},
+			"text": " Here we have one -- I actually wrote my master thesis on fuzzing EVM stuff and created this fuzz EVM program."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,780",
+				"to": "00:22:24,780"
+			},
+			"offsets": {
+				"from": 1335780,
+				"to": 1344780
+			},
+			"text": " And the fuzz EVM found an issue in the copy opcodes called data copy, copy, copy, return data copy."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,780",
+				"to": "00:22:33,780"
+			},
+			"offsets": {
+				"from": 1344780,
+				"to": 1353780
+			},
+			"text": " And the issue was these opcodes consume three items from the stack, destination source and length of the data to copy."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,780",
+				"to": "00:22:37,780"
+			},
+			"offsets": {
+				"from": 1353780,
+				"to": 1357780
+			},
+			"text": " And another mind actually halted the execution if length was zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,780",
+				"to": "00:22:46,780"
+			},
+			"offsets": {
+				"from": 1357780,
+				"to": 1366780
+			},
+			"text": " So you can see this is one of the tools we have where we have two different executions, we have two different traces of the execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,780",
+				"to": "00:22:57,780"
+			},
+			"offsets": {
+				"from": 1366780,
+				"to": 1377780
+			},
+			"text": " and we can compare them and you can see that here the execution just halts and that's a consensus issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,780",
+				"to": "00:23:09,780"
+			},
+			"offsets": {
+				"from": 1377780,
+				"to": 1389780
+			},
+			"text": " Then we had another issue found by fuzz EVM was denial of service in BISU."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,780",
+				"to": "00:23:24,780"
+			},
+			"offsets": {
+				"from": 1389780,
+				"to": 1404780
+			},
+			"text": " Basically when you call the mod X precompile, BISU would read all of the parameters even if base length and modulo's length were zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,780",
+				"to": "00:23:33,780"
+			},
+			"offsets": {
+				"from": 1404780,
+				"to": 1413780
+			},
+			"text": " And so you could put a really, really big exponent and this could crash BISU nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,780",
+				"to": "00:23:51,780"
+			},
+			"offsets": {
+				"from": 1413780,
+				"to": 1431780
+			},
+			"text": " And this is the newest one that we found right, the 11022 bug was actually, guess 11022 was actually the version that we wanted to use for mainnet for the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,780",
+				"to": "00:23:56,780"
+			},
+			"offsets": {
+				"from": 1431780,
+				"to": 1436780
+			},
+			"text": " And it contained a regression that could corrupt the local state."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,780",
+				"to": "00:24:08,780"
+			},
+			"offsets": {
+				"from": 1436780,
+				"to": 1448780
+			},
+			"text": " Basically whenever we have, so we have these try nodes, this is where all the stuff from the, all the contract state and accounts are stored."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,780",
+				"to": "00:24:18,780"
+			},
+			"offsets": {
+				"from": 1448780,
+				"to": 1458780
+			},
+			"text": " And when we modify them, they need to be flushed to the disk in the same order as they are inserted into what we call the dirty cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,780",
+				"to": "00:24:30,780"
+			},
+			"offsets": {
+				"from": 1458780,
+				"to": 1470780
+			},
+			"text": " And so you want to insert, if you modify D, B and A, you want to insert D first, B second and then A third."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,780",
+				"to": "00:24:43,780"
+			},
+			"offsets": {
+				"from": 1470780,
+				"to": 1483780
+			},
+			"text": " And what we did was actually insert B first and then insert A and then we saw that we should insert D, but we saw that B was already inserted."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,780",
+				"to": "00:24:52,780"
+			},
+			"offsets": {
+				"from": 1483780,
+				"to": 1492780
+			},
+			"text": " So the code assumed that everything was correct and we never inserted D, so we ended up with some dangling try nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,780",
+				"to": "00:24:59,780"
+			},
+			"offsets": {
+				"from": 1492780,
+				"to": 1499780
+			},
+			"text": " That's it. Thank you very much for coming. And thank you for having testing the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,780",
+				"to": "00:25:04,780"
+			},
+			"offsets": {
+				"from": 1499780,
+				"to": 1504780
+			},
+			"text": " And I hope to see more people test the merge in the future. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,780",
+				"to": "00:25:07,780"
+			},
+			"offsets": {
+				"from": 1504780,
+				"to": 1507780
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,780",
+				"to": "00:25:17,780"
+			},
+			"offsets": {
+				"from": 1507780,
+				"to": 1517780
+			},
+			"text": " [Silence]"
+		}
+	]
+}

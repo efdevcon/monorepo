@@ -1,0 +1,714 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3960
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,960",
+				"to": "00:00:12,200"
+			},
+			"offsets": {
+				"from": 3960,
+				"to": 12200
+			},
+			"text": " Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,200",
+				"to": "00:00:13,400"
+			},
+			"offsets": {
+				"from": 12200,
+				"to": 13400
+			},
+			"text": " My name is Kenta."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,400",
+				"to": "00:00:16,320"
+			},
+			"offsets": {
+				"from": 13400,
+				"to": 16320
+			},
+			"text": " I am an engineer at work base."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,320",
+				"to": "00:00:21,520"
+			},
+			"offsets": {
+				"from": 16320,
+				"to": 21520
+			},
+			"text": " We are on startup focusing on digital content and NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,520",
+				"to": "00:00:29,960"
+			},
+			"offsets": {
+				"from": 21520,
+				"to": 29960
+			},
+			"text": " Today, I'm here to talk about this 3D data."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,960",
+				"to": "00:00:33,560"
+			},
+			"offsets": {
+				"from": 29960,
+				"to": 33560
+			},
+			"text": " So I'm going to give you a brief overview of some problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,560",
+				"to": "00:00:40,880"
+			},
+			"offsets": {
+				"from": 33560,
+				"to": 40880
+			},
+			"text": " with 3D data and an idea of how to solve it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,880",
+				"to": "00:00:44,880"
+			},
+			"offsets": {
+				"from": 40880,
+				"to": 44880
+			},
+			"text": " So one strong strength of the 3D data"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,880",
+				"to": "00:00:47,200"
+			},
+			"offsets": {
+				"from": 44880,
+				"to": 47200
+			},
+			"text": " is that you can choose how to use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,200",
+				"to": "00:00:51,960"
+			},
+			"offsets": {
+				"from": 47200,
+				"to": 51960
+			},
+			"text": " You can either display it on the virtual reality world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,960",
+				"to": "00:00:56,840"
+			},
+			"offsets": {
+				"from": 51960,
+				"to": 56840
+			},
+			"text": " or you can print it out using the 3D printer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,840",
+				"to": "00:01:01,640"
+			},
+			"offsets": {
+				"from": 56840,
+				"to": 61640
+			},
+			"text": " Any part of the printing model size is increasing each year."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,640",
+				"to": "00:01:08,440"
+			},
+			"offsets": {
+				"from": 61640,
+				"to": 68440
+			},
+			"text": " But behind the bright side, the 3D data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,440",
+				"to": "00:01:11,040"
+			},
+			"offsets": {
+				"from": 68440,
+				"to": 71040
+			},
+			"text": " can be harmful sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,040",
+				"to": "00:01:14,760"
+			},
+			"offsets": {
+				"from": 71040,
+				"to": 74760
+			},
+			"text": " With the 3D gun data and 3D printer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,760",
+				"to": "00:01:18,680"
+			},
+			"offsets": {
+				"from": 74760,
+				"to": 78680
+			},
+			"text": " anyone can create their own guns."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,680",
+				"to": "00:01:25,080"
+			},
+			"offsets": {
+				"from": 78680,
+				"to": 85080
+			},
+			"text": " And not only that, if the data is broken somehow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,080",
+				"to": "00:01:31,360"
+			},
+			"offsets": {
+				"from": 85080,
+				"to": 91360
+			},
+			"text": " the user, there's a possibility that the user is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,360",
+				"to": "00:01:33,920"
+			},
+			"offsets": {
+				"from": 91360,
+				"to": 93920
+			},
+			"text": " injured in a opposite way."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,920",
+				"to": "00:01:35,360"
+			},
+			"offsets": {
+				"from": 93920,
+				"to": 95360
+			},
+			"text": " Something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,360",
+				"to": "00:01:43,280"
+			},
+			"offsets": {
+				"from": 95360,
+				"to": 103280
+			},
+			"text": " And we can think many cases that 3D data should be well"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,280",
+				"to": "00:01:47,040"
+			},
+			"offsets": {
+				"from": 103280,
+				"to": 107040
+			},
+			"text": " designed, accurate, and reliable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,040",
+				"to": "00:01:50,840"
+			},
+			"offsets": {
+				"from": 107040,
+				"to": 110840
+			},
+			"text": " So something like the parts for the vehicles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,840",
+				"to": "00:01:55,440"
+			},
+			"offsets": {
+				"from": 110840,
+				"to": 115440
+			},
+			"text": " parts for the houses, they go into equipments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,440",
+				"to": "00:02:00,200"
+			},
+			"offsets": {
+				"from": 115440,
+				"to": 120200
+			},
+			"text": " and even artificial organs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,200",
+				"to": "00:02:04,440"
+			},
+			"offsets": {
+				"from": 120200,
+				"to": 124440
+			},
+			"text": " And we thought we need to help--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,440",
+				"to": "00:02:07,880"
+			},
+			"offsets": {
+				"from": 124440,
+				"to": 127880
+			},
+			"text": " we thought what we can do to solve--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,880",
+				"to": "00:02:12,320"
+			},
+			"offsets": {
+				"from": 127880,
+				"to": 132320
+			},
+			"text": " to help solve this problem using the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,320",
+				"to": "00:02:15,920"
+			},
+			"offsets": {
+				"from": 132320,
+				"to": 135920
+			},
+			"text": " And we came up with one possible solution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,920",
+				"to": "00:02:20,120"
+			},
+			"offsets": {
+				"from": 135920,
+				"to": 140120
+			},
+			"text": " making 3D data very viable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,120",
+				"to": "00:02:23,160"
+			},
+			"offsets": {
+				"from": 140120,
+				"to": 143160
+			},
+			"text": " And as some of you may already know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,160",
+				"to": "00:02:26,160"
+			},
+			"offsets": {
+				"from": 143160,
+				"to": 146160
+			},
+			"text": " there's a concept of very viable credentials"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,160",
+				"to": "00:02:29,360"
+			},
+			"offsets": {
+				"from": 146160,
+				"to": 149360
+			},
+			"text": " in the context of decentralized identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,360",
+				"to": "00:02:31,840"
+			},
+			"offsets": {
+				"from": 149360,
+				"to": 151840
+			},
+			"text": " So the issuer issues credentials to the holder"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,840",
+				"to": "00:02:35,320"
+			},
+			"offsets": {
+				"from": 151840,
+				"to": 155320
+			},
+			"text": " and the buyer will verify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,320",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 155320,
+				"to": 160000
+			},
+			"text": " And we need it to the 3D world."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:42,480"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 162480
+			},
+			"text": " The issuer, such as creator of the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,480",
+				"to": "00:02:48,520"
+			},
+			"offsets": {
+				"from": 162480,
+				"to": 168520
+			},
+			"text": " or subject to fire, some kind of organization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,520",
+				"to": "00:02:52,200"
+			},
+			"offsets": {
+				"from": 168520,
+				"to": 172200
+			},
+			"text": " is going to issue the credentials to the 3D data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,200",
+				"to": "00:02:54,640"
+			},
+			"offsets": {
+				"from": 172200,
+				"to": 174640
+			},
+			"text": " And the user can verify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,640",
+				"to": "00:02:57,600"
+			},
+			"offsets": {
+				"from": 174640,
+				"to": 177600
+			},
+			"text": " So food created for data and food authorized it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,600",
+				"to": "00:03:04,040"
+			},
+			"offsets": {
+				"from": 177600,
+				"to": 184040
+			},
+			"text": " And 3D data will be something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,040",
+				"to": "00:03:09,200"
+			},
+			"offsets": {
+				"from": 184040,
+				"to": 189200
+			},
+			"text": " So there will be a link to some credentials that are very viable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,200",
+				"to": "00:03:15,640"
+			},
+			"offsets": {
+				"from": 189200,
+				"to": 195640
+			},
+			"text": " We started this project with some 3D specialists"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,640",
+				"to": "00:03:18,320"
+			},
+			"offsets": {
+				"from": 195640,
+				"to": 198320
+			},
+			"text": " called the e-re-created."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,320",
+				"to": "00:03:19,920"
+			},
+			"offsets": {
+				"from": 198320,
+				"to": 199920
+			},
+			"text": " They have this cool solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,920",
+				"to": "00:03:28,120"
+			},
+			"offsets": {
+				"from": 199920,
+				"to": 208120
+			},
+			"text": " It can model 3D data in only 10 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,120",
+				"to": "00:03:30,800"
+			},
+			"offsets": {
+				"from": 208120,
+				"to": 210800
+			},
+			"text": " We're still working on this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,800",
+				"to": "00:03:36,080"
+			},
+			"offsets": {
+				"from": 210800,
+				"to": 216080
+			},
+			"text": " So if you are interested in this conduct, us."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,080",
+				"to": "00:03:41,760"
+			},
+			"offsets": {
+				"from": 216080,
+				"to": 221760
+			},
+			"text": " And one quick advertisement is that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,760",
+				"to": "00:03:45,560"
+			},
+			"offsets": {
+				"from": 221760,
+				"to": 225560
+			},
+			"text": " are going to organize Japanese spawn as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,560",
+				"to": "00:03:50,400"
+			},
+			"offsets": {
+				"from": 225560,
+				"to": 230400
+			},
+			"text": " But the PlayStation 1P is joining us."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,400",
+				"to": "00:03:53,520"
+			},
+			"offsets": {
+				"from": 230400,
+				"to": 233520
+			},
+			"text": " And it's awesome fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,520",
+				"to": "00:03:55,720"
+			},
+			"offsets": {
+				"from": 233520,
+				"to": 235720
+			},
+			"text": " We've made the type is coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,720",
+				"to": "00:03:57,200"
+			},
+			"offsets": {
+				"from": 235720,
+				"to": 237200
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,200",
+				"to": "00:03:59,040"
+			},
+			"offsets": {
+				"from": 237200,
+				"to": 239040
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,040",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 239040,
+				"to": 242000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:04,980"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 244980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,980",
+				"to": "00:04:07,960"
+			},
+			"offsets": {
+				"from": 244980,
+				"to": 247960
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,960",
+				"to": "00:04:10,940"
+			},
+			"offsets": {
+				"from": 247960,
+				"to": 250940
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,940",
+				"to": "00:04:13,680"
+			},
+			"offsets": {
+				"from": 250940,
+				"to": 253680
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

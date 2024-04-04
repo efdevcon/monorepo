@@ -1,0 +1,3431 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,700"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13700
+			},
+			"text": " >> Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,700",
+				"to": "00:00:14,700"
+			},
+			"offsets": {
+				"from": 13700,
+				"to": 14700
+			},
+			"text": " Test test."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,700",
+				"to": "00:00:17,600"
+			},
+			"offsets": {
+				"from": 14700,
+				"to": 17600
+			},
+			"text": " Yeah, I'm Everett Hildenbrandt."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,600",
+				"to": "00:00:20,600"
+			},
+			"offsets": {
+				"from": 17600,
+				"to": 20600
+			},
+			"text": " And I should have put also my group on there, but I was kind of in a rush to make the slides"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,600",
+				"to": "00:00:24,640"
+			},
+			"offsets": {
+				"from": 20600,
+				"to": 24640
+			},
+			"text": " because it was all a little bit last minute, but, you know, that's how it goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,640",
+				"to": "00:00:28,240"
+			},
+			"offsets": {
+				"from": 24640,
+				"to": 28240
+			},
+			"text": " And the original title was overview and progress report, and then I decided yesterday that more"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,240",
+				"to": "00:00:31,200"
+			},
+			"offsets": {
+				"from": 28240,
+				"to": 31200
+			},
+			"text": " kind of a K by example approach would go better here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,200",
+				"to": "00:00:35,360"
+			},
+			"offsets": {
+				"from": 31200,
+				"to": 35360
+			},
+			"text": " So I figured I'll put that as a subtitle, but still leave the original one so I don't offend"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,360",
+				"to": "00:00:36,360"
+			},
+			"offsets": {
+				"from": 35360,
+				"to": 36360
+			},
+			"text": " anyone or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,360",
+				"to": "00:00:37,360"
+			},
+			"offsets": {
+				"from": 36360,
+				"to": 37360
+			},
+			"text": " So we'll see."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,360",
+				"to": "00:00:39,600"
+			},
+			"offsets": {
+				"from": 37360,
+				"to": 39600
+			},
+			"text": " Okay, so what is K?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,600",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 39600,
+				"to": 43000
+			},
+			"text": " K is this language for building programming languages in, and then you get to derive a bunch"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 44000
+			},
+			"text": " of tools from it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:49,160"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 49160
+			},
+			"text": " So essentially, you give us the formal language definition, syntax and semantics, and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,160",
+				"to": "00:00:50,520"
+			},
+			"offsets": {
+				"from": 49160,
+				"to": 50520
+			},
+			"text": " we derive a bunch of tools from it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,520",
+				"to": "00:00:56,160"
+			},
+			"offsets": {
+				"from": 50520,
+				"to": 56160
+			},
+			"text": " So ones that are more in the vision phase right now are test case generation and compiler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,160",
+				"to": "00:00:59,400"
+			},
+			"offsets": {
+				"from": 56160,
+				"to": 59400
+			},
+			"text": " but all of the other tools you see here, we actually derive from the one semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,400",
+				"to": "00:01:03,360"
+			},
+			"offsets": {
+				"from": 59400,
+				"to": 63360
+			},
+			"text": " So that means that the tool that you're doing symbolic execution with or model checking"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,360",
+				"to": "00:01:08,960"
+			},
+			"offsets": {
+				"from": 63360,
+				"to": 68960
+			},
+			"text": " with or deductive program verification or you're executing the test set with, use all"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,960",
+				"to": "00:01:09,960"
+			},
+			"offsets": {
+				"from": 68960,
+				"to": 69960
+			},
+			"text": " the same semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,960",
+				"to": "00:01:12,320"
+			},
+			"offsets": {
+				"from": 69960,
+				"to": 72320
+			},
+			"text": " There's only one semantics that all of them are using."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,320",
+				"to": "00:01:16,800"
+			},
+			"offsets": {
+				"from": 72320,
+				"to": 76800
+			},
+			"text": " So there's no way for them to disagree on how the execution happens, which is important"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,800",
+				"to": "00:01:20,560"
+			},
+			"offsets": {
+				"from": 76800,
+				"to": 80560
+			},
+			"text": " when you're trying to verify the programs, how the properties you think they have."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,560",
+				"to": "00:01:23,960"
+			},
+			"offsets": {
+				"from": 80560,
+				"to": 83960
+			},
+			"text": " The K back end, I'm not really going to go into much depth on this, but the static logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,960",
+				"to": "00:01:28,600"
+			},
+			"offsets": {
+				"from": 83960,
+				"to": 88600
+			},
+			"text": " we use for matching configurations is called matching logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,600",
+				"to": "00:01:31,880"
+			},
+			"offsets": {
+				"from": 88600,
+				"to": 91880
+			},
+			"text": " There's some ongoing work on showing that this is a generalization of separation logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,880",
+				"to": "00:01:35,760"
+			},
+			"offsets": {
+				"from": 91880,
+				"to": 95760
+			},
+			"text": " and the polyodic modal logic and first order logic as well and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,760",
+				"to": "00:01:40,680"
+			},
+			"offsets": {
+				"from": 95760,
+				"to": 100680
+			},
+			"text": " So when I say generalization, I really just mean like there's embeddings into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,680",
+				"to": "00:01:44,840"
+			},
+			"offsets": {
+				"from": 100680,
+				"to": 104840
+			},
+			"text": " And then also the dynamic logic is reachability logic, which is this language independent dynamic"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,840",
+				"to": "00:01:47,400"
+			},
+			"offsets": {
+				"from": 104840,
+				"to": 107400
+			},
+			"text": " logic for reasoning about transition systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,400",
+				"to": "00:01:52,160"
+			},
+			"offsets": {
+				"from": 107400,
+				"to": 112160
+			},
+			"text": " So go ahead and ask me or the other team members, you guys raise your hands, if you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,160",
+				"to": "00:01:55,560"
+			},
+			"offsets": {
+				"from": 112160,
+				"to": 115560
+			},
+			"text": " any questions about these specific things, but I'm not really going to talk about that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,560",
+				"to": "00:01:57,960"
+			},
+			"offsets": {
+				"from": 115560,
+				"to": 117960
+			},
+			"text": " in this presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,960",
+				"to": "00:02:01,320"
+			},
+			"offsets": {
+				"from": 117960,
+				"to": 121320
+			},
+			"text": " Instead what I'm going to focus on is this K by example thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,320",
+				"to": "00:02:04,760"
+			},
+			"offsets": {
+				"from": 121320,
+				"to": 124760
+			},
+			"text": " So the organization we have on GitHub is this K framework organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,760",
+				"to": "00:02:09,560"
+			},
+			"offsets": {
+				"from": 124760,
+				"to": 129560
+			},
+			"text": " The KVM repository is at EVM semantics and all of the semantics that we maintain are"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,560",
+				"to": "00:02:10,560"
+			},
+			"offsets": {
+				"from": 129560,
+				"to": 130560
+			},
+			"text": " developed there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,560",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 130560,
+				"to": 136000
+			},
+			"text": " There are some semantics that other people maintain that aren't within our kind of organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:20,800"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 140800
+			},
+			"text": " And then directly in this repository we have this directory which has a bunch of toy languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,800",
+				"to": "00:02:25,520"
+			},
+			"offsets": {
+				"from": 140800,
+				"to": 145520
+			},
+			"text": " you can kind of play with and get familiar with K. So that's a good place to start."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,520",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 145520,
+				"to": 147000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:30,720"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 150720
+			},
+			"text": " So I'm going to dive right in and basically this part of the presentation is just going"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,720",
+				"to": "00:02:31,720"
+			},
+			"offsets": {
+				"from": 150720,
+				"to": 151720
+			},
+			"text": " to be a bunch of K."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,720",
+				"to": "00:02:35,960"
+			},
+			"offsets": {
+				"from": 151720,
+				"to": 155960
+			},
+			"text": " So I'm going to try to teach you guys K using an example that hopefully people are familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,960",
+				"to": "00:02:36,960"
+			},
+			"offsets": {
+				"from": 155960,
+				"to": 156960
+			},
+			"text": " with which is EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,960",
+				"to": "00:02:43,760"
+			},
+			"offsets": {
+				"from": 156960,
+				"to": 163760
+			},
+			"text": " So we're going to start off with some basic kind of functional style rules in K. Here"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,760",
+				"to": "00:02:45,840"
+			},
+			"offsets": {
+				"from": 163760,
+				"to": 165840
+			},
+			"text": " we're declaring a function called chop."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,840",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 165840,
+				"to": 167000
+			},
+			"text": " It takes in an integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 168000
+			},
+			"text": " It produces an integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:50,760"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 170760
+			},
+			"text": " So the type signature of this is int int."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,760",
+				"to": "00:02:54,080"
+			},
+			"offsets": {
+				"from": 170760,
+				"to": 174080
+			},
+			"text": " We declare here that it's a function and then we give the rule, we give it semantics"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,080",
+				"to": "00:02:55,600"
+			},
+			"offsets": {
+				"from": 174080,
+				"to": 175600
+			},
+			"text": " using this rule keyword."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,600",
+				"to": "00:03:01,160"
+			},
+			"offsets": {
+				"from": 175600,
+				"to": 181160
+			},
+			"text": " So we say rule chop of some integer goes to the integer modulo pow256 where this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,160",
+				"to": "00:03:05,480"
+			},
+			"offsets": {
+				"from": 181160,
+				"to": 185480
+			},
+			"text": " the built in K modulus operator and that only happens if it's either less than zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,480",
+				"to": "00:03:09,200"
+			},
+			"offsets": {
+				"from": 185480,
+				"to": 189200
+			},
+			"text": " or greater than pow256 which is two to the 256."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,200",
+				"to": "00:03:12,480"
+			},
+			"offsets": {
+				"from": 189200,
+				"to": 192480
+			},
+			"text": " Otherwise it just goes to I if it's within those bounds right there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,480",
+				"to": "00:03:16,240"
+			},
+			"offsets": {
+				"from": 192480,
+				"to": 196240
+			},
+			"text": " So you see that these cover all the cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,240",
+				"to": "00:03:21,840"
+			},
+			"offsets": {
+				"from": 196240,
+				"to": 201840
+			},
+			"text": " Some other operators we define these are just a fraction of them for demonstrating."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,840",
+				"to": "00:03:25,920"
+			},
+			"offsets": {
+				"from": 201840,
+				"to": 205920
+			},
+			"text": " But for example there's this plus word operator and notice we can define the syntax right"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,920",
+				"to": "00:03:31,400"
+			},
+			"offsets": {
+				"from": 205920,
+				"to": 211400
+			},
+			"text": " here to be in fixed directly so we can say actually something like three plus word for"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,400",
+				"to": "00:03:33,640"
+			},
+			"offsets": {
+				"from": 211400,
+				"to": 213640
+			},
+			"text": " instead of having to say plus word of three and four."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,640",
+				"to": "00:03:37,800"
+			},
+			"offsets": {
+				"from": 213640,
+				"to": 217800
+			},
+			"text": " For example we declare that that's a function and then we give semantics out to it down here"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,800",
+				"to": "00:03:42,200"
+			},
+			"offsets": {
+				"from": 217800,
+				"to": 222200
+			},
+			"text": " just by calling the built in plus int operator and then calling chop on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,200",
+				"to": "00:03:43,840"
+			},
+			"offsets": {
+				"from": 222200,
+				"to": 223840
+			},
+			"text": " Notice we also give semantics to division."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,840",
+				"to": "00:03:47,720"
+			},
+			"offsets": {
+				"from": 223840,
+				"to": 227720
+			},
+			"text": " This one has to be broken to two cases where you're dividing by zero, we're an EVM that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,720",
+				"to": "00:03:52,360"
+			},
+			"offsets": {
+				"from": 227720,
+				"to": 232360
+			},
+			"text": " defined to be zero and where you're not dividing by zero in which case we just call chop on"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,360",
+				"to": "00:03:55,800"
+			},
+			"offsets": {
+				"from": 232360,
+				"to": 235800
+			},
+			"text": " the normal division."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,800",
+				"to": "00:03:57,640"
+			},
+			"offsets": {
+				"from": 235800,
+				"to": 237640
+			},
+			"text": " And also feel free to ask any questions at any time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,640",
+				"to": "00:04:01,840"
+			},
+			"offsets": {
+				"from": 237640,
+				"to": 241840
+			},
+			"text": " It's going to kind of ramp up in difficulty as we go so it's better to ask earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,840",
+				"to": "00:04:06,800"
+			},
+			"offsets": {
+				"from": 241840,
+				"to": 246800
+			},
+			"text": " Okay so defining data structures in K. This is going to be a word stack for EVM and we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,800",
+				"to": "00:04:08,600"
+			},
+			"offsets": {
+				"from": 246800,
+				"to": 248600
+			},
+			"text": " going to define it as a simple cons list."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,600",
+				"to": "00:04:13,280"
+			},
+			"offsets": {
+				"from": 248600,
+				"to": 253280
+			},
+			"text": " So anyone in the functional programming languages will recognize this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,280",
+				"to": "00:04:17,320"
+			},
+			"offsets": {
+				"from": 253280,
+				"to": 257320
+			},
+			"text": " This is just something that it's a hint to our S&T solver."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,320",
+				"to": "00:04:21,680"
+			},
+			"offsets": {
+				"from": 257320,
+				"to": 261680
+			},
+			"text": " But basically we say that we have this dot word stack right here which serves as the empty"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,680",
+				"to": "00:04:26,240"
+			},
+			"offsets": {
+				"from": 261680,
+				"to": 266240
+			},
+			"text": " element of the cons list and then you can also cons and integer onto a word stack and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,240",
+				"to": "00:04:28,120"
+			},
+			"offsets": {
+				"from": 266240,
+				"to": 268120
+			},
+			"text": " that also produces a word stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,120",
+				"to": "00:04:30,960"
+			},
+			"offsets": {
+				"from": 268120,
+				"to": 270960
+			},
+			"text": " So this can be thought of as a singly linked list."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,960",
+				"to": "00:04:33,360"
+			},
+			"offsets": {
+				"from": 270960,
+				"to": 273360
+			},
+			"text": " And then here's for example word stack append."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,360",
+				"to": "00:04:37,800"
+			},
+			"offsets": {
+				"from": 273360,
+				"to": 277800
+			},
+			"text": " Given two word stacks you can put plus plus in between them that also produces a word stack"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,800",
+				"to": "00:04:41,800"
+			},
+			"offsets": {
+				"from": 277800,
+				"to": 281800
+			},
+			"text": " and then you know dot word stack append some word stack is just the word stack and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,800",
+				"to": "00:04:44,680"
+			},
+			"offsets": {
+				"from": 281800,
+				"to": 284680
+			},
+			"text": " some word append it to a cons onto a word stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,680",
+				"to": "00:04:48,920"
+			},
+			"offsets": {
+				"from": 284680,
+				"to": 288920
+			},
+			"text": " Append a word stack is the word cons onto depending of the tails."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,920",
+				"to": "00:04:49,920"
+			},
+			"offsets": {
+				"from": 288920,
+				"to": 289920
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,920",
+				"to": "00:04:53,560"
+			},
+			"offsets": {
+				"from": 289920,
+				"to": 293560
+			},
+			"text": " Pretty simple functional programming like stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,560",
+				"to": "00:04:54,760"
+			},
+			"offsets": {
+				"from": 293560,
+				"to": 294760
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,760",
+				"to": "00:04:57,920"
+			},
+			"offsets": {
+				"from": 294760,
+				"to": 297920
+			},
+			"text": " So then in K we have this thing called the configuration which basically specifies the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,920",
+				"to": "00:05:03,600"
+			},
+			"offsets": {
+				"from": 297920,
+				"to": 303600
+			},
+			"text": " state of our system and that lets us kind of tell K that you know there's a bunch of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,600",
+				"to": "00:05:06,680"
+			},
+			"offsets": {
+				"from": 303600,
+				"to": 306680
+			},
+			"text": " states sitting around that we don't want to have to mention all the time but we want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,680",
+				"to": "00:05:09,720"
+			},
+			"offsets": {
+				"from": 306680,
+				"to": 309720
+			},
+			"text": " be able to grab it any time we do need to mention it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,720",
+				"to": "00:05:14,560"
+			},
+			"offsets": {
+				"from": 309720,
+				"to": 314560
+			},
+			"text": " So here's just a fragment of the configuration the actual configuration contains 60 plus cells."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,560",
+				"to": "00:05:21,120"
+			},
+			"offsets": {
+				"from": 314560,
+				"to": 321120
+			},
+			"text": " A cell is one of these XML like brackets like this and then in the semantics when we say"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,120",
+				"to": "00:05:25,360"
+			},
+			"offsets": {
+				"from": 321120,
+				"to": 325360
+			},
+			"text": " configuration you also supply kind of the default value of each of the cells."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,360",
+				"to": "00:05:29,640"
+			},
+			"offsets": {
+				"from": 325360,
+				"to": 329640
+			},
+			"text": " So this is telling us that in the K cell the entire EVM program is loaded that's what"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,640",
+				"to": "00:05:34,080"
+			},
+			"offsets": {
+				"from": 329640,
+				"to": 334080
+			},
+			"text": " this dollar sign PGM it's a special symbol is loaded into the K cell at the beginning"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,080",
+				"to": "00:05:39,120"
+			},
+			"offsets": {
+				"from": 334080,
+				"to": 339120
+			},
+			"text": " of execution and then there's a sub configuration called EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,120",
+				"to": "00:05:41,760"
+			},
+			"offsets": {
+				"from": 339120,
+				"to": 341760
+			},
+			"text": " But for example contains the VM execution state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,760",
+				"to": "00:05:45,720"
+			},
+			"offsets": {
+				"from": 341760,
+				"to": 345720
+			},
+			"text": " So for example it's the current executing program which in the yellow paper is I under"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,720",
+				"to": "00:05:51,560"
+			},
+			"offsets": {
+				"from": 345720,
+				"to": 351560
+			},
+			"text": " bar B the current word stack which is mu S the local memory mu M and the current gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,560",
+				"to": "00:05:54,400"
+			},
+			"offsets": {
+				"from": 351560,
+				"to": 354400
+			},
+			"text": " available which is mu G."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,400",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 354400,
+				"to": 359000
+			},
+			"text": " We don't just have the VM execution state we also have the network state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:03,800"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 363800
+			},
+			"text": " So we have another sub configuration so what you saw above is where this dot dot dot is."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,800",
+				"to": "00:06:07,760"
+			},
+			"offsets": {
+				"from": 363800,
+				"to": 367760
+			},
+			"text": " This is the network state we have a map of the active accounts essentially that map just"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,760",
+				"to": "00:06:13,680"
+			},
+			"offsets": {
+				"from": 367760,
+				"to": 373680
+			},
+			"text": " states whether it's an empty account or an actual non-existent account."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,680",
+				"to": "00:06:17,440"
+			},
+			"offsets": {
+				"from": 373680,
+				"to": 377440
+			},
+			"text": " And then notice we have this accounts cell which is wrapping this account cell which"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,440",
+				"to": "00:06:21,960"
+			},
+			"offsets": {
+				"from": 377440,
+				"to": 381960
+			},
+			"text": " has multiplicity star which basically says you know you can have as many account cells"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,960",
+				"to": "00:06:22,960"
+			},
+			"offsets": {
+				"from": 381960,
+				"to": 382960
+			},
+			"text": " as you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,960",
+				"to": "00:06:27,160"
+			},
+			"offsets": {
+				"from": 382960,
+				"to": 387160
+			},
+			"text": " So you know in the realistic EVM network you can have many account cells and then in each"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,160",
+				"to": "00:06:31,520"
+			},
+			"offsets": {
+				"from": 387160,
+				"to": 391520
+			},
+			"text": " account you have an account ID the balance the code the storage and the knots and these"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,520",
+				"to": "00:06:33,160"
+			},
+			"offsets": {
+				"from": 391520,
+				"to": 393160
+			},
+			"text": " are the initial values."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,160",
+				"to": "00:06:37,280"
+			},
+			"offsets": {
+				"from": 393160,
+				"to": 397280
+			},
+			"text": " Down here we also have things like the transact the current transaction set and a couple other"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,280",
+				"to": "00:06:40,440"
+			},
+			"offsets": {
+				"from": 397280,
+				"to": 400440
+			},
+			"text": " little network state things for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,440",
+				"to": "00:06:44,760"
+			},
+			"offsets": {
+				"from": 400440,
+				"to": 404760
+			},
+			"text": " So like I said the actual configuration contains you know 60 plus cells obviously I can't put"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,760",
+				"to": "00:06:46,680"
+			},
+			"offsets": {
+				"from": 404760,
+				"to": 406680
+			},
+			"text": " the whole thing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,680",
+				"to": "00:06:50,240"
+			},
+			"offsets": {
+				"from": 406680,
+				"to": 410240
+			},
+			"text": " And then another thing to note this multiplicity star here people have asked me about you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,240",
+				"to": "00:06:53,680"
+			},
+			"offsets": {
+				"from": 410240,
+				"to": 413680
+			},
+			"text": " how can you do concurrency or parallelism or something like that that's exactly how"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,680",
+				"to": "00:06:54,680"
+			},
+			"offsets": {
+				"from": 413680,
+				"to": 414680
+			},
+			"text": " you do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,680",
+				"to": "00:06:58,120"
+			},
+			"offsets": {
+				"from": 414680,
+				"to": 418120
+			},
+			"text": " You essentially do a multiplicity star in a cell that's surrounding the case cell."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,120",
+				"to": "00:07:02,160"
+			},
+			"offsets": {
+				"from": 418120,
+				"to": 422160
+			},
+			"text": " So for example in the C semantics we have or in the C++ semantics we have we have multi"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,160",
+				"to": "00:07:08,520"
+			},
+			"offsets": {
+				"from": 422160,
+				"to": 428520
+			},
+			"text": " threading semantics using this multiplicity star or in the rolling case semantics that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,520",
+				"to": "00:07:13,320"
+			},
+			"offsets": {
+				"from": 428520,
+				"to": 433320
+			},
+			"text": " exists that's when we don't develop they also use multiplicity star for the independent"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,320",
+				"to": "00:07:15,680"
+			},
+			"offsets": {
+				"from": 433320,
+				"to": 435680
+			},
+			"text": " processes that are evolving in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,680",
+				"to": "00:07:20,560"
+			},
+			"offsets": {
+				"from": 435680,
+				"to": 440560
+			},
+			"text": " Okay any kind of questions as far?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,560",
+				"to": "00:07:26,120"
+			},
+			"offsets": {
+				"from": 440560,
+				"to": 446120
+			},
+			"text": " Okay let's get on to EVM execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,120",
+				"to": "00:07:29,480"
+			},
+			"offsets": {
+				"from": 446120,
+				"to": 449480
+			},
+			"text": " So before what we saw were rules that were just defining functions essentially and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,480",
+				"to": "00:07:33,120"
+			},
+			"offsets": {
+				"from": 449480,
+				"to": 453120
+			},
+			"text": " just kind of the functional you know subset of what you can define in K but now we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,120",
+				"to": "00:07:38,440"
+			},
+			"offsets": {
+				"from": 453120,
+				"to": 458440
+			},
+			"text": " to define generic transac transitions in the transition system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,440",
+				"to": "00:07:41,120"
+			},
+			"offsets": {
+				"from": 458440,
+				"to": 461120
+			},
+			"text": " So first we need to say how to perform a single step."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,120",
+				"to": "00:07:46,440"
+			},
+			"offsets": {
+				"from": 461120,
+				"to": 466440
+			},
+			"text": " So we introduce this next operator and in the yellow paper basically what you do is you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,440",
+				"to": "00:07:50,920"
+			},
+			"offsets": {
+				"from": 466440,
+				"to": 470920
+			},
+			"text": " say okay do a few simple checks to see if this is going to throw an exception like will"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,920",
+				"to": "00:07:55,440"
+			},
+			"offsets": {
+				"from": 470920,
+				"to": 475440
+			},
+			"text": " the word stack be under or overflowed will the gas limit be exceeded some other checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,440",
+				"to": "00:07:56,440"
+			},
+			"offsets": {
+				"from": 475440,
+				"to": 476440
+			},
+			"text": " like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,440",
+				"to": "00:08:00,120"
+			},
+			"offsets": {
+				"from": 476440,
+				"to": 480120
+			},
+			"text": " Then if not then you execute the opcode and then afterwards you increment the program"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,120",
+				"to": "00:08:05,040"
+			},
+			"offsets": {
+				"from": 480120,
+				"to": 485040
+			},
+			"text": " counter and then you revert the state if any of the above steps through an exception."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,040",
+				"to": "00:08:07,480"
+			},
+			"offsets": {
+				"from": 485040,
+				"to": 487480
+			},
+			"text": " So here's the actual K rule right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,480",
+				"to": "00:08:11,760"
+			},
+			"offsets": {
+				"from": 487480,
+				"to": 491760
+			},
+			"text": " Notice here now we have the same keyword rule but we have multiple cells mentioned back"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,760",
+				"to": "00:08:17,280"
+			},
+			"offsets": {
+				"from": 491760,
+				"to": 497280
+			},
+			"text": " up here right we have rule but we have no K cells mentioned and then we have this function"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,280",
+				"to": "00:08:21,280"
+			},
+			"offsets": {
+				"from": 497280,
+				"to": 501280
+			},
+			"text": " attribute which basically means that anywhere in the configuration this rule can apply but"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,280",
+				"to": "00:08:26,360"
+			},
+			"offsets": {
+				"from": 501280,
+				"to": 506360
+			},
+			"text": " this rule only can apply exactly at these parts of the configuration."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,360",
+				"to": "00:08:32,240"
+			},
+			"offsets": {
+				"from": 506360,
+				"to": 512240
+			},
+			"text": " So what do we do when we see the next operator we replace it with this chunk of code when"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,240",
+				"to": "00:08:36,640"
+			},
+			"offsets": {
+				"from": 512240,
+				"to": 516640
+			},
+			"text": " the program counter is p count and in the program cell the current program cell that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,640",
+				"to": "00:08:40,720"
+			},
+			"offsets": {
+				"from": 516640,
+				"to": 520720
+			},
+			"text": " program counter is pointing to op and we don't care about the rest of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,720",
+				"to": "00:08:44,640"
+			},
+			"offsets": {
+				"from": 520720,
+				"to": 524640
+			},
+			"text": " Note that this dot dot dot is not me alliding details that's actually what the rule looks"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,640",
+				"to": "00:08:47,200"
+			},
+			"offsets": {
+				"from": 524640,
+				"to": 527200
+			},
+			"text": " like this is verbatim what the rule looks like in the semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,200",
+				"to": "00:08:51,200"
+			},
+			"offsets": {
+				"from": 527200,
+				"to": 531200
+			},
+			"text": " So essentially we use this dot dot dot to tell K don't care we don't care what's there"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,200",
+				"to": "00:08:57,280"
+			},
+			"offsets": {
+				"from": 531200,
+				"to": 537280
+			},
+			"text": " we just care about that one particular op code in the program cell."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,280",
+				"to": "00:09:01,640"
+			},
+			"offsets": {
+				"from": 537280,
+				"to": 541640
+			},
+			"text": " So yeah when we go next we say first push the call stack which basically saves a copy"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,640",
+				"to": "00:09:07,280"
+			},
+			"offsets": {
+				"from": 541640,
+				"to": 547280
+			},
+			"text": " of the current execution state then we check is it exceptional this is is it a bad jump"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,280",
+				"to": "00:09:10,920"
+			},
+			"offsets": {
+				"from": 547280,
+				"to": 550920
+			},
+			"text": " operator so is it going to jump to an invalid jump destination is it one of the designated"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,920",
+				"to": "00:09:18,640"
+			},
+			"offsets": {
+				"from": 550920,
+				"to": 558640
+			},
+			"text": " invalid operators there's one oh the stack under flow or overflow check if that check"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,640",
+				"to": "00:09:22,040"
+			},
+			"offsets": {
+				"from": 558640,
+				"to": 562040
+			},
+			"text": " passes and doesn't throw an exception then we actually execute the operator which does"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,040",
+				"to": "00:09:26,760"
+			},
+			"offsets": {
+				"from": 562040,
+				"to": 566760
+			},
+			"text": " the memory computation how much memory this is going to change also does the gas computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,760",
+				"to": "00:09:30,920"
+			},
+			"offsets": {
+				"from": 566760,
+				"to": 570920
+			},
+			"text": " and also has the effect on the state of whatever this op code is and then we increment the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,920",
+				"to": "00:09:32,360"
+			},
+			"offsets": {
+				"from": 570920,
+				"to": 572360
+			},
+			"text": " program counter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,360",
+				"to": "00:09:37,320"
+			},
+			"offsets": {
+				"from": 572360,
+				"to": 577320
+			},
+			"text": " If any of these throw an exception that exception ends up consuming the remaining of these operators"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,320",
+				"to": "00:09:43,080"
+			},
+			"offsets": {
+				"from": 577320,
+				"to": 583080
+			},
+			"text": " until it hits this syntax right here which basically acts like an if then else over exceptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,080",
+				"to": "00:09:47,880"
+			},
+			"offsets": {
+				"from": 583080,
+				"to": 587880
+			},
+			"text": " so if there is no exceptions we drop the call stack which essentially forgets the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,880",
+				"to": "00:09:52,280"
+			},
+			"offsets": {
+				"from": 587880,
+				"to": 592280
+			},
+			"text": " that we saved up here but there is an exception we take the false branch of this if then else"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,280",
+				"to": "00:09:56,480"
+			},
+			"offsets": {
+				"from": 592280,
+				"to": 596480
+			},
+			"text": " which means that we pop the call stack reverting to the previous state and propagate the exception"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,480",
+				"to": "00:10:01,880"
+			},
+			"offsets": {
+				"from": 596480,
+				"to": 601880
+			},
+			"text": " on so this little squiggly arrow can be read as followed by essentially so if you only"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,880",
+				"to": "00:10:07,240"
+			},
+			"offsets": {
+				"from": 601880,
+				"to": 607240
+			},
+			"text": " see a single element right here with this dot dot dot so this the precedence of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,240",
+				"to": "00:10:13,560"
+			},
+			"offsets": {
+				"from": 607240,
+				"to": 613560
+			},
+			"text": " is that this dot dot dot is outside of the scope of this rewrite arrow then that means"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,560",
+				"to": "00:10:17,440"
+			},
+			"offsets": {
+				"from": 613560,
+				"to": 617440
+			},
+			"text": " there's only a single element and then anything else in the followed by part but we're replacing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,440",
+				"to": "00:10:20,920"
+			},
+			"offsets": {
+				"from": 617440,
+				"to": 620920
+			},
+			"text": " the single element with several different computations to make."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,920",
+				"to": "00:10:23,640"
+			},
+			"offsets": {
+				"from": 620920,
+				"to": 623640
+			},
+			"text": " Does this make sense?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,640",
+				"to": "00:10:26,080"
+			},
+			"offsets": {
+				"from": 623640,
+				"to": 626080
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,080",
+				"to": "00:10:32,920"
+			},
+			"offsets": {
+				"from": 626080,
+				"to": 632920
+			},
+			"text": " Okay so EVM programs let's take a look what they look like in K. EVM op codes here are"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,920",
+				"to": "00:10:37,960"
+			},
+			"offsets": {
+				"from": 632920,
+				"to": 637960
+			},
+			"text": " some simple expressions so we actually bin up the op codes based on their arity essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,960",
+				"to": "00:10:42,960"
+			},
+			"offsets": {
+				"from": 637960,
+				"to": 642960
+			},
+			"text": " so sub and div are bin stock ops and we use somewhere else in the semantics we will automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,960",
+				"to": "00:10:46,600"
+			},
+			"offsets": {
+				"from": 642960,
+				"to": 646600
+			},
+			"text": " load the arguments based on the arity so all bin stack ops will get two arguments off the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,600",
+				"to": "00:10:51,080"
+			},
+			"offsets": {
+				"from": 646600,
+				"to": 651080
+			},
+			"text": " word stack and the word stack will have those arguments removed so sub just goes to minus"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,080",
+				"to": "00:10:55,680"
+			},
+			"offsets": {
+				"from": 651080,
+				"to": 655680
+			},
+			"text": " word div goes to divide by push divide by word and then that's followed by this hash push"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,680",
+				"to": "00:11:00,320"
+			},
+			"offsets": {
+				"from": 655680,
+				"to": 660320
+			},
+			"text": " which is just an internal operator for actually moving the result over to the over to the word"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,320",
+				"to": "00:11:07,480"
+			},
+			"offsets": {
+				"from": 660320,
+				"to": 667480
+			},
+			"text": " stack and then in here's some local memory operators like mload which is an un stack ops"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,480",
+				"to": "00:11:12,400"
+			},
+			"offsets": {
+				"from": 667480,
+				"to": 672400
+			},
+			"text": " so it takes one argument so mload at a specific index you go and grab the local memory from"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,400",
+				"to": "00:11:17,800"
+			},
+			"offsets": {
+				"from": 672400,
+				"to": 677800
+			},
+			"text": " the local memory cell and then you say as word the range of the local memory starting"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,800",
+				"to": "00:11:22,280"
+			},
+			"offsets": {
+				"from": 677800,
+				"to": 682280
+			},
+			"text": " at index and going 32 bytes so you take 32 bytes from a local memory pack it together"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,280",
+				"to": "00:11:26,200"
+			},
+			"offsets": {
+				"from": 682280,
+				"to": 686200
+			},
+			"text": " as a word and then you push that on to the word stack because remember the local memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,200",
+				"to": "00:11:32,760"
+			},
+			"offsets": {
+				"from": 686200,
+				"to": 692760
+			},
+			"text": " is actually a byte sequence it's not a word sequence here we have a bin stack op m store"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,760",
+				"to": "00:11:38,240"
+			},
+			"offsets": {
+				"from": 692760,
+				"to": 698240
+			},
+			"text": " so m store of this value at this index it's going to take the local memory and replace"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,240",
+				"to": "00:11:45,760"
+			},
+			"offsets": {
+				"from": 698240,
+				"to": 705760
+			},
+			"text": " it with the local memory where at that index you write 32 words prefixed with essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,760",
+				"to": "00:11:50,560"
+			},
+			"offsets": {
+				"from": 705760,
+				"to": 710560
+			},
+			"text": " the bytes of this value so you chop that value up into 32 different words if it's not enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,560",
+				"to": "00:11:55,680"
+			},
+			"offsets": {
+				"from": 710560,
+				"to": 715680
+			},
+			"text": " you pat it to the width of 32 and then you write it to the local memory does this make"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,680",
+				"to": "00:12:00,080"
+			},
+			"offsets": {
+				"from": 715680,
+				"to": 720080
+			},
+			"text": " sense okay so the rules are going to start getting bigger and mentioning more of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,080",
+				"to": "00:12:03,920"
+			},
+			"offsets": {
+				"from": 720080,
+				"to": 723920
+			},
+			"text": " configuration notice this only mentions one cell this mentions two cell oh and there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,920",
+				"to": "00:12:09,640"
+			},
+			"offsets": {
+				"from": 723920,
+				"to": 729640
+			},
+			"text": " one more thing notice here we have two rewrite arrows this is as opposed to a lot of languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,640",
+				"to": "00:12:14,080"
+			},
+			"offsets": {
+				"from": 729640,
+				"to": 734080
+			},
+			"text": " which would require that you pull this rewrite arrow outside copy the whole configuration"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,080",
+				"to": "00:12:18,640"
+			},
+			"offsets": {
+				"from": 734080,
+				"to": 738640
+			},
+			"text": " above and below but essentially k does that for you it pulls the rewrite arrow outside"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,640",
+				"to": "00:12:22,360"
+			},
+			"offsets": {
+				"from": 738640,
+				"to": 742360
+			},
+			"text": " and copies you know so you'll have a k and a local man before then the rewrite arrow then"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,360",
+				"to": "00:12:26,480"
+			},
+			"offsets": {
+				"from": 742360,
+				"to": 746480
+			},
+			"text": " a k and a local man with the right hand side of these but k just pulls those out for you"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,480",
+				"to": "00:12:34,040"
+			},
+			"offsets": {
+				"from": 746480,
+				"to": 754040
+			},
+			"text": " so the rule can be a little more compact and readable does that make sense okay so then"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,040",
+				"to": "00:12:38,800"
+			},
+			"offsets": {
+				"from": 754040,
+				"to": 758800
+			},
+			"text": " here's some aetherium network op codes so s load and s store they're the network storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,800",
+				"to": "00:12:45,120"
+			},
+			"offsets": {
+				"from": 758800,
+				"to": 765120
+			},
+			"text": " analogs of the m load and m store so when you s load at an index is an oon stack op and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,120",
+				"to": "00:12:50,520"
+			},
+			"offsets": {
+				"from": 765120,
+				"to": 770520
+			},
+			"text": " the current executing account is the one with this ID well first we match and account so"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,520",
+				"to": "00:12:53,680"
+			},
+			"offsets": {
+				"from": 770520,
+				"to": 773680
+			},
+			"text": " remember there's many different accounts because that multiplicity star we match the particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,680",
+				"to": "00:12:58,400"
+			},
+			"offsets": {
+				"from": 773680,
+				"to": 778400
+			},
+			"text": " one that matches the account of the the one that's currently executing and then we look"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,400",
+				"to": "00:13:04,360"
+			},
+			"offsets": {
+				"from": 778400,
+				"to": 784360
+			},
+			"text": " in its storage for this index essentially and then we push the value up right here and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,360",
+				"to": "00:13:09,640"
+			},
+			"offsets": {
+				"from": 784360,
+				"to": 789640
+			},
+			"text": " the storage and the account don't change we just push the value up there yeah so it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,640",
+				"to": "00:13:13,840"
+			},
+			"offsets": {
+				"from": 789640,
+				"to": 793840
+			},
+			"text": " kind of a lot going on but once again this dot dot dot is not me a lighting details this"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,840",
+				"to": "00:13:18,960"
+			},
+			"offsets": {
+				"from": 793840,
+				"to": 798960
+			},
+			"text": " is actually verbatim the k-rule for this operator so once again k is kind of being our friend"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,960",
+				"to": "00:13:23,320"
+			},
+			"offsets": {
+				"from": 798960,
+				"to": 803320
+			},
+			"text": " allowing us to a live lots of details of the configuration that we don't need to mention"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,320",
+				"to": "00:13:30,560"
+			},
+			"offsets": {
+				"from": 803320,
+				"to": 810560
+			},
+			"text": " for this particular rule s store right here it has once again two transition arrows one"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,560",
+				"to": "00:13:35,560"
+			},
+			"offsets": {
+				"from": 810560,
+				"to": 815560
+			},
+			"text": " that's going on within the account and one that's going on in the case cell and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,560",
+				"to": "00:13:39,800"
+			},
+			"offsets": {
+				"from": 815560,
+				"to": 819800
+			},
+			"text": " we're rewriting the s store to the empty computation essentially so we're saying that the computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,800",
+				"to": "00:13:45,120"
+			},
+			"offsets": {
+				"from": 819800,
+				"to": 825120
+			},
+			"text": " is done we once again match on the account ID grab the account take the storage update"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,120",
+				"to": "00:13:48,840"
+			},
+			"offsets": {
+				"from": 825120,
+				"to": 828840
+			},
+			"text": " the index and the storage with the value and then there's this side condition here because"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,840",
+				"to": "00:13:53,600"
+			},
+			"offsets": {
+				"from": 828840,
+				"to": 833600
+			},
+			"text": " there's a bunch of different semantics whether the key is already in the storage or not in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,600",
+				"to": "00:13:55,840"
+			},
+			"offsets": {
+				"from": 833600,
+				"to": 835840
+			},
+			"text": " the storage or it wasn't empty or it wasn't yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,840",
+				"to": "00:14:06,280"
+			},
+			"offsets": {
+				"from": 835840,
+				"to": 846280
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,280",
+				"to": "00:14:11,960"
+			},
+			"offsets": {
+				"from": 846280,
+				"to": 851960
+			},
+			"text": " So this this this arrow right here is actually map update and it ships with K as a built in"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,960",
+				"to": "00:14:17,960"
+			},
+			"offsets": {
+				"from": 851960,
+				"to": 857960
+			},
+			"text": " from the prelude this right here is actually specific to the EDM semantics because it has"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,960",
+				"to": "00:14:21,520"
+			},
+			"offsets": {
+				"from": 857960,
+				"to": 861520
+			},
+			"text": " to write a whole word stack at a time so it writes the first element and the second element"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,520",
+				"to": "00:14:28,960"
+			},
+			"offsets": {
+				"from": 861520,
+				"to": 868960
+			},
+			"text": " so this D sugars to a sequence of 32 of the map update operations does that make sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,960",
+				"to": "00:14:32,960"
+			},
+			"offsets": {
+				"from": 868960,
+				"to": 872960
+			},
+			"text": " I guess I could give it some nicer syntax but that I don't know that was an early design"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,960",
+				"to": "00:14:35,680"
+			},
+			"offsets": {
+				"from": 872960,
+				"to": 875680
+			},
+			"text": " decision then it's hard to change later."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,680",
+				"to": "00:14:44,200"
+			},
+			"offsets": {
+				"from": 875680,
+				"to": 884200
+			},
+			"text": " Yeah okay so I just wanted to show an example of a bigger network op code so this is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,200",
+				"to": "00:14:47,880"
+			},
+			"offsets": {
+				"from": 884200,
+				"to": 887880
+			},
+			"text": " call op code it's running off the edge of the screen here but basically we define a"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,880",
+				"to": "00:14:52,480"
+			},
+			"offsets": {
+				"from": 887880,
+				"to": 892480
+			},
+			"text": " bunch of internal operators to help with the call op code and that's pretty straightforward"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,480",
+				"to": "00:14:57,560"
+			},
+			"offsets": {
+				"from": 892480,
+				"to": 897560
+			},
+			"text": " to do but then these internals can be reused for the delegate call op code or probably for"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,560",
+				"to": "00:15:03,760"
+			},
+			"offsets": {
+				"from": 897560,
+				"to": 903760
+			},
+			"text": " the static call as well but I'm not sure it was a while since I wrote this code."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,760",
+				"to": "00:15:08,040"
+			},
+			"offsets": {
+				"from": 903760,
+				"to": 908040
+			},
+			"text": " Okay so gas calculation I'm going to run through this super quick because it looks like"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,040",
+				"to": "00:15:12,480"
+			},
+			"offsets": {
+				"from": 908040,
+				"to": 912480
+			},
+			"text": " I'm running low on time and I want to get to the verification part."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,480",
+				"to": "00:15:15,720"
+			},
+			"offsets": {
+				"from": 912480,
+				"to": 915720
+			},
+			"text": " The intrinsic gas calculation we tried to mirror as much as possible the style of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,720",
+				"to": "00:15:21,120"
+			},
+			"offsets": {
+				"from": 915720,
+				"to": 921120
+			},
+			"text": " yellow paper so we have this function gas exec which is parametric in the fee schedule"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,120",
+				"to": "00:15:25,040"
+			},
+			"offsets": {
+				"from": 921120,
+				"to": 925040
+			},
+			"text": " that you are executing with so you can specify different fee schedules for example I'll talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,040",
+				"to": "00:15:27,760"
+			},
+			"offsets": {
+				"from": 925040,
+				"to": 927760
+			},
+			"text": " about that on the next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,760",
+				"to": "00:15:34,400"
+			},
+			"offsets": {
+				"from": 927760,
+				"to": 934400
+			},
+			"text": " So given the schedule and the op code call the CS store gas function from the yellow"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,400",
+				"to": "00:15:37,640"
+			},
+			"offsets": {
+				"from": 934400,
+				"to": 937640
+			},
+			"text": " paper essentially and then this we're going to declare as a function which means we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,640",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 937640,
+				"to": 942000
+			},
+			"text": " not allowed to depend on any part of the external configuration so this gas exec operator"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:46,040"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 946040
+			},
+			"text": " is going to grab all the relevant parts of the state that CS store needs to calculate"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,040",
+				"to": "00:15:51,160"
+			},
+			"offsets": {
+				"from": 946040,
+				"to": 951160
+			},
+			"text": " its value and give CS store those values as arguments."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,160",
+				"to": "00:15:55,880"
+			},
+			"offsets": {
+				"from": 951160,
+				"to": 955880
+			},
+			"text": " So the definition of CS store is right here once again it's a function takes three arguments"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,880",
+				"to": "00:16:00,240"
+			},
+			"offsets": {
+				"from": 955880,
+				"to": 960240
+			},
+			"text": " produces an int and notice it doesn't depend on any part of the configuration so you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,240",
+				"to": "00:16:05,080"
+			},
+			"offsets": {
+				"from": 960240,
+				"to": 965080
+			},
+			"text": " you check is the value not equal to zero and the old one is not equal to zero so this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,080",
+				"to": "00:16:09,720"
+			},
+			"offsets": {
+				"from": 965080,
+				"to": 969720
+			},
+			"text": " has to do with whether you're setting it for setting it or resetting it essentially and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,720",
+				"to": "00:16:14,480"
+			},
+			"offsets": {
+				"from": 969720,
+				"to": 974480
+			},
+			"text": " then these are different schedule constants so they're parametric in the particular schedule"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,480",
+				"to": "00:16:17,800"
+			},
+			"offsets": {
+				"from": 974480,
+				"to": 977800
+			},
+			"text": " and then these are all sorts of other cost functions that we've implemented these mirror"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,800",
+				"to": "00:16:21,920"
+			},
+			"offsets": {
+				"from": 977800,
+				"to": 981920
+			},
+			"text": " exactly what goes on in the yellow paper so really you can read this instead of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,920",
+				"to": "00:16:25,560"
+			},
+			"offsets": {
+				"from": 981920,
+				"to": 985560
+			},
+			"text": " yellow paper if you don't like reading the yellow paper and it has a lot more explanatory"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,560",
+				"to": "00:16:31,120"
+			},
+			"offsets": {
+				"from": 985560,
+				"to": 991120
+			},
+			"text": " text around it in our repository online."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,120",
+				"to": "00:16:35,840"
+			},
+			"offsets": {
+				"from": 991120,
+				"to": 995840
+			},
+			"text": " Here's how we implement the schedules so we say that you can produce an integer if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,840",
+				"to": "00:16:40,080"
+			},
+			"offsets": {
+				"from": 995840,
+				"to": 1000080
+			},
+			"text": " have a schedule constant and then these brackets and a particular schedule and then here are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,080",
+				"to": "00:16:46,800"
+			},
+			"offsets": {
+				"from": 1000080,
+				"to": 1006800
+			},
+			"text": " some examples of schedule constants once again from the yellow paper G0G base G0G low."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,800",
+				"to": "00:16:53,160"
+			},
+			"offsets": {
+				"from": 1006800,
+				"to": 1013160
+			},
+			"text": " Here's a schedule the default schedule you know it sets G0 to 0 G2 EIP150 schedule G"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,160",
+				"to": "00:16:58,200"
+			},
+			"offsets": {
+				"from": 1013160,
+				"to": 1018200
+			},
+			"text": " balance gets changed to 400 over the schedule that come before that was like home state"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,200",
+				"to": "00:17:00,920"
+			},
+			"offsets": {
+				"from": 1018200,
+				"to": 1020920
+			},
+			"text": " or something I don't quite remember."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,920",
+				"to": "00:17:05,160"
+			},
+			"offsets": {
+				"from": 1020920,
+				"to": 1025160
+			},
+			"text": " So you just update for each new schedule change you just update the schedule constants for"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,160",
+				"to": "00:17:06,160"
+			},
+			"offsets": {
+				"from": 1025160,
+				"to": 1026160
+			},
+			"text": " that particular schedule."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,160",
+				"to": "00:17:09,560"
+			},
+			"offsets": {
+				"from": 1026160,
+				"to": 1029560
+			},
+			"text": " So there's actually a command line flag you can give this semantics to tell it which"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,560",
+				"to": "00:17:11,480"
+			},
+			"offsets": {
+				"from": 1029560,
+				"to": 1031480
+			},
+			"text": " schedule to execute with."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,480",
+				"to": "00:17:15,120"
+			},
+			"offsets": {
+				"from": 1031480,
+				"to": 1035120
+			},
+			"text": " Okay so now I'm going to talk about a toy verification example which is the sum to one"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,120",
+				"to": "00:17:19,960"
+			},
+			"offsets": {
+				"from": 1035120,
+				"to": 1039960
+			},
+			"text": " sum to n example I forgot to put what the actual spec is here but it's basically that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,960",
+				"to": "00:17:27,320"
+			},
+			"offsets": {
+				"from": 1039960,
+				"to": 1047320
+			},
+			"text": " S is equal to n times n plus 1 over 2 just a classical you know Euler's form I think it"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,320",
+				"to": "00:17:31,240"
+			},
+			"offsets": {
+				"from": 1047320,
+				"to": 1051240
+			},
+			"text": " was Euler's formula for sums or maybe Euclid or something and you say enough names you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,240",
+				"to": "00:17:33,400"
+			},
+			"offsets": {
+				"from": 1051240,
+				"to": 1053400
+			},
+			"text": " eventually get them all."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,400",
+				"to": "00:17:36,560"
+			},
+			"offsets": {
+				"from": 1053400,
+				"to": 1056560
+			},
+			"text": " So in no particular language this is kind of the program that we're looking at but in"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,560",
+				"to": "00:17:40,680"
+			},
+			"offsets": {
+				"from": 1056560,
+				"to": 1060680
+			},
+			"text": " EVM obviously it looks a little uglier."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,680",
+				"to": "00:17:44,160"
+			},
+			"offsets": {
+				"from": 1060680,
+				"to": 1064160
+			},
+			"text": " So the proof claim this is the main claim right here I'm going to run through this really"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,160",
+				"to": "00:17:48,800"
+			},
+			"offsets": {
+				"from": 1064160,
+				"to": 1068800
+			},
+			"text": " quickly but basically we're saying they look like reachability they look like the rules"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,800",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1068800,
+				"to": 1072000
+			},
+			"text": " from the definition and that's because they pretty much are the rules from the definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:54,400"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1074400
+			},
+			"text": " and basically what it's going to do is it's going to start on the left hand side of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,400",
+				"to": "00:17:58,960"
+			},
+			"offsets": {
+				"from": 1074400,
+				"to": 1078960
+			},
+			"text": " rule notice we have a symbolic value here for the gas and symbolic word stack here and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,960",
+				"to": "00:18:03,520"
+			},
+			"offsets": {
+				"from": 1078960,
+				"to": 1083520
+			},
+			"text": " it's going to symbolically execute using the inference system of reachability logic until"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,520",
+				"to": "00:18:10,320"
+			},
+			"offsets": {
+				"from": 1083520,
+				"to": 1090320
+			},
+			"text": " it reaches a state that implies this right hand side of the rule essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,320",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1090320,
+				"to": 1095000
+			},
+			"text": " So basically we're saying starting at any word stack we get to the same word stack but"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:20,840"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1100840
+			},
+			"text": " with the sum from one to n put on the top and our counter gets to zero and the gas consumed"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,840",
+				"to": "00:18:25,520"
+			},
+			"offsets": {
+				"from": 1100840,
+				"to": 1105520
+			},
+			"text": " is exactly this amount and then we have some preconditions basically stating that like n"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,520",
+				"to": "00:18:30,360"
+			},
+			"offsets": {
+				"from": 1105520,
+				"to": 1110360
+			},
+			"text": " is greater than zero there isn't an integer overflow the size of the word stack is small"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,360",
+				"to": "00:18:36,320"
+			},
+			"offsets": {
+				"from": 1110360,
+				"to": 1116320
+			},
+			"text": " enough that there won't be a stack overflow and the gas consumed is the gas available"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,320",
+				"to": "00:18:38,360"
+			},
+			"offsets": {
+				"from": 1116320,
+				"to": 1118360
+			},
+			"text": " is large enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,360",
+				"to": "00:18:42,440"
+			},
+			"offsets": {
+				"from": 1118360,
+				"to": 1122440
+			},
+			"text": " Basically you know we first write down the spec up here and then we try to prove it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,440",
+				"to": "00:18:47,400"
+			},
+			"offsets": {
+				"from": 1122440,
+				"to": 1127400
+			},
+			"text": " then the prover tells us in a not so intuitive way that it can't prove it and then we say"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,400",
+				"to": "00:18:49,880"
+			},
+			"offsets": {
+				"from": 1127400,
+				"to": 1129880
+			},
+			"text": " oh what are the preconditions we have to add."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,880",
+				"to": "00:18:55,120"
+			},
+			"offsets": {
+				"from": 1129880,
+				"to": 1135120
+			},
+			"text": " The reason I'm telling you that is because okay so actually with some example there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,120",
+				"to": "00:18:59,160"
+			},
+			"offsets": {
+				"from": 1135120,
+				"to": 1139160
+			},
+			"text": " this loop in traditional whole logic style things you have to provide a loop invariant"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,160",
+				"to": "00:19:03,520"
+			},
+			"offsets": {
+				"from": 1139160,
+				"to": 1143520
+			},
+			"text": " we generalize that a little bit and reachability logic to the notion of a circularity and this"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,520",
+				"to": "00:19:10,520"
+			},
+			"offsets": {
+				"from": 1143520,
+				"to": 1150520
+			},
+			"text": " basically says if you're starting at the loop head you can reach the end of the program"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,520",
+				"to": "00:19:12,960"
+			},
+			"offsets": {
+				"from": 1150520,
+				"to": 1152960
+			},
+			"text": " and calculate the correct remaining partial sum."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,960",
+				"to": "00:19:16,560"
+			},
+			"offsets": {
+				"from": 1152960,
+				"to": 1156560
+			},
+			"text": " So notice in a loop invariant if you're familiar with those you specify the behavior of a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,560",
+				"to": "00:19:20,480"
+			},
+			"offsets": {
+				"from": 1156560,
+				"to": 1160480
+			},
+			"text": " iteration loop here you specify the behavior from the beginning of the loop to the end"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,480",
+				"to": "00:19:24,440"
+			},
+			"offsets": {
+				"from": 1160480,
+				"to": 1164440
+			},
+			"text": " of the program which is often easier to specify than the behavior of a single iteration of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,440",
+				"to": "00:19:26,760"
+			},
+			"offsets": {
+				"from": 1164440,
+				"to": 1166760
+			},
+			"text": " the loop."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,760",
+				"to": "00:19:31,320"
+			},
+			"offsets": {
+				"from": 1166760,
+				"to": 1171320
+			},
+			"text": " Okay so verifying ABI compliant contracts writing these specifications is actually really hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,320",
+				"to": "00:19:34,440"
+			},
+			"offsets": {
+				"from": 1171320,
+				"to": 1174440
+			},
+			"text": " for ABI contracts because you know they're huge right."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,440",
+				"to": "00:19:38,920"
+			},
+			"offsets": {
+				"from": 1174440,
+				"to": 1178920
+			},
+			"text": " So we've provided some helper functions like ABI call data and some other little ones which"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,920",
+				"to": "00:19:43,140"
+			},
+			"offsets": {
+				"from": 1178920,
+				"to": 1183140
+			},
+			"text": " will let you essentially actually pass in the name of the function you want to call or the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,140",
+				"to": "00:19:46,480"
+			},
+			"offsets": {
+				"from": 1183140,
+				"to": 1186480
+			},
+			"text": " typed arguments that you want to pass that function for example instead of having to pass"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,480",
+				"to": "00:19:52,640"
+			},
+			"offsets": {
+				"from": 1186480,
+				"to": 1192640
+			},
+			"text": " in sorry the hex encoded bike string for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,640",
+				"to": "00:19:58,280"
+			},
+			"offsets": {
+				"from": 1192640,
+				"to": 1198280
+			},
+			"text": " And so here's an example usage and say ABI call data transfer to this address this transfer"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,280",
+				"to": "00:20:03,840"
+			},
+			"offsets": {
+				"from": 1198280,
+				"to": 1203840
+			},
+			"text": " value note that transfer here is a symbolic value but this is actually a constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,840",
+				"to": "00:20:08,320"
+			},
+			"offsets": {
+				"from": 1203840,
+				"to": 1208320
+			},
+			"text": " So that's the call data cell and then here you would use it right here this is this would"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,320",
+				"to": "00:20:13,080"
+			},
+			"offsets": {
+				"from": 1208320,
+				"to": 1213080
+			},
+			"text": " be that line above instead of having to write out the byte encoded hex values here and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,080",
+				"to": "00:20:17,240"
+			},
+			"offsets": {
+				"from": 1213080,
+				"to": 1217240
+			},
+			"text": " notice the balance one goes to balance one minus transfer balance two to balance two plus"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,240",
+				"to": "00:20:21,160"
+			},
+			"offsets": {
+				"from": 1217240,
+				"to": 1221160
+			},
+			"text": " transfer and then all these preconditions right here some of them were caught this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,160",
+				"to": "00:20:26,240"
+			},
+			"offsets": {
+				"from": 1221160,
+				"to": 1226240
+			},
+			"text": " this example is the HKG token that had a bug in it some of these were caught by the HKG"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,240",
+				"to": "00:20:30,840"
+			},
+			"offsets": {
+				"from": 1226240,
+				"to": 1230840
+			},
+			"text": " auditors some weren't actually so our prover was able to help us find some integer overflow"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,840",
+				"to": "00:20:32,640"
+			},
+			"offsets": {
+				"from": 1230840,
+				"to": 1232640
+			},
+			"text": " bugs and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,640",
+				"to": "00:20:37,800"
+			},
+			"offsets": {
+				"from": 1232640,
+				"to": 1237800
+			},
+			"text": " Okay so not enough time here but basically we pass the tests almost passing blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,800",
+				"to": "00:20:42,520"
+			},
+			"offsets": {
+				"from": 1237800,
+				"to": 1242520
+			},
+			"text": " tests with an order of magnitude of the performance of CPP Ethereum which is pretty good for a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,520",
+				"to": "00:20:45,480"
+			},
+			"offsets": {
+				"from": 1242520,
+				"to": 1245480
+			},
+			"text": " formal verification framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,480",
+				"to": "00:20:49,120"
+			},
+			"offsets": {
+				"from": 1245480,
+				"to": 1249120
+			},
+			"text": " We're working on some ABI extraction stuff and not discussed here but come and ask me"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,120",
+				"to": "00:20:55,920"
+			},
+			"offsets": {
+				"from": 1249120,
+				"to": 1255920
+			},
+			"text": " about it EVM Prime which was the IC3 boot camp project we're extending EVM with some stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,920",
+				"to": "00:21:01,160"
+			},
+			"offsets": {
+				"from": 1255920,
+				"to": 1261160
+			},
+			"text": " to make it easier to give semantics to Viper via compilation to EVM and we're getting pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,160",
+				"to": "00:21:02,880"
+			},
+			"offsets": {
+				"from": 1261160,
+				"to": 1262880
+			},
+			"text": " close on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,880",
+				"to": "00:21:09,920"
+			},
+			"offsets": {
+				"from": 1262880,
+				"to": 1269920
+			},
+			"text": " Yeah so this is the K framework overview it's not just for blockchain languages and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,920",
+				"to": "00:21:15,920"
+			},
+			"offsets": {
+				"from": 1269920,
+				"to": 1275920
+			},
+			"text": " the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,920",
+				"to": "00:21:22,920"
+			},
+			"offsets": {
+				"from": 1275920,
+				"to": 1282920
+			},
+			"text": " Thanks Everett."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,920",
+				"to": "00:21:29,920"
+			},
+			"offsets": {
+				"from": 1282920,
+				"to": 1289920
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,920",
+				"to": "00:21:32,660"
+			},
+			"offsets": {
+				"from": 1289920,
+				"to": 1292660
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,660",
+				"to": "00:21:34,900"
+			},
+			"offsets": {
+				"from": 1292660,
+				"to": 1294900
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

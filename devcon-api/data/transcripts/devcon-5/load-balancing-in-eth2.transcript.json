@@ -1,0 +1,2573 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,780"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5780
+			},
+			"text": " I'm Joan Long."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,780",
+				"to": "00:00:08,700"
+			},
+			"offsets": {
+				"from": 5780,
+				"to": 8700
+			},
+			"text": " I work for the Pegasus team on the Artemis client."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,700",
+				"to": "00:00:12,260"
+			},
+			"offsets": {
+				"from": 8700,
+				"to": 12260
+			},
+			"text": " Today I'm going to talk about our architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,260",
+				"to": "00:00:18,820"
+			},
+			"offsets": {
+				"from": 12260,
+				"to": 18820
+			},
+			"text": " Our architecture is designed -- actually, before I get started, let me say something."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,820",
+				"to": "00:00:21,380"
+			},
+			"offsets": {
+				"from": 18820,
+				"to": 21380
+			},
+			"text": " I want to talk about something that's like kind of close to my heart."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,380",
+				"to": "00:00:24,740"
+			},
+			"offsets": {
+				"from": 21380,
+				"to": 24740
+			},
+			"text": " I'm going to take about three minutes and talk about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,740",
+				"to": "00:00:28,580"
+			},
+			"offsets": {
+				"from": 24740,
+				"to": 28580
+			},
+			"text": " And so if you're new to the space and you haven't been in Ethereum for a while, I just"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,580",
+				"to": "00:00:30,300"
+			},
+			"offsets": {
+				"from": 28580,
+				"to": 30300
+			},
+			"text": " want to say welcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,300",
+				"to": "00:00:32,300"
+			},
+			"offsets": {
+				"from": 30300,
+				"to": 32300
+			},
+			"text": " It's kind of like drinking from a fire hose."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,300",
+				"to": "00:00:37,820"
+			},
+			"offsets": {
+				"from": 32300,
+				"to": 37820
+			},
+			"text": " I think the first time at DevCon 3 when I saw what they were working on, I was like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,820",
+				"to": "00:00:40,820"
+			},
+			"offsets": {
+				"from": 37820,
+				"to": 40820
+			},
+			"text": " wow, that's something that I really want to be a part of."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,820",
+				"to": "00:00:47,100"
+			},
+			"offsets": {
+				"from": 40820,
+				"to": 47100
+			},
+			"text": " And being able to come and speak at DevCon about our own ETH2 client that I've been"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,100",
+				"to": "00:00:51,900"
+			},
+			"offsets": {
+				"from": 47100,
+				"to": 51900
+			},
+			"text": " working on, it means a lot to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,900",
+				"to": "00:01:01,500"
+			},
+			"offsets": {
+				"from": 51900,
+				"to": 61500
+			},
+			"text": " And so I think some people might be asking occasionally why Ethereum 2 is taking so long."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,500",
+				"to": "00:01:07,180"
+			},
+			"offsets": {
+				"from": 61500,
+				"to": 67180
+			},
+			"text": " And from that perspective, I would point you to the DevCon 4 talk from Vitalik, his keynote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,180",
+				"to": "00:01:15,100"
+			},
+			"offsets": {
+				"from": 67180,
+				"to": 75100
+			},
+			"text": " where he described kind of the pitfalls and research decisions that we were going through"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,100",
+				"to": "00:01:20,300"
+			},
+			"offsets": {
+				"from": 75100,
+				"to": 80300
+			},
+			"text": " for the researchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,300",
+				"to": "00:01:24,900"
+			},
+			"offsets": {
+				"from": 80300,
+				"to": 84900
+			},
+			"text": " And that's a really good resource for learning kind of like all the individual paths that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,900",
+				"to": "00:01:29,340"
+			},
+			"offsets": {
+				"from": 84900,
+				"to": 89340
+			},
+			"text": " we took to kind of get to where we are now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,340",
+				"to": "00:01:36,020"
+			},
+			"offsets": {
+				"from": 89340,
+				"to": 96020
+			},
+			"text": " And I think we've like, I think in 2016, people were still talking about using a tenderment"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,020",
+				"to": "00:01:40,940"
+			},
+			"offsets": {
+				"from": 96020,
+				"to": 100940
+			},
+			"text": " consensus and to think like how far we've come since then."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,940",
+				"to": "00:01:46,380"
+			},
+			"offsets": {
+				"from": 100940,
+				"to": 106380
+			},
+			"text": " And the Ethereum 2.0 researchers are like in my view, some of the most intelligent, hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,380",
+				"to": "00:01:52,460"
+			},
+			"offsets": {
+				"from": 106380,
+				"to": 112460
+			},
+			"text": " working and thoughtful people that you'll find in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,460",
+				"to": "00:01:57,620"
+			},
+			"offsets": {
+				"from": 112460,
+				"to": 117620
+			},
+			"text": " And in the hardworking aspect, I want you to challenge you to interview any Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,620",
+				"to": "00:02:02,180"
+			},
+			"offsets": {
+				"from": 117620,
+				"to": 122180
+			},
+			"text": " 2 implementer or researchers, spouse or significant other."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,180",
+				"to": "00:02:07,660"
+			},
+			"offsets": {
+				"from": 122180,
+				"to": 127660
+			},
+			"text": " And they'll tell you how much they hate the Ethereum 2.0 mistress, you know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,660",
+				"to": "00:02:15,540"
+			},
+			"offsets": {
+				"from": 127660,
+				"to": 135540
+			},
+			"text": " And so maybe a few weeks ago, we achieved Interop, which is very exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,540",
+				"to": "00:02:20,220"
+			},
+			"offsets": {
+				"from": 135540,
+				"to": 140220
+			},
+			"text": " We were able to get seven clients communicating."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,220",
+				"to": "00:02:27,220"
+			},
+			"offsets": {
+				"from": 140220,
+				"to": 147220
+			},
+			"text": " And that's very difficult because research is never easy and there is no clear path to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,220",
+				"to": "00:02:28,540"
+			},
+			"offsets": {
+				"from": 147220,
+				"to": 148540
+			},
+			"text": " victory."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,540",
+				"to": "00:02:35,100"
+			},
+			"offsets": {
+				"from": 148540,
+				"to": 155100
+			},
+			"text": " And we are so close to the beacon chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,100",
+				"to": "00:02:41,260"
+			},
+			"offsets": {
+				"from": 155100,
+				"to": 161260
+			},
+			"text": " This is in my view, you know, the Apollo program of blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,260",
+				"to": "00:02:45,900"
+			},
+			"offsets": {
+				"from": 161260,
+				"to": 165900
+			},
+			"text": " And I just wanted to recognize all the teams who are here who are just kind of like dedicating"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,900",
+				"to": "00:02:49,420"
+			},
+			"offsets": {
+				"from": 165900,
+				"to": 169420
+			},
+			"text": " themselves to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,420",
+				"to": "00:02:52,220"
+			},
+			"offsets": {
+				"from": 169420,
+				"to": 172220
+			},
+			"text": " I say your team name, you stand up, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,220",
+				"to": "00:02:54,020"
+			},
+			"offsets": {
+				"from": 172220,
+				"to": 174020
+			},
+			"text": " Don't be weird."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,020",
+				"to": "00:02:56,020"
+			},
+			"offsets": {
+				"from": 174020,
+				"to": 176020
+			},
+			"text": " Okay, Artemis."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,020",
+				"to": "00:02:58,260"
+			},
+			"offsets": {
+				"from": 176020,
+				"to": 178260
+			},
+			"text": " Hey, stand up then."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,260",
+				"to": "00:02:59,260"
+			},
+			"offsets": {
+				"from": 178260,
+				"to": 179260
+			},
+			"text": " Don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,260",
+				"to": "00:03:01,020"
+			},
+			"offsets": {
+				"from": 179260,
+				"to": 181020
+			},
+			"text": " Adrian, you too, dude."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,020",
+				"to": "00:03:02,020"
+			},
+			"offsets": {
+				"from": 181020,
+				"to": 182020
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,020",
+				"to": "00:03:03,020"
+			},
+			"offsets": {
+				"from": 182020,
+				"to": 183020
+			},
+			"text": " Lighthouse."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,020",
+				"to": "00:03:04,020"
+			},
+			"offsets": {
+				"from": 183020,
+				"to": 184020
+			},
+			"text": " Lighthouse."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,020",
+				"to": "00:03:05,020"
+			},
+			"offsets": {
+				"from": 184020,
+				"to": 185020
+			},
+			"text": " Lighthouse."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,020",
+				"to": "00:03:08,100"
+			},
+			"offsets": {
+				"from": 185020,
+				"to": 188100
+			},
+			"text": " We got Lighthouse in the house."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,100",
+				"to": "00:03:10,100"
+			},
+			"offsets": {
+				"from": 188100,
+				"to": 190100
+			},
+			"text": " All right, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,100",
+				"to": "00:03:11,100"
+			},
+			"offsets": {
+				"from": 190100,
+				"to": 191100
+			},
+			"text": " Nimbus."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,100",
+				"to": "00:03:13,260"
+			},
+			"offsets": {
+				"from": 191100,
+				"to": 193260
+			},
+			"text": " Nimbus team."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,260",
+				"to": "00:03:16,660"
+			},
+			"offsets": {
+				"from": 193260,
+				"to": 196660
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,660",
+				"to": "00:03:18,220"
+			},
+			"offsets": {
+				"from": 196660,
+				"to": 198220
+			},
+			"text": " Load star."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,220",
+				"to": "00:03:19,540"
+			},
+			"offsets": {
+				"from": 198220,
+				"to": 199540
+			},
+			"text": " We got any guys from Load star."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,540",
+				"to": "00:03:21,540"
+			},
+			"offsets": {
+				"from": 199540,
+				"to": 201540
+			},
+			"text": " All right, they slept in."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,540",
+				"to": "00:03:22,540"
+			},
+			"offsets": {
+				"from": 201540,
+				"to": 202540
+			},
+			"text": " That's cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,540",
+				"to": "00:03:23,540"
+			},
+			"offsets": {
+				"from": 202540,
+				"to": 203540
+			},
+			"text": " Harmony."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,540",
+				"to": "00:03:24,540"
+			},
+			"offsets": {
+				"from": 203540,
+				"to": 204540
+			},
+			"text": " I saw you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,540",
+				"to": "00:03:25,540"
+			},
+			"offsets": {
+				"from": 204540,
+				"to": 205540
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,540",
+				"to": "00:03:26,540"
+			},
+			"offsets": {
+				"from": 205540,
+				"to": 206540
+			},
+			"text": " Great job."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,540",
+				"to": "00:03:27,540"
+			},
+			"offsets": {
+				"from": 206540,
+				"to": 207540
+			},
+			"text": " Great job."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,540",
+				"to": "00:03:28,540"
+			},
+			"offsets": {
+				"from": 207540,
+				"to": 208540
+			},
+			"text": " Shasper."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,540",
+				"to": "00:03:31,260"
+			},
+			"offsets": {
+				"from": 208540,
+				"to": 211260
+			},
+			"text": " I don't know if Wei Tang is in the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,260",
+				"to": "00:03:32,260"
+			},
+			"offsets": {
+				"from": 211260,
+				"to": 212260
+			},
+			"text": " Hey, Wei Tang."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,260",
+				"to": "00:03:33,660"
+			},
+			"offsets": {
+				"from": 212260,
+				"to": 213660
+			},
+			"text": " Dude, I've never seen you in person."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,660",
+				"to": "00:03:34,660"
+			},
+			"offsets": {
+				"from": 213660,
+				"to": 214660
+			},
+			"text": " That's nice to see you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,660",
+				"to": "00:03:35,660"
+			},
+			"offsets": {
+				"from": 214660,
+				"to": 215660
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,660",
+				"to": "00:03:36,660"
+			},
+			"offsets": {
+				"from": 215660,
+				"to": 216660
+			},
+			"text": " Trinity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,660",
+				"to": "00:03:37,660"
+			},
+			"offsets": {
+				"from": 216660,
+				"to": 217660
+			},
+			"text": " Yay."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,660",
+				"to": "00:03:38,660"
+			},
+			"offsets": {
+				"from": 217660,
+				"to": 218660
+			},
+			"text": " Prism."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,660",
+				"to": "00:03:41,660"
+			},
+			"offsets": {
+				"from": 218660,
+				"to": 221660
+			},
+			"text": " Excellent work, y'all."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,660",
+				"to": "00:03:42,660"
+			},
+			"offsets": {
+				"from": 221660,
+				"to": 222660
+			},
+			"text": " Yeth."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,660",
+				"to": "00:03:43,660"
+			},
+			"offsets": {
+				"from": 222660,
+				"to": 223660
+			},
+			"text": " Yeth."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,660",
+				"to": "00:03:45,660"
+			},
+			"offsets": {
+				"from": 223660,
+				"to": 225660
+			},
+			"text": " Dean's not here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,660",
+				"to": "00:03:46,660"
+			},
+			"offsets": {
+				"from": 225660,
+				"to": 226660
+			},
+			"text": " Okay, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,660",
+				"to": "00:03:47,660"
+			},
+			"offsets": {
+				"from": 226660,
+				"to": 227660
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,660",
+				"to": "00:03:57,740"
+			},
+			"offsets": {
+				"from": 227660,
+				"to": 237740
+			},
+			"text": " And the Ethereum Foundation, the researchers and white block if y'all would stand up too."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,740",
+				"to": "00:03:59,460"
+			},
+			"offsets": {
+				"from": 237740,
+				"to": 239460
+			},
+			"text": " I just want to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,460",
+				"to": "00:04:00,780"
+			},
+			"offsets": {
+				"from": 239460,
+				"to": 240780
+			},
+			"text": " Great material support."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,780",
+				"to": "00:04:02,780"
+			},
+			"offsets": {
+				"from": 240780,
+				"to": 242780
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,780",
+				"to": "00:04:03,780"
+			},
+			"offsets": {
+				"from": 242780,
+				"to": 243780
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,780",
+				"to": "00:04:07,580"
+			},
+			"offsets": {
+				"from": 243780,
+				"to": 247580
+			},
+			"text": " They've sacrificed a lot to be here and we're definitely very close."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,580",
+				"to": "00:04:10,020"
+			},
+			"offsets": {
+				"from": 247580,
+				"to": 250020
+			},
+			"text": " So now I'm going to talk about the real stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,020",
+				"to": "00:04:11,020"
+			},
+			"offsets": {
+				"from": 250020,
+				"to": 251020
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,020",
+				"to": "00:04:14,860"
+			},
+			"offsets": {
+				"from": 251020,
+				"to": 254860
+			},
+			"text": " So, this is an overview of our stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,860",
+				"to": "00:04:25,740"
+			},
+			"offsets": {
+				"from": 254860,
+				"to": 265740
+			},
+			"text": " So we chose to use OpenJDK11, which is a Java framework, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,740",
+				"to": "00:04:30,700"
+			},
+			"offsets": {
+				"from": 265740,
+				"to": 270700
+			},
+			"text": " And this is our piece right here that we've written Artemis."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,700",
+				"to": "00:04:32,700"
+			},
+			"offsets": {
+				"from": 270700,
+				"to": 272700
+			},
+			"text": " And these are some of the libraries that we used."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,700",
+				"to": "00:04:39,700"
+			},
+			"offsets": {
+				"from": 272700,
+				"to": 279700
+			},
+			"text": " And we used to use OpenJDK11, which is a very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,700",
+				"to": "00:04:45,700"
+			},
+			"offsets": {
+				"from": 279700,
+				"to": 285700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,700",
+				"to": "00:04:50,700"
+			},
+			"offsets": {
+				"from": 285700,
+				"to": 290700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,700",
+				"to": "00:04:55,700"
+			},
+			"offsets": {
+				"from": 290700,
+				"to": 295700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,700",
+				"to": "00:04:59,700"
+			},
+			"offsets": {
+				"from": 295700,
+				"to": 299700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,700",
+				"to": "00:05:01,700"
+			},
+			"offsets": {
+				"from": 299700,
+				"to": 301700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,700",
+				"to": "00:05:08,700"
+			},
+			"offsets": {
+				"from": 301700,
+				"to": 308700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,700",
+				"to": "00:05:14,700"
+			},
+			"offsets": {
+				"from": 308700,
+				"to": 314700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,700",
+				"to": "00:05:19,700"
+			},
+			"offsets": {
+				"from": 314700,
+				"to": 319700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,700",
+				"to": "00:05:23,700"
+			},
+			"offsets": {
+				"from": 319700,
+				"to": 323700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,700",
+				"to": "00:05:28,700"
+			},
+			"offsets": {
+				"from": 323700,
+				"to": 328700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,700",
+				"to": "00:05:34,700"
+			},
+			"offsets": {
+				"from": 328700,
+				"to": 334700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,700",
+				"to": "00:05:39,700"
+			},
+			"offsets": {
+				"from": 334700,
+				"to": 339700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,700",
+				"to": "00:05:43,700"
+			},
+			"offsets": {
+				"from": 339700,
+				"to": 343700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,700",
+				"to": "00:05:46,700"
+			},
+			"offsets": {
+				"from": 343700,
+				"to": 346700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,700",
+				"to": "00:05:49,700"
+			},
+			"offsets": {
+				"from": 346700,
+				"to": 349700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,700",
+				"to": "00:05:53,700"
+			},
+			"offsets": {
+				"from": 349700,
+				"to": 353700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,700",
+				"to": "00:05:55,700"
+			},
+			"offsets": {
+				"from": 353700,
+				"to": 355700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,700",
+				"to": "00:06:01,700"
+			},
+			"offsets": {
+				"from": 355700,
+				"to": 361700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,700",
+				"to": "00:06:05,700"
+			},
+			"offsets": {
+				"from": 361700,
+				"to": 365700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,700",
+				"to": "00:06:08,700"
+			},
+			"offsets": {
+				"from": 365700,
+				"to": 368700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,700",
+				"to": "00:06:11,700"
+			},
+			"offsets": {
+				"from": 368700,
+				"to": 371700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,700",
+				"to": "00:06:13,700"
+			},
+			"offsets": {
+				"from": 371700,
+				"to": 373700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,700",
+				"to": "00:06:16,700"
+			},
+			"offsets": {
+				"from": 373700,
+				"to": 376700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,700",
+				"to": "00:06:19,700"
+			},
+			"offsets": {
+				"from": 376700,
+				"to": 379700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,700",
+				"to": "00:06:22,700"
+			},
+			"offsets": {
+				"from": 379700,
+				"to": 382700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,700",
+				"to": "00:06:26,700"
+			},
+			"offsets": {
+				"from": 382700,
+				"to": 386700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,700",
+				"to": "00:06:30,700"
+			},
+			"offsets": {
+				"from": 386700,
+				"to": 390700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,700",
+				"to": "00:06:34,700"
+			},
+			"offsets": {
+				"from": 390700,
+				"to": 394700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,700",
+				"to": "00:06:37,700"
+			},
+			"offsets": {
+				"from": 394700,
+				"to": 397700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,700",
+				"to": "00:06:40,700"
+			},
+			"offsets": {
+				"from": 397700,
+				"to": 400700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,700",
+				"to": "00:06:43,700"
+			},
+			"offsets": {
+				"from": 400700,
+				"to": 403700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,700",
+				"to": "00:06:46,700"
+			},
+			"offsets": {
+				"from": 403700,
+				"to": 406700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,700",
+				"to": "00:06:49,700"
+			},
+			"offsets": {
+				"from": 406700,
+				"to": 409700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,700",
+				"to": "00:06:51,700"
+			},
+			"offsets": {
+				"from": 409700,
+				"to": 411700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,700",
+				"to": "00:06:55,700"
+			},
+			"offsets": {
+				"from": 411700,
+				"to": 415700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,700",
+				"to": "00:06:59,700"
+			},
+			"offsets": {
+				"from": 415700,
+				"to": 419700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,700",
+				"to": "00:07:03,700"
+			},
+			"offsets": {
+				"from": 419700,
+				"to": 423700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,700",
+				"to": "00:07:06,700"
+			},
+			"offsets": {
+				"from": 423700,
+				"to": 426700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,700",
+				"to": "00:07:09,700"
+			},
+			"offsets": {
+				"from": 426700,
+				"to": 429700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,700",
+				"to": "00:07:12,700"
+			},
+			"offsets": {
+				"from": 429700,
+				"to": 432700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,700",
+				"to": "00:07:15,700"
+			},
+			"offsets": {
+				"from": 432700,
+				"to": 435700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,700",
+				"to": "00:07:18,700"
+			},
+			"offsets": {
+				"from": 435700,
+				"to": 438700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,700",
+				"to": "00:07:22,700"
+			},
+			"offsets": {
+				"from": 438700,
+				"to": 442700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,700",
+				"to": "00:07:26,700"
+			},
+			"offsets": {
+				"from": 442700,
+				"to": 446700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,700",
+				"to": "00:07:30,700"
+			},
+			"offsets": {
+				"from": 446700,
+				"to": 450700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,700",
+				"to": "00:07:33,700"
+			},
+			"offsets": {
+				"from": 450700,
+				"to": 453700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,700",
+				"to": "00:07:36,700"
+			},
+			"offsets": {
+				"from": 453700,
+				"to": 456700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,700",
+				"to": "00:07:39,700"
+			},
+			"offsets": {
+				"from": 456700,
+				"to": 459700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,700",
+				"to": "00:07:42,700"
+			},
+			"offsets": {
+				"from": 459700,
+				"to": 462700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,700",
+				"to": "00:07:45,700"
+			},
+			"offsets": {
+				"from": 462700,
+				"to": 465700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,700",
+				"to": "00:07:47,700"
+			},
+			"offsets": {
+				"from": 465700,
+				"to": 467700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,700",
+				"to": "00:07:51,700"
+			},
+			"offsets": {
+				"from": 467700,
+				"to": 471700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,700",
+				"to": "00:07:55,700"
+			},
+			"offsets": {
+				"from": 471700,
+				"to": 475700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,700",
+				"to": "00:07:58,700"
+			},
+			"offsets": {
+				"from": 475700,
+				"to": 478700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,700",
+				"to": "00:08:02,700"
+			},
+			"offsets": {
+				"from": 478700,
+				"to": 482700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,700",
+				"to": "00:08:05,700"
+			},
+			"offsets": {
+				"from": 482700,
+				"to": 485700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,700",
+				"to": "00:08:08,700"
+			},
+			"offsets": {
+				"from": 485700,
+				"to": 488700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,700",
+				"to": "00:08:11,700"
+			},
+			"offsets": {
+				"from": 488700,
+				"to": 491700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,700",
+				"to": "00:08:14,700"
+			},
+			"offsets": {
+				"from": 491700,
+				"to": 494700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,700",
+				"to": "00:08:18,700"
+			},
+			"offsets": {
+				"from": 494700,
+				"to": 498700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,700",
+				"to": "00:08:22,700"
+			},
+			"offsets": {
+				"from": 498700,
+				"to": 502700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,700",
+				"to": "00:08:25,700"
+			},
+			"offsets": {
+				"from": 502700,
+				"to": 505700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,700",
+				"to": "00:08:29,700"
+			},
+			"offsets": {
+				"from": 505700,
+				"to": 509700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,700",
+				"to": "00:08:32,700"
+			},
+			"offsets": {
+				"from": 509700,
+				"to": 512700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,700",
+				"to": "00:08:35,700"
+			},
+			"offsets": {
+				"from": 512700,
+				"to": 515700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,700",
+				"to": "00:08:38,700"
+			},
+			"offsets": {
+				"from": 515700,
+				"to": 518700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,700",
+				"to": "00:08:41,700"
+			},
+			"offsets": {
+				"from": 518700,
+				"to": 521700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,700",
+				"to": "00:08:43,700"
+			},
+			"offsets": {
+				"from": 521700,
+				"to": 523700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,700",
+				"to": "00:08:45,700"
+			},
+			"offsets": {
+				"from": 523700,
+				"to": 525700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,700",
+				"to": "00:08:47,700"
+			},
+			"offsets": {
+				"from": 525700,
+				"to": 527700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,700",
+				"to": "00:08:49,700"
+			},
+			"offsets": {
+				"from": 527700,
+				"to": 529700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,700",
+				"to": "00:08:51,700"
+			},
+			"offsets": {
+				"from": 529700,
+				"to": 531700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,700",
+				"to": "00:08:53,700"
+			},
+			"offsets": {
+				"from": 531700,
+				"to": 533700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,700",
+				"to": "00:08:55,700"
+			},
+			"offsets": {
+				"from": 533700,
+				"to": 535700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,700",
+				"to": "00:08:56,700"
+			},
+			"offsets": {
+				"from": 535700,
+				"to": 536700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,700",
+				"to": "00:08:58,700"
+			},
+			"offsets": {
+				"from": 536700,
+				"to": 538700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,700",
+				"to": "00:09:00,700"
+			},
+			"offsets": {
+				"from": 538700,
+				"to": 540700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,700",
+				"to": "00:09:02,700"
+			},
+			"offsets": {
+				"from": 540700,
+				"to": 542700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,700",
+				"to": "00:09:09,700"
+			},
+			"offsets": {
+				"from": 542700,
+				"to": 549700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,700",
+				"to": "00:09:13,700"
+			},
+			"offsets": {
+				"from": 549700,
+				"to": 553700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,700",
+				"to": "00:09:17,700"
+			},
+			"offsets": {
+				"from": 553700,
+				"to": 557700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,700",
+				"to": "00:09:20,700"
+			},
+			"offsets": {
+				"from": 557700,
+				"to": 560700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,700",
+				"to": "00:09:23,700"
+			},
+			"offsets": {
+				"from": 560700,
+				"to": 563700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,700",
+				"to": "00:09:25,700"
+			},
+			"offsets": {
+				"from": 563700,
+				"to": 565700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,700",
+				"to": "00:09:27,700"
+			},
+			"offsets": {
+				"from": 565700,
+				"to": 567700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,700",
+				"to": "00:09:29,700"
+			},
+			"offsets": {
+				"from": 567700,
+				"to": 569700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,700",
+				"to": "00:09:31,700"
+			},
+			"offsets": {
+				"from": 569700,
+				"to": 571700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,700",
+				"to": "00:09:33,700"
+			},
+			"offsets": {
+				"from": 571700,
+				"to": 573700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,700",
+				"to": "00:09:37,700"
+			},
+			"offsets": {
+				"from": 573700,
+				"to": 577700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,700",
+				"to": "00:09:40,700"
+			},
+			"offsets": {
+				"from": 577700,
+				"to": 580700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,700",
+				"to": "00:09:42,700"
+			},
+			"offsets": {
+				"from": 580700,
+				"to": 582700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,700",
+				"to": "00:09:44,700"
+			},
+			"offsets": {
+				"from": 582700,
+				"to": 584700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,700",
+				"to": "00:09:46,700"
+			},
+			"offsets": {
+				"from": 584700,
+				"to": 586700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,700",
+				"to": "00:09:49,700"
+			},
+			"offsets": {
+				"from": 586700,
+				"to": 589700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,700",
+				"to": "00:09:52,700"
+			},
+			"offsets": {
+				"from": 589700,
+				"to": 592700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,700",
+				"to": "00:09:54,700"
+			},
+			"offsets": {
+				"from": 592700,
+				"to": 594700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,700",
+				"to": "00:09:56,700"
+			},
+			"offsets": {
+				"from": 594700,
+				"to": 596700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,700",
+				"to": "00:09:58,700"
+			},
+			"offsets": {
+				"from": 596700,
+				"to": 598700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,700",
+				"to": "00:10:00,700"
+			},
+			"offsets": {
+				"from": 598700,
+				"to": 600700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,700",
+				"to": "00:10:02,700"
+			},
+			"offsets": {
+				"from": 600700,
+				"to": 602700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,700",
+				"to": "00:10:04,700"
+			},
+			"offsets": {
+				"from": 602700,
+				"to": 604700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,700",
+				"to": "00:10:06,700"
+			},
+			"offsets": {
+				"from": 604700,
+				"to": 606700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,700",
+				"to": "00:10:08,700"
+			},
+			"offsets": {
+				"from": 606700,
+				"to": 608700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,700",
+				"to": "00:10:10,700"
+			},
+			"offsets": {
+				"from": 608700,
+				"to": 610700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,700",
+				"to": "00:10:12,700"
+			},
+			"offsets": {
+				"from": 610700,
+				"to": 612700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,700",
+				"to": "00:10:14,700"
+			},
+			"offsets": {
+				"from": 612700,
+				"to": 614700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,700",
+				"to": "00:10:16,700"
+			},
+			"offsets": {
+				"from": 614700,
+				"to": 616700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,700",
+				"to": "00:10:26,700"
+			},
+			"offsets": {
+				"from": 616700,
+				"to": 626700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,700",
+				"to": "00:10:30,700"
+			},
+			"offsets": {
+				"from": 626700,
+				"to": 630700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,700",
+				"to": "00:10:34,700"
+			},
+			"offsets": {
+				"from": 630700,
+				"to": 634700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,700",
+				"to": "00:10:38,700"
+			},
+			"offsets": {
+				"from": 634700,
+				"to": 638700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,700",
+				"to": "00:10:40,700"
+			},
+			"offsets": {
+				"from": 638700,
+				"to": 640700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,700",
+				"to": "00:10:42,700"
+			},
+			"offsets": {
+				"from": 640700,
+				"to": 642700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,700",
+				"to": "00:10:44,700"
+			},
+			"offsets": {
+				"from": 642700,
+				"to": 644700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,700",
+				"to": "00:10:46,700"
+			},
+			"offsets": {
+				"from": 644700,
+				"to": 646700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,700",
+				"to": "00:10:48,700"
+			},
+			"offsets": {
+				"from": 646700,
+				"to": 648700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,700",
+				"to": "00:10:50,700"
+			},
+			"offsets": {
+				"from": 648700,
+				"to": 650700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,700",
+				"to": "00:10:52,700"
+			},
+			"offsets": {
+				"from": 650700,
+				"to": 652700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,700",
+				"to": "00:10:54,700"
+			},
+			"offsets": {
+				"from": 652700,
+				"to": 654700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,700",
+				"to": "00:10:56,700"
+			},
+			"offsets": {
+				"from": 654700,
+				"to": 656700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,700",
+				"to": "00:10:58,700"
+			},
+			"offsets": {
+				"from": 656700,
+				"to": 658700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,700",
+				"to": "00:11:00,700"
+			},
+			"offsets": {
+				"from": 658700,
+				"to": 660700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,700",
+				"to": "00:11:02,700"
+			},
+			"offsets": {
+				"from": 660700,
+				"to": 662700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,700",
+				"to": "00:11:04,700"
+			},
+			"offsets": {
+				"from": 662700,
+				"to": 664700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,700",
+				"to": "00:11:06,700"
+			},
+			"offsets": {
+				"from": 664700,
+				"to": 666700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,700",
+				"to": "00:11:08,700"
+			},
+			"offsets": {
+				"from": 666700,
+				"to": 668700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,700",
+				"to": "00:11:10,700"
+			},
+			"offsets": {
+				"from": 668700,
+				"to": 670700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,700",
+				"to": "00:11:12,700"
+			},
+			"offsets": {
+				"from": 670700,
+				"to": 672700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,700",
+				"to": "00:11:14,700"
+			},
+			"offsets": {
+				"from": 672700,
+				"to": 674700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,700",
+				"to": "00:11:16,700"
+			},
+			"offsets": {
+				"from": 674700,
+				"to": 676700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,700",
+				"to": "00:11:18,700"
+			},
+			"offsets": {
+				"from": 676700,
+				"to": 678700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,700",
+				"to": "00:11:20,700"
+			},
+			"offsets": {
+				"from": 678700,
+				"to": 680700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,700",
+				"to": "00:11:22,700"
+			},
+			"offsets": {
+				"from": 680700,
+				"to": 682700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,700",
+				"to": "00:11:24,700"
+			},
+			"offsets": {
+				"from": 682700,
+				"to": 684700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,700",
+				"to": "00:11:26,700"
+			},
+			"offsets": {
+				"from": 684700,
+				"to": 686700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,700",
+				"to": "00:11:28,700"
+			},
+			"offsets": {
+				"from": 686700,
+				"to": 688700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,700",
+				"to": "00:11:30,700"
+			},
+			"offsets": {
+				"from": 688700,
+				"to": 690700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,700",
+				"to": "00:11:32,700"
+			},
+			"offsets": {
+				"from": 690700,
+				"to": 692700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,700",
+				"to": "00:11:34,700"
+			},
+			"offsets": {
+				"from": 692700,
+				"to": 694700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,700",
+				"to": "00:11:36,700"
+			},
+			"offsets": {
+				"from": 694700,
+				"to": 696700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,700",
+				"to": "00:11:38,700"
+			},
+			"offsets": {
+				"from": 696700,
+				"to": 698700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,700",
+				"to": "00:11:40,700"
+			},
+			"offsets": {
+				"from": 698700,
+				"to": 700700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,700",
+				"to": "00:11:42,700"
+			},
+			"offsets": {
+				"from": 700700,
+				"to": 702700
+			},
+			"text": " very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,700",
+				"to": "00:11:44,700"
+			},
+			"offsets": {
+				"from": 702700,
+				"to": 704700
+			},
+			"text": " very, very, very, very, very, very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,700",
+				"to": "00:12:14,700"
+			},
+			"offsets": {
+				"from": 704700,
+				"to": 734700
+			},
+			"text": " very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very, very"
+		}
+	]
+}

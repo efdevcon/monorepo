@@ -1,0 +1,4289 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7000
+			},
+			"text": " How's it going?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:09,000"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 9000
+			},
+			"text": " I'm James."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 9000,
+				"to": 12000
+			},
+			"text": " I'm here representing a bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 17000
+			},
+			"text": " This talk is sort of -- it's called beyond burner."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " Intuitive design and centralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 22000
+			},
+			"text": " Really focused on UX issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 25000
+			},
+			"text": " A development tool kit."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 29000
+			},
+			"text": " We focused on intuitive design for blockchain applications to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 31000
+			},
+			"text": " build new users."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 35000
+			},
+			"text": " My background, if you've seen me before, I was with the grants"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 36000
+			},
+			"text": " team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 38000
+			},
+			"text": " You know me from there at the ef."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 41000
+			},
+			"text": " This is sort of the new project that I've been working on since"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 42000
+			},
+			"text": " April."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 44000
+			},
+			"text": " So a little overview."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 47000
+			},
+			"text": " We'll go over what beyond burner really means."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 50000
+			},
+			"text": " The significance of the application layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 54000
+			},
+			"text": " The current state of where we are within adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 57000
+			},
+			"text": " And then what fixing this issue actually looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 60000
+			},
+			"text": " So why beyond burner?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 64000
+			},
+			"text": " So the beyond burner is beyond burger narrative plus the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 66000
+			},
+			"text": " burner wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 70000
+			},
+			"text": " Both of these sort of industries which is the cryptocurrency space"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 74000
+			},
+			"text": " as well as the alternative meats industry or sort of holistic"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 79000
+			},
+			"text": " solutions that are trying to disrupt incumbent systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 84000
+			},
+			"text": " And they sort of face similar adoption hurdles which is mainly"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 89000
+			},
+			"text": " unfamiliar experiences and an unfamiliar product which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 94000
+			},
+			"text": " also somewhat inconvenient for people who want to get -- like"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 96000
+			},
+			"text": " use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 101000
+			},
+			"text": " And they don't know how -- so it creates the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 104000
+			},
+			"text": " unfamiliarity and inconvenience creates this comfort and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 107000
+			},
+			"text": " friction for their end users."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 111000
+			},
+			"text": " At a high level, it's kind of like I like meat."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 115000
+			},
+			"text": " I don't know what this vegan stuff is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 118000
+			},
+			"text": " And I don't know -- I don't really like the taste of it or"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 119000
+			},
+			"text": " something."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 122000
+			},
+			"text": " For Ethereum, it's like I don't know what a private key is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 125000
+			},
+			"text": " What is gas and why does it take so long to use these"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 128000
+			},
+			"text": " applications?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 131000
+			},
+			"text": " On top of that we're also building somewhat in a desert."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 134000
+			},
+			"text": " We don't really have a lot of user data to pull from to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 136000
+			},
+			"text": " many design decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 141000
+			},
+			"text": " So the -- and then another thing is this is just another sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 143000
+			},
+			"text": " of example where we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 147000
+			},
+			"text": " Ethereum has about .01% of the user base of Facebook."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 151000
+			},
+			"text": " That's the daily activity users or monthly active users on"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 154000
+			},
+			"text": " MetaMask divided by the monthly active of Facebook."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157000
+			},
+			"text": " And then meat alternatives are sort of significantly ahead of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 158000
+			},
+			"text": " that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 161000
+			},
+			"text": " With a beyond burger narrative, they've gained half of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 164000
+			},
+			"text": " percentage of the market of the meat industry which is pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 167000
+			},
+			"text": " much the same as the other one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170000
+			},
+			"text": " So we need to give the user base in order to match what they've"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 172000
+			},
+			"text": " done there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 175000
+			},
+			"text": " So again, the beyond burger narrative, they kind of broke"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 178000
+			},
+			"text": " through that stigma of meat, of imitating that meat flavor."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 181000
+			},
+			"text": " So you can be a meat eater, go to Burger King, buy a beyond"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 183000
+			},
+			"text": " burger and be as satisfied."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 186000
+			},
+			"text": " And it sort of points to the fact that users will choose"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 189000
+			},
+			"text": " holistic solutions if it's convenient and comfortable for"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 190000
+			},
+			"text": " them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 193000
+			},
+			"text": " And that's sort of what we need to get to for Ethereum applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 195000
+			},
+			"text": " adopted by end users."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 198000
+			},
+			"text": " We can't sort of shove this sort of decentralization down"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 200000
+			},
+			"text": " people's throats, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 203000
+			},
+			"text": " It's not as useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 206000
+			},
+			"text": " And so the first, I think, first real iteration of this was"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 208000
+			},
+			"text": " the burner wallet with Austin Griffith."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 212000
+			},
+			"text": " He kind of made onboarding a thing at ETH Denver in 2019 that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 215000
+			},
+			"text": " was the largest point of sale system that has been spun up in"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 218000
+			},
+			"text": " the Ethereum ecosystem since inception."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 222000
+			},
+			"text": " It created instant value for people that were on the ground"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 225000
+			},
+			"text": " that are wanting to use that network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 228000
+			},
+			"text": " And so how do you onboard?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 231000
+			},
+			"text": " Well, you have to inspire trust within your user base and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 235000
+			},
+			"text": " also has to be efficient and convenient, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 240000
+			},
+			"text": " The old paradigm of key management is challenging."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 245000
+			},
+			"text": " I see the future as key management, private key management"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 249000
+			},
+			"text": " is being sort of sub-sect to a new contract-based management"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 250000
+			},
+			"text": " system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 255000
+			},
+			"text": " My mom won't likely ever download a private key, most likely, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 259000
+			},
+			"text": " A new paradigm that we're suggesting beyond burner is to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 263000
+			},
+			"text": " use these burner wallet keys or ephemeral keys with a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 264000
+			},
+			"text": " account."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 266000
+			},
+			"text": " And so it's essentially a multi-sig that you can control"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 270000
+			},
+			"text": " funds with a number of different keys and all of those are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 273000
+			},
+			"text": " potentially temporary, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 276000
+			},
+			"text": " So there's essentially, there's sort of burner keys that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 279000
+			},
+			"text": " tied to a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 282000
+			},
+			"text": " So this is designed, it's really been pioneered somewhat by"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 283000
+			},
+			"text": " James Young."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 285000
+			},
+			"text": " And this is sort of a quote from him, \"From him,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 290000
+			},
+			"text": " a money deserves programmable access,\" which I fully agree in."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 295000
+			},
+			"text": " And I think it's a pretty sort of exciting new frontier to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 296000
+			},
+			"text": " developed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 300000
+			},
+			"text": " And so why beyond burner wallet is an instance of the beyond"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 303000
+			},
+			"text": " burger narrative and success of beyond burger within the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 306000
+			},
+			"text": " Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 309000
+			},
+			"text": " So why do we care about mass adoption?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 311000
+			},
+			"text": " I think we need to talk a little bit about the significance of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 313000
+			},
+			"text": " the application layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 317000
+			},
+			"text": " The application layer is where value is delivered to end users."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 320000
+			},
+			"text": " And so that's really fundamentally important if we don't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 323000
+			},
+			"text": " that value delivered, all of the work that we're doing in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 326000
+			},
+			"text": " back end with scaling, it's sharding, et cetera, we'll go to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 327000
+			},
+			"text": " waste."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 329000
+			},
+			"text": " Or it's just kind of developing a silo."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 331000
+			},
+			"text": " So what does it look like today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 333000
+			},
+			"text": " Well, it's mainly DeFi, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 337000
+			},
+			"text": " The app of Ethereum is like Maker and ICOs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 341000
+			},
+			"text": " It's maybe prediction markets, but that hasn't really even"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 343000
+			},
+			"text": " really caught on yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 347000
+			},
+			"text": " So mainly it's like you're trying to make and save money."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 352000
+			},
+			"text": " The future of Ethereum is a different -- we have a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 355000
+			},
+			"text": " idealistic philosophies around the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 359000
+			},
+			"text": " And you have Dean who had a nice little Twitter rampage about"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 360000
+			},
+			"text": " this, obviously."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 362000
+			},
+			"text": " So trolling the idea of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 366000
+			},
+			"text": " But a lot of ICOs did come out in 2017, very serious about"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 369000
+			},
+			"text": " inventing new business models around blockchain, around an"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 374000
+			},
+			"text": " immutable ledger system to actually solve real world problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 376000
+			},
+			"text": " We also have the bank, the unbanked."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 380000
+			},
+			"text": " Essentially, we have the potential to create better systems if"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 382000
+			},
+			"text": " we gain this adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 384000
+			},
+			"text": " And so what does user adoption look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 387000
+			},
+			"text": " Mainly makes money, creates better systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 391000
+			},
+			"text": " And that could also mean providing knowledge or comfort or"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 394000
+			},
+			"text": " social belonging to the end user."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 397000
+			},
+			"text": " All of that stuff is essentially value for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 401000
+			},
+			"text": " Fun is also included in that value proposition potentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 405000
+			},
+			"text": " And for developers, if you get users, that means you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 407000
+			},
+			"text": " actually make money, which is a huge thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 413000
+			},
+			"text": " Because today, the money is really reserved for exchanges, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 416000
+			},
+			"text": " No one is making real revenue aside from exchanges and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 418000
+			},
+			"text": " consultants, more or less."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 423000
+			},
+			"text": " And so that's sort of the exciting proposition, is that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 426000
+			},
+			"text": " could make a sustainable ecosystem if you actually develop"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 429000
+			},
+			"text": " systems where developers are able to build applications to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 432000
+			},
+			"text": " attract real end users."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 438000
+			},
+			"text": " And so to the current state of development, where are we?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 442000
+			},
+			"text": " So like I mentioned earlier, we're really focused on scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 444000
+			},
+			"text": " This has been the holy grail."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 447000
+			},
+			"text": " And this is probably 90% of the talks that you've heard at"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 449000
+			},
+			"text": " DevCon thus far."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 453000
+			},
+			"text": " But again, we're sort of building in a desert where we're sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 454000
+			},
+			"text": " siloed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 457000
+			},
+			"text": " We don't have a lot of interaction within these systems that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 460000
+			},
+			"text": " we're coming up with."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 465000
+			},
+			"text": " And even the core of our ecosystem, we still haven't adopted"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 469000
+			},
+			"text": " Ethereum to pay for things within our existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 471000
+			},
+			"text": " infrastructures, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 474000
+			},
+			"text": " And within the companies who are really pioneering this, it"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 479000
+			},
+			"text": " would be great to sort of have a bit more dogfooding right for"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 481000
+			},
+			"text": " these things to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 487000
+			},
+			"text": " And so I also propose that we're sort of focused on, at least"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 491000
+			},
+			"text": " from a narrative perspective, potentially the back end more"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 494000
+			},
+			"text": " than we need to be, because the front end should be driving the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 496000
+			},
+			"text": " back end solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 499000
+			},
+			"text": " This is another quote from James, working with him."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 500000
+			},
+			"text": " It's really great."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 502000
+			},
+			"text": " He just has like a lot of wisdom to share."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 504000
+			},
+			"text": " But don't like the perfect thing to be either good."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 508000
+			},
+			"text": " Probably not original, but contributing to him."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 511000
+			},
+			"text": " So the current state, $25 billion is raised in 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 516000
+			},
+			"text": " Or since 2017, there's about 10 daps with 20,000 users each"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 518000
+			},
+			"text": " on the daily."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 523000
+			},
+			"text": " Again, 0.01% of the Facebook user base."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 528000
+			},
+			"text": " Very few have product market fit, if any."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 531000
+			},
+			"text": " So we're all within the Chasm, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 535000
+			},
+			"text": " And the reason for this too is the developer challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 537000
+			},
+			"text": " This is a survey built by Fluence in 2019."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 540000
+			},
+			"text": " If you haven't seen it, I think it's probably the best UX survey"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 541000
+			},
+			"text": " out there today."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 544000
+			},
+			"text": " And they kind of just go over all of the issues with developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 546000
+			},
+			"text": " blockchain apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 548000
+			},
+			"text": " It's really difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 552000
+			},
+			"text": " We're both developing this new interface and then you have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 555000
+			},
+			"text": " tools that you're also developing at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 557000
+			},
+			"text": " There's a lot of issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 560000
+			},
+			"text": " So again, you're coming back to, you know, we're sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 564000
+			},
+			"text": " forcing private keys down in users' throats more or less."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 568000
+			},
+			"text": " This is also a stat that I saw it on another presentation that I"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 570000
+			},
+			"text": " thought was really interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 573000
+			},
+			"text": " I believe it comes from the Cryptocritives study."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 576000
+			},
+			"text": " So how do you fix end user issues?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 581000
+			},
+			"text": " And I'm going to go back to onboarding and scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 584000
+			},
+			"text": " And focus on that onboarding side."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 587000
+			},
+			"text": " Because this is beyond burner again."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 591000
+			},
+			"text": " So it's focused on that account contract with ephemeral keys to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 595000
+			},
+			"text": " create a programmable access of funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 598000
+			},
+			"text": " And if you don't have effective onboarding, there's no reason"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 600000
+			},
+			"text": " to have a state channel or a secondary solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 604000
+			},
+			"text": " There's no real need for e2.0 if we don't have enough end users"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 607000
+			},
+			"text": " to drive traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 609000
+			},
+			"text": " The approach to really understand this is you had to know your"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 612000
+			},
+			"text": " user base, create intuitive interfaces, and then iterate with"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 614000
+			},
+			"text": " the feedback that you're given."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 619000
+			},
+			"text": " And a lot of that means to ship quickly and gather information"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 622000
+			},
+			"text": " as quickly as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 625000
+			},
+			"text": " And so again, sort of iterate why onboarding sucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 627000
+			},
+			"text": " It's uncomfortable and inconvenient."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 629000
+			},
+			"text": " And I think everyone can kind of appreciate that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 632000
+			},
+			"text": " I'm sure everyone has tried to like talk to someone like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 633000
+			},
+			"text": " \"Hey, yeah, it's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 635000
+			},
+			"text": " Come on to MetaMask or something.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 637000
+			},
+			"text": " And whoever you're talking to is like, \"No, I'm not really"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 638000
+			},
+			"text": " sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 639000
+			},
+			"text": " Compound's kind of weird."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 640000
+			},
+			"text": " I don't really want to download this thing.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 643000
+			},
+			"text": " So a hypothesis that we developed at Bridge was,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 648000
+			},
+			"text": " \"Okay, if we just use Web2 like flows, like AWS authentication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 651000
+			},
+			"text": " for instance, we could maybe onboard more users.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 654000
+			},
+			"text": " And that could happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 657000
+			},
+			"text": " And so we sort of went on a rampage."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 663000
+			},
+			"text": " We came with an SDK in June and integrated it with as many"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 664000
+			},
+			"text": " applications as we could."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 667000
+			},
+			"text": " We hit like eight or nine, essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 672000
+			},
+			"text": " And so all of these applications sort of have a bridge tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 673000
+			},
+			"text": " integrated into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 678000
+			},
+			"text": " And the most popular have been YoloRect in Dauhaus."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 680000
+			},
+			"text": " They actually have real end users."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 684000
+			},
+			"text": " If you want to actually experience what this account contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 687000
+			},
+			"text": " design feels like, definitely check these both out."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 690000
+			},
+			"text": " YoloRect is just a binary option trading, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 691000
+			},
+			"text": " betting platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 694000
+			},
+			"text": " And then Dauhaus is going to be a Dau."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 696000
+			},
+			"text": " You spin up Moloch Dau's, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 699000
+			},
+			"text": " So they have like ten different Dau's moving along there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 701000
+			},
+			"text": " which is pretty exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 708000
+			},
+			"text": " And what we found from that sort of all of this feedback was"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 711000
+			},
+			"text": " that there's two types of users that you're looking at when"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 713000
+			},
+			"text": " you're developing blockchain applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 718000
+			},
+			"text": " One is for Web3 and the other is for Web2."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 722000
+			},
+			"text": " So like Web3 users are really interested in, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 723000
+			},
+			"text": " privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 728000
+			},
+			"text": " Web3 providers, they prefer MetaMask and self sovereignty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 729000
+			},
+			"text": " of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 734000
+			},
+			"text": " It's -- I spoke with Nate Grinninger who is building in"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 737000
+			},
+			"text": " Web3 as well and he kind of describes it as coddling an"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 740000
+			},
+			"text": " Ember in a damp forest where you're just trying to get it to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 743000
+			},
+			"text": " kind of like keep heating up, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 745000
+			},
+			"text": " And of course these are like MetaMask users."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 749000
+			},
+			"text": " For Web2 users though, they kind of -- they likely don't care"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 750000
+			},
+			"text": " as much."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 752000
+			},
+			"text": " They're looking for just like intuitive fun things to use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 757000
+			},
+			"text": " which -- like the smart contract or account contracts is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 760000
+			},
+			"text": " potentially a more viable solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 762000
+			},
+			"text": " And so the common denominator, everyone wants a seamless"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 763000
+			},
+			"text": " experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 766000
+			},
+			"text": " They don't want to think -- they don't want to trust what you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 770000
+			},
+			"text": " doing and they don't want to waste time in the onboarding"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 771000
+			},
+			"text": " process."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 773000
+			},
+			"text": " Otherwise you won't -- you won't get there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 776000
+			},
+			"text": " You won't be able to show the value of what the application is."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 780000
+			},
+			"text": " So to us, that looks like at least at first when someone is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 784000
+			},
+			"text": " getting used to understanding what decentralization in Web3"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 788000
+			},
+			"text": " provides or Ethereum offers, no seed phrase download."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 791000
+			},
+			"text": " Native mobile apps are really nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 794000
+			},
+			"text": " All the onboarding occurs within the application, so no"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 796000
+			},
+			"text": " needing to switch screens."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 800000
+			},
+			"text": " And then account recovery options are also included within"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 804000
+			},
+			"text": " your management system."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 808000
+			},
+			"text": " So again, we want to create instant value for the end user."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 813000
+			},
+			"text": " And the account contracts are really the way potentially to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 814000
+			},
+			"text": " that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 815000
+			},
+			"text": " It's a more flexible way."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 818000
+			},
+			"text": " And the ephemeral keys, especially with the account contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 821000
+			},
+			"text": " is in particular useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 825000
+			},
+			"text": " You can recover your funds and you can also uniquely permission"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 828000
+			},
+			"text": " each key for different use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 831000
+			},
+			"text": " So each key you could have different access."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 834000
+			},
+			"text": " And this is sort of what beyond burner really aims at."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 838000
+			},
+			"text": " You have an account contract that has multiple keys, all for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 839000
+			},
+			"text": " different reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 842000
+			},
+			"text": " You have your phone, your computer, your guardian, your"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 845000
+			},
+			"text": " mom, or girlfriend, or whoever."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 848000
+			},
+			"text": " Maybe you have a portus or tourist integration as well as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 850000
+			},
+			"text": " sort of master reset."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 853000
+			},
+			"text": " You'll erect, maybe you're interested in playing, you also"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 856000
+			},
+			"text": " play gods unchained and you're part of the metacartada."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 861000
+			},
+			"text": " All of those could have different levels of fund access."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 863000
+			},
+			"text": " And that's all programmable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 867000
+			},
+			"text": " So if you end up losing your phone, thankfully you have all"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 870000
+			},
+			"text": " these other keys that you can build your next phone with and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 875000
+			},
+			"text": " you can recover your funds through a social recovery process."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 881000
+			},
+			"text": " And again, this system has a lot of possibilities that have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 887000
+			},
+			"text": " yet to be developed in terms of app linking and recovery flows."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 890000
+			},
+			"text": " So if you're interested in sort of building that kind of stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 892000
+			},
+			"text": " please come talk to me after this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 895000
+			},
+			"text": " And so this kind of comes down to incremental decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 898000
+			},
+			"text": " Again, you want a soft landing pad for users to come into"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 902000
+			},
+			"text": " the ecosystem and sort of understand what's going on before"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 904000
+			},
+			"text": " you just put them in the deep end."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 909000
+			},
+			"text": " And that comes down to sort of providing that layer of trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 913000
+			},
+			"text": " and sort of onboarding them into something that looks familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 918000
+			},
+			"text": " while also giving them full access to their funds, but not"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 922000
+			},
+			"text": " showing them a completely new system at the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 927000
+			},
+			"text": " And this also, to some extent, I think that daps to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 933000
+			},
+			"text": " full stack decentralized apps have a very small chance of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 936000
+			},
+			"text": " actually succeeding in the near term."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 939000
+			},
+			"text": " It's more about like Ethereum applications where you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 944000
+			},
+			"text": " hybrid solutions that are using AWS and Firebase or other"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 948000
+			},
+			"text": " sort of like centralized solutions to get things that people"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 950000
+			},
+			"text": " want to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 954000
+			},
+			"text": " The second piece of the onboarding puzzle is Fiat ramps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 959000
+			},
+			"text": " of course, and you have like wire, moon pay, ramp network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 961000
+			},
+			"text": " carbon, all these different solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 963000
+			},
+			"text": " I think they're all sort of competing in the same space."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 966000
+			},
+			"text": " It's really great that that's a competitive area right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 970000
+			},
+			"text": " And then lastly, if you have apps, you need off-change"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:12,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 972000
+			},
+			"text": " transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,000",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 972000,
+				"to": 975000
+			},
+			"text": " If you have users on your app, you likely need off-change"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 977000
+			},
+			"text": " transactions in order to make a seamless experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 981000
+			},
+			"text": " All these teams are doing a lot of really great work to provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 985000
+			},
+			"text": " fully decentralized solutions for these off-change transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 990000
+			},
+			"text": " At a bridge, we actually have an off-chain system as well, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 992000
+			},
+			"text": " it does have a degree of trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 994000
+			},
+			"text": " It's using a central hub."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 996000
+			},
+			"text": " You could potentially collude with."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 999000
+			},
+			"text": " I'm not going to get too deep into that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1003000
+			},
+			"text": " But that's kind of like essentially the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1006000
+			},
+			"text": " And so to fix the UxE issues again, you just need onboarding"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1008000
+			},
+			"text": " and off-change transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1012000
+			},
+			"text": " That's kind of the combination that you need in order to make a"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:54,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1014000
+			},
+			"text": " seamless application flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1014000,
+				"to": 1018000
+			},
+			"text": " And if you want to see another example, you can scan this app."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1021000
+			},
+			"text": " This is actually a native mobile app."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1022000
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1025000
+			},
+			"text": " How many people have actually used a native mobile Ethereum app"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1027000
+			},
+			"text": " that's not a wallet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1028000
+			},
+			"text": " Anyone?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1029000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1030000
+			},
+			"text": " Sweet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1031000
+			},
+			"text": " Couple."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1032000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1037000
+			},
+			"text": " So this is a native mobile app that has a account contract as"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1041000
+			},
+			"text": " well as the bridge sort of off-chain solution that you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1049000
+			},
+			"text": " sort of play around with, like social tipping for content."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1051000
+			},
+			"text": " So the takeaways here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1055000
+			},
+			"text": " Ethereum is really difficult to use for a lot of reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1058000
+			},
+			"text": " While decentralization is really, really important, it also"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1063000
+			},
+			"text": " inhibits, to some extent, user adoption if it's going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1066000
+			},
+			"text": " taken to the nth degree from the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1070000
+			},
+			"text": " There's also really difficult tools, underdeveloped tools to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1073000
+			},
+			"text": " use within the ecosystem to develop these applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1077000
+			},
+			"text": " And we have no user data to actually say what tools are"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1078000
+			},
+			"text": " really useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1080000
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1082000
+			},
+			"text": " The -- okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1086000
+			},
+			"text": " The need to create trust, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1090000
+			},
+			"text": " We need to create trust for the end users through more intuitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1093000
+			},
+			"text": " design to make it convenient and comfortable and programmable"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1099000
+			},
+			"text": " access is potentially a way in which to do this through account"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1100000
+			},
+			"text": " contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1105000
+			},
+			"text": " And so I sort of am proposing the ecosystem should spend about"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1110000
+			},
+			"text": " as much time on this issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1111000
+			},
+			"text": " Maybe not as much, obviously."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1116000
+			},
+			"text": " I think the nuances of connecting e2.0 is going to be quite a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1117000
+			},
+			"text": " task."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1120000
+			},
+			"text": " But getting nailing down this flow also requires a significant"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1123000
+			},
+			"text": " amount of effort and iteration."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1126000
+			},
+			"text": " And it won't happen overnight."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1129000
+			},
+			"text": " We need sort of encouraging pragmatic development and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1133000
+			},
+			"text": " hybrid architectures and sort of continuing to ship solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:19:00,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1140000
+			},
+			"text": " to gather that user feedback and sort of focus on end users rather"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1140000,
+				"to": 1147000
+			},
+			"text": " than maybe the most idealistic situation possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1152000
+			},
+			"text": " So this is me on the twitter and it's abridged if you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:15,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1155000
+			},
+			"text": " check out what we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1155000,
+				"to": 1157000
+			},
+			"text": " Yeah, that will be all."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1159000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1161000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1163000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1165000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1167000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1169000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1171000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:33,000"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1173000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1173000,
+				"to": 1175000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1177000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1179000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1181000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1183000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:45,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1185000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1185000,
+				"to": 1187000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:49,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1189000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1189000,
+				"to": 1191000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:19:55,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1195000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

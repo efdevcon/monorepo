@@ -1,0 +1,2122 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18340
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,340",
+				"to": "00:00:23,300"
+			},
+			"offsets": {
+				"from": 18340,
+				"to": 23300
+			},
+			"text": " >> So my name is Dominic Williams and I'm introducing PHY,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,300",
+				"to": "00:00:28,420"
+			},
+			"offsets": {
+				"from": 23300,
+				"to": 28420
+			},
+			"text": " which is a decentralized commercial banking system"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,160",
+				"to": "00:00:33,860"
+			},
+			"offsets": {
+				"from": 29160,
+				"to": 33860
+			},
+			"text": " that creates a stable currency as a side effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,860",
+				"to": "00:00:37,500"
+			},
+			"offsets": {
+				"from": 33860,
+				"to": 37500
+			},
+			"text": " It gives out loans algorithmically and creates a stable currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,500",
+				"to": "00:00:38,680"
+			},
+			"offsets": {
+				"from": 37500,
+				"to": 38680
+			},
+			"text": " Now, let me just work this out."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,680",
+				"to": "00:00:41,740"
+			},
+			"offsets": {
+				"from": 38680,
+				"to": 41740
+			},
+			"text": " Nope."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,740",
+				"to": "00:00:49,760"
+			},
+			"offsets": {
+				"from": 41740,
+				"to": 49760
+			},
+			"text": " So before we look at PHY, let's just recap the problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,760",
+				"to": "00:00:51,200"
+			},
+			"offsets": {
+				"from": 49760,
+				"to": 51200
+			},
+			"text": " with commercial banks quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,200",
+				"to": "00:00:55,660"
+			},
+			"offsets": {
+				"from": 51200,
+				"to": 55660
+			},
+			"text": " So commercial banks have massive infrastructure costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,660",
+				"to": "00:00:59,140"
+			},
+			"offsets": {
+				"from": 55660,
+				"to": 59140
+			},
+			"text": " HR, buildings, compliance, that kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,380",
+				"to": "00:01:03,280"
+			},
+			"offsets": {
+				"from": 59380,
+				"to": 63280
+			},
+			"text": " And all of these enormous costs in commercial banking end"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,280",
+				"to": "00:01:05,980"
+			},
+			"offsets": {
+				"from": 63280,
+				"to": 65980
+			},
+			"text": " up on your loan interest and financial charges."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,980",
+				"to": "00:01:11,360"
+			},
+			"offsets": {
+				"from": 65980,
+				"to": 71360
+			},
+			"text": " They're also, they kind of make chronically bad judgments"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,360",
+				"to": "00:01:12,500"
+			},
+			"offsets": {
+				"from": 71360,
+				"to": 72500
+			},
+			"text": " when they're giving out loans."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,500",
+				"to": "00:01:16,300"
+			},
+			"offsets": {
+				"from": 72500,
+				"to": 76300
+			},
+			"text": " And this is one of the things that exacerbates the credit cycle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,300",
+				"to": "00:01:18,820"
+			},
+			"offsets": {
+				"from": 76300,
+				"to": 78820
+			},
+			"text": " which is very damaging to the world economy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,820",
+				"to": "00:01:22,100"
+			},
+			"offsets": {
+				"from": 78820,
+				"to": 82100
+			},
+			"text": " And of course, the big example was 2008,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,100",
+				"to": "00:01:24,360"
+			},
+			"offsets": {
+				"from": 82100,
+				"to": 84360
+			},
+			"text": " where we had this massive deleveraging"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,360",
+				"to": "00:01:26,400"
+			},
+			"offsets": {
+				"from": 84360,
+				"to": 86400
+			},
+			"text": " that cost the world trillions of dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,780",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 87780,
+				"to": 91000
+			},
+			"text": " They also are a major threat to civil liberties"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:35,440"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 95440
+			},
+			"text": " because as money becomes more digitized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,440",
+				"to": "00:01:38,520"
+			},
+			"offsets": {
+				"from": 95440,
+				"to": 98520
+			},
+			"text": " if your access to the banking system is removed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,520",
+				"to": "00:01:41,240"
+			},
+			"offsets": {
+				"from": 98520,
+				"to": 101240
+			},
+			"text": " you're pretty much just frozen out of everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,240",
+				"to": "00:01:44,020"
+			},
+			"offsets": {
+				"from": 101240,
+				"to": 104020
+			},
+			"text": " And actually, many people in crypto have already experienced"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,020",
+				"to": "00:01:46,720"
+			},
+			"offsets": {
+				"from": 104020,
+				"to": 106720
+			},
+			"text": " what it's like to have bank accounts shut down"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,720",
+				"to": "00:01:51,300"
+			},
+			"offsets": {
+				"from": 106720,
+				"to": 111300
+			},
+			"text": " because you've been being taken a transfer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,300",
+				"to": "00:01:52,500"
+			},
+			"offsets": {
+				"from": 111300,
+				"to": 112500
+			},
+			"text": " from an exchange or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,500",
+				"to": "00:01:56,200"
+			},
+			"offsets": {
+				"from": 112500,
+				"to": 116200
+			},
+			"text": " So stablecoins, let's just recap that quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,200",
+				"to": "00:02:00,580"
+			},
+			"offsets": {
+				"from": 116200,
+				"to": 120580
+			},
+			"text": " There are two main approaches to stablecoins currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,580",
+				"to": "00:02:02,020"
+			},
+			"offsets": {
+				"from": 120580,
+				"to": 122020
+			},
+			"text": " around at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,020",
+				"to": "00:02:05,460"
+			},
+			"offsets": {
+				"from": 122020,
+				"to": 125460
+			},
+			"text": " The first is something about like make a diet"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,460",
+				"to": "00:02:09,420"
+			},
+			"offsets": {
+				"from": 125460,
+				"to": 129420
+			},
+			"text": " where you have collateral on chain, market makers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,420",
+				"to": "00:02:10,660"
+			},
+			"offsets": {
+				"from": 129420,
+				"to": 130660
+			},
+			"text": " margin calls, that kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,660",
+				"to": "00:02:12,740"
+			},
+			"offsets": {
+				"from": 130660,
+				"to": 132740
+			},
+			"text": " Problem with these kind of approaches is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,740",
+				"to": "00:02:15,380"
+			},
+			"offsets": {
+				"from": 132740,
+				"to": 135380
+			},
+			"text": " that they're inherently unstable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,380",
+				"to": "00:02:18,420"
+			},
+			"offsets": {
+				"from": 135380,
+				"to": 138420
+			},
+			"text": " You create a kind of Rube Goldberg device."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,420",
+				"to": "00:02:22,680"
+			},
+			"offsets": {
+				"from": 138420,
+				"to": 142680
+			},
+			"text": " Okay. And when you put it under stress, it'll tend to fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,360",
+				"to": "00:02:28,660"
+			},
+			"offsets": {
+				"from": 143360,
+				"to": 148660
+			},
+			"text": " The other approach is to use tokens as bearish shares,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,660",
+				"to": "00:02:32,960"
+			},
+			"offsets": {
+				"from": 148660,
+				"to": 152960
+			},
+			"text": " colored coin bearish shares with collateral actually held"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,960",
+				"to": "00:02:35,360"
+			},
+			"offsets": {
+				"from": 152960,
+				"to": 155360
+			},
+			"text": " in a bank or other financial institution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,360",
+				"to": "00:02:38,140"
+			},
+			"offsets": {
+				"from": 155360,
+				"to": 158140
+			},
+			"text": " Now, that does succeed in producing a kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,140",
+				"to": "00:02:39,560"
+			},
+			"offsets": {
+				"from": 158140,
+				"to": 159560
+			},
+			"text": " of stable, robust system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,560",
+				"to": "00:02:42,120"
+			},
+			"offsets": {
+				"from": 159560,
+				"to": 162120
+			},
+			"text": " But of course, the problem is the banks will want"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,120",
+				"to": "00:02:47,440"
+			},
+			"offsets": {
+				"from": 162120,
+				"to": 167440
+			},
+			"text": " to dictate policy in relation to how these coins are used."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,440",
+				"to": "00:02:50,600"
+			},
+			"offsets": {
+				"from": 167440,
+				"to": 170600
+			},
+			"text": " People and contracts will have to be authorized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,020",
+				"to": "00:02:53,800"
+			},
+			"offsets": {
+				"from": 171020,
+				"to": 173800
+			},
+			"text": " And of course, you add in the geography of the bank,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,800",
+				"to": "00:02:56,120"
+			},
+			"offsets": {
+				"from": 173800,
+				"to": 176120
+			},
+			"text": " the jurisdiction of the bank into what would otherwise"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,120",
+				"to": "00:02:58,260"
+			},
+			"offsets": {
+				"from": 176120,
+				"to": 178260
+			},
+			"text": " be a very much extra national system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,260",
+				"to": "00:03:02,920"
+			},
+			"offsets": {
+				"from": 178260,
+				"to": 182920
+			},
+			"text": " So quickly, fiat money, fiat money is what we use every day."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,920",
+				"to": "00:03:04,580"
+			},
+			"offsets": {
+				"from": 182920,
+				"to": 184580
+			},
+			"text": " It's dollars, euros, RMB."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,580",
+				"to": "00:03:09,740"
+			},
+			"offsets": {
+				"from": 184580,
+				"to": 189740
+			},
+			"text": " And not many people are aware of where it comes from,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,740",
+				"to": "00:03:12,140"
+			},
+			"offsets": {
+				"from": 189740,
+				"to": 192140
+			},
+			"text": " but it's actually created by commercial banks"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,140",
+				"to": "00:03:13,140"
+			},
+			"offsets": {
+				"from": 192140,
+				"to": 193140
+			},
+			"text": " when they give out loans."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,140",
+				"to": "00:03:16,840"
+			},
+			"offsets": {
+				"from": 193140,
+				"to": 196840
+			},
+			"text": " So the way this works is that you go into a bank"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,840",
+				"to": "00:03:18,460"
+			},
+			"offsets": {
+				"from": 196840,
+				"to": 198460
+			},
+			"text": " and say, I want to borrow $10,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,460",
+				"to": "00:03:20,760"
+			},
+			"offsets": {
+				"from": 198460,
+				"to": 200760
+			},
+			"text": " And if they approve the loan, all they do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,760",
+				"to": "00:03:25,960"
+			},
+			"offsets": {
+				"from": 200760,
+				"to": 205960
+			},
+			"text": " flip some bits in a database to create the $10,000 from thin air."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,960",
+				"to": "00:03:26,860"
+			},
+			"offsets": {
+				"from": 205960,
+				"to": 206860
+			},
+			"text": " You get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,860",
+				"to": "00:03:31,260"
+			},
+			"offsets": {
+				"from": 206860,
+				"to": 211260
+			},
+			"text": " On the bank's balance sheet, the loan is an asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,260",
+				"to": "00:03:33,160"
+			},
+			"offsets": {
+				"from": 211260,
+				"to": 213160
+			},
+			"text": " and the money they created is a liability."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,160",
+				"to": "00:03:37,040"
+			},
+			"offsets": {
+				"from": 213160,
+				"to": 217040
+			},
+			"text": " So what is fiat money?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,040",
+				"to": "00:03:39,840"
+			},
+			"offsets": {
+				"from": 217040,
+				"to": 219840
+			},
+			"text": " Fiat money, everyday money is really an IOU."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,840",
+				"to": "00:03:42,840"
+			},
+			"offsets": {
+				"from": 219840,
+				"to": 222840
+			},
+			"text": " It's backed by the collateral of loans."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,840",
+				"to": "00:03:46,040"
+			},
+			"offsets": {
+				"from": 222840,
+				"to": 226040
+			},
+			"text": " That means that everyday money is backed by, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,040",
+				"to": "00:03:49,360"
+			},
+			"offsets": {
+				"from": 226040,
+				"to": 229360
+			},
+			"text": " cars, houses, business cash flows, personal guarantees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,360",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 229360,
+				"to": 230000
+			},
+			"text": " that kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,260",
+				"to": "00:03:55,580"
+			},
+			"offsets": {
+				"from": 230260,
+				"to": 235580
+			},
+			"text": " So the aha moment is, okay, well, why don't we make"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,580",
+				"to": "00:03:59,060"
+			},
+			"offsets": {
+				"from": 235580,
+				"to": 239060
+			},
+			"text": " the world computer give out loans algorithmically"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,060",
+				"to": "00:04:04,380"
+			},
+			"offsets": {
+				"from": 239060,
+				"to": 244380
+			},
+			"text": " and create a stable currency backed by loan collateral, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,380",
+				"to": "00:04:07,060"
+			},
+			"offsets": {
+				"from": 244380,
+				"to": 247060
+			},
+			"text": " We'll kill two birds with one stone."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,060",
+				"to": "00:04:09,800"
+			},
+			"offsets": {
+				"from": 247060,
+				"to": 249800
+			},
+			"text": " We won't need these expensive commercial banks anymore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,800",
+				"to": "00:04:11,220"
+			},
+			"offsets": {
+				"from": 249800,
+				"to": 251220
+			},
+			"text": " so we'll save the world a lot of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,220",
+				"to": "00:04:15,840"
+			},
+			"offsets": {
+				"from": 251220,
+				"to": 255840
+			},
+			"text": " And we'll also get this wonderful stable currency"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,840",
+				"to": "00:04:17,980"
+			},
+			"offsets": {
+				"from": 255840,
+				"to": 257980
+			},
+			"text": " that won't depend on intermediaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,580",
+				"to": "00:04:21,100"
+			},
+			"offsets": {
+				"from": 258580,
+				"to": 261100
+			},
+			"text": " So, fine money is exactly the same as fiat money."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,100",
+				"to": "00:04:24,140"
+			},
+			"offsets": {
+				"from": 261100,
+				"to": 264140
+			},
+			"text": " It's backed by loan collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,140",
+				"to": "00:04:25,780"
+			},
+			"offsets": {
+				"from": 264140,
+				"to": 265780
+			},
+			"text": " How might this work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,780",
+				"to": "00:04:29,860"
+			},
+			"offsets": {
+				"from": 265780,
+				"to": 269860
+			},
+			"text": " Well, first of all, it involves a network of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,860",
+				"to": "00:04:34,020"
+			},
+			"offsets": {
+				"from": 269860,
+				"to": 274020
+			},
+			"text": " This is a bit like a proof of state network where the validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,020",
+				"to": "00:04:37,020"
+			},
+			"offsets": {
+				"from": 274020,
+				"to": 277020
+			},
+			"text": " are really kind of loan miners, if you will."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,020",
+				"to": "00:04:39,100"
+			},
+			"offsets": {
+				"from": 277020,
+				"to": 279100
+			},
+			"text": " Anyone can become a validator in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,100",
+				"to": "00:04:41,460"
+			},
+			"offsets": {
+				"from": 279100,
+				"to": 281460
+			},
+			"text": " and you do it by making a security deposit to the computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,460",
+				"to": "00:04:45,660"
+			},
+			"offsets": {
+				"from": 281460,
+				"to": 285660
+			},
+			"text": " In this case, the validator is deposited $50,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,220",
+				"to": "00:04:50,260"
+			},
+			"offsets": {
+				"from": 286220,
+				"to": 290260
+			},
+			"text": " and he can validate loans up to $5,000 in size,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,260",
+				"to": "00:04:53,500"
+			},
+			"offsets": {
+				"from": 290260,
+				"to": 293500
+			},
+			"text": " and the total aggregate amount of those loans"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,500",
+				"to": "00:04:55,820"
+			},
+			"offsets": {
+				"from": 293500,
+				"to": 295820
+			},
+			"text": " can be up to half a million dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,820",
+				"to": "00:04:59,620"
+			},
+			"offsets": {
+				"from": 295820,
+				"to": 299620
+			},
+			"text": " So how does a computer issue loans?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,620",
+				"to": "00:05:03,140"
+			},
+			"offsets": {
+				"from": 299620,
+				"to": 303140
+			},
+			"text": " Well, first of all, the person who wants the loan"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,140",
+				"to": "00:05:05,940"
+			},
+			"offsets": {
+				"from": 303140,
+				"to": 305940
+			},
+			"text": " approaches a validator and says, \"Hey, I want a loan.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,940",
+				"to": "00:05:09,380"
+			},
+			"offsets": {
+				"from": 305940,
+				"to": 309380
+			},
+			"text": " If that validator agrees, they become the proposer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,380",
+				"to": "00:05:15,180"
+			},
+			"offsets": {
+				"from": 309380,
+				"to": 315180
+			},
+			"text": " They create a loan application package using open source software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,980",
+				"to": "00:05:18,660"
+			},
+			"offsets": {
+				"from": 315980,
+				"to": 318660
+			},
+			"text": " and they commit to it with a hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,660",
+				"to": "00:05:22,260"
+			},
+			"offsets": {
+				"from": 318660,
+				"to": 322260
+			},
+			"text": " and they tell the computer, \"Hey, I want to propose a loan.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,260",
+				"to": "00:05:25,540"
+			},
+			"offsets": {
+				"from": 322260,
+				"to": 325540
+			},
+			"text": " The computer then randomly, at this point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,540",
+				"to": "00:05:29,260"
+			},
+			"offsets": {
+				"from": 325540,
+				"to": 329260
+			},
+			"text": " randomly selects another validator and says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,260",
+				"to": "00:05:30,900"
+			},
+			"offsets": {
+				"from": 329260,
+				"to": 330900
+			},
+			"text": " \"Look, can you encrypt that loan package"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,900",
+				"to": "00:05:32,780"
+			},
+			"offsets": {
+				"from": 330900,
+				"to": 332780
+			},
+			"text": " to the public key of the next validator?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,780",
+				"to": "00:05:37,100"
+			},
+			"offsets": {
+				"from": 332780,
+				"to": 337100
+			},
+			"text": " That next validator then becomes a checker."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,100",
+				"to": "00:05:41,700"
+			},
+			"offsets": {
+				"from": 337100,
+				"to": 341700
+			},
+			"text": " They look at the loan proposal and so on in a chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,700",
+				"to": "00:05:43,940"
+			},
+			"offsets": {
+				"from": 341700,
+				"to": 343940
+			},
+			"text": " which is decided algorithmically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,940",
+				"to": "00:05:47,500"
+			},
+			"offsets": {
+				"from": 343940,
+				"to": 347500
+			},
+			"text": " until the computer decides that the loan application"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,500",
+				"to": "00:05:48,740"
+			},
+			"offsets": {
+				"from": 347500,
+				"to": 348740
+			},
+			"text": " has been validated."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,740",
+				"to": "00:05:51,820"
+			},
+			"offsets": {
+				"from": 348740,
+				"to": 351820
+			},
+			"text": " Once the loan application has been validated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,820",
+				"to": "00:05:55,740"
+			},
+			"offsets": {
+				"from": 351820,
+				"to": 355740
+			},
+			"text": " the computer creates the phi from thin air"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,740",
+				"to": "00:05:57,260"
+			},
+			"offsets": {
+				"from": 355740,
+				"to": 357260
+			},
+			"text": " and gives it to the borrower."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,260",
+				"to": "00:06:00,140"
+			},
+			"offsets": {
+				"from": 357260,
+				"to": 360140
+			},
+			"text": " And bear with me for a moment and you'll see why the phi"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,140",
+				"to": "00:06:02,540"
+			},
+			"offsets": {
+				"from": 360140,
+				"to": 362540
+			},
+			"text": " that's created out of the thin air actually has value."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,540",
+				"to": "00:06:07,940"
+			},
+			"offsets": {
+				"from": 362540,
+				"to": 367940
+			},
+			"text": " So this chain of validators, the thing to remember"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,940",
+				"to": "00:06:11,420"
+			},
+			"offsets": {
+				"from": 367940,
+				"to": 371420
+			},
+			"text": " is that it's randomly selected in sequence"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,420",
+				"to": "00:06:13,980"
+			},
+			"offsets": {
+				"from": 371420,
+				"to": 373980
+			},
+			"text": " and it'll depend upon the size of the deposits"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,980",
+				"to": "00:06:16,380"
+			},
+			"offsets": {
+				"from": 373980,
+				"to": 376380
+			},
+			"text": " of the validators and their reputation and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,380",
+				"to": "00:06:18,940"
+			},
+			"offsets": {
+				"from": 376380,
+				"to": 378940
+			},
+			"text": " Why do the validators do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,940",
+				"to": "00:06:22,500"
+			},
+			"offsets": {
+				"from": 378940,
+				"to": 382500
+			},
+			"text": " Well, when people repay their loans, it generates interest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,500",
+				"to": "00:06:24,660"
+			},
+			"offsets": {
+				"from": 382500,
+				"to": 384660
+			},
+			"text": " and the computer gives a share of that interest"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,660",
+				"to": "00:06:25,660"
+			},
+			"offsets": {
+				"from": 384660,
+				"to": 385660
+			},
+			"text": " to the validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,660",
+				"to": "00:06:28,180"
+			},
+			"offsets": {
+				"from": 385660,
+				"to": 388180
+			},
+			"text": " So we might imagine that in this example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,180",
+				"to": "00:06:30,740"
+			},
+			"offsets": {
+				"from": 388180,
+				"to": 390740
+			},
+			"text": " the proposal gets 60% of that interest"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,740",
+				"to": "00:06:31,860"
+			},
+			"offsets": {
+				"from": 390740,
+				"to": 391860
+			},
+			"text": " because you'd put in the work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,860",
+				"to": "00:06:34,020"
+			},
+			"offsets": {
+				"from": 391860,
+				"to": 394020
+			},
+			"text": " creating the loan application in the first place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,020",
+				"to": "00:06:35,700"
+			},
+			"offsets": {
+				"from": 394020,
+				"to": 395700
+			},
+			"text": " the two checkers get 20%."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,700",
+				"to": "00:06:38,460"
+			},
+			"offsets": {
+				"from": 395700,
+				"to": 398460
+			},
+			"text": " There's another side to this which is that they're also underwriters."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,020",
+				"to": "00:06:42,340"
+			},
+			"offsets": {
+				"from": 399020,
+				"to": 402340
+			},
+			"text": " So if the borrower fails to make a repayment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,340",
+				"to": "00:06:44,700"
+			},
+			"offsets": {
+				"from": 402340,
+				"to": 404700
+			},
+			"text": " the computer is going to take that repayment"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,700",
+				"to": "00:06:47,220"
+			},
+			"offsets": {
+				"from": 404700,
+				"to": 407220
+			},
+			"text": " from the deposits of the validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,220",
+				"to": "00:06:49,980"
+			},
+			"offsets": {
+				"from": 407220,
+				"to": 409980
+			},
+			"text": " So we can imagine that the underwriting's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,980",
+				"to": "00:06:52,220"
+			},
+			"offsets": {
+				"from": 409980,
+				"to": 412220
+			},
+			"text": " in the same proportion as the rewards"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,220",
+				"to": "00:06:53,820"
+			},
+			"offsets": {
+				"from": 412220,
+				"to": 413820
+			},
+			"text": " and their reputation's also at risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,820",
+				"to": "00:06:58,660"
+			},
+			"offsets": {
+				"from": 413820,
+				"to": 418660
+			},
+			"text": " So this is how interest is generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,660",
+				"to": "00:07:01,660"
+			},
+			"offsets": {
+				"from": 418660,
+				"to": 421660
+			},
+			"text": " Let's imagine I borrow $10,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,660",
+				"to": "00:07:04,100"
+			},
+			"offsets": {
+				"from": 421660,
+				"to": 424100
+			},
+			"text": " and I've got to pay it back in 10 monthly installments"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,100",
+				"to": "00:07:05,820"
+			},
+			"offsets": {
+				"from": 424100,
+				"to": 425820
+			},
+			"text": " of $1,100."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,820",
+				"to": "00:07:08,620"
+			},
+			"offsets": {
+				"from": 425820,
+				"to": 428620
+			},
+			"text": " Well, I get $1,100 worth of phi."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,620",
+				"to": "00:07:11,940"
+			},
+			"offsets": {
+				"from": 429620,
+				"to": 431940
+			},
+			"text": " Pay it back to the computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,940",
+				"to": "00:07:15,980"
+			},
+			"offsets": {
+				"from": 431940,
+				"to": 435980
+			},
+			"text": " The computer burns $1,000, which is the principal, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,980",
+				"to": "00:07:17,940"
+			},
+			"offsets": {
+				"from": 435980,
+				"to": 437940
+			},
+			"text": " Just burns it and it created an out thinner"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,940",
+				"to": "00:07:19,220"
+			},
+			"offsets": {
+				"from": 437940,
+				"to": 439220
+			},
+			"text": " in the first place, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,220",
+				"to": "00:07:22,460"
+			},
+			"offsets": {
+				"from": 439220,
+				"to": 442460
+			},
+			"text": " And the $100 interest is then distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,460",
+				"to": "00:07:24,740"
+			},
+			"offsets": {
+				"from": 442460,
+				"to": 444740
+			},
+			"text": " amongst the originating validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,740",
+				"to": "00:07:27,700"
+			},
+			"offsets": {
+				"from": 444740,
+				"to": 447700
+			},
+			"text": " and also save as an investors who've placed time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,700",
+				"to": "00:07:33,700"
+			},
+			"offsets": {
+				"from": 447700,
+				"to": 453700
+			},
+			"text": " So this is, I mean, I've oversimplified this whole system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,700",
+				"to": "00:07:37,220"
+			},
+			"offsets": {
+				"from": 453700,
+				"to": 457220
+			},
+			"text": " but intuitively, this will give you a grasp"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,220",
+				"to": "00:07:41,860"
+			},
+			"offsets": {
+				"from": 457220,
+				"to": 461860
+			},
+			"text": " of why phi has value even though it's conjured from theta."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,860",
+				"to": "00:07:45,820"
+			},
+			"offsets": {
+				"from": 461860,
+				"to": 465820
+			},
+			"text": " When somebody receives a loan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,820",
+				"to": "00:07:48,980"
+			},
+			"offsets": {
+				"from": 465820,
+				"to": 468980
+			},
+			"text": " let's say I received $10,000 in phi,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,980",
+				"to": "00:07:52,020"
+			},
+			"offsets": {
+				"from": 468980,
+				"to": 472020
+			},
+			"text": " they're going to place it onto a cryptocurrency exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,020",
+				"to": "00:07:55,820"
+			},
+			"offsets": {
+				"from": 472020,
+				"to": 475820
+			},
+			"text": " to get fiat that they can spend, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,820",
+				"to": "00:08:00,860"
+			},
+			"offsets": {
+				"from": 475820,
+				"to": 480860
+			},
+			"text": " So I've got $10,000 in phi and I put a 10,000 phi sell order"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,860",
+				"to": "00:08:02,540"
+			},
+			"offsets": {
+				"from": 480860,
+				"to": 482540
+			},
+			"text": " onto the exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,540",
+				"to": "00:08:04,820"
+			},
+			"offsets": {
+				"from": 482540,
+				"to": 484820
+			},
+			"text": " But meanwhile, there are other people"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,820",
+				"to": "00:08:08,420"
+			},
+			"offsets": {
+				"from": 484820,
+				"to": 488420
+			},
+			"text": " who've already borrowed phi and are paying back their loans."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,420",
+				"to": "00:08:12,740"
+			},
+			"offsets": {
+				"from": 488420,
+				"to": 492740
+			},
+			"text": " And they have to buy phi in order to pay back the computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,740",
+				"to": "00:08:15,340"
+			},
+			"offsets": {
+				"from": 492740,
+				"to": 495340
+			},
+			"text": " And in fact, you can see that the demand for phi"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,340",
+				"to": "00:08:17,860"
+			},
+			"offsets": {
+				"from": 495340,
+				"to": 497860
+			},
+			"text": " will be greater than the supply, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,860",
+				"to": "00:08:21,060"
+			},
+			"offsets": {
+				"from": 497860,
+				"to": 501060
+			},
+			"text": " Because people are paying things back with interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,060",
+				"to": "00:08:26,140"
+			},
+			"offsets": {
+				"from": 501060,
+				"to": 506140
+			},
+			"text": " So I may, when I borrow $10,000, I get $10,000 worth of phi."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,140",
+				"to": "00:08:30,420"
+			},
+			"offsets": {
+				"from": 506140,
+				"to": 510420
+			},
+			"text": " But actually, I've got to pay back $11,000 worth of phi, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,700",
+				"to": "00:08:42,860"
+			},
+			"offsets": {
+				"from": 514700,
+				"to": 522860
+			},
+			"text": " So we end up with a system that doesn't involve banks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,860",
+				"to": "00:08:47,060"
+			},
+			"offsets": {
+				"from": 522860,
+				"to": 527060
+			},
+			"text": " which gives out loans, creates a stable currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,060",
+				"to": "00:08:50,060"
+			},
+			"offsets": {
+				"from": 527060,
+				"to": 530060
+			},
+			"text": " The last remaining question might be, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,060",
+				"to": "00:08:52,700"
+			},
+			"offsets": {
+				"from": 530060,
+				"to": 532700
+			},
+			"text": " what stops somebody just taking a loan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,700",
+				"to": "00:08:58,020"
+			},
+			"offsets": {
+				"from": 532700,
+				"to": 538020
+			},
+			"text": " getting their $10,000 worth of phi, and just walking away?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,020",
+				"to": "00:08:59,660"
+			},
+			"offsets": {
+				"from": 538020,
+				"to": 539660
+			},
+			"text": " The computer can't chase them, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,660",
+				"to": "00:09:04,820"
+			},
+			"offsets": {
+				"from": 539660,
+				"to": 544820
+			},
+			"text": " The way that works is when they applied for the loan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,820",
+				"to": "00:09:08,700"
+			},
+			"offsets": {
+				"from": 544820,
+				"to": 548700
+			},
+			"text": " the validator would have made them sign a contract that says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,700",
+				"to": "00:09:10,660"
+			},
+			"offsets": {
+				"from": 548700,
+				"to": 550660
+			},
+			"text": " if you don't pay back the computer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,660",
+				"to": "00:09:13,660"
+			},
+			"offsets": {
+				"from": 550660,
+				"to": 553660
+			},
+			"text": " the computer's going to take the missing repayment"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,660",
+				"to": "00:09:15,740"
+			},
+			"offsets": {
+				"from": 553660,
+				"to": 555740
+			},
+			"text": " from my deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,740",
+				"to": "00:09:17,500"
+			},
+			"offsets": {
+				"from": 555740,
+				"to": 557500
+			},
+			"text": " And consequently, I'll lose money."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,500",
+				"to": "00:09:19,500"
+			},
+			"offsets": {
+				"from": 557500,
+				"to": 559500
+			},
+			"text": " And so you will owe me that money."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,500",
+				"to": "00:09:21,260"
+			},
+			"offsets": {
+				"from": 559500,
+				"to": 561260
+			},
+			"text": " So if somebody doesn't repay the computer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,260",
+				"to": "00:09:24,940"
+			},
+			"offsets": {
+				"from": 561260,
+				"to": 564940
+			},
+			"text": " they can activate this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,940",
+				"to": "00:09:28,900"
+			},
+			"offsets": {
+				"from": 564940,
+				"to": 568900
+			},
+			"text": " And the borrower then has a debt directly to the validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,900",
+				"to": "00:09:35,300"
+			},
+			"offsets": {
+				"from": 568900,
+				"to": 575300
+			},
+			"text": " And the validator can just use existing debt recovery systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,300",
+				"to": "00:09:39,860"
+			},
+			"offsets": {
+				"from": 575300,
+				"to": 579860
+			},
+			"text": " which are widely available worldwide."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,860",
+				"to": "00:09:43,620"
+			},
+			"offsets": {
+				"from": 579860,
+				"to": 583620
+			},
+			"text": " So I'll post this deck online on my Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,620",
+				"to": "00:09:46,180"
+			},
+			"offsets": {
+				"from": 583620,
+				"to": 586180
+			},
+			"text": " if anyone wants to look at it, their leisure."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,180",
+				"to": "00:09:47,860"
+			},
+			"offsets": {
+				"from": 586180,
+				"to": 587860
+			},
+			"text": " I'm from a company called String Labs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,860",
+				"to": "00:09:49,620"
+			},
+			"offsets": {
+				"from": 587860,
+				"to": 589620
+			},
+			"text": " We've got two projects at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,620",
+				"to": "00:09:50,260"
+			},
+			"offsets": {
+				"from": 589620,
+				"to": 590260
+			},
+			"text": " One is phi."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,260",
+				"to": "00:09:51,700"
+			},
+			"offsets": {
+				"from": 590260,
+				"to": 591700
+			},
+			"text": " Another one is called Affinity, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,700",
+				"to": "00:09:53,580"
+			},
+			"offsets": {
+				"from": 591700,
+				"to": 593580
+			},
+			"text": " is a business-oriented blockchain, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,580",
+				"to": "00:09:55,420"
+			},
+			"offsets": {
+				"from": 593580,
+				"to": 595420
+			},
+			"text": " has some new cryptography and I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,420",
+				"to": "00:09:59,060"
+			},
+			"offsets": {
+				"from": 595420,
+				"to": 599060
+			},
+			"text": " all the blockchain nervous system we're presenting on Saturday."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,060",
+				"to": "00:10:02,900"
+			},
+			"offsets": {
+				"from": 599060,
+				"to": 602900
+			},
+			"text": " Feel free to catch up with me later if you've got any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,900",
+				"to": "00:10:03,900"
+			},
+			"offsets": {
+				"from": 602900,
+				"to": 603900
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,900",
+				"to": "00:10:05,900"
+			},
+			"offsets": {
+				"from": 603900,
+				"to": 605900
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,900",
+				"to": "00:10:08,900"
+			},
+			"offsets": {
+				"from": 605900,
+				"to": 608900
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,900",
+				"to": "00:10:11,480"
+			},
+			"offsets": {
+				"from": 608900,
+				"to": 611480
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,480",
+				"to": "00:10:13,720"
+			},
+			"offsets": {
+				"from": 611480,
+				"to": 613720
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

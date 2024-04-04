@@ -1,0 +1,1583 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:15,400"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 15400
+			},
+			"text": " All right, there we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,400",
+				"to": "00:00:19,840"
+			},
+			"offsets": {
+				"from": 15400,
+				"to": 19840
+			},
+			"text": " So Arlen has been mentioned quite a few times"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,840",
+				"to": "00:00:21,960"
+			},
+			"offsets": {
+				"from": 19840,
+				"to": 21960
+			},
+			"text": " throughout presentations this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,960",
+				"to": "00:00:25,240"
+			},
+			"offsets": {
+				"from": 21960,
+				"to": 25240
+			},
+			"text": " And I wanted to talk about how it worked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,240",
+				"to": "00:00:27,400"
+			},
+			"offsets": {
+				"from": 25240,
+				"to": 27400
+			},
+			"text": " what's under the hood, in a way that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,400",
+				"to": "00:00:30,680"
+			},
+			"offsets": {
+				"from": 27400,
+				"to": 30680
+			},
+			"text": " accessible to most people."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,680",
+				"to": "00:00:33,160"
+			},
+			"offsets": {
+				"from": 30680,
+				"to": 33160
+			},
+			"text": " So the key part is the rate limiting."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,160",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 33160,
+				"to": 36000
+			},
+			"text": " So it's basically controlling how fast"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:37,640"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 37640
+			},
+			"text": " you can interact with the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,640",
+				"to": "00:00:41,440"
+			},
+			"offsets": {
+				"from": 37640,
+				"to": 41440
+			},
+			"text": " So an example would be interacting with Discord."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,440",
+				"to": "00:00:43,600"
+			},
+			"offsets": {
+				"from": 41440,
+				"to": 43600
+			},
+			"text": " Like if you're in a big Discord, there's a slowdown mode"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,600",
+				"to": "00:00:46,920"
+			},
+			"offsets": {
+				"from": 43600,
+				"to": 46920
+			},
+			"text": " where you can only send one message every 15 seconds or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,920",
+				"to": "00:00:48,240"
+			},
+			"offsets": {
+				"from": 46920,
+				"to": 48240
+			},
+			"text": " It's very similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,240",
+				"to": "00:00:51,040"
+			},
+			"offsets": {
+				"from": 48240,
+				"to": 51040
+			},
+			"text": " So it is made up of a couple of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,040",
+				"to": "00:00:53,760"
+			},
+			"offsets": {
+				"from": 51040,
+				"to": 53760
+			},
+			"text": " So semaphore, which is the talk before this, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,760",
+				"to": "00:00:57,160"
+			},
+			"offsets": {
+				"from": 53760,
+				"to": 57160
+			},
+			"text": " is basically just proving your part of an anonymity set."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,160",
+				"to": "00:01:00,920"
+			},
+			"offsets": {
+				"from": 57160,
+				"to": 60920
+			},
+			"text": " Without revealing who you are, some of your secret sharing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,920",
+				"to": "00:01:04,760"
+			},
+			"offsets": {
+				"from": 60920,
+				"to": 64760
+			},
+			"text": " scheme, which is the majority of this talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,760",
+				"to": "00:01:08,040"
+			},
+			"offsets": {
+				"from": 64760,
+				"to": 68040
+			},
+			"text": " and some time or event delineation, which I'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,040",
+				"to": "00:01:09,600"
+			},
+			"offsets": {
+				"from": 68040,
+				"to": 69600
+			},
+			"text": " get into in a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,600",
+				"to": "00:01:12,200"
+			},
+			"offsets": {
+				"from": 69600,
+				"to": 72200
+			},
+			"text": " There's three stages to how Arlen works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,200",
+				"to": "00:01:13,600"
+			},
+			"offsets": {
+				"from": 72200,
+				"to": 73600
+			},
+			"text": " So there's a registration process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,600",
+				"to": "00:01:17,200"
+			},
+			"offsets": {
+				"from": 73600,
+				"to": 77200
+			},
+			"text": " like joining, which is basically just a Markle tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,200",
+				"to": "00:01:21,240"
+			},
+			"offsets": {
+				"from": 77200,
+				"to": 81240
+			},
+			"text": " and signaling, which is your actual sending of messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,240",
+				"to": "00:01:25,680"
+			},
+			"offsets": {
+				"from": 81240,
+				"to": 85680
+			},
+			"text": " then there is the slashing or secret recovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,680",
+				"to": "00:01:29,720"
+			},
+			"offsets": {
+				"from": 85680,
+				"to": 89720
+			},
+			"text": " So yeah, so like I just said, the registration process"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,720",
+				"to": "00:01:31,880"
+			},
+			"offsets": {
+				"from": 89720,
+				"to": 91880
+			},
+			"text": " is just the Markle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,880",
+				"to": "00:01:34,320"
+			},
+			"offsets": {
+				"from": 91880,
+				"to": 94320
+			},
+			"text": " So this is basically what semaphore is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,320",
+				"to": "00:01:38,480"
+			},
+			"offsets": {
+				"from": 94320,
+				"to": 98480
+			},
+			"text": " So it's just proving your part of an anonymity set."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,480",
+				"to": "00:01:40,960"
+			},
+			"offsets": {
+				"from": 98480,
+				"to": 100960
+			},
+			"text": " And this can be done on or off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,960",
+				"to": "00:01:45,840"
+			},
+			"offsets": {
+				"from": 100960,
+				"to": 105840
+			},
+			"text": " So the signaling part, this is kind of the meat of all of this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,840",
+				"to": "00:01:49,240"
+			},
+			"offsets": {
+				"from": 105840,
+				"to": 109240
+			},
+			"text": " is-- so it's a circum circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,240",
+				"to": "00:01:55,400"
+			},
+			"offsets": {
+				"from": 109240,
+				"to": 115400
+			},
+			"text": " And the first public input is the epoch, which is like a time"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,400",
+				"to": "00:01:59,600"
+			},
+			"offsets": {
+				"from": 115400,
+				"to": 119600
+			},
+			"text": " or it could be like a post on Reddit or something like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,600",
+				"to": "00:02:03,800"
+			},
+			"offsets": {
+				"from": 119600,
+				"to": 123800
+			},
+			"text": " just some delineation in a time or an event,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,800",
+				"to": "00:02:08,520"
+			},
+			"offsets": {
+				"from": 123800,
+				"to": 128520
+			},
+			"text": " and then the actual message, and then a secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,520",
+				"to": "00:02:13,720"
+			},
+			"offsets": {
+				"from": 128520,
+				"to": 133720
+			},
+			"text": " And out of that comes proof that your epoch and your message"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,720",
+				"to": "00:02:18,280"
+			},
+			"offsets": {
+				"from": 133720,
+				"to": 138280
+			},
+			"text": " are accurate and verified with what you put into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,280",
+				"to": "00:02:21,520"
+			},
+			"offsets": {
+				"from": 138280,
+				"to": 141520
+			},
+			"text": " It proves that you belong to that Markle tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,520",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 141520,
+				"to": 143000
+			},
+			"text": " that membership group."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:26,560"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 146560
+			},
+			"text": " And it spits out a secret chair."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,560",
+				"to": "00:02:30,680"
+			},
+			"offsets": {
+				"from": 146560,
+				"to": 150680
+			},
+			"text": " So this secret chair is one of the most important parts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,680",
+				"to": "00:02:34,280"
+			},
+			"offsets": {
+				"from": 150680,
+				"to": 154280
+			},
+			"text": " of how Arlen works."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,280",
+				"to": "00:02:39,720"
+			},
+			"offsets": {
+				"from": 154280,
+				"to": 159720
+			},
+			"text": " Basically, if you have a secret, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,720",
+				"to": "00:02:44,360"
+			},
+			"offsets": {
+				"from": 159720,
+				"to": 164360
+			},
+			"text": " can plot that on a graph and on the y-axis."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,360",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 164360,
+				"to": 167000
+			},
+			"text": " This is basically how Sumer's secret chairing works."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,280",
+				"to": "00:02:55,840"
+			},
+			"offsets": {
+				"from": 170280,
+				"to": 175840
+			},
+			"text": " So you have to have a random point to construct your shares."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,840",
+				"to": "00:02:59,920"
+			},
+			"offsets": {
+				"from": 175840,
+				"to": 179920
+			},
+			"text": " And that is derived from the epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,920",
+				"to": "00:03:04,840"
+			},
+			"offsets": {
+				"from": 179920,
+				"to": 184840
+			},
+			"text": " And these shares are generated from the message hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,840",
+				"to": "00:03:09,160"
+			},
+			"offsets": {
+				"from": 184840,
+				"to": 189160
+			},
+			"text": " So the shares-- basically, the whole idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,160",
+				"to": "00:03:11,120"
+			},
+			"offsets": {
+				"from": 189160,
+				"to": 191120
+			},
+			"text": " behind Sumer's secret sharing scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,120",
+				"to": "00:03:14,120"
+			},
+			"offsets": {
+				"from": 191120,
+				"to": 194120
+			},
+			"text": " is you have a secret, you break it up into parts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,120",
+				"to": "00:03:16,960"
+			},
+			"offsets": {
+				"from": 194120,
+				"to": 196960
+			},
+			"text": " and you distribute those parts publicly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,960",
+				"to": "00:03:18,440"
+			},
+			"offsets": {
+				"from": 196960,
+				"to": 198440
+			},
+			"text": " And if you have enough of them, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,440",
+				"to": "00:03:20,400"
+			},
+			"offsets": {
+				"from": 198440,
+				"to": 200400
+			},
+			"text": " can reconstruct the secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,400",
+				"to": "00:03:23,800"
+			},
+			"offsets": {
+				"from": 200400,
+				"to": 203800
+			},
+			"text": " So with these two shares, you can reconstruct where"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,800",
+				"to": "00:03:24,440"
+			},
+			"offsets": {
+				"from": 203800,
+				"to": 204440
+			},
+			"text": " that line is."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,440",
+				"to": "00:03:26,240"
+			},
+			"offsets": {
+				"from": 204440,
+				"to": 206240
+			},
+			"text": " So I'm going to go through how that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,240",
+				"to": "00:03:28,320"
+			},
+			"offsets": {
+				"from": 206240,
+				"to": 208320
+			},
+			"text": " So if you have one share, you really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,320",
+				"to": "00:03:32,760"
+			},
+			"offsets": {
+				"from": 208320,
+				"to": 212760
+			},
+			"text": " don't know where that line is."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,760",
+				"to": "00:03:36,560"
+			},
+			"offsets": {
+				"from": 212760,
+				"to": 216560
+			},
+			"text": " If you have two shares, then you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,560",
+				"to": "00:03:40,400"
+			},
+			"offsets": {
+				"from": 216560,
+				"to": 220400
+			},
+			"text": " see where it crosses the y-axis, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,400",
+				"to": "00:03:42,320"
+			},
+			"offsets": {
+				"from": 220400,
+				"to": 222320
+			},
+			"text": " can determine what the secret is."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,320",
+				"to": "00:03:47,280"
+			},
+			"offsets": {
+				"from": 222320,
+				"to": 227280
+			},
+			"text": " So if someone basically submits too many messages too fast,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,280",
+				"to": "00:03:50,480"
+			},
+			"offsets": {
+				"from": 227280,
+				"to": 230480
+			},
+			"text": " like within a 15-second time period,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,480",
+				"to": "00:03:54,160"
+			},
+			"offsets": {
+				"from": 230480,
+				"to": 234160
+			},
+			"text": " or whatever your rate limiting is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,160",
+				"to": "00:03:57,080"
+			},
+			"offsets": {
+				"from": 234160,
+				"to": 237080
+			},
+			"text": " then someone can reconstruct your secret, your private key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,080",
+				"to": "00:04:00,640"
+			},
+			"offsets": {
+				"from": 237080,
+				"to": 240640
+			},
+			"text": " basically figure out your identity commitment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,640",
+				"to": "00:04:06,280"
+			},
+			"offsets": {
+				"from": 240640,
+				"to": 246280
+			},
+			"text": " and withdraw a stake or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,280",
+				"to": "00:04:09,720"
+			},
+			"offsets": {
+				"from": 246280,
+				"to": 249720
+			},
+			"text": " And this can be split up into multiple pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,720",
+				"to": "00:04:12,320"
+			},
+			"offsets": {
+				"from": 249720,
+				"to": 252320
+			},
+			"text": " It doesn't just have to be a linear function."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,320",
+				"to": "00:04:13,680"
+			},
+			"offsets": {
+				"from": 252320,
+				"to": 253680
+			},
+			"text": " This could be a polynomial."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,680",
+				"to": "00:04:15,640"
+			},
+			"offsets": {
+				"from": 253680,
+				"to": 255640
+			},
+			"text": " So you can have multiple shares that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,640",
+				"to": "00:04:17,280"
+			},
+			"offsets": {
+				"from": 255640,
+				"to": 257280
+			},
+			"text": " need to be able to recover."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,280",
+				"to": "00:04:22,200"
+			},
+			"offsets": {
+				"from": 257280,
+				"to": 262200
+			},
+			"text": " So you can say a person can send 15 messages per day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,200",
+				"to": "00:04:23,440"
+			},
+			"offsets": {
+				"from": 262200,
+				"to": 263440
+			},
+			"text": " but that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,440",
+				"to": "00:04:25,720"
+			},
+			"offsets": {
+				"from": 263440,
+				"to": 265720
+			},
+			"text": " So this is the actual circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,720",
+				"to": "00:04:26,920"
+			},
+			"offsets": {
+				"from": 265720,
+				"to": 266920
+			},
+			"text": " I know this looks a little confusing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,920",
+				"to": "00:04:33,560"
+			},
+			"offsets": {
+				"from": 266920,
+				"to": 273560
+			},
+			"text": " but if you just look and see how all this is assembled,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,560",
+				"to": "00:04:34,720"
+			},
+			"offsets": {
+				"from": 273560,
+				"to": 274720
+			},
+			"text": " it's really not that bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,720",
+				"to": "00:04:38,280"
+			},
+			"offsets": {
+				"from": 274720,
+				"to": 278280
+			},
+			"text": " So you have the epoch, the message, and the secret key"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,280",
+				"to": "00:04:39,720"
+			},
+			"offsets": {
+				"from": 278280,
+				"to": 279720
+			},
+			"text": " going in."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,720",
+				"to": "00:04:42,640"
+			},
+			"offsets": {
+				"from": 279720,
+				"to": 282640
+			},
+			"text": " And the center part here--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,640",
+				"to": "00:04:44,160"
+			},
+			"offsets": {
+				"from": 282640,
+				"to": 284160
+			},
+			"text": " I have a little laser pointer--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,160",
+				"to": "00:04:48,800"
+			},
+			"offsets": {
+				"from": 284160,
+				"to": 288800
+			},
+			"text": " the center part is the Schumier-Sachier sharing scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,800",
+				"to": "00:04:50,960"
+			},
+			"offsets": {
+				"from": 288800,
+				"to": 290960
+			},
+			"text": " And the right side, this is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,960",
+				"to": "00:04:54,120"
+			},
+			"offsets": {
+				"from": 290960,
+				"to": 294120
+			},
+			"text": " just the construction of the identity commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,120",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 294120,
+				"to": 299000
+			},
+			"text": " So it's your public identifier for being anonymous."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:04,240"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 304240
+			},
+			"text": " And the left side-- so this is nullifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,240",
+				"to": "00:05:06,120"
+			},
+			"offsets": {
+				"from": 304240,
+				"to": 306120
+			},
+			"text": " So it's basically the equivalent of a nonce."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,120",
+				"to": "00:05:10,120"
+			},
+			"offsets": {
+				"from": 306120,
+				"to": 310120
+			},
+			"text": " And some use cases for this that we thought of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,120",
+				"to": "00:05:14,040"
+			},
+			"offsets": {
+				"from": 310120,
+				"to": 314040
+			},
+			"text": " is you could do auctions where you can have only"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,040",
+				"to": "00:05:19,280"
+			},
+			"offsets": {
+				"from": 314040,
+				"to": 319280
+			},
+			"text": " so many bids per item or whatever, bids per user."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,280",
+				"to": "00:05:20,960"
+			},
+			"offsets": {
+				"from": 319280,
+				"to": 320960
+			},
+			"text": " You can have a bulletin board system like Reddit"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,960",
+				"to": "00:05:26,520"
+			},
+			"offsets": {
+				"from": 320960,
+				"to": 326520
+			},
+			"text": " where you can only comment once per post or once per level"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,520",
+				"to": "00:05:28,280"
+			},
+			"offsets": {
+				"from": 326520,
+				"to": 328280
+			},
+			"text": " of post."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,280",
+				"to": "00:05:31,080"
+			},
+			"offsets": {
+				"from": 328280,
+				"to": 331080
+			},
+			"text": " We've also thought about using this for preventing denial"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,080",
+				"to": "00:05:33,320"
+			},
+			"offsets": {
+				"from": 331080,
+				"to": 333320
+			},
+			"text": " of service attacks for something like Cloud Player,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,320",
+				"to": "00:05:37,600"
+			},
+			"offsets": {
+				"from": 333320,
+				"to": 337600
+			},
+			"text": " where we can do that anonymously and decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,600",
+				"to": "00:05:42,320"
+			},
+			"offsets": {
+				"from": 337600,
+				"to": 342320
+			},
+			"text": " And then-- so this is also used in a couple applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,320",
+				"to": "00:05:45,280"
+			},
+			"offsets": {
+				"from": 342320,
+				"to": 345280
+			},
+			"text": " that the PSE has developed like Skitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,280",
+				"to": "00:05:47,720"
+			},
+			"offsets": {
+				"from": 345280,
+				"to": 347720
+			},
+			"text": " So we have ZK chat in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,720",
+				"to": "00:05:50,280"
+			},
+			"offsets": {
+				"from": 347720,
+				"to": 350280
+			},
+			"text": " So it's anonymous chat where it's rate limited."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,280",
+				"to": "00:05:52,480"
+			},
+			"offsets": {
+				"from": 350280,
+				"to": 352480
+			},
+			"text": " And so we have a JavaScript library for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,480",
+				"to": "00:05:53,960"
+			},
+			"offsets": {
+				"from": 352480,
+				"to": 353960
+			},
+			"text": " We're working on a Russell library"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,960",
+				"to": "00:05:56,240"
+			},
+			"offsets": {
+				"from": 353960,
+				"to": 356240
+			},
+			"text": " in collaboration with the VAC team."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,240",
+				"to": "00:05:58,800"
+			},
+			"offsets": {
+				"from": 356240,
+				"to": 358800
+			},
+			"text": " And we're probably going to write a Python version"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,800",
+				"to": "00:06:03,880"
+			},
+			"offsets": {
+				"from": 358800,
+				"to": 363880
+			},
+			"text": " and a couple other bindings for languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,880",
+				"to": "00:06:06,720"
+			},
+			"offsets": {
+				"from": 363880,
+				"to": 366720
+			},
+			"text": " Yeah, so if you want to look at the documentation or the code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,720",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 366720,
+				"to": 368000
+			},
+			"text": " there's the QR code."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,120"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372120
+			},
+			"text": " And if you have any questions, you can join our Discord."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,120",
+				"to": "00:06:13,840"
+			},
+			"offsets": {
+				"from": 372120,
+				"to": 373840
+			},
+			"text": " Again, I'm at Heart Engineer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,840",
+				"to": "00:06:16,200"
+			},
+			"offsets": {
+				"from": 373840,
+				"to": 376200
+			},
+			"text": " And yeah, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,200",
+				"to": "00:06:16,960"
+			},
+			"offsets": {
+				"from": 376200,
+				"to": 376960
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,960",
+				"to": "00:06:20,960"
+			},
+			"offsets": {
+				"from": 376960,
+				"to": 380960
+			},
+			"text": " We have still one minute and a half, maybe one question."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,960",
+				"to": "00:06:22,920"
+			},
+			"offsets": {
+				"from": 380960,
+				"to": 382920
+			},
+			"text": " The audience, some Q&A."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,920",
+				"to": "00:06:23,480"
+			},
+			"offsets": {
+				"from": 382920,
+				"to": 383480
+			},
+			"text": " Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,480",
+				"to": "00:06:25,160"
+			},
+			"offsets": {
+				"from": 383480,
+				"to": 385160
+			},
+			"text": " Raise your hand here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,160",
+				"to": "00:06:26,400"
+			},
+			"offsets": {
+				"from": 385160,
+				"to": 386400
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,400",
+				"to": "00:06:27,960"
+			},
+			"offsets": {
+				"from": 386400,
+				"to": 387960
+			},
+			"text": " How did this compare to supposed to you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,960",
+				"to": "00:06:30,640"
+			},
+			"offsets": {
+				"from": 387960,
+				"to": 390640
+			},
+			"text": " like, use the ZXC's approach, where you keep one note"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,640",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 390640,
+				"to": 392000
+			},
+			"text": " and you keep a counter in the notes"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:33,320"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 393320
+			},
+			"text": " and you keep including the counter"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,320",
+				"to": "00:06:35,680"
+			},
+			"offsets": {
+				"from": 393320,
+				"to": 395680
+			},
+			"text": " and you improve that encounter's lesson?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,680",
+				"to": "00:06:38,240"
+			},
+			"offsets": {
+				"from": 395680,
+				"to": 398240
+			},
+			"text": " Some number."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,240",
+				"to": "00:06:38,720"
+			},
+			"offsets": {
+				"from": 398240,
+				"to": 398720
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,720",
+				"to": "00:06:39,960"
+			},
+			"offsets": {
+				"from": 398720,
+				"to": 399960
+			},
+			"text": " I'll have to talk to you about that offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,960",
+				"to": "00:06:42,360"
+			},
+			"offsets": {
+				"from": 399960,
+				"to": 402360
+			},
+			"text": " I'll have to think about that for a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,360",
+				"to": "00:06:43,360"
+			},
+			"offsets": {
+				"from": 402360,
+				"to": 403360
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,360",
+				"to": "00:06:45,120"
+			},
+			"offsets": {
+				"from": 403360,
+				"to": 405120
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,120",
+				"to": "00:06:46,880"
+			},
+			"offsets": {
+				"from": 405120,
+				"to": 406880
+			},
+			"text": " Any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,880",
+				"to": "00:06:47,520"
+			},
+			"offsets": {
+				"from": 406880,
+				"to": 407520
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,520",
+				"to": "00:06:47,880"
+			},
+			"offsets": {
+				"from": 407520,
+				"to": 407880
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,880",
+				"to": "00:06:48,360"
+			},
+			"offsets": {
+				"from": 407880,
+				"to": 408360
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,360",
+				"to": "00:06:49,200"
+			},
+			"offsets": {
+				"from": 408360,
+				"to": 409200
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,200",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 409200,
+				"to": 411000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:54,360"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 414360
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,360",
+				"to": "00:06:57,720"
+			},
+			"offsets": {
+				"from": 414360,
+				"to": 417720
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,720",
+				"to": "00:07:01,080"
+			},
+			"offsets": {
+				"from": 417720,
+				"to": 421080
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,080",
+				"to": "00:07:30,080"
+			},
+			"offsets": {
+				"from": 421080,
+				"to": 450080
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

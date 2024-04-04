@@ -1,0 +1,2320 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 17000
+			},
+			"text": " Okay, welcome. Back from lunch."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 26000
+			},
+			"text": " Now we will be speaking about Web3.js 1.0, which is a major re-factor from the early version,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 35000
+			},
+			"text": " which was around for the last two years. Shortly about myself, I'm from Vogustela."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 44000
+			},
+			"text": " I built the initially theum wallet, the miss browser, and worked on Web3.js"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 47000
+			},
+			"text": " two and a half years roughly."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 55000
+			},
+			"text": " Built a few other things. Also initiated the EEC20 token standard together with Vitalik"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 60000
+			},
+			"text": " and did a lot of other smaller things in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 68000
+			},
+			"text": " The Web3.js. Web3.js is basically a library, JavaScript library, which allows you to interact with your"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 77000
+			},
+			"text": " theme node. Normally, as a JavaScript developer, you don't want to deal with low-level API decoding and coding."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 84000
+			},
+			"text": " You want to basically have a nice JavaScript object which you can interact with and easily write your"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 89000
+			},
+			"text": " applications. Web3.js is exactly this kind of middleware."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 98000
+			},
+			"text": " It's widely used and actually the core piece of a lot of different libraries built on top."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 104000
+			},
+			"text": " And working for two years on it and it grew over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 110000
+			},
+			"text": " I found it very necessary to do an overhaul, so to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 122000
+			},
+			"text": " It was initially created by Jeff Wilker, the Go Ethereum founder, core developer, and Mariah"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 130000
+			},
+			"text": " Khatovic, who worked later on it. I joined in 2015 working on it since then and we have also a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 135000
+			},
+			"text": " contributors. There's a lot more on this list here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 145000
+			},
+			"text": " It started out in 2015, grew quite a lot and now restructured a lot in the 1.0 refactor."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 151000
+			},
+			"text": " So how exactly the theorem communication to applications work, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 156000
+			},
+			"text": " The theorem node itself and the EVM especially only understands bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 166000
+			},
+			"text": " It's not easy to work with for most application developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 171000
+			},
+			"text": " Everything which goes into the EVM has to be translated to the bytecode to be executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 179000
+			},
+			"text": " For example, this happens over the JSON API, which is a low-level JSON API where you have to send"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 185000
+			},
+			"text": " all of your requests and this has to be pre-encoded to be understood by the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 194000
+			},
+			"text": " For example, if you look at this example here, if you want to call a function in the EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 199000
+			},
+			"text": " for example, we want to call the transfer function with two parameters on a contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 207000
+			},
+			"text": " we would have to translate this by hashing the function including its parameter types"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 214000
+			},
+			"text": " and then taking the first four bytes of that as the function name and then appending the other"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 216000
+			},
+			"text": " parameters after that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 222000
+			},
+			"text": " Web3.js is exactly like taking care of that so you don't have to do it and you can easily"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 225000
+			},
+			"text": " conveniently work with JavaScript objects."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 233000
+			},
+			"text": " The 1.0 refactor is actually a major overhaul to make that even more convenient and even more"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 239000
+			},
+			"text": " intuitive and give you a lot more features and tools so that you can care building about"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 246000
+			},
+			"text": " your application rather than thinking about how to encode what and what kind of -- how to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 250000
+			},
+			"text": " watch for your transactions and building all of that logic for yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 258000
+			},
+			"text": " So I hope that 1.0 fulfills all of that needs and is kind of the dev developer's best friend."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 267000
+			},
+			"text": " So the 1.0 refactor is a major refactor in the sense that I restructured a lot of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 269000
+			},
+			"text": " tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 275000
+			},
+			"text": " Everything before was on the major object, kind of like dispersed this way and now we restructured"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 280000
+			},
+			"text": " it in proper elements, utility functions, for example, under the utility objects and all"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 286000
+			},
+			"text": " of these packages are all separate packages so you can load either the ones you need or"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 290000
+			},
+			"text": " you can load it all together in the umbrella package."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 295000
+			},
+			"text": " So I will now go through all of these packages separately and show a little bit of what"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 298000
+			},
+			"text": " you have and what new features they have."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 307000
+			},
+			"text": " One obviously very important piece in this is that we now have promises, something which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 314000
+			},
+			"text": " was -- (Applause)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 317000
+			},
+			"text": " Something which probably took way too long."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 322000
+			},
+			"text": " This is all due to the way how it grew over time and we all had to figure out what works"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 324000
+			},
+			"text": " and what doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 329000
+			},
+			"text": " Initially thinking also that the connection to node will be way faster and way more smoother"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 336000
+			},
+			"text": " than it actually is with like large network which we crew today to."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 341000
+			},
+			"text": " Basically promises allow you simply to chain your functions which makes it more convenient"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 344000
+			},
+			"text": " and more easy to use and to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 348000
+			},
+			"text": " But we have a special case in Web3.js and especially with blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 354000
+			},
+			"text": " We have the case that you have an event which is not necessarily final so it cannot really"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 356000
+			},
+			"text": " come with one result only."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 362000
+			},
+			"text": " Especially when you send a transaction there is the possibility that you can get a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 367000
+			},
+			"text": " hash but you are also able to get the receipt and there are a lot of other things you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 368000
+			},
+			"text": " to take care of."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " For example, the chain can reorganize for certain amount of blocks with a likelihood."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 376000
+			},
+			"text": " So you have to take care of all of the things yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 381000
+			},
+			"text": " When you just use the promise, for example, you get the receipt which is what most developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 382000
+			},
+			"text": " want."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 385000
+			},
+			"text": " They want simply send a transaction and act once they are in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 390000
+			},
+			"text": " But in most cases you actually want to have a more complex and more detailed response to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 391000
+			},
+			"text": " your transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 394000
+			},
+			"text": " Maybe you want to wait for five confirmations."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 398000
+			},
+			"text": " Maybe you want to actually do something with the transaction hash directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 405000
+			},
+			"text": " So this problem event construct basically allows you to get all of these different types."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 410000
+			},
+			"text": " You can get back from one transaction and do something related to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 416000
+			},
+			"text": " It can be a promise but it can also be an event where you can wait for a transaction hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 422000
+			},
+			"text": " to receive confirmation and we can even add a lot more in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 427000
+			},
+			"text": " Web3.js 1.0 has a subscription and this is something I worked on quite long and it always"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 433000
+			},
+			"text": " takes a bit of time to convince many parties to do something new or different or a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 434000
+			},
+			"text": " way."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 440000
+			},
+			"text": " And subscription is important because we have a lot of events coming from the node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 445000
+			},
+			"text": " And the old way of doing that is that your application is polling that node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 451000
+			},
+			"text": " That works quite well if you have one application and you go for a few events but it doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 456000
+			},
+			"text": " really work well if you have many applications polling on the same node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 467000
+			},
+			"text": " So subscription basically allows you exactly this pops up model where you can wait for events"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 471000
+			},
+			"text": " and you have to do nothing but waiting until it happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 472000
+			},
+			"text": " This reduces a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:57,400"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 477400
+			},
+			"text": " The resource load you have in the node and this also improves the processing you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,400",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 477400,
+				"to": 481000
+			},
+			"text": " to do on your node itself, on your application itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 486000
+			},
+			"text": " So IPC sockets is basically the local socket you have when you know this running locally"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 490000
+			},
+			"text": " and web socket is when you talk to a remote node."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 496000
+			},
+			"text": " The HTTP still works as well but for subscription it can't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 503000
+			},
+			"text": " There we are thinking about using also some kind of polling again but ideally you make it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 508000
+			},
+			"text": " work with web sockets or you actually have a local node running directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 515000
+			},
+			"text": " For example a subscription could be locks or pending transactions or if you know this"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 516000
+			},
+			"text": " thinking or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 521000
+			},
+			"text": " The advantage of that over the previous way how we did it is that it's a lot more intuitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 522000
+			},
+			"text": " and a lot more clean."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 527000
+			},
+			"text": " Right now you can basically subscribe for information which is pattern most people understand before"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 534000
+			},
+			"text": " we had like filters and watch and get watch which was very unclear of what it even means."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 539000
+			},
+			"text": " Now everything is under the subscribe namespace and it's pretty clear that this will be an"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 543000
+			},
+			"text": " event you retrieve."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 548000
+			},
+			"text": " But also here we have special cases that in some cases you can have an event which actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 549000
+			},
+			"text": " can change."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 555000
+			},
+			"text": " For example you can have an event coming from a smart contract and it might be different"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 557000
+			},
+			"text": " after chain organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 564000
+			},
+			"text": " So that's why we also here need this kind of pattern that we are able to wait for the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 569000
+			},
+			"text": " the actual event or we are also able to wait for the changed event."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 574000
+			},
+			"text": " So we can reverse that in our DAP and we can apply the new log which might look different."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 579000
+			},
+			"text": " It might have different results."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 587000
+			},
+			"text": " The way smart contracts are initiated and the new Web3 1.0 is more the way we would expect"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 590000
+			},
+			"text": " it when we actually initiate a class object."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 596000
+			},
+			"text": " So you have to use the new keyboard and you have to give it a JSON interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 603000
+			},
+			"text": " This way you insensiate the object and you can give it an address optional or additional"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 604000
+			},
+			"text": " options."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 609000
+			},
+			"text": " Therefore also the options are in a separate options object so you can easily see what"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 615000
+			},
+			"text": " are the current settings of your contract object."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 621000
+			},
+			"text": " Also to note here is that all the addresses returned from Web3.js are now check some"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 622000
+			},
+			"text": " addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 626000
+			},
+			"text": " You cannot see this here in this example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 631000
+			},
+			"text": " But actually you can see it from, it has an uppercase D for example, uppercase F."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 636000
+			},
+			"text": " So when you use an address and you pass it in, you send it into any kind of function in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 640000
+			},
+			"text": " Web3.js it would check to check some and if the check some is invalid it will fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 646000
+			},
+			"text": " If you pass in a lowercase address it would just accept it as is because it cannot check"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 649000
+			},
+			"text": " to check some."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 655000
+			},
+			"text": " Now in the smart contract object itself all the methods and all the events are separated"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 662000
+			},
+			"text": " in its own namespace."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 673000
+			},
+			"text": " When you call the event it gives you back an object with multiple actions you can now do"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 675000
+			},
+			"text": " with that function."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 681000
+			},
+			"text": " For example if I call this do something I get an object back where I can also later even"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:27,600"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 687600
+			},
+			"text": " change the arguments or I can decide do I call that on my note, do I send the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,600",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 687600,
+				"to": 693000
+			},
+			"text": " off to the note to be mined in the network or if I just want to estimate the gas of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 699000
+			},
+			"text": " transaction or I maybe just want to encode the ABI to be used as a parameter in another"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:41,080"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 701080
+			},
+			"text": " function."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,080",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 701080,
+				"to": 706000
+			},
+			"text": " And also here we have the ability to add even more if we need to in the future and extend"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 712000
+			},
+			"text": " whatever the methods of a smart con can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:56,240"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 716240
+			},
+			"text": " So if you for example call that it would look like this you call the method on the methods"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,240",
+				"to": "00:12:04,400"
+			},
+			"offsets": {
+				"from": 716240,
+				"to": 724400
+			},
+			"text": " namespace you paste in the parameters and as we also now paste only parameters of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,400",
+				"to": "00:12:11,120"
+			},
+			"offsets": {
+				"from": 724400,
+				"to": 731120
+			},
+			"text": " smart contract function in the parameter space we are also in the future able to allow structs"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,120",
+				"to": "00:12:13,840"
+			},
+			"offsets": {
+				"from": 731120,
+				"to": 733840
+			},
+			"text": " which we are working on right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,840",
+				"to": "00:12:19,480"
+			},
+			"offsets": {
+				"from": 733840,
+				"to": 739480
+			},
+			"text": " For this struct was always meant as the transaction object so there was a bit of a confusion and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,480",
+				"to": "00:12:24,080"
+			},
+			"offsets": {
+				"from": 739480,
+				"to": 744080
+			},
+			"text": " if you then want to send it you give it the options object of the send transaction for"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,080",
+				"to": "00:12:25,080"
+			},
+			"offsets": {
+				"from": 744080,
+				"to": 745080
+			},
+			"text": " example."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,080",
+				"to": "00:12:29,400"
+			},
+			"offsets": {
+				"from": 745080,
+				"to": 749400
+			},
+			"text": " For example if you then get this back and you wait for the receipt or you just like we"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,400",
+				"to": "00:12:36,160"
+			},
+			"offsets": {
+				"from": 749400,
+				"to": 756160
+			},
+			"text": " solved the promise you would get back the receipt and it would be decoded parameters"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,160",
+				"to": "00:12:40,280"
+			},
+			"offsets": {
+				"from": 756160,
+				"to": 760280
+			},
+			"text": " also the raw data and everything else you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,280",
+				"to": "00:12:46,440"
+			},
+			"offsets": {
+				"from": 760280,
+				"to": 766440
+			},
+			"text": " So this structure is a lot more clean and a lot more accessible than it was before."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,440",
+				"to": "00:12:48,440"
+			},
+			"offsets": {
+				"from": 766440,
+				"to": 768440
+			},
+			"text": " Same here if you have an event."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,440",
+				"to": "00:12:52,640"
+			},
+			"offsets": {
+				"from": 768440,
+				"to": 772640
+			},
+			"text": " So if you have an event it's under the namespace events."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,640",
+				"to": "00:12:57,480"
+			},
+			"offsets": {
+				"from": 772640,
+				"to": 777480
+			},
+			"text": " You could have an additional options that you want to fill the four specific events."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,480",
+				"to": "00:13:03,320"
+			},
+			"offsets": {
+				"from": 777480,
+				"to": 783320
+			},
+			"text": " For example you could say only want to have events which matches the my index parameter"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,320",
+				"to": "00:13:10,320"
+			},
+			"offsets": {
+				"from": 783320,
+				"to": 790320
+			},
+			"text": " of the value 20 and 30 and my other index parameter has to have an address so and so"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,320",
+				"to": "00:13:17,200"
+			},
+			"offsets": {
+				"from": 790320,
+				"to": 797200
+			},
+			"text": " and it would then only retrieve these events matching that and you would get them basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,200",
+				"to": "00:13:19,960"
+			},
+			"offsets": {
+				"from": 797200,
+				"to": 799960
+			},
+			"text": " once they are happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,960",
+				"to": "00:13:24,920"
+			},
+			"offsets": {
+				"from": 799960,
+				"to": 804920
+			},
+			"text": " And this is under the hood using for example subscriptions which right now it doesn't work"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,920",
+				"to": "00:13:31,880"
+			},
+			"offsets": {
+				"from": 804920,
+				"to": 811880
+			},
+			"text": " for HTTP so we have to add the polling here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,880",
+				"to": "00:13:37,040"
+			},
+			"offsets": {
+				"from": 811880,
+				"to": 817040
+			},
+			"text": " Web3 is accounts that's actually a complete new thing because Web3 is accounts allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,040",
+				"to": "00:13:44,240"
+			},
+			"offsets": {
+				"from": 817040,
+				"to": 824240
+			},
+			"text": " you to actually generate accounts and sign data sign transaction and group these accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,240",
+				"to": "00:13:49,960"
+			},
+			"offsets": {
+				"from": 824240,
+				"to": 829960
+			},
+			"text": " decrypt these accounts import key store accounts and basically gives you all the tools you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,960",
+				"to": "00:13:56,120"
+			},
+			"offsets": {
+				"from": 829960,
+				"to": 836120
+			},
+			"text": " need if you want to interact with a public key private key account."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,120",
+				"to": "00:14:03,640"
+			},
+			"offsets": {
+				"from": 836120,
+				"to": 843640
+			},
+			"text": " And having these signing functions in Web3 just directly allows us to do a lot more what"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,640",
+				"to": "00:14:07,920"
+			},
+			"offsets": {
+				"from": 843640,
+				"to": 847920
+			},
+			"text": " you before would have to do with multiple libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,920",
+				"to": "00:14:13,200"
+			},
+			"offsets": {
+				"from": 847920,
+				"to": 853200
+			},
+			"text": " And note here this is still in beta there's no audit run on that so use it at your own"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,200",
+				"to": "00:14:16,680"
+			},
+			"offsets": {
+				"from": 853200,
+				"to": 856680
+			},
+			"text": " risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,680",
+				"to": "00:14:24,440"
+			},
+			"offsets": {
+				"from": 856680,
+				"to": 864440
+			},
+			"text": " We will ideally have an audit on that and then it's probably more safe to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,440",
+				"to": "00:14:30,920"
+			},
+			"offsets": {
+				"from": 864440,
+				"to": 870920
+			},
+			"text": " We have ABI directly ABI encoding and decoding functions I think this is very important because"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,920",
+				"to": "00:14:38,120"
+			},
+			"offsets": {
+				"from": 870920,
+				"to": 878120
+			},
+			"text": " you are able now to like encode your own ABI calls and decode them and you have all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,120",
+				"to": "00:14:45,880"
+			},
+			"offsets": {
+				"from": 878120,
+				"to": 885880
+			},
+			"text": " this was what was before in Web3.js internal exposed and nicely named and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,880",
+				"to": "00:14:50,360"
+			},
+			"offsets": {
+				"from": 885880,
+				"to": 890360
+			},
+			"text": " It even can decode your whole log automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,360",
+				"to": "00:14:55,920"
+			},
+			"offsets": {
+				"from": 890360,
+				"to": 895920
+			},
+			"text": " We have now the new swarm API as well so you are able to interact with swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,920",
+				"to": "00:15:00,720"
+			},
+			"offsets": {
+				"from": 895920,
+				"to": 900720
+			},
+			"text": " Swarm works a little bit different than the theorem node so the provider is different"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,720",
+				"to": "00:15:07,280"
+			},
+			"offsets": {
+				"from": 900720,
+				"to": 907280
+			},
+			"text": " it doesn't use the IPC connection you can either use directly HTTP or it connects to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,280",
+				"to": "00:15:17,560"
+			},
+			"offsets": {
+				"from": 907280,
+				"to": 917560
+			},
+			"text": " your local swarm node which opens a local host 8.5 something endpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,560",
+				"to": "00:15:25,120"
+			},
+			"offsets": {
+				"from": 917560,
+				"to": 925120
+			},
+			"text": " And this allows you to upload files and even opens a file picker where you can file pick"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,120",
+				"to": "00:15:28,560"
+			},
+			"offsets": {
+				"from": 925120,
+				"to": 928560
+			},
+			"text": " so if you are in the browser you can pick your files and upload them to swarm directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,560",
+				"to": "00:15:33,760"
+			},
+			"offsets": {
+				"from": 928560,
+				"to": 933760
+			},
+			"text": " and you get the hash back to interoperate with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,760",
+				"to": "00:15:40,560"
+			},
+			"offsets": {
+				"from": 933760,
+				"to": 940560
+			},
+			"text": " Whisper is currently the Whisper version 5 API in Web3.js there's right now a discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,560",
+				"to": "00:15:46,280"
+			},
+			"offsets": {
+				"from": 940560,
+				"to": 946280
+			},
+			"text": " about refactor into version 6 which will also be supported by parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,280",
+				"to": "00:15:52,200"
+			},
+			"offsets": {
+				"from": 946280,
+				"to": 952200
+			},
+			"text": " The current version 5 is basically in the old Web3.js and the new one and you can play"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,200",
+				"to": "00:15:57,400"
+			},
+			"offsets": {
+				"from": 952200,
+				"to": 957400
+			},
+			"text": " around with it and experiment."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,400",
+				"to": "00:16:05,320"
+			},
+			"offsets": {
+				"from": 957400,
+				"to": 965320
+			},
+			"text": " And the utils function obviously there's a lot of extra utility tools you can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,320",
+				"to": "00:16:11,600"
+			},
+			"offsets": {
+				"from": 965320,
+				"to": 971600
+			},
+			"text": " There's a lot of things you would use as a tab developer especially here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,600",
+				"to": "00:16:18,720"
+			},
+			"offsets": {
+				"from": 971600,
+				"to": 978720
+			},
+			"text": " Just to check for example check some addresses encoding and decoding to a certain extent"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,720",
+				"to": "00:16:26,120"
+			},
+			"offsets": {
+				"from": 978720,
+				"to": 986120
+			},
+			"text": " especially from UTF-8 converting numbers and internally right now we are using always"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,120",
+				"to": "00:16:32,600"
+			},
+			"offsets": {
+				"from": 986120,
+				"to": 992600
+			},
+			"text": " a Btbl_n library but when it returns a number it returns the number as a plain string so"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,600",
+				"to": "00:16:36,800"
+			},
+			"offsets": {
+				"from": 992600,
+				"to": 996800
+			},
+			"text": " that you can actually use whatever library you want to interact with large numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,800",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 996800,
+				"to": 1001000
+			},
+			"text": " And it's also for debugging reasons a lot easier to see the number rather than a big"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:43,760"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1003760
+			},
+			"text": " number object."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,760",
+				"to": "00:16:52,400"
+			},
+			"offsets": {
+				"from": 1003760,
+				"to": 1012400
+			},
+			"text": " And very important probably also you're able to hash exactly the way Solidity hashes so"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,400",
+				"to": "00:16:57,360"
+			},
+			"offsets": {
+				"from": 1012400,
+				"to": 1017360
+			},
+			"text": " this allows you to basically generate some hash and then knowing that the smartcon itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,360",
+				"to": "00:16:59,600"
+			},
+			"offsets": {
+				"from": 1017360,
+				"to": 1019600
+			},
+			"text": " would come to the same hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,600",
+				"to": "00:17:03,600"
+			},
+			"offsets": {
+				"from": 1019600,
+				"to": 1023600
+			},
+			"text": " So this is tightly packing the arguments and multiple ways of how you can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,600",
+				"to": "00:17:07,920"
+			},
+			"offsets": {
+				"from": 1023600,
+				"to": 1027920
+			},
+			"text": " You can use the auto detection which is probably not very safe for things like numbers which"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,920",
+				"to": "00:17:18,760"
+			},
+			"offsets": {
+				"from": 1027920,
+				"to": 1038760
+			},
+			"text": " simply convert to you in 256 it's easy a string would be converted right from a utf8 and obviously"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,760",
+				"to": "00:17:20,960"
+			},
+			"offsets": {
+				"from": 1038760,
+				"to": 1040960
+			},
+			"text": " bytes would be bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,960",
+				"to": "00:17:26,040"
+			},
+			"offsets": {
+				"from": 1040960,
+				"to": 1046040
+			},
+			"text": " The byte 32 right now I think but you can also give it an object and tell it the exact"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,040",
+				"to": "00:17:27,040"
+			},
+			"offsets": {
+				"from": 1046040,
+				"to": 1047040
+			},
+			"text": " type."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,040",
+				"to": "00:17:32,320"
+			},
+			"offsets": {
+				"from": 1047040,
+				"to": 1052320
+			},
+			"text": " So this can be v and t but it can also be value and type and you can basically tell them"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,320",
+				"to": "00:17:37,120"
+			},
+			"offsets": {
+				"from": 1052320,
+				"to": 1057120
+			},
+			"text": " hey this is my arguments this is the type of the arguments and then hash them."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,120",
+				"to": "00:17:42,760"
+			},
+			"offsets": {
+				"from": 1057120,
+				"to": 1062760
+			},
+			"text": " Yeah this is the longer version."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,760",
+				"to": "00:17:46,080"
+			},
+			"offsets": {
+				"from": 1062760,
+				"to": 1066080
+			},
+			"text": " And this is another version."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,080",
+				"to": "00:17:50,280"
+			},
+			"offsets": {
+				"from": 1066080,
+				"to": 1070280
+			},
+			"text": " So yeah actually it works right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,280",
+				"to": "00:17:56,600"
+			},
+			"offsets": {
+				"from": 1070280,
+				"to": 1076600
+			},
+			"text": " I think for the reason how npm works it will right now by default install the beta version"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,600",
+				"to": "00:18:05,720"
+			},
+			"offsets": {
+				"from": 1076600,
+				"to": 1085720
+			},
+			"text": " which is probably not very wanted but this is the fall of npm I guess and there's a extended"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,720",
+				"to": "00:18:11,960"
+			},
+			"offsets": {
+				"from": 1085720,
+				"to": 1091960
+			},
+			"text": " documentation now which is a major improvement to the documentation we have before."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,960",
+				"to": "00:18:16,520"
+			},
+			"offsets": {
+				"from": 1091960,
+				"to": 1096520
+			},
+			"text": " Basically all the functions are documented and they are all with examples and everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,520",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1096520,
+				"to": 1102000
+			},
+			"text": " So go to read the docs right now you have to go to the 1.0 branch if you want to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:30,480"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1110480
+			},
+			"text": " the 1.0 documentation the old one the old branch doesn't have any so go to en 1.0 and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,480",
+				"to": "00:18:34,120"
+			},
+			"offsets": {
+				"from": 1110480,
+				"to": 1114120
+			},
+			"text": " you can read the docs and that's the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,120",
+				"to": "00:18:41,120"
+			},
+			"offsets": {
+				"from": 1114120,
+				"to": 1121120
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,120",
+				"to": "00:18:48,120"
+			},
+			"offsets": {
+				"from": 1121120,
+				"to": 1128120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,120",
+				"to": "00:18:50,700"
+			},
+			"offsets": {
+				"from": 1128120,
+				"to": 1130700
+			},
+			"text": " (gentle music)"
+		}
+	]
+}

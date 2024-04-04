@@ -1,0 +1,3211 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 19000
+			},
+			"text": " OK, hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:19,680"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 19680
+			},
+			"text": " I'm Fabian."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,680",
+				"to": "00:00:21,360"
+			},
+			"offsets": {
+				"from": 19680,
+				"to": 21360
+			},
+			"text": " I'm the Lead Dev Developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,360",
+				"to": "00:00:27,280"
+			},
+			"offsets": {
+				"from": 21360,
+				"to": 27280
+			},
+			"text": " I'm also created the current Mist and the current Wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,280",
+				"to": "00:00:37,120"
+			},
+			"offsets": {
+				"from": 27280,
+				"to": 37120
+			},
+			"text": " And I'm also worked partly on Web3.js and other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,120",
+				"to": "00:00:40,440"
+			},
+			"offsets": {
+				"from": 37120,
+				"to": 40440
+			},
+			"text": " I want to talk today about what are Dabs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,440",
+				"to": "00:00:42,440"
+			},
+			"offsets": {
+				"from": 40440,
+				"to": 42440
+			},
+			"text": " because I think a lot of people have this question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,440",
+				"to": "00:00:44,960"
+			},
+			"offsets": {
+				"from": 42440,
+				"to": 44960
+			},
+			"text": " generally, because it's a new term we coined,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,960",
+				"to": "00:00:49,840"
+			},
+			"offsets": {
+				"from": 44960,
+				"to": 49840
+			},
+			"text": " and also why you should use Meteor to build them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,840",
+				"to": "00:00:52,240"
+			},
+			"offsets": {
+				"from": 49840,
+				"to": 52240
+			},
+			"text": " So a Dab, like in its simplest case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,240",
+				"to": "00:00:54,720"
+			},
+			"offsets": {
+				"from": 52240,
+				"to": 54720
+			},
+			"text": " is just basically an application talking only"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,720",
+				"to": "00:00:56,160"
+			},
+			"offsets": {
+				"from": 54720,
+				"to": 56160
+			},
+			"text": " to a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,160",
+				"to": "00:00:59,560"
+			},
+			"offsets": {
+				"from": 56160,
+				"to": 59560
+			},
+			"text": " So the main source group of information, basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,560",
+				"to": "00:01:01,560"
+			},
+			"offsets": {
+				"from": 59560,
+				"to": 61560
+			},
+			"text": " the main backend is a blockchain because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,560",
+				"to": "00:01:04,600"
+			},
+			"offsets": {
+				"from": 61560,
+				"to": 64600
+			},
+			"text": " a trusted source of information."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,600",
+				"to": "00:01:06,760"
+			},
+			"offsets": {
+				"from": 64600,
+				"to": 66760
+			},
+			"text": " Obviously, this can be a native Dab also,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,760",
+				"to": "00:01:10,840"
+			},
+			"offsets": {
+				"from": 66760,
+				"to": 70840
+			},
+			"text": " but this will be most likely a JavaScript HTML5-based web"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,840",
+				"to": "00:01:15,560"
+			},
+			"offsets": {
+				"from": 70840,
+				"to": 75560
+			},
+			"text": " application, because we have missed where you can run it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,560",
+				"to": "00:01:18,240"
+			},
+			"offsets": {
+				"from": 75560,
+				"to": 78240
+			},
+			"text": " which automatically gives you the access to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,240",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 78240,
+				"to": 81000
+			},
+			"text": " And it's also extremely easy to build interfaces"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:26,080"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 86080
+			},
+			"text": " in a JavaScript environment, an HTML5-based environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,080",
+				"to": "00:01:29,680"
+			},
+			"offsets": {
+				"from": 86080,
+				"to": 89680
+			},
+			"text": " So what basically makes a Dab?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,680",
+				"to": "00:01:33,160"
+			},
+			"offsets": {
+				"from": 89680,
+				"to": 93160
+			},
+			"text": " So the main three components, and the main component"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,160",
+				"to": "00:01:36,120"
+			},
+			"offsets": {
+				"from": 93160,
+				"to": 96120
+			},
+			"text": " is obviously an interface built somehow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,120",
+				"to": "00:01:39,200"
+			},
+			"offsets": {
+				"from": 96120,
+				"to": 99200
+			},
+			"text": " like in this case, it's JavaScript HTML5-CSS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,200",
+				"to": "00:01:43,160"
+			},
+			"offsets": {
+				"from": 99200,
+				"to": 103160
+			},
+			"text": " It has local storage, so the data is kept locally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,160",
+				"to": "00:01:44,720"
+			},
+			"offsets": {
+				"from": 103160,
+				"to": 104720
+			},
+			"text": " which could be local storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,720",
+				"to": "00:01:47,640"
+			},
+			"offsets": {
+				"from": 104720,
+				"to": 107640
+			},
+			"text": " could be the browser's index to be, could be Web SQL."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,640",
+				"to": "00:01:51,280"
+			},
+			"offsets": {
+				"from": 107640,
+				"to": 111280
+			},
+			"text": " And it comes from a place where you can verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,280",
+				"to": "00:01:54,920"
+			},
+			"offsets": {
+				"from": 111280,
+				"to": 114920
+			},
+			"text": " that the Dab is exactly what it's supposed to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,920",
+				"to": "00:01:59,120"
+			},
+			"offsets": {
+				"from": 114920,
+				"to": 119120
+			},
+			"text": " So this could be swarm, IPFS, any kind of content"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,120",
+				"to": "00:02:01,160"
+			},
+			"offsets": {
+				"from": 119120,
+				"to": 121160
+			},
+			"text": " addressable storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,160",
+				"to": "00:02:04,040"
+			},
+			"offsets": {
+				"from": 121160,
+				"to": 124040
+			},
+			"text": " And obviously, it needs the access to the theorem blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,040",
+				"to": "00:02:07,560"
+			},
+			"offsets": {
+				"from": 124040,
+				"to": 127560
+			},
+			"text": " which is what we deliver the Web3 object."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,560",
+				"to": "00:02:10,440"
+			},
+			"offsets": {
+				"from": 127560,
+				"to": 130440
+			},
+			"text": " So the Web3 object is basically like the API for JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,440",
+				"to": "00:02:13,600"
+			},
+			"offsets": {
+				"from": 130440,
+				"to": 133600
+			},
+			"text": " applications to interact with a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,600",
+				"to": "00:02:16,240"
+			},
+			"offsets": {
+				"from": 133600,
+				"to": 136240
+			},
+			"text": " And this will be the object you will have missed available."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,240",
+				"to": "00:02:20,800"
+			},
+			"offsets": {
+				"from": 136240,
+				"to": 140800
+			},
+			"text": " And it's pretty simple to install."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,800",
+				"to": "00:02:24,640"
+			},
+			"offsets": {
+				"from": 140800,
+				"to": 144640
+			},
+			"text": " Just implement the Web3 or meet your ad Ethereum Web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,640",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 145640,
+				"to": 149000
+			},
+			"text": " So now a few people already probably had to question why"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 150000
+			},
+			"text": " meet your."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:35,320"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 155320
+			},
+			"text": " So meet your ad is a full stack framework allowing cross-client"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,320",
+				"to": "00:02:40,120"
+			},
+			"offsets": {
+				"from": 155320,
+				"to": 160120
+			},
+			"text": " reactivity of all the server infrastructure and so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,120",
+				"to": "00:02:42,160"
+			},
+			"offsets": {
+				"from": 160120,
+				"to": 162160
+			},
+			"text": " The reason why meet your--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,160",
+				"to": "00:02:45,800"
+			},
+			"offsets": {
+				"from": 162160,
+				"to": 165800
+			},
+			"text": " this is not the main reason what one reason is because I know it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,800",
+				"to": "00:02:49,120"
+			},
+			"offsets": {
+				"from": 165800,
+				"to": 169120
+			},
+			"text": " and because I wrote a book about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,120",
+				"to": "00:02:52,120"
+			},
+			"offsets": {
+				"from": 169120,
+				"to": 172120
+			},
+			"text": " And we built all our interfaces using meet your ad."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,120",
+				"to": "00:02:56,520"
+			},
+			"offsets": {
+				"from": 172120,
+				"to": 176520
+			},
+			"text": " But the main reason actually it is ideal for Dabs because meet"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,520",
+				"to": "00:03:01,200"
+			},
+			"offsets": {
+				"from": 176520,
+				"to": 181200
+			},
+			"text": " here is built to purely build single page applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,200",
+				"to": "00:03:03,840"
+			},
+			"offsets": {
+				"from": 181200,
+				"to": 183840
+			},
+			"text": " Single page applications doesn't mean they have only one page."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,840",
+				"to": "00:03:07,080"
+			},
+			"offsets": {
+				"from": 183840,
+				"to": 187080
+			},
+			"text": " It just means that all the logic is contained in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,080",
+				"to": "00:03:10,480"
+			},
+			"offsets": {
+				"from": 187080,
+				"to": 190480
+			},
+			"text": " JavaScript, which we have run in the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,480",
+				"to": "00:03:13,920"
+			},
+			"offsets": {
+				"from": 190480,
+				"to": 193920
+			},
+			"text": " It also has a command line tool for loading a development"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,920",
+				"to": "00:03:16,400"
+			},
+			"offsets": {
+				"from": 193920,
+				"to": 196400
+			},
+			"text": " server for package management and bundling."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,400",
+				"to": "00:03:22,240"
+			},
+			"offsets": {
+				"from": 199400,
+				"to": 202240
+			},
+			"text": " So currently if you would do this, you would have to learn a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,240",
+				"to": "00:03:22,960"
+			},
+			"offsets": {
+				"from": 202240,
+				"to": 202960
+			},
+			"text": " bunch of tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,960",
+				"to": "00:03:27,240"
+			},
+			"offsets": {
+				"from": 202960,
+				"to": 207240
+			},
+			"text": " You would have to learn crumbed and go and browser-fry and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,240",
+				"to": "00:03:28,240"
+			},
+			"offsets": {
+				"from": 207240,
+				"to": 208240
+			},
+			"text": " whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,240",
+				"to": "00:03:32,880"
+			},
+			"offsets": {
+				"from": 208240,
+				"to": 212880
+			},
+			"text": " And it's a pretty step learning curve to get into and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,880",
+				"to": "00:03:34,960"
+			},
+			"offsets": {
+				"from": 212880,
+				"to": 214960
+			},
+			"text": " starting building web applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,960",
+				"to": "00:03:36,120"
+			},
+			"offsets": {
+				"from": 214960,
+				"to": 216120
+			},
+			"text": " So meet your makes is easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,120",
+				"to": "00:03:39,680"
+			},
+			"offsets": {
+				"from": 216120,
+				"to": 219680
+			},
+			"text": " And that's why we are recommending actually using"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,680",
+				"to": "00:03:41,360"
+			},
+			"offsets": {
+				"from": 219680,
+				"to": 221360
+			},
+			"text": " meet your ad because it's so easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,360",
+				"to": "00:03:43,960"
+			},
+			"offsets": {
+				"from": 221360,
+				"to": 223960
+			},
+			"text": " You basically just write one line of code and you can already"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,960",
+				"to": "00:03:45,200"
+			},
+			"offsets": {
+				"from": 223960,
+				"to": 225200
+			},
+			"text": " have something visible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,200",
+				"to": "00:03:48,440"
+			},
+			"offsets": {
+				"from": 225200,
+				"to": 228440
+			},
+			"text": " You can change it and you already see something happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,440",
+				"to": "00:03:51,880"
+			},
+			"offsets": {
+				"from": 228440,
+				"to": 231880
+			},
+			"text": " Another major point is reactive templates."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,880",
+				"to": "00:03:54,640"
+			},
+			"offsets": {
+				"from": 231880,
+				"to": 234640
+			},
+			"text": " So this basically means when your data sources changes or"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,640",
+				"to": "00:03:57,400"
+			},
+			"offsets": {
+				"from": 234640,
+				"to": 237400
+			},
+			"text": " anything you get from the blockchain, when this changes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,400",
+				"to": "00:04:00,400"
+			},
+			"offsets": {
+				"from": 237400,
+				"to": 240400
+			},
+			"text": " your interface will update automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,400",
+				"to": "00:04:03,920"
+			},
+			"offsets": {
+				"from": 240400,
+				"to": 243920
+			},
+			"text": " So this means your interface will always be consistent."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,920",
+				"to": "00:04:07,080"
+			},
+			"offsets": {
+				"from": 243920,
+				"to": 247080
+			},
+			"text": " You don't have any kind of spaghetti code where you try to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,080",
+				"to": "00:04:10,240"
+			},
+			"offsets": {
+				"from": 247080,
+				"to": 250240
+			},
+			"text": " keep track of things or you have to write endless bindings to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,240",
+				"to": "00:04:11,560"
+			},
+			"offsets": {
+				"from": 250240,
+				"to": 251560
+			},
+			"text": " get things right."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,560",
+				"to": "00:04:15,600"
+			},
+			"offsets": {
+				"from": 251560,
+				"to": 255600
+			},
+			"text": " It's just always this place to correct data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,600",
+				"to": "00:04:19,520"
+			},
+			"offsets": {
+				"from": 255600,
+				"to": 259520
+			},
+			"text": " And the major point is it has Minimongo, which is an"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,520",
+				"to": "00:04:21,320"
+			},
+			"offsets": {
+				"from": 259520,
+				"to": 261320
+			},
+			"text": " in-memory database."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,320",
+				"to": "00:04:25,960"
+			},
+			"offsets": {
+				"from": 261320,
+				"to": 265960
+			},
+			"text": " It's basically exactly the same syntax as MongoDB, but it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,960",
+				"to": "00:04:28,480"
+			},
+			"offsets": {
+				"from": 265960,
+				"to": 268480
+			},
+			"text": " basically just in your memory in the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,480",
+				"to": "00:04:32,880"
+			},
+			"offsets": {
+				"from": 268480,
+				"to": 272880
+			},
+			"text": " And there are packages like a package I have."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,880",
+				"to": "00:04:35,480"
+			},
+			"offsets": {
+				"from": 272880,
+				"to": 275480
+			},
+			"text": " It's called persistent minimongo, which out persists all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,480",
+				"to": "00:04:38,920"
+			},
+			"offsets": {
+				"from": 275480,
+				"to": 278920
+			},
+			"text": " this either into local storage or into the index to be a web"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,920",
+				"to": "00:04:40,640"
+			},
+			"offsets": {
+				"from": 278920,
+				"to": 280640
+			},
+			"text": " SQL in the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,640",
+				"to": "00:04:44,120"
+			},
+			"offsets": {
+				"from": 280640,
+				"to": 284120
+			},
+			"text": " So you basically just talk into this Mongo-like database."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,120",
+				"to": "00:04:46,480"
+			},
+			"offsets": {
+				"from": 284120,
+				"to": 286480
+			},
+			"text": " You're writing things that automatically in your local"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,480",
+				"to": "00:04:46,760"
+			},
+			"offsets": {
+				"from": 286480,
+				"to": 286760
+			},
+			"text": " storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,760",
+				"to": "00:04:49,480"
+			},
+			"offsets": {
+				"from": 286760,
+				"to": 289480
+			},
+			"text": " Persisted, and when you reload your application, it's just"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,480",
+				"to": "00:04:50,040"
+			},
+			"offsets": {
+				"from": 289480,
+				"to": 290040
+			},
+			"text": " back there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,040",
+				"to": "00:04:57,200"
+			},
+			"offsets": {
+				"from": 290040,
+				"to": 297200
+			},
+			"text": " And one major tool as well is the Media Build Client, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,200",
+				"to": "00:05:00,960"
+			},
+			"offsets": {
+				"from": 297200,
+				"to": 300960
+			},
+			"text": " allows you to basically get purely the client part of your"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,960",
+				"to": "00:05:01,520"
+			},
+			"offsets": {
+				"from": 300960,
+				"to": 301520
+			},
+			"text": " application."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,520",
+				"to": "00:05:04,320"
+			},
+			"offsets": {
+				"from": 301520,
+				"to": 304320
+			},
+			"text": " So you get the JavaScript file, the CSS file, and the index"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,320",
+				"to": "00:05:06,200"
+			},
+			"offsets": {
+				"from": 304320,
+				"to": 306200
+			},
+			"text": " file, which you can--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,200",
+				"to": "00:05:08,720"
+			},
+			"offsets": {
+				"from": 306200,
+				"to": 308720
+			},
+			"text": " and some static assets you had, and you can just put the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,720",
+				"to": "00:05:09,760"
+			},
+			"offsets": {
+				"from": 308720,
+				"to": 309760
+			},
+			"text": " web over."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,760",
+				"to": "00:05:15,720"
+			},
+			"offsets": {
+				"from": 309760,
+				"to": 315720
+			},
+			"text": " Either on a server or later on swarm in mist."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,720",
+				"to": "00:05:18,280"
+			},
+			"offsets": {
+				"from": 315720,
+				"to": 318280
+			},
+			"text": " And we also provide some packages we use to build our"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,280",
+				"to": "00:05:21,040"
+			},
+			"offsets": {
+				"from": 318280,
+				"to": 321040
+			},
+			"text": " own tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,040",
+				"to": "00:05:23,200"
+			},
+			"offsets": {
+				"from": 321040,
+				"to": 323200
+			},
+			"text": " You can use them in Meteor, but some of them you can even"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,200",
+				"to": "00:05:25,960"
+			},
+			"offsets": {
+				"from": 323200,
+				"to": 325960
+			},
+			"text": " use without Meteor, for some of the ETH tools which gives"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,960",
+				"to": "00:05:30,120"
+			},
+			"offsets": {
+				"from": 325960,
+				"to": 330120
+			},
+			"text": " you conversion with a number formatting and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,120",
+				"to": "00:05:32,560"
+			},
+			"offsets": {
+				"from": 330120,
+				"to": 332560
+			},
+			"text": " And some nice interface packages, so they need Meteor"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,560",
+				"to": "00:05:36,200"
+			},
+			"offsets": {
+				"from": 332560,
+				"to": 336200
+			},
+			"text": " because they use the reactivity of Meteor."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,200",
+				"to": "00:05:39,720"
+			},
+			"offsets": {
+				"from": 336200,
+				"to": 339720
+			},
+			"text": " And we highly encourage using the identity con, because"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,720",
+				"to": "00:05:42,440"
+			},
+			"offsets": {
+				"from": 339720,
+				"to": 342440
+			},
+			"text": " the identity con is basically the user's way of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,440",
+				"to": "00:05:45,360"
+			},
+			"offsets": {
+				"from": 342440,
+				"to": 345360
+			},
+			"text": " recognizing his address and his accounts, basically his"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,360",
+				"to": "00:05:46,920"
+			},
+			"offsets": {
+				"from": 345360,
+				"to": 346920
+			},
+			"text": " identities he uses in mist."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,920",
+				"to": "00:05:49,360"
+			},
+			"offsets": {
+				"from": 346920,
+				"to": 349360
+			},
+			"text": " So we use this in mist, and we use this in all our"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,360",
+				"to": "00:05:51,240"
+			},
+			"offsets": {
+				"from": 349360,
+				"to": 351240
+			},
+			"text": " dabs we build."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,240",
+				"to": "00:05:54,400"
+			},
+			"offsets": {
+				"from": 351240,
+				"to": 354400
+			},
+			"text": " And if other dabs you set to, it's easier for the user to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,400",
+				"to": "00:05:56,600"
+			},
+			"offsets": {
+				"from": 354400,
+				"to": 356600
+			},
+			"text": " recognize."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,600",
+				"to": "00:06:00,160"
+			},
+			"offsets": {
+				"from": 356600,
+				"to": 360160
+			},
+			"text": " So we saw this example of the smart contract where"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,160",
+				"to": "00:06:01,920"
+			},
+			"offsets": {
+				"from": 360160,
+				"to": 361920
+			},
+			"text": " somebody want to buy something."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,920",
+				"to": "00:06:08,920"
+			},
+			"offsets": {
+				"from": 361920,
+				"to": 368920
+			},
+			"text": " They all put money on the smart contract exactly twice"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,920",
+				"to": "00:06:12,040"
+			},
+			"offsets": {
+				"from": 368920,
+				"to": 372040
+			},
+			"text": " the value of the product."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,040",
+				"to": "00:06:15,280"
+			},
+			"offsets": {
+				"from": 372040,
+				"to": 375280
+			},
+			"text": " And then when the package was sent successfully and he is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,280",
+				"to": "00:06:19,720"
+			},
+			"offsets": {
+				"from": 375280,
+				"to": 379720
+			},
+			"text": " happy, he can initiate that the money goes back, except what"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,720",
+				"to": "00:06:21,840"
+			},
+			"offsets": {
+				"from": 379720,
+				"to": 381840
+			},
+			"text": " he paid for the package."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,840",
+				"to": "00:06:25,520"
+			},
+			"offsets": {
+				"from": 381840,
+				"to": 385520
+			},
+			"text": " So to have a nice interface, you can build this in mist."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,520",
+				"to": "00:06:29,720"
+			},
+			"offsets": {
+				"from": 385520,
+				"to": 389720
+			},
+			"text": " And I will not life code right now because that takes a"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,720",
+				"to": "00:06:32,120"
+			},
+			"offsets": {
+				"from": 389720,
+				"to": 392120
+			},
+			"text": " little too long."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,120",
+				"to": "00:06:35,680"
+			},
+			"offsets": {
+				"from": 392120,
+				"to": 395680
+			},
+			"text": " But I will show you how it behaves and looks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,680",
+				"to": "00:06:39,360"
+			},
+			"offsets": {
+				"from": 395680,
+				"to": 399360
+			},
+			"text": " Oh, that's-- OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,360",
+				"to": "00:06:42,560"
+			},
+			"offsets": {
+				"from": 399360,
+				"to": 402560
+			},
+			"text": " So this is mist."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,560",
+				"to": "00:06:46,400"
+			},
+			"offsets": {
+				"from": 402560,
+				"to": 406400
+			},
+			"text": " And I will start mining here on my private net to avoid any"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,400",
+				"to": "00:06:49,560"
+			},
+			"offsets": {
+				"from": 406400,
+				"to": 409560
+			},
+			"text": " chances of no internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,560",
+				"to": "00:06:52,600"
+			},
+			"offsets": {
+				"from": 409560,
+				"to": 412600
+			},
+			"text": " So this is basically exactly the button Alex was talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,600",
+				"to": "00:06:53,720"
+			},
+			"offsets": {
+				"from": 412600,
+				"to": 413720
+			},
+			"text": " about."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,720",
+				"to": "00:06:56,040"
+			},
+			"offsets": {
+				"from": 413720,
+				"to": 416040
+			},
+			"text": " The nice thing about this is kind of like the internet of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,040",
+				"to": "00:06:57,840"
+			},
+			"offsets": {
+				"from": 416040,
+				"to": 417840
+			},
+			"text": " things."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,840",
+				"to": "00:07:00,560"
+			},
+			"offsets": {
+				"from": 417840,
+				"to": 420560
+			},
+			"text": " But it's the internet of components, you could say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,560",
+				"to": "00:07:03,480"
+			},
+			"offsets": {
+				"from": 420560,
+				"to": 423480
+			},
+			"text": " because it's kind of like the button is the escrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,480",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 423480,
+				"to": 426000
+			},
+			"text": " So the button gets the money and the button pays the money"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:07,600"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 427600
+			},
+			"text": " out."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,600",
+				"to": "00:07:11,720"
+			},
+			"offsets": {
+				"from": 427600,
+				"to": 431720
+			},
+			"text": " And all the rest around and wherever this button is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,720",
+				"to": "00:07:14,240"
+			},
+			"offsets": {
+				"from": 431720,
+				"to": 434240
+			},
+			"text": " placed basically doesn't matter because the button is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,240",
+				"to": "00:07:17,480"
+			},
+			"offsets": {
+				"from": 434240,
+				"to": 437480
+			},
+			"text": " the internet of thing thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,480",
+				"to": "00:07:20,480"
+			},
+			"offsets": {
+				"from": 437480,
+				"to": 440480
+			},
+			"text": " So we here-- and this is basically a mis-preview at"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,480",
+				"to": "00:07:22,440"
+			},
+			"offsets": {
+				"from": 440480,
+				"to": 442440
+			},
+			"text": " its current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,440",
+				"to": "00:07:26,840"
+			},
+			"offsets": {
+				"from": 442440,
+				"to": 446840
+			},
+			"text": " And I selected that I want to be the buyer or some random"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,840",
+				"to": "00:07:29,080"
+			},
+			"offsets": {
+				"from": 446840,
+				"to": 449080
+			},
+			"text": " person who has money on his account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,080",
+				"to": "00:07:31,680"
+			},
+			"offsets": {
+				"from": 449080,
+				"to": 451680
+			},
+			"text": " In this case, it's here the buyer."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,680",
+				"to": "00:07:34,760"
+			},
+			"offsets": {
+				"from": 451680,
+				"to": 454760
+			},
+			"text": " And the buyer can basically-- he sees the button."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,760",
+				"to": "00:07:39,400"
+			},
+			"offsets": {
+				"from": 454760,
+				"to": 459400
+			},
+			"text": " The contract or like this component sees automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,400",
+				"to": "00:07:41,120"
+			},
+			"offsets": {
+				"from": 459400,
+				"to": 461120
+			},
+			"text": " who is there and what address he has."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,120",
+				"to": "00:07:44,040"
+			},
+			"offsets": {
+				"from": 461120,
+				"to": 464040
+			},
+			"text": " And he sees-- OK, there's nobody I know, so probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,040",
+				"to": "00:07:46,720"
+			},
+			"offsets": {
+				"from": 464040,
+				"to": 466720
+			},
+			"text": " somebody who want to buy the item."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,720",
+				"to": "00:07:50,080"
+			},
+			"offsets": {
+				"from": 466720,
+				"to": 470080
+			},
+			"text": " So if I want to buy the item, maybe just click on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,080",
+				"to": "00:07:53,520"
+			},
+			"offsets": {
+				"from": 470080,
+				"to": 473520
+			},
+			"text": " I decrypt my password and send this magical comments"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,520",
+				"to": "00:07:55,360"
+			},
+			"offsets": {
+				"from": 473520,
+				"to": 475360
+			},
+			"text": " to the team blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,360",
+				"to": "00:07:58,680"
+			},
+			"offsets": {
+				"from": 475360,
+				"to": 478680
+			},
+			"text": " And I bought the item basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,680",
+				"to": "00:08:02,200"
+			},
+			"offsets": {
+				"from": 478680,
+				"to": 482200
+			},
+			"text": " So now I would wait for the package from wherever he sends"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,200",
+				"to": "00:08:04,560"
+			},
+			"offsets": {
+				"from": 482200,
+				"to": 484560
+			},
+			"text": " it once I like it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,560",
+				"to": "00:08:10,320"
+			},
+			"offsets": {
+				"from": 484560,
+				"to": 490320
+			},
+			"text": " I would actually press confirm and the money would move to me"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,320",
+				"to": "00:08:14,880"
+			},
+			"offsets": {
+				"from": 490320,
+				"to": 494880
+			},
+			"text": " back my deficit and the price plus the two deposits of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,880",
+				"to": "00:08:16,240"
+			},
+			"offsets": {
+				"from": 494880,
+				"to": 496240
+			},
+			"text": " seller."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,240",
+				"to": "00:08:18,200"
+			},
+			"offsets": {
+				"from": 496240,
+				"to": 498200
+			},
+			"text": " So the same thing would look different."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,200",
+				"to": "00:08:20,120"
+			},
+			"offsets": {
+				"from": 498200,
+				"to": 500120
+			},
+			"text": " The same button would look different if I would be the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,120",
+				"to": "00:08:20,600"
+			},
+			"offsets": {
+				"from": 500120,
+				"to": 500600
+			},
+			"text": " seller."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,600",
+				"to": "00:08:25,200"
+			},
+			"offsets": {
+				"from": 500600,
+				"to": 505200
+			},
+			"text": " So if I'm now switching to be the seller, it would look"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,200",
+				"to": "00:08:26,080"
+			},
+			"offsets": {
+				"from": 505200,
+				"to": 506080
+			},
+			"text": " actually different."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,080",
+				"to": "00:08:30,640"
+			},
+			"offsets": {
+				"from": 506080,
+				"to": 510640
+			},
+			"text": " Because now the button recognizes that I'm the seller of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,640",
+				"to": "00:08:33,080"
+			},
+			"offsets": {
+				"from": 510640,
+				"to": 513080
+			},
+			"text": " the button and I now have a different function I can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,080",
+				"to": "00:08:34,600"
+			},
+			"offsets": {
+				"from": 513080,
+				"to": 514600
+			},
+			"text": " I can refund the buyer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,600",
+				"to": "00:08:37,360"
+			},
+			"offsets": {
+				"from": 514600,
+				"to": 517360
+			},
+			"text": " If I think like whatever he sent the package back and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,360",
+				"to": "00:08:39,920"
+			},
+			"offsets": {
+				"from": 517360,
+				"to": 519920
+			},
+			"text": " whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,920",
+				"to": "00:08:44,040"
+			},
+			"offsets": {
+				"from": 519920,
+				"to": 524040
+			},
+			"text": " Or if I'm somebody else, I would basically see the items"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,040",
+				"to": "00:08:44,800"
+			},
+			"offsets": {
+				"from": 524040,
+				"to": 524800
+			},
+			"text": " already sold."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,800",
+				"to": "00:08:51,320"
+			},
+			"offsets": {
+				"from": 524800,
+				"to": 531320
+			},
+			"text": " So if you go ahead, just to make that clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,320",
+				"to": "00:08:56,600"
+			},
+			"offsets": {
+				"from": 531320,
+				"to": 536600
+			},
+			"text": " So here we look at our accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,600",
+				"to": "00:08:59,880"
+			},
+			"offsets": {
+				"from": 536600,
+				"to": 539880
+			},
+			"text": " We see there's the buyer who has 1,000 Ether and the seller"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,880",
+				"to": "00:09:02,640"
+			},
+			"offsets": {
+				"from": 539880,
+				"to": 542640
+			},
+			"text": " has 1,000 Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,640",
+				"to": "00:09:06,480"
+			},
+			"offsets": {
+				"from": 542640,
+				"to": 546480
+			},
+			"text": " Is this actually correct?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,480",
+				"to": "00:09:09,280"
+			},
+			"offsets": {
+				"from": 546480,
+				"to": 549280
+			},
+			"text": " That's actually a good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,280",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 549280,
+				"to": 550000
+			},
+			"text": " Doesn't--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:19,800"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 559800
+			},
+			"text": " So we go back to the sales page and we basically confirm"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,800",
+				"to": "00:09:21,040"
+			},
+			"offsets": {
+				"from": 559800,
+				"to": 561040
+			},
+			"text": " that we got the package."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,040",
+				"to": "00:09:26,640"
+			},
+			"offsets": {
+				"from": 561040,
+				"to": 566640
+			},
+			"text": " And you also can see here in the confirmation window what"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,640",
+				"to": "00:09:28,360"
+			},
+			"offsets": {
+				"from": 566640,
+				"to": 568360
+			},
+			"text": " actually is having under the hood."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,360",
+				"to": "00:09:32,440"
+			},
+			"offsets": {
+				"from": 568360,
+				"to": 572440
+			},
+			"text": " So I'm the buyer sending an action to the contract, to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,440",
+				"to": "00:09:34,160"
+			},
+			"offsets": {
+				"from": 572440,
+				"to": 574160
+			},
+			"text": " button itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,160",
+				"to": "00:09:36,840"
+			},
+			"offsets": {
+				"from": 574160,
+				"to": 576840
+			},
+			"text": " Here I'm sending no Ether because I already sent Ether and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,840",
+				"to": "00:09:40,720"
+			},
+			"offsets": {
+				"from": 576840,
+				"to": 580720
+			},
+			"text": " I'm executing this function, which is hex encoded, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,720",
+				"to": "00:09:45,040"
+			},
+			"offsets": {
+				"from": 580720,
+				"to": 585040
+			},
+			"text": " function name with some gas provided."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,040",
+				"to": "00:09:49,200"
+			},
+			"offsets": {
+				"from": 585040,
+				"to": 589200
+			},
+			"text": " Once it's done, all the money moves back to the people who"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,200",
+				"to": "00:09:56,520"
+			},
+			"offsets": {
+				"from": 589200,
+				"to": 596520
+			},
+			"text": " should have made my private network works."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,520",
+				"to": "00:10:01,080"
+			},
+			"offsets": {
+				"from": 596520,
+				"to": 601080
+			},
+			"text": " OK, so now the item is actually sold for both parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,080",
+				"to": "00:10:03,080"
+			},
+			"offsets": {
+				"from": 601080,
+				"to": 603080
+			},
+			"text": " And everything works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,080",
+				"to": "00:10:04,440"
+			},
+			"offsets": {
+				"from": 603080,
+				"to": 604440
+			},
+			"text": " I lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,440",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 604440,
+				"to": 606000
+			},
+			"text": " I paid."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:10,760"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 610760
+			},
+			"text": " And this seller got his money."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,760",
+				"to": "00:10:15,080"
+			},
+			"offsets": {
+				"from": 610760,
+				"to": 615080
+			},
+			"text": " And the interesting thing about this is it's basically--"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,080",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 615080,
+				"to": 617000
+			},
+			"text": " this is just the HTML here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:19,200"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 619200
+			},
+			"text": " And you see it's basically a simple thing down here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,200",
+				"to": "00:10:22,480"
+			},
+			"offsets": {
+				"from": 619200,
+				"to": 622480
+			},
+			"text": " I'm not sure if you can see that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,480",
+				"to": "00:10:24,680"
+			},
+			"offsets": {
+				"from": 622480,
+				"to": 624680
+			},
+			"text": " So it's basically this simple thing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,680",
+				"to": "00:10:27,520"
+			},
+			"offsets": {
+				"from": 624680,
+				"to": 627520
+			},
+			"text": " It's the buy button and a pass in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,520",
+				"to": "00:10:31,120"
+			},
+			"offsets": {
+				"from": 627520,
+				"to": 631120
+			},
+			"text": " So obviously, when we are building a real web shop, we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,120",
+				"to": "00:10:36,440"
+			},
+			"offsets": {
+				"from": 631120,
+				"to": 636440
+			},
+			"text": " not having one contract per buy and per sale and per"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,440",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 636440,
+				"to": 637000
+			},
+			"text": " product."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:39,760"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 639760
+			},
+			"text": " We would write a contract which have multiple products,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,760",
+				"to": "00:10:44,320"
+			},
+			"offsets": {
+				"from": 639760,
+				"to": 644320
+			},
+			"text": " which can be bought x amount of times at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,320",
+				"to": "00:10:47,560"
+			},
+			"offsets": {
+				"from": 644320,
+				"to": 647560
+			},
+			"text": " So this is just to show a very simplistic approach here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,560",
+				"to": "00:10:51,600"
+			},
+			"offsets": {
+				"from": 647560,
+				"to": 651600
+			},
+			"text": " So in this case, we just give it the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,600",
+				"to": "00:10:56,680"
+			},
+			"offsets": {
+				"from": 651600,
+				"to": 656680
+			},
+			"text": " And the button itself looks simply like a button which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,680",
+				"to": "00:11:03,560"
+			},
+			"offsets": {
+				"from": 656680,
+				"to": 663560
+			},
+			"text": " gets a specific text and a specific class and a subtext"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,560",
+				"to": "00:11:05,280"
+			},
+			"offsets": {
+				"from": 663560,
+				"to": 665280
+			},
+			"text": " here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,280",
+				"to": "00:11:08,440"
+			},
+			"offsets": {
+				"from": 665280,
+				"to": 668440
+			},
+			"text": " And the whole code itself, so the self-contained thing, is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,440",
+				"to": "00:11:10,800"
+			},
+			"offsets": {
+				"from": 668440,
+				"to": 670800
+			},
+			"text": " this snippet here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,800",
+				"to": "00:11:14,840"
+			},
+			"offsets": {
+				"from": 670800,
+				"to": 674840
+			},
+			"text": " And it basically just have the AVI of the contract we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,840",
+				"to": "00:11:17,080"
+			},
+			"offsets": {
+				"from": 674840,
+				"to": 677080
+			},
+			"text": " interacting with."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,080",
+				"to": "00:11:18,560"
+			},
+			"offsets": {
+				"from": 677080,
+				"to": 678560
+			},
+			"text": " This is readable, I hope so."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,560",
+				"to": "00:11:22,480"
+			},
+			"offsets": {
+				"from": 678560,
+				"to": 682480
+			},
+			"text": " So this is the AVI, which tells basically web 3 how to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,480",
+				"to": "00:11:24,760"
+			},
+			"offsets": {
+				"from": 682480,
+				"to": 684760
+			},
+			"text": " interact with this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,760",
+				"to": "00:11:27,280"
+			},
+			"offsets": {
+				"from": 684760,
+				"to": 687280
+			},
+			"text": " Then a function would check the states."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,280",
+				"to": "00:11:29,560"
+			},
+			"offsets": {
+				"from": 687280,
+				"to": 689560
+			},
+			"text": " It would call all these contracts function like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,560",
+				"to": "00:11:33,920"
+			},
+			"offsets": {
+				"from": 689560,
+				"to": 693920
+			},
+			"text": " example, who's the seller, who's the buyer, what's the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,920",
+				"to": "00:11:37,560"
+			},
+			"offsets": {
+				"from": 693920,
+				"to": 697560
+			},
+			"text": " value, and what's the current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,560",
+				"to": "00:11:40,160"
+			},
+			"offsets": {
+				"from": 697560,
+				"to": 700160
+			},
+			"text": " And then we have this object which is the different states."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,160",
+				"to": "00:11:44,880"
+			},
+			"offsets": {
+				"from": 700160,
+				"to": 704880
+			},
+			"text": " So if I'm the seller and I'm state 0, then use this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,880",
+				"to": "00:11:48,640"
+			},
+			"offsets": {
+				"from": 704880,
+				"to": 708640
+			},
+			"text": " classes and this text, if I'm state 1, use this and so on and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,640",
+				"to": "00:11:49,680"
+			},
+			"offsets": {
+				"from": 708640,
+				"to": 709680
+			},
+			"text": " so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,680",
+				"to": "00:11:54,920"
+			},
+			"offsets": {
+				"from": 709680,
+				"to": 714920
+			},
+			"text": " And basically what happens if the template is initiated, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,920",
+				"to": "00:11:57,600"
+			},
+			"offsets": {
+				"from": 714920,
+				"to": 717600
+			},
+			"text": " just check the state at the beginning, reading from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,600",
+				"to": "00:11:59,040"
+			},
+			"offsets": {
+				"from": 717600,
+				"to": 719040
+			},
+			"text": " theorem blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,040",
+				"to": "00:12:01,480"
+			},
+			"offsets": {
+				"from": 719040,
+				"to": 721480
+			},
+			"text": " And then we're watching all the events which come from this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,480",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 721480,
+				"to": 722000
+			},
+			"text": " contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:04,880"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 724880
+			},
+			"text": " And if there's an event coming, something happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,880",
+				"to": "00:12:07,600"
+			},
+			"offsets": {
+				"from": 724880,
+				"to": 727600
+			},
+			"text": " And we will check the state again."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,600",
+				"to": "00:12:11,200"
+			},
+			"offsets": {
+				"from": 727600,
+				"to": 731200
+			},
+			"text": " So this will update the state, will update our reactive"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,200",
+				"to": "00:12:15,160"
+			},
+			"offsets": {
+				"from": 731200,
+				"to": 735160
+			},
+			"text": " function here called template var, buyer, value and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,160",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 735160,
+				"to": 738000
+			},
+			"text": " And this will rerun all these template helper functions we"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:20,760"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 740760
+			},
+			"text": " have here, which is only one, the get state, which gets the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,760",
+				"to": "00:12:24,880"
+			},
+			"offsets": {
+				"from": 740760,
+				"to": 744880
+			},
+			"text": " state from this one state object and returns the right text"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,880",
+				"to": "00:12:26,760"
+			},
+			"offsets": {
+				"from": 744880,
+				"to": 746760
+			},
+			"text": " or the right class or whatever it does."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,760",
+				"to": "00:12:31,720"
+			},
+			"offsets": {
+				"from": 746760,
+				"to": 751720
+			},
+			"text": " So basically this function will rerun if any of these template"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,720",
+				"to": "00:12:33,640"
+			},
+			"offsets": {
+				"from": 751720,
+				"to": 753640
+			},
+			"text": " bars here will change."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,640",
+				"to": "00:12:36,920"
+			},
+			"offsets": {
+				"from": 753640,
+				"to": 756920
+			},
+			"text": " And the same when I click the button, I'm just checking if"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,920",
+				"to": "00:12:41,960"
+			},
+			"offsets": {
+				"from": 756920,
+				"to": 761960
+			},
+			"text": " I'm the buyer or the seller or if there is a buyer or a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,960",
+				"to": "00:12:43,960"
+			},
+			"offsets": {
+				"from": 761960,
+				"to": 763960
+			},
+			"text": " seller account."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,960",
+				"to": "00:12:46,560"
+			},
+			"offsets": {
+				"from": 763960,
+				"to": 766560
+			},
+			"text": " And then it will call the right functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,560",
+				"to": "00:12:50,440"
+			},
+			"offsets": {
+				"from": 766560,
+				"to": 770440
+			},
+			"text": " And once you call on Web3, Web3 send transaction or whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,440",
+				"to": "00:12:53,200"
+			},
+			"offsets": {
+				"from": 770440,
+				"to": 773200
+			},
+			"text": " and you pass the right data, this will pop up a window, ask"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,200",
+				"to": "00:12:56,920"
+			},
+			"offsets": {
+				"from": 773200,
+				"to": 776920
+			},
+			"text": " to confirm this transaction and there you go."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,920",
+				"to": "00:13:00,440"
+			},
+			"offsets": {
+				"from": 776920,
+				"to": 780440
+			},
+			"text": " This basically allows you to have the internet of web"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,440",
+				"to": "00:13:04,600"
+			},
+			"offsets": {
+				"from": 780440,
+				"to": 784600
+			},
+			"text": " components box."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,600",
+				"to": "00:13:08,040"
+			},
+			"offsets": {
+				"from": 784600,
+				"to": 788040
+			},
+			"text": " So what you also see here is it's using our little CSS"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,040",
+				"to": "00:13:12,880"
+			},
+			"offsets": {
+				"from": 788040,
+				"to": 792880
+			},
+			"text": " framework we are building, which we will use for our"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,880",
+				"to": "00:13:14,760"
+			},
+			"offsets": {
+				"from": 792880,
+				"to": 794760
+			},
+			"text": " tabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,760",
+				"to": "00:13:16,600"
+			},
+			"offsets": {
+				"from": 794760,
+				"to": 796600
+			},
+			"text": " The tabs we will build."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,600",
+				"to": "00:13:19,240"
+			},
+			"offsets": {
+				"from": 796600,
+				"to": 799240
+			},
+			"text": " If you want to use this framework, you will always"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,240",
+				"to": "00:13:23,080"
+			},
+			"offsets": {
+				"from": 799240,
+				"to": 803080
+			},
+			"text": " look into similar like our design, which makes you look"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,080",
+				"to": "00:13:26,320"
+			},
+			"offsets": {
+				"from": 803080,
+				"to": 806320
+			},
+			"text": " good by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,320",
+				"to": "00:13:27,480"
+			},
+			"offsets": {
+				"from": 806320,
+				"to": 807480
+			},
+			"text": " And it's rather simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,480",
+				"to": "00:13:32,720"
+			},
+			"offsets": {
+				"from": 807480,
+				"to": 812720
+			},
+			"text": " It's like simple HTML, you write very simple classes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,720",
+				"to": "00:13:37,240"
+			},
+			"offsets": {
+				"from": 812720,
+				"to": 817240
+			},
+			"text": " you immediately have a good looking application."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,240",
+				"to": "00:13:39,840"
+			},
+			"offsets": {
+				"from": 817240,
+				"to": 819840
+			},
+			"text": " But this is still in the making so useful of caution."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,840",
+				"to": "00:13:45,480"
+			},
+			"offsets": {
+				"from": 819840,
+				"to": 825480
+			},
+			"text": " So just to check, the seller will see the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,480",
+				"to": "00:13:47,480"
+			},
+			"offsets": {
+				"from": 825480,
+				"to": 827480
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,480",
+				"to": "00:14:04,480"
+			},
+			"offsets": {
+				"from": 827480,
+				"to": 844480
+			},
+			"text": " -Stop mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,480",
+				"to": "00:14:10,480"
+			},
+			"offsets": {
+				"from": 844480,
+				"to": 850480
+			},
+			"text": " -Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,480",
+				"to": "00:14:11,960"
+			},
+			"offsets": {
+				"from": 850480,
+				"to": 851960
+			},
+			"text": " Can we open?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,960",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 851960,
+				"to": 854000
+			},
+			"text": " Can we turn this on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:15,800"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 855800
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,800",
+				"to": "00:14:17,880"
+			},
+			"offsets": {
+				"from": 855800,
+				"to": 857880
+			},
+			"text": " I think it's him."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,880",
+				"to": "00:14:20,480"
+			},
+			"offsets": {
+				"from": 857880,
+				"to": 860480
+			},
+			"text": " Testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,480",
+				"to": "00:14:21,760"
+			},
+			"offsets": {
+				"from": 860480,
+				"to": 861760
+			},
+			"text": " Testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,760",
+				"to": "00:14:23,800"
+			},
+			"offsets": {
+				"from": 861760,
+				"to": 863800
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,800",
+				"to": "00:14:25,040"
+			},
+			"offsets": {
+				"from": 863800,
+				"to": 865040
+			},
+			"text": " -Yeah, that's basically it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,040",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 865040,
+				"to": 869000
+			},
+			"text": " So this is the tab you can try yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:30,680"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 870680
+			},
+			"text": " If you just go to this address and you have a local"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,680",
+				"to": "00:14:34,400"
+			},
+			"offsets": {
+				"from": 870680,
+				"to": 874400
+			},
+			"text": " node running and you started on local host, with the RPC"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,400",
+				"to": "00:14:38,960"
+			},
+			"offsets": {
+				"from": 874400,
+				"to": 878960
+			},
+			"text": " started, local host 8545, you basically be able to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,960",
+				"to": "00:14:41,280"
+			},
+			"offsets": {
+				"from": 878960,
+				"to": 881280
+			},
+			"text": " things, you would have to change."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,280",
+				"to": "00:14:43,480"
+			},
+			"offsets": {
+				"from": 881280,
+				"to": 883480
+			},
+			"text": " In this case, you wouldn't be able to do anything except"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,480",
+				"to": "00:14:47,120"
+			},
+			"offsets": {
+				"from": 883480,
+				"to": 887120
+			},
+			"text": " buying if I would deploy it with a right contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,120",
+				"to": "00:14:49,480"
+			},
+			"offsets": {
+				"from": 887120,
+				"to": 889480
+			},
+			"text": " Or you just clowing the application yourself, look"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,480",
+				"to": "00:14:50,880"
+			},
+			"offsets": {
+				"from": 889480,
+				"to": 890880
+			},
+			"text": " how it looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,880",
+				"to": "00:14:55,800"
+			},
+			"offsets": {
+				"from": 890880,
+				"to": 895800
+			},
+			"text": " And if you want to start building tabs, our wiki page, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,800",
+				"to": "00:14:57,920"
+			},
+			"offsets": {
+				"from": 895800,
+				"to": 897920
+			},
+			"text": " shifted it a little bit around."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,920",
+				"to": "00:15:00,320"
+			},
+			"offsets": {
+				"from": 897920,
+				"to": 900320
+			},
+			"text": " On this page, he actually gives a good entry point on"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,320",
+				"to": "00:15:04,120"
+			},
+			"offsets": {
+				"from": 900320,
+				"to": 904120
+			},
+			"text": " where to look like building tabs on Meteor."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,120",
+				"to": "00:15:05,040"
+			},
+			"offsets": {
+				"from": 904120,
+				"to": 905040
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,040",
+				"to": "00:15:08,040"
+			},
+			"offsets": {
+				"from": 905040,
+				"to": 908040
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,040",
+				"to": "00:15:11,400"
+			},
+			"offsets": {
+				"from": 908040,
+				"to": 911400
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,400",
+				"to": "00:15:14,760"
+			},
+			"offsets": {
+				"from": 911400,
+				"to": 914760
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,760",
+				"to": "00:15:18,120"
+			},
+			"offsets": {
+				"from": 914760,
+				"to": 918120
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,120",
+				"to": "00:15:47,120"
+			},
+			"offsets": {
+				"from": 918120,
+				"to": 947120
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

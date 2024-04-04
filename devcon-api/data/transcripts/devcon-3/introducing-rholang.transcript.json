@@ -1,0 +1,3596 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:09,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 9000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 9000,
+				"to": 12000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 17000
+			},
+			"text": " >> So, first of all, I want to thank Ethereum for inviting us."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 21000
+			},
+			"text": " Now, this is the third year that I've been speaking at the Ethereum DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 26000
+			},
+			"text": " And I think it's remarkably open-minded."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 29000
+			},
+			"text": " Since Rolang is running on a completely different network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 32000
+			},
+			"text": " it's a completely different approach to contracting languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 36000
+			},
+			"text": " and a completely different approach in general to the whole blockchain architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 43000
+			},
+			"text": " So, I'm really, really exceptionally impressed by the open-mindedness"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 47000
+			},
+			"text": " and the inclusiveness and that general principle within the blockchain culture."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 48000
+			},
+			"text": " I think that's awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 54000
+			},
+			"text": " I also want to say that today is all Saints Day, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 58000
+			},
+			"text": " Halloween is all Hallows Eve, and today is all Saints Day."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 63000
+			},
+			"text": " And I want to give a shout out -- my 14-year-old son is here today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 69000
+			},
+			"text": " And this is sort of to all the young Saints who are inheriting the planet"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 73000
+			},
+			"text": " that we're leaving them and what they have to face."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 76000
+			},
+			"text": " And I think that the blockchain is very much about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 81000
+			},
+			"text": " So, with that, let me introduce Rolang."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 83000
+			},
+			"text": " And the message is going to be really simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 86000
+			},
+			"text": " I'm keeping this -- as I was writing the slides, I was thinking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 89000
+			},
+			"text": " \"I'm going to make this a super boring talk.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 93000
+			},
+			"text": " So, the aim is to be boring but clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 96000
+			},
+			"text": " And maybe, you know, if we can figure out a way to have fun"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 99000
+			},
+			"text": " while being boring and clear, let's see if we can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 103000
+			},
+			"text": " So, you know, instead of \"Hello, world, let's do Hello, arithmetic.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 106000
+			},
+			"text": " And I'm going to do like the simplest, stupidest contract in Rolang."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 108000
+			},
+			"text": " And I'll just walk you through that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 113000
+			},
+			"text": " And then I'll talk a little bit of -- I'm going to introduce some non-determinism"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 117000
+			},
+			"text": " into that contract and talk about how CASPER addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 121000
+			},
+			"text": " the non-determinism and the concurrency inside the language."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 125000
+			},
+			"text": " And then we'll look at a more sophisticated contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 129000
+			},
+			"text": " And I've actually got Kent Shekama here with me on Zoom."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 136000
+			},
+			"text": " And he's going to walk us through the ERC-20 contract implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 137000
+			},
+			"text": " that he's done."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 141000
+			},
+			"text": " Kent joined us in the summer and took over the work that I was doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 145000
+			},
+			"text": " on the Rolang compiler and has done an amazing job taking it further"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 148000
+			},
+			"text": " and then writing sample contracts to test his code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 153000
+			},
+			"text": " So, he did an example of an ERC-20-like contract in Rolang,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 156000
+			},
+			"text": " which is running now and you can go play with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 159000
+			},
+			"text": " There's also Rolang.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 161000
+			},
+			"text": " So, you can go check out that website right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 167000
+			},
+			"text": " And Kent graciously put up a video of the demo he's going to give today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170000
+			},
+			"text": " So, if you don't catch it now, you can also go back and look at it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 172000
+			},
+			"text": " You're a leisure."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 175000
+			},
+			"text": " And then, so that's kind of the order."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 178000
+			},
+			"text": " And then we'll talk about some other things towards the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 184000
+			},
+			"text": " One thing that I will ask you to ask me about later is the behavioral type system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 188000
+			},
+			"text": " Right now we're going to be focusing on the untyped portion of the language"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 192000
+			},
+			"text": " or we're just not looking at the types because you type the entire language"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 197000
+			},
+			"text": " because if you get the conceptual apparatus, the types are easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 199000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 202000
+			},
+			"text": " So, here's a very, very simple contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 207000
+			},
+			"text": " It's actually a contract scheme because I've left some holes in the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 209000
+			},
+			"text": " where you could put additional code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 211000
+			},
+			"text": " Right? So, this contract is very straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 216000
+			},
+			"text": " What it does, first of all, it's parametric in a set of channels that are poor."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 219000
+			},
+			"text": " So, if you heard Martin Beazie's talk earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 224000
+			},
+			"text": " so he was talking about port-based or channel-based computational models."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 226000
+			},
+			"text": " Right? So, that's what Rolang is."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 229000
+			},
+			"text": " And for Rolang, there are basically only two things in the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 231000
+			},
+			"text": " There are ports and channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 234000
+			},
+			"text": " We use those synonymously. We also call them names sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 238000
+			},
+			"text": " And there are processes that use ports, channels, names to communicate."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 243000
+			},
+			"text": " Right? That's it. The entire ontology in this computational universe."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 249000
+			},
+			"text": " So, contracts are just processes that are parametric in some ports or channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 252000
+			},
+			"text": " So, this contract C is parametric in four channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 256000
+			},
+			"text": " And it does a couple of things in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 259000
+			},
+			"text": " So, I'm going to stand over here. I like pointing at the screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 261000
+			},
+			"text": " I hope that's okay with you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 269000
+			},
+			"text": " So, one thread of activity waits at the channel X for something that it's going to call Y."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 274000
+			},
+			"text": " And at the same time, it's also waiting at the channel U for something it's going to call V."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 279000
+			},
+			"text": " And unless it gets both of those inputs in any order,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 284000
+			},
+			"text": " unless it gets both of those inputs, the rest of this doesn't happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 289000
+			},
+			"text": " So, you can see this as a kind of sequentialization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 294000
+			},
+			"text": " And this vertical bar here represents another thread of activity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 302000
+			},
+			"text": " And this thread of activity waits at the channel Z for something it's going to call W, and then does this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 311000
+			},
+			"text": " So, in the top thread, the rest of the computation is to take what it received on Y and what it received as V."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 317000
+			},
+			"text": " So, what it receives as Y and what it receives as V, there's one tiny little piece of information you have to know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 323000
+			},
+			"text": " which is that whenever information comes in this way, it's treated as a reference."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 327000
+			},
+			"text": " You could also think of that as a port or a channel, but it's treated as a reference."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 331000
+			},
+			"text": " And so, you have to dereference it. And that's what these little stars are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 339000
+			},
+			"text": " And we're kind of expecting that whatever we dereference, it's going to be safe to add those two things together."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 348000
+			},
+			"text": " So, this operation here has to be interpretable for these two different values that are being received at these ports."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 354000
+			},
+			"text": " And then it's going to, whatever the result of that addition is, that's going to be sent on the Z port."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 362000
+			},
+			"text": " And then, in parallel with that output operation, there's something else that might happen that uses X and Z."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 375000
+			},
+			"text": " Over here, it's a similar kind of thing. On the A port, it's going to take whatever it received on W, multiply it by 2, and send that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 386000
+			},
+			"text": " And Q runs in parallel with that output operation. Very straightforward. Nothing magical here. Easy to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 394000
+			},
+			"text": " And in fact, I've made a graphical representation of this same flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 403000
+			},
+			"text": " So, all I've done is to map out graphically the lifetimes of the ports as far as we know."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 412000
+			},
+			"text": " And you can see one thing that happens that's kind of interesting is that Z is handed to two threads."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 416000
+			},
+			"text": " So, you can see this resource is being utilized by two different threads."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 428000
+			},
+			"text": " Now, in this particular example, you can also see something straight away that our compiler can also see that even though there's a logical parallelism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 437000
+			},
+			"text": " there's actually only one thread of activity, which is that this is only going to activate if it gets something on Z,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 444000
+			},
+			"text": " and there's exactly one thing that's sending on Z. So, this is really a sequential flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 448000
+			},
+			"text": " So, there are lots and lots of things that you can see just by staring at the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 454000
+			},
+			"text": " And in fact, that's what makes Rolang kind of cool. You stare at the code or you let a computer stare at the code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 463000
+			},
+			"text": " and it does a bunch of analysis for you. So, in particular, if I remove all that pesky syntax,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 476000
+			},
+			"text": " and just look at the graph that is evident in the flow here, I can see some really cool things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 484000
+			},
+			"text": " One is that every contract is actually just a braid or a tangle."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 496000
+			},
+			"text": " Here's one set of strands. Sometimes the strands can fork, and there's another set of strands that weave across these"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 500000
+			},
+			"text": " that have to do with the information flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 509000
+			},
+			"text": " Is this making sense? Let's make this as interactive as possible. If this doesn't make sense, shout out. I don't get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 518000
+			},
+			"text": " And then, so whenever we have a weave that goes like this across, that's a possible contention of resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 524000
+			},
+			"text": " So, we can see that in fact there is a tangle across this collection of names."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 530000
+			},
+			"text": " And so, we have to -- and it literally spans the entire collection of names."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 537000
+			},
+			"text": " So, we can see that relative to this set of names, we have to make sure that transactions are ordered."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 541000
+			},
+			"text": " We have to be careful about the order of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 548000
+			},
+			"text": " Names outside of this set, we don't care about the order of transactions unless they touch this set."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 552000
+			},
+			"text": " And we can actually see that. Yes!"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 555000
+			},
+			"text": " Please!"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 562000
+			},
+			"text": " Yeah, yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:37,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 577000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 577000,
+				"to": 585000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 592000
+			},
+			"text": " No, if you'll notice that this is nested inside this scope here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 597000
+			},
+			"text": " Right, so it's blocked until you get both of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 602000
+			},
+			"text": " Yeah, exactly. It's a graphical way of representing that barrier."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 606000
+			},
+			"text": " Yeah, exactly right. Good question. Yes!"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 610000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 614000
+			},
+			"text": " Yes, the vertical bar is here. That's exactly right."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 616000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 621000
+			},
+			"text": " No, it's actually true. It can be interpreted as true parallelism."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 625000
+			},
+			"text": " It can be interpreted as an interleaving or it can be interpreted as true parallelism."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 629000
+			},
+			"text": " Thank you, that's a very good question. Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 634000
+			},
+			"text": " Okay, so moving right along."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 637000
+			},
+			"text": " So we can now make a test harness for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 643000
+			},
+			"text": " So what we're going to do to test this code, or to at least understand what it does,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 647000
+			},
+			"text": " is we're going to set P and Q to just be zero. Don't do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 652000
+			},
+			"text": " Right, for this. And then we're going to make some fresh channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 655000
+			},
+			"text": " Right, that's what this new does."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 658000
+			},
+			"text": " And we're going to supply them to the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 662000
+			},
+			"text": " I'm going to, going to supply them to things that could interact with the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 669000
+			},
+			"text": " Okay, so here is our input section, which is going to input where at X and U."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 675000
+			},
+			"text": " And here is our readout. This is going to interact with C at A."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 680000
+			},
+			"text": " And whatever the result is, it's going to print that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 689000
+			},
+			"text": " Is that making sense? Awesome. Okay, so what you can immediately see from the code"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 695000
+			},
+			"text": " is that that will print out the resulting value is six."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 698000
+			},
+			"text": " And that's immediate from the code. Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 701000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 707000
+			},
+			"text": " Oh, thank you, that's a typo. Yes. Good, good, good eyes. Thank you. I appreciate that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 714000
+			},
+			"text": " So here is the picture of that, just in blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 718000
+			},
+			"text": " So here's the input section. It's running in parallel with the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 723000
+			},
+			"text": " Right? And so the contract interacts with this test harness in this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 729000
+			},
+			"text": " And there's the new scope that allows us to see the origin of all the channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 736000
+			},
+			"text": " Is that making sense? Okay, so we have a nice, clear, graphical interpretation"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 743000
+			},
+			"text": " that allows us to just inspect the concurrency behavior of the code and just see"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 748000
+			},
+			"text": " what's going on. So let's move right along and introduce some non-determinism."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 754000
+			},
+			"text": " We could see with our eyes that there wasn't any real non-determinism except at the edges."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 761000
+			},
+			"text": " Right? So there could have been, just to make that point very clear,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 768000
+			},
+			"text": " there could have been non-determinism here if there were contending inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 779000
+			},
+			"text": " Right? And there could have been non-determinism here if there were contending listeners for the output."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 785000
+			},
+			"text": " But the contract itself, even though it has parallelism in it, is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 793000
+			},
+			"text": " deterministic in its execution. So now what we do is we modify our contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 800000
+			},
+			"text": " and we add another listener on Z. Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 807000
+			},
+			"text": " And now these two are contending. And all we're doing is if this listener wins,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 812000
+			},
+			"text": " you get an even value. And if this listener wins, you get an odd value."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 817000
+			},
+			"text": " Right? That's all that's happening. This is so boring."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 822000
+			},
+			"text": " Why is this guy talking about this stuff? It's so obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 833000
+			},
+			"text": " So again, pictorially, we now have a source of non-determinism because this output can either line up with the input here"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 840000
+			},
+			"text": " or the input here. And that raises our interesting question with respect to blockchain semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 848000
+			},
+			"text": " Right? How do you guarantee, if I had many, many instances of this very same contract running,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 856000
+			},
+			"text": " how do I make sure that they all win the race in exactly the same way?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 861000
+			},
+			"text": " And that's the answer. Okay? But I'll get to that in just a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 867000
+			},
+			"text": " Because there's another important point here. So I can now generalize K."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:33,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 873000
+			},
+			"text": " Right? So I can generalize my test harness. And what I do is, here's the test harness bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 873000,
+				"to": 880000
+			},
+			"text": " and that's where I put C before. So I make a K into literature of process"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 885000
+			},
+			"text": " calculus, usually, and in fact in programming language semantics in general,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 891000
+			},
+			"text": " it usually is used to range over contexts, which are programs where you've knocked a hole."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 899000
+			},
+			"text": " And in general, we want programs to be equivalent exactly when they behave the same in all contexts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 904000
+			},
+			"text": " Right? So what I'm doing is I'm kind of sneaking in just a tiny little bit of programming language"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 908000
+			},
+			"text": " semantics on the side to keep the talk from being totally boring."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 915000
+			},
+			"text": " All right? So here's the context with the whole, the test harness with the hole knocked in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 921000
+			},
+			"text": " And now when I apply my test harness, now these should have been commas. I don't know what happened there. Sorry about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 927000
+			},
+			"text": " When I apply my test harness again to C, we should get the deterministic six."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 936000
+			},
+			"text": " When I apply my context to C prime, now we either get six or five non-deterministically."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 942000
+			},
+			"text": " So all I've done is just restate everything I said before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 949000
+			},
+			"text": " and it's symbols. And by the way, what should be happening is, in your mind,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 955000
+			},
+			"text": " you start thinking, \"Ha, this notion of contextual equivalence should line up with things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 959000
+			},
+			"text": " do my types ensure that my programs behave in a nice way.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 966000
+			},
+			"text": " So this should be this nice correspondence between how the types constrain the behavior of my contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:12,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 972000
+			},
+			"text": " and how the contextual equivalence or substitutability constrains the behavior of my contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 972000,
+				"to": 978000
+			},
+			"text": " They should fit perfectly. Why? So that if I were to do type checking, I don't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 983000
+			},
+			"text": " maybe it would be the same as formally proving my programs correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:35,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 995000
+			},
+			"text": " Why would we want to do that? Okay, so first, I want to talk a little bit about what CASPER is doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,000",
+				"to": "00:16:40,000"
+			},
+			"offsets": {
+				"from": 995000,
+				"to": 1000000
+			},
+			"text": " or what any consensus algorithm is doing in this setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1000000,
+				"to": 1007000
+			},
+			"text": " What the consensus algorithm is doing in this setting is it's guaranteeing that all the instances agree"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1015000
+			},
+			"text": " on the winners of the races. So the IO events are the only transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1024000
+			},
+			"text": " addresses, as you know and love them, become channels. Is this making sense? Right. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1032000
+			},
+			"text": " And then our consensus algorithm needs to just worry about those kinds of transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1037000
+			},
+			"text": " and if you remember back to our tangle description,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1042000
+			},
+			"text": " it only has to order those transactions where you have these tangles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1049000
+			},
+			"text": " and you can clearly see those. Right? You can actually automatically observe those tangles"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1055000
+			},
+			"text": " and see where you have isolation, and then your consensus algorithm only has to worry about"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1061000
+			},
+			"text": " schedules or orders that make sure that things are ordered in the tangles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1068000
+			},
+			"text": " and relative to two different disjoint tangles, they can be in any order. Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1074000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1082000
+			},
+			"text": " Yes. The short answer is yes. Okay. So effectively what we've just done is we've now"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:08,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1088000
+			},
+			"text": " related our computational model to scaling, and it's not just sharding."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1088000,
+				"to": 1093000
+			},
+			"text": " It's actually compositional. One thing I didn't agree with in Martin's talk, and I love this kind of debate"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1102000
+			},
+			"text": " and disagreement, is Martin suggests that you never know why or when you might break into more than one level."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1111000
+			},
+			"text": " Well, all you have to do is look at URIs or DNS to begin to see why you would ever have more than two levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1118000
+			},
+			"text": " Right? There's lots and lots and lots of examples on the Internet for why multiple layers of nesting is a good idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1124000
+			},
+			"text": " and if we grow and grow and grow, I don't know, maybe we have a Mars colony, a colony on Alpha Centauri,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1129000
+			},
+			"text": " maybe the namespaces get even bigger. Ask me about namespaces at the end. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1136000
+			},
+			"text": " So let me just quickly hang on one second, because I've got to leave enough time for the demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1143000
+			},
+			"text": " Oh, yeah. Yeah. So we started a little bit late, but I'm going to have to hold some questions, because I want to --"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1149000
+			},
+			"text": " I want Ken to give some time to talk. So I'm going to quickly just reiterate what I said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1156000
+			},
+			"text": " and then move into the next part of the talk, which is an ER, a more realistic contract, and a demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1165000
+			},
+			"text": " Okay. So, yeah. The important point is that consensus ensures that every VM agrees on the Internet"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1171000
+			},
+			"text": " agrees on the winner of the race. That's the computational model here. All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1179000
+			},
+			"text": " So now, let's have Euclid take a look at ERC-20 and see how that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1187000
+			},
+			"text": " So I'm going to see if we can get Kent on the screen here. Kent, are you there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1193000
+			},
+			"text": " Yeah. Awesome. So I don't know if the audio is coming through, but if not,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:59,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1199000
+			},
+			"text": " I'll just hold the mic up to the device. So Kent and I were talking last night."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1199000,
+				"to": 1203000
+			},
+			"text": " We didn't hang on one second. I just want to introduce you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1207000
+			},
+			"text": " We -- there was a miscommunication on when the talk was. So that's why we --"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1216000
+			},
+			"text": " he was supposed to be here physically present. He's not flying in until tomorrow, so we're going to give him a chance to go through Zoom."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1220000
+			},
+			"text": " So let's see if this works. Now we'll go."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1227000
+			},
+			"text": " Okay. Hello, everyone. Is this the audio work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1232000
+			},
+			"text": " Maybe not. Kind of sort of. Here, let me try to turn it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1238000
+			},
+			"text": " Okay. Okay. Go for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:44,000"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1244000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,000",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1244000,
+				"to": 1249000
+			},
+			"text": " So just -- I'll repeat if people can hear."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:21:05,000"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1265000
+			},
+			"text": " Okay. So what I'm currently showing is on a side-by-side comparison of an example, ERC-20 implementation, and solidity on the left, and the equivalent rolling on the right."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,000",
+				"to": "00:21:13,000"
+			},
+			"offsets": {
+				"from": 1265000,
+				"to": 1273000
+			},
+			"text": " And so, as you can see here, both contracts have a relatively similar structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,000",
+				"to": "00:21:22,000"
+			},
+			"offsets": {
+				"from": 1273000,
+				"to": 1282000
+			},
+			"text": " The top convention here in solidity is roughly equivalent to that in rolling."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,000",
+				"to": "00:21:29,000"
+			},
+			"offsets": {
+				"from": 1282000,
+				"to": 1289000
+			},
+			"text": " The variable declarations here roughly correspond to the productions that you see on the right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,000",
+				"to": "00:21:39,000"
+			},
+			"offsets": {
+				"from": 1289000,
+				"to": 1299000
+			},
+			"text": " And both contracts have these sort of function-like structures that describe the actions they take on the token."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,000",
+				"to": "00:21:47,000"
+			},
+			"offsets": {
+				"from": 1299000,
+				"to": 1307000
+			},
+			"text": " And so, focusing on the rolling version, the main paradigm shift is to understand the use of channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1307000,
+				"to": 1311000
+			},
+			"text": " Greg was calling them ports earlier, but they're the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:22:03,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1323000
+			},
+			"text": " And so, as an example, here we have a channel called \"Bounds\" channel, and we're sending an empty map through it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1323000,
+				"to": 1338000
+			},
+			"text": " And then on my11, we immediately bind that map to \"Bounds\" and we insert the updated balances such that the message sender now has the total supply."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:23,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1343000
+			},
+			"text": " And this is for when the token contract is initially instantiated."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,000",
+				"to": "00:22:31,000"
+			},
+			"offsets": {
+				"from": 1343000,
+				"to": 1351000
+			},
+			"text": " And so, to keep in short, I'm just going to run through the transfer action here, and then show a demo on that uses it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,000",
+				"to": "00:22:40,000"
+			},
+			"offsets": {
+				"from": 1351000,
+				"to": 1360000
+			},
+			"text": " So, in order to use this nested transfer contract, you need to send a message on the transfer channel here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1360000,
+				"to": 1373000
+			},
+			"text": " With the message sender, the address is sending it to the amount, and then the return channel in which you will listen to see whether the transfer succeeded or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1382000
+			},
+			"text": " And so, again, we have a four-statement here that bind the map balances into the model."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1390000
+			},
+			"text": " So, this is here, and we create two new channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:20,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1400000
+			},
+			"text": " And this is in order to essentially get the order for the balance of the message sender and the address that's sending it to."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,000",
+				"to": "00:23:26,000"
+			},
+			"offsets": {
+				"from": 1400000,
+				"to": 1406000
+			},
+			"text": " And then in the match statement here, we check some preconditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,000",
+				"to": "00:23:34,000"
+			},
+			"offsets": {
+				"from": 1406000,
+				"to": 1414000
+			},
+			"text": " And essentially, here we're checking the balance of the sender is greater than the amount they're sending. The amount is greater than zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,000",
+				"to": "00:23:41,000"
+			},
+			"offsets": {
+				"from": 1414000,
+				"to": 1421000
+			},
+			"text": " Finally, there's just an overflow check. This is equivalent logic to the salinity implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,000",
+				"to": "00:23:47,000"
+			},
+			"offsets": {
+				"from": 1421000,
+				"to": 1427000
+			},
+			"text": " And so, if the preconditions succeed, we go into this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,000",
+				"to": "00:23:56,000"
+			},
+			"offsets": {
+				"from": 1427000,
+				"to": 1436000
+			},
+			"text": " And in this case, we simply update the map such that it reflects the appropriate balances post-transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,000",
+				"to": "00:24:03,000"
+			},
+			"offsets": {
+				"from": 1436000,
+				"to": 1443000
+			},
+			"text": " And then we return true on the return channel to signify the transfer succeeding."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,000",
+				"to": "00:24:14,000"
+			},
+			"offsets": {
+				"from": 1443000,
+				"to": 1454000
+			},
+			"text": " And if the preconditions fail, we go into this case in which the map back into the balance of the channel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,000",
+				"to": "00:24:19,000"
+			},
+			"offsets": {
+				"from": 1454000,
+				"to": 1459000
+			},
+			"text": " and then sending faults on the return channel to signify the transfer fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,000",
+				"to": "00:24:25,000"
+			},
+			"offsets": {
+				"from": 1459000,
+				"to": 1465000
+			},
+			"text": " Is there any questions so far? Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,000",
+				"to": "00:24:32,000"
+			},
+			"offsets": {
+				"from": 1465000,
+				"to": 1472000
+			},
+			"text": " Any questions so far? Sweet. Okay. Go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,000",
+				"to": "00:24:36,000"
+			},
+			"offsets": {
+				"from": 1472000,
+				"to": 1476000
+			},
+			"text": " So, then, just to show an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,000",
+				"to": "00:24:39,000"
+			},
+			"offsets": {
+				"from": 1476000,
+				"to": 1479000
+			},
+			"text": " Oh, I'll make what bigger the font?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,000",
+				"to": "00:24:44,000"
+			},
+			"offsets": {
+				"from": 1479000,
+				"to": 1484000
+			},
+			"text": " Oh, can you make the bigger? Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,000",
+				"to": "00:24:48,000"
+			},
+			"offsets": {
+				"from": 1484000,
+				"to": 1488000
+			},
+			"text": " Let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,000",
+				"to": "00:24:56,000"
+			},
+			"offsets": {
+				"from": 1488000,
+				"to": 1496000
+			},
+			"text": " Okay. So, is that good? Is that better? Okay. We got a sense here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,000",
+				"to": "00:25:08,000"
+			},
+			"offsets": {
+				"from": 1496000,
+				"to": 1508000
+			},
+			"text": " Cool. So, here, we're instantiating the token with me as the owner, so to speak,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,000",
+				"to": "00:25:14,000"
+			},
+			"offsets": {
+				"from": 1508000,
+				"to": 1514000
+			},
+			"text": " 100 as the initial supply, and return as instantiated here."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,000",
+				"to": "00:25:19,000"
+			},
+			"offsets": {
+				"from": 1514000,
+				"to": 1519000
+			},
+			"text": " That is the channel that we're going to receive that feedback from."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,000",
+				"to": "00:25:27,000"
+			},
+			"offsets": {
+				"from": 1519000,
+				"to": 1527000
+			},
+			"text": " And so, once we bind the result back into the token contract here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,000",
+				"to": "00:25:35,000"
+			},
+			"offsets": {
+				"from": 1527000,
+				"to": 1535000
+			},
+			"text": " we can retrieve get using this get call as an area index into the token contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,000",
+				"to": "00:25:45,000"
+			},
+			"offsets": {
+				"from": 1535000,
+				"to": 1545000
+			},
+			"text": " and we get the transfer channel, and then we send, for me, to save 50 tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,000",
+				"to": "00:25:51,000"
+			},
+			"offsets": {
+				"from": 1545000,
+				"to": 1551000
+			},
+			"text": " And so, the point I think they understand here is that the name of the nested transfer contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,000",
+				"to": "00:25:56,000"
+			},
+			"offsets": {
+				"from": 1551000,
+				"to": 1556000
+			},
+			"text": " that I just described here is not actually globally accessible."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,000",
+				"to": "00:26:05,000"
+			},
+			"offsets": {
+				"from": 1556000,
+				"to": 1565000
+			},
+			"text": " And so, what we're doing here with this area index is we're actually going into,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,000",
+				"to": "00:26:13,000"
+			},
+			"offsets": {
+				"from": 1565000,
+				"to": 1573000
+			},
+			"text": " or having the transfer name here be returned out of the token contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,000",
+				"to": "00:26:18,000"
+			},
+			"offsets": {
+				"from": 1573000,
+				"to": 1578000
+			},
+			"text": " so that it's accessible from the outside."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,000",
+				"to": "00:26:24,000"
+			},
+			"offsets": {
+				"from": 1578000,
+				"to": 1584000
+			},
+			"text": " And so, we have this nice scoping kind of thing going on here."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,000",
+				"to": "00:26:29,000"
+			},
+			"offsets": {
+				"from": 1584000,
+				"to": 1589000
+			},
+			"text": " And so, I mean, just back to line up here, point two, we just do the same thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,000",
+				"to": "00:26:32,000"
+			},
+			"offsets": {
+				"from": 1589000,
+				"to": 1592000
+			},
+			"text": " by we call the balanced all of this queries for the balance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,000",
+				"to": "00:26:39,000"
+			},
+			"offsets": {
+				"from": 1592000,
+				"to": 1599000
+			},
+			"text": " and then we just print it out here. And this stuff here is essentially doing the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,000",
+				"to": "00:26:45,000"
+			},
+			"offsets": {
+				"from": 1599000,
+				"to": 1605000
+			},
+			"text": " I just wanted to demonstrate that you could do this, or you can instantiate multiple tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,000",
+				"to": "00:26:48,000"
+			},
+			"offsets": {
+				"from": 1605000,
+				"to": 1608000
+			},
+			"text": " in parallel within the same session."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,000",
+				"to": "00:26:57,000"
+			},
+			"offsets": {
+				"from": 1608000,
+				"to": 1617000
+			},
+			"text": " And so, we currently have a compiler, really make a scallop using B&FC, JavaCup, and JLACs."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,000",
+				"to": "00:27:01,000"
+			},
+			"offsets": {
+				"from": 1617000,
+				"to": 1621000
+			},
+			"text": " And so, on the bottom here, I have an SP key console session,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,000",
+				"to": "00:27:07,000"
+			},
+			"offsets": {
+				"from": 1621000,
+				"to": 1627000
+			},
+			"text": " and I'm just going to run the compiler on the token contract file"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,000",
+				"to": "00:27:15,000"
+			},
+			"offsets": {
+				"from": 1627000,
+				"to": 1635000
+			},
+			"text": " that I just explained here. And so, boom, we see here the output."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,000",
+				"to": "00:27:20,000"
+			},
+			"offsets": {
+				"from": 1635000,
+				"to": 1640000
+			},
+			"text": " And so, what you see here is called RBL, Rosette-based language."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,000",
+				"to": "00:27:24,000"
+			},
+			"offsets": {
+				"from": 1640000,
+				"to": 1644000
+			},
+			"text": " And in the future, we plan to just bootstrap ROLANG,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:24,000",
+				"to": "00:27:29,000"
+			},
+			"offsets": {
+				"from": 1644000,
+				"to": 1649000
+			},
+			"text": " but for now, we find it convenient just to compile it down to this intermediate language"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,000",
+				"to": "00:27:39,000"
+			},
+			"offsets": {
+				"from": 1649000,
+				"to": 1659000
+			},
+			"text": " because it's a nice VM for it, which, or an interpreter, I should say, right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,000",
+				"to": "00:27:46,000"
+			},
+			"offsets": {
+				"from": 1659000,
+				"to": 1666000
+			},
+			"text": " It has maybe an unusual syntax, but it's just like any other interpreter."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:46,000",
+				"to": "00:27:52,000"
+			},
+			"offsets": {
+				"from": 1666000,
+				"to": 1672000
+			},
+			"text": " And so, what's important here is that, or what we're interested in here is"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,000",
+				"to": "00:27:57,000"
+			},
+			"offsets": {
+				"from": 1672000,
+				"to": 1677000
+			},
+			"text": " to just paste again, you can pile your output of the token contract into here."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,000",
+				"to": "00:28:02,000"
+			},
+			"offsets": {
+				"from": 1677000,
+				"to": 1682000
+			},
+			"text": " And that's what I'll do right now, actually one second."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,000",
+				"to": "00:28:12,000"
+			},
+			"offsets": {
+				"from": 1682000,
+				"to": 1692000
+			},
+			"text": " Let me just, one thing I have to do is, I have to break the output up a bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,000",
+				"to": "00:28:20,000"
+			},
+			"offsets": {
+				"from": 1692000,
+				"to": 1700000
+			},
+			"text": " mostly because of the RBL's maximum input-life requirement."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,000",
+				"to": "00:28:29,000"
+			},
+			"offsets": {
+				"from": 1700000,
+				"to": 1709000
+			},
+			"text": " So once we do that and copy it in, you can see here, this is what I just copied in."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:29,000",
+				"to": "00:28:34,000"
+			},
+			"offsets": {
+				"from": 1709000,
+				"to": 1714000
+			},
+			"text": " This is equivalent to the output here."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,000",
+				"to": "00:28:40,000"
+			},
+			"offsets": {
+				"from": 1714000,
+				"to": 1720000
+			},
+			"text": " And if we ignore some warnings and debug statements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,000",
+				"to": "00:28:45,000"
+			},
+			"offsets": {
+				"from": 1720000,
+				"to": 1725000
+			},
+			"text": " we can see here the value 50, that gets outputted in 500."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,000",
+				"to": "00:28:51,000"
+			},
+			"offsets": {
+				"from": 1725000,
+				"to": 1731000
+			},
+			"text": " And so what these two numbers are correspond to the print statements here."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:51,000",
+				"to": "00:28:54,000"
+			},
+			"offsets": {
+				"from": 1731000,
+				"to": 1734000
+			},
+			"text": " Remember, we transferred 50 to the A, so they should have 50."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,000",
+				"to": "00:29:03,000"
+			},
+			"offsets": {
+				"from": 1734000,
+				"to": 1743000
+			},
+			"text": " And in a way, they bounced two, should have 500 because that's what we transferred over here and printed."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,000",
+				"to": "00:29:11,000"
+			},
+			"offsets": {
+				"from": 1743000,
+				"to": 1751000
+			},
+			"text": " And so, that's essentially the real-end demo of the EOC20 contract in a nutshell."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:11,000",
+				"to": "00:29:12,000"
+			},
+			"offsets": {
+				"from": 1751000,
+				"to": 1752000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:12,000",
+				"to": "00:29:13,000"
+			},
+			"offsets": {
+				"from": 1752000,
+				"to": 1753000
+			},
+			"text": " Thank you, Kent."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:13,000",
+				"to": "00:29:14,000"
+			},
+			"offsets": {
+				"from": 1753000,
+				"to": 1754000
+			},
+			"text": " I really appreciate that."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,000",
+				"to": "00:29:18,000"
+			},
+			"offsets": {
+				"from": 1754000,
+				"to": 1758000
+			},
+			"text": " So obviously you can see that this is work in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,000",
+				"to": "00:29:22,000"
+			},
+			"offsets": {
+				"from": 1758000,
+				"to": 1762000
+			},
+			"text": " We're in the midst of building this."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:22,000",
+				"to": "00:29:26,000"
+			},
+			"offsets": {
+				"from": 1762000,
+				"to": 1766000
+			},
+			"text": " Let me quickly just close this out because I know I want to give back,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,000",
+				"to": "00:29:29,000"
+			},
+			"offsets": {
+				"from": 1766000,
+				"to": 1769000
+			},
+			"text": " yield back time if I can."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,000",
+				"to": "00:29:34,000"
+			},
+			"offsets": {
+				"from": 1769000,
+				"to": 1774000
+			},
+			"text": " So, we're not going to start presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:34,000",
+				"to": "00:29:47,000"
+			},
+			"offsets": {
+				"from": 1774000,
+				"to": 1787000
+			},
+			"text": " Okay, so what you saw was a side-by-side comparison of EOC20-like behavior in Rolang,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,000",
+				"to": "00:29:50,000"
+			},
+			"offsets": {
+				"from": 1787000,
+				"to": 1790000
+			},
+			"text": " which gives you a sense that the language scales up."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:50,000",
+				"to": "00:29:51,000"
+			},
+			"offsets": {
+				"from": 1790000,
+				"to": 1791000
+			},
+			"text": " It scales up."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,000",
+				"to": "00:29:53,000"
+			},
+			"offsets": {
+				"from": 1791000,
+				"to": 1793000
+			},
+			"text": " Why? Because at least it's expressive."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,000",
+				"to": "00:30:00,000"
+			},
+			"offsets": {
+				"from": 1793000,
+				"to": 1800000
+			},
+			"text": " They're more or less the same line count, but you get all of these features that we talked about before."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:00,000",
+				"to": "00:30:05,000"
+			},
+			"offsets": {
+				"from": 1800000,
+				"to": 1805000
+			},
+			"text": " So, the things that we haven't talked about, and I would love for you to come up to me and talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,000",
+				"to": "00:30:10,000"
+			},
+			"offsets": {
+				"from": 1805000,
+				"to": 1810000
+			},
+			"text": " after the breakout sessions and other kinds of things, is the behavioral types."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:10,000",
+				"to": "00:30:18,000"
+			},
+			"offsets": {
+				"from": 1810000,
+				"to": 1818000
+			},
+			"text": " So, I kept hinting that we can just look at the program and start to see things like sharding and concurrency"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,000",
+				"to": "00:30:22,000"
+			},
+			"offsets": {
+				"from": 1818000,
+				"to": 1822000
+			},
+			"text": " kinds of opportunities or behaviors."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:22,000",
+				"to": "00:30:25,000"
+			},
+			"offsets": {
+				"from": 1822000,
+				"to": 1825000
+			},
+			"text": " The behavioral types catch that at compile time."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:25,000",
+				"to": "00:30:30,000"
+			},
+			"offsets": {
+				"from": 1825000,
+				"to": 1830000
+			},
+			"text": " So, for example, the DAO bug, we would have caught at compile time."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:30,000",
+				"to": "00:30:37,000"
+			},
+			"offsets": {
+				"from": 1830000,
+				"to": 1837000
+			},
+			"text": " The principal bug that caused the problem we would have caught before the code was ever checked in."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:37,000",
+				"to": "00:30:43,000"
+			},
+			"offsets": {
+				"from": 1837000,
+				"to": 1843000
+			},
+			"text": " Namespaces, our ports and channels are describable because they have internal structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:43,000",
+				"to": "00:30:45,000"
+			},
+			"offsets": {
+				"from": 1843000,
+				"to": 1845000
+			},
+			"text": " They're not just flat addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:45,000",
+				"to": "00:30:47,000"
+			},
+			"offsets": {
+				"from": 1845000,
+				"to": 1847000
+			},
+			"text": " They're actually paths or algebraic."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:47,000",
+				"to": "00:30:49,000"
+			},
+			"offsets": {
+				"from": 1847000,
+				"to": 1849000
+			},
+			"text": " There's an algebra on ports."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:49,000",
+				"to": "00:30:55,000"
+			},
+			"offsets": {
+				"from": 1849000,
+				"to": 1855000
+			},
+			"text": " And because of that, we can describe sets of names, so we can constrain it that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:55,000",
+				"to": "00:30:57,000"
+			},
+			"offsets": {
+				"from": 1855000,
+				"to": 1857000
+			},
+			"text": " And that gives us a sharding solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:57,000",
+				"to": "00:31:06,000"
+			},
+			"offsets": {
+				"from": 1857000,
+				"to": 1866000
+			},
+			"text": " Rowscala is what plugs the gap that you saw there, where Kent was compiling to RBL and then pasting it into a"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,000",
+				"to": "00:31:09,000"
+			},
+			"offsets": {
+				"from": 1866000,
+				"to": 1869000
+			},
+			"text": " Rosette interpreter, which uses the Rosette virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:09,000",
+				"to": "00:31:16,000"
+			},
+			"offsets": {
+				"from": 1869000,
+				"to": 1876000
+			},
+			"text": " So, the Roscala is the scholarly implementation of the Rosette virtual machine, which would allow Kent to"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:16,000",
+				"to": "00:31:20,000"
+			},
+			"offsets": {
+				"from": 1876000,
+				"to": 1880000
+			},
+			"text": " directly feed that code into the VM and execute it."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:20,000",
+				"to": "00:31:29,000"
+			},
+			"offsets": {
+				"from": 1880000,
+				"to": 1889000
+			},
+			"text": " And then also, please come and talk to us about our chain itself, which is where all this work is happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:29,000",
+				"to": "00:31:31,000"
+			},
+			"offsets": {
+				"from": 1889000,
+				"to": 1891000
+			},
+			"text": " And we're very..."
+		}
+	]
+}

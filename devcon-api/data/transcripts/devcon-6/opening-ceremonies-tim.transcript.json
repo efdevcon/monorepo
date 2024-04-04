@@ -1,0 +1,1374 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13240
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,240",
+				"to": "00:00:14,240"
+			},
+			"offsets": {
+				"from": 13240,
+				"to": 14240
+			},
+			"text": " >> Good morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,240",
+				"to": "00:00:17,960"
+			},
+			"offsets": {
+				"from": 14240,
+				"to": 17960
+			},
+			"text": " I'm Tim Beiko and I work with the Protocol Support Team"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,960",
+				"to": "00:00:19,200"
+			},
+			"offsets": {
+				"from": 17960,
+				"to": 19200
+			},
+			"text": " of the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,200",
+				"to": "00:00:22,620"
+			},
+			"offsets": {
+				"from": 19200,
+				"to": 22620
+			},
+			"text": " I'm here today to talk about the people and the teams"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,620",
+				"to": "00:00:24,660"
+			},
+			"offsets": {
+				"from": 22620,
+				"to": 24660
+			},
+			"text": " who helped transition Ethereum from Proof of Work"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,660",
+				"to": "00:00:25,380"
+			},
+			"offsets": {
+				"from": 24660,
+				"to": 25380
+			},
+			"text": " to Proof of Stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,380",
+				"to": "00:00:29,640"
+			},
+			"offsets": {
+				"from": 25380,
+				"to": 29640
+			},
+			"text": " But before I get started, I just want to take a minute"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,640",
+				"to": "00:00:32,680"
+			},
+			"offsets": {
+				"from": 29640,
+				"to": 32680
+			},
+			"text": " to explain what Protocol Support is because it's like the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,680",
+				"to": "00:00:37,200"
+			},
+			"offsets": {
+				"from": 32680,
+				"to": 37200
+			},
+			"text": " time we use this and when I told my family I was joining the EF"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,200",
+				"to": "00:00:39,680"
+			},
+			"offsets": {
+				"from": 37200,
+				"to": 39680
+			},
+			"text": " Sprolical Support Team, they said it kind of sounded"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,680",
+				"to": "00:00:42,480"
+			},
+			"offsets": {
+				"from": 39680,
+				"to": 42480
+			},
+			"text": " like Ethereum's call center or like people would call"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,480",
+				"to": "00:00:44,680"
+			},
+			"offsets": {
+				"from": 42480,
+				"to": 44680
+			},
+			"text": " if like their transaction is stuck or like they can't run their"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,680",
+				"to": "00:00:47,680"
+			},
+			"offsets": {
+				"from": 44680,
+				"to": 47680
+			},
+			"text": " node and that's actually not what we do."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,680",
+				"to": "00:00:51,200"
+			},
+			"offsets": {
+				"from": 47680,
+				"to": 51200
+			},
+			"text": " So the main thing our team does is we help coordinate"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,200",
+				"to": "00:00:53,100"
+			},
+			"offsets": {
+				"from": 51200,
+				"to": 53100
+			},
+			"text": " and facilitate network upgrades to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,100",
+				"to": "00:00:56,240"
+			},
+			"offsets": {
+				"from": 53100,
+				"to": 56240
+			},
+			"text": " But beyond that, we also spend a lot of time trying to figure"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,240",
+				"to": "00:00:58,560"
+			},
+			"offsets": {
+				"from": 56240,
+				"to": 58560
+			},
+			"text": " out how we can better align the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,560",
+				"to": "00:01:01,440"
+			},
+			"offsets": {
+				"from": 58560,
+				"to": 61440
+			},
+			"text": " across the people working on layer one, all of the infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,440",
+				"to": "00:01:04,240"
+			},
+			"offsets": {
+				"from": 61440,
+				"to": 64240
+			},
+			"text": " and teams around them and the people building applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,240",
+				"to": "00:01:04,920"
+			},
+			"offsets": {
+				"from": 64240,
+				"to": 64920
+			},
+			"text": " on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,920",
+				"to": "00:01:08,720"
+			},
+			"offsets": {
+				"from": 64920,
+				"to": 68720
+			},
+			"text": " Another thing we spend a lot of time on is figuring out how"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,720",
+				"to": "00:01:11,480"
+			},
+			"offsets": {
+				"from": 68720,
+				"to": 71480
+			},
+			"text": " can we onboarded retain people to contribute to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,480",
+				"to": "00:01:13,560"
+			},
+			"offsets": {
+				"from": 71480,
+				"to": 73560
+			},
+			"text": " There's a few things we do on that front."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,560",
+				"to": "00:01:16,760"
+			},
+			"offsets": {
+				"from": 73560,
+				"to": 76760
+			},
+			"text": " Most recently, we announced the Ethereum Protocol Fellowship,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,760",
+				"to": "00:01:19,680"
+			},
+			"offsets": {
+				"from": 76760,
+				"to": 79680
+			},
+			"text": " which is something where folks who want to come and work"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,680",
+				"to": "00:01:21,760"
+			},
+			"offsets": {
+				"from": 79680,
+				"to": 81760
+			},
+			"text": " on the Ethereum Protocol can do so for a couple months"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,760",
+				"to": "00:01:25,120"
+			},
+			"offsets": {
+				"from": 81760,
+				"to": 85120
+			},
+			"text": " and hopefully then find a job full time working in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,120",
+				"to": "00:01:28,280"
+			},
+			"offsets": {
+				"from": 85120,
+				"to": 88280
+			},
+			"text": " Another thing we've done is we've helped launch Protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,280",
+				"to": "00:01:30,640"
+			},
+			"offsets": {
+				"from": 88280,
+				"to": 90640
+			},
+			"text": " Guild, which is an on-chain organization that helps"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,640",
+				"to": "00:01:33,360"
+			},
+			"offsets": {
+				"from": 90640,
+				"to": 93360
+			},
+			"text": " those individuals and anyone who wants to contribute"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,360",
+				"to": "00:01:35,200"
+			},
+			"offsets": {
+				"from": 93360,
+				"to": 95200
+			},
+			"text": " to fund Protocol contributors directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,200",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 95200,
+				"to": 99000
+			},
+			"text": " And lastly, we spend a lot of time doing like weird little"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:41,600"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 101600
+			},
+			"text": " mementos and things for the community when there's big milestones"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,600",
+				"to": "00:01:45,040"
+			},
+			"offsets": {
+				"from": 101600,
+				"to": 105040
+			},
+			"text": " that happen, whether these are things like the 1559 NFTs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,040",
+				"to": "00:01:46,840"
+			},
+			"offsets": {
+				"from": 105040,
+				"to": 106840
+			},
+			"text": " the merge manual that just went out."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,840",
+				"to": "00:01:51,560"
+			},
+			"offsets": {
+				"from": 106840,
+				"to": 111560
+			},
+			"text": " We try and think about like how can we like memorialize"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,560",
+				"to": "00:01:53,720"
+			},
+			"offsets": {
+				"from": 111560,
+				"to": 113720
+			},
+			"text": " all these big things both for the community and for all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,720",
+				"to": "00:01:54,680"
+			},
+			"offsets": {
+				"from": 113720,
+				"to": 114680
+			},
+			"text": " people who worked on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,680",
+				"to": "00:01:57,600"
+			},
+			"offsets": {
+				"from": 114680,
+				"to": 117600
+			},
+			"text": " Yeah, so that's what we do at Protocels Support."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:01:59,440"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 119440
+			},
+			"text": " But that's not the main thing I want to talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,440",
+				"to": "00:02:03,320"
+			},
+			"offsets": {
+				"from": 119440,
+				"to": 123320
+			},
+			"text": " The main topic of today is basically what I've called"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,320",
+				"to": "00:02:05,520"
+			},
+			"offsets": {
+				"from": 123320,
+				"to": 125520
+			},
+			"text": " like the heroes of the merge, all of the people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,520",
+				"to": "00:02:07,760"
+			},
+			"offsets": {
+				"from": 125520,
+				"to": 127760
+			},
+			"text": " all of the teams who helped get Ethereum the proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,760",
+				"to": "00:02:11,640"
+			},
+			"offsets": {
+				"from": 127760,
+				"to": 131640
+			},
+			"text": " And obviously, there's way too many people for me to go over"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,640",
+				"to": "00:02:12,920"
+			},
+			"offsets": {
+				"from": 131640,
+				"to": 132920
+			},
+			"text": " and just a short talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,920",
+				"to": "00:02:15,600"
+			},
+			"offsets": {
+				"from": 132920,
+				"to": 135600
+			},
+			"text": " But at least there's a couple core buckets that are worth"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,600",
+				"to": "00:02:16,080"
+			},
+			"offsets": {
+				"from": 135600,
+				"to": 136080
+			},
+			"text": " highlighting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,080",
+				"to": "00:02:18,880"
+			},
+			"offsets": {
+				"from": 136080,
+				"to": 138880
+			},
+			"text": " The first is everyone involved on the research side."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,880",
+				"to": "00:02:23,400"
+			},
+			"offsets": {
+				"from": 138880,
+				"to": 143400
+			},
+			"text": " It took many, many, many years of research and bed ends"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,400",
+				"to": "00:02:26,720"
+			},
+			"offsets": {
+				"from": 143400,
+				"to": 146720
+			},
+			"text": " and new specs to come up with not only a specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,720",
+				"to": "00:02:28,360"
+			},
+			"offsets": {
+				"from": 146720,
+				"to": 148360
+			},
+			"text": " for the entire beacon chain and proof of stake,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,360",
+				"to": "00:02:29,760"
+			},
+			"offsets": {
+				"from": 148360,
+				"to": 149760
+			},
+			"text": " but as well as the transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,760",
+				"to": "00:02:33,280"
+			},
+			"offsets": {
+				"from": 149760,
+				"to": 153280
+			},
+			"text": " The EF research team was obviously a big part of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,280",
+				"to": "00:02:34,600"
+			},
+			"offsets": {
+				"from": 153280,
+				"to": 154600
+			},
+			"text": " but they weren't alone."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,600",
+				"to": "00:02:37,800"
+			},
+			"offsets": {
+				"from": 154600,
+				"to": 157800
+			},
+			"text": " There were other teams such as TXRX, Quilt,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,800",
+				"to": "00:02:39,520"
+			},
+			"offsets": {
+				"from": 157800,
+				"to": 159520
+			},
+			"text": " who played a major role in this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,520",
+				"to": "00:02:43,840"
+			},
+			"offsets": {
+				"from": 159520,
+				"to": 163840
+			},
+			"text": " Aside from these, the next kind of logical one is all of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,840",
+				"to": "00:02:44,840"
+			},
+			"offsets": {
+				"from": 163840,
+				"to": 164840
+			},
+			"text": " consensus layer teams."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,840",
+				"to": "00:02:47,120"
+			},
+			"offsets": {
+				"from": 164840,
+				"to": 167120
+			},
+			"text": " They're the people who write the software that powers the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,120",
+				"to": "00:02:50,120"
+			},
+			"offsets": {
+				"from": 167120,
+				"to": 170120
+			},
+			"text": " beacon chain and literally runs proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,120",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 170120,
+				"to": 174000
+			},
+			"text": " So these are teams like Lighthouse, Nimbus, Prism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:55,800"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 175800
+			},
+			"text": " Taku and LoadStar."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,800",
+				"to": "00:02:59,560"
+			},
+			"offsets": {
+				"from": 176800,
+				"to": 179560
+			},
+			"text": " And obviously they have all their counterparts on the execution layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,560",
+				"to": "00:03:02,200"
+			},
+			"offsets": {
+				"from": 179560,
+				"to": 182200
+			},
+			"text": " So all of the people who wrote the software to run Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,200",
+				"to": "00:03:05,200"
+			},
+			"offsets": {
+				"from": 182200,
+				"to": 185200
+			},
+			"text": " on proof of work and that still manages basically the EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,200",
+				"to": "00:03:07,040"
+			},
+			"offsets": {
+				"from": 185200,
+				"to": 187040
+			},
+			"text": " transaction, Ethereum State and all of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,040",
+				"to": "00:03:12,480"
+			},
+			"offsets": {
+				"from": 187040,
+				"to": 192480
+			},
+			"text": " These are teams like Basu, like Geth, like Nethirmine and Eragon."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,480",
+				"to": "00:03:16,280"
+			},
+			"offsets": {
+				"from": 192480,
+				"to": 196280
+			},
+			"text": " And last but not least, the merge was a massive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,280",
+				"to": "00:03:17,520"
+			},
+			"offsets": {
+				"from": 196280,
+				"to": 197520
+			},
+			"text": " massive testing effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,520",
+				"to": "00:03:20,880"
+			},
+			"offsets": {
+				"from": 197520,
+				"to": 200880
+			},
+			"text": " There's not like a single team or even a single project that we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,880",
+				"to": "00:03:22,600"
+			},
+			"offsets": {
+				"from": 200880,
+				"to": 202600
+			},
+			"text": " kind of list and encapsulate all of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,600",
+				"to": "00:03:25,520"
+			},
+			"offsets": {
+				"from": 202600,
+				"to": 205520
+			},
+			"text": " So I just want to give a shout out to everyone who's worked on"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,520",
+				"to": "00:03:27,600"
+			},
+			"offsets": {
+				"from": 205520,
+				"to": 207600
+			},
+			"text": " all of the testing efforts, whether this is Hive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,600",
+				"to": "00:03:30,080"
+			},
+			"offsets": {
+				"from": 207600,
+				"to": 210080
+			},
+			"text": " whether this is all the infrastructure to set up shadow"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,080",
+				"to": "00:03:32,560"
+			},
+			"offsets": {
+				"from": 210080,
+				"to": 212560
+			},
+			"text": " forks and test client combinations before going live,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,560",
+				"to": "00:03:35,280"
+			},
+			"offsets": {
+				"from": 212560,
+				"to": 215280
+			},
+			"text": " whether these are the reference tests that Caroline"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,280",
+				"to": "00:03:36,720"
+			},
+			"offsets": {
+				"from": 215280,
+				"to": 216720
+			},
+			"text": " teams kind of implement against."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,720",
+				"to": "00:03:39,680"
+			},
+			"offsets": {
+				"from": 216720,
+				"to": 219680
+			},
+			"text": " Folks who works on this specification on the consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,680",
+				"to": "00:03:42,880"
+			},
+			"offsets": {
+				"from": 219680,
+				"to": 222880
+			},
+			"text": " layer side who worked on EIPs and everyone who worked on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,880",
+				"to": "00:03:45,520"
+			},
+			"offsets": {
+				"from": 222880,
+				"to": 225520
+			},
+			"text": " security side as well, including the Bug Grantee program."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,520",
+				"to": "00:03:48,240"
+			},
+			"offsets": {
+				"from": 225520,
+				"to": 228240
+			},
+			"text": " So I'd ask everyone to please give a massive round of applause"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,240",
+				"to": "00:03:50,640"
+			},
+			"offsets": {
+				"from": 228240,
+				"to": 230640
+			},
+			"text": " that all of these teams, all of these individuals who moved"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,640",
+				"to": "00:03:51,680"
+			},
+			"offsets": {
+				"from": 230640,
+				"to": 231680
+			},
+			"text": " Ethereum to proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,680",
+				"to": "00:03:54,960"
+			},
+			"offsets": {
+				"from": 231680,
+				"to": 234960
+			},
+			"text": " As we were getting closer to the merge this summer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,960",
+				"to": "00:03:57,680"
+			},
+			"offsets": {
+				"from": 234960,
+				"to": 237680
+			},
+			"text": " I was trying to think like, can we do something that will stay"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,680",
+				"to": "00:04:00,560"
+			},
+			"offsets": {
+				"from": 237680,
+				"to": 240560
+			},
+			"text": " around with all these people after DevCon is over,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,560",
+				"to": "00:04:02,400"
+			},
+			"offsets": {
+				"from": 240560,
+				"to": 242400
+			},
+			"text": " to kind of highlight this contribution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,400",
+				"to": "00:04:06,080"
+			},
+			"offsets": {
+				"from": 242400,
+				"to": 246080
+			},
+			"text": " And it was a bit weird to find the right thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,080",
+				"to": "00:04:08,320"
+			},
+			"offsets": {
+				"from": 246080,
+				"to": 248320
+			},
+			"text": " So I spent a bunch of time talking with different client"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,320",
+				"to": "00:04:10,640"
+			},
+			"offsets": {
+				"from": 248320,
+				"to": 250640
+			},
+			"text": " team leads, people in the EIP, people in the community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,640",
+				"to": "00:04:13,920"
+			},
+			"offsets": {
+				"from": 250640,
+				"to": 253920
+			},
+			"text": " asking them like, what can we do for all the folks who worked on this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,920",
+				"to": "00:04:17,360"
+			},
+			"offsets": {
+				"from": 253920,
+				"to": 257360
+			},
+			"text": " And I had a neat conversation with Ben from the Techout team."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,360",
+				"to": "00:04:21,840"
+			},
+			"offsets": {
+				"from": 257360,
+				"to": 261840
+			},
+			"text": " And so he was telling me like all of the people on this team"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,840",
+				"to": "00:04:24,720"
+			},
+			"offsets": {
+				"from": 261840,
+				"to": 264720
+			},
+			"text": " often end up not being able to go to the ETH conferences"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,720",
+				"to": "00:04:27,760"
+			},
+			"offsets": {
+				"from": 264720,
+				"to": 267760
+			},
+			"text": " because they're kind of so in the weeds working on their stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,760",
+				"to": "00:04:29,840"
+			},
+			"offsets": {
+				"from": 267760,
+				"to": 269840
+			},
+			"text": " that they literally forget about tickets going live."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,840",
+				"to": "00:04:32,240"
+			},
+			"offsets": {
+				"from": 269840,
+				"to": 272240
+			},
+			"text": " They can't find one and then they show up and they can't get"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,240",
+				"to": "00:04:34,560"
+			},
+			"offsets": {
+				"from": 272240,
+				"to": 274560
+			},
+			"text": " into conference for the protocol they literally build."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,560",
+				"to": "00:04:36,160"
+			},
+			"offsets": {
+				"from": 274560,
+				"to": 276160
+			},
+			"text": " And it's not like they don't want to pay for it or anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,160",
+				"to": "00:04:38,960"
+			},
+			"offsets": {
+				"from": 276160,
+				"to": 278960
+			},
+			"text": " It's just like they completely miss it and then they're like stuck"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,960",
+				"to": "00:04:40,400"
+			},
+			"offsets": {
+				"from": 278960,
+				"to": 280400
+			},
+			"text": " at the door for the theorem conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,400",
+				"to": "00:04:43,200"
+			},
+			"offsets": {
+				"from": 280400,
+				"to": 283200
+			},
+			"text": " So that seemed like a solvable problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,200",
+				"to": "00:04:45,680"
+			},
+			"offsets": {
+				"from": 283200,
+				"to": 285680
+			},
+			"text": " like something we could do to make their lives easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,680",
+				"to": "00:04:48,400"
+			},
+			"offsets": {
+				"from": 285680,
+				"to": 288400
+			},
+			"text": " And so I spent some time talking to some folks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,400",
+				"to": "00:04:50,080"
+			},
+			"offsets": {
+				"from": 288400,
+				"to": 290080
+			},
+			"text": " figuring out the best approach for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,080",
+				"to": "00:04:52,400"
+			},
+			"offsets": {
+				"from": 290080,
+				"to": 292400
+			},
+			"text": " And I'm really happy with what we came up with."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,400",
+				"to": "00:04:55,680"
+			},
+			"offsets": {
+				"from": 292400,
+				"to": 295680
+			},
+			"text": " So I'm excited to announce what we call the \"merge or pass.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,680",
+				"to": "00:04:59,440"
+			},
+			"offsets": {
+				"from": 295680,
+				"to": 299440
+			},
+			"text": " So this is basically a solvound token that we're going to be giving"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,440",
+				"to": "00:05:02,240"
+			},
+			"offsets": {
+				"from": 299440,
+				"to": 302240
+			},
+			"text": " to everyone who's contributed to the merge that will guarantee them"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,240",
+				"to": "00:05:05,360"
+			},
+			"offsets": {
+				"from": 302240,
+				"to": 305360
+			},
+			"text": " access to all of the top Ethereum conferences for the next few years."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,360",
+				"to": "00:05:07,520"
+			},
+			"offsets": {
+				"from": 305360,
+				"to": 307520
+			},
+			"text": " Yeah, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,520",
+				"to": "00:05:14,320"
+			},
+			"offsets": {
+				"from": 307520,
+				"to": 314320
+			},
+			"text": " And one thing that's neat about this, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,320",
+				"to": "00:05:16,400"
+			},
+			"offsets": {
+				"from": 314320,
+				"to": 316400
+			},
+			"text": " because this will all be on chain and it'll be public,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,400",
+				"to": "00:05:19,440"
+			},
+			"offsets": {
+				"from": 316400,
+				"to": 319440
+			},
+			"text": " so anyone in the community can obviously extend it and build on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,440",
+				"to": "00:05:20,800"
+			},
+			"offsets": {
+				"from": 319440,
+				"to": 320800
+			},
+			"text": " But I'm really excited today to say, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,800",
+				"to": "00:05:23,360"
+			},
+			"offsets": {
+				"from": 320800,
+				"to": 323360
+			},
+			"text": " the first partners we have for this are ETC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,360",
+				"to": "00:05:24,800"
+			},
+			"offsets": {
+				"from": 323360,
+				"to": 324800
+			},
+			"text": " E-global, DEFCON, ETCON,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,800",
+				"to": "00:05:27,280"
+			},
+			"offsets": {
+				"from": 324800,
+				"to": 327280
+			},
+			"text": " have all agreed to honor this for the next several years."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,280",
+				"to": "00:05:29,920"
+			},
+			"offsets": {
+				"from": 327280,
+				"to": 329920
+			},
+			"text": " So can I please get a round of applause for all of these partners."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,920",
+				"to": "00:05:31,280"
+			},
+			"offsets": {
+				"from": 329920,
+				"to": 331280
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,280",
+				"to": "00:05:43,280"
+			},
+			"offsets": {
+				"from": 331280,
+				"to": 343280
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

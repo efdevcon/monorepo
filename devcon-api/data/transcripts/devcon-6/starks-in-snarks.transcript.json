@@ -1,0 +1,3464 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,580"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2580
+			},
+			"text": " (gentle music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,580",
+				"to": "00:00:14,040"
+			},
+			"offsets": {
+				"from": 2580,
+				"to": 14040
+			},
+			"text": " - Good morning, I'm Jordebelina,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,040",
+				"to": "00:00:16,280"
+			},
+			"offsets": {
+				"from": 14040,
+				"to": 16280
+			},
+			"text": " I'm the technical lead at Polygon Hermes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,280",
+				"to": "00:00:20,240"
+			},
+			"offsets": {
+				"from": 16280,
+				"to": 20240
+			},
+			"text": " So I'm gonna explain a small piece of the ZKBM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,240",
+				"to": "00:00:25,240"
+			},
+			"offsets": {
+				"from": 20240,
+				"to": 25240
+			},
+			"text": " that's how we are verifying a Stark with a Snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,240",
+				"to": "00:00:28,200"
+			},
+			"offsets": {
+				"from": 25240,
+				"to": 28200
+			},
+			"text": " As I explained it before in the panel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,200",
+				"to": "00:00:32,360"
+			},
+			"offsets": {
+				"from": 28200,
+				"to": 32360
+			},
+			"text": " the last piece of the Prober is mainly converting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,360",
+				"to": "00:00:34,680"
+			},
+			"offsets": {
+				"from": 32360,
+				"to": 34680
+			},
+			"text": " we have a Stark and then we want to prove that on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,680",
+				"to": "00:00:37,680"
+			},
+			"offsets": {
+				"from": 34680,
+				"to": 37680
+			},
+			"text": " And what we do is we create a circuit that verifies this Stark"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,680",
+				"to": "00:00:41,160"
+			},
+			"offsets": {
+				"from": 37680,
+				"to": 41160
+			},
+			"text": " and then we proof it in the Snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,160",
+				"to": "00:00:48,920"
+			},
+			"offsets": {
+				"from": 41160,
+				"to": 48920
+			},
+			"text": " Well, this is the ZKBM that we're building,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,920",
+				"to": "00:00:51,840"
+			},
+			"offsets": {
+				"from": 48920,
+				"to": 51840
+			},
+			"text": " mainly we are using PIL, this Polynomial identity language"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,840",
+				"to": "00:00:53,320"
+			},
+			"offsets": {
+				"from": 51840,
+				"to": 53320
+			},
+			"text": " to build all the full system."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,320",
+				"to": "00:00:55,440"
+			},
+			"offsets": {
+				"from": 53320,
+				"to": 55440
+			},
+			"text": " And at the end, what we have is a set of Polynomials"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,440",
+				"to": "00:00:57,720"
+			},
+			"offsets": {
+				"from": 55440,
+				"to": 57720
+			},
+			"text": " with a set of identities that needs to fulfill"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,720",
+				"to": "00:00:59,760"
+			},
+			"offsets": {
+				"from": 57720,
+				"to": 59760
+			},
+			"text": " with this can generate automatically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,760",
+				"to": "00:01:01,640"
+			},
+			"offsets": {
+				"from": 59760,
+				"to": 61640
+			},
+			"text": " the idea of this is that once you have this PIL,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,640",
+				"to": "00:01:03,640"
+			},
+			"offsets": {
+				"from": 61640,
+				"to": 63640
+			},
+			"text": " you can generate automatically a Stark."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,640",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 63640,
+				"to": 68000
+			},
+			"text": " And not only that, that with this Stark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 70000
+			},
+			"text": " you can also automatically generate a Stark"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:12,960"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 72960
+			},
+			"text": " that verifies that all the Stark."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,960",
+				"to": "00:01:14,560"
+			},
+			"offsets": {
+				"from": 72960,
+				"to": 74560
+			},
+			"text": " So we have our Recursion Starks"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,560",
+				"to": "00:01:18,640"
+			},
+			"offsets": {
+				"from": 74560,
+				"to": 78640
+			},
+			"text": " and we can do that many times and we can even aggregate."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,640",
+				"to": "00:01:21,360"
+			},
+			"offsets": {
+				"from": 78640,
+				"to": 81360
+			},
+			"text": " We can even aggregate and then we can build a system"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,360",
+				"to": "00:01:22,360"
+			},
+			"offsets": {
+				"from": 81360,
+				"to": 82360
+			},
+			"text": " that looks something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,360",
+				"to": "00:01:24,480"
+			},
+			"offsets": {
+				"from": 82360,
+				"to": 84480
+			},
+			"text": " We can have many proofs of many blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,480",
+				"to": "00:01:27,800"
+			},
+			"offsets": {
+				"from": 84480,
+				"to": 87800
+			},
+			"text": " and then we can pack them together in a kind of a tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,800",
+				"to": "00:01:30,080"
+			},
+			"offsets": {
+				"from": 87800,
+				"to": 90080
+			},
+			"text": " And then at the end, in the last step,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,080",
+				"to": "00:01:32,720"
+			},
+			"offsets": {
+				"from": 90080,
+				"to": 92720
+			},
+			"text": " before sending to the Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,720",
+				"to": "00:01:35,800"
+			},
+			"offsets": {
+				"from": 92720,
+				"to": 95800
+			},
+			"text": " we just convert this Stark to the Snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,800",
+				"to": "00:01:38,200"
+			},
+			"offsets": {
+				"from": 95800,
+				"to": 98200
+			},
+			"text": " And this is done quite automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,200",
+				"to": "00:01:40,720"
+			},
+			"offsets": {
+				"from": 98200,
+				"to": 100720
+			},
+			"text": " So you need to care just about building the PIL"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,720",
+				"to": "00:01:44,160"
+			},
+			"offsets": {
+				"from": 100720,
+				"to": 104160
+			},
+			"text": " and the rest is quite a strike for one."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,160",
+				"to": "00:01:46,440"
+			},
+			"offsets": {
+				"from": 104160,
+				"to": 106440
+			},
+			"text": " Okay, so let's see how we do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,440",
+				"to": "00:01:50,240"
+			},
+			"offsets": {
+				"from": 106440,
+				"to": 110240
+			},
+			"text": " Okay, so what we want to do is we want to build a circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,240",
+				"to": "00:01:53,600"
+			},
+			"offsets": {
+				"from": 110240,
+				"to": 113600
+			},
+			"text": " actually what we want to build is a circum circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,600",
+				"to": "00:01:56,600"
+			},
+			"offsets": {
+				"from": 113600,
+				"to": 116600
+			},
+			"text": " that as an input, you have a Stark proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,600",
+				"to": "00:01:59,080"
+			},
+			"offsets": {
+				"from": 116600,
+				"to": 119080
+			},
+			"text": " Okay, so this is the Stark proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,080",
+				"to": "00:02:02,080"
+			},
+			"offsets": {
+				"from": 119080,
+				"to": 122080
+			},
+			"text": " So in the circuit, you have to validate this Stark proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,080",
+				"to": "00:02:05,520"
+			},
+			"offsets": {
+				"from": 122080,
+				"to": 125520
+			},
+			"text": " So we need to dip in what's inside the Stark proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,520",
+				"to": "00:02:07,680"
+			},
+			"offsets": {
+				"from": 125520,
+				"to": 127680
+			},
+			"text": " What Stark proof?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,680",
+				"to": "00:02:09,520"
+			},
+			"offsets": {
+				"from": 127680,
+				"to": 129520
+			},
+			"text": " What means this of a Stark proof?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,520",
+				"to": "00:02:13,320"
+			},
+			"offsets": {
+				"from": 129520,
+				"to": 133320
+			},
+			"text": " Well, the first thing that you have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,320",
+				"to": "00:02:16,440"
+			},
+			"offsets": {
+				"from": 133320,
+				"to": 136440
+			},
+			"text": " the first thing that you have is you have the transcript."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,440",
+				"to": "00:02:18,600"
+			},
+			"offsets": {
+				"from": 136440,
+				"to": 138600
+			},
+			"text": " Transcript are mainly hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,600",
+				"to": "00:02:20,640"
+			},
+			"offsets": {
+				"from": 138600,
+				"to": 140640
+			},
+			"text": " So you need to have this random numbers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,640",
+				"to": "00:02:22,080"
+			},
+			"offsets": {
+				"from": 140640,
+				"to": 142080
+			},
+			"text": " that goes back and forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,080",
+				"to": "00:02:25,920"
+			},
+			"offsets": {
+				"from": 142080,
+				"to": 145920
+			},
+			"text": " This is something that we need to compute inside the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,920",
+				"to": "00:02:27,400"
+			},
+			"offsets": {
+				"from": 145920,
+				"to": 147400
+			},
+			"text": " These are mainly hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,400",
+				"to": "00:02:29,200"
+			},
+			"offsets": {
+				"from": 147400,
+				"to": 149200
+			},
+			"text": " Okay, as a transcript, in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,200",
+				"to": "00:02:32,480"
+			},
+			"offsets": {
+				"from": 149200,
+				"to": 152480
+			},
+			"text": " we are using, well, a hash function."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,480",
+				"to": "00:02:35,040"
+			},
+			"offsets": {
+				"from": 152480,
+				"to": 155040
+			},
+			"text": " In this case, we are using for the Stark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,040",
+				"to": "00:02:36,720"
+			},
+			"offsets": {
+				"from": 155040,
+				"to": 156720
+			},
+			"text": " we are bringing a Stark with a hash function"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,720",
+				"to": "00:02:38,960"
+			},
+			"offsets": {
+				"from": 156720,
+				"to": 158960
+			},
+			"text": " that's a fairly hash function."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,960",
+				"to": "00:02:41,120"
+			},
+			"offsets": {
+				"from": 158960,
+				"to": 161120
+			},
+			"text": " In this case, a posse done with a B and a corp,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,120",
+				"to": "00:02:42,760"
+			},
+			"offsets": {
+				"from": 161120,
+				"to": 162760
+			},
+			"text": " we are just using this hash function"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,760",
+				"to": "00:02:47,760"
+			},
+			"offsets": {
+				"from": 162760,
+				"to": 167760
+			},
+			"text": " to compute the randomness of the transcript."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,760",
+				"to": "00:02:52,040"
+			},
+			"offsets": {
+				"from": 167760,
+				"to": 172040
+			},
+			"text": " Okay, another piece is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,040",
+				"to": "00:02:54,240"
+			},
+			"offsets": {
+				"from": 172040,
+				"to": 174240
+			},
+			"text": " well, you have a polynomial evaluations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,240",
+				"to": "00:02:55,680"
+			},
+			"offsets": {
+				"from": 174240,
+				"to": 175680
+			},
+			"text": " and then you need to check,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,680",
+				"to": "00:03:00,320"
+			},
+			"offsets": {
+				"from": 175680,
+				"to": 180320
+			},
+			"text": " you need to check that these polynomial evaluations"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,320",
+				"to": "00:03:03,040"
+			},
+			"offsets": {
+				"from": 180320,
+				"to": 183040
+			},
+			"text": " are okay, that they are fitting."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,040",
+				"to": "00:03:05,360"
+			},
+			"offsets": {
+				"from": 183040,
+				"to": 185360
+			},
+			"text": " That means that you need to do a lot of arithmetic."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,360",
+				"to": "00:03:07,080"
+			},
+			"offsets": {
+				"from": 185360,
+				"to": 187080
+			},
+			"text": " And in the case of us, we are using"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,080",
+				"to": "00:03:09,200"
+			},
+			"offsets": {
+				"from": 187080,
+				"to": 189200
+			},
+			"text": " the Godilocks prime field,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,200",
+				"to": "00:03:11,680"
+			},
+			"offsets": {
+				"from": 189200,
+				"to": 191680
+			},
+			"text": " and but here we are in the B and so we need to work"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,680",
+				"to": "00:03:14,080"
+			},
+			"offsets": {
+				"from": 191680,
+				"to": 194080
+			},
+			"text": " with this cross prime field."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,080",
+				"to": "00:03:16,600"
+			},
+			"offsets": {
+				"from": 194080,
+				"to": 196600
+			},
+			"text": " We need to do this cross prime field operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,600",
+				"to": "00:03:18,880"
+			},
+			"offsets": {
+				"from": 196600,
+				"to": 198880
+			},
+			"text": " So we need to do cross prime field inside the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,880",
+				"to": "00:03:23,160"
+			},
+			"offsets": {
+				"from": 198880,
+				"to": 203160
+			},
+			"text": " inside the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,160",
+				"to": "00:03:28,800"
+			},
+			"offsets": {
+				"from": 203160,
+				"to": 208800
+			},
+			"text": " The next thing that we have to do is we need to do openings."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,800",
+				"to": "00:03:31,080"
+			},
+			"offsets": {
+				"from": 208800,
+				"to": 211080
+			},
+			"text": " Okay, so the Stark mainly is a Mercutrix,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,080",
+				"to": "00:03:34,320"
+			},
+			"offsets": {
+				"from": 211080,
+				"to": 214320
+			},
+			"text": " and we need to just validate these Mercutrix."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,320",
+				"to": "00:03:38,320"
+			},
+			"offsets": {
+				"from": 214320,
+				"to": 218320
+			},
+			"text": " Here the trick is again, use the posse done hash function."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,320",
+				"to": "00:03:39,800"
+			},
+			"offsets": {
+				"from": 218320,
+				"to": 219800
+			},
+			"text": " So if you use a posse done,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,800",
+				"to": "00:03:42,240"
+			},
+			"offsets": {
+				"from": 219800,
+				"to": 222240
+			},
+			"text": " so as not frequently hash function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,240",
+				"to": "00:03:46,960"
+			},
+			"offsets": {
+				"from": 222240,
+				"to": 226960
+			},
+			"text": " then doing that inside the circuit is relatively cheap."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,960",
+				"to": "00:03:51,360"
+			},
+			"offsets": {
+				"from": 226960,
+				"to": 231360
+			},
+			"text": " So we do that for the openings itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,360",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 231360,
+				"to": 233000
+			},
+			"text": " Okay, once you have the openings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:56,080"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 236080
+			},
+			"text": " you need to evaluate this opening polynomial,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,080",
+				"to": "00:03:57,440"
+			},
+			"offsets": {
+				"from": 236080,
+				"to": 237440
+			},
+			"text": " which is a derivative polynomial,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,440",
+				"to": "00:04:00,280"
+			},
+			"offsets": {
+				"from": 237440,
+				"to": 240280
+			},
+			"text": " you need to evaluate those openings at that point."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,280",
+				"to": "00:04:04,640"
+			},
+			"offsets": {
+				"from": 240280,
+				"to": 244640
+			},
+			"text": " Okay, so you need here more arithmetic operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,640",
+				"to": "00:04:07,640"
+			},
+			"offsets": {
+				"from": 244640,
+				"to": 247640
+			},
+			"text": " Okay, and finally we have the fry."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,640",
+				"to": "00:04:12,040"
+			},
+			"offsets": {
+				"from": 247640,
+				"to": 252040
+			},
+			"text": " Okay, fry is openings again, so lots of openings."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,040",
+				"to": "00:04:14,360"
+			},
+			"offsets": {
+				"from": 252040,
+				"to": 254360
+			},
+			"text": " That's one thing, so every time that you go to us"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,360",
+				"to": "00:04:17,320"
+			},
+			"offsets": {
+				"from": 254360,
+				"to": 257320
+			},
+			"text": " back in the step, you do openings."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,320",
+				"to": "00:04:20,960"
+			},
+			"offsets": {
+				"from": 257320,
+				"to": 260960
+			},
+			"text": " So this is again, posse done here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,960",
+				"to": "00:04:23,720"
+			},
+			"offsets": {
+				"from": 260960,
+				"to": 263720
+			},
+			"text": " And then you have to do polynomial evaluations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,720",
+				"to": "00:04:25,840"
+			},
+			"offsets": {
+				"from": 263720,
+				"to": 265840
+			},
+			"text": " but this is in the cross prime."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,840",
+				"to": "00:04:28,240"
+			},
+			"offsets": {
+				"from": 265840,
+				"to": 268240
+			},
+			"text": " We are, this is in the godly logs prime field."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,240",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 268240,
+				"to": 272000
+			},
+			"text": " Okay, the best way to do a polynomial evaluation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 277000
+			},
+			"text": " is mainly doing an FFT, kind of an FFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:40,960"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 280960
+			},
+			"text": " Okay, so, and finally in the last Stark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,960",
+				"to": "00:04:45,960"
+			},
+			"offsets": {
+				"from": 280960,
+				"to": 285960
+			},
+			"text": " we also need to do an FFT for the final polynomial."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,960",
+				"to": "00:04:50,040"
+			},
+			"offsets": {
+				"from": 285960,
+				"to": 290040
+			},
+			"text": " We need to check the final polynomial of a certain degree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,040",
+				"to": "00:04:52,520"
+			},
+			"offsets": {
+				"from": 290040,
+				"to": 292520
+			},
+			"text": " mainly do an FFT and check that half of the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,520",
+				"to": "00:04:54,520"
+			},
+			"offsets": {
+				"from": 292520,
+				"to": 294520
+			},
+			"text": " or that part of the bits are zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,520",
+				"to": "00:04:59,600"
+			},
+			"offsets": {
+				"from": 294520,
+				"to": 299600
+			},
+			"text": " Okay, so this is a structure of the star."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,600",
+				"to": "00:05:04,080"
+			},
+			"offsets": {
+				"from": 299600,
+				"to": 304080
+			},
+			"text": " So here, I'm gonna jump this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,080",
+				"to": "00:05:09,080"
+			},
+			"offsets": {
+				"from": 304080,
+				"to": 309080
+			},
+			"text": " So here the trick here is how much,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,240",
+				"to": "00:05:13,200"
+			},
+			"offsets": {
+				"from": 310240,
+				"to": 313200
+			},
+			"text": " so how we do this cross prime field operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,200",
+				"to": "00:05:15,680"
+			},
+			"offsets": {
+				"from": 313200,
+				"to": 315680
+			},
+			"text": " This is probably the most simple thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,680",
+				"to": "00:05:19,560"
+			},
+			"offsets": {
+				"from": 315680,
+				"to": 319560
+			},
+			"text": " And the idea is where we are just doing in a knife,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,560",
+				"to": "00:05:21,520"
+			},
+			"offsets": {
+				"from": 319560,
+				"to": 321520
+			},
+			"text": " so in a very knife way, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,520",
+				"to": "00:05:25,080"
+			},
+			"offsets": {
+				"from": 321520,
+				"to": 325080
+			},
+			"text": " So we just, if we are doing an operation like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,080",
+				"to": "00:05:28,840"
+			},
+			"offsets": {
+				"from": 325080,
+				"to": 328840
+			},
+			"text": " like a multiplication, in this case is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,840",
+				"to": "00:05:32,400"
+			},
+			"offsets": {
+				"from": 328840,
+				"to": 332400
+			},
+			"text": " well, we just do a couple of rain checks, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,400",
+				"to": "00:05:37,160"
+			},
+			"offsets": {
+				"from": 332400,
+				"to": 337160
+			},
+			"text": " That means that more or less prime cross,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,160",
+				"to": "00:05:41,120"
+			},
+			"offsets": {
+				"from": 337160,
+				"to": 341120
+			},
+			"text": " so a multiplication with a godly locks multiplication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,120",
+				"to": "00:05:44,880"
+			},
+			"offsets": {
+				"from": 341120,
+				"to": 344880
+			},
+			"text": " it costs 146 constraints, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,880",
+				"to": "00:05:48,920"
+			},
+			"offsets": {
+				"from": 344880,
+				"to": 348920
+			},
+			"text": " The fry, and this is one thing that's specific on the fry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,920",
+				"to": "00:05:51,040"
+			},
+			"offsets": {
+				"from": 348920,
+				"to": 351040
+			},
+			"text": " the godly locks is a very small prime field."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,040",
+				"to": "00:05:54,200"
+			},
+			"offsets": {
+				"from": 351040,
+				"to": 354200
+			},
+			"text": " So once you work with a random number,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,200",
+				"to": "00:05:55,920"
+			},
+			"offsets": {
+				"from": 354200,
+				"to": 355920
+			},
+			"text": " you cannot work with the base field,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,920",
+				"to": "00:05:58,240"
+			},
+			"offsets": {
+				"from": 355920,
+				"to": 358240
+			},
+			"text": " because it's very small, so you need to work"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,240",
+				"to": "00:05:59,360"
+			},
+			"offsets": {
+				"from": 358240,
+				"to": 359360
+			},
+			"text": " with extension fields."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,360",
+				"to": "00:06:01,400"
+			},
+			"offsets": {
+				"from": 359360,
+				"to": 361400
+			},
+			"text": " So you work with extension, I mean, in our case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,400",
+				"to": "00:06:04,560"
+			},
+			"offsets": {
+				"from": 361400,
+				"to": 364560
+			},
+			"text": " we're working with an extension three of the godly locks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,560",
+				"to": "00:06:05,400"
+			},
+			"offsets": {
+				"from": 364560,
+				"to": 365400
+			},
+			"text": " okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,400",
+				"to": "00:06:08,720"
+			},
+			"offsets": {
+				"from": 365400,
+				"to": 368720
+			},
+			"text": " So we're doing a multiplication in the extension field three,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,720",
+				"to": "00:06:13,720"
+			},
+			"offsets": {
+				"from": 368720,
+				"to": 373720
+			},
+			"text": " this is something that's 438 constraints,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,720",
+				"to": "00:06:18,360"
+			},
+			"offsets": {
+				"from": 373720,
+				"to": 378360
+			},
+			"text": " which is a lot, you know, compared to one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,360",
+				"to": "00:06:22,120"
+			},
+			"offsets": {
+				"from": 378360,
+				"to": 382120
+			},
+			"text": " but it's not that much, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,120",
+				"to": "00:06:25,040"
+			},
+			"offsets": {
+				"from": 382120,
+				"to": 385040
+			},
+			"text": " So here the thing is, okay, let's do some numbers"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,040",
+				"to": "00:06:29,720"
+			},
+			"offsets": {
+				"from": 385040,
+				"to": 389720
+			},
+			"text": " of some examples of some stocks how it would look like, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,720",
+				"to": "00:06:34,320"
+			},
+			"offsets": {
+				"from": 389720,
+				"to": 394320
+			},
+			"text": " Well, this is the, for the hash functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,320",
+				"to": "00:06:38,120"
+			},
+			"offsets": {
+				"from": 394320,
+				"to": 398120
+			},
+			"text": " we are using a 16 inputs, so we can do a trees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,120",
+				"to": "00:06:41,720"
+			},
+			"offsets": {
+				"from": 398120,
+				"to": 401720
+			},
+			"text": " that goes at four at four, and then a constraint is just"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,720",
+				"to": "00:06:44,360"
+			},
+			"offsets": {
+				"from": 401720,
+				"to": 404360
+			},
+			"text": " 612 constraints, just doing a single hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,360",
+				"to": "00:06:47,620"
+			},
+			"offsets": {
+				"from": 404360,
+				"to": 407620
+			},
+			"text": " which is quite optimal if we do it in that way, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,620",
+				"to": "00:06:51,400"
+			},
+			"offsets": {
+				"from": 407620,
+				"to": 411400
+			},
+			"text": " So let's put some examples, this is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,400",
+				"to": "00:06:54,480"
+			},
+			"offsets": {
+				"from": 411400,
+				"to": 414480
+			},
+			"text": " these numbers are not exactly, but are similar to the ones"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,480",
+				"to": "00:06:56,880"
+			},
+			"offsets": {
+				"from": 414480,
+				"to": 416880
+			},
+			"text": " that we are using for the CKVM circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,880",
+				"to": "00:06:58,400"
+			},
+			"offsets": {
+				"from": 416880,
+				"to": 418400
+			},
+			"text": " In this case, we are talking about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,400",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 418400,
+				"to": 422000
+			},
+			"text": " let's talk about 1000 polynomials, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,320",
+				"to": "00:07:06,960"
+			},
+			"offsets": {
+				"from": 423320,
+				"to": 426960
+			},
+			"text": " We have, let's do a blow-off factor of two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,960",
+				"to": "00:07:09,320"
+			},
+			"offsets": {
+				"from": 426960,
+				"to": 429320
+			},
+			"text": " that means that we need to do a lot of queries"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,320",
+				"to": "00:07:12,040"
+			},
+			"offsets": {
+				"from": 429320,
+				"to": 432040
+			},
+			"text": " in the, in the, in the, in the SNAARC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,040",
+				"to": "00:07:15,240"
+			},
+			"offsets": {
+				"from": 432040,
+				"to": 435240
+			},
+			"text": " in this case is 128 queries, this is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,240",
+				"to": "00:07:16,880"
+			},
+			"offsets": {
+				"from": 435240,
+				"to": 436880
+			},
+			"text": " we have that, this is important,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,880",
+				"to": "00:07:18,560"
+			},
+			"offsets": {
+				"from": 436880,
+				"to": 438560
+			},
+			"text": " this blow-off factor of two, because if you go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,560",
+				"to": "00:07:20,240"
+			},
+			"offsets": {
+				"from": 438560,
+				"to": 440240
+			},
+			"text": " for example, blow-off factor of four,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,240",
+				"to": "00:07:23,680"
+			},
+			"offsets": {
+				"from": 440240,
+				"to": 443680
+			},
+			"text": " that means that we are doubling the proving time, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,680",
+				"to": "00:07:26,040"
+			},
+			"offsets": {
+				"from": 443680,
+				"to": 446040
+			},
+			"text": " So we need to go to the minimum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,040",
+				"to": "00:07:28,840"
+			},
+			"offsets": {
+				"from": 446040,
+				"to": 448840
+			},
+			"text": " especially when we have so many polynomials here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,840",
+				"to": "00:07:31,840"
+			},
+			"offsets": {
+				"from": 448840,
+				"to": 451840
+			},
+			"text": " so that's why we use a blow-off factor of two, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,840",
+				"to": "00:07:34,680"
+			},
+			"offsets": {
+				"from": 451840,
+				"to": 454680
+			},
+			"text": " So let's talk with sites of polynomials of two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,680",
+				"to": "00:07:36,240"
+			},
+			"offsets": {
+				"from": 454680,
+				"to": 456240
+			},
+			"text": " two, 24 after the blow-off factor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,240",
+				"to": "00:07:39,440"
+			},
+			"offsets": {
+				"from": 456240,
+				"to": 459440
+			},
+			"text": " so two, two, two, two, two, and 24, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,440",
+				"to": "00:07:41,200"
+			},
+			"offsets": {
+				"from": 459440,
+				"to": 461200
+			},
+			"text": " And of course, we have constraints,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,200",
+				"to": "00:07:42,560"
+			},
+			"offsets": {
+				"from": 461200,
+				"to": 462560
+			},
+			"text": " let's assume that the number of constraints"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,560",
+				"to": "00:07:44,480"
+			},
+			"offsets": {
+				"from": 462560,
+				"to": 464480
+			},
+			"text": " is more or less the same number of polynomials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,480",
+				"to": "00:07:48,400"
+			},
+			"offsets": {
+				"from": 464480,
+				"to": 468400
+			},
+			"text": " this is just, just a subjection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,400",
+				"to": "00:07:50,240"
+			},
+			"offsets": {
+				"from": 468400,
+				"to": 470240
+			},
+			"text": " and then we have in each constraint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,240",
+				"to": "00:07:52,720"
+			},
+			"offsets": {
+				"from": 470240,
+				"to": 472720
+			},
+			"text": " we have like two multiplications for each constraint, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,720",
+				"to": "00:07:54,400"
+			},
+			"offsets": {
+				"from": 472720,
+				"to": 474400
+			},
+			"text": " These numbers of course depend on the circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,400",
+				"to": "00:07:55,720"
+			},
+			"offsets": {
+				"from": 474400,
+				"to": 475720
+			},
+			"text": " and depend what you are doing and so on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,720",
+				"to": "00:07:57,440"
+			},
+			"offsets": {
+				"from": 475720,
+				"to": 477440
+			},
+			"text": " but this is just, would say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,440",
+				"to": "00:08:01,680"
+			},
+			"offsets": {
+				"from": 477440,
+				"to": 481680
+			},
+			"text": " would be a good example of a ZKVM circuit like, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,680",
+				"to": "00:08:04,680"
+			},
+			"offsets": {
+				"from": 481680,
+				"to": 484680
+			},
+			"text": " It's a big circuit, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,680",
+				"to": "00:08:07,280"
+			},
+			"offsets": {
+				"from": 484680,
+				"to": 487280
+			},
+			"text": " So for this is, okay, here let's see"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,280",
+				"to": "00:08:12,240"
+			},
+			"offsets": {
+				"from": 487280,
+				"to": 492240
+			},
+			"text": " how much it would cost this in number of constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,240",
+				"to": "00:08:15,080"
+			},
+			"offsets": {
+				"from": 492240,
+				"to": 495080
+			},
+			"text": " Here of course, the transcript is not that much,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,080",
+				"to": "00:08:17,880"
+			},
+			"offsets": {
+				"from": 495080,
+				"to": 497880
+			},
+			"text": " the checking the polynomial constraints,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,880",
+				"to": "00:08:20,120"
+			},
+			"offsets": {
+				"from": 497880,
+				"to": 500120
+			},
+			"text": " the random point, well, it's,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,120",
+				"to": "00:08:24,120"
+			},
+			"offsets": {
+				"from": 500120,
+				"to": 504120
+			},
+			"text": " start to be important number, but not that much."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,120",
+				"to": "00:08:26,440"
+			},
+			"offsets": {
+				"from": 504120,
+				"to": 506440
+			},
+			"text": " The number of queries, we have so many polynomials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,440",
+				"to": "00:08:28,240"
+			},
+			"offsets": {
+				"from": 506440,
+				"to": 508240
+			},
+			"text": " so we need, there are so many polynomials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,240",
+				"to": "00:08:30,760"
+			},
+			"offsets": {
+				"from": 508240,
+				"to": 510760
+			},
+			"text": " so many what we do is a linear hash of the calculations"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,760",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 510760,
+				"to": 512000
+			},
+			"text": " and then do the mercilites,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:34,720"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 514720
+			},
+			"text": " but this is just for the queries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,720",
+				"to": "00:08:36,600"
+			},
+			"offsets": {
+				"from": 514720,
+				"to": 516600
+			},
+			"text": " the first query is not in the fry yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,600",
+				"to": "00:08:39,240"
+			},
+			"offsets": {
+				"from": 516600,
+				"to": 519240
+			},
+			"text": " but for the first queries of all the polynomials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,240",
+				"to": "00:08:41,560"
+			},
+			"offsets": {
+				"from": 519240,
+				"to": 521560
+			},
+			"text": " this is our dot, and here is the big,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,560",
+				"to": "00:08:42,880"
+			},
+			"offsets": {
+				"from": 521560,
+				"to": 522880
+			},
+			"text": " probably the biggest part, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,880",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 522880,
+				"to": 525000
+			},
+			"text": " The biggest part is when we need to compute"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 530000
+			},
+			"text": " this opening polynomial, there are so many polynomials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:53,720"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 533720
+			},
+			"text": " we need to do so many multiplications out of the field,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,720",
+				"to": "00:08:56,680"
+			},
+			"offsets": {
+				"from": 533720,
+				"to": 536680
+			},
+			"text": " that this is a number that grows a lot, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,680",
+				"to": "00:09:00,680"
+			},
+			"offsets": {
+				"from": 536680,
+				"to": 540680
+			},
+			"text": " And here is the big part of the proof is this 112 million."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,680",
+				"to": "00:09:03,360"
+			},
+			"offsets": {
+				"from": 540680,
+				"to": 543360
+			},
+			"text": " What else we have, we have the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,360",
+				"to": "00:09:05,040"
+			},
+			"offsets": {
+				"from": 543360,
+				"to": 545040
+			},
+			"text": " well, this is the queries of the fry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,040",
+				"to": "00:09:09,040"
+			},
+			"offsets": {
+				"from": 545040,
+				"to": 549040
+			},
+			"text": " here are the FFTs, the polynomial evaluations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,040",
+				"to": "00:09:11,320"
+			},
+			"offsets": {
+				"from": 549040,
+				"to": 551320
+			},
+			"text": " the entities to going deep in the fry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,320",
+				"to": "00:09:15,520"
+			},
+			"offsets": {
+				"from": 551320,
+				"to": 555520
+			},
+			"text": " and the final polynomial evaluation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,520",
+				"to": "00:09:18,440"
+			},
+			"offsets": {
+				"from": 555520,
+				"to": 558440
+			},
+			"text": " So this gives us something that's huge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,440",
+				"to": "00:09:23,440"
+			},
+			"offsets": {
+				"from": 558440,
+				"to": 563440
+			},
+			"text": " it's 127 million constraints, but it's doable."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,440",
+				"to": "00:09:25,760"
+			},
+			"offsets": {
+				"from": 563440,
+				"to": 565760
+			},
+			"text": " This is a circuit, that's for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,760",
+				"to": "00:09:27,520"
+			},
+			"offsets": {
+				"from": 565760,
+				"to": 567520
+			},
+			"text": " the Hermes one circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,520",
+				"to": "00:09:30,320"
+			},
+			"offsets": {
+				"from": 567520,
+				"to": 570320
+			},
+			"text": " had this number of constraints, more or less."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,320",
+				"to": "00:09:35,320"
+			},
+			"offsets": {
+				"from": 570320,
+				"to": 575320
+			},
+			"text": " So, and you can do that in about 100 seconds in a big CPU,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,320",
+				"to": "00:09:36,960"
+			},
+			"offsets": {
+				"from": 575320,
+				"to": 576960
+			},
+			"text": " okay, so I'm gonna drop it to snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,960",
+				"to": "00:09:39,200"
+			},
+			"offsets": {
+				"from": 576960,
+				"to": 579200
+			},
+			"text": " So that's something that's doable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,200",
+				"to": "00:09:42,440"
+			},
+			"offsets": {
+				"from": 579200,
+				"to": 582440
+			},
+			"text": " but you know, it's gonna be a big circuit, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,440",
+				"to": "00:09:44,720"
+			},
+			"offsets": {
+				"from": 582440,
+				"to": 584720
+			},
+			"text": " The thing is that with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,720",
+				"to": "00:09:49,120"
+			},
+			"offsets": {
+				"from": 584720,
+				"to": 589120
+			},
+			"text": " what we can do, the technique that we are using"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,120",
+				"to": "00:09:50,880"
+			},
+			"offsets": {
+				"from": 589120,
+				"to": 590880
+			},
+			"text": " is that instead of having a snark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,880",
+				"to": "00:09:53,200"
+			},
+			"offsets": {
+				"from": 590880,
+				"to": 593200
+			},
+			"text": " so we have this big circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,200",
+				"to": "00:09:56,560"
+			},
+			"offsets": {
+				"from": 593200,
+				"to": 596560
+			},
+			"text": " so in a state of this proving directly with a snark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,560",
+				"to": "00:09:58,200"
+			},
+			"offsets": {
+				"from": 596560,
+				"to": 598200
+			},
+			"text": " what you can do is you can do different level"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,200",
+				"to": "00:10:00,360"
+			},
+			"offsets": {
+				"from": 598200,
+				"to": 600360
+			},
+			"text": " of different levels of recursion."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,360",
+				"to": "00:10:03,440"
+			},
+			"offsets": {
+				"from": 600360,
+				"to": 603440
+			},
+			"text": " So you can build a stark that verifies another stark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,440",
+				"to": "00:10:05,720"
+			},
+			"offsets": {
+				"from": 603440,
+				"to": 605720
+			},
+			"text": " so you get a proof that's much smaller,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,720",
+				"to": "00:10:07,840"
+			},
+			"offsets": {
+				"from": 605720,
+				"to": 607840
+			},
+			"text": " maybe you can do repeat that again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,840",
+				"to": "00:10:10,520"
+			},
+			"offsets": {
+				"from": 607840,
+				"to": 610520
+			},
+			"text": " you do another stark that verifies the stark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,520",
+				"to": "00:10:12,480"
+			},
+			"offsets": {
+				"from": 610520,
+				"to": 612480
+			},
+			"text": " so you get even a smaller proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,480",
+				"to": "00:10:16,840"
+			},
+			"offsets": {
+				"from": 612480,
+				"to": 616840
+			},
+			"text": " and at the end, you can have a final proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,840",
+				"to": "00:10:21,120"
+			},
+			"offsets": {
+				"from": 616840,
+				"to": 621120
+			},
+			"text": " that can be much, much, much, much smaller, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,120",
+				"to": "00:10:24,640"
+			},
+			"offsets": {
+				"from": 621120,
+				"to": 624640
+			},
+			"text": " And this is actually more or less what we are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,640",
+				"to": "00:10:28,160"
+			},
+			"offsets": {
+				"from": 624640,
+				"to": 628160
+			},
+			"text": " Here I put you the real numbers of the current structure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,160",
+				"to": "00:10:29,520"
+			},
+			"offsets": {
+				"from": 628160,
+				"to": 629520
+			},
+			"text": " this is a structure of the prober"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,520",
+				"to": "00:10:32,560"
+			},
+			"offsets": {
+				"from": 629520,
+				"to": 632560
+			},
+			"text": " that we are running right now in the public test net, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,560",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 632560,
+				"to": 635000
+			},
+			"text": " So this is three steps, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 638000
+			},
+			"text": " The first step is, this is number of polynomials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:39,360"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 639360
+			},
+			"text": " but you need to call that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,360",
+				"to": "00:10:40,840"
+			},
+			"offsets": {
+				"from": 639360,
+				"to": 640840
+			},
+			"text": " this is about 1000 polynomials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,840",
+				"to": "00:10:44,040"
+			},
+			"offsets": {
+				"from": 640840,
+				"to": 644040
+			},
+			"text": " but then we have 43 blockups, one permutation check,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,040",
+				"to": "00:10:45,920"
+			},
+			"offsets": {
+				"from": 644040,
+				"to": 645920
+			},
+			"text": " but we have different properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,920",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 645920,
+				"to": 648000
+			},
+			"text": " so this is a big circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:49,440"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 649440
+			},
+			"text": " we are working with two to 23,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,440",
+				"to": "00:10:50,640"
+			},
+			"offsets": {
+				"from": 649440,
+				"to": 650640
+			},
+			"text": " blow a factor of two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,640",
+				"to": "00:10:52,040"
+			},
+			"offsets": {
+				"from": 650640,
+				"to": 652040
+			},
+			"text": " here you see the structure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,040",
+				"to": "00:10:54,680"
+			},
+			"offsets": {
+				"from": 652040,
+				"to": 654680
+			},
+			"text": " we do the way that with the structure we are of the fry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,680",
+				"to": "00:10:56,720"
+			},
+			"offsets": {
+				"from": 654680,
+				"to": 656720
+			},
+			"text": " so we are building the fry, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,720",
+				"to": "00:11:00,240"
+			},
+			"offsets": {
+				"from": 656720,
+				"to": 660240
+			},
+			"text": " So this goes to another proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,240",
+				"to": "00:11:02,520"
+			},
+			"offsets": {
+				"from": 660240,
+				"to": 662520
+			},
+			"text": " second proof is a proof that's much as more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,520",
+				"to": "00:11:07,520"
+			},
+			"offsets": {
+				"from": 662520,
+				"to": 667520
+			},
+			"text": " it's just 20 polynomials with, sorry, 12 polynomials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,520",
+				"to": "00:11:09,400"
+			},
+			"offsets": {
+				"from": 667520,
+				"to": 669400
+			},
+			"text": " 20 of them are constant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,400",
+				"to": "00:11:12,080"
+			},
+			"offsets": {
+				"from": 669400,
+				"to": 672080
+			},
+			"text": " 10 intermediary polynomials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,080",
+				"to": "00:11:14,560"
+			},
+			"offsets": {
+				"from": 672080,
+				"to": 674560
+			},
+			"text": " no plocups, just one connection check,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,560",
+				"to": "00:11:19,200"
+			},
+			"offsets": {
+				"from": 674560,
+				"to": 679200
+			},
+			"text": " and 23 entities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,200",
+				"to": "00:11:21,200"
+			},
+			"offsets": {
+				"from": 679200,
+				"to": 681200
+			},
+			"text": " and then we do go to the third one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,200",
+				"to": "00:11:23,680"
+			},
+			"offsets": {
+				"from": 681200,
+				"to": 683680
+			},
+			"text": " this is also, you see here is the GL,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,680",
+				"to": "00:11:26,760"
+			},
+			"offsets": {
+				"from": 683680,
+				"to": 686760
+			},
+			"text": " GL means godly locks, this is a start,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,760",
+				"to": "00:11:28,280"
+			},
+			"offsets": {
+				"from": 686760,
+				"to": 688280
+			},
+			"text": " we have godly locks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,280",
+				"to": "00:11:31,320"
+			},
+			"offsets": {
+				"from": 688280,
+				"to": 691320
+			},
+			"text": " but the last one is built with VN 128, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,320",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 691320,
+				"to": 693000
+			},
+			"text": " And the last one is just as more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:35,880"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 695880
+			},
+			"text": " it's just 20, it has only 12 polynomials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,880",
+				"to": "00:11:40,880"
+			},
+			"offsets": {
+				"from": 695880,
+				"to": 700880
+			},
+			"text": " but the size of the polynomial is just 24,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,880",
+				"to": "00:11:47,440"
+			},
+			"offsets": {
+				"from": 700880,
+				"to": 707440
+			},
+			"text": " so two to 24, it's 22 and the blow factor of four,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,440",
+				"to": "00:11:50,360"
+			},
+			"offsets": {
+				"from": 707440,
+				"to": 710360
+			},
+			"text": " in this case, we could do it smaller, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,360",
+				"to": "00:11:52,760"
+			},
+			"offsets": {
+				"from": 710360,
+				"to": 712760
+			},
+			"text": " But at the end, here is a compromise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,760",
+				"to": "00:11:54,320"
+			},
+			"offsets": {
+				"from": 712760,
+				"to": 714320
+			},
+			"text": " sometimes you get it smaller,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,320",
+				"to": "00:11:57,680"
+			},
+			"offsets": {
+				"from": 714320,
+				"to": 717680
+			},
+			"text": " but then the proving time of this smaller is bigger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,680",
+				"to": "00:12:00,560"
+			},
+			"offsets": {
+				"from": 717680,
+				"to": 720560
+			},
+			"text": " so at the end it's better maybe to have a bigger"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,560",
+				"to": "00:12:04,520"
+			},
+			"offsets": {
+				"from": 720560,
+				"to": 724520
+			},
+			"text": " last circuit, that it's a bigger last circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,520",
+				"to": "00:12:08,440"
+			},
+			"offsets": {
+				"from": 724520,
+				"to": 728440
+			},
+			"text": " than just squeezing to the end"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,440",
+				"to": "00:12:12,440"
+			},
+			"offsets": {
+				"from": 728440,
+				"to": 732440
+			},
+			"text": " through the smaller and keeping bigger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,440",
+				"to": "00:12:14,640"
+			},
+			"offsets": {
+				"from": 732440,
+				"to": 734640
+			},
+			"text": " so these are balances and checking"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,640",
+				"to": "00:12:18,520"
+			},
+			"offsets": {
+				"from": 734640,
+				"to": 738520
+			},
+			"text": " what's the best structure on that, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,520",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 738520,
+				"to": 741000
+			},
+			"text": " So if we go to more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:23,200"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 743200
+			},
+			"text": " something that we can go far,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,200",
+				"to": "00:12:26,280"
+			},
+			"offsets": {
+				"from": 743200,
+				"to": 746280
+			},
+			"text": " that we can squeeze more, the last circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,280",
+				"to": "00:12:30,760"
+			},
+			"offsets": {
+				"from": 746280,
+				"to": 750760
+			},
+			"text": " you can do well, five, let me just,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,760",
+				"to": "00:12:33,240"
+			},
+			"offsets": {
+				"from": 750760,
+				"to": 753240
+			},
+			"text": " with something that's 60 polynomials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,240",
+				"to": "00:12:38,240"
+			},
+			"offsets": {
+				"from": 753240,
+				"to": 758240
+			},
+			"text": " with a blow factor of 16, so two to a four,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,240",
+				"to": "00:12:43,240"
+			},
+			"offsets": {
+				"from": 758240,
+				"to": 763240
+			},
+			"text": " and with this you just require 16 queries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,240",
+				"to": "00:12:50,600"
+			},
+			"offsets": {
+				"from": 763240,
+				"to": 770600
+			},
+			"text": " which is to having the same 128 bits security,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,440",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 771440,
+				"to": 776000
+			},
+			"text": " you can go polynomial after a blow factor of two to a 24,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:12:57,880"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 777880
+			},
+			"text": " so it would be a polynomial of two to a 20,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,880",
+				"to": "00:12:59,720"
+			},
+			"offsets": {
+				"from": 777880,
+				"to": 779720
+			},
+			"text": " that goes to two to a 24,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,720",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 779720,
+				"to": 782000
+			},
+			"text": " and yeah, this is our number of constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:04,880"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 784880
+			},
+			"text": " And if we do the numbers with this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,880",
+				"to": "00:13:07,640"
+			},
+			"offsets": {
+				"from": 784880,
+				"to": 787640
+			},
+			"text": " see that the numbers are getting much, much, much smaller."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,640",
+				"to": "00:13:10,320"
+			},
+			"offsets": {
+				"from": 787640,
+				"to": 790320
+			},
+			"text": " At the end, if we add them all together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,320",
+				"to": "00:13:13,600"
+			},
+			"offsets": {
+				"from": 790320,
+				"to": 793600
+			},
+			"text": " we can have something that's below two million constraints,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,600",
+				"to": "00:13:15,200"
+			},
+			"offsets": {
+				"from": 793600,
+				"to": 795200
+			},
+			"text": " and this is something that can be built"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,200",
+				"to": "00:13:16,280"
+			},
+			"offsets": {
+				"from": 795200,
+				"to": 796280
+			},
+			"text": " in less than two seconds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,280",
+				"to": "00:13:19,520"
+			},
+			"offsets": {
+				"from": 796280,
+				"to": 799520
+			},
+			"text": " it's really quite insignificant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,520",
+				"to": "00:13:24,520"
+			},
+			"offsets": {
+				"from": 799520,
+				"to": 804520
+			},
+			"text": " compared to the proving time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,520",
+				"to": "00:13:29,760"
+			},
+			"offsets": {
+				"from": 804520,
+				"to": 809760
+			},
+			"text": " So this is very much the conclusion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,760",
+				"to": "00:13:31,840"
+			},
+			"offsets": {
+				"from": 809760,
+				"to": 811840
+			},
+			"text": " I just put this slide from the ZKBM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,840",
+				"to": "00:13:35,440"
+			},
+			"offsets": {
+				"from": 811840,
+				"to": 815440
+			},
+			"text": " but this is the full, just to explain you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,440",
+				"to": "00:13:39,760"
+			},
+			"offsets": {
+				"from": 815440,
+				"to": 819760
+			},
+			"text": " what are the current times of the full ZKBM prover?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,760",
+				"to": "00:13:44,760"
+			},
+			"offsets": {
+				"from": 819760,
+				"to": 824760
+			},
+			"text": " Okay, so currently in a big machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,640",
+				"to": "00:13:49,880"
+			},
+			"offsets": {
+				"from": 825640,
+				"to": 829880
+			},
+			"text": " this is a 192 course machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,880",
+				"to": "00:13:54,880"
+			},
+			"offsets": {
+				"from": 829880,
+				"to": 834880
+			},
+			"text": " it's $10 per hour machine, more or less in AWS, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,880",
+				"to": "00:14:01,240"
+			},
+			"offsets": {
+				"from": 834880,
+				"to": 841240
+			},
+			"text": " This proof, it takes nine minutes, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,240",
+				"to": "00:14:05,560"
+			},
+			"offsets": {
+				"from": 841240,
+				"to": 845560
+			},
+			"text": " We can process four million gas in this proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,560",
+				"to": "00:14:07,720"
+			},
+			"offsets": {
+				"from": 845560,
+				"to": 847720
+			},
+			"text": " so this would be equivalent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,720",
+				"to": "00:14:09,040"
+			},
+			"offsets": {
+				"from": 847720,
+				"to": 849040
+			},
+			"text": " more or less a cost per transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,040",
+				"to": "00:14:12,920"
+			},
+			"offsets": {
+				"from": 849040,
+				"to": 852920
+			},
+			"text": " will be less than a cent, so it's zero, seven cents per dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,920",
+				"to": "00:14:16,360"
+			},
+			"offsets": {
+				"from": 852920,
+				"to": 856360
+			},
+			"text": " But you see that this is actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,360",
+				"to": "00:14:18,280"
+			},
+			"offsets": {
+				"from": 856360,
+				"to": 858280
+			},
+			"text": " it's a proof that's actually running,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,280",
+				"to": "00:14:19,680"
+			},
+			"offsets": {
+				"from": 858280,
+				"to": 859680
+			},
+			"text": " public testnet is running,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,680",
+				"to": "00:14:23,080"
+			},
+			"offsets": {
+				"from": 859680,
+				"to": 863080
+			},
+			"text": " so you can see the code and see how the prover works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,080",
+				"to": "00:14:27,760"
+			},
+			"offsets": {
+				"from": 863080,
+				"to": 867760
+			},
+			"text": " and when you can build your proofs in there, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,760",
+				"to": "00:14:30,320"
+			},
+			"offsets": {
+				"from": 867760,
+				"to": 870320
+			},
+			"text": " This is just a CPU prover,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,320",
+				"to": "00:14:34,640"
+			},
+			"offsets": {
+				"from": 870320,
+				"to": 874640
+			},
+			"text": " and here there is lots of margins to improve."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,640",
+				"to": "00:14:39,640"
+			},
+			"offsets": {
+				"from": 874640,
+				"to": 879640
+			},
+			"text": " Here from GPU, we expect maybe one order of magnitude faster,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,800",
+				"to": "00:14:44,800"
+			},
+			"offsets": {
+				"from": 879800,
+				"to": 884800
+			},
+			"text": " and FPGAs, new CPUs are performing much better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,800",
+				"to": "00:14:47,880"
+			},
+			"offsets": {
+				"from": 884800,
+				"to": 887880
+			},
+			"text": " yeah, there are a lot of things that are happening,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,880",
+				"to": "00:14:50,920"
+			},
+			"offsets": {
+				"from": 887880,
+				"to": 890920
+			},
+			"text": " but this is just a, have you on some numbers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,920",
+				"to": "00:14:54,880"
+			},
+			"offsets": {
+				"from": 890920,
+				"to": 894880
+			},
+			"text": " some idea of where the proving times are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,880",
+				"to": "00:14:57,080"
+			},
+			"offsets": {
+				"from": 894880,
+				"to": 897080
+			},
+			"text": " and the recursion."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,080",
+				"to": "00:14:58,320"
+			},
+			"offsets": {
+				"from": 897080,
+				"to": 898320
+			},
+			"text": " Another thing that's not here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,320",
+				"to": "00:15:01,080"
+			},
+			"offsets": {
+				"from": 898320,
+				"to": 901080
+			},
+			"text": " but somebody already put it in before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,080",
+				"to": "00:15:04,360"
+			},
+			"offsets": {
+				"from": 901080,
+				"to": 904360
+			},
+			"text": " and is that, verifying a growth 16,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,360",
+				"to": "00:15:09,360"
+			},
+			"offsets": {
+				"from": 904360,
+				"to": 909360
+			},
+			"text": " in EVM this is 200K, around 200K gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,560",
+				"to": "00:15:11,480"
+			},
+			"offsets": {
+				"from": 909560,
+				"to": 911480
+			},
+			"text": " which is probably the cheapest way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,480",
+				"to": "00:15:13,800"
+			},
+			"offsets": {
+				"from": 911480,
+				"to": 913800
+			},
+			"text": " the cheapest thing that you can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,800",
+				"to": "00:15:16,360"
+			},
+			"offsets": {
+				"from": 913800,
+				"to": 916360
+			},
+			"text": " Plonk is 300K, which is not that much,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,360",
+				"to": "00:15:17,560"
+			},
+			"offsets": {
+				"from": 916360,
+				"to": 917560
+			},
+			"text": " you save the torso strap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,560",
+				"to": "00:15:19,840"
+			},
+			"offsets": {
+				"from": 917560,
+				"to": 919840
+			},
+			"text": " so probably it's gonna be the options"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,840",
+				"to": "00:15:21,680"
+			},
+			"offsets": {
+				"from": 919840,
+				"to": 921680
+			},
+			"text": " that we will put it in a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,680",
+				"to": "00:15:24,120"
+			},
+			"offsets": {
+				"from": 921680,
+				"to": 924120
+			},
+			"text": " And yeah, that's mainly my presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,120",
+				"to": "00:15:26,080"
+			},
+			"offsets": {
+				"from": 924120,
+				"to": 926080
+			},
+			"text": " I don't know if there are questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,080",
+				"to": "00:15:26,920"
+			},
+			"offsets": {
+				"from": 926080,
+				"to": 926920
+			},
+			"text": " - Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,920",
+				"to": "00:15:30,080"
+			},
+			"offsets": {
+				"from": 926920,
+				"to": 930080
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,080",
+				"to": "00:15:32,920"
+			},
+			"offsets": {
+				"from": 930080,
+				"to": 932920
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,920",
+				"to": "00:15:36,920"
+			},
+			"offsets": {
+				"from": 932920,
+				"to": 936920
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,2199 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 21000
+			},
+			"text": " You're tired?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 24000
+			},
+			"text": " Okay, I'll try to keep it short."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 29000
+			},
+			"text": " I'd rather give a high level of view about what we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 33000
+			},
+			"text": " So you heard a lot about our open problems we have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 38000
+			},
+			"text": " especially scalability, if I'm talking about this today already."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 46000
+			},
+			"text": " You might know that, for example, Visa is just about 50,000 transactions peak per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 49000
+			},
+			"text": " And we don't come close yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 53000
+			},
+			"text": " Transaction penalty is a nice property."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 60000
+			},
+			"text": " And many are worried about transaction privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 66000
+			},
+			"text": " So we thought about, could we solve these problems if we change the model?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 72000
+			},
+			"text": " If we rather have transactions in private between the participants who are involved in transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 77000
+			},
+			"text": " but do not put them on the blockchain, not to the public latch in."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 87000
+			},
+			"text": " But rather use the blockchain to resolve disputes and to take things in a screw."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 90000
+			},
+			"text": " So that's what a RAID network tries to inform."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 92000
+			},
+			"text": " It's an off-chain asset transfer network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 97000
+			},
+			"text": " It's quite similar to the Bitcoin Lightning Network proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 100000
+			},
+			"text": " And this is work in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 106000
+			},
+			"text": " The features shall be to be token-agnostic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 112000
+			},
+			"text": " It should work with any token which supports the standardized token API, which we totally defined a while ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 115000
+			},
+			"text": " It should support instant asset transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 119000
+			},
+			"text": " So you should not wait for confirmations for say five blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 121000
+			},
+			"text": " But they should really be instant."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 124000
+			},
+			"text": " It should support micro payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 129000
+			},
+			"text": " This only works if the transaction fees are way lower than the values you want to transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 138000
+			},
+			"text": " And it should really scale out to basically an unlimited number of grants per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 143000
+			},
+			"text": " And we're looking for transaction privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 146000
+			},
+			"text": " So how does this work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 150000
+			},
+			"text": " In order to understand this, you need to really understand how a payment channel works."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 153000
+			},
+			"text": " So I tried to explain this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 161000
+			},
+			"text": " In the payment channel, you would use that if one party says Alice wants to pay Bob multiple times."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 168000
+			},
+			"text": " She doesn't want to see all of those transactions on the blockchain, but rather opens a payment channel on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 177000
+			},
+			"text": " And the payment channel would know the address of the receiver that would be Bob and the address of the initiator that would be Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 182000
+			},
+			"text": " And also it would take a screw and deposit from Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 188000
+			},
+			"text": " Alice then can do is whenever Bob sells something to her, she can sign an updated balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 194000
+			},
+			"text": " So the first balance might be I signed one, say, Gef coin for Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 199000
+			},
+			"text": " And later in the day, she would sign a second Gef coin to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 206000
+			},
+			"text": " Now Bob can at any time go to the blockchain and claim to Gef coins because Alice signed them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 215000
+			},
+			"text": " And he would make sure that he would not accept signed balances which are higher than the deposit which he saw on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 227000
+			},
+			"text": " But otherwise he can always be sure if he gets off chain, a transaction that he will be able to claim this on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 229000
+			},
+			"text": " Did you understand this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 233000
+			},
+			"text": " Because that's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 237000
+			},
+			"text": " Okay, so this is also simple payment channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 239000
+			},
+			"text": " We also can have bidirectional payment channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 249000
+			},
+			"text": " The nice feature about bidirectional payment channels is that say if you have 10, if both parties deposit 10 coins on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 254000
+			},
+			"text": " they could have updated balances which are higher than 10."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 266000
+			},
+			"text": " For example, if Alice sent 9 coins to Bob, Bob sent 5 coins to Alice, then she could still send another 6 coins to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 271000
+			},
+			"text": " So the balance that she would sign would be 16."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 276000
+			},
+			"text": " So if you have transfers which give in both directions, you can have a long lasting channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 281000
+			},
+			"text": " You can send things back and forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 284000
+			},
+			"text": " And so again, you can settle this on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 289000
+			},
+			"text": " Any of the parties of Alice or Bob can both go on chain and settle this anytime."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 296000
+			},
+			"text": " So the requirement to settle being able to settle this at any time is because one of the parties could vanish."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 301000
+			},
+			"text": " They could not respond anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 305000
+			},
+			"text": " So if we have bidirectional channels, we can chain channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 311000
+			},
+			"text": " So Alice wants to pay Dave, but does not yet have a payment channel to Dave."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 316000
+			},
+			"text": " Then she could ask Bob and Charlie to help to transfer payments to Dave."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 320000
+			},
+			"text": " So the question is why wouldn't she have a payment channel to save your first place?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 323000
+			},
+			"text": " That is, you remember we have to deposit something on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 329000
+			},
+			"text": " So if you walk through the water and have to do multiple payments or many payments every day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 334000
+			},
+			"text": " then you don't want to have a payment channel with every receiver of the payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 337000
+			},
+			"text": " So therefore she can ask Bob and Charlie to cooperate."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 340000
+			},
+			"text": " They might do so if you offer them a small fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 347000
+			},
+			"text": " And how do we solve that Bob or Charlie do not run away with the transfer which we are assigned by Alice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 350000
+			},
+			"text": " but she should actually go to Dave."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 354000
+			},
+			"text": " We do that by using a technique called hash log."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 362000
+			},
+			"text": " A hash log is when Alice comes up with a random secret which you just not yet share with the other participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 373000
+			},
+			"text": " And this smart contract on chain will only settle the transfer if one also provides the secret for the hash log."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 376000
+			},
+			"text": " The hash log is the hash of the secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 381000
+			},
+			"text": " So you can publish the hash log, but you will not be able to compute the secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 386000
+			},
+			"text": " So now Alice would sign the transfer to Bob, which is hash log and Bob to Charlie,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 387000
+			},
+			"text": " which is hash log."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 391000
+			},
+			"text": " So it is a small fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 396000
+			},
+			"text": " And finally Dave might get a signed signature by Charlie, which is still hash log."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 403000
+			},
+			"text": " So none of them can claim anything on chain from these transfers, but then Dave could tell Alice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 409000
+			},
+			"text": " hey, I received a signed balance update from Dave, which is hash log, which you tell me the secret,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 414000
+			},
+			"text": " so I can show you the webpage or whatever Alice wants to buy from Dave."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 418000
+			},
+			"text": " And Alice will eventually reveal the secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 427000
+			},
+			"text": " And now Dave can claim those funds on chain by providing the signed balance update from Charlie,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 437000
+			},
+			"text": " which is hash log, but he would know the secret, so the smart contract would hash the secret and check if that's the same as the hash log."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 443000
+			},
+			"text": " And then Dave can claim the updated balance transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 455000
+			},
+			"text": " And then it's on chain, Charlie and Bob at this time would learn also the secret and also could claim the updated balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 458000
+			},
+			"text": " So there's no trust involved so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 471000
+			},
+			"text": " And all those transactions have been off chain and they probably will stay off chain except if one of these parties becomes unresponsive."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 476000
+			},
+			"text": " So if you have chain channels, we can think about a network of channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 484000
+			},
+			"text": " If you have a contract which lists all the payment channels, then we can derive a network graph from all the payment channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 496000
+			},
+			"text": " So we can basically find for any two participants around through the network that would allow us to transfer values through the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 501000
+			},
+			"text": " And as we learned, those transfers cancel out on average."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 505000
+			},
+			"text": " Or, okay, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 511000
+			},
+			"text": " And on chain settlement is infrequent because there's no need to settle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 516000
+			},
+			"text": " except if someone is uncooperative and for example does not provide the secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 523000
+			},
+			"text": " And so those transactions which are off chain, they're cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 529000
+			},
+			"text": " They're instant because you don't have to wait for any block confirmations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 533000
+			},
+			"text": " And we still have no counterparty risk. So this really works."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 543000
+			},
+			"text": " And maybe something important to note is there might be highly connected hubs if that's implemented because highly connected hubs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 548000
+			},
+			"text": " they offer the advantage that you have shorter routes between two participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 555000
+			},
+			"text": " And there's a motivation to run these hubs because you can earn transaction fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 566000
+			},
+			"text": " So in this decentralized network, there might be some points of centralization but which are not necessary and they will have a lot of competition."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 572000
+			},
+			"text": " Now if we have this in place, then something you get basically for free is decentralized exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 580000
+			},
+			"text": " How that works is pre-creation is that you have two different assets and payment channels for two different assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 591000
+			},
+			"text": " And then you could for example broadcast an exchange intent say I offer 10 of SSA and want to exchange this for three of S&B."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 598000
+			},
+			"text": " And then somehow this would be broadcasted to those interested in this kind of exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 608000
+			},
+			"text": " And the initial initiator might get some offers to exchanges and would acknowledge the other party that one of those parties that agrees."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 612000
+			},
+			"text": " And then what you would do is you would have two transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 619000
+			},
+			"text": " One of SSA's A, say from Alice today, and one from Dave to Alice for S&B."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 622000
+			},
+			"text": " And they would use the same hash log."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 631000
+			},
+			"text": " And if they use the same hash log, then either none or both of those transfers execute."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 642000
+			},
+			"text": " So there's still no risk, there's no central party and you can be sure that these off-chain assets exchange just works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 648000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 649000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 651000
+			},
+			"text": " And then we're talking about Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 653000
+			},
+			"text": " So there's a bonus."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 657000
+			},
+			"text": " We can lock these transfers to on-chain conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 663000
+			},
+			"text": " This is similar like an asset exchange, but we would lock one of those transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 667000
+			},
+			"text": " The second one also to condition on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 674000
+			},
+			"text": " And we would not write the complete condition, but just provide a hash of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 680000
+			},
+			"text": " And you can see, let's say, let's look at examples, say off-chain betting."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 687000
+			},
+			"text": " Alice could say, I transfer of the same asset now."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 690000
+			},
+			"text": " Let's say that's yours, dollar coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 702000
+			},
+			"text": " Alice would give ten coins to Dave if Dave transfers 100 coins to Alice in the case that your certain condition on-chain is true."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 711000
+			},
+			"text": " And it's a very simple example that an Oracle confirmed that Lauren's blessing won the next selections."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 716000
+			},
+			"text": " Or something similar is off-chain options."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 719000
+			},
+			"text": " Kind of options."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 726000
+			},
+			"text": " Alice would give ten to Dave if Dave gives 100 to Alice if a certain condition on-chain is true in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 734000
+			},
+			"text": " An example, US dollar to Ethereum would be ten, at a certain block."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 739000
+			},
+			"text": " And this can be generalized, but you basically lock something with code and data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 745000
+			},
+			"text": " So you can create pretty complex off-chain agreements which could be settled on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 746000
+			},
+			"text": " They don't have to."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 755000
+			},
+			"text": " Usually they will not be settled on-chain because every participant can evaluate for themselves what would happen if you settle them on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 769000
+			},
+			"text": " So if you compare this to the Lightning Network, I think the temptation is easier because in Ethereum we have accounts and we have the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 777000
+			},
+			"text": " There's an issue if someone does not provide the secret for a hash lock, then a channel becomes stale."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 785000
+			},
+			"text": " This is something which I might explain later, something we can mitigate also very good."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 796000
+			},
+			"text": " And then we can, if you think about the deposit on the payment channels, like a prepaid account, we can add more funds to that channel if you want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 799000
+			},
+			"text": " And of course it works with any token."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 804000
+			},
+			"text": " And we have this smart contract interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 808000
+			},
+			"text": " So what we get from this is instant asset transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 810000
+			},
+			"text": " Really low cost, transaction costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 817000
+			},
+			"text": " We can scale out transaction capacity or at least asset transfer capacity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 824000
+			},
+			"text": " We have transaction privacy because you remember, just transactions are only known to those involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 826000
+			},
+			"text": " That might be two or more parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 829000
+			},
+			"text": " The hops along the transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 833000
+			},
+			"text": " We get truly decentralized asset exchange for free."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 835000
+			},
+			"text": " We have no central order book."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 837000
+			},
+			"text": " We have no matching engine."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 841000
+			},
+			"text": " And we can have pretty complex option agreements."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 846000
+			},
+			"text": " So status of the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 851000
+			},
+			"text": " The current version of Ethereum brings everything we need to implement this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 853000
+			},
+			"text": " So there are no protocol updates needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 856000
+			},
+			"text": " This is currently a work in progress in our company."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 862000
+			},
+			"text": " We have shown that we can have 500 transfers on our standard notebook per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 868000
+			},
+			"text": " So you can imagine you can scale this out to more transfers if you add more notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 872000
+			},
+			"text": " Well, help us welcome the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 878000
+			},
+			"text": " And the code is available on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 880000
+			},
+			"text": " That's fast, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 891000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 894000
+			},
+			"text": " If you like, you have five minutes for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 897000
+			},
+			"text": " It's okay, you don't have to."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 900000
+			},
+			"text": " Questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 903000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 909000
+			},
+			"text": " Yeah, regarding the anonymity part."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 910000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 917000
+			},
+			"text": " So transactions in a payment channels would not be public, but wouldn't the actual payment channel be on-chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 923000
+			},
+			"text": " They will be public, but they not necessarily correspond to whom you're actually transacting with on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 926000
+			},
+			"text": " So they would go via some payment hub."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 927000
+			},
+			"text": " Sorry?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 933000
+			},
+			"text": " So they would- if you do a direct person-to-person payment channel, that would be visible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 937000
+			},
+			"text": " but if you go through some payment hub, you would gain an anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 938000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 939000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 948000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 957000
+			},
+			"text": " So have you thought about general transaction updating contract states as a version?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 962000
+			},
+			"text": " Like you can have a payment channel that is the- you know, you're playing a game or something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 967000
+			},
+			"text": " and it's all off-chain until one person leaves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 974000
+			},
+			"text": " and the other person can basically submit the game or the state of the game to the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 977000
+			},
+			"text": " Have you thought anything about those things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 978000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 986000
+			},
+			"text": " So what you might need to do here is that you need to replay all the transition steps you have on-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 990000
+			},
+			"text": " which is a lot of data, which will be very expensive on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 993000
+			},
+			"text": " What we have here is more we only have updated balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 999000
+			},
+			"text": " So you would not settle the whole transaction history, but only the last updated balance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1004000
+			},
+			"text": " which is probably cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1009000
+			},
+			"text": " So if the game is designed and designed in a way that you only need the last state"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1012000
+			},
+			"text": " and validate that, then that would be possible to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1015000
+			},
+			"text": " One more question over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1022000
+			},
+			"text": " You just mentioned- can you elaborate on how it's possible that the payment channel does not get stale"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1024000
+			},
+			"text": " if a secret is not published?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1025000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1026000
+			},
+			"text": " Short answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1028000
+			},
+			"text": " Merkle trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1034000
+			},
+			"text": " Instead of having the hash log in the updated balance, we have a Merkle root,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1037000
+			},
+			"text": " which is like a fingerprint of all pending transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1042000
+			},
+			"text": " So you can have interwoven asset transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1049000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1056000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1063000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1065000
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

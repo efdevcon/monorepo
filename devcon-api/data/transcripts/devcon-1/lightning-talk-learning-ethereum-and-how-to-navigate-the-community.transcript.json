@@ -1,0 +1,1132 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 17000
+			},
+			"text": " >> Hey everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 19000
+			},
+			"text": " My name is Hudson Jamison."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 20000
+			},
+			"text": " Yeah, good it's on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 22000
+			},
+			"text": " Hudson Jamison, I'm a developer from Texas."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 26000
+			},
+			"text": " And yeah, I just thought that I'd do a lightning talk on what I've learned"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 29000
+			},
+			"text": " and the processes I've had to go through to navigate the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 31000
+			},
+			"text": " So how many of you have never written in Solidity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 33000
+			},
+			"text": " Like never touched it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 37000
+			},
+			"text": " How many of you have never written and want to learn, like, just dive in, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 38000
+			},
+			"text": " Anybody?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 39000
+			},
+			"text": " No one's going to go home and dive in?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 40000
+			},
+			"text": " Okay, got it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 41000
+			},
+			"text": " Awesome, bro."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 45000
+			},
+			"text": " So what happened is when I started, I didn't really know what to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 49000
+			},
+			"text": " I would go to the Reddit and I would go and because Ethereum, it's really cool"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 51000
+			},
+			"text": " that they get to develop so quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 55000
+			},
+			"text": " They have very, very fast, fast breakneck speed with development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 56000
+			},
+			"text": " but there's so many new features."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 61000
+			},
+			"text": " Like people were thrown off, for instance, a few weeks ago when they were throw"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 62000
+			},
+			"text": " exceptions added."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 65000
+			},
+			"text": " So even the simplest things can be hard to keep up with."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 68000
+			},
+			"text": " So I'm going to run you through some links that I like to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 72000
+			},
+			"text": " And then finally, my repository of links that I use to keep up with everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 73000
+			},
+			"text": " that's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 75000
+			},
+			"text": " So first one, obviously, they're GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 79000
+			},
+			"text": " That's where I get a lot of my examples if I'm wanting to mess with a piece of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 80000
+			},
+			"text": " Solidity code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 82000
+			},
+			"text": " Second one's going to be the blog."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 87000
+			},
+			"text": " Vitalik props to writing and producing a blog while the conference is going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 90000
+			},
+			"text": " So yeah, this is actually very, very useful stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 93000
+			},
+			"text": " There's a lot of good information from everyone on the team."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 95000
+			},
+			"text": " They do weekly dev updates now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 98000
+			},
+			"text": " So a lot of improvement on the communication front."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 100000
+			},
+			"text": " Let's see here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 101000
+			},
+			"text": " This is the Reddit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 106000
+			},
+			"text": " This is definitely the second best resource I've used for coming with"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 107000
+			},
+			"text": " Ethereum knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 109000
+			},
+			"text": " It's at least in the top three."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 111000
+			},
+			"text": " People post here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 112000
+			},
+			"text": " It's very active."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 114000
+			},
+			"text": " A lot of breaking news happens on here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 117000
+			},
+			"text": " And if you have a coding question, there's a good amount of people who are"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 119000
+			},
+			"text": " here to help you."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 122000
+			},
+			"text": " The Ethereum form is another really good one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 124000
+			},
+			"text": " Right now, it's actually a bit laggy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 127000
+			},
+			"text": " So I think a lot of people are visiting it, which is a good sign."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 130000
+			},
+			"text": " But yeah, this has a lot of different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 133000
+			},
+			"text": " People are posting like Piper with the Ethereum alarm clock."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136000
+			},
+			"text": " He posts all his updates to here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 139000
+			},
+			"text": " And when I was doing my first smart contracts and I was trying to struggle"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 143000
+			},
+			"text": " with, you know, setting up a private testing environment or looking at"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 145000
+			},
+			"text": " examples, this frontier guide is amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 149000
+			},
+			"text": " This is a very large Git book that's been developed out of resources that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 152000
+			},
+			"text": " they wrote, you know, on the wiki."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 156000
+			},
+			"text": " And recently there was even a guide specifically for Solidity's set up."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 159000
+			},
+			"text": " I think it'll give it, yep, the redirect code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 163000
+			},
+			"text": " So Chris, I think, was the main on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 166000
+			},
+			"text": " He made a new Solidity documentation site and it's constantly being updated"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 169000
+			},
+			"text": " by members of the community for ease of reference."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 171000
+			},
+			"text": " So it's not always going to be over your head."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 173000
+			},
+			"text": " It's actually going to be pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 175000
+			},
+			"text": " Best resource I found."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 179000
+			},
+			"text": " And I mean, I've met tons of you guys at this conference already from this"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 180000
+			},
+			"text": " is the Gitter page."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 184000
+			},
+			"text": " So Gitter is a chat channel and it's a chat program, rather."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 189000
+			},
+			"text": " If you have a GitHub repository, you automatically have a Gitter page."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 194000
+			},
+			"text": " So for instance, this is the Ethereum main page on Gitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 200000
+			},
+			"text": " And we have Go Ethereum, CPP Ethereum, and the people who are coding in those,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 205000
+			},
+			"text": " you know, packages or in those repositories are here chatting live."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 211000
+			},
+			"text": " So for instance, you go to CPP Ethereum and, you know, Gabs in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 214000
+			},
+			"text": " He's just talking about historical, whatever, revisions of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 218000
+			},
+			"text": " And even like people coming in and just like, hey, I'm brand new on here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 223000
+			},
+			"text": " It's very, very welcoming, very odd for, you know, the crypto community can be kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 227000
+			},
+			"text": " malicious, have a lot of trolls, but I feel Ethereum is kind of different."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 229000
+			},
+			"text": " It's very different from the rest of the pack."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 234000
+			},
+			"text": " This was mentioned earlier, this Area 51 stack overflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 239000
+			},
+			"text": " So if you type in Area 51 stack overflow, we're number two on the list right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 240000
+			},
+			"text": " We need just a little bit more support."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 244000
+			},
+			"text": " If you have a question, I'd say post it to Reddit, post it to here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 247000
+			},
+			"text": " You'll get answers from both from different people in the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 249000
+			},
+			"text": " And it'll help you a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 255000
+			},
+			"text": " And then finally something, so, oh, by the way, my name is Sue Takula on the forms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 259000
+			},
+			"text": " and I'm kind of trying to take the initiative to make tips and tricks book."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 264000
+			},
+			"text": " So if you see me posting and helping on Reddit or the Gitter, I sometimes leave people to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 269000
+			},
+			"text": " What this is, is my collection of notes, my collection of steps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 273000
+			},
+			"text": " and the one that is complete right now is creating a private test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 277000
+			},
+			"text": " So you can go into all these different places and create it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 280000
+			},
+			"text": " but if you want to do it from scratch, that's a good way to learn."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 287000
+			},
+			"text": " Finally, this resource list, giant, giant list of resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 289000
+			},
+			"text": " So yeah, I love helping the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 290000
+			},
+			"text": " I want everyone to get involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 292000
+			},
+			"text": " Come to Gitter, come to Reddit, come to there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 293000
+			},
+			"text": " You can leave me comments."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 294000
+			},
+			"text": " Feel free to reach out to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 300000
+			},
+			"text": " I'm Sue Takula or Hudson Jamison on pretty much everywhere online."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 301000
+			},
+			"text": " Thank you all."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 308000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 315000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 325000
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

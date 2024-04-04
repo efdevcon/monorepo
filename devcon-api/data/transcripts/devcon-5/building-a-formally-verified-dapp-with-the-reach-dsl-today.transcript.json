@@ -1,0 +1,5048 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 18000
+			},
+			"text": " >> What we're talking about today is our program language reach."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 22000
+			},
+			"text": " It is designed for helping you with depth."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 25000
+			},
+			"text": " It has an easy way of talking."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 32000
+			},
+			"text": " I'm going to talk a little bit about our organization and the structure of the reach program language."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 39000
+			},
+			"text": " But I want to spend the majority of the time today doing programming of an announcement."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 49000
+			},
+			"text": " Now, if you want to follow along on the code that we were talking about, what you can do is you can go to our website, which is reach.sh."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 56000
+			},
+			"text": " You can go to reach.sh.sh. you'll get to the site right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 62000
+			},
+			"text": " If you click on come to our workshop at Dev fun, then you'll see our Reddit here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 69000
+			},
+			"text": " The Reddit has a copy of the slides that you can open if you would like, as well as a link to our Git repository for this web show."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 74000
+			},
+			"text": " That Git repository will look like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 79000
+			},
+			"text": " In the repository is all the code that we'll be writing today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 90000
+			},
+			"text": " If you want to follow along, then you can start from the initial version and enter code as we start."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 96000
+			},
+			"text": " Then after, eventually we'll get to a point where we've written the entire reach part of the program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 103000
+			},
+			"text": " and then we'll switch and talk about making the client side code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 112000
+			},
+			"text": " The final code will be the final one that's started to target for the end of the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 114000
+			},
+			"text": " If you want, you can work with those things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 121000
+			},
+			"text": " To use the reach language right now to use the compiler, we'll need to have a doctor and a doctor from those results,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 124000
+			},
+			"text": " and of course have a basic use of the writer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 129000
+			},
+			"text": " If, while I'm talking to the introductory part, if you want to go to the site, look out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 135000
+			},
+			"text": " and then from the base directory, go into say final, try making, claim middle front,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 140000
+			},
+			"text": " then that will make sure that you have all the different limits down with it if you want to follow along."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 147000
+			},
+			"text": " If you don't want to follow along, you can just do this later, and there will be value in experiencing the rest of the lecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 160000
+			},
+			"text": " Our team is Chris, Chris, we're going to be a writer today, and then me, Jim, and Berthing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 166000
+			},
+			"text": " Chris is a serial entrepreneur who has had a lot of experience in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 171000
+			},
+			"text": " My background is that I am a research professor at the University of Massachusetts, Lowell,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 174000
+			},
+			"text": " and I'm also one of the developers of the Racket program language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 178000
+			},
+			"text": " so Racket is a list-based language that's very popular."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 185000
+			},
+			"text": " As far as list-based programming languages go, it's commonly used in a lot of colleges and universities."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 193000
+			},
+			"text": " My research has mostly focused on doing verification of progress, recall, and formal verification by our students."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 198000
+			},
+			"text": " So the reach project really represents the culmination of my research."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 204000
+			},
+			"text": " Now, our goal as a organization is to try to dramatically lower the barrier change we want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 211000
+			},
+			"text": " We think that there's a huge amount of potential in this space, but right now it's just too complicated to build real apps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 217000
+			},
+			"text": " and our goal is to dramatically lower the barrier change last day by building something here over the next four years."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 223000
+			},
+			"text": " Now, the idea of the report is that we want to solve three problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 226000
+			},
+			"text": " We want to abstract over the decentralization platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 230000
+			},
+			"text": " Right now, Ethereum is extremely productive and strong."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 236000
+			},
+			"text": " There are many people who believe that there are problems with Ethereum and other platforms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 239000
+			},
+			"text": " but it's too risky to invest in one of these other platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 244000
+			},
+			"text": " If you write your product in the region, then you will be able to compile to the different platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 249000
+			},
+			"text": " So we are trying to live up to the right ones, writing many places."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 257000
+			},
+			"text": " The next thing that we want to solve is that we want to make sure that the adapts that people write are trustworthy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 267000
+			},
+			"text": " So a major part of what we'll be talking about later is the way that formal verification is integral to the operation of the compiler and the way that we've programmed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 278000
+			},
+			"text": " Finally, part of being trustworthy is ensuring that there is consistency between the expectations of contracts and expectations of compliance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 284000
+			},
+			"text": " And with the means, we've realized that in the recent languages, that it is not a smart contract image."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 294000
+			},
+			"text": " It is a data language where we write your program into this one language and you get the clients that will drive the makers of the contract as well as the contract itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 297000
+			},
+			"text": " And there's a guarantee that there are pieces of what we want to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 300000
+			},
+			"text": " Now we have some interesting techniques that we use to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 304000
+			},
+			"text": " And I'll talk a little bit about that before we focus on the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 320000
+			},
+			"text": " Now one of the ways that we get the abstraction of being able to provide to go to many different essential leadership platforms is that we have a very straightforward, constrained model of what a blockchain provides."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 330000
+			},
+			"text": " Our idea is that we really think of the blockchain as providing common knowledge about a monetarically increasing interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 341000
+			},
+			"text": " And those adjectives, they really constrain all the ways that we look at what a contract would be with the clients provide."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 351000
+			},
+			"text": " The contract is this repository of the knowledge and the client reacts to that information and attempts to add things to it if necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 358000
+			},
+			"text": " And so, I'm not going to go into the details here, that's what you got to answer, what our big picture is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 367000
+			},
+			"text": " Now the other principle that we use inside of Reach is that the Reach language performs a lot of sophisticated analysis on your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 376000
+			},
+			"text": " At the most basic level, we have a sound type of thing, as you should expect in the modern research."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 382000
+			},
+			"text": " In addition to that however, we have analyses that are particular to the needs of apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 396000
+			},
+			"text": " As of one little example, one of the things that we'll see later is the way that Reach uses information flow security to guarantee that secret information that is known only to the clients is not shared without being explicitly declassified."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 406000
+			},
+			"text": " Now, the way that we do verification is that we take the program written in Reach and we convert it into an SMT problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 418000
+			},
+			"text": " SMT is one of the classic problems of computer science and there are many extremely reliable, more than theoretical, like Z3, that can automatically discharge the applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 425000
+			},
+			"text": " And so a major part of the way that we structure it is to make it so that we can automatically produce this SMT problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 432000
+			},
+			"text": " Our goal is to provide formal verification without any interaction from the user during the proof process."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 437000
+			},
+			"text": " So that means that we have to be able to discharge all the proof of the application automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 441000
+			},
+			"text": " And the only way that we can do that is having a healthy experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 449000
+			},
+			"text": " Now, we have a lot of different kinds of properties that can be expressed inside of Reach programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 454000
+			},
+			"text": " At the highest level, we have basic systems level properties that should be true of all apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 459000
+			},
+			"text": " Think of like if you're programming a C program, you never want to have a mill pointer exception."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 464000
+			},
+			"text": " And you don't actually need to know anything about the program that you're running to know that it should have that property."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 471000
+			},
+			"text": " So, similarly, part of Reach is to automatically synthesize properties like this to make sense for all the projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 477000
+			},
+			"text": " On the other hand, we also have the ability to write down particular properties of relevance for one application."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 482000
+			},
+			"text": " In the same way that when you're writing a C program, you will have custom assertions that really make sense for your program."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 485000
+			},
+			"text": " So we have the same logic inside of Reach."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 488000
+			},
+			"text": " And again, we'll talk about this later."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 496000
+			},
+			"text": " Now, the next thing is that, as I mentioned, the Reach language provides, specifies the entire program."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 502000
+			},
+			"text": " We use a process called endpoint rejection to extract each of the individual pieces of the program out."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 504000
+			},
+			"text": " Again, I'll talk about this in a moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 508000
+			},
+			"text": " And actually, let's just do this for a moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 515000
+			},
+			"text": " So that's kind of a road map of where I want to go, and how I would switch and dive back into the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 526000
+			},
+			"text": " Now, I want to say actually one more thing, which is that Reach is the combination, sorry, is the evolution of another DSL that I've worked on previously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 530000
+			},
+			"text": " another company making open source products called Elacris."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 532000
+			},
+			"text": " And that other language is called Elacrity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 539000
+			},
+			"text": " And Elacrity is also available and has deep diverged development in the last few months."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 544000
+			},
+			"text": " And there are different features in the Elacrity language as the Reach language."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 549000
+			},
+			"text": " And I'm very happy to talk to anyone about what those differences are offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 554000
+			},
+			"text": " But I want to make sure that it's your knowledge, the background of the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 559000
+			},
+			"text": " So now what I'm doing is I'm going to switch and go over to the repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 565000
+			},
+			"text": " So in the repository, we're going to go into the initial directory."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 568000
+			},
+			"text": " And this is the code that we'll be working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 575000
+			},
+			"text": " Now, if you open this, there's going to be a lot of boilerplate stuff that's to make it so that it can run it properly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 580000
+			},
+			"text": " Let me just comment a tiny bit about this before we open up a particular file."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 587000
+			},
+			"text": " So, when you use Reach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 591000
+			},
+			"text": " to make it so as easy as possible for all of you to use, everything is entirely authorized."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 595000
+			},
+			"text": " So when you run the application, when you compile the application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 599000
+			},
+			"text": " it compiles it into a Docker container that you can then run."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 603000
+			},
+			"text": " That Docker container is automatically configured to connect to a test network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 605000
+			},
+			"text": " and it also spins up a new one."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 607000
+			},
+			"text": " So you don't need to worry about that part of your test network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 612000
+			},
+			"text": " Similarly, you don't need to download any download or install anything with a Reach compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 617000
+			},
+			"text": " The Reach compiler is the shell set that we've done on, which is eight lines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 620000
+			},
+			"text": " and configures a Docker instance for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 624000
+			},
+			"text": " So there's a lot here that's going to make it so that those things will all work in together."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 630000
+			},
+			"text": " But we're going to be inside of this file right here, multisake.rsh."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 633000
+			},
+			"text": " That's going to be our reach for now."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 636000
+			},
+			"text": " Here's what we're going to start off as."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 641000
+			},
+			"text": " So in the Reach language, you are writing in a subset of JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 645000
+			},
+			"text": " So the syntax is exactly the same syntax as JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 650000
+			},
+			"text": " Almost all normal JavaScript features are available, and they mean roughly the same thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 653000
+			},
+			"text": " but there are many special things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 658000
+			},
+			"text": " So for example, let's start by talking about what we're going to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 663000
+			},
+			"text": " and what the overall model of a Reach program is."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 667000
+			},
+			"text": " What we're going to build today is an abstraction of a multi-signature wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 673000
+			},
+			"text": " The key idea of a multi-signature wallet is that many people collaborate to tool funds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 680000
+			},
+			"text": " and then when they extract those funds, other people have a say on whether or not the abstraction happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 685000
+			},
+			"text": " So we're going to abstract that idea to two accounts, a parent and a child."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 691000
+			},
+			"text": " The parent makes a deposit on behalf of the child, and the child can attempt to make it with draws."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 694000
+			},
+			"text": " It must be explicitly approved by the parent."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 700000
+			},
+			"text": " So this is not a product that when we're done today, we're going to launch and become blockchain millionaires."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 705000
+			},
+			"text": " This is an abstraction of what kinds of problems people attempt to solve on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 711000
+			},
+			"text": " and it's small enough that we can do it in the next 30 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 721000
+			},
+			"text": " All right, so the first thing that we want to do is we want to specify that this protocol involves two different part participants,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 728000
+			},
+			"text": " the child and the parent. Inside of the Reach language, one of the things you can do is you specify each one of the parties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 731000
+			},
+			"text": " and then we'll write one program down here, this main function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 738000
+			},
+			"text": " and this main function is going to encode the behavior of all of the participants, as well as all of the smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 746000
+			},
+			"text": " So the first thing that we'll do is we'll have the child attached to the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 750000
+			},
+			"text": " We'll do that by having the child make a publication."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 761000
+			},
+			"text": " Now, the idea of the blockchain is there's this monotonically increasing data structure of the history of all events that were added to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 766000
+			},
+			"text": " In this case, we think about that as being a publication to all of the other parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 772000
+			},
+			"text": " So when we call child.publish, we're saying that it's the child's responsibility to publish this information."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 777000
+			},
+			"text": " Now, it turns out that there's actually nothing that the child knows or which way it's just the way that they're interested in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 790000
+			},
+			"text": " Now, every time you expect to see a message on in the protocol, we have to say, what would happen if the person is supposed to do this, didn't do it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 793000
+			},
+			"text": " What if they, you know, what if they time out for instance?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 797000
+			},
+			"text": " And so we always specify what will happen in the case of the timeout."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 802000
+			},
+			"text": " And time loads are expressed in terms of how many blocks you're willing to wait for a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 812000
+			},
+			"text": " So we're going to just have this variable in our program, delay, which is going to say, the message has got to come within delay seconds, and if it doesn't, then we'll fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 819000
+			},
+			"text": " And the way that we'll fail is that anyone, that's what this underscore means, anyone is able to submit a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 830000
+			},
+			"text": " And what this message does is it will commit the transaction and then say that we have initial running the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 840000
+			},
+			"text": " And the reason that I'm returning this array of zero is because at the end of the protocol when we're finally done, we're going to return how many times the parent said yes, and how many times the parent said no."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 847000
+			},
+			"text": " So if the child times out and never joins the protocol, then we're done, and so no events actually happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 856000
+			},
+			"text": " Now, after we do this, now the code has transitioned down here, and we are now inside of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 861000
+			},
+			"text": " So at this point, we need to verify anything that must be true above the publication."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 867000
+			},
+			"text": " Now in this case, nothing was actually published, so there's nothing to say, so we commit the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 875000
+			},
+			"text": " And now we go back to a context where we're outside of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 888000
+			},
+			"text": " The idea of the re-language is that you switch between local blocks, where a particular agent or many agents are simultaneously doing things, and then synchronization or consensus blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 896000
+			},
+			"text": " And in those consensus blocks, all of the parties are doing the same thing, and they agree on all of the information that they're doing about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 899000
+			},
+			"text": " Let's do an actually interesting example."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 906000
+			},
+			"text": " So after the child has joined the protocol, we now want the parent to, so we're right, parent.only."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 908000
+			},
+			"text": " So this is something that only the parent can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 916000
+			},
+			"text": " Now what do we want them to do? We're going to have them run a function, and so we'll specify that as a function in no arguments."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 922000
+			},
+			"text": " And what they'll do is they'll compute what the allowance that we're going to give us."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 933000
+			},
+			"text": " Now notice that this is a circumstance where it makes sense that at this point in the protocol, the parent is always going to decide what the allowance is."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 942000
+			},
+			"text": " But in our reach program, like how do we know what you, the particular parent, are going to give to Sally before she goes on to her?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 944000
+			},
+			"text": " It's a great trip. How are you going to know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 947000
+			},
+			"text": " Well, there's two ways that we can do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 954000
+			},
+			"text": " The first way is to notice up here, when I wrote what I defined the parent, I said that this empty object right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 960000
+			},
+			"text": " So in this spot, you can write initial information that that participant starts the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 965000
+			},
+			"text": " So we could add in here knowledge of what the initial allowance is going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 973000
+			},
+			"text": " Instead what we'll do though is that we will interact with the front end."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 983000
+			},
+			"text": " So we'll talk about interact. This is a special object inside of the reach language that represents the client that will ultimately run the parent part of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 988000
+			},
+			"text": " So we're going to take that object and we're going to call allowance on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 999000
+			},
+			"text": " Now let's go to return a value, and we need to assert that that value is going to be an integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1004000
+			},
+			"text": " Now this value right here, we want to eventually provide it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:50,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1010000
+			},
+			"text": " So we'll go next, and we'll say parent.publish the allowance."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1010000,
+				"to": 1017000
+			},
+			"text": " So we're going to publish to the rest of the world that the allowance that the child has access to is this number."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1022000
+			},
+			"text": " Now unfortunately, if we try to compile the program right now, it is going to fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1026000
+			},
+			"text": " And it's not going to fail because I have this talk here. It's going to fail even if we look for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1033000
+			},
+			"text": " The reason it's going to fail is that this program fails to satisfy the information's flows and dreams."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1040000
+			},
+			"text": " The reason why is that all information that comes from the client, comes from the front end, is assumed to be sacred information."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1043000
+			},
+			"text": " It must be explicitly declassified."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1045000
+			},
+			"text": " So we'll do what we'll call declassified."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1052000
+			},
+			"text": " And let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1056000
+			},
+			"text": " And now we've declassified it and we're allowed to publish it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1058000
+			},
+			"text": " So good. It makes a progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1071000
+			},
+			"text": " Now, the next thing that I want to talk to you about is how every time we make a publication, we can combine that with a unit of value that will be transferred to the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1079000
+			},
+			"text": " So we break that by saying, \"Hey, you know, so we'll actually clean the allowance and we'll write down the time-out code.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:07,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1087000
+			},
+			"text": " So every program, every interaction on the chain must be accompanied by what would happen if there was a time-out."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1087000,
+				"to": 1091000
+			},
+			"text": " We refer to this property as \"kill safety.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1100000
+			},
+			"text": " The idea is that your program has to be safe with respect to any participant refusing to engage in the protocol at every point going forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1108000
+			},
+			"text": " So in this case, what we're saying with this time-out block is we're saying, \"What if the parent never did this publication? What should happen?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1113000
+			},
+			"text": " Now, with these early stages of the protocol, there's really nothing interesting to say. That's why they just end."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1123000
+			},
+			"text": " But in principle, as we go forward, there's going to be more interesting interactions that are going to happen inside the tunnel."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1130000
+			},
+			"text": " All right. So now at this point, we are now inside of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1134000
+			},
+			"text": " The contract has access to the allowance, and we need to go forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1146000
+			},
+			"text": " The thing that we want to do going forward is we want to have a little value, and this little value is going to repeatedly allow the child to ask for funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1152000
+			},
+			"text": " So we'll write a while to."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1158000
+			},
+			"text": " Now, what is the condition that's going to tell us that we're done?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1164000
+			},
+			"text": " Well, the condition that's going to tell us that we're done is that the balance is going to be zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1168000
+			},
+			"text": " When the balance is empty, then the program will be over."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1174000
+			},
+			"text": " Now, that was not some special variable that we're going to have to do. We're going to have to keep track of the balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1179000
+			},
+			"text": " So we're going to say that while the balance isn't zero, continue running this part of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1186000
+			},
+			"text": " So we'll define a new variable called the balance. It's going to be equal to the allowance."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:20:02,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1202000
+			},
+			"text": " Now, just so that we have something interesting to return, it doesn't want to do, is what we're going to keep track of how many times we said yes, and how many times we said no, running the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1202000,
+				"to": 1206000
+			},
+			"text": " So how many times the child asks for money, and the parent says no."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1211000
+			},
+			"text": " We don't. This isn't that important. We just want to keep track of something."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:18,000"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1218000
+			},
+			"text": " And then that's the information that we're going to return at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,000",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1218000,
+				"to": 1225000
+			},
+			"text": " Now, there's one last thing that we need to do. And it's actually kind of a big thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:35,000"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1235000
+			},
+			"text": " When you're doing formal verification, and you have a value, the while loop represents a point in your program where many, many different things can happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,000",
+				"to": "00:20:42,000"
+			},
+			"offsets": {
+				"from": 1235000,
+				"to": 1242000
+			},
+			"text": " There's a version of this program that runs where you reach this point, and the allowance was zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1242000,
+				"to": 1247000
+			},
+			"text": " And since the allowance was zero, we never execute the code inside of here, and we go right to the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:57,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1257000
+			},
+			"text": " There's another version of this program executing, where we run the inside one time, and after running it one time, all the balance is gone, and then we exit."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1257000,
+				"to": 1260000
+			},
+			"text": " There's another version we're going to run it two times, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:08,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1268000
+			},
+			"text": " There's sometimes an infinite number of different ways to run a program that has a single value, depending on how many times you go around the value."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,000",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1268000,
+				"to": 1274000
+			},
+			"text": " So this is a big problem for formal verification, because how are we going to know what the program will actually do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1277000
+			},
+			"text": " Because the way to think and to win it, internalize what formal verification is."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1277000,
+				"to": 1281000
+			},
+			"text": " If you're making a prediction of what the program will do."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:29,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1289000
+			},
+			"text": " Now, one way that we could do this is that we could automatically take the program and verify it for when we went zero times."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1289000,
+				"to": 1295000
+			},
+			"text": " Verify it for when we went one, verify it for when we went two, three, four, five, six, seven, eight, nine, ten, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1303000
+			},
+			"text": " And what we would be doing is we would literally be like copying and piecing this code inside of the verifyer over and over again to verify each one of those different versions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:46,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1306000
+			},
+			"text": " That's called iterative deepening."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,000",
+				"to": "00:21:53,000"
+			},
+			"offsets": {
+				"from": 1306000,
+				"to": 1313000
+			},
+			"text": " An iterative deepening is what you do in situations where you can't figure out how to capture that new behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,000",
+				"to": "00:21:55,000"
+			},
+			"offsets": {
+				"from": 1313000,
+				"to": 1315000
+			},
+			"text": " We do not even know."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,000",
+				"to": "00:22:00,000"
+			},
+			"offsets": {
+				"from": 1315000,
+				"to": 1320000
+			},
+			"text": " Instead, we have programmers specified a looping variant."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,000",
+				"to": "00:22:13,000"
+			},
+			"offsets": {
+				"from": 1320000,
+				"to": 1333000
+			},
+			"text": " Now, if you remember from your analysis of algorithms course, where you use the CLRS book, a huge computer science book, you probably learned a lot about looping variants."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,000",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1333000,
+				"to": 1336000
+			},
+			"text": " And if you're like me, you hate it back class."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1338000
+			},
+			"text": " It was very frustrating."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1345000
+			},
+			"text": " Okay. Most of the time though, the key idea of a looping variant is what do you know before the loop starts and what do you know at the end?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:32,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1352000
+			},
+			"text": " So the thing that we know is that the balance in the contract is equal to this balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,000",
+				"to": "00:22:33,000"
+			},
+			"offsets": {
+				"from": 1352000,
+				"to": 1353000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,000",
+				"to": "00:22:42,000"
+			},
+			"offsets": {
+				"from": 1353000,
+				"to": 1362000
+			},
+			"text": " And if anything that we do inside of this makes it so that that statement is false, then we'll not be allowed to compile this program."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,000",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1362000,
+				"to": 1369000
+			},
+			"text": " And what this is going to do is it's going to allow the compiler to verify this in order to choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1373000
+			},
+			"text": " We're going to verify everything above this to make sure it establishes that variant."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:22:56,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1376000
+			},
+			"text": " We're going to verify the inside to make sure it deserves it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,000",
+				"to": "00:22:59,000"
+			},
+			"offsets": {
+				"from": 1376000,
+				"to": 1379000
+			},
+			"text": " Then we're going to verify the end so that it also verifies it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,000",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1379000,
+				"to": 1388000
+			},
+			"text": " What this means is that we provide complete verification of infinite behavior of your program by just proving three smaller variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:09,000"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1389000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,000",
+				"to": "00:23:16,000"
+			},
+			"offsets": {
+				"from": 1389000,
+				"to": 1396000
+			},
+			"text": " All right, so now let's go inside and do some stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,000",
+				"to": "00:23:25,000"
+			},
+			"offsets": {
+				"from": 1396000,
+				"to": 1405000
+			},
+			"text": " So we were inside of the context of the consensus, so we have to commit the transaction and now go back to the world where the two participants can do something."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,000",
+				"to": "00:23:33,000"
+			},
+			"offsets": {
+				"from": 1405000,
+				"to": 1413000
+			},
+			"text": " And the thing that I want to do is want the child to do something herself, where she's going to ask for a certain amount of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,000",
+				"to": "00:23:45,000"
+			},
+			"offsets": {
+				"from": 1413000,
+				"to": 1425000
+			},
+			"text": " And we know that this money will start to be classified and is going to be a number and will interact with the customer to request the money."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,000",
+				"to": "00:23:52,000"
+			},
+			"offsets": {
+				"from": 1425000,
+				"to": 1432000
+			},
+			"text": " And the way that we're going to do this is that we're going to tell the front end how much money is in the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,000",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1432000,
+				"to": 1435000
+			},
+			"text": " So it can know how to display to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1440000
+			},
+			"text": " You know, Sally, if you have $100 available to you, how much you want to afford."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:05,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1445000
+			},
+			"text": " So this interact object is not only a way to get information from the front end."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,000",
+				"to": "00:24:08,000"
+			},
+			"offsets": {
+				"from": 1445000,
+				"to": 1448000
+			},
+			"text": " It's a way to share information with the front end of the heart."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,000",
+				"to": "00:24:10,000"
+			},
+			"offsets": {
+				"from": 1448000,
+				"to": 1450000
+			},
+			"text": " So it's a two-way street."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,000",
+				"to": "00:24:23,000"
+			},
+			"offsets": {
+				"from": 1450000,
+				"to": 1463000
+			},
+			"text": " Essentially what's going on is that this retro program is specifying the API to the contract, the API to the client, sorry, that they've got to the back end and then it will write on some client code afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,000",
+				"to": "00:24:35,000"
+			},
+			"offsets": {
+				"from": 1463000,
+				"to": 1475000
+			},
+			"text": " Now, the next thing that we need to do is write an assertion that's going to say that how much had better be smaller than or equal to the balance, because this program wouldn't make sense if that were not true."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,000",
+				"to": "00:24:40,000"
+			},
+			"offsets": {
+				"from": 1475000,
+				"to": 1480000
+			},
+			"text": " This assume function right here is one of the verification assertions that we can put in."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,000",
+				"to": "00:24:46,000"
+			},
+			"offsets": {
+				"from": 1480000,
+				"to": 1486000
+			},
+			"text": " I mentioned before, if you look at the slides that you'd like later, that there are different kinds of assertions that we can put in."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,000",
+				"to": "00:24:51,000"
+			},
+			"offsets": {
+				"from": 1486000,
+				"to": 1491000
+			},
+			"text": " Assertions are things that always would be true, and if they're not, we refuse to let you comply."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,000",
+				"to": "00:25:00,000"
+			},
+			"offsets": {
+				"from": 1491000,
+				"to": 1500000
+			},
+			"text": " Assumes are kind of like a require if you're familiar with that in salinity, where we actually check this property at runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,000",
+				"to": "00:25:08,000"
+			},
+			"offsets": {
+				"from": 1500000,
+				"to": 1508000
+			},
+			"text": " But the other thing that we do is we make sure that all the assertions later on in the program are entailed by these assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,000",
+				"to": "00:25:11,000"
+			},
+			"offsets": {
+				"from": 1508000,
+				"to": 1511000
+			},
+			"text": " So later on in the program, we're allowed to write down asserts."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,000",
+				"to": "00:25:17,000"
+			},
+			"offsets": {
+				"from": 1511000,
+				"to": 1517000
+			},
+			"text": " And if any assert would fail because you forgot one of these assumes, then we'll refuse to compile your program."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,000",
+				"to": "00:25:22,000"
+			},
+			"offsets": {
+				"from": 1517000,
+				"to": 1522000
+			},
+			"text": " The idea is that we're guaranteeing consistency between the clients and the contractors."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,000",
+				"to": "00:25:32,000"
+			},
+			"offsets": {
+				"from": 1522000,
+				"to": 1532000
+			},
+			"text": " We're making sure that your program at runtime actually verifies all the properties that are necessary for your contractor run correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,000",
+				"to": "00:25:33,000"
+			},
+			"offsets": {
+				"from": 1532000,
+				"to": 1533000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,000",
+				"to": "00:25:38,000"
+			},
+			"offsets": {
+				"from": 1533000,
+				"to": 1538000
+			},
+			"text": " So now what we'll do is we'll have the child publish the amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,000",
+				"to": "00:25:42,000"
+			},
+			"offsets": {
+				"from": 1538000,
+				"to": 1542000
+			},
+			"text": " And we'll write in the time of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,000",
+				"to": "00:25:46,000"
+			},
+			"offsets": {
+				"from": 1542000,
+				"to": 1546000
+			},
+			"text": " And the time of code will be allowed available to the parent to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,000",
+				"to": "00:25:53,000"
+			},
+			"offsets": {
+				"from": 1546000,
+				"to": 1553000
+			},
+			"text": " And if she, if she times out, then we'll just say that it is an automatic ignore."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,000",
+				"to": "00:25:59,000"
+			},
+			"offsets": {
+				"from": 1553000,
+				"to": 1559000
+			},
+			"text": " So it's not a yes or a no, but we just continue the verbal."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,000",
+				"to": "00:26:07,000"
+			},
+			"offsets": {
+				"from": 1559000,
+				"to": 1567000
+			},
+			"text": " So what happens here is that rather than returning at the end, we say that all of the variables that the loop is iterating over, they stay exactly the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,000",
+				"to": "00:26:09,000"
+			},
+			"offsets": {
+				"from": 1567000,
+				"to": 1569000
+			},
+			"text": " And then we continue the loop to the next generation."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,000",
+				"to": "00:26:17,000"
+			},
+			"offsets": {
+				"from": 1569000,
+				"to": 1577000
+			},
+			"text": " If it wanted to, we could say that if the time of it happens, then it goes in favor of the child that she gets from it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,000",
+				"to": "00:26:20,000"
+			},
+			"offsets": {
+				"from": 1577000,
+				"to": 1580000
+			},
+			"text": " It's up to us, which is kind of what I'm going to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,000",
+				"to": "00:26:28,000"
+			},
+			"offsets": {
+				"from": 1580000,
+				"to": 1588000
+			},
+			"text": " This, by the way, is one of the examples that the reach language is different from my earlier project via LACRTY language."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,000",
+				"to": "00:26:33,000"
+			},
+			"offsets": {
+				"from": 1588000,
+				"to": 1593000
+			},
+			"text": " Because in the LACRTY language, the time of blocks are automatically generated on your behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,000",
+				"to": "00:26:37,000"
+			},
+			"offsets": {
+				"from": 1593000,
+				"to": 1597000
+			},
+			"text": " You're not able to, but also you don't have to specify what they do."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,000",
+				"to": "00:26:43,000"
+			},
+			"offsets": {
+				"from": 1597000,
+				"to": 1603000
+			},
+			"text": " Instead, they automatically end the protocol and give all the money to the last person that they're not."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,000",
+				"to": "00:26:48,000"
+			},
+			"offsets": {
+				"from": 1603000,
+				"to": 1608000
+			},
+			"text": " Okay. So now we're inside of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,000",
+				"to": "00:26:53,000"
+			},
+			"offsets": {
+				"from": 1608000,
+				"to": 1613000
+			},
+			"text": " And we will require that how much is less than the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,000",
+				"to": "00:26:58,000"
+			},
+			"offsets": {
+				"from": 1613000,
+				"to": 1618000
+			},
+			"text": " So this protocol only makes sense going forward and how much is not more than the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,000",
+				"to": "00:27:03,000"
+			},
+			"offsets": {
+				"from": 1618000,
+				"to": 1623000
+			},
+			"text": " Now it looks like what we're doing is we're saying something twice. We're saying about here and we're saying about here."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,000",
+				"to": "00:27:09,000"
+			},
+			"offsets": {
+				"from": 1623000,
+				"to": 1629000
+			},
+			"text": " And of course, we literally wrote down how much less than the balance two times, but we did it for totally different reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,000",
+				"to": "00:27:14,000"
+			},
+			"offsets": {
+				"from": 1629000,
+				"to": 1634000
+			},
+			"text": " What we're doing right here is we're saying that this protocol makes no sense unless this is true."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,000",
+				"to": "00:27:20,000"
+			},
+			"offsets": {
+				"from": 1634000,
+				"to": 1640000
+			},
+			"text": " What we're saying up here is that I am a bad client if I don't check this property."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,000",
+				"to": "00:27:25,000"
+			},
+			"offsets": {
+				"from": 1640000,
+				"to": 1645000
+			},
+			"text": " And you have to specify both of those things if you want to have a correct program."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,000",
+				"to": "00:27:30,000"
+			},
+			"offsets": {
+				"from": 1645000,
+				"to": 1650000
+			},
+			"text": " Because you're writing down the client and you're writing down the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,000",
+				"to": "00:27:38,000"
+			},
+			"offsets": {
+				"from": 1650000,
+				"to": 1658000
+			},
+			"text": " And what I think we'll do in the verification process is make sure that the contract only interacts with good clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,000",
+				"to": "00:27:45,000"
+			},
+			"offsets": {
+				"from": 1658000,
+				"to": 1665000
+			},
+			"text": " So if we left out this line and this line will fail to verify and it'll say you need to have your client check"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,000",
+				"to": "00:27:51,000"
+			},
+			"offsets": {
+				"from": 1665000,
+				"to": 1671000
+			},
+			"text": " but how much is less than the balance. Because of course in the actual, and like your actual front end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,000",
+				"to": "00:27:58,000"
+			},
+			"offsets": {
+				"from": 1671000,
+				"to": 1678000
+			},
+			"text": " you don't want to submit a transaction and have that transaction fail because you failed to check it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,000",
+				"to": "00:28:05,000"
+			},
+			"offsets": {
+				"from": 1678000,
+				"to": 1685000
+			},
+			"text": " Okay, so then we'll commit the transaction and now we're back to the goal of the text and we'll have the parent."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,000",
+				"to": "00:28:10,000"
+			},
+			"offsets": {
+				"from": 1685000,
+				"to": 1690000
+			},
+			"text": " So, fine out of sheet is approved."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,000",
+				"to": "00:28:22,000"
+			},
+			"offsets": {
+				"from": 1693000,
+				"to": 1702000
+			},
+			"text": " In this case, we'll get back to Boolean because the interact object doesn't only return numbers, it can return arbitrary information."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,000",
+				"to": "00:28:30,000"
+			},
+			"offsets": {
+				"from": 1702000,
+				"to": 1710000
+			},
+			"text": " So we'll interact and we'll say all approved and we'll tell the front end here's how much she asked for and here's what the remaining balance is."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,000",
+				"to": "00:28:42,000"
+			},
+			"offsets": {
+				"from": 1710000,
+				"to": 1722000
+			},
+			"text": " Then what we'll do is we'll publish that and we'll have to deal with what happens if there is a timeout."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:42,000",
+				"to": "00:28:52,000"
+			},
+			"offsets": {
+				"from": 1722000,
+				"to": 1732000
+			},
+			"text": " And we'll do the same thing as before whereas if there's a timeout if the parent never gets around to it, then in this case we'll call that a no."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,000",
+				"to": "00:28:57,000"
+			},
+			"offsets": {
+				"from": 1732000,
+				"to": 1737000
+			},
+			"text": " And we'll continue."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:57,000",
+				"to": "00:29:06,000"
+			},
+			"offsets": {
+				"from": 1737000,
+				"to": 1746000
+			},
+			"text": " Okay, so now we're back inside of the context for the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:06,000",
+				"to": "00:29:14,000"
+			},
+			"offsets": {
+				"from": 1746000,
+				"to": 1754000
+			},
+			"text": " And now the contract knows the balance, it knows how much money was asked for and it knows what the parent approves."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,000",
+				"to": "00:29:19,000"
+			},
+			"offsets": {
+				"from": 1754000,
+				"to": 1759000
+			},
+			"text": " So at this point we can actually make the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,000",
+				"to": "00:29:27,000"
+			},
+			"offsets": {
+				"from": 1759000,
+				"to": 1767000
+			},
+			"text": " So we'll say if the approval is true, then we'll transfer how much to the child."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,000",
+				"to": "00:29:37,000"
+			},
+			"offsets": {
+				"from": 1769000,
+				"to": 1777000
+			},
+			"text": " And we'll update our state variables. We'll say that the balance is less than how much."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:37,000",
+				"to": "00:29:44,000"
+			},
+			"offsets": {
+				"from": 1777000,
+				"to": 1784000
+			},
+			"text": " We'll say that there's been one additional transaction that we'll see, yes, and no no's and then we'll continue."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:44,000",
+				"to": "00:29:54,000"
+			},
+			"offsets": {
+				"from": 1784000,
+				"to": 1794000
+			},
+			"text": " And otherwise what we'll do is we'll say that the balance is unchanged, the okay is unchanged but there's another no."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,000",
+				"to": "00:30:08,000"
+			},
+			"offsets": {
+				"from": 1795000,
+				"to": 1808000
+			},
+			"text": " And we'll continue and then at the end we'll need to commit the final transaction when the balance is empty and then we'll return the OPs and the MIPS."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,000",
+				"to": "00:30:15,000"
+			},
+			"offsets": {
+				"from": 1808000,
+				"to": 1815000
+			},
+			"text": " Okay, so we just wrote 63 lines and I hope that it felt not too weird."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,000",
+				"to": "00:30:21,000"
+			},
+			"offsets": {
+				"from": 1815000,
+				"to": 1821000
+			},
+			"text": " It doesn't feel like writing is limited. It doesn't feel like writing this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:21,000",
+				"to": "00:30:32,000"
+			},
+			"offsets": {
+				"from": 1821000,
+				"to": 1832000
+			},
+			"text": " It feels like writing the whole down. And behind the scenes what we're going to do is we're going to automatically synthesize the front end code and we're going to automatically synthesize the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,000",
+				"to": "00:30:38,000"
+			},
+			"offsets": {
+				"from": 1832000,
+				"to": 1838000
+			},
+			"text": " Now let's go to the terminal and see what typos are made."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:38,000",
+				"to": "00:30:46,000"
+			},
+			"offsets": {
+				"from": 1838000,
+				"to": 1846000
+			},
+			"text": " So we'll type make build and what it's going to do is it's going to run the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:46,000",
+				"to": "00:30:48,000"
+			},
+			"offsets": {
+				"from": 1846000,
+				"to": 1848000
+			},
+			"text": " Oh, I made no mistakes."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:50,000",
+				"to": "00:30:57,000"
+			},
+			"offsets": {
+				"from": 1850000,
+				"to": 1857000
+			},
+			"text": " So I don't know about you guys but I'm a professor and a lot of the time my students make mistakes when they write paragraphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:57,000",
+				"to": "00:31:01,000"
+			},
+			"offsets": {
+				"from": 1857000,
+				"to": 1861000
+			},
+			"text": " Okay, this is why you shouldn't hire them to write your verified compilers."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:01,000",
+				"to": "00:31:04,000"
+			},
+			"offsets": {
+				"from": 1861000,
+				"to": 1864000
+			},
+			"text": " You should hire me to write your verified compilers."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:04,000",
+				"to": "00:31:06,000"
+			},
+			"offsets": {
+				"from": 1864000,
+				"to": 1866000
+			},
+			"text": " Then I do it right the first time."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,000",
+				"to": "00:31:11,000"
+			},
+			"offsets": {
+				"from": 1866000,
+				"to": 1871000
+			},
+			"text": " Now let's go back to the remote build and look at what we wrote."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:11,000",
+				"to": "00:31:13,000"
+			},
+			"offsets": {
+				"from": 1871000,
+				"to": 1873000
+			},
+			"text": " Now what if we made a mistake?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,000",
+				"to": "00:31:21,000"
+			},
+			"offsets": {
+				"from": 1873000,
+				"to": 1881000
+			},
+			"text": " So obviously this would be totally stupid but what if we accidentally subtracted how much and then added one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:21,000",
+				"to": "00:31:24,000"
+			},
+			"offsets": {
+				"from": 1881000,
+				"to": 1884000
+			},
+			"text": " There's an off by one error in our program."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:24,000",
+				"to": "00:31:28,000"
+			},
+			"offsets": {
+				"from": 1884000,
+				"to": 1888000
+			},
+			"text": " Now I've never made an off by one error in our program but I've heard of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:28,000",
+				"to": "00:31:32,000"
+			},
+			"offsets": {
+				"from": 1888000,
+				"to": 1892000
+			},
+			"text": " Okay, so let's try to compile and see what happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:40,000",
+				"to": "00:31:43,000"
+			},
+			"offsets": {
+				"from": 1900000,
+				"to": 1903000
+			},
+			"text": " I'm suspicious that maybe it's not looking at this file."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:43,000",
+				"to": "00:31:51,000"
+			},
+			"offsets": {
+				"from": 1903000,
+				"to": 1911000
+			},
+			"text": " Okay, I'm really nervous."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:51,000",
+				"to": "00:31:53,000"
+			},
+			"offsets": {
+				"from": 1911000,
+				"to": 1913000
+			},
+			"text": " Why not make an error?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,000",
+				"to": "00:31:56,000"
+			},
+			"offsets": {
+				"from": 1913000,
+				"to": 1916000
+			},
+			"text": " Let me just look at a different thing about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:56,000",
+				"to": "00:32:02,000"
+			},
+			"offsets": {
+				"from": 1916000,
+				"to": 1922000
+			},
+			"text": " One of the annoyances of doctors is that sometimes it doesn't copy things even if it's going to copy them."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:08,000",
+				"to": "00:32:11,000"
+			},
+			"offsets": {
+				"from": 1928000,
+				"to": 1931000
+			},
+			"text": " Okay, we'll hold off talking about that for a moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:11,000",
+				"to": "00:32:16,000"
+			},
+			"offsets": {
+				"from": 1931000,
+				"to": 1936000
+			},
+			"text": " What I'm going to show you right now is what we made, what the compiler produced."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:16,000",
+				"to": "00:32:22,000"
+			},
+			"offsets": {
+				"from": 1936000,
+				"to": 1942000
+			},
+			"text": " So we'll throw to the build directory and we'll look at the salivian code in this generator."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:22,000",
+				"to": "00:32:31,000"
+			},
+			"offsets": {
+				"from": 1942000,
+				"to": 1951000
+			},
+			"text": " So right now the reach language can, in principle, produce things other than a theory but right now we've all these targeted theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:32,000",
+				"to": "00:32:39,000"
+			},
+			"offsets": {
+				"from": 1952000,
+				"to": 1959000
+			},
+			"text": " This is the contract that came out. So this program, this contract is certainly laborious."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:39,000",
+				"to": "00:32:44,000"
+			},
+			"offsets": {
+				"from": 1959000,
+				"to": 1964000
+			},
+			"text": " So it's 152 lines. You can look at it in the build directory if you run it yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:44,000",
+				"to": "00:32:47,000"
+			},
+			"offsets": {
+				"from": 1964000,
+				"to": 1967000
+			},
+			"text": " And let's just look at like one little part of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:47,000",
+				"to": "00:32:50,000"
+			},
+			"offsets": {
+				"from": 1967000,
+				"to": 1970000
+			},
+			"text": " So let's look right here at message six."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:50,000",
+				"to": "00:32:59,000"
+			},
+			"offsets": {
+				"from": 1970000,
+				"to": 1979000
+			},
+			"text": " So message six is a message that has all these parameters and let's try to see what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,000",
+				"to": "00:33:07,000"
+			},
+			"offsets": {
+				"from": 1979000,
+				"to": 1987000
+			},
+			"text": " So it says right here that it must have come from V zero, that the block number is less, that's the delay going in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:07,000",
+				"to": "00:33:14,000"
+			},
+			"offsets": {
+				"from": 1987000,
+				"to": 1994000
+			},
+			"text": " The value has to be zero. Okay, so this is saying that this is one of the messages that doesn't have an payment with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:14,000",
+				"to": "00:33:21,000"
+			},
+			"offsets": {
+				"from": 1994000,
+				"to": 2001000
+			},
+			"text": " V 17 has to be smaller than V8. V 17, that's how much V8 was the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:21,000",
+				"to": "00:33:26,000"
+			},
+			"offsets": {
+				"from": 2001000,
+				"to": 2006000
+			},
+			"text": " Then what we do is we commit that and then update the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:26,000",
+				"to": "00:33:35,000"
+			},
+			"offsets": {
+				"from": 2006000,
+				"to": 2015000
+			},
+			"text": " So with this message, this event number six is the sixth thing in our program, which is this step right here, this publication right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:35,000",
+				"to": "00:33:43,000"
+			},
+			"offsets": {
+				"from": 2015000,
+				"to": 2023000
+			},
+			"text": " When the child says here's how much I want, then we go to the contract and we require that how much is that."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:46,000",
+				"to": "00:33:52,000"
+			},
+			"offsets": {
+				"from": 2026000,
+				"to": 2032000
+			},
+			"text": " I realize by the way, why the compiler allowed us to comment on that line?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:52,000",
+				"to": "00:33:59,000"
+			},
+			"offsets": {
+				"from": 2032000,
+				"to": 2039000
+			},
+			"text": " Because actually commented on the line that was the assertion rather than the line that made sure that the assertion was right."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:59,000",
+				"to": "00:34:05,000"
+			},
+			"offsets": {
+				"from": 2039000,
+				"to": 2045000
+			},
+			"text": " So I believe that if I comment on this one, we'll get better."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:05,000",
+				"to": "00:34:12,000"
+			},
+			"offsets": {
+				"from": 2045000,
+				"to": 2052000
+			},
+			"text": " Alright, now sometimes I'm really nervous that's going to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:12,000",
+				"to": "00:34:16,000"
+			},
+			"offsets": {
+				"from": 2052000,
+				"to": 2056000
+			},
+			"text": " Sorry. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:16,000",
+				"to": "00:34:29,000"
+			},
+			"offsets": {
+				"from": 2056000,
+				"to": 2069000
+			},
+			"text": " Now let's look at the jobs we've been getting generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:29,000",
+				"to": "00:34:36,000"
+			},
+			"offsets": {
+				"from": 2069000,
+				"to": 2076000
+			},
+			"text": " So just the jobs we've been getting generated is the code for the child."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:36,000",
+				"to": "00:34:44,000"
+			},
+			"offsets": {
+				"from": 2076000,
+				"to": 2084000
+			},
+			"text": " So we get a new file called child that takes as an argument the handle for the contract, we'll see this get made later, and the interact object."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:44,000",
+				"to": "00:34:48,000"
+			},
+			"offsets": {
+				"from": 2084000,
+				"to": 2088000
+			},
+			"text": " And then it goes through and it has each one of the pieces of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:48,000",
+				"to": "00:34:52,000"
+			},
+			"offsets": {
+				"from": 2088000,
+				"to": 2092000
+			},
+			"text": " So we just make a new window for our amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:52,000",
+				"to": "00:34:57,000"
+			},
+			"offsets": {
+				"from": 2092000,
+				"to": 2097000
+			},
+			"text": " And we get multi-sane and we can compare the two of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:57,000",
+				"to": "00:35:01,000"
+			},
+			"offsets": {
+				"from": 2097000,
+				"to": 2101000
+			},
+			"text": " So for example, look at the first thing that the child does."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:01,000",
+				"to": "00:35:06,000"
+			},
+			"offsets": {
+				"from": 2101000,
+				"to": 2106000
+			},
+			"text": " The child calls request on the interact object, gives it the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:06,000",
+				"to": "00:35:08,000"
+			},
+			"offsets": {
+				"from": 2106000,
+				"to": 2108000
+			},
+			"text": " Sorry, this isn't a little bit new."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:08,000",
+				"to": "00:35:10,000"
+			},
+			"offsets": {
+				"from": 2108000,
+				"to": 2110000
+			},
+			"text": " Let me go to the top so the variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,000",
+				"to": "00:35:18,000"
+			},
+			"offsets": {
+				"from": 2110000,
+				"to": 2118000
+			},
+			"text": " So the very first thing is that we publish nothing and then we're going to wait for the parent to publish the allowance."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:18,000",
+				"to": "00:35:30,000"
+			},
+			"offsets": {
+				"from": 2118000,
+				"to": 2130000
+			},
+			"text": " So if we look at the code, the very first thing that happens is that the child sends and then receives message one with no information expecting to receive a bench one afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:30,000",
+				"to": "00:35:32,000"
+			},
+			"offsets": {
+				"from": 2130000,
+				"to": 2132000
+			},
+			"text": " And or event two if there was a time out."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:32,000",
+				"to": "00:35:37,000"
+			},
+			"offsets": {
+				"from": 2132000,
+				"to": 2137000
+			},
+			"text": " The chance to see if there was a time out then what we do is we continue the part of."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:37,000",
+				"to": "00:35:48,000"
+			},
+			"offsets": {
+				"from": 2137000,
+				"to": 2148000
+			},
+			"text": " Where then we expect to perceive event three and event three comes with the five, this information that will end up being the allowance."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:48,000",
+				"to": "00:35:54,000"
+			},
+			"offsets": {
+				"from": 2148000,
+				"to": 2154000
+			},
+			"text": " Okay, so this rest of the code right here is no code that a human would ever write."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:54,000",
+				"to": "00:35:59,000"
+			},
+			"offsets": {
+				"from": 2154000,
+				"to": 2159000
+			},
+			"text": " But it's very straightforward output of a compiler. It has wonderful things like let V nine equal zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:59,000",
+				"to": "00:36:06,000"
+			},
+			"offsets": {
+				"from": 2159000,
+				"to": 2166000
+			},
+			"text": " Because let's be nine, V nine is the count for how many times we said okay, those are totally zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:06,000",
+				"to": "00:36:12,000"
+			},
+			"offsets": {
+				"from": 2166000,
+				"to": 2172000
+			},
+			"text": " Alright, so now what we've done is we've written our program in reach."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:12,000",
+				"to": "00:36:13,000"
+			},
+			"offsets": {
+				"from": 2172000,
+				"to": 2173000
+			},
+			"text": " We've compiled it."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:13,000",
+				"to": "00:36:17,000"
+			},
+			"offsets": {
+				"from": 2173000,
+				"to": 2177000
+			},
+			"text": " Behind the scenes it's done verification for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:17,000",
+				"to": "00:36:22,000"
+			},
+			"offsets": {
+				"from": 2177000,
+				"to": 2182000
+			},
+			"text": " And we now have the JavaScript code and we have the salinity code."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:22,000",
+				"to": "00:36:35,000"
+			},
+			"offsets": {
+				"from": 2182000,
+				"to": 2195000
+			},
+			"text": " But this JavaScript code that we have, the only thing that it does is it provides these high level, these high level functions to spin up a child and to spin up the parent."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:35,000",
+				"to": "00:36:41,000"
+			},
+			"offsets": {
+				"from": 2195000,
+				"to": 2201000
+			},
+			"text": " We skip down, there's a lot of parents and then we also invent the details of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:41,000",
+				"to": "00:36:44,000"
+			},
+			"offsets": {
+				"from": 2201000,
+				"to": 2204000
+			},
+			"text": " Now, we only have eight minutes left."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:44,000",
+				"to": "00:36:48,000"
+			},
+			"offsets": {
+				"from": 2204000,
+				"to": 2208000
+			},
+			"text": " So we're not going to write by hand the front end code."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:48,000",
+				"to": "00:36:50,000"
+			},
+			"offsets": {
+				"from": 2208000,
+				"to": 2210000
+			},
+			"text": " Instead I'll show you the front end code."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:50,000",
+				"to": "00:37:04,000"
+			},
+			"offsets": {
+				"from": 2210000,
+				"to": 2224000
+			},
+			"text": " So what I'm going to do is I'm going to go out of the directory and go into the minimal directory and go look at the index.mjs file."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:04,000",
+				"to": "00:37:09,000"
+			},
+			"offsets": {
+				"from": 2224000,
+				"to": 2229000
+			},
+			"text": " So the first thing that we'll do is we'll import the standard library."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:09,000",
+				"to": "00:37:11,000"
+			},
+			"offsets": {
+				"from": 2229000,
+				"to": 2231000
+			},
+			"text": " We'll import that multi-sync program."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:11,000",
+				"to": "00:37:17,000"
+			},
+			"offsets": {
+				"from": 2231000,
+				"to": 2237000
+			},
+			"text": " We'll say that our starting balance is going to be one hundred and thirty because we're going to test this on the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:17,000",
+				"to": "00:37:21,000"
+			},
+			"offsets": {
+				"from": 2237000,
+				"to": 2241000
+			},
+			"text": " And then we'll script a new account for the parent that has that starting balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:21,000",
+				"to": "00:37:26,000"
+			},
+			"offsets": {
+				"from": 2241000,
+				"to": 2246000
+			},
+			"text": " And then that's going to deploy the multi-sync contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:26,000",
+				"to": "00:37:28,000"
+			},
+			"offsets": {
+				"from": 2246000,
+				"to": 2248000
+			},
+			"text": " So we can parent that deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:28,000",
+				"to": "00:37:31,000"
+			},
+			"offsets": {
+				"from": 2248000,
+				"to": 2251000
+			},
+			"text": " Then what we're going to do is we're going to define the interact object."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:31,000",
+				"to": "00:37:36,000"
+			},
+			"offsets": {
+				"from": 2251000,
+				"to": 2256000
+			},
+			"text": " And for this first version, I'm going to say that the allowance is always going to be fifteen."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:36,000",
+				"to": "00:37:40,000"
+			},
+			"offsets": {
+				"from": 2256000,
+				"to": 2260000
+			},
+			"text": " So I just write this function that when you get the positive allowance, I'm going to be even."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:40,000",
+				"to": "00:37:44,000"
+			},
+			"offsets": {
+				"from": 2260000,
+				"to": 2264000
+			},
+			"text": " Now if I were making like a real application, you know, I might have it pop up with a rubber window."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:44,000",
+				"to": "00:37:48,000"
+			},
+			"offsets": {
+				"from": 2264000,
+				"to": 2268000
+			},
+			"text": " You know what I mean? Like actually, a real interaction with the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:48,000",
+				"to": "00:37:50,000"
+			},
+			"offsets": {
+				"from": 2268000,
+				"to": 2270000
+			},
+			"text": " Then we're going to write our approval function."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:50,000",
+				"to": "00:37:53,000"
+			},
+			"offsets": {
+				"from": 2270000,
+				"to": 2273000
+			},
+			"text": " And our approval function, this is a really nice parent."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:53,000",
+				"to": "00:37:55,000"
+			},
+			"offsets": {
+				"from": 2273000,
+				"to": 2275000
+			},
+			"text": " Their approval function is true."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:55,000",
+				"to": "00:37:58,000"
+			},
+			"offsets": {
+				"from": 2275000,
+				"to": 2278000
+			},
+			"text": " Okay? This is just for testing purposes."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:58,000",
+				"to": "00:38:01,000"
+			},
+			"offsets": {
+				"from": 2278000,
+				"to": 2281000
+			},
+			"text": " Then what we'll do is we'll define the parent."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:01,000",
+				"to": "00:38:03,000"
+			},
+			"offsets": {
+				"from": 2281000,
+				"to": 2283000
+			},
+			"text": " We'll run the parent function."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:03,000",
+				"to": "00:38:05,000"
+			},
+			"offsets": {
+				"from": 2283000,
+				"to": 2285000
+			},
+			"text": " So we'll call multi-sync.parent."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:05,000",
+				"to": "00:38:07,000"
+			},
+			"offsets": {
+				"from": 2285000,
+				"to": 2287000
+			},
+			"text": " Given this contract object that you can look at the exploit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:07,000",
+				"to": "00:38:16,000"
+			},
+			"offsets": {
+				"from": 2287000,
+				"to": 2296000
+			},
+			"text": " give it that interact function. And then we'll get back a promise for the answer that will eventually come out of the parent when it's done running."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:16,000",
+				"to": "00:38:18,000"
+			},
+			"offsets": {
+				"from": 2296000,
+				"to": 2298000
+			},
+			"text": " We'll do something similar with the child."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:18,000",
+				"to": "00:38:23,000"
+			},
+			"offsets": {
+				"from": 2298000,
+				"to": 2303000
+			},
+			"text": " We'll start it off with the balance. And just because I'm lazy in this test, I may start it off."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:23,000",
+				"to": "00:38:26,000"
+			},
+			"offsets": {
+				"from": 2303000,
+				"to": 2306000
+			},
+			"text": " Exactly the same. So it might be the person with any."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:26,000",
+				"to": "00:38:29,000"
+			},
+			"offsets": {
+				"from": 2306000,
+				"to": 2309000
+			},
+			"text": " But the thing is that they need to have some money to provide the gas rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:29,000",
+				"to": "00:38:34,000"
+			},
+			"offsets": {
+				"from": 2309000,
+				"to": 2314000
+			},
+			"text": " Then the child will attach to the multi-sync contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:34,000",
+				"to": "00:38:39,000"
+			},
+			"offsets": {
+				"from": 2314000,
+				"to": 2319000
+			},
+			"text": " And when you attach versus deploy, you have to say what the address of the contract is and when it was created."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:39,000",
+				"to": "00:38:44,000"
+			},
+			"offsets": {
+				"from": 2319000,
+				"to": 2324000
+			},
+			"text": " You need to know what it was created so that you know that you're not sending people a little time out."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:44,000",
+				"to": "00:38:50,000"
+			},
+			"offsets": {
+				"from": 2324000,
+				"to": 2330000
+			},
+			"text": " Now the child, it's going to say, \"I'm a greedy child. What I want to do, my request is everything.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:38:50,000",
+				"to": "00:38:55,000"
+			},
+			"offsets": {
+				"from": 2330000,
+				"to": 2335000
+			},
+			"text": " Okay? And then we'll ask for the parent."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:55,000",
+				"to": "00:38:58,000"
+			},
+			"offsets": {
+				"from": 2335000,
+				"to": 2338000
+			},
+			"text": " We'll make a promise for what the child can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:58,000",
+				"to": "00:39:00,000"
+			},
+			"offsets": {
+				"from": 2338000,
+				"to": 2340000
+			},
+			"text": " We'll await those two and then we'll finish."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:00,000",
+				"to": "00:39:10,000"
+			},
+			"offsets": {
+				"from": 2340000,
+				"to": 2350000
+			},
+			"text": " Let me just pop back to the moment over to the parent over here and we'll make run."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:10,000",
+				"to": "00:39:21,000"
+			},
+			"offsets": {
+				"from": 2350000,
+				"to": 2361000
+			},
+			"text": " Spawning up the devnet. Sorry, I'm waiting for it to be around."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:21,000",
+				"to": "00:39:24,000"
+			},
+			"offsets": {
+				"from": 2361000,
+				"to": 2364000
+			},
+			"text": " Let me make this the text bigger here."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:24,000",
+				"to": "00:39:31,000"
+			},
+			"offsets": {
+				"from": 2364000,
+				"to": 2371000
+			},
+			"text": " That's actually running it."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:31,000",
+				"to": "00:39:36,000"
+			},
+			"offsets": {
+				"from": 2371000,
+				"to": 2376000
+			},
+			"text": " Really nervous for my live demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:36,000",
+				"to": "00:39:41,000"
+			},
+			"offsets": {
+				"from": 2376000,
+				"to": 2381000
+			},
+			"text": " Now we've ended and it said the parent thought there was one okay and zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:41,000",
+				"to": "00:39:44,000"
+			},
+			"offsets": {
+				"from": 2381000,
+				"to": 2384000
+			},
+			"text": " No, the child thought there was one okay and zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:44,000",
+				"to": "00:39:50,000"
+			},
+			"offsets": {
+				"from": 2384000,
+				"to": 2390000
+			},
+			"text": " Okay. So what this code shows us is that we have 28 lines"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:50,000",
+				"to": "00:39:58,000"
+			},
+			"offsets": {
+				"from": 2390000,
+				"to": 2398000
+			},
+			"text": " and we're able to take our multi-sync program that we wrote and write the wrapper front end code that the closed."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:58,000",
+				"to": "00:40:04,000"
+			},
+			"offsets": {
+				"from": 2398000,
+				"to": 2404000
+			},
+			"text": " So this code is the minimal amount of childhood code that we would need to write to have something useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:04,000",
+				"to": "00:40:12,000"
+			},
+			"offsets": {
+				"from": 2404000,
+				"to": 2412000
+			},
+			"text": " You would take this structure right here and you would build your unit testing library for this particular map based on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:12,000",
+				"to": "00:40:18,000"
+			},
+			"offsets": {
+				"from": 2412000,
+				"to": 2418000
+			},
+			"text": " Now let me show you one more version that does a little bit more interesting stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:18,000",
+				"to": "00:40:28,000"
+			},
+			"offsets": {
+				"from": 2418000,
+				"to": 2428000
+			},
+			"text": " So what this version is going to do is it's going to be 41 lines so it's like twice as long."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:28,000",
+				"to": "00:40:32,000"
+			},
+			"offsets": {
+				"from": 2428000,
+				"to": 2432000
+			},
+			"text": " And what it's going to do is it's going to print messages about what's happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:32,000",
+				"to": "00:40:42,000"
+			},
+			"offsets": {
+				"from": 2432000,
+				"to": 2442000
+			},
+			"text": " And the other thing that's going to be different is that the parent is going to say that you can have any time you ask for money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:42,000",
+				"to": "00:40:48,000"
+			},
+			"offsets": {
+				"from": 2442000,
+				"to": 2448000
+			},
+			"text": " as long as you ask for less than half of what's left, we'll say yes, plus this parent's rule is."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:48,000",
+				"to": "00:40:51,000"
+			},
+			"offsets": {
+				"from": 2448000,
+				"to": 2451000
+			},
+			"text": " Ask for whatever much you want as long as it's less than half."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:51,000",
+				"to": "00:41:03,000"
+			},
+			"offsets": {
+				"from": 2451000,
+				"to": 2463000
+			},
+			"text": " And what the child is going to do is the child is going to ask for a random amount of money that is divisible by an 8 that looks left."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:03,000",
+				"to": "00:41:06,000"
+			},
+			"offsets": {
+				"from": 2463000,
+				"to": 2466000
+			},
+			"text": " So why am I doing this? Just so that it will print a left line."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:06,000",
+				"to": "00:41:15,000"
+			},
+			"offsets": {
+				"from": 2466000,
+				"to": 2475000
+			},
+			"text": " The child will be completely asked for random amounts of money in the 8's until eventually it gets down to the point where there's only, I think, one eke left and then a little n."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:15,000",
+				"to": "00:41:20,000"
+			},
+			"offsets": {
+				"from": 2475000,
+				"to": 2480000
+			},
+			"text": " So this new version of the program is going to be more like exciting to watch."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:20,000",
+				"to": "00:41:25,000"
+			},
+			"offsets": {
+				"from": 2480000,
+				"to": 2485000
+			},
+			"text": " But really all I'm showing you is that I'm not developing a tab anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:25,000",
+				"to": "00:41:29,000"
+			},
+			"offsets": {
+				"from": 2485000,
+				"to": 2489000
+			},
+			"text": " I make them a user interface. I'm making the policy for what the parent does."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:29,000",
+				"to": "00:41:31,000"
+			},
+			"offsets": {
+				"from": 2489000,
+				"to": 2491000
+			},
+			"text": " I'm making the policy for what the child does."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:31,000",
+				"to": "00:41:39,000"
+			},
+			"offsets": {
+				"from": 2491000,
+				"to": 2499000
+			},
+			"text": " Maybe here is an automated policy, but you could have it be instead not automated one, but one that's provided by a user interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:39,000",
+				"to": "00:41:42,000"
+			},
+			"offsets": {
+				"from": 2499000,
+				"to": 2502000
+			},
+			"text": " We'll walk back to the code for a moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:42,000",
+				"to": "00:41:46,000"
+			},
+			"offsets": {
+				"from": 2502000,
+				"to": 2506000
+			},
+			"text": " And we'll build an event message."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:46,000",
+				"to": "00:41:50,000"
+			},
+			"offsets": {
+				"from": 2506000,
+				"to": 2510000
+			},
+			"text": " And I just love text printouts."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:50,000",
+				"to": "00:41:52,000"
+			},
+			"offsets": {
+				"from": 2510000,
+				"to": 2512000
+			},
+			"text": " This is going to be my favorite part of the topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:52,000",
+				"to": "00:41:55,000"
+			},
+			"offsets": {
+				"from": 2512000,
+				"to": 2515000
+			},
+			"text": " I'm going to make the text a little bigger."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:55,000",
+				"to": "00:41:58,000"
+			},
+			"offsets": {
+				"from": 2515000,
+				"to": 2518000
+			},
+			"text": " So you can really experience this."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:58,000",
+				"to": "00:42:01,000"
+			},
+			"offsets": {
+				"from": 2518000,
+				"to": 2521000
+			},
+			"text": " So they deploy the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:01,000",
+				"to": "00:42:04,000"
+			},
+			"offsets": {
+				"from": 2521000,
+				"to": 2524000
+			},
+			"text": " Okay, that's great. Put it in 50, ask for it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:04,000",
+				"to": "00:42:07,000"
+			},
+			"offsets": {
+				"from": 2524000,
+				"to": 2527000
+			},
+			"text": " Okay, well, look at all this money destroyed here."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:07,000",
+				"to": "00:42:09,000"
+			},
+			"offsets": {
+				"from": 2527000,
+				"to": 2529000
+			},
+			"text": " There's lots of transactions happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:09,000",
+				"to": "00:42:11,000"
+			},
+			"offsets": {
+				"from": 2529000,
+				"to": 2531000
+			},
+			"text": " And then it's ready for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:11,000",
+				"to": "00:42:14,000"
+			},
+			"offsets": {
+				"from": 2531000,
+				"to": 2534000
+			},
+			"text": " Then it's going to get down to the point where there's only one left."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:14,000",
+				"to": "00:42:17,000"
+			},
+			"offsets": {
+				"from": 2534000,
+				"to": 2537000
+			},
+			"text": " It's going to take a while to get lots of random."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:17,000",
+				"to": "00:42:18,000"
+			},
+			"offsets": {
+				"from": 2537000,
+				"to": 2538000
+			},
+			"text": " So close."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:18,000",
+				"to": "00:42:19,000"
+			},
+			"offsets": {
+				"from": 2538000,
+				"to": 2539000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:19,000",
+				"to": "00:42:26,000"
+			},
+			"offsets": {
+				"from": 2539000,
+				"to": 2546000
+			},
+			"text": " And then the parent said yes 13 times and no 13 times."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:26,000",
+				"to": "00:42:28,000"
+			},
+			"offsets": {
+				"from": 2546000,
+				"to": 2548000
+			},
+			"text": " And then the child agrees with that problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:28,000",
+				"to": "00:42:41,000"
+			},
+			"offsets": {
+				"from": 2548000,
+				"to": 2561000
+			},
+			"text": " So what we did today is we wrote an entire down from start to finish in 30 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:41,000",
+				"to": "00:42:42,000"
+			},
+			"offsets": {
+				"from": 2561000,
+				"to": 2562000
+			},
+			"text": " Now I heard it."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:42,000",
+				"to": "00:42:45,000"
+			},
+			"offsets": {
+				"from": 2562000,
+				"to": 2565000
+			},
+			"text": " Maybe it'll take you longer than 30 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:45,000",
+				"to": "00:42:46,000"
+			},
+			"offsets": {
+				"from": 2565000,
+				"to": 2566000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:46,000",
+				"to": "00:42:51,000"
+			},
+			"offsets": {
+				"from": 2566000,
+				"to": 2571000
+			},
+			"text": " And what Rich did for us is it abstracted over the centralization platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:51,000",
+				"to": "00:42:57,000"
+			},
+			"offsets": {
+				"from": 2571000,
+				"to": 2577000
+			},
+			"text": " In the Rich program, there's no point at which I said here's this complicated solidity idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:57,000",
+				"to": "00:43:00,000"
+			},
+			"offsets": {
+				"from": 2577000,
+				"to": 2580000
+			},
+			"text": " Do it tonight. You call or is it transfer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:00,000",
+				"to": "00:43:02,000"
+			},
+			"offsets": {
+				"from": 2580000,
+				"to": 2582000
+			},
+			"text": " Maybe it's supposed to be send."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:02,000",
+				"to": "00:43:04,000"
+			},
+			"offsets": {
+				"from": 2582000,
+				"to": 2584000
+			},
+			"text": " Let me go look at that stack overflow question again."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:04,000",
+				"to": "00:43:11,000"
+			},
+			"offsets": {
+				"from": 2584000,
+				"to": 2591000
+			},
+			"text": " These are the kinds of things that are done that are decided for you correctly by the compiler platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:11,000",
+				"to": "00:43:14,000"
+			},
+			"offsets": {
+				"from": 2591000,
+				"to": 2594000
+			},
+			"text": " The next thing is that we verify that the data is trustworthy."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:14,000",
+				"to": "00:43:18,000"
+			},
+			"offsets": {
+				"from": 2594000,
+				"to": 2598000
+			},
+			"text": " Or at least we would if my doctor configuration was writing copy the files correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:18,000",
+				"to": "00:43:31,000"
+			},
+			"offsets": {
+				"from": 2598000,
+				"to": 2611000
+			},
+			"text": " So if you want to send you, we'll post a link to a version of this walkthrough where we show the verification of permissions failing and then showing how the product would go."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:31,000",
+				"to": "00:43:44,000"
+			},
+			"offsets": {
+				"from": 2611000,
+				"to": 2624000
+			},
+			"text": " And it ensures that the clients in the contracts working system, our 40 line reach program produced 300 lines of front end jobs for code and solidity code."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:44,000",
+				"to": "00:43:50,000"
+			},
+			"offsets": {
+				"from": 2624000,
+				"to": 2630000
+			},
+			"text": " The details of those two programs have to be meticulously connected with one another to make sure that it executes correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:50,000",
+				"to": "00:43:55,000"
+			},
+			"offsets": {
+				"from": 2630000,
+				"to": 2635000
+			},
+			"text": " Now obviously the 40 line group produced 300 lines that has to be right."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:55,000",
+				"to": "00:44:01,000"
+			},
+			"offsets": {
+				"from": 2635000,
+				"to": 2641000
+			},
+			"text": " If you wrote a real program, not this little model, clearly it's going to be much more important to this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:01,000",
+				"to": "00:44:09,000"
+			},
+			"offsets": {
+				"from": 2641000,
+				"to": 2649000
+			},
+			"text": " Now, right now we have our beta that has many different, many constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:09,000",
+				"to": "00:44:16,000"
+			},
+			"offsets": {
+				"from": 2649000,
+				"to": 2656000
+			},
+			"text": " I don't have to talk about this with you later. And we have our release plan for over the next year to expand this set of features."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:16,000",
+				"to": "00:44:22,000"
+			},
+			"offsets": {
+				"from": 2656000,
+				"to": 2662000
+			},
+			"text": " I'm very grateful for you to come here. Please check out our website, reach.isation."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:22,000",
+				"to": "00:44:28,000"
+			},
+			"offsets": {
+				"from": 2662000,
+				"to": 2668000
+			},
+			"text": " Please look at us on Twitter and all the social platforms. You should really check out our Instagram account."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:28,000",
+				"to": "00:44:32,000"
+			},
+			"offsets": {
+				"from": 2668000,
+				"to": 2672000
+			},
+			"text": " I've got a really cute cat that's participation."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:32,000",
+				"to": "00:44:39,000"
+			},
+			"offsets": {
+				"from": 2672000,
+				"to": 2679000
+			},
+			"text": " And finally, I just want to see your exercise. And reach was a project that I worked on on the Alasker Company."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:39,000",
+				"to": "00:44:44,000"
+			},
+			"offsets": {
+				"from": 2679000,
+				"to": 2684000
+			},
+			"text": " And Alasker is also available in the tool that's based on the same principles."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:44,000",
+				"to": "00:44:47,000"
+			},
+			"offsets": {
+				"from": 2684000,
+				"to": 2687000
+			},
+			"text": " And thank you so much for your time."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:47,000",
+				"to": "00:44:52,000"
+			},
+			"offsets": {
+				"from": 2687000,
+				"to": 2692000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:52,000",
+				"to": "00:45:07,000"
+			},
+			"offsets": {
+				"from": 2692000,
+				"to": 2707000
+			},
+			"text": " [music]"
+		}
+	]
+}

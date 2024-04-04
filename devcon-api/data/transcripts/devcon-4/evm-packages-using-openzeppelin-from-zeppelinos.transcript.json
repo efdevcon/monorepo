@@ -1,0 +1,1044 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,840"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5840
+			},
+			"text": " >> Okay, folks. Thanks everyone for being here, especially being the last of the LinkedIn"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,840",
+				"to": "00:00:10,560"
+			},
+			"offsets": {
+				"from": 5840,
+				"to": 10560
+			},
+			"text": " talks. Well, my name is Santiago. I work at Zeppelin. And today we're going to discuss"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,560",
+				"to": "00:00:15,400"
+			},
+			"offsets": {
+				"from": 10560,
+				"to": 15400
+			},
+			"text": " a bit about the VMPACages and how to reuse code directly on chain. But before we move"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,400",
+				"to": "00:00:20,360"
+			},
+			"offsets": {
+				"from": 15400,
+				"to": 20360
+			},
+			"text": " into that, we should talk a little bit about proxies and the proxy pattern and how we use"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,360",
+				"to": "00:00:27,760"
+			},
+			"offsets": {
+				"from": 20360,
+				"to": 27760
+			},
+			"text": " it at Zeppelin OS. Basically, the idea for the proxy patterns is to decouple the execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,760",
+				"to": "00:00:32,600"
+			},
+			"offsets": {
+				"from": 27760,
+				"to": 32600
+			},
+			"text": " code and the storage layer when we work with a particular contract. So we end up having"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,600",
+				"to": "00:00:37,520"
+			},
+			"offsets": {
+				"from": 32600,
+				"to": 37520
+			},
+			"text": " what we are calling the logic contract, which actually holds the code to be executed. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,520",
+				"to": "00:00:42,160"
+			},
+			"offsets": {
+				"from": 37520,
+				"to": 42160
+			},
+			"text": " we have a proxy that actually keeps the storage and the state of the contract we're interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,160",
+				"to": "00:00:46,680"
+			},
+			"offsets": {
+				"from": 42160,
+				"to": 46680
+			},
+			"text": " with. We call it typically the upgradable contract instance. So any client typically"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,680",
+				"to": "00:00:50,880"
+			},
+			"offsets": {
+				"from": 46680,
+				"to": 50880
+			},
+			"text": " just interacts with the proxy, well, even knowing it's a proxy, this contract keeps"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,880",
+				"to": "00:00:55,960"
+			},
+			"offsets": {
+				"from": 50880,
+				"to": 55960
+			},
+			"text": " track of all the states that we're interested in and simply delegates all the logic back"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,960",
+				"to": "00:01:02,560"
+			},
+			"offsets": {
+				"from": 55960,
+				"to": 62560
+			},
+			"text": " to the logic contract. So for instance, let's say we have a typical ERC20, which implements"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,560",
+				"to": "00:01:07,080"
+			},
+			"offsets": {
+				"from": 62560,
+				"to": 67080
+			},
+			"text": " a transfer function that just keeps track of the implementation address of this logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,080",
+				"to": "00:01:13,720"
+			},
+			"offsets": {
+				"from": 67080,
+				"to": 73720
+			},
+			"text": " contract. So whenever there is a transfer code, let's say it's simply delegated to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,720",
+				"to": "00:01:19,520"
+			},
+			"offsets": {
+				"from": 73720,
+				"to": 79520
+			},
+			"text": " ERC20 contract. For those of you who know about this little opcode, this basically allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,520",
+				"to": "00:01:25,280"
+			},
+			"offsets": {
+				"from": 79520,
+				"to": 85280
+			},
+			"text": " us to execute code from here while retaining the state and the context from here. Okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,280",
+				"to": "00:01:30,360"
+			},
+			"offsets": {
+				"from": 85280,
+				"to": 90360
+			},
+			"text": " so a nice benefit of this besides the gas savings, for instance, is that this allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,360",
+				"to": "00:01:37,080"
+			},
+			"offsets": {
+				"from": 90360,
+				"to": 97080
+			},
+			"text": " us to update to a different implementation. So let's say we find a bug or want to improve"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,080",
+				"to": "00:01:41,400"
+			},
+			"offsets": {
+				"from": 97080,
+				"to": 101400
+			},
+			"text": " or whatever it is on the ERC20 contract, we simply deploy a new logic contract, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,400",
+				"to": "00:01:47,360"
+			},
+			"offsets": {
+				"from": 101400,
+				"to": 107360
+			},
+			"text": " update the implementation address on the proxy contract. So all subsequent calls are delegated"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,360",
+				"to": "00:01:52,120"
+			},
+			"offsets": {
+				"from": 107360,
+				"to": 112120
+			},
+			"text": " to the new implementation while retaining the state here and retaining the address that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,120",
+				"to": "00:02:00,240"
+			},
+			"offsets": {
+				"from": 112120,
+				"to": 120240
+			},
+			"text": " all of our clients are interacting with. Okay, so now let's move into EVM packages. So going"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,240",
+				"to": "00:02:05,400"
+			},
+			"offsets": {
+				"from": 120240,
+				"to": 125400
+			},
+			"text": " back to the example we had just a couple seconds ago, let's say we have an ERC20, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,400",
+				"to": "00:02:09,360"
+			},
+			"offsets": {
+				"from": 125400,
+				"to": 129360
+			},
+			"text": " let's say we want to actually deploy more than a single proxy, we want to have multiple"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,360",
+				"to": "00:02:15,480"
+			},
+			"offsets": {
+				"from": 129360,
+				"to": 135480
+			},
+			"text": " tokens. Okay, thing is we don't need to deploy more than one logic contract, we only need"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,480",
+				"to": "00:02:19,920"
+			},
+			"offsets": {
+				"from": 135480,
+				"to": 139920
+			},
+			"text": " one copy of the code that's actually going to be executed. This allows us to spin up"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,920",
+				"to": "00:02:26,200"
+			},
+			"offsets": {
+				"from": 139920,
+				"to": 146200
+			},
+			"text": " multiple proxies, each of these representing a different token, all of which will be delegating"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,200",
+				"to": "00:02:32,520"
+			},
+			"offsets": {
+				"from": 146200,
+				"to": 152520
+			},
+			"text": " to a single implementation contract. Moreover, all the proxies can actually belong to different"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,520",
+				"to": "00:02:37,040"
+			},
+			"offsets": {
+				"from": 152520,
+				"to": 157040
+			},
+			"text": " projects, they can be managed by entirely different development teams, and they all can"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,040",
+				"to": "00:02:44,760"
+			},
+			"offsets": {
+				"from": 157040,
+				"to": 164760
+			},
+			"text": " rely on the same single implementation contract deployed on the same network. And furthermore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,760",
+				"to": "00:02:48,680"
+			},
+			"offsets": {
+				"from": 164760,
+				"to": 168680
+			},
+			"text": " the implementation contract can be managed by a fourth by a different team, so we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,680",
+				"to": "00:02:56,560"
+			},
+			"offsets": {
+				"from": 168680,
+				"to": 176560
+			},
+			"text": " have a team that works just deploying implementation contracts for standards such as ERC20, 2021,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,560",
+				"to": "00:03:01,480"
+			},
+			"offsets": {
+				"from": 176560,
+				"to": 181480
+			},
+			"text": " whatever you prefer. And then you have the users or the clients of this code that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,480",
+				"to": "00:03:06,320"
+			},
+			"offsets": {
+				"from": 181480,
+				"to": 186320
+			},
+			"text": " be completely different teams that will just deploy their new tokens pointing to this particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,320",
+				"to": "00:03:11,040"
+			},
+			"offsets": {
+				"from": 186320,
+				"to": 191040
+			},
+			"text": " implementation. Mind you that while these contracts are upgradable, this one is immutable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,040",
+				"to": "00:03:16,840"
+			},
+			"offsets": {
+				"from": 191040,
+				"to": 196840
+			},
+			"text": " this one is fixed. So this means that if any project wants to work with a new version,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,840",
+				"to": "00:03:21,480"
+			},
+			"offsets": {
+				"from": 196840,
+				"to": 201480
+			},
+			"text": " they simply need to point to a new one. So basically, what we are doing is we are standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,480",
+				"to": "00:03:27,280"
+			},
+			"offsets": {
+				"from": 201480,
+				"to": 207280
+			},
+			"text": " based in this concept into EVM packages. EVM packages are a collection of related contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,280",
+				"to": "00:03:32,640"
+			},
+			"offsets": {
+				"from": 207280,
+				"to": 212640
+			},
+			"text": " that are deployed on chain for other projects to connect to and reuse directly on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,640",
+				"to": "00:03:40,040"
+			},
+			"offsets": {
+				"from": 212640,
+				"to": 220040
+			},
+			"text": " So this is basically a form of code sharing entirely on chain. So in case the owner, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,040",
+				"to": "00:03:45,040"
+			},
+			"offsets": {
+				"from": 220040,
+				"to": 225040
+			},
+			"text": " developer of this particular EVM package, again, finds a bug, an improvement or whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,040",
+				"to": "00:03:51,280"
+			},
+			"offsets": {
+				"from": 225040,
+				"to": 231280
+			},
+			"text": " it is on ERC20, they only need to deploy a new version and then it's up to the project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,280",
+				"to": "00:03:56,200"
+			},
+			"offsets": {
+				"from": 231280,
+				"to": 236200
+			},
+			"text": " to the users, to the clients of this logic contract to decide whether they want to operate"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,200",
+				"to": "00:04:03,560"
+			},
+			"offsets": {
+				"from": 236200,
+				"to": 243560
+			},
+			"text": " to obtain to this new version that is being deployed. So one of the first EVM packages"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,560",
+				"to": "00:04:09,840"
+			},
+			"offsets": {
+				"from": 243560,
+				"to": 249840
+			},
+			"text": " that we are pushing is OpenSappling ETH. This is basically a fork of OpenSappling Solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,840",
+				"to": "00:04:15,720"
+			},
+			"offsets": {
+				"from": 249840,
+				"to": 255720
+			},
+			"text": " that's built as an EVM package. For those of you who don't know, OpenSappling is a set"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,720",
+				"to": "00:04:19,880"
+			},
+			"offsets": {
+				"from": 255720,
+				"to": 259880
+			},
+			"text": " of reuse of those smart contracts. We have implementations for some of the most common"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,880",
+				"to": "00:04:27,600"
+			},
+			"offsets": {
+				"from": 259880,
+				"to": 267600
+			},
+			"text": " standards such as ERC20, 2021 and a handful of utilities as well. So what we are offering"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,600",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 267600,
+				"to": 274000
+			},
+			"text": " right now, but not intended, is basically an implementation on chain already for ERC20,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:39,400"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 279400
+			},
+			"text": " 2021 and also a couple of goodies for token vesting and splitting payments. All these"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,400",
+				"to": "00:04:44,320"
+			},
+			"offsets": {
+				"from": 279400,
+				"to": 284320
+			},
+			"text": " contracts are already deployed on chain. If you go to mainnet or to any testnet where"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,320",
+				"to": "00:04:49,280"
+			},
+			"offsets": {
+				"from": 284320,
+				"to": 289280
+			},
+			"text": " it's Robston, Ring, a Big Hub and whatever it is, you can link to these contracts, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,280",
+				"to": "00:04:54,040"
+			},
+			"offsets": {
+				"from": 289280,
+				"to": 294040
+			},
+			"text": " can spin up new proxies pointing to these implementations and you don't need to redeploy"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,040",
+				"to": "00:04:59,800"
+			},
+			"offsets": {
+				"from": 294040,
+				"to": 299800
+			},
+			"text": " the code for ERC20 or 2021 every time you want to deploy a new token. You basically delegate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,800",
+				"to": "00:05:05,480"
+			},
+			"offsets": {
+				"from": 299800,
+				"to": 305480
+			},
+			"text": " the development of these standards to the development team behind OpenSappling and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,480",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 305480,
+				"to": 312000
+			},
+			"text": " just act as clients of that code directly on chain. Of course, this package also has"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:17,680"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 317680
+			},
+			"text": " all the contracts from OpenSappling, you know and love and are already set up to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,680",
+				"to": "00:05:24,400"
+			},
+			"offsets": {
+				"from": 317680,
+				"to": 324400
+			},
+			"text": " used in an upgradable context. And yes, this is really all the contracts within OpenSappling."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,400",
+				"to": "00:05:28,720"
+			},
+			"offsets": {
+				"from": 324400,
+				"to": 328720
+			},
+			"text": " So how do you actually use this from a user perspective? This is where Zappling Noise"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,720",
+				"to": "00:05:34,040"
+			},
+			"offsets": {
+				"from": 328720,
+				"to": 334040
+			},
+			"text": " comes in. Zappling Noise basically leverages the proxy pattern for providing approgability"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,040",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 334040,
+				"to": 341000
+			},
+			"text": " and also called sharing using the EVM packages pattern. So Zappling Noise provides a handy"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:46,880"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 346880
+			},
+			"text": " CLI in which you can specify which EVM packages you want to use as dependencies, you use the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,880",
+				"to": "00:05:51,200"
+			},
+			"offsets": {
+				"from": 346880,
+				"to": 351200
+			},
+			"text": " link command for specifying that. And this is basically going to gather the information"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,200",
+				"to": "00:05:56,760"
+			},
+			"offsets": {
+				"from": 351200,
+				"to": 356760
+			},
+			"text": " for OpenSappling ETH and allow you to create new upgradable instances or proxies directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,760",
+				"to": "00:06:00,240"
+			},
+			"offsets": {
+				"from": 356760,
+				"to": 360240
+			},
+			"text": " from the command line, specifying which your initialization arguments you are interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,240",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 360240,
+				"to": 366000
+			},
+			"text": " in. For instance, we are creating an ERC20 instance named MyToken with the examples and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:12,680"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 372680
+			},
+			"text": " giving these address 100 tokens to begin with. There are other ways for interacting with"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,680",
+				"to": "00:06:16,680"
+			},
+			"offsets": {
+				"from": 372680,
+				"to": 376680
+			},
+			"text": " Zappling Noise. We are providing JavaScript libraries as well if you don't want to play"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,680",
+				"to": "00:06:21,520"
+			},
+			"offsets": {
+				"from": 376680,
+				"to": 381520
+			},
+			"text": " around with the CLI. But this is by far the easiest way to interact with. Okay, so to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,520",
+				"to": "00:06:27,520"
+			},
+			"offsets": {
+				"from": 381520,
+				"to": 387520
+			},
+			"text": " recap, EVM packages basically is a new standard that allows us to share code directly at"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,520",
+				"to": "00:06:31,480"
+			},
+			"offsets": {
+				"from": 387520,
+				"to": 391480
+			},
+			"text": " the bytecode level by having the code already deployed and having the users just linked"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,480",
+				"to": "00:06:35,960"
+			},
+			"offsets": {
+				"from": 391480,
+				"to": 395960
+			},
+			"text": " to it. This allows for a gust of savings because you don't need to redeploy the implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,960",
+				"to": "00:06:40,840"
+			},
+			"offsets": {
+				"from": 395960,
+				"to": 400840
+			},
+			"text": " contracts every time and make it easy for upgrading into a new version. You just delegate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,840",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 400840,
+				"to": 406000
+			},
+			"text": " to the developer for the package and you choose when you want to work with a new one. And we"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:52,160"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 412160
+			},
+			"text": " are providing Zappling Noise as an easy way to both publish and consume the EVM packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,160",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 412160,
+				"to": 416000
+			},
+			"text": " And one of the interesting things is that OpenSappling ETH is not the only EVM package"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:01,040"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 421040
+			},
+			"text": " going around. We have a lot of very wonderful teams also working on their own EVM packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,040",
+				"to": "00:07:06,400"
+			},
+			"offsets": {
+				"from": 421040,
+				"to": 426400
+			},
+			"text": " Some of these are already available on Mainnet. We have packages for Oracle, for TCRs, for"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,400",
+				"to": "00:07:11,480"
+			},
+			"offsets": {
+				"from": 426400,
+				"to": 431480
+			},
+			"text": " multisigs, for a handful of things. We will be releasing even more and partnering with"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,480",
+				"to": "00:07:18,480"
+			},
+			"offsets": {
+				"from": 431480,
+				"to": 438480
+			},
+			"text": " more teams as time goes by. So thank you all. I hope you enjoyed the talk. And sorry, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,480",
+				"to": "00:07:23,240"
+			},
+			"offsets": {
+				"from": 438480,
+				"to": 443240
+			},
+			"text": " have to say this. We are hiring. Look for us any of us with a Zappling T-shirt, we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,240",
+				"to": "00:07:27,560"
+			},
+			"offsets": {
+				"from": 443240,
+				"to": 447560
+			},
+			"text": " distributing. We are growing. Please, if you are interested in this, let us know. We will"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,560",
+				"to": "00:07:30,040"
+			},
+			"offsets": {
+				"from": 447560,
+				"to": 450040
+			},
+			"text": " be happy to have you on our team. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,040",
+				"to": "00:07:32,040"
+			},
+			"offsets": {
+				"from": 450040,
+				"to": 452040
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,040",
+				"to": "00:07:34,040"
+			},
+			"offsets": {
+				"from": 452040,
+				"to": 454040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,040",
+				"to": "00:07:36,040"
+			},
+			"offsets": {
+				"from": 454040,
+				"to": 456040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,040",
+				"to": "00:07:38,040"
+			},
+			"offsets": {
+				"from": 456040,
+				"to": 458040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,040",
+				"to": "00:07:40,040"
+			},
+			"offsets": {
+				"from": 458040,
+				"to": 460040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,040",
+				"to": "00:07:42,040"
+			},
+			"offsets": {
+				"from": 460040,
+				"to": 462040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,040",
+				"to": "00:07:44,040"
+			},
+			"offsets": {
+				"from": 462040,
+				"to": 464040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,040",
+				"to": "00:07:46,040"
+			},
+			"offsets": {
+				"from": 464040,
+				"to": 466040
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,040",
+				"to": "00:08:02,040"
+			},
+			"offsets": {
+				"from": 466040,
+				"to": 482040
+			},
+			"text": " [Music]"
+		}
+	]
+}

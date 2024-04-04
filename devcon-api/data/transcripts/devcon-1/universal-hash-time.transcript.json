@@ -1,0 +1,2089 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 22000
+			},
+			"text": " All right, actually I'm very fortunate to be able to follow one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 26000
+			},
+			"text": " talking about this beautiful collection of hashes, this beautiful forest of hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 28000
+			},
+			"text": " Because that's exactly what I'm talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 32000
+			},
+			"text": " It's the same thing except I'm going to talk about it not from a perspective of content,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 34000
+			},
+			"text": " but from a perspective of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 36000
+			},
+			"text": " So compared to a lot of what you've seen today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 38000
+			},
+			"text": " this is actually a very simple presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 46000
+			},
+			"text": " I just want to, in the next 15 minutes, hopefully get you to think about a new cryptographic way of thinking about time."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 52000
+			},
+			"text": " So I think most people, when they think of time, they think of probably what their local clock says right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 54000
+			},
+			"text": " They think of a number."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 59000
+			},
+			"text": " Some of you, as developers, will think more abstractly as something like UTC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 63000
+			},
+			"text": " or maybe you'll even think of something even more abstract than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 68000
+			},
+			"text": " But in either case, you're probably thinking of some kind of ordered numbered property."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 72000
+			},
+			"text": " And when you get into the cryptographic basics of how a lot of these blockchain systems work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 74000
+			},
+			"text": " you don't have that sort of a numbered property anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 77000
+			},
+			"text": " You only have one relation that you can enforce."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 83000
+			},
+			"text": " And basically, that relation is that if something happened before you created a certain hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 88000
+			},
+			"text": " then you know the order in which the hash and the content were created."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 94000
+			},
+			"text": " The way that this is commonly used is in proof of existence, like Vitalik mentioned earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 99000
+			},
+			"text": " We're probably all familiar with the example of if I take a document and I hash it"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 103000
+			},
+			"text": " and I put that hash inside of the Bitcoin blockchain or the Ethereum blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 109000
+			},
+			"text": " then at a later time, I can argue that this document already existed at a certain point in time"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 112000
+			},
+			"text": " because it was included in this particular block header."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 116000
+			},
+			"text": " And I can give a very efficient Merkel proof that this was the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 121000
+			},
+			"text": " This is an image I just randomly pulled off the internet about structure of block."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 125000
+			},
+			"text": " And we can see the same shape that's been up here three or four times today"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 129000
+			},
+			"text": " of all our wonderful content being hashed up into a root in a series of blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 136000
+			},
+			"text": " But a lot of people may not realize that we're creating a little bit of a fragmented approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 140000
+			},
+			"text": " to time when we do this, because every individual blockchain has its own idea of sequence."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 142000
+			},
+			"text": " And it's not just blockchains actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 147000
+			},
+			"text": " This is an image of a traditional linked time-snapping provider called guard time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 149000
+			},
+			"text": " You'll notice it's the exact same structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 155000
+			},
+			"text": " We've got a bunch of individual content being Merckled up into a root and created into something over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 162000
+			},
+			"text": " And this is really unfortunate because if the only measure of time we have is the relative ordering of two things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 164000
+			},
+			"text": " that one thing happened before the other thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 169000
+			},
+			"text": " then if we're creating lots of different fragmented versions of time, we're losing something."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 173000
+			},
+			"text": " And it's unnecessary because we can very cheaply keep all of this information."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 176000
+			},
+			"text": " And this is the idea I call universal #time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 181000
+			},
+			"text": " So just to mention a few sources of time that are out there right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 186000
+			},
+			"text": " of course we have the Ethereum network, Bitcoin, all the blockchain networks have some kind of chain of headers"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 188000
+			},
+			"text": " that's keeping track of time and taking along."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 195000
+			},
+			"text": " Traditional linked time-snapping providers include guard time, the open source true time stamp,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 199000
+			},
+			"text": " all true, a couple of other companies."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 203000
+			},
+			"text": " And the answer to this is really very, very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 209000
+			},
+			"text": " This basic structure where you have some kind of packet of data that is somehow identified,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 212000
+			},
+			"text": " it's signed, but this is an abstract signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 218000
+			},
+			"text": " It could be just the existence of some proof of work or compliance with some sort of pre-agreed format."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 223000
+			},
+			"text": " And then it has a link to the previous tick, the previous packet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 228000
+			},
+			"text": " And then on the other side, it has the root of some authenticated data structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " It could be a Merkle tree, but it really could be any authenticated data structure, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 235000
+			},
+			"text": " in Ethereum we're familiar with the Patricia tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 238000
+			},
+			"text": " There's anything, any wide variety of things that you could use."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 245000
+			},
+			"text": " As long as we have these systems, there's a very clean and simple way that we can bring all of their concepts of time into alignment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 251000
+			},
+			"text": " And that is we just put the hash of every series of ticks in every other series of ticks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 253000
+			},
+			"text": " Simple, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 257000
+			},
+			"text": " This is the idea I call universal hash time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 263000
+			},
+			"text": " And basically, this pattern here, wherever we see it, we're going to come up with a term for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 266000
+			},
+			"text": " that allows us to recognize it. We're just going to call them tick chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 270000
+			},
+			"text": " Obviously, block headers are what we think of in the blockchain world with Ethereum and things like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 275000
+			},
+			"text": " But it's the exact same format in traditional links, time-samping and any other format."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 280000
+			},
+			"text": " Anything that constitutes a tick chain, we're just going to try and put hashes of all that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 283000
+			},
+			"text": " into every other system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 292000
+			},
+			"text": " So, in terms of the structure here that we're familiar with, this is shared both across blocks with block headers"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 295000
+			},
+			"text": " and also traditional link time-samping."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 298000
+			},
+			"text": " We have a bunch of hashes that we're going to try and include."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 302000
+			},
+			"text": " And we're going to hash them up into, for example, a Merkle tree or anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 307000
+			},
+			"text": " And we're going to put that root hash inside of the packet, and then we're going to have a sequence of packets."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 311000
+			},
+			"text": " And each packet is going to contain the hash of the previous."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 322000
+			},
+			"text": " And this pattern that we use in proof of existence, it's the same pattern that is called electronic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 325000
+			},
+			"text": " certification in the time-samping providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 329000
+			},
+			"text": " It's just one same thing over and over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 335000
+			},
+			"text": " And I'm just going to skip ahead here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 339000
+			},
+			"text": " And what it allows us to do is produce these very compact receipts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 348000
+			},
+			"text": " So, if the data is in blue here and we want to be able to prove that the data was hash into this particular tick here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 351000
+			},
+			"text": " we only need to store the red parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 356000
+			},
+			"text": " So, this is how we form our Merkle proof, for example, if this is a Merkle tree or whatever our system is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 358000
+			},
+			"text": " We have some kind of receipt."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 364000
+			},
+			"text": " Now, in the context of universal hash time, we're going to say, unlike in blockchains, we're not going to try and store this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 366000
+			},
+			"text": " We're not going to try and replicate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 368000
+			},
+			"text": " We're not going to try and make it available."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " If you've got some content that you care about the stamp of, you're going to be the one who holds on to this receipt."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 380000
+			},
+			"text": " So, for example, if one hash chain is being stamped into another hash chain, whoever cares about the hash and they can hold on to the receipts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 382000
+			},
+			"text": " We don't have to store and replicate this data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 389000
+			},
+			"text": " And that means, going back to the earlier scalability conversations we were having, that all of this is going to scale extremely, extremely well."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 398000
+			},
+			"text": " So, in terms of scaling, we don't have to have every party keeping a copy of everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 400000
+			},
+			"text": " We don't have every party validating everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 406000
+			},
+			"text": " We basically just have to sneak these hashes in every once in a while, and then ourselves keep track of the fact that we did this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 412000
+			},
+			"text": " As long as we have this property, we're going to later be able to come back and give time-like guarantees that can be cryptographically verified."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 417000
+			},
+			"text": " And importantly, those time-like guarantees can be cryptographically verified inside of blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 423000
+			},
+			"text": " Normally, if I want to prove inside of a blockchain that something happened at a certain point in time, I have very limited options for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 427000
+			},
+			"text": " I need some kind of centralized provider to timestamp or something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 432000
+			},
+			"text": " And what we're going to see is that this has a lot of applications in the blockchain world."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 437000
+			},
+			"text": " The first question that comes to mind is the economics of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 446000
+			},
+			"text": " If you're going to be moving between chains and stamping between chains and trying to do this reliably, how can you pay for it, especially if you're going to be able to do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 452000
+			},
+			"text": " Especially if the chains maybe are moving in different cycles and have different cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 454000
+			},
+			"text": " There's a very easy answer to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 465000
+			},
+			"text": " For those of you who are familiar with the concept of payment channels, state channels is the generalized idea of payment channels, and it's the same basic concept that you'll have heard two or three times today."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 475000
+			},
+			"text": " If you can produce a game theoretic smart contract judge that's capable of judging between two participants and accepting their proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 482000
+			},
+			"text": " accepting their evidence, and on the basis of that evidence deciding what's going to happen, then you normally won't have to submit that evidence."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 488000
+			},
+			"text": " As long as you're confident that someone has signed something and you could submit it to a smart contract and get something back out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 494000
+			},
+			"text": " then you probably never have to do this because you can kind of just agree that the transfer has already taken place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 499000
+			},
+			"text": " enforced only if necessary by the blockchain. The same technique that Swam was referring to earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 509000
+			},
+			"text": " This is fantastic because if we can write smart contracts that allow us to pay out only in the event that our hashes were included into other chains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 514000
+			},
+			"text": " and this can be paid for by anybody, it can be the person whose data is being hashed into the chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 517000
+			},
+			"text": " but it can also be someone who wants to fund this as a public good."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 525000
+			},
+			"text": " For example, maybe I want to find this a public good, the idea of having all Ethereum hashes included in the Mercotry of Bitcoin and vice versa."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 532000
+			},
+			"text": " Then I can just write those terms into a smart contract and I can design that smart contract in the form of a state channel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 538000
+			},
+			"text": " and what's going to happen is that because the ability to appeal to the blockchain is present,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 544000
+			},
+			"text": " in most cases I'll be able to pay out that entire smart contract instantly in real time, very small amounts, no transaction fees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 548000
+			},
+			"text": " and even though I'm incentivizing this as a public good."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 561000
+			},
+			"text": " It's all a trustless system, it's all very easy to support, very easy to have kind of follow the same IPFS model of throw the expectation out there"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 565000
+			},
+			"text": " and let the network respond if it thinks that what you're doing is valuable."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 574000
+			},
+			"text": " The result that we have if we can do all of this, if we can efficiently hash most of our different conceptions of cryptographic time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 580000
+			},
+			"text": " most of our different tick chains into each other's ideas is that we're going to get a very helpful property."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 583000
+			},
+			"text": " Let me just explain what's happening in this diagram here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 588000
+			},
+			"text": " This along one side is kind of a normal series of ticks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 596000
+			},
+			"text": " This could be, for example, the headers of the Ethereum network, or it could be the ticks in your centralized link time stamping provider like GuardTime"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 598000
+			},
+			"text": " or whatever your reference point is."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 600000
+			},
+			"text": " Universal HashTime is entirely relativistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 603000
+			},
+			"text": " It has no concept of an absolute state of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 610000
+			},
+			"text": " It just tries to be very greedy and collect all of the possible relative information about what's available."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 617000
+			},
+			"text": " So, for example, inside of these various Merkle trees on this particular hash chain, we have all kinds of different data that's been submitted."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 623000
+			},
+			"text": " Some of that data is the ticks of other chains that I've colored in yellow and green over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 630000
+			},
+			"text": " So, for example, if this is Ethereum, let's say this could be GuardTime up here, this could be Bitcoin out here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 634000
+			},
+			"text": " We have some additional data that someone's doing a traditional proof of existence on here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 641000
+			},
+			"text": " Hopefully, we have IPFS up and running so that we've got the vast majority of data on a system like this addressed by hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 647000
+			},
+			"text": " and so that's something like a major news event or anything that happens in real time is being included into this structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 658000
+			},
+			"text": " Out of this, we start to get some very important timing information because if you have a normal policy of all data everywhere being stamped into a tick chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 667000
+			},
+			"text": " then what you end up coming away with is the assumption that the earliest producible receipt is, in fact, the time that content was created."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 669000
+			},
+			"text": " Now, obviously, this isn't true historically."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 676000
+			},
+			"text": " If we only start building the system now, then the earliest available hash of the Napoleonic Wars will not be the time that Napoleonic Wars has been created."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 679000
+			},
+			"text": " But in general, this will be true going forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 686000
+			},
+			"text": " So, if you can think of a detailed description of a current event that has enough features in it that someone would not have been able to guess in advance"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 694000
+			},
+			"text": " that that news article would be written in that exact way, then the earliest example, the earliest time receipt that you can get,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 703000
+			},
+			"text": " the earliest stamp receipt that you can get of a news article covering that event is a reasonable cryptographic proxy for the time that this actually happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 706000
+			},
+			"text": " So, you start with the earliest event of something."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 708000
+			},
+			"text": " For example, it could be this data here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 715000
+			},
+			"text": " At the earliest receipt that's available, you can just produce this in a normal challenge response format by just throwing out a reward to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 720000
+			},
+			"text": " Now you can ask, what happened before the earliest available receipt of this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725000
+			},
+			"text": " And this turns out to be incredibly useful in a cryptographic context."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 730000
+			},
+			"text": " So, a simple example would be, we've talked about proof of stake and the problem with long-range attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 735000
+			},
+			"text": " One of the problems with long-range attacks is that you have no conception of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 744000
+			},
+			"text": " If you're online on the network, you know what's happening live and you know that, for example, this person over here was not part of the consensus at this time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 749000
+			},
+			"text": " but then the owners of that stake moved their coins and then only later sold their keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 755000
+			},
+			"text": " And after those keys were available, very cheaply at very little economic costs, then the attacker acquired them and then produced."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 757000
+			},
+			"text": " This is a time difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 763000
+			},
+			"text": " And what this allows you to do is you still have the subjectivity of any proof of stake system."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 770000
+			},
+			"text": " But if you have something like universal hash time setup, you can take the trust out of the subjectivity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 777000
+			},
+			"text": " So, let's say that you've been offline for a period of eight months and you want to figure out what the correct consensus set is now."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 779000
+			},
+			"text": " You could find someone that you trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 783000
+			},
+			"text": " You could try and accumulate trust through a series of social networks or trusted websites."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 787000
+			},
+			"text": " But what you could do instead is you could say, \"I know something that happened four months ago.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 793000
+			},
+			"text": " So, let me Google for something that's stored on IPFS, that happened four months ago, that's an article that described this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 794000
+			},
+			"text": " Okay, I found this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 800000
+			},
+			"text": " Let's find the earliest stamp receipt I can find for an article describing this event that happened four months ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 805000
+			},
+			"text": " Okay, it's this one here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 813000
+			},
+			"text": " Now, if I come across a chain in proof of stake that's claiming that it initiated four months before that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 819000
+			},
+			"text": " I can issue a challenge to those validators on that chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 825000
+			},
+			"text": " And I can ask, if what you did, when you signed these blocks and from this consensus, was before this event four months ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 834000
+			},
+			"text": " then why don't you have a hash of this consensus somewhere upstream, somewhere in the past hash cone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 837000
+			},
+			"text": " of this receipt that I've produced?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 843000
+			},
+			"text": " Because any possible news article that describes an event could only have been created after the event,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 846000
+			},
+			"text": " which marks kind of a barrier in one direction at a time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 851000
+			},
+			"text": " So, if something happened before that, it becomes unreasonable, even on your own personal basis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 855000
+			},
+			"text": " before you check anything in the network, to think that somebody would have produced this consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 860000
+			},
+			"text": " and would not have hashed it somehow into the past of this particular event."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 861000
+			},
+			"text": " That's one example."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 864000
+			},
+			"text": " There are numerous other examples of how this becomes cryptographically useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 868000
+			},
+			"text": " I'm running out of time, and I'm going to stick within that, so you can come up and ask me questions about this later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 870000
+			},
+			"text": " but I'll just give one other one very quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 877000
+			},
+			"text": " Let's say you're producing some live news footage, and you want to produce a bound on the idea that this news footage was faked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 881000
+			},
+			"text": " and say that if it was faked, at least it was faked in real time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 886000
+			},
+			"text": " What you can do is you can take a little monitor, just a little display, put it right on top of the camera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 891000
+			},
+			"text": " have this hooked up to some tick chain that's producing content relatively often,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 896000
+			},
+			"text": " say Ethereum, it's coming every 15 seconds or so, and then every few seconds on the live broadcast,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 901000
+			},
+			"text": " as the news photographer, whoever's present in the scene, looks over to the camera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 907000
+			},
+			"text": " they just read a few of these digits off, just enough that it's statistically unlikely that they could have prerecorded this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 915000
+			},
+			"text": " So, this is a recent hash, say something from here, you read off the hash into the data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 920000
+			},
+			"text": " and then the video, hopefully, is being stored into something like IPFests, being hash right back in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 924000
+			},
+			"text": " which means we now have this specific window in between this tick and this tick,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 929000
+			},
+			"text": " that we know that the video was actually created or in some sense rendered or modified,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 934000
+			},
+			"text": " and this gives us a very narrow window and allows us to in some sense prove that the video was created or faked in real time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 939000
+			},
+			"text": " which is probably harder, so that's universal hash time. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 944000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 952000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 954000
+			},
+			"text": " [ ]"
+		}
+	]
+}

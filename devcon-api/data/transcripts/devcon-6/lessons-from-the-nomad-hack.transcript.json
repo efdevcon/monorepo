@@ -1,0 +1,2903 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,440"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14440
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,440",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 14440,
+				"to": 19000
+			},
+			"text": " Hello. I'm super happy to be here or not so happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 25000
+			},
+			"text": " I would prefer to talk about something else, but, you know, we do what we can write."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 33000
+			},
+			"text": " So, first we have to start with the basics. I'm not here on behalf of Luxury, which is the company behind Nomad."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 38000
+			},
+			"text": " So, the views expressed are my own and do not reflect those of the company."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 45000
+			},
+			"text": " As is an active investigation right now, an active incident, we will be not doing any Q&A, unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 49000
+			},
+			"text": " My name is Odysseus. I'm a protocol engineering Nomad."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 55000
+			},
+			"text": " I've worked in Web3 as a consultant and also been working as a DevOps and IoT."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 60000
+			},
+			"text": " So, today we'll be talking about Nomad, what is Nomad, how the protocol works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 65000
+			},
+			"text": " We will need that to be able to talk about bridges, how they work, and the incident."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 72000
+			},
+			"text": " Finally, what are the learning we have? What did we learn from losing about having a hack"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 78000
+			},
+			"text": " has resulted in 190 million dollars in tokens being evaporated?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 81000
+			},
+			"text": " Nomad is not a bridge. Nomad has a bridge, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 86000
+			},
+			"text": " But if Nomad is not a bridge and has a bridge, what's Nomad?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 92000
+			},
+			"text": " Nomad is an optimistic protocol, first of all, which means that it has an optimistic security model."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 101000
+			},
+			"text": " It's a protocol for interoperability, which means that it allows applications to be able to meaningfully react to an event that happens in another blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 105000
+			},
+			"text": " Meaningfully, that's super important."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 110000
+			},
+			"text": " We don't define how your application will react to some event."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 115000
+			},
+			"text": " Basically, the Nomad protocol will just send arbitrary bytes from one domain to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 120000
+			},
+			"text": " So, it's you, the developer, to interpret those bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 126000
+			},
+			"text": " Nomad is an optimistic protocol for interoperability that supports arbitrary messages between domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 128000
+			},
+			"text": " How Nomad works."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 135000
+			},
+			"text": " The first thing you have to know about Nomad, and probably the last, is that it's super simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 143000
+			},
+			"text": " On the sending chain, all the messages that are being sent are added to a metal tree, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 151000
+			},
+			"text": " So, why we do that is because it's very easy with a metal tree to prove whether a message belongs to the tree or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 159000
+			},
+			"text": " The information of inclusion in theory and in practice is included, is compressed into the root."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 167000
+			},
+			"text": " So, the protocol only has to do is to send that root from the sending chain, the receiving chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 177000
+			},
+			"text": " If we do that securely, then anyone can go to the receiving chain and prove that the message indeed belongs to the tree that has that root."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 186000
+			},
+			"text": " So, all that the protocol does really is that's passing this root from the sending name domain to the receiving domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 188000
+			},
+			"text": " Domain is a chain, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 191000
+			},
+			"text": " Let's see the life cycle of a message in Nomad."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 194000
+			},
+			"text": " First, we go to the home contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 201000
+			},
+			"text": " If you see here, the home contract on the sending chain, we send the message, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 203000
+			},
+			"text": " Then a new root is generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 210000
+			},
+			"text": " Then that root is relayed to the receiving chain and you will find itself in a contract called replica."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 214000
+			},
+			"text": " Then we must wait for the optimistic window to pass."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 220000
+			},
+			"text": " Afterwards, we can go to replica to the receiving domain and say, \"Hey, here's the proof of inclusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 221000
+			},
+			"text": " Here's the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 225000
+			},
+			"text": " I want to prove that this message was indeed sent.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 228000
+			},
+			"text": " And after we prove a message, we can process it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 237000
+			},
+			"text": " And we can process a message. Basically, the replica contract will take the message metadata, call the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 240000
+			},
+			"text": " The destination contract and pass the message payload."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 241000
+			},
+			"text": " Super simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 248000
+			},
+			"text": " Now that we have in a very basic sense how to understand how Nomad works, let's talk about bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 249000
+			},
+			"text": " What's a bridge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 255000
+			},
+			"text": " A bridge is a super simple application built on top of any interoperability protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 261000
+			},
+			"text": " Basically, you go to the sending chain, let's say Ethereum, you go to the contract and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 265000
+			},
+			"text": " \"Hey, bridge, I want to send my native tokens with, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 266000
+			},
+			"text": " It's a native token to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 268000
+			},
+			"text": " It has intrinsic value."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 271000
+			},
+			"text": " And I want to send it to Porto-Evmos, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 281000
+			},
+			"text": " Then the bridge will hold that with and it will send a message to the receiving chain to the Nomad bridge of the receiving end"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 286000
+			},
+			"text": " and say, \"Hey, you should create a new mod with a representation token.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 289000
+			},
+			"text": " Which doesn't have any value in itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 293000
+			},
+			"text": " The value is derived from the fact that we can do the opposite."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 297000
+			},
+			"text": " That a user that has a mod with can go to the bridge and say, \"Hey, I want to burn that token."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 300000
+			},
+			"text": " And I want to transfer my mod with bug into Ethereum.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 306000
+			},
+			"text": " So the bridge will send a message bug and say, \"Hey, unlock a new width.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 312000
+			},
+			"text": " A hug is when all this locked collateral in the bridge is stolen."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 318000
+			},
+			"text": " So now, all these representations that are flying around, they're essentially worthless"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 323000
+			},
+			"text": " because they can't be redeemed for the original asset or the asset has intrinsic value."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 327000
+			},
+			"text": " And I think that's why we have seen so many hacks in bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 335000
+			},
+			"text": " Not only because they are indeed complex systems and they are, but because also they have so much collateral locked inside them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 341000
+			},
+			"text": " They are very juicy targets. They make good targets for hikers to pry and test for the vulnerabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 346000
+			},
+			"text": " Let's talk about the incident."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 350000
+			},
+			"text": " How was the Nomad bridge possible to be hacked?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 353000
+			},
+			"text": " We'll talk about two mappings in the replica contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 355000
+			},
+			"text": " Two mappings was all it took."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 360000
+			},
+			"text": " The first mapping connects a root to the timestamp that says that after the timestamp,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 362000
+			},
+			"text": " that root is indeed valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 364000
+			},
+			"text": " You can start proving messages against the root."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 366000
+			},
+			"text": " The root of the mercury."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 371000
+			},
+			"text": " So a new root comes and a new timestamp is generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 379000
+			},
+			"text": " Now, I can go to the replica and if the timestamp has passed, I can say, \"Hey, here's the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 380000
+			},
+			"text": " Here's the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 382000
+			},
+			"text": " I want to prove it against the valid root.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 386000
+			},
+			"text": " And if that happens, then the message is proven."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 396000
+			},
+			"text": " Now, the message is, and when proving a message, you connect the message which is by 32, the root, which was proven under."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 400000
+			},
+			"text": " Solidity and the default values of my piece."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 404000
+			},
+			"text": " All the default values for by 32, it's zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 406000
+			},
+			"text": " And for a number is zero as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 415000
+			},
+			"text": " So in a way, if you look at the second mapping here, in a way, all messages are proven under the zero root, proven."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 422000
+			},
+			"text": " But of course, in the code, we set an authentication flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 424000
+			},
+			"text": " That said that, of course, this is not valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 427000
+			},
+			"text": " Of course, this is zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 430000
+			},
+			"text": " And if the timestamp is zero, then it's not valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 433000
+			},
+			"text": " Because also the number zero is the default value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 441000
+			},
+			"text": " The problem is that when we deploy the contract, we set that to one non-zero value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 449000
+			},
+			"text": " So what this results is that the root zero is active after timestamp one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 452000
+			},
+			"text": " And all messages are proven under the root zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 458000
+			},
+			"text": " So all messages are proven against an active truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 464000
+			},
+			"text": " So what users did, they forged messages that were meant to the bridge, that all the bridge hay, under all the collateral,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 470000
+			},
+			"text": " and seized any arbitrary message that has not already been proven, is proven under the root zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 473000
+			},
+			"text": " It could prove and process whatever they wanted."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 475000
+			},
+			"text": " And that's right there, 190 million bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 478000
+			},
+			"text": " So why did it come up now, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 481000
+			},
+			"text": " The normal protocol has been active for months."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 484000
+			},
+			"text": " We had an upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 489000
+			},
+			"text": " And during the upgrade, we changed the semantics of the second mapping."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 493000
+			},
+			"text": " So we used to store an enum here, numbers, numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 497000
+			},
+			"text": " So if the number is one, it's proven, if the number is two, it's processed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 503000
+			},
+			"text": " So we didn't connect messages to the root under which they are proven."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 515000
+			},
+			"text": " So even if the root was active, through the authentication flow, we made sure that we didn't authenticate that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 520000
+			},
+			"text": " But we changed the semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 530000
+			},
+			"text": " And that is why the bug was so hard to find or testing, didn't find it or how the door was needed, because it needed the old state with a new code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 538000
+			},
+			"text": " So old state with old code secure, new state with new code secure, old state with new code, not secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 540000
+			},
+			"text": " Nomad now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 542000
+			},
+			"text": " Now the protocol is paused."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 544000
+			},
+			"text": " We will restart the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 545000
+			},
+			"text": " That's the hard part."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 548000
+			},
+			"text": " How do we restart an uncollateralized bridge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 550000
+			},
+			"text": " We'll be sharing more information soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 560000
+			},
+			"text": " The TLDR is that users will be able to access to collect some of the recovered funds, as the recovered funds continuously flow into the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 564000
+			},
+			"text": " And they will do so fairly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 570000
+			},
+			"text": " You'll be able to read more about it in our coming weeks in our blog post and Twitter accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 572000
+			},
+			"text": " So what did we learn?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 576000
+			},
+			"text": " What did we learn from this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 578000
+			},
+			"text": " I like history."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 582000
+			},
+			"text": " Bismarck says that stupid people learn from their own mistakes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 584000
+			},
+			"text": " Wise people learn from the mistakes of others."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 588000
+			},
+			"text": " So, be wise."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 592000
+			},
+			"text": " We'll talk about not improvising that and overcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 597000
+			},
+			"text": " But we'll talk about test, observe, engage and communicate."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 601000
+			},
+			"text": " You can think about different layers in the defense of a castle, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 609000
+			},
+			"text": " Hopefully, these layers of defense will stop the attackers from reaching the citadel, the king or queen."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:20,760"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 620760
+			},
+			"text": " It's like the T"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,760",
+				"to": "00:10:24,760"
+			},
+			"offsets": {
+				"from": 620760,
+				"to": 624760
+			},
+			"text": " that's why I prefer to do castles."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,760",
+				"to": "00:10:28,760"
+			},
+			"offsets": {
+				"from": 624760,
+				"to": 628760
+			},
+			"text": " Yes, the bread and butter of every developer, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,760",
+				"to": "00:10:38,760"
+			},
+			"offsets": {
+				"from": 628760,
+				"to": 638760
+			},
+			"text": " Although they weren't any best practices, I think the industry is now slowly aligning on these best practices on these."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,760",
+				"to": "00:10:44,760"
+			},
+			"offsets": {
+				"from": 638760,
+				"to": 644760
+			},
+			"text": " So we're having the unit tests, property-based tests, integration tests, working tests and environment tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,760",
+				"to": "00:10:46,760"
+			},
+			"offsets": {
+				"from": 644760,
+				"to": 646760
+			},
+			"text": " I want to go a quick rundown through them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,760",
+				"to": "00:10:52,760"
+			},
+			"offsets": {
+				"from": 646760,
+				"to": 652760
+			},
+			"text": " First of all, concrete tests are super simple. I want to make sure that the function, if I give it 5, I will get 25."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,760",
+				"to": "00:10:56,760"
+			},
+			"offsets": {
+				"from": 652760,
+				"to": 656760
+			},
+			"text": " We'll also name it concrete tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,760",
+				"to": "00:11:00,760"
+			},
+			"offsets": {
+				"from": 656760,
+				"to": 660760
+			},
+			"text": " Property-based tests are more advanced."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,760",
+				"to": "00:11:03,760"
+			},
+			"offsets": {
+				"from": 660760,
+				"to": 663760
+			},
+			"text": " They force you to think about the properties of your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,760",
+				"to": "00:11:09,760"
+			},
+			"offsets": {
+				"from": 663760,
+				"to": 669760
+			},
+			"text": " So basically, you verify that this function will give the input multiplied by 5, always."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,760",
+				"to": "00:11:14,760"
+			},
+			"offsets": {
+				"from": 669760,
+				"to": 674760
+			},
+			"text": " Then we have the integration tests where we want to test bigger pictures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,760",
+				"to": "00:11:22,760"
+			},
+			"offsets": {
+				"from": 674760,
+				"to": 682760
+			},
+			"text": " user flows, working tests, which is like a web-free specialty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,760",
+				"to": "00:11:24,760"
+			},
+			"offsets": {
+				"from": 682760,
+				"to": 684760
+			},
+			"text": " all the other tests you can find them in other paradigms."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,760",
+				"to": "00:11:31,760"
+			},
+			"offsets": {
+				"from": 684760,
+				"to": 691760
+			},
+			"text": " A working test basically could be an integration test or a unit test, but with tests against the on-chain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,760",
+				"to": "00:11:39,760"
+			},
+			"offsets": {
+				"from": 691760,
+				"to": 699760
+			},
+			"text": " And this is very important because as you saw, about can surface itself only using the on-chain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,760",
+				"to": "00:11:49,760"
+			},
+			"offsets": {
+				"from": 699760,
+				"to": 709760
+			},
+			"text": " And finally, variant tests, my personal favorite, invariants are these equations, phrases that should always hold for your protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,760",
+				"to": "00:11:53,760"
+			},
+			"offsets": {
+				"from": 709760,
+				"to": 713760
+			},
+			"text": " If that phrase doesn't hold at some point, the protocol should be paused."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,760",
+				"to": "00:11:55,760"
+			},
+			"offsets": {
+				"from": 713760,
+				"to": 715760
+			},
+			"text": " The protocol has broken in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,760",
+				"to": "00:11:57,760"
+			},
+			"offsets": {
+				"from": 715760,
+				"to": 717760
+			},
+			"text": " So this is a big project."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,760",
+				"to": "00:11:59,760"
+			},
+			"offsets": {
+				"from": 717760,
+				"to": 719760
+			},
+			"text": " You'll do it in two phases."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,760",
+				"to": "00:12:01,760"
+			},
+			"offsets": {
+				"from": 719760,
+				"to": 721760
+			},
+			"text": " First phase, you will define the invariants."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,760",
+				"to": "00:12:07,760"
+			},
+			"offsets": {
+				"from": 721760,
+				"to": 727760
+			},
+			"text": " So it's a very theoretical phase, not easy, definitely, and then it's testing the variants using any tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,760",
+				"to": "00:12:09,760"
+			},
+			"offsets": {
+				"from": 727760,
+				"to": 729760
+			},
+			"text": " There are a lot of tools out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,760",
+				"to": "00:12:20,760"
+			},
+			"offsets": {
+				"from": 729760,
+				"to": 740760
+			},
+			"text": " For example, in Nomad, the environment that broke was that all messages that are processed, right, received, must have been sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,760",
+				"to": "00:12:23,760"
+			},
+			"offsets": {
+				"from": 740760,
+				"to": 743760
+			},
+			"text": " People were processing messages that were never sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,760",
+				"to": "00:12:25,760"
+			},
+			"offsets": {
+				"from": 743760,
+				"to": 745760
+			},
+			"text": " This environment broke."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,760",
+				"to": "00:12:29,760"
+			},
+			"offsets": {
+				"from": 745760,
+				"to": 749760
+			},
+			"text": " And finally, I would like to mention static analysis tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,760",
+				"to": "00:12:36,760"
+			},
+			"offsets": {
+				"from": 749760,
+				"to": 756760
+			},
+			"text": " This could be very useful, especially for newer developers as they can find some simple vulnerabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,760",
+				"to": "00:12:47,760"
+			},
+			"offsets": {
+				"from": 756760,
+				"to": 767760
+			},
+			"text": " And storage layout analysis, basically you can use tools to verify that storage layout of your upgradable contracts will not change without you noticing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,760",
+				"to": "00:12:51,760"
+			},
+			"offsets": {
+				"from": 767760,
+				"to": 771760
+			},
+			"text": " And this is a very common source of vulnerabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,760",
+				"to": "00:12:59,760"
+			},
+			"offsets": {
+				"from": 771760,
+				"to": 779760
+			},
+			"text": " In my view, you should prioritize unit tests, obviously, properly based test on forking tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,760",
+				"to": "00:13:05,760"
+			},
+			"offsets": {
+				"from": 779760,
+				"to": 785760
+			},
+			"text": " This should be your primary focus with tools like Foundry, Foundry."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,760",
+				"to": "00:13:08,760"
+			},
+			"offsets": {
+				"from": 785760,
+				"to": 788760
+			},
+			"text": " It's very, I think it's easier than it used to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,760",
+				"to": "00:13:10,760"
+			},
+			"offsets": {
+				"from": 788760,
+				"to": 790760
+			},
+			"text": " Of course, you should always audit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,760",
+				"to": "00:13:13,760"
+			},
+			"offsets": {
+				"from": 790760,
+				"to": 793760
+			},
+			"text": " You know, you will not it, although it's not a silver bullet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,760",
+				"to": "00:13:15,760"
+			},
+			"offsets": {
+				"from": 793760,
+				"to": 795760
+			},
+			"text": " Don't just do audits."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,760",
+				"to": "00:13:18,760"
+			},
+			"offsets": {
+				"from": 795760,
+				"to": 798760
+			},
+			"text": " And of course, always check the storage layout."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,760",
+				"to": "00:13:20,760"
+			},
+			"offsets": {
+				"from": 798760,
+				"to": 800760
+			},
+			"text": " Always."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,760",
+				"to": "00:13:21,760"
+			},
+			"offsets": {
+				"from": 800760,
+				"to": 801760
+			},
+			"text": " Observe."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,760",
+				"to": "00:13:22,760"
+			},
+			"offsets": {
+				"from": 801760,
+				"to": 802760
+			},
+			"text": " The second pillar."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,760",
+				"to": "00:13:26,760"
+			},
+			"offsets": {
+				"from": 802760,
+				"to": 806760
+			},
+			"text": " Now we have tested alerting."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,760",
+				"to": "00:13:30,760"
+			},
+			"offsets": {
+				"from": 806760,
+				"to": 810760
+			},
+			"text": " If you receive the Hew-Up message and you aren't already up, it's too late."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,760",
+				"to": "00:13:32,760"
+			},
+			"offsets": {
+				"from": 810760,
+				"to": 812760
+			},
+			"text": " Like your alerting has failed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,760",
+				"to": "00:13:40,760"
+			},
+			"offsets": {
+				"from": 812760,
+				"to": 820760
+			},
+			"text": " You shouldn't wait from a certain Twitter account to tell you that there's a problem with your protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,760",
+				"to": "00:13:42,760"
+			},
+			"offsets": {
+				"from": 820760,
+				"to": 822760
+			},
+			"text": " This is a solved problem in Web2."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,760",
+				"to": "00:13:47,760"
+			},
+			"offsets": {
+				"from": 822760,
+				"to": 827760
+			},
+			"text": " Web3 will like to invent things again and again, but it's a solved problem in Web2."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,760",
+				"to": "00:13:51,760"
+			},
+			"offsets": {
+				"from": 827760,
+				"to": 831760
+			},
+			"text": " If you go and read the Google SRE's handbook, you'll get a ton of input."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,760",
+				"to": "00:13:53,760"
+			},
+			"offsets": {
+				"from": 831760,
+				"to": 833760
+			},
+			"text": " Also, talk with your DevOps engineers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,760",
+				"to": "00:13:57,760"
+			},
+			"offsets": {
+				"from": 833760,
+				"to": 837760
+			},
+			"text": " If they have worked in Web2 before, they will have a lot of insight for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,760",
+				"to": "00:14:02,760"
+			},
+			"offsets": {
+				"from": 837760,
+				"to": 842760
+			},
+			"text": " You should start with an object, you know, the business objective."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,760",
+				"to": "00:14:05,760"
+			},
+			"offsets": {
+				"from": 842760,
+				"to": 845760
+			},
+			"text": " And then define actionable alerts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,760",
+				"to": "00:14:06,760"
+			},
+			"offsets": {
+				"from": 845760,
+				"to": 846760
+			},
+			"text": " Actionable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,760",
+				"to": "00:14:07,760"
+			},
+			"offsets": {
+				"from": 846760,
+				"to": 847760
+			},
+			"text": " That's the key word."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,760",
+				"to": "00:14:08,760"
+			},
+			"offsets": {
+				"from": 847760,
+				"to": 848760
+			},
+			"text": " Actionable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,760",
+				"to": "00:14:12,760"
+			},
+			"offsets": {
+				"from": 848760,
+				"to": 852760
+			},
+			"text": " That means that if an alert A is activated, then you should do B."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,760",
+				"to": "00:14:17,760"
+			},
+			"offsets": {
+				"from": 852760,
+				"to": 857760
+			},
+			"text": " It should be a very simple if the if then, you know, close."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,760",
+				"to": "00:14:20,760"
+			},
+			"offsets": {
+				"from": 857760,
+				"to": 860760
+			},
+			"text": " You should have a playbook for every alert."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,760",
+				"to": "00:14:25,760"
+			},
+			"offsets": {
+				"from": 860760,
+				"to": 865760
+			},
+			"text": " So if alert A happens, you should do that and that's the way you should do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,760",
+				"to": "00:14:27,760"
+			},
+			"offsets": {
+				"from": 865760,
+				"to": 867760
+			},
+			"text": " And here the script is run."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,760",
+				"to": "00:14:28,760"
+			},
+			"offsets": {
+				"from": 867760,
+				"to": 868760
+			},
+			"text": " Super simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,760",
+				"to": "00:14:36,760"
+			},
+			"offsets": {
+				"from": 868760,
+				"to": 876760
+			},
+			"text": " If you don't do that, you will get alert fatigue because you will start not paying attention to alerts because, you know, it's not that important."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,760",
+				"to": "00:14:44,760"
+			},
+			"offsets": {
+				"from": 876760,
+				"to": 884760
+			},
+			"text": " And by not paying attention, you will miss that alert that will erect your protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,760",
+				"to": "00:14:50,760"
+			},
+			"offsets": {
+				"from": 884760,
+				"to": 890760
+			},
+			"text": " A nice mental model for alerts in Web3, I think, is heuristics and environment-based alerts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,760",
+				"to": "00:14:52,760"
+			},
+			"offsets": {
+				"from": 890760,
+				"to": 892760
+			},
+			"text": " Heuristics are rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,760",
+				"to": "00:14:57,760"
+			},
+			"offsets": {
+				"from": 892760,
+				"to": 897760
+			},
+			"text": " They require human intervention to make you understand whether that's a false positive or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,760",
+				"to": "00:15:11,760"
+			},
+			"offsets": {
+				"from": 897760,
+				"to": 911760
+			},
+			"text": " Environment-based alerts where you have enough chain agent running and taking the variance of the protocol, more complex but can be automated because invariants shouldn't produce false positive."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,760",
+				"to": "00:15:20,760"
+			},
+			"offsets": {
+				"from": 911760,
+				"to": 920760
+			},
+			"text": " Like if the environment alert is on, that means that either you didn't define the environment properly or B protocol is broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,760",
+				"to": "00:15:24,760"
+			},
+			"offsets": {
+				"from": 920760,
+				"to": 924760
+			},
+			"text": " In other way, probably it's a good thing to pause the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,760",
+				"to": "00:15:27,760"
+			},
+			"offsets": {
+				"from": 924760,
+				"to": 927760
+			},
+			"text": " Now, engage."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,760",
+				"to": "00:15:30,760"
+			},
+			"offsets": {
+				"from": 927760,
+				"to": 930760
+			},
+			"text": " Testing has failed alerting."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,760",
+				"to": "00:15:31,760"
+			},
+			"offsets": {
+				"from": 930760,
+				"to": 931760
+			},
+			"text": " Maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,760",
+				"to": "00:15:33,760"
+			},
+			"offsets": {
+				"from": 931760,
+				"to": 933760
+			},
+			"text": " So now we're engaging."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,760",
+				"to": "00:15:35,760"
+			},
+			"offsets": {
+				"from": 933760,
+				"to": 935760
+			},
+			"text": " We are in the first minutes of the incident."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,760",
+				"to": "00:15:36,760"
+			},
+			"offsets": {
+				"from": 935760,
+				"to": 936760
+			},
+			"text": " What do we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,760",
+				"to": "00:15:42,760"
+			},
+			"offsets": {
+				"from": 936760,
+				"to": 942760
+			},
+			"text": " A poet or halo who told us that we do not write to the level of our expectations."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,760",
+				"to": "00:15:44,760"
+			},
+			"offsets": {
+				"from": 942760,
+				"to": 944760
+			},
+			"text": " We fall to the level of our training."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,760",
+				"to": "00:15:53,760"
+			},
+			"offsets": {
+				"from": 944760,
+				"to": 953760
+			},
+			"text": " So if you don't have an incident playbook, if you haven't gone through that, you will not be able to."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,760",
+				"to": "00:15:59,760"
+			},
+			"offsets": {
+				"from": 953760,
+				"to": 959760
+			},
+			"text": " You know, act appropriately and you will get wrecked, even if you're alerting was good."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,760",
+				"to": "00:16:06,760"
+			},
+			"offsets": {
+				"from": 959760,
+				"to": 966760
+			},
+			"text": " So a good incident management means explicit ownership."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,760",
+				"to": "00:16:12,760"
+			},
+			"offsets": {
+				"from": 966760,
+				"to": 972760
+			},
+			"text": " Very specific persons would have very specific ownership of the management of the incident."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,760",
+				"to": "00:16:13,760"
+			},
+			"offsets": {
+				"from": 972760,
+				"to": 973760
+			},
+			"text": " Outcomes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,760",
+				"to": "00:16:19,760"
+			},
+			"offsets": {
+				"from": 973760,
+				"to": 979760
+			},
+			"text": " Every person should know what should be the outcome of their work during an incident."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,760",
+				"to": "00:16:22,760"
+			},
+			"offsets": {
+				"from": 979760,
+				"to": 982760
+			},
+			"text": " Game day, game day, game day."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,760",
+				"to": "00:16:26,760"
+			},
+			"offsets": {
+				"from": 982760,
+				"to": 986760
+			},
+			"text": " Do that again and again, go through simulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,760",
+				"to": "00:16:32,760"
+			},
+			"offsets": {
+				"from": 986760,
+				"to": 992760
+			},
+			"text": " The entire organization should create game days for this incident because they will happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,760",
+				"to": "00:16:34,760"
+			},
+			"offsets": {
+				"from": 992760,
+				"to": 994760
+			},
+			"text": " They will happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,760",
+				"to": "00:16:41,760"
+			},
+			"offsets": {
+				"from": 994760,
+				"to": 1001760
+			},
+			"text": " And you shouldn't be, you know, during the incident, you shouldn't read the incident playbook for the first time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,760",
+				"to": "00:16:45,760"
+			},
+			"offsets": {
+				"from": 1001760,
+				"to": 1005760
+			},
+			"text": " Yern internally has a very nice blog post about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,760",
+				"to": "00:16:49,760"
+			},
+			"offsets": {
+				"from": 1005760,
+				"to": 1009760
+			},
+			"text": " I highly suggest you look at it and you adapt it to your organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,760",
+				"to": "00:16:52,760"
+			},
+			"offsets": {
+				"from": 1009760,
+				"to": 1012760
+			},
+			"text": " We didn't engage in proper time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,760",
+				"to": "00:16:54,760"
+			},
+			"offsets": {
+				"from": 1012760,
+				"to": 1014760
+			},
+			"text": " We lost money, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,760",
+				"to": "00:16:56,760"
+			},
+			"offsets": {
+				"from": 1014760,
+				"to": 1016760
+			},
+			"text": " So it's now time to face the music."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,760",
+				"to": "00:16:57,760"
+			},
+			"offsets": {
+				"from": 1016760,
+				"to": 1017760
+			},
+			"text": " What do we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,760",
+				"to": "00:17:00,760"
+			},
+			"offsets": {
+				"from": 1017760,
+				"to": 1020760
+			},
+			"text": " I'm sure everyone would like, \"Yeah, let's talk to the users."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,760",
+				"to": "00:17:01,760"
+			},
+			"offsets": {
+				"from": 1020760,
+				"to": 1021760
+			},
+			"text": " We have to be transparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,760",
+				"to": "00:17:02,760"
+			},
+			"offsets": {
+				"from": 1021760,
+				"to": 1022760
+			},
+			"text": " We have to tell them what happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,760",
+				"to": "00:17:05,760"
+			},
+			"offsets": {
+				"from": 1022760,
+				"to": 1025760
+			},
+			"text": " We have to be, no."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,760",
+				"to": "00:17:08,760"
+			},
+			"offsets": {
+				"from": 1025760,
+				"to": 1028760
+			},
+			"text": " Tell them before they didn't erect."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,760",
+				"to": "00:17:09,760"
+			},
+			"offsets": {
+				"from": 1028760,
+				"to": 1029760
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,760",
+				"to": "00:17:10,760"
+			},
+			"offsets": {
+				"from": 1029760,
+				"to": 1030760
+			},
+			"text": " Nope."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,760",
+				"to": "00:17:12,760"
+			},
+			"offsets": {
+				"from": 1030760,
+				"to": 1032760
+			},
+			"text": " You shouldn't talk to anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,760",
+				"to": "00:17:14,760"
+			},
+			"offsets": {
+				"from": 1032760,
+				"to": 1034760
+			},
+			"text": " You talk to your legal team."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,760",
+				"to": "00:17:16,760"
+			},
+			"offsets": {
+				"from": 1034760,
+				"to": 1036760
+			},
+			"text": " You don't do a commit."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,760",
+				"to": "00:17:18,760"
+			},
+			"offsets": {
+				"from": 1036760,
+				"to": 1038760
+			},
+			"text": " You don't do a tweet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,760",
+				"to": "00:17:20,760"
+			},
+			"offsets": {
+				"from": 1038760,
+				"to": 1040760
+			},
+			"text": " You don't do your mother."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,760",
+				"to": "00:17:26,760"
+			},
+			"offsets": {
+				"from": 1040760,
+				"to": 1046760
+			},
+			"text": " If you don't do your lawyers, you should think about what the users want."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,760",
+				"to": "00:17:29,760"
+			},
+			"offsets": {
+				"from": 1046760,
+				"to": 1049760
+			},
+			"text": " But you should talk to your lawyers first."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,760",
+				"to": "00:17:31,760"
+			},
+			"offsets": {
+				"from": 1049760,
+				"to": 1051760
+			},
+			"text": " When you do communicate, you should be honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,760",
+				"to": "00:17:32,760"
+			},
+			"offsets": {
+				"from": 1051760,
+				"to": 1052760
+			},
+			"text": " No sugar coating, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,760",
+				"to": "00:17:35,760"
+			},
+			"offsets": {
+				"from": 1052760,
+				"to": 1055760
+			},
+			"text": " You just insult them."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,760",
+				"to": "00:17:38,760"
+			},
+			"offsets": {
+				"from": 1055760,
+				"to": 1058760
+			},
+			"text": " You should have pre-approved messaging because that's easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,760",
+				"to": "00:17:42,760"
+			},
+			"offsets": {
+				"from": 1058760,
+				"to": 1062760
+			},
+			"text": " Like during a crisis after the first hours you're shaking, you haven't slept, you're high on caffeine."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,760",
+				"to": "00:17:47,760"
+			},
+			"offsets": {
+				"from": 1062760,
+				"to": 1067760
+			},
+			"text": " You can't properly create communication or VR output."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,760",
+				"to": "00:17:54,760"
+			},
+			"offsets": {
+				"from": 1067760,
+				"to": 1074760
+			},
+			"text": " You should tell them what you do, what you're doing right now, and what you plan to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,760",
+				"to": "00:17:58,760"
+			},
+			"offsets": {
+				"from": 1074760,
+				"to": 1078760
+			},
+			"text": " Let's see a quick timeline of the first days after an incident."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,760",
+				"to": "00:18:08,760"
+			},
+			"offsets": {
+				"from": 1078760,
+				"to": 1088760
+			},
+			"text": " First of all, we talk with our lawyers and we form them with a situation so they can start talking with law enforcement agencies for asset recovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,760",
+				"to": "00:18:10,760"
+			},
+			"offsets": {
+				"from": 1088760,
+				"to": 1090760
+			},
+			"text": " We do the first bunch of public communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,760",
+				"to": "00:18:15,760"
+			},
+			"offsets": {
+				"from": 1090760,
+				"to": 1095760
+			},
+			"text": " We tell them what happened, what we want to do, what we're planning to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,760",
+				"to": "00:18:22,760"
+			},
+			"offsets": {
+				"from": 1095760,
+				"to": 1102760
+			},
+			"text": " We talk with our partners, ideally through more privileged communication group like Telegram."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,760",
+				"to": "00:18:27,760"
+			},
+			"offsets": {
+				"from": 1102760,
+				"to": 1107760
+			},
+			"text": " Maybe we can share it more than we share with the public because of NDAs and all that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,760",
+				"to": "00:18:31,760"
+			},
+			"offsets": {
+				"from": 1107760,
+				"to": 1111760
+			},
+			"text": " Because as you are losing money, they are losing as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,760",
+				"to": "00:18:34,760"
+			},
+			"offsets": {
+				"from": 1111760,
+				"to": 1114760
+			},
+			"text": " Then you should talk with a chain analytics firm."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,760",
+				"to": "00:18:36,760"
+			},
+			"offsets": {
+				"from": 1114760,
+				"to": 1116760
+			},
+			"text": " That is very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,760",
+				"to": "00:18:44,760"
+			},
+			"offsets": {
+				"from": 1116760,
+				"to": 1124760
+			},
+			"text": " I will tell you why, because apparently people, they suddenly have a change of heart when legal enforcement's agencies are zeroing in on your degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,760",
+				"to": "00:18:48,760"
+			},
+			"offsets": {
+				"from": 1124760,
+				"to": 1128760
+			},
+			"text": " Suddenly, they just want to return to the funds bag."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,760",
+				"to": "00:18:55,760"
+			},
+			"offsets": {
+				"from": 1128760,
+				"to": 1135760
+			},
+			"text": " The only reason and the only way to recover assets is using a chain analytics firm."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,760",
+				"to": "00:19:00,760"
+			},
+			"offsets": {
+				"from": 1135760,
+				"to": 1140760
+			},
+			"text": " I will go on and analyze all these transactions and find correlations."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,760",
+				"to": "00:19:11,760"
+			},
+			"offsets": {
+				"from": 1140760,
+				"to": 1151760
+			},
+			"text": " They will be able to point the law enforcement's agencies to centralizing changes so they can freeze funds and request personal data."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,760",
+				"to": "00:19:16,760"
+			},
+			"offsets": {
+				"from": 1151760,
+				"to": 1156760
+			},
+			"text": " If you want to recover your assets, you will need a chain analytics firm."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,760",
+				"to": "00:19:29,760"
+			},
+			"offsets": {
+				"from": 1156760,
+				"to": 1169760
+			},
+			"text": " Then you will set up a recovery address where you can collect the funds and align with your team on the bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,760",
+				"to": "00:19:33,760"
+			},
+			"offsets": {
+				"from": 1169760,
+				"to": 1173760
+			},
+			"text": " Of course, the bank has many legal externalities."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,760",
+				"to": "00:19:36,760"
+			},
+			"offsets": {
+				"from": 1173760,
+				"to": 1176760
+			},
+			"text": " Again, your lawyers will be your best friends."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,760",
+				"to": "00:19:38,760"
+			},
+			"offsets": {
+				"from": 1176760,
+				"to": 1178760
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,760",
+				"to": "00:19:48,760"
+			},
+			"offsets": {
+				"from": 1178760,
+				"to": 1188760
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,760",
+				"to": "00:19:50,760"
+			},
+			"offsets": {
+				"from": 1188760,
+				"to": 1190760
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

@@ -1,0 +1,2331 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 17000
+			},
+			"text": " >> Hi, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " I'm Rafael."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 21000
+			},
+			"text": " I'm the CEO of Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 25000
+			},
+			"text": " This is Jacob, who's our CTO."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 33000
+			},
+			"text": " And we're here to talk today about what we've built and how we're helping the non-crypto world"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 40000
+			},
+			"text": " come onto Ethereum using social impact."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 45000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 52000
+			},
+			"text": " So really briefly, I'm going to give a quick overview of where we are, which is that we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 60000
+			},
+			"text": " got a transparent donations platform that's been live since May on Alice.si, which is our"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 61000
+			},
+			"text": " website."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 66000
+			},
+			"text": " Then Jacob is going to run you through how we built that, the hybrid model that we use"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 70000
+			},
+			"text": " to bring mass audiences onto the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 78000
+			},
+			"text": " And then I'll just give you a brief overview of the next steps for Alice beyond donations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 83000
+			},
+			"text": " So if you know Alice, it's because you know our transparent donation platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 87000
+			},
+			"text": " And the idea there is that you can give to a social project."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 92000
+			},
+			"text": " You can see exactly what impact your money makes, and if it doesn't make an impact,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 94000
+			},
+			"text": " then you get your money back."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 101000
+			},
+			"text": " And the project that we have live on the website right now is a project run by a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 104000
+			},
+			"text": " homelessness charity called St. Mungos."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 109000
+			},
+			"text": " And they are helping 15 rough sleepers in London find accommodation and deal with mental"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 113000
+			},
+			"text": " health issues, substance abuse issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 119000
+			},
+			"text": " And the way that the reason why we built this really is because in the last few years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 123000
+			},
+			"text": " there's been a loss of public trust in the charity sector."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 128000
+			},
+			"text": " And the charity sector is really starting to see this as an existential threat."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 134000
+			},
+			"text": " Because without trust, the level of donations tends to fall."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 138000
+			},
+			"text": " And so that's why we built this donation platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 143000
+			},
+			"text": " The way that it works is that when you go onto the website, you can donate."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 150000
+			},
+			"text": " Your donation gets held in escrow, which means it gets frozen, basically, in a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 160000
+			},
+			"text": " During that time, the charity can start running the project and start delivering the goals"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 162000
+			},
+			"text": " that it's set out to achieve."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 165000
+			},
+			"text": " So it lays out in the pilot."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 169000
+			},
+			"text": " St. Mungos has laid out a certain number of goals."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 175000
+			},
+			"text": " But it's only when the goals are independently validated that the money from the donations"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 177000
+			},
+			"text": " gets paid to the charity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 184000
+			},
+			"text": " And in this case, it's the greater London authority that the mayor of London, someone in the housing team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 185000
+			},
+			"text": " that reviews the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 191000
+			},
+			"text": " So if that's a rental agreement, for example, if someone's find accommodation, then they will validate that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 200000
+			},
+			"text": " And at the same time, the validation triggers a notification to the donor, so they know exactly what their money has paid for."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 205000
+			},
+			"text": " And now I'm going to tell you how we implemented the whole solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 213000
+			},
+			"text": " So we wanted to design the donation platform, so it's really easy to use for mainstream donors."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 218000
+			},
+			"text": " You do not need to know how the blockchain works."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 220000
+			},
+			"text": " What is the blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 225000
+			},
+			"text": " All what is necessary is to have a plane, all blowers are even without any plug-in."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 229000
+			},
+			"text": " So there is no need for complicated tools like a missed browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 238000
+			},
+			"text": " And as the whole world mostly uses fiat currency, we do not want to force our donors to change fiat into crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 241000
+			},
+			"text": " Get through a crypto wallet and donate."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 246000
+			},
+			"text": " We allow for a plane credit card donations, which is the most popular way to donate."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 249000
+			},
+			"text": " And let's see how it works out in the practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 251000
+			},
+			"text": " So that's one of our first donors."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 253000
+			},
+			"text": " Actually, it's my mom."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 255000
+			},
+			"text": " She's..."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 264000
+			},
+			"text": " She's 67 years old and she's not a crypto geek at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 270000
+			},
+			"text": " She stopped catching up with the technology in the late 80s when the video tape recorder was released."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 272000
+			},
+			"text": " But she knows how to use internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 275000
+			},
+			"text": " She knows how to write an email, check the weather."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 284000
+			},
+			"text": " And recently, she was able to put three transactions on the main Ethereum blockchain using our Alice platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 286000
+			},
+			"text": " How was it possible?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 295000
+			},
+			"text": " So whenever a user registers an account on our platform, we, on the user behalf, create an Ethereum account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 298000
+			},
+			"text": " which is safeguarded by a password."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 304000
+			},
+			"text": " So every interaction, every transaction needs to be signed by a renterring the password."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 307000
+			},
+			"text": " We also perform fiat tokenization."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 313000
+			},
+			"text": " So when we accept the money, there are stable coins issued that are packed one to one."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 318000
+			},
+			"text": " So the original value and the full reserve is keep aside."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 328000
+			},
+			"text": " And we are happy to say that earlier this year, we took apart into regulatory sandbox provided by financial conduct authority,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 330000
+			},
+			"text": " which is a UK regulatory body."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 340000
+			},
+			"text": " And to our knowledge, we are the first company to use fully regulated digital pounds sterling provided by Trauma Nix Labs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 348000
+			},
+			"text": " And from a user perspective, the transaction is recorded after he clicks on the donate button."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 356000
+			},
+			"text": " And then we use an icing crannus relay just to further process the transaction and put it on a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 364000
+			},
+			"text": " And this solution proven to be quite useful because roughly a month after we launched, we noticed some strange behavior in the relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 374000
+			},
+			"text": " And it was a day of June when there was a status, ICO."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 378000
+			},
+			"text": " So from the point of view of our donors, nothing changed at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 387000
+			},
+			"text": " They were able to submit the donations and we process it asynchronously and there were eventually recorded on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 394000
+			},
+			"text": " And to be honest, we were super scared before we started the pilot because we are all about trust and transparency."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 403000
+			},
+			"text": " So even if we mis-manage a single transaction that would be disaster for the whole idea, that's why we are using a triple registration system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 409000
+			},
+			"text": " So we register the donation on a virtual wallet provided by a payment provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 416000
+			},
+			"text": " We register on our classic database and we obviously register it further on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 419000
+			},
+			"text": " And currently we have a hybrid model."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 424000
+			},
+			"text": " But we want to go for fully decentralized and a trustless solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 432000
+			},
+			"text": " But along the way, we want to take small steps not to sacrifice the usability and safety for the donors."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 437000
+			},
+			"text": " The next step for us was to implement something that we call the Geek Mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 439000
+			},
+			"text": " It's a section on our platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 456000
+			},
+			"text": " When a user can browse and explore all of the transactions that were made with his interactions and for users who have a plugin that allows to connect to blockchain, like a web tree connector, we got a very simple DAP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 466000
+			},
+			"text": " but we've restricted with only access that we allow to check balance and what goals were achieved by these users."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 471000
+			},
+			"text": " Before, we allow our donors to enter the wide-west of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 475000
+			},
+			"text": " We want to equip them with safety features."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 480000
+			},
+			"text": " Like one of that is the Nation Wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 489000
+			},
+			"text": " So all of the transfers outside of the wallet can be directed only to authorize a verified project."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 504000
+			},
+			"text": " We want to shield the users against scam attacks, so if they receive an offer to donate via Slack channel or email from an untrusted account, they will be unable to process."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 511000
+			},
+			"text": " And the Nation Wallet also offers a way to recover if the password was to lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 524000
+			},
+			"text": " We can set up a multi-sick recovery procedure, so in a case that you lost a password, you are still able to set up a connection to a new account."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 536000
+			},
+			"text": " We also focused on the security of the funds that we are collecting, so we had the extra features for our treasury, like two-phase transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 541000
+			},
+			"text": " And then it's being initiated and validated later on. The transfers can be time-locked."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 550000
+			},
+			"text": " We also introduced a special role of a whistle blowers that may raise an alarm if the transfer looks suspicious, but without any acting power."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 554000
+			},
+			"text": " Because the acting power is in the hands of a curator who may be found a transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 563000
+			},
+			"text": " We also used classic features like pausing or freezing, the treasury construct and escape hatches in an emergency."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 581000
+			},
+			"text": " And as the project in practice are evolving and iterating, and if a charity cannot achieve all of the goals, it is possible that charity submit a proposal update that is later on voted by donors and beneficiaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 586000
+			},
+			"text": " And if the cost is valid, the configuration of the project may be changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 597000
+			},
+			"text": " We built an abstract layer around our data, so we tokenized that in a form that we store information about who was the author of the data and what are the access rights."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 605000
+			},
+			"text": " And the full evidence is kept in an off-chain and encrypted database that is synchronized and not arised on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 610000
+			},
+			"text": " Why do we need such a structure for our data, I would like Raphael to explain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 618000
+			},
+			"text": " So this has to do with the broader vision of Alice, which actually goes beyond donations."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 626000
+			},
+			"text": " And obviously, transparency is really important for small donors because they're losing trust in charities."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 632000
+			},
+			"text": " But it's actually also important for a whole host of other social impact actors."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 643000
+			},
+			"text": " For example, big philanthropic trusts and foundations, they are increasingly giving grants based on evidence, so it's very important to measure that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 657000
+			},
+			"text": " Governments in the UK, the US, Europe and increasingly other countries shifting also their grants to payment for success models where they only pay when social outcomes have been achieved."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 666000
+			},
+			"text": " And then over the last ten years or so, there's been a real rise in an alternative sort of funding in the form of impact investment."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 680000
+			},
+			"text": " So what impact investors do is when they invest, obviously, they're looking for a financial return, but they're also looking for a social or environmental return, which means that it's really important for them to track that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 687000
+			},
+			"text": " And the big problem is that unfortunately, when it comes to impact data, we're still in prehistoric times."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 694000
+			},
+			"text": " Everybody is systematically reinventing the wheel. Everybody is measuring things quite differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 698000
+			},
+			"text": " The standards that exist aren't really widespread."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 706000
+			},
+			"text": " And really importantly, all of that data tends to get stuck in the individual databases of all of these organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 715000
+			},
+			"text": " So it makes it really difficult to access and compare and benchmark projects to see which ones are the most effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 723000
+			},
+			"text": " So we are going to build three main evolutions on the Alice network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 730000
+			},
+			"text": " The first one is really starting to break down what goes in that impact data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 739000
+			},
+			"text": " So we're going to require that social organizations break down their projects across five dimensions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 744000
+			},
+			"text": " Those five dimensions have been developed by the Impact Management Project with who we're collaborating."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 758000
+			},
+			"text": " It's a big open source research project that's amongst over 700 practitioners all around the world to build a framework for how to measure and manage impact."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 763000
+			},
+			"text": " And effectively, the projects will be tagged across those five dimensions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 773000
+			},
+			"text": " And we're also going to require social organizations and projects to produce regular progress reports against internal performance indicators."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 778000
+			},
+			"text": " And the way that we're going to enforce that is that they will be rewarded."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 782000
+			},
+			"text": " They'll get paid for submitting those reports."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 789000
+			},
+			"text": " And if they don't submit them on time, say for example, then they will be punished with all further payments withheld until they do."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 795000
+			},
+			"text": " And that payment for reporting is actually also at the core of what we do."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 802000
+			},
+			"text": " Because what we're going for is not making impact projects cheap but effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 809000
+			},
+			"text": " So you're probably familiar with this kind of pie chart that social organizations produce showing exactly how much money goes to admin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 813000
+			},
+			"text": " how much money goes to PR or fundraising, how much gets to the front line."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 821000
+			},
+			"text": " And actually, we don't think that that's the most important thing at all because it doesn't really tell you anything about how effective they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 825000
+			},
+			"text": " What we prefer to focus on is tracking the impact."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 827000
+			},
+			"text": " So how many people have been helped?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 832000
+			},
+			"text": " Is this social project actually improving the lives of the people that it serves?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 836000
+			},
+			"text": " So we're not tracking the money, we're tracking the impact."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 846000
+			},
+			"text": " The second major evolution to the network is that we are going to incentivize users to take all of that impact data that's been produced by all projects across the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 855000
+			},
+			"text": " and crunch that data so that you can really surface the most effective projects so that funders can help scale them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 865000
+			},
+			"text": " And we're also going to build prediction markets that allow users to bet on whether the proposed changes to projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 875000
+			},
+			"text": " that are submitted in the regular progress reports, for example, are likely to increase or decrease the impact of those projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 882000
+			},
+			"text": " And the idea there is to crowdsource the expertise of people across the network to really help charities learn from each other"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 886000
+			},
+			"text": " and iterate their projects to really make them as effective as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 896000
+			},
+			"text": " And finally, what we are going to build is another payment module that's focused on impact investment."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 903000
+			},
+			"text": " Because what we have right now is that donors give to the social projects, those funds are held in escrow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 907000
+			},
+			"text": " and they're only paid out when the goals are validated."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 915000
+			},
+			"text": " Now the problem there is especially if you're a smaller charity, you might not have the financial resources to run your project before getting the money."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 918000
+			},
+			"text": " So that's where the impact investors come in."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 926000
+			},
+			"text": " They will provide some working capital, some seed capital that they will give to the projects so they can start running them."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 929000
+			},
+			"text": " Effectively what they'll be doing is underwriting the risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 935000
+			},
+			"text": " So if the project never produces any results, if it never achieves its goals, the investors will lose their money."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 940000
+			},
+			"text": " But if it does achieve its goals and it gets paid from the donations in escrow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 947000
+			},
+			"text": " then part of those donations will go to reimburse that investment."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 950000
+			},
+			"text": " So that's pretty much it. That's the broader vision."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 960000
+			},
+			"text": " We're building a fully integrated decentralized social impact ecosystem so that social organizations can tap into donations and grants and impact investment"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 968000
+			},
+			"text": " so that their impact is properly managed and transparent and accessible, supported by validation markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 974000
+			},
+			"text": " so they can easily choose validators for their projects, whether those are human validators or oracles"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 980000
+			},
+			"text": " and by knowledge sharing markets that help crunch that data and surface the most effective projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 990000
+			},
+			"text": " And that's really what we're all about, is really identifying the best projects, helping them scale and cutting transaction costs across the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 999000
+			},
+			"text": " Now, we've just published our white paper today just a few hours ago, so we invite everybody to go onto our website and read that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1011000
+			},
+			"text": " It covers everything that we've just explained in a lot more detail, as well as some really interesting stuff that we're building as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1019000
+			},
+			"text": " that you'll be able to read about on the white paper, like a decentralized fund to help smaller organizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1025000
+			},
+			"text": " really design and run their projects transparently on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1028000
+			},
+			"text": " Thank you very much if you have any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1035000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1039000
+			},
+			"text": " Over here, please. Sorry. Over here. Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1040000
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1041000
+			},
+			"text": " Oh, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1044000
+			},
+			"text": " This is quite a tedious little question actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1053000
+			},
+			"text": " Just the matter of issuing receipts to donors, I've always found that to be just a real pain in the backside, particularly if it comes via a bank account."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1061000
+			},
+			"text": " So does your module have, what do you do by way of how do you issue receipts to your mother when she's paid her donation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1067000
+			},
+			"text": " So that's something that we actually spent a lot of time on."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1071000
+			},
+			"text": " Currently, the platform can be used only in the UK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1077000
+			},
+			"text": " and we went through all the regulatory hoops to make sure that people could get receipts when they donate."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1081000
+			},
+			"text": " They can actually apply gift aid if you know how that works in the UK."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1085000
+			},
+			"text": " It's a way of gifting the taxes to the charities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1091000
+			},
+			"text": " and we had to get the regulatory authorizations to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1099000
+			},
+			"text": " It gets applied when the donations come out of the escrow because you can't claw it back afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1108000
+			},
+			"text": " But then, obviously, as we expand to different countries, we'll have to figure that out on a case-by-case."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1119000
+			},
+			"text": " Hi. Sorry to be a little more critical and harsh on you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1128000
+			},
+			"text": " but how I saw the presentation is more like you're doing charity ICO instead of actually empowering civil society"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1131000
+			},
+			"text": " to perform social causes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1137000
+			},
+			"text": " It looks to me like you're commercializing civil society actions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1143000
+			},
+			"text": " which I think is a slippery slope from civil society point of view."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:15,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1155000
+			},
+			"text": " I also want to point out that not far from UK, three hours of flight from there, in Romania,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1155000,
+				"to": 1162000
+			},
+			"text": " there are only six or seven percent of people buying online."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1171000
+			},
+			"text": " You also have to take this into account that other countries are not so used to paying online."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:38,000"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1178000
+			},
+			"text": " This transaction is not going to have that big of adoption rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1178000,
+				"to": 1188000
+			},
+			"text": " Also, in terms of terminology, when you say donation, it traditionally points to a gift."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1198000
+			},
+			"text": " You're giving money to someone or to an entity, and you do not necessarily ask for something in return."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:08,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1208000
+			},
+			"text": " In this model, you ask for performance. I would suggest turning a little bit these terms around"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1208000,
+				"to": 1215000
+			},
+			"text": " because donations are gifts. This is not what you're doing in this model."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1222000
+			},
+			"text": " Just on the first bit, on the commercialization, I didn't quite get where you see the commercialization of charity there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:39,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1239000
+			},
+			"text": " When you put a high pressure on different activities performed by civil society for receiving that type of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,000",
+				"to": "00:20:46,000"
+			},
+			"offsets": {
+				"from": 1239000,
+				"to": 1246000
+			},
+			"text": " Right. It's not so much commercialization as just tracking the impact."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,000",
+				"to": "00:20:55,000"
+			},
+			"offsets": {
+				"from": 1246000,
+				"to": 1255000
+			},
+			"text": " I think all of your points are absolutely valid. I think the reality is that the lack of trust or the decline in trust is very real."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,000",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1255000,
+				"to": 1263000
+			},
+			"text": " Unfortunately, what happens is that people get completely obsessed in this really toxic debate around how people spend their money."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,000",
+				"to": "00:21:09,000"
+			},
+			"offsets": {
+				"from": 1263000,
+				"to": 1269000
+			},
+			"text": " That's what I was referring to before, how much goes to admin, how much goes to fundraising."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,000",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1269000,
+				"to": 1277000
+			},
+			"text": " That, for me, is actually completely counterproductive because it leads to charities trying to be as lean as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,000",
+				"to": "00:21:27,000"
+			},
+			"offsets": {
+				"from": 1277000,
+				"to": 1287000
+			},
+			"text": " They end up under-investing. They can't pay high-quality people to run projects. That's why we track the data and the performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,000",
+				"to": "00:21:33,000"
+			},
+			"offsets": {
+				"from": 1287000,
+				"to": 1293000
+			},
+			"text": " The way that we mitigate what you're saying, that's where we bring in the impact investors."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,000",
+				"to": "00:21:39,000"
+			},
+			"offsets": {
+				"from": 1293000,
+				"to": 1299000
+			},
+			"text": " We're going to implement some models where not all of the money gets paid when the impact is achieved."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,000",
+				"to": "00:21:50,000"
+			},
+			"offsets": {
+				"from": 1299000,
+				"to": 1310000
+			},
+			"text": " You could have a model where half of your donations get paid to the charity up front and then half of the payment gets paid upon achieving the results."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,000",
+				"to": "00:22:06,000"
+			},
+			"offsets": {
+				"from": 1310000,
+				"to": 1326000
+			},
+			"text": " But really what it is is just an incentive mechanism to make sure that the social organizations deliver on the impact that they promised, essentially, and restore that trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,000",
+				"to": "00:22:17,000"
+			},
+			"offsets": {
+				"from": 1326000,
+				"to": 1337000
+			},
+			"text": " Ultimately, what we want to do is help them raise a lot more money than they are raising at the moment so they can really tackle social and environmental problems at scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1337000,
+				"to": 1345000
+			},
+			"text": " I think on the last point, or the second point that you made, which was a lot of people don't donate online, that's true."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:29,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1349000
+			},
+			"text": " But you know what? A lot less people even donate in crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,000",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1349000,
+				"to": 1357000
+			},
+			"text": " That's why we're adopting a hybrid model. It has to be online for the incentive mechanisms to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1368000
+			},
+			"text": " And hopefully, as online giving becomes more widespread, then they'll be able to spread it out to a lot more countries and donors."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:51,000"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1371000
+			},
+			"text": " I hope that answers your questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,000",
+				"to": "00:22:52,000"
+			},
+			"offsets": {
+				"from": 1371000,
+				"to": 1372000
+			},
+			"text": " We'll discuss more in detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,000",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1372000,
+				"to": 1375000
+			},
+			"text": " I look forward to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1380000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1390000
+			},
+			"text": " [MUSIC]"
+		}
+	]
+}

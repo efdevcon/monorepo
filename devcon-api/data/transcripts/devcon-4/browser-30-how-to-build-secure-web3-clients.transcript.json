@@ -1,0 +1,5939 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,640"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2640
+			},
+			"text": " And today I want to talk about browser 3.0,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,640",
+				"to": "00:00:05,720"
+			},
+			"offsets": {
+				"from": 2640,
+				"to": 5720
+			},
+			"text": " how to build secure web three clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,720",
+				"to": "00:00:09,800"
+			},
+			"offsets": {
+				"from": 5720,
+				"to": 9800
+			},
+			"text": " And I would like to start with this quote."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,800",
+				"to": "00:00:15,240"
+			},
+			"offsets": {
+				"from": 9800,
+				"to": 15240
+			},
+			"text": " \"There are two ages of the internet, before Mosaic and after.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,240",
+				"to": "00:00:17,920"
+			},
+			"offsets": {
+				"from": 15240,
+				"to": 17920
+			},
+			"text": " The combination of protocols with a browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,920",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 17920,
+				"to": 21000
+			},
+			"text": " which provided a great interface, proved explosive."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:24,120"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 24120
+			},
+			"text": " In 24 months, the web has gone from being unknown"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,120",
+				"to": "00:00:26,160"
+			},
+			"offsets": {
+				"from": 24120,
+				"to": 26160
+			},
+			"text": " to absolutely ubiquitous."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,160",
+				"to": "00:00:28,560"
+			},
+			"offsets": {
+				"from": 26160,
+				"to": 28560
+			},
+			"text": " And I like this quote because I think it's important"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,560",
+				"to": "00:00:31,400"
+			},
+			"offsets": {
+				"from": 28560,
+				"to": 31400
+			},
+			"text": " to remind ourselves that the internet is not sold."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,400",
+				"to": "00:00:34,040"
+			},
+			"offsets": {
+				"from": 31400,
+				"to": 34040
+			},
+			"text": " And less than 25 years ago, no one"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,040",
+				"to": "00:00:36,600"
+			},
+			"offsets": {
+				"from": 34040,
+				"to": 36600
+			},
+			"text": " was really talking about the latest web development framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,600",
+				"to": "00:00:38,160"
+			},
+			"offsets": {
+				"from": 36600,
+				"to": 38160
+			},
+			"text": " trends."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,160",
+				"to": "00:00:40,760"
+			},
+			"offsets": {
+				"from": 38160,
+				"to": 40760
+			},
+			"text": " No one was sharing stuff on social media"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,760",
+				"to": "00:00:42,920"
+			},
+			"offsets": {
+				"from": 40760,
+				"to": 42920
+			},
+			"text": " because the internet didn't really exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,920",
+				"to": "00:00:46,040"
+			},
+			"offsets": {
+				"from": 42920,
+				"to": 46040
+			},
+			"text": " And people were more concerned about infrastructure things"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,040",
+				"to": "00:00:49,280"
+			},
+			"offsets": {
+				"from": 46040,
+				"to": 49280
+			},
+			"text": " and protocols and how to scale this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,280",
+				"to": "00:00:51,400"
+			},
+			"offsets": {
+				"from": 49280,
+				"to": 51400
+			},
+			"text": " And only a very small group of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,400",
+				"to": "00:00:54,480"
+			},
+			"offsets": {
+				"from": 51400,
+				"to": 54480
+			},
+			"text": " actually had the knowledge and the tools, the money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,480",
+				"to": "00:00:58,800"
+			},
+			"offsets": {
+				"from": 54480,
+				"to": 58800
+			},
+			"text": " the resources in general to access the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,800",
+				"to": "00:01:02,480"
+			},
+			"offsets": {
+				"from": 58800,
+				"to": 62480
+			},
+			"text": " So it was very similar to what we have with Ethereum now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,480",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 62480,
+				"to": 65000
+			},
+			"text": " But then something happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:06,480"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 66480
+			},
+			"text": " The browser was introduced."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,480",
+				"to": "00:01:10,080"
+			},
+			"offsets": {
+				"from": 66480,
+				"to": 70080
+			},
+			"text": " And now people actually could access the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,080",
+				"to": "00:01:11,760"
+			},
+			"offsets": {
+				"from": 70080,
+				"to": 71760
+			},
+			"text": " And then mass adoption started."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,760",
+				"to": "00:01:15,480"
+			},
+			"offsets": {
+				"from": 71760,
+				"to": 75480
+			},
+			"text": " And we will probably see this once the scalability"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,480",
+				"to": "00:01:17,840"
+			},
+			"offsets": {
+				"from": 75480,
+				"to": 77840
+			},
+			"text": " and protocol problems are solved,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,840",
+				"to": "00:01:20,400"
+			},
+			"offsets": {
+				"from": 77840,
+				"to": 80400
+			},
+			"text": " that there's some kind of mass adoption for Ethereum as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,400",
+				"to": "00:01:23,400"
+			},
+			"offsets": {
+				"from": 80400,
+				"to": 83400
+			},
+			"text": " And then some funny things can happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,400",
+				"to": "00:01:26,120"
+			},
+			"offsets": {
+				"from": 83400,
+				"to": 86120
+			},
+			"text": " And I want to show you how this looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,120",
+				"to": "00:01:28,600"
+			},
+			"offsets": {
+				"from": 86120,
+				"to": 88600
+			},
+			"text": " So we are in the year 1994."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,600",
+				"to": "00:01:29,840"
+			},
+			"offsets": {
+				"from": 88600,
+				"to": 89840
+			},
+			"text": " It's December 1994."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,840",
+				"to": "00:01:32,760"
+			},
+			"offsets": {
+				"from": 89840,
+				"to": 92760
+			},
+			"text": " And Netscape Navigator 1.0 is released."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,760",
+				"to": "00:01:35,720"
+			},
+			"offsets": {
+				"from": 92760,
+				"to": 95720
+			},
+			"text": " And suddenly, it is easy to access the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,720",
+				"to": "00:01:36,560"
+			},
+			"offsets": {
+				"from": 95720,
+				"to": 96560
+			},
+			"text": " And then this happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,560",
+				"to": "00:01:37,960"
+			},
+			"offsets": {
+				"from": 96560,
+				"to": 97960
+			},
+			"text": " Everyone wants to go online."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,960",
+				"to": "00:01:40,280"
+			},
+			"offsets": {
+				"from": 97960,
+				"to": 100280
+			},
+			"text": " Everyone wants to experience this thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,280",
+				"to": "00:01:43,320"
+			},
+			"offsets": {
+				"from": 100280,
+				"to": 103320
+			},
+			"text": " before we had TV shows that would make fun of the internet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,320",
+				"to": "00:01:44,520"
+			},
+			"offsets": {
+				"from": 103320,
+				"to": 104520
+			},
+			"text": " that would laugh about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,520",
+				"to": "00:01:46,400"
+			},
+			"offsets": {
+				"from": 104520,
+				"to": 106400
+			},
+			"text": " And suddenly, it is a thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,400",
+				"to": "00:01:48,360"
+			},
+			"offsets": {
+				"from": 106400,
+				"to": 108360
+			},
+			"text": " And someone noticed this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,360",
+				"to": "00:01:50,720"
+			},
+			"offsets": {
+				"from": 108360,
+				"to": 110720
+			},
+			"text": " And then someone is Microsoft."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,720",
+				"to": "00:01:53,400"
+			},
+			"offsets": {
+				"from": 110720,
+				"to": 113400
+			},
+			"text": " And when they saw what happened, they got really scared."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,400",
+				"to": "00:01:55,200"
+			},
+			"offsets": {
+				"from": 113400,
+				"to": 115200
+			},
+			"text": " Because they were really the dominant force."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,200",
+				"to": "00:01:59,600"
+			},
+			"offsets": {
+				"from": 115200,
+				"to": 119600
+			},
+			"text": " They were completely owning the home computer market."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,600",
+				"to": "00:02:01,800"
+			},
+			"offsets": {
+				"from": 119600,
+				"to": 121800
+			},
+			"text": " And this was a big shock for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,800",
+				"to": "00:02:05,640"
+			},
+			"offsets": {
+				"from": 121800,
+				"to": 125640
+			},
+			"text": " So in July 1995, they released Windows 95."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,640",
+				"to": "00:02:08,400"
+			},
+			"offsets": {
+				"from": 125640,
+				"to": 128400
+			},
+			"text": " And it came pre-installed with Internet Explorer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,400",
+				"to": "00:02:10,920"
+			},
+			"offsets": {
+				"from": 128400,
+				"to": 130920
+			},
+			"text": " as the default browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,920",
+				"to": "00:02:12,680"
+			},
+			"offsets": {
+				"from": 130920,
+				"to": 132680
+			},
+			"text": " And some of you might say, hey, that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,680",
+				"to": "00:02:15,440"
+			},
+			"offsets": {
+				"from": 132680,
+				"to": 135440
+			},
+			"text": " That's some healthy competition."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,440",
+				"to": "00:02:16,960"
+			},
+			"offsets": {
+				"from": 135440,
+				"to": 136960
+			},
+			"text": " But it was pretty much illegal."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,960",
+				"to": "00:02:19,120"
+			},
+			"offsets": {
+				"from": 136960,
+				"to": 139120
+			},
+			"text": " And we call this browser was 1.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,120",
+				"to": "00:02:22,440"
+			},
+			"offsets": {
+				"from": 139120,
+				"to": 142440
+			},
+			"text": " And it's not called the browser disagreement or fight."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,440",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 142440,
+				"to": 144000
+			},
+			"text": " No, it's called browser wars."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:26,760"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 146760
+			},
+			"text": " Because a big corporation used all the energy"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,760",
+				"to": "00:02:30,680"
+			},
+			"offsets": {
+				"from": 146760,
+				"to": 150680
+			},
+			"text": " and all available resources to destroy a potential threat."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,680",
+				"to": "00:02:32,040"
+			},
+			"offsets": {
+				"from": 150680,
+				"to": 152040
+			},
+			"text": " The internet was becoming a thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,040",
+				"to": "00:02:33,680"
+			},
+			"offsets": {
+				"from": 152040,
+				"to": 153680
+			},
+			"text": " Browsers became too big."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,680",
+				"to": "00:02:36,800"
+			},
+			"offsets": {
+				"from": 153680,
+				"to": 156800
+			},
+			"text": " So they were going after developers on an individual basis."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,800",
+				"to": "00:02:40,440"
+			},
+			"offsets": {
+				"from": 156800,
+				"to": 160440
+			},
+			"text": " They tried to sue them individually."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,440",
+				"to": "00:02:42,960"
+			},
+			"offsets": {
+				"from": 160440,
+				"to": 162960
+			},
+			"text": " This ended with an antitrust lawsuit, United States,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,960",
+				"to": "00:02:45,040"
+			},
+			"offsets": {
+				"from": 162960,
+				"to": 165040
+			},
+			"text": " versus Microsoft."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,040",
+				"to": "00:02:47,320"
+			},
+			"offsets": {
+				"from": 165040,
+				"to": 167320
+			},
+			"text": " They got charged with illegal tying of Internet Explorer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,320",
+				"to": "00:02:49,280"
+			},
+			"offsets": {
+				"from": 167320,
+				"to": 169280
+			},
+			"text": " to the Windows operating system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,280",
+				"to": "00:02:51,360"
+			},
+			"offsets": {
+				"from": 169280,
+				"to": 171360
+			},
+			"text": " And they had to pay hundreds of millions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,360",
+				"to": "00:02:54,360"
+			},
+			"offsets": {
+				"from": 171360,
+				"to": 174360
+			},
+			"text": " And this is not super interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,360",
+				"to": "00:02:56,120"
+			},
+			"offsets": {
+				"from": 174360,
+				"to": 176120
+			},
+			"text": " The interesting part is really this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,120",
+				"to": "00:02:59,440"
+			},
+			"offsets": {
+				"from": 176120,
+				"to": 179440
+			},
+			"text": " Someone tried to monopolize and gain platform power"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,440",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 179440,
+				"to": 182000
+			},
+			"text": " over something that is decentralized, the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:06,640"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 186640
+			},
+			"text": " And this concept of platform power"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,640",
+				"to": "00:03:08,520"
+			},
+			"offsets": {
+				"from": 186640,
+				"to": 188520
+			},
+			"text": " is something that I want to emphasize."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,520",
+				"to": "00:03:11,800"
+			},
+			"offsets": {
+				"from": 188520,
+				"to": 191800
+			},
+			"text": " It means pretty much that the browsers are not just"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,800",
+				"to": "00:03:14,160"
+			},
+			"offsets": {
+				"from": 191800,
+				"to": 194160
+			},
+			"text": " the clients that represent the infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,160",
+				"to": "00:03:16,920"
+			},
+			"offsets": {
+				"from": 194160,
+				"to": 196920
+			},
+			"text": " But clients actually have the power to dictate"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,920",
+				"to": "00:03:20,080"
+			},
+			"offsets": {
+				"from": 196920,
+				"to": 200080
+			},
+			"text": " the underlying infrastructure and protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,080",
+				"to": "00:03:21,600"
+			},
+			"offsets": {
+				"from": 200080,
+				"to": 201600
+			},
+			"text": " They create lock-in effects."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,600",
+				"to": "00:03:24,040"
+			},
+			"offsets": {
+				"from": 201600,
+				"to": 204040
+			},
+			"text": " And they can be gatekeepers that control"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,040",
+				"to": "00:03:27,680"
+			},
+			"offsets": {
+				"from": 204040,
+				"to": 207680
+			},
+			"text": " who should have access and what kind of access."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,680",
+				"to": "00:03:32,160"
+			},
+			"offsets": {
+				"from": 207680,
+				"to": 212160
+			},
+			"text": " And we see this even today when Google is willing to pay $12"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,160",
+				"to": "00:03:36,480"
+			},
+			"offsets": {
+				"from": 212160,
+				"to": 216480
+			},
+			"text": " billion a year to Apple just to remain the default search"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,480",
+				"to": "00:03:38,600"
+			},
+			"offsets": {
+				"from": 216480,
+				"to": 218600
+			},
+			"text": " in Safari browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,600",
+				"to": "00:03:42,120"
+			},
+			"offsets": {
+				"from": 218600,
+				"to": 222120
+			},
+			"text": " So browsers are still a very interesting and lucrative"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,120",
+				"to": "00:03:44,280"
+			},
+			"offsets": {
+				"from": 222120,
+				"to": 224280
+			},
+			"text": " target for big corporations."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,280",
+				"to": "00:03:47,360"
+			},
+			"offsets": {
+				"from": 224280,
+				"to": 227360
+			},
+			"text": " And they really want to own this space and control it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,360",
+				"to": "00:03:49,560"
+			},
+			"offsets": {
+				"from": 227360,
+				"to": 229560
+			},
+			"text": " as much as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,560",
+				"to": "00:03:51,520"
+			},
+			"offsets": {
+				"from": 229560,
+				"to": 231520
+			},
+			"text": " But this is not what we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,520",
+				"to": "00:03:54,800"
+			},
+			"offsets": {
+				"from": 231520,
+				"to": 234800
+			},
+			"text": " We want our tools and clients to be open and free"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,800",
+				"to": "00:03:56,160"
+			},
+			"offsets": {
+				"from": 234800,
+				"to": 236160
+			},
+			"text": " as much as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,160",
+				"to": "00:03:59,160"
+			},
+			"offsets": {
+				"from": 236160,
+				"to": 239160
+			},
+			"text": " We want them to be an extension to the regular web."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,160",
+				"to": "00:04:01,360"
+			},
+			"offsets": {
+				"from": 239160,
+				"to": 241360
+			},
+			"text": " But they should have the full access to the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,360",
+				"to": "00:04:03,680"
+			},
+			"offsets": {
+				"from": 241360,
+				"to": 243680
+			},
+			"text": " network and all the benefits that come with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,680",
+				"to": "00:04:07,840"
+			},
+			"offsets": {
+				"from": 243680,
+				"to": 247840
+			},
+			"text": " such as computational power, smart contracts, cryptographic"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,840",
+				"to": "00:04:11,480"
+			},
+			"offsets": {
+				"from": 247840,
+				"to": 251480
+			},
+			"text": " security, safe-sourene identity, decentralized storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,480",
+				"to": "00:04:13,360"
+			},
+			"offsets": {
+				"from": 251480,
+				"to": 253360
+			},
+			"text": " and crypto payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,360",
+				"to": "00:04:17,440"
+			},
+			"offsets": {
+				"from": 253360,
+				"to": 257440
+			},
+			"text": " And we can call this to the browser 3.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,440",
+				"to": "00:04:20,360"
+			},
+			"offsets": {
+				"from": 257440,
+				"to": 260360
+			},
+			"text": " Unfortunately, this tool doesn't exist yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,360",
+				"to": "00:04:21,800"
+			},
+			"offsets": {
+				"from": 260360,
+				"to": 261800
+			},
+			"text": " And someone needs to build it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,800",
+				"to": "00:04:24,200"
+			},
+			"offsets": {
+				"from": 261800,
+				"to": 264200
+			},
+			"text": " So let's build a browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,200",
+				"to": "00:04:26,080"
+			},
+			"offsets": {
+				"from": 264200,
+				"to": 266080
+			},
+			"text": " But before we are reinventing the wheel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,080",
+				"to": "00:04:28,240"
+			},
+			"offsets": {
+				"from": 266080,
+				"to": 268240
+			},
+			"text": " we should just check how much work this would be."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,240",
+				"to": "00:04:32,200"
+			},
+			"offsets": {
+				"from": 268240,
+				"to": 272200
+			},
+			"text": " And there's Chrome in the open source project for Google Chrome."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,200",
+				"to": "00:04:35,080"
+			},
+			"offsets": {
+				"from": 272200,
+				"to": 275080
+			},
+			"text": " And this project has 20 million lines of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,080",
+				"to": "00:04:38,880"
+			},
+			"offsets": {
+				"from": 275080,
+				"to": 278880
+			},
+			"text": " It takes around 6,000 person years to build."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,880",
+				"to": "00:04:43,360"
+			},
+			"offsets": {
+				"from": 278880,
+				"to": 283360
+			},
+			"text": " The estimated costs are $320 million, $35 programming"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,360",
+				"to": "00:04:45,320"
+			},
+			"offsets": {
+				"from": 283360,
+				"to": 285320
+			},
+			"text": " languages are used in this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,320",
+				"to": "00:04:48,560"
+			},
+			"offsets": {
+				"from": 285320,
+				"to": 288560
+			},
+			"text": " More than 50 engineers are working on it full time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,560",
+				"to": "00:04:50,760"
+			},
+			"offsets": {
+				"from": 288560,
+				"to": 290760
+			},
+			"text": " More than 60 gigabytes of RAM are highly recommended"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,760",
+				"to": "00:04:51,560"
+			},
+			"offsets": {
+				"from": 290760,
+				"to": 291560
+			},
+			"text": " to build it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,560",
+				"to": "00:04:54,400"
+			},
+			"offsets": {
+				"from": 291560,
+				"to": 294400
+			},
+			"text": " And it takes roughly 24 hours on my machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,400",
+				"to": "00:04:56,680"
+			},
+			"offsets": {
+				"from": 294400,
+				"to": 296680
+			},
+			"text": " So that is not an option for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,680",
+				"to": "00:05:00,200"
+			},
+			"offsets": {
+				"from": 296680,
+				"to": 300200
+			},
+			"text": " We don't have these resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,200",
+				"to": "00:05:02,360"
+			},
+			"offsets": {
+				"from": 300200,
+				"to": 302360
+			},
+			"text": " But there are certain frameworks that can help us with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,360",
+				"to": "00:05:04,360"
+			},
+			"offsets": {
+				"from": 302360,
+				"to": 304360
+			},
+			"text": " And one of them is Electron."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,360",
+				"to": "00:05:05,520"
+			},
+			"offsets": {
+				"from": 304360,
+				"to": 305520
+			},
+			"text": " So what is Electron?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,520",
+				"to": "00:05:07,800"
+			},
+			"offsets": {
+				"from": 305520,
+				"to": 307800
+			},
+			"text": " Electron already comes with Chromium pre-built,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,800",
+				"to": "00:05:09,400"
+			},
+			"offsets": {
+				"from": 307800,
+				"to": 309400
+			},
+			"text": " pre-bundled."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,400",
+				"to": "00:05:15,760"
+			},
+			"offsets": {
+				"from": 309400,
+				"to": 315760
+			},
+			"text": " It has Node.js integration to customize the browser behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,760",
+				"to": "00:05:19,280"
+			},
+			"offsets": {
+				"from": 315760,
+				"to": 319280
+			},
+			"text": " And it also has native APIs so that it runs on all major"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,280",
+				"to": "00:05:20,600"
+			},
+			"offsets": {
+				"from": 319280,
+				"to": 320600
+			},
+			"text": " operating systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,600",
+				"to": "00:05:22,040"
+			},
+			"offsets": {
+				"from": 320600,
+				"to": 322040
+			},
+			"text": " It looks really promising."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,040",
+				"to": "00:05:23,760"
+			},
+			"offsets": {
+				"from": 322040,
+				"to": 323760
+			},
+			"text": " It looks like a really good tool that we can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,760",
+				"to": "00:05:25,920"
+			},
+			"offsets": {
+				"from": 323760,
+				"to": 325920
+			},
+			"text": " And many, many applications are already using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,920",
+				"to": "00:05:28,440"
+			},
+			"offsets": {
+				"from": 325920,
+				"to": 328440
+			},
+			"text": " And it's becoming a really big thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,440",
+				"to": "00:05:31,640"
+			},
+			"offsets": {
+				"from": 328440,
+				"to": 331640
+			},
+			"text": " And we see this for classical and developer truth's productivity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,640",
+				"to": "00:05:33,880"
+			},
+			"offsets": {
+				"from": 331640,
+				"to": 333880
+			},
+			"text": " but also a lot of crypto applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,880",
+				"to": "00:05:35,480"
+			},
+			"offsets": {
+				"from": 333880,
+				"to": 335480
+			},
+			"text": " that are already using Electron."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:42,520"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 342520
+			},
+			"text": " And I want to focus on-- before I go to this slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,520",
+				"to": "00:05:46,280"
+			},
+			"offsets": {
+				"from": 342520,
+				"to": 346280
+			},
+			"text": " I should say this is a security talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,280",
+				"to": "00:05:47,280"
+			},
+			"offsets": {
+				"from": 346280,
+				"to": 347280
+			},
+			"text": " This was the first part."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,280",
+				"to": "00:05:50,400"
+			},
+			"offsets": {
+				"from": 347280,
+				"to": 350400
+			},
+			"text": " And I really wanted to emphasize why we want to build this browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,400",
+				"to": "00:05:53,480"
+			},
+			"offsets": {
+				"from": 350400,
+				"to": 353480
+			},
+			"text": " But I think now it's becoming a little bit more technical."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,480",
+				"to": "00:05:55,160"
+			},
+			"offsets": {
+				"from": 353480,
+				"to": 355160
+			},
+			"text": " But if one of you in the audience just"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,160",
+				"to": "00:05:58,040"
+			},
+			"offsets": {
+				"from": 355160,
+				"to": 358040
+			},
+			"text": " recognizes one of these icons here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,040",
+				"to": "00:06:02,320"
+			},
+			"offsets": {
+				"from": 358040,
+				"to": 362320
+			},
+			"text": " or you may be using one of these products on a computer that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,320",
+				"to": "00:06:04,760"
+			},
+			"offsets": {
+				"from": 362320,
+				"to": 364760
+			},
+			"text": " also has your private keys or some funds on it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,760",
+				"to": "00:06:06,960"
+			},
+			"offsets": {
+				"from": 364760,
+				"to": 366960
+			},
+			"text": " then I think the next part, which is more technical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,960",
+				"to": "00:06:10,800"
+			},
+			"offsets": {
+				"from": 366960,
+				"to": 370800
+			},
+			"text": " technical, could still be interesting for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,800",
+				"to": "00:06:13,320"
+			},
+			"offsets": {
+				"from": 370800,
+				"to": 373320
+			},
+			"text": " I want to focus on these Web3 clients, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,320",
+				"to": "00:06:17,160"
+			},
+			"offsets": {
+				"from": 373320,
+				"to": 377160
+			},
+			"text": " can be considered a subset of the browser 3.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,160",
+				"to": "00:06:21,240"
+			},
+			"offsets": {
+				"from": 377160,
+				"to": 381240
+			},
+			"text": " So these are clients that have access to the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,240",
+				"to": "00:06:24,760"
+			},
+			"offsets": {
+				"from": 381240,
+				"to": 384760
+			},
+			"text": " But they can also host apps, decentralized apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,760",
+				"to": "00:06:27,600"
+			},
+			"offsets": {
+				"from": 384760,
+				"to": 387600
+			},
+			"text": " And they provide an interface so that these apps can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,600",
+				"to": "00:06:29,040"
+			},
+			"offsets": {
+				"from": 387600,
+				"to": 389040
+			},
+			"text": " interact with the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,040",
+				"to": "00:06:30,960"
+			},
+			"offsets": {
+				"from": 389040,
+				"to": 390960
+			},
+			"text": " And the most prominent ones are probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,960",
+				"to": "00:06:34,360"
+			},
+			"offsets": {
+				"from": 390960,
+				"to": 394360
+			},
+			"text": " MetaMasked Brave, then the Ethereum Mist, and the Parity"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,360",
+				"to": "00:06:36,360"
+			},
+			"offsets": {
+				"from": 394360,
+				"to": 396360
+			},
+			"text": " Client."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,360",
+				"to": "00:06:39,920"
+			},
+			"offsets": {
+				"from": 396360,
+				"to": 399920
+			},
+			"text": " And this is the approach that these projects took."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,920",
+				"to": "00:06:43,240"
+			},
+			"offsets": {
+				"from": 399920,
+				"to": 403240
+			},
+			"text": " So MetaMask is really convenient, and it's a great tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,240",
+				"to": "00:06:44,200"
+			},
+			"offsets": {
+				"from": 403240,
+				"to": 404200
+			},
+			"text": " It's a Chrome extension."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,200",
+				"to": "00:06:45,960"
+			},
+			"offsets": {
+				"from": 404200,
+				"to": 405960
+			},
+			"text": " Then Brave was built on Electron."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,960",
+				"to": "00:06:47,320"
+			},
+			"offsets": {
+				"from": 405960,
+				"to": 407320
+			},
+			"text": " Ethereum is built on Electron."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,320",
+				"to": "00:06:50,760"
+			},
+			"offsets": {
+				"from": 407320,
+				"to": 410760
+			},
+			"text": " And Parity had a UI that was built on Electron."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,760",
+				"to": "00:06:54,480"
+			},
+			"offsets": {
+				"from": 410760,
+				"to": 414480
+			},
+			"text": " And now they have a wallet that is built with Electron."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,480",
+				"to": "00:06:57,800"
+			},
+			"offsets": {
+				"from": 414480,
+				"to": 417800
+			},
+			"text": " Brave were probably the first that recognized that Electron is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,800",
+				"to": "00:07:00,720"
+			},
+			"offsets": {
+				"from": 417800,
+				"to": 420720
+			},
+			"text": " not the best tool to build these kind of browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,720",
+				"to": "00:07:02,160"
+			},
+			"offsets": {
+				"from": 420720,
+				"to": 422160
+			},
+			"text": " like applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,160",
+				"to": "00:07:06,360"
+			},
+			"offsets": {
+				"from": 422160,
+				"to": 426360
+			},
+			"text": " And then they forked Electron to fix some of the security"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,360",
+				"to": "00:07:07,080"
+			},
+			"offsets": {
+				"from": 426360,
+				"to": 427080
+			},
+			"text": " problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,080",
+				"to": "00:07:08,280"
+			},
+			"offsets": {
+				"from": 427080,
+				"to": 428280
+			},
+			"text": " And they called it Moone."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,280",
+				"to": "00:07:10,280"
+			},
+			"offsets": {
+				"from": 428280,
+				"to": 430280
+			},
+			"text": " And then they realized this will also not help."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,280",
+				"to": "00:07:12,840"
+			},
+			"offsets": {
+				"from": 430280,
+				"to": 432840
+			},
+			"text": " And now they're going completely away to something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,840",
+				"to": "00:07:14,760"
+			},
+			"offsets": {
+				"from": 432840,
+				"to": 434760
+			},
+			"text": " is closer to Chromium."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,760",
+				"to": "00:07:17,800"
+			},
+			"offsets": {
+				"from": 434760,
+				"to": 437800
+			},
+			"text": " And the Ethereum Mist team also realized that Electron might"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,800",
+				"to": "00:07:19,080"
+			},
+			"offsets": {
+				"from": 437800,
+				"to": 439080
+			},
+			"text": " not be the best choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,080",
+				"to": "00:07:20,840"
+			},
+			"offsets": {
+				"from": 439080,
+				"to": 440840
+			},
+			"text": " And we have an internal project called Tau."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,840",
+				"to": "00:07:24,040"
+			},
+			"offsets": {
+				"from": 440840,
+				"to": 444040
+			},
+			"text": " And I will talk a little bit more about this in a second"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,040",
+				"to": "00:07:29,240"
+			},
+			"offsets": {
+				"from": 444040,
+				"to": 449240
+			},
+			"text": " that tries to fix all these security problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,240",
+				"to": "00:07:32,240"
+			},
+			"offsets": {
+				"from": 449240,
+				"to": 452240
+			},
+			"text": " But before I talk more about Electron, why is not just--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,240",
+				"to": "00:07:35,320"
+			},
+			"offsets": {
+				"from": 452240,
+				"to": 455320
+			},
+			"text": " if Electron is not such a great option, why is not everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,320",
+				"to": "00:07:37,040"
+			},
+			"offsets": {
+				"from": 455320,
+				"to": 457040
+			},
+			"text": " just building a Chrome extension?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,040",
+				"to": "00:07:39,360"
+			},
+			"offsets": {
+				"from": 457040,
+				"to": 459360
+			},
+			"text": " And I really wanted to motivate this with the first couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,360",
+				"to": "00:07:43,400"
+			},
+			"offsets": {
+				"from": 459360,
+				"to": 463400
+			},
+			"text": " of slides that we need some kind of diversity."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,400",
+				"to": "00:07:45,840"
+			},
+			"offsets": {
+				"from": 463400,
+				"to": 465840
+			},
+			"text": " And that platform power is a big problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,840",
+				"to": "00:07:47,760"
+			},
+			"offsets": {
+				"from": 465840,
+				"to": 467760
+			},
+			"text": " And besides this, being a browser plug"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,760",
+				"to": "00:07:50,480"
+			},
+			"offsets": {
+				"from": 467760,
+				"to": 470480
+			},
+			"text": " has more limitations."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,480",
+				"to": "00:07:53,360"
+			},
+			"offsets": {
+				"from": 470480,
+				"to": 473360
+			},
+			"text": " Limited API access, not running in Chromium forks"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,360",
+				"to": "00:07:55,680"
+			},
+			"offsets": {
+				"from": 473360,
+				"to": 475680
+			},
+			"text": " without extension APIs such as Electron."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,680",
+				"to": "00:07:59,920"
+			},
+			"offsets": {
+				"from": 475680,
+				"to": 479920
+			},
+			"text": " It's perceived and-- or typo-- coupled to the Chrome FireFox"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,920",
+				"to": "00:08:02,560"
+			},
+			"offsets": {
+				"from": 479920,
+				"to": 482560
+			},
+			"text": " or whatever the hosting application is."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,560",
+				"to": "00:08:05,400"
+			},
+			"offsets": {
+				"from": 482560,
+				"to": 485400
+			},
+			"text": " It has no platform ownership, which is probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,400",
+				"to": "00:08:08,760"
+			},
+			"offsets": {
+				"from": 485400,
+				"to": 488760
+			},
+			"text": " the biggest problem because then this can happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,760",
+				"to": "00:08:11,800"
+			},
+			"offsets": {
+				"from": 488760,
+				"to": 491800
+			},
+			"text": " Someone decides for you that your extension should not exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,800",
+				"to": "00:08:13,720"
+			},
+			"offsets": {
+				"from": 491800,
+				"to": 493720
+			},
+			"text": " anymore, should not be available anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,720",
+				"to": "00:08:15,120"
+			},
+			"offsets": {
+				"from": 493720,
+				"to": 495120
+			},
+			"text": " And this happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,120",
+				"to": "00:08:17,120"
+			},
+			"offsets": {
+				"from": 495120,
+				"to": 497120
+			},
+			"text": " The Miramask extension was removed from the store"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,120",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 497120,
+				"to": 498000
+			},
+			"text": " for a couple of days."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:20,440"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 500440
+			},
+			"text": " And they are more crypto extensions that got completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,440",
+				"to": "00:08:23,080"
+			},
+			"offsets": {
+				"from": 500440,
+				"to": 503080
+			},
+			"text": " banned from the store."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,080",
+				"to": "00:08:23,680"
+			},
+			"offsets": {
+				"from": 503080,
+				"to": 503680
+			},
+			"text": " Well, this happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,680",
+				"to": "00:08:26,080"
+			},
+			"offsets": {
+				"from": 503680,
+				"to": 506080
+			},
+			"text": " Someone decides that all applications should not exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,080",
+				"to": "00:08:26,640"
+			},
+			"offsets": {
+				"from": 506080,
+				"to": 506640
+			},
+			"text": " anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,640",
+				"to": "00:08:28,400"
+			},
+			"offsets": {
+				"from": 506640,
+				"to": 508400
+			},
+			"text": " And this also happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,400",
+				"to": "00:08:30,200"
+			},
+			"offsets": {
+				"from": 508400,
+				"to": 510200
+			},
+			"text": " There was something called Chrome Apps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,200",
+				"to": "00:08:33,360"
+			},
+			"offsets": {
+				"from": 510200,
+				"to": 513360
+			},
+			"text": " and they got pretty much killed within the last two years."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,360",
+				"to": "00:08:35,240"
+			},
+			"offsets": {
+				"from": 513360,
+				"to": 515240
+			},
+			"text": " All of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,240",
+				"to": "00:08:37,600"
+			},
+			"offsets": {
+				"from": 515240,
+				"to": 517600
+			},
+			"text": " OK, now I want to focus a little bit more on Electron"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,600",
+				"to": "00:08:39,120"
+			},
+			"offsets": {
+				"from": 517600,
+				"to": 519120
+			},
+			"text": " security."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,120",
+				"to": "00:08:40,600"
+			},
+			"offsets": {
+				"from": 519120,
+				"to": 520600
+			},
+			"text": " And there are a couple of ways how"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,600",
+				"to": "00:08:42,720"
+			},
+			"offsets": {
+				"from": 520600,
+				"to": 522720
+			},
+			"text": " to build Electron applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,720",
+				"to": "00:08:45,720"
+			},
+			"offsets": {
+				"from": 522720,
+				"to": 525720
+			},
+			"text": " There's a good way where you actually build a user interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,720",
+				"to": "00:08:47,760"
+			},
+			"offsets": {
+				"from": 525720,
+				"to": 527760
+			},
+			"text": " with web technologies, which is what you want or you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,760",
+				"to": "00:08:49,840"
+			},
+			"offsets": {
+				"from": 527760,
+				"to": 529840
+			},
+			"text": " build your depth with web technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,840",
+				"to": "00:08:52,720"
+			},
+			"offsets": {
+				"from": 529840,
+				"to": 532720
+			},
+			"text": " And then you need to make some extensions"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,720",
+				"to": "00:08:56,160"
+			},
+			"offsets": {
+				"from": 532720,
+				"to": 536160
+			},
+			"text": " to the browser, stuff that the browser does not offer you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,160",
+				"to": "00:08:57,320"
+			},
+			"offsets": {
+				"from": 536160,
+				"to": 537320
+			},
+			"text": " a regular browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,320",
+				"to": "00:08:59,280"
+			},
+			"offsets": {
+				"from": 537320,
+				"to": 539280
+			},
+			"text": " So you design an API for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,280",
+				"to": "00:09:02,600"
+			},
+			"offsets": {
+				"from": 539280,
+				"to": 542600
+			},
+			"text": " And then when you need more access to the operating system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,600",
+				"to": "00:09:04,200"
+			},
+			"offsets": {
+				"from": 542600,
+				"to": 544200
+			},
+			"text": " you write the application logic that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,200",
+				"to": "00:09:07,200"
+			},
+			"offsets": {
+				"from": 544200,
+				"to": 547200
+			},
+			"text": " is running in a separate process."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,200",
+				"to": "00:09:09,520"
+			},
+			"offsets": {
+				"from": 547200,
+				"to": 549520
+			},
+			"text": " And you have some kind of messaging mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,520",
+				"to": "00:09:11,880"
+			},
+			"offsets": {
+				"from": 549520,
+				"to": 551880
+			},
+			"text": " that is whitelisting certain messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,880",
+				"to": "00:09:13,600"
+			},
+			"offsets": {
+				"from": 551880,
+				"to": 553600
+			},
+			"text": " between these two processes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,600",
+				"to": "00:09:16,680"
+			},
+			"offsets": {
+				"from": 553600,
+				"to": 556680
+			},
+			"text": " That's good, but it's also harder to build."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,680",
+				"to": "00:09:18,720"
+			},
+			"offsets": {
+				"from": 556680,
+				"to": 558720
+			},
+			"text": " And you can also do this with Electron."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,720",
+				"to": "00:09:21,360"
+			},
+			"offsets": {
+				"from": 558720,
+				"to": 561360
+			},
+			"text": " You can build the whole user interface code"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,360",
+				"to": "00:09:23,120"
+			},
+			"offsets": {
+				"from": 561360,
+				"to": 563120
+			},
+			"text": " that is running in the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,120",
+				"to": "00:09:24,680"
+			},
+			"offsets": {
+				"from": 563120,
+				"to": 564680
+			},
+			"text": " Then you don't really need an API,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,680",
+				"to": "00:09:27,480"
+			},
+			"offsets": {
+				"from": 564680,
+				"to": 567480
+			},
+			"text": " and you can just write your whole application code that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,480",
+				"to": "00:09:29,520"
+			},
+			"offsets": {
+				"from": 567480,
+				"to": 569520
+			},
+			"text": " is also running in the browser window."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,520",
+				"to": "00:09:33,280"
+			},
+			"offsets": {
+				"from": 569520,
+				"to": 573280
+			},
+			"text": " And that's, for most, applications a really bad idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,280",
+				"to": "00:09:35,680"
+			},
+			"offsets": {
+				"from": 573280,
+				"to": 575680
+			},
+			"text": " And this is possible because of a feature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,680",
+				"to": "00:09:37,680"
+			},
+			"offsets": {
+				"from": 575680,
+				"to": 577680
+			},
+			"text": " one of the core features of Electron, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,680",
+				"to": "00:09:39,720"
+			},
+			"offsets": {
+				"from": 577680,
+				"to": 579720
+			},
+			"text": " is called node integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,720",
+				"to": "00:09:44,960"
+			},
+			"offsets": {
+				"from": 579720,
+				"to": 584960
+			},
+			"text": " So node integration allows you to access all the node JS APIs"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,960",
+				"to": "00:09:47,200"
+			},
+			"offsets": {
+				"from": 584960,
+				"to": 587200
+			},
+			"text": " from within the browser window."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,200",
+				"to": "00:09:50,600"
+			},
+			"offsets": {
+				"from": 587200,
+				"to": 590600
+			},
+			"text": " You don't need the separation of these processes anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,600",
+				"to": "00:09:52,120"
+			},
+			"offsets": {
+				"from": 590600,
+				"to": 592120
+			},
+			"text": " You can do really crazy stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,120",
+				"to": "00:09:56,840"
+			},
+			"offsets": {
+				"from": 592120,
+				"to": 596840
+			},
+			"text": " You can access the file system just from a regular web page."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,840",
+				"to": "00:10:01,560"
+			},
+			"offsets": {
+				"from": 596840,
+				"to": 601560
+			},
+			"text": " This is possible, especially because the Electron project"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,560",
+				"to": "00:10:03,080"
+			},
+			"offsets": {
+				"from": 601560,
+				"to": 603080
+			},
+			"text": " removed the sandbox from the browser, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,080",
+				"to": "00:10:07,520"
+			},
+			"offsets": {
+				"from": 603080,
+				"to": 607520
+			},
+			"text": " is one of the core security mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,520",
+				"to": "00:10:09,880"
+			},
+			"offsets": {
+				"from": 607520,
+				"to": 609880
+			},
+			"text": " So that's really bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,880",
+				"to": "00:10:14,400"
+			},
+			"offsets": {
+				"from": 609880,
+				"to": 614400
+			},
+			"text": " And it opens a really large attack surface"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,400",
+				"to": "00:10:15,400"
+			},
+			"offsets": {
+				"from": 614400,
+				"to": 615400
+			},
+			"text": " for these applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,400",
+				"to": "00:10:18,600"
+			},
+			"offsets": {
+				"from": 615400,
+				"to": 618600
+			},
+			"text": " And we should be aware of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,600",
+				"to": "00:10:20,200"
+			},
+			"offsets": {
+				"from": 618600,
+				"to": 620200
+			},
+			"text": " There's our application code."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,200",
+				"to": "00:10:22,080"
+			},
+			"offsets": {
+				"from": 620200,
+				"to": 622080
+			},
+			"text": " But this is only at the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,080",
+				"to": "00:10:25,960"
+			},
+			"offsets": {
+				"from": 622080,
+				"to": 625960
+			},
+			"text": " Our application has its own dependencies to NPM modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,960",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 625960,
+				"to": 628000
+			},
+			"text": " Then it's running in the Electron framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:30,600"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 630600
+			},
+			"text": " And the Electron framework has dependencies to Chromium,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,600",
+				"to": "00:10:36,760"
+			},
+			"offsets": {
+				"from": 630600,
+				"to": 636760
+			},
+			"text": " node JS, Vite, and some lower level APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,760",
+				"to": "00:10:38,480"
+			},
+			"offsets": {
+				"from": 636760,
+				"to": 638480
+			},
+			"text": " And we need to be aware of the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,480",
+				"to": "00:10:42,920"
+			},
+			"offsets": {
+				"from": 638480,
+				"to": 642920
+			},
+			"text": " that every single layer can be attacked and was attacked so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,920",
+				"to": "00:10:45,080"
+			},
+			"offsets": {
+				"from": 642920,
+				"to": 645080
+			},
+			"text": " So we saw on an infrastructure level"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,080",
+				"to": "00:10:48,280"
+			},
+			"offsets": {
+				"from": 645080,
+				"to": 648280
+			},
+			"text": " there was a DNS attack against my ether wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,280",
+				"to": "00:10:51,480"
+			},
+			"offsets": {
+				"from": 648280,
+				"to": 651480
+			},
+			"text": " Then for Electron, we've seen a bunch of node integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,480",
+				"to": "00:10:52,360"
+			},
+			"offsets": {
+				"from": 651480,
+				"to": 652360
+			},
+			"text": " bypasses."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,360",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 652360,
+				"to": 655000
+			},
+			"text": " So you can actually turn the node integration off"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:10:56,280"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 656280
+			},
+			"text": " for these browser windows."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,280",
+				"to": "00:10:59,520"
+			},
+			"offsets": {
+				"from": 656280,
+				"to": 659520
+			},
+			"text": " But then we've seen cases where an application that was running"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,520",
+				"to": "00:11:02,160"
+			},
+			"offsets": {
+				"from": 659520,
+				"to": 662160
+			},
+			"text": " in the browser window could turn it on again, which completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,160",
+				"to": "00:11:04,200"
+			},
+			"offsets": {
+				"from": 662160,
+				"to": 664200
+			},
+			"text": " defeats the purpose of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,200",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 664200,
+				"to": 666000
+			},
+			"text": " And if this was not working, they would just"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:08,640"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 668640
+			},
+			"text": " create a new window that had node integration on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,640",
+				"to": "00:11:11,960"
+			},
+			"offsets": {
+				"from": 668640,
+				"to": 671960
+			},
+			"text": " And they would load themselves into the new window."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,960",
+				"to": "00:11:14,640"
+			},
+			"offsets": {
+				"from": 671960,
+				"to": 674640
+			},
+			"text": " And then they get full access to the operating system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,640",
+				"to": "00:11:17,080"
+			},
+			"offsets": {
+				"from": 674640,
+				"to": 677080
+			},
+			"text": " And this is the security nightmare."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,080",
+				"to": "00:11:19,960"
+			},
+			"offsets": {
+				"from": 677080,
+				"to": 679960
+			},
+			"text": " And then they have full access to all your keys and files"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,960",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 679960,
+				"to": 683000
+			},
+			"text": " and whatever you store on your computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:26,880"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 686880
+			},
+			"text": " On the dependency level, we've seen NPM modules being hacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,880",
+				"to": "00:11:30,160"
+			},
+			"offsets": {
+				"from": 686880,
+				"to": 690160
+			},
+			"text": " So someone created an NPM module."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,160",
+				"to": "00:11:32,120"
+			},
+			"offsets": {
+				"from": 690160,
+				"to": 692120
+			},
+			"text": " And they did not really protect their account."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,120",
+				"to": "00:11:34,880"
+			},
+			"offsets": {
+				"from": 692120,
+				"to": 694880
+			},
+			"text": " Someone was able to hack into this account."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,880",
+				"to": "00:11:37,200"
+			},
+			"offsets": {
+				"from": 694880,
+				"to": 697200
+			},
+			"text": " They modified the module code."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,200",
+				"to": "00:11:39,160"
+			},
+			"offsets": {
+				"from": 697200,
+				"to": 699160
+			},
+			"text": " And then this module is a dependency of millions"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,160",
+				"to": "00:11:40,040"
+			},
+			"offsets": {
+				"from": 699160,
+				"to": 700040
+			},
+			"text": " of other projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,040",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 700040,
+				"to": 704000
+			},
+			"text": " And they can infect millions of other projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:47,760"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 707760
+			},
+			"text": " On the application level, we see a bunch of cross-site scripting"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,760",
+				"to": "00:11:51,120"
+			},
+			"offsets": {
+				"from": 707760,
+				"to": 711120
+			},
+			"text": " attacks, which is probably the most dominant thread there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,120",
+				"to": "00:11:53,520"
+			},
+			"offsets": {
+				"from": 711120,
+				"to": 713520
+			},
+			"text": " especially DOM cross-site scripting for electronics."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,520",
+				"to": "00:11:58,680"
+			},
+			"offsets": {
+				"from": 713520,
+				"to": 718680
+			},
+			"text": " Another big, really big thing for us"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,680",
+				"to": "00:12:00,680"
+			},
+			"offsets": {
+				"from": 718680,
+				"to": 720680
+			},
+			"text": " are updates that are security critical."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,680",
+				"to": "00:12:02,760"
+			},
+			"offsets": {
+				"from": 720680,
+				"to": 722760
+			},
+			"text": " And I want to show you why."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,760",
+				"to": "00:12:07,440"
+			},
+			"offsets": {
+				"from": 722760,
+				"to": 727440
+			},
+			"text": " So with Mist, for example, in version 10,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,440",
+				"to": "00:12:10,200"
+			},
+			"offsets": {
+				"from": 727440,
+				"to": 730200
+			},
+			"text": " we have a dependency to electron 1.8."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,200",
+				"to": "00:12:13,280"
+			},
+			"offsets": {
+				"from": 730200,
+				"to": 733280
+			},
+			"text": " In version 11, we have a dependency to electron 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,280",
+				"to": "00:12:17,840"
+			},
+			"offsets": {
+				"from": 733280,
+				"to": 737840
+			},
+			"text": " So I said it before, electron has its own set of dependencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,840",
+				"to": "00:12:22,200"
+			},
+			"offsets": {
+				"from": 737840,
+				"to": 742200
+			},
+			"text": " So electron 1.8, for example, has a dependency to chromium 59,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,200",
+				"to": "00:12:25,600"
+			},
+			"offsets": {
+				"from": 742200,
+				"to": 745600
+			},
+			"text": " then node 8, 8.2, and v8 5.9."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,600",
+				"to": "00:12:28,880"
+			},
+			"offsets": {
+				"from": 745600,
+				"to": 748880
+			},
+			"text": " And electron 2 has a dependency to chromium 61,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,880",
+				"to": "00:12:31,080"
+			},
+			"offsets": {
+				"from": 748880,
+				"to": 751080
+			},
+			"text": " node 8.9, and v8 6.1."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,080",
+				"to": "00:12:33,640"
+			},
+			"offsets": {
+				"from": 751080,
+				"to": 753640
+			},
+			"text": " And the latest version is for chromium 71,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,640",
+				"to": "00:12:36,400"
+			},
+			"offsets": {
+				"from": 753640,
+				"to": 756400
+			},
+			"text": " for node it's 11, and for v8 at 7."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,400",
+				"to": "00:12:38,520"
+			},
+			"offsets": {
+				"from": 756400,
+				"to": 758520
+			},
+			"text": " And you don't have to remember all these numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,520",
+				"to": "00:12:40,240"
+			},
+			"offsets": {
+				"from": 758520,
+				"to": 760240
+			},
+			"text": " I will break it down for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,240",
+				"to": "00:12:44,400"
+			},
+			"offsets": {
+				"from": 760240,
+				"to": 764400
+			},
+			"text": " The latest version is 71, the version that is used"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,400",
+				"to": "00:12:48,360"
+			},
+			"offsets": {
+				"from": 764400,
+				"to": 768360
+			},
+			"text": " as a dependency of our electron dependency, a 61."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,360",
+				"to": "00:12:50,360"
+			},
+			"offsets": {
+				"from": 768360,
+				"to": 770360
+			},
+			"text": " That's a 10 version difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,360",
+				"to": "00:12:52,480"
+			},
+			"offsets": {
+				"from": 770360,
+				"to": 772480
+			},
+			"text": " Chromium has a release cycle of six weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,480",
+				"to": "00:12:56,240"
+			},
+			"offsets": {
+				"from": 772480,
+				"to": 776240
+			},
+			"text": " That's a 60-week difference in patches, security updates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,240",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 776240,
+				"to": 779000
+			},
+			"text": " bug fixes, more than a year outdated."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:01,400"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 781400
+			},
+			"text": " And it's even worse because we get this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,400",
+				"to": "00:13:05,680"
+			},
+			"offsets": {
+				"from": 781400,
+				"to": 785680
+			},
+			"text": " The responsible is closed at timeline for v8 bugs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,680",
+				"to": "00:13:07,040"
+			},
+			"offsets": {
+				"from": 785680,
+				"to": 787040
+			},
+			"text": " for example, it's not one year."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,040",
+				"to": "00:13:08,480"
+			},
+			"offsets": {
+				"from": 787040,
+				"to": 788480
+			},
+			"text": " It's a couple of weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,480",
+				"to": "00:13:14,840"
+			},
+			"offsets": {
+				"from": 788480,
+				"to": 794840
+			},
+			"text": " So we have documented exploits such as this v8 integer overflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,840",
+				"to": "00:13:16,360"
+			},
+			"offsets": {
+				"from": 794840,
+				"to": 796360
+			},
+			"text": " And you can find it online."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,360",
+				"to": "00:13:20,040"
+			},
+			"offsets": {
+				"from": 796360,
+				"to": 800040
+			},
+			"text": " This is an attack that works in all outdated browsers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,040",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 800040,
+				"to": 802000
+			},
+			"text": " It also works for every electron app that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:23,640"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 803640
+			},
+			"text": " is still on 1.8, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,640",
+				"to": "00:13:29,880"
+			},
+			"offsets": {
+				"from": 803640,
+				"to": 809880
+			},
+			"text": " Another big problem, who is reinstalling their browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,880",
+				"to": "00:13:32,920"
+			},
+			"offsets": {
+				"from": 809880,
+				"to": 812920
+			},
+			"text": " when they want to refresh a web page?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,920",
+				"to": "00:13:34,800"
+			},
+			"offsets": {
+				"from": 812920,
+				"to": 814800
+			},
+			"text": " I hope no one does this because this"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,800",
+				"to": "00:13:36,480"
+			},
+			"offsets": {
+				"from": 814800,
+				"to": 816480
+			},
+			"text": " is what crazy people do."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,480",
+				"to": "00:13:38,240"
+			},
+			"offsets": {
+				"from": 816480,
+				"to": 818240
+			},
+			"text": " But this is our update model right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,240",
+				"to": "00:13:39,760"
+			},
+			"offsets": {
+				"from": 818240,
+				"to": 819760
+			},
+			"text": " with all the electron apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,760",
+				"to": "00:13:43,240"
+			},
+			"offsets": {
+				"from": 819760,
+				"to": 823240
+			},
+			"text": " So in order to push a very simple change to the user interface,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,240",
+				"to": "00:13:45,400"
+			},
+			"offsets": {
+				"from": 823240,
+				"to": 825400
+			},
+			"text": " we would have to go through the whole process"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,400",
+				"to": "00:13:48,280"
+			},
+			"offsets": {
+				"from": 825400,
+				"to": 828280
+			},
+			"text": " or process of reinstalling all the binaries that come with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,280",
+				"to": "00:13:51,520"
+			},
+			"offsets": {
+				"from": 828280,
+				"to": 831520
+			},
+			"text": " which gives you a 60 megabyte update."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,520",
+				"to": "00:13:53,720"
+			},
+			"offsets": {
+				"from": 831520,
+				"to": 833720
+			},
+			"text": " You need to download a new installer"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,720",
+				"to": "00:13:55,840"
+			},
+			"offsets": {
+				"from": 833720,
+				"to": 835840
+			},
+			"text": " and then run through the whole process of updating"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,840",
+				"to": "00:14:00,320"
+			},
+			"offsets": {
+				"from": 835840,
+				"to": 840320
+			},
+			"text": " a new browser, basically, just for very small changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,320",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 840320,
+				"to": 844000
+			},
+			"text": " So we saw all these problems, and we wanted to fix them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:07,800"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 847800
+			},
+			"text": " And we did this with our internal project called Tau."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,800",
+				"to": "00:14:08,620"
+			},
+			"offsets": {
+				"from": 847800,
+				"to": 848620
+			},
+			"text": " So what is Tau?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,620",
+				"to": "00:14:09,760"
+			},
+			"offsets": {
+				"from": 848620,
+				"to": 849760
+			},
+			"text": " Tau is also Chromium."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,760",
+				"to": "00:14:10,640"
+			},
+			"offsets": {
+				"from": 849760,
+				"to": 850640
+			},
+			"text": " It's Node.js."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,640",
+				"to": "00:14:12,600"
+			},
+			"offsets": {
+				"from": 850640,
+				"to": 852600
+			},
+			"text": " It has native APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,600",
+				"to": "00:14:15,120"
+			},
+			"offsets": {
+				"from": 852600,
+				"to": 855120
+			},
+			"text": " But we're doing a bunch of things in a different way."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,120",
+				"to": "00:14:18,120"
+			},
+			"offsets": {
+				"from": 855120,
+				"to": 858120
+			},
+			"text": " So for example, there is no Node.js integration anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,120",
+				"to": "00:14:21,080"
+			},
+			"offsets": {
+				"from": 858120,
+				"to": 861080
+			},
+			"text": " We're also not using the Chromium content that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,080",
+				"to": "00:14:23,560"
+			},
+			"offsets": {
+				"from": 861080,
+				"to": 863560
+			},
+			"text": " is used in electron, but we're using Cef."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,560",
+				"to": "00:14:25,760"
+			},
+			"offsets": {
+				"from": 863560,
+				"to": 865760
+			},
+			"text": " And Cef is maintained by Spotify,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,760",
+				"to": "00:14:27,400"
+			},
+			"offsets": {
+				"from": 865760,
+				"to": 867400
+			},
+			"text": " and they're doing a really great job"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,400",
+				"to": "00:14:31,200"
+			},
+			"offsets": {
+				"from": 867400,
+				"to": 871200
+			},
+			"text": " in providing really recent updates for the Chromium V8"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,200",
+				"to": "00:14:35,800"
+			},
+			"offsets": {
+				"from": 871200,
+				"to": 875800
+			},
+			"text": " and Chromium and V8 dependencies for the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,800",
+				"to": "00:14:39,880"
+			},
+			"offsets": {
+				"from": 875800,
+				"to": 879880
+			},
+			"text": " We also have the advantage that Chromium Embedded Framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,880",
+				"to": "00:14:42,960"
+			},
+			"offsets": {
+				"from": 879880,
+				"to": 882960
+			},
+			"text": " allows us to enable a full sandbox."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,960",
+				"to": "00:14:46,480"
+			},
+			"offsets": {
+				"from": 882960,
+				"to": 886480
+			},
+			"text": " And for the back end process, we can use whatever we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,480",
+				"to": "00:14:50,400"
+			},
+			"offsets": {
+				"from": 886480,
+				"to": 890400
+			},
+			"text": " So we can update to the latest V8 version, which is version 7."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,400",
+				"to": "00:14:53,960"
+			},
+			"offsets": {
+				"from": 890400,
+				"to": 893960
+			},
+			"text": " And we can update to the latest Node.js, which is version 11."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,960",
+				"to": "00:14:56,320"
+			},
+			"offsets": {
+				"from": 893960,
+				"to": 896320
+			},
+			"text": " And then we get these nice benefits."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,320",
+				"to": "00:14:59,760"
+			},
+			"offsets": {
+				"from": 896320,
+				"to": 899760
+			},
+			"text": " So V8 version 7 was released two weeks ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,760",
+				"to": "00:15:02,960"
+			},
+			"offsets": {
+				"from": 899760,
+				"to": 902960
+			},
+			"text": " and it comes with WebAssembly support for all threads."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,960",
+				"to": "00:15:04,360"
+			},
+			"offsets": {
+				"from": 902960,
+				"to": 904360
+			},
+			"text": " And that's pretty cool if you think"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,360",
+				"to": "00:15:07,920"
+			},
+			"offsets": {
+				"from": 904360,
+				"to": 907920
+			},
+			"text": " about all the stuff that we have on our roadmap for Ewasm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,920",
+				"to": "00:15:10,400"
+			},
+			"offsets": {
+				"from": 907920,
+				"to": 910400
+			},
+			"text": " for example, that rely on newer features that are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,400",
+				"to": "00:15:14,120"
+			},
+			"offsets": {
+				"from": 910400,
+				"to": 914120
+			},
+			"text": " available in all browsers yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,120",
+				"to": "00:15:17,440"
+			},
+			"offsets": {
+				"from": 914120,
+				"to": 917440
+			},
+			"text": " We also have these advantages, because we get all the benefits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,440",
+				"to": "00:15:20,560"
+			},
+			"offsets": {
+				"from": 917440,
+				"to": 920560
+			},
+			"text": " all the changes to Node.js, all these bug fixes"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,560",
+				"to": "00:15:22,960"
+			},
+			"offsets": {
+				"from": 920560,
+				"to": 922960
+			},
+			"text": " and improvements to the crypto API, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,960",
+				"to": "00:15:25,200"
+			},
+			"offsets": {
+				"from": 922960,
+				"to": 925200
+			},
+			"text": " And many of the crypto algorithms"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,200",
+				"to": "00:15:29,520"
+			},
+			"offsets": {
+				"from": 925200,
+				"to": 929520
+			},
+			"text": " that we need to achieve our goals with Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,520",
+				"to": "00:15:31,600"
+			},
+			"offsets": {
+				"from": 929520,
+				"to": 931600
+			},
+			"text": " getting implemented or already implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,600",
+				"to": "00:15:32,640"
+			},
+			"offsets": {
+				"from": 931600,
+				"to": 932640
+			},
+			"text": " in your Node versions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,640",
+				"to": "00:15:36,760"
+			},
+			"offsets": {
+				"from": 932640,
+				"to": 936760
+			},
+			"text": " So that's a massive benefit as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,760",
+				"to": "00:15:38,160"
+			},
+			"offsets": {
+				"from": 936760,
+				"to": 938160
+			},
+			"text": " So who's using TOW?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,160",
+				"to": "00:15:40,920"
+			},
+			"offsets": {
+				"from": 938160,
+				"to": 940920
+			},
+			"text": " Pretty much no one is using this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,920",
+				"to": "00:15:45,040"
+			},
+			"offsets": {
+				"from": 940920,
+				"to": 945040
+			},
+			"text": " except maybe our little proof of concept project."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,040",
+				"to": "00:15:48,440"
+			},
+			"offsets": {
+				"from": 945040,
+				"to": 948440
+			},
+			"text": " And that's a good thing, because Electron is one size fits"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,440",
+				"to": "00:15:49,480"
+			},
+			"offsets": {
+				"from": 948440,
+				"to": 949480
+			},
+			"text": " all solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,480",
+				"to": "00:15:50,520"
+			},
+			"offsets": {
+				"from": 949480,
+				"to": 950520
+			},
+			"text": " And you have to think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,520",
+				"to": "00:15:52,800"
+			},
+			"offsets": {
+				"from": 950520,
+				"to": 952800
+			},
+			"text": " They're going through the full bureaucracy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,800",
+				"to": "00:15:54,320"
+			},
+			"offsets": {
+				"from": 952800,
+				"to": 954320
+			},
+			"text": " the full back porting."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,320",
+				"to": "00:15:56,600"
+			},
+			"offsets": {
+				"from": 954320,
+				"to": 956600
+			},
+			"text": " They need to coordinate with Microsoft, with GitHub,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,600",
+				"to": "00:16:00,200"
+			},
+			"offsets": {
+				"from": 956600,
+				"to": 960200
+			},
+			"text": " with Slack, and all the other applications that we just saw."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,200",
+				"to": "00:16:02,200"
+			},
+			"offsets": {
+				"from": 960200,
+				"to": 962200
+			},
+			"text": " When they want to make a breaking change,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,200",
+				"to": "00:16:04,360"
+			},
+			"offsets": {
+				"from": 962200,
+				"to": 964360
+			},
+			"text": " it will take forever, just because they"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,360",
+				"to": "00:16:06,600"
+			},
+			"offsets": {
+				"from": 964360,
+				"to": 966600
+			},
+			"text": " need to coordinate it very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,600",
+				"to": "00:16:09,520"
+			},
+			"offsets": {
+				"from": 966600,
+				"to": 969520
+			},
+			"text": " They cannot just break all these applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,520",
+				"to": "00:16:12,760"
+			},
+			"offsets": {
+				"from": 969520,
+				"to": 972760
+			},
+			"text": " And we have the benefit that we can actually break things."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,760",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 972760,
+				"to": 975000
+			},
+			"text": " We can move first."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:17,160"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 977160
+			},
+			"text": " So it's a really small project so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,160",
+				"to": "00:16:20,120"
+			},
+			"offsets": {
+				"from": 977160,
+				"to": 980120
+			},
+			"text": " I think it's extremely promising."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,120",
+				"to": "00:16:22,040"
+			},
+			"offsets": {
+				"from": 980120,
+				"to": 982040
+			},
+			"text": " It's not meant really for the mainstream,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,040",
+				"to": "00:16:26,280"
+			},
+			"offsets": {
+				"from": 982040,
+				"to": 986280
+			},
+			"text": " but I think it's good that we're bringing out this message"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,280",
+				"to": "00:16:27,720"
+			},
+			"offsets": {
+				"from": 986280,
+				"to": 987720
+			},
+			"text": " now that it exists."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,720",
+				"to": "00:16:30,040"
+			},
+			"offsets": {
+				"from": 987720,
+				"to": 990040
+			},
+			"text": " And it already has pre-built binaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,040",
+				"to": "00:16:31,840"
+			},
+			"offsets": {
+				"from": 990040,
+				"to": 991840
+			},
+			"text": " So you can actually test it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,840",
+				"to": "00:16:34,400"
+			},
+			"offsets": {
+				"from": 991840,
+				"to": 994400
+			},
+			"text": " The pre-built binaries are working on Mac and Windows"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,400",
+				"to": "00:16:35,080"
+			},
+			"offsets": {
+				"from": 994400,
+				"to": 995080
+			},
+			"text": " so far there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,080",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 995080,
+				"to": 997000
+			},
+			"text": " They are known for Linux, but we will probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:39,680"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 999680
+			},
+			"text": " provide them within the next weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,680",
+				"to": "00:16:41,440"
+			},
+			"offsets": {
+				"from": 999680,
+				"to": 1001440
+			},
+			"text": " And this is how it looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,440",
+				"to": "00:16:43,560"
+			},
+			"offsets": {
+				"from": 1001440,
+				"to": 1003560
+			},
+			"text": " You won't see a difference to a regular Chrome browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,560",
+				"to": "00:16:45,160"
+			},
+			"offsets": {
+				"from": 1003560,
+				"to": 1005160
+			},
+			"text": " or Electron application."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,160",
+				"to": "00:16:48,080"
+			},
+			"offsets": {
+				"from": 1005160,
+				"to": 1008080
+			},
+			"text": " You will see this is our new Mist UI React, running"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,080",
+				"to": "00:16:49,960"
+			},
+			"offsets": {
+				"from": 1008080,
+				"to": 1009960
+			},
+			"text": " in one of the tower windows."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,960",
+				"to": "00:16:51,800"
+			},
+			"offsets": {
+				"from": 1009960,
+				"to": 1011800
+			},
+			"text": " So it's a browser window."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,800",
+				"to": "00:16:53,480"
+			},
+			"offsets": {
+				"from": 1011800,
+				"to": 1013480
+			},
+			"text": " And we can control and customize it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,480",
+				"to": "00:16:55,120"
+			},
+			"offsets": {
+				"from": 1013480,
+				"to": 1015120
+			},
+			"text": " And we can run application code."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,120",
+				"to": "00:16:57,520"
+			},
+			"offsets": {
+				"from": 1015120,
+				"to": 1017520
+			},
+			"text": " And it has all the updates that we need and all the benefits"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,520",
+				"to": "00:16:58,960"
+			},
+			"offsets": {
+				"from": 1017520,
+				"to": 1018960
+			},
+			"text": " that we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,960",
+				"to": "00:17:01,800"
+			},
+			"offsets": {
+				"from": 1018960,
+				"to": 1021800
+			},
+			"text": " And we also introduced this new update mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,800",
+				"to": "00:17:05,640"
+			},
+			"offsets": {
+				"from": 1021800,
+				"to": 1025640
+			},
+			"text": " to avoid these painful long release cycles where we actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,640",
+				"to": "00:17:09,240"
+			},
+			"offsets": {
+				"from": 1025640,
+				"to": 1029240
+			},
+			"text": " split our application into multiple parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,240",
+				"to": "00:17:11,920"
+			},
+			"offsets": {
+				"from": 1029240,
+				"to": 1031920
+			},
+			"text": " So the user interface is updated separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,920",
+				"to": "00:17:13,920"
+			},
+			"offsets": {
+				"from": 1031920,
+				"to": 1033920
+			},
+			"text": " And then we have something that we call the shell"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,920",
+				"to": "00:17:15,240"
+			},
+			"offsets": {
+				"from": 1033920,
+				"to": 1035240
+			},
+			"text": " or the browser window."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,240",
+				"to": "00:17:16,960"
+			},
+			"offsets": {
+				"from": 1035240,
+				"to": 1036960
+			},
+			"text": " And this becomes interchangeable."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,960",
+				"to": "00:17:20,280"
+			},
+			"offsets": {
+				"from": 1036960,
+				"to": 1040280
+			},
+			"text": " So we can switch between Electron or tower."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,280",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1040280,
+				"to": 1044000
+			},
+			"text": " As long as we have an API that the user interface communicates"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:26,440"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1046440
+			},
+			"text": " with and our application logic communicates with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,440",
+				"to": "00:17:30,040"
+			},
+			"offsets": {
+				"from": 1046440,
+				"to": 1050040
+			},
+			"text": " we can run updates pretty much every day or every week"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,040",
+				"to": "00:17:32,360"
+			},
+			"offsets": {
+				"from": 1050040,
+				"to": 1052360
+			},
+			"text": " for all these parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,360",
+				"to": "00:17:34,320"
+			},
+			"offsets": {
+				"from": 1052360,
+				"to": 1054320
+			},
+			"text": " And this is what we call the app shell model."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,320",
+				"to": "00:17:37,280"
+			},
+			"offsets": {
+				"from": 1054320,
+				"to": 1057280
+			},
+			"text": " And there will probably be a blog post following"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,280",
+				"to": "00:17:41,560"
+			},
+			"offsets": {
+				"from": 1057280,
+				"to": 1061560
+			},
+			"text": " on our medium blog."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,560",
+				"to": "00:17:45,160"
+			},
+			"offsets": {
+				"from": 1061560,
+				"to": 1065160
+			},
+			"text": " We also have a bunch of modules and reference implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,160",
+				"to": "00:17:46,800"
+			},
+			"offsets": {
+				"from": 1065160,
+				"to": 1066800
+			},
+			"text": " if you're interested to check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,800",
+				"to": "00:17:48,960"
+			},
+			"offsets": {
+				"from": 1066800,
+				"to": 1068960
+			},
+			"text": " There's the Mist UI React project that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,960",
+				"to": "00:17:51,760"
+			},
+			"offsets": {
+				"from": 1068960,
+				"to": 1071760
+			},
+			"text": " is working in tower and in Electron."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,760",
+				"to": "00:17:57,720"
+			},
+			"offsets": {
+				"from": 1071760,
+				"to": 1077720
+			},
+			"text": " Was just recently adopted by the Ethereum GitHub repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,720",
+				"to": "00:18:01,200"
+			},
+			"offsets": {
+				"from": 1077720,
+				"to": 1081200
+			},
+			"text": " And then there's create React App extensions, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,200",
+				"to": "00:18:04,320"
+			},
+			"offsets": {
+				"from": 1081200,
+				"to": 1084320
+			},
+			"text": " turns every React app into an Electron tower container,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,320",
+				"to": "00:18:05,840"
+			},
+			"offsets": {
+				"from": 1084320,
+				"to": 1085840
+			},
+			"text": " as you can call it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,840",
+				"to": "00:18:07,880"
+			},
+			"offsets": {
+				"from": 1085840,
+				"to": 1087880
+			},
+			"text": " Then there's an update that does hot updating"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,880",
+				"to": "00:18:10,320"
+			},
+			"offsets": {
+				"from": 1087880,
+				"to": 1090320
+			},
+			"text": " for these containers for Electron or tower apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,320",
+				"to": "00:18:12,360"
+			},
+			"offsets": {
+				"from": 1090320,
+				"to": 1092360
+			},
+			"text": " And then we have a reference implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,360",
+				"to": "00:18:14,560"
+			},
+			"offsets": {
+				"from": 1092360,
+				"to": 1094560
+			},
+			"text": " for the Electron shell and the tower shell"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,560",
+				"to": "00:18:18,480"
+			},
+			"offsets": {
+				"from": 1094560,
+				"to": 1098480
+			},
+			"text": " that can actually host one of these Electron React"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,480",
+				"to": "00:18:21,040"
+			},
+			"offsets": {
+				"from": 1098480,
+				"to": 1101040
+			},
+			"text": " apps for Electron or tower."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,040",
+				"to": "00:18:22,720"
+			},
+			"offsets": {
+				"from": 1101040,
+				"to": 1102720
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,720",
+				"to": "00:18:25,080"
+			},
+			"offsets": {
+				"from": 1102720,
+				"to": 1105080
+			},
+			"text": " And if you're interested in any of this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,080",
+				"to": "00:18:30,120"
+			},
+			"offsets": {
+				"from": 1105080,
+				"to": 1110120
+			},
+			"text": " you can come talk to me or you can just reach out via my GitHub"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,120",
+				"to": "00:18:31,400"
+			},
+			"offsets": {
+				"from": 1110120,
+				"to": 1111400
+			},
+			"text": " or my mail."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,400",
+				"to": "00:18:32,760"
+			},
+			"offsets": {
+				"from": 1111400,
+				"to": 1112760
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,760",
+				"to": "00:18:34,400"
+			},
+			"offsets": {
+				"from": 1112760,
+				"to": 1114400
+			},
+			"text": " Where are your thoughts about Node WebKit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,400",
+				"to": "00:18:38,560"
+			},
+			"offsets": {
+				"from": 1114400,
+				"to": 1118560
+			},
+			"text": " My thoughts about Node WebKit."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,560",
+				"to": "00:18:39,240"
+			},
+			"offsets": {
+				"from": 1118560,
+				"to": 1119240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,240",
+				"to": "00:18:42,200"
+			},
+			"offsets": {
+				"from": 1119240,
+				"to": 1122200
+			},
+			"text": " I think one of the cool benefits of Electron"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,200",
+				"to": "00:18:43,520"
+			},
+			"offsets": {
+				"from": 1122200,
+				"to": 1123520
+			},
+			"text": " is the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,520",
+				"to": "00:18:45,280"
+			},
+			"offsets": {
+				"from": 1123520,
+				"to": 1125280
+			},
+			"text": " So I said it's a disadvantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,280",
+				"to": "00:18:47,240"
+			},
+			"offsets": {
+				"from": 1125280,
+				"to": 1127240
+			},
+			"text": " It can also be considered as an advantage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,240",
+				"to": "00:18:49,400"
+			},
+			"offsets": {
+				"from": 1127240,
+				"to": 1129400
+			},
+			"text": " because you actually have this large community."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,400",
+				"to": "00:18:50,560"
+			},
+			"offsets": {
+				"from": 1129400,
+				"to": 1130560
+			},
+			"text": " And we have the same for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,560",
+				"to": "00:18:52,200"
+			},
+			"offsets": {
+				"from": 1130560,
+				"to": 1132200
+			},
+			"text": " You see the benefits of many projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,200",
+				"to": "00:18:53,880"
+			},
+			"offsets": {
+				"from": 1132200,
+				"to": 1133880
+			},
+			"text": " already using these technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,880",
+				"to": "00:18:58,520"
+			},
+			"offsets": {
+				"from": 1133880,
+				"to": 1138520
+			},
+			"text": " You get already tools for building update mechanisms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,520",
+				"to": "00:19:02,360"
+			},
+			"offsets": {
+				"from": 1138520,
+				"to": 1142360
+			},
+			"text": " signing applications, or creating installers."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,360",
+				"to": "00:19:04,560"
+			},
+			"offsets": {
+				"from": 1142360,
+				"to": 1144560
+			},
+			"text": " And I think the whole ecosystem for Electron"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,560",
+				"to": "00:19:07,920"
+			},
+			"offsets": {
+				"from": 1144560,
+				"to": 1147920
+			},
+			"text": " is just better than for Node WebKit."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,920",
+				"to": "00:19:10,440"
+			},
+			"offsets": {
+				"from": 1147920,
+				"to": 1150440
+			},
+			"text": " But I think Node WebKit is a cool project."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,440",
+				"to": "00:19:14,920"
+			},
+			"offsets": {
+				"from": 1150440,
+				"to": 1154920
+			},
+			"text": " And it also goes in a very similar direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,920",
+				"to": "00:19:19,600"
+			},
+			"offsets": {
+				"from": 1154920,
+				"to": 1159600
+			},
+			"text": " So you said that a tower is kind of like in a beta sandbox"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,600",
+				"to": "00:19:20,360"
+			},
+			"offsets": {
+				"from": 1159600,
+				"to": 1160360
+			},
+			"text": " development."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,360",
+				"to": "00:19:23,320"
+			},
+			"offsets": {
+				"from": 1160360,
+				"to": 1163320
+			},
+			"text": " And you're not really saying, hey, let's start using tower."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,320",
+				"to": "00:19:25,360"
+			},
+			"offsets": {
+				"from": 1163320,
+				"to": 1165360
+			},
+			"text": " At what point should those other applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,360",
+				"to": "00:19:28,400"
+			},
+			"offsets": {
+				"from": 1165360,
+				"to": 1168400
+			},
+			"text": " start using tower and integrating that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,400",
+				"to": "00:19:29,720"
+			},
+			"offsets": {
+				"from": 1168400,
+				"to": 1169720
+			},
+			"text": " Yeah, that's a good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,720",
+				"to": "00:19:31,360"
+			},
+			"offsets": {
+				"from": 1169720,
+				"to": 1171360
+			},
+			"text": " There was no real roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,360",
+				"to": "00:19:34,440"
+			},
+			"offsets": {
+				"from": 1171360,
+				"to": 1174440
+			},
+			"text": " There was never the idea that this could become something"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,440",
+				"to": "00:19:34,960"
+			},
+			"offsets": {
+				"from": 1174440,
+				"to": 1174960
+			},
+			"text": " really big."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,960",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1174960,
+				"to": 1177000
+			},
+			"text": " And I think it was also not the intention"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:40,680"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1180680
+			},
+			"text": " to make it a competitor to Electron, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,680",
+				"to": "00:19:42,080"
+			},
+			"offsets": {
+				"from": 1180680,
+				"to": 1182080
+			},
+			"text": " We started with a proof of concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,080",
+				"to": "00:19:44,160"
+			},
+			"offsets": {
+				"from": 1182080,
+				"to": 1184160
+			},
+			"text": " The proof of concept looked really promising."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,160",
+				"to": "00:19:46,840"
+			},
+			"offsets": {
+				"from": 1184160,
+				"to": 1186840
+			},
+			"text": " And now we're seeing all these additional benefits"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,840",
+				"to": "00:19:49,400"
+			},
+			"offsets": {
+				"from": 1186840,
+				"to": 1189400
+			},
+			"text": " and possibilities, how it could integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,400",
+				"to": "00:19:51,640"
+			},
+			"offsets": {
+				"from": 1189400,
+				"to": 1191640
+			},
+			"text": " with other Ethereum projects such as Remakes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,640",
+				"to": "00:19:55,040"
+			},
+			"offsets": {
+				"from": 1191640,
+				"to": 1195040
+			},
+			"text": " or the whole Ewasm efforts swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,040",
+				"to": "00:19:57,400"
+			},
+			"offsets": {
+				"from": 1195040,
+				"to": 1197400
+			},
+			"text": " And I think it looks really promising."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,400",
+				"to": "00:20:00,080"
+			},
+			"offsets": {
+				"from": 1197400,
+				"to": 1200080
+			},
+			"text": " And we would probably focus all of our energy"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,080",
+				"to": "00:20:03,480"
+			},
+			"offsets": {
+				"from": 1200080,
+				"to": 1203480
+			},
+			"text": " to make it the perfect fit for these applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,480",
+				"to": "00:20:05,680"
+			},
+			"offsets": {
+				"from": 1203480,
+				"to": 1205680
+			},
+			"text": " and not any other mainstream applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,680",
+				"to": "00:20:09,400"
+			},
+			"offsets": {
+				"from": 1205680,
+				"to": 1209400
+			},
+			"text": " They should probably try to use Electron and just put some"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,400",
+				"to": "00:20:11,800"
+			},
+			"offsets": {
+				"from": 1209400,
+				"to": 1211800
+			},
+			"text": " pressure on them so that they fix their shit."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,800",
+				"to": "00:20:14,200"
+			},
+			"offsets": {
+				"from": 1211800,
+				"to": 1214200
+			},
+			"text": " I have a question about security."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,200",
+				"to": "00:20:17,400"
+			},
+			"offsets": {
+				"from": 1214200,
+				"to": 1217400
+			},
+			"text": " Have you performed any security audit on tower?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,400",
+				"to": "00:20:19,640"
+			},
+			"offsets": {
+				"from": 1217400,
+				"to": 1219640
+			},
+			"text": " And second question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,640",
+				"to": "00:20:23,280"
+			},
+			"offsets": {
+				"from": 1219640,
+				"to": 1223280
+			},
+			"text": " Have you put tower into the continuous integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,280",
+				"to": "00:20:29,120"
+			},
+			"offsets": {
+				"from": 1223280,
+				"to": 1229120
+			},
+			"text": " for the systems that have been built by Martin and Guido?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,120",
+				"to": "00:20:30,800"
+			},
+			"offsets": {
+				"from": 1229120,
+				"to": 1230800
+			},
+			"text": " The answer is no and no."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,800",
+				"to": "00:20:34,200"
+			},
+			"offsets": {
+				"from": 1230800,
+				"to": 1234200
+			},
+			"text": " So tower was not going through a security audit."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,200",
+				"to": "00:20:38,800"
+			},
+			"offsets": {
+				"from": 1234200,
+				"to": 1238800
+			},
+			"text": " Mist, of course, was going through a very, very complete"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,800",
+				"to": "00:20:39,640"
+			},
+			"offsets": {
+				"from": 1238800,
+				"to": 1239640
+			},
+			"text": " security audit."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,640",
+				"to": "00:20:43,040"
+			},
+			"offsets": {
+				"from": 1239640,
+				"to": 1243040
+			},
+			"text": " We learned a lot from these lessons and from this audit."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,040",
+				"to": "00:20:45,800"
+			},
+			"offsets": {
+				"from": 1243040,
+				"to": 1245800
+			},
+			"text": " And we tried to incorporate all these things"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,800",
+				"to": "00:20:47,520"
+			},
+			"offsets": {
+				"from": 1245800,
+				"to": 1247520
+			},
+			"text": " that we learned into tower."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,520",
+				"to": "00:20:50,360"
+			},
+			"offsets": {
+				"from": 1247520,
+				"to": 1250360
+			},
+			"text": " But it is not in this stage where we would perform a security"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,360",
+				"to": "00:20:51,400"
+			},
+			"offsets": {
+				"from": 1250360,
+				"to": 1251400
+			},
+			"text": " audit on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,400",
+				"to": "00:20:54,520"
+			},
+			"offsets": {
+				"from": 1251400,
+				"to": 1254520
+			},
+			"text": " And the other question was if we have integrated"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,520",
+				"to": "00:20:56,320"
+			},
+			"offsets": {
+				"from": 1254520,
+				"to": 1256320
+			},
+			"text": " into any kind of continuous integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,320",
+				"to": "00:20:59,280"
+			},
+			"offsets": {
+				"from": 1256320,
+				"to": 1259280
+			},
+			"text": " or continuous delivery mechanism, and the answer is no"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,280",
+				"to": "00:21:00,760"
+			},
+			"offsets": {
+				"from": 1259280,
+				"to": 1260760
+			},
+			"text": " because we are--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,760",
+				"to": "00:21:02,560"
+			},
+			"offsets": {
+				"from": 1260760,
+				"to": 1262560
+			},
+			"text": " this was on one of the slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,560",
+				"to": "00:21:03,920"
+			},
+			"offsets": {
+				"from": 1262560,
+				"to": 1263920
+			},
+			"text": " I mentioned it really briefly."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,920",
+				"to": "00:21:06,760"
+			},
+			"offsets": {
+				"from": 1263920,
+				"to": 1266760
+			},
+			"text": " We are rolling out our own mechanism for this pretty much"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,760",
+				"to": "00:21:08,920"
+			},
+			"offsets": {
+				"from": 1266760,
+				"to": 1268920
+			},
+			"text": " where we have these React containers."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,920",
+				"to": "00:21:10,800"
+			},
+			"offsets": {
+				"from": 1268920,
+				"to": 1270800
+			},
+			"text": " And we're also thinking about stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,800",
+				"to": "00:21:13,360"
+			},
+			"offsets": {
+				"from": 1270800,
+				"to": 1273360
+			},
+			"text": " like how to properly sign these containers and modules"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,360",
+				"to": "00:21:15,960"
+			},
+			"offsets": {
+				"from": 1273360,
+				"to": 1275960
+			},
+			"text": " because this is something that we're really missing"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,960",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1275960,
+				"to": 1279000
+			},
+			"text": " and the whole Node.js ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1281000
+			},
+			"text": " You can actually put checksums on stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:24,280"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1284280
+			},
+			"text": " But these modules are never really signed."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,280",
+				"to": "00:21:25,400"
+			},
+			"offsets": {
+				"from": 1284280,
+				"to": 1285400
+			},
+			"text": " And we have these advantages."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,400",
+				"to": "00:21:26,280"
+			},
+			"offsets": {
+				"from": 1285400,
+				"to": 1286280
+			},
+			"text": " We know how to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,280",
+				"to": "00:21:29,640"
+			},
+			"offsets": {
+				"from": 1286280,
+				"to": 1289640
+			},
+			"text": " And we could potentially incorporate it in our own mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,640",
+				"to": "00:21:31,040"
+			},
+			"offsets": {
+				"from": 1289640,
+				"to": 1291040
+			},
+			"text": " OK, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,040",
+				"to": "00:21:35,280"
+			},
+			"offsets": {
+				"from": 1291040,
+				"to": 1295280
+			},
+			"text": " So this tower has an inbuilt client of some sort."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,280",
+				"to": "00:21:37,160"
+			},
+			"offsets": {
+				"from": 1295280,
+				"to": 1297160
+			},
+			"text": " How does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,160",
+				"to": "00:21:40,320"
+			},
+			"offsets": {
+				"from": 1297160,
+				"to": 1300320
+			},
+			"text": " The principle would be the same as for Mist."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,320",
+				"to": "00:21:44,280"
+			},
+			"offsets": {
+				"from": 1300320,
+				"to": 1304280
+			},
+			"text": " So we would try to interact with go Ethereum, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,280",
+				"to": "00:21:46,400"
+			},
+			"offsets": {
+				"from": 1304280,
+				"to": 1306400
+			},
+			"text": " with parity with some external client"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,400",
+				"to": "00:21:49,280"
+			},
+			"offsets": {
+				"from": 1306400,
+				"to": 1309280
+			},
+			"text": " that we would download and try to update through our update"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,280",
+				"to": "00:21:50,040"
+			},
+			"offsets": {
+				"from": 1309280,
+				"to": 1310040
+			},
+			"text": " mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,040",
+				"to": "00:21:53,200"
+			},
+			"offsets": {
+				"from": 1310040,
+				"to": 1313200
+			},
+			"text": " There are, of course, there's, of course, a potential."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,200",
+				"to": "00:21:58,560"
+			},
+			"offsets": {
+				"from": 1313200,
+				"to": 1318560
+			},
+			"text": " We saw a lot of development for the Ethereum.js project."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,560",
+				"to": "00:22:02,360"
+			},
+			"offsets": {
+				"from": 1318560,
+				"to": 1322360
+			},
+			"text": " And there could be the option to try out these JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,360",
+				"to": "00:22:05,600"
+			},
+			"offsets": {
+				"from": 1322360,
+				"to": 1325600
+			},
+			"text": " libraries to make it more like a full client at some point."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,600",
+				"to": "00:22:08,360"
+			},
+			"offsets": {
+				"from": 1325600,
+				"to": 1328360
+			},
+			"text": " But so far, there are no plans to turn it"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,360",
+				"to": "00:22:10,880"
+			},
+			"offsets": {
+				"from": 1328360,
+				"to": 1330880
+			},
+			"text": " into a light client, full client, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,880",
+				"to": "00:22:12,160"
+			},
+			"offsets": {
+				"from": 1330880,
+				"to": 1332160
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,160",
+				"to": "00:22:15,480"
+			},
+			"offsets": {
+				"from": 1332160,
+				"to": 1335480
+			},
+			"text": " OK, so you mentioned the update process of tower versus"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,480",
+				"to": "00:22:17,120"
+			},
+			"offsets": {
+				"from": 1335480,
+				"to": 1337120
+			},
+			"text": " electron."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,120",
+				"to": "00:22:20,040"
+			},
+			"offsets": {
+				"from": 1337120,
+				"to": 1340040
+			},
+			"text": " Electron, obviously, is you got to download the whole app."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,040",
+				"to": "00:22:22,920"
+			},
+			"offsets": {
+				"from": 1340040,
+				"to": 1342920
+			},
+			"text": " Even if there was a minor change on the app, 60 megabytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,920",
+				"to": "00:22:24,160"
+			},
+			"offsets": {
+				"from": 1342920,
+				"to": 1344160
+			},
+			"text": " whatnot."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,160",
+				"to": "00:22:26,480"
+			},
+			"offsets": {
+				"from": 1344160,
+				"to": 1346480
+			},
+			"text": " I quite didn't get the update process of tower."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,480",
+				"to": "00:22:29,920"
+			},
+			"offsets": {
+				"from": 1346480,
+				"to": 1349920
+			},
+			"text": " As in, if I want to update some HTML or CSS or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,920",
+				"to": "00:22:34,480"
+			},
+			"offsets": {
+				"from": 1349920,
+				"to": 1354480
+			},
+			"text": " like the lines, do you download a smaller copy of the app"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,480",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1354480,
+				"to": 1357000
+			},
+			"text": " or how does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:40,520"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1360520
+			},
+			"text": " So let's say the whole app is still 60 megabytes, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,520",
+				"to": "00:22:42,600"
+			},
+			"offsets": {
+				"from": 1360520,
+				"to": 1362600
+			},
+			"text": " And then you want to update smaller processes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,600",
+				"to": "00:22:43,960"
+			},
+			"offsets": {
+				"from": 1362600,
+				"to": 1363960
+			},
+			"text": " How do you go about doing that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,960",
+				"to": "00:22:47,360"
+			},
+			"offsets": {
+				"from": 1363960,
+				"to": 1367360
+			},
+			"text": " Yeah, so the user interface, this yellow box, is packaged"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,360",
+				"to": "00:22:49,120"
+			},
+			"offsets": {
+				"from": 1367360,
+				"to": 1369120
+			},
+			"text": " separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,120",
+				"to": "00:22:52,520"
+			},
+			"offsets": {
+				"from": 1369120,
+				"to": 1372520
+			},
+			"text": " And then we have a frame for this, which is the browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,520",
+				"to": "00:22:55,360"
+			},
+			"offsets": {
+				"from": 1372520,
+				"to": 1375360
+			},
+			"text": " frame, that includes the update mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,360",
+				"to": "00:22:57,680"
+			},
+			"offsets": {
+				"from": 1375360,
+				"to": 1377680
+			},
+			"text": " And it will actually check for newer versions of this UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,680",
+				"to": "00:23:00,320"
+			},
+			"offsets": {
+				"from": 1377680,
+				"to": 1380320
+			},
+			"text": " It's pretty much like a hot, hot updating mechanism for"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,320",
+				"to": "00:23:03,600"
+			},
+			"offsets": {
+				"from": 1380320,
+				"to": 1383600
+			},
+			"text": " electron apps, only that you don't have to press F5."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,600",
+				"to": "00:23:06,640"
+			},
+			"offsets": {
+				"from": 1383600,
+				"to": 1386640
+			},
+			"text": " But someone else will do it for you, and they will check our"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,640",
+				"to": "00:23:09,480"
+			},
+			"offsets": {
+				"from": 1386640,
+				"to": 1389480
+			},
+			"text": " GitHub releases page for new updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,480",
+				"to": "00:23:12,840"
+			},
+			"offsets": {
+				"from": 1389480,
+				"to": 1392840
+			},
+			"text": " And we also provide all the tools to publish these updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,840",
+				"to": "00:23:14,040"
+			},
+			"offsets": {
+				"from": 1392840,
+				"to": 1394040
+			},
+			"text": " They include check sums."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,040",
+				"to": "00:23:16,960"
+			},
+			"offsets": {
+				"from": 1394040,
+				"to": 1396960
+			},
+			"text": " They include a versioning, a channel, if it's better"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,960",
+				"to": "00:23:17,760"
+			},
+			"offsets": {
+				"from": 1396960,
+				"to": 1397760
+			},
+			"text": " release."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,760",
+				"to": "00:23:19,880"
+			},
+			"offsets": {
+				"from": 1397760,
+				"to": 1399880
+			},
+			"text": " We can even make stage rollouts."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,880",
+				"to": "00:23:24,200"
+			},
+			"offsets": {
+				"from": 1399880,
+				"to": 1404200
+			},
+			"text": " So we can say something like 10% should update now."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,200",
+				"to": "00:23:29,120"
+			},
+			"offsets": {
+				"from": 1404200,
+				"to": 1409120
+			},
+			"text": " And then the shell will update these new packages, these"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,120",
+				"to": "00:23:30,200"
+			},
+			"offsets": {
+				"from": 1409120,
+				"to": 1410200
+			},
+			"text": " containers, and run them."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,200",
+				"to": "00:23:40,200"
+			},
+			"offsets": {
+				"from": 1410200,
+				"to": 1420200
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,200",
+				"to": "00:23:50,200"
+			},
+			"offsets": {
+				"from": 1420200,
+				"to": 1430200
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,200",
+				"to": "00:24:00,200"
+			},
+			"offsets": {
+				"from": 1430200,
+				"to": 1440200
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

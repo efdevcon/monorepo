@@ -1,0 +1,5840 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 23000
+			},
+			"text": " So today we're going to talk about storage proofs. I want to introduce this up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 35000
+			},
+			"text": " Yes. I'm going to present you storage proofs and explain why they are cool, how to work with them, why you need tooling to work with them, and yeah, a bunch of other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 40000
+			},
+			"text": " Why is it even possible? All the complexities behind the trade-offs and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 46000
+			},
+			"text": " So, a few words about storage proofs. Why I really believe that they are cool, especially nowadays."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 64000
+			},
+			"text": " So, my thesis is that Ethereum is pretty charted nowadays, and with storage proofs we can essentially read the state in an almost synchronous manner, which is a pretty, pretty nice thing to do, given the circumstances."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 74000
+			},
+			"text": " Yeah, and maybe also let me explain why is it even possible. So, storage proofs is essentially this idea that the entire state is committed in a cryptographic manner,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 79000
+			},
+			"text": " using some data structure like Merco trees, Merco Patricia trees and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 90000
+			},
+			"text": " And yeah, we can essentially verify any specific piece of state at any point in time on any domain, which is pretty nice and doesn't introduce additional trust assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 93000
+			},
+			"text": " You just rely on the security of the base chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 98000
+			},
+			"text": " So, yeah, that's like storage proofs TLDR, where they are cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 103000
+			},
+			"text": " Now, a bit of like sponsored section, sponsored section."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 106000
+			},
+			"text": " So, what we're doing at her vadutus."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 115000
+			},
+			"text": " So, our goal is to make smart contracts so far in a way by providing access to historical state."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 119000
+			},
+			"text": " We, like I said, might as this is that Ethereum is pretty charted nowadays."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 127000
+			},
+			"text": " We want to one-shard it by using storage proofs and we want to enable synchronous data, which because today we do not have really nice ways to make it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 133000
+			},
+			"text": " So, we want to make nice ways to make synchronous data access without introducing new state new trust assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136000
+			},
+			"text": " So, yeah, that's what we do and how we achieve that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 141000
+			},
+			"text": " We achieve that by using obviously storage proofs. We use NARCs, starts and NPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 144000
+			},
+			"text": " I will get why we even use all this tooling."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 149000
+			},
+			"text": " But first, a few words about storage proofs, what these are and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 153000
+			},
+			"text": " It's so tricky, actually. I need to be multitask."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 157000
+			},
+			"text": " Okay, so what we're going to cover in today's workshop."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 167000
+			},
+			"text": " So, all the basics required to like understand properly this primitive, how to like work with it, how we can generate these proofs, why they're pretty useful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170000
+			},
+			"text": " and how actually you can access these commitments."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 182000
+			},
+			"text": " I will get later what we call the commitment in a trusted manner and how we make some of our contracts self-aware and enable historical data reads."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 190000
+			},
+			"text": " Cool, so it's pretty tricky."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 194000
+			},
+			"text": " So, about the background that I want you to have for this workshop."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 198000
+			},
+			"text": " So, we're going to like start from the biggest basics."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 201000
+			},
+			"text": " So, what is a hashing function? Just a very quick reminder."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 203000
+			},
+			"text": " I hope it will take less than a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 208000
+			},
+			"text": " Like generalized blockchain anatomy, how an Ethereum header looks like, why Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 212000
+			},
+			"text": " we're not like pretty only like Ethereum focused."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 217000
+			},
+			"text": " However, I think that for the sake of this workshop, it's the best to like present on this concrete example."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 219000
+			},
+			"text": " Miracle trees, explain me like on five."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 228000
+			},
+			"text": " I will just quickly explain the idea how it works and what is a Merkop Patricia tree without really going too much into digital."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 235000
+			},
+			"text": " Yeah, finally, not finally, the anatomy of the Ethereum state."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 243000
+			},
+			"text": " It's pretty important to like deal with this primitive and finally how to deal with this storage layout."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 245000
+			},
+			"text": " Cool, so hashing function."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 258000
+			},
+			"text": " Essentially, it's this idea that I can have a function that takes some input of any size and it always, always return an output of a fixed size."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 261000
+			},
+			"text": " And now what's also important, there is no input."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 267000
+			},
+			"text": " There are no two inputs that will generate the same output and you cannot reverse the hashing functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 270000
+			},
+			"text": " That means that even the output, you don't know what is the input."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 273000
+			},
+			"text": " And this is what we call like collision resistance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 275000
+			},
+			"text": " Pretty useful primitive like using blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 277000
+			},
+			"text": " I will, and I think that's pretty much it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 280000
+			},
+			"text": " I assume that everyone is like familiar with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 283000
+			},
+			"text": " Like, yeah, okay, why is it important?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 288000
+			},
+			"text": " So generalized blockchain anatomy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 303000
+			},
+			"text": " So why we call it a chain because we have a bunch of blocks, mind together, like link together, because each block contains the reference of the parent hash and the previous header contains the reference of the parent hash, which is pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 309000
+			},
+			"text": " And let me remind what the hash, the parent hash or the block hash of on the theorem is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 311000
+			},
+			"text": " It's essentially the hash of the header."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 318000
+			},
+			"text": " Pretty important to deal with these primitives and make smart contracts, software, so accessing six articles state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 321000
+			},
+			"text": " To just keep that in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 324000
+			},
+			"text": " Let's get to the next part."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 328000
+			},
+			"text": " So, no."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 332000
+			},
+			"text": " I think I'm missing one slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 334000
+			},
+			"text": " No, it's the correct one."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 344000
+			},
+			"text": " Okay, so this is an interim block header."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 346000
+			},
+			"text": " To access state, obviously we need the state root."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 351000
+			},
+			"text": " What is the state root is the root of the Merkopatricia tree of the theorem state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 358000
+			},
+			"text": " We also have the transactions root, which is pretty useful if you want to access historical transactions like their entire body."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 364000
+			},
+			"text": " And we see it through so it's really useful to access any events, logs and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 368000
+			},
+			"text": " And all of these are like root of the Merkopatricia tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " And Merkopatricia trees, a Merkopatricia tree just think of it in that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 378000
+			},
+			"text": " And most importantly, we have the parent hash and with the parent hash, we can, in a way, go backwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 381000
+			},
+			"text": " I think that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 393000
+			},
+			"text": " So, I'm going to get to Merkopatric. So, essentially, it's this idea that I can take whatever amount of data and I can commit it in a cryptographic manner by using this data structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 397000
+			},
+			"text": " So, on the left side, we see a standard Merkopatric."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 400000
+			},
+			"text": " So, essentially, all the data goes to the bottom and we essentially hash it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 409000
+			},
+			"text": " You know what the hashing function is, then we combine these two hashes together with hash it and the, we keep doing that till we get to essentially one hash and this is what we call the root."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 413000
+			},
+			"text": " Merkopatricia tree, modified Merkopatricia tree to be exact."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 417000
+			},
+			"text": " The data structure that we use in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 425000
+			},
+			"text": " What you see here, I hope you see, on the top, we have the state root and essentially the state root is the root of the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 432000
+			},
+			"text": " And now how it works and how you should think of this, it's a pretty complex data structure. I don't want you to bother with it today."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 440000
+			},
+			"text": " So, essentially, we have three types of like nodes, we have leaf nodes, extension nodes and branch nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 449000
+			},
+			"text": " So, leaf nodes contain data, branch nodes contain data, and extension nodes, like on the high level, just help us to like sort of navigating that tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 456000
+			},
+			"text": " But to be honest, to deal with the root, we don't really need to understand this part, but to like build on the low level as we do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 461000
+			},
+			"text": " So, we need to deal pretty, pretty helpful with that part."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 462000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 466000
+			},
+			"text": " So, Ethereum State, how is it constructed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 468000
+			},
+			"text": " Most important takeaway, it's a two level structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 476000
+			},
+			"text": " So, I mentioned that the state root is a commitment of the entire state, but it's not really true because Ethereum is a kind of, does it's true?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 477000
+			},
+			"text": " Okay, it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 479000
+			},
+			"text": " It's a, it's account based."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 487000
+			},
+			"text": " And essentially, the state root is the commitment of all the accounts that exist on Ethereum and what an account is made of, it's made of a balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 492000
+			},
+			"text": " Like the if balance, it's a non-transaction counter storage root."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 497000
+			},
+			"text": " The storage root is like the root of another Merco Patricia tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 506000
+			},
+			"text": " And this Merco Patricia tree contains a key value database that holds like the mapping from storage key to its actual value."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 509000
+			},
+			"text": " And finally, we have the code hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 512000
+			},
+			"text": " It's essentially the hash of the byte code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 515000
+			},
+			"text": " So, main takeaway, first we access accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 523000
+			},
+			"text": " And once we have the account storage root, we can access its, its, its the, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 524000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 535000
+			},
+			"text": " So, to sum it up, like the background, so main takeaway is given the block state root, you can create any, any state for the specific block on the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 538000
+			},
+			"text": " So, you can use the block on this network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 550000
+			},
+			"text": " And given an initial trusted block hash, you can essentially recreate all the previous headers, which is pretty, pretty cool and important to get the ideas that I will explain it pretty soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 551000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 553000
+			},
+			"text": " So, as it's going to be a workshop, it's a short one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 558000
+			},
+			"text": " So, I won't let you code, but I will show you some concrete examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 567000
+			},
+			"text": " What I want you to like go through with me today is how we can prove the ownership of a line profile on another chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 576000
+			},
+			"text": " So, a bit of background, lens profiles are represented as NFTs and lens is deployed on polygon."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 578000
+			},
+			"text": " I think that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 581000
+			},
+			"text": " How do we get to this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 587000
+			},
+			"text": " So, first of all, the question that we need to answer to ourself is, how does polygon commit to material one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 595000
+			},
+			"text": " Because if we want to, like, let's say prove the ownership of a lens profile on optimism, we need to know the state root of polygon."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 598000
+			},
+			"text": " But there is material one in the middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 602000
+			},
+			"text": " So, how do we actually access this on material one, primarily?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 613000
+			},
+			"text": " So, polygon is a commit chain and it commits to a bunch of things every some amount of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 620000
+			},
+			"text": " And essentially, on one, we do not validate the entire state transition, but we just verify the consensus of polygon."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 627000
+			},
+			"text": " And this checkpoints, how they call it, essentially contain state roots."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 634000
+			},
+			"text": " And so, I mean, not directly, but we can access them and let's get to this part."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 639000
+			},
+			"text": " So, this is taken from polygon's documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 642000
+			},
+			"text": " And this is how a checkpoint looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 645000
+			},
+			"text": " So, as you can see, the checkpoint is made of a proposer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 647000
+			},
+			"text": " So, who proposed the block?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 649000
+			},
+			"text": " Start the block and block."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 651000
+			},
+			"text": " Give me a second, I will get to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 653000
+			},
+			"text": " And most importantly, we have the root hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 659000
+			},
+			"text": " So, the root hash is essentially a Merkle tree, not a Merkle Patricia tree, that contains all the headers."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 664000
+			},
+			"text": " And which headers, the headers in the range of start block and end block."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 665000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 677000
+			},
+			"text": " So, now, if we get back to the previous part, we can essentially prove with this commitment that we know the valid state root of polygon."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 680000
+			},
+			"text": " First leave and block."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 682000
+			},
+			"text": " Okay, a bit of hands-on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 687000
+			},
+			"text": " So, we want to prove that I own Lance profile on polygon, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 691000
+			},
+			"text": " So, one, we go to the contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 699000
+			},
+			"text": " We see a contract, we go for it, and we see that essentially there is a bunch of logic on top of this ERC721."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 703000
+			},
+			"text": " This is like the basic ERC71, as you can see, it's an abstract contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 705000
+			},
+			"text": " And it's slightly modified."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 712000
+			},
+			"text": " Instead of having a standard mapping from token ID to its owner, we have token ID to token data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 714000
+			},
+			"text": " Token data is a struct."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 722000
+			},
+			"text": " This struct is 32 bytes in total, 20 bytes is the actual owner, and the remaining 12 bytes represent one the token was minted."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 726000
+			},
+			"text": " Okay, but how do I actually prove it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 728000
+			},
+			"text": " Oh, and also, very important thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 732000
+			},
+			"text": " When dealing with storage layout, we have something that is called slot indices."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 740000
+			},
+			"text": " So, each variable has a given slot, like in the some sort of meta layout, I call it like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 742000
+			},
+			"text": " It's from the right way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 747000
+			},
+			"text": " Anyways, this mapping has like the slot index 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 751000
+			},
+			"text": " I will get to this part in a second, why it's 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 753000
+			},
+			"text": " And we have a mapping from token ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 757000
+			},
+			"text": " So, you need to 32 bytes of data represent represented as a struct."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 760000
+			},
+			"text": " Just think of it as some bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 765000
+			},
+			"text": " Okay, so I guess most of you use hard hot."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 767000
+			},
+			"text": " So, I'm going to present on hard hot."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 770000
+			},
+			"text": " There is a very, very cool tool to deal with storage layouts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 773000
+			},
+			"text": " It's called obviously hard hot storage layout."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 775000
+			},
+			"text": " This is how you install it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 778000
+			},
+			"text": " It's literally yarn install hard hot storage layout."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 780000
+			},
+			"text": " You add one comment to your hard hot config."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 784000
+			},
+			"text": " You write a new script that contains literally eight lines of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 787000
+			},
+			"text": " You run the script and you get this weird table."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 790000
+			},
+			"text": " What does it really tell you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 792000
+			},
+			"text": " By the way, why this tool is pretty useful?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 795000
+			},
+			"text": " As you see, this contract is abstract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 800000
+			},
+			"text": " So, some other contracts you can test this tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 802000
+			},
+			"text": " Yeah, some contracts can inherit from it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 811000
+			},
+			"text": " And obviously, why we inherit the storage layout, I mean, those instances can get more trickier because it also lives."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 816000
+			},
+			"text": " Okay, so that's pretty hard to coordinate."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 820000
+			},
+			"text": " Like one hand with another hand, even though I'm Italian."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 821000
+			},
+			"text": " Okay, anyways."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 828000
+			},
+			"text": " Yeah, we know this slot in this index and that's how we get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 833000
+			},
+			"text": " We have a column that is called storage slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 837000
+			},
+			"text": " And as you see, under score token data is marked as two."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 838000
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 840000
+			},
+			"text": " Okay, but what do we do with it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 842000
+			},
+			"text": " How do we get this storage key?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 845000
+			},
+			"text": " And yeah, that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 847000
+			},
+			"text": " Let me check the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 852000
+			},
+			"text": " Okay, so a bit of hands on how do we get the actual storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 855000
+			},
+			"text": " It sounds scary and it's meant to be scary."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 859000
+			},
+			"text": " So we know the slot index, the storage index."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 868000
+			},
+			"text": " I want to prove that just like zero X 35 and I know with ID 3594."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 871000
+			},
+			"text": " How do we get the storage key?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:33,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 873000
+			},
+			"text": " We essentially do this operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 873000,
+				"to": 884000
+			},
+			"text": " So we concatenate the slot, I mean, the key in the mapping, which is 3594 because this is the token ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 887000
+			},
+			"text": " As you know, we have a mapping from token ID to token data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 889000
+			},
+			"text": " Token data contains the old."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 894000
+			},
+			"text": " Okay, so we concatenate this with the storage index."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 896000
+			},
+			"text": " We have to talk together."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 898000
+			},
+			"text": " This is the storage key that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 904000
+			},
+			"text": " If you're interested how to deal with it for like more complex mappings and like."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 906000
+			},
+			"text": " Layouts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 909000
+			},
+			"text": " Back to solidity documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 911000
+			},
+			"text": " It's explained pretty well."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 916000
+			},
+			"text": " So now that's to make sure we got the proper storage key."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 918000
+			},
+			"text": " Let's just check it how we can check it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 919000
+			},
+			"text": " Super easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 921000
+			},
+			"text": " But just make a one-liter PC call."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 926000
+			},
+			"text": " To get this storage, it sounds specific key is."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 930000
+			},
+			"text": " If get storage at so the parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 934000
+			},
+			"text": " We want to access the storage of what of the lens hub."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 943000
+			},
+			"text": " Lens hub is the contract that essentially is the representation of these profiles and it's addressy zero X DD for and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 945000
+			},
+			"text": " And this looks."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 949000
+			},
+			"text": " Oh, is it better?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 950000
+			},
+			"text": " It's much better."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 956000
+			},
+			"text": " And the storage key is zero X one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 958000
+			},
+			"text": " So essentially that's the hash that we got."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 962000
+			},
+			"text": " And the result is zero X zero zero zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 967000
+			},
+			"text": " And we know that it's 32 bytes of data where we have 20 and 12."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 970000
+			},
+			"text": " So let's split it into 12 and 20 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 973000
+			},
+			"text": " And what we have is."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 979000
+			},
+			"text": " Some number like you can see zero X a lot of zeros than 62 till D."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 981000
+			},
+			"text": " And this looks like a small number."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 988000
+			},
+			"text": " So apparently it is a timestamp and the second part is like 35 57 and it's literally our address."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 990000
+			},
+			"text": " So we got it correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 993000
+			},
+			"text": " We have the proper storage key."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 996000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:40,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 1000000
+			},
+			"text": " But how do we actually get to storage proofs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,000",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 1000000,
+				"to": 1006000
+			},
+			"text": " So there are standards is method in like the JSON or PC standard for Ethereum clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1012000
+			},
+			"text": " And this method is called it get proof, which essentially given the contract address."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1018000
+			},
+			"text": " So better call it account address in this specific case allows us to generate a state proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1026000
+			},
+			"text": " And last argument, I mean, the sorry, the second argument is an array that contains all this storage storage keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1028000
+			},
+			"text": " If we want to prove."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1035000
+			},
+			"text": " There is another argument, which is zero X one a it's essentially the block number for which we prove the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1040000
+			},
+			"text": " Yeah, let's call this method. Oh, by the way, you might have a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1044000
+			},
+			"text": " How do we deal with this method on non EVM chains?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1049000
+			},
+			"text": " Because for example, on some specific rollups, this method is like not supported."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1054000
+			},
+			"text": " Actually, it's not a big deal because if you think of it, we just need the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1062000
+			},
+			"text": " On top of this database, we can literally build this method, which we just need to know how the storage is constructed."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1064000
+			},
+			"text": " Okay, this is the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1065000
+			},
+			"text": " It looks scary."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1066000
+			},
+			"text": " It is scary."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:49,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1069000
+			},
+			"text": " This entire object is four kilobytes of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1069000,
+				"to": 1074000
+			},
+			"text": " And now I mentioned before that the state is like a two level structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1077000
+			},
+			"text": " First, we have a proof for the account itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1080000
+			},
+			"text": " And now we have the proof for the storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1082000
+			},
+			"text": " I mean, for the actual storage slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1085000
+			},
+			"text": " It is scary. It's meant to be scary."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1089000
+			},
+			"text": " One proof is like more or less 600 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1094000
+			},
+			"text": " 700 bytes, it really depends like bigger the storage is than bigger the proof is."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1098000
+			},
+			"text": " And also more accounts we have than bigger account proof is."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1100000
+			},
+			"text": " So that's a lot of call data."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1104000
+			},
+			"text": " If you can imagine."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1106000
+			},
+			"text": " And yeah, that's that's pretty bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1109000
+			},
+			"text": " Why? Because we need to pause this proof on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1110000
+			},
+			"text": " So it's a lot of call data."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1113000
+			},
+			"text": " But okay, let's try."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1117000
+			},
+			"text": " What is going to be the cost on like an EVM chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1118000
+			},
+			"text": " Does the cost?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1120000
+			},
+			"text": " It's like 600 k of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1128000
+			},
+			"text": " That's a lot that kills almost every single application that you want to build on top of this nice primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1129000
+			},
+			"text": " So it's pretty bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1131000
+			},
+			"text": " And why is it that bad?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1134000
+			},
+			"text": " So I explained on the high level what Merkle trees are."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1139000
+			},
+			"text": " And Merkle trees are only theorem use Merkle trees trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1144000
+			},
+			"text": " And essentially there is a trade off that when using Merkle trees trees, the proof is a slightly bigger."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1150000
+			},
+			"text": " It's like harder to decode it because actually we need to do some bit of decoding there."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:13,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1153000
+			},
+			"text": " But we need to do less hashing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,000",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1153000,
+				"to": 1154000
+			},
+			"text": " So this is a trade off."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1159000
+			},
+			"text": " But depending where we actually verify this proof might be more feasible to verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1162000
+			},
+			"text": " Like a proof that is based on Merkle trees trees or Merkle trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1163000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1165000
+			},
+			"text": " But there is a solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:32,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1172000
+			},
+			"text": " And the solution is what if we snarkify such a proof and we verify this proof inside the snark?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,000",
+				"to": "00:19:33,000"
+			},
+			"offsets": {
+				"from": 1172000,
+				"to": 1173000
+			},
+			"text": " Why is it cool?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,000",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1173000,
+				"to": 1180000
+			},
+			"text": " Because we can like let's say that I'm going to verify this proof inside the graph 16 circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,000",
+				"to": "00:19:45,000"
+			},
+			"offsets": {
+				"from": 1180000,
+				"to": 1185000
+			},
+			"text": " And yeah, the verification cost more or less like 210 k gase."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1185000,
+				"to": 1188000
+			},
+			"text": " The proof is like way less than 600 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1193000
+			},
+			"text": " So it's good so essentially get rid of the call data because the proof itself can be the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:56,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1196000
+			},
+			"text": " private input to the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1196000,
+				"to": 1201000
+			},
+			"text": " Yeah, we can like use multiple proofing system depending on the actual use case."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1204000
+			},
+			"text": " And now why is it like very, very cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1207000
+			},
+			"text": " So first of all, it removes call data."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:13,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1213000
+			},
+			"text": " Second of all, it allows us to deal with very unfriendly hashing functions or the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1213000,
+				"to": 1220000
+			},
+			"text": " The ones that we don't have precompiled for, like let's say Peterson."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:24,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1224000
+			},
+			"text": " So it might be like super expensive to verify such a proof on the EVM because first of all,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1224000,
+				"to": 1228000
+			},
+			"text": " that's a lot of code data and the hashing function is pretty like unfriendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1232000
+			},
+			"text": " But what if we can like do it inside the snark and just verify a snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:39,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1239000
+			},
+			"text": " And yeah, so another benefits is really, really helps in obstructing the way how we verify this"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,000",
+				"to": "00:20:46,000"
+			},
+			"offsets": {
+				"from": 1239000,
+				"to": 1246000
+			},
+			"text": " because you don't need to have like one generalized verifier for each type of proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1246000,
+				"to": 1252000
+			},
+			"text": " But you can essentially obstruct behind the snark, which is great."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:21:02,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1262000
+			},
+			"text": " These numbers were taken from a very nice article written by a 16z, like a bunch of a few months ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1262000,
+				"to": 1264000
+			},
+			"text": " Yeah, and I think that's pretty much it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1266000
+			},
+			"text": " Let's get to the next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1270000
+			},
+			"text": " So synchronous cross-layer state access."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1277000
+			},
+			"text": " So how can actually a control deployed on some layer access the state of another L2 or L1?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,000",
+				"to": "00:21:20,000"
+			},
+			"offsets": {
+				"from": 1277000,
+				"to": 1280000
+			},
+			"text": " So I mentioned that we always need the state root."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,000",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1280000,
+				"to": 1286000
+			},
+			"text": " But because all of these systems have a native messaging system, we can send the small commitments"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:32,000"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1292000
+			},
+			"text": " like for example the block hash to like a one, usually it goes all for L1."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1292000,
+				"to": 1295000
+			},
+			"text": " And yeah, we can like enroll it or send the state through directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:37,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1297000
+			},
+			"text": " And also we don't need to rely on messaging."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1297000,
+				"to": 1303000
+			},
+			"text": " But we can for example rely on the fact that polygon is like a commit chain and all these problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:45,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1305000
+			},
+			"text": " like commit from time to time."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1305000,
+				"to": 1308000
+			},
+			"text": " They're like batches and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:49,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1309000
+			},
+			"text": " So this is like pretty important."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,000",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1309000,
+				"to": 1318000
+			},
+			"text": " And we sort of can get the commitment from which we will recreate the state directly on the one and then send it to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:22:08,000"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1328000
+			},
+			"text": " So if let's say polygon commits on L1, I can send this commitment then to start and then start and do the actual verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,000",
+				"to": "00:22:11,000"
+			},
+			"offsets": {
+				"from": 1328000,
+				"to": 1331000
+			},
+			"text": " Cool. So now how do we actually do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,000",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1331000,
+				"to": 1335000
+			},
+			"text": " So let's break the entire flow into like smallest pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1336000
+			},
+			"text": " So the flow is the following."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:21,000"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1341000
+			},
+			"text": " We need to have access to the commitment, which is either a block hash or a state root."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,000",
+				"to": "00:22:27,000"
+			},
+			"offsets": {
+				"from": 1341000,
+				"to": 1347000
+			},
+			"text": " And again, we can get it either by sending a message, relying on the fact that is this chain commit."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,000",
+				"to": "00:22:29,000"
+			},
+			"offsets": {
+				"from": 1347000,
+				"to": 1349000
+			},
+			"text": " So in a sense, it's still a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,000",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1349000,
+				"to": 1356000
+			},
+			"text": " We can relate an optimistic manner or we can go even more crazy and verify the entire consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:38,000"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1358000
+			},
+			"text": " Okay, so this is step number one."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,000",
+				"to": "00:22:40,000"
+			},
+			"offsets": {
+				"from": 1358000,
+				"to": 1360000
+			},
+			"text": " We need to get the commitment step number two."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1360000,
+				"to": 1363000
+			},
+			"text": " We need to somehow access the state root."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:50,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1370000
+			},
+			"text": " So the commitments of the state from like a previous block or the actual blog because keep in mind that these commitments are only block hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,000",
+				"to": "00:22:51,000"
+			},
+			"offsets": {
+				"from": 1370000,
+				"to": 1371000
+			},
+			"text": " And we block hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,000",
+				"to": "00:22:54,000"
+			},
+			"offsets": {
+				"from": 1371000,
+				"to": 1374000
+			},
+			"text": " We can recreate headers, but we cannot access the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,000",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1374000,
+				"to": 1375000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1382000
+			},
+			"text": " So once we have the state root, we obviously need to verify this state slash storage proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:03,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1383000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,000",
+				"to": "00:23:05,000"
+			},
+			"offsets": {
+				"from": 1383000,
+				"to": 1385000
+			},
+			"text": " And there are multi just to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1385000,
+				"to": 1390000
+			},
+			"text": " All of them come with some trade offs and let's go through all these approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1395000
+			},
+			"text": " So approach number one messaging."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:19,000"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1399000
+			},
+			"text": " So I can send a message from let's say."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,000",
+				"to": "00:23:25,000"
+			},
+			"offsets": {
+				"from": 1399000,
+				"to": 1405000
+			},
+			"text": " Optimism to each real one."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,000",
+				"to": "00:23:26,000"
+			},
+			"offsets": {
+				"from": 1405000,
+				"to": 1406000
+			},
+			"text": " I can get the opcode."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,000",
+				"to": "00:23:31,000"
+			},
+			"offsets": {
+				"from": 1406000,
+				"to": 1411000
+			},
+			"text": " I can get the block hash by just calling the proper opcode and I get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,000",
+				"to": "00:23:33,000"
+			},
+			"offsets": {
+				"from": 1411000,
+				"to": 1413000
+			},
+			"text": " It takes some time, but still I get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,000",
+				"to": "00:23:35,000"
+			},
+			"offsets": {
+				"from": 1413000,
+				"to": 1415000
+			},
+			"text": " This is approach number one."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,000",
+				"to": "00:23:42,000"
+			},
+			"offsets": {
+				"from": 1415000,
+				"to": 1422000
+			},
+			"text": " So we rely on the built-in messaging system, which is I think fair because the security of it is equal to the security of the roll up."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,000",
+				"to": "00:23:48,000"
+			},
+			"offsets": {
+				"from": 1422000,
+				"to": 1428000
+			},
+			"text": " And if you're deploying an application of this roll up, it's a fair assumption to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,000",
+				"to": "00:23:50,000"
+			},
+			"offsets": {
+				"from": 1428000,
+				"to": 1430000
+			},
+			"text": " Yeah, it doesn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,000",
+				"to": "00:23:52,000"
+			},
+			"offsets": {
+				"from": 1430000,
+				"to": 1432000
+			},
+			"text": " Oh, the now about the downsides."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,000",
+				"to": "00:23:54,000"
+			},
+			"offsets": {
+				"from": 1432000,
+				"to": 1434000
+			},
+			"text": " So the message must be delivered."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1434000,
+				"to": 1440000
+			},
+			"text": " So it introduces a significant delay, especially when dealing with the withdrawal period in the in the middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:02,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1442000
+			},
+			"text": " And it requires we."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,000",
+				"to": "00:24:04,000"
+			},
+			"offsets": {
+				"from": 1442000,
+				"to": 1444000
+			},
+			"text": " It requires interacting with multiple layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,000",
+				"to": "00:24:07,000"
+			},
+			"offsets": {
+				"from": 1444000,
+				"to": 1447000
+			},
+			"text": " So first you need to send a message and actually need to consume it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,000",
+				"to": "00:24:11,000"
+			},
+			"offsets": {
+				"from": 1447000,
+				"to": 1451000
+			},
+			"text": " So it's, it's not ideal."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,000",
+				"to": "00:24:17,000"
+			},
+			"offsets": {
+				"from": 1451000,
+				"to": 1457000
+			},
+			"text": " But the trust assumptions are pretty occasionally."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,000",
+				"to": "00:24:20,000"
+			},
+			"offsets": {
+				"from": 1457000,
+				"to": 1460000
+			},
+			"text": " Another approach, consensus validation."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,000",
+				"to": "00:24:25,000"
+			},
+			"offsets": {
+				"from": 1460000,
+				"to": 1465000
+			},
+			"text": " By the way, this like Gramlin is supposed to verify a bunch of PLS signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,000",
+				"to": "00:24:28,000"
+			},
+			"offsets": {
+				"from": 1465000,
+				"to": 1468000
+			},
+			"text": " I hope it's self explanatory."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,000",
+				"to": "00:24:32,000"
+			},
+			"offsets": {
+				"from": 1468000,
+				"to": 1472000
+			},
+			"text": " Okay, so maybe a few bit of an intro."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,000",
+				"to": "00:24:46,000"
+			},
+			"offsets": {
+				"from": 1472000,
+				"to": 1486000
+			},
+			"text": " Right now we have POS as the native consensus algorithm on Ethereum, which is pretty great because verifying the consensus is finally doable because before like verifying the hashing function ETH hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,000",
+				"to": "00:24:49,000"
+			},
+			"offsets": {
+				"from": 1486000,
+				"to": 1489000
+			},
+			"text": " which was used for proof of work was very memory intense."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,000",
+				"to": "00:24:52,000"
+			},
+			"offsets": {
+				"from": 1489000,
+				"to": 1492000
+			},
+			"text": " So not possible to do inside the start."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,000",
+				"to": "00:24:57,000"
+			},
+			"offsets": {
+				"from": 1492000,
+				"to": 1497000
+			},
+			"text": " On chain directly, so it was almost impossible to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,000",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1497000,
+				"to": 1502000
+			},
+			"text": " So now we also have this fortress for what called a lambda goes, which is."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:07,000"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1507000
+			},
+			"text": " Implementable, but doing all of this like directly is pretty expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,000",
+				"to": "00:25:11,000"
+			},
+			"offsets": {
+				"from": 1507000,
+				"to": 1511000
+			},
+			"text": " So we need to ideally wrap inside the start, but there is another downside."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,000",
+				"to": "00:25:14,000"
+			},
+			"offsets": {
+				"from": 1511000,
+				"to": 1514000
+			},
+			"text": " So a few words about the trust assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,000",
+				"to": "00:25:17,000"
+			},
+			"offsets": {
+				"from": 1514000,
+				"to": 1517000
+			},
+			"text": " You value verified the consensus directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,000",
+				"to": "00:25:19,000"
+			},
+			"offsets": {
+				"from": 1517000,
+				"to": 1519000
+			},
+			"text": " So it's, it's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,000",
+				"to": "00:25:22,000"
+			},
+			"offsets": {
+				"from": 1519000,
+				"to": 1522000
+			},
+			"text": " He do you introduce any trust assumptions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,000",
+				"to": "00:25:27,000"
+			},
+			"offsets": {
+				"from": 1522000,
+				"to": 1527000
+			},
+			"text": " Not really, but the biggest downside that generating the proof actually takes some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,000",
+				"to": "00:25:34,000"
+			},
+			"offsets": {
+				"from": 1527000,
+				"to": 1534000
+			},
+			"text": " So to be honest, this approach is feasible, but comparing to messaging."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,000",
+				"to": "00:25:40,000"
+			},
+			"offsets": {
+				"from": 1534000,
+				"to": 1540000
+			},
+			"text": " Like quite often is like almost the same and you pay a lot of improving time."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,000",
+				"to": "00:25:45,000"
+			},
+			"offsets": {
+				"from": 1540000,
+				"to": 1545000
+			},
+			"text": " And requires like having more advanced infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,000",
+				"to": "00:25:53,000"
+			},
+			"offsets": {
+				"from": 1545000,
+				"to": 1553000
+			},
+			"text": " Okay, last approach that we actually use is something that we call like an optimistic layer based on MPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,000",
+				"to": "00:25:55,000"
+			},
+			"offsets": {
+				"from": 1553000,
+				"to": 1555000
+			},
+			"text": " MPC stands for a multi party computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,000",
+				"to": "00:26:00,000"
+			},
+			"offsets": {
+				"from": 1555000,
+				"to": 1560000
+			},
+			"text": " Maybe before I explain how it works, let me explain the image."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:00,000",
+				"to": "00:26:02,000"
+			},
+			"offsets": {
+				"from": 1560000,
+				"to": 1562000
+			},
+			"text": " I hope it's self explanatory."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,000",
+				"to": "00:26:03,000"
+			},
+			"offsets": {
+				"from": 1562000,
+				"to": 1563000
+			},
+			"text": " So it's an MPC protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,000",
+				"to": "00:26:05,000"
+			},
+			"offsets": {
+				"from": 1563000,
+				"to": 1565000
+			},
+			"text": " We have multiple parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,000",
+				"to": "00:26:09,000"
+			},
+			"offsets": {
+				"from": 1565000,
+				"to": 1569000
+			},
+			"text": " This multiple parties attached something."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,000",
+				"to": "00:26:13,000"
+			},
+			"offsets": {
+				"from": 1569000,
+				"to": 1573000
+			},
+			"text": " Then we have an observer that can challenge it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,000",
+				"to": "00:26:19,000"
+			},
+			"offsets": {
+				"from": 1573000,
+				"to": 1579000
+			},
+			"text": " And then we have finally the commitment given to a specific chain in this case started once everything is fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,000",
+				"to": "00:26:21,000"
+			},
+			"offsets": {
+				"from": 1579000,
+				"to": 1581000
+			},
+			"text": " How does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,000",
+				"to": "00:26:26,000"
+			},
+			"offsets": {
+				"from": 1581000,
+				"to": 1586000
+			},
+			"text": " So we have a set of trusted relayers validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,000",
+				"to": "00:26:29,000"
+			},
+			"offsets": {
+				"from": 1586000,
+				"to": 1589000
+			},
+			"text": " However, and they attach it to specific commitment is valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,000",
+				"to": "00:26:37,000"
+			},
+			"offsets": {
+				"from": 1589000,
+				"to": 1597000
+			},
+			"text": " So how does it work? If you want to get the commitment aka the block hash of block number."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,000",
+				"to": "00:26:43,000"
+			},
+			"offsets": {
+				"from": 1597000,
+				"to": 1603000
+			},
+			"text": " X on start net, then instead of sending a message that would be delayed with a."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,000",
+				"to": "00:26:51,000"
+			},
+			"offsets": {
+				"from": 1603000,
+				"to": 1611000
+			},
+			"text": " Like slightly delayed, we can essentially make an off-chinkle just get the latest one essentially related message directly to start."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,000",
+				"to": "00:26:57,000"
+			},
+			"offsets": {
+				"from": 1611000,
+				"to": 1617000
+			},
+			"text": " And what it comes with a few downsides because while we introduce some trust assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,000",
+				"to": "00:26:59,000"
+			},
+			"offsets": {
+				"from": 1617000,
+				"to": 1619000
+			},
+			"text": " But still it's okay. How does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,000",
+				"to": "00:27:03,000"
+			},
+			"offsets": {
+				"from": 1619000,
+				"to": 1623000
+			},
+			"text": " So it works in a way that we have a bunch of off-chain actors who essentially make this calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,000",
+				"to": "00:27:06,000"
+			},
+			"offsets": {
+				"from": 1623000,
+				"to": 1626000
+			},
+			"text": " And it works more or less like a multi-sick."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,000",
+				"to": "00:27:14,000"
+			},
+			"offsets": {
+				"from": 1626000,
+				"to": 1634000
+			},
+			"text": " But the reason why we have MPC is because more validators you have then obviously more securities."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,000",
+				"to": "00:27:18,000"
+			},
+			"offsets": {
+				"from": 1634000,
+				"to": 1638000
+			},
+			"text": " But more validators you have in a standard multi-sick approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,000",
+				"to": "00:27:20,000"
+			},
+			"offsets": {
+				"from": 1638000,
+				"to": 1640000
+			},
+			"text": " You have more signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,000",
+				"to": "00:27:23,000"
+			},
+			"offsets": {
+				"from": 1640000,
+				"to": 1643000
+			},
+			"text": " So more in a way decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,000",
+				"to": "00:27:30,000"
+			},
+			"offsets": {
+				"from": 1643000,
+				"to": 1650000
+			},
+			"text": " It is more expensive to verify because you need to verify multiple signatures and you need to like."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,000",
+				"to": "00:27:32,000"
+			},
+			"offsets": {
+				"from": 1650000,
+				"to": 1652000
+			},
+			"text": " Post the signature sits a lot of colata."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,000",
+				"to": "00:27:36,000"
+			},
+			"offsets": {
+				"from": 1652000,
+				"to": 1656000
+			},
+			"text": " Such approach is not feasible on chains where colata is expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,000",
+				"to": "00:27:41,000"
+			},
+			"offsets": {
+				"from": 1656000,
+				"to": 1661000
+			},
+			"text": " So I want optimistic rollups and yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,000",
+				"to": "00:27:43,000"
+			},
+			"offsets": {
+				"from": 1661000,
+				"to": 1663000
+			},
+			"text": " Okay. So how does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,000",
+				"to": "00:27:45,000"
+			},
+			"offsets": {
+				"from": 1663000,
+				"to": 1665000
+			},
+			"text": " What is actually MPC part doing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,000",
+				"to": "00:27:51,000"
+			},
+			"offsets": {
+				"from": 1665000,
+				"to": 1671000
+			},
+			"text": " The MPC part is very simple. It's essentially signing over like a specific curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,000",
+				"to": "00:27:55,000"
+			},
+			"offsets": {
+				"from": 1671000,
+				"to": 1675000
+			},
+			"text": " Some specific payload and the payload is the commitment itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,000",
+				"to": "00:27:59,000"
+			},
+			"offsets": {
+				"from": 1675000,
+				"to": 1679000
+			},
+			"text": " And that's it. Okay. So this is how we actually attest."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,000",
+				"to": "00:28:04,000"
+			},
+			"offsets": {
+				"from": 1679000,
+				"to": 1684000
+			},
+			"text": " But now how wide this approach is called optimistic and why it's still secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,000",
+				"to": "00:28:09,000"
+			},
+			"offsets": {
+				"from": 1684000,
+				"to": 1689000
+			},
+			"text": " So first of all, we just posted some something on the actual L2."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,000",
+				"to": "00:28:12,000"
+			},
+			"offsets": {
+				"from": 1689000,
+				"to": 1692000
+			},
+			"text": " And as you may know, we can send messages from L1 to L2."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,000",
+				"to": "00:28:16,000"
+			},
+			"offsets": {
+				"from": 1692000,
+				"to": 1696000
+			},
+			"text": " And such a message can contain like the proper commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,000",
+				"to": "00:28:21,000"
+			},
+			"offsets": {
+				"from": 1696000,
+				"to": 1701000
+			},
+			"text": " So essentially even if the validator set will lie, L1 will never lie."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,000",
+				"to": "00:28:23,000"
+			},
+			"offsets": {
+				"from": 1701000,
+				"to": 1703000
+			},
+			"text": " So you can just challenge such a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,000",
+				"to": "00:28:30,000"
+			},
+			"offsets": {
+				"from": 1703000,
+				"to": 1710000
+			},
+			"text": " And now to participate in verifying this validator, it's super easy because literally two ERPC calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,000",
+				"to": "00:28:33,000"
+			},
+			"offsets": {
+				"from": 1710000,
+				"to": 1713000
+			},
+			"text": " One call is going to check the actual commitment on the actual chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,000",
+				"to": "00:28:38,000"
+			},
+			"offsets": {
+				"from": 1713000,
+				"to": 1718000
+			},
+			"text": " And the other one checks like what is the claimed commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:38,000",
+				"to": "00:28:45,000"
+			},
+			"offsets": {
+				"from": 1718000,
+				"to": 1725000
+			},
+			"text": " If you disagree, you just send a message. It costs roughly 60K of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,000",
+				"to": "00:28:48,000"
+			},
+			"offsets": {
+				"from": 1725000,
+				"to": 1728000
+			},
+			"text": " And that's it. Everyone can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:48,000",
+				"to": "00:28:57,000"
+			},
+			"offsets": {
+				"from": 1728000,
+				"to": 1737000
+			},
+			"text": " And again, the fraud-proofing window is pretty short because it's essentially how long it will take to generate the proof of consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:57,000",
+				"to": "00:29:01,000"
+			},
+			"offsets": {
+				"from": 1737000,
+				"to": 1741000
+			},
+			"text": " If it's possible, or how long does it take to deliver the message?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:01,000",
+				"to": "00:29:05,000"
+			},
+			"offsets": {
+				"from": 1741000,
+				"to": 1745000
+			},
+			"text": " And what is pretty cool in this approach? It's not the gas intensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,000",
+				"to": "00:29:10,000"
+			},
+			"offsets": {
+				"from": 1745000,
+				"to": 1750000
+			},
+			"text": " We verify just one signature. So that's about this approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,000",
+				"to": "00:29:14,000"
+			},
+			"offsets": {
+				"from": 1750000,
+				"to": 1754000
+			},
+			"text": " Let's make a recap and let's identify the trade-offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,000",
+				"to": "00:29:18,000"
+			},
+			"offsets": {
+				"from": 1754000,
+				"to": 1758000
+			},
+			"text": " So we have three approaches. The first one is messaging."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,000",
+				"to": "00:29:23,000"
+			},
+			"offsets": {
+				"from": 1758000,
+				"to": 1763000
+			},
+			"text": " The second one is validating the consensus. And the third one is having this optimistic layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,000",
+				"to": "00:29:30,000"
+			},
+			"offsets": {
+				"from": 1763000,
+				"to": 1770000
+			},
+			"text": " So I categorize it in four categories. The first one is latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:30,000",
+				"to": "00:29:35,000"
+			},
+			"offsets": {
+				"from": 1770000,
+				"to": 1775000
+			},
+			"text": " The second one is the gas cost. The third one is trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:35,000",
+				"to": "00:29:38,000"
+			},
+			"offsets": {
+				"from": 1775000,
+				"to": 1778000
+			},
+			"text": " And the last one is what is the off-chain computation overhead?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:38,000",
+				"to": "00:29:45,000"
+			},
+			"offsets": {
+				"from": 1778000,
+				"to": 1785000
+			},
+			"text": " Why do I even list it? Because if we do some sort of proving, then obviously it takes time because we need to generate the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,000",
+				"to": "00:29:52,000"
+			},
+			"offsets": {
+				"from": 1785000,
+				"to": 1792000
+			},
+			"text": " So messaging. In terms of latency, we are quite sad because the message needs to get delivered."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:52,000",
+				"to": "00:29:59,000"
+			},
+			"offsets": {
+				"from": 1792000,
+				"to": 1799000
+			},
+			"text": " So once the message gets delivered to some specific L2, L1 will be able to generate a right in your box."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,000",
+				"to": "00:30:02,000"
+			},
+			"offsets": {
+				"from": 1799000,
+				"to": 1802000
+			},
+			"text": " So we don't have access to the newest values."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:02,000",
+				"to": "00:30:08,000"
+			},
+			"offsets": {
+				"from": 1802000,
+				"to": 1808000
+			},
+			"text": " In terms of gas cost, it's not bad, but it's not perfect because we need to interact with two chains at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,000",
+				"to": "00:30:11,000"
+			},
+			"offsets": {
+				"from": 1808000,
+				"to": 1811000
+			},
+			"text": " So first we need to send the message and consume it."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:11,000",
+				"to": "00:30:18,000"
+			},
+			"offsets": {
+				"from": 1811000,
+				"to": 1818000
+			},
+			"text": " In terms of trust, we are pretty happy because we trust the roll-up itself and it's a fair assumption."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,000",
+				"to": "00:30:24,000"
+			},
+			"offsets": {
+				"from": 1818000,
+				"to": 1824000
+			},
+			"text": " Off-chain computation overhead, we're very happy because there is no computation to do off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:24,000",
+				"to": "00:30:30,000"
+			},
+			"offsets": {
+				"from": 1824000,
+				"to": 1830000
+			},
+			"text": " We're fine the consensus. So in terms of latency, we are sad because we need to generate the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:30,000",
+				"to": "00:30:38,000"
+			},
+			"offsets": {
+				"from": 1830000,
+				"to": 1838000
+			},
+			"text": " At Vidana, it takes a bit of time. In terms of gas cost, we are out-says sad because we need to verify the actual decay proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:38,000",
+				"to": "00:30:45,000"
+			},
+			"offsets": {
+				"from": 1838000,
+				"to": 1845000
+			},
+			"text": " which is way more expensive than just consuming a message or verifying a signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:45,000",
+				"to": "00:30:49,000"
+			},
+			"offsets": {
+				"from": 1845000,
+				"to": 1849000
+			},
+			"text": " In terms of trust, we are happy because we verify the consensus itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:49,000",
+				"to": "00:30:54,000"
+			},
+			"offsets": {
+				"from": 1849000,
+				"to": 1854000
+			},
+			"text": " And computation overhead, it's significant, right? Because we need to generate a proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:54,000",
+				"to": "00:30:58,000"
+			},
+			"offsets": {
+				"from": 1854000,
+				"to": 1858000
+			},
+			"text": " Final approach, this optimistic layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:58,000",
+				"to": "00:31:03,000"
+			},
+			"offsets": {
+				"from": 1858000,
+				"to": 1863000
+			},
+			"text": " So in terms of latency, we are happy because we simply make a claim and we post it on the other chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:03,000",
+				"to": "00:31:09,000"
+			},
+			"offsets": {
+				"from": 1863000,
+				"to": 1869000
+			},
+			"text": " That's it. Gas cost, we are very happy because we just verify a signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:09,000",
+				"to": "00:31:18,000"
+			},
+			"offsets": {
+				"from": 1869000,
+				"to": 1878000
+			},
+			"text": " In terms of trust, well, we are not that happy but also not that sad at the same time because it still can be challenged in an optimistic manner using a fraud proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:18,000",
+				"to": "00:31:25,000"
+			},
+			"offsets": {
+				"from": 1878000,
+				"to": 1885000
+			},
+			"text": " So we have a lot of computation. Computation, off-chain computation overhead, we are pretty happy because we participate like an NPC protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:25,000",
+				"to": "00:31:31,000"
+			},
+			"offsets": {
+				"from": 1885000,
+				"to": 1891000
+			},
+			"text": " So essentially the overhead comes mostly from communication, not computation itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:31,000",
+				"to": "00:31:35,000"
+			},
+			"offsets": {
+				"from": 1891000,
+				"to": 1895000
+			},
+			"text": " Cool. So this is part number one. These are the three approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,000",
+				"to": "00:31:41,000"
+			},
+			"offsets": {
+				"from": 1895000,
+				"to": 1901000
+			},
+			"text": " Obviously, I'm not going to say which one is the best because all of them come with some trade-offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:41,000",
+				"to": "00:31:44,000"
+			},
+			"offsets": {
+				"from": 1901000,
+				"to": 1904000
+			},
+			"text": " Okay. Accessing the headers."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:44,000",
+				"to": "00:31:50,000"
+			},
+			"offsets": {
+				"from": 1904000,
+				"to": 1910000
+			},
+			"text": " I hope it's self-explanatory because we literally unroll something from the trusted input."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:50,000",
+				"to": "00:31:55,000"
+			},
+			"offsets": {
+				"from": 1910000,
+				"to": 1915000
+			},
+			"text": " And the trusted input is again a block hash for a specific block X."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:55,000",
+				"to": "00:32:02,000"
+			},
+			"offsets": {
+				"from": 1915000,
+				"to": 1922000
+			},
+			"text": " And if you follow the initial slides, that's essentially each block, we, given a block hash, you can recreate the block header."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:02,000",
+				"to": "00:32:09,000"
+			},
+			"offsets": {
+				"from": 1922000,
+				"to": 1929000
+			},
+			"text": " And knowing the block header, we can access the parent hash and by knowing the parent hash, you can recreate the previous block header."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,000",
+				"to": "00:32:21,000"
+			},
+			"offsets": {
+				"from": 1929000,
+				"to": 1941000
+			},
+			"text": " So essentially go to the genesis block. So given this very small input, we can essentially unroll the state or whatever was present on the chain from this block to the genesis block."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:21,000",
+				"to": "00:32:27,000"
+			},
+			"offsets": {
+				"from": 1941000,
+				"to": 1947000
+			},
+			"text": " Okay. So as I said, I'm going to explain everything on the example of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:27,000",
+				"to": "00:32:34,000"
+			},
+			"offsets": {
+				"from": 1947000,
+				"to": 1954000
+			},
+			"text": " And today all the block headers together are like roughly seven gigabytes of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:34,000",
+				"to": "00:32:41,000"
+			},
+			"offsets": {
+				"from": 1954000,
+				"to": 1961000
+			},
+			"text": " So it's quite a lot. But okay, this is how we actually do that. This is the high-level concept and what are the approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:41,000",
+				"to": "00:32:44,000"
+			},
+			"offsets": {
+				"from": 1961000,
+				"to": 1964000
+			},
+			"text": " So the first one, we call it like on-chain accumulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:44,000",
+				"to": "00:32:54,000"
+			},
+			"offsets": {
+				"from": 1964000,
+				"to": 1974000
+			},
+			"text": " Essentially, we do this procedure, this computation directly on the chain. So we provide all these properly encoded block headers inside the call data."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:54,000",
+				"to": "00:32:59,000"
+			},
+			"offsets": {
+				"from": 1974000,
+				"to": 1979000
+			},
+			"text": " And the block hash that we might receive as like the trusted input by sending a message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,000",
+				"to": "00:33:03,000"
+			},
+			"offsets": {
+				"from": 1979000,
+				"to": 1983000
+			},
+			"text": " relaying it in optimistic manner or validating the consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:03,000",
+				"to": "00:33:08,000"
+			},
+			"offsets": {
+				"from": 1983000,
+				"to": 1988000
+			},
+			"text": " And yeah, like recursively go through all these headers and verify them."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:08,000",
+				"to": "00:33:16,000"
+			},
+			"offsets": {
+				"from": 1988000,
+				"to": 1996000
+			},
+			"text": " But there are many, many downsides because first of all, it's very cold data intensive. It's very computationally intensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:16,000",
+				"to": "00:33:28,000"
+			},
+			"offsets": {
+				"from": 1996000,
+				"to": 2008000
+			},
+			"text": " And now we can store all these headers on the actual chain, but even storing on an L2, storing seven gigabytes of data is still a significant cause because the state on an L2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:28,000",
+				"to": "00:33:34,000"
+			},
+			"offsets": {
+				"from": 2008000,
+				"to": 2014000
+			},
+			"text": " is refractly just called data on L1. So it's still expensive either way."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:34,000",
+				"to": "00:33:41,000"
+			},
+			"offsets": {
+				"from": 2014000,
+				"to": 2021000
+			},
+			"text": " But the cool thing is that I have direct access to like state rules or anything that I want to access."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:41,000",
+				"to": "00:33:46,000"
+			},
+			"offsets": {
+				"from": 2021000,
+				"to": 2026000
+			},
+			"text": " Next approach is on-chain compression."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:46,000",
+				"to": "00:33:54,000"
+			},
+			"offsets": {
+				"from": 2026000,
+				"to": 2034000
+			},
+			"text": " So we can still use the same approach as previously, so literally unroll it and process the seven gigabytes of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:54,000",
+				"to": "00:33:58,000"
+			},
+			"offsets": {
+				"from": 2034000,
+				"to": 2038000
+			},
+			"text": " But instead of like storing, then we can just update a miracle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:58,000",
+				"to": "00:34:01,000"
+			},
+			"offsets": {
+				"from": 2038000,
+				"to": 2041000
+			},
+			"text": " It's a nice approach, but comes again with a few downsides."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:01,000",
+				"to": "00:34:09,000"
+			},
+			"offsets": {
+				"from": 2041000,
+				"to": 2049000
+			},
+			"text": " It's very computationally intense because if we have like millions of headers, we need to perform millions of hashes on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:09,000",
+				"to": "00:34:14,000"
+			},
+			"offsets": {
+				"from": 2049000,
+				"to": 2054000
+			},
+			"text": " That's expensive. But at least we save on storing data."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:14,000",
+				"to": "00:34:19,000"
+			},
+			"offsets": {
+				"from": 2054000,
+				"to": 2059000
+			},
+			"text": " And also we need to update the miracle tree, which is another cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:19,000",
+				"to": "00:34:24,000"
+			},
+			"offsets": {
+				"from": 2059000,
+				"to": 2064000
+			},
+			"text": " The last downside is that we need to index all the headers that have been processed."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:24,000",
+				"to": "00:34:34,000"
+			},
+			"offsets": {
+				"from": 2064000,
+				"to": 2074000
+			},
+			"text": " Why we need to index them? Because if I want to update access a specific block header, I need to provide a miracle path because as we update the miracle tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,000",
+				"to": "00:34:38,000"
+			},
+			"offsets": {
+				"from": 2074000,
+				"to": 2078000
+			},
+			"text": " and we just store a root in the contract itself, then I need to know the path, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:38,000",
+				"to": "00:34:46,000"
+			},
+			"offsets": {
+				"from": 2078000,
+				"to": 2086000
+			},
+			"text": " So I need to index the data and essentially once I, it's the moment that I want to access, I need to provide a miracle path."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:46,000",
+				"to": "00:34:55,000"
+			},
+			"offsets": {
+				"from": 2086000,
+				"to": 2095000
+			},
+			"text": " This approach is okay. I wouldn't say way better than the previous one, but it's way cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:55,000",
+				"to": "00:35:01,000"
+			},
+			"offsets": {
+				"from": 2095000,
+				"to": 2101000
+			},
+			"text": " Last approach, so there is a very cool primitive called miracle mountain ranges."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:01,000",
+				"to": "00:35:08,000"
+			},
+			"offsets": {
+				"from": 2101000,
+				"to": 2108000
+			},
+			"text": " Love it. And the idea is let's do the same that we do previously inside the start."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:08,000",
+				"to": "00:35:20,000"
+			},
+			"offsets": {
+				"from": 2108000,
+				"to": 2120000
+			},
+			"text": " So we can provide this tremendous amount of data as a private input to the circuit and essentially do the same computation, like unrolling inside the circuit itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:20,000",
+				"to": "00:35:26,000"
+			},
+			"offsets": {
+				"from": 2120000,
+				"to": 2126000
+			},
+			"text": " And now we have a public input, which is the block hash, so essentially the commitment from which we unroll it."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:26,000",
+				"to": "00:35:32,000"
+			},
+			"offsets": {
+				"from": 2126000,
+				"to": 2132000
+			},
+			"text": " So the trusted input, the public input can be literally asserted when we do the on-chain verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:32,000",
+				"to": "00:35:45,000"
+			},
+			"offsets": {
+				"from": 2132000,
+				"to": 2145000
+			},
+			"text": " And why we unroll it, we can accumulate inside a miracle tree or a miracle mountain range, why a miracle mountain range is cool, because let's imagine that you want to have like seven gigabytes of data processing once in a while,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:45,000",
+				"to": "00:35:53,000"
+			},
+			"offsets": {
+				"from": 2145000,
+				"to": 2153000
+			},
+			"text": " the proof that it's going to be horrible and why would you even like prove these commitments for like the entire history, like, do you really need that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:53,000",
+				"to": "00:36:08,000"
+			},
+			"offsets": {
+				"from": 2153000,
+				"to": 2168000
+			},
+			"text": " Probably not. So let's chunk it like into smaller pieces and miracle mountain ranges are a pretty cool primitive that allow you to do this to do this, to give you like a bit of intuition, how does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:08,000",
+				"to": "00:36:12,000"
+			},
+			"offsets": {
+				"from": 2168000,
+				"to": 2172000
+			},
+			"text": " It's essentially think of it as a tree of trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:12,000",
+				"to": "00:36:23,000"
+			},
+			"offsets": {
+				"from": 2172000,
+				"to": 2183000
+			},
+			"text": " Yeah, so once we do all this proving like off-chain, we simply verify the proof on chain, as you know, like, we find the proof is way cheaper than doing this directly on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:23,000",
+				"to": "00:36:27,000"
+			},
+			"offsets": {
+				"from": 2183000,
+				"to": 2187000
+			},
+			"text": " And still, we just provide a miracle path and that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:27,000",
+				"to": "00:36:30,000"
+			},
+			"offsets": {
+				"from": 2187000,
+				"to": 2190000
+			},
+			"text": " We essentially have access to any sort of data we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:30,000",
+				"to": "00:36:32,000"
+			},
+			"offsets": {
+				"from": 2190000,
+				"to": 2192000
+			},
+			"text": " Let's do a recap again."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:32,000",
+				"to": "00:36:47,000"
+			},
+			"offsets": {
+				"from": 2192000,
+				"to": 2207000
+			},
+			"text": " So approach number one on check simulation, on chain compression, option compression, free categories, prover overhead, gas cost, storage cost, actually gas cost should be computational cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:47,000",
+				"to": "00:36:55,000"
+			},
+			"offsets": {
+				"from": 2207000,
+				"to": 2215000
+			},
+			"text": " Okay, so prover overhead on chain accumulation. Do we prove anything? Well, not really. So we're happy on chain compression."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:55,000",
+				"to": "00:37:07,000"
+			},
+			"offsets": {
+				"from": 2215000,
+				"to": 2227000
+			},
+			"text": " Well, we still need to update the mercury. I think actually there is an issue here. So I'll just skip this part."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:07,000",
+				"to": "00:37:14,000"
+			},
+			"offsets": {
+				"from": 2227000,
+				"to": 2234000
+			},
+			"text": " Off-chain compression, you're very, very sad because, well, we need to prove actually significant computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:14,000",
+				"to": "00:37:16,000"
+			},
+			"offsets": {
+				"from": 2234000,
+				"to": 2236000
+			},
+			"text": " So the proving time is significant."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:16,000",
+				"to": "00:37:34,000"
+			},
+			"offsets": {
+				"from": 2236000,
+				"to": 2254000
+			},
+			"text": " Okay, now in terms of gas cost, the third approach is horrible because it just costs a lot because we do the entire computation on chain compression. Well, we're a bit happy because we just do a bit of computation, but still, it's a lot of code data, a lot of computation, but at least not so much storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:34,000",
+				"to": "00:37:41,000"
+			},
+			"offsets": {
+				"from": 2254000,
+				"to": 2261000
+			},
+			"text": " Storage cost, oh, sorry, gas cost in the second approach while we just verify proof. So it's cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:41,000",
+				"to": "00:37:49,000"
+			},
+			"offsets": {
+				"from": 2261000,
+				"to": 2269000
+			},
+			"text": " Okay, storage cost for the first approach. Well, seven gigabytes of data. It is horrible. So we are very sad."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:49,000",
+				"to": "00:37:58,000"
+			},
+			"offsets": {
+				"from": 2269000,
+				"to": 2278000
+			},
+			"text": " On chain compression, sorry, storage cost for on chain compression. We just are a root of the miracle tree. So we are happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:58,000",
+				"to": "00:38:12,000"
+			},
+			"offsets": {
+				"from": 2278000,
+				"to": 2292000
+			},
+			"text": " And in the second case, we're even more happy because we, again, we just essentially keep updating the tree and we don't even need to post a lot of code data because the code data we passed is literally just the proof for very, very happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:12,000",
+				"to": "00:38:19,000"
+			},
+			"offsets": {
+				"from": 2292000,
+				"to": 2299000
+			},
+			"text": " But again, I don't want to say that all of the one of these approaches is the best one because, as you see, they're trade off."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:19,000",
+				"to": "00:38:31,000"
+			},
+			"offsets": {
+				"from": 2299000,
+				"to": 2311000
+			},
+			"text": " And, yeah, so this part is actually pretty easy. So as you know, as you may not, I just here I was explaining like the second step when it comes to the link with storage proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:31,000",
+				"to": "00:38:36,000"
+			},
+			"offsets": {
+				"from": 2311000,
+				"to": 2316000
+			},
+			"text": " And now there is the last part, which is essentially verifying the proof itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:36,000",
+				"to": "00:38:45,000"
+			},
+			"offsets": {
+				"from": 2316000,
+				"to": 2325000
+			},
+			"text": " So approach number one is verifying the proof directly on the chain approach number two. Let's verify the proof inside the snark and then verify the snark approach number three."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:45,000",
+				"to": "00:38:57,000"
+			},
+			"offsets": {
+				"from": 2325000,
+				"to": 2337000
+			},
+			"text": " So that's verify multiple truths inside the snark and then verify the snark. We can aggregate multiple snacks together and so on, but obviously there are some trade off, especially when it comes to proving time."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:57,000",
+				"to": "00:39:04,000"
+			},
+			"offsets": {
+				"from": 2337000,
+				"to": 2344000
+			},
+			"text": " And yeah, so now why the first approach is feasible on on the gear roll ups, for example, and start with cold data is very cheap."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:04,000",
+				"to": "00:39:10,000"
+			},
+			"offsets": {
+				"from": 2344000,
+				"to": 2350000
+			},
+			"text": " And what we want to avoid in this specific process is cold data. So this approach is, for example, feasible on start net."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:10,000",
+				"to": "00:39:19,000"
+			},
+			"offsets": {
+				"from": 2350000,
+				"to": 2359000
+			},
+			"text": " But, for example, if you want to verify like a proof on optimism or a collated, very expensive, you want to reduce it as much as possible. So for that reason, you might want to use a snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:19,000",
+				"to": "00:39:31,000"
+			},
+			"offsets": {
+				"from": 2359000,
+				"to": 2371000
+			},
+			"text": " And finally, if you have like many slots that you want to prove, why can't you just verify them inside one snark? You're gonna pay improver time, but we just present one proof at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:31,000",
+				"to": "00:39:43,000"
+			},
+			"offsets": {
+				"from": 2371000,
+				"to": 2383000
+			},
+			"text": " So this approach is cheaper is the cheapest one, but only if you have multiple actions to take. So there are trade offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:43,000",
+				"to": "00:39:51,000"
+			},
+			"offsets": {
+				"from": 2383000,
+				"to": 2391000
+			},
+			"text": " So let's identify them categories, proof overhead latency verification cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:51,000",
+				"to": "00:39:59,000"
+			},
+			"offsets": {
+				"from": 2391000,
+				"to": 2399000
+			},
+			"text": " So verify the proof directly, true overhead doesn't exist, latency doesn't exist because we don't need to prove anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:59,000",
+				"to": "00:40:05,000"
+			},
+			"offsets": {
+				"from": 2399000,
+				"to": 2405000
+			},
+			"text": " Verification costs, well, it is significant because we need to post cold data and we need to do the actual computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:05,000",
+				"to": "00:40:14,000"
+			},
+			"offsets": {
+				"from": 2405000,
+				"to": 2414000
+			},
+			"text": " So like going through the entire path and each step in the path is one hashing function. Oh, and also, let me get back to the previous slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:14,000",
+				"to": "00:40:27,000"
+			},
+			"offsets": {
+				"from": 2414000,
+				"to": 2427000
+			},
+			"text": " So this is very important why wrapping inside this, wrapping inside this arc is pretty important. If you're like dealing with a storage layout that is using a specific hashing function, let's say for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:27,000",
+				"to": "00:40:35,000"
+			},
+			"offsets": {
+				"from": 2427000,
+				"to": 2435000
+			},
+			"text": " Peterson, Peterson is not available like on the EVN, like you just need to implement it's not the precompiler, it's gonna be costly."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:35,000",
+				"to": "00:40:45,000"
+			},
+			"offsets": {
+				"from": 2435000,
+				"to": 2445000
+			},
+			"text": " But if you do inside this American, Peterson is pretty smart friendly, then, well, it just verifies the icon of the one and you abstract it so it's gonna be way, way, way cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:45,000",
+				"to": "00:40:54,000"
+			},
+			"offsets": {
+				"from": 2445000,
+				"to": 2454000
+			},
+			"text": " But again, there are trade offs. Let me get back to this. So I went through the standard market, Patricia three, start your fight proof, proof overhead, it exists."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:54,000",
+				"to": "00:41:03,000"
+			},
+			"offsets": {
+				"from": 2454000,
+				"to": 2463000
+			},
+			"text": " So we are not super happy latency. We're also not happy because we actually need to spend time on improving this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:03,000",
+				"to": "00:41:08,000"
+			},
+			"offsets": {
+				"from": 2463000,
+				"to": 2468000
+			},
+			"text": " So, verification costs, we are happy because well, we just verify a proof. So it's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:08,000",
+				"to": "00:41:17,000"
+			},
+			"offsets": {
+				"from": 2468000,
+				"to": 2477000
+			},
+			"text": " And start to find multiple proofs, the proof overhead is still there. Latency is still there. It's even bigger because it takes a bit longer in improving time."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:17,000",
+				"to": "00:41:30,000"
+			},
+			"offsets": {
+				"from": 2477000,
+				"to": 2490000
+			},
+			"text": " And verification costs were super happy because essentially we can mutualize the cost of verifying multiple proofs by just verifying one single star proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:30,000",
+				"to": "00:41:36,000"
+			},
+			"offsets": {
+				"from": 2490000,
+				"to": 2496000
+			},
+			"text": " Okay, went through quite a lot of things. Let's put this all together."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:36,000",
+				"to": "00:41:45,000"
+			},
+			"offsets": {
+				"from": 2496000,
+				"to": 2505000
+			},
+			"text": " So let's imagine we have free chains and we want to have interoperability between them. So we have chain Z chain X and chain Y."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:45,000",
+				"to": "00:42:00,000"
+			},
+			"offsets": {
+				"from": 2505000,
+				"to": 2520000
+			},
+			"text": " So it all starts with a message, aka commitment, we send a message in order to get the commitment. So let's say that we send a message from chain Z to chain X, because on chain X, we want to access the state of chain Z."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:00,000",
+				"to": "00:42:08,000"
+			},
+			"offsets": {
+				"from": 2520000,
+				"to": 2528000
+			},
+			"text": " So what do we do once we have the commitment, we literally recreate all the headers, using one of the three approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:08,000",
+				"to": "00:42:21,000"
+			},
+			"offsets": {
+				"from": 2528000,
+				"to": 2541000
+			},
+			"text": " And once we recreate it, the header is still the point for which I want to prove the storage. I just verify a proof and again, for verifying a proof, there are multiple approaches. But now let's say that on chain Y, I want to access the state of chain Z."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:21,000",
+				"to": "00:42:28,000"
+			},
+			"offsets": {
+				"from": 2541000,
+				"to": 2548000
+			},
+			"text": " And there is no direct communication between chain Y and chain Z. So it must be routed through chain X."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:28,000",
+				"to": "00:42:36,000"
+			},
+			"offsets": {
+				"from": 2548000,
+				"to": 2556000
+			},
+			"text": " By the way, I'm like talking about this in a pretty abstract way by chain X, I just mean it to me later one."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:36,000",
+				"to": "00:42:45,000"
+			},
+			"offsets": {
+				"from": 2556000,
+				"to": 2565000
+			},
+			"text": " Yeah, so from chain X, I'm just going to send again the commitment about chain Z as a message, and then simply recreate all this, all these headers."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:45,000",
+				"to": "00:42:59,000"
+			},
+			"offsets": {
+				"from": 2565000,
+				"to": 2579000
+			},
+			"text": " So we may not notice, it's pretty redundant because we perform the same computation on two different chains. And we don't need to do that, especially if you use like the third approach, which is generating the proof on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:59,000",
+				"to": "00:43:06,000"
+			},
+			"offsets": {
+				"from": 2579000,
+				"to": 2586000
+			},
+			"text": " But now there is another problem. How do you actually know what you should do? Like you need to be somehow aware of what is happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:06,000",
+				"to": "00:43:16,000"
+			},
+			"offsets": {
+				"from": 2586000,
+				"to": 2596000
+			},
+			"text": " So for that reason, we introduce an API. We don't expect like developers to deal with all that complexities, choosing the right approach for the direct thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:16,000",
+				"to": "00:43:25,000"
+			},
+			"offsets": {
+				"from": 2596000,
+				"to": 2605000
+			},
+			"text": " Essentially, right now our API's optimizes cost wise soon we'll be able to optimize latency wise."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:25,000",
+				"to": "00:43:35,000"
+			},
+			"offsets": {
+				"from": 2605000,
+				"to": 2615000
+			},
+			"text": " And yeah, and essentially that's it. That's about our API. I highly, highly encourage you to check this out."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:35,000",
+				"to": "00:43:44,000"
+			},
+			"offsets": {
+				"from": 2615000,
+				"to": 2624000
+			},
+			"text": " And yeah, like a few final words about the API, it acts as a coordinator, it optimize the cost, it optimize the cost because we can batch multiple things."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:44,000",
+				"to": "00:44:00,000"
+			},
+			"offsets": {
+				"from": 2624000,
+				"to": 2640000
+			},
+			"text": " And once the job is done, you get a notification like via a webhook, via an event like whatever you want. Essentially, you're not, you don't need to be like an infrastructure maintainer, and you can just focus on essentially building on top of this primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:00,000",
+				"to": "00:44:02,000"
+			},
+			"offsets": {
+				"from": 2640000,
+				"to": 2642000
+			},
+			"text": " And I think that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:02,000",
+				"to": "00:44:10,000"
+			},
+			"offsets": {
+				"from": 2642000,
+				"to": 2650000
+			},
+			"text": " Questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:11,000",
+				"to": "00:44:27,000"
+			},
+			"offsets": {
+				"from": 2651000,
+				"to": 2667000
+			},
+			"text": " So the API essentially is a REST API for now. We also have a JSON interface. We have option on chain entry points. So we can request the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:27,000",
+				"to": "00:44:33,000"
+			},
+			"offsets": {
+				"from": 2667000,
+				"to": 2673000
+			},
+			"text": " Like by making off jingle, like calling a REST API or like calling a JSA or PC method."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:33,000",
+				"to": "00:44:44,000"
+			},
+			"offsets": {
+				"from": 2673000,
+				"to": 2684000
+			},
+			"text": " Or if you're from a contrast like once you access this data, then you just submit an event, we're going to catch the event. And later on like after a bit of time, feed this specific data inside the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:44,000",
+				"to": "00:44:53,000"
+			},
+			"offsets": {
+				"from": 2684000,
+				"to": 2693000
+			},
+			"text": " So we have like a bunch of interfaces. And by the way, speaking of like the off chain entry points, once the entire like work is done on our side, you can get a notification."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:53,000",
+				"to": "00:45:12,000"
+			},
+			"offsets": {
+				"from": 2693000,
+				"to": 2712000
+			},
+			"text": " You can be like a webhook. We can like send you a bit of information like using a web socket. You can be essentially whatever, whatever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:12,000",
+				"to": "00:45:25,000"
+			},
+			"offsets": {
+				"from": 2712000,
+				"to": 2725000
+			},
+			"text": " So that's actually a great question. So different chains use a different like storage. I would say architecture. They might commit to a Merkopatriatory, Merkopatri, maybe even vertical tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:25,000",
+				"to": "00:45:36,000"
+			},
+			"offsets": {
+				"from": 2725000,
+				"to": 2736000
+			},
+			"text": " And obviously, like I said, having a generalized verifier is like pretty, it's not a clean approach. So we essentially abstract it by using a snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:36,000",
+				"to": "00:45:49,000"
+			},
+			"offsets": {
+				"from": 2736000,
+				"to": 2749000
+			},
+			"text": " And inside the snark itself, we just do the proper work. Like, you know, we go through the tree, like through the elements of the proof. And then we can like use a specific hashing function."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:49,000",
+				"to": "00:46:04,000"
+			},
+			"offsets": {
+				"from": 2749000,
+				"to": 2764000
+			},
+			"text": " So for example, now Poseidon is pretty popular. I think that's crawl uses Poseidon and also ZK sync uses Poseidon on the EVN, like performing Poseidon will be pretty expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:04,000",
+				"to": "00:46:14,000"
+			},
+			"offsets": {
+				"from": 2764000,
+				"to": 2774000
+			},
+			"text": " So for that reason, you cannot verify the proof directly, but what you can do, you can do the entire verification inside the snark. And then on the one, you don't really care what the snark is like doing. You just verify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:14,000",
+				"to": "00:46:28,000"
+			},
+			"offsets": {
+				"from": 2774000,
+				"to": 2788000
+			},
+			"text": " So that's how we actually deal with it. If we need to have it abstracted, we have it abstracted. If we don't, then we just don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:28,000",
+				"to": "00:46:34,000"
+			},
+			"offsets": {
+				"from": 2788000,
+				"to": 2794000
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:34,000",
+				"to": "00:46:46,000"
+			},
+			"offsets": {
+				"from": 2794000,
+				"to": 2806000
+			},
+			"text": " Oh, yeah, that's a good question because I think it went super technical. So actually what we do at Herrado to us every two weeks, we have some internal hackatons and right before the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:46,000",
+				"to": "00:47:01,000"
+			},
+			"offsets": {
+				"from": 2806000,
+				"to": 2821000
+			},
+			"text": " We build a proof of concept that we call the merge swap. And essentially, we allowed anyone to down their proof of work, if on proof of stake and the way how it works. We literally build the bridge on top of this technology and the bridge works in a way that you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:01,000",
+				"to": "00:47:19,000"
+			},
+			"offsets": {
+				"from": 2821000,
+				"to": 2839000
+			},
+			"text": " lock your proof of work inside the snark contract on proof of work chain. You can prove that you've done it on if you're in proof of stake. Once you, the proof is verified, you can meet your C20 token and you can do whatever you want with the token."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:19,000",
+				"to": "00:47:30,000"
+			},
+			"offsets": {
+				"from": 2839000,
+				"to": 2850000
+			},
+			"text": " And then if you want to withdraw back to if you're in proof of work, you just burn it, you prove the fact that you burned on the other side. And, and yeah, that's it. Also in terms of other use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:30,000",
+				"to": "00:47:42,000"
+			},
+			"offsets": {
+				"from": 2850000,
+				"to": 2862000
+			},
+			"text": " I think that cross chain collateralization is pretty cool, because this is the place where you want to avoid latency as much as possible. And you want to be as synchronous as much as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:42,000",
+				"to": "00:47:58,000"
+			},
+			"offsets": {
+				"from": 2862000,
+				"to": 2878000
+			},
+			"text": " And essentially that's what we do here, because our latency comes only from from the proving time. But again, using some optimistic approaches and so on. There are a lot of things we can do here. I hope it answers the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:58,000",
+				"to": "00:48:11,000"
+			},
+			"offsets": {
+				"from": 2878000,
+				"to": 2891000
+			},
+			"text": " Okay, I think that's it. I have like three minutes. So guess we can wrap it up. And yeah, thanks."
+		}
+	]
+}

@@ -1,0 +1,802 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,840"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13840
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,840",
+				"to": "00:00:18,720"
+			},
+			"offsets": {
+				"from": 13840,
+				"to": 18720
+			},
+			"text": " Right, is this thing on? Great! Well, I hope you're all ready for this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,720",
+				"to": "00:00:25,280"
+			},
+			"offsets": {
+				"from": 18720,
+				"to": 25280
+			},
+			"text": " I'm certainly not. This is usually a speech that I give half drunk in a bar"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,280",
+				"to": "00:00:31,040"
+			},
+			"offsets": {
+				"from": 25280,
+				"to": 31040
+			},
+			"text": " somewhere to a potential consulting client. I'm hoping it'll work here as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,040",
+				"to": "00:00:38,320"
+			},
+			"offsets": {
+				"from": 31040,
+				"to": 38320
+			},
+			"text": " So, five deadcons in five minutes. Why am I qualified to give this talk? I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,320",
+				"to": "00:00:42,720"
+			},
+			"offsets": {
+				"from": 38320,
+				"to": 42720
+			},
+			"text": " very prominent. I have to accomplish any great thing, but I have been to almost"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,720",
+				"to": "00:00:46,960"
+			},
+			"offsets": {
+				"from": 42720,
+				"to": 46960
+			},
+			"text": " every devcon, except the one that was in Gavin Wood's living room. So you can see"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,960",
+				"to": "00:00:52,560"
+			},
+			"offsets": {
+				"from": 46960,
+				"to": 52560
+			},
+			"text": " here proof of t-shirt. I did think the obvious thing of just like"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,560",
+				"to": "00:00:59,120"
+			},
+			"offsets": {
+				"from": 52560,
+				"to": 59120
+			},
+			"text": " stripping through them on stage. That idea did not survive beta testing. You"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,120",
+				"to": "00:01:06,800"
+			},
+			"offsets": {
+				"from": 59120,
+				"to": 66800
+			},
+			"text": " wouldn't appreciate that. So, as with everything, in the short story, I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,800",
+				"to": "00:01:12,320"
+			},
+			"offsets": {
+				"from": 66800,
+				"to": 72320
+			},
+			"text": " to impose a narrative arc on what I'm doing. So this is as much perception, my"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,320",
+				"to": "00:01:16,960"
+			},
+			"offsets": {
+				"from": 72320,
+				"to": 76960
+			},
+			"text": " perception is any reality, but I would see the devcon's roughly going like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,960",
+				"to": "00:01:21,840"
+			},
+			"offsets": {
+				"from": 76960,
+				"to": 81840
+			},
+			"text": " Nerds met Bitcoin. That was the very beginning. We then were then a grown-up"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,840",
+				"to": "00:01:28,400"
+			},
+			"offsets": {
+				"from": 81840,
+				"to": 88400
+			},
+			"text": " technology. Very respectable. We were rich and fabulous, as I remember 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,400",
+				"to": "00:01:36,720"
+			},
+			"offsets": {
+				"from": 88400,
+				"to": 96720
+			},
+			"text": " It's not a point of honor, but it was fun. Followed by cry and build, I would"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,720",
+				"to": "00:01:40,560"
+			},
+			"offsets": {
+				"from": 96720,
+				"to": 100560
+			},
+			"text": " describe that at stage as, but I still had played a time when a lot of progress"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,560",
+				"to": "00:01:43,680"
+			},
+			"offsets": {
+				"from": 100560,
+				"to": 103680
+			},
+			"text": " was made, and then people discovering society."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,480",
+				"to": "00:01:51,600"
+			},
+			"offsets": {
+				"from": 106480,
+				"to": 111600
+			},
+			"text": " So, devcon one was really small. It was basically the size of this room,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,600",
+				"to": "00:01:57,760"
+			},
+			"offsets": {
+				"from": 111600,
+				"to": 117760
+			},
+			"text": " except reasonably full. It had one line for coffee. That was the only catering"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,760",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 117760,
+				"to": 122000
+			},
+			"text": " that we had. Casper, proof of state, was first"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:06,880"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 126880
+			},
+			"text": " mooted here. A lot of stuff was said about the benefits of smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,880",
+				"to": "00:02:11,360"
+			},
+			"offsets": {
+				"from": 126880,
+				"to": 131360
+			},
+			"text": " and it had a nice academic feel. The Dow was proposed there, I think, in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,360",
+				"to": "00:02:19,360"
+			},
+			"offsets": {
+				"from": 131360,
+				"to": 139360
+			},
+			"text": " side event, and Ethereum was denial of service. You'll notice a theme on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,360",
+				"to": "00:02:22,960"
+			},
+			"offsets": {
+				"from": 139360,
+				"to": 142960
+			},
+			"text": " Here's an example slide. You can see it was a very, very nice haul."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,960",
+				"to": "00:02:29,840"
+			},
+			"offsets": {
+				"from": 142960,
+				"to": 149840
+			},
+			"text": " Devcon two is my favourite devcon, because I seemed artificially cool, because Shanghai"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,840",
+				"to": "00:02:33,920"
+			},
+			"offsets": {
+				"from": 149840,
+				"to": 153920
+			},
+			"text": " is a confusing and artificial and scary environment, and I'd already been there"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,920",
+				"to": "00:02:37,440"
+			},
+			"offsets": {
+				"from": 153920,
+				"to": 157440
+			},
+			"text": " five or six times before, so I looked like I knew what I was doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,400",
+				"to": "00:02:45,120"
+			},
+			"offsets": {
+				"from": 158400,
+				"to": 165120
+			},
+			"text": " This is when it really became respectable. IBM was there. People had stalls."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,120",
+				"to": "00:02:48,720"
+			},
+			"offsets": {
+				"from": 165120,
+				"to": 168720
+			},
+			"text": " People from Chinese local government showed up. It was great."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,720",
+				"to": "00:02:55,440"
+			},
+			"offsets": {
+				"from": 168720,
+				"to": 175440
+			},
+			"text": " For very obvious reasons, safety and security were big things. Formal methods came in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,440",
+				"to": "00:03:00,160"
+			},
+			"offsets": {
+				"from": 175440,
+				"to": 180160
+			},
+			"text": " It was still very much bring your own nightlife. People just hung around the hotel"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,160",
+				"to": "00:03:04,640"
+			},
+			"offsets": {
+				"from": 180160,
+				"to": 184640
+			},
+			"text": " or said they were going to certain bars. Vitalik was in, I think, the sheep's head"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,640",
+				"to": "00:03:10,560"
+			},
+			"offsets": {
+				"from": 184640,
+				"to": 190560
+			},
+			"text": " pub. It translated to quite often. It was very small. You can just go up and talk to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,560",
+				"to": "00:03:16,320"
+			},
+			"offsets": {
+				"from": 190560,
+				"to": 196320
+			},
+			"text": " Joseph Levine. It was very communal. Ethereum Classic was there. If you want that story,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,320",
+				"to": "00:03:21,280"
+			},
+			"offsets": {
+				"from": 196320,
+				"to": 201280
+			},
+			"text": " get me a beer later. The Dow was informally post-mortem quite a bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,280",
+				"to": "00:03:25,920"
+			},
+			"offsets": {
+				"from": 201280,
+				"to": 205920
+			},
+			"text": " and in accordance with what was then tradition, Ethereum was denial of service"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,920",
+				"to": "00:03:30,560"
+			},
+			"offsets": {
+				"from": 205920,
+				"to": 210560
+			},
+			"text": " attacked in the middle of the event. But it was a lot of fun, as you can see."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,520",
+				"to": "00:03:40,320"
+			},
+			"offsets": {
+				"from": 211520,
+				"to": 220320
+			},
+			"text": " The catering was good. It's also where Pookie Boo Bar's string game started,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,320",
+				"to": "00:03:43,440"
+			},
+			"offsets": {
+				"from": 220320,
+				"to": 223440
+			},
+			"text": " which have been a constant feature. I'm not sure if he's doing them these years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,440",
+				"to": "00:03:48,640"
+			},
+			"offsets": {
+				"from": 223440,
+				"to": 228640
+			},
+			"text": " but if you see people with bits of string and sticks stuck, bits of string and stuff stuck"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,640",
+				"to": "00:03:56,640"
+			},
+			"offsets": {
+				"from": 228640,
+				"to": 236640
+			},
+			"text": " themselves, that's because of him. DevCon 3, if I want to leave you with one image from this talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,720",
+				"to": "00:04:03,520"
+			},
+			"offsets": {
+				"from": 238720,
+				"to": 243520
+			},
+			"text": " my time has stopped. That's probably good. If only we want to leave you with one image of this talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,520",
+				"to": "00:04:11,600"
+			},
+			"offsets": {
+				"from": 243520,
+				"to": 251600
+			},
+			"text": " it's me. On the pontoon, that's a golf club. It's a party of two hours without figuring out"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,600",
+				"to": "00:04:18,400"
+			},
+			"offsets": {
+				"from": 251600,
+				"to": 258400
+			},
+			"text": " who is actually paying for it. Talking about mortgage security as well being brought whiskey."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,400",
+				"to": "00:04:23,360"
+			},
+			"offsets": {
+				"from": 258400,
+				"to": 263360
+			},
+			"text": " Everything was going to be great. There were lots of people used to work in multi-level marketing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,360",
+				"to": "00:04:28,080"
+			},
+			"offsets": {
+				"from": 263360,
+				"to": 268080
+			},
+			"text": " The corporates were a bit more quiet. A lot of stuff was focused on use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,080",
+				"to": "00:04:34,640"
+			},
+			"offsets": {
+				"from": 268080,
+				"to": 274640
+			},
+			"text": " There were lots of zero knowledge side events. Daxes came along. It was all pretty good."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,640",
+				"to": "00:04:42,880"
+			},
+			"offsets": {
+				"from": 274640,
+				"to": 282880
+			},
+			"text": " Prague, the money went away, but there were lots of developer tools. Prague is great. The beer was"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,880",
+				"to": "00:04:48,240"
+			},
+			"offsets": {
+				"from": 282880,
+				"to": 288240
+			},
+			"text": " excellent. It's probably the first time I felt that we had proper tooling for what we were doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,240",
+				"to": "00:04:57,920"
+			},
+			"offsets": {
+				"from": 288240,
+				"to": 297920
+			},
+			"text": " A lot of paper dies everywhere. Blockchains, LLC, was quite an event. There was a huge haul"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,920",
+				"to": "00:05:00,720"
+			},
+			"offsets": {
+				"from": 297920,
+				"to": 300720
+			},
+			"text": " with this girl as a hologram. I still don't know who she is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,720",
+				"to": "00:05:14,320"
+			},
+			"offsets": {
+				"from": 300720,
+				"to": 314320
+			},
+			"text": " How am I doing for time? Two minutes. Good. I'm okay. Osaka was a point where"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,320",
+				"to": "00:05:20,160"
+			},
+			"offsets": {
+				"from": 314320,
+				"to": 320160
+			},
+			"text": " actually the money hadn't quite come back, but if anything, that was a good thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,160",
+				"to": "00:05:25,440"
+			},
+			"offsets": {
+				"from": 320160,
+				"to": 325440
+			},
+			"text": " A lot of people looked at Ethereum 2.0. There was a lot to talk about crypto law, and that was"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,440",
+				"to": "00:05:30,160"
+			},
+			"offsets": {
+				"from": 325440,
+				"to": 330160
+			},
+			"text": " actually something people were starting to think about. Society, law, the general world, that was good."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,160",
+				"to": "00:05:37,040"
+			},
+			"offsets": {
+				"from": 330160,
+				"to": 337040
+			},
+			"text": " ERC721 came along foreshadowing the NFT boom. Generalization of crypto kitties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,040",
+				"to": "00:05:41,200"
+			},
+			"offsets": {
+				"from": 337040,
+				"to": 341200
+			},
+			"text": " which is previously when you do these things, you have to refer them as something kitties."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,200",
+				"to": "00:05:47,440"
+			},
+			"offsets": {
+				"from": 341200,
+				"to": 347440
+			},
+			"text": " I did climate kitties for common credits at one point. And Ava and Libra came along, which was cool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,440",
+				"to": "00:05:53,360"
+			},
+			"offsets": {
+				"from": 347440,
+				"to": 353360
+			},
+			"text": " and Japan is generally beautiful. I scived off a lot to go to the castle and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,320",
+				"to": "00:06:02,880"
+			},
+			"offsets": {
+				"from": 354320,
+				"to": 362880
+			},
+			"text": " Devcom Bogota is, of course, whatever we make of it. Everything is still to be announced."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,880",
+				"to": "00:06:07,520"
+			},
+			"offsets": {
+				"from": 362880,
+				"to": 367520
+			},
+			"text": " Even the beer, the coffee has been very good so far. You'll notice I've commented on that a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,520",
+				"to": "00:06:13,680"
+			},
+			"offsets": {
+				"from": 367520,
+				"to": 373680
+			},
+			"text": " And here are many thanks to people on Twitter who helped me with things."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,680",
+				"to": "00:06:19,920"
+			},
+			"offsets": {
+				"from": 373680,
+				"to": 379920
+			},
+			"text": " The pictures you see that are not mine are from them, and you can see that in the speakers notes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,920",
+				"to": "00:06:28,560"
+			},
+			"offsets": {
+				"from": 379920,
+				"to": 388560
+			},
+			"text": " which I think will go up online. I'll redact them in a minute. And here are some really good articles"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,560",
+				"to": "00:06:32,160"
+			},
+			"offsets": {
+				"from": 388560,
+				"to": 392160
+			},
+			"text": " about things that went on there that I would very much suggest if you enjoyed this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,160",
+				"to": "00:06:35,280"
+			},
+			"offsets": {
+				"from": 392160,
+				"to": 395280
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,240",
+				"to": "00:06:38,720"
+			},
+			"offsets": {
+				"from": 396240,
+				"to": 398720
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,720",
+				"to": "00:06:40,720"
+			},
+			"offsets": {
+				"from": 398720,
+				"to": 400720
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,720",
+				"to": "00:06:44,720"
+			},
+			"offsets": {
+				"from": 400720,
+				"to": 404720
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,720",
+				"to": "00:06:50,720"
+			},
+			"offsets": {
+				"from": 404720,
+				"to": 410720
+			},
+			"text": " [end of transcript]"
+		}
+	]
+}

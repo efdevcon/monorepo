@@ -1,0 +1,4707 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 14000
+			},
+			"text": " >> Hello everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 17000
+			},
+			"text": " Marissa, my voice you mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " My name is Diego Fernandez and the Secretary of Innovation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 22000
+			},
+			"text": " of the City of Buenos Aires."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 26000
+			},
+			"text": " And I wish I would share with you basically how I would deal"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31000
+			},
+			"text": " in how we're planning with self-sovereign idea approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 36000
+			},
+			"text": " and how do we got to the point that we are right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 40000
+			},
+			"text": " So I'm going to share with you Quark ID, which is a self-sovereign"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 43000
+			},
+			"text": " protocol that we promoted."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 48000
+			},
+			"text": " But let me start thinking about how do we deal with identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 49000
+			},
+			"text": " in the analog world."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 52000
+			},
+			"text": " Let's think for a second about our wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 57000
+			},
+			"text": " In our wallets we have a chunk of attestations of our identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 59000
+			},
+			"text": " Maybe we have a driver's license."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 62000
+			},
+			"text": " In my case I have ID from two different countries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 63000
+			},
+			"text": " Uruguay and Argentina."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 68000
+			},
+			"text": " I have a credit card from two different banks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 71000
+			},
+			"text": " I have a card from my coffee insurance company."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 74000
+			},
+			"text": " I have a card from my football soccer team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 80000
+			},
+			"text": " all of those institutions gave me attestations that make my identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 84000
+			},
+			"text": " All of those institutions don't know that the other institutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 86000
+			},
+			"text": " gave that credential to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 90000
+			},
+			"text": " Nevertheless, all of them agree on a set of given standards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 91000
+			},
+			"text": " which is quite basic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 96000
+			},
+			"text": " It's the hate and the wit of the credentials."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 97000
+			},
+			"text": " And why is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 100000
+			},
+			"text": " Because we have our own wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 103000
+			},
+			"text": " We have our wallets, we have a black wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 107000
+			},
+			"text": " and maybe each and every one of you chose a different color of wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 109000
+			},
+			"text": " We choose a wallet that we want and we put the credentials"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 111000
+			},
+			"text": " in the wallet that we choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 117000
+			},
+			"text": " And how do the verification of this credential works in the analog world?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 120000
+			},
+			"text": " It follows this triangle over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 124000
+			},
+			"text": " The most important part of this triangle is the land that says trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 126000
+			},
+			"text": " in the base of the triangle."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 127000
+			},
+			"text": " And why is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 131000
+			},
+			"text": " Because let's say for example that the one who said the city government issues"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 135000
+			},
+			"text": " a driver's license on why we have a stating that I am able to drive in a car."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 137000
+			},
+			"text": " Then a policeman stops me and says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 140000
+			},
+			"text": " \"Hey, show me your driver's license, please.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 145000
+			},
+			"text": " That when I showed my credential, the policeman needs to trust the one who said the city government."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 149000
+			},
+			"text": " It needs to know how the one who said the city government makes credentials"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 155000
+			},
+			"text": " in order to be able of verifying that the credential is valid and it is not a forge."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 161000
+			},
+			"text": " But let's think of the last 30 years when the internet took over and we became digital."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 164000
+			},
+			"text": " How do we deal with identity in the digital world?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 166000
+			},
+			"text": " Well, we have a huge problem there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 170000
+			},
+			"text": " Why? Because we don't have yet a digital ID primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 174000
+			},
+			"text": " And I'm really excited that I think that this is starting to change."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 178000
+			},
+			"text": " That we are starting to build a digital ID primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 181000
+			},
+			"text": " But today, and we are all familiar with this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 187000
+			},
+			"text": " in order to ensure, let's say a bank, an insurance company, whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 193000
+			},
+			"text": " in order to be sure that the other party is who we think it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 199000
+			},
+			"text": " Each company needed to make their own security frameworks, their own security approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 203000
+			},
+			"text": " Hence, we have tons of apps in our cell phones."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 208000
+			},
+			"text": " We have an app for the bank and app for the government, of the national government,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 212000
+			},
+			"text": " an app for the local governments, apps for the health companies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 214000
+			},
+			"text": " and for the airlines."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 218000
+			},
+			"text": " Taking this into the analog perspective will be the same as,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 222000
+			},
+			"text": " \"Hey, sorry, I don't have a timer here.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 226000
+			},
+			"text": " I don't know if it's a timer. Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 233000
+			},
+			"text": " Going back, comparing this to the analog model will be the same as"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 238000
+			},
+			"text": " when the San Francisco government gives you a driver license."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 243000
+			},
+			"text": " The driver license came in a wallet access for the San Francisco government."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 249000
+			},
+			"text": " When Visa gives you a credit card, comes in a physical wallet access visa,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 253000
+			},
+			"text": " you will be carrying a pack full of wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 257000
+			},
+			"text": " It doesn't make sense in the analog world, but we do it in the digital world."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 265000
+			},
+			"text": " We have pages and pages of apps in order to be enabled of interacting with any given organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 270000
+			},
+			"text": " What is the great advantage that the self-trollver and digital ID model proposes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 276000
+			},
+			"text": " As you see, conceptually is quite the same model of trust that we have in the analog world."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 279000
+			},
+			"text": " But it's much, much better."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 285000
+			},
+			"text": " Why? Because as you see in the base, that trust line is not more solid line."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 291000
+			},
+			"text": " Why is that? Because a blockchain comes into place and we go into this in the next few slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 297000
+			},
+			"text": " The issuer creates a digital identifier and writes that this is an identifier with"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 303000
+			},
+			"text": " his associated cryptographic materials needed to record it in a public blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 309000
+			},
+			"text": " When the issuer means a perfect credential to the wallet of any given holder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 314000
+			},
+			"text": " the holder is first able of accepting or rejecting the wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 317000
+			},
+			"text": " This is really important in this model."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 323000
+			},
+			"text": " Nobody can air drop or give a credential to a user if the user doesn't accept the credential."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 329000
+			},
+			"text": " When the verify requests are a digital proof of that credential,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 334000
+			},
+			"text": " this request is claims-based, not credential-based."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 339000
+			},
+			"text": " Let's say I have three daughters, 19, 17 and 15 years old."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 344000
+			},
+			"text": " Of course, when I go to a bar and request a beer, nobody asks for my ID because anybody"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 347000
+			},
+			"text": " assumes that I am over 18."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 349000
+			},
+			"text": " But that's not the case of my daughter."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 357000
+			},
+			"text": " In today, in the analog world, we have a credential-based authentication or verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 361000
+			},
+			"text": " We give, for example, my daughter, when she requests a beer in a bar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 365000
+			},
+			"text": " she is forced to give all of her information, all of the information contained,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 372000
+			},
+			"text": " for example, her ID card to wait her, handing her a beer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 377000
+			},
+			"text": " In this self-serving ID model, it's only claims-based."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 383000
+			},
+			"text": " You can give proof of certain aspects of your identity without needing to reveal all of the claims"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 386000
+			},
+			"text": " containing a given verify credential."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 392000
+			},
+			"text": " In this case, I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 399000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 404000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 409000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 414000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 418000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 422000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 427000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 431000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 434000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 437000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 441000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 445000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 449000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 452000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 455000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 458000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 461000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 464000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 467000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 469000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 471000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 473000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 475000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 477000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 479000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 481000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 483000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 485000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 487000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 489000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 491000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 493000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 495000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 497000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 499000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 501000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 503000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 505000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 507000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 509000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 511000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 513000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 515000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 517000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 519000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 521000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 523000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 525000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 527000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 529000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 531000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 533000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 535000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 537000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 539000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 541000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 543000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 545000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:07,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 547000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 547000,
+				"to": 549000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 551000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 553000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 555000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 557000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 559000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 561000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 563000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 565000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 567000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 569000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 571000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 573000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 575000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:37,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 577000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 577000,
+				"to": 579000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 581000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 583000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 585000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 587000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 589000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 591000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 593000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 595000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 597000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 599000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 601000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 603000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 605000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 607000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 609000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 611000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 613000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 615000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 617000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 619000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 621000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 623000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 625000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 627000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 629000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 631000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 633000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 635000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 637000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 639000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 641000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 643000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 645000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 647000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 649000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 651000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 653000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 655000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 657000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 659000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 661000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 663000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 665000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 667000
+			},
+			"text": " and I have a name that I have, and I have a name that I have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 669000
+			},
+			"text": " and I know you help us develop in this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 673000
+			},
+			"text": " And that call was pretty successful, and we started building"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 675000
+			},
+			"text": " Quark ID. I wanted the definitions that we,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 679000
+			},
+			"text": " one of the first definitions that we made is this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 682000
+			},
+			"text": " this shouldn't be a government protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 684000
+			},
+			"text": " This should be a community protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 687000
+			},
+			"text": " You have a white paper on the Internet, it's an open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 690000
+			},
+			"text": " protocol. It follows the standards that I'm measuring here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 693000
+			},
+			"text": " the centralized identity foundation, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 698000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 701000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 706000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 713000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 717000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 720000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 730000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 735000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 740000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 744000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 749000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 754000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 761000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 766000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 770000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 775000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 780000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 787000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 792000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 795000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 800000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 805000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 812000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 817000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 821000
+			},
+			"text": " the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C, the W3C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 826000
+			},
+			"text": " the second one that we made is RSK, RSK is an EVM compatible blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 828000
+			},
+			"text": " which anchors itself in Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 832000
+			},
+			"text": " And the last one was Stognet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 835000
+			},
+			"text": " As you can see, the division in Quark ID is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 838000
+			},
+			"text": " this protocol needs to be chain agnostic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 841000
+			},
+			"text": " and that is for us, it's a crucial definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 846000
+			},
+			"text": " We're planning on adding different anchoring blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 850000
+			},
+			"text": " so that any ecosystem that decides to implement Quark ID"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 853000
+			},
+			"text": " may choose whichever security layer they wish."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 855000
+			},
+			"text": " We, as the CEO of Buenos Aires,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 857000
+			},
+			"text": " decided that the first implementation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 861000
+			},
+			"text": " that the first anchoring blockchain that we would use is Stognet."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 863000
+			},
+			"text": " Why did we chose Stognet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 868000
+			},
+			"text": " Well, because their CK-proof technology is pretty sound"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 871000
+			},
+			"text": " and it enables us to do a huge scaling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 874000
+			},
+			"text": " because we can do a quadratic scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 878000
+			},
+			"text": " We chose case transactions in Stognet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 880000
+			},
+			"text": " and then we chose case transactions in Quark ID,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 884000
+			},
+			"text": " hence we're able of using the self-serving ID protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 889000
+			},
+			"text": " Quark ID protocol, with not even sense on the dollar"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 892000
+			},
+			"text": " for maintaining hundreds of thousands of credentials."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 895000
+			},
+			"text": " That is extremely important for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 899000
+			},
+			"text": " So, as I mentioned before, we developed this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 903000
+			},
+			"text": " and we were able to achieve this with a strong set of partners."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 909000
+			},
+			"text": " Extremeion, which is a dev house located in Gibraltar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 913000
+			},
+			"text": " Star Wars, which is a blockchain that you probably all know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 916000
+			},
+			"text": " based from Israel, I of Labs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 923000
+			},
+			"text": " which are the creators of RSK, Bion, OSCD, XCAPIT, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 925000
+			},
+			"text": " A very important thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 930000
+			},
+			"text": " What is the roadmap for Quark ID in Buenos Aires City?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 934000
+			},
+			"text": " We're rolling out the MVP in November this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 938000
+			},
+			"text": " We're launching the protocol in January of 2023."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 941000
+			},
+			"text": " And what is our adoption plan?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 946000
+			},
+			"text": " We hope to create 30 different birth recordentials"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 948000
+			},
+			"text": " that mean 30 different documents,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 951000
+			},
+			"text": " let's say, birth certificate, marriage certificate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 955000
+			},
+			"text": " driver's license, so have a roadmap of 30 different birth"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 959000
+			},
+			"text": " recordentials, and we plan to meet between 300,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:04,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 964000
+			},
+			"text": " and 500,000 dis-identifiers, that means this is an identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 964000,
+				"to": 966000
+			},
+			"text": " Within 2023."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:12,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 972000
+			},
+			"text": " Just to give you an idea, Buenos Aires is a 3 million, sorry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 972000,
+				"to": 978000
+			},
+			"text": " 3 million people city, but actually we're 7 million people community."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 982000
+			},
+			"text": " Why? Because we have nearly between 3 and 4 million people"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 985000
+			},
+			"text": " who commute every day to work in Buenos Aires."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 991000
+			},
+			"text": " So we plan to start in 2023, having between 300 and 500,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 998000
+			},
+			"text": " 500 and 500,000, sorry, I speak English in the second language."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1003000
+			},
+			"text": " And we would like us all to have, and we are looking forward to that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1009000
+			},
+			"text": " three different private sector organizations using this security framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1011000
+			},
+			"text": " to mean their credentials."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1013000
+			},
+			"text": " This is very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1017000
+			},
+			"text": " Nobody needs to ask permission to any government to use this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1022000
+			},
+			"text": " Any given organization made mean their credentials without"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1027000
+			},
+			"text": " requesting permission from anyone, and any community in the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1032000
+			},
+			"text": " can use this protocol for free because it's an open source protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1034000
+			},
+			"text": " So Quark, Idina, natural."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1037000
+			},
+			"text": " First, it's an open standard self-trivonity protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1039000
+			},
+			"text": " Second, it's multi-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1045000
+			},
+			"text": " Third, it's interoperable with most of the solutions tackling this strategy in the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1050000
+			},
+			"text": " Fourth, every private data is off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1054000
+			},
+			"text": " Five, it's going to have autonomous governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:37,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1057000
+			},
+			"text": " I'm going to do a small point here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1057000,
+				"to": 1063000
+			},
+			"text": " Today, the governance is being made by this ecosystem of partners."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:49,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1069000
+			},
+			"text": " But in the protocol roadmap is generating a DAO in the next 24 months"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1069000,
+				"to": 1076000
+			},
+			"text": " so that the protocol is being able to get in governed by the ecosystem of, I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1078000
+			},
+			"text": " communities, partners or whatever used in the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1082000
+			},
+			"text": " This, of course, is a very hard and difficult thing to tackle."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1086000
+			},
+			"text": " We have all seen the problems with COINBOT and et cetera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1090000
+			},
+			"text": " and it's something that we're working quite hard on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1099000
+			},
+			"text": " Six, we're creating, or Quark, Id, is creating a growing public, private ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1104000
+			},
+			"text": " And seventh, and this is the most important point, the government is a user."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1106000
+			},
+			"text": " We don't want users of the government."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1109000
+			},
+			"text": " We want to be users as a government."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1113000
+			},
+			"text": " And this is a change of paradigm which for us is quite important."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1117000
+			},
+			"text": " So last but not least, why did we choose this path?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1123000
+			},
+			"text": " What is the dilemma that we face when we tackle digital identity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1125000
+			},
+			"text": " Are we going to prove positives?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1127000
+			},
+			"text": " Or are we going to prove negatives?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1129000
+			},
+			"text": " What I mean by this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:52,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1132000
+			},
+			"text": " A Sorbonne token is a negative proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1132000,
+				"to": 1137000
+			},
+			"text": " It's something that you can say no that you receive"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1141000
+			},
+			"text": " and that proves certain negative aspects of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1144000
+			},
+			"text": " I mean, for example, you don't have credit."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1147000
+			},
+			"text": " You don't have credit, outstanding credit."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1150000
+			},
+			"text": " You don't have criminal records or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1156000
+			},
+			"text": " Proving positives is what I just described in the perfect relations model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1164000
+			},
+			"text": " which is data that you have and that you can show or not according to your will."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:30,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1170000
+			},
+			"text": " In our view, both things are necessary and both things will occur."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1170000,
+				"to": 1176000
+			},
+			"text": " But self-ownership and positive reputational systems come first."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1184000
+			},
+			"text": " We need to develop what I was mentioned before this identity primitive that we don't yet have."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1191000
+			},
+			"text": " On top of that identity, negatives will unleash a great power."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1197000
+			},
+			"text": " Of course, and that great power would be immense for this enfranchised community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1203000
+			},
+			"text": " to be able of requesting loans, for example, just using the reputation as a collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:13,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1213000
+			},
+			"text": " But it has certain potential negative things that we don't think that we are yet in a position to sort of deal with."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,000",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1213000,
+				"to": 1219000
+			},
+			"text": " Just to give you an example, if I have a negative reputation that I, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:33,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1233000
+			},
+			"text": " a woman or that I am attending a mosque in the United States, that person will have 68% chance of not getting a job compared with a Christian woman."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,000",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1233000,
+				"to": 1238000
+			},
+			"text": " I took this out of the podcast of Evan McBilliam and Bittelik Buttling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1243000
+			},
+			"text": " which I strongly recommend you all to hear because it's really, really interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1252000
+			},
+			"text": " So, thank you very much. I invite you all to get into the QuarkID.org website, download the white paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1260000
+			},
+			"text": " and we hope that in the next, I don't know, let's say 30 days, 60 days, we will have the code available in GitHub,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1264000
+			},
+			"text": " and published in the QuarkID website. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1266000
+			},
+			"text": " Thank you Diego."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:13,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1273000
+			},
+			"text": " We have some time for questions. Anyone have a questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1273000,
+				"to": 1279000
+			},
+			"text": " There is one. Two questions, yes. Three questions, come on."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1281000
+			},
+			"text": " Four, who?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:27,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1287000
+			},
+			"text": " Okay, the first one. Can I made you in Spanish or in English? I think. Okay, my friend."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,000",
+				"to": "00:21:35,520"
+			},
+			"offsets": {
+				"from": 1287000,
+				"to": 1295520
+			},
+			"text": " I am Vladimir from Ecuador. I think the concept for a civil token and civil"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,520",
+				"to": "00:21:41,000"
+			},
+			"offsets": {
+				"from": 1295520,
+				"to": 1301000
+			},
+			"text": " identity will converge in some point. What do you think?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,000",
+				"to": "00:21:52,000"
+			},
+			"offsets": {
+				"from": 1301000,
+				"to": 1312000
+			},
+			"text": " I completely agree. I think that civil tokens and verify credentials are two different aspects of our identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1312000,
+				"to": 1319000
+			},
+			"text": " The positive, the verify credentials are the things that I, I mean, that confirm my identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:08,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1328000
+			},
+			"text": " The civil token rebuilds certain social interactions or resultant attestations that, of course, we'll unleash a huge potential."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1328000,
+				"to": 1338000
+			},
+			"text": " The thing is that in our view, we need to start with the verified credentials model and then evolve into the reputational aspects"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1345000
+			},
+			"text": " that the civil token proposes, and then we will, because those are all, all of those are on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:30,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1350000
+			},
+			"text": " And once you write something in a blockchain, it's written forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,000",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1350000,
+				"to": 1357000
+			},
+			"text": " So we need to deal first in our view with the verify credentials and they did the digital identity in a self-somernet model"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:41,000"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1361000
+			},
+			"text": " and then move to the civil token's proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1361000,
+				"to": 1364000
+			},
+			"text": " Next question there, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:46,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1366000
+			},
+			"text": " So great, great talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,000",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1366000,
+				"to": 1368000
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:50,000"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1370000
+			},
+			"text": " Who helped you on building that strategy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,000",
+				"to": "00:22:51,000"
+			},
+			"offsets": {
+				"from": 1370000,
+				"to": 1371000
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,000",
+				"to": "00:22:56,000"
+			},
+			"offsets": {
+				"from": 1371000,
+				"to": 1376000
+			},
+			"text": " Who helped you on building this strategy for this project and who helped you on the vendor selection?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,000",
+				"to": "00:22:58,000"
+			},
+			"offsets": {
+				"from": 1376000,
+				"to": 1378000
+			},
+			"text": " Who helped, what, sorry?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,000",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1378000,
+				"to": 1384000
+			},
+			"text": " To find the right vendors like Polygon and the others who helped you to find the right protocols and partners."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1391000
+			},
+			"text": " Well, actually we did this with the set of partners that I mentioned before with the guys from Xtremean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:20,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1400000
+			},
+			"text": " the guys with I/O Billups, from the guys of Bien, with a lot of help, and I want to mention this with a lot of help"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,000",
+				"to": "00:23:28,000"
+			},
+			"offsets": {
+				"from": 1400000,
+				"to": 1408000
+			},
+			"text": " from the Ethereum Foundation, from Iya, from Stephen, from Skylar, and how did we choose in which blockchains to anchor?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,000",
+				"to": "00:23:34,000"
+			},
+			"offsets": {
+				"from": 1408000,
+				"to": 1414000
+			},
+			"text": " Well, of course, as I mentioned before, we started with Ethereum because it was a no-brainer."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,000",
+				"to": "00:23:41,000"
+			},
+			"offsets": {
+				"from": 1414000,
+				"to": 1421000
+			},
+			"text": " And I was lucky enough, I mean, we were lucky enough of being able of chatting and discussing."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,000",
+				"to": "00:23:48,000"
+			},
+			"offsets": {
+				"from": 1421000,
+				"to": 1428000
+			},
+			"text": " I mean, I would say every big player in the blockchain arena, and they were more than willing and open"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,000",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1428000,
+				"to": 1435000
+			},
+			"text": " to share the details of their protocol and to offer support for us, and I feel very proud about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:24:02,000"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1442000
+			},
+			"text": " At the end of the day, we decided to anchor the set of Buenos Aires since starting at because of the hub that they provided us"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,000",
+				"to": "00:24:08,000"
+			},
+			"offsets": {
+				"from": 1442000,
+				"to": 1448000
+			},
+			"text": " and because we really believe in their technology, and we think that's your knowledge proof technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,000",
+				"to": "00:24:15,000"
+			},
+			"offsets": {
+				"from": 1448000,
+				"to": 1455000
+			},
+			"text": " and it's a whole deal of implementations in a self-organizing model which we want to take."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,000",
+				"to": "00:24:20,000"
+			},
+			"offsets": {
+				"from": 1455000,
+				"to": 1460000
+			},
+			"text": " Next question here, and there are some hands there, and can you hear me?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,000",
+				"to": "00:24:26,000"
+			},
+			"offsets": {
+				"from": 1460000,
+				"to": 1466000
+			},
+			"text": " Yeah. So, thank you so much for your presentation, and then as a Latin American, I'm thinking about the user experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,000",
+				"to": "00:24:34,000"
+			},
+			"offsets": {
+				"from": 1466000,
+				"to": 1474000
+			},
+			"text": " and I imagine my family or my friends using very valuable credentials for reputation or any other use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,000",
+				"to": "00:24:37,000"
+			},
+			"offsets": {
+				"from": 1474000,
+				"to": 1477000
+			},
+			"text": " But my question is, what is your roadmap or user experience?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,000",
+				"to": "00:24:42,000"
+			},
+			"offsets": {
+				"from": 1477000,
+				"to": 1482000
+			},
+			"text": " Like, if I lose my phone, are you thinking about other ways that I can recover my wallet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,000",
+				"to": "00:24:49,000"
+			},
+			"offsets": {
+				"from": 1482000,
+				"to": 1489000
+			},
+			"text": " Are you thinking about other ways to store the very valuable credentials because in Latin America, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,000",
+				"to": "00:24:55,000"
+			},
+			"offsets": {
+				"from": 1489000,
+				"to": 1495000
+			},
+			"text": " WhatsApp usage is huge, but people sometimes don't have a lot of storage to store different apps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,000",
+				"to": "00:24:57,000"
+			},
+			"offsets": {
+				"from": 1495000,
+				"to": 1497000
+			},
+			"text": " so it's better to just have WhatsApp for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,000",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1497000,
+				"to": 1502000
+			},
+			"text": " So, I'm just wondering what are your thoughts on user experience in general for these use cases?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:06,000"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1506000
+			},
+			"text": " Okay, just, I cannot get who's speaking. Please raise your hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,000",
+				"to": "00:25:08,000"
+			},
+			"offsets": {
+				"from": 1506000,
+				"to": 1508000
+			},
+			"text": " Oh, here. Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,000",
+				"to": "00:25:14,000"
+			},
+			"offsets": {
+				"from": 1508000,
+				"to": 1514000
+			},
+			"text": " Well, it's a very good question. I mean, user experience when you're planning in millions of people implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,000",
+				"to": "00:25:17,000"
+			},
+			"offsets": {
+				"from": 1514000,
+				"to": 1517000
+			},
+			"text": " are the thing that you need to deal with."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,000",
+				"to": "00:25:22,000"
+			},
+			"offsets": {
+				"from": 1517000,
+				"to": 1522000
+			},
+			"text": " I always like to say that we're giving you this possibility with this protocol first."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,000",
+				"to": "00:25:25,000"
+			},
+			"offsets": {
+				"from": 1522000,
+				"to": 1525000
+			},
+			"text": " You can use, we're starting with three different wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,000",
+				"to": "00:25:34,000"
+			},
+			"offsets": {
+				"from": 1525000,
+				"to": 1534000
+			},
+			"text": " The Quark ID protocol wallet, X-capped is building, which is a crypto wallet, is building an implementation for the Quark ID protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,000",
+				"to": "00:25:40,000"
+			},
+			"offsets": {
+				"from": 1534000,
+				"to": 1540000
+			},
+			"text": " and always city has a digital identity wallet that is also being made compatible with Quark ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,000",
+				"to": "00:25:47,000"
+			},
+			"offsets": {
+				"from": 1540000,
+				"to": 1547000
+			},
+			"text": " As I said before in my talk, you are able, if you have the technical knowledge, I mean, it's not technical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,000",
+				"to": "00:25:53,000"
+			},
+			"offsets": {
+				"from": 1547000,
+				"to": 1553000
+			},
+			"text": " I mean, if you go to settings and you explore your private keys, so you store your sit-phrasing, whichever place you wish,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1553000,
+				"to": 1561000
+			},
+			"text": " and you do a backup of your confidential storage, and say you put it in your Google Drive, or you take it out in a pen drive or whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:04,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1564000
+			},
+			"text": " then if you lose your phone, nothing happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,000",
+				"to": "00:26:11,000"
+			},
+			"offsets": {
+				"from": 1564000,
+				"to": 1571000
+			},
+			"text": " You take your private keys, you recreate your wallet, you take your confidential storage, you sign it with your private keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,000",
+				"to": "00:26:17,000"
+			},
+			"offsets": {
+				"from": 1571000,
+				"to": 1577000
+			},
+			"text": " and then you have your wallet, you digital wallet online, in your phone again."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,000",
+				"to": "00:26:26,000"
+			},
+			"offsets": {
+				"from": 1577000,
+				"to": 1586000
+			},
+			"text": " Of course, if you don't have that knowledge, you will need to go again to each and every one of the means of the issues of your credentials and request a reissue,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,000",
+				"to": "00:26:32,000"
+			},
+			"offsets": {
+				"from": 1586000,
+				"to": 1592000
+			},
+			"text": " the same way that when you lose a physical wallet today, you need to recreate all of those documents."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,000",
+				"to": "00:26:47,000"
+			},
+			"offsets": {
+				"from": 1592000,
+				"to": 1607000
+			},
+			"text": " In our view, we're really focused on giving users the best experience whatsoever, and start sort of sharing how users may backup and safeguard their own data."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,000",
+				"to": "00:26:55,000"
+			},
+			"offsets": {
+				"from": 1607000,
+				"to": 1615000
+			},
+			"text": " In our view, those, I mean, the share of people knowing how to backup the data will increase over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,000",
+				"to": "00:27:00,000"
+			},
+			"offsets": {
+				"from": 1615000,
+				"to": 1620000
+			},
+			"text": " and we hope that in the next few years, everybody will do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,000",
+				"to": "00:27:05,000"
+			},
+			"offsets": {
+				"from": 1620000,
+				"to": 1625000
+			},
+			"text": " Each time I get this question asked, I share a personal experience that I have."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,000",
+				"to": "00:27:12,000"
+			},
+			"offsets": {
+				"from": 1625000,
+				"to": 1632000
+			},
+			"text": " I am 50 years old. My mother, something like 30 years ago, said, you know what, son, he was 60-something."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,000",
+				"to": "00:27:14,000"
+			},
+			"offsets": {
+				"from": 1632000,
+				"to": 1634000
+			},
+			"text": " I want to learn to use the computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,000",
+				"to": "00:27:16,000"
+			},
+			"offsets": {
+				"from": 1634000,
+				"to": 1636000
+			},
+			"text": " Will you show me how?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,000",
+				"to": "00:27:19,000"
+			},
+			"offsets": {
+				"from": 1636000,
+				"to": 1639000
+			},
+			"text": " So I say, okay, sit with me, grab your mouse and put it in the start button."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,000",
+				"to": "00:27:21,000"
+			},
+			"offsets": {
+				"from": 1639000,
+				"to": 1641000
+			},
+			"text": " It was Windows 95."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,000",
+				"to": "00:27:25,000"
+			},
+			"offsets": {
+				"from": 1641000,
+				"to": 1645000
+			},
+			"text": " So she took the mouse, she did it like this in the screen, said, you know what, matter?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,000",
+				"to": "00:27:26,000"
+			},
+			"offsets": {
+				"from": 1645000,
+				"to": 1646000
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,000",
+				"to": "00:27:29,000"
+			},
+			"offsets": {
+				"from": 1646000,
+				"to": 1649000
+			},
+			"text": " You need to get somebody. I cannot teach you."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,000",
+				"to": "00:27:40,000"
+			},
+			"offsets": {
+				"from": 1649000,
+				"to": 1660000
+			},
+			"text": " Today, if she hears me, she will tell me that today, my 83-year-old mother uses WhatsApp, does FaceTime, sends mail, configures her own email."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:40,000",
+				"to": "00:27:47,000"
+			},
+			"offsets": {
+				"from": 1660000,
+				"to": 1667000
+			},
+			"text": " I mean, 30 years past, but we're positive that people will get to understand Web Free,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,000",
+				"to": "00:27:55,000"
+			},
+			"offsets": {
+				"from": 1667000,
+				"to": 1675000
+			},
+			"text": " and we think that we have the power as a government of onboarding a lot of people into Web Free technologies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,000",
+				"to": "00:27:59,000"
+			},
+			"offsets": {
+				"from": 1675000,
+				"to": 1679000
+			},
+			"text": " and that is using the power for good in my humble perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,000",
+				"to": "00:28:02,000"
+			},
+			"offsets": {
+				"from": 1679000,
+				"to": 1682000
+			},
+			"text": " Thank you very much, Diego, and thank you all for your questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,000",
+				"to": "00:28:06,000"
+			},
+			"offsets": {
+				"from": 1682000,
+				"to": 1686000
+			},
+			"text": " If you want to ask anything else, he likes to talk a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,000",
+				"to": "00:28:13,000"
+			},
+			"offsets": {
+				"from": 1686000,
+				"to": 1693000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,000",
+				"to": "00:28:19,000"
+			},
+			"offsets": {
+				"from": 1693000,
+				"to": 1699000
+			},
+			"text": " [silence]"
+		}
+	]
+}

@@ -1,0 +1,1418 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:18,640"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 18640
+			},
+			"text": " I'm Dr. Kishmashal Viesar, I'm the directorial and I will be working in Solidity and General"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,640",
+				"to": "00:00:27,440"
+			},
+			"offsets": {
+				"from": 18640,
+				"to": 27440
+			},
+			"text": " M.C. Plus, Development for Ethereum. This talk will be about having a remote development"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,440",
+				"to": "00:00:35,800"
+			},
+			"offsets": {
+				"from": 27440,
+				"to": 35800
+			},
+			"text": " environment for Ethereum. It will be quite a short talk. So even if you are not interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,800",
+				"to": "00:00:44,040"
+			},
+			"offsets": {
+				"from": 35800,
+				"to": 44040
+			},
+			"text": " in e-mox, I guess that it may get you interested. Quick question, who, except from Felix that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,040",
+				"to": "00:00:51,040"
+			},
+			"offsets": {
+				"from": 44040,
+				"to": 51040
+			},
+			"text": " I know of, is actually using e-mox here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,040",
+				"to": "00:00:54,040"
+			},
+			"offsets": {
+				"from": 51040,
+				"to": 54040
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,040",
+				"to": "00:00:57,040"
+			},
+			"offsets": {
+				"from": 54040,
+				"to": 57040
+			},
+			"text": " Okay, good, great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,040",
+				"to": "00:00:58,040"
+			},
+			"offsets": {
+				"from": 57040,
+				"to": 58040
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,040",
+				"to": "00:01:03,040"
+			},
+			"offsets": {
+				"from": 58040,
+				"to": 63040
+			},
+			"text": " No, that's not in the...no lint is over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,040",
+				"to": "00:01:13,040"
+			},
+			"offsets": {
+				"from": 63040,
+				"to": 73040
+			},
+			"text": " So, goals of this presentation will be to familiarize with how to develop for CPP Ethereum with e-mox."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,040",
+				"to": "00:01:20,040"
+			},
+			"offsets": {
+				"from": 73040,
+				"to": 80040
+			},
+			"text": " And also, so ways that we can develop for Ethereum e-mox, like develop Solidity contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,040",
+				"to": "00:01:27,040"
+			},
+			"offsets": {
+				"from": 80040,
+				"to": 87040
+			},
+			"text": " Maybe make you guys like him much more."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,040",
+				"to": "00:01:30,040"
+			},
+			"offsets": {
+				"from": 87040,
+				"to": 90040
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,040",
+				"to": "00:01:34,040"
+			},
+			"offsets": {
+				"from": 90040,
+				"to": 94040
+			},
+			"text": " That's a very ambitious goal, but yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,040",
+				"to": "00:01:38,040"
+			},
+			"offsets": {
+				"from": 94040,
+				"to": 98040
+			},
+			"text": " So, why e-mox, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,040",
+				"to": "00:01:43,040"
+			},
+			"offsets": {
+				"from": 98040,
+				"to": 103040
+			},
+			"text": " The advantage is that along with Veeam, it's one of the most popular editors."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,040",
+				"to": "00:01:54,040"
+			},
+			"offsets": {
+				"from": 103040,
+				"to": 114040
+			},
+			"text": " And as developers are our user base, we should provide easy ways for developers to develop"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,040",
+				"to": "00:01:58,040"
+			},
+			"offsets": {
+				"from": 114040,
+				"to": 118040
+			},
+			"text": " for Ethereum using one of the most popular editors."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,040",
+				"to": "00:02:06,040"
+			},
+			"offsets": {
+				"from": 118040,
+				"to": 126040
+			},
+			"text": " It's an extremely customizable, and it's a tool that suits our needs since we want to be creating"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,040",
+				"to": "00:02:13,040"
+			},
+			"offsets": {
+				"from": 126040,
+				"to": 133040
+			},
+			"text": " languages, IDs around the contracts, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,040",
+				"to": "00:02:20,040"
+			},
+			"offsets": {
+				"from": 133040,
+				"to": 140040
+			},
+			"text": " Well, the disadvantage is that you really need to customize the editor."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,040",
+				"to": "00:02:27,040"
+			},
+			"offsets": {
+				"from": 140040,
+				"to": 147040
+			},
+			"text": " I mean, anyone that has opened the Veeam, must know that it's a really difficult thing to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,040",
+				"to": "00:02:35,040"
+			},
+			"offsets": {
+				"from": 147040,
+				"to": 155040
+			},
+			"text": " And as this temporary computer shows, it's a memory hog."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,040",
+				"to": "00:02:40,040"
+			},
+			"offsets": {
+				"from": 155040,
+				"to": 160040
+			},
+			"text": " E-mox, for some people, may mean 8 megabytes and constantly swapping."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,040",
+				"to": "00:02:44,040"
+			},
+			"offsets": {
+				"from": 160040,
+				"to": 164040
+			},
+			"text": " Or e-mox makes a computer slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,040",
+				"to": "00:02:48,040"
+			},
+			"offsets": {
+				"from": 164040,
+				"to": 168040
+			},
+			"text": " Something that shows that it actually consumes a lot of memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,040",
+				"to": "00:02:58,040"
+			},
+			"offsets": {
+				"from": 168040,
+				"to": 178040
+			},
+			"text": " Just for your reference, it actually, the original abbreviation was editor macros."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,040",
+				"to": "00:03:06,040"
+			},
+			"offsets": {
+				"from": 178040,
+				"to": 186040
+			},
+			"text": " So, how do you set up a nice environment in e-mox, then, if not using the vanilla editor?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,040",
+				"to": "00:03:10,040"
+			},
+			"offsets": {
+				"from": 186040,
+				"to": 190040
+			},
+			"text": " There are many different environments that you can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,040",
+				"to": "00:03:17,040"
+			},
+			"offsets": {
+				"from": 190040,
+				"to": 197040
+			},
+			"text": " I would go with using a packet manager called Elgate."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,040",
+				"to": "00:03:20,040"
+			},
+			"offsets": {
+				"from": 197040,
+				"to": 200040
+			},
+			"text": " Specify a packet is for SQL+ development."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,040",
+				"to": "00:03:25,040"
+			},
+			"offsets": {
+				"from": 200040,
+				"to": 205040
+			},
+			"text": " Set them up and get to developing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,040",
+				"to": "00:03:29,040"
+			},
+			"offsets": {
+				"from": 205040,
+				"to": 209040
+			},
+			"text": " So, this is a list code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,040",
+				"to": "00:03:35,040"
+			},
+			"offsets": {
+				"from": 209040,
+				"to": 215040
+			},
+			"text": " It's the list flavor that powers e-mox."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,040",
+				"to": "00:03:42,040"
+			},
+			"offsets": {
+				"from": 215040,
+				"to": 222040
+			},
+			"text": " So, only with this small snippet here, basically, you have a packet manager that will"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,040",
+				"to": "00:03:47,040"
+			},
+			"offsets": {
+				"from": 222040,
+				"to": 227040
+			},
+			"text": " install, update, and synchronize your packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,040",
+				"to": "00:03:52,040"
+			},
+			"offsets": {
+				"from": 227040,
+				"to": 232040
+			},
+			"text": " Whenever you open your editor, whenever you open your computer, if you run e-mox as a server,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,040",
+				"to": "00:03:55,040"
+			},
+			"offsets": {
+				"from": 232040,
+				"to": 235040
+			},
+			"text": " which is what you should be doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,040",
+				"to": "00:04:03,040"
+			},
+			"offsets": {
+				"from": 235040,
+				"to": 243040
+			},
+			"text": " And also, when you transfer your setup to a new computer, it has various commands."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,040",
+				"to": "00:04:05,040"
+			},
+			"offsets": {
+				"from": 243040,
+				"to": 245040
+			},
+			"text": " This will be the most important one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,040",
+				"to": "00:04:13,040"
+			},
+			"offsets": {
+				"from": 245040,
+				"to": 253040
+			},
+			"text": " So, you can download packages, install packages, delete or update on the packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,040",
+				"to": "00:04:19,040"
+			},
+			"offsets": {
+				"from": 253040,
+				"to": 259040
+			},
+			"text": " And for a clean e-mox setup, basically, you would have something like a list of packages"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,040",
+				"to": "00:04:23,040"
+			},
+			"offsets": {
+				"from": 259040,
+				"to": 263040
+			},
+			"text": " and they call to synchronize the packet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,040",
+				"to": "00:04:30,040"
+			},
+			"offsets": {
+				"from": 263040,
+				"to": 270040
+			},
+			"text": " So, whenever it would, if it's a new computer and it treats this setup, it would contact"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,040",
+				"to": "00:04:37,040"
+			},
+			"offsets": {
+				"from": 270040,
+				"to": 277040
+			},
+			"text": " probably GitHub, download all of these packages, build them if there's a make file,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,040",
+				"to": "00:04:43,040"
+			},
+			"offsets": {
+				"from": 277040,
+				"to": 283040
+			},
+			"text": " and load them into your e-mox load path."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,040",
+				"to": "00:04:48,040"
+			},
+			"offsets": {
+				"from": 283040,
+				"to": 288040
+			},
+			"text": " So, but what is required for C++ development?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,040",
+				"to": "00:04:52,040"
+			},
+			"offsets": {
+				"from": 288040,
+				"to": 292040
+			},
+			"text": " People will tell you different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,040",
+				"to": "00:04:58,040"
+			},
+			"offsets": {
+				"from": 292040,
+				"to": 298040
+			},
+			"text": " All the developers will go with e-mox default, which is said it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,040",
+				"to": "00:05:09,040"
+			},
+			"offsets": {
+				"from": 298040,
+				"to": 309040
+			},
+			"text": " I would suggest packages through my own experience have become very useful over the years of development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,040",
+				"to": "00:05:16,040"
+			},
+			"offsets": {
+				"from": 309040,
+				"to": 316040
+			},
+			"text": " and that is R-pads, auto-complete, flight second, projectile."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,040",
+				"to": "00:05:22,040"
+			},
+			"offsets": {
+				"from": 316040,
+				"to": 322040
+			},
+			"text": " And one that is similar advertising, Malinka is a package that I have made,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,040",
+				"to": "00:05:31,040"
+			},
+			"offsets": {
+				"from": 322040,
+				"to": 331040
+			},
+			"text": " which is a small package that has glue between the other ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,040",
+				"to": "00:05:40,040"
+			},
+			"offsets": {
+				"from": 331040,
+				"to": 340040
+			},
+			"text": " So, Malinka, the only thing that it does is create project definitions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,040",
+				"to": "00:05:46,040"
+			},
+			"offsets": {
+				"from": 340040,
+				"to": 346040
+			},
+			"text": " and so this is a project definition for Ethereum, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,040",
+				"to": "00:05:57,040"
+			},
+			"offsets": {
+				"from": 346040,
+				"to": 357040
+			},
+			"text": " It feeds the data to all the other packages, so to tags creators or to syntax seekers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,040",
+				"to": "00:06:04,040"
+			},
+			"offsets": {
+				"from": 357040,
+				"to": 364040
+			},
+			"text": " because we may need to, we will need to know the include directories of the project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,040",
+				"to": "00:06:08,040"
+			},
+			"offsets": {
+				"from": 364040,
+				"to": 368040
+			},
+			"text": " the macros, the defines that are used, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,040",
+				"to": "00:06:14,040"
+			},
+			"offsets": {
+				"from": 368040,
+				"to": 374040
+			},
+			"text": " And also, we have like combined commands, so we need to combine the product test commands"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,040",
+				"to": "00:06:20,040"
+			},
+			"offsets": {
+				"from": 374040,
+				"to": 380040
+			},
+			"text": " to easily run the tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,040",
+				"to": "00:06:25,040"
+			},
+			"offsets": {
+				"from": 380040,
+				"to": 385040
+			},
+			"text": " Yeah, Artex, so this is an amazing package that's quite new."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,040",
+				"to": "00:06:28,040"
+			},
+			"offsets": {
+				"from": 385040,
+				"to": 388040
+			},
+			"text": " It interfaces with C-LAND."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,040",
+				"to": "00:06:36,040"
+			},
+			"offsets": {
+				"from": 388040,
+				"to": 396040
+			},
+			"text": " It's actually not ELISP code, it's a native code, it's made in C++11."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,040",
+				"to": "00:06:46,040"
+			},
+			"offsets": {
+				"from": 396040,
+				"to": 406040
+			},
+			"text": " And it creates a client server that creates a, I mean, it's a client server interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,040",
+				"to": "00:06:52,040"
+			},
+			"offsets": {
+				"from": 406040,
+				"to": 412040
+			},
+			"text": " that has a demon running in the background of your operating system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,040",
+				"to": "00:06:57,040"
+			},
+			"offsets": {
+				"from": 412040,
+				"to": 417040
+			},
+			"text": " and creates a memory database of all the tags of your project."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,040",
+				"to": "00:07:03,040"
+			},
+			"offsets": {
+				"from": 417040,
+				"to": 423040
+			},
+			"text": " For CPP Ethereum, because we have one big make file that makes the whole thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,040",
+				"to": "00:07:09,040"
+			},
+			"offsets": {
+				"from": 423040,
+				"to": 429040
+			},
+			"text": " it's over 2 gigabytes, which is quite a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,040",
+				"to": "00:07:20,040"
+			},
+			"offsets": {
+				"from": 429040,
+				"to": 440040
+			},
+			"text": " But it's very fast once the database is created, you can find the references of your functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,040",
+				"to": "00:07:27,040"
+			},
+			"offsets": {
+				"from": 440040,
+				"to": 447040
+			},
+			"text": " where they are used, you can get up to completion, and you can get what is called in C-LAND,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,040",
+				"to": "00:07:30,040"
+			},
+			"offsets": {
+				"from": 447040,
+				"to": 450040
+			},
+			"text": " as fix it hints."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,040",
+				"to": "00:07:38,040"
+			},
+			"offsets": {
+				"from": 450040,
+				"to": 458040
+			},
+			"text": " So in a bit more detail, now I'm pretty sure that the resolution is also nice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,040",
+				"to": "00:07:43,040"
+			},
+			"offsets": {
+				"from": 458040,
+				"to": 463040
+			},
+			"text": " but so there is a function and you would like to see where it's used."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,040",
+				"to": "00:07:53,040"
+			},
+			"offsets": {
+				"from": 463040,
+				"to": 473040
+			},
+			"text": " You can just basically with one key combo, see all the references very easily in the background,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,040",
+				"to": "00:07:56,040"
+			},
+			"offsets": {
+				"from": 473040,
+				"to": 476040
+			},
+			"text": " the references."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,040",
+				"to": "00:08:05,040"
+			},
+			"offsets": {
+				"from": 476040,
+				"to": 485040
+			},
+			"text": " Auto completion, for example, this is from our P2P library in C++."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,040",
+				"to": "00:08:11,040"
+			},
+			"offsets": {
+				"from": 485040,
+				"to": 491040
+			},
+			"text": " There is a, can you see it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,040",
+				"to": "00:08:18,040"
+			},
+			"offsets": {
+				"from": 491040,
+				"to": 498040
+			},
+			"text": " There is a boost, basically, resolver, basically, from the Azure library of boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,040",
+				"to": "00:08:29,040"
+			},
+			"offsets": {
+				"from": 498040,
+				"to": 509040
+			},
+			"text": " And just by typing, you see the type and you get auto-completed functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,040",
+				"to": "00:08:38,040"
+			},
+			"offsets": {
+				"from": 509040,
+				"to": 518040
+			},
+			"text": " and this happens without any delay, like it happens in other, in theory, let's say, emux packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,040",
+				"to": "00:08:45,040"
+			},
+			"offsets": {
+				"from": 518040,
+				"to": 525040
+			},
+			"text": " And a very nice, it's too small, a very nice thing that C-LAND has is fix it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,040",
+				"to": "00:08:58,040"
+			},
+			"offsets": {
+				"from": 525040,
+				"to": 538040
+			},
+			"text": " So it kind of, it runs a, in real time it runs a checker on your code that does static analysis and provides hints."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,040",
+				"to": "00:09:06,040"
+			},
+			"offsets": {
+				"from": 538040,
+				"to": 546040
+			},
+			"text": " So for example, here this is from the scanner of Solidity, and there is the location is valid method."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,040",
+				"to": "00:09:18,040"
+			},
+			"offsets": {
+				"from": 546040,
+				"to": 558040
+			},
+			"text": " But it's misspelled, and the C-LAND static checker actually realized that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,040",
+				"to": "00:09:27,040"
+			},
+			"offsets": {
+				"from": 558040,
+				"to": 567040
+			},
+			"text": " tells you that it's misspelled and it gives you a suggestion as to how to fix it, which you can apply immediately with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,040",
+				"to": "00:09:34,040"
+			},
+			"offsets": {
+				"from": 567040,
+				"to": 574040
+			},
+			"text": " basically, this key combo, which is a default, but you can customize it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,040",
+				"to": "00:09:47,040"
+			},
+			"offsets": {
+				"from": 574040,
+				"to": 587040
+			},
+			"text": " Another very useful package is FlightCheck, that basically runs syntax seconds for any language that you may desire,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,040",
+				"to": "00:09:54,040"
+			},
+			"offsets": {
+				"from": 587040,
+				"to": 594040
+			},
+			"text": " Python, Lisp, C++, for C++ it uses the C-LAND syntax."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,040",
+				"to": "00:10:11,040"
+			},
+			"offsets": {
+				"from": 594040,
+				"to": 611040
+			},
+			"text": " Last but not least, Projectile must have packets for an e-mail development environment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,040",
+				"to": "00:10:18,040"
+			},
+			"offsets": {
+				"from": 611040,
+				"to": 618040
+			},
+			"text": " because it automatically indexes and creates projects by using the version control system."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,040",
+				"to": "00:10:23,040"
+			},
+			"offsets": {
+				"from": 618040,
+				"to": 623040
+			},
+			"text": " So I don't really need to say that, you know, CPPA theorem is a project."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,040",
+				"to": "00:10:28,040"
+			},
+			"offsets": {
+				"from": 623040,
+				"to": 628040
+			},
+			"text": " I don't need to index any files, I don't need to do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,040",
+				"to": "00:10:37,040"
+			},
+			"offsets": {
+				"from": 628040,
+				"to": 637040
+			},
+			"text": " All I need to do is remember some key combinations, and I can easily switch between header and sources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,040",
+				"to": "00:10:44,040"
+			},
+			"offsets": {
+				"from": 637040,
+				"to": 644040
+			},
+			"text": " compile the project, test it, grep, or ack or az or whatever you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,040",
+				"to": "00:10:53,040"
+			},
+			"offsets": {
+				"from": 644040,
+				"to": 653040
+			},
+			"text": " You can also do version control commits and various other interesting stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,040",
+				"to": "00:11:01,040"
+			},
+			"offsets": {
+				"from": 653040,
+				"to": 661040
+			},
+			"text": " I would refer you to the documentation of the project, if you want to learn more."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,040",
+				"to": "00:11:09,040"
+			},
+			"offsets": {
+				"from": 661040,
+				"to": 669040
+			},
+			"text": " So that's about C++, but what about Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,040",
+				"to": "00:11:14,040"
+			},
+			"offsets": {
+				"from": 669040,
+				"to": 674040
+			},
+			"text": " So how can we develop contracts inside the Emacs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,040",
+				"to": "00:11:19,040"
+			},
+			"offsets": {
+				"from": 674040,
+				"to": 679040
+			},
+			"text": " I mean, sorry, it is still under development."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,040",
+				"to": "00:11:27,040"
+			},
+			"offsets": {
+				"from": 679040,
+				"to": 687040
+			},
+			"text": " Someone from the forums of Ethereum actually developed a serpent mode, which you can get here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,040",
+				"to": "00:11:37,040"
+			},
+			"offsets": {
+				"from": 687040,
+				"to": 697040
+			},
+			"text": " But as for Solidity, over the weekend I made Solidity mode in Emacs, which is for now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,040",
+				"to": "00:11:45,040"
+			},
+			"offsets": {
+				"from": 697040,
+				"to": 705040
+			},
+			"text": " just syntax highlighter, which you can see here, and then indentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,040",
+				"to": "00:11:50,040"
+			},
+			"offsets": {
+				"from": 705040,
+				"to": 710040
+			},
+			"text": " So it properly indents and highlights the syntax of Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,040",
+				"to": "00:11:59,040"
+			},
+			"offsets": {
+				"from": 710040,
+				"to": 719040
+			},
+			"text": " This is the contract that I think Chris used in his example of online Solidity compiler, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,040",
+				"to": "00:12:02,040"
+			},
+			"offsets": {
+				"from": 719040,
+				"to": 722040
+			},
+			"text": " The ballot contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,040",
+				"to": "00:12:09,040"
+			},
+			"offsets": {
+				"from": 722040,
+				"to": 729040
+			},
+			"text": " So, as I said, for now it is very simple, just highlighting and indentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,040",
+				"to": "00:12:17,040"
+			},
+			"offsets": {
+				"from": 729040,
+				"to": 737040
+			},
+			"text": " But in the future we can provide auto-completion, just like any other language."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,040",
+				"to": "00:12:29,040"
+			},
+			"offsets": {
+				"from": 737040,
+				"to": 749040
+			},
+			"text": " As soon as we get the AST out of Solidity compiler, we can feed it as input data to any auto-complete pack as in Emacs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,040",
+				"to": "00:12:34,040"
+			},
+			"offsets": {
+				"from": 749040,
+				"to": 754040
+			},
+			"text": " We can also integrate with the debugger when that's possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,040",
+				"to": "00:12:45,040"
+			},
+			"offsets": {
+				"from": 754040,
+				"to": 765040
+			},
+			"text": " And also with other tools that will be developed for the ID for Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,040",
+				"to": "00:12:48,040"
+			},
+			"offsets": {
+				"from": 765040,
+				"to": 768040
+			},
+			"text": " So, yummy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,040",
+				"to": "00:12:50,040"
+			},
+			"offsets": {
+				"from": 768040,
+				"to": 770040
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,040",
+				"to": "00:12:53,040"
+			},
+			"offsets": {
+				"from": 770040,
+				"to": 773040
+			},
+			"text": " As I said, a small representation for Emacs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,040",
+				"to": "00:12:58,040"
+			},
+			"offsets": {
+				"from": 773040,
+				"to": 778040
+			},
+			"text": " So, any questions or?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,040",
+				"to": "00:13:04,040"
+			},
+			"offsets": {
+				"from": 778040,
+				"to": 784040
+			},
+			"text": " What is this next thing I should mention?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,040",
+				"to": "00:13:08,040"
+			},
+			"offsets": {
+				"from": 784040,
+				"to": 788040
+			},
+			"text": " I think you're doing something in VIA as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,040",
+				"to": "00:13:10,040"
+			},
+			"offsets": {
+				"from": 788040,
+				"to": 790040
+			},
+			"text": " I think you're doing something in VIA."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,040",
+				"to": "00:13:12,040"
+			},
+			"offsets": {
+				"from": 790040,
+				"to": 792040
+			},
+			"text": " Nope, I don't even know."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,040",
+				"to": "00:13:15,040"
+			},
+			"offsets": {
+				"from": 792040,
+				"to": 795040
+			},
+			"text": " Keep finding CVI."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,040",
+				"to": "00:13:16,040"
+			},
+			"offsets": {
+				"from": 795040,
+				"to": 796040
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,040",
+				"to": "00:13:17,040"
+			},
+			"offsets": {
+				"from": 796040,
+				"to": 797040
+			},
+			"text": " No questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,040",
+				"to": "00:13:18,040"
+			},
+			"offsets": {
+				"from": 797040,
+				"to": 798040
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,040",
+				"to": "00:13:19,040"
+			},
+			"offsets": {
+				"from": 798040,
+				"to": 799040
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,040",
+				"to": "00:13:24,040"
+			},
+			"offsets": {
+				"from": 799040,
+				"to": 804040
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,040",
+				"to": "00:13:34,040"
+			},
+			"offsets": {
+				"from": 804040,
+				"to": 814040
+			},
+			"text": " [silence]"
+		}
+	]
+}

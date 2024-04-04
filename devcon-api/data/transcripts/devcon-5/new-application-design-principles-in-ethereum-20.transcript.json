@@ -1,0 +1,7710 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 14000
+			},
+			"text": " Coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 18000
+			},
+			"text": " The native talk is new application as I'm principal from E to 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 23000
+			},
+			"text": " But the structure of this talk, first I'm going to talk about some of the technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 26000
+			},
+			"text": " limitations that application developers face."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 32000
+			},
+			"text": " And I think that I'm going to try and talk about it in a way that at least any kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 35000
+			},
+			"text": " granularity that isn't usually talked up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 40000
+			},
+			"text": " And then the second half we'll focus on solutions that we're seeing in space right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 47000
+			},
+			"text": " And then what we're going to see in terms of trends, especially as E to 2.0 starts rolling around."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 51000
+			},
+			"text": " So, what are the big technical challenges?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 57000
+			},
+			"text": " The first one is transaction latency. So, this one is fairly obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 63000
+			},
+			"text": " But with the Ethereum 1.0 main chain, the block intervals, eight seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 70000
+			},
+			"text": " Even with E to 2.0, the block intervals is going to be at least a target is from three to six seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 78000
+			},
+			"text": " And three to six seconds, it's good compared to eighth and eight is not good compared to, say, ten minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 84000
+			},
+			"text": " But I would argue that users are accustomed to response latency in the hundreds of milliseconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 91000
+			},
+			"text": " So, there's a co-op on around saying, for Amazon, every moment in milliseconds, wait and see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 93000
+			},
+			"text": " calls for 100% of profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 99000
+			},
+			"text": " You can see the same thing when it comes to, say, web search queries and their correlation with ad rep view,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 105000
+			},
+			"text": " or even mobile apps and the response latency and their correlation with an identification."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 109000
+			},
+			"text": " So, I would argue that even three to six seconds is just not quite good enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 115000
+			},
+			"text": " And it gets even worse if you have to do sequential transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 120000
+			},
+			"text": " So, an example of that, as I'm sure a lot of you know, would be, um,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 121000
+			},
+			"text": " I'm not aware, I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 122000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 123000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 124000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 125000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 126000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 127000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 128000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 129000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 130000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 131000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 132000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 133000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 134000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 135000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 136000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 137000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 138000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 139000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 140000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 141000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 142000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 143000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 144000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 145000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 146000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 147000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 148000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 149000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 150000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 151000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 152000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 153000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 154000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 155000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 156000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 157000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 158000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 159000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 160000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 161000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 162000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 163000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 164000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 165000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 166000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 167000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 168000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 169000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 170000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 171000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 172000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 173000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 174000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 175000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 176000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 177000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 178000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 179000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 180000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 181000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 182000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 183000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 184000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 185000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 186000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 187000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 188000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 189000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 190000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 191000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 192000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 193000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 194000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 195000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 196000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 197000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 198000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 199000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 200000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 201000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 202000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 203000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 204000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 205000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 206000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 207000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 208000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 209000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 210000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 211000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 212000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 213000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 214000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 215000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 216000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 217000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 218000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 219000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 220000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 221000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 222000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 223000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 224000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 225000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 226000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 227000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 228000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 229000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 230000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 231000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 232000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 233000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 234000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 235000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 236000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 237000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 238000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 239000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 240000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 241000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 242000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 243000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 244000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 245000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 246000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 247000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 248000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 249000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 250000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 251000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 252000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 253000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 254000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 255000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 256000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 257000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 258000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 259000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 260000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 261000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 262000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 263000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 264000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 265000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 266000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 267000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 268000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 269000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 270000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 271000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 272000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 273000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 274000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 275000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 276000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 277000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 278000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 279000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 280000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 281000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 282000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 283000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 284000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 285000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 286000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 287000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 288000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 289000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 290000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 291000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 292000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 293000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 294000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 295000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 296000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 297000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 298000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 299000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 300000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 301000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 302000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 303000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 304000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 305000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 306000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 307000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 308000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 309000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 310000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 311000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 312000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 313000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 314000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 315000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 316000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 317000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 318000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 319000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 320000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 321000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 322000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 323000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 324000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 325000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 326000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 327000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 328000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 329000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 330000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 331000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 332000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 333000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 334000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 335000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 336000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 337000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 338000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 339000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 340000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 341000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 342000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 343000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 344000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 345000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 346000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 347000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 348000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 349000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 350000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 351000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 352000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 353000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 354000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 355000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 356000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 357000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 358000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 359000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 360000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 361000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 362000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 363000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 364000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 365000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 366000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 367000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 368000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 369000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 370000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 371000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 372000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 373000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 374000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 375000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 376000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 377000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 378000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 379000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 380000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 381000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 382000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 383000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 384000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 385000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 386000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 387000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 388000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 389000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 390000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 391000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 392000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 393000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 394000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 395000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 396000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 397000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 398000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 399000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 400000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 401000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 402000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 403000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 404000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 405000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 406000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 407000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 408000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 409000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 410000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 411000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 412000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 413000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 414000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 415000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 416000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 417000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 418000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 419000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 420000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 421000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 422000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 423000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 424000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 425000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 426000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 427000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 428000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 429000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 430000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 431000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 432000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 433000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 434000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 435000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 436000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 437000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 438000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 439000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 440000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 441000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 442000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 443000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 444000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 445000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 446000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 447000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 448000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 449000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 450000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 451000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 452000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 453000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 454000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 455000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 456000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 457000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 458000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 459000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 460000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 461000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 462000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 463000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 464000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 465000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 466000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 467000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 468000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 469000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 470000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 471000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 472000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 473000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 474000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 475000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 476000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 477000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 478000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 479000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 480000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 481000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 482000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 483000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 484000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 485000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 486000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 487000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 488000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 489000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 490000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 491000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 492000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 493000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 494000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 495000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 496000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 497000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 498000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 499000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 500000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 501000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 502000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 503000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 504000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 505000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 506000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 507000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 508000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 509000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 510000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 511000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 512000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 513000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 514000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 515000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 516000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 517000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 518000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 519000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 520000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 521000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 522000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 523000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 524000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 525000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 526000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 527000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 528000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 529000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 530000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 531000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 532000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 533000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 534000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 535000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 536000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 537000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 538000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 539000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 540000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 541000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 542000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 543000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 544000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 545000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 546000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:07,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 547000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 547000,
+				"to": 548000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 549000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 550000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 551000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 552000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 553000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 554000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 555000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 556000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 557000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 558000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 559000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 560000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 561000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 562000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 563000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 564000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 565000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 566000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 567000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 568000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 569000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 570000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 571000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 572000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 573000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 574000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 575000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 576000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:37,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 577000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 577000,
+				"to": 578000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 579000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 580000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 581000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 582000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 583000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 584000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 585000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 586000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 587000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 588000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 589000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 590000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 591000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 592000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 593000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 594000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 595000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 596000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 597000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 598000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 599000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 600000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 601000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 602000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 603000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 604000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 605000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 606000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 607000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 608000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 609000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 610000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 611000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 612000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 613000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 614000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 615000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 616000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 617000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 618000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 619000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 620000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 621000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 622000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 623000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 624000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 625000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 626000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 627000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 628000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 629000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 630000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 631000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 632000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 633000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 634000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 635000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 636000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 637000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 638000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 639000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 640000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 641000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 642000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 643000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 644000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 645000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 646000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 647000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 648000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 649000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 650000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 651000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 652000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 653000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 654000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 655000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 656000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 657000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 658000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 659000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 660000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 661000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 662000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 663000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 664000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 665000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 666000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 667000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 668000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 669000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 670000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 671000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 672000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 673000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 674000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 675000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 676000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 677000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 678000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 679000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 680000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 681000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 682000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 683000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 684000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 685000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 686000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 687000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 688000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 689000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 690000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 691000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 692000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 693000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 694000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 695000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 696000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 697000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 698000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 699000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 700000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 701000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 702000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 703000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 704000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 705000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 706000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 707000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 708000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 709000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 710000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 711000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 712000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 713000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 714000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 715000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 716000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 717000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 718000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 719000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 720000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 721000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 722000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 723000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 724000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 725000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 726000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 727000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 728000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 729000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 730000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 731000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 732000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 733000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 734000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 735000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 736000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 737000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 738000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 739000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 740000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 741000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 742000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 743000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 744000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 745000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 746000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 747000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 748000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 749000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 750000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 751000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 752000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 753000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 754000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 755000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 756000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 757000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 758000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 759000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 760000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 761000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 762000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 763000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 764000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 765000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 766000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 767000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 768000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 769000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 770000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 771000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 772000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 773000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 774000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 775000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 776000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 777000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 778000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 779000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 780000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 781000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 782000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 783000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 784000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 785000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 786000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 787000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 788000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 789000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 790000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 791000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 792000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 793000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 794000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 795000
+			},
+			"text": " I'm not aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 796000
+			},
+			"text": " I'm not aware."
+		}
+	]
+}

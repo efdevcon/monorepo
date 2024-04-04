@@ -1,0 +1,2419 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,720"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14720
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,720",
+				"to": "00:00:20,160"
+			},
+			"offsets": {
+				"from": 14720,
+				"to": 20160
+			},
+			"text": " Thank you everyone for joining this talk. I'm Julia Hardy. I'm here with Adam Hart."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,160",
+				"to": "00:00:24,720"
+			},
+			"offsets": {
+				"from": 20160,
+				"to": 24720
+			},
+			"text": " And we're here from Chainalsis to talk to you about the $10 billion"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,720",
+				"to": "00:00:31,120"
+			},
+			"offsets": {
+				"from": 24720,
+				"to": 31120
+			},
+			"text": " problem. So we're looking at coordinated adversaries that are working within Ethereum and the web"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,120",
+				"to": "00:00:37,440"
+			},
+			"offsets": {
+				"from": 31120,
+				"to": 37440
+			},
+			"text": " through space. First you might be wondering who is Chainalsis? Why do we care about this issue?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,440",
+				"to": "00:00:44,880"
+			},
+			"offsets": {
+				"from": 37440,
+				"to": 44880
+			},
+			"text": " Chainalsis is a blockchain analytics company. So what we do is we take the raw blockchain data"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,880",
+				"to": "00:00:50,800"
+			},
+			"offsets": {
+				"from": 44880,
+				"to": 50800
+			},
+			"text": " as well as inputs that we have from research and from services and we enhance that data. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,440",
+				"to": "00:00:57,680"
+			},
+			"offsets": {
+				"from": 51440,
+				"to": 57680
+			},
+			"text": " we cluster so we put different addresses that we know are controlled by the same entity together."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,680",
+				"to": "00:01:04,480"
+			},
+			"offsets": {
+				"from": 57680,
+				"to": 64480
+			},
+			"text": " We also provide attribution and we put all of that together into our different products that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,480",
+				"to": "00:01:11,040"
+			},
+			"offsets": {
+				"from": 64480,
+				"to": 71040
+			},
+			"text": " and the one that we use as investigators mainly is Reactor which is our blockchain visualization"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,040",
+				"to": "00:01:18,320"
+			},
+			"offsets": {
+				"from": 71040,
+				"to": 78320
+			},
+			"text": " tool. And so what we're doing in our day-to-day is we're looking at what have been different"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,320",
+				"to": "00:01:24,560"
+			},
+			"offsets": {
+				"from": 78320,
+				"to": 84560
+			},
+			"text": " exploits that have happened. We're mapping out that activity on Chain. And when we're looking back"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,560",
+				"to": "00:01:31,120"
+			},
+			"offsets": {
+				"from": 84560,
+				"to": 91120
+			},
+			"text": " at the past year it can feel like there's been an exploit every week if not every day in some cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,120",
+				"to": "00:01:36,800"
+			},
+			"offsets": {
+				"from": 91120,
+				"to": 96800
+			},
+			"text": " Some of these have been the larger bridge exploits that have been discussed today. There's even the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,800",
+				"to": "00:01:43,040"
+			},
+			"offsets": {
+				"from": 96800,
+				"to": 103040
+			},
+			"text": " B&B Chain bridge just last week. There are things like the discord and the Twitter's that have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,040",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 103040,
+				"to": 108000
+			},
+			"text": " compromised and they end up having phishing links posted on them. There are things like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:54,320"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 114320
+			},
+			"text": " Oracle exploits that come out. And what we do is we trace what has happened with those funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,320",
+				"to": "00:01:58,880"
+			},
+			"offsets": {
+				"from": 114320,
+				"to": 118880
+			},
+			"text": " and we look for patterns of activity. And ultimately we're asking the question to ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,880",
+				"to": "00:02:05,200"
+			},
+			"offsets": {
+				"from": 118880,
+				"to": 125200
+			},
+			"text": " Do we think that these are all separate events that have occurred in the past year? Or do we see"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,200",
+				"to": "00:02:10,720"
+			},
+			"offsets": {
+				"from": 125200,
+				"to": 130720
+			},
+			"text": " any coordinated attacks happening? Do we see that there are the same adversaries that are working"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,720",
+				"to": "00:02:16,960"
+			},
+			"offsets": {
+				"from": 130720,
+				"to": 136960
+			},
+			"text": " and having multiple exploits in the space? And as you might imagine from our title we do see"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,960",
+				"to": "00:02:23,680"
+			},
+			"offsets": {
+				"from": 136960,
+				"to": 143680
+			},
+			"text": " some coordination here. So first we're going to talk about the nation's day adversary and about"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,680",
+				"to": "00:02:30,800"
+			},
+			"offsets": {
+				"from": 143680,
+				"to": 150800
+			},
+			"text": " North Korea. And in the past you've probably heard that North Korea has been attributed to the Ronan"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,800",
+				"to": "00:02:38,320"
+			},
+			"offsets": {
+				"from": 150800,
+				"to": 158320
+			},
+			"text": " bridge hack but you might not know the extent of their activity. And Chain also says identified 42"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,320",
+				"to": "00:02:46,880"
+			},
+			"offsets": {
+				"from": 158320,
+				"to": 166880
+			},
+			"text": " different DPRK hacks since 2016. And this is a total of $2.7 billion worth of stolen funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,880",
+				"to": "00:02:54,400"
+			},
+			"offsets": {
+				"from": 166880,
+				"to": 174400
+			},
+			"text": " So this is a pretty crazy number, pretty large part of the DeFi exploits that have occurred."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,400",
+				"to": "00:03:01,360"
+			},
+			"offsets": {
+				"from": 174400,
+				"to": 181360
+			},
+			"text": " And when we look at what kind of exploits they are conducting we see that they're really following"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,360",
+				"to": "00:03:07,760"
+			},
+			"offsets": {
+				"from": 181360,
+				"to": 187760
+			},
+			"text": " the money. So originally there was most of the money concentrated in Bitcoin and then as Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,760",
+				"to": "00:03:14,960"
+			},
+			"offsets": {
+				"from": 187760,
+				"to": 194960
+			},
+			"text": " has taken off, as there's been DeFi summer and yield farming and NFT trading we see that DPRK has"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,960",
+				"to": "00:03:19,280"
+			},
+			"offsets": {
+				"from": 194960,
+				"to": 199280
+			},
+			"text": " shifted and they're focusing a lot more on stealing Ether and ERC 20 token."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,280",
+				"to": "00:03:26,800"
+			},
+			"offsets": {
+				"from": 199280,
+				"to": 206800
+			},
+			"text": " So this is a map of the flow of funds for the Ronan bridge hack. And this is really a high level"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,800",
+				"to": "00:03:32,480"
+			},
+			"offsets": {
+				"from": 206800,
+				"to": 212480
+			},
+			"text": " view but you can imagine if you're zooming in each of these dots here is a separate address or a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,480",
+				"to": "00:03:38,480"
+			},
+			"offsets": {
+				"from": 212480,
+				"to": 218480
+			},
+			"text": " separate group of addresses. And the lines between them are flow funds. So you can see just how well"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,480",
+				"to": "00:03:45,440"
+			},
+			"offsets": {
+				"from": 218480,
+				"to": 225440
+			},
+			"text": " coordinated this address area is. They are able to move funds 24/7 across blockchains through"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,440",
+				"to": "00:03:52,240"
+			},
+			"offsets": {
+				"from": 225440,
+				"to": 232240
+			},
+			"text": " mixers and just are very well resourced and well understanding of how to launder in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,240",
+				"to": "00:03:58,880"
+			},
+			"offsets": {
+				"from": 232240,
+				"to": 238880
+			},
+			"text": " So we can also use those patterns that we see from Ronan from other hacks to be able to identify"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,880",
+				"to": "00:04:05,200"
+			},
+			"offsets": {
+				"from": 238880,
+				"to": 245200
+			},
+			"text": " how DPRK works. So from there we can look at past hacks that have happened and say well do we think"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,200",
+				"to": "00:04:10,720"
+			},
+			"offsets": {
+				"from": 245200,
+				"to": 250720
+			},
+			"text": " this was actually DPRK are they following these same laundering strategies but we just didn't know"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,720",
+				"to": "00:04:16,960"
+			},
+			"offsets": {
+				"from": 250720,
+				"to": 256960
+			},
+			"text": " before. And we can also look forward and if a future exploit occurs we can take a look and say"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,960",
+				"to": "00:04:22,160"
+			},
+			"offsets": {
+				"from": 256960,
+				"to": 262160
+			},
+			"text": " do we see these same patterns happening there? Do we think that this is another DPRK activity"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,160",
+				"to": "00:04:27,040"
+			},
+			"offsets": {
+				"from": 262160,
+				"to": 267040
+			},
+			"text": " and then hopefully ultimately help to prevent the flow funds to cash out points?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,240",
+				"to": "00:04:37,760"
+			},
+			"offsets": {
+				"from": 270240,
+				"to": 277760
+			},
+			"text": " Great. And so Julia just walked us through a very brief overview of some of the North Korean"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,760",
+				"to": "00:04:42,240"
+			},
+			"offsets": {
+				"from": 277760,
+				"to": 282240
+			},
+			"text": " activity and there's definitely been talks in this room earlier today about exactly how some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,240",
+				"to": "00:04:48,240"
+			},
+			"offsets": {
+				"from": 282240,
+				"to": 288240
+			},
+			"text": " those explu-- you know those attacks are actually executed but what we really wanted to dive into"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,240",
+				"to": "00:04:53,360"
+			},
+			"offsets": {
+				"from": 288240,
+				"to": 293360
+			},
+			"text": " in this session are some of the coordinated adversaries that may be receive a little bit less media"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,360",
+				"to": "00:05:00,320"
+			},
+			"offsets": {
+				"from": 293360,
+				"to": 300320
+			},
+			"text": " attention but are equally if not more damaging to the ecosystem. So DPRK definitely a major threat,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,320",
+				"to": "00:05:04,800"
+			},
+			"offsets": {
+				"from": 300320,
+				"to": 304800
+			},
+			"text": " one that deserves all of the attention that it gets. It's just that on chain we certainly see"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,800",
+				"to": "00:05:16,880"
+			},
+			"offsets": {
+				"from": 304800,
+				"to": 316880
+			},
+			"text": " other activity as well. So and Julia which one goes forward? There we go. Perfect. So you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,880",
+				"to": "00:05:24,560"
+			},
+			"offsets": {
+				"from": 316880,
+				"to": 324560
+			},
+			"text": " a common problem that we come across as Julia mentioned earlier is the you know sheer volume of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,560",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 324560,
+				"to": 330000
+			},
+			"text": " hacks, exploits, other other events, scams that occur. And the question that we're always"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:34,960"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 334960
+			},
+			"text": " trying to ask is are these different entities that are all just copying each other or is this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,960",
+				"to": "00:05:39,360"
+			},
+			"offsets": {
+				"from": 334960,
+				"to": 339360
+			},
+			"text": " one coordinated adversary because if it's a coordinated entity then they're probably more"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,360",
+				"to": "00:05:45,440"
+			},
+			"offsets": {
+				"from": 339360,
+				"to": 345440
+			},
+			"text": " sophisticated, more organized, probably doing more damage. And the attack factors can vary. So it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,440",
+				"to": "00:05:50,880"
+			},
+			"offsets": {
+				"from": 345440,
+				"to": 350880
+			},
+			"text": " can be something like compromised web2 infrastructure. We just had a really great talk in this room"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,880",
+				"to": "00:05:56,400"
+			},
+			"offsets": {
+				"from": 350880,
+				"to": 356400
+			},
+			"text": " about how those sorts of exploits occur. But one of our questions is you know is this the same entity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,400",
+				"to": "00:06:01,920"
+			},
+			"offsets": {
+				"from": 356400,
+				"to": 361920
+			},
+			"text": " that's maybe going after DNS registrations or is it different entities? And the same goes for any"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,920",
+				"to": "00:06:07,360"
+			},
+			"offsets": {
+				"from": 361920,
+				"to": 367360
+			},
+			"text": " sort of compromise of say a discord server or a popular Twitter profile, a trusted method of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,360",
+				"to": "00:06:12,640"
+			},
+			"offsets": {
+				"from": 367360,
+				"to": 372640
+			},
+			"text": " communication that again you know tricks users into doing something that they probably shouldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,640",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 372640,
+				"to": 378000
+			},
+			"text": " be doing on the blockchain. And the way we sort of approach this problem of you know identifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:24,160"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 384160
+			},
+			"text": " coordinated entities in the first place is a combination of traditional cyber security analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,160",
+				"to": "00:06:29,040"
+			},
+			"offsets": {
+				"from": 384160,
+				"to": 389040
+			},
+			"text": " So looking at things like what infrastructure is used in the attack. You know what systems are"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,040",
+				"to": "00:06:34,880"
+			},
+			"offsets": {
+				"from": 389040,
+				"to": 394880
+			},
+			"text": " compromised, what's the specific attack vector. But then as was just shown in the case of looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,880",
+				"to": "00:06:39,760"
+			},
+			"offsets": {
+				"from": 394880,
+				"to": 399760
+			},
+			"text": " at North Korean activity but what we can also apply to sort of these other coordinated actors"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,760",
+				"to": "00:06:45,280"
+			},
+			"offsets": {
+				"from": 399760,
+				"to": 405280
+			},
+			"text": " is looking at what occurs on the blockchain. So this is where the transparency of you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,280",
+				"to": "00:06:49,920"
+			},
+			"offsets": {
+				"from": 405280,
+				"to": 409920
+			},
+			"text": " something like Ethereum is really really useful to us as security analysts trying to sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,920",
+				"to": "00:06:55,680"
+			},
+			"offsets": {
+				"from": 409920,
+				"to": 415680
+			},
+			"text": " understand these bad actors because we can look at things like how is the victim actually losing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,680",
+				"to": "00:07:02,160"
+			},
+			"offsets": {
+				"from": 415680,
+				"to": 422160
+			},
+			"text": " funds. And that might be something really sophisticated like a re-enteringy you know exploit in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,160",
+				"to": "00:07:07,680"
+			},
+			"offsets": {
+				"from": 422160,
+				"to": 427680
+			},
+			"text": " popular smart contract or it can be something as simple as phishing for token approvals. You know"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,680",
+				"to": "00:07:13,920"
+			},
+			"offsets": {
+				"from": 427680,
+				"to": 433920
+			},
+			"text": " the simple attacks sometimes are the most damaging but you know the precise sort of payload can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,920",
+				"to": "00:07:19,200"
+			},
+			"offsets": {
+				"from": 433920,
+				"to": 439200
+			},
+			"text": " very illustrative and help us understand these groups. And then also we can track the funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,200",
+				"to": "00:07:24,480"
+			},
+			"offsets": {
+				"from": 439200,
+				"to": 444480
+			},
+			"text": " after the attack occurs. Now unfortunately this is reactive, this is after victims are losing money"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,480",
+				"to": "00:07:30,480"
+			},
+			"offsets": {
+				"from": 444480,
+				"to": 450480
+			},
+			"text": " but again it can help us understand our adversaries the bad actors on the blockchain better and start"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,480",
+				"to": "00:07:36,800"
+			},
+			"offsets": {
+				"from": 450480,
+				"to": 456800
+			},
+			"text": " to map out the the true sort of scale of the challenge that we're up against here. So to delve into that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,800",
+				"to": "00:07:43,200"
+			},
+			"offsets": {
+				"from": 456800,
+				"to": 463200
+			},
+			"text": " a little bit we actually wanted to spend a little time here walking through a case study of how"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,200",
+				"to": "00:07:47,920"
+			},
+			"offsets": {
+				"from": 463200,
+				"to": 467920
+			},
+			"text": " how we approach this problem and also hopefully drive home the point that you know North Korea is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,920",
+				"to": "00:07:54,480"
+			},
+			"offsets": {
+				"from": 467920,
+				"to": 474480
+			},
+			"text": " definitely not the only coordinated adversary out there. So the particular example here is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,480",
+				"to": "00:08:01,600"
+			},
+			"offsets": {
+				"from": 474480,
+				"to": 481600
+			},
+			"text": " that we refer to as a you know tether USDT approval mining scam. So to the folks in this room those"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,600",
+				"to": "00:08:06,720"
+			},
+			"offsets": {
+				"from": 481600,
+				"to": 486720
+			},
+			"text": " words might not really make sense together right you know you don't mine anything with tether you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,720",
+				"to": "00:08:14,880"
+			},
+			"offsets": {
+				"from": 486720,
+				"to": 494880
+			},
+			"text": " know what's going on here but the essentially the attack here is not targeting folks who are"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,880",
+				"to": "00:08:19,760"
+			},
+			"offsets": {
+				"from": 494880,
+				"to": 499760
+			},
+			"text": " attending DEVCON. This is a targeting you know newer crypto users primarily targeting mobile"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,760",
+				"to": "00:08:24,880"
+			},
+			"offsets": {
+				"from": 499760,
+				"to": 504880
+			},
+			"text": " crypto users folks who are maybe getting into the ecosystem for the first time the next billion users."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,440",
+				"to": "00:08:31,760"
+			},
+			"offsets": {
+				"from": 505440,
+				"to": 511760
+			},
+			"text": " But instead of you know engaging with a normal you know DAP or you know something interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,760",
+				"to": "00:08:37,040"
+			},
+			"offsets": {
+				"from": 511760,
+				"to": 517040
+			},
+			"text": " instead the users are maybe social engineered into going to a website maybe they have some tether in"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,040",
+				"to": "00:08:42,320"
+			},
+			"offsets": {
+				"from": 517040,
+				"to": 522320
+			},
+			"text": " their wallet and they hear from a trusted friend that they met on the internet that there's this"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,320",
+				"to": "00:08:46,080"
+			},
+			"offsets": {
+				"from": 522320,
+				"to": 526080
+			},
+			"text": " really great opportunity to make some money and they don't even have to send their tether anywhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,080",
+				"to": "00:08:50,320"
+			},
+			"offsets": {
+				"from": 526080,
+				"to": 530320
+			},
+			"text": " because you know they you know red flags go up if you send your token somewhere but they just go"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,320",
+				"to": "00:08:56,080"
+			},
+			"offsets": {
+				"from": 530320,
+				"to": 536080
+			},
+			"text": " on to this site they you know buy a little voucher to participate in this node mining and from there"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,080",
+				"to": "00:08:59,760"
+			},
+			"offsets": {
+				"from": 536080,
+				"to": 539760
+			},
+			"text": " they can start earning some pretty great rewards and everyone knows you know you can make some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,760",
+				"to": "00:09:08,160"
+			},
+			"offsets": {
+				"from": 539760,
+				"to": 548160
+			},
+			"text": " money off of crypto that's always nice. However as was very well reported by the Metamask security"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,160",
+				"to": "00:09:13,600"
+			},
+			"offsets": {
+				"from": 548160,
+				"to": 553600
+			},
+			"text": " team it turns out that naturally this was not the true application. What was really happening here"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,600",
+				"to": "00:09:21,120"
+			},
+			"offsets": {
+				"from": 553600,
+				"to": 561120
+			},
+			"text": " is when the users were going on to this website what they were seeing was you know some screen"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,120",
+				"to": "00:09:25,200"
+			},
+			"offsets": {
+				"from": 561120,
+				"to": 565200
+			},
+			"text": " that said hey you're earning great rewards all you have to do is buy a little voucher to claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,200",
+				"to": "00:09:30,480"
+			},
+			"offsets": {
+				"from": 565200,
+				"to": 570480
+			},
+			"text": " those rewards but when they bought that voucher what they really did was approve another address"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,480",
+				"to": "00:09:35,120"
+			},
+			"offsets": {
+				"from": 570480,
+				"to": 575120
+			},
+			"text": " to move the tether sitting in their wallet and again this is a really common attack factor"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,120",
+				"to": "00:09:40,720"
+			},
+			"offsets": {
+				"from": 575120,
+				"to": 580720
+			},
+			"text": " certainly not a new one it's been around forever but it still tricks a lot of users."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,720",
+				"to": "00:09:45,920"
+			},
+			"offsets": {
+				"from": 580720,
+				"to": 585920
+			},
+			"text": " Users don't understand what this approval is that they're signing and naturally once the bad actor"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,920",
+				"to": "00:09:51,440"
+			},
+			"offsets": {
+				"from": 585920,
+				"to": 591440
+			},
+			"text": " gets the user the victim to approve their address to move their funds they can now clean out all"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,440",
+				"to": "00:09:56,800"
+			},
+			"offsets": {
+				"from": 591440,
+				"to": 596800
+			},
+			"text": " the tether that's sitting in that address and what we can see thanks to the great work of Metamask"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,800",
+				"to": "00:10:03,120"
+			},
+			"offsets": {
+				"from": 596800,
+				"to": 603120
+			},
+			"text": " is Metamask as a very popular wallet provider they received lots of tickets from users who had been"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,120",
+				"to": "00:10:08,800"
+			},
+			"offsets": {
+				"from": 603120,
+				"to": 608800
+			},
+			"text": " scanned and they noticed a trend on the off-chain side they noticed a similarity in how these users"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,800",
+				"to": "00:10:13,200"
+			},
+			"offsets": {
+				"from": 608800,
+				"to": 613200
+			},
+			"text": " were being tricked they noticed similarities in some of the domains being used to to you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,200",
+				"to": "00:10:19,520"
+			},
+			"offsets": {
+				"from": 613200,
+				"to": 619520
+			},
+			"text": " trick these users and from that they published a awesome dune dashboard showing 60 addresses that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,520",
+				"to": "00:10:25,360"
+			},
+			"offsets": {
+				"from": 619520,
+				"to": 625360
+			},
+			"text": " were scamming users i.e. 60 addresses that were being granted approvals from victims and those 60"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,360",
+				"to": "00:10:30,640"
+			},
+			"offsets": {
+				"from": 625360,
+				"to": 630640
+			},
+			"text": " addresses had managed to scam somewhere in the range of 83 million dollars over the course of a year"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,640",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 630640,
+				"to": 636000
+			},
+			"text": " now that's that's already in the range of some of the major bridge hacks um however we can go"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:40,640"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 640640
+			},
+			"text": " beyond this right because Metamask as a wallet provider they're the first point of context they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,640",
+				"to": "00:10:45,920"
+			},
+			"offsets": {
+				"from": 640640,
+				"to": 645920
+			},
+			"text": " they're getting the reports from users but what we do as a blockchain analytics company is we try"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,920",
+				"to": "00:10:53,920"
+			},
+			"offsets": {
+				"from": 645920,
+				"to": 653920
+			},
+			"text": " and build out patterns so here with 60 addresses we can look in a variety of directions um so the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,920",
+				"to": "00:10:59,280"
+			},
+			"offsets": {
+				"from": 653920,
+				"to": 659280
+			},
+			"text": " reported scam addresses are shown here and one of the first things that we might do in investigation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,280",
+				"to": "00:11:04,480"
+			},
+			"offsets": {
+				"from": 659280,
+				"to": 664480
+			},
+			"text": " is say okay how were these different addresses funded how did they get the ether that they needed"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,480",
+				"to": "00:11:09,920"
+			},
+			"offsets": {
+				"from": 664480,
+				"to": 669920
+			},
+			"text": " to execute transactions on the blockchain again this is one of many avenues that we pursue um but"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,920",
+				"to": "00:11:15,200"
+			},
+			"offsets": {
+				"from": 669920,
+				"to": 675200
+			},
+			"text": " you know from there we might be able to identify related addresses and from there maybe we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,200",
+				"to": "00:11:20,960"
+			},
+			"offsets": {
+				"from": 675200,
+				"to": 680960
+			},
+			"text": " start identifying some patterns maybe we notice there are some addresses that appear to be testing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,960",
+				"to": "00:11:25,520"
+			},
+			"offsets": {
+				"from": 680960,
+				"to": 685520
+			},
+			"text": " these phishing scripts right there they're testing the approval function they're funded from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,520",
+				"to": "00:11:31,440"
+			},
+			"offsets": {
+				"from": 685520,
+				"to": 691440
+			},
+			"text": " same entities clearly related to what's going on here and uh with that pattern recognition by"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,440",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 691440,
+				"to": 696000
+			},
+			"text": " looking you know at the funding by looking at these uh you know testing patterns and others"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:41,840"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 701840
+			},
+			"text": " we can start to identify additional addresses that are receiving approvals from victims that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,840",
+				"to": "00:11:46,560"
+			},
+			"offsets": {
+				"from": 701840,
+				"to": 706560
+			},
+			"text": " following this exact same pattern of getting that approval from the victim and then transferring"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,560",
+				"to": "00:11:51,360"
+			},
+			"offsets": {
+				"from": 706560,
+				"to": 711360
+			},
+			"text": " the tether out everything looks alike um and so now you know we're starting to expand our our"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,360",
+				"to": "00:11:56,880"
+			},
+			"offsets": {
+				"from": 711360,
+				"to": 716880
+			},
+			"text": " understanding of the adversary here where things really get interesting though is when adversaries"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,880",
+				"to": "00:12:02,240"
+			},
+			"offsets": {
+				"from": 716880,
+				"to": 722240
+			},
+			"text": " are are coordinated and organized as is the case here um this is a a persistent scam that that's uh"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,240",
+				"to": "00:12:07,520"
+			},
+			"offsets": {
+				"from": 722240,
+				"to": 727520
+			},
+			"text": " you know lasted over a year there is some point of you know consolidation some pattern we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,520",
+				"to": "00:12:13,360"
+			},
+			"offsets": {
+				"from": 727520,
+				"to": 733360
+			},
+			"text": " identify and we identified a consolidation point here um funds were being gathered in a very specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,360",
+				"to": "00:12:19,360"
+			},
+			"offsets": {
+				"from": 733360,
+				"to": 739360
+			},
+			"text": " manner and from that consolidation point we can really start to understand the true scale of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,360",
+				"to": "00:12:25,280"
+			},
+			"offsets": {
+				"from": 739360,
+				"to": 745280
+			},
+			"text": " scam and it turns out uh that when we really mapped out this scam um and certainly the mapping is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,280",
+				"to": "00:12:30,880"
+			},
+			"offsets": {
+				"from": 745280,
+				"to": 750880
+			},
+			"text": " complete here uh we were able to go from the 60 addresses that metamask reported from from their"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,880",
+				"to": "00:12:38,320"
+			},
+			"offsets": {
+				"from": 750880,
+				"to": 758320
+			},
+			"text": " victims um to 91 additional addresses that we identified doing the exact same thing where we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,320",
+				"to": "00:12:43,440"
+			},
+			"offsets": {
+				"from": 758320,
+				"to": 763440
+			},
+			"text": " very confident that they're all controlled by the same entity so these 91 addresses um plus the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,440",
+				"to": "00:12:49,040"
+			},
+			"offsets": {
+				"from": 763440,
+				"to": 769040
+			},
+			"text": " original 60 addresses they take victim funds and they spread them out to all sorts of addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,040",
+				"to": "00:12:54,720"
+			},
+			"offsets": {
+				"from": 769040,
+				"to": 774720
+			},
+			"text": " they spread them out to 879 other addresses um so already we're again seeing a very clear"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,720",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 774720,
+				"to": 780000
+			},
+			"text": " laundering pattern um as dolea will get into in just a moment um but you know we we can start to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:05,040"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 785040
+			},
+			"text": " map out where those funds go and additionally we can identify how many victims are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,040",
+				"to": "00:13:09,520"
+			},
+			"offsets": {
+				"from": 785040,
+				"to": 789520
+			},
+			"text": " being hurt by this scam so metamask in their original dune dashboard which again you know they"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,520",
+				"to": "00:13:13,840"
+			},
+			"offsets": {
+				"from": 789520,
+				"to": 793840
+			},
+			"text": " did a fantastic job publicizing this um and you know we wouldn't be able to get started without"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,840",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 793840,
+				"to": 800000
+			},
+			"text": " their work uh but here we were able to identify more than 11 000 additional victims and this is where"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:24,240"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 804240
+			},
+			"text": " these sorts of persistent scams although less technically sophisticated than something like"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,240",
+				"to": "00:13:30,480"
+			},
+			"offsets": {
+				"from": 804240,
+				"to": 810480
+			},
+			"text": " an exploit really damaged the community because now we've got over 20 000 likely victims and these"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,480",
+				"to": "00:13:34,560"
+			},
+			"offsets": {
+				"from": 810480,
+				"to": 814560
+			},
+			"text": " likely victims are probably first-time users and they're going to go tell all their friends that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,560",
+				"to": "00:13:39,680"
+			},
+			"offsets": {
+				"from": 814560,
+				"to": 819680
+			},
+			"text": " know their only experience in crypto is getting scammed uh so you know this is a real problem and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,680",
+				"to": "00:13:44,640"
+			},
+			"offsets": {
+				"from": 819680,
+				"to": 824640
+			},
+			"text": " certainly you know the scale is pretty shocking as well um but to truly understand the scale of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,640",
+				"to": "00:13:48,960"
+			},
+			"offsets": {
+				"from": 824640,
+				"to": 828960
+			},
+			"text": " of these sorts of scams we also not only have to map out the infrastructure being used to scam"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,960",
+				"to": "00:13:54,240"
+			},
+			"offsets": {
+				"from": 828960,
+				"to": 834240
+			},
+			"text": " victims but also where the funds go after the attack and for that i'll pass it back over to Julia"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,240",
+				"to": "00:14:03,280"
+			},
+			"offsets": {
+				"from": 834240,
+				"to": 843280
+			},
+			"text": " yeah so looking back at where do the funds go once they have been stolen and gone to those"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,280",
+				"to": "00:14:08,960"
+			},
+			"offsets": {
+				"from": 843280,
+				"to": 848960
+			},
+			"text": " recipient addresses we see a really clear pattern of activity and what we're going to show here is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,960",
+				"to": "00:14:16,160"
+			},
+			"offsets": {
+				"from": 848960,
+				"to": 856160
+			},
+			"text": " just one example um but you can just imagine it across hundreds of addresses so first we see that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,160",
+				"to": "00:14:22,160"
+			},
+			"offsets": {
+				"from": 856160,
+				"to": 862160
+			},
+			"text": " the funds are received from the different victims and then spread across a few different addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,160",
+				"to": "00:14:27,600"
+			},
+			"offsets": {
+				"from": 862160,
+				"to": 867600
+			},
+			"text": " they might be doing that to provide liquidity within the other addresses that they have within"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,600",
+				"to": "00:14:32,800"
+			},
+			"offsets": {
+				"from": 867600,
+				"to": 872800
+			},
+			"text": " this network they might be doing that to obfuscate the flow of funds we can't really be certain but"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,800",
+				"to": "00:14:39,200"
+			},
+			"offsets": {
+				"from": 872800,
+				"to": 879200
+			},
+			"text": " what we do see is after that initial spreading out we see a consolidation point and this is just one"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,200",
+				"to": "00:14:45,040"
+			},
+			"offsets": {
+				"from": 879200,
+				"to": 885040
+			},
+			"text": " address or one line here from one address but imagine that there are tens of different addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,040",
+				"to": "00:14:50,160"
+			},
+			"offsets": {
+				"from": 885040,
+				"to": 890160
+			},
+			"text": " hundreds of different addresses that are all consolidating to this one address right here"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,160",
+				"to": "00:14:57,360"
+			},
+			"offsets": {
+				"from": 890160,
+				"to": 897360
+			},
+			"text": " and consolidating all those different victim funds then we see the funds move to new addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,360",
+				"to": "00:15:05,040"
+			},
+			"offsets": {
+				"from": 897360,
+				"to": 905040
+			},
+			"text": " in preparation to start to interact with exchanges and once we get to the exchanges at the bottom"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,040",
+				"to": "00:15:11,440"
+			},
+			"offsets": {
+				"from": 905040,
+				"to": 911440
+			},
+			"text": " the numbers are pretty staggering we see 10 million going to a single deposit address at an"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,440",
+				"to": "00:15:18,880"
+			},
+			"offsets": {
+				"from": 911440,
+				"to": 918880
+			},
+			"text": " exchange on one line there 31 million add another and when we tally up all of those different values"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,880",
+				"to": "00:15:25,680"
+			},
+			"offsets": {
+				"from": 918880,
+				"to": 925680
+			},
+			"text": " that we see from this flow of funds we end up finding a hundred and forty three million dollars"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,680",
+				"to": "00:15:32,160"
+			},
+			"offsets": {
+				"from": 925680,
+				"to": 932160
+			},
+			"text": " worth of additional stolen value so in combination with what Madamask initially provided we have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,160",
+				"to": "00:15:38,480"
+			},
+			"offsets": {
+				"from": 932160,
+				"to": 938480
+			},
+			"text": " two hundred and twenty seven million dollar scam this is by this point in the top five BFI exploits"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,480",
+				"to": "00:15:44,480"
+			},
+			"offsets": {
+				"from": 938480,
+				"to": 944480
+			},
+			"text": " category and this is just from all the different victims all the different users that in aggregate"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,480",
+				"to": "00:15:52,640"
+			},
+			"offsets": {
+				"from": 944480,
+				"to": 952640
+			},
+			"text": " are ending up being just as big of a of an activity now this is the known value when we look at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,640",
+				"to": "00:15:59,600"
+			},
+			"offsets": {
+				"from": 952640,
+				"to": 959600
+			},
+			"text": " entire network and look at what funds are actually going to exchanges we see 1.2 billion dollars so"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,600",
+				"to": "00:16:05,120"
+			},
+			"offsets": {
+				"from": 959600,
+				"to": 965120
+			},
+			"text": " we can't know without further investigation that all of those funds are coming from this one"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,120",
+				"to": "00:16:11,440"
+			},
+			"offsets": {
+				"from": 965120,
+				"to": 971440
+			},
+			"text": " tether scam but it shows what the upper bounds of this scam value could really be"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,440",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 971440,
+				"to": 978000
+			},
+			"text": " the other thing is that we do see that on chain coordination we see that the same recipient"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:25,200"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 985200
+			},
+			"text": " addresses are being used across different transfer from scammer addresses so we can we see the consolidation"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,200",
+				"to": "00:16:30,400"
+			},
+			"offsets": {
+				"from": 985200,
+				"to": 990400
+			},
+			"text": " points we know that there is definitely some coordinated activity here and that there is one"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,400",
+				"to": "00:16:37,760"
+			},
+			"offsets": {
+				"from": 990400,
+				"to": 997760
+			},
+			"text": " actor behind at least the majority of this exploit and we can take this a step further so we can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,760",
+				"to": "00:16:44,480"
+			},
+			"offsets": {
+				"from": 997760,
+				"to": 1004480
+			},
+			"text": " probabilistic analytics on other addresses and say do we see other addresses that are showing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,480",
+				"to": "00:16:50,000"
+			},
+			"offsets": {
+				"from": 1004480,
+				"to": 1010000
+			},
+			"text": " same pattern of activity as the ones that we've manually identified and with that we see another"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,000",
+				"to": "00:17:01,200"
+			},
+			"offsets": {
+				"from": 1010000,
+				"to": 1021200
+			},
+			"text": " 375 potential addresses so this is just one example of us working with metamask to find this scam and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,200",
+				"to": "00:17:05,920"
+			},
+			"offsets": {
+				"from": 1021200,
+				"to": 1025920
+			},
+			"text": " find its full levels but really we want this to be a starting point and we really want"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,920",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1025920,
+				"to": 1032000
+			},
+			"text": " all of us as a community within the security space to try to work a lot more closely together"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,360",
+				"to": "00:17:19,520"
+			},
+			"offsets": {
+				"from": 1033360,
+				"to": 1039520
+			},
+			"text": " and we can raise the cost for bad actors by trying to use some of these different points"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,520",
+				"to": "00:17:25,040"
+			},
+			"offsets": {
+				"from": 1039520,
+				"to": 1045040
+			},
+			"text": " this is something that is not just unique to us we know that those that are working in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,040",
+				"to": "00:17:30,160"
+			},
+			"offsets": {
+				"from": 1045040,
+				"to": 1050160
+			},
+			"text": " ransomware space have done a good job with trying to work a lot more collaboratively"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,160",
+				"to": "00:17:35,120"
+			},
+			"offsets": {
+				"from": 1050160,
+				"to": 1055120
+			},
+			"text": " and we think we can do a lot of the same things here so trying to have more data sharing between"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,120",
+				"to": "00:17:40,960"
+			},
+			"offsets": {
+				"from": 1055120,
+				"to": 1060960
+			},
+			"text": " the victims and the incident response firms trying to use blockchain analytics more and focus on"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,960",
+				"to": "00:17:46,880"
+			},
+			"offsets": {
+				"from": 1060960,
+				"to": 1066880
+			},
+			"text": " that combination of off-chain and on-chain together trying to have more public private"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,880",
+				"to": "00:17:52,320"
+			},
+			"offsets": {
+				"from": 1066880,
+				"to": 1072320
+			},
+			"text": " collaboration and trying to identify trends and share that research with each other so we're all"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,320",
+				"to": "00:17:57,680"
+			},
+			"offsets": {
+				"from": 1072320,
+				"to": 1077680
+			},
+			"text": " kind of working right now a little bit more in our own silos but maybe we can start a conversation"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,680",
+				"to": "00:18:03,280"
+			},
+			"offsets": {
+				"from": 1077680,
+				"to": 1083280
+			},
+			"text": " about how we can start to communicate more and try to use all of these assets that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,280",
+				"to": "00:18:08,240"
+			},
+			"offsets": {
+				"from": 1083280,
+				"to": 1088240
+			},
+			"text": " to our advantage to prevent the next year having quite as many exploits as this year"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,680",
+				"to": "00:18:14,960"
+			},
+			"offsets": {
+				"from": 1089680,
+				"to": 1094960
+			},
+			"text": " so with that we thank you very much we would really like to talk with each and every one of you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,960",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1094960,
+				"to": 1102000
+			},
+			"text": " after this if you have any ideas about how we can collaborate or where we should take this from"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:28,880"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1108880
+			},
+			"text": " this point here definitely feel free to follow us and reach out to us I think we have a couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,880",
+				"to": "00:18:38,960"
+			},
+			"offsets": {
+				"from": 1108880,
+				"to": 1118960
+			},
+			"text": " minutes if anyone has any questions off hand yeah oh yeah so the question was in the traditional"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,960",
+				"to": "00:18:44,800"
+			},
+			"offsets": {
+				"from": 1118960,
+				"to": 1124800
+			},
+			"text": " cybersecurity space we talk about you know APT's advanced persistent threats whereas we use the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,800",
+				"to": "00:18:50,720"
+			},
+			"offsets": {
+				"from": 1124800,
+				"to": 1130720
+			},
+			"text": " term coordinated adversaries we didn't want to confuse the the cybersecurity side of things because"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,720",
+				"to": "00:18:56,640"
+			},
+			"offsets": {
+				"from": 1130720,
+				"to": 1136640
+			},
+			"text": " maybe some of these coordinated adversaries aren't you know really an advanced super tech"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,640",
+				"to": "00:19:03,840"
+			},
+			"offsets": {
+				"from": 1136640,
+				"to": 1143840
+			},
+			"text": " sophisticated threat but mostly it's just terminology of choice yeah so in the case that we saw here"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,840",
+				"to": "00:19:10,320"
+			},
+			"offsets": {
+				"from": 1143840,
+				"to": 1150320
+			},
+			"text": " we we were presented something that was not supposedly looking like it came from the Lazarus"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,320",
+				"to": "00:19:16,640"
+			},
+			"offsets": {
+				"from": 1150320,
+				"to": 1156640
+			},
+			"text": " group or the DPRK but why why does this not look like it comes from from the DPRK or the Lazarus group"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,640",
+				"to": "00:19:23,440"
+			},
+			"offsets": {
+				"from": 1156640,
+				"to": 1163440
+			},
+			"text": " I mean exactly for the reasons that we were talking about so using that off-chain and on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,440",
+				"to": "00:19:32,960"
+			},
+			"offsets": {
+				"from": 1163440,
+				"to": 1172960
+			},
+			"text": " pattern and from what we have historically known how Lazarus tends to provide spearfishing or use"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,960",
+				"to": "00:19:37,840"
+			},
+			"offsets": {
+				"from": 1172960,
+				"to": 1177840
+			},
+			"text": " certain methods off-chain how they tend to launder on-chain it just isn't following that pattern"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,840",
+				"to": "00:19:40,320"
+			},
+			"offsets": {
+				"from": 1177840,
+				"to": 1180320
+			},
+			"text": " yep"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,320",
+				"to": "00:19:51,280"
+			},
+			"offsets": {
+				"from": 1180320,
+				"to": 1191280
+			},
+			"text": " thank you for the talk today briefly you mentioned that you used checking how wallets were funded as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,280",
+				"to": "00:19:56,560"
+			},
+			"offsets": {
+				"from": 1191280,
+				"to": 1196560
+			},
+			"text": " means to investigate what were the other tactics that I heard you say we use other tactics what"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,560",
+				"to": "00:20:02,480"
+			},
+			"offsets": {
+				"from": 1196560,
+				"to": 1202480
+			},
+			"text": " are the other tactics that you use yeah I'll take that one so my my day job is actually to to run"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,480",
+				"to": "00:20:06,560"
+			},
+			"offsets": {
+				"from": 1202480,
+				"to": 1206560
+			},
+			"text": " training courses on that unfortunately it's going to take like eight hours to really get a delve into"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,560",
+				"to": "00:20:11,360"
+			},
+			"offsets": {
+				"from": 1206560,
+				"to": 1211360
+			},
+			"text": " that one but you know there there's a lot of different directions to look in generally we look"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,360",
+				"to": "00:20:15,360"
+			},
+			"offsets": {
+				"from": 1211360,
+				"to": 1215360
+			},
+			"text": " both forward and backwards to see you know where the funds are going where they came from and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,360",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1215360,
+				"to": 1220000
+			},
+			"text": " you know a lot of times with a persistent group like this there's some sort of testing effort as"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:25,280"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1225280
+			},
+			"text": " well mapping out the testing effort can be often very illustrative but you know we can definitely"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,280",
+				"to": "00:20:26,800"
+			},
+			"offsets": {
+				"from": 1225280,
+				"to": 1226800
+			},
+			"text": " chat more on the side"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,280",
+				"to": "00:20:36,720"
+			},
+			"offsets": {
+				"from": 1229280,
+				"to": 1236720
+			},
+			"text": " yeah I think we can do one more probably so so the question was with respect to to you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,720",
+				"to": "00:20:43,680"
+			},
+			"offsets": {
+				"from": 1236720,
+				"to": 1243680
+			},
+			"text": " zk roll-ups and and other zk chains you know how does that potentially interfere with blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,680",
+				"to": "00:20:50,240"
+			},
+			"offsets": {
+				"from": 1243680,
+				"to": 1250240
+			},
+			"text": " analytics it it definitely depends I'll I'll give you the the non-answer there different chains come"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,240",
+				"to": "00:20:56,240"
+			},
+			"offsets": {
+				"from": 1250240,
+				"to": 1256240
+			},
+			"text": " with with different considerations there but you know as as our co-founder stated you know these"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,240",
+				"to": "00:21:01,120"
+			},
+			"offsets": {
+				"from": 1256240,
+				"to": 1261120
+			},
+			"text": " groups especially Lazarus are moving something like 600 million dollars in a shot like that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,120",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1261120,
+				"to": 1266000
+			},
+			"text": " that's kind of tougher to hide so if you're operating at that volume it's it's hard to hide that amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:13,760"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1273760
+			},
+			"text": " well thank you everyone and definitely feel free to find us later"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,760",
+				"to": "00:21:15,760"
+			},
+			"offsets": {
+				"from": 1273760,
+				"to": 1275760
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,760",
+				"to": "00:21:17,760"
+			},
+			"offsets": {
+				"from": 1275760,
+				"to": 1277760
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,760",
+				"to": "00:21:19,760"
+			},
+			"offsets": {
+				"from": 1277760,
+				"to": 1279760
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,760",
+				"to": "00:21:21,760"
+			},
+			"offsets": {
+				"from": 1279760,
+				"to": 1281760
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,760",
+				"to": "00:21:25,760"
+			},
+			"offsets": {
+				"from": 1281760,
+				"to": 1285760
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

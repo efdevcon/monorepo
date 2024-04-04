@@ -1,0 +1,2650 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,560"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11560
+			},
+			"text": " Welcome to our presentation on trustless validator pools in ETH 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,560",
+				"to": "00:00:14,640"
+			},
+			"offsets": {
+				"from": 11560,
+				"to": 14640
+			},
+			"text": " I'm Dan Karth-Fiest and this is my colleague Carl Bakwisen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,640",
+				"to": "00:00:19,320"
+			},
+			"offsets": {
+				"from": 14640,
+				"to": 19320
+			},
+			"text": " We are both researchers in the ETH 2.0 research team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,320",
+				"to": "00:00:28,520"
+			},
+			"offsets": {
+				"from": 19320,
+				"to": 28520
+			},
+			"text": " And we'd like to talk a bit about our efforts to make trustless staking possible in ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,520",
+				"to": "00:00:29,520"
+			},
+			"offsets": {
+				"from": 28520,
+				"to": 29520
+			},
+			"text": " 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,520",
+				"to": "00:00:33,160"
+			},
+			"offsets": {
+				"from": 29520,
+				"to": 33160
+			},
+			"text": " And then we'll discuss how we design the protocol to make this possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,160",
+				"to": "00:00:40,040"
+			},
+			"offsets": {
+				"from": 33160,
+				"to": 40040
+			},
+			"text": " And then in the end Carl will talk about the actual implementation of this, how it would"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,040",
+				"to": "00:00:43,120"
+			},
+			"offsets": {
+				"from": 40040,
+				"to": 43120
+			},
+			"text": " work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,120",
+				"to": "00:00:44,880"
+			},
+			"offsets": {
+				"from": 43120,
+				"to": 44880
+			},
+			"text": " So yeah, this is the outline of the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,880",
+				"to": "00:00:52,200"
+			},
+			"offsets": {
+				"from": 44880,
+				"to": 52200
+			},
+			"text": " So motivation, why do we need trustless staking pools, why we want this as a primary goal in"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,200",
+				"to": "00:00:54,440"
+			},
+			"offsets": {
+				"from": 52200,
+				"to": 54440
+			},
+			"text": " ETH 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,440",
+				"to": "00:00:57,480"
+			},
+			"offsets": {
+				"from": 54440,
+				"to": 57480
+			},
+			"text": " Then how do you design a protocol?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,480",
+				"to": "00:01:04,160"
+			},
+			"offsets": {
+				"from": 57480,
+				"to": 64160
+			},
+			"text": " So like the technology basically that is needed to have trustless staking pool as secure multi-party"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,160",
+				"to": "00:01:07,080"
+			},
+			"offsets": {
+				"from": 64160,
+				"to": 67080
+			},
+			"text": " computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,080",
+				"to": "00:01:14,560"
+			},
+			"offsets": {
+				"from": 67080,
+				"to": 74560
+			},
+			"text": " And then there are basically less and more advanced ways to have these trustless staking pools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,560",
+				"to": "00:01:21,640"
+			},
+			"offsets": {
+				"from": 74560,
+				"to": 81640
+			},
+			"text": " You can have a basic algorithm that enables you to have a sort of trustless staking or"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,640",
+				"to": "00:01:30,080"
+			},
+			"offsets": {
+				"from": 81640,
+				"to": 90080
+			},
+			"text": " you can actually, if you want, extend this towards a fault attribution so that if your"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,080",
+				"to": "00:01:36,680"
+			},
+			"offsets": {
+				"from": 90080,
+				"to": 96680
+			},
+			"text": " honest two-thirds majority assumption fails, you can still, yeah, with very high likelihood"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,680",
+				"to": "00:01:42,160"
+			},
+			"offsets": {
+				"from": 96680,
+				"to": 102160
+			},
+			"text": " not lose your money if you're in such a pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,160",
+				"to": "00:01:48,640"
+			},
+			"offsets": {
+				"from": 102160,
+				"to": 108640
+			},
+			"text": " Okay, so what's so cool, why do we need trustless staking pools?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,640",
+				"to": "00:01:57,600"
+			},
+			"offsets": {
+				"from": 108640,
+				"to": 117600
+			},
+			"text": " So like the first thing you have to know about Pro-Stake, like an ETH 2.0, we need to fix"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,600",
+				"to": "00:02:02,120"
+			},
+			"offsets": {
+				"from": 117600,
+				"to": 122120
+			},
+			"text": " the amount that is staked by every validator to roughly the same amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,120",
+				"to": "00:02:03,120"
+			},
+			"offsets": {
+				"from": 122120,
+				"to": 123120
+			},
+			"text": " And why is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,120",
+				"to": "00:02:08,920"
+			},
+			"offsets": {
+				"from": 123120,
+				"to": 128920
+			},
+			"text": " It's very difficult to design a protocol that works in a fair way with vastly different"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,920",
+				"to": "00:02:10,200"
+			},
+			"offsets": {
+				"from": 128920,
+				"to": 130200
+			},
+			"text": " stakes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,200",
+				"to": "00:02:15,840"
+			},
+			"offsets": {
+				"from": 130200,
+				"to": 135840
+			},
+			"text": " So for example, when you sample people for commodities, you don't make any adjustments"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,840",
+				"to": "00:02:19,920"
+			},
+			"offsets": {
+				"from": 135840,
+				"to": 139920
+			},
+			"text": " for their stake because it would just be too complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,920",
+				"to": "00:02:25,240"
+			},
+			"offsets": {
+				"from": 139920,
+				"to": 145240
+			},
+			"text": " And so like the protocol is designed so that it only really works if what everyone has"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,240",
+				"to": "00:02:26,520"
+			},
+			"offsets": {
+				"from": 145240,
+				"to": 146520
+			},
+			"text": " staked is roughly similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,520",
+				"to": "00:02:32,440"
+			},
+			"offsets": {
+				"from": 146520,
+				"to": 152440
+			},
+			"text": " It can vary slightly but if it varies too much, then like the assumptions will fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,440",
+				"to": "00:02:39,320"
+			},
+			"offsets": {
+				"from": 152440,
+				"to": 159320
+			},
+			"text": " And so like the amount that we agreed on is 32 ETH, which is like in today's price is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,320",
+				"to": "00:02:45,800"
+			},
+			"offsets": {
+				"from": 159320,
+				"to": 165800
+			},
+			"text": " about 5,500 US dollars, but say like one ETH goes to 10,000 US dollars, which is very"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,800",
+				"to": "00:02:54,120"
+			},
+			"offsets": {
+				"from": 165800,
+				"to": 174120
+			},
+			"text": " well possible from what we know, then once one validator would have to stake 32,320"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,120",
+				"to": "00:03:01,400"
+			},
+			"offsets": {
+				"from": 174120,
+				"to": 181400
+			},
+			"text": " ETH, sorry, US dollars, which is great for security because then suddenly we would have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,400",
+				"to": "00:03:05,280"
+			},
+			"offsets": {
+				"from": 181400,
+				"to": 185280
+			},
+			"text": " like our security assumptions and proof of stake of course depend on how much money is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,280",
+				"to": "00:03:11,320"
+			},
+			"offsets": {
+				"from": 185280,
+				"to": 191320
+			},
+			"text": " staked by the validators overall, but it would increase the barrier of entry to such a high"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,320",
+				"to": "00:03:18,680"
+			},
+			"offsets": {
+				"from": 191320,
+				"to": 198680
+			},
+			"text": " amount that like very few people could actually afford becoming a validator from the capital"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,680",
+				"to": "00:03:20,440"
+			},
+			"offsets": {
+				"from": 198680,
+				"to": 200440
+			},
+			"text": " cost point of view."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,440",
+				"to": "00:03:27,560"
+			},
+			"offsets": {
+				"from": 200440,
+				"to": 207560
+			},
+			"text": " And so that would not be what we're aiming for to just make validating another easy income"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,560",
+				"to": "00:03:32,560"
+			},
+			"offsets": {
+				"from": 207560,
+				"to": 212560
+			},
+			"text": " stream for the rich that's not accessible for everyone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,560",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 212560,
+				"to": 219000
+			},
+			"text": " And since as I mentioned before, it's not really an option to just make staking possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:41,320"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 221320
+			},
+			"text": " with any staking amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,320",
+				"to": "00:03:45,320"
+			},
+			"offsets": {
+				"from": 221320,
+				"to": 225320
+			},
+			"text": " The alternative is that we create staking pools where several people can come together"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,320",
+				"to": "00:03:50,800"
+			},
+			"offsets": {
+				"from": 225320,
+				"to": 230800
+			},
+			"text": " and say like we want to run one validator together and we'll put everyone puts in part"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,800",
+				"to": "00:03:53,760"
+			},
+			"offsets": {
+				"from": 230800,
+				"to": 233760
+			},
+			"text": " of the required capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,760",
+				"to": "00:03:58,480"
+			},
+			"offsets": {
+				"from": 233760,
+				"to": 238480
+			},
+			"text": " And so, and the nice thing about when you have trust, plus staking pools, as we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,480",
+				"to": "00:04:02,720"
+			},
+			"offsets": {
+				"from": 238480,
+				"to": 242720
+			},
+			"text": " to talk about in this presentation, then they can still be decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,720",
+				"to": "00:04:09,280"
+			},
+			"offsets": {
+				"from": 242720,
+				"to": 249280
+			},
+			"text": " So like having a pool doesn't mean, oh, I know like Jeff is like a trustworthy guy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,280",
+				"to": "00:04:11,960"
+			},
+			"offsets": {
+				"from": 249280,
+				"to": 251960
+			},
+			"text": " We'll just, everyone give him their money and he'll run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,960",
+				"to": "00:04:16,680"
+			},
+			"offsets": {
+				"from": 251960,
+				"to": 256680
+			},
+			"text": " But no, we can actually do this so that everyone runs that validator together in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,680",
+				"to": "00:04:23,920"
+			},
+			"offsets": {
+				"from": 256680,
+				"to": 263920
+			},
+			"text": " multiparty computation and you don't need to fully trust that any of the guys is like"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,920",
+				"to": "00:04:25,840"
+			},
+			"offsets": {
+				"from": 263920,
+				"to": 265840
+			},
+			"text": " completely trustworthy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,840",
+				"to": "00:04:28,320"
+			},
+			"offsets": {
+				"from": 265840,
+				"to": 268320
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,320",
+				"to": "00:04:34,880"
+			},
+			"offsets": {
+				"from": 268320,
+				"to": 274880
+			},
+			"text": " And there's actually also a second very good reason to do this, which is that even if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,880",
+				"to": "00:04:43,440"
+			},
+			"offsets": {
+				"from": 274880,
+				"to": 283440
+			},
+			"text": " are a single guy putting up the deposit, you might not actually want to run your validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,440",
+				"to": "00:04:47,960"
+			},
+			"offsets": {
+				"from": 283440,
+				"to": 287960
+			},
+			"text": " on just one machine because the thing is to run the validator, you need to have the validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,960",
+				"to": "00:04:50,160"
+			},
+			"offsets": {
+				"from": 287960,
+				"to": 290160
+			},
+			"text": " secret on that machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,160",
+				"to": "00:04:55,680"
+			},
+			"offsets": {
+				"from": 290160,
+				"to": 295680
+			},
+			"text": " And that's of course a huge potential security of risk because someone hacking that machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,680",
+				"to": "00:05:01,120"
+			},
+			"offsets": {
+				"from": 295680,
+				"to": 301120
+			},
+			"text": " could just do whatever they want with that key and potentially get you slashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,120",
+				"to": "00:05:07,360"
+			},
+			"offsets": {
+				"from": 301120,
+				"to": 307360
+			},
+			"text": " So a nice thing is if you have the technology to enable multiparty computation for validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,360",
+				"to": "00:05:13,640"
+			},
+			"offsets": {
+				"from": 307360,
+				"to": 313640
+			},
+			"text": " then that also means you can increase your security by distributing your key across say"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,640",
+				"to": "00:05:18,200"
+			},
+			"offsets": {
+				"from": 313640,
+				"to": 318200
+			},
+			"text": " just three machines and say like you don't, you want to run it in the cloud, you don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,200",
+				"to": "00:05:22,840"
+			},
+			"offsets": {
+				"from": 318200,
+				"to": 322840
+			},
+			"text": " fully trust your cloud provider, you can have one on Azure, one on S3 and one on the Google"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,840",
+				"to": "00:05:23,840"
+			},
+			"offsets": {
+				"from": 322840,
+				"to": 323840
+			},
+			"text": " cloud."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,840",
+				"to": "00:05:28,240"
+			},
+			"offsets": {
+				"from": 323840,
+				"to": 328240
+			},
+			"text": " So you avoid having a single point of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,240",
+				"to": "00:05:30,640"
+			},
+			"offsets": {
+				"from": 328240,
+				"to": 330640
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,640",
+				"to": "00:05:36,680"
+			},
+			"offsets": {
+				"from": 330640,
+				"to": 336680
+			},
+			"text": " So let's come to the technology that makes this possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,680",
+				"to": "00:05:44,720"
+			},
+			"offsets": {
+				"from": 336680,
+				"to": 344720
+			},
+			"text": " So one thing is that we chose to in order to sign anything on E2, we choose this signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,720",
+				"to": "00:05:55,360"
+			},
+			"offsets": {
+				"from": 344720,
+				"to": 355360
+			},
+			"text": " scheme that's called BLS signatures and basically the way it works is that it uses an elliptic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,360",
+				"to": "00:05:57,080"
+			},
+			"offsets": {
+				"from": 355360,
+				"to": 357080
+			},
+			"text": " group with a pairing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,080",
+				"to": "00:06:07,480"
+			},
+			"offsets": {
+				"from": 357080,
+				"to": 367480
+			},
+			"text": " So what that means is that you have this pairing function, sorry, this okay, so E that pairs"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,480",
+				"to": "00:06:13,600"
+			},
+			"offsets": {
+				"from": 367480,
+				"to": 373600
+			},
+			"text": " two elements from elliptic groups with this linearity relation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,600",
+				"to": "00:06:21,640"
+			},
+			"offsets": {
+				"from": 373600,
+				"to": 381640
+			},
+			"text": " So like you can move this factor in from the first argument to the second argument and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,640",
+				"to": "00:06:28,240"
+			},
+			"offsets": {
+				"from": 381640,
+				"to": 388240
+			},
+			"text": " you can also move it out of the pairing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,240",
+				"to": "00:06:36,040"
+			},
+			"offsets": {
+				"from": 388240,
+				"to": 396040
+			},
+			"text": " And so like a secret key is just an integer and a public key is you multiply your generator"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,040",
+				"to": "00:06:39,920"
+			},
+			"offsets": {
+				"from": 396040,
+				"to": 399920
+			},
+			"text": " which is G1 by your secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,920",
+				"to": "00:06:44,880"
+			},
+			"offsets": {
+				"from": 399920,
+				"to": 404880
+			},
+			"text": " And in order to sign a message, you multiply that message."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,880",
+				"to": "00:06:50,600"
+			},
+			"offsets": {
+				"from": 404880,
+				"to": 410600
+			},
+			"text": " So that's a point, you remap the message to a point in the elliptic group to your secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,600",
+				"to": "00:06:56,120"
+			},
+			"offsets": {
+				"from": 410600,
+				"to": 416120
+			},
+			"text": " key times M. And in order to check it, you use the pairing equation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,120",
+				"to": "00:07:04,800"
+			},
+			"offsets": {
+				"from": 416120,
+				"to": 424800
+			},
+			"text": " So you check that the pairing of your public key and the message is the same as the generator"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,800",
+				"to": "00:07:08,320"
+			},
+			"offsets": {
+				"from": 424800,
+				"to": 428320
+			},
+			"text": " and the generator and the signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,320",
+				"to": "00:07:15,200"
+			},
+			"offsets": {
+				"from": 428320,
+				"to": 435200
+			},
+			"text": " And the amazing thing about the signature scheme is that if you look at the signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,200",
+				"to": "00:07:23,120"
+			},
+			"offsets": {
+				"from": 435200,
+				"to": 443120
+			},
+			"text": " checking equation here, it's linear in the public key and the signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,120",
+				"to": "00:07:33,880"
+			},
+			"offsets": {
+				"from": 443120,
+				"to": 453880
+			},
+			"text": " And this means that you can do something like, you can add two public keys and two signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,880",
+				"to": "00:07:39,560"
+			},
+			"offsets": {
+				"from": 453880,
+				"to": 459560
+			},
+			"text": " and that will still be a valid signature for the sum of these two public keys and that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,560",
+				"to": "00:07:40,560"
+			},
+			"offsets": {
+				"from": 459560,
+				"to": 460560
+			},
+			"text": " message."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,560",
+				"to": "00:07:48,160"
+			},
+			"offsets": {
+				"from": 460560,
+				"to": 468160
+			},
+			"text": " So basically like you can just add signatures in order to create a new aggregated signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,160",
+				"to": "00:07:53,560"
+			},
+			"offsets": {
+				"from": 468160,
+				"to": 473560
+			},
+			"text": " And this is amazing and basically it also enables kind of many things that we do in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,560",
+				"to": "00:07:58,400"
+			},
+			"offsets": {
+				"from": 473560,
+				"to": 478400
+			},
+			"text": " the first place or in a way it enables shouting in the first place because it means that thousands"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,400",
+				"to": "00:08:04,680"
+			},
+			"offsets": {
+				"from": 478400,
+				"to": 484680
+			},
+			"text": " of signatures can just be aggregated into one single signature that can be checked once"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,680",
+				"to": "00:08:08,040"
+			},
+			"offsets": {
+				"from": 484680,
+				"to": 488040
+			},
+			"text": " using this pairing and you know that everyone has signed this correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,040",
+				"to": "00:08:14,080"
+			},
+			"offsets": {
+				"from": 488040,
+				"to": 494080
+			},
+			"text": " So this saves the huge amount of data and computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,080",
+				"to": "00:08:21,640"
+			},
+			"offsets": {
+				"from": 494080,
+				"to": 501640
+			},
+			"text": " But also at the same time, since it is linear, this enables something called Shamir secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,640",
+				"to": "00:08:22,640"
+			},
+			"offsets": {
+				"from": 501640,
+				"to": 502640
+			},
+			"text": " sharing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,640",
+				"to": "00:08:29,200"
+			},
+			"offsets": {
+				"from": 502640,
+				"to": 509200
+			},
+			"text": " So the idea behind Shamir secret sharing is like set, let's say we have 10 parties who"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,200",
+				"to": "00:08:33,360"
+			},
+			"offsets": {
+				"from": 509200,
+				"to": 513360
+			},
+			"text": " want to share a secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,360",
+				"to": "00:08:44,760"
+			},
+			"offsets": {
+				"from": 513360,
+				"to": 524760
+			},
+			"text": " What we do is we make the secret a number and we encode it by creating a polynomial that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,760",
+				"to": "00:08:49,400"
+			},
+			"offsets": {
+				"from": 524760,
+				"to": 529400
+			},
+			"text": " at zero has evaluates to that number."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,400",
+				"to": "00:08:52,840"
+			},
+			"offsets": {
+				"from": 529400,
+				"to": 532840
+			},
+			"text": " And we give every one of those 10 parties, one, two, three, four, five, six, seven, eight,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,840",
+				"to": "00:08:56,800"
+			},
+			"offsets": {
+				"from": 532840,
+				"to": 536800
+			},
+			"text": " nine, ten, one point on that polynomial."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,800",
+				"to": "00:09:02,600"
+			},
+			"offsets": {
+				"from": 536800,
+				"to": 542600
+			},
+			"text": " And then and now the degree of that polynomial determines how many of the parties you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,600",
+				"to": "00:09:05,600"
+			},
+			"offsets": {
+				"from": 542600,
+				"to": 545600
+			},
+			"text": " in order to reconstruct the secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,600",
+				"to": "00:09:11,440"
+			},
+			"offsets": {
+				"from": 545600,
+				"to": 551440
+			},
+			"text": " So for example here, I've chosen a polynomial of degree three and we know that any polynomial"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,440",
+				"to": "00:09:17,920"
+			},
+			"offsets": {
+				"from": 551440,
+				"to": 557920
+			},
+			"text": " of degree three can be reconstructed using four values."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,920",
+				"to": "00:09:23,880"
+			},
+			"offsets": {
+				"from": 557920,
+				"to": 563880
+			},
+			"text": " And so that means this automatically gives us a four out of ten signature scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,880",
+				"to": "00:09:29,960"
+			},
+			"offsets": {
+				"from": 563880,
+				"to": 569960
+			},
+			"text": " That means you need four of the people and any four, no matter which four, could recreate"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,960",
+				"to": "00:09:33,440"
+			},
+			"offsets": {
+				"from": 569960,
+				"to": 573440
+			},
+			"text": " that point at zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,440",
+				"to": "00:09:37,600"
+			},
+			"offsets": {
+				"from": 573440,
+				"to": 577600
+			},
+			"text": " And basically due to the linearity of the BLS signature scheme, that means we automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,600",
+				"to": "00:09:41,840"
+			},
+			"offsets": {
+				"from": 577600,
+				"to": 581840
+			},
+			"text": " have the signature, the threshold signature scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,840",
+				"to": "00:09:49,200"
+			},
+			"offsets": {
+				"from": 581840,
+				"to": 589200
+			},
+			"text": " And that means that we can design this amount of N scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,200",
+				"to": "00:09:51,120"
+			},
+			"offsets": {
+				"from": 589200,
+				"to": 591120
+			},
+			"text": " And yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,120",
+				"to": "00:09:54,960"
+			},
+			"offsets": {
+				"from": 591120,
+				"to": 594960
+			},
+			"text": " So basically that gives us threshold BLS signature which is like the most important"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,960",
+				"to": "00:10:00,680"
+			},
+			"offsets": {
+				"from": 594960,
+				"to": 600680
+			},
+			"text": " green because most of the work that you do as a validator is signing things like attesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,680",
+				"to": "00:10:05,800"
+			},
+			"offsets": {
+				"from": 600680,
+				"to": 605800
+			},
+			"text": " blocks saying this was a correct block, this is the state of that chart at that block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,800",
+				"to": "00:10:11,840"
+			},
+			"offsets": {
+				"from": 605800,
+				"to": 611840
+			},
+			"text": " and now we can do that in a decentralized way."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,840",
+				"to": "00:10:15,520"
+			},
+			"offsets": {
+				"from": 611840,
+				"to": 615520
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,520",
+				"to": "00:10:25,200"
+			},
+			"offsets": {
+				"from": 615520,
+				"to": 625200
+			},
+			"text": " And now coming to one point that was kind of difficult in this, as we have one element"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,200",
+				"to": "00:10:33,920"
+			},
+			"offsets": {
+				"from": 625200,
+				"to": 633920
+			},
+			"text": " of the protocol that inherently needs a more, yeah, computation that involves your secret,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,920",
+				"to": "00:10:37,160"
+			},
+			"offsets": {
+				"from": 633920,
+				"to": 637160
+			},
+			"text": " that cannot be solved using these aggregate signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,160",
+				"to": "00:10:40,160"
+			},
+			"offsets": {
+				"from": 637160,
+				"to": 640160
+			},
+			"text": " And that's the so-called proof of custody."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,160",
+				"to": "00:10:42,200"
+			},
+			"offsets": {
+				"from": 640160,
+				"to": 642200
+			},
+			"text": " What's the proof of custody?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,200",
+				"to": "00:10:49,720"
+			},
+			"offsets": {
+				"from": 642200,
+				"to": 649720
+			},
+			"text": " The idea behind the proof of custody is that you want to prove ownership of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,720",
+				"to": "00:10:57,560"
+			},
+			"offsets": {
+				"from": 649720,
+				"to": 657560
+			},
+			"text": " So what we want to do is that when you sign that you have seen a certain amount of chart"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,560",
+				"to": "00:11:02,440"
+			},
+			"offsets": {
+				"from": 657560,
+				"to": 662440
+			},
+			"text": " data, that you also prove that you have seen that data because otherwise you have this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,440",
+				"to": "00:11:08,600"
+			},
+			"offsets": {
+				"from": 662440,
+				"to": 668600
+			},
+			"text": " so-called lazy validator problem that means that, oh, like, I've seen some signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,600",
+				"to": "00:11:11,360"
+			},
+			"offsets": {
+				"from": 668600,
+				"to": 671360
+			},
+			"text": " for this data, so probably it's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,360",
+				"to": "00:11:13,960"
+			},
+			"offsets": {
+				"from": 671360,
+				"to": 673960
+			},
+			"text": " I'll just sign it without doing the work."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,960",
+				"to": "00:11:17,240"
+			},
+			"offsets": {
+				"from": 673960,
+				"to": 677240
+			},
+			"text": " And that's probably, okay, 99% of the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,240",
+				"to": "00:11:21,440"
+			},
+			"offsets": {
+				"from": 677240,
+				"to": 681440
+			},
+			"text": " But in the 1% of the time where you do have an attacker and that who does something really"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,440",
+				"to": "00:11:27,560"
+			},
+			"offsets": {
+				"from": 681440,
+				"to": 687560
+			},
+			"text": " evil, they could use those validators, those lazy validators, to massively amplify their"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,560",
+				"to": "00:11:31,840"
+			},
+			"offsets": {
+				"from": 687560,
+				"to": 691840
+			},
+			"text": " attack because they only need a small number of signatures of some data, for example, that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,840",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 691840,
+				"to": 694000
+			},
+			"text": " not available at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:40,880"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 700880
+			},
+			"text": " And then all those lazy validators would sign it and suddenly you have this non-available"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,880",
+				"to": "00:11:44,560"
+			},
+			"offsets": {
+				"from": 700880,
+				"to": 704560
+			},
+			"text": " data that's signed off, which is a massive problem for the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,560",
+				"to": "00:11:51,240"
+			},
+			"offsets": {
+				"from": 704560,
+				"to": 711240
+			},
+			"text": " So the way we avoid this is by having every validator whenever they sign that chart data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,240",
+				"to": "00:11:57,440"
+			},
+			"offsets": {
+				"from": 711240,
+				"to": 717440
+			},
+			"text": " generate one extra bit, the so-called custody bit or custody root."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,440",
+				"to": "00:12:06,400"
+			},
+			"offsets": {
+				"from": 717440,
+				"to": 726400
+			},
+			"text": " And that's basically a mix of a secret, the secret here and the data at every data block."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,400",
+				"to": "00:12:09,800"
+			},
+			"offsets": {
+				"from": 726400,
+				"to": 729800
+			},
+			"text": " And then you basically, so this is the original construction."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,800",
+				"to": "00:12:12,240"
+			},
+			"offsets": {
+				"from": 729800,
+				"to": 732240
+			},
+			"text": " This is good for understanding how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,240",
+				"to": "00:12:16,120"
+			},
+			"offsets": {
+				"from": 732240,
+				"to": 736120
+			},
+			"text": " You compute a kind of hash tree root of this whole thing and then you take the first bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,120",
+				"to": "00:12:17,680"
+			},
+			"offsets": {
+				"from": 736120,
+				"to": 737680
+			},
+			"text": " of the root."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,680",
+				"to": "00:12:20,400"
+			},
+			"offsets": {
+				"from": 737680,
+				"to": 740400
+			},
+			"text": " And basically only if you have that secret you can compute it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,400",
+				"to": "00:12:22,440"
+			},
+			"offsets": {
+				"from": 740400,
+				"to": 742440
+			},
+			"text": " If you don't have it, you can't compute it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,440",
+				"to": "00:12:25,760"
+			},
+			"offsets": {
+				"from": 742440,
+				"to": 745760
+			},
+			"text": " Someone else can't easily compute it for you unless they have that secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,760",
+				"to": "00:12:28,720"
+			},
+			"offsets": {
+				"from": 745760,
+				"to": 748720
+			},
+			"text": " And if you give away that secret, then we can slash you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,720",
+				"to": "00:12:32,560"
+			},
+			"offsets": {
+				"from": 748720,
+				"to": 752560
+			},
+			"text": " So that gives you a very strong incentive of actually getting the data because if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,560",
+				"to": "00:12:38,800"
+			},
+			"offsets": {
+				"from": 752560,
+				"to": 758800
+			},
+			"text": " don't have it, it's very likely that your custody bit is going to be wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,800",
+				"to": "00:12:44,240"
+			},
+			"offsets": {
+				"from": 758800,
+				"to": 764240
+			},
+			"text": " Now the problem with this is how do you do that if you are in a validator pool?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,240",
+				"to": "00:12:48,480"
+			},
+			"offsets": {
+				"from": 764240,
+				"to": 768480
+			},
+			"text": " If you don't actually want anyone to have the secret that can get everyone slashed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,480",
+				"to": "00:12:53,880"
+			},
+			"offsets": {
+				"from": 768480,
+				"to": 773880
+			},
+			"text": " like it would be a massive problem if someone needs to have this whole secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,880",
+				"to": "00:13:05,440"
+			},
+			"offsets": {
+				"from": 773880,
+				"to": 785440
+			},
+			"text": " And the way, yeah, okay, so this is a summary."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,440",
+				"to": "00:13:18,280"
+			},
+			"offsets": {
+				"from": 785440,
+				"to": 798280
+			},
+			"text": " Yeah, the way we solve that problem is we found this new pseudo random function that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,280",
+				"to": "00:13:22,920"
+			},
+			"offsets": {
+				"from": 798280,
+				"to": 802920
+			},
+			"text": " basically is very friendly to compute in a multi-party computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,920",
+				"to": "00:13:35,720"
+			},
+			"offsets": {
+				"from": 802920,
+				"to": 815720
+			},
+			"text": " So that you can compute with many participants in a very efficient way as defined as using"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,720",
+				"to": "00:13:44,040"
+			},
+			"offsets": {
+				"from": 815720,
+				"to": 824040
+			},
+			"text": " the so-called Lejean symbol, which is that we're just defined by, so this is like, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,040",
+				"to": "00:13:50,600"
+			},
+			"offsets": {
+				"from": 824040,
+				"to": 830600
+			},
+			"text": " the notation is A over P. It's one, if A is a quadratic residue, modular P, so if there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,600",
+				"to": "00:13:56,040"
+			},
+			"offsets": {
+				"from": 830600,
+				"to": 836040
+			},
+			"text": " a number that squares to A modulo P, minus one if it's not, and then there's a special"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,040",
+				"to": "00:14:00,840"
+			},
+			"offsets": {
+				"from": 836040,
+				"to": 840840
+			},
+			"text": " case that it's zero if P divides A. But in a way, you could say that never happens because"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,840",
+				"to": "00:14:06,840"
+			},
+			"offsets": {
+				"from": 840840,
+				"to": 846840
+			},
+			"text": " the prime we're using is so crazy big that this is like, yeah, this is like a zero hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,840",
+				"to": "00:14:09,680"
+			},
+			"offsets": {
+				"from": 846840,
+				"to": 849680
+			},
+			"text": " or something, it just doesn't happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,680",
+				"to": "00:14:14,320"
+			},
+			"offsets": {
+				"from": 849680,
+				"to": 854320
+			},
+			"text": " We normalize this to a bit because one and minus one are not really like a nice thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,320",
+				"to": "00:14:22,880"
+			},
+			"offsets": {
+				"from": 854320,
+				"to": 862880
+			},
+			"text": " to work with in a protocol. And then the PRF is defined by just computing this Lejean"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,880",
+				"to": "00:14:30,280"
+			},
+			"offsets": {
+				"from": 862880,
+				"to": 870280
+			},
+			"text": " ver bit of the sum of the secret and the data. And the nice thing is that this is super easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,280",
+				"to": "00:14:36,880"
+			},
+			"offsets": {
+				"from": 870280,
+				"to": 876880
+			},
+			"text": " to compute in a multi-party computation. I'll not go over that in detail right now because"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,880",
+				"to": "00:14:42,640"
+			},
+			"offsets": {
+				"from": 876880,
+				"to": 882640
+			},
+			"text": " the time for that is a bit short. But basically, there's a nice way to just blind the whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,640",
+				"to": "00:14:49,760"
+			},
+			"offsets": {
+				"from": 882640,
+				"to": 889760
+			},
+			"text": " thing. And when it's blinded, you can do the actual computation in the open and then it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,760",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 889760,
+				"to": 894000
+			},
+			"text": " very easy to reconstruct the original result from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:15:00,560"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 900560
+			},
+			"text": " Yeah, and then basically we can replace the proof of custody using this pseudo-random"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,560",
+				"to": "00:15:07,280"
+			},
+			"offsets": {
+				"from": 900560,
+				"to": 907280
+			},
+			"text": " function. And that gives us an NPC-friendly proof of custody protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,280",
+				"to": "00:15:13,520"
+			},
+			"offsets": {
+				"from": 907280,
+				"to": 913520
+			},
+			"text": " Yeah, so like I've been working on this Lejean ver function for a while now because we really"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,520",
+				"to": "00:15:18,760"
+			},
+			"offsets": {
+				"from": 913520,
+				"to": 918760
+			},
+			"text": " want to use it. The only problem with it at the moment is that it hasn't had a terrible"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,760",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 918760,
+				"to": 925000
+			},
+			"text": " amount of cryptanalysis. And so we're currently working on improving that. So one thing I"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:33,680"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 933680
+			},
+			"text": " wanted to mention here is like we set those bounties on like improving the state. So like"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,680",
+				"to": "00:15:42,160"
+			},
+			"offsets": {
+				"from": 933680,
+				"to": 942160
+			},
+			"text": " we have both asymptotic bounties for finding any better algorithms and some concrete ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,160",
+				"to": "00:15:47,760"
+			},
+			"offsets": {
+				"from": 942160,
+				"to": 947760
+			},
+			"text": " They will soon be a smart contract for resolving this. So stay tuned. But you can already on"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,760",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 947760,
+				"to": 953000
+			},
+			"text": " Lejean.py.org/bounties can already get those challenges. If you find a solution, just email"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:15:59,760"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 959760
+			},
+			"text": " me and then you can also already claim them. Yeah, so basically you can win between one"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,760",
+				"to": "00:16:08,840"
+			},
+			"offsets": {
+				"from": 959760,
+				"to": 968840
+			},
+			"text": " and 16 ETH for finding basically the keys for Lejean ver in different instances. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,840",
+				"to": "00:16:12,680"
+			},
+			"offsets": {
+				"from": 968840,
+				"to": 972680
+			},
+			"text": " smallest ones are designed so that like with a few months or so of compute time you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,680",
+				"to": "00:16:16,280"
+			},
+			"offsets": {
+				"from": 972680,
+				"to": 976280
+			},
+			"text": " actually solve them. So I'm expecting them to be solved but would be really interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,280",
+				"to": "00:16:21,600"
+			},
+			"offsets": {
+				"from": 976280,
+				"to": 981600
+			},
+			"text": " in how long it actually takes. The most difficult ones, hopefully no one can ever solve. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,600",
+				"to": "00:16:26,240"
+			},
+			"offsets": {
+				"from": 981600,
+				"to": 986240
+			},
+			"text": " yeah, we want to know if there are any algorithmic improvements that might change this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,240",
+				"to": "00:16:35,120"
+			},
+			"offsets": {
+				"from": 986240,
+				"to": 995120
+			},
+			"text": " Cool. Yeah, with this I'll hand over to Kyle. Cool, so moving on as to how we actually apply"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,120",
+				"to": "00:16:39,760"
+			},
+			"offsets": {
+				"from": 995120,
+				"to": 999760
+			},
+			"text": " this. This is going to be a bit fast due to time constraints but here we go. So there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,760",
+				"to": "00:16:45,600"
+			},
+			"offsets": {
+				"from": 999760,
+				"to": 1005600
+			},
+			"text": " a distinction to make here quickly between two ways of constructing pools. One is where"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,600",
+				"to": "00:16:55,320"
+			},
+			"offsets": {
+				"from": 1005600,
+				"to": 1015320
+			},
+			"text": " you try to use economic incentives and custodial relationships to manage a pool which is more"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,320",
+				"to": "00:17:00,600"
+			},
+			"offsets": {
+				"from": 1015320,
+				"to": 1020600
+			},
+			"text": " like the case of Rocketpool whereas this is more designed to be run in an NPC where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,600",
+				"to": "00:17:06,320"
+			},
+			"offsets": {
+				"from": 1020600,
+				"to": 1026320
+			},
+			"text": " want to be involved in the pooling structure. So you don't want to hand your ETH over to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,320",
+				"to": "00:17:11,480"
+			},
+			"offsets": {
+				"from": 1026320,
+				"to": 1031480
+			},
+			"text": " a pool even if they aren't incentivized. So these are what you are required to do as"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,480",
+				"to": "00:17:18,480"
+			},
+			"offsets": {
+				"from": 1031480,
+				"to": 1038480
+			},
+			"text": " a validator within ETH 2.0. These are the primary responsibilities with their frequencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,480",
+				"to": "00:17:25,880"
+			},
+			"offsets": {
+				"from": 1038480,
+				"to": 1045880
+			},
+			"text": " And all of this is relatively cheap in terms of what needs to be done. And as you can see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,880",
+				"to": "00:17:33,400"
+			},
+			"offsets": {
+				"from": 1045880,
+				"to": 1053400
+			},
+			"text": " things like the NPC calculated Lejandra shows up once in epoch. And so these kinds of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,400",
+				"to": "00:17:42,720"
+			},
+			"offsets": {
+				"from": 1053400,
+				"to": 1062720
+			},
+			"text": " are enabled by what Dunkhrod presented. Let's skip over that. So the obvious way to do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,720",
+				"to": "00:17:48,960"
+			},
+			"offsets": {
+				"from": 1062720,
+				"to": 1068960
+			},
+			"text": " would be something like PBFT consensus for a pool because we need a system that is safe"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,960",
+				"to": "00:17:56,040"
+			},
+			"offsets": {
+				"from": 1068960,
+				"to": 1076040
+			},
+			"text": " but not live because if you ever commit something that is not a super majority of your nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,040",
+				"to": "00:18:01,960"
+			},
+			"offsets": {
+				"from": 1076040,
+				"to": 1081960
+			},
+			"text": " agree with then you run into the scenario where you can get your pool slashed. A relatively"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,960",
+				"to": "00:18:09,600"
+			},
+			"offsets": {
+				"from": 1081960,
+				"to": 1089600
+			},
+			"text": " easy way of achieving this is actually just using the BLS signatures. So you set your"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,600",
+				"to": "00:18:17,080"
+			},
+			"offsets": {
+				"from": 1089600,
+				"to": 1097080
+			},
+			"text": " threshold as two thirds of your pool size. And based on this, if you have to propose,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,080",
+				"to": "00:18:22,760"
+			},
+			"offsets": {
+				"from": 1097080,
+				"to": 1102760
+			},
+			"text": " one of the pool members proposes. But otherwise, you see what your attestation duties are."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,760",
+				"to": "00:18:28,200"
+			},
+			"offsets": {
+				"from": 1102760,
+				"to": 1108200
+			},
+			"text": " This is available if you have a view of the chain. You compute the appropriate custody"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,200",
+				"to": "00:18:34,360"
+			},
+			"offsets": {
+				"from": 1108200,
+				"to": 1114360
+			},
+			"text": " bit and you sign an attestation only if this attestation you think is valid in your local"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,360",
+				"to": "00:18:39,720"
+			},
+			"offsets": {
+				"from": 1114360,
+				"to": 1119720
+			},
+			"text": " view. And this is with basically the overhead of only BLS signatures, plus the custody"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,720",
+				"to": "00:18:49,520"
+			},
+			"offsets": {
+				"from": 1119720,
+				"to": 1129520
+			},
+			"text": " bits that Dunkhrod presented earlier allows you to have pooling, which is very cool. Unfortunately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,520",
+				"to": "00:18:54,200"
+			},
+			"offsets": {
+				"from": 1129520,
+				"to": 1134200
+			},
+			"text": " that doesn't guarantee consistency because it's not a full consensus protocol. People"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,200",
+				"to": "00:19:01,800"
+			},
+			"offsets": {
+				"from": 1134200,
+				"to": 1141800
+			},
+			"text": " can disagree as to the state of what the chain is at any given time. So basically, you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,800",
+				"to": "00:19:08,120"
+			},
+			"offsets": {
+				"from": 1141800,
+				"to": 1148120
+			},
+			"text": " have some structure that runs PBFT if you run to some unhappy case where the pool gets"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,120",
+				"to": "00:19:15,360"
+			},
+			"offsets": {
+				"from": 1148120,
+				"to": 1155360
+			},
+			"text": " out of sync. You can also make this slightly more interesting, which is where you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,360",
+				"to": "00:19:19,480"
+			},
+			"offsets": {
+				"from": 1155360,
+				"to": 1159480
+			},
+			"text": " some kind of meta pool which exists between the pools. So as a pool member, you don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,480",
+				"to": "00:19:24,920"
+			},
+			"offsets": {
+				"from": 1159480,
+				"to": 1164920
+			},
+			"text": " only participate in your pool, but you participate in this larger meta pool. And this allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,920",
+				"to": "00:19:30,400"
+			},
+			"offsets": {
+				"from": 1164920,
+				"to": 1170400
+			},
+			"text": " you to use the meta pool to have false attribution where you prove to the rest of the pool that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,400",
+				"to": "00:19:34,880"
+			},
+			"offsets": {
+				"from": 1170400,
+				"to": 1174880
+			},
+			"text": " the meta pool that someone did something bad in your pool. And then if one of your pool"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,880",
+				"to": "00:19:39,760"
+			},
+			"offsets": {
+				"from": 1174880,
+				"to": 1179760
+			},
+			"text": " members got you slashed, got your pool slashed, you can, because the slash is not burning"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,760",
+				"to": "00:19:44,880"
+			},
+			"offsets": {
+				"from": 1179760,
+				"to": 1184880
+			},
+			"text": " all of the ether, it's only burning a portion, you can basically take all of that, the negative"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,880",
+				"to": "00:19:50,720"
+			},
+			"offsets": {
+				"from": 1184880,
+				"to": 1190720
+			},
+			"text": " penalty and put it on that one person who is bad and give the other people their money"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,720",
+				"to": "00:19:56,600"
+			},
+			"offsets": {
+				"from": 1190720,
+				"to": 1196600
+			},
+			"text": " back. And in fact, it may turn out that you can get more money out. So you may make a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,600",
+				"to": "00:20:00,480"
+			},
+			"offsets": {
+				"from": 1196600,
+				"to": 1200480
+			},
+			"text": " profit if one of your pool members gets slashed, which is pretty cool. Depends on exactly how"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,480",
+				"to": "00:20:05,480"
+			},
+			"offsets": {
+				"from": 1200480,
+				"to": 1205480
+			},
+			"text": " you construct it. So yeah, that's the basic construction and how something like this would"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,480",
+				"to": "00:20:06,520"
+			},
+			"offsets": {
+				"from": 1205480,
+				"to": 1206520
+			},
+			"text": " work within YouTube."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,520",
+				"to": "00:20:06,520"
+			},
+			"offsets": {
+				"from": 1206520,
+				"to": 1206520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,520",
+				"to": "00:20:07,020"
+			},
+			"offsets": {
+				"from": 1206520,
+				"to": 1207020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,020",
+				"to": "00:20:09,020"
+			},
+			"offsets": {
+				"from": 1207020,
+				"to": 1209020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,020",
+				"to": "00:20:11,020"
+			},
+			"offsets": {
+				"from": 1209020,
+				"to": 1211020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,020",
+				"to": "00:20:13,020"
+			},
+			"offsets": {
+				"from": 1211020,
+				"to": 1213020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,020",
+				"to": "00:20:15,020"
+			},
+			"offsets": {
+				"from": 1213020,
+				"to": 1215020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,020",
+				"to": "00:20:17,020"
+			},
+			"offsets": {
+				"from": 1215020,
+				"to": 1217020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,020",
+				"to": "00:20:19,020"
+			},
+			"offsets": {
+				"from": 1217020,
+				"to": 1219020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,020",
+				"to": "00:20:21,020"
+			},
+			"offsets": {
+				"from": 1219020,
+				"to": 1221020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,020",
+				"to": "00:20:23,020"
+			},
+			"offsets": {
+				"from": 1221020,
+				"to": 1223020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,020",
+				"to": "00:20:25,020"
+			},
+			"offsets": {
+				"from": 1223020,
+				"to": 1225020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,020",
+				"to": "00:20:27,020"
+			},
+			"offsets": {
+				"from": 1225020,
+				"to": 1227020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,020",
+				"to": "00:20:29,020"
+			},
+			"offsets": {
+				"from": 1227020,
+				"to": 1229020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,020",
+				"to": "00:20:31,020"
+			},
+			"offsets": {
+				"from": 1229020,
+				"to": 1231020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,020",
+				"to": "00:20:33,020"
+			},
+			"offsets": {
+				"from": 1231020,
+				"to": 1233020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,020",
+				"to": "00:20:35,020"
+			},
+			"offsets": {
+				"from": 1233020,
+				"to": 1235020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,020",
+				"to": "00:20:37,020"
+			},
+			"offsets": {
+				"from": 1235020,
+				"to": 1237020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,020",
+				"to": "00:20:39,020"
+			},
+			"offsets": {
+				"from": 1237020,
+				"to": 1239020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,020",
+				"to": "00:20:41,020"
+			},
+			"offsets": {
+				"from": 1239020,
+				"to": 1241020
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,020",
+				"to": "00:20:45,020"
+			},
+			"offsets": {
+				"from": 1241020,
+				"to": 1245020
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,2958 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 18000
+			},
+			"text": " >> Hello, my name's Tim Coulter."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20000
+			},
+			"text": " I'm a developer at Consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 24000
+			},
+			"text": " One of the projects that I've been working on is, as you can see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 26000
+			},
+			"text": " the DAP store."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 28000
+			},
+			"text": " I'm going to start this off with a leading question."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 32000
+			},
+			"text": " How many people here have a smartphone?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 33000
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 37000
+			},
+			"text": " So you pretty much know what I'm going to be presenting on today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 42000
+			},
+			"text": " So the DAP store, what is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 44000
+			},
+			"text": " It's very basic."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 48000
+			},
+			"text": " It's a marketplace for distributed applications, just like the apple"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 51000
+			},
+			"text": " App store and/or app store."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 55000
+			},
+			"text": " But when you get a little bit more detailed, it's also a"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 59000
+			},
+			"text": " Registry, so it's a place to find things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 62000
+			},
+			"text": " Why make the DAP store?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 66000
+			},
+			"text": " The general reasons are to promote a DAP economy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 71000
+			},
+			"text": " So people who are creating DAPs or creating value for the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 77000
+			},
+			"text": " Have a way to get reimbursed for their value."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 82000
+			},
+			"text": " A way to distribute apps or DAPs, excuse me, and provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 84000
+			},
+			"text": " Publicity for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 88000
+			},
+			"text": " And then developers support for various features that every"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 91000
+			},
+			"text": " Developer may not want to write themselves, and I'll get into"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 93000
+			},
+			"text": " Those in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 98000
+			},
+			"text": " So some of the features that you might -- that the DAPs have or"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 103000
+			},
+			"text": " Has is all the things -- the first ones are the basic features."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 111000
+			},
+			"text": " Obviously, listings of DAPs, search, purchases, reviews."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 115000
+			},
+			"text": " And other features that it comes with or that provides value to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 117000
+			},
+			"text": " Developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 120000
+			},
+			"text": " For instance, onboarding an user acquisition to make that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 122000
+			},
+			"text": " Process easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 126000
+			},
+			"text": " For instance, find in the DAP store button or as you might see"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 130000
+			},
+			"text": " With ios apps, find in the app store."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 134000
+			},
+			"text": " The one thing that makes this DAP store different than the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 137000
+			},
+			"text": " Normal app stores that you're used to is that you're not"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 139000
+			},
+			"text": " Uploading anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 143000
+			},
+			"text": " So what this is actually providing is instead of an economy"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 148000
+			},
+			"text": " Where you're buying something specific, you're instead buying"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 150000
+			},
+			"text": " A license."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154000
+			},
+			"text": " And so if you get a license for a DAP and they don't have -- there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 159000
+			},
+			"text": " No end date for that license, it's basically -- you're buying"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 162000
+			},
+			"text": " Free to use -- not free to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 166000
+			},
+			"text": " A license that you can use to the end of time, at least the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 168000
+			},
+			"text": " Ability apps available."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 172000
+			},
+			"text": " But if you add an end date, then that provides or creates a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 176000
+			},
+			"text": " Rental economy, which is possible beneficial to some DAP"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 178000
+			},
+			"text": " Developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 182000
+			},
+			"text": " A feature might be type -- excuse me, type to DAP integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 188000
+			},
+			"text": " So when you have this license economy, your DAP can then check"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 192000
+			},
+			"text": " The registry, check the license registry and see does this user"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 194000
+			},
+			"text": " Have a license for my DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 199000
+			},
+			"text": " So then you either let them use the app or you don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 202000
+			},
+			"text": " So you can find some access controls across the whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 203000
+			},
+			"text": " Network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 206000
+			},
+			"text": " Some other things that might be in the future is currency tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 211000
+			},
+			"text": " So it's great if you can buy a DAP in ether, but if you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 214000
+			},
+			"text": " Trying to make your DAP attractive to the general public,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 216000
+			},
+			"text": " Maybe you want them to buy in USD."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 221000
+			},
+			"text": " So one possible way that we might provide some value is do that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 224000
+			},
+			"text": " Conversion or at least make that easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 226000
+			},
+			"text": " Another one might be company stores."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 229000
+			},
+			"text": " So if you have a company with many DAPs, you might want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 235000
+			},
+			"text": " Brand the DAP store, a portion of the DAP store to your store"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 238000
+			},
+			"text": " And be able to advertise your DAPs that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 244000
+			},
+			"text": " Another source of revenue might be add opportunities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 246000
+			},
+			"text": " So maybe you want to promote your DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 249000
+			},
+			"text": " If the DAP store becomes a place where anybody or where"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 255000
+			},
+			"text": " Everybody goes to purchase DAPs, then it might be very useful to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 262000
+			},
+			"text": " You to play, for instance, place an add on the front page."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 263000
+			},
+			"text": " We have more ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 264000
+			},
+			"text": " A very short presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 266000
+			},
+			"text": " I have 15 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 272000
+			},
+			"text": " So the DAP store, so there was what is it and why."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 274000
+			},
+			"text": " And so now where and when."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 278000
+			},
+			"text": " I'm happy to announce that the DAP store is live now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 282000
+			},
+			"text": " That we released it today at dev con."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 287000
+			},
+			"text": " So you can find it at DAP store.io."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 293000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 296000
+			},
+			"text": " What you need right now, you're going to need an Ethereum node to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 297000
+			},
+			"text": " Check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 301000
+			},
+			"text": " We're going to be working on that to make it easier to access"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 303000
+			},
+			"text": " A little bit later."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 305000
+			},
+			"text": " What i'm going to do is click on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 310000
+			},
+			"text": " I know I was told -- oops, let's full screen that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 313000
+			},
+			"text": " I was told that I wasn't supposed to be running in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 315000
+			},
+			"text": " Ethereum node, but right now I am."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 318000
+			},
+			"text": " So this is actually the live network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 320000
+			},
+			"text": " We have currently four apps on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 322000
+			},
+			"text": " These are all consensus apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 325000
+			},
+			"text": " For instance, i'm going to go ahead and click into btc relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 328000
+			},
+			"text": " And you can see that btc relay has a description and has"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 330000
+			},
+			"text": " Some screenshots."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 333000
+			},
+			"text": " What i'm going to do is instead of using the live network to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 337000
+			},
+			"text": " Demo this, i will use a local network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 341000
+			},
+			"text": " And this went away."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 343000
+			},
+			"text": " I full screened it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 344000
+			},
+			"text": " Excuse me."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 346000
+			},
+			"text": " No, that's wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 353000
+			},
+			"text": " I'm going to go ahead and turn off this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 358000
+			},
+			"text": " Go through the node and start up ether sim."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 365000
+			},
+			"text": " I have worked pretty hard together to make ether sim better."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 368000
+			},
+			"text": " I'm really happy about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " So what i'm going to do, the dap store is a truffle dap."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 376000
+			},
+			"text": " I'm going to go ahead and deploy it to ether sims."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 378000
+			},
+			"text": " So truffle deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 382000
+			},
+			"text": " And what's going to happen is it's going to deploy the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 383000
+			},
+			"text": " Contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 384000
+			},
+			"text": " You know what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 385000
+			},
+			"text": " I don't want to compile them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 389000
+			},
+			"text": " I'm not going to wait for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 392000
+			},
+			"text": " So it's going to deploy the contracts to that ether sim"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 393000
+			},
+			"text": " That you have spun up."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 396000
+			},
+			"text": " It's going to run some post deployment scripts for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 398000
+			},
+			"text": " Development environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 403000
+			},
+			"text": " It runs a script that adds in some demo data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 406000
+			},
+			"text": " And that's going to finish up here in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 408000
+			},
+			"text": " Let's wait for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 411000
+			},
+			"text": " If you notice, ether sim is processing all the calls and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 412000
+			},
+			"text": " Transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 414000
+			},
+			"text": " So great."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 418000
+			},
+			"text": " Now we're going to do -- we're going to serve that on local"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 419000
+			},
+			"text": " Host."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 420000
+			},
+			"text": " Check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 421000
+			},
+			"text": " Perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 431000
+			},
+			"text": " And then we have -- if it loads up -- our dap store on"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 432000
+			},
+			"text": " Ether sims."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 438000
+			},
+			"text": " So what i have is i have four -- excuse me -- seven of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 440000
+			},
+			"text": " Eight daps that are live right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 443000
+			},
+			"text": " I'm going to add one for this demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 444000
+			},
+			"text": " So go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 448000
+			},
+			"text": " This right here will soon be persona integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 452000
+			},
+			"text": " And right now -- so right now it's just an anonymous user."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 454000
+			},
+			"text": " But add a new dap."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 457000
+			},
+			"text": " You get information about the dap."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 461000
+			},
+			"text": " So what i'm going to -- the dap i'm going to add right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 463000
+			},
+			"text": " It's called dau wars."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 467000
+			},
+			"text": " It's a distributed -- how do you say that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 472000
+			},
+			"text": " Distributed smart contract program game."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 475000
+			},
+			"text": " So dau wars -- right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 478000
+			},
+			"text": " We're going to give it a unique id which is not really used"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 481000
+			},
+			"text": " Right now but we hope for that to be used."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 485000
+			},
+			"text": " I have a logo over here which is a pretty sweet logo."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 488000
+			},
+			"text": " We're just going to go ahead and put that in."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 493000
+			},
+			"text": " Smart contract programming game."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 498000
+			},
+			"text": " And the dau wars currently lives at a github repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 502000
+			},
+			"text": " Now it's not a dap that you can use yet but at least it could"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 505000
+			},
+			"text": " Benefit from the publicity of the dap store at least being in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 508000
+			},
+			"text": " So i'm going to go ahead and take the description from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 509000
+			},
+			"text": " GitHub repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 512000
+			},
+			"text": " Go ahead and hit next."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 514000
+			},
+			"text": " Sumiting a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 517000
+			},
+			"text": " Now we have to talk -- now we have to add a version that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 519000
+			},
+			"text": " People can start using."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 522000
+			},
+			"text": " So this version is going to be 0.2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 527000
+			},
+			"text": " Again the place that you can find at dau wars right now is at this"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 528000
+			},
+			"text": " Location."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 531000
+			},
+			"text": " I'm not going to write anything new about this version that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 532000
+			},
+			"text": " Optional."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 534000
+			},
+			"text": " But i'm going to add a couple screenshots."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 537000
+			},
+			"text": " Or actually one screenshot and i have it right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 540000
+			},
+			"text": " So right now as you'll see screenshots are hosted elsewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 543000
+			},
+			"text": " Eventually we hope for them to be hosted on ipfs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 546000
+			},
+			"text": " Go ahead and finish up with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 550000
+			},
+			"text": " And what you'll see is you have your page for the dap store and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 554000
+			},
+			"text": " You can begin perhaps selling your dap."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 556000
+			},
+			"text": " So one more thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 561000
+			},
+			"text": " This user is a developer i suppose."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 564000
+			},
+			"text": " Is registered as a developer in the system but obviously this user"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 567000
+			},
+			"text": " Could purchase dap so i'm going to get it free."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 570000
+			},
+			"text": " Purchasing it for $0 of course and you can open it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 572000
+			},
+			"text": " It brings you to exactly where you want to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 575000
+			},
+			"text": " If i wanted to go see which purchases i've made and go click"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 578000
+			},
+			"text": " Over here and you'll notice that dau wars shows up."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 580000
+			},
+			"text": " So that's where we're at now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 582000
+			},
+			"text": " We have -- oh five minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 583000
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 586000
+			},
+			"text": " We have a lot of things we want to do but i'm going to go ahead"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 589000
+			},
+			"text": " And use those five minutes for any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 590000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 591000
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 594000
+			},
+			"text": " I guess i didn't alert you about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 596000
+			},
+			"text": " Next question."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 597000
+			},
+			"text": " Questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 598000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 606000
+			},
+			"text": " So how do you -- this is on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 610000
+			},
+			"text": " How do you open -- so you're linking just to dap."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 614000
+			},
+			"text": " How you -- when it's in another context -- context of another"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 618000
+			},
+			"text": " Domain, how you make sure that it's like openable."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 621000
+			},
+			"text": " So how -- you're running the normal browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 622000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 625000
+			},
+			"text": " So the dap itself has to check a specific contract to check if"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 629000
+			},
+			"text": " This current user is allowed to use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 630000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 634000
+			},
+			"text": " So the way that it would work is your dap would integrate or know"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 638000
+			},
+			"text": " Where the license registry is and you would -- you would have your"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 644000
+			},
+			"text": " Own key or address your dap and then you go look at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 647000
+			},
+			"text": " Registry and say does this user -- does this address have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 652000
+			},
+			"text": " License for my dap and if so is a license valid and then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 657000
+			},
+			"text": " Would -- either restrict -- if it is valid you would let them"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 660000
+			},
+			"text": " Use the dap and if not you would restrict them from access."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 664000
+			},
+			"text": " So you would use web free accounts to check what identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 665000
+			},
+			"text": " The user has."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 666000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 668000
+			},
+			"text": " Right now we're using addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 669000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 671000
+			},
+			"text": " This is all -- this is all web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 674000
+			},
+			"text": " It should run in miss although i probably need to do one or two"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 676000
+			},
+			"text": " Tweaks to the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 678000
+			},
+			"text": " But that's the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 679000
+			},
+			"text": " It's -- yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 683000
+			},
+			"text": " Well, i guess it was going to say it should run in miss."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 684000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 685000
+			},
+			"text": " Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 686000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 691000
+			},
+			"text": " We got time for one more question."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 697000
+			},
+			"text": " So when you mean you're going to purchase the app?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 698000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 703000
+			},
+			"text": " Why is the purchase coming via your app and why not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 708000
+			},
+			"text": " Why won't the app simply use you as a catalog and then you are --"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 712000
+			},
+			"text": " Because what the dap gets from the dap store is just exposure."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 717000
+			},
+			"text": " Because the whole micro payment and selling something to the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 721000
+			},
+			"text": " In the end can be perfectly done via e-mail and doesn't need to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 722000
+			},
+			"text": " Through the dap store."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 729000
+			},
+			"text": " So what's the purpose of having the purchase concept?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 734000
+			},
+			"text": " Well, some of the features that might be interesting to provide is --"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 740000
+			},
+			"text": " Well, let me just make sure i understand the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 744000
+			},
+			"text": " Why am i purchasing the app via the dap store?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 748000
+			},
+			"text": " Why i'm not just using the dap store as a catalog to see something"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 752000
+			},
+			"text": " And then inside the app completely separated from your dap store,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 757000
+			},
+			"text": " The transaction of purchasing is just between the dap and the dap user."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 758000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 759000
+			},
+			"text": " Let me put it this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 766000
+			},
+			"text": " What if you wanted to make your dap available to people who want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 771000
+			},
+			"text": " Use different currencies, who don't want to use, say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 776000
+			},
+			"text": " Ethereum or want to use your app but don't know too much about"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 781000
+			},
+			"text": " The -- about ethereum, but to be exposed to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 784000
+			},
+			"text": " Like they don't want to run a node or maybe they don't want to run a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 788000
+			},
+			"text": " Wallet, but you want to expose them, be it the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 791000
+			},
+			"text": " One thing that the dap store could do is provide that conversion"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 792000
+			},
+			"text": " For you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 795000
+			},
+			"text": " Now, if you're just asking where this button should be, that's --"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 799000
+			},
+			"text": " If you're just saying that maybe i can have a dap store button"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 801000
+			},
+			"text": " It says buy it on my own website."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 803000
+			},
+			"text": " That's definitely a feature we can provide and that can integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 805000
+			},
+			"text": " Directly to the store."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 806000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 807000
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 808000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 813000
+			},
+			"text": " So it was intended like the dap store that we all have"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 819000
+			},
+			"text": " Discussed in the past as a catalog first where people can select"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 824000
+			},
+			"text": " Bookmark decentralized apps that they're interested in and certainly not pay for those."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 829000
+			},
+			"text": " But there may be some business models in which people would want to pay"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 835000
+			},
+			"text": " Developers would want to be paid up front or would want to lease their daps or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 838000
+			},
+			"text": " So Tim made that a use case as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 842000
+			},
+			"text": " It's a way to organize your daps as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 844000
+			},
+			"text": " That's a good idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 849000
+			},
+			"text": " It's a way to organize your daps as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 850000
+			},
+			"text": " That's a good point."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 855000
+			},
+			"text": " If you put a dap in the dap store a day, you cannot sell it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 858000
+			},
+			"text": " It's released currently free."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 860000
+			},
+			"text": " So those features will be added later."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 862000
+			},
+			"text": " Looks like my time's up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 863000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 870000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 877000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 879000
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

@@ -1,0 +1,5906 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,440"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2440
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,440",
+				"to": "00:00:13,120"
+			},
+			"offsets": {
+				"from": 2440,
+				"to": 13120
+			},
+			"text": " Hi, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,120",
+				"to": "00:00:16,640"
+			},
+			"offsets": {
+				"from": 13120,
+				"to": 16640
+			},
+			"text": " My name is Gary Macdonald, and this is Brendan Playford."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,640",
+				"to": "00:00:17,640"
+			},
+			"offsets": {
+				"from": 16640,
+				"to": 17640
+			},
+			"text": " Hi, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,640",
+				"to": "00:00:20,600"
+			},
+			"offsets": {
+				"from": 17640,
+				"to": 20600
+			},
+			"text": " And we're here to tell you about the energy blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,600",
+				"to": "00:00:23,240"
+			},
+			"offsets": {
+				"from": 20600,
+				"to": 23240
+			},
+			"text": " give you an overview of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,240",
+				"to": "00:00:25,600"
+			},
+			"offsets": {
+				"from": 23240,
+				"to": 25600
+			},
+			"text": " So today, we just would love to take the opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,600",
+				"to": "00:00:27,840"
+			},
+			"offsets": {
+				"from": 25600,
+				"to": 27840
+			},
+			"text": " to talk to you about a couple of different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,840",
+				"to": "00:00:29,120"
+			},
+			"offsets": {
+				"from": 27840,
+				"to": 29120
+			},
+			"text": " First of all, we kind of want to frame"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,120",
+				"to": "00:00:32,400"
+			},
+			"offsets": {
+				"from": 29120,
+				"to": 32400
+			},
+			"text": " the situation of the state of energy markets today"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,400",
+				"to": "00:00:35,240"
+			},
+			"offsets": {
+				"from": 32400,
+				"to": 35240
+			},
+			"text": " and to find the opportunity for a new energy paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,240",
+				"to": "00:00:38,880"
+			},
+			"offsets": {
+				"from": 35240,
+				"to": 38880
+			},
+			"text": " And point out how current public blockchain infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,880",
+				"to": "00:00:43,880"
+			},
+			"offsets": {
+				"from": 38880,
+				"to": 43880
+			},
+			"text": " is generally incompatible with the energy infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,880",
+				"to": "00:00:47,440"
+			},
+			"offsets": {
+				"from": 43880,
+				"to": 47440
+			},
+			"text": " today and how we're building a new infrastructure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,440",
+				"to": "00:00:49,560"
+			},
+			"offsets": {
+				"from": 47440,
+				"to": 49560
+			},
+			"text": " will enable that transition and then give"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,560",
+				"to": "00:00:53,400"
+			},
+			"offsets": {
+				"from": 49560,
+				"to": 53400
+			},
+			"text": " an example of an application that will run there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,400",
+				"to": "00:00:55,520"
+			},
+			"offsets": {
+				"from": 53400,
+				"to": 55520
+			},
+			"text": " So energy infrastructure today was largely"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,520",
+				"to": "00:00:57,920"
+			},
+			"offsets": {
+				"from": 55520,
+				"to": 57920
+			},
+			"text": " designed a long time ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,920",
+				"to": "00:01:00,480"
+			},
+			"offsets": {
+				"from": 57920,
+				"to": 60480
+			},
+			"text": " And a lot of regulation that applies to it today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,480",
+				"to": "00:01:02,920"
+			},
+			"offsets": {
+				"from": 60480,
+				"to": 62920
+			},
+			"text": " which cycles the innovation, was put in place"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,920",
+				"to": "00:01:06,200"
+			},
+			"offsets": {
+				"from": 62920,
+				"to": 66200
+			},
+			"text": " about 100 years ago, and has been lobbied for to keep in place"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,200",
+				"to": "00:01:07,600"
+			},
+			"offsets": {
+				"from": 66200,
+				"to": 67600
+			},
+			"text": " since then."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,600",
+				"to": "00:01:10,560"
+			},
+			"offsets": {
+				"from": 67600,
+				"to": 70560
+			},
+			"text": " So there's massive inefficiencies in the entire ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,560",
+				"to": "00:01:12,400"
+			},
+			"offsets": {
+				"from": 70560,
+				"to": 72400
+			},
+			"text": " and infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,400",
+				"to": "00:01:15,560"
+			},
+			"offsets": {
+				"from": 72400,
+				"to": 75560
+			},
+			"text": " And the control and distribution of energy today"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,560",
+				"to": "00:01:16,920"
+			},
+			"offsets": {
+				"from": 75560,
+				"to": 76920
+			},
+			"text": " is actually quite antiquated."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,920",
+				"to": "00:01:19,040"
+			},
+			"offsets": {
+				"from": 76920,
+				"to": 79040
+			},
+			"text": " And so there's a lot of regulation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,040",
+				"to": "00:01:23,120"
+			},
+			"offsets": {
+				"from": 79040,
+				"to": 83120
+			},
+			"text": " that's preventing us from implementing a new system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,120",
+				"to": "00:01:24,560"
+			},
+			"offsets": {
+				"from": 83120,
+				"to": 84560
+			},
+			"text": " So it's super important that we work"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,560",
+				"to": "00:01:28,960"
+			},
+			"offsets": {
+				"from": 84560,
+				"to": 88960
+			},
+			"text": " with the current incumbents to integrate the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,960",
+				"to": "00:01:31,160"
+			},
+			"offsets": {
+				"from": 88960,
+				"to": 91160
+			},
+			"text": " And yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,160",
+				"to": "00:01:33,680"
+			},
+			"offsets": {
+				"from": 91160,
+				"to": 93680
+			},
+			"text": " Yeah, so I just want to quickly ask everyone in the room,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,680",
+				"to": "00:01:36,600"
+			},
+			"offsets": {
+				"from": 93680,
+				"to": 96600
+			},
+			"text": " how many of you here are aware of how your energy--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,600",
+				"to": "00:01:39,200"
+			},
+			"offsets": {
+				"from": 96600,
+				"to": 99200
+			},
+			"text": " what process energy goes through to get to your home right"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,200",
+				"to": "00:01:39,920"
+			},
+			"offsets": {
+				"from": 99200,
+				"to": 99920
+			},
+			"text": " now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,920",
+				"to": "00:01:42,560"
+			},
+			"offsets": {
+				"from": 99920,
+				"to": 102560
+			},
+			"text": " Do you even know whether you're a deregulated space"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,560",
+				"to": "00:01:43,800"
+			},
+			"offsets": {
+				"from": 102560,
+				"to": 103800
+			},
+			"text": " or a regulated space?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,800",
+				"to": "00:01:45,360"
+			},
+			"offsets": {
+				"from": 103800,
+				"to": 105360
+			},
+			"text": " There are certain states in America."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,360",
+				"to": "00:01:48,800"
+			},
+			"offsets": {
+				"from": 105360,
+				"to": 108800
+			},
+			"text": " Hands up, really, if anyone fully understands the process"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,800",
+				"to": "00:01:51,040"
+			},
+			"offsets": {
+				"from": 108800,
+				"to": 111040
+			},
+			"text": " through which their energy goes to get to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,040",
+				"to": "00:01:53,240"
+			},
+			"offsets": {
+				"from": 111040,
+				"to": 113240
+			},
+			"text": " So that's one guy over here, not many people here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,240",
+				"to": "00:01:55,600"
+			},
+			"offsets": {
+				"from": 113240,
+				"to": 115600
+			},
+			"text": " So the infrastructure we have right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,600",
+				"to": "00:01:58,080"
+			},
+			"offsets": {
+				"from": 115600,
+				"to": 118080
+			},
+			"text": " is pretty antiquated."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,080",
+				"to": "00:02:01,960"
+			},
+			"offsets": {
+				"from": 118080,
+				"to": 121960
+			},
+			"text": " And it's set up for a sort of centralized, highly capitalized"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,960",
+				"to": "00:02:04,200"
+			},
+			"offsets": {
+				"from": 121960,
+				"to": 124200
+			},
+			"text": " market system whereby you generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,200",
+				"to": "00:02:08,480"
+			},
+			"offsets": {
+				"from": 124200,
+				"to": 128480
+			},
+			"text": " have monolithic generators on a network that transmit power"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,480",
+				"to": "00:02:10,400"
+			},
+			"offsets": {
+				"from": 128480,
+				"to": 130400
+			},
+			"text": " directly to a consumer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,400",
+				"to": "00:02:12,920"
+			},
+			"offsets": {
+				"from": 130400,
+				"to": 132920
+			},
+			"text": " In Europe, that's changed a little bit with deregulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,920",
+				"to": "00:02:14,720"
+			},
+			"offsets": {
+				"from": 132920,
+				"to": 134720
+			},
+			"text": " And certainly in the US markets where you've"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,720",
+				"to": "00:02:17,680"
+			},
+			"offsets": {
+				"from": 134720,
+				"to": 137680
+			},
+			"text": " got California, New England, Texas deregulated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,680",
+				"to": "00:02:20,720"
+			},
+			"offsets": {
+				"from": 137680,
+				"to": 140720
+			},
+			"text": " which gives the opportunity for more competition"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,720",
+				"to": "00:02:22,520"
+			},
+			"offsets": {
+				"from": 140720,
+				"to": 142520
+			},
+			"text": " a little bit more exposure for other players"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,520",
+				"to": "00:02:24,920"
+			},
+			"offsets": {
+				"from": 142520,
+				"to": 144920
+			},
+			"text": " to come into the market and offer unique products."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,920",
+				"to": "00:02:29,680"
+			},
+			"offsets": {
+				"from": 144920,
+				"to": 149680
+			},
+			"text": " And really, there's limited opportunities for new players"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,680",
+				"to": "00:02:30,080"
+			},
+			"offsets": {
+				"from": 149680,
+				"to": 150080
+			},
+			"text": " to come in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,080",
+				"to": "00:02:32,240"
+			},
+			"offsets": {
+				"from": 150080,
+				"to": 152240
+			},
+			"text": " There's limited opportunity for new technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,240",
+				"to": "00:02:35,720"
+			},
+			"offsets": {
+				"from": 152240,
+				"to": 155720
+			},
+			"text": " to be embraced, for example, novel gasification."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,720",
+				"to": "00:02:37,920"
+			},
+			"offsets": {
+				"from": 155720,
+				"to": 157920
+			},
+			"text": " We obviously have a big rush for solar and wind"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,920",
+				"to": "00:02:41,880"
+			},
+			"offsets": {
+				"from": 157920,
+				"to": 161880
+			},
+			"text": " right now, which is being very, very well financed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,880",
+				"to": "00:02:44,720"
+			},
+			"offsets": {
+				"from": 161880,
+				"to": 164720
+			},
+			"text": " but also a lot of small scale projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,720",
+				"to": "00:02:47,680"
+			},
+			"offsets": {
+				"from": 164720,
+				"to": 167680
+			},
+			"text": " Yeah, and today there's a bunch of fusion efficiencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,680",
+				"to": "00:02:50,640"
+			},
+			"offsets": {
+				"from": 167680,
+				"to": 170640
+			},
+			"text": " And basically, it boils down to every 100 energy units"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,640",
+				"to": "00:02:54,600"
+			},
+			"offsets": {
+				"from": 170640,
+				"to": 174600
+			},
+			"text": " that are generated and intended to be used by a consumer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,600",
+				"to": "00:02:56,720"
+			},
+			"offsets": {
+				"from": 174600,
+				"to": 176720
+			},
+			"text": " Only 10 of those actually get to the endpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,720",
+				"to": "00:03:00,520"
+			},
+			"offsets": {
+				"from": 176720,
+				"to": 180520
+			},
+			"text": " And when you apply this model to something like a data center,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,520",
+				"to": "00:03:02,720"
+			},
+			"offsets": {
+				"from": 180520,
+				"to": 182720
+			},
+			"text": " for instance, it's closer to 1%."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,720",
+				"to": "00:03:04,120"
+			},
+			"offsets": {
+				"from": 182720,
+				"to": 184120
+			},
+			"text": " So this is actually ridiculously low."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,120",
+				"to": "00:03:06,280"
+			},
+			"offsets": {
+				"from": 184120,
+				"to": 186280
+			},
+			"text": " And most of that happens because of inefficient power"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,280",
+				"to": "00:03:07,400"
+			},
+			"offsets": {
+				"from": 186280,
+				"to": 187400
+			},
+			"text": " generation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,400",
+				"to": "00:03:09,240"
+			},
+			"offsets": {
+				"from": 187400,
+				"to": 189240
+			},
+			"text": " So if we can localize the power generation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,240",
+				"to": "00:03:11,280"
+			},
+			"offsets": {
+				"from": 189240,
+				"to": 191280
+			},
+			"text": " and provide an infrastructure that enables that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,280",
+				"to": "00:03:14,800"
+			},
+			"offsets": {
+				"from": 191280,
+				"to": 194800
+			},
+			"text": " and enables the value to be transferred in that new ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,800",
+				"to": "00:03:19,720"
+			},
+			"offsets": {
+				"from": 194800,
+				"to": 199720
+			},
+			"text": " then we can really increase the actual delivered energy flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,720",
+				"to": "00:03:21,200"
+			},
+			"offsets": {
+				"from": 199720,
+				"to": 201200
+			},
+			"text": " Yeah, and I'm just going to add something to that really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,200",
+				"to": "00:03:22,600"
+			},
+			"offsets": {
+				"from": 201200,
+				"to": 202600
+			},
+			"text": " quickly as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,600",
+				"to": "00:03:25,960"
+			},
+			"offsets": {
+				"from": 202600,
+				"to": 205960
+			},
+			"text": " The International Energy Association by 2050"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,960",
+				"to": "00:03:29,440"
+			},
+			"offsets": {
+				"from": 205960,
+				"to": 209440
+			},
+			"text": " is planning on getting 57% of all renewables"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,440",
+				"to": "00:03:31,840"
+			},
+			"offsets": {
+				"from": 209440,
+				"to": 211840
+			},
+			"text": " to kind of give global supply of energy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,840",
+				"to": "00:03:35,800"
+			},
+			"offsets": {
+				"from": 211840,
+				"to": 215800
+			},
+			"text": " So 57% of the energy produced will have to come from renewables."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,800",
+				"to": "00:03:38,040"
+			},
+			"offsets": {
+				"from": 215800,
+				"to": 218040
+			},
+			"text": " Now, an interesting point to note about that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,040",
+				"to": "00:03:39,640"
+			},
+			"offsets": {
+				"from": 218040,
+				"to": 219640
+			},
+			"text": " is when you look at renewables technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,640",
+				"to": "00:03:43,160"
+			},
+			"offsets": {
+				"from": 219640,
+				"to": 223160
+			},
+			"text": " a lot of it is decentralized, distributed power,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,160",
+				"to": "00:03:45,600"
+			},
+			"offsets": {
+				"from": 223160,
+				"to": 225600
+			},
+			"text": " small scale stuff, which doesn't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,600",
+				"to": "00:03:47,200"
+			},
+			"offsets": {
+				"from": 225600,
+				"to": 227200
+			},
+			"text": " have any links to a network right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,200",
+				"to": "00:03:50,400"
+			},
+			"offsets": {
+				"from": 227200,
+				"to": 230400
+			},
+			"text": " So if I've got solar panels on my house, yes, that's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,400",
+				"to": "00:03:51,520"
+			},
+			"offsets": {
+				"from": 230400,
+				"to": 231520
+			},
+			"text": " I might have a grid tie."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,520",
+				"to": "00:03:53,520"
+			},
+			"offsets": {
+				"from": 231520,
+				"to": 233520
+			},
+			"text": " I might benefit from a feed-in tariff."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,520",
+				"to": "00:03:56,720"
+			},
+			"offsets": {
+				"from": 233520,
+				"to": 236720
+			},
+			"text": " But there's a whole host of other tokenized derivatives"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,720",
+				"to": "00:03:58,560"
+			},
+			"offsets": {
+				"from": 236720,
+				"to": 238560
+			},
+			"text": " that you can take from that model, which can unlock"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,560",
+				"to": "00:04:00,880"
+			},
+			"offsets": {
+				"from": 238560,
+				"to": 240880
+			},
+			"text": " a huge amount of economic abundance"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,880",
+				"to": "00:04:03,280"
+			},
+			"offsets": {
+				"from": 240880,
+				"to": 243280
+			},
+			"text": " from already distributed systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,280",
+				"to": "00:04:06,040"
+			},
+			"offsets": {
+				"from": 243280,
+				"to": 246040
+			},
+			"text": " In order to coalesce all of these things together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,040",
+				"to": "00:04:07,600"
+			},
+			"offsets": {
+				"from": 246040,
+				"to": 247600
+			},
+			"text": " we can do that really well on blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,600",
+				"to": "00:04:09,200"
+			},
+			"offsets": {
+				"from": 247600,
+				"to": 249200
+			},
+			"text": " So I'm going to leave Garrett to talk a bit more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,200",
+				"to": "00:04:10,480"
+			},
+			"offsets": {
+				"from": 249200,
+				"to": 250480
+			},
+			"text": " and then I'll come back to those points."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,480",
+				"to": "00:04:13,360"
+			},
+			"offsets": {
+				"from": 250480,
+				"to": 253360
+			},
+			"text": " Yeah, so basically to enable this new energy future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,360",
+				"to": "00:04:16,320"
+			},
+			"offsets": {
+				"from": 253360,
+				"to": 256320
+			},
+			"text": " what we need to do is create a network where"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,320",
+				"to": "00:04:19,240"
+			},
+			"offsets": {
+				"from": 256320,
+				"to": 259240
+			},
+			"text": " every single device that's able to consume or produce energy"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,240",
+				"to": "00:04:20,760"
+			},
+			"offsets": {
+				"from": 259240,
+				"to": 260760
+			},
+			"text": " is connected as a node."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,760",
+				"to": "00:04:23,760"
+			},
+			"offsets": {
+				"from": 260760,
+				"to": 263760
+			},
+			"text": " And that node is an agent that's aware of all of the other nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,760",
+				"to": "00:04:26,400"
+			},
+			"offsets": {
+				"from": 263760,
+				"to": 266400
+			},
+			"text": " in its locality and can react dynamically according"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,400",
+				"to": "00:04:28,840"
+			},
+			"offsets": {
+				"from": 266400,
+				"to": 268840
+			},
+			"text": " to the current market conditions, how much energy"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,840",
+				"to": "00:04:31,280"
+			},
+			"offsets": {
+				"from": 268840,
+				"to": 271280
+			},
+			"text": " is being sold for, what time of day it is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,280",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 271280,
+				"to": 273000
+			},
+			"text": " whether there's an abundance of solar power that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:35,720"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 275720
+			},
+			"text": " needs to be consumed to not flood the market or flood"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,720",
+				"to": "00:04:36,560"
+			},
+			"offsets": {
+				"from": 275720,
+				"to": 276560
+			},
+			"text": " the power lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,560",
+				"to": "00:04:38,280"
+			},
+			"offsets": {
+				"from": 276560,
+				"to": 278280
+			},
+			"text": " And there's actually quite a difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,280",
+				"to": "00:04:41,680"
+			},
+			"offsets": {
+				"from": 278280,
+				"to": 281680
+			},
+			"text": " between interacting in physical infrastructure like this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,680",
+				"to": "00:04:44,560"
+			},
+			"offsets": {
+				"from": 281680,
+				"to": 284560
+			},
+			"text": " and something like finance, where here, if you mess up"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,560",
+				"to": "00:04:47,720"
+			},
+			"offsets": {
+				"from": 284560,
+				"to": 287720
+			},
+			"text": " some numbers, then you can actually cause fires and deaths."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,720",
+				"to": "00:04:49,320"
+			},
+			"offsets": {
+				"from": 287720,
+				"to": 289320
+			},
+			"text": " It's not just a simple rewrite."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,320",
+				"to": "00:04:51,920"
+			},
+			"offsets": {
+				"from": 289320,
+				"to": 291920
+			},
+			"text": " So it's actually very, very critical"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,920",
+				"to": "00:04:53,920"
+			},
+			"offsets": {
+				"from": 291920,
+				"to": 293920
+			},
+			"text": " that the infrastructure is completely secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,920",
+				"to": "00:04:56,920"
+			},
+			"offsets": {
+				"from": 293920,
+				"to": 296920
+			},
+			"text": " and that we do it very correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,920",
+				"to": "00:04:58,200"
+			},
+			"offsets": {
+				"from": 296920,
+				"to": 298200
+			},
+			"text": " Yeah, and I'm going to add something"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,200",
+				"to": "00:05:00,400"
+			},
+			"offsets": {
+				"from": 298200,
+				"to": 300400
+			},
+			"text": " to the end of there as well, which is when you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,400",
+				"to": "00:05:04,120"
+			},
+			"offsets": {
+				"from": 300400,
+				"to": 304120
+			},
+			"text": " looking at how these bits of hardware infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,120",
+				"to": "00:05:06,400"
+			},
+			"offsets": {
+				"from": 304120,
+				"to": 306400
+			},
+			"text": " get financed, it's obviously in the interest"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,400",
+				"to": "00:05:07,920"
+			},
+			"offsets": {
+				"from": 306400,
+				"to": 307920
+			},
+			"text": " of the actual utility operator."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,920",
+				"to": "00:05:09,480"
+			},
+			"offsets": {
+				"from": 307920,
+				"to": 309480
+			},
+			"text": " So the actual generator on the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,480",
+				"to": "00:05:15,320"
+			},
+			"offsets": {
+				"from": 309480,
+				"to": 315320
+			},
+			"text": " to finance that and create a sustainable way of getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,320",
+				"to": "00:05:18,120"
+			},
+			"offsets": {
+				"from": 315320,
+				"to": 318120
+			},
+			"text": " return for investors on those big capital projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,120",
+				"to": "00:05:20,640"
+			},
+			"offsets": {
+				"from": 318120,
+				"to": 320640
+			},
+			"text": " again, going back to the fact that Renewables are generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,640",
+				"to": "00:05:24,240"
+			},
+			"offsets": {
+				"from": 320640,
+				"to": 324240
+			},
+			"text": " distributed systems in order to bring about an unlocked value"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,240",
+				"to": "00:05:25,920"
+			},
+			"offsets": {
+				"from": 324240,
+				"to": 325920
+			},
+			"text": " and create more incentive for people"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,920",
+				"to": "00:05:28,880"
+			},
+			"offsets": {
+				"from": 325920,
+				"to": 328880
+			},
+			"text": " to either crowdsource or pull together"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,880",
+				"to": "00:05:32,200"
+			},
+			"offsets": {
+				"from": 328880,
+				"to": 332200
+			},
+			"text": " of resources or small groups of community investors into,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,200",
+				"to": "00:05:37,680"
+			},
+			"offsets": {
+				"from": 332200,
+				"to": 337680
+			},
+			"text": " I don't know, like a biogas or a wind project in Africa,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,680",
+				"to": "00:05:39,960"
+			},
+			"offsets": {
+				"from": 337680,
+				"to": 339960
+			},
+			"text": " giving a platform where people can come together"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,960",
+				"to": "00:05:43,160"
+			},
+			"offsets": {
+				"from": 339960,
+				"to": 343160
+			},
+			"text": " to actually finance that, giving these distributed systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,160",
+				"to": "00:05:46,880"
+			},
+			"offsets": {
+				"from": 343160,
+				"to": 346880
+			},
+			"text": " where at the moment you can take a renewable energy credit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,880",
+				"to": "00:05:50,600"
+			},
+			"offsets": {
+				"from": 346880,
+				"to": 350600
+			},
+			"text": " for example, for a small solar installation on your house"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,600",
+				"to": "00:05:54,240"
+			},
+			"offsets": {
+				"from": 350600,
+				"to": 354240
+			},
+			"text": " and participate in the rock or the wreck market, which,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,240",
+				"to": "00:05:57,520"
+			},
+			"offsets": {
+				"from": 354240,
+				"to": 357520
+			},
+			"text": " for small, independent people with solar panels on their house,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,520",
+				"to": "00:05:58,800"
+			},
+			"offsets": {
+				"from": 357520,
+				"to": 358800
+			},
+			"text": " is not something they can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,800",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 358800,
+				"to": 360000
+			},
+			"text": " You generally go through an agent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:02,680"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 362680
+			},
+			"text": " you generally bundle these wrecks or rocks up into one package"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,680",
+				"to": "00:06:04,320"
+			},
+			"offsets": {
+				"from": 362680,
+				"to": 364320
+			},
+			"text": " and send them out to auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,320",
+				"to": "00:06:06,480"
+			},
+			"offsets": {
+				"from": 364320,
+				"to": 366480
+			},
+			"text": " So we're looking at creating a frictionless way"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,480",
+				"to": "00:06:08,200"
+			},
+			"offsets": {
+				"from": 366480,
+				"to": 368200
+			},
+			"text": " of moving value around the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,200",
+				"to": "00:06:10,520"
+			},
+			"offsets": {
+				"from": 368200,
+				"to": 370520
+			},
+			"text": " and that's moving value not just of energy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,520",
+				"to": "00:06:13,680"
+			},
+			"offsets": {
+				"from": 370520,
+				"to": 373680
+			},
+			"text": " It's also ways in which smaller producers"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,680",
+				"to": "00:06:15,920"
+			},
+			"offsets": {
+				"from": 373680,
+				"to": 375920
+			},
+			"text": " and smaller participants in the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,920",
+				"to": "00:06:18,680"
+			},
+			"offsets": {
+				"from": 375920,
+				"to": 378680
+			},
+			"text": " can benefit from getting value from what they already have."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,680",
+				"to": "00:06:20,520"
+			},
+			"offsets": {
+				"from": 378680,
+				"to": 380520
+			},
+			"text": " And I think that's like that unlocking of value"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,520",
+				"to": "00:06:22,120"
+			},
+			"offsets": {
+				"from": 380520,
+				"to": 382120
+			},
+			"text": " is really powerful here with what we're looking at."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,120",
+				"to": "00:06:24,880"
+			},
+			"offsets": {
+				"from": 382120,
+				"to": 384880
+			},
+			"text": " It's going to give people a much more frictionless experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,880",
+				"to": "00:06:26,480"
+			},
+			"offsets": {
+				"from": 384880,
+				"to": 386480
+			},
+			"text": " enabled to do more with what they've got."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,480",
+				"to": "00:06:28,320"
+			},
+			"offsets": {
+				"from": 386480,
+				"to": 388320
+			},
+			"text": " - Yeah, absolutely."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,320",
+				"to": "00:06:30,840"
+			},
+			"offsets": {
+				"from": 388320,
+				"to": 390840
+			},
+			"text": " So here's a little demo that one of our partner companies"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,840",
+				"to": "00:06:35,240"
+			},
+			"offsets": {
+				"from": 390840,
+				"to": 395240
+			},
+			"text": " made, a good singularity, that just shows a simulation"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,240",
+				"to": "00:06:40,040"
+			},
+			"offsets": {
+				"from": 395240,
+				"to": 400040
+			},
+			"text": " of a local energy grid where each section of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,040",
+				"to": "00:06:42,680"
+			},
+			"offsets": {
+				"from": 400040,
+				"to": 402680
+			},
+			"text": " is able to dynamically react to the others."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,680",
+				"to": "00:06:45,080"
+			},
+			"offsets": {
+				"from": 402680,
+				"to": 405080
+			},
+			"text": " And it just shows an example of pricing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,080",
+				"to": "00:06:46,360"
+			},
+			"offsets": {
+				"from": 405080,
+				"to": 406360
+			},
+			"text": " and if you turn off the power plant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,360",
+				"to": "00:06:48,840"
+			},
+			"offsets": {
+				"from": 406360,
+				"to": 408840
+			},
+			"text": " how the house is in that network react."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,840",
+				"to": "00:06:51,160"
+			},
+			"offsets": {
+				"from": 408840,
+				"to": 411160
+			},
+			"text": " So you can see that when the power plant is turned off,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,160",
+				"to": "00:06:55,640"
+			},
+			"offsets": {
+				"from": 411160,
+				"to": 415640
+			},
+			"text": " that the houses will dynamically adjust their consumption"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,640",
+				"to": "00:06:59,120"
+			},
+			"offsets": {
+				"from": 415640,
+				"to": 419120
+			},
+			"text": " and production loads, and basically just react to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,120",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 419120,
+				"to": 421000
+			},
+			"text": " So that way, in the event of an actual outage"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:04,640"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 424640
+			},
+			"text": " in a real power plant, the houses will be able to still"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,640",
+				"to": "00:07:06,600"
+			},
+			"offsets": {
+				"from": 424640,
+				"to": 426600
+			},
+			"text": " consume power locally and produce it"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,600",
+				"to": "00:07:08,280"
+			},
+			"offsets": {
+				"from": 426600,
+				"to": 428280
+			},
+			"text": " and interact with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,280",
+				"to": "00:07:11,480"
+			},
+			"offsets": {
+				"from": 428280,
+				"to": 431480
+			},
+			"text": " And this is going to be a huge resiliency improvement"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,480",
+				"to": "00:07:15,080"
+			},
+			"offsets": {
+				"from": 431480,
+				"to": 435080
+			},
+			"text": " for energy grids all over the world once this is implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,080",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 435080,
+				"to": 437000
+			},
+			"text": " So of course, the infrastructure today"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:19,120"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 439120
+			},
+			"text": " doesn't work very well for that, so we're building a new one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,120",
+				"to": "00:07:21,680"
+			},
+			"offsets": {
+				"from": 439120,
+				"to": 441680
+			},
+			"text": " And it's called the Energy Web Blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,680",
+				"to": "00:07:24,200"
+			},
+			"offsets": {
+				"from": 441680,
+				"to": 444200
+			},
+			"text": " And we have our testnet live right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,200",
+				"to": "00:07:26,440"
+			},
+			"offsets": {
+				"from": 444200,
+				"to": 446440
+			},
+			"text": " And that sets the page as live, and we just"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,440",
+				"to": "00:07:29,520"
+			},
+			"offsets": {
+				"from": 446440,
+				"to": 449520
+			},
+			"text": " open sourced it on the first of this month."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,520",
+				"to": "00:07:31,720"
+			},
+			"offsets": {
+				"from": 449520,
+				"to": 451720
+			},
+			"text": " And everything's accessible there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,720",
+				"to": "00:07:33,800"
+			},
+			"offsets": {
+				"from": 451720,
+				"to": 453800
+			},
+			"text": " We can do 2,500 transactions a second right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,800",
+				"to": "00:07:35,280"
+			},
+			"offsets": {
+				"from": 453800,
+				"to": 455280
+			},
+			"text": " because it's proof of authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,280",
+				"to": "00:07:37,640"
+			},
+			"offsets": {
+				"from": 455280,
+				"to": 457640
+			},
+			"text": " The authorities are energy companies"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,640",
+				"to": "00:07:40,080"
+			},
+			"offsets": {
+				"from": 457640,
+				"to": 460080
+			},
+			"text": " that we currently trust to keep the lights on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,080",
+				"to": "00:07:42,240"
+			},
+			"offsets": {
+				"from": 460080,
+				"to": 462240
+			},
+			"text": " So we figure that it's reasonable to trust them also"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,240",
+				"to": "00:07:44,520"
+			},
+			"offsets": {
+				"from": 462240,
+				"to": 464520
+			},
+			"text": " to validate blocks correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,520",
+				"to": "00:07:46,400"
+			},
+			"offsets": {
+				"from": 464520,
+				"to": 466400
+			},
+			"text": " And right now, it's an open network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,400",
+				"to": "00:07:47,800"
+			},
+			"offsets": {
+				"from": 466400,
+				"to": 467800
+			},
+			"text": " and it will always be an open network"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,800",
+				"to": "00:07:49,920"
+			},
+			"offsets": {
+				"from": 467800,
+				"to": 469920
+			},
+			"text": " that anybody can use freely and run applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,920",
+				"to": "00:07:52,120"
+			},
+			"offsets": {
+				"from": 469920,
+				"to": 472120
+			},
+			"text": " and transact value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,120",
+				"to": "00:07:53,840"
+			},
+			"offsets": {
+				"from": 472120,
+				"to": 473840
+			},
+			"text": " And the Ethereum Spark on-drag, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,840",
+				"to": "00:07:56,240"
+			},
+			"offsets": {
+				"from": 473840,
+				"to": 476240
+			},
+			"text": " is completely compatible and can run on the Energy Web"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,240",
+				"to": "00:07:58,080"
+			},
+			"offsets": {
+				"from": 476240,
+				"to": 478080
+			},
+			"text": " Foundation Blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,080",
+				"to": "00:08:00,800"
+			},
+			"offsets": {
+				"from": 478080,
+				"to": 480800
+			},
+			"text": " And Interchain Communication is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,800",
+				"to": "00:08:02,880"
+			},
+			"offsets": {
+				"from": 480800,
+				"to": 482880
+			},
+			"text": " that we're very much prioritizing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,880",
+				"to": "00:08:05,280"
+			},
+			"offsets": {
+				"from": 482880,
+				"to": 485280
+			},
+			"text": " and we want to have that coming really soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,280",
+				"to": "00:08:07,680"
+			},
+			"offsets": {
+				"from": 485280,
+				"to": 487680
+			},
+			"text": " So for instance, projects like Polkadot"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,680",
+				"to": "00:08:09,240"
+			},
+			"offsets": {
+				"from": 487680,
+				"to": 489240
+			},
+			"text": " will be very high on our list to implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,240",
+				"to": "00:08:12,080"
+			},
+			"offsets": {
+				"from": 489240,
+				"to": 492080
+			},
+			"text": " so that way we can interact with the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,080",
+				"to": "00:08:14,160"
+			},
+			"offsets": {
+				"from": 492080,
+				"to": 494160
+			},
+			"text": " public blockchain as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,160",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 494160,
+				"to": 496000
+			},
+			"text": " And I think I just want to reflect on a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:19,720"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 499720
+			},
+			"text": " that I'm involved in this mix."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,720",
+				"to": "00:08:21,160"
+			},
+			"offsets": {
+				"from": 499720,
+				"to": 501160
+			},
+			"text": " The project that we're working on right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,160",
+				"to": "00:08:22,440"
+			},
+			"offsets": {
+				"from": 501160,
+				"to": 502440
+			},
+			"text": " is called the Aurora Network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,440",
+				"to": "00:08:24,680"
+			},
+			"offsets": {
+				"from": 502440,
+				"to": 504680
+			},
+			"text": " And what it is, it's an open source hardware project"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,680",
+				"to": "00:08:27,200"
+			},
+			"offsets": {
+				"from": 504680,
+				"to": 507200
+			},
+			"text": " where through these mechanisms we're building,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,200",
+				"to": "00:08:29,920"
+			},
+			"offsets": {
+				"from": 507200,
+				"to": 509920
+			},
+			"text": " we can actually deploy hardware that's innovative"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,920",
+				"to": "00:08:31,160"
+			},
+			"offsets": {
+				"from": 509920,
+				"to": 511160
+			},
+			"text": " and otherwise wouldn't find funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,160",
+				"to": "00:08:32,960"
+			},
+			"offsets": {
+				"from": 511160,
+				"to": 512960
+			},
+			"text": " So I've got a really good example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,960",
+				"to": "00:08:35,360"
+			},
+			"offsets": {
+				"from": 512960,
+				"to": 515360
+			},
+			"text": " biomass gasification, particularly small scale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,360",
+				"to": "00:08:37,800"
+			},
+			"offsets": {
+				"from": 515360,
+				"to": 517800
+			},
+			"text": " biomass gasification, classically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,800",
+				"to": "00:08:39,480"
+			},
+			"offsets": {
+				"from": 517800,
+				"to": 519480
+			},
+			"text": " is pretty much unheard of unless you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,480",
+				"to": "00:08:40,880"
+			},
+			"offsets": {
+				"from": 519480,
+				"to": 520880
+			},
+			"text": " on a commercial scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,880",
+				"to": "00:08:44,360"
+			},
+			"offsets": {
+				"from": 520880,
+				"to": 524360
+			},
+			"text": " And when you look at the way in which--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,360",
+				"to": "00:08:46,360"
+			},
+			"offsets": {
+				"from": 524360,
+				"to": 526360
+			},
+			"text": " going back-- can you just pop back up the slides?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,360",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 526360,
+				"to": 528000
+			},
+			"text": " One more?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:48,640"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 528640
+			},
+			"text": " One more?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,640",
+				"to": "00:08:51,320"
+			},
+			"offsets": {
+				"from": 528640,
+				"to": 531320
+			},
+			"text": " Yeah, to this whole household model here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,320",
+				"to": "00:08:53,640"
+			},
+			"offsets": {
+				"from": 531320,
+				"to": 533640
+			},
+			"text": " when you're looking at, for example, solar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,640",
+				"to": "00:08:56,400"
+			},
+			"offsets": {
+				"from": 533640,
+				"to": 536400
+			},
+			"text": " there's a supply demand curve of which you've got, say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,400",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 536400,
+				"to": 540000
+			},
+			"text": " this massive abundance of solar energy during the day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:03,640"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 543640
+			},
+			"text": " currently not sufficiently deployed storage batteries"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,640",
+				"to": "00:09:06,400"
+			},
+			"offsets": {
+				"from": 543640,
+				"to": 546400
+			},
+			"text": " to take that power offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,400",
+				"to": "00:09:08,920"
+			},
+			"offsets": {
+				"from": 546400,
+				"to": 548920
+			},
+			"text": " And our usage is generally out of whack with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,920",
+				"to": "00:09:10,520"
+			},
+			"offsets": {
+				"from": 548920,
+				"to": 550520
+			},
+			"text": " Like, we're all at work during the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,520",
+				"to": "00:09:12,520"
+			},
+			"offsets": {
+				"from": 550520,
+				"to": 552520
+			},
+			"text": " The majority of actual power consumption"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,520",
+				"to": "00:09:14,360"
+			},
+			"offsets": {
+				"from": 552520,
+				"to": 554360
+			},
+			"text": " isn't until the morning or the evening."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,360",
+				"to": "00:09:15,920"
+			},
+			"offsets": {
+				"from": 554360,
+				"to": 555920
+			},
+			"text": " You get this dull period."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,920",
+				"to": "00:09:17,640"
+			},
+			"offsets": {
+				"from": 555920,
+				"to": 557640
+			},
+			"text": " And we're all used to getting cheap electricity"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,640",
+				"to": "00:09:18,960"
+			},
+			"offsets": {
+				"from": 557640,
+				"to": 558960
+			},
+			"text": " in some regions through the night."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,960",
+				"to": "00:09:21,480"
+			},
+			"offsets": {
+				"from": 558960,
+				"to": 561480
+			},
+			"text": " You get the economy saving between 1 AM and 7"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,480",
+				"to": "00:09:22,160"
+			},
+			"offsets": {
+				"from": 561480,
+				"to": 562160
+			},
+			"text": " in the morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,160",
+				"to": "00:09:25,160"
+			},
+			"offsets": {
+				"from": 562160,
+				"to": 565160
+			},
+			"text": " That's because big power stations have to keep running."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,160",
+				"to": "00:09:27,280"
+			},
+			"offsets": {
+				"from": 565160,
+				"to": 567280
+			},
+			"text": " They don't just shut down, shutting down"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,280",
+				"to": "00:09:28,640"
+			},
+			"offsets": {
+				"from": 567280,
+				"to": 568640
+			},
+			"text": " costs a ton of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,640",
+				"to": "00:09:32,120"
+			},
+			"offsets": {
+				"from": 568640,
+				"to": 572120
+			},
+			"text": " So by implementing this system whereby you can take energy"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,120",
+				"to": "00:09:34,600"
+			},
+			"offsets": {
+				"from": 572120,
+				"to": 574600
+			},
+			"text": " as and when it's needed from core parts"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,600",
+				"to": "00:09:37,440"
+			},
+			"offsets": {
+				"from": 574600,
+				"to": 577440
+			},
+			"text": " and understand what equipment you can bring online and when."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,440",
+				"to": "00:09:40,920"
+			},
+			"offsets": {
+				"from": 577440,
+				"to": 580920
+			},
+			"text": " So for example, in the time of high demand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,920",
+				"to": "00:09:42,920"
+			},
+			"offsets": {
+				"from": 580920,
+				"to": 582920
+			},
+			"text": " you have a bit of equipment that would otherwise"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,920",
+				"to": "00:09:47,440"
+			},
+			"offsets": {
+				"from": 582920,
+				"to": 587440
+			},
+			"text": " cost more to run or more to produce a unit of energy."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,440",
+				"to": "00:09:50,200"
+			},
+			"offsets": {
+				"from": 587440,
+				"to": 590200
+			},
+			"text": " That may come on in these times of high demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,200",
+				"to": "00:09:52,720"
+			},
+			"offsets": {
+				"from": 590200,
+				"to": 592720
+			},
+			"text": " And you may have a variable pricing model for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,720",
+				"to": "00:09:54,920"
+			},
+			"offsets": {
+				"from": 592720,
+				"to": 594920
+			},
+			"text": " So that energy can be used in the quad"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,920",
+				"to": "00:09:57,680"
+			},
+			"offsets": {
+				"from": 594920,
+				"to": 597680
+			},
+			"text": " and sort of leveled across the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,680",
+				"to": "00:09:59,160"
+			},
+			"offsets": {
+				"from": 597680,
+				"to": 599160
+			},
+			"text": " But you're effectively smooth."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,160",
+				"to": "00:10:00,720"
+			},
+			"offsets": {
+				"from": 599160,
+				"to": 600720
+			},
+			"text": " And this is like a smart grid effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,720",
+				"to": "00:10:02,440"
+			},
+			"offsets": {
+				"from": 600720,
+				"to": 602440
+			},
+			"text": " A lot of these companies are kind of moving"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,440",
+				"to": "00:10:04,120"
+			},
+			"offsets": {
+				"from": 602440,
+				"to": 604120
+			},
+			"text": " toward this more smart grid."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,120",
+				"to": "00:10:07,920"
+			},
+			"offsets": {
+				"from": 604120,
+				"to": 607920
+			},
+			"text": " And again, this vision of a more distributed power network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,920",
+				"to": "00:10:10,400"
+			},
+			"offsets": {
+				"from": 607920,
+				"to": 610400
+			},
+			"text": " This beautifully supports that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,400",
+				"to": "00:10:12,200"
+			},
+			"offsets": {
+				"from": 610400,
+				"to": 612200
+			},
+			"text": " And when you're actually looking at tokenizing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,200",
+				"to": "00:10:14,920"
+			},
+			"offsets": {
+				"from": 612200,
+				"to": 614920
+			},
+			"text": " for example, the energy on the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,920",
+				"to": "00:10:17,680"
+			},
+			"offsets": {
+				"from": 614920,
+				"to": 617680
+			},
+			"text": " you need a high transaction throughput to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,680",
+				"to": "00:10:20,200"
+			},
+			"offsets": {
+				"from": 617680,
+				"to": 620200
+			},
+			"text": " The rate and volume of which you're planning on scaling"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,200",
+				"to": "00:10:24,520"
+			},
+			"offsets": {
+				"from": 620200,
+				"to": 624520
+			},
+			"text": " to make this be a very impactful global sort of infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,520",
+				"to": "00:10:28,720"
+			},
+			"offsets": {
+				"from": 624520,
+				"to": 628720
+			},
+			"text": " that allows this transfer of value and flow of markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,720",
+				"to": "00:10:31,640"
+			},
+			"offsets": {
+				"from": 628720,
+				"to": 631640
+			},
+			"text": " globally so you can take abundance in one area"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,640",
+				"to": "00:10:33,800"
+			},
+			"offsets": {
+				"from": 631640,
+				"to": 633800
+			},
+			"text": " and maybe deploy that in an area where"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,800",
+				"to": "00:10:36,520"
+			},
+			"offsets": {
+				"from": 633800,
+				"to": 636520
+			},
+			"text": " there may not be the infrastructure or the actual drive"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,520",
+				"to": "00:10:39,320"
+			},
+			"offsets": {
+				"from": 636520,
+				"to": 639320
+			},
+			"text": " to develop in an African community, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,320",
+				"to": "00:10:42,120"
+			},
+			"offsets": {
+				"from": 639320,
+				"to": 642120
+			},
+			"text": " So California is a great example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,120",
+				"to": "00:10:45,240"
+			},
+			"offsets": {
+				"from": 642120,
+				"to": 645240
+			},
+			"text": " California, there is an abundance of walnut shells"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,240",
+				"to": "00:10:48,600"
+			},
+			"offsets": {
+				"from": 645240,
+				"to": 648600
+			},
+			"text": " that are supplied by walnut manufacturing companies."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,600",
+				"to": "00:10:50,120"
+			},
+			"offsets": {
+				"from": 648600,
+				"to": 650120
+			},
+			"text": " So where do they go right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,120",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 650120,
+				"to": 652000
+			},
+			"text": " Those walnut shells are dumped or burned."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:55,200"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 655200
+			},
+			"text": " There is no value being created by that byproduct."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,200",
+				"to": "00:10:57,080"
+			},
+			"offsets": {
+				"from": 655200,
+				"to": 657080
+			},
+			"text": " So take those walnut shells, put them"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,080",
+				"to": "00:10:59,600"
+			},
+			"offsets": {
+				"from": 657080,
+				"to": 659600
+			},
+			"text": " through something like a gasifier on site,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,600",
+				"to": "00:11:02,520"
+			},
+			"offsets": {
+				"from": 659600,
+				"to": 662520
+			},
+			"text": " have a grid tie, tie that back to the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,520",
+				"to": "00:11:04,120"
+			},
+			"offsets": {
+				"from": 662520,
+				"to": 664120
+			},
+			"text": " and actually use that energy in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,120",
+				"to": "00:11:06,280"
+			},
+			"offsets": {
+				"from": 664120,
+				"to": 666280
+			},
+			"text": " where you can either sell that directly to a consumer"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,280",
+				"to": "00:11:08,200"
+			},
+			"offsets": {
+				"from": 666280,
+				"to": 668200
+			},
+			"text": " using your tokenized model and link that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,200",
+				"to": "00:11:11,280"
+			},
+			"offsets": {
+				"from": 668200,
+				"to": 671280
+			},
+			"text": " with more of the smart meters we're seeing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,280",
+				"to": "00:11:12,960"
+			},
+			"offsets": {
+				"from": 671280,
+				"to": 672960
+			},
+			"text": " There are these inductive smart meters"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,960",
+				"to": "00:11:16,160"
+			},
+			"offsets": {
+				"from": 672960,
+				"to": 676160
+			},
+			"text": " where you clamp them onto your incoming feed of your house."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,160",
+				"to": "00:11:19,040"
+			},
+			"offsets": {
+				"from": 676160,
+				"to": 679040
+			},
+			"text": " And it will do a Fourier transform on your frequencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,040",
+				"to": "00:11:19,880"
+			},
+			"offsets": {
+				"from": 679040,
+				"to": 679880
+			},
+			"text": " of your energy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,880",
+				"to": "00:11:21,960"
+			},
+			"offsets": {
+				"from": 679880,
+				"to": 681960
+			},
+			"text": " And it will tell you, after about a month of learning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,960",
+				"to": "00:11:24,880"
+			},
+			"offsets": {
+				"from": 681960,
+				"to": 684880
+			},
+			"text": " your fridge is using 60% of the power."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,880",
+				"to": "00:11:27,720"
+			},
+			"offsets": {
+				"from": 684880,
+				"to": 687720
+			},
+			"text": " Your toaster is using 0.1%."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,720",
+				"to": "00:11:29,360"
+			},
+			"offsets": {
+				"from": 687720,
+				"to": 689360
+			},
+			"text": " Whatever that mix looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,360",
+				"to": "00:11:31,080"
+			},
+			"offsets": {
+				"from": 689360,
+				"to": 691080
+			},
+			"text": " And if you analyze that data, you can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,080",
+				"to": "00:11:34,400"
+			},
+			"offsets": {
+				"from": 691080,
+				"to": 694400
+			},
+			"text": " start incentivizing good actors in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,400",
+				"to": "00:11:37,440"
+			},
+			"offsets": {
+				"from": 694400,
+				"to": 697440
+			},
+			"text": " So I can make an assessment of what the usage in this house"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,440",
+				"to": "00:11:38,520"
+			},
+			"offsets": {
+				"from": 697440,
+				"to": 698520
+			},
+			"text": " should be."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,520",
+				"to": "00:11:41,960"
+			},
+			"offsets": {
+				"from": 698520,
+				"to": 701960
+			},
+			"text": " If an actor is overusing that, they pay a fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,960",
+				"to": "00:11:44,600"
+			},
+			"offsets": {
+				"from": 701960,
+				"to": 704600
+			},
+			"text": " If an actor is underusing and coming below a threshold,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,600",
+				"to": "00:11:46,080"
+			},
+			"offsets": {
+				"from": 704600,
+				"to": 706080
+			},
+			"text": " they get paid that back."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,080",
+				"to": "00:11:49,480"
+			},
+			"offsets": {
+				"from": 706080,
+				"to": 709480
+			},
+			"text": " So you're not just incentivizing smarter energy distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,480",
+				"to": "00:11:51,840"
+			},
+			"offsets": {
+				"from": 709480,
+				"to": 711840
+			},
+			"text": " You're incentivizing good behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,840",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 711840,
+				"to": 714000
+			},
+			"text": " And you're incentivizing better practice on the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:57,240"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 717240
+			},
+			"text": " whereby the participants contribute overall to a lower"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,240",
+				"to": "00:11:58,160"
+			},
+			"offsets": {
+				"from": 717240,
+				"to": 718160
+			},
+			"text": " demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,160",
+				"to": "00:12:01,440"
+			},
+			"offsets": {
+				"from": 718160,
+				"to": 721440
+			},
+			"text": " And that's done in a fluid and organic way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,440",
+				"to": "00:12:03,840"
+			},
+			"offsets": {
+				"from": 721440,
+				"to": 723840
+			},
+			"text": " And because everything is so static right now, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,840",
+				"to": "00:12:05,680"
+			},
+			"offsets": {
+				"from": 723840,
+				"to": 725680
+			},
+			"text": " in California, sometimes there are events"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,680",
+				"to": "00:12:07,760"
+			},
+			"offsets": {
+				"from": 725680,
+				"to": 727760
+			},
+			"text": " where in the middle of the day, on a hot summer day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,760",
+				"to": "00:12:09,560"
+			},
+			"offsets": {
+				"from": 727760,
+				"to": 729560
+			},
+			"text": " there's a bunch of abundance of solar power"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,560",
+				"to": "00:12:11,680"
+			},
+			"offsets": {
+				"from": 729560,
+				"to": 731680
+			},
+			"text": " that the market just doesn't need."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,680",
+				"to": "00:12:13,560"
+			},
+			"offsets": {
+				"from": 731680,
+				"to": 733560
+			},
+			"text": " The rest of the resources are not flexible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,560",
+				"to": "00:12:15,760"
+			},
+			"offsets": {
+				"from": 733560,
+				"to": 735760
+			},
+			"text": " so they're not able to ramp down production fast enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,760",
+				"to": "00:12:17,920"
+			},
+			"offsets": {
+				"from": 735760,
+				"to": 737920
+			},
+			"text": " to actually utilize the solar energy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,920",
+				"to": "00:12:19,560"
+			},
+			"offsets": {
+				"from": 737920,
+				"to": 739560
+			},
+			"text": " So the utility companies sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,560",
+				"to": "00:12:22,320"
+			},
+			"offsets": {
+				"from": 739560,
+				"to": 742320
+			},
+			"text": " ask the solar producers to turn off their panels"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,320",
+				"to": "00:12:24,640"
+			},
+			"offsets": {
+				"from": 742320,
+				"to": 744640
+			},
+			"text": " so that way the abundance of electrons"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,640",
+				"to": "00:12:26,520"
+			},
+			"offsets": {
+				"from": 744640,
+				"to": 746520
+			},
+			"text": " don't flood the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,520",
+				"to": "00:12:28,760"
+			},
+			"offsets": {
+				"from": 746520,
+				"to": 748760
+			},
+			"text": " And so this is obviously a huge waste"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,760",
+				"to": "00:12:31,600"
+			},
+			"offsets": {
+				"from": 748760,
+				"to": 751600
+			},
+			"text": " and not effective utilization of our solar industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,600",
+				"to": "00:12:36,120"
+			},
+			"offsets": {
+				"from": 751600,
+				"to": 756120
+			},
+			"text": " So basically, enabling all of the resources on the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,120",
+				"to": "00:12:37,840"
+			},
+			"offsets": {
+				"from": 756120,
+				"to": 757840
+			},
+			"text": " to be a lot more flexible will enable"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,840",
+				"to": "00:12:41,080"
+			},
+			"offsets": {
+				"from": 757840,
+				"to": 761080
+			},
+			"text": " much higher utilization of all the electricity"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,080",
+				"to": "00:12:43,280"
+			},
+			"offsets": {
+				"from": 761080,
+				"to": 763280
+			},
+			"text": " we're generating from renewables, especially the ones"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,280",
+				"to": "00:12:44,760"
+			},
+			"offsets": {
+				"from": 763280,
+				"to": 764760
+			},
+			"text": " that vary."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,760",
+				"to": "00:12:46,280"
+			},
+			"offsets": {
+				"from": 764760,
+				"to": 766280
+			},
+			"text": " Yeah, and I think this vision as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,280",
+				"to": "00:12:49,360"
+			},
+			"offsets": {
+				"from": 766280,
+				"to": 769360
+			},
+			"text": " for the more IoT connected sort of state."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,360",
+				"to": "00:12:52,120"
+			},
+			"offsets": {
+				"from": 769360,
+				"to": 772120
+			},
+			"text": " So where you have these feedback mechanisms"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,120",
+				"to": "00:12:55,120"
+			},
+			"offsets": {
+				"from": 772120,
+				"to": 775120
+			},
+			"text": " into a smart grid, where it understands exactly what"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,120",
+				"to": "00:12:57,840"
+			},
+			"offsets": {
+				"from": 775120,
+				"to": 777840
+			},
+			"text": " to switch on and off when, is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,840",
+				"to": "00:13:02,440"
+			},
+			"offsets": {
+				"from": 777840,
+				"to": 782440
+			},
+			"text": " kind of that utopian vision of a really efficient marketplace"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,440",
+				"to": "00:13:06,320"
+			},
+			"offsets": {
+				"from": 782440,
+				"to": 786320
+			},
+			"text": " where you're, again, going back to allowing a nice flow of value."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,320",
+				"to": "00:13:10,080"
+			},
+			"offsets": {
+				"from": 786320,
+				"to": 790080
+			},
+			"text": " So when you unlock value in systems that isn't currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,080",
+				"to": "00:13:13,120"
+			},
+			"offsets": {
+				"from": 790080,
+				"to": 793120
+			},
+			"text": " used, our vision is to then use some of that elsewhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,120",
+				"to": "00:13:15,680"
+			},
+			"offsets": {
+				"from": 793120,
+				"to": 795680
+			},
+			"text": " in the world to make a natural impact."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,680",
+				"to": "00:13:20,440"
+			},
+			"offsets": {
+				"from": 795680,
+				"to": 800440
+			},
+			"text": " So take that station that's really abundant and producing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,440",
+				"to": "00:13:22,960"
+			},
+			"offsets": {
+				"from": 800440,
+				"to": 802960
+			},
+			"text": " revenue and using a portion of that to develop"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,960",
+				"to": "00:13:26,160"
+			},
+			"offsets": {
+				"from": 802960,
+				"to": 806160
+			},
+			"text": " other infrastructure elsewhere, invest that in more kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,160",
+				"to": "00:13:29,880"
+			},
+			"offsets": {
+				"from": 806160,
+				"to": 809880
+			},
+			"text": " of skunkworks, new development, open source hardware, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,880",
+				"to": "00:13:32,080"
+			},
+			"offsets": {
+				"from": 809880,
+				"to": 812080
+			},
+			"text": " does exist out there, that currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,080",
+				"to": "00:13:33,880"
+			},
+			"offsets": {
+				"from": 812080,
+				"to": 813880
+			},
+			"text": " isn't getting the attention because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,880",
+				"to": "00:13:36,680"
+			},
+			"offsets": {
+				"from": 813880,
+				"to": 816680
+			},
+			"text": " hard to monetize, hard to justify costs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,680",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 816680,
+				"to": 819000
+			},
+			"text": " and incumbents just would like to continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:40,920"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 820920
+			},
+			"text": " in the current paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,920",
+				"to": "00:13:42,240"
+			},
+			"offsets": {
+				"from": 820920,
+				"to": 822240
+			},
+			"text": " Yeah, exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,240",
+				"to": "00:13:45,280"
+			},
+			"offsets": {
+				"from": 822240,
+				"to": 825280
+			},
+			"text": " And so the ecosystem within energy applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,280",
+				"to": "00:13:47,120"
+			},
+			"offsets": {
+				"from": 825280,
+				"to": 827120
+			},
+			"text": " that are seeking to use blockchain infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,120",
+				"to": "00:13:50,080"
+			},
+			"offsets": {
+				"from": 827120,
+				"to": 830080
+			},
+			"text": " and some magnitude is expanding super rapidly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,080",
+				"to": "00:13:52,840"
+			},
+			"offsets": {
+				"from": 830080,
+				"to": 832840
+			},
+			"text": " This is a smattering of companies"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,840",
+				"to": "00:13:55,480"
+			},
+			"offsets": {
+				"from": 832840,
+				"to": 835480
+			},
+			"text": " that are trying to accomplish this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,480",
+				"to": "00:13:58,040"
+			},
+			"offsets": {
+				"from": 835480,
+				"to": 838040
+			},
+			"text": " Some of them we have agreements with already,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,040",
+				"to": "00:13:59,240"
+			},
+			"offsets": {
+				"from": 838040,
+				"to": 839240
+			},
+			"text": " and we're working actively with."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,240",
+				"to": "00:14:00,840"
+			},
+			"offsets": {
+				"from": 839240,
+				"to": 840840
+			},
+			"text": " We've spoken with all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,840",
+				"to": "00:14:02,720"
+			},
+			"offsets": {
+				"from": 840840,
+				"to": 842720
+			},
+			"text": " All of them have shown interest in using the energy web"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,720",
+				"to": "00:14:04,600"
+			},
+			"offsets": {
+				"from": 842720,
+				"to": 844600
+			},
+			"text": " blockchain for the purposes simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,600",
+				"to": "00:14:07,120"
+			},
+			"offsets": {
+				"from": 844600,
+				"to": 847120
+			},
+			"text": " because you can have a lot more transaction throughput"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,120",
+				"to": "00:14:09,160"
+			},
+			"offsets": {
+				"from": 847120,
+				"to": 849160
+			},
+			"text": " and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,160",
+				"to": "00:14:10,720"
+			},
+			"offsets": {
+				"from": 849160,
+				"to": 850720
+			},
+			"text": " And some of them have gone to the point"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,720",
+				"to": "00:14:14,480"
+			},
+			"offsets": {
+				"from": 850720,
+				"to": 854480
+			},
+			"text": " of purchasing tokens in the energy web blockchain, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,480",
+				"to": "00:14:18,960"
+			},
+			"offsets": {
+				"from": 854480,
+				"to": 858960
+			},
+			"text": " are used as gas similar to ethaneether in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,960",
+				"to": "00:14:20,960"
+			},
+			"offsets": {
+				"from": 858960,
+				"to": 860960
+			},
+			"text": " So yeah, I just wanted to say thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,960",
+				"to": "00:14:22,160"
+			},
+			"offsets": {
+				"from": 860960,
+				"to": 862160
+			},
+			"text": " It's a huge honor to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,160",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 862160,
+				"to": 864000
+			},
+			"text": " Thanks for having us."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:26,120"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 866120
+			},
+			"text": " And yeah, we do have a couple more minutes left,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,120",
+				"to": "00:14:29,400"
+			},
+			"offsets": {
+				"from": 866120,
+				"to": 869400
+			},
+			"text": " so if there are any questions, we're happy to take those."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,400",
+				"to": "00:14:29,960"
+			},
+			"offsets": {
+				"from": 869400,
+				"to": 869960
+			},
+			"text": " Thanks, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,960",
+				"to": "00:14:30,880"
+			},
+			"offsets": {
+				"from": 869960,
+				"to": 870880
+			},
+			"text": " Yeah, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,880",
+				"to": "00:14:33,300"
+			},
+			"offsets": {
+				"from": 870880,
+				"to": 873300
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,300",
+				"to": "00:14:40,480"
+			},
+			"offsets": {
+				"from": 873300,
+				"to": 880480
+			},
+			"text": " Did anyone have any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,480",
+				"to": "00:14:41,640"
+			},
+			"offsets": {
+				"from": 880480,
+				"to": 881640
+			},
+			"text": " If you don't, that's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,640",
+				"to": "00:14:42,280"
+			},
+			"offsets": {
+				"from": 881640,
+				"to": 882280
+			},
+			"text": " If you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,280",
+				"to": "00:14:43,120"
+			},
+			"offsets": {
+				"from": 882280,
+				"to": 883120
+			},
+			"text": " There's one right there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,120",
+				"to": "00:14:44,400"
+			},
+			"offsets": {
+				"from": 883120,
+				"to": 884400
+			},
+			"text": " Yeah, go for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,400",
+				"to": "00:14:47,280"
+			},
+			"offsets": {
+				"from": 884400,
+				"to": 887280
+			},
+			"text": " So in your presentation, there was a slide"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,280",
+				"to": "00:14:50,640"
+			},
+			"offsets": {
+				"from": 887280,
+				"to": 890640
+			},
+			"text": " where you mentioned that energy demand fluctuates"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,640",
+				"to": "00:14:51,760"
+			},
+			"offsets": {
+				"from": 890640,
+				"to": 891760
+			},
+			"text": " throughout the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,760",
+				"to": "00:14:55,280"
+			},
+			"offsets": {
+				"from": 891760,
+				"to": 895280
+			},
+			"text": " And that doesn't coincide with energy"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,280",
+				"to": "00:14:59,880"
+			},
+			"offsets": {
+				"from": 895280,
+				"to": 899880
+			},
+			"text": " that's produced through means like solar."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,880",
+				"to": "00:15:04,640"
+			},
+			"offsets": {
+				"from": 899880,
+				"to": 904640
+			},
+			"text": " My question is, what role do technologies like in-house"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,640",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 904640,
+				"to": 909000
+			},
+			"text": " batteries think Tesla Powerwall have in addressing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:12,240"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 912240
+			},
+			"text": " that specific problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,240",
+				"to": "00:15:13,040"
+			},
+			"offsets": {
+				"from": 912240,
+				"to": 913040
+			},
+			"text": " Yeah, absolutely."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,040",
+				"to": "00:15:17,720"
+			},
+			"offsets": {
+				"from": 913040,
+				"to": 917720
+			},
+			"text": " So basically, the idea is with the Tesla Powerwall is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,720",
+				"to": "00:15:18,960"
+			},
+			"offsets": {
+				"from": 917720,
+				"to": 918960
+			},
+			"text": " if you have an infrastructure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,960",
+				"to": "00:15:21,680"
+			},
+			"offsets": {
+				"from": 918960,
+				"to": 921680
+			},
+			"text": " supports the leasing of batteries on a short time"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,680",
+				"to": "00:15:23,880"
+			},
+			"offsets": {
+				"from": 921680,
+				"to": 923880
+			},
+			"text": " scale, like for instance, over the course of a day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,880",
+				"to": "00:15:26,720"
+			},
+			"offsets": {
+				"from": 923880,
+				"to": 926720
+			},
+			"text": " then if there's abundance of solar on one home, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,720",
+				"to": "00:15:28,440"
+			},
+			"offsets": {
+				"from": 926720,
+				"to": 928440
+			},
+			"text": " if we just go back to the simulation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,440",
+				"to": "00:15:31,160"
+			},
+			"offsets": {
+				"from": 928440,
+				"to": 931160
+			},
+			"text": " there's an abundance of power on this home,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,160",
+				"to": "00:15:33,160"
+			},
+			"offsets": {
+				"from": 931160,
+				"to": 933160
+			},
+			"text": " because they have a lot of solar panels and only two"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,160",
+				"to": "00:15:35,040"
+			},
+			"offsets": {
+				"from": 933160,
+				"to": 935040
+			},
+			"text": " batteries, and this one doesn't have that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,040",
+				"to": "00:15:38,800"
+			},
+			"offsets": {
+				"from": 935040,
+				"to": 938800
+			},
+			"text": " but maybe he has more storage capacity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,800",
+				"to": "00:15:40,640"
+			},
+			"offsets": {
+				"from": 938800,
+				"to": 940640
+			},
+			"text": " then basically you can lease out the battery"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,640",
+				"to": "00:15:43,320"
+			},
+			"offsets": {
+				"from": 940640,
+				"to": 943320
+			},
+			"text": " and use that solar power throughout the day to power"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,320",
+				"to": "00:15:45,240"
+			},
+			"offsets": {
+				"from": 943320,
+				"to": 945240
+			},
+			"text": " everything during the night when it's not there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,240",
+				"to": "00:15:46,640"
+			},
+			"offsets": {
+				"from": 945240,
+				"to": 946640
+			},
+			"text": " So that way you're shaving the peak a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,640",
+				"to": "00:15:49,520"
+			},
+			"offsets": {
+				"from": 946640,
+				"to": 949520
+			},
+			"text": " So batteries like that play a tremendous role in actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,520",
+				"to": "00:15:51,480"
+			},
+			"offsets": {
+				"from": 949520,
+				"to": 951480
+			},
+			"text": " utilizing the solar power more effectively,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,480",
+				"to": "00:15:55,280"
+			},
+			"offsets": {
+				"from": 951480,
+				"to": 955280
+			},
+			"text": " even though you have an obvious decrease in efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,280",
+				"to": "00:15:57,600"
+			},
+			"offsets": {
+				"from": 955280,
+				"to": 957600
+			},
+			"text": " when you store electrons in a battery, you lose some."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,600",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 957600,
+				"to": 962000
+			},
+			"text": " But the gains over just utilizing the normal grid"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:03,160"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 963160
+			},
+			"text": " is tremendous."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,160",
+				"to": "00:16:06,640"
+			},
+			"offsets": {
+				"from": 963160,
+				"to": 966640
+			},
+			"text": " Yeah, and I think something I'll add to that as well is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,640",
+				"to": "00:16:09,120"
+			},
+			"offsets": {
+				"from": 966640,
+				"to": 969120
+			},
+			"text": " just to be too narrow and solar is to also look at a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,120",
+				"to": "00:16:10,840"
+			},
+			"offsets": {
+				"from": 969120,
+				"to": 970840
+			},
+			"text": " of the other technologies that are out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,840",
+				"to": "00:16:13,960"
+			},
+			"offsets": {
+				"from": 970840,
+				"to": 973960
+			},
+			"text": " So in the UK, there is a system called the triad network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,960",
+				"to": "00:16:15,720"
+			},
+			"offsets": {
+				"from": 973960,
+				"to": 975720
+			},
+			"text": " and what the triad network does."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,720",
+				"to": "00:16:18,120"
+			},
+			"offsets": {
+				"from": 975720,
+				"to": 978120
+			},
+			"text": " It is a bunch of distributed diesel gen sets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,120",
+				"to": "00:16:20,800"
+			},
+			"offsets": {
+				"from": 978120,
+				"to": 980800
+			},
+			"text": " very, very big substantial ones tied to the grid"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,800",
+				"to": "00:16:23,240"
+			},
+			"offsets": {
+				"from": 980800,
+				"to": 983240
+			},
+			"text": " in strategic locations around the UK."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,240",
+				"to": "00:16:25,960"
+			},
+			"offsets": {
+				"from": 983240,
+				"to": 985960
+			},
+			"text": " Between the hours of 6 and 7 p.m., they all switch on."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,960",
+				"to": "00:16:29,120"
+			},
+			"offsets": {
+				"from": 985960,
+				"to": 989120
+			},
+			"text": " They switch on, they provide a very expensive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,120",
+				"to": "00:16:32,640"
+			},
+			"offsets": {
+				"from": 989120,
+				"to": 992640
+			},
+			"text": " kind of surcharged power, which balances this load."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,640",
+				"to": "00:16:35,320"
+			},
+			"offsets": {
+				"from": 992640,
+				"to": 995320
+			},
+			"text": " So I think it's about thinking about how you can also bring"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,320",
+				"to": "00:16:38,680"
+			},
+			"offsets": {
+				"from": 995320,
+				"to": 998680
+			},
+			"text": " on more novel technologies, like you can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,680",
+				"to": "00:16:42,760"
+			},
+			"offsets": {
+				"from": 998680,
+				"to": 1002760
+			},
+			"text": " recycled cooking oil that's been reprocessed"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,760",
+				"to": "00:16:46,600"
+			},
+			"offsets": {
+				"from": 1002760,
+				"to": 1006600
+			},
+			"text": " in a diesel gen set as a biomass fuel in a strategic location."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,600",
+				"to": "00:16:49,040"
+			},
+			"offsets": {
+				"from": 1006600,
+				"to": 1009040
+			},
+			"text": " The infrastructure of that costs a little bit more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,040",
+				"to": "00:16:52,200"
+			},
+			"offsets": {
+				"from": 1009040,
+				"to": 1012200
+			},
+			"text": " but if you are able to switch it on at the right time"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,200",
+				"to": "00:16:55,240"
+			},
+			"offsets": {
+				"from": 1012200,
+				"to": 1015240
+			},
+			"text": " of demand and only use it when demand is high,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,240",
+				"to": "00:16:56,720"
+			},
+			"offsets": {
+				"from": 1015240,
+				"to": 1016720
+			},
+			"text": " then that can help balance that load."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,720",
+				"to": "00:17:00,720"
+			},
+			"offsets": {
+				"from": 1016720,
+				"to": 1020720
+			},
+			"text": " So it's a combination of storing and finding dynamic load"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,720",
+				"to": "00:17:03,880"
+			},
+			"offsets": {
+				"from": 1020720,
+				"to": 1023880
+			},
+			"text": " in the network that can instinctively switch on based"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,880",
+				"to": "00:17:06,640"
+			},
+			"offsets": {
+				"from": 1023880,
+				"to": 1026640
+			},
+			"text": " on the load balancing that's kind of in the smart grid"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,640",
+				"to": "00:17:08,320"
+			},
+			"offsets": {
+				"from": 1026640,
+				"to": 1028320
+			},
+			"text": " to bring that power on when it's needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,320",
+				"to": "00:17:11,520"
+			},
+			"offsets": {
+				"from": 1028320,
+				"to": 1031520
+			},
+			"text": " So you've got this nice blend of battery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,520",
+				"to": "00:17:13,840"
+			},
+			"offsets": {
+				"from": 1031520,
+				"to": 1033840
+			},
+			"text": " which is going to take some time to kind of get affected"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,840",
+				"to": "00:17:16,840"
+			},
+			"offsets": {
+				"from": 1033840,
+				"to": 1036840
+			},
+			"text": " on the network, and novel technologies there to boost it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,840",
+				"to": "00:17:18,960"
+			},
+			"offsets": {
+				"from": 1036840,
+				"to": 1038960
+			},
+			"text": " But focusing on renewables for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,960",
+				"to": "00:17:20,280"
+			},
+			"offsets": {
+				"from": 1038960,
+				"to": 1040280
+			},
+			"text": " - Yeah, exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,280",
+				"to": "00:17:25,520"
+			},
+			"offsets": {
+				"from": 1040280,
+				"to": 1045520
+			},
+			"text": " - Okay, there was a really interesting talk yesterday"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,520",
+				"to": "00:17:27,720"
+			},
+			"offsets": {
+				"from": 1045520,
+				"to": 1047720
+			},
+			"text": " that treated this as an optimization problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,720",
+				"to": "00:17:33,480"
+			},
+			"offsets": {
+				"from": 1047720,
+				"to": 1053480
+			},
+			"text": " I guess I'm curious what the change in efficiency is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,480",
+				"to": "00:17:37,080"
+			},
+			"offsets": {
+				"from": 1053480,
+				"to": 1057080
+			},
+			"text": " between the optimized version and the normal market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,080",
+				"to": "00:17:37,920"
+			},
+			"offsets": {
+				"from": 1057080,
+				"to": 1057920
+			},
+			"text": " if you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,840",
+				"to": "00:17:40,920"
+			},
+			"offsets": {
+				"from": 1058840,
+				"to": 1060920
+			},
+			"text": " - Sorry, in terms of like."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,920",
+				"to": "00:17:42,080"
+			},
+			"offsets": {
+				"from": 1060920,
+				"to": 1062080
+			},
+			"text": " - Yeah, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,080",
+				"to": "00:17:42,920"
+			},
+			"offsets": {
+				"from": 1062080,
+				"to": 1062920
+			},
+			"text": " - Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,920",
+				"to": "00:17:44,560"
+			},
+			"offsets": {
+				"from": 1062920,
+				"to": 1064560
+			},
+			"text": " - If you could repeat yourself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,560",
+				"to": "00:17:46,760"
+			},
+			"offsets": {
+				"from": 1064560,
+				"to": 1066760
+			},
+			"text": " I didn't quite hear the between which market."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,760",
+				"to": "00:17:47,600"
+			},
+			"offsets": {
+				"from": 1066760,
+				"to": 1067600
+			},
+			"text": " - And."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,600",
+				"to": "00:17:51,040"
+			},
+			"offsets": {
+				"from": 1067600,
+				"to": 1071040
+			},
+			"text": " - There was a speaker from Berkeley the other day."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,040",
+				"to": "00:17:52,160"
+			},
+			"offsets": {
+				"from": 1071040,
+				"to": 1072160
+			},
+			"text": " - Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,160",
+				"to": "00:17:54,160"
+			},
+			"offsets": {
+				"from": 1072160,
+				"to": 1074160
+			},
+			"text": " - Who essentially had everyone sort of bid"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,160",
+				"to": "00:17:55,400"
+			},
+			"offsets": {
+				"from": 1074160,
+				"to": 1075400
+			},
+			"text": " and schedule stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,400",
+				"to": "00:18:00,040"
+			},
+			"offsets": {
+				"from": 1075400,
+				"to": 1080040
+			},
+			"text": " And I guess it sounds like it's sort of a real time auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,040",
+				"to": "00:18:01,280"
+			},
+			"offsets": {
+				"from": 1080040,
+				"to": 1081280
+			},
+			"text": " - So I think what you're asking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,280",
+				"to": "00:18:05,240"
+			},
+			"offsets": {
+				"from": 1081280,
+				"to": 1085240
+			},
+			"text": " are you asking between the future vision for a network like this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,240",
+				"to": "00:18:06,840"
+			},
+			"offsets": {
+				"from": 1085240,
+				"to": 1086840
+			},
+			"text": " and what we have currently?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,840",
+				"to": "00:18:10,520"
+			},
+			"offsets": {
+				"from": 1086840,
+				"to": 1090520
+			},
+			"text": " Is it just an optimization exercise where values coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,520",
+				"to": "00:18:13,080"
+			},
+			"offsets": {
+				"from": 1090520,
+				"to": 1093080
+			},
+			"text": " from efficiency savings because we have a little bit more"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,080",
+				"to": "00:18:14,880"
+			},
+			"offsets": {
+				"from": 1093080,
+				"to": 1094880
+			},
+			"text": " fluidity in the network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,880",
+				"to": "00:18:16,240"
+			},
+			"offsets": {
+				"from": 1094880,
+				"to": 1096240
+			},
+			"text": " Is that what I'm saying?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,240",
+				"to": "00:18:20,760"
+			},
+			"offsets": {
+				"from": 1096240,
+				"to": 1100760
+			},
+			"text": " - No, but I take back my question, I guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,760",
+				"to": "00:18:22,080"
+			},
+			"offsets": {
+				"from": 1100760,
+				"to": 1102080
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,080",
+				"to": "00:18:22,920"
+			},
+			"offsets": {
+				"from": 1102080,
+				"to": 1102920
+			},
+			"text": " - Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,920",
+				"to": "00:18:24,240"
+			},
+			"offsets": {
+				"from": 1102920,
+				"to": 1104240
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,240",
+				"to": "00:18:25,400"
+			},
+			"offsets": {
+				"from": 1104240,
+				"to": 1105400
+			},
+			"text": " Anyone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,400",
+				"to": "00:18:26,800"
+			},
+			"offsets": {
+				"from": 1105400,
+				"to": 1106800
+			},
+			"text": " - Hey."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,800",
+				"to": "00:18:27,640"
+			},
+			"offsets": {
+				"from": 1106800,
+				"to": 1107640
+			},
+			"text": " Here."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,640",
+				"to": "00:18:29,080"
+			},
+			"offsets": {
+				"from": 1107640,
+				"to": 1109080
+			},
+			"text": " - Well, thank you for the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,080",
+				"to": "00:18:30,600"
+			},
+			"offsets": {
+				"from": 1109080,
+				"to": 1110600
+			},
+			"text": " I had a quick question about distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,600",
+				"to": "00:18:32,840"
+			},
+			"offsets": {
+				"from": 1110600,
+				"to": 1112840
+			},
+			"text": " because you talk about production and also storing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,840",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1112840,
+				"to": 1114000
+			},
+			"text": " at the local nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:34,840"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1114840
+			},
+			"text": " - Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,840",
+				"to": "00:18:36,200"
+			},
+			"offsets": {
+				"from": 1114840,
+				"to": 1116200
+			},
+			"text": " - But isn't there an issue of a distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,200",
+				"to": "00:18:39,560"
+			},
+			"offsets": {
+				"from": 1116200,
+				"to": 1119560
+			},
+			"text": " still being somewhat centralized and also in waterfall pattern"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,560",
+				"to": "00:18:43,480"
+			},
+			"offsets": {
+				"from": 1119560,
+				"to": 1123480
+			},
+			"text": " which would prevent peer to peer or sell energy"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,480",
+				"to": "00:18:46,200"
+			},
+			"offsets": {
+				"from": 1123480,
+				"to": 1126200
+			},
+			"text": " to my neighbor kind of thing because there's no connection there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,200",
+				"to": "00:18:47,040"
+			},
+			"offsets": {
+				"from": 1126200,
+				"to": 1127040
+			},
+			"text": " - Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,040",
+				"to": "00:18:49,400"
+			},
+			"offsets": {
+				"from": 1127040,
+				"to": 1129400
+			},
+			"text": " Right now the distribution grid is definitely centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,400",
+				"to": "00:18:51,200"
+			},
+			"offsets": {
+				"from": 1129400,
+				"to": 1131200
+			},
+			"text": " and the idea is to work with them"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,200",
+				"to": "00:18:53,800"
+			},
+			"offsets": {
+				"from": 1131200,
+				"to": 1133800
+			},
+			"text": " and bring more and more distribution grid owners"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,800",
+				"to": "00:18:54,760"
+			},
+			"offsets": {
+				"from": 1133800,
+				"to": 1134760
+			},
+			"text": " onto this network."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,760",
+				"to": "00:18:56,960"
+			},
+			"offsets": {
+				"from": 1134760,
+				"to": 1136960
+			},
+			"text": " And then eventually we'll be able to decentralize"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,960",
+				"to": "00:18:58,200"
+			},
+			"offsets": {
+				"from": 1136960,
+				"to": 1138200
+			},
+			"text": " the ownership of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,200",
+				"to": "00:18:59,360"
+			},
+			"offsets": {
+				"from": 1138200,
+				"to": 1139360
+			},
+			"text": " Of course, that's what we all want."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,360",
+				"to": "00:19:01,800"
+			},
+			"offsets": {
+				"from": 1139360,
+				"to": 1141800
+			},
+			"text": " We want a completely decentralized system."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,800",
+				"to": "00:19:04,480"
+			},
+			"offsets": {
+				"from": 1141800,
+				"to": 1144480
+			},
+			"text": " But enabling the current incumbents in the market"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,480",
+				"to": "00:19:06,160"
+			},
+			"offsets": {
+				"from": 1144480,
+				"to": 1146160
+			},
+			"text": " to start acting with these technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,160",
+				"to": "00:19:08,520"
+			},
+			"offsets": {
+				"from": 1146160,
+				"to": 1148520
+			},
+			"text": " and profiting more from these is the first step"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,520",
+				"to": "00:19:11,040"
+			},
+			"offsets": {
+				"from": 1148520,
+				"to": 1151040
+			},
+			"text": " to getting them on board to a really, truly decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,040",
+				"to": "00:19:12,120"
+			},
+			"offsets": {
+				"from": 1151040,
+				"to": 1152120
+			},
+			"text": " system."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,120",
+				"to": "00:19:15,280"
+			},
+			"offsets": {
+				"from": 1152120,
+				"to": 1155280
+			},
+			"text": " So yeah, you're completely right that it is still centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,280",
+				"to": "00:19:18,240"
+			},
+			"offsets": {
+				"from": 1155280,
+				"to": 1158240
+			},
+			"text": " in that there's generally one monopoly in the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,240",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1158240,
+				"to": 1161000
+			},
+			"text": " like most of California or a state like Colorado"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:26,160"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1166160
+			},
+			"text": " where one company often owns the entire distribution grid."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,160",
+				"to": "00:19:28,440"
+			},
+			"offsets": {
+				"from": 1166160,
+				"to": 1168440
+			},
+			"text": " So yeah, we hope that'll change over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,440",
+				"to": "00:19:29,280"
+			},
+			"offsets": {
+				"from": 1168440,
+				"to": 1169280
+			},
+			"text": " - Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,280",
+				"to": "00:19:30,920"
+			},
+			"offsets": {
+				"from": 1169280,
+				"to": 1170920
+			},
+			"text": " Even there are physical limitation by the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,920",
+				"to": "00:19:35,920"
+			},
+			"offsets": {
+				"from": 1170920,
+				"to": 1175920
+			},
+			"text": " that you can't actually even send energy from your home"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,920",
+				"to": "00:19:37,720"
+			},
+			"offsets": {
+				"from": 1175920,
+				"to": 1177720
+			},
+			"text": " because there's no."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,720",
+				"to": "00:19:38,560"
+			},
+			"offsets": {
+				"from": 1177720,
+				"to": 1178560
+			},
+			"text": " - So it depends."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,560",
+				"to": "00:19:40,680"
+			},
+			"offsets": {
+				"from": 1178560,
+				"to": 1180680
+			},
+			"text": " I think we're saying is so there's,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,680",
+				"to": "00:19:43,160"
+			},
+			"offsets": {
+				"from": 1180680,
+				"to": 1183160
+			},
+			"text": " we've got deregulated markets and regulated markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,160",
+				"to": "00:19:47,040"
+			},
+			"offsets": {
+				"from": 1183160,
+				"to": 1187040
+			},
+			"text": " which will allow generators access on or off the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,040",
+				"to": "00:19:49,480"
+			},
+			"offsets": {
+				"from": 1187040,
+				"to": 1189480
+			},
+			"text": " And that is split into, you've obviously got the generator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,480",
+				"to": "00:19:51,160"
+			},
+			"offsets": {
+				"from": 1189480,
+				"to": 1191160
+			},
+			"text": " you've got the transmitter, which is your DNR,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,160",
+				"to": "00:19:52,840"
+			},
+			"offsets": {
+				"from": 1191160,
+				"to": 1192840
+			},
+			"text": " or your local operator, which is your power lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,840",
+				"to": "00:19:55,080"
+			},
+			"offsets": {
+				"from": 1192840,
+				"to": 1195080
+			},
+			"text": " You've then got the utility on the M which you'll retail side"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,080",
+				"to": "00:19:55,920"
+			},
+			"offsets": {
+				"from": 1195080,
+				"to": 1195920
+			},
+			"text": " of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,920",
+				"to": "00:19:59,160"
+			},
+			"offsets": {
+				"from": 1195920,
+				"to": 1199160
+			},
+			"text": " Now what you're saying is that bit in the middle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,160",
+				"to": "00:20:02,760"
+			},
+			"offsets": {
+				"from": 1199160,
+				"to": 1202760
+			},
+			"text": " which is generally controlled and non-deregulated markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,760",
+				"to": "00:20:05,400"
+			},
+			"offsets": {
+				"from": 1202760,
+				"to": 1205400
+			},
+			"text": " and in regulated markets, the likes of Colorado,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,400",
+				"to": "00:20:09,360"
+			},
+			"offsets": {
+				"from": 1205400,
+				"to": 1209360
+			},
+			"text": " that is something that if you want to supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,360",
+				"to": "00:20:11,120"
+			},
+			"offsets": {
+				"from": 1209360,
+				"to": 1211120
+			},
+			"text": " directly to their user, you can't."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,120",
+				"to": "00:20:13,320"
+			},
+			"offsets": {
+				"from": 1211120,
+				"to": 1213320
+			},
+			"text": " If you want to supply directly to the energy provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,320",
+				"to": "00:20:16,080"
+			},
+			"offsets": {
+				"from": 1213320,
+				"to": 1216080
+			},
+			"text": " and they will pay you a pretty poor rate for that energy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,080",
+				"to": "00:20:18,080"
+			},
+			"offsets": {
+				"from": 1216080,
+				"to": 1218080
+			},
+			"text": " then you can also do that and it's then bundled up"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,080",
+				"to": "00:20:19,320"
+			},
+			"offsets": {
+				"from": 1218080,
+				"to": 1219320
+			},
+			"text": " in their package."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,320",
+				"to": "00:20:20,720"
+			},
+			"offsets": {
+				"from": 1219320,
+				"to": 1220720
+			},
+			"text": " What I think this is gonna do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,720",
+				"to": "00:20:23,360"
+			},
+			"offsets": {
+				"from": 1220720,
+				"to": 1223360
+			},
+			"text": " it's gonna increase competition in markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,360",
+				"to": "00:20:26,400"
+			},
+			"offsets": {
+				"from": 1223360,
+				"to": 1226400
+			},
+			"text": " where there is already deregulation like Europe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,400",
+				"to": "00:20:29,800"
+			},
+			"offsets": {
+				"from": 1226400,
+				"to": 1229800
+			},
+			"text": " like the UK, like these particular states in California."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,800",
+				"to": "00:20:32,840"
+			},
+			"offsets": {
+				"from": 1229800,
+				"to": 1232840
+			},
+			"text": " And what it needs to be, it needs to be a community effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,840",
+				"to": "00:20:37,240"
+			},
+			"offsets": {
+				"from": 1232840,
+				"to": 1237240
+			},
+			"text": " to influence and lobby as well through relationships"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,240",
+				"to": "00:20:39,200"
+			},
+			"offsets": {
+				"from": 1237240,
+				"to": 1239200
+			},
+			"text": " like Energy Webber doing, like bringing together"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,200",
+				"to": "00:20:41,920"
+			},
+			"offsets": {
+				"from": 1239200,
+				"to": 1241920
+			},
+			"text": " a consortium to all view this through the lens of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,920",
+				"to": "00:20:44,640"
+			},
+			"offsets": {
+				"from": 1241920,
+				"to": 1244640
+			},
+			"text": " this is the future, these companies all want smart grids,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,640",
+				"to": "00:20:47,680"
+			},
+			"offsets": {
+				"from": 1244640,
+				"to": 1247680
+			},
+			"text": " they're struggling to understand how to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,680",
+				"to": "00:20:51,240"
+			},
+			"offsets": {
+				"from": 1247680,
+				"to": 1251240
+			},
+			"text": " And if you can place their weaknesses with giving them"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,240",
+				"to": "00:20:53,800"
+			},
+			"offsets": {
+				"from": 1251240,
+				"to": 1253800
+			},
+			"text": " sort of power in areas where they currently don't have it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,800",
+				"to": "00:20:55,160"
+			},
+			"offsets": {
+				"from": 1253800,
+				"to": 1255160
+			},
+			"text": " where they have these deficiencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,160",
+				"to": "00:20:57,280"
+			},
+			"offsets": {
+				"from": 1255160,
+				"to": 1257280
+			},
+			"text": " where they need to top it up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,280",
+				"to": "00:20:59,800"
+			},
+			"offsets": {
+				"from": 1257280,
+				"to": 1259800
+			},
+			"text": " it's all about working together and understanding"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,800",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1259800,
+				"to": 1263000
+			},
+			"text": " where to start and like then where to influence to move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,000",
+				"to": "00:21:07,080"
+			},
+			"offsets": {
+				"from": 1263000,
+				"to": 1267080
+			},
+			"text": " But I think there'll be more power at least from this"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,080",
+				"to": "00:21:10,240"
+			},
+			"offsets": {
+				"from": 1267080,
+				"to": 1270240
+			},
+			"text": " in the hands of the operators that are building infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,240",
+				"to": "00:21:13,480"
+			},
+			"offsets": {
+				"from": 1270240,
+				"to": 1273480
+			},
+			"text": " like independently than what their current is."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,480",
+				"to": "00:21:14,320"
+			},
+			"offsets": {
+				"from": 1273480,
+				"to": 1274320
+			},
+			"text": " - Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,320",
+				"to": "00:21:20,800"
+			},
+			"offsets": {
+				"from": 1274320,
+				"to": 1280800
+			},
+			"text": " - I just had a quick question about the proof of authority chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,800",
+				"to": "00:21:22,360"
+			},
+			"offsets": {
+				"from": 1280800,
+				"to": 1282360
+			},
+			"text": " - Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,360",
+				"to": "00:21:25,800"
+			},
+			"offsets": {
+				"from": 1282360,
+				"to": 1285800
+			},
+			"text": " How are like users expected to pay gas costs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,800",
+				"to": "00:21:29,240"
+			},
+			"offsets": {
+				"from": 1285800,
+				"to": 1289240
+			},
+			"text": " Where would they get Ether to pay for the gas costs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,240",
+				"to": "00:21:31,640"
+			},
+			"offsets": {
+				"from": 1289240,
+				"to": 1291640
+			},
+			"text": " - Right now users, in the test network"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,640",
+				"to": "00:21:33,280"
+			},
+			"offsets": {
+				"from": 1291640,
+				"to": 1293280
+			},
+			"text": " it's handed out for free of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,280",
+				"to": "00:21:34,640"
+			},
+			"offsets": {
+				"from": 1293280,
+				"to": 1294640
+			},
+			"text": " In the full network we're still figuring out"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,640",
+				"to": "00:21:35,880"
+			},
+			"offsets": {
+				"from": 1294640,
+				"to": 1295880
+			},
+			"text": " the governance principles and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,880",
+				"to": "00:21:37,800"
+			},
+			"offsets": {
+				"from": 1295880,
+				"to": 1297800
+			},
+			"text": " We're not launching the main network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,800",
+				"to": "00:21:40,680"
+			},
+			"offsets": {
+				"from": 1297800,
+				"to": 1300680
+			},
+			"text": " the Genesis Flock will be in the beginning of 2019."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,680",
+				"to": "00:21:42,160"
+			},
+			"offsets": {
+				"from": 1300680,
+				"to": 1302160
+			},
+			"text": " We're still in an exploratory phase"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,160",
+				"to": "00:21:45,280"
+			},
+			"offsets": {
+				"from": 1302160,
+				"to": 1305280
+			},
+			"text": " figuring out exactly the best mechanisms for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,280",
+				"to": "00:21:47,640"
+			},
+			"offsets": {
+				"from": 1305280,
+				"to": 1307640
+			},
+			"text": " But right now the idea is you purchase it"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,640",
+				"to": "00:21:49,240"
+			},
+			"offsets": {
+				"from": 1307640,
+				"to": 1309240
+			},
+			"text": " like you'd purchase Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,240",
+				"to": "00:21:51,320"
+			},
+			"offsets": {
+				"from": 1309240,
+				"to": 1311320
+			},
+			"text": " - Okay, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,320",
+				"to": "00:21:54,160"
+			},
+			"offsets": {
+				"from": 1312320,
+				"to": 1314160
+			},
+			"text": " - Okay, gotcha."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,160",
+				"to": "00:21:55,600"
+			},
+			"offsets": {
+				"from": 1314160,
+				"to": 1315600
+			},
+			"text": " Great, well thanks everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,600",
+				"to": "00:21:56,440"
+			},
+			"offsets": {
+				"from": 1315600,
+				"to": 1316440
+			},
+			"text": " - Thanks guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,440",
+				"to": "00:21:59,440"
+			},
+			"offsets": {
+				"from": 1316440,
+				"to": 1319440
+			},
+			"text": " (audience applauds)"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,440",
+				"to": "00:22:03,220"
+			},
+			"offsets": {
+				"from": 1319440,
+				"to": 1323220
+			},
+			"text": " (gentle music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,220",
+				"to": "00:22:05,800"
+			},
+			"offsets": {
+				"from": 1323220,
+				"to": 1325800
+			},
+			"text": " (gentle music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,800",
+				"to": "00:22:08,540"
+			},
+			"offsets": {
+				"from": 1325800,
+				"to": 1328540
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,540",
+				"to": "00:22:11,120"
+			},
+			"offsets": {
+				"from": 1328540,
+				"to": 1331120
+			},
+			"text": " (gentle music)"
+		}
+	]
+}

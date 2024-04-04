@@ -1,0 +1,3827 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:08,520"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 8520
+			},
+			"text": " So, like we said, we're going to talk about why all your smart contracts are vulnerable"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,520",
+				"to": "00:00:10,800"
+			},
+			"offsets": {
+				"from": 8520,
+				"to": 10800
+			},
+			"text": " to bribery and what to do about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,800",
+				"to": "00:00:14,880"
+			},
+			"offsets": {
+				"from": 10800,
+				"to": 14880
+			},
+			"text": " And this is joint work with a number of excellent co-authors like All Good Research, remember"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,880",
+				"to": "00:00:17,280"
+			},
+			"offsets": {
+				"from": 14880,
+				"to": 17280
+			},
+			"text": " no research is ever in Ireland."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,280",
+				"to": "00:00:19,760"
+			},
+			"offsets": {
+				"from": 17280,
+				"to": 19760
+			},
+			"text": " So let's start by talking about why we're all here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,760",
+				"to": "00:00:23,880"
+			},
+			"offsets": {
+				"from": 19760,
+				"to": 23880
+			},
+			"text": " And actually, one of the interesting reasons we're all here is because of a Polish economist"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,880",
+				"to": "00:00:29,720"
+			},
+			"offsets": {
+				"from": 23880,
+				"to": 29720
+			},
+			"text": " from the 1970s named John Harsiani, who laid the groundwork for this field of study we"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,720",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 29720,
+				"to": 32000
+			},
+			"text": " call Mechanism Design."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:33,320"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 33320
+			},
+			"text": " What is Mechanism Design?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,320",
+				"to": "00:00:37,560"
+			},
+			"offsets": {
+				"from": 33320,
+				"to": 37560
+			},
+			"text": " It's a field of economics and game theory that takes an engineering-based approach to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,560",
+				"to": "00:00:42,800"
+			},
+			"offsets": {
+				"from": 37560,
+				"to": 42800
+			},
+			"text": " trying to get users to behave a certain way using economic incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,800",
+				"to": "00:00:47,600"
+			},
+			"offsets": {
+				"from": 42800,
+				"to": 47600
+			},
+			"text": " Assuming the players in this game will act rationally and in their own self-interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,600",
+				"to": "00:00:52,960"
+			},
+			"offsets": {
+				"from": 47600,
+				"to": 52960
+			},
+			"text": " So the field started in the '60s and '70s and consists of several basic components."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,960",
+				"to": "00:00:57,120"
+			},
+			"offsets": {
+				"from": 52960,
+				"to": 57120
+			},
+			"text": " One of them is a mechanism, which is a game that has rules, a game environment, and that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,120",
+				"to": "00:00:59,240"
+			},
+			"offsets": {
+				"from": 57120,
+				"to": 59240
+			},
+			"text": " players send messages to."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,240",
+				"to": "00:01:03,360"
+			},
+			"offsets": {
+				"from": 59240,
+				"to": 63360
+			},
+			"text": " That game has an outcome, and that outcome has what's called a social choice function"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,360",
+				"to": "00:01:07,640"
+			},
+			"offsets": {
+				"from": 63360,
+				"to": 67640
+			},
+			"text": " or social utility function that says how good that outcome is for all the players in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,640",
+				"to": "00:01:10,280"
+			},
+			"offsets": {
+				"from": 67640,
+				"to": 70280
+			},
+			"text": " game and therefore for society at large."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,280",
+				"to": "00:01:13,840"
+			},
+			"offsets": {
+				"from": 70280,
+				"to": 73840
+			},
+			"text": " So what you want to do is implement some mechanism that implements some social choice"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,840",
+				"to": "00:01:18,120"
+			},
+			"offsets": {
+				"from": 73840,
+				"to": 78120
+			},
+			"text": " function you find desirable, and the hope is that because people act rationally, they'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,120",
+				"to": "00:01:21,360"
+			},
+			"offsets": {
+				"from": 78120,
+				"to": 81360
+			},
+			"text": " sort of converge on the social choice function you've chosen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,360",
+				"to": "00:01:22,520"
+			},
+			"offsets": {
+				"from": 81360,
+				"to": 82520
+			},
+			"text": " So what's an example of this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,520",
+				"to": "00:01:28,040"
+			},
+			"offsets": {
+				"from": 82520,
+				"to": 88040
+			},
+			"text": " Well, before DevCon, I actually found myself pretty hungry, and I wanted some toast, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,040",
+				"to": "00:01:32,800"
+			},
+			"offsets": {
+				"from": 88040,
+				"to": 92800
+			},
+			"text": " I actually couldn't decide whether I wanted regular toast or toast with an image of Jesus"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,800",
+				"to": "00:01:36,920"
+			},
+			"offsets": {
+				"from": 92800,
+				"to": 96920
+			},
+			"text": " on it, like you may have seen being popular on various auction sites."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,920",
+				"to": "00:01:40,360"
+			},
+			"offsets": {
+				"from": 96920,
+				"to": 100360
+			},
+			"text": " Obviously, I went with the Jesus toast because who wouldn't?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,360",
+				"to": "00:01:44,440"
+			},
+			"offsets": {
+				"from": 100360,
+				"to": 104440
+			},
+			"text": " And so I headed over to eBay and found some auctions on this sort of toast."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,440",
+				"to": "00:01:47,360"
+			},
+			"offsets": {
+				"from": 104440,
+				"to": 107360
+			},
+			"text": " And you can see here this one has a few days left in the auction, and it's currently bidding"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,360",
+				"to": "00:01:48,680"
+			},
+			"offsets": {
+				"from": 107360,
+				"to": 108680
+			},
+			"text": " at one cent."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,680",
+				"to": "00:01:49,680"
+			},
+			"offsets": {
+				"from": 108680,
+				"to": 109680
+			},
+			"text": " So I was like, this is great."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,680",
+				"to": "00:01:52,840"
+			},
+			"offsets": {
+				"from": 109680,
+				"to": 112840
+			},
+			"text": " I put in my bid for two cents, and I'm going to win this Jesus toast and sort of fill my"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,840",
+				"to": "00:01:54,480"
+			},
+			"offsets": {
+				"from": 112840,
+				"to": 114480
+			},
+			"text": " hunger."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,480",
+				"to": "00:01:58,880"
+			},
+			"offsets": {
+				"from": 114480,
+				"to": 118880
+			},
+			"text": " But then sort of at the last second, someone comes in and puts a bid for over $9,000 because"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,880",
+				"to": "00:02:02,760"
+			},
+			"offsets": {
+				"from": 118880,
+				"to": 122760
+			},
+			"text": " they really wanted that piece of toast, and I'm sort of left hungry and not knowing what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,760",
+				"to": "00:02:04,120"
+			},
+			"offsets": {
+				"from": 122760,
+				"to": 124120
+			},
+			"text": " going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,120",
+				"to": "00:02:07,320"
+			},
+			"offsets": {
+				"from": 124120,
+				"to": 127320
+			},
+			"text": " So this sort of highlights a general problem with auctions, which is that in auctions you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,320",
+				"to": "00:02:08,360"
+			},
+			"offsets": {
+				"from": 127320,
+				"to": 128360
+			},
+			"text": " need to play strategically."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,360",
+				"to": "00:02:12,400"
+			},
+			"offsets": {
+				"from": 128360,
+				"to": 132400
+			},
+			"text": " You need to consider how other people are going to act when you choose how you're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,400",
+				"to": "00:02:14,280"
+			},
+			"offsets": {
+				"from": 132400,
+				"to": 134280
+			},
+			"text": " act yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,280",
+				"to": "00:02:18,840"
+			},
+			"offsets": {
+				"from": 134280,
+				"to": 138840
+			},
+			"text": " And the games you sort of play with them, like people play on eBay, become very complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,840",
+				"to": "00:02:23,320"
+			},
+			"offsets": {
+				"from": 138840,
+				"to": 143320
+			},
+			"text": " So one of the early things the field of mechanism design has looked at traditionally is can"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,320",
+				"to": "00:02:26,440"
+			},
+			"offsets": {
+				"from": 143320,
+				"to": 146440
+			},
+			"text": " we improve things like auctions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,440",
+				"to": "00:02:30,520"
+			},
+			"offsets": {
+				"from": 146440,
+				"to": 150520
+			},
+			"text": " And in terms of the social choice function, what our high level goals are for that function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,520",
+				"to": "00:02:34,520"
+			},
+			"offsets": {
+				"from": 150520,
+				"to": 154520
+			},
+			"text": " for the seller, their goal is to maximize their profit from selling the item, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,520",
+				"to": "00:02:38,440"
+			},
+			"offsets": {
+				"from": 154520,
+				"to": 158440
+			},
+			"text": " And for the buyers, they don't want to overpay over what they think the item is worth or"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,440",
+				"to": "00:02:40,400"
+			},
+			"offsets": {
+				"from": 158440,
+				"to": 160400
+			},
+			"text": " the minimum they could be paying."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,400",
+				"to": "00:02:44,200"
+			},
+			"offsets": {
+				"from": 160400,
+				"to": 164200
+			},
+			"text": " They don't want to have to think about complex strategies like, when should I place my bid?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,200",
+				"to": "00:02:45,680"
+			},
+			"offsets": {
+				"from": 164200,
+				"to": 165680
+			},
+			"text": " Do I have to wait until the last second?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,680",
+				"to": "00:02:47,600"
+			},
+			"offsets": {
+				"from": 165680,
+				"to": 167600
+			},
+			"text": " What are other people going to do in this auction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,600",
+				"to": "00:02:50,040"
+			},
+			"offsets": {
+				"from": 167600,
+				"to": 170040
+			},
+			"text": " And how can I get this item more cheaply?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,040",
+				"to": "00:02:53,680"
+			},
+			"offsets": {
+				"from": 170040,
+				"to": 173680
+			},
+			"text": " And the buyers also want to win the item if they value it more than any other buyer in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,680",
+				"to": "00:02:56,360"
+			},
+			"offsets": {
+				"from": 173680,
+				"to": 176360
+			},
+			"text": " the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,360",
+				"to": "00:03:00,320"
+			},
+			"offsets": {
+				"from": 176360,
+				"to": 180320
+			},
+			"text": " We also assume the existence of some auctioneer who's this sort of trustworthy third party"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,320",
+				"to": "00:03:04,560"
+			},
+			"offsets": {
+				"from": 180320,
+				"to": 184560
+			},
+			"text": " that runs the mechanism, which is sort of a classic assumption in mechanism design that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,560",
+				"to": "00:03:09,040"
+			},
+			"offsets": {
+				"from": 184560,
+				"to": 189040
+			},
+			"text": " you have this third party that everyone who trusts that's actually running this game that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,040",
+				"to": "00:03:11,920"
+			},
+			"offsets": {
+				"from": 189040,
+				"to": 191920
+			},
+			"text": " we talked about."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,920",
+				"to": "00:03:14,400"
+			},
+			"offsets": {
+				"from": 191920,
+				"to": 194400
+			},
+			"text": " So can we improve the eBay auction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,400",
+				"to": "00:03:18,760"
+			},
+			"offsets": {
+				"from": 194400,
+				"to": 198760
+			},
+			"text": " One of the proposals from sort of mechanism designers classically was what's called a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,760",
+				"to": "00:03:22,720"
+			},
+			"offsets": {
+				"from": 198760,
+				"to": 202720
+			},
+			"text": " VCG auction or Vickery Clark's Groves auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,720",
+				"to": "00:03:28,160"
+			},
+			"offsets": {
+				"from": 202720,
+				"to": 208160
+			},
+			"text": " And the way this works is that all the buyers send a bid in a sealed envelope to the auctioneer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,160",
+				"to": "00:03:33,400"
+			},
+			"offsets": {
+				"from": 208160,
+				"to": 213400
+			},
+			"text": " And at the end of the auctioneer opens it and the winner of the item is the highest bidder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,400",
+				"to": "00:03:36,380"
+			},
+			"offsets": {
+				"from": 213400,
+				"to": 216380
+			},
+			"text": " but he pays the second highest price for the item."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,380",
+				"to": "00:03:40,840"
+			},
+			"offsets": {
+				"from": 216380,
+				"to": 220840
+			},
+			"text": " This model is used very commonly in things like ad sales."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,840",
+				"to": "00:03:45,040"
+			},
+			"offsets": {
+				"from": 220840,
+				"to": 225040
+			},
+			"text": " And you can actually mathematically prove that given a bunch of private valuations on"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,040",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 225040,
+				"to": 230000
+			},
+			"text": " the buyer, the best strategy for any buyer in this game is to bid what the item is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:51,240"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 231240
+			},
+			"text": " worth for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,240",
+				"to": "00:03:56,120"
+			},
+			"offsets": {
+				"from": 231240,
+				"to": 236120
+			},
+			"text": " If they overbid, in many cases they will lose money over bidding their real valuation, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,120",
+				"to": "00:03:58,600"
+			},
+			"offsets": {
+				"from": 236120,
+				"to": 238600
+			},
+			"text": " similarly if they underbid they'll lose money."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,600",
+				"to": "00:03:59,760"
+			},
+			"offsets": {
+				"from": 238600,
+				"to": 239760
+			},
+			"text": " So that's great, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,760",
+				"to": "00:04:03,120"
+			},
+			"offsets": {
+				"from": 239760,
+				"to": 243120
+			},
+			"text": " That's what's called a dominant strategy truthful mechanism in the classic field of mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,120",
+				"to": "00:04:08,960"
+			},
+			"offsets": {
+				"from": 243120,
+				"to": 248960
+			},
+			"text": " design, meaning that a buyer's dominance or best strategy is always to tell the truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,960",
+				"to": "00:04:13,680"
+			},
+			"offsets": {
+				"from": 248960,
+				"to": 253680
+			},
+			"text": " And traditionally we've wanted to build mechanisms that are DST because they minimize cognitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,680",
+				"to": "00:04:17,840"
+			},
+			"offsets": {
+				"from": 253680,
+				"to": 257840
+			},
+			"text": " load and overhead for sort of the players in your system and just make things simpler"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,840",
+				"to": "00:04:20,560"
+			},
+			"offsets": {
+				"from": 257840,
+				"to": 260560
+			},
+			"text": " to think about and reason about."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,560",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 260560,
+				"to": 265000
+			},
+			"text": " And cryptocurrency has sort of continued this broad tradition of mechanism design, again"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:28,840"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 268840
+			},
+			"text": " by some party or principle using incentives to drive outcomes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,840",
+				"to": "00:04:33,280"
+			},
+			"offsets": {
+				"from": 268840,
+				"to": 273280
+			},
+			"text": " So this is an example from the Bitcoin white paper, Satoshi Nakamoto, who talks about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,280",
+				"to": "00:04:38,920"
+			},
+			"offsets": {
+				"from": 273280,
+				"to": 278920
+			},
+			"text": " the incentives in Bitcoin may help nodes to behave honestly in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,920",
+				"to": "00:04:42,640"
+			},
+			"offsets": {
+				"from": 278920,
+				"to": 282640
+			},
+			"text": " And smart contracts have similar overlaps and continuations of this field of study that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,640",
+				"to": "00:04:44,960"
+			},
+			"offsets": {
+				"from": 282640,
+				"to": 284960
+			},
+			"text": " been going on since the 70s."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,960",
+				"to": "00:04:48,560"
+			},
+			"offsets": {
+				"from": 284960,
+				"to": 288560
+			},
+			"text": " For example, there's this idea that you can take any mechanism that we've been studying"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,560",
+				"to": "00:04:51,080"
+			},
+			"offsets": {
+				"from": 288560,
+				"to": 291080
+			},
+			"text": " for decades and just make it a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,080",
+				"to": "00:04:55,240"
+			},
+			"offsets": {
+				"from": 291080,
+				"to": 295240
+			},
+			"text": " Get rid of your trusted third party, get rid of your auctioneer, put it on chain, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,240",
+				"to": "00:04:57,960"
+			},
+			"offsets": {
+				"from": 295240,
+				"to": 297960
+			},
+			"text": " then we don't have to choose who to trust to play that role."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,960",
+				"to": "00:05:01,120"
+			},
+			"offsets": {
+				"from": 297960,
+				"to": 301120
+			},
+			"text": " We can just sort of converge on this code instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,120",
+				"to": "00:05:04,280"
+			},
+			"offsets": {
+				"from": 301120,
+				"to": 304280
+			},
+			"text": " Otherwise, if you want to build something that no one's ever built before, you can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,280",
+				"to": "00:05:07,880"
+			},
+			"offsets": {
+				"from": 304280,
+				"to": 307880
+			},
+			"text": " these same techniques that people have been using for decades to sort of analyze your"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,880",
+				"to": "00:05:11,600"
+			},
+			"offsets": {
+				"from": 307880,
+				"to": 311600
+			},
+			"text": " mechanism and give users the properties they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,600",
+				"to": "00:05:15,400"
+			},
+			"offsets": {
+				"from": 311600,
+				"to": 315400
+			},
+			"text": " Unfortunately, there's some challenges in doing this that make smart contracts very different"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,400",
+				"to": "00:05:17,120"
+			},
+			"offsets": {
+				"from": 315400,
+				"to": 317120
+			},
+			"text": " from traditional mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,120",
+				"to": "00:05:20,680"
+			},
+			"offsets": {
+				"from": 317120,
+				"to": 320680
+			},
+			"text": " So again, in traditional mechanisms you have this trusted third party, whereas in blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,680",
+				"to": "00:05:24,440"
+			},
+			"offsets": {
+				"from": 320680,
+				"to": 324440
+			},
+			"text": " you're replacing it with a blockchain which has its own sort of set of gotchas, including"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,440",
+				"to": "00:05:28,640"
+			},
+			"offsets": {
+				"from": 324440,
+				"to": 328640
+			},
+			"text": " things like how the peer-to-peer network works or how miners choose transactions or sensor"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,640",
+				"to": "00:05:30,840"
+			},
+			"offsets": {
+				"from": 328640,
+				"to": 330840
+			},
+			"text": " transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,840",
+				"to": "00:05:34,120"
+			},
+			"offsets": {
+				"from": 330840,
+				"to": 334120
+			},
+			"text": " Also in traditional mechanisms you often assume a permission set of players, a known"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,120",
+				"to": "00:05:36,880"
+			},
+			"offsets": {
+				"from": 334120,
+				"to": 336880
+			},
+			"text": " fixed set of players, when you analyze your games."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,880",
+				"to": "00:05:40,520"
+			},
+			"offsets": {
+				"from": 336880,
+				"to": 340520
+			},
+			"text": " For example, eBay knows all of the accounts that are eligible to participate in a given"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,520",
+				"to": "00:05:43,600"
+			},
+			"offsets": {
+				"from": 340520,
+				"to": 343600
+			},
+			"text": " auction and they have permission control over the set."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,600",
+				"to": "00:05:46,120"
+			},
+			"offsets": {
+				"from": 343600,
+				"to": 346120
+			},
+			"text": " So does Google when they're auctioning off ads."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,120",
+				"to": "00:05:49,880"
+			},
+			"offsets": {
+				"from": 346120,
+				"to": 349880
+			},
+			"text": " And because of that you can do things like leveraging identity and there is some trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,880",
+				"to": "00:05:51,040"
+			},
+			"offsets": {
+				"from": 349880,
+				"to": 351040
+			},
+			"text": " involved there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,040",
+				"to": "00:05:54,920"
+			},
+			"offsets": {
+				"from": 351040,
+				"to": 354920
+			},
+			"text": " Unlike in smart contracts and cryptographic systems, where all you might see is someone's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,920",
+				"to": "00:05:59,920"
+			},
+			"offsets": {
+				"from": 354920,
+				"to": 359920
+			},
+			"text": " private key and signatures and you might not be able to leverage this shared trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,920",
+				"to": "00:06:03,400"
+			},
+			"offsets": {
+				"from": 359920,
+				"to": 363400
+			},
+			"text": " So smart contract mechanism design poses new challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,400",
+				"to": "00:06:06,160"
+			},
+			"offsets": {
+				"from": 363400,
+				"to": 366160
+			},
+			"text": " And chief among these challenges and what we're going to talk about today is the ease"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,160",
+				"to": "00:06:08,080"
+			},
+			"offsets": {
+				"from": 366160,
+				"to": 368080
+			},
+			"text": " of coordinating bribery."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,080",
+				"to": "00:06:11,560"
+			},
+			"offsets": {
+				"from": 368080,
+				"to": 371560
+			},
+			"text": " So last year I wrote a blog post called the darked out, which if you haven't read I highly"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,560",
+				"to": "00:06:13,240"
+			},
+			"offsets": {
+				"from": 371560,
+				"to": 373240
+			},
+			"text": " encourage you to check out."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,240",
+				"to": "00:06:17,200"
+			},
+			"offsets": {
+				"from": 373240,
+				"to": 377200
+			},
+			"text": " And it described a sort of nightmare scenario where people can build bribery systems for"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,200",
+				"to": "00:06:20,640"
+			},
+			"offsets": {
+				"from": 377200,
+				"to": 380640
+			},
+			"text": " smart contracts that operate completely in the dark."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,640",
+				"to": "00:06:24,760"
+			},
+			"offsets": {
+				"from": 380640,
+				"to": 384760
+			},
+			"text": " So no one can tell exactly what players are being bribed to do, how many players are being"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,760",
+				"to": "00:06:29,760"
+			},
+			"offsets": {
+				"from": 384760,
+				"to": 389760
+			},
+			"text": " bribed, or if the attack is even succeeding at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,760",
+				"to": "00:06:32,920"
+			},
+			"offsets": {
+				"from": 389760,
+				"to": 392920
+			},
+			"text": " Not only that, but users are guaranteed that the person that's bribing them is not going"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,920",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 392920,
+				"to": 394000
+			},
+			"text": " to get control of their money."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:37,800"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 397800
+			},
+			"text": " So the entire thing is sort of a trustless bribing infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,800",
+				"to": "00:06:43,040"
+			},
+			"offsets": {
+				"from": 397800,
+				"to": 403040
+			},
+			"text": " And the darked out is actually a mechanism for bribing other mechanisms essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,040",
+				"to": "00:06:47,280"
+			},
+			"offsets": {
+				"from": 403040,
+				"to": 407280
+			},
+			"text": " And what I'm going to do today is introduce this new term for you guys that we call anti-mechanisms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,280",
+				"to": "00:06:51,640"
+			},
+			"offsets": {
+				"from": 407280,
+				"to": 411640
+			},
+			"text": " which are all mechanisms that are intended to disrupt other mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,640",
+				"to": "00:06:54,160"
+			},
+			"offsets": {
+				"from": 411640,
+				"to": 414160
+			},
+			"text": " So the darked out is a particular type of anti-mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,160",
+				"to": "00:06:56,960"
+			},
+			"offsets": {
+				"from": 414160,
+				"to": 416960
+			},
+			"text": " It's called the darked out because it's dark or invisible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,960",
+				"to": "00:06:59,280"
+			},
+			"offsets": {
+				"from": 416960,
+				"to": 419280
+			},
+			"text": " No one can tell exactly what's going on inside it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,280",
+				"to": "00:07:03,520"
+			},
+			"offsets": {
+				"from": 419280,
+				"to": 423520
+			},
+			"text": " But you could also have a public bribery contract or other form of anti-mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,520",
+				"to": "00:07:05,960"
+			},
+			"offsets": {
+				"from": 423520,
+				"to": 425960
+			},
+			"text": " And what anti-mechanisms look like is basically this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,960",
+				"to": "00:07:10,120"
+			},
+			"offsets": {
+				"from": 425960,
+				"to": 430120
+			},
+			"text": " So on the left, you have what it looks like when users are playing a regular mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,120",
+				"to": "00:07:13,560"
+			},
+			"offsets": {
+				"from": 430120,
+				"to": 433560
+			},
+			"text": " They're sending messages to this mechanism and the mechanism is coming up with some outputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,560",
+				"to": "00:07:14,720"
+			},
+			"offsets": {
+				"from": 433560,
+				"to": 434720
+			},
+			"text": " of the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,720",
+				"to": "00:07:17,480"
+			},
+			"offsets": {
+				"from": 434720,
+				"to": 437480
+			},
+			"text": " You can see this mechanism as a smart contract on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,480",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 437480,
+				"to": 442000
+			},
+			"text": " Private keys there on the left sending transactions to the mechanism and some outputs occurring"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:24,280"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 444280
+			},
+			"text": " in the state of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,280",
+				"to": "00:07:28,720"
+			},
+			"offsets": {
+				"from": 444280,
+				"to": 448720
+			},
+			"text": " An anti-mechanism happens when you have another mechanism that users can play through instead,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,720",
+				"to": "00:07:31,600"
+			},
+			"offsets": {
+				"from": 448720,
+				"to": 451600
+			},
+			"text": " potentially one that can interact with the original mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,600",
+				"to": "00:07:33,920"
+			},
+			"offsets": {
+				"from": 451600,
+				"to": 453920
+			},
+			"text": " So you can see that there shown on the right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,920",
+				"to": "00:07:35,960"
+			},
+			"offsets": {
+				"from": 453920,
+				"to": 455960
+			},
+			"text": " An prime here is an anti-mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,960",
+				"to": "00:07:41,040"
+			},
+			"offsets": {
+				"from": 455960,
+				"to": 461040
+			},
+			"text": " And two users in this case are playing M through M prime."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,040",
+				"to": "00:07:42,200"
+			},
+			"offsets": {
+				"from": 461040,
+				"to": 462200
+			},
+			"text": " So why does that matter?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,200",
+				"to": "00:07:47,080"
+			},
+			"offsets": {
+				"from": 462200,
+				"to": 467080
+			},
+			"text": " It matters because the existence of these anti-mechanisms erode a mechanism's ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,080",
+				"to": "00:07:49,840"
+			},
+			"offsets": {
+				"from": 467080,
+				"to": 469840
+			},
+			"text": " to faithfully implement its social choice function."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,840",
+				"to": "00:07:53,600"
+			},
+			"offsets": {
+				"from": 469840,
+				"to": 473600
+			},
+			"text": " So in terms of optimizing for those goals that we talked about earlier, that mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,600",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 473600,
+				"to": 478000
+			},
+			"text": " design loves to optimize for, those goals are highly harmed by the existence of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:00,200"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 480200
+			},
+			"text": " anti-mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,200",
+				"to": "00:08:03,800"
+			},
+			"offsets": {
+				"from": 480200,
+				"to": 483800
+			},
+			"text": " Not only that, but we can actually quantify the security of a given mechanism as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,800",
+				"to": "00:08:08,040"
+			},
+			"offsets": {
+				"from": 483800,
+				"to": 488040
+			},
+			"text": " smallest budget anti-mechanism that disrupts the properties we design the original mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,040",
+				"to": "00:08:09,840"
+			},
+			"offsets": {
+				"from": 488040,
+				"to": 489840
+			},
+			"text": " for."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,840",
+				"to": "00:08:14,120"
+			},
+			"offsets": {
+				"from": 489840,
+				"to": 494120
+			},
+			"text": " So I would encourage you guys to stop thinking about anti-mechanisms or sorry, stop thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,120",
+				"to": "00:08:18,240"
+			},
+			"offsets": {
+				"from": 494120,
+				"to": 498240
+			},
+			"text": " only about mechanisms when you design your smart contracts and your protocols and start"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,240",
+				"to": "00:08:22,440"
+			},
+			"offsets": {
+				"from": 498240,
+				"to": 502440
+			},
+			"text": " thinking about what anti-mechanisms could be possible in your system and what the sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,440",
+				"to": "00:08:25,400"
+			},
+			"offsets": {
+				"from": 502440,
+				"to": 505400
+			},
+			"text": " of lowest cost of disruption is as a result."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,400",
+				"to": "00:08:29,240"
+			},
+			"offsets": {
+				"from": 505400,
+				"to": 509240
+			},
+			"text": " So for the VCG auction, the second price auction we mentioned earlier, here's a very simple"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,240",
+				"to": "00:08:31,560"
+			},
+			"offsets": {
+				"from": 509240,
+				"to": 511560
+			},
+			"text": " anti-mechanism, M prime."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,560",
+				"to": "00:08:35,520"
+			},
+			"offsets": {
+				"from": 511560,
+				"to": 515520
+			},
+			"text": " All M prime does is it collects bids from its users and it forwards only the top bid to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,520",
+				"to": "00:08:37,960"
+			},
+			"offsets": {
+				"from": 515520,
+				"to": 517960
+			},
+			"text": " the original mechanism M."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,960",
+				"to": "00:08:41,640"
+			},
+			"offsets": {
+				"from": 517960,
+				"to": 521640
+			},
+			"text": " So why is playing through M prime always better than playing through M?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,640",
+				"to": "00:08:45,480"
+			},
+			"offsets": {
+				"from": 521640,
+				"to": 525480
+			},
+			"text": " Well, if the highest bidder plays through M, doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,480",
+				"to": "00:08:48,640"
+			},
+			"offsets": {
+				"from": 525480,
+				"to": 528640
+			},
+			"text": " The outcome is the exact same as before, so no one's worse off."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,640",
+				"to": "00:08:53,120"
+			},
+			"offsets": {
+				"from": 528640,
+				"to": 533120
+			},
+			"text": " On the other hand, if the highest bidder happens to play through M prime, then either the second"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,120",
+				"to": "00:08:56,920"
+			},
+			"offsets": {
+				"from": 533120,
+				"to": 536920
+			},
+			"text": " bidder plays through M prime, in which case their bid is never forwarded and the highest"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,920",
+				"to": "00:08:59,400"
+			},
+			"offsets": {
+				"from": 536920,
+				"to": 539400
+			},
+			"text": " bidder ends up paying less."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,400",
+				"to": "00:09:03,840"
+			},
+			"offsets": {
+				"from": 539400,
+				"to": 543840
+			},
+			"text": " Or the second bidder plays through M and you get sort of the same outcome again."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,840",
+				"to": "00:09:08,440"
+			},
+			"offsets": {
+				"from": 543840,
+				"to": 548440
+			},
+			"text": " So what we say is that M prime composed with M or playing M through M prime, in this case"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,440",
+				"to": "00:09:12,400"
+			},
+			"offsets": {
+				"from": 548440,
+				"to": 552400
+			},
+			"text": " dominates, in this case weekly dominates, playing M directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,400",
+				"to": "00:09:17,080"
+			},
+			"offsets": {
+				"from": 552400,
+				"to": 557080
+			},
+			"text": " It's always better for players to play through M prime and it disrupts what we talked about"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,080",
+				"to": "00:09:21,920"
+			},
+			"offsets": {
+				"from": 557080,
+				"to": 561920
+			},
+			"text": " earlier, which is the dominant strategy truthful nature of VCG auctions because the auction"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,920",
+				"to": "00:09:26,040"
+			},
+			"offsets": {
+				"from": 561920,
+				"to": 566040
+			},
+			"text": " is no longer receiving the true valuations from the buyers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,040",
+				"to": "00:09:31,200"
+			},
+			"offsets": {
+				"from": 566040,
+				"to": 571200
+			},
+			"text": " So in this case, VCG, in terms of a dominant strategy truthfulness, has zero security against"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,200",
+				"to": "00:09:33,600"
+			},
+			"offsets": {
+				"from": 571200,
+				"to": 573600
+			},
+			"text": " bribery."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,600",
+				"to": "00:09:38,240"
+			},
+			"offsets": {
+				"from": 573600,
+				"to": 578240
+			},
+			"text": " And bribery is a huge deal in all these systems we're building, a huge deal in smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,240",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 578240,
+				"to": 582000
+			},
+			"text": " So if you're building an oracle, you can bribe people to provide certain responses."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:43,880"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 583880
+			},
+			"text": " You can bribe them to go offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,880",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 583880,
+				"to": 588000
+			},
+			"text": " You can bribe them to choose which point in a continuous time series of data they sample"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:50,040"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 590040
+			},
+			"text": " and send into the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,040",
+				"to": "00:09:53,720"
+			},
+			"offsets": {
+				"from": 590040,
+				"to": 593720
+			},
+			"text": " If you're running a voter, a governance system, you can buy people's votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,720",
+				"to": "00:09:55,360"
+			},
+			"offsets": {
+				"from": 593720,
+				"to": 595360
+			},
+			"text": " You can pay them to not vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,360",
+				"to": "00:09:57,520"
+			},
+			"offsets": {
+				"from": 595360,
+				"to": 597520
+			},
+			"text": " You can otherwise influence governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,520",
+				"to": "00:10:01,880"
+			},
+			"offsets": {
+				"from": 597520,
+				"to": 601880
+			},
+			"text": " If you're building an identity system, you can build anti-mechanisms that lease people's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,880",
+				"to": "00:10:07,960"
+			},
+			"offsets": {
+				"from": 601880,
+				"to": 607960
+			},
+			"text": " identities or partition out certain capabilities of the identities as separate from others."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,960",
+				"to": "00:10:11,680"
+			},
+			"offsets": {
+				"from": 607960,
+				"to": 611680
+			},
+			"text": " And for all mechanisms, you can bribe players to take certain strategies and even to collude"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,680",
+				"to": "00:10:14,760"
+			},
+			"offsets": {
+				"from": 611680,
+				"to": 614760
+			},
+			"text": " with each other or not participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,760",
+				"to": "00:10:20,080"
+			},
+			"offsets": {
+				"from": 614760,
+				"to": 620080
+			},
+			"text": " So the conclusion is basically this, at least for now."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,080",
+				"to": "00:10:21,600"
+			},
+			"offsets": {
+				"from": 620080,
+				"to": 621600
+			},
+			"text": " So what are we going to do about it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,600",
+				"to": "00:10:25,360"
+			},
+			"offsets": {
+				"from": 621600,
+				"to": 625360
+			},
+			"text": " Well, first let's talk about the core problem here, which is that this dark tower, these"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,360",
+				"to": "00:10:30,320"
+			},
+			"offsets": {
+				"from": 625360,
+				"to": 630320
+			},
+			"text": " private smart contracts that we're talking about, remove a user's free will in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,320",
+				"to": "00:10:34,240"
+			},
+			"offsets": {
+				"from": 630320,
+				"to": 634240
+			},
+			"text": " They do that by restraining the actions a user can take in this cryptographic system"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,240",
+				"to": "00:10:38,480"
+			},
+			"offsets": {
+				"from": 634240,
+				"to": 638480
+			},
+			"text": " and basically shackling them to a certain set of strategies or shackling them to a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,480",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 638480,
+				"to": 641000
+			},
+			"text": " collusive set."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:44,120"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 644120
+			},
+			"text": " And we want to get back to sort of a state where users have free will, where we know that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,120",
+				"to": "00:10:47,920"
+			},
+			"offsets": {
+				"from": 644120,
+				"to": 647920
+			},
+			"text": " if they're signing a message, they could have signed any other message in the system as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,920",
+				"to": "00:10:53,600"
+			},
+			"offsets": {
+				"from": 647920,
+				"to": 653600
+			},
+			"text": " and they're not artificially shackled by some other piece of technology or some anti-mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,600",
+				"to": "00:10:57,400"
+			},
+			"offsets": {
+				"from": 653600,
+				"to": 657400
+			},
+			"text": " So here we define free will as the ability for a user to use their information, in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,400",
+				"to": "00:11:01,680"
+			},
+			"offsets": {
+				"from": 657400,
+				"to": 661680
+			},
+			"text": " case their keys in Ethereum, without any external restrictions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,680",
+				"to": "00:11:05,520"
+			},
+			"offsets": {
+				"from": 661680,
+				"to": 665520
+			},
+			"text": " And in this case we're specifically talking about remote parties, people who are trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,520",
+				"to": "00:11:09,920"
+			},
+			"offsets": {
+				"from": 665520,
+				"to": 669920
+			},
+			"text": " to bribe or otherwise influence users over a network, because that's most of what we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,920",
+				"to": "00:11:12,480"
+			},
+			"offsets": {
+				"from": 669920,
+				"to": 672480
+			},
+			"text": " trying to secure against."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,480",
+				"to": "00:11:14,960"
+			},
+			"offsets": {
+				"from": 672480,
+				"to": 674960
+			},
+			"text": " So this problem actually goes beyond cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,960",
+				"to": "00:11:19,640"
+			},
+			"offsets": {
+				"from": 674960,
+				"to": 679640
+			},
+			"text": " This is not only a cryptocurrency problem, these two papers have pointed out similar problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,640",
+				"to": "00:11:22,720"
+			},
+			"offsets": {
+				"from": 679640,
+				"to": 682720
+			},
+			"text": " in traditional cryptographic systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,720",
+				"to": "00:11:27,720"
+			},
+			"offsets": {
+				"from": 682720,
+				"to": 687720
+			},
+			"text": " So one thing you can do is you can use SGX or MPC to take a deniable communication protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,720",
+				"to": "00:11:32,720"
+			},
+			"offsets": {
+				"from": 687720,
+				"to": 692720
+			},
+			"text": " where the property is that I can't generate a transcript of the protocol, and you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,720",
+				"to": "00:11:35,640"
+			},
+			"offsets": {
+				"from": 692720,
+				"to": 695640
+			},
+			"text": " actually generate a transcript that's provable, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,640",
+				"to": "00:11:36,960"
+			},
+			"offsets": {
+				"from": 695640,
+				"to": 696960
+			},
+			"text": " So I lose all my deniability."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,960",
+				"to": "00:11:42,280"
+			},
+			"offsets": {
+				"from": 696960,
+				"to": 702280
+			},
+			"text": " I can't tell you that no I didn't say this, because now the MPC or SGX process is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,280",
+				"to": "00:11:45,440"
+			},
+			"offsets": {
+				"from": 702280,
+				"to": 705440
+			},
+			"text": " to stamp for me that yes, I actually did say this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,440",
+				"to": "00:11:48,600"
+			},
+			"offsets": {
+				"from": 705440,
+				"to": 708600
+			},
+			"text": " Or you can use it to do things like bribe people to act a certain way on Facebook or"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,600",
+				"to": "00:11:54,080"
+			},
+			"offsets": {
+				"from": 708600,
+				"to": 714080
+			},
+			"text": " buy their votes in sort of traditional voting systems and things like that, which is what"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,080",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 714080,
+				"to": 717000
+			},
+			"text": " that paper on the left deals with."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:11:58,560"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 718560
+			},
+			"text": " So how do we get back to free will?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,560",
+				"to": "00:12:03,080"
+			},
+			"offsets": {
+				"from": 718560,
+				"to": 723080
+			},
+			"text": " Well our core task is ensuring that a user has unlimited knowledge or access to their"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,080",
+				"to": "00:12:08,200"
+			},
+			"offsets": {
+				"from": 723080,
+				"to": 728200
+			},
+			"text": " private information such as their keys, and that those private information, or that private"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,200",
+				"to": "00:12:13,600"
+			},
+			"offsets": {
+				"from": 728200,
+				"to": 733600
+			},
+			"text": " information can't be stored in a secured environment that's somehow shackling the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,600",
+				"to": "00:12:16,640"
+			},
+			"offsets": {
+				"from": 733600,
+				"to": 736640
+			},
+			"text": " And our second task is that we want to use this to make a signature scheme that's usable"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,640",
+				"to": "00:12:17,960"
+			},
+			"offsets": {
+				"from": 736640,
+				"to": 737960
+			},
+			"text": " in things like smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,960",
+				"to": "00:12:23,680"
+			},
+			"offsets": {
+				"from": 737960,
+				"to": 743680
+			},
+			"text": " So we know that when a user signs the message, they actually control their key."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,680",
+				"to": "00:12:28,800"
+			},
+			"offsets": {
+				"from": 743680,
+				"to": 748800
+			},
+			"text": " So we more generally define free will as the ability of a user to learn their own secrets."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,800",
+				"to": "00:12:34,200"
+			},
+			"offsets": {
+				"from": 748800,
+				"to": 754200
+			},
+			"text": " And we achieve free will by requiring that whenever a user sends a message that involves"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,200",
+				"to": "00:12:40,360"
+			},
+			"offsets": {
+				"from": 754200,
+				"to": 760360
+			},
+			"text": " secret data, for example a private key, someone can eavesdrop on that message."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,360",
+				"to": "00:12:44,440"
+			},
+			"offsets": {
+				"from": 760360,
+				"to": 764440
+			},
+			"text": " And because a user won't let anyone else eavesdrop on their message that would for example compromise"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,440",
+				"to": "00:12:50,960"
+			},
+			"offsets": {
+				"from": 764440,
+				"to": 770960
+			},
+			"text": " their funds, that means that essentially the user is able to eavesdrop on their own data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,960",
+				"to": "00:12:56,520"
+			},
+			"offsets": {
+				"from": 770960,
+				"to": 776520
+			},
+			"text": " So what we're going to be doing is sort of designing a scheme we call complete knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,520",
+				"to": "00:13:00,720"
+			},
+			"offsets": {
+				"from": 776520,
+				"to": 780720
+			},
+			"text": " And users are going to provide these complete knowledge proofs to the system to prove that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,720",
+				"to": "00:13:04,040"
+			},
+			"offsets": {
+				"from": 780720,
+				"to": 784040
+			},
+			"text": " they actually know their own secrets and that some human knows the secret and it's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,040",
+				"to": "00:13:09,480"
+			},
+			"offsets": {
+				"from": 784040,
+				"to": 789480
+			},
+			"text": " somehow shared across multiple parties or otherwise constrained."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,480",
+				"to": "00:13:12,080"
+			},
+			"offsets": {
+				"from": 789480,
+				"to": 792080
+			},
+			"text": " So I'm going to flash a bunch of cryptography at you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,080",
+				"to": "00:13:15,240"
+			},
+			"offsets": {
+				"from": 792080,
+				"to": 795240
+			},
+			"text": " These slides are going to be on my Twitter if you want to read this in more depth."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,240",
+				"to": "00:13:19,520"
+			},
+			"offsets": {
+				"from": 795240,
+				"to": 799520
+			},
+			"text": " But the only important thing on this slide is sort of these last two bullet points, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,520",
+				"to": "00:13:22,800"
+			},
+			"offsets": {
+				"from": 799520,
+				"to": 802800
+			},
+			"text": " is that we consider two computation environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,800",
+				"to": "00:13:27,160"
+			},
+			"offsets": {
+				"from": 802800,
+				"to": 807160
+			},
+			"text": " One being sort of an untrusted computation environment and another one being an eavesdrop"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,160",
+				"to": "00:13:28,320"
+			},
+			"offsets": {
+				"from": 807160,
+				"to": 808320
+			},
+			"text": " environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,320",
+				"to": "00:13:32,720"
+			},
+			"offsets": {
+				"from": 808320,
+				"to": 812720
+			},
+			"text": " And we want to make sure that a user has to send their private data through this environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,720",
+				"to": "00:13:37,800"
+			},
+			"offsets": {
+				"from": 812720,
+				"to": 817800
+			},
+			"text": " that they can also eavesdrop on and therefore can learn their own private data."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,800",
+				"to": "00:13:41,400"
+			},
+			"offsets": {
+				"from": 817800,
+				"to": 821400
+			},
+			"text": " And the way we generate these proofs is we require some proof scheme that matches these"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,400",
+				"to": "00:13:43,640"
+			},
+			"offsets": {
+				"from": 821400,
+				"to": 823640
+			},
+			"text": " two cryptographic definitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,640",
+				"to": "00:13:46,280"
+			},
+			"offsets": {
+				"from": 823640,
+				"to": 826280
+			},
+			"text": " The two important properties here are number three and four."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,280",
+				"to": "00:13:48,080"
+			},
+			"offsets": {
+				"from": 826280,
+				"to": 828080
+			},
+			"text": " The first one is unforgibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,080",
+				"to": "00:13:54,880"
+			},
+			"offsets": {
+				"from": 828080,
+				"to": 834880
+			},
+			"text": " That means I can't prove to you that I know some secret data that I actually don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,880",
+				"to": "00:13:59,520"
+			},
+			"offsets": {
+				"from": 834880,
+				"to": 839520
+			},
+			"text": " And the second one is secret eavesdropping, which says that I have the ability to eavesdrop"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,520",
+				"to": "00:14:04,560"
+			},
+			"offsets": {
+				"from": 839520,
+				"to": 844560
+			},
+			"text": " on my own data and nobody else in the network can tell whether or not I actually did this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,560",
+				"to": "00:14:06,800"
+			},
+			"offsets": {
+				"from": 844560,
+				"to": 846800
+			},
+			"text": " eavesdropping or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,800",
+				"to": "00:14:10,240"
+			},
+			"offsets": {
+				"from": 846800,
+				"to": 850240
+			},
+			"text": " If they could tell whether I actually did the eavesdropping or not, they could simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,240",
+				"to": "00:14:12,760"
+			},
+			"offsets": {
+				"from": 850240,
+				"to": 852760
+			},
+			"text": " require me not to do the eavesdropping when they bribe me."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,760",
+				"to": "00:14:17,720"
+			},
+			"offsets": {
+				"from": 852760,
+				"to": 857720
+			},
+			"text": " So it's very critical that the data is able to be eavesdropped on but sort of in the dark"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,720",
+				"to": "00:14:19,600"
+			},
+			"offsets": {
+				"from": 857720,
+				"to": 859600
+			},
+			"text": " and in secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,600",
+				"to": "00:14:23,440"
+			},
+			"offsets": {
+				"from": 859600,
+				"to": 863440
+			},
+			"text": " And the basic solutions we use for this are actually quite surprising."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,440",
+				"to": "00:14:25,720"
+			},
+			"offsets": {
+				"from": 863440,
+				"to": 865720
+			},
+			"text": " So there's two possible schemes here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,720",
+				"to": "00:14:31,680"
+			},
+			"offsets": {
+				"from": 865720,
+				"to": 871680
+			},
+			"text": " One of which is based on Bitcoin ASICs and another one of which is based on SGX or trusted hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,680",
+				"to": "00:14:35,680"
+			},
+			"offsets": {
+				"from": 871680,
+				"to": 875680
+			},
+			"text": " So the Bitcoin ASIC solution is to basically do a proof of work on your secret key as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,680",
+				"to": "00:14:37,720"
+			},
+			"offsets": {
+				"from": 875680,
+				"to": 877720
+			},
+			"text": " as some challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,720",
+				"to": "00:14:44,080"
+			},
+			"offsets": {
+				"from": 877720,
+				"to": 884080
+			},
+			"text": " And then generate a snark that some ASIC has done this proof on a secret key that the snark"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,080",
+				"to": "00:14:49,640"
+			},
+			"offsets": {
+				"from": 884080,
+				"to": 889640
+			},
+			"text": " keeps secret that corresponds to a public key that the snark makes public."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,640",
+				"to": "00:14:52,680"
+			},
+			"offsets": {
+				"from": 889640,
+				"to": 892680
+			},
+			"text": " So when the snark is submitted to the network, you know that at some point someone put that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,680",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 892680,
+				"to": 896000
+			},
+			"text": " secret key into an ASIC to generate the PAL."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:00,720"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 900720
+			},
+			"text": " The SGX solution similarly forces you to send the secret key as input or the secret data"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,720",
+				"to": "00:15:05,520"
+			},
+			"offsets": {
+				"from": 900720,
+				"to": 905520
+			},
+			"text": " as input raw, unencrypted input into an SGX chip."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,520",
+				"to": "00:15:09,760"
+			},
+			"offsets": {
+				"from": 905520,
+				"to": 909760
+			},
+			"text": " So on the left, this allows users to eavesdrop on their own data because ASICs are not secured."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,760",
+				"to": "00:15:12,720"
+			},
+			"offsets": {
+				"from": 909760,
+				"to": 912720
+			},
+			"text": " You don't know what firmware someone else is running on their own ASIC and whether it"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,720",
+				"to": "00:15:15,160"
+			},
+			"offsets": {
+				"from": 912720,
+				"to": 915160
+			},
+			"text": " lets them eavesdrop on their data or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,160",
+				"to": "00:15:21,320"
+			},
+			"offsets": {
+				"from": 915160,
+				"to": 921320
+			},
+			"text": " On the right, SGX achieves this because SGX enclaves have to be communicated with through"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,320",
+				"to": "00:15:23,040"
+			},
+			"offsets": {
+				"from": 921320,
+				"to": 923040
+			},
+			"text": " an unsecured OS."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,040",
+				"to": "00:15:27,120"
+			},
+			"offsets": {
+				"from": 923040,
+				"to": 927120
+			},
+			"text": " And nobody sort of in the broader network can tell if the OS that was communicating with"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,120",
+				"to": "00:15:31,040"
+			},
+			"offsets": {
+				"from": 927120,
+				"to": 931040
+			},
+			"text": " the enclave did or did not eavesdrop on its secrets."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,040",
+				"to": "00:15:33,960"
+			},
+			"offsets": {
+				"from": 931040,
+				"to": 933960
+			},
+			"text": " So I'm not going to go through these, but check them out later if you're interested in"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,960",
+				"to": "00:15:37,920"
+			},
+			"offsets": {
+				"from": 933960,
+				"to": 937920
+			},
+			"text": " sort of the formal cryptographic definitions of both of those schemes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,920",
+				"to": "00:15:39,880"
+			},
+			"offsets": {
+				"from": 937920,
+				"to": 939880
+			},
+			"text": " What we're actually implementing is a little bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,880",
+				"to": "00:15:43,240"
+			},
+			"offsets": {
+				"from": 939880,
+				"to": 943240
+			},
+			"text": " So the problem with the schemes that I just mentioned is they're a little bit heavy handed"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,240",
+				"to": "00:15:44,960"
+			},
+			"offsets": {
+				"from": 943240,
+				"to": 944960
+			},
+			"text": " and inefficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,960",
+				"to": "00:15:47,320"
+			},
+			"offsets": {
+				"from": 944960,
+				"to": 947320
+			},
+			"text": " Generating the snark actually takes quite some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,320",
+				"to": "00:15:51,120"
+			},
+			"offsets": {
+				"from": 947320,
+				"to": 951120
+			},
+			"text": " So there's this cute little trick you can do for the proof of work version where you restrict"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,120",
+				"to": "00:15:55,960"
+			},
+			"offsets": {
+				"from": 951120,
+				"to": 955960
+			},
+			"text": " the non-space of the ASIC and require someone to try multiple times to sort of generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,960",
+				"to": "00:16:01,160"
+			},
+			"offsets": {
+				"from": 955960,
+				"to": 961160
+			},
+			"text": " a proof such that if they try more than once, they can recover their own key."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,160",
+				"to": "00:16:06,840"
+			},
+			"offsets": {
+				"from": 961160,
+				"to": 966840
+			},
+			"text": " And with high probability, then they'll be able to sort of eavesdrop on themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,840",
+				"to": "00:16:10,520"
+			},
+			"offsets": {
+				"from": 966840,
+				"to": 970520
+			},
+			"text": " So basically, the math here works."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,520",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 970520,
+				"to": 973000
+			},
+			"text": " So let's talk about the proof of work version."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:15,880"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 975880
+			},
+			"text": " The proof of work version fails in one of several cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,880",
+				"to": "00:16:18,920"
+			},
+			"offsets": {
+				"from": 975880,
+				"to": 978920
+			},
+			"text": " So the proof of work version will fail if you can use a CPU to generate the proof of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,920",
+				"to": "00:16:19,920"
+			},
+			"offsets": {
+				"from": 978920,
+				"to": 979920
+			},
+			"text": " work."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,920",
+				"to": "00:16:23,520"
+			},
+			"offsets": {
+				"from": 979920,
+				"to": 983520
+			},
+			"text": " So SGX can just directly make this proof even though the secret data is never known to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,520",
+				"to": "00:16:25,120"
+			},
+			"offsets": {
+				"from": 983520,
+				"to": 985120
+			},
+			"text": " user."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,120",
+				"to": "00:16:28,280"
+			},
+			"offsets": {
+				"from": 985120,
+				"to": 988280
+			},
+			"text": " It also fails if the ASIC fails to find a proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,280",
+				"to": "00:16:31,320"
+			},
+			"offsets": {
+				"from": 988280,
+				"to": 991320
+			},
+			"text": " Then a user that actually knows their own secret data won't be able to prove that to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,320",
+				"to": "00:16:32,800"
+			},
+			"offsets": {
+				"from": 991320,
+				"to": 992800
+			},
+			"text": " the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,800",
+				"to": "00:16:36,400"
+			},
+			"offsets": {
+				"from": 992800,
+				"to": 996400
+			},
+			"text": " Fortunately, Bitcoin ASICs are much, much, much faster than CPUs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,400",
+				"to": "00:16:41,680"
+			},
+			"offsets": {
+				"from": 996400,
+				"to": 1001680
+			},
+			"text": " So 100,000 times faster than state of the art CPUs at this sort of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,680",
+				"to": "00:16:46,720"
+			},
+			"offsets": {
+				"from": 1001680,
+				"to": 1006720
+			},
+			"text": " And you can see that given, even if they're only 100 times faster, the probability that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,720",
+				"to": "00:16:51,240"
+			},
+			"offsets": {
+				"from": 1006720,
+				"to": 1011240
+			},
+			"text": " an ASIC will find a solution before a CPU is basically one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,240",
+				"to": "00:16:55,600"
+			},
+			"offsets": {
+				"from": 1011240,
+				"to": 1015600
+			},
+			"text": " So there's sort of a broad range of parameters here for which it's highly likely that an ASIC"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,600",
+				"to": "00:16:58,600"
+			},
+			"offsets": {
+				"from": 1015600,
+				"to": 1018600
+			},
+			"text": " will be able to find this proof of work, but a CPU will not."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,600",
+				"to": "00:17:05,120"
+			},
+			"offsets": {
+				"from": 1018600,
+				"to": 1025120
+			},
+			"text": " And therefore, no SGX process or multi-party computation can also solve this proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,120",
+				"to": "00:17:09,560"
+			},
+			"offsets": {
+				"from": 1025120,
+				"to": 1029560
+			},
+			"text": " So these are the marginal CDFs of sort of the times to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,560",
+				"to": "00:17:13,920"
+			},
+			"offsets": {
+				"from": 1029560,
+				"to": 1033920
+			},
+			"text": " Blue, you see the probability that an ASIC has solved the puzzle and red the probability"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,920",
+				"to": "00:17:16,240"
+			},
+			"offsets": {
+				"from": 1033920,
+				"to": 1036240
+			},
+			"text": " that a CPU has solved the puzzle."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,240",
+				"to": "00:17:19,040"
+			},
+			"offsets": {
+				"from": 1036240,
+				"to": 1039040
+			},
+			"text": " And you can see the ASIC slope is just much steeper."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,040",
+				"to": "00:17:22,600"
+			},
+			"offsets": {
+				"from": 1039040,
+				"to": 1042600
+			},
+			"text": " So you can sort of parameterize your system to make sure that an ASIC can always give you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,600",
+				"to": "00:17:25,480"
+			},
+			"offsets": {
+				"from": 1042600,
+				"to": 1045480
+			},
+			"text": " this proof, but a CPU can never give you this proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,480",
+				"to": "00:17:30,720"
+			},
+			"offsets": {
+				"from": 1045480,
+				"to": 1050720
+			},
+			"text": " And therefore, no constrained or shackled computing environment can never give you this proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,720",
+				"to": "00:17:34,440"
+			},
+			"offsets": {
+				"from": 1050720,
+				"to": 1054440
+			},
+			"text": " So what we're going to be doing is releasing this sort of system on Ethereum using this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,440",
+				"to": "00:17:35,880"
+			},
+			"offsets": {
+				"from": 1054440,
+				"to": 1055880
+			},
+			"text": " kind of an architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,880",
+				"to": "00:17:39,800"
+			},
+			"offsets": {
+				"from": 1055880,
+				"to": 1059800
+			},
+			"text": " So all you're going to need to do in your voting contract or anti-bribery mechanism is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,800",
+				"to": "00:17:44,920"
+			},
+			"offsets": {
+				"from": 1059800,
+				"to": 1064920
+			},
+			"text": " called a single function on our registry, WenCK, which will tell you the last time that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,920",
+				"to": "00:17:48,120"
+			},
+			"offsets": {
+				"from": 1064920,
+				"to": 1068120
+			},
+			"text": " a complete knowledge proof was generated on some key."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,120",
+				"to": "00:17:51,720"
+			},
+			"offsets": {
+				"from": 1068120,
+				"to": 1071720
+			},
+			"text": " The last time some user proved to the system that they actually are able to learn their"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,720",
+				"to": "00:17:53,920"
+			},
+			"offsets": {
+				"from": 1071720,
+				"to": 1073920
+			},
+			"text": " key, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,920",
+				"to": "00:17:56,480"
+			},
+			"offsets": {
+				"from": 1073920,
+				"to": 1076480
+			},
+			"text": " And users can choose like several backends to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,480",
+				"to": "00:17:59,160"
+			},
+			"offsets": {
+				"from": 1076480,
+				"to": 1079160
+			},
+			"text": " If they prefer to do it through SGX, they can do it through SGX."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,160",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1079160,
+				"to": 1083000
+			},
+			"text": " If they prefer to do it through a Bitcoin ASIC, they can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:07,120"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1087120
+			},
+			"text": " And interestingly enough, this also gives us an opportunity to recycle old Bitcoin ASICs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,120",
+				"to": "00:18:10,600"
+			},
+			"offsets": {
+				"from": 1087120,
+				"to": 1090600
+			},
+			"text": " because even old ASICs that are no longer profitable for mining on the network are still much,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,600",
+				"to": "00:18:14,320"
+			},
+			"offsets": {
+				"from": 1090600,
+				"to": 1094320
+			},
+			"text": " much faster than state-of-the-art CPUs and can still be used kind of to generate these"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,320",
+				"to": "00:18:16,640"
+			},
+			"offsets": {
+				"from": 1094320,
+				"to": 1096640
+			},
+			"text": " proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,640",
+				"to": "00:18:20,800"
+			},
+			"offsets": {
+				"from": 1096640,
+				"to": 1100800
+			},
+			"text": " So I recommend to you that if you're designing a system where bribery is a big deal, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,800",
+				"to": "00:18:24,200"
+			},
+			"offsets": {
+				"from": 1100800,
+				"to": 1104200
+			},
+			"text": " should use this technique to make sure users actually know their data and they're not being"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,200",
+				"to": "00:18:30,480"
+			},
+			"offsets": {
+				"from": 1104200,
+				"to": 1110480
+			},
+			"text": " bribed by some sort of shackling mechanism, some anti-mechanism like we described earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,480",
+				"to": "00:18:34,120"
+			},
+			"offsets": {
+				"from": 1110480,
+				"to": 1114120
+			},
+			"text": " Not that CK is enough by itself though, so you need to actually follow this more complex"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,120",
+				"to": "00:18:35,400"
+			},
+			"offsets": {
+				"from": 1114120,
+				"to": 1115400
+			},
+			"text": " recipe."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,400",
+				"to": "00:18:39,840"
+			},
+			"offsets": {
+				"from": 1115400,
+				"to": 1119840
+			},
+			"text": " You need to also provide the classical notion of coercion resistance, which basically says"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,840",
+				"to": "00:18:43,480"
+			},
+			"offsets": {
+				"from": 1119840,
+				"to": 1123480
+			},
+			"text": " that a user can secretly change their mind whenever they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,480",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1123480,
+				"to": 1127000
+			},
+			"text": " So if a user can secretly change their mind whenever they want, there's no point in bribing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:50,080"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1130080
+			},
+			"text": " the user, because you don't know if they're just going to go and change their mind later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,080",
+				"to": "00:18:53,480"
+			},
+			"offsets": {
+				"from": 1130080,
+				"to": 1133480
+			},
+			"text": " you can't tell if they did that or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,480",
+				"to": "00:18:57,080"
+			},
+			"offsets": {
+				"from": 1133480,
+				"to": 1137080
+			},
+			"text": " And because you're using CK, you know that there's no sort of shackles on the user that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,080",
+				"to": "00:19:00,680"
+			},
+			"offsets": {
+				"from": 1137080,
+				"to": 1140680
+			},
+			"text": " prevent them from changing their mind in this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,680",
+				"to": "00:19:04,400"
+			},
+			"offsets": {
+				"from": 1140680,
+				"to": 1144400
+			},
+			"text": " And for stake-based systems, we want to require this on the stake key, so we know that whoever"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,400",
+				"to": "00:19:08,800"
+			},
+			"offsets": {
+				"from": 1144400,
+				"to": 1148800
+			},
+			"text": " signed the message actually has skin in the game and actually has funds at risk sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,800",
+				"to": "00:19:12,360"
+			},
+			"offsets": {
+				"from": 1148800,
+				"to": 1152360
+			},
+			"text": " using the generation of this message."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,360",
+				"to": "00:19:16,400"
+			},
+			"offsets": {
+				"from": 1152360,
+				"to": 1156400
+			},
+			"text": " So the high-level takeaway here, I guess, is that if you don't use this system, your"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,400",
+				"to": "00:19:19,920"
+			},
+			"offsets": {
+				"from": 1156400,
+				"to": 1159920
+			},
+			"text": " protocol is vulnerable to bribery, period, no exceptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,920",
+				"to": "00:19:24,200"
+			},
+			"offsets": {
+				"from": 1159920,
+				"to": 1164200
+			},
+			"text": " So please don't DM me on Twitter and ask me, like, are we vulnerable to bribery and collusion?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,200",
+				"to": "00:19:27,880"
+			},
+			"offsets": {
+				"from": 1164200,
+				"to": 1167880
+			},
+			"text": " If you haven't sort of studied this kind of infrastructure and read this background material,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,880",
+				"to": "00:19:30,120"
+			},
+			"offsets": {
+				"from": 1167880,
+				"to": 1170120
+			},
+			"text": " because you 100% are."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,120",
+				"to": "00:19:32,920"
+			},
+			"offsets": {
+				"from": 1170120,
+				"to": 1172920
+			},
+			"text": " And if you're interested in learning more about the technical details or you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,920",
+				"to": "00:19:37,560"
+			},
+			"offsets": {
+				"from": 1172920,
+				"to": 1177560
+			},
+			"text": " sort of use this in your anti-bribery systems, please feel free to reach out to me and I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,560",
+				"to": "00:19:39,600"
+			},
+			"offsets": {
+				"from": 1177560,
+				"to": 1179600
+			},
+			"text": " happy to chat more."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,600",
+				"to": "00:19:41,560"
+			},
+			"offsets": {
+				"from": 1179600,
+				"to": 1181560
+			},
+			"text": " It's a very complex sort of topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,560",
+				"to": "00:19:43,080"
+			},
+			"offsets": {
+				"from": 1181560,
+				"to": 1183080
+			},
+			"text": " I only had 20 minutes to describe it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,080",
+				"to": "00:19:44,920"
+			},
+			"offsets": {
+				"from": 1183080,
+				"to": 1184920
+			},
+			"text": " I know I sort of flew through it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,920",
+				"to": "00:19:48,680"
+			},
+			"offsets": {
+				"from": 1184920,
+				"to": 1188680
+			},
+			"text": " But hopefully you got some takeaways that we can sort of make sure users own their own"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,680",
+				"to": "00:19:50,160"
+			},
+			"offsets": {
+				"from": 1188680,
+				"to": 1190160
+			},
+			"text": " data in these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,160",
+				"to": "00:19:53,360"
+			},
+			"offsets": {
+				"from": 1190160,
+				"to": 1193360
+			},
+			"text": " And that's very important to making sure that they're not being bribed."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,360",
+				"to": "00:19:54,680"
+			},
+			"offsets": {
+				"from": 1193360,
+				"to": 1194680
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,680",
+				"to": "00:19:58,160"
+			},
+			"offsets": {
+				"from": 1194680,
+				"to": 1198160
+			},
+			"text": " If you'd like to contact me or learn anything further, here's my information as well as"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,160",
+				"to": "00:20:03,240"
+			},
+			"offsets": {
+				"from": 1198160,
+				"to": 1203240
+			},
+			"text": " funding and a big thanks to all our IC3 partners and the Ethereum community for their support"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,240",
+				"to": "00:20:04,240"
+			},
+			"offsets": {
+				"from": 1203240,
+				"to": 1204240
+			},
+			"text": " in this research."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,240",
+				"to": "00:20:05,240"
+			},
+			"offsets": {
+				"from": 1204240,
+				"to": 1205240
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,240",
+				"to": "00:20:07,240"
+			},
+			"offsets": {
+				"from": 1205240,
+				"to": 1207240
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,240",
+				"to": "00:20:14,240"
+			},
+			"offsets": {
+				"from": 1207240,
+				"to": 1214240
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,240",
+				"to": "00:20:24,240"
+			},
+			"offsets": {
+				"from": 1214240,
+				"to": 1224240
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,240",
+				"to": "00:20:34,240"
+			},
+			"offsets": {
+				"from": 1224240,
+				"to": 1234240
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,240",
+				"to": "00:20:44,240"
+			},
+			"offsets": {
+				"from": 1234240,
+				"to": 1244240
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

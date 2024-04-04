@@ -1,0 +1,2111 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,800"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12800
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,800",
+				"to": "00:00:22,160"
+			},
+			"offsets": {
+				"from": 12800,
+				"to": 22160
+			},
+			"text": " Web3 is redefining the level of control people who have in ways that was deeply different"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,160",
+				"to": "00:00:29,440"
+			},
+			"offsets": {
+				"from": 22160,
+				"to": 29440
+			},
+			"text": " and how this had been done before. Not only that, Web3 has started with literal financial"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,440",
+				"to": "00:00:39,520"
+			},
+			"offsets": {
+				"from": 29440,
+				"to": 39520
+			},
+			"text": " value. Even though this is an empowering proposition, we see how meaningful has the money compromised"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,520",
+				"to": "00:00:48,560"
+			},
+			"offsets": {
+				"from": 39520,
+				"to": 48560
+			},
+			"text": " every day. I'm Antonella, I do pro-security at Metamask. My folks are there. Before that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,560",
+				"to": "00:00:56,880"
+			},
+			"offsets": {
+				"from": 48560,
+				"to": 56880
+			},
+			"text": " I will lead the user experience team by the Tor project for half of the decade. The deploying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,880",
+				"to": "00:01:05,120"
+			},
+			"offsets": {
+				"from": 56880,
+				"to": 65120
+			},
+			"text": " privacy and hazing technology is not a crime. Wallets can be a lot of things. We can define"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,120",
+				"to": "00:01:11,840"
+			},
+			"offsets": {
+				"from": 65120,
+				"to": 71840
+			},
+			"text": " wallets as a container of private keys and the resistance of formations to manage them. Every time"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,840",
+				"to": "00:01:18,960"
+			},
+			"offsets": {
+				"from": 71840,
+				"to": 78960
+			},
+			"text": " a dev acts the wallet to execute a transaction, the wallet is asking the user to confirm the usage"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,960",
+				"to": "00:01:27,920"
+			},
+			"offsets": {
+				"from": 78960,
+				"to": 87920
+			},
+			"text": " of these keys. Dan Filley and Eric Marks made a beautiful definition. Wallets are built around"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,920",
+				"to": "00:01:35,680"
+			},
+			"offsets": {
+				"from": 87920,
+				"to": 95680
+			},
+			"text": " the responsibility of maybe I didn't get the interactions between untrusted applications and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,680",
+				"to": "00:01:43,600"
+			},
+			"offsets": {
+				"from": 95680,
+				"to": 103600
+			},
+			"text": " users' keys on the computers, getting a proper consent from the user. If we map a thread model"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,600",
+				"to": "00:01:50,640"
+			},
+			"offsets": {
+				"from": 103600,
+				"to": 110640
+			},
+			"text": " of a non-coutier wallet like Metamask, we will discover that the two more important assets that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,640",
+				"to": "00:01:58,480"
+			},
+			"offsets": {
+				"from": 110640,
+				"to": 118480
+			},
+			"text": " we have at stake are a pair of keys and the permissions to use these keys. This talk is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,480",
+				"to": "00:02:04,800"
+			},
+			"offsets": {
+				"from": 118480,
+				"to": 124800
+			},
+			"text": " going to be about private keys, it's not going to be about artifacts to protect this private"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,800",
+				"to": "00:02:16,480"
+			},
+			"offsets": {
+				"from": 124800,
+				"to": 136480
+			},
+			"text": " keys like seed phrases, passwords, or attacks. Today I'm going to talk about permissions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,480",
+				"to": "00:02:23,520"
+			},
+			"offsets": {
+				"from": 136480,
+				"to": 143520
+			},
+			"text": " And I want to talk about permissions because permissions is the elephant in the room,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,520",
+				"to": "00:02:29,600"
+			},
+			"offsets": {
+				"from": 143520,
+				"to": 149600
+			},
+			"text": " usability topic dev for end users in this ecosystem. There is a lack of interest at"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,600",
+				"to": "00:02:37,760"
+			},
+			"offsets": {
+				"from": 149600,
+				"to": 157760
+			},
+			"text": " protocol level on how protocol decisions affect every day people lives and the responsibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,760",
+				"to": "00:02:45,200"
+			},
+			"offsets": {
+				"from": 157760,
+				"to": 165200
+			},
+			"text": " of giving users the chance to understand what they are giving permissions to. False on wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,200",
+				"to": "00:02:55,040"
+			},
+			"offsets": {
+				"from": 165200,
+				"to": 175040
+			},
+			"text": " We talk about permissions. We talk about an invoker requesting a wallet access to certain user"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,040",
+				"to": "00:03:01,840"
+			},
+			"offsets": {
+				"from": 175040,
+				"to": 181840
+			},
+			"text": " information. It can be different depending on what the rehab is prompting the user to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,840",
+				"to": "00:03:09,360"
+			},
+			"offsets": {
+				"from": 181840,
+				"to": 189360
+			},
+			"text": " During a connect flow, for example, the rehab is requesting access to users' public keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,360",
+				"to": "00:03:17,280"
+			},
+			"offsets": {
+				"from": 189360,
+				"to": 197280
+			},
+			"text": " the address, to be able to push requests in this way. And this is the user-facing interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,280",
+				"to": "00:03:24,560"
+			},
+			"offsets": {
+				"from": 197280,
+				"to": 204560
+			},
+			"text": " on how the request looks on user's computer. I'm sure some people have been facing these screens"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,560",
+				"to": "00:03:34,560"
+			},
+			"offsets": {
+				"from": 204560,
+				"to": 214560
+			},
+			"text": " before. The wallet is making an epic effort to expose and trust information in a secure environment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,560",
+				"to": "00:03:42,080"
+			},
+			"offsets": {
+				"from": 214560,
+				"to": 222080
+			},
+			"text": " in a leisurely manner so the user can consent to execute or not this transaction. We do things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,080",
+				"to": "00:03:49,760"
+			},
+			"offsets": {
+				"from": 222080,
+				"to": 229760
+			},
+			"text": " treating clinicians, treating analysis, human review. We have a Lara mode for preventing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,760",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 229760,
+				"to": 236000
+			},
+			"text": " sublucine attacks. You should check out on whom I've been stuck from yesterday. We have phishing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:03,920"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 243920
+			},
+			"text": " the dead block list to meet the phishing attacks. Our advantage is more. People who work on security"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,920",
+				"to": "00:04:11,360"
+			},
+			"offsets": {
+				"from": 243920,
+				"to": 251360
+			},
+			"text": " know that this is called elastic security or security in that. But this is not enough to enable"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,360",
+				"to": "00:04:20,320"
+			},
+			"offsets": {
+				"from": 251360,
+				"to": 260320
+			},
+			"text": " users to consent and transaction. I will stop and I imagine that some people are questioning"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,320",
+				"to": "00:04:30,720"
+			},
+			"offsets": {
+				"from": 260320,
+				"to": 270720
+			},
+			"text": " why we are talking about consent in a use of security talk and friends because they are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,720",
+				"to": "00:04:38,960"
+			},
+			"offsets": {
+				"from": 270720,
+				"to": 278960
+			},
+			"text": " secure systems without consent. Consent is the radical idea that one person must voluntarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,960",
+				"to": "00:04:44,720"
+			},
+			"offsets": {
+				"from": 278960,
+				"to": 284720
+			},
+			"text": " agree to the proposal of the science to another. Thinking about this, why building technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,720",
+				"to": "00:04:53,120"
+			},
+			"offsets": {
+				"from": 284720,
+				"to": 293120
+			},
+			"text": " this is to give feminists perfect to active consent, to apply it to the social information"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,120",
+				"to": "00:05:02,240"
+			},
+			"offsets": {
+				"from": 293120,
+				"to": 302240
+			},
+			"text": " system that we work with every day. These are not my ideas. These are ideas that came in the back"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,240",
+				"to": "00:05:10,960"
+			},
+			"offsets": {
+				"from": 302240,
+				"to": 310960
+			},
+			"text": " one from the feminist principles of the internet for open human-centered design processes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,960",
+				"to": "00:05:17,760"
+			},
+			"offsets": {
+				"from": 310960,
+				"to": 317760
+			},
+			"text": " Basically, when we talk about consent with technology, we talk about having control over"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,760",
+				"to": "00:05:26,640"
+			},
+			"offsets": {
+				"from": 317760,
+				"to": 326640
+			},
+			"text": " our digital bodies, which of course includes our data and for sure our money. So how a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,640",
+				"to": "00:05:33,600"
+			},
+			"offsets": {
+				"from": 326640,
+				"to": 333600
+			},
+			"text": " based on consent should be. A few people have been thinking about this, defining a framework on how"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,600",
+				"to": "00:05:41,600"
+			},
+			"offsets": {
+				"from": 333600,
+				"to": 341600
+			},
+			"text": " to approach a consensual way to have any interactions. I really like the five principles defined by"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,600",
+				"to": "00:05:51,120"
+			},
+			"offsets": {
+				"from": 341600,
+				"to": 351120
+			},
+			"text": " false and earlier media. You can check this anymore on the website. It's a good consent is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,160",
+				"to": "00:06:00,640"
+			},
+			"offsets": {
+				"from": 352160,
+				"to": 360640
+			},
+			"text": " freely given. It's revocable. It's informal. It's enthusiastic and it's specific. And what we mean"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,640",
+				"to": "00:06:06,960"
+			},
+			"offsets": {
+				"from": 360640,
+				"to": 366960
+			},
+			"text": " by all this thing, the fact that the consent is freely given puts the person in a position of doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,960",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 366960,
+				"to": 376000
+			},
+			"text": " something with another that should be made without pressure, with force or manipulation. Anyone can"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 384000
+			},
+			"text": " change the mind. One, what they do at any time. Trust is not forever. This is why transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:30,560"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 390560
+			},
+			"text": " should be revocable. People should be able to understand what the trade off are of this decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,560",
+				"to": "00:06:39,360"
+			},
+			"offsets": {
+				"from": 390560,
+				"to": 399360
+			},
+			"text": " People should be able to read what they are going to consent to. People should be able to comprehend"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,360",
+				"to": "00:06:46,640"
+			},
+			"offsets": {
+				"from": 399360,
+				"to": 406640
+			},
+			"text": " what is going on. Consent should be enthusiastic. If someone is not excited or really into it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,640",
+				"to": "00:06:54,400"
+			},
+			"offsets": {
+				"from": 406640,
+				"to": 414400
+			},
+			"text": " that is not consent. Consent should be specific. Saying yes to this, now today here in Bogota,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,400",
+				"to": "00:07:02,880"
+			},
+			"offsets": {
+				"from": 414400,
+				"to": 422880
+			},
+			"text": " in October, doesn't mean that I say yes to other things. So we started to question in our"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,880",
+				"to": "00:07:12,080"
+			},
+			"offsets": {
+				"from": 422880,
+				"to": 432080
+			},
+			"text": " interfaces and how they can become interfaces that could enable people to give real consent."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,080",
+				"to": "00:07:17,680"
+			},
+			"offsets": {
+				"from": 432080,
+				"to": 437680
+			},
+			"text": " The use of security design question that we put over the table with our teams,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,680",
+				"to": "00:07:23,440"
+			},
+			"offsets": {
+				"from": 437680,
+				"to": 443440
+			},
+			"text": " with designers, developers, with Prussian managers, with people working on metrics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,440",
+				"to": "00:07:30,960"
+			},
+			"offsets": {
+				"from": 443440,
+				"to": 450960
+			},
+			"text": " with people working on communication. If we really transaction flow the under and consent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,960",
+				"to": "00:07:41,280"
+			},
+			"offsets": {
+				"from": 450960,
+				"to": 461280
+			},
+			"text": " how could it look like? You spoke and we are listening. We read social media. We read the forums."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,280",
+				"to": "00:07:47,680"
+			},
+			"offsets": {
+				"from": 461280,
+				"to": 467680
+			},
+			"text": " We read. We are working hard on improving our confirmation screens. Even when"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,680",
+				"to": "00:07:56,480"
+			},
+			"offsets": {
+				"from": 467680,
+				"to": 476480
+			},
+			"text": " new transactions are being defined right now in other rooms on protocol level, without considering"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,480",
+				"to": "00:08:01,440"
+			},
+			"offsets": {
+				"from": 476480,
+				"to": 481440
+			},
+			"text": " how to expose users to a consensus interaction. Let's see the case of approvals."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,440",
+				"to": "00:08:10,640"
+			},
+			"offsets": {
+				"from": 481440,
+				"to": 490640
+			},
+			"text": " Approving token allowances is like a fundamental pattern of with free in with free. To allow a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,640",
+				"to": "00:08:17,680"
+			},
+			"offsets": {
+				"from": 490640,
+				"to": 497680
+			},
+			"text": " smart contract to interoperate tokens and provide a better user experience with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,680",
+				"to": "00:08:22,960"
+			},
+			"offsets": {
+				"from": 497680,
+				"to": 502960
+			},
+			"text": " In order to perform operations that require interactions with a month contract like"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,960",
+				"to": "00:08:31,440"
+			},
+			"offsets": {
+				"from": 502960,
+				"to": 511440
+			},
+			"text": " meetings, talking, swapping users are first required to permit the invoker's smart contract to transfer"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,440",
+				"to": "00:08:38,560"
+			},
+			"offsets": {
+				"from": 511440,
+				"to": 518560
+			},
+			"text": " a number of tokens on the rehab. Sometimes the dev required improving this infinite amount of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,560",
+				"to": "00:08:48,480"
+			},
+			"offsets": {
+				"from": 518560,
+				"to": 528480
+			},
+			"text": " these tokens. Even if the user trusted up, it could be problematic. This is our current tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,480",
+				"to": "00:08:57,760"
+			},
+			"offsets": {
+				"from": 528480,
+				"to": 537760
+			},
+			"text": " Allow on screen. We have the original mind requesting this transaction. We have the contract explicit"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,760",
+				"to": "00:09:05,520"
+			},
+			"offsets": {
+				"from": 537760,
+				"to": 545520
+			},
+			"text": " who is asking for this interaction. But the point here is we don't have allowances in the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,520",
+				"to": "00:09:15,440"
+			},
+			"offsets": {
+				"from": 545520,
+				"to": 555440
+			},
+			"text": " screen of this flow. We haven't worked on that. We iterated this. This new UI aims to empower users"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,440",
+				"to": "00:09:22,320"
+			},
+			"offsets": {
+				"from": 555440,
+				"to": 562320
+			},
+			"text": " to refine allowance that they want to give to the app. We split the flow into. We now have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,320",
+				"to": "00:09:31,040"
+			},
+			"offsets": {
+				"from": 562320,
+				"to": 571040
+			},
+			"text": " gas fees in the second screen, which was something that people was looking to watch on the first version."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,040",
+				"to": "00:09:39,920"
+			},
+			"offsets": {
+				"from": 571040,
+				"to": 579920
+			},
+			"text": " And now we have specifically who actors are interacting in this transaction. We allow users"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,920",
+				"to": "00:09:50,240"
+			},
+			"offsets": {
+				"from": 579920,
+				"to": 590240
+			},
+			"text": " to verify contracts. We are making explicit which assets are being transferred. We are adding"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,240",
+				"to": "00:09:59,360"
+			},
+			"offsets": {
+				"from": 590240,
+				"to": 599360
+			},
+			"text": " friction to one user when the site is requesting the entire collections on a Heronsti to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,360",
+				"to": "00:10:11,520"
+			},
+			"offsets": {
+				"from": 599360,
+				"to": 611520
+			},
+			"text": " transferred. Users can verify contract details and more things. Equally known what Taylor said"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,520",
+				"to": "00:10:20,080"
+			},
+			"offsets": {
+				"from": 611520,
+				"to": 620080
+			},
+			"text": " this week, we should be responsible for what technology we build. We should be technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,080",
+				"to": "00:10:28,560"
+			},
+			"offsets": {
+				"from": 620080,
+				"to": 628560
+			},
+			"text": " that respects people. As developers, as valid developers, we have the responsibility of critical"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,560",
+				"to": "00:10:37,520"
+			},
+			"offsets": {
+				"from": 628560,
+				"to": 637520
+			},
+			"text": " thinking about how to expose users to give consent to a decision that directly affects the digital"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,520",
+				"to": "00:10:49,360"
+			},
+			"offsets": {
+				"from": 637520,
+				"to": 649360
+			},
+			"text": " values. And these allowed us to explore opportunities to design the centralized technology that respects"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,360",
+				"to": "00:10:58,240"
+			},
+			"offsets": {
+				"from": 649360,
+				"to": 658240
+			},
+			"text": " people but practicing open design methodologies. Balancing security and usability is complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,800",
+				"to": "00:11:06,480"
+			},
+			"offsets": {
+				"from": 658800,
+				"to": 666480
+			},
+			"text": " We do a lot of complex things here. It requires an adequate thread modeling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,480",
+				"to": "00:11:11,200"
+			},
+			"offsets": {
+				"from": 666480,
+				"to": 671200
+			},
+			"text": " the possibility of including people in your development process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,200",
+				"to": "00:11:21,120"
+			},
+			"offsets": {
+				"from": 671200,
+				"to": 681120
+			},
+			"text": " and trying to understand people's mental models too much with the flows that we propose as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,120",
+				"to": "00:11:29,200"
+			},
+			"offsets": {
+				"from": 681120,
+				"to": 689200
+			},
+			"text": " facilitator of consensual transactions. We are trying to generate more open spaces to discuss"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,200",
+				"to": "00:11:38,880"
+			},
+			"offsets": {
+				"from": 689200,
+				"to": 698880
+			},
+			"text": " user security in the decentralized world. If you are a broad designer, if you resonate with this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,880",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 698880,
+				"to": 706000
+			},
+			"text": " you can find me. I will be happy to talk about this. If you are a security researcher,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:54,240"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 714240
+			},
+			"text": " if you are a hacker, if you want to punch our services, we get money. We have a hacker one"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,240",
+				"to": "00:12:03,360"
+			},
+			"offsets": {
+				"from": 714240,
+				"to": 723360
+			},
+			"text": " problem in place. If you are a developer and you have ideas on how to improve metammas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,360",
+				"to": "00:12:15,680"
+			},
+			"offsets": {
+				"from": 723360,
+				"to": 735680
+			},
+			"text": " you want to extend it, you want to connect your API to metammas.com/"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,320",
+				"to": "00:12:23,280"
+			},
+			"offsets": {
+				"from": 736320,
+				"to": 743280
+			},
+			"text": " Thanks for joining us today. I personally believe that there is a long way to go to rethink"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,280",
+				"to": "00:12:29,440"
+			},
+			"offsets": {
+				"from": 743280,
+				"to": 749440
+			},
+			"text": " how the information systems which we delegate trust interact with consent."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,440",
+				"to": "00:12:34,720"
+			},
+			"offsets": {
+				"from": 749440,
+				"to": 754720
+			},
+			"text": " This is an open call and I invite you to think about that with me."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,720",
+				"to": "00:12:43,280"
+			},
+			"offsets": {
+				"from": 754720,
+				"to": 763280
+			},
+			"text": " Thank you very much, and we have several hands up. We are going to start here, but we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,280",
+				"to": "00:12:52,880"
+			},
+			"offsets": {
+				"from": 763280,
+				"to": 772880
+			},
+			"text": " two there. We have a lot of questions. Thank you. A quick question. The UI that you presented,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,880",
+				"to": "00:12:59,760"
+			},
+			"offsets": {
+				"from": 772880,
+				"to": 779760
+			},
+			"text": " is there is a date when they are going to be released? We are working on that later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,760",
+				"to": "00:13:10,400"
+			},
+			"offsets": {
+				"from": 779760,
+				"to": 790400
+			},
+			"text": " quarter four. We work in an open environment. We have a good hardware repository, so you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,400",
+				"to": "00:13:15,280"
+			},
+			"offsets": {
+				"from": 790400,
+				"to": 795280
+			},
+			"text": " check stuff. Next question. We have some one, two and three."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,280",
+				"to": "00:13:24,240"
+			},
+			"offsets": {
+				"from": 795280,
+				"to": 804240
+			},
+			"text": " Hello. Thanks for your talk. In the presentation, you told that security researcher you have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,240",
+				"to": "00:13:31,040"
+			},
+			"offsets": {
+				"from": 804240,
+				"to": 811040
+			},
+			"text": " do balance between user experience and security. How do you draw the line of saying the user is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,040",
+				"to": "00:13:38,160"
+			},
+			"offsets": {
+				"from": 811040,
+				"to": 818160
+			},
+			"text": " supposed to know the thing and I have to teach the user that did the thing that they have now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,720",
+				"to": "00:13:47,520"
+			},
+			"offsets": {
+				"from": 818720,
+				"to": 827520
+			},
+			"text": " Good question. I don't think we are here to teach users. I think we are here to inform people to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,520",
+				"to": "00:13:53,760"
+			},
+			"offsets": {
+				"from": 827520,
+				"to": 833760
+			},
+			"text": " make informed decisions. The balance between how much information we show on the screen"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,760",
+				"to": "00:14:01,520"
+			},
+			"offsets": {
+				"from": 833760,
+				"to": 841520
+			},
+			"text": " and how this information resonates with people and also the time that happened between the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,520",
+				"to": "00:14:09,520"
+			},
+			"offsets": {
+				"from": 841520,
+				"to": 849520
+			},
+			"text": " make a decision and read, may vary and change. I think that is the most fun part finding this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,520",
+				"to": "00:14:16,960"
+			},
+			"offsets": {
+				"from": 849520,
+				"to": 856960
+			},
+			"text": " balance. I think it is super important also to work with users. If you have a product, you are"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,960",
+				"to": "00:14:24,080"
+			},
+			"offsets": {
+				"from": 856960,
+				"to": 864080
+			},
+			"text": " building a protocol, not say whatever. You should have users in your development process, so you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,080",
+				"to": "00:14:30,400"
+			},
+			"offsets": {
+				"from": 864080,
+				"to": 870400
+			},
+			"text": " can expose users to your product early and you can get feedback and that is so rich."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,040",
+				"to": "00:14:37,680"
+			},
+			"offsets": {
+				"from": 871040,
+				"to": 877680
+			},
+			"text": " Because you have people using your product before your life or whatever. So, that answers your"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,680",
+				"to": "00:14:46,160"
+			},
+			"offsets": {
+				"from": 877680,
+				"to": 886160
+			},
+			"text": " question. There is one, two and three and four. We have time. I see the fifth here. Please."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,160",
+				"to": "00:14:53,520"
+			},
+			"offsets": {
+				"from": 886160,
+				"to": 893520
+			},
+			"text": " Thanks. Great talk. As part of your definition of consent, you discussed revocable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,080",
+				"to": "00:15:02,400"
+			},
+			"offsets": {
+				"from": 896080,
+				"to": 902400
+			},
+			"text": " Where does Metamask or the UX fall with revocability and helping the user know they can't revow"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,400",
+				"to": "00:15:08,160"
+			},
+			"offsets": {
+				"from": 902400,
+				"to": 908160
+			},
+			"text": " over what they have given consent to in the past? Beautiful. It is a protocol issue. It is not our"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,160",
+				"to": "00:15:16,640"
+			},
+			"offsets": {
+				"from": 908160,
+				"to": 916640
+			},
+			"text": " problem. We should work together on a protocol level to make sure that, I mean, to comprehend"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,640",
+				"to": "00:15:25,280"
+			},
+			"offsets": {
+				"from": 916640,
+				"to": 925280
+			},
+			"text": " that we are human and we can make mistakes. I know that recovery is like a hot topic in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,280",
+				"to": "00:15:33,520"
+			},
+			"offsets": {
+				"from": 925280,
+				"to": 933520
+			},
+			"text": " space. There are a lot of ideas on how to make transactions revocable. You can do things like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,520",
+				"to": "00:15:40,160"
+			},
+			"offsets": {
+				"from": 933520,
+				"to": 940160
+			},
+			"text": " I don't know, having a space of non-semitimidual and you have a certain time that you can revoke"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,160",
+				"to": "00:15:46,880"
+			},
+			"offsets": {
+				"from": 940160,
+				"to": 946880
+			},
+			"text": " and stuff. They are smart people thinking about that. But yeah, it is an open question."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,920",
+				"to": "00:15:55,920"
+			},
+			"offsets": {
+				"from": 947920,
+				"to": 955920
+			},
+			"text": " Hi. Great work using consent. How do you think is possible to handle a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,920",
+				"to": "00:16:03,120"
+			},
+			"offsets": {
+				"from": 955920,
+				"to": 963120
+			},
+			"text": " side net message consent? Specifically, when we sign some structured information on Metamask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,120",
+				"to": "00:16:10,800"
+			},
+			"offsets": {
+				"from": 963120,
+				"to": 970800
+			},
+			"text": " you will see an adjacent that is really hard to understand. There have been a lot of hacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,800",
+				"to": "00:16:19,440"
+			},
+			"offsets": {
+				"from": 970800,
+				"to": 979440
+			},
+			"text": " lately based on ERC-20 tokens able to permit user to sign message in order to allow for"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,440",
+				"to": "00:16:27,120"
+			},
+			"offsets": {
+				"from": 979440,
+				"to": 987120
+			},
+			"text": " transactions. So it is very hard for a user to know if you are approving a genocism multi-seeking"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,120",
+				"to": "00:16:34,480"
+			},
+			"offsets": {
+				"from": 987120,
+				"to": 994480
+			},
+			"text": " transfer or giving permission to someone to spend your tokens on your behalf. Have you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,480",
+				"to": "00:16:43,280"
+			},
+			"offsets": {
+				"from": 994480,
+				"to": 1003280
+			},
+			"text": " thinking any kind of mitigation for this problem on Metamask? They are a lot of initiatives"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,280",
+				"to": "00:16:51,840"
+			},
+			"offsets": {
+				"from": 1003280,
+				"to": 1011840
+			},
+			"text": " that want to make transactions readable. They are, I mean, I remember five right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,840",
+				"to": "00:16:58,560"
+			},
+			"offsets": {
+				"from": 1011840,
+				"to": 1018560
+			},
+			"text": " but there are a lot of people working on that. I think it's the next step for big adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,560",
+				"to": "00:17:08,080"
+			},
+			"offsets": {
+				"from": 1018560,
+				"to": 1028080
+			},
+			"text": " Should we have transactions in every double manner? I see companies making their own versions of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,080",
+				"to": "00:17:15,120"
+			},
+			"offsets": {
+				"from": 1028080,
+				"to": 1035120
+			},
+			"text": " We should aim to have a community level consensus on how we are going to expose these two users."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,120",
+				"to": "00:17:23,200"
+			},
+			"offsets": {
+				"from": 1035120,
+				"to": 1043200
+			},
+			"text": " I think it's more powerful if we were all together than if a company says that they are doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,240",
+				"to": "00:17:30,240"
+			},
+			"offsets": {
+				"from": 1044240,
+				"to": 1050240
+			},
+			"text": " clear singing or something like that. So yeah, I think it's a working process."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,240",
+				"to": "00:17:36,080"
+			},
+			"offsets": {
+				"from": 1050240,
+				"to": 1056080
+			},
+			"text": " I hope you are building also a solution for transactions. To be rid of."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,080",
+				"to": "00:17:41,840"
+			},
+			"offsets": {
+				"from": 1056080,
+				"to": 1061840
+			},
+			"text": " Thank you so much for your presentation today. I feel like I learned a lot. One question I"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,840",
+				"to": "00:17:47,760"
+			},
+			"offsets": {
+				"from": 1061840,
+				"to": 1067760
+			},
+			"text": " just really want to ask is about Metamask per design. So as far as I know, initially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,760",
+				"to": "00:17:53,280"
+			},
+			"offsets": {
+				"from": 1067760,
+				"to": 1073280
+			},
+			"text": " Metamask didn't want to launch the swap function and it launched a swap function. I just want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,280",
+				"to": "00:18:00,240"
+			},
+			"offsets": {
+				"from": 1073280,
+				"to": 1080240
+			},
+			"text": " I just feel like in the current space, the switching network is really a significant"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,240",
+				"to": "00:18:09,440"
+			},
+			"offsets": {
+				"from": 1080240,
+				"to": 1089440
+			},
+			"text": " problem in improving UX. I just want to ask more about what's the future plan on Metamask"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,440",
+				"to": "00:18:16,720"
+			},
+			"offsets": {
+				"from": 1089440,
+				"to": 1096720
+			},
+			"text": " about interoperability issue and does Metamask have a plan to solve this network switching problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,440",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1097440,
+				"to": 1106000
+			},
+			"text": " Yeah, amazing question. I can open my computer and show you our designs after the talk and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:34,080"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1114080
+			},
+			"text": " can discuss it. We are working on network abstraction. It's super interesting because super early in"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,080",
+				"to": "00:18:41,760"
+			},
+			"offsets": {
+				"from": 1114080,
+				"to": 1121760
+			},
+			"text": " the moment right now, the options are infinite. I don't think the version we are going to ship"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,760",
+				"to": "00:18:46,960"
+			},
+			"offsets": {
+				"from": 1121760,
+				"to": 1126960
+			},
+			"text": " first is going to be the best one, but I think it's something good that we are going to iterate."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,960",
+				"to": "00:18:52,880"
+			},
+			"offsets": {
+				"from": 1126960,
+				"to": 1132880
+			},
+			"text": " And we are going to learn also how people are using different networks. We are thinking, we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,880",
+				"to": "00:18:59,840"
+			},
+			"offsets": {
+				"from": 1132880,
+				"to": 1139840
+			},
+			"text": " talk in our -- yes, please, find me and we can discuss. How do you say something?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,840",
+				"to": "00:19:06,720"
+			},
+			"offsets": {
+				"from": 1139840,
+				"to": 1146720
+			},
+			"text": " Hi. I actually have two questions if allowed, but one is a follow-up to the question before last"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,720",
+				"to": "00:19:13,120"
+			},
+			"offsets": {
+				"from": 1146720,
+				"to": 1153120
+			},
+			"text": " about signing and permissions and how those interact. And even where they are readable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,120",
+				"to": "00:19:17,600"
+			},
+			"offsets": {
+				"from": 1153120,
+				"to": 1157600
+			},
+			"text": " if there is one particular thing that is being asked for over and over and over and over again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,600",
+				"to": "00:19:24,480"
+			},
+			"offsets": {
+				"from": 1157600,
+				"to": 1164480
+			},
+			"text": " user will get alert fatigue and just be clicking. And to avoid that, I was seeking to have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,480",
+				"to": "00:19:31,440"
+			},
+			"offsets": {
+				"from": 1164480,
+				"to": 1171440
+			},
+			"text": " permission for that particular thing that gets repeated many times and was here for the hackathon"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,440",
+				"to": "00:19:36,640"
+			},
+			"offsets": {
+				"from": 1171440,
+				"to": 1176640
+			},
+			"text": " last weekend and wanted to use Metamask snaps to make that easier and was told, oh, no, actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,640",
+				"to": "00:19:41,920"
+			},
+			"offsets": {
+				"from": 1176640,
+				"to": 1181920
+			},
+			"text": " Metamask snaps doesn't support working with the permission system to do that. I was wondering if"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,920",
+				"to": "00:19:49,200"
+			},
+			"offsets": {
+				"from": 1181920,
+				"to": 1189200
+			},
+			"text": " there are plans to allow snaps to work with the permission system in the future to follow up on"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,200",
+				"to": "00:19:57,760"
+			},
+			"offsets": {
+				"from": 1189200,
+				"to": 1197760
+			},
+			"text": " that. Good question. I think the most powerful thing about SNAT is the list of permissions we"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,760",
+				"to": "00:20:04,080"
+			},
+			"offsets": {
+				"from": 1197760,
+				"to": 1204080
+			},
+			"text": " have available right now. It's not static. It's something that is going to grow in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,080",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1204080,
+				"to": 1212000
+			},
+			"text": " So I'm not here to say when, but that may be something that is in the pipeline."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:17,600"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1217600
+			},
+			"text": " Any other questions you showed earlier are some designs where you were making it clear that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,600",
+				"to": "00:20:23,680"
+			},
+			"offsets": {
+				"from": 1217600,
+				"to": 1223680
+			},
+			"text": " like, oh, you can set a limit for how much of a token a particular dev can be authorized for."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,680",
+				"to": "00:20:29,120"
+			},
+			"offsets": {
+				"from": 1223680,
+				"to": 1229120
+			},
+			"text": " And you have a line in there like, oh, you can raise this limit later, but you aren't telling"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,120",
+				"to": "00:20:34,960"
+			},
+			"offsets": {
+				"from": 1229120,
+				"to": 1234960
+			},
+			"text": " people that there's a cost to do so. It's like a financial cost of doing so later. And I think that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,960",
+				"to": "00:20:42,720"
+			},
+			"offsets": {
+				"from": 1234960,
+				"to": 1242720
+			},
+			"text": " that seems to undermine this idea of consent a little bit because you're not telling people"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,720",
+				"to": "00:20:47,280"
+			},
+			"offsets": {
+				"from": 1242720,
+				"to": 1247280
+			},
+			"text": " that there are going to be costs if they want to limit things now and then add it later."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,280",
+				"to": "00:20:51,360"
+			},
+			"offsets": {
+				"from": 1247280,
+				"to": 1251360
+			},
+			"text": " Do you have any thoughts about why that decision was made to exterior that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:21:01,120"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1261120
+			},
+			"text": " Agree. We have not exposed in future costs of the transaction, and maybe something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,120",
+				"to": "00:21:09,840"
+			},
+			"offsets": {
+				"from": 1261120,
+				"to": 1269840
+			},
+			"text": " could be part of some documentation on user facing education material or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,840",
+				"to": "00:21:20,400"
+			},
+			"offsets": {
+				"from": 1269840,
+				"to": 1280400
+			},
+			"text": " Estimating how the thing is going to cost in the future, it's weird. But I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,680",
+				"to": "00:21:25,920"
+			},
+			"offsets": {
+				"from": 1281680,
+				"to": 1285920
+			},
+			"text": " Maybe something to explore. Thank you for that question. And the last one."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,920",
+				"to": "00:21:33,520"
+			},
+			"offsets": {
+				"from": 1285920,
+				"to": 1293520
+			},
+			"text": " Hello. Thanks for this great presentation. It's really insightful. So I have a question around"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,520",
+				"to": "00:21:43,360"
+			},
+			"offsets": {
+				"from": 1293520,
+				"to": 1303360
+			},
+			"text": " the effect of giving consent. You mentioned that it's quite complex because it's either you give"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,360",
+				"to": "00:21:51,280"
+			},
+			"offsets": {
+				"from": 1303360,
+				"to": 1311280
+			},
+			"text": " too much permission and you fall into an area where it's dangerous as a user or you give too"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,280",
+				"to": "00:21:59,040"
+			},
+			"offsets": {
+				"from": 1311280,
+				"to": 1319040
+			},
+			"text": " much restriction and then you hurt the usability of the user because the user then cannot do that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,040",
+				"to": "00:22:06,960"
+			},
+			"offsets": {
+				"from": 1319040,
+				"to": 1326960
+			},
+			"text": " much. What's your opinion on that? How do you find the sweet spot of the right balance like"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,960",
+				"to": "00:22:14,160"
+			},
+			"offsets": {
+				"from": 1326960,
+				"to": 1334160
+			},
+			"text": " this right area where it's not too risky but on the other side it's not too unusable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,160",
+				"to": "00:22:23,840"
+			},
+			"offsets": {
+				"from": 1334160,
+				"to": 1343840
+			},
+			"text": " Great question. It has different parts. First, you usually have an interdisciplinary team"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,840",
+				"to": "00:22:28,800"
+			},
+			"offsets": {
+				"from": 1343840,
+				"to": 1348800
+			},
+			"text": " working on stuff because it's more powerful. You have more views when people"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,800",
+				"to": "00:22:36,320"
+			},
+			"offsets": {
+				"from": 1348800,
+				"to": 1356320
+			},
+			"text": " when building something for people. Then there is something very strong happening at Metamask"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,320",
+				"to": "00:22:44,720"
+			},
+			"offsets": {
+				"from": 1356320,
+				"to": 1364720
+			},
+			"text": " right now and it's the fact that we are building a program for the entire world. Put us in a position"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,720",
+				"to": "00:22:49,840"
+			},
+			"offsets": {
+				"from": 1364720,
+				"to": 1369840
+			},
+			"text": " to hire people from all over the world. So basically we have people working everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,840",
+				"to": "00:22:55,760"
+			},
+			"offsets": {
+				"from": 1369840,
+				"to": 1375760
+			},
+			"text": " And this is powerful because you have people sitting in table making decisions that have"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,760",
+				"to": "00:23:05,200"
+			},
+			"offsets": {
+				"from": 1375760,
+				"to": 1385200
+			},
+			"text": " different biases, mental models. This is one part. The other part is with users. I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,200",
+				"to": "00:23:13,680"
+			},
+			"offsets": {
+				"from": 1385200,
+				"to": 1393680
+			},
+			"text": " choking with users is so insightful. You are going to discover things that you even machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,680",
+				"to": "00:23:25,280"
+			},
+			"offsets": {
+				"from": 1393680,
+				"to": 1405280
+			},
+			"text": " in the first country rounds of user testing. So the first team users first and try and iterate."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,280",
+				"to": "00:23:31,120"
+			},
+			"offsets": {
+				"from": 1405280,
+				"to": 1411120
+			},
+			"text": " I think finding the balance is the most fun part of being working on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,600",
+				"to": "00:23:40,080"
+			},
+			"offsets": {
+				"from": 1413600,
+				"to": 1420080
+			},
+			"text": " Thank you very much. We have time for one last question in Spanish. It can be also"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,080",
+				"to": "00:23:48,640"
+			},
+			"offsets": {
+				"from": 1420080,
+				"to": 1428640
+			},
+			"text": " if not. If not, yes. If not, much as gracias and tonela."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,640",
+				"to": "00:23:50,640"
+			},
+			"offsets": {
+				"from": 1428640,
+				"to": 1430640
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,640",
+				"to": "00:23:52,640"
+			},
+			"offsets": {
+				"from": 1430640,
+				"to": 1432640
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,640",
+				"to": "00:23:54,640"
+			},
+			"offsets": {
+				"from": 1432640,
+				"to": 1434640
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,640",
+				"to": "00:23:56,640"
+			},
+			"offsets": {
+				"from": 1434640,
+				"to": 1436640
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,640",
+				"to": "00:23:58,640"
+			},
+			"offsets": {
+				"from": 1436640,
+				"to": 1438640
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,640",
+				"to": "00:24:27,640"
+			},
+			"offsets": {
+				"from": 1438640,
+				"to": 1467640
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

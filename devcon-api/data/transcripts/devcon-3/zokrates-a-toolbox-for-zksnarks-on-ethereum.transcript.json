@@ -1,0 +1,2177 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:25,900"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 25900
+			},
+			"text": " >> Hi, so my name is Yakob Ibahad and I work at Information Systems Engineering Group at Tewelyn"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,900",
+				"to": "00:00:33,960"
+			},
+			"offsets": {
+				"from": 25900,
+				"to": 33960
+			},
+			"text": " in Germany and I'm here today to talk about socrotus which is a toolbox for CK SNARKS on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,960",
+				"to": "00:00:35,960"
+			},
+			"offsets": {
+				"from": 33960,
+				"to": 35960
+			},
+			"text": " Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,960",
+				"to": "00:00:42,200"
+			},
+			"offsets": {
+				"from": 35960,
+				"to": 42200
+			},
+			"text": " So let's first look at how transaction processing works in traditional blockchain networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,200",
+				"to": "00:00:48,240"
+			},
+			"offsets": {
+				"from": 42200,
+				"to": 48240
+			},
+			"text": " As you can see on the left the transaction is sent to the network, it then gets validated"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,240",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 48240,
+				"to": 53000
+			},
+			"text": " at the first node and is then broadcast to the other nodes and at some point it gets"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:59,600"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 59600
+			},
+			"text": " included into some block after someone solved the proof of work problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,600",
+				"to": "00:01:05,740"
+			},
+			"offsets": {
+				"from": 59600,
+				"to": 65740
+			},
+			"text": " Now imagine if we had a system like on the right side where a transaction is sent to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,740",
+				"to": "00:01:12,240"
+			},
+			"offsets": {
+				"from": 65740,
+				"to": 72240
+			},
+			"text": " nodes in the network but instead of directly being validated on chain they get forwarded"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,240",
+				"to": "00:01:18,400"
+			},
+			"offsets": {
+				"from": 72240,
+				"to": 78400
+			},
+			"text": " to a third party, the yellow box here and that's where the transaction processing happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,400",
+				"to": "00:01:24,400"
+			},
+			"offsets": {
+				"from": 78400,
+				"to": 84400
+			},
+			"text": " After the processing of chain is done the result is written back to the blockchain and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,400",
+				"to": "00:01:30,880"
+			},
+			"offsets": {
+				"from": 84400,
+				"to": 90880
+			},
+			"text": " on chain it is verified to be correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,880",
+				"to": "00:01:37,960"
+			},
+			"offsets": {
+				"from": 90880,
+				"to": 97960
+			},
+			"text": " Only that verification would then happen redundantly and not the transaction processing itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,960",
+				"to": "00:01:40,680"
+			},
+			"offsets": {
+				"from": 97960,
+				"to": 100680
+			},
+			"text": " So what would be gained through that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,680",
+				"to": "00:01:43,320"
+			},
+			"offsets": {
+				"from": 100680,
+				"to": 103320
+			},
+			"text": " One thing would be scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,320",
+				"to": "00:01:49,940"
+			},
+			"offsets": {
+				"from": 103320,
+				"to": 109940
+			},
+			"text": " If the verification is cheaper than redoing or executing the transaction in the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,940",
+				"to": "00:01:56,240"
+			},
+			"offsets": {
+				"from": 109940,
+				"to": 116240
+			},
+			"text": " place, if you only have to do the verification on chain then you can increase throughput."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,240",
+				"to": "00:02:01,360"
+			},
+			"offsets": {
+				"from": 116240,
+				"to": 121360
+			},
+			"text": " Also there is no such thing as a block gas limit that comes into play here because there"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,360",
+				"to": "00:02:05,160"
+			},
+			"offsets": {
+				"from": 121360,
+				"to": 125160
+			},
+			"text": " is no need to circumvent the halting problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,160",
+				"to": "00:02:11,600"
+			},
+			"offsets": {
+				"from": 125160,
+				"to": 131600
+			},
+			"text": " A second aspect is that private information that gets used on that external node can,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,600",
+				"to": "00:02:16,360"
+			},
+			"offsets": {
+				"from": 131600,
+				"to": 136360
+			},
+			"text": " if we use the right tools, be kept private and they do not have to be published to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,360",
+				"to": "00:02:20,680"
+			},
+			"offsets": {
+				"from": 136360,
+				"to": 140680
+			},
+			"text": " blockchain network which is also what we not have at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,680",
+				"to": "00:02:22,560"
+			},
+			"offsets": {
+				"from": 140680,
+				"to": 142560
+			},
+			"text": " So what are your approaches for that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,560",
+				"to": "00:02:27,760"
+			},
+			"offsets": {
+				"from": 142560,
+				"to": 147760
+			},
+			"text": " We've heard an excellent talk by Jason earlier about Troubad and Troubad is one such approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,760",
+				"to": "00:02:33,840"
+			},
+			"offsets": {
+				"from": 147760,
+				"to": 153840
+			},
+			"text": " where you gain scalability by off-chain and computations and then there is that verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,840",
+				"to": "00:02:40,360"
+			},
+			"offsets": {
+				"from": 153840,
+				"to": 160360
+			},
+			"text": " game played on chain and with that you gain scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,360",
+				"to": "00:02:45,600"
+			},
+			"offsets": {
+				"from": 160360,
+				"to": 165600
+			},
+			"text": " Another approach is non-interactive serial knowledge proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,600",
+				"to": "00:02:50,520"
+			},
+			"offsets": {
+				"from": 165600,
+				"to": 170520
+			},
+			"text": " In that case you additionally have serial knowledge that means the private information"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,520",
+				"to": "00:02:58,440"
+			},
+			"offsets": {
+				"from": 170520,
+				"to": 178440
+			},
+			"text": " you use during your processing on that external node they are not revealed to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,440",
+				"to": "00:03:04,360"
+			},
+			"offsets": {
+				"from": 178440,
+				"to": 184360
+			},
+			"text": " Okay, so what could those non-interactive serial knowledge proofs be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,360",
+				"to": "00:03:07,640"
+			},
+			"offsets": {
+				"from": 184360,
+				"to": 187640
+			},
+			"text": " One proven mechanism is CK Snarks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,640",
+				"to": "00:03:13,880"
+			},
+			"offsets": {
+				"from": 187640,
+				"to": 193880
+			},
+			"text": " I think many of you are aware of that technology and it stands for serial knowledge succinct"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,880",
+				"to": "00:03:16,440"
+			},
+			"offsets": {
+				"from": 193880,
+				"to": 196440
+			},
+			"text": " non-interactive arguments of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,440",
+				"to": "00:03:20,120"
+			},
+			"offsets": {
+				"from": 196440,
+				"to": 200120
+			},
+			"text": " And here are several key properties of CK Snarks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,120",
+				"to": "00:03:23,120"
+			},
+			"offsets": {
+				"from": 200120,
+				"to": 203120
+			},
+			"text": " So the proofs are short and non-interactive."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,120",
+				"to": "00:03:28,080"
+			},
+			"offsets": {
+				"from": 203120,
+				"to": 208080
+			},
+			"text": " That essentially means you can simply take a proof generated by a proof or send it over"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,080",
+				"to": "00:03:34,040"
+			},
+			"offsets": {
+				"from": 208080,
+				"to": 214040
+			},
+			"text": " the network to a verifier and without further communication it can then be verified."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,040",
+				"to": "00:03:38,280"
+			},
+			"offsets": {
+				"from": 214040,
+				"to": 218280
+			},
+			"text": " Also we have a certain knowledge property that means some information that goes into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,280",
+				"to": "00:03:45,600"
+			},
+			"offsets": {
+				"from": 218280,
+				"to": 225600
+			},
+			"text": " processing is not revealed to the network later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,600",
+				"to": "00:03:50,960"
+			},
+			"offsets": {
+				"from": 225600,
+				"to": 230960
+			},
+			"text": " Verification cost and that's a big one is independent of the computational complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,960",
+				"to": "00:03:53,600"
+			},
+			"offsets": {
+				"from": 230960,
+				"to": 233600
+			},
+			"text": " of the initial computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,600",
+				"to": "00:03:59,640"
+			},
+			"offsets": {
+				"from": 233600,
+				"to": 239640
+			},
+			"text": " So no matter how complex your computation is the cost of verifying a proof is always"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,640",
+				"to": "00:04:00,640"
+			},
+			"offsets": {
+				"from": 239640,
+				"to": 240640
+			},
+			"text": " the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,640",
+				"to": "00:04:03,480"
+			},
+			"offsets": {
+				"from": 240640,
+				"to": 243480
+			},
+			"text": " Okay, so that's a key aspect."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,480",
+				"to": "00:04:10,560"
+			},
+			"offsets": {
+				"from": 243480,
+				"to": 250560
+			},
+			"text": " Now a little inconvenience is that to specify computations in a way that you can do certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,560",
+				"to": "00:04:16,080"
+			},
+			"offsets": {
+				"from": 250560,
+				"to": 256080
+			},
+			"text": " knowledge proofs on you have to think in an abstraction that's not very convenient to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,080",
+				"to": "00:04:17,640"
+			},
+			"offsets": {
+				"from": 256080,
+				"to": 257640
+			},
+			"text": " most developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,640",
+				"to": "00:04:23,680"
+			},
+			"offsets": {
+				"from": 257640,
+				"to": 263680
+			},
+			"text": " So for example you can specify computations as arithmetic circuits or rank one constraint"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,680",
+				"to": "00:04:24,760"
+			},
+			"offsets": {
+				"from": 263680,
+				"to": 264760
+			},
+			"text": " systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,760",
+				"to": "00:04:31,440"
+			},
+			"offsets": {
+				"from": 264760,
+				"to": 271440
+			},
+			"text": " Of course you can do it but it's just not convenient to do and that's what impacts usability"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,440",
+				"to": "00:04:32,440"
+			},
+			"offsets": {
+				"from": 271440,
+				"to": 272440
+			},
+			"text": " negatively."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,440",
+				"to": "00:04:39,680"
+			},
+			"offsets": {
+				"from": 272440,
+				"to": 279680
+			},
+			"text": " Let's take a brief look at the process of using CK Snarks before we move on to the tool itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,680",
+				"to": "00:04:41,480"
+			},
+			"offsets": {
+				"from": 279680,
+				"to": 281480
+			},
+			"text": " because it's necessary background."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,480",
+				"to": "00:04:48,080"
+			},
+			"offsets": {
+				"from": 281480,
+				"to": 288080
+			},
+			"text": " So here on the left we have a circuit or rank one constraint system that encodes a computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,080",
+				"to": "00:04:55,400"
+			},
+			"offsets": {
+				"from": 288080,
+				"to": 295400
+			},
+			"text": " In that case we just multiply two numbers and demand that that equals another number"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,400",
+				"to": "00:05:04,800"
+			},
+			"offsets": {
+				"from": 295400,
+				"to": 304800
+			},
+			"text": " and for example RSA encryption uses a different similar construction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,800",
+				"to": "00:05:09,640"
+			},
+			"offsets": {
+				"from": 304800,
+				"to": 309640
+			},
+			"text": " From that circuit or rank one constraint system the first step is a so called setup phase"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,640",
+				"to": "00:05:16,640"
+			},
+			"offsets": {
+				"from": 309640,
+				"to": 316640
+			},
+			"text": " which is needed to arrive at the proving key and the verification key that are then later"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,640",
+				"to": "00:05:19,680"
+			},
+			"offsets": {
+				"from": 316640,
+				"to": 319680
+			},
+			"text": " on needed in the proving process."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,680",
+				"to": "00:05:25,240"
+			},
+			"offsets": {
+				"from": 319680,
+				"to": 325240
+			},
+			"text": " So this setup has to be performed once for a circuit or rank one constraint system and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,240",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 325240,
+				"to": 330000
+			},
+			"text": " then it can be reused over and over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:35,520"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 335520
+			},
+			"text": " On the right side here you see the verification process based on the proving key, a prover"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,520",
+				"to": "00:05:38,720"
+			},
+			"offsets": {
+				"from": 335520,
+				"to": 338720
+			},
+			"text": " code for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,720",
+				"to": "00:05:44,360"
+			},
+			"offsets": {
+				"from": 338720,
+				"to": 344360
+			},
+			"text": " First find the solution for the problem at hand and then generate a proof that it correctly"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,360",
+				"to": "00:05:51,400"
+			},
+			"offsets": {
+				"from": 344360,
+				"to": 351400
+			},
+			"text": " executed that computation and found the solution and the cool thing is it could optionally supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,400",
+				"to": "00:05:55,800"
+			},
+			"offsets": {
+				"from": 351400,
+				"to": 355800
+			},
+			"text": " all the information that went into the processing but it could also keep some of the information"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,800",
+				"to": "00:05:56,880"
+			},
+			"offsets": {
+				"from": 355800,
+				"to": 356880
+			},
+			"text": " to itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,880",
+				"to": "00:06:02,760"
+			},
+			"offsets": {
+				"from": 356880,
+				"to": 362760
+			},
+			"text": " In that example here the prover only supplies set which is the result of the multiplication"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,760",
+				"to": "00:06:05,760"
+			},
+			"offsets": {
+				"from": 362760,
+				"to": 365760
+			},
+			"text": " and not the factors themselves that went into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,760",
+				"to": "00:06:10,840"
+			},
+			"offsets": {
+				"from": 365760,
+				"to": 370840
+			},
+			"text": " And the verifier can then check the correctness of the computation without redoing it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,840",
+				"to": "00:06:17,640"
+			},
+			"offsets": {
+				"from": 370840,
+				"to": 377640
+			},
+			"text": " that is much cheaper that verification process than the proving process and with that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,640",
+				"to": "00:06:22,920"
+			},
+			"offsets": {
+				"from": 377640,
+				"to": 382920
+			},
+			"text": " execution of the computation itself in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,920",
+				"to": "00:06:30,560"
+			},
+			"offsets": {
+				"from": 382920,
+				"to": 390560
+			},
+			"text": " So with bessanchim, Ethereum added three new precompiles that enable CK snark verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,560",
+				"to": "00:06:31,560"
+			},
+			"offsets": {
+				"from": 390560,
+				"to": 391560
+			},
+			"text": " on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,560",
+				"to": "00:06:37,440"
+			},
+			"offsets": {
+				"from": 391560,
+				"to": 397440
+			},
+			"text": " So we have elliptic curve addition, scalar multiplication and so called pairing check."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,440",
+				"to": "00:06:40,680"
+			},
+			"offsets": {
+				"from": 397440,
+				"to": 400680
+			},
+			"text": " But the big question is how do we use that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,680",
+				"to": "00:06:42,840"
+			},
+			"offsets": {
+				"from": 400680,
+				"to": 402840
+			},
+			"text": " And that's where Socrates comes in."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,840",
+				"to": "00:06:49,640"
+			},
+			"offsets": {
+				"from": 402840,
+				"to": 409640
+			},
+			"text": " So the vision of this toolbox is to provide a usable abstraction and tooling to support"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,640",
+				"to": "00:06:53,560"
+			},
+			"offsets": {
+				"from": 409640,
+				"to": 413560
+			},
+			"text": " CK snark on Ethereum to actually make them usable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,560",
+				"to": "00:07:00,880"
+			},
+			"offsets": {
+				"from": 413560,
+				"to": 420880
+			},
+			"text": " The goal is to support the complete process from program code specification to on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,880",
+				"to": "00:07:05,400"
+			},
+			"offsets": {
+				"from": 420880,
+				"to": 425400
+			},
+			"text": " verification of the execution of that program code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,400",
+				"to": "00:07:09,880"
+			},
+			"offsets": {
+				"from": 425400,
+				"to": 429880
+			},
+			"text": " It's supposed to seamlessly integrate with Ethereum and how it does that we'll see in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,880",
+				"to": "00:07:12,640"
+			},
+			"offsets": {
+				"from": 429880,
+				"to": 432640
+			},
+			"text": " a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,640",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 432640,
+				"to": 435000
+			},
+			"text": " Socrates comprises several things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:20,840"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 440840
+			},
+			"text": " One is a domain specific high level language that allows you to specify your computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,840",
+				"to": "00:07:27,760"
+			},
+			"offsets": {
+				"from": 440840,
+				"to": 447760
+			},
+			"text": " in a more abstract way than arithmetic circuits or rank one constraint system which are inconvenient."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,760",
+				"to": "00:07:34,840"
+			},
+			"offsets": {
+				"from": 447760,
+				"to": 454840
+			},
+			"text": " Then we have a compiler which transforms these programs into provable constraint systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,840",
+				"to": "00:07:39,440"
+			},
+			"offsets": {
+				"from": 454840,
+				"to": 459440
+			},
+			"text": " And then there's support for the different phases we need to go through with CK snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,440",
+				"to": "00:07:44,400"
+			},
+			"offsets": {
+				"from": 459440,
+				"to": 464400
+			},
+			"text": " So the setup phase, finding a solution to our constraint system which is the witness"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,400",
+				"to": "00:07:47,440"
+			},
+			"offsets": {
+				"from": 464400,
+				"to": 467440
+			},
+			"text": " computation, the proof generation itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,440",
+				"to": "00:07:52,120"
+			},
+			"offsets": {
+				"from": 467440,
+				"to": 472120
+			},
+			"text": " And then we can also using the tool, export the solidity smart contract that can then"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,120",
+				"to": "00:07:56,920"
+			},
+			"offsets": {
+				"from": 472120,
+				"to": 476920
+			},
+			"text": " be used to verify the computation on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,920",
+				"to": "00:07:59,840"
+			},
+			"offsets": {
+				"from": 476920,
+				"to": 479840
+			},
+			"text": " Let's briefly look at the language."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,840",
+				"to": "00:08:04,320"
+			},
+			"offsets": {
+				"from": 479840,
+				"to": 484320
+			},
+			"text": " So the language at this point is pretty close to the constraint system but provides some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,320",
+				"to": "00:08:07,480"
+			},
+			"offsets": {
+				"from": 484320,
+				"to": 487480
+			},
+			"text": " more convenient abstractions to specify circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,480",
+				"to": "00:08:10,520"
+			},
+			"offsets": {
+				"from": 487480,
+				"to": 490520
+			},
+			"text": " So the data type we have is prime field elements."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,520",
+				"to": "00:08:16,960"
+			},
+			"offsets": {
+				"from": 490520,
+				"to": 496960
+			},
+			"text": " You can just think of these as positive numbers smaller than a huge prime number."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,960",
+				"to": "00:08:19,920"
+			},
+			"offsets": {
+				"from": 496960,
+				"to": 499920
+			},
+			"text": " So essentially think of it as positive numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,920",
+				"to": "00:08:25,200"
+			},
+			"offsets": {
+				"from": 499920,
+				"to": 505200
+			},
+			"text": " Then we have imperative statements which is the abstraction most of you should be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,200",
+				"to": "00:08:27,600"
+			},
+			"offsets": {
+				"from": 505200,
+				"to": 507600
+			},
+			"text": " to when programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,600",
+				"to": "00:08:29,280"
+			},
+			"offsets": {
+				"from": 507600,
+				"to": 509280
+			},
+			"text": " We have assertions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,280",
+				"to": "00:08:31,060"
+			},
+			"offsets": {
+				"from": 509280,
+				"to": 511060
+			},
+			"text": " We have loops."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,060",
+				"to": "00:08:36,740"
+			},
+			"offsets": {
+				"from": 511060,
+				"to": 516740
+			},
+			"text": " We have conditionals and we have functions which allow you to structure your code and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,740",
+				"to": "00:08:40,260"
+			},
+			"offsets": {
+				"from": 516740,
+				"to": 520260
+			},
+			"text": " keep it a bit less redundant."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,260",
+				"to": "00:08:47,560"
+			},
+			"offsets": {
+				"from": 520260,
+				"to": 527560
+			},
+			"text": " So let's look at an example here for N2SK or binomial coefficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,560",
+				"to": "00:08:50,200"
+			},
+			"offsets": {
+				"from": 527560,
+				"to": 530200
+			},
+			"text": " The upper function here computes the factorial."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,200",
+				"to": "00:08:53,420"
+			},
+			"offsets": {
+				"from": 530200,
+				"to": 533420
+			},
+			"text": " We'll not look at that in detail because it's just not important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,420",
+				"to": "00:08:57,160"
+			},
+			"offsets": {
+				"from": 533420,
+				"to": 537160
+			},
+			"text": " What's more interesting here is the lower part is the main function."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,160",
+				"to": "00:09:03,180"
+			},
+			"offsets": {
+				"from": 537160,
+				"to": 543180
+			},
+			"text": " As you can see the main function here takes two arguments N and K and then there's a return"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,180",
+				"to": "00:09:05,260"
+			},
+			"offsets": {
+				"from": 543180,
+				"to": 545260
+			},
+			"text": " statement."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,260",
+				"to": "00:09:12,220"
+			},
+			"offsets": {
+				"from": 545260,
+				"to": 552220
+			},
+			"text": " Now in Socrates the arguments of the main function and the value of the return statement"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,220",
+				"to": "00:09:13,220"
+			},
+			"offsets": {
+				"from": 552220,
+				"to": 553220
+			},
+			"text": " are public."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,220",
+				"to": "00:09:19,980"
+			},
+			"offsets": {
+				"from": 553220,
+				"to": 559980
+			},
+			"text": " That means when you prove that computation you use that code to prove the correct execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,980",
+				"to": "00:09:25,380"
+			},
+			"offsets": {
+				"from": 559980,
+				"to": 565380
+			},
+			"text": " of that code N, K and the return value become public."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,380",
+				"to": "00:09:29,320"
+			},
+			"offsets": {
+				"from": 565380,
+				"to": 569320
+			},
+			"text": " If you do not want that to happen, if you want to keep that private, that information"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,320",
+				"to": "00:09:35,780"
+			},
+			"offsets": {
+				"from": 569320,
+				"to": 575780
+			},
+			"text": " you can simply not list that as arguments but still use the variables in the processing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,780",
+				"to": "00:09:36,920"
+			},
+			"offsets": {
+				"from": 575780,
+				"to": 576920
+			},
+			"text": " as we do here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,920",
+				"to": "00:09:43,920"
+			},
+			"offsets": {
+				"from": 576920,
+				"to": 583920
+			},
+			"text": " And then when you supply the proof and the inputs N and K do not appear in there and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,920",
+				"to": "00:09:49,760"
+			},
+			"offsets": {
+				"from": 583920,
+				"to": 589760
+			},
+			"text": " all the person verifying that thing would know is that you computed the binomial coefficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,760",
+				"to": "00:09:55,640"
+			},
+			"offsets": {
+				"from": 589760,
+				"to": 595640
+			},
+			"text": " and what the result was but N and K would not be known."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,640",
+				"to": "00:10:01,080"
+			},
+			"offsets": {
+				"from": 595640,
+				"to": 601080
+			},
+			"text": " Let's look at the user perspective and the command line interface so Curtis provides you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,080",
+				"to": "00:10:06,720"
+			},
+			"offsets": {
+				"from": 601080,
+				"to": 606720
+			},
+			"text": " So you start with high level code, you write that high level code and it gets compiled"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,720",
+				"to": "00:10:11,280"
+			},
+			"offsets": {
+				"from": 606720,
+				"to": 611280
+			},
+			"text": " to a set of conditions or also called flattened code."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,280",
+				"to": "00:10:18,640"
+			},
+			"offsets": {
+				"from": 611280,
+				"to": 618640
+			},
+			"text": " Based on that you can then find a valid variable assignment for that code which is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,640",
+				"to": "00:10:22,480"
+			},
+			"offsets": {
+				"from": 618640,
+				"to": 622480
+			},
+			"text": " a solution to your program and that's called a witness."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,480",
+				"to": "00:10:28,560"
+			},
+			"offsets": {
+				"from": 622480,
+				"to": 628560
+			},
+			"text": " So you can use a tool to find solutions for your programs and it also supports you with"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,560",
+				"to": "00:10:35,800"
+			},
+			"offsets": {
+				"from": 628560,
+				"to": 635800
+			},
+			"text": " a setup phase so you can use a tool to compute a verification key and a proving key which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,800",
+				"to": "00:10:38,120"
+			},
+			"offsets": {
+				"from": 635800,
+				"to": 638120
+			},
+			"text": " you will need later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,120",
+				"to": "00:10:44,160"
+			},
+			"offsets": {
+				"from": 638120,
+				"to": 644160
+			},
+			"text": " Based on the verification key you can derive a solidity smart contract deployed to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,160",
+				"to": "00:10:50,240"
+			},
+			"offsets": {
+				"from": 644160,
+				"to": 650240
+			},
+			"text": " network and then verify proofs that were generated with the proving key that came out of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,240",
+				"to": "00:10:52,280"
+			},
+			"offsets": {
+				"from": 650240,
+				"to": 652280
+			},
+			"text": " same setup phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,280",
+				"to": "00:11:00,640"
+			},
+			"offsets": {
+				"from": 652280,
+				"to": 660640
+			},
+			"text": " And to generate a proof there is that generate proof command which takes a given witness that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,640",
+				"to": "00:11:06,320"
+			},
+			"offsets": {
+				"from": 660640,
+				"to": 666320
+			},
+			"text": " you computed previously and the proving key and together you generate a proof that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,320",
+				"to": "00:11:12,680"
+			},
+			"offsets": {
+				"from": 666320,
+				"to": 672680
+			},
+			"text": " then be verified by the smart contract you created beforehand."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,680",
+				"to": "00:11:18,800"
+			},
+			"offsets": {
+				"from": 672680,
+				"to": 678800
+			},
+			"text": " The internal architecture of the tool looks like this so we start with code in that domain"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,800",
+				"to": "00:11:26,720"
+			},
+			"offsets": {
+				"from": 678800,
+				"to": 686720
+			},
+			"text": " specific language and that goes into a positive is then flattened and then you have an interpreter"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,720",
+				"to": "00:11:31,520"
+			},
+			"offsets": {
+				"from": 686720,
+				"to": 691520
+			},
+			"text": " which computes solution to the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,520",
+				"to": "00:11:38,400"
+			},
+			"offsets": {
+				"from": 691520,
+				"to": 698400
+			},
+			"text": " Here you can decide which part of the solution will become publicly available and which part"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,400",
+				"to": "00:11:39,680"
+			},
+			"offsets": {
+				"from": 698400,
+				"to": 699680
+			},
+			"text": " will remain private."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,680",
+				"to": "00:11:46,680"
+			},
+			"offsets": {
+				"from": 699680,
+				"to": 706680
+			},
+			"text": " So here you have the control and then after that we do just some format conversion to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,680",
+				"to": "00:11:56,920"
+			},
+			"offsets": {
+				"from": 706680,
+				"to": 716920
+			},
+			"text": " yeah to interface with the lip snark library which we use for the CK snark operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,920",
+				"to": "00:11:59,200"
+			},
+			"offsets": {
+				"from": 716920,
+				"to": 719200
+			},
+			"text": " themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,200",
+				"to": "00:12:07,720"
+			},
+			"offsets": {
+				"from": 719200,
+				"to": 727720
+			},
+			"text": " Then there is the contract exporter which can be used to export solidity smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,720",
+				"to": "00:12:11,240"
+			},
+			"offsets": {
+				"from": 727720,
+				"to": 731240
+			},
+			"text": " to verify proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,240",
+				"to": "00:12:20,840"
+			},
+			"offsets": {
+				"from": 731240,
+				"to": 740840
+			},
+			"text": " The on-chain proof verification looks like this so on the left side here we have what"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,840",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 740840,
+				"to": 745000
+			},
+			"text": " the Socrates tool generated is a proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:30,920"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 750920
+			},
+			"text": " It consists of eight elliptic curve points and inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,920",
+				"to": "00:12:37,960"
+			},
+			"offsets": {
+				"from": 750920,
+				"to": 757960
+			},
+			"text": " On the other side we have a verification contract which we also generated and that contains"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,960",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 757960,
+				"to": 760000
+			},
+			"text": " a verification key."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:47,400"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 767400
+			},
+			"text": " Seven elliptic curve points is what that is made up of and then there is the verify function"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,400",
+				"to": "00:12:57,120"
+			},
+			"offsets": {
+				"from": 767400,
+				"to": 777120
+			},
+			"text": " which uses the new precompiles that came with Byzantium to check the validity of the proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,120",
+				"to": "00:13:03,200"
+			},
+			"offsets": {
+				"from": 777120,
+				"to": 783200
+			},
+			"text": " and also make sure that the inputs were correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,200",
+				"to": "00:13:09,760"
+			},
+			"offsets": {
+				"from": 783200,
+				"to": 789760
+			},
+			"text": " At the moment a verification like that costs around about 1.6 million gas so actually a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,760",
+				"to": "00:13:11,400"
+			},
+			"offsets": {
+				"from": 789760,
+				"to": 791400
+			},
+			"text": " lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,400",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 791400,
+				"to": 796000
+			},
+			"text": " That means on a Robston test net we can do four in one block on the mainnet it is currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:17,800"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 797800
+			},
+			"text": " six in one block."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,800",
+				"to": "00:13:25,440"
+			},
+			"offsets": {
+				"from": 797800,
+				"to": 805440
+			},
+			"text": " The gas cost varies a bit with the amount of input parameters we give with the proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,440",
+				"to": "00:13:33,200"
+			},
+			"offsets": {
+				"from": 805440,
+				"to": 813200
+			},
+			"text": " but the main cost is constant and rather high."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,200",
+				"to": "00:13:38,840"
+			},
+			"offsets": {
+				"from": 813200,
+				"to": 818840
+			},
+			"text": " A couple of challenges and outlook of how we want to proceed with Socrates what would"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,840",
+				"to": "00:13:41,560"
+			},
+			"offsets": {
+				"from": 818840,
+				"to": 821560
+			},
+			"text": " be cool in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,560",
+				"to": "00:13:48,120"
+			},
+			"offsets": {
+				"from": 821560,
+				"to": 828120
+			},
+			"text": " I think for the language to be more usable, more convenient we would want additional types"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,120",
+				"to": "00:13:55,360"
+			},
+			"offsets": {
+				"from": 828120,
+				"to": 835360
+			},
+			"text": " so for example Boolean types, everything you can do with Boolean types can be done now"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,360",
+				"to": "00:14:03,360"
+			},
+			"offsets": {
+				"from": 835360,
+				"to": 843360
+			},
+			"text": " but it is just not as convenient to do it on prime field elements and then some integers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,360",
+				"to": "00:14:08,560"
+			},
+			"offsets": {
+				"from": 843360,
+				"to": 848560
+			},
+			"text": " that have a binary representation internally."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,560",
+				"to": "00:14:13,400"
+			},
+			"offsets": {
+				"from": 848560,
+				"to": 853400
+			},
+			"text": " What is very important and that is basically implementation work ahead of us is the main"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,400",
+				"to": "00:14:16,200"
+			},
+			"offsets": {
+				"from": 853400,
+				"to": 856200
+			},
+			"text": " specific library with important functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,200",
+				"to": "00:14:22,720"
+			},
+			"offsets": {
+				"from": 856200,
+				"to": 862720
+			},
+			"text": " Next thing we need in my opinion is hash function so we can do commitments in circuits"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,720",
+				"to": "00:14:27,200"
+			},
+			"offsets": {
+				"from": 862720,
+				"to": 867200
+			},
+			"text": " and then signature encryption that would be nice to have."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,200",
+				"to": "00:14:32,240"
+			},
+			"offsets": {
+				"from": 867200,
+				"to": 872240
+			},
+			"text": " Also we want to look at integration of other front ends that can also be used to arrive"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,240",
+				"to": "00:14:38,680"
+			},
+			"offsets": {
+				"from": 872240,
+				"to": 878680
+			},
+			"text": " at rank one constraint systems for example buffet."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,680",
+				"to": "00:14:47,200"
+			},
+			"offsets": {
+				"from": 878680,
+				"to": 887200
+			},
+			"text": " A generic CK snark challenge that is not specific to Socrates but rather always comes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,200",
+				"to": "00:14:55,160"
+			},
+			"offsets": {
+				"from": 887200,
+				"to": 895160
+			},
+			"text": " up when speaking about CK snark is the trusted setup phase so if you supply verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,160",
+				"to": "00:15:01,880"
+			},
+			"offsets": {
+				"from": 895160,
+				"to": 901880
+			},
+			"text": " smart contract and you want to verify something someone else proves to you and you are the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,880",
+				"to": "00:15:04,640"
+			},
+			"offsets": {
+				"from": 901880,
+				"to": 904640
+			},
+			"text": " only one to be convinced you don't have any problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,640",
+				"to": "00:15:09,640"
+			},
+			"offsets": {
+				"from": 904640,
+				"to": 909640
+			},
+			"text": " You run the setup and you know that you did it correctly and thus you can trust the proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,640",
+				"to": "00:15:14,360"
+			},
+			"offsets": {
+				"from": 909640,
+				"to": 914360
+			},
+			"text": " and you know that the person proving to you cannot fake proofs because you were in control"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,360",
+				"to": "00:15:22,360"
+			},
+			"offsets": {
+				"from": 914360,
+				"to": 922360
+			},
+			"text": " of the setup but if you want to use these proofs to also convince third parties, other"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,360",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 922360,
+				"to": 929000
+			},
+			"text": " parties observing these proofs on the blockchain then they would have to trust you with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 935000
+			},
+			"text": " setup phase so what would be great if we could eliminate some of that trust by integrating"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:41,800"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 941800
+			},
+			"text": " a distributed setup phase it just would have to become a bit more efficient than it was"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,800",
+				"to": "00:15:48,360"
+			},
+			"offsets": {
+				"from": 941800,
+				"to": 948360
+			},
+			"text": " in the CKASH multi-party computation protocol for example which they employed to do their"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,360",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 948360,
+				"to": 956000
+			},
+			"text": " trusted setup so I think we will hear more about that on Friday in the CK snark breakout"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 958000
+			},
+			"text": " session hopefully."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:04,600"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 964600
+			},
+			"text": " Okay so the code is open source it's available on GitHub you're all welcome to try it out"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,600",
+				"to": "00:16:11,040"
+			},
+			"offsets": {
+				"from": 964600,
+				"to": 971040
+			},
+			"text": " I'm happy to receive your feedback keep in mind it's proof of concept and research prototype"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,040",
+				"to": "00:16:18,360"
+			},
+			"offsets": {
+				"from": 971040,
+				"to": 978360
+			},
+			"text": " at this place we're actively developing it and we're always happy for people who want"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,360",
+				"to": "00:16:21,280"
+			},
+			"offsets": {
+				"from": 978360,
+				"to": 981280
+			},
+			"text": " to contribute to the further development."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,280",
+				"to": "00:16:27,640"
+			},
+			"offsets": {
+				"from": 981280,
+				"to": 987640
+			},
+			"text": " You can also contact me by email and I want to give credits to Christiane Raitweesner who"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,640",
+				"to": "00:16:33,920"
+			},
+			"offsets": {
+				"from": 987640,
+				"to": 993920
+			},
+			"text": " always provided very valuable feedback and input in discussions and also to Dennis Koonert"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,920",
+				"to": "00:16:37,680"
+			},
+			"offsets": {
+				"from": 993920,
+				"to": 997680
+			},
+			"text": " who contributed a lot to the existing implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,680",
+				"to": "00:16:38,280"
+			},
+			"offsets": {
+				"from": 997680,
+				"to": 998280
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,280",
+				"to": "00:16:40,280"
+			},
+			"offsets": {
+				"from": 998280,
+				"to": 1000280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,280",
+				"to": "00:16:47,280"
+			},
+			"offsets": {
+				"from": 1000280,
+				"to": 1007280
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,280",
+				"to": "00:16:54,280"
+			},
+			"offsets": {
+				"from": 1007280,
+				"to": 1014280
+			},
+			"text": " [Music]"
+		}
+	]
+}

@@ -1,0 +1,1979 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:12,720"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 12720
+			},
+			"text": " Hello, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,720",
+				"to": "00:00:13,960"
+			},
+			"offsets": {
+				"from": 12720,
+				"to": 13960
+			},
+			"text": " Thank you for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,960",
+				"to": "00:00:14,720"
+			},
+			"offsets": {
+				"from": 13960,
+				"to": 14720
+			},
+			"text": " I'm Adrian."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,720",
+				"to": "00:00:15,960"
+			},
+			"offsets": {
+				"from": 14720,
+				"to": 15960
+			},
+			"text": " I work at OpenZeplin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,960",
+				"to": "00:00:18,400"
+			},
+			"offsets": {
+				"from": 15960,
+				"to": 18400
+			},
+			"text": " And today I'm going to show you how you can very quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,400",
+				"to": "00:00:22,320"
+			},
+			"offsets": {
+				"from": 18400,
+				"to": 22320
+			},
+			"text": " build your first contract with OpenZeplin wizards."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,320",
+				"to": "00:00:24,640"
+			},
+			"offsets": {
+				"from": 22320,
+				"to": 24640
+			},
+			"text": " Very quickly, a few points about OpenZeplin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,640",
+				"to": "00:00:25,320"
+			},
+			"offsets": {
+				"from": 24640,
+				"to": 25320
+			},
+			"text": " you may know us."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,320",
+				"to": "00:00:28,240"
+			},
+			"offsets": {
+				"from": 25320,
+				"to": 28240
+			},
+			"text": " But our thesis now is that there is a trillion dollar"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,240",
+				"to": "00:00:30,720"
+			},
+			"offsets": {
+				"from": 28240,
+				"to": 30720
+			},
+			"text": " of an economy being built on smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,720",
+				"to": "00:00:32,640"
+			},
+			"offsets": {
+				"from": 30720,
+				"to": 32640
+			},
+			"text": " And we are not the one that we're going to build it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,640",
+				"to": "00:00:35,560"
+			},
+			"offsets": {
+				"from": 32640,
+				"to": 35560
+			},
+			"text": " You guys, the builders, are going to do that through your dabs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,560",
+				"to": "00:00:37,240"
+			},
+			"offsets": {
+				"from": 35560,
+				"to": 37240
+			},
+			"text": " through defies, through everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,240",
+				"to": "00:00:39,440"
+			},
+			"offsets": {
+				"from": 37240,
+				"to": 39440
+			},
+			"text": " But in order to do that, you will need a set of tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,440",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 39440,
+				"to": 43000
+			},
+			"text": " product, and services that will allow you to do it in a safe"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:43,640"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 43640
+			},
+			"text": " and effective way."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,640",
+				"to": "00:00:46,280"
+			},
+			"offsets": {
+				"from": 43640,
+				"to": 46280
+			},
+			"text": " And that's where we're coming trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,280",
+				"to": "00:00:49,720"
+			},
+			"offsets": {
+				"from": 46280,
+				"to": 49720
+			},
+			"text": " to be the leading providers for solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,720",
+				"to": "00:00:54,120"
+			},
+			"offsets": {
+				"from": 49720,
+				"to": 54120
+			},
+			"text": " for DAB developers and people in this web tree space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,120",
+				"to": "00:00:57,240"
+			},
+			"offsets": {
+				"from": 54120,
+				"to": 57240
+			},
+			"text": " We do that through many offerings already, obviously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,240",
+				"to": "00:00:58,960"
+			},
+			"offsets": {
+				"from": 57240,
+				"to": 58960
+			},
+			"text": " Defender that I encourage you to try,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,960",
+				"to": "00:01:02,440"
+			},
+			"offsets": {
+				"from": 58960,
+				"to": 62440
+			},
+			"text": " if you haven't tried it already, for managing your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,440",
+				"to": "00:01:05,560"
+			},
+			"offsets": {
+				"from": 62440,
+				"to": 65560
+			},
+			"text": " And also, the OpenZeplin contract library, obviously."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,560",
+				"to": "00:01:08,520"
+			},
+			"offsets": {
+				"from": 65560,
+				"to": 68520
+			},
+			"text": " And we support a lot of network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,520",
+				"to": "00:01:11,040"
+			},
+			"offsets": {
+				"from": 68520,
+				"to": 71040
+			},
+			"text": " So last year, one thing we did on the contract team"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,040",
+				"to": "00:01:13,240"
+			},
+			"offsets": {
+				"from": 71040,
+				"to": 73240
+			},
+			"text": " is create the contract wizard."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,240",
+				"to": "00:01:15,680"
+			},
+			"offsets": {
+				"from": 73240,
+				"to": 75680
+			},
+			"text": " And basically-- so it should be animated, but it's a PDF."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,680",
+				"to": "00:01:17,960"
+			},
+			"offsets": {
+				"from": 75680,
+				"to": 77960
+			},
+			"text": " So sorry, you'll see it in action later."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,960",
+				"to": "00:01:19,760"
+			},
+			"offsets": {
+				"from": 77960,
+				"to": 79760
+			},
+			"text": " The contract wizard, basically a website"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,760",
+				"to": "00:01:23,680"
+			},
+			"offsets": {
+				"from": 79760,
+				"to": 83680
+			},
+			"text": " that allows you to bootstrapped, basically, a lot of contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,680",
+				"to": "00:01:26,040"
+			},
+			"offsets": {
+				"from": 83680,
+				"to": 86040
+			},
+			"text": " Here's the 2721s, governors."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,040",
+				"to": "00:01:27,320"
+			},
+			"offsets": {
+				"from": 86040,
+				"to": 87320
+			},
+			"text": " We'll see that together."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,320",
+				"to": "00:01:30,320"
+			},
+			"offsets": {
+				"from": 87320,
+				"to": 90320
+			},
+			"text": " And the idea is to remove as much pain as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,320",
+				"to": "00:01:32,240"
+			},
+			"offsets": {
+				"from": 90320,
+				"to": 92240
+			},
+			"text": " in the early stage of building your contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,240",
+				"to": "00:01:35,320"
+			},
+			"offsets": {
+				"from": 92240,
+				"to": 95320
+			},
+			"text": " by providing what is common to everybody, what is easy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,320",
+				"to": "00:01:38,320"
+			},
+			"offsets": {
+				"from": 95320,
+				"to": 98320
+			},
+			"text": " so that you can then focus on either just deploying them"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,320",
+				"to": "00:01:40,120"
+			},
+			"offsets": {
+				"from": 98320,
+				"to": 100120
+			},
+			"text": " and building your app on top of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,120",
+				"to": "00:01:42,960"
+			},
+			"offsets": {
+				"from": 100120,
+				"to": 102960
+			},
+			"text": " or customizing it with some logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,960",
+				"to": "00:01:44,280"
+			},
+			"offsets": {
+				"from": 102960,
+				"to": 104280
+			},
+			"text": " So yeah, we don't have much time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,280",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 104280,
+				"to": 106000
+			},
+			"text": " so let's just go to a demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:47,600"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 107600
+			},
+			"text": " So you know how the network is, so I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,600",
+				"to": "00:01:49,400"
+			},
+			"offsets": {
+				"from": 107600,
+				"to": 109400
+			},
+			"text": " just running a local instance here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,400",
+				"to": "00:01:53,440"
+			},
+			"offsets": {
+				"from": 109400,
+				"to": 113440
+			},
+			"text": " but you can get that to wizard.epin.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,440",
+				"to": "00:01:55,320"
+			},
+			"offsets": {
+				"from": 113440,
+				"to": 115320
+			},
+			"text": " And for example, today, I propose"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,320",
+				"to": "00:01:58,400"
+			},
+			"offsets": {
+				"from": 115320,
+				"to": 118400
+			},
+			"text": " that we both create a governor DAO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,400",
+				"to": "00:02:00,520"
+			},
+			"offsets": {
+				"from": 118400,
+				"to": 120520
+			},
+			"text": " that we could all be participating,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,520",
+				"to": "00:02:02,720"
+			},
+			"offsets": {
+				"from": 120520,
+				"to": 122720
+			},
+			"text": " and our participation in this DAO"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,720",
+				"to": "00:02:05,040"
+			},
+			"offsets": {
+				"from": 122720,
+				"to": 125040
+			},
+			"text": " will be represented by an NFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,040",
+				"to": "00:02:07,720"
+			},
+			"offsets": {
+				"from": 125040,
+				"to": 127720
+			},
+			"text": " So we'll start by building an NFT contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,720",
+				"to": "00:02:10,520"
+			},
+			"offsets": {
+				"from": 127720,
+				"to": 130520
+			},
+			"text": " So we're going to take a near 721 contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,520",
+				"to": "00:02:13,200"
+			},
+			"offsets": {
+				"from": 130520,
+				"to": 133200
+			},
+			"text": " We're going to make it mintable, and you see the code change."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,200",
+				"to": "00:02:15,360"
+			},
+			"offsets": {
+				"from": 133200,
+				"to": 135360
+			},
+			"text": " So if you are teaching Solidity, like using that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,360",
+				"to": "00:02:18,360"
+			},
+			"offsets": {
+				"from": 135360,
+				"to": 138360
+			},
+			"text": " it's also a great tool for showcasing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,360",
+				"to": "00:02:21,920"
+			},
+			"offsets": {
+				"from": 138360,
+				"to": 141920
+			},
+			"text": " how adding features modifies your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,920",
+				"to": "00:02:23,560"
+			},
+			"offsets": {
+				"from": 141920,
+				"to": 143560
+			},
+			"text": " So I'm putting the vote module obviously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,560",
+				"to": "00:02:25,360"
+			},
+			"offsets": {
+				"from": 143560,
+				"to": 145360
+			},
+			"text": " because that will help us a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,360",
+				"to": "00:02:28,040"
+			},
+			"offsets": {
+				"from": 145360,
+				"to": 148040
+			},
+			"text": " I'm using roles instead of ownability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,040",
+				"to": "00:02:32,200"
+			},
+			"offsets": {
+				"from": 148040,
+				"to": 152200
+			},
+			"text": " but you see that the wizard updates everything very nicely."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,200",
+				"to": "00:02:33,040"
+			},
+			"offsets": {
+				"from": 152200,
+				"to": 153040
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,040",
+				"to": "00:02:34,920"
+			},
+			"offsets": {
+				"from": 153040,
+				"to": 154920
+			},
+			"text": " That's a very simple, maybe make it burnable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,920",
+				"to": "00:02:37,680"
+			},
+			"offsets": {
+				"from": 154920,
+				"to": 157680
+			},
+			"text": " but that's a very simple NFT contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,680",
+				"to": "00:02:40,800"
+			},
+			"offsets": {
+				"from": 157680,
+				"to": 160800
+			},
+			"text": " So once you have that, you can just copy paste,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,800",
+				"to": "00:02:44,120"
+			},
+			"offsets": {
+				"from": 160800,
+				"to": 164120
+			},
+			"text": " download it, but what we're going to do is open it in Remix."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,120",
+				"to": "00:02:47,440"
+			},
+			"offsets": {
+				"from": 164120,
+				"to": 167440
+			},
+			"text": " And it's also a local instance of Remix, because network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,440",
+				"to": "00:02:54,440"
+			},
+			"offsets": {
+				"from": 169440,
+				"to": 174440
+			},
+			"text": " And here you see that your code is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,440",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 174440,
+				"to": 178000
+			},
+			"text": " It just goes put into this part here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:00,320"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 180320
+			},
+			"text": " So we have the file and we are ready to work on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,320",
+				"to": "00:03:01,680"
+			},
+			"offsets": {
+				"from": 180320,
+				"to": 181680
+			},
+			"text": " But we want to do a governor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,680",
+				"to": "00:03:04,840"
+			},
+			"offsets": {
+				"from": 181680,
+				"to": 184840
+			},
+			"text": " so we just need more than just an NFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,840",
+				"to": "00:03:06,840"
+			},
+			"offsets": {
+				"from": 184840,
+				"to": 186840
+			},
+			"text": " So we're going to go back to here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,840",
+				"to": "00:03:08,480"
+			},
+			"offsets": {
+				"from": 186840,
+				"to": 188480
+			},
+			"text": " and now go to the governor."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,480",
+				"to": "00:03:10,680"
+			},
+			"offsets": {
+				"from": 188480,
+				"to": 190680
+			},
+			"text": " And let's make a governor that is pretty simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,680",
+				"to": "00:03:14,400"
+			},
+			"offsets": {
+				"from": 190680,
+				"to": 194400
+			},
+			"text": " We have a current that at least 10 NFT holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,400",
+				"to": "00:03:15,920"
+			},
+			"offsets": {
+				"from": 194400,
+				"to": 195920
+			},
+			"text": " We need to participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,920",
+				"to": "00:03:19,200"
+			},
+			"offsets": {
+				"from": 195920,
+				"to": 199200
+			},
+			"text": " Obviously, we are going to use the RC721 votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,200",
+				"to": "00:03:20,280"
+			},
+			"offsets": {
+				"from": 199200,
+				"to": 200280
+			},
+			"text": " So we don't want a time lock,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,280",
+				"to": "00:03:22,760"
+			},
+			"offsets": {
+				"from": 200280,
+				"to": 202760
+			},
+			"text": " but we want to make it upgradable to UUPS."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,760",
+				"to": "00:03:25,640"
+			},
+			"offsets": {
+				"from": 202760,
+				"to": 205640
+			},
+			"text": " So yeah, so that's a governor that is upgradable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,640",
+				"to": "00:03:26,520"
+			},
+			"offsets": {
+				"from": 205640,
+				"to": 206520
+			},
+			"text": " And since it's upgradable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,520",
+				"to": "00:03:29,200"
+			},
+			"offsets": {
+				"from": 206520,
+				"to": 209200
+			},
+			"text": " maybe we don't want to have the setting updateable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,200",
+				"to": "00:03:31,600"
+			},
+			"offsets": {
+				"from": 209200,
+				"to": 211600
+			},
+			"text": " we will update it to upgrade what you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,600",
+				"to": "00:03:33,120"
+			},
+			"offsets": {
+				"from": 211600,
+				"to": 213120
+			},
+			"text": " That's just our code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,120",
+				"to": "00:03:35,720"
+			},
+			"offsets": {
+				"from": 213120,
+				"to": 215720
+			},
+			"text": " So it turns out to be a pretty small piece of code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,720",
+				"to": "00:03:38,360"
+			},
+			"offsets": {
+				"from": 215720,
+				"to": 218360
+			},
+			"text": " but if I had put that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,360",
+				"to": "00:03:40,320"
+			},
+			"offsets": {
+				"from": 218360,
+				"to": 220320
+			},
+			"text": " like you see that there is a lot of oversposives"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,320",
+				"to": "00:03:42,040"
+			},
+			"offsets": {
+				"from": 220320,
+				"to": 222040
+			},
+			"text": " and overrides that are sometimes painful."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,040",
+				"to": "00:03:45,680"
+			},
+			"offsets": {
+				"from": 222040,
+				"to": 225680
+			},
+			"text": " So the result is here to help you figure that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,680",
+				"to": "00:03:47,800"
+			},
+			"offsets": {
+				"from": 225680,
+				"to": 227800
+			},
+			"text": " And so know that I'm happy with my governor."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,800",
+				"to": "00:03:49,800"
+			},
+			"offsets": {
+				"from": 227800,
+				"to": 229800
+			},
+			"text": " I'm going to just open that in Remix."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,800",
+				"to": "00:03:55,760"
+			},
+			"offsets": {
+				"from": 229800,
+				"to": 235760
+			},
+			"text": " If this one, Remix is a bit strange,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,760",
+				"to": "00:03:59,240"
+			},
+			"offsets": {
+				"from": 235760,
+				"to": 239240
+			},
+			"text": " but now I should have both files here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,240",
+				"to": "00:04:01,880"
+			},
+			"offsets": {
+				"from": 239240,
+				"to": 241880
+			},
+			"text": " my token and my governor."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,880",
+				"to": "00:04:03,600"
+			},
+			"offsets": {
+				"from": 241880,
+				"to": 243600
+			},
+			"text": " So let's deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,600",
+				"to": "00:04:08,400"
+			},
+			"offsets": {
+				"from": 243600,
+				"to": 248400
+			},
+			"text": " So I'm going to use a local compiler because otherwise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,400",
+				"to": "00:04:10,760"
+			},
+			"offsets": {
+				"from": 248400,
+				"to": 250760
+			},
+			"text": " it's not going to work without network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,760",
+				"to": "00:04:13,760"
+			},
+			"offsets": {
+				"from": 250760,
+				"to": 253760
+			},
+			"text": " And I'm going to compile this file."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,760",
+				"to": "00:04:16,560"
+			},
+			"offsets": {
+				"from": 253760,
+				"to": 256560
+			},
+			"text": " This is possibly the longest part of the bring a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,560",
+				"to": "00:04:19,840"
+			},
+			"offsets": {
+				"from": 256560,
+				"to": 259840
+			},
+			"text": " that's like compiling it in Remix in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,840",
+				"to": "00:04:21,680"
+			},
+			"offsets": {
+				"from": 259840,
+				"to": 261680
+			},
+			"text": " Hopefully it doesn't take too long"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,680",
+				"to": "00:04:23,120"
+			},
+			"offsets": {
+				"from": 261680,
+				"to": 263120
+			},
+			"text": " because I only have three minutes left."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,120",
+				"to": "00:04:23,960"
+			},
+			"offsets": {
+				"from": 263120,
+				"to": 263960
+			},
+			"text": " Okay, it's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,960",
+				"to": "00:04:26,440"
+			},
+			"offsets": {
+				"from": 263960,
+				"to": 266440
+			},
+			"text": " Oh, one thing we could do is like this is honorable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,440",
+				"to": "00:04:28,280"
+			},
+			"offsets": {
+				"from": 266440,
+				"to": 268280
+			},
+			"text": " but here we could just modify that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,280",
+				"to": "00:04:31,080"
+			},
+			"offsets": {
+				"from": 268280,
+				"to": 271080
+			},
+			"text": " and make it only governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,080",
+				"to": "00:04:36,520"
+			},
+			"offsets": {
+				"from": 271080,
+				"to": 276520
+			},
+			"text": " So that your, your great ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,520",
+				"to": "00:04:41,080"
+			},
+			"offsets": {
+				"from": 276520,
+				"to": 281080
+			},
+			"text": " would be managed not by the owner that we can remove,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,080",
+				"to": "00:04:44,600"
+			},
+			"offsets": {
+				"from": 281080,
+				"to": 284600
+			},
+			"text": " but by the governor itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,600",
+				"to": "00:04:46,880"
+			},
+			"offsets": {
+				"from": 284600,
+				"to": 286880
+			},
+			"text": " So this is a good time for you to like modify"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,880",
+				"to": "00:04:48,880"
+			},
+			"offsets": {
+				"from": 286880,
+				"to": 288880
+			},
+			"text": " your contract a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,880",
+				"to": "00:04:52,480"
+			},
+			"offsets": {
+				"from": 288880,
+				"to": 292480
+			},
+			"text": " Obviously, I haven't made any type when it will compile."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,480",
+				"to": "00:04:56,400"
+			},
+			"offsets": {
+				"from": 292480,
+				"to": 296400
+			},
+			"text": " Again, always the longest part."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,400",
+				"to": "00:04:57,840"
+			},
+			"offsets": {
+				"from": 296400,
+				"to": 297840
+			},
+			"text": " Yes, it's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,840",
+				"to": "00:05:02,440"
+			},
+			"offsets": {
+				"from": 297840,
+				"to": 302440
+			},
+			"text": " I also need to compile this, which is my token."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,440",
+				"to": "00:05:03,640"
+			},
+			"offsets": {
+				"from": 302440,
+				"to": 303640
+			},
+			"text": " So here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,640",
+				"to": "00:05:10,160"
+			},
+			"offsets": {
+				"from": 303640,
+				"to": 310160
+			},
+			"text": " And now that this is compiled."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,160",
+				"to": "00:05:14,120"
+			},
+			"offsets": {
+				"from": 310160,
+				"to": 314120
+			},
+			"text": " Yes, I can just go here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,120",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 314120,
+				"to": 315000
+			},
+			"text": " take my token."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:16,520"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 316520
+			},
+			"text": " So my token is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,520",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 316520,
+				"to": 318000
+			},
+			"text": " It's only a C721."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:20,920"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 320920
+			},
+			"text": " I can just deploy it again to a local instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,920",
+				"to": "00:05:23,520"
+			},
+			"offsets": {
+				"from": 320920,
+				"to": 323520
+			},
+			"text": " We're not going to wait for, for Goli."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,520",
+				"to": "00:05:25,160"
+			},
+			"offsets": {
+				"from": 323520,
+				"to": 325160
+			},
+			"text": " Oh, I removed it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,160",
+				"to": "00:05:26,440"
+			},
+			"offsets": {
+				"from": 325160,
+				"to": 326440
+			},
+			"text": " Yeah, this is okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,440",
+				"to": "00:05:28,760"
+			},
+			"offsets": {
+				"from": 326440,
+				"to": 328760
+			},
+			"text": " This is my token here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,760",
+				"to": "00:05:29,800"
+			},
+			"offsets": {
+				"from": 328760,
+				"to": 329800
+			},
+			"text": " I've got a lot of features."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,800",
+				"to": "00:05:32,640"
+			},
+			"offsets": {
+				"from": 329800,
+				"to": 332640
+			},
+			"text": " So I can just take my address here"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,640",
+				"to": "00:05:37,160"
+			},
+			"offsets": {
+				"from": 332640,
+				"to": 337160
+			},
+			"text": " and paste it into Safe Mint to mint myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,160",
+				"to": "00:05:40,600"
+			},
+			"offsets": {
+				"from": 337160,
+				"to": 340600
+			},
+			"text": " One, two, three tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,600",
+				"to": "00:05:42,240"
+			},
+			"offsets": {
+				"from": 340600,
+				"to": 342240
+			},
+			"text": " Yeah, I've got three tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,240",
+				"to": "00:05:44,480"
+			},
+			"offsets": {
+				"from": 342240,
+				"to": 344480
+			},
+			"text": " If you get a look at my balance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,480",
+				"to": "00:05:46,600"
+			},
+			"offsets": {
+				"from": 344480,
+				"to": 346600
+			},
+			"text": " I've got three tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,600",
+				"to": "00:05:48,920"
+			},
+			"offsets": {
+				"from": 346600,
+				"to": 348920
+			},
+			"text": " I need to delegate this to myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,920",
+				"to": "00:05:51,200"
+			},
+			"offsets": {
+				"from": 348920,
+				"to": 351200
+			},
+			"text": " So I'm just calling the delegate function."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,200",
+				"to": "00:05:55,840"
+			},
+			"offsets": {
+				"from": 351200,
+				"to": 355840
+			},
+			"text": " And right now, if I go to get votes here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,840",
+				"to": "00:05:58,680"
+			},
+			"offsets": {
+				"from": 355840,
+				"to": 358680
+			},
+			"text": " you'll see that my wallet has also three votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,680",
+				"to": "00:05:59,520"
+			},
+			"offsets": {
+				"from": 358680,
+				"to": 359520
+			},
+			"text": " So that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,520",
+				"to": "00:06:01,160"
+			},
+			"offsets": {
+				"from": 359520,
+				"to": 361160
+			},
+			"text": " Know that we have this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,160",
+				"to": "00:06:03,960"
+			},
+			"offsets": {
+				"from": 361160,
+				"to": 363960
+			},
+			"text": " We are going to deploy the second part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,960",
+				"to": "00:06:06,520"
+			},
+			"offsets": {
+				"from": 363960,
+				"to": 366520
+			},
+			"text": " which is our governor."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,520",
+				"to": "00:06:08,200"
+			},
+			"offsets": {
+				"from": 366520,
+				"to": 368200
+			},
+			"text": " Where is the governor?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,200",
+				"to": "00:06:09,400"
+			},
+			"offsets": {
+				"from": 368200,
+				"to": 369400
+			},
+			"text": " It's not here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,400",
+				"to": "00:06:14,400"
+			},
+			"offsets": {
+				"from": 371400,
+				"to": 374400
+			},
+			"text": " My governor is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,400",
+				"to": "00:06:17,680"
+			},
+			"offsets": {
+				"from": 374400,
+				"to": 377680
+			},
+			"text": " We remember that the governor was an upgradable contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,680",
+				"to": "00:06:19,400"
+			},
+			"offsets": {
+				"from": 377680,
+				"to": 379400
+			},
+			"text": " So basically what is going to happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,400",
+				"to": "00:06:21,400"
+			},
+			"offsets": {
+				"from": 379400,
+				"to": 381400
+			},
+			"text": " is that Remix is going to understand that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,400",
+				"to": "00:06:23,960"
+			},
+			"offsets": {
+				"from": 381400,
+				"to": 383960
+			},
+			"text": " and is going to deploy first implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,960",
+				"to": "00:06:28,400"
+			},
+			"offsets": {
+				"from": 383960,
+				"to": 388400
+			},
+			"text": " And then the proxy, which is great from Remi."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,400",
+				"to": "00:06:29,400"
+			},
+			"offsets": {
+				"from": 388400,
+				"to": 389400
+			},
+			"text": " That is support."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,400",
+				"to": "00:06:31,400"
+			},
+			"offsets": {
+				"from": 389400,
+				"to": 391400
+			},
+			"text": " That's no use that I have to contract the governor."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,400",
+				"to": "00:06:32,400"
+			},
+			"offsets": {
+				"from": 391400,
+				"to": 392400
+			},
+			"text": " And this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,400",
+				"to": "00:06:34,400"
+			},
+			"offsets": {
+				"from": 392400,
+				"to": 394400
+			},
+			"text": " And if I go there, and I just again"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,400",
+				"to": "00:06:37,400"
+			},
+			"offsets": {
+				"from": 394400,
+				"to": 397400
+			},
+			"text": " copy paste the address of my account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,400",
+				"to": "00:06:42,400"
+			},
+			"offsets": {
+				"from": 397400,
+				"to": 402400
+			},
+			"text": " and I see is the get past vote, where is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,400",
+				"to": "00:06:46,400"
+			},
+			"offsets": {
+				"from": 402400,
+				"to": 406400
+			},
+			"text": " It's in the view function."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,400",
+				"to": "00:06:51,400"
+			},
+			"offsets": {
+				"from": 406400,
+				"to": 411400
+			},
+			"text": " I got a get votes that allows me to check"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,400",
+				"to": "00:06:55,400"
+			},
+			"offsets": {
+				"from": 411400,
+				"to": 415400
+			},
+			"text": " what were my votes at block number six."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,400",
+				"to": "00:06:57,400"
+			},
+			"offsets": {
+				"from": 415400,
+				"to": 417400
+			},
+			"text": " And at block number six, I had three votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,400",
+				"to": "00:07:00,400"
+			},
+			"offsets": {
+				"from": 417400,
+				"to": 420400
+			},
+			"text": " That was after I delegated that block number three,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,400",
+				"to": "00:07:01,400"
+			},
+			"offsets": {
+				"from": 420400,
+				"to": 421400
+			},
+			"text": " I had zero votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,400",
+				"to": "00:07:03,400"
+			},
+			"offsets": {
+				"from": 421400,
+				"to": 423400
+			},
+			"text": " That was before my delegation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,400",
+				"to": "00:07:05,400"
+			},
+			"offsets": {
+				"from": 423400,
+				"to": 425400
+			},
+			"text": " So we're not going to do a proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,400",
+				"to": "00:07:07,400"
+			},
+			"offsets": {
+				"from": 425400,
+				"to": 427400
+			},
+			"text": " or anything we are out of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,400",
+				"to": "00:07:09,400"
+			},
+			"offsets": {
+				"from": 427400,
+				"to": 429400
+			},
+			"text": " But you could take this, put it into defender"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,400",
+				"to": "00:07:11,400"
+			},
+			"offsets": {
+				"from": 429400,
+				"to": 431400
+			},
+			"text": " to propose easily from Open Zeppelin Defender."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,400",
+				"to": "00:07:13,400"
+			},
+			"offsets": {
+				"from": 431400,
+				"to": 433400
+			},
+			"text": " You could also link that to Tally"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,400",
+				"to": "00:07:16,400"
+			},
+			"offsets": {
+				"from": 433400,
+				"to": 436400
+			},
+			"text": " so that your user and your NFT holders can vote easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,400",
+				"to": "00:07:18,400"
+			},
+			"offsets": {
+				"from": 436400,
+				"to": 438400
+			},
+			"text": " And so basically in seven minutes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,400",
+				"to": "00:07:21,400"
+			},
+			"offsets": {
+				"from": 438400,
+				"to": 441400
+			},
+			"text": " we managed to deploy an entire government system"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,400",
+				"to": "00:07:22,400"
+			},
+			"offsets": {
+				"from": 441400,
+				"to": 442400
+			},
+			"text": " based on NFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,400",
+				"to": "00:07:25,400"
+			},
+			"offsets": {
+				"from": 442400,
+				"to": 445400
+			},
+			"text": " And that wouldn't have been possible without the wizard."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,400",
+				"to": "00:07:27,400"
+			},
+			"offsets": {
+				"from": 445400,
+				"to": 447400
+			},
+			"text": " So yeah, that's what we are very proud of."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,400",
+				"to": "00:07:29,400"
+			},
+			"offsets": {
+				"from": 447400,
+				"to": 449400
+			},
+			"text": " We want you to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,400",
+				"to": "00:07:31,400"
+			},
+			"offsets": {
+				"from": 449400,
+				"to": 451400
+			},
+			"text": " And I should have put the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,400",
+				"to": "00:07:34,400"
+			},
+			"offsets": {
+				"from": 451400,
+				"to": 454400
+			},
+			"text": " The address is wizard.open Zeppelin.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,400",
+				"to": "00:07:36,400"
+			},
+			"offsets": {
+				"from": 454400,
+				"to": 456400
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,400",
+				"to": "00:07:50,400"
+			},
+			"offsets": {
+				"from": 456400,
+				"to": 470400
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

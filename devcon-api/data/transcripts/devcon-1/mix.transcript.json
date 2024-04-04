@@ -1,0 +1,1825 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 20000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:21,600"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 21600
+			},
+			"text": " >> Yeah, let's talk about mix."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,600",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 21600,
+				"to": 23000
+			},
+			"text": " My name is Arcadia Peronion."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 33000
+			},
+			"text": " And mix is an IDE for developing distributed applications on a theorem platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 35000
+			},
+			"text": " It started about a year ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 41000
+			},
+			"text": " We've been working on it in -- if they're brilliant, I did some work on it a few months ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 46000
+			},
+			"text": " But nowadays it's been mostly programmed by a younger boy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 56000
+			},
+			"text": " We wouldn't be here today, so still, credit should go to Jan and of course, Yuta and Afsar"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 58000
+			},
+			"text": " for providing design."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 65000
+			},
+			"text": " This will be a live demonstration."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 69000
+			},
+			"text": " Just a sec."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 98000
+			},
+			"text": " So, the idea behind mix is to provide an environment for developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 105000
+			},
+			"text": " database and to support a full cycle for the application development starting from smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 115000
+			},
+			"text": " contracts and moving to user interface and testing to deployment and to update."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 118000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 120000
+			},
+			"text": " So, mix is a desktop application."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 124000
+			},
+			"text": " It doesn't require any network connection to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 133000
+			},
+			"text": " And let's take a look at what features we have here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 138000
+			},
+			"text": " So, the basic is this simple editor we have for contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 142000
+			},
+			"text": " It has all the features you would expect from code editors such as syntax,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 145000
+			},
+			"text": " highlighting, and the completion."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 156000
+			},
+			"text": " Now, it also highlights errors in the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 161000
+			},
+			"text": " So, let's say I would make an error here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 169000
+			},
+			"text": " Yeah, I could -- you could show the error immediately and navigate between errors, fix errors, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 172000
+			},
+			"text": " other completion also works here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 176000
+			},
+			"text": " So, this is a basic token contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 182000
+			},
+			"text": " The same idea was mentioned in the previous talk and this is the simplest form of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 185000
+			},
+			"text": " token contract you can have."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 194000
+			},
+			"text": " It only has the same function which transfers tokens from one account to another right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 204000
+			},
+			"text": " So, after I've done writing my contract, the next step would be to test it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 210000
+			},
+			"text": " And for that, I have this scenario panel here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 217000
+			},
+			"text": " Now, scenario is basically a sequence of transactions executed in the same way they would execute an"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 225000
+			},
+			"text": " error in the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 230000
+			},
+			"text": " So, this is in fact sandboxed blockchain very much like in the either camp by the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 232000
+			},
+			"text": " view it's in earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 235000
+			},
+			"text": " But there are some key differences here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 240000
+			},
+			"text": " So, I can set up a number of transactions to test my contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 245000
+			},
+			"text": " I can have multiple scenarios to test various aspects."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 253000
+			},
+			"text": " This particular testing blockchain has a genesis state which can -- I can import from a JSON file"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 260000
+			},
+			"text": " which I can generate from an actual blockchain or I can just list accounts here with some"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 261000
+			},
+			"text": " balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 267000
+			},
+			"text": " So, yeah, for accounts here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 272000
+			},
+			"text": " And I also have two transactions here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 274000
+			},
+			"text": " Each of them goes into a separate one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 285000
+			},
+			"text": " So, the first transaction, what it does, it devoys my contract on this sandboxed blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 292000
+			},
+			"text": " Here I have a UI to specify transaction parameters and that includes -- as you can see here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 299000
+			},
+			"text": " my contract has a constructor which accepts a single argument and I can provide a value"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 303000
+			},
+			"text": " for this argument right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 312000
+			},
+			"text": " Also, it allows to set basic transaction parameters such as gas and gas price."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 313000
+			},
+			"text": " I have these."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 321000
+			},
+			"text": " And the second transaction just sends some tokens from current account to another account."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 329000
+			},
+			"text": " So, I have the send function here and it also accepts two parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 335000
+			},
+			"text": " The recipient for the transfer and the number of tokens to transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 339000
+			},
+			"text": " Here it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 341000
+			},
+			"text": " I'm with the click of the button."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 346000
+			},
+			"text": " I can execute these transactions and get results."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 352000
+			},
+			"text": " So, this is my current state displayed here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 361000
+			},
+			"text": " It shows contract storage and configured accounts as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 362000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 365000
+			},
+			"text": " So, this is a simple contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 371000
+			},
+			"text": " But I've seen people write in really complex contracts in Solidity and what if something"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 380000
+			},
+			"text": " runs wrong and we might want to debug things and what makes supports is building debugger"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 381000
+			},
+			"text": " for Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 384000
+			},
+			"text": " Let's take a look at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 391000
+			},
+			"text": " So, I have this debug transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 393000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 399000
+			},
+			"text": " And I can -- I'm debugging this send function now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 402000
+			},
+			"text": " I can step to the code and see how it gets executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 404000
+			},
+			"text": " This operates on an expression level."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 410000
+			},
+			"text": " So, I can step not over the lines but individual Solidity expressions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 415000
+			},
+			"text": " And as I go, I can see how much gas is a function."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 418000
+			},
+			"text": " The transactions can see them so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 422000
+			},
+			"text": " And as you can see, it's fully growing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 429000
+			},
+			"text": " And notice how steep it went from 305,000 something."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 434000
+			},
+			"text": " That's because storage rights are expensive in the period."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 441000
+			},
+			"text": " So, I can step forward and backwards so basically I can navigate to any point in time here during"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 448000
+			},
+			"text": " transaction execution and examine the state of the contract at this point of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 453000
+			},
+			"text": " It tells me here my local variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 458000
+			},
+			"text": " And the contract storage as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 461000
+			},
+			"text": " This allows contract debugging."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 465000
+			},
+			"text": " You can figure out what's going wrong with your contract here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 472000
+			},
+			"text": " And if it's not enough, you can go deeper to this EVM assembly level debugging."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 483000
+			},
+			"text": " You can view which instructions are executed and step in and out of functions and over"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 484000
+			},
+			"text": " instructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 490000
+			},
+			"text": " And those shows the place in the code which corresponds to current instruction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 493000
+			},
+			"text": " As you can see here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 500000
+			},
+			"text": " That's also a great tool to study how Solidity compiles into EVM here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 507000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 512000
+			},
+			"text": " Let's get down on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 516000
+			},
+			"text": " So I can have multiple of these so-called scenarios here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 519000
+			},
+			"text": " And I can have one, for example, the tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 526000
+			},
+			"text": " If the fonts are stamped correctly, another one which tests if this condition is checked"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 533000
+			},
+			"text": " correctly, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 535000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 537000
+			},
+			"text": " Let's move on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 544000
+			},
+			"text": " So after I'm done testing my Solidity contract, I would probably want to create a user interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 550000
+			},
+			"text": " for my DAP so that actually users could interact with this simple stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 552000
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 557000
+			},
+			"text": " One more stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 558000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 565000
+			},
+			"text": " So as an regular IDE, this has an notion of a project."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 572000
+			},
+			"text": " So I can have a list of files here which essentially form my DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 579000
+			},
+			"text": " And also have this little webpage which acts as an interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 586000
+			},
+			"text": " Let's find that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 594000
+			},
+			"text": " So this works basically in the same way it would work in missed or regular web browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 600000
+			},
+			"text": " It communicates with the theorem network using web free API."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 603000
+			},
+			"text": " In this case, the API is implemented by MIX."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 610000
+			},
+			"text": " So it works with this particular sandbox block chain as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 613000
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 620000
+			},
+			"text": " Now here's the preview of this little webpage."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 628000
+			},
+			"text": " Yeah, it has web 0.0 design."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 635000
+			},
+			"text": " So let's test how my DAP works through the user interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 638000
+			},
+			"text": " I can pick an account."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 644000
+			},
+			"text": " Let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 661000
+			},
+			"text": " I can account to send to and enter the value."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 675000
+			},
+			"text": " My send button disappeared somewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 688000
+			},
+			"text": " Anyway, whatever I do in the user interface also ends up in this transaction list."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 699000
+			},
+			"text": " So I can check if I can see it here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 712000
+			},
+			"text": " So here's a call made from JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 718000
+			},
+			"text": " This is a call to request a balance of this account here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 725000
+			},
+			"text": " I can see these calls here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 732000
+			},
+			"text": " I can save them as a part of my testing scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 741000
+			},
+			"text": " I can add parameters or debug them the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 756000
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 766000
+			},
+			"text": " Again, after I'm done testing my web interface, I can package and deploy my DAP to a real"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 772000
+			},
+			"text": " network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 776000
+			},
+			"text": " This has deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 785000
+			},
+			"text": " The idea is it packages your DAP and pushes it to swarm or IPFS or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 792000
+			},
+			"text": " It's not supported yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 803000
+			},
+			"text": " There's a URL for the DAP in the registry contract which is already on main Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 809000
+			},
+			"text": " So this allows pretty complex deployment scenarios."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 812000
+			},
+			"text": " You can have multiple contracts depending on each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:43,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 823000
+			},
+			"text": " The sequence on how these contracts are deployed and transactions are called for deployment and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 823000,
+				"to": 832000
+			},
+			"text": " Another cool feature I can demonstrate here is the estimation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 842000
+			},
+			"text": " So I can basically see which statements and expressions consume the most and the least"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 843000
+			},
+			"text": " amount of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 846000
+			},
+			"text": " It also shows the estimations for functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 854000
+			},
+			"text": " This is a word-bound estimate of how much gas this function can consume which can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 859000
+			},
+			"text": " pretty useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 871000
+			},
+			"text": " As you can see, the focus so far has been on solidity features."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 874000
+			},
+			"text": " We don't support web debugging yet and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 879000
+			},
+			"text": " If you would like to use web frameworks such as meter, for example, this would be complicated"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 880000
+			},
+			"text": " here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 888000
+			},
+			"text": " But the goal is to support that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:53,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 893000
+			},
+			"text": " You can use this tool for prototyping your DAP really quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 893000,
+				"to": 898000
+			},
+			"text": " It should just work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 908000
+			},
+			"text": " I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 923000
+			},
+			"text": " Well, that was still a happy idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 936000
+			},
+			"text": " Just a sec."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 942000
+			},
+			"text": " There are a number of features we want to add to this program including JavaScript debugging."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 950000
+			},
+			"text": " You can use the regular browser for now to debug JavaScript things and you can use Chrome"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 953000
+			},
+			"text": " development tools, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 960000
+			},
+			"text": " Another thing we want to add is test driven development."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 968000
+			},
+			"text": " We want to use JavaScript to provide a way to write the unit test for both solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 975000
+			},
+			"text": " contracts and the JavaScript in JavaScript itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 990000
+			},
+			"text": " There have been over this so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 998000
+			},
+			"text": " So, basically, we really need feedback from developers now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1008000
+			},
+			"text": " You can get binary releases."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1012000
+			},
+			"text": " Let us know what you think of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1017000
+			},
+			"text": " That's basically it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1021000
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1023000
+			},
+			"text": " (music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:05,240"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1025240
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

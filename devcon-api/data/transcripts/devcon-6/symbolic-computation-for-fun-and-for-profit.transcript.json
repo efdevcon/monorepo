@@ -1,0 +1,3893 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 16000
+			},
+			"text": " Okay, perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 20000
+			},
+			"text": " Yeah, so what he's saying is that this branch is not reachable."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 23000
+			},
+			"text": " For whatever reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 30000
+			},
+			"text": " We're going to figure out how we'll symbolically figure this out."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 36000
+			},
+			"text": " And how we can use symbolic computation to find that this branch is unreachable."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 39000
+			},
+			"text": " So what is symbolic computation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 44000
+			},
+			"text": " Symbolic computation is about representing properties using mathematical equations."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 51000
+			},
+			"text": " And we use the solutions of these equations to reason about the properties we started with."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 57000
+			},
+			"text": " The property we wanted to know in the previous example is that the reward is unreachable."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 61000
+			},
+			"text": " And we have to figure out a way to convert this into a mathematical equation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 74000
+			},
+			"text": " And I want to give some hint about the climax, which is usually these systems having a solution means that a property can be violated."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 83000
+			},
+			"text": " And on the other -- on the contrary, if the system of equations don't have any solution, then it usually means that the property is always true."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 88000
+			},
+			"text": " I mean, this is not generally true, but most of the time, this is what you're trying to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 91000
+			},
+			"text": " And now we want to convert code into mathematical equations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 93000
+			},
+			"text": " How do we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 99000
+			},
+			"text": " So -- so the question is, what do we encode?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 105000
+			},
+			"text": " So we could encode -- so ready directly, we could encode you, which is an intermediate representation of solidarity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 108000
+			},
+			"text": " It's a one-level down from solidarity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 112000
+			},
+			"text": " We could also encode EVM, which is at the lowest level."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 114000
+			},
+			"text": " So solidarity is a complex language."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 119000
+			},
+			"text": " And there's -- let's maybe skip encoding that because there's like too many rules we have to handle."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 122000
+			},
+			"text": " Evium on the other hand is like too simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 127000
+			},
+			"text": " And we have to extract a lot of information about the control flow and encode it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 133000
+			},
+			"text": " So maybe let's ignore solidarity and EVM for encoding and just deal with dual."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 135000
+			},
+			"text": " It's in the right middle ground."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 139000
+			},
+			"text": " It's simple enough and it has enough information about the control flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 142000
+			},
+			"text": " So the most fundamental thing to encode would be a variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 147000
+			},
+			"text": " And a variable in EVM is 256 bit integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 154000
+			},
+			"text": " Most of the time you represent variables as an element of integers, z, the notation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 160000
+			},
+			"text": " If possible, we add the constraint zero less than or equal to x less than or equal to -- to raise to 6 minus 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 169000
+			},
+			"text": " Now that we know how to encode a very simple variable, we need to figure out how to assign values to the variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 173000
+			},
+			"text": " So here's a very simple dual block with three variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 186000
+			},
+			"text": " x, y and z, x is assigned the value 1, y is assigned, called that a lot zero, and z is an expression in dual less than xy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 192000
+			},
+			"text": " So we want to represent each of these assignments by constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 194000
+			},
+			"text": " For x and y, it's very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 197000
+			},
+			"text": " For x, you just have the equation x equal to 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 200000
+			},
+			"text": " For y, we have to just say y."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 201000
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 203000
+			},
+			"text": " It's a simple EVM variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 209000
+			},
+			"text": " We can't really produce any extra constraints from call that a lot zero because it can be anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 214000
+			},
+			"text": " So we just have to treat y as a regular EVM variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 219000
+			},
+			"text": " And with z, we have to figure out a way to encode less than or of xy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 222000
+			},
+			"text": " We will deal with that later."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 227000
+			},
+			"text": " But the big question is that can we handle every assignment?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 238000
+			},
+			"text": " Here's a different dual block where you assign the value 1 to x and there's a switch statement which has three different control flow branches."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 246000
+			},
+			"text": " So depending on the value of call that a lot zero, which we don't know what it is, we can assign x to 3 or 4."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 251000
+			},
+			"text": " So the question is can we actually encode the switch?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 256000
+			},
+			"text": " This brings us to the notion of a single static assignment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 261000
+			},
+			"text": " So these are variables that are only assigned once."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 266000
+			},
+			"text": " And working with SSA variables simplifies our analysis quite a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 269000
+			},
+			"text": " So here is an example of a different dual block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 272000
+			},
+			"text": " You have two variables x and y."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 278000
+			},
+			"text": " y gets assigned call that a lot 32 at the beginning and then reassigned something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 281000
+			},
+			"text": " By definition y is not an SSA variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 283000
+			},
+			"text": " It's assigned twice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 292000
+			},
+			"text": " But it's actually possible to transform this block into another dual block where we introduce a new variable z."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 296000
+			},
+			"text": " And all these variables are actually SSA variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 302000
+			},
+			"text": " So generally speaking we only want to work with SSA variables because they really simplify our analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 310000
+			},
+			"text": " However it's not always possible to do a dual to dual transformation such that all the variables are SSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 313000
+			},
+			"text": " There was the example like two slides ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 324000
+			},
+			"text": " The switch example you cannot encode x as in as it's a variable purely in dual."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 330000
+			},
+			"text": " But we can still get a lot done with just taking whatever is SSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 339000
+			},
+			"text": " And maybe we also have this step in the dual optimizer call the SSA transform that lets us transform dual into what we call as a pseudo SSA format."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 341000
+			},
+			"text": " So a lot of variables are SSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 347000
+			},
+			"text": " But it's not necessarily that every variable is SSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 354000
+			},
+			"text": " So whenever we encounter a non-SSA variable during the analysis we would replace it by a free variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 367000
+			},
+			"text": " So a free variable is what we mentioned like two slides ago, sorry three slides ago which is just the basic constraints that you can give to any variable in DVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 381000
+			},
+			"text": " But there is this important caveat here that whenever we encounter a non-SSA variable we have to replace it with a fresh variable because the value may have been assigned something else during the two reads."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 386000
+			},
+			"text": " But we can of course optimize this further but this is what we will do now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 391000
+			},
+			"text": " So now let's think about how do we encode some EVM instructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 394000
+			},
+			"text": " So perhaps the most fundamental EVM instruction is addition."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 399000
+			},
+			"text": " You take two numbers and you add them and leave it at the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 404000
+			},
+			"text": " So how do we symbolically represent the addition x plus y?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 406000
+			},
+			"text": " What do you think?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 409000
+			},
+			"text": " Is it just x plus y?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 411000
+			},
+			"text": " Unfortunately it's not that simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 418000
+			},
+			"text": " So if you look at the EVM semantics of addition, addition is defined by x plus y modulo to raise to 2 over to 6."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 424000
+			},
+			"text": " And if you look at high-level solidity code since 0, 8, 0 we have the checked arithmetic."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 432000
+			},
+			"text": " So x plus y would reward if x plus y is greater than 2 raise to greater or equal to 2 raise to 256."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 437000
+			},
+			"text": " So we are already seeing that it's not that simple to encode add."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 440000
+			},
+			"text": " It's not the easiest."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 443000
+			},
+			"text": " Perhaps here is an easier set of instructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 446000
+			},
+			"text": " Less than greater than and zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 451000
+			},
+			"text": " Here's a formal representation of these opcodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 455000
+			},
+			"text": " We define when these values take 1 or 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 463000
+			},
+			"text": " There are less than AB, if A is less than B the value takes less than the opcode gives 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 468000
+			},
+			"text": " In the other case it gives 0, almost the opposite for greater than."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 474000
+			},
+			"text": " For S0 if the value is 0 then you get 1 and 0 otherwise."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 478000
+			},
+			"text": " So let's digress for a bit and talk about difference logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 480000
+			},
+			"text": " So let's start with an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 484000
+			},
+			"text": " So x, y and z are integer variables and let there be constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 490000
+			},
+			"text": " Two of them, x minus y less than or equal to 4 and x minus z less than or equal to 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 493000
+			},
+			"text": " The question is does the system have a solution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 495000
+			},
+			"text": " It does have a solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 501000
+			},
+			"text": " You can just assign x equal to 4, y equal to 0, z equal to 1 and these two constraints are satisfied."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 509000
+			},
+			"text": " So to go back a bit you can generalize this difference logic by saying you can have n number of variables,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 516000
+			},
+			"text": " x1 to xn that are integers and constraints of the form xi minus xj less than or equal to a constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 519000
+			},
+			"text": " But let's look at a different example."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 523000
+			},
+			"text": " So let's add one more constraint here which is z minus x less than or equal to minus 8."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 526000
+			},
+			"text": " And the question is does the system have a solution now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 528000
+			},
+			"text": " Any takers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 530000
+			},
+			"text": " It actually doesn't have a solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 532000
+			},
+			"text": " And how do we prove this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 536000
+			},
+			"text": " So assume that there is a solution, let's just add all the variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 538000
+			},
+			"text": " Let's add all the equations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 546000
+			},
+			"text": " So you add x minus y plus 1 minus z plus z minus x and the r-tis is going to be 4 plus 3 minus 8."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 548000
+			},
+			"text": " And the r-tis is going to be 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 553000
+			},
+			"text": " So we arrive at something less than or equal to minus 1 which is a contradiction."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 555000
+			},
+			"text": " So there is no solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 561000
+			},
+			"text": " But how do we use some graph theory trick to do the same thing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 566000
+			},
+			"text": " So we try to encode each of this constraint using a graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 570000
+			},
+			"text": " Every variable is a node in this graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 578000
+			},
+			"text": " So you can see that x, y and z are 3 nodes and we assign some weights."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 581000
+			},
+			"text": " These are the weights that come from the equation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 584000
+			},
+			"text": " So x minus y is less than or equal to 4."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 591000
+			},
+			"text": " That would be the weight of the edge similarly for the others."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 596000
+			},
+			"text": " What's important is that it's a direct graph and the direction follows."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 604000
+			},
+			"text": " So in case of m minus b less than or equal to k, the edge is from b to a and has a weight"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 605000
+			},
+			"text": " of k."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 611000
+			},
+			"text": " So the important take-away here is that if there is a negative cycle in our direct graph,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 615000
+			},
+			"text": " then there are no solutions to our problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 620000
+			},
+			"text": " You can see here, there is a negative cycle."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 624000
+			},
+			"text": " If you add up 4 plus 3 plus minus 8, that is negative 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 626000
+			},
+			"text": " So that's what we are looking for."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 629000
+			},
+			"text": " So how do we find negative cycles in a graph?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 634000
+			},
+			"text": " So there is this very classical algorithm called the bellman ford, which can tell you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 639000
+			},
+			"text": " given a direct graph, is there a negative cycle?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 643000
+			},
+			"text": " You can also use it to find the shortest path between two nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 650000
+			},
+			"text": " That's the classical use case, but it can also tell you if there's a negative cycle."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 652000
+			},
+			"text": " And it's surprisingly easy to implement."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 654000
+			},
+			"text": " You can even implement this in solidarity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 661000
+			},
+			"text": " Leo has a repo where he implements the bellman forward and much more in completely in solidarity."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 665000
+			},
+			"text": " And he's going to have a talk tomorrow at 11 a.m."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 668000
+			},
+			"text": " You can come for the talk for more details."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 672000
+			},
+			"text": " And here is like some insight about unsatisfiability."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 678000
+			},
+			"text": " Unsatisfiability is when the set of constraints have no solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 686000
+			},
+			"text": " And a lot of times we only encode a very small set of what we can actually encode."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 689000
+			},
+			"text": " And we are very generous about ignoring the constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 694000
+			},
+			"text": " We can't solve, like I said, already we ignore no necessary variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 699000
+			},
+			"text": " So as long as we only care about unsatisfiability, we can do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 706000
+			},
+			"text": " And we can optimize, and we can usually optimize when the constraints are unsatisfiable, otherwise"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 709000
+			},
+			"text": " we can just leave the code unchanged."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 712000
+			},
+			"text": " So we talked about different slots."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 717000
+			},
+			"text": " But what does it have to do with all this like EVM opcodes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 724000
+			},
+			"text": " So it turns out that we can represent these three EVM opcodes using expressions that would"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 726000
+			},
+			"text": " match different slots."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 733000
+			},
+			"text": " So in case of less than of AB, when the value is one, only when A minus B is less than or"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 738000
+			},
+			"text": " less than or less than or less than or less than or less than B minus B minus B minus A"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 744000
+			},
+			"text": " less than or less than or less than or less than or less than or less than or less than"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 749000
+			},
+			"text": " or less than or less than or less than or less than or less than or less than or less than"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 753000
+			},
+			"text": " or less than or less than or less than or less than or less than or less than or less than"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 757000
+			},
+			"text": " or less than or less than or less than or less than or less than or less than or less than"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 762000
+			},
+			"text": " or less than or less than or less than or less than or less than or less than or less than"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 768000
+			},
+			"text": " this example of if of condition and then something going on in the if statement."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 772000
+			},
+			"text": " We can't replay, so the question we want to know is if we can replace condition by"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 775000
+			},
+			"text": " zero or one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 779000
+			},
+			"text": " Inside the branch we can actually replace, we can add additional constraint that condition"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 781000
+			},
+			"text": " equal to true."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 788000
+			},
+			"text": " So to take it, in particular if you look at less than if of less than xy, we start by"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 794000
+			},
+			"text": " checking if adding the constraint x less than y make the system unsatisfiable."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 798000
+			},
+			"text": " So in different logic this is xy less than or equal to minus one, we just add it to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 804000
+			},
+			"text": " our other set of constraints and if the system is unsatisfiable we can replace less than"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 806000
+			},
+			"text": " of xy by zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 811000
+			},
+			"text": " Similarly we can check if the system, if the constraint x greater than or equal to y"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 819000
+			},
+			"text": " makes the system unsatisfiable."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 824000
+			},
+			"text": " Inside the if body we can add additional constraint that x is less than y."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 830000
+			},
+			"text": " In different logic that is x minus y less than or equal to minus one and then we can keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 832000
+			},
+			"text": " doing our symbolic computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 838000
+			},
+			"text": " So going back to the problem from the beginning, here is like a version of the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 843000
+			},
+			"text": " solodity code in U. We have three variables x, y and z."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 845000
+			},
+			"text": " They all read from call data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 849000
+			},
+			"text": " They are not 100 percent equivalent but more or less these are, this is how you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 852000
+			},
+			"text": " call it would look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 857000
+			},
+			"text": " And we have three, if statements, the first one has less than of x, y."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 863000
+			},
+			"text": " The second one is less than of y, z and the third one has less than of z, x."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 865000
+			},
+			"text": " And the last one would reward if we can't reach there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 871000
+			},
+			"text": " And the question we want to know is if the last less than of x, z can ever be zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 876000
+			},
+			"text": " Sorry, can it ever be true?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 879000
+			},
+			"text": " If it's never true we can replace it by if zero, which is what we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 883000
+			},
+			"text": " Let's think about how to encode the problem now."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 887000
+			},
+			"text": " So we have three variables x, y, z that are integers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:53,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 893000
+			},
+			"text": " We don't have any extra conditions for call data law because we can't really tell anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 893000,
+				"to": 895000
+			},
+			"text": " about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 898000
+			},
+			"text": " We added a variable zero as I said before."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 904000
+			},
+			"text": " Now we add the constraints that these variables are 256-bit numbers, that is zero less than"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 907000
+			},
+			"text": " or equal to the unmax."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 913000
+			},
+			"text": " So the first set of constraints are simply saying that x is x, y and z are positive."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 915000
+			},
+			"text": " You can see that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 922000
+			},
+			"text": " And the second one would say that x, y and z are bounded by the maximum value of un,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 924000
+			},
+			"text": " between 256."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:29,640"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 929640
+			},
+			"text": " And inside the if branch, you can add the first constraint, x minus y less than or equal to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,640",
+				"to": "00:15:31,640"
+			},
+			"offsets": {
+				"from": 929640,
+				"to": 931640
+			},
+			"text": " minus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,640",
+				"to": "00:15:34,560"
+			},
+			"offsets": {
+				"from": 931640,
+				"to": 934560
+			},
+			"text": " Inside the second if branch we can add the constraint y minus z less than or equal to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,560",
+				"to": "00:15:35,560"
+			},
+			"offsets": {
+				"from": 934560,
+				"to": 935560
+			},
+			"text": " minus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,560",
+				"to": "00:15:41,080"
+			},
+			"offsets": {
+				"from": 935560,
+				"to": 941080
+			},
+			"text": " The third one we can add a similar one, z minus x less than or equal to minus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,080",
+				"to": "00:15:42,280"
+			},
+			"offsets": {
+				"from": 941080,
+				"to": 942280
+			},
+			"text": " And we learned quite a bit here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,280",
+				"to": "00:15:47,200"
+			},
+			"offsets": {
+				"from": 942280,
+				"to": 947200
+			},
+			"text": " So how do we represent all these constraints as a single graph?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,200",
+				"to": "00:15:51,200"
+			},
+			"offsets": {
+				"from": 947200,
+				"to": 951200
+			},
+			"text": " So you can see the nodes x, y and z."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,200",
+				"to": "00:15:53,800"
+			},
+			"offsets": {
+				"from": 951200,
+				"to": 953800
+			},
+			"text": " You can also see the node zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,800",
+				"to": "00:15:58,720"
+			},
+			"offsets": {
+				"from": 953800,
+				"to": 958720
+			},
+			"text": " These are the constraints for the positivity and also the boundedness."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,720",
+				"to": "00:16:02,320"
+			},
+			"offsets": {
+				"from": 958720,
+				"to": 962320
+			},
+			"text": " So here m is the maximum value of a two of two of two of two of two of two of two of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,320",
+				"to": "00:16:03,360"
+			},
+			"offsets": {
+				"from": 962320,
+				"to": 963360
+			},
+			"text": " the six-bit number."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,360",
+				"to": "00:16:09,840"
+			},
+			"offsets": {
+				"from": 963360,
+				"to": 969840
+			},
+			"text": " And sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,840",
+				"to": "00:16:13,960"
+			},
+			"offsets": {
+				"from": 969840,
+				"to": 973960
+			},
+			"text": " This constraint is z minus x less than or equal to minus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,960",
+				"to": "00:16:20,200"
+			},
+			"offsets": {
+				"from": 973960,
+				"to": 980200
+			},
+			"text": " Similarly the others are on the outer edges of the node."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,200",
+				"to": "00:16:25,440"
+			},
+			"offsets": {
+				"from": 980200,
+				"to": 985440
+			},
+			"text": " And the question we want to ask now is, is there a negative cycle in this graph?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,440",
+				"to": "00:16:27,440"
+			},
+			"offsets": {
+				"from": 985440,
+				"to": 987440
+			},
+			"text": " And turns out there is one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,440",
+				"to": "00:16:37,960"
+			},
+			"offsets": {
+				"from": 987440,
+				"to": 997960
+			},
+			"text": " The one on the outside is a negative cycle, which means that the system has no solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,960",
+				"to": "00:16:45,800"
+			},
+			"offsets": {
+				"from": 997960,
+				"to": 1005800
+			},
+			"text": " So now we can actually replace this f of less than xz by f of zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,800",
+				"to": "00:16:50,320"
+			},
+			"offsets": {
+				"from": 1005800,
+				"to": 1010320
+			},
+			"text": " And once we have this f of zero, we can just completely remove this branch."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,320",
+				"to": "00:16:53,320"
+			},
+			"offsets": {
+				"from": 1010320,
+				"to": 1013320
+			},
+			"text": " And after that, these branches are simply empty."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,320",
+				"to": "00:16:57,600"
+			},
+			"offsets": {
+				"from": 1013320,
+				"to": 1017600
+			},
+			"text": " You could actually remove the entirety of the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,600",
+				"to": "00:17:01,240"
+			},
+			"offsets": {
+				"from": 1017600,
+				"to": 1021240
+			},
+			"text": " So in case of the difference logic, the solve is very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,240",
+				"to": "00:17:04,080"
+			},
+			"offsets": {
+				"from": 1021240,
+				"to": 1024080
+			},
+			"text": " As I said, you can write it in sorority, less than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,080",
+				"to": "00:17:08,120"
+			},
+			"offsets": {
+				"from": 1024080,
+				"to": 1028120
+			},
+			"text": " However, in general, the solver can get quite complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,120",
+				"to": "00:17:11,280"
+			},
+			"offsets": {
+				"from": 1028120,
+				"to": 1031280
+			},
+			"text": " And the question of correctness will always come up."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,280",
+				"to": "00:17:15,480"
+			},
+			"offsets": {
+				"from": 1031280,
+				"to": 1035480
+			},
+			"text": " The biggest priority for sorority is the correctness of the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,480",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1035480,
+				"to": 1043000
+			},
+			"text": " And we really want to minimize trusting external tools as much as possible when they influence"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:25,200"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1045200
+			},
+			"text": " the code generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,200",
+				"to": "00:17:29,920"
+			},
+			"offsets": {
+				"from": 1045200,
+				"to": 1049920
+			},
+			"text": " So in case of a symbolic solver, if there is a way to verify that the result isn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,920",
+				"to": "00:17:33,520"
+			},
+			"offsets": {
+				"from": 1049920,
+				"to": 1053520
+			},
+			"text": " true, then that is very good for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,520",
+				"to": "00:17:38,680"
+			},
+			"offsets": {
+				"from": 1053520,
+				"to": 1058680
+			},
+			"text": " So in case of a difference logic, you can ask, is it possible to produce a proof that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,680",
+				"to": "00:17:42,800"
+			},
+			"offsets": {
+				"from": 1058680,
+				"to": 1062800
+			},
+			"text": " system is indeed unsatisfiable, that there are no solutions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,800",
+				"to": "00:17:45,360"
+			},
+			"offsets": {
+				"from": 1062800,
+				"to": 1065360
+			},
+			"text": " Turns out you can actually do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,360",
+				"to": "00:17:50,480"
+			},
+			"offsets": {
+				"from": 1065360,
+				"to": 1070480
+			},
+			"text": " The proof of unsatisfiability in this case would be just giving a set of constraints where"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,480",
+				"to": "00:17:53,280"
+			},
+			"offsets": {
+				"from": 1070480,
+				"to": 1073280
+			},
+			"text": " the -- if you add up the left-hand side, it's going to be zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,280",
+				"to": "00:17:56,200"
+			},
+			"offsets": {
+				"from": 1073280,
+				"to": 1076200
+			},
+			"text": " If you add up the right-hand side, it's going to be a negative number."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,200",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1076200,
+				"to": 1080000
+			},
+			"text": " So you get zero less than or equal to minus one, which is contradiction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:03,120"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1083120
+			},
+			"text": " And the solver can just tell you that, oh, these are the constraints that would add up"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,120",
+				"to": "00:18:08,800"
+			},
+			"offsets": {
+				"from": 1083120,
+				"to": 1088800
+			},
+			"text": " to zero on the left and a negative number on the right."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,800",
+				"to": "00:18:12,840"
+			},
+			"offsets": {
+				"from": 1088800,
+				"to": 1092840
+			},
+			"text": " And this can be verified by, you know, what a work tool that is going to use the result"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,840",
+				"to": "00:18:15,040"
+			},
+			"offsets": {
+				"from": 1092840,
+				"to": 1095040
+			},
+			"text": " of the solver."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,040",
+				"to": "00:18:21,440"
+			},
+			"offsets": {
+				"from": 1095040,
+				"to": 1101440
+			},
+			"text": " But in general, you can get proofs for a lot of symbolic logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,440",
+				"to": "00:18:25,560"
+			},
+			"offsets": {
+				"from": 1101440,
+				"to": 1105560
+			},
+			"text": " I mean, you can get proofs from a lot of symbolic solvers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,560",
+				"to": "00:18:30,640"
+			},
+			"offsets": {
+				"from": 1105560,
+				"to": 1110640
+			},
+			"text": " But it's not always possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,640",
+				"to": "00:18:36,040"
+			},
+			"offsets": {
+				"from": 1110640,
+				"to": 1116040
+			},
+			"text": " Maybe the example was, like, very simple, like, who cares about those three if branches?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,040",
+				"to": "00:18:42,880"
+			},
+			"offsets": {
+				"from": 1116040,
+				"to": 1122880
+			},
+			"text": " Let's look at a more real-world example where this could be actually useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,880",
+				"to": "00:18:49,360"
+			},
+			"offsets": {
+				"from": 1122880,
+				"to": 1129360
+			},
+			"text": " A lot of times, users would like to add their own text before combiner text."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,360",
+				"to": "00:18:59,840"
+			},
+			"offsets": {
+				"from": 1129360,
+				"to": 1139840
+			},
+			"text": " So here is an array that uses read from the array, and you read from one of the index."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,840",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1139840,
+				"to": 1145000
+			},
+			"text": " The user wanted check if the index is going to be greater or equal to array of length,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:07,560"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1147560
+			},
+			"text": " which means there is an automatic bounds access."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,560",
+				"to": "00:19:13,480"
+			},
+			"offsets": {
+				"from": 1147560,
+				"to": 1153480
+			},
+			"text": " And the user wanted to like reward by this customer."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,480",
+				"to": "00:19:20,960"
+			},
+			"offsets": {
+				"from": 1153480,
+				"to": 1160960
+			},
+			"text": " However, the compiler will automatically do this check when in this code."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,960",
+				"to": "00:19:27,120"
+			},
+			"offsets": {
+				"from": 1160960,
+				"to": 1167120
+			},
+			"text": " So doing this check manually is actually like wasting gas and it's redundant."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,120",
+				"to": "00:19:28,840"
+			},
+			"offsets": {
+				"from": 1167120,
+				"to": 1168840
+			},
+			"text": " But this is like a good pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,840",
+				"to": "00:19:33,400"
+			},
+			"offsets": {
+				"from": 1168840,
+				"to": 1173400
+			},
+			"text": " Sometimes users want to like reward with their own messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,400",
+				"to": "00:19:41,840"
+			},
+			"offsets": {
+				"from": 1173400,
+				"to": 1181840
+			},
+			"text": " But we can actually use different logic to see that the second, I mean, once you get"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,840",
+				"to": "00:19:50,880"
+			},
+			"offsets": {
+				"from": 1181840,
+				"to": 1190880
+			},
+			"text": " out of this if branch, you can add the constraint that the index is less than array of length"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,880",
+				"to": "00:19:54,160"
+			},
+			"offsets": {
+				"from": 1190880,
+				"to": 1194160
+			},
+			"text": " because this branch is always terminating."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,160",
+				"to": "00:19:59,760"
+			},
+			"offsets": {
+				"from": 1194160,
+				"to": 1199760
+			},
+			"text": " If you get into this branch, it's going to reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,760",
+				"to": "00:20:04,680"
+			},
+			"offsets": {
+				"from": 1199760,
+				"to": 1204680
+			},
+			"text": " So we can actually add this second constraint."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,680",
+				"to": "00:20:09,480"
+			},
+			"offsets": {
+				"from": 1204680,
+				"to": 1209480
+			},
+			"text": " And if you have this check once again, you can actually prove that this check is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,480",
+				"to": "00:20:13,880"
+			},
+			"offsets": {
+				"from": 1209480,
+				"to": 1213880
+			},
+			"text": " to be unreachable and then you can optimize those branch."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,880",
+				"to": "00:20:16,800"
+			},
+			"offsets": {
+				"from": 1213880,
+				"to": 1216800
+			},
+			"text": " So how do we improve?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,800",
+				"to": "00:20:20,080"
+			},
+			"offsets": {
+				"from": 1216800,
+				"to": 1220080
+			},
+			"text": " Yeah, what do we go from the difference logic?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,080",
+				"to": "00:20:23,880"
+			},
+			"offsets": {
+				"from": 1220080,
+				"to": 1223880
+			},
+			"text": " So we could only encode less than greater than and a zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,880",
+				"to": "00:20:28,040"
+			},
+			"offsets": {
+				"from": 1223880,
+				"to": 1228040
+			},
+			"text": " But once we graduate from the constraints of the form x less than or equal to y less"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,040",
+				"to": "00:20:32,880"
+			},
+			"offsets": {
+				"from": 1228040,
+				"to": 1232880
+			},
+			"text": " than or equal to k, sorry, x minus k, x minus y less than or equal to k, we can't think"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,880",
+				"to": "00:20:35,120"
+			},
+			"offsets": {
+				"from": 1232880,
+				"to": 1235120
+			},
+			"text": " about generalizing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,120",
+				"to": "00:20:42,880"
+			},
+			"offsets": {
+				"from": 1235120,
+				"to": 1242880
+			},
+			"text": " So one generalization would be constraints of the form a1x plus a2x until a and xn less"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,880",
+				"to": "00:20:53,240"
+			},
+			"offsets": {
+				"from": 1242880,
+				"to": 1253240
+			},
+			"text": " than or equal to b, where ai and b are constants and xi is a symbolic variable in integers."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,240",
+				"to": "00:20:58,960"
+			},
+			"offsets": {
+				"from": 1253240,
+				"to": 1258960
+			},
+			"text": " We can actually solve that using what's called like linear programs and the simple x method."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,960",
+				"to": "00:21:04,080"
+			},
+			"offsets": {
+				"from": 1258960,
+				"to": 1264080
+			},
+			"text": " And once you can do that, you can encode addition and subtractions because addition would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,080",
+				"to": "00:21:08,640"
+			},
+			"offsets": {
+				"from": 1264080,
+				"to": 1268640
+			},
+			"text": " like x1 plus x2 and subtraction would be x1 minus x2."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,640",
+				"to": "00:21:14,440"
+			},
+			"offsets": {
+				"from": 1268640,
+				"to": 1274440
+			},
+			"text": " They would satisfy that form."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,440",
+				"to": "00:21:20,480"
+			},
+			"offsets": {
+				"from": 1274440,
+				"to": 1280480
+			},
+			"text": " But there are some nuances here because addition in EVM has a rapid behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,480",
+				"to": "00:21:26,160"
+			},
+			"offsets": {
+				"from": 1280480,
+				"to": 1286160
+			},
+			"text": " So you have to have some kind of branching to deal with this modulo, modulo, but it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,160",
+				"to": "00:21:27,160"
+			},
+			"offsets": {
+				"from": 1286160,
+				"to": 1287160
+			},
+			"text": " doable."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,160",
+				"to": "00:21:35,440"
+			},
+			"offsets": {
+				"from": 1287160,
+				"to": 1295440
+			},
+			"text": " We can also encode multiplication and division similarly where one of them has to be a constant"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,440",
+				"to": "00:21:37,480"
+			},
+			"offsets": {
+				"from": 1295440,
+				"to": 1297480
+			},
+			"text": " and the other one can be symbolic."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,480",
+				"to": "00:21:41,560"
+			},
+			"offsets": {
+				"from": 1297480,
+				"to": 1301560
+			},
+			"text": " Because of division, the second one has to be a constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,560",
+				"to": "00:21:44,560"
+			},
+			"offsets": {
+				"from": 1301560,
+				"to": 1304560
+			},
+			"text": " And case of multiplication, you can anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,560",
+				"to": "00:21:47,880"
+			},
+			"offsets": {
+				"from": 1304560,
+				"to": 1307880
+			},
+			"text": " One of the variables has to be symbolic and the other one a constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,880",
+				"to": "00:21:54,560"
+			},
+			"offsets": {
+				"from": 1307880,
+				"to": 1314560
+			},
+			"text": " Yeah, I think that's it from my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,560",
+				"to": "00:21:56,120"
+			},
+			"offsets": {
+				"from": 1314560,
+				"to": 1316120
+			},
+			"text": " >> Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,120",
+				"to": "00:22:01,320"
+			},
+			"offsets": {
+				"from": 1316120,
+				"to": 1321320
+			},
+			"text": " Thank you, Harry."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,320",
+				"to": "00:22:02,960"
+			},
+			"offsets": {
+				"from": 1321320,
+				"to": 1322960
+			},
+			"text": " We have some time for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,960",
+				"to": "00:22:04,560"
+			},
+			"offsets": {
+				"from": 1322960,
+				"to": 1324560
+			},
+			"text": " So please raise your hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,560",
+				"to": "00:22:08,680"
+			},
+			"offsets": {
+				"from": 1324560,
+				"to": 1328680
+			},
+			"text": " I see a hand over there in the back."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,680",
+				"to": "00:22:11,280"
+			},
+			"offsets": {
+				"from": 1328680,
+				"to": 1331280
+			},
+			"text": " The volunteer is coming to you with a mic one second."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,280",
+				"to": "00:22:13,080"
+			},
+			"offsets": {
+				"from": 1331280,
+				"to": 1333080
+			},
+			"text": " Oh, and another one there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,080",
+				"to": "00:22:14,080"
+			},
+			"offsets": {
+				"from": 1333080,
+				"to": 1334080
+			},
+			"text": " Nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,080",
+				"to": "00:22:15,880"
+			},
+			"offsets": {
+				"from": 1334080,
+				"to": 1335880
+			},
+			"text": " Oh, and another one there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,880",
+				"to": "00:22:16,880"
+			},
+			"offsets": {
+				"from": 1335880,
+				"to": 1336880
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,880",
+				"to": "00:22:24,200"
+			},
+			"offsets": {
+				"from": 1336880,
+				"to": 1344200
+			},
+			"text": " >> Hey, I'm wondering how do you know as a solidity developer when your checks are redundant?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,200",
+				"to": "00:22:26,560"
+			},
+			"offsets": {
+				"from": 1344200,
+				"to": 1346560
+			},
+			"text": " And what can you do to inspect that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,560",
+				"to": "00:22:34,520"
+			},
+			"offsets": {
+				"from": 1346560,
+				"to": 1354520
+			},
+			"text": " >> Yeah, I think the only way to do that would be perhaps do both the tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,520",
+				"to": "00:22:43,160"
+			},
+			"offsets": {
+				"from": 1354520,
+				"to": 1363160
+			},
+			"text": " I mean, right, both of them and see if they have the same guess or check the, yeah, check"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,160",
+				"to": "00:22:48,240"
+			},
+			"offsets": {
+				"from": 1363160,
+				"to": 1368240
+			},
+			"text": " the intermediate representation perhaps or the assembly and make it diff."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,240",
+				"to": "00:22:51,320"
+			},
+			"offsets": {
+				"from": 1368240,
+				"to": 1371320
+			},
+			"text": " I mean, none of the things I mentioned here are implemented so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,320",
+				"to": "00:22:53,880"
+			},
+			"offsets": {
+				"from": 1371320,
+				"to": 1373880
+			},
+			"text": " There are some branches."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,880",
+				"to": "00:22:56,640"
+			},
+			"offsets": {
+				"from": 1373880,
+				"to": 1376640
+			},
+			"text": " These are just mostly experimental features."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,640",
+				"to": "00:22:59,080"
+			},
+			"offsets": {
+				"from": 1376640,
+				"to": 1379080
+			},
+			"text": " Sorry, what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,080",
+				"to": "00:23:03,320"
+			},
+			"offsets": {
+				"from": 1379080,
+				"to": 1383320
+			},
+			"text": " Yeah, but it's our most."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,320",
+				"to": "00:23:06,640"
+			},
+			"offsets": {
+				"from": 1383320,
+				"to": 1386640
+			},
+			"text": " We just use it as a segue."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,640",
+				"to": "00:23:14,440"
+			},
+			"offsets": {
+				"from": 1386640,
+				"to": 1394440
+			},
+			"text": " Which parts are already implemented and what else might we see in the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,440",
+				"to": "00:23:20,160"
+			},
+			"offsets": {
+				"from": 1394440,
+				"to": 1400160
+			},
+			"text": " >> So we have an experimental solver that uses an SMT to occur."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,160",
+				"to": "00:23:22,440"
+			},
+			"offsets": {
+				"from": 1400160,
+				"to": 1402440
+			},
+			"text": " An experimental optimization stage already."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,440",
+				"to": "00:23:24,760"
+			},
+			"offsets": {
+				"from": 1402440,
+				"to": 1404760
+			},
+			"text": " It's called a reasoning based amplifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,760",
+				"to": "00:23:28,440"
+			},
+			"offsets": {
+				"from": 1404760,
+				"to": 1408440
+			},
+			"text": " It uses the full power of an SMT solver."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,440",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1408440,
+				"to": 1416000
+			},
+			"text": " But it's disabled by default in the compiler, but you can probably enable it if you specify"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:40,280"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1420280
+			},
+			"text": " the optimization sequence that includes this one step."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,280",
+				"to": "00:23:48,280"
+			},
+			"offsets": {
+				"from": 1420280,
+				"to": 1428280
+			},
+			"text": " So you can still get some of this if you add an extra, an extra, like, letter to the optimization"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,280",
+				"to": "00:23:50,080"
+			},
+			"offsets": {
+				"from": 1428280,
+				"to": 1430080
+			},
+			"text": " sequence."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,080",
+				"to": "00:23:55,600"
+			},
+			"offsets": {
+				"from": 1430080,
+				"to": 1435600
+			},
+			"text": " But the rest of, so the whole point of the talk is you can build a very simple logic that"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,600",
+				"to": "00:23:58,720"
+			},
+			"offsets": {
+				"from": 1435600,
+				"to": 1438720
+			},
+			"text": " can do a small subset of computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,720",
+				"to": "00:23:59,720"
+			},
+			"offsets": {
+				"from": 1438720,
+				"to": 1439720
+			},
+			"text": " This is not done."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,720",
+				"to": "00:24:03,920"
+			},
+			"offsets": {
+				"from": 1439720,
+				"to": 1443920
+			},
+			"text": " This is not in the master yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,920",
+				"to": "00:24:09,120"
+			},
+			"offsets": {
+				"from": 1443920,
+				"to": 1449120
+			},
+			"text": " But most of the SSA transform, it's already there."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,120",
+				"to": "00:24:10,520"
+			},
+			"offsets": {
+				"from": 1449120,
+				"to": 1450520
+			},
+			"text": " No idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,520",
+				"to": "00:24:15,240"
+			},
+			"offsets": {
+				"from": 1450520,
+				"to": 1455240
+			},
+			"text": " >> I thought I saw a third question somewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,240",
+				"to": "00:24:18,760"
+			},
+			"offsets": {
+				"from": 1455240,
+				"to": 1458760
+			},
+			"text": " Please raise your hand if you have one."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,760",
+				"to": "00:24:20,880"
+			},
+			"offsets": {
+				"from": 1458760,
+				"to": 1460880
+			},
+			"text": " If not, a big round of applause for Harry."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,880",
+				"to": "00:24:21,880"
+			},
+			"offsets": {
+				"from": 1460880,
+				"to": 1461880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,880",
+				"to": "00:24:22,880"
+			},
+			"offsets": {
+				"from": 1461880,
+				"to": 1462880
+			},
+			"text": " >> We got one more question."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,880",
+				"to": "00:24:23,880"
+			},
+			"offsets": {
+				"from": 1462880,
+				"to": 1463880
+			},
+			"text": " >> Oh, one more."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,880",
+				"to": "00:24:24,880"
+			},
+			"offsets": {
+				"from": 1463880,
+				"to": 1464880
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,880",
+				"to": "00:24:33,600"
+			},
+			"offsets": {
+				"from": 1464880,
+				"to": 1473600
+			},
+			"text": " >> So you said we should be doing this optimization on UAL rather than EVM byte code or SLIT or"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,600",
+				"to": "00:24:36,680"
+			},
+			"offsets": {
+				"from": 1473600,
+				"to": 1476680
+			},
+			"text": " it's more conducive."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,680",
+				"to": "00:24:46,000"
+			},
+			"offsets": {
+				"from": 1476680,
+				"to": 1486000
+			},
+			"text": " And I'm wondering, it seems like people would use this sort of analysis to potentially, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,000",
+				"to": "00:24:49,160"
+			},
+			"offsets": {
+				"from": 1486000,
+				"to": 1489160
+			},
+			"text": " look at MEV constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,160",
+				"to": "00:24:56,200"
+			},
+			"offsets": {
+				"from": 1489160,
+				"to": 1496200
+			},
+			"text": " And I'm wondering how you could apply this to on-chain byte code or if that's infeasible."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,200",
+				"to": "00:25:04,080"
+			},
+			"offsets": {
+				"from": 1496200,
+				"to": 1504080
+			},
+			"text": " >> Yeah, you can probably, like, decompile EVM into maybe some UAL and try to do similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,080",
+				"to": "00:25:06,440"
+			},
+			"offsets": {
+				"from": 1504080,
+				"to": 1506440
+			},
+			"text": " analysis on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,440",
+				"to": "00:25:10,960"
+			},
+			"offsets": {
+				"from": 1506440,
+				"to": 1510960
+			},
+			"text": " There is this tool that's getting built by LEO and some other people called UALs."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,960",
+				"to": "00:25:13,240"
+			},
+			"offsets": {
+				"from": 1510960,
+				"to": 1513240
+			},
+			"text": " You can probably check the status of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,240",
+				"to": "00:25:16,440"
+			},
+			"offsets": {
+				"from": 1513240,
+				"to": 1516440
+			},
+			"text": " You can do some of this symbolic computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,440",
+				"to": "00:25:20,800"
+			},
+			"offsets": {
+				"from": 1516440,
+				"to": 1520800
+			},
+			"text": " It doesn't -- I mean, it uses, like, the full power of SMD solvers, not this restricted"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,800",
+				"to": "00:25:21,800"
+			},
+			"offsets": {
+				"from": 1520800,
+				"to": 1521800
+			},
+			"text": " version."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,800",
+				"to": "00:25:23,240"
+			},
+			"offsets": {
+				"from": 1521800,
+				"to": 1523240
+			},
+			"text": " But you can probably check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,240",
+				"to": "00:25:29,680"
+			},
+			"offsets": {
+				"from": 1523240,
+				"to": 1529680
+			},
+			"text": " So once you have a translator from EVM to UAL, you can apply these tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,680",
+				"to": "00:25:34,680"
+			},
+			"offsets": {
+				"from": 1529680,
+				"to": 1534680
+			},
+			"text": " Or you can use ACVM which works on EVM byte code directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,680",
+				"to": "00:25:35,680"
+			},
+			"offsets": {
+				"from": 1534680,
+				"to": 1535680
+			},
+			"text": " Another possibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,680",
+				"to": "00:25:36,680"
+			},
+			"offsets": {
+				"from": 1535680,
+				"to": 1536680
+			},
+			"text": " >> Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,680",
+				"to": "00:25:43,360"
+			},
+			"offsets": {
+				"from": 1536680,
+				"to": 1543360
+			},
+			"text": " Thank you so much, Harry."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,360",
+				"to": "00:25:48,120"
+			},
+			"offsets": {
+				"from": 1543360,
+				"to": 1548120
+			},
+			"text": " I hope your brain's got kind of preheated throughout the last two talks because now we"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,120",
+				"to": "00:25:50,040"
+			},
+			"offsets": {
+				"from": 1548120,
+				"to": 1550040
+			},
+			"text": " are going even deeper."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,040",
+				"to": "00:25:54,120"
+			},
+			"offsets": {
+				"from": 1550040,
+				"to": 1554120
+			},
+			"text": " We can, I guess, already use the time while I announce the next speaker to set up because"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,120",
+				"to": "00:25:56,040"
+			},
+			"offsets": {
+				"from": 1554120,
+				"to": 1556040
+			},
+			"text": " this will be more of a workshop setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,040",
+				"to": "00:26:03,000"
+			},
+			"offsets": {
+				"from": 1556040,
+				"to": 1563000
+			},
+			"text": " Zina, maybe you want to come up on the stage already to set your infrastructure up."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,000",
+				"to": "00:26:05,360"
+			},
+			"offsets": {
+				"from": 1563000,
+				"to": 1565360
+			},
+			"text": " The next speaker we will have here is Zina."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,360",
+				"to": "00:26:07,800"
+			},
+			"offsets": {
+				"from": 1565360,
+				"to": 1567800
+			},
+			"text": " He's part of the Go Ethereum team."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,800",
+				"to": "00:26:15,160"
+			},
+			"offsets": {
+				"from": 1567800,
+				"to": 1575160
+			},
+			"text": " And in the team, he's focused mostly on tracing, the JSON and the GraphQL APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,160",
+				"to": "00:26:18,840"
+			},
+			"offsets": {
+				"from": 1575160,
+				"to": 1578840
+			},
+			"text": " And today he'll be talking about EVM tracing and get."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,840",
+				"to": "00:26:24,320"
+			},
+			"offsets": {
+				"from": 1578840,
+				"to": 1584320
+			},
+			"text": " Yeah, brace yourselves for a very detailed download on basic tracing, commonly faced problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,320",
+				"to": "00:26:30,600"
+			},
+			"offsets": {
+				"from": 1584320,
+				"to": 1590600
+			},
+			"text": " as well as an introduction to the more recent features and how to write efficient traces."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,600",
+				"to": "00:26:31,600"
+			},
+			"offsets": {
+				"from": 1590600,
+				"to": 1591600
+			},
+			"text": " Where comes Zina?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,600",
+				"to": "00:26:31,960"
+			},
+			"offsets": {
+				"from": 1591600,
+				"to": 1591960
+			},
+			"text": " Big applause."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,960",
+				"to": "00:26:41,960"
+			},
+			"offsets": {
+				"from": 1591960,
+				"to": 1601960
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,960",
+				"to": "00:27:10,960"
+			},
+			"offsets": {
+				"from": 1601960,
+				"to": 1630960
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

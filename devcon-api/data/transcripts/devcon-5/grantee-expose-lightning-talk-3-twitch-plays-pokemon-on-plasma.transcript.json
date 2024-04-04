@@ -1,0 +1,549 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,680"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10680
+			},
+			"text": " Hello, mate. My name is Tom. I'm running a company called Flex Dapps with my co-founder"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,680",
+				"to": "00:00:18,480"
+			},
+			"offsets": {
+				"from": 10680,
+				"to": 18480
+			},
+			"text": " Alex. And we thought we would build something pretty fun. We're interested in finding out"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,480",
+				"to": "00:00:24,160"
+			},
+			"offsets": {
+				"from": 18480,
+				"to": 24160
+			},
+			"text": " how to get users for decentralized applications. And one of the things that we see a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,160",
+				"to": "00:00:29,600"
+			},
+			"offsets": {
+				"from": 24160,
+				"to": 29600
+			},
+			"text": " excitement around are dows currently. There's a lot of people who are really interested in"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,600",
+				"to": "00:00:34,120"
+			},
+			"offsets": {
+				"from": 29600,
+				"to": 34120
+			},
+			"text": " how do we govern stuff in a decentralized way and have lots of different stakeholders and how do we"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,120",
+				"to": "00:00:39,480"
+			},
+			"offsets": {
+				"from": 34120,
+				"to": 39480
+			},
+			"text": " reward those stakeholders and so on. But it's really difficult, it seems, to get a lot of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,480",
+				"to": "00:00:46,680"
+			},
+			"offsets": {
+				"from": 39480,
+				"to": 46680
+			},
+			"text": " about who is using dows and why they're doing so and which incentive mechanisms are working and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,680",
+				"to": "00:00:53,160"
+			},
+			"offsets": {
+				"from": 46680,
+				"to": 53160
+			},
+			"text": " which ones aren't and that kind of stuff. So we were brainstorming one day and we thought maybe it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,160",
+				"to": "00:00:58,480"
+			},
+			"offsets": {
+				"from": 53160,
+				"to": 58480
+			},
+			"text": " would be really interesting to test various incentive mechanisms for decentralized governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,480",
+				"to": "00:01:05,200"
+			},
+			"offsets": {
+				"from": 58480,
+				"to": 65200
+			},
+			"text": " We're the video games. So we remember there's an experiment called Twitch Plays Pokemon which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,200",
+				"to": "00:01:15,680"
+			},
+			"offsets": {
+				"from": 65200,
+				"to": 75680
+			},
+			"text": " from an Australian person developed in like 2014 where he put the game Pokemon on the streaming"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,680",
+				"to": "00:01:20,880"
+			},
+			"offsets": {
+				"from": 75680,
+				"to": 80880
+			},
+			"text": " service Twitch and anyone who typed a message into the Twitch chat had that message turned into a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,880",
+				"to": "00:01:27,680"
+			},
+			"offsets": {
+				"from": 80880,
+				"to": 87680
+			},
+			"text": " game command and it was piped into the game and it was chaos. It was really funny. And one really"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,680",
+				"to": "00:01:32,760"
+			},
+			"offsets": {
+				"from": 87680,
+				"to": 92760
+			},
+			"text": " amazing thing that came out of that experiment was the fact that the game did actually end. People"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,760",
+				"to": "00:01:40,240"
+			},
+			"offsets": {
+				"from": 92760,
+				"to": 100240
+			},
+			"text": " completed the game. So although there were 80,000 concurrent players on average, those players"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,240",
+				"to": "00:01:48,240"
+			},
+			"offsets": {
+				"from": 100240,
+				"to": 108240
+			},
+			"text": " managed to beat Pokemon which is a very complicated game for a computer to play anyway. So we did"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,240",
+				"to": "00:01:56,400"
+			},
+			"offsets": {
+				"from": 108240,
+				"to": 116400
+			},
+			"text": " something similar. So we got Pokemon and at the Edcon hackathon way back in March we created a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,400",
+				"to": "00:02:02,800"
+			},
+			"offsets": {
+				"from": 116400,
+				"to": 122800
+			},
+			"text": " smart contract on a Loom network and everyone's input into the game was piped into a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,800",
+				"to": "00:02:07,600"
+			},
+			"offsets": {
+				"from": 122800,
+				"to": 127600
+			},
+			"text": " and we used the events to feed into the game and all this kind of stuff. And the theory behind it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,600",
+				"to": "00:02:13,920"
+			},
+			"offsets": {
+				"from": 127600,
+				"to": 133920
+			},
+			"text": " could we figure out ways to reward people for participating in a game as arbitrary as Pokemon"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,920",
+				"to": "00:02:21,840"
+			},
+			"offsets": {
+				"from": 133920,
+				"to": 141840
+			},
+			"text": " that probably has a much wider reach in terms of the types of users that it could attract than"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,840",
+				"to": "00:02:26,240"
+			},
+			"offsets": {
+				"from": 141840,
+				"to": 146240
+			},
+			"text": " something like a traditional DOW or some of the types of stuff that we're building and we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,240",
+				"to": "00:02:34,720"
+			},
+			"offsets": {
+				"from": 146240,
+				"to": 154720
+			},
+			"text": " showcasing in the Ethereum community itself. So we put that in an application that we built"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,720",
+				"to": "00:02:41,200"
+			},
+			"offsets": {
+				"from": 154720,
+				"to": 161200
+			},
+			"text": " called Drop Party which is like a bunch of different kind of Ethereum based games. So they"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,200",
+				"to": "00:02:46,320"
+			},
+			"offsets": {
+				"from": 161200,
+				"to": 166320
+			},
+			"text": " all run on layer two and the focus of all of these things is how can we get lots of people to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,120",
+				"to": "00:02:52,320"
+			},
+			"offsets": {
+				"from": 167120,
+				"to": 172320
+			},
+			"text": " engage with blockchain tech and cryptocurrency tech without necessarily knowing they're doing so."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,320",
+				"to": "00:02:59,280"
+			},
+			"offsets": {
+				"from": 172320,
+				"to": 179280
+			},
+			"text": " So the frame is a bit silly like it's all very kind of quirky and fun and try to pack it full"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,280",
+				"to": "00:03:04,640"
+			},
+			"offsets": {
+				"from": 179280,
+				"to": 184640
+			},
+			"text": " of memes but we've got the DOW Pokemon game called Ethereum Galaxies which is the scavenger hunt"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,640",
+				"to": "00:03:08,800"
+			},
+			"offsets": {
+				"from": 184640,
+				"to": 188800
+			},
+			"text": " here at DevCon so you can run around and collect a bunch of QR codes and they'll appear as"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,800",
+				"to": "00:03:16,080"
+			},
+			"offsets": {
+				"from": 188800,
+				"to": 196080
+			},
+			"text": " different stars in your galaxy which is super cool. Game called hacker person where you just kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,080",
+				"to": "00:03:23,040"
+			},
+			"offsets": {
+				"from": 196080,
+				"to": 203040
+			},
+			"text": " earn the internal currency which is called Yeats by smacking the keyboard. An NFT"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,040",
+				"to": "00:03:28,560"
+			},
+			"offsets": {
+				"from": 203040,
+				"to": 208560
+			},
+			"text": " obliterator which lets you earn Yeats by destroying NFTs and something which gives a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,560",
+				"to": "00:03:35,760"
+			},
+			"offsets": {
+				"from": 208560,
+				"to": 215760
+			},
+			"text": " serial email address which would be great. But yeah so the I don't know I didn't really prepare a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,760",
+				"to": "00:03:43,200"
+			},
+			"offsets": {
+				"from": 215760,
+				"to": 223200
+			},
+			"text": " talk so I'm just yelling stuff but we enjoy building fun decentralized applications so if you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,200",
+				"to": "00:03:49,600"
+			},
+			"offsets": {
+				"from": 223200,
+				"to": 229600
+			},
+			"text": " to reach out to us on twitter we're @FlexDaps my mail address tom@flexdaps.com and the website"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,600",
+				"to": "00:03:59,120"
+			},
+			"offsets": {
+				"from": 229600,
+				"to": 239120
+			},
+			"text": " is flexdaps.com but yeah I hope that was fun and informative. Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,600",
+				"to": "00:04:00,160"
+			},
+			"offsets": {
+				"from": 239600,
+				"to": 240160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,160",
+				"to": "00:04:02,160"
+			},
+			"offsets": {
+				"from": 240160,
+				"to": 242160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,160",
+				"to": "00:04:04,160"
+			},
+			"offsets": {
+				"from": 242160,
+				"to": 244160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,160",
+				"to": "00:04:06,160"
+			},
+			"offsets": {
+				"from": 244160,
+				"to": 246160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,160",
+				"to": "00:04:08,160"
+			},
+			"offsets": {
+				"from": 246160,
+				"to": 248160
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,160",
+				"to": "00:04:23,120"
+			},
+			"offsets": {
+				"from": 248160,
+				"to": 263120
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,120",
+				"to": "00:04:25,120"
+			},
+			"offsets": {
+				"from": 263120,
+				"to": 265120
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,120",
+				"to": "00:04:27,120"
+			},
+			"offsets": {
+				"from": 265120,
+				"to": 267120
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,120",
+				"to": "00:04:29,120"
+			},
+			"offsets": {
+				"from": 267120,
+				"to": 269120
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,120",
+				"to": "00:04:31,120"
+			},
+			"offsets": {
+				"from": 269120,
+				"to": 271120
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,120",
+				"to": "00:05:00,120"
+			},
+			"offsets": {
+				"from": 271120,
+				"to": 300120
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

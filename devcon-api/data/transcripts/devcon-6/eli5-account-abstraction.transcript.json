@@ -1,0 +1,5356 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,520"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12520
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,520",
+				"to": "00:00:19,120"
+			},
+			"offsets": {
+				"from": 12520,
+				"to": 19120
+			},
+			"text": " My name is Liraz Sieri and this is Drol Thjolosh."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,120",
+				"to": "00:00:21,120"
+			},
+			"offsets": {
+				"from": 19120,
+				"to": 21120
+			},
+			"text": " I know your name."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,120",
+				"to": "00:00:26,240"
+			},
+			"offsets": {
+				"from": 21120,
+				"to": 26240
+			},
+			"text": " And we've been working on account abstraction in various forms for a few years now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,240",
+				"to": "00:00:31,240"
+			},
+			"offsets": {
+				"from": 26240,
+				"to": 31240
+			},
+			"text": " And your advice who is not here is from the Ethereum Foundation and he has been our colleague."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,240",
+				"to": "00:00:36,240"
+			},
+			"offsets": {
+				"from": 31240,
+				"to": 36240
+			},
+			"text": " And yeah, we're working on this in collaboration with Nethermind."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,240",
+				"to": "00:00:47,240"
+			},
+			"offsets": {
+				"from": 36240,
+				"to": 47240
+			},
+			"text": " And originally we were working as the OpenGSN team on meta transactions and all of it kind of merged into account abstraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,240",
+				"to": "00:00:56,240"
+			},
+			"offsets": {
+				"from": 47240,
+				"to": 56240
+			},
+			"text": " So we're going to talk about how account abstraction is generally useful regardless of the implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,240",
+				"to": "00:01:00,240"
+			},
+			"offsets": {
+				"from": 56240,
+				"to": 60240
+			},
+			"text": " So let's talk a little bit about accounts in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,240",
+				"to": "00:01:08,240"
+			},
+			"offsets": {
+				"from": 60240,
+				"to": 68240
+			},
+			"text": " So right now the default account, well, what you get is an externally owned account and it is a one size fits all,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,240",
+				"to": "00:01:10,240"
+			},
+			"offsets": {
+				"from": 68240,
+				"to": 70240
+			},
+			"text": " EEC, TSI key."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,240",
+				"to": "00:01:16,240"
+			},
+			"offsets": {
+				"from": 70240,
+				"to": 76240
+			},
+			"text": " And the other option you have if you want to have like your own smart contract, that would be controlled by code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,240",
+				"to": "00:01:18,240"
+			},
+			"offsets": {
+				"from": 76240,
+				"to": 78240
+			},
+			"text": " but you would still need an EOA to interact with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,240",
+				"to": "00:01:23,240"
+			},
+			"offsets": {
+				"from": 78240,
+				"to": 83240
+			},
+			"text": " Probably your current wallet is an externally owned address."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,240",
+				"to": "00:01:25,240"
+			},
+			"offsets": {
+				"from": 83240,
+				"to": 85240
+			},
+			"text": " There are some limitations with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,240",
+				"to": "00:01:31,240"
+			},
+			"offsets": {
+				"from": 85240,
+				"to": 91240
+			},
+			"text": " The first one is maybe some of us have gotten used to it by now, but key management can be hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,240",
+				"to": "00:01:34,240"
+			},
+			"offsets": {
+				"from": 91240,
+				"to": 94240
+			},
+			"text": " And there's a little bit of a paradox with key management and,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,240",
+				"to": "00:01:41,240"
+			},
+			"offsets": {
+				"from": 94240,
+				"to": 101240
+			},
+			"text": " and, principally, because there's a secret that you're on one hand trying really hard not to lose."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,240",
+				"to": "00:01:44,240"
+			},
+			"offsets": {
+				"from": 101240,
+				"to": 104240
+			},
+			"text": " Because if you lose it, you can't do anything with your account anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,240",
+				"to": "00:01:46,240"
+			},
+			"offsets": {
+				"from": 104240,
+				"to": 106240
+			},
+			"text": " And when you don't want to lose something, what do you do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,240",
+				"to": "00:01:50,240"
+			},
+			"offsets": {
+				"from": 106240,
+				"to": 110240
+			},
+			"text": " Well, you create many copies of it and you make sure the copies don't get lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,240",
+				"to": "00:01:55,240"
+			},
+			"offsets": {
+				"from": 110240,
+				"to": 115240
+			},
+			"text": " But on the other hand, you also don't want the key to be stolen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,240",
+				"to": "00:01:58,240"
+			},
+			"offsets": {
+				"from": 115240,
+				"to": 118240
+			},
+			"text": " And when you don't want something to be stolen, what do you do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,240",
+				"to": "00:02:04,240"
+			},
+			"offsets": {
+				"from": 118240,
+				"to": 124240
+			},
+			"text": " You, you know, try to hide it from adversaries, make it really hard to access."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,240",
+				"to": "00:02:08,240"
+			},
+			"offsets": {
+				"from": 124240,
+				"to": 128240
+			},
+			"text": " Many minimize how many copies there are to be stolen in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,240",
+				"to": "00:02:16,240"
+			},
+			"offsets": {
+				"from": 128240,
+				"to": 136240
+			},
+			"text": " And the engineering strategies, when you just have this one key that you're trying both to prevent from being stolen and from being lost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,240",
+				"to": "00:02:20,240"
+			},
+			"offsets": {
+				"from": 136240,
+				"to": 140240
+			},
+			"text": " are kind of mutually exclusive or they pull in different directions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,240",
+				"to": "00:02:23,240"
+			},
+			"offsets": {
+				"from": 140240,
+				"to": 143240
+			},
+			"text": " So key management is hard even if you know what you're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,240",
+				"to": "00:02:26,240"
+			},
+			"offsets": {
+				"from": 143240,
+				"to": 146240
+			},
+			"text": " The other big limitation of EOA is just access control."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,240",
+				"to": "00:02:33,240"
+			},
+			"offsets": {
+				"from": 146240,
+				"to": 153240
+			},
+			"text": " Whether you're just playing a blockchain game or you're a multi-billion dollar corporation, if you're using an EOA,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,240",
+				"to": "00:02:37,240"
+			},
+			"offsets": {
+				"from": 153240,
+				"to": 157240
+			},
+			"text": " it's like the same access control policy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,240",
+				"to": "00:02:42,240"
+			},
+			"offsets": {
+				"from": 157240,
+				"to": 162240
+			},
+			"text": " So that's very limiting. You don't have a grant, a game of authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,240",
+				"to": "00:02:47,240"
+			},
+			"offsets": {
+				"from": 162240,
+				"to": 167240
+			},
+			"text": " You wouldn't have multi-sig support. There's no ability to implement roles."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,240",
+				"to": "00:02:55,240"
+			},
+			"offsets": {
+				"from": 167240,
+				"to": 175240
+			},
+			"text": " You can't have spending policies. It's just one size fits all mechanism based on this access to a secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,240",
+				"to": "00:02:59,240"
+			},
+			"offsets": {
+				"from": 175240,
+				"to": 179240
+			},
+			"text": " The other big limitation of EOA is gas payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,240",
+				"to": "00:03:08,240"
+			},
+			"offsets": {
+				"from": 179240,
+				"to": 188240
+			},
+			"text": " So you're paying gas directly from the EOA and it has to be an ETH, the native token."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,240",
+				"to": "00:03:15,240"
+			},
+			"offsets": {
+				"from": 188240,
+				"to": 195240
+			},
+			"text": " Now, potentially there are many other ways that you might want to be paying gas if you hold some, you know, if you're a fan of dog coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,240",
+				"to": "00:03:20,240"
+			},
+			"offsets": {
+				"from": 195240,
+				"to": 200240
+			},
+			"text": " Maybe you want to pay gas and that, you don't want to hold ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,240",
+				"to": "00:03:27,240"
+			},
+			"offsets": {
+				"from": 200240,
+				"to": 207240
+			},
+			"text": " And the other big limitation is that, well, if you do have to maintain an ETH balance in every account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,240",
+				"to": "00:03:33,240"
+			},
+			"offsets": {
+				"from": 207240,
+				"to": 213240
+			},
+			"text": " it's hard to split up your activity between a lot of accounts because then you have to top off ETH and all of the accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,240",
+				"to": "00:03:39,240"
+			},
+			"offsets": {
+				"from": 213240,
+				"to": 219240
+			},
+			"text": " And the ETH that you top off, it has to come from somewhere that's probably attached to your identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,240",
+				"to": "00:03:47,240"
+			},
+			"offsets": {
+				"from": 219240,
+				"to": 227240
+			},
+			"text": " I mean, you can see it exchanges and identity is known to at least some players and then, yeah, it's not too hard to track."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,240",
+				"to": "00:03:51,240"
+			},
+			"offsets": {
+				"from": 227240,
+				"to": 231240
+			},
+			"text": " And even if we split up activity, oh, this is all coming from one source."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,240",
+				"to": "00:03:54,240"
+			},
+			"offsets": {
+				"from": 231240,
+				"to": 234240
+			},
+			"text": " So that's a privacy problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,240",
+				"to": "00:03:59,240"
+			},
+			"offsets": {
+				"from": 234240,
+				"to": 239240
+			},
+			"text": " The other big limitation of EOA is just in terms of efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,240",
+				"to": "00:04:05,240"
+			},
+			"offsets": {
+				"from": 239240,
+				"to": 245240
+			},
+			"text": " Many times, what you actually want to do, it spans more than one transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,240",
+				"to": "00:04:10,240"
+			},
+			"offsets": {
+				"from": 245240,
+				"to": 250240
+			},
+			"text": " So let's say you want to approve and then you want to transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,240",
+				"to": "00:04:16,240"
+			},
+			"offsets": {
+				"from": 250240,
+				"to": 256240
+			},
+			"text": " Those are two transactions, but really, you are thinking of them as one operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,240",
+				"to": "00:04:23,240"
+			},
+			"offsets": {
+				"from": 256240,
+				"to": 263240
+			},
+			"text": " With EOA's, you would have to send two separate transactions and, you know, that might not work out."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,240",
+				"to": "00:04:31,240"
+			},
+			"offsets": {
+				"from": 263240,
+				"to": 271240
+			},
+			"text": " It also might be a little bit more expensive because of that, but there's no automaticity built in."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,240",
+				"to": "00:04:36,240"
+			},
+			"offsets": {
+				"from": 271240,
+				"to": 276240
+			},
+			"text": " And if there is a revert on chain, that's pretty expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,240",
+				"to": "00:04:41,240"
+			},
+			"offsets": {
+				"from": 276240,
+				"to": 281240
+			},
+			"text": " So, and that happens sometimes, especially with things that are very time sensitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,240",
+				"to": "00:04:45,240"
+			},
+			"offsets": {
+				"from": 281240,
+				"to": 285240
+			},
+			"text": " So, what is the alternative? What is account abstraction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,240",
+				"to": "00:04:54,240"
+			},
+			"offsets": {
+				"from": 285240,
+				"to": 294240
+			},
+			"text": " Well, basically what we're saying is, you know, EOA's are, they're the one size fits all past."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,240",
+				"to": "00:05:01,240"
+			},
+			"offsets": {
+				"from": 294240,
+				"to": 301240
+			},
+			"text": " And we want to move beyond them to a world where we can really manage the logic that controls our account"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,240",
+				"to": "00:05:04,240"
+			},
+			"offsets": {
+				"from": 301240,
+				"to": 304240
+			},
+			"text": " and the logic can be pretty arbitrary."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,240",
+				"to": "00:05:07,240"
+			},
+			"offsets": {
+				"from": 304240,
+				"to": 307240
+			},
+			"text": " And then that opens up a lot of possibilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,240",
+				"to": "00:05:10,240"
+			},
+			"offsets": {
+				"from": 307240,
+				"to": 310240
+			},
+			"text": " And that is the future of how accounts are going to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,240",
+				"to": "00:05:12,240"
+			},
+			"offsets": {
+				"from": 310240,
+				"to": 312240
+			},
+			"text": " So what are the use cases for this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,240",
+				"to": "00:05:16,240"
+			},
+			"offsets": {
+				"from": 312240,
+				"to": 316240
+			},
+			"text": " You know, the one that's been talked about since the beginning is social recovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,240",
+				"to": "00:05:24,240"
+			},
+			"offsets": {
+				"from": 316240,
+				"to": 324240
+			},
+			"text": " Like I'd say something bad happens to that secret that you're trying to both prevent from being lost and from being stolen."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,240",
+				"to": "00:05:35,240"
+			},
+			"offsets": {
+				"from": 324240,
+				"to": 335240
+			},
+			"text": " Well, maybe you have some friends that you plugged into your account and three out of five of them can help you restore your wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,240",
+				"to": "00:05:41,240"
+			},
+			"offsets": {
+				"from": 335240,
+				"to": 341240
+			},
+			"text": " And you can do even fancier things, let's say your friends suck, and they're trying to steal your money."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,240",
+				"to": "00:05:43,240"
+			},
+			"offsets": {
+				"from": 341240,
+				"to": 343240
+			},
+			"text": " Well, you could have a delay mechanism built in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,240",
+				"to": "00:05:51,240"
+			},
+			"offsets": {
+				"from": 343240,
+				"to": 351240
+			},
+			"text": " So if your friends suddenly try to recover your wallet when you don't need a recovery, you as the account owner would see that in advance"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,240",
+				"to": "00:05:54,240"
+			},
+			"offsets": {
+				"from": 351240,
+				"to": 354240
+			},
+			"text": " and the operation wouldn't happen immediately."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,240",
+				"to": "00:05:59,240"
+			},
+			"offsets": {
+				"from": 354240,
+				"to": 359240
+			},
+			"text": " So you would have time, let's say maybe a week to respond to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,240",
+				"to": "00:06:05,240"
+			},
+			"offsets": {
+				"from": 359240,
+				"to": 365240
+			},
+			"text": " The other really interesting use case is a dead man switch."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,240",
+				"to": "00:06:08,240"
+			},
+			"offsets": {
+				"from": 365240,
+				"to": 368240
+			},
+			"text": " Nobody lives forever, unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,240",
+				"to": "00:06:20,240"
+			},
+			"offsets": {
+				"from": 368240,
+				"to": 380240
+			},
+			"text": " And then what happens if you need to pass on your crypto, but you're not around to help do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,240",
+				"to": "00:06:29,240"
+			},
+			"offsets": {
+				"from": 380240,
+				"to": 389240
+			},
+			"text": " So with the dead man switch, you could have a mechanism like, okay, if you haven't accessed your account from your main key for the last year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,240",
+				"to": "00:06:38,240"
+			},
+			"offsets": {
+				"from": 389240,
+				"to": 398240
+			},
+			"text": " then another key that your family members have access to, it would become active."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,240",
+				"to": "00:06:46,240"
+			},
+			"offsets": {
+				"from": 398240,
+				"to": 406240
+			},
+			"text": " So usually you're in control, full control of your account, but then a year later, you haven't been active, something wrong happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,240",
+				"to": "00:06:50,240"
+			},
+			"offsets": {
+				"from": 406240,
+				"to": 410240
+			},
+			"text": " Your account automatically passes the multi-sick control by your family."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,240",
+				"to": "00:06:59,240"
+			},
+			"offsets": {
+				"from": 410240,
+				"to": 419240
+			},
+			"text": " Just one thing I want to explain, these are all features that account abstraction can give, but it's not that everything is come fully baked in."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,240",
+				"to": "00:07:06,240"
+			},
+			"offsets": {
+				"from": 419240,
+				"to": 426240
+			},
+			"text": " A account abstraction opens the door for wallet creators to add all those features."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,240",
+				"to": "00:07:12,240"
+			},
+			"offsets": {
+				"from": 426240,
+				"to": 432240
+			},
+			"text": " None of those features are something that will be on day one, maybe a limited set."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,240",
+				"to": "00:07:16,240"
+			},
+			"offsets": {
+				"from": 432240,
+				"to": 436240
+			},
+			"text": " These are options that are open to do more."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,240",
+				"to": "00:07:21,240"
+			},
+			"offsets": {
+				"from": 436240,
+				"to": 441240
+			},
+			"text": " Oh, now we can both talk you and if we can talk over each other if we need to."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,240",
+				"to": "00:07:27,240"
+			},
+			"offsets": {
+				"from": 441240,
+				"to": 447240
+			},
+			"text": " That's a good point. I was talking to you all about that when we were preparing for the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,240",
+				"to": "00:07:30,240"
+			},
+			"offsets": {
+				"from": 447240,
+				"to": 450240
+			},
+			"text": " This is, oh yeah, maybe that would be nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,240",
+				"to": "00:07:32,240"
+			},
+			"offsets": {
+				"from": 450240,
+				"to": 452240
+			},
+			"text": " So that's a really good point."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,240",
+				"to": "00:07:40,240"
+			},
+			"offsets": {
+				"from": 452240,
+				"to": 460240
+			},
+			"text": " This talk is intended to inspire, hey, we can do these things now that we have this infrastructure built in."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,240",
+				"to": "00:07:49,240"
+			},
+			"offsets": {
+				"from": 460240,
+				"to": 469240
+			},
+			"text": " But this all depends on the code that's running your smart wallet account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,240",
+				"to": "00:07:55,240"
+			},
+			"offsets": {
+				"from": 469240,
+				"to": 475240
+			},
+			"text": " And that's up to all developers. That's up to anyone that wants to get involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,240",
+				"to": "00:08:02,240"
+			},
+			"offsets": {
+				"from": 475240,
+				"to": 482240
+			},
+			"text": " And most likely there are many use cases that are interesting that will not be covered by this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,240",
+				"to": "00:08:07,240"
+			},
+			"offsets": {
+				"from": 482240,
+				"to": 487240
+			},
+			"text": " So use the sky's the limit in terms of imagination."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,240",
+				"to": "00:08:12,240"
+			},
+			"offsets": {
+				"from": 487240,
+				"to": 492240
+			},
+			"text": " But we would like to talk about some of the use cases that we've been thinking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,240",
+				"to": "00:08:28,240"
+			},
+			"offsets": {
+				"from": 492240,
+				"to": 508240
+			},
+			"text": " So one of the cool things that happened during ETH Bogota is there was a project that implemented an idea that we've been thinking would be pretty cool is, well, there's this signy mechanism in most mobile phones."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,240",
+				"to": "00:08:37,240"
+			},
+			"offsets": {
+				"from": 508240,
+				"to": 517240
+			},
+			"text": " The problem is the signy mechanism doesn't support ECDSA curves. So it's using some other mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,240",
+				"to": "00:08:54,240"
+			},
+			"offsets": {
+				"from": 517240,
+				"to": 534240
+			},
+			"text": " But because account abstraction doesn't lock in ECDSA as the only way to sign, what you can do is you can have predivized keys that essentially, you know, you get your phone and you link your phone to your account."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,240",
+				"to": "00:08:59,240"
+			},
+			"offsets": {
+				"from": 534240,
+				"to": 539240
+			},
+			"text": " Now your phone can authorize operations on your account."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,240",
+				"to": "00:09:05,240"
+			},
+			"offsets": {
+				"from": 539240,
+				"to": 545240
+			},
+			"text": " And a team actually implemented that in the recent hackathon, which we thought was pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,240",
+				"to": "00:09:16,240"
+			},
+			"offsets": {
+				"from": 545240,
+				"to": 556240
+			},
+			"text": " Multi-Sig is a very obvious use case. So, you know, now you would be able to just get that out of the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,240",
+				"to": "00:09:25,240"
+			},
+			"offsets": {
+				"from": 556240,
+				"to": 565240
+			},
+			"text": " Another one is BLS aggregation, which requires a little bit of explanation. BLS is a mechanism to aggregate signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,240",
+				"to": "00:09:30,240"
+			},
+			"offsets": {
+				"from": 565240,
+				"to": 570240
+			},
+			"text": " And that's cool because it reduces your gas costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,240",
+				"to": "00:09:43,240"
+			},
+			"offsets": {
+				"from": 570240,
+				"to": 583240
+			},
+			"text": " And because we have the ability to implement any signature verification mechanism in the account, then now we can have more efficient signature validation and save some costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,240",
+				"to": "00:09:51,240"
+			},
+			"offsets": {
+				"from": 583240,
+				"to": 591240
+			},
+			"text": " Now the other big one is eventually we know that the signature mechanisms that we're using are going to be broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,240",
+				"to": "00:09:58,240"
+			},
+			"offsets": {
+				"from": 591240,
+				"to": 598240
+			},
+			"text": " It's only a matter of time. Quantum computing is making a significant progress. So longer theoretical."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,240",
+				"to": "00:10:04,240"
+			},
+			"offsets": {
+				"from": 598240,
+				"to": 604240
+			},
+			"text": " The key bits are getting up there eventually. We will all have to stop using ECDSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,240",
+				"to": "00:10:07,240"
+			},
+			"offsets": {
+				"from": 604240,
+				"to": 607240
+			},
+			"text": " But there are alternatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,240",
+				"to": "00:10:18,240"
+			},
+			"offsets": {
+				"from": 607240,
+				"to": 618240
+			},
+			"text": " And hopefully by the time this becomes a pressing problem, we will just be able to use any quantum resistant signature mechanism that we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,240",
+				"to": "00:10:23,240"
+			},
+			"offsets": {
+				"from": 618240,
+				"to": 623240
+			},
+			"text": " That is maybe like gas efficient and secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,240",
+				"to": "00:10:33,240"
+			},
+			"offsets": {
+				"from": 623240,
+				"to": 633240
+			},
+			"text": " And you can swap that. So you have a lot of flexibility once you abstract away how you do signatures and it's not hard coded."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,240",
+				"to": "00:10:38,240"
+			},
+			"offsets": {
+				"from": 633240,
+				"to": 638240
+			},
+			"text": " So other interesting use cases are spending limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,240",
+				"to": "00:10:52,240"
+			},
+			"offsets": {
+				"from": 638240,
+				"to": 652240
+			},
+			"text": " I mean, if you're using your wallet for small day-to-day things, maybe you're paying for coffee, for a meal or for something that is not usually life changing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,240",
+				"to": "00:10:57,240"
+			},
+			"offsets": {
+				"from": 652240,
+				"to": 657240
+			},
+			"text": " then it makes sense for that to be something that you can do very easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,240",
+				"to": "00:11:11,240"
+			},
+			"offsets": {
+				"from": 657240,
+				"to": 671240
+			},
+			"text": " That shouldn't be too hard. But then if you're making a very big investment, then you might want to add a more secure way of doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,240",
+				"to": "00:11:21,240"
+			},
+			"offsets": {
+				"from": 671240,
+				"to": 681240
+			},
+			"text": " So you go get your ledger really depending on what is the spending limit that you're comfortable with for different levels of security."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,240",
+				"to": "00:11:30,240"
+			},
+			"offsets": {
+				"from": 681240,
+				"to": 690240
+			},
+			"text": " And you would be able to implement that because again, you can have arbitrary logic inside a contract that is controlling your account."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,240",
+				"to": "00:11:39,240"
+			},
+			"offsets": {
+				"from": 690240,
+				"to": 699240
+			},
+			"text": " The other cool thing that you can do is you can have different roles and you can delegate specific actions to those roles."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,240",
+				"to": "00:11:51,240"
+			},
+			"offsets": {
+				"from": 699240,
+				"to": 711240
+			},
+			"text": " So if the account is a corporate account, you can give payroll authorization to people who are in charge of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,240",
+				"to": "00:11:55,240"
+			},
+			"offsets": {
+				"from": 711240,
+				"to": 715240
+			},
+			"text": " And you can specify the spending limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,240",
+				"to": "00:12:06,240"
+			},
+			"offsets": {
+				"from": 715240,
+				"to": 726240
+			},
+			"text": " Another example would be if you have a legal department or you just want to delegate voting power for certain tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,240",
+				"to": "00:12:12,240"
+			},
+			"offsets": {
+				"from": 726240,
+				"to": 732240
+			},
+			"text": " you could do that in a way that still limits your exposure just to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,240",
+				"to": "00:12:22,240"
+			},
+			"offsets": {
+				"from": 732240,
+				"to": 742240
+			},
+			"text": " So they would be able to vote with the tokens, perform governance actions, but not transfer the tokens, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,240",
+				"to": "00:12:29,240"
+			},
+			"offsets": {
+				"from": 742240,
+				"to": 749240
+			},
+			"text": " And usually in companies, this is something that's very common in corporate bank accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,240",
+				"to": "00:12:34,240"
+			},
+			"offsets": {
+				"from": 749240,
+				"to": 754240
+			},
+			"text": " You give different roles in the company, different powers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,240",
+				"to": "00:12:42,240"
+			},
+			"offsets": {
+				"from": 754240,
+				"to": 762240
+			},
+			"text": " So in the CFO, I'll be able to transfer a larger sum, but there's still 24-hour delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,240",
+				"to": "00:12:55,240"
+			},
+			"offsets": {
+				"from": 762240,
+				"to": 775240
+			},
+			"text": " And then maybe other C-level executives could be to that if maybe the CFO's key was hacked or their computer was hacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,240",
+				"to": "00:13:00,240"
+			},
+			"offsets": {
+				"from": 775240,
+				"to": 780240
+			},
+			"text": " Or the CFO is untrustworthy for some reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,240",
+				"to": "00:13:10,240"
+			},
+			"offsets": {
+				"from": 780240,
+				"to": 790240
+			},
+			"text": " Another example would be, well, you want to give an auditor the power to monitor payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,240",
+				"to": "00:13:13,240"
+			},
+			"offsets": {
+				"from": 790240,
+				"to": 793240
+			},
+			"text": " And then the auditor has responsibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,240",
+				"to": "00:13:21,240"
+			},
+			"offsets": {
+				"from": 793240,
+				"to": 801240
+			},
+			"text": " If something, they have the responsibility to reach out to authorize parties and then verify what they're seeing happening on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,240",
+				"to": "00:13:23,240"
+			},
+			"offsets": {
+				"from": 801240,
+				"to": 803240
+			},
+			"text": " is what is supposed to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,240",
+				"to": "00:13:31,240"
+			},
+			"offsets": {
+				"from": 803240,
+				"to": 811240
+			},
+			"text": " So this way, you can tab a third-party accounting firm, maybe the one you already work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,240",
+				"to": "00:13:38,240"
+			},
+			"offsets": {
+				"from": 811240,
+				"to": 818240
+			},
+			"text": " Say, hey, we owe it to our shareholders, our treasury management."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,240",
+				"to": "00:13:40,240"
+			},
+			"offsets": {
+				"from": 818240,
+				"to": 820240
+			},
+			"text": " It doesn't get compromised."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,240",
+				"to": "00:13:48,240"
+			},
+			"offsets": {
+				"from": 820240,
+				"to": 828240
+			},
+			"text": " And how about we plug you into our treasury in a way where, yeah, you can perform."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,240",
+				"to": "00:13:54,240"
+			},
+			"offsets": {
+				"from": 828240,
+				"to": 834240
+			},
+			"text": " You have to rely on maybe your computer security or your staff."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,240",
+				"to": "00:14:00,240"
+			},
+			"offsets": {
+				"from": 834240,
+				"to": 840240
+			},
+			"text": " We don't want to exposure to them in terms of being able to transfer funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,240",
+				"to": "00:14:05,240"
+			},
+			"offsets": {
+				"from": 840240,
+				"to": 845240
+			},
+			"text": " But we do want to give you the responsibility of whatever you see happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,240",
+				"to": "00:14:08,240"
+			},
+			"offsets": {
+				"from": 845240,
+				"to": 848240
+			},
+			"text": " Talk to the people who are in charge."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,240",
+				"to": "00:14:11,240"
+			},
+			"offsets": {
+				"from": 848240,
+				"to": 851240
+			},
+			"text": " Make sure that it is an authorized action."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,240",
+				"to": "00:14:16,240"
+			},
+			"offsets": {
+				"from": 851240,
+				"to": 856240
+			},
+			"text": " And within this delay limit, if it isn't, just veto it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,240",
+				"to": "00:14:18,240"
+			},
+			"offsets": {
+				"from": 856240,
+				"to": 858240
+			},
+			"text": " Cancel the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,240",
+				"to": "00:14:22,240"
+			},
+			"offsets": {
+				"from": 858240,
+				"to": 862240
+			},
+			"text": " So you can give them the power to cancel, but not initiate transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,240",
+				"to": "00:14:28,240"
+			},
+			"offsets": {
+				"from": 862240,
+				"to": 868240
+			},
+			"text": " And I think the one that's going to be very useful very soon is session keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,240",
+				"to": "00:14:40,240"
+			},
+			"offsets": {
+				"from": 868240,
+				"to": 880240
+			},
+			"text": " So in fact, I think this is something Argent recently implemented for their start net wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,240",
+				"to": "00:14:46,240"
+			},
+			"offsets": {
+				"from": 880240,
+				"to": 886240
+			},
+			"text": " So the idea is, well, you want to play some blockchain game and you don't want to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,240",
+				"to": "00:14:51,240"
+			},
+			"offsets": {
+				"from": 886240,
+				"to": 891240
+			},
+			"text": " to click approve every time, like a message needs to be signed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,240",
+				"to": "00:14:56,240"
+			},
+			"offsets": {
+				"from": 891240,
+				"to": 896240
+			},
+			"text": " That would really, you know, distract from the gaming experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,240",
+				"to": "00:15:01,240"
+			},
+			"offsets": {
+				"from": 896240,
+				"to": 901240
+			},
+			"text": " But you also don't want to give this game full power over your wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,240",
+				"to": "00:15:02,240"
+			},
+			"offsets": {
+				"from": 901240,
+				"to": 902240
+			},
+			"text": " That would be crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,240",
+				"to": "00:15:05,240"
+			},
+			"offsets": {
+				"from": 902240,
+				"to": 905240
+			},
+			"text": " Like, you know, what if there's a security bug in the game?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,240",
+				"to": "00:15:12,240"
+			},
+			"offsets": {
+				"from": 905240,
+				"to": 912240
+			},
+			"text": " So ideally, you want to create a session key and the session key has the ability to do whatever is needed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,240",
+				"to": "00:15:15,240"
+			},
+			"offsets": {
+				"from": 912240,
+				"to": 915240
+			},
+			"text": " but limited to the gaming contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,240",
+				"to": "00:15:16,240"
+			},
+			"offsets": {
+				"from": 915240,
+				"to": 916240
+			},
+			"text": " Nothing else."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,240",
+				"to": "00:15:21,240"
+			},
+			"offsets": {
+				"from": 916240,
+				"to": 921240
+			},
+			"text": " And then the worst thing that can happen is, I don't know, maybe you're like, your game sword."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,240",
+				"to": "00:15:26,240"
+			},
+			"offsets": {
+				"from": 921240,
+				"to": 926240
+			},
+			"text": " Your NFT items are stolen if the game gets hacked, but everything else is safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,240",
+				"to": "00:15:30,240"
+			},
+			"offsets": {
+				"from": 926240,
+				"to": 930240
+			},
+			"text": " And you could just store this key inside your browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,240",
+				"to": "00:15:37,240"
+			},
+			"offsets": {
+				"from": 930240,
+				"to": 937240
+			},
+			"text": " So as soon as you authorize this, as you generated this session key, from that point onwards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,240",
+				"to": "00:15:44,240"
+			},
+			"offsets": {
+				"from": 937240,
+				"to": 944240
+			},
+			"text": " you don't have to be in the loop in terms of authorizing transactions and it just becomes transparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,240",
+				"to": "00:15:49,240"
+			},
+			"offsets": {
+				"from": 944240,
+				"to": 949240
+			},
+			"text": " So that's a really nice one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,240",
+				"to": "00:15:54,240"
+			},
+			"offsets": {
+				"from": 949240,
+				"to": 954240
+			},
+			"text": " The session keys also, you can mix what we were talking about before."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,240",
+				"to": "00:16:02,240"
+			},
+			"offsets": {
+				"from": 954240,
+				"to": 962240
+			},
+			"text": " So you could have a session key not only has maybe limited access to a specific contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,240",
+				"to": "00:16:13,240"
+			},
+			"offsets": {
+				"from": 962240,
+				"to": 973240
+			},
+			"text": " but maybe you have multiple devices and you want very easy things to be, like, not secure things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,240",
+				"to": "00:16:19,240"
+			},
+			"offsets": {
+				"from": 973240,
+				"to": 979240
+			},
+			"text": " things that are not very risky to be very easy from your computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,240",
+				"to": "00:16:27,240"
+			},
+			"offsets": {
+				"from": 979240,
+				"to": 987240
+			},
+			"text": " So maybe if you just want to sign into an event or something that doesn't have world-changing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,240",
+				"to": "00:16:33,240"
+			},
+			"offsets": {
+				"from": 987240,
+				"to": 993240
+			},
+			"text": " implications, if your computer gets hacked, so you authorize your browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,240",
+				"to": "00:16:41,240"
+			},
+			"offsets": {
+				"from": 993240,
+				"to": 1001240
+			},
+			"text": " And you would still have kept control over your account in case something goes wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,240",
+				"to": "00:16:48,240"
+			},
+			"offsets": {
+				"from": 1001240,
+				"to": 1008240
+			},
+			"text": " Browsers are not the most secure platforms, but you could just limit how much power the browser has"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,240",
+				"to": "00:16:50,240"
+			},
+			"offsets": {
+				"from": 1008240,
+				"to": 1010240
+			},
+			"text": " over your assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,240",
+				"to": "00:17:01,240"
+			},
+			"offsets": {
+				"from": 1010240,
+				"to": 1021240
+			},
+			"text": " So there's also a big UX issue with GAS, where the traditional web to world, where most of our users"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,240",
+				"to": "00:17:04,240"
+			},
+			"offsets": {
+				"from": 1021240,
+				"to": 1024240
+			},
+			"text": " will be coming from, GAS is not really a concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,240",
+				"to": "00:17:10,240"
+			},
+			"offsets": {
+				"from": 1024240,
+				"to": 1030240
+			},
+			"text": " So if you have a server, you're not really thinking about who's paying to run the server"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,240",
+				"to": "00:17:13,240"
+			},
+			"offsets": {
+				"from": 1030240,
+				"to": 1033240
+			},
+			"text": " and how do I share in the costs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,240",
+				"to": "00:17:17,240"
+			},
+			"offsets": {
+				"from": 1033240,
+				"to": 1037240
+			},
+			"text": " And how it works behind the scenes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,240",
+				"to": "00:17:22,240"
+			},
+			"offsets": {
+				"from": 1037240,
+				"to": 1042240
+			},
+			"text": " And users who are using space will not be really familiar with the concept of GAS."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,240",
+				"to": "00:17:25,240"
+			},
+			"offsets": {
+				"from": 1042240,
+				"to": 1045240
+			},
+			"text": " And it's also a hassle even for people who are familiar."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,240",
+				"to": "00:17:34,240"
+			},
+			"offsets": {
+				"from": 1045240,
+				"to": 1054240
+			},
+			"text": " So with abstract accounts, you can have a lot more flexibility in how you handle this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,240",
+				"to": "00:17:41,240"
+			},
+			"offsets": {
+				"from": 1054240,
+				"to": 1061240
+			},
+			"text": " So, for example, if you're a game, especially if you're running on a cheap layer too, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,240",
+				"to": "00:17:51,240"
+			},
+			"offsets": {
+				"from": 1061240,
+				"to": 1071240
+			},
+			"text": " could decide, hey, it's worth just subsidizing the transactions as part of my onboarding process."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,240",
+				"to": "00:18:01,240"
+			},
+			"offsets": {
+				"from": 1071240,
+				"to": 1081240
+			},
+			"text": " It's very common to have to budget some amount in order to acquire users."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,240",
+				"to": "00:18:05,240"
+			},
+			"offsets": {
+				"from": 1081240,
+				"to": 1085240
+			},
+			"text": " So if it's not prohibitively expensive, maybe you want to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,240",
+				"to": "00:18:10,240"
+			},
+			"offsets": {
+				"from": 1085240,
+				"to": 1090240
+			},
+			"text": " And then later, that's worth your while."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,240",
+				"to": "00:18:18,240"
+			},
+			"offsets": {
+				"from": 1090240,
+				"to": 1098240
+			},
+			"text": " Another very obvious one is just being able to pay GAS in any RC20 token or anything that has value."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,240",
+				"to": "00:18:27,240"
+			},
+			"offsets": {
+				"from": 1098240,
+				"to": 1107240
+			},
+			"text": " So if I pay you in USDC, there's no reason that I would also need to send ETH into your account"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,240",
+				"to": "00:18:32,240"
+			},
+			"offsets": {
+				"from": 1107240,
+				"to": 1112240
+			},
+			"text": " for you to move to that USDC and maybe pay your bills with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,240",
+				"to": "00:18:45,240"
+			},
+			"offsets": {
+				"from": 1112240,
+				"to": 1125240
+			},
+			"text": " It's nice if you have an account, whatever you have a value there, someone sends you a PayPal transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,240",
+				"to": "00:18:54,240"
+			},
+			"offsets": {
+				"from": 1125240,
+				"to": 1134240
+			},
+			"text": " They don't have to send you some other PayPal tokens so you can move your US dollars in PayPal to somewhere else."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,240",
+				"to": "00:18:57,240"
+			},
+			"offsets": {
+				"from": 1134240,
+				"to": 1137240
+			},
+			"text": " So payment becomes a lot easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,240",
+				"to": "00:19:11,240"
+			},
+			"offsets": {
+				"from": 1137240,
+				"to": 1151240
+			},
+			"text": " But also, maybe you're participating in some governance and the governance of that project doesn't want you to have to think whether it's worth your while to pay the GAS for the interaction or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,240",
+				"to": "00:19:15,240"
+			},
+			"offsets": {
+				"from": 1151240,
+				"to": 1155240
+			},
+			"text": " So they just decide to subsidize that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,240",
+				"to": "00:19:25,240"
+			},
+			"offsets": {
+				"from": 1155240,
+				"to": 1165240
+			},
+			"text": " Or you could maybe have some allotment and if you go beyond the allotment, you have to pay in that project's tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,240",
+				"to": "00:19:34,240"
+			},
+			"offsets": {
+				"from": 1165240,
+				"to": 1174240
+			},
+			"text": " The nice thing about being able to interact with the blockchain without needing ETH is it also has some privacy bonuses."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,240",
+				"to": "00:19:47,240"
+			},
+			"offsets": {
+				"from": 1174240,
+				"to": 1187240
+			},
+			"text": " So because if you go through the usual KYC process, someone knows who you are and their companies that are dedicated to linking all the information together so you don't have privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,240",
+				"to": "00:19:58,240"
+			},
+			"offsets": {
+				"from": 1187240,
+				"to": 1198240
+			},
+			"text": " But that wouldn't be an issue if you can just receive payment in any token and also pay for the GAS in any token."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,240",
+				"to": "00:20:06,240"
+			},
+			"offsets": {
+				"from": 1198240,
+				"to": 1206240
+			},
+			"text": " Because let's say I'm a contractor and I work online for you and I'm pseudonymous."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,240",
+				"to": "00:20:16,240"
+			},
+			"offsets": {
+				"from": 1206240,
+				"to": 1216240
+			},
+			"text": " I do the work, I give you an address, you pay me and I would be able to pay my bills or buy something online or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,240",
+				"to": "00:20:20,240"
+			},
+			"offsets": {
+				"from": 1216240,
+				"to": 1220240
+			},
+			"text": " And I would need to also acquire ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,240",
+				"to": "00:20:26,240"
+			},
+			"offsets": {
+				"from": 1220240,
+				"to": 1226240
+			},
+			"text": " And I could also separate, let's say I'm working with different customers, I could give each of them a separate address."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,240",
+				"to": "00:20:36,240"
+			},
+			"offsets": {
+				"from": 1226240,
+				"to": 1236240
+			},
+			"text": " And the customers wouldn't necessarily need to, they don't need to peek into my bank account or my equivalent of bank account and see how much I'm making and what is the balance there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,240",
+				"to": "00:20:51,240"
+			},
+			"offsets": {
+				"from": 1236240,
+				"to": 1251240
+			},
+			"text": " That's like we're doing that and maybe some of us have gotten used to it but it's really weird where you're working for someone and you give them the number of your bank account and they can see exactly what's going on there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,240",
+				"to": "00:20:55,240"
+			},
+			"offsets": {
+				"from": 1251240,
+				"to": 1255240
+			},
+			"text": " That's not very private."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,240",
+				"to": "00:21:09,240"
+			},
+			"offsets": {
+				"from": 1255240,
+				"to": 1269240
+			},
+			"text": " And once we have GAS abstraction as a built-in feature, we don't have to worry about that anymore because we could just easily generate new addresses for everyone that we interact with if we wanted to."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,240",
+				"to": "00:21:16,240"
+			},
+			"offsets": {
+				"from": 1269240,
+				"to": 1276240
+			},
+			"text": " There's also an interesting use case for enabling cross-chain operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,240",
+				"to": "00:21:21,240"
+			},
+			"offsets": {
+				"from": 1276240,
+				"to": 1281240
+			},
+			"text": " There are many ways to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,240",
+				"to": "00:21:32,240"
+			},
+			"offsets": {
+				"from": 1281240,
+				"to": 1292240
+			},
+			"text": " Yeah, that's just something that becomes a lot easier once you have this functionality built into the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,240",
+				"to": "00:21:41,240"
+			},
+			"offsets": {
+				"from": 1292240,
+				"to": 1301240
+			},
+			"text": " There's also some savings that you get from just being able to batch different transactions together."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,240",
+				"to": "00:21:47,240"
+			},
+			"offsets": {
+				"from": 1301240,
+				"to": 1307240
+			},
+			"text": " Also from being able to guarantee that the transactions are going to execute with automaticity."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,240",
+				"to": "00:22:07,240"
+			},
+			"offsets": {
+				"from": 1307240,
+				"to": 1327240
+			},
+			"text": " So for some things, it's useful if everything happens together and if everything doesn't happen together, then you don't want it to happen because it wouldn't make sense for the transactions to execute separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,240",
+				"to": "00:22:28,240"
+			},
+			"offsets": {
+				"from": 1327240,
+				"to": 1348240
+			},
+			"text": " And whether this happens in a gaming environment or there are some financial scenarios, I mean, imagine the simplest one would be you have to approve, you have to give some authorization to a contract to perform an action on your behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,240",
+				"to": "00:22:38,240"
+			},
+			"offsets": {
+				"from": 1348240,
+				"to": 1358240
+			},
+			"text": " And then you want to perform, you want to give them another transaction to actually perform the transaction and those both need to execute together."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,240",
+				"to": "00:22:43,240"
+			},
+			"offsets": {
+				"from": 1358240,
+				"to": 1363240
+			},
+			"text": " Otherwise, you just wasted GAS."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,240",
+				"to": "00:22:57,240"
+			},
+			"offsets": {
+				"from": 1363240,
+				"to": 1377240
+			},
+			"text": " And there's a sort of general use case that's interesting where you can actually implement these time delay flows."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,240",
+				"to": "00:23:06,240"
+			},
+			"offsets": {
+				"from": 1377240,
+				"to": 1386240
+			},
+			"text": " For example, let's say I want to be selling my ETH when it hits 5,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,240",
+				"to": "00:23:10,240"
+			},
+			"offsets": {
+				"from": 1386240,
+				"to": 1390240
+			},
+			"text": " But I don't know when that's going to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,240",
+				"to": "00:23:12,240"
+			},
+			"offsets": {
+				"from": 1390240,
+				"to": 1392240
+			},
+			"text": " I don't want to sit in front of my computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,240",
+				"to": "00:23:20,240"
+			},
+			"offsets": {
+				"from": 1392240,
+				"to": 1400240
+			},
+			"text": " So it would be possible for me to just pre-create the transaction, but make it conditional on certain things happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,240",
+				"to": "00:23:26,240"
+			},
+			"offsets": {
+				"from": 1400240,
+				"to": 1406240
+			},
+			"text": " So I only have the price of ETH is 5,000 or only after this time or whatever the condition is."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,240",
+				"to": "00:23:35,240"
+			},
+			"offsets": {
+				"from": 1406240,
+				"to": 1415240
+			},
+			"text": " And so my wallet would agree to execute and pay for the GAS for that transaction and also maybe a transaction fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,240",
+				"to": "00:23:49,240"
+			},
+			"offsets": {
+				"from": 1415240,
+				"to": 1429240
+			},
+			"text": " And you would put that into a registry and the registry of a future time delay or event driven transactions and searches, they would be able to monitor this registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,240",
+				"to": "00:23:58,240"
+			},
+			"offsets": {
+				"from": 1429240,
+				"to": 1438240
+			},
+			"text": " And see, oh, these are transactions that their conditions have just been been met so they can compete on executing it for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,240",
+				"to": "00:24:11,240"
+			},
+			"offsets": {
+				"from": 1438240,
+				"to": 1451240
+			},
+			"text": " And that opens up a whole range of interesting use cases because now it doesn't have to be you that pulls a trigger at the exact moment the conditions are met."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,240",
+				"to": "00:24:18,240"
+			},
+			"offsets": {
+				"from": 1451240,
+				"to": 1458240
+			},
+			"text": " If the conditions are met, the transaction will be executed for you by searchers and it could be time delayed."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,240",
+				"to": "00:24:24,240"
+			},
+			"offsets": {
+				"from": 1458240,
+				"to": 1464240
+			},
+			"text": " It could be based on essentially whatever the conditions make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,240",
+				"to": "00:24:37,240"
+			},
+			"offsets": {
+				"from": 1464240,
+				"to": 1477240
+			},
+			"text": " Maybe another example would be there's an NFT series and you have to be or an event they have to subscribe to for a certain time window."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,240",
+				"to": "00:24:52,240"
+			},
+			"offsets": {
+				"from": 1477240,
+				"to": 1492240
+			},
+			"text": " Okay, so a little bit about ERC 4337, which is so this is the standard that we have been working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,240",
+				"to": "00:25:00,240"
+			},
+			"offsets": {
+				"from": 1492240,
+				"to": 1500240
+			},
+			"text": " And all here is the guy who implemented the contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,240",
+				"to": "00:25:07,240"
+			},
+			"offsets": {
+				"from": 1500240,
+				"to": 1507240
+			},
+			"text": " So, yeah, please, if there are any technical mistakes, correct me."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,240",
+				"to": "00:25:15,240"
+			},
+			"offsets": {
+				"from": 1507240,
+				"to": 1515240
+			},
+			"text": " Okay, so this is the first step towards protocol level account of abstraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,240",
+				"to": "00:25:21,240"
+			},
+			"offsets": {
+				"from": 1515240,
+				"to": 1521240
+			},
+			"text": " The nice thing about our approach is that it doesn't require any change to the rules of consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,240",
+				"to": "00:25:28,240"
+			},
+			"offsets": {
+				"from": 1521240,
+				"to": 1528240
+			},
+			"text": " So we can kind of experiment for free and we don't have to solve governance in advance."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,240",
+				"to": "00:25:40,240"
+			},
+			"offsets": {
+				"from": 1528240,
+				"to": 1540240
+			},
+			"text": " The way we're doing it is, okay, we essentially create a new type of mempool for anyone that wants to participate in this."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,240",
+				"to": "00:25:45,240"
+			},
+			"offsets": {
+				"from": 1540240,
+				"to": 1545240
+			},
+			"text": " And you don't need more than a single network."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,240",
+				"to": "00:25:57,240"
+			},
+			"offsets": {
+				"from": 1545240,
+				"to": 1557240
+			},
+			"text": " This mempool, essentially it accepts something that is essentially a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,240",
+				"to": "00:26:09,240"
+			},
+			"offsets": {
+				"from": 1557240,
+				"to": 1569240
+			},
+			"text": " We're calling it user operation, but a user operation is equivalent to a transaction, but it's a transaction that works with these account contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,240",
+				"to": "00:26:20,240"
+			},
+			"offsets": {
+				"from": 1569240,
+				"to": 1580240
+			},
+			"text": " So what that does is it makes contract wallets a first class citizen and it totally does away with the need for having any way."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,240",
+				"to": "00:26:27,240"
+			},
+			"offsets": {
+				"from": 1580240,
+				"to": 1587240
+			},
+			"text": " You don't need a new way to control this account."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,240",
+				"to": "00:26:41,240"
+			},
+			"offsets": {
+				"from": 1587240,
+				"to": 1601240
+			},
+			"text": " And the way that works, maybe a little bit about how that works, it's kind of similar to how Flashbots, MEV, private mempools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,240",
+				"to": "00:26:53,240"
+			},
+			"offsets": {
+				"from": 1601240,
+				"to": 1613240
+			},
+			"text": " like the principle behind it is you can have a mempool where bundlers, they are provided an incentive to submit your transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,240",
+				"to": "00:27:07,240"
+			},
+			"offsets": {
+				"from": 1613240,
+				"to": 1627240
+			},
+			"text": " And essentially we took that idea, or originally this was Vitalix idea, and we added the gas abstraction part to it to make it a more general purpose."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,240",
+				"to": "00:27:21,240"
+			},
+			"offsets": {
+				"from": 1627240,
+				"to": 1641240
+			},
+			"text": " And then the bundlers, their job is to just take these user operations and eventually they bundle them together and they submit them"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,240",
+				"to": "00:27:32,240"
+			},
+			"offsets": {
+				"from": 1641240,
+				"to": 1652240
+			},
+			"text": " when they're creating bundles that go to actual blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,240",
+				"to": "00:27:43,240"
+			},
+			"offsets": {
+				"from": 1652240,
+				"to": 1663240
+			},
+			"text": " Okay, the other advantage of doing things this way is that we're separating validation from execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,240",
+				"to": "00:27:58,240"
+			},
+			"offsets": {
+				"from": 1663240,
+				"to": 1678240
+			},
+			"text": " So you can have, so if I'm a bundler and I am paying for the gas of your transaction, there's some risk involved for me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,240",
+				"to": "00:28:13,240"
+			},
+			"offsets": {
+				"from": 1678240,
+				"to": 1693240
+			},
+			"text": " what happens if you don't pay me, what happens if I execute your transaction on chain and turns out that it ends up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,240",
+				"to": "00:28:22,240"
+			},
+			"offsets": {
+				"from": 1693240,
+				"to": 1702240
+			},
+			"text": " well, at least you expect to be repaid in gas, because otherwise, why would you participate in the scheme?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,240",
+				"to": "00:28:37,240"
+			},
+			"offsets": {
+				"from": 1702240,
+				"to": 1717240
+			},
+			"text": " So to make it very safe for bundlers to participate, what we've done is we've provided a contract that will guarantee that you're always going to be paid back,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,240",
+				"to": "00:28:41,240"
+			},
+			"offsets": {
+				"from": 1717240,
+				"to": 1721240
+			},
+			"text": " regardless of what happens with your transaction when it's executed on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,240",
+				"to": "00:28:57,240"
+			},
+			"offsets": {
+				"from": 1721240,
+				"to": 1737240
+			},
+			"text": " So we've separated validation from execution and what the bundler needs to do when they accept the transaction, they're just verifying that they're doing this off-chain initially, just, okay, if I accept your transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:57,240",
+				"to": "00:29:10,240"
+			},
+			"offsets": {
+				"from": 1737240,
+				"to": 1750240
+			},
+			"text": " I'm calling this useful function, and am I going to be paid back for the gas? That's all they're verifying, so it's pretty cheap for them to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,240",
+				"to": "00:29:19,240"
+			},
+			"offsets": {
+				"from": 1750240,
+				"to": 1759240
+			},
+			"text": " And later, the total separately, when the transaction is submitted and gets executed, but then you don't really care."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,240",
+				"to": "00:29:27,240"
+			},
+			"offsets": {
+				"from": 1759240,
+				"to": 1767240
+			},
+			"text": " As a bundler, even if it reverts, it's your problem, just like with a normal transaction, because you're still going to get paid."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:27,240",
+				"to": "00:29:42,240"
+			},
+			"offsets": {
+				"from": 1767240,
+				"to": 1782240
+			},
+			"text": " And without this, it wouldn't really be possible to create a permissionless pool of bundlers that are participating in this protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:42,240",
+				"to": "00:29:50,240"
+			},
+			"offsets": {
+				"from": 1782240,
+				"to": 1790240
+			},
+			"text": " because the bundlers would have to trust that they're not going to get cheated."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:50,240",
+				"to": "00:29:59,240"
+			},
+			"offsets": {
+				"from": 1790240,
+				"to": 1799240
+			},
+			"text": " Just one, we use the term bundler, which are node validators, just like any node validator that also supports account abstraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,240",
+				"to": "00:30:07,240"
+			},
+			"offsets": {
+				"from": 1799240,
+				"to": 1807240
+			},
+			"text": " One of them is enough to run a network, the more they are, the more resilient to a censorship and other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:07,240",
+				"to": "00:30:13,240"
+			},
+			"offsets": {
+				"from": 1807240,
+				"to": 1813240
+			},
+			"text": " And eventually, all validators, hopefully, will be also bundlers."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:13,240",
+				"to": "00:30:23,240"
+			},
+			"offsets": {
+				"from": 1813240,
+				"to": 1823240
+			},
+			"text": " Right, so right now we have, so exactly, you don't need a consensus chain, you don't need 51% of validators participating in this scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:23,240",
+				"to": "00:30:36,240"
+			},
+			"offsets": {
+				"from": 1823240,
+				"to": 1836240
+			},
+			"text": " because ultimately you're generating just regular legal blocks, and we have another mind as an implementation that is supporting this."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:36,240",
+				"to": "00:30:43,240"
+			},
+			"offsets": {
+				"from": 1836240,
+				"to": 1843240
+			},
+			"text": " The more clients support this, the faster your transactions are going to get executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:43,240",
+				"to": "00:31:01,240"
+			},
+			"offsets": {
+				"from": 1843240,
+				"to": 1861240
+			},
+			"text": " Okay, so with ERC4337, then once we have this scheme, we can also use it to make roll-ups cheaper, because you can batch transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:01,240",
+				"to": "00:31:08,240"
+			},
+			"offsets": {
+				"from": 1861240,
+				"to": 1868240
+			},
+			"text": " aggregate signatures, so that's another advantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:08,240",
+				"to": "00:31:18,240"
+			},
+			"offsets": {
+				"from": 1868240,
+				"to": 1878240
+			},
+			"text": " And like I said, it doesn't require any protocol changes, so any EBM chain, we can start experimenting with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:18,240",
+				"to": "00:31:21,240"
+			},
+			"offsets": {
+				"from": 1878240,
+				"to": 1881240
+			},
+			"text": " Is there anything you want to add?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:21,240",
+				"to": "00:31:28,240"
+			},
+			"offsets": {
+				"from": 1881240,
+				"to": 1888240
+			},
+			"text": " Yeah, okay, technically, a bundler can run as a separate entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:28,240",
+				"to": "00:31:32,240"
+			},
+			"offsets": {
+				"from": 1888240,
+				"to": 1892240
+			},
+			"text": " It is much, much better for it to be a node, to be more resilient."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:32,240",
+				"to": "00:31:39,240"
+			},
+			"offsets": {
+				"from": 1892240,
+				"to": 1899240
+			},
+			"text": " So the way to add it right now, the way we are currently adding it, and girly, because it's still on test, is adding it as a separate server."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:39,240",
+				"to": "00:31:44,240"
+			},
+			"offsets": {
+				"from": 1899240,
+				"to": 1904240
+			},
+			"text": " The wallets don't care its implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:44,240",
+				"to": "00:31:50,240"
+			},
+			"offsets": {
+				"from": 1904240,
+				"to": 1910240
+			},
+			"text": " In order to be highly scalable and to be able to batch more, it has to be a node in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:50,240",
+				"to": "00:31:57,240"
+			},
+			"offsets": {
+				"from": 1910240,
+				"to": 1917240
+			},
+			"text": " Another mind already has a node that can run another mind, and there's a work to add it also with a get code."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:57,240",
+				"to": "00:32:00,240"
+			},
+			"offsets": {
+				"from": 1917240,
+				"to": 1920240
+			},
+			"text": " So what's next?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:00,240",
+				"to": "00:32:09,240"
+			},
+			"offsets": {
+				"from": 1920240,
+				"to": 1929240
+			},
+			"text": " Well, yes, we can start experimenting and have account abstracts in any EBM compatible chain without consensus changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,240",
+				"to": "00:32:14,240"
+			},
+			"offsets": {
+				"from": 1929240,
+				"to": 1934240
+			},
+			"text": " But the goal is to do away with the EOAs eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:14,240",
+				"to": "00:32:22,240"
+			},
+			"offsets": {
+				"from": 1934240,
+				"to": 1942240
+			},
+			"text": " We don't need the EOAs, and we know we're going to have to move away from them eventually at some point."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:22,240",
+				"to": "00:32:26,240"
+			},
+			"offsets": {
+				"from": 1942240,
+				"to": 1946240
+			},
+			"text": " And there are various ways of thinking about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:26,240",
+				"to": "00:32:36,240"
+			},
+			"offsets": {
+				"from": 1946240,
+				"to": 1956240
+			},
+			"text": " So we want to have account abstraction as a basic feature of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:36,240",
+				"to": "00:32:45,240"
+			},
+			"offsets": {
+				"from": 1956240,
+				"to": 1965240
+			},
+			"text": " But we want to do it in a way that doesn't entrine any particular wallet, or gives an unfair advantage to any particular wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:45,240",
+				"to": "00:33:00,240"
+			},
+			"offsets": {
+				"from": 1965240,
+				"to": 1980240
+			},
+			"text": " And because the EOAs are a fact, and they're very, very common, and they probably will be until we move away from them, and we'll take a few years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:00,240",
+				"to": "00:33:07,240"
+			},
+			"offsets": {
+				"from": 1980240,
+				"to": 1987240
+			},
+			"text": " we need a way to convert EOAs seamlessly to smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:07,240",
+				"to": "00:33:19,240"
+			},
+			"offsets": {
+				"from": 1987240,
+				"to": 1999240
+			},
+			"text": " So there will be some default implementation where, yes, everything in the future is an abstract account, including EOAs."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:19,240",
+				"to": "00:33:27,240"
+			},
+			"offsets": {
+				"from": 1999240,
+				"to": 2007240
+			},
+			"text": " But if you haven't upgraded your EOA, if you haven't inserted code into your EOA, if you haven't activated it in some way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:27,240",
+				"to": "00:33:42,240"
+			},
+			"offsets": {
+				"from": 2007240,
+				"to": 2022240
+			},
+			"text": " you can just, you know, behind the scenes continues behaving like an EOA, but it has the functionality requiring, allowing you to upgrade it."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:42,240",
+				"to": "00:33:45,240"
+			},
+			"offsets": {
+				"from": 2022240,
+				"to": 2025240
+			},
+			"text": " Of course, this would require a consensus change."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:45,240",
+				"to": "00:33:53,240"
+			},
+			"offsets": {
+				"from": 2025240,
+				"to": 2033240
+			},
+			"text": " And there are various ways that it can be achieved we're discussing."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:53,240",
+				"to": "00:34:00,240"
+			},
+			"offsets": {
+				"from": 2033240,
+				"to": 2040240
+			},
+			"text": " So there will be, there's a new transaction type, and then you can set the code for your EOA."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:00,240",
+				"to": "00:34:07,240"
+			},
+			"offsets": {
+				"from": 2040240,
+				"to": 2047240
+			},
+			"text": " This is now the code that's running your EOA."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:07,240",
+				"to": "00:34:17,240"
+			},
+			"offsets": {
+				"from": 2047240,
+				"to": 2057240
+			},
+			"text": " Or, you know, there's also been a suggestion, EIP 3074, maybe that in combination with another EIP."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:17,240",
+				"to": "00:34:23,240"
+			},
+			"offsets": {
+				"from": 2057240,
+				"to": 2063240
+			},
+			"text": " And we could also set default proxy contract for all addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:23,240",
+				"to": "00:34:25,240"
+			},
+			"offsets": {
+				"from": 2063240,
+				"to": 2065240
+			},
+			"text": " Do you want to add anything?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:25,240",
+				"to": "00:34:27,240"
+			},
+			"offsets": {
+				"from": 2065240,
+				"to": 2067240
+			},
+			"text": " Yeah, by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:27,240",
+				"to": "00:34:39,240"
+			},
+			"offsets": {
+				"from": 2067240,
+				"to": 2079240
+			},
+			"text": " Basically two options, one of them to let a user decide the exact point of time where he wants to upgrade its EOA into a contract wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:39,240",
+				"to": "00:34:42,240"
+			},
+			"offsets": {
+				"from": 2079240,
+				"to": 2082240
+			},
+			"text": " either using a transaction type or a new upcode or such."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:42,240",
+				"to": "00:34:52,240"
+			},
+			"offsets": {
+				"from": 2082240,
+				"to": 2092240
+			},
+			"text": " The other way is to decide that at one point of time, all EOA's start using some default implementation we've deployed and tested thoroughly before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:52,240",
+				"to": "00:34:54,240"
+			},
+			"offsets": {
+				"from": 2092240,
+				"to": 2094240
+			},
+			"text": " which behaves exactly like an EOA."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:54,240",
+				"to": "00:35:03,240"
+			},
+			"offsets": {
+				"from": 2094240,
+				"to": 2103240
+			},
+			"text": " So all user will not notice a difference, except that from now they have a way to modify, to replace the actual implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:03,240",
+				"to": "00:35:09,240"
+			},
+			"offsets": {
+				"from": 2103240,
+				"to": 2109240
+			},
+			"text": " So they have a smart contract to just behave exactly like an EOA until they decide otherwise."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:09,240",
+				"to": "00:35:10,240"
+			},
+			"offsets": {
+				"from": 2109240,
+				"to": 2110240
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,240",
+				"to": "00:35:11,240"
+			},
+			"offsets": {
+				"from": 2110240,
+				"to": 2111240
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:11,240",
+				"to": "00:35:22,240"
+			},
+			"offsets": {
+				"from": 2111240,
+				"to": 2122240
+			},
+			"text": " The basic contract doesn't offer any of the advanced features we described earlier, except the one feature which is replace implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:22,240",
+				"to": "00:35:26,240"
+			},
+			"offsets": {
+				"from": 2122240,
+				"to": 2126240
+			},
+			"text": " The user can replace implementation once it is replaced, the sky is the limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:26,240",
+				"to": "00:35:29,240"
+			},
+			"offsets": {
+				"from": 2126240,
+				"to": 2129240
+			},
+			"text": " Yeah, all the use cases that we've..."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:29,240",
+				"to": "00:35:30,240"
+			},
+			"offsets": {
+				"from": 2129240,
+				"to": 2130240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:30,240",
+				"to": "00:35:36,240"
+			},
+			"offsets": {
+				"from": 2130240,
+				"to": 2136240
+			},
+			"text": " Use cases and all the users that other people will try to find."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:36,240",
+				"to": "00:35:37,240"
+			},
+			"offsets": {
+				"from": 2136240,
+				"to": 2137240
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:37,240",
+				"to": "00:35:38,240"
+			},
+			"offsets": {
+				"from": 2137240,
+				"to": 2138240
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:38,240",
+				"to": "00:35:39,240"
+			},
+			"offsets": {
+				"from": 2138240,
+				"to": 2139240
+			},
+			"text": " So this question..."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:39,240",
+				"to": "00:35:42,240"
+			},
+			"offsets": {
+				"from": 2139240,
+				"to": 2142240
+			},
+			"text": " Paul, you still... now we're going to talk about..."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:42,240",
+				"to": "00:35:43,240"
+			},
+			"offsets": {
+				"from": 2142240,
+				"to": 2143240
+			},
+			"text": " Well, how do you join this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:43,240",
+				"to": "00:35:44,240"
+			},
+			"offsets": {
+				"from": 2143240,
+				"to": 2144240
+			},
+			"text": " Ah, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:44,240",
+				"to": "00:35:45,240"
+			},
+			"offsets": {
+				"from": 2144240,
+				"to": 2145240
+			},
+			"text": " Yeah, yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:45,240",
+				"to": "00:35:46,240"
+			},
+			"offsets": {
+				"from": 2145240,
+				"to": 2146240
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:46,240",
+				"to": "00:35:47,240"
+			},
+			"offsets": {
+				"from": 2146240,
+				"to": 2147240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:47,240",
+				"to": "00:35:53,240"
+			},
+			"offsets": {
+				"from": 2147240,
+				"to": 2153240
+			},
+			"text": " So how do you join this account abstraction revolution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:53,240",
+				"to": "00:35:57,240"
+			},
+			"offsets": {
+				"from": 2153240,
+				"to": 2157240
+			},
+			"text": " You can start experimenting with the RC 4-3-3-7 right away."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:57,240",
+				"to": "00:36:03,240"
+			},
+			"offsets": {
+				"from": 2157240,
+				"to": 2163240
+			},
+			"text": " And at ETH BOCA-TA, we had eight wonderful submissions."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:03,240",
+				"to": "00:36:07,240"
+			},
+			"offsets": {
+				"from": 2163240,
+				"to": 2167240
+			},
+			"text": " And this is something that's already working."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:07,240",
+				"to": "00:36:11,240"
+			},
+			"offsets": {
+				"from": 2167240,
+				"to": 2171240
+			},
+			"text": " So you don't have to wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:11,240",
+				"to": "00:36:21,240"
+			},
+			"offsets": {
+				"from": 2171240,
+				"to": 2181240
+			},
+			"text": " You can add useful features like the one we discussed, you know, batching or key recovery or any of the things that we've been talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:21,240",
+				"to": "00:36:27,240"
+			},
+			"offsets": {
+				"from": 2181240,
+				"to": 2187240
+			},
+			"text": " You could build features that were totally not possible with EOA's that we haven't thought about."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:27,240",
+				"to": "00:36:35,240"
+			},
+			"offsets": {
+				"from": 2187240,
+				"to": 2195240
+			},
+			"text": " And if you do, if you're building anything cool, then you should definitely apply for any of Grant because we want to see this..."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:35,240",
+				"to": "00:36:47,240"
+			},
+			"offsets": {
+				"from": 2195240,
+				"to": 2207240
+			},
+			"text": " We want to see this used and adopted and we want to see the experimentation and want to update this presentation with more interesting use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:47,240",
+				"to": "00:36:57,240"
+			},
+			"offsets": {
+				"from": 2207240,
+				"to": 2217240
+			},
+			"text": " So definitely apply for any ETH Grant if you have a cool idea that builds on the RC on the CRC."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:57,240",
+				"to": "00:37:07,240"
+			},
+			"offsets": {
+				"from": 2217240,
+				"to": 2227240
+			},
+			"text": " The other thing is, if you are building a DAP, you have to think about a future where contract wallets are first-class citizens."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:07,240",
+				"to": "00:37:13,240"
+			},
+			"offsets": {
+				"from": 2227240,
+				"to": 2233240
+			},
+			"text": " I mean, contract wallets are already pretty common, especially for teams."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:13,240",
+				"to": "00:37:21,240"
+			},
+			"offsets": {
+				"from": 2233240,
+				"to": 2241240
+			},
+			"text": " You know, multisigs are an example, but still many DAPs assume that they're going to be interacting with an EOA."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:21,240",
+				"to": "00:37:30,240"
+			},
+			"offsets": {
+				"from": 2241240,
+				"to": 2250240
+			},
+			"text": " And that is just an obstacle for us to move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:30,240",
+				"to": "00:37:35,240"
+			},
+			"offsets": {
+				"from": 2250240,
+				"to": 2255240
+			},
+			"text": " It means your DAP already can't interact with things like Windows to Safe Wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:35,240",
+				"to": "00:37:44,240"
+			},
+			"offsets": {
+				"from": 2255240,
+				"to": 2264240
+			},
+			"text": " If you're assuming you're making assumptions such as, you know, how signatures are validated."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:44,240",
+				"to": "00:37:55,240"
+			},
+			"offsets": {
+				"from": 2264240,
+				"to": 2275240
+			},
+			"text": " So there are easy ways to make your DAP compatible, both with smart contracts right away and abstract accounts in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:55,240",
+				"to": "00:38:04,240"
+			},
+			"offsets": {
+				"from": 2275240,
+				"to": 2284240
+			},
+			"text": " And that's the ERC 1271, which just checks if the caller has code."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:04,240",
+				"to": "00:38:16,240"
+			},
+			"offsets": {
+				"from": 2284240,
+				"to": 2296240
+			},
+			"text": " And then there's a mechanism where it can just invoke a function instead of assuming that they can rely on this ECDs psyche."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:16,240",
+				"to": "00:38:28,240"
+			},
+			"offsets": {
+				"from": 2296240,
+				"to": 2308240
+			},
+			"text": " The other one is if you can benefit from batching in your user interface and many DAPs, especially games, can,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:28,240",
+				"to": "00:38:34,240"
+			},
+			"offsets": {
+				"from": 2308240,
+				"to": 2314240
+			},
+			"text": " then you should check if you're connected to a contract wallet that supports it."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:34,240",
+				"to": "00:38:38,240"
+			},
+			"offsets": {
+				"from": 2314240,
+				"to": 2318240
+			},
+			"text": " And that will create a better experience for your users."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:38,240",
+				"to": "00:38:42,240"
+			},
+			"offsets": {
+				"from": 2318240,
+				"to": 2322240
+			},
+			"text": " It will save gas costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:42,240",
+				"to": "00:38:47,240"
+			},
+			"offsets": {
+				"from": 2322240,
+				"to": 2327240
+			},
+			"text": " The other thing is with how gas is paid."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:47,240",
+				"to": "00:38:56,240"
+			},
+			"offsets": {
+				"from": 2327240,
+				"to": 2336240
+			},
+			"text": " So if you have a DAP, you should think about different types of gas payment models."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:56,240",
+				"to": "00:39:13,240"
+			},
+			"offsets": {
+				"from": 2336240,
+				"to": 2353240
+			},
+			"text": " I mean, you know, a big, an easy example is if you have a token, then it makes sense perhaps that your users should be able to pay for the transactions in your token when you're using your DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:13,240",
+				"to": "00:39:27,240"
+			},
+			"offsets": {
+				"from": 2353240,
+				"to": 2367240
+			},
+			"text": " And if you don't have a token or you want to subsidize your users, that's easily accomplished with account abstraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:27,240",
+				"to": "00:39:42,240"
+			},
+			"offsets": {
+				"from": 2367240,
+				"to": 2382240
+			},
+			"text": " You set up a contract that authorizes to reimburse your users for whatever criteria you feel comfortable with, maybe the onboarding process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:42,240",
+				"to": "00:39:52,240"
+			},
+			"offsets": {
+				"from": 2382240,
+				"to": 2392240
+			},
+			"text": " maybe they have to perform some action, but it's something that's possible now."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:52,240",
+				"to": "00:40:05,240"
+			},
+			"offsets": {
+				"from": 2392240,
+				"to": 2405240
+			},
+			"text": " And a lot of the improvements that we're going to get for DAP usability is going to also require some wallet support."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:05,240",
+				"to": "00:40:14,240"
+			},
+			"offsets": {
+				"from": 2405240,
+				"to": 2414240
+			},
+			"text": " So, walls are an important part of usability for DAPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:14,240",
+				"to": "00:40:27,240"
+			},
+			"offsets": {
+				"from": 2414240,
+				"to": 2427240
+			},
+			"text": " And as a DAP developer, you have some influence by collaborating with Wallet Devs saying, \"Okay, this is something that would be beneficial for my use case.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:40:27,240",
+				"to": "00:40:38,240"
+			},
+			"offsets": {
+				"from": 2427240,
+				"to": 2438240
+			},
+			"text": " And you can have a bit of an influence by just saying, \"Okay, this is useful for me. I need this feature in the wallet.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:40:38,240",
+				"to": "00:40:45,240"
+			},
+			"offsets": {
+				"from": 2438240,
+				"to": 2445240
+			},
+			"text": " For example, supporting account abstraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:45,240",
+				"to": "00:40:54,240"
+			},
+			"offsets": {
+				"from": 2445240,
+				"to": 2454240
+			},
+			"text": " So, other than talking with us, we're happy to help anyone that's implementing different use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:54,240",
+				"to": "00:40:57,240"
+			},
+			"offsets": {
+				"from": 2454240,
+				"to": 2457240
+			},
+			"text": " We do have an SDK up later."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:57,240",
+				"to": "00:41:02,240"
+			},
+			"offsets": {
+				"from": 2457240,
+				"to": 2462240
+			},
+			"text": " You all will share on his Twitter the links."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:02,240",
+				"to": "00:41:06,240"
+			},
+			"offsets": {
+				"from": 2462240,
+				"to": 2466240
+			},
+			"text": " But there's an SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:06,240",
+				"to": "00:41:07,240"
+			},
+			"offsets": {
+				"from": 2466240,
+				"to": 2467240
+			},
+			"text": " There's an SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:07,240",
+				"to": "00:41:09,240"
+			},
+			"offsets": {
+				"from": 2467240,
+				"to": 2469240
+			},
+			"text": " Well, you can come up to us and we'll give you."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:09,240",
+				"to": "00:41:10,240"
+			},
+			"offsets": {
+				"from": 2469240,
+				"to": 2470240
+			},
+			"text": " Yeah, or we'll just give you."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:10,240",
+				"to": "00:41:14,240"
+			},
+			"offsets": {
+				"from": 2470240,
+				"to": 2474240
+			},
+			"text": " But I think I think I can just open this right now and show where this is pointing to."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:14,240",
+				"to": "00:41:16,240"
+			},
+			"offsets": {
+				"from": 2474240,
+				"to": 2476240
+			},
+			"text": " Wait, this is very small."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:16,240",
+				"to": "00:41:18,240"
+			},
+			"offsets": {
+				"from": 2476240,
+				"to": 2478240
+			},
+			"text": " Why is this so small?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:18,240",
+				"to": "00:41:19,240"
+			},
+			"offsets": {
+				"from": 2478240,
+				"to": 2479240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:19,240",
+				"to": "00:41:21,240"
+			},
+			"offsets": {
+				"from": 2479240,
+				"to": 2481240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:21,240",
+				"to": "00:41:24,240"
+			},
+			"offsets": {
+				"from": 2481240,
+				"to": 2484240
+			},
+			"text": " So, we have our SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:24,240",
+				"to": "00:41:28,240"
+			},
+			"offsets": {
+				"from": 2484240,
+				"to": 2488240
+			},
+			"text": " It's on GitHub, \"eathen-penetism account abstraction.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:41:28,240",
+				"to": "00:41:30,240"
+			},
+			"offsets": {
+				"from": 2488240,
+				"to": 2490240
+			},
+			"text": " It's not SDK, it's the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:30,240",
+				"to": "00:41:32,240"
+			},
+			"offsets": {
+				"from": 2490240,
+				"to": 2492240
+			},
+			"text": " Oh, where's the SDK?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:32,240",
+				"to": "00:41:34,240"
+			},
+			"offsets": {
+				"from": 2492240,
+				"to": 2494240
+			},
+			"text": " It's a fanaticism bundle."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:34,240",
+				"to": "00:41:36,240"
+			},
+			"offsets": {
+				"from": 2494240,
+				"to": 2496240
+			},
+			"text": " Okay, oh, the link is broken then."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:36,240",
+				"to": "00:41:38,240"
+			},
+			"offsets": {
+				"from": 2496240,
+				"to": 2498240
+			},
+			"text": " All right, we'll fix that."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:38,240",
+				"to": "00:41:39,240"
+			},
+			"offsets": {
+				"from": 2498240,
+				"to": 2499240
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:39,240",
+				"to": "00:41:41,240"
+			},
+			"offsets": {
+				"from": 2499240,
+				"to": 2501240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:41,240",
+				"to": "00:41:43,240"
+			},
+			"offsets": {
+				"from": 2501240,
+				"to": 2503240
+			},
+			"text": " Okay, that is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:43,240",
+				"to": "00:41:44,240"
+			},
+			"offsets": {
+				"from": 2503240,
+				"to": 2504240
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:44,240",
+				"to": "00:41:46,240"
+			},
+			"offsets": {
+				"from": 2504240,
+				"to": 2506240
+			},
+			"text": " Oh, this is the SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:46,240",
+				"to": "00:41:47,240"
+			},
+			"offsets": {
+				"from": 2506240,
+				"to": 2507240
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:47,240",
+				"to": "00:41:51,240"
+			},
+			"offsets": {
+				"from": 2507240,
+				"to": 2511240
+			},
+			"text": " So, the reference implementation of a bundler, a simple bundler, and the SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:51,240",
+				"to": "00:41:52,240"
+			},
+			"offsets": {
+				"from": 2511240,
+				"to": 2512240
+			},
+			"text": " Oh, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:52,240",
+				"to": "00:41:53,240"
+			},
+			"offsets": {
+				"from": 2512240,
+				"to": 2513240
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:53,240",
+				"to": "00:41:55,240"
+			},
+			"offsets": {
+				"from": 2513240,
+				"to": 2515240
+			},
+			"text": " So, that's the SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:55,240",
+				"to": "00:41:58,240"
+			},
+			"offsets": {
+				"from": 2515240,
+				"to": 2518240
+			},
+			"text": " We will fix the link later."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:58,240",
+				"to": "00:42:01,240"
+			},
+			"offsets": {
+				"from": 2518240,
+				"to": 2521240
+			},
+			"text": " You can also read up on the erc."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:01,240",
+				"to": "00:42:06,240"
+			},
+			"offsets": {
+				"from": 2521240,
+				"to": 2526240
+			},
+			"text": " And, oh, maybe that's the right link."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:06,240",
+				"to": "00:42:08,240"
+			},
+			"offsets": {
+				"from": 2526240,
+				"to": 2528240
+			},
+			"text": " No, that's for the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:08,240",
+				"to": "00:42:09,240"
+			},
+			"offsets": {
+				"from": 2528240,
+				"to": 2529240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:09,240",
+				"to": "00:42:10,240"
+			},
+			"offsets": {
+				"from": 2529240,
+				"to": 2530240
+			},
+			"text": " That's the erc itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:10,240",
+				"to": "00:42:12,240"
+			},
+			"offsets": {
+				"from": 2530240,
+				"to": 2532240
+			},
+			"text": " Yeah, yeah, that's the erc itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:12,240",
+				"to": "00:42:13,240"
+			},
+			"offsets": {
+				"from": 2532240,
+				"to": 2533240
+			},
+			"text": " So, you can read the erc."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:13,240",
+				"to": "00:42:16,240"
+			},
+			"offsets": {
+				"from": 2533240,
+				"to": 2536240
+			},
+			"text": " It's very detailed."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:16,240",
+				"to": "00:42:19,240"
+			},
+			"offsets": {
+				"from": 2536240,
+				"to": 2539240
+			},
+			"text": " But you can get very precise understanding of how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:19,240",
+				"to": "00:42:25,240"
+			},
+			"offsets": {
+				"from": 2539240,
+				"to": 2545240
+			},
+			"text": " There's also a discussion on the Ethereum magicians form."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:25,240",
+				"to": "00:42:27,240"
+			},
+			"offsets": {
+				"from": 2545240,
+				"to": 2547240
+			},
+			"text": " And..."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:27,240",
+				"to": "00:42:31,240"
+			},
+			"offsets": {
+				"from": 2547240,
+				"to": 2551240
+			},
+			"text": " And, of course, it's nice to be able to talk with people."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:31,240",
+				"to": "00:42:33,240"
+			},
+			"offsets": {
+				"from": 2551240,
+				"to": 2553240
+			},
+			"text": " So, we have a Discord server."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:33,240",
+				"to": "00:42:35,240"
+			},
+			"offsets": {
+				"from": 2553240,
+				"to": 2555240
+			},
+			"text": " We have a Discord server."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:35,240",
+				"to": "00:42:39,240"
+			},
+			"offsets": {
+				"from": 2555240,
+				"to": 2559240
+			},
+			"text": " And you're very welcome to join and ask questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:39,240",
+				"to": "00:42:45,240"
+			},
+			"offsets": {
+				"from": 2559240,
+				"to": 2565240
+			},
+			"text": " Even after this event, like if there's something that you don't get to ask us in person."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:45,240",
+				"to": "00:42:49,240"
+			},
+			"offsets": {
+				"from": 2565240,
+				"to": 2569240
+			},
+			"text": " And, yeah, maybe now we will just take some questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:49,240",
+				"to": "00:42:50,240"
+			},
+			"offsets": {
+				"from": 2569240,
+				"to": 2570240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:50,240",
+				"to": "00:42:51,240"
+			},
+			"offsets": {
+				"from": 2570240,
+				"to": 2571240
+			},
+			"text": " Yes, over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:51,240",
+				"to": "00:42:57,240"
+			},
+			"offsets": {
+				"from": 2571240,
+				"to": 2577240
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:57,240",
+				"to": "00:42:58,240"
+			},
+			"offsets": {
+				"from": 2577240,
+				"to": 2578240
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:58,240",
+				"to": "00:43:04,240"
+			},
+			"offsets": {
+				"from": 2578240,
+				"to": 2584240
+			},
+			"text": " The interment development roadmap, what we've developed, the interfaces and the core contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:04,240",
+				"to": "00:43:06,240"
+			},
+			"offsets": {
+				"from": 2584240,
+				"to": 2586240
+			},
+			"text": " that performs this magic, we call it entry point."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:06,240",
+				"to": "00:43:10,240"
+			},
+			"offsets": {
+				"from": 2586240,
+				"to": 2590240
+			},
+			"text": " It was audited, but then it was extensively modified to support L2s."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:10,240",
+				"to": "00:43:12,240"
+			},
+			"offsets": {
+				"from": 2590240,
+				"to": 2592240
+			},
+			"text": " That is not yet audited."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:12,240",
+				"to": "00:43:14,240"
+			},
+			"offsets": {
+				"from": 2592240,
+				"to": 2594240
+			},
+			"text": " We still have some work on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:14,240",
+				"to": "00:43:16,240"
+			},
+			"offsets": {
+				"from": 2594240,
+				"to": 2596240
+			},
+			"text": " The API probably won't change."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:16,240",
+				"to": "00:43:18,240"
+			},
+			"offsets": {
+				"from": 2596240,
+				"to": 2598240
+			},
+			"text": " So, a wallet will be able to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:18,240",
+				"to": "00:43:22,240"
+			},
+			"offsets": {
+				"from": 2598240,
+				"to": 2602240
+			},
+			"text": " So, it's not deployed on mainnet, only on testnet currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:22,240",
+				"to": "00:43:27,240"
+			},
+			"offsets": {
+				"from": 2602240,
+				"to": 2607240
+			},
+			"text": " But you can create and start experimenting with wallets on top of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:27,240",
+				"to": "00:43:31,240"
+			},
+			"offsets": {
+				"from": 2607240,
+				"to": 2611240
+			},
+			"text": " The interface of a wallet, the change of wallet needs to be quite minimal."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:31,240",
+				"to": "00:43:33,240"
+			},
+			"offsets": {
+				"from": 2611240,
+				"to": 2613240
+			},
+			"text": " I can go through it adding a single method."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:33,240",
+				"to": "00:43:38,240"
+			},
+			"offsets": {
+				"from": 2613240,
+				"to": 2618240
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:38,240",
+				"to": "00:43:39,240"
+			},
+			"offsets": {
+				"from": 2618240,
+				"to": 2619240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:39,240",
+				"to": "00:43:44,240"
+			},
+			"offsets": {
+				"from": 2619240,
+				"to": 2624240
+			},
+			"text": " We have a sample that adds account abstraction support to Ignosysafe."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:44,240",
+				"to": "00:43:52,240"
+			},
+			"offsets": {
+				"from": 2624240,
+				"to": 2632240
+			},
+			"text": " You add a module and basically make a single owner, Ignosysafe, and account abstract to"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:52,240",
+				"to": "00:43:55,240"
+			},
+			"offsets": {
+				"from": 2632240,
+				"to": 2635240
+			},
+			"text": " the compatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:55,240",
+				"to": "00:44:02,240"
+			},
+			"offsets": {
+				"from": 2635240,
+				"to": 2642240
+			},
+			"text": " So, yes, you can create and there are some work on creating wallets today."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:02,240",
+				"to": "00:44:05,240"
+			},
+			"offsets": {
+				"from": 2642240,
+				"to": 2645240
+			},
+			"text": " In terms of applications, yes, it's a chicken and egg."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:05,240",
+				"to": "00:44:07,240"
+			},
+			"offsets": {
+				"from": 2645240,
+				"to": 2647240
+			},
+			"text": " Application needs a wallet in order to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:07,240",
+				"to": "00:44:10,240"
+			},
+			"offsets": {
+				"from": 2647240,
+				"to": 2650240
+			},
+			"text": " It's for a basic wallet hackathon."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:10,240",
+				"to": "00:44:15,240"
+			},
+			"offsets": {
+				"from": 2650240,
+				"to": 2655240
+			},
+			"text": " Application can work without a wallet, but it's not something that your user wants to sign"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:15,240",
+				"to": "00:44:16,240"
+			},
+			"offsets": {
+				"from": 2655240,
+				"to": 2656240
+			},
+			"text": " blindly a hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:16,240",
+				"to": "00:44:21,240"
+			},
+			"offsets": {
+				"from": 2656240,
+				"to": 2661240
+			},
+			"text": " If you're good with that, it's also possible to, with an application, can work with account"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:21,240",
+				"to": "00:44:23,240"
+			},
+			"offsets": {
+				"from": 2661240,
+				"to": 2663240
+			},
+			"text": " abstraction even today."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:23,240",
+				"to": "00:44:30,240"
+			},
+			"offsets": {
+				"from": 2663240,
+				"to": 2670240
+			},
+			"text": " The way gas abstraction works is that when you submit a user up, the contract itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:30,240",
+				"to": "00:44:36,240"
+			},
+			"offsets": {
+				"from": 2670240,
+				"to": 2676240
+			},
+			"text": " circulates itself, the signature and its nonce and in order to accept the request, but there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:36,240",
+				"to": "00:44:39,240"
+			},
+			"offsets": {
+				"from": 2676240,
+				"to": 2679240
+			},
+			"text": " also a point to it to what we call a paymaster."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:39,240",
+				"to": "00:44:43,240"
+			},
+			"offsets": {
+				"from": 2679240,
+				"to": 2683240
+			},
+			"text": " A paymaster is a contract that before submitting the transaction has a chance to decide whether"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:43,240",
+				"to": "00:44:45,240"
+			},
+			"offsets": {
+				"from": 2683240,
+				"to": 2685240
+			},
+			"text": " it agrees to pay or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:45,240",
+				"to": "00:44:51,240"
+			},
+			"offsets": {
+				"from": 2685240,
+				"to": 2691240
+			},
+			"text": " If it says, \"Okay, that doesn't revert,\" it will use its own balance, its own stake and"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:51,240",
+				"to": "00:44:53,240"
+			},
+			"offsets": {
+				"from": 2691240,
+				"to": 2693240
+			},
+			"text": " everything to pay for this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:53,240",
+				"to": "00:44:57,240"
+			},
+			"offsets": {
+				"from": 2693240,
+				"to": 2697240
+			},
+			"text": " Now, what this paymaster does on chain depends on the paymaster."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:57,240",
+				"to": "00:45:04,240"
+			},
+			"offsets": {
+				"from": 2697240,
+				"to": 2704240
+			},
+			"text": " The most obvious example of a paymaster is that the validation will be, \"I will check that"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:04,240",
+				"to": "00:45:10,240"
+			},
+			"offsets": {
+				"from": 2704240,
+				"to": 2710240
+			},
+			"text": " this user has a balance of enough die and has approval for me to use this die, and I will"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:10,240",
+				"to": "00:45:13,240"
+			},
+			"offsets": {
+				"from": 2710240,
+				"to": 2713240
+			},
+			"text": " grab enough die to cover this transaction.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:45:13,240",
+				"to": "00:45:17,240"
+			},
+			"offsets": {
+				"from": 2713240,
+				"to": 2717240
+			},
+			"text": " At the end, I will refund it with the excess."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:17,240",
+				"to": "00:45:24,240"
+			},
+			"offsets": {
+				"from": 2717240,
+				"to": 2724240
+			},
+			"text": " Eventually, I pay, the user pays with tokens for the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:24,240",
+				"to": "00:45:30,240"
+			},
+			"offsets": {
+				"from": 2724240,
+				"to": 2730240
+			},
+			"text": " It's the most obvious use case of a paymaster, but there are other use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:30,240",
+				"to": "00:45:34,240"
+			},
+			"offsets": {
+				"from": 2730240,
+				"to": 2734240
+			},
+			"text": " If you want a voting data, you don't want the user to pay anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:34,240",
+				"to": "00:45:35,240"
+			},
+			"offsets": {
+				"from": 2734240,
+				"to": 2735240
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:35,240",
+				"to": "00:45:37,240"
+			},
+			"offsets": {
+				"from": 2735240,
+				"to": 2737240
+			},
+			"text": " So the check is that the user is eligible to vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:37,240",
+				"to": "00:45:42,240"
+			},
+			"offsets": {
+				"from": 2737240,
+				"to": 2742240
+			},
+			"text": " If a user is eligible to vote and didn't vote yet, I agree to pay."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:42,240",
+				"to": "00:45:44,240"
+			},
+			"offsets": {
+				"from": 2742240,
+				"to": 2744240
+			},
+			"text": " It's another example of a paymaster."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:44,240",
+				"to": "00:45:47,240"
+			},
+			"offsets": {
+				"from": 2744240,
+				"to": 2747240
+			},
+			"text": " Other examples are still open."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:47,240",
+				"to": "00:45:49,240"
+			},
+			"offsets": {
+				"from": 2747240,
+				"to": 2749240
+			},
+			"text": " You can write whatever you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:49,240",
+				"to": "00:45:53,240"
+			},
+			"offsets": {
+				"from": 2749240,
+				"to": 2753240
+			},
+			"text": " It's just a contrast."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:53,240",
+				"to": "00:45:59,240"
+			},
+			"offsets": {
+				"from": 2753240,
+				"to": 2759240
+			},
+			"text": " Someone on your team has to, like, pay the e from their account."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:59,240",
+				"to": "00:46:07,240"
+			},
+			"offsets": {
+				"from": 2759240,
+				"to": 2767240
+			},
+			"text": " Even if the agonosa save has plenty of e from their account, just to have that transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:07,240",
+				"to": "00:46:10,240"
+			},
+			"offsets": {
+				"from": 2767240,
+				"to": 2770240
+			},
+			"text": " finalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:10,240",
+				"to": "00:46:14,240"
+			},
+			"offsets": {
+				"from": 2770240,
+				"to": 2774240
+			},
+			"text": " So with the account abstraction, that wouldn't be necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:14,240",
+				"to": "00:46:18,240"
+			},
+			"offsets": {
+				"from": 2774240,
+				"to": 2778240
+			},
+			"text": " Your account will be able to pay for yourself, and this doesn't require a paymaster."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:18,240",
+				"to": "00:46:24,240"
+			},
+			"offsets": {
+				"from": 2778240,
+				"to": 2784240
+			},
+			"text": " But let's say you're safe for going back to the agonosa save example."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:24,240",
+				"to": "00:46:30,240"
+			},
+			"offsets": {
+				"from": 2784240,
+				"to": 2790240
+			},
+			"text": " If agonosa save doesn't hold an ETH, it doesn't hold sufficient ETH, where you don't want to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:30,240",
+				"to": "00:46:34,240"
+			},
+			"offsets": {
+				"from": 2790240,
+				"to": 2794240
+			},
+			"text": " the care about the balance and continually, like, exchanging and topping it off."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:34,240",
+				"to": "00:46:40,240"
+			},
+			"offsets": {
+				"from": 2794240,
+				"to": 2800240
+			},
+			"text": " Then whatever you have a balance of, assuming it's enough to pay for the gas, you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:40,240",
+				"to": "00:46:47,240"
+			},
+			"offsets": {
+				"from": 2800240,
+				"to": 2807240
+			},
+			"text": " essentially include in your transaction a reference to something we're calling a token paymaster."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:47,240",
+				"to": "00:46:52,240"
+			},
+			"offsets": {
+				"from": 2807240,
+				"to": 2812240
+			},
+			"text": " A token paymaster can be completely autonomous contract on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:52,240",
+				"to": "00:46:56,240"
+			},
+			"offsets": {
+				"from": 2812240,
+				"to": 2816240
+			},
+			"text": " It accepts tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:56,240",
+				"to": "00:47:00,240"
+			},
+			"offsets": {
+				"from": 2816240,
+				"to": 2820240
+			},
+			"text": " It would pay for the transaction in ETH, and then it would settle in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:00,240",
+				"to": "00:47:08,240"
+			},
+			"offsets": {
+				"from": 2820240,
+				"to": 2828240
+			},
+			"text": " So an old reference implementation recreated with just uni swap using uni swap and that"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:08,240",
+				"to": "00:47:12,240"
+			},
+			"offsets": {
+				"from": 2828240,
+				"to": 2832240
+			},
+			"text": " single transaction, which was kind of expensive either a cheaper way of doing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:12,240",
+				"to": "00:47:17,240"
+			},
+			"offsets": {
+				"from": 2832240,
+				"to": 2837240
+			},
+			"text": " It's just very simple. One single atomic transaction gets paid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:17,240",
+				"to": "00:47:22,240"
+			},
+			"offsets": {
+				"from": 2837240,
+				"to": 2842240
+			},
+			"text": " it gets an allowance in whatever token you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:22,240",
+				"to": "00:47:31,240"
+			},
+			"offsets": {
+				"from": 2842240,
+				"to": 2851240
+			},
+			"text": " It pays for the gas, it charges the transaction fee, and then it gives you back the remaining tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:31,240",
+				"to": "00:47:37,240"
+			},
+			"offsets": {
+				"from": 2851240,
+				"to": 2857240
+			},
+			"text": " So with account abstraction, if you want to use that, for example, then you would just"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:37,240",
+				"to": "00:47:45,240"
+			},
+			"offsets": {
+				"from": 2857240,
+				"to": 2865240
+			},
+			"text": " include all the entity that is paying for the gas is a token paymaster, but there is a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:45,240",
+				"to": "00:47:53,240"
+			},
+			"offsets": {
+				"from": 2865240,
+				"to": 2873240
+			},
+			"text": " for the token paymaster to receive a commitment from your account to pay it back."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:53,240",
+				"to": "00:47:57,240"
+			},
+			"offsets": {
+				"from": 2873240,
+				"to": 2877240
+			},
+			"text": " So it's not just subsidizing the transaction, but that's also possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:57,240",
+				"to": "00:48:02,240"
+			},
+			"offsets": {
+				"from": 2877240,
+				"to": 2882240
+			},
+			"text": " It makes it possible. Right now, you have to split it because of a different concern."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:02,240",
+				"to": "00:48:06,240"
+			},
+			"offsets": {
+				"from": 2882240,
+				"to": 2886240
+			},
+			"text": " If you need some corporate level security using a GNOC safe, and if you want a game, you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:06,240",
+				"to": "00:48:10,240"
+			},
+			"offsets": {
+				"from": 2886240,
+				"to": 2890240
+			},
+			"text": " use a meta mask, and if you use a private, you use a treasure."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:10,240",
+				"to": "00:48:15,240"
+			},
+			"offsets": {
+				"from": 2890240,
+				"to": 2895240
+			},
+			"text": " Now, if you want them all in a single address, yes, you will be able to do it with account"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:15,240",
+				"to": "00:48:21,240"
+			},
+			"offsets": {
+				"from": 2895240,
+				"to": 2901240
+			},
+			"text": " abstraction. Probably you still might have multiple abstracted accounts for different purposes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:21,240",
+				"to": "00:48:26,240"
+			},
+			"offsets": {
+				"from": 2901240,
+				"to": 2906240
+			},
+			"text": " but for different reasons. If the reason to have multiple addresses is only security,"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:26,240",
+				"to": "00:48:32,240"
+			},
+			"offsets": {
+				"from": 2906240,
+				"to": 2912240
+			},
+			"text": " then yes, you will be able to use an abstracted account to find something that can cover all bases."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:32,240",
+				"to": "00:48:37,240"
+			},
+			"offsets": {
+				"from": 2912240,
+				"to": 2917240
+			},
+			"text": " Yes, because you can just limit your exposure to each device, depending on how much you trust it."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:37,240",
+				"to": "00:48:42,240"
+			},
+			"offsets": {
+				"from": 2917240,
+				"to": 2922240
+			},
+			"text": " Again, I'm not saying that there will be one wallet that will give you all these use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:42,240",
+				"to": "00:48:48,240"
+			},
+			"offsets": {
+				"from": 2922240,
+				"to": 2928240
+			},
+			"text": " You will find a wallet that gives you all the use cases you need and use that."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:48,240",
+				"to": "00:48:56,240"
+			},
+			"offsets": {
+				"from": 2928240,
+				"to": 2936240
+			},
+			"text": " And you always can switch. I think the first use case of a signature is chain signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:56,240",
+				"to": "00:49:01,240"
+			},
+			"offsets": {
+				"from": 2936240,
+				"to": 2941240
+			},
+			"text": " I think when you start using meta mask, and after a few years you collected a lot of NFTs"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:01,240",
+				"to": "00:49:05,240"
+			},
+			"offsets": {
+				"from": 2941240,
+				"to": 2945240
+			},
+			"text": " and a lot of money, but you can't change the security model."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:05,240",
+				"to": "00:49:10,240"
+			},
+			"offsets": {
+				"from": 2945240,
+				"to": 2950240
+			},
+			"text": " Your browser holds your private key, so you have no idea if anyone hacked into your computer"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:10,240",
+				"to": "00:49:15,240"
+			},
+			"offsets": {
+				"from": 2950240,
+				"to": 2955240
+			},
+			"text": " and grabbed it through a copy of your computer, without changing the address you can't change the security."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:15,240",
+				"to": "00:49:19,240"
+			},
+			"offsets": {
+				"from": 2955240,
+				"to": 2959240
+			},
+			"text": " With account abstraction, with single operation of change owner."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:19,240",
+				"to": "00:49:26,240"
+			},
+			"offsets": {
+				"from": 2959240,
+				"to": 2966240
+			},
+			"text": " Now, the treasure on the same account. Even if with the basic simple account, I just changed the owner,"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:26,240",
+				"to": "00:49:31,240"
+			},
+			"offsets": {
+				"from": 2966240,
+				"to": 2971240
+			},
+			"text": " and now I'm really secured, because the previous private key is no longer relevant."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:31,240",
+				"to": "00:49:37,240"
+			},
+			"offsets": {
+				"from": 2971240,
+				"to": 2977240
+			},
+			"text": " Even before you get into the really fancy stuff that you can do with the account abstraction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:37,240",
+				"to": "00:49:45,240"
+			},
+			"offsets": {
+				"from": 2977240,
+				"to": 2985240
+			},
+			"text": " the basics are actually pretty useful just by themselves, because right now if anything goes wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:45,240",
+				"to": "00:49:49,240"
+			},
+			"offsets": {
+				"from": 2985240,
+				"to": 2989240
+			},
+			"text": " then it's really hard to transfer everything from one EOA to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:49,240",
+				"to": "00:49:56,240"
+			},
+			"offsets": {
+				"from": 2989240,
+				"to": 2996240
+			},
+			"text": " I mean, you would have to create separate transactions for each asset that you hold, that could be pretty expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:56,240",
+				"to": "00:50:01,240"
+			},
+			"offsets": {
+				"from": 2996240,
+				"to": 3001240
+			},
+			"text": " And if your computer got compromised, you might need to do that in a huge hurry."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:01,240",
+				"to": "00:50:07,240"
+			},
+			"offsets": {
+				"from": 3001240,
+				"to": 3007240
+			},
+			"text": " So it's just not the best situation to be in."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:07,240",
+				"to": "00:50:11,240"
+			},
+			"offsets": {
+				"from": 3007240,
+				"to": 3011240
+			},
+			"text": " Even very simple improvements like this will make a big difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:11,240",
+				"to": "00:50:24,240"
+			},
+			"offsets": {
+				"from": 3011240,
+				"to": 3024240
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

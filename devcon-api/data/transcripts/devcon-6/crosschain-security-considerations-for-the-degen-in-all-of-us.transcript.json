@@ -1,0 +1,3761 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,760"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17760
+			},
+			"text": " Cool. Well, thank you guys all for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,760",
+				"to": "00:00:19,200"
+			},
+			"offsets": {
+				"from": 17760,
+				"to": 19200
+			},
+			"text": " My name is Lane Haber."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,200",
+				"to": "00:00:22,800"
+			},
+			"offsets": {
+				"from": 19200,
+				"to": 22800
+			},
+			"text": " I'm one of the co-founders at Connects where I focus mostly"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,800",
+				"to": "00:00:24,500"
+			},
+			"offsets": {
+				"from": 22800,
+				"to": 24500
+			},
+			"text": " on the core bridging protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,500",
+				"to": "00:00:28,060"
+			},
+			"offsets": {
+				"from": 24500,
+				"to": 28060
+			},
+			"text": " And I'm going to give you guys a talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,060",
+				"to": "00:00:30,960"
+			},
+			"offsets": {
+				"from": 28060,
+				"to": 30960
+			},
+			"text": " about cross-chain security considerations for the DGen"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,960",
+				"to": "00:00:31,700"
+			},
+			"offsets": {
+				"from": 30960,
+				"to": 31700
+			},
+			"text": " and all of us."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,700",
+				"to": "00:00:33,460"
+			},
+			"offsets": {
+				"from": 31700,
+				"to": 33460
+			},
+			"text": " And hopefully by the end of this talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,460",
+				"to": "00:00:36,220"
+			},
+			"offsets": {
+				"from": 33460,
+				"to": 36220
+			},
+			"text": " you guys will be able to come away with some key questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,220",
+				"to": "00:00:38,180"
+			},
+			"offsets": {
+				"from": 36220,
+				"to": 38180
+			},
+			"text": " to ask yourself about bridge security."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,180",
+				"to": "00:00:42,340"
+			},
+			"offsets": {
+				"from": 38180,
+				"to": 42340
+			},
+			"text": " So first, why is bridge security important?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,340",
+				"to": "00:00:45,340"
+			},
+			"offsets": {
+				"from": 42340,
+				"to": 45340
+			},
+			"text": " Well, bridge security is more important than most systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,340",
+				"to": "00:00:49,500"
+			},
+			"offsets": {
+				"from": 45340,
+				"to": 49500
+			},
+			"text": " because you can be subject to the risk of the bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,500",
+				"to": "00:00:50,980"
+			},
+			"offsets": {
+				"from": 49500,
+				"to": 50980
+			},
+			"text": " when you never even touched that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,980",
+				"to": "00:00:51,900"
+			},
+			"offsets": {
+				"from": 50980,
+				"to": 51900
+			},
+			"text": " And what do I mean by that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,900",
+				"to": "00:00:56,720"
+			},
+			"offsets": {
+				"from": 51900,
+				"to": 56720
+			},
+			"text": " Well, the Polygon POS bridge, the roll-up AMBs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:01,940"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 61940
+			},
+			"text": " you -- those bridges basically work by locking up assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,940",
+				"to": "00:01:04,620"
+			},
+			"offsets": {
+				"from": 61940,
+				"to": 64620
+			},
+			"text": " on one side and delivering you a minted version"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,620",
+				"to": "00:01:07,500"
+			},
+			"offsets": {
+				"from": 64620,
+				"to": 67500
+			},
+			"text": " of those assets that represent a claim on the locked funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,500",
+				"to": "00:01:12,260"
+			},
+			"offsets": {
+				"from": 67500,
+				"to": 72260
+			},
+			"text": " When everything is backed one to one, this is --"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,260",
+				"to": "00:01:14,860"
+			},
+			"offsets": {
+				"from": 72260,
+				"to": 74860
+			},
+			"text": " works great because you can trade the assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,860",
+				"to": "00:01:16,660"
+			},
+			"offsets": {
+				"from": 74860,
+				"to": 76660
+			},
+			"text": " on your destination domain freely."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,660",
+				"to": "00:01:19,100"
+			},
+			"offsets": {
+				"from": 76660,
+				"to": 79100
+			},
+			"text": " And then whenever anybody wants to come back,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,100",
+				"to": "00:01:20,540"
+			},
+			"offsets": {
+				"from": 79100,
+				"to": 80540
+			},
+			"text": " they can easily just unlock it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,540",
+				"to": "00:01:24,620"
+			},
+			"offsets": {
+				"from": 80540,
+				"to": 84620
+			},
+			"text": " Unfortunately, if your bridge is attacked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,620",
+				"to": "00:01:27,360"
+			},
+			"offsets": {
+				"from": 84620,
+				"to": 87360
+			},
+			"text": " then what you effectively have are claims on something"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,360",
+				"to": "00:01:28,480"
+			},
+			"offsets": {
+				"from": 87360,
+				"to": 88480
+			},
+			"text": " that don't exist anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,480",
+				"to": "00:01:32,680"
+			},
+			"offsets": {
+				"from": 88480,
+				"to": 92680
+			},
+			"text": " And you are subject to this contagion risk whenever you are"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,680",
+				"to": "00:01:33,960"
+			},
+			"offsets": {
+				"from": 92680,
+				"to": 93960
+			},
+			"text": " using those assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,960",
+				"to": "00:01:39,320"
+			},
+			"offsets": {
+				"from": 93960,
+				"to": 99320
+			},
+			"text": " So if you're on Polygon and you've with like purchased POS/USDC"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,320",
+				"to": "00:01:42,040"
+			},
+			"offsets": {
+				"from": 99320,
+				"to": 102040
+			},
+			"text": " with your credit card or you've exited to Polygon"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,040",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 102040,
+				"to": 105000
+			},
+			"text": " from an exchange, you have never used the bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:47,840"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 107840
+			},
+			"text": " and you were still subject to this contagion risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,840",
+				"to": "00:01:49,560"
+			},
+			"offsets": {
+				"from": 107840,
+				"to": 109560
+			},
+			"text": " that exists with the Polygon bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,560",
+				"to": "00:01:51,920"
+			},
+			"offsets": {
+				"from": 109560,
+				"to": 111920
+			},
+			"text": " And the same thing applies to roll-ups as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,960",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 112960,
+				"to": 115000
+			},
+			"text": " While really any default bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:57,880"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 117880
+			},
+			"text": " So this is kind of just a visualization of the risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,880",
+				"to": "00:02:01,680"
+			},
+			"offsets": {
+				"from": 117880,
+				"to": 121680
+			},
+			"text": " that we are -- as an industry are exposed to in just a small subset"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,680",
+				"to": "00:02:02,680"
+			},
+			"offsets": {
+				"from": 121680,
+				"to": 122680
+			},
+			"text": " of default bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,680",
+				"to": "00:02:05,460"
+			},
+			"offsets": {
+				"from": 122680,
+				"to": 125460
+			},
+			"text": " These numbers may have changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,460",
+				"to": "00:02:07,320"
+			},
+			"offsets": {
+				"from": 125460,
+				"to": 127320
+			},
+			"text": " You can see that they are in dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,320",
+				"to": "00:02:11,120"
+			},
+			"offsets": {
+				"from": 127320,
+				"to": 131120
+			},
+			"text": " But it's over -- it's close to four or $5 billion"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,120",
+				"to": "00:02:14,800"
+			},
+			"offsets": {
+				"from": 131120,
+				"to": 134800
+			},
+			"text": " of assets that are subject to this type of risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,800",
+				"to": "00:02:17,320"
+			},
+			"offsets": {
+				"from": 134800,
+				"to": 137320
+			},
+			"text": " That's not -- those aren't the only bridges"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,320",
+				"to": "00:02:19,580"
+			},
+			"offsets": {
+				"from": 137320,
+				"to": 139580
+			},
+			"text": " that are getting hacked are the default bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,820",
+				"to": "00:02:23,620"
+			},
+			"offsets": {
+				"from": 139820,
+				"to": 143620
+			},
+			"text": " You can see here that like bridges just keep getting hacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,620",
+				"to": "00:02:28,140"
+			},
+			"offsets": {
+				"from": 143620,
+				"to": 148140
+			},
+			"text": " And in just under 14 months, we've lost like $2.5 billion."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,140",
+				"to": "00:02:31,460"
+			},
+			"offsets": {
+				"from": 148140,
+				"to": 151460
+			},
+			"text": " And I'm sure that I will have to update this slide soon"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,460",
+				"to": "00:02:32,180"
+			},
+			"offsets": {
+				"from": 151460,
+				"to": 152180
+			},
+			"text": " in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,180",
+				"to": "00:02:36,580"
+			},
+			"offsets": {
+				"from": 152180,
+				"to": 156580
+			},
+			"text": " And really like why our bridge is so easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,580",
+				"to": "00:02:37,980"
+			},
+			"offsets": {
+				"from": 156580,
+				"to": 157980
+			},
+			"text": " or like such an appealing target."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,980",
+				"to": "00:02:40,640"
+			},
+			"offsets": {
+				"from": 157980,
+				"to": 160640
+			},
+			"text": " They're appealing targets because it's new technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,640",
+				"to": "00:02:43,780"
+			},
+			"offsets": {
+				"from": 160640,
+				"to": 163780
+			},
+			"text": " Like I think about this stuff every day."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,780",
+				"to": "00:02:47,120"
+			},
+			"offsets": {
+				"from": 163780,
+				"to": 167120
+			},
+			"text": " And even for me, the way that we are thinking about security"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,120",
+				"to": "00:02:50,380"
+			},
+			"offsets": {
+				"from": 167120,
+				"to": 170380
+			},
+			"text": " or thinking about the best way to bridge between chains changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,380",
+				"to": "00:02:50,980"
+			},
+			"offsets": {
+				"from": 170380,
+				"to": 170980
+			},
+			"text": " all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,980",
+				"to": "00:02:53,240"
+			},
+			"offsets": {
+				"from": 170980,
+				"to": 173240
+			},
+			"text": " On top of that, it's also a honeypot."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,240",
+				"to": "00:03:00,340"
+			},
+			"offsets": {
+				"from": 173240,
+				"to": 180340
+			},
+			"text": " So because you block funds up, you are become a really attractive target"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,340",
+				"to": "00:03:00,980"
+			},
+			"offsets": {
+				"from": 180340,
+				"to": 180980
+			},
+			"text": " to hackers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,980",
+				"to": "00:03:06,020"
+			},
+			"offsets": {
+				"from": 180980,
+				"to": 186020
+			},
+			"text": " And it's not just like the custody assets to create the minted assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,020",
+				"to": "00:03:07,760"
+			},
+			"offsets": {
+				"from": 186020,
+				"to": 187760
+			},
+			"text": " are the only ones that could be locked on the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,760",
+				"to": "00:03:10,880"
+			},
+			"offsets": {
+				"from": 187760,
+				"to": 190880
+			},
+			"text": " If you have a high latency bridge, you could also have assets to --"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,880",
+				"to": "00:03:13,200"
+			},
+			"offsets": {
+				"from": 190880,
+				"to": 193200
+			},
+			"text": " like that kind of represent more of a liquidity network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,200",
+				"to": "00:03:15,700"
+			},
+			"offsets": {
+				"from": 193200,
+				"to": 195700
+			},
+			"text": " If you're not the default bridge, then you're probably going"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,700",
+				"to": "00:03:18,220"
+			},
+			"offsets": {
+				"from": 195700,
+				"to": 198220
+			},
+			"text": " to want some type of AMM to switch into the asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,220",
+				"to": "00:03:19,420"
+			},
+			"offsets": {
+				"from": 198220,
+				"to": 199420
+			},
+			"text": " that everybody really wants."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,420",
+				"to": "00:03:24,260"
+			},
+			"offsets": {
+				"from": 199420,
+				"to": 204260
+			},
+			"text": " And that is -- that's just all a lot of money that is an appealing target."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,260",
+				"to": "00:03:27,840"
+			},
+			"offsets": {
+				"from": 204260,
+				"to": 207840
+			},
+			"text": " And the other reason why these bridge hacks keep happening"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,840",
+				"to": "00:03:29,940"
+			},
+			"offsets": {
+				"from": 207840,
+				"to": 209940
+			},
+			"text": " is because bridge technology is pretty complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,940",
+				"to": "00:03:35,240"
+			},
+			"offsets": {
+				"from": 209940,
+				"to": 215240
+			},
+			"text": " Like you are building a system that is connecting a lot of heterogenous domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,240",
+				"to": "00:03:37,580"
+			},
+			"offsets": {
+				"from": 215240,
+				"to": 217580
+			},
+			"text": " So not only do you have to know everything about your system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,580",
+				"to": "00:03:40,060"
+			},
+			"offsets": {
+				"from": 217580,
+				"to": 220060
+			},
+			"text": " but you have to know everything about the underlying domains"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,060",
+				"to": "00:03:41,360"
+			},
+			"offsets": {
+				"from": 220060,
+				"to": 221360
+			},
+			"text": " that you're connecting."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,360",
+				"to": "00:03:44,220"
+			},
+			"offsets": {
+				"from": 221360,
+				"to": 224220
+			},
+			"text": " Because the code that you write will not run the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,480",
+				"to": "00:03:46,920"
+			},
+			"offsets": {
+				"from": 224480,
+				"to": 226920
+			},
+			"text": " on optimism or arbitrum or polygon."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,920",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 226920,
+				"to": 229000
+			},
+			"text": " There are slight differences that will impact you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:52,780"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 232780
+			},
+			"text": " Because there are slight differences that you may not understand fully are going"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,780",
+				"to": "00:03:54,760"
+			},
+			"offsets": {
+				"from": 232780,
+				"to": 234760
+			},
+			"text": " to be the ones that end up being your downfall."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,760",
+				"to": "00:03:59,240"
+			},
+			"offsets": {
+				"from": 234760,
+				"to": 239240
+			},
+			"text": " So now we're going to talk about like the different types of bridges that exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,240",
+				"to": "00:04:03,880"
+			},
+			"offsets": {
+				"from": 239240,
+				"to": 243880
+			},
+			"text": " and some of like just to give you guys an easier mint model to evaluate all the bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,880",
+				"to": "00:04:09,400"
+			},
+			"offsets": {
+				"from": 243880,
+				"to": 249400
+			},
+			"text": " So first, before we get into that, you can't have all the nice things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,400",
+				"to": "00:04:10,860"
+			},
+			"offsets": {
+				"from": 249400,
+				"to": 250860
+			},
+			"text": " You're going to have to choose sums."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,860",
+				"to": "00:04:13,860"
+			},
+			"offsets": {
+				"from": 250860,
+				"to": 253860
+			},
+			"text": " There's always trade-offs like in any other type of engineering."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,180",
+				"to": "00:04:17,660"
+			},
+			"offsets": {
+				"from": 254180,
+				"to": 257660
+			},
+			"text": " Generally, it means that you can't have all four of these properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,660",
+				"to": "00:04:21,660"
+			},
+			"offsets": {
+				"from": 257660,
+				"to": 261660
+			},
+			"text": " It's low latency, meaning the transfers or message passing happens quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,660",
+				"to": "00:04:26,740"
+			},
+			"offsets": {
+				"from": 261660,
+				"to": 266740
+			},
+			"text": " It's generalizable, meaning you can pass whatever messages you'd like through the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,740",
+				"to": "00:04:30,980"
+			},
+			"offsets": {
+				"from": 266740,
+				"to": 270980
+			},
+			"text": " It's trust minimized, meaning that you're not adding any additional trust assumptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,980",
+				"to": "00:04:34,460"
+			},
+			"offsets": {
+				"from": 270980,
+				"to": 274460
+			},
+			"text": " or it's extensible, meaning you can take the same implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,460",
+				"to": "00:04:37,260"
+			},
+			"offsets": {
+				"from": 274460,
+				"to": 277260
+			},
+			"text": " and use it on many different domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,260",
+				"to": "00:04:40,500"
+			},
+			"offsets": {
+				"from": 277260,
+				"to": 280500
+			},
+			"text": " You can also have -- there's a missing triangle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,500",
+				"to": "00:04:43,660"
+			},
+			"offsets": {
+				"from": 280500,
+				"to": 283660
+			},
+			"text": " but you can also have low latency, trust minimized and extensible bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,020",
+				"to": "00:04:48,100"
+			},
+			"offsets": {
+				"from": 284020,
+				"to": 288100
+			},
+			"text": " Those are more like liquidity networks, like atomic transfers would have that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,100",
+				"to": "00:04:50,220"
+			},
+			"offsets": {
+				"from": 288100,
+				"to": 290220
+			},
+			"text": " because you can't pass general data through."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,220",
+				"to": "00:04:52,020"
+			},
+			"offsets": {
+				"from": 290220,
+				"to": 292020
+			},
+			"text": " You can only pass fungible tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,020",
+				"to": "00:04:56,180"
+			},
+			"offsets": {
+				"from": 292020,
+				"to": 296180
+			},
+			"text": " Cool. So what types of bridges exist and where do they exist on this trade-off space?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,180",
+				"to": "00:04:59,660"
+			},
+			"offsets": {
+				"from": 296180,
+				"to": 299660
+			},
+			"text": " There's natively verified bridges and natively verified bridges are bridges"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,660",
+				"to": "00:05:03,540"
+			},
+			"offsets": {
+				"from": 299660,
+				"to": 303540
+			},
+			"text": " where the domains underlying validators are the ones that are verifying these transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,540",
+				"to": "00:05:08,020"
+			},
+			"offsets": {
+				"from": 303540,
+				"to": 308020
+			},
+			"text": " This is something like light client bridges, ZK bridges, the --"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,020",
+				"to": "00:05:10,300"
+			},
+			"offsets": {
+				"from": 308020,
+				"to": 310300
+			},
+			"text": " which are coming out now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,300",
+				"to": "00:05:15,260"
+			},
+			"offsets": {
+				"from": 310300,
+				"to": 315260
+			},
+			"text": " Or like even the roll-up AMBs are a special case of this type of bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,260",
+				"to": "00:05:17,780"
+			},
+			"offsets": {
+				"from": 315260,
+				"to": 317780
+			},
+			"text": " They are very low latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,780",
+				"to": "00:05:21,500"
+			},
+			"offsets": {
+				"from": 317780,
+				"to": 321500
+			},
+			"text": " You can pass whatever information you want through them and they are trust minimized."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,500",
+				"to": "00:05:24,820"
+			},
+			"offsets": {
+				"from": 321500,
+				"to": 324820
+			},
+			"text": " However, they are not extensible and they're not extensible"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,820",
+				"to": "00:05:29,020"
+			},
+			"offsets": {
+				"from": 324820,
+				"to": 329020
+			},
+			"text": " because generally these bridges depend really heavily on the underlying consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,020",
+				"to": "00:05:30,380"
+			},
+			"offsets": {
+				"from": 329020,
+				"to": 330380
+			},
+			"text": " of the domains that they're connecting."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,380",
+				"to": "00:05:33,780"
+			},
+			"offsets": {
+				"from": 330380,
+				"to": 333780
+			},
+			"text": " So I would need a completely -- I would need two different bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,780",
+				"to": "00:05:37,220"
+			},
+			"offsets": {
+				"from": 333780,
+				"to": 337220
+			},
+			"text": " If ever creating a project that would use light client bridges everywhere,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,460",
+				"to": "00:05:40,620"
+			},
+			"offsets": {
+				"from": 337460,
+				"to": 340620
+			},
+			"text": " I would need two different implementations on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,620",
+				"to": "00:05:44,340"
+			},
+			"offsets": {
+				"from": 340620,
+				"to": 344340
+			},
+			"text": " if I wanted to connect from Ethereum to Cosmos or Ethereum to Solana."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,340",
+				"to": "00:05:47,020"
+			},
+			"offsets": {
+				"from": 344340,
+				"to": 347020
+			},
+			"text": " There's also externally verified bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,020",
+				"to": "00:05:50,260"
+			},
+			"offsets": {
+				"from": 347020,
+				"to": 350260
+			},
+			"text": " Externally verified bridges have a third party validator set"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,260",
+				"to": "00:05:52,260"
+			},
+			"offsets": {
+				"from": 350260,
+				"to": 352260
+			},
+			"text": " that's verifying these bridge transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,260",
+				"to": "00:05:56,620"
+			},
+			"offsets": {
+				"from": 352260,
+				"to": 356620
+			},
+			"text": " This is low latency, generalizable and extensible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,620",
+				"to": "00:06:00,780"
+			},
+			"offsets": {
+				"from": 356620,
+				"to": 360780
+			},
+			"text": " but now you do have to consider what happens with that third party validator set."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,780",
+				"to": "00:06:06,980"
+			},
+			"offsets": {
+				"from": 360780,
+				"to": 366980
+			},
+			"text": " The implications of like whether or not the bridge validator set is going to be the lowest"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,620",
+				"to": "00:06:12,500"
+			},
+			"offsets": {
+				"from": 367620,
+				"to": 372500
+			},
+			"text": " trust point in your system really depends on the validators of the domains that you're connecting."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,500",
+				"to": "00:06:16,900"
+			},
+			"offsets": {
+				"from": 372500,
+				"to": 376900
+			},
+			"text": " So if you're connecting flip-flop chain through a very popular bridge to Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,900",
+				"to": "00:06:19,940"
+			},
+			"offsets": {
+				"from": 376900,
+				"to": 379940
+			},
+			"text": " your weakest verifier set is probably going to be on flip-flop chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,940",
+				"to": "00:06:21,540"
+			},
+			"offsets": {
+				"from": 379940,
+				"to": 381540
+			},
+			"text": " Okay, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,540",
+				"to": "00:06:23,780"
+			},
+			"offsets": {
+				"from": 381540,
+				"to": 383780
+			},
+			"text": " And then there's optimistically verified systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,780",
+				"to": "00:06:29,620"
+			},
+			"offsets": {
+				"from": 383780,
+				"to": 389620
+			},
+			"text": " Optimistically verified systems use fault proofs to enforce the validity"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,620",
+				"to": "00:06:31,860"
+			},
+			"offsets": {
+				"from": 389620,
+				"to": 391860
+			},
+			"text": " and veracity of the messages that they're passing through."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,860",
+				"to": "00:06:36,820"
+			},
+			"offsets": {
+				"from": 391860,
+				"to": 396820
+			},
+			"text": " One quirk about how you have to construct the fault proofs for these types of systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,220",
+				"to": "00:06:43,140"
+			},
+			"offsets": {
+				"from": 397220,
+				"to": 403140
+			},
+			"text": " is you can only prove that fraud happened on the home domain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,140",
+				"to": "00:06:45,700"
+			},
+			"offsets": {
+				"from": 403140,
+				"to": 405700
+			},
+			"text": " which is where the message was sent from."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,700",
+				"to": "00:06:49,220"
+			},
+			"offsets": {
+				"from": 405700,
+				"to": 409220
+			},
+			"text": " Generally, that's because all of most optimistic systems have some type of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,220",
+				"to": "00:06:51,300"
+			},
+			"offsets": {
+				"from": 409220,
+				"to": 411300
+			},
+			"text": " empirical root that they are verifying."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,300",
+				"to": "00:06:55,300"
+			},
+			"offsets": {
+				"from": 411300,
+				"to": 415300
+			},
+			"text": " And you can only prove that your claim of fraud was valid"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,300",
+				"to": "00:06:57,780"
+			},
+			"offsets": {
+				"from": 415300,
+				"to": 417780
+			},
+			"text": " if you know the contents that went into that miracle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,780",
+				"to": "00:07:03,380"
+			},
+			"offsets": {
+				"from": 417780,
+				"to": 423380
+			},
+			"text": " However, on the destination domains, you can't disconnect the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,380",
+				"to": "00:07:05,300"
+			},
+			"offsets": {
+				"from": 423380,
+				"to": 425300
+			},
+			"text": " so they don't process any fraudulent messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,020",
+				"to": "00:07:09,460"
+			},
+			"offsets": {
+				"from": 426020,
+				"to": 429460
+			},
+			"text": " These systems are trust minimized, generalizable, and extensible."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,460",
+				"to": "00:07:14,020"
+			},
+			"offsets": {
+				"from": 429460,
+				"to": 434020
+			},
+			"text": " But obviously they have some latency because you have to run a fault proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,020",
+				"to": "00:07:20,580"
+			},
+			"offsets": {
+				"from": 434020,
+				"to": 440580
+			},
+			"text": " So I also want to talk briefly about ZK bridges just because they are coming out"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,580",
+				"to": "00:07:22,580"
+			},
+			"offsets": {
+				"from": 440580,
+				"to": 442580
+			},
+			"text": " soon, but they're not available yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,580",
+				"to": "00:07:29,540"
+			},
+			"offsets": {
+				"from": 442580,
+				"to": 449540
+			},
+			"text": " ZK bridges are a type of native bridge that uses validity proof to ensure consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,540",
+				"to": "00:07:32,740"
+			},
+			"offsets": {
+				"from": 449540,
+				"to": 452740
+			},
+			"text": " One thing that you have to consider with any native bridge where it's just"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,380",
+				"to": "00:07:37,140"
+			},
+			"offsets": {
+				"from": 453380,
+				"to": 457140
+			},
+			"text": " or any proof where it's just asserting consensus is if there's a 51%"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,140",
+				"to": "00:07:44,020"
+			},
+			"offsets": {
+				"from": 457140,
+				"to": 464020
+			},
+			"text": " attack on one of the domains, that malicious information would be treated as valid when"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,020",
+				"to": "00:07:46,900"
+			},
+			"offsets": {
+				"from": 464020,
+				"to": 466900
+			},
+			"text": " it's crossing a bridge that verifies only consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,900",
+				"to": "00:07:52,500"
+			},
+			"offsets": {
+				"from": 466900,
+				"to": 472500
+			},
+			"text": " There's some really interesting work to validate both consensus and state transitions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,500",
+				"to": "00:07:54,420"
+			},
+			"offsets": {
+				"from": 472500,
+				"to": 474420
+			},
+			"text": " but it's in early days."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,420",
+				"to": "00:07:57,460"
+			},
+			"offsets": {
+				"from": 474420,
+				"to": 477460
+			},
+			"text": " Ultimately, that's probably going to be the gold standard of bridges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,460",
+				"to": "00:07:59,700"
+			},
+			"offsets": {
+				"from": 477460,
+				"to": 479700
+			},
+			"text": " but it's not ready for prime time yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,740",
+				"to": "00:08:03,940"
+			},
+			"offsets": {
+				"from": 480740,
+				"to": 483940
+			},
+			"text": " So now we're going to talk about different types of security and where these bridges"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,940",
+				"to": "00:08:05,140"
+			},
+			"offsets": {
+				"from": 483940,
+				"to": 485140
+			},
+			"text": " fair in those trade offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,140",
+				"to": "00:08:08,900"
+			},
+			"offsets": {
+				"from": 485140,
+				"to": 488900
+			},
+			"text": " So when we talk about security of these cross-domain systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,900",
+				"to": "00:08:12,900"
+			},
+			"offsets": {
+				"from": 488900,
+				"to": 492900
+			},
+			"text": " we're really talking about three different types of security, economic security,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,900",
+				"to": "00:08:17,540"
+			},
+			"offsets": {
+				"from": 492900,
+				"to": 497540
+			},
+			"text": " which is how much does it cost to -- like what damage could a really well-funded"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,540",
+				"to": "00:08:19,460"
+			},
+			"offsets": {
+				"from": 497540,
+				"to": 499460
+			},
+			"text": " adversary do to your system?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,460",
+				"to": "00:08:23,140"
+			},
+			"offsets": {
+				"from": 499460,
+				"to": 503140
+			},
+			"text": " Implementation is like how complex is it to build and reason about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,140",
+				"to": "00:08:27,940"
+			},
+			"offsets": {
+				"from": 503140,
+				"to": 507940
+			},
+			"text": " And also implementation talks about your standard development practices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,940",
+				"to": "00:08:29,940"
+			},
+			"offsets": {
+				"from": 507940,
+				"to": 509940
+			},
+			"text": " like do you have good security hygiene?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,940",
+				"to": "00:08:32,020"
+			},
+			"offsets": {
+				"from": 509940,
+				"to": 512020
+			},
+			"text": " And then there is environmental security."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,020",
+				"to": "00:08:37,380"
+			},
+			"offsets": {
+				"from": 512020,
+				"to": 517380
+			},
+			"text": " Environmental security is basically how -- you can think of bridges as an oracle of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,380",
+				"to": "00:08:40,100"
+			},
+			"offsets": {
+				"from": 517380,
+				"to": 520100
+			},
+			"text": " information from two different domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,100",
+				"to": "00:08:45,300"
+			},
+			"offsets": {
+				"from": 520100,
+				"to": 525300
+			},
+			"text": " And if you think of them that way, then you have to ensure the quality of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,300",
+				"to": "00:08:50,180"
+			},
+			"offsets": {
+				"from": 525300,
+				"to": 530180
+			},
+			"text": " information as it transfers from a low security domain to a high security domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,180",
+				"to": "00:08:53,300"
+			},
+			"offsets": {
+				"from": 530180,
+				"to": 533300
+			},
+			"text": " So what I mean by that is like if flip-flop chain -- you have a bridge that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,300",
+				"to": "00:08:57,620"
+			},
+			"offsets": {
+				"from": 533300,
+				"to": 537620
+			},
+			"text": " connecting flip-flop chain to Ethereum, and that flip-flop chain is 51%"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,620",
+				"to": "00:09:03,620"
+			},
+			"offsets": {
+				"from": 537620,
+				"to": 543620
+			},
+			"text": " attacked, how does your system handle passing that information that may be malicious?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,620",
+				"to": "00:09:06,660"
+			},
+			"offsets": {
+				"from": 543620,
+				"to": 546660
+			},
+			"text": " So economic security, what's your price?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,660",
+				"to": "00:09:10,100"
+			},
+			"offsets": {
+				"from": 546660,
+				"to": 550100
+			},
+			"text": " How much does it cost to corrupt all of your validators?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,100",
+				"to": "00:09:13,940"
+			},
+			"offsets": {
+				"from": 550100,
+				"to": 553940
+			},
+			"text": " Basically, the only great way to kind of constrain this risk is to have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,940",
+				"to": "00:09:16,180"
+			},
+			"offsets": {
+				"from": 553940,
+				"to": 556180
+			},
+			"text": " permissionless and diverse validator set."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,180",
+				"to": "00:09:22,180"
+			},
+			"offsets": {
+				"from": 556180,
+				"to": 562180
+			},
+			"text": " Otherwise, everybody does have some sort of bribery price."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,300",
+				"to": "00:09:27,540"
+			},
+			"offsets": {
+				"from": 563300,
+				"to": 567540
+			},
+			"text": " So natively verified bridges to kind of break them on their economic security,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,540",
+				"to": "00:09:30,180"
+			},
+			"offsets": {
+				"from": 567540,
+				"to": 570180
+			},
+			"text": " you have to corrupt the domain's underlying validator set."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,180",
+				"to": "00:09:35,940"
+			},
+			"offsets": {
+				"from": 570180,
+				"to": 575940
+			},
+			"text": " For externally verified systems, you have to corrupt their bridge validator set."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,940",
+				"to": "00:09:40,020"
+			},
+			"offsets": {
+				"from": 575940,
+				"to": 580020
+			},
+			"text": " And again, like whether or not that's the weakest validator set depends a lot on"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,020",
+				"to": "00:09:41,220"
+			},
+			"offsets": {
+				"from": 580020,
+				"to": 581220
+			},
+			"text": " the chains that you're connecting."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,220",
+				"to": "00:09:45,780"
+			},
+			"offsets": {
+				"from": 581220,
+				"to": 585780
+			},
+			"text": " And then, optimistically verified systems, there's a few different ways you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,780",
+				"to": "00:09:48,260"
+			},
+			"offsets": {
+				"from": 585780,
+				"to": 588260
+			},
+			"text": " corrupt the economic security of these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,260",
+				"to": "00:09:53,700"
+			},
+			"offsets": {
+				"from": 588260,
+				"to": 593700
+			},
+			"text": " The first is that you bribe all of the watchers, which ideally, this is a permissionless thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,700",
+				"to": "00:09:57,140"
+			},
+			"offsets": {
+				"from": 593700,
+				"to": 597140
+			},
+			"text": " to join. So if you can do that, that would be really expensive and difficult to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,140",
+				"to": "00:09:59,140"
+			},
+			"offsets": {
+				"from": 597140,
+				"to": 599140
+			},
+			"text": " and you wouldn't even really be able to dox all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,140",
+				"to": "00:10:05,460"
+			},
+			"offsets": {
+				"from": 599140,
+				"to": 605460
+			},
+			"text": " But also, you could censor the destination domain or censor the home domain so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,460",
+				"to": "00:10:09,860"
+			},
+			"offsets": {
+				"from": 605460,
+				"to": 609860
+			},
+			"text": " it becomes impossible to actually submit a fraud proof or disconnect transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,860",
+				"to": "00:10:14,020"
+			},
+			"offsets": {
+				"from": 609860,
+				"to": 614020
+			},
+			"text": " So in terms of like where all these system ranks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,020",
+				"to": "00:10:17,860"
+			},
+			"offsets": {
+				"from": 614020,
+				"to": 617860
+			},
+			"text": " native is probably going to be the most secure for economic security,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,860",
+				"to": "00:10:19,620"
+			},
+			"offsets": {
+				"from": 617860,
+				"to": 619620
+			},
+			"text": " followed by optimistic and external."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,620",
+				"to": "00:10:24,420"
+			},
+			"offsets": {
+				"from": 619620,
+				"to": 624420
+			},
+			"text": " And again, this is largely dependent on the permissionlessness and diversity of your"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,420",
+				"to": "00:10:25,540"
+			},
+			"offsets": {
+				"from": 624420,
+				"to": 625540
+			},
+			"text": " about verifier set."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,540",
+				"to": "00:10:28,100"
+			},
+			"offsets": {
+				"from": 625540,
+				"to": 628100
+			},
+			"text": " Okay, so implementation security."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,100",
+				"to": "00:10:30,260"
+			},
+			"offsets": {
+				"from": 628100,
+				"to": 630260
+			},
+			"text": " How simple is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,260",
+				"to": "00:10:34,180"
+			},
+			"offsets": {
+				"from": 630260,
+				"to": 634180
+			},
+			"text": " Like your bridges already have a massive surface area because they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,180",
+				"to": "00:10:37,380"
+			},
+			"offsets": {
+				"from": 634180,
+				"to": 637380
+			},
+			"text": " connecting like dealing with a heterogeneous environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,380",
+				"to": "00:10:42,980"
+			},
+			"offsets": {
+				"from": 637380,
+				"to": 642980
+			},
+			"text": " So those dependencies will trickle up, and it's something that you have to deal with."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,980",
+				"to": "00:10:47,860"
+			},
+			"offsets": {
+				"from": 642980,
+				"to": 647860
+			},
+			"text": " So the only way to really mitigate that type of implementation risk is to constrain your surface"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,860",
+				"to": "00:10:52,900"
+			},
+			"offsets": {
+				"from": 647860,
+				"to": 652900
+			},
+			"text": " area, which means you should probably talk to your theoretical physics friends because they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,900",
+				"to": "00:10:53,940"
+			},
+			"offsets": {
+				"from": 652900,
+				"to": 653940
+			},
+			"text": " really good at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,940",
+				"to": "00:10:57,780"
+			},
+			"offsets": {
+				"from": 653940,
+				"to": 657780
+			},
+			"text": " But implementation security is not just how simple your system is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,780",
+				"to": "00:11:02,740"
+			},
+			"offsets": {
+				"from": 657780,
+				"to": 662740
+			},
+			"text": " It's also all about code hygiene, all about development practices, all about security"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,740",
+				"to": "00:11:06,100"
+			},
+			"offsets": {
+				"from": 662740,
+				"to": 666100
+			},
+			"text": " mindset. Like do you fuzz your tests? You have audits?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,100",
+				"to": "00:11:08,900"
+			},
+			"offsets": {
+				"from": 666100,
+				"to": 668900
+			},
+			"text": " What's your test coverage? Are your bug bounties live?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,900",
+				"to": "00:11:10,180"
+			},
+			"offsets": {
+				"from": 668900,
+				"to": 670180
+			},
+			"text": " Have you done war games?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,380",
+				"to": "00:11:16,020"
+			},
+			"offsets": {
+				"from": 671380,
+				"to": 676020
+			},
+			"text": " You can also constrain this implementation risk by building your systems defensively."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,020",
+				"to": "00:11:18,820"
+			},
+			"offsets": {
+				"from": 676020,
+				"to": 678820
+			},
+			"text": " And what I mean by that is integrating things like rate limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,820",
+				"to": "00:11:23,860"
+			},
+			"offsets": {
+				"from": 678820,
+				"to": 683860
+			},
+			"text": " So if you're a bridge and somebody's withdrawing $10, that's probably fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,860",
+				"to": "00:11:24,980"
+			},
+			"offsets": {
+				"from": 683860,
+				"to": 684980
+			},
+			"text": " You can probably let that happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,980",
+				"to": "00:11:29,220"
+			},
+			"offsets": {
+				"from": 684980,
+				"to": 689220
+			},
+			"text": " But if somebody's withdrawing 90% of the value in your bridge in a single transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,220",
+				"to": "00:11:32,980"
+			},
+			"offsets": {
+				"from": 689220,
+				"to": 692980
+			},
+			"text": " maybe you want to add some delays or some extra verification on that so that people can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,980",
+				"to": "00:11:35,220"
+			},
+			"offsets": {
+				"from": 692980,
+				"to": 695220
+			},
+			"text": " react appropriately."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,220",
+				"to": "00:11:40,580"
+			},
+			"offsets": {
+				"from": 695220,
+				"to": 700580
+			},
+			"text": " So for natively verified bridges, they are pretty complicated because you have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,580",
+				"to": "00:11:42,340"
+			},
+			"offsets": {
+				"from": 700580,
+				"to": 702340
+			},
+			"text": " deal with the underlying consensus set."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,340",
+				"to": "00:11:47,220"
+			},
+			"offsets": {
+				"from": 702340,
+				"to": 707220
+			},
+			"text": " And so you really need a unique bridge implementation for each domain pair that you're connecting."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,220",
+				"to": "00:11:52,420"
+			},
+			"offsets": {
+				"from": 707220,
+				"to": 712420
+			},
+			"text": " For externally verified systems, it's really nice because you can take the exact same"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,420",
+				"to": "00:11:54,980"
+			},
+			"offsets": {
+				"from": 712420,
+				"to": 714980
+			},
+			"text": " system and put it on pretty much any domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,980",
+				"to": "00:12:00,420"
+			},
+			"offsets": {
+				"from": 714980,
+				"to": 720420
+			},
+			"text": " The complexity comes from the off-chain coordination between the verifier set."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,420",
+				"to": "00:12:05,060"
+			},
+			"offsets": {
+				"from": 720420,
+				"to": 725060
+			},
+			"text": " Anytime that you have to have coordination between multiple actors, it becomes more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,780",
+				"to": "00:12:10,740"
+			},
+			"offsets": {
+				"from": 725780,
+				"to": 730740
+			},
+			"text": " With optimistic systems, you don't need that off-chain coordination between all of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,740",
+				"to": "00:12:14,740"
+			},
+			"offsets": {
+				"from": 730740,
+				"to": 734740
+			},
+			"text": " watchers so that they really have an advantage in terms of implementation security."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,740",
+				"to": "00:12:20,180"
+			},
+			"offsets": {
+				"from": 734740,
+				"to": 740180
+			},
+			"text": " So yeah, optimistic wins here, followed by external, and then native bridges actually do the worst."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,180",
+				"to": "00:12:23,700"
+			},
+			"offsets": {
+				"from": 740180,
+				"to": 743700
+			},
+			"text": " So now we're talking about environment security."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,700",
+				"to": "00:12:28,740"
+			},
+			"offsets": {
+				"from": 743700,
+				"to": 748740
+			},
+			"text": " So again, like bridges are oracles of information from one domain to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,740",
+				"to": "00:12:33,380"
+			},
+			"offsets": {
+				"from": 748740,
+				"to": 753380
+			},
+			"text": " And you need to make sure that your system can vouch for the quality of that information."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,500",
+				"to": "00:12:36,260"
+			},
+			"offsets": {
+				"from": 754500,
+				"to": 756260
+			},
+			"text": " You can constrain environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,260",
+				"to": "00:12:39,860"
+			},
+			"offsets": {
+				"from": 756260,
+				"to": 759860
+			},
+			"text": " Really the best way to do that is to add off-chain checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,860",
+				"to": "00:12:43,060"
+			},
+			"offsets": {
+				"from": 759860,
+				"to": 763060
+			},
+			"text": " Like 51% attacks are really difficult to check on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,060",
+				"to": "00:12:48,580"
+			},
+			"offsets": {
+				"from": 763060,
+				"to": 768580
+			},
+			"text": " And you want to be able to add equivalency checks and delays to your information so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,580",
+				"to": "00:12:51,940"
+			},
+			"offsets": {
+				"from": 768580,
+				"to": 771940
+			},
+			"text": " you don't respond immediately to data that could be malicious."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,940",
+				"to": "00:12:57,060"
+			},
+			"offsets": {
+				"from": 771940,
+				"to": 777060
+			},
+			"text": " So natively verified systems, these happen synchronously."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,060",
+				"to": "00:13:02,900"
+			},
+			"offsets": {
+				"from": 777060,
+				"to": 782900
+			},
+			"text": " As soon as it passes consensus, it could pass through the mechanisms of natively verified bridges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,900",
+				"to": "00:13:08,340"
+			},
+			"offsets": {
+				"from": 782900,
+				"to": 788340
+			},
+			"text": " which means that if there is a 51% attack, you don't really have a strong defense against that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,340",
+				"to": "00:13:15,140"
+			},
+			"offsets": {
+				"from": 788340,
+				"to": 795140
+			},
+			"text": " For externally verified bridges, it's really easy to insert these types of equivalency checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,140",
+				"to": "00:13:19,700"
+			},
+			"offsets": {
+				"from": 795140,
+				"to": 799700
+			},
+			"text": " and these types of delays, but it's not required by the model by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,700",
+				"to": "00:13:24,660"
+			},
+			"offsets": {
+				"from": 799700,
+				"to": 804660
+			},
+			"text": " Whereas in optimistic bridges, the delay is embedded in how the protocol works."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,660",
+				"to": "00:13:28,100"
+			},
+			"offsets": {
+				"from": 804660,
+				"to": 808100
+			},
+			"text": " So these checks are kind of treated as a first-class citizen."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,100",
+				"to": "00:13:31,620"
+			},
+			"offsets": {
+				"from": 808100,
+				"to": 811620
+			},
+			"text": " So yeah, optimistic bridges, best here, external, and then native."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,820",
+				"to": "00:13:35,940"
+			},
+			"offsets": {
+				"from": 812820,
+				"to": 815940
+			},
+			"text": " So woo-hoo, optimistic bridges, like probably the best."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,940",
+				"to": "00:13:40,500"
+			},
+			"offsets": {
+				"from": 815940,
+				"to": 820500
+			},
+			"text": " But that doesn't really matter that much because that's not like where we're getting attacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,500",
+				"to": "00:13:46,580"
+			},
+			"offsets": {
+				"from": 820500,
+				"to": 826580
+			},
+			"text": " The hacks that we see, the bridge hacks that we see, they're almost all at this implementation level."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,580",
+				"to": "00:13:54,900"
+			},
+			"offsets": {
+				"from": 826580,
+				"to": 834900
+			},
+			"text": " So in terms of attack difficulty, it requires way less resources to be able to exploit the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,900",
+				"to": "00:13:58,820"
+			},
+			"offsets": {
+				"from": 834900,
+				"to": 838820
+			},
+			"text": " implementation of a bridge and like exploit the implementation risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,820",
+				"to": "00:14:02,340"
+			},
+			"offsets": {
+				"from": 838820,
+				"to": 842340
+			},
+			"text": " If you're going to do an economic attack, you're probably going to need a lot of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,820",
+				"to": "00:14:07,060"
+			},
+			"offsets": {
+				"from": 842820,
+				"to": 847060
+			},
+			"text": " And if you're doing an environmental attack, like corrupting the validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,060",
+				"to": "00:14:11,620"
+			},
+			"offsets": {
+				"from": 847060,
+				"to": 851620
+			},
+			"text": " well, you're going to need a lot of money and probably a lot of know-how as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,620",
+				"to": "00:14:14,020"
+			},
+			"offsets": {
+				"from": 851620,
+				"to": 854020
+			},
+			"text": " And we're not seeing any of those types of attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,020",
+				"to": "00:14:15,060"
+			},
+			"offsets": {
+				"from": 854020,
+				"to": 855060
+			},
+			"text": " Those are pretty rare."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,060",
+				"to": "00:14:18,340"
+			},
+			"offsets": {
+				"from": 855060,
+				"to": 858340
+			},
+			"text": " What we're seeing all the time of these implementation keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,340",
+				"to": "00:14:21,620"
+			},
+			"offsets": {
+				"from": 858340,
+				"to": 861620
+			},
+			"text": " The one exception being Ronin."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,620",
+				"to": "00:14:27,860"
+			},
+			"offsets": {
+				"from": 861620,
+				"to": 867860
+			},
+			"text": " Ronin is like a multi-sig bridge where they have some number of signers have to verify all"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,860",
+				"to": "00:14:33,940"
+			},
+			"offsets": {
+				"from": 867860,
+				"to": 873940
+			},
+			"text": " the transactions. I would argue, and those keys got compromised, the bridge got drained for"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,940",
+				"to": "00:14:35,700"
+			},
+			"offsets": {
+				"from": 873940,
+				"to": 875700
+			},
+			"text": " hundreds of millions of dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,700",
+				"to": "00:14:41,140"
+			},
+			"offsets": {
+				"from": 875700,
+				"to": 881140
+			},
+			"text": " I would argue that that was, again, an implementation failure in guarding your keys more than an attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,140",
+				"to": "00:14:42,660"
+			},
+			"offsets": {
+				"from": 881140,
+				"to": 882660
+			},
+			"text": " on the economic model of the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,660",
+				"to": "00:14:49,620"
+			},
+			"offsets": {
+				"from": 882660,
+				"to": 889620
+			},
+			"text": " So if implementation security is like the most accessible thing for us to solve,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,620",
+				"to": "00:14:54,660"
+			},
+			"offsets": {
+				"from": 889620,
+				"to": 894660
+			},
+			"text": " a lot of that comes from thinking simply, but also from the decades of prior cybersecurity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,660",
+				"to": "00:15:00,020"
+			},
+			"offsets": {
+				"from": 894660,
+				"to": 900020
+			},
+			"text": " processes and research that we have, why are we still having so many hacks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,020",
+				"to": "00:15:02,980"
+			},
+			"offsets": {
+				"from": 900020,
+				"to": 902980
+			},
+			"text": " And the reality is like security doesn't exist in a vacuum."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,980",
+				"to": "00:15:08,260"
+			},
+			"offsets": {
+				"from": 902980,
+				"to": 908260
+			},
+			"text": " All of the projects that are creating bridges right now are young and they are resource constrained."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,260",
+				"to": "00:15:14,660"
+			},
+			"offsets": {
+				"from": 908260,
+				"to": 914660
+			},
+			"text": " And when you are creating a project of any type, like hacks are a low probability, high impact"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,660",
+				"to": "00:15:19,140"
+			},
+			"offsets": {
+				"from": 914660,
+				"to": 919140
+			},
+			"text": " event. And there are several other things that could kill your project."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,140",
+				"to": "00:15:23,060"
+			},
+			"offsets": {
+				"from": 919140,
+				"to": 923060
+			},
+			"text": " So you are going to be forced into making different types of trade-offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,060",
+				"to": "00:15:28,660"
+			},
+			"offsets": {
+				"from": 923060,
+				"to": 928660
+			},
+			"text": " So a lot of the trade-offs that people make when they actually ship bridges is to take"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,660",
+				"to": "00:15:33,540"
+			},
+			"offsets": {
+				"from": 928660,
+				"to": 933540
+			},
+			"text": " some type of shortcut. The most common shortcuts that you will see are whitelist,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,540",
+				"to": "00:15:39,780"
+			},
+			"offsets": {
+				"from": 933540,
+				"to": 939780
+			},
+			"text": " upgradability and centralization. So if you are Lp on a bridge, that is probably going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,780",
+				"to": "00:15:44,660"
+			},
+			"offsets": {
+				"from": 939780,
+				"to": 944660
+			},
+			"text": " gated behind a whitelist. If you are an external validator, most bridges, sorry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,660",
+				"to": "00:15:49,220"
+			},
+			"offsets": {
+				"from": 944660,
+				"to": 949220
+			},
+			"text": " have those gated behind whitelist as well. There is also upgradability."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,220",
+				"to": "00:15:57,300"
+			},
+			"offsets": {
+				"from": 949220,
+				"to": 957300
+			},
+			"text": " Upgradeability is controversial. It is not clear whether it is better to have an opt-in or an opt-out"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,300",
+				"to": "00:16:01,460"
+			},
+			"offsets": {
+				"from": 957300,
+				"to": 961460
+			},
+			"text": " system since you want an opt-out system to fix emergency bugs, but you want an opt-in system"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,460",
+				"to": "00:16:08,340"
+			},
+			"offsets": {
+				"from": 961460,
+				"to": 968340
+			},
+			"text": " to allow projects to kind of change their security risk at their leisure. But most of the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,340",
+				"to": "00:16:12,740"
+			},
+			"offsets": {
+				"from": 968340,
+				"to": 972740
+			},
+			"text": " the upgrade systems that are in place on all of these bridges are just instant upgrade by an admin"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,740",
+				"to": "00:16:19,060"
+			},
+			"offsets": {
+				"from": 972740,
+				"to": 979060
+			},
+			"text": " multi-sig, which obviously kind of undermines the entire security model that most teams advertise"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,060",
+				"to": "00:16:24,500"
+			},
+			"offsets": {
+				"from": 979060,
+				"to": 984500
+			},
+			"text": " and quite frankly, it is mostly a branding exercise. And then you also have elements of centralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,500",
+				"to": "00:16:31,060"
+			},
+			"offsets": {
+				"from": 984500,
+				"to": 991060
+			},
+			"text": " That means like possibility, you have centralized supporting services. So in bridges, actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,060",
+				"to": "00:16:37,700"
+			},
+			"offsets": {
+				"from": 991060,
+				"to": 997700
+			},
+			"text": " if you are running your own node, or running your own node is just as important as like securing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,700",
+				"to": "00:16:43,940"
+			},
+			"offsets": {
+				"from": 997700,
+				"to": 1003940
+			},
+			"text": " your keys. And the reason for that is if you don't run your own node, you could get malicious events."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,940",
+				"to": "00:16:51,460"
+			},
+			"offsets": {
+				"from": 1003940,
+				"to": 1011460
+			},
+			"text": " And generally, as you are an LP, like most bridges function by watching for events on source chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,460",
+				"to": "00:16:56,820"
+			},
+			"offsets": {
+				"from": 1011460,
+				"to": 1016820
+			},
+			"text": " validating them and sending them out on destination chain. And if you are connected to a malicious"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,820",
+				"to": "00:17:00,980"
+			},
+			"offsets": {
+				"from": 1016820,
+				"to": 1020980
+			},
+			"text": " node provider, then that event is incorrect and you could have just sent them a lot of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,780",
+				"to": "00:17:07,540"
+			},
+			"offsets": {
+				"from": 1021780,
+				"to": 1027540
+			},
+			"text": " So these are all things that common shortcuts that bridge projects take because right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,540",
+				"to": "00:17:12,900"
+			},
+			"offsets": {
+				"from": 1027540,
+				"to": 1032900
+			},
+			"text": " they're trying to de-risk their unknown unknowns. Like is this even the best way to pass information?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,900",
+				"to": "00:17:17,780"
+			},
+			"offsets": {
+				"from": 1032900,
+				"to": 1037780
+			},
+			"text": " What are the RPC qualities like on the domains that I'm connecting to? There's a lot of other"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,780",
+				"to": "00:17:23,780"
+			},
+			"offsets": {
+				"from": 1037780,
+				"to": 1043780
+			},
+			"text": " things that go into creating a secure protocol. So that means that there are some practical"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,780",
+				"to": "00:17:29,220"
+			},
+			"offsets": {
+				"from": 1043780,
+				"to": 1049220
+			},
+			"text": " considerations that aren't the most tasteful, that are important for you as a user when you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,220",
+				"to": "00:17:35,460"
+			},
+			"offsets": {
+				"from": 1049220,
+				"to": 1055460
+			},
+			"text": " evaluating your security. So the first one is this my life now, which basically means you have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,460",
+				"to": "00:17:41,700"
+			},
+			"offsets": {
+				"from": 1055460,
+				"to": 1061700
+			},
+			"text": " understand how long you're exposed to the risk of the bridge. So if you are using assets that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,700",
+				"to": "00:17:45,700"
+			},
+			"offsets": {
+				"from": 1061700,
+				"to": 1065700
+			},
+			"text": " came from a default bridge, not even the default bridge itself, you are still exposed to that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,700",
+				"to": "00:17:53,620"
+			},
+			"offsets": {
+				"from": 1065700,
+				"to": 1073620
+			},
+			"text": " bridge risk. If you are using or LPing on a bridge for either the AMM or just as a liquidity provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,620",
+				"to": "00:17:59,620"
+			},
+			"offsets": {
+				"from": 1073620,
+				"to": 1079620
+			},
+			"text": " of some other type, you really will be exposed to the risk of that bridge for the duration of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,620",
+				"to": "00:18:04,020"
+			},
+			"offsets": {
+				"from": 1079620,
+				"to": 1084020
+			},
+			"text": " time that you are LPing. If you're a user and you're crossing a bridge and it's not the default"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,020",
+				"to": "00:18:10,740"
+			},
+			"offsets": {
+				"from": 1084020,
+				"to": 1090740
+			},
+			"text": " bridge, so something like hop or connect, you're only exposed to the risk while you're crossing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,740",
+				"to": "00:18:15,460"
+			},
+			"offsets": {
+				"from": 1090740,
+				"to": 1095460
+			},
+			"text": " The other one to check is like where are your receipts? What have you done? Like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,460",
+				"to": "00:18:21,700"
+			},
+			"offsets": {
+				"from": 1095460,
+				"to": 1101700
+			},
+			"text": " Lindy effect is incredibly powerful in bridges, but it should reset every time that there is an"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,700",
+				"to": "00:18:27,380"
+			},
+			"offsets": {
+				"from": 1101700,
+				"to": 1107380
+			},
+			"text": " upgrade. So you have to look at how long it takes, how long bridges have been securing a large"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,380",
+				"to": "00:18:31,860"
+			},
+			"offsets": {
+				"from": 1107380,
+				"to": 1111860
+			},
+			"text": " amount of money, and that's a really good proxy for how secure it is, because if there's a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,860",
+				"to": "00:18:37,300"
+			},
+			"offsets": {
+				"from": 1111860,
+				"to": 1117300
+			},
+			"text": " money there, it's probably an appealing target, and so people have probably tried to hack it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,300",
+				"to": "00:18:42,660"
+			},
+			"offsets": {
+				"from": 1117300,
+				"to": 1122660
+			},
+			"text": " can't. That being said, just because it's been around for a while doesn't mean there's not a bug"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,660",
+				"to": "00:18:47,860"
+			},
+			"offsets": {
+				"from": 1122660,
+				"to": 1127860
+			},
+			"text": " in it. And then the other one, this is like the most unfortunate to have to consider because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,860",
+				"to": "00:18:54,500"
+			},
+			"offsets": {
+				"from": 1127860,
+				"to": 1134500
+			},
+			"text": " kind of against the ethos of the space, but because bridge projects take these shortcuts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,500",
+				"to": "00:18:59,620"
+			},
+			"offsets": {
+				"from": 1134500,
+				"to": 1139620
+			},
+			"text": " it is really important and are kind of running on training wheels. It is really, really important"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,620",
+				"to": "00:19:04,340"
+			},
+			"offsets": {
+				"from": 1139620,
+				"to": 1144340
+			},
+			"text": " to know if you can trust the judgment of the team. Do you know that they follow good development"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,340",
+				"to": "00:19:09,860"
+			},
+			"offsets": {
+				"from": 1144340,
+				"to": 1149860
+			},
+			"text": " practices? Do you trust that if something went wrong, they would continue working on the project?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,860",
+				"to": "00:19:15,460"
+			},
+			"offsets": {
+				"from": 1149860,
+				"to": 1155460
+			},
+			"text": " And if you're not capable of evaluating like the specific development processes and hygiene of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,460",
+				"to": "00:19:19,860"
+			},
+			"offsets": {
+				"from": 1155460,
+				"to": 1159860
+			},
+			"text": " the team, then you really do need to lean on social signaling for other people who would"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,860",
+				"to": "00:19:24,980"
+			},
+			"offsets": {
+				"from": 1159860,
+				"to": 1164980
+			},
+			"text": " vouch for that, who do have more knowledge. It's kind of unfortunate that that ends up being what"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,980",
+				"to": "00:19:30,740"
+			},
+			"offsets": {
+				"from": 1164980,
+				"to": 1170740
+			},
+			"text": " we have to fall back on, but until these bridges are really standalone systems that just kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,740",
+				"to": "00:19:36,180"
+			},
+			"offsets": {
+				"from": 1170740,
+				"to": 1176180
+			},
+			"text": " is your best bet. So now we have time for questions. We have about five minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,180",
+				"to": "00:19:44,980"
+			},
+			"offsets": {
+				"from": 1176180,
+				"to": 1184980
+			},
+			"text": " Thanks. Yeah, thank you. That's great. How do you make your own considerations?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,980",
+				"to": "00:19:52,100"
+			},
+			"offsets": {
+				"from": 1184980,
+				"to": 1192100
+			},
+			"text": " So you're talking about getting some shortcuts regarding like weighing off like security and speed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,100",
+				"to": "00:19:57,220"
+			},
+			"offsets": {
+				"from": 1192100,
+				"to": 1197220
+			},
+			"text": " like time to deploy, time for time to production. How do you how do you weigh those things that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,220",
+				"to": "00:20:02,580"
+			},
+			"offsets": {
+				"from": 1197220,
+				"to": 1202580
+			},
+			"text": " connects? How do you make the decision of say centralizing some aspects, for example?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,580",
+				"to": "00:20:09,700"
+			},
+			"offsets": {
+				"from": 1202580,
+				"to": 1209700
+			},
+			"text": " Yeah, well, I can tell you exactly what our shortcut was. So in our NXT PV0, that's kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,700",
+				"to": "00:20:16,980"
+			},
+			"offsets": {
+				"from": 1209700,
+				"to": 1216980
+			},
+			"text": " an atomic transfer system and how it works is you have a trans you run an auction process. And then"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,980",
+				"to": "00:20:23,700"
+			},
+			"offsets": {
+				"from": 1216980,
+				"to": 1223700
+			},
+			"text": " LPs can bid on facilitating your transfer user select the winning LP. That's great. All of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,700",
+				"to": "00:20:28,580"
+			},
+			"offsets": {
+				"from": 1223700,
+				"to": 1228580
+			},
+			"text": " needs to happen on a messaging server. We use a centralized messaging server because figuring"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,580",
+				"to": "00:20:35,460"
+			},
+			"offsets": {
+				"from": 1228580,
+				"to": 1235460
+			},
+			"text": " out how this would work in the wild and how it's like kind of what our risk to business was"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,460",
+				"to": "00:20:40,660"
+			},
+			"offsets": {
+				"from": 1235460,
+				"to": 1240660
+			},
+			"text": " figuring out decentralized messaging was not high on that like decision matrix priority."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,660",
+				"to": "00:20:47,060"
+			},
+			"offsets": {
+				"from": 1240660,
+				"to": 1247060
+			},
+			"text": " It just wasn't something that we would be able to focus on. I think like as we've matured as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,060",
+				"to": "00:20:54,980"
+			},
+			"offsets": {
+				"from": 1247060,
+				"to": 1254980
+			},
+			"text": " project, we've started to kind of realize that it is really important when you're not sure about"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,980",
+				"to": "00:20:59,540"
+			},
+			"offsets": {
+				"from": 1254980,
+				"to": 1259540
+			},
+			"text": " the entire security of your system because you have no Lindy, it's really, really important to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,540",
+				"to": "00:21:04,980"
+			},
+			"offsets": {
+				"from": 1259540,
+				"to": 1264980
+			},
+			"text": " make sure that there are some controls that you can enact like pausing the system is incredibly"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,980",
+				"to": "00:21:12,580"
+			},
+			"offsets": {
+				"from": 1264980,
+				"to": 1272580
+			},
+			"text": " important. Especially as it increases in complexity. And practically speaking in your team, how did"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,580",
+				"to": "00:21:18,580"
+			},
+			"offsets": {
+				"from": 1272580,
+				"to": 1278580
+			},
+			"text": " you come about that decision? Did you involve everyone? Was it more strategic? For the centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,580",
+				"to": "00:21:23,860"
+			},
+			"offsets": {
+				"from": 1278580,
+				"to": 1283860
+			},
+			"text": " messaging, we asked some of the ETH two folks if they would recommend LIP P2P and they said"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,860",
+				"to": "00:21:31,300"
+			},
+			"offsets": {
+				"from": 1283860,
+				"to": 1291300
+			},
+			"text": " absolutely not. And so we were like, okay. So you talked about the dangers, like how you lose"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,300",
+				"to": "00:21:38,020"
+			},
+			"offsets": {
+				"from": 1291300,
+				"to": 1298020
+			},
+			"text": " your Lindyness when you upgrade a bridge. I'm curious if you have specific ideas about"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,020",
+				"to": "00:21:44,820"
+			},
+			"offsets": {
+				"from": 1298020,
+				"to": 1304820
+			},
+			"text": " like the testing and yeah, the testing procedures that you would have specific to upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,820",
+				"to": "00:21:53,620"
+			},
+			"offsets": {
+				"from": 1304820,
+				"to": 1313620
+			},
+			"text": " Make sure that super strong opinions about that personally. Yeah. I think like you at the very"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,620",
+				"to": "00:22:00,020"
+			},
+			"offsets": {
+				"from": 1313620,
+				"to": 1320020
+			},
+			"text": " least, you should set up a hard hat or forge project that forks the mainnet URL and runs a"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,020",
+				"to": "00:22:05,380"
+			},
+			"offsets": {
+				"from": 1320020,
+				"to": 1325380
+			},
+			"text": " bunch of fuzzing and unit tests against the upgrade that you've performed. But I think beyond that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,380",
+				"to": "00:22:11,460"
+			},
+			"offsets": {
+				"from": 1325380,
+				"to": 1331460
+			},
+			"text": " like that's great. You need to have a separate mainnet testbed contract environment where you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,460",
+				"to": "00:22:18,820"
+			},
+			"offsets": {
+				"from": 1331460,
+				"to": 1338820
+			},
+			"text": " run these tests and then you need to do some fire drills like red team, blue team. So we work"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,820",
+				"to": "00:22:25,460"
+			},
+			"offsets": {
+				"from": 1338820,
+				"to": 1345460
+			},
+			"text": " with Spearbit to do this kind of external attacks on our system. And we'll get like if obviously"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,460",
+				"to": "00:22:30,180"
+			},
+			"offsets": {
+				"from": 1345460,
+				"to": 1350180
+			},
+			"text": " if it's a real bug, you know, please don't do that to us on mainnet. But we'll give them upgrade"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,180",
+				"to": "00:22:34,420"
+			},
+			"offsets": {
+				"from": 1350180,
+				"to": 1354420
+			},
+			"text": " keys to kind of inject a bug and then we'll test our monitoring systems. Like how quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,420",
+				"to": "00:22:39,460"
+			},
+			"offsets": {
+				"from": 1354420,
+				"to": 1359460
+			},
+			"text": " can we pause things if it went wrong? Like how quickly can we get our incident response team"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,460",
+				"to": "00:22:45,300"
+			},
+			"offsets": {
+				"from": 1359460,
+				"to": 1365300
+			},
+			"text": " together? Because I think that if you have to figure those things out when it's under the gun,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,300",
+				"to": "00:22:51,220"
+			},
+			"offsets": {
+				"from": 1365300,
+				"to": 1371220
+			},
+			"text": " you're in a lot of trouble. So we're going to do our first one on our upcoming fork probably in"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,220",
+				"to": "00:22:57,780"
+			},
+			"offsets": {
+				"from": 1371220,
+				"to": 1377780
+			},
+			"text": " the next few weeks here. But we'll give them like a two week time frame and say, okay, sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,780",
+				"to": "00:23:02,420"
+			},
+			"offsets": {
+				"from": 1377780,
+				"to": 1382420
+			},
+			"text": " within this two week, get it. And if I really wanted to be mean, I'd be like, do it while I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,420",
+				"to": "00:23:12,260"
+			},
+			"offsets": {
+				"from": 1382420,
+				"to": 1392260
+			},
+			"text": " asleep. Because I probably will. I was just curious, would you recommend adding latency to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,260",
+				"to": "00:23:18,180"
+			},
+			"offsets": {
+				"from": 1392260,
+				"to": 1398180
+			},
+			"text": " increase security or it doesn't really do anything? Definitely. I think until you're able to prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,180",
+				"to": "00:23:23,460"
+			},
+			"offsets": {
+				"from": 1398180,
+				"to": 1403460
+			},
+			"text": " the validity of state transitions and not just consensus, then your only way to mitigate like"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,460",
+				"to": "00:23:34,660"
+			},
+			"offsets": {
+				"from": 1403460,
+				"to": 1414660
+			},
+			"text": " your risk of 51% attacks is to have latency in your system. Awesome. Thanks guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,660",
+				"to": "00:23:44,660"
+			},
+			"offsets": {
+				"from": 1414660,
+				"to": 1424660
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,660",
+				"to": "00:24:13,660"
+			},
+			"offsets": {
+				"from": 1424660,
+				"to": 1453660
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

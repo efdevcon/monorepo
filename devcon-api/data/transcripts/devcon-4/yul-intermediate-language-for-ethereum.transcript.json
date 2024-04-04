@@ -1,0 +1,1088 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,360"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7360
+			},
+			"text": " >> Hello again. So it's actually not brand new in like blockchain terms because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,360",
+				"to": "00:00:14,120"
+			},
+			"offsets": {
+				"from": 7360,
+				"to": 14120
+			},
+			"text": " a year old. So it's like really old at this point. Okay, you'll, which is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,120",
+				"to": "00:00:18,760"
+			},
+			"offsets": {
+				"from": 14120,
+				"to": 18760
+			},
+			"text": " Oh, the big one. Okay. So some of you may have attended Dev Country and may have seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,760",
+				"to": "00:00:24,360"
+			},
+			"offsets": {
+				"from": 18760,
+				"to": 24360
+			},
+			"text": " this at a talk called Yulia, which I had last year. There's a move a little bit between"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,360",
+				"to": "00:00:28,960"
+			},
+			"offsets": {
+				"from": 24360,
+				"to": 28960
+			},
+			"text": " that and this one. But yeah, after Dev Country we did learn that there's another language"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,960",
+				"to": "00:00:33,160"
+			},
+			"offsets": {
+				"from": 28960,
+				"to": 33160
+			},
+			"text": " for Yulia. And maybe we should unclar language Yulia as well. So we decided to rename it to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,160",
+				"to": "00:00:39,300"
+			},
+			"offsets": {
+				"from": 33160,
+				"to": 39300
+			},
+			"text": " Yulia. So that's the real talk about it. Okay, the design goals for you, the couple of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,300",
+				"to": "00:00:45,360"
+			},
+			"offsets": {
+				"from": 39300,
+				"to": 45360
+			},
+			"text": " design goals we had. But first of all, it has to be easy to read and write. Secondly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,360",
+				"to": "00:00:50,200"
+			},
+			"offsets": {
+				"from": 45360,
+				"to": 50200
+			},
+			"text": " it has to be a good base for transformations for more importantly optimizations on top"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,200",
+				"to": "00:00:56,280"
+			},
+			"offsets": {
+				"from": 50200,
+				"to": 56280
+			},
+			"text": " of it. And the third main point is that it should be a really good base for auditing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,280",
+				"to": "00:01:05,080"
+			},
+			"offsets": {
+				"from": 56280,
+				"to": 65080
+			},
+			"text": " So actually these three points play together. By having it easy to audit, we are writing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,080",
+				"to": "00:01:11,880"
+			},
+			"offsets": {
+				"from": 65080,
+				"to": 71880
+			},
+			"text": " code as like single instructions in a function. You know, the smaller code, the easier to audit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,880",
+				"to": "00:01:15,800"
+			},
+			"offsets": {
+				"from": 71880,
+				"to": 75800
+			},
+			"text": " And as a result, it's quite easy to read. But it's not well optimized. It uses a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,800",
+				"to": "00:01:21,320"
+			},
+			"offsets": {
+				"from": 75800,
+				"to": 81320
+			},
+			"text": " of gas. So that's why we need a lot of good optimization steps on top of it. And the last"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,320",
+				"to": "00:01:26,840"
+			},
+			"offsets": {
+				"from": 81320,
+				"to": 86840
+			},
+			"text": " big point for the design goals is to support multiple target VMs. Of course it supports"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,840",
+				"to": "00:01:34,360"
+			},
+			"offsets": {
+				"from": 86840,
+				"to": 94360
+			},
+			"text": " CVM, but it also supports CVM 1.5 and Ewasm. Okay, some of the features we have in Yulia"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,360",
+				"to": "00:01:41,160"
+			},
+			"offsets": {
+				"from": 94360,
+				"to": 101160
+			},
+			"text": " itself, it does look like an assembly language, but it's heavily augmented from an assembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,160",
+				"to": "00:01:45,920"
+			},
+			"offsets": {
+				"from": 101160,
+				"to": 105920
+			},
+			"text": " language. First of all, it has variables. And it also has blocks. And the blocks are"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,920",
+				"to": "00:01:51,280"
+			},
+			"offsets": {
+				"from": 105920,
+				"to": 111280
+			},
+			"text": " the own scopes. Variables declared in blocks are not visible outside. And you can nest blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,280",
+				"to": "00:01:56,760"
+			},
+			"offsets": {
+				"from": 111280,
+				"to": 116760
+			},
+			"text": " Then we also have two really high level constructs, which are quite uncommon in assembly languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,760",
+				"to": "00:02:05,680"
+			},
+			"offsets": {
+				"from": 116760,
+				"to": 125680
+			},
+			"text": " We have for loop and we have a switch statement. But we do also have like this single condition"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,680",
+				"to": "00:02:12,080"
+			},
+			"offsets": {
+				"from": 125680,
+				"to": 132080
+			},
+			"text": " if statement, for those cases, where a switch statement would be an overkill. More importantly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,080",
+				"to": "00:02:17,240"
+			},
+			"offsets": {
+				"from": 132080,
+				"to": 137240
+			},
+			"text": " as mentioned, we have functions and function calls. Functions can be fully defined. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,240",
+				"to": "00:02:23,640"
+			},
+			"offsets": {
+				"from": 137240,
+				"to": 143640
+			},
+			"text": " lastly, we have types. And that's kind of unheard of in assembly languages. So that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,640",
+				"to": "00:02:27,920"
+			},
+			"offsets": {
+				"from": 143640,
+				"to": 147920
+			},
+			"text": " why Yulia is more like an intermediate language for compilers than assembly language. But it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,920",
+				"to": "00:02:36,400"
+			},
+			"offsets": {
+				"from": 147920,
+				"to": 156400
+			},
+			"text": " can be used in an assembly language to write manually contracts in. Okay, just what it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,400",
+				"to": "00:02:41,720"
+			},
+			"offsets": {
+				"from": 156400,
+				"to": 161720
+			},
+			"text": " looks like, an example of the switch construct. This is a function. There's a switch statement"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,720",
+				"to": "00:02:48,440"
+			},
+			"offsets": {
+				"from": 161720,
+				"to": 168440
+			},
+			"text": " with three cases. The k0, one, and the default. As you see, there's no break statement in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,440",
+				"to": "00:02:54,560"
+			},
+			"offsets": {
+				"from": 168440,
+				"to": 174560
+			},
+			"text": " the actual blocks. Because if there's no fault through, if it goes to k0, it wouldn't go through"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,560",
+				"to": "00:02:59,240"
+			},
+			"offsets": {
+				"from": 174560,
+				"to": 179240
+			},
+			"text": " case one. But this can be written as a for loop as well. So this is what it looks like"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,240",
+				"to": "00:03:05,400"
+			},
+			"offsets": {
+				"from": 179240,
+				"to": 185400
+			},
+			"text": " writing it as a for loop. Now here you can identify that it is closer to assembly. Because"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,400",
+				"to": "00:03:12,760"
+			},
+			"offsets": {
+				"from": 185400,
+				"to": 192760
+			},
+			"text": " we have those e-vium-like instructions. Lt for less than add and less and more. So it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,760",
+				"to": "00:03:21,160"
+			},
+			"offsets": {
+				"from": 192760,
+				"to": 201160
+			},
+			"text": " is like an augmented assembly. Okay, Yulia itself originates from the solidity in my assembly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,160",
+				"to": "00:03:25,640"
+			},
+			"offsets": {
+				"from": 201160,
+				"to": 205640
+			},
+			"text": " which you guys probably are familiar with because it can be used with an insolidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,640",
+				"to": "00:03:30,760"
+			},
+			"offsets": {
+				"from": 205640,
+				"to": 210760
+			},
+			"text": " This was two years ago, it had instructions and jumps, didn't really add anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,760",
+				"to": "00:03:37,280"
+			},
+			"offsets": {
+				"from": 210760,
+				"to": 217280
+			},
+			"text": " It didn't add all these features I explained. These features were introduced probably a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,280",
+				"to": "00:03:47,200"
+			},
+			"offsets": {
+				"from": 217280,
+				"to": 227200
+			},
+			"text": " year ago. They can be used for a year at this point. Now with 050, you're making a big change"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,200",
+				"to": "00:03:52,720"
+			},
+			"offsets": {
+				"from": 227200,
+				"to": 232720
+			},
+			"text": " and removing some of the features in line assembly. You're removing jumps. But you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,720",
+				"to": "00:03:58,280"
+			},
+			"offsets": {
+				"from": 232720,
+				"to": 238280
+			},
+			"text": " guys shouldn't be afraid because the for switch statements are way better to do the same things"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,280",
+				"to": "00:04:04,360"
+			},
+			"offsets": {
+				"from": 238280,
+				"to": 244360
+			},
+			"text": " you were doing with jumps. Here I also must mention that even though in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,360",
+				"to": "00:04:09,040"
+			},
+			"offsets": {
+				"from": 244360,
+				"to": 249040
+			},
+			"text": " NISM there was a single version of the line assembly presented to you guys, but in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,040",
+				"to": "00:04:13,240"
+			},
+			"offsets": {
+				"from": 249040,
+				"to": 253240
+			},
+			"text": " back end we had like three different versions of it. And the solidity compiler can be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,240",
+				"to": "00:04:17,280"
+			},
+			"offsets": {
+				"from": 253240,
+				"to": 257280
+			},
+			"text": " in assembly mode and all these three different versions can be accessed through the assembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,280",
+				"to": "00:04:23,680"
+			},
+			"offsets": {
+				"from": 257280,
+				"to": 263680
+			},
+			"text": " mode. So the first version is this in line assembly, the bad one, which is jumps. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,680",
+				"to": "00:04:29,160"
+			},
+			"offsets": {
+				"from": 263680,
+				"to": 269160
+			},
+			"text": " second version is the strict in line assembly, which is you as I explained. But the third"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,160",
+				"to": "00:04:35,040"
+			},
+			"offsets": {
+				"from": 269160,
+				"to": 275040
+			},
+			"text": " version is the strict in line assembly with types. Now with 050, we're not going to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,040",
+				"to": "00:04:43,440"
+			},
+			"offsets": {
+				"from": 275040,
+				"to": 283440
+			},
+			"text": " types yet. But with 060, we are planning to have full complete use support. Now I must"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,440",
+				"to": "00:04:49,800"
+			},
+			"offsets": {
+				"from": 283440,
+				"to": 289800
+			},
+			"text": " expand here what the hell does it mean. So an Ethereum basically deploying a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,800",
+				"to": "00:04:55,640"
+			},
+			"offsets": {
+				"from": 289800,
+				"to": 295640
+			},
+			"text": " is a two-step process. There's a constructor, which we usually call the init code. This"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,640",
+				"to": "00:05:00,760"
+			},
+			"offsets": {
+				"from": 295640,
+				"to": 300760
+			},
+			"text": " is being sent to the network. This constructor is executed. It can change the state and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,760",
+				"to": "00:05:04,760"
+			},
+			"offsets": {
+				"from": 300760,
+				"to": 304760
+			},
+			"text": " can also return a bytecode, which is stored in the state and that's the bytecode for your"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,760",
+				"to": "00:05:11,720"
+			},
+			"offsets": {
+				"from": 304760,
+				"to": 311720
+			},
+			"text": " contract. Currently there's no way to represent these two stages in UAL. But we do have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,720",
+				"to": "00:05:16,680"
+			},
+			"offsets": {
+				"from": 311720,
+				"to": 316680
+			},
+			"text": " plan to do that and that's what we call UAL objects. So that's like the next big part"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,680",
+				"to": "00:05:24,320"
+			},
+			"offsets": {
+				"from": 316680,
+				"to": 324320
+			},
+			"text": " we have to do. And then you will be fully capable to write contracts in. And then lastly, probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,320",
+				"to": "00:05:30,360"
+			},
+			"offsets": {
+				"from": 324320,
+				"to": 330360
+			},
+			"text": " at 070, we're going to have types mandatory and we're going to have user-defined types."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,360",
+				"to": "00:05:36,240"
+			},
+			"offsets": {
+				"from": 330360,
+				"to": 336240
+			},
+			"text": " But user-defined types here, I actually mean a specific type for a memory pointer, a specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,240",
+				"to": "00:05:44,040"
+			},
+			"offsets": {
+				"from": 336240,
+				"to": 344040
+			},
+			"text": " type for storage key and storage value. Maybe actual user-defined types later. Okay, so when"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,040",
+				"to": "00:05:47,540"
+			},
+			"offsets": {
+				"from": 344040,
+				"to": 347540
+			},
+			"text": " we're going to have this insolidity, it's going to take a while. But it's already"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,540",
+				"to": "00:05:52,480"
+			},
+			"offsets": {
+				"from": 347540,
+				"to": 352480
+			},
+			"text": " insolidity partially. It's being used in the ABI encoder V2, which is a complete rewrite"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,480",
+				"to": "00:05:58,560"
+			},
+			"offsets": {
+				"from": 352480,
+				"to": 358560
+			},
+			"text": " of the ABI stuff. Are you going to talk tomorrow at great lengths about all the changes in"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,560",
+				"to": "00:06:03,120"
+			},
+			"offsets": {
+				"from": 358560,
+				"to": 363120
+			},
+			"text": " solidity? So you guys should listen to that. There are two blockers. You have this insolidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,120",
+				"to": "00:06:07,880"
+			},
+			"offsets": {
+				"from": 363120,
+				"to": 367880
+			},
+			"text": " have optimizations. But the good news, there's a lot of optimization work already being done."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,880",
+				"to": "00:06:13,240"
+			},
+			"offsets": {
+				"from": 367880,
+				"to": 373240
+			},
+			"text": " So that should be covered soon enough. But the other big blocker is rewriting this code"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,240",
+				"to": "00:06:19,800"
+			},
+			"offsets": {
+				"from": 373240,
+				"to": 379800
+			},
+			"text": " generator. So insolidity, we take the source code, we do, we parse it, we do, analysis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,800",
+				"to": "00:06:25,280"
+			},
+			"offsets": {
+				"from": 379800,
+				"to": 385280
+			},
+			"text": " et cetera. And in one stage, we generate EVM bytecode, which probably is a bad idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,280",
+				"to": "00:06:30,040"
+			},
+			"offsets": {
+				"from": 385280,
+				"to": 390040
+			},
+			"text": " So we need to rewrite this one step into two steps to generate fuel and then use fuel"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,040",
+				"to": "00:06:35,800"
+			},
+			"offsets": {
+				"from": 390040,
+				"to": 395800
+			},
+			"text": " to generate EVM. But this is only going to start after 050. But that's like the big plan"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,800",
+				"to": "00:06:42,360"
+			},
+			"offsets": {
+				"from": 395800,
+				"to": 402360
+			},
+			"text": " for next year. Okay, there are other languages actually already involved with you. Apart"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,360",
+				"to": "00:06:47,440"
+			},
+			"offsets": {
+				"from": 402360,
+				"to": 407440
+			},
+			"text": " from solidity, there's this language called flint, which is a fifth-light language. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,440",
+				"to": "00:06:54,560"
+			},
+			"offsets": {
+				"from": 407440,
+				"to": 414560
+			},
+			"text": " it targets you. It actually works. I just tried it yesterday. And okay, it's not compliant"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,560",
+				"to": "00:07:01,880"
+			},
+			"offsets": {
+				"from": 414560,
+				"to": 421880
+			},
+			"text": " with 050, but it works. There is a prototype LLLL to you compiler, which is really small."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,880",
+				"to": "00:07:07,760"
+			},
+			"offsets": {
+				"from": 421880,
+				"to": 427760
+			},
+			"text": " And there's also this other language code logic on, which was a eed Berlin project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,760",
+				"to": "00:07:13,280"
+			},
+			"offsets": {
+				"from": 427760,
+				"to": 433280
+			},
+			"text": " which also targets you. Hopefully, I mean, that's my personal hope, but probably the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,280",
+				"to": "00:07:18,720"
+			},
+			"offsets": {
+				"from": 433280,
+				"to": 438720
+			},
+			"text": " entire solid team shares that you're going to be used and utilized by the entire ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,720",
+				"to": "00:07:22,720"
+			},
+			"offsets": {
+				"from": 438720,
+				"to": 442720
+			},
+			"text": " And hopefully we can convince the viper people to also use it and get all the benefits we"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,720",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 442720,
+				"to": 450000
+			},
+			"text": " have. Okay, the tools regarding you, obviously, pretty much everything is in this solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:36,720"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 456720
+			},
+			"text": " compiler, which is C++. But there's already a rust implementation of fuel. And in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,720",
+				"to": "00:07:43,280"
+			},
+			"offsets": {
+				"from": 456720,
+				"to": 463280
+			},
+			"text": " rust implementation, it's called Yulezure. In this rust implementation, you can create"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,280",
+				"to": "00:07:48,840"
+			},
+			"offsets": {
+				"from": 463280,
+				"to": 468840
+			},
+			"text": " Yule code programmatically, and you can print it out. But you can also parse Yule code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,840",
+				"to": "00:07:53,600"
+			},
+			"offsets": {
+				"from": 468840,
+				"to": 473600
+			},
+			"text": " do transformations on it and print it out. And this rust library is also integrated with"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,600",
+				"to": "00:07:59,600"
+			},
+			"offsets": {
+				"from": 473600,
+				"to": 479600
+			},
+			"text": " SolC to tap into the optimization steps and the compiler. There's like one other use case"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,600",
+				"to": "00:08:09,920"
+			},
+			"offsets": {
+				"from": 479600,
+				"to": 489920
+			},
+			"text": " I really like, called YVM. So basically YVM came from a need we have in Ewasm. So with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,920",
+				"to": "00:08:15,440"
+			},
+			"offsets": {
+				"from": 489920,
+				"to": 495440
+			},
+			"text": " Ewasm, we want to replace the Ewasm entirely. And we want to give you this WebAssembly only"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,440",
+				"to": "00:08:21,280"
+			},
+			"offsets": {
+				"from": 495440,
+				"to": 501280
+			},
+			"text": " client, but probably you still want to execute Ewasm bytecode. And you can do that with YVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,280",
+				"to": "00:08:25,640"
+			},
+			"offsets": {
+				"from": 501280,
+				"to": 505640
+			},
+			"text": " So YVM translates Ewasm bytecode into your source code, which can be also compiled back"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,640",
+				"to": "00:08:31,760"
+			},
+			"offsets": {
+				"from": 505640,
+				"to": 511760
+			},
+			"text": " to YVM and validated. But it can be also compiled to Ewasm directly. I think this is a really"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,760",
+				"to": "00:08:39,560"
+			},
+			"offsets": {
+				"from": 511760,
+				"to": 519560
+			},
+			"text": " cool project. And I hope that there are going to be other independent third party Yule implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,560",
+				"to": "00:08:46,600"
+			},
+			"offsets": {
+				"from": 519560,
+				"to": 526600
+			},
+			"text": " and analyzers for Yule. So basically, that's what I wanted to tell you guys. You should"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,600",
+				"to": "00:08:52,560"
+			},
+			"offsets": {
+				"from": 526600,
+				"to": 532560
+			},
+			"text": " check the documentation. So make sure you follow the link I have there, which is latest."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,560",
+				"to": "00:08:59,600"
+			},
+			"offsets": {
+				"from": 532560,
+				"to": 539600
+			},
+			"text": " And go to the 0424 or 25 version of it. Go to the latest. Also join our channel, ask"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,600",
+				"to": "00:09:05,080"
+			},
+			"offsets": {
+				"from": 539600,
+				"to": 545080
+			},
+			"text": " any questions, interact with us. And please contribute to Yule server in YVM. We need"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,080",
+				"to": "00:09:07,040"
+			},
+			"offsets": {
+				"from": 545080,
+				"to": 547040
+			},
+			"text": " your help. Thank you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,040",
+				"to": "00:09:10,400"
+			},
+			"offsets": {
+				"from": 547040,
+				"to": 550400
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,400",
+				"to": "00:09:20,400"
+			},
+			"offsets": {
+				"from": 550400,
+				"to": 560400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,400",
+				"to": "00:09:30,400"
+			},
+			"offsets": {
+				"from": 560400,
+				"to": 570400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,400",
+				"to": "00:09:40,400"
+			},
+			"offsets": {
+				"from": 570400,
+				"to": 580400
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

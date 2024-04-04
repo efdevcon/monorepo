@@ -1,0 +1,1352 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:28,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 28980
+			},
+			"text": " >> Good morning. My name is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,980",
+				"to": "00:00:36,880"
+			},
+			"offsets": {
+				"from": 28980,
+				"to": 36880
+			},
+			"text": " >> So the first and the major difference between Ethereum 1 and Ethereum 2 is that we are transitioning"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,880",
+				"to": "00:00:44,200"
+			},
+			"offsets": {
+				"from": 36880,
+				"to": 44200
+			},
+			"text": " to lip P2P, which is a protocol developed by protocol apps for the purposes of developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,200",
+				"to": "00:00:51,800"
+			},
+			"offsets": {
+				"from": 44200,
+				"to": 51800
+			},
+			"text": " IPFS. It's much more out of this project. And I figured I should start with a few words"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,800",
+				"to": "00:00:58,580"
+			},
+			"offsets": {
+				"from": 51800,
+				"to": 58580
+			},
+			"text": " of why this transition was made and why we decided to move to lip P2P. And there are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,580",
+				"to": "00:01:05,160"
+			},
+			"offsets": {
+				"from": 58580,
+				"to": 65160
+			},
+			"text": " I would say, two major reasons. The two most important promises of lip P2P. And the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,160",
+				"to": "00:01:11,200"
+			},
+			"offsets": {
+				"from": 65160,
+				"to": 71200
+			},
+			"text": " one is that it promises to take Ethereum to many new places where it wasn't quite possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,200",
+				"to": "00:01:18,360"
+			},
+			"offsets": {
+				"from": 71200,
+				"to": 78360
+			},
+			"text": " to use it before. And the reason this is possible because all communication in lip P2P is carried"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,360",
+				"to": "00:01:26,640"
+			},
+			"offsets": {
+				"from": 78360,
+				"to": 86640
+			},
+			"text": " over these so-called lip P2P streams, which in turn are layered over let's call them physical"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,640",
+				"to": "00:01:32,280"
+			},
+			"offsets": {
+				"from": 86640,
+				"to": 92280
+			},
+			"text": " connections, which could be an arbitrary network connections established between two nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,280",
+				"to": "00:01:38,920"
+			},
+			"offsets": {
+				"from": 92280,
+				"to": 98920
+			},
+			"text": " It could be a TCP link. In a quasi-lk case, it could be some UDP scheme, like quick, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,920",
+				"to": "00:01:44,960"
+			},
+			"offsets": {
+				"from": 98920,
+				"to": 104960
+			},
+			"text": " will give us very good censorship resistant in the future. It could be the web sockets"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,960",
+				"to": "00:01:51,280"
+			},
+			"offsets": {
+				"from": 104960,
+				"to": 111280
+			},
+			"text": " in the browser. It could even be snail mail. Let's don't forget that protocol labs, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,280",
+				"to": "00:02:00,200"
+			},
+			"offsets": {
+				"from": 111280,
+				"to": 120200
+			},
+			"text": " people who created lip P2P, they want the system that would work on Mars. So one of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,200",
+				"to": "00:02:05,400"
+			},
+			"offsets": {
+				"from": 120200,
+				"to": 125400
+			},
+			"text": " key features of lip P2P is that it's not only allowing these streams to be multiplexed"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,400",
+				"to": "00:02:10,400"
+			},
+			"offsets": {
+				"from": 125400,
+				"to": 130400
+			},
+			"text": " over a single connection, but a node in the network can relay the connections for other"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,400",
+				"to": "00:02:16,760"
+			},
+			"offsets": {
+				"from": 130400,
+				"to": 136760
+			},
+			"text": " nodes. And a single physical link can carry many logical link between arbitrary nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,760",
+				"to": "00:02:24,280"
+			},
+			"offsets": {
+				"from": 136760,
+				"to": 144280
+			},
+			"text": " And we call this multi-multiplexing in the lip P2P sense. And it will be the major key"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,280",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 144280,
+				"to": 155000
+			},
+			"text": " enabler for creating things like Ethereum Lite clients running in a browser. And the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:42,280"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 162280
+			},
+			"text": " other significant reason is gossip sub. This framework in lip P2P for broadcasting data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,280",
+				"to": "00:02:51,080"
+			},
+			"offsets": {
+				"from": 162280,
+				"to": 171080
+			},
+			"text": " As we know, a lot of the traffic in a cryptocurrency network like Ethereum is about broadcasting"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,080",
+				"to": "00:02:56,680"
+			},
+			"offsets": {
+				"from": 171080,
+				"to": 176680
+			},
+			"text": " blogs. And now with Ethereum 2, the majority of the traffic is actually broadcasting the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,680",
+				"to": "00:03:02,560"
+			},
+			"offsets": {
+				"from": 176680,
+				"to": 182560
+			},
+			"text": " other stations. The other stations are the votes that the participant in the proof of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,560",
+				"to": "00:03:10,080"
+			},
+			"offsets": {
+				"from": 182560,
+				"to": 190080
+			},
+			"text": " stake consensus exchange with each other. These votes allow them to reach finality and to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,080",
+				"to": "00:03:18,080"
+			},
+			"offsets": {
+				"from": 190080,
+				"to": 198080
+			},
+			"text": " crosslink the state of all the various charts, including it one. So we know that from experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,080",
+				"to": "00:03:26,560"
+			},
+			"offsets": {
+				"from": 198080,
+				"to": 206560
+			},
+			"text": " and from just the theoretical reasoning that floods up the system where every message reaches"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,560",
+				"to": "00:03:35,040"
+			},
+			"offsets": {
+				"from": 206560,
+				"to": 215040
+			},
+			"text": " everybody in the network is fully broadcasted on every step, just one scale to the scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,040",
+				"to": "00:03:45,360"
+			},
+			"offsets": {
+				"from": 215040,
+				"to": 225360
+			},
+			"text": " that we want to reach with Ethereum. But lip P2P comes with the significant cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,360",
+				"to": "00:03:55,400"
+			},
+			"offsets": {
+				"from": 225360,
+				"to": 235400
+			},
+			"text": " It took quite a lot of convincing for the teams to jump on shame because when you look"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,400",
+				"to": "00:04:01,480"
+			},
+			"offsets": {
+				"from": 235400,
+				"to": 241480
+			},
+			"text": " at the large list of components that you have to implement, it could be a little bit intimidating."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,480",
+				"to": "00:04:05,920"
+			},
+			"offsets": {
+				"from": 241480,
+				"to": 245920
+			},
+			"text": " The reference code written in Go is spread over multiple repositories and it's a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,920",
+				"to": "00:04:14,760"
+			},
+			"offsets": {
+				"from": 245920,
+				"to": 254760
+			},
+			"text": " hard to make sense of it. So many teams were worried whether we were able to make it on"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,760",
+				"to": "00:04:22,920"
+			},
+			"offsets": {
+				"from": 254760,
+				"to": 262920
+			},
+			"text": " time. But luckily, the implementation teams have risen to the challenge. And we now have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,920",
+				"to": "00:04:30,120"
+			},
+			"offsets": {
+				"from": 262920,
+				"to": 270120
+			},
+			"text": " lipid implementations written in Go, JavaScript, Rust, Python, Java, and Nim. And I've missed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,120",
+				"to": "00:04:37,800"
+			},
+			"offsets": {
+				"from": 270120,
+				"to": 277800
+			},
+			"text": " that the C++ one developed so far not for Ethereum to purposes, but it exists as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,800",
+				"to": "00:04:42,320"
+			},
+			"offsets": {
+				"from": 277800,
+				"to": 282320
+			},
+			"text": " And I should mention that our own one, there is an in Nim. It should be perfectly usable"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,320",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 282320,
+				"to": 290000
+			},
+			"text": " and C and C++ projects in the future. And what's more important is that during all this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:56,480"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 296480
+			},
+			"text": " implementation, we can talk to each other. During the interop walking, we demonstrated"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,480",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 296480,
+				"to": 307000
+			},
+			"text": " networks where all these clients were able to reach consensus over the P2P. But that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:13,800"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 313800
+			},
+			"text": " obviously not the end of the road. We have a lot of work to do ahead of us. The lipid"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,800",
+				"to": "00:05:20,320"
+			},
+			"offsets": {
+				"from": 313800,
+				"to": 320320
+			},
+			"text": " to P spec that we created for Ethereum 2 is actually divided in, you can say, two or more"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,320",
+				"to": "00:05:29,200"
+			},
+			"offsets": {
+				"from": 320320,
+				"to": 329200
+			},
+			"text": " phases. We identified some initial targets, some initial minimal set of common requirements"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,200",
+				"to": "00:05:34,600"
+			},
+			"offsets": {
+				"from": 329200,
+				"to": 334600
+			},
+			"text": " that all the clients have to implement in order to be able to talk to each other. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,600",
+				"to": "00:05:41,240"
+			},
+			"offsets": {
+				"from": 334600,
+				"to": 341240
+			},
+			"text": " these are not the underpins of a secure system. For launching mainnet, we would be changing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,240",
+				"to": "00:05:47,160"
+			},
+			"offsets": {
+				"from": 341240,
+				"to": 347160
+			},
+			"text": " a lot of the protocols to more modern cryptography or modern way of doing this. We would be adding"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,160",
+				"to": "00:05:54,600"
+			},
+			"offsets": {
+				"from": 347160,
+				"to": 354600
+			},
+			"text": " new transports. And even this is not where the road ends. Over time, there will be a"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,600",
+				"to": "00:05:59,560"
+			},
+			"offsets": {
+				"from": 354600,
+				"to": 359560
+			},
+			"text": " lot of new high-level protocols defined for things like lead clients, for the communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,560",
+				"to": "00:06:07,240"
+			},
+			"offsets": {
+				"from": 359560,
+				"to": 367240
+			},
+			"text": " within shards and so on. So just to give you an example, here's a comparison between this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,240",
+				"to": "00:06:13,160"
+			},
+			"offsets": {
+				"from": 367240,
+				"to": 373160
+			},
+			"text": " minimal interop spec and what we expect to do in for mainnet in just a few months. We"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,160",
+				"to": "00:06:18,560"
+			},
+			"offsets": {
+				"from": 373160,
+				"to": 378560
+			},
+			"text": " would be changing the encryption framework and the keys that are used to identify the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,560",
+				"to": "00:06:23,520"
+			},
+			"offsets": {
+				"from": 378560,
+				"to": 383520
+			},
+			"text": " nodes, we would be switching to the support, changing the support of the code and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,520",
+				"to": "00:06:30,280"
+			},
+			"offsets": {
+				"from": 383520,
+				"to": 390280
+			},
+			"text": " negotiation scheme in lipid to P and so on. We were introducing compression. You can say"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,280",
+				"to": "00:06:38,480"
+			},
+			"offsets": {
+				"from": 390280,
+				"to": 398480
+			},
+			"text": " that the N-stires take on every single layer, there will be new developments. So in closing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,480",
+				"to": "00:06:45,480"
+			},
+			"offsets": {
+				"from": 398480,
+				"to": 405480
+			},
+			"text": " remarks, I would like to stress out that what we are creating here would be very valuable"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,480",
+				"to": "00:06:50,280"
+			},
+			"offsets": {
+				"from": 405480,
+				"to": 410280
+			},
+			"text": " not just for Ethereum. We are creating this system available in so many programming languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,280",
+				"to": "00:06:56,040"
+			},
+			"offsets": {
+				"from": 410280,
+				"to": 416040
+			},
+			"text": " now that could serve as the foundation layer for any kind of distributed applications in"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,040",
+				"to": "00:07:02,920"
+			},
+			"offsets": {
+				"from": 416040,
+				"to": 422920
+			},
+			"text": " the future and decentralized. When we are ready, it will be very easy for many developers to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,920",
+				"to": "00:07:07,280"
+			},
+			"offsets": {
+				"from": 422920,
+				"to": 427280
+			},
+			"text": " just take over the shell of implementation of lipid to P for their language and build"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,280",
+				"to": "00:07:13,440"
+			},
+			"offsets": {
+				"from": 427280,
+				"to": 433440
+			},
+			"text": " something amazing with it. So lipid to P is not just for Ethereum, but our effort will"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,440",
+				"to": "00:07:21,120"
+			},
+			"offsets": {
+				"from": 433440,
+				"to": 441120
+			},
+			"text": " make it much, much stronger. All right, so I feel that the next part of the talk will"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,120",
+				"to": "00:07:25,920"
+			},
+			"offsets": {
+				"from": 441120,
+				"to": 445920
+			},
+			"text": " be we walk us through how do you connect to the network, like what are the individual"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,920",
+				"to": "00:07:34,200"
+			},
+			"offsets": {
+				"from": 445920,
+				"to": 454200
+			},
+			"text": " steps. The first thing you need is a discovery mechanism. Now, I did mention that lipid to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,200",
+				"to": "00:07:41,560"
+			},
+			"offsets": {
+				"from": 454200,
+				"to": 461560
+			},
+			"text": " P is going to go through further revolution, but one area where it didn't quite meet the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,560",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 461560,
+				"to": 469000
+			},
+			"text": " needs of Ethereum right now was discovery. Since Ethereum has been solving the discovery"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:54,680"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 474680
+			},
+			"text": " problem for a while, and we have identified some unique requirements that we want to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,680",
+				"to": "00:08:00,360"
+			},
+			"offsets": {
+				"from": 474680,
+				"to": 480360
+			},
+			"text": " in the network, the existing lipid free solutions for discovery didn't quite meet them. So instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,360",
+				"to": "00:08:08,200"
+			},
+			"offsets": {
+				"from": 480360,
+				"to": 488200
+			},
+			"text": " we decided to unite the efforts for Ethereum 1 development and Ethereum 2 and introduce a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,200",
+				"to": "00:08:13,680"
+			},
+			"offsets": {
+				"from": 488200,
+				"to": 493680
+			},
+			"text": " new discovery mechanism called discovery V5, which will be used in both networks. So the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,680",
+				"to": "00:08:20,360"
+			},
+			"offsets": {
+				"from": 493680,
+				"to": 500360
+			},
+			"text": " key features that are missing in lipid to P at this point is one, first of all, the capability"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,360",
+				"to": "00:08:31,440"
+			},
+			"offsets": {
+				"from": 500360,
+				"to": 511440
+			},
+			"text": " advertising. This is where a node can make sure that can be found on the criteria that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,440",
+				"to": "00:08:38,040"
+			},
+			"offsets": {
+				"from": 511440,
+				"to": 518040
+			},
+			"text": " it supports a particular protocol. For example, this could be a node that supports the right"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,040",
+				"to": "00:08:45,160"
+			},
+			"offsets": {
+				"from": 518040,
+				"to": 525160
+			},
+			"text": " client protocol and it connects to the server. The other feature is topic advertising. Now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,160",
+				"to": "00:08:50,920"
+			},
+			"offsets": {
+				"from": 525160,
+				"to": 530920
+			},
+			"text": " this is more about that this node has access to some resource. For example, it could be"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,920",
+				"to": "00:08:55,880"
+			},
+			"offsets": {
+				"from": 530920,
+				"to": 535880
+			},
+			"text": " the fact that the node is currently connected to a particular chart, so you can see the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,880",
+				"to": "00:09:01,280"
+			},
+			"offsets": {
+				"from": 535880,
+				"to": 541280
+			},
+			"text": " information on this particular chart, and you need to find nodes which are already connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,280",
+				"to": "00:09:09,880"
+			},
+			"offsets": {
+				"from": 541280,
+				"to": 549880
+			},
+			"text": " to it. And within discovery V5, there's this general purpose mechanism of attaching arbitrary"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,880",
+				"to": "00:09:17,760"
+			},
+			"offsets": {
+				"from": 549880,
+				"to": 557760
+			},
+			"text": " data, so it's both extensible in the future for adding more relevant information, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,760",
+				"to": "00:09:26,040"
+			},
+			"offsets": {
+				"from": 557760,
+				"to": 566040
+			},
+			"text": " it's quite easy to adapt it to the needs of lipid to P already. So after we have found"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,040",
+				"to": "00:09:33,840"
+			},
+			"offsets": {
+				"from": 566040,
+				"to": 573840
+			},
+			"text": " other nodes on the network, what we usually do is we will start listening to the broadcast,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,840",
+				"to": "00:09:41,760"
+			},
+			"offsets": {
+				"from": 573840,
+				"to": 581760
+			},
+			"text": " the gossip sub traffic, as I mentioned. And here I've listed the few particular gossip"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,760",
+				"to": "00:09:49,840"
+			},
+			"offsets": {
+				"from": 581760,
+				"to": 589840
+			},
+			"text": " subtopics that are relevant for kind of following the progress on the beacon chain. And we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,840",
+				"to": "00:09:56,240"
+			},
+			"offsets": {
+				"from": 589840,
+				"to": 596240
+			},
+			"text": " a topic where new blocks are produced. We have other topic where all the attestations are"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,240",
+				"to": "00:10:01,440"
+			},
+			"offsets": {
+				"from": 596240,
+				"to": 601440
+			},
+			"text": " being sent, and currently in the ROP we use a single topic for that, so that's enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,440",
+				"to": "00:10:06,520"
+			},
+			"offsets": {
+				"from": 601440,
+				"to": 606520
+			},
+			"text": " to monitor the whole network. But what we plan to do in the future is to introduce separate"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,520",
+				"to": "00:10:12,120"
+			},
+			"offsets": {
+				"from": 606520,
+				"to": 612120
+			},
+			"text": " topics for each individual chart, and then you'll be able to choose whether you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,120",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 612120,
+				"to": 620000
+			},
+			"text": " to listen to the traffic for finalised blocks or the traffic for attestation given chart."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:26,040"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 626040
+			},
+			"text": " And then there are a few topics which are beginning much slower amounts of traffic. These"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,040",
+				"to": "00:10:33,240"
+			},
+			"offsets": {
+				"from": 626040,
+				"to": 633240
+			},
+			"text": " are just for announcing exits where a validator wants to exit the network or for thrashings"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,240",
+				"to": "00:10:40,560"
+			},
+			"offsets": {
+				"from": 633240,
+				"to": 640560
+			},
+			"text": " when something behaves badly. Okay, and again here I would like to stress out that if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,560",
+				"to": "00:10:46,240"
+			},
+			"offsets": {
+				"from": 640560,
+				"to": 646240
+			},
+			"text": " have a LUP2P implementation, you don't have to write a full blown client. You can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,240",
+				"to": "00:10:51,800"
+			},
+			"offsets": {
+				"from": 646240,
+				"to": 651800
+			},
+			"text": " implement an SCC decoder and you can tune into the gossip sub traffic and start obtaining"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,800",
+				"to": "00:11:01,680"
+			},
+			"offsets": {
+				"from": 651800,
+				"to": 661680
+			},
+			"text": " useful information. All right, but now that after we have connected, LUP2P goes through"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,680",
+				"to": "00:11:08,720"
+			},
+			"offsets": {
+				"from": 661680,
+				"to": 668720
+			},
+			"text": " a process where it negotiates the protocols that you can use and to exchange messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,720",
+				"to": "00:11:17,040"
+			},
+			"offsets": {
+				"from": 668720,
+				"to": 677040
+			},
+			"text": " with the other clients. We call this request response kind of the domain of the spec. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,040",
+				"to": "00:11:23,280"
+			},
+			"offsets": {
+				"from": 677040,
+				"to": 683280
+			},
+			"text": " it so far involves only few requests which are important for syncing the beacon chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,280",
+				"to": "00:11:28,880"
+			},
+			"offsets": {
+				"from": 683280,
+				"to": 688880
+			},
+			"text": " But before you start with this, when you connect to another node, you start by exchanging"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,880",
+				"to": "00:11:35,160"
+			},
+			"offsets": {
+				"from": 688880,
+				"to": 695160
+			},
+			"text": " your status information with this node. And the status information includes four bytes"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,160",
+				"to": "00:11:40,800"
+			},
+			"offsets": {
+				"from": 695160,
+				"to": 700800
+			},
+			"text": " in the endifier which acts as a marker for the particular software version you are using."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,800",
+				"to": "00:11:46,080"
+			},
+			"offsets": {
+				"from": 700800,
+				"to": 706080
+			},
+			"text": " For example, you can imagine if there was a hard fork and these four bytes will be modified"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,080",
+				"to": "00:11:51,520"
+			},
+			"offsets": {
+				"from": 706080,
+				"to": 711520
+			},
+			"text": " in a way to indicate that you are now following different rules. And you can also be on a different"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,520",
+				"to": "00:11:56,200"
+			},
+			"offsets": {
+				"from": 711520,
+				"to": 716200
+			},
+			"text": " network. You can be on a test net. And this again will be written in this four bytes in"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,200",
+				"to": "00:12:02,200"
+			},
+			"offsets": {
+				"from": 716200,
+				"to": 722200
+			},
+			"text": " the endifier. And the other piece of information that is exchanged is what is the finalized"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,200",
+				"to": "00:12:07,480"
+			},
+			"offsets": {
+				"from": 722200,
+				"to": 727480
+			},
+			"text": " route you are currently working on and what is your head block. And obviously this is important"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,480",
+				"to": "00:12:12,560"
+			},
+			"offsets": {
+				"from": 727480,
+				"to": 732560
+			},
+			"text": " because it allows the clients to determine who should be syncing information, who is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,560",
+				"to": "00:12:23,440"
+			},
+			"offsets": {
+				"from": 732560,
+				"to": 743440
+			},
+			"text": " all right, I have to be much quicker. All right, the next request is -- the status"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,440",
+				"to": "00:12:27,560"
+			},
+			"offsets": {
+				"from": 743440,
+				"to": 747560
+			},
+			"text": " message tells you whether you have to sync. So the next request is your request box by"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,560",
+				"to": "00:12:32,120"
+			},
+			"offsets": {
+				"from": 747560,
+				"to": 752120
+			},
+			"text": " giving range. And you usually do this when you are quite a bit behind. It's intended"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,120",
+				"to": "00:12:38,200"
+			},
+			"offsets": {
+				"from": 752120,
+				"to": 758200
+			},
+			"text": " for historic blocks. And it's optimized in a way that the clients will be able to implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,200",
+				"to": "00:12:44,680"
+			},
+			"offsets": {
+				"from": 758200,
+				"to": 764680
+			},
+			"text": " cold storage of the beacon chain. You have database with random access and the range"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,680",
+				"to": "00:12:51,640"
+			},
+			"offsets": {
+				"from": 764680,
+				"to": 771640
+			},
+			"text": " queries are supposed to hit on this database with cold storage for historic blocks. We"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,640",
+				"to": "00:12:58,120"
+			},
+			"offsets": {
+				"from": 771640,
+				"to": 778120
+			},
+			"text": " also have a way to request recent blocks, which is your request by their hash. What you usually"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,120",
+				"to": "00:13:01,720"
+			},
+			"offsets": {
+				"from": 778120,
+				"to": 781720
+			},
+			"text": " do is you connect to the network, you start listening to the attestations. You notice"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,720",
+				"to": "00:13:07,160"
+			},
+			"offsets": {
+				"from": 781720,
+				"to": 787160
+			},
+			"text": " that certain blocks, for example, the attestation, you reference a block that you are missing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,160",
+				"to": "00:13:12,200"
+			},
+			"offsets": {
+				"from": 787160,
+				"to": 792200
+			},
+			"text": " So you request the missing ones. And this is a little bit like syncing backwards instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,200",
+				"to": "00:13:19,200"
+			},
+			"offsets": {
+				"from": 792200,
+				"to": 799200
+			},
+			"text": " of forward. All right. I'll just then finish with --"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,200",
+				"to": "00:13:28,120"
+			},
+			"offsets": {
+				"from": 799200,
+				"to": 808120
+			},
+			"text": " Here in the end I've left some links for anyone who wants to dig deeper in this respect"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,120",
+				"to": "00:13:31,840"
+			},
+			"offsets": {
+				"from": 808120,
+				"to": 811840
+			},
+			"text": " that I have discussed. And thank you for --"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,840",
+				"to": "00:13:37,280"
+			},
+			"offsets": {
+				"from": 811840,
+				"to": 817280
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,280",
+				"to": "00:13:44,280"
+			},
+			"offsets": {
+				"from": 817280,
+				"to": 824280
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,280",
+				"to": "00:14:12,280"
+			},
+			"offsets": {
+				"from": 824280,
+				"to": 852280
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

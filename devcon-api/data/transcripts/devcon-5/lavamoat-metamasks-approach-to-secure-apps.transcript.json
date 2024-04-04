@@ -1,0 +1,1165 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:15,200"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 15200
+			},
+			"text": " Hi, I'm Vamavis from MetaRas."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,200",
+				"to": "00:00:16,680"
+			},
+			"offsets": {
+				"from": 15200,
+				"to": 16680
+			},
+			"text": " Today, I'm going to be talking about a lot of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,680",
+				"to": "00:00:18,680"
+			},
+			"offsets": {
+				"from": 16680,
+				"to": 18680
+			},
+			"text": " It's a set of security tools for sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,680",
+				"to": "00:00:21,040"
+			},
+			"offsets": {
+				"from": 18680,
+				"to": 21040
+			},
+			"text": " Jock's your apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,040",
+				"to": "00:00:22,840"
+			},
+			"offsets": {
+				"from": 21040,
+				"to": 22840
+			},
+			"text": " I'm going to be talking really, really fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,840",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 22840,
+				"to": 25000
+			},
+			"text": " So if you don't catch everything, please come out"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:27,600"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 27600
+			},
+			"text": " with me questions later."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,600",
+				"to": "00:00:32,600"
+			},
+			"offsets": {
+				"from": 27600,
+				"to": 32600
+			},
+			"text": " [SPEAKING SPANISH]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,600",
+				"to": "00:00:47,600"
+			},
+			"offsets": {
+				"from": 32600,
+				"to": 47600
+			},
+			"text": " So if you-- is it if you're building anything with JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,600",
+				"to": "00:00:50,600"
+			},
+			"offsets": {
+				"from": 47600,
+				"to": 50600
+			},
+			"text": " front and back end, wallet, daft, anything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,600",
+				"to": "00:00:52,160"
+			},
+			"offsets": {
+				"from": 50600,
+				"to": 52160
+			},
+			"text": " a couple people?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,160",
+				"to": "00:00:56,440"
+			},
+			"offsets": {
+				"from": 52160,
+				"to": 56440
+			},
+			"text": " OK, you really need to understand the security situation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,440",
+				"to": "00:00:57,960"
+			},
+			"offsets": {
+				"from": 56440,
+				"to": 57960
+			},
+			"text": " with JavaScript and agencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,960",
+				"to": "00:01:11,280"
+			},
+			"offsets": {
+				"from": 57960,
+				"to": 71280
+			},
+			"text": " Recently, there was the bid page open source wallet, OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,280",
+				"to": "00:01:14,200"
+			},
+			"offsets": {
+				"from": 71280,
+				"to": 74200
+			},
+			"text": " A bit going wallet was hacked by its dependencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,200",
+				"to": "00:01:18,680"
+			},
+			"offsets": {
+				"from": 74200,
+				"to": 78680
+			},
+			"text": " And there was a few vulnerable versions of the wallet published."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,680",
+				"to": "00:01:20,840"
+			},
+			"offsets": {
+				"from": 78680,
+				"to": 80840
+			},
+			"text": " And there was some losses associated with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,840",
+				"to": "00:01:25,840"
+			},
+			"offsets": {
+				"from": 80840,
+				"to": 85840
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,840",
+				"to": "00:01:44,080"
+			},
+			"offsets": {
+				"from": 85840,
+				"to": 104080
+			},
+			"text": " OK, so I'm going to be talking about a lot of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,080",
+				"to": "00:01:46,480"
+			},
+			"offsets": {
+				"from": 104080,
+				"to": 106480
+			},
+			"text": " A lot of them is a set of security tools for any JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,480",
+				"to": "00:01:49,520"
+			},
+			"offsets": {
+				"from": 106480,
+				"to": 109520
+			},
+			"text": " account to mitigate software supply chain risk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,520",
+				"to": "00:01:51,360"
+			},
+			"offsets": {
+				"from": 109520,
+				"to": 111360
+			},
+			"text": " like you told dependencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,360",
+				"to": "00:01:53,640"
+			},
+			"offsets": {
+				"from": 111360,
+				"to": 113640
+			},
+			"text": " This is a little bit for any JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,640",
+				"to": "00:01:58,080"
+			},
+			"offsets": {
+				"from": 113640,
+				"to": 118080
+			},
+			"text": " happening to expect, especially relevant for daft"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,080",
+				"to": "00:01:59,480"
+			},
+			"offsets": {
+				"from": 118080,
+				"to": 119480
+			},
+			"text": " uis and wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,480",
+				"to": "00:02:05,400"
+			},
+			"offsets": {
+				"from": 119480,
+				"to": 125400
+			},
+			"text": " So let's talk about administrative stream."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,400",
+				"to": "00:02:07,280"
+			},
+			"offsets": {
+				"from": 125400,
+				"to": 127280
+			},
+			"text": " This is the co-payable app."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,280",
+				"to": "00:02:12,400"
+			},
+			"offsets": {
+				"from": 127280,
+				"to": 132400
+			},
+			"text": " I made a big splash when it happened in 2018."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,400",
+				"to": "00:02:15,800"
+			},
+			"offsets": {
+				"from": 132400,
+				"to": 135800
+			},
+			"text": " Essentially, so objective power, cover of Dutch going"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,800",
+				"to": "00:02:18,040"
+			},
+			"offsets": {
+				"from": 135800,
+				"to": 138040
+			},
+			"text": " with it, summed it up very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,040",
+				"to": "00:02:20,520"
+			},
+			"offsets": {
+				"from": 138040,
+				"to": 140520
+			},
+			"text": " BitP, essentially, it trusted all the upstream dependencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,520",
+				"to": "00:02:23,040"
+			},
+			"offsets": {
+				"from": 140520,
+				"to": 143040
+			},
+			"text": " with the MPM dependencies and their developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,040",
+				"to": "00:02:25,400"
+			},
+			"offsets": {
+				"from": 143040,
+				"to": 145400
+			},
+			"text": " to never inject malicious code into their wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,400",
+				"to": "00:02:32,160"
+			},
+			"offsets": {
+				"from": 145400,
+				"to": 152160
+			},
+			"text": " So if dependencies can go bad, how can we fix that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,160",
+				"to": "00:02:33,440"
+			},
+			"offsets": {
+				"from": 152160,
+				"to": 153440
+			},
+			"text": " There's much a discussion right."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,440",
+				"to": "00:02:35,880"
+			},
+			"offsets": {
+				"from": 153440,
+				"to": 155880
+			},
+			"text": " Some people say never use dependencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,880",
+				"to": "00:02:38,960"
+			},
+			"offsets": {
+				"from": 155880,
+				"to": 158960
+			},
+			"text": " I think this is kind of terrible because the joy of technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,960",
+				"to": "00:02:42,240"
+			},
+			"offsets": {
+				"from": 158960,
+				"to": 162240
+			},
+			"text": " is that it builds on technology and we all get to move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,240",
+				"to": "00:02:44,840"
+			},
+			"offsets": {
+				"from": 162240,
+				"to": 164840
+			},
+			"text": " And it kind of maybe ruins the whole--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,840",
+				"to": "00:02:46,800"
+			},
+			"offsets": {
+				"from": 164840,
+				"to": 166800
+			},
+			"text": " like the room will manage our own crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,800",
+				"to": "00:02:49,600"
+			},
+			"offsets": {
+				"from": 166800,
+				"to": 169600
+			},
+			"text": " So dependencies can be next."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,600",
+				"to": "00:02:52,440"
+			},
+			"offsets": {
+				"from": 169600,
+				"to": 172440
+			},
+			"text": " And the other side was audit all the dependencies always."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,440",
+				"to": "00:02:53,960"
+			},
+			"offsets": {
+				"from": 172440,
+				"to": 173960
+			},
+			"text": " And of course, this is a good idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,960",
+				"to": "00:02:55,840"
+			},
+			"offsets": {
+				"from": 173960,
+				"to": 175840
+			},
+			"text": " but it's not always practical, especially-- let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,840",
+				"to": "00:02:59,320"
+			},
+			"offsets": {
+				"from": 175840,
+				"to": 179320
+			},
+			"text": " you have some potentially loss causing bug in production"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,320",
+				"to": "00:03:01,280"
+			},
+			"offsets": {
+				"from": 179320,
+				"to": 181280
+			},
+			"text": " and you've got to push a hot fix."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,280",
+				"to": "00:03:03,120"
+			},
+			"offsets": {
+				"from": 181280,
+				"to": 183120
+			},
+			"text": " You have time to audit the dependencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,120",
+				"to": "00:03:05,560"
+			},
+			"offsets": {
+				"from": 183120,
+				"to": 185560
+			},
+			"text": " and how they interact with other dependencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,560",
+				"to": "00:03:06,920"
+			},
+			"offsets": {
+				"from": 185560,
+				"to": 186920
+			},
+			"text": " Hopefully, but do you not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,920",
+				"to": "00:03:08,960"
+			},
+			"offsets": {
+				"from": 186920,
+				"to": 188960
+			},
+			"text": " So is there nothing else that we can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,960",
+				"to": "00:03:12,200"
+			},
+			"offsets": {
+				"from": 188960,
+				"to": 192200
+			},
+			"text": " to improve the situation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,200",
+				"to": "00:03:16,040"
+			},
+			"offsets": {
+				"from": 192200,
+				"to": 196040
+			},
+			"text": " So Mark Miller from a boric has been working on security"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,040",
+				"to": "00:03:17,520"
+			},
+			"offsets": {
+				"from": 196040,
+				"to": 197520
+			},
+			"text": " and languages for over 30 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,520",
+				"to": "00:03:20,360"
+			},
+			"offsets": {
+				"from": 197520,
+				"to": 200360
+			},
+			"text": " He's been working with JavaScript for over 10 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,360",
+				"to": "00:03:25,760"
+			},
+			"offsets": {
+				"from": 200360,
+				"to": 205760
+			},
+			"text": " If you've heard of promises, week maps, strict mode--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,760",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 205760,
+				"to": 208000
+			},
+			"text": " Miller columns."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:29,800"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 209800
+			},
+			"text": " You're familiar with some of this work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,800",
+				"to": "00:03:31,600"
+			},
+			"offsets": {
+				"from": 209800,
+				"to": 211600
+			},
+			"text": " Here's a straight quote, don't add security,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,600",
+				"to": "00:03:32,600"
+			},
+			"offsets": {
+				"from": 211600,
+				"to": 212600
+			},
+			"text": " remove insecurity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,600",
+				"to": "00:03:35,240"
+			},
+			"offsets": {
+				"from": 212600,
+				"to": 215240
+			},
+			"text": " This is referring to object capabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,240",
+				"to": "00:03:37,720"
+			},
+			"offsets": {
+				"from": 215240,
+				"to": 217720
+			},
+			"text": " Said maybe less straitfully, remove everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,720",
+				"to": "00:03:41,840"
+			},
+			"offsets": {
+				"from": 217720,
+				"to": 221840
+			},
+			"text": " and then only have what you need to do your feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,840",
+				"to": "00:03:43,360"
+			},
+			"offsets": {
+				"from": 221840,
+				"to": 223360
+			},
+			"text": " Those features and the hands of the boric guys"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,360",
+				"to": "00:03:46,520"
+			},
+			"offsets": {
+				"from": 223360,
+				"to": 226520
+			},
+			"text": " are basically attack vectors."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,520",
+				"to": "00:03:48,920"
+			},
+			"offsets": {
+				"from": 226520,
+				"to": 228920
+			},
+			"text": " So they're working-- he's the group of the chief sites"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,920",
+				"to": "00:03:49,600"
+			},
+			"offsets": {
+				"from": 228920,
+				"to": 229600
+			},
+			"text": " at Agora."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,600",
+				"to": "00:03:51,600"
+			},
+			"offsets": {
+				"from": 229600,
+				"to": 231600
+			},
+			"text": " They're working on secure and secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,600",
+				"to": "00:03:52,920"
+			},
+			"offsets": {
+				"from": 231600,
+				"to": 232920
+			},
+			"text": " Post-new assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,920",
+				"to": "00:03:55,720"
+			},
+			"offsets": {
+				"from": 232920,
+				"to": 235720
+			},
+			"text": " And it's basically a security about statement,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,720",
+				"to": "00:03:58,160"
+			},
+			"offsets": {
+				"from": 235720,
+				"to": 238160
+			},
+			"text": " where you can control what that code that's access to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,160",
+				"to": "00:04:01,080"
+			},
+			"offsets": {
+				"from": 238160,
+				"to": 241080
+			},
+			"text": " what it evaluates."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,080",
+				"to": "00:04:02,680"
+			},
+			"offsets": {
+				"from": 241080,
+				"to": 242680
+			},
+			"text": " And it works through frozen intrinsics"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,680",
+				"to": "00:04:04,800"
+			},
+			"offsets": {
+				"from": 242680,
+				"to": 244800
+			},
+			"text": " to look freezes down like things like objects that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,800",
+				"to": "00:04:06,360"
+			},
+			"offsets": {
+				"from": 244800,
+				"to": 246360
+			},
+			"text": " are raised."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,360",
+				"to": "00:04:08,360"
+			},
+			"offsets": {
+				"from": 246360,
+				"to": 248360
+			},
+			"text": " You may not know it, but you can override"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,360",
+				"to": "00:04:10,200"
+			},
+			"offsets": {
+				"from": 248360,
+				"to": 250200
+			},
+			"text": " what a read up map does."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,200",
+				"to": "00:04:13,240"
+			},
+			"offsets": {
+				"from": 250200,
+				"to": 253240
+			},
+			"text": " And that might ruin your assumptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,240",
+				"to": "00:04:17,160"
+			},
+			"offsets": {
+				"from": 253240,
+				"to": 257160
+			},
+			"text": " about what has access to what data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,160",
+				"to": "00:04:19,320"
+			},
+			"offsets": {
+				"from": 257160,
+				"to": 259320
+			},
+			"text": " And so the simple version of the solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,320",
+				"to": "00:04:21,680"
+			},
+			"offsets": {
+				"from": 259320,
+				"to": 261680
+			},
+			"text": " is just to freeze it at runtime so you have a pencil."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,680",
+				"to": "00:04:22,180"
+			},
+			"offsets": {
+				"from": 261680,
+				"to": 262180
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,180",
+				"to": "00:04:26,440"
+			},
+			"offsets": {
+				"from": 262180,
+				"to": 266440
+			},
+			"text": " It boots so your pencil can't mess with things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,440",
+				"to": "00:04:27,840"
+			},
+			"offsets": {
+				"from": 266440,
+				"to": 267840
+			},
+			"text": " And then also explicitly down."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,840",
+				"to": "00:04:29,920"
+			},
+			"offsets": {
+				"from": 267840,
+				"to": 269920
+			},
+			"text": " It's like I said, when you do email,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,920",
+				"to": "00:04:32,320"
+			},
+			"offsets": {
+				"from": 269920,
+				"to": 272320
+			},
+			"text": " you get to pass in what has access to."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,320",
+				"to": "00:04:34,840"
+			},
+			"offsets": {
+				"from": 272320,
+				"to": 274840
+			},
+			"text": " So that might look like you're evaluating module."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,840",
+				"to": "00:04:37,160"
+			},
+			"offsets": {
+				"from": 274840,
+				"to": 277160
+			},
+			"text": " You pass in just the platform APIs that are relevant."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,160",
+				"to": "00:04:41,160"
+			},
+			"offsets": {
+				"from": 277160,
+				"to": 281160
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,160",
+				"to": "00:04:43,760"
+			},
+			"offsets": {
+				"from": 281160,
+				"to": 283760
+			},
+			"text": " So while mode builds on top of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,760",
+				"to": "00:04:46,560"
+			},
+			"offsets": {
+				"from": 283760,
+				"to": 286560
+			},
+			"text": " then to provide some runtime protection for bundles."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,560",
+				"to": "00:04:49,680"
+			},
+			"offsets": {
+				"from": 286560,
+				"to": 289680
+			},
+			"text": " So you get those basic standards for object memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,680",
+				"to": "00:04:53,320"
+			},
+			"offsets": {
+				"from": 289680,
+				"to": 293320
+			},
+			"text": " You get a per-package platform API access controls."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,320",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 293320,
+				"to": 296000
+			},
+			"text": " And you can protect modules from corrupting each other"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:04:57,600"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 297600
+			},
+			"text": " moving through to the pencil graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,600",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 297600,
+				"to": 299000
+			},
+			"text": " And I'm totally out of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:01,480"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 301480
+			},
+			"text": " So come up with me about this more."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,480",
+				"to": "00:05:02,480"
+			},
+			"offsets": {
+				"from": 301480,
+				"to": 302480
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,480",
+				"to": "00:05:04,480"
+			},
+			"offsets": {
+				"from": 302480,
+				"to": 304480
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,480",
+				"to": "00:05:08,440"
+			},
+			"offsets": {
+				"from": 305480,
+				"to": 308440
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,440",
+				"to": "00:05:12,400"
+			},
+			"offsets": {
+				"from": 308440,
+				"to": 312400
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,400",
+				"to": "00:05:16,360"
+			},
+			"offsets": {
+				"from": 312400,
+				"to": 316360
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,360",
+				"to": "00:05:19,100"
+			},
+			"offsets": {
+				"from": 316360,
+				"to": 319100
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

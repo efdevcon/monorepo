@@ -1,0 +1,4674 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6480
+			},
+			"text": " My name is Will Warren, I'm here with Peter Zites, and we're from the zero X protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,480",
+				"to": "00:00:09,320"
+			},
+			"offsets": {
+				"from": 6480,
+				"to": 9320
+			},
+			"text": " core development team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,320",
+				"to": "00:00:15,160"
+			},
+			"offsets": {
+				"from": 9320,
+				"to": 15160
+			},
+			"text": " And zero X, just briefly zero X protocol is an open protocol for peer to peer exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,160",
+				"to": "00:00:16,800"
+			},
+			"offsets": {
+				"from": 15160,
+				"to": 16800
+			},
+			"text": " of Ethereum tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,800",
+				"to": "00:00:19,840"
+			},
+			"offsets": {
+				"from": 16800,
+				"to": 19840
+			},
+			"text": " We're not going to be talking about that too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,840",
+				"to": "00:00:23,760"
+			},
+			"offsets": {
+				"from": 19840,
+				"to": 23760
+			},
+			"text": " Instead, we're going to be talking about how we're thinking about building a self-sustaining"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,760",
+				"to": "00:00:29,200"
+			},
+			"offsets": {
+				"from": 23760,
+				"to": 29200
+			},
+			"text": " ecosystem through governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,200",
+				"to": "00:00:36,560"
+			},
+			"offsets": {
+				"from": 29200,
+				"to": 36560
+			},
+			"text": " But before we get into that, I'm just going to provide a little bit of background on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,560",
+				"to": "00:00:43,680"
+			},
+			"offsets": {
+				"from": 36560,
+				"to": 43680
+			},
+			"text": " history of zero X and how governance has been a critical piece of the project core requirement"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,680",
+				"to": "00:00:46,640"
+			},
+			"offsets": {
+				"from": 43680,
+				"to": 46640
+			},
+			"text": " from the very beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,640",
+				"to": "00:00:51,760"
+			},
+			"offsets": {
+				"from": 46640,
+				"to": 51760
+			},
+			"text": " And so I'm going to talk a little bit about technical protocol governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,760",
+				"to": "00:00:58,080"
+			},
+			"offsets": {
+				"from": 51760,
+				"to": 58080
+			},
+			"text": " So initially, very on, before we were actually working on what is now zero X, we were initially"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,080",
+				"to": "00:01:05,440"
+			},
+			"offsets": {
+				"from": 58080,
+				"to": 65440
+			},
+			"text": " building a for-profit decentralized exchange that would be owned by a corporation and would"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,440",
+				"to": "00:01:08,680"
+			},
+			"offsets": {
+				"from": 65440,
+				"to": 68680
+			},
+			"text": " be generating revenues."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,680",
+				"to": "00:01:13,960"
+			},
+			"offsets": {
+				"from": 68680,
+				"to": 73960
+			},
+			"text": " And something that we identified very early on was that we were building this system of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,960",
+				"to": "00:01:19,640"
+			},
+			"offsets": {
+				"from": 73960,
+				"to": 79640
+			},
+			"text": " smart contracts on top of a rapidly evolving technology stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,640",
+				"to": "00:01:22,480"
+			},
+			"offsets": {
+				"from": 79640,
+				"to": 82480
+			},
+			"text": " So Ethereum was still in its infancy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,480",
+				"to": "00:01:26,120"
+			},
+			"offsets": {
+				"from": 82480,
+				"to": 86120
+			},
+			"text": " The Ethereum virtual machine was changing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,120",
+				"to": "00:01:30,440"
+			},
+			"offsets": {
+				"from": 86120,
+				"to": 90440
+			},
+			"text": " The smart contract programming language was changing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,440",
+				"to": "00:01:34,280"
+			},
+			"offsets": {
+				"from": 90440,
+				"to": 94280
+			},
+			"text": " Everything was changing at a very rapid pace."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,280",
+				"to": "00:01:42,760"
+			},
+			"offsets": {
+				"from": 94280,
+				"to": 102760
+			},
+			"text": " And so what we realized is that if we were to build our protocol to build our decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,760",
+				"to": "00:01:48,160"
+			},
+			"offsets": {
+				"from": 102760,
+				"to": 108160
+			},
+			"text": " exchange in a single monolithic smart contract, that there would be some issues when we would"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,160",
+				"to": "00:01:53,880"
+			},
+			"offsets": {
+				"from": 108160,
+				"to": 113880
+			},
+			"text": " have to upgrade and that we would have to upgrade frequently."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,880",
+				"to": "00:02:00,880"
+			},
+			"offsets": {
+				"from": 113880,
+				"to": 120880
+			},
+			"text": " So here you can see in the slide, there's this smart contract represented as a triangle."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,880",
+				"to": "00:02:05,800"
+			},
+			"offsets": {
+				"from": 120880,
+				"to": 125800
+			},
+			"text": " You can think of this as containing all of the logic associated with exchange and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,800",
+				"to": "00:02:10,640"
+			},
+			"offsets": {
+				"from": 125800,
+				"to": 130640
+			},
+			"text": " have these traders that are depositing their -- they've deposited their funds into the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,640",
+				"to": "00:02:12,880"
+			},
+			"offsets": {
+				"from": 130640,
+				"to": 132880
+			},
+			"text": " and they're using it to trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,880",
+				"to": "00:02:16,760"
+			},
+			"offsets": {
+				"from": 132880,
+				"to": 136760
+			},
+			"text": " And one of the issues that you encounter when you're building on top of a rapidly evolving"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,760",
+				"to": "00:02:26,720"
+			},
+			"offsets": {
+				"from": 136760,
+				"to": 146720
+			},
+			"text": " technology stack and you have to upgrade your smart contracts is that your users have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,720",
+				"to": "00:02:32,440"
+			},
+			"offsets": {
+				"from": 146720,
+				"to": 152440
+			},
+			"text": " withdraw their funds from your old smart contract, deposit them to a new smart contract and it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,440",
+				"to": "00:02:37,680"
+			},
+			"offsets": {
+				"from": 152440,
+				"to": 157680
+			},
+			"text": " a costly time-intensive process."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,680",
+				"to": "00:02:46,680"
+			},
+			"offsets": {
+				"from": 157680,
+				"to": 166680
+			},
+			"text": " Now further, as you continue to do these upgrades, another issue is that you'll have user churn."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,680",
+				"to": "00:02:51,840"
+			},
+			"offsets": {
+				"from": 166680,
+				"to": 171840
+			},
+			"text": " So every time you do an upgrade, it's a costly and time-consuming process and users will"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,840",
+				"to": "00:02:55,240"
+			},
+			"offsets": {
+				"from": 171840,
+				"to": 175240
+			},
+			"text": " drop off."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,240",
+				"to": "00:03:02,240"
+			},
+			"offsets": {
+				"from": 175240,
+				"to": 182240
+			},
+			"text": " And another issue with doing upgrades in this way is that it can lead to fragmentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,240",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 182240,
+				"to": 189000
+			},
+			"text": " So some of the people might decide not to move to the new and most recent version of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 190000
+			},
+			"text": " the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:14,360"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 194360
+			},
+			"text": " And this fragments the network and destroys a lot of the valuable network effects that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,360",
+				"to": "00:03:17,680"
+			},
+			"offsets": {
+				"from": 194360,
+				"to": 197680
+			},
+			"text": " you get around liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,680",
+				"to": "00:03:22,880"
+			},
+			"offsets": {
+				"from": 197680,
+				"to": 202880
+			},
+			"text": " So we realized that in order to create a system that would make sense for us long-term, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,880",
+				"to": "00:03:28,040"
+			},
+			"offsets": {
+				"from": 202880,
+				"to": 208040
+			},
+			"text": " needed to build a modular pipeline of Ethereum smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,040",
+				"to": "00:03:32,840"
+			},
+			"offsets": {
+				"from": 208040,
+				"to": 212840
+			},
+			"text": " This pipeline would allow you to replace parts of it without affecting the other parts of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,840",
+				"to": "00:03:35,040"
+			},
+			"offsets": {
+				"from": 212840,
+				"to": 215040
+			},
+			"text": " the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,040",
+				"to": "00:03:40,760"
+			},
+			"offsets": {
+				"from": 215040,
+				"to": 220760
+			},
+			"text": " And this is kind of a diagram of what that pipeline looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,760",
+				"to": "00:03:46,560"
+			},
+			"offsets": {
+				"from": 220760,
+				"to": 226560
+			},
+			"text": " And what you can do is you can unhook one module and hook in a new module and it allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,560",
+				"to": "00:03:54,240"
+			},
+			"offsets": {
+				"from": 226560,
+				"to": 234240
+			},
+			"text": " your users to seamlessly transition to the most recent and up-to-date version with practically"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,240",
+				"to": "00:03:56,320"
+			},
+			"offsets": {
+				"from": 234240,
+				"to": 236320
+			},
+			"text": " zero friction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,320",
+				"to": "00:04:02,040"
+			},
+			"offsets": {
+				"from": 236320,
+				"to": 242040
+			},
+			"text": " Now when we were building our own for-profit decentralized exchange, this was a very easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,040",
+				"to": "00:04:04,440"
+			},
+			"offsets": {
+				"from": 242040,
+				"to": 244440
+			},
+			"text": " process for us to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,440",
+				"to": "00:04:06,040"
+			},
+			"offsets": {
+				"from": 244440,
+				"to": 246040
+			},
+			"text": " We own these contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,040",
+				"to": "00:04:09,360"
+			},
+			"offsets": {
+				"from": 246040,
+				"to": 249360
+			},
+			"text": " We can just decide to upgrade them whenever we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,360",
+				"to": "00:04:12,160"
+			},
+			"offsets": {
+				"from": 249360,
+				"to": 252160
+			},
+			"text": " It's our decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,160",
+				"to": "00:04:17,480"
+			},
+			"offsets": {
+				"from": 252160,
+				"to": 257480
+			},
+			"text": " But as we spent more time in the Ethereum space and met with more teams that are developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,480",
+				"to": "00:04:21,840"
+			},
+			"offsets": {
+				"from": 257480,
+				"to": 261840
+			},
+			"text": " on top of Ethereum, we very quickly realized that there are many Ethereum projects that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,840",
+				"to": "00:04:25,480"
+			},
+			"offsets": {
+				"from": 261840,
+				"to": 265480
+			},
+			"text": " require exchange functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,480",
+				"to": "00:04:30,520"
+			},
+			"offsets": {
+				"from": 265480,
+				"to": 270520
+			},
+			"text": " And we determined that all of the work we were doing, this system that we were confident"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,520",
+				"to": "00:04:35,520"
+			},
+			"offsets": {
+				"from": 270520,
+				"to": 275520
+			},
+			"text": " was designed in a very good way, would have much greater impact if we designed it to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,520",
+				"to": "00:04:40,040"
+			},
+			"offsets": {
+				"from": 275520,
+				"to": 280040
+			},
+			"text": " an open protocol rather than a proprietary exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,040",
+				"to": "00:04:47,240"
+			},
+			"offsets": {
+				"from": 280040,
+				"to": 287240
+			},
+			"text": " So anyone could build their own exchanges or markets on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,240",
+				"to": "00:04:50,400"
+			},
+			"offsets": {
+				"from": 287240,
+				"to": 290400
+			},
+			"text": " So in open protocol, there are many different stakeholders."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,400",
+				"to": "00:04:55,920"
+			},
+			"offsets": {
+				"from": 290400,
+				"to": 295920
+			},
+			"text": " There's, you know, today there's 15 or more different relayers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,920",
+				"to": "00:05:00,640"
+			},
+			"offsets": {
+				"from": 295920,
+				"to": 300640
+			},
+			"text": " There are four profit businesses building on top of the same set of smart contracts and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,640",
+				"to": "00:05:03,120"
+			},
+			"offsets": {
+				"from": 300640,
+				"to": 303120
+			},
+			"text": " various infrastructure projects that exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,120",
+				"to": "00:05:08,280"
+			},
+			"offsets": {
+				"from": 303120,
+				"to": 308280
+			},
+			"text": " So this begs the question, who gets to decide on upgrades and who approves them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,280",
+				"to": "00:05:13,040"
+			},
+			"offsets": {
+				"from": 308280,
+				"to": 313040
+			},
+			"text": " Well, obviously the answer should be the stakeholders, the people that are actually making use of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,040",
+				"to": "00:05:19,200"
+			},
+			"offsets": {
+				"from": 313040,
+				"to": 319200
+			},
+			"text": " this system should make those decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,200",
+				"to": "00:05:23,720"
+			},
+			"offsets": {
+				"from": 319200,
+				"to": 323720
+			},
+			"text": " So how can we identify who is a stakeholder?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,720",
+				"to": "00:05:29,160"
+			},
+			"offsets": {
+				"from": 323720,
+				"to": 329160
+			},
+			"text": " So the way that we determined was the best way to measure this is you want to measure"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,160",
+				"to": "00:05:34,360"
+			},
+			"offsets": {
+				"from": 329160,
+				"to": 334360
+			},
+			"text": " how much each party values access to the protocol utility."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,360",
+				"to": "00:05:39,320"
+			},
+			"offsets": {
+				"from": 334360,
+				"to": 339320
+			},
+			"text": " And you can measure that through a usage token that is used in order to access that protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,320",
+				"to": "00:05:41,320"
+			},
+			"offsets": {
+				"from": 339320,
+				"to": 341320
+			},
+			"text": " utility."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,320",
+				"to": "00:05:45,760"
+			},
+			"offsets": {
+				"from": 341320,
+				"to": 345760
+			},
+			"text": " So this is just a brief explanation of what technical protocol governance means in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,760",
+				"to": "00:05:48,280"
+			},
+			"offsets": {
+				"from": 345760,
+				"to": 348280
+			},
+			"text": " context of zero X protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,280",
+				"to": "00:05:55,840"
+			},
+			"offsets": {
+				"from": 348280,
+				"to": 355840
+			},
+			"text": " But in, you know, today there's a vibrant ecosystem that is developed around the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,840",
+				"to": "00:06:02,480"
+			},
+			"offsets": {
+				"from": 355840,
+				"to": 362480
+			},
+			"text": " and governance has extended beyond just technical protocol governance to be something that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,480",
+				"to": "00:06:06,400"
+			},
+			"offsets": {
+				"from": 362480,
+				"to": 366400
+			},
+			"text": " much more important to create a decentralized ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,400",
+				"to": "00:06:09,840"
+			},
+			"offsets": {
+				"from": 366400,
+				"to": 369840
+			},
+			"text": " And so that's what Peter is going to talk about now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,840",
+				"to": "00:06:10,920"
+			},
+			"offsets": {
+				"from": 369840,
+				"to": 370920
+			},
+			"text": " This is Peter Zites."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,920",
+				"to": "00:06:15,120"
+			},
+			"offsets": {
+				"from": 370920,
+				"to": 375120
+			},
+			"text": " He's research fellow focused on governance at zero X."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,120",
+				"to": "00:06:17,960"
+			},
+			"offsets": {
+				"from": 375120,
+				"to": 377960
+			},
+			"text": " So I'm going to hand it over to Peter."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,960",
+				"to": "00:06:26,520"
+			},
+			"offsets": {
+				"from": 377960,
+				"to": 386520
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,520",
+				"to": "00:06:31,240"
+			},
+			"offsets": {
+				"from": 386520,
+				"to": 391240
+			},
+			"text": " So we'll talk to a bunch about upgrades and this process, this collective decision making"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,240",
+				"to": "00:06:35,280"
+			},
+			"offsets": {
+				"from": 391240,
+				"to": 395280
+			},
+			"text": " process where we take our software and we improve upon it, we introduce an upgrade and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,280",
+				"to": "00:06:38,520"
+			},
+			"offsets": {
+				"from": 395280,
+				"to": 398520
+			},
+			"text": " that is being this motivation for governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,520",
+				"to": "00:06:42,560"
+			},
+			"offsets": {
+				"from": 398520,
+				"to": 402560
+			},
+			"text": " I've had this experience with software upgrades as a user of software, you know, where Microsoft"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,560",
+				"to": "00:06:46,280"
+			},
+			"offsets": {
+				"from": 402560,
+				"to": 406280
+			},
+			"text": " sends me a list of upgrades with some numeric code."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,280",
+				"to": "00:06:47,520"
+			},
+			"offsets": {
+				"from": 406280,
+				"to": 407520
+			},
+			"text": " And I have a voice here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,520",
+				"to": "00:06:51,240"
+			},
+			"offsets": {
+				"from": 407520,
+				"to": 411240
+			},
+			"text": " I can choose to install these or not to install these."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,240",
+				"to": "00:06:55,760"
+			},
+			"offsets": {
+				"from": 411240,
+				"to": 415760
+			},
+			"text": " So I have this, I've participated in this decision to upgrade my software and Microsoft"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,760",
+				"to": "00:06:58,680"
+			},
+			"offsets": {
+				"from": 415760,
+				"to": 418680
+			},
+			"text": " at least doesn't do it without my consent."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,680",
+				"to": "00:07:01,240"
+			},
+			"offsets": {
+				"from": 418680,
+				"to": 421240
+			},
+			"text": " And yet I feel like I'm empowered at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,240",
+				"to": "00:07:03,520"
+			},
+			"offsets": {
+				"from": 421240,
+				"to": 423520
+			},
+			"text": " I feel like I have to choose these upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,520",
+				"to": "00:07:07,840"
+			},
+			"offsets": {
+				"from": 423520,
+				"to": 427840
+			},
+			"text": " So my thinking behind this is that really just the ability to approve a change in your"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,840",
+				"to": "00:07:10,240"
+			},
+			"offsets": {
+				"from": 427840,
+				"to": 430240
+			},
+			"text": " software really doesn't give you very much control."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,240",
+				"to": "00:07:15,360"
+			},
+			"offsets": {
+				"from": 430240,
+				"to": 435360
+			},
+			"text": " It's not sufficient to empower you to ensure you get the products you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,360",
+				"to": "00:07:17,160"
+			},
+			"offsets": {
+				"from": 435360,
+				"to": 437160
+			},
+			"text": " And so we want to think about how can we change this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,160",
+				"to": "00:07:21,640"
+			},
+			"offsets": {
+				"from": 437160,
+				"to": 441640
+			},
+			"text": " How can we make it so that our product is something that is constructed to offer users"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,640",
+				"to": "00:07:24,960"
+			},
+			"offsets": {
+				"from": 441640,
+				"to": 444960
+			},
+			"text": " the upgrades that they want, that serve them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,960",
+				"to": "00:07:30,080"
+			},
+			"offsets": {
+				"from": 444960,
+				"to": 450080
+			},
+			"text": " And I really feel that the only way of doing this is giving the users some control over"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,080",
+				"to": "00:07:31,640"
+			},
+			"offsets": {
+				"from": 450080,
+				"to": 451640
+			},
+			"text": " the purse strings, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,640",
+				"to": "00:07:35,240"
+			},
+			"offsets": {
+				"from": 451640,
+				"to": 455240
+			},
+			"text": " So Microsoft developers, they work for Microsoft shareholders."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,240",
+				"to": "00:07:38,960"
+			},
+			"offsets": {
+				"from": 455240,
+				"to": 458960
+			},
+			"text": " They give me these, they present me with these choices that Microsoft shareholders want"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,960",
+				"to": "00:07:39,960"
+			},
+			"offsets": {
+				"from": 458960,
+				"to": 459960
+			},
+			"text": " me to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,960",
+				"to": "00:07:45,240"
+			},
+			"offsets": {
+				"from": 459960,
+				"to": 465240
+			},
+			"text": " And what we want to see instead is the developers working for token holders and presenting the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,240",
+				"to": "00:07:49,120"
+			},
+			"offsets": {
+				"from": 465240,
+				"to": 469120
+			},
+			"text": " Xerx holder, the token holder with a choice that he wants to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,120",
+				"to": "00:07:54,560"
+			},
+			"offsets": {
+				"from": 469120,
+				"to": 474560
+			},
+			"text": " So he sees the code that he wants to choose to use as opposed to what some investor might"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,560",
+				"to": "00:07:56,280"
+			},
+			"offsets": {
+				"from": 474560,
+				"to": 476280
+			},
+			"text": " want him to choose to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,280",
+				"to": "00:07:58,800"
+			},
+			"offsets": {
+				"from": 476280,
+				"to": 478800
+			},
+			"text": " Okay, so how are we then going to operationalize that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,800",
+				"to": "00:08:01,280"
+			},
+			"offsets": {
+				"from": 478800,
+				"to": 481280
+			},
+			"text": " So that the token holder controls the purse strings."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,280",
+				"to": "00:08:06,360"
+			},
+			"offsets": {
+				"from": 481280,
+				"to": 486360
+			},
+			"text": " But we're going to start by thinking about a committee as being a rep, the Xerx token"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,360",
+				"to": "00:08:11,520"
+			},
+			"offsets": {
+				"from": 486360,
+				"to": 491520
+			},
+			"text": " holder as electing a committee and this committee is going to work on the behalf of the user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,520",
+				"to": "00:08:18,640"
+			},
+			"offsets": {
+				"from": 491520,
+				"to": 498640
+			},
+			"text": " the token holder, to influence the allocation of funds for development in our ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,640",
+				"to": "00:08:20,600"
+			},
+			"offsets": {
+				"from": 498640,
+				"to": 500600
+			},
+			"text": " And this is kind of like a risky, scary prospect."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,600",
+				"to": "00:08:26,920"
+			},
+			"offsets": {
+				"from": 500600,
+				"to": 506920
+			},
+			"text": " We can imagine the user is directly choosing who gets money to build what, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,920",
+				"to": "00:08:33,160"
+			},
+			"offsets": {
+				"from": 506920,
+				"to": 513160
+			},
+			"text": " It's releasing control from our organization to the community and it involves a lot of risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,160",
+				"to": "00:08:37,920"
+			},
+			"offsets": {
+				"from": 513160,
+				"to": 517920
+			},
+			"text": " And so we thought the best way of approaching this in order to address this issue of risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,920",
+				"to": "00:08:41,440"
+			},
+			"offsets": {
+				"from": 517920,
+				"to": 521440
+			},
+			"text": " was to start small and work and build up from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,440",
+				"to": "00:08:45,880"
+			},
+			"offsets": {
+				"from": 521440,
+				"to": 525880
+			},
+			"text": " And so we imagine the short term of the Xerx token holders electing a committee that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,880",
+				"to": "00:08:50,560"
+			},
+			"offsets": {
+				"from": 525880,
+				"to": 530560
+			},
+			"text": " going to be responsible for allocating grant funds to community projects, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,560",
+				"to": "00:08:55,320"
+			},
+			"offsets": {
+				"from": 530560,
+				"to": 535320
+			},
+			"text": " So these are not the work and development of the core protocol itself, but instead the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,320",
+				"to": "00:09:00,600"
+			},
+			"offsets": {
+				"from": 535320,
+				"to": 540600
+			},
+			"text": " funding of third party development of projects that are building on the Xerx protocol, like"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,600",
+				"to": "00:09:05,600"
+			},
+			"offsets": {
+				"from": 540600,
+				"to": 545600
+			},
+			"text": " these relayers, or maybe they're making market making tools, or maybe they're doing educational"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,600",
+				"to": "00:09:07,600"
+			},
+			"offsets": {
+				"from": 545600,
+				"to": 547600
+			},
+			"text": " videos that will help attract users, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,600",
+				"to": "00:09:13,080"
+			},
+			"offsets": {
+				"from": 547600,
+				"to": 553080
+			},
+			"text": " We have all these actors in the ecosystem that benefit from third party projects, which we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,080",
+				"to": "00:09:14,080"
+			},
+			"offsets": {
+				"from": 553080,
+				"to": 554080
+			},
+			"text": " already funding, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,080",
+				"to": "00:09:18,680"
+			},
+			"offsets": {
+				"from": 554080,
+				"to": 558680
+			},
+			"text": " So we already have a program within our organization to extend grants to people working, to building"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,680",
+				"to": "00:09:20,800"
+			},
+			"offsets": {
+				"from": 558680,
+				"to": 560800
+			},
+			"text": " on our software."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,800",
+				"to": "00:09:25,200"
+			},
+			"offsets": {
+				"from": 560800,
+				"to": 565200
+			},
+			"text": " And we'd like to empower the community to take on that function for us instead of just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,200",
+				"to": "00:09:28,040"
+			},
+			"offsets": {
+				"from": 565200,
+				"to": 568040
+			},
+			"text": " doing it in a centralized fashion ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,040",
+				"to": "00:09:32,920"
+			},
+			"offsets": {
+				"from": 568040,
+				"to": 572920
+			},
+			"text": " In the longer term, we hope that this experience with community directed grants will inform"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,920",
+				"to": "00:09:38,600"
+			},
+			"offsets": {
+				"from": 572920,
+				"to": 578600
+			},
+			"text": " how we can use an elected committee, elected by the Xerx token holder, to control the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,600",
+				"to": "00:09:40,640"
+			},
+			"offsets": {
+				"from": 578600,
+				"to": 580640
+			},
+			"text": " development of the core protocol itself, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,640",
+				"to": "00:09:45,560"
+			},
+			"offsets": {
+				"from": 580640,
+				"to": 585560
+			},
+			"text": " So the developers on the core protocol are working as the employees of users rather than"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,560",
+				"to": "00:09:48,360"
+			},
+			"offsets": {
+				"from": 585560,
+				"to": 588360
+			},
+			"text": " on behalf of someone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,360",
+				"to": "00:09:54,600"
+			},
+			"offsets": {
+				"from": 588360,
+				"to": 594600
+			},
+			"text": " Okay, so I should, at the start here, note that this is a really hard area to make any"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,600",
+				"to": "00:09:55,600"
+			},
+			"offsets": {
+				"from": 594600,
+				"to": 595600
+			},
+			"text": " kind of commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,600",
+				"to": "00:09:59,400"
+			},
+			"offsets": {
+				"from": 595600,
+				"to": 599400
+			},
+			"text": " So this is not a commitment that explains exactly what we're going to do, because we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,400",
+				"to": "00:10:02,480"
+			},
+			"offsets": {
+				"from": 599400,
+				"to": 602480
+			},
+			"text": " don't have sufficient knowledge to know that right now, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,480",
+				"to": "00:10:07,560"
+			},
+			"offsets": {
+				"from": 602480,
+				"to": 607560
+			},
+			"text": " This presentation is expressing our current understanding of how we see governance in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,560",
+				"to": "00:10:12,200"
+			},
+			"offsets": {
+				"from": 607560,
+				"to": 612200
+			},
+			"text": " the Xerx protocol evolving, but that understanding is almost certain to change in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,200",
+				"to": "00:10:17,480"
+			},
+			"offsets": {
+				"from": 612200,
+				"to": 617480
+			},
+			"text": " Our long-term plans are going to change as we do this experiment with governance where"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,480",
+				"to": "00:10:21,920"
+			},
+			"offsets": {
+				"from": 617480,
+				"to": 621920
+			},
+			"text": " we begin to devolve power to our users and get them to diminish these grant funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,920",
+				"to": "00:10:26,120"
+			},
+			"offsets": {
+				"from": 621920,
+				"to": 626120
+			},
+			"text": " We're going to observe what they do, and we're going to learn from that to improve our program."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,120",
+				"to": "00:10:30,960"
+			},
+			"offsets": {
+				"from": 626120,
+				"to": 630960
+			},
+			"text": " We're also observing all these other crypto projects and their governance experiments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,960",
+				"to": "00:10:32,880"
+			},
+			"offsets": {
+				"from": 630960,
+				"to": 632880
+			},
+			"text": " and expecting to learn from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,880",
+				"to": "00:10:38,240"
+			},
+			"offsets": {
+				"from": 632880,
+				"to": 638240
+			},
+			"text": " There's also this big elephant in the room where the legal environment for allocating"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,240",
+				"to": "00:10:45,640"
+			},
+			"offsets": {
+				"from": 638240,
+				"to": 645640
+			},
+			"text": " funds and using user votes is very, very uncertain, and every kind of blockchain organization"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,640",
+				"to": "00:10:49,400"
+			},
+			"offsets": {
+				"from": 645640,
+				"to": 649400
+			},
+			"text": " faces this legal uncertainty, and so we're going to have to accommodate whatever the law"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,400",
+				"to": "00:10:55,360"
+			},
+			"offsets": {
+				"from": 649400,
+				"to": 655360
+			},
+			"text": " allows us to do and be flexible with our plans to make sure that we don't face legal risks"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,360",
+				"to": "00:11:00,920"
+			},
+			"offsets": {
+				"from": 655360,
+				"to": 660920
+			},
+			"text": " and that our token holders don't face legal risks as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,920",
+				"to": "00:11:06,520"
+			},
+			"offsets": {
+				"from": 660920,
+				"to": 666520
+			},
+			"text": " Okay, so the first element of this is, you know, we have this committee that the token"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,520",
+				"to": "00:11:10,280"
+			},
+			"offsets": {
+				"from": 666520,
+				"to": 670280
+			},
+			"text": " holders are electing a committee, right, and then this committee is going to distribute"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,280",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 670280,
+				"to": 675000
+			},
+			"text": " grants, and so the first element I want to explain and help you understand is the use"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 676000
+			},
+			"text": " of grants itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:21,640"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 681640
+			},
+			"text": " Why should we use, you know, create these grants to pay people to help them begin to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,640",
+				"to": "00:11:22,640"
+			},
+			"offsets": {
+				"from": 681640,
+				"to": 682640
+			},
+			"text": " use our software?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,640",
+				"to": "00:11:25,400"
+			},
+			"offsets": {
+				"from": 682640,
+				"to": 685400
+			},
+			"text": " Right, what's the purpose of this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,400",
+				"to": "00:11:30,400"
+			},
+			"offsets": {
+				"from": 685400,
+				"to": 690400
+			},
+			"text": " Well, our understanding is that we have sort of this user platform with multiple classes"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,400",
+				"to": "00:11:36,720"
+			},
+			"offsets": {
+				"from": 690400,
+				"to": 696720
+			},
+			"text": " of users, and the activities of one class of user have implications that are broader than"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,720",
+				"to": "00:11:38,040"
+			},
+			"offsets": {
+				"from": 696720,
+				"to": 698040
+			},
+			"text": " those guys themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,040",
+				"to": "00:11:39,560"
+			},
+			"offsets": {
+				"from": 698040,
+				"to": 699560
+			},
+			"text": " They affect the entire ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,560",
+				"to": "00:11:44,080"
+			},
+			"offsets": {
+				"from": 699560,
+				"to": 704080
+			},
+			"text": " They make the entire ecosystem more attractive to other participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,080",
+				"to": "00:11:48,120"
+			},
+			"offsets": {
+				"from": 704080,
+				"to": 708120
+			},
+			"text": " So that when, if we fund projects, you know, that work in one part of the ecosystem, that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,120",
+				"to": "00:11:51,240"
+			},
+			"offsets": {
+				"from": 708120,
+				"to": 711240
+			},
+			"text": " drives growth, you know, all over across the board."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,240",
+				"to": "00:11:55,160"
+			},
+			"offsets": {
+				"from": 711240,
+				"to": 715160
+			},
+			"text": " It drives, it encourages, you know, more users to come on board and other areas."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,160",
+				"to": "00:11:57,720"
+			},
+			"offsets": {
+				"from": 715160,
+				"to": 717720
+			},
+			"text": " And so there's kind of three kinds of main projects we might fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,720",
+				"to": "00:12:00,520"
+			},
+			"offsets": {
+				"from": 717720,
+				"to": 720520
+			},
+			"text": " We can imagine the real areas are here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,520",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720520,
+				"to": 725000
+			},
+			"text": " So real areas create these specialized asset markets where certain class of tokens can"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 726000
+			},
+			"text": " be traded."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:09,240"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 729240
+			},
+			"text": " And those tokens, maybe there's a real area that trades in utility tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,240",
+				"to": "00:12:14,160"
+			},
+			"offsets": {
+				"from": 729240,
+				"to": 734160
+			},
+			"text": " There might be a real area that trades in crypto kitties, or, you know, playing cards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,160",
+				"to": "00:12:17,640"
+			},
+			"offsets": {
+				"from": 734160,
+				"to": 737640
+			},
+			"text": " you know, collectible playing cards, or maybe a real area that trades in security tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,640",
+				"to": "00:12:18,640"
+			},
+			"offsets": {
+				"from": 737640,
+				"to": 738640
+			},
+			"text": " venture capital funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,640",
+				"to": "00:12:22,680"
+			},
+			"offsets": {
+				"from": 738640,
+				"to": 742680
+			},
+			"text": " There are all kinds of specialized asset markets where these tokens are traded that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,680",
+				"to": "00:12:23,960"
+			},
+			"offsets": {
+				"from": 742680,
+				"to": 743960
+			},
+			"text": " could be created."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,960",
+				"to": "00:12:28,960"
+			},
+			"offsets": {
+				"from": 743960,
+				"to": 748960
+			},
+			"text": " And so one purpose of grants would be to create more markets, to begin to serve new markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,960",
+				"to": "00:12:30,760"
+			},
+			"offsets": {
+				"from": 748960,
+				"to": 750760
+			},
+			"text": " using our protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,760",
+				"to": "00:12:35,160"
+			},
+			"offsets": {
+				"from": 750760,
+				"to": 755160
+			},
+			"text": " And then once those markets are opened up, that will attract, you know, traders who are"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,160",
+				"to": "00:12:36,960"
+			},
+			"offsets": {
+				"from": 755160,
+				"to": 756960
+			},
+			"text": " buying and selling tokens, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,960",
+				"to": "00:12:40,680"
+			},
+			"offsets": {
+				"from": 756960,
+				"to": 760680
+			},
+			"text": " Someone wants to buy a crypto kitty, then they might arrive at this marketplace to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,680",
+				"to": "00:12:41,680"
+			},
+			"offsets": {
+				"from": 760680,
+				"to": 761680
+			},
+			"text": " so."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,680",
+				"to": "00:12:44,880"
+			},
+			"offsets": {
+				"from": 761680,
+				"to": 764880
+			},
+			"text": " You know, someone much might have a bunch of crypto kitties they've collected, and they"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,880",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 764880,
+				"to": 768000
+			},
+			"text": " need to, you know, pay for their mother's medical bills."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:49,800"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 769800
+			},
+			"text": " So they're going to sell other crypto kitties to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,800",
+				"to": "00:12:53,440"
+			},
+			"offsets": {
+				"from": 769800,
+				"to": 773440
+			},
+			"text": " And this, this, the marketplace is a place they can take those crypto kitties to, to sell"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,440",
+				"to": "00:12:54,440"
+			},
+			"offsets": {
+				"from": 773440,
+				"to": 774440
+			},
+			"text": " them off, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,440",
+				"to": "00:12:56,720"
+			},
+			"offsets": {
+				"from": 774440,
+				"to": 776720
+			},
+			"text": " So those are these traders, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,720",
+				"to": "00:13:00,720"
+			},
+			"offsets": {
+				"from": 776720,
+				"to": 780720
+			},
+			"text": " And as, you know, the traders are another place we can target resources, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,720",
+				"to": "00:13:06,560"
+			},
+			"offsets": {
+				"from": 780720,
+				"to": 786560
+			},
+			"text": " Because we can market, we can develop tools that make it easier for users to interact"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,560",
+				"to": "00:13:10,880"
+			},
+			"offsets": {
+				"from": 786560,
+				"to": 790880
+			},
+			"text": " in our ecosystem, that help people understand how the ecosystem works, that deliver them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,880",
+				"to": "00:13:15,240"
+			},
+			"offsets": {
+				"from": 790880,
+				"to": 795240
+			},
+			"text": " that, you know, bring the users to the relayers, you know, there's just an improve the environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,240",
+				"to": "00:13:16,960"
+			},
+			"offsets": {
+				"from": 795240,
+				"to": 796960
+			},
+			"text": " for traders in different ways, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,960",
+				"to": "00:13:18,120"
+			},
+			"offsets": {
+				"from": 796960,
+				"to": 798120
+			},
+			"text": " So grants could do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,120",
+				"to": "00:13:22,360"
+			},
+			"offsets": {
+				"from": 798120,
+				"to": 802360
+			},
+			"text": " And then as we bring on more traders, there's another element here, which is market makers"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,360",
+				"to": "00:13:24,120"
+			},
+			"offsets": {
+				"from": 802360,
+				"to": 804120
+			},
+			"text": " who provide liquidity, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,120",
+				"to": "00:13:28,880"
+			},
+			"offsets": {
+				"from": 804120,
+				"to": 808880
+			},
+			"text": " Because we have, on these exchanges, there are sort of retail customers who are arriving"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,880",
+				"to": "00:13:31,480"
+			},
+			"offsets": {
+				"from": 808880,
+				"to": 811480
+			},
+			"text": " there occasionally to buy and sell what they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,480",
+				"to": "00:13:36,320"
+			},
+			"offsets": {
+				"from": 811480,
+				"to": 816320
+			},
+			"text": " But there are also sort of consistent participants who do market making, hold an inventory of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,320",
+				"to": "00:13:42,160"
+			},
+			"offsets": {
+				"from": 816320,
+				"to": 822160
+			},
+			"text": " assets of tokens on the relayer, and then buy and sell these tokens in response to sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,160",
+				"to": "00:13:46,680"
+			},
+			"offsets": {
+				"from": 822160,
+				"to": 826680
+			},
+			"text": " of sporadic demand that comes from these traders who arrive, you know, to buy and sell"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,680",
+				"to": "00:13:47,680"
+			},
+			"offsets": {
+				"from": 826680,
+				"to": 827680
+			},
+			"text": " when they want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,680",
+				"to": "00:13:48,680"
+			},
+			"offsets": {
+				"from": 827680,
+				"to": 828680
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,680",
+				"to": "00:13:50,400"
+			},
+			"offsets": {
+				"from": 828680,
+				"to": 830400
+			},
+			"text": " The more traders we have, they're coming to buy and sell."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,400",
+				"to": "00:13:54,960"
+			},
+			"offsets": {
+				"from": 830400,
+				"to": 834960
+			},
+			"text": " The larger an inventory of assets that makes sense to hold on this, on this relayer, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,960",
+				"to": "00:13:59,800"
+			},
+			"offsets": {
+				"from": 834960,
+				"to": 839800
+			},
+			"text": " know, the more buyers, the more people holding inventories, the more markets it makes the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,800",
+				"to": "00:14:01,280"
+			},
+			"offsets": {
+				"from": 839800,
+				"to": 841280
+			},
+			"text": " sense to open up, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,280",
+				"to": "00:14:05,080"
+			},
+			"offsets": {
+				"from": 841280,
+				"to": 845080
+			},
+			"text": " So if you have a grant that drives growth in one part of the ecosystem, that will then"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,080",
+				"to": "00:14:09,800"
+			},
+			"offsets": {
+				"from": 845080,
+				"to": 849800
+			},
+			"text": " fuel, you know, follow on growth in other parts of the ecosystem through sort of a self-sustaining"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,800",
+				"to": "00:14:12,840"
+			},
+			"offsets": {
+				"from": 849800,
+				"to": 852840
+			},
+			"text": " process or a self, you know, perpetuating process."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,840",
+				"to": "00:14:13,840"
+			},
+			"offsets": {
+				"from": 852840,
+				"to": 853840
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,840",
+				"to": "00:14:17,840"
+			},
+			"offsets": {
+				"from": 853840,
+				"to": 857840
+			},
+			"text": " So the goal of the grants then is to sort of identify aspects of our ecosystem that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,840",
+				"to": "00:14:22,680"
+			},
+			"offsets": {
+				"from": 857840,
+				"to": 862680
+			},
+			"text": " bottlenecking, that are constraining growth right now and help to alleviate that bottleneck"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,680",
+				"to": "00:14:25,520"
+			},
+			"offsets": {
+				"from": 862680,
+				"to": 865520
+			},
+			"text": " by targeting funding to that area."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,520",
+				"to": "00:14:28,400"
+			},
+			"offsets": {
+				"from": 865520,
+				"to": 868400
+			},
+			"text": " Because that's why grants."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,400",
+				"to": "00:14:31,440"
+			},
+			"offsets": {
+				"from": 868400,
+				"to": 871440
+			},
+			"text": " But of course, grants do not need to involve the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,440",
+				"to": "00:14:32,440"
+			},
+			"offsets": {
+				"from": 871440,
+				"to": 872440
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,440",
+				"to": "00:14:35,520"
+			},
+			"offsets": {
+				"from": 872440,
+				"to": 875520
+			},
+			"text": " We could, we have an organization that has some resources, we're already using some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,520",
+				"to": "00:14:38,920"
+			},
+			"offsets": {
+				"from": 875520,
+				"to": 878920
+			},
+			"text": " those resources to award grants to third-party projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,920",
+				"to": "00:14:42,920"
+			},
+			"offsets": {
+				"from": 878920,
+				"to": 882920
+			},
+			"text": " So as many of the relayers that have been created, you know, are projects that we had"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,920",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 882920,
+				"to": 889000
+			},
+			"text": " some involvement in, you know, giving non-dilutive capital, just giving them free money essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:53,080"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 893080
+			},
+			"text": " to help them begin building at some point in their lifespan."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,080",
+				"to": "00:14:55,920"
+			},
+			"offsets": {
+				"from": 893080,
+				"to": 895920
+			},
+			"text": " So we're already doing this and why involve the community in it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,920",
+				"to": "00:15:02,080"
+			},
+			"offsets": {
+				"from": 895920,
+				"to": 902080
+			},
+			"text": " Well, as I said before, we want to make sure that the code that's created in the ZRX ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,080",
+				"to": "00:15:06,600"
+			},
+			"offsets": {
+				"from": 902080,
+				"to": 906600
+			},
+			"text": " is created in order to serve users and we feel that the best way of guaranteeing that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,600",
+				"to": "00:15:09,880"
+			},
+			"offsets": {
+				"from": 906600,
+				"to": 909880
+			},
+			"text": " is to give users control over the purse strings, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,880",
+				"to": "00:15:13,680"
+			},
+			"offsets": {
+				"from": 909880,
+				"to": 913680
+			},
+			"text": " So that they are the, you know, the money is being spent on their behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,680",
+				"to": "00:15:19,920"
+			},
+			"offsets": {
+				"from": 913680,
+				"to": 919920
+			},
+			"text": " So we feel that the ZRX token holder should exercise ultimate control over resource allocation"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,920",
+				"to": "00:15:22,080"
+			},
+			"offsets": {
+				"from": 919920,
+				"to": 922080
+			},
+			"text": " in the ZRX ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,080",
+				"to": "00:15:29,960"
+			},
+			"offsets": {
+				"from": 922080,
+				"to": 929960
+			},
+			"text": " And in order to do that, we want to empower the community to determine how grants are allocated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,960",
+				"to": "00:15:32,720"
+			},
+			"offsets": {
+				"from": 929960,
+				"to": 932720
+			},
+			"text": " what kind of types of projects are created to make sure that they get the projects they"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,720",
+				"to": "00:15:33,720"
+			},
+			"offsets": {
+				"from": 932720,
+				"to": 933720
+			},
+			"text": " want."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,720",
+				"to": "00:15:38,680"
+			},
+			"offsets": {
+				"from": 933720,
+				"to": 938680
+			},
+			"text": " In the short term, that means community control of grants distributed to third-party projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,680",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 938680,
+				"to": 942000
+			},
+			"text": " that build on our exchange standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:47,400"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 947400
+			},
+			"text": " And the longer term, that means community control upgrades and extensions is that core"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,400",
+				"to": "00:15:49,720"
+			},
+			"offsets": {
+				"from": 947400,
+				"to": 949720
+			},
+			"text": " protocol to the core exchange standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,720",
+				"to": "00:15:56,320"
+			},
+			"offsets": {
+				"from": 949720,
+				"to": 956320
+			},
+			"text": " So for example, if the users decide that there's a proposal to improve the protocol that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,320",
+				"to": "00:16:00,280"
+			},
+			"offsets": {
+				"from": 956320,
+				"to": 960280
+			},
+			"text": " created by some other development team, right, that isn't us, then they could potentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,280",
+				"to": "00:16:04,800"
+			},
+			"offsets": {
+				"from": 960280,
+				"to": 964800
+			},
+			"text": " choose to fund that team instead of the existing group of developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,800",
+				"to": "00:16:10,240"
+			},
+			"offsets": {
+				"from": 964800,
+				"to": 970240
+			},
+			"text": " So you can see probably how that would be really empowering and it would ensure this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,240",
+				"to": "00:16:16,120"
+			},
+			"offsets": {
+				"from": 970240,
+				"to": 976120
+			},
+			"text": " kind of level of accountability where the developers need to be responsive to user concerns"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,120",
+				"to": "00:16:18,560"
+			},
+			"offsets": {
+				"from": 976120,
+				"to": 978560
+			},
+			"text": " in order to ensure their livelihood."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,560",
+				"to": "00:16:21,640"
+			},
+			"offsets": {
+				"from": 978560,
+				"to": 981640
+			},
+			"text": " Okay, so why an elected committee, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,640",
+				"to": "00:16:23,520"
+			},
+			"offsets": {
+				"from": 981640,
+				"to": 983520
+			},
+			"text": " So we can imagine doing this another way, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,520",
+				"to": "00:16:28,960"
+			},
+			"offsets": {
+				"from": 983520,
+				"to": 988960
+			},
+			"text": " It could be that there's a grant proposal a third-party project creates and it broadcasts"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,960",
+				"to": "00:16:33,800"
+			},
+			"offsets": {
+				"from": 988960,
+				"to": 993800
+			},
+			"text": " it to all the token holders who read all the details of its white paper and then figure"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,800",
+				"to": "00:16:37,520"
+			},
+			"offsets": {
+				"from": 993800,
+				"to": 997520
+			},
+			"text": " out whether they want to vote yes in this proposal or no."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,520",
+				"to": "00:16:44,800"
+			},
+			"offsets": {
+				"from": 997520,
+				"to": 1004800
+			},
+			"text": " And we felt that this, for this type of decision, having every single user read and vote does"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,800",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 1004800,
+				"to": 1006000
+			},
+			"text": " not make much sense, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:50,640"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1010640
+			},
+			"text": " In my interpretation, there's kind of two main types of collective decisions and depending"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,640",
+				"to": "00:16:54,240"
+			},
+			"offsets": {
+				"from": 1010640,
+				"to": 1014240
+			},
+			"text": " on what type of decision you're dealing with, you know, you may want to use participatory"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,240",
+				"to": "00:16:59,760"
+			},
+			"offsets": {
+				"from": 1014240,
+				"to": 1019760
+			},
+			"text": " democracy to arrive at a collective decision or you might want to have a delegated form"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,760",
+				"to": "00:17:03,720"
+			},
+			"offsets": {
+				"from": 1019760,
+				"to": 1023720
+			},
+			"text": " of a representative democracy where the token holders elect a representative who then"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,720",
+				"to": "00:17:05,960"
+			},
+			"offsets": {
+				"from": 1023720,
+				"to": 1025960
+			},
+			"text": " makes decisions on their behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,960",
+				"to": "00:17:11,240"
+			},
+			"offsets": {
+				"from": 1025960,
+				"to": 1031240
+			},
+			"text": " So for participatory decision, you know, there may be cases where individuals know exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,240",
+				"to": "00:17:13,800"
+			},
+			"offsets": {
+				"from": 1031240,
+				"to": 1033800
+			},
+			"text": " what they want just by glancing at the issue, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,800",
+				"to": "00:17:15,320"
+			},
+			"offsets": {
+				"from": 1033800,
+				"to": 1035320
+			},
+			"text": " They don't need specialized expertise."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,320",
+				"to": "00:17:16,880"
+			},
+			"offsets": {
+				"from": 1035320,
+				"to": 1036880
+			},
+			"text": " They don't need a college degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,880",
+				"to": "00:17:20,880"
+			},
+			"offsets": {
+				"from": 1036880,
+				"to": 1040880
+			},
+			"text": " They don't need to do a lot of research and reading to figure out to vote yes or no,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,880",
+				"to": "00:17:26,680"
+			},
+			"offsets": {
+				"from": 1040880,
+				"to": 1046680
+			},
+			"text": " maybe for example, there's in my municipality, there's a proposal to create a playground"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,680",
+				"to": "00:17:30,160"
+			},
+			"offsets": {
+				"from": 1046680,
+				"to": 1050160
+			},
+			"text": " and that playground will cost this much to build and the taxpayers will have to pay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,160",
+				"to": "00:17:32,560"
+			},
+			"offsets": {
+				"from": 1050160,
+				"to": 1052560
+			},
+			"text": " say, a million dollars to fund it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,560",
+				"to": "00:17:35,440"
+			},
+			"offsets": {
+				"from": 1052560,
+				"to": 1055440
+			},
+			"text": " And I have a couple of kids I can evaluate, you know, how much benefit would my kids get"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,440",
+				"to": "00:17:36,440"
+			},
+			"offsets": {
+				"from": 1055440,
+				"to": 1056440
+			},
+			"text": " out of the playground?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,440",
+				"to": "00:17:40,560"
+			},
+			"offsets": {
+				"from": 1056440,
+				"to": 1060560
+			},
+			"text": " Is it worth it to pay that extra tax money to build that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,560",
+				"to": "00:17:42,200"
+			},
+			"offsets": {
+				"from": 1060560,
+				"to": 1062200
+			},
+			"text": " And I don't need to ask an expert, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,200",
+				"to": "00:17:47,360"
+			},
+			"offsets": {
+				"from": 1062200,
+				"to": 1067360
+			},
+			"text": " I know right away because it affects, you know, I can -- I know as a resident in that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,360",
+				"to": "00:17:51,560"
+			},
+			"offsets": {
+				"from": 1067360,
+				"to": 1071560
+			},
+			"text": " community exactly whether it makes sense to me or not and I can just vote yes or no."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,560",
+				"to": "00:17:57,480"
+			},
+			"offsets": {
+				"from": 1071560,
+				"to": 1077480
+			},
+			"text": " Those types of decisions, it makes a lot of sense to govern the participatory process."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,480",
+				"to": "00:18:02,240"
+			},
+			"offsets": {
+				"from": 1077480,
+				"to": 1082240
+			},
+			"text": " But there are other types of decisions where individuals need to make a serious effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,240",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1082240,
+				"to": 1084000
+			},
+			"text": " in order to come to an informed decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:08,560"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1088560
+			},
+			"text": " Where someone might need, you know, a college degree, even a graduate degree, and then even"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,560",
+				"to": "00:18:12,920"
+			},
+			"offsets": {
+				"from": 1088560,
+				"to": 1092920
+			},
+			"text": " with these degrees, they would need to do a lot of reading and research before they felt"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,920",
+				"to": "00:18:17,600"
+			},
+			"offsets": {
+				"from": 1092920,
+				"to": 1097600
+			},
+			"text": " like they had sufficient information to have a preference for one outcome, one decision"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,600",
+				"to": "00:18:18,600"
+			},
+			"offsets": {
+				"from": 1097600,
+				"to": 1098600
+			},
+			"text": " over another, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,600",
+				"to": "00:18:20,040"
+			},
+			"offsets": {
+				"from": 1098600,
+				"to": 1100040
+			},
+			"text": " So it should be scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,040",
+				"to": "00:18:23,080"
+			},
+			"offsets": {
+				"from": 1100040,
+				"to": 1103080
+			},
+			"text": " The Ethereum network for -- be a sharding or be a plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,080",
+				"to": "00:18:24,880"
+			},
+			"offsets": {
+				"from": 1103080,
+				"to": 1104880
+			},
+			"text": " You know, which approach to sharding should we use?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,880",
+				"to": "00:18:30,960"
+			},
+			"offsets": {
+				"from": 1104880,
+				"to": 1110960
+			},
+			"text": " Which approach to plasma should we be using a DAG or a -- or a blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,960",
+				"to": "00:18:35,120"
+			},
+			"offsets": {
+				"from": 1110960,
+				"to": 1115120
+			},
+			"text": " These are very, very complex issues where even an expert needs to do it a lot of time to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,120",
+				"to": "00:18:38,920"
+			},
+			"offsets": {
+				"from": 1115120,
+				"to": 1118920
+			},
+			"text": " doing research before they can come to an informed preference."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,920",
+				"to": "00:18:44,160"
+			},
+			"offsets": {
+				"from": 1118920,
+				"to": 1124160
+			},
+			"text": " So for those classes of decisions, it makes sense for individuals to hire someone who"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,160",
+				"to": "00:18:49,480"
+			},
+			"offsets": {
+				"from": 1124160,
+				"to": 1129480
+			},
+			"text": " has expertise to take -- make that effort on their behalf rather than making decisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,480",
+				"to": "00:18:52,880"
+			},
+			"offsets": {
+				"from": 1129480,
+				"to": 1132880
+			},
+			"text": " directly through a participatory process."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,880",
+				"to": "00:19:00,240"
+			},
+			"offsets": {
+				"from": 1132880,
+				"to": 1140240
+			},
+			"text": " Okay, so then the next question that I think arises there is, right, so we have an expert"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,240",
+				"to": "00:19:02,440"
+			},
+			"offsets": {
+				"from": 1140240,
+				"to": 1142440
+			},
+			"text": " who's working on the user's behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,440",
+				"to": "00:19:03,440"
+			},
+			"offsets": {
+				"from": 1142440,
+				"to": 1143440
+			},
+			"text": " We already have experts."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,440",
+				"to": "00:19:04,800"
+			},
+			"offsets": {
+				"from": 1143440,
+				"to": 1144800
+			},
+			"text": " Why do we need to elect them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,800",
+				"to": "00:19:08,280"
+			},
+			"offsets": {
+				"from": 1144800,
+				"to": 1148280
+			},
+			"text": " We already have these core developers who spend their entire working life pouring over"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,280",
+				"to": "00:19:12,840"
+			},
+			"offsets": {
+				"from": 1148280,
+				"to": 1152840
+			},
+			"text": " their protocol, reading white papers, reading about emerging technologies, making choices"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,840",
+				"to": "00:19:16,280"
+			},
+			"offsets": {
+				"from": 1152840,
+				"to": 1156280
+			},
+			"text": " about what types of things to introduce."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,280",
+				"to": "00:19:19,680"
+			},
+			"offsets": {
+				"from": 1156280,
+				"to": 1159680
+			},
+			"text": " If we already have these experts who are employed to do this, you know, why do we need more"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,680",
+				"to": "00:19:20,680"
+			},
+			"offsets": {
+				"from": 1159680,
+				"to": 1160680
+			},
+			"text": " of them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,680",
+				"to": "00:19:26,200"
+			},
+			"offsets": {
+				"from": 1160680,
+				"to": 1166200
+			},
+			"text": " Okay, what is the purpose of creating, you know, a separate body?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,200",
+				"to": "00:19:30,680"
+			},
+			"offsets": {
+				"from": 1166200,
+				"to": 1170680
+			},
+			"text": " So here, what I think is really important is that the elected committee, you know, provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,680",
+				"to": "00:19:35,240"
+			},
+			"offsets": {
+				"from": 1170680,
+				"to": 1175240
+			},
+			"text": " a source of information that's independent from the core development process, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,240",
+				"to": "00:19:39,400"
+			},
+			"offsets": {
+				"from": 1175240,
+				"to": 1179400
+			},
+			"text": " So there are people looking over the developer's shoulders, observing what they're doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,400",
+				"to": "00:19:43,160"
+			},
+			"offsets": {
+				"from": 1179400,
+				"to": 1183160
+			},
+			"text": " trying to learn about the choices they're making, and ensuring that those choices are"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,160",
+				"to": "00:19:45,600"
+			},
+			"offsets": {
+				"from": 1183160,
+				"to": 1185600
+			},
+			"text": " being made on users' behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,600",
+				"to": "00:19:49,600"
+			},
+			"offsets": {
+				"from": 1185600,
+				"to": 1189600
+			},
+			"text": " And the reason for this is that while the core developers are informed experts, they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,600",
+				"to": "00:19:54,760"
+			},
+			"offsets": {
+				"from": 1189600,
+				"to": 1194760
+			},
+			"text": " also not particularly good choices for user advocates because they face a conflict of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,760",
+				"to": "00:19:55,760"
+			},
+			"offsets": {
+				"from": 1194760,
+				"to": 1195760
+			},
+			"text": " interest, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,760",
+				"to": "00:19:58,960"
+			},
+			"offsets": {
+				"from": 1195760,
+				"to": 1198960
+			},
+			"text": " So fundamentally, they're the employees of the ZRX holder."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,960",
+				"to": "00:20:07,280"
+			},
+			"offsets": {
+				"from": 1198960,
+				"to": 1207280
+			},
+			"text": " The ZRX holders have crowdfunded development of this protocol, and therefore the developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,280",
+				"to": "00:20:08,520"
+			},
+			"offsets": {
+				"from": 1207280,
+				"to": 1208520
+			},
+			"text": " are working for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,520",
+				"to": "00:20:14,320"
+			},
+			"offsets": {
+				"from": 1208520,
+				"to": 1214320
+			},
+			"text": " But they have this issue that continuing to have this job is their source of livelihood,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,320",
+				"to": "00:20:15,320"
+			},
+			"offsets": {
+				"from": 1214320,
+				"to": 1215320
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,320",
+				"to": "00:20:17,400"
+			},
+			"offsets": {
+				"from": 1215320,
+				"to": 1217400
+			},
+			"text": " They have this sort of Mark Twain raises this issue in this quote."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,400",
+				"to": "00:20:22,640"
+			},
+			"offsets": {
+				"from": 1217400,
+				"to": 1222640
+			},
+			"text": " You tell me where a man gets his cornstone, and I'll tell you what his opinions is."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,640",
+				"to": "00:20:27,640"
+			},
+			"offsets": {
+				"from": 1222640,
+				"to": 1227640
+			},
+			"text": " So what's this saying?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,640",
+				"to": "00:20:30,640"
+			},
+			"offsets": {
+				"from": 1227640,
+				"to": 1230640
+			},
+			"text": " Cornstone here is how a man makes his living."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,640",
+				"to": "00:20:33,640"
+			},
+			"offsets": {
+				"from": 1230640,
+				"to": 1233640
+			},
+			"text": " And the idea is that I need to, you know, my imperative is to continue earning my daily"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,640",
+				"to": "00:20:38,640"
+			},
+			"offsets": {
+				"from": 1233640,
+				"to": 1238640
+			},
+			"text": " bread, but I'm just going to tell you whatever is necessary to make sure that happens, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,640",
+				"to": "00:20:45,640"
+			},
+			"offsets": {
+				"from": 1238640,
+				"to": 1245640
+			},
+			"text": " So if we don't have an independent voice, which is independent upon giving certain advice"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,640",
+				"to": "00:20:50,640"
+			},
+			"offsets": {
+				"from": 1245640,
+				"to": 1250640
+			},
+			"text": " for its livelihood, right, the users really can't, you know, trust that the information"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,640",
+				"to": "00:20:52,640"
+			},
+			"offsets": {
+				"from": 1250640,
+				"to": 1252640
+			},
+			"text": " they're receiving is reliable."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,640",
+				"to": "00:20:58,640"
+			},
+			"offsets": {
+				"from": 1252640,
+				"to": 1258640
+			},
+			"text": " So the solution then is the committee of outside experts, right, to have the users vote people"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,640",
+				"to": "00:21:01,640"
+			},
+			"offsets": {
+				"from": 1258640,
+				"to": 1261640
+			},
+			"text": " in this committee that are outside of the development team."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,640",
+				"to": "00:21:04,040"
+			},
+			"offsets": {
+				"from": 1261640,
+				"to": 1264040
+			},
+			"text": " Okay, so sort of get a better sense of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,040",
+				"to": "00:21:08,040"
+			},
+			"offsets": {
+				"from": 1264040,
+				"to": 1268040
+			},
+			"text": " You know, I'm going to argue that the users need this access to unbiased information, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,040",
+				"to": "00:21:13,140"
+			},
+			"offsets": {
+				"from": 1268040,
+				"to": 1273140
+			},
+			"text": " So they need to know that this source that they've, that is providing them with advice"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,140",
+				"to": "00:21:18,120"
+			},
+			"offsets": {
+				"from": 1273140,
+				"to": 1278120
+			},
+			"text": " is independent from the development process, and they also need to have control over funding"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,120",
+				"to": "00:21:22,120"
+			},
+			"offsets": {
+				"from": 1278120,
+				"to": 1282120
+			},
+			"text": " so they can act on that unbiased information to influence what projects get built."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,120",
+				"to": "00:21:26,120"
+			},
+			"offsets": {
+				"from": 1282120,
+				"to": 1286120
+			},
+			"text": " So you can imagine some users here and they say, how do we get developers to address our"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,120",
+				"to": "00:21:27,120"
+			},
+			"offsets": {
+				"from": 1286120,
+				"to": 1287120
+			},
+			"text": " concerns?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,120",
+				"to": "00:21:29,120"
+			},
+			"offsets": {
+				"from": 1287120,
+				"to": 1289120
+			},
+			"text": " Now we're not happy with the code they're producing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,120",
+				"to": "00:21:32,120"
+			},
+			"offsets": {
+				"from": 1289120,
+				"to": 1292120
+			},
+			"text": " They haven't, the scalability problem, they haven't done anything to address it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,120",
+				"to": "00:21:36,120"
+			},
+			"offsets": {
+				"from": 1292120,
+				"to": 1296120
+			},
+			"text": " What if we've voiced our displeasure by refusing to utilize the software they created?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,120",
+				"to": "00:21:38,120"
+			},
+			"offsets": {
+				"from": 1296120,
+				"to": 1298120
+			},
+			"text": " The users are considering that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,120",
+				"to": "00:21:42,120"
+			},
+			"offsets": {
+				"from": 1298120,
+				"to": 1302120
+			},
+			"text": " The developer might say, wait, wait, those are critical security upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,120",
+				"to": "00:21:45,120"
+			},
+			"offsets": {
+				"from": 1302120,
+				"to": 1305120
+			},
+			"text": " Failing to utilize these could put your funds at risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,120",
+				"to": "00:21:48,120"
+			},
+			"offsets": {
+				"from": 1305120,
+				"to": 1308120
+			},
+			"text": " It could put decentralization at risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,120",
+				"to": "00:21:54,120"
+			},
+			"offsets": {
+				"from": 1308120,
+				"to": 1314120
+			},
+			"text": " It could result in someone capturing the protocol, and there's this huge danger that means that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,120",
+				"to": "00:21:56,120"
+			},
+			"offsets": {
+				"from": 1314120,
+				"to": 1316120
+			},
+			"text": " users need to download these immediately."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,120",
+				"to": "00:22:01,120"
+			},
+			"offsets": {
+				"from": 1316120,
+				"to": 1321120
+			},
+			"text": " And the users as fairly naive participants really don't know how to react to that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,120",
+				"to": "00:22:04,120"
+			},
+			"offsets": {
+				"from": 1321120,
+				"to": 1324120
+			},
+			"text": " There's this risk that maybe the developer is telling the truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,120",
+				"to": "00:22:08,120"
+			},
+			"offsets": {
+				"from": 1324120,
+				"to": 1328120
+			},
+			"text": " And given that risk, most people will just say, okay, we'll vote yes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,120",
+				"to": "00:22:10,120"
+			},
+			"offsets": {
+				"from": 1328120,
+				"to": 1330120
+			},
+			"text": " and they'll be left with this problem still."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,120",
+				"to": "00:22:12,120"
+			},
+			"offsets": {
+				"from": 1330120,
+				"to": 1332120
+			},
+			"text": " You know, how do we get our concerns addressed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,120",
+				"to": "00:22:15,120"
+			},
+			"offsets": {
+				"from": 1332120,
+				"to": 1335120
+			},
+			"text": " And they can take that back to the developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,120",
+				"to": "00:22:18,120"
+			},
+			"offsets": {
+				"from": 1335120,
+				"to": 1338120
+			},
+			"text": " The developer might say, we don't have the resources for addressing those concerns."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,120",
+				"to": "00:22:20,120"
+			},
+			"offsets": {
+				"from": 1338120,
+				"to": 1340120
+			},
+			"text": " Or it's infeasible to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,120",
+				"to": "00:22:27,120"
+			},
+			"offsets": {
+				"from": 1340120,
+				"to": 1347120
+			},
+			"text": " Or trying to accommodate what you want would break decentralization, which is our key priority."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,120",
+				"to": "00:22:30,120"
+			},
+			"offsets": {
+				"from": 1347120,
+				"to": 1350120
+			},
+			"text": " And so we can never even consider anything in that direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,120",
+				"to": "00:22:34,120"
+			},
+			"offsets": {
+				"from": 1350120,
+				"to": 1354120
+			},
+			"text": " And the key problem here is that the users really can't evaluate these claims."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,120",
+				"to": "00:22:38,120"
+			},
+			"offsets": {
+				"from": 1354120,
+				"to": 1358120
+			},
+			"text": " The users need some independent source of information they can consult, which can tell them, is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,120",
+				"to": "00:22:41,120"
+			},
+			"offsets": {
+				"from": 1358120,
+				"to": 1361120
+			},
+			"text": " legitimate or not legitimate, that isn't just the guy writing the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,120",
+				"to": "00:22:46,120"
+			},
+			"offsets": {
+				"from": 1361120,
+				"to": 1366120
+			},
+			"text": " And then they need to be able to act on that by allocating money to someone who's actually going to work"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,120",
+				"to": "00:22:49,120"
+			},
+			"offsets": {
+				"from": 1366120,
+				"to": 1369120
+			},
+			"text": " to create the code they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,120",
+				"to": "00:22:50,120"
+			},
+			"offsets": {
+				"from": 1369120,
+				"to": 1370120
+			},
+			"text": " Okay, so how will this work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,120",
+				"to": "00:22:55,120"
+			},
+			"offsets": {
+				"from": 1370120,
+				"to": 1375120
+			},
+			"text": " I think the first key thing to focus on is this source of funding, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,120",
+				"to": "00:22:59,120"
+			},
+			"offsets": {
+				"from": 1375120,
+				"to": 1379120
+			},
+			"text": " We want to take funding that's currently under the control of our organization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,120",
+				"to": "00:23:04,120"
+			},
+			"offsets": {
+				"from": 1379120,
+				"to": 1384120
+			},
+			"text": " under centralized control, shown here, and then release it to a committee,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,120",
+				"to": "00:23:06,120"
+			},
+			"offsets": {
+				"from": 1384120,
+				"to": 1386120
+			},
+			"text": " which is going to be controlled by the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,120",
+				"to": "00:23:09,120"
+			},
+			"offsets": {
+				"from": 1386120,
+				"to": 1389120
+			},
+			"text": " And when that happens, when these, this is saying negative one month here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,120",
+				"to": "00:23:16,120"
+			},
+			"offsets": {
+				"from": 1389120,
+				"to": 1396120
+			},
+			"text": " it's negative one month before the committee is elected, we're going to grant funds to the election process."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,120",
+				"to": "00:23:20,120"
+			},
+			"offsets": {
+				"from": 1396120,
+				"to": 1400120
+			},
+			"text": " And once we do this, once we release these funds, there is no centralized control anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,120",
+				"to": "00:23:26,120"
+			},
+			"offsets": {
+				"from": 1400120,
+				"to": 1406120
+			},
+			"text": " The token holders' votes and the committee they elect are going to determine how the money is spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,120",
+				"to": "00:23:32,120"
+			},
+			"offsets": {
+				"from": 1406120,
+				"to": 1412120
+			},
+			"text": " And even if we don't like this, there's nothing we can do about it without, say, a hard fork or fundamentally changing the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,120",
+				"to": "00:23:40,120"
+			},
+			"offsets": {
+				"from": 1412120,
+				"to": 1420120
+			},
+			"text": " Right, so this is like this key step of moving from centralization to a decentralized community-directed process."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,120",
+				"to": "00:23:44,120"
+			},
+			"offsets": {
+				"from": 1420120,
+				"to": 1424120
+			},
+			"text": " At the same time, you know, there needs to be an election process where people are nominated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,120",
+				"to": "00:23:50,120"
+			},
+			"offsets": {
+				"from": 1424120,
+				"to": 1430120
+			},
+			"text": " and the token holders elect a community, a committee of, say, three people who's going to represent them."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,120",
+				"to": "00:23:52,120"
+			},
+			"offsets": {
+				"from": 1430120,
+				"to": 1432120
+			},
+			"text": " Okay, so we're going to move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,120",
+				"to": "00:23:57,120"
+			},
+			"offsets": {
+				"from": 1432120,
+				"to": 1437120
+			},
+			"text": " And then after this one month nomination election process is over, there's this committee that's serving,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,120",
+				"to": "00:24:01,120"
+			},
+			"offsets": {
+				"from": 1437120,
+				"to": 1441120
+			},
+			"text": " holding these tokens that have in multi-sig custody."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,120",
+				"to": "00:24:06,120"
+			},
+			"offsets": {
+				"from": 1441120,
+				"to": 1446120
+			},
+			"text": " Right, so this is money that's taken from us and transferred to the community control committee."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,120",
+				"to": "00:24:10,120"
+			},
+			"offsets": {
+				"from": 1446120,
+				"to": 1450120
+			},
+			"text": " And then the committee can look at grant proposals from the community, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,120",
+				"to": "00:24:15,120"
+			},
+			"offsets": {
+				"from": 1450120,
+				"to": 1455120
+			},
+			"text": " So independent projects, startups will ask for rebegging for funding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,120",
+				"to": "00:24:21,120"
+			},
+			"offsets": {
+				"from": 1455120,
+				"to": 1461120
+			},
+			"text": " and the community, the committee will evaluate their proposals and see if they're worthy or not, whether they serve the community interests."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,120",
+				"to": "00:24:26,120"
+			},
+			"offsets": {
+				"from": 1461120,
+				"to": 1466120
+			},
+			"text": " And say one week later, they have a suggestion of a proposal they'd like to fund,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,120",
+				"to": "00:24:34,120"
+			},
+			"offsets": {
+				"from": 1466120,
+				"to": 1474120
+			},
+			"text": " and they bring that to the community. They announce the community. We would like to send this many ZRX tokens to this third-party project."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,120",
+				"to": "00:24:37,120"
+			},
+			"offsets": {
+				"from": 1474120,
+				"to": 1477120
+			},
+			"text": " What do you think? Right, so this is announced."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,120",
+				"to": "00:24:41,120"
+			},
+			"offsets": {
+				"from": 1477120,
+				"to": 1481120
+			},
+			"text": " And the community is going to have a week to observe that."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,120",
+				"to": "00:24:47,120"
+			},
+			"offsets": {
+				"from": 1481120,
+				"to": 1487120
+			},
+			"text": " And if they choose not to act, if they say observe what the committee proposes to do and decide to let that happen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,120",
+				"to": "00:24:52,120"
+			},
+			"offsets": {
+				"from": 1487120,
+				"to": 1492120
+			},
+			"text": " then this ZRX tokens are released to the third-party project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,120",
+				"to": "00:24:57,120"
+			},
+			"offsets": {
+				"from": 1492120,
+				"to": 1497120
+			},
+			"text": " and that project is going to spit out some code, which hopefully benefits our ecosystem and helps it grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,120",
+				"to": "00:25:04,120"
+			},
+			"offsets": {
+				"from": 1497120,
+				"to": 1504120
+			},
+			"text": " But we might worry, maybe this committee has corrupts. Maybe we have bribery or some problem that's resulting in this committee being captured,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,120",
+				"to": "00:25:08,120"
+			},
+			"offsets": {
+				"from": 1504120,
+				"to": 1508120
+			},
+			"text": " so that once they're in office, they no longer serve the interests of token holders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,120",
+				"to": "00:25:11,120"
+			},
+			"offsets": {
+				"from": 1508120,
+				"to": 1511120
+			},
+			"text": " and so we want the token holders to be able to intervene in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,120",
+				"to": "00:25:17,120"
+			},
+			"offsets": {
+				"from": 1511120,
+				"to": 1517120
+			},
+			"text": " And so this is possibility that this proposal's announced and it's observed for a week, and in that week's time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,120",
+				"to": "00:25:23,120"
+			},
+			"offsets": {
+				"from": 1517120,
+				"to": 1523120
+			},
+			"text": " the ZRX holders can take action to hold a vote to block the proposed allocation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,120",
+				"to": "00:25:27,120"
+			},
+			"offsets": {
+				"from": 1523120,
+				"to": 1527120
+			},
+			"text": " and if they succeed in doing that, that will trigger an election of a new committee,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,120",
+				"to": "00:25:32,120"
+			},
+			"offsets": {
+				"from": 1527120,
+				"to": 1532120
+			},
+			"text": " and hopefully this new committee will then go on to act truly on the user's behalf"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,120",
+				"to": "00:25:38,120"
+			},
+			"offsets": {
+				"from": 1532120,
+				"to": 1538120
+			},
+			"text": " and not propose allocations that result in them being recalled by their constituents."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,120",
+				"to": "00:25:43,120"
+			},
+			"offsets": {
+				"from": 1538120,
+				"to": 1543120
+			},
+			"text": " Okay. So this is the framework for the grant program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,120",
+				"to": "00:25:47,120"
+			},
+			"offsets": {
+				"from": 1543120,
+				"to": 1547120
+			},
+			"text": " and we can think of this as being quite generalizable and adapting it to --"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,120",
+				"to": "00:25:51,120"
+			},
+			"offsets": {
+				"from": 1547120,
+				"to": 1551120
+			},
+			"text": " Sorry, I forgot to -- so if the proposal is continued,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,120",
+				"to": "00:25:56,120"
+			},
+			"offsets": {
+				"from": 1551120,
+				"to": 1556120
+			},
+			"text": " if there is no blocking, then these committees are intended to serve for a one-year-long time span,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,120",
+				"to": "00:26:01,120"
+			},
+			"offsets": {
+				"from": 1556120,
+				"to": 1561120
+			},
+			"text": " and so this process of proposing an allocation and then having it go through a week later would continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,120",
+				"to": "00:26:05,120"
+			},
+			"offsets": {
+				"from": 1561120,
+				"to": 1565120
+			},
+			"text": " over the course of a year until the committee's terms expire,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,120",
+				"to": "00:26:08,120"
+			},
+			"offsets": {
+				"from": 1565120,
+				"to": 1568120
+			},
+			"text": " and then they go back to being reelected."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,120",
+				"to": "00:26:13,120"
+			},
+			"offsets": {
+				"from": 1568120,
+				"to": 1573120
+			},
+			"text": " Okay, so I was going to say this process is quite generalizable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,120",
+				"to": "00:26:17,120"
+			},
+			"offsets": {
+				"from": 1573120,
+				"to": 1577120
+			},
+			"text": " and it's probably pretty easy to see how we might expand that to encompass not just governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,120",
+				"to": "00:26:22,120"
+			},
+			"offsets": {
+				"from": 1577120,
+				"to": 1582120
+			},
+			"text": " of third-party project funding, but also governance of core development funding itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,120",
+				"to": "00:26:29,120"
+			},
+			"offsets": {
+				"from": 1582120,
+				"to": 1589120
+			},
+			"text": " and so a couple differentiators of how that might need to change to encompass to govern the core protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,120",
+				"to": "00:26:31,120"
+			},
+			"offsets": {
+				"from": 1589120,
+				"to": 1591120
+			},
+			"text": " as firstly, there may need to be more funds, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,120",
+				"to": "00:26:35,120"
+			},
+			"offsets": {
+				"from": 1591120,
+				"to": 1595120
+			},
+			"text": " So we have these larger established organizations with, say, dozens of employees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,120",
+				"to": "00:26:41,120"
+			},
+			"offsets": {
+				"from": 1595120,
+				"to": 1601120
+			},
+			"text": " and they're going to need to be supported by larger allocations and early-stage startups."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,120",
+				"to": "00:26:43,120"
+			},
+			"offsets": {
+				"from": 1601120,
+				"to": 1603120
+			},
+			"text": " Okay, so we can imagine more funds going to the committee,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,120",
+				"to": "00:26:48,120"
+			},
+			"offsets": {
+				"from": 1603120,
+				"to": 1608120
+			},
+			"text": " and the other issue with a larger project with a bunch of employees, with built-in office building,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,120",
+				"to": "00:26:54,120"
+			},
+			"offsets": {
+				"from": 1608120,
+				"to": 1614120
+			},
+			"text": " it's renting, it has these near-term funding needs that it needs to have certainty over, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,120",
+				"to": "00:26:57,120"
+			},
+			"offsets": {
+				"from": 1614120,
+				"to": 1617120
+			},
+			"text": " It can't just be getting funding on a week-by-week basis"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,120",
+				"to": "00:27:00,120"
+			},
+			"offsets": {
+				"from": 1617120,
+				"to": 1620120
+			},
+			"text": " and be uncertain whether it can actually continue to pay salaries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,120",
+				"to": "00:27:03,120"
+			},
+			"offsets": {
+				"from": 1620120,
+				"to": 1623120
+			},
+			"text": " instead it needs to have certainty that it will receive a certain amount of money"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,120",
+				"to": "00:27:07,120"
+			},
+			"offsets": {
+				"from": 1623120,
+				"to": 1627120
+			},
+			"text": " that will sustain it over, say, a year-long period, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,120",
+				"to": "00:27:11,120"
+			},
+			"offsets": {
+				"from": 1627120,
+				"to": 1631120
+			},
+			"text": " So in this modified process, the committee, you know, holds office,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,120",
+				"to": "00:27:15,120"
+			},
+			"offsets": {
+				"from": 1631120,
+				"to": 1635120
+			},
+			"text": " and then after being office for five months, it will propose an annual budget,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,120",
+				"to": "00:27:19,120"
+			},
+			"offsets": {
+				"from": 1635120,
+				"to": 1639120
+			},
+			"text": " which will govern all of the funding for the core protocol for that year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,120",
+				"to": "00:27:21,120"
+			},
+			"offsets": {
+				"from": 1639120,
+				"to": 1641120
+			},
+			"text": " and it could be distributed to, say, one development house,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,120",
+				"to": "00:27:25,120"
+			},
+			"offsets": {
+				"from": 1641120,
+				"to": 1645120
+			},
+			"text": " if there's just one development organization, or multiple development organizations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,120",
+				"to": "00:27:28,120"
+			},
+			"offsets": {
+				"from": 1645120,
+				"to": 1648120
+			},
+			"text": " if the committee thinks that is a better scenario for the users."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:28,120",
+				"to": "00:27:31,120"
+			},
+			"offsets": {
+				"from": 1648120,
+				"to": 1651120
+			},
+			"text": " And then, you know, given that this is a larger decision,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,120",
+				"to": "00:27:35,120"
+			},
+			"offsets": {
+				"from": 1651120,
+				"to": 1655120
+			},
+			"text": " the community that has a month to either let the decision go through"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,120",
+				"to": "00:27:38,120"
+			},
+			"offsets": {
+				"from": 1655120,
+				"to": 1658120
+			},
+			"text": " and then the money will be released to development houses or block it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,120",
+				"to": "00:27:41,120"
+			},
+			"offsets": {
+				"from": 1658120,
+				"to": 1661120
+			},
+			"text": " in which case we go to re-election."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,120",
+				"to": "00:27:45,120"
+			},
+			"offsets": {
+				"from": 1661120,
+				"to": 1665120
+			},
+			"text": " But other than that, you know, essentially the long-term plan"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,120",
+				"to": "00:27:51,120"
+			},
+			"offsets": {
+				"from": 1665120,
+				"to": 1671120
+			},
+			"text": " is very similar to the small-scale, sort of short-term grant program plan."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,120",
+				"to": "00:27:55,120"
+			},
+			"offsets": {
+				"from": 1671120,
+				"to": 1675120
+			},
+			"text": " Anyways, thank you guys for listening. So this is the end of the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,120",
+				"to": "00:27:59,120"
+			},
+			"offsets": {
+				"from": 1675120,
+				"to": 1679120
+			},
+			"text": " I just want to ask if you guys have any questions, feedback, or suggestions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,120",
+				"to": "00:28:29,120"
+			},
+			"offsets": {
+				"from": 1679120,
+				"to": 1709120
+			},
+			"text": " so I can take a question right now. If there's time. No, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:29,120",
+				"to": "00:28:34,120"
+			},
+			"offsets": {
+				"from": 1709120,
+				"to": 1714120
+			},
+			"text": " or any questions, or any questions, or any questions, or any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,120",
+				"to": "00:28:37,120"
+			},
+			"offsets": {
+				"from": 1714120,
+				"to": 1717120
+			},
+			"text": " I'm going to ask you, I'm going to ask you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,120",
+				"to": "00:28:40,120"
+			},
+			"offsets": {
+				"from": 1717120,
+				"to": 1720120
+			},
+			"text": " if you have any questions, or if you have any questions,"
+		}
+	]
+}

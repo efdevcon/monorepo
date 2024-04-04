@@ -1,0 +1,1066 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,160"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10160
+			},
+			"text": " So we make a lightning talk about the writing network, which is something that the brainboat"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,160",
+				"to": "00:00:14,320"
+			},
+			"offsets": {
+				"from": 10160,
+				"to": 14320
+			},
+			"text": " team is working on, which I am a member."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,320",
+				"to": "00:00:23,040"
+			},
+			"offsets": {
+				"from": 14320,
+				"to": 23040
+			},
+			"text": " So essentially, what the writing network is, it's trying to address some of the main"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,040",
+				"to": "00:00:27,720"
+			},
+			"offsets": {
+				"from": 23040,
+				"to": 27720
+			},
+			"text": " Ethereum problems, which is not only a film, but mainly blockchain problems, which are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,720",
+				"to": "00:00:32,640"
+			},
+			"offsets": {
+				"from": 27720,
+				"to": 32640
+			},
+			"text": " for example, mainly scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,640",
+				"to": "00:00:39,960"
+			},
+			"offsets": {
+				"from": 32640,
+				"to": 39960
+			},
+			"text": " Another one is finality transactions, and of course privacy transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,960",
+				"to": "00:00:49,040"
+			},
+			"offsets": {
+				"from": 39960,
+				"to": 49040
+			},
+			"text": " The way with which we are trying to do this is to use the solution of off-same transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,040",
+				"to": "00:00:56,480"
+			},
+			"offsets": {
+				"from": 49040,
+				"to": 56480
+			},
+			"text": " Essentially, we are using bilateral transfers between many different nodes that do not need"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,480",
+				"to": "00:01:02,560"
+			},
+			"offsets": {
+				"from": 56480,
+				"to": 62560
+			},
+			"text": " to be on the blockchain, and the blockchain is only a letter on which the final computations"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,560",
+				"to": "00:01:04,560"
+			},
+			"offsets": {
+				"from": 62560,
+				"to": 64560
+			},
+			"text": " are stored."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,560",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 64560,
+				"to": 74000
+			},
+			"text": " So the writing network is essentially a network can transfer any assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:18,800"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 78800
+			},
+			"text": " This is inspired and very similar to the Bitcoin lightning network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,800",
+				"to": "00:01:28,400"
+			},
+			"offsets": {
+				"from": 78800,
+				"to": 88400
+			},
+			"text": " It's developed by brainboat AZ, two developers of which work from this office."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,400",
+				"to": "00:01:38,120"
+			},
+			"offsets": {
+				"from": 88400,
+				"to": 98120
+			},
+			"text": " We are working in progress, and we are working towards a minimum viable product at that moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,120",
+				"to": "00:01:40,040"
+			},
+			"offsets": {
+				"from": 98120,
+				"to": 100040
+			},
+			"text": " What are the features that writing has?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,040",
+				"to": "00:01:48,480"
+			},
+			"offsets": {
+				"from": 100040,
+				"to": 108480
+			},
+			"text": " You can transfer any ELC-20 compatible token, for example, Adonavdizi X token or Maker"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,480",
+				"to": "00:01:50,960"
+			},
+			"offsets": {
+				"from": 108480,
+				"to": 110960
+			},
+			"text": " Die."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,960",
+				"to": "00:01:56,560"
+			},
+			"offsets": {
+				"from": 110960,
+				"to": 116560
+			},
+			"text": " You can have instant asset transfers and micro payments, because essentially nothing needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,560",
+				"to": "00:02:02,960"
+			},
+			"offsets": {
+				"from": 116560,
+				"to": 122960
+			},
+			"text": " to go in the blockchain unless there is a challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,960",
+				"to": "00:02:11,280"
+			},
+			"offsets": {
+				"from": 122960,
+				"to": 131280
+			},
+			"text": " It can also scale to even 1 million transactions per second because it does not need to be included"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,280",
+				"to": "00:02:14,680"
+			},
+			"offsets": {
+				"from": 131280,
+				"to": 134680
+			},
+			"text": " in the blockchain unless there is an asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,680",
+				"to": "00:02:20,120"
+			},
+			"offsets": {
+				"from": 134680,
+				"to": 140120
+			},
+			"text": " Entrassigns are also confidential."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,120",
+				"to": "00:02:22,280"
+			},
+			"offsets": {
+				"from": 140120,
+				"to": 142280
+			},
+			"text": " How does such a network work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,280",
+				"to": "00:02:26,760"
+			},
+			"offsets": {
+				"from": 142280,
+				"to": 146760
+			},
+			"text": " Essentially, we utilize something called payment channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,760",
+				"to": "00:02:33,640"
+			},
+			"offsets": {
+				"from": 146760,
+				"to": 153640
+			},
+			"text": " Appellent channels in Ethereum would be essentially a smart contract on which security deposit"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,640",
+				"to": "00:02:35,160"
+			},
+			"offsets": {
+				"from": 153640,
+				"to": 155160
+			},
+			"text": " is given."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,160",
+				"to": "00:02:41,880"
+			},
+			"offsets": {
+				"from": 155160,
+				"to": 161880
+			},
+			"text": " It can be settled or closed by any of the two parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,880",
+				"to": "00:02:49,040"
+			},
+			"offsets": {
+				"from": 161880,
+				"to": 169040
+			},
+			"text": " There can be only a talent speed on which someone can challenge and get the deposit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,040",
+				"to": "00:02:50,880"
+			},
+			"offsets": {
+				"from": 169040,
+				"to": 170880
+			},
+			"text": " but if there is a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,880",
+				"to": "00:02:57,320"
+			},
+			"offsets": {
+				"from": 170880,
+				"to": 177320
+			},
+			"text": " It looks something like that, for example, there will be a contract with a deposit given"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,320",
+				"to": "00:02:59,360"
+			},
+			"offsets": {
+				"from": 177320,
+				"to": 179360
+			},
+			"text": " by both participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,360",
+				"to": "00:03:07,600"
+			},
+			"offsets": {
+				"from": 179360,
+				"to": 187600
+			},
+			"text": " It would not be a civil and an insider address."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,600",
+				"to": "00:03:13,320"
+			},
+			"offsets": {
+				"from": 187600,
+				"to": 193320
+			},
+			"text": " The participants essentially sign transactions but do not put them in the blockchain, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,320",
+				"to": "00:03:18,560"
+			},
+			"offsets": {
+				"from": 193320,
+				"to": 198560
+			},
+			"text": " they only keep how much of an asset has been spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,560",
+				"to": "00:03:24,360"
+			},
+			"offsets": {
+				"from": 198560,
+				"to": 204360
+			},
+			"text": " They know how much they have spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,360",
+				"to": "00:03:27,840"
+			},
+			"offsets": {
+				"from": 204360,
+				"to": 207840
+			},
+			"text": " By directional channels, it looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,840",
+				"to": "00:03:34,240"
+			},
+			"offsets": {
+				"from": 207840,
+				"to": 214240
+			},
+			"text": " Essentially, there are two deposits inside the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,240",
+				"to": "00:03:36,960"
+			},
+			"offsets": {
+				"from": 214240,
+				"to": 216960
+			},
+			"text": " Its participant has to track both the balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,960",
+				"to": "00:03:42,640"
+			},
+			"offsets": {
+				"from": 216960,
+				"to": 222640
+			},
+			"text": " So Alice and Bob here, both track and Bob's respective balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,640",
+				"to": "00:03:49,480"
+			},
+			"offsets": {
+				"from": 222640,
+				"to": 229480
+			},
+			"text": " They can spend as much as is the deposit inside the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,480",
+				"to": "00:04:02,360"
+			},
+			"offsets": {
+				"from": 229480,
+				"to": 242360
+			},
+			"text": " We have an net distributed of the balance of Alice, for example, here in the graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,360",
+				"to": "00:04:10,760"
+			},
+			"offsets": {
+				"from": 242360,
+				"to": 250760
+			},
+			"text": " Essentially in order to scale this, there can be many channels that are connected."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,760",
+				"to": "00:04:17,080"
+			},
+			"offsets": {
+				"from": 250760,
+				"to": 257080
+			},
+			"text": " In order to scale this into a full network, we have multiple channels that are connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,080",
+				"to": "00:04:20,680"
+			},
+			"offsets": {
+				"from": 257080,
+				"to": 260680
+			},
+			"text": " and can remediate transfers between one and another."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,680",
+				"to": "00:04:22,720"
+			},
+			"offsets": {
+				"from": 260680,
+				"to": 262720
+			},
+			"text": " This is what we call a mediated transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,720",
+				"to": "00:04:37,680"
+			},
+			"offsets": {
+				"from": 262720,
+				"to": 277680
+			},
+			"text": " Essentially, if Alice wants to send something to the same name, it can use Bob and Charlie,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,680",
+				"to": "00:04:47,520"
+			},
+			"offsets": {
+				"from": 277680,
+				"to": 287520
+			},
+			"text": " but they would need to have something called a hash log to sign a transaction with so"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,520",
+				"to": "00:04:59,520"
+			},
+			"offsets": {
+				"from": 287520,
+				"to": 299520
+			},
+			"text": " that nobody can look at it unless it has reached the end of the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,520",
+				"to": "00:05:07,880"
+			},
+			"offsets": {
+				"from": 299520,
+				"to": 307880
+			},
+			"text": " Once the transaction goes to David, then he asks Alice for the secret and it goes backwards"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,880",
+				"to": "00:05:14,320"
+			},
+			"offsets": {
+				"from": 307880,
+				"to": 314320
+			},
+			"text": " and the transaction is finalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,320",
+				"to": "00:05:20,720"
+			},
+			"offsets": {
+				"from": 314320,
+				"to": 320720
+			},
+			"text": " In a mediated transfer, it's not inside a small field depending on the distance."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,720",
+				"to": "00:05:27,920"
+			},
+			"offsets": {
+				"from": 320720,
+				"to": 327920
+			},
+			"text": " That's something we are not going to implement yet, but how then the idea is going to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,920",
+				"to": "00:05:33,400"
+			},
+			"offsets": {
+				"from": 327920,
+				"to": 333400
+			},
+			"text": " So imagine a network of many such channels with roots being found between any of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,400",
+				"to": "00:05:37,120"
+			},
+			"offsets": {
+				"from": 333400,
+				"to": 337120
+			},
+			"text": " two participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,120",
+				"to": "00:05:45,760"
+			},
+			"offsets": {
+				"from": 337120,
+				"to": 345760
+			},
+			"text": " As long as the transfers cancel out, so the deposit is not more than a deposit, the tunnel"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,760",
+				"to": "00:05:47,600"
+			},
+			"offsets": {
+				"from": 345760,
+				"to": 347600
+			},
+			"text": " can be long-lived."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,600",
+				"to": "00:05:53,640"
+			},
+			"offsets": {
+				"from": 347600,
+				"to": 353640
+			},
+			"text": " So nothing would need to go in the blockchain, which would result in having a very low frequency"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,640",
+				"to": "00:05:54,640"
+			},
+			"offsets": {
+				"from": 353640,
+				"to": 354640
+			},
+			"text": " of settlements."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,640",
+				"to": "00:05:59,480"
+			},
+			"offsets": {
+				"from": 354640,
+				"to": 359480
+			},
+			"text": " That would make everything much safer because there would be no gas costs since nothing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,480",
+				"to": "00:06:03,400"
+			},
+			"offsets": {
+				"from": 359480,
+				"to": 363400
+			},
+			"text": " goes in the blockchain fast for the same reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,400",
+				"to": "00:06:08,920"
+			},
+			"offsets": {
+				"from": 363400,
+				"to": 368920
+			},
+			"text": " And there would still be no counter-party risk because the transactions actually do exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,920",
+				"to": "00:06:12,240"
+			},
+			"offsets": {
+				"from": 368920,
+				"to": 372240
+			},
+			"text": " and they are cryptographic and proven and each one depends on the previous one."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,240",
+				"to": "00:06:20,160"
+			},
+			"offsets": {
+				"from": 372240,
+				"to": 380160
+			},
+			"text": " They just are not put in the blockchain unless there is a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,160",
+				"to": "00:06:26,360"
+			},
+			"offsets": {
+				"from": 380160,
+				"to": 386360
+			},
+			"text": " There are many applications for such a thing, one example would be a decentralized exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,360",
+				"to": "00:06:29,760"
+			},
+			"offsets": {
+				"from": 386360,
+				"to": 389760
+			},
+			"text": " For example, if you want to trade two assets, you would need to have a tunnel open for both"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,760",
+				"to": "00:06:30,760"
+			},
+			"offsets": {
+				"from": 389760,
+				"to": 390760
+			},
+			"text": " of those assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,760",
+				"to": "00:06:39,640"
+			},
+			"offsets": {
+				"from": 390760,
+				"to": 399640
+			},
+			"text": " The initiator would broadcast the intent, for example, it would have a bid and an ask for"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,640",
+				"to": "00:06:41,640"
+			},
+			"offsets": {
+				"from": 399640,
+				"to": 401640
+			},
+			"text": " asset and asset bid."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,640",
+				"to": "00:06:46,480"
+			},
+			"offsets": {
+				"from": 401640,
+				"to": 406480
+			},
+			"text": " An interested part is sending an exchange request and the initiator would accept."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,480",
+				"to": "00:06:52,080"
+			},
+			"offsets": {
+				"from": 406480,
+				"to": 412080
+			},
+			"text": " And the way that this would work is that we would essentially have two mediated transfers"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,080",
+				"to": "00:06:58,240"
+			},
+			"offsets": {
+				"from": 412080,
+				"to": 418240
+			},
+			"text": " with the same hash loop so that once the secret is revealed and if and only if it is revealed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,240",
+				"to": "00:07:03,560"
+			},
+			"offsets": {
+				"from": 418240,
+				"to": 423560
+			},
+			"text": " then either both of the transactions would execute or if there is a problem, none of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,560",
+				"to": "00:07:06,360"
+			},
+			"offsets": {
+				"from": 423560,
+				"to": 426360
+			},
+			"text": " them would be executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,360",
+				"to": "00:07:12,680"
+			},
+			"offsets": {
+				"from": 426360,
+				"to": 432680
+			},
+			"text": " As I said in the beginning, this is inspired by the Latin network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,680",
+				"to": "00:07:18,720"
+			},
+			"offsets": {
+				"from": 432680,
+				"to": 438720
+			},
+			"text": " Now if we compare both of them in a theorem, the right of the major implementation things"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,720",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 438720,
+				"to": 444000
+			},
+			"text": " to the virtual machine, if there is an uncompetitive participant in the tunnel is not locked, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:26,680"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 446680
+			},
+			"text": " just find another route."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,680",
+				"to": "00:07:36,560"
+			},
+			"offsets": {
+				"from": 446680,
+				"to": 456560
+			},
+			"text": " We can add more funds to a smart contract so the tunnel can get much more funds if needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,560",
+				"to": "00:07:42,560"
+			},
+			"offsets": {
+				"from": 456560,
+				"to": 462560
+			},
+			"text": " If the deposit is not enough, we can use it for any compatible toting with the other"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,560",
+				"to": "00:07:49,440"
+			},
+			"offsets": {
+				"from": 462560,
+				"to": 469440
+			},
+			"text": " C20 toting proposal and it is in the other part with smart contracts in the tunnel, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,440",
+				"to": "00:07:54,800"
+			},
+			"offsets": {
+				"from": 469440,
+				"to": 474800
+			},
+			"text": " can use oracles, anything else you may need."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,800",
+				"to": "00:08:00,160"
+			},
+			"offsets": {
+				"from": 474800,
+				"to": 480160
+			},
+			"text": " The current status is that we have demonstrated the 500 transfer per CvU code per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,160",
+				"to": "00:08:04,760"
+			},
+			"offsets": {
+				"from": 480160,
+				"to": 484760
+			},
+			"text": " It's a work in progress and we don't need anything extra added to a theorem at the moment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,760",
+				"to": "00:08:06,320"
+			},
+			"offsets": {
+				"from": 484760,
+				"to": 486320
+			},
+			"text": " we just need to implement it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,320",
+				"to": "00:08:10,400"
+			},
+			"offsets": {
+				"from": 486320,
+				"to": 490400
+			},
+			"text": " We don't wait for a drop also, anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,400",
+				"to": "00:08:16,840"
+			},
+			"offsets": {
+				"from": 490400,
+				"to": 496840
+			},
+			"text": " Our milestone is, of course, zero, we have demonstrated with the testnet a transfer from"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,840",
+				"to": "00:08:26,120"
+			},
+			"offsets": {
+				"from": 496840,
+				"to": 506120
+			},
+			"text": " Copenhagen to Mumbai mediated by a node in foreign oracles, Brazil."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,120",
+				"to": "00:08:30,960"
+			},
+			"offsets": {
+				"from": 506120,
+				"to": 510960
+			},
+			"text": " This happened around August I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,960",
+				"to": "00:08:36,920"
+			},
+			"offsets": {
+				"from": 510960,
+				"to": 516920
+			},
+			"text": " We're heading towards the minimum viable product which is the big milestone that we want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,920",
+				"to": "00:08:41,920"
+			},
+			"offsets": {
+				"from": 516920,
+				"to": 521920
+			},
+			"text": " do."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,920",
+				"to": "00:08:46,920"
+			},
+			"offsets": {
+				"from": 521920,
+				"to": 526920
+			},
+			"text": " If you like Python and you like Ethereum, we would really appreciate the help."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,920",
+				"to": "00:08:51,920"
+			},
+			"offsets": {
+				"from": 526920,
+				"to": 531920
+			},
+			"text": " It's in GitHub, it's a network class."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,920",
+				"to": "00:08:59,920"
+			},
+			"offsets": {
+				"from": 531920,
+				"to": 539920
+			},
+			"text": " And yeah, that's all."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,920",
+				"to": "00:09:02,920"
+			},
+			"offsets": {
+				"from": 539920,
+				"to": 542920
+			},
+			"text": " [APPLAUSE]"
+		}
+	]
+}

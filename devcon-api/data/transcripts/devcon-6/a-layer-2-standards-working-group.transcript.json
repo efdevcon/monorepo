@@ -1,0 +1,912 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 17000
+			},
+			"text": " Great. Okay, so we're going to talk about a formal layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " two standards working group which has been formed as an EEA"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 23000
+			},
+			"text": " community project managed by OASIS and we'll explain what"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 26000
+			},
+			"text": " that means. But first I am Tash Deanish. I work at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 29000
+			},
+			"text": " Ethereum Foundation on ecosystem support focusing on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 32000
+			},
+			"text": " enterprise ecosystem so I work with the enterprise Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 35000
+			},
+			"text": " Alliance, chair of the main interest group, co-chair of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 38000
+			},
+			"text": " EEA community project, project governing board and this is Dan"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 43000
+			},
+			"text": " Shaw. I'm Dan. I've got a decade of kind of bringing together"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 48000
+			},
+			"text": " innovators and the enterprise, help bring Node.js into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 53000
+			},
+			"text": " foundation. I've been a founder, done a lot of open source stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 63000
+			},
+			"text": " and I am the co-chair of this. And Dr. Andreas Foreind is my"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 68000
+			},
+			"text": " co-chair and with a storied background, he's the spec lead"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 76000
+			},
+			"text": " on the baseline protocol and as well as my co-chair. Okay, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 84000
+			},
+			"text": " last talk really teed up why standards are useful to have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 89000
+			},
+			"text": " space and a clearing house for discussions and a neutral space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 95000
+			},
+			"text": " There's so much innovation that's happening that we need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 103000
+			},
+			"text": " come together and our perspective is in part the needs of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 108000
+			},
+			"text": " enterprise and in order to sort of continue the adoption that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 115000
+			},
+			"text": " we're seeing, layer two is essential. So putting in place"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 119000
+			},
+			"text": " those standards and specifications to enable layer two"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 123000
+			},
+			"text": " thrive. So why are we doing this as an EEA community project"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 126000
+			},
+			"text": " managed by Oasis and what does that mean? So Oasis is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 129000
+			},
+			"text": " non-profit technical standards body that was formed in 1993."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 133000
+			},
+			"text": " They've done things like X, GML and XML and a lot of sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 137000
+			},
+			"text": " technical software standards sort of along the lines of IEEE or W3C"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 142000
+			},
+			"text": " IETF. So the Ethereum community projects was formed three years"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 147000
+			},
+			"text": " ago as an Oasis open project. So under the Oasis standards bodies"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 151000
+			},
+			"text": " umbrella, what happened to my slides? By EF consensus and the EEA."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 157000
+			},
+			"text": " So Ethereum community projects is an Oasis open project meaning"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 162000
+			},
+			"text": " it's open source, open standards development. And so we chose"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 165000
+			},
+			"text": " Oasis because it's a pretty low bureaucracy and it's a flexible"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 168000
+			},
+			"text": " standards process unlike some of the other ones like the W3C and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 171000
+			},
+			"text": " IETF that a lot more sort of bureaucratic and cumbersome."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 175000
+			},
+			"text": " Oasis is kind of more Ethereum friendly in that it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 180000
+			},
+			"text": " lower bureaucracy and flexible. So some of the folks that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 186000
+			},
+			"text": " involved, of course, Tashna and Andreas from the EF, we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 191000
+			},
+			"text": " Accenture, Boba, Matter Labs, Metis, Optane Labs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 197000
+			},
+			"text": " Optimism and Polygon. And we'd love to have you. So, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 199000
+			},
+			"text": " please come and join us."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 203000
+			},
+			"text": " Tashna? So what have we been working on? There are lots of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 207000
+			},
+			"text": " ideas for standards development topics in the Layer 2 ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 211000
+			},
+			"text": " The two that we've gotten the most work done so far. First is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 215000
+			},
+			"text": " canonical tokenless format which so the issue is that most of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 219000
+			},
+			"text": " the layer 2 projects have a list of tokens that exist on their"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 224000
+			},
+			"text": " layer 2s and a way that they map to, in many cases, a layer 1 token"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 227000
+			},
+			"text": " or a token on another layer 2. And these lists are not maintained"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 230000
+			},
+			"text": " in any common standard format. So standardizing the way that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 234000
+			},
+			"text": " these tokenless are stored would be beneficial for interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 239000
+			},
+			"text": " Another project is address aliasing. So the goal here is to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 242000
+			},
+			"text": " be able to deterministically derive addresses of a digital"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 246000
+			},
+			"text": " asset or an externally owned account on an EVM execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 250000
+			},
+			"text": " framework when it moves across chains. So if you know the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 253000
+			},
+			"text": " origin chain of an asset, you should be able to deterministically"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 259000
+			},
+			"text": " derive the address of it on another chain. We have many ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 262000
+			},
+			"text": " for potential future topics to work on. Layer 2 transaction fee"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 267000
+			},
+			"text": " structures. Layer 2 transaction interface standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 270000
+			},
+			"text": " One idea that's gotten some discussion is about cross-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 274000
+			},
+			"text": " bridging of digital assets with residuals. So the issue there"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 278000
+			},
+			"text": " is that if you have a token, like an NFT representing a bond"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 281000
+			},
+			"text": " or something that gets royalties over time, something that gets"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 285000
+			},
+			"text": " payments over time. And you move that to another chain, it breaks"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 288000
+			},
+			"text": " the connection between the payments and the asset. So that's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 290000
+			},
+			"text": " a completely solved problem. There's been some discussion about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 293000
+			},
+			"text": " We would love to have more ideas on that. And if you have other"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 296000
+			},
+			"text": " ideas for topics, we would love to hear them. We would love to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 298000
+			},
+			"text": " your involvement. Please get in touch."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 304000
+			},
+			"text": " >> So thanks a lot. We meet biweekly. You can hit us up on"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 310000
+			},
+			"text": " our emails. The github is github.com/awasisl2."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 317000
+			},
+			"text": " And a big thank you and shout out to l2b. DevConnect, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 321000
+			},
+			"text": " were -- we had gotten this initiative off the ground."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 326000
+			},
+			"text": " But thanks to ltb's event at dev connect, we were really"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 330000
+			},
+			"text": " able to get a lot of the initiatives that you just saw"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 336000
+			},
+			"text": " set up and really move forward. So we'd love to have you join us."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 340000
+			},
+			"text": " >> Thank you so much. Guys, you did it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 343000
+			},
+			"text": " The two of you were the fastest ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 345000
+			},
+			"text": " [ Laughter ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 355000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 384000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

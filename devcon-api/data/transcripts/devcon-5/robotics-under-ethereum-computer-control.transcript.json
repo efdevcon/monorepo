@@ -1,0 +1,934 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:12,760"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 12760
+			},
+			"text": " Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,760",
+				"to": "00:00:16,320"
+			},
+			"offsets": {
+				"from": 12760,
+				"to": 16320
+			},
+			"text": " My name is Sugi Wanshak of my co-founder and software architect"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,320",
+				"to": "00:00:18,920"
+			},
+			"offsets": {
+				"from": 16320,
+				"to": 18920
+			},
+			"text": " and project, this name, our Bonnamis Network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,920",
+				"to": "00:00:23,800"
+			},
+			"offsets": {
+				"from": 18920,
+				"to": 23800
+			},
+			"text": " We started this project in 2015 as a resource project"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,800",
+				"to": "00:00:27,240"
+			},
+			"offsets": {
+				"from": 23800,
+				"to": 27240
+			},
+			"text": " to use Ethereum in robotic skills."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,240",
+				"to": "00:00:30,560"
+			},
+			"offsets": {
+				"from": 27240,
+				"to": 30560
+			},
+			"text": " And we did a lot of experiments in the last four years"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,560",
+				"to": "00:00:33,120"
+			},
+			"offsets": {
+				"from": 30560,
+				"to": 33120
+			},
+			"text": " with robotics and Ethereum computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,120",
+				"to": "00:00:36,600"
+			},
+			"offsets": {
+				"from": 33120,
+				"to": 36600
+			},
+			"text": " So in my presentation, I will share using my experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,600",
+				"to": "00:00:42,080"
+			},
+			"offsets": {
+				"from": 36600,
+				"to": 42080
+			},
+			"text": " and show you some use cases when found where you can use Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,080",
+				"to": "00:00:45,760"
+			},
+			"offsets": {
+				"from": 42080,
+				"to": 45760
+			},
+			"text": " computer today in robotic skills."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,760",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 45760,
+				"to": 49000
+			},
+			"text": " So let's start from history."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:52,640"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 52640
+			},
+			"text": " And you can find first dimension of using smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,640",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 52640,
+				"to": 55000
+			},
+			"text": " in robotic skills in 1997."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:59,040"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 59040
+			},
+			"text": " In article by an example, the idea of smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,040",
+				"to": "00:01:05,320"
+			},
+			"offsets": {
+				"from": 59040,
+				"to": 65320
+			},
+			"text": " In this article, an example of using smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,320",
+				"to": "00:01:10,200"
+			},
+			"offsets": {
+				"from": 65320,
+				"to": 70200
+			},
+			"text": " as a least agreement with connected IoT devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,200",
+				"to": "00:01:15,640"
+			},
+			"offsets": {
+				"from": 70200,
+				"to": 75640
+			},
+			"text": " So when I found this article in 2014,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,640",
+				"to": "00:01:18,200"
+			},
+			"offsets": {
+				"from": 75640,
+				"to": 78200
+			},
+			"text": " at the same time, the title published"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,200",
+				"to": "00:01:19,320"
+			},
+			"offsets": {
+				"from": 78200,
+				"to": 79320
+			},
+			"text": " Ethereum by WebR."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,320",
+				"to": "00:01:23,720"
+			},
+			"offsets": {
+				"from": 79320,
+				"to": 83720
+			},
+			"text": " So from the beginning, I started working in Ethereum community"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,720",
+				"to": "00:01:28,840"
+			},
+			"offsets": {
+				"from": 83720,
+				"to": 88840
+			},
+			"text": " to try to use Ethereum with robotics experiments."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,840",
+				"to": "00:01:33,880"
+			},
+			"offsets": {
+				"from": 88840,
+				"to": 93880
+			},
+			"text": " Why I think Ethereum can be interesting in robotic skills?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,880",
+				"to": "00:01:42,360"
+			},
+			"offsets": {
+				"from": 93880,
+				"to": 102360
+			},
+			"text": " Google's slide is how we use robotics as a service today"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,360",
+				"to": "00:01:46,600"
+			},
+			"offsets": {
+				"from": 102360,
+				"to": 106600
+			},
+			"text": " and in the course of the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,600",
+				"to": "00:01:50,240"
+			},
+			"offsets": {
+				"from": 106600,
+				"to": 110240
+			},
+			"text": " Humans send financial transactions to 80 companies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,240",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 110240,
+				"to": 114000
+			},
+			"text": " and 80 companies send comments to robotics."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:57,440"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 117440
+			},
+			"text": " So we have two separated that flows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,440",
+				"to": "00:02:02,640"
+			},
+			"offsets": {
+				"from": 117440,
+				"to": 122640
+			},
+			"text": " financial transactions and technical transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,640",
+				"to": "00:02:08,160"
+			},
+			"offsets": {
+				"from": 122640,
+				"to": 128160
+			},
+			"text": " But with Ethereum, we can send directly transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,160",
+				"to": "00:02:12,600"
+			},
+			"offsets": {
+				"from": 128160,
+				"to": 132600
+			},
+			"text": " with money and comments from humans, directly to machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,600",
+				"to": "00:02:16,720"
+			},
+			"offsets": {
+				"from": 132600,
+				"to": 136720
+			},
+			"text": " It means we can combine technical and economic"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,720",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 136720,
+				"to": 142000
+			},
+			"text": " details in the one transaction with Ethereum computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:25,120"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 145120
+			},
+			"text": " And with that, since the opportunity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,120",
+				"to": "00:02:28,160"
+			},
+			"offsets": {
+				"from": 145120,
+				"to": 148160
+			},
+			"text": " we can imagine future of the cities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,160",
+				"to": "00:02:31,280"
+			},
+			"offsets": {
+				"from": 148160,
+				"to": 151280
+			},
+			"text": " smart cities under Ethereum control."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,280",
+				"to": "00:02:36,720"
+			},
+			"offsets": {
+				"from": 151280,
+				"to": 156720
+			},
+			"text": " Because in the other cases, we will see smart cities"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,720",
+				"to": "00:02:40,720"
+			},
+			"offsets": {
+				"from": 156720,
+				"to": 160720
+			},
+			"text": " under cloud systems control."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,720",
+				"to": "00:02:47,600"
+			},
+			"offsets": {
+				"from": 160720,
+				"to": 167600
+			},
+			"text": " So for me, Ethereum will be better than cloud in smart cities."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,600",
+				"to": "00:02:51,840"
+			},
+			"offsets": {
+				"from": 167600,
+				"to": 171840
+			},
+			"text": " And about our experience, this is our first experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,840",
+				"to": "00:02:53,920"
+			},
+			"offsets": {
+				"from": 171840,
+				"to": 173920
+			},
+			"text": " It's a really fun experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,920",
+				"to": "00:02:57,320"
+			},
+			"offsets": {
+				"from": 173920,
+				"to": 177320
+			},
+			"text": " As you can see on this picture, our software developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,320",
+				"to": "00:03:01,040"
+			},
+			"offsets": {
+				"from": 177320,
+				"to": 181040
+			},
+			"text": " sits on the chair in winter in Russia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,040",
+				"to": "00:03:03,520"
+			},
+			"offsets": {
+				"from": 181040,
+				"to": 183520
+			},
+			"text": " music centers, the fields, and creates"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,520",
+				"to": "00:03:08,480"
+			},
+			"offsets": {
+				"from": 183520,
+				"to": 188480
+			},
+			"text": " your ever-smart contract between human and machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,480",
+				"to": "00:03:11,360"
+			},
+			"offsets": {
+				"from": 188480,
+				"to": 191360
+			},
+			"text": " Our human comes with pure court and finds"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,360",
+				"to": "00:03:16,320"
+			},
+			"offsets": {
+				"from": 191360,
+				"to": 196320
+			},
+			"text": " two minutes after writing talks to watch this video on YouTube."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,320",
+				"to": "00:03:21,600"
+			},
+			"offsets": {
+				"from": 196320,
+				"to": 201600
+			},
+			"text": " After that, we did a lot of other experiences with water drones,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,600",
+				"to": "00:03:24,480"
+			},
+			"offsets": {
+				"from": 201600,
+				"to": 204480
+			},
+			"text": " with drones, and pollution sensors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,480",
+				"to": "00:03:29,280"
+			},
+			"offsets": {
+				"from": 204480,
+				"to": 209280
+			},
+			"text": " with industrial regulators, with simulations of self-driving cars"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,280",
+				"to": "00:03:32,240"
+			},
+			"offsets": {
+				"from": 209280,
+				"to": 212240
+			},
+			"text": " and lights out factories."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,240",
+				"to": "00:03:37,120"
+			},
+			"offsets": {
+				"from": 212240,
+				"to": 217120
+			},
+			"text": " And today, we found some topics where"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,120",
+				"to": "00:03:41,040"
+			},
+			"offsets": {
+				"from": 217120,
+				"to": 221040
+			},
+			"text": " Ethereum today can be used for in-robosis fields."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,040",
+				"to": "00:03:46,800"
+			},
+			"offsets": {
+				"from": 221040,
+				"to": 226800
+			},
+			"text": " First of all, this is IT data marketplace for sensitive data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,800",
+				"to": "00:03:51,840"
+			},
+			"offsets": {
+				"from": 226800,
+				"to": 231840
+			},
+			"text": " Data where we want to have more transparency."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,840",
+				"to": "00:03:57,840"
+			},
+			"offsets": {
+				"from": 231840,
+				"to": 237840
+			},
+			"text": " For example, IT devices on green finance markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,840",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 237840,
+				"to": 242000
+			},
+			"text": " Second is it's industrial 4.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:06,960"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 246960
+			},
+			"text": " Today, with Ethereum, we can send our order from website,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,960",
+				"to": "00:04:09,840"
+			},
+			"offsets": {
+				"from": 246960,
+				"to": 249840
+			},
+			"text": " directly to Smart Factory with your options,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,840",
+				"to": "00:04:15,440"
+			},
+			"offsets": {
+				"from": 249840,
+				"to": 255440
+			},
+			"text": " and with money in order, without intermediaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,440",
+				"to": "00:04:17,520"
+			},
+			"offsets": {
+				"from": 255440,
+				"to": 257520
+			},
+			"text": " Next is a tractable supply chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,520",
+				"to": "00:04:22,400"
+			},
+			"offsets": {
+				"from": 257520,
+				"to": 262400
+			},
+			"text": " We can collect data on factories from IT sensors"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,400",
+				"to": "00:04:26,640"
+			},
+			"offsets": {
+				"from": 262400,
+				"to": 266640
+			},
+			"text": " and put cash on this data in Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,640",
+				"to": "00:04:31,280"
+			},
+			"offsets": {
+				"from": 266640,
+				"to": 271280
+			},
+			"text": " to create additional way for products with a traction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,280",
+				"to": "00:04:35,680"
+			},
+			"offsets": {
+				"from": 271280,
+				"to": 275680
+			},
+			"text": " And last month, what we found is we can use Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,680",
+				"to": "00:04:39,760"
+			},
+			"offsets": {
+				"from": 275680,
+				"to": 279760
+			},
+			"text": " as a admin traffic management system for self-driving cars"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,760",
+				"to": "00:04:45,040"
+			},
+			"offsets": {
+				"from": 279760,
+				"to": 285040
+			},
+			"text": " and drone delivery services in Smart Cities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,040",
+				"to": "00:04:49,600"
+			},
+			"offsets": {
+				"from": 285040,
+				"to": 289600
+			},
+			"text": " So everything what we did is experienced."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,600",
+				"to": "00:04:52,240"
+			},
+			"offsets": {
+				"from": 289600,
+				"to": 292240
+			},
+			"text": " You can find open source on GitHub,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,240",
+				"to": "00:04:57,040"
+			},
+			"offsets": {
+				"from": 292240,
+				"to": 297040
+			},
+			"text": " and it's not only just open source of all this experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,040",
+				"to": "00:05:00,400"
+			},
+			"offsets": {
+				"from": 297040,
+				"to": 300400
+			},
+			"text": " It's a common framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,400",
+				"to": "00:05:05,600"
+			},
+			"offsets": {
+				"from": 300400,
+				"to": 305600
+			},
+			"text": " It's a common framework, what you can use today for your IoT"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,600",
+				"to": "00:05:08,880"
+			},
+			"offsets": {
+				"from": 305600,
+				"to": 308880
+			},
+			"text": " smart city or industrial 4 projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,880",
+				"to": "00:05:13,280"
+			},
+			"offsets": {
+				"from": 308880,
+				"to": 313280
+			},
+			"text": " So try to use it and if you have some questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,280",
+				"to": "00:05:15,200"
+			},
+			"offsets": {
+				"from": 313280,
+				"to": 315200
+			},
+			"text": " find me here on the phone 5."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,200",
+				"to": "00:05:17,040"
+			},
+			"offsets": {
+				"from": 315200,
+				"to": 317040
+			},
+			"text": " Thank you for your time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,040",
+				"to": "00:05:20,400"
+			},
+			"offsets": {
+				"from": 317040,
+				"to": 320400
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,400",
+				"to": "00:05:23,880"
+			},
+			"offsets": {
+				"from": 320400,
+				"to": 323880
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,880",
+				"to": "00:05:27,240"
+			},
+			"offsets": {
+				"from": 323880,
+				"to": 327240
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,240",
+				"to": "00:05:30,600"
+			},
+			"offsets": {
+				"from": 327240,
+				"to": 330600
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,600",
+				"to": "00:05:33,340"
+			},
+			"offsets": {
+				"from": 330600,
+				"to": 333340
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,340",
+				"to": "00:05:36,080"
+			},
+			"offsets": {
+				"from": 333340,
+				"to": 336080
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

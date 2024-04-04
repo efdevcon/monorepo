@@ -1,0 +1,1913 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:15,480"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 15480
+			},
+			"text": " OK, I know it's pretty early now, so we appreciate"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,480",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 15480,
+				"to": 18000
+			},
+			"text": " that you get up early and come to this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:19,560"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 19560
+			},
+			"text": " So my name is Peter, and I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,560",
+				"to": "00:00:22,680"
+			},
+			"offsets": {
+				"from": 19560,
+				"to": 22680
+			},
+			"text": " to talk about our work that we did at the Shanghai Blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,680",
+				"to": "00:00:23,840"
+			},
+			"offsets": {
+				"from": 22680,
+				"to": 23840
+			},
+			"text": " Research Institute."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,840",
+				"to": "00:00:26,480"
+			},
+			"offsets": {
+				"from": 23840,
+				"to": 26480
+			},
+			"text": " And what we did was we investigated"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,480",
+				"to": "00:00:29,120"
+			},
+			"offsets": {
+				"from": 26480,
+				"to": 29120
+			},
+			"text": " how hard it would be to execute transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,120",
+				"to": "00:00:30,280"
+			},
+			"offsets": {
+				"from": 29120,
+				"to": 30280
+			},
+			"text": " in peril on the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,280",
+				"to": "00:00:32,380"
+			},
+			"offsets": {
+				"from": 30280,
+				"to": 32380
+			},
+			"text": " As you might know, the EVM is designed"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,380",
+				"to": "00:00:33,280"
+			},
+			"offsets": {
+				"from": 32380,
+				"to": 33280
+			},
+			"text": " in a sequential manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,280",
+				"to": "00:00:36,840"
+			},
+			"offsets": {
+				"from": 33280,
+				"to": 36840
+			},
+			"text": " Usually, you execute all transactions in a block one by one."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,840",
+				"to": "00:00:38,680"
+			},
+			"offsets": {
+				"from": 36840,
+				"to": 38680
+			},
+			"text": " So the question is, can we paralyze that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,680",
+				"to": "00:00:42,320"
+			},
+			"offsets": {
+				"from": 38680,
+				"to": 42320
+			},
+			"text": " Well, we found what I want to talk about today's two challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,320",
+				"to": "00:00:43,600"
+			},
+			"offsets": {
+				"from": 42320,
+				"to": 43600
+			},
+			"text": " that we identified."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,600",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 43600,
+				"to": 47000
+			},
+			"text": " And the first of those is transaction dependencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:51,240"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 51240
+			},
+			"text": " You're probably all familiar with how Ethereum works."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,240",
+				"to": "00:00:53,200"
+			},
+			"offsets": {
+				"from": 51240,
+				"to": 53200
+			},
+			"text": " Basically, we have a global share state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,200",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 53200,
+				"to": 55000
+			},
+			"text": " which is the state tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:57,960"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 57960
+			},
+			"text": " Theoretically, a transaction could access any point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,960",
+				"to": "00:01:00,840"
+			},
+			"offsets": {
+				"from": 57960,
+				"to": 60840
+			},
+			"text": " any entry in this state tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,840",
+				"to": "00:01:04,080"
+			},
+			"offsets": {
+				"from": 60840,
+				"to": 64080
+			},
+			"text": " That is whether it can access a slot or not"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,080",
+				"to": "00:01:06,480"
+			},
+			"offsets": {
+				"from": 64080,
+				"to": 66480
+			},
+			"text": " that's defined by the contract code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,480",
+				"to": "00:01:08,160"
+			},
+			"offsets": {
+				"from": 66480,
+				"to": 68160
+			},
+			"text": " So for instance, if we have two transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,160",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 68160,
+				"to": 71000
+			},
+			"text": " from two different accounts, and both of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:14,800"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 74800
+			},
+			"text": " call the same contract, and that contract reads or writes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,800",
+				"to": "00:01:17,120"
+			},
+			"offsets": {
+				"from": 74800,
+				"to": 77120
+			},
+			"text": " the same entry, then these transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,120",
+				"to": "00:01:20,080"
+			},
+			"offsets": {
+				"from": 77120,
+				"to": 80080
+			},
+			"text": " will have a conflict or a dependency."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,080",
+				"to": "00:01:22,240"
+			},
+			"offsets": {
+				"from": 80080,
+				"to": 82240
+			},
+			"text": " On Ethereum, this is not a problem now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,240",
+				"to": "00:01:24,400"
+			},
+			"offsets": {
+				"from": 82240,
+				"to": 84400
+			},
+			"text": " because we execute transactions sequentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,400",
+				"to": "00:01:25,880"
+			},
+			"offsets": {
+				"from": 84400,
+				"to": 85880
+			},
+			"text": " But if you paralyze them, then this"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,880",
+				"to": "00:01:28,680"
+			},
+			"offsets": {
+				"from": 85880,
+				"to": 88680
+			},
+			"text": " will become a problem, because you cannot concurrently"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,680",
+				"to": "00:01:30,640"
+			},
+			"offsets": {
+				"from": 88680,
+				"to": 90640
+			},
+			"text": " execute such transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,640",
+				"to": "00:01:33,400"
+			},
+			"offsets": {
+				"from": 90640,
+				"to": 93400
+			},
+			"text": " So we did some evaluations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,400",
+				"to": "00:01:36,400"
+			},
+			"offsets": {
+				"from": 93400,
+				"to": 96400
+			},
+			"text": " Basically, what we did is we collected some storage traces"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,400",
+				"to": "00:01:37,920"
+			},
+			"offsets": {
+				"from": 96400,
+				"to": 97920
+			},
+			"text": " for a few hundred thousands of blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,920",
+				"to": "00:01:41,120"
+			},
+			"offsets": {
+				"from": 97920,
+				"to": 101120
+			},
+			"text": " from historical data on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,120",
+				"to": "00:01:44,840"
+			},
+			"offsets": {
+				"from": 101120,
+				"to": 104840
+			},
+			"text": " And we did some simulations with some OCC scheduler."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,840",
+				"to": "00:01:48,560"
+			},
+			"offsets": {
+				"from": 104840,
+				"to": 108560
+			},
+			"text": " And what we found is that the theoretical maximum speedup"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,560",
+				"to": "00:01:50,720"
+			},
+			"offsets": {
+				"from": 108560,
+				"to": 110720
+			},
+			"text": " is as little as four times."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,720",
+				"to": "00:01:53,200"
+			},
+			"offsets": {
+				"from": 110720,
+				"to": 113200
+			},
+			"text": " So even if you have eight threads or 16 threads,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,200",
+				"to": "00:01:55,800"
+			},
+			"offsets": {
+				"from": 113200,
+				"to": 115800
+			},
+			"text": " at least on the VM level, if you don't consider storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,800",
+				"to": "00:01:57,920"
+			},
+			"offsets": {
+				"from": 115800,
+				"to": 117920
+			},
+			"text": " you cannot do much, much better than four times."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,920",
+				"to": "00:02:00,800"
+			},
+			"offsets": {
+				"from": 117920,
+				"to": 120800
+			},
+			"text": " And that's kind of an underwhelming result."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,800",
+				"to": "00:02:04,160"
+			},
+			"offsets": {
+				"from": 120800,
+				"to": 124160
+			},
+			"text": " So some examples, some simple examples of these dependencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,160",
+				"to": "00:02:06,720"
+			},
+			"offsets": {
+				"from": 124160,
+				"to": 126720
+			},
+			"text": " For instance, if you have two transactions to the same ERC20"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,720",
+				"to": "00:02:11,560"
+			},
+			"offsets": {
+				"from": 126720,
+				"to": 131560
+			},
+			"text": " token, if they send from the same sender to the same receiver,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,560",
+				"to": "00:02:14,560"
+			},
+			"offsets": {
+				"from": 131560,
+				"to": 134560
+			},
+			"text": " then they will conflict on the balances mapping."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,560",
+				"to": "00:02:16,960"
+			},
+			"offsets": {
+				"from": 134560,
+				"to": 136960
+			},
+			"text": " Or if you have two transactions swapping tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,960",
+				"to": "00:02:19,680"
+			},
+			"offsets": {
+				"from": 136960,
+				"to": 139680
+			},
+			"text": " and you uni swap, swapping the same token pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,680",
+				"to": "00:02:22,120"
+			},
+			"offsets": {
+				"from": 139680,
+				"to": 142120
+			},
+			"text": " then both of them will modify the reserve variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,120",
+				"to": "00:02:24,160"
+			},
+			"offsets": {
+				"from": 142120,
+				"to": 144160
+			},
+			"text": " So that's also another kind of conflict."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,160",
+				"to": "00:02:26,520"
+			},
+			"offsets": {
+				"from": 144160,
+				"to": 146520
+			},
+			"text": " Or if two transactions are minting an FTE,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,520",
+				"to": "00:02:29,400"
+			},
+			"offsets": {
+				"from": 146520,
+				"to": 149400
+			},
+			"text": " then for instance, they can conflict on total supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,400",
+				"to": "00:02:31,920"
+			},
+			"offsets": {
+				"from": 149400,
+				"to": 151920
+			},
+			"text": " if the contract is keeping track of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,920",
+				"to": "00:02:34,160"
+			},
+			"offsets": {
+				"from": 151920,
+				"to": 154160
+			},
+			"text": " We identified this and this is an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,160",
+				"to": "00:02:36,400"
+			},
+			"offsets": {
+				"from": 154160,
+				"to": 156400
+			},
+			"text": " I think this severely limits the parallelizability"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,400",
+				"to": "00:02:40,120"
+			},
+			"offsets": {
+				"from": 156400,
+				"to": 160120
+			},
+			"text": " of EVM transactions as they are today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,120",
+				"to": "00:02:42,800"
+			},
+			"offsets": {
+				"from": 160120,
+				"to": 162800
+			},
+			"text": " And we have some suggestions how we could improve this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,800",
+				"to": "00:02:47,040"
+			},
+			"offsets": {
+				"from": 162800,
+				"to": 167040
+			},
+			"text": " This is kind of early, just some ideas to throw in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,040",
+				"to": "00:02:49,200"
+			},
+			"offsets": {
+				"from": 167040,
+				"to": 169200
+			},
+			"text": " The first idea is to use a sharded counter."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,200",
+				"to": "00:02:53,320"
+			},
+			"offsets": {
+				"from": 169200,
+				"to": 173320
+			},
+			"text": " So from the examples before, you saw that many"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,320",
+				"to": "00:02:56,480"
+			},
+			"offsets": {
+				"from": 173320,
+				"to": 176480
+			},
+			"text": " of these conflicts are conflicts on a single storage slot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,480",
+				"to": "00:03:00,120"
+			},
+			"offsets": {
+				"from": 176480,
+				"to": 180120
+			},
+			"text": " which is like an integer or some counter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,120",
+				"to": "00:03:03,920"
+			},
+			"offsets": {
+				"from": 180120,
+				"to": 183920
+			},
+			"text": " And two transactions read and write the same slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,920",
+				"to": "00:03:06,680"
+			},
+			"offsets": {
+				"from": 183920,
+				"to": 186680
+			},
+			"text": " So the idea would be to shard it into multiple slots."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,680",
+				"to": "00:03:10,960"
+			},
+			"offsets": {
+				"from": 186680,
+				"to": 190960
+			},
+			"text": " So one int is represented by three, five, seven slots."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,960",
+				"to": "00:03:13,240"
+			},
+			"offsets": {
+				"from": 190960,
+				"to": 193240
+			},
+			"text": " And then we could route transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,240",
+				"to": "00:03:14,920"
+			},
+			"offsets": {
+				"from": 193240,
+				"to": 194920
+			},
+			"text": " based on some heuristic to different slots."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,920",
+				"to": "00:03:18,440"
+			},
+			"offsets": {
+				"from": 194920,
+				"to": 198440
+			},
+			"text": " Let's say we take the last byte of the hash of the sender address."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,440",
+				"to": "00:03:20,480"
+			},
+			"offsets": {
+				"from": 198440,
+				"to": 200480
+			},
+			"text": " So two transactions from different senders"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,480",
+				"to": "00:03:23,480"
+			},
+			"offsets": {
+				"from": 200480,
+				"to": 203480
+			},
+			"text": " would probably, with a higher probability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,480",
+				"to": "00:03:27,200"
+			},
+			"offsets": {
+				"from": 203480,
+				"to": 207200
+			},
+			"text": " they would modify different slots in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,200",
+				"to": "00:03:31,200"
+			},
+			"offsets": {
+				"from": 207200,
+				"to": 211200
+			},
+			"text": " And the second idea that we came up with is lazy add upcodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,200",
+				"to": "00:03:34,640"
+			},
+			"offsets": {
+				"from": 211200,
+				"to": 214640
+			},
+			"text": " So in this example, we have a very simple function"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,640",
+				"to": "00:03:36,760"
+			},
+			"offsets": {
+				"from": 214640,
+				"to": 216760
+			},
+			"text": " that's just incrementing a counter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,760",
+				"to": "00:03:39,120"
+			},
+			"offsets": {
+				"from": 216760,
+				"to": 219120
+			},
+			"text": " But when you compile it to EVM bytecode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,120",
+				"to": "00:03:41,480"
+			},
+			"offsets": {
+				"from": 219120,
+				"to": 221480
+			},
+			"text": " what you have is a storage load operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,480",
+				"to": "00:03:44,960"
+			},
+			"offsets": {
+				"from": 221480,
+				"to": 224960
+			},
+			"text": " Then you do something with that value and you store it back."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,960",
+				"to": "00:03:48,520"
+			},
+			"offsets": {
+				"from": 224960,
+				"to": 228520
+			},
+			"text": " So to concurrent transactions, we have a conflict"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,520",
+				"to": "00:03:51,920"
+			},
+			"offsets": {
+				"from": 228520,
+				"to": 231920
+			},
+			"text": " on these concurrent storage load storage store operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,920",
+				"to": "00:03:55,280"
+			},
+			"offsets": {
+				"from": 231920,
+				"to": 235280
+			},
+			"text": " And we cannot parallelize them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,280",
+				"to": "00:03:58,800"
+			},
+			"offsets": {
+				"from": 235280,
+				"to": 238800
+			},
+			"text": " The idea here is to maybe introduce a new semantics"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,800",
+				"to": "00:04:01,920"
+			},
+			"offsets": {
+				"from": 238800,
+				"to": 241920
+			},
+			"text": " for addition lazy add or commutative add."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,920",
+				"to": "00:04:04,040"
+			},
+			"offsets": {
+				"from": 241920,
+				"to": 244040
+			},
+			"text": " And that would be evaluated lazily."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,040",
+				"to": "00:04:09,040"
+			},
+			"offsets": {
+				"from": 244040,
+				"to": 249040
+			},
+			"text": " So these transactions can execute in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,040",
+				"to": "00:04:11,480"
+			},
+			"offsets": {
+				"from": 249040,
+				"to": 251480
+			},
+			"text": " And then we basically batch those two updates"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,480",
+				"to": "00:04:13,440"
+			},
+			"offsets": {
+				"from": 251480,
+				"to": 253440
+			},
+			"text": " to get rid of single update at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,440",
+				"to": "00:04:16,880"
+			},
+			"offsets": {
+				"from": 253440,
+				"to": 256880
+			},
+			"text": " And that could be executed at the end of the block, for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,880",
+				"to": "00:04:18,280"
+			},
+			"offsets": {
+				"from": 256880,
+				"to": 258280
+			},
+			"text": " The second challenge that we identified"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,280",
+				"to": "00:04:19,360"
+			},
+			"offsets": {
+				"from": 258280,
+				"to": 259360
+			},
+			"text": " is that of determinism."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,360",
+				"to": "00:04:22,360"
+			},
+			"offsets": {
+				"from": 259360,
+				"to": 262360
+			},
+			"text": " So as you might know, in parallel execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,360",
+				"to": "00:04:25,960"
+			},
+			"offsets": {
+				"from": 262360,
+				"to": 265960
+			},
+			"text": " there's a lot of non-determinism."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,960",
+				"to": "00:04:27,760"
+			},
+			"offsets": {
+				"from": 265960,
+				"to": 267760
+			},
+			"text": " And we can make sure that two transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,760",
+				"to": "00:04:30,320"
+			},
+			"offsets": {
+				"from": 267760,
+				"to": 270320
+			},
+			"text": " have the same result or two executions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,320",
+				"to": "00:04:32,200"
+			},
+			"offsets": {
+				"from": 270320,
+				"to": 272200
+			},
+			"text": " But there are other types of non-determinism."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,200",
+				"to": "00:04:34,840"
+			},
+			"offsets": {
+				"from": 272200,
+				"to": 274840
+			},
+			"text": " For instance, here, we have two executions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,840",
+				"to": "00:04:37,440"
+			},
+			"offsets": {
+				"from": 274840,
+				"to": 277440
+			},
+			"text": " of three different transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,440",
+				"to": "00:04:41,120"
+			},
+			"offsets": {
+				"from": 277440,
+				"to": 281120
+			},
+			"text": " And let's say transaction two depends on transaction one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,120",
+				"to": "00:04:43,040"
+			},
+			"offsets": {
+				"from": 281120,
+				"to": 283040
+			},
+			"text": " So in this case, on node A, one and two"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,040",
+				"to": "00:04:44,320"
+			},
+			"offsets": {
+				"from": 283040,
+				"to": 284320
+			},
+			"text": " are executed concurrently."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,320",
+				"to": "00:04:47,160"
+			},
+			"offsets": {
+				"from": 284320,
+				"to": 287160
+			},
+			"text": " So two has to abort and be re-executed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,160",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 287160,
+				"to": 290000
+			},
+			"text": " because there's an update that it could not see."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:52,240"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 292240
+			},
+			"text": " And on node B, they are executed sequentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,240",
+				"to": "00:04:55,640"
+			},
+			"offsets": {
+				"from": 292240,
+				"to": 295640
+			},
+			"text": " So node transaction two can commit directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,640",
+				"to": "00:04:57,480"
+			},
+			"offsets": {
+				"from": 295640,
+				"to": 297480
+			},
+			"text": " Our idea is that if we have parallel execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,480",
+				"to": "00:04:59,400"
+			},
+			"offsets": {
+				"from": 297480,
+				"to": 299400
+			},
+			"text": " at some point, we have to introduce some incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,400",
+				"to": "00:05:02,400"
+			},
+			"offsets": {
+				"from": 299400,
+				"to": 302400
+			},
+			"text": " Because if you can trigger some aborts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,400",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 302400,
+				"to": 306000
+			},
+			"text": " that kind of opens up the door for some denial of service"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:07,080"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 307080
+			},
+			"text": " attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,080",
+				"to": "00:05:10,040"
+			},
+			"offsets": {
+				"from": 307080,
+				"to": 310040
+			},
+			"text": " And if we do associate some incentives with aborts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,040",
+				"to": "00:05:12,880"
+			},
+			"offsets": {
+				"from": 310040,
+				"to": 312880
+			},
+			"text": " then to these two executions, in the example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,880",
+				"to": "00:05:15,920"
+			},
+			"offsets": {
+				"from": 312880,
+				"to": 315920
+			},
+			"text": " they will yield a different final state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,920",
+				"to": "00:05:17,560"
+			},
+			"offsets": {
+				"from": 315920,
+				"to": 317560
+			},
+			"text": " So that is going to be an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,560",
+				"to": "00:05:19,440"
+			},
+			"offsets": {
+				"from": 317560,
+				"to": 319440
+			},
+			"text": " Two nodes will diverge."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,440",
+				"to": "00:05:22,480"
+			},
+			"offsets": {
+				"from": 319440,
+				"to": 322480
+			},
+			"text": " So for this, we kind of came up with a new scheduling framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,480",
+				"to": "00:05:24,480"
+			},
+			"offsets": {
+				"from": 322480,
+				"to": 324480
+			},
+			"text": " called optimistic concurrency control"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,480",
+				"to": "00:05:26,440"
+			},
+			"offsets": {
+				"from": 324480,
+				"to": 326440
+			},
+			"text": " with deterministic aborts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,440",
+				"to": "00:05:28,240"
+			},
+			"offsets": {
+				"from": 326440,
+				"to": 328240
+			},
+			"text": " And the idea is very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,240",
+				"to": "00:05:31,720"
+			},
+			"offsets": {
+				"from": 328240,
+				"to": 331720
+			},
+			"text": " Instead of deciding these abort commit decisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,720",
+				"to": "00:05:34,560"
+			},
+			"offsets": {
+				"from": 331720,
+				"to": 334560
+			},
+			"text": " during runtime, you make this decision prior to running"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,560",
+				"to": "00:05:37,280"
+			},
+			"offsets": {
+				"from": 334560,
+				"to": 337280
+			},
+			"text": " the transactions in a deterministic way."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,280",
+				"to": "00:05:41,160"
+			},
+			"offsets": {
+				"from": 337280,
+				"to": 341160
+			},
+			"text": " So these decisions will be deterministically"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,160",
+				"to": "00:05:42,760"
+			},
+			"offsets": {
+				"from": 341160,
+				"to": 342760
+			},
+			"text": " the same on all nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,760",
+				"to": "00:05:45,400"
+			},
+			"offsets": {
+				"from": 342760,
+				"to": 345400
+			},
+			"text": " And this way, even if you attach incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,400",
+				"to": "00:05:47,880"
+			},
+			"offsets": {
+				"from": 345400,
+				"to": 347880
+			},
+			"text": " to these decisions, the final state"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,880",
+				"to": "00:05:51,320"
+			},
+			"offsets": {
+				"from": 347880,
+				"to": 351320
+			},
+			"text": " that different nodes will arrive on will be the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,320",
+				"to": "00:05:54,440"
+			},
+			"offsets": {
+				"from": 351320,
+				"to": 354440
+			},
+			"text": " So this is the OCCDA framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,440",
+				"to": "00:05:57,880"
+			},
+			"offsets": {
+				"from": 354440,
+				"to": 357880
+			},
+			"text": " It's just a summarized kind of the takeaway from this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,880",
+				"to": "00:06:00,680"
+			},
+			"offsets": {
+				"from": 357880,
+				"to": 360680
+			},
+			"text": " So it's pretty hard to get parallelization done on the EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,680",
+				"to": "00:06:03,280"
+			},
+			"offsets": {
+				"from": 360680,
+				"to": 363280
+			},
+			"text": " because it was not designed with this in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,280",
+				"to": "00:06:05,640"
+			},
+			"offsets": {
+				"from": 363280,
+				"to": 365640
+			},
+			"text": " But I think it's going to be worth it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,640",
+				"to": "00:06:08,240"
+			},
+			"offsets": {
+				"from": 365640,
+				"to": 368240
+			},
+			"text": " For instance, if you manage to scale Ethereum on layer one"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,240",
+				"to": "00:06:11,360"
+			},
+			"offsets": {
+				"from": 368240,
+				"to": 371360
+			},
+			"text": " or layer two with a higher transaction load,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,360",
+				"to": "00:06:17,120"
+			},
+			"offsets": {
+				"from": 371360,
+				"to": 377120
+			},
+			"text": " a fair execution will have a very big impact on the overall efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,120",
+				"to": "00:06:18,120"
+			},
+			"offsets": {
+				"from": 377120,
+				"to": 378120
+			},
+			"text": " of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,120",
+				"to": "00:06:21,040"
+			},
+			"offsets": {
+				"from": 378120,
+				"to": 381040
+			},
+			"text": " So if you're interested in this research direction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,040",
+				"to": "00:06:24,040"
+			},
+			"offsets": {
+				"from": 381040,
+				"to": 384040
+			},
+			"text": " I would encourage you to read up on it, think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,040",
+				"to": "00:06:27,640"
+			},
+			"offsets": {
+				"from": 384040,
+				"to": 387640
+			},
+			"text": " And we actually have a publication about this topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,640",
+				"to": "00:06:29,680"
+			},
+			"offsets": {
+				"from": 387640,
+				"to": 389680
+			},
+			"text": " So if you're interested in a much detailed discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,680",
+				"to": "00:06:31,520"
+			},
+			"offsets": {
+				"from": 389680,
+				"to": 391520
+			},
+			"text": " about the ideas that I talked about here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,520",
+				"to": "00:06:35,080"
+			},
+			"offsets": {
+				"from": 391520,
+				"to": 395080
+			},
+			"text": " you can go ahead and scan the QR code and read the preprint."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,080",
+				"to": "00:06:36,960"
+			},
+			"offsets": {
+				"from": 395080,
+				"to": 396960
+			},
+			"text": " That kind of concludes my talk today."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,960",
+				"to": "00:06:39,320"
+			},
+			"offsets": {
+				"from": 396960,
+				"to": 399320
+			},
+			"text": " Thank you very much for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,320",
+				"to": "00:06:41,320"
+			},
+			"offsets": {
+				"from": 399320,
+				"to": 401320
+			},
+			"text": " Thank you very much, Peter."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,320",
+				"to": "00:06:44,440"
+			},
+			"offsets": {
+				"from": 401320,
+				"to": 404440
+			},
+			"text": " We have time for one quick question."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,440",
+				"to": "00:06:49,400"
+			},
+			"offsets": {
+				"from": 404440,
+				"to": 409400
+			},
+			"text": " I was wondering what your thoughts are on parallelizing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,400",
+				"to": "00:06:53,840"
+			},
+			"offsets": {
+				"from": 409400,
+				"to": 413840
+			},
+			"text": " just balanced transfers, which are much simpler."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,840",
+				"to": "00:06:57,320"
+			},
+			"offsets": {
+				"from": 413840,
+				"to": 417320
+			},
+			"text": " It's still contract stuff, just like Ethereum balanced transfers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,320",
+				"to": "00:07:00,440"
+			},
+			"offsets": {
+				"from": 417320,
+				"to": 420440
+			},
+			"text": " like certain transaction types are radically simpler"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,440",
+				"to": "00:07:02,720"
+			},
+			"offsets": {
+				"from": 420440,
+				"to": 422720
+			},
+			"text": " than contract execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,720",
+				"to": "00:07:05,600"
+			},
+			"offsets": {
+				"from": 422720,
+				"to": 425600
+			},
+			"text": " And I wonder if you had any thoughts on that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,600",
+				"to": "00:07:06,760"
+			},
+			"offsets": {
+				"from": 425600,
+				"to": 426760
+			},
+			"text": " Yeah, that's a good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,760",
+				"to": "00:07:10,240"
+			},
+			"offsets": {
+				"from": 426760,
+				"to": 430240
+			},
+			"text": " So here we only considered contracts for each conflict."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,240",
+				"to": "00:07:12,280"
+			},
+			"offsets": {
+				"from": 430240,
+				"to": 432280
+			},
+			"text": " But actually, there are different kind of conflicts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,280",
+				"to": "00:07:14,240"
+			},
+			"offsets": {
+				"from": 432280,
+				"to": 434240
+			},
+			"text": " Another part of the state tree is the account"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,240",
+				"to": "00:07:16,960"
+			},
+			"offsets": {
+				"from": 434240,
+				"to": 436960
+			},
+			"text": " with the unknowns and the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,960",
+				"to": "00:07:20,840"
+			},
+			"offsets": {
+				"from": 436960,
+				"to": 440840
+			},
+			"text": " So yeah, simple transfers are expected to be much easier"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,840",
+				"to": "00:07:21,960"
+			},
+			"offsets": {
+				"from": 440840,
+				"to": 441960
+			},
+			"text": " to parallelize."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,960",
+				"to": "00:07:24,200"
+			},
+			"offsets": {
+				"from": 441960,
+				"to": 444200
+			},
+			"text": " And even with contracts with access lists,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,200",
+				"to": "00:07:28,800"
+			},
+			"offsets": {
+				"from": 444200,
+				"to": 448800
+			},
+			"text": " you get much more information that you can use to parallelize."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,800",
+				"to": "00:07:31,160"
+			},
+			"offsets": {
+				"from": 448800,
+				"to": 451160
+			},
+			"text": " But I'm not sure the majority of transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,160",
+				"to": "00:07:32,280"
+			},
+			"offsets": {
+				"from": 451160,
+				"to": 452280
+			},
+			"text": " I think, are contract calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,280",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 452280,
+				"to": 454000
+			},
+			"text": " So I'm not sure about the impact of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:37,120"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 457120
+			},
+			"text": " But I think that's certainly something to look into."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,120",
+				"to": "00:07:37,760"
+			},
+			"offsets": {
+				"from": 457120,
+				"to": 457760
+			},
+			"text": " Thanks again."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,760",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 457760,
+				"to": 460000
+			},
+			"text": " OK, thank you very much, Peter."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:42,560"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 462560
+			},
+			"text": " And applause for Peter, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,560",
+				"to": "00:07:45,560"
+			},
+			"offsets": {
+				"from": 462560,
+				"to": 465560
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,560",
+				"to": "00:07:48,560"
+			},
+			"offsets": {
+				"from": 465560,
+				"to": 468560
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,560",
+				"to": "00:07:52,560"
+			},
+			"offsets": {
+				"from": 468560,
+				"to": 472560
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

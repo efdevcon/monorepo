@@ -1,0 +1,1198 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,300"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6300
+			},
+			"text": " Today I'll be giving sort of the brief overview of this privacy preserving smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,300",
+				"to": "00:00:07,300"
+			},
+			"offsets": {
+				"from": 6300,
+				"to": 7300
+			},
+			"text": " industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,300",
+				"to": "00:00:13,100"
+			},
+			"offsets": {
+				"from": 7300,
+				"to": 13100
+			},
+			"text": " It's sort of quite a hot thing now with companies like Oasis raising a lot of money and sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,100",
+				"to": "00:00:18,720"
+			},
+			"offsets": {
+				"from": 13100,
+				"to": 18720
+			},
+			"text": " of I'll be breaking down the different approaches to achieving this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,720",
+				"to": "00:00:24,780"
+			},
+			"offsets": {
+				"from": 18720,
+				"to": 24780
+			},
+			"text": " So sort of the easiest example to understand why this is useful at all is let's think"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,780",
+				"to": "00:00:28,260"
+			},
+			"offsets": {
+				"from": 24780,
+				"to": 28260
+			},
+			"text": " of like a private election smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,260",
+				"to": "00:00:33,160"
+			},
+			"offsets": {
+				"from": 28260,
+				"to": 33160
+			},
+			"text": " We all want to vote and the smart contract will sort of count everyone's votes and give"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,160",
+				"to": "00:00:34,620"
+			},
+			"offsets": {
+				"from": 33160,
+				"to": 34620
+			},
+			"text": " like a winner."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,620",
+				"to": "00:00:39,500"
+			},
+			"offsets": {
+				"from": 34620,
+				"to": 39500
+			},
+			"text": " But as you can see in this example, let's say vote one and two come in at the same time"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,500",
+				"to": "00:00:42,520"
+			},
+			"offsets": {
+				"from": 39500,
+				"to": 42520
+			},
+			"text": " and vote three comes in at like ten minutes later."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,520",
+				"to": "00:00:46,840"
+			},
+			"offsets": {
+				"from": 42520,
+				"to": 46840
+			},
+			"text": " The third vote can actually see what the other people have voted first."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,840",
+				"to": "00:00:52,800"
+			},
+			"offsets": {
+				"from": 46840,
+				"to": 52800
+			},
+			"text": " They can sort of decide oh it's 50-50 right now so now if I vote I can actually push the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,800",
+				"to": "00:00:56,560"
+			},
+			"offsets": {
+				"from": 52800,
+				"to": 56560
+			},
+			"text": " result in whichever favor I want."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,560",
+				"to": "00:00:57,820"
+			},
+			"offsets": {
+				"from": 56560,
+				"to": 57820
+			},
+			"text": " Which is really bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,820",
+				"to": "00:01:03,180"
+			},
+			"offsets": {
+				"from": 57820,
+				"to": 63180
+			},
+			"text": " So what we want is actually everything hidden, all the inputs are hidden, the state of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,180",
+				"to": "00:01:09,100"
+			},
+			"offsets": {
+				"from": 63180,
+				"to": 69100
+			},
+			"text": " smart contract is hidden and we can only see the actual result."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,100",
+				"to": "00:01:11,380"
+			},
+			"offsets": {
+				"from": 69100,
+				"to": 71380
+			},
+			"text": " So there are sort of four ways of doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,380",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 71380,
+				"to": 76000
+			},
+			"text": " The first one is homomorphic encryption which is sort of like a pipe dream and it's really"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:19,660"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 79660
+			},
+			"text": " slow today so it's not really feasible right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,660",
+				"to": "00:01:24,540"
+			},
+			"offsets": {
+				"from": 79660,
+				"to": 84540
+			},
+			"text": " But the three ones I'll cover today are trusted in execution environments, multi-party"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,540",
+				"to": "00:01:27,380"
+			},
+			"offsets": {
+				"from": 84540,
+				"to": 87380
+			},
+			"text": " computation and zero-knowledge proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,380",
+				"to": "00:01:30,740"
+			},
+			"offsets": {
+				"from": 87380,
+				"to": 90740
+			},
+			"text": " Zuko will be really happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,740",
+				"to": "00:01:37,860"
+			},
+			"offsets": {
+				"from": 90740,
+				"to": 97860
+			},
+			"text": " So the first one TEs are sort of this idea that on computer chips there can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,860",
+				"to": "00:01:43,260"
+			},
+			"offsets": {
+				"from": 97860,
+				"to": 103260
+			},
+			"text": " be like a separate environment which is sort of hidden from the OS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,260",
+				"to": "00:01:46,700"
+			},
+			"offsets": {
+				"from": 103260,
+				"to": 106700
+			},
+			"text": " So, and this sort of special they call it enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,700",
+				"to": "00:01:51,060"
+			},
+			"offsets": {
+				"from": 106700,
+				"to": 111060
+			},
+			"text": " Imagine if this enclave had like a private key and a public key and I encrypt the file"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,060",
+				"to": "00:01:55,100"
+			},
+			"offsets": {
+				"from": 111060,
+				"to": 115100
+			},
+			"text": " with the enclave's public key only the enclave can actually decrypt it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,100",
+				"to": "00:01:58,180"
+			},
+			"offsets": {
+				"from": 115100,
+				"to": 118180
+			},
+			"text": " No one else in the entire work can see what it actually is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,180",
+				"to": "00:02:03,500"
+			},
+			"offsets": {
+				"from": 118180,
+				"to": 123500
+			},
+			"text": " So that's how we can actually achieve this private computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,500",
+				"to": "00:02:09,140"
+			},
+			"offsets": {
+				"from": 123500,
+				"to": 129140
+			},
+			"text": " Sort of the most common thing, the most common enclave today is the Intel SGX chip which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,140",
+				"to": "00:02:13,780"
+			},
+			"offsets": {
+				"from": 129140,
+				"to": 133780
+			},
+			"text": " actually available in most Intel computers today, Intel chips today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,780",
+				"to": "00:02:18,740"
+			},
+			"offsets": {
+				"from": 133780,
+				"to": 138740
+			},
+			"text": " But obviously there are some problems with like we are having to trust Intel that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,740",
+				"to": "00:02:21,740"
+			},
+			"offsets": {
+				"from": 138740,
+				"to": 141740
+			},
+			"text": " did not put like a backdoor or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,740",
+				"to": "00:02:26,260"
+			},
+			"offsets": {
+				"from": 141740,
+				"to": 146260
+			},
+			"text": " But sort of you can think of how it will work is that we have a smart contract which actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,260",
+				"to": "00:02:34,300"
+			},
+			"offsets": {
+				"from": 146260,
+				"to": 154300
+			},
+			"text": " coordinates users and off-chain trusted execution environment computers and they don't see what"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,300",
+				"to": "00:02:37,820"
+			},
+			"offsets": {
+				"from": 154300,
+				"to": 157820
+			},
+			"text": " you're actually computing but they will help you do the result."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,820",
+				"to": "00:02:43,300"
+			},
+			"offsets": {
+				"from": 157820,
+				"to": 163300
+			},
+			"text": " That's like the easiest way and the most practical one today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,300",
+				"to": "00:02:46,500"
+			},
+			"offsets": {
+				"from": 163300,
+				"to": 166500
+			},
+			"text": " The second one is quite interesting is the cryptographic method."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,500",
+				"to": "00:02:48,020"
+			},
+			"offsets": {
+				"from": 166500,
+				"to": 168020
+			},
+			"text": " It's not hardware at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,020",
+				"to": "00:02:49,300"
+			},
+			"offsets": {
+				"from": 168020,
+				"to": 169300
+			},
+			"text": " It's called MPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,300",
+				"to": "00:02:52,540"
+			},
+			"offsets": {
+				"from": 169300,
+				"to": 172540
+			},
+			"text": " Some of you guys might have heard of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,540",
+				"to": "00:02:54,620"
+			},
+			"offsets": {
+				"from": 172540,
+				"to": 174620
+			},
+			"text": " It sort of goes like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,620",
+				"to": "00:03:00,340"
+			},
+			"offsets": {
+				"from": 174620,
+				"to": 180340
+			},
+			"text": " Let's say there are three people XYZ who want to compute like the sum of their numbers"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,340",
+				"to": "00:03:06,460"
+			},
+			"offsets": {
+				"from": 180340,
+				"to": 186460
+			},
+			"text": " or whatever but each of them don't want to reveal what their actual number is."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,460",
+				"to": "00:03:11,300"
+			},
+			"offsets": {
+				"from": 186460,
+				"to": 191300
+			},
+			"text": " What person X can do is he can do like a linear secret sharing scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,300",
+				"to": "00:03:18,140"
+			},
+			"offsets": {
+				"from": 191300,
+				"to": 198140
+			},
+			"text": " He can break down his input like X into three pieces maybe X1, X2 and X3."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,140",
+				"to": "00:03:21,220"
+			},
+			"offsets": {
+				"from": 198140,
+				"to": 201220
+			},
+			"text": " And he can send these to three different nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,220",
+				"to": "00:03:25,740"
+			},
+			"offsets": {
+				"from": 201220,
+				"to": 205740
+			},
+			"text": " Y will do the same, Z will do the same and in the end one of these nodes for example that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,740",
+				"to": "00:03:34,420"
+			},
+			"offsets": {
+				"from": 205740,
+				"to": 214420
+			},
+			"text": " node there, he only gets X1, Y1, Z1 and he can calculate some one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,420",
+				"to": "00:03:38,780"
+			},
+			"offsets": {
+				"from": 214420,
+				"to": 218780
+			},
+			"text": " So he doesn't actually see the full input of any of the XYZ but he only gets like a piece"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,780",
+				"to": "00:03:43,140"
+			},
+			"offsets": {
+				"from": 218780,
+				"to": 223140
+			},
+			"text": " of it and in the end all three of them can come together and actually produce the actual"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,140",
+				"to": "00:03:46,780"
+			},
+			"offsets": {
+				"from": 223140,
+				"to": 226780
+			},
+			"text": " sum without anyone seeing what the actual inputs were."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,780",
+				"to": "00:03:50,740"
+			},
+			"offsets": {
+				"from": 226780,
+				"to": 230740
+			},
+			"text": " It's quite magical actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,740",
+				"to": "00:03:52,860"
+			},
+			"offsets": {
+				"from": 230740,
+				"to": 232860
+			},
+			"text": " Editions is really easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,860",
+				"to": "00:03:57,460"
+			},
+			"offsets": {
+				"from": 232860,
+				"to": 237460
+			},
+			"text": " Multiplication is super hard for this MPC method but there are a lot of cryptographic ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,460",
+				"to": "00:04:03,020"
+			},
+			"offsets": {
+				"from": 237460,
+				"to": 243020
+			},
+			"text": " of doing it and most of like the cutting edge work today is sort of trying to optimize doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,020",
+				"to": "00:04:04,540"
+			},
+			"offsets": {
+				"from": 243020,
+				"to": 244540
+			},
+			"text": " multiplication."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,540",
+				"to": "00:04:10,420"
+			},
+			"offsets": {
+				"from": 244540,
+				"to": 250420
+			},
+			"text": " And actually if you can do multiplication and addition you can do any computation you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,420",
+				"to": "00:04:12,260"
+			},
+			"offsets": {
+				"from": 250420,
+				"to": 252260
+			},
+			"text": " in the entire world."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,260",
+				"to": "00:04:20,420"
+			},
+			"offsets": {
+				"from": 252260,
+				"to": 260420
+			},
+			"text": " So that's how you can achieve sort of these two incomplete private smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,420",
+				"to": "00:04:26,380"
+			},
+			"offsets": {
+				"from": 260420,
+				"to": 266380
+			},
+			"text": " One of the big problems of that is like for example for the MPC thing what if one guy"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,380",
+				"to": "00:04:31,580"
+			},
+			"offsets": {
+				"from": 266380,
+				"to": 271580
+			},
+			"text": " actually doesn't do the correct protocol he just does some random computation and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,580",
+				"to": "00:04:35,460"
+			},
+			"offsets": {
+				"from": 271580,
+				"to": 275460
+			},
+			"text": " result is nonsense he would have wasted everyone else's time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,460",
+				"to": "00:04:38,420"
+			},
+			"offsets": {
+				"from": 275460,
+				"to": 278420
+			},
+			"text": " So that's some sort of civil attack kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,420",
+				"to": "00:04:44,180"
+			},
+			"offsets": {
+				"from": 278420,
+				"to": 284180
+			},
+			"text": " So we also want to make sure that all these private computing notes do the right thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,180",
+				"to": "00:04:45,540"
+			},
+			"offsets": {
+				"from": 284180,
+				"to": 285540
+			},
+			"text": " So how do you do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,540",
+				"to": "00:04:48,940"
+			},
+			"offsets": {
+				"from": 285540,
+				"to": 288940
+			},
+			"text": " We sort of force them to prove that they did the correct thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,940",
+				"to": "00:04:51,460"
+			},
+			"offsets": {
+				"from": 288940,
+				"to": 291460
+			},
+			"text": " They ran the correct computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,460",
+				"to": "00:04:54,980"
+			},
+			"offsets": {
+				"from": 291460,
+				"to": 294980
+			},
+			"text": " There are sort of two ways of doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,980",
+				"to": "00:04:57,660"
+			},
+			"offsets": {
+				"from": 294980,
+				"to": 297660
+			},
+			"text": " One is the two bit model."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,660",
+				"to": "00:04:59,460"
+			},
+			"offsets": {
+				"from": 297660,
+				"to": 299460
+			},
+			"text": " It's really easy to do today."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,460",
+				"to": "00:05:04,620"
+			},
+			"offsets": {
+				"from": 299460,
+				"to": 304620
+			},
+			"text": " It doesn't use much cryptography is more like economically guaranteeing that people do correct"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,620",
+				"to": "00:05:06,340"
+			},
+			"offsets": {
+				"from": 304620,
+				"to": 306340
+			},
+			"text": " computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,340",
+				"to": "00:05:10,780"
+			},
+			"offsets": {
+				"from": 306340,
+				"to": 310780
+			},
+			"text": " But sort of I think the more interesting one is sort of using like zero knowledge proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,780",
+				"to": "00:05:16,220"
+			},
+			"offsets": {
+				"from": 310780,
+				"to": 316220
+			},
+			"text": " stuff like that to make sure that notes can actually run the computation, submit a proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,220",
+				"to": "00:05:21,100"
+			},
+			"offsets": {
+				"from": 316220,
+				"to": 321100
+			},
+			"text": " to the smart contract that they actually ran the right one and this mathematical guarantee"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,100",
+				"to": "00:05:23,500"
+			},
+			"offsets": {
+				"from": 321100,
+				"to": 323500
+			},
+			"text": " that they did."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,500",
+				"to": "00:05:28,340"
+			},
+			"offsets": {
+				"from": 323500,
+				"to": 328340
+			},
+			"text": " So Snarts us quite interesting in this regard but they need a trusted set up for each type"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,340",
+				"to": "00:05:30,580"
+			},
+			"offsets": {
+				"from": 328340,
+				"to": 330580
+			},
+			"text": " of computation that you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,580",
+				"to": "00:05:35,740"
+			},
+			"offsets": {
+				"from": 330580,
+				"to": 335740
+			},
+			"text": " So it might be good for like one time one contract which has, which is used many, many"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,740",
+				"to": "00:05:38,140"
+			},
+			"offsets": {
+				"from": 335740,
+				"to": 338140
+			},
+			"text": " times like maybe like Zcash type thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,140",
+				"to": "00:05:41,980"
+			},
+			"offsets": {
+				"from": 338140,
+				"to": 341980
+			},
+			"text": " But if you want like a new trusted set up for each smart contract, that's like super"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,980",
+				"to": "00:05:43,940"
+			},
+			"offsets": {
+				"from": 341980,
+				"to": 343940
+			},
+			"text": " unscalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,940",
+				"to": "00:05:47,300"
+			},
+			"offsets": {
+				"from": 343940,
+				"to": 347300
+			},
+			"text": " So there are a lot of cool new things that you guys have seen over the last few days"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,300",
+				"to": "00:05:53,500"
+			},
+			"offsets": {
+				"from": 347300,
+				"to": 353500
+			},
+			"text": " like starts and there's this one new protocol called ZEXI I think which is by some Cornell"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,500",
+				"to": "00:06:00,020"
+			},
+			"offsets": {
+				"from": 353500,
+				"to": 360020
+			},
+			"text": " guys which also does this in a very interesting way."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,020",
+				"to": "00:06:06,780"
+			},
+			"offsets": {
+				"from": 360020,
+				"to": 366780
+			},
+			"text": " So sort of to put it all together we can think of the original problem of hiding all the inputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,780",
+				"to": "00:06:11,260"
+			},
+			"offsets": {
+				"from": 366780,
+				"to": 371260
+			},
+			"text": " hiding the state of the smart contract and getting the output using the tree methods that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,260",
+				"to": "00:06:13,140"
+			},
+			"offsets": {
+				"from": 371260,
+				"to": 373140
+			},
+			"text": " I mentioned above."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,140",
+				"to": "00:06:19,420"
+			},
+			"offsets": {
+				"from": 373140,
+				"to": 379420
+			},
+			"text": " So we can make sure that the smart, the people who are computing the actual output, the computing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,420",
+				"to": "00:06:25,260"
+			},
+			"offsets": {
+				"from": 379420,
+				"to": 385260
+			},
+			"text": " notes all have to run trusted execution environments and if that is compromised they also have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,260",
+				"to": "00:06:26,740"
+			},
+			"offsets": {
+				"from": 385260,
+				"to": 386740
+			},
+			"text": " to run an NPC protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,740",
+				"to": "00:06:31,580"
+			},
+			"offsets": {
+				"from": 386740,
+				"to": 391580
+			},
+			"text": " So if you're able to pretend that you have like an enclave but you actually don't, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,580",
+				"to": "00:06:33,700"
+			},
+			"offsets": {
+				"from": 391580,
+				"to": 393700
+			},
+			"text": " still only have a piece of the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,700",
+				"to": "00:06:38,220"
+			},
+			"offsets": {
+				"from": 393700,
+				"to": 398220
+			},
+			"text": " It's really strong adversarial guarantees actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,220",
+				"to": "00:06:43,740"
+			},
+			"offsets": {
+				"from": 398220,
+				"to": 403740
+			},
+			"text": " And lastly we can use some sort of zero knowledge proof so that these computing notes can show"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,740",
+				"to": "00:06:46,740"
+			},
+			"offsets": {
+				"from": 403740,
+				"to": 406740
+			},
+			"text": " the whole world that they render thing correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,740",
+				"to": "00:06:52,980"
+			},
+			"offsets": {
+				"from": 406740,
+				"to": 412980
+			},
+			"text": " And we can also sort of use the smart contract to economically incentivize this whole process"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,980",
+				"to": "00:06:58,620"
+			},
+			"offsets": {
+				"from": 412980,
+				"to": 418620
+			},
+			"text": " and we can do private voting stuff and a lot of other cool applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,620",
+				"to": "00:06:59,260"
+			},
+			"offsets": {
+				"from": 418620,
+				"to": 419260
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,260",
+				"to": "00:07:02,500"
+			},
+			"offsets": {
+				"from": 419260,
+				"to": 422500
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,500",
+				"to": "00:07:09,500"
+			},
+			"offsets": {
+				"from": 422500,
+				"to": 429500
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,500",
+				"to": "00:07:16,500"
+			},
+			"offsets": {
+				"from": 429500,
+				"to": 436500
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,500",
+				"to": "00:07:23,500"
+			},
+			"offsets": {
+				"from": 436500,
+				"to": 443500
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,500",
+				"to": "00:07:30,500"
+			},
+			"offsets": {
+				"from": 443500,
+				"to": 450500
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,500",
+				"to": "00:07:59,500"
+			},
+			"offsets": {
+				"from": 450500,
+				"to": 479500
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,1066 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,160"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2160
+			},
+			"text": " >> Hi, I'm Muston Griffiths."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,160",
+				"to": "00:00:04,960"
+			},
+			"offsets": {
+				"from": 2160,
+				"to": 4960
+			},
+			"text": " So probably a couple months ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,960",
+				"to": "00:00:08,480"
+			},
+			"offsets": {
+				"from": 4960,
+				"to": 8480
+			},
+			"text": " I started learning what meta transactions were and how they worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,480",
+				"to": "00:00:15,040"
+			},
+			"offsets": {
+				"from": 8480,
+				"to": 15040
+			},
+			"text": " And we created something called a bouncer proxy that lets you pay the gas for your users."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,040",
+				"to": "00:00:19,120"
+			},
+			"offsets": {
+				"from": 15040,
+				"to": 19120
+			},
+			"text": " And then there was this moment where we were thinking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,120",
+				"to": "00:00:22,080"
+			},
+			"offsets": {
+				"from": 19120,
+				"to": 22080
+			},
+			"text": " how could we make these things replayable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,080",
+				"to": "00:00:25,160"
+			},
+			"offsets": {
+				"from": 22080,
+				"to": 25160
+			},
+			"text": " There's a replay-nance in there to keep,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,160",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 25160,
+				"to": 28000
+			},
+			"text": " basically keep you protected from replay."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:29,440"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 29440
+			},
+			"text": " And we were like, \"Well, wait a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,440",
+				"to": "00:00:34,160"
+			},
+			"offsets": {
+				"from": 29440,
+				"to": 34160
+			},
+			"text": " What if we use that as a timestamp that we could set as a period"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,160",
+				"to": "00:00:36,360"
+			},
+			"offsets": {
+				"from": 34160,
+				"to": 36360
+			},
+			"text": " that you could play over and over again?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,360",
+				"to": "00:00:40,520"
+			},
+			"offsets": {
+				"from": 36360,
+				"to": 40520
+			},
+			"text": " So we kind of put together a contract and set up a subscription system"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,520",
+				"to": "00:00:43,080"
+			},
+			"offsets": {
+				"from": 40520,
+				"to": 43080
+			},
+			"text": " where you sign a meta transaction that says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,080",
+				"to": "00:00:48,960"
+			},
+			"offsets": {
+				"from": 43080,
+				"to": 48960
+			},
+			"text": " \"I would like to send five die to this person every month.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,960",
+				"to": "00:00:51,200"
+			},
+			"offsets": {
+				"from": 48960,
+				"to": 51200
+			},
+			"text": " And die is pretty good for every month, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,200",
+				"to": "00:00:53,840"
+			},
+			"offsets": {
+				"from": 51200,
+				"to": 53840
+			},
+			"text": " Going back to the maker guys and the POA guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,840",
+				"to": "00:00:55,400"
+			},
+			"offsets": {
+				"from": 53840,
+				"to": 55400
+			},
+			"text": " It's like, \"Ginna stay stable."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,400",
+				"to": "00:00:59,800"
+			},
+			"offsets": {
+				"from": 55400,
+				"to": 59800
+			},
+			"text": " You know it's going to be five dollars a year from now, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,800",
+				"to": "00:01:01,880"
+			},
+			"offsets": {
+				"from": 59800,
+				"to": 61880
+			},
+			"text": " There's no price fluctuation.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,880",
+				"to": "00:01:05,600"
+			},
+			"offsets": {
+				"from": 61880,
+				"to": 65600
+			},
+			"text": " So we basically set up, you sign one meta transaction that says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,600",
+				"to": "00:01:09,920"
+			},
+			"offsets": {
+				"from": 65600,
+				"to": 69920
+			},
+			"text": " \"I want to send five die from this person to this person.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,920",
+				"to": "00:01:11,200"
+			},
+			"offsets": {
+				"from": 69920,
+				"to": 71200
+			},
+			"text": " And I wanted to replay."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,200",
+				"to": "00:01:14,120"
+			},
+			"offsets": {
+				"from": 71200,
+				"to": 74120
+			},
+			"text": " And I put that on a secondary relay network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,120",
+				"to": "00:01:16,440"
+			},
+			"offsets": {
+				"from": 74120,
+				"to": 76440
+			},
+			"text": " And then I can approve some kind of upper bound."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,440",
+				"to": "00:01:23,520"
+			},
+			"offsets": {
+				"from": 76440,
+				"to": 83520
+			},
+			"text": " Like maybe I'm going to give Netflix like a year's worth of money, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,520",
+				"to": "00:01:26,840"
+			},
+			"offsets": {
+				"from": 83520,
+				"to": 86840
+			},
+			"text": " So I'll send you five dollars a month and then, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,840",
+				"to": "00:01:30,120"
+			},
+			"offsets": {
+				"from": 86840,
+				"to": 90120
+			},
+			"text": " I'll allow some upper bound of like 40, 50 dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,120",
+				"to": "00:01:33,160"
+			},
+			"offsets": {
+				"from": 90120,
+				"to": 93160
+			},
+			"text": " And you do that with just the ERC 20 token standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,160",
+				"to": "00:01:37,600"
+			},
+			"offsets": {
+				"from": 93160,
+				"to": 97600
+			},
+			"text": " So then that transaction just gets submitted again and again."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,600",
+				"to": "00:01:39,280"
+			},
+			"offsets": {
+				"from": 97600,
+				"to": 99280
+			},
+			"text": " And the relay network pays for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,280",
+				"to": "00:01:43,280"
+			},
+			"offsets": {
+				"from": 99280,
+				"to": 103280
+			},
+			"text": " And you have an incentive wrapped up in that meta transaction also."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,280",
+				"to": "00:01:48,800"
+			},
+			"offsets": {
+				"from": 103280,
+				"to": 108800
+			},
+			"text": " Kind of like an atomic swap where when they submit the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,800",
+				"to": "00:01:51,520"
+			},
+			"offsets": {
+				"from": 108800,
+				"to": 111520
+			},
+			"text": " and they pay the gas, they get rewarded with something"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,520",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 111520,
+				"to": 113000
+			},
+			"text": " that you've set up for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:55,880"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 115880
+			},
+			"text": " So you kind of have this incentive layer packed"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,880",
+				"to": "00:01:58,800"
+			},
+			"offsets": {
+				"from": 115880,
+				"to": 118800
+			},
+			"text": " into your transaction for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,800",
+				"to": "00:02:01,040"
+			},
+			"offsets": {
+				"from": 118800,
+				"to": 121040
+			},
+			"text": " And so it's kind of like just set it and forget it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,040",
+				"to": "00:02:05,280"
+			},
+			"offsets": {
+				"from": 121040,
+				"to": 125280
+			},
+			"text": " You sign that transaction, you send it out to the relay network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,280",
+				"to": "00:02:09,920"
+			},
+			"offsets": {
+				"from": 125280,
+				"to": 129920
+			},
+			"text": " And then you approve that upper bound and it just replays over and over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,920",
+				"to": "00:02:16,520"
+			},
+			"offsets": {
+				"from": 129920,
+				"to": 136520
+			},
+			"text": " And so that was kind of like what led to ERC 1337, which is the lead standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,520",
+				"to": "00:02:20,640"
+			},
+			"offsets": {
+				"from": 136520,
+				"to": 140640
+			},
+			"text": " But it's basically about how do we set up a standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,640",
+				"to": "00:02:22,640"
+			},
+			"offsets": {
+				"from": 140640,
+				"to": 142640
+			},
+			"text": " for subscriptions on the blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,640",
+				"to": "00:02:24,160"
+			},
+			"offsets": {
+				"from": 142640,
+				"to": 144160
+			},
+			"text": " And it's a lot more flexible."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,160",
+				"to": "00:02:32,320"
+			},
+			"offsets": {
+				"from": 144160,
+				"to": 152320
+			},
+			"text": " So this first reference implementation, we won the Wyoming hackathon with."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,320",
+				"to": "00:02:37,320"
+			},
+			"offsets": {
+				"from": 152320,
+				"to": 157320
+			},
+			"text": " And then it's kind of like evolved from there into like a grant system too."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,320",
+				"to": "00:02:40,080"
+			},
+			"offsets": {
+				"from": 157320,
+				"to": 160080
+			},
+			"text": " Personally, I think grants could use a little work right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,080",
+				"to": "00:02:43,640"
+			},
+			"offsets": {
+				"from": 160080,
+				"to": 163640
+			},
+			"text": " You kind of either get a bunch of money upfront or you get like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,640",
+				"to": "00:02:45,640"
+			},
+			"offsets": {
+				"from": 163640,
+				"to": 165640
+			},
+			"text": " I'm sorry money at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,640",
+				"to": "00:02:48,920"
+			},
+			"offsets": {
+				"from": 165640,
+				"to": 168920
+			},
+			"text": " I think it would be way cooler if we could do it in a recurring sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,920",
+				"to": "00:02:54,200"
+			},
+			"offsets": {
+				"from": 168920,
+				"to": 174200
+			},
+			"text": " And a subscription system would really work really well with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,200",
+				"to": "00:02:58,920"
+			},
+			"offsets": {
+				"from": 174200,
+				"to": 178920
+			},
+			"text": " You could kind of just say, I want to give this multi-sig wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,920",
+				"to": "00:03:02,120"
+			},
+			"offsets": {
+				"from": 178920,
+				"to": 182120
+			},
+			"text": " or this organization a small amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,120",
+				"to": "00:03:03,920"
+			},
+			"offsets": {
+				"from": 182120,
+				"to": 183920
+			},
+			"text": " And like a bunch of us could chip in, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,920",
+				"to": "00:03:08,040"
+			},
+			"offsets": {
+				"from": 183920,
+				"to": 188040
+			},
+			"text": " Like a Patreon of token subscriptions or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,040",
+				"to": "00:03:11,200"
+			},
+			"offsets": {
+				"from": 188040,
+				"to": 191200
+			},
+			"text": " And that's coming soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,200",
+				"to": "00:03:13,920"
+			},
+			"offsets": {
+				"from": 191200,
+				"to": 193920
+			},
+			"text": " But that's basically all I have."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,920",
+				"to": "00:03:17,240"
+			},
+			"offsets": {
+				"from": 193920,
+				"to": 197240
+			},
+			"text": " If anybody has any questions or anything about meta transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,240",
+				"to": "00:03:18,240"
+			},
+			"offsets": {
+				"from": 197240,
+				"to": 198240
+			},
+			"text": " hit me up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,240",
+				"to": "00:03:20,880"
+			},
+			"offsets": {
+				"from": 198240,
+				"to": 200880
+			},
+			"text": " I would love to talk about it more."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,880",
+				"to": "00:03:26,920"
+			},
+			"offsets": {
+				"from": 200880,
+				"to": 206920
+			},
+			"text": " The main thesis is it's all about abstracting the UX away from,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,920",
+				"to": "00:03:31,960"
+			},
+			"offsets": {
+				"from": 206920,
+				"to": 211960
+			},
+			"text": " or abstracting like the 12-word seed phrase away from the user at first"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,960",
+				"to": "00:03:34,840"
+			},
+			"offsets": {
+				"from": 211960,
+				"to": 214840
+			},
+			"text": " and then showing it to them like once they've provided value."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,840",
+				"to": "00:03:39,640"
+			},
+			"offsets": {
+				"from": 214840,
+				"to": 219640
+			},
+			"text": " So when you get to a DAP, you want to dive in and use the DAP first, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,640",
+				"to": "00:03:42,160"
+			},
+			"offsets": {
+				"from": 219640,
+				"to": 222160
+			},
+			"text": " Like you should be able to see the heart of the content first."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,160",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 222160,
+				"to": 226000
+			},
+			"text": " If it's a music service, you should get in and you should be posting songs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:48,280"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 228280
+			},
+			"text": " And we'll pay your gas while you post those songs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,280",
+				"to": "00:03:52,080"
+			},
+			"offsets": {
+				"from": 228280,
+				"to": 232080
+			},
+			"text": " Like it's worth it to us for user acquisition to bring people in."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,080",
+				"to": "00:03:54,920"
+			},
+			"offsets": {
+				"from": 232080,
+				"to": 234920
+			},
+			"text": " But as you get into the app and you use the app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,920",
+				"to": "00:03:58,120"
+			},
+			"offsets": {
+				"from": 234920,
+				"to": 238120
+			},
+			"text": " you're going to-- so say you post a song and someone likes it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,120",
+				"to": "00:04:01,600"
+			},
+			"offsets": {
+				"from": 238120,
+				"to": 241600
+			},
+			"text": " or sends you a token or something, you're going to accrue a little bit of value."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,600",
+				"to": "00:04:06,040"
+			},
+			"offsets": {
+				"from": 241600,
+				"to": 246040
+			},
+			"text": " And then it's so much easier to sell someone on a 12-word seed phrase"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,040",
+				"to": "00:04:08,160"
+			},
+			"offsets": {
+				"from": 246040,
+				"to": 248160
+			},
+			"text": " once they've accrued that value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,160",
+				"to": "00:04:11,200"
+			},
+			"offsets": {
+				"from": 248160,
+				"to": 251200
+			},
+			"text": " Like if you try to give someone a 12-word seed phrase up front,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,200",
+				"to": "00:04:13,280"
+			},
+			"offsets": {
+				"from": 251200,
+				"to": 253280
+			},
+			"text": " it's like this big nasty thing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,280",
+				"to": "00:04:17,680"
+			},
+			"offsets": {
+				"from": 253280,
+				"to": 257680
+			},
+			"text": " But if you try to give them a 12-word seed phrase that is protecting something they've earned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,680",
+				"to": "00:04:21,600"
+			},
+			"offsets": {
+				"from": 257680,
+				"to": 261600
+			},
+			"text": " like protecting this narrative behind this account or even value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,600",
+				"to": "00:04:24,800"
+			},
+			"offsets": {
+				"from": 261600,
+				"to": 264800
+			},
+			"text": " then it's a lot easier to sell to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,800",
+				"to": "00:04:29,080"
+			},
+			"offsets": {
+				"from": 264800,
+				"to": 269080
+			},
+			"text": " So word, yeah, hitting up the lead standard is coming out soon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,080",
+				"to": "00:04:33,040"
+			},
+			"offsets": {
+				"from": 269080,
+				"to": 273040
+			},
+			"text": " subscriptions on the blockchain, meta transactions, better UX."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,040",
+				"to": "00:04:34,960"
+			},
+			"offsets": {
+				"from": 273040,
+				"to": 274960
+			},
+			"text": " Ooh, word, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,960",
+				"to": "00:04:36,640"
+			},
+			"offsets": {
+				"from": 274960,
+				"to": 276640
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,640",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 276640,
+				"to": 280000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 282000
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 284000
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 286000
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 288000
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 290000
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 292000
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 294000
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 296000
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 298000
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 300000
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 302000
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 307000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

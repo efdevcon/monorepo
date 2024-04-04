@@ -1,0 +1,835 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:13,480"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 13480
+			},
+			"text": " Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,480",
+				"to": "00:00:16,320"
+			},
+			"offsets": {
+				"from": 13480,
+				"to": 16320
+			},
+			"text": " I'm Sean, and I'm a software engineer at Airsoft."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,320",
+				"to": "00:00:20,180"
+			},
+			"offsets": {
+				"from": 16320,
+				"to": 20180
+			},
+			"text": " And today, we'll be analyzing decentralized exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,180",
+				"to": "00:00:20,680"
+			},
+			"offsets": {
+				"from": 20180,
+				"to": 20680
+			},
+			"text": " equity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,680",
+				"to": "00:00:27,800"
+			},
+			"offsets": {
+				"from": 20680,
+				"to": 27800
+			},
+			"text": " So since Ethereum was introduced in 2015,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,800",
+				"to": "00:00:33,360"
+			},
+			"offsets": {
+				"from": 27800,
+				"to": 33360
+			},
+			"text": " the popularity of decentralized exchanges"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,360",
+				"to": "00:00:38,440"
+			},
+			"offsets": {
+				"from": 33360,
+				"to": 38440
+			},
+			"text": " has exploded and has expected many individuals"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,440",
+				"to": "00:00:42,920"
+			},
+			"offsets": {
+				"from": 38440,
+				"to": 42920
+			},
+			"text": " and businesses to advantage coming out niches."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,920",
+				"to": "00:00:47,640"
+			},
+			"offsets": {
+				"from": 42920,
+				"to": 47640
+			},
+			"text": " This boom birthed a lot of amazing projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,640",
+				"to": "00:00:50,080"
+			},
+			"offsets": {
+				"from": 47640,
+				"to": 50080
+			},
+			"text": " and the withdrew innovation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,080",
+				"to": "00:00:55,840"
+			},
+			"offsets": {
+				"from": 50080,
+				"to": 55840
+			},
+			"text": " But it also created a saturated market of taxes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,840",
+				"to": "00:00:58,240"
+			},
+			"offsets": {
+				"from": 55840,
+				"to": 58240
+			},
+			"text": " So currently, there is hundreds of taxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,240",
+				"to": "00:01:02,080"
+			},
+			"offsets": {
+				"from": 58240,
+				"to": 62080
+			},
+			"text": " in the wild, with most of them in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,080",
+				"to": "00:01:06,640"
+			},
+			"offsets": {
+				"from": 62080,
+				"to": 66640
+			},
+			"text": " And since the source of liquidity for each of these taxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,640",
+				"to": "00:01:11,040"
+			},
+			"offsets": {
+				"from": 66640,
+				"to": 71040
+			},
+			"text": " is different, the price can also vary drastically."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,040",
+				"to": "00:01:13,240"
+			},
+			"offsets": {
+				"from": 71040,
+				"to": 73240
+			},
+			"text": " On average, it can be more than a point of percent"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,240",
+				"to": "00:01:16,360"
+			},
+			"offsets": {
+				"from": 73240,
+				"to": 76360
+			},
+			"text": " difference in price across taxes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,360",
+				"to": "00:01:20,400"
+			},
+			"offsets": {
+				"from": 76360,
+				"to": 80400
+			},
+			"text": " So this makes it very hard to keep track of which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,400",
+				"to": "00:01:26,640"
+			},
+			"offsets": {
+				"from": 80400,
+				"to": 86640
+			},
+			"text": " that has the best price for a given amount of token."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,640",
+				"to": "00:01:30,600"
+			},
+			"offsets": {
+				"from": 86640,
+				"to": 90600
+			},
+			"text": " So that's why we decided to build next index."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,600",
+				"to": "00:01:33,520"
+			},
+			"offsets": {
+				"from": 90600,
+				"to": 93520
+			},
+			"text": " Next index is the next price aggregator"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,520",
+				"to": "00:01:36,800"
+			},
+			"offsets": {
+				"from": 93520,
+				"to": 96800
+			},
+			"text": " that eventually forwards from 13 popular indexes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,800",
+				"to": "00:01:38,200"
+			},
+			"offsets": {
+				"from": 96800,
+				"to": 98200
+			},
+			"text": " correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,200",
+				"to": "00:01:41,520"
+			},
+			"offsets": {
+				"from": 98200,
+				"to": 101520
+			},
+			"text": " And it's powered by an open source JavaScript library"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,520",
+				"to": "00:01:48,760"
+			},
+			"offsets": {
+				"from": 101520,
+				"to": 108760
+			},
+			"text": " that anyone can contribute to and also use"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,760",
+				"to": "00:01:50,560"
+			},
+			"offsets": {
+				"from": 108760,
+				"to": 110560
+			},
+			"text": " for their own projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,560",
+				"to": "00:01:53,640"
+			},
+			"offsets": {
+				"from": 110560,
+				"to": 113640
+			},
+			"text": " And also it's open source so that we don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,640",
+				"to": "00:01:58,120"
+			},
+			"offsets": {
+				"from": 113640,
+				"to": 118120
+			},
+			"text": " do any particular index, the unfair advantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,120",
+				"to": "00:02:00,200"
+			},
+			"offsets": {
+				"from": 118120,
+				"to": 120200
+			},
+			"text": " It also has a clean and simple UI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,200",
+				"to": "00:02:02,600"
+			},
+			"offsets": {
+				"from": 120200,
+				"to": 122600
+			},
+			"text": " so you can do what you need to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,600",
+				"to": "00:02:05,440"
+			},
+			"offsets": {
+				"from": 122600,
+				"to": 125440
+			},
+			"text": " which is buying the best price."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,440",
+				"to": "00:02:09,240"
+			},
+			"offsets": {
+				"from": 125440,
+				"to": 129240
+			},
+			"text": " As you can see, you just select an action, sell or buy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,240",
+				"to": "00:02:11,360"
+			},
+			"offsets": {
+				"from": 129240,
+				"to": 131360
+			},
+			"text": " an amount, and token."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,360",
+				"to": "00:02:15,800"
+			},
+			"offsets": {
+				"from": 131360,
+				"to": 135800
+			},
+			"text": " And you'll get a list of taxes with quotes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,800",
+				"to": "00:02:19,440"
+			},
+			"offsets": {
+				"from": 135800,
+				"to": 139440
+			},
+			"text": " ordered by best price."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,440",
+				"to": "00:02:22,200"
+			},
+			"offsets": {
+				"from": 139440,
+				"to": 142200
+			},
+			"text": " Using the next index is very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,200",
+				"to": "00:02:26,200"
+			},
+			"offsets": {
+				"from": 142200,
+				"to": 146200
+			},
+			"text": " You just import the library and you call main function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,200",
+				"to": "00:02:31,920"
+			},
+			"offsets": {
+				"from": 146200,
+				"to": 151920
+			},
+			"text": " which will get you the list of the quotes given to the parameters"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,920",
+				"to": "00:02:35,040"
+			},
+			"offsets": {
+				"from": 151920,
+				"to": 155040
+			},
+			"text": " ordered by best price."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,040",
+				"to": "00:02:36,880"
+			},
+			"offsets": {
+				"from": 155040,
+				"to": 156880
+			},
+			"text": " You can also look at the documentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,880",
+				"to": "00:02:39,680"
+			},
+			"offsets": {
+				"from": 156880,
+				"to": 159680
+			},
+			"text": " to see other features that the next index provides,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,680",
+				"to": "00:02:43,720"
+			},
+			"offsets": {
+				"from": 159680,
+				"to": 163720
+			},
+			"text": " like the command-writing tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,720",
+				"to": "00:02:48,560"
+			},
+			"offsets": {
+				"from": 163720,
+				"to": 168560
+			},
+			"text": " And since we launched the X index in January,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,560",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 168560,
+				"to": 173000
+			},
+			"text": " we gained some popularity from over 4,000 unique users"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:57,240"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 177240
+			},
+			"text": " from their new countries fetching more than 43,000 quotes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,240",
+				"to": "00:02:59,240"
+			},
+			"offsets": {
+				"from": 177240,
+				"to": 179240
+			},
+			"text": " from those 12-inch tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,240",
+				"to": "00:03:05,880"
+			},
+			"offsets": {
+				"from": 179240,
+				"to": 185880
+			},
+			"text": " And we also saw some open source community activity as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,880",
+				"to": "00:03:09,800"
+			},
+			"offsets": {
+				"from": 185880,
+				"to": 189800
+			},
+			"text": " We believe that this growing popularity of X index"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,800",
+				"to": "00:03:14,800"
+			},
+			"offsets": {
+				"from": 189800,
+				"to": 194800
+			},
+			"text": " is actually due to a growing issue in the Ethereum community."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,800",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 194800,
+				"to": 199000
+			},
+			"text": " And that is that data needs consolidation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:21,920"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 201920
+			},
+			"text": " So while diversity and innovation is great"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,920",
+				"to": "00:03:25,400"
+			},
+			"offsets": {
+				"from": 201920,
+				"to": 205400
+			},
+			"text": " and produces amazing projects, people still"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,400",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 205400,
+				"to": 209000
+			},
+			"text": " want a consolidated source of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:32,200"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 212200
+			},
+			"text": " So what does that help us?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,200",
+				"to": "00:03:34,160"
+			},
+			"offsets": {
+				"from": 212200,
+				"to": 214160
+			},
+			"text": " Well, the community needs your help"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,160",
+				"to": "00:03:39,560"
+			},
+			"offsets": {
+				"from": 214160,
+				"to": 219560
+			},
+			"text": " to build tools that not only finds the best amongst competitors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,560",
+				"to": "00:03:44,520"
+			},
+			"offsets": {
+				"from": 219560,
+				"to": 224520
+			},
+			"text": " but one that actually creates a friendly and easy environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,520",
+				"to": "00:03:50,640"
+			},
+			"offsets": {
+				"from": 224520,
+				"to": 230640
+			},
+			"text": " for users currently in and entering the Ethereum community."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,640",
+				"to": "00:03:52,760"
+			},
+			"offsets": {
+				"from": 230640,
+				"to": 232760
+			},
+			"text": " Next index can also use your help."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,760",
+				"to": "00:03:56,560"
+			},
+			"offsets": {
+				"from": 232760,
+				"to": 236560
+			},
+			"text": " We currently have 13 popular indexes integrated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,560",
+				"to": "00:04:01,120"
+			},
+			"offsets": {
+				"from": 236560,
+				"to": 241120
+			},
+			"text": " but we can always use more, whether it be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,120",
+				"to": "00:04:05,480"
+			},
+			"offsets": {
+				"from": 241120,
+				"to": 245480
+			},
+			"text": " next as you love and want to see, or exits"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,480",
+				"to": "00:04:07,400"
+			},
+			"offsets": {
+				"from": 245480,
+				"to": 247400
+			},
+			"text": " you're currently working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,400",
+				"to": "00:04:11,440"
+			},
+			"offsets": {
+				"from": 247400,
+				"to": 251440
+			},
+			"text": " So feel free to submit a podcast and our team will let me"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,440",
+				"to": "00:04:13,600"
+			},
+			"offsets": {
+				"from": 251440,
+				"to": 253600
+			},
+			"text": " take a look at it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,600",
+				"to": "00:04:14,480"
+			},
+			"offsets": {
+				"from": 253600,
+				"to": 254480
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,480",
+				"to": "00:04:17,320"
+			},
+			"offsets": {
+				"from": 254480,
+				"to": 257320
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,320",
+				"to": "00:04:21,280"
+			},
+			"offsets": {
+				"from": 258320,
+				"to": 261280
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,280",
+				"to": "00:04:25,240"
+			},
+			"offsets": {
+				"from": 261280,
+				"to": 265240
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,240",
+				"to": "00:04:29,200"
+			},
+			"offsets": {
+				"from": 265240,
+				"to": 269200
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,200",
+				"to": "00:04:31,940"
+			},
+			"offsets": {
+				"from": 269200,
+				"to": 271940
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,940",
+				"to": "00:04:34,680"
+			},
+			"offsets": {
+				"from": 271940,
+				"to": 274680
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

@@ -1,0 +1,2727 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 13000
+			},
+			"text": " I'm such a good student."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 18000
+			},
+			"text": " I'm going to talk about the robots and sort of their technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 21000
+			},
+			"text": " and philosophical implications."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 27000
+			},
+			"text": " What I do, I do talk about that mostly."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 32000
+			},
+			"text": " I take executive research and try to make using the protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 33000
+			},
+			"text": " for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 37000
+			},
+			"text": " It's called PMAS Message, which is a lot of exploring technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 40000
+			},
+			"text": " philosophical implications of the tools we use."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 45000
+			},
+			"text": " So I'm going to talk about the sort of implications of protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 49000
+			},
+			"text": " I'm looking at protocols more than an abstract thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 54000
+			},
+			"text": " not so much as an actual computational form."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 59000
+			},
+			"text": " The name of the talk is inspired by a great book by me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 62000
+			},
+			"text": " something else which is called Protocol Power Controices"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 66000
+			},
+			"text": " and Start-In-Scentilation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 72000
+			},
+			"text": " So it's one first technical aspect of whatever you want to try"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 75000
+			},
+			"text": " to build a sort of open system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 79000
+			},
+			"text": " You must not want to get around like building a protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 84000
+			},
+			"text": " You want any sort of bit of a protocol in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 88000
+			},
+			"text": " It can be done at art, which is sort of a bit of a way where"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 92000
+			},
+			"text": " protocols, the code that is within the music or need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 96000
+			},
+			"text": " can be very explicit by protocol classification."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 98000
+			},
+			"text": " And of course, it can be discrepancies between"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 101000
+			},
+			"text": " the aspect and the communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 107000
+			},
+			"text": " And then there's a social aspect of systems rebuilding"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 111000
+			},
+			"text": " and sort of produce communities, produce organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 116000
+			},
+			"text": " So it's very much an important topic to take care of."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 118000
+			},
+			"text": " When you try to build a protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 124000
+			},
+			"text": " sort of think of what sort of systems does this enable to build."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 130000
+			},
+			"text": " And also more importantly, what sort of accidents does this new protocol enable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 135000
+			},
+			"text": " For example, you build a nice station protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 139000
+			},
+			"text": " and all of a sudden, it's widely successful."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 141000
+			},
+			"text": " All of a sudden, there are much more to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 142000
+			},
+			"text": " Transportation on chain, minus of much less"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 149000
+			},
+			"text": " to the action fees and they might start paying differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 152000
+			},
+			"text": " So it's much worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 157000
+			},
+			"text": " And protocols are on every layer of what you're trying to build."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 159000
+			},
+			"text": " An application layer, you want to build an open service."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 162000
+			},
+			"text": " You probably want to build a protocol, not build a project."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 164000
+			},
+			"text": " Of course, you're going to build a program."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 166000
+			},
+			"text": " It's like an off-chain market maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 168000
+			},
+			"text": " You probably want to build a protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 170000
+			},
+			"text": " So you're right around."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 174000
+			},
+			"text": " When does protocol going to come from?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 180000
+			},
+			"text": " I think most people, they ask, which are not technical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 185000
+			},
+			"text": " but I ask them, what is protocol they have this notion of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 190000
+			},
+			"text": " also it's like a record of things that happen in the meeting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 195000
+			},
+			"text": " which is also very distinguished, like ancient Greek word."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 202000
+			},
+			"text": " So first thing from, and then they became this very, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 205000
+			},
+			"text": " more than a graphic thing where the policy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 210000
+			},
+			"text": " you have like, sheets of protocols and things like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 216000
+			},
+			"text": " you try to sort of give the social framework to human reaction fuel."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 223000
+			},
+			"text": " And this is quite nice because it requires very well what the protocol is."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 227000
+			},
+			"text": " On a social area, the same thing applies for technical layers as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 229000
+			},
+			"text": " So the protocols are an end."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 234000
+			},
+			"text": " In a self-brothers, it means that people, our cultures can relate to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 237000
+			},
+			"text": " It allows them to freedom of concentration and contribution to society,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 239000
+			},
+			"text": " or personal and professional."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 244000
+			},
+			"text": " The protocol is, in effect, a frame of the picture rather than the content of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 249000
+			},
+			"text": " which is in a lot of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 254000
+			},
+			"text": " Basically, it provides you service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 259000
+			},
+			"text": " instead of like striving to get your content of what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 266000
+			},
+			"text": " The sort of thing that protocols do is like this sort of facility name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 269000
+			},
+			"text": " that we're building."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 275000
+			},
+			"text": " So protocols provide conditions under which networks can be formed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 281000
+			},
+			"text": " and thus they also shape sort of networks that can be built."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 286000
+			},
+			"text": " So that's what I'm going to discuss, like what the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 291000
+			},
+			"text": " the protocols provide lack of services, their instances,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 297000
+			},
+			"text": " like implementations of a service, and services, like everybody knows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 301000
+			},
+			"text": " for example, if we want to cause them on voice call."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 302000
+			},
+			"text": " There are lots of services."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 305000
+			},
+			"text": " There's lots of different protocols on information."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 309000
+			},
+			"text": " And voice call, they're a nightlife, you can voice call by key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 314000
+			},
+			"text": " or whatever, different protocols for the service, the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 319000
+			},
+			"text": " And these services are sort of defined externally as a boot behavior,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 326000
+			},
+			"text": " and protocols that end up sort of lack of implementations of this behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 331000
+			},
+			"text": " So let's get more relevant to the sort of blockchain content,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 336000
+			},
+			"text": " and start a lot of like what sort of protocols we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 340000
+			},
+			"text": " And these are sort of an order of like for a superior interest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 343000
+			},
+			"text": " or communication protocols, and very internet, and a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 349000
+			},
+			"text": " protocols, and then we have now a couple of other protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 355000
+			},
+			"text": " Then the interesting thing is that as you move from left to right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 360000
+			},
+			"text": " you sort of start internalizing much more externalities"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 364000
+			},
+			"text": " of sort of international misdings, communication protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 367000
+			},
+			"text": " all you assume is just a lossy channel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 371000
+			},
+			"text": " they're not really adversaries that despise your sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 376000
+			},
+			"text": " the close network or like the early internet where you're over the adversaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 378000
+			},
+			"text": " Then the cryptographic protocols, all of a sudden,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 383000
+			},
+			"text": " have a social-an adversary who wants to interrupt your connection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 387000
+			},
+			"text": " they want to maybe eavesdrop things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 391000
+			},
+			"text": " And then the economic, economic, economic protocols is sort of at"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 394000
+			},
+			"text": " like the economic dimension to people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 400000
+			},
+			"text": " they have actually monetary incentives, or once every contractations."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 403000
+			},
+			"text": " And what sort of outcomes do we have?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 405000
+			},
+			"text": " Or protocols we have altruistic rationalism."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 410000
+			},
+			"text": " Using tactuists, altruistic actors, they are more than happy to follow"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 415000
+			},
+			"text": " any sort of protocol, even if it means losing like tiny amount of money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 420000
+			},
+			"text": " or whatever, or basically, yeah, that's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 425000
+			},
+			"text": " The rational actors are, they want to try to sort of dishealthish"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 428000
+			},
+			"text": " in a sense that they want to have the best,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 430000
+			},
+			"text": " but it's still a bit here to the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 434000
+			},
+			"text": " And then we have Byzantine actors who are looking basically for anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 439000
+			},
+			"text": " They want to lose money, they will lose money to a tactu chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 447000
+			},
+			"text": " or try to, yeah, just, just want to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 451000
+			},
+			"text": " So, let's get some mechanism of the other communication protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 457000
+			},
+			"text": " which is, like I said, the nice, easy world where everything is good."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 461000
+			},
+			"text": " Most famous example, which is still a new study, it's probably BGP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 466000
+			},
+			"text": " which is sort of the protocol, which controls the period of the Internet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 470000
+			},
+			"text": " basically without PGP, we need them to start work at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 475000
+			},
+			"text": " PGP is sort of a nice, happy place where I might just assume that it's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 480000
+			},
+			"text": " There's no sort of cook graphic, like this one, yet, cook graphic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 488000
+			},
+			"text": " or even economic incentive sort of PGP knows to keep them secure to announce all the other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 495000
+			},
+			"text": " And then there's also like, sequence controls, like making sure you interact with a sequence."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 503000
+			},
+			"text": " For example, by numbering a control, there's lots of channels, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 509000
+			},
+			"text": " Then you come to cook graphic protocols, which come with lots of different flavors."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 514000
+			},
+			"text": " But generally, it just means any kind of protocol that considers adversary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 521000
+			},
+			"text": " which might be like a Byzantine concept of capitalism for a component concept of protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 529000
+			},
+			"text": " But it might also be any sort of protocol that you can authenticate and provide privacy, such as HTTPS."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 536000
+			},
+			"text": " And both things that are listed here on the same level, like our cumulative might use hashing and signatures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 538000
+			},
+			"text": " which means might be seen on improves or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 543000
+			},
+			"text": " And just, you can put them in some examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 553000
+			},
+			"text": " And then the crypto-economics protocol, the interesting thing is that all of a sudden, it becomes possible to punish,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 557000
+			},
+			"text": " or economically punish, and go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 562000
+			},
+			"text": " But this is a new protocol if they don't, if there is a rule of protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 566000
+			},
+			"text": " Which is really interesting, it wasn't a new possible form."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 573000
+			},
+			"text": " For example, in a proper state, we would actually have somebody who has been able to stop the science and who might smash this day."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 583000
+			},
+			"text": " And it also gives you access to a big array of rules that make use of design, like option markets, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 591000
+			},
+			"text": " You can incentivize people to behave freshly and to sort of lead to a proper design outcome, whatever the outcome might be."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 598000
+			},
+			"text": " And it just makes a journal like, you have not according to the protocol, much more expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 603000
+			},
+			"text": " This also has the nice thing for security."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 615000
+			},
+			"text": " So what the problem is that when you go to the court from the right book, which is on architecture, like some architects who live in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 622000
+			},
+			"text": " when you go to the court, when you go to the court, you can really build the thing in the isolation, but you also have to repair the wall around it and within it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 626000
+			},
+			"text": " So the later world, the one case becomes more coherent, more whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 631000
+			},
+			"text": " The things that you make, it takes place in the work of nature to make."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 640000
+			},
+			"text": " So this sort of thing is what I think is a method because you cannot, even if you want to, build a protocol for isolation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 649000
+			},
+			"text": " Unfortunately, take for example, like the current height, which is E5 applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 659000
+			},
+			"text": " All of a sudden, the minus of a very high incentive to, for example, adhere to mess with the drawing of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 665000
+			},
+			"text": " Let's say you have an order of transactions coming in that updates your price feed and you try to trade something."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 669000
+			},
+			"text": " You try to trade one of the X, and then you change."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 677000
+			},
+			"text": " All of a sudden, the minus of a pretty nice incentive to process the X from the X from the X before the order of transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 680000
+			},
+			"text": " things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 691000
+			},
+			"text": " Or take for example, in the NEGA goal, you have a debt position, the price changes rapidly, you try to top off your GDP basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 700000
+			},
+			"text": " and the minus of a very high incentive to get price, you say, \"Okay, if you don't bribe me, I'm not going to let you top off your GDP.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 708000
+			},
+			"text": " Which is a sort of problem, which I'm not going to pick up, just yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 714000
+			},
+			"text": " And then there's also problems like front-running transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 727000
+			},
+			"text": " Which is one of the more recent papers by Fuddai who gave a talk yesterday on something similar, which is basically exactly what that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 734000
+			},
+			"text": " in the context of mining, where all of some people realize that minus, if you build any sort of protocol top of the miners,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 741000
+			},
+			"text": " they're very high incentive to extract more value than they get from fees or from transaction rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 750000
+			},
+			"text": " Which basically, because basically the protocols, which are on a high level, assume that they're low levels ideal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 756000
+			},
+			"text": " which is sort of also like what happened to us, the such-and-that capacity is equally useful, so people realize that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 766000
+			},
+			"text": " there are more things, the CPU does that our program does not know how to deal with, because there was some sort of like abstraction I am doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 771000
+			},
+			"text": " which in the end did not have a sort of idic into the high levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 777000
+			},
+			"text": " And then there's also one of the biggest problems, which is knowing as really addressed, it was bribery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 784000
+			},
+			"text": " especially in proof of state sort of protocols that would be very interesting to see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 793000
+			},
+			"text": " or using different chains to bribe people, and other chains would be used really very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 800000
+			},
+			"text": " So let's say you have a idea for a service, you come up with a protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 805000
+			},
+			"text": " then it's much more something, and some other limitation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 812000
+			},
+			"text": " The process, like writing a protocol is very much similar to this normal software design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 815000
+			},
+			"text": " meaning it's highly rare if it's very massive."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 822000
+			},
+			"text": " You have often inconsistencies between implementations and those specifications you're writing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 831000
+			},
+			"text": " and lots of parts that software only found after implementing them, and then it's sort of getting them as okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 835000
+			},
+			"text": " Am I going to update the code or am I going to update specifications?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 841000
+			},
+			"text": " Especially if everything like this happens in the openers of the version of a working discards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 849000
+			},
+			"text": " like using these things that aren't even more complicated, and it's often quite often protocols end up being used in situations that whatever design for,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 854000
+			},
+			"text": " which makes sense even worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 863000
+			},
+			"text": " So some sort of guidelines for just this design of the model is always simplicity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 868000
+			},
+			"text": " but just more and more way to do something that's most likely wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 875000
+			},
+			"text": " Exceptions make everything more error prone because it's sort of like a few."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 880000
+			},
+			"text": " Basically, for a secure online you'll have to stay in the end up in quite often,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 884000
+			},
+			"text": " and you find states which is a mess."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 888000
+			},
+			"text": " And easy features are features that people use."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 894000
+			},
+			"text": " So if you have some sort of complicated features,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 897000
+			},
+			"text": " almost like you can not be used to not be tested properly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 903000
+			},
+			"text": " and you will catch bugs very rarely in the life cycle of this protocol in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 909000
+			},
+			"text": " And then you can also make these things easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 913000
+			},
+			"text": " This is resistance in general like a thing for a cryptographic protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 918000
+			},
+			"text": " for like not to do a few like a hash console, you should, but if you do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 924000
+			},
+			"text": " or have a hash console, signature, you're really like dealing with monsters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 928000
+			},
+			"text": " and you have to try to make things that you're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 934000
+			},
+			"text": " These things, like not a real default, not automatically dealing with some sort of like data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 936000
+			},
+			"text": " either way, or whatever it be."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 943000
+			},
+			"text": " Make everything as explicit as you can, because people will not read the false presentations."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 947000
+			},
+			"text": " They will assume things based on what they've read,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 951000
+			},
+			"text": " and which just needs to work a problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 957000
+			},
+			"text": " and it's really very transparent about the facts that the things that you try to say have."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 963000
+			},
+			"text": " Another interesting thing, which is not really what, not really thinking yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 966000
+			},
+			"text": " and then like many like gosh, I'm going to put it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 971000
+			},
+			"text": " but it's like thinking about the appreciation, like what would look like if all of a sudden"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 976000
+			},
+			"text": " everybody's type of hey, this partition system is now outdated as we usually do."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 982000
+			},
+			"text": " One which is sort of happening if one point zero to one to the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 988000
+			},
+			"text": " But it's usually a very accurate progress process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 992000
+			},
+			"text": " and it's really not a thing people think about a lot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 997000
+			},
+			"text": " because of course when you design a protocol, you want it to be used in more or less than a few."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:42,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1002000
+			},
+			"text": " And then minimization, putting things on shame,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1002000,
+				"to": 1007000
+			},
+			"text": " customer's money, leaking data is also not nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:54,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1014000
+			},
+			"text": " And yeah, so when you actually try to write a specification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1014000,
+				"to": 1021000
+			},
+			"text": " the thing that people are supposed to read, don't try to clever, please don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1027000
+			},
+			"text": " Repeat words if needed, because otherwise people might think they're different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1032000
+			},
+			"text": " People just try to be not repetitive in the way you write."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1036000
+			},
+			"text": " State diagrams are amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1041000
+			},
+			"text": " If something looks complicated in state diagram, it's probably too complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1045000
+			},
+			"text": " And people look at it confused."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1050000
+			},
+			"text": " And then I think with like sort of the state diagram or representations also,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1054000
+			},
+			"text": " it's sort of easier to formalize."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1061000
+			},
+			"text": " And in the end, sort of the thing that you usually care of is like good balance"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1065000
+			},
+			"text": " between formalism and abstraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1071000
+			},
+			"text": " Ideally if you have an idea what you could write like a formal specification of a protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1076000
+			},
+			"text": " have the implemented automatically, like put into code, they'll be amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1082000
+			},
+			"text": " But unfortunately writing formal specification is really, really hard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:07,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1087000
+			},
+			"text": " two-second better, but it's still a pain and like try to actually write a form"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1087000,
+				"to": 1092000
+			},
+			"text": " and like definition of all the things that you for example want to include in a consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1097000
+			},
+			"text": " or a witness, may I possible?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1102000
+			},
+			"text": " So too much formalism makes a much harder to read than a payment for people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:27,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1107000
+			},
+			"text": " so that you have to do some sort of like strikes and sort of balance between a form and abstraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1107000,
+				"to": 1113000
+			},
+			"text": " And probably the most important thing is if it's easy to misunderstand something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1115000
+			},
+			"text": " then it's a bad thing to expect."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1124000
+			},
+			"text": " Otherwise it's just one that's going to be happy and it's capable, misunderstood, exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1130000
+			},
+			"text": " Yeah, this is, I think this kind of one's like what happens once people use this thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1136000
+			},
+			"text": " one to one happens once it's deployed, probably you upgrade things and people will not upgrade"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1139000
+			},
+			"text": " how many of you would like backwards compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1146000
+			},
+			"text": " This is really new art, especially the different thing of this thing happens in the open."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1150000
+			},
+			"text": " And you basically have people just, this is the right stuff and people using it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1158000
+			},
+			"text": " start using this very messy and it becomes especially like these addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1161000
+			},
+			"text": " or trying to do these exercises and it's big as the most."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1166000
+			},
+			"text": " Not just technically but also politically which we've seen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1169000
+			},
+			"text": " but often in the old self."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1176000
+			},
+			"text": " So to wrap up with some of the philosophical understand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1180000
+			},
+			"text": " network searches can have important consequences for distribution of power"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1180000,
+				"to": 1184000
+			},
+			"text": " and a complexing to deliver the grants, if you're not truly a flat offer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1188000
+			},
+			"text": " one of the few power relations and ready corporations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1191000
+			},
+			"text": " more than they tend to become as asymmetrical with time instead,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:19:55,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1195000
+			},
+			"text": " the result in a specific tangible and enduring comparison problem happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1195000,
+				"to": 1206000
+			},
+			"text": " Meaning that if your protocol ends up being used or ends up trying to sort of incentivize people"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1212000
+			},
+			"text": " for any sort of like uncorrection behavior,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1219000
+			},
+			"text": " you sort of need to think about what's the long term like play out of this behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:26,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1226000
+			},
+			"text": " Things are very sticky if people can extract more information in some way else they will."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1226000,
+				"to": 1231000
+			},
+			"text": " And you might even if you have good intentions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1236000
+			},
+			"text": " you're quite often might might not just making things worse and/or just trying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:42,000"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1242000
+			},
+			"text": " not including people who or let's say people have an actress who might be"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,000",
+				"to": "00:20:48,000"
+			},
+			"offsets": {
+				"from": 1242000,
+				"to": 1248000
+			},
+			"text": " disenact that advantage already, just making more disadvantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,000",
+				"to": "00:20:51,000"
+			},
+			"offsets": {
+				"from": 1248000,
+				"to": 1251000
+			},
+			"text": " And that's the end. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,000",
+				"to": "00:20:54,000"
+			},
+			"offsets": {
+				"from": 1251000,
+				"to": 1254000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1255000,
+				"to": 1264000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:09,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1269000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,000",
+				"to": "00:21:11,740"
+			},
+			"offsets": {
+				"from": 1269000,
+				"to": 1271740
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

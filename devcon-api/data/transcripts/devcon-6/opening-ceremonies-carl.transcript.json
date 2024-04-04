@@ -1,0 +1,879 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 15000
+			},
+			"text": " This talk's going to be a little bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 22000
+			},
+			"text": " We'll get into why I think to many people what is about to happen in order to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 26000
+			},
+			"text": " Ethereum scale as promised will be a bit unexpected."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31000
+			},
+			"text": " Anyway, let's dig in. So I'm going to be talking about summoning the spirit of the Dank Shard."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 38000
+			},
+			"text": " This might be a stranger idea to many, but we'll see."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 45000
+			},
+			"text": " So as Scala was mentioning, we have some problems in terms of fees, scalability, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 50000
+			},
+			"text": " The idea is there's this power we can call upon the power of Dank Sharding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 56000
+			},
+			"text": " which basically massively scales the data that we have access to within Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 62000
+			},
+			"text": " And those data availability will allow Alt-Tuse and whichever other platforms"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 69000
+			},
+			"text": " that would like to build on top of us, the Ethereum chain, to massively grow Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 72000
+			},
+			"text": " So the fees will be lower for the average users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 79000
+			},
+			"text": " while at the same time we can stop state-bloat, which is a, I think most of the client teams will attest to a serious issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 82000
+			},
+			"text": " So what does this look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 96000
+			},
+			"text": " The idea is that we have these massive blobs of data where the Alt-Tuse and whomever else can basically just dump crazy amounts of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 101000
+			},
+			"text": " like orders of magnitude more than is currently possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 106000
+			},
+			"text": " And then we have this black blocks gadget, that's a cryptography gadget,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 110000
+			},
+			"text": " like Danny was talking about earlier, these black boxes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 117000
+			},
+			"text": " calls a KZG commitment, which allows us to take this data and only put a tiny reference to it on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 123000
+			},
+			"text": " But we can also prove wonderful things about this data using this tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 131000
+			},
+			"text": " Then what we do is we take this, the data, and once the chain is progressed a little bit, we can throw it away."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 138000
+			},
+			"text": " And what we've been guaranteed is not that the chain stores the data forever because we can't keep doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 142000
+			},
+			"text": " But what we can guarantee is that everyone had access to the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 151000
+			},
+			"text": " So if you cared about that data, you could have downloaded it and you can now be resister that your data is there and available."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 160000
+			},
+			"text": " And this is the power of dang charting, and it's how Ethereum will achieve the ability to scale to hopefully the entire world's needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 164000
+			},
+			"text": " So what exactly is inside this box?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 175000
+			},
+			"text": " It is a bunch of moon math, some polynomials, and most importantly for what we heard for today is a secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 182000
+			},
+			"text": " It's a secret that I could know, that you could know, the client team's could know, no one in the world can know."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 200000
+			},
+			"text": " And it is vital that we have the secret in order to enable the powers of dang charting, but it will also the powers of dang charting are completely decimated if the secret is compromised."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 213000
+			},
+			"text": " So the idea is we're going to summon the secret from out of the ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 222000
+			},
+			"text": " Everyone else sitting here, the entire community and hopefully members from around the world will participate in in order to produce the secret in a shared manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 239000
+			},
+			"text": " And once we all have contributed and attested to it, the idea is that as soon as, sorry, as long as one of us is honest, one of us doesn't try going the code, change the code and throw away, sorry, sorry, keep."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 248000
+			},
+			"text": " Sorry, one person, make sure to throw away the secret that the computer knew for but a moment, then we will be good."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 253000
+			},
+			"text": " And this again ties into a bit of what Danny was saying about resiliency."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 256000
+			},
+			"text": " There are multiple implementations of this that are needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 259000
+			},
+			"text": " We need as many people running it as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 267000
+			},
+			"text": " Institutions, homestakers, whomever, because they could be that final burning candle that keeps Ethereum secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 286000
+			},
+			"text": " The idea being not that you trust one person to be honest, but that you're pretty sure that amongst the thousands of people that have participated, there is at least one of us who have done the right thing, or in this case not the wrong thing, in order to summon the secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 293000
+			},
+			"text": " The idea is we'll have many interfaces, but the primary one will be browser accessible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 297000
+			},
+			"text": " The goal is to have somewhere in the order of 5,000 contributions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 311000
+			},
+			"text": " It will take five minutes of your time, so hopefully a trivial thing to do to help improve the security of the network and be sure yourself because if you participated, you knew that you didn't do any of the weird things to try compromise the security."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 316000
+			},
+			"text": " And the file is very small relative to some of these other ceremonies we've seen before."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 321000
+			},
+			"text": " My idea was to do a demo to show you quite how simple it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 324000
+			},
+			"text": " It was going to be fun, interactive, people are going to get on stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 328000
+			},
+			"text": " It was going to be a blast. There were pandas that were going to be thrown around."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 340000
+			},
+			"text": " But unfortunately, being let down a little bit by the Wi-Fi conference Wi-Fi and the gods of trying to do demos on stage, I was warned against that I still persisted and here we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 354000
+			},
+			"text": " Anyway, the idea is there's this interface you'll come to, the ceremony, and there's this guide which will walk you through the processes that you need a part taken to invoke the spirit of the Dungshad."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 358000
+			},
+			"text": " As normal, you'll sign in with your theorem account."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 366000
+			},
+			"text": " You'll wiggle your mouse around a bit. It's collecting all sorts of data. You can draw pretty pictures, write names of lost lovers, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 373000
+			},
+			"text": " With your mouse, you can type some secret that hopefully means something to you, but ideally you're going to forget."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 383000
+			},
+			"text": " And all of this will be combined with some additional randomness from your computer with the idea being that you don't know it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 389000
+			},
+			"text": " And if even one of these little steps are compromised, then that's not super important."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 401000
+			},
+			"text": " Then there's this contribution phase where your computer starts getting all the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 410000
+			},
+			"text": " There's one server which will send you this information where you are now the person who's been entrusted with a power of tau for a moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 416000
+			},
+			"text": " It's your time to shine. You'll take the secrets that, or your computer will take the secrets that you've just generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 420000
+			},
+			"text": " You'll mix it in with everyone else, your ancestors in the ceremony who've come before."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 426000
+			},
+			"text": " And then you will return the powers to the next user."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 432000
+			},
+			"text": " And this is how we're going to have the powers of Deng Xiaod and Deng Xiaoding drawn here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 443000
+			},
+			"text": " This very complicated chart of what's happening, all that's needed to know is for Deng Xiaoding in EIP 4844."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 457000
+			},
+			"text": " I don't know if there's meaning to you, but this is all part of the surge phase of our scaling that in about a month or so will be going live with this main ceremony."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 463000
+			},
+			"text": " And hopefully all of you in this room will join me in participating, all the people listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 469000
+			},
+			"text": " That would really be fantastic. Let's scale to these thousands of participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 474000
+			},
+			"text": " There'll be grants. I want to encourage people to write their own implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 483000
+			},
+			"text": " You might be scared of cryptography or think that this is not something you've practiced or whatever, but you can't really go wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 489000
+			},
+			"text": " Writing your own implementation. There's no way to break it. It will just tell you, sorry, you were wrong if you made a mistake."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 494000
+			},
+			"text": " So please, if you want to try dabble in some cryptography, this is a great time to try."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 504000
+			},
+			"text": " Otherwise, if you've got some crazy ideas on how to create a secret, you want to do vision trips in the desert or something flying airplanes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 509000
+			},
+			"text": " you're going to destroy your computer afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 521000
+			},
+			"text": " Whatever you think is a meaningful way of creating the secret or destroying, making sure proving to the world that you've destroyed it afterwards in a fun, interesting, narratively relevant way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 526000
+			},
+			"text": " There'll be grants that you can join for doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 534000
+			},
+			"text": " Sign up on this thing to be notified. I'm sure everyone will be seeing lots of this happening on all the Twitter's."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 540000
+			},
+			"text": " There'll be a Pope, which means a lot to a lot of people. Shut up, Patricia, in the front row here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 546000
+			},
+			"text": " Look forward to this. I encourage all of you to be ready to contribute."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 560000
+			},
+			"text": " If you'd like to hear more, I have another talk coming up later in the week to dive into the details, explain really the nitty gritty of the math and why this is a secure thing and why it's a necessary thing in order for Ethereum to achieve our goals."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 563000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 573000
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 602000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

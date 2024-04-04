@@ -1,0 +1,3684 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " So, yeah, I'm Liz Steininger with Least Authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:09,200"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 9200
+			},
+			"text": " I'm going to talk today about something that we're calling P4 because we like to play with"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,200",
+				"to": "00:00:10,600"
+			},
+			"offsets": {
+				"from": 9200,
+				"to": 10600
+			},
+			"text": " numbers and letters."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,600",
+				"to": "00:00:15,960"
+			},
+			"offsets": {
+				"from": 10600,
+				"to": 15960
+			},
+			"text": " And the four P's are private, periodic, payment protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,960",
+				"to": "00:00:20,480"
+			},
+			"offsets": {
+				"from": 15960,
+				"to": 20480
+			},
+			"text": " And so, yeah, just going to tell you guys about what our work is with this and why we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,480",
+				"to": "00:00:24,480"
+			},
+			"offsets": {
+				"from": 20480,
+				"to": 24480
+			},
+			"text": " doing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,480",
+				"to": "00:00:27,620"
+			},
+			"offsets": {
+				"from": 24480,
+				"to": 27620
+			},
+			"text": " So like I said, I'm Liz Steininger from Least Authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,620",
+				"to": "00:00:30,720"
+			},
+			"offsets": {
+				"from": 27620,
+				"to": 30720
+			},
+			"text": " We believe that people have a right to privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,720",
+				"to": "00:00:34,840"
+			},
+			"offsets": {
+				"from": 30720,
+				"to": 34840
+			},
+			"text": " Our mission is to make security easy to use and available to everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,840",
+				"to": "00:00:39,580"
+			},
+			"offsets": {
+				"from": 34840,
+				"to": 39580
+			},
+			"text": " We help others to improve their technologies to be more secure through security audits of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,580",
+				"to": "00:00:44,880"
+			},
+			"offsets": {
+				"from": 39580,
+				"to": 44880
+			},
+			"text": " things like distributed ledger technologies, blockchain projects, and related cryptographic"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,880",
+				"to": "00:00:47,280"
+			},
+			"offsets": {
+				"from": 44880,
+				"to": 47280
+			},
+			"text": " efforts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,280",
+				"to": "00:00:53,680"
+			},
+			"offsets": {
+				"from": 47280,
+				"to": 53680
+			},
+			"text": " We also build technical solutions that incorporate these values using things like privacy by design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,680",
+				"to": "00:00:58,800"
+			},
+			"offsets": {
+				"from": 53680,
+				"to": 58800
+			},
+			"text": " empowering users to control their own data, and also minimizing the access that service"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,800",
+				"to": "00:01:04,460"
+			},
+			"offsets": {
+				"from": 58800,
+				"to": 64460
+			},
+			"text": " providers have to the user data or personal data, data minimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,460",
+				"to": "00:01:09,920"
+			},
+			"offsets": {
+				"from": 64460,
+				"to": 69920
+			},
+			"text": " We also like to participate with other communities and work together on particular efforts to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,920",
+				"to": "00:01:13,840"
+			},
+			"offsets": {
+				"from": 69920,
+				"to": 73840
+			},
+			"text": " these goals too."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,840",
+				"to": "00:01:23,600"
+			},
+			"offsets": {
+				"from": 73840,
+				"to": 83600
+			},
+			"text": " I'm sorry, I just realized my whole slide is not showing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,600",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 83600,
+				"to": 86000
+			},
+			"text": " Technical problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 89000
+			},
+			"text": " There we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 90000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:36,720"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 96720
+			},
+			"text": " So, we operate a subscription-based service that's secure distributed storage product."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,720",
+				"to": "00:01:37,720"
+			},
+			"offsets": {
+				"from": 96720,
+				"to": 97720
+			},
+			"text": " And we call it S4."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,720",
+				"to": "00:01:40,120"
+			},
+			"offsets": {
+				"from": 97720,
+				"to": 100120
+			},
+			"text": " Again, we like our letters and numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,120",
+				"to": "00:01:45,440"
+			},
+			"offsets": {
+				"from": 100120,
+				"to": 105440
+			},
+			"text": " And S4 stands for simple secure storage service."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,440",
+				"to": "00:01:50,200"
+			},
+			"offsets": {
+				"from": 105440,
+				"to": 110200
+			},
+			"text": " And it's built using open source technology and enables client-side encryption so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,200",
+				"to": "00:01:53,760"
+			},
+			"offsets": {
+				"from": 110200,
+				"to": 113760
+			},
+			"text": " the users can hold the keys to their data, not us."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,760",
+				"to": "00:01:58,960"
+			},
+			"offsets": {
+				"from": 113760,
+				"to": 118960
+			},
+			"text": " One of the projects that it utilizes is called Tahoe LAFS, L-A-F-S, which stands for Least"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,960",
+				"to": "00:02:02,080"
+			},
+			"offsets": {
+				"from": 118960,
+				"to": 122080
+			},
+			"text": " Authority File Store."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,080",
+				"to": "00:02:09,600"
+			},
+			"offsets": {
+				"from": 122080,
+				"to": 129600
+			},
+			"text": " And Tahoe LAFS and our S4 service doesn't operate on access control lists or ACL or user accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,600",
+				"to": "00:02:15,160"
+			},
+			"offsets": {
+				"from": 129600,
+				"to": 135160
+			},
+			"text": " but instead works using object capability model, OCAP, or key-based access."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,160",
+				"to": "00:02:19,040"
+			},
+			"offsets": {
+				"from": 135160,
+				"to": 139040
+			},
+			"text": " This is similar to how cryptocurrency works in a high level."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,040",
+				"to": "00:02:20,320"
+			},
+			"offsets": {
+				"from": 139040,
+				"to": 140320
+			},
+			"text": " It's similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,320",
+				"to": "00:02:25,920"
+			},
+			"offsets": {
+				"from": 140320,
+				"to": 145920
+			},
+			"text": " In the sense that if you have the private key, you have access to the cryptocurrency and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,920",
+				"to": "00:02:31,120"
+			},
+			"offsets": {
+				"from": 145920,
+				"to": 151120
+			},
+			"text": " there's no user list, no centralized party that is kept that's saying that this particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,120",
+				"to": "00:02:33,760"
+			},
+			"offsets": {
+				"from": 151120,
+				"to": 153760
+			},
+			"text": " cryptocurrency belongs to you personally."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,760",
+				"to": "00:02:39,040"
+			},
+			"offsets": {
+				"from": 153760,
+				"to": 159040
+			},
+			"text": " So, we don't have any personal account information with our system about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,040",
+				"to": "00:02:43,200"
+			},
+			"offsets": {
+				"from": 159040,
+				"to": 163200
+			},
+			"text": " So we don't have any personal account information about the ciphertext that we're storing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,200",
+				"to": "00:02:49,280"
+			},
+			"offsets": {
+				"from": 163200,
+				"to": 169280
+			},
+			"text": " And you either have the capability to access it, the key, or you don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,280",
+				"to": "00:02:57,360"
+			},
+			"offsets": {
+				"from": 169280,
+				"to": 177360
+			},
+			"text": " So, this brings us to our problem and why we started this effort to begin with."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,360",
+				"to": "00:03:00,520"
+			},
+			"offsets": {
+				"from": 177360,
+				"to": 180520
+			},
+			"text": " We have to use fiat currency with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,520",
+				"to": "00:03:06,560"
+			},
+			"offsets": {
+				"from": 180520,
+				"to": 186560
+			},
+			"text": " So, anyway, with our secure storage product, we need to collect these subscription payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,560",
+				"to": "00:03:08,560"
+			},
+			"offsets": {
+				"from": 186560,
+				"to": 188560
+			},
+			"text": " This is our business model with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,560",
+				"to": "00:03:13,440"
+			},
+			"offsets": {
+				"from": 188560,
+				"to": 193440
+			},
+			"text": " And so, however, in the world of fiat currency and online tools, this results in us collecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,440",
+				"to": "00:03:19,880"
+			},
+			"offsets": {
+				"from": 193440,
+				"to": 199880
+			},
+			"text": " personal data by using things like Stripe and ChargeB."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,880",
+				"to": "00:03:24,200"
+			},
+			"offsets": {
+				"from": 199880,
+				"to": 204200
+			},
+			"text": " And we are collecting this personal data only for the purpose of processing payments, not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,200",
+				"to": "00:03:29,840"
+			},
+			"offsets": {
+				"from": 204200,
+				"to": 209840
+			},
+			"text": " for operating the service itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,840",
+				"to": "00:03:35,560"
+			},
+			"offsets": {
+				"from": 209840,
+				"to": 215560
+			},
+			"text": " So right now, we use Stripe and ChargeB and only collect that personal data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,560",
+				"to": "00:03:40,080"
+			},
+			"offsets": {
+				"from": 215560,
+				"to": 220080
+			},
+			"text": " Not for any account management because of the OCAP model."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,080",
+				"to": "00:03:41,280"
+			},
+			"offsets": {
+				"from": 220080,
+				"to": 221280
+			},
+			"text": " So we didn't like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,280",
+				"to": "00:03:45,640"
+			},
+			"offsets": {
+				"from": 221280,
+				"to": 225640
+			},
+			"text": " So we started talking amongst ourselves about how we could potentially use cryptocurrency"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,640",
+				"to": "00:03:50,120"
+			},
+			"offsets": {
+				"from": 225640,
+				"to": 230120
+			},
+			"text": " to help us avoid using these centralized systems that are collecting personal data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,120",
+				"to": "00:03:54,640"
+			},
+			"offsets": {
+				"from": 230120,
+				"to": 234640
+			},
+			"text": " This came about from discussions about GDPR compliance, which is the general data protection"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,640",
+				"to": "00:03:55,640"
+			},
+			"offsets": {
+				"from": 234640,
+				"to": 235640
+			},
+			"text": " regulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,640",
+				"to": "00:04:00,120"
+			},
+			"offsets": {
+				"from": 235640,
+				"to": 240120
+			},
+			"text": " It's in the EU about how personal data should be managed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,120",
+				"to": "00:04:03,720"
+			},
+			"offsets": {
+				"from": 240120,
+				"to": 243720
+			},
+			"text": " And so, amongst ourselves, we figured out that this was a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,720",
+				"to": "00:04:08,520"
+			},
+			"offsets": {
+				"from": 243720,
+				"to": 248520
+			},
+			"text": " And so, we thought, okay, what could we do with cryptocurrency?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,520",
+				"to": "00:04:13,120"
+			},
+			"offsets": {
+				"from": 248520,
+				"to": 253120
+			},
+			"text": " So we started looking around at how we could accept private payments for the subscription"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,120",
+				"to": "00:04:18,040"
+			},
+			"offsets": {
+				"from": 253120,
+				"to": 258040
+			},
+			"text": " service, and that would also allow us to do end-to-end privacy for people, just like"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,040",
+				"to": "00:04:24,920"
+			},
+			"offsets": {
+				"from": 258040,
+				"to": 264920
+			},
+			"text": " we are able to offer them end-to-end encryption and privacy with the data storage service itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,920",
+				"to": "00:04:27,240"
+			},
+			"offsets": {
+				"from": 264920,
+				"to": 267240
+			},
+			"text": " And so, of course, this is a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,240",
+				"to": "00:04:30,720"
+			},
+			"offsets": {
+				"from": 267240,
+				"to": 270720
+			},
+			"text": " Now it's expensive to make things private and cheap to make them public."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,720",
+				"to": "00:04:35,120"
+			},
+			"offsets": {
+				"from": 270720,
+				"to": 275120
+			},
+			"text": " Unfortunately, this seems to be the case right now, and we're trying to work on making this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,120",
+				"to": "00:04:36,560"
+			},
+			"offsets": {
+				"from": 275120,
+				"to": 276560
+			},
+			"text": " not the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,560",
+				"to": "00:04:41,040"
+			},
+			"offsets": {
+				"from": 276560,
+				"to": 281040
+			},
+			"text": " And expensive is relative, and I think that this issue could be easily challenged with"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,040",
+				"to": "00:04:44,720"
+			},
+			"offsets": {
+				"from": 281040,
+				"to": 284720
+			},
+			"text": " new technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,720",
+				"to": "00:04:48,720"
+			},
+			"offsets": {
+				"from": 284720,
+				"to": 288720
+			},
+			"text": " So here are the layers of privacy that we're considering when we want to say that we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,720",
+				"to": "00:04:54,040"
+			},
+			"offsets": {
+				"from": 288720,
+				"to": 294040
+			},
+			"text": " to do something that's end-to-end private for the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,040",
+				"to": "00:04:58,800"
+			},
+			"offsets": {
+				"from": 294040,
+				"to": 298800
+			},
+			"text": " We need to preserve the customer's privacy at all these levels, and these are the different"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,800",
+				"to": "00:05:02,920"
+			},
+			"offsets": {
+				"from": 298800,
+				"to": 302920
+			},
+			"text": " layers and systems that we need to have interacting with about whether or not there's any personal"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,920",
+				"to": "00:05:07,960"
+			},
+			"offsets": {
+				"from": 302920,
+				"to": 307960
+			},
+			"text": " data that would be leaked, or any metadata that could be correlated with other data to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,960",
+				"to": "00:05:10,080"
+			},
+			"offsets": {
+				"from": 307960,
+				"to": 310080
+			},
+			"text": " become personal data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,080",
+				"to": "00:05:18,440"
+			},
+			"offsets": {
+				"from": 310080,
+				"to": 318440
+			},
+			"text": " The same way that things like Bitcoin and Ethereum addresses could be looked at, correlated"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,440",
+				"to": "00:05:23,240"
+			},
+			"offsets": {
+				"from": 318440,
+				"to": 323240
+			},
+			"text": " with other data, in order to figure out people, so that figure out personal identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,240",
+				"to": "00:05:29,320"
+			},
+			"offsets": {
+				"from": 323240,
+				"to": 329320
+			},
+			"text": " So that are not true anonymity, but pseudounen anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,320",
+				"to": "00:05:33,200"
+			},
+			"offsets": {
+				"from": 329320,
+				"to": 333200
+			},
+			"text": " So starting from the bottom and moving to the top, we decided to use Tor for network"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,200",
+				"to": "00:05:37,880"
+			},
+			"offsets": {
+				"from": 333200,
+				"to": 337880
+			},
+			"text": " layer privacy, because it exists right now, and it's usable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,880",
+				"to": "00:05:41,680"
+			},
+			"offsets": {
+				"from": 337880,
+				"to": 341680
+			},
+			"text": " Some of our team members contribute to the Tor project, which is an anonymity network"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,680",
+				"to": "00:05:45,640"
+			},
+			"offsets": {
+				"from": 341680,
+				"to": 345640
+			},
+			"text": " that allows users to not reveal personal data on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,640",
+				"to": "00:05:49,960"
+			},
+			"offsets": {
+				"from": 345640,
+				"to": 349960
+			},
+			"text": " And this protects against leaking any IP address information, which can be considered personal"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,960",
+				"to": "00:05:52,680"
+			},
+			"offsets": {
+				"from": 349960,
+				"to": 352680
+			},
+			"text": " data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,680",
+				"to": "00:05:57,960"
+			},
+			"offsets": {
+				"from": 352680,
+				"to": 357960
+			},
+			"text": " And then Tahoe Laughs is a technology, as I mentioned before, that we use with S4."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,960",
+				"to": "00:06:02,520"
+			},
+			"offsets": {
+				"from": 357960,
+				"to": 362520
+			},
+			"text": " And this offers storage layer privacy with client-side encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,520",
+				"to": "00:06:09,520"
+			},
+			"offsets": {
+				"from": 362520,
+				"to": 369520
+			},
+			"text": " And lastly, we also use, or not lastly, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,520",
+				"to": "00:06:11,600"
+			},
+			"offsets": {
+				"from": 369520,
+				"to": 371600
+			},
+			"text": " And then we have Zcash."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,600",
+				"to": "00:06:13,520"
+			},
+			"offsets": {
+				"from": 371600,
+				"to": 373520
+			},
+			"text": " I think I missed that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,520",
+				"to": "00:06:14,520"
+			},
+			"offsets": {
+				"from": 373520,
+				"to": 374520
+			},
+			"text": " Sorry, going up."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,520",
+				"to": "00:06:15,520"
+			},
+			"offsets": {
+				"from": 374520,
+				"to": 375520
+			},
+			"text": " I skipped over Zcash."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,520",
+				"to": "00:06:17,800"
+			},
+			"offsets": {
+				"from": 375520,
+				"to": 377800
+			},
+			"text": " Zcash, I'll talk more about it in the next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,800",
+				"to": "00:06:21,840"
+			},
+			"offsets": {
+				"from": 377800,
+				"to": 381840
+			},
+			"text": " But Zcash, she's able to transactions help us with financial privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,840",
+				"to": "00:06:25,720"
+			},
+			"offsets": {
+				"from": 381840,
+				"to": 385720
+			},
+			"text": " And then Tahoe Laughs again helps us with the storage layer privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,720",
+				"to": "00:06:29,800"
+			},
+			"offsets": {
+				"from": 385720,
+				"to": 389800
+			},
+			"text": " And then going at the top, we have the client application, which is grid sync that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,800",
+				"to": "00:06:33,680"
+			},
+			"offsets": {
+				"from": 389800,
+				"to": 393680
+			},
+			"text": " using for ours, but this also applies to the Zcash wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,680",
+				"to": "00:06:36,600"
+			},
+			"offsets": {
+				"from": 393680,
+				"to": 396600
+			},
+			"text": " And this gives users control over their payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,600",
+				"to": "00:06:43,120"
+			},
+			"offsets": {
+				"from": 396600,
+				"to": 403120
+			},
+			"text": " And all of this is combined in what we need to give us end-to-end privacy for our subscription"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,120",
+				"to": "00:06:44,600"
+			},
+			"offsets": {
+				"from": 403120,
+				"to": 404600
+			},
+			"text": " customers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,600",
+				"to": "00:06:48,480"
+			},
+			"offsets": {
+				"from": 404600,
+				"to": 408480
+			},
+			"text": " And why we particularly like doing it this way is because all these things exist right"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,480",
+				"to": "00:06:55,240"
+			},
+			"offsets": {
+				"from": 408480,
+				"to": 415240
+			},
+			"text": " now and we can put them together to have this implemented in a short amount of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,240",
+				"to": "00:06:58,640"
+			},
+			"offsets": {
+				"from": 415240,
+				"to": 418640
+			},
+			"text": " So about cryptocurrency payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,640",
+				"to": "00:07:02,440"
+			},
+			"offsets": {
+				"from": 418640,
+				"to": 422440
+			},
+			"text": " Cryptocurrencies have some technical features that could be utilized, including some privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,440",
+				"to": "00:07:03,440"
+			},
+			"offsets": {
+				"from": 422440,
+				"to": 423440
+			},
+			"text": " features."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,440",
+				"to": "00:07:05,880"
+			},
+			"offsets": {
+				"from": 423440,
+				"to": 425880
+			},
+			"text": " One blockchain that we are familiar with is Zcash."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,880",
+				"to": "00:07:10,160"
+			},
+			"offsets": {
+				"from": 425880,
+				"to": 430160
+			},
+			"text": " Our companies share founders, and although they're two separate companies now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,160",
+				"to": "00:07:13,720"
+			},
+			"offsets": {
+				"from": 430160,
+				"to": 433720
+			},
+			"text": " So we should also share a mission for privacy for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,720",
+				"to": "00:07:19,040"
+			},
+			"offsets": {
+				"from": 433720,
+				"to": 439040
+			},
+			"text": " So we looked at how we could utilize Zcash's privacy features to help us preserve privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,040",
+				"to": "00:07:22,360"
+			},
+			"offsets": {
+				"from": 439040,
+				"to": 442360
+			},
+			"text": " in our processing of customer payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,360",
+				"to": "00:07:24,760"
+			},
+			"offsets": {
+				"from": 442360,
+				"to": 444760
+			},
+			"text": " And of course, Zcash offers two types of payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,760",
+				"to": "00:07:31,080"
+			},
+			"offsets": {
+				"from": 444760,
+				"to": 451080
+			},
+			"text": " One that are trans-parents, transparent transactions, which are more like Bitcoin, and then also"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,080",
+				"to": "00:07:35,760"
+			},
+			"offsets": {
+				"from": 451080,
+				"to": 455760
+			},
+			"text": " the shielded transactions, which utilize a particular type of zero-knowledge proofs called"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,760",
+				"to": "00:07:39,440"
+			},
+			"offsets": {
+				"from": 455760,
+				"to": 459440
+			},
+			"text": " ZK Snarks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,440",
+				"to": "00:07:45,760"
+			},
+			"offsets": {
+				"from": 459440,
+				"to": 465760
+			},
+			"text": " And so for subscriptions, we need to establish a relationship between the customer and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,760",
+				"to": "00:07:51,960"
+			},
+			"offsets": {
+				"from": 465760,
+				"to": 471960
+			},
+			"text": " merchant to facilitate payments that repeat at specific intervals."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,960",
+				"to": "00:07:55,640"
+			},
+			"offsets": {
+				"from": 471960,
+				"to": 475640
+			},
+			"text": " So we went on to look at subscriptions with cryptocurrency."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,640",
+				"to": "00:07:59,880"
+			},
+			"offsets": {
+				"from": 475640,
+				"to": 479880
+			},
+			"text": " So when we researched what was out there and the standards for doing subscription payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,880",
+				"to": "00:08:04,720"
+			},
+			"offsets": {
+				"from": 479880,
+				"to": 484720
+			},
+			"text": " with cryptocurrencies, what we found was a bit limiting and didn't quite meet our needs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,720",
+				"to": "00:08:08,440"
+			},
+			"offsets": {
+				"from": 484720,
+				"to": 488440
+			},
+			"text": " especially in the case of end-to-end privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,440",
+				"to": "00:08:15,120"
+			},
+			"offsets": {
+				"from": 488440,
+				"to": 495120
+			},
+			"text": " One current use of Zcash-shielded transactions is to have people prepay for their subscriptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,120",
+				"to": "00:08:17,080"
+			},
+			"offsets": {
+				"from": 495120,
+				"to": 497080
+			},
+			"text": " This works okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,080",
+				"to": "00:08:21,480"
+			},
+			"offsets": {
+				"from": 497080,
+				"to": 501480
+			},
+			"text": " This is not ideal for subscriptions, but this does work for some service offerings where"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,480",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 501480,
+				"to": 506000
+			},
+			"text": " you can turn off the service when a payment lapses and then turn it back on later after"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:29,920"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 509920
+			},
+			"text": " new payment, like for example, electricity payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,920",
+				"to": "00:08:35,760"
+			},
+			"offsets": {
+				"from": 509920,
+				"to": 515760
+			},
+			"text": " However, in our case, because people are uploading data to be stored on our storage service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,760",
+				"to": "00:08:42,160"
+			},
+			"offsets": {
+				"from": 515760,
+				"to": 522160
+			},
+			"text": " this is not an ideal user experience because if they stop their service, because of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,160",
+				"to": "00:08:45,360"
+			},
+			"offsets": {
+				"from": 522160,
+				"to": 525360
+			},
+			"text": " need to re-upload that data every single time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,360",
+				"to": "00:08:49,720"
+			},
+			"offsets": {
+				"from": 525360,
+				"to": 529720
+			},
+			"text": " And so amongst other downsides to this approach too."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,720",
+				"to": "00:08:53,320"
+			},
+			"offsets": {
+				"from": 529720,
+				"to": 533320
+			},
+			"text": " And then another option is to do post-paid subscriptions, but this is also not ideal"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,320",
+				"to": "00:08:58,280"
+			},
+			"offsets": {
+				"from": 533320,
+				"to": 538280
+			},
+			"text": " and it makes renewal or payment periodicity a challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,280",
+				"to": "00:09:02,840"
+			},
+			"offsets": {
+				"from": 538280,
+				"to": 542840
+			},
+			"text": " And of course, you can use smart contracts for managing some aspects of subscriptions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,840",
+				"to": "00:09:08,760"
+			},
+			"offsets": {
+				"from": 542840,
+				"to": 548760
+			},
+			"text": " but this is an option with Ethereum and other platforms, but it doesn't really offer much"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,760",
+				"to": "00:09:11,360"
+			},
+			"offsets": {
+				"from": 548760,
+				"to": 551360
+			},
+			"text": " in terms of privacy at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,360",
+				"to": "00:09:14,120"
+			},
+			"offsets": {
+				"from": 551360,
+				"to": 554120
+			},
+			"text": " And you can't do those on the Zcash blockchain at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,120",
+				"to": "00:09:17,400"
+			},
+			"offsets": {
+				"from": 554120,
+				"to": 557400
+			},
+			"text": " And I hope to see both of those things change soon too."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,400",
+				"to": "00:09:22,960"
+			},
+			"offsets": {
+				"from": 557400,
+				"to": 562960
+			},
+			"text": " So what this meant is that we need to do some work on defining how to preserve privacy while"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,960",
+				"to": "00:09:27,440"
+			},
+			"offsets": {
+				"from": 562960,
+				"to": 567440
+			},
+			"text": " still establishing the necessary relationship for these reoccurring cryptocurrency payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,440",
+				"to": "00:09:29,560"
+			},
+			"offsets": {
+				"from": 567440,
+				"to": 569560
+			},
+			"text": " for subscription."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,560",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569560,
+				"to": 574000
+			},
+			"text": " So this is what we came up with for P4."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:39,160"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 579160
+			},
+			"text": " On the left side, there's a list of basic tasks that we need to have completed by a subscription."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,160",
+				"to": "00:09:44,840"
+			},
+			"offsets": {
+				"from": 579160,
+				"to": 584840
+			},
+			"text": " And on the right side, you can see the various pieces, the various layers, the pieces that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,840",
+				"to": "00:09:48,480"
+			},
+			"offsets": {
+				"from": 584840,
+				"to": 588480
+			},
+			"text": " I mentioned earlier, and they're part in these different steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,480",
+				"to": "00:09:52,680"
+			},
+			"offsets": {
+				"from": 588480,
+				"to": 592680
+			},
+			"text": " And then this is all done over the Tor network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,680",
+				"to": "00:09:56,320"
+			},
+			"offsets": {
+				"from": 592680,
+				"to": 596320
+			},
+			"text": " So in the first step, we have the subscription initiation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,320",
+				"to": "00:09:59,880"
+			},
+			"offsets": {
+				"from": 596320,
+				"to": 599880
+			},
+			"text": " The customer visits a web page and completes the subscription request."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,880",
+				"to": "00:10:04,360"
+			},
+			"offsets": {
+				"from": 599880,
+				"to": 604360
+			},
+			"text": " Now because we're not caring for much personal data, this is probably just a button."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,360",
+				"to": "00:10:06,160"
+			},
+			"offsets": {
+				"from": 604360,
+				"to": 606160
+			},
+			"text": " Actually, right now it is just a button."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,160",
+				"to": "00:10:09,360"
+			},
+			"offsets": {
+				"from": 606160,
+				"to": 609360
+			},
+			"text": " We don't have any fields or a form for them to fill out because we don't want any more"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,360",
+				"to": "00:10:10,360"
+			},
+			"offsets": {
+				"from": 609360,
+				"to": 610360
+			},
+			"text": " data."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,360",
+				"to": "00:10:11,760"
+			},
+			"offsets": {
+				"from": 610360,
+				"to": 611760
+			},
+			"text": " We just want to know that they want to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,760",
+				"to": "00:10:17,240"
+			},
+			"offsets": {
+				"from": 611760,
+				"to": 617240
+			},
+			"text": " And so -- and then the second step is subscription creation and invite code."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,240",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 617240,
+				"to": 623000
+			},
+			"text": " So we, the merchant, create a Zcash address and an initial database entry to link the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:25,920"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 625920
+			},
+			"text": " subscription ID to the Zcash address."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,920",
+				"to": "00:10:32,160"
+			},
+			"offsets": {
+				"from": 625920,
+				"to": 632160
+			},
+			"text": " We generate a special invite code for the subscription that includes configuration details"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,160",
+				"to": "00:10:36,760"
+			},
+			"offsets": {
+				"from": 632160,
+				"to": 636760
+			},
+			"text": " to access our storage servers, the capability that I mentioned before."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,760",
+				"to": "00:10:40,640"
+			},
+			"offsets": {
+				"from": 636760,
+				"to": 640640
+			},
+			"text": " And it also includes the initial invoice for the service."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,640",
+				"to": "00:10:45,560"
+			},
+			"offsets": {
+				"from": 640640,
+				"to": 645560
+			},
+			"text": " And in that invoice is a signature so that they can also verify us in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,560",
+				"to": "00:10:49,480"
+			},
+			"offsets": {
+				"from": 645560,
+				"to": 649480
+			},
+			"text": " And then the third step is client-side subscription configuration."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,480",
+				"to": "00:10:55,240"
+			},
+			"offsets": {
+				"from": 649480,
+				"to": 655240
+			},
+			"text": " The customer's client, a desktop application, in our case, grid sync that I mentioned earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,240",
+				"to": "00:10:59,280"
+			},
+			"offsets": {
+				"from": 655240,
+				"to": 659280
+			},
+			"text": " actually connects to us, receives and receives the invite code, and then gets configured"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,280",
+				"to": "00:11:03,800"
+			},
+			"offsets": {
+				"from": 659280,
+				"to": 663800
+			},
+			"text": " for both managing the data, they will store in our service, and also the invoices they"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,800",
+				"to": "00:11:06,840"
+			},
+			"offsets": {
+				"from": 663800,
+				"to": 666840
+			},
+			"text": " will receive for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,840",
+				"to": "00:11:09,960"
+			},
+			"offsets": {
+				"from": 666840,
+				"to": 669960
+			},
+			"text": " And the fourth step is payment and server update."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,960",
+				"to": "00:11:15,720"
+			},
+			"offsets": {
+				"from": 669960,
+				"to": 675720
+			},
+			"text": " Next the customer has to actually send their first payment for the service per the invoice"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,720",
+				"to": "00:11:17,240"
+			},
+			"offsets": {
+				"from": 675720,
+				"to": 677240
+			},
+			"text": " that they just received."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,240",
+				"to": "00:11:20,520"
+			},
+			"offsets": {
+				"from": 677240,
+				"to": 680520
+			},
+			"text": " And they need to do this payment via a Zcash wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,520",
+				"to": "00:11:24,960"
+			},
+			"offsets": {
+				"from": 680520,
+				"to": 684960
+			},
+			"text": " That payment is processed on the Zcash blockchain, and we consider it a current confirmed after"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,960",
+				"to": "00:11:28,280"
+			},
+			"offsets": {
+				"from": 684960,
+				"to": 688280
+			},
+			"text": " a certain number of blocks are written."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,280",
+				"to": "00:11:30,440"
+			},
+			"offsets": {
+				"from": 688280,
+				"to": 690440
+			},
+			"text": " That might not take too long, maybe about an hour."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,440",
+				"to": "00:11:33,200"
+			},
+			"offsets": {
+				"from": 690440,
+				"to": 693200
+			},
+			"text": " I think right now we're thinking about 24 blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,200",
+				"to": "00:11:37,200"
+			},
+			"offsets": {
+				"from": 693200,
+				"to": 697200
+			},
+			"text": " And then this triggers the publishing of the next invoice."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,200",
+				"to": "00:11:41,600"
+			},
+			"offsets": {
+				"from": 697200,
+				"to": 701600
+			},
+			"text": " So the fifth step then is the recurring invoice and payment process."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,600",
+				"to": "00:11:45,920"
+			},
+			"offsets": {
+				"from": 701600,
+				"to": 705920
+			},
+			"text": " From this point, the client monitors the next for the next invoice, displays it to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,920",
+				"to": "00:11:50,480"
+			},
+			"offsets": {
+				"from": 705920,
+				"to": 710480
+			},
+			"text": " customer, and continues to do this loop after subsequent payments are made."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,480",
+				"to": "00:11:59,520"
+			},
+			"offsets": {
+				"from": 710480,
+				"to": 719520
+			},
+			"text": " And within, when they go check on the invoice, we are also utilizing payment codes to communicate"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,520",
+				"to": "00:12:01,680"
+			},
+			"offsets": {
+				"from": 719520,
+				"to": 721680
+			},
+			"text": " to them the status of the payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,680",
+				"to": "00:12:06,200"
+			},
+			"offsets": {
+				"from": 721680,
+				"to": 726200
+			},
+			"text": " And then also they can also verify the signature with each of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,200",
+				"to": "00:12:10,120"
+			},
+			"offsets": {
+				"from": 726200,
+				"to": 730120
+			},
+			"text": " And then if they stop paying, then their service is stopped."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,120",
+				"to": "00:12:14,120"
+			},
+			"offsets": {
+				"from": 730120,
+				"to": 734120
+			},
+			"text": " So privacy is maintained by pushing many of the subscription management activities to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,120",
+				"to": "00:12:16,960"
+			},
+			"offsets": {
+				"from": 734120,
+				"to": 736960
+			},
+			"text": " the user's device into their client."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,960",
+				"to": "00:12:23,400"
+			},
+			"offsets": {
+				"from": 736960,
+				"to": 743400
+			},
+			"text": " Instead of gathering the data in a central repository by a service like Stripe."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,400",
+				"to": "00:12:26,680"
+			},
+			"offsets": {
+				"from": 743400,
+				"to": 746680
+			},
+			"text": " Or the equivalent of Stripe."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,680",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 746680,
+				"to": 751000
+			},
+			"text": " And this decentralization of subscription data along with the Zcash shielded transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:36,480"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 756480
+			},
+			"text": " and use of the Tor network allow us to not gather personal information about customers"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,480",
+				"to": "00:12:43,480"
+			},
+			"offsets": {
+				"from": 756480,
+				"to": 763480
+			},
+			"text": " or any metadata that could be correlated for suggestions on who the user is."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,480",
+				"to": "00:12:45,240"
+			},
+			"offsets": {
+				"from": 763480,
+				"to": 765240
+			},
+			"text": " So we'll go into more details."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,240",
+				"to": "00:12:47,400"
+			},
+			"offsets": {
+				"from": 765240,
+				"to": 767400
+			},
+			"text": " This is the invoice."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,400",
+				"to": "00:12:51,720"
+			},
+			"offsets": {
+				"from": 767400,
+				"to": 771720
+			},
+			"text": " So as for data standards, again, we looked around at things that are existing right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,720",
+				"to": "00:12:57,560"
+			},
+			"offsets": {
+				"from": 771720,
+				"to": 777560
+			},
+			"text": " and we didn't see any kind of common language or agreed upon protocol for expressing notions"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,560",
+				"to": "00:13:01,040"
+			},
+			"offsets": {
+				"from": 777560,
+				"to": 781040
+			},
+			"text": " like billing period, due date, grace period, and late penalties."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,040",
+				"to": "00:13:05,520"
+			},
+			"offsets": {
+				"from": 781040,
+				"to": 785520
+			},
+			"text": " So we designed a simple invoice structure to allow us to communicate this information."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,520",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 785520,
+				"to": 789000
+			},
+			"text": " On the right, you see a basic list of data that we need to have in our invoices, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 794000
+			},
+			"text": " could be expanded to include more data for additional features in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:18,720"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 798720
+			},
+			"text": " And on the left, this is what the string of the invoice data actually looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,720",
+				"to": "00:13:25,080"
+			},
+			"offsets": {
+				"from": 798720,
+				"to": 805080
+			},
+			"text": " In this example, a customer is being asked to pay .1 sec by a particular date here September"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,080",
+				"to": "00:13:27,720"
+			},
+			"offsets": {
+				"from": 805080,
+				"to": 807720
+			},
+			"text": " 4th for the service leased authority S4."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,720",
+				"to": "00:13:31,760"
+			},
+			"offsets": {
+				"from": 807720,
+				"to": 811760
+			},
+			"text": " If the payment is made by a given deadline, then the subscription will be extended for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,760",
+				"to": "00:13:37,520"
+			},
+			"offsets": {
+				"from": 811760,
+				"to": 817520
+			},
+			"text": " a month, 2.5 million seconds, until October 4th, 2018."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,520",
+				"to": "00:13:43,400"
+			},
+			"offsets": {
+				"from": 817520,
+				"to": 823400
+			},
+			"text": " And I think in the future, we need to include things like trial periods, refunds, things"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,400",
+				"to": "00:13:48,840"
+			},
+			"offsets": {
+				"from": 823400,
+				"to": 828840
+			},
+			"text": " like that could be also included in this, but this was just basically the short list of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,840",
+				"to": "00:13:55,080"
+			},
+			"offsets": {
+				"from": 828840,
+				"to": 835080
+			},
+			"text": " data that we need to just process an invoice for the subscription."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,080",
+				"to": "00:14:00,280"
+			},
+			"offsets": {
+				"from": 835080,
+				"to": 840280
+			},
+			"text": " So yeah, to start to talk about next steps and where we're at right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,280",
+				"to": "00:14:04,920"
+			},
+			"offsets": {
+				"from": 840280,
+				"to": 844920
+			},
+			"text": " So we're wrapping up the edits to our paper about this work and the privacy considerations"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,920",
+				"to": "00:14:07,120"
+			},
+			"offsets": {
+				"from": 844920,
+				"to": 847120
+			},
+			"text": " that we've made in the designing of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,120",
+				"to": "00:14:12,200"
+			},
+			"offsets": {
+				"from": 847120,
+				"to": 852200
+			},
+			"text": " We think that by also sharing these privacy considerations, not just the technical specifications"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,200",
+				"to": "00:14:16,160"
+			},
+			"offsets": {
+				"from": 852200,
+				"to": 856160
+			},
+			"text": " of what we're doing, that we can help people understand more about how to do privacy by"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,160",
+				"to": "00:14:20,480"
+			},
+			"offsets": {
+				"from": 856160,
+				"to": 860480
+			},
+			"text": " design or just at least explain how we're trying to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,480",
+				"to": "00:14:23,200"
+			},
+			"offsets": {
+				"from": 860480,
+				"to": 863200
+			},
+			"text": " And we'll be publishing that paper soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,200",
+				"to": "00:14:26,320"
+			},
+			"offsets": {
+				"from": 863200,
+				"to": 866320
+			},
+			"text": " And we've already started implementing this for our S4 service."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,320",
+				"to": "00:14:31,280"
+			},
+			"offsets": {
+				"from": 866320,
+				"to": 871280
+			},
+			"text": " We hope to have this available to pay."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,280",
+				"to": "00:14:35,760"
+			},
+			"offsets": {
+				"from": 871280,
+				"to": 875760
+			},
+			"text": " I mean, to use Zcash Shielded Transactions to pay for our service subscription sometime"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,760",
+				"to": "00:14:37,320"
+			},
+			"offsets": {
+				"from": 875760,
+				"to": 877320
+			},
+			"text": " in a few weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,320",
+				"to": "00:14:44,120"
+			},
+			"offsets": {
+				"from": 877320,
+				"to": 884120
+			},
+			"text": " And this includes making updates to our desktop client, Gridsink, and also just making sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,120",
+				"to": "00:14:50,400"
+			},
+			"offsets": {
+				"from": 884120,
+				"to": 890400
+			},
+			"text": " that setting up a-- this also includes setting up a separate tour website for people to visit"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,400",
+				"to": "00:14:54,640"
+			},
+			"offsets": {
+				"from": 890400,
+				"to": 894640
+			},
+			"text": " and things like that because we need to force people, even from the time that they're interested,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,640",
+				"to": "00:14:59,120"
+			},
+			"offsets": {
+				"from": 894640,
+				"to": 899120
+			},
+			"text": " they're browsing, trying to figure out if they want us to subscribe to our service to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,120",
+				"to": "00:15:04,040"
+			},
+			"offsets": {
+				"from": 899120,
+				"to": 904040
+			},
+			"text": " start to use Tor so that we don't get that IP address that we can correlate later."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,040",
+				"to": "00:15:11,160"
+			},
+			"offsets": {
+				"from": 904040,
+				"to": 911160
+			},
+			"text": " Yeah, so also the sapling upgrade to Zcash just recently happened and that helps for"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,160",
+				"to": "00:15:16,760"
+			},
+			"offsets": {
+				"from": 911160,
+				"to": 916760
+			},
+			"text": " faster to make Zcash faster, especially as Shielded Transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,760",
+				"to": "00:15:24,320"
+			},
+			"offsets": {
+				"from": 916760,
+				"to": 924320
+			},
+			"text": " And then we hope to get lots of feedback from various communities, especially this community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,320",
+				"to": "00:15:26,760"
+			},
+			"offsets": {
+				"from": 924320,
+				"to": 926760
+			},
+			"text": " to help us iterate and improve this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,760",
+				"to": "00:15:31,480"
+			},
+			"offsets": {
+				"from": 926760,
+				"to": 931480
+			},
+			"text": " We would like to coordinate efforts with other people who are working in the area of subscription"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,480",
+				"to": "00:15:37,400"
+			},
+			"offsets": {
+				"from": 931480,
+				"to": 937400
+			},
+			"text": " services and management within-- with cryptocurrency and also people who care about privacy payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,400",
+				"to": "00:15:39,560"
+			},
+			"offsets": {
+				"from": 937400,
+				"to": 939560
+			},
+			"text": " and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,560",
+				"to": "00:15:43,520"
+			},
+			"offsets": {
+				"from": 939560,
+				"to": 943520
+			},
+			"text": " So for example-- and then we were also thinking about all kinds of great things that we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,520",
+				"to": "00:15:45,120"
+			},
+			"offsets": {
+				"from": 943520,
+				"to": 945120
+			},
+			"text": " do in the future with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,120",
+				"to": "00:15:49,720"
+			},
+			"offsets": {
+				"from": 945120,
+				"to": 949720
+			},
+			"text": " For example, we could implement a more robust communication channel for subscription management"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,720",
+				"to": "00:15:55,360"
+			},
+			"offsets": {
+				"from": 949720,
+				"to": 955360
+			},
+			"text": " via the encrypted memo field in Zcash transactions where data can be passed, like where that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,360",
+				"to": "00:16:00,800"
+			},
+			"offsets": {
+				"from": 955360,
+				"to": 960800
+			},
+			"text": " invoice data could be passed back and forth as an in-band communication channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,800",
+				"to": "00:16:07,200"
+			},
+			"offsets": {
+				"from": 960800,
+				"to": 967200
+			},
+			"text": " We're also looking at expanding on features within Tahoe Labs to create a communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,200",
+				"to": "00:16:11,480"
+			},
+			"offsets": {
+				"from": 967200,
+				"to": 971480
+			},
+			"text": " channel there too and seeing if that would help."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,480",
+				"to": "00:16:16,280"
+			},
+			"offsets": {
+				"from": 971480,
+				"to": 976280
+			},
+			"text": " And looking at improvements to or integrations with customer wallets to support this type"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,280",
+				"to": "00:16:24,200"
+			},
+			"offsets": {
+				"from": 976280,
+				"to": 984200
+			},
+			"text": " of invoicing data and also the advanced features of things like trial periods, refunds and stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,200",
+				"to": "00:16:25,640"
+			},
+			"offsets": {
+				"from": 984200,
+				"to": 985640
+			},
+			"text": " like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,640",
+				"to": "00:16:30,760"
+			},
+			"offsets": {
+				"from": 985640,
+				"to": 990760
+			},
+			"text": " And we'd like to see the development of merchant-facing payment frameworks to support subscription"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,760",
+				"to": "00:16:35,480"
+			},
+			"offsets": {
+				"from": 990760,
+				"to": 995480
+			},
+			"text": " and management of those subscriptions for companies that want to utilize cryptocurrency"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,480",
+				"to": "00:16:37,200"
+			},
+			"offsets": {
+				"from": 995480,
+				"to": 997200
+			},
+			"text": " payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,200",
+				"to": "00:16:42,320"
+			},
+			"offsets": {
+				"from": 997200,
+				"to": 1002320
+			},
+			"text": " And lastly, we just hope that this inspires other subscription services to use cryptocurrency"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,320",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 1002320,
+				"to": 1005000
+			},
+			"text": " in a privacy-preserving way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:51,160"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1011160
+			},
+			"text": " While experimenting with tech, we understand that maybe privacy can be like an afterthought"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,160",
+				"to": "00:16:53,080"
+			},
+			"offsets": {
+				"from": 1011160,
+				"to": 1013080
+			},
+			"text": " when you're doing experimentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,080",
+				"to": "00:16:59,800"
+			},
+			"offsets": {
+				"from": 1013080,
+				"to": 1019800
+			},
+			"text": " But if we do want to see this-- that in order for this to become a mass adoption, especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,800",
+				"to": "00:17:04,080"
+			},
+			"offsets": {
+				"from": 1019800,
+				"to": 1024080
+			},
+			"text": " for cryptocurrency, for subscription payments, I think that there needs to be some privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,080",
+				"to": "00:17:05,080"
+			},
+			"offsets": {
+				"from": 1024080,
+				"to": 1025080
+			},
+			"text": " in those payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,080",
+				"to": "00:17:08,400"
+			},
+			"offsets": {
+				"from": 1025080,
+				"to": 1028400
+			},
+			"text": " Otherwise, the world can see everything that you're subscribing to."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,400",
+				"to": "00:17:10,280"
+			},
+			"offsets": {
+				"from": 1028400,
+				"to": 1030280
+			},
+			"text": " And that's not so cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,280",
+				"to": "00:17:15,520"
+			},
+			"offsets": {
+				"from": 1030280,
+				"to": 1035520
+			},
+			"text": " And also, even if it's not so obvious what that data is, if it's just like metadata or"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,520",
+				"to": "00:17:21,660"
+			},
+			"offsets": {
+				"from": 1035520,
+				"to": 1041660
+			},
+			"text": " something, with big data analytic capabilities that are out there right now, people could"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,660",
+				"to": "00:17:26,440"
+			},
+			"offsets": {
+				"from": 1041660,
+				"to": 1046440
+			},
+			"text": " start to easily correlate that data to other data that's out there and figure out more"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,440",
+				"to": "00:17:28,480"
+			},
+			"offsets": {
+				"from": 1046440,
+				"to": 1048480
+			},
+			"text": " about you too."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,480",
+				"to": "00:17:33,680"
+			},
+			"offsets": {
+				"from": 1048480,
+				"to": 1053680
+			},
+			"text": " So any current pseudo anonymity that we have right now will be quickly lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,680",
+				"to": "00:17:39,280"
+			},
+			"offsets": {
+				"from": 1053680,
+				"to": 1059280
+			},
+			"text": " And a major factor in decentralization is removing such power from big corporations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,280",
+				"to": "00:17:44,040"
+			},
+			"offsets": {
+				"from": 1059280,
+				"to": 1064040
+			},
+			"text": " central organizations, and giving it to us as individuals to manage our subscriptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,040",
+				"to": "00:17:45,120"
+			},
+			"offsets": {
+				"from": 1064040,
+				"to": 1065120
+			},
+			"text": " ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,120",
+				"to": "00:17:48,120"
+			},
+			"offsets": {
+				"from": 1065120,
+				"to": 1068120
+			},
+			"text": " So usability will be very key in this, too."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,120",
+				"to": "00:17:54,600"
+			},
+			"offsets": {
+				"from": 1068120,
+				"to": 1074600
+			},
+			"text": " So I look forward to hearing from people about these efforts and how we can move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,600",
+				"to": "00:17:55,600"
+			},
+			"offsets": {
+				"from": 1074600,
+				"to": 1075600
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,600",
+				"to": "00:17:56,600"
+			},
+			"offsets": {
+				"from": 1075600,
+				"to": 1076600
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,600",
+				"to": "00:17:57,600"
+			},
+			"offsets": {
+				"from": 1076600,
+				"to": 1077600
+			},
+			"text": " Questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,600",
+				"to": "00:17:58,600"
+			},
+			"offsets": {
+				"from": 1077600,
+				"to": 1078600
+			},
+			"text": " Yeah, sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,600",
+				"to": "00:18:02,160"
+			},
+			"offsets": {
+				"from": 1078600,
+				"to": 1082160
+			},
+			"text": " Yeah, we have about four minutes for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,160",
+				"to": "00:18:03,920"
+			},
+			"offsets": {
+				"from": 1082160,
+				"to": 1083920
+			},
+			"text": " Does anyone have any?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,920",
+				"to": "00:18:04,920"
+			},
+			"offsets": {
+				"from": 1083920,
+				"to": 1084920
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,920",
+				"to": "00:18:13,520"
+			},
+			"offsets": {
+				"from": 1084920,
+				"to": 1093520
+			},
+			"text": " Is there anything that's stored in the data that allows me to, if I was a user to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,520",
+				"to": "00:18:19,520"
+			},
+			"offsets": {
+				"from": 1093520,
+				"to": 1099520
+			},
+			"text": " any kind of proof that says my data is being stored and is retrievable if I'm subscribed"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,520",
+				"to": "00:18:21,080"
+			},
+			"offsets": {
+				"from": 1099520,
+				"to": 1101080
+			},
+			"text": " to a service like this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,080",
+				"to": "00:18:26,080"
+			},
+			"offsets": {
+				"from": 1101080,
+				"to": 1106080
+			},
+			"text": " Yeah, so in Tahoe Labs, if there's proof of storage, I don't think so right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,080",
+				"to": "00:18:31,320"
+			},
+			"offsets": {
+				"from": 1106080,
+				"to": 1111320
+			},
+			"text": " I think that there's maybe some other ways to do it, but not in the sense that there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,320",
+				"to": "00:18:41,640"
+			},
+			"offsets": {
+				"from": 1111320,
+				"to": 1121640
+			},
+			"text": " yeah, not in the sense of the other projects that have that right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,640",
+				"to": "00:18:45,680"
+			},
+			"offsets": {
+				"from": 1121640,
+				"to": 1125680
+			},
+			"text": " Which merchants are you planning to integrate with?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,680",
+				"to": "00:18:50,240"
+			},
+			"offsets": {
+				"from": 1125680,
+				"to": 1130240
+			},
+			"text": " I'm sorry, which merchant networks are you planning to integrate?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,240",
+				"to": "00:18:51,840"
+			},
+			"offsets": {
+				"from": 1130240,
+				"to": 1131840
+			},
+			"text": " Oh, merchant networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,840",
+				"to": "00:18:53,560"
+			},
+			"offsets": {
+				"from": 1131840,
+				"to": 1133560
+			},
+			"text": " So we're the merchant right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,560",
+				"to": "00:18:56,600"
+			},
+			"offsets": {
+				"from": 1133560,
+				"to": 1136600
+			},
+			"text": " In this case, in this use case, we're the merchant and this is just how we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,600",
+				"to": "00:19:01,040"
+			},
+			"offsets": {
+				"from": 1136600,
+				"to": 1141040
+			},
+			"text": " to handle it as a merchant in terms of integrating with other merchant networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,040",
+				"to": "00:19:04,600"
+			},
+			"offsets": {
+				"from": 1141040,
+				"to": 1144600
+			},
+			"text": " That would be something that we could talk about as a future possibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,600",
+				"to": "00:19:05,600"
+			},
+			"offsets": {
+				"from": 1144600,
+				"to": 1145600
+			},
+			"text": " And yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,600",
+				"to": "00:19:12,560"
+			},
+			"offsets": {
+				"from": 1145600,
+				"to": 1152560
+			},
+			"text": " Does anyone express interest into using the solution for the subscription service?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,560",
+				"to": "00:19:14,920"
+			},
+			"offsets": {
+				"from": 1152560,
+				"to": 1154920
+			},
+			"text": " You mean other companies, other merchants?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,920",
+				"to": "00:19:17,520"
+			},
+			"offsets": {
+				"from": 1154920,
+				"to": 1157520
+			},
+			"text": " Like Netflix or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,520",
+				"to": "00:19:18,760"
+			},
+			"offsets": {
+				"from": 1157520,
+				"to": 1158760
+			},
+			"text": " Like who?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,760",
+				"to": "00:19:27,080"
+			},
+			"offsets": {
+				"from": 1158760,
+				"to": 1167080
+			},
+			"text": " Like any of the subscription providers have they shown interest into using this kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,080",
+				"to": "00:19:32,040"
+			},
+			"offsets": {
+				"from": 1167080,
+				"to": 1172040
+			},
+			"text": " like anonymous payments into their service?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,040",
+				"to": "00:19:33,520"
+			},
+			"offsets": {
+				"from": 1172040,
+				"to": 1173520
+			},
+			"text": " Well, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,520",
+				"to": "00:19:39,200"
+			},
+			"offsets": {
+				"from": 1173520,
+				"to": 1179200
+			},
+			"text": " So other companies have said that they want to do subscription payments with cryptocurrency."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,200",
+				"to": "00:19:43,200"
+			},
+			"offsets": {
+				"from": 1179200,
+				"to": 1183200
+			},
+			"text": " So like I said, you could do, right now, subscription payments right now are kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,200",
+				"to": "00:19:44,200"
+			},
+			"offsets": {
+				"from": 1183200,
+				"to": 1184200
+			},
+			"text": " difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,200",
+				"to": "00:19:48,080"
+			},
+			"offsets": {
+				"from": 1184200,
+				"to": 1188080
+			},
+			"text": " There's some workarounds that we have, but we need to make those easier to use for cryptocurrency"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,080",
+				"to": "00:19:49,240"
+			},
+			"offsets": {
+				"from": 1188080,
+				"to": 1189240
+			},
+			"text": " in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,240",
+				"to": "00:19:54,520"
+			},
+			"offsets": {
+				"from": 1189240,
+				"to": 1194520
+			},
+			"text": " And then when it comes to the angle of privacy, I think that while it might be okay to not"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,520",
+				"to": "00:19:58,800"
+			},
+			"offsets": {
+				"from": 1194520,
+				"to": 1198800
+			},
+			"text": " be so worried about the personal data that's being leaked in the experimental phase in"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,800",
+				"to": "00:20:03,680"
+			},
+			"offsets": {
+				"from": 1198800,
+				"to": 1203680
+			},
+			"text": " the short term, that if we want to see in the long term, if we want to see mass adoption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,680",
+				"to": "00:20:10,280"
+			},
+			"offsets": {
+				"from": 1203680,
+				"to": 1210280
+			},
+			"text": " I think we need to have some privacy preserving features in these subscription management services."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,280",
+				"to": "00:20:14,240"
+			},
+			"offsets": {
+				"from": 1210280,
+				"to": 1214240
+			},
+			"text": " Whether or not that's true anonymity, that's a whole difficult thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,240",
+				"to": "00:20:21,440"
+			},
+			"offsets": {
+				"from": 1214240,
+				"to": 1221440
+			},
+			"text": " But yeah, I think that most people out there just will not want to do subscriptions if"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,440",
+				"to": "00:20:25,720"
+			},
+			"offsets": {
+				"from": 1221440,
+				"to": 1225720
+			},
+			"text": " they think everybody else in the world knows what they're doing, what they're subscribing"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,720",
+				"to": "00:20:29,360"
+			},
+			"offsets": {
+				"from": 1225720,
+				"to": 1229360
+			},
+			"text": " to, that I think that we would want to keep that information to ourselves and only share"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,360",
+				"to": "00:20:32,200"
+			},
+			"offsets": {
+				"from": 1229360,
+				"to": 1232200
+			},
+			"text": " it with who we want to share it with."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,200",
+				"to": "00:20:35,680"
+			},
+			"offsets": {
+				"from": 1232200,
+				"to": 1235680
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,680",
+				"to": "00:20:40,920"
+			},
+			"offsets": {
+				"from": 1235680,
+				"to": 1240920
+			},
+			"text": " Have you had a chance to connect with Kevin who's doing EIPU 1337?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,920",
+				"to": "00:20:44,480"
+			},
+			"offsets": {
+				"from": 1240920,
+				"to": 1244480
+			},
+			"text": " I just talked to him quickly about this last night."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,480",
+				"to": "00:20:47,080"
+			},
+			"offsets": {
+				"from": 1244480,
+				"to": 1247080
+			},
+			"text": " And yeah, we're going to connect some more and talk about it some more."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,080",
+				"to": "00:20:49,440"
+			},
+			"offsets": {
+				"from": 1247080,
+				"to": 1249440
+			},
+			"text": " I'd love to see us coordinate efforts on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,440",
+				"to": "00:20:51,520"
+			},
+			"offsets": {
+				"from": 1249440,
+				"to": 1251520
+			},
+			"text": " Oh, I see you're here too."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,520",
+				"to": "00:20:52,520"
+			},
+			"offsets": {
+				"from": 1251520,
+				"to": 1252520
+			},
+			"text": " Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,520",
+				"to": "00:20:55,640"
+			},
+			"offsets": {
+				"from": 1252520,
+				"to": 1255640
+			},
+			"text": " Yeah, I'd want us to coordinate efforts on that because I think that it would be really"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,640",
+				"to": "00:21:02,640"
+			},
+			"offsets": {
+				"from": 1255640,
+				"to": 1262640
+			},
+			"text": " good to make sure that we're being consistent on how we define things like invoices, structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,640",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1262640,
+				"to": 1264000
+			},
+			"text": " and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:09,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1269000
+			},
+			"text": " And yeah, see if we can help with privacy on the Ethereum network too."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,000",
+				"to": "00:21:14,840"
+			},
+			"offsets": {
+				"from": 1269000,
+				"to": 1274840
+			},
+			"text": " Any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,840",
+				"to": "00:21:20,760"
+			},
+			"offsets": {
+				"from": 1274840,
+				"to": 1280760
+			},
+			"text": " So one question you say you comply with GDPR, but how about AML and the money laundering?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,760",
+				"to": "00:21:24,880"
+			},
+			"offsets": {
+				"from": 1280760,
+				"to": 1284880
+			},
+			"text": " You're opposed to monitor transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,880",
+				"to": "00:21:29,800"
+			},
+			"offsets": {
+				"from": 1284880,
+				"to": 1289800
+			},
+			"text": " If it's recurring payments, if it's over 15,000, how can you do that if you don't know your"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,800",
+				"to": "00:21:30,800"
+			},
+			"offsets": {
+				"from": 1289800,
+				"to": 1290800
+			},
+			"text": " customers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,800",
+				"to": "00:21:37,480"
+			},
+			"offsets": {
+				"from": 1290800,
+				"to": 1297480
+			},
+			"text": " Yeah, so KYC, AML stuff, I'm sure there's, like you said, you mentioned 50,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,480",
+				"to": "00:21:41,760"
+			},
+			"offsets": {
+				"from": 1297480,
+				"to": 1301760
+			},
+			"text": " In this case, like to subscribe to our data storage service, it's definitely not 50,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,760",
+				"to": "00:21:42,760"
+			},
+			"offsets": {
+				"from": 1301760,
+				"to": 1302760
+			},
+			"text": " a month."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,760",
+				"to": "00:21:44,480"
+			},
+			"offsets": {
+				"from": 1302760,
+				"to": 1304480
+			},
+			"text": " It's much cheaper than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,480",
+				"to": "00:21:48,120"
+			},
+			"offsets": {
+				"from": 1304480,
+				"to": 1308120
+			},
+			"text": " So I think for like the day-to-day subscriptions, that shouldn't be a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,120",
+				"to": "00:21:55,040"
+			},
+			"offsets": {
+				"from": 1308120,
+				"to": 1315040
+			},
+			"text": " But I can tell you once we implement this and we start actually receiving these payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,040",
+				"to": "00:22:00,400"
+			},
+			"offsets": {
+				"from": 1315040,
+				"to": 1320400
+			},
+			"text": " for our service in that way, our business will definitely, and before that too, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,400",
+				"to": "00:22:04,280"
+			},
+			"offsets": {
+				"from": 1320400,
+				"to": 1324280
+			},
+			"text": " I'll know a lot more about how this is actually going to be handled by the regulators, at"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,280",
+				"to": "00:22:06,480"
+			},
+			"offsets": {
+				"from": 1324280,
+				"to": 1326480
+			},
+			"text": " least in Germany."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,480",
+				"to": "00:22:11,720"
+			},
+			"offsets": {
+				"from": 1326480,
+				"to": 1331720
+			},
+			"text": " But right now, we don't foresee any major problems about that because, again, KYC AML"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,720",
+				"to": "00:22:16,440"
+			},
+			"offsets": {
+				"from": 1331720,
+				"to": 1336440
+			},
+			"text": " is more about large quantities of money, as far as I understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,440",
+				"to": "00:22:18,640"
+			},
+			"offsets": {
+				"from": 1336440,
+				"to": 1338640
+			},
+			"text": " You're shaking your head no, though."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,640",
+				"to": "00:22:23,800"
+			},
+			"offsets": {
+				"from": 1338640,
+				"to": 1343800
+			},
+			"text": " No, that's not my area of expertise, but I think that that's definitely something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,800",
+				"to": "00:22:27,600"
+			},
+			"offsets": {
+				"from": 1343800,
+				"to": 1347600
+			},
+			"text": " we should explore, but I also think it's unrealistic to do the opposite thing, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,600",
+				"to": "00:22:32,240"
+			},
+			"offsets": {
+				"from": 1347600,
+				"to": 1352240
+			},
+			"text": " is to have all of this personal data floating around in public too."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,240",
+				"to": "00:22:39,200"
+			},
+			"offsets": {
+				"from": 1352240,
+				"to": 1359200
+			},
+			"text": " So I think we have to find some sort of common ground between offering more privacy for subscription"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,200",
+				"to": "00:22:43,760"
+			},
+			"offsets": {
+				"from": 1359200,
+				"to": 1363760
+			},
+			"text": " payments with cryptocurrency and adhering to laws and regulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,760",
+				"to": "00:22:53,760"
+			},
+			"offsets": {
+				"from": 1363760,
+				"to": 1373760
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,760",
+				"to": "00:23:03,760"
+			},
+			"offsets": {
+				"from": 1373760,
+				"to": 1383760
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,760",
+				"to": "00:23:13,760"
+			},
+			"offsets": {
+				"from": 1383760,
+				"to": 1393760
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,760",
+				"to": "00:23:15,760"
+			},
+			"offsets": {
+				"from": 1393760,
+				"to": 1395760
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

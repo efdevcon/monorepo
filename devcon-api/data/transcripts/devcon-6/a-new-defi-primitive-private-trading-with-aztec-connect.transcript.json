@@ -1,0 +1,2221 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13240
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,240",
+				"to": "00:00:18,680"
+			},
+			"offsets": {
+				"from": 13240,
+				"to": 18680
+			},
+			"text": " So hello, I'm Jan and this talk was originally supposed to be held by our CEO"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,680",
+				"to": "00:00:21,840"
+			},
+			"offsets": {
+				"from": 18680,
+				"to": 21840
+			},
+			"text": " but he decided to escape through this wilderness up to me"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,840",
+				"to": "00:00:27,080"
+			},
+			"offsets": {
+				"from": 21840,
+				"to": 27080
+			},
+			"text": " and I will talk how DeFi is missing a key primitive which is privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,080",
+				"to": "00:00:29,560"
+			},
+			"offsets": {
+				"from": 27080,
+				"to": 29560
+			},
+			"text": " and how Aztec connect, fix is it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,560",
+				"to": "00:00:35,840"
+			},
+			"offsets": {
+				"from": 29560,
+				"to": 35840
+			},
+			"text": " So many of you probably remember that last year there was this GameStop saga"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,840",
+				"to": "00:00:43,840"
+			},
+			"offsets": {
+				"from": 35840,
+				"to": 43840
+			},
+			"text": " and basically what has happened is that this information about a big short position of one H1 peak"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,840",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 43840,
+				"to": 53000
+			},
+			"text": " and then since internet is kind of random like people decided that it would be fun to just ape into the stock and pump the price"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 55000
+			},
+			"text": " and the fund got liquidated"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:01:00,920"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 60920
+			},
+			"text": " and this was caused by the fact that the information was made"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,920",
+				"to": "00:01:04,520"
+			},
+			"offsets": {
+				"from": 60920,
+				"to": 64520
+			},
+			"text": " and so the situation in web 3 is even worse"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,520",
+				"to": "00:01:13,920"
+			},
+			"offsets": {
+				"from": 64520,
+				"to": 73920
+			},
+			"text": " like basically anyone who is able to use a web browser and can go to etherscan and search like what anyone is doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,920",
+				"to": "00:01:20,840"
+			},
+			"offsets": {
+				"from": 73920,
+				"to": 80840
+			},
+			"text": " and this is made even worse by people's use of ENS so we can see quite commonly that people use their ENS names with trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,840",
+				"to": "00:01:24,160"
+			},
+			"offsets": {
+				"from": 80840,
+				"to": 84160
+			},
+			"text": " because they apparently have no idea that it is not private"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,160",
+				"to": "00:01:28,480"
+			},
+			"offsets": {
+				"from": 84160,
+				"to": 88480
+			},
+			"text": " and to drive this point home like basically there is this ENS name docs.eth"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,480",
+				"to": "00:01:37,400"
+			},
+			"offsets": {
+				"from": 88480,
+				"to": 97400
+			},
+			"text": " and if I want to spend some time on it I can just like basically figure out that the user has unis web position,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,400",
+				"to": "00:01:42,160"
+			},
+			"offsets": {
+				"from": 97400,
+				"to": 102160
+			},
+			"text": " other position and amount of USD available for collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,160",
+				"to": "00:01:48,520"
+			},
+			"offsets": {
+				"from": 102160,
+				"to": 108520
+			},
+			"text": " and you might be asking why this is bad because like plenty of the times it's considered a transparencies like a nice feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,520",
+				"to": "00:01:55,800"
+			},
+			"offsets": {
+				"from": 108520,
+				"to": 115800
+			},
+			"text": " but when we are talking about financial information it can be bad because it allows basically anyone to assess"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,800",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 115800,
+				"to": 125000
+			},
+			"text": " solvency of any entity on Ethereum and this information can be used by adversarial parties like MEVbots"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:10,160"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 130160
+			},
+			"text": " and then there is also of course a risk of doxing and consequences in the physical world"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,160",
+				"to": "00:02:13,040"
+			},
+			"offsets": {
+				"from": 130160,
+				"to": 133040
+			},
+			"text": " this can be as innocent as your friends"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,040",
+				"to": "00:02:18,720"
+			},
+			"offsets": {
+				"from": 133040,
+				"to": 138720
+			},
+			"text": " shaming you for your bad traits but it can also make you a target of crime"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,720",
+				"to": "00:02:24,680"
+			},
+			"offsets": {
+				"from": 138720,
+				"to": 144680
+			},
+			"text": " so the solution at Aztec we think that the solution are privacy preserving roll-ups"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,680",
+				"to": "00:02:30,480"
+			},
+			"offsets": {
+				"from": 144680,
+				"to": 150480
+			},
+			"text": " and our privacy preserving roll-up is called Aztec Connect, it is live on mainnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,480",
+				"to": "00:02:35,280"
+			},
+			"offsets": {
+				"from": 150480,
+				"to": 155280
+			},
+			"text": " and we like to call it VPN for Ethereum and I think this is quite a nice mental model"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,280",
+				"to": "00:02:41,120"
+			},
+			"offsets": {
+				"from": 155280,
+				"to": 161120
+			},
+			"text": " because essentially what VPN is doing in the web world is that it replaces your IP address"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,120",
+				"to": "00:02:43,920"
+			},
+			"offsets": {
+				"from": 161120,
+				"to": 163920
+			},
+			"text": " with the IP address of the VPN provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,920",
+				"to": "00:02:50,080"
+			},
+			"offsets": {
+				"from": 163920,
+				"to": 170080
+			},
+			"text": " and essentially what we do is that we replace your Ethereum address with Ethereum address of Aztec"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,080",
+				"to": "00:02:59,440"
+			},
+			"offsets": {
+				"from": 170080,
+				"to": 179440
+			},
+			"text": " so I wanted to show some demo but of course it's not very possible here so I will just show some screenshot"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,440",
+				"to": "00:03:03,360"
+			},
+			"offsets": {
+				"from": 179440,
+				"to": 183360
+			},
+			"text": " so this is our website DK money and when you come there you can click shield"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,400",
+				"to": "00:03:11,440"
+			},
+			"offsets": {
+				"from": 184400,
+				"to": 191440
+			},
+			"text": " and then you can choose an alias this is like an analogy to ENS name on Ethereum mainnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,440",
+				"to": "00:03:16,560"
+			},
+			"offsets": {
+				"from": 191440,
+				"to": 196560
+			},
+			"text": " then we will create your account this will take a while because there are some complex"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,560",
+				"to": "00:03:21,600"
+			},
+			"offsets": {
+				"from": 196560,
+				"to": 201600
+			},
+			"text": " computation happening behind the scene and the new depositing amounts of funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,600",
+				"to": "00:03:26,160"
+			},
+			"offsets": {
+				"from": 201600,
+				"to": 206160
+			},
+			"text": " and behind the scene there actually happened quite a few things"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,160",
+				"to": "00:03:31,520"
+			},
+			"offsets": {
+				"from": 206160,
+				"to": 211520
+			},
+			"text": " there happened two transactions on Ethereum one deposits the funds into our all-processor contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,520",
+				"to": "00:03:37,920"
+			},
+			"offsets": {
+				"from": 211520,
+				"to": 217920
+			},
+			"text": " another approved this approved this hash and then there is like a generation of cryptographic"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,920",
+				"to": "00:03:43,440"
+			},
+			"offsets": {
+				"from": 217920,
+				"to": 223440
+			},
+			"text": " note on L2 and this cryptographic note allows you to spend those funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,440",
+				"to": "00:03:50,480"
+			},
+			"offsets": {
+				"from": 223440,
+				"to": 230480
+			},
+			"text": " so once you deposit this is what it looks like it's like a normal wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,480",
+				"to": "00:03:57,600"
+			},
+			"offsets": {
+				"from": 230480,
+				"to": 237600
+			},
+			"text": " and then there are opportunities so you can deposit into an arbitrary bridge we've implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,560",
+				"to": "00:04:04,720"
+			},
+			"offsets": {
+				"from": 238560,
+				"to": 244720
+			},
+			"text": " so for example if I deposit to Euler I have this screen and there are quite a few interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,720",
+				"to": "00:04:11,440"
+			},
+			"offsets": {
+				"from": 244720,
+				"to": 251440
+			},
+			"text": " things here which I want to explain first one is a batch so there is quite an interesting feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,440",
+				"to": "00:04:17,600"
+			},
+			"offsets": {
+				"from": 251440,
+				"to": 257600
+			},
+			"text": " to Aztec connect and that is that we allow for this thing called batching and basically what it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,600",
+				"to": "00:04:22,960"
+			},
+			"offsets": {
+				"from": 257600,
+				"to": 262960
+			},
+			"text": " means is that when there are multiple users which want to do the same interaction on Ethereum L1"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,840",
+				"to": "00:04:29,600"
+			},
+			"offsets": {
+				"from": 263840,
+				"to": 269600
+			},
+			"text": " we basically do only one interaction on L1 and on the inputs of the interaction it's like a sum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,600",
+				"to": "00:04:36,480"
+			},
+			"offsets": {
+				"from": 269600,
+				"to": 276480
+			},
+			"text": " of those token amounts so basically when there are like 10 users which want to deposit ETH to Lido"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,480",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 276480,
+				"to": 282000
+			},
+			"text": " and let's say for simplicity each user has one ETH we only call the stake function on Lido"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:48,320"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 288320
+			},
+			"text": " contract once with the 10 ETH and then later on we distribute the results to the users"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,960",
+				"to": "00:04:53,120"
+			},
+			"offsets": {
+				"from": 288960,
+				"to": 293120
+			},
+			"text": " and in this case like the results would be the output tokens which is stake ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,120",
+				"to": "00:05:04,240"
+			},
+			"offsets": {
+				"from": 293120,
+				"to": 304240
+			},
+			"text": " yeah I would like to briefly pick what is behind the scenes and we use UTxO model it was talked about"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,240",
+				"to": "00:05:12,080"
+			},
+			"offsets": {
+				"from": 304240,
+				"to": 312080
+			},
+			"text": " by quite a lot in the Aztec III presentation before but basically what is a UTxO model is that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,080",
+				"to": "00:05:17,200"
+			},
+			"offsets": {
+				"from": 312080,
+				"to": 317200
+			},
+			"text": " can imagine when you have bank notes and you want to go to a merchant and you want to pay with the bank"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,200",
+				"to": "00:05:22,400"
+			},
+			"offsets": {
+				"from": 317200,
+				"to": 322400
+			},
+			"text": " note so what happens is that you can like split his bank note but you give the merchant the bank"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,400",
+				"to": "00:05:27,760"
+			},
+			"offsets": {
+				"from": 322400,
+				"to": 327760
+			},
+			"text": " note and he gives you the money back and this is essentially what we do as well and we do it with"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,760",
+				"to": "00:05:34,480"
+			},
+			"offsets": {
+				"from": 327760,
+				"to": 334480
+			},
+			"text": " this thing joint split circuit and essentially what this allows is that you have two possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,480",
+				"to": "00:05:39,760"
+			},
+			"offsets": {
+				"from": 334480,
+				"to": 339760
+			},
+			"text": " notes on the input which get destroyed in the process and then there are two notes on the output"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,400",
+				"to": "00:05:47,280"
+			},
+			"offsets": {
+				"from": 340400,
+				"to": 347280
+			},
+			"text": " and for example in the example of of the bridge interact of the DeFi deposit to Lido"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,280",
+				"to": "00:05:55,440"
+			},
+			"offsets": {
+				"from": 347280,
+				"to": 355440
+			},
+			"text": " on the input would be for example 0.5 ETH and in case the original value held in your account was"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,440",
+				"to": "00:06:00,960"
+			},
+			"offsets": {
+				"from": 355440,
+				"to": 360960
+			},
+			"text": " one note with the one ETH this note would get destroyed and on the output would be this claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,960",
+				"to": "00:06:06,640"
+			},
+			"offsets": {
+				"from": 360960,
+				"to": 366640
+			},
+			"text": " note and another volume note that volume note would hold the remaining ETH balance so it would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,640",
+				"to": "00:06:16,240"
+			},
+			"offsets": {
+				"from": 366640,
+				"to": 376240
+			},
+			"text": " 0.5 ETH and that claim note would allow you to later on claim the funds resulting returned from"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,240",
+				"to": "00:06:26,720"
+			},
+			"offsets": {
+				"from": 376240,
+				"to": 386720
+			},
+			"text": " the DeFi interaction so you might be asking how is this possible that like this is private when"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,720",
+				"to": "00:06:32,160"
+			},
+			"offsets": {
+				"from": 386720,
+				"to": 392160
+			},
+			"text": " the settlement like the interaction actually happens on Ethereum and this is a good point and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,360",
+				"to": "00:06:39,360"
+			},
+			"offsets": {
+				"from": 393360,
+				"to": 399360
+			},
+			"text": " here in the left bottom corner we can see what it looks like like what token transfers there are"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,360",
+				"to": "00:06:47,680"
+			},
+			"offsets": {
+				"from": 399360,
+				"to": 407680
+			},
+			"text": " and this looks pretty not private but the thing is that thanks to zero knowledge proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,680",
+				"to": "00:06:53,600"
+			},
+			"offsets": {
+				"from": 407680,
+				"to": 413600
+			},
+			"text": " nobody can distinguish like who is actually originated this interaction and also there is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,600",
+				"to": "00:06:58,880"
+			},
+			"offsets": {
+				"from": 413600,
+				"to": 418880
+			},
+			"text": " this aspect that there can be multiple users per interaction and so these balances get even"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,880",
+				"to": "00:07:04,320"
+			},
+			"offsets": {
+				"from": 418880,
+				"to": 424320
+			},
+			"text": " more obfuscated and currently there are more than 50 000 unique users last time I checked it was"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,320",
+				"to": "00:07:12,240"
+			},
+			"offsets": {
+				"from": 424320,
+				"to": 432240
+			},
+			"text": " like 51 000 something and it means that like the amount of people you get height width is pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,240",
+				"to": "00:07:19,600"
+			},
+			"offsets": {
+				"from": 432240,
+				"to": 439600
+			},
+			"text": " large you might be wondering does it scale roll up is quite a common buzzword and it does scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,600",
+				"to": "00:07:26,400"
+			},
+			"offsets": {
+				"from": 439600,
+				"to": 446400
+			},
+			"text": " and one reason why it scales is because there is that one L1 transaction per multiple users"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,920",
+				"to": "00:07:34,640"
+			},
+			"offsets": {
+				"from": 447920,
+				"to": 454640
+			},
+			"text": " but of course everything is always more complicated and there are overhead costs to roll-ups and these"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,640",
+				"to": "00:07:40,480"
+			},
+			"offsets": {
+				"from": 454640,
+				"to": 460480
+			},
+			"text": " costs are cost of posting overall up and per transaction cost of call data luckily this cost"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,480",
+				"to": "00:07:45,040"
+			},
+			"offsets": {
+				"from": 460480,
+				"to": 465040
+			},
+			"text": " of posting a roll-up gets played between many users so when there are many users in the roll-up"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,040",
+				"to": "00:07:51,520"
+			},
+			"offsets": {
+				"from": 465040,
+				"to": 471520
+			},
+			"text": " this goes down and the cost of call data is fortunately going to down a lot with this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,520",
+				"to": "00:07:59,280"
+			},
+			"offsets": {
+				"from": 471520,
+				"to": 479280
+			},
+			"text": " Ethereum improvement proposal for 844 so hopefully like in a not so distant future the cost of interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,280",
+				"to": "00:08:07,760"
+			},
+			"offsets": {
+				"from": 479280,
+				"to": 487760
+			},
+			"text": " privately with DeFi will actually get very close to the guest cost of that one L1 call divided by"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,760",
+				"to": "00:08:14,640"
+			},
+			"offsets": {
+				"from": 487760,
+				"to": 494640
+			},
+			"text": " the number of users now you might be wondering like how do we integrate is there like some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,640",
+				"to": "00:08:21,120"
+			},
+			"offsets": {
+				"from": 494640,
+				"to": 501120
+			},
+			"text": " integration needed and unfortunately yes but it's not so complicated and we have this thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,120",
+				"to": "00:08:28,080"
+			},
+			"offsets": {
+				"from": 501120,
+				"to": 508080
+			},
+			"text": " called bridges but bridges nowadays have quite a bad connotation and in our case the bridge is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,080",
+				"to": "00:08:33,520"
+			},
+			"offsets": {
+				"from": 508080,
+				"to": 513520
+			},
+			"text": " just a simple smart contract so there is no multi-sig risk and the smart contracts tend to be fairly"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,520",
+				"to": "00:08:40,480"
+			},
+			"offsets": {
+				"from": 513520,
+				"to": 520480
+			},
+			"text": " simple so here on the left we see the id5 bridge interface and there we basically just define"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,480",
+				"to": "00:08:46,480"
+			},
+			"offsets": {
+				"from": 520480,
+				"to": 526480
+			},
+			"text": " input and output tokens then we have total input value which is the sum of those users"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,120",
+				"to": "00:08:54,080"
+			},
+			"offsets": {
+				"from": 527120,
+				"to": 534080
+			},
+			"text": " input balances and AUX data which is arbitrary data which can be used to pass to the bridge contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,080",
+				"to": "00:09:00,640"
+			},
+			"offsets": {
+				"from": 534080,
+				"to": 540640
+			},
+			"text": " and on the bottom right corner we can see the implementation of the of the function itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,640",
+				"to": "00:09:06,240"
+			},
+			"offsets": {
+				"from": 540640,
+				"to": 546240
+			},
+			"text": " and in this case it's an implementation of an ERC 4.6 to 6 bridge and we see that it is like"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,240",
+				"to": "00:09:12,960"
+			},
+			"offsets": {
+				"from": 546240,
+				"to": 552960
+			},
+			"text": " relatively well we basically just call the deposit if the deposit flow is executed or we call a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,960",
+				"to": "00:09:21,200"
+			},
+			"offsets": {
+				"from": 552960,
+				"to": 561200
+			},
+			"text": " redeem in case withdrawal flow is executed now you might be asking if there are some limitations"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,200",
+				"to": "00:09:26,400"
+			},
+			"offsets": {
+				"from": 561200,
+				"to": 566400
+			},
+			"text": " and there are quite a few I would say the biggest one are the longer settlement time"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,400",
+				"to": "00:09:34,960"
+			},
+			"offsets": {
+				"from": 566400,
+				"to": 574960
+			},
+			"text": " and that is because when you you have we have to wait for the batch to get submitted to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,400",
+				"to": "00:09:43,840"
+			},
+			"offsets": {
+				"from": 576400,
+				"to": 583840
+			},
+			"text": " Ethereum like luckily you can pay if you are really in a hurry so you can pay for the full"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,840",
+				"to": "00:09:50,320"
+			},
+			"offsets": {
+				"from": 583840,
+				"to": 590320
+			},
+			"text": " rollout block and in that case you could get the instant settlement time but most users don't want"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,320",
+				"to": "00:09:56,080"
+			},
+			"offsets": {
+				"from": 590320,
+				"to": 596080
+			},
+			"text": " to do it because it's fairly expensive and this causes like some problems with slippage so for"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,080",
+				"to": "00:10:00,960"
+			},
+			"offsets": {
+				"from": 596080,
+				"to": 600960
+			},
+			"text": " example you can imagine when you trade on Uniswap you define the slippage parameter which basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,960",
+				"to": "00:10:10,400"
+			},
+			"offsets": {
+				"from": 600960,
+				"to": 610400
+			},
+			"text": " protects you from from MEV bots exploiting you or in general it can protect you from market movements"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,400",
+				"to": "00:10:16,720"
+			},
+			"offsets": {
+				"from": 610400,
+				"to": 616720
+			},
+			"text": " and the longer settlement time can cause issues with liquidations because you can imagine if"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,720",
+				"to": "00:10:23,200"
+			},
+			"offsets": {
+				"from": 616720,
+				"to": 623200
+			},
+			"text": " we are close to being click-related and you need like fast to exit the position or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,200",
+				"to": "00:10:29,840"
+			},
+			"offsets": {
+				"from": 623200,
+				"to": 629840
+			},
+			"text": " in that that is problematic but always you can pay for the instant settlement then there is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,840",
+				"to": "00:10:34,960"
+			},
+			"offsets": {
+				"from": 629840,
+				"to": 634960
+			},
+			"text": " limitation by the amount of data which can be on the input like most of the time this works"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,960",
+				"to": "00:10:39,520"
+			},
+			"offsets": {
+				"from": 634960,
+				"to": 639520
+			},
+			"text": " quite fine because it's 64 bits of data and with like a bit of smart encoding we can actually put"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,520",
+				"to": "00:10:44,240"
+			},
+			"offsets": {
+				"from": 639520,
+				"to": 644240
+			},
+			"text": " a lot of information there but it can be problematic when for example when to pass any"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,240",
+				"to": "00:10:51,440"
+			},
+			"offsets": {
+				"from": 644240,
+				"to": 651440
+			},
+			"text": " theory modulus because that is 160 bits then another limitation might be that the system doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,440",
+				"to": "00:10:55,920"
+			},
+			"offsets": {
+				"from": 651440,
+				"to": 655920
+			},
+			"text": " work that well with esoteric tokens because those esoteric tokens might have insufficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,920",
+				"to": "00:11:01,040"
+			},
+			"offsets": {
+				"from": 655920,
+				"to": 661040
+			},
+			"text": " anonymity sets and basically what that means is that there is unlike one esoteric token"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,040",
+				"to": "00:11:07,600"
+			},
+			"offsets": {
+				"from": 661040,
+				"to": 667600
+			},
+			"text": " user and he would deposit into a stack and he would be the only one like working with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,600",
+				"to": "00:11:12,960"
+			},
+			"offsets": {
+				"from": 667600,
+				"to": 672960
+			},
+			"text": " D5 protocols it would be pretty obvious that is that one user but in practice I think this is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,960",
+				"to": "00:11:18,720"
+			},
+			"offsets": {
+				"from": 672960,
+				"to": 678720
+			},
+			"text": " that big of a deal because usually users want to use the high-liquid tokens and I don't feel"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,720",
+				"to": "00:11:24,560"
+			},
+			"offsets": {
+				"from": 678720,
+				"to": 684560
+			},
+			"text": " personally that it's such a big limitation then another limitation might be that some protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,560",
+				"to": "00:11:30,960"
+			},
+			"offsets": {
+				"from": 684560,
+				"to": 690960
+			},
+			"text": " are specifically designed to work with message sender so for example when those protocols just"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,960",
+				"to": "00:11:35,680"
+			},
+			"offsets": {
+				"from": 690960,
+				"to": 695680
+			},
+			"text": " work with tokens you can imagine that there is like token on the input and token on the output"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,680",
+				"to": "00:11:41,680"
+			},
+			"offsets": {
+				"from": 695680,
+				"to": 701680
+			},
+			"text": " which is for example the case of Lido like this works perfectly because there is no"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,680",
+				"to": "00:11:47,440"
+			},
+			"offsets": {
+				"from": 701680,
+				"to": 707440
+			},
+			"text": " limitation we just have tokens on the input and then we distribute the results but when the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,440",
+				"to": "00:11:54,160"
+			},
+			"offsets": {
+				"from": 707440,
+				"to": 714160
+			},
+			"text": " protocols work specifically with message sender which can for example can be when we are borrowing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,560",
+				"to": "00:12:03,520"
+			},
+			"offsets": {
+				"from": 714560,
+				"to": 723520
+			},
+			"text": " LUSD from LQETE it's pretty complicated to do the implementation and how we've solved it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,520",
+				"to": "00:12:08,480"
+			},
+			"offsets": {
+				"from": 723520,
+				"to": 728480
+			},
+			"text": " that we deployed these multiple bridges and each of the bridge have fixed collateral issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,480",
+				"to": "00:12:16,160"
+			},
+			"offsets": {
+				"from": 728480,
+				"to": 736160
+			},
+			"text": " and like if the bridge was like close to being click-related user can't add more collateral but"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,160",
+				"to": "00:12:21,040"
+			},
+			"offsets": {
+				"from": 736160,
+				"to": 741040
+			},
+			"text": " the user can always repay the debt and exit so even though there are limitations usually there is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,040",
+				"to": "00:12:27,680"
+			},
+			"offsets": {
+				"from": 741040,
+				"to": 747680
+			},
+			"text": " like some way how to work around them now I would like to talk about advantages and I think those"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,680",
+				"to": "00:12:33,920"
+			},
+			"offsets": {
+				"from": 747680,
+				"to": 753920
+			},
+			"text": " advantages are pretty huge because Aztec Connect doesn't need a deployment of smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,920",
+				"to": "00:12:40,240"
+			},
+			"offsets": {
+				"from": 753920,
+				"to": 760240
+			},
+			"text": " on L2 because we work directly with smart contracts on L1 and this means that for example"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,240",
+				"to": "00:12:46,240"
+			},
+			"offsets": {
+				"from": 760240,
+				"to": 766240
+			},
+			"text": " liquid it is not fractured and I did my own personal experiment when it was bull market and I checked"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,240",
+				"to": "00:12:52,880"
+			},
+			"offsets": {
+				"from": 766240,
+				"to": 772880
+			},
+			"text": " like how much it makes sense to do for example swap on L2 and it turned out that for not so large"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,880",
+				"to": "00:12:57,680"
+			},
+			"offsets": {
+				"from": 772880,
+				"to": 777680
+			},
+			"text": " amounts like over five thousand dollars even with the high gas fees it still makes sense to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,680",
+				"to": "00:13:04,640"
+			},
+			"offsets": {
+				"from": 777680,
+				"to": 784640
+			},
+			"text": " Ethereum L1 and that is because the liquidity was just so much higher so the slippage would be just"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,640",
+				"to": "00:13:12,160"
+			},
+			"offsets": {
+				"from": 784640,
+				"to": 792160
+			},
+			"text": " so much lower that like the piece would be worth it and another advantage is a lower risk for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,160",
+				"to": "00:13:17,520"
+			},
+			"offsets": {
+				"from": 792160,
+				"to": 797520
+			},
+			"text": " integrated protocols and that is since we don't need to the target protocols don't need to like"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,520",
+				"to": "00:13:26,160"
+			},
+			"offsets": {
+				"from": 797520,
+				"to": 806160
+			},
+			"text": " redeploy again on on our L2 there is no risk for them like for example the risk of fracturing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,160",
+				"to": "00:13:33,440"
+			},
+			"offsets": {
+				"from": 806160,
+				"to": 813440
+			},
+			"text": " liquidity then I would like to mention that there are of course non-D5 cases what D5 is like a nice"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,440",
+				"to": "00:13:39,840"
+			},
+			"offsets": {
+				"from": 813440,
+				"to": 819840
+			},
+			"text": " password so we mentioned it here and I think very cool use case could be private dev voting and that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,840",
+				"to": "00:13:45,200"
+			},
+			"offsets": {
+				"from": 819840,
+				"to": 825200
+			},
+			"text": " is because in all the voting systems privacy is very important and another interesting use case"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,200",
+				"to": "00:13:49,200"
+			},
+			"offsets": {
+				"from": 825200,
+				"to": 829200
+			},
+			"text": " might be NFT main thing yeah thank you for the attention"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,200",
+				"to": "00:13:59,520"
+			},
+			"offsets": {
+				"from": 829200,
+				"to": 839520
+			},
+			"text": " thank you John we still have questions time for questions so here to write Nicole"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,280",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 847280,
+				"to": 852000
+			},
+			"text": " ah yeah I can I can put that I can let you know I must put a loudness light before"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:20,880"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 860880
+			},
+			"text": " la presentation the agent yeah just a quick question how expensive is here here here sorry"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,880",
+				"to": "00:14:25,920"
+			},
+			"offsets": {
+				"from": 860880,
+				"to": 865920
+			},
+			"text": " you're looking for me how expensive is each operation because it seems like you are doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,920",
+				"to": "00:14:33,600"
+			},
+			"offsets": {
+				"from": 865920,
+				"to": 873600
+			},
+			"text": " complicated cryptography and solidity oh so on on Ethereum L1 it costs like the same as I mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,600",
+				"to": "00:14:37,680"
+			},
+			"offsets": {
+				"from": 873600,
+				"to": 877680
+			},
+			"text": " before like the call itself and then there is the cost of call data and processing the roll up"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,680",
+				"to": "00:14:45,360"
+			},
+			"offsets": {
+				"from": 877680,
+				"to": 885360
+			},
+			"text": " so does it answer the question like I have to admit I'm not a cryptographer I'm just like a basic"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,360",
+				"to": "00:14:52,480"
+			},
+			"offsets": {
+				"from": 885360,
+				"to": 892480
+			},
+			"text": " solidity engineer well as well so yeah so it's not very expensive a second I can this work on"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,480",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 892480,
+				"to": 898000
+			},
+			"text": " on alternative chains like like I caught her in in order L2 like having one in Aztec and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,800",
+				"to": "00:15:05,920"
+			},
+			"offsets": {
+				"from": 898800,
+				"to": 905920
+			},
+			"text": " okay so our contract is implemented in solidity so we can deploy it to an EVM chain and like our"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,920",
+				"to": "00:15:11,040"
+			},
+			"offsets": {
+				"from": 905920,
+				"to": 911040
+			},
+			"text": " L2 infrastructure just uses generic JSON RPC so like there is no fundamental issue why that would"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,040",
+				"to": "00:15:17,520"
+			},
+			"offsets": {
+				"from": 911040,
+				"to": 917520
+			},
+			"text": " not be possible but like an interesting note is that it might not make sense because usually those"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,520",
+				"to": "00:15:24,080"
+			},
+			"offsets": {
+				"from": 917520,
+				"to": 924080
+			},
+			"text": " other L2s have also like have to post the call data on Ethereum L1 so it means that if you for"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,080",
+				"to": "00:15:27,680"
+			},
+			"offsets": {
+				"from": 924080,
+				"to": 927680
+			},
+			"text": " example we're running over optimism we actually would not save magic gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,680",
+				"to": "00:15:34,240"
+			},
+			"offsets": {
+				"from": 927680,
+				"to": 934240
+			},
+			"text": " we have one there on the left side then there and then the third one"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,240",
+				"to": "00:15:42,480"
+			},
+			"offsets": {
+				"from": 934240,
+				"to": 942480
+			},
+			"text": " thanks for the talk you mentioned you have over 50,000 users on Aztec network"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,480",
+				"to": "00:15:49,920"
+			},
+			"offsets": {
+				"from": 942480,
+				"to": 949920
+			},
+			"text": " couple questions like who has integrated besides Euler like who's on the docket and like what"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,920",
+				"to": "00:15:55,840"
+			},
+			"offsets": {
+				"from": 949920,
+				"to": 955840
+			},
+			"text": " are those 50,000 users using it for currently yes so we have quite a few integrations I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,840",
+				"to": "00:16:03,840"
+			},
+			"offsets": {
+				"from": 955840,
+				"to": 963840
+			},
+			"text": " the most important are for example Lido Euler then we have the year we are working on Uniswap"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,840",
+				"to": "00:16:10,800"
+			},
+			"offsets": {
+				"from": 963840,
+				"to": 970800
+			},
+			"text": " click with a yeah we have a grants program where we basically give some developers money to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,800",
+				"to": "00:16:17,440"
+			},
+			"offsets": {
+				"from": 970800,
+				"to": 977440
+			},
+			"text": " the integrations and yeah that's it and where are the users using it for currently mainly oh"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,040",
+				"to": "00:16:25,600"
+			},
+			"offsets": {
+				"from": 979040,
+				"to": 985600
+			},
+			"text": " I think that like in general the farming worlds are quite popular so we have quite a few users of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,600",
+				"to": "00:16:33,280"
+			},
+			"offsets": {
+				"from": 985600,
+				"to": 993280
+			},
+			"text": " Yern and we've also built this thing called DCA bridge which allows like users to DCA into ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,280",
+				"to": "00:16:40,480"
+			},
+			"offsets": {
+				"from": 993280,
+				"to": 1000480
+			},
+			"text": " or DIE and it's also becoming quite popular DCA is dollar cost averaging for those who don't know"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,560",
+				"to": "00:16:51,040"
+			},
+			"offsets": {
+				"from": 1004560,
+				"to": 1011040
+			},
+			"text": " um I got the mic ready so one of my my question was around what you're doing to try to deal with"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,040",
+				"to": "00:16:56,560"
+			},
+			"offsets": {
+				"from": 1011040,
+				"to": 1016560
+			},
+			"text": " this settlement like waiting times and stuff and I was wondering if like as you integrate with other"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,560",
+				"to": "00:17:03,200"
+			},
+			"offsets": {
+				"from": 1016560,
+				"to": 1023200
+			},
+			"text": " protocols if that's like breaks your brings in composability challenges and kind of how you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,200",
+				"to": "00:17:07,280"
+			},
+			"offsets": {
+				"from": 1023200,
+				"to": 1027280
+			},
+			"text": " thinking about solving that in the long yeah so there are no composable at this challenges because"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,280",
+				"to": "00:17:12,800"
+			},
+			"offsets": {
+				"from": 1027280,
+				"to": 1032800
+			},
+			"text": " it's running on Ethereum L1 like the calls and like the best how we can deal with the settlement"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,800",
+				"to": "00:17:19,280"
+			},
+			"offsets": {
+				"from": 1032800,
+				"to": 1039280
+			},
+			"text": " times is basically having enough users that it makes that it's profitable to submit the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,280",
+				"to": "00:17:24,400"
+			},
+			"offsets": {
+				"from": 1039280,
+				"to": 1044400
+			},
+			"text": " roller blocks frequently but as we said if there is like some user which your"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,400",
+				"to": "00:17:29,200"
+			},
+			"offsets": {
+				"from": 1044400,
+				"to": 1049200
+			},
+			"text": " origin cleanings it to be settled he can always like pay for those instant settlement"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,200",
+				"to": "00:17:34,160"
+			},
+			"offsets": {
+				"from": 1049200,
+				"to": 1054160
+			},
+			"text": " much is usually cost if it's just like one user or depends I mean when it's badged like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,040",
+				"to": "00:17:46,880"
+			},
+			"offsets": {
+				"from": 1055040,
+				"to": 1066880
+			},
+			"text": " currently it costs like one dollar to deposit into Euler"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,880",
+				"to": "00:18:00,160"
+			},
+			"offsets": {
+				"from": 1066880,
+				"to": 1080160
+			},
+			"text": " hello um thanks for the awesome talk um one example you gave at the end was like a private NFT purchase"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,040",
+				"to": "00:18:07,280"
+			},
+			"offsets": {
+				"from": 1081040,
+				"to": 1087280
+			},
+			"text": " does that mean the NFT will be owned by the Aztec address yeah exactly it would be owned by the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,280",
+				"to": "00:18:13,680"
+			},
+			"offsets": {
+				"from": 1087280,
+				"to": 1093680
+			},
+			"text": " Aztec address but there's this thing called we don't currently like support NFTs directly in our"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,680",
+				"to": "00:18:20,560"
+			},
+			"offsets": {
+				"from": 1093680,
+				"to": 1100560
+			},
+			"text": " UI but we have this thing called virtual assets which basically allows like a representation of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,560",
+				"to": "00:18:28,080"
+			},
+			"offsets": {
+				"from": 1100560,
+				"to": 1108080
+			},
+			"text": " any ownership so like on Ethereum of course it would like stay within ether within the bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,080",
+				"to": "00:18:34,240"
+			},
+			"offsets": {
+				"from": 1108080,
+				"to": 1114240
+			},
+			"text": " it would stay within the bridge contract but yeah the user could then interact with it by using"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,240",
+				"to": "00:18:41,600"
+			},
+			"offsets": {
+				"from": 1114240,
+				"to": 1121600
+			},
+			"text": " the virtual assets virtual assets basically what it does is that it like doesn't exist on Ethereum L1"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,600",
+				"to": "00:18:47,920"
+			},
+			"offsets": {
+				"from": 1121600,
+				"to": 1127920
+			},
+			"text": " but we create this another value note on our L2 which contains the information which can then"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,920",
+				"to": "00:18:53,600"
+			},
+			"offsets": {
+				"from": 1127920,
+				"to": 1133600
+			},
+			"text": " be passed to the bridge and work with so yeah the it would stay within the contract on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,760",
+				"to": "00:19:04,800"
+			},
+			"offsets": {
+				"from": 1137760,
+				"to": 1144800
+			},
+			"text": " my question is can you do scripting logic on the L2 itself from like not on a bridge but within the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,800",
+				"to": "00:19:14,560"
+			},
+			"offsets": {
+				"from": 1144800,
+				"to": 1154560
+			},
+			"text": " L2? I mean it's not accessible to like developers but it's possible to like build circuits but I"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,560",
+				"to": "00:19:20,320"
+			},
+			"offsets": {
+				"from": 1154560,
+				"to": 1160320
+			},
+			"text": " mean it's not the goal of Aztec Connect it will be the like we will have generalized smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,320",
+				"to": "00:19:28,240"
+			},
+			"offsets": {
+				"from": 1160320,
+				"to": 1168240
+			},
+			"text": " once Aztec 3 is available which will be in a year or more so like things like multi-six on the L2"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,240",
+				"to": "00:19:33,120"
+			},
+			"offsets": {
+				"from": 1168240,
+				"to": 1173120
+			},
+			"text": " itself that's not really possible yet that's like Aztec actually there is an implementation of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,120",
+				"to": "00:19:41,280"
+			},
+			"offsets": {
+				"from": 1173120,
+				"to": 1181280
+			},
+			"text": " multi-sick it works with like those account cryptography so yeah we have multi-six awesome thanks"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,800",
+				"to": "00:19:56,000"
+			},
+			"offsets": {
+				"from": 1184800,
+				"to": 1196000
+			},
+			"text": " more questions and thank you test test up so the always a fun question about regulatory risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,000",
+				"to": "00:20:00,800"
+			},
+			"offsets": {
+				"from": 1196000,
+				"to": 1200800
+			},
+			"text": " obviously this has like a sounds like a mixing component similar to tornado"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,800",
+				"to": "00:20:08,880"
+			},
+			"offsets": {
+				"from": 1200800,
+				"to": 1208880
+			},
+			"text": " warrior thoughts about that and that that that that risk yeah so currently how we approach it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,880",
+				"to": "00:20:16,880"
+			},
+			"offsets": {
+				"from": 1208880,
+				"to": 1216880
+			},
+			"text": " that we limit the deposit size and basically like our goal is to avoid the use of hackers"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,880",
+				"to": "00:20:23,760"
+			},
+			"offsets": {
+				"from": 1216880,
+				"to": 1223760
+			},
+			"text": " avoid users hackers using our platform and like the big issue with tornado cache was that like"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,760",
+				"to": "00:20:29,280"
+			},
+			"offsets": {
+				"from": 1223760,
+				"to": 1229280
+			},
+			"text": " 70% of the money there was illicit so basically we are just trying to make it impractical for"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,280",
+				"to": "00:20:35,040"
+			},
+			"offsets": {
+				"from": 1229280,
+				"to": 1235040
+			},
+			"text": " hackers to use our platform what's the limit what's the limit I think currently it's like"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,040",
+				"to": "00:20:39,120"
+			},
+			"offsets": {
+				"from": 1235040,
+				"to": 1239120
+			},
+			"text": " then it's about deposits but we might increase it in the future okay thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,120",
+				"to": "00:20:46,080"
+			},
+			"offsets": {
+				"from": 1239120,
+				"to": 1246080
+			},
+			"text": " can you share a little bit more um I'm over here in the front right"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,080",
+				"to": "00:20:51,840"
+			},
+			"offsets": {
+				"from": 1246080,
+				"to": 1251840
+			},
+			"text": " you're 50,000 users can you give us a sense of like before Aztec what were they doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,840",
+				"to": "00:20:56,560"
+			},
+			"offsets": {
+				"from": 1251840,
+				"to": 1256560
+			},
+			"text": " are they doing the same thing just totally in public or as a result of Aztec are they now doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,560",
+				"to": "00:21:04,640"
+			},
+			"offsets": {
+				"from": 1256560,
+				"to": 1264640
+			},
+			"text": " things that they previously weren't doing oh I'm not so sure how to answer but"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,880",
+				"to": "00:21:10,960"
+			},
+			"offsets": {
+				"from": 1264880,
+				"to": 1270960
+			},
+			"text": " I would say it were like general like DeFi users and they just wanted that privacy so they"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,960",
+				"to": "00:21:20,400"
+			},
+			"offsets": {
+				"from": 1270960,
+				"to": 1280400
+			},
+			"text": " deposited to Aztec but I actually didn't do the analysis we have four minutes more if you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,400",
+				"to": "00:21:28,640"
+			},
+			"offsets": {
+				"from": 1280400,
+				"to": 1288640
+			},
+			"text": " any questions you have John has been really brave to substitute the CEO congrats big round of applause"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,680",
+				"to": "00:21:36,000"
+			},
+			"offsets": {
+				"from": 1289680,
+				"to": 1296000
+			},
+			"text": " just prepared this thank you thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,000",
+				"to": "00:21:38,000"
+			},
+			"offsets": {
+				"from": 1296000,
+				"to": 1298000
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,000",
+				"to": "00:21:40,000"
+			},
+			"offsets": {
+				"from": 1298000,
+				"to": 1300000
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,000",
+				"to": "00:21:44,000"
+			},
+			"offsets": {
+				"from": 1300000,
+				"to": 1304000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,2430 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6880
+			},
+			"text": " I'm Lua from REIEX."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,880",
+				"to": "00:00:12,880"
+			},
+			"offsets": {
+				"from": 6880,
+				"to": 12880
+			},
+			"text": " REIEX is a blockchain startup based on Tokyo and working on CASPER research and supported"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,880",
+				"to": "00:00:15,360"
+			},
+			"offsets": {
+				"from": 12880,
+				"to": 15360
+			},
+			"text": " by Ethereum Foundation Grant."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,360",
+				"to": "00:00:20,160"
+			},
+			"offsets": {
+				"from": 15360,
+				"to": 20160
+			},
+			"text": " So today I will talk about my research on security of CASPER."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,160",
+				"to": "00:00:26,120"
+			},
+			"offsets": {
+				"from": 20160,
+				"to": 26120
+			},
+			"text": " So CASPER, what consists of protocol, has two properties, safety and liveliness."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,120",
+				"to": "00:00:32,840"
+			},
+			"offsets": {
+				"from": 26120,
+				"to": 32840
+			},
+			"text": " So the talk is divided into two parts, safety part and liveliness part."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,840",
+				"to": "00:00:38,440"
+			},
+			"offsets": {
+				"from": 32840,
+				"to": 38440
+			},
+			"text": " So first I want to introduce CASPER is not that different from traditional protocols and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,440",
+				"to": "00:00:42,200"
+			},
+			"offsets": {
+				"from": 38440,
+				"to": 42200
+			},
+			"text": " CASPER FFPG and the shivishi is not that different also."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,200",
+				"to": "00:00:51,840"
+			},
+			"offsets": {
+				"from": 42200,
+				"to": 51840
+			},
+			"text": " So first PBFT, 10-dame it and CASPER FFG and shivishi are all categorized into a synchronously"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,840",
+				"to": "00:00:53,880"
+			},
+			"offsets": {
+				"from": 51840,
+				"to": 53880
+			},
+			"text": " safe consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,880",
+				"to": "00:00:59,080"
+			},
+			"offsets": {
+				"from": 53880,
+				"to": 59080
+			},
+			"text": " So I mean safety does not require any timing assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,080",
+				"to": "00:01:06,360"
+			},
+			"offsets": {
+				"from": 59080,
+				"to": 66360
+			},
+			"text": " So basically in these protocols, finality comes when sufficient number of validators is locked"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,360",
+				"to": "00:01:09,880"
+			},
+			"offsets": {
+				"from": 66360,
+				"to": 69880
+			},
+			"text": " on a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,880",
+				"to": "00:01:12,120"
+			},
+			"offsets": {
+				"from": 69880,
+				"to": 72120
+			},
+			"text": " So let's start with 10-dame it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,120",
+				"to": "00:01:21,600"
+			},
+			"offsets": {
+				"from": 72120,
+				"to": 81600
+			},
+			"text": " So in 10-dame it, a block is called notarized when 2F plus 1 validators is bought on a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,600",
+				"to": "00:01:25,480"
+			},
+			"offsets": {
+				"from": 81600,
+				"to": 85480
+			},
+			"text": " So here F is vesenching for the threshold."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,480",
+				"to": "00:01:31,600"
+			},
+			"offsets": {
+				"from": 85480,
+				"to": 91600
+			},
+			"text": " And the block is finalized when its direct child block is notarized."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,600",
+				"to": "00:01:38,360"
+			},
+			"offsets": {
+				"from": 91600,
+				"to": 98360
+			},
+			"text": " And when the validator is bought for notarized block, that validator is locked on a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,360",
+				"to": "00:01:41,880"
+			},
+			"offsets": {
+				"from": 98360,
+				"to": 101880
+			},
+			"text": " So he cannot vote for conflicting block."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,880",
+				"to": "00:01:48,680"
+			},
+			"offsets": {
+				"from": 101880,
+				"to": 108680
+			},
+			"text": " So in this case, the first block is finalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,680",
+				"to": "00:01:52,560"
+			},
+			"offsets": {
+				"from": 108680,
+				"to": 112560
+			},
+			"text": " And here the boat must be collected in on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,560",
+				"to": "00:01:54,800"
+			},
+			"offsets": {
+				"from": 112560,
+				"to": 114800
+			},
+			"text": " It's a very important point."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,800",
+				"to": "00:02:04,280"
+			},
+			"offsets": {
+				"from": 114800,
+				"to": 124280
+			},
+			"text": " So here, the reason why we can say the first block is finalized is we know that these validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,280",
+				"to": "00:02:11,560"
+			},
+			"offsets": {
+				"from": 124280,
+				"to": 131560
+			},
+			"text": " bought for the second block knows we know that this value that is locked because we know"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,560",
+				"to": "00:02:13,240"
+			},
+			"offsets": {
+				"from": 131560,
+				"to": 133240
+			},
+			"text": " that the boats are on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,240",
+				"to": "00:02:14,240"
+			},
+			"offsets": {
+				"from": 133240,
+				"to": 134240
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,240",
+				"to": "00:02:22,520"
+			},
+			"offsets": {
+				"from": 134240,
+				"to": 142520
+			},
+			"text": " This is why on-chain voting is very important for these protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,520",
+				"to": "00:02:29,880"
+			},
+			"offsets": {
+				"from": 142520,
+				"to": 149880
+			},
+			"text": " The reason why finality comes when only when its direct block is notarized is there might"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,880",
+				"to": "00:02:38,520"
+			},
+			"offsets": {
+				"from": 149880,
+				"to": 158520
+			},
+			"text": " be another block in the middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,520",
+				"to": "00:02:45,160"
+			},
+			"offsets": {
+				"from": 158520,
+				"to": 165160
+			},
+			"text": " And we discussed locking is necessary for safety, but if locking is too much, too much"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,160",
+				"to": "00:02:49,200"
+			},
+			"offsets": {
+				"from": 165160,
+				"to": 169200
+			},
+			"text": " strong does not create some liveness property."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,200",
+				"to": "00:02:52,120"
+			},
+			"offsets": {
+				"from": 169200,
+				"to": 172120
+			},
+			"text": " So here we have some unlocking condition."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,120",
+				"to": "00:03:00,400"
+			},
+			"offsets": {
+				"from": 172120,
+				"to": 180400
+			},
+			"text": " So in 10-dimensional, a validator locked on a block is unlocked when he see a higher notarized"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,400",
+				"to": "00:03:01,400"
+			},
+			"offsets": {
+				"from": 180400,
+				"to": 181400
+			},
+			"text": " block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,400",
+				"to": "00:03:12,960"
+			},
+			"offsets": {
+				"from": 181400,
+				"to": 192960
+			},
+			"text": " In this picture, I vote for two, but I'm unlocked because I see the new notarized block here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,960",
+				"to": "00:03:16,600"
+			},
+			"offsets": {
+				"from": 192960,
+				"to": 196600
+			},
+			"text": " So let's start with the next is Casper FFG."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,600",
+				"to": "00:03:21,800"
+			},
+			"offsets": {
+				"from": 196600,
+				"to": 201800
+			},
+			"text": " The Casper FFG is fundamentally similar to 10-dimensional, but it's more like chain-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,800",
+				"to": "00:03:24,160"
+			},
+			"offsets": {
+				"from": 201800,
+				"to": 204160
+			},
+			"text": " leaderless 10-dimensional."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,160",
+				"to": "00:03:28,640"
+			},
+			"offsets": {
+				"from": 204160,
+				"to": 208640
+			},
+			"text": " So in Casper FFG, we do not use a not- finalized block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,640",
+				"to": "00:03:30,920"
+			},
+			"offsets": {
+				"from": 208640,
+				"to": 210920
+			},
+			"text": " We finalize checkpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,920",
+				"to": "00:03:37,720"
+			},
+			"offsets": {
+				"from": 210920,
+				"to": 217720
+			},
+			"text": " So in this picture, we have blockchain, but we finalize on say every 50 blocks or every"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,720",
+				"to": "00:03:39,040"
+			},
+			"offsets": {
+				"from": 217720,
+				"to": 219040
+			},
+			"text": " 50 slots block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,040",
+				"to": "00:03:40,040"
+			},
+			"offsets": {
+				"from": 219040,
+				"to": 220040
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,040",
+				"to": "00:03:42,480"
+			},
+			"offsets": {
+				"from": 220040,
+				"to": 222480
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,480",
+				"to": "00:03:45,280"
+			},
+			"offsets": {
+				"from": 222480,
+				"to": 225280
+			},
+			"text": " And again, votes are still on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,280",
+				"to": "00:03:52,560"
+			},
+			"offsets": {
+				"from": 225280,
+				"to": 232560
+			},
+			"text": " And the difference between 10-dimensional is the fork trace itself is doing the similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,560",
+				"to": "00:03:54,080"
+			},
+			"offsets": {
+				"from": 232560,
+				"to": 234080
+			},
+			"text": " law of leader."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,080",
+				"to": "00:04:00,200"
+			},
+			"offsets": {
+				"from": 234080,
+				"to": 240200
+			},
+			"text": " So in 10-dimensional, every validator vote for a block which is decided by the leader"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,200",
+				"to": "00:04:01,200"
+			},
+			"offsets": {
+				"from": 240200,
+				"to": 241200
+			},
+			"text": " of that round."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,200",
+				"to": "00:04:10,560"
+			},
+			"offsets": {
+				"from": 241200,
+				"to": 250560
+			},
+			"text": " But in Casper FFG, it's a fork trace that decides the view."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,560",
+				"to": "00:04:13,560"
+			},
+			"offsets": {
+				"from": 250560,
+				"to": 253560
+			},
+			"text": " And unlocking and unlocking is super similar to 10-dimensional."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,560",
+				"to": "00:04:24,040"
+			},
+			"offsets": {
+				"from": 253560,
+				"to": 264040
+			},
+			"text": " So in FFG case, they are unlocked when they see higher notarized or just justify the checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,040",
+				"to": "00:04:34,320"
+			},
+			"offsets": {
+				"from": 264040,
+				"to": 274320
+			},
+			"text": " So finally, shimishi Casper is also locking based consensus protocol, but the locking and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,320",
+				"to": "00:04:38,160"
+			},
+			"offsets": {
+				"from": 274320,
+				"to": 278160
+			},
+			"text": " unlocking is purely by the fork trace itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,160",
+				"to": "00:04:47,400"
+			},
+			"offsets": {
+				"from": 278160,
+				"to": 287400
+			},
+			"text": " So in shimishi Casper, every message, votes, block must follow the fork trace."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,400",
+				"to": "00:04:54,840"
+			},
+			"offsets": {
+				"from": 287400,
+				"to": 294840
+			},
+			"text": " And in 10-dimensional or FFG, we included the votes on-chain, but in shimishi, we can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,840",
+				"to": "00:04:56,240"
+			},
+			"offsets": {
+				"from": 294840,
+				"to": 296240
+			},
+			"text": " the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,240",
+				"to": "00:05:03,680"
+			},
+			"offsets": {
+				"from": 296240,
+				"to": 303680
+			},
+			"text": " But more flexible, we can allow the message to point to the every often vote or block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,680",
+				"to": "00:05:15,800"
+			},
+			"offsets": {
+				"from": 303680,
+				"to": 315800
+			},
+			"text": " So in this picture, the block B is pointing to often block, but the reason is, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,800",
+				"to": "00:05:24,400"
+			},
+			"offsets": {
+				"from": 315800,
+				"to": 324400
+			},
+			"text": " So yeah, additional explanation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,400",
+				"to": "00:05:30,080"
+			},
+			"offsets": {
+				"from": 324400,
+				"to": 330080
+			},
+			"text": " So in this case, this block is invalid because they know that the different chain is more"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,080",
+				"to": "00:05:31,560"
+			},
+			"offsets": {
+				"from": 330080,
+				"to": 331560
+			},
+			"text": " heavier."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,560",
+				"to": "00:05:33,200"
+			},
+			"offsets": {
+				"from": 331560,
+				"to": 333200
+			},
+			"text": " So this is invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,200",
+				"to": "00:05:40,320"
+			},
+			"offsets": {
+				"from": 333200,
+				"to": 340320
+			},
+			"text": " And unlocking condition is super abstracted into your application condition that every"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,320",
+				"to": "00:05:45,520"
+			},
+			"offsets": {
+				"from": 340320,
+				"to": 345520
+			},
+			"text": " vote must include his previous message in its message."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,520",
+				"to": "00:05:51,320"
+			},
+			"offsets": {
+				"from": 345520,
+				"to": 351320
+			},
+			"text": " So in this picture, this block is invalid because he has previous message here, but does not"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,320",
+				"to": "00:05:56,760"
+			},
+			"offsets": {
+				"from": 351320,
+				"to": 356760
+			},
+			"text": " include the on-chain message."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,760",
+				"to": "00:06:02,160"
+			},
+			"offsets": {
+				"from": 356760,
+				"to": 362160
+			},
+			"text": " So the similarity of shimishi and FFG is that the both is chain based."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,160",
+				"to": "00:06:08,160"
+			},
+			"offsets": {
+				"from": 362160,
+				"to": 368160
+			},
+			"text": " So every vote block is supporting or supporting for the same ancestor."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,160",
+				"to": "00:06:10,160"
+			},
+			"offsets": {
+				"from": 368160,
+				"to": 370160
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,160",
+				"to": "00:06:17,440"
+			},
+			"offsets": {
+				"from": 370160,
+				"to": 377440
+			},
+			"text": " So in FFG, what 2.0, they include all from votes in on-chain because they are supporting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,440",
+				"to": "00:06:20,440"
+			},
+			"offsets": {
+				"from": 377440,
+				"to": 380440
+			},
+			"text": " for the same checkpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,440",
+				"to": "00:06:28,640"
+			},
+			"offsets": {
+				"from": 380440,
+				"to": 388640
+			},
+			"text": " This is also same for shimishi-casper, but it's more flexible way."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,640",
+				"to": "00:06:35,560"
+			},
+			"offsets": {
+				"from": 388640,
+				"to": 395560
+			},
+			"text": " So the exact finality condition is something I do not talk in this talk, but we finally"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,560",
+				"to": "00:06:39,080"
+			},
+			"offsets": {
+				"from": 395560,
+				"to": 399080
+			},
+			"text": " finished our formal verification in the WHOL."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,080",
+				"to": "00:06:46,520"
+			},
+			"offsets": {
+				"from": 399080,
+				"to": 406520
+			},
+			"text": " It takes more than half a year, but it's great job, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,520",
+				"to": "00:06:51,880"
+			},
+			"offsets": {
+				"from": 406520,
+				"to": 411880
+			},
+			"text": " So yeah, pretty much summary is 10-minute cast by FFG and shimishi is based on some"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,880",
+				"to": "00:06:54,240"
+			},
+			"offsets": {
+				"from": 411880,
+				"to": 414240
+			},
+			"text": " locking idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,240",
+				"to": "00:07:00,120"
+			},
+			"offsets": {
+				"from": 414240,
+				"to": 420120
+			},
+			"text": " And the difference comes from whether the locking is based on the notarized checkpoint"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,120",
+				"to": "00:07:05,800"
+			},
+			"offsets": {
+				"from": 420120,
+				"to": 425800
+			},
+			"text": " or block or the fork trace itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,800",
+				"to": "00:07:13,800"
+			},
+			"offsets": {
+				"from": 425800,
+				"to": 433800
+			},
+			"text": " So I want to move to liveness, but liveness has a lot of design strategies, so I cannot"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,800",
+				"to": "00:07:18,720"
+			},
+			"offsets": {
+				"from": 433800,
+				"to": 438720
+			},
+			"text": " talk in this 20 minutes, so I today want to focus on 2.0 liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,720",
+				"to": "00:07:23,040"
+			},
+			"offsets": {
+				"from": 438720,
+				"to": 443040
+			},
+			"text": " So basically in 2.0, liveness strategy is super simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,040",
+				"to": "00:07:28,880"
+			},
+			"offsets": {
+				"from": 443040,
+				"to": 448880
+			},
+			"text": " It's just LMD Ghost plus class by FFG."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,880",
+				"to": "00:07:36,120"
+			},
+			"offsets": {
+				"from": 448880,
+				"to": 456120
+			},
+			"text": " So LMD Ghost is a variant of ghost in which the latest message is only counted."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,120",
+				"to": "00:07:43,480"
+			},
+			"offsets": {
+				"from": 456120,
+				"to": 463480
+			},
+			"text": " So in this picture, the traditional longest-chain LUE, this chain is a hat."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,480",
+				"to": "00:07:50,520"
+			},
+			"offsets": {
+				"from": 463480,
+				"to": 470520
+			},
+			"text": " In normal ghost, this chain is a hat, but in LMD Ghost, we only count the latest message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,520",
+				"to": "00:07:58,960"
+			},
+			"offsets": {
+				"from": 470520,
+				"to": 478960
+			},
+			"text": " so the start chain is a hat."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,960",
+				"to": "00:08:06,080"
+			},
+			"offsets": {
+				"from": 478960,
+				"to": 486080
+			},
+			"text": " So to talk about the liveness based on LMD Ghost, we need to define when the chain converges."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,080",
+				"to": "00:08:13,360"
+			},
+			"offsets": {
+				"from": 486080,
+				"to": 493360
+			},
+			"text": " And in LMD Ghost, a block is not open when the chain is supported by more than majority"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,360",
+				"to": "00:08:17,720"
+			},
+			"offsets": {
+				"from": 493360,
+				"to": 497720
+			},
+			"text": " of honest supports."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,720",
+				"to": "00:08:27,760"
+			},
+			"offsets": {
+				"from": 497720,
+				"to": 507760
+			},
+			"text": " In this example, there's 100 total validators, and the blue chain is supported by more than"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,760",
+				"to": "00:08:30,440"
+			},
+			"offsets": {
+				"from": 507760,
+				"to": 510440
+			},
+			"text": " 51 boats."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,440",
+				"to": "00:08:37,280"
+			},
+			"offsets": {
+				"from": 510440,
+				"to": 517280
+			},
+			"text": " In this case, whatever the other ones that we do, the top chain does not be organized."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,280",
+				"to": "00:08:43,680"
+			},
+			"offsets": {
+				"from": 517280,
+				"to": 523680
+			},
+			"text": " So this is a convergence condition of LMD Ghost, but this cannot be observed by protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,680",
+				"to": "00:08:46,600"
+			},
+			"offsets": {
+				"from": 523680,
+				"to": 526600
+			},
+			"text": " or"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,600",
+				"to": "00:09:01,800"
+			},
+			"offsets": {
+				"from": 526600,
+				"to": 541800
+			},
+			"text": " detected."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,800",
+				"to": "00:09:11,560"
+			},
+			"offsets": {
+				"from": 541800,
+				"to": 551560
+			},
+			"text": " So in this case, we want some property called fairness."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,560",
+				"to": "00:09:20,040"
+			},
+			"offsets": {
+				"from": 551560,
+				"to": 560040
+			},
+			"text": " So any player cannot increase their power against their stake or hash power."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,040",
+				"to": "00:09:25,480"
+			},
+			"offsets": {
+				"from": 560040,
+				"to": 565480
+			},
+			"text": " But there's something that breaks this property called saving strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,480",
+				"to": "00:09:36,600"
+			},
+			"offsets": {
+				"from": 565480,
+				"to": 576600
+			},
+			"text": " So Adversity can skip their votes, and later use their votes to free prop."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,600",
+				"to": "00:09:46,240"
+			},
+			"offsets": {
+				"from": 576600,
+				"to": 586240
+			},
+			"text": " This does not work in the longest chain, because, say, we divide into 3 seconds or 10 seconds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,240",
+				"to": "00:09:51,120"
+			},
+			"offsets": {
+				"from": 586240,
+				"to": 591120
+			},
+			"text": " and every 3 blocks will vote, but it's advisable for the adversary."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,120",
+				"to": "00:09:57,160"
+			},
+			"offsets": {
+				"from": 591120,
+				"to": 597160
+			},
+			"text": " But in this case, Adversity, with a hold, will save every block."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,160",
+				"to": "00:10:03,320"
+			},
+			"offsets": {
+				"from": 597160,
+				"to": 603320
+			},
+			"text": " But in longest chain, we can add some validity conditions that every block or boat cannot"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,320",
+				"to": "00:10:05,600"
+			},
+			"offsets": {
+				"from": 603320,
+				"to": 605600
+			},
+			"text": " extend the future block."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,600",
+				"to": "00:10:12,760"
+			},
+			"offsets": {
+				"from": 605600,
+				"to": 612760
+			},
+			"text": " So here, after some network failure, they cannot use the saved boat to prevent the liveness"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,760",
+				"to": "00:10:16,560"
+			},
+			"offsets": {
+				"from": 612760,
+				"to": 616560
+			},
+			"text": " here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,560",
+				"to": "00:10:22,080"
+			},
+			"offsets": {
+				"from": 616560,
+				"to": 622080
+			},
+			"text": " But in ghost, every boat does not expire."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,080",
+				"to": "00:10:28,320"
+			},
+			"offsets": {
+				"from": 622080,
+				"to": 628320
+			},
+			"text": " So here, there's a huge two folk from early days."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,320",
+				"to": "00:10:33,040"
+			},
+			"offsets": {
+				"from": 628320,
+				"to": 633040
+			},
+			"text": " But you can use the saved boat in ghost."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,040",
+				"to": "00:10:39,160"
+			},
+			"offsets": {
+				"from": 633040,
+				"to": 639160
+			},
+			"text": " Because in ghost, the folk choice is based on every best children selection on each height,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,160",
+				"to": "00:10:46,240"
+			},
+			"offsets": {
+				"from": 639160,
+				"to": 646240
+			},
+			"text": " so every boat does not expire."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,240",
+				"to": "00:10:52,560"
+			},
+			"offsets": {
+				"from": 646240,
+				"to": 652560
+			},
+			"text": " So this turns into creating a new attack on Adversity Ghost, which I call decoy-fip-prope"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,560",
+				"to": "00:10:53,800"
+			},
+			"offsets": {
+				"from": 652560,
+				"to": 653800
+			},
+			"text": " attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,800",
+				"to": "00:11:01,400"
+			},
+			"offsets": {
+				"from": 653800,
+				"to": 661400
+			},
+			"text": " So basically, what I want to do is to flip every boat into another chain, and go back"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,400",
+				"to": "00:11:04,600"
+			},
+			"offsets": {
+				"from": 661400,
+				"to": 664600
+			},
+			"text": " to another chain, and continue."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,600",
+				"to": "00:11:12,400"
+			},
+			"offsets": {
+				"from": 664600,
+				"to": 672400
+			},
+			"text": " The difference, the big difference in normal ghost and an Adversity Ghost is the flip of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,400",
+				"to": "00:11:16,160"
+			},
+			"offsets": {
+				"from": 672400,
+				"to": 676160
+			},
+			"text": " boats, decreases the score."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,160",
+				"to": "00:11:22,240"
+			},
+			"offsets": {
+				"from": 676160,
+				"to": 682240
+			},
+			"text": " In longest chain, with normal ghost, some score of a chain, no, 20-k are increasing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,240",
+				"to": "00:11:24,800"
+			},
+			"offsets": {
+				"from": 682240,
+				"to": 684800
+			},
+			"text": " And every liveness proof is based on that property."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,800",
+				"to": "00:11:29,960"
+			},
+			"offsets": {
+				"from": 684800,
+				"to": 689960
+			},
+			"text": " But in Adversity Ghost, we cannot have that property."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,960",
+				"to": "00:11:32,400"
+			},
+			"offsets": {
+				"from": 689960,
+				"to": 692400
+			},
+			"text": " This is the simulation I have."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,400",
+				"to": "00:11:39,440"
+			},
+			"offsets": {
+				"from": 692400,
+				"to": 699440
+			},
+			"text": " So imagine that two chains, that chain, will change, and we continue to flip from just before"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,440",
+				"to": "00:11:44,800"
+			},
+			"offsets": {
+				"from": 699440,
+				"to": 704800
+			},
+			"text": " the chain converges."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,800",
+				"to": "00:11:52,680"
+			},
+			"offsets": {
+				"from": 704800,
+				"to": 712680
+			},
+			"text": " And the result is the necessary saving which the adversary needs to prepare exponential"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,680",
+				"to": "00:11:57,120"
+			},
+			"offsets": {
+				"from": 712680,
+				"to": 717120
+			},
+			"text": " discolacies against the adversary power."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,120",
+				"to": "00:12:04,280"
+			},
+			"offsets": {
+				"from": 717120,
+				"to": 724280
+			},
+			"text": " And for some parameter, 33% attack can prevent fliveness from 100 epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,280",
+				"to": "00:12:10,600"
+			},
+			"offsets": {
+				"from": 724280,
+				"to": 730600
+			},
+			"text": " It's like a few hours, 10 hours, by 5 epochs of savings."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,600",
+				"to": "00:12:19,520"
+			},
+			"offsets": {
+				"from": 730600,
+				"to": 739520
+			},
+			"text": " And for more big adversary, it takes much longer to change, for the chain of finalize."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,520",
+				"to": "00:12:21,720"
+			},
+			"offsets": {
+				"from": 739520,
+				"to": 741720
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,720",
+				"to": "00:12:28,400"
+			},
+			"offsets": {
+				"from": 741720,
+				"to": 748400
+			},
+			"text": " Small mitigation of this attack is F-M&D Ghost."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,400",
+				"to": "00:12:34,400"
+			},
+			"offsets": {
+				"from": 748400,
+				"to": 754400
+			},
+			"text": " It's a variant of Adversity Ghost to mitigate the saving strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,400",
+				"to": "00:12:40,280"
+			},
+			"offsets": {
+				"from": 754400,
+				"to": 760280
+			},
+			"text": " So in Adversity Ghost, we count every boat, every old boat, if it is the latest."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,280",
+				"to": "00:12:50,240"
+			},
+			"offsets": {
+				"from": 760280,
+				"to": 770240
+			},
+			"text": " But in F-M&D Ghost, we only count a boat from the current epoch, or the previous epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,240",
+				"to": "00:12:54,640"
+			},
+			"offsets": {
+				"from": 770240,
+				"to": 774640
+			},
+			"text": " Someone say that it's kind of introduced a new synchronous assumption on consensus, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,640",
+				"to": "00:12:56,560"
+			},
+			"offsets": {
+				"from": 774640,
+				"to": 776560
+			},
+			"text": " it's not that true."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,560",
+				"to": "00:13:03,120"
+			},
+			"offsets": {
+				"from": 776560,
+				"to": 783120
+			},
+			"text": " Because in the F-M&D, the F-M&D is decoupled from the chain, so the synchronous assumption"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,120",
+				"to": "00:13:05,320"
+			},
+			"offsets": {
+				"from": 783120,
+				"to": 785320
+			},
+			"text": " does not change."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,320",
+				"to": "00:13:13,400"
+			},
+			"offsets": {
+				"from": 785320,
+				"to": 793400
+			},
+			"text": " But here, still, decoy flip-flop is possible, because we can have one epoch of savings."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,400",
+				"to": "00:13:19,520"
+			},
+			"offsets": {
+				"from": 793400,
+				"to": 799520
+			},
+			"text": " So this starts pretty much a new question, that why Adversity Ghost is in the first place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,520",
+				"to": "00:13:21,960"
+			},
+			"offsets": {
+				"from": 799520,
+				"to": 801960
+			},
+			"text": " compared to non-Adversity variant of Ghost."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,960",
+				"to": "00:13:25,920"
+			},
+			"offsets": {
+				"from": 801960,
+				"to": 805920
+			},
+			"text": " Especially, there's no shivshikas per 1.0 for now."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,920",
+				"to": "00:13:30,200"
+			},
+			"offsets": {
+				"from": 805920,
+				"to": 810200
+			},
+			"text": " So it's a bit easy to manipulate the fork choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,200",
+				"to": "00:13:35,400"
+			},
+			"offsets": {
+				"from": 810200,
+				"to": 815400
+			},
+			"text": " Another interesting topic, which I don't cannot talk today, is flip-flop in Adversity"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,400",
+				"to": "00:13:37,160"
+			},
+			"offsets": {
+				"from": 815400,
+				"to": 817160
+			},
+			"text": " Ghost in shivshikas per."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,160",
+				"to": "00:13:42,120"
+			},
+			"offsets": {
+				"from": 817160,
+				"to": 822120
+			},
+			"text": " Because in shivshikas per, every message is important to follow the fork choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,120",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 822120,
+				"to": 832000
+			},
+			"text": " So the analysis gets a bit complicated, but basically, it's mitigates the flip-flop strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:53,640"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 833640
+			},
+			"text": " So a bit not in incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,640",
+				"to": "00:13:59,440"
+			},
+			"offsets": {
+				"from": 833640,
+				"to": 839440
+			},
+			"text": " So you might say savings can be detected and trashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,440",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 839440,
+				"to": 847000
+			},
+			"text": " But basically, two punished liveness failure is, as I explained about the metallic in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:14,240"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 854240
+			},
+			"text": " morning, it's difficult to distinguish between no malicious failure, because it might honest"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,240",
+				"to": "00:14:16,640"
+			},
+			"offsets": {
+				"from": 854240,
+				"to": 856640
+			},
+			"text": " not just get down."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,640",
+				"to": "00:14:22,200"
+			},
+			"offsets": {
+				"from": 856640,
+				"to": 862200
+			},
+			"text": " So in 2.0, it has some incentive mechanism to punish liveness failure, called inactivity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,200",
+				"to": "00:14:27,400"
+			},
+			"offsets": {
+				"from": 862200,
+				"to": 867400
+			},
+			"text": " leak, but it's just kind, mild punishment."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,400",
+				"to": "00:14:35,600"
+			},
+			"offsets": {
+				"from": 867400,
+				"to": 875600
+			},
+			"text": " So the kind parameterization with decoy-flop attack, 33% attacker can prevent finality"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,600",
+				"to": "00:14:42,640"
+			},
+			"offsets": {
+				"from": 875600,
+				"to": 882640
+			},
+			"text": " for a few days with 1% cost of the stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,640",
+				"to": "00:14:47,560"
+			},
+			"offsets": {
+				"from": 882640,
+				"to": 887560
+			},
+			"text": " And you know, liveness attack sometimes has a lot of reward, because there's a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,560",
+				"to": "00:14:53,160"
+			},
+			"offsets": {
+				"from": 887560,
+				"to": 893160
+			},
+			"text": " layer 2 solutions in which there's some challenge period."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,160",
+				"to": "00:14:59,320"
+			},
+			"offsets": {
+				"from": 893160,
+				"to": 899320
+			},
+			"text": " And if they can censor shape on the flood proof, in problem and lighting, otherwise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,320",
+				"to": "00:15:03,280"
+			},
+			"offsets": {
+				"from": 899320,
+				"to": 903280
+			},
+			"text": " they can get a bunch of money from the layer 2 construction."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,280",
+				"to": "00:15:09,040"
+			},
+			"offsets": {
+				"from": 903280,
+				"to": 909040
+			},
+			"text": " So I think it's a new question to how to analyze this incentive compatibility in liveness"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,040",
+				"to": "00:15:12,600"
+			},
+			"offsets": {
+				"from": 909040,
+				"to": 912600
+			},
+			"text": " failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,600",
+				"to": "00:15:19,560"
+			},
+			"offsets": {
+				"from": 912600,
+				"to": 919560
+			},
+			"text": " So I think I have time, so I quickly introduce some attack on Casper FFG, which is funded"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,560",
+				"to": "00:15:22,840"
+			},
+			"offsets": {
+				"from": 919560,
+				"to": 922840
+			},
+			"text": " by last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,840",
+				"to": "00:15:34,280"
+			},
+			"offsets": {
+				"from": 922840,
+				"to": 934280
+			},
+			"text": " So in FFG, the original FFG, removing the leader in kind of bad way, because, so these"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,280",
+				"to": "00:15:37,760"
+			},
+			"offsets": {
+				"from": 934280,
+				"to": 937760
+			},
+			"text": " squares are not blocks, it's checkpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,760",
+				"to": "00:15:47,920"
+			},
+			"offsets": {
+				"from": 937760,
+				"to": 947920
+			},
+			"text": " And remember that unlocking lure in Casper FFG is observation of higher, normalized checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,920",
+				"to": "00:15:57,600"
+			},
+			"offsets": {
+				"from": 947920,
+				"to": 957600
+			},
+			"text": " And so in this case, imagine there's 100 validators, and this checkpoint is close to two-source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,600",
+				"to": "00:16:00,040"
+			},
+			"offsets": {
+				"from": 957600,
+				"to": 960040
+			},
+			"text": " but it's not normalized yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,040",
+				"to": "00:16:05,800"
+			},
+			"offsets": {
+				"from": 960040,
+				"to": 965800
+			},
+			"text": " But adversely, it can justify this checkpoint arbitrarily anytime."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,800",
+				"to": "00:16:13,920"
+			},
+			"offsets": {
+				"from": 965800,
+				"to": 973920
+			},
+			"text": " So in this situation, the FFG favors this side of the chain, so creating a new checkpoint"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,920",
+				"to": "00:16:20,840"
+			},
+			"offsets": {
+				"from": 973920,
+				"to": 980840
+			},
+			"text": " which is close to the notarization, but exactly the same, at that time, adversely,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,840",
+				"to": "00:16:26,080"
+			},
+			"offsets": {
+				"from": 980840,
+				"to": 986080
+			},
+			"text": " flip the head of the FFG in that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,080",
+				"to": "00:16:33,280"
+			},
+			"offsets": {
+				"from": 986080,
+				"to": 993280
+			},
+			"text": " And in high synchrony network, adversely, it can continue this attack forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,280",
+				"to": "00:16:37,200"
+			},
+			"offsets": {
+				"from": 993280,
+				"to": 997200
+			},
+			"text": " So why this does not happen in 10-dement?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,200",
+				"to": "00:16:41,880"
+			},
+			"offsets": {
+				"from": 997200,
+				"to": 1001880
+			},
+			"text": " It's simply because leader decides the view of the current round."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,880",
+				"to": "00:16:50,920"
+			},
+			"offsets": {
+				"from": 1001880,
+				"to": 1010920
+			},
+			"text": " So what we should do is to have some sort of stickness property in FFG."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,920",
+				"to": "00:16:53,920"
+			},
+			"offsets": {
+				"from": 1010920,
+				"to": 1013920
+			},
+			"text": " So there's a lot of construction to prevent this attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,920",
+				"to": "00:16:59,760"
+			},
+			"offsets": {
+				"from": 1013920,
+				"to": 1019760
+			},
+			"text": " It's one idea is to not allow the change of the view in the middle of the epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,760",
+				"to": "00:17:06,760"
+			},
+			"offsets": {
+				"from": 1019760,
+				"to": 1026760
+			},
+			"text": " For example, you do not allow any new justified checkpoint if it's in the middle of the epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,760",
+				"to": "00:17:15,520"
+			},
+			"offsets": {
+				"from": 1026760,
+				"to": 1035520
+			},
+			"text": " Yes, I think it's a fish."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,520",
+				"to": "00:17:16,520"
+			},
+			"offsets": {
+				"from": 1035520,
+				"to": 1036520
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,520",
+				"to": "00:17:17,520"
+			},
+			"offsets": {
+				"from": 1036520,
+				"to": 1037520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,520",
+				"to": "00:17:18,520"
+			},
+			"offsets": {
+				"from": 1037520,
+				"to": 1038520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,520",
+				"to": "00:17:19,520"
+			},
+			"offsets": {
+				"from": 1038520,
+				"to": 1039520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,520",
+				"to": "00:17:20,520"
+			},
+			"offsets": {
+				"from": 1039520,
+				"to": 1040520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,520",
+				"to": "00:17:21,520"
+			},
+			"offsets": {
+				"from": 1040520,
+				"to": 1041520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,520",
+				"to": "00:17:22,520"
+			},
+			"offsets": {
+				"from": 1041520,
+				"to": 1042520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,520",
+				"to": "00:17:23,520"
+			},
+			"offsets": {
+				"from": 1042520,
+				"to": 1043520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,520",
+				"to": "00:17:24,520"
+			},
+			"offsets": {
+				"from": 1043520,
+				"to": 1044520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,520",
+				"to": "00:17:25,520"
+			},
+			"offsets": {
+				"from": 1044520,
+				"to": 1045520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,520",
+				"to": "00:17:26,520"
+			},
+			"offsets": {
+				"from": 1045520,
+				"to": 1046520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,520",
+				"to": "00:17:27,520"
+			},
+			"offsets": {
+				"from": 1046520,
+				"to": 1047520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,520",
+				"to": "00:17:28,520"
+			},
+			"offsets": {
+				"from": 1047520,
+				"to": 1048520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,520",
+				"to": "00:17:29,520"
+			},
+			"offsets": {
+				"from": 1048520,
+				"to": 1049520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,520",
+				"to": "00:17:30,520"
+			},
+			"offsets": {
+				"from": 1049520,
+				"to": 1050520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,520",
+				"to": "00:17:32,520"
+			},
+			"offsets": {
+				"from": 1050520,
+				"to": 1052520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,520",
+				"to": "00:17:33,520"
+			},
+			"offsets": {
+				"from": 1052520,
+				"to": 1053520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,520",
+				"to": "00:17:34,520"
+			},
+			"offsets": {
+				"from": 1053520,
+				"to": 1054520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,520",
+				"to": "00:17:35,520"
+			},
+			"offsets": {
+				"from": 1054520,
+				"to": 1055520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,520",
+				"to": "00:17:36,520"
+			},
+			"offsets": {
+				"from": 1055520,
+				"to": 1056520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,520",
+				"to": "00:17:37,520"
+			},
+			"offsets": {
+				"from": 1056520,
+				"to": 1057520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,520",
+				"to": "00:17:38,520"
+			},
+			"offsets": {
+				"from": 1057520,
+				"to": 1058520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,520",
+				"to": "00:17:39,520"
+			},
+			"offsets": {
+				"from": 1058520,
+				"to": 1059520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,520",
+				"to": "00:17:40,520"
+			},
+			"offsets": {
+				"from": 1059520,
+				"to": 1060520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,520",
+				"to": "00:17:41,520"
+			},
+			"offsets": {
+				"from": 1060520,
+				"to": 1061520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,520",
+				"to": "00:17:42,520"
+			},
+			"offsets": {
+				"from": 1061520,
+				"to": 1062520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,520",
+				"to": "00:17:43,520"
+			},
+			"offsets": {
+				"from": 1062520,
+				"to": 1063520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,520",
+				"to": "00:17:44,520"
+			},
+			"offsets": {
+				"from": 1063520,
+				"to": 1064520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,520",
+				"to": "00:17:45,520"
+			},
+			"offsets": {
+				"from": 1064520,
+				"to": 1065520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,520",
+				"to": "00:17:46,520"
+			},
+			"offsets": {
+				"from": 1065520,
+				"to": 1066520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,520",
+				"to": "00:17:47,520"
+			},
+			"offsets": {
+				"from": 1066520,
+				"to": 1067520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,520",
+				"to": "00:17:48,520"
+			},
+			"offsets": {
+				"from": 1067520,
+				"to": 1068520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,520",
+				"to": "00:17:49,520"
+			},
+			"offsets": {
+				"from": 1068520,
+				"to": 1069520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,520",
+				"to": "00:17:50,520"
+			},
+			"offsets": {
+				"from": 1069520,
+				"to": 1070520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,520",
+				"to": "00:17:51,520"
+			},
+			"offsets": {
+				"from": 1070520,
+				"to": 1071520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,520",
+				"to": "00:17:52,520"
+			},
+			"offsets": {
+				"from": 1071520,
+				"to": 1072520
+			},
+			"text": " [Applause]"
+		}
+	]
+}

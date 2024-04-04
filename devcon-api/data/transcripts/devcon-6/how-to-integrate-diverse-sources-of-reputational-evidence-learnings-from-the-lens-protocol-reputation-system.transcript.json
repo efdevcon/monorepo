@@ -1,0 +1,1253 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:14,120"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 14120
+			},
+			"text": " >> Hey everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,120",
+				"to": "00:00:16,300"
+			},
+			"offsets": {
+				"from": 14120,
+				"to": 16300
+			},
+			"text": " So I'm Pedro Alcozir."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,300",
+				"to": "00:00:20,260"
+			},
+			"offsets": {
+				"from": 16300,
+				"to": 20260
+			},
+			"text": " I am a staff data scientist at the Aave companies"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,260",
+				"to": "00:00:23,920"
+			},
+			"offsets": {
+				"from": 20260,
+				"to": 23920
+			},
+			"text": " and I am the lead data scientist on the lens protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,920",
+				"to": "00:00:27,240"
+			},
+			"offsets": {
+				"from": 23920,
+				"to": 27240
+			},
+			"text": " And my talk today is going to answer this question."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,640",
+				"to": "00:00:30,280"
+			},
+			"offsets": {
+				"from": 27640,
+				"to": 30280
+			},
+			"text": " How do I integrate different sources"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,280",
+				"to": "00:00:31,560"
+			},
+			"offsets": {
+				"from": 30280,
+				"to": 31560
+			},
+			"text": " of reputational evidence?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,560",
+				"to": "00:00:34,180"
+			},
+			"offsets": {
+				"from": 31560,
+				"to": 34180
+			},
+			"text": " Reputation is something that lots and lots"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,180",
+				"to": "00:00:35,720"
+			},
+			"offsets": {
+				"from": 34180,
+				"to": 35720
+			},
+			"text": " of lots of teams are working on right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,720",
+				"to": "00:00:39,660"
+			},
+			"offsets": {
+				"from": 35720,
+				"to": 39660
+			},
+			"text": " And I'm seeing some patterns that I think are less"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,660",
+				"to": "00:00:42,600"
+			},
+			"offsets": {
+				"from": 39660,
+				"to": 42600
+			},
+			"text": " than ideal and I want to sort of address that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,600",
+				"to": "00:00:45,880"
+			},
+			"offsets": {
+				"from": 42600,
+				"to": 45880
+			},
+			"text": " My whole talk really is like in this slide, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,880",
+				"to": "00:00:48,960"
+			},
+			"offsets": {
+				"from": 45880,
+				"to": 48960
+			},
+			"text": " So the answer to the question I just asked is what I want"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,960",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 48960,
+				"to": 51000
+			},
+			"text": " to do is represent your beliefs"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 55000
+			},
+			"text": " about your reputational signals as beta distributions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:57,880"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 57880
+			},
+			"text": " and then do Bayesian updating to combine them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,880",
+				"to": "00:00:59,800"
+			},
+			"offsets": {
+				"from": 57880,
+				"to": 59800
+			},
+			"text": " And I'll sort of explain what all these things mean."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,800",
+				"to": "00:01:01,680"
+			},
+			"offsets": {
+				"from": 59800,
+				"to": 61680
+			},
+			"text": " Okay, so this is what you should not do, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,680",
+				"to": "00:01:03,340"
+			},
+			"offsets": {
+				"from": 61680,
+				"to": 63340
+			},
+			"text": " So lots of teams that they're doing is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,340",
+				"to": "00:01:06,520"
+			},
+			"offsets": {
+				"from": 63340,
+				"to": 66520
+			},
+			"text": " that they're taking a weight vector and a signal vector."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,520",
+				"to": "00:01:08,940"
+			},
+			"offsets": {
+				"from": 66520,
+				"to": 68940
+			},
+			"text": " They're doing the dot product and outcomes your reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,940",
+				"to": "00:01:10,480"
+			},
+			"offsets": {
+				"from": 68940,
+				"to": 70480
+			},
+			"text": " right? Another way to think about that is like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,480",
+				"to": "00:01:12,780"
+			},
+			"offsets": {
+				"from": 70480,
+				"to": 72780
+			},
+			"text": " So, you know, you have your weights, you have your signals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,780",
+				"to": "00:01:15,180"
+			},
+			"offsets": {
+				"from": 72780,
+				"to": 75180
+			},
+			"text": " you multiply them up and then you sum them up"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,180",
+				"to": "00:01:16,800"
+			},
+			"offsets": {
+				"from": 75180,
+				"to": 76800
+			},
+			"text": " and then outcomes a reputation number."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,800",
+				"to": "00:01:20,260"
+			},
+			"offsets": {
+				"from": 76800,
+				"to": 80260
+			},
+			"text": " I think this is less than ideal and I'll explain why."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,260",
+				"to": "00:01:26,360"
+			},
+			"offsets": {
+				"from": 80260,
+				"to": 86360
+			},
+			"text": " So information about the variance of your signals is lost"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,360",
+				"to": "00:01:27,780"
+			},
+			"offsets": {
+				"from": 86360,
+				"to": 87780
+			},
+			"text": " when you do what I just showed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,780",
+				"to": "00:01:31,500"
+			},
+			"offsets": {
+				"from": 87780,
+				"to": 91500
+			},
+			"text": " And variance is important to know because it's a measure"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,500",
+				"to": "00:01:34,340"
+			},
+			"offsets": {
+				"from": 91500,
+				"to": 94340
+			},
+			"text": " of quality, it's how you represent the quality of the signal."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,340",
+				"to": "00:01:36,500"
+			},
+			"offsets": {
+				"from": 94340,
+				"to": 96500
+			},
+			"text": " And I'll explain a little bit more about what I mean"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,500",
+				"to": "00:01:37,340"
+			},
+			"offsets": {
+				"from": 96500,
+				"to": 97340
+			},
+			"text": " by quality in a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,340",
+				"to": "00:01:40,740"
+			},
+			"offsets": {
+				"from": 97340,
+				"to": 100740
+			},
+			"text": " So what it means if you were throwing away the variance is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,740",
+				"to": "00:01:43,220"
+			},
+			"offsets": {
+				"from": 100740,
+				"to": 103220
+			},
+			"text": " that you're throwing away quality information."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,220",
+				"to": "00:01:46,100"
+			},
+			"offsets": {
+				"from": 103220,
+				"to": 106100
+			},
+			"text": " So now you don't know if your final reputation is coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,100",
+				"to": "00:01:48,820"
+			},
+			"offsets": {
+				"from": 106100,
+				"to": 108820
+			},
+			"text": " from lots of like sort of low quality signals"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,820",
+				"to": "00:01:51,680"
+			},
+			"offsets": {
+				"from": 108820,
+				"to": 111680
+			},
+			"text": " or maybe a combination of high and low or you don't know anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,680",
+				"to": "00:01:53,980"
+			},
+			"offsets": {
+				"from": 111680,
+				"to": 113980
+			},
+			"text": " This is what weighting looks like without variance, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,980",
+				"to": "00:01:54,980"
+			},
+			"offsets": {
+				"from": 113980,
+				"to": 114980
+			},
+			"text": " It's just one number."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,980",
+				"to": "00:01:59,720"
+			},
+			"offsets": {
+				"from": 114980,
+				"to": 119720
+			},
+			"text": " So in this case it's maybe like 0.8 and that's really all you get."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,720",
+				"to": "00:02:00,880"
+			},
+			"offsets": {
+				"from": 119720,
+				"to": 120880
+			},
+			"text": " You get this like one weight."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,880",
+				"to": "00:02:02,820"
+			},
+			"offsets": {
+				"from": 120880,
+				"to": 122820
+			},
+			"text": " But what if you did it like this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,820",
+				"to": "00:02:07,500"
+			},
+			"offsets": {
+				"from": 122820,
+				"to": 127500
+			},
+			"text": " So you still have this 0.8 sort of mean point estimate."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,500",
+				"to": "00:02:10,560"
+			},
+			"offsets": {
+				"from": 127500,
+				"to": 130560
+			},
+			"text": " But now you have like confidence intervals around it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,560",
+				"to": "00:02:15,720"
+			},
+			"offsets": {
+				"from": 130560,
+				"to": 135720
+			},
+			"text": " So the underlying distribution behind this weight is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,720",
+				"to": "00:02:17,700"
+			},
+			"offsets": {
+				"from": 135720,
+				"to": 137700
+			},
+			"text": " something kind of wide, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,700",
+				"to": "00:02:21,020"
+			},
+			"offsets": {
+				"from": 137700,
+				"to": 141020
+			},
+			"text": " That this is what I would call low quality signal versus something"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,020",
+				"to": "00:02:25,540"
+			},
+			"offsets": {
+				"from": 141020,
+				"to": 145540
+			},
+			"text": " like this, which again is mean 0.8, but has much narrower confidence intervals."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,540",
+				"to": "00:02:27,740"
+			},
+			"offsets": {
+				"from": 145540,
+				"to": 147740
+			},
+			"text": " We're much more confident about the value of this weight"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,740",
+				"to": "00:02:28,600"
+			},
+			"offsets": {
+				"from": 147740,
+				"to": 148600
+			},
+			"text": " than the previous one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,600",
+				"to": "00:02:30,120"
+			},
+			"offsets": {
+				"from": 148600,
+				"to": 150120
+			},
+			"text": " This is a high quality signal."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,120",
+				"to": "00:02:34,260"
+			},
+			"offsets": {
+				"from": 150120,
+				"to": 154260
+			},
+			"text": " So, you know, you know, if you have these two signals, one with sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,260",
+				"to": "00:02:38,820"
+			},
+			"offsets": {
+				"from": 154260,
+				"to": 158820
+			},
+			"text": " of a high value, but maybe low quality and maybe one with like a low value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,820",
+				"to": "00:02:41,340"
+			},
+			"offsets": {
+				"from": 158820,
+				"to": 161340
+			},
+			"text": " but high quality, you know, what are you doing to combine these?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,340",
+				"to": "00:02:42,100"
+			},
+			"offsets": {
+				"from": 161340,
+				"to": 162100
+			},
+			"text": " How do you do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,100",
+				"to": "00:02:45,760"
+			},
+			"offsets": {
+				"from": 162100,
+				"to": 165760
+			},
+			"text": " And part of the answer is that you have to represent these"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,760",
+				"to": "00:02:47,220"
+			},
+			"offsets": {
+				"from": 165760,
+				"to": 167220
+			},
+			"text": " as beta distributions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:51,940"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 171940
+			},
+			"text": " So a beta distribution is just a kind of statistical distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,940",
+				"to": "00:02:56,540"
+			},
+			"offsets": {
+				"from": 171940,
+				"to": 176540
+			},
+			"text": " which is bound between 0 and 1 and takes two parameters, alpha and beta."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,540",
+				"to": "00:02:58,600"
+			},
+			"offsets": {
+				"from": 176540,
+				"to": 178600
+			},
+			"text": " And I'll explain sort of what these parameters mean in a moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,600",
+				"to": "00:03:03,300"
+			},
+			"offsets": {
+				"from": 178600,
+				"to": 183300
+			},
+			"text": " So like to do some concrete examples of some potential signals."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,300",
+				"to": "00:03:08,700"
+			},
+			"offsets": {
+				"from": 183300,
+				"to": 188700
+			},
+			"text": " So a really high, a high quality signal is like do you have a pull app from Ravi, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,700",
+				"to": "00:03:14,040"
+			},
+			"offsets": {
+				"from": 188700,
+				"to": 194040
+			},
+			"text": " So this is a very difficult to sibble signal that maybe I would say maybe one"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,380",
+				"to": "00:03:19,940"
+			},
+			"offsets": {
+				"from": 194380,
+				"to": 199940
+			},
+			"text": " out of every thousand users who have this Ravi pull app are sibbles."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,940",
+				"to": "00:03:21,020"
+			},
+			"offsets": {
+				"from": 199940,
+				"to": 201020
+			},
+			"text": " They somehow sibbled it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,020",
+				"to": "00:03:27,020"
+			},
+			"offsets": {
+				"from": 201020,
+				"to": 207020
+			},
+			"text": " So that's pretty high quality versus something like having an ENS address"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,020",
+				"to": "00:03:30,020"
+			},
+			"offsets": {
+				"from": 207020,
+				"to": 210020
+			},
+			"text": " which is harder to sib-- it's like medium hard to sibble because you still have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,020",
+				"to": "00:03:33,340"
+			},
+			"offsets": {
+				"from": 210020,
+				"to": 213340
+			},
+			"text": " to pay for it, but it's, you know, that's--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,340",
+				"to": "00:03:36,140"
+			},
+			"offsets": {
+				"from": 213340,
+				"to": 216140
+			},
+			"text": " anybody can sort of get many ENS addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,140",
+				"to": "00:03:41,780"
+			},
+			"offsets": {
+				"from": 216140,
+				"to": 221780
+			},
+			"text": " So, you know, the beta distribution comes in where, you know, the way to think"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,780",
+				"to": "00:03:45,940"
+			},
+			"offsets": {
+				"from": 221780,
+				"to": 225940
+			},
+			"text": " about the alpha parameter is that it's the number of non-sibbles that you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,940",
+				"to": "00:03:52,020"
+			},
+			"offsets": {
+				"from": 225940,
+				"to": 232020
+			},
+			"text": " in like your sample and then you sort-- you fix the beta parameter to 1"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,020",
+				"to": "00:03:57,780"
+			},
+			"offsets": {
+				"from": 232020,
+				"to": 237780
+			},
+			"text": " and sort of adjust the alpha parameter accordingly to sort of match this like real intuition"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,780",
+				"to": "00:04:02,460"
+			},
+			"offsets": {
+				"from": 237780,
+				"to": 242460
+			},
+			"text": " about like 1 in a thousand R sibbles or 1 in 100 or 1 in 10 R sibbles."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,460",
+				"to": "00:04:07,180"
+			},
+			"offsets": {
+				"from": 242460,
+				"to": 247180
+			},
+			"text": " So then to combine them, we use Bayesian updating."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,540",
+				"to": "00:04:12,460"
+			},
+			"offsets": {
+				"from": 247540,
+				"to": 252460
+			},
+			"text": " And for the beta distribution, Bayesian updating is really easy because all you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,460",
+				"to": "00:04:15,420"
+			},
+			"offsets": {
+				"from": 252460,
+				"to": 255420
+			},
+			"text": " to do is just add up the alphas and betas."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,420",
+				"to": "00:04:21,460"
+			},
+			"offsets": {
+				"from": 255420,
+				"to": 261460
+			},
+			"text": " So to give you an example, if I was combining the three signals I just showed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,460",
+				"to": "00:04:25,440"
+			},
+			"offsets": {
+				"from": 261460,
+				"to": 265440
+			},
+			"text": " I'd add up, you know, the alphas and the betas and I'd get this outcome"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,440",
+				"to": "00:04:31,900"
+			},
+			"offsets": {
+				"from": 265440,
+				"to": 271900
+			},
+			"text": " like posterior distribution that better represents my belief about the true reputation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,900",
+				"to": "00:04:35,260"
+			},
+			"offsets": {
+				"from": 271900,
+				"to": 275260
+			},
+			"text": " and sort of how confident I am in the like the final value."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,420",
+				"to": "00:04:37,860"
+			},
+			"offsets": {
+				"from": 275420,
+				"to": 277860
+			},
+			"text": " But here's like a little bit of a more wild example."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,860",
+				"to": "00:04:42,320"
+			},
+			"offsets": {
+				"from": 277860,
+				"to": 282320
+			},
+			"text": " So say you had 50 signals and they are all low quality."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,320",
+				"to": "00:04:46,600"
+			},
+			"offsets": {
+				"from": 282320,
+				"to": 286600
+			},
+			"text": " So beta 3, 1, that's very like 1 in 4 are sibbles."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,600",
+				"to": "00:04:51,240"
+			},
+			"offsets": {
+				"from": 286600,
+				"to": 291240
+			},
+			"text": " So-- but if you, you know, do Bayesian updating and combine all these beta distributions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,240",
+				"to": "00:04:58,140"
+			},
+			"offsets": {
+				"from": 291240,
+				"to": 298140
+			},
+			"text": " the outcome distribution is beta 150 comma 50, which is actually a pretty high quality distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,140",
+				"to": "00:05:01,420"
+			},
+			"offsets": {
+				"from": 298140,
+				"to": 301420
+			},
+			"text": " because the confidence interval is really small on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,420",
+				"to": "00:05:03,980"
+			},
+			"offsets": {
+				"from": 301420,
+				"to": 303980
+			},
+			"text": " So to sort of motivate this whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,620",
+				"to": "00:05:07,820"
+			},
+			"offsets": {
+				"from": 304620,
+				"to": 307820
+			},
+			"text": " So let's say you have these two outcome reputations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,820",
+				"to": "00:05:12,660"
+			},
+			"offsets": {
+				"from": 307820,
+				"to": 312660
+			},
+			"text": " Again, like let's say this one is like that and has that mean, this one is like this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,660",
+				"to": "00:05:15,400"
+			},
+			"offsets": {
+				"from": 312660,
+				"to": 315400
+			},
+			"text": " and has this mean, the means are identical."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,400",
+				"to": "00:05:22,460"
+			},
+			"offsets": {
+				"from": 315400,
+				"to": 322460
+			},
+			"text": " But this one, we're much more likely to trust than this user who might actually be kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,460",
+				"to": "00:05:25,500"
+			},
+			"offsets": {
+				"from": 322460,
+				"to": 325500
+			},
+			"text": " of low potentially or maybe really high but maybe low, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,500",
+				"to": "00:05:33,140"
+			},
+			"offsets": {
+				"from": 325500,
+				"to": 333140
+			},
+			"text": " So whereas in this guy, we really know that that's sort of where reputationally this user lives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,460",
+				"to": "00:05:37,740"
+			},
+			"offsets": {
+				"from": 333460,
+				"to": 337740
+			},
+			"text": " which hopefully maybe has a little bit more context now and maybe it's a little bit easier"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,740",
+				"to": "00:05:38,260"
+			},
+			"offsets": {
+				"from": 337740,
+				"to": 338260
+			},
+			"text": " to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,260",
+				"to": "00:05:44,500"
+			},
+			"offsets": {
+				"from": 338260,
+				"to": 344500
+			},
+			"text": " What I want you to do is do represent your beliefs about reputational signals as beta distributions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,500",
+				"to": "00:05:46,740"
+			},
+			"offsets": {
+				"from": 344500,
+				"to": 346740
+			},
+			"text": " and then combine them using Bayesian updating."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,740",
+				"to": "00:05:50,420"
+			},
+			"offsets": {
+				"from": 346740,
+				"to": 350420
+			},
+			"text": " So that is essentially Bayesian inference in like seven minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,420",
+				"to": "00:05:52,860"
+			},
+			"offsets": {
+				"from": 350420,
+				"to": 352860
+			},
+			"text": " So thank you for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,860",
+				"to": "00:05:56,580"
+			},
+			"offsets": {
+				"from": 352860,
+				"to": 356580
+			},
+			"text": " I am still out of breath from this altitude."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,580",
+				"to": "00:05:58,820"
+			},
+			"offsets": {
+				"from": 356580,
+				"to": 358820
+			},
+			"text": " My name is Pedro Alcoza."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,820",
+				"to": "00:06:00,620"
+			},
+			"offsets": {
+				"from": 358820,
+				"to": 360620
+			},
+			"text": " These are my contact details."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,860",
+				"to": "00:06:03,660"
+			},
+			"offsets": {
+				"from": 360860,
+				"to": 363660
+			},
+			"text": " I'm going to be releasing a lot more information about this kind of approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,660",
+				"to": "00:06:07,220"
+			},
+			"offsets": {
+				"from": 363660,
+				"to": 367220
+			},
+			"text": " which I think is kind of a very useful approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,220",
+				"to": "00:06:11,420"
+			},
+			"offsets": {
+				"from": 367220,
+				"to": 371420
+			},
+			"text": " It's the one we're going to be using for the lens protocol reputation system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,420",
+				"to": "00:06:17,540"
+			},
+			"offsets": {
+				"from": 371420,
+				"to": 377540
+			},
+			"text": " So you can find me on the leaf apps at Bayalco. lens, the bird app at Palco and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,540",
+				"to": "00:06:20,060"
+			},
+			"offsets": {
+				"from": 377540,
+				"to": 380060
+			},
+			"text": " on Telegram, Palco XYZ. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,060",
+				"to": "00:06:27,060"
+			},
+			"offsets": {
+				"from": 380060,
+				"to": 387060
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,060",
+				"to": "00:06:34,060"
+			},
+			"offsets": {
+				"from": 387060,
+				"to": 394060
+			},
+			"text": " [silence]"
+		}
+	]
+}

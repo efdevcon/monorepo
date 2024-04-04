@@ -1,0 +1,1176 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 14000
+			},
+			"text": " So hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 15000
+			},
+			"text": " I'm Richard Ramos."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17000
+			},
+			"text": " He's here in the US."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " We are from the status."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 24000
+			},
+			"text": " And today we're going to talk about building reactive tasks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 26000
+			},
+			"text": " So to talk a little bit about this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 29000
+			},
+			"text": " we need to give some context."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:57,700"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 57700
+			},
+			"text": " We're working on a DIA called the \"T"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,700",
+				"to": "00:00:59,700"
+			},
+			"offsets": {
+				"from": 57700,
+				"to": 59700
+			},
+			"text": " source.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,700",
+				"to": "00:01:05,700"
+			},
+			"offsets": {
+				"from": 59700,
+				"to": 65700
+			},
+			"text": " So here are some screens where we can see the areas where we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,700",
+				"to": "00:01:08,700"
+			},
+			"offsets": {
+				"from": 65700,
+				"to": 68700
+			},
+			"text": " to look at some data training."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,700",
+				"to": "00:01:13,700"
+			},
+			"offsets": {
+				"from": 68700,
+				"to": 73700
+			},
+			"text": " For example, in this screen we need to retrieve all the active"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,700",
+				"to": "00:01:16,700"
+			},
+			"offsets": {
+				"from": 73700,
+				"to": 76700
+			},
+			"text": " and past strengths for a specific user and field program."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,700",
+				"to": "00:01:27,700"
+			},
+			"offsets": {
+				"from": 80700,
+				"to": 87700
+			},
+			"text": " And this has to have even some problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,700",
+				"to": "00:01:31,700"
+			},
+			"offsets": {
+				"from": 87700,
+				"to": 91700
+			},
+			"text": " particularly to see in the smart contract events,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,700",
+				"to": "00:01:36,700"
+			},
+			"offsets": {
+				"from": 91700,
+				"to": 96700
+			},
+			"text": " and as well as try to retrieve all the data in case the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,700",
+				"to": "00:01:38,700"
+			},
+			"offsets": {
+				"from": 96700,
+				"to": 98700
+			},
+			"text": " refreshes the page."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,700",
+				"to": "00:01:43,700"
+			},
+			"offsets": {
+				"from": 98700,
+				"to": 103700
+			},
+			"text": " And maybe we can have some lack of readiness to refresh the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,700",
+				"to": "00:01:48,700"
+			},
+			"offsets": {
+				"from": 103700,
+				"to": 108700
+			},
+			"text": " as well as it is hard to do simple queries"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,700",
+				"to": "00:01:52,700"
+			},
+			"offsets": {
+				"from": 108700,
+				"to": 112700
+			},
+			"text": " because sometimes we're not using existing data and we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,700",
+				"to": "00:01:56,700"
+			},
+			"offsets": {
+				"from": 112700,
+				"to": 116700
+			},
+			"text": " to retrieve the data over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,700",
+				"to": "00:02:00,700"
+			},
+			"offsets": {
+				"from": 116700,
+				"to": 120700
+			},
+			"text": " So we came up with a simple solution, which is subspace."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,700",
+				"to": "00:02:05,700"
+			},
+			"offsets": {
+				"from": 120700,
+				"to": 125700
+			},
+			"text": " It's a package that is already available."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,700",
+				"to": "00:02:09,700"
+			},
+			"offsets": {
+				"from": 125700,
+				"to": 129700
+			},
+			"text": " This is an Azure script library that lets the DIA developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,700",
+				"to": "00:02:15,700"
+			},
+			"offsets": {
+				"from": 129700,
+				"to": 135700
+			},
+			"text": " be able to track events, variables, functions, and balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,700",
+				"to": "00:02:20,700"
+			},
+			"offsets": {
+				"from": 135700,
+				"to": 140700
+			},
+			"text": " It will synchronize all this data into a local database"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,700",
+				"to": "00:02:24,700"
+			},
+			"offsets": {
+				"from": 140700,
+				"to": 144700
+			},
+			"text": " and also resume the loading of the contact events."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,700",
+				"to": "00:02:27,700"
+			},
+			"offsets": {
+				"from": 144700,
+				"to": 147700
+			},
+			"text": " That means that if the user refreshes the DIA,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,700",
+				"to": "00:02:29,700"
+			},
+			"offsets": {
+				"from": 147700,
+				"to": 149700
+			},
+			"text": " it will not start from scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,700",
+				"to": "00:02:34,700"
+			},
+			"offsets": {
+				"from": 149700,
+				"to": 154700
+			},
+			"text": " It will start from the last event that it has synchronized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,700",
+				"to": "00:02:41,700"
+			},
+			"offsets": {
+				"from": 154700,
+				"to": 161700
+			},
+			"text": " And it also is built around our XJS of server models,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,700",
+				"to": "00:02:47,700"
+			},
+			"offsets": {
+				"from": 161700,
+				"to": 167700
+			},
+			"text": " meaning that you can have a reactive environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,700",
+				"to": "00:02:48,700"
+			},
+			"offsets": {
+				"from": 167700,
+				"to": 168700
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,700",
+				"to": "00:02:50,700"
+			},
+			"offsets": {
+				"from": 168700,
+				"to": 170700
+			},
+			"text": " So to use subspace,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,700",
+				"to": "00:02:52,700"
+			},
+			"offsets": {
+				"from": 170700,
+				"to": 172700
+			},
+			"text": " the first thing we need to require the library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,700",
+				"to": "00:02:56,700"
+			},
+			"offsets": {
+				"from": 172700,
+				"to": 176700
+			},
+			"text": " they will initialize it, giving it a bunch of providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,700",
+				"to": "00:02:58,700"
+			},
+			"offsets": {
+				"from": 176700,
+				"to": 178700
+			},
+			"text": " And we need to initialize it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,700",
+				"to": "00:03:01,700"
+			},
+			"offsets": {
+				"from": 178700,
+				"to": 181700
+			},
+			"text": " very important to initialize because it makes sure to start"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,700",
+				"to": "00:03:04,700"
+			},
+			"offsets": {
+				"from": 181700,
+				"to": 184700
+			},
+			"text": " with our base, things while we need to be synced,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,700",
+				"to": "00:03:06,700"
+			},
+			"offsets": {
+				"from": 184700,
+				"to": 186700
+			},
+			"text": " before starting."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,700",
+				"to": "00:03:09,700"
+			},
+			"offsets": {
+				"from": 186700,
+				"to": 189700
+			},
+			"text": " Now, if we want to track events,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,700",
+				"to": "00:03:13,700"
+			},
+			"offsets": {
+				"from": 189700,
+				"to": 193700
+			},
+			"text": " the first thing to do is that we need to start to initialize"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,700",
+				"to": "00:03:14,700"
+			},
+			"offsets": {
+				"from": 193700,
+				"to": 194700
+			},
+			"text": " a new contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,700",
+				"to": "00:03:15,700"
+			},
+			"offsets": {
+				"from": 194700,
+				"to": 195700
+			},
+			"text": " There are two ways to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,700",
+				"to": "00:03:19,700"
+			},
+			"offsets": {
+				"from": 195700,
+				"to": 199700
+			},
+			"text": " You can either pass the WAP3 contract instance"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,700",
+				"to": "00:03:21,700"
+			},
+			"offsets": {
+				"from": 199700,
+				"to": 201700
+			},
+			"text": " or pass the DBI address."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,700",
+				"to": "00:03:25,700"
+			},
+			"offsets": {
+				"from": 201700,
+				"to": 205700
+			},
+			"text": " And what's more correct, it will still be a WAP3 contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,700",
+				"to": "00:03:29,700"
+			},
+			"offsets": {
+				"from": 205700,
+				"to": 209700
+			},
+			"text": " but it will have some extra things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,700",
+				"to": "00:03:33,700"
+			},
+			"offsets": {
+				"from": 209700,
+				"to": 213700
+			},
+			"text": " namely that it will have a new mathematical track."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,700",
+				"to": "00:03:34,700"
+			},
+			"offsets": {
+				"from": 213700,
+				"to": 214700
+			},
+			"text": " And this map matters."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,700",
+				"to": "00:03:39,700"
+			},
+			"offsets": {
+				"from": 214700,
+				"to": 219700
+			},
+			"text": " You will tell the subspace exactly what to track."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,700",
+				"to": "00:03:43,700"
+			},
+			"offsets": {
+				"from": 219700,
+				"to": 223700
+			},
+			"text": " You can also pass in some filtering options."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,700",
+				"to": "00:03:46,700"
+			},
+			"offsets": {
+				"from": 223700,
+				"to": 226700
+			},
+			"text": " For instance, in this case, we want to track ratings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,700",
+				"to": "00:03:49,700"
+			},
+			"offsets": {
+				"from": 226700,
+				"to": 229700
+			},
+			"text": " but it's only for a particular flyer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,700",
+				"to": "00:03:54,700"
+			},
+			"offsets": {
+				"from": 229700,
+				"to": 234700
+			},
+			"text": " And it will return an observable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,700",
+				"to": "00:03:58,700"
+			},
+			"offsets": {
+				"from": 234700,
+				"to": 238700
+			},
+			"text": " Then, this observable, it will be an RXJS observable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,700",
+				"to": "00:04:03,700"
+			},
+			"offsets": {
+				"from": 238700,
+				"to": 243700
+			},
+			"text": " You can use all the operators available in Crijana operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,700",
+				"to": "00:04:08,700"
+			},
+			"offsets": {
+				"from": 243700,
+				"to": 248700
+			},
+			"text": " And in this case, we pass an average operator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,700",
+				"to": "00:04:12,700"
+			},
+			"offsets": {
+				"from": 248700,
+				"to": 252700
+			},
+			"text": " and then whatever rating is done,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,700",
+				"to": "00:04:17,700"
+			},
+			"offsets": {
+				"from": 252700,
+				"to": 257700
+			},
+			"text": " the subscriber will be triggered with the latest average"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,700",
+				"to": "00:04:20,700"
+			},
+			"offsets": {
+				"from": 257700,
+				"to": 260700
+			},
+			"text": " for those ratings."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,700",
+				"to": "00:04:24,700"
+			},
+			"offsets": {
+				"from": 260700,
+				"to": 264700
+			},
+			"text": " And again, it's important to emphasize that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,700",
+				"to": "00:04:27,700"
+			},
+			"offsets": {
+				"from": 264700,
+				"to": 267700
+			},
+			"text": " if you use this in a DAP and you refresh the DAP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,700",
+				"to": "00:04:29,700"
+			},
+			"offsets": {
+				"from": 267700,
+				"to": 269700
+			},
+			"text": " it's not going to sync all the brackets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,700",
+				"to": "00:04:33,700"
+			},
+			"offsets": {
+				"from": 269700,
+				"to": 273700
+			},
+			"text": " and it's going to sync from the last node location,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,700",
+				"to": "00:04:37,700"
+			},
+			"offsets": {
+				"from": 273700,
+				"to": 277700
+			},
+			"text": " and it's much easier this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,700",
+				"to": "00:04:41,700"
+			},
+			"offsets": {
+				"from": 277700,
+				"to": 281700
+			},
+			"text": " And you can track the properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,700",
+				"to": "00:04:44,700"
+			},
+			"offsets": {
+				"from": 281700,
+				"to": 284700
+			},
+			"text": " So, usually we do dot pull,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,700",
+				"to": "00:04:46,700"
+			},
+			"offsets": {
+				"from": 284700,
+				"to": 286700
+			},
+			"text": " but if you want to use it as a variable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,700",
+				"to": "00:04:49,700"
+			},
+			"offsets": {
+				"from": 286700,
+				"to": 289700
+			},
+			"text": " which you can still do because it's the same API,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,700",
+				"to": "00:04:54,700"
+			},
+			"offsets": {
+				"from": 289700,
+				"to": 294700
+			},
+			"text": " but you can do dot track and it will be able to observe all."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,700",
+				"to": "00:04:57,700"
+			},
+			"offsets": {
+				"from": 294700,
+				"to": 297700
+			},
+			"text": " And you can do the same thing with balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,700",
+				"to": "00:05:03,700"
+			},
+			"offsets": {
+				"from": 297700,
+				"to": 303700
+			},
+			"text": " So, you can track the X balance or ERC running token balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,700",
+				"to": "00:05:06,700"
+			},
+			"offsets": {
+				"from": 303700,
+				"to": 306700
+			},
+			"text": " And this is framework with no state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,700",
+				"to": "00:05:09,700"
+			},
+			"offsets": {
+				"from": 306700,
+				"to": 309700
+			},
+			"text": " so you can use with a framework to jub,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,700",
+				"to": "00:05:14,700"
+			},
+			"offsets": {
+				"from": 309700,
+				"to": 314700
+			},
+			"text": " be it React or Angular or whatever framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,700",
+				"to": "00:05:23,700"
+			},
+			"offsets": {
+				"from": 314700,
+				"to": 323700
+			},
+			"text": " So, we are, here's just an example with React."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,700",
+				"to": "00:05:25,700"
+			},
+			"offsets": {
+				"from": 323700,
+				"to": 325700
+			},
+			"text": " So, you can use this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,700",
+				"to": "00:05:27,700"
+			},
+			"offsets": {
+				"from": 325700,
+				"to": 327700
+			},
+			"text": " I want to fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,700",
+				"to": "00:05:29,700"
+			},
+			"offsets": {
+				"from": 327700,
+				"to": 329700
+			},
+			"text": " You can use this with Redux or without Redux."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,700",
+				"to": "00:05:32,700"
+			},
+			"offsets": {
+				"from": 329700,
+				"to": 332700
+			},
+			"text": " It's not your request for any particular solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,700",
+				"to": "00:05:38,700"
+			},
+			"offsets": {
+				"from": 332700,
+				"to": 338700
+			},
+			"text": " So, in this case, we provide a wrapper to help out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,700",
+				"to": "00:05:42,700"
+			},
+			"offsets": {
+				"from": 338700,
+				"to": 342700
+			},
+			"text": " and you can use this wrapper to wrap the React component."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,700",
+				"to": "00:05:46,700"
+			},
+			"offsets": {
+				"from": 342700,
+				"to": 346700
+			},
+			"text": " And what this will do is that you will make the React component"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,700",
+				"to": "00:05:50,700"
+			},
+			"offsets": {
+				"from": 346700,
+				"to": 350700
+			},
+			"text": " recognize the properties that are observables automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,700",
+				"to": "00:05:54,700"
+			},
+			"offsets": {
+				"from": 350700,
+				"to": 354700
+			},
+			"text": " subscribe to them, so whatever there is something new,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,700",
+				"to": "00:05:57,700"
+			},
+			"offsets": {
+				"from": 354700,
+				"to": 357700
+			},
+			"text": " it automatically brushes the component."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,700",
+				"to": "00:06:02,700"
+			},
+			"offsets": {
+				"from": 357700,
+				"to": 362700
+			},
+			"text": " And then to use this, again, you initialize the software's contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,700",
+				"to": "00:06:05,700"
+			},
+			"offsets": {
+				"from": 362700,
+				"to": 365700
+			},
+			"text": " And again, this is a very simple example here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,700",
+				"to": "00:06:09,700"
+			},
+			"offsets": {
+				"from": 365700,
+				"to": 369700
+			},
+			"text": " We want to track the rating events,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,700",
+				"to": "00:06:16,700"
+			},
+			"offsets": {
+				"from": 369700,
+				"to": 376700
+			},
+			"text": " and we're just passing a path with the min and the maximum for the rating."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,700",
+				"to": "00:06:24,700"
+			},
+			"offsets": {
+				"from": 376700,
+				"to": 384700
+			},
+			"text": " And then, yeah, so that we also support integration with GraphQL."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,700",
+				"to": "00:06:26,700"
+			},
+			"offsets": {
+				"from": 384700,
+				"to": 386700
+			},
+			"text": " We only have to define the resolver."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,700",
+				"to": "00:06:28,700"
+			},
+			"offsets": {
+				"from": 386700,
+				"to": 388700
+			},
+			"text": " And with this resolver,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,700",
+				"to": "00:06:32,700"
+			},
+			"offsets": {
+				"from": 388700,
+				"to": 392700
+			},
+			"text": " they need to pass a subspace of serverable after creating this schema."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,700",
+				"to": "00:06:37,700"
+			},
+			"offsets": {
+				"from": 392700,
+				"to": 397700
+			},
+			"text": " You can start using the GraphQL queries to obtain a specific data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,700",
+				"to": "00:06:43,700"
+			},
+			"offsets": {
+				"from": 397700,
+				"to": 403700
+			},
+			"text": " And the good thing about using subspace is that each time a new event is generated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,700",
+				"to": "00:06:48,700"
+			},
+			"offsets": {
+				"from": 403700,
+				"to": 408700
+			},
+			"text": " the query will be updated automatically, and you will receive the latest data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,700",
+				"to": "00:06:54,700"
+			},
+			"offsets": {
+				"from": 408700,
+				"to": 414700
+			},
+			"text": " And so here are some useful links in case you want to learn more about subspace."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,700",
+				"to": "00:06:59,700"
+			},
+			"offsets": {
+				"from": 414700,
+				"to": 419700
+			},
+			"text": " There is also documentation where you can find examples of integration with different frameworks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,700",
+				"to": "00:07:01,700"
+			},
+			"offsets": {
+				"from": 419700,
+				"to": 421700
+			},
+			"text": " So thank you for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,700",
+				"to": "00:07:04,700"
+			},
+			"offsets": {
+				"from": 421700,
+				"to": 424700
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,700",
+				"to": "00:07:19,700"
+			},
+			"offsets": {
+				"from": 424700,
+				"to": 439700
+			},
+			"text": " [Music]"
+		}
+	]
+}

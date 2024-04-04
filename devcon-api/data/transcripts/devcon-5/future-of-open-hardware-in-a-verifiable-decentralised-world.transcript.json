@@ -1,0 +1,2870 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " >> Yeah, hello everyone. Very excited to be here. I will be talking today about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:14,720"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 14720
+			},
+			"text": " future of open hardware in a very firewall decentralized world. And to give you an overview"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,720",
+				"to": "00:00:18,800"
+			},
+			"offsets": {
+				"from": 14720,
+				"to": 18800
+			},
+			"text": " of what I will be covering in this talk, I will first of all give a brief interest context"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,800",
+				"to": "00:00:23,720"
+			},
+			"offsets": {
+				"from": 18800,
+				"to": 23720
+			},
+			"text": " about the whole scope, about me, about Riot, the institution I'm representing, about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,720",
+				"to": "00:00:27,560"
+			},
+			"offsets": {
+				"from": 23720,
+				"to": 27560
+			},
+			"text": " Oshawa, the Open Source Hardware Association, and about the Open Hardware Month, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,560",
+				"to": "00:00:33,400"
+			},
+			"offsets": {
+				"from": 27560,
+				"to": 33400
+			},
+			"text": " happening this month. The main part of my talk will be dealing with what open source hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,400",
+				"to": "00:00:38,200"
+			},
+			"offsets": {
+				"from": 33400,
+				"to": 38200
+			},
+			"text": " is, what can we understand about open source hardware, what is verifiable hardware. I will"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,200",
+				"to": "00:00:43,400"
+			},
+			"offsets": {
+				"from": 38200,
+				"to": 43400
+			},
+			"text": " give a few examples also to make it tangible. I will talk very briefly about hardware security"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,400",
+				"to": "00:00:49,160"
+			},
+			"offsets": {
+				"from": 43400,
+				"to": 49160
+			},
+			"text": " modules and trusted execution environments and solutions for the future that are based"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,160",
+				"to": "00:00:55,040"
+			},
+			"offsets": {
+				"from": 49160,
+				"to": 55040
+			},
+			"text": " on open silicon. So to give a bit of context, my name is Matthias Tansiewicz, I'm the director"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,040",
+				"to": "00:00:59,080"
+			},
+			"offsets": {
+				"from": 55040,
+				"to": 59080
+			},
+			"text": " of the Riot Institute. I'm also a board member of the Oshawa of the Open Source Hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,080",
+				"to": "00:01:03,600"
+			},
+			"offsets": {
+				"from": 59080,
+				"to": 63600
+			},
+			"text": " Association. Please get in contact with me in case I'm talking too fast or the slides"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,600",
+				"to": "00:01:10,200"
+			},
+			"offsets": {
+				"from": 63600,
+				"to": 70200
+			},
+			"text": " are confusing or something. Basically, I want to also refer to a talk I've been giving"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,200",
+				"to": "00:01:13,600"
+			},
+			"offsets": {
+				"from": 70200,
+				"to": 73600
+			},
+			"text": " this week, which was called the past present the future of opt out with open and libra"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,600",
+				"to": "00:01:17,840"
+			},
+			"offsets": {
+				"from": 73600,
+				"to": 77840
+			},
+			"text": " hardware at HTTP 19, the hackers congress panel and the police, which is dealing also"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,840",
+				"to": "00:01:22,840"
+			},
+			"offsets": {
+				"from": 77840,
+				"to": 82840
+			},
+			"text": " with open hardware. So it was a little bit of a longer talk about one hour, so this might"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,840",
+				"to": "00:01:28,360"
+			},
+			"offsets": {
+				"from": 82840,
+				"to": 88360
+			},
+			"text": " be more of a contextualization if you're interested. This should be like online already, I guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,360",
+				"to": "00:01:33,640"
+			},
+			"offsets": {
+				"from": 88360,
+				"to": 93640
+			},
+			"text": " But brief and dangerous riot, we are an independent institute. We're working with crypto economics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,640",
+				"to": "00:01:37,680"
+			},
+			"offsets": {
+				"from": 93640,
+				"to": 97680
+			},
+			"text": " future crypto economics to be more precise. We're working with privacy technologies and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,680",
+				"to": "00:01:42,920"
+			},
+			"offsets": {
+				"from": 97680,
+				"to": 102920
+			},
+			"text": " open hardware. And we're doing this since 2009 and formally as this organization since"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,920",
+				"to": "00:01:48,520"
+			},
+			"offsets": {
+				"from": 102920,
+				"to": 108520
+			},
+			"text": " 2012. And we have a background also working with diverse open hardware projects. This"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,520",
+				"to": "00:01:52,840"
+			},
+			"offsets": {
+				"from": 108520,
+				"to": 112840
+			},
+			"text": " is maybe a more well known project. This is the apparatus open source cinema camera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,840",
+				"to": "00:01:57,880"
+			},
+			"offsets": {
+				"from": 112840,
+				"to": 117880
+			},
+			"text": " which is a full camera based around open hardware. So every part of this camera except"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,880",
+				"to": "00:02:05,360"
+			},
+			"offsets": {
+				"from": 117880,
+				"to": 125360
+			},
+			"text": " the lens of course are open hardware. So you can see my presentation at 32C3, which I've"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,360",
+				"to": "00:02:09,960"
+			},
+			"offsets": {
+				"from": 125360,
+				"to": 129960
+			},
+			"text": " been giving at the house communication congress, which is explaining the project is an older"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,960",
+				"to": "00:02:14,960"
+			},
+			"offsets": {
+				"from": 129960,
+				"to": 134960
+			},
+			"text": " project, but this project is still going on. It's also interesting to see how kind of long"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,960",
+				"to": "00:02:20,640"
+			},
+			"offsets": {
+				"from": 134960,
+				"to": 140640
+			},
+			"text": " life spans is hoping how the projects have. So I can strongly suggest if you want to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,640",
+				"to": "00:02:27,400"
+			},
+			"offsets": {
+				"from": 140640,
+				"to": 147400
+			},
+			"text": " quite large open hardware project to see this talk or get more information on the apparatus.org"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,400",
+				"to": "00:02:32,280"
+			},
+			"offsets": {
+				"from": 147400,
+				"to": 152280
+			},
+			"text": " website. You might also remember this thing. This was actually a magazine we have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,280",
+				"to": "00:02:37,360"
+			},
+			"offsets": {
+				"from": 152280,
+				"to": 157360
+			},
+			"text": " giving out at the last DEF CON. So it's kind of a newspaper. It's kind of a book obfuscated"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,360",
+				"to": "00:02:43,960"
+			},
+			"offsets": {
+				"from": 157360,
+				"to": 163960
+			},
+			"text": " in a newspaper. And we have been distributing this at the last DEF CON. And this month we"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,960",
+				"to": "00:02:47,960"
+			},
+			"offsets": {
+				"from": 163960,
+				"to": 167960
+			},
+			"text": " have the open source hardware month, the open hardware month from the Oshawa. And in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,960",
+				"to": "00:02:54,360"
+			},
+			"offsets": {
+				"from": 167960,
+				"to": 174360
+			},
+			"text": " context, Riot, we will be giving out this kind of bags with also the future crypto economics"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,360",
+				"to": "00:02:59,560"
+			},
+			"offsets": {
+				"from": 174360,
+				"to": 179560
+			},
+			"text": " magazine, but also with openism conversations in open hardware, which is a book and a conversation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,560",
+				"to": "00:03:05,440"
+			},
+			"offsets": {
+				"from": 179560,
+				"to": 185440
+			},
+			"text": " series where we try to figure out and find out how projects are, which can different open"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,440",
+				"to": "00:03:11,280"
+			},
+			"offsets": {
+				"from": 185440,
+				"to": 191280
+			},
+			"text": " source strategies projects have and why are the open sourcing really hardware, how they"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,280",
+				"to": "00:03:15,600"
+			},
+			"offsets": {
+				"from": 191280,
+				"to": 195600
+			},
+			"text": " are approaching it and how far can you go in doing so. So maybe to contextualize also"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,600",
+				"to": "00:03:19,280"
+			},
+			"offsets": {
+				"from": 195600,
+				"to": 199280
+			},
+			"text": " the open hardware month. What will happen in this month? It's already running the month"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,280",
+				"to": "00:03:22,880"
+			},
+			"offsets": {
+				"from": 199280,
+				"to": 202880
+			},
+			"text": " and there's a lot of other events coming up. This talk is also part of open hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,880",
+				"to": "00:03:28,200"
+			},
+			"offsets": {
+				"from": 202880,
+				"to": 208200
+			},
+			"text": " month. And there's worldwide events, most different hackerspaces from industry, from"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,200",
+				"to": "00:03:31,840"
+			},
+			"offsets": {
+				"from": 208200,
+				"to": 211840
+			},
+			"text": " a lot of different actors. There's workshops, there's a lot of our formats and there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,840",
+				"to": "00:03:36,800"
+			},
+			"offsets": {
+				"from": 211840,
+				"to": 216800
+			},
+			"text": " a lot of communication and documentation going on. So there will be a lot of projects made"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,800",
+				"to": "00:03:43,560"
+			},
+			"offsets": {
+				"from": 216800,
+				"to": 223560
+			},
+			"text": " visible online under the hashtag OHM 2019 on Twitter. You can also still post some pop"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,560",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 223560,
+				"to": 229000
+			},
+			"text": " up events under OHM.oshawa.org. And maybe to briefly explain what this Oshawa is, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:55,440"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 235440
+			},
+			"text": " in 501(c)(3). So it's an association, it's an NGO. And its main purpose is to organize"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,440",
+				"to": "00:04:02,120"
+			},
+			"offsets": {
+				"from": 235440,
+				"to": 242120
+			},
+			"text": " conference and community events to educate the general public about open source hardware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,120",
+				"to": "00:04:06,880"
+			},
+			"offsets": {
+				"from": 242120,
+				"to": 246880
+			},
+			"text": " to organize the open source hardware movement around shared values and principles, to collect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,880",
+				"to": "00:04:11,160"
+			},
+			"offsets": {
+				"from": 246880,
+				"to": 251160
+			},
+			"text": " compile and publish data on the open source hardware movement and to provide a painless"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,160",
+				"to": "00:04:15,400"
+			},
+			"offsets": {
+				"from": 251160,
+				"to": 255400
+			},
+			"text": " way for creators to indicate that the product is made a standard for open source compliance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,400",
+				"to": "00:04:20,800"
+			},
+			"offsets": {
+				"from": 255400,
+				"to": 260800
+			},
+			"text": " And what that standard means or what that context means is very visible on this website."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,800",
+				"to": "00:04:24,120"
+			},
+			"offsets": {
+				"from": 260800,
+				"to": 264120
+			},
+			"text": " I can strongly recommend to take a look at. So you also get an idea what kind of projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,120",
+				"to": "00:04:28,960"
+			},
+			"offsets": {
+				"from": 264120,
+				"to": 268960
+			},
+			"text": " are out there. It's a very good directory, in my opinion, to see what kind of certifications"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,960",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 268960,
+				"to": 276000
+			},
+			"text": " are out there, who underwent the certification process. I also want to direct your attention"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:41,200"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 281200
+			},
+			"text": " to this thing. It's the open source, it's the open hardware summit, which has a 10-year"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,200",
+				"to": "00:04:47,040"
+			},
+			"offsets": {
+				"from": 281200,
+				"to": 287040
+			},
+			"text": " anniversary and it will happen in March next year in New York. So you can already get tickets"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,040",
+				"to": "00:04:51,520"
+			},
+			"offsets": {
+				"from": 287040,
+				"to": 291520
+			},
+			"text": " to become a sponsor if you're interested. Very excited about this one because this will"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,520",
+				"to": "00:04:56,840"
+			},
+			"offsets": {
+				"from": 291520,
+				"to": 296840
+			},
+			"text": " be a very large event. But now to the main part of my talk. So I will briefly introduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,840",
+				"to": "00:05:01,320"
+			},
+			"offsets": {
+				"from": 296840,
+				"to": 301320
+			},
+			"text": " what open source hardware is. There's a kind of longer description that you can find from"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,320",
+				"to": "00:05:06,920"
+			},
+			"offsets": {
+				"from": 301320,
+				"to": 306920
+			},
+			"text": " open source.com. I copy this from open source.com and briefly to get us into the topic. Open"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,920",
+				"to": "00:05:11,320"
+			},
+			"offsets": {
+				"from": 306920,
+				"to": 311320
+			},
+			"text": " hardware, open source hardware refers to the design specifications of a physical object,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,320",
+				"to": "00:05:15,360"
+			},
+			"offsets": {
+				"from": 311320,
+				"to": 315360
+			},
+			"text": " which are licensed in such a way that said objects can be started, modified, created"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,360",
+				"to": "00:05:20,920"
+			},
+			"offsets": {
+				"from": 315360,
+				"to": 320920
+			},
+			"text": " and distributed by anyone. That means in opposition to open source software, in hardware, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,920",
+				"to": "00:05:27,440"
+			},
+			"offsets": {
+				"from": 320920,
+				"to": 327440
+			},
+			"text": " have a lot of documentation. We have a lot of blueprints, logic designs, a lot of kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,440",
+				"to": "00:05:32,320"
+			},
+			"offsets": {
+				"from": 327440,
+				"to": 332320
+			},
+			"text": " of descriptions about the object we are trying to open source. And these all are ideally"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,320",
+				"to": "00:05:39,840"
+			},
+			"offsets": {
+				"from": 332320,
+				"to": 339840
+			},
+			"text": " made available to everyone. There's a very good sum up of this whole movement and about"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,840",
+				"to": "00:05:44,920"
+			},
+			"offsets": {
+				"from": 339840,
+				"to": 344920
+			},
+			"text": " how the Oshawa came to be. There's this book which is called Building Open Source Hardware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,920",
+				"to": "00:05:49,320"
+			},
+			"offsets": {
+				"from": 344920,
+				"to": 349320
+			},
+			"text": " which also explains all the pitfalls that come with open source hardware and the differences,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,320",
+				"to": "00:05:54,200"
+			},
+			"offsets": {
+				"from": 349320,
+				"to": 354200
+			},
+			"text": " also from a logistic point of view. This has been edited by Alicia Gibb and features also"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,200",
+				"to": "00:05:59,280"
+			},
+			"offsets": {
+				"from": 354200,
+				"to": 359280
+			},
+			"text": " a lot of writers and a lot of different projects from the open source hardware context. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,280",
+				"to": "00:06:04,440"
+			},
+			"offsets": {
+				"from": 359280,
+				"to": 364440
+			},
+			"text": " to explain better what it is, what is actually open hardware. So as Michael Weinberg here"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,440",
+				"to": "00:06:08,960"
+			},
+			"offsets": {
+				"from": 364440,
+				"to": 368960
+			},
+			"text": " was writing in this book, hardware is already born open. But we have to understand also that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,960",
+				"to": "00:06:14,440"
+			},
+			"offsets": {
+				"from": 368960,
+				"to": 374440
+			},
+			"text": " hardware is very different than open source software because in a way, we have to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,440",
+				"to": "00:06:21,840"
+			},
+			"offsets": {
+				"from": 374440,
+				"to": 381840
+			},
+			"text": " that software is based on copyright and software protection, the GPL and CC licenses are based"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,840",
+				"to": "00:06:27,920"
+			},
+			"offsets": {
+				"from": 381840,
+				"to": 387920
+			},
+			"text": " around, is a considered artistic work while hardware falls under patent law because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,920",
+				"to": "00:06:33,960"
+			},
+			"offsets": {
+				"from": 387920,
+				"to": 393960
+			},
+			"text": " considered a useful article or things that do stuff. So that means there's a lot of patents"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,960",
+				"to": "00:06:39,280"
+			},
+			"offsets": {
+				"from": 393960,
+				"to": 399280
+			},
+			"text": " out there in the hardware world. So how kind of open hardware projects are usually protected"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,280",
+				"to": "00:06:45,840"
+			},
+			"offsets": {
+				"from": 399280,
+				"to": 405840
+			},
+			"text": " than in a way is through trademarks as is very evident, very visible with the Arduino project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,840",
+				"to": "00:06:50,160"
+			},
+			"offsets": {
+				"from": 405840,
+				"to": 410160
+			},
+			"text": " which is a trademark. Although there are a lot of knockoffs of the Arduino, everyone knows the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,160",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 410160,
+				"to": 415000
+			},
+			"text": " name so that the trademark is secured in a way. There's a lot of specific open hardware licenses."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:59,280"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 419280
+			},
+			"text": " I listed here three of them. There's the temporal license. There's the sun open hardware license,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,280",
+				"to": "00:07:03,440"
+			},
+			"offsets": {
+				"from": 419280,
+				"to": 423440
+			},
+			"text": " where the second version is currently being in draft. It's very interesting. Really if you are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,440",
+				"to": "00:07:07,880"
+			},
+			"offsets": {
+				"from": 423440,
+				"to": 427880
+			},
+			"text": " interested in looking at this up. It's a lot of discussion also on what are the limitations of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,880",
+				"to": "00:07:15,280"
+			},
+			"offsets": {
+				"from": 427880,
+				"to": 435280
+			},
+			"text": " licenses. GPL V3 is also a very common license, not super common but would be the ideal license"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,280",
+				"to": "00:07:21,920"
+			},
+			"offsets": {
+				"from": 435280,
+				"to": 441920
+			},
+			"text": " in my opinion for open hardware. So these are the two most common, non-open hardware products."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,920",
+				"to": "00:07:27,040"
+			},
+			"offsets": {
+				"from": 441920,
+				"to": 447040
+			},
+			"text": " So this is the Arduino. All know it possibly. It's coming from the maker movement. It's considered"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,040",
+				"to": "00:07:33,040"
+			},
+			"offsets": {
+				"from": 447040,
+				"to": 453040
+			},
+			"text": " to be one of these tools for the maker movement. And of course open like a wrap-up printers or 3D"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,040",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 453040,
+				"to": 459000
+			},
+			"text": " printers are also considered open hardware. Not all of them. But the ultimate maker is an open"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:43,840"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 463840
+			},
+			"text": " hardware piece. So in my opinion, we can see two effects of open hardware, which are in my opinion"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,840",
+				"to": "00:07:48,280"
+			},
+			"offsets": {
+				"from": 463840,
+				"to": 468280
+			},
+			"text": " really viable, which are different to close source hardware. So it's very educational. That means"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,280",
+				"to": "00:07:53,240"
+			},
+			"offsets": {
+				"from": 468280,
+				"to": 473240
+			},
+			"text": " it's educational because you can study the designs, you can study the specifications, you can look"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,240",
+				"to": "00:07:57,360"
+			},
+			"offsets": {
+				"from": 473240,
+				"to": 477360
+			},
+			"text": " at the actual hardware, you can understand what's actually going on. That also means you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,360",
+				"to": "00:08:04,680"
+			},
+			"offsets": {
+				"from": 477360,
+				"to": 484680
+			},
+			"text": " potentially write your own firmware with the hardware that you're looking at and verifiability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,680",
+				"to": "00:08:12,480"
+			},
+			"offsets": {
+				"from": 484680,
+				"to": 492480
+			},
+			"text": " which is the point I'm stressing much more because in a much more connected world that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,480",
+				"to": "00:08:18,040"
+			},
+			"offsets": {
+				"from": 492480,
+				"to": 498040
+			},
+			"text": " today and also in regards to cryptography and blockchain, verifiability is key in my opinion."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,040",
+				"to": "00:08:24,720"
+			},
+			"offsets": {
+				"from": 498040,
+				"to": 504720
+			},
+			"text": " So also if we look at this kind of idea of zero trust, verifiability is very important in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,720",
+				"to": "00:08:30,120"
+			},
+			"offsets": {
+				"from": 504720,
+				"to": 510120
+			},
+			"text": " to make sure that we don't have to trust, we can always verify. And this is very complicated with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,120",
+				"to": "00:08:36,560"
+			},
+			"offsets": {
+				"from": 510120,
+				"to": 516560
+			},
+			"text": " modern hardware. It's actually not even possible in most cases. So I want to a little bit explain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,560",
+				"to": "00:08:42,360"
+			},
+			"offsets": {
+				"from": 516560,
+				"to": 522360
+			},
+			"text": " this idea of verifiable hardware. And we had a very interesting panel discussion today in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,360",
+				"to": "00:08:46,360"
+			},
+			"offsets": {
+				"from": 522360,
+				"to": 526360
+			},
+			"text": " sun. It was a little bit hot, but we had a very interesting approach. We discussed how"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,360",
+				"to": "00:08:50,560"
+			},
+			"offsets": {
+				"from": 526360,
+				"to": 530560
+			},
+			"text": " vintage hardware could possibly solve this kind of security nightmare, this verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,560",
+				"to": "00:08:55,720"
+			},
+			"offsets": {
+				"from": 530560,
+				"to": 535720
+			},
+			"text": " department in the department that we have these days. Long story short, we're using a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,720",
+				"to": "00:08:59,560"
+			},
+			"offsets": {
+				"from": 535720,
+				"to": 539560
+			},
+			"text": " non-virusifiable hardware these days. So if you look at your phones, if you look at all these"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,560",
+				"to": "00:09:05,040"
+			},
+			"offsets": {
+				"from": 539560,
+				"to": 545040
+			},
+			"text": " kind of components that you have around your computers, whatnot, all are not really verifiable."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,040",
+				"to": "00:09:08,200"
+			},
+			"offsets": {
+				"from": 545040,
+				"to": 548200
+			},
+			"text": " That means if I really want to know, okay, what's going on, is there's some computation that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,200",
+				"to": "00:09:12,840"
+			},
+			"offsets": {
+				"from": 548200,
+				"to": 552840
+			},
+			"text": " happened that I want to make sure that isn't compromised, it's really, really hard to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,840",
+				"to": "00:09:19,760"
+			},
+			"offsets": {
+				"from": 552840,
+				"to": 559760
+			},
+			"text": " So I want in this context also refer to an interesting certification program from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,760",
+				"to": "00:09:25,880"
+			},
+			"offsets": {
+				"from": 559760,
+				"to": 565880
+			},
+			"text": " Free Software Foundation who identified and basically listed a lot of devices that can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,880",
+				"to": "00:09:31,440"
+			},
+			"offsets": {
+				"from": 565880,
+				"to": 571440
+			},
+			"text": " used in modern day hardware and in desktop computers that are not having binary blobs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,440",
+				"to": "00:09:36,040"
+			},
+			"offsets": {
+				"from": 571440,
+				"to": 576040
+			},
+			"text": " That means you can actually verify them by making sure that the firmware hasn't been compromised."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,040",
+				"to": "00:09:41,520"
+			},
+			"offsets": {
+				"from": 576040,
+				"to": 581520
+			},
+			"text": " Also, maybe to contextualize, the Linux kernel is a lot of proprietary drivers. So there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,520",
+				"to": "00:09:47,960"
+			},
+			"offsets": {
+				"from": 581520,
+				"to": 587960
+			},
+			"text": " also the Linux Libra for our Linux, which tries to de-blob in a way the whole Linux kernel."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,960",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 587960,
+				"to": 593000
+			},
+			"text": " So usually if you remove all the commits from Linux to our files, you're almost good to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:59,040"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 599040
+			},
+			"text": " go with the almost Libra kernel. This is a very interesting piece of hardware. I also own"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,040",
+				"to": "00:10:05,160"
+			},
+			"offsets": {
+				"from": 599040,
+				"to": 605160
+			},
+			"text": " this and I can strongly suggest any crypto-unachist or cypherpunk to own this device. It's an all"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,160",
+				"to": "00:10:09,720"
+			},
+			"offsets": {
+				"from": 605160,
+				"to": 609720
+			},
+			"text": " that, I think, but it's 200 and the interesting piece or the interesting part of it is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,720",
+				"to": "00:10:14,400"
+			},
+			"offsets": {
+				"from": 609720,
+				"to": 614400
+			},
+			"text": " that you can use this because it's verifiable. It runs Libra boots, you can make sure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,400",
+				"to": "00:10:21,080"
+			},
+			"offsets": {
+				"from": 614400,
+				"to": 621080
+			},
+			"text": " there's no BIOS backdoors inside. You can basically run, it has not no inter-management"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,080",
+				"to": "00:10:26,120"
+			},
+			"offsets": {
+				"from": 621080,
+				"to": 626120
+			},
+			"text": " engine on it. So you can basically make sure that in a way you create your keys and if"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,120",
+				"to": "00:10:31,760"
+			},
+			"offsets": {
+				"from": 626120,
+				"to": 631760
+			},
+			"text": " you use it in a kind of an offline manner, you can even make sure that your keys aren't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,760",
+				"to": "00:10:38,120"
+			},
+			"offsets": {
+				"from": 631760,
+				"to": 638120
+			},
+			"text": " compromised. But it comes with a few kind of pitfalls in my opinion. So we have two problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,120",
+				"to": "00:10:41,400"
+			},
+			"offsets": {
+				"from": 638120,
+				"to": 641400
+			},
+			"text": " still also with this kind of Libra hardware with this old vintage hardware. If we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,400",
+				"to": "00:10:46,080"
+			},
+			"offsets": {
+				"from": 641400,
+				"to": 646080
+			},
+			"text": " to use this in kind of high security applications, we have SSDs which are a problem because they"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,080",
+				"to": "00:10:51,280"
+			},
+			"offsets": {
+				"from": 646080,
+				"to": 651280
+			},
+			"text": " again embed another arm processor which could be potentially compromised and there could"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,280",
+				"to": "00:10:57,920"
+			},
+			"offsets": {
+				"from": 651280,
+				"to": 657920
+			},
+			"text": " be other backdoors in the CPUs that we don't know about which in the context of the just"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,920",
+				"to": "00:11:02,920"
+			},
+			"offsets": {
+				"from": 657920,
+				"to": 662920
+			},
+			"text": " shown device, this would be eliminated because it's an old vintage device. It's actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,920",
+				"to": "00:11:08,440"
+			},
+			"offsets": {
+				"from": 662920,
+				"to": 668440
+			},
+			"text": " I would say like 10 years old or something. So there's a few attempts to solve this problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,440",
+				"to": "00:11:15,120"
+			},
+			"offsets": {
+				"from": 668440,
+				"to": 675120
+			},
+			"text": " also from the open hardware movement and SSDs are the best kind of place where to put your"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,120",
+				"to": "00:11:19,640"
+			},
+			"offsets": {
+				"from": 675120,
+				"to": 679640
+			},
+			"text": " implant in case you want to actually make sure that it's a way of someone. So this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,640",
+				"to": "00:11:24,040"
+			},
+			"offsets": {
+				"from": 679640,
+				"to": 684040
+			},
+			"text": " the open SSD project. It's a very interesting project because it also educates people on"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,040",
+				"to": "00:11:34,640"
+			},
+			"offsets": {
+				"from": 684040,
+				"to": 694640
+			},
+			"text": " how SSD controllers function and there's another newer approach to SSD and to other kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,640",
+				"to": "00:11:38,440"
+			},
+			"offsets": {
+				"from": 694640,
+				"to": 698440
+			},
+			"text": " verifiability parts of hardware which is the chips alliance, it's a common hardware for"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,440",
+				"to": "00:11:44,240"
+			},
+			"offsets": {
+				"from": 698440,
+				"to": 704240
+			},
+			"text": " interfaces, process and systems. Two interesting projects you should definitely take a look"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,240",
+				"to": "00:11:49,560"
+			},
+			"offsets": {
+				"from": 704240,
+				"to": 709560
+			},
+			"text": " at. So I want to also point here at the common hardware we're using in day-to-day crypto"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,560",
+				"to": "00:11:54,040"
+			},
+			"offsets": {
+				"from": 709560,
+				"to": 714040
+			},
+			"text": " activities. So in this context I want to also refer to a small exhibition archive which"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,040",
+				"to": "00:11:59,360"
+			},
+			"offsets": {
+				"from": 714040,
+				"to": 719360
+			},
+			"text": " is like traveling here around the DevCon. It's called Mataralities of Modern Cryptography"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,360",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 719360,
+				"to": 726000
+			},
+			"text": " and it's actually a selection. It's a hardware archive that we are collecting since approximately"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 732000
+			},
+			"text": " 10 years which features like different prototypes, different non-release prototypes, materialities"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:19,600"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 739600
+			},
+			"text": " but also like this kind of modified, this modified DICEs that you see in the right top"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,600",
+				"to": "00:12:25,840"
+			},
+			"offsets": {
+				"from": 739600,
+				"to": 745840
+			},
+			"text": " which are all kind of explaining different security concepts and how we are in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,840",
+				"to": "00:12:31,640"
+			},
+			"offsets": {
+				"from": 745840,
+				"to": 751640
+			},
+			"text": " because we don't trust hardware. Again, falling back to this kind of HP4 micro computing. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,640",
+				"to": "00:12:35,400"
+			},
+			"offsets": {
+				"from": 751640,
+				"to": 755400
+			},
+			"text": " I'm strongly suggesting you take a look at this also this is part of the open hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,400",
+				"to": "00:12:43,160"
+			},
+			"offsets": {
+				"from": 755400,
+				"to": 763160
+			},
+			"text": " dialogue so we're trying to figure out how can we explain and educate more about hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,160",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 763160,
+				"to": 768000
+			},
+			"text": " So what's coming back to this kind of day-to-day crypto hardware? So of course a lot of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:53,440"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 773440
+			},
+			"text": " know crypto hardware wallets, a lot of people use hardware wallets. These are three quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,440",
+				"to": "00:12:56,920"
+			},
+			"offsets": {
+				"from": 773440,
+				"to": 776920
+			},
+			"text": " common hardware wallets out there with a very different concept behind them also from a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,920",
+				"to": "00:13:00,840"
+			},
+			"offsets": {
+				"from": 776920,
+				"to": 780840
+			},
+			"text": " hardware perspective. So we have on the left side the Trezor which is an open source hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,840",
+				"to": "00:13:04,880"
+			},
+			"offsets": {
+				"from": 780840,
+				"to": 784880
+			},
+			"text": " which means it's very viable but here you also see that it's very interesting because"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,880",
+				"to": "00:13:10,600"
+			},
+			"offsets": {
+				"from": 784880,
+				"to": 790600
+			},
+			"text": " while we have the specifications and everything available parts so the components of the open"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,600",
+				"to": "00:13:14,800"
+			},
+			"offsets": {
+				"from": 790600,
+				"to": 794800
+			},
+			"text": " hardware are not very viable at all because you have to trust the producer, the manufacturer"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,800",
+				"to": "00:13:20,800"
+			},
+			"offsets": {
+				"from": 794800,
+				"to": 800800
+			},
+			"text": " that these components are not compromised. So we can verify the Trezor the most we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,800",
+				"to": "00:13:26,280"
+			},
+			"offsets": {
+				"from": 800800,
+				"to": 806280
+			},
+			"text": " verify a hardware wallet out there but that doesn't mean it's secure necessarily. So you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,280",
+				"to": "00:13:31,200"
+			},
+			"offsets": {
+				"from": 806280,
+				"to": 811200
+			},
+			"text": " have to make sure that you secure it yourself. In the middle we see the bit box has a kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,200",
+				"to": "00:13:35,600"
+			},
+			"offsets": {
+				"from": 811200,
+				"to": 815600
+			},
+			"text": " of a different concept. It's partly open which means it runs open source software but uses"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,600",
+				"to": "00:13:38,880"
+			},
+			"offsets": {
+				"from": 815600,
+				"to": 818880
+			},
+			"text": " the hardware security module. So you have to trust the manufacturer of the hardware security"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,880",
+				"to": "00:13:43,960"
+			},
+			"offsets": {
+				"from": 818880,
+				"to": 823960
+			},
+			"text": " module that this is not compromised. And then we have the ledger on the right hand side"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,960",
+				"to": "00:13:49,880"
+			},
+			"offsets": {
+				"from": 823960,
+				"to": 829880
+			},
+			"text": " which is completely closed source. So here just an example if you're kind of the verifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,880",
+				"to": "00:13:54,640"
+			},
+			"offsets": {
+				"from": 829880,
+				"to": 834640
+			},
+			"text": " type you would actually be able to create your own Trezor hardware and then load the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,640",
+				"to": "00:14:00,360"
+			},
+			"offsets": {
+				"from": 834640,
+				"to": 840360
+			},
+			"text": " firmware on it and run the firmware. Here's an example of a hardware based project that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,360",
+				"to": "00:14:05,760"
+			},
+			"offsets": {
+				"from": 840360,
+				"to": 845760
+			},
+			"text": " was a talk yesterday I guess. The Starters keycard which is a Java card based hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,760",
+				"to": "00:14:09,680"
+			},
+			"offsets": {
+				"from": 845760,
+				"to": 849680
+			},
+			"text": " solution which is basically an open platform developed your own workflows. It might be"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,680",
+				"to": "00:14:16,440"
+			},
+			"offsets": {
+				"from": 849680,
+				"to": 856440
+			},
+			"text": " also an interesting aspect but it's also closed. It's Java card it's Oracle. So another element"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,440",
+				"to": "00:14:21,040"
+			},
+			"offsets": {
+				"from": 856440,
+				"to": 861040
+			},
+			"text": " you came across possibly is how the random number generators. There's a lot of them but"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,040",
+				"to": "00:14:25,960"
+			},
+			"offsets": {
+				"from": 861040,
+				"to": 865960
+			},
+			"text": " I made a few screenshots here of nice ones. This is the Zifa. It might have been a really"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,960",
+				"to": "00:14:33,480"
+			},
+			"offsets": {
+				"from": 865960,
+				"to": 873480
+			},
+			"text": " beautiful crafted device and here's the Altus-Metrum a more liberated device. So this also is these"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,480",
+				"to": "00:14:38,400"
+			},
+			"offsets": {
+				"from": 873480,
+				"to": 878400
+			},
+			"text": " are common devices to generate entropy and randomness in order for you to create safe"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,400",
+				"to": "00:14:42,120"
+			},
+			"offsets": {
+				"from": 878400,
+				"to": 882120
+			},
+			"text": " keys. Of course there's also hardware tokens and there's a lot of them because they exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,120",
+				"to": "00:14:46,920"
+			},
+			"offsets": {
+				"from": 882120,
+				"to": 886920
+			},
+			"text": " since a long time. I just made a few screens of a few of them and these are very common"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,920",
+				"to": "00:14:53,280"
+			},
+			"offsets": {
+				"from": 886920,
+				"to": 893280
+			},
+			"text": " devices to identify yourself and to do all sorts of security protocols and workflows."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,280",
+				"to": "00:14:58,920"
+			},
+			"offsets": {
+				"from": 893280,
+				"to": 898920
+			},
+			"text": " And there is even more open elements than the ones that I was showing here. For example"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,920",
+				"to": "00:15:08,040"
+			},
+			"offsets": {
+				"from": 898920,
+				"to": 908040
+			},
+			"text": " the Somu, Tomu and Formu series which started as an open source project. It's also certified"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,040",
+				"to": "00:15:13,800"
+			},
+			"offsets": {
+				"from": 908040,
+				"to": 913800
+			},
+			"text": " by the Oshwam. This is also an interesting hardware. This is the Nitro Key. It's kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,800",
+				"to": "00:15:18,760"
+			},
+			"offsets": {
+				"from": 913800,
+				"to": 918760
+			},
+			"text": " of a multipurpose cryptography hardware. You might have come across this because Purism"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,760",
+				"to": "00:15:22,880"
+			},
+			"offsets": {
+				"from": 918760,
+				"to": 922880
+			},
+			"text": " delivers this with the Purism laptops in order to verify that your supply chain hasn't been"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,880",
+				"to": "00:15:26,840"
+			},
+			"offsets": {
+				"from": 922880,
+				"to": 926840
+			},
+			"text": " compromised so they're sending you this device on the left hand side in a different parcel"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,840",
+				"to": "00:15:32,400"
+			},
+			"offsets": {
+				"from": 926840,
+				"to": 932400
+			},
+			"text": " so you can actually check okay it's my bias, compromise or not. So all the things I've"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,400",
+				"to": "00:15:37,840"
+			},
+			"offsets": {
+				"from": 932400,
+				"to": 937840
+			},
+			"text": " shown you are not really veryifiable or at least only veryifiable to some point and we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,840",
+				"to": "00:15:42,720"
+			},
+			"offsets": {
+				"from": 937840,
+				"to": 942720
+			},
+			"text": " actually using them on a daily basis. So what can we do about that? I want to briefly"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,720",
+				"to": "00:15:47,360"
+			},
+			"offsets": {
+				"from": 942720,
+				"to": 947360
+			},
+			"text": " also go into the modules I was referring to that are parts of all these kind of devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,360",
+				"to": "00:15:53,120"
+			},
+			"offsets": {
+				"from": 947360,
+				"to": 953120
+			},
+			"text": " or partly parts of these devices I was showing which are hardware security modules to briefly"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,120",
+				"to": "00:15:58,120"
+			},
+			"offsets": {
+				"from": 953120,
+				"to": 958120
+			},
+			"text": " explain what they are. So they are a physical computing device safeguarding and managing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,120",
+				"to": "00:16:04,280"
+			},
+			"offsets": {
+				"from": 958120,
+				"to": 964280
+			},
+			"text": " digital keys. So we need them for strong authentication, crypto processing. They're usually in hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,280",
+				"to": "00:16:09,120"
+			},
+			"offsets": {
+				"from": 964280,
+				"to": 969120
+			},
+			"text": " wallets such as the legend, bit box but they're also in the Java card, start with key card,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,120",
+				"to": "00:16:13,960"
+			},
+			"offsets": {
+				"from": 969120,
+				"to": 973960
+			},
+			"text": " we see them in the Nitro Key in mobile phones and RT devices and then on the other hand"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,960",
+				"to": "00:16:20,680"
+			},
+			"offsets": {
+				"from": 973960,
+				"to": 980680
+			},
+			"text": " we have trusted execution environment which are isolated execution environments where"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,680",
+				"to": "00:16:25,880"
+			},
+			"offsets": {
+				"from": 980680,
+				"to": 985880
+			},
+			"text": " you can do secure processing where you can do untempered processing. We have a few of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,880",
+				"to": "00:16:30,760"
+			},
+			"offsets": {
+				"from": 985880,
+				"to": 990760
+			},
+			"text": " them listed here. There's the AMD secure execution environment, ARM Trusts on Apple secure and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,760",
+				"to": "00:16:36,280"
+			},
+			"offsets": {
+				"from": 990760,
+				"to": 996280
+			},
+			"text": " clave, Intel SGX and others. Just to give you an example of the Apple secure and clave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,280",
+				"to": "00:16:40,080"
+			},
+			"offsets": {
+				"from": 996280,
+				"to": 1000080
+			},
+			"text": " usually nobody knows what's going on so there has been a lot of reverse engineering going"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,080",
+				"to": "00:16:46,080"
+			},
+			"offsets": {
+				"from": 1000080,
+				"to": 1006080
+			},
+			"text": " on until people know what's happening, what's actually existing. They're like you can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,080",
+				"to": "00:16:52,480"
+			},
+			"offsets": {
+				"from": 1006080,
+				"to": 1012480
+			},
+			"text": " really access it without being Apple or without signing a ton of NDAs. So all of them are sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,480",
+				"to": "00:16:57,280"
+			},
+			"offsets": {
+				"from": 1012480,
+				"to": 1017280
+			},
+			"text": " not documented, you don't know what's going on. They're not really veryifiable for you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,280",
+				"to": "00:17:02,480"
+			},
+			"offsets": {
+				"from": 1017280,
+				"to": 1022480
+			},
+			"text": " so you trust the third part in the whole security concept and some of them, if not all, will"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,480",
+				"to": "00:17:06,240"
+			},
+			"offsets": {
+				"from": 1022480,
+				"to": 1026240
+			},
+			"text": " be hacked in the future. I mean most of them are already. We saw a spectrum breakdown,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,240",
+				"to": "00:17:11,360"
+			},
+			"offsets": {
+				"from": 1026240,
+				"to": 1031360
+			},
+			"text": " we saw a lot of existing exploits out there, we saw a lot of attempts to break all these"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,360",
+				"to": "00:17:17,680"
+			},
+			"offsets": {
+				"from": 1031360,
+				"to": 1037680
+			},
+			"text": " devices and they will be hacked. So I want to show one example where this could be actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,680",
+				"to": "00:17:22,600"
+			},
+			"offsets": {
+				"from": 1037680,
+				"to": 1042600
+			},
+			"text": " in the future changing and while we're not still there, I just want to make the point"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,600",
+				"to": "00:17:26,920"
+			},
+			"offsets": {
+				"from": 1042600,
+				"to": 1046920
+			},
+			"text": " that OpenSilicon can in this context solve this security nightmare that we're facing"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,920",
+				"to": "00:17:31,800"
+			},
+			"offsets": {
+				"from": 1046920,
+				"to": 1051800
+			},
+			"text": " with all these hardware pieces and it could also make our hardware veryifiable. So here"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,800",
+				"to": "00:17:37,160"
+			},
+			"offsets": {
+				"from": 1051800,
+				"to": 1057160
+			},
+			"text": " is a very interesting product I wanted to point out, it's the RISC-V, it's an open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,160",
+				"to": "00:17:41,560"
+			},
+			"offsets": {
+				"from": 1057160,
+				"to": 1061560
+			},
+			"text": " hardware instruction set architecture and on the left on the right hand side you see"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,560",
+				"to": "00:17:49,480"
+			},
+			"offsets": {
+				"from": 1061560,
+				"to": 1069480
+			},
+			"text": " the Freedom E310, SOC which is the first RISC-V chip produced by C5 and there are more of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,480",
+				"to": "00:17:55,080"
+			},
+			"offsets": {
+				"from": 1069480,
+				"to": 1075080
+			},
+			"text": " them out now. So basically what's interesting about these things is there are already existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,080",
+				"to": "00:18:00,760"
+			},
+			"offsets": {
+				"from": 1075080,
+				"to": 1080760
+			},
+			"text": " replacements in the development that would replace HSM, TES and so on. So I wanted to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,760",
+				"to": "00:18:05,240"
+			},
+			"offsets": {
+				"from": 1080760,
+				"to": 1085240
+			},
+			"text": " in this context point two interesting products that I found interesting and which I heavily"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,240",
+				"to": "00:18:09,040"
+			},
+			"offsets": {
+				"from": 1085240,
+				"to": 1089040
+			},
+			"text": " worked upon. So one is the Sanctum, the minimal hardware extensions for Strong Software"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,040",
+				"to": "00:18:13,400"
+			},
+			"offsets": {
+				"from": 1089040,
+				"to": 1093400
+			},
+			"text": " isolation, there's a very nice paper from Costan et al from 2016 in case you're interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,400",
+				"to": "00:18:19,720"
+			},
+			"offsets": {
+				"from": 1093400,
+				"to": 1099720
+			},
+			"text": " and they offer simple security analysis than SGX which means like also from auditing perspective"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,720",
+				"to": "00:18:26,040"
+			},
+			"offsets": {
+				"from": 1099720,
+				"to": 1106040
+			},
+			"text": " it gets easier because it has lower complexity and this approach of lower complexity in hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,040",
+				"to": "00:18:30,680"
+			},
+			"offsets": {
+				"from": 1106040,
+				"to": 1110680
+			},
+			"text": " is a very interesting approach in my opinion I think we'll be getting there in a few years."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,680",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1110680,
+				"to": 1117000
+			},
+			"text": " And this specific solution targets a RISC-V core and you can already test this online"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:42,560"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1122560
+			},
+			"text": " but maybe a more easy starting point to get working with RISC-V is the keystone project."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,560",
+				"to": "00:18:47,200"
+			},
+			"offsets": {
+				"from": 1122560,
+				"to": 1127200
+			},
+			"text": " The open frame work for architecting trusted execution environments which is very interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,200",
+				"to": "00:18:52,840"
+			},
+			"offsets": {
+				"from": 1127200,
+				"to": 1132840
+			},
+			"text": " because in my opinion this is already very far. There's a lot of documentation out there"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,840",
+				"to": "00:18:58,680"
+			},
+			"offsets": {
+				"from": 1132840,
+				"to": 1138680
+			},
+			"text": " and you can get this going in your workflow very very fast. So in my opinion RISC-V is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,680",
+				"to": "00:19:03,680"
+			},
+			"offsets": {
+				"from": 1138680,
+				"to": 1143680
+			},
+			"text": " a very interesting movement or a really interesting step in the future where we will see that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,680",
+				"to": "00:19:08,840"
+			},
+			"offsets": {
+				"from": 1143680,
+				"to": 1148840
+			},
+			"text": " open silicon can potentially solve our security nightmares we are facing with current day"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,840",
+				"to": "00:19:14,560"
+			},
+			"offsets": {
+				"from": 1148840,
+				"to": 1154560
+			},
+			"text": " hardware but also there's other approaches. So there's for example the vintage approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,560",
+				"to": "00:19:21,040"
+			},
+			"offsets": {
+				"from": 1154560,
+				"to": 1161040
+			},
+			"text": " this is maybe not so common approach but there's already community out there which is looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,040",
+				"to": "00:19:27,280"
+			},
+			"offsets": {
+				"from": 1161040,
+				"to": 1167280
+			},
+			"text": " at vintage hardware and like completely controllable or like very farable hardware because it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,280",
+				"to": "00:19:33,600"
+			},
+			"offsets": {
+				"from": 1167280,
+				"to": 1173600
+			},
+			"text": " old and you can not so easy tamper with it. There's also very interesting context and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,600",
+				"to": "00:19:40,800"
+			},
+			"offsets": {
+				"from": 1173600,
+				"to": 1180800
+			},
+			"text": " project I have been referring to in my talk at the HCPP so I would strongly recommend you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,800",
+				"to": "00:19:47,320"
+			},
+			"offsets": {
+				"from": 1180800,
+				"to": 1187320
+			},
+			"text": " also listen to this talk where potentially vintage hardware can also help this nuclear"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,320",
+				"to": "00:19:52,640"
+			},
+			"offsets": {
+				"from": 1187320,
+				"to": 1192640
+			},
+			"text": " warhead in the long run because there you have a really really complicated trust setup"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,640",
+				"to": "00:19:59,720"
+			},
+			"offsets": {
+				"from": 1192640,
+				"to": 1199720
+			},
+			"text": " but in conclusion and this is actually already the end of my talk. Current hardware is hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,720",
+				"to": "00:20:04,480"
+			},
+			"offsets": {
+				"from": 1199720,
+				"to": 1204480
+			},
+			"text": " or almost impossible to verify this is a problem with trusted parties on the example of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,480",
+				"to": "00:20:12,640"
+			},
+			"offsets": {
+				"from": 1204480,
+				"to": 1212640
+			},
+			"text": " HSM's on the TEs on modern day CPUs so they are not zero trust. So we need in my opinion"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,640",
+				"to": "00:20:18,680"
+			},
+			"offsets": {
+				"from": 1212640,
+				"to": 1218680
+			},
+			"text": " more open hardware to verify and to be able to verify and for education so in order if"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,680",
+				"to": "00:20:23,320"
+			},
+			"offsets": {
+				"from": 1218680,
+				"to": 1223320
+			},
+			"text": " there's digital winter coming we need to be able to know how to repurpose devices we"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,320",
+				"to": "00:20:28,720"
+			},
+			"offsets": {
+				"from": 1223320,
+				"to": 1228720
+			},
+			"text": " need to understand and to educate other people we need to know how these functions. In my opinion"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,720",
+				"to": "00:20:34,400"
+			},
+			"offsets": {
+				"from": 1228720,
+				"to": 1234400
+			},
+			"text": " on the example of the verifiable delay functions the VDF Alliance project this is a very good"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,400",
+				"to": "00:20:39,120"
+			},
+			"offsets": {
+				"from": 1234400,
+				"to": 1239120
+			},
+			"text": " example because this is a project where you need open hardware in my opinion because it's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,120",
+				"to": "00:20:45,520"
+			},
+			"offsets": {
+				"from": 1239120,
+				"to": 1245520
+			},
+			"text": " mapping in the best practice example if you realize the verifiable delay functions with open hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,520",
+				"to": "00:20:51,360"
+			},
+			"offsets": {
+				"from": 1245520,
+				"to": 1251360
+			},
+			"text": " it ensures fair access to the fastest implementation so you can also look at open hardware as a kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,360",
+				"to": "00:21:00,160"
+			},
+			"offsets": {
+				"from": 1251360,
+				"to": 1260160
+			},
+			"text": " approach to create equilibria. So in my opinion risk five can change the game but only also if"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,160",
+				"to": "00:21:03,520"
+			},
+			"offsets": {
+				"from": 1260160,
+				"to": 1263520
+			},
+			"text": " we make sure that there are enough cores with open licenses available so there's a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,520",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1263520,
+				"to": 1270000
+			},
+			"text": " existing implementations of the risk five cores which are with closed software with closed licenses"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:15,440"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1275440
+			},
+			"text": " so I'm strongly suggesting we look at and we make sure that there are enough really open"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,440",
+				"to": "00:21:20,240"
+			},
+			"offsets": {
+				"from": 1275440,
+				"to": 1280240
+			},
+			"text": " licenses available for this cause such as the GNU license. So you can follow further on all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,240",
+				"to": "00:21:26,560"
+			},
+			"offsets": {
+				"from": 1280240,
+				"to": 1286560
+			},
+			"text": " other open hardware talks at the open hardware mount site at the OHM Oshawa org and you can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,120",
+				"to": "00:21:32,320"
+			},
+			"offsets": {
+				"from": 1287120,
+				"to": 1292320
+			},
+			"text": " get in contact to discuss further at the right at this site or you can visit us today at four"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,320",
+				"to": "00:21:36,400"
+			},
+			"offsets": {
+				"from": 1292320,
+				"to": 1296400
+			},
+			"text": " we have a small get together together with chain security at the ELSEY exhibition in"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,400",
+				"to": "00:21:43,040"
+			},
+			"offsets": {
+				"from": 1296400,
+				"to": 1303040
+			},
+			"text": " it's in the third floor. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,040",
+				"to": "00:21:45,120"
+			},
+			"offsets": {
+				"from": 1303040,
+				"to": 1305120
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,280",
+				"to": "00:21:47,360"
+			},
+			"offsets": {
+				"from": 1305280,
+				"to": 1307360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,360",
+				"to": "00:21:49,360"
+			},
+			"offsets": {
+				"from": 1307360,
+				"to": 1309360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,360",
+				"to": "00:21:51,360"
+			},
+			"offsets": {
+				"from": 1309360,
+				"to": 1311360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,360",
+				"to": "00:21:53,360"
+			},
+			"offsets": {
+				"from": 1311360,
+				"to": 1313360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,360",
+				"to": "00:21:55,360"
+			},
+			"offsets": {
+				"from": 1313360,
+				"to": 1315360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,360",
+				"to": "00:21:57,360"
+			},
+			"offsets": {
+				"from": 1315360,
+				"to": 1317360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,360",
+				"to": "00:21:59,360"
+			},
+			"offsets": {
+				"from": 1317360,
+				"to": 1319360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,360",
+				"to": "00:22:01,360"
+			},
+			"offsets": {
+				"from": 1319360,
+				"to": 1321360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,360",
+				"to": "00:22:03,360"
+			},
+			"offsets": {
+				"from": 1321360,
+				"to": 1323360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,360",
+				"to": "00:22:05,360"
+			},
+			"offsets": {
+				"from": 1323360,
+				"to": 1325360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,360",
+				"to": "00:22:07,360"
+			},
+			"offsets": {
+				"from": 1325360,
+				"to": 1327360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,360",
+				"to": "00:22:09,360"
+			},
+			"offsets": {
+				"from": 1327360,
+				"to": 1329360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,360",
+				"to": "00:22:11,360"
+			},
+			"offsets": {
+				"from": 1329360,
+				"to": 1331360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,360",
+				"to": "00:22:13,360"
+			},
+			"offsets": {
+				"from": 1331360,
+				"to": 1333360
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,360",
+				"to": "00:22:17,360"
+			},
+			"offsets": {
+				"from": 1333360,
+				"to": 1337360
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

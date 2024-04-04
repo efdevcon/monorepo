@@ -1,0 +1,2386 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:14,400"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 14400
+			},
+			"text": " Everyone, my name is Everett Bussey."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,400",
+				"to": "00:00:17,400"
+			},
+			"offsets": {
+				"from": 14400,
+				"to": 17400
+			},
+			"text": " I'm a researcher and a product marker at the census."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,400",
+				"to": "00:00:19,200"
+			},
+			"offsets": {
+				"from": 17400,
+				"to": 19200
+			},
+			"text": " I'm a developer being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,200",
+				"to": "00:00:22,640"
+			},
+			"offsets": {
+				"from": 19200,
+				"to": 22640
+			},
+			"text": " I'm Valerie Everson and I'm a writer, who says, as soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,640",
+				"to": "00:00:24,640"
+			},
+			"offsets": {
+				"from": 22640,
+				"to": 24640
+			},
+			"text": " [LAUGH]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,640",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 24640,
+				"to": 29000
+			},
+			"text": " So over the last several months, we've been trying to figure out ways to measure and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:33,120"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 33120
+			},
+			"text": " define the decentralization of the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,120",
+				"to": "00:00:36,920"
+			},
+			"offsets": {
+				"from": 33120,
+				"to": 36920
+			},
+			"text": " Generally, the most popular comparative metric between the core of the walls is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,920",
+				"to": "00:00:38,280"
+			},
+			"offsets": {
+				"from": 36920,
+				"to": 38280
+			},
+			"text": " throughput."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,280",
+				"to": "00:00:43,320"
+			},
+			"offsets": {
+				"from": 38280,
+				"to": 43320
+			},
+			"text": " Most of us know that more decentralized and secure watching is the lower throughput,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,320",
+				"to": "00:00:45,840"
+			},
+			"offsets": {
+				"from": 43320,
+				"to": 45840
+			},
+			"text": " at least at this stage of the text evolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,840",
+				"to": "00:00:49,080"
+			},
+			"offsets": {
+				"from": 45840,
+				"to": 49080
+			},
+			"text": " So transactions per second are not very effective measurement."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,080",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 49080,
+				"to": 55000
+			},
+			"text": " So when we actually talk about decentralization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:57,640"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 57640
+			},
+			"text": " how can we objectively measure its extent and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,640",
+				"to": "00:00:59,640"
+			},
+			"offsets": {
+				"from": 57640,
+				"to": 59640
+			},
+			"text": " monitor its evolution over time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,640",
+				"to": "00:01:04,920"
+			},
+			"offsets": {
+				"from": 59640,
+				"to": 64920
+			},
+			"text": " Obviously, decentralization isn't a binary, is or isn't conditioned, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,920",
+				"to": "00:01:09,880"
+			},
+			"offsets": {
+				"from": 64920,
+				"to": 69880
+			},
+			"text": " a very complex and immersive process that will change as the network grows."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,880",
+				"to": "00:01:12,320"
+			},
+			"offsets": {
+				"from": 69880,
+				"to": 72320
+			},
+			"text": " What data can we measure objectively?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,320",
+				"to": "00:01:16,840"
+			},
+			"offsets": {
+				"from": 72320,
+				"to": 76840
+			},
+			"text": " Originally, we set out to define a quotient or some standard measurement that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,840",
+				"to": "00:01:19,960"
+			},
+			"offsets": {
+				"from": 76840,
+				"to": 79960
+			},
+			"text": " replace throughput as a comparative data point."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,960",
+				"to": "00:01:24,880"
+			},
+			"offsets": {
+				"from": 79960,
+				"to": 84880
+			},
+			"text": " But we quickly realized that we get into apples, oranges pretty fast when we try to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,880",
+				"to": "00:01:27,720"
+			},
+			"offsets": {
+				"from": 84880,
+				"to": 87720
+			},
+			"text": " compare most of these metrics across protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,720",
+				"to": "00:01:33,200"
+			},
+			"offsets": {
+				"from": 87720,
+				"to": 93200
+			},
+			"text": " So we never have focused a bit to say, what can we effectively measure"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,200",
+				"to": "00:01:36,200"
+			},
+			"offsets": {
+				"from": 93200,
+				"to": 96200
+			},
+			"text": " in Ethereum right now and watch GM over time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,200",
+				"to": "00:01:39,280"
+			},
+			"offsets": {
+				"from": 96200,
+				"to": 99280
+			},
+			"text": " What's actually happening on mainnet and what does it tell us about the progress"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,280",
+				"to": "00:01:41,480"
+			},
+			"offsets": {
+				"from": 99280,
+				"to": 101480
+			},
+			"text": " for making or not making?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,480",
+				"to": "00:01:43,920"
+			},
+			"offsets": {
+				"from": 101480,
+				"to": 103920
+			},
+			"text": " So here are the questions we set out to answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,920",
+				"to": "00:01:47,480"
+			},
+			"offsets": {
+				"from": 103920,
+				"to": 107480
+			},
+			"text": " Is Ethereum actually getting more decentralized over time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,480",
+				"to": "00:01:51,280"
+			},
+			"offsets": {
+				"from": 107480,
+				"to": 111280
+			},
+			"text": " Are there metrics that show the network getting more centralized?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,280",
+				"to": "00:01:56,280"
+			},
+			"offsets": {
+				"from": 111280,
+				"to": 116280
+			},
+			"text": " Does the data reveal areas we need to focus on addressing or changing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,280",
+				"to": "00:01:59,280"
+			},
+			"offsets": {
+				"from": 116280,
+				"to": 119280
+			},
+			"text": " Given that some of the trends we're observing, can we make any meaningful"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,280",
+				"to": "00:02:01,080"
+			},
+			"offsets": {
+				"from": 119280,
+				"to": 121080
+			},
+			"text": " predictions about the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,080",
+				"to": "00:02:06,480"
+			},
+			"offsets": {
+				"from": 121080,
+				"to": 126480
+			},
+			"text": " And which of these metrics can we compare across protocols?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,480",
+				"to": "00:02:11,520"
+			},
+			"offsets": {
+				"from": 126480,
+				"to": 131520
+			},
+			"text": " So our approach to measuring Ethereum decentralization over time"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,520",
+				"to": "00:02:17,080"
+			},
+			"offsets": {
+				"from": 131520,
+				"to": 137080
+			},
+			"text": " began to determine which elements of Ethereum's architecture, both on and off-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,080",
+				"to": "00:02:20,400"
+			},
+			"offsets": {
+				"from": 137080,
+				"to": 140400
+			},
+			"text": " most significantly impact base decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,400",
+				"to": "00:02:25,040"
+			},
+			"offsets": {
+				"from": 140400,
+				"to": 145040
+			},
+			"text": " So to start off with this age of the research, we did by 19 key subsystems"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,040",
+				"to": "00:02:28,200"
+			},
+			"offsets": {
+				"from": 145040,
+				"to": 148200
+			},
+			"text": " spread across four different categories to investigate."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,200",
+				"to": "00:02:33,600"
+			},
+			"offsets": {
+				"from": 148200,
+				"to": 153600
+			},
+			"text": " We attempted to anchor our conclusions in as much on-chain and objective data as possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,600",
+				"to": "00:02:35,200"
+			},
+			"offsets": {
+				"from": 153600,
+				"to": 155200
+			},
+			"text": " which can get tricky."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,200",
+				"to": "00:02:39,200"
+			},
+			"offsets": {
+				"from": 155200,
+				"to": 159200
+			},
+			"text": " And it's also important to note that there are hard data points that we have not covered"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,200",
+				"to": "00:02:40,600"
+			},
+			"offsets": {
+				"from": 159200,
+				"to": 160600
+			},
+			"text": " that we wish we could."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,600",
+				"to": "00:02:44,200"
+			},
+			"offsets": {
+				"from": 160600,
+				"to": 164200
+			},
+			"text": " We consider them important, but not necessarily on-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,200",
+				"to": "00:02:46,800"
+			},
+			"offsets": {
+				"from": 164200,
+				"to": 166800
+			},
+			"text": " and they can be very difficult to quantify those,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,800",
+				"to": "00:02:50,800"
+			},
+			"offsets": {
+				"from": 166800,
+				"to": 170800
+			},
+			"text": " to include concepts like these strength and distribution of power grids on which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,800",
+				"to": "00:02:57,800"
+			},
+			"offsets": {
+				"from": 170800,
+				"to": 177800
+			},
+			"text": " nodes run and illegal jurisdictions and relatability of countries on which large numbers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,800",
+				"to": "00:02:58,800"
+			},
+			"offsets": {
+				"from": 177800,
+				"to": 178800
+			},
+			"text": " are posted."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,800",
+				"to": "00:03:02,800"
+			},
+			"offsets": {
+				"from": 178800,
+				"to": 182800
+			},
+			"text": " So for as many of these data points as possible, we tracked their evolution quarter"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,800",
+				"to": "00:03:06,800"
+			},
+			"offsets": {
+				"from": 182800,
+				"to": 186800
+			},
+			"text": " of a quarter as far back as possible, essentially from the early days of Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,800",
+				"to": "00:03:11,800"
+			},
+			"offsets": {
+				"from": 186800,
+				"to": 191800
+			},
+			"text": " through gradual adoption, rampant speculation, hacks, group of kitties, the bubble,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,800",
+				"to": "00:03:15,800"
+			},
+			"offsets": {
+				"from": 191800,
+				"to": 195800
+			},
+			"text": " and sort of the subsequent course correction that we've seen in the past year or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,800",
+				"to": "00:03:19,800"
+			},
+			"offsets": {
+				"from": 195800,
+				"to": 199800
+			},
+			"text": " So we mentioned in charted about 20 or so different metrics, obviously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,800",
+				"to": "00:03:21,800"
+			},
+			"offsets": {
+				"from": 199800,
+				"to": 201800
+			},
+			"text": " the only time to run through all those today."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,800",
+				"to": "00:03:26,800"
+			},
+			"offsets": {
+				"from": 201800,
+				"to": 206800
+			},
+			"text": " So we chose a few of them, spread across these different categories that we're going to talk about a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,800",
+				"to": "00:03:32,800"
+			},
+			"offsets": {
+				"from": 206800,
+				"to": 212800
+			},
+			"text": " So looking at account growth, we looked at start off looking at total account growth over time"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,800",
+				"to": "00:03:35,800"
+			},
+			"offsets": {
+				"from": 212800,
+				"to": 215800
+			},
+			"text": " compared to account growth over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,800",
+				"to": "00:03:39,800"
+			},
+			"offsets": {
+				"from": 215800,
+				"to": 219800
+			},
+			"text": " So on the x-axis is quarter of a quarter across the past four years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,800",
+				"to": "00:03:41,800"
+			},
+			"offsets": {
+				"from": 219800,
+				"to": 221800
+			},
+			"text": " you'll be on emotional charts that we've seen."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,800",
+				"to": "00:03:47,800"
+			},
+			"offsets": {
+				"from": 221800,
+				"to": 227800
+			},
+			"text": " And then the blue line is total address growth over time, and the red line is active addresses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,800",
+				"to": "00:03:51,800"
+			},
+			"offsets": {
+				"from": 227800,
+				"to": 231800
+			},
+			"text": " which we define as addresses that are transacted at least once."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,800",
+				"to": "00:03:57,800"
+			},
+			"offsets": {
+				"from": 231800,
+				"to": 237800
+			},
+			"text": " And that spike in Q2 is the Shanghai tech during the DevCon 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,800",
+				"to": "00:04:04,800"
+			},
+			"offsets": {
+				"from": 237800,
+				"to": 244800
+			},
+			"text": " So we see a conference increasing steadily over time, but we see active addresses more or less starting to flatten after the bubble."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,800",
+				"to": "00:04:10,800"
+			},
+			"offsets": {
+				"from": 244800,
+				"to": 250800
+			},
+			"text": " So as it was assumed to know what this is the growing delta between the two lines over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,800",
+				"to": "00:04:18,800"
+			},
+			"offsets": {
+				"from": 250800,
+				"to": 258800
+			},
+			"text": " which likely is due to the increase in smart contracting to the data network rather than just simple PFP value transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,800",
+				"to": "00:04:21,800"
+			},
+			"offsets": {
+				"from": 258800,
+				"to": 261800
+			},
+			"text": " Here's another account growth graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,800",
+				"to": "00:04:28,800"
+			},
+			"offsets": {
+				"from": 261800,
+				"to": 268800
+			},
+			"text": " This one shows account growth over time by total addresses in gray versus addresses within on zero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,800",
+				"to": "00:04:31,800"
+			},
+			"offsets": {
+				"from": 268800,
+				"to": 271800
+			},
+			"text": " e-th balance and orange."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,800",
+				"to": "00:04:38,800"
+			},
+			"offsets": {
+				"from": 271800,
+				"to": 278800
+			},
+			"text": " So what we see is a fairly steady linear increase in non-zero addresses on the network with no major bumps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,800",
+				"to": "00:04:41,800"
+			},
+			"offsets": {
+				"from": 278800,
+				"to": 281800
+			},
+			"text": " even during the dramatic price fluctuations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,800",
+				"to": "00:04:47,800"
+			},
+			"offsets": {
+				"from": 281800,
+				"to": 287800
+			},
+			"text": " We can't necessarily say this means there's been a steady increase in the number of individuals holding these"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,800",
+				"to": "00:04:53,800"
+			},
+			"offsets": {
+				"from": 287800,
+				"to": 293800
+			},
+			"text": " because we address those two non-univists, but what we should consider again is the growing delta between the new addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,800",
+				"to": "00:04:55,800"
+			},
+			"offsets": {
+				"from": 293800,
+				"to": 295800
+			},
+			"text": " and the new non-zero addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,800",
+				"to": "00:05:01,800"
+			},
+			"offsets": {
+				"from": 295800,
+				"to": 301800
+			},
+			"text": " That is getting steadily wider as more smart contracts emerge since smart contract addresses have no e-th balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,800",
+				"to": "00:05:07,800"
+			},
+			"offsets": {
+				"from": 301800,
+				"to": 307800
+			},
+			"text": " We're seeing a pretty clear increase in both non-zero addresses and smart contract addresses over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,800",
+				"to": "00:05:13,800"
+			},
+			"offsets": {
+				"from": 307800,
+				"to": 313800
+			},
+			"text": " That evolution could indicate the network is supporting more diverse and thus more decentralized types of business logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,800",
+				"to": "00:05:15,800"
+			},
+			"offsets": {
+				"from": 313800,
+				"to": 315800
+			},
+			"text": " and distributed on a payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,800",
+				"to": "00:05:26,800"
+			},
+			"offsets": {
+				"from": 315800,
+				"to": 326800
+			},
+			"text": " This following graph illustrates the e-th ownership of the top 10, 100, and 1000 addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,800",
+				"to": "00:05:28,800"
+			},
+			"offsets": {
+				"from": 326800,
+				"to": 328800
+			},
+			"text": " compared to total supply over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,800",
+				"to": "00:05:34,800"
+			},
+			"offsets": {
+				"from": 328800,
+				"to": 334800
+			},
+			"text": " So the bottom and the right are the top 10 and then the other are the top 11, 100, and then the top 101, 2000,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,800",
+				"to": "00:05:36,800"
+			},
+			"offsets": {
+				"from": 334800,
+				"to": 336800
+			},
+			"text": " and then I'll follow up to 100%."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,800",
+				"to": "00:05:39,800"
+			},
+			"offsets": {
+				"from": 336800,
+				"to": 339800
+			},
+			"text": " So the story that this tells is fairly obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,800",
+				"to": "00:05:43,800"
+			},
+			"offsets": {
+				"from": 339800,
+				"to": 343800
+			},
+			"text": " You see the top 10 and 100 addresses on the Ethereum network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,800",
+				"to": "00:05:49,800"
+			},
+			"offsets": {
+				"from": 343800,
+				"to": 349800
+			},
+			"text": " but on any 17 lower percentage of the total e-tholding that could just be like you do to the passive result"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,800",
+				"to": "00:05:51,800"
+			},
+			"offsets": {
+				"from": 349800,
+				"to": 351800
+			},
+			"text": " with increasing supply over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,800",
+				"to": "00:05:58,800"
+			},
+			"offsets": {
+				"from": 351800,
+				"to": 358800
+			},
+			"text": " We do see some of these larger accounts possibly being pushed down into lower tiers of ownership"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,800",
+				"to": "00:06:04,800"
+			},
+			"offsets": {
+				"from": 358800,
+				"to": 364800
+			},
+			"text": " while others move up in their place, which also could account for the recent uptick we see in the percentage of e-thone"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,800",
+				"to": "00:06:08,800"
+			},
+			"offsets": {
+				"from": 364800,
+				"to": 368800
+			},
+			"text": " by the top 1000 addresses in the past few quarters."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,800",
+				"to": "00:06:16,800"
+			},
+			"offsets": {
+				"from": 368800,
+				"to": 376800
+			},
+			"text": " When we're looking at the trend of ownership, general trend of ownership since 2015,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,800",
+				"to": "00:06:20,800"
+			},
+			"offsets": {
+				"from": 376800,
+				"to": 380800
+			},
+			"text": " we see that e-thownership is becoming more diverse across addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,800",
+				"to": "00:06:27,800"
+			},
+			"offsets": {
+				"from": 380800,
+				"to": 387800
+			},
+			"text": " We can't assume that more new addresses means more new unique individuals participating in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,800",
+				"to": "00:06:31,800"
+			},
+			"offsets": {
+				"from": 387800,
+				"to": 391800
+			},
+			"text": " However, we can see that the number of non-zero addresses are increasing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,800",
+				"to": "00:06:36,800"
+			},
+			"offsets": {
+				"from": 391800,
+				"to": 396800
+			},
+			"text": " and the concentration of the top 10 and 100 are decreasing alongside each other over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,800",
+				"to": "00:06:40,800"
+			},
+			"offsets": {
+				"from": 396800,
+				"to": 400800
+			},
+			"text": " This could possibly suggest that contrary to the popular narrative,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,800",
+				"to": "00:06:46,800"
+			},
+			"offsets": {
+				"from": 400800,
+				"to": 406800
+			},
+			"text": " the crypto bubble was not overwhelmingly followed by whales and holders buying back crypto at those lows"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,800",
+				"to": "00:06:50,800"
+			},
+			"offsets": {
+				"from": 406800,
+				"to": 410800
+			},
+			"text": " just to make a buck off of what would be the eventual market uptick."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,800",
+				"to": "00:06:55,800"
+			},
+			"offsets": {
+				"from": 410800,
+				"to": 415800
+			},
+			"text": " Rather, this negative correlation could suggest that more and more new people began accumulating"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,800",
+				"to": "00:07:03,800"
+			},
+			"offsets": {
+				"from": 415800,
+				"to": 423800
+			},
+			"text": " at a steady rate after the bubble, which alongside growing e-thirculation could have been reducing the percentage of concentration"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,800",
+				"to": "00:07:06,800"
+			},
+			"offsets": {
+				"from": 423800,
+				"to": 426800
+			},
+			"text": " of these top 10 and 100 whale holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,800",
+				"to": "00:07:15,800"
+			},
+			"offsets": {
+				"from": 426800,
+				"to": 435800
+			},
+			"text": " So, the ecosystem being as young as it is, the unequal concentration of wealth isn't necessarily a major red flag"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,800",
+				"to": "00:07:20,800"
+			},
+			"offsets": {
+				"from": 435800,
+				"to": 440800
+			},
+			"text": " for a de-centralization in the long term, even with the still large concentration of wealth."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,800",
+				"to": "00:07:26,800"
+			},
+			"offsets": {
+				"from": 440800,
+				"to": 446800
+			},
+			"text": " By whales, Ethereum is still pretty far ahead compared to other blockchain protocols, at least on this metric."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,800",
+				"to": "00:07:32,800"
+			},
+			"offsets": {
+				"from": 446800,
+				"to": 452800
+			},
+			"text": " Looking ahead, however, e-th concentration in the hands of a few becomes more of a concern when we shift to a group of state"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,800",
+				"to": "00:07:37,800"
+			},
+			"offsets": {
+				"from": 452800,
+				"to": 457800
+			},
+			"text": " and influence on the network becomes more closely correlated with e-thownership."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,800",
+				"to": "00:07:41,800"
+			},
+			"offsets": {
+				"from": 457800,
+				"to": 461800
+			},
+			"text": " As the beacon chain gets more functional and as DOS replaces its proof of work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,800",
+				"to": "00:07:46,800"
+			},
+			"offsets": {
+				"from": 461800,
+				"to": 466800
+			},
+			"text": " it will be important to watch out for the staking power concentrating and the hands with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,800",
+				"to": "00:07:57,800"
+			},
+			"offsets": {
+				"from": 466800,
+				"to": 477800
+			},
+			"text": " So, this graph shows the total circulating volume of e-th compared to the circulating volume of select BRC-20 tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,800",
+				"to": "00:08:00,800"
+			},
+			"offsets": {
+				"from": 477800,
+				"to": 480800
+			},
+			"text": " which are shown as token value in e-th."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,800",
+				"to": "00:08:08,800"
+			},
+			"offsets": {
+				"from": 480800,
+				"to": 488800
+			},
+			"text": " So, this green line shows the total amount of circulating e-th, i.e., e-th moving between addresses for a reporter."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,800",
+				"to": "00:08:17,800"
+			},
+			"offsets": {
+				"from": 488800,
+				"to": 497800
+			},
+			"text": " It's essentially correlated with the price of e-th, with the spike in circulating e-th aligning with the price high in late 2017 and early 2018."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,800",
+				"to": "00:08:24,800"
+			},
+			"offsets": {
+				"from": 497800,
+				"to": 504800
+			},
+			"text": " And then the bar chart shows the value of a select few ERC-20 tokens circulating quarter over quarter."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,800",
+				"to": "00:08:32,800"
+			},
+			"offsets": {
+				"from": 504800,
+				"to": 512800
+			},
+			"text": " We looked at the top 10 by market cap, plus a few interesting ones we wanted to look at, like, die 0x, matic, and bloom."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,800",
+				"to": "00:08:41,800"
+			},
+			"offsets": {
+				"from": 512800,
+				"to": 521800
+			},
+			"text": " The purpose of this graph was to see effective young network is getting more diverse from both utility and the speculation perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,800",
+				"to": "00:08:49,800"
+			},
+			"offsets": {
+				"from": 521800,
+				"to": 529800
+			},
+			"text": " What we think it shows is that despite a relatively stagnant e-th price recently, the e-th value and circulating tokens is increasing dramatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,800",
+				"to": "00:08:55,800"
+			},
+			"offsets": {
+				"from": 529800,
+				"to": 535800
+			},
+			"text": " And not only is the circulating value increasing with the diversity and market share of tokens are increasing too,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,800",
+				"to": "00:09:01,800"
+			},
+			"offsets": {
+				"from": 535800,
+				"to": 541800
+			},
+			"text": " suggesting that users are using more ERC-20 tokens and doing more of them across the board."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,800",
+				"to": "00:09:11,800"
+			},
+			"offsets": {
+				"from": 541800,
+				"to": 551800
+			},
+			"text": " These two graphs, one of the top one on the bottom, shows the growing concentration of mining pools over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,800",
+				"to": "00:09:20,800"
+			},
+			"offsets": {
+				"from": 551800,
+				"to": 560800
+			},
+			"text": " as measured by a percentage of total block production on the top, and then percentage of the total miner will be paid out on the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,800",
+				"to": "00:09:25,800"
+			},
+			"offsets": {
+				"from": 560800,
+				"to": 565800
+			},
+			"text": " And then each of these graphs, each color corresponds to the same mining pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,800",
+				"to": "00:09:31,800"
+			},
+			"offsets": {
+				"from": 565800,
+				"to": 571800
+			},
+			"text": " So, for instance, the green that's on the bottom of each graph, is e-th mine, and then so on to the rest."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,800",
+				"to": "00:09:36,800"
+			},
+			"offsets": {
+				"from": 571800,
+				"to": 576800
+			},
+			"text": " So, over time, we see that four pools have really started to dominate the mining pool landscape."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,800",
+				"to": "00:09:40,800"
+			},
+			"offsets": {
+				"from": 576800,
+				"to": 580800
+			},
+			"text": " Those are e-th mine, F2 pools, Spark pool, and nano pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,800",
+				"to": "00:09:49,800"
+			},
+			"offsets": {
+				"from": 580800,
+				"to": 589800
+			},
+			"text": " Collectively, they've edged out past previous competitors like mining pool hub and dwarf pool, which can't even see the percentages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,800",
+				"to": "00:09:54,800"
+			},
+			"offsets": {
+				"from": 589800,
+				"to": 594800
+			},
+			"text": " but they barely see their importance in the past few quarters."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,800",
+				"to": "00:10:02,800"
+			},
+			"offsets": {
+				"from": 594800,
+				"to": 602800
+			},
+			"text": " So, those four pools, the four major pools now account for over 72% of quarterly block production, again, the top graph,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,800",
+				"to": "00:10:08,800"
+			},
+			"offsets": {
+				"from": 602800,
+				"to": 608800
+			},
+			"text": " and they pay up to about 83% of the miners across mining pools, again, that's the bottom graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,800",
+				"to": "00:10:16,800"
+			},
+			"offsets": {
+				"from": 608800,
+				"to": 616800
+			},
+			"text": " So, in particular, we're seeing a particularly concerning, possibly concerning dominance in block production between e-th mine and Spark pool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,800",
+				"to": "00:10:20,800"
+			},
+			"offsets": {
+				"from": 616800,
+				"to": 620800
+			},
+			"text": " which today account for just under 50% of blocks produced in a quarter."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,800",
+				"to": "00:10:28,800"
+			},
+			"offsets": {
+				"from": 620800,
+				"to": 628800
+			},
+			"text": " And together, we're seeing e-th mine and nano pool pay out to nearly 70% of the miners on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,800",
+				"to": "00:10:38,800"
+			},
+			"offsets": {
+				"from": 628800,
+				"to": 638800
+			},
+			"text": " So, the concentration of the influence among a few mining pools is definitely not ideal, but it's not necessarily a major concern by itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,800",
+				"to": "00:10:43,800"
+			},
+			"offsets": {
+				"from": 638800,
+				"to": 643800
+			},
+			"text": " The miners are pool-like Gnostic. They will migrate to whatever pool offers the best incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,800",
+				"to": "00:10:54,800"
+			},
+			"offsets": {
+				"from": 643800,
+				"to": 654800
+			},
+			"text": " And if we assume rational behavior by miners, if a single pool were to reach a hash rate close to 50%, or start physically colluding with other pools to mount to 51% of the attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,800",
+				"to": "00:11:02,800"
+			},
+			"offsets": {
+				"from": 654800,
+				"to": 662800
+			},
+			"text": " it's not outside of their own possibility to presume that miners would abandon those pools to protect their income and switch to other pools."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,800",
+				"to": "00:11:10,800"
+			},
+			"offsets": {
+				"from": 662800,
+				"to": 670800
+			},
+			"text": " However, when we look at the number of mining pools of miners over time, as shown by this graph, with mining pools in the orange and miners in red,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,800",
+				"to": "00:11:14,800"
+			},
+			"offsets": {
+				"from": 670800,
+				"to": 674800
+			},
+			"text": " we see a distinct decline in both over the past year."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,800",
+				"to": "00:11:20,800"
+			},
+			"offsets": {
+				"from": 674800,
+				"to": 680800
+			},
+			"text": " In short, what this means is that we have fewer miners that are active on fewer mining pools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,800",
+				"to": "00:11:24,800"
+			},
+			"offsets": {
+				"from": 680800,
+				"to": 684800
+			},
+			"text": " and fewer mining pools being responsible for network maintenance."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,800",
+				"to": "00:11:30,800"
+			},
+			"offsets": {
+				"from": 684800,
+				"to": 690800
+			},
+			"text": " As a quick note, it's important to say that the number of miners in red is not entirely accurate."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,800",
+				"to": "00:11:35,800"
+			},
+			"offsets": {
+				"from": 690800,
+				"to": 695800
+			},
+			"text": " We base the number of miners in mining pools based off of the on-chain payout addresses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,800",
+				"to": "00:11:41,800"
+			},
+			"offsets": {
+				"from": 695800,
+				"to": 701800
+			},
+			"text": " but some mining pools may out their miners off-chain just through more traditional bank deposits."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,800",
+				"to": "00:11:46,800"
+			},
+			"offsets": {
+				"from": 701800,
+				"to": 706800
+			},
+			"text": " So these numbers will be a bit off, but we can't tell those off-chain numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,800",
+				"to": "00:11:51,800"
+			},
+			"offsets": {
+				"from": 706800,
+				"to": 711800
+			},
+			"text": " So overall mining pools could be an area of increasing centralization on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,800",
+				"to": "00:11:56,800"
+			},
+			"offsets": {
+				"from": 711800,
+				"to": 716800
+			},
+			"text": " We have lower e-prices, which is block rewards, and a fairly stagnant hash rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,800",
+				"to": "00:12:01,800"
+			},
+			"offsets": {
+				"from": 716800,
+				"to": 721800
+			},
+			"text": " That could be the reason for miners not joining mining pools recently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,800",
+				"to": "00:12:07,800"
+			},
+			"offsets": {
+				"from": 721800,
+				"to": 727800
+			},
+			"text": " and also we just have a loss of efficiency concentrating the power of mining pools in fewer and fewer mining pools."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,800",
+				"to": "00:12:13,800"
+			},
+			"offsets": {
+				"from": 727800,
+				"to": 733800
+			},
+			"text": " So with NII towards the future, the eventual switch to group the stake will redefine this metric of centralization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,800",
+				"to": "00:12:19,800"
+			},
+			"offsets": {
+				"from": 733800,
+				"to": 739800
+			},
+			"text": " but until then it's fairly prudent that we keep an eye on how its concentration of mining pools of miners"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,800",
+				"to": "00:12:24,800"
+			},
+			"offsets": {
+				"from": 739800,
+				"to": 744800
+			},
+			"text": " and the relative power evolve over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,800",
+				"to": "00:12:29,800"
+			},
+			"offsets": {
+				"from": 744800,
+				"to": 749800
+			},
+			"text": " So next one we'll look at node diversity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,800",
+				"to": "00:12:36,800"
+			},
+			"offsets": {
+				"from": 749800,
+				"to": 756800
+			},
+			"text": " So this data is from Node Tracker on Etherstand, and it shows a node count by country starting in 2018,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,800",
+				"to": "00:12:40,800"
+			},
+			"offsets": {
+				"from": 756800,
+				"to": 760800
+			},
+			"text": " which is unfortunately only as far back as the data goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,800",
+				"to": "00:12:47,800"
+			},
+			"offsets": {
+				"from": 760800,
+				"to": 767800
+			},
+			"text": " It's a heat map, so the warm colors are the highest node counts and the cooler color of the lower node counts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,800",
+				"to": "00:12:55,800"
+			},
+			"offsets": {
+				"from": 767800,
+				"to": 775800
+			},
+			"text": " In general we definitely see some unfortunate bare areas that stay pretty consistent over time, such as the after-decontinent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,800",
+				"to": "00:13:01,800"
+			},
+			"offsets": {
+				"from": 775800,
+				"to": 781800
+			},
+			"text": " but we do see pretty uniform fluctuations rather than random sudden spikes in different geographical areas"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,800",
+				"to": "00:13:05,800"
+			},
+			"offsets": {
+				"from": 781800,
+				"to": 785800
+			},
+			"text": " that are unequal from other countries."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,800",
+				"to": "00:13:10,800"
+			},
+			"offsets": {
+				"from": 785800,
+				"to": 790800
+			},
+			"text": " And it's also helpful to see that the network is physically quite distributed and decentralized across the globe"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,800",
+				"to": "00:13:15,800"
+			},
+			"offsets": {
+				"from": 790800,
+				"to": 795800
+			},
+			"text": " and across a variety of legal and political systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,800",
+				"to": "00:13:25,800"
+			},
+			"offsets": {
+				"from": 795800,
+				"to": 805800
+			},
+			"text": " So these two graphs look at the node size versus the price of the leaf."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,800",
+				"to": "00:13:30,800"
+			},
+			"offsets": {
+				"from": 805800,
+				"to": 810800
+			},
+			"text": " There's been a lot of fluctuation and the total count of full nodes running the ethernet network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,800",
+				"to": "00:13:35,800"
+			},
+			"offsets": {
+				"from": 810800,
+				"to": 815800
+			},
+			"text": " Right now for example I think the number is about half of what it was around this time last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,800",
+				"to": "00:13:38,800"
+			},
+			"offsets": {
+				"from": 815800,
+				"to": 818800
+			},
+			"text": " So on the surface that looks a lot like cyclization."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,800",
+				"to": "00:13:43,800"
+			},
+			"offsets": {
+				"from": 818800,
+				"to": 823800
+			},
+			"text": " There are fewer nodes overall and personally fewer people running nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,800",
+				"to": "00:13:50,800"
+			},
+			"offsets": {
+				"from": 823800,
+				"to": 830800
+			},
+			"text": " There are a lot of reasons why that could be but these graphs show two factors we looked at to see if there's a correlation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,800",
+				"to": "00:13:57,800"
+			},
+			"offsets": {
+				"from": 830800,
+				"to": 837800
+			},
+			"text": " So on the left we're comparing the number of active nodes to the average heat price or a reporter."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,800",
+				"to": "00:14:00,800"
+			},
+			"offsets": {
+				"from": 837800,
+				"to": 840800
+			},
+			"text": " I think this is week over week."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,800",
+				"to": "00:14:07,800"
+			},
+			"offsets": {
+				"from": 840800,
+				"to": 847800
+			},
+			"text": " So maybe when the price is high it's a common belief that more people think it's worth it to run nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,800",
+				"to": "00:14:14,800"
+			},
+			"offsets": {
+				"from": 847800,
+				"to": 854800
+			},
+			"text": " That doesn't actually seem to be the case at least over the person coming 19 which is again all the data we're able to get."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,800",
+				"to": "00:14:22,800"
+			},
+			"offsets": {
+				"from": 854800,
+				"to": 862800
+			},
+			"text": " When we look at the node count on the same graph in blue as the heat price in green it looks like there's actually a negative correlation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,800",
+				"to": "00:14:31,800"
+			},
+			"offsets": {
+				"from": 862800,
+				"to": 871800
+			},
+			"text": " The node count was one of its lowest points in June when the price was the highest and the count was quite high during the price tip at the end of the summer."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,800",
+				"to": "00:14:39,800"
+			},
+			"offsets": {
+				"from": 871800,
+				"to": 879800
+			},
+			"text": " So even if this correlation might have been true historically and that's why people think it exists it doesn't seem to be true right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,800",
+				"to": "00:14:49,800"
+			},
+			"offsets": {
+				"from": 879800,
+				"to": 889800
+			},
+			"text": " So then on the right we checked the node count against the total size of the default node on death which is the red line and in parity which is the orange line."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,800",
+				"to": "00:14:58,800"
+			},
+			"offsets": {
+				"from": 889800,
+				"to": 898800
+			},
+			"text": " About 97% of all the nodes on the network are running one of those two clients and about 95% of the nodes on the network are default nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,800",
+				"to": "00:15:03,800"
+			},
+			"offsets": {
+				"from": 898800,
+				"to": 903800
+			},
+			"text": " It's been opposed to archive nodes which would of course have a much higher date for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,800",
+				"to": "00:15:09,800"
+			},
+			"offsets": {
+				"from": 903800,
+				"to": 909800
+			},
+			"text": " Obviously the average node size is more or less than facing over time as blocks are mined."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,800",
+				"to": "00:15:18,800"
+			},
+			"offsets": {
+				"from": 909800,
+				"to": 918800
+			},
+			"text": " It seems reasonable to assume that as the default node size gets bigger it gets more expensive and takes more energy to keep the node running and keep it synced."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,800",
+				"to": "00:15:21,800"
+			},
+			"offsets": {
+				"from": 918800,
+				"to": 921800
+			},
+			"text": " So maybe sure people are doing so."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,800",
+				"to": "00:15:29,800"
+			},
+			"offsets": {
+				"from": 921800,
+				"to": 929800
+			},
+			"text": " And that looks like it's the case when you look at the graph on the right or at least we see a clearer relationship than there is with the price of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,800",
+				"to": "00:15:37,800"
+			},
+			"offsets": {
+				"from": 929800,
+				"to": 937800
+			},
+			"text": " As we move toward POS and shorting the network the node size burden won't have to be as much of an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,800",
+				"to": "00:15:42,800"
+			},
+			"offsets": {
+				"from": 937800,
+				"to": 942800
+			},
+			"text": " So maybe this attrition won't continue on the same trend into next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,800",
+				"to": "00:15:50,800"
+			},
+			"offsets": {
+				"from": 942800,
+				"to": 950800
+			},
+			"text": " There are also some interesting experiments happening around the ecosystem to find ways to make running a no easier and cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,800",
+				"to": "00:15:53,800"
+			},
+			"offsets": {
+				"from": 950800,
+				"to": 953800
+			},
+			"text": " So we want to keep tracking this one through."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,800",
+				"to": "00:15:57,800"
+			},
+			"offsets": {
+				"from": 953800,
+				"to": 957800
+			},
+			"text": " The changes that the next year is going to bring on network."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,800",
+				"to": "00:16:02,800"
+			},
+			"offsets": {
+				"from": 957800,
+				"to": 962800
+			},
+			"text": " So we set up to start a measure of utensilization."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,800",
+				"to": "00:16:07,800"
+			},
+			"offsets": {
+				"from": 962800,
+				"to": 967800
+			},
+			"text": " We of course envision this, your fabulous graph or tracker that we compare."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,800",
+				"to": "00:16:16,800"
+			},
+			"offsets": {
+				"from": 967800,
+				"to": 976800
+			},
+			"text": " Pretty consistent decentralization metrics across protocols that very quickly as bad as the beginning sort of devolved into comparing apples and oranges."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,800",
+				"to": "00:16:23,800"
+			},
+			"offsets": {
+				"from": 976800,
+				"to": 983800
+			},
+			"text": " And we of course recognize that based on the census algorithms you can't compare the same metrics across protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,800",
+				"to": "00:16:27,800"
+			},
+			"offsets": {
+				"from": 983800,
+				"to": 987800
+			},
+			"text": " And so we took that original 19 subsystems that we showed."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,800",
+				"to": "00:16:32,800"
+			},
+			"offsets": {
+				"from": 987800,
+				"to": 992800
+			},
+			"text": " We said, which ones could be possibly and confidently compare across at least a few protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,800",
+				"to": "00:16:42,800"
+			},
+			"offsets": {
+				"from": 992800,
+				"to": 1002800
+			},
+			"text": " And for instance, a proof of authority or a substitute of a view of blockchain was very different than a proof of work or a state blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,800",
+				"to": "00:16:53,800"
+			},
+			"offsets": {
+				"from": 1002800,
+				"to": 1013800
+			},
+			"text": " And so the next step would be to sort of take this adjusted series of subsystems and see if we can't confidently compare it across chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,800",
+				"to": "00:17:00,800"
+			},
+			"offsets": {
+				"from": 1013800,
+				"to": 1020800
+			},
+			"text": " So difficulty is of course, active data for those chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,800",
+				"to": "00:17:04,800"
+			},
+			"offsets": {
+				"from": 1020800,
+				"to": 1024800
+			},
+			"text": " So what conclusions can we take away from all this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,800",
+				"to": "00:17:12,800"
+			},
+			"offsets": {
+				"from": 1024800,
+				"to": 1032800
+			},
+			"text": " First, we think the network is most clearly decentralizable when it comes to the reduction in the holding power of the top 10 and 100 addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,800",
+				"to": "00:17:19,800"
+			},
+			"offsets": {
+				"from": 1032800,
+				"to": 1039800
+			},
+			"text": " As we head toward Ethereum 2.0 and group of state watching what happens with these ownership percentages will be crucial."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,800",
+				"to": "00:17:28,800"
+			},
+			"offsets": {
+				"from": 1039800,
+				"to": 1048800
+			},
+			"text": " Second, we think that the clearest area of centralization is in the mining pools and the concentration of power between handful of pools."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,800",
+				"to": "00:17:36,800"
+			},
+			"offsets": {
+				"from": 1048800,
+				"to": 1056800
+			},
+			"text": " And we also suspect that no nutrition is a big one, but we just don't have enough historical data to prevent concrete later."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,800",
+				"to": "00:17:48,800"
+			},
+			"offsets": {
+				"from": 1056800,
+				"to": 1068800
+			},
+			"text": " As a third conclusion, we're not as a large point, we're not necessarily trying to make a decision about if the ecosystem is doing a good or bad job of de-centrizing Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,800",
+				"to": "00:17:50,800"
+			},
+			"offsets": {
+				"from": 1068800,
+				"to": 1070800
+			},
+			"text": " We're even making a value judgment."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,800",
+				"to": "00:17:56,800"
+			},
+			"offsets": {
+				"from": 1070800,
+				"to": 1076800
+			},
+			"text": " It's obvious that the activity on Ethereum is getting more diverse, that develop or mine's turn activity is growing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,800",
+				"to": "00:18:09,800"
+			},
+			"offsets": {
+				"from": 1076800,
+				"to": 1089800
+			},
+			"text": " That will remain in steady progress on security and that the introduction of use cases like DeFi have injected a lot of factors into de-centrization and activity that we don't necessarily have time to analyze yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,800",
+				"to": "00:18:19,800"
+			},
+			"offsets": {
+				"from": 1089800,
+				"to": 1099800
+			},
+			"text": " So it's safe to argue that Ethereum has far had no protocols in terms of this network and ecosystem of de-centrization."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,800",
+				"to": "00:18:31,800"
+			},
+			"offsets": {
+				"from": 1099800,
+				"to": 1111800
+			},
+			"text": " Fourth conclusion is that over the next, over the lifetime of the network, we've seen much greater hooplikes in the end, more layers of activity happening off-chain, which we can't see here."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,800",
+				"to": "00:18:44,800"
+			},
+			"offsets": {
+				"from": 1111800,
+				"to": 1124800
+			},
+			"text": " That will just get more true over time, so in some sense this stuff might get even harder to track, but that also makes the security and de-centrization of the base settlement layer that much more important to watch and make that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,800",
+				"to": "00:18:54,800"
+			},
+			"offsets": {
+				"from": 1124800,
+				"to": 1134800
+			},
+			"text": " We also wanted to point out that it's really important to have this historical data about the network so we can all watch these metrics continue to evolve."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,800",
+				"to": "00:19:06,800"
+			},
+			"offsets": {
+				"from": 1134800,
+				"to": 1146800
+			},
+			"text": " I would say Ethereum is much better at tracking data than any other protocol, but it can still be surprisingly hard to find, let alone make sense of this very soon-down big picture stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,800",
+				"to": "00:19:23,800"
+			},
+			"offsets": {
+				"from": 1146800,
+				"to": 1163800
+			},
+			"text": " So Etherscan shared some of their non-colic historical new trucker data with us, which we really appreciate, and we also want to say thanks to our colleagues at the Let You, especially Dan and Sweet and Moemoraki for helping us follow this data and create these legal initiatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,800",
+				"to": "00:19:36,800"
+			},
+			"offsets": {
+				"from": 1163800,
+				"to": 1176800
+			},
+			"text": " So, as you mentioned, we didn't have time to go over a lot of the other graphs that we had pulled and analyzed for the study of de-centrization."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,800",
+				"to": "00:19:52,800"
+			},
+			"offsets": {
+				"from": 1176800,
+				"to": 1192800
+			},
+			"text": " So we have about a dozen or so more that we didn't have time to look, but we're going to build a page on a Let Thea, which is a data analytics platform, where anyone interested can view those graphs, and then hopefully in the near future we'll have a lot of track of these metrics over time, so we don't have to constantly update them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,800",
+				"to": "00:20:06,800"
+			},
+			"offsets": {
+				"from": 1192800,
+				"to": 1206800
+			},
+			"text": " And reanalyzing. So it's just a few of the other graphs that we have time to analyze, including function calls on the top left, that smaller one does include transfer, and on the bottom right it just moves transfer, it gets a clearer view of the other function calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,800",
+				"to": "00:20:15,800"
+			},
+			"offsets": {
+				"from": 1206800,
+				"to": 1215800
+			},
+			"text": " We looked at each training volume over DEXs and then gas fees, and then just a different way of looking at the top address concentration."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,800",
+				"to": "00:20:28,800"
+			},
+			"offsets": {
+				"from": 1215800,
+				"to": 1228800
+			},
+			"text": " So we really hope this is something of interest to the network that people continue asking questions about it, continue exploring it, suggest additional metrics or ways to quantify those subsystems over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,800",
+				"to": "00:20:34,800"
+			},
+			"offsets": {
+				"from": 1228800,
+				"to": 1234800
+			},
+			"text": " And if you have any questions, please definitely reach out to us and enjoy the rest of DEXs."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,800",
+				"to": "00:20:39,800"
+			},
+			"offsets": {
+				"from": 1234800,
+				"to": 1239800
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,800",
+				"to": "00:20:53,800"
+			},
+			"offsets": {
+				"from": 1239800,
+				"to": 1253800
+			},
+			"text": " [Music]"
+		}
+	]
+}

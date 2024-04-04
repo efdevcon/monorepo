@@ -1,0 +1,4839 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:15,400"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 15400
+			},
+			"text": " I have a protocol at chancef systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,400",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 15400,
+				"to": 16000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:18,400"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 18400
+			},
+			"text": " I'm also one of the co-organizers of East Berlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,400",
+				"to": "00:00:23,600"
+			},
+			"offsets": {
+				"from": 18400,
+				"to": 23600
+			},
+			"text": " And I used to work on various EF and ESP grants"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,600",
+				"to": "00:00:26,320"
+			},
+			"offsets": {
+				"from": 23600,
+				"to": 26320
+			},
+			"text": " in the past for both execution layer and consensus layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,320",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 26320,
+				"to": 27000
+			},
+			"text": " clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:29,400"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 29400
+			},
+			"text": " And among others, as France already mentioned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,400",
+				"to": "00:00:32,400"
+			},
+			"offsets": {
+				"from": 29400,
+				"to": 32400
+			},
+			"text": " I launched a early test net with a bunch of cool people"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,400",
+				"to": "00:00:35,560"
+			},
+			"offsets": {
+				"from": 32400,
+				"to": 35560
+			},
+			"text": " that are also sitting here in the room in 2019."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,560",
+				"to": "00:00:38,040"
+			},
+			"offsets": {
+				"from": 35560,
+				"to": 38040
+			},
+			"text": " So what I'm going to cover today is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,040",
+				"to": "00:00:41,520"
+			},
+			"offsets": {
+				"from": 38040,
+				"to": 41520
+			},
+			"text": " I want to briefly dive into the Ethereum protocol history"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,520",
+				"to": "00:00:44,320"
+			},
+			"offsets": {
+				"from": 41520,
+				"to": 44320
+			},
+			"text": " prior to the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,320",
+				"to": "00:00:46,280"
+			},
+			"offsets": {
+				"from": 44320,
+				"to": 46280
+			},
+			"text": " And then specifically take a close look"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,280",
+				"to": "00:00:49,520"
+			},
+			"offsets": {
+				"from": 46280,
+				"to": 49520
+			},
+			"text": " at the implications of the merge on the test nets"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,520",
+				"to": "00:00:52,680"
+			},
+			"offsets": {
+				"from": 49520,
+				"to": 52680
+			},
+			"text": " and finally give a quick guide to selecting the test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,680",
+				"to": "00:00:54,840"
+			},
+			"offsets": {
+				"from": 52680,
+				"to": 54840
+			},
+			"text": " for your project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,840",
+				"to": "00:00:57,600"
+			},
+			"offsets": {
+				"from": 54840,
+				"to": 57600
+			},
+			"text": " So yeah, let's dive right into the protocol history."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,600",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 57600,
+				"to": 60000
+			},
+			"text": " Everything started with a test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:03,640"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 63640
+			},
+			"text": " Does anyone here know what's the meaning of the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,640",
+				"to": "00:01:05,680"
+			},
+			"offsets": {
+				"from": 63640,
+				"to": 65680
+			},
+			"text": " GANIS's extra data is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,680",
+				"to": "00:01:07,800"
+			},
+			"offsets": {
+				"from": 65680,
+				"to": 67800
+			},
+			"text": " You might know the Bitcoin extra data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,800",
+				"to": "00:01:11,080"
+			},
+			"offsets": {
+				"from": 67800,
+				"to": 71080
+			},
+			"text": " GANIS's extra data contains a news headline."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,080",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 71080,
+				"to": 74000
+			},
+			"text": " Does anyone know what the meaning of the Ethereum extra"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:14,960"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 74960
+			},
+			"text": " data is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,960",
+				"to": "00:01:19,440"
+			},
+			"offsets": {
+				"from": 74960,
+				"to": 79440
+			},
+			"text": " It's actually a block hash from a test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,440",
+				"to": "00:01:23,240"
+			},
+			"offsets": {
+				"from": 79440,
+				"to": 83240
+			},
+			"text": " Ethereum was publicly, fairly launched"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,240",
+				"to": "00:01:27,400"
+			},
+			"offsets": {
+				"from": 83240,
+				"to": 87400
+			},
+			"text": " by announcing a block number on an Olympic test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,400",
+				"to": "00:01:31,600"
+			},
+			"offsets": {
+				"from": 87400,
+				"to": 91600
+			},
+			"text": " that was 1,028,201."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,600",
+				"to": "00:01:35,400"
+			},
+			"offsets": {
+				"from": 91600,
+				"to": 95400
+			},
+			"text": " And once this test net was mined on the--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,400",
+				"to": "00:01:37,240"
+			},
+			"offsets": {
+				"from": 95400,
+				"to": 97240
+			},
+			"text": " once this block was mined on the test net,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,240",
+				"to": "00:01:41,480"
+			},
+			"offsets": {
+				"from": 97240,
+				"to": 101480
+			},
+			"text": " this hash could be inserted into the Ethereum GANIS's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,480",
+				"to": "00:01:45,840"
+			},
+			"offsets": {
+				"from": 101480,
+				"to": 105840
+			},
+			"text": " and the public mining on the Ethereum mainnet could start."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,840",
+				"to": "00:01:47,520"
+			},
+			"offsets": {
+				"from": 105840,
+				"to": 107520
+			},
+			"text": " Olympic was the last previous test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,520",
+				"to": "00:01:50,560"
+			},
+			"offsets": {
+				"from": 107520,
+				"to": 110560
+			},
+			"text": " before the Ethereum mainnet was launched."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,560",
+				"to": "00:01:53,840"
+			},
+			"offsets": {
+				"from": 110560,
+				"to": 113840
+			},
+			"text": " And the first public Ethereum test net after the launch"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,840",
+				"to": "00:01:55,360"
+			},
+			"offsets": {
+				"from": 113840,
+				"to": 115360
+			},
+			"text": " was more than--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,360",
+				"to": "00:01:57,680"
+			},
+			"offsets": {
+				"from": 115360,
+				"to": 117680
+			},
+			"text": " more than was a proof of work test net using the same ESH"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,680",
+				"to": "00:01:59,360"
+			},
+			"offsets": {
+				"from": 117680,
+				"to": 119360
+			},
+			"text": " algorithm as mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,360",
+				"to": "00:02:02,040"
+			},
+			"offsets": {
+				"from": 119360,
+				"to": 122040
+			},
+			"text": " And interestingly, it had a custom starting"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,040",
+				"to": "00:02:06,800"
+			},
+			"offsets": {
+				"from": 122040,
+				"to": 126800
+			},
+			"text": " launch of 2 to the power of 20 to prevent transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,800",
+				"to": "00:02:08,880"
+			},
+			"offsets": {
+				"from": 126800,
+				"to": 128880
+			},
+			"text": " replays on mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,880",
+				"to": "00:02:10,680"
+			},
+			"offsets": {
+				"from": 128880,
+				"to": 130680
+			},
+			"text": " Most of us probably remember the Shanghai"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,680",
+				"to": "00:02:13,880"
+			},
+			"offsets": {
+				"from": 130680,
+				"to": 133880
+			},
+			"text": " text during DEF CON 2 in 2016."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,880",
+				"to": "00:02:16,680"
+			},
+			"offsets": {
+				"from": 133880,
+				"to": 136680
+			},
+			"text": " An attacker exploited the long discrete time"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,680",
+				"to": "00:02:21,560"
+			},
+			"offsets": {
+				"from": 136680,
+				"to": 141560
+			},
+			"text": " of the X code size upcode in one of the client implementations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,560",
+				"to": "00:02:24,440"
+			},
+			"offsets": {
+				"from": 141560,
+				"to": 144440
+			},
+			"text": " which caused the denial of service of the Ethereum mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,440",
+				"to": "00:02:29,080"
+			},
+			"offsets": {
+				"from": 144440,
+				"to": 149080
+			},
+			"text": " It's a photo of the amazing guest team investigating the issues"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,080",
+				"to": "00:02:30,560"
+			},
+			"offsets": {
+				"from": 149080,
+				"to": 150560
+			},
+			"text": " and coming up with the solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,560",
+				"to": "00:02:32,600"
+			},
+			"offsets": {
+				"from": 150560,
+				"to": 152600
+			},
+			"text": " To address this issue, two subsequent hard forks"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,600",
+				"to": "00:02:34,200"
+			},
+			"offsets": {
+				"from": 152600,
+				"to": 154200
+			},
+			"text": " were scheduled for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,200",
+				"to": "00:02:37,640"
+			},
+			"offsets": {
+				"from": 154200,
+				"to": 157640
+			},
+			"text": " The Tanguine whistle fork to fix the attack vector"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,640",
+				"to": "00:02:41,600"
+			},
+			"offsets": {
+				"from": 157640,
+				"to": 161600
+			},
+			"text": " and the spurious dragon fork to allow cleaning up the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,600",
+				"to": "00:02:42,640"
+			},
+			"offsets": {
+				"from": 161600,
+				"to": 162640
+			},
+			"text": " afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,640",
+				"to": "00:02:46,680"
+			},
+			"offsets": {
+				"from": 162640,
+				"to": 166680
+			},
+			"text": " However, this protocol change caused a consensus failure"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,680",
+				"to": "00:02:48,320"
+			},
+			"offsets": {
+				"from": 166680,
+				"to": 168320
+			},
+			"text": " on modern."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,320",
+				"to": "00:02:51,840"
+			},
+			"offsets": {
+				"from": 168320,
+				"to": 171840
+			},
+			"text": " This was specifically caused by the different ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,840",
+				"to": "00:02:53,760"
+			},
+			"offsets": {
+				"from": 171840,
+				"to": 173760
+			},
+			"text": " how the client's handle this custom starting"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,760",
+				"to": "00:02:54,760"
+			},
+			"offsets": {
+				"from": 173760,
+				"to": 174760
+			},
+			"text": " on the user's."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,760",
+				"to": "00:02:57,240"
+			},
+			"offsets": {
+				"from": 174760,
+				"to": 177240
+			},
+			"text": " It was then decided it's not a good idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,240",
+				"to": "00:02:58,960"
+			},
+			"offsets": {
+				"from": 177240,
+				"to": 178960
+			},
+			"text": " to have a custom protocol on a test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,960",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 178960,
+				"to": 183000
+			},
+			"text": " And therefore, modern was discontinued and replaced"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:05,960"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 185960
+			},
+			"text": " by a new test net called Rupson."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,960",
+				"to": "00:03:09,040"
+			},
+			"offsets": {
+				"from": 185960,
+				"to": 189040
+			},
+			"text": " Rupson was the first test net to launch this Shiny"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,040",
+				"to": "00:03:11,040"
+			},
+			"offsets": {
+				"from": 189040,
+				"to": 191040
+			},
+			"text": " ID right from Gennes'."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,040",
+				"to": "00:03:15,080"
+			},
+			"offsets": {
+				"from": 191040,
+				"to": 195080
+			},
+			"text": " The Shiny ID served the purpose of a simple replay protection"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,080",
+				"to": "00:03:18,440"
+			},
+			"offsets": {
+				"from": 195080,
+				"to": 198440
+			},
+			"text": " according to EIP 155."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,440",
+				"to": "00:03:20,280"
+			},
+			"offsets": {
+				"from": 198440,
+				"to": 200280
+			},
+			"text": " So the Rupson test net was also powered"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,280",
+				"to": "00:03:22,680"
+			},
+			"offsets": {
+				"from": 200280,
+				"to": 202680
+			},
+			"text": " by the ESH proof of work engine."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,680",
+				"to": "00:03:25,760"
+			},
+			"offsets": {
+				"from": 202680,
+				"to": 205760
+			},
+			"text": " We all know proof of work is fairly permissionless."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,760",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 205760,
+				"to": 209000
+			},
+			"text": " So there is no good incentive to secure a zero value proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:30,480"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 210480
+			},
+			"text": " of work test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,480",
+				"to": "00:03:35,400"
+			},
+			"offsets": {
+				"from": 210480,
+				"to": 215400
+			},
+			"text": " So attackers moved to DOS Rupson,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,400",
+				"to": "00:03:38,200"
+			},
+			"offsets": {
+				"from": 215400,
+				"to": 218200
+			},
+			"text": " and the test net was unusable for weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,200",
+				"to": "00:03:41,560"
+			},
+			"offsets": {
+				"from": 218200,
+				"to": 221560
+			},
+			"text": " In response, parity launched the COVID proof of a sordid test"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,560",
+				"to": "00:03:45,800"
+			},
+			"offsets": {
+				"from": 221560,
+				"to": 225800
+			},
+			"text": " net and guess launched the Rupson test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,800",
+				"to": "00:03:49,320"
+			},
+			"offsets": {
+				"from": 225800,
+				"to": 229320
+			},
+			"text": " For the first time, Ethereum had a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,320",
+				"to": "00:03:53,440"
+			},
+			"offsets": {
+				"from": 229320,
+				"to": 233440
+			},
+			"text": " to have a more stable test net environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,440",
+				"to": "00:03:56,840"
+			},
+			"offsets": {
+				"from": 233440,
+				"to": 236840
+			},
+			"text": " However, COVID used the parity aura consensus engine"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,840",
+				"to": "00:03:59,960"
+			},
+			"offsets": {
+				"from": 236840,
+				"to": 239960
+			},
+			"text": " and Rinkby used the guess click consensus engine"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,960",
+				"to": "00:04:03,360"
+			},
+			"offsets": {
+				"from": 239960,
+				"to": 243360
+			},
+			"text": " and they were not compatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,360",
+				"to": "00:04:05,280"
+			},
+			"offsets": {
+				"from": 243360,
+				"to": 245280
+			},
+			"text": " COVID was therefore only accessible"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,280",
+				"to": "00:04:08,360"
+			},
+			"offsets": {
+				"from": 245280,
+				"to": 248360
+			},
+			"text": " through the parity theorem stack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,360",
+				"to": "00:04:12,760"
+			},
+			"offsets": {
+				"from": 248360,
+				"to": 252760
+			},
+			"text": " whereas Rinkby was only accessible by guess or tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,760",
+				"to": "00:04:15,520"
+			},
+			"offsets": {
+				"from": 252760,
+				"to": 255520
+			},
+			"text": " that relied on the guess stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,520",
+				"to": "00:04:18,400"
+			},
+			"offsets": {
+				"from": 255520,
+				"to": 258400
+			},
+			"text": " So in 2018, the girl initiative attempted"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,400",
+				"to": "00:04:22,640"
+			},
+			"offsets": {
+				"from": 258400,
+				"to": 262640
+			},
+			"text": " to address this by ideating a cross-client proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,640",
+				"to": "00:04:25,640"
+			},
+			"offsets": {
+				"from": 262640,
+				"to": 265640
+			},
+			"text": " of a sordid test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,640",
+				"to": "00:04:26,960"
+			},
+			"offsets": {
+				"from": 265640,
+				"to": 266960
+			},
+			"text": " In the end, the initiative managed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,960",
+				"to": "00:04:29,040"
+			},
+			"offsets": {
+				"from": 266960,
+				"to": 269040
+			},
+			"text": " to implement click and parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,040",
+				"to": "00:04:32,060"
+			},
+			"offsets": {
+				"from": 269040,
+				"to": 272060
+			},
+			"text": " And subsequently, in 2019, the girl"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,060",
+				"to": "00:04:34,760"
+			},
+			"offsets": {
+				"from": 272060,
+				"to": 274760
+			},
+			"text": " lead test net was launched as a first cross-client proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,760",
+				"to": "00:04:37,040"
+			},
+			"offsets": {
+				"from": 274760,
+				"to": 277040
+			},
+			"text": " of a sordid test net with validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,040",
+				"to": "00:04:40,920"
+			},
+			"offsets": {
+				"from": 277040,
+				"to": 280920
+			},
+			"text": " from both guess and parity theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,920",
+				"to": "00:04:44,400"
+			},
+			"offsets": {
+				"from": 280920,
+				"to": 284400
+			},
+			"text": " At the same time, coincidentally, after DEFCON and Prak,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,400",
+				"to": "00:04:46,720"
+			},
+			"offsets": {
+				"from": 284400,
+				"to": 286720
+			},
+			"text": " I believe the Pantheon client was released."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,720",
+				"to": "00:04:50,240"
+			},
+			"offsets": {
+				"from": 286720,
+				"to": 290240
+			},
+			"text": " So there was even a sord client available"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,240",
+				"to": "00:04:52,480"
+			},
+			"offsets": {
+				"from": 290240,
+				"to": 292480
+			},
+			"text": " for running validators on this test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,480",
+				"to": "00:04:57,560"
+			},
+			"offsets": {
+				"from": 292480,
+				"to": 297560
+			},
+			"text": " And soon after, also, Nezamind joined the validators set."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,560",
+				"to": "00:05:00,560"
+			},
+			"offsets": {
+				"from": 297560,
+				"to": 300560
+			},
+			"text": " Yeah, later, the same year parity exits Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,560",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 300560,
+				"to": 306000
+			},
+			"text": " and leaving COVID fairly unmaintained, unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:13,760"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 313760
+			},
+			"text": " Now, going fast forward in time, just earlier this year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,760",
+				"to": "00:05:16,440"
+			},
+			"offsets": {
+				"from": 313760,
+				"to": 316440
+			},
+			"text": " to prepare for the merge, some of the older test nets"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,440",
+				"to": "00:05:17,920"
+			},
+			"offsets": {
+				"from": 316440,
+				"to": 317920
+			},
+			"text": " had to be deprecated."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,920",
+				"to": "00:05:21,040"
+			},
+			"offsets": {
+				"from": 317920,
+				"to": 321040
+			},
+			"text": " The protocols support team announced the end of life"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,040",
+				"to": "00:05:27,400"
+			},
+			"offsets": {
+				"from": 321040,
+				"to": 327400
+			},
+			"text": " for Rubson and Ringby on the amazing Ethereum foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,400",
+				"to": "00:05:29,240"
+			},
+			"offsets": {
+				"from": 327400,
+				"to": 329240
+			},
+			"text": " block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,240",
+				"to": "00:05:32,120"
+			},
+			"offsets": {
+				"from": 329240,
+				"to": 332120
+			},
+			"text": " They argued the older test nets are harder to maintain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,120",
+				"to": "00:05:35,440"
+			},
+			"offsets": {
+				"from": 332120,
+				"to": 335440
+			},
+			"text": " due to growing history and state and the growing complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,440",
+				"to": "00:05:38,160"
+			},
+			"offsets": {
+				"from": 335440,
+				"to": 338160
+			},
+			"text": " to run the test net setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,160",
+				"to": "00:05:41,680"
+			},
+			"offsets": {
+				"from": 338160,
+				"to": 341680
+			},
+			"text": " So in foresight, however, a new test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,680",
+				"to": "00:05:44,440"
+			},
+			"offsets": {
+				"from": 341680,
+				"to": 344440
+			},
+			"text": " was launched, Cipolia."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,440",
+				"to": "00:05:48,400"
+			},
+			"offsets": {
+				"from": 344440,
+				"to": 348400
+			},
+			"text": " Interestingly, Cipolia, that was just launched--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,400",
+				"to": "00:05:54,520"
+			},
+			"offsets": {
+				"from": 348400,
+				"to": 354520
+			},
+			"text": " not even a year ago, it was launched as a proof of work"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,520",
+				"to": "00:05:57,440"
+			},
+			"offsets": {
+				"from": 354520,
+				"to": 357440
+			},
+			"text": " test net using the same eSASH algorithm as main net"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,440",
+				"to": "00:05:59,200"
+			},
+			"offsets": {
+				"from": 357440,
+				"to": 359200
+			},
+			"text": " back in the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,200",
+				"to": "00:06:02,440"
+			},
+			"offsets": {
+				"from": 359200,
+				"to": 362440
+			},
+			"text": " It was the first time since the Rubson launch in 2017"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,440",
+				"to": "00:06:07,280"
+			},
+			"offsets": {
+				"from": 362440,
+				"to": 367280
+			},
+			"text": " that we actually launched a new proof of work test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,280",
+				"to": "00:06:09,840"
+			},
+			"offsets": {
+				"from": 367280,
+				"to": 369840
+			},
+			"text": " The reason was potentially to have another test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,840",
+				"to": "00:06:12,960"
+			},
+			"offsets": {
+				"from": 369840,
+				"to": 372960
+			},
+			"text": " similar to main net to allow for, once again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,960",
+				"to": "00:06:17,360"
+			},
+			"offsets": {
+				"from": 372960,
+				"to": 377360
+			},
+			"text": " testing the merge and now main net conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,360",
+				"to": "00:06:21,600"
+			},
+			"offsets": {
+				"from": 377360,
+				"to": 381600
+			},
+			"text": " OK, so let's recap the test nets prior to the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,600",
+				"to": "00:06:23,240"
+			},
+			"offsets": {
+				"from": 381600,
+				"to": 383240
+			},
+			"text": " Modern is fairly dead."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,240",
+				"to": "00:06:26,400"
+			},
+			"offsets": {
+				"from": 383240,
+				"to": 386400
+			},
+			"text": " It was replaced by Rubson in 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,400",
+				"to": "00:06:29,560"
+			},
+			"offsets": {
+				"from": 386400,
+				"to": 389560
+			},
+			"text": " Rubson, then again, was just deprecated a couple of weeks"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,560",
+				"to": "00:06:32,240"
+			},
+			"offsets": {
+				"from": 389560,
+				"to": 392240
+			},
+			"text": " ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,240",
+				"to": "00:06:35,120"
+			},
+			"offsets": {
+				"from": 392240,
+				"to": 395120
+			},
+			"text": " Covent diet was parity leaving Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,120",
+				"to": "00:06:40,880"
+			},
+			"offsets": {
+				"from": 395120,
+				"to": 400880
+			},
+			"text": " Ringby was also deprecated just a couple of months ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,880",
+				"to": "00:06:44,440"
+			},
+			"offsets": {
+				"from": 400880,
+				"to": 404440
+			},
+			"text": " and that leaves us with Cipolia as the latest test nets"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,440",
+				"to": "00:06:46,560"
+			},
+			"offsets": {
+				"from": 404440,
+				"to": 406560
+			},
+			"text": " for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,560",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 406560,
+				"to": 412000
+			},
+			"text": " And now let's just take a look at what it actually means to merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:55,360"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 415360
+			},
+			"text": " I took a lot of time to build these slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,360",
+				"to": "00:06:58,840"
+			},
+			"offsets": {
+				"from": 415360,
+				"to": 418840
+			},
+			"text": " So in Ethereum, the merge stands for an event"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,840",
+				"to": "00:07:02,920"
+			},
+			"offsets": {
+				"from": 418840,
+				"to": 422920
+			},
+			"text": " where two blockchains are literally glued together."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,920",
+				"to": "00:07:06,480"
+			},
+			"offsets": {
+				"from": 422920,
+				"to": 426480
+			},
+			"text": " You need a consensus layer beacon chain that takes over"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,480",
+				"to": "00:07:10,040"
+			},
+			"offsets": {
+				"from": 426480,
+				"to": 430040
+			},
+			"text": " finality and fork choice considerations."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,040",
+				"to": "00:07:13,160"
+			},
+			"offsets": {
+				"from": 430040,
+				"to": 433160
+			},
+			"text": " Here shown in blue."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,160",
+				"to": "00:07:16,440"
+			},
+			"offsets": {
+				"from": 433160,
+				"to": 436440
+			},
+			"text": " And this consensus layer beacon chain replaces the legacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,440",
+				"to": "00:07:21,360"
+			},
+			"offsets": {
+				"from": 436440,
+				"to": 441360
+			},
+			"text": " proof of work consensus or other consensus mechanisms"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,360",
+				"to": "00:07:26,840"
+			},
+			"offsets": {
+				"from": 441360,
+				"to": 446840
+			},
+			"text": " on the execution layer here depicted in red."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,840",
+				"to": "00:07:31,520"
+			},
+			"offsets": {
+				"from": 446840,
+				"to": 451520
+			},
+			"text": " So the slide shows the timeline of the test net mergers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,520",
+				"to": "00:07:34,360"
+			},
+			"offsets": {
+				"from": 451520,
+				"to": 454360
+			},
+			"text": " And I added a lot of details here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,360",
+				"to": "00:07:35,800"
+			},
+			"offsets": {
+				"from": 454360,
+				"to": 455800
+			},
+			"text": " I'm standing in front of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,800",
+				"to": "00:07:39,760"
+			},
+			"offsets": {
+				"from": 455800,
+				"to": 459760
+			},
+			"text": " I added a lot of details here, but let's revisit this slide"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,760",
+				"to": "00:07:45,400"
+			},
+			"offsets": {
+				"from": 459760,
+				"to": 465400
+			},
+			"text": " in a bit after talking a bit about the implications."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,400",
+				"to": "00:07:49,800"
+			},
+			"offsets": {
+				"from": 465400,
+				"to": 469800
+			},
+			"text": " So just to recap, proof of work consensus mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,800",
+				"to": "00:07:53,400"
+			},
+			"offsets": {
+				"from": 469800,
+				"to": 473400
+			},
+			"text": " is permissionless as per Nakamoto consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,400",
+				"to": "00:07:57,160"
+			},
+			"offsets": {
+				"from": 473400,
+				"to": 477160
+			},
+			"text": " So you can just turn on your CPU, minor, and hope for a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,160",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 477160,
+				"to": 480000
+			},
+			"text": " in theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:02,920"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 482920
+			},
+			"text": " On the other hand, proof of authority is permissioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,920",
+				"to": "00:08:05,200"
+			},
+			"offsets": {
+				"from": 482920,
+				"to": 485200
+			},
+			"text": " Obviously, only authorized accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,200",
+				"to": "00:08:07,480"
+			},
+			"offsets": {
+				"from": 485200,
+				"to": 487480
+			},
+			"text": " may take part in consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,480",
+				"to": "00:08:10,840"
+			},
+			"offsets": {
+				"from": 487480,
+				"to": 490840
+			},
+			"text": " And then again, proof of stake is fairly permissionless."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,840",
+				"to": "00:08:13,040"
+			},
+			"offsets": {
+				"from": 490840,
+				"to": 493040
+			},
+			"text": " You have a token, and you can take it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,040",
+				"to": "00:08:15,880"
+			},
+			"offsets": {
+				"from": 493040,
+				"to": 495880
+			},
+			"text": " to take part in consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,880",
+				"to": "00:08:19,120"
+			},
+			"offsets": {
+				"from": 495880,
+				"to": 499120
+			},
+			"text": " So what does it mean for Isio mainnet to merge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,120",
+				"to": "00:08:24,480"
+			},
+			"offsets": {
+				"from": 499120,
+				"to": 504480
+			},
+			"text": " Obviously, moving from proof of work to proof of stake"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,480",
+				"to": "00:08:26,400"
+			},
+			"offsets": {
+				"from": 504480,
+				"to": 506400
+			},
+			"text": " just does not change much in this perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,400",
+				"to": "00:08:28,480"
+			},
+			"offsets": {
+				"from": 506400,
+				"to": 508480
+			},
+			"text": " It was permissionless before the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,480",
+				"to": "00:08:32,400"
+			},
+			"offsets": {
+				"from": 508480,
+				"to": 512400
+			},
+			"text": " It was still permissionless after the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,400",
+				"to": "00:08:36,080"
+			},
+			"offsets": {
+				"from": 512400,
+				"to": 516080
+			},
+			"text": " But how does it look like for the test nets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,080",
+				"to": "00:08:41,240"
+			},
+			"offsets": {
+				"from": 516080,
+				"to": 521240
+			},
+			"text": " So girly was merged with a Prata beacon chain test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,240",
+				"to": "00:08:49,440"
+			},
+			"offsets": {
+				"from": 521240,
+				"to": 529440
+			},
+			"text": " And to get access to the consensus on the girly test net,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,440",
+				"to": "00:08:53,360"
+			},
+			"offsets": {
+				"from": 529440,
+				"to": 533360
+			},
+			"text": " prior to the merge, it was permissioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,360",
+				"to": "00:08:58,560"
+			},
+			"offsets": {
+				"from": 533360,
+				"to": 538560
+			},
+			"text": " So girly was running a community maintained validator set."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,560",
+				"to": "00:09:01,400"
+			},
+			"offsets": {
+				"from": 538560,
+				"to": 541400
+			},
+			"text": " However, after the merge, it transitioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,400",
+				"to": "00:09:03,080"
+			},
+			"offsets": {
+				"from": 541400,
+				"to": 543080
+			},
+			"text": " to a proof of stake consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,080",
+				"to": "00:09:05,200"
+			},
+			"offsets": {
+				"from": 543080,
+				"to": 545200
+			},
+			"text": " Interestingly and suddenly, everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,200",
+				"to": "00:09:11,560"
+			},
+			"offsets": {
+				"from": 545200,
+				"to": 551560
+			},
+			"text": " can participate in consensus, given you have access"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,560",
+				"to": "00:09:14,440"
+			},
+			"offsets": {
+				"from": 551560,
+				"to": 554440
+			},
+			"text": " to girly Isio."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,440",
+				"to": "00:09:18,080"
+			},
+			"offsets": {
+				"from": 554440,
+				"to": 558080
+			},
+			"text": " So girly used to be permissioned is now permissionless."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,080",
+				"to": "00:09:22,920"
+			},
+			"offsets": {
+				"from": 558080,
+				"to": 562920
+			},
+			"text": " But what about sepolia?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,920",
+				"to": "00:09:24,640"
+			},
+			"offsets": {
+				"from": 562920,
+				"to": 564640
+			},
+			"text": " As I mentioned, prior to the merge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,640",
+				"to": "00:09:27,240"
+			},
+			"offsets": {
+				"from": 564640,
+				"to": 567240
+			},
+			"text": " it was powered by the permissionless"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,240",
+				"to": "00:09:29,440"
+			},
+			"offsets": {
+				"from": 567240,
+				"to": 569440
+			},
+			"text": " Isesh proof of work algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,440",
+				"to": "00:09:31,440"
+			},
+			"offsets": {
+				"from": 569440,
+				"to": 571440
+			},
+			"text": " You can see my sepolia minor."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,440",
+				"to": "00:09:36,400"
+			},
+			"offsets": {
+				"from": 571440,
+				"to": 576400
+			},
+			"text": " I was happy that I once again can mine a test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,400",
+				"to": "00:09:37,960"
+			},
+			"offsets": {
+				"from": 576400,
+				"to": 577960
+			},
+			"text": " And yeah, I did not ask for permission."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,960",
+				"to": "00:09:40,840"
+			},
+			"offsets": {
+				"from": 577960,
+				"to": 580840
+			},
+			"text": " I was just able to mine the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,840",
+				"to": "00:09:42,680"
+			},
+			"offsets": {
+				"from": 580840,
+				"to": 582680
+			},
+			"text": " I got a lot of sepolia either."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,680",
+				"to": "00:09:50,920"
+			},
+			"offsets": {
+				"from": 582680,
+				"to": 590920
+			},
+			"text": " But now there's something unique about the sepolia beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,920",
+				"to": "00:09:53,160"
+			},
+			"offsets": {
+				"from": 590920,
+				"to": 593160
+			},
+			"text": " chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,160",
+				"to": "00:09:57,520"
+			},
+			"offsets": {
+				"from": 593160,
+				"to": 597520
+			},
+			"text": " Since it was apparent that girly will no longer"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,520",
+				"to": "00:10:02,760"
+			},
+			"offsets": {
+				"from": 597520,
+				"to": 602760
+			},
+			"text": " be permissioned, there was actually the quest"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,760",
+				"to": "00:10:06,680"
+			},
+			"offsets": {
+				"from": 602760,
+				"to": 606680
+			},
+			"text": " for having another permissioned test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,680",
+				"to": "00:10:10,800"
+			},
+			"offsets": {
+				"from": 606680,
+				"to": 610800
+			},
+			"text": " to have certain stability guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,800",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 610800,
+				"to": 615000
+			},
+			"text": " So it was decided that sepolia gets a beacon chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:19,160"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 619160
+			},
+			"text": " with modified deposit contract that does not accept regular"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,160",
+				"to": "00:10:21,680"
+			},
+			"offsets": {
+				"from": 619160,
+				"to": 621680
+			},
+			"text": " ether deposits."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,680",
+				"to": "00:10:27,240"
+			},
+			"offsets": {
+				"from": 621680,
+				"to": 627240
+			},
+			"text": " Instead, it tracks the validator sets through an ERC20 token."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,240",
+				"to": "00:10:30,960"
+			},
+			"offsets": {
+				"from": 627240,
+				"to": 630960
+			},
+			"text": " So in that case, sepolia is proof of authority version"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,960",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 630960,
+				"to": 633000
+			},
+			"text": " of the beacon chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:38,440"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 638440
+			},
+			"text": " And therefore, the access to sepolia consensus is permissioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,440",
+				"to": "00:10:42,320"
+			},
+			"offsets": {
+				"from": 638440,
+				"to": 642320
+			},
+			"text": " So let's take a look at this overview again."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,320",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 642320,
+				"to": 646000
+			},
+			"text": " This is a timeline actually on the x-axis."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:49,640"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 649640
+			},
+			"text": " The first test net to merge was Rupsen."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,640",
+				"to": "00:10:52,120"
+			},
+			"offsets": {
+				"from": 649640,
+				"to": 652120
+			},
+			"text": " Rupsen was fairly similar to mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,120",
+				"to": "00:10:54,520"
+			},
+			"offsets": {
+				"from": 652120,
+				"to": 654520
+			},
+			"text": " It was proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,520",
+				"to": "00:10:57,120"
+			},
+			"offsets": {
+				"from": 654520,
+				"to": 657120
+			},
+			"text": " And after the merge, it was proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,120",
+				"to": "00:11:01,840"
+			},
+			"offsets": {
+				"from": 657120,
+				"to": 661840
+			},
+			"text": " So permissioned less, permissioned less."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,840",
+				"to": "00:11:09,120"
+			},
+			"offsets": {
+				"from": 661840,
+				"to": 669120
+			},
+			"text": " Then sepolia transitioned with this modified beacon chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,120",
+				"to": "00:11:10,680"
+			},
+			"offsets": {
+				"from": 669120,
+				"to": 670680
+			},
+			"text": " So technically, the consensus algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,680",
+				"to": "00:11:16,960"
+			},
+			"offsets": {
+				"from": 670680,
+				"to": 676960
+			},
+			"text": " is still proof of stake, but through this permissioned ERC20"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,960",
+				"to": "00:11:19,880"
+			},
+			"offsets": {
+				"from": 676960,
+				"to": 679880
+			},
+			"text": " token that you require to take part in consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,880",
+				"to": "00:11:23,400"
+			},
+			"offsets": {
+				"from": 679880,
+				"to": 683400
+			},
+			"text": " I call it for simplicity proof of authority here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,400",
+				"to": "00:11:26,400"
+			},
+			"offsets": {
+				"from": 683400,
+				"to": 686400
+			},
+			"text": " because access to this consensus is actually permissioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,400",
+				"to": "00:11:33,200"
+			},
+			"offsets": {
+				"from": 687400,
+				"to": 693200
+			},
+			"text": " And then girly merge was Prada and test net,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,200",
+				"to": "00:11:36,040"
+			},
+			"offsets": {
+				"from": 693200,
+				"to": 696040
+			},
+			"text": " where exactly the opposite happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,040",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 696040,
+				"to": 698000
+			},
+			"text": " The proof of authority girly test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:42,800"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 702800
+			},
+			"text": " became a proof of stake girly test net after the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,800",
+				"to": "00:11:45,960"
+			},
+			"offsets": {
+				"from": 702800,
+				"to": 705960
+			},
+			"text": " And then, yeah, we are here, eventually, just a couple of weeks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,960",
+				"to": "00:11:48,360"
+			},
+			"offsets": {
+				"from": 705960,
+				"to": 708360
+			},
+			"text": " ago, the mainnet merge occurred."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,360",
+				"to": "00:11:53,280"
+			},
+			"offsets": {
+				"from": 708360,
+				"to": 713280
+			},
+			"text": " So yeah, just take a look at the post-merge test net landscape."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,280",
+				"to": "00:11:56,040"
+			},
+			"offsets": {
+				"from": 713280,
+				"to": 716040
+			},
+			"text": " I showed you that Rupsen merged."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,040",
+				"to": "00:11:59,400"
+			},
+			"offsets": {
+				"from": 716040,
+				"to": 719400
+			},
+			"text": " However, it has been deprecated by the ECM Foundation's"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,400",
+				"to": "00:12:00,520"
+			},
+			"offsets": {
+				"from": 719400,
+				"to": 720520
+			},
+			"text": " protocol support team."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,520",
+				"to": "00:12:06,480"
+			},
+			"offsets": {
+				"from": 720520,
+				"to": 726480
+			},
+			"text": " And it leaves us with girly and sepolia"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,480",
+				"to": "00:12:10,640"
+			},
+			"offsets": {
+				"from": 726480,
+				"to": 730640
+			},
+			"text": " as the only longstanding public post-merge test nets."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,640",
+				"to": "00:12:15,680"
+			},
+			"offsets": {
+				"from": 730640,
+				"to": 735680
+			},
+			"text": " So I will conclude my presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,680",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 735680,
+				"to": 740000
+			},
+			"text": " with a test net selection guide."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:21,120"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 741120
+			},
+			"text": " I mean, it's only two test nets."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,120",
+				"to": "00:12:22,120"
+			},
+			"offsets": {
+				"from": 741120,
+				"to": 742120
+			},
+			"text": " How hard can it be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,840",
+				"to": "00:12:29,040"
+			},
+			"offsets": {
+				"from": 744840,
+				"to": 749040
+			},
+			"text": " I mentioned how amazing the ECM block is."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,040",
+				"to": "00:12:31,680"
+			},
+			"offsets": {
+				"from": 749040,
+				"to": 751680
+			},
+			"text": " It's just a great resource."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,680",
+				"to": "00:12:34,280"
+			},
+			"offsets": {
+				"from": 751680,
+				"to": 754280
+			},
+			"text": " I found this slide on the ECM block."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,280",
+				"to": "00:12:38,600"
+			},
+			"offsets": {
+				"from": 754280,
+				"to": 758600
+			},
+			"text": " Basically, just recaps what I just said."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,600",
+				"to": "00:12:43,960"
+			},
+			"offsets": {
+				"from": 758600,
+				"to": 763960
+			},
+			"text": " The open validator set for girly, on the one hand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,960",
+				"to": "00:12:47,840"
+			},
+			"offsets": {
+				"from": 763960,
+				"to": 767840
+			},
+			"text": " the closed validator set for sepolia, on the other hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,840",
+				"to": "00:12:52,960"
+			},
+			"offsets": {
+				"from": 767840,
+				"to": 772960
+			},
+			"text": " Obviously, since girly is much older, it has a large state"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,960",
+				"to": "00:12:56,440"
+			},
+			"offsets": {
+				"from": 772960,
+				"to": 776440
+			},
+			"text": " that gives some better network effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,440",
+				"to": "00:12:59,560"
+			},
+			"offsets": {
+				"from": 776440,
+				"to": 779560
+			},
+			"text": " So if you have an application that you want to deploy on girly"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,560",
+				"to": "00:13:02,680"
+			},
+			"offsets": {
+				"from": 779560,
+				"to": 782680
+			},
+			"text": " and you require other applications or interfaces,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,680",
+				"to": "00:13:05,440"
+			},
+			"offsets": {
+				"from": 782680,
+				"to": 785440
+			},
+			"text": " you might find them on sepolia and girly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,440",
+				"to": "00:13:07,880"
+			},
+			"offsets": {
+				"from": 785440,
+				"to": 787880
+			},
+			"text": " but not on sepolia because sepolia is fairly new"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,880",
+				"to": "00:13:11,880"
+			},
+			"offsets": {
+				"from": 787880,
+				"to": 791880
+			},
+			"text": " and not many applications and libraries are deployed yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,880",
+				"to": "00:13:14,520"
+			},
+			"offsets": {
+				"from": 791880,
+				"to": 794520
+			},
+			"text": " However, it's also longer to sync and more involved"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,520",
+				"to": "00:13:18,640"
+			},
+			"offsets": {
+				"from": 794520,
+				"to": 798640
+			},
+			"text": " to run girly infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,640",
+				"to": "00:13:24,080"
+			},
+			"offsets": {
+				"from": 798640,
+				"to": 804080
+			},
+			"text": " So to summarize this, please do use girly test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,080",
+				"to": "00:13:30,120"
+			},
+			"offsets": {
+				"from": 804080,
+				"to": 810120
+			},
+			"text": " as it is most similar to the ECM mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,120",
+				"to": "00:13:31,960"
+			},
+			"offsets": {
+				"from": 810120,
+				"to": 811960
+			},
+			"text": " Girly is especially interesting for you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,960",
+				"to": "00:13:35,080"
+			},
+			"offsets": {
+				"from": 811960,
+				"to": 815080
+			},
+			"text": " if you plan to test a beacon chain validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,080",
+				"to": "00:13:38,520"
+			},
+			"offsets": {
+				"from": 815080,
+				"to": 818520
+			},
+			"text": " If you want to test your setup, if you want to test"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,520",
+				"to": "00:13:42,960"
+			},
+			"offsets": {
+				"from": 818520,
+				"to": 822960
+			},
+			"text": " upgrading client versions, if you want to test"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,960",
+				"to": "00:13:45,080"
+			},
+			"offsets": {
+				"from": 822960,
+				"to": 825080
+			},
+			"text": " going through protocol upgrades,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,080",
+				"to": "00:13:49,640"
+			},
+			"offsets": {
+				"from": 825080,
+				"to": 829640
+			},
+			"text": " girly is potentially the best, or if not even the only test"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,640",
+				"to": "00:13:51,600"
+			},
+			"offsets": {
+				"from": 829640,
+				"to": 831600
+			},
+			"text": " net where you can actually conduct this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,600",
+				"to": "00:13:58,240"
+			},
+			"offsets": {
+				"from": 831600,
+				"to": 838240
+			},
+			"text": " Yes, please also do use sepolia test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,240",
+				"to": "00:14:00,760"
+			},
+			"offsets": {
+				"from": 838240,
+				"to": 840760
+			},
+			"text": " Sepolia comes with the best stability guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,760",
+				"to": "00:14:04,520"
+			},
+			"offsets": {
+				"from": 840760,
+				"to": 844520
+			},
+			"text": " due to the permissioned validator set."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,520",
+				"to": "00:14:06,600"
+			},
+			"offsets": {
+				"from": 844520,
+				"to": 846600
+			},
+			"text": " Since it's fairly new, it is fastest to sync"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,600",
+				"to": "00:14:09,840"
+			},
+			"offsets": {
+				"from": 846600,
+				"to": 849840
+			},
+			"text": " and also it has the best long-term guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,840",
+				"to": "00:14:13,120"
+			},
+			"offsets": {
+				"from": 849840,
+				"to": 853120
+			},
+			"text": " So I would lean towards recommending"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,120",
+				"to": "00:14:17,920"
+			},
+			"offsets": {
+				"from": 853120,
+				"to": 857920
+			},
+			"text": " to test your applications or even migrate your applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,920",
+				"to": "00:14:23,040"
+			},
+			"offsets": {
+				"from": 857920,
+				"to": 863040
+			},
+			"text": " to sepolia instead of girly at this point."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,040",
+				"to": "00:14:24,800"
+			},
+			"offsets": {
+				"from": 863040,
+				"to": 864800
+			},
+			"text": " Yes, I do not use Rubson."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,800",
+				"to": "00:14:29,800"
+			},
+			"offsets": {
+				"from": 864800,
+				"to": 869800
+			},
+			"text": " Obviously, when I prepared my slides,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,800",
+				"to": "00:14:32,160"
+			},
+			"offsets": {
+				"from": 869800,
+				"to": 872160
+			},
+			"text": " I realized that we are just in this transition phase"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,160",
+				"to": "00:14:34,200"
+			},
+			"offsets": {
+				"from": 872160,
+				"to": 874200
+			},
+			"text": " where big service providers already"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,200",
+				"to": "00:14:35,720"
+			},
+			"offsets": {
+				"from": 874200,
+				"to": 875720
+			},
+			"text": " start shutting down infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,720",
+				"to": "00:14:41,080"
+			},
+			"offsets": {
+				"from": 875720,
+				"to": 881080
+			},
+			"text": " So you have to expect interruptions and downtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,080",
+				"to": "00:14:44,440"
+			},
+			"offsets": {
+				"from": 881080,
+				"to": 884440
+			},
+			"text": " Don't use Coven for obvious reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,440",
+				"to": "00:14:48,120"
+			},
+			"offsets": {
+				"from": 884440,
+				"to": 888120
+			},
+			"text": " And yes, also, I would not recommend using Winky"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,120",
+				"to": "00:14:51,040"
+			},
+			"offsets": {
+				"from": 888120,
+				"to": 891040
+			},
+			"text": " even though there is some long-term support planned"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,040",
+				"to": "00:14:53,320"
+			},
+			"offsets": {
+				"from": 891040,
+				"to": 893320
+			},
+			"text": " for Winky for almost another year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,320",
+				"to": "00:14:57,160"
+			},
+			"offsets": {
+				"from": 893320,
+				"to": 897160
+			},
+			"text": " but you will potentially not get more protocol upgrades"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,160",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 897160,
+				"to": 898000
+			},
+			"text": " on that network."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:01,560"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 901560
+			},
+			"text": " So I would also not recommend using Winky in that regard."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,560",
+				"to": "00:15:02,640"
+			},
+			"offsets": {
+				"from": 901560,
+				"to": 902640
+			},
+			"text": " Yeah, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,640",
+				"to": "00:15:03,920"
+			},
+			"offsets": {
+				"from": 902640,
+				"to": 903920
+			},
+			"text": " There are some caveats though."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,920",
+				"to": "00:15:08,160"
+			},
+			"offsets": {
+				"from": 903920,
+				"to": 908160
+			},
+			"text": " As I mentioned, the girly test net has either supply issues"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,160",
+				"to": "00:15:10,040"
+			},
+			"offsets": {
+				"from": 908160,
+				"to": 910040
+			},
+			"text": " due to the sheer amount of users trying to test"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,040",
+				"to": "00:15:11,960"
+			},
+			"offsets": {
+				"from": 910040,
+				"to": 911960
+			},
+			"text": " a validator setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,960",
+				"to": "00:15:15,640"
+			},
+			"offsets": {
+				"from": 911960,
+				"to": 915640
+			},
+			"text": " Each validator requires 32 ease."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,640",
+				"to": "00:15:17,520"
+			},
+			"offsets": {
+				"from": 915640,
+				"to": 917520
+			},
+			"text": " And if you want to have a more involved setup"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,520",
+				"to": "00:15:20,320"
+			},
+			"offsets": {
+				"from": 917520,
+				"to": 920320
+			},
+			"text": " with, I don't know, 1000 validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,320",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 920320,
+				"to": 923000
+			},
+			"text": " it quickly becomes a huge burden,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:26,360"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 926360
+			},
+			"text": " huge problem to access these required test net tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,360",
+				"to": "00:15:28,720"
+			},
+			"offsets": {
+				"from": 926360,
+				"to": 928720
+			},
+			"text": " This is something we still need to figure out going forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,720",
+				"to": "00:15:30,600"
+			},
+			"offsets": {
+				"from": 928720,
+				"to": 930600
+			},
+			"text": " So if you have an idea, please hit me up."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,600",
+				"to": "00:15:34,840"
+			},
+			"offsets": {
+				"from": 930600,
+				"to": 934840
+			},
+			"text": " Yeah, and in terms of test net age, girly is also fairly old."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,840",
+				"to": "00:15:43,680"
+			},
+			"offsets": {
+				"from": 934840,
+				"to": 943680
+			},
+			"text": " So it comes with a fairly rich history instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,680",
+				"to": "00:15:47,600"
+			},
+			"offsets": {
+				"from": 943680,
+				"to": 947600
+			},
+			"text": " And is there far more difficult to synchronize?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,600",
+				"to": "00:15:49,840"
+			},
+			"offsets": {
+				"from": 947600,
+				"to": 949840
+			},
+			"text": " Especially now that it's merged with Prater,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,840",
+				"to": "00:15:56,400"
+			},
+			"offsets": {
+				"from": 949840,
+				"to": 956400
+			},
+			"text": " which also comes with a fairly old beacon chain in combination."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,400",
+				"to": "00:16:01,720"
+			},
+			"offsets": {
+				"from": 956400,
+				"to": 961720
+			},
+			"text": " And yes, the poll here is relatively new, as I mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,720",
+				"to": "00:16:03,320"
+			},
+			"offsets": {
+				"from": 961720,
+				"to": 963320
+			},
+			"text": " I wrote down lack of infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,320",
+				"to": "00:16:05,760"
+			},
+			"offsets": {
+				"from": 963320,
+				"to": 965760
+			},
+			"text": " I put it in brackets because it's changing really rapidly"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,760",
+				"to": "00:16:06,960"
+			},
+			"offsets": {
+				"from": 965760,
+				"to": 966960
+			},
+			"text": " right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,960",
+				"to": "00:16:11,680"
+			},
+			"offsets": {
+				"from": 966960,
+				"to": 971680
+			},
+			"text": " I just noticed while preparing my slides that even"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,680",
+				"to": "00:16:16,600"
+			},
+			"offsets": {
+				"from": 971680,
+				"to": 976600
+			},
+			"text": " MetaMask has a superior test net switch now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,600",
+				"to": "00:16:19,160"
+			},
+			"offsets": {
+				"from": 976600,
+				"to": 979160
+			},
+			"text": " So it's happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,160",
+				"to": "00:16:22,480"
+			},
+			"offsets": {
+				"from": 979160,
+				"to": 982480
+			},
+			"text": " I'm really happy that we get all these integrations now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,480",
+				"to": "00:16:24,520"
+			},
+			"offsets": {
+				"from": 982480,
+				"to": 984520
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,520",
+				"to": "00:16:26,080"
+			},
+			"offsets": {
+				"from": 984520,
+				"to": 986080
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,080",
+				"to": "00:16:29,160"
+			},
+			"offsets": {
+				"from": 986080,
+				"to": 989160
+			},
+			"text": " This is my subjective recommendation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,160",
+				"to": "00:16:31,240"
+			},
+			"offsets": {
+				"from": 989160,
+				"to": 991240
+			},
+			"text": " If you want to test infrastructure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,240",
+				"to": "00:16:33,520"
+			},
+			"offsets": {
+				"from": 991240,
+				"to": 993520
+			},
+			"text": " if you want to test your validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,520",
+				"to": "00:16:36,800"
+			},
+			"offsets": {
+				"from": 993520,
+				"to": 996800
+			},
+			"text": " I would recommend you to run them on girly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,800",
+				"to": "00:16:39,360"
+			},
+			"offsets": {
+				"from": 996800,
+				"to": 999360
+			},
+			"text": " If you want to test your applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,360",
+				"to": "00:16:43,480"
+			},
+			"offsets": {
+				"from": 999360,
+				"to": 1003480
+			},
+			"text": " I would even encourage you to skip girly and go straight"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,480",
+				"to": "00:16:47,440"
+			},
+			"offsets": {
+				"from": 1003480,
+				"to": 1007440
+			},
+			"text": " to run your stack on Sepolia."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,440",
+				"to": "00:16:53,680"
+			},
+			"offsets": {
+				"from": 1007440,
+				"to": 1013680
+			},
+			"text": " OK, this was my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,680",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1013680,
+				"to": 1017000
+			},
+			"text": " Please use girly or Sepolia going forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:00,520"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1020520
+			},
+			"text": " Find me for some spare e-circuits from East Berlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,520",
+				"to": "00:17:03,240"
+			},
+			"offsets": {
+				"from": 1020520,
+				"to": 1023240
+			},
+			"text": " They are preloaded with girly and Sepolia users."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,240",
+				"to": "00:17:07,080"
+			},
+			"offsets": {
+				"from": 1023240,
+				"to": 1027080
+			},
+			"text": " So if you want some, I will not throw them into the audience."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,080",
+				"to": "00:17:08,400"
+			},
+			"offsets": {
+				"from": 1027080,
+				"to": 1028400
+			},
+			"text": " For just find me after the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,400",
+				"to": "00:17:12,880"
+			},
+			"offsets": {
+				"from": 1028400,
+				"to": 1032880
+			},
+			"text": " And yes, since we have a couple of minutes left,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,880",
+				"to": "00:17:15,760"
+			},
+			"offsets": {
+				"from": 1032880,
+				"to": 1035760
+			},
+			"text": " please ask questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,760",
+				"to": "00:17:18,040"
+			},
+			"offsets": {
+				"from": 1035760,
+				"to": 1038040
+			},
+			"text": " Thanks for the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,040",
+				"to": "00:17:20,880"
+			},
+			"offsets": {
+				"from": 1038040,
+				"to": 1040880
+			},
+			"text": " Is there any tutorial or manual how"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,880",
+				"to": "00:17:24,600"
+			},
+			"offsets": {
+				"from": 1040880,
+				"to": 1044600
+			},
+			"text": " to be a validator in Sepolia?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,600",
+				"to": "00:17:29,120"
+			},
+			"offsets": {
+				"from": 1044600,
+				"to": 1049120
+			},
+			"text": " How to be to help in infrastructure?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,120",
+				"to": "00:17:32,600"
+			},
+			"offsets": {
+				"from": 1049120,
+				"to": 1052600
+			},
+			"text": " A shorter answer is you can't."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,600",
+				"to": "00:17:35,920"
+			},
+			"offsets": {
+				"from": 1052600,
+				"to": 1055920
+			},
+			"text": " Because, as I mentioned, even though it's proof of stake,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,920",
+				"to": "00:17:40,560"
+			},
+			"offsets": {
+				"from": 1055920,
+				"to": 1060560
+			},
+			"text": " you need a special ERC20 token to get access to this validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,560",
+				"to": "00:17:41,160"
+			},
+			"offsets": {
+				"from": 1060560,
+				"to": 1061160
+			},
+			"text": " set."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,160",
+				"to": "00:17:43,440"
+			},
+			"offsets": {
+				"from": 1061160,
+				"to": 1063440
+			},
+			"text": " And you would basically have to Google,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,440",
+				"to": "00:17:46,120"
+			},
+			"offsets": {
+				"from": 1063440,
+				"to": 1066120
+			},
+			"text": " Sepolia, GitHub repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,120",
+				"to": "00:17:48,760"
+			},
+			"offsets": {
+				"from": 1066120,
+				"to": 1068760
+			},
+			"text": " And there is an issue where you can request to be added"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,760",
+				"to": "00:17:50,440"
+			},
+			"offsets": {
+				"from": 1068760,
+				"to": 1070440
+			},
+			"text": " to this validator set."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,440",
+				"to": "00:17:53,720"
+			},
+			"offsets": {
+				"from": 1070440,
+				"to": 1073720
+			},
+			"text": " But in general, not many teams will"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,720",
+				"to": "00:17:57,520"
+			},
+			"offsets": {
+				"from": 1073720,
+				"to": 1077520
+			},
+			"text": " be accepted just to keep it really small,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,520",
+				"to": "00:17:59,840"
+			},
+			"offsets": {
+				"from": 1077520,
+				"to": 1079840
+			},
+			"text": " but to be able to get the validator set."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,840",
+				"to": "00:18:01,840"
+			},
+			"offsets": {
+				"from": 1079840,
+				"to": 1081840
+			},
+			"text": " Maybe two questions here."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,840",
+				"to": "00:18:06,200"
+			},
+			"offsets": {
+				"from": 1081840,
+				"to": 1086200
+			},
+			"text": " One, when EIP1559 came around, it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,200",
+				"to": "00:18:08,000"
+			},
+			"offsets": {
+				"from": 1086200,
+				"to": 1088000
+			},
+			"text": " was very hard to test that in advance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,000",
+				"to": "00:18:10,400"
+			},
+			"offsets": {
+				"from": 1088000,
+				"to": 1090400
+			},
+			"text": " because you had these proof of authority networks that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,400",
+				"to": "00:18:11,760"
+			},
+			"offsets": {
+				"from": 1090400,
+				"to": 1091760
+			},
+			"text": " had no fee market."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,760",
+				"to": "00:18:13,880"
+			},
+			"offsets": {
+				"from": 1091760,
+				"to": 1093880
+			},
+			"text": " And then you had these proof of work networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,880",
+				"to": "00:18:16,560"
+			},
+			"offsets": {
+				"from": 1093880,
+				"to": 1096560
+			},
+			"text": " that had kind of a fee market you could kind of reason"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,560",
+				"to": "00:18:19,680"
+			},
+			"offsets": {
+				"from": 1096560,
+				"to": 1099680
+			},
+			"text": " about sort of what that change would do."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,680",
+				"to": "00:18:21,240"
+			},
+			"offsets": {
+				"from": 1099680,
+				"to": 1101240
+			},
+			"text": " Sorry, I am leading into questioning."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,240",
+				"to": "00:18:23,160"
+			},
+			"offsets": {
+				"from": 1101240,
+				"to": 1103160
+			},
+			"text": " I'm just giving some background."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,160",
+				"to": "00:18:25,080"
+			},
+			"offsets": {
+				"from": 1103160,
+				"to": 1105080
+			},
+			"text": " And then COVID-- if I seem to remember right--"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,080",
+				"to": "00:18:27,160"
+			},
+			"offsets": {
+				"from": 1105080,
+				"to": 1107160
+			},
+			"text": " it was like parity technologies maintained it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,160",
+				"to": "00:18:32,120"
+			},
+			"offsets": {
+				"from": 1107160,
+				"to": 1112120
+			},
+			"text": " for the old Open Ethereum parity clients or the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,120",
+				"to": "00:18:35,960"
+			},
+			"offsets": {
+				"from": 1112120,
+				"to": 1115960
+			},
+			"text": " And I think now the execution layer is a spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,960",
+				"to": "00:18:41,120"
+			},
+			"offsets": {
+				"from": 1115960,
+				"to": 1121120
+			},
+			"text": " There's some value behind testing clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,120",
+				"to": "00:18:44,200"
+			},
+			"offsets": {
+				"from": 1121120,
+				"to": 1124200
+			},
+			"text": " So I guess just to sum it up to a question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,200",
+				"to": "00:18:47,600"
+			},
+			"offsets": {
+				"from": 1124200,
+				"to": 1127600
+			},
+			"text": " both testing features and execution layer specs."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,600",
+				"to": "00:18:51,360"
+			},
+			"offsets": {
+				"from": 1127600,
+				"to": 1131360
+			},
+			"text": " Has there any thought in behind testing those kind of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,360",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1131360,
+				"to": 1134000
+			},
+			"text": " moving forward, spinning up test nets or forks"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:18:55,760"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1135760
+			},
+			"text": " or test nets to do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,760",
+				"to": "00:18:56,760"
+			},
+			"offsets": {
+				"from": 1135760,
+				"to": 1136760
+			},
+			"text": " So--"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,760",
+				"to": "00:18:59,740"
+			},
+			"offsets": {
+				"from": 1136760,
+				"to": 1139740
+			},
+			"text": " I'm sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,740",
+				"to": "00:19:00,960"
+			},
+			"offsets": {
+				"from": 1139740,
+				"to": 1140960
+			},
+			"text": " I don't think I got the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,960",
+				"to": "00:19:04,280"
+			},
+			"offsets": {
+				"from": 1140960,
+				"to": 1144280
+			},
+			"text": " It's also-- I don't have to speak us if you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,280",
+				"to": "00:19:05,680"
+			},
+			"offsets": {
+				"from": 1144280,
+				"to": 1145680
+			},
+			"text": " try to speak up with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,680",
+				"to": "00:19:09,560"
+			},
+			"offsets": {
+				"from": 1145680,
+				"to": 1149560
+			},
+			"text": " So testing specific features of Ethereum forks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,560",
+				"to": "00:19:14,640"
+			},
+			"offsets": {
+				"from": 1149560,
+				"to": 1154640
+			},
+			"text": " like a fee market changes or testing or validating"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,640",
+				"to": "00:19:18,920"
+			},
+			"offsets": {
+				"from": 1154640,
+				"to": 1158920
+			},
+			"text": " the execution spec was sort of the goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,920",
+				"to": "00:19:22,120"
+			},
+			"offsets": {
+				"from": 1158920,
+				"to": 1162120
+			},
+			"text": " Because you had like Open Ethereum or parity and GATH."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,120",
+				"to": "00:19:24,360"
+			},
+			"offsets": {
+				"from": 1162120,
+				"to": 1164360
+			},
+			"text": " And whether they synced up or not in terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,360",
+				"to": "00:19:28,920"
+			},
+			"offsets": {
+				"from": 1164360,
+				"to": 1168920
+			},
+			"text": " of whether they're executing EVM, basically correctly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,920",
+				"to": "00:19:32,200"
+			},
+			"offsets": {
+				"from": 1168920,
+				"to": 1172200
+			},
+			"text": " was always a question, right, if they ever split."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,200",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1172200,
+				"to": 1175000
+			},
+			"text": " So that's what I'm asking is, where"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:37,160"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1177160
+			},
+			"text": " is the test net infrastructure sort of going"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,160",
+				"to": "00:19:38,480"
+			},
+			"offsets": {
+				"from": 1177160,
+				"to": 1178480
+			},
+			"text": " in terms of forks and things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,480",
+				"to": "00:19:41,120"
+			},
+			"offsets": {
+				"from": 1178480,
+				"to": 1181120
+			},
+			"text": " They're just going to spin it up whenever or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,120",
+				"to": "00:19:44,920"
+			},
+			"offsets": {
+				"from": 1181120,
+				"to": 1184920
+			},
+			"text": " I don't want to beat this debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,920",
+				"to": "00:19:49,160"
+			},
+			"offsets": {
+				"from": 1184920,
+				"to": 1189160
+			},
+			"text": " Yeah, I hope I understand the question correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,160",
+				"to": "00:19:51,600"
+			},
+			"offsets": {
+				"from": 1189160,
+				"to": 1191600
+			},
+			"text": " So I was talking about public test nets today"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,600",
+				"to": "00:19:54,560"
+			},
+			"offsets": {
+				"from": 1191600,
+				"to": 1194560
+			},
+			"text": " and public test nets is always a really final stage"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,560",
+				"to": "00:19:55,480"
+			},
+			"offsets": {
+				"from": 1194560,
+				"to": 1195480
+			},
+			"text": " of testing everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,480",
+				"to": "00:19:58,680"
+			},
+			"offsets": {
+				"from": 1195480,
+				"to": 1198680
+			},
+			"text": " So if you want to test execution layer changes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,680",
+				"to": "00:20:00,880"
+			},
+			"offsets": {
+				"from": 1198680,
+				"to": 1200880
+			},
+			"text": " consensus layer changes, and whatnot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,880",
+				"to": "00:20:04,160"
+			},
+			"offsets": {
+				"from": 1200880,
+				"to": 1204160
+			},
+			"text": " you usually go from local simulations"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,160",
+				"to": "00:20:10,400"
+			},
+			"offsets": {
+				"from": 1204160,
+				"to": 1210400
+			},
+			"text": " to permission to dev nets to sort of like a lot of hurdles"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,400",
+				"to": "00:20:12,360"
+			},
+			"offsets": {
+				"from": 1210400,
+				"to": 1212360
+			},
+			"text": " until you actually get to a public test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,360",
+				"to": "00:20:15,760"
+			},
+			"offsets": {
+				"from": 1212360,
+				"to": 1215760
+			},
+			"text": " And these test nets, like when I recommend girly or sepolia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,760",
+				"to": "00:20:17,640"
+			},
+			"offsets": {
+				"from": 1215760,
+				"to": 1217640
+			},
+			"text": " they will only get protocol upgrades"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,640",
+				"to": "00:20:20,880"
+			},
+			"offsets": {
+				"from": 1217640,
+				"to": 1220880
+			},
+			"text": " that have been sufficiently tested before."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,880",
+				"to": "00:20:25,600"
+			},
+			"offsets": {
+				"from": 1220880,
+				"to": 1225600
+			},
+			"text": " I don't know if this answers your question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,600",
+				"to": "00:20:28,200"
+			},
+			"offsets": {
+				"from": 1225600,
+				"to": 1228200
+			},
+			"text": " OK, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,200",
+				"to": "00:20:29,040"
+			},
+			"offsets": {
+				"from": 1228200,
+				"to": 1229040
+			},
+			"text": " Hey, Alfred."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,040",
+				"to": "00:20:29,600"
+			},
+			"offsets": {
+				"from": 1229040,
+				"to": 1229600
+			},
+			"text": " What about that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,600",
+				"to": "00:20:32,280"
+			},
+			"offsets": {
+				"from": 1229600,
+				"to": 1232280
+			},
+			"text": " It's loud."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,280",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1232280,
+				"to": 1236000
+			},
+			"text": " Do you know, why did the merges happen the way round they did?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:38,360"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1238360
+			},
+			"text": " Wouldn't it have been more logical for girly"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,360",
+				"to": "00:20:40,080"
+			},
+			"offsets": {
+				"from": 1238360,
+				"to": 1240080
+			},
+			"text": " to continue as a group of authorities?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,080",
+				"to": "00:20:43,040"
+			},
+			"offsets": {
+				"from": 1240080,
+				"to": 1243040
+			},
+			"text": " I think I have to come down."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,040",
+				"to": "00:20:44,880"
+			},
+			"offsets": {
+				"from": 1243040,
+				"to": 1244880
+			},
+			"text": " I just need to be--"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,880",
+				"to": "00:20:46,640"
+			},
+			"offsets": {
+				"from": 1244880,
+				"to": 1246640
+			},
+			"text": " I'm just wondering why the merges"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,640",
+				"to": "00:20:48,840"
+			},
+			"offsets": {
+				"from": 1246640,
+				"to": 1248840
+			},
+			"text": " happened the way round that they did,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,840",
+				"to": "00:20:52,480"
+			},
+			"offsets": {
+				"from": 1248840,
+				"to": 1252480
+			},
+			"text": " as opposed to girly continuing as a proof of authority"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,480",
+				"to": "00:20:56,440"
+			},
+			"offsets": {
+				"from": 1252480,
+				"to": 1256440
+			},
+			"text": " in sepolia transitioning?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,440",
+				"to": "00:20:56,880"
+			},
+			"offsets": {
+				"from": 1256440,
+				"to": 1256880
+			},
+			"text": " Yeah, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,880",
+				"to": "00:20:58,240"
+			},
+			"offsets": {
+				"from": 1256880,
+				"to": 1258240
+			},
+			"text": " That's a very good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,240",
+				"to": "00:21:00,440"
+			},
+			"offsets": {
+				"from": 1258240,
+				"to": 1260440
+			},
+			"text": " The reason is that it merged with the Prada test net,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,440",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1260440,
+				"to": 1263000
+			},
+			"text": " which used to be a consensus layer test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,000",
+				"to": "00:21:08,360"
+			},
+			"offsets": {
+				"from": 1263000,
+				"to": 1268360
+			},
+			"text": " for a very long time, where many teams already tested running"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,360",
+				"to": "00:21:12,080"
+			},
+			"offsets": {
+				"from": 1268360,
+				"to": 1272080
+			},
+			"text": " validators for more than a year or one and a half year."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,080",
+				"to": "00:21:15,920"
+			},
+			"offsets": {
+				"from": 1272080,
+				"to": 1275920
+			},
+			"text": " So it was already this proof of stake test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,920",
+				"to": "00:21:23,600"
+			},
+			"offsets": {
+				"from": 1275920,
+				"to": 1283600
+			},
+			"text": " available, and it was decided not to launch a new machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,600",
+				"to": "00:21:28,800"
+			},
+			"offsets": {
+				"from": 1283600,
+				"to": 1288800
+			},
+			"text": " test net for girly specifically and just"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,800",
+				"to": "00:21:30,440"
+			},
+			"offsets": {
+				"from": 1288800,
+				"to": 1290440
+			},
+			"text": " used the existing one."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,440",
+				"to": "00:21:32,040"
+			},
+			"offsets": {
+				"from": 1290440,
+				"to": 1292040
+			},
+			"text": " So that's why we had this flip."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,040",
+				"to": "00:21:34,760"
+			},
+			"offsets": {
+				"from": 1292040,
+				"to": 1294760
+			},
+			"text": " It was also discussed to maybe have a new deposit"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,760",
+				"to": "00:21:37,880"
+			},
+			"offsets": {
+				"from": 1294760,
+				"to": 1297880
+			},
+			"text": " contract on girly, but in the end they decided it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,880",
+				"to": "00:21:41,680"
+			},
+			"offsets": {
+				"from": 1297880,
+				"to": 1301680
+			},
+			"text": " worse for testing the merge to do the big merge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,680",
+				"to": "00:21:44,600"
+			},
+			"offsets": {
+				"from": 1301680,
+				"to": 1304600
+			},
+			"text": " because Prada was also the only consensus layer test"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,600",
+				"to": "00:21:49,080"
+			},
+			"offsets": {
+				"from": 1304600,
+				"to": 1309080
+			},
+			"text": " net that had about approximately the same amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,080",
+				"to": "00:21:51,640"
+			},
+			"offsets": {
+				"from": 1309080,
+				"to": 1311640
+			},
+			"text": " of validators as main net."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,640",
+				"to": "00:21:54,560"
+			},
+			"offsets": {
+				"from": 1311640,
+				"to": 1314560
+			},
+			"text": " So like long history put back."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,560",
+				"to": "00:21:55,640"
+			},
+			"offsets": {
+				"from": 1314560,
+				"to": 1315640
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,640",
+				"to": "00:21:59,800"
+			},
+			"offsets": {
+				"from": 1315640,
+				"to": 1319800
+			},
+			"text": " And it was very valuable for a specific linear consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,800",
+				"to": "00:22:03,480"
+			},
+			"offsets": {
+				"from": 1319800,
+				"to": 1323480
+			},
+			"text": " layer teams to have--"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,480",
+				"to": "00:22:06,680"
+			},
+			"offsets": {
+				"from": 1323480,
+				"to": 1326680
+			},
+			"text": " to not sunset this Prada test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,680",
+				"to": "00:22:09,240"
+			},
+			"offsets": {
+				"from": 1326680,
+				"to": 1329240
+			},
+			"text": " And you cannot move this Prada test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,240",
+				"to": "00:22:11,480"
+			},
+			"offsets": {
+				"from": 1329240,
+				"to": 1331480
+			},
+			"text": " to another execution layer, because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,480",
+				"to": "00:22:17,160"
+			},
+			"offsets": {
+				"from": 1331480,
+				"to": 1337160
+			},
+			"text": " all linked to deposit contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,160",
+				"to": "00:22:20,040"
+			},
+			"offsets": {
+				"from": 1337160,
+				"to": 1340040
+			},
+			"text": " Have validators or the external participants"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,040",
+				"to": "00:22:23,800"
+			},
+			"offsets": {
+				"from": 1340040,
+				"to": 1343800
+			},
+			"text": " on these test nets, and you need to do a bug fix?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,800",
+				"to": "00:22:29,720"
+			},
+			"offsets": {
+				"from": 1343800,
+				"to": 1349720
+			},
+			"text": " When you need to do a bug fix on the test net code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,720",
+				"to": "00:22:32,800"
+			},
+			"offsets": {
+				"from": 1349720,
+				"to": 1352800
+			},
+			"text": " are the external participants, such as validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,800",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1352800,
+				"to": 1357000
+			},
+			"text": " having to rebuild their validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:41,640"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1361640
+			},
+			"text": " on a new machine image or a new version of the code base?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,640",
+				"to": "00:22:47,000"
+			},
+			"offsets": {
+				"from": 1361640,
+				"to": 1367000
+			},
+			"text": " And how often does that happen during the test net phases?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,000",
+				"to": "00:22:48,720"
+			},
+			"offsets": {
+				"from": 1367000,
+				"to": 1368720
+			},
+			"text": " What's the question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,720",
+				"to": "00:22:50,560"
+			},
+			"offsets": {
+				"from": 1368720,
+				"to": 1370560
+			},
+			"text": " If there's a bug fix on the test net,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,560",
+				"to": "00:22:53,200"
+			},
+			"offsets": {
+				"from": 1370560,
+				"to": 1373200
+			},
+			"text": " how often do you have to rebuild your clients?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,200",
+				"to": "00:22:53,720"
+			},
+			"offsets": {
+				"from": 1373200,
+				"to": 1373720
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,720",
+				"to": "00:22:57,760"
+			},
+			"offsets": {
+				"from": 1373720,
+				"to": 1377760
+			},
+			"text": " What's the workflow when there is bug fixes applied"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,760",
+				"to": "00:22:59,120"
+			},
+			"offsets": {
+				"from": 1377760,
+				"to": 1379120
+			},
+			"text": " to the test nets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,120",
+				"to": "00:23:03,280"
+			},
+			"offsets": {
+				"from": 1379120,
+				"to": 1383280
+			},
+			"text": " If you are a validator, there might be a protocol bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,280",
+				"to": "00:23:06,480"
+			},
+			"offsets": {
+				"from": 1383280,
+				"to": 1386480
+			},
+			"text": " So does the validators get coordinated?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,480",
+				"to": "00:23:10,600"
+			},
+			"offsets": {
+				"from": 1386480,
+				"to": 1390600
+			},
+			"text": " And they redeploy their nodes multiple times"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,600",
+				"to": "00:23:14,120"
+			},
+			"offsets": {
+				"from": 1390600,
+				"to": 1394120
+			},
+			"text": " during the test net rollout?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,120",
+				"to": "00:23:14,640"
+			},
+			"offsets": {
+				"from": 1394120,
+				"to": 1394640
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,640",
+				"to": "00:23:17,960"
+			},
+			"offsets": {
+				"from": 1394640,
+				"to": 1397960
+			},
+			"text": " This is basically-- yeah, the answer is yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,960",
+				"to": "00:23:23,240"
+			},
+			"offsets": {
+				"from": 1397960,
+				"to": 1403240
+			},
+			"text": " But this happens very rarely, because most bugs are usually"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,240",
+				"to": "00:23:26,720"
+			},
+			"offsets": {
+				"from": 1403240,
+				"to": 1406720
+			},
+			"text": " not caught on test nets much earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,720",
+				"to": "00:23:28,920"
+			},
+			"offsets": {
+				"from": 1406720,
+				"to": 1408920
+			},
+			"text": " Thank you, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,920",
+				"to": "00:23:32,280"
+			},
+			"offsets": {
+				"from": 1408920,
+				"to": 1412280
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,280",
+				"to": "00:23:35,640"
+			},
+			"offsets": {
+				"from": 1412280,
+				"to": 1415640
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,640",
+				"to": "00:24:04,640"
+			},
+			"offsets": {
+				"from": 1415640,
+				"to": 1444640
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

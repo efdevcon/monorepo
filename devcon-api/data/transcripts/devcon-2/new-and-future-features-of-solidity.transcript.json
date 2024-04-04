@@ -1,0 +1,2903 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:21,360"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 21360
+			},
+			"text": " Yeah, the slides are there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,360",
+				"to": "00:00:22,640"
+			},
+			"offsets": {
+				"from": 21360,
+				"to": 22640
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,640",
+				"to": "00:00:26,760"
+			},
+			"offsets": {
+				"from": 22640,
+				"to": 26760
+			},
+			"text": " So yeah, this talk will basically--"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,760",
+				"to": "00:00:29,960"
+			},
+			"offsets": {
+				"from": 26760,
+				"to": 29960
+			},
+			"text": " yeah, I just want to tell what we did during the last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,960",
+				"to": "00:00:33,480"
+			},
+			"offsets": {
+				"from": 29960,
+				"to": 33480
+			},
+			"text": " And what the plans for the future are with regards to solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,480",
+				"to": "00:00:42,880"
+			},
+			"offsets": {
+				"from": 33480,
+				"to": 42880
+			},
+			"text": " I want to start with explaining what"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,880",
+				"to": "00:00:47,200"
+			},
+			"offsets": {
+				"from": 42880,
+				"to": 47200
+			},
+			"text": " the initial goals were for solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,200",
+				"to": "00:00:51,760"
+			},
+			"offsets": {
+				"from": 47200,
+				"to": 51760
+			},
+			"text": " So the idea was to have a statically typed language that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,760",
+				"to": "00:00:55,720"
+			},
+			"offsets": {
+				"from": 51760,
+				"to": 55720
+			},
+			"text": " is easily readable for web developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,720",
+				"to": "00:00:58,080"
+			},
+			"offsets": {
+				"from": 55720,
+				"to": 58080
+			},
+			"text": " or for not necessarily web developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,080",
+				"to": "00:01:03,160"
+			},
+			"offsets": {
+				"from": 58080,
+				"to": 63160
+			},
+			"text": " but for, I don't know, casual programmers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,160",
+				"to": "00:01:09,800"
+			},
+			"offsets": {
+				"from": 63160,
+				"to": 69800
+			},
+			"text": " So yeah, we chose something that looks like symbiosis"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,800",
+				"to": "00:01:12,240"
+			},
+			"offsets": {
+				"from": 69800,
+				"to": 72240
+			},
+			"text": " between JavaScript, C, Java."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,240",
+				"to": "00:01:22,640"
+			},
+			"offsets": {
+				"from": 72240,
+				"to": 82640
+			},
+			"text": " And it should be high level, but at the same time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,640",
+				"to": "00:01:24,720"
+			},
+			"offsets": {
+				"from": 82640,
+				"to": 84720
+			},
+			"text": " it should be also very, very efficient,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,720",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 84720,
+				"to": 89000
+			},
+			"text": " because there's not a lot we can do inside a single block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:30,520"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 90520
+			},
+			"text": " at least currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,520",
+				"to": "00:01:36,520"
+			},
+			"offsets": {
+				"from": 90520,
+				"to": 96520
+			},
+			"text": " And yeah, keep that in mind, because sometimes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,520",
+				"to": "00:01:38,680"
+			},
+			"offsets": {
+				"from": 96520,
+				"to": 98680
+			},
+			"text": " yeah, solidity looks really, really high level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,680",
+				"to": "00:01:42,400"
+			},
+			"offsets": {
+				"from": 98680,
+				"to": 102400
+			},
+			"text": " but actually, it's not that far away from assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,400",
+				"to": "00:01:48,840"
+			},
+			"offsets": {
+				"from": 102400,
+				"to": 108840
+			},
+			"text": " OK, what happens since DEF CON 1?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,840",
+				"to": "00:01:54,280"
+			},
+			"offsets": {
+				"from": 108840,
+				"to": 114280
+			},
+			"text": " We extended solidity to be more flexible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,280",
+				"to": "00:01:58,560"
+			},
+			"offsets": {
+				"from": 114280,
+				"to": 118560
+			},
+			"text": " more usable, so we added some usability features."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,560",
+				"to": "00:02:04,600"
+			},
+			"offsets": {
+				"from": 118560,
+				"to": 124600
+			},
+			"text": " And not to forget, we made it safer, at least I hope so."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,600",
+				"to": "00:02:05,800"
+			},
+			"offsets": {
+				"from": 124600,
+				"to": 125800
+			},
+			"text": " So what exactly did we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,800",
+				"to": "00:02:10,120"
+			},
+			"offsets": {
+				"from": 125800,
+				"to": 130120
+			},
+			"text": " Next slide, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,120",
+				"to": "00:02:16,600"
+			},
+			"offsets": {
+				"from": 130120,
+				"to": 136600
+			},
+			"text": " It's now possible to build custom types and solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,600",
+				"to": "00:02:21,480"
+			},
+			"offsets": {
+				"from": 136600,
+				"to": 141480
+			},
+			"text": " And that leverages the new features of inline assembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,480",
+				"to": "00:02:26,440"
+			},
+			"offsets": {
+				"from": 141480,
+				"to": 146440
+			},
+			"text": " and libraries that were present for DEF CON 1 already,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,440",
+				"to": "00:02:30,640"
+			},
+			"offsets": {
+				"from": 146440,
+				"to": 150640
+			},
+			"text": " but we added so-called internal library functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,640",
+				"to": "00:02:32,960"
+			},
+			"offsets": {
+				"from": 150640,
+				"to": 152960
+			},
+			"text": " And not to forget, the using X for Y."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,960",
+				"to": "00:02:35,720"
+			},
+			"offsets": {
+				"from": 152960,
+				"to": 155720
+			},
+			"text": " So let's look at an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,720",
+				"to": "00:02:40,040"
+			},
+			"offsets": {
+				"from": 155720,
+				"to": 160040
+			},
+			"text": " This is, I think, Nick Johnson's string library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,040",
+				"to": "00:02:42,240"
+			},
+			"offsets": {
+				"from": 160040,
+				"to": 162240
+			},
+			"text": " at least a small fragment of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,240",
+				"to": "00:02:48,480"
+			},
+			"offsets": {
+				"from": 162240,
+				"to": 168480
+			},
+			"text": " And inside this library, you have this struct slice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,480",
+				"to": "00:02:50,280"
+			},
+			"offsets": {
+				"from": 168480,
+				"to": 170280
+			},
+			"text": " which defines a new type."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,280",
+				"to": "00:02:54,720"
+			},
+			"offsets": {
+				"from": 170280,
+				"to": 174720
+			},
+			"text": " And it's basically a view on memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,720",
+				"to": "00:02:58,960"
+			},
+			"offsets": {
+				"from": 174720,
+				"to": 178960
+			},
+			"text": " It has a pointer, which is-- so it's a rather low-level object."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,960",
+				"to": "00:03:01,720"
+			},
+			"offsets": {
+				"from": 178960,
+				"to": 181720
+			},
+			"text": " It has a pointer and a length, so it references"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,720",
+				"to": "00:03:03,400"
+			},
+			"offsets": {
+				"from": 181720,
+				"to": 183400
+			},
+			"text": " a chunk of memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,400",
+				"to": "00:03:07,200"
+			},
+			"offsets": {
+				"from": 183400,
+				"to": 187200
+			},
+			"text": " And the function 2 slice can be called on any string,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,200",
+				"to": "00:03:12,040"
+			},
+			"offsets": {
+				"from": 187200,
+				"to": 192040
+			},
+			"text": " and it creates such a slice object that references"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,040",
+				"to": "00:03:15,080"
+			},
+			"offsets": {
+				"from": 192040,
+				"to": 195080
+			},
+			"text": " the data of that string."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,080",
+				"to": "00:03:17,280"
+			},
+			"offsets": {
+				"from": 195080,
+				"to": 197280
+			},
+			"text": " That is important because usually, when you--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,280",
+				"to": "00:03:28,200"
+			},
+			"offsets": {
+				"from": 198280,
+				"to": 208200
+			},
+			"text": " when you create-- so we want to be able to reference parts of strings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,200",
+				"to": "00:03:30,480"
+			},
+			"offsets": {
+				"from": 208200,
+				"to": 210480
+			},
+			"text": " and if we use just the string type itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,480",
+				"to": "00:03:32,200"
+			},
+			"offsets": {
+				"from": 210480,
+				"to": 212200
+			},
+			"text": " we would have to copy it all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,200",
+				"to": "00:03:36,280"
+			},
+			"offsets": {
+				"from": 212200,
+				"to": 216280
+			},
+			"text": " And using this slice, we can talk about parts of strings."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,280",
+				"to": "00:03:40,240"
+			},
+			"offsets": {
+				"from": 216280,
+				"to": 220240
+			},
+			"text": " And let's-- so at the bottom, we have a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,240",
+				"to": "00:03:44,440"
+			},
+			"offsets": {
+				"from": 220240,
+				"to": 224440
+			},
+			"text": " that actually uses this slice."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,440",
+				"to": "00:03:45,720"
+			},
+			"offsets": {
+				"from": 224440,
+				"to": 225720
+			},
+			"text": " It takes a string."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,720",
+				"to": "00:03:48,400"
+			},
+			"offsets": {
+				"from": 225720,
+				"to": 228400
+			},
+			"text": " It calls 2 slice, which converts it to such a slice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,400",
+				"to": "00:03:51,960"
+			},
+			"offsets": {
+				"from": 228400,
+				"to": 231960
+			},
+			"text": " and then checks whether it starts with foo."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,960",
+				"to": "00:03:56,640"
+			},
+			"offsets": {
+				"from": 231960,
+				"to": 236640
+			},
+			"text": " So it checks whether the prefix is foo."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,640",
+				"to": "00:04:00,440"
+			},
+			"offsets": {
+				"from": 236640,
+				"to": 240440
+			},
+			"text": " And no, not yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,440",
+				"to": "00:04:02,960"
+			},
+			"offsets": {
+				"from": 240440,
+				"to": 242960
+			},
+			"text": " And the great thing is that you can--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,960",
+				"to": "00:04:06,800"
+			},
+			"offsets": {
+				"from": 242960,
+				"to": 246800
+			},
+			"text": " so using this using strings for star statement,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,800",
+				"to": "00:04:11,120"
+			},
+			"offsets": {
+				"from": 246800,
+				"to": 251120
+			},
+			"text": " you can basically attach functions from a library"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,120",
+				"to": "00:04:12,880"
+			},
+			"offsets": {
+				"from": 251120,
+				"to": 252880
+			},
+			"text": " to an existing type."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,880",
+				"to": "00:04:15,760"
+			},
+			"offsets": {
+				"from": 252880,
+				"to": 255760
+			},
+			"text": " And that's why we can call s.2 slice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,760",
+				"to": "00:04:19,920"
+			},
+			"offsets": {
+				"from": 255760,
+				"to": 259920
+			},
+			"text": " although s is a built-in type that usually--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,920",
+				"to": "00:04:22,640"
+			},
+			"offsets": {
+				"from": 259920,
+				"to": 262640
+			},
+			"text": " that, of course, does not have the function 2 slice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,640",
+				"to": "00:04:26,920"
+			},
+			"offsets": {
+				"from": 262640,
+				"to": 266920
+			},
+			"text": " And I think this is a really powerful tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,920",
+				"to": "00:04:28,800"
+			},
+			"offsets": {
+				"from": 266920,
+				"to": 268800
+			},
+			"text": " especially when coupled with inline assembly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,800",
+				"to": "00:04:34,200"
+			},
+			"offsets": {
+				"from": 268800,
+				"to": 274200
+			},
+			"text": " because you can create tools using inline assembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,200",
+				"to": "00:04:35,960"
+			},
+			"offsets": {
+				"from": 274200,
+				"to": 275960
+			},
+			"text": " without having to change the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,960",
+				"to": "00:04:40,400"
+			},
+			"offsets": {
+				"from": 275960,
+				"to": 280400
+			},
+			"text": " So you can basically add types that look like built-in types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,400",
+				"to": "00:04:42,360"
+			},
+			"offsets": {
+				"from": 280400,
+				"to": 282360
+			},
+			"text": " but you do not have to take--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,360",
+				"to": "00:04:44,400"
+			},
+			"offsets": {
+				"from": 282360,
+				"to": 284400
+			},
+			"text": " you do not have to look into the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,400",
+				"to": "00:04:54,880"
+			},
+			"offsets": {
+				"from": 284400,
+				"to": 294880
+			},
+			"text": " OK, what we also did is we extended the AST output"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,880",
+				"to": "00:04:56,240"
+			},
+			"offsets": {
+				"from": 294880,
+				"to": 296240
+			},
+			"text": " capabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,240",
+				"to": "00:05:01,600"
+			},
+			"offsets": {
+				"from": 296240,
+				"to": 301600
+			},
+			"text": " And one of the goals there is to provide more--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,600",
+				"to": "00:05:05,120"
+			},
+			"offsets": {
+				"from": 301600,
+				"to": 305120
+			},
+			"text": " make the compiler more accessible to external tools, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,120",
+				"to": "00:05:08,600"
+			},
+			"offsets": {
+				"from": 305120,
+				"to": 308600
+			},
+			"text": " want to do static analysis or debugging."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,600",
+				"to": "00:05:13,160"
+			},
+			"offsets": {
+				"from": 308600,
+				"to": 313160
+			},
+			"text": " And so this is still a bit fluid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,160",
+				"to": "00:05:18,600"
+			},
+			"offsets": {
+				"from": 313160,
+				"to": 318600
+			},
+			"text": " so we might still change the design of the AST output."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,600",
+				"to": "00:05:24,680"
+			},
+			"offsets": {
+				"from": 318600,
+				"to": 324680
+			},
+			"text": " But as an example, we have the statement return x plus y,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,680",
+				"to": "00:05:28,880"
+			},
+			"offsets": {
+				"from": 324680,
+				"to": 328880
+			},
+			"text": " and this gets converted into the following JSON"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,880",
+				"to": "00:05:31,240"
+			},
+			"offsets": {
+				"from": 328880,
+				"to": 331240
+			},
+			"text": " representation of the AST."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,240",
+				"to": "00:05:37,280"
+			},
+			"offsets": {
+				"from": 331240,
+				"to": 337280
+			},
+			"text": " We have an ID, which is used to reference other nodes in the AST."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,280",
+				"to": "00:05:42,200"
+			},
+			"offsets": {
+				"from": 337280,
+				"to": 342200
+			},
+			"text": " So perhaps, AST is short for abstract syntax tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,200",
+				"to": "00:05:47,680"
+			},
+			"offsets": {
+				"from": 342200,
+				"to": 347680
+			},
+			"text": " And that is basically a structured representation"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,680",
+				"to": "00:05:49,280"
+			},
+			"offsets": {
+				"from": 347680,
+				"to": 349280
+			},
+			"text": " of the source code of a program."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,280",
+				"to": "00:05:54,440"
+			},
+			"offsets": {
+				"from": 349280,
+				"to": 354440
+			},
+			"text": " And so this return x plus y is decomposed"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,440",
+				"to": "00:05:56,240"
+			},
+			"offsets": {
+				"from": 354440,
+				"to": 356240
+			},
+			"text": " in the return statement."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,240",
+				"to": "00:05:58,080"
+			},
+			"offsets": {
+				"from": 356240,
+				"to": 358080
+			},
+			"text": " And then inside this return statement,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,080",
+				"to": "00:06:01,400"
+			},
+			"offsets": {
+				"from": 358080,
+				"to": 361400
+			},
+			"text": " we have a binary operation, which is the addition."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,400",
+				"to": "00:06:06,520"
+			},
+			"offsets": {
+				"from": 361400,
+				"to": 366520
+			},
+			"text": " And the two operands, again, are inside the binary operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,520",
+				"to": "00:06:09,080"
+			},
+			"offsets": {
+				"from": 366520,
+				"to": 369080
+			},
+			"text": " And these are the two identifiers x and y."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,080",
+				"to": "00:06:15,240"
+			},
+			"offsets": {
+				"from": 369080,
+				"to": 375240
+			},
+			"text": " And you can see this attribute, SRC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,240",
+				"to": "00:06:17,960"
+			},
+			"offsets": {
+				"from": 375240,
+				"to": 377960
+			},
+			"text": " that is a reference to the actual position in the source"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,960",
+				"to": "00:06:21,680"
+			},
+			"offsets": {
+				"from": 377960,
+				"to": 381680
+			},
+			"text": " code where this piece of the AST came from."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,680",
+				"to": "00:06:25,400"
+			},
+			"offsets": {
+				"from": 381680,
+				"to": 385400
+			},
+			"text": " And that is very important for the debugger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,400",
+				"to": "00:06:29,440"
+			},
+			"offsets": {
+				"from": 385400,
+				"to": 389440
+			},
+			"text": " because at any point in the code, it can show you--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,440",
+				"to": "00:06:35,320"
+			},
+			"offsets": {
+				"from": 389440,
+				"to": 395320
+			},
+			"text": " so if you debug a transaction, then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,320",
+				"to": "00:06:38,720"
+			},
+			"offsets": {
+				"from": 395320,
+				"to": 398720
+			},
+			"text": " can, at any point, inside the execution of the transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,720",
+				"to": "00:06:42,280"
+			},
+			"offsets": {
+				"from": 398720,
+				"to": 402280
+			},
+			"text": " you know where that was, where you currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,280",
+				"to": "00:06:43,920"
+			},
+			"offsets": {
+				"from": 402280,
+				"to": 403920
+			},
+			"text": " are in the source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,920",
+				"to": "00:06:48,240"
+			},
+			"offsets": {
+				"from": 403920,
+				"to": 408240
+			},
+			"text": " And you can also do more analysis on the AST,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,240",
+				"to": "00:06:55,600"
+			},
+			"offsets": {
+				"from": 408240,
+				"to": 415600
+			},
+			"text": " and perhaps, so perhaps, analyze the AST for insecure stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,600",
+				"to": "00:06:59,120"
+			},
+			"offsets": {
+				"from": 415600,
+				"to": 419120
+			},
+			"text": " and notify the user and point to an exact location"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,120",
+				"to": "00:07:01,280"
+			},
+			"offsets": {
+				"from": 419120,
+				"to": 421280
+			},
+			"text": " in the source where this problem is."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,040",
+				"to": "00:07:02,540"
+			},
+			"offsets": {
+				"from": 422040,
+				"to": 422540
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,540",
+				"to": "00:07:07,920"
+			},
+			"offsets": {
+				"from": 422540,
+				"to": 427920
+			},
+			"text": " Yeah, concerning safety, we already"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,920",
+				"to": "00:07:09,920"
+			},
+			"offsets": {
+				"from": 427920,
+				"to": 429920
+			},
+			"text": " had several talks about formal verification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,920",
+				"to": "00:07:13,080"
+			},
+			"offsets": {
+				"from": 429920,
+				"to": 433080
+			},
+			"text": " so I won't say anything about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,080",
+				"to": "00:07:16,920"
+			},
+			"offsets": {
+				"from": 433080,
+				"to": 436920
+			},
+			"text": " With the 040 release of Solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,920",
+				"to": "00:07:20,840"
+			},
+			"offsets": {
+				"from": 436920,
+				"to": 440840
+			},
+			"text": " we added some changes that intentionally broke"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,840",
+				"to": "00:07:25,200"
+			},
+			"offsets": {
+				"from": 440840,
+				"to": 445200
+			},
+			"text": " backwards compatibility in order to add some safety features."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,200",
+				"to": "00:07:31,240"
+			},
+			"offsets": {
+				"from": 445200,
+				"to": 451240
+			},
+			"text": " And some of them were that we created exceptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,240",
+				"to": "00:07:34,440"
+			},
+			"offsets": {
+				"from": 451240,
+				"to": 454440
+			},
+			"text": " For in more situations than before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,440",
+				"to": "00:07:36,840"
+			},
+			"offsets": {
+				"from": 454440,
+				"to": 456840
+			},
+			"text": " and the effect of an exception is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,840",
+				"to": "00:07:43,040"
+			},
+			"offsets": {
+				"from": 456840,
+				"to": 463040
+			},
+			"text": " that a transaction is rolled back, or at least a call"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,040",
+				"to": "00:07:44,440"
+			},
+			"offsets": {
+				"from": 463040,
+				"to": 464440
+			},
+			"text": " inside the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,440",
+				"to": "00:07:50,040"
+			},
+			"offsets": {
+				"from": 464440,
+				"to": 470040
+			},
+			"text": " So whenever you encounter a--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,040",
+				"to": "00:07:53,960"
+			},
+			"offsets": {
+				"from": 470040,
+				"to": 473960
+			},
+			"text": " yeah, trouble some situation or some situation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,960",
+				"to": "00:07:59,240"
+			},
+			"offsets": {
+				"from": 473960,
+				"to": 479240
+			},
+			"text": " where it's not really clear how to deal with it, at least"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,240",
+				"to": "00:08:03,800"
+			},
+			"offsets": {
+				"from": 479240,
+				"to": 483800
+			},
+			"text": " not for the compiler, then this basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,800",
+				"to": "00:08:06,240"
+			},
+			"offsets": {
+				"from": 483800,
+				"to": 486240
+			},
+			"text": " undoes the effect of the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,240",
+				"to": "00:08:09,600"
+			},
+			"offsets": {
+				"from": 486240,
+				"to": 489600
+			},
+			"text": " This can be dangerous in some situations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,600",
+				"to": "00:08:13,960"
+			},
+			"offsets": {
+				"from": 489600,
+				"to": 493960
+			},
+			"text": " so especially when you, for example, have a loop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,960",
+				"to": "00:08:17,560"
+			},
+			"offsets": {
+				"from": 493960,
+				"to": 497560
+			},
+			"text": " and one of the iterates inside the loop"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,560",
+				"to": "00:08:19,040"
+			},
+			"offsets": {
+				"from": 497560,
+				"to": 499040
+			},
+			"text": " always triggers an exception, then it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,040",
+				"to": "00:08:20,600"
+			},
+			"offsets": {
+				"from": 499040,
+				"to": 500600
+			},
+			"text": " impossible for the loop to go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,600",
+				"to": "00:08:23,400"
+			},
+			"offsets": {
+				"from": 500600,
+				"to": 503400
+			},
+			"text": " So this is something to be aware of."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,400",
+				"to": "00:08:28,680"
+			},
+			"offsets": {
+				"from": 503400,
+				"to": 508680
+			},
+			"text": " But we chose to rather revert the transaction then--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,680",
+				"to": "00:08:30,360"
+			},
+			"offsets": {
+				"from": 508680,
+				"to": 510360
+			},
+			"text": " so we chose to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,360",
+				"to": "00:08:34,200"
+			},
+			"offsets": {
+				"from": 510360,
+				"to": 514200
+			},
+			"text": " re-vegring a transaction is less of a problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,200",
+				"to": "00:08:35,760"
+			},
+			"offsets": {
+				"from": 514200,
+				"to": 515760
+			},
+			"text": " than getting stuck."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,760",
+				"to": "00:08:41,200"
+			},
+			"offsets": {
+				"from": 515760,
+				"to": 521200
+			},
+			"text": " And so yeah, failed creations now throw an exception,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,200",
+				"to": "00:08:43,440"
+			},
+			"offsets": {
+				"from": 521200,
+				"to": 523440
+			},
+			"text": " division by zero throws an exception,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,440",
+				"to": "00:08:46,880"
+			},
+			"offsets": {
+				"from": 523440,
+				"to": 526880
+			},
+			"text": " and function calls to a non-contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,880",
+				"to": "00:08:48,560"
+			},
+			"offsets": {
+				"from": 526880,
+				"to": 528560
+			},
+			"text": " This function calls to a non-contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,560",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 528560,
+				"to": 536000
+			},
+			"text": " is especially important because if you call a non-contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:59,560"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 539560
+			},
+			"text": " it will basically--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,560",
+				"to": "00:09:01,120"
+			},
+			"offsets": {
+				"from": 539560,
+				"to": 541120
+			},
+			"text": " if you send Ether together with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,120",
+				"to": "00:09:04,680"
+			},
+			"offsets": {
+				"from": 541120,
+				"to": 544680
+			},
+			"text": " it will just accept it, and it might be forever stuck there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,680",
+				"to": "00:09:06,920"
+			},
+			"offsets": {
+				"from": 544680,
+				"to": 546920
+			},
+			"text": " And then we have the payable modifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,920",
+				"to": "00:09:10,640"
+			},
+			"offsets": {
+				"from": 546920,
+				"to": 550640
+			},
+			"text": " so you now have to explicitly specify for every function"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,640",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 550640,
+				"to": 553000
+			},
+			"text": " whether it is allowed to receive Ether,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:15,680"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 555680
+			},
+			"text": " and the default is to reject Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,680",
+				"to": "00:09:23,200"
+			},
+			"offsets": {
+				"from": 555680,
+				"to": 563200
+			},
+			"text": " So it's harder to accidentally send funds somewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,200",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 563200,
+				"to": 567000
+			},
+			"text": " And to make the version transition safer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:29,880"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 569880
+			},
+			"text": " we also added the version pragma, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,880",
+				"to": "00:09:33,800"
+			},
+			"offsets": {
+				"from": 569880,
+				"to": 573800
+			},
+			"text": " means you can now specify the compiler version your source"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,800",
+				"to": "00:09:36,240"
+			},
+			"offsets": {
+				"from": 573800,
+				"to": 576240
+			},
+			"text": " code is designed to work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,240",
+				"to": "00:09:40,360"
+			},
+			"offsets": {
+				"from": 576240,
+				"to": 580360
+			},
+			"text": " And if we change the compiler, if we change the language"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,360",
+				"to": "00:09:42,840"
+			},
+			"offsets": {
+				"from": 580360,
+				"to": 582840
+			},
+			"text": " in the future, then this version pragma"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,840",
+				"to": "00:09:45,480"
+			},
+			"offsets": {
+				"from": 582840,
+				"to": 585480
+			},
+			"text": " will tell the developer, yeah, there"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,480",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 585480,
+				"to": 588000
+			},
+			"text": " might be some changes, so you probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:50,320"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 590320
+			},
+			"text": " have to take a look at the source code and modify it"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,320",
+				"to": "00:09:52,360"
+			},
+			"offsets": {
+				"from": 590320,
+				"to": 592360
+			},
+			"text": " accordingly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,360",
+				"to": "00:09:56,800"
+			},
+			"offsets": {
+				"from": 592360,
+				"to": 596800
+			},
+			"text": " And then we also fixed a problem with modifiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,800",
+				"to": "00:10:02,840"
+			},
+			"offsets": {
+				"from": 596800,
+				"to": 602840
+			},
+			"text": " So modifiers are kind of properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,840",
+				"to": "00:10:04,320"
+			},
+			"offsets": {
+				"from": 602840,
+				"to": 604320
+			},
+			"text": " you can attach to functions, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,320",
+				"to": "00:10:08,280"
+			},
+			"offsets": {
+				"from": 604320,
+				"to": 608280
+			},
+			"text": " insert a prefix and a suffix into the function."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,280",
+				"to": "00:10:12,160"
+			},
+			"offsets": {
+				"from": 608280,
+				"to": 612160
+			},
+			"text": " And this underscore part there is where the actual function"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,160",
+				"to": "00:10:13,360"
+			},
+			"offsets": {
+				"from": 612160,
+				"to": 613360
+			},
+			"text": " is inserted."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,360",
+				"to": "00:10:18,600"
+			},
+			"offsets": {
+				"from": 613360,
+				"to": 618600
+			},
+			"text": " And previously, it was more syntax-based,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,600",
+				"to": "00:10:21,320"
+			},
+			"offsets": {
+				"from": 618600,
+				"to": 621320
+			},
+			"text": " which means if the function had a return,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,320",
+				"to": "00:10:24,080"
+			},
+			"offsets": {
+				"from": 621320,
+				"to": 624080
+			},
+			"text": " it actually returned."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,080",
+				"to": "00:10:27,840"
+			},
+			"offsets": {
+				"from": 624080,
+				"to": 627840
+			},
+			"text": " And in the sense that it also skipped the trailing part here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,840",
+				"to": "00:10:31,040"
+			},
+			"offsets": {
+				"from": 627840,
+				"to": 631040
+			},
+			"text": " So this locked equals false would have been skipped"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,040",
+				"to": "00:10:32,840"
+			},
+			"offsets": {
+				"from": 631040,
+				"to": 632840
+			},
+			"text": " before with a return, but it would not"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,840",
+				"to": "00:10:36,960"
+			},
+			"offsets": {
+				"from": 632840,
+				"to": 636960
+			},
+			"text": " have been skipped if you just completed the function."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,960",
+				"to": "00:10:39,800"
+			},
+			"offsets": {
+				"from": 636960,
+				"to": 639800
+			},
+			"text": " And this now hopefully makes it possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,800",
+				"to": "00:10:48,600"
+			},
+			"offsets": {
+				"from": 639800,
+				"to": 648600
+			},
+			"text": " to create mutexes, which allow a function to be active only once."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,600",
+				"to": "00:10:53,240"
+			},
+			"offsets": {
+				"from": 648600,
+				"to": 653240
+			},
+			"text": " In that, there is a variable in storage called"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,240",
+				"to": "00:10:54,800"
+			},
+			"offsets": {
+				"from": 653240,
+				"to": 654800
+			},
+			"text": " locked in this example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,800",
+				"to": "00:10:57,480"
+			},
+			"offsets": {
+				"from": 654800,
+				"to": 657480
+			},
+			"text": " And if the function is active, it's set to true."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,480",
+				"to": "00:10:59,760"
+			},
+			"offsets": {
+				"from": 657480,
+				"to": 659760
+			},
+			"text": " And it's automatically set to false again"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,760",
+				"to": "00:11:01,240"
+			},
+			"offsets": {
+				"from": 659760,
+				"to": 661240
+			},
+			"text": " if the function exits."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,240",
+				"to": "00:11:07,120"
+			},
+			"offsets": {
+				"from": 661240,
+				"to": 667120
+			},
+			"text": " And if the function is locked, then you cannot call it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,120",
+				"to": "00:11:08,400"
+			},
+			"offsets": {
+				"from": 667120,
+				"to": 668400
+			},
+			"text": " So this-- yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,400",
+				"to": "00:11:15,800"
+			},
+			"offsets": {
+				"from": 668400,
+				"to": 675800
+			},
+			"text": " OK, how does the future look?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,800",
+				"to": "00:11:18,680"
+			},
+			"offsets": {
+				"from": 675800,
+				"to": 678680
+			},
+			"text": " Again, formal verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,680",
+				"to": "00:11:21,880"
+			},
+			"offsets": {
+				"from": 678680,
+				"to": 681880
+			},
+			"text": " Then one important and large feature we will add"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,880",
+				"to": "00:11:27,400"
+			},
+			"offsets": {
+				"from": 681880,
+				"to": 687400
+			},
+			"text": " is something I call authenticated sources and binaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,400",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 687400,
+				"to": 691000
+			},
+			"text": " This means that the compiler will automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:37,480"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 697480
+			},
+			"text": " insert a hash of the metadata into the bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,480",
+				"to": "00:11:41,640"
+			},
+			"offsets": {
+				"from": 697480,
+				"to": 701640
+			},
+			"text": " And using this hash, you can retrieve the metadata from swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,120",
+				"to": "00:11:47,960"
+			},
+			"offsets": {
+				"from": 704120,
+				"to": 707960
+			},
+			"text": " That means that-- so the metadata"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,960",
+				"to": "00:11:52,040"
+			},
+			"offsets": {
+				"from": 707960,
+				"to": 712040
+			},
+			"text": " will contain a lot of information about the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,040",
+				"to": "00:11:54,400"
+			},
+			"offsets": {
+				"from": 712040,
+				"to": 714400
+			},
+			"text": " This includes the ABI interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,400",
+				"to": "00:11:59,040"
+			},
+			"offsets": {
+				"from": 714400,
+				"to": 719040
+			},
+			"text": " And the effect of that is if you load up a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,040",
+				"to": "00:12:01,440"
+			},
+			"offsets": {
+				"from": 719040,
+				"to": 721440
+			},
+			"text": " inside Mist and want to interact with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,440",
+				"to": "00:12:04,200"
+			},
+			"offsets": {
+				"from": 721440,
+				"to": 724200
+			},
+			"text": " you do not have to copy and paste the ABI anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,200",
+				"to": "00:12:06,320"
+			},
+			"offsets": {
+				"from": 724200,
+				"to": 726320
+			},
+			"text": " It will automatically retrieve it from swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,320",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 726320,
+				"to": 728000
+			},
+			"text": " And it's also authenticated in the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:11,680"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 731680
+			},
+			"text": " that that is the ABI, the programmer intended"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,680",
+				"to": "00:12:13,120"
+			},
+			"offsets": {
+				"from": 731680,
+				"to": 733120
+			},
+			"text": " the smart contract to have."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,120",
+				"to": "00:12:16,360"
+			},
+			"offsets": {
+				"from": 733120,
+				"to": 736360
+			},
+			"text": " So you can't make any copy-paste errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,360",
+				"to": "00:12:19,960"
+			},
+			"offsets": {
+				"from": 736360,
+				"to": 739960
+			},
+			"text": " And it will also have a link to the source code"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,960",
+				"to": "00:12:22,880"
+			},
+			"offsets": {
+				"from": 739960,
+				"to": 742880
+			},
+			"text": " and link in the sense of link to swarm, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,880",
+				"to": "00:12:26,400"
+			},
+			"offsets": {
+				"from": 742880,
+				"to": 746400
+			},
+			"text": " which means that the source code is hash authenticated."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,400",
+				"to": "00:12:29,480"
+			},
+			"offsets": {
+				"from": 746400,
+				"to": 749480
+			},
+			"text": " And this hash is part of the bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,480",
+				"to": "00:12:32,840"
+			},
+			"offsets": {
+				"from": 749480,
+				"to": 752840
+			},
+			"text": " So it's the exact source code the programmer"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,840",
+				"to": "00:12:35,320"
+			},
+			"offsets": {
+				"from": 752840,
+				"to": 755320
+			},
+			"text": " used when compiling a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,320",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 755320,
+				"to": 759000
+			},
+			"text": " And it will also have the compiler version,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:40,840"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 760840
+			},
+			"text": " which means Mist can automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,840",
+				"to": "00:12:44,800"
+			},
+			"offsets": {
+				"from": 760840,
+				"to": 764800
+			},
+			"text": " retrieve both the ABI interface and the source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,800",
+				"to": "00:12:47,840"
+			},
+			"offsets": {
+				"from": 764800,
+				"to": 767840
+			},
+			"text": " And the compiler with the correct version"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,840",
+				"to": "00:12:49,720"
+			},
+			"offsets": {
+				"from": 767840,
+				"to": 769720
+			},
+			"text": " compiled the source code and verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,720",
+				"to": "00:12:51,520"
+			},
+			"offsets": {
+				"from": 769720,
+				"to": 771520
+			},
+			"text": " that this is actually the source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,520",
+				"to": "00:12:54,360"
+			},
+			"offsets": {
+				"from": 771520,
+				"to": 774360
+			},
+			"text": " And then show the source code documentation to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,360",
+				"to": "00:13:01,320"
+			},
+			"offsets": {
+				"from": 774360,
+				"to": 781320
+			},
+			"text": " And since the form of verification conditions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,320",
+				"to": "00:13:04,240"
+			},
+			"offsets": {
+				"from": 781320,
+				"to": 784240
+			},
+			"text": " are part of the source code, it can even automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,240",
+				"to": "00:13:07,920"
+			},
+			"offsets": {
+				"from": 784240,
+				"to": 787920
+			},
+			"text": " do just in time form verification of the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,440",
+				"to": "00:13:13,360"
+			},
+			"offsets": {
+				"from": 790440,
+				"to": 793360
+			},
+			"text": " OK, then templates are something we would like to add."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,360",
+				"to": "00:13:17,440"
+			},
+			"offsets": {
+				"from": 793360,
+				"to": 797440
+			},
+			"text": " So this is sometimes called generic data structures"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,440",
+				"to": "00:13:18,800"
+			},
+			"offsets": {
+				"from": 797440,
+				"to": 798800
+			},
+			"text": " or generics."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,800",
+				"to": "00:13:22,400"
+			},
+			"offsets": {
+				"from": 798800,
+				"to": 802400
+			},
+			"text": " And I hope that it will also increase flexibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,400",
+				"to": "00:13:27,440"
+			},
+			"offsets": {
+				"from": 802400,
+				"to": 807440
+			},
+			"text": " because you can implement one routine, one algorithm once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,440",
+				"to": "00:13:30,760"
+			},
+			"offsets": {
+				"from": 807440,
+				"to": 810760
+			},
+			"text": " and then reuse it for multiple data types."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,760",
+				"to": "00:13:32,960"
+			},
+			"offsets": {
+				"from": 810760,
+				"to": 812960
+			},
+			"text": " We will also add functions as first class citizens."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,960",
+				"to": "00:13:37,240"
+			},
+			"offsets": {
+				"from": 812960,
+				"to": 817240
+			},
+			"text": " This means you can have things like anonymous functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,240",
+				"to": "00:13:41,240"
+			},
+			"offsets": {
+				"from": 817240,
+				"to": 821240
+			},
+			"text": " lambda functions, and use them as, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,240",
+				"to": "00:13:43,920"
+			},
+			"offsets": {
+				"from": 821240,
+				"to": 823920
+			},
+			"text": " as callbacks in Oracle queries."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,920",
+				"to": "00:13:54,720"
+			},
+			"offsets": {
+				"from": 823920,
+				"to": 834720
+			},
+			"text": " So currently, Oracleize uses some kind of manual solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,720",
+				"to": "00:13:58,840"
+			},
+			"offsets": {
+				"from": 834720,
+				"to": 838840
+			},
+			"text": " to that problem because if you make a request to Oracleize,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,840",
+				"to": "00:14:02,840"
+			},
+			"offsets": {
+				"from": 838840,
+				"to": 842840
+			},
+			"text": " then the Oracleize smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,840",
+				"to": "00:14:06,040"
+			},
+			"offsets": {
+				"from": 842840,
+				"to": 846040
+			},
+			"text": " invokes the Oracleize system and retrieves the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,040",
+				"to": "00:14:10,720"
+			},
+			"offsets": {
+				"from": 846040,
+				"to": 850720
+			},
+			"text": " And then calls back the original contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,720",
+				"to": "00:14:13,400"
+			},
+			"offsets": {
+				"from": 850720,
+				"to": 853400
+			},
+			"text": " in a later transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,400",
+				"to": "00:14:16,240"
+			},
+			"offsets": {
+				"from": 853400,
+				"to": 856240
+			},
+			"text": " And currently, this callback goes to a fixed function"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,240",
+				"to": "00:14:17,640"
+			},
+			"offsets": {
+				"from": 856240,
+				"to": 857640
+			},
+			"text": " with a fixed name."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,640",
+				"to": "00:14:20,440"
+			},
+			"offsets": {
+				"from": 857640,
+				"to": 860440
+			},
+			"text": " But in the future, it will be possible to just supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,440",
+				"to": "00:14:25,520"
+			},
+			"offsets": {
+				"from": 860440,
+				"to": 865520
+			},
+			"text": " a callback function as is usually an asynchronous programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,520",
+				"to": "00:14:29,480"
+			},
+			"offsets": {
+				"from": 865520,
+				"to": 869480
+			},
+			"text": " And yeah, speaking of asynchronous programming,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,480",
+				"to": "00:14:34,240"
+			},
+			"offsets": {
+				"from": 869480,
+				"to": 874240
+			},
+			"text": " I'm not sure if you've seen this proof of concept hack"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,240",
+				"to": "00:14:40,960"
+			},
+			"offsets": {
+				"from": 874240,
+				"to": 880960
+			},
+			"text": " two weeks ago about the await to program."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,960",
+				"to": "00:14:48,640"
+			},
+			"offsets": {
+				"from": 880960,
+				"to": 888640
+			},
+			"text": " So yeah, in the future, we will explore new notations"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,640",
+				"to": "00:14:50,600"
+			},
+			"offsets": {
+				"from": 888640,
+				"to": 890600
+			},
+			"text": " how to do asynchronous programming"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,600",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 890600,
+				"to": 894000
+			},
+			"text": " because often smart contracts are a sequence,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:55,960"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 895960
+			},
+			"text": " consists of a sequence of things to be done"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,960",
+				"to": "00:14:57,920"
+			},
+			"offsets": {
+				"from": 895960,
+				"to": 897920
+			},
+			"text": " in exactly this sequence."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,920",
+				"to": "00:14:59,720"
+			},
+			"offsets": {
+				"from": 897920,
+				"to": 899720
+			},
+			"text": " And it kind of doesn't really make"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,720",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 899720,
+				"to": 904000
+			},
+			"text": " sense to put these different steps in different functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:08,200"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 908200
+			},
+			"text": " And it's much easier to actually program that sequentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,200",
+				"to": "00:15:10,520"
+			},
+			"offsets": {
+				"from": 908200,
+				"to": 910520
+			},
+			"text": " Yeah, it's probably hard to explain with all examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,520",
+				"to": "00:15:13,440"
+			},
+			"offsets": {
+				"from": 910520,
+				"to": 913440
+			},
+			"text": " OK, you will see."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,440",
+				"to": "00:15:16,440"
+			},
+			"offsets": {
+				"from": 913440,
+				"to": 916440
+			},
+			"text": " So what else do we have?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,440",
+				"to": "00:15:23,520"
+			},
+			"offsets": {
+				"from": 916440,
+				"to": 923520
+			},
+			"text": " Yeah, so we plan to add algebraic data types"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,520",
+				"to": "00:15:25,320"
+			},
+			"offsets": {
+				"from": 923520,
+				"to": 925320
+			},
+			"text": " and as I said templates."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,320",
+				"to": "00:15:29,760"
+			},
+			"offsets": {
+				"from": 925320,
+				"to": 929760
+			},
+			"text": " But it's probably too hard to explain the source code"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,760",
+				"to": "00:15:30,920"
+			},
+			"offsets": {
+				"from": 929760,
+				"to": 930920
+			},
+			"text": " in this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,920",
+				"to": "00:15:34,320"
+			},
+			"offsets": {
+				"from": 930920,
+				"to": 934320
+			},
+			"text": " And there's another slide with even more complicated future"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,320",
+				"to": "00:15:35,800"
+			},
+			"offsets": {
+				"from": 934320,
+				"to": 935800
+			},
+			"text": " solidity code."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,800",
+				"to": "00:15:39,880"
+			},
+			"offsets": {
+				"from": 935800,
+				"to": 939880
+			},
+			"text": " And I would just encourage you to take a look at the slides"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,880",
+				"to": "00:15:42,960"
+			},
+			"offsets": {
+				"from": 939880,
+				"to": 942960
+			},
+			"text": " later and read the comments."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,960",
+				"to": "00:15:45,120"
+			},
+			"offsets": {
+				"from": 942960,
+				"to": 945120
+			},
+			"text": " Yeah, and this is just a rough idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,120",
+				"to": "00:15:46,360"
+			},
+			"offsets": {
+				"from": 945120,
+				"to": 946360
+			},
+			"text": " of how it could look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,360",
+				"to": "00:15:50,440"
+			},
+			"offsets": {
+				"from": 946360,
+				"to": 950440
+			},
+			"text": " So I hope that the URLs of the slides"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,440",
+				"to": "00:15:52,960"
+			},
+			"offsets": {
+				"from": 950440,
+				"to": 952960
+			},
+			"text": " are published soon after the conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,960",
+				"to": "00:15:57,400"
+			},
+			"offsets": {
+				"from": 952960,
+				"to": 957400
+			},
+			"text": " Yeah, I think they also have relevant Reddit posts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,400",
+				"to": "00:15:59,040"
+			},
+			"offsets": {
+				"from": 957400,
+				"to": 959040
+			},
+			"text": " OK, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,040",
+				"to": "00:16:01,040"
+			},
+			"offsets": {
+				"from": 959040,
+				"to": 961040
+			},
+			"text": " Thanks, Christian."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,040",
+				"to": "00:16:04,400"
+			},
+			"offsets": {
+				"from": 961040,
+				"to": 964400
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,400",
+				"to": "00:16:06,980"
+			},
+			"offsets": {
+				"from": 964400,
+				"to": 966980
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,980",
+				"to": "00:16:09,560"
+			},
+			"offsets": {
+				"from": 966980,
+				"to": 969560
+			},
+			"text": " (gentle music)"
+		}
+	]
+}

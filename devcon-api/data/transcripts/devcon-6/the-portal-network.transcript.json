@@ -1,0 +1,5334 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 18000
+			},
+			"text": " I'm Piper, as she said, and I'm here to talk to you guys about the Portal Network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20000
+			},
+			"text": " So let's just get right into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 24000
+			},
+			"text": " I worked for the Ethereum Foundation of, I got already, I got introduced."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 31000
+			},
+			"text": " So this is about actually finally bringing lightweight, decentralized access to the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 38000
+			},
+			"text": " And yes, this has been kind of a long-term project to get us to where we're at."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 39000
+			},
+			"text": " There we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 43000
+			},
+			"text": " So let's just dive into kind of at this high level what the Portal Network is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 49000
+			},
+			"text": " For me, it's a giant white whale that I've been hunting for a long time and hopefully doesn't eat me in the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 59000
+			},
+			"text": " But the Portal Network is five new decentralized special purpose storage networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 65000
+			},
+			"text": " that serve all of the data that is necessary for interacting with the Ethereum protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 69000
+			},
+			"text": " And this has been a long road to get to here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 76000
+			},
+			"text": " We spent time way back trying to build lightweight clients on the existing networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 84000
+			},
+			"text": " And where we ended up was that the existing networks don't give us what we need to actually deliver lightweight protocol access."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 91000
+			},
+			"text": " And thus, we have these five special purpose storage networks that we are building out to serve this data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 98000
+			},
+			"text": " and to essentially realize this dream of lightweight access to the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 104000
+			},
+			"text": " The project has kind of these high level design goals that kind of informed what we needed to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 105000
+			},
+			"text": " and how it needed to get built."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 109000
+			},
+			"text": " And one of the main things is that the Portal Network is really user focused."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 117000
+			},
+			"text": " All of the clients that you hear about today, Geth, Basu, Lighthouse, all of that stuff, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 124000
+			},
+			"text": " It's infrastructure for the protocol and those clients are built with the protocol in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 131000
+			},
+			"text": " And the user facing stuff, right, the JSON RPC API, they're not the lowest priority."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 137000
+			},
+			"text": " But at the end of the day, those clients serve the protocol and not the users."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 143000
+			},
+			"text": " One way to look at this is that if you want to interact with the Ethereum protocol today, you have two choices, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 148000
+			},
+			"text": " It's the upper right or lower left-hand corner of this graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 151000
+			},
+			"text": " You can run a full node. They're very heavy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 153000
+			},
+			"text": " And they're also awesomely decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 156000
+			},
+			"text": " There's a number of choices for what to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 161000
+			},
+			"text": " But in general, when we're talking execution layer, you're talking about very heavy pieces of software."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 163000
+			},
+			"text": " We'll get into the details of this in a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 171000
+			},
+			"text": " On the other end of the spectrum, you've got lightweight but centralized options like alchemy or inferior, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 176000
+			},
+			"text": " Somebody at the last conference told me that I was a boomer for calling it inferior."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 178000
+			},
+			"text": " I thought that was awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 182000
+			},
+			"text": " So anyways, you've got these lightweight options, but they're also centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 190000
+			},
+			"text": " And they can do things like correlating your IP address with the transaction juice in or selling your data and things like that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 198000
+			},
+			"text": " There are two options at the far opposite ends of the spectrum, and we want to build this thing in the upper left-hand corner, this kind of adorable pink smart car,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 203000
+			},
+			"text": " that is both lightweight and decentralized, which supposedly we care about."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 208000
+			},
+			"text": " This brings us to this lightweight concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 217000
+			},
+			"text": " Like I said, Ethereum clients are heavy, and we need a network that allows lightweight devices to participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 221000
+			},
+			"text": " Ethereum clients are heavy today because they have to do a lot of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 224000
+			},
+			"text": " EVM execution is CPU intensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 233000
+			},
+			"text": " Running the transaction pool is CPU intensive, and there's gigabytes upon gigabytes of history and state data and things like that that they need to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 243000
+			},
+			"text": " This means that running a traditional Ethereum client is an inherently heavy thing, and you generally can't do it on things like Raspberry Pies or phones."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 249000
+			},
+			"text": " Over here on the left, we've got this nice little strong guy who can hold it all up."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 253000
+			},
+			"text": " That's your traditional execution layer client."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 262000
+			},
+			"text": " Our goal is building out a network that lets you spread things out that takes all of the load for all of this data and distributes it around all of the participants of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 266000
+			},
+			"text": " in a nice kind of even way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 273000
+			},
+			"text": " The other thing that we focus on is kind of removing some of these height restrictions, and by height restrictions I mean"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 277000
+			},
+			"text": " essentially hardware restrictions that keep you from joining the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 287000
+			},
+			"text": " This is one of the things that blocked us from building a lightweight client years ago, was that you've got these sort of, you must be this tall to ride things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 297000
+			},
+			"text": " You are not allowed as a participant in the dev P2P network, that's the network that supports execution layer clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 309000
+			},
+			"text": " You can't be part of this unless you have all of the state and all of the history and enough processing power to process every block and enough processing power to run the transaction in pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 314000
+			},
+			"text": " If you aren't tall enough, you're not allowed into that network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 321000
+			},
+			"text": " We focused on a different model. We wanted people to be able, people, clients, computers, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 328000
+			},
+			"text": " We needed a network that allowed you to show up with whatever you had and to contribute it to the network if you're so willing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 340000
+			},
+			"text": " The idea is that all of these networks operate on this exact same principle, which is that as a client to the network you can tune some parameters that dictate how much storage space the network is going to ask of you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 345000
+			},
+			"text": " that dictate how much processing power the network is going to ask from you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 353000
+			},
+			"text": " One of the other major things that we focused on is this UX thing, which means, to me, elimination of sync times."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 366000
+			},
+			"text": " Traditional clients have bad UX in terms of the user facing stuff, and that's because you either have to, when you start it up, you've got hours or days to wait for it to sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 373000
+			},
+			"text": " If you go offline for some period of time, you often have additional time to catch back up to the tip of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 380000
+			},
+			"text": " These sync times make UX for end-user interactions kind of basically unbearable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 388000
+			},
+			"text": " This is why almost all of the user land traffic goes through services like alchemy or inferior."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 400000
+			},
+			"text": " We've designed a system where all that you need to do is have a view of what you trust as the front of the chain, and from there all of the data is accessible to you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 409000
+			},
+			"text": " which means the difference between hours or days of sync time, from zero to being able to actually interact with the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 420000
+			},
+			"text": " to being able to be interacting with the network in a matter of seconds, or at the worst network conditions a minute or two as it has to appear with some other peers in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 426000
+			},
+			"text": " So really focusing on user facing things like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 433000
+			},
+			"text": " The other piece that we needed was something that was scalable, and we're not talking this scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 437000
+			},
+			"text": " This isn't sharding, scaling, or transactions per second scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 441000
+			},
+			"text": " This is a number of network participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 446000
+			},
+			"text": " This is potentially millions of nodes be part of this network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 451000
+			},
+			"text": " Some of the past work towards Ethereum Lite clients is LES."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 454000
+			},
+			"text": " That's the Lite Ethereum sub protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 460000
+			},
+			"text": " And this has been around for five years maybe, and it is never really delivered on this goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 465000
+			},
+			"text": " And the main reason here is that it exists in this client server architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 470000
+			},
+			"text": " LES nodes on the network are dependent on full nodes, serving them the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 480000
+			},
+			"text": " And what happens over time is that a full node who's serving this data ends up getting kind of just assaulted by all of these LES nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 482000
+			},
+			"text": " constantly asking them for information."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 486000
+			},
+			"text": " And they're expensive requests that these nodes are making."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 488000
+			},
+			"text": " And it hasn't turned out super well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 495000
+			},
+			"text": " LES has not delivered a reliable, like, Lite protocol access."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 500000
+			},
+			"text": " And the main reason is this imbalance between client server stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 506000
+			},
+			"text": " There aren't incentives to run LES servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 509000
+			},
+			"text": " Running an LES server just costs you something."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 515000
+			},
+			"text": " And so the ones that are out there are being run by the goodness of hobbyists and other people's hearts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 519000
+			},
+			"text": " or people who misconfigured their client on accident or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 523000
+			},
+			"text": " But either way, it costs you something."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 526000
+			},
+			"text": " And the clients in this network are not able to contribute back."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 533000
+			},
+			"text": " As an LES client, you are purely taking from the network, and that is just the way the network is designed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 536000
+			},
+			"text": " In Fura, alchemy, they're this centralized model, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 539000
+			},
+			"text": " Their servers go down, everything stops working."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 542000
+			},
+			"text": " LES is this decentralized model, which we like."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 548000
+			},
+			"text": " But because there aren't enough incentives or anything for people to run LES servers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 551000
+			},
+			"text": " it hasn't worked out super well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 555000
+			},
+			"text": " We've moved all the way into this distributed model, where we have a homogenous network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 561000
+			},
+			"text": " where everybody in the network is a client, and everybody in the network is a server."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 569000
+			},
+			"text": " One way to think about this is very akin to BitTorrent, where in LES, you have this, like, kind of, degenerative thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 575000
+			},
+			"text": " where the more nodes you add into the system, they take up a limited amount of capacity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 579000
+			},
+			"text": " and once you exceed that, it degrades service for everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 586000
+			},
+			"text": " In the portal network context, we have built these networks around this idea that the more nodes you throw at it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 591000
+			},
+			"text": " the more powerful it gets, and that's kind of the whole core part of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 604000
+			},
+			"text": " All right, let's look at a practical example of how you would serve this, essentially, a balance inquiry from the portal network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 609000
+			},
+			"text": " I'll remind you, we've got a number of different networks here, and the idea is that they're all sort of special purpose,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 611000
+			},
+			"text": " partitioned off from each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 614000
+			},
+			"text": " Clients can be part of any number of them that they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 618000
+			},
+			"text": " This example is going to touch three of our networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 623000
+			},
+			"text": " So what we're going to do here, it's a very simple example, we're looking up your Ether balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 626000
+			},
+			"text": " So this is our traditional client."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 629000
+			},
+			"text": " You've got databases over here on the right where they're storing information."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 632000
+			},
+			"text": " It's running this JSON RPC server."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 635000
+			},
+			"text": " A request comes in to query my balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 638000
+			},
+			"text": " The JSON RPC server is going to do a couple of things here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 643000
+			},
+			"text": " It's going to reach into an index to figure out what the client thinks the head of the chain is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 650000
+			},
+			"text": " It's going to look up the header for that header from whatever database it stores headers in."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 654000
+			},
+			"text": " Once it gets that back, it can look at a field inside of that to see the state root,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 658000
+			},
+			"text": " and then it reaches into the state database to actually read your account balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 663000
+			},
+			"text": " This all happens very quickly under the hood, and the reason that a traditional Ethereum client can do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 671000
+			},
+			"text": " is because it is maintaining these databases, that it is constantly online and it is constantly keeping these things populated."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 675000
+			},
+			"text": " The portal network concept is very similar, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 677000
+			},
+			"text": " There's very little, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 683000
+			},
+			"text": " This is like, oh god, no wrong direction too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 688000
+			},
+			"text": " So in the portal network context, when this Ether get balance request comes in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 691000
+			},
+			"text": " instead of reading from local databases, what a client is going to do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 695000
+			},
+			"text": " it's going to actually reach out into these networks that it's part of to get the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 702000
+			},
+			"text": " We have a network for essentially tracking the head of the chain that provides the beacon light protocol data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 706000
+			},
+			"text": " Your client is going to reach into there to know what the front of the chain looks like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 708000
+			},
+			"text": " which what the head of the chain is."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 714000
+			},
+			"text": " It's going to use that to pull the header from the history network, which stores all of the historical block bodies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 716000
+			},
+			"text": " headers, receipts, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 720000
+			},
+			"text": " And once it has that, it can look up what state root it's supposed to be looking up things under,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725000
+			},
+			"text": " and it can reach into the state network to grab that state, look up your balance, and return it to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 735000
+			},
+			"text": " This is a very simplistic example, but this is very representative of what the majority of requests are going to look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 740000
+			},
+			"text": " There will be a little bit of sampling of data from different networks in order to get the information that you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 742000
+			},
+			"text": " before it's returned to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 745000
+			},
+			"text": " All right, where are we at?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 749000
+			},
+			"text": " Like I said, this has been a long road to get here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 753000
+			},
+			"text": " We had to build some of the wrong things to figure out what the right thing to build was."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 760000
+			},
+			"text": " And at this stage, we are past the research stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 764000
+			},
+			"text": " We are purely in the get it built and get it out the door stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 767000
+			},
+			"text": " We have three different client implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 768000
+			},
+			"text": " This is fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 774000
+			},
+			"text": " I'm so happy about this because we wanted to build a protocol, not a singular client."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 780000
+			},
+			"text": " We wanted to build something that had many clients to it, and instead of just one reference implementation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 784000
+			},
+			"text": " we have trend written in Rust by my team at the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 789000
+			},
+			"text": " We have Ultra Lite written in JavaScript by the JavaScript team at the Ethereum Foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 793000
+			},
+			"text": " and we have Fluffy written by the Nimbus team run by status."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 796000
+			},
+			"text": " And here we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 798000
+			},
+			"text": " So here is our rough timeline right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 800000
+			},
+			"text": " Software estimates are garbage."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 805000
+			},
+			"text": " Imminently, we are right at the edge of getting our first network fully up and running."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 808000
+			},
+			"text": " That's the history network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 814000
+			},
+			"text": " In parallel to this, the merge has sort of kicked off us having this beacon light network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 817000
+			},
+			"text": " and that's sort of like our next major priority."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 821000
+			},
+			"text": " And after that, over the course of 2023, we are going to be getting the remaining networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 822000
+			},
+			"text": " online."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 827000
+			},
+			"text": " The zero to one is a lot harder than building the subsequent networks that come after that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 832000
+			},
+			"text": " We spent a lot of R&D getting to this stage where we almost have the history network up"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 835000
+			},
+			"text": " and running."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 837000
+			},
+			"text": " That is what I've got for you today."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 841000
+			},
+			"text": " If you want to get involved, we are findable on the Internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 845000
+			},
+			"text": " Like Danny has often said, the doors are all wide open and unlocked."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 851000
+			},
+			"text": " If this is a project you'd like to get involved in, please feel free to reach out to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 855000
+			},
+			"text": " And I've got some time for questions if that's something we can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 859000
+			},
+			"text": " I think we've got a guy with a mic walking around."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 867000
+			},
+			"text": " I have a question related to the API endpoints which the portal network can serve."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 876000
+			},
+			"text": " Will it be able to serve debug endpoints that need a whole archival stories on nodes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 881000
+			},
+			"text": " If I understand correctly, you're asking about the debug-spaced JSON RPC endpoints?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 882000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 884000
+			},
+			"text": " Not initially."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 889000
+			},
+			"text": " All of the data to do things with those will in theory be present in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 895000
+			},
+			"text": " But we are really focused on human driven wallet interactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 899000
+			},
+			"text": " That's kind of like our primary use case that we're focused on delivering."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 902000
+			},
+			"text": " And the debug endpoints just don't play a role on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 910000
+			},
+			"text": " And in general are going to involve a much heavier level of requests and data access than is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 915000
+			},
+			"text": " traditionally involved in standard wallet interactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 919000
+			},
+			"text": " So no, debug names based in points are not officially supported."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 920000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 926000
+			},
+			"text": " From the perspective of an application layer client is the thinking that an application"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 931000
+			},
+			"text": " would be speaking directly to -- an application would want to run one of these like clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 933000
+			},
+			"text": " itself and speak to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 939000
+			},
+			"text": " Or is the thinking that for some reason you would bundle the client itself into the application"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 943000
+			},
+			"text": " or neither of those things trying to grok with these cases?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 946000
+			},
+			"text": " I think I understand the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 953000
+			},
+			"text": " So the -- there's a lot of ideas on the table and exactly which ones are going to stick and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 955000
+			},
+			"text": " which ones aren't is right."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 957000
+			},
+			"text": " We'll find out as time goes on."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 962000
+			},
+			"text": " But the general idea was to build a network where the clients can be lightweight enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 968000
+			},
+			"text": " that you might have two or three of them actually running on your machine at any given time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:12,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 972000
+			},
+			"text": " Because in theory they're lightweight enough to actually embed."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 972000,
+				"to": 979000
+			},
+			"text": " So if you're downloading a desktop wallet and the portal network's up and secure -- up"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 985000
+			},
+			"text": " and live and production ready, there's -- it's entirely likely that it might just bake the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 988000
+			},
+			"text": " client right into the application that you're running."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 992000
+			},
+			"text": " And there might be two or three others running alongside of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 996000
+			},
+			"text": " One of the things that my team is going to be focusing on is sort of like a system level"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 1001000
+			},
+			"text": " process that's really easy to download and install that just runs the thing in the background,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1005000
+			},
+			"text": " which makes it easy for you to do things like connect meta-mask up to it or things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1008000
+			},
+			"text": " So I don't think that there's one model here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1011000
+			},
+			"text": " I think some applications might embed it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1015000
+			},
+			"text": " Some might treat it as an external dependency."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1016000
+			},
+			"text": " There we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1017000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1023000
+			},
+			"text": " So something that I'm familiar with the alias client that is that when you want to execute"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1029000
+			},
+			"text": " for like a smart contract call, you might need to do several run trips because you are basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1034000
+			},
+			"text": " every time that you meet your query state, you are going to go to the full node and ask"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1035000
+			},
+			"text": " for something, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1040000
+			},
+			"text": " And that maybe creates like, again, several run trips which increase the latency of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1042000
+			},
+			"text": " whatever you're trying to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1046000
+			},
+			"text": " So is with the portal network you're going to have some solution for that, like trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1048000
+			},
+			"text": " to kind of batch that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1052000
+			},
+			"text": " I think the question is because the requests are going out to the network, there's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:37,000"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1057000
+			},
+			"text": " to be some inherent latency overheads that come with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,000",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1057000,
+				"to": 1061000
+			},
+			"text": " Not that precisely, but that you're going to do multiple requests."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1067000
+			},
+			"text": " So for example, if you want to do RC20 balance off, you need to download the smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:49,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1069000
+			},
+			"text": " then you need to start executing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1069000,
+				"to": 1073000
+			},
+			"text": " And every time you need to access some power of like the state database, you're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1075000
+			},
+			"text": " just go and make a query."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1078000
+			},
+			"text": " And so you are basically doing multiple requests."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1083000
+			},
+			"text": " Multiple concurrent JSON RPC requests, that's the kind of concept here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:07,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1087000
+			},
+			"text": " Yeah, I think currently you do them sequentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1087000,
+				"to": 1092000
+			},
+			"text": " And so basically you are increasing the total latency of like balance off."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1098000
+			},
+			"text": " But you can find a way of doing that concurrently or batch now that you only do a single request."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1102000
+			},
+			"text": " I think that's going to be a thing that individual portal clients figure out on their own."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1106000
+			},
+			"text": " There's nothing inherent about the networks that keep you from looking up large swaths of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1108000
+			},
+			"text": " data in parallel at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1116000
+			},
+			"text": " And anything that can be parallelized at that networking level will definitely benefit total"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1119000
+			},
+			"text": " amounts of latency that users experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1124000
+			},
+			"text": " Where do you or do you see zero knowledge being used in an implementation of a light client"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1127000
+			},
+			"text": " for the portal network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1130000
+			},
+			"text": " Currently it isn't part of any piece of our roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1133000
+			},
+			"text": " It's not my expertise."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1136000
+			},
+			"text": " So I don't know I think is the concise answer there."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1137000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1139000
+			},
+			"text": " I just have one quick question."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1147000
+			},
+			"text": " What prevents me from running a light client and making it a free loader that does no work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:08,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1148000
+			},
+			"text": " How do you prevent against?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1148000,
+				"to": 1149000
+			},
+			"text": " We don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:13,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1153000
+			},
+			"text": " So there's two things that I'll say here."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1153000,
+				"to": 1160000
+			},
+			"text": " One is that we had to pick some cut off points for what we were building because this is big."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1168000
+			},
+			"text": " Like I took a lot of stabs at making light weight protocol access in smaller ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1174000
+			},
+			"text": " And this is what came out of really trying a bunch of things and then not working."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1179000
+			},
+			"text": " So in order to deliver this we needed to build something that was much bigger than I originally"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1181000
+			},
+			"text": " thought we were going to have to build."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1184000
+			},
+			"text": " And in that we had to like kind of cut it off at a point."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1187000
+			},
+			"text": " The thing that we're building is attackable."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1197000
+			},
+			"text": " There is a tax surface that exists and the general idea here is that those are solvable problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1204000
+			},
+			"text": " and we're not going to focus on absolutely trying to make sure that we have them all solved on day zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1207000
+			},
+			"text": " The portal network is not core infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1209000
+			},
+			"text": " Not at the protocol level."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:14,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1214000
+			},
+			"text": " The protocol as we know it does not depend on the portal network for anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,000",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1214000,
+				"to": 1219000
+			},
+			"text": " And so if the portal network falls over, Ethereum does just fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1222000
+			},
+			"text": " And initially it's possible that somebody attacks it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1227000
+			},
+			"text": " And that probably means we're doing something that's working because it's worth attacking."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1232000
+			},
+			"text": " So that's the one piece which is that we have built something that we know we are going to have to hone and fine tune"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1234000
+			},
+			"text": " and work on the security part of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1236000
+			},
+			"text": " I have a second question that might be leading."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1243000
+			},
+			"text": " I'm kind of also curious if I choose to make my light client act maliciously and you ask me for the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:45,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1245000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1245000,
+				"to": 1247000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1249000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:20:51,000"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1251000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1251000,
+				"to": 1252000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:20:53,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1253000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,000",
+				"to": "00:20:54,000"
+			},
+			"offsets": {
+				"from": 1253000,
+				"to": 1254000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,000",
+				"to": "00:20:55,000"
+			},
+			"offsets": {
+				"from": 1254000,
+				"to": 1255000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,000",
+				"to": "00:20:56,000"
+			},
+			"offsets": {
+				"from": 1255000,
+				"to": 1256000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,000",
+				"to": "00:20:57,000"
+			},
+			"offsets": {
+				"from": 1256000,
+				"to": 1257000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1257000,
+				"to": 1258000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:20:59,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1259000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1259000,
+				"to": 1260000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:01,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1261000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,000",
+				"to": "00:21:02,000"
+			},
+			"offsets": {
+				"from": 1261000,
+				"to": 1262000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,000",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1262000,
+				"to": 1263000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1263000,
+				"to": 1264000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:05,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1265000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1265000,
+				"to": 1266000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:07,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1267000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,000",
+				"to": "00:21:08,000"
+			},
+			"offsets": {
+				"from": 1267000,
+				"to": 1268000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,000",
+				"to": "00:21:09,000"
+			},
+			"offsets": {
+				"from": 1268000,
+				"to": 1269000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1269000,
+				"to": 1270000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:11,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1271000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,000",
+				"to": "00:21:12,000"
+			},
+			"offsets": {
+				"from": 1271000,
+				"to": 1272000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,000",
+				"to": "00:21:13,000"
+			},
+			"offsets": {
+				"from": 1272000,
+				"to": 1273000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,000",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1273000,
+				"to": 1274000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:15,000"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1275000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,000",
+				"to": "00:21:16,000"
+			},
+			"offsets": {
+				"from": 1275000,
+				"to": 1276000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,000",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1276000,
+				"to": 1277000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,000",
+				"to": "00:21:18,000"
+			},
+			"offsets": {
+				"from": 1277000,
+				"to": 1278000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1278000,
+				"to": 1279000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:20,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1280000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1280000,
+				"to": 1281000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:22,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1282000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,000",
+				"to": "00:21:23,000"
+			},
+			"offsets": {
+				"from": 1282000,
+				"to": 1283000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,000",
+				"to": "00:21:24,000"
+			},
+			"offsets": {
+				"from": 1283000,
+				"to": 1284000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,000",
+				"to": "00:21:25,000"
+			},
+			"offsets": {
+				"from": 1284000,
+				"to": 1285000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,000",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1285000,
+				"to": 1286000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:27,000"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1287000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,000",
+				"to": "00:21:28,000"
+			},
+			"offsets": {
+				"from": 1287000,
+				"to": 1288000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,000",
+				"to": "00:21:29,000"
+			},
+			"offsets": {
+				"from": 1288000,
+				"to": 1289000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,000",
+				"to": "00:21:30,000"
+			},
+			"offsets": {
+				"from": 1289000,
+				"to": 1290000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,000",
+				"to": "00:21:31,000"
+			},
+			"offsets": {
+				"from": 1290000,
+				"to": 1291000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,000",
+				"to": "00:21:33,000"
+			},
+			"offsets": {
+				"from": 1291000,
+				"to": 1293000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,000",
+				"to": "00:21:34,000"
+			},
+			"offsets": {
+				"from": 1293000,
+				"to": 1294000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1294000,
+				"to": 1295000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:36,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1296000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,000",
+				"to": "00:21:37,000"
+			},
+			"offsets": {
+				"from": 1296000,
+				"to": 1297000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,000",
+				"to": "00:21:38,000"
+			},
+			"offsets": {
+				"from": 1297000,
+				"to": 1298000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,000",
+				"to": "00:21:39,000"
+			},
+			"offsets": {
+				"from": 1298000,
+				"to": 1299000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,000",
+				"to": "00:21:40,000"
+			},
+			"offsets": {
+				"from": 1299000,
+				"to": 1300000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,000",
+				"to": "00:21:41,000"
+			},
+			"offsets": {
+				"from": 1300000,
+				"to": 1301000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,000",
+				"to": "00:21:42,000"
+			},
+			"offsets": {
+				"from": 1301000,
+				"to": 1302000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1302000,
+				"to": 1303000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:44,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1304000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,000",
+				"to": "00:21:45,000"
+			},
+			"offsets": {
+				"from": 1304000,
+				"to": 1305000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,000",
+				"to": "00:21:46,000"
+			},
+			"offsets": {
+				"from": 1305000,
+				"to": 1306000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,000",
+				"to": "00:21:47,000"
+			},
+			"offsets": {
+				"from": 1306000,
+				"to": 1307000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1307000,
+				"to": 1308000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:49,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1309000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,000",
+				"to": "00:21:50,000"
+			},
+			"offsets": {
+				"from": 1309000,
+				"to": 1310000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1310000,
+				"to": 1311000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:52,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1312000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,000",
+				"to": "00:21:53,000"
+			},
+			"offsets": {
+				"from": 1312000,
+				"to": 1313000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,000",
+				"to": "00:21:54,000"
+			},
+			"offsets": {
+				"from": 1313000,
+				"to": 1314000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,000",
+				"to": "00:21:55,000"
+			},
+			"offsets": {
+				"from": 1314000,
+				"to": 1315000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,000",
+				"to": "00:21:56,000"
+			},
+			"offsets": {
+				"from": 1315000,
+				"to": 1316000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,000",
+				"to": "00:21:57,000"
+			},
+			"offsets": {
+				"from": 1316000,
+				"to": 1317000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,000",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1317000,
+				"to": 1318000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1319000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:00,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1320000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,000",
+				"to": "00:22:01,000"
+			},
+			"offsets": {
+				"from": 1320000,
+				"to": 1321000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1321000,
+				"to": 1322000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:03,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1323000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,000",
+				"to": "00:22:04,000"
+			},
+			"offsets": {
+				"from": 1323000,
+				"to": 1324000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,000",
+				"to": "00:22:05,000"
+			},
+			"offsets": {
+				"from": 1324000,
+				"to": 1325000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,000",
+				"to": "00:22:06,000"
+			},
+			"offsets": {
+				"from": 1325000,
+				"to": 1326000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,000",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1326000,
+				"to": 1327000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:08,000"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1328000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,000",
+				"to": "00:22:09,000"
+			},
+			"offsets": {
+				"from": 1328000,
+				"to": 1329000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,000",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1329000,
+				"to": 1330000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:11,000"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1331000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,000",
+				"to": "00:22:12,000"
+			},
+			"offsets": {
+				"from": 1331000,
+				"to": 1332000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,000",
+				"to": "00:22:13,000"
+			},
+			"offsets": {
+				"from": 1332000,
+				"to": 1333000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,000",
+				"to": "00:22:14,000"
+			},
+			"offsets": {
+				"from": 1333000,
+				"to": 1334000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,000",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1334000,
+				"to": 1335000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1336000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1338000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:19,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1339000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1339000,
+				"to": 1340000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:21,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1341000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,000",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1341000,
+				"to": 1342000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:23,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1343000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,000",
+				"to": "00:22:24,000"
+			},
+			"offsets": {
+				"from": 1343000,
+				"to": 1344000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1344000,
+				"to": 1345000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:26,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1346000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,000",
+				"to": "00:22:27,000"
+			},
+			"offsets": {
+				"from": 1346000,
+				"to": 1347000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,000",
+				"to": "00:22:28,000"
+			},
+			"offsets": {
+				"from": 1347000,
+				"to": 1348000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,000",
+				"to": "00:22:29,000"
+			},
+			"offsets": {
+				"from": 1348000,
+				"to": 1349000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,000",
+				"to": "00:22:30,000"
+			},
+			"offsets": {
+				"from": 1349000,
+				"to": 1350000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,000",
+				"to": "00:22:31,000"
+			},
+			"offsets": {
+				"from": 1350000,
+				"to": 1351000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,000",
+				"to": "00:22:32,000"
+			},
+			"offsets": {
+				"from": 1351000,
+				"to": 1352000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,000",
+				"to": "00:22:33,000"
+			},
+			"offsets": {
+				"from": 1352000,
+				"to": 1353000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,000",
+				"to": "00:22:34,000"
+			},
+			"offsets": {
+				"from": 1353000,
+				"to": 1354000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,000",
+				"to": "00:22:35,000"
+			},
+			"offsets": {
+				"from": 1354000,
+				"to": 1355000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,000",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1355000,
+				"to": 1356000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1357000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:38,000"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1358000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,000",
+				"to": "00:22:39,000"
+			},
+			"offsets": {
+				"from": 1358000,
+				"to": 1359000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,000",
+				"to": "00:22:40,000"
+			},
+			"offsets": {
+				"from": 1359000,
+				"to": 1360000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,000",
+				"to": "00:22:41,000"
+			},
+			"offsets": {
+				"from": 1360000,
+				"to": 1361000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,000",
+				"to": "00:22:42,000"
+			},
+			"offsets": {
+				"from": 1361000,
+				"to": 1362000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1362000,
+				"to": 1363000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1364000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:45,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1365000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,000",
+				"to": "00:22:46,000"
+			},
+			"offsets": {
+				"from": 1365000,
+				"to": 1366000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,000",
+				"to": "00:22:47,000"
+			},
+			"offsets": {
+				"from": 1366000,
+				"to": 1367000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,000",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1367000,
+				"to": 1368000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1369000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:50,000"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1370000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,000",
+				"to": "00:22:51,000"
+			},
+			"offsets": {
+				"from": 1370000,
+				"to": 1371000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,000",
+				"to": "00:22:52,000"
+			},
+			"offsets": {
+				"from": 1371000,
+				"to": 1372000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1372000,
+				"to": 1373000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:22:54,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1374000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,000",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1374000,
+				"to": 1375000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:22:56,000"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1376000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,000",
+				"to": "00:22:57,000"
+			},
+			"offsets": {
+				"from": 1376000,
+				"to": 1377000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,000",
+				"to": "00:22:58,000"
+			},
+			"offsets": {
+				"from": 1377000,
+				"to": 1378000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,000",
+				"to": "00:22:59,000"
+			},
+			"offsets": {
+				"from": 1378000,
+				"to": 1379000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1379000,
+				"to": 1380000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:01,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1381000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1381000,
+				"to": 1382000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:03,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1383000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,000",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1383000,
+				"to": 1384000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:05,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1385000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,000",
+				"to": "00:23:06,000"
+			},
+			"offsets": {
+				"from": 1385000,
+				"to": 1386000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,000",
+				"to": "00:23:07,000"
+			},
+			"offsets": {
+				"from": 1386000,
+				"to": 1387000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,000",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1387000,
+				"to": 1388000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:09,000"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1389000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1389000,
+				"to": 1390000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1391000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:12,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1392000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,000",
+				"to": "00:23:13,000"
+			},
+			"offsets": {
+				"from": 1392000,
+				"to": 1393000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,000",
+				"to": "00:23:14,000"
+			},
+			"offsets": {
+				"from": 1393000,
+				"to": 1394000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1394000,
+				"to": 1395000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:16,000"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1396000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,000",
+				"to": "00:23:17,000"
+			},
+			"offsets": {
+				"from": 1396000,
+				"to": 1397000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,000",
+				"to": "00:23:18,000"
+			},
+			"offsets": {
+				"from": 1397000,
+				"to": 1398000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,000",
+				"to": "00:23:19,000"
+			},
+			"offsets": {
+				"from": 1398000,
+				"to": 1399000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,000",
+				"to": "00:23:20,000"
+			},
+			"offsets": {
+				"from": 1399000,
+				"to": 1400000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,000",
+				"to": "00:23:21,000"
+			},
+			"offsets": {
+				"from": 1400000,
+				"to": 1401000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,000",
+				"to": "00:23:22,000"
+			},
+			"offsets": {
+				"from": 1401000,
+				"to": 1402000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,000",
+				"to": "00:23:23,000"
+			},
+			"offsets": {
+				"from": 1402000,
+				"to": 1403000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,000",
+				"to": "00:23:25,000"
+			},
+			"offsets": {
+				"from": 1403000,
+				"to": 1405000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,000",
+				"to": "00:23:26,000"
+			},
+			"offsets": {
+				"from": 1405000,
+				"to": 1406000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1406000,
+				"to": 1407000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:28,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1408000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,000",
+				"to": "00:23:29,000"
+			},
+			"offsets": {
+				"from": 1408000,
+				"to": 1409000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,000",
+				"to": "00:23:30,000"
+			},
+			"offsets": {
+				"from": 1409000,
+				"to": 1410000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,000",
+				"to": "00:23:31,000"
+			},
+			"offsets": {
+				"from": 1410000,
+				"to": 1411000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,000",
+				"to": "00:23:32,000"
+			},
+			"offsets": {
+				"from": 1411000,
+				"to": 1412000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,000",
+				"to": "00:23:33,000"
+			},
+			"offsets": {
+				"from": 1412000,
+				"to": 1413000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,000",
+				"to": "00:23:34,000"
+			},
+			"offsets": {
+				"from": 1413000,
+				"to": 1414000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,000",
+				"to": "00:23:35,000"
+			},
+			"offsets": {
+				"from": 1414000,
+				"to": 1415000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,000",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1415000,
+				"to": 1416000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:37,000"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1417000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,000",
+				"to": "00:23:38,000"
+			},
+			"offsets": {
+				"from": 1417000,
+				"to": 1418000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1418000,
+				"to": 1419000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:40,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1420000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,000",
+				"to": "00:23:41,000"
+			},
+			"offsets": {
+				"from": 1420000,
+				"to": 1421000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,000",
+				"to": "00:23:42,000"
+			},
+			"offsets": {
+				"from": 1421000,
+				"to": 1422000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,000",
+				"to": "00:23:43,000"
+			},
+			"offsets": {
+				"from": 1422000,
+				"to": 1423000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,000",
+				"to": "00:23:44,000"
+			},
+			"offsets": {
+				"from": 1423000,
+				"to": 1424000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,000",
+				"to": "00:23:45,000"
+			},
+			"offsets": {
+				"from": 1424000,
+				"to": 1425000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,000",
+				"to": "00:23:46,000"
+			},
+			"offsets": {
+				"from": 1425000,
+				"to": 1426000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,000",
+				"to": "00:23:47,000"
+			},
+			"offsets": {
+				"from": 1426000,
+				"to": 1427000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,000",
+				"to": "00:23:48,000"
+			},
+			"offsets": {
+				"from": 1427000,
+				"to": 1428000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,000",
+				"to": "00:23:49,000"
+			},
+			"offsets": {
+				"from": 1428000,
+				"to": 1429000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,000",
+				"to": "00:23:50,000"
+			},
+			"offsets": {
+				"from": 1429000,
+				"to": 1430000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,000",
+				"to": "00:23:51,000"
+			},
+			"offsets": {
+				"from": 1430000,
+				"to": 1431000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,000",
+				"to": "00:23:52,000"
+			},
+			"offsets": {
+				"from": 1431000,
+				"to": 1432000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,000",
+				"to": "00:23:53,000"
+			},
+			"offsets": {
+				"from": 1432000,
+				"to": 1433000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,000",
+				"to": "00:23:54,000"
+			},
+			"offsets": {
+				"from": 1433000,
+				"to": 1434000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,000",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1434000,
+				"to": 1435000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:23:56,000"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1436000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,000",
+				"to": "00:23:57,000"
+			},
+			"offsets": {
+				"from": 1436000,
+				"to": 1437000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,000",
+				"to": "00:23:58,000"
+			},
+			"offsets": {
+				"from": 1437000,
+				"to": 1438000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,000",
+				"to": "00:23:59,000"
+			},
+			"offsets": {
+				"from": 1438000,
+				"to": 1439000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1439000,
+				"to": 1440000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:01,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1441000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,000",
+				"to": "00:24:02,000"
+			},
+			"offsets": {
+				"from": 1441000,
+				"to": 1442000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,000",
+				"to": "00:24:03,000"
+			},
+			"offsets": {
+				"from": 1442000,
+				"to": 1443000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,000",
+				"to": "00:24:04,000"
+			},
+			"offsets": {
+				"from": 1443000,
+				"to": 1444000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,000",
+				"to": "00:24:05,000"
+			},
+			"offsets": {
+				"from": 1444000,
+				"to": 1445000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,000",
+				"to": "00:24:06,000"
+			},
+			"offsets": {
+				"from": 1445000,
+				"to": 1446000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,000",
+				"to": "00:24:07,000"
+			},
+			"offsets": {
+				"from": 1446000,
+				"to": 1447000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,000",
+				"to": "00:24:08,000"
+			},
+			"offsets": {
+				"from": 1447000,
+				"to": 1448000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,000",
+				"to": "00:24:10,000"
+			},
+			"offsets": {
+				"from": 1448000,
+				"to": 1450000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,000",
+				"to": "00:24:11,000"
+			},
+			"offsets": {
+				"from": 1450000,
+				"to": 1451000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,000",
+				"to": "00:24:12,000"
+			},
+			"offsets": {
+				"from": 1451000,
+				"to": 1452000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,000",
+				"to": "00:24:13,000"
+			},
+			"offsets": {
+				"from": 1452000,
+				"to": 1453000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,000",
+				"to": "00:24:14,000"
+			},
+			"offsets": {
+				"from": 1453000,
+				"to": 1454000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,000",
+				"to": "00:24:15,000"
+			},
+			"offsets": {
+				"from": 1454000,
+				"to": 1455000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,000",
+				"to": "00:24:16,000"
+			},
+			"offsets": {
+				"from": 1455000,
+				"to": 1456000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,000",
+				"to": "00:24:17,000"
+			},
+			"offsets": {
+				"from": 1456000,
+				"to": 1457000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,000",
+				"to": "00:24:18,000"
+			},
+			"offsets": {
+				"from": 1457000,
+				"to": 1458000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,000",
+				"to": "00:24:19,000"
+			},
+			"offsets": {
+				"from": 1458000,
+				"to": 1459000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,000",
+				"to": "00:24:20,000"
+			},
+			"offsets": {
+				"from": 1459000,
+				"to": 1460000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,000",
+				"to": "00:24:21,000"
+			},
+			"offsets": {
+				"from": 1460000,
+				"to": 1461000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,000",
+				"to": "00:24:22,000"
+			},
+			"offsets": {
+				"from": 1461000,
+				"to": 1462000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,000",
+				"to": "00:24:23,000"
+			},
+			"offsets": {
+				"from": 1462000,
+				"to": 1463000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,000",
+				"to": "00:24:24,000"
+			},
+			"offsets": {
+				"from": 1463000,
+				"to": 1464000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,000",
+				"to": "00:24:25,000"
+			},
+			"offsets": {
+				"from": 1464000,
+				"to": 1465000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,000",
+				"to": "00:24:26,000"
+			},
+			"offsets": {
+				"from": 1465000,
+				"to": 1466000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,000",
+				"to": "00:24:27,000"
+			},
+			"offsets": {
+				"from": 1466000,
+				"to": 1467000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,000",
+				"to": "00:24:28,000"
+			},
+			"offsets": {
+				"from": 1467000,
+				"to": 1468000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,000",
+				"to": "00:24:29,000"
+			},
+			"offsets": {
+				"from": 1468000,
+				"to": 1469000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,000",
+				"to": "00:24:30,000"
+			},
+			"offsets": {
+				"from": 1469000,
+				"to": 1470000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,000",
+				"to": "00:24:31,000"
+			},
+			"offsets": {
+				"from": 1470000,
+				"to": 1471000
+			},
+			"text": " I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,000",
+				"to": "00:24:33,000"
+			},
+			"offsets": {
+				"from": 1472000,
+				"to": 1473000
+			},
+			"text": " It's an open question."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,000",
+				"to": "00:24:34,000"
+			},
+			"offsets": {
+				"from": 1473000,
+				"to": 1474000
+			},
+			"text": " We'll see how it goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,000",
+				"to": "00:24:36,000"
+			},
+			"offsets": {
+				"from": 1474000,
+				"to": 1476000
+			},
+			"text": " And that is all of my time."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,000",
+				"to": "00:24:37,000"
+			},
+			"offsets": {
+				"from": 1476000,
+				"to": 1477000
+			},
+			"text": " Thank you all."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,000",
+				"to": "00:24:38,000"
+			},
+			"offsets": {
+				"from": 1477000,
+				"to": 1478000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1478000,
+				"to": 1485000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:52,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1492000
+			},
+			"text": " [silence]"
+		}
+	]
+}

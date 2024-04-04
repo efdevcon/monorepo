@@ -1,0 +1,4685 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12240
+			},
+			"text": " Thank you everybody for coming and this year was really interesting. We had so many amazing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,240",
+				"to": "00:00:18,560"
+			},
+			"offsets": {
+				"from": 12240,
+				"to": 18560
+			},
+			"text": " submissions and we're really excited. The judges deliberated until maybe 2 a.m. yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,560",
+				"to": "00:00:22,800"
+			},
+			"offsets": {
+				"from": 18560,
+				"to": 22800
+			},
+			"text": " So it was really, really tight this year. One of the criteria is that we're going to discuss"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,800",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 22800,
+				"to": 27000
+			},
+			"text": " in the panel. This session is a little different from last year. We're going to have a panel"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:33,160"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 33160
+			},
+			"text": " with the judges to discuss the state of UX and design as well as and we'll touch upon"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,160",
+				"to": "00:00:39,560"
+			},
+			"offsets": {
+				"from": 33160,
+				"to": 39560
+			},
+			"text": " all these points of the criteria. And our judges, I'm really excited to introduce, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,560",
+				"to": "00:00:52,640"
+			},
+			"offsets": {
+				"from": 39560,
+				"to": 52640
+			},
+			"text": " have Benny from CryptoKitties and Dapper Labs. And then we have Alex from Coinbase. Joining"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,640",
+				"to": "00:01:01,360"
+			},
+			"offsets": {
+				"from": 52640,
+				"to": 61360
+			},
+			"text": " us from product design. And then, we're actually really excited to bring back Arjor. Arjor was"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,360",
+				"to": "00:01:07,400"
+			},
+			"offsets": {
+				"from": 61360,
+				"to": 67400
+			},
+			"text": " the winner, one of the winners of last year. And so they're coming back as a judge. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,400",
+				"to": "00:01:11,880"
+			},
+			"offsets": {
+				"from": 67400,
+				"to": 71880
+			},
+			"text": " it's really great to see how far everyone has come. And Jamie, the UX design director"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,880",
+				"to": "00:01:21,920"
+			},
+			"offsets": {
+				"from": 71880,
+				"to": 81920
+			},
+			"text": " is not here today. But we have Julian, who is one of the co-founders of Arjor. Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,920",
+				"to": "00:01:27,200"
+			},
+			"offsets": {
+				"from": 81920,
+				"to": 87200
+			},
+			"text": " So we're going to start this panel. Just kind of talking about where are we in the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,200",
+				"to": "00:01:32,880"
+			},
+			"offsets": {
+				"from": 87200,
+				"to": 92880
+			},
+			"text": " UX. I know we've been talking a lot about UX and design. But coming from such product"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,880",
+				"to": "00:01:37,840"
+			},
+			"offsets": {
+				"from": 92880,
+				"to": 97840
+			},
+			"text": " oriented and you guys have quite a sweep of products. You have Hopper, you have Coinbase"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,840",
+				"to": "00:01:43,800"
+			},
+			"offsets": {
+				"from": 97840,
+				"to": 103800
+			},
+			"text": " Pro, you guys have a new blockchain now. So, Benny, you start with a little bit of where"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,800",
+				"to": "00:01:48,280"
+			},
+			"offsets": {
+				"from": 103800,
+				"to": 108280
+			},
+			"text": " you think we are in the design space specifically in 1.3."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,280",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 108280,
+				"to": 118000
+			},
+			"text": " Yeah, it's very interesting. Coming from the game space, we have almost more than 50% of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:05,440"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 125440
+			},
+			"text": " the company is focusing on the game studio side. So designing UX and UI for games is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,440",
+				"to": "00:02:11,200"
+			},
+			"offsets": {
+				"from": 125440,
+				"to": 131200
+			},
+			"text": " much more different from DeFi. Fortunately, we spend a lot of time with our top players"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,200",
+				"to": "00:02:17,200"
+			},
+			"offsets": {
+				"from": 131200,
+				"to": 137200
+			},
+			"text": " of CryptoPities and Cheese Wizards, our new game. And we get to learn a lot about the different"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,200",
+				"to": "00:02:21,600"
+			},
+			"offsets": {
+				"from": 137200,
+				"to": 141600
+			},
+			"text": " pain points that they have. And the pain points that gamers have or blockchain gamers have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,600",
+				"to": "00:02:28,640"
+			},
+			"offsets": {
+				"from": 141600,
+				"to": 148640
+			},
+			"text": " is very different from somebody who wants to make a compound loan or use-point base."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,640",
+				"to": "00:02:34,160"
+			},
+			"offsets": {
+				"from": 148640,
+				"to": 154160
+			},
+			"text": " They have a higher expectation of the flow being extremely smooth. And so that's kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,160",
+				"to": "00:02:37,200"
+			},
+			"offsets": {
+				"from": 154160,
+				"to": 157200
+			},
+			"text": " of like, at least from the game side, what we think about a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,200",
+				"to": "00:02:42,800"
+			},
+			"offsets": {
+				"from": 157200,
+				"to": 162800
+			},
+			"text": " Yeah. And what are some of the things that maybe you guys can kind of come in? The things"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,800",
+				"to": "00:02:47,560"
+			},
+			"offsets": {
+				"from": 162800,
+				"to": 167560
+			},
+			"text": " that we're doing right and what things we're doing wrong, maybe Argent, you guys can start"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,560",
+				"to": "00:02:52,400"
+			},
+			"offsets": {
+				"from": 167560,
+				"to": 172400
+			},
+			"text": " as well. That's a great question. I think we are starting"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,400",
+				"to": "00:02:56,280"
+			},
+			"offsets": {
+				"from": 172400,
+				"to": 176280
+			},
+			"text": " to do a lot of things right. I think maybe to compliment your first question, I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,280",
+				"to": "00:03:00,640"
+			},
+			"offsets": {
+				"from": 176280,
+				"to": 180640
+			},
+			"text": " this is a very exciting period because the blockchain and Ethereum is still a young technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,640",
+				"to": "00:03:07,320"
+			},
+			"offsets": {
+				"from": 180640,
+				"to": 187320
+			},
+			"text": " And I think we are gradually reaching outside of small crypto bubble. And I think a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,320",
+				"to": "00:03:13,560"
+			},
+			"offsets": {
+				"from": 187320,
+				"to": 193560
+			},
+			"text": " the capability is done through improving the user experience. I think, especially for margin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,560",
+				"to": "00:03:18,440"
+			},
+			"offsets": {
+				"from": 193560,
+				"to": 198440
+			},
+			"text": " it comes from technology. And I think we try to solve problem by the technology first"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,440",
+				"to": "00:03:23,160"
+			},
+			"offsets": {
+				"from": 198440,
+				"to": 203160
+			},
+			"text": " thing. But I think this is really an exciting time because we get to show this amazing technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,160",
+				"to": "00:03:27,760"
+			},
+			"offsets": {
+				"from": 203160,
+				"to": 207760
+			},
+			"text": " to the outside world while still maintaining its core principle. And I think this is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,760",
+				"to": "00:03:33,640"
+			},
+			"offsets": {
+				"from": 207760,
+				"to": 213640
+			},
+			"text": " that is very important, is to being able to reach to people that may be less tech savvy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,640",
+				"to": "00:03:37,800"
+			},
+			"offsets": {
+				"from": 213640,
+				"to": 217800
+			},
+			"text": " but still maintain or core principle about decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,800",
+				"to": "00:03:43,440"
+			},
+			"offsets": {
+				"from": 217800,
+				"to": 223440
+			},
+			"text": " I mean, you're kind of the design, product design representative here. What are some"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,440",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 223440,
+				"to": 229000
+			},
+			"text": " of the design opportunities that we've had and what's going on in space?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:58,640"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 238640
+			},
+			"text": " I echo what you said. Having sat through UX audits, I think we came a really long way"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,640",
+				"to": "00:04:08,640"
+			},
+			"offsets": {
+				"from": 238640,
+				"to": 248640
+			},
+			"text": " from early big decentralized products that were very much focused on exploring that technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,640",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 248640,
+				"to": 256000
+			},
+			"text": " to building more and more user-friendly, user-focused things. We are as complex, like you guys, as"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:25,640"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 265640
+			},
+			"text": " companies, we start to focus more on basically solving user needs, finding the good company,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,640",
+				"to": "00:04:34,760"
+			},
+			"offsets": {
+				"from": 265640,
+				"to": 274760
+			},
+			"text": " creating good mental models. I think we still have some challenges to overcome. We still"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,760",
+				"to": "00:04:43,720"
+			},
+			"offsets": {
+				"from": 274760,
+				"to": 283720
+			},
+			"text": " sort of, I see projects designing for just the fun of technology. But I think we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,720",
+				"to": "00:04:49,960"
+			},
+			"offsets": {
+				"from": 283720,
+				"to": 289960
+			},
+			"text": " in a good direction of putting the user first and having the user introduced, like being"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,960",
+				"to": "00:04:53,160"
+			},
+			"offsets": {
+				"from": 289960,
+				"to": 293160
+			},
+			"text": " able to introduce the user to the crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,160",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 293160,
+				"to": 300000
+			},
+			"text": " Yeah, I mean, so going towards that, in your company, you guys have kind of one of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:07,960"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 307960
+			},
+			"text": " most well-adoption in products with well-adopted features. So what does design look like in"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,960",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 307960,
+				"to": 312000
+			},
+			"text": " your process? There's a lot of kind of, as we saw from the UX audits, a lot of teams"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:16,560"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 316560
+			},
+			"text": " that come in and we're like, we don't have a designer, we don't know what to do. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,560",
+				"to": "00:05:23,560"
+			},
+			"offsets": {
+				"from": 316560,
+				"to": 323560
+			},
+			"text": " how did that start from you guys and how does that grow currently in the current state?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,560",
+				"to": "00:05:29,760"
+			},
+			"offsets": {
+				"from": 323560,
+				"to": 329760
+			},
+			"text": " Yeah, maybe give a hand start here. I think for us, design start by thinking about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,760",
+				"to": "00:05:36,200"
+			},
+			"offsets": {
+				"from": 329760,
+				"to": 336200
+			},
+			"text": " user. So in everything we do, we first really focus on the user and to give an example when"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,200",
+				"to": "00:05:40,360"
+			},
+			"offsets": {
+				"from": 336200,
+				"to": 340360
+			},
+			"text": " we started Origin, we're thinking about, you know, how to manage your account or your"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,360",
+				"to": "00:05:45,760"
+			},
+			"offsets": {
+				"from": 340360,
+				"to": 345760
+			},
+			"text": " keys. And we will try to think what's a user experience that people actually understand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,760",
+				"to": "00:05:51,720"
+			},
+			"offsets": {
+				"from": 345760,
+				"to": 351720
+			},
+			"text": " people outside of our bubble. And we realized that the user of the experience of banks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,720",
+				"to": "00:05:56,480"
+			},
+			"offsets": {
+				"from": 351720,
+				"to": 356480
+			},
+			"text": " for example, we mean it like banks, traditional banks. But the idea that if you lose your credit"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,480",
+				"to": "00:06:00,200"
+			},
+			"offsets": {
+				"from": 356480,
+				"to": 360200
+			},
+			"text": " card, you use your wallet, you can actually call your bank to give a new one. We kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,200",
+				"to": "00:06:05,480"
+			},
+			"offsets": {
+				"from": 360200,
+				"to": 365480
+			},
+			"text": " of felt like this was a mental model that users would understand. So we tried to replicate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,480",
+				"to": "00:06:09,920"
+			},
+			"offsets": {
+				"from": 365480,
+				"to": 369920
+			},
+			"text": " that. First, he's using the technology. That's why we build a smart contract with wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,920",
+				"to": "00:06:18,240"
+			},
+			"offsets": {
+				"from": 369920,
+				"to": 378240
+			},
+			"text": " And then adding a layer of UX and design on top of it. So for us, the starting point is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,240",
+				"to": "00:06:22,800"
+			},
+			"offsets": {
+				"from": 378240,
+				"to": 382800
+			},
+			"text": " the user trying to solve the problem for a user. Then we use the technology and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,800",
+				"to": "00:06:27,920"
+			},
+			"offsets": {
+				"from": 382800,
+				"to": 387920
+			},
+			"text": " we use shiny button, good design, you know, flows and stuff like that. I think the starting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,920",
+				"to": "00:06:32,640"
+			},
+			"offsets": {
+				"from": 387920,
+				"to": 392640
+			},
+			"text": " point is really to start from the user. One, traditionally, I think in an ecosystem where"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,640",
+				"to": "00:06:37,440"
+			},
+			"offsets": {
+				"from": 392640,
+				"to": 397440
+			},
+			"text": " people are very tech savvy, we tend to start from the technology. We build a cool technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,440",
+				"to": "00:06:41,440"
+			},
+			"offsets": {
+				"from": 397440,
+				"to": 401440
+			},
+			"text": " and then we think, okay, you know, all with the user, we use my technology. I think the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,440",
+				"to": "00:06:44,720"
+			},
+			"offsets": {
+				"from": 401440,
+				"to": 404720
+			},
+			"text": " paradigm needs to be shaped. You should be, okay, I solved the problem for a user and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,720",
+				"to": "00:06:48,600"
+			},
+			"offsets": {
+				"from": 404720,
+				"to": 408600
+			},
+			"text": " then find the right technology to solve that. Yeah, you're kind of going touching upon the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,600",
+				"to": "00:06:52,600"
+			},
+			"offsets": {
+				"from": 408600,
+				"to": 412600
+			},
+			"text": " next question here about users and although we are having this really interesting conversation"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,600",
+				"to": "00:07:01,440"
+			},
+			"offsets": {
+				"from": 412600,
+				"to": 421440
+			},
+			"text": " around how do you find your users and how do you define who your user group is? So, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,440",
+				"to": "00:07:05,800"
+			},
+			"offsets": {
+				"from": 421440,
+				"to": 425800
+			},
+			"text": " know, as we know, Coinbase has a portfolio of different products. And I both Castoldio"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,800",
+				"to": "00:07:10,520"
+			},
+			"offsets": {
+				"from": 425800,
+				"to": 430520
+			},
+			"text": " and Non-Castoldio. And I think what we're doing really well is kind of understanding"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,520",
+				"to": "00:07:16,240"
+			},
+			"offsets": {
+				"from": 430520,
+				"to": 436240
+			},
+			"text": " that not about not an entire group of our users is the same. So, we kind of funnel them"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,240",
+				"to": "00:07:25,080"
+			},
+			"offsets": {
+				"from": 436240,
+				"to": 445080
+			},
+			"text": " into different, into different places. And with having that in mind, we actually do talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,080",
+				"to": "00:07:31,640"
+			},
+			"offsets": {
+				"from": 445080,
+				"to": 451640
+			},
+			"text": " to our users very early as well. We, I mean, we just had this discussion of like, it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,640",
+				"to": "00:07:39,400"
+			},
+			"offsets": {
+				"from": 451640,
+				"to": 459400
+			},
+			"text": " a lot of teams say that it is very difficult to find a user group without breaking their"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,400",
+				"to": "00:07:45,480"
+			},
+			"offsets": {
+				"from": 459400,
+				"to": 465480
+			},
+			"text": " privacy. And I claim the opposite. It's just you basically need to hassle a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,480",
+				"to": "00:07:52,200"
+			},
+			"offsets": {
+				"from": 465480,
+				"to": 472200
+			},
+			"text": " and reach out to your community, reach out, use different platforms, ask people to come"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,200",
+				"to": "00:07:56,720"
+			},
+			"offsets": {
+				"from": 472200,
+				"to": 476720
+			},
+			"text": " to your office or just set up Hangouts and just talk to your user, understand what their"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,720",
+				"to": "00:08:02,360"
+			},
+			"offsets": {
+				"from": 476720,
+				"to": 482360
+			},
+			"text": " pain points are, understand what they kind of expect. You will learn that maybe your"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,360",
+				"to": "00:08:11,880"
+			},
+			"offsets": {
+				"from": 482360,
+				"to": 491880
+			},
+			"text": " initial assumptions are completely in a different place than what your users really think. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,880",
+				"to": "00:08:18,840"
+			},
+			"offsets": {
+				"from": 491880,
+				"to": 498840
+			},
+			"text": " I think in our case, it's one of the things that builds the biggest advantage in how we"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,840",
+				"to": "00:08:20,600"
+			},
+			"offsets": {
+				"from": 498840,
+				"to": 500600
+			},
+			"text": " think about our products."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,600",
+				"to": "00:08:24,520"
+			},
+			"offsets": {
+				"from": 500600,
+				"to": 504520
+			},
+			"text": " Then, yeah, I'm excited to hear your answer because I've talked to your design team and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,520",
+				"to": "00:08:29,480"
+			},
+			"offsets": {
+				"from": 504520,
+				"to": 509480
+			},
+			"text": " you guys have just started unraveling user research and reaching out with cheese wizards."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,480",
+				"to": "00:08:32,480"
+			},
+			"offsets": {
+				"from": 509480,
+				"to": 512480
+			},
+			"text": " What does that look like for you guys?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,480",
+				"to": "00:08:41,200"
+			},
+			"offsets": {
+				"from": 512480,
+				"to": 521200
+			},
+			"text": " So cheese wizards stand from us being in a room and thinking about what is the next"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,200",
+				"to": "00:08:45,640"
+			},
+			"offsets": {
+				"from": 521200,
+				"to": 525640
+			},
+			"text": " weirdest thing we could build, both from a technical standpoint or building a battle"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,640",
+				"to": "00:08:51,400"
+			},
+			"offsets": {
+				"from": 525640,
+				"to": 531400
+			},
+			"text": " royal blockchain game and the sense of mixing cheese with wizards. So we have that kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,400",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 531400,
+				"to": 538000
+			},
+			"text": " of luxury of thinking creatively of what will take a loss and how can we kind of emanate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:00,600"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 540600
+			},
+			"text": " that as a project."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,600",
+				"to": "00:09:07,520"
+			},
+			"offsets": {
+				"from": 540600,
+				"to": 547520
+			},
+			"text": " Then we kind of go through the step of building really fast prototypes that are off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,520",
+				"to": "00:09:13,640"
+			},
+			"offsets": {
+				"from": 547520,
+				"to": 553640
+			},
+			"text": " and we like to test it. We've done probably by now more than 10 play tests of cheese wizards"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,640",
+				"to": "00:09:20,520"
+			},
+			"offsets": {
+				"from": 553640,
+				"to": 560520
+			},
+			"text": " internally and each iteration we kind of improve the way it looks, the way the flow goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,520",
+				"to": "00:09:25,920"
+			},
+			"offsets": {
+				"from": 560520,
+				"to": 565920
+			},
+			"text": " Recently, about three weeks ago, we had the last final play test for cheese wizards on"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,920",
+				"to": "00:09:32,400"
+			},
+			"offsets": {
+				"from": 565920,
+				"to": 572400
+			},
+			"text": " the Ring B network. It was pretty much, it had most of the features that we have set"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,400",
+				"to": "00:09:35,880"
+			},
+			"offsets": {
+				"from": 572400,
+				"to": 575880
+			},
+			"text": " the launch for next week."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,880",
+				"to": "00:09:42,680"
+			},
+			"offsets": {
+				"from": 575880,
+				"to": 582680
+			},
+			"text": " What we did was I built a battle cage inside of the office and curated duels between different"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,680",
+				"to": "00:09:48,760"
+			},
+			"offsets": {
+				"from": 582680,
+				"to": 588760
+			},
+			"text": " people in the company. Not only that, we had the user research team that was sitting there"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,760",
+				"to": "00:09:54,640"
+			},
+			"offsets": {
+				"from": 588760,
+				"to": 594640
+			},
+			"text": " and kind of asking questions and mapping out the user journey and their emotions through"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,640",
+				"to": "00:09:57,920"
+			},
+			"offsets": {
+				"from": 594640,
+				"to": 597920
+			},
+			"text": " the entire process of going through the flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,920",
+				"to": "00:10:03,400"
+			},
+			"offsets": {
+				"from": 597920,
+				"to": 603400
+			},
+			"text": " From that, we also sent a daily service to capture all the information from the team"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,400",
+				"to": "00:10:09,760"
+			},
+			"offsets": {
+				"from": 603400,
+				"to": 609760
+			},
+			"text": " members. We usually start with internal, then we invite a core group of maybe a small"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,760",
+				"to": "00:10:14,280"
+			},
+			"offsets": {
+				"from": 609760,
+				"to": 614280
+			},
+			"text": " sample size of external players to come and play and we do the same thing where we measure"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,280",
+				"to": "00:10:19,240"
+			},
+			"offsets": {
+				"from": 614280,
+				"to": 619240
+			},
+			"text": " every day and see where we can improve and then that gets funneled to engineering and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,240",
+				"to": "00:10:20,240"
+			},
+			"offsets": {
+				"from": 619240,
+				"to": 620240
+			},
+			"text": " design."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,240",
+				"to": "00:10:26,480"
+			},
+			"offsets": {
+				"from": 620240,
+				"to": 626480
+			},
+			"text": " Then now we're at this point where we have an open beta this entire week. We welcome"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,480",
+				"to": "00:10:35,240"
+			},
+			"offsets": {
+				"from": 626480,
+				"to": 635240
+			},
+			"text": " the entire space here at DevCon and our community to play the game. We have on the website any"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,240",
+				"to": "00:10:39,440"
+			},
+			"offsets": {
+				"from": 635240,
+				"to": 639440
+			},
+			"text": " bugs or issues, feel free to fill out the form. That's how we usually capture a lot of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,440",
+				"to": "00:10:44,800"
+			},
+			"offsets": {
+				"from": 639440,
+				"to": 644800
+			},
+			"text": " information, funnel it up to design and engineering and then build up those features inside the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,800",
+				"to": "00:10:45,800"
+			},
+			"offsets": {
+				"from": 644800,
+				"to": 645800
+			},
+			"text": " game."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,800",
+				"to": "00:10:51,640"
+			},
+			"offsets": {
+				"from": 645800,
+				"to": 651640
+			},
+			"text": " I want to pull from that user research component of it. That's been a big narrative. This year"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,640",
+				"to": "00:10:56,880"
+			},
+			"offsets": {
+				"from": 651640,
+				"to": 656880
+			},
+			"text": " at DevCon last year, it was kind of like massive option, massive option. Before that, it was"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,880",
+				"to": "00:11:01,200"
+			},
+			"offsets": {
+				"from": 656880,
+				"to": 661200
+			},
+			"text": " like how do we understand and get to know our users better. Pulling from that, we were"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,200",
+				"to": "00:11:06,600"
+			},
+			"offsets": {
+				"from": 661200,
+				"to": 666600
+			},
+			"text": " just talking about market research versus design research. The team from Cellos said"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,600",
+				"to": "00:11:13,400"
+			},
+			"offsets": {
+				"from": 666600,
+				"to": 673400
+			},
+			"text": " it really well which is with market research, you might get 100 people and get 10 insights."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,400",
+				"to": "00:11:17,600"
+			},
+			"offsets": {
+				"from": 673400,
+				"to": 677600
+			},
+			"text": " With design research, you get 10 people and get 100 insights. You're going super deep"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,600",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 677600,
+				"to": 684000
+			},
+			"text": " and taking that time to ask them not just questions about your product but questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:30,440"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 690440
+			},
+			"text": " around how do you go about your flow, your goal. How do you get a person to finish that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,440",
+				"to": "00:11:31,440"
+			},
+			"offsets": {
+				"from": 690440,
+				"to": 691440
+			},
+			"text": " goal?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,440",
+				"to": "00:11:34,160"
+			},
+			"offsets": {
+				"from": 691440,
+				"to": 694160
+			},
+			"text": " Maybe it's like going to the bank, okay, what happens if you lost your money? Where do you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,160",
+				"to": "00:11:39,400"
+			},
+			"offsets": {
+				"from": 694160,
+				"to": 699400
+			},
+			"text": " go? It doesn't have to be directly correlated to your product because you're not trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,400",
+				"to": "00:11:43,840"
+			},
+			"offsets": {
+				"from": 699400,
+				"to": 703840
+			},
+			"text": " to tell them this is the product that's going to solve your needs if you don't know what"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,840",
+				"to": "00:11:46,520"
+			},
+			"offsets": {
+				"from": 703840,
+				"to": 706520
+			},
+			"text": " those needs are yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,520",
+				"to": "00:11:54,400"
+			},
+			"offsets": {
+				"from": 706520,
+				"to": 714400
+			},
+			"text": " Let's go back to use a usability and what I call the responsibility of the creator. You"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,400",
+				"to": "00:12:01,320"
+			},
+			"offsets": {
+				"from": 714400,
+				"to": 721320
+			},
+			"text": " guys have one of the biggest products. You literally broke Ethereum. What do you guys"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,320",
+				"to": "00:12:07,120"
+			},
+			"offsets": {
+				"from": 721320,
+				"to": 727120
+			},
+			"text": " find that for your users, what do you guys try to do to protect them or give them kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,120",
+				"to": "00:12:11,200"
+			},
+			"offsets": {
+				"from": 727120,
+				"to": 731200
+			},
+			"text": " of the space? What's different in the way that you're creating product that you think"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,200",
+				"to": "00:12:16,880"
+			},
+			"offsets": {
+				"from": 731200,
+				"to": 736880
+			},
+			"text": " about? What do you want to start?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,880",
+				"to": "00:12:17,880"
+			},
+			"offsets": {
+				"from": 736880,
+				"to": 737880
+			},
+			"text": " You want to start?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,880",
+				"to": "00:12:20,400"
+			},
+			"offsets": {
+				"from": 737880,
+				"to": 740400
+			},
+			"text": " Go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,400",
+				"to": "00:12:26,320"
+			},
+			"offsets": {
+				"from": 740400,
+				"to": 746320
+			},
+			"text": " So is it in comparison to how other blockchain games build games and the way that they build"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,320",
+				"to": "00:12:30,960"
+			},
+			"offsets": {
+				"from": 746320,
+				"to": 750960
+			},
+			"text": " the process or in comparison to DeFi or other wallets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,960",
+				"to": "00:12:36,520"
+			},
+			"offsets": {
+				"from": 750960,
+				"to": 756520
+			},
+			"text": " Yeah, it's hard because you guys all have so many different products. I would say, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,520",
+				"to": "00:12:42,920"
+			},
+			"offsets": {
+				"from": 756520,
+				"to": 762920
+			},
+			"text": " think generally a lot of people are thinking about how they build the product. When you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,920",
+				"to": "00:12:50,400"
+			},
+			"offsets": {
+				"from": 762920,
+				"to": 770400
+			},
+			"text": " building the product, there's fundamental kind of decisions in that you create while"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,400",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 770400,
+				"to": 776000
+			},
+			"text": " you're creating the product and that has to do with kind of the underlying needs or needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:12:59,680"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 779680
+			},
+			"text": " I think for me it's about, of course, you make choice when you design a product and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,680",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 779680,
+				"to": 783000
+			},
+			"text": " you make choice on the app of the user. But I think something that's very important is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:08,360"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 788360
+			},
+			"text": " to inform the user about these choices and making sure you don't ID anything. So I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,360",
+				"to": "00:13:12,600"
+			},
+			"offsets": {
+				"from": 788360,
+				"to": 792600
+			},
+			"text": " users have to make conscious choices and know maybe the compromise they are making."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,600",
+				"to": "00:13:17,720"
+			},
+			"offsets": {
+				"from": 792600,
+				"to": 797720
+			},
+			"text": " Some users are fine using a custodial service. Some users may not be. So I think it's important"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,720",
+				"to": "00:13:22,120"
+			},
+			"offsets": {
+				"from": 797720,
+				"to": 802120
+			},
+			"text": " that actually we educate, not educate, we inform the user about the choice that he's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,120",
+				"to": "00:13:26,240"
+			},
+			"offsets": {
+				"from": 802120,
+				"to": 806240
+			},
+			"text": " making and the trade-off that he may get from the choice that he's making. I think this"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,240",
+				"to": "00:13:30,840"
+			},
+			"offsets": {
+				"from": 806240,
+				"to": 810840
+			},
+			"text": " is something for us that's very important. Also, at Arjun, we believe that there is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,840",
+				"to": "00:13:35,360"
+			},
+			"offsets": {
+				"from": 810840,
+				"to": 815360
+			},
+			"text": " boulder not to cross. So there's some core, as I mentioned, some core principle that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,360",
+				"to": "00:13:38,960"
+			},
+			"offsets": {
+				"from": 815360,
+				"to": 818960
+			},
+			"text": " don't want to compromise on. And then after that, all that goes on top of that is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,960",
+				"to": "00:13:44,160"
+			},
+			"offsets": {
+				"from": 818960,
+				"to": 824160
+			},
+			"text": " a question of informing the users and helping in making a wise choice because it's easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,160",
+				"to": "00:13:49,520"
+			},
+			"offsets": {
+				"from": 824160,
+				"to": 829520
+			},
+			"text": " to badly inform or to add something and make decision. I think it's actually the UX is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,520",
+				"to": "00:13:53,800"
+			},
+			"offsets": {
+				"from": 829520,
+				"to": 833800
+			},
+			"text": " really responsible of that. It's leading the user to inform about the choice that he's making."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,800",
+				"to": "00:13:58,240"
+			},
+			"offsets": {
+				"from": 833800,
+				"to": 838240
+			},
+			"text": " Yeah, I want to pull that up a pull from that and I will get to you because there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,240",
+				"to": "00:14:05,120"
+			},
+			"offsets": {
+				"from": 838240,
+				"to": 845120
+			},
+			"text": " some ideas around the abstraction with information to avoid complexity for the user. And so I"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,120",
+				"to": "00:14:10,200"
+			},
+			"offsets": {
+				"from": 845120,
+				"to": 850200
+			},
+			"text": " know Coinbase has pro, you guys have custodial, non-custodial, you guys have different kinds"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,200",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 850200,
+				"to": 856000
+			},
+			"text": " of users as well. How is that structured for you guys and what have you kind of seen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 863000
+			},
+			"text": " I think as long as coming from the crypto community, I would want to say that let's do, I would"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:32,880"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 872880
+			},
+			"text": " want to believe that we should make users think. It's not exactly how the product works. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,880",
+				"to": "00:14:39,760"
+			},
+			"offsets": {
+				"from": 872880,
+				"to": 879760
+			},
+			"text": " I think certain features are in the existing financial system, therefore a reason. So for"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,760",
+				"to": "00:14:44,640"
+			},
+			"offsets": {
+				"from": 879760,
+				"to": 884640
+			},
+			"text": " example, a concrete covering is there because we tend to forget our passwords. We tend to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,640",
+				"to": "00:14:54,640"
+			},
+			"offsets": {
+				"from": 884640,
+				"to": 894640
+			},
+			"text": " do stuff that kind of work against us almost. So thinking about these things as features,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,640",
+				"to": "00:15:02,240"
+			},
+			"offsets": {
+				"from": 894640,
+				"to": 902240
+			},
+			"text": " not necessarily the sort of old system, but rather how can we help users sort of enter"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,240",
+				"to": "00:15:08,840"
+			},
+			"offsets": {
+				"from": 902240,
+				"to": 908840
+			},
+			"text": " the crypto community through or crypto technology through maybe more evolution rather than revolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,840",
+				"to": "00:15:19,680"
+			},
+			"offsets": {
+				"from": 908840,
+				"to": 919680
+			},
+			"text": " So we can, in wallet for example, we allow users to back their security, their secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,680",
+				"to": "00:15:27,240"
+			},
+			"offsets": {
+				"from": 919680,
+				"to": 927240
+			},
+			"text": " keys through their Google Docs. And there are solutions that are more decentralized and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,240",
+				"to": "00:15:32,800"
+			},
+			"offsets": {
+				"from": 927240,
+				"to": 932800
+			},
+			"text": " solutions that are more centralized. The most important element for us is knowing who our"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,800",
+				"to": "00:15:39,400"
+			},
+			"offsets": {
+				"from": 932800,
+				"to": 939400
+			},
+			"text": " audience are and making sure that we're going to protect them. And at the same time give"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,400",
+				"to": "00:15:45,680"
+			},
+			"offsets": {
+				"from": 939400,
+				"to": 945680
+			},
+			"text": " them the opportunity to choose which direction they want to go to."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,680",
+				"to": "00:15:51,840"
+			},
+			"offsets": {
+				"from": 945680,
+				"to": 951840
+			},
+			"text": " I really like that idea that evolution, we've heard evolution. I think we've already"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,840",
+				"to": "00:15:57,280"
+			},
+			"offsets": {
+				"from": 951840,
+				"to": 957280
+			},
+			"text": " seen that evolution in terms of last year. Let's put out all the really big problems and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,280",
+				"to": "00:16:02,480"
+			},
+			"offsets": {
+				"from": 957280,
+				"to": 962480
+			},
+			"text": " the questions and we want to solve for really, really big important things around banks and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,480",
+				"to": "00:16:08,720"
+			},
+			"offsets": {
+				"from": 962480,
+				"to": 968720
+			},
+			"text": " systems centralization. But the adoption that we see there and that bridge, we're almost"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,720",
+				"to": "00:16:13,040"
+			},
+			"offsets": {
+				"from": 968720,
+				"to": 973040
+			},
+			"text": " there, but we're trying to design for a user that's users that are not quite there yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,040",
+				"to": "00:16:18,520"
+			},
+			"offsets": {
+				"from": 973040,
+				"to": 978520
+			},
+			"text": " They're not that knowledgeable. I think that's a difficulty of the moment we are in is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,520",
+				"to": "00:16:24,200"
+			},
+			"offsets": {
+				"from": 978520,
+				"to": 984200
+			},
+			"text": " this is some kind of tension because you want to build for the next wave of users coming,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,200",
+				"to": "00:16:28,400"
+			},
+			"offsets": {
+				"from": 984200,
+				"to": 988400
+			},
+			"text": " but we still want to be relevant today. And so what people understand today is not what"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,400",
+				"to": "00:16:33,240"
+			},
+			"offsets": {
+				"from": 988400,
+				"to": 993240
+			},
+			"text": " people will understand in the future. And to give you a good example about that, I have"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,240",
+				"to": "00:16:36,720"
+			},
+			"offsets": {
+				"from": 993240,
+				"to": 996720
+			},
+			"text": " a good friend that I managed to convince to use Origin and he was really excited to put"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,720",
+				"to": "00:16:41,320"
+			},
+			"offsets": {
+				"from": 996720,
+				"to": 1001320
+			},
+			"text": " his money into compound. And so he don't know Zargent's and he used actually because we didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,320",
+				"to": "00:16:46,280"
+			},
+			"offsets": {
+				"from": 1001320,
+				"to": 1006280
+			},
+			"text": " have a fiat to crypto on that point. He used Coinbase to buy some guy. Then he wants to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,280",
+				"to": "00:16:51,760"
+			},
+			"offsets": {
+				"from": 1006280,
+				"to": 1011760
+			},
+			"text": " send his guy to Origin. And then he's calling me, he's like dude, I cannot send my guy to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,760",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1011760,
+				"to": 1016000
+			},
+			"text": " Origin. And I said, yes, look at that screen. He says we can send ESG20. He's like, what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:01,640"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1021640
+			},
+			"text": " an ESG20? So actually on Coinbase, he converted his guy to Ether. So he could send Ether. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,640",
+				"to": "00:17:05,360"
+			},
+			"offsets": {
+				"from": 1021640,
+				"to": 1025360
+			},
+			"text": " then on Origin converted the Ether back to die. By the time he had done that, he had"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,360",
+				"to": "00:17:09,720"
+			},
+			"offsets": {
+				"from": 1025360,
+				"to": 1029720
+			},
+			"text": " lost like six or seven percent. He was like, your product makes no sense. And I think we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,720",
+				"to": "00:17:14,240"
+			},
+			"offsets": {
+				"from": 1029720,
+				"to": 1034240
+			},
+			"text": " saying about understanding our users. I think there's also a lot of feedback. And we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,240",
+				"to": "00:17:18,560"
+			},
+			"offsets": {
+				"from": 1034240,
+				"to": 1038560
+			},
+			"text": " to be able to listen to feedback. So for example, for us, customer support is very important"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,560",
+				"to": "00:17:22,760"
+			},
+			"offsets": {
+				"from": 1038560,
+				"to": 1042760
+			},
+			"text": " because we do use the research we need our users. But actually listening to the feedback"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,760",
+				"to": "00:17:26,600"
+			},
+			"offsets": {
+				"from": 1042760,
+				"to": 1046600
+			},
+			"text": " of the users is the so you learn the most because we make a lot of assumption of what"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,600",
+				"to": "00:17:30,880"
+			},
+			"offsets": {
+				"from": 1046600,
+				"to": 1050880
+			},
+			"text": " people understand and what people know. That example for us was like, of course, nobody"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,880",
+				"to": "00:17:35,760"
+			},
+			"offsets": {
+				"from": 1050880,
+				"to": 1055760
+			},
+			"text": " knows what's an ESG20. So we need to make that explicit. I think it's a silly example"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,760",
+				"to": "00:17:39,240"
+			},
+			"offsets": {
+				"from": 1055760,
+				"to": 1059240
+			},
+			"text": " that I think it shows that as you answer your first question, we are getting there but we"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,240",
+				"to": "00:17:41,480"
+			},
+			"offsets": {
+				"from": 1059240,
+				"to": 1061480
+			},
+			"text": " are clearly not there yet for the next way."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,480",
+				"to": "00:17:49,080"
+			},
+			"offsets": {
+				"from": 1061480,
+				"to": 1069080
+			},
+			"text": " What about for you guys working on and you guys have launched dapper as well and creating"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,080",
+				"to": "00:17:53,720"
+			},
+			"offsets": {
+				"from": 1069080,
+				"to": 1073720
+			},
+			"text": " the seamless experience for the types of users you have which are gamers and they're expecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,720",
+				"to": "00:17:55,720"
+			},
+			"offsets": {
+				"from": 1073720,
+				"to": 1075720
+			},
+			"text": " stress or a type of flow?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,720",
+				"to": "00:18:04,640"
+			},
+			"offsets": {
+				"from": 1075720,
+				"to": 1084640
+			},
+			"text": " When we launched CryptoKitties at ETH Waterloo, we basically had, we did a lot of onboarding"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,640",
+				"to": "00:18:10,320"
+			},
+			"offsets": {
+				"from": 1084640,
+				"to": 1090320
+			},
+			"text": " for MetaMask. People came up to us and was like, what is this? Can I download this? What"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,320",
+				"to": "00:18:17,680"
+			},
+			"offsets": {
+				"from": 1090320,
+				"to": 1097680
+			},
+			"text": " is this gas? We sat down with tons of people helping them set it all up and asked if the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,680",
+				"to": "00:18:26,320"
+			},
+			"offsets": {
+				"from": 1097680,
+				"to": 1106320
+			},
+			"text": " kitties grew really big. We I think at one point drove nearly 200,000 downloads to MetaMask"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,320",
+				"to": "00:18:32,440"
+			},
+			"offsets": {
+				"from": 1106320,
+				"to": 1112440
+			},
+			"text": " and a lot of these people would come to Discord and our Discord basically became MetaMask"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,440",
+				"to": "00:18:39,960"
+			},
+			"offsets": {
+				"from": 1112440,
+				"to": 1119960
+			},
+			"text": " support for a lot of these players who wanted to buy some kitties and read some kitties."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,960",
+				"to": "00:18:46,320"
+			},
+			"offsets": {
+				"from": 1119960,
+				"to": 1126320
+			},
+			"text": " You can imagine the hundreds of thousands of questions that we have received from doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,320",
+				"to": "00:18:52,840"
+			},
+			"offsets": {
+				"from": 1126320,
+				"to": 1132840
+			},
+			"text": " MetaMask support in our Discord and that helped us kind of understand in a very full"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,840",
+				"to": "00:19:00,120"
+			},
+			"offsets": {
+				"from": 1132840,
+				"to": 1140120
+			},
+			"text": " picture of all the issues that has arrived with private keys and with like the manual"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,120",
+				"to": "00:19:07,440"
+			},
+			"offsets": {
+				"from": 1140120,
+				"to": 1147440
+			},
+			"text": " controls of gas and looking at the gas station and making the right selection. And so dapper"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,440",
+				"to": "00:19:12,080"
+			},
+			"offsets": {
+				"from": 1147440,
+				"to": 1152080
+			},
+			"text": " wallet we've been working on it for about nearly nine months now. It's a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,080",
+				"to": "00:19:18,480"
+			},
+			"offsets": {
+				"from": 1152080,
+				"to": 1158480
+			},
+			"text": " wallet and it's built from the ground up in terms of rethinking how key recovery works"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,480",
+				"to": "00:19:25,080"
+			},
+			"offsets": {
+				"from": 1158480,
+				"to": 1165080
+			},
+			"text": " and actually the dapper team, the dapper wallet team is embedded in the NBA team now. The NBA"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,080",
+				"to": "00:19:35,680"
+			},
+			"offsets": {
+				"from": 1165080,
+				"to": 1175680
+			},
+			"text": " team as you know we're building a basketball game for 2020 and we have access to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,680",
+				"to": "00:19:41,120"
+			},
+			"offsets": {
+				"from": 1175680,
+				"to": 1181120
+			},
+			"text": " we have access to a lot of the fans and getting a deeper understanding of are these fans of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,120",
+				"to": "00:19:47,600"
+			},
+			"offsets": {
+				"from": 1181120,
+				"to": 1187600
+			},
+			"text": " NBA even thinking about digital collectibles or true item ownership and as with anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,600",
+				"to": "00:19:53,840"
+			},
+			"offsets": {
+				"from": 1187600,
+				"to": 1193840
+			},
+			"text": " that we do we always start off of the users as Julian said and we have thousands of conversations"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,840",
+				"to": "00:20:01,200"
+			},
+			"offsets": {
+				"from": 1193840,
+				"to": 1201200
+			},
+			"text": " on a monthly basis and that really helps us as a company get build this obsession of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,200",
+				"to": "00:20:07,760"
+			},
+			"offsets": {
+				"from": 1201200,
+				"to": 1207760
+			},
+			"text": " hey this is not very good maybe we should change this right. A prime example was we call smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,760",
+				"to": "00:20:12,640"
+			},
+			"offsets": {
+				"from": 1207760,
+				"to": 1212640
+			},
+			"text": " contract wallets now or smart wallets it's a simpler turn back I don't know six months ago"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,640",
+				"to": "00:20:17,120"
+			},
+			"offsets": {
+				"from": 1212640,
+				"to": 1217120
+			},
+			"text": " everyone's saying multi signature or multi-sick and when we did use a research people were just"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,120",
+				"to": "00:20:22,560"
+			},
+			"offsets": {
+				"from": 1217120,
+				"to": 1222560
+			},
+			"text": " like what is multi-sick right well what is a multi-sick wallet and what is a matter mask and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,560",
+				"to": "00:20:30,640"
+			},
+			"offsets": {
+				"from": 1222560,
+				"to": 1230640
+			},
+			"text": " we even drilled down to each individual word that we use when we invite people into our offices and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,440",
+				"to": "00:20:36,160"
+			},
+			"offsets": {
+				"from": 1231440,
+				"to": 1236160
+			},
+			"text": " we just get really blank faces all the time we'll be like oh okay they don't really understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,160",
+				"to": "00:20:43,200"
+			},
+			"offsets": {
+				"from": 1236160,
+				"to": 1243200
+			},
+			"text": " this word and that really helps us like kind of sit in their shoes and design something from"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,200",
+				"to": "00:20:50,800"
+			},
+			"offsets": {
+				"from": 1243200,
+				"to": 1250800
+			},
+			"text": " their perspective and so with Dapper one of the things that we built was the subsidizing gaps for"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,800",
+				"to": "00:20:56,160"
+			},
+			"offsets": {
+				"from": 1250800,
+				"to": 1256160
+			},
+			"text": " the users so for if you play kurtokities or any of the dapper labs games or the dapper labs"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,160",
+				"to": "00:21:03,120"
+			},
+			"offsets": {
+				"from": 1256160,
+				"to": 1263120
+			},
+			"text": " partners partners the people your players don't have to worry about paying gas we've completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,120",
+				"to": "00:21:08,080"
+			},
+			"offsets": {
+				"from": 1263120,
+				"to": 1268080
+			},
+			"text": " eliminated that and we actually even changed the word gas to network fee because through research"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,080",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1268080,
+				"to": 1274000
+			},
+			"text": " people just like very confused about like why am I putting gas in my wallet it makes no sense so"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:19,120"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1279120
+			},
+			"text": " yeah that's kind of all the reference points that we have as a company and so how we start"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,120",
+				"to": "00:21:25,040"
+			},
+			"offsets": {
+				"from": 1279120,
+				"to": 1285040
+			},
+			"text": " the process of designing something that people could actually use. Yeah I want to think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,040",
+				"to": "00:21:29,520"
+			},
+			"offsets": {
+				"from": 1285040,
+				"to": 1289520
+			},
+			"text": " go with that a little bit the one thing that I want to say is that design is not about design"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,520",
+				"to": "00:21:38,800"
+			},
+			"offsets": {
+				"from": 1289520,
+				"to": 1298800
+			},
+			"text": " it's a building product is sort of like this whole whole that contains of like three parts"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,800",
+				"to": "00:21:43,840"
+			},
+			"offsets": {
+				"from": 1298800,
+				"to": 1303840
+			},
+			"text": " business, technology and design and when you take away one of it your product will not be"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,840",
+				"to": "00:21:49,440"
+			},
+			"offsets": {
+				"from": 1303840,
+				"to": 1309440
+			},
+			"text": " you're basically going in the wrong direction you're probably there's a higher chance that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,440",
+				"to": "00:21:55,280"
+			},
+			"offsets": {
+				"from": 1309440,
+				"to": 1315280
+			},
+			"text": " you're going in the wrong direction and so what I really like about what we do at coin race is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,280",
+				"to": "00:22:03,520"
+			},
+			"offsets": {
+				"from": 1315280,
+				"to": 1323520
+			},
+			"text": " the these three functions gathered together very early on in the before every feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,520",
+				"to": "00:22:09,600"
+			},
+			"offsets": {
+				"from": 1323520,
+				"to": 1329600
+			},
+			"text": " every product that we start and we actually go through the market fit the technology and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,600",
+				"to": "00:22:18,640"
+			},
+			"offsets": {
+				"from": 1329600,
+				"to": 1338640
+			},
+			"text": " what do our users want sort of trying to balance the new product of having that in mind and so"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,640",
+				"to": "00:22:24,640"
+			},
+			"offsets": {
+				"from": 1338640,
+				"to": 1344640
+			},
+			"text": " again design is not necessarily about you know pixels that you do it's it's the user experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,640",
+				"to": "00:22:33,520"
+			},
+			"offsets": {
+				"from": 1344640,
+				"to": 1353520
+			},
+			"text": " that your users are well I want to say experienced but yeah but we'll go through when interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,520",
+				"to": "00:22:39,280"
+			},
+			"offsets": {
+				"from": 1353520,
+				"to": 1359280
+			},
+			"text": " with your product and I think we'll see a lot of that but I think going through the judging as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,280",
+				"to": "00:22:45,120"
+			},
+			"offsets": {
+				"from": 1359280,
+				"to": 1365120
+			},
+			"text": " it's like there's so many amazing beautiful products and the judges are really good about"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,120",
+				"to": "00:22:51,840"
+			},
+			"offsets": {
+				"from": 1365120,
+				"to": 1371840
+			},
+			"text": " what is actually useful what is the problem is there a problem that the product is solving"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,840",
+				"to": "00:22:56,480"
+			},
+			"offsets": {
+				"from": 1371840,
+				"to": 1376480
+			},
+			"text": " and if so are they clearly figuring out the depths of that problem I think our job for you guys"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,480",
+				"to": "00:23:01,120"
+			},
+			"offsets": {
+				"from": 1376480,
+				"to": 1381120
+			},
+			"text": " if you guys started with that problem right and do you want to touch upon that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,120",
+				"to": "00:23:04,720"
+			},
+			"offsets": {
+				"from": 1381120,
+				"to": 1384720
+			},
+			"text": " let's go to that again did you want to do you want to say something?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,720",
+				"to": "00:23:07,120"
+			},
+			"offsets": {
+				"from": 1384720,
+				"to": 1387120
+			},
+			"text": " can we repeat about sentence?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,120",
+				"to": "00:23:14,000"
+			},
+			"offsets": {
+				"from": 1387120,
+				"to": 1394000
+			},
+			"text": " we we kind of be starting with a problem part of it you guys kind of formulate that you touched"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,000",
+				"to": "00:23:21,200"
+			},
+			"offsets": {
+				"from": 1394000,
+				"to": 1401200
+			},
+			"text": " on it earlier earlier in the talk for you guys how are you does that problem also"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,200",
+				"to": "00:23:25,680"
+			},
+			"offsets": {
+				"from": 1401200,
+				"to": 1405680
+			},
+			"text": " evolve as people are getting more knowledgeable about the space or do you see that as kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,680",
+				"to": "00:23:32,880"
+			},
+			"offsets": {
+				"from": 1405680,
+				"to": 1412880
+			},
+			"text": " the core problem? I think what everything is that you need to build your product for users"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,880",
+				"to": "00:23:38,800"
+			},
+			"offsets": {
+				"from": 1412880,
+				"to": 1418800
+			},
+			"text": " and it needs to solve a problem for the users so I think also in the space we're often excited"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,800",
+				"to": "00:23:44,000"
+			},
+			"offsets": {
+				"from": 1418800,
+				"to": 1424000
+			},
+			"text": " about the technology but I think a lot of people outside of bubble will not care too much about"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,000",
+				"to": "00:23:49,360"
+			},
+			"offsets": {
+				"from": 1424000,
+				"to": 1429360
+			},
+			"text": " decentralization they will not care about these principles so we need to be able to find a problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,360",
+				"to": "00:23:54,400"
+			},
+			"offsets": {
+				"from": 1429360,
+				"to": 1434400
+			},
+			"text": " that we solve for users I think people will come to the blockchain if it solves a problem that cannot"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,400",
+				"to": "00:23:58,480"
+			},
+			"offsets": {
+				"from": 1434400,
+				"to": 1438480
+			},
+			"text": " be solved by the current technology I think it needs to solve it by a 10x factor at least for"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,480",
+				"to": "00:24:03,760"
+			},
+			"offsets": {
+				"from": 1438480,
+				"to": 1443760
+			},
+			"text": " people to actually actually work that switch so clearly for the moment being a wallet you are"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,760",
+				"to": "00:24:10,160"
+			},
+			"offsets": {
+				"from": 1443760,
+				"to": 1450160
+			},
+			"text": " solving a problem for the current ecosystem because most people don't know that but what you believe"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,160",
+				"to": "00:24:14,720"
+			},
+			"offsets": {
+				"from": 1450160,
+				"to": 1454720
+			},
+			"text": " is that the blockchain will solve people a little solve problem for all people of course I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,720",
+				"to": "00:24:19,520"
+			},
+			"offsets": {
+				"from": 1454720,
+				"to": 1459520
+			},
+			"text": " that's the common vision that we are we are all sharing here so we are really trying to kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,520",
+				"to": "00:24:24,640"
+			},
+			"offsets": {
+				"from": 1459520,
+				"to": 1464640
+			},
+			"text": " anticipate this problem and for us it's about laying the foundation I think if you made an analogy"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,640",
+				"to": "00:24:28,080"
+			},
+			"offsets": {
+				"from": 1464640,
+				"to": 1468080
+			},
+			"text": " between the blockchain and the internet for example like the holidays and the internet people"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,080",
+				"to": "00:24:32,800"
+			},
+			"offsets": {
+				"from": 1468080,
+				"to": 1472800
+			},
+			"text": " are to write common lines and you understand this is the idea and then suddenly people come up with"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,800",
+				"to": "00:24:36,880"
+			},
+			"offsets": {
+				"from": 1472800,
+				"to": 1476880
+			},
+			"text": " the idea of a browser and then you have a nice interface and you click on button and then it"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,880",
+				"to": "00:24:43,760"
+			},
+			"offsets": {
+				"from": 1476880,
+				"to": 1483760
+			},
+			"text": " becomes much more usable by by old people and I think for the internet the user is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,760",
+				"to": "00:24:48,880"
+			},
+			"offsets": {
+				"from": 1483760,
+				"to": 1488880
+			},
+			"text": " but the browser is not what makes internet go wrong I think it came afterwards it"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,880",
+				"to": "00:24:53,120"
+			},
+			"offsets": {
+				"from": 1488880,
+				"to": 1493120
+			},
+			"text": " comes by the fact that there was no native payment in the browser and so people have to go to"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,120",
+				"to": "00:24:58,720"
+			},
+			"offsets": {
+				"from": 1493120,
+				"to": 1498720
+			},
+			"text": " marketing and ads and that's what kind of corrupted the internet but so I think it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,720",
+				"to": "00:25:03,920"
+			},
+			"offsets": {
+				"from": 1498720,
+				"to": 1503920
+			},
+			"text": " it's also shows that by making the right technological choices now we are preventing"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,920",
+				"to": "00:25:08,320"
+			},
+			"offsets": {
+				"from": 1503920,
+				"to": 1508320
+			},
+			"text": " a thing or technology to go in the wrong direction in the future I think with the internet they made"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,320",
+				"to": "00:25:12,960"
+			},
+			"offsets": {
+				"from": 1508320,
+				"to": 1512960
+			},
+			"text": " some mistake and personally I think it becomes because of payment the lack of native payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,960",
+				"to": "00:25:18,080"
+			},
+			"offsets": {
+				"from": 1512960,
+				"to": 1518080
+			},
+			"text": " in the internet stack and I think it is kind of a responsibility now to make sure that we build"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,080",
+				"to": "00:25:23,600"
+			},
+			"offsets": {
+				"from": 1518080,
+				"to": 1523600
+			},
+			"text": " a technology that doesn't reproduce the same mistakes so without we're just wrapping up this"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,600",
+				"to": "00:25:29,040"
+			},
+			"offsets": {
+				"from": 1523600,
+				"to": 1529040
+			},
+			"text": " panel thank you guys for sharing your insights um in now we're gonna move on to the ceremony"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,040",
+				"to": "00:25:35,360"
+			},
+			"offsets": {
+				"from": 1529040,
+				"to": 1535360
+			},
+			"text": " where we're gonna be ordered the winners um so first this year we've got the most adorable"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,360",
+				"to": "00:25:43,600"
+			},
+			"offsets": {
+				"from": 1535360,
+				"to": 1543600
+			},
+			"text": " crypto kaiyu crypto kitties and they're physical trophies this time and they're actually with it"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,600",
+				"to": "00:25:51,120"
+			},
+			"offsets": {
+				"from": 1543600,
+				"to": 1551120
+			},
+			"text": " nft and they have special powers which is ux invited in their genes so thank you for crypto"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,120",
+				"to": "00:25:55,440"
+			},
+			"offsets": {
+				"from": 1551120,
+				"to": 1555440
+			},
+			"text": " kaiyu for participating and working with us on this we're excited you guys will see the trophies"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,440",
+				"to": "00:26:03,120"
+			},
+			"offsets": {
+				"from": 1555440,
+				"to": 1563120
+			},
+			"text": " in a few and with that um Beni is gonna sorry with Julian he's gonna introduce the first uh"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,120",
+				"to": "00:26:10,560"
+			},
+			"offsets": {
+				"from": 1563120,
+				"to": 1570560
+			},
+			"text": " thank you uh so yeah I'm very happy to announce that the first winner is ramp instant i think ramp"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,560",
+				"to": "00:26:16,720"
+			},
+			"offsets": {
+				"from": 1570560,
+				"to": 1576720
+			},
+			"text": " is a is a company that sounds very complicated problem which is going from fiat to crypto and"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,720",
+				"to": "00:26:22,480"
+			},
+			"offsets": {
+				"from": 1576720,
+				"to": 1582480
+			},
+			"text": " unfortunately I wasn't part of the discussion but I received the feedback but as you know as knowing"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,480",
+				"to": "00:26:27,600"
+			},
+			"offsets": {
+				"from": 1582480,
+				"to": 1587600
+			},
+			"text": " the product I think what they do extremely wide what right and it's a value that we share is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,600",
+				"to": "00:26:33,360"
+			},
+			"offsets": {
+				"from": 1587600,
+				"to": 1593360
+			},
+			"text": " they abstract the complexity of a very difficult problem without compromising on some core principle"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,360",
+				"to": "00:26:39,520"
+			},
+			"offsets": {
+				"from": 1593360,
+				"to": 1599520
+			},
+			"text": " so they managed to maintain the centralization into the way they back up yet uh to crypto which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,520",
+				"to": "00:26:44,080"
+			},
+			"offsets": {
+				"from": 1599520,
+				"to": 1604080
+			},
+			"text": " which is quite quite impressive okay with that good there we do i'll introduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,080",
+				"to": "00:26:49,120"
+			},
+			"offsets": {
+				"from": 1604080,
+				"to": 1609120
+			},
+			"text": " hi thanks really excited to be here"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,120",
+				"to": "00:27:01,440"
+			},
+			"offsets": {
+				"from": 1609120,
+				"to": 1621440
+			},
+			"text": " so at ramp we try to solve crypto on boarding and um or at least a very important part of it um"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,440",
+				"to": "00:27:07,200"
+			},
+			"offsets": {
+				"from": 1621440,
+				"to": 1627200
+			},
+			"text": " crypto on boarding consists of first we think that it has two very important parts first is"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,200",
+				"to": "00:27:12,560"
+			},
+			"offsets": {
+				"from": 1627200,
+				"to": 1632560
+			},
+			"text": " getting your crypto and second managing your keys there are many companies that manage your keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,560",
+				"to": "00:27:18,560"
+			},
+			"offsets": {
+				"from": 1632560,
+				"to": 1638560
+			},
+			"text": " very well and we are pretty close to getting this problem solved um but crypto on boarding with"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,560",
+				"to": "00:27:24,080"
+			},
+			"offsets": {
+				"from": 1638560,
+				"to": 1644080
+			},
+			"text": " like actually purchasing crypto is still complicated so first it's complex think about going to a"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:24,080",
+				"to": "00:27:30,480"
+			},
+			"offsets": {
+				"from": 1644080,
+				"to": 1650480
+			},
+			"text": " dab that you love and just want to use um but actually having to go to an entirely different"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,480",
+				"to": "00:27:35,840"
+			},
+			"offsets": {
+				"from": 1650480,
+				"to": 1655840
+			},
+			"text": " interface in order to purchase your crypto um think about the churn with users if you are a dab"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,840",
+				"to": "00:27:43,120"
+			},
+			"offsets": {
+				"from": 1655840,
+				"to": 1663120
+			},
+			"text": " that is actually targeting a mass user and trying to get crypto to mass adoption and then getting to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,120",
+				"to": "00:27:49,840"
+			},
+			"offsets": {
+				"from": 1663120,
+				"to": 1669840
+			},
+			"text": " send them uh or relating them to some third party website uh in order to purchase your crypto and"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,840",
+				"to": "00:27:56,160"
+			},
+			"offsets": {
+				"from": 1669840,
+				"to": 1676160
+			},
+			"text": " then imagine how much how many of your users like normal typical users who are used to uh one click"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,160",
+				"to": "00:28:02,880"
+			},
+			"offsets": {
+				"from": 1676160,
+				"to": 1682880
+			},
+			"text": " everything with churn and just turn away second it's intimidating so why do you need my passport"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,880",
+				"to": "00:28:11,840"
+			},
+			"offsets": {
+				"from": 1682880,
+				"to": 1691840
+			},
+			"text": " why do you need my ID why do you need my car license car driving license um we also think that"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:11,840",
+				"to": "00:28:18,640"
+			},
+			"offsets": {
+				"from": 1691840,
+				"to": 1698640
+			},
+			"text": " this turns away a lot of users who just want to casually try crypto for the first time and it also"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,640",
+				"to": "00:28:26,240"
+			},
+			"offsets": {
+				"from": 1698640,
+				"to": 1706240
+			},
+			"text": " creates a lot of churn free it's time consuming that's self-explanatory for it is scary we hear about"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,240",
+				"to": "00:28:32,800"
+			},
+			"offsets": {
+				"from": 1706240,
+				"to": 1712800
+			},
+			"text": " crypto um exchanges collapsing all the time and this is a problem that you can really solve with"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,360",
+				"to": "00:28:39,440"
+			},
+			"offsets": {
+				"from": 1713360,
+				"to": 1719440
+			},
+			"text": " smart smart contract infrastructure so what we thought is to build and a crypto on the ramp"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,440",
+				"to": "00:28:46,400"
+			},
+			"offsets": {
+				"from": 1719440,
+				"to": 1726400
+			},
+			"text": " build on smart contract entirely peer to peer and custodianless but really if you build some"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,400",
+				"to": "00:28:53,360"
+			},
+			"offsets": {
+				"from": 1726400,
+				"to": 1733360
+			},
+			"text": " cool tech you need to think about the end users you need to base your development or on empathy"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:53,360",
+				"to": "00:28:59,280"
+			},
+			"offsets": {
+				"from": 1733360,
+				"to": 1739280
+			},
+			"text": " it's not enough to build a cool tech you need to wrap it with an enjoyable user interface to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,280",
+				"to": "00:29:06,240"
+			},
+			"offsets": {
+				"from": 1739280,
+				"to": 1746240
+			},
+			"text": " this delightful experience so first ramp instant is a widget that you can implement into your DAP"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:06,240",
+				"to": "00:29:13,440"
+			},
+			"offsets": {
+				"from": 1746240,
+				"to": 1753440
+			},
+			"text": " today or if you if you build a wallet we are also we are also we also think that this is a great way"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:13,440",
+				"to": "00:29:21,360"
+			},
+			"offsets": {
+				"from": 1753440,
+				"to": 1761360
+			},
+			"text": " to onboard your new users into crypto so the ramp instant becomes part of the flow of your DAP"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:21,360",
+				"to": "00:29:28,400"
+			},
+			"offsets": {
+				"from": 1761360,
+				"to": 1768400
+			},
+			"text": " second with it connects with your bank and this solves uh KYC issues most of our users can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,400",
+				"to": "00:29:36,000"
+			},
+			"offsets": {
+				"from": 1768400,
+				"to": 1776000
+			},
+			"text": " their purchases without scanning their license or passport three we let users keep control so we"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,000",
+				"to": "00:29:43,120"
+			},
+			"offsets": {
+				"from": 1776000,
+				"to": 1783120
+			},
+			"text": " do not do not ask them for their credit card we do it via banking interface and every transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,120",
+				"to": "00:29:47,840"
+			},
+			"offsets": {
+				"from": 1783120,
+				"to": 1787840
+			},
+			"text": " needs to be concerned by the user inside the banking interface you will see that in a moment"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,840",
+				"to": "00:29:55,120"
+			},
+			"offsets": {
+				"from": 1787840,
+				"to": 1795120
+			},
+			"text": " and first and foremost it is based on smart contracts and maintains an escrow for each"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,120",
+				"to": "00:30:00,720"
+			},
+			"offsets": {
+				"from": 1795120,
+				"to": 1800720
+			},
+			"text": " and every transaction that you initiate so you do not need to fear about your transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:00,720",
+				"to": "00:30:07,760"
+			},
+			"offsets": {
+				"from": 1800720,
+				"to": 1807760
+			},
+			"text": " going through and it is not as scary as using a centralized exchange so when it comes to design"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:07,760",
+				"to": "00:30:15,840"
+			},
+			"offsets": {
+				"from": 1807760,
+				"to": 1815840
+			},
+			"text": " process we thought that it is very important to actually talk with users and to do an interactive"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,840",
+				"to": "00:30:20,640"
+			},
+			"offsets": {
+				"from": 1815840,
+				"to": 1820640
+			},
+			"text": " process when you prototype user test and repeat prototype user test and repeat and by the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:20,640",
+				"to": "00:30:26,640"
+			},
+			"offsets": {
+				"from": 1820640,
+				"to": 1826640
+			},
+			"text": " there is a cool tip if you want to supercharge this process talk with deep work studio they"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:26,640",
+				"to": "00:30:32,160"
+			},
+			"offsets": {
+				"from": 1826640,
+				"to": 1832160
+			},
+			"text": " structured our designing process Charlie is there big round of applause to Charlie"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,160",
+				"to": "00:30:40,000"
+			},
+			"offsets": {
+				"from": 1832160,
+				"to": 1840000
+			},
+			"text": " and yeah so today you can enjoy your ampere instant on your phone and on your desktop it is a standalone"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:40,000",
+				"to": "00:30:46,000"
+			},
+			"offsets": {
+				"from": 1840000,
+				"to": 1846000
+			},
+			"text": " Krypton boarding app but you can also implement it into your DAP or wallet it's sweet it's very"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:46,000",
+				"to": "00:30:52,640"
+			},
+			"offsets": {
+				"from": 1846000,
+				"to": 1852640
+			},
+			"text": " simple to use i hope we can get this video to work yeah it works so in this flow you connect to"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:52,640",
+				"to": "00:30:57,520"
+			},
+			"offsets": {
+				"from": 1852640,
+				"to": 1857520
+			},
+			"text": " your bank account and you create an instant payment this instant payment gets initiated inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:57,520",
+				"to": "00:31:04,960"
+			},
+			"offsets": {
+				"from": 1857520,
+				"to": 1864960
+			},
+			"text": " the actual banking app you authorize it inside the banking app and just after minutes the payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:04,960",
+				"to": "00:31:13,680"
+			},
+			"offsets": {
+				"from": 1864960,
+				"to": 1873680
+			},
+			"text": " is confirmed and you can expect your crypto to reach your user within three minutes or less so"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,680",
+				"to": "00:31:21,760"
+			},
+			"offsets": {
+				"from": 1873680,
+				"to": 1881760
+			},
+			"text": " that's rump instant you can actually use it today go to rump.network that's rump.network or scan this"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:21,760",
+				"to": "00:31:28,960"
+			},
+			"offsets": {
+				"from": 1881760,
+				"to": 1888960
+			},
+			"text": " QR code and we can get you ready to implement it in just minutes it's 17 lines of code very"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:28,960",
+				"to": "00:31:35,840"
+			},
+			"offsets": {
+				"from": 1888960,
+				"to": 1895840
+			},
+			"text": " simple as decay we handle all of it liquidity regulatory and parts of the interface because"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,840",
+				"to": "00:31:48,080"
+			},
+			"offsets": {
+				"from": 1895840,
+				"to": 1908080
+			},
+			"text": " we provide the widget that is co-branded with your brand thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:48,080",
+				"to": "00:32:00,560"
+			},
+			"offsets": {
+				"from": 1908080,
+				"to": 1920560
+			},
+			"text": " and next we're excited for all ed to introduce three bucks three weeks for the for the last"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:01,840",
+				"to": "00:32:08,320"
+			},
+			"offsets": {
+				"from": 1921840,
+				"to": 1928320
+			},
+			"text": " three days we heard a lot this comparison of Ethereum projects to lego blocks and three"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:08,320",
+				"to": "00:32:16,560"
+			},
+			"offsets": {
+				"from": 1928320,
+				"to": 1936560
+			},
+			"text": " bucks common component comments component is exactly that it's tiny inconspicuous"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:16,560",
+				"to": "00:32:24,240"
+			},
+			"offsets": {
+				"from": 1936560,
+				"to": 1944240
+			},
+			"text": " blog that has a little bit of technology UX and UI it's probably cannot vary the weight of your"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:24,240",
+				"to": "00:32:30,800"
+			},
+			"offsets": {
+				"from": 1944240,
+				"to": 1950800
+			},
+			"text": " construction by itself but we think that you will find this component in a lot of projects in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:30,800",
+				"to": "00:32:34,960"
+			},
+			"offsets": {
+				"from": 1950800,
+				"to": 1954960
+			},
+			"text": " future welcome and congrats cool thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:34,960",
+				"to": "00:32:44,160"
+			},
+			"offsets": {
+				"from": 1954960,
+				"to": 1964160
+			},
+			"text": " all right great the video is just gonna run hi i'm michael from three bucks at three"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:44,160",
+				"to": "00:32:49,760"
+			},
+			"offsets": {
+				"from": 1964160,
+				"to": 1969760
+			},
+			"text": " bucks it's our mission to make it really easy to build better apps um personally like we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:49,760",
+				"to": "00:32:56,000"
+			},
+			"offsets": {
+				"from": 1969760,
+				"to": 1976000
+			},
+			"text": " been around the space for a while and just got tired of seeing dapps be limited to buy cell"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:56,000",
+				"to": "00:33:01,120"
+			},
+			"offsets": {
+				"from": 1976000,
+				"to": 1981120
+			},
+			"text": " transfer and limited only to on chain interactions and so we saw that there was a huge opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:01,120",
+				"to": "00:33:08,880"
+			},
+			"offsets": {
+				"from": 1981120,
+				"to": 1988880
+			},
+			"text": " for making more interactive applications with real-time data that lives off chain on IPFS and"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:08,880",
+				"to": "00:33:14,480"
+			},
+			"offsets": {
+				"from": 1988880,
+				"to": 1994480
+			},
+			"text": " distributed networks and so at three bucks we we built a system that enables devs to make better"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:14,480",
+				"to": "00:33:20,240"
+			},
+			"offsets": {
+				"from": 1994480,
+				"to": 2000240
+			},
+			"text": " use of these p2p technologies to manage the data for their application and what you see here is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,240",
+				"to": "00:33:27,200"
+			},
+			"offsets": {
+				"from": 2000240,
+				"to": 2007200
+			},
+			"text": " comments component like um Ola said it's the goal here was to make it as easy as possible to add a"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:27,200",
+				"to": "00:33:33,520"
+			},
+			"offsets": {
+				"from": 2007200,
+				"to": 2013520
+			},
+			"text": " discuss like functionality to your application and you can drop this anywhere um like basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:33,520",
+				"to": "00:33:38,800"
+			},
+			"offsets": {
+				"from": 2013520,
+				"to": 2018800
+			},
+			"text": " on any website that has web 3 and some of the cool things that we did with it were um trying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:38,800",
+				"to": "00:33:44,160"
+			},
+			"offsets": {
+				"from": 2018800,
+				"to": 2024160
+			},
+			"text": " think of how we can handle authentication and how do you pass the web 3 provider to the component"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:44,160",
+				"to": "00:33:49,440"
+			},
+			"offsets": {
+				"from": 2024160,
+				"to": 2029440
+			},
+			"text": " and so there are three options here which i think um we're probably running through in the video but"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:50,000",
+				"to": "00:33:54,720"
+			},
+			"offsets": {
+				"from": 2030000,
+				"to": 2034720
+			},
+			"text": " um yeah you can log in directly to the component so the application itself on a global state doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:54,720",
+				"to": "00:34:01,600"
+			},
+			"offsets": {
+				"from": 2034720,
+				"to": 2041600
+			},
+			"text": " need to handle the provider um the component can accept the provider from the global application"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:01,600",
+				"to": "00:34:06,320"
+			},
+			"offsets": {
+				"from": 2041600,
+				"to": 2046320
+			},
+			"text": " state um and you can do that in two ways like one when the user when the user first on boards to"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:06,320",
+				"to": "00:34:11,360"
+			},
+			"offsets": {
+				"from": 2046320,
+				"to": 2051360
+			},
+			"text": " your site um you can authenticate them to three blocks and what that does is it actually opens"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:11,360",
+				"to": "00:34:17,120"
+			},
+			"offsets": {
+				"from": 2051360,
+				"to": 2057120
+			},
+			"text": " up a local IPFS and orbit DB node right in the browser um and syncs out and collects data from"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:17,120",
+				"to": "00:34:22,640"
+			},
+			"offsets": {
+				"from": 2057120,
+				"to": 2062640
+			},
+			"text": " the rest of the network so um it's local first um it can run offline and just makes it super"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:22,640",
+				"to": "00:34:27,440"
+			},
+			"offsets": {
+				"from": 2062640,
+				"to": 2067440
+			},
+			"text": " simple to get started like there's no extensions that users have to download or plug in um it just"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:27,440",
+				"to": "00:34:33,760"
+			},
+			"offsets": {
+				"from": 2067440,
+				"to": 2073760
+			},
+			"text": " runs and so you can see that there's also profiles on here so um outside of the comments component"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:33,760",
+				"to": "00:34:40,400"
+			},
+			"offsets": {
+				"from": 2073760,
+				"to": 2080400
+			},
+			"text": " three box offers three box j s s d k which makes it really easy to um it provides a developer interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:40,400",
+				"to": "00:34:46,720"
+			},
+			"offsets": {
+				"from": 2080400,
+				"to": 2086720
+			},
+			"text": " to add profiles distributed storage and messaging to your application and so this uses specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:47,200",
+				"to": "00:34:54,240"
+			},
+			"offsets": {
+				"from": 2087200,
+				"to": 2094240
+			},
+			"text": " the profiles and the messaging APIs um and so this actually wraps our three box s d k um and also"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:54,240",
+				"to": "00:35:01,200"
+			},
+			"offsets": {
+				"from": 2094240,
+				"to": 2101200
+			},
+			"text": " what's cool here are we use ethereum keys for authentication and signing um but we have a did method"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:01,200",
+				"to": "00:35:06,880"
+			},
+			"offsets": {
+				"from": 2101200,
+				"to": 2106880
+			},
+			"text": " uh decentralized identifier method under the hood and so in the future we can extend this to"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:06,880",
+				"to": "00:35:11,440"
+			},
+			"offsets": {
+				"from": 2106880,
+				"to": 2111440
+			},
+			"text": " all the different ethereum keys that you have across all of your different wallets while"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:11,440",
+				"to": "00:35:15,920"
+			},
+			"offsets": {
+				"from": 2111440,
+				"to": 2115920
+			},
+			"text": " maintaining the same profile and the same data and then taking that a step further you can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:15,920",
+				"to": "00:35:20,800"
+			},
+			"offsets": {
+				"from": 2115920,
+				"to": 2120800
+			},
+			"text": " think about extending that to other chains and other shards and you know even web 2 authentication"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:20,800",
+				"to": "00:35:26,480"
+			},
+			"offsets": {
+				"from": 2120800,
+				"to": 2126480
+			},
+			"text": " methods as well um so the goal is always to have data follow you around the web and not be trapped"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:26,480",
+				"to": "00:35:31,280"
+			},
+			"offsets": {
+				"from": 2126480,
+				"to": 2131280
+			},
+			"text": " in any sort of centralized silo or service um and three box actually lets you do that in a real"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:31,280",
+				"to": "00:35:36,800"
+			},
+			"offsets": {
+				"from": 2131280,
+				"to": 2136800
+			},
+			"text": " way that's simple and so i'm excited that you're excited about the comments component we really"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:36,800",
+				"to": "00:35:43,280"
+			},
+			"offsets": {
+				"from": 2136800,
+				"to": 2143280
+			},
+			"text": " hope that um this is a useful tool and um we're making other plugins so this isn't the only one"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:43,280",
+				"to": "00:35:47,760"
+			},
+			"offsets": {
+				"from": 2143280,
+				"to": 2147760
+			},
+			"text": " we have the profile hovers plugin which if you hover over these profiles here you'll see like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:47,760",
+				"to": "00:35:53,520"
+			},
+			"offsets": {
+				"from": 2147760,
+				"to": 2153520
+			},
+			"text": " little modal that pops up kind of like twitter that shows you additional profile metadata um and"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:53,520",
+				"to": "00:35:59,200"
+			},
+			"offsets": {
+				"from": 2153520,
+				"to": 2159200
+			},
+			"text": " in a week or two we'll be releasing a chat box component plugin and that really lets you add"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:59,200",
+				"to": "00:36:05,040"
+			},
+			"offsets": {
+				"from": 2159200,
+				"to": 2165040
+			},
+			"text": " like a global site wide chat like a troll box to the corner of your site all built on p2p tech"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:05,040",
+				"to": "00:36:11,760"
+			},
+			"offsets": {
+				"from": 2165040,
+				"to": 2171760
+			},
+			"text": " using our profiles and apis um so super excited thank you um and look forward to chatting with all"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:11,760",
+				"to": "00:36:29,520"
+			},
+			"offsets": {
+				"from": 2171760,
+				"to": 2189520
+			},
+			"text": " of you yeah and next we have Benny introducing Zarian all right who here has created a cdp"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:29,520",
+				"to": "00:36:39,280"
+			},
+			"offsets": {
+				"from": 2189520,
+				"to": 2199280
+			},
+			"text": " raised enhanced okay cool dfi is the future but it's complicated because you have to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:39,280",
+				"to": "00:36:45,040"
+			},
+			"offsets": {
+				"from": 2199280,
+				"to": 2205040
+			},
+			"text": " go over here for a compound loan you go over here for a cdp uh so we're really excited to announce"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:45,040",
+				"to": "00:36:52,000"
+			},
+			"offsets": {
+				"from": 2205040,
+				"to": 2212000
+			},
+			"text": " final winner which is Zarian they've done a great job in making it extremely easy for you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:52,000",
+				"to": "00:36:57,280"
+			},
+			"offsets": {
+				"from": 2212000,
+				"to": 2217280
+			},
+			"text": " create an account and go to all of these different dfi services so we're really excited for them"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:57,280",
+				"to": "00:37:07,840"
+			},
+			"offsets": {
+				"from": 2217280,
+				"to": 2227840
+			},
+			"text": " to be the winner thank you thank you Benny hello it's really an honor to be here and we are super"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:07,840",
+				"to": "00:37:15,680"
+			},
+			"offsets": {
+				"from": 2227840,
+				"to": 2235680
+			},
+			"text": " excited about Zarian to present Zarian to you i'm yevgeny and what we believe in Zarian is"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:15,680",
+				"to": "00:37:21,680"
+			},
+			"offsets": {
+				"from": 2235680,
+				"to": 2241680
+			},
+			"text": " actually that users should own and control their assets and also we think that financial access"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:21,680",
+				"to": "00:37:28,880"
+			},
+			"offsets": {
+				"from": 2241680,
+				"to": 2248880
+			},
+			"text": " should be universal so given that in mind we we have designed Zarian to be first an oncostodial"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:29,520",
+				"to": "00:37:37,600"
+			},
+			"offsets": {
+				"from": 2249520,
+				"to": 2257600
+			},
+			"text": " bank for dfi and second it allows you to um you to access all different dfi protocols in"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:37,600",
+				"to": "00:37:42,800"
+			},
+			"offsets": {
+				"from": 2257600,
+				"to": 2262800
+			},
+			"text": " in a single place so i'm going to show you the the demo of how Zarian looks just like a typical"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:42,800",
+				"to": "00:37:50,240"
+			},
+			"offsets": {
+				"from": 2262800,
+				"to": 2270240
+			},
+			"text": " flow that people will see while using Zarian so first you you'll need to connect your any of"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:50,240",
+				"to": "00:37:57,120"
+			},
+			"offsets": {
+				"from": 2270240,
+				"to": 2277120
+			},
+			"text": " your wallet we support all votes like mobile wallets and metamask and ledger then you can see all"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:57,120",
+				"to": "00:38:03,200"
+			},
+			"offsets": {
+				"from": 2277120,
+				"to": 2283200
+			},
+			"text": " your assets on the account as an end and the performance over time we have integration with"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:03,200",
+				"to": "00:38:09,920"
+			},
+			"offsets": {
+				"from": 2283200,
+				"to": 2289920
+			},
+			"text": " three box so it shows your three box profile on the top and then yeah so then you'll be able to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:09,920",
+				"to": "00:38:15,840"
+			},
+			"offsets": {
+				"from": 2289920,
+				"to": 2295840
+			},
+			"text": " all your unit swap pool tokens as well and then we even have a mobile app that allows you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:15,840",
+				"to": "00:38:23,040"
+			},
+			"offsets": {
+				"from": 2295840,
+				"to": 2303040
+			},
+			"text": " track your portfolio like your dfi portfolio on the go next i'm going to show you how you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:23,040",
+				"to": "00:38:29,440"
+			},
+			"offsets": {
+				"from": 2303040,
+				"to": 2309440
+			},
+			"text": " easily swap one ether let's say like to buy a hundred die it's through Zarian and you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:29,440",
+				"to": "00:38:34,800"
+			},
+			"offsets": {
+				"from": 2309440,
+				"to": 2314800
+			},
+			"text": " and that happens through uni swap and uh and it directly goes to the uni swap contract you"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:34,800",
+				"to": "00:38:39,760"
+			},
+			"offsets": {
+				"from": 2314800,
+				"to": 2319760
+			},
+			"text": " confirm the transaction in in the wallet that you have connected and you can easily see how"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:39,760",
+				"to": "00:38:46,240"
+			},
+			"offsets": {
+				"from": 2319760,
+				"to": 2326240
+			},
+			"text": " it's see like right now it's pending in the history tab we will show you all the history"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:46,240",
+				"to": "00:38:52,080"
+			},
+			"offsets": {
+				"from": 2326240,
+				"to": 2332080
+			},
+			"text": " in history we show the transactions in a really user friendly form for instance like that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:52,080",
+				"to": "00:38:58,080"
+			},
+			"offsets": {
+				"from": 2332080,
+				"to": 2338080
+			},
+			"text": " adding liquidity to uni swap or all the trades and like all you receiving money from other people"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:58,080",
+				"to": "00:39:06,080"
+			},
+			"offsets": {
+				"from": 2338080,
+				"to": 2346080
+			},
+			"text": " so once it's mined you're going to get a push notification as well and so this interface can act"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:06,080",
+				"to": "00:39:11,040"
+			},
+			"offsets": {
+				"from": 2346080,
+				"to": 2351040
+			},
+			"text": " as a complete replacement of your like let's say my ether wallet or other things like that"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:11,040",
+				"to": "00:39:18,160"
+			},
+			"offsets": {
+				"from": 2351040,
+				"to": 2358160
+			},
+			"text": " then once you get some die you can instantly go to compound and purchase and put money into"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:18,160",
+				"to": "00:39:23,520"
+			},
+			"offsets": {
+				"from": 2358160,
+				"to": 2363520
+			},
+			"text": " compounds to start earning interest right away that's again it's super seamless flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:23,520",
+				"to": "00:39:31,600"
+			},
+			"offsets": {
+				"from": 2363520,
+				"to": 2371600
+			},
+			"text": " yeah so this is mainly it the bazarian uh come and try check it out with yourself"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:31,600",
+				"to": "00:39:35,920"
+			},
+			"offsets": {
+				"from": 2371600,
+				"to": 2375920
+			},
+			"text": " uh i hope you love it and uh yeah thanks thanks so much again thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:41,920",
+				"to": "00:39:50,480"
+			},
+			"offsets": {
+				"from": 2381920,
+				"to": 2390480
+			},
+			"text": " cool thank you and we wanted to give uh one runner up eragon uh they did win last year as"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:50,480",
+				"to": "00:40:06,400"
+			},
+			"offsets": {
+				"from": 2390480,
+				"to": 2406400
+			},
+			"text": " for my love last year but we you got to check out this great video"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:06,400",
+				"to": "00:40:22,320"
+			},
+			"offsets": {
+				"from": 2406400,
+				"to": 2422320
+			},
+			"text": " so"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:22,320",
+				"to": "00:40:37,920"
+			},
+			"offsets": {
+				"from": 2422320,
+				"to": 2437920
+			},
+			"text": " so"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:37,920",
+				"to": "00:40:50,480"
+			},
+			"offsets": {
+				"from": 2437920,
+				"to": 2450480
+			},
+			"text": " um i want to say that all of the three winners and the runner up had uh one thing in common they were"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:51,440",
+				"to": "00:40:57,120"
+			},
+			"offsets": {
+				"from": 2451440,
+				"to": 2457120
+			},
+			"text": " very easy to use that the mental models were exactly how users sort of expect them to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:57,120",
+				"to": "00:41:07,360"
+			},
+			"offsets": {
+				"from": 2457120,
+				"to": 2467360
+			},
+			"text": " the copy especially like in bigger projects were so well um so detailed and so well thought out"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:07,360",
+				"to": "00:41:15,760"
+			},
+			"offsets": {
+				"from": 2467360,
+				"to": 2475760
+			},
+			"text": " that all three of them like all three of them made a really great job in and made a really big"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:15,760",
+				"to": "00:41:22,400"
+			},
+			"offsets": {
+				"from": 2475760,
+				"to": 2482400
+			},
+			"text": " pro with eragon example they made a really big progress in where they were a year ago so yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:22,400",
+				"to": "00:41:26,560"
+			},
+			"offsets": {
+				"from": 2482400,
+				"to": 2486560
+			},
+			"text": " i think that's maybe what the judges have struggled with the most was their so many that"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:26,560",
+				"to": "00:41:31,040"
+			},
+			"offsets": {
+				"from": 2486560,
+				"to": 2491040
+			},
+			"text": " applied last year and the progress that they've made and so eragon we definitely wanted to kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:31,040",
+				"to": "00:41:37,920"
+			},
+			"offsets": {
+				"from": 2491040,
+				"to": 2497920
+			},
+			"text": " of showcase some of the new design systems that they they built um so with that thank you everybody"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:37,920",
+				"to": "00:41:41,600"
+			},
+			"offsets": {
+				"from": 2497920,
+				"to": 2501600
+			},
+			"text": " thank you to the Ethereum Foundation and thank you guys all for sitting here and coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:41,600",
+				"to": "00:41:44,720"
+			},
+			"offsets": {
+				"from": 2501600,
+				"to": 2504720
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:44,720",
+				"to": "00:41:46,720"
+			},
+			"offsets": {
+				"from": 2504720,
+				"to": 2506720
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:46,720",
+				"to": "00:41:48,720"
+			},
+			"offsets": {
+				"from": 2506720,
+				"to": 2508720
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:48,720",
+				"to": "00:41:50,720"
+			},
+			"offsets": {
+				"from": 2508720,
+				"to": 2510720
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:50,720",
+				"to": "00:41:52,720"
+			},
+			"offsets": {
+				"from": 2510720,
+				"to": 2512720
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:52,720",
+				"to": "00:41:54,720"
+			},
+			"offsets": {
+				"from": 2512720,
+				"to": 2514720
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:54,720",
+				"to": "00:41:56,720"
+			},
+			"offsets": {
+				"from": 2514720,
+				"to": 2516720
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:56,720",
+				"to": "00:41:58,720"
+			},
+			"offsets": {
+				"from": 2516720,
+				"to": 2518720
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:58,720",
+				"to": "00:42:00,720"
+			},
+			"offsets": {
+				"from": 2518720,
+				"to": 2520720
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:00,720",
+				"to": "00:42:02,720"
+			},
+			"offsets": {
+				"from": 2520720,
+				"to": 2522720
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:02,720",
+				"to": "00:42:18,720"
+			},
+			"offsets": {
+				"from": 2522720,
+				"to": 2538720
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:18,720",
+				"to": "00:42:20,720"
+			},
+			"offsets": {
+				"from": 2538720,
+				"to": 2540720
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

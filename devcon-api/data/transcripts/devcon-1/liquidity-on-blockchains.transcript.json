@@ -1,0 +1,1319 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20000
+			},
+			"text": " >> Thanks for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 22000
+			},
+			"text": " Thanks for the opportunity to speak."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 29000
+			},
+			"text": " Delouzing the market of parasitic rent seeking agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 36000
+			},
+			"text": " David Friedman said market mechanisms are institutions that govern our economic interactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 41000
+			},
+			"text": " What i'm going to argue today is that continuous auctions are evil."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 47000
+			},
+			"text": " Don't use them. Instead use back ch auctions with single price clearing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 54000
+			},
+			"text": " And furthermore, the actions are just the first step to having our economic interactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 60000
+			},
+			"text": " be mediated by intelligent agents working in our best interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 64000
+			},
+			"text": " Not for the profit of somebody else."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 70000
+			},
+			"text": " If there's anything original, here it would be this breakdown"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 73000
+			},
+			"text": " of for essential market mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 80000
+			},
+			"text": " The first two, the issuer and the clearing house are concerned with settlement clearing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 86000
+			},
+			"text": " The next two are the ones that i'm concerned with in this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 90000
+			},
+			"text": " The auctioneer and the market maker have to do with trading in exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 92000
+			},
+			"text": " Don't have time to get into market makers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 98000
+			},
+			"text": " So i'm just going to focus on auctioneers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 104000
+			},
+			"text": " But an interesting thing to note is that the evolution up until now of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 109000
+			},
+			"text": " cryptocurrencies has been moving these mechanisms from third party agents to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 114000
+			},
+			"text": " on chain mechanisms. Bitcoin was the first to do this by having"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 121000
+			},
+			"text": " an on chain issuer, the bitcoin reward, the block reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 126000
+			},
+			"text": " And the clearing house is the public private key transfer protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 131000
+			},
+			"text": " Ripple had on chain order books directly in the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 140000
+			},
+			"text": " And then on chain market makers done by truth coin agar gnosis."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 142000
+			},
+			"text": " Two basic types of auctioneers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 147000
+			},
+			"text": " Continuous time auctions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 151000
+			},
+			"text": " These are matched with pay as bid pricing and discrete time auctions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 154000
+			},
+			"text": " also known as call auctions or batch auctions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 158000
+			},
+			"text": " These by definition use single price clearing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 164000
+			},
+			"text": " If anyone says it's a batch auction but double check that they're using"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 168000
+			},
+			"text": " uniform price clearing or single price clearing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 173000
+			},
+			"text": " Because by almost any definition it has to be single price clearing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 178000
+			},
+			"text": " or it's not a batch auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 182000
+			},
+			"text": " I'm concerned with this because if there's going to be a thousand"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 188000
+			},
+			"text": " cryptocurrencies, I don't want to see them traded."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 192000
+			},
+			"text": " Well, I don't want to personally trade them like alt coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 196000
+			},
+			"text": " Inefficient markets, thin order books."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 199000
+			},
+			"text": " It's just not much fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 202000
+			},
+			"text": " The end. If you're planning to use a pay as bid"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 211000
+			},
+			"text": " order matching mechanism, then you're just feeding your users to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 220000
+			},
+			"text": " wolves. So don't do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 227000
+			},
+			"text": " Why is it a problem? Because pay as bid pricing is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 231000
+			},
+			"text": " primitive role. It creates a primitive game because limit"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 234000
+			},
+			"text": " orders are free options. You can go ahead and google this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 239000
+			},
+			"text": " Put free options in quotes and you'll get a bunch of results."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 245000
+			},
+			"text": " It's not incentive compatible. You get front running sniping."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 249000
+			},
+			"text": " Market orders aren't much better because you have to pay the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 253000
+			},
+			"text": " spread. Your users will suffer death by a thousand"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 258000
+			},
+			"text": " cuts and their wallets will eventually be empty."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 262000
+			},
+			"text": " If you don't believe me, it's a high frequency trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 265000
+			},
+			"text": " strategy. You just identify limit orders"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 269000
+			},
+			"text": " placed by humans. They're stale after five seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 275000
+			},
+			"text": " So what's the better mechanism? Single price clearing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 283000
+			},
+			"text": " What is single price clearing? All these -- you just match the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 289000
+			},
+			"text": " supply and demand curve and all the trades execute at the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 292000
+			},
+			"text": " price. Doesn't matter if you over bid."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 296000
+			},
+			"text": " You still get a fair price on your trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 300000
+			},
+			"text": " They're already used. They've been used for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 303000
+			},
+			"text": " They've just been taken for granted because -- probably because"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 307000
+			},
+			"text": " Bitcoin exchanges operate 24/7. So they don't have opening and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 312000
+			},
+			"text": " closing sessions. Opening closing sessions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 315000
+			},
+			"text": " Uniform price clearing is used on NYC and NASDAQ."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 319000
+			},
+			"text": " Already. And I would call it the near indicative"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 323000
+			},
+			"text": " clearing price. So it gets kind of confusing because"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 326000
+			},
+			"text": " single price clearing, uniform price clearing, second price"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 329000
+			},
+			"text": " auction, there's so many different names for the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 333000
+			},
+			"text": " basic idea. But the victory auction victory won the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 340000
+			},
+			"text": " Nobel Prize of economics. And variants have been used and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 344000
+			},
+			"text": " rebranded over the years. Well, isn't it better to match"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 349000
+			},
+			"text": " orders super fast? No. Read this paper. It is not better."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 354000
+			},
+			"text": " Or just look at the slides. Intuitively, it seems like it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 357000
+			},
+			"text": " better because continuous time markets are more efficient in"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 361000
+			},
+			"text": " time space, but they're less efficient in volume space because"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 367000
+			},
+			"text": " all limit orders are stale. And the fastest traders get to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 372000
+			},
+			"text": " charge arbitrage rents. Batch auctions solve this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 375000
+			},
+			"text": " They respect the reality of computers. And it's an excellent"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 378000
+			},
+			"text": " fit for blockchains. You just think of the block times as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 383000
+			},
+			"text": " batch periods. The spectrum of mechanism -- so continuous"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 387000
+			},
+			"text": " double auction is a simple sorting process."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 392000
+			},
+			"text": " There's no optimization. Once you go to a uniform single"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 396000
+			},
+			"text": " price clearing batch auction, you're doing a simple batch"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 400000
+			},
+			"text": " optimization. And once you go further down the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 405000
+			},
+			"text": " spectrum, you get more and more complex optimizations which are"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 410000
+			},
+			"text": " better for your users. Think of it like having your own"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 415000
+			},
+			"text": " trading bot directly in the mechanism working for you to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 421000
+			},
+			"text": " the best price on your order. These are PENAC spaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 432000
+			},
+			"text": " Phase zero is the times before computers. Phase one, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 436000
+			},
+			"text": " computers just emulate exactly what humans did."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 441000
+			},
+			"text": " Phase one. Now this is where we are now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 447000
+			},
+			"text": " The agents on the periphery are doing more statistical"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 451000
+			},
+			"text": " optimizations for their own profit. They're exploiting the core"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 456000
+			},
+			"text": " mechanisms and all you -- measly humans still using stale limit"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 462000
+			},
+			"text": " orders are getting exploited by high frequency traders."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 469000
+			},
+			"text": " Phase two point zero, that's where we want to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 472000
+			},
+			"text": " These are the two basic types of intelligent agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 477000
+			},
+			"text": " The simple reflex agent is a good model for continuous double"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 482000
+			},
+			"text": " auction. Batch auctions are even more"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 487000
+			},
+			"text": " obviously automated market makers are model based agents because"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 491000
+			},
+			"text": " they actually have states. The inventory of the market maker"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 495000
+			},
+			"text": " is the state. And so unless you're going to run"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 501000
+			},
+			"text": " your own trading bot, then use a more advanced mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 508000
+			},
+			"text": " Recent paper in science has a nice description of this for add"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 512000
+			},
+			"text": " auctions. The first designs were first price"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 516000
+			},
+			"text": " auctions. That's your pay as bid clearing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 520000
+			},
+			"text": " Then that advanced two second price auctions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 526000
+			},
+			"text": " That's your uniform price clearing. And combining those with proxy"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 531000
+			},
+			"text": " fees. So when we go back to phase two point"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 537000
+			},
+			"text": " zero, note that Google and Facebook are already using advanced"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 542000
+			},
+			"text": " mechanisms directly in the -- for the trade matching."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 546000
+			},
+			"text": " But the difference is that they are centralized and what they are"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 550000
+			},
+			"text": " optimizing is the auctioneer revenue."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 555000
+			},
+			"text": " On a decentralized mechanism we can optimize instead trader"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 559000
+			},
+			"text": " welfare. This is some solidity code to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 564000
+			},
+			"text": " efficiently verify the solution to a convex optimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 569000
+			},
+			"text": " Ask me about this later. Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 574000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 579000
+			},
+			"text": " [ Music ]"
+		}
+	]
+}

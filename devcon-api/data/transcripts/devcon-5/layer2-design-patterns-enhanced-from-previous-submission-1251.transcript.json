@@ -1,0 +1,2562 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 20000
+			},
+			"text": " In this very largely technical talk also, on layer 2 UX design patterns I should have added."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 24000
+			},
+			"text": " A lot of people thought it's about development but it's about design actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 32000
+			},
+			"text": " So how many of you are actually familiar with layer 2 technologies, know how Plasma State channels work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 34000
+			},
+			"text": " How many don't?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 40000
+			},
+			"text": " Okay, a few. We will have a tiny tiny primer about that so that you can get out to speed."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 51000
+			},
+			"text": " So on the agenda I will give a tiny detail about the precedent for the framework of how we went out and found these principles."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 58000
+			},
+			"text": " The primary layer 2 technology so that those I don't know understand what we are talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 70000
+			},
+			"text": " And then there are these layer 2 design patterns very very little and few patterns because there has not been much time to test with real users."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 75000
+			},
+			"text": " I think it could test only with you but we will tell you about that in a summary of the inside."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 79000
+			},
+			"text": " And of course in the middle is it going?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 83000
+			},
+			"text": " Yeah, it's going. Okay, we will have the voices of the users."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 88000
+			},
+			"text": " There are these bubbles of things that people and users actually told me."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 93000
+			},
+			"text": " I've interviewed non-crypto users but crypto careers users also."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 98000
+			},
+			"text": " And they will be speaking in the middle of the presentation so that you can hear the voices as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 103000
+			},
+			"text": " So last year we presented this web 3 design decision making framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 108000
+			},
+			"text": " It was a tool that came out from the interviews of many different companies in the space"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 114000
+			},
+			"text": " that helped us map the different problems users have into different types of buckets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 121000
+			},
+			"text": " questions that were from the members of the decentralization and things that are related to the technicalities of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 128000
+			},
+			"text": " This is interesting because it leads to how we found the design patterns and also why we started doing the layer 2 design patterns."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 137000
+			},
+			"text": " So what we found out is that of course there is new mental models and there are also new complicated concepts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 141000
+			},
+			"text": " And these fit in different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 147000
+			},
+			"text": " And the solutions that these companies were using range into different buckets as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 151000
+			},
+			"text": " If you want things that you could hide, you should hide to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 156000
+			},
+			"text": " And things that are technical, you should, oh, and you cannot hide, you should explain better."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 159000
+			},
+			"text": " I'm not going through the whole presentation that was left here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 164000
+			},
+			"text": " But just a simple example to understand, like GAS is a multi-dimensional problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 169000
+			},
+			"text": " You can have things that you can hide away, like what is GAS, that's right at the limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 174000
+			},
+			"text": " Designers and projects have had a lot of success in hiding the information."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 178000
+			},
+			"text": " But there are other things like why is there a price at all?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 183000
+			},
+			"text": " Who is it getting it that you need to find better explainers for this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 187000
+			},
+			"text": " And these happen also in the layer 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 193000
+			},
+			"text": " And of course the solutions these companies were using could be mapped out in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 203000
+			},
+			"text": " And so this is where the layer 2 comes in, which is there was a high degree of consensus among developers and designers working in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 208000
+			},
+			"text": " But sometimes it's okay to have a server, a tank server that helps you in the middle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 215000
+			},
+			"text": " that there is a degree of centralization, especially for newcomers, for non-crypto users."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 221000
+			},
+			"text": " It's okay to help them by the hand and then on board they want to do real decentralized technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 231000
+			},
+			"text": " And so this is why I thought that layer 2 had that promise of bringing that degree of centralization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 234000
+			},
+			"text": " but it still has the security of layer 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 242000
+			},
+			"text": " So right now, a primer on stage channels and on plasma and stage channels, they all basically were more or less the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 247000
+			},
+			"text": " You have layer 1 technology, the blockchain, if you're in blockchain where you have a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 252000
+			},
+			"text": " you drop in or you lock in some tokens on ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 259000
+			},
+			"text": " And anything can happen off-chain either in the case of stage channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 266000
+			},
+			"text": " These are normal server transactions where two parties, Alice and Bob, sign each other messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 272000
+			},
+			"text": " and so you are constantly messaging each other the new state and you agree on that state."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 275000
+			},
+			"text": " It's always the last mistake."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 283000
+			},
+			"text": " Whenever you want to withdraw, you go back to layer 1 and there is where the security comes in through a challenge period."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 293000
+			},
+			"text": " Maybe this guy wants to cheat, but this guy here has the last state and so it's mathematically approval that this guy will win."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 298000
+			},
+			"text": " The layer 1 security ensures that anything that happens off-chain is secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 306000
+			},
+			"text": " There is peer-to-peer networks like I'm being connected with a battle."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 313000
+			},
+			"text": " Or through Hubs, intermediaries if you want where a lot of users are connected together."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 316000
+			},
+			"text": " Plasma is a little bit different but has the same concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 323000
+			},
+			"text": " You have the main layer 1 chain where you have a contract, you deposit tokens on ether in there as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 330000
+			},
+			"text": " And what happens off-chain is actually another chain but that has a faster throughput."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 334000
+			},
+			"text": " They have less validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 344000
+			},
+			"text": " You can have like 2,000 transactions per second more or less here and you are committing periodic leave every 32 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 346000
+			},
+			"text": " More than a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 352000
+			},
+			"text": " You are committing that state into the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 363000
+			},
+			"text": " This is the difference between state channels and plasma which is in plasma you need periodically to send transactions on chain and to register information."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 365000
+			},
+			"text": " In state channels you don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 374000
+			},
+			"text": " They are called optimistic layers if you want because you don't resort to layer 1 until you actually need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 379000
+			},
+			"text": " If we are behaving well, you don't need to go on layer 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 386000
+			},
+			"text": " Plasma does this thing but if only in the case we are behaving badly you go on layer 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 390000
+			},
+			"text": " And side chains, maybe you have heard of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 392000
+			},
+			"text": " Side chains are not layer 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 393000
+			},
+			"text": " We will talk about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 398000
+			},
+			"text": " It is basically an atomic swap between two different chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 403000
+			},
+			"text": " So there is a theorem or a Bitcoin or whatever with the public one token and it is cemented on the other side."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 408000
+			},
+			"text": " But I am not going to talk about this because side chains are not layer 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 411000
+			},
+			"text": " And actually right now there is another talk somewhere down there."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 414000
+			},
+			"text": " Exactly about this side by your side."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 418000
+			},
+			"text": " So if you hear side chains are not layer 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 423000
+			},
+			"text": " And okay, set this and you need to speed up."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 428000
+			},
+			"text": " We did interview people in the space and users."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 432000
+			},
+			"text": " I want my mission is to onboard my mother and my brother."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 435000
+			},
+			"text": " And so I try to talk to non-crypto users."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 447000
+			},
+			"text": " Only few of them, five of them, because there wasn't much time with people releasing stuff right before they actually have something in our hands to test with."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 451000
+			},
+			"text": " There are three main moments in the design or the user flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 453000
+			},
+			"text": " Okay, you need to enter the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 456000
+			},
+			"text": " You need to use the system and exit the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 472000
+			},
+			"text": " And in these two cases you also have two side things, which is normally you would think of transactions, but transactions are a pattern that works inside of a wallet or when you transact value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 477000
+			},
+			"text": " But in these cases you can also transact state of applications, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 481000
+			},
+			"text": " So you should not call them transactions if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 489000
+			},
+			"text": " And the exit has two patterns, which is I'm exiting fine and friends with my friend and I just go fine or adversarial."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 492000
+			},
+			"text": " And entering the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 495000
+			},
+			"text": " So unfortunately today this is a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 499000
+			},
+			"text": " You still need to go through layer 1 to get into layer 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 506000
+			},
+			"text": " And so everybody is still presenting with a savior key, backup your wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 510000
+			},
+			"text": " So my dream was shattered right at the first time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 513000
+			},
+			"text": " Yes, we can onboard non-gripto user."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 514000
+			},
+			"text": " No, not yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 517000
+			},
+			"text": " And of course there is solution for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 520000
+			},
+			"text": " Of course the question is what the fuck is the key?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 523000
+			},
+			"text": " Okay, this is a literal question user that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 528000
+			},
+			"text": " And this solution is of course to use contract based accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 531000
+			},
+			"text": " Universal log users, you might have heard those."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 534000
+			},
+			"text": " Those solve that onboarding process."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 537000
+			},
+			"text": " Please start using contract based accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 540000
+			},
+			"text": " Then there are so many accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 546000
+			},
+			"text": " In some cases you need to have your Ethereum key, your normal Ethereum wallet, then a contract based account."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 554000
+			},
+			"text": " And in some cases you need to have your own pillar or your own side chain, state channel or plasma card."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 557000
+			},
+			"text": " Like if it was a bank account if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 562000
+			},
+			"text": " So these are like three wallets and people of course ask why do I need another wallet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 563000
+			},
+			"text": " No, seriously."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 564000
+			},
+			"text": " Why do I need another wallet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 569000
+			},
+			"text": " They repeat this thing, they know they have to do this thing but they don't grasp the meaning."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 573000
+			},
+			"text": " And while it's too late I'll make the effort to explain what are these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 584000
+			},
+			"text": " And of course if you can just more than directly here, abstracting this information and getting them directly onto the later two if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 589000
+			},
+			"text": " Or explain if you want what is one wallet, why do you need another wallet, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 596000
+			},
+			"text": " This is a problem, state channels and all the plasma say hey you can onboard with any token, the post-idemic token."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 600000
+			},
+			"text": " So a new user goes there and says which one do I choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 605000
+			},
+			"text": " And there's a lot of things called ETH ETH ETH ETH and this is one of the questions they have."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 607000
+			},
+			"text": " Like which one do I pick?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 609000
+			},
+			"text": " What the fuck is a token?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 613000
+			},
+			"text": " Also it is one of the questions and which one should I pick?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 622000
+			},
+			"text": " And what am I paying this to? Yeah, so they have no clue why exactly how you are doing this and why they are voting on these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 632000
+			},
+			"text": " So the pattern here is game optionality, new user simplifies, just give one option, maybe die or whatever we will talk about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 636000
+			},
+			"text": " And expertly as you can expand and choose your own, always be there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 642000
+			},
+			"text": " And find options and you will exit, maybe you decide when you exit what token you want, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 649000
+			},
+			"text": " And explain better the difference. This was one of the solutions from the previous framework that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 656000
+			},
+			"text": " Then what's your language is yet another pattern that all these people start using developer lingo."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 661000
+			},
+			"text": " Okay, these words don't mean anything and deploy doesn't mean divide."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 664000
+			},
+			"text": " This is an actual question the user had."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 669000
+			},
+			"text": " So deploy layer two, layer one doesn't mean anything at all for users."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 676000
+			},
+			"text": " So experimentally to the essence experimental is internal for us but not good for non-preple users yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 683000
+			},
+			"text": " So simplify the language, apply the technical complexity possible, which was a solution from the framework we said earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 691000
+			},
+			"text": " Then using the system we are on step two and right now this is not a die."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 697000
+			},
+			"text": " This is one of the biggest insights if you want of those research."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 706000
+			},
+			"text": " They were very confused because these wallets, there's different type of wallets in state channels, in plasma, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 716000
+			},
+			"text": " They all use die. But when you are inside of these networks, the die of network one is not the die of network two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 729000
+			},
+			"text": " it's not the die of the main chain. So my users actually try to send each other die from a state channel from the layer one wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 736000
+			},
+			"text": " or to another state channel wallet. And they did not understand why they were not the same die."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 743000
+			},
+			"text": " There's no sign whatsoever in these softwares already that these was a custom die if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 753000
+			},
+			"text": " So let me try to send it to a friend. This is one of the insights we are multiplying the complexity, not simplifying it unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 760000
+			},
+			"text": " So solutions here is of course like it was written in the design principles a very long time ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 766000
+			},
+			"text": " Define or explain what the network you are using. You need to be transparent about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 775000
+			},
+			"text": " Or you make it interoperable. This is an invitation for all the layer two developers to talk together and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 783000
+			},
+			"text": " \"Hey, yes, we can call it die.\" If somebody tries to send it to someone else, we should behind the curtains be converting"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 788000
+			},
+			"text": " and onboarding it onto the other network or work together somehow."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 795000
+			},
+			"text": " I'm better naming of course because of this problem here, the many tokens, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 803000
+			},
+			"text": " Maybe they should be called die state channel one, die plasma one, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 808000
+			},
+			"text": " Also because they could find each other better."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 812000
+			},
+			"text": " So this is not a die. And what else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 820000
+			},
+			"text": " So in multiple transactions this will go very fast away. There is the idea that transactions go very fast but in the case of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 827000
+			},
+			"text": " plasma you still need to have nonsense and wait for a transaction to be there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 833000
+			},
+			"text": " And plasma has the problem that the finality of that transaction is not instant."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 844000
+			},
+			"text": " In state channel it is instant. As soon as you receive it, that's it. In plasma you need to wait that this information is actually put the 32 block later."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 849000
+			},
+			"text": " But you can assume that everything goes well. But there is a problem of timing in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 856000
+			},
+			"text": " And there is a new pattern emerging of using state channels inside plasma channel which is an open question."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 861000
+			},
+			"text": " How that works, how that will work for the users. Open question."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 867000
+			},
+			"text": " For me personally I think that we should find a technical solution to overcome transaction segmentality."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 877000
+			},
+			"text": " The nonsense have confused a lot of users and they needed to wait until one transaction came back or that has a lot of users in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 886000
+			},
+			"text": " And doubt about using, like there's generic problems like you have onboarded but then you don't offer the next thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 890000
+			},
+			"text": " So users are like, what do I do now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 897000
+			},
+			"text": " Also it's set free but I continuously see different transaction fees and I don't understand what these transaction fees are."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 902000
+			},
+			"text": " So you need to be wary of using the right words because this is actually a good part."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 908000
+			},
+			"text": " It's set free but it's worse than monopoly. They are screwing me at every step we made."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 914000
+			},
+			"text": " This was actually comments that we had. Very snarky users."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 922000
+			},
+			"text": " And design the users next step. This is basic behavioral design. It doesn't pertain to layer 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 926000
+			},
+			"text": " And don't say free or don't say layer 1, watch your language again, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 934000
+			},
+			"text": " Open question. So this is because not much could be used yet again."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 943000
+			},
+			"text": " There is this idea of agreements. In state channels when you enter a channel with someone, you are making an agreement"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 948000
+			},
+			"text": " about when the exit will happen, how long it will take."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 955000
+			},
+			"text": " So this agreement is a new pattern. There is not yet anything that we could test."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:16:04,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 964000
+			},
+			"text": " I personally think that we should make them flexible and dependent on the amount of balance that you are exiting."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 964000,
+				"to": 971000
+			},
+			"text": " If you are exiting one coffee value, you simply do it right away or it's 2 minutes or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 978000
+			},
+			"text": " If you are exiting $200 or $1000 maybe that time span expands flexibly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 982000
+			},
+			"text": " Right now it's fixed. So that's one of the things that I think they need to work on."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 986000
+			},
+			"text": " And how are we going to manage many open channels because if it's peer to peer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:29,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 989000
+			},
+			"text": " theoretically I could have a channel with each of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 989000,
+				"to": 993000
+			},
+			"text": " In my wallet I would have like thousands of lines or if I have a hub,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 998000
+			},
+			"text": " I would have the hub with a thousand of lines with the people I might have connections with."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1003000
+			},
+			"text": " The apps would be installed in my wallet. And this is good to hear that also,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1008000
+			},
+			"text": " many of us yesterday introduced the fact that they have these plug-ins ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1013000
+			},
+			"text": " that you will have apps inside of your wallet to manage."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1016000
+			},
+			"text": " Yeah, you need to differentiate these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1020000
+			},
+			"text": " Yeah, how state channels inside your platform will work. We have no food."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1027000
+			},
+			"text": " And how much is possible interoperate. This is what these solutions probably are."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1034000
+			},
+			"text": " And exiting the system, this is the science fiction because right now it's only ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1041000
+			},
+			"text": " There's nothing implemented. The only company that had designed something is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1047000
+			},
+			"text": " seller X. We did a good job in calling it court mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1056000
+			},
+			"text": " So they use that nice language to explain that there is a challenge happening and how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1063000
+			},
+			"text": " And so this idea of exiting that you could have challenges happening,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:49,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1069000
+			},
+			"text": " okay, has a requirement on the technology that you as a user need to be looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1069000,
+				"to": 1074000
+			},
+			"text": " all the time at the chain. And this is an ono-go for UX."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1078000
+			},
+			"text": " So there are people coming out with watch towers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1082000
+			},
+			"text": " These are the name one of the companies called PISA."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1086000
+			},
+			"text": " They're developing the watch towers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1091000
+			},
+			"text": " And so this is one of the unknowns how this part will behave, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1097000
+			},
+			"text": " from the user perspective. My opinion is users won't need to worry too much"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:21,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1101000
+			},
+			"text": " about the challenge. If you can't hide it, there's a consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1101000,
+				"to": 1103000
+			},
+			"text": " or there's three different approaches right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1106000
+			},
+			"text": " Either the app itself watches the chain for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1111000
+			},
+			"text": " So if you connect every once a week or whatever, it solves a lot of marketing for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1116000
+			},
+			"text": " If you or they have buy the service of a watch tower,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1118000
+			},
+			"text": " so it's a service that is looking and it's going to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1122000
+			},
+			"text": " hey, you have a problem, I'll send you a notification on your mobile phone"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1129000
+			},
+			"text": " about this state. Or does among the people participating in this channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1133000
+			},
+			"text": " saying that company product or user is being malicious,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1144000
+			},
+			"text": " I'll kick him out and simply offset the pricing for the user in case."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1150000
+			},
+			"text": " In Plasma, you have also these multiple fees to exit them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:13,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1153000
+			},
+			"text": " Since in Plasma right now, one of the constructors"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1153000,
+				"to": 1160000
+			},
+			"text": " do have two weeks or one week when you actually exit before you can get your money."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1164000
+			},
+			"text": " There are people that are creating crypto economic finality."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:30,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1170000
+			},
+			"text": " So there are services that say, hey, you as a user, you don't want to wait one week."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1170000,
+				"to": 1175000
+			},
+			"text": " So let me take your risk out by your one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1179000
+			},
+			"text": " either within one week for 1% fee or for 2% fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:45,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1185000
+			},
+			"text": " So there are services that are going to gather a fee for you to recover your money right away."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1185000,
+				"to": 1187000
+			},
+			"text": " A user wants to recover the money right away."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1192000
+			},
+			"text": " So this is the ideal solution. This is why I'm not totally convinced about the Plasma construct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1197000
+			},
+			"text": " especially for my user perspective, but those are solutions that are coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1204000
+			},
+			"text": " So you see, there's more complexity still rather than less, which was my hope."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:08,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1208000
+			},
+			"text": " In general, in the whole space and in layer 2 space as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,000",
+				"to": "00:20:14,000"
+			},
+			"offsets": {
+				"from": 1208000,
+				"to": 1214000
+			},
+			"text": " we need to balance or explain better this idea between cost and responsibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1214000,
+				"to": 1217000
+			},
+			"text": " And in layer 2 it's becoming more apparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1222000
+			},
+			"text": " You can have more cost or less cost, sorry, be cheaper than transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1229000
+			},
+			"text": " If you as a user take more responsibility on waiting, doing watching, waiting the exit, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1234000
+			},
+			"text": " Or if you want the convenience, it's going to be more expensive, but it's more convenient."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:41,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1241000
+			},
+			"text": " So this is something that is unsolved today, I think in the whole ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,000",
+				"to": "00:20:45,000"
+			},
+			"offsets": {
+				"from": 1241000,
+				"to": 1245000
+			},
+			"text": " And especially later, I'm done, I have one more slide, I'm done."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1245000,
+				"to": 1247000
+			},
+			"text": " So this is the summary."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:56,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1256000
+			},
+			"text": " Basically, try to interoperate so that people are not confused with multiple kinds of tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,000",
+				"to": "00:21:05,000"
+			},
+			"offsets": {
+				"from": 1256000,
+				"to": 1265000
+			},
+			"text": " Try to hide as much of the technological methodologies behind and make it simpler to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1265000,
+				"to": 1270000
+			},
+			"text": " Use universal login type of wallets or contract-based wallets or accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1274000
+			},
+			"text": " so that users don't need to store private keys, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:15,000"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1275000
+			},
+			"text": " We simplify that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,000",
+				"to": "00:21:20,000"
+			},
+			"offsets": {
+				"from": 1275000,
+				"to": 1280000
+			},
+			"text": " Inational stuff, and maybe we have something to onboard."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,000",
+				"to": "00:21:22,000"
+			},
+			"offsets": {
+				"from": 1280000,
+				"to": 1282000
+			},
+			"text": " My mother and my brother. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,000",
+				"to": "00:21:27,000"
+			},
+			"offsets": {
+				"from": 1282000,
+				"to": 1287000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,000",
+				"to": "00:21:42,000"
+			},
+			"offsets": {
+				"from": 1287000,
+				"to": 1302000
+			},
+			"text": " [Music]"
+		}
+	]
+}

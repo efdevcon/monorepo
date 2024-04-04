@@ -1,0 +1,2166 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16880
+			},
+			"text": " >> Hi, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,880",
+				"to": "00:00:23,440"
+			},
+			"offsets": {
+				"from": 16880,
+				"to": 23440
+			},
+			"text": " My name is Piper and I've been making tooling and things like that in the Python ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,440",
+				"to": "00:00:26,800"
+			},
+			"offsets": {
+				"from": 23440,
+				"to": 26800
+			},
+			"text": " since about, well, since the Frontier Network launched."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,800",
+				"to": "00:00:32,400"
+			},
+			"offsets": {
+				"from": 26800,
+				"to": 32400
+			},
+			"text": " And today we're going to do a really fast run through of the entire Python tool set that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,400",
+				"to": "00:00:36,560"
+			},
+			"offsets": {
+				"from": 32400,
+				"to": 36560
+			},
+			"text": " I've been working on and talk about the roadmap there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,560",
+				"to": "00:00:39,520"
+			},
+			"offsets": {
+				"from": 36560,
+				"to": 39520
+			},
+			"text": " And then at the end, I'm going to talk to you about PyEVM, which is the project I'm most"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,520",
+				"to": "00:00:41,360"
+			},
+			"offsets": {
+				"from": 39520,
+				"to": 41360
+			},
+			"text": " excited about right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,360",
+				"to": "00:00:42,360"
+			},
+			"offsets": {
+				"from": 41360,
+				"to": 42360
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,360",
+				"to": "00:00:43,360"
+			},
+			"offsets": {
+				"from": 42360,
+				"to": 43360
+			},
+			"text": " So Python Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,360",
+				"to": "00:00:44,360"
+			},
+			"offsets": {
+				"from": 43360,
+				"to": 44360
+			},
+			"text": " Let's first talk about why Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,360",
+				"to": "00:00:45,360"
+			},
+			"offsets": {
+				"from": 44360,
+				"to": 45360
+			},
+			"text": " Python is slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,360",
+				"to": "00:00:47,280"
+			},
+			"offsets": {
+				"from": 45360,
+				"to": 47280
+			},
+			"text": " People have complaints about Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,280",
+				"to": "00:00:50,440"
+			},
+			"offsets": {
+				"from": 47280,
+				"to": 50440
+			},
+			"text": " There's the global interpreter lock, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,440",
+				"to": "00:00:53,280"
+			},
+			"offsets": {
+				"from": 50440,
+				"to": 53280
+			},
+			"text": " But the big thing here is that diversity matters."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,280",
+				"to": "00:00:59,680"
+			},
+			"offsets": {
+				"from": 53280,
+				"to": 59680
+			},
+			"text": " And Ethereum is not a language-specific tool, and if developers can pick up tooling in languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,680",
+				"to": "00:01:02,680"
+			},
+			"offsets": {
+				"from": 59680,
+				"to": 62680
+			},
+			"text": " that they are familiar with, then it will speed up adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,680",
+				"to": "00:01:03,680"
+			},
+			"offsets": {
+				"from": 62680,
+				"to": 63680
+			},
+			"text": " And that's a big deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,680",
+				"to": "00:01:07,280"
+			},
+			"offsets": {
+				"from": 63680,
+				"to": 67280
+			},
+			"text": " So we need more tooling in more languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,280",
+				"to": "00:01:09,320"
+			},
+			"offsets": {
+				"from": 67280,
+				"to": 69320
+			},
+			"text": " And Python's a big deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,320",
+				"to": "00:01:10,880"
+			},
+			"offsets": {
+				"from": 69320,
+				"to": 70880
+			},
+			"text": " Python is used for all kinds of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,880",
+				"to": "00:01:13,520"
+			},
+			"offsets": {
+				"from": 70880,
+				"to": 73520
+			},
+			"text": " It is an extremely accessible language."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,520",
+				"to": "00:01:16,640"
+			},
+			"offsets": {
+				"from": 73520,
+				"to": 76640
+			},
+			"text": " It's used heavily in data science and web development and all these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,640",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 76640,
+				"to": 82000
+			},
+			"text": " And so we need good tools in Python because lots of people use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:23,560"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 83560
+			},
+			"text": " This is my favorite."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,560",
+				"to": "00:01:28,160"
+			},
+			"offsets": {
+				"from": 83560,
+				"to": 88160
+			},
+			"text": " Python is the second best language for everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,160",
+				"to": "00:01:29,720"
+			},
+			"offsets": {
+				"from": 88160,
+				"to": 89720
+			},
+			"text": " This rings so true to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,720",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 89720,
+				"to": 94000
+			},
+			"text": " Python's got its works and its problems, but it's also a wonderful language."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:37,160"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 97160
+			},
+			"text": " Also we have tons of cute animal pictures in our GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,160",
+				"to": "00:01:38,400"
+			},
+			"offsets": {
+				"from": 97160,
+				"to": 98400
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,400",
+				"to": "00:01:40,280"
+			},
+			"offsets": {
+				"from": 98400,
+				"to": 100280
+			},
+			"text": " So the Python Ethereum tool chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,280",
+				"to": "00:01:42,640"
+			},
+			"offsets": {
+				"from": 100280,
+				"to": 102640
+			},
+			"text": " First we'll start with Web3py."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,640",
+				"to": "00:01:44,120"
+			},
+			"offsets": {
+				"from": 102640,
+				"to": 104120
+			},
+			"text": " Thank you, Web3JS team."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,120",
+				"to": "00:01:49,720"
+			},
+			"offsets": {
+				"from": 104120,
+				"to": 109720
+			},
+			"text": " We literally copied your code base, converted it to Python, and then took it from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,720",
+				"to": "00:01:53,880"
+			},
+			"offsets": {
+				"from": 109720,
+				"to": 113880
+			},
+			"text": " So Web3py is your sort of way to access the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,880",
+				"to": "00:01:57,920"
+			},
+			"offsets": {
+				"from": 113880,
+				"to": 117920
+			},
+			"text": " It handles all of your RPC communications when you want to talk to a node."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,920",
+				"to": "00:02:01,320"
+			},
+			"offsets": {
+				"from": 117920,
+				"to": 121320
+			},
+			"text": " It does things like converting the responses to Python objects so that they're nice and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,320",
+				"to": "00:02:04,080"
+			},
+			"offsets": {
+				"from": 121320,
+				"to": 124080
+			},
+			"text": " friendly for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,080",
+				"to": "00:02:07,280"
+			},
+			"offsets": {
+				"from": 124080,
+				"to": 127280
+			},
+			"text": " Things that you don't want to be working on when you're building your product."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,280",
+				"to": "00:02:11,160"
+			},
+			"offsets": {
+				"from": 127280,
+				"to": 131160
+			},
+			"text": " It does tons of built-in utilities for doing conversions, converting things to hex and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,160",
+				"to": "00:02:15,840"
+			},
+			"offsets": {
+				"from": 131160,
+				"to": 135840
+			},
+			"text": " from hex and between bytes and text formats, as well as currency conversions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,840",
+				"to": "00:02:17,960"
+			},
+			"offsets": {
+				"from": 135840,
+				"to": 137960
+			},
+			"text": " Again, things you don't want to be implementing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,960",
+				"to": "00:02:20,640"
+			},
+			"offsets": {
+				"from": 137960,
+				"to": 140640
+			},
+			"text": " You can focus on your product."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,640",
+				"to": "00:02:25,680"
+			},
+			"offsets": {
+				"from": 140640,
+				"to": 145680
+			},
+			"text": " We have abstractions for contract objects that give you really convenient -- all you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,680",
+				"to": "00:02:28,760"
+			},
+			"offsets": {
+				"from": 145680,
+				"to": 148760
+			},
+			"text": " have to do is feed us your ABI, tell us what address you're at."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,760",
+				"to": "00:02:30,280"
+			},
+			"offsets": {
+				"from": 148760,
+				"to": 150280
+			},
+			"text": " You can interact with your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,280",
+				"to": "00:02:31,920"
+			},
+			"offsets": {
+				"from": 150280,
+				"to": 151920
+			},
+			"text": " This does deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,920",
+				"to": "00:02:36,440"
+			},
+			"offsets": {
+				"from": 151920,
+				"to": 156440
+			},
+			"text": " All of the ABI encodings, arguments, and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,440",
+				"to": "00:02:41,520"
+			},
+			"offsets": {
+				"from": 156440,
+				"to": 161520
+			},
+			"text": " Again, things you don't want to be building."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,520",
+				"to": "00:02:43,280"
+			},
+			"offsets": {
+				"from": 161520,
+				"to": 163280
+			},
+			"text": " We also have an accounts API."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,280",
+				"to": "00:02:46,920"
+			},
+			"offsets": {
+				"from": 163280,
+				"to": 166920
+			},
+			"text": " This is currently in sort of the alpha stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,920",
+				"to": "00:02:50,520"
+			},
+			"offsets": {
+				"from": 166920,
+				"to": 170520
+			},
+			"text": " If you're familiar with the Web3JS, new accounts API."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,520",
+				"to": "00:02:53,040"
+			},
+			"offsets": {
+				"from": 170520,
+				"to": 173040
+			},
+			"text": " Again, we generally kind of copied this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,040",
+				"to": "00:02:58,480"
+			},
+			"offsets": {
+				"from": 173040,
+				"to": 178480
+			},
+			"text": " You can do generation of accounts, management of private keys from right there within your"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,480",
+				"to": "00:03:04,200"
+			},
+			"offsets": {
+				"from": 178480,
+				"to": 184200
+			},
+			"text": " Python code base, loading key files, sending messages, sending sign transactions, things"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,200",
+				"to": "00:03:05,840"
+			},
+			"offsets": {
+				"from": 184200,
+				"to": 185840
+			},
+			"text": " like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,840",
+				"to": "00:03:07,600"
+			},
+			"offsets": {
+				"from": 185840,
+				"to": 187600
+			},
+			"text": " And we have this great middleware API."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,600",
+				"to": "00:03:14,280"
+			},
+			"offsets": {
+				"from": 187600,
+				"to": 194280
+			},
+			"text": " This is a much lower level API, but it enables a lot of really powerful things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,280",
+				"to": "00:03:20,360"
+			},
+			"offsets": {
+				"from": 194280,
+				"to": 200360
+			},
+			"text": " Caching, interception of requests and signing them in flight, things like that, that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,360",
+				"to": "00:03:22,400"
+			},
+			"offsets": {
+				"from": 200360,
+				"to": 202400
+			},
+			"text": " can build using this middleware API."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,400",
+				"to": "00:03:25,400"
+			},
+			"offsets": {
+				"from": 202400,
+				"to": 205400
+			},
+			"text": " All right, let's talk about populace."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,400",
+				"to": "00:03:29,520"
+			},
+			"offsets": {
+				"from": 205400,
+				"to": 209520
+			},
+			"text": " Populous is a development framework written in Python, and it should be pretty familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,520",
+				"to": "00:03:31,400"
+			},
+			"offsets": {
+				"from": 209520,
+				"to": 211400
+			},
+			"text": " for Python developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,400",
+				"to": "00:03:34,520"
+			},
+			"offsets": {
+				"from": 211400,
+				"to": 214520
+			},
+			"text": " The biggest thing that it focuses on is testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,520",
+				"to": "00:03:41,360"
+			},
+			"offsets": {
+				"from": 214520,
+				"to": 221360
+			},
+			"text": " But populace will handle all of your compilation and deployment for you, which means finding"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,360",
+				"to": "00:03:45,920"
+			},
+			"offsets": {
+				"from": 221360,
+				"to": 225920
+			},
+			"text": " all of your contracts, scraping them all up, feeding them into the validity compiler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,920",
+				"to": "00:03:46,960"
+			},
+			"offsets": {
+				"from": 225920,
+				"to": 226960
+			},
+			"text": " and giving you the results."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,960",
+				"to": "00:03:52,400"
+			},
+			"offsets": {
+				"from": 226960,
+				"to": 232400
+			},
+			"text": " Same with deployment, deploying those, and then recording those deployments so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,400",
+				"to": "00:03:57,360"
+			},
+			"offsets": {
+				"from": 232400,
+				"to": 237360
+			},
+			"text": " for future deployments, you can still reference old deployments, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,360",
+				"to": "00:03:58,840"
+			},
+			"offsets": {
+				"from": 237360,
+				"to": 238840
+			},
+			"text": " It handles library linking."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,840",
+				"to": "00:04:02,040"
+			},
+			"offsets": {
+				"from": 238840,
+				"to": 242040
+			},
+			"text": " So when you use libraries, you end up with something like this in your bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,040",
+				"to": "00:04:03,720"
+			},
+			"offsets": {
+				"from": 242040,
+				"to": 243720
+			},
+			"text": " You see that thing at the bottom there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,720",
+				"to": "00:04:05,080"
+			},
+			"offsets": {
+				"from": 243720,
+				"to": 245080
+			},
+			"text": " That's a placeholder."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,080",
+				"to": "00:04:11,280"
+			},
+			"offsets": {
+				"from": 245080,
+				"to": 251280
+			},
+			"text": " And what needs to go there is the actual address of the deployed version of that greeter library."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,280",
+				"to": "00:04:16,720"
+			},
+			"offsets": {
+				"from": 251280,
+				"to": 256720
+			},
+			"text": " And this stuff is -- you need to get it right, and populace just automates and does all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,720",
+				"to": "00:04:19,880"
+			},
+			"offsets": {
+				"from": 256720,
+				"to": 259880
+			},
+			"text": " this sort of stuff for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,880",
+				"to": "00:04:21,200"
+			},
+			"offsets": {
+				"from": 259880,
+				"to": 261200
+			},
+			"text": " And package management."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,200",
+				"to": "00:04:25,760"
+			},
+			"offsets": {
+				"from": 261200,
+				"to": 265760
+			},
+			"text": " We have this sort of unmerged branch that has all of the ERC 190 package management"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,760",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 265760,
+				"to": 267000
+			},
+			"text": " stuff in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:32,200"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 272200
+			},
+			"text": " It is a high priority for us to get this stuff in real soon, and, well, package management"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,200",
+				"to": "00:04:33,520"
+			},
+			"offsets": {
+				"from": 272200,
+				"to": 273520
+			},
+			"text": " is a big deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,520",
+				"to": "00:04:34,720"
+			},
+			"offsets": {
+				"from": 273520,
+				"to": 274720
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,720",
+				"to": "00:04:36,920"
+			},
+			"offsets": {
+				"from": 274720,
+				"to": 276920
+			},
+			"text": " There's also a bunch of other tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,920",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 276920,
+				"to": 281000
+			},
+			"text": " There's a Ethereum utils library that has a bunch of low-level stuff that's just"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:46,680"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 286680
+			},
+			"text": " functional functions that you can use that do all kinds of nice, convenient, useful things"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,680",
+				"to": "00:04:51,560"
+			},
+			"offsets": {
+				"from": 286680,
+				"to": 291560
+			},
+			"text": " that are -- that prop up commonly when you're doing Ethereum development."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,560",
+				"to": "00:04:54,960"
+			},
+			"offsets": {
+				"from": 291560,
+				"to": 294960
+			},
+			"text": " We have an ABI utils library that does all the ABI encoding and decoding."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,960",
+				"to": "00:04:58,240"
+			},
+			"offsets": {
+				"from": 294960,
+				"to": 298240
+			},
+			"text": " So if you need to do low-level stuff, you know, pulling old transactions, seeing what"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,240",
+				"to": "00:05:01,520"
+			},
+			"offsets": {
+				"from": 298240,
+				"to": 301520
+			},
+			"text": " data they sent, stuff like that, you can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,520",
+				"to": "00:05:06,520"
+			},
+			"offsets": {
+				"from": 301520,
+				"to": 306520
+			},
+			"text": " We have a keys library that handles the elliptical curve cryptography stuff for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,520",
+				"to": "00:05:12,080"
+			},
+			"offsets": {
+				"from": 306520,
+				"to": 312080
+			},
+			"text": " So if you want to do low-level message signing, things like that, it has a native Python implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,080",
+				"to": "00:05:18,240"
+			},
+			"offsets": {
+				"from": 312080,
+				"to": 318240
+			},
+			"text": " It will also detect that coin curve is installed and use coin curve, which is much faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,240",
+				"to": "00:05:19,320"
+			},
+			"offsets": {
+				"from": 318240,
+				"to": 319320
+			},
+			"text": " And it has a back-end system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,320",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 319320,
+				"to": 323000
+			},
+			"text": " So if you have some other implementation of ECC that you want to use, you can plug it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 324000
+			},
+			"text": " right in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:30,680"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 330680
+			},
+			"text": " Ethereum key file, loading key files off disk, generating key files from private keys, key"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,680",
+				"to": "00:05:31,840"
+			},
+			"offsets": {
+				"from": 330680,
+				"to": 331840
+			},
+			"text": " stretching, that sort of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,840",
+				"to": "00:05:33,320"
+			},
+			"offsets": {
+				"from": 331840,
+				"to": 333320
+			},
+			"text": " It's all handled for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,320",
+				"to": "00:05:39,080"
+			},
+			"offsets": {
+				"from": 333320,
+				"to": 339080
+			},
+			"text": " We have this library called PySullC, which is a wrapper around the Solidity compiler, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,080",
+				"to": "00:05:43,880"
+			},
+			"offsets": {
+				"from": 339080,
+				"to": 343880
+			},
+			"text": " is nice because you can do compilation from your Python code, you know, feed in just the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,880",
+				"to": "00:05:47,160"
+			},
+			"offsets": {
+				"from": 343880,
+				"to": 347160
+			},
+			"text": " source's text or reference some files and just compilation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,160",
+				"to": "00:05:52,440"
+			},
+			"offsets": {
+				"from": 347160,
+				"to": 352440
+			},
+			"text": " But the thing that's really great here is that we have automation built into it for installing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,440",
+				"to": "00:05:55,080"
+			},
+			"offsets": {
+				"from": 352440,
+				"to": 355080
+			},
+			"text": " specific versions of Solidity from source."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,080",
+				"to": "00:05:58,840"
+			},
+			"offsets": {
+				"from": 355080,
+				"to": 358840
+			},
+			"text": " So if you have a CI environment and you want to run your stuff in Travis and you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,840",
+				"to": "00:06:03,220"
+			},
+			"offsets": {
+				"from": 358840,
+				"to": 363220
+			},
+			"text": " run it against a specific Solidity version, this library will let you do that right"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,220",
+				"to": "00:06:04,220"
+			},
+			"offsets": {
+				"from": 363220,
+				"to": 364220
+			},
+			"text": " off the bat."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,220",
+				"to": "00:06:08,560"
+			},
+			"offsets": {
+				"from": 364220,
+				"to": 368560
+			},
+			"text": " We use almost all of our other repos that need Solidity and it lets us test against specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,560",
+				"to": "00:06:11,120"
+			},
+			"offsets": {
+				"from": 368560,
+				"to": 371120
+			},
+			"text": " versions of Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,120",
+				"to": "00:06:13,860"
+			},
+			"offsets": {
+				"from": 371120,
+				"to": 373860
+			},
+			"text": " Ethereum Tester is a library that we've been working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,860",
+				"to": "00:06:18,200"
+			},
+			"offsets": {
+				"from": 373860,
+				"to": 378200
+			},
+			"text": " It's a sort of wrapper around using test blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,200",
+				"to": "00:06:23,440"
+			},
+			"offsets": {
+				"from": 378200,
+				"to": 383440
+			},
+			"text": " So right now it supports the PyEthereum blockchain, but sort of an older version of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,440",
+				"to": "00:06:30,680"
+			},
+			"offsets": {
+				"from": 383440,
+				"to": 390680
+			},
+			"text": " We're working on more back-ends for more options for testing, specifically PyEVM is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,680",
+				"to": "00:06:32,540"
+			},
+			"offsets": {
+				"from": 390680,
+				"to": 392540
+			},
+			"text": " the one that we're focusing on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,540",
+				"to": "00:06:34,440"
+			},
+			"offsets": {
+				"from": 392540,
+				"to": 394440
+			},
+			"text": " And it has really nice Web3 integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,440",
+				"to": "00:06:39,840"
+			},
+			"offsets": {
+				"from": 394440,
+				"to": 399840
+			},
+			"text": " So if you're using Web3PY in your application and you want to test against a blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,840",
+				"to": "00:06:43,600"
+			},
+			"offsets": {
+				"from": 399840,
+				"to": 403600
+			},
+			"text": " all you have to do is swap out the provider rather than changing a bunch of your code"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,600",
+				"to": "00:06:49,360"
+			},
+			"offsets": {
+				"from": 403600,
+				"to": 409360
+			},
+			"text": " and you can test and you can run your application against a test blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,360",
+				"to": "00:06:50,640"
+			},
+			"offsets": {
+				"from": 409360,
+				"to": 410640
+			},
+			"text": " And we've got a bunch of more things."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,640",
+				"to": "00:06:54,520"
+			},
+			"offsets": {
+				"from": 410640,
+				"to": 414520
+			},
+			"text": " There's this PyGef library that has some nice wrappers around the GoEthereum command"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,520",
+				"to": "00:07:01,200"
+			},
+			"offsets": {
+				"from": 414520,
+				"to": 421200
+			},
+			"text": " line, an implementation of the Patricia tree, an implementation of the Bloom filter."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,200",
+				"to": "00:07:05,900"
+			},
+			"offsets": {
+				"from": 421200,
+				"to": 425900
+			},
+			"text": " Lots of tools, a wide array of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,900",
+				"to": "00:07:11,780"
+			},
+			"offsets": {
+				"from": 425900,
+				"to": 431780
+			},
+			"text": " They're all actively developed and you should give them a try."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,780",
+				"to": "00:07:14,340"
+			},
+			"offsets": {
+				"from": 431780,
+				"to": 434340
+			},
+			"text": " But what I really want to talk about is PyEVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,340",
+				"to": "00:07:20,700"
+			},
+			"offsets": {
+				"from": 434340,
+				"to": 440700
+			},
+			"text": " PyEVM is a new implementation of the Ethereum virtual machine Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,700",
+				"to": "00:07:23,500"
+			},
+			"offsets": {
+				"from": 440700,
+				"to": 443500
+			},
+			"text": " And it came about sort of in this roundabout way."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,500",
+				"to": "00:07:24,620"
+			},
+			"offsets": {
+				"from": 443500,
+				"to": 444620
+			},
+			"text": " Originally there's PyEthereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,620",
+				"to": "00:07:27,940"
+			},
+			"offsets": {
+				"from": 444620,
+				"to": 447940
+			},
+			"text": " And PyEthereum and PyEVM are not the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,940",
+				"to": "00:07:33,740"
+			},
+			"offsets": {
+				"from": 447940,
+				"to": 453740
+			},
+			"text": " PyEthereum is a library that's been around since the -- well, as long as I can remember."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,740",
+				"to": "00:07:35,860"
+			},
+			"offsets": {
+				"from": 453740,
+				"to": 455860
+			},
+			"text": " It's written by Vitalik."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,860",
+				"to": "00:07:39,420"
+			},
+			"offsets": {
+				"from": 455860,
+				"to": 459420
+			},
+			"text": " It's a library dependency and a ton of our code bases."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,420",
+				"to": "00:07:43,280"
+			},
+			"offsets": {
+				"from": 459420,
+				"to": 463280
+			},
+			"text": " And it is used heavily right now by the CASPER research team."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,280",
+				"to": "00:07:46,340"
+			},
+			"offsets": {
+				"from": 463280,
+				"to": 466340
+			},
+			"text": " Python is a great research tool because it's so mutable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,340",
+				"to": "00:07:49,460"
+			},
+			"offsets": {
+				"from": 466340,
+				"to": 469460
+			},
+			"text": " You can just reach in, do whatever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,460",
+				"to": "00:07:54,820"
+			},
+			"offsets": {
+				"from": 469460,
+				"to": 474820
+			},
+			"text": " And PyEthereum has been key for so much of the research and things that have been done"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,820",
+				"to": "00:07:56,780"
+			},
+			"offsets": {
+				"from": 474820,
+				"to": 476780
+			},
+			"text": " for the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,780",
+				"to": "00:08:02,100"
+			},
+			"offsets": {
+				"from": 476780,
+				"to": 482100
+			},
+			"text": " However, it has not been a very good library for us to build on top of."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,100",
+				"to": "00:08:03,300"
+			},
+			"offsets": {
+				"from": 482100,
+				"to": 483300
+			},
+			"text": " And I'll go into some reasons there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,300",
+				"to": "00:08:04,300"
+			},
+			"offsets": {
+				"from": 483300,
+				"to": 484300
+			},
+			"text": " And then there's PyEthapp."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,300",
+				"to": "00:08:06,860"
+			},
+			"offsets": {
+				"from": 484300,
+				"to": 486860
+			},
+			"text": " And PyEthapp is the Python Ethereum node."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,860",
+				"to": "00:08:11,300"
+			},
+			"offsets": {
+				"from": 486860,
+				"to": 491300
+			},
+			"text": " So if you want to run and connect to the network, then PyEthapp is the thing that in"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,300",
+				"to": "00:08:12,460"
+			},
+			"offsets": {
+				"from": 491300,
+				"to": 492460
+			},
+			"text": " theory could do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,460",
+				"to": "00:08:16,660"
+			},
+			"offsets": {
+				"from": 492460,
+				"to": 496660
+			},
+			"text": " However, for a very long time it has not been able to sync with the main network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,660",
+				"to": "00:08:23,140"
+			},
+			"offsets": {
+				"from": 496660,
+				"to": 503140
+			},
+			"text": " So we had these two existing libraries and they facilitated a ton of research."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,140",
+				"to": "00:08:28,340"
+			},
+			"offsets": {
+				"from": 503140,
+				"to": 508340
+			},
+			"text": " But over the last two and a half or three years or however long it's been, these libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,340",
+				"to": "00:08:32,820"
+			},
+			"offsets": {
+				"from": 508340,
+				"to": 512820
+			},
+			"text": " have also been a huge thorn in my side because there's no definition of what is a public"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,820",
+				"to": "00:08:34,020"
+			},
+			"offsets": {
+				"from": 512820,
+				"to": 514020
+			},
+			"text": " and private API."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,020",
+				"to": "00:08:39,780"
+			},
+			"offsets": {
+				"from": 514020,
+				"to": 519780
+			},
+			"text": " And they're big and they're monoliths and things changed out from under us."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,780",
+				"to": "00:08:42,700"
+			},
+			"offsets": {
+				"from": 519780,
+				"to": 522700
+			},
+			"text": " And they're just not the foundation that we needed them to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,700",
+				"to": "00:08:48,860"
+			},
+			"offsets": {
+				"from": 522700,
+				"to": 528860
+			},
+			"text": " So about a year ago I started tinkering with, okay, well, what if I write my own?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,860",
+				"to": "00:08:56,260"
+			},
+			"offsets": {
+				"from": 528860,
+				"to": 536260
+			},
+			"text": " So anyway, so I started this experimental project called PyEVM and it sort of festered"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,260",
+				"to": "00:08:58,460"
+			},
+			"offsets": {
+				"from": 536260,
+				"to": 538460
+			},
+			"text": " and kept going and kept going."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,460",
+				"to": "00:09:01,540"
+			},
+			"offsets": {
+				"from": 538460,
+				"to": 541540
+			},
+			"text": " And let me tell you some of the origins."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,540",
+				"to": "00:09:04,740"
+			},
+			"offsets": {
+				"from": 541540,
+				"to": 544740
+			},
+			"text": " So one of the big things was don't bother Vitalik."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,740",
+				"to": "00:09:07,580"
+			},
+			"offsets": {
+				"from": 544740,
+				"to": 547580
+			},
+			"text": " That was one of the main motivations here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,580",
+				"to": "00:09:11,740"
+			},
+			"offsets": {
+				"from": 547580,
+				"to": 551740
+			},
+			"text": " I didn't think that I could fix PyEthereum without interrupting his work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,740",
+				"to": "00:09:16,780"
+			},
+			"offsets": {
+				"from": 551740,
+				"to": 556780
+			},
+			"text": " There was so much that needed to be changed that I felt the scope of the changes was so"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,780",
+				"to": "00:09:22,900"
+			},
+			"offsets": {
+				"from": 556780,
+				"to": 562900
+			},
+			"text": " large that I assumed that it would be impossible for me to fix PyEthereum without disrupting"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,900",
+				"to": "00:09:23,900"
+			},
+			"offsets": {
+				"from": 562900,
+				"to": 563900
+			},
+			"text": " Vitalik's work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,900",
+				"to": "00:09:27,740"
+			},
+			"offsets": {
+				"from": 563900,
+				"to": 567740
+			},
+			"text": " I wanted to better understand the EVM and it's that thing that I needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,740",
+				"to": "00:09:32,100"
+			},
+			"offsets": {
+				"from": 567740,
+				"to": 572100
+			},
+			"text": " I needed a foundational library that I could build on top of."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,100",
+				"to": "00:09:37,260"
+			},
+			"offsets": {
+				"from": 572100,
+				"to": 577260
+			},
+			"text": " We are shooting for something that is the easiest to install client."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,260",
+				"to": "00:09:41,660"
+			},
+			"offsets": {
+				"from": 577260,
+				"to": 581660
+			},
+			"text": " It will be primarily focused on being a light client, although we will support being a full"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,660",
+				"to": "00:09:46,220"
+			},
+			"offsets": {
+				"from": 581660,
+				"to": 586220
+			},
+			"text": " node and we are hoping it will facilitate research really well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,220",
+				"to": "00:09:51,580"
+			},
+			"offsets": {
+				"from": 586220,
+				"to": 591580
+			},
+			"text": " But we have every intention of this being a full node or a light client node that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,580",
+				"to": "00:09:55,180"
+			},
+			"offsets": {
+				"from": 591580,
+				"to": 595180
+			},
+			"text": " can run and use in production."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,180",
+				"to": "00:09:56,700"
+			},
+			"offsets": {
+				"from": 595180,
+				"to": 596700
+			},
+			"text": " This is our status right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,700",
+				"to": "00:09:58,420"
+			},
+			"offsets": {
+				"from": 596700,
+				"to": 598420
+			},
+			"text": " We have most of the four quirals done."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,420",
+				"to": "00:10:03,740"
+			},
+			"offsets": {
+				"from": 598420,
+				"to": 603740
+			},
+			"text": " Byzantium is still in progress and we have got the LES protocol in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,740",
+				"to": "00:10:11,100"
+			},
+			"offsets": {
+				"from": 603740,
+				"to": 611100
+			},
+			"text": " Right now we have probably a month or two from a very alpha stage version of this that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,100",
+				"to": "00:10:14,140"
+			},
+			"offsets": {
+				"from": 611100,
+				"to": 614140
+			},
+			"text": " can sync up with the mainnet and run as a light client."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,140",
+				"to": "00:10:20,820"
+			},
+			"offsets": {
+				"from": 614140,
+				"to": 620820
+			},
+			"text": " We are very close on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,820",
+				"to": "00:10:25,540"
+			},
+			"offsets": {
+				"from": 620820,
+				"to": 625540
+			},
+			"text": " This project is intended to be sort of a foundational piece to the Python ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,540",
+				"to": "00:10:33,220"
+			},
+			"offsets": {
+				"from": 625540,
+				"to": 633220
+			},
+			"text": " I am very proud of this library and I think it is going to be one of the cornerstone pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,220",
+				"to": "00:10:39,660"
+			},
+			"offsets": {
+				"from": 633220,
+				"to": 639660
+			},
+			"text": " that helps bring the Python ecosystem up to par with some of the other Ethereum tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,660",
+				"to": "00:10:40,660"
+			},
+			"offsets": {
+				"from": 639660,
+				"to": 640660
+			},
+			"text": " out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,660",
+				"to": "00:10:43,540"
+			},
+			"offsets": {
+				"from": 640660,
+				"to": 643540
+			},
+			"text": " That is part of a broader goal of mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,540",
+				"to": "00:10:50,420"
+			},
+			"offsets": {
+				"from": 643540,
+				"to": 650420
+			},
+			"text": " I set out earlier this year with the abstract goal of maturing all of the Python tooling."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,420",
+				"to": "00:10:56,820"
+			},
+			"offsets": {
+				"from": 650420,
+				"to": 656820
+			},
+			"text": " Because we needed better tooling and so many people were flocking to the JavaScript stack"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,820",
+				"to": "00:11:00,740"
+			},
+			"offsets": {
+				"from": 656820,
+				"to": 660740
+			},
+			"text": " which is fine because the JavaScript stack has been the superior stack for a long time"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,740",
+				"to": "00:11:02,940"
+			},
+			"offsets": {
+				"from": 660740,
+				"to": 662940
+			},
+			"text": " and it is a great stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,940",
+				"to": "00:11:04,260"
+			},
+			"offsets": {
+				"from": 662940,
+				"to": 664260
+			},
+			"text": " People need choices."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,260",
+				"to": "00:11:09,260"
+			},
+			"offsets": {
+				"from": 664260,
+				"to": 669260
+			},
+			"text": " I wanted to set out to actually give them those choices."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,260",
+				"to": "00:11:12,380"
+			},
+			"offsets": {
+				"from": 669260,
+				"to": 672380
+			},
+			"text": " One last note, Python 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,380",
+				"to": "00:11:17,300"
+			},
+			"offsets": {
+				"from": 672380,
+				"to": 677300
+			},
+			"text": " Starting in 2018 we will begin dropping support for Python 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,300",
+				"to": "00:11:22,660"
+			},
+			"offsets": {
+				"from": 677300,
+				"to": 682660
+			},
+			"text": " So if you are using these tools and you are using Python 2 you need to upgrade because"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,660",
+				"to": "00:11:24,900"
+			},
+			"offsets": {
+				"from": 682660,
+				"to": 684900
+			},
+			"text": " they are going to break on you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,900",
+				"to": "00:11:30,060"
+			},
+			"offsets": {
+				"from": 684900,
+				"to": 690060
+			},
+			"text": " It is time you need to upgrade your code base."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,060",
+				"to": "00:11:31,780"
+			},
+			"offsets": {
+				"from": 690060,
+				"to": 691780
+			},
+			"text": " Python 3 is great."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,780",
+				"to": "00:11:33,620"
+			},
+			"offsets": {
+				"from": 691780,
+				"to": 693620
+			},
+			"text": " Upgrading to it is very easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,620",
+				"to": "00:11:35,500"
+			},
+			"offsets": {
+				"from": 693620,
+				"to": 695500
+			},
+			"text": " There are a ton of resources out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,500",
+				"to": "00:11:37,740"
+			},
+			"offsets": {
+				"from": 695500,
+				"to": 697740
+			},
+			"text": " We are dropping support for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,740",
+				"to": "00:11:40,980"
+			},
+			"offsets": {
+				"from": 697740,
+				"to": 700980
+			},
+			"text": " If this is a problem for you, please come talk to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,980",
+				"to": "00:11:45,460"
+			},
+			"offsets": {
+				"from": 700980,
+				"to": 705460
+			},
+			"text": " But the answer is likely to be that you need to upgrade your code base."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,460",
+				"to": "00:11:53,660"
+			},
+			"offsets": {
+				"from": 705460,
+				"to": 713660
+			},
+			"text": " Thank you all for your time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,660",
+				"to": "00:12:03,660"
+			},
+			"offsets": {
+				"from": 713660,
+				"to": 723660
+			},
+			"text": " [Music]"
+		}
+	]
+}

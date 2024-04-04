@@ -1,0 +1,5510 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,680"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12680
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,680",
+				"to": "00:00:15,480"
+			},
+			"offsets": {
+				"from": 12680,
+				"to": 15480
+			},
+			"text": " Audience, no problem, we're going to be talking in English."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,480",
+				"to": "00:00:20,960"
+			},
+			"offsets": {
+				"from": 15480,
+				"to": 20960
+			},
+			"text": " And if you don't understand anything on this slide, please let me know, no problem, but just focus on me."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,960",
+				"to": "00:00:25,720"
+			},
+			"offsets": {
+				"from": 20960,
+				"to": 25720
+			},
+			"text": " So on the later one, we had amazing applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,720",
+				"to": "00:00:34,280"
+			},
+			"offsets": {
+				"from": 25720,
+				"to": 34280
+			},
+			"text": " We got a lot of applications, very interesting, for example, AMMs that could let you transact with different tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,280",
+				"to": "00:00:37,440"
+			},
+			"offsets": {
+				"from": 34280,
+				"to": 37440
+			},
+			"text": " But these were very, very, very expensive, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,440",
+				"to": "00:00:43,440"
+			},
+			"offsets": {
+				"from": 37440,
+				"to": 43440
+			},
+			"text": " We also had Oracle that now allows us to introduce data of chain into on-chain, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,440",
+				"to": "00:00:45,680"
+			},
+			"offsets": {
+				"from": 43440,
+				"to": 45680
+			},
+			"text": " But this was also very expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,680",
+				"to": "00:00:49,040"
+			},
+			"offsets": {
+				"from": 45680,
+				"to": 49040
+			},
+			"text": " Moving data on-chain is expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,040",
+				"to": "00:00:54,280"
+			},
+			"offsets": {
+				"from": 49040,
+				"to": 54280
+			},
+			"text": " We also have gaming, where you can have NFTs, where you can have your NFTs, you can have your sword for your game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,280",
+				"to": "00:00:58,280"
+			},
+			"offsets": {
+				"from": 54280,
+				"to": 58280
+			},
+			"text": " your gun, and so on, you can maybe move it to another game."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,280",
+				"to": "00:01:06,920"
+			},
+			"offsets": {
+				"from": 58280,
+				"to": 66920
+			},
+			"text": " But still the game was lit, was directed by a single entity that had the control over the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,920",
+				"to": "00:01:10,440"
+			},
+			"offsets": {
+				"from": 66920,
+				"to": 70440
+			},
+			"text": " So the game logistics, the game logic was not on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,440",
+				"to": "00:01:14,840"
+			},
+			"offsets": {
+				"from": 70440,
+				"to": 74840
+			},
+			"text": " It was not auto-regulated, yes, because it's very expensive, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,840",
+				"to": "00:01:20,920"
+			},
+			"offsets": {
+				"from": 74840,
+				"to": 80920
+			},
+			"text": " Also we had both in apps, but also again, writing in storage, writing into the blockchain is very expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,920",
+				"to": "00:01:23,400"
+			},
+			"offsets": {
+				"from": 80920,
+				"to": 83400
+			},
+			"text": " So both in was also really expensive on layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,400",
+				"to": "00:01:28,200"
+			},
+			"offsets": {
+				"from": 83400,
+				"to": 88200
+			},
+			"text": " So this is very interesting application that we have in the layer one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,200",
+				"to": "00:01:32,040"
+			},
+			"offsets": {
+				"from": 88200,
+				"to": 92040
+			},
+			"text": " but that introduces problems when we are talking out cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,040",
+				"to": "00:01:38,360"
+			},
+			"offsets": {
+				"from": 92040,
+				"to": 98360
+			},
+			"text": " So we know the state, the current state of things, is that we have a huge machine that is processing everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,360",
+				"to": "00:01:44,680"
+			},
+			"offsets": {
+				"from": 98360,
+				"to": 104680
+			},
+			"text": " We know this, for example, banks, a current API, a company, a startup, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,680",
+				"to": "00:01:48,680"
+			},
+			"offsets": {
+				"from": 104680,
+				"to": 108680
+			},
+			"text": " Very huge machines, they can process a lot of transactions very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,680",
+				"to": "00:01:52,760"
+			},
+			"offsets": {
+				"from": 108680,
+				"to": 112760
+			},
+			"text": " And now we're looking at the blue part, where we are trying to create a centralized system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,760",
+				"to": "00:01:58,120"
+			},
+			"offsets": {
+				"from": 112760,
+				"to": 118120
+			},
+			"text": " which is when a lot of persons can verify the integrity of the system, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,120",
+				"to": "00:01:59,800"
+			},
+			"offsets": {
+				"from": 118120,
+				"to": 119800
+			},
+			"text": " This is what we're trying to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,800",
+				"to": "00:02:03,400"
+			},
+			"offsets": {
+				"from": 119800,
+				"to": 123400
+			},
+			"text": " The problem is that this is very slow and this is very expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,400",
+				"to": "00:02:08,440"
+			},
+			"offsets": {
+				"from": 123400,
+				"to": 128440
+			},
+			"text": " And the computation repeat itself various times at different points."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,440",
+				"to": "00:02:10,760"
+			},
+			"offsets": {
+				"from": 128440,
+				"to": 130760
+			},
+			"text": " So it's not optimal for scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,760",
+				"to": "00:02:15,640"
+			},
+			"offsets": {
+				"from": 130760,
+				"to": 135640
+			},
+			"text": " Of course, it was a choice when we decided to create theorem, we wanted this centralization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,640",
+				"to": "00:02:16,840"
+			},
+			"offsets": {
+				"from": 135640,
+				"to": 136840
+			},
+			"text": " we wanted security."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,840",
+				"to": "00:02:20,040"
+			},
+			"offsets": {
+				"from": 136840,
+				"to": 140040
+			},
+			"text": " It was a choice to sacrifice at that moment's scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,440",
+				"to": "00:02:23,240"
+			},
+			"offsets": {
+				"from": 140440,
+				"to": 143240
+			},
+			"text": " But now we know better and we can do better stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,240",
+				"to": "00:02:28,040"
+			},
+			"offsets": {
+				"from": 143240,
+				"to": 148040
+			},
+			"text": " So the question is, can we get the centralization, security, and also scaling?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,040",
+				"to": "00:02:29,960"
+			},
+			"offsets": {
+				"from": 148040,
+				"to": 149960
+			},
+			"text": " Yes, we can do with your knowledge rollers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,960",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 149960,
+				"to": 155000
+			},
+			"text": " And we're here today to talk about the starnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:39,640"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 159640
+			},
+			"text": " So we're talking about a platform in a layer two that is secure by Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,640",
+				"to": "00:02:44,920"
+			},
+			"offsets": {
+				"from": 159640,
+				"to": 164920
+			},
+			"text": " It allows you to create smart contracts, general smart contracts, it's doing complete."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,960",
+				"to": "00:02:53,880"
+			},
+			"offsets": {
+				"from": 165960,
+				"to": 173880
+			},
+			"text": " The cost of execution is much lower and you can create amazing things that are not possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,880",
+				"to": "00:02:55,640"
+			},
+			"offsets": {
+				"from": 173880,
+				"to": 175640
+			},
+			"text": " even imaginable in the layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,640",
+				"to": "00:02:59,480"
+			},
+			"offsets": {
+				"from": 175640,
+				"to": 179480
+			},
+			"text": " So we can get much more for each piece of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,480",
+				"to": "00:03:08,040"
+			},
+			"offsets": {
+				"from": 179480,
+				"to": 188040
+			},
+			"text": " So this is a quote from the LVN session, our founder at Bangladesh in the 29th of July."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,040",
+				"to": "00:03:13,800"
+			},
+			"offsets": {
+				"from": 188040,
+				"to": 193800
+			},
+			"text": " He's talking about the objective of a starnet, which is creating a solution for scaling that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,440",
+				"to": "00:03:16,600"
+			},
+			"offsets": {
+				"from": 194440,
+				"to": 196600
+			},
+			"text": " focused only on scaling theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,600",
+				"to": "00:03:17,640"
+			},
+			"offsets": {
+				"from": 196600,
+				"to": 197640
+			},
+			"text": " And this is called Cairo."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,640",
+				"to": "00:03:23,880"
+			},
+			"offsets": {
+				"from": 197640,
+				"to": 203880
+			},
+			"text": " So the starboard experts on both the Ethereum butro machine and also in grain and start systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,880",
+				"to": "00:03:28,440"
+			},
+			"offsets": {
+				"from": 203880,
+				"to": 208440
+			},
+			"text": " And there was a conscious choice not to use the EVM to scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,440",
+				"to": "00:03:32,040"
+			},
+			"offsets": {
+				"from": 208440,
+				"to": 212040
+			},
+			"text": " We created a new butro machine called Cairo."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,040",
+				"to": "00:03:37,560"
+			},
+			"offsets": {
+				"from": 212040,
+				"to": 217560
+			},
+			"text": " This was a conscious choice because we will leave this as a way to achieve the biggest scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:46,440"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 226440
+			},
+			"text": " And this scaling is going to come from smart contracts within Cairo."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,440",
+				"to": "00:03:50,040"
+			},
+			"offsets": {
+				"from": 226440,
+				"to": 230040
+			},
+			"text": " And Cairo is a virtual machine but also language we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,040",
+				"to": "00:03:52,760"
+			},
+			"offsets": {
+				"from": 230040,
+				"to": 232760
+			},
+			"text": " So what is Cairo?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,760",
+				"to": "00:03:59,160"
+			},
+			"offsets": {
+				"from": 232760,
+				"to": 239160
+			},
+			"text": " Cairo is a two incomplete language, programming language that allows you to create poorable"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,160",
+				"to": "00:04:02,760"
+			},
+			"offsets": {
+				"from": 239160,
+				"to": 242760
+			},
+			"text": " products, in this case in Spanish, parameters and most travelers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,760",
+				"to": "00:04:08,680"
+			},
+			"offsets": {
+				"from": 242760,
+				"to": 248680
+			},
+			"text": " You can execute your Cairo program and then you can prove a smart contract on the layer one on"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,680",
+				"to": "00:04:11,800"
+			},
+			"offsets": {
+				"from": 248680,
+				"to": 251800
+			},
+			"text": " the theme that this transaction was correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,800",
+				"to": "00:04:19,720"
+			},
+			"offsets": {
+				"from": 251800,
+				"to": 259720
+			},
+			"text": " This allows you to have much cheaper transactions cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,720",
+				"to": "00:04:22,920"
+			},
+			"offsets": {
+				"from": 259720,
+				"to": 262920
+			},
+			"text": " And because when the smart contract on the layer one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,920",
+				"to": "00:04:26,280"
+			},
+			"offsets": {
+				"from": 262920,
+				"to": 266280
+			},
+			"text": " validates that this proof is correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,280",
+				"to": "00:04:30,120"
+			},
+			"offsets": {
+				"from": 266280,
+				"to": 270120
+			},
+			"text": " It's much cheaper than running the transaction itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,120",
+				"to": "00:04:36,600"
+			},
+			"offsets": {
+				"from": 270120,
+				"to": 276600
+			},
+			"text": " So this allows you to create much more scalable solutions using the layer two in this case with"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,600",
+				"to": "00:04:37,960"
+			},
+			"offsets": {
+				"from": 276600,
+				"to": 277960
+			},
+			"text": " Cairo and the starnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,520",
+				"to": "00:04:43,400"
+			},
+			"offsets": {
+				"from": 278520,
+				"to": 283400
+			},
+			"text": " So this is our solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,400",
+				"to": "00:04:46,680"
+			},
+			"offsets": {
+				"from": 283400,
+				"to": 286680
+			},
+			"text": " The serial knowledge robots specifically talking about Cairo and the starnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,680",
+				"to": "00:04:50,840"
+			},
+			"offsets": {
+				"from": 286680,
+				"to": 290840
+			},
+			"text": " You can get extremely cheap computation thanks to Cairo."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,840",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 290840,
+				"to": 295000
+			},
+			"text": " And we can create and this is key."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:02,280"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 302280
+			},
+			"text": " We can create interesting applications that could only be made using the layer two."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,280",
+				"to": "00:05:04,680"
+			},
+			"offsets": {
+				"from": 302280,
+				"to": 304680
+			},
+			"text": " It's impossible practically impossible to do on the layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,680",
+				"to": "00:05:10,680"
+			},
+			"offsets": {
+				"from": 306680,
+				"to": 310680
+			},
+			"text": " This is an interesting data that we got during the last week."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,680",
+				"to": "00:05:15,720"
+			},
+			"offsets": {
+				"from": 310680,
+				"to": 315720
+			},
+			"text": " A starnet plus starquicks blocks a starnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,720",
+				"to": "00:05:18,520"
+			},
+			"offsets": {
+				"from": 315720,
+				"to": 318520
+			},
+			"text": " So a star world, a company has different solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,520",
+				"to": "00:05:22,840"
+			},
+			"offsets": {
+				"from": 318520,
+				"to": 322840
+			},
+			"text": " One of them is a starquicks and the other one is a starnet that we're talking about right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,840",
+				"to": "00:05:28,440"
+			},
+			"offsets": {
+				"from": 322840,
+				"to": 328440
+			},
+			"text": " And both together have more transactions since you lie than Bitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,440",
+				"to": "00:05:29,720"
+			},
+			"offsets": {
+				"from": 328440,
+				"to": 329720
+			},
+			"text": " lightning and other layer two."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,720",
+				"to": "00:05:32,040"
+			},
+			"offsets": {
+				"from": 329720,
+				"to": 332040
+			},
+			"text": " This is something that is not very well known."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,600",
+				"to": "00:05:37,960"
+			},
+			"offsets": {
+				"from": 332600,
+				"to": 337960
+			},
+			"text": " Or as you can see, coming from July, the blue line is the starquicks plus starnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,960",
+				"to": "00:05:43,880"
+			},
+			"offsets": {
+				"from": 337960,
+				"to": 343880
+			},
+			"text": " Down is Bitcoin in orange and under that are other layer two solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,880",
+				"to": "00:05:49,320"
+			},
+			"offsets": {
+				"from": 343880,
+				"to": 349320
+			},
+			"text": " So as you can see, starquicks and starnet is currently being very, very used."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,320",
+				"to": "00:05:53,800"
+			},
+			"offsets": {
+				"from": 349320,
+				"to": 353800
+			},
+			"text": " And we have been alive in Maynid since June 2020."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,800",
+				"to": "00:05:55,640"
+			},
+			"offsets": {
+				"from": 353800,
+				"to": 355640
+			},
+			"text": " So we are not new at this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,640",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 355640,
+				"to": 357000
+			},
+			"text": " We know how to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:05:58,600"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 358600
+			},
+			"text": " The star solution is very good."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,600",
+				"to": "00:06:01,960"
+			},
+			"offsets": {
+				"from": 358600,
+				"to": 361960
+			},
+			"text": " And as you can see, it's very, very, it's been very used."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,960",
+				"to": "00:06:06,840"
+			},
+			"offsets": {
+				"from": 361960,
+				"to": 366840
+			},
+			"text": " And very interestingly also is that 70% of that comes from NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,840",
+				"to": "00:06:08,600"
+			},
+			"offsets": {
+				"from": 366840,
+				"to": 368600
+			},
+			"text": " It's very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,600",
+				"to": "00:06:12,520"
+			},
+			"offsets": {
+				"from": 368600,
+				"to": 372520
+			},
+			"text": " For example, we're immutable with sorare."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,520",
+				"to": "00:06:13,880"
+			},
+			"offsets": {
+				"from": 372520,
+				"to": 373880
+			},
+			"text": " Interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,880",
+				"to": "00:06:18,040"
+			},
+			"offsets": {
+				"from": 373880,
+				"to": 378040
+			},
+			"text": " So now thank you very much for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,040",
+				"to": "00:06:20,680"
+			},
+			"offsets": {
+				"from": 378040,
+				"to": 380680
+			},
+			"text": " Now we know that a star has a lot of potential."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,680",
+				"to": "00:06:23,320"
+			},
+			"offsets": {
+				"from": 380680,
+				"to": 383320
+			},
+			"text": " You can create in needs whenever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,320",
+				"to": "00:06:24,760"
+			},
+			"offsets": {
+				"from": 383320,
+				"to": 384760
+			},
+			"text": " You can deploy it currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,760",
+				"to": "00:06:29,880"
+			},
+			"offsets": {
+				"from": 384760,
+				"to": 389880
+			},
+			"text": " And actually today we'll be creating a boating application that we're going to be trying on starnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,920",
+				"to": "00:06:31,560"
+			},
+			"offsets": {
+				"from": 390920,
+				"to": 391560
+			},
+			"text": " You can use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,560",
+				"to": "00:06:32,760"
+			},
+			"offsets": {
+				"from": 391560,
+				"to": 392760
+			},
+			"text": " Cairo is a different language."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,760",
+				"to": "00:06:33,800"
+			},
+			"offsets": {
+				"from": 392760,
+				"to": 393800
+			},
+			"text": " We know it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,800",
+				"to": "00:06:36,440"
+			},
+			"offsets": {
+				"from": 393800,
+				"to": 396440
+			},
+			"text": " But it's also a language that everybody can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,440",
+				"to": "00:06:37,400"
+			},
+			"offsets": {
+				"from": 396440,
+				"to": 397400
+			},
+			"text": " It's not hard at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,400",
+				"to": "00:06:42,600"
+			},
+			"offsets": {
+				"from": 397400,
+				"to": 402600
+			},
+			"text": " So my name is Omar Spehil."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,600",
+				"to": "00:06:44,200"
+			},
+			"offsets": {
+				"from": 402600,
+				"to": 404200
+			},
+			"text": " I'm a developer advocate starware."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,200",
+				"to": "00:06:46,440"
+			},
+			"offsets": {
+				"from": 404200,
+				"to": 406440
+			},
+			"text": " And thank you very much for coming today."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,440",
+				"to": "00:06:51,880"
+			},
+			"offsets": {
+				"from": 406440,
+				"to": 411880
+			},
+			"text": " They go off today for you to get the resources to start studying Cairo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,880",
+				"to": "00:06:54,520"
+			},
+			"offsets": {
+				"from": 411880,
+				"to": 414520
+			},
+			"text": " if you want to go into starnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,520",
+				"to": "00:06:57,560"
+			},
+			"offsets": {
+				"from": 414520,
+				"to": 417560
+			},
+			"text": " And also make a small example of a boating application."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,200",
+				"to": "00:07:06,120"
+			},
+			"offsets": {
+				"from": 420200,
+				"to": 426120
+			},
+			"text": " So now we talk a little bit about what is being done in layer one that is very costly and we can improve."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,120",
+				"to": "00:07:13,800"
+			},
+			"offsets": {
+				"from": 426120,
+				"to": 433800
+			},
+			"text": " What now let's talk about what can we do with all this power that cheap computation can provide us."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,800",
+				"to": "00:07:19,560"
+			},
+			"offsets": {
+				"from": 433800,
+				"to": 439560
+			},
+			"text": " For example, we have a solution called CKX, it's a company that is offering high frequency trading."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,560",
+				"to": "00:07:21,640"
+			},
+			"offsets": {
+				"from": 439560,
+				"to": 441640
+			},
+			"text": " This of course is impossible in the layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,640",
+				"to": "00:07:25,160"
+			},
+			"offsets": {
+				"from": 441640,
+				"to": 445160
+			},
+			"text": " Imagine having micropositions and trading with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,160",
+				"to": "00:07:26,840"
+			},
+			"offsets": {
+				"from": 445160,
+				"to": 446840
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,840",
+				"to": "00:07:29,560"
+			},
+			"offsets": {
+				"from": 446840,
+				"to": 449560
+			},
+			"text": " It would be impossible because of the cost in the layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,560",
+				"to": "00:07:30,200"
+			},
+			"offsets": {
+				"from": 449560,
+				"to": 450200
+			},
+			"text": " Makes no sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,200",
+				"to": "00:07:35,240"
+			},
+			"offsets": {
+				"from": 450200,
+				"to": 455240
+			},
+			"text": " With the before about boating, boating is very expensive too."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,240",
+				"to": "00:07:40,360"
+			},
+			"offsets": {
+				"from": 455240,
+				"to": 460360
+			},
+			"text": " So there are also solutions, for example, as NapturedX, that allow us to boat much more cheaply."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,360",
+				"to": "00:07:40,840"
+			},
+			"offsets": {
+				"from": 460360,
+				"to": 460840
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,840",
+				"to": "00:07:46,040"
+			},
+			"offsets": {
+				"from": 460840,
+				"to": 466040
+			},
+			"text": " So there are a lot of applications that have been already developed inside Starnet that are using all this power."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,040",
+				"to": "00:07:50,360"
+			},
+			"offsets": {
+				"from": 466040,
+				"to": 470360
+			},
+			"text": " Another one, for example, is the government of Buenos Aires create an application"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,360",
+				"to": "00:07:55,400"
+			},
+			"offsets": {
+				"from": 470360,
+				"to": 475400
+			},
+			"text": " that allows you to have an identity on the blockchain as a user, as a citizen."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,040",
+				"to": "00:08:00,760"
+			},
+			"offsets": {
+				"from": 476040,
+				"to": 480760
+			},
+			"text": " They chose Starnet because it's very secure, it's highly secure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,760",
+				"to": "00:08:02,520"
+			},
+			"offsets": {
+				"from": 480760,
+				"to": 482520
+			},
+			"text": " and also it's very scalable and very quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,520",
+				"to": "00:08:08,520"
+			},
+			"offsets": {
+				"from": 482520,
+				"to": 488520
+			},
+			"text": " So these are only some examples, but the system is growing by the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,520",
+				"to": "00:08:14,120"
+			},
+			"offsets": {
+				"from": 488520,
+				"to": 494120
+			},
+			"text": " For example, we have tools, amazing tooling, for example, coming from Harffet, Opensepaleem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,120",
+				"to": "00:08:18,600"
+			},
+			"offsets": {
+				"from": 494120,
+				"to": 498600
+			},
+			"text": " trailing soon, alchemy, those are well-known companies."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,600",
+				"to": "00:08:24,520"
+			},
+			"offsets": {
+				"from": 498600,
+				"to": 504520
+			},
+			"text": " But we also, and maybe more interesting, we have different applications on the top, as you can see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,520",
+				"to": "00:08:26,520"
+			},
+			"offsets": {
+				"from": 504520,
+				"to": 506520
+			},
+			"text": " that are being created originally on the Lier 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,520",
+				"to": "00:08:33,240"
+			},
+			"offsets": {
+				"from": 506520,
+				"to": 513240
+			},
+			"text": " So this is very interesting because it's, and this is my opinion, it's not for the company overall,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,240",
+				"to": "00:08:39,160"
+			},
+			"offsets": {
+				"from": 513240,
+				"to": 519160
+			},
+			"text": " but it is interesting when a company comes from Lier 1 and then puts its applications in Lier 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,160",
+				"to": "00:08:43,960"
+			},
+			"offsets": {
+				"from": 519160,
+				"to": 523960
+			},
+			"text": " It's right, they are using the lower fees and that kind of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,960",
+				"to": "00:08:51,400"
+			},
+			"offsets": {
+				"from": 523960,
+				"to": 531400
+			},
+			"text": " However, I believe that the real power is being used, but those are creating natively on Kairu in the Lier 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,400",
+				"to": "00:08:57,240"
+			},
+			"offsets": {
+				"from": 531400,
+				"to": 537240
+			},
+			"text": " Yes, it's a little bit like, for example, when you had Windows in your computer, Windows 98, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,240",
+				"to": "00:09:03,080"
+			},
+			"offsets": {
+				"from": 537240,
+				"to": 543080
+			},
+			"text": " and you had these nice and cute games, and then comes, for example, Windows XP."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,080",
+				"to": "00:09:10,040"
+			},
+			"offsets": {
+				"from": 543080,
+				"to": 550040
+			},
+			"text": " It's more powerful, you can do much more stuff, and these games can be passed into XP."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,040",
+				"to": "00:09:16,120"
+			},
+			"offsets": {
+				"from": 550040,
+				"to": 556120
+			},
+			"text": " Okay, so these old games can be passed into the new software, and they run well, it's okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,120",
+				"to": "00:09:19,640"
+			},
+			"offsets": {
+				"from": 556120,
+				"to": 559640
+			},
+			"text": " they maybe could leverage some of the power of the new operating system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,200",
+				"to": "00:09:25,640"
+			},
+			"offsets": {
+				"from": 560200,
+				"to": 565640
+			},
+			"text": " but the real power comes from that that is being built on top of XP that could not be done"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,640",
+				"to": "00:09:30,120"
+			},
+			"offsets": {
+				"from": 565640,
+				"to": 570120
+			},
+			"text": " in the previous operating system, right? That's what we're talking about here, something that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,120",
+				"to": "00:09:35,560"
+			},
+			"offsets": {
+				"from": 570120,
+				"to": 575560
+			},
+			"text": " completely different and out of the leak of the Lier 1. We can create something very, very interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,560",
+				"to": "00:09:40,760"
+			},
+			"offsets": {
+				"from": 575560,
+				"to": 580760
+			},
+			"text": " that is impossible to create. For example, we were talking about the games that they didn't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,760",
+				"to": "00:09:45,320"
+			},
+			"offsets": {
+				"from": 580760,
+				"to": 585320
+			},
+			"text": " the logic on chain, it's not possible. So imagine that you can do operations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,320",
+				"to": "00:09:51,880"
+			},
+			"offsets": {
+				"from": 585320,
+				"to": 591880
+			},
+			"text": " estimations, multiplications, divisions, whatever, you can do that because the gas is much, much cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,880",
+				"to": "00:09:56,200"
+			},
+			"offsets": {
+				"from": 591880,
+				"to": 596200
+			},
+			"text": " So a company, I don't remember, I know the end, and what is the name of the project that was"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,200",
+				"to": "00:10:03,480"
+			},
+			"offsets": {
+				"from": 596200,
+				"to": 603480
+			},
+			"text": " creating this on-chain reality? Topology. Topology. So topology, create, and a game on-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,480",
+				"to": "00:10:09,880"
+			},
+			"offsets": {
+				"from": 603480,
+				"to": 609880
+			},
+			"text": " and it's auto-regulated. Okay, so you don't need a central entity to decide if you are allowed"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,880",
+				"to": "00:10:16,680"
+			},
+			"offsets": {
+				"from": 609880,
+				"to": 616680
+			},
+			"text": " to play it or not. So it will stay forever as long as the theorem exists. This is something that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,680",
+				"to": "00:10:22,040"
+			},
+			"offsets": {
+				"from": 616680,
+				"to": 622040
+			},
+			"text": " again impossible, Lier 1, and for me, the power is going to come from that part."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,040",
+				"to": "00:10:32,360"
+			},
+			"offsets": {
+				"from": 622040,
+				"to": 632360
+			},
+			"text": " So now the question is, what can you create that is completely different from what has been"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,360",
+				"to": "00:10:38,520"
+			},
+			"offsets": {
+				"from": 632360,
+				"to": 638520
+			},
+			"text": " created in the Lier 1, using all these new power, all these new potential that you can find in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,520",
+				"to": "00:10:44,760"
+			},
+			"offsets": {
+				"from": 638520,
+				"to": 644760
+			},
+			"text": " Lier 2. That is so completely different, never known before. Imagine you can do, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,760",
+				"to": "00:10:49,640"
+			},
+			"offsets": {
+				"from": 644760,
+				"to": 649640
+			},
+			"text": " machine learning on-chain, you can find models on-chain, you can create any kind of mathematical"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,640",
+				"to": "00:10:54,920"
+			},
+			"offsets": {
+				"from": 649640,
+				"to": 654920
+			},
+			"text": " operations on-chain. It's completely different, and what we need is people that start building"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,920",
+				"to": "00:11:05,400"
+			},
+			"offsets": {
+				"from": 654920,
+				"to": 665400
+			},
+			"text": " these applications that are eye-opening. So for the beginning, you would need to start installing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,400",
+				"to": "00:11:12,360"
+			},
+			"offsets": {
+				"from": 665400,
+				"to": 672360
+			},
+			"text": " Cairo, a starnet. Of course, I expect you to do it right now, but you can follow these QR code"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,360",
+				"to": "00:11:16,040"
+			},
+			"offsets": {
+				"from": 672360,
+				"to": 676040
+			},
+			"text": " for some instructions on how to install Cairo and a starnet so you can get going."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,040",
+				"to": "00:11:23,080"
+			},
+			"offsets": {
+				"from": 676040,
+				"to": 683080
+			},
+			"text": " It's not difficult at all. And say, while you scan it, we also have a report that is called"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,080",
+				"to": "00:11:28,200"
+			},
+			"offsets": {
+				"from": 683080,
+				"to": 688200
+			},
+			"text": " \"started EDU\", where you can find a lot of educational material. They will show you the link in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,200",
+				"to": "00:11:35,560"
+			},
+			"offsets": {
+				"from": 688200,
+				"to": 695560
+			},
+			"text": " couple moments. Inside \"started EDU\", you can find a lot of tutorials on different stuff. For"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,560",
+				"to": "00:11:42,280"
+			},
+			"offsets": {
+				"from": 695560,
+				"to": 702280
+			},
+			"text": " example, you can know how to how to create Cairo syntax look. We're going to look at it in a moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,280",
+				"to": "00:11:50,520"
+			},
+			"offsets": {
+				"from": 702280,
+				"to": 710520
+			},
+			"text": " You can create a token, an ERC20, you can create your NFT, ERC721, tutorials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,520",
+				"to": "00:11:55,800"
+			},
+			"offsets": {
+				"from": 710520,
+				"to": 715800
+			},
+			"text": " even more interesting how you can create your own bridge from layer 1 and layer 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,600",
+				"to": "00:12:03,560"
+			},
+			"offsets": {
+				"from": 716600,
+				"to": 723560
+			},
+			"text": " A Pro-Slaste bridge. And for example, how can you create your own wallets? So if you can scan"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,560",
+				"to": "00:12:10,760"
+			},
+			"offsets": {
+				"from": 723560,
+				"to": 730760
+			},
+			"text": " this QR code, you will find all that material inside and you can get going by yourself without"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,760",
+				"to": "00:12:15,480"
+			},
+			"offsets": {
+				"from": 730760,
+				"to": 735480
+			},
+			"text": " any problem. Those tutorials are amazing and they have a lot of people into the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,480",
+				"to": "00:12:25,320"
+			},
+			"offsets": {
+				"from": 735480,
+				"to": 745320
+			},
+			"text": " Also, we have a newsletter that is very nice and you will have a lot of educational material there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,320",
+				"to": "00:12:33,560"
+			},
+			"offsets": {
+				"from": 745320,
+				"to": 753560
+			},
+			"text": " too. And also some interesting products happening on the ecosystem. It's also there, you can subscribe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,560",
+				"to": "00:12:44,120"
+			},
+			"offsets": {
+				"from": 753560,
+				"to": 764120
+			},
+			"text": " it's a sub-stack newsletter. And finally, what we're going to be doing today is a boating application."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,120",
+				"to": "00:12:51,240"
+			},
+			"offsets": {
+				"from": 764120,
+				"to": 771240
+			},
+			"text": " They will allow a person to either both for one or zero, one for yes, for example, zero for no,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,800",
+				"to": "00:12:57,080"
+			},
+			"offsets": {
+				"from": 771800,
+				"to": 777080
+			},
+			"text": " and deploy it on the test nets. If you have any question on till now, you can tell me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,080",
+				"to": "00:13:00,680"
+			},
+			"offsets": {
+				"from": 777080,
+				"to": 780680
+			},
+			"text": " this is the report that we're going to be using. So if you want to have the report,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,680",
+				"to": "00:13:07,240"
+			},
+			"offsets": {
+				"from": 780680,
+				"to": 787240
+			},
+			"text": " you want to clone it, you want to copy the code or just look at it, feel free to scan these QR codes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,240",
+				"to": "00:13:14,120"
+			},
+			"offsets": {
+				"from": 787240,
+				"to": 794120
+			},
+			"text": " Any questions, comments? Well, we'll start with the code part."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,360",
+				"to": "00:13:23,400"
+			},
+			"offsets": {
+				"from": 798360,
+				"to": 803400
+			},
+			"text": " Oh, okay. I have a question actually. How many of you know how to code in Solidity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,400",
+				"to": "00:13:30,440"
+			},
+			"offsets": {
+				"from": 803400,
+				"to": 810440
+			},
+			"text": " Can you raise your hand? How many of you have ever coded in Cairo? I don't feel you cold."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,440",
+				"to": "00:13:39,240"
+			},
+			"offsets": {
+				"from": 810440,
+				"to": 819240
+			},
+			"text": " Coming from Solidity into Cairo is very simple, really, really simple. And it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,240",
+				"to": "00:13:48,920"
+			},
+			"offsets": {
+				"from": 819240,
+				"to": 828920
+			},
+			"text": " way that you're already working with Solidity. Perfect. You want to go to the test net and see"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,920",
+				"to": "00:13:55,240"
+			},
+			"offsets": {
+				"from": 828920,
+				"to": 835240
+			},
+			"text": " how we interact with this contract, feel free also to scan these QR codes. The test nets are already"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,240",
+				"to": "00:14:02,440"
+			},
+			"offsets": {
+				"from": 835240,
+				"to": 842440
+			},
+			"text": " working with these boating contracts. I deployed a couple minutes ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,600",
+				"to": "00:14:11,320"
+			},
+			"offsets": {
+				"from": 846600,
+				"to": 851320
+			},
+			"text": " So in this table is a Starboard team. We have some swagging here. If you want to come also. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,320",
+				"to": "00:14:17,400"
+			},
+			"offsets": {
+				"from": 851320,
+				"to": 857400
+			},
+			"text": " I don't know, guys, do you want to add something else before we start coding? Oh, perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,400",
+				"to": "00:14:25,640"
+			},
+			"offsets": {
+				"from": 857400,
+				"to": 865640
+			},
+			"text": " Okay. Do you need another QR code? Do you have already the one with the contract we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,640",
+				"to": "00:14:33,000"
+			},
+			"offsets": {
+				"from": 865640,
+				"to": 873000
+			},
+			"text": " going to use? Is this one? Remember, please? So let's go to the codes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,000",
+				"to": "00:14:49,240"
+			},
+			"offsets": {
+				"from": 873000,
+				"to": 889240
+			},
+			"text": " So these are boating contracts. Again, the goal is to create a contract that allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,880",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 889880,
+				"to": 897000
+			},
+			"text": " certain predefined addresses. For example, me as the admin of the of the of the boat."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:01,400"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 901400
+			},
+			"text": " I can tell, okay, this address can boat. This or address can boat. This address can boat."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,400",
+				"to": "00:15:06,760"
+			},
+			"offsets": {
+				"from": 901400,
+				"to": 906760
+			},
+			"text": " Because we don't want everybody to be able to boat only certain participants of a product. I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,760",
+				"to": "00:15:14,920"
+			},
+			"offsets": {
+				"from": 906760,
+				"to": 914920
+			},
+			"text": " And they will be able to boat J's or no, J's with one, no with zero. And yes, that will be all."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,160",
+				"to": "00:15:26,520"
+			},
+			"offsets": {
+				"from": 917160,
+				"to": 926520
+			},
+			"text": " So for this, let's review the structure and how carolocks. This here, we're importing our packages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,520",
+				"to": "00:15:32,200"
+			},
+			"offsets": {
+				"from": 926520,
+				"to": 932200
+			},
+			"text": " very similar to how it looks in Python, as you can see it. Then we define the structs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,200",
+				"to": "00:15:41,640"
+			},
+			"offsets": {
+				"from": 932200,
+				"to": 941640
+			},
+			"text": " As you would, for example, in Rust. First, we create a boat counting struct where you will be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,640",
+				"to": "00:15:48,120"
+			},
+			"offsets": {
+				"from": 941640,
+				"to": 948120
+			},
+			"text": " store the boats with J's or no. So for example, we will have 10 boats with J's, zero boats with no,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,120",
+				"to": "00:15:54,520"
+			},
+			"offsets": {
+				"from": 948120,
+				"to": 954520
+			},
+			"text": " something like that, the counting of the boat. Secondly, we have border info."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,520",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 954520,
+				"to": 961000
+			},
+			"text": " When we store information about the border, in this case, I only very simply added an allowed"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:07,960"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 967960
+			},
+			"text": " member that it will have a one if it's allowed to boat or zero if not. If this person has already"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,960",
+				"to": "00:16:19,880"
+			},
+			"offsets": {
+				"from": 967960,
+				"to": 979880
+			},
+			"text": " boats, he will have a few. Now coming to the storage. This storage bar, I won't allow you to know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,880",
+				"to": "00:16:24,600"
+			},
+			"offsets": {
+				"from": 979880,
+				"to": 984600
+			},
+			"text": " if you know so little already, this are very similar to you. They allow you to map from one"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,600",
+				"to": "00:16:31,480"
+			},
+			"offsets": {
+				"from": 984600,
+				"to": 991480
+			},
+			"text": " expression to the other. In this case, for example, the first one, now let's go to the third one here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,200",
+				"to": "00:16:42,440"
+			},
+			"offsets": {
+				"from": 992200,
+				"to": 1002440
+			},
+			"text": " I am able to map an address to a east register bible that in this case is a felt. So Cairo is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,440",
+				"to": "00:16:48,200"
+			},
+			"offsets": {
+				"from": 1002440,
+				"to": 1008200
+			},
+			"text": " type. It's a type language. Now you might ask yourself what is a felt. Felt is where it's been"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,200",
+				"to": "00:16:55,880"
+			},
+			"offsets": {
+				"from": 1008200,
+				"to": 1015880
+			},
+			"text": " everything is a felt inside Cairo, conversing to felt. And basically for our purpose right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,880",
+				"to": "00:17:02,600"
+			},
+			"offsets": {
+				"from": 1015880,
+				"to": 1022600
+			},
+			"text": " if you want, we can get a little bit deeper in a moment, both for now in order to make the most"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,600",
+				"to": "00:17:10,360"
+			},
+			"offsets": {
+				"from": 1022600,
+				"to": 1030360
+			},
+			"text": " of the time a felt is like a big interior number, a huge interior number. So in this case, as you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,360",
+				"to": "00:17:18,440"
+			},
+			"offsets": {
+				"from": 1030360,
+				"to": 1038440
+			},
+			"text": " can see, that address has not addressed type as in solidity. It's a felt. So we have mapped"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,440",
+				"to": "00:17:24,840"
+			},
+			"offsets": {
+				"from": 1038440,
+				"to": 1044840
+			},
+			"text": " pin another is that is a felt to a felt called east register that we have a one or zero or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,840",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1044840,
+				"to": 1051000
+			},
+			"text": " We haven't defined it yet. And on the other ones, we are mapping all the information. And interestingly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:37,800"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1057800
+			},
+			"text": " in the first one, we are mapping nothing. Yes, nothing. Two as structure, the bound counting."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,800",
+				"to": "00:17:44,360"
+			},
+			"offsets": {
+				"from": 1057800,
+				"to": 1064360
+			},
+			"text": " So this allows us to read or write into the memory. That's as simple as that. I can read this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,360",
+				"to": "00:17:52,840"
+			},
+			"offsets": {
+				"from": 1064360,
+				"to": 1072840
+			},
+			"text": " or I can write into the memory using this one. So using the storage bible, both in status,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,840",
+				"to": "00:17:57,400"
+			},
+			"offsets": {
+				"from": 1072840,
+				"to": 1077400
+			},
+			"text": " if we read it, and if I will go right now to the deploy contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,400",
+				"to": "00:18:03,880"
+			},
+			"offsets": {
+				"from": 1077400,
+				"to": 1083880
+			},
+			"text": " So this is the deploy contract I am using right now boyanger, which is a blog explorer for"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,880",
+				"to": "00:18:09,560"
+			},
+			"offsets": {
+				"from": 1083880,
+				"to": 1089560
+			},
+			"text": " starnet. If I go to the read part of the contract, I can see"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,560",
+				"to": "00:18:17,800"
+			},
+			"offsets": {
+				"from": 1089560,
+				"to": 1097800
+			},
+			"text": " what both in status is doing. Using a getter function that we will see in a moment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,800",
+				"to": "00:18:23,240"
+			},
+			"offsets": {
+				"from": 1097800,
+				"to": 1103240
+			},
+			"text": " we can see the status of the voting right now because nobody has both gets. We have zero both"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,240",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1103240,
+				"to": 1109000
+			},
+			"text": " with guess, zero both with no. That is the storage. We are reading right now this storage bar."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:33,720"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1113720
+			},
+			"text": " We get a function that we will get to that in a moment. And also we have the boring info,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,720",
+				"to": "00:18:39,080"
+			},
+			"offsets": {
+				"from": 1113720,
+				"to": 1119080
+			},
+			"text": " and it's the same. I won't go into this, but basically we're storing information into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,080",
+				"to": "00:18:47,480"
+			},
+			"offsets": {
+				"from": 1119080,
+				"to": 1127480
+			},
+			"text": " storage of the blockchain. Now let's go to a constructor. Looks very similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,480",
+				"to": "00:18:51,960"
+			},
+			"offsets": {
+				"from": 1127480,
+				"to": 1131960
+			},
+			"text": " You know, when doing an initialize your contract, when you deploy it, you have to define certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,960",
+				"to": "00:18:59,240"
+			},
+			"offsets": {
+				"from": 1131960,
+				"to": 1139240
+			},
+			"text": " inputs as in solid exactly the same name. So this constructor will ask for three different"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,240",
+				"to": "00:19:03,960"
+			},
+			"offsets": {
+				"from": 1139240,
+				"to": 1143960
+			},
+			"text": " input bibles. So you can see now we can we can view how the function looks into Cairo."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,960",
+				"to": "00:19:11,240"
+			},
+			"offsets": {
+				"from": 1143960,
+				"to": 1151240
+			},
+			"text": " It's very simple. Very similar also to Python and what is important here is this part."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,240",
+				"to": "00:19:15,720"
+			},
+			"offsets": {
+				"from": 1151240,
+				"to": 1155720
+			},
+			"text": " These are the inputs, the explicit inputs to this function. In this case, the inputs for"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,720",
+				"to": "00:19:19,880"
+			},
+			"offsets": {
+				"from": 1155720,
+				"to": 1159880
+			},
+			"text": " the constructor that we have to provide it when we deploy this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,880",
+				"to": "00:19:25,240"
+			},
+			"offsets": {
+				"from": 1159880,
+				"to": 1165240
+			},
+			"text": " So I'm asking for an admin address. The person that's going to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,240",
+				"to": "00:19:34,360"
+			},
+			"offsets": {
+				"from": 1165240,
+				"to": 1174360
+			},
+			"text": " manage these contracts with a felt again. Then the number of addresses that will be able to vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,360",
+				"to": "00:19:43,320"
+			},
+			"offsets": {
+				"from": 1174360,
+				"to": 1183320
+			},
+			"text": " And finally, this is a pointer. So it's important to know that Cairo is a low level language."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,320",
+				"to": "00:19:49,960"
+			},
+			"offsets": {
+				"from": 1183320,
+				"to": 1189960
+			},
+			"text": " So here we can manage the memory. We have to manage it. So the restore addresses is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,960",
+				"to": "00:19:56,200"
+			},
+			"offsets": {
+				"from": 1189960,
+				"to": 1196200
+			},
+			"text": " a vector with a different address that I able to vote. I can add 5, 6, 7, 8, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,200",
+				"to": "00:20:04,440"
+			},
+			"offsets": {
+				"from": 1196200,
+				"to": 1204440
+			},
+			"text": " And this pointer felt points to the start of that vector. But you won't even notice that this"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,440",
+				"to": "00:20:12,280"
+			},
+			"offsets": {
+				"from": 1204440,
+				"to": 1212280
+			},
+			"text": " the logic behind it is that this is pointing to the start of this array of different addresses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,280",
+				"to": "00:20:14,920"
+			},
+			"offsets": {
+				"from": 1212280,
+				"to": 1214920
+			},
+			"text": " but you won't notice this as you will see."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,920",
+				"to": "00:20:21,480"
+			},
+			"offsets": {
+				"from": 1214920,
+				"to": 1221480
+			},
+			"text": " And we're basically using a contract because we have Opensepilin on top of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,480",
+				"to": "00:20:27,640"
+			},
+			"offsets": {
+				"from": 1221480,
+				"to": 1227640
+			},
+			"text": " the store net. So we're able to use very secure contracts thanks to Opensepilin."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,640",
+				"to": "00:20:33,400"
+			},
+			"offsets": {
+				"from": 1227640,
+				"to": 1233400
+			},
+			"text": " And here we're using the ownable contract from Opensepilin. Before, I imported them here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,400",
+				"to": "00:20:40,280"
+			},
+			"offsets": {
+				"from": 1233400,
+				"to": 1240280
+			},
+			"text": " So I imported the ownable contract and the possible contract libraries from Opensepilin."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,280",
+				"to": "00:20:45,400"
+			},
+			"offsets": {
+				"from": 1240280,
+				"to": 1245400
+			},
+			"text": " Ownable basically defines who the owner is of something. And possible, it allows you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,400",
+				"to": "00:20:51,320"
+			},
+			"offsets": {
+				"from": 1245400,
+				"to": 1251320
+			},
+			"text": " pause a contract in case of an emergency. Say that, for example, my application is being hacked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,320",
+				"to": "00:20:57,880"
+			},
+			"offsets": {
+				"from": 1251320,
+				"to": 1257880
+			},
+			"text": " so I can pause it. As simple as that. But also we have ERC 721 logics and ERC 20."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,880",
+				"to": "00:21:01,720"
+			},
+			"offsets": {
+				"from": 1257880,
+				"to": 1261720
+			},
+			"text": " So you can use it with Opensepilin. That's very useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,720",
+				"to": "00:21:07,480"
+			},
+			"offsets": {
+				"from": 1261720,
+				"to": 1267480
+			},
+			"text": " Any question until now? We have seen the constructor. We can see in the storage variables,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,120",
+				"to": "00:21:11,800"
+			},
+			"offsets": {
+				"from": 1268120,
+				"to": 1271800
+			},
+			"text": " structs, how to import, how are you finding Cairo?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,800",
+				"to": "00:21:17,160"
+			},
+			"offsets": {
+				"from": 1271800,
+				"to": 1277160
+			},
+			"text": " It's really difficult or it's nice. Any questions? Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,160",
+				"to": "00:21:22,680"
+			},
+			"offsets": {
+				"from": 1277160,
+				"to": 1282680
+			},
+			"text": " How do you..."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,680",
+				"to": "00:21:29,400"
+			},
+			"offsets": {
+				"from": 1282680,
+				"to": 1289400
+			},
+			"text": " Sorry, that was the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,080",
+				"to": "00:21:43,720"
+			},
+			"offsets": {
+				"from": 1297080,
+				"to": 1303720
+			},
+			"text": " Yes. For example, you have in this case, we will use in addresses that are in an"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,720",
+				"to": "00:21:52,280"
+			},
+			"offsets": {
+				"from": 1303720,
+				"to": 1312280
+			},
+			"text": " exadecimal format, right? It will simply be converted to a field. Behind it, we will actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,280",
+				"to": "00:21:57,960"
+			},
+			"offsets": {
+				"from": 1312280,
+				"to": 1317960
+			},
+			"text": " deploy right now our contract using hexadecimal values. And you won't have to convert it to a"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,960",
+				"to": "00:22:01,560"
+			},
+			"offsets": {
+				"from": 1317960,
+				"to": 1321560
+			},
+			"text": " field. But you also could convert it to a field and also deploy with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,560",
+				"to": "00:22:05,720"
+			},
+			"offsets": {
+				"from": 1321560,
+				"to": 1325720
+			},
+			"text": " No problem. Right now we can think of it like big interiors and we can get deeper into that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,720",
+				"to": "00:22:11,880"
+			},
+			"offsets": {
+				"from": 1325720,
+				"to": 1331880
+			},
+			"text": " Any other questions right now? We have seen constructors, storage variables, structs."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,880",
+				"to": "00:22:19,400"
+			},
+			"offsets": {
+				"from": 1331880,
+				"to": 1339400
+			},
+			"text": " Well, perfect. Okay. So here are the constructor and with this, we can deploy our contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,400",
+				"to": "00:22:27,720"
+			},
+			"offsets": {
+				"from": 1339400,
+				"to": 1347720
+			},
+			"text": " Also, this... As you can see, the structure of the contract is very similar to Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,720",
+				"to": "00:22:32,360"
+			},
+			"offsets": {
+				"from": 1347720,
+				"to": 1352360
+			},
+			"text": " We're trying to follow the guidelines of smart contract and Solidity. You have getters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,360",
+				"to": "00:22:39,400"
+			},
+			"offsets": {
+				"from": 1352360,
+				"to": 1359400
+			},
+			"text": " you have the constructor and the format is very similar. Also, you go to this contract. It's very"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,400",
+				"to": "00:22:44,360"
+			},
+			"offsets": {
+				"from": 1359400,
+				"to": 1364360
+			},
+			"text": " well commented so you can know what is happening. Sorry, it doesn't happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,360",
+				"to": "00:22:59,960"
+			},
+			"offsets": {
+				"from": 1364360,
+				"to": 1379960
+			},
+			"text": " So, the question is, even here, you can see that there are no inheritance in Cairo."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,960",
+				"to": "00:23:05,640"
+			},
+			"offsets": {
+				"from": 1379960,
+				"to": 1385640
+			},
+			"text": " I think you guys can..."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,640",
+				"to": "00:23:12,600"
+			},
+			"offsets": {
+				"from": 1385640,
+				"to": 1392600
+			},
+			"text": " There is no inheritance in Cairo. You don't inherit your contract. What you do is you import your"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,600",
+				"to": "00:23:19,480"
+			},
+			"offsets": {
+				"from": 1392600,
+				"to": 1399480
+			},
+			"text": " function. So if you're looking at the top of the contract up there, here is importing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,480",
+				"to": "00:23:24,920"
+			},
+			"offsets": {
+				"from": 1399480,
+				"to": 1404920
+			},
+			"text": " a template developed by OpenZapplin. So it's importing the full contract which is called"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,920",
+				"to": "00:23:30,280"
+			},
+			"offsets": {
+				"from": 1404920,
+				"to": 1410280
+			},
+			"text": " \"honable\". So it means that it imports all the functions that are inside of this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,280",
+				"to": "00:23:37,800"
+			},
+			"offsets": {
+				"from": 1410280,
+				"to": 1417800
+			},
+			"text": " And inside of this contract, it creates a few variables that can be initialized and one of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,800",
+				"to": "00:23:41,480"
+			},
+			"offsets": {
+				"from": 1417800,
+				"to": 1421480
+			},
+			"text": " is called the \"initializer\" which is supposed to be called during this constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,480",
+				"to": "00:23:45,800"
+			},
+			"offsets": {
+				"from": 1421480,
+				"to": 1425800
+			},
+			"text": " Want my exact? Yeah, that was just curious because usually that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,800",
+				"to": "00:23:56,920"
+			},
+			"offsets": {
+				"from": 1425800,
+				"to": 1436920
+			},
+			"text": " So it's not explicitly... it's not automatically initialized because it's not... like the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,920",
+				"to": "00:24:01,640"
+			},
+			"offsets": {
+				"from": 1436920,
+				"to": 1441640
+			},
+			"text": " is not \"honable\". It imports some function and it has no way to know that this is the specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,640",
+				"to": "00:24:06,680"
+			},
+			"offsets": {
+				"from": 1441640,
+				"to": 1446680
+			},
+			"text": " context of the constructor. So you need to initialize it explicitly. Regarding the question on felt"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,680",
+				"to": "00:24:12,760"
+			},
+			"offsets": {
+				"from": 1446680,
+				"to": 1452760
+			},
+			"text": " earlier, I'm not sure what confuses you, but when you're looking at variables in solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,760",
+				"to": "00:24:19,000"
+			},
+			"offsets": {
+				"from": 1452760,
+				"to": 1459000
+			},
+			"text": " you know, at the bottom of it, at the end of the day, it's a number. And Cairo is a fairly new"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,000",
+				"to": "00:24:23,800"
+			},
+			"offsets": {
+				"from": 1459000,
+				"to": 1463800
+			},
+			"text": " language. It will get better in the next few months, but right now it treats everything as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,800",
+				"to": "00:24:27,880"
+			},
+			"offsets": {
+				"from": 1463800,
+				"to": 1467880
+			},
+			"text": " number. So if you want to perform actions when you need strings, you basically need to assume"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,880",
+				"to": "00:24:32,040"
+			},
+			"offsets": {
+				"from": 1467880,
+				"to": 1472040
+			},
+			"text": " that you receive them as numbers, you convert them, you do your operations, and you do all this kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,040",
+				"to": "00:24:36,600"
+			},
+			"offsets": {
+				"from": 1472040,
+				"to": 1476600
+			},
+			"text": " of stuff. Makes sense? Sort of."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,600",
+				"to": "00:24:49,320"
+			},
+			"offsets": {
+				"from": 1476600,
+				"to": 1489320
+			},
+			"text": " Yeah, so felt is, as you mentioned earlier, I think I heard you say it, it's a field element."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,320",
+				"to": "00:24:58,360"
+			},
+			"offsets": {
+				"from": 1489320,
+				"to": 1498360
+			},
+			"text": " So Cairo is like the felt. You can think of it as a big end, but it's basically a number over a"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,360",
+				"to": "00:25:06,280"
+			},
+			"offsets": {
+				"from": 1498360,
+				"to": 1506280
+			},
+			"text": " big field that is a prime that does indeed a field integral of mathematics and art"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,280",
+				"to": "00:25:11,720"
+			},
+			"offsets": {
+				"from": 1506280,
+				"to": 1511720
+			},
+			"text": " mathematics. That makes sense. So it's really like you can treat it as modulo operations. The only"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,720",
+				"to": "00:25:16,360"
+			},
+			"offsets": {
+				"from": 1511720,
+				"to": 1516360
+			},
+			"text": " time where it gets weird is for divisions. Division sucks. I don't like them."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,360",
+				"to": "00:25:22,600"
+			},
+			"offsets": {
+				"from": 1516360,
+				"to": 1522600
+			},
+			"text": " Well, there are hand-of-a-hand of a learn program with that. So for example, we were talking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,600",
+				"to": "00:25:26,440"
+			},
+			"offsets": {
+				"from": 1522600,
+				"to": 1526440
+			},
+			"text": " the one-of-a-contract. This is the one that we're importing. So we have it here locally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,000",
+				"to": "00:25:30,520"
+			},
+			"offsets": {
+				"from": 1527000,
+				"to": 1530520
+			},
+			"text": " and we're importing from it. This is the one-of-a-one, which comes in a namespace."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,520",
+				"to": "00:25:34,840"
+			},
+			"offsets": {
+				"from": 1530520,
+				"to": 1534840
+			},
+			"text": " So we're importing these functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,840",
+				"to": "00:25:41,400"
+			},
+			"offsets": {
+				"from": 1534840,
+				"to": 1541400
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,400",
+				"to": "00:25:47,720"
+			},
+			"offsets": {
+				"from": 1541400,
+				"to": 1547720
+			},
+			"text": " Another problem. There are no inheritance in Cairo. Perfect. So going back to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,640",
+				"to": "00:25:58,760"
+			},
+			"offsets": {
+				"from": 1549640,
+				"to": 1558760
+			},
+			"text": " our contract. So we import these functions, ownable and possible, from"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,760",
+				"to": "00:26:04,760"
+			},
+			"offsets": {
+				"from": 1558760,
+				"to": 1564760
+			},
+			"text": " functions inside the ownable namespace and inside the possible namespace. You can see."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,760",
+				"to": "00:26:08,520"
+			},
+			"offsets": {
+				"from": 1564760,
+				"to": 1568520
+			},
+			"text": " Yeah. And there's a question there."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,520",
+				"to": "00:26:09,240"
+			},
+			"offsets": {
+				"from": 1568520,
+				"to": 1569240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,240",
+				"to": "00:26:33,640"
+			},
+			"offsets": {
+				"from": 1569240,
+				"to": 1593640
+			},
+			"text": " The solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,000",
+				"to": "00:26:38,120"
+			},
+			"offsets": {
+				"from": 1595000,
+				"to": 1598120
+			},
+			"text": " Now, you cannot import it right now in Solidity. We have this"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,120",
+				"to": "00:26:43,160"
+			},
+			"offsets": {
+				"from": 1598120,
+				"to": 1603160
+			},
+			"text": " conduction version showing from OpenZeplin, our return in Cairo. Our native in Cairo."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,160",
+				"to": "00:26:48,840"
+			},
+			"offsets": {
+				"from": 1603160,
+				"to": 1608840
+			},
+			"text": " I think there are plans to have more contracts from OpenZeplin in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,840",
+				"to": "00:26:54,360"
+			},
+			"offsets": {
+				"from": 1608840,
+				"to": 1614360
+			},
+			"text": " Yes. OpenZeplin is working to create the standard implementation. So any kind of contract you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,360",
+				"to": "00:27:01,480"
+			},
+			"offsets": {
+				"from": 1614360,
+				"to": 1621480
+			},
+			"text": " on Solidity you're used to have that is done by OpenZeplin. We're working towards having that."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,480",
+				"to": "00:27:04,840"
+			},
+			"offsets": {
+				"from": 1621480,
+				"to": 1624840
+			},
+			"text": " That being said, it takes time to develop contracts that are secure and everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,840",
+				"to": "00:27:10,120"
+			},
+			"offsets": {
+				"from": 1624840,
+				"to": 1630120
+			},
+			"text": " So if you want to develop them, you should. It's worth it. It's fun. And you may develop"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:10,120",
+				"to": "00:27:15,480"
+			},
+			"offsets": {
+				"from": 1630120,
+				"to": 1635480
+			},
+			"text": " stuff that gets used by other people, which is great. Actually, the contracts in Cairo"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,480",
+				"to": "00:27:20,600"
+			},
+			"offsets": {
+				"from": 1635480,
+				"to": 1640600
+			},
+			"text": " are open. They have a lot of contributions from people outside the community. So I will be waiters."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,600",
+				"to": "00:27:25,720"
+			},
+			"offsets": {
+				"from": 1640600,
+				"to": 1645720
+			},
+			"text": " Yes. Somebody manages to write a Cairo contract that is the equivalent to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,720",
+				"to": "00:27:31,240"
+			},
+			"offsets": {
+				"from": 1645720,
+				"to": 1651240
+			},
+			"text": " stacking contract in synthetics, which you use by everyone. I'll buy you a beer."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,240",
+				"to": "00:27:33,960"
+			},
+			"offsets": {
+				"from": 1651240,
+				"to": 1653960
+			},
+			"text": " More than a beer."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,960",
+				"to": "00:27:42,440"
+			},
+			"offsets": {
+				"from": 1653960,
+				"to": 1662440
+			},
+			"text": " It will eventually happen. It's very, it's one of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,440",
+				"to": "00:27:52,360"
+			},
+			"offsets": {
+				"from": 1662440,
+				"to": 1672360
+			},
+			"text": " Okay. So we got our constructor. And then we can get to the part where here we're in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,360",
+				"to": "00:27:59,560"
+			},
+			"offsets": {
+				"from": 1672360,
+				"to": 1679560
+			},
+			"text": " initializer function inside the ownable namespace. And then we go to the getters. It's very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,560",
+				"to": "00:28:08,520"
+			},
+			"offsets": {
+				"from": 1679560,
+				"to": 1688520
+			},
+			"text": " Functions by definition in Cairo are private. Not like Solidity. So here if we want to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,520",
+				"to": "00:28:13,960"
+			},
+			"offsets": {
+				"from": 1688520,
+				"to": 1693960
+			},
+			"text": " getters, functions to read information, we have to explicitly tell that they are getters."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,960",
+				"to": "00:28:19,400"
+			},
+			"offsets": {
+				"from": 1693960,
+				"to": 1699400
+			},
+			"text": " So I'm something that I forgot to mention before, but this is the way like version"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:19,400",
+				"to": "00:28:26,280"
+			},
+			"offsets": {
+				"from": 1699400,
+				"to": 1706280
+			},
+			"text": " are to have you do it in Python, how you define that this has a particular set of properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,280",
+				"to": "00:28:31,400"
+			},
+			"offsets": {
+				"from": 1706280,
+				"to": 1711400
+			},
+			"text": " this function that is coming. In this case, with beer, we're defining getter functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:31,400",
+				"to": "00:28:37,080"
+			},
+			"offsets": {
+				"from": 1711400,
+				"to": 1717080
+			},
+			"text": " functions where you can read from. So right now we're creating this admin function that as you"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,080",
+				"to": "00:28:43,320"
+			},
+			"offsets": {
+				"from": 1717080,
+				"to": 1723320
+			},
+			"text": " can see is exactly the same format as it comes in OpenCP. For example, in ERC 20 or ERC 721."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,960",
+				"to": "00:28:50,280"
+			},
+			"offsets": {
+				"from": 1723960,
+				"to": 1730280
+			},
+			"text": " Simply reading who the owner of the contract is. So for example, if I go again back to the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,280",
+				"to": "00:28:56,840"
+			},
+			"offsets": {
+				"from": 1730280,
+				"to": 1736840
+			},
+			"text": " default country here, I can read who the admin is. As you can see, this is a felt."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,840",
+				"to": "00:29:03,160"
+			},
+			"offsets": {
+				"from": 1736840,
+				"to": 1743160
+			},
+			"text": " But if I can convert it to hex, this is the owner of the contract that is myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,160",
+				"to": "00:29:10,360"
+			},
+			"offsets": {
+				"from": 1743160,
+				"to": 1750360
+			},
+			"text": " Is this same direction? So talking about wallets, it's a good opportunity right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:11,400",
+				"to": "00:29:18,280"
+			},
+			"offsets": {
+				"from": 1751400,
+				"to": 1758280
+			},
+			"text": " You can use right now argmx, which is this one, and also Brables, that is this other one."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,280",
+				"to": "00:29:24,680"
+			},
+			"offsets": {
+				"from": 1758280,
+				"to": 1764680
+			},
+			"text": " Very recommended, you can use the standard faucets. You can simply put in Google,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:24,680",
+				"to": "00:29:30,280"
+			},
+			"offsets": {
+				"from": 1764680,
+				"to": 1770280
+			},
+			"text": " standard faucets, and you will be able to send yourself some fake it. So you can start making"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:30,280",
+				"to": "00:29:36,200"
+			},
+			"offsets": {
+				"from": 1770280,
+				"to": 1776200
+			},
+			"text": " some interesting things using early. Or more interestingly, you can also bridge your own"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,760",
+				"to": "00:29:42,360"
+			},
+			"offsets": {
+				"from": 1776760,
+				"to": 1782360
+			},
+			"text": " it from the girl's business in the layer one into the layer two of the starnet. For example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:42,360",
+				"to": "00:29:49,240"
+			},
+			"offsets": {
+				"from": 1782360,
+				"to": 1789240
+			},
+			"text": " here we use in parallel, I can ask for some fake it sent to my metamask, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,240",
+				"to": "00:29:57,240"
+			},
+			"offsets": {
+				"from": 1789240,
+				"to": 1797240
+			},
+			"text": " And then using the bridge, I can connect my metamask, which is currently my wallet in layer one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,240",
+				"to": "00:30:03,080"
+			},
+			"offsets": {
+				"from": 1797240,
+				"to": 1803080
+			},
+			"text": " and connect for example, argmx here as my wallet in layer two, and I can bridge these fake it from"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:03,080",
+				"to": "00:30:08,920"
+			},
+			"offsets": {
+				"from": 1803080,
+				"to": 1808920
+			},
+			"text": " girly, layer one to layer two. So this is also very interesting. It's the same thing as asking"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,920",
+				"to": "00:30:13,960"
+			},
+			"offsets": {
+				"from": 1808920,
+				"to": 1813960
+			},
+			"text": " for it in the faucets. So coming back to the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:13,960",
+				"to": "00:30:25,080"
+			},
+			"offsets": {
+				"from": 1813960,
+				"to": 1825080
+			},
+			"text": " we have an argmx here. It's also a very typical principle-in-style function where we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:25,080",
+				"to": "00:30:33,320"
+			},
+			"offsets": {
+				"from": 1825080,
+				"to": 1833320
+			},
+			"text": " posting, we're asking, we're waiting if this contract is currently post. Very simple. And then,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:33,320",
+				"to": "00:30:37,400"
+			},
+			"offsets": {
+				"from": 1833320,
+				"to": 1837400
+			},
+			"text": " more interestingly, here we have a view function to know the boarding is that. This is the one"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:37,400",
+				"to": "00:30:41,400"
+			},
+			"offsets": {
+				"from": 1837400,
+				"to": 1841400
+			},
+			"text": " that I showed you before. It will let us know how many people boarded this, how many people boarded"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,400",
+				"to": "00:30:47,000"
+			},
+			"offsets": {
+				"from": 1841400,
+				"to": 1847000
+			},
+			"text": " now. As simple as that. Again, you can see in this function that we have an explicit argument,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:47,000",
+				"to": "00:30:53,000"
+			},
+			"offsets": {
+				"from": 1847000,
+				"to": 1853000
+			},
+			"text": " and by now you are already asking yourself, what is this? What is this inside this case?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:54,760",
+				"to": "00:31:01,000"
+			},
+			"offsets": {
+				"from": 1854760,
+				"to": 1861000
+			},
+			"text": " These are implicit arguments. This is something that is different from other languages. You might"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:01,000",
+				"to": "00:31:08,040"
+			},
+			"offsets": {
+				"from": 1861000,
+				"to": 1868040
+			},
+			"text": " not have seen that before, but basically these repeat themselves all the time. Cisco pointer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:08,040",
+				"to": "00:31:13,560"
+			},
+			"offsets": {
+				"from": 1868040,
+				"to": 1873560
+			},
+			"text": " person pointer, and rich checkpointer. We're interacting with the memory here. So we are talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,560",
+				"to": "00:31:19,880"
+			},
+			"offsets": {
+				"from": 1873560,
+				"to": 1879880
+			},
+			"text": " that these are pointers actually to a felt and to a structure called has built it. No problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:19,880",
+				"to": "00:31:25,320"
+			},
+			"offsets": {
+				"from": 1879880,
+				"to": 1885320
+			},
+			"text": " No, we don't need to get that. That is something that we're repeating in each function. It doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:25,320",
+				"to": "00:31:33,000"
+			},
+			"offsets": {
+				"from": 1885320,
+				"to": 1893000
+			},
+			"text": " matter. The real use is here. So we're asking here for an explicit argument that is the bolt counting."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:33,000",
+				"to": "00:31:40,600"
+			},
+			"offsets": {
+				"from": 1893000,
+				"to": 1900600
+			},
+			"text": " Sorry, sorry. We are asking for nothing here. It's empty. The inputs. And the output is this."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:40,600",
+				"to": "00:31:45,640"
+			},
+			"offsets": {
+				"from": 1900600,
+				"to": 1905640
+			},
+			"text": " A status, a variable called status, that is the bolt counting structure that we saw before."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:45,640",
+				"to": "00:31:52,120"
+			},
+			"offsets": {
+				"from": 1905640,
+				"to": 1912120
+			},
+			"text": " Again, Kyrie's type is a type language. This helps for security. Any questions until now for this"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:52,120",
+				"to": "00:32:02,920"
+			},
+			"offsets": {
+				"from": 1912120,
+				"to": 1922920
+			},
+			"text": " function, for example? Yes. Yes. Yes. Again, you can read it. We can read from the gates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:02,920",
+				"to": "00:32:07,400"
+			},
+			"offsets": {
+				"from": 1922920,
+				"to": 1927400
+			},
+			"text": " both in status. This is the one that I was showing before. And currently, the bolts are"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:07,400",
+				"to": "00:32:15,320"
+			},
+			"offsets": {
+				"from": 1927400,
+				"to": 1935320
+			},
+			"text": " yes or no? This is practically in the structure we have and define here. This one. Both yes, both no."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:15,320",
+				"to": "00:32:22,520"
+			},
+			"offsets": {
+				"from": 1935320,
+				"to": 1942520
+			},
+			"text": " Exactly the same here. Okay. So, yes, sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:22,520",
+				"to": "00:32:28,760"
+			},
+			"offsets": {
+				"from": 1942520,
+				"to": 1948760
+			},
+			"text": " You're using C-school."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:34,280",
+				"to": "00:32:39,560"
+			},
+			"offsets": {
+				"from": 1954280,
+				"to": 1959560
+			},
+			"text": " You can call, of course, these functions from another country. You can call them."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:39,560",
+				"to": "00:32:43,480"
+			},
+			"offsets": {
+				"from": 1959560,
+				"to": 1963480
+			},
+			"text": " And we'll go to the external functions that also allow you to write."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:43,480",
+				"to": "00:32:47,800"
+			},
+			"offsets": {
+				"from": 1963480,
+				"to": 1967800
+			},
+			"text": " Perfect. Okay. Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,880",
+				"to": "00:33:04,440"
+			},
+			"offsets": {
+				"from": 1979880,
+				"to": 1984440
+			},
+			"text": " Yes. That's what I was telling for. That is the implicit arguments. These arguments are passed"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:04,440",
+				"to": "00:33:10,360"
+			},
+			"offsets": {
+				"from": 1984440,
+				"to": 1990360
+			},
+			"text": " without you explicitly telling these functions that you have passed them. So, for example, when"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:10,360",
+				"to": "00:33:16,920"
+			},
+			"offsets": {
+				"from": 1990360,
+				"to": 1996920
+			},
+			"text": " we are reading from the storage, you have to provide these functions. Sorry, the pencil pointer"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:16,920",
+				"to": "00:33:21,800"
+			},
+			"offsets": {
+				"from": 1996920,
+				"to": 2001800
+			},
+			"text": " and the Cisco pointer, you have to provide them. And they go into the read function. So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:21,800",
+				"to": "00:33:27,080"
+			},
+			"offsets": {
+				"from": 2001800,
+				"to": 2007080
+			},
+			"text": " inside here are the implicit functions, implicit arguments. You don't see it because they're implicit."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:27,640",
+				"to": "00:33:29,640"
+			},
+			"offsets": {
+				"from": 2007640,
+				"to": 2009640
+			},
+			"text": " But..."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:29,640",
+				"to": "00:33:38,680"
+			},
+			"offsets": {
+				"from": 2009640,
+				"to": 2018680
+			},
+			"text": " Yes. Exactly. The implicit functions, if I take them off, they will have an error in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:38,680",
+				"to": "00:33:46,200"
+			},
+			"offsets": {
+				"from": 2018680,
+				"to": 2026200
+			},
+			"text": " controller. It's not hard to get used to them. And also, you can see each function that I am"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:46,200",
+				"to": "00:33:54,440"
+			},
+			"offsets": {
+				"from": 2026200,
+				"to": 2034440
+			},
+			"text": " adding here has them repeated. So, no problem with that. Okay. Also, we have an overview function"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:54,440",
+				"to": "00:34:02,120"
+			},
+			"offsets": {
+				"from": 2034440,
+				"to": 2042120
+			},
+			"text": " where we are getting the status of a voter. And just if you were simply reading into the voter"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:02,120",
+				"to": "00:34:08,280"
+			},
+			"offsets": {
+				"from": 2042120,
+				"to": 2048280
+			},
+			"text": " info, a storage variable that we have before, using the argument reads. So, now going deeper into"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:08,280",
+				"to": "00:34:15,000"
+			},
+			"offsets": {
+				"from": 2048280,
+				"to": 2055000
+			},
+			"text": " this, you can read and write from this storage function. In this case, we are reading. And as you"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:15,000",
+				"to": "00:34:21,720"
+			},
+			"offsets": {
+				"from": 2055000,
+				"to": 2061720
+			},
+			"text": " remember, this storage function asks us for arguments and the last precisely I felt. So, if we provided"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:21,720",
+				"to": "00:34:26,040"
+			},
+			"offsets": {
+				"from": 2061720,
+				"to": 2066040
+			},
+			"text": " the felt, then it will return us. Let's see. Once it returns."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:26,040",
+				"to": "00:34:34,680"
+			},
+			"offsets": {
+				"from": 2066040,
+				"to": 2074680
+			},
+			"text": " Yes. If we provide an address, it will return us a voter info structure. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,680",
+				"to": "00:34:42,600"
+			},
+			"offsets": {
+				"from": 2074680,
+				"to": 2082600
+			},
+			"text": " So, here I'm reading from it. And then we're returning it simply as that. Status equals status"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:42,600",
+				"to": "00:34:51,240"
+			},
+			"offsets": {
+				"from": 2082600,
+				"to": 2091240
+			},
+			"text": " because the name of the variable here is a status. And to see an example of how to write,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:52,120",
+				"to": "00:34:58,280"
+			},
+			"offsets": {
+				"from": 2092120,
+				"to": 2098280
+			},
+			"text": " this is exactly the same, the same storage variable that we saw before, voter info. We were able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:58,280",
+				"to": "00:35:05,160"
+			},
+			"offsets": {
+				"from": 2098280,
+				"to": 2105160
+			},
+			"text": " read from it if we are imputing with the address. And we know, we now know that it returns and"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:05,160",
+				"to": "00:35:11,880"
+			},
+			"offsets": {
+				"from": 2105160,
+				"to": 2111880
+			},
+			"text": " struct. Okay. So, now we can write using the argument write, we can write on it. So, we're writing"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:11,880",
+				"to": "00:35:18,600"
+			},
+			"offsets": {
+				"from": 2111880,
+				"to": 2118600
+			},
+			"text": " on the storage of our contract. And right now, this is basically an address. We will go deeper in"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:18,600",
+				"to": "00:35:25,080"
+			},
+			"offsets": {
+				"from": 2118600,
+				"to": 2125080
+			},
+			"text": " a moment over it, but this is an address. And we're telling it for this address, please map"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:25,080",
+				"to": "00:35:33,960"
+			},
+			"offsets": {
+				"from": 2125080,
+				"to": 2133960
+			},
+			"text": " this struct. Okay. Very similar to how you look at it in solid. Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:33,960",
+				"to": "00:35:46,200"
+			},
+			"offsets": {
+				"from": 2133960,
+				"to": 2146200
+			},
+			"text": " Message dot sender is, I think we have it here, get color address. With this, we are getting the"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:46,200",
+				"to": "00:35:52,200"
+			},
+			"offsets": {
+				"from": 2146200,
+				"to": 2152200
+			},
+			"text": " address of the, of the contract that is calling this, this contract. So, for example, in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:52,200",
+				"to": "00:35:58,440"
+			},
+			"offsets": {
+				"from": 2152200,
+				"to": 2158440
+			},
+			"text": " this is the most important function is the bolt function. So, what it does is simply,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:58,440",
+				"to": "00:36:05,400"
+			},
+			"offsets": {
+				"from": 2158440,
+				"to": 2165400
+			},
+			"text": " it's getting the address of the color, it's storing it. And then, we'll be doing the information of"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:05,400",
+				"to": "00:36:09,560"
+			},
+			"offsets": {
+				"from": 2165400,
+				"to": 2169560
+			},
+			"text": " this person to see if this person has already bought or not, because we can only allow them"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:09,560",
+				"to": "00:36:17,720"
+			},
+			"offsets": {
+				"from": 2169560,
+				"to": 2177720
+			},
+			"text": " if they have bought it. And just, in a moment, we will go into that."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:17,720",
+				"to": "00:36:26,440"
+			},
+			"offsets": {
+				"from": 2177720,
+				"to": 2186440
+			},
+			"text": " How could you repeat the question a little bit louder, please?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:26,440",
+				"to": "00:36:30,120"
+			},
+			"offsets": {
+				"from": 2186440,
+				"to": 2190120
+			},
+			"text": " How do you handle a variable? A variable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:33,160",
+				"to": "00:36:40,280"
+			},
+			"offsets": {
+				"from": 2193160,
+				"to": 2200280
+			},
+			"text": " Like an address. There's no notion of MSG dot value in start net, because there's no native"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:40,280",
+				"to": "00:36:45,560"
+			},
+			"offsets": {
+				"from": 2200280,
+				"to": 2205560
+			},
+			"text": " currency. Everything's in your C20. So, there's no value attached to a call. There's no,"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:45,560",
+				"to": "00:36:49,320"
+			},
+			"offsets": {
+				"from": 2205560,
+				"to": 2209320
+			},
+			"text": " and there's no payable function. Did I answer your question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:49,320",
+				"to": "00:37:01,880"
+			},
+			"offsets": {
+				"from": 2209320,
+				"to": 2221880
+			},
+			"text": " Okay. So, so, yes, so let's go quickly into the most important function, the most important"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:01,880",
+				"to": "00:37:08,200"
+			},
+			"offsets": {
+				"from": 2221880,
+				"to": 2228200
+			},
+			"text": " functions, the register bolters. And this will help me to talk a little bit more about recursion"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:08,200",
+				"to": "00:37:14,120"
+			},
+			"offsets": {
+				"from": 2228200,
+				"to": 2234120
+			},
+			"text": " that we use in Cairo. So, again, as you can see, we have the implicit arguments as always."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:14,120",
+				"to": "00:37:19,320"
+			},
+			"offsets": {
+				"from": 2234120,
+				"to": 2239320
+			},
+			"text": " And then we are asking for two explicit arguments. The register address lane,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:19,320",
+				"to": "00:37:28,760"
+			},
+			"offsets": {
+				"from": 2239320,
+				"to": 2248760
+			},
+			"text": " the length of an array, and the second value is the array itself. So, first argument is the length"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:28,760",
+				"to": "00:37:35,000"
+			},
+			"offsets": {
+				"from": 2248760,
+				"to": 2255000
+			},
+			"text": " of this array. The second argument is the array by itself. Then what we're doing here is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:35,000",
+				"to": "00:37:40,840"
+			},
+			"offsets": {
+				"from": 2255000,
+				"to": 2260840
+			},
+			"text": " and again, you can see all this contract in the repo I showed you before, it's in a started video."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:40,840",
+				"to": "00:37:49,720"
+			},
+			"offsets": {
+				"from": 2260840,
+				"to": 2269720
+			},
+			"text": " In case you are, you want to follow it closer in your houses. And then what we're doing here is"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:49,720",
+				"to": "00:37:55,960"
+			},
+			"offsets": {
+				"from": 2269720,
+				"to": 2275960
+			},
+			"text": " simply, and this is a classic function of Cairo that is using recursion. So, right now, we don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:55,960",
+				"to": "00:38:01,320"
+			},
+			"offsets": {
+				"from": 2275960,
+				"to": 2281320
+			},
+			"text": " have force in Cairo, you have to use recursion. And this is a classic function for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:01,320",
+				"to": "00:38:09,400"
+			},
+			"offsets": {
+				"from": 2281320,
+				"to": 2289400
+			},
+			"text": " What we're reviewing here is that this is the end of the recursion. So, if we have already passed"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:09,400",
+				"to": "00:38:14,760"
+			},
+			"offsets": {
+				"from": 2289400,
+				"to": 2294760
+			},
+			"text": " to every each of these different members of the array, that is, if the length is zero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:14,760",
+				"to": "00:38:18,040"
+			},
+			"offsets": {
+				"from": 2294760,
+				"to": 2298040
+			},
+			"text": " then we can return and the recursion is finished."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:22,120",
+				"to": "00:38:28,600"
+			},
+			"offsets": {
+				"from": 2302120,
+				"to": 2308600
+			},
+			"text": " Then here we're creating a small struct, the boater info. You remember we find the struct called"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:28,600",
+				"to": "00:38:36,920"
+			},
+			"offsets": {
+				"from": 2308600,
+				"to": 2316920
+			},
+			"text": " boater info. Here we are creating this botante info where we have this new boater info. So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:36,920",
+				"to": "00:38:42,120"
+			},
+			"offsets": {
+				"from": 2316920,
+				"to": 2322120
+			},
+			"text": " I'm saying here that allow is equal one, it could be zero, for example. So, this function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:42,120",
+				"to": "00:38:46,440"
+			},
+			"offsets": {
+				"from": 2322120,
+				"to": 2326440
+			},
+			"text": " what it's doing is that each of the address that I'm providing, it will register them as boaters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:46,440",
+				"to": "00:38:54,360"
+			},
+			"offsets": {
+				"from": 2326440,
+				"to": 2334360
+			},
+			"text": " and we tell those that they are allowed to bolt. And then continuing a little bit with the recursion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:54,360",
+				"to": "00:39:01,720"
+			},
+			"offsets": {
+				"from": 2334360,
+				"to": 2341720
+			},
+			"text": " what we're doing here is writing into storage into the storage bar, I will register boater."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:01,720",
+				"to": "00:39:12,840"
+			},
+			"offsets": {
+				"from": 2341720,
+				"to": 2352840
+			},
+			"text": " Yes, this one, we're mapping, as you remember before, we're mapping another way to a number."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:12,840",
+				"to": "00:39:19,800"
+			},
+			"offsets": {
+				"from": 2352840,
+				"to": 2359800
+			},
+			"text": " So, this is an address, what we have here is this is the array, as you would do it in Python,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:19,800",
+				"to": "00:39:25,720"
+			},
+			"offsets": {
+				"from": 2359800,
+				"to": 2365720
+			},
+			"text": " for example, in our languages, you have the array and you can index to it using the square brackets."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:25,720",
+				"to": "00:39:31,960"
+			},
+			"offsets": {
+				"from": 2365720,
+				"to": 2371960
+			},
+			"text": " So, I'm indexing inside this array, this could be a number like one or two or five,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:31,960",
+				"to": "00:39:39,480"
+			},
+			"offsets": {
+				"from": 2371960,
+				"to": 2379480
+			},
+			"text": " depends on the number of address that we are adding. And then we will say that the value for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:39,480",
+				"to": "00:39:47,400"
+			},
+			"offsets": {
+				"from": 2379480,
+				"to": 2387400
+			},
+			"text": " address is one, we are simply mapping here. And then we come to the recursion part here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:47,400",
+				"to": "00:39:54,840"
+			},
+			"offsets": {
+				"from": 2387400,
+				"to": 2394840
+			},
+			"text": " we are reading again the same function, I'm providing the length, but this is a lower length."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:54,840",
+				"to": "00:39:58,440"
+			},
+			"offsets": {
+				"from": 2394840,
+				"to": 2398440
+			},
+			"text": " As you can see, if we have, for example, five different boaters, now we are providing it with four."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:58,440",
+				"to": "00:40:04,920"
+			},
+			"offsets": {
+				"from": 2398440,
+				"to": 2404920
+			},
+			"text": " And we are sending it with the register address. And then it will repeat, it will repeat,"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:04,920",
+				"to": "00:40:09,560"
+			},
+			"offsets": {
+				"from": 2404920,
+				"to": 2409560
+			},
+			"text": " until it passes through each of the different addresses and it is starting from the last one"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:09,560",
+				"to": "00:40:15,320"
+			},
+			"offsets": {
+				"from": 2409560,
+				"to": 2415320
+			},
+			"text": " up to the first ones. I know this looks a little bit crazy using recursion, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:15,320",
+				"to": "00:40:22,120"
+			},
+			"offsets": {
+				"from": 2415320,
+				"to": 2422120
+			},
+			"text": " it's no problem, you can get used to it. And I think that this will improve in the near future, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:22,120",
+				"to": "00:40:34,680"
+			},
+			"offsets": {
+				"from": 2422120,
+				"to": 2434680
+			},
+			"text": " That's a good question. The question is that what happens if you get into"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:34,680",
+				"to": "00:40:35,640"
+			},
+			"offsets": {
+				"from": 2434680,
+				"to": 2435640
+			},
+			"text": " anything in the recursion?"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:35,640",
+				"to": "00:40:44,840"
+			},
+			"offsets": {
+				"from": 2435640,
+				"to": 2444840
+			},
+			"text": " Okay, so there is an answer for today and an answer for tomorrow. But basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:44,840",
+				"to": "00:40:50,440"
+			},
+			"offsets": {
+				"from": 2444840,
+				"to": 2450440
+			},
+			"text": " there is a form of gas metering in Stagnet, just like in Ethereum. And if you reach a maximum"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:50,440",
+				"to": "00:40:56,520"
+			},
+			"offsets": {
+				"from": 2450440,
+				"to": 2456520
+			},
+			"text": " number of steps, the sequencer will reject your transaction. Today, you don't pay for"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:56,520",
+				"to": "00:41:02,360"
+			},
+			"offsets": {
+				"from": 2456520,
+				"to": 2462360
+			},
+			"text": " these kinds of transactions, they are just rejected. Tomorrow, it will be like a fake"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:02,360",
+				"to": "00:41:05,720"
+			},
+			"offsets": {
+				"from": 2462360,
+				"to": 2465720
+			},
+			"text": " transaction in Ethereum, you will pay fees for the execution that land nowhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:05,720",
+				"to": "00:41:17,000"
+			},
+			"offsets": {
+				"from": 2465720,
+				"to": 2477000
+			},
+			"text": " Okay, perfect. Any other questions for a moment? Okay, so simply we have a recursion function here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:17,000",
+				"to": "00:41:21,080"
+			},
+			"offsets": {
+				"from": 2477000,
+				"to": 2481080
+			},
+			"text": " again, it's not a card and it will improve. We're talking that Cairo is a low-level"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:21,080",
+				"to": "00:41:24,440"
+			},
+			"offsets": {
+				"from": 2481080,
+				"to": 2484440
+			},
+			"text": " language and we have to be very honest and conscious about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:24,440",
+				"to": "00:41:32,280"
+			},
+			"offsets": {
+				"from": 2484440,
+				"to": 2492280
+			},
+			"text": " And finally, let's go to the last function. That is the both-in function. This will allow us"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:32,280",
+				"to": "00:41:35,960"
+			},
+			"offsets": {
+				"from": 2492280,
+				"to": 2495960
+			},
+			"text": " to call a function, as you can see here, it's an external function."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:35,960",
+				"to": "00:41:40,120"
+			},
+			"offsets": {
+				"from": 2495960,
+				"to": 2500120
+			},
+			"text": " External function simply means that we can write on the storage using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:40,120",
+				"to": "00:41:47,320"
+			},
+			"offsets": {
+				"from": 2500120,
+				"to": 2507320
+			},
+			"text": " Not only with it, but we can hear writing into the storage. Again, we have our implicit"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:47,320",
+				"to": "00:41:56,840"
+			},
+			"offsets": {
+				"from": 2507320,
+				"to": 2516840
+			},
+			"text": " arguments. We have an explicit argument called bulk. And here, don't mind this part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:56,840",
+				"to": "00:42:01,960"
+			},
+			"offsets": {
+				"from": 2516840,
+				"to": 2521960
+			},
+			"text": " simply telling the memory that we will be using, the compiler that we will be using local variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:01,960",
+				"to": "00:42:07,000"
+			},
+			"offsets": {
+				"from": 2521960,
+				"to": 2527000
+			},
+			"text": " No, we don't need to go to that. We'll call it the possible function from"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:07,000",
+				"to": "00:42:10,760"
+			},
+			"offsets": {
+				"from": 2527000,
+				"to": 2530760
+			},
+			"text": " our principle in contracts, specifically the function called assert not post."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:10,760",
+				"to": "00:42:15,960"
+			},
+			"offsets": {
+				"from": 2530760,
+				"to": 2535960
+			},
+			"text": " It checks that if this country is post or not, if it posts, this person cannot vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:15,960",
+				"to": "00:42:22,120"
+			},
+			"offsets": {
+				"from": 2535960,
+				"to": 2542120
+			},
+			"text": " as in most that, then it get the color address. This was a question from before."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:22,120",
+				"to": "00:42:27,560"
+			},
+			"offsets": {
+				"from": 2542120,
+				"to": 2547560
+			},
+			"text": " With this function, we can get the address of this color. We store it inside a color function."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:28,440",
+				"to": "00:42:33,480"
+			},
+			"offsets": {
+				"from": 2548440,
+				"to": 2553480
+			},
+			"text": " Then we can read the information of this color of this address using the read"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:33,480",
+				"to": "00:42:37,640"
+			},
+			"offsets": {
+				"from": 2553480,
+				"to": 2557640
+			},
+			"text": " argument from this storage Bible. Let's store it in the info."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:37,640",
+				"to": "00:42:45,880"
+			},
+			"offsets": {
+				"from": 2557640,
+				"to": 2565880
+			},
+			"text": " And then we are simply reviewing if this person can vote or not. If they have a low zero, then they"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:45,880",
+				"to": "00:42:55,800"
+			},
+			"offsets": {
+				"from": 2565880,
+				"to": 2575800
+			},
+			"text": " cannot vote. Then we're creating a new border info struct that it says that this person has"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:55,800",
+				"to": "00:43:02,440"
+			},
+			"offsets": {
+				"from": 2575800,
+				"to": 2582440
+			},
+			"text": " already votes because we are wanting to vote again. We are writing on the storage here."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:02,440",
+				"to": "00:43:09,640"
+			},
+			"offsets": {
+				"from": 2582440,
+				"to": 2589640
+			},
+			"text": " Everything here, we already know that. And finally, we are updating the status of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:09,640",
+				"to": "00:43:14,600"
+			},
+			"offsets": {
+				"from": 2589640,
+				"to": 2594600
+			},
+			"text": " votes with the vote of this person. If this person voted yes or zero in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:14,600",
+				"to": "00:43:21,080"
+			},
+			"offsets": {
+				"from": 2594600,
+				"to": 2601080
+			},
+			"text": " then it will update that with zero. The count with zero and if they voted yes, in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:21,080",
+				"to": "00:43:26,280"
+			},
+			"offsets": {
+				"from": 2601080,
+				"to": 2606280
+			},
+			"text": " one, for example, then it will be updated. The count will be updated with a sum that we have here."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:26,280",
+				"to": "00:43:36,280"
+			},
+			"offsets": {
+				"from": 2606280,
+				"to": 2616280
+			},
+			"text": " And finally, we are updating the final status of our update, the story of our voting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:36,280",
+				"to": "00:43:43,640"
+			},
+			"offsets": {
+				"from": 2616280,
+				"to": 2623640
+			},
+			"text": " and storing it into the storage. As you can see, this function is scheme. And if we go to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:43,640",
+				"to": "00:43:50,680"
+			},
+			"offsets": {
+				"from": 2623640,
+				"to": 2630680
+			},
+			"text": " deployed contract, we go to the right contract. And then I can vote. In this case, this is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:50,680",
+				"to": "00:43:58,200"
+			},
+			"offsets": {
+				"from": 2630680,
+				"to": 2638200
+			},
+			"text": " function. I don't remember where the rest I think. So I will go to my Bible's"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:58,200",
+				"to": "00:44:04,200"
+			},
+			"offsets": {
+				"from": 2638200,
+				"to": 2644200
+			},
+			"text": " writing here. I was in my argument before. And let's see if it allows me to vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:06,520",
+				"to": "00:44:14,520"
+			},
+			"offsets": {
+				"from": 2646520,
+				"to": 2654520
+			},
+			"text": " So I will vote with M1. And I will be able to sign this transaction because this address is"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:14,520",
+				"to": "00:44:21,800"
+			},
+			"offsets": {
+				"from": 2654520,
+				"to": 2661800
+			},
+			"text": " registered to vote. I did when I deployed it. And right now, this is the transaction cache,"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:21,800",
+				"to": "00:44:27,640"
+			},
+			"offsets": {
+				"from": 2661800,
+				"to": 2667640
+			},
+			"text": " and we have to wait for a test to process this, and we will have our vote. Now, how can you deploy"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:27,640",
+				"to": "00:44:32,760"
+			},
+			"offsets": {
+				"from": 2667640,
+				"to": 2672760
+			},
+			"text": " this contract? You can deploy it using the common line tools by starting it. Or also,"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:32,760",
+				"to": "00:44:38,520"
+			},
+			"offsets": {
+				"from": 2672760,
+				"to": 2678520
+			},
+			"text": " and my preferred way is to use protostar. Protostar is a tool created in the image of Foundry."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:38,520",
+				"to": "00:44:44,280"
+			},
+			"offsets": {
+				"from": 2678520,
+				"to": 2684280
+			},
+			"text": " It has the best practices from Foundry, and also some from Harkat, sorry, from Profel."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:44,280",
+				"to": "00:44:51,320"
+			},
+			"offsets": {
+				"from": 2684280,
+				"to": 2691320
+			},
+			"text": " So it's very interesting to help us to test, but also to deploy. So if I go right now to my common line."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:51,320",
+				"to": "00:45:06,840"
+			},
+			"offsets": {
+				"from": 2691320,
+				"to": 2706840
+			},
+			"text": " This is how deploying this contract looks like. So basically, I'm saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:06,840",
+				"to": "00:45:12,920"
+			},
+			"offsets": {
+				"from": 2706840,
+				"to": 2712920
+			},
+			"text": " I'm telling you protostar deploy this contract that is all very compiled by this moment. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:12,920",
+				"to": "00:45:18,280"
+			},
+			"offsets": {
+				"from": 2712920,
+				"to": 2718280
+			},
+			"text": " what I want you to notice here is about the inputs. We talked before about the constructor"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:18,280",
+				"to": "00:45:25,240"
+			},
+			"offsets": {
+				"from": 2718280,
+				"to": 2725240
+			},
+			"text": " accepting three different inputs. First one is the owner, the admin of this voting. Second is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:25,240",
+				"to": "00:45:30,280"
+			},
+			"offsets": {
+				"from": 2725240,
+				"to": 2730280
+			},
+			"text": " number of persons of registered addresses that can vote. And finally, the actual addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:30,280",
+				"to": "00:45:36,760"
+			},
+			"offsets": {
+				"from": 2730280,
+				"to": 2736760
+			},
+			"text": " So this is how they look. This one, as you can see, is a hexa value, and this is the address that"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:36,760",
+				"to": "00:45:42,760"
+			},
+			"offsets": {
+				"from": 2736760,
+				"to": 2742760
+			},
+			"text": " is the owner of this contract. Then only one person or one address can vote. This one."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:43,560",
+				"to": "00:45:50,520"
+			},
+			"offsets": {
+				"from": 2743560,
+				"to": 2750520
+			},
+			"text": " And we can simply deploy it. Run it like this. Protostar is very good. It has amazing"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:50,520",
+				"to": "00:45:54,920"
+			},
+			"offsets": {
+				"from": 2750520,
+				"to": 2754920
+			},
+			"text": " testing functionalities, but you can also deploy your contracts. And that is simply the content"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:54,920",
+				"to": "00:46:02,440"
+			},
+			"offsets": {
+				"from": 2754920,
+				"to": 2762440
+			},
+			"text": " that we deploy here. And as we can see, we already voted. If I go to read contracts, we should get"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:02,440",
+				"to": "00:46:09,480"
+			},
+			"offsets": {
+				"from": 2762440,
+				"to": 2769480
+			},
+			"text": " a voting step to where we had a vote with yes. We're number one, it updated, and zero still,"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:09,480",
+				"to": "00:46:15,960"
+			},
+			"offsets": {
+				"from": 2769480,
+				"to": 2775960
+			},
+			"text": " no, I could not vote again because, uh, I mean, directly, vertically, I should not be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:15,960",
+				"to": "00:46:26,520"
+			},
+			"offsets": {
+				"from": 2775960,
+				"to": 2786520
+			},
+			"text": " vote again. Let's see what happens. It should be a issue. It shouldn't pass right now, but let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:26,520",
+				"to": "00:46:32,440"
+			},
+			"offsets": {
+				"from": 2786520,
+				"to": 2792440
+			},
+			"text": " wait for it. So that will be the, the main part of the workshop. We have three minutes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:32,440",
+				"to": "00:46:45,880"
+			},
+			"offsets": {
+				"from": 2792440,
+				"to": 2805880
+			},
+			"text": " two more questions. Yes. The implicit right now, here, I don't have any, but they can change,"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:45,880",
+				"to": "00:46:53,240"
+			},
+			"offsets": {
+				"from": 2805880,
+				"to": 2813240
+			},
+			"text": " depending on what you're revealing. Can you think from scenario one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:57,720",
+				"to": "00:47:03,080"
+			},
+			"offsets": {
+				"from": 2817720,
+				"to": 2823080
+			},
+			"text": " Every time they're used, basically, it's a bit of a deep question. The workshop is about to finish."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:03,080",
+				"to": "00:47:07,000"
+			},
+			"offsets": {
+				"from": 2823080,
+				"to": 2827000
+			},
+			"text": " If you want, let's meet outside and we'll, we'll give you a more definitive answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:07,000",
+				"to": "00:47:09,480"
+			},
+			"offsets": {
+				"from": 2827000,
+				"to": 2829480
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:09,480",
+				"to": "00:47:19,560"
+			},
+			"offsets": {
+				"from": 2829480,
+				"to": 2839560
+			},
+			"text": " I think you have an old message here. Hey, will I look for it? Any other question in the meantime?"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:19,560",
+				"to": "00:47:24,840"
+			},
+			"offsets": {
+				"from": 2839560,
+				"to": 2844840
+			},
+			"text": " I have a question for the audience. Before we wrap the workshop up, can we get just get a quick"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:24,840",
+				"to": "00:47:31,480"
+			},
+			"offsets": {
+				"from": 2844840,
+				"to": 2851480
+			},
+			"text": " show of them who learned something during the workshop? Cool. Who thought this was too difficult?"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:31,480",
+				"to": "00:47:40,280"
+			},
+			"offsets": {
+				"from": 2851480,
+				"to": 2860280
+			},
+			"text": " Who thought this was too easy? Okay, fine. So that is great. This means this was spot on."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:40,280",
+				"to": "00:47:46,360"
+			},
+			"offsets": {
+				"from": 2860280,
+				"to": 2866360
+			},
+			"text": " Those of you who still are angry, don't hesitate. Ask us question. Come on our Discord. Go on our"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:46,360",
+				"to": "00:47:52,520"
+			},
+			"offsets": {
+				"from": 2866360,
+				"to": 2872520
+			},
+			"text": " resources. Look at what we do. As, as Omar mentioned, like most of these things, the paradigm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:53,080",
+				"to": "00:47:57,240"
+			},
+			"offsets": {
+				"from": 2873080,
+				"to": 2877240
+			},
+			"text": " you're used to that. You're used to how you write smart contracts, how you deal with"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:57,240",
+				"to": "00:48:01,720"
+			},
+			"offsets": {
+				"from": 2877240,
+				"to": 2881720
+			},
+			"text": " callers and stuff like that. This syntax is a bit different. The tooling is a bit different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:01,720",
+				"to": "00:48:08,040"
+			},
+			"offsets": {
+				"from": 2881720,
+				"to": 2888040
+			},
+			"text": " but you can and will master Cairo. This is just a matter of just like trying. And this will give"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:08,040",
+				"to": "00:48:13,800"
+			},
+			"offsets": {
+				"from": 2888040,
+				"to": 2893800
+			},
+			"text": " this tool will give you extreme power in your blockchain applications. So if you're looking to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:13,800",
+				"to": "00:48:19,800"
+			},
+			"offsets": {
+				"from": 2893800,
+				"to": 2899800
+			},
+			"text": " more, to do more and go beyond what you can do with the EVM and invite you like, do take a look."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:19,800",
+				"to": "00:48:25,080"
+			},
+			"offsets": {
+				"from": 2899800,
+				"to": 2905080
+			},
+			"text": " Really is powerful and will let you build super cool stuff. And again, this is the QR to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:25,080",
+				"to": "00:48:30,600"
+			},
+			"offsets": {
+				"from": 2905080,
+				"to": 2910600
+			},
+			"text": " educational resources. You want to look at them. We will have a boot on Thursday and Friday. You"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:30,600",
+				"to": "00:48:36,520"
+			},
+			"offsets": {
+				"from": 2910600,
+				"to": 2916520
+			},
+			"text": " can ask any questions. Come with us. And finally regarding the question, the error messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:36,520",
+				"to": "00:48:45,080"
+			},
+			"offsets": {
+				"from": 2916520,
+				"to": 2925080
+			},
+			"text": " this is how they look. So if this assertion, true or false, fails, then it will print this mistake."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:45,960",
+				"to": "00:48:49,800"
+			},
+			"offsets": {
+				"from": 2925960,
+				"to": 2929800
+			},
+			"text": " What do we need? Thank you. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:49,800",
+				"to": "00:49:01,640"
+			},
+			"offsets": {
+				"from": 2929800,
+				"to": 2941640
+			},
+			"text": " Well, it depends on the wallet. Let's see, for example, this case, a certain lounge."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:01,640",
+				"to": "00:49:08,200"
+			},
+			"offsets": {
+				"from": 2941640,
+				"to": 2948200
+			},
+			"text": " So what your question is, what does an error message look like from the browser perspective?"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:08,200",
+				"to": "00:49:14,600"
+			},
+			"offsets": {
+				"from": 2948200,
+				"to": 2954600
+			},
+			"text": " Essentially, you'll get a failed transaction like you do on Ethereum. And the trace, like the way it"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:14,600",
+				"to": "00:49:19,000"
+			},
+			"offsets": {
+				"from": 2954600,
+				"to": 2959000
+			},
+			"text": " shows up, is kind of ugly, to be honest. It's still very rough around the edges. There's a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:19,000",
+				"to": "00:49:22,840"
+			},
+			"offsets": {
+				"from": 2959000,
+				"to": 2962840
+			},
+			"text": " info that is not necessarily relevant to you. But the message, the error message will appear"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:22,840",
+				"to": "00:49:29,000"
+			},
+			"offsets": {
+				"from": 2962840,
+				"to": 2969000
+			},
+			"text": " somewhere and you'll be able to know where the error is from. In general, this thing works and"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:29,000",
+				"to": "00:49:33,640"
+			},
+			"offsets": {
+				"from": 2969000,
+				"to": 2973640
+			},
+			"text": " this feels scale, this thing scales Ethereum right now. It's a bit rough around the edges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:33,640",
+				"to": "00:49:39,880"
+			},
+			"offsets": {
+				"from": 2973640,
+				"to": 2979880
+			},
+			"text": " meaning that it's not all pretty. There's a lot of info or not enough, but it works. And that's cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:42,120",
+				"to": "00:49:46,120"
+			},
+			"offsets": {
+				"from": 2982120,
+				"to": 2986120
+			},
+			"text": " This is how the error looks like. As you can see, that's the main"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:46,120",
+				"to": "00:49:51,560"
+			},
+			"offsets": {
+				"from": 2986120,
+				"to": 2991560
+			},
+			"text": " message that we saw before in the error. The exploring info, your address is not a loud bot."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:51,560",
+				"to": "00:49:56,520"
+			},
+			"offsets": {
+				"from": 2991560,
+				"to": 2996520
+			},
+			"text": " All right, and we will have a booth. Please feel free to ask any questions and thank you very much"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:56,520",
+				"to": "00:50:02,760"
+			},
+			"offsets": {
+				"from": 2996520,
+				"to": 3002760
+			},
+			"text": " for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:02,760",
+				"to": "00:50:09,080"
+			},
+			"offsets": {
+				"from": 3002760,
+				"to": 3009080
+			},
+			"text": " [silence]"
+		}
+	]
+}

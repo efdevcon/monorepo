@@ -1,0 +1,4058 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 14000
+			},
+			"text": " >> Here we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 15000
+			},
+			"text": " Hi everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 18000
+			},
+			"text": " My name is Ejigalano."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 22000
+			},
+			"text": " I'm one of the co-founders and the general manager for Inferre."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 26000
+			},
+			"text": " I'm joined today with my colleague, Tim Myers, one of our lead engineers at Inferre."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31000
+			},
+			"text": " So, you've seen the title of the talk. You might have caught our announcement that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 35000
+			},
+			"text": " East Berlin a month ago, we're here to talk about decentralizing Inferre."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 40000
+			},
+			"text": " It's something that's been on the Twitter waves and crypto Twitter for years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 44000
+			},
+			"text": " Something that people ask us about all the time, like is Inferre centralized?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 48000
+			},
+			"text": " How are you going to decentralize? Are you going to decentralize?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 52000
+			},
+			"text": " This is the talk where we answer quite a few of those questions for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 57000
+			},
+			"text": " We gave you a preview at East Berlin if you're able to see the recording from that talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 63000
+			},
+			"text": " This is going to go more into the details of the why behind it, the why now, what now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 69000
+			},
+			"text": " and especially the technical details that go into decentralizing Inferre."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 76000
+			},
+			"text": " So, Inferre was launched in 2016 with the sole purpose of providing utility for Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 78000
+			},
+			"text": " and IPFS developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 83000
+			},
+			"text": " It's something I say in all of my talks because I want to make it very clear that Inferre was always"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 88000
+			},
+			"text": " about the developers and making sure that developers that are building on Web 3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 93000
+			},
+			"text": " which for us was initially Ethereum and IPFS, could quickly get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 97000
+			},
+			"text": " And we did that at DevCon 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 102000
+			},
+			"text": " It was four of us from the Inferre team. We flew to DevCon at the time we were a small team"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 108000
+			},
+			"text": " within the larger consensus organization focused on trying to build something that would be useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 112000
+			},
+			"text": " And so we all went to this conference and we were saying that we were going to get up on that stage"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 116000
+			},
+			"text": " and say there's a lot of innovation that's happening in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 121000
+			},
+			"text": " We've created this new service called Inferre and it's a traditional SaaS service that you can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 123000
+			},
+			"text": " to connect to blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 126000
+			},
+			"text": " And we had a lot of apprehension about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 128000
+			},
+			"text": " Like what would the reception to that be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 131000
+			},
+			"text": " Because at the time we were all running our own infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 133000
+			},
+			"text": " We were all running our own nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 139000
+			},
+			"text": " There was very much a lot of interest in light clients, verifiability of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 145000
+			},
+			"text": " And we were saying don't run your own infrastructure, trust us to run your infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 150000
+			},
+			"text": " And so the reception at DevCon was a little mixed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 152000
+			},
+			"text": " Some people were like, okay, great, I'm going to use that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 155000
+			},
+			"text": " Other people said, but why would I want to do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 160000
+			},
+			"text": " I can just run my own node and it's going to sink in an hour and then I don't need you anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 165000
+			},
+			"text": " And so we said, well, that might be the case, but we're going to try it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 169000
+			},
+			"text": " Like we're just here to try to provide something useful and maybe it will be useful and maybe it won't be."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 174000
+			},
+			"text": " And so we went up on stage and we announced that we were going to be doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 181000
+			},
+			"text": " And then during DevCon 2, the Ethereum network was subjected to the denial of service attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 183000
+			},
+			"text": " that almost brought down the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 188000
+			},
+			"text": " And some of the many of the heroes that helped save the network from that are either in this room"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 193000
+			},
+			"text": " or are definitely at this conference, the people that helped mitigate the attacks on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 197000
+			},
+			"text": " And in FERAs role in that at the time was trying to keep our endpoint up"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 200000
+			},
+			"text": " that was already being used to serve MetaMask."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 207000
+			},
+			"text": " MetaMask had launched two, three months beforehand, and thousands of users were already using MetaMask"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 214000
+			},
+			"text": " every day to send Ether, do some basic interactions with some of the early maker contracts that were out there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 217000
+			},
+			"text": " some of the early experiments that were out there around that 2016 time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 222000
+			},
+			"text": " And we said, well, we can't do anything actively to fix that client."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 224000
+			},
+			"text": " We're not the protocol core developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 231000
+			},
+			"text": " The core developers are solving that problem, but there was already this issue where we were in Shanghai."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 235000
+			},
+			"text": " The Wi-Fi there was awful, even worse than at most conferences,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 240000
+			},
+			"text": " and nobody was able to get access to their infrastructure to update their clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 245000
+			},
+			"text": " once the actual client development teams had put out these updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 250000
+			},
+			"text": " And so our NFERA team was sitting there in the lobby of the hotel, updating our endpoints"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 254000
+			},
+			"text": " so that the thousands of users that were using MetaMask that might have been pointing MetaMask"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 260000
+			},
+			"text": " at their own infrastructure could use NFERA until their infrastructure came back online."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 264000
+			},
+			"text": " And so that started to highlight one of the value props that we saw,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 273000
+			},
+			"text": " which was by having this centralized point, we could simplify or try to eliminate a lot of the pain for these users"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 278000
+			},
+			"text": " by, yes, we'll take on this aspect of centralization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 280000
+			},
+			"text": " but for the most part it'll be beneficial."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 284000
+			},
+			"text": " And we said, we're going to keep doing that until it gets to the point where we feel like it's crossed a tipping point"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 287000
+			},
+			"text": " and we need to try to do things differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 294000
+			},
+			"text": " And when you look around the space, there's other points of centralization that have paths to decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 298000
+			},
+			"text": " Things like Fiat on ramps and centralized exchanges"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 306000
+			},
+			"text": " and how there's a transition from those to alternatives or decentralized, truly decentralized ways of doing the same operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 313000
+			},
+			"text": " My favorite example is when you talk about roll-ups and how initially roll-ups start as having a single entity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 320000
+			},
+			"text": " that's creating the roll-ups and the roll-up teams have a roadmap of how they will eventually get to being more decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 323000
+			},
+			"text": " So that's how we thought of ourselves as NFERA."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 331000
+			},
+			"text": " Start as centralized and we'll see when we get more decentralized and we're going to have a solution for how we do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 343000
+			},
+			"text": " And the reason is because we have to create quite a bit of proprietary infrastructure to serve the traffic that we've done over the last six, seven years."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 350000
+			},
+			"text": " What we run today as NFERA is far more complex than what we ran within 2016."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 359000
+			},
+			"text": " If you had tried to replicate what we had in 2016, maybe a month or two after we launched, you could do it within a week or two."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 367000
+			},
+			"text": " Now it would take you probably years to try to replicate the systems that we've had to build because between 2016 and now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 377000
+			},
+			"text": " we went through the 2017-2018 ICO bubble, the 2019 crypto winter, 2020 DeFi summer, all of the explosion of NFT growth."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 387000
+			},
+			"text": " And with every single one of those things, you might have run into an NFERA production incident, something that showed, oh, this didn't scale exactly right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 391000
+			},
+			"text": " And every time it didn't scale exactly right, we improved our system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 394000
+			},
+			"text": " And so it forced us to innovate every single time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 404000
+			},
+			"text": " Back in the day, we used to send requests directly to Ethereum nodes, and there was really no virtualization as we call it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 412000
+			},
+			"text": " Custom services that would handle the traffic because we didn't ever want to be in a position of providing the wrong data to you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 417000
+			},
+			"text": " because that would be really bad. That would be the end of our service if we ever provided you the wrong data like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 428000
+			},
+			"text": " And especially in 2021, we ran into this issue where we tried to be very conservative with how often we updated our clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 437000
+			},
+			"text": " because early on, the clients were a little bit bleeding edge and a little bit unstable the closer you tracked to the latest release."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 445000
+			},
+			"text": " And because of that, users were complaining, like, maybe give us a little more stability, less of the absolutely latest client."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 455000
+			},
+			"text": " That ended up biting us in 2021 when we were running a client that was about six months old, and a bug was triggered by a team that I won't mention because it was an accident,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 463000
+			},
+			"text": " and they apologized to us. But it took down in fear for six hours, and that was our first multi-hour outage that we had ever had,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 468000
+			},
+			"text": " and still our worst outage that we've ever had. And so that really made us think, maybe that was the tipping point."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 475000
+			},
+			"text": " Maybe that's the point where we need to start considering now is the time to do things differently, because for us decentralization was always the plan."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 480000
+			},
+			"text": " We said we're going to get there. It's just not the first step in that plan."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 486000
+			},
+			"text": " We said that we are going to set out to prove that Web3 could be served by SAS."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 493000
+			},
+			"text": " We're going to say that we're going to run a SAS service, and that's going to be beneficial for the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 500000
+			},
+			"text": " And it's going to bring more developers in. It's going to bring in more investor interest, a lot of activities going to come into the space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 506000
+			},
+			"text": " because people will see, oh, I can actually make a living and support myself running a business in Web3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 513000
+			},
+			"text": " and at the time it wasn't very clear which models would work. And so now, in fear is not the only game in town."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 518000
+			},
+			"text": " There's dozens. They can't even fit on the screen anymore. And we feel like we've accomplished that goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 526000
+			},
+			"text": " We've proved that SAS works in Web3. And so now we want to prove that Web3 models can be used to serve SAS."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 531000
+			},
+			"text": " And that's what we took as our approach to decentralizing in fear, and that's where we are today."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 535000
+			},
+			"text": " And the first step to that is open collaboration and transparency."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 542000
+			},
+			"text": " We don't have the entire solution in a white paper form that we're going to upload to IPFS, and you're all going to read it right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 549000
+			},
+			"text": " Like, we're still in that design phase, but we've already started collaborating with other people in the ecosystem on that design."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 555000
+			},
+			"text": " We've been working on it for a year and a half. This is where we want to start showing you more of the technical details of what goes into that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 558000
+			},
+			"text": " What does decentralizing in fear look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 565000
+			},
+			"text": " People have said, \"Oh, are you just going to create a DAO so that we can have some governance over what in fear it does?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 573000
+			},
+			"text": " Is that good enough?\" Or is it some sort of utility function that we're going to try to have as part of this network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 578000
+			},
+			"text": " What are the incentives of participating? How do we incentivize the right behaviors?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 590000
+			},
+			"text": " And what people were especially asking was, does participating in this decentralized infrastructure network mean, like, in fear it still owns and controls everything?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 595000
+			},
+			"text": " And that's the biggest question that we got in the last month since we announced it, \"Eath Berlin.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 601000
+			},
+			"text": " And the answer to that's, \"No, that defeats the purpose of what we're saying with a decentralized infrastructure network.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 603000
+			},
+			"text": " That's supposed to be a permissionless network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 616000
+			},
+			"text": " So, in fear it's going to just be a partner in a decentralized permissionless network, one of an equal amount of, or one of equals in operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 623000
+			},
+			"text": " So, now I'm going to pass it over to my colleague Tim, and we're going to start sharing some of the technical details with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 625000
+			},
+			"text": " Thanks. Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 632000
+			},
+			"text": " Yeah, so as E.G. mentioned, we don't have all of the details of this figured out yet. We're still pretty deep in the design phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 638000
+			},
+			"text": " But the next 10 minutes, I'm going to try and walk you through as much as we have figured out right now as I can."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 641000
+			},
+			"text": " And then hopefully save about five minutes for any questions you all might have."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 648000
+			},
+			"text": " So, first I want to start with just a really high-level overview of what we see as the network participants in this decentralized and fear network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 655000
+			},
+			"text": " So, first of course you have your end user who wants to connect to a Web3 network. Maybe they just need to send a transaction to a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 662000
+			},
+			"text": " Maybe they need to read a bunch of data from it. Either way, they need some way to access the API that a blockchain node typically exposes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 668000
+			},
+			"text": " And so, the first participant to support that are the infrastructure providers, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 677000
+			},
+			"text": " And they're the ones that are going to actually be writing the blockchain nodes, all of the supporting infrastructure that makes that possible to allow for a high throughput of requests to send all the transactions to readers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 684000
+			},
+			"text": " So, you know, we're going to have a lot of different kinds of interactions to read historical data, all of those things that you typically do with a centralized provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 690000
+			},
+			"text": " And they'll provide the service in return for a reward, which is what's going to motivate them to want to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 699000
+			},
+			"text": " The next participant, we're calling the network status watchers. This party will provide performance and capability reports of the infrastructure providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 710000
+			},
+			"text": " You know, they'll see that they're keeping up with the head of the chain. They'll check that they're responding quickly, that their answers are accurate, all of the things that you would hope that an API does."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 721000
+			},
+			"text": " And finally, we have this concept of an ingress node. They kind of act as an intermediary. They will sell the actual network resources to users after purchasing them from the infrastructure providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 728000
+			},
+			"text": " And later, I'll also show how they're not entirely necessary, but they can provide a UX option that I think is useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 739000
+			},
+			"text": " So, more detail on the infrastructure providers. The first thing, of course, to note is that instead of now with just a single centralized provider, we'll have many of them, and they won't be run by a single party."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 744000
+			},
+			"text": " So, here we just have a little simple diagram. We have Inferra. We'll probably run one, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 753000
+			},
+			"text": " You'll also see other named providers that you're used to seeing that we hope will collaborate with us. And you might also have anonymous providers, so you never really know who they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 758000
+			},
+			"text": " But through the mechanisms of the network, you can come to trust that they are going to provide a good service."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 766000
+			},
+			"text": " So, these infrastructure providers, they commit to providing capacity on the network. They'll specify the protocols and capabilities that they support."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 775000
+			},
+			"text": " So, we envision this network working for Ethereum, but we also envision it supporting all of the sort of new networks that Inferra has added over the last couple of years."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 780000
+			},
+			"text": " The Layer 2s, New Layer 1s, but not every infrastructure provider is going to want to serve all of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 785000
+			},
+			"text": " So, they can pick and choose and specify what they want to support. They'll also say the capabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 791000
+			},
+			"text": " So, you might be used to having, you know, archive nodes for Ethereum, and then sometimes you need that, sometimes you don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 796000
+			},
+			"text": " And running archive traffic is a lot harder. So, some providers might do that, some might not."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 801000
+			},
+			"text": " They'll also give an idea of the amount of throughput that they're capable of specifying."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 806000
+			},
+			"text": " This may take a couple of different shapes, but, you know, you can think of it as like a thousand requests per minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 811000
+			},
+			"text": " When someone registers as a provider, they're saying, \"I can support this much,\" and so that people can then buy that back."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 814000
+			},
+			"text": " And, of course, they'll be compensated for doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 820000
+			},
+			"text": " I want to talk a little bit about what it actually looks to be a node provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 826000
+			},
+			"text": " And so, this is a diagram of what Inferra does and what other big centralized providers do."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 830000
+			},
+			"text": " It's complicated. As EGC said, it's become much more complicated since 2016."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 833000
+			},
+			"text": " To start, of course, you have your blockchain nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 837000
+			},
+			"text": " These are the ones that are produced by the client teams that interact with a peer-to-peer network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 840000
+			},
+			"text": " that sync blocks, that verify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 843000
+			},
+			"text": " But there's a lot of supporting infrastructure around that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 845000
+			},
+			"text": " So, first, we have a snapshot system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 849000
+			},
+			"text": " If you've ever tried to sync a node, you'll know that it takes a very long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 854000
+			},
+			"text": " So, we typically take the disk of a blockchain node, save it to our own private secure storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 859000
+			},
+			"text": " And then when we need a horizontal scale out those nodes, we use that as a seed for new blockchain nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 863000
+			},
+			"text": " So, it's downloaded onto a server, and then synced from there, which makes it much faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 866000
+			},
+			"text": " You also have various indexes and accelerators."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 872000
+			},
+			"text": " So, if you've ever tried to do like a big, wide Git logs query for events from a blockchain node, you'll know it's really slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 875000
+			},
+			"text": " So, we have special indexers to speed that up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 877000
+			},
+			"text": " Also for things like NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 883000
+			},
+			"text": " In front of that, you have a load balancer that makes the decision of what accelerators to send your requests to."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 886000
+			},
+			"text": " Maybe for just sending a transaction that goes directly to the nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 892000
+			},
+			"text": " And in front of all of that, we often have a consistency system that helps make sure that users see a canonical view of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 896000
+			},
+			"text": " So, this helps with reorgs to make those a little less painful for the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 901000
+			},
+			"text": " And also make sure that if they query a block, it doesn't change in between requests."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 905000
+			},
+			"text": " And this is something that is altogether quite complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 910000
+			},
+			"text": " There have been several projects out in open source land that have attempted to help with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 915000
+			},
+			"text": " I think most of them are, you know, more on just running the blockchain nodes, running several of those,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 918000
+			},
+			"text": " but to really provide good service, you need a lot more than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 926000
+			},
+			"text": " And we will be releasing our own open source infrastructure kit that node providers can use to help them participate in this network."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 928000
+			},
+			"text": " Of course, there's also going to be parties that already know what they're doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 934000
+			},
+			"text": " and will probably just run their own flavor of infrastructure to provide the same service in the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 936000
+			},
+			"text": " Next, we have the network status watchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 939000
+			},
+			"text": " Again, there's multiple of these run by different parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 944000
+			},
+			"text": " These will periodically test the infrastructure providers by sending them a small volume of requests."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 948000
+			},
+			"text": " They'll measure the performance and check for correctness of those responses."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 951000
+			},
+			"text": " They'll report all of this to a federated status page."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 956000
+			},
+			"text": " So, if you're thinking about using this network, you'll be able to go there, look through the different providers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 960000
+			},
+			"text": " see how they perform, what their capabilities are, all of those things."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 973000
+			},
+			"text": " And also in cases of provably incorrect responses, so there are certain requests on the Ethereum JSON RPC API that you could prove with Merkle proofs rather easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 978000
+			},
+			"text": " So, in those cases, those might also be used to inform penalties with the node providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 984000
+			},
+			"text": " And we hope over time as stateless clients start to improve, that there will be more and more of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 988000
+			},
+			"text": " API service that is verifiable."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 992000
+			},
+			"text": " A picture of what it looks like to run a network status watcher,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 996000
+			},
+			"text": " they will have to run some small amount of blockchain infrastructure themselves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:40,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 1000000
+			},
+			"text": " not nearly on the scale that an infrastructure provider would because they're not serving a high volume of requests,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 1000000,
+				"to": 1003000
+			},
+			"text": " but they need a baseline to compare to."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1007000
+			},
+			"text": " They want to check that the infrastructure providers are near what they think is the head of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1013000
+			},
+			"text": " And then, of course, they'll have all of these periodic tests that they're running to see if the providers are operating well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1021000
+			},
+			"text": " So, they interact with the infrastructure providers, they'll potentially send things to a smart contract on chain for those provably incorrect responses."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1028000
+			},
+			"text": " And then they will also send their results to a federated status page where it can be a more detailed information."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1030000
+			},
+			"text": " And then last, we have the Ingress node."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1035000
+			},
+			"text": " So, as I mentioned, this kind of serves as an intermediary between the end user and the infrastructure provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1039000
+			},
+			"text": " So, an end user will send their JSON RPC request to an Ingress node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1044000
+			},
+			"text": " and then that Ingress node may then forward that to multiple different infrastructure providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1049000
+			},
+			"text": " Maybe they generally send it to one, and if that goes down, they have a fallback, maybe they round rob in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1053000
+			},
+			"text": " maybe they choose to actually send it to all of them and do a quorum of that and return it to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1058000
+			},
+			"text": " This will be something that the Ingress node can actually choose how they want to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1067000
+			},
+			"text": " And one reason for having this Ingress node is that you can use it to give the same Web2 UX of the centralized providers today."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1071000
+			},
+			"text": " I think there's a reason that Infera and centralized providers have been so successful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1077000
+			},
+			"text": " it's provided an easy entry point for people to come and swipe their credit card and get access to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1084000
+			},
+			"text": " And that doesn't necessarily align with a decentralized ethos, but it's also brought a lot for people to our world."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1090000
+			},
+			"text": " And so, an Ingress node might allow users to actually pay them in Fiat and then give them API access,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1096000
+			},
+			"text": " but this will still have better results than the current model because they can then be sending the traffic to multiple infrastructure providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1098000
+			},
+			"text": " and get some of those benefits."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1104000
+			},
+			"text": " In addition to that, though, an Ingress node might purchase resources from several node providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1110000
+			},
+			"text": " and then register themselves as a node provider with the sort of, you know, the sum of all of that capacity."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1114000
+			},
+			"text": " And then an end user can go and pay for that provider in crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1117000
+			},
+			"text": " And then you have a fully crypto native experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1123000
+			},
+			"text": " So, there's options here. The node provider lets you do a lot of interesting things with combining other providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1128000
+			},
+			"text": " So, the on-chain registry is what we're typically calling our smart contract that kind of coordinates all of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1133000
+			},
+			"text": " And the main way to think about it is it's basically the data structure of your node providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1137000
+			},
+			"text": " So, we have a very simple example of what that kind of looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:02,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1142000
+			},
+			"text": " This is just one detail, but you have your name providers and the protocols that they're supporting."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1142000,
+				"to": 1150000
+			},
+			"text": " So, as Infera, maybe we're supporting the five that are listed here, but maybe operator A is on the supporting ETH and Polygon."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:15,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1155000
+			},
+			"text": " This is where you would also be able to see things like maybe what region they exist in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1155000,
+				"to": 1159000
+			},
+			"text": " whether they support archive nodes, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1163000
+			},
+			"text": " Again, it looks sort of the timeline of how this all operates."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1165000
+			},
+			"text": " So, first of course, the smart contract is deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:30,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1170000
+			},
+			"text": " Some amount of time later, your infrastructure providers come in and they register."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1170000,
+				"to": 1174000
+			},
+			"text": " They specify the protocols, the capabilities and the throughput that they'll support."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1179000
+			},
+			"text": " Some amount of time later, you'll have network watchers that will register."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1183000
+			},
+			"text": " They may only want to participate watching for certain protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1186000
+			},
+			"text": " Maybe they're only capable of checking certain capabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1192000
+			},
+			"text": " Maybe you have a watcher that can't check that an infrastructure provider can support archive access,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1197000
+			},
+			"text": " but they want to help with the near-head request and see that those are good for providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1201000
+			},
+			"text": " And then finally, you have your consumers who come in and purchase throughput."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1204000
+			},
+			"text": " So, that might be an end user who wants to go directly to a node provider,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1207000
+			},
+			"text": " or it could be an ingress node that wants to combine them."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:13,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1213000
+			},
+			"text": " And once you put all of that together, you get sort of what we view as our decentralized architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,000",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1213000,
+				"to": 1216000
+			},
+			"text": " So, in the center, you have the on-chain registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1221000
+			},
+			"text": " You have your network watchers, your infrastructure providers, your blockchain API consumers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1225000
+			},
+			"text": " and your ingress nodes that all will register with that on-chain registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1229000
+			},
+			"text": " And then once that's all set up, your blockchain API consumers can send their requests"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1234000
+			},
+			"text": " to the various infrastructure providers that they've chosen, or to an ingress node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1236000
+			},
+			"text": " which is sort of helping them do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:41,000"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1241000
+			},
+			"text": " And yeah, we hope once we have that all figured out that it'll give us a self-sustaining,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1241000,
+				"to": 1247000
+			},
+			"text": " reliable, and robust network of infrastructure providers that's built to really serve the high throughput"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1250000
+			},
+			"text": " that inferior can today or other centralized providers can today"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:20:54,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1254000
+			},
+			"text": " for all of the blockchain API requests that you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1254000,
+				"to": 1258000
+			},
+			"text": " But instead of what we have now, they'll remove a single point of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1264000
+			},
+			"text": " We hope to do this out in the open as much as possible and really follow that collaborative web-3 spirit."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:08,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1268000
+			},
+			"text": " This is, we hope, really going to improve reliability for the users"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,000",
+				"to": "00:21:12,000"
+			},
+			"offsets": {
+				"from": 1268000,
+				"to": 1272000
+			},
+			"text": " and get a lot closer to that kind of 100% uptime dream."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1272000,
+				"to": 1279000
+			},
+			"text": " But also, which I think is important, still provide the ability to have that really easy web-2 UX."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1281000
+			},
+			"text": " If you want it, we can also have the crypto native."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:23,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1283000
+			},
+			"text": " And yeah, that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,000",
+				"to": "00:21:28,000"
+			},
+			"offsets": {
+				"from": 1283000,
+				"to": 1288000
+			},
+			"text": " We're seeking strong web-3 infrastructure providers to work together with us."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,000",
+				"to": "00:21:31,000"
+			},
+			"offsets": {
+				"from": 1288000,
+				"to": 1291000
+			},
+			"text": " If you're interested in joining and participating in this network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,000",
+				"to": "00:21:32,380"
+			},
+			"offsets": {
+				"from": 1291000,
+				"to": 1292380
+			},
+			"text": " you can use the web-3"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,380",
+				"to": "00:21:34,000"
+			},
+			"offsets": {
+				"from": 1292380,
+				"to": 1294000
+			},
+			"text": " to help us with the work that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,000",
+				"to": "00:21:39,000"
+			},
+			"offsets": {
+				"from": 1294000,
+				"to": 1299000
+			},
+			"text": " And so, we're going to talk about the work that we have done with the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,000",
+				"to": "00:21:42,000"
+			},
+			"offsets": {
+				"from": 1299000,
+				"to": 1302000
+			},
+			"text": " And we're going to talk about the work that we have done with the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,000",
+				"to": "00:21:46,000"
+			},
+			"offsets": {
+				"from": 1302000,
+				"to": 1306000
+			},
+			"text": " And we're going to talk about the work that we have done with the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,000",
+				"to": "00:21:49,000"
+			},
+			"offsets": {
+				"from": 1306000,
+				"to": 1309000
+			},
+			"text": " And we're going to talk about the work that we have done with the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,000",
+				"to": "00:21:53,000"
+			},
+			"offsets": {
+				"from": 1309000,
+				"to": 1313000
+			},
+			"text": " And we're going to talk about the work that we have done with the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,000",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1313000,
+				"to": 1318000
+			},
+			"text": " And we're going to talk about the work that we have done with the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:22:01,000"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1321000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,000",
+				"to": "00:22:04,000"
+			},
+			"offsets": {
+				"from": 1321000,
+				"to": 1324000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,000",
+				"to": "00:22:06,000"
+			},
+			"offsets": {
+				"from": 1324000,
+				"to": 1326000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,000",
+				"to": "00:22:09,000"
+			},
+			"offsets": {
+				"from": 1326000,
+				"to": 1329000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,000",
+				"to": "00:22:12,000"
+			},
+			"offsets": {
+				"from": 1329000,
+				"to": 1332000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,000",
+				"to": "00:22:14,000"
+			},
+			"offsets": {
+				"from": 1332000,
+				"to": 1334000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,000",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1334000,
+				"to": 1336000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1338000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1340000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1342000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1345000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:28,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1348000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,000",
+				"to": "00:22:30,000"
+			},
+			"offsets": {
+				"from": 1348000,
+				"to": 1350000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,000",
+				"to": "00:22:33,000"
+			},
+			"offsets": {
+				"from": 1350000,
+				"to": 1353000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,000",
+				"to": "00:22:35,000"
+			},
+			"offsets": {
+				"from": 1353000,
+				"to": 1355000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,000",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1355000,
+				"to": 1357000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:39,000"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1359000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,000",
+				"to": "00:22:41,000"
+			},
+			"offsets": {
+				"from": 1359000,
+				"to": 1361000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1361000,
+				"to": 1363000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:45,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1365000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,000",
+				"to": "00:22:47,000"
+			},
+			"offsets": {
+				"from": 1365000,
+				"to": 1367000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,000",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1367000,
+				"to": 1369000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:51,000"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1371000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1371000,
+				"to": 1373000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1375000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:22:57,000"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1377000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,000",
+				"to": "00:22:59,000"
+			},
+			"offsets": {
+				"from": 1377000,
+				"to": 1379000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,000",
+				"to": "00:23:01,000"
+			},
+			"offsets": {
+				"from": 1379000,
+				"to": 1381000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,000",
+				"to": "00:23:03,000"
+			},
+			"offsets": {
+				"from": 1381000,
+				"to": 1383000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,000",
+				"to": "00:23:05,000"
+			},
+			"offsets": {
+				"from": 1383000,
+				"to": 1385000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,000",
+				"to": "00:23:07,000"
+			},
+			"offsets": {
+				"from": 1385000,
+				"to": 1387000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,000",
+				"to": "00:23:09,000"
+			},
+			"offsets": {
+				"from": 1387000,
+				"to": 1389000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1389000,
+				"to": 1391000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:13,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1393000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1393000,
+				"to": 1395000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:17,000"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1397000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,000",
+				"to": "00:23:19,000"
+			},
+			"offsets": {
+				"from": 1397000,
+				"to": 1399000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,000",
+				"to": "00:23:21,000"
+			},
+			"offsets": {
+				"from": 1399000,
+				"to": 1401000
+			},
+			"text": " And we're going to talk about the web-3."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1401000,
+				"to": 1407000
+			},
+			"text": " So a user can, like, a very technical user that wants to be in control of that can say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:29,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1409000
+			},
+			"text": " \"This provider's coming from this region.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,000",
+				"to": "00:23:31,000"
+			},
+			"offsets": {
+				"from": 1409000,
+				"to": 1411000
+			},
+			"text": " Or, \"This provider's coming from that region.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,000",
+				"to": "00:23:35,000"
+			},
+			"offsets": {
+				"from": 1411000,
+				"to": 1415000
+			},
+			"text": " And this is their performance and makes selection criteria of how their traffic gets routed."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1415000,
+				"to": 1419000
+			},
+			"text": " Or they can pick their level of decentralization and ease of use"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:44,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1424000
+			},
+			"text": " by going through an ingress operator that can make those routing decisions on their behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,000",
+				"to": "00:23:50,000"
+			},
+			"offsets": {
+				"from": 1424000,
+				"to": 1430000
+			},
+			"text": " Can you give an example of what the centralized infrastructure currently looks like"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,000",
+				"to": "00:23:53,000"
+			},
+			"offsets": {
+				"from": 1430000,
+				"to": 1433000
+			},
+			"text": " in terms of, like, number of servers and bandwidth and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,000",
+				"to": "00:23:58,000"
+			},
+			"offsets": {
+				"from": 1433000,
+				"to": 1438000
+			},
+			"text": " And what you expect will be when it's decentralized, will there be overhead, will it need more servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,000",
+				"to": "00:24:01,000"
+			},
+			"offsets": {
+				"from": 1438000,
+				"to": 1441000
+			},
+			"text": " to do the same performance, that kind of thing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,000",
+				"to": "00:24:04,000"
+			},
+			"offsets": {
+				"from": 1441000,
+				"to": 1444000
+			},
+			"text": " By number of servers, are you talking about in-fears current?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,000",
+				"to": "00:24:05,000"
+			},
+			"offsets": {
+				"from": 1444000,
+				"to": 1445000
+			},
+			"text": " Currents, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,000",
+				"to": "00:24:12,000"
+			},
+			"offsets": {
+				"from": 1445000,
+				"to": 1452000
+			},
+			"text": " Dozens of subsystems, hundreds of different instances or servers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,000",
+				"to": "00:24:14,000"
+			},
+			"offsets": {
+				"from": 1452000,
+				"to": 1454000
+			},
+			"text": " providing different types of functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,000",
+				"to": "00:24:19,000"
+			},
+			"offsets": {
+				"from": 1454000,
+				"to": 1459000
+			},
+			"text": " So, like, we have a separate subsystem that all it does is index event logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,000",
+				"to": "00:24:25,000"
+			},
+			"offsets": {
+				"from": 1459000,
+				"to": 1465000
+			},
+			"text": " And when you query events from, like, ERC20 token events and things like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,000",
+				"to": "00:24:27,000"
+			},
+			"offsets": {
+				"from": 1465000,
+				"to": 1467000
+			},
+			"text": " it's pulling from that subsystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,000",
+				"to": "00:24:31,000"
+			},
+			"offsets": {
+				"from": 1467000,
+				"to": 1471000
+			},
+			"text": " And then we have this consistency system that tries to keep all of that in sync"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,000",
+				"to": "00:24:34,000"
+			},
+			"offsets": {
+				"from": 1471000,
+				"to": 1474000
+			},
+			"text": " when you're querying one subsystem versus another."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,000",
+				"to": "00:24:39,000"
+			},
+			"offsets": {
+				"from": 1474000,
+				"to": 1479000
+			},
+			"text": " So, that's the challenge that we've had is we built that as quickly as possible to solve problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,000",
+				"to": "00:24:42,000"
+			},
+			"offsets": {
+				"from": 1479000,
+				"to": 1482000
+			},
+			"text": " and it's very proprietary, cloud-specific."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,000",
+				"to": "00:24:48,000"
+			},
+			"offsets": {
+				"from": 1482000,
+				"to": 1488000
+			},
+			"text": " And we've been working on how do we retool that so that it's something that can be not just open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,000",
+				"to": "00:24:56,000"
+			},
+			"offsets": {
+				"from": 1488000,
+				"to": 1496000
+			},
+			"text": " and something that somebody else can run, but can run with, like, not a team of dozens of operations people."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,000",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1496000,
+				"to": 1502000
+			},
+			"text": " And so it's not what we're going to release in the node kit is what we think is a minimum level of functionality"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:08,000"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1508000
+			},
+			"text": " of performance where this is better than running a bunch of nodes behind the load balancer"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,000",
+				"to": "00:25:12,000"
+			},
+			"offsets": {
+				"from": 1508000,
+				"to": 1512000
+			},
+			"text": " because it now has some of these indexing and performance optimizing systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,000",
+				"to": "00:25:15,000"
+			},
+			"offsets": {
+				"from": 1512000,
+				"to": 1515000
+			},
+			"text": " But it's something that can be taken on by, hopefully, an individual."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,000",
+				"to": "00:25:20,000"
+			},
+			"offsets": {
+				"from": 1515000,
+				"to": 1520000
+			},
+			"text": " But at the very least, a small team, much smaller team than current inferior team."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,000",
+				"to": "00:25:30,000"
+			},
+			"offsets": {
+				"from": 1520000,
+				"to": 1530000
+			},
+			"text": " Do you think it's likely that this one-chain registrations of the providers will be a new, yet to be launched, dedicated chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,000",
+				"to": "00:25:34,000"
+			},
+			"offsets": {
+				"from": 1530000,
+				"to": 1534000
+			},
+			"text": " Or is it more likely there will be an existing chain like the Ethereum Anet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,000",
+				"to": "00:25:40,000"
+			},
+			"offsets": {
+				"from": 1534000,
+				"to": 1540000
+			},
+			"text": " That's one of the things that we've been considering as we're going through the design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,000",
+				"to": "00:25:44,000"
+			},
+			"offsets": {
+				"from": 1540000,
+				"to": 1544000
+			},
+			"text": " we're leaning towards, \"Don't start a new chain for that.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,000",
+				"to": "00:25:46,000"
+			},
+			"offsets": {
+				"from": 1544000,
+				"to": 1546000
+			},
+			"text": " Try to use something that exists."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,000",
+				"to": "00:25:49,000"
+			},
+			"offsets": {
+				"from": 1546000,
+				"to": 1549000
+			},
+			"text": " And that goes back to the, \"Why are we doing it now?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,000",
+				"to": "00:25:54,000"
+			},
+			"offsets": {
+				"from": 1549000,
+				"to": 1554000
+			},
+			"text": " Rather than in 2016, when people are talking about micro-payments between providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,000",
+				"to": "00:25:57,000"
+			},
+			"offsets": {
+				"from": 1554000,
+				"to": 1557000
+			},
+			"text": " and state channels for that and all these other things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1557000,
+				"to": 1561000
+			},
+			"text": " we would have had to devote a significant amount of our research just on that problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:07,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1567000
+			},
+			"text": " whereas now a lot of these primitives are out there, and we can try to use some of the things that already exist to build the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,000",
+				"to": "00:26:16,000"
+			},
+			"offsets": {
+				"from": 1567000,
+				"to": 1576000
+			},
+			"text": " Yeah, can you tell me who is the entity or people who decide what the requirements are to become an operator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,000",
+				"to": "00:26:22,000"
+			},
+			"offsets": {
+				"from": 1576000,
+				"to": 1582000
+			},
+			"text": " And who decides which providers or providers would meet those requirements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,000",
+				"to": "00:26:24,000"
+			},
+			"offsets": {
+				"from": 1582000,
+				"to": 1584000
+			},
+			"text": " and then how they would change in the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,000",
+				"to": "00:26:28,000"
+			},
+			"offsets": {
+				"from": 1584000,
+				"to": 1588000
+			},
+			"text": " Okay, so who decides who can be an operator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,000",
+				"to": "00:26:33,000"
+			},
+			"offsets": {
+				"from": 1588000,
+				"to": 1593000
+			},
+			"text": " So this form to sign up is to participate in a permissioned beta."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,000",
+				"to": "00:26:38,000"
+			},
+			"offsets": {
+				"from": 1593000,
+				"to": 1598000
+			},
+			"text": " Similarly to how, when other people are developing new networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,000",
+				"to": "00:26:42,000"
+			},
+			"offsets": {
+				"from": 1598000,
+				"to": 1602000
+			},
+			"text": " we're going to have to start with a small group to try to test and iterate with."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,000",
+				"to": "00:26:47,000"
+			},
+			"offsets": {
+				"from": 1602000,
+				"to": 1607000
+			},
+			"text": " And for that, we're looking for people that already have experience with the infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,000",
+				"to": "00:26:52,000"
+			},
+			"offsets": {
+				"from": 1607000,
+				"to": 1612000
+			},
+			"text": " and that we can reach out to and get feedback from pretty quickly on the technical front."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,000",
+				"to": "00:26:56,000"
+			},
+			"offsets": {
+				"from": 1612000,
+				"to": 1616000
+			},
+			"text": " But once we actually launch this network, it's fully permissionless."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,000",
+				"to": "00:27:02,000"
+			},
+			"offsets": {
+				"from": 1616000,
+				"to": 1622000
+			},
+			"text": " The criteria of that is what we're defining as a protocol in the design of this would be, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,000",
+				"to": "00:27:05,000"
+			},
+			"offsets": {
+				"from": 1622000,
+				"to": 1625000
+			},
+			"text": " the amount of resources that you would have to provide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,000",
+				"to": "00:27:08,000"
+			},
+			"offsets": {
+				"from": 1625000,
+				"to": 1628000
+			},
+			"text": " where this would be the minimum level of performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:08,000",
+				"to": "00:27:10,000"
+			},
+			"offsets": {
+				"from": 1628000,
+				"to": 1630000
+			},
+			"text": " So you have to at least support one network."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:10,000",
+				"to": "00:27:13,000"
+			},
+			"offsets": {
+				"from": 1630000,
+				"to": 1633000
+			},
+			"text": " You have to at least support this level of performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,000",
+				"to": "00:27:17,000"
+			},
+			"offsets": {
+				"from": 1633000,
+				"to": 1637000
+			},
+			"text": " And then as long as you can meet that, it's anybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:17,000",
+				"to": "00:27:21,000"
+			},
+			"offsets": {
+				"from": 1637000,
+				"to": 1641000
+			},
+			"text": " Hey, Lefteris here from Rochi, right in front of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,000",
+				"to": "00:27:24,000"
+			},
+			"offsets": {
+				"from": 1641000,
+				"to": 1644000
+			},
+			"text": " I just wanted to ask about the ingress nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:24,000",
+				"to": "00:27:28,000"
+			},
+			"offsets": {
+				"from": 1644000,
+				"to": 1648000
+			},
+			"text": " Will they be an requirement, or will they be optional?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:28,000",
+				"to": "00:27:30,000"
+			},
+			"offsets": {
+				"from": 1648000,
+				"to": 1650000
+			},
+			"text": " You should say like the indexing nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,000",
+				"to": "00:27:32,000"
+			},
+			"offsets": {
+				"from": 1650000,
+				"to": 1652000
+			},
+			"text": " No, ingress."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,000",
+				"to": "00:27:33,000"
+			},
+			"offsets": {
+				"from": 1652000,
+				"to": 1653000
+			},
+			"text": " The ingress."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,000",
+				"to": "00:27:35,000"
+			},
+			"offsets": {
+				"from": 1653000,
+				"to": 1655000
+			},
+			"text": " Yeah, it'll definitely be optional."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,000",
+				"to": "00:27:37,000"
+			},
+			"offsets": {
+				"from": 1655000,
+				"to": 1657000
+			},
+			"text": " So I can't quite get to the slides, though."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,000",
+				"to": "00:27:38,000"
+			},
+			"offsets": {
+				"from": 1657000,
+				"to": 1658000
+			},
+			"text": " It'll take too long."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,000",
+				"to": "00:27:42,000"
+			},
+			"offsets": {
+				"from": 1658000,
+				"to": 1662000
+			},
+			"text": " But you can still have a consumer who will go directly to the contract to purchase resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,000",
+				"to": "00:27:45,000"
+			},
+			"offsets": {
+				"from": 1662000,
+				"to": 1665000
+			},
+			"text": " and go directly to one or multiple node providers that they choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,000",
+				"to": "00:27:49,000"
+			},
+			"offsets": {
+				"from": 1665000,
+				"to": 1669000
+			},
+			"text": " The ingress node is kind of an option where if you don't want to go to the trouble of doing that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,000",
+				"to": "00:27:53,000"
+			},
+			"offsets": {
+				"from": 1669000,
+				"to": 1673000
+			},
+			"text": " maybe you want to use the one that allows you to pay in fiat that you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,000",
+				"to": "00:27:57,000"
+			},
+			"offsets": {
+				"from": 1673000,
+				"to": 1677000
+			},
+			"text": " But it's an option."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,000",
+				"to": "00:28:03,000"
+			},
+			"offsets": {
+				"from": 1677000,
+				"to": 1683000
+			},
+			"text": " This was our last question, but if you have more questions, please reach out to our speakers."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,000",
+				"to": "00:28:05,000"
+			},
+			"offsets": {
+				"from": 1683000,
+				"to": 1685000
+			},
+			"text": " We're going to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,000",
+				"to": "00:28:07,000"
+			},
+			"offsets": {
+				"from": 1685000,
+				"to": 1687000
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,000",
+				"to": "00:28:09,000"
+			},
+			"offsets": {
+				"from": 1687000,
+				"to": 1689000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,000",
+				"to": "00:28:16,000"
+			},
+			"offsets": {
+				"from": 1689000,
+				"to": 1696000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,000",
+				"to": "00:28:45,000"
+			},
+			"offsets": {
+				"from": 1696000,
+				"to": 1725000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

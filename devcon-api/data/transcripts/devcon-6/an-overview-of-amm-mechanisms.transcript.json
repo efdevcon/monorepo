@@ -1,0 +1,5312 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,580"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2580
+			},
+			"text": " (gentle music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,580",
+				"to": "00:00:16,680"
+			},
+			"offsets": {
+				"from": 2580,
+				"to": 16680
+			},
+			"text": " - Good morning, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,680",
+				"to": "00:00:19,120"
+			},
+			"offsets": {
+				"from": 16680,
+				"to": 19120
+			},
+			"text": " My name is Joseph, I'll be your MC this morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,120",
+				"to": "00:00:23,040"
+			},
+			"offsets": {
+				"from": 19120,
+				"to": 23040
+			},
+			"text": " How are you enjoying DefCon so far?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,040",
+				"to": "00:00:23,880"
+			},
+			"offsets": {
+				"from": 23040,
+				"to": 23880
+			},
+			"text": " I guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,880",
+				"to": "00:00:26,920"
+			},
+			"offsets": {
+				"from": 23880,
+				"to": 26920
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,920",
+				"to": "00:00:29,480"
+			},
+			"offsets": {
+				"from": 26920,
+				"to": 29480
+			},
+			"text": " I guess this is the group of people that didn't party"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,480",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 29480,
+				"to": 32000
+			},
+			"text": " or did party hard and just didn't go to sleep"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:33,760"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 33760
+			},
+			"text": " and just continued with the drill."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,760",
+				"to": "00:00:37,240"
+			},
+			"offsets": {
+				"from": 33760,
+				"to": 37240
+			},
+			"text": " So I appreciate you for being here in the morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,240",
+				"to": "00:00:38,080"
+			},
+			"offsets": {
+				"from": 37240,
+				"to": 38080
+			},
+			"text": " I know it's tough."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,080",
+				"to": "00:00:44,280"
+			},
+			"offsets": {
+				"from": 38080,
+				"to": 44280
+			},
+			"text": " But without further ado, because we are getting to our time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,280",
+				"to": "00:00:46,400"
+			},
+			"offsets": {
+				"from": 44280,
+				"to": 46400
+			},
+			"text": " we are going to start with some habit topics"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,400",
+				"to": "00:00:48,160"
+			},
+			"offsets": {
+				"from": 46400,
+				"to": 48160
+			},
+			"text": " right in the morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,160",
+				"to": "00:00:51,400"
+			},
+			"offsets": {
+				"from": 48160,
+				"to": 51400
+			},
+			"text": " Matt's Dible, the research and product lead at Otis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,400",
+				"to": "00:00:54,440"
+			},
+			"offsets": {
+				"from": 51400,
+				"to": 54440
+			},
+			"text": " is going to present his talk about an overview"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,440",
+				"to": "00:00:57,040"
+			},
+			"offsets": {
+				"from": 54440,
+				"to": 57040
+			},
+			"text": " of automated market making mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,040",
+				"to": "00:00:58,960"
+			},
+			"offsets": {
+				"from": 57040,
+				"to": 58960
+			},
+			"text": " So please put your hands together for Matt."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,400",
+				"to": "00:01:02,580"
+			},
+			"offsets": {
+				"from": 59400,
+				"to": 62580
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,580",
+				"to": "00:01:08,960"
+			},
+			"offsets": {
+				"from": 62580,
+				"to": 68960
+			},
+			"text": " - All right, hey everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,960",
+				"to": "00:01:14,640"
+			},
+			"offsets": {
+				"from": 68960,
+				"to": 74640
+			},
+			"text": " So Otis is a DEX aggregator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,640",
+				"to": "00:01:19,440"
+			},
+			"offsets": {
+				"from": 74640,
+				"to": 79440
+			},
+			"text": " And so while building it, I have had the unique opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,440",
+				"to": "00:01:23,760"
+			},
+			"offsets": {
+				"from": 79440,
+				"to": 83760
+			},
+			"text": " to really do a deep dive into the different"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,760",
+				"to": "00:01:27,440"
+			},
+			"offsets": {
+				"from": 83760,
+				"to": 87440
+			},
+			"text": " automated market maker mechanisms that control billions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,440",
+				"to": "00:01:29,600"
+			},
+			"offsets": {
+				"from": 87440,
+				"to": 89600
+			},
+			"text": " in DeFi TVL every day."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,600",
+				"to": "00:01:34,640"
+			},
+			"offsets": {
+				"from": 89600,
+				"to": 94640
+			},
+			"text": " So the aim of this talk is going to be to try to cover"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,640",
+				"to": "00:01:36,600"
+			},
+			"offsets": {
+				"from": 94640,
+				"to": 96600
+			},
+			"text": " as many of these as possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,600",
+				"to": "00:01:39,560"
+			},
+			"offsets": {
+				"from": 96600,
+				"to": 99560
+			},
+			"text": " primarily the ones that currently control"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,560",
+				"to": "00:01:41,320"
+			},
+			"offsets": {
+				"from": 99560,
+				"to": 101320
+			},
+			"text": " a large amount of TVL."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,320",
+				"to": "00:01:43,240"
+			},
+			"offsets": {
+				"from": 101320,
+				"to": 103240
+			},
+			"text": " So it's not going to be completely exhaustive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,240",
+				"to": "00:01:47,720"
+			},
+			"offsets": {
+				"from": 103240,
+				"to": 107720
+			},
+			"text": " but hopefully it's close, as close as possible in 25 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,720",
+				"to": "00:01:52,640"
+			},
+			"offsets": {
+				"from": 107720,
+				"to": 112640
+			},
+			"text": " And then we're going to tie that back into DEX aggregation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,640",
+				"to": "00:01:54,960"
+			},
+			"offsets": {
+				"from": 112640,
+				"to": 114960
+			},
+			"text": " why it's needed and what it's for."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,840",
+				"to": "00:01:59,960"
+			},
+			"offsets": {
+				"from": 115840,
+				"to": 119960
+			},
+			"text": " So to start off, I want to briefly cover"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,960",
+				"to": "00:02:04,960"
+			},
+			"offsets": {
+				"from": 119960,
+				"to": 124960
+			},
+			"text": " some of the basic principles that we can think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,960",
+				"to": "00:02:09,240"
+			},
+			"offsets": {
+				"from": 124960,
+				"to": 129240
+			},
+			"text": " while we're going over these many different mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,240",
+				"to": "00:02:12,960"
+			},
+			"offsets": {
+				"from": 129240,
+				"to": 132960
+			},
+			"text": " So first, I think it's useful to clearly define"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,960",
+				"to": "00:02:14,800"
+			},
+			"offsets": {
+				"from": 132960,
+				"to": 134800
+			},
+			"text": " what we're actually trying to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,800",
+				"to": "00:02:17,560"
+			},
+			"offsets": {
+				"from": 134800,
+				"to": 137560
+			},
+			"text": " with these market making mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,560",
+				"to": "00:02:21,560"
+			},
+			"offsets": {
+				"from": 137560,
+				"to": 141560
+			},
+			"text": " So we can start off by clearly defining"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,560",
+				"to": "00:02:23,080"
+			},
+			"offsets": {
+				"from": 141560,
+				"to": 143080
+			},
+			"text": " what a market maker is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,080",
+				"to": "00:02:26,760"
+			},
+			"offsets": {
+				"from": 143080,
+				"to": 146760
+			},
+			"text": " So a market maker has a portfolio of assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,760",
+				"to": "00:02:29,680"
+			},
+			"offsets": {
+				"from": 146760,
+				"to": 149680
+			},
+			"text": " and they're trying to earn yield on that portfolio."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,680",
+				"to": "00:02:35,320"
+			},
+			"offsets": {
+				"from": 149680,
+				"to": 155320
+			},
+			"text": " And they do that by allowing people to trade through it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,320",
+				"to": "00:02:37,880"
+			},
+			"offsets": {
+				"from": 155320,
+				"to": 157880
+			},
+			"text": " And so essentially what happens is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,880",
+				"to": "00:02:43,360"
+			},
+			"offsets": {
+				"from": 157880,
+				"to": 163360
+			},
+			"text": " they offer to sell an asset at a slightly higher value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,360",
+				"to": "00:02:47,480"
+			},
+			"offsets": {
+				"from": 163360,
+				"to": 167480
+			},
+			"text": " then they will buy it back and that creates this spread"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,480",
+				"to": "00:02:49,840"
+			},
+			"offsets": {
+				"from": 167480,
+				"to": 169840
+			},
+			"text": " that serves as revenue that they earn"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,840",
+				"to": "00:02:53,720"
+			},
+			"offsets": {
+				"from": 169840,
+				"to": 173720
+			},
+			"text": " on the volume that goes through their platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,720",
+				"to": "00:02:58,960"
+			},
+			"offsets": {
+				"from": 173720,
+				"to": 178960
+			},
+			"text": " Now the catch is that this revenue is not risk free, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,960",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 178960,
+				"to": 182000
+			},
+			"text": " People are, when trading is happening,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:05,480"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 185480
+			},
+			"text": " we're actually changing the composition of the portfolio."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,480",
+				"to": "00:03:10,840"
+			},
+			"offsets": {
+				"from": 185480,
+				"to": 190840
+			},
+			"text": " And this also leads to a change in value in the portfolio."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,840",
+				"to": "00:03:14,760"
+			},
+			"offsets": {
+				"from": 190840,
+				"to": 194760
+			},
+			"text": " And so what can happen is if the change in value"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,760",
+				"to": "00:03:17,720"
+			},
+			"offsets": {
+				"from": 194760,
+				"to": 197720
+			},
+			"text": " in the portfolio as a result of the trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,680",
+				"to": "00:03:21,320"
+			},
+			"offsets": {
+				"from": 198680,
+				"to": 201320
+			},
+			"text": " outweighs the revenue, then you're now losing money"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,320",
+				"to": "00:03:23,320"
+			},
+			"offsets": {
+				"from": 201320,
+				"to": 203320
+			},
+			"text": " and you're not actually earning any yield."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,320",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 203320,
+				"to": 207000
+			},
+			"text": " And so we really need to do a good job designing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:31,400"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 211400
+			},
+			"text": " the strategy and how we're actually pricing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,400",
+				"to": "00:03:33,080"
+			},
+			"offsets": {
+				"from": 211400,
+				"to": 213080
+			},
+			"text": " and allowing people to trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,080",
+				"to": "00:03:37,760"
+			},
+			"offsets": {
+				"from": 213080,
+				"to": 217760
+			},
+			"text": " So with that objective in mind,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,760",
+				"to": "00:03:40,920"
+			},
+			"offsets": {
+				"from": 217760,
+				"to": 220920
+			},
+			"text": " we can now think about what tools we can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,920",
+				"to": "00:03:45,920"
+			},
+			"offsets": {
+				"from": 220920,
+				"to": 225920
+			},
+			"text": " to actually decide on the pricing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,960",
+				"to": "00:03:50,160"
+			},
+			"offsets": {
+				"from": 225960,
+				"to": 230160
+			},
+			"text": " So there's many different types and strategies of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,160",
+				"to": "00:03:55,160"
+			},
+			"offsets": {
+				"from": 230160,
+				"to": 235160
+			},
+			"text": " but we can sort of simplify it down to two basic paradigms."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,160",
+				"to": "00:03:58,640"
+			},
+			"offsets": {
+				"from": 235160,
+				"to": 238640
+			},
+			"text": " So the first of which is price discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,640",
+				"to": "00:04:03,240"
+			},
+			"offsets": {
+				"from": 238640,
+				"to": 243240
+			},
+			"text": " So this is essentially reacting to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,240",
+				"to": "00:04:05,720"
+			},
+			"offsets": {
+				"from": 243240,
+				"to": 245720
+			},
+			"text": " what's happening in the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,720",
+				"to": "00:04:08,320"
+			},
+			"offsets": {
+				"from": 245720,
+				"to": 248320
+			},
+			"text": " So if we think of a simple example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,320",
+				"to": "00:04:11,720"
+			},
+			"offsets": {
+				"from": 248320,
+				"to": 251720
+			},
+			"text": " if at the current price, lots of people are buying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,720",
+				"to": "00:04:14,920"
+			},
+			"offsets": {
+				"from": 251720,
+				"to": 254920
+			},
+			"text": " that means the price is probably a bit too low"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,920",
+				"to": "00:04:16,320"
+			},
+			"offsets": {
+				"from": 254920,
+				"to": 256320
+			},
+			"text": " and you should raise it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,320",
+				"to": "00:04:19,320"
+			},
+			"offsets": {
+				"from": 256320,
+				"to": 259320
+			},
+			"text": " And so by reacting to how people are interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,320",
+				"to": "00:04:23,640"
+			},
+			"offsets": {
+				"from": 259320,
+				"to": 263640
+			},
+			"text": " with the prices you set, you can sort of follow around"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,640",
+				"to": "00:04:26,320"
+			},
+			"offsets": {
+				"from": 263640,
+				"to": 266320
+			},
+			"text": " the market price and discover what the market thinks"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,320",
+				"to": "00:04:29,880"
+			},
+			"offsets": {
+				"from": 266320,
+				"to": 269880
+			},
+			"text": " the price is, which is a very powerful mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,880",
+				"to": "00:04:32,800"
+			},
+			"offsets": {
+				"from": 269880,
+				"to": 272800
+			},
+			"text": " But of course, if you're following around"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,800",
+				"to": "00:04:34,680"
+			},
+			"offsets": {
+				"from": 272800,
+				"to": 274680
+			},
+			"text": " what the actual market price is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,680",
+				"to": "00:04:40,600"
+			},
+			"offsets": {
+				"from": 274680,
+				"to": 280600
+			},
+			"text": " you're not actually really providing the best price"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,600",
+				"to": "00:04:43,240"
+			},
+			"offsets": {
+				"from": 280600,
+				"to": 283240
+			},
+			"text": " at any given time because you're always trailing behind."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,240",
+				"to": "00:04:45,560"
+			},
+			"offsets": {
+				"from": 283240,
+				"to": 285560
+			},
+			"text": " And so ideally what we'd like to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,560",
+				"to": "00:04:49,640"
+			},
+			"offsets": {
+				"from": 285560,
+				"to": 289640
+			},
+			"text": " is just be providing the price that people"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,640",
+				"to": "00:04:51,720"
+			},
+			"offsets": {
+				"from": 289640,
+				"to": 291720
+			},
+			"text": " actually wanna buy and sell at, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,720",
+				"to": "00:04:53,760"
+			},
+			"offsets": {
+				"from": 291720,
+				"to": 293760
+			},
+			"text": " We want the real market price."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,760",
+				"to": "00:04:56,280"
+			},
+			"offsets": {
+				"from": 293760,
+				"to": 296280
+			},
+			"text": " And so we can try to approximate that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,280",
+				"to": "00:04:58,680"
+			},
+			"offsets": {
+				"from": 296280,
+				"to": 298680
+			},
+			"text": " by leveraging price oracles."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,680",
+				"to": "00:05:01,960"
+			},
+			"offsets": {
+				"from": 298680,
+				"to": 301960
+			},
+			"text": " So trying to leverage some external knowledge"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,960",
+				"to": "00:05:05,560"
+			},
+			"offsets": {
+				"from": 301960,
+				"to": 305560
+			},
+			"text": " to decide on the price without actually having"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,560",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 305560,
+				"to": 308000
+			},
+			"text": " to discover it ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:10,480"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 310480
+			},
+			"text": " And so this can be extremely powerful"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,480",
+				"to": "00:05:14,720"
+			},
+			"offsets": {
+				"from": 310480,
+				"to": 314720
+			},
+			"text": " because you can really then concentrate your liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,720",
+				"to": "00:05:18,640"
+			},
+			"offsets": {
+				"from": 314720,
+				"to": 318640
+			},
+			"text": " and general pricing strategy around"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,640",
+				"to": "00:05:21,480"
+			},
+			"offsets": {
+				"from": 318640,
+				"to": 321480
+			},
+			"text": " what people actually value an asset at."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,480",
+				"to": "00:05:24,040"
+			},
+			"offsets": {
+				"from": 321480,
+				"to": 324040
+			},
+			"text": " But it can also be very detrimental"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,040",
+				"to": "00:05:27,200"
+			},
+			"offsets": {
+				"from": 324040,
+				"to": 327200
+			},
+			"text": " because if your price oracle is wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,200",
+				"to": "00:05:29,800"
+			},
+			"offsets": {
+				"from": 327200,
+				"to": 329800
+			},
+			"text": " well then you have the same problem with price discovery"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,800",
+				"to": "00:05:32,720"
+			},
+			"offsets": {
+				"from": 329800,
+				"to": 332720
+			},
+			"text": " except quite a bit worse potentially, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,720",
+				"to": "00:05:36,460"
+			},
+			"offsets": {
+				"from": 332720,
+				"to": 336460
+			},
+			"text": " So real quick to give some concrete examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,400",
+				"to": "00:05:41,520"
+			},
+			"offsets": {
+				"from": 337400,
+				"to": 341520
+			},
+			"text": " One thing we can leverage is the pegged value of the asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,520",
+				"to": "00:05:45,600"
+			},
+			"offsets": {
+				"from": 341520,
+				"to": 345600
+			},
+			"text": " So if you have two stablecoins, USDC and USDT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,600",
+				"to": "00:05:46,880"
+			},
+			"offsets": {
+				"from": 345600,
+				"to": 346880
+			},
+			"text": " they're both worth a dollar"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,880",
+				"to": "00:05:50,240"
+			},
+			"offsets": {
+				"from": 346880,
+				"to": 350240
+			},
+			"text": " and they should be exchanged one to one, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,240",
+				"to": "00:05:53,760"
+			},
+			"offsets": {
+				"from": 350240,
+				"to": 353760
+			},
+			"text": " And we can leverage that knowledge as sort of an oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,760",
+				"to": "00:05:56,720"
+			},
+			"offsets": {
+				"from": 353760,
+				"to": 356720
+			},
+			"text": " and use that to inform our pricing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,720",
+				"to": "00:05:58,280"
+			},
+			"offsets": {
+				"from": 356720,
+				"to": 358280
+			},
+			"text": " and market making decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,280",
+				"to": "00:06:01,880"
+			},
+			"offsets": {
+				"from": 358280,
+				"to": 361880
+			},
+			"text": " Some other examples are chain link oracles"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,880",
+				"to": "00:06:05,520"
+			},
+			"offsets": {
+				"from": 361880,
+				"to": 365520
+			},
+			"text": " and the pricing of other DEXs as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,640",
+				"to": "00:06:07,880"
+			},
+			"offsets": {
+				"from": 365640,
+				"to": 367880
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,880",
+				"to": "00:06:13,840"
+			},
+			"offsets": {
+				"from": 367880,
+				"to": 373840
+			},
+			"text": " So last thing before we get into the actual AMMs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,840",
+				"to": "00:06:16,400"
+			},
+			"offsets": {
+				"from": 373840,
+				"to": 376400
+			},
+			"text": " I do want to concretely cover"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,400",
+				"to": "00:06:21,600"
+			},
+			"offsets": {
+				"from": 376400,
+				"to": 381600
+			},
+			"text": " how I'm actually gonna be showing these AMMs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,600",
+				"to": "00:06:24,560"
+			},
+			"offsets": {
+				"from": 381600,
+				"to": 384560
+			},
+			"text": " I'm gonna avoid the math, it's very interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,560",
+				"to": "00:06:29,200"
+			},
+			"offsets": {
+				"from": 384560,
+				"to": 389200
+			},
+			"text": " but it's not fit for a 25 minute talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,200",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 389200,
+				"to": 391000
+			},
+			"text": " on nine different AMMs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:33,880"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 393880
+			},
+			"text": " So instead I'm gonna show this trading function"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,880",
+				"to": "00:06:36,080"
+			},
+			"offsets": {
+				"from": 393880,
+				"to": 396080
+			},
+			"text": " which is hopefully a bit more intuitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,080",
+				"to": "00:06:38,480"
+			},
+			"offsets": {
+				"from": 396080,
+				"to": 398480
+			},
+			"text": " and basically what this trading function shows"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,480",
+				"to": "00:06:42,120"
+			},
+			"offsets": {
+				"from": 398480,
+				"to": 402120
+			},
+			"text": " is it shows the space of possible trades"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,120",
+				"to": "00:06:45,600"
+			},
+			"offsets": {
+				"from": 402120,
+				"to": 405600
+			},
+			"text": " that this market maker will actually allow, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,600",
+				"to": "00:06:47,640"
+			},
+			"offsets": {
+				"from": 405600,
+				"to": 407640
+			},
+			"text": " So on the X axis we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,640",
+				"to": "00:06:54,520"
+			},
+			"offsets": {
+				"from": 407640,
+				"to": 414520
+			},
+			"text": " on the X axis we have the input amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,520",
+				"to": "00:06:59,280"
+			},
+			"offsets": {
+				"from": 414520,
+				"to": 419280
+			},
+			"text": " and on the Y axis we have the output amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,280",
+				"to": "00:07:02,960"
+			},
+			"offsets": {
+				"from": 419280,
+				"to": 422960
+			},
+			"text": " and this curve is the space of trades that you can make."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,960",
+				"to": "00:07:05,840"
+			},
+			"offsets": {
+				"from": 422960,
+				"to": 425840
+			},
+			"text": " So this point for instance is one trade you can make"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,840",
+				"to": "00:07:09,440"
+			},
+			"offsets": {
+				"from": 425840,
+				"to": 429440
+			},
+			"text": " if you have 100 of the input asset,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,440",
+				"to": "00:07:11,760"
+			},
+			"offsets": {
+				"from": 429440,
+				"to": 431760
+			},
+			"text": " this market maker will give you out 200"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,760",
+				"to": "00:07:14,920"
+			},
+			"offsets": {
+				"from": 431760,
+				"to": 434920
+			},
+			"text": " of the output asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,920",
+				"to": "00:07:17,720"
+			},
+			"offsets": {
+				"from": 434920,
+				"to": 437720
+			},
+			"text": " And at any given point the slope"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,720",
+				"to": "00:07:20,320"
+			},
+			"offsets": {
+				"from": 437720,
+				"to": 440320
+			},
+			"text": " sort of shows you the marginal price that you're getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,320",
+				"to": "00:07:23,600"
+			},
+			"offsets": {
+				"from": 440320,
+				"to": 443600
+			},
+			"text": " if you keep on putting input into this market maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,600",
+				"to": "00:07:28,520"
+			},
+			"offsets": {
+				"from": 443600,
+				"to": 448520
+			},
+			"text": " So with all of that in mind we can now cover"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,520",
+				"to": "00:07:31,960"
+			},
+			"offsets": {
+				"from": 448520,
+				"to": 451960
+			},
+			"text": " our very first AMM and this one is the constant product"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,960",
+				"to": "00:07:33,720"
+			},
+			"offsets": {
+				"from": 451960,
+				"to": 453720
+			},
+			"text": " market maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,720",
+				"to": "00:07:35,960"
+			},
+			"offsets": {
+				"from": 453720,
+				"to": 455960
+			},
+			"text": " So this one's huge, it's very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,960",
+				"to": "00:07:40,080"
+			},
+			"offsets": {
+				"from": 455960,
+				"to": 460080
+			},
+			"text": " It's been, it's probably, well it is the most popular one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,080",
+				"to": "00:07:43,880"
+			},
+			"offsets": {
+				"from": 460080,
+				"to": 463880
+			},
+			"text": " It was introduced by Bancor originally then Uniswap V1"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,880",
+				"to": "00:07:47,880"
+			},
+			"offsets": {
+				"from": 463880,
+				"to": 467880
+			},
+			"text": " and Uniswap V2 both used it and popularized it a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,880",
+				"to": "00:07:51,480"
+			},
+			"offsets": {
+				"from": 467880,
+				"to": 471480
+			},
+			"text": " It's also important for the context of this talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,480",
+				"to": "00:07:56,480"
+			},
+			"offsets": {
+				"from": 471480,
+				"to": 476480
+			},
+			"text": " because it essentially embodies full on price discovery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,480",
+				"to": "00:08:01,800"
+			},
+			"offsets": {
+				"from": 476480,
+				"to": 481800
+			},
+			"text": " Uniswap V2 has no notion of what of the market"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,640",
+				"to": "00:08:05,360"
+			},
+			"offsets": {
+				"from": 482640,
+				"to": 485360
+			},
+			"text": " of value or what an asset should be valued at."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,360",
+				"to": "00:08:08,120"
+			},
+			"offsets": {
+				"from": 485360,
+				"to": 488120
+			},
+			"text": " It simply discovers that price."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,120",
+				"to": "00:08:11,560"
+			},
+			"offsets": {
+				"from": 488120,
+				"to": 491560
+			},
+			"text": " And how it does that is it sets the price as the ratio"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,560",
+				"to": "00:08:14,440"
+			},
+			"offsets": {
+				"from": 491560,
+				"to": 494440
+			},
+			"text": " of how much of each asset it owns."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,440",
+				"to": "00:08:18,760"
+			},
+			"offsets": {
+				"from": 494440,
+				"to": 498760
+			},
+			"text": " And that allows the price to essentially respond"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,760",
+				"to": "00:08:20,560"
+			},
+			"offsets": {
+				"from": 498760,
+				"to": 500560
+			},
+			"text": " to demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,560",
+				"to": "00:08:24,560"
+			},
+			"offsets": {
+				"from": 500560,
+				"to": 504560
+			},
+			"text": " So you can see in the trading curve as you put more"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,560",
+				"to": "00:08:28,280"
+			},
+			"offsets": {
+				"from": 504560,
+				"to": 508280
+			},
+			"text": " and more in the slope of the curve continues to decrease"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,280",
+				"to": "00:08:32,480"
+			},
+			"offsets": {
+				"from": 508280,
+				"to": 512480
+			},
+			"text": " and that's showing the price responding to the trading."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,480",
+				"to": "00:08:34,120"
+			},
+			"offsets": {
+				"from": 512480,
+				"to": 514120
+			},
+			"text": " So it's discovering the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,120",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 514120,
+				"to": 519000
+			},
+			"text": " Now on the other hand, as we said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:41,280"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 521280
+			},
+			"text": " if you can leverage an Oracle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,280",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 521280,
+				"to": 524000
+			},
+			"text": " that can lead to much better pricing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:48,200"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 528200
+			},
+			"text": " And so a constant sum market maker is sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,200",
+				"to": "00:08:50,520"
+			},
+			"offsets": {
+				"from": 528200,
+				"to": 530520
+			},
+			"text": " before on embodiment of this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,520",
+				"to": "00:08:54,040"
+			},
+			"offsets": {
+				"from": 530520,
+				"to": 534040
+			},
+			"text": " So a constant sum market maker will provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,040",
+				"to": "00:08:57,600"
+			},
+			"offsets": {
+				"from": 534040,
+				"to": 537600
+			},
+			"text": " a fixed rate of exchange at whatever the Oracle is."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,600",
+				"to": "00:09:02,280"
+			},
+			"offsets": {
+				"from": 537600,
+				"to": 542280
+			},
+			"text": " So you can see on the trading function on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,280",
+				"to": "00:09:04,360"
+			},
+			"offsets": {
+				"from": 542280,
+				"to": 544360
+			},
+			"text": " there is now a completely constant slope."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,360",
+				"to": "00:09:07,680"
+			},
+			"offsets": {
+				"from": 544360,
+				"to": 547680
+			},
+			"text": " So a constant price all the way up until the market maker"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,680",
+				"to": "00:09:09,160"
+			},
+			"offsets": {
+				"from": 547680,
+				"to": 549160
+			},
+			"text": " runs out of assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,160",
+				"to": "00:09:13,280"
+			},
+			"offsets": {
+				"from": 549160,
+				"to": 553280
+			},
+			"text": " At which point you can't trade anymore, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,280",
+				"to": "00:09:16,520"
+			},
+			"offsets": {
+				"from": 553280,
+				"to": 556520
+			},
+			"text": " Because the market maker no longer owns any"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,520",
+				"to": "00:09:18,400"
+			},
+			"offsets": {
+				"from": 556520,
+				"to": 558400
+			},
+			"text": " of this output asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,400",
+				"to": "00:09:21,120"
+			},
+			"offsets": {
+				"from": 558400,
+				"to": 561120
+			},
+			"text": " And this turns out to be a very precarious position"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,120",
+				"to": "00:09:22,560"
+			},
+			"offsets": {
+				"from": 561120,
+				"to": 562560
+			},
+			"text": " for the market maker to be in."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,560",
+				"to": "00:09:26,600"
+			},
+			"offsets": {
+				"from": 562560,
+				"to": 566600
+			},
+			"text": " For one, they're not earning revenue from trading anymore"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,600",
+				"to": "00:09:28,400"
+			},
+			"offsets": {
+				"from": 566600,
+				"to": 568400
+			},
+			"text": " because they're a liquid."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,400",
+				"to": "00:09:31,880"
+			},
+			"offsets": {
+				"from": 568400,
+				"to": 571880
+			},
+			"text": " And for two, they now don't have a portfolio, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,880",
+				"to": "00:09:35,920"
+			},
+			"offsets": {
+				"from": 571880,
+				"to": 575920
+			},
+			"text": " They own all of one asset and there's a lot higher risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,920",
+				"to": "00:09:38,920"
+			},
+			"offsets": {
+				"from": 575920,
+				"to": 578920
+			},
+			"text": " of portfolio value change there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,920",
+				"to": "00:09:40,760"
+			},
+			"offsets": {
+				"from": 578920,
+				"to": 580760
+			},
+			"text": " which generally they want to avoid."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,760",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 580760,
+				"to": 585000
+			},
+			"text": " So there are some examples of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:48,400"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 588400
+			},
+			"text": " Technically any wrapper contract is a constant sum market"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,400",
+				"to": "00:09:50,200"
+			},
+			"offsets": {
+				"from": 588400,
+				"to": 590200
+			},
+			"text": " maker like Aave."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,200",
+				"to": "00:09:54,520"
+			},
+			"offsets": {
+				"from": 590200,
+				"to": 594520
+			},
+			"text": " Maker has a pig stability module"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,520",
+				"to": "00:09:59,520"
+			},
+			"offsets": {
+				"from": 594520,
+				"to": 599520
+			},
+			"text": " that allows one to one exchange of other stablecoins for die,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,520",
+				"to": "00:10:02,320"
+			},
+			"offsets": {
+				"from": 599520,
+				"to": 602320
+			},
+			"text": " which sort of keeps the stability of that pig."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,320",
+				"to": "00:10:07,040"
+			},
+			"offsets": {
+				"from": 602320,
+				"to": 607040
+			},
+			"text": " And synthetics has a fixed rate of exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,040",
+				"to": "00:10:11,240"
+			},
+			"offsets": {
+				"from": 607040,
+				"to": 611240
+			},
+			"text": " using other external oracles for their synthetic assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,240",
+				"to": "00:10:12,800"
+			},
+			"offsets": {
+				"from": 611240,
+				"to": 612800
+			},
+			"text": " which is also quite powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,800",
+				"to": "00:10:19,200"
+			},
+			"offsets": {
+				"from": 612800,
+				"to": 619200
+			},
+			"text": " So those serve as both models that are used in practice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,200",
+				"to": "00:10:20,920"
+			},
+			"offsets": {
+				"from": 619200,
+				"to": 620920
+			},
+			"text": " but for the purposes of this talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,920",
+				"to": "00:10:23,560"
+			},
+			"offsets": {
+				"from": 620920,
+				"to": 623560
+			},
+			"text": " they sort of serve more as boundaries, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,560",
+				"to": "00:10:25,880"
+			},
+			"offsets": {
+				"from": 623560,
+				"to": 625880
+			},
+			"text": " They both have some big weaknesses."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,880",
+				"to": "00:10:27,600"
+			},
+			"offsets": {
+				"from": 625880,
+				"to": 627600
+			},
+			"text": " The constant sum is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,600",
+				"to": "00:10:31,480"
+			},
+			"offsets": {
+				"from": 627600,
+				"to": 631480
+			},
+			"text": " if your oracle is even slightly off,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,480",
+				"to": "00:10:33,360"
+			},
+			"offsets": {
+				"from": 631480,
+				"to": 633360
+			},
+			"text": " you're gonna just lose all of one asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,360",
+				"to": "00:10:35,320"
+			},
+			"offsets": {
+				"from": 633360,
+				"to": 635320
+			},
+			"text": " and you're not actually gonna be market making anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,320",
+				"to": "00:10:38,200"
+			},
+			"offsets": {
+				"from": 635320,
+				"to": 638200
+			},
+			"text": " While the constant product, while extremely powerful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,200",
+				"to": "00:10:40,960"
+			},
+			"offsets": {
+				"from": 638200,
+				"to": 640960
+			},
+			"text": " is not very efficient with its money"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,960",
+				"to": "00:10:44,720"
+			},
+			"offsets": {
+				"from": 640960,
+				"to": 644720
+			},
+			"text": " because it knows nothing about what the assets should be worth."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,720",
+				"to": "00:10:47,600"
+			},
+			"offsets": {
+				"from": 644720,
+				"to": 647600
+			},
+			"text": " And so essentially what the rest of this talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,600",
+				"to": "00:10:50,760"
+			},
+			"offsets": {
+				"from": 647600,
+				"to": 650760
+			},
+			"text": " is gonna cover is different types of mechanisms"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,760",
+				"to": "00:10:53,120"
+			},
+			"offsets": {
+				"from": 650760,
+				"to": 653120
+			},
+			"text": " that can cover that middle ground."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,120",
+				"to": "00:10:58,320"
+			},
+			"offsets": {
+				"from": 654120,
+				"to": 658320
+			},
+			"text": " And these can be known as hybrid AMMs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,320",
+				"to": "00:11:01,360"
+			},
+			"offsets": {
+				"from": 658320,
+				"to": 661360
+			},
+			"text": " The first of which will be stable swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,360",
+				"to": "00:11:03,960"
+			},
+			"offsets": {
+				"from": 661360,
+				"to": 663960
+			},
+			"text": " So stable swap was introduced by curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,960",
+				"to": "00:11:06,680"
+			},
+			"offsets": {
+				"from": 663960,
+				"to": 666680
+			},
+			"text": " And essentially what stable swap is trying to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,680",
+				"to": "00:11:11,520"
+			},
+			"offsets": {
+				"from": 666680,
+				"to": 671520
+			},
+			"text": " is it is moving from a constant sum of market maker,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,520",
+				"to": "00:11:14,640"
+			},
+			"offsets": {
+				"from": 671520,
+				"to": 674640
+			},
+			"text": " so from a really a fixed rate of exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,640",
+				"to": "00:11:18,480"
+			},
+			"offsets": {
+				"from": 674640,
+				"to": 678480
+			},
+			"text": " to a constant product as the reserves get more"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,480",
+				"to": "00:11:19,360"
+			},
+			"offsets": {
+				"from": 678480,
+				"to": 679360
+			},
+			"text": " and more out of balance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,360",
+				"to": "00:11:22,800"
+			},
+			"offsets": {
+				"from": 679360,
+				"to": 682800
+			},
+			"text": " because as the reserves get more out of balance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,800",
+				"to": "00:11:26,680"
+			},
+			"offsets": {
+				"from": 682800,
+				"to": 686680
+			},
+			"text": " you can imagine that your price is probably a bit off, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,680",
+				"to": "00:11:29,080"
+			},
+			"offsets": {
+				"from": 686680,
+				"to": 689080
+			},
+			"text": " And so you wanna start adjusting that price"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,080",
+				"to": "00:11:33,560"
+			},
+			"offsets": {
+				"from": 689080,
+				"to": 693560
+			},
+			"text": " while still taking advantage of that one-to-one exchange rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,560",
+				"to": "00:11:39,320"
+			},
+			"offsets": {
+				"from": 693560,
+				"to": 699320
+			},
+			"text": " And so this equation also has this amplification parameter"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,320",
+				"to": "00:11:43,040"
+			},
+			"offsets": {
+				"from": 699320,
+				"to": 703040
+			},
+			"text": " and that's what you're seeing in the animation on the right."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,040",
+				"to": "00:11:48,520"
+			},
+			"offsets": {
+				"from": 703040,
+				"to": 708520
+			},
+			"text": " And you're seeing that as that amplification parameter increases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,520",
+				"to": "00:11:50,720"
+			},
+			"offsets": {
+				"from": 708520,
+				"to": 710720
+			},
+			"text": " the stable swap curve in purple"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,720",
+				"to": "00:11:54,480"
+			},
+			"offsets": {
+				"from": 710720,
+				"to": 714480
+			},
+			"text": " moves from the constant product in blue to the constant sum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,480",
+				"to": "00:11:58,400"
+			},
+			"offsets": {
+				"from": 714480,
+				"to": 718400
+			},
+			"text": " very quickly, closely approximating the constant sum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,400",
+				"to": "00:12:01,960"
+			},
+			"offsets": {
+				"from": 718400,
+				"to": 721960
+			},
+			"text": " because again, we wanna leverage this one-to-one exchange rate"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,960",
+				"to": "00:12:03,400"
+			},
+			"offsets": {
+				"from": 721960,
+				"to": 723400
+			},
+			"text": " as much as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,400",
+				"to": "00:12:10,640"
+			},
+			"offsets": {
+				"from": 723400,
+				"to": 730640
+			},
+			"text": " So other than stable swap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,640",
+				"to": "00:12:12,560"
+			},
+			"offsets": {
+				"from": 730640,
+				"to": 732560
+			},
+			"text": " there are some other stable solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,560",
+				"to": "00:12:15,720"
+			},
+			"offsets": {
+				"from": 732560,
+				"to": 735720
+			},
+			"text": " Stable swaps generally, the industry standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,720",
+				"to": "00:12:20,360"
+			},
+			"offsets": {
+				"from": 735720,
+				"to": 740360
+			},
+			"text": " More recently though, there's been solidly introduced"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,360",
+				"to": "00:12:22,840"
+			},
+			"offsets": {
+				"from": 740360,
+				"to": 742840
+			},
+			"text": " an alternative equation for stable swap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,840",
+				"to": "00:12:28,080"
+			},
+			"offsets": {
+				"from": 742840,
+				"to": 748080
+			},
+			"text": " which is generally a bit more slightly simpler to use as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,080",
+				"to": "00:12:30,680"
+			},
+			"offsets": {
+				"from": 748080,
+				"to": 750680
+			},
+			"text": " because it doesn't have that amplification parameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,680",
+				"to": "00:12:33,280"
+			},
+			"offsets": {
+				"from": 750680,
+				"to": 753280
+			},
+			"text": " For the purposes of this talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,280",
+				"to": "00:12:34,880"
+			},
+			"offsets": {
+				"from": 753280,
+				"to": 754880
+			},
+			"text": " we can compare it to stable swap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,880",
+				"to": "00:12:38,840"
+			},
+			"offsets": {
+				"from": 754880,
+				"to": 758840
+			},
+			"text": " and that's what you're seeing in the trading functions on the right."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,840",
+				"to": "00:12:41,600"
+			},
+			"offsets": {
+				"from": 758840,
+				"to": 761600
+			},
+			"text": " You're seeing solidly stable in purple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,600",
+				"to": "00:12:44,800"
+			},
+			"offsets": {
+				"from": 761600,
+				"to": 764800
+			},
+			"text": " compared to stable swap with an amplification of two."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,800",
+				"to": "00:12:46,560"
+			},
+			"offsets": {
+				"from": 764800,
+				"to": 766560
+			},
+			"text": " And they're still different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,560",
+				"to": "00:12:49,640"
+			},
+			"offsets": {
+				"from": 766560,
+				"to": 769640
+			},
+			"text": " but they're about the same at that parameterization."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,640",
+				"to": "00:12:54,120"
+			},
+			"offsets": {
+				"from": 770640,
+				"to": 774120
+			},
+			"text": " Now, an amplification of two is actually quite low."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,120",
+				"to": "00:12:56,200"
+			},
+			"offsets": {
+				"from": 774120,
+				"to": 776200
+			},
+			"text": " Typically, it's much higher than this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,200",
+				"to": "00:13:02,200"
+			},
+			"offsets": {
+				"from": 776200,
+				"to": 782200
+			},
+			"text": " so solidly stable essentially represents a low risk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,200",
+				"to": "00:13:04,800"
+			},
+			"offsets": {
+				"from": 782200,
+				"to": 784800
+			},
+			"text": " sort of stable swap that's still a big improvement"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,800",
+				"to": "00:13:06,520"
+			},
+			"offsets": {
+				"from": 784800,
+				"to": 786520
+			},
+			"text": " over the constant product,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,520",
+				"to": "00:13:09,240"
+			},
+			"offsets": {
+				"from": 786520,
+				"to": 789240
+			},
+			"text": " when there is that one-to-one exchange rate to leverage."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,240",
+				"to": "00:13:14,200"
+			},
+			"offsets": {
+				"from": 789240,
+				"to": 794200
+			},
+			"text": " Next up, we have Dodo's proactive market maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,200",
+				"to": "00:13:18,520"
+			},
+			"offsets": {
+				"from": 794200,
+				"to": 798520
+			},
+			"text": " So, Dodo has a mechanism, again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,520",
+				"to": "00:13:20,840"
+			},
+			"offsets": {
+				"from": 798520,
+				"to": 800840
+			},
+			"text": " leveraging some external oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,840",
+				"to": "00:13:22,040"
+			},
+			"offsets": {
+				"from": 800840,
+				"to": 802040
+			},
+			"text": " This can be chain link,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,040",
+				"to": "00:13:24,320"
+			},
+			"offsets": {
+				"from": 802040,
+				"to": 804320
+			},
+			"text": " this can be this one-to-one exchange rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,320",
+				"to": "00:13:28,840"
+			},
+			"offsets": {
+				"from": 804320,
+				"to": 808840
+			},
+			"text": " And they introduce this parameter K"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,840",
+				"to": "00:13:34,480"
+			},
+			"offsets": {
+				"from": 808840,
+				"to": 814480
+			},
+			"text": " that allows you to continuously adjust from the constant sum"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,480",
+				"to": "00:13:37,320"
+			},
+			"offsets": {
+				"from": 814480,
+				"to": 817320
+			},
+			"text": " to the constant product as K is increased."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,320",
+				"to": "00:13:41,640"
+			},
+			"offsets": {
+				"from": 817320,
+				"to": 821640
+			},
+			"text": " And it does this in a bit of a smoother way than stable swap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,640",
+				"to": "00:13:46,120"
+			},
+			"offsets": {
+				"from": 821640,
+				"to": 826120
+			},
+			"text": " which makes more dynamic oracles possible to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,200",
+				"to": "00:13:50,880"
+			},
+			"offsets": {
+				"from": 827200,
+				"to": 830880
+			},
+			"text": " In general, you can sort of think of K"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,880",
+				"to": "00:13:54,080"
+			},
+			"offsets": {
+				"from": 830880,
+				"to": 834080
+			},
+			"text": " as representing your confidence in the oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,080",
+				"to": "00:13:58,280"
+			},
+			"offsets": {
+				"from": 834080,
+				"to": 838280
+			},
+			"text": " So, if you're extremely confident that the oracle is correct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,280",
+				"to": "00:14:01,120"
+			},
+			"offsets": {
+				"from": 838280,
+				"to": 841120
+			},
+			"text": " you can set K to zero and you get a constant sum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,120",
+				"to": "00:14:03,600"
+			},
+			"offsets": {
+				"from": 841120,
+				"to": 843600
+			},
+			"text": " you just get that fixed exchange rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,600",
+				"to": "00:14:07,960"
+			},
+			"offsets": {
+				"from": 843600,
+				"to": 847960
+			},
+			"text": " Whereas, if your oracle is less reliable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,960",
+				"to": "00:14:09,720"
+			},
+			"offsets": {
+				"from": 847960,
+				"to": 849720
+			},
+			"text": " let's say it's a chain link oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,720",
+				"to": "00:14:12,800"
+			},
+			"offsets": {
+				"from": 849720,
+				"to": 852800
+			},
+			"text": " that can't update super often,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,800",
+				"to": "00:14:15,800"
+			},
+			"offsets": {
+				"from": 852800,
+				"to": 855800
+			},
+			"text": " you may set K somewhere in between these two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,800",
+				"to": "00:14:20,080"
+			},
+			"offsets": {
+				"from": 855800,
+				"to": 860080
+			},
+			"text": " and the curve will leverage that oracle to inform its pricing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,080",
+				"to": "00:14:22,680"
+			},
+			"offsets": {
+				"from": 860080,
+				"to": 862680
+			},
+			"text": " but it will also discover the price"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,680",
+				"to": "00:14:25,040"
+			},
+			"offsets": {
+				"from": 862680,
+				"to": 865040
+			},
+			"text": " if that oracle turns out to be incorrect"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,040",
+				"to": "00:14:27,240"
+			},
+			"offsets": {
+				"from": 865040,
+				"to": 867240
+			},
+			"text": " or there's large trade volume."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,240",
+				"to": "00:14:33,640"
+			},
+			"offsets": {
+				"from": 867240,
+				"to": 873640
+			},
+			"text": " Clipper is another one that actually has a K parameter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,640",
+				"to": "00:14:35,640"
+			},
+			"offsets": {
+				"from": 873640,
+				"to": 875640
+			},
+			"text": " that serves a very similar purpose."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,640",
+				"to": "00:14:40,120"
+			},
+			"offsets": {
+				"from": 875640,
+				"to": 880120
+			},
+			"text": " The math behind it is very different and very interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,120",
+				"to": "00:14:44,720"
+			},
+			"offsets": {
+				"from": 880120,
+				"to": 884720
+			},
+			"text": " but end result is, again, you get this curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,720",
+				"to": "00:14:48,640"
+			},
+			"offsets": {
+				"from": 884720,
+				"to": 888640
+			},
+			"text": " and this parameter K that allows you to adjust the curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,640",
+				"to": "00:14:53,080"
+			},
+			"offsets": {
+				"from": 888640,
+				"to": 893080
+			},
+			"text": " between the constant sum and the constant product, market maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,080",
+				"to": "00:14:57,360"
+			},
+			"offsets": {
+				"from": 893080,
+				"to": 897360
+			},
+			"text": " Now, the interpretation of K as confidence in the oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,360",
+				"to": "00:15:01,200"
+			},
+			"offsets": {
+				"from": 897360,
+				"to": 901200
+			},
+			"text": " sort of has some extra meaning here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,200",
+				"to": "00:15:04,560"
+			},
+			"offsets": {
+				"from": 901200,
+				"to": 904560
+			},
+			"text": " in that Clipper originally deployed their AMM"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,560",
+				"to": "00:15:07,840"
+			},
+			"offsets": {
+				"from": 904560,
+				"to": 907840
+			},
+			"text": " fully on-chain leveraging a non-chain chain link oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,840",
+				"to": "00:15:13,360"
+			},
+			"offsets": {
+				"from": 907840,
+				"to": 913360
+			},
+			"text": " Now, as I mentioned, the limitation with a chain link oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,360",
+				"to": "00:15:17,520"
+			},
+			"offsets": {
+				"from": 913360,
+				"to": 917520
+			},
+			"text": " is that it can't possibly update faster than the block time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,520",
+				"to": "00:15:20,880"
+			},
+			"offsets": {
+				"from": 917520,
+				"to": 920880
+			},
+			"text": " And so you can't have full confidence in the oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,880",
+				"to": "00:15:24,680"
+			},
+			"offsets": {
+				"from": 920880,
+				"to": 924680
+			},
+			"text": " when its update time is limited."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,680",
+				"to": "00:15:26,760"
+			},
+			"offsets": {
+				"from": 924680,
+				"to": 926760
+			},
+			"text": " So more recently, what they've done"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,760",
+				"to": "00:15:30,760"
+			},
+			"offsets": {
+				"from": 926760,
+				"to": 930760
+			},
+			"text": " is they've actually built another version"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,760",
+				"to": "00:15:33,720"
+			},
+			"offsets": {
+				"from": 930760,
+				"to": 933720
+			},
+			"text": " that can leverage a fully off-chain oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,720",
+				"to": "00:15:36,920"
+			},
+			"offsets": {
+				"from": 933720,
+				"to": 936920
+			},
+			"text": " and we're gonna come back to how that's possible later in the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,920",
+				"to": "00:15:41,480"
+			},
+			"offsets": {
+				"from": 936920,
+				"to": 941480
+			},
+			"text": " But for now, the context of that is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,480",
+				"to": "00:15:43,480"
+			},
+			"offsets": {
+				"from": 941480,
+				"to": 943480
+			},
+			"text": " this allowed them to set K much lower."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,480",
+				"to": "00:15:45,520"
+			},
+			"offsets": {
+				"from": 943480,
+				"to": 945520
+			},
+			"text": " And so this is sort of a concrete example"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,520",
+				"to": "00:15:49,840"
+			},
+			"offsets": {
+				"from": 945520,
+				"to": 949840
+			},
+			"text": " of K being the confidence you have in this oracle price."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,840",
+				"to": "00:15:56,480"
+			},
+			"offsets": {
+				"from": 949840,
+				"to": 956480
+			},
+			"text": " So last hybrid AMM we're gonna cover today is CryptoSwap."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,480",
+				"to": "00:16:00,600"
+			},
+			"offsets": {
+				"from": 956480,
+				"to": 960600
+			},
+			"text": " We covered StableSwap as the first one"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,600",
+				"to": "00:16:04,040"
+			},
+			"offsets": {
+				"from": 960600,
+				"to": 964040
+			},
+			"text": " and StableSwap's fantastic for stable assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,040",
+				"to": "00:16:09,240"
+			},
+			"offsets": {
+				"from": 964040,
+				"to": 969240
+			},
+			"text": " Unfortunately, it's not very good for more volatile pegs"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,920",
+				"to": "00:16:15,320"
+			},
+			"offsets": {
+				"from": 970920,
+				"to": 975320
+			},
+			"text": " because it so closely matches that constant sum curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,320",
+				"to": "00:16:19,240"
+			},
+			"offsets": {
+				"from": 975320,
+				"to": 979240
+			},
+			"text": " So what Curve did is they took that StableSwap curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,240",
+				"to": "00:16:22,200"
+			},
+			"offsets": {
+				"from": 979240,
+				"to": 982200
+			},
+			"text": " and they essentially added another degree of freedom to it"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,200",
+				"to": "00:16:24,200"
+			},
+			"offsets": {
+				"from": 982200,
+				"to": 984200
+			},
+			"text": " called the gamma parameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,200",
+				"to": "00:16:28,800"
+			},
+			"offsets": {
+				"from": 984200,
+				"to": 988800
+			},
+			"text": " And this parameter allows the curve to more quickly adjust"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,800",
+				"to": "00:16:32,240"
+			},
+			"offsets": {
+				"from": 988800,
+				"to": 992240
+			},
+			"text": " from the constant sum to the constant product"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,240",
+				"to": "00:16:36,120"
+			},
+			"offsets": {
+				"from": 992240,
+				"to": 996120
+			},
+			"text": " as the reserves get more and more out of balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,120",
+				"to": "00:16:38,520"
+			},
+			"offsets": {
+				"from": 996120,
+				"to": 998520
+			},
+			"text": " And so on the right in the trading curves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,520",
+				"to": "00:16:41,080"
+			},
+			"offsets": {
+				"from": 998520,
+				"to": 1001080
+			},
+			"text": " what you're seeing is the StableSwap curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,080",
+				"to": "00:16:46,080"
+			},
+			"offsets": {
+				"from": 1001080,
+				"to": 1006080
+			},
+			"text": " for reference in green next to the CryptoSwap curve in purple."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,080",
+				"to": "00:16:48,800"
+			},
+			"offsets": {
+				"from": 1006080,
+				"to": 1008800
+			},
+			"text": " And you can see for very small inputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,800",
+				"to": "00:16:52,720"
+			},
+			"offsets": {
+				"from": 1008800,
+				"to": 1012720
+			},
+			"text": " the CryptoSwap curve is actually closer to the constant sum."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,720",
+				"to": "00:16:56,240"
+			},
+			"offsets": {
+				"from": 1012720,
+				"to": 1016240
+			},
+			"text": " Whereas, for very large inputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,240",
+				"to": "00:16:59,480"
+			},
+			"offsets": {
+				"from": 1016240,
+				"to": 1019480
+			},
+			"text": " it's much quicker to adjust away from the constant sum"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,480",
+				"to": "00:17:02,560"
+			},
+			"offsets": {
+				"from": 1019480,
+				"to": 1022560
+			},
+			"text": " towards the constant product as it switches over"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,560",
+				"to": "00:17:04,560"
+			},
+			"offsets": {
+				"from": 1022560,
+				"to": 1024560
+			},
+			"text": " to price discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,560",
+				"to": "00:17:09,440"
+			},
+			"offsets": {
+				"from": 1024560,
+				"to": 1029440
+			},
+			"text": " So this allows it to be used for more volatile oracles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,440",
+				"to": "00:17:14,160"
+			},
+			"offsets": {
+				"from": 1029440,
+				"to": 1034160
+			},
+			"text": " non-one to one pegs, which makes it very powerful"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,160",
+				"to": "00:17:19,080"
+			},
+			"offsets": {
+				"from": 1034160,
+				"to": 1039080
+			},
+			"text": " and allows Curve to essentially expand to other options."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,080",
+				"to": "00:17:21,440"
+			},
+			"offsets": {
+				"from": 1039080,
+				"to": 1041440
+			},
+			"text": " Now, there are quite a few other interesting things"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,440",
+				"to": "00:17:23,400"
+			},
+			"offsets": {
+				"from": 1041440,
+				"to": 1043400
+			},
+			"text": " about CryptoSwap that sort of break the mold"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,400",
+				"to": "00:17:25,360"
+			},
+			"offsets": {
+				"from": 1043400,
+				"to": 1045360
+			},
+			"text": " that we unfortunately don't have time to get into."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,360",
+				"to": "00:17:27,840"
+			},
+			"offsets": {
+				"from": 1045360,
+				"to": 1047840
+			},
+			"text": " So I encourage anyone who's interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,840",
+				"to": "00:17:29,280"
+			},
+			"offsets": {
+				"from": 1047840,
+				"to": 1049280
+			},
+			"text": " to look more into that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,360",
+				"to": "00:17:36,360"
+			},
+			"offsets": {
+				"from": 1051360,
+				"to": 1056360
+			},
+			"text": " For now, we're going to move into another sort of type of AMM."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,360",
+				"to": "00:17:39,720"
+			},
+			"offsets": {
+				"from": 1056360,
+				"to": 1059720
+			},
+			"text": " These AMM still live in between the constant sum"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,720",
+				"to": "00:17:43,920"
+			},
+			"offsets": {
+				"from": 1059720,
+				"to": 1063920
+			},
+			"text": " and constant product, but the thinking and concepts"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,920",
+				"to": "00:17:45,280"
+			},
+			"offsets": {
+				"from": 1063920,
+				"to": 1065280
+			},
+			"text": " behind them are a bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,280",
+				"to": "00:17:47,440"
+			},
+			"offsets": {
+				"from": 1065280,
+				"to": 1067440
+			},
+			"text": " And so I think it's worth approaching them"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,440",
+				"to": "00:17:48,640"
+			},
+			"offsets": {
+				"from": 1067440,
+				"to": 1068640
+			},
+			"text": " from another direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,640",
+				"to": "00:17:52,320"
+			},
+			"offsets": {
+				"from": 1068640,
+				"to": 1072320
+			},
+			"text": " And that is through virtual reserves."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,320",
+				"to": "00:17:57,120"
+			},
+			"offsets": {
+				"from": 1072320,
+				"to": 1077120
+			},
+			"text": " So Kyber-DMM is one example of a mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,120",
+				"to": "00:17:59,240"
+			},
+			"offsets": {
+				"from": 1077120,
+				"to": 1079240
+			},
+			"text": " that utilizes virtual reserves."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,240",
+				"to": "00:18:03,320"
+			},
+			"offsets": {
+				"from": 1079240,
+				"to": 1083320
+			},
+			"text": " And what virtual reserves are are essentially just"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,320",
+				"to": "00:18:05,880"
+			},
+			"offsets": {
+				"from": 1083320,
+				"to": 1085880
+			},
+			"text": " pretending to have more of the assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,880",
+				"to": "00:18:07,640"
+			},
+			"offsets": {
+				"from": 1085880,
+				"to": 1087640
+			},
+			"text": " than you actually have, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,640",
+				"to": "00:18:11,160"
+			},
+			"offsets": {
+				"from": 1087640,
+				"to": 1091160
+			},
+			"text": " So we're still using the constant product equation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,160",
+				"to": "00:18:14,160"
+			},
+			"offsets": {
+				"from": 1091160,
+				"to": 1094160
+			},
+			"text": " but we are saying we have five times more"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,160",
+				"to": "00:18:16,800"
+			},
+			"offsets": {
+				"from": 1094160,
+				"to": 1096800
+			},
+			"text": " of each asset than we actually have."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,800",
+				"to": "00:18:19,160"
+			},
+			"offsets": {
+				"from": 1096800,
+				"to": 1099160
+			},
+			"text": " And so you plug these virtual reserves"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,160",
+				"to": "00:18:21,440"
+			},
+			"offsets": {
+				"from": 1099160,
+				"to": 1101440
+			},
+			"text": " into the constant product equation"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,440",
+				"to": "00:18:23,320"
+			},
+			"offsets": {
+				"from": 1101440,
+				"to": 1103320
+			},
+			"text": " and you get what we see on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,320",
+				"to": "00:18:26,200"
+			},
+			"offsets": {
+				"from": 1103320,
+				"to": 1106200
+			},
+			"text": " where we have that constant product curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,200",
+				"to": "00:18:28,880"
+			},
+			"offsets": {
+				"from": 1106200,
+				"to": 1108880
+			},
+			"text": " that moves closer and closer to the constant sum"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,880",
+				"to": "00:18:31,560"
+			},
+			"offsets": {
+				"from": 1108880,
+				"to": 1111560
+			},
+			"text": " as this amplification increases."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,560",
+				"to": "00:18:36,280"
+			},
+			"offsets": {
+				"from": 1111560,
+				"to": 1116280
+			},
+			"text": " But the trade-off obviously being that you are introducing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,280",
+				"to": "00:18:39,480"
+			},
+			"offsets": {
+				"from": 1116280,
+				"to": 1119480
+			},
+			"text": " this zone of illiquidity because you don't actually have"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,480",
+				"to": "00:18:42,520"
+			},
+			"offsets": {
+				"from": 1119480,
+				"to": 1122520
+			},
+			"text": " as much money as you're pretending to have."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,520",
+				"to": "00:18:45,320"
+			},
+			"offsets": {
+				"from": 1122520,
+				"to": 1125320
+			},
+			"text": " And so you have to be careful, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,320",
+				"to": "00:18:49,640"
+			},
+			"offsets": {
+				"from": 1125320,
+				"to": 1129640
+			},
+			"text": " how much in where you're concentrating this liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,640",
+				"to": "00:18:53,800"
+			},
+			"offsets": {
+				"from": 1129640,
+				"to": 1133800
+			},
+			"text": " and you really need to use pairs of assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,800",
+				"to": "00:18:55,800"
+			},
+			"offsets": {
+				"from": 1133800,
+				"to": 1135800
+			},
+			"text": " that are going to trade within some price range"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,800",
+				"to": "00:18:59,320"
+			},
+			"offsets": {
+				"from": 1135800,
+				"to": 1139320
+			},
+			"text": " because once you exit this price range,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,320",
+				"to": "00:19:02,800"
+			},
+			"offsets": {
+				"from": 1139320,
+				"to": 1142800
+			},
+			"text": " you become illiquid and you can no longer market make,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,800",
+				"to": "00:19:05,760"
+			},
+			"offsets": {
+				"from": 1142800,
+				"to": 1145760
+			},
+			"text": " which as we discussed is very bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,760",
+				"to": "00:19:10,800"
+			},
+			"offsets": {
+				"from": 1145760,
+				"to": 1150800
+			},
+			"text": " So what we really need is to be able to leverage"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,800",
+				"to": "00:19:13,360"
+			},
+			"offsets": {
+				"from": 1150800,
+				"to": 1153360
+			},
+			"text": " this powerful virtual reserve mechanism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,360",
+				"to": "00:19:18,120"
+			},
+			"offsets": {
+				"from": 1153360,
+				"to": 1158120
+			},
+			"text": " but to also have some freedom to move it around, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,120",
+				"to": "00:19:21,880"
+			},
+			"offsets": {
+				"from": 1158120,
+				"to": 1161880
+			},
+			"text": " And so that's exactly what Uniswap V3 provides."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,880",
+				"to": "00:19:25,360"
+			},
+			"offsets": {
+				"from": 1161880,
+				"to": 1165360
+			},
+			"text": " So Uniswap V3 utilizes these virtual reserves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,360",
+				"to": "00:19:30,360"
+			},
+			"offsets": {
+				"from": 1165360,
+				"to": 1170360
+			},
+			"text": " but it basically says each individual liquidity provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,360",
+				"to": "00:19:32,560"
+			},
+			"offsets": {
+				"from": 1170360,
+				"to": 1172560
+			},
+			"text": " can choose their own price range"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,560",
+				"to": "00:19:36,480"
+			},
+			"offsets": {
+				"from": 1172560,
+				"to": 1176480
+			},
+			"text": " and implicitly amplification and concentration as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,480",
+				"to": "00:19:40,680"
+			},
+			"offsets": {
+				"from": 1176480,
+				"to": 1180680
+			},
+			"text": " And so this is super interesting to me"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,680",
+				"to": "00:19:45,400"
+			},
+			"offsets": {
+				"from": 1180680,
+				"to": 1185400
+			},
+			"text": " because it's essentially outsourcing this hard problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,400",
+				"to": "00:19:48,120"
+			},
+			"offsets": {
+				"from": 1185400,
+				"to": 1188120
+			},
+			"text": " of deciding where to provide liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,120",
+				"to": "00:19:50,600"
+			},
+			"offsets": {
+				"from": 1188120,
+				"to": 1190600
+			},
+			"text": " to the liquidity providers themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,600",
+				"to": "00:19:53,160"
+			},
+			"offsets": {
+				"from": 1190600,
+				"to": 1193160
+			},
+			"text": " So the mechanism no longer has to solve this problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,160",
+				"to": "00:19:56,720"
+			},
+			"offsets": {
+				"from": 1193160,
+				"to": 1196720
+			},
+			"text": " specifically, but instead it's simply general enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,720",
+				"to": "00:20:01,720"
+			},
+			"offsets": {
+				"from": 1196720,
+				"to": 1201720
+			},
+			"text": " to let liquidity providers decide what risk and reward payoffs"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,720",
+				"to": "00:20:05,720"
+			},
+			"offsets": {
+				"from": 1201720,
+				"to": 1205720
+			},
+			"text": " they want to take by deciding where to concentrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,720",
+				"to": "00:20:06,620"
+			},
+			"offsets": {
+				"from": 1205720,
+				"to": 1206620
+			},
+			"text": " the liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,620",
+				"to": "00:20:12,040"
+			},
+			"offsets": {
+				"from": 1206620,
+				"to": 1212040
+			},
+			"text": " Now there is not a trading function for this one"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,040",
+				"to": "00:20:13,760"
+			},
+			"offsets": {
+				"from": 1212040,
+				"to": 1213760
+			},
+			"text": " as you probably noticed."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,760",
+				"to": "00:20:15,600"
+			},
+			"offsets": {
+				"from": 1213760,
+				"to": 1215600
+			},
+			"text": " It's hard to appreciate the complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,600",
+				"to": "00:20:18,800"
+			},
+			"offsets": {
+				"from": 1215600,
+				"to": 1218800
+			},
+			"text": " that Uniswap V3 can provide with a trading function."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,800",
+				"to": "00:20:22,200"
+			},
+			"offsets": {
+				"from": 1218800,
+				"to": 1222200
+			},
+			"text": " Instead what you're seeing is a liquidity graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,200",
+				"to": "00:20:27,200"
+			},
+			"offsets": {
+				"from": 1222200,
+				"to": 1227200
+			},
+			"text": " So on the X axis is essentially the price"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,200",
+				"to": "00:20:31,800"
+			},
+			"offsets": {
+				"from": 1227200,
+				"to": 1231800
+			},
+			"text": " and on the Y axis is the liquidity at any given point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,800",
+				"to": "00:20:36,320"
+			},
+			"offsets": {
+				"from": 1231800,
+				"to": 1236320
+			},
+			"text": " which is essentially how flat the trading function is there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,320",
+				"to": "00:20:38,160"
+			},
+			"offsets": {
+				"from": 1236320,
+				"to": 1238160
+			},
+			"text": " And you can see for reference, just for fun,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,160",
+				"to": "00:20:40,280"
+			},
+			"offsets": {
+				"from": 1238160,
+				"to": 1240280
+			},
+			"text": " we have Uniswap V2, which is just flat"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,280",
+				"to": "00:20:41,960"
+			},
+			"offsets": {
+				"from": 1240280,
+				"to": 1241960
+			},
+			"text": " because it's uniform."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,960",
+				"to": "00:20:44,760"
+			},
+			"offsets": {
+				"from": 1241960,
+				"to": 1244760
+			},
+			"text": " Whereas Uniswap V3 has this very complex shape"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,760",
+				"to": "00:20:47,320"
+			},
+			"offsets": {
+				"from": 1244760,
+				"to": 1247320
+			},
+			"text": " because this is sort of the combination"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,320",
+				"to": "00:20:49,600"
+			},
+			"offsets": {
+				"from": 1247320,
+				"to": 1249600
+			},
+			"text": " of all these different ranges"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,600",
+				"to": "00:20:51,800"
+			},
+			"offsets": {
+				"from": 1249600,
+				"to": 1251800
+			},
+			"text": " that all these Uniswap V3 liquidity providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,800",
+				"to": "00:20:54,040"
+			},
+			"offsets": {
+				"from": 1251800,
+				"to": 1254040
+			},
+			"text": " are providing liquidity in."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,040",
+				"to": "00:20:56,600"
+			},
+			"offsets": {
+				"from": 1254040,
+				"to": 1256600
+			},
+			"text": " And so as everyone's probably aware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,600",
+				"to": "00:20:59,080"
+			},
+			"offsets": {
+				"from": 1256600,
+				"to": 1259080
+			},
+			"text": " this has become extremely popular"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,080",
+				"to": "00:21:03,160"
+			},
+			"offsets": {
+				"from": 1259080,
+				"to": 1263160
+			},
+			"text": " and is responsible for a huge proportion"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,160",
+				"to": "00:21:05,640"
+			},
+			"offsets": {
+				"from": 1263160,
+				"to": 1265640
+			},
+			"text": " of the DeFi trading volume"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,640",
+				"to": "00:21:08,300"
+			},
+			"offsets": {
+				"from": 1265640,
+				"to": 1268300
+			},
+			"text": " because of how powerful this mechanism is."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,300",
+				"to": "00:21:14,800"
+			},
+			"offsets": {
+				"from": 1268300,
+				"to": 1274800
+			},
+			"text": " So that concludes all the specific AMM types"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,800",
+				"to": "00:21:15,920"
+			},
+			"offsets": {
+				"from": 1274800,
+				"to": 1275920
+			},
+			"text": " I'm gonna cover today."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,920",
+				"to": "00:21:19,200"
+			},
+			"offsets": {
+				"from": 1275920,
+				"to": 1279200
+			},
+			"text": " To close things out, I'd like to briefly cover"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,200",
+				"to": "00:21:24,200"
+			},
+			"offsets": {
+				"from": 1279200,
+				"to": 1284200
+			},
+			"text": " how we can build on top of these great on-chain mechanisms"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,200",
+				"to": "00:21:27,280"
+			},
+			"offsets": {
+				"from": 1284200,
+				"to": 1287280
+			},
+			"text": " and leverage off-chain computation as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,280",
+				"to": "00:21:30,240"
+			},
+			"offsets": {
+				"from": 1287280,
+				"to": 1290240
+			},
+			"text": " to improve upon them even more."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,240",
+				"to": "00:21:34,000"
+			},
+			"offsets": {
+				"from": 1290240,
+				"to": 1294000
+			},
+			"text": " So the first thing I wanna cover"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,000",
+				"to": "00:21:36,240"
+			},
+			"offsets": {
+				"from": 1294000,
+				"to": 1296240
+			},
+			"text": " are requests for quote systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,240",
+				"to": "00:21:38,040"
+			},
+			"offsets": {
+				"from": 1296240,
+				"to": 1298040
+			},
+			"text": " So I alluded to this earlier"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,040",
+				"to": "00:21:39,880"
+			},
+			"offsets": {
+				"from": 1298040,
+				"to": 1299880
+			},
+			"text": " and essentially what this is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,880",
+				"to": "00:21:45,960"
+			},
+			"offsets": {
+				"from": 1299880,
+				"to": 1305960
+			},
+			"text": " is it allows the market maker"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,960",
+				"to": "00:21:49,840"
+			},
+			"offsets": {
+				"from": 1305960,
+				"to": 1309840
+			},
+			"text": " to do completely off-chain pricing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,840",
+				"to": "00:21:53,080"
+			},
+			"offsets": {
+				"from": 1309840,
+				"to": 1313080
+			},
+			"text": " So you can either leverage a real-time oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,080",
+				"to": "00:21:55,680"
+			},
+			"offsets": {
+				"from": 1313080,
+				"to": 1315680
+			},
+			"text": " or you can leverage actual traditional"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,680",
+				"to": "00:21:56,960"
+			},
+			"offsets": {
+				"from": 1315680,
+				"to": 1316960
+			},
+			"text": " professional market makers"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,960",
+				"to": "00:21:59,560"
+			},
+			"offsets": {
+				"from": 1316960,
+				"to": 1319560
+			},
+			"text": " that are constantly manipulating the order book."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,560",
+				"to": "00:22:04,640"
+			},
+			"offsets": {
+				"from": 1319560,
+				"to": 1324640
+			},
+			"text": " And you can then provide an API that anyone can hit"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,640",
+				"to": "00:22:08,760"
+			},
+			"offsets": {
+				"from": 1324640,
+				"to": 1328760
+			},
+			"text": " and they can get a quote and a signature with that quote"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,760",
+				"to": "00:22:12,200"
+			},
+			"offsets": {
+				"from": 1328760,
+				"to": 1332200
+			},
+			"text": " and you can then take that quote and signature on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,040",
+				"to": "00:22:17,000"
+			},
+			"offsets": {
+				"from": 1334040,
+				"to": 1337000
+			},
+			"text": " and you can then execute it and compose it"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,000",
+				"to": "00:22:19,160"
+			},
+			"offsets": {
+				"from": 1337000,
+				"to": 1339160
+			},
+			"text": " with all these other AMMs as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,160",
+				"to": "00:22:22,560"
+			},
+			"offsets": {
+				"from": 1339160,
+				"to": 1342560
+			},
+			"text": " And so this becomes a powerful mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,560",
+				"to": "00:22:26,480"
+			},
+			"offsets": {
+				"from": 1342560,
+				"to": 1346480
+			},
+			"text": " where we can leverage these off-chain resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,480",
+				"to": "00:22:28,640"
+			},
+			"offsets": {
+				"from": 1346480,
+				"to": 1348640
+			},
+			"text": " which often allow for more efficient pricing"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,640",
+				"to": "00:22:33,560"
+			},
+			"offsets": {
+				"from": 1348640,
+				"to": 1353560
+			},
+			"text": " while still maintaining a lot of these on-chain benefits"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,560",
+				"to": "00:22:35,080"
+			},
+			"offsets": {
+				"from": 1353560,
+				"to": 1355080
+			},
+			"text": " that we get from AMMs."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,080",
+				"to": "00:22:37,400"
+			},
+			"offsets": {
+				"from": 1355080,
+				"to": 1357400
+			},
+			"text": " And so we have a few examples there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,400",
+				"to": "00:22:39,720"
+			},
+			"offsets": {
+				"from": 1357400,
+				"to": 1359720
+			},
+			"text": " One is Clipper RFQ which I mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,720",
+				"to": "00:22:41,720"
+			},
+			"offsets": {
+				"from": 1359720,
+				"to": 1361720
+			},
+			"text": " which leverages that off-chain oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,720",
+				"to": "00:22:45,680"
+			},
+			"offsets": {
+				"from": 1361720,
+				"to": 1365680
+			},
+			"text": " Hashflow is another one that leverages these traditional,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,680",
+				"to": "00:22:47,280"
+			},
+			"offsets": {
+				"from": 1365680,
+				"to": 1367280
+			},
+			"text": " essentially market making tactics"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,280",
+				"to": "00:22:50,400"
+			},
+			"offsets": {
+				"from": 1367280,
+				"to": 1370400
+			},
+			"text": " and provides that as a RFQ API"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,400",
+				"to": "00:22:52,320"
+			},
+			"offsets": {
+				"from": 1370400,
+				"to": 1372320
+			},
+			"text": " that can then be leveraged on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,320",
+				"to": "00:22:56,400"
+			},
+			"offsets": {
+				"from": 1372320,
+				"to": 1376400
+			},
+			"text": " So with all of that in mind,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,400",
+				"to": "00:23:00,520"
+			},
+			"offsets": {
+				"from": 1376400,
+				"to": 1380520
+			},
+			"text": " I'd like to close things out by asking the question now"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,520",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1380520,
+				"to": 1382000
+			},
+			"text": " from the trader's point of view,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:06,200"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1386200
+			},
+			"text": " how do we actually navigate this complex landscape"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,200",
+				"to": "00:23:10,280"
+			},
+			"offsets": {
+				"from": 1386200,
+				"to": 1390280
+			},
+			"text": " and figure out where and how much to trade, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,280",
+				"to": "00:23:13,960"
+			},
+			"offsets": {
+				"from": 1390280,
+				"to": 1393960
+			},
+			"text": " And just to summarize, what we've covered here"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,960",
+				"to": "00:23:15,640"
+			},
+			"offsets": {
+				"from": 1393960,
+				"to": 1395640
+			},
+			"text": " are many different types of AMMs"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,640",
+				"to": "00:23:17,360"
+			},
+			"offsets": {
+				"from": 1395640,
+				"to": 1397360
+			},
+			"text": " which all have different purposes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,360",
+				"to": "00:23:21,720"
+			},
+			"offsets": {
+				"from": 1397360,
+				"to": 1401720
+			},
+			"text": " Each type of AMM is actually implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,720",
+				"to": "00:23:23,800"
+			},
+			"offsets": {
+				"from": 1401720,
+				"to": 1403800
+			},
+			"text": " many, many times on-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,800",
+				"to": "00:23:26,600"
+			},
+			"offsets": {
+				"from": 1403800,
+				"to": 1406600
+			},
+			"text": " sometimes thousands of times in the case of Uniswap V2."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,600",
+				"to": "00:23:29,060"
+			},
+			"offsets": {
+				"from": 1406600,
+				"to": 1409060
+			},
+			"text": " So you have many choices there as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,060",
+				"to": "00:23:33,360"
+			},
+			"offsets": {
+				"from": 1409060,
+				"to": 1413360
+			},
+			"text": " It turns out since these trading functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,360",
+				"to": "00:23:36,560"
+			},
+			"offsets": {
+				"from": 1413360,
+				"to": 1416560
+			},
+			"text": " are always adjusting their prices as you trade through them"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,560",
+				"to": "00:23:40,160"
+			},
+			"offsets": {
+				"from": 1416560,
+				"to": 1420160
+			},
+			"text": " for any direct pair of assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,160",
+				"to": "00:23:43,280"
+			},
+			"offsets": {
+				"from": 1420160,
+				"to": 1423280
+			},
+			"text": " the best place to trade is actually usually"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,280",
+				"to": "00:23:46,640"
+			},
+			"offsets": {
+				"from": 1423280,
+				"to": 1426640
+			},
+			"text": " a combination of different liquidity pools"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,640",
+				"to": "00:23:48,000"
+			},
+			"offsets": {
+				"from": 1426640,
+				"to": 1428000
+			},
+			"text": " instead of just picking one."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,000",
+				"to": "00:23:50,840"
+			},
+			"offsets": {
+				"from": 1428000,
+				"to": 1430840
+			},
+			"text": " So your problem is not just picking one place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,840",
+				"to": "00:23:56,080"
+			},
+			"offsets": {
+				"from": 1430840,
+				"to": 1436080
+			},
+			"text": " it's actually picking some arbitrary combination, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,080",
+				"to": "00:23:57,600"
+			},
+			"offsets": {
+				"from": 1436080,
+				"to": 1437600
+			},
+			"text": " And if all that wasn't enough,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,600",
+				"to": "00:24:02,560"
+			},
+			"offsets": {
+				"from": 1437600,
+				"to": 1442560
+			},
+			"text": " the best trading price is often actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,560",
+				"to": "00:24:04,280"
+			},
+			"offsets": {
+				"from": 1442560,
+				"to": 1444280
+			},
+			"text": " routing through other tokens as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,280",
+				"to": "00:24:09,240"
+			},
+			"offsets": {
+				"from": 1444280,
+				"to": 1449240
+			},
+			"text": " And so the answer to all this, as you may guess,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,240",
+				"to": "00:24:11,600"
+			},
+			"offsets": {
+				"from": 1449240,
+				"to": 1451600
+			},
+			"text": " is of course, dex aggregators, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,600",
+				"to": "00:24:14,600"
+			},
+			"offsets": {
+				"from": 1451600,
+				"to": 1454600
+			},
+			"text": " We have a very hard optimization problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,600",
+				"to": "00:24:19,600"
+			},
+			"offsets": {
+				"from": 1454600,
+				"to": 1459600
+			},
+			"text": " and we can essentially leverage off-chain computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,600",
+				"to": "00:24:24,640"
+			},
+			"offsets": {
+				"from": 1459600,
+				"to": 1464640
+			},
+			"text": " to solve this problem and provide, again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,640",
+				"to": "00:24:28,200"
+			},
+			"offsets": {
+				"from": 1464640,
+				"to": 1468200
+			},
+			"text": " a transaction that still maintains a lot of the great qualities"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,200",
+				"to": "00:24:32,720"
+			},
+			"offsets": {
+				"from": 1468200,
+				"to": 1472720
+			},
+			"text": " of on-chain AMMs by still allowing"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,720",
+				"to": "00:24:36,440"
+			},
+			"offsets": {
+				"from": 1472720,
+				"to": 1476440
+			},
+			"text": " for atomic execution, self-custody."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,440",
+				"to": "00:24:39,680"
+			},
+			"offsets": {
+				"from": 1476440,
+				"to": 1479680
+			},
+			"text": " Still, you still have protection from slippage."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,680",
+				"to": "00:24:43,560"
+			},
+			"offsets": {
+				"from": 1479680,
+				"to": 1483560
+			},
+			"text": " And so this is an incredibly powerful mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,560",
+				"to": "00:24:49,160"
+			},
+			"offsets": {
+				"from": 1483560,
+				"to": 1489160
+			},
+			"text": " And I have an example of a particular trade"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,160",
+				"to": "00:24:51,500"
+			},
+			"offsets": {
+				"from": 1489160,
+				"to": 1491500
+			},
+			"text": " you can execute with Odo specifically."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,500",
+				"to": "00:24:57,000"
+			},
+			"offsets": {
+				"from": 1491500,
+				"to": 1497000
+			},
+			"text": " Now with Odo's, we visualize these aggregation paths"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,000",
+				"to": "00:24:59,400"
+			},
+			"offsets": {
+				"from": 1497000,
+				"to": 1499400
+			},
+			"text": " with what's called a Sankey diagram"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,400",
+				"to": "00:25:02,040"
+			},
+			"offsets": {
+				"from": 1499400,
+				"to": 1502040
+			},
+			"text": " and it's essentially showing the flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,040",
+				"to": "00:25:04,360"
+			},
+			"offsets": {
+				"from": 1502040,
+				"to": 1504360
+			},
+			"text": " from the left-hand side to the right-hand side"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,360",
+				"to": "00:25:06,000"
+			},
+			"offsets": {
+				"from": 1504360,
+				"to": 1506000
+			},
+			"text": " through all these other assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,000",
+				"to": "00:25:07,960"
+			},
+			"offsets": {
+				"from": 1506000,
+				"to": 1507960
+			},
+			"text": " and all these other dexes."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,960",
+				"to": "00:25:12,280"
+			},
+			"offsets": {
+				"from": 1507960,
+				"to": 1512280
+			},
+			"text": " This one in particular actually has about 40 different swaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,280",
+				"to": "00:25:16,520"
+			},
+			"offsets": {
+				"from": 1512280,
+				"to": 1516520
+			},
+			"text": " So 40 different dext interactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,520",
+				"to": "00:25:18,600"
+			},
+			"offsets": {
+				"from": 1516520,
+				"to": 1518600
+			},
+			"text": " that you can execute all atomically."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,600",
+				"to": "00:25:24,000"
+			},
+			"offsets": {
+				"from": 1518600,
+				"to": 1524000
+			},
+			"text": " This one is also showing multiple assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,000",
+				"to": "00:25:24,960"
+			},
+			"offsets": {
+				"from": 1524000,
+				"to": 1524960
+			},
+			"text": " being traded at once."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,960",
+				"to": "00:25:28,000"
+			},
+			"offsets": {
+				"from": 1524960,
+				"to": 1528000
+			},
+			"text": " So this is another benefit that we can get"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,000",
+				"to": "00:25:31,600"
+			},
+			"offsets": {
+				"from": 1528000,
+				"to": 1531600
+			},
+			"text": " from sort of combining these AMMs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,600",
+				"to": "00:25:34,680"
+			},
+			"offsets": {
+				"from": 1531600,
+				"to": 1534680
+			},
+			"text": " like building blocks into a bigger transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,680",
+				"to": "00:25:36,320"
+			},
+			"offsets": {
+				"from": 1534680,
+				"to": 1536320
+			},
+			"text": " to execute a given trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,320",
+				"to": "00:25:43,520"
+			},
+			"offsets": {
+				"from": 1536320,
+				"to": 1543520
+			},
+			"text": " And so, yeah, dext aggregators, very powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,520",
+				"to": "00:25:46,680"
+			},
+			"offsets": {
+				"from": 1543520,
+				"to": 1546680
+			},
+			"text": " And sort of an example, again, of leveraging"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,680",
+				"to": "00:25:48,480"
+			},
+			"offsets": {
+				"from": 1546680,
+				"to": 1548480
+			},
+			"text": " this off-chain execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,480",
+				"to": "00:25:55,440"
+			},
+			"offsets": {
+				"from": 1548480,
+				"to": 1555440
+			},
+			"text": " or even better experience over these amazing AMM mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,440",
+				"to": "00:26:00,680"
+			},
+			"offsets": {
+				"from": 1555440,
+				"to": 1560680
+			},
+			"text": " And so that concludes things."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:00,680",
+				"to": "00:26:02,400"
+			},
+			"offsets": {
+				"from": 1560680,
+				"to": 1562400
+			},
+			"text": " A few final notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,400",
+				"to": "00:26:04,840"
+			},
+			"offsets": {
+				"from": 1562400,
+				"to": 1564840
+			},
+			"text": " The parent company of Odo's semiotic labs"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,840",
+				"to": "00:26:06,920"
+			},
+			"offsets": {
+				"from": 1564840,
+				"to": 1566920
+			},
+			"text": " is actually giving a couple other talks today."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,920",
+				"to": "00:26:09,760"
+			},
+			"offsets": {
+				"from": 1566920,
+				"to": 1569760
+			},
+			"text": " So I encourage you to check those out."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,760",
+				"to": "00:26:12,280"
+			},
+			"offsets": {
+				"from": 1569760,
+				"to": 1572280
+			},
+			"text": " They're related to artificial intelligence"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,280",
+				"to": "00:26:16,560"
+			},
+			"offsets": {
+				"from": 1572280,
+				"to": 1576560
+			},
+			"text": " and cryptography work related to our work"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,560",
+				"to": "00:26:18,480"
+			},
+			"offsets": {
+				"from": 1576560,
+				"to": 1578480
+			},
+			"text": " as core devs for the graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,480",
+				"to": "00:26:23,560"
+			},
+			"offsets": {
+				"from": 1578480,
+				"to": 1583560
+			},
+			"text": " And we are also hiring so you can feel free to reach out"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,560",
+				"to": "00:26:26,080"
+			},
+			"offsets": {
+				"from": 1583560,
+				"to": 1586080
+			},
+			"text": " if any of that sounds interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,080",
+				"to": "00:26:29,280"
+			},
+			"offsets": {
+				"from": 1586080,
+				"to": 1589280
+			},
+			"text": " So yeah, that's time."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,280",
+				"to": "00:26:33,440"
+			},
+			"offsets": {
+				"from": 1590280,
+				"to": 1593440
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,440",
+				"to": "00:26:36,280"
+			},
+			"offsets": {
+				"from": 1593440,
+				"to": 1596280
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,280",
+				"to": "00:26:39,120"
+			},
+			"offsets": {
+				"from": 1596280,
+				"to": 1599120
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,120",
+				"to": "00:26:41,960"
+			},
+			"offsets": {
+				"from": 1599120,
+				"to": 1601960
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,960",
+				"to": "00:26:45,960"
+			},
+			"offsets": {
+				"from": 1601960,
+				"to": 1605960
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

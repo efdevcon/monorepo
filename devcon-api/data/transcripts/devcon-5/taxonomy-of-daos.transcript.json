@@ -1,0 +1,8062 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 19000
+			},
+			"text": " So basically the format of today's session is that you will do a brief presentation about 15 minutes or so,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 26000
+			},
+			"text": " so that we're all roughly on a similar page in terms of our working definition of those, which can be iterated and changed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 29000
+			},
+			"text": " but as well what the exercise today will look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:55,580"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 55580
+			},
+			"text": " So after that 20 minute presentation, we will do an exercise to create a mapping of initial taxon"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,580",
+				"to": "00:01:02,580"
+			},
+			"offsets": {
+				"from": 55580,
+				"to": 62580
+			},
+			"text": " made does, because a taxonomy is about a PhD's worth of work and we have about two hours today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,580",
+				"to": "00:01:06,580"
+			},
+			"offsets": {
+				"from": 62580,
+				"to": 66580
+			},
+			"text": " So we're doing a taxonomy of does, but what's a down?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,580",
+				"to": "00:01:12,580"
+			},
+			"offsets": {
+				"from": 66580,
+				"to": 72580
+			},
+			"text": " So a lot of people use this term very differently and a lot of its origins are very far from where we're at today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,580",
+				"to": "00:01:18,580"
+			},
+			"offsets": {
+				"from": 72580,
+				"to": 78580
+			},
+			"text": " So a lot of people might remember in 2014-2015 there's the concept of kind of unstoppable businesses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,580",
+				"to": "00:01:24,580"
+			},
+			"offsets": {
+				"from": 78580,
+				"to": 84580
+			},
+			"text": " and also the idea of kind of runaways, kind of like entities, a certain autonomous organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,580",
+				"to": "00:01:29,580"
+			},
+			"offsets": {
+				"from": 84580,
+				"to": 89580
+			},
+			"text": " And the idea that we can run away, there was no way either jurisdictionly or otherwise to stop it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,580",
+				"to": "00:01:37,580"
+			},
+			"offsets": {
+				"from": 89580,
+				"to": 97580
+			},
+			"text": " But then looking at where we are at today, Dao's look very different than this, most of them entail some form of human interaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,580",
+				"to": "00:01:42,580"
+			},
+			"offsets": {
+				"from": 97580,
+				"to": 102580
+			},
+			"text": " So for the purposes of the workshop today, we put together a rough definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,580",
+				"to": "00:01:46,580"
+			},
+			"offsets": {
+				"from": 102580,
+				"to": 106580
+			},
+			"text": " It's actually coming from a rough definition for audiences outside of the blockchain realm."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,580",
+				"to": "00:01:49,580"
+			},
+			"offsets": {
+				"from": 106580,
+				"to": 109580
+			},
+			"text": " So it might not be as technical as you are used to."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,580",
+				"to": "00:01:56,580"
+			},
+			"offsets": {
+				"from": 109580,
+				"to": 116580
+			},
+			"text": " So we're planning today to centralize autonomous organizations as a software-based organizational framework,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,580",
+				"to": "00:02:04,580"
+			},
+			"offsets": {
+				"from": 116580,
+				"to": 124580
+			},
+			"text": " lowering the cost of institutional guarantees and using incentive design to coordinate for common goals."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,580",
+				"to": "00:02:10,580"
+			},
+			"offsets": {
+				"from": 124580,
+				"to": 130580
+			},
+			"text": " And of course as far as definitions go, all of these separate terms inside this definition could use their own."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,580",
+				"to": "00:02:18,580"
+			},
+			"offsets": {
+				"from": 130580,
+				"to": 138580
+			},
+			"text": " But for the purposes of today, we will iterate and validate this definition through the process of taxonomy design."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,580",
+				"to": "00:02:26,580"
+			},
+			"offsets": {
+				"from": 138580,
+				"to": 146580
+			},
+			"text": " And to get started with the kind of definition of Dao's, we thought we would highlight just a couple of Dao's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,580",
+				"to": "00:02:29,580"
+			},
+			"offsets": {
+				"from": 146580,
+				"to": 149580
+			},
+			"text": " that I think a lot of us are familiar with that are operating today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,580",
+				"to": "00:02:33,580"
+			},
+			"offsets": {
+				"from": 149580,
+				"to": 153580
+			},
+			"text": " Alright, so I'm going to talk about the fallback."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,580",
+				"to": "00:02:38,580"
+			},
+			"offsets": {
+				"from": 153580,
+				"to": 158580
+			},
+			"text": " So we started to break this down into just like a few components right now to talk about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,580",
+				"to": "00:02:41,580"
+			},
+			"offsets": {
+				"from": 158580,
+				"to": 161580
+			},
+			"text": " but in the exercise there also will be a few more."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,580",
+				"to": "00:02:45,580"
+			},
+			"offsets": {
+				"from": 161580,
+				"to": 165580
+			},
+			"text": " So for the time-peractive, it's like, okay, what's the purpose of this Dao?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,580",
+				"to": "00:02:52,580"
+			},
+			"offsets": {
+				"from": 165580,
+				"to": 172580
+			},
+			"text": " There are molecules accelerating the development of public Ethereum infrastructure because part of the reason is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,580",
+				"to": "00:02:55,580"
+			},
+			"offsets": {
+				"from": 172580,
+				"to": 175580
+			},
+			"text": " yeah, many teams need this throughout the Ethereum ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,580",
+				"to": "00:03:01,580"
+			},
+			"offsets": {
+				"from": 175580,
+				"to": 181580
+			},
+			"text": " but they don't want to do it alone partly because they might think the Ethereum foundation should pay for more of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,580",
+				"to": "00:03:08,580"
+			},
+			"offsets": {
+				"from": 181580,
+				"to": 188580
+			},
+			"text": " but if you pull more of it, it blends together as a network of organizations, maybe we can accomplish more."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,580",
+				"to": "00:03:17,580"
+			},
+			"offsets": {
+				"from": 188580,
+				"to": 197580
+			},
+			"text": " And then the membership process for Molok is an existing member of the Dao needs to champion new membership proposals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,580",
+				"to": "00:03:22,580"
+			},
+			"offsets": {
+				"from": 197580,
+				"to": 202580
+			},
+			"text": " and as part of that championing process, you have to deposit 10 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,580",
+				"to": "00:03:29,580"
+			},
+			"offsets": {
+				"from": 202580,
+				"to": 209580
+			},
+			"text": " And even if the member doesn't get approved in the Dao, the person that champions it will get the 10 ETH back."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,580",
+				"to": "00:03:35,580"
+			},
+			"offsets": {
+				"from": 209580,
+				"to": 215580
+			},
+			"text": " So there's no like slashing if you propose a member that's not that didn't get admitted."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,580",
+				"to": "00:03:42,580"
+			},
+			"offsets": {
+				"from": 215580,
+				"to": 222580
+			},
+			"text": " And that basically the voting process for all proposals, whether it's for becoming a voting member"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,580",
+				"to": "00:03:48,580"
+			},
+			"offsets": {
+				"from": 222580,
+				"to": 228580
+			},
+			"text": " or applying to get shares that you prefer to say can develop something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,580",
+				"to": "00:03:52,580"
+			},
+			"offsets": {
+				"from": 228580,
+				"to": 232580
+			},
+			"text": " you just need like a simple majority and there's no form required."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,580",
+				"to": "00:04:00,580"
+			},
+			"offsets": {
+				"from": 232580,
+				"to": 240580
+			},
+			"text": " So if Molok is about 60 people now, like, you know, five people show up in the vote, it would still pass."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,580",
+				"to": "00:04:07,580"
+			},
+			"offsets": {
+				"from": 240580,
+				"to": 247580
+			},
+			"text": " And as I said before, it's like there are two types of proposals, but as far as the smart contract goes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,580",
+				"to": "00:04:14,580"
+			},
+			"offsets": {
+				"from": 247580,
+				"to": 254580
+			},
+			"text": " it doesn't really care if you're applying to be a member or if you're applying to be a grantee of the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,580",
+				"to": "00:04:19,580"
+			},
+			"offsets": {
+				"from": 254580,
+				"to": 259580
+			},
+			"text": " And then Molok also has an exit process, not all Dao's necessarily do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,580",
+				"to": "00:04:27,580"
+			},
+			"offsets": {
+				"from": 259580,
+				"to": 267580
+			},
+			"text": " but it's like a novel rage-quitting mechanism where it allows you to exit the Dao"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,580",
+				"to": "00:04:35,580"
+			},
+			"offsets": {
+				"from": 267580,
+				"to": 275580
+			},
+			"text": " and especially if a proposal is about to be passed and you don't align with it or you feel that the Dao is moving"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,580",
+				"to": "00:04:40,580"
+			},
+			"offsets": {
+				"from": 275580,
+				"to": 280580
+			},
+			"text": " in the wrong direction, it's like wasting money, you don't want it to take some of your money."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,580",
+				"to": "00:04:48,580"
+			},
+			"offsets": {
+				"from": 280580,
+				"to": 288580
+			},
+			"text": " You can rage quit and since the proposals are in a grace period, you'll get your proportion of the treasury back."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,580",
+				"to": "00:04:55,580"
+			},
+			"offsets": {
+				"from": 288580,
+				"to": 295580
+			},
+			"text": " So yeah, Molok is unique in the sense that there is a common treasury and each person owns a stake of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,580",
+				"to": "00:05:03,580"
+			},
+			"offsets": {
+				"from": 295580,
+				"to": 303580
+			},
+			"text": " because whenever you're applying for membership, you're putting your depositing money into the Dao in exchange for your shares."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,580",
+				"to": "00:05:08,580"
+			},
+			"offsets": {
+				"from": 303580,
+				"to": 308580
+			},
+			"text": " So that's basically describing Molok briefly. Do you want to talk about Dao's?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,580",
+				"to": "00:05:16,580"
+			},
+			"offsets": {
+				"from": 308580,
+				"to": 316580
+			},
+			"text": " So how many people are familiar with Genesis Dao? Can I see a show of pens?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,580",
+				"to": "00:05:18,580"
+			},
+			"offsets": {
+				"from": 316580,
+				"to": 318580
+			},
+			"text": " Okay, so about a third of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,580",
+				"to": "00:05:23,580"
+			},
+			"offsets": {
+				"from": 318580,
+				"to": 323580
+			},
+			"text": " So Genesis Dao is another example of a Dao that's operating today."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,580",
+				"to": "00:05:27,580"
+			},
+			"offsets": {
+				"from": 323580,
+				"to": 327580
+			},
+			"text": " It's based on the Dao Stack framework and operated by Dao Stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,580",
+				"to": "00:05:30,580"
+			},
+			"offsets": {
+				"from": 327580,
+				"to": 330580
+			},
+			"text": " How many of you are familiar with Dao Stack just to see your hands?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,580",
+				"to": "00:05:31,580"
+			},
+			"offsets": {
+				"from": 330580,
+				"to": 331580
+			},
+			"text": " So a few more. Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,580",
+				"to": "00:05:37,580"
+			},
+			"offsets": {
+				"from": 331580,
+				"to": 337580
+			},
+			"text": " So you can kind of, and I might disagree with some of what I say, but this is what I think, used my own."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,580",
+				"to": "00:05:42,580"
+			},
+			"offsets": {
+				"from": 337580,
+				"to": 342580
+			},
+			"text": " I see Genesis as the main kind of advocacy Dao for Dao Stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,580",
+				"to": "00:05:48,580"
+			},
+			"offsets": {
+				"from": 342580,
+				"to": 348580
+			},
+			"text": " So it started by Dao Stack members and is often maintained by a larger kind of Genesis Dao community."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,580",
+				"to": "00:05:59,580"
+			},
+			"offsets": {
+				"from": 348580,
+				"to": 359580
+			},
+			"text": " So similarly in keeping and defining a Dao, having a plan directive, or it's kind of objective function to simplify for the Genesis Dao, which is built in a Dao Stack framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,580",
+				"to": "00:06:05,580"
+			},
+			"offsets": {
+				"from": 359580,
+				"to": 365580
+			},
+			"text": " Its role is to accelerate the development of public Dao Stack based infrastructure and organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,580",
+				"to": "00:06:15,580"
+			},
+			"offsets": {
+				"from": 365580,
+				"to": 375580
+			},
+			"text": " So that means the Genesis Dao is primarily to support both the technical development of Dao Stack, but also the community and social development of Dao Stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,580",
+				"to": "00:06:23,580"
+			},
+			"offsets": {
+				"from": 375580,
+				"to": 383580
+			},
+			"text": " So what it looks like in practice is like a community forum that you use MetaMask or a Nozus State to interact with and send transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,580",
+				"to": "00:06:32,580"
+			},
+			"offsets": {
+				"from": 383580,
+				"to": 392580
+			},
+			"text": " And you come to decisions about who might be funded for some community work, community fundraising, who might be funded for some technical work, like building bonding curves for Dao."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,580",
+				"to": "00:06:39,580"
+			},
+			"offsets": {
+				"from": 392580,
+				"to": 399580
+			},
+			"text": " But it looks mostly like a forum that people put on and come to conclusions about how to support Dao Stack in a larger frame."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,580",
+				"to": "00:06:46,580"
+			},
+			"offsets": {
+				"from": 399580,
+				"to": 406580
+			},
+			"text": " So the membership process, basically it works different for different Dao Stack Dao's, for the Genesis Dao."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,580",
+				"to": "00:06:49,580"
+			},
+			"offsets": {
+				"from": 406580,
+				"to": 409580
+			},
+			"text": " It's more culturally determined at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,580",
+				"to": "00:06:57,580"
+			},
+			"offsets": {
+				"from": 409580,
+				"to": 417580
+			},
+			"text": " So the kind of cultural norms around becoming a member of the Genesis Dao is that a wallet address, ideally a human identifiable person."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,580",
+				"to": "00:06:59,580"
+			},
+			"offsets": {
+				"from": 417580,
+				"to": 419580
+			},
+			"text": " But that's not technically hard coded."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,580",
+				"to": "00:07:02,580"
+			},
+			"offsets": {
+				"from": 419580,
+				"to": 422580
+			},
+			"text": " Submit a proposal advocating for their own membership."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,580",
+				"to": "00:07:10,580"
+			},
+			"offsets": {
+				"from": 422580,
+				"to": 430580
+			},
+			"text": " So what this looks like, I did it. There is basically a Google forum that I put together being like, \"My name's Kia."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,580",
+				"to": "00:07:13,580"
+			},
+			"offsets": {
+				"from": 430580,
+				"to": 433580
+			},
+			"text": " I want to join the Dao because I want to support this community during XYZ."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,580",
+				"to": "00:07:19,580"
+			},
+			"offsets": {
+				"from": 433580,
+				"to": 439580
+			},
+			"text": " Here's what I've done in the past to support this community. Please accept my request for reputation.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,580",
+				"to": "00:07:23,580"
+			},
+			"offsets": {
+				"from": 439580,
+				"to": 443580
+			},
+			"text": " So reputation is not to be confused with August's reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,580",
+				"to": "00:07:28,580"
+			},
+			"offsets": {
+				"from": 443580,
+				"to": 448580
+			},
+			"text": " It's actually a token that's internal to Dao Stack Dao's and is non-transferable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,580",
+				"to": "00:07:37,580"
+			},
+			"offsets": {
+				"from": 448580,
+				"to": 457580
+			},
+			"text": " So you can think about it almost in a sense of you might have a token that's financial capital, whereas reputation and a Dao Stack Dao's social capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,580",
+				"to": "00:07:45,580"
+			},
+			"offsets": {
+				"from": 457580,
+				"to": 465580
+			},
+			"text": " So when you advocate for your own membership, what that means is that you are given reputation or social capital by the Dao, and thus have voting power in the Dao."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,580",
+				"to": "00:07:50,580"
+			},
+			"offsets": {
+				"from": 465580,
+				"to": 470580
+			},
+			"text": " So the membership process, just to simplify, is you go to the Dao and say, \"Hey, I want to join.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,580",
+				"to": "00:07:53,580"
+			},
+			"offsets": {
+				"from": 470580,
+				"to": 473580
+			},
+			"text": " And then people go, \"I'm whether you join or not.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,580",
+				"to": "00:07:58,580"
+			},
+			"offsets": {
+				"from": 473580,
+				"to": 478580
+			},
+			"text": " And usually you're using some sort of persona or human readable identity to advocate for yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,580",
+				"to": "00:08:06,580"
+			},
+			"offsets": {
+				"from": 478580,
+				"to": 486580
+			},
+			"text": " And the voting process is somewhat complex, but to do a super simplified version, this is based on the Dao Stack framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,580",
+				"to": "00:08:13,580"
+			},
+			"offsets": {
+				"from": 486580,
+				"to": 493580
+			},
+			"text": " The genesis down, once again, is based on the Dao Stack framework. And they use holographic consensus, which you can basically say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,580",
+				"to": "00:08:16,580"
+			},
+			"offsets": {
+				"from": 493580,
+				"to": 496580
+			},
+			"text": " there's like two tiers of how the governance process works."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,580",
+				"to": "00:08:28,580"
+			},
+			"offsets": {
+				"from": 496580,
+				"to": 508580
+			},
+			"text": " One is that there is a basic voting process, but on top of this voting process, there's independent prediction markets where you use the Dao Stack token to predict whether a proposal will pass or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,580",
+				"to": "00:08:33,580"
+			},
+			"offsets": {
+				"from": 508580,
+				"to": 513580
+			},
+			"text": " If you predict successfully that a proposal will pass, it will get boosted in the main interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,580",
+				"to": "00:08:40,580"
+			},
+			"offsets": {
+				"from": 513580,
+				"to": 520580
+			},
+			"text": " And being boosted just means it kind of appears at the top of the interface and no longer requires an absolute majority to pass."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,580",
+				"to": "00:08:45,580"
+			},
+			"offsets": {
+				"from": 520580,
+				"to": 525580
+			},
+			"text": " So absolute majority means 50% of the people who have voting power needs a vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,580",
+				"to": "00:08:57,580"
+			},
+			"offsets": {
+				"from": 525580,
+				"to": 537580
+			},
+			"text": " Instead it has relative majority, which means that only 50% of the people who vote, of the reputation voting power that votes has to vote in order for it to pass."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,580",
+				"to": "00:09:03,580"
+			},
+			"offsets": {
+				"from": 537580,
+				"to": 543580
+			},
+			"text": " So basically to simplify that, there's a prediction market that says, \"I think this proposal will pass independent of the vote.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,580",
+				"to": "00:09:08,580"
+			},
+			"offsets": {
+				"from": 543580,
+				"to": 548580
+			},
+			"text": " And then if that prediction market does, it means it's a lot easier for that vote to either pass or fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,580",
+				"to": "00:09:13,580"
+			},
+			"offsets": {
+				"from": 548580,
+				"to": 553580
+			},
+			"text": " If you don't have a boosted proposal, it's really hard to get something passed, simplified."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,580",
+				"to": "00:09:18,580"
+			},
+			"offsets": {
+				"from": 553580,
+				"to": 558580
+			},
+			"text": " There's a lot of other kind of smaller nuances, but I don't want to go necessarily into them in detail,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,580",
+				"to": "00:09:23,580"
+			},
+			"offsets": {
+				"from": 558580,
+				"to": 563580
+			},
+			"text": " but very happy when we go into breakout sessions to help any group that wants to look at this Dao."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,580",
+				"to": "00:09:29,580"
+			},
+			"offsets": {
+				"from": 563580,
+				"to": 569580
+			},
+			"text": " And one thing that's interesting in terms of comparing Genesis Dao to Moloch Dao is the exit process."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,580",
+				"to": "00:09:34,580"
+			},
+			"offsets": {
+				"from": 569580,
+				"to": 574580
+			},
+			"text": " So whereas Moloch, I think a lot of us are familiar with the kind of rage quitting everyone likes using the term."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,580",
+				"to": "00:09:40,580"
+			},
+			"offsets": {
+				"from": 574580,
+				"to": 580580
+			},
+			"text": " In Dao's deck Dao's, you could say that the exit process is actually technically undefined."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,580",
+				"to": "00:09:42,580"
+			},
+			"offsets": {
+				"from": 580580,
+				"to": 582580
+			},
+			"text": " Whereas in Moloch, it's leveraged."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,580",
+				"to": "00:09:46,580"
+			},
+			"offsets": {
+				"from": 582580,
+				"to": 586580
+			},
+			"text": " In Genesis, you could say it's actually difficult to exit the Dao."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,580",
+				"to": "00:09:50,580"
+			},
+			"offsets": {
+				"from": 586580,
+				"to": 590580
+			},
+			"text": " You could do a proposal that says, \"Hey, I want to be no longer recognized as a member.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,580",
+				"to": "00:09:56,580"
+			},
+			"offsets": {
+				"from": 590580,
+				"to": 596580
+			},
+			"text": " But since at least kind of technically speaking, their reputation or voting power is not transferable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,580",
+				"to": "00:10:01,580"
+			},
+			"offsets": {
+				"from": 596580,
+				"to": 601580
+			},
+			"text": " there is no way that you should be able to give it up unless you were to in some way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,580",
+				"to": "00:10:03,580"
+			},
+			"offsets": {
+				"from": 601580,
+				"to": 603580
+			},
+			"text": " maybe like help their surprise be key or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,580",
+				"to": "00:10:09,580"
+			},
+			"offsets": {
+				"from": 603580,
+				"to": 609580
+			},
+			"text": " So there's not really a way that the exit is technically leveraged or socially leveraged in Dao's deck Dao's deck."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,580",
+				"to": "00:10:17,580"
+			},
+			"offsets": {
+				"from": 609580,
+				"to": 617580
+			},
+			"text": " So for today, to switch gears a little bit, those are some Dao really super brief examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,580",
+				"to": "00:10:23,580"
+			},
+			"offsets": {
+				"from": 617580,
+				"to": 623580
+			},
+			"text": " But to bring it back to Taxonomy Design, and to look at where we are at with what we mean about Dao's today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,580",
+				"to": "00:10:25,580"
+			},
+			"offsets": {
+				"from": 623580,
+				"to": 625580
+			},
+			"text": " we're building on the work of this paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,580",
+				"to": "00:10:27,580"
+			},
+			"offsets": {
+				"from": 625580,
+				"to": 627580
+			},
+			"text": " Hopefully you guys can read this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,580",
+				"to": "00:10:33,580"
+			},
+			"offsets": {
+				"from": 627580,
+				"to": 633580
+			},
+			"text": " It's called a method for taxonomy development and its applications and information systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,580",
+				"to": "00:10:37,580"
+			},
+			"offsets": {
+				"from": 633580,
+				"to": 637580
+			},
+			"text": " Its primary author is Nickerson, and it was published in 2012."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,580",
+				"to": "00:10:41,580"
+			},
+			"offsets": {
+				"from": 637580,
+				"to": 641580
+			},
+			"text": " So maybe people are taking pics."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,580",
+				"to": "00:10:47,580"
+			},
+			"offsets": {
+				"from": 641580,
+				"to": 647580
+			},
+			"text": " So we wanted to use a little bit more rigor in terms of how we approach this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,580",
+				"to": "00:10:51,580"
+			},
+			"offsets": {
+				"from": 647580,
+				"to": 651580
+			},
+			"text": " rather than being like these Dao's fit in this group, these other Dao's fit in another group."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,580",
+				"to": "00:10:56,580"
+			},
+			"offsets": {
+				"from": 651580,
+				"to": 656580
+			},
+			"text": " So we're going to do another super brief run through of the methodology we'll be following today"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,580",
+				"to": "00:10:59,580"
+			},
+			"offsets": {
+				"from": 656580,
+				"to": 659580
+			},
+			"text": " before we break out into groups and try it ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,580",
+				"to": "00:11:06,580"
+			},
+			"offsets": {
+				"from": 659580,
+				"to": 666580
+			},
+			"text": " So to define taxonomy now, taxonomy is a system that describes how different concepts are related and organized"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,580",
+				"to": "00:11:09,580"
+			},
+			"offsets": {
+				"from": 666580,
+				"to": 669580
+			},
+			"text": " within a specific hierarchical structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,580",
+				"to": "00:11:15,580"
+			},
+			"offsets": {
+				"from": 669580,
+				"to": 675580
+			},
+			"text": " But in the context of this workshop, in the context of the paper that we'll be following,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,580",
+				"to": "00:11:20,580"
+			},
+			"offsets": {
+				"from": 675580,
+				"to": 680580
+			},
+			"text": " they define rather laboriously a taxonomy as a set of dimensions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,580",
+				"to": "00:11:24,580"
+			},
+			"offsets": {
+				"from": 680580,
+				"to": 684580
+			},
+			"text": " consisting of mutually exclusive and collectively exhaustive characteristics."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,580",
+				"to": "00:11:25,580"
+			},
+			"offsets": {
+				"from": 684580,
+				"to": 685580
+			},
+			"text": " So what does that mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,580",
+				"to": "00:11:30,580"
+			},
+			"offsets": {
+				"from": 685580,
+				"to": 690580
+			},
+			"text": " Mutually exclusive means that, and you guys, once we have the worksheets out and everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,580",
+				"to": "00:11:36,580"
+			},
+			"offsets": {
+				"from": 690580,
+				"to": 696580
+			},
+			"text": " it will become more clear, but mutually exclusive means that one Dao, in a certain dimension,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,580",
+				"to": "00:11:39,580"
+			},
+			"offsets": {
+				"from": 696580,
+				"to": 699580
+			},
+			"text": " can't belong to multiple different characteristics."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,580",
+				"to": "00:11:43,580"
+			},
+			"offsets": {
+				"from": 699580,
+				"to": 703580
+			},
+			"text": " So you can't say that a Dao, if you look at membership entrance process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,580",
+				"to": "00:11:46,580"
+			},
+			"offsets": {
+				"from": 703580,
+				"to": 706580
+			},
+			"text": " you can't say that a Dao is both permissioned and permissionless."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,580",
+				"to": "00:11:51,580"
+			},
+			"offsets": {
+				"from": 706580,
+				"to": 711580
+			},
+			"text": " You have to pick one or the other, and the taxonomy categories have to be mutually exclusive in that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,580",
+				"to": "00:11:54,580"
+			},
+			"offsets": {
+				"from": 711580,
+				"to": 714580
+			},
+			"text": " A Dao can't belong to several of them at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,580",
+				"to": "00:11:57,580"
+			},
+			"offsets": {
+				"from": 714580,
+				"to": 717580
+			},
+			"text": " Otherwise, you won't produce a kind of clear tree of a taxonomy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,580",
+				"to": "00:11:58,580"
+			},
+			"offsets": {
+				"from": 717580,
+				"to": 718580
+			},
+			"text": " Does that make sense?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,580",
+				"to": "00:11:59,580"
+			},
+			"offsets": {
+				"from": 718580,
+				"to": 719580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,580",
+				"to": "00:12:04,580"
+			},
+			"offsets": {
+				"from": 719580,
+				"to": 724580
+			},
+			"text": " And collectively exhaustive characteristics, every Dao has to, there shouldn't be a characteristic that's empty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,580",
+				"to": "00:12:09,580"
+			},
+			"offsets": {
+				"from": 724580,
+				"to": 729580
+			},
+			"text": " or there shouldn't be a Dao that doesn't fit on the list, because then the taxonomy doesn't include the whole field."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,580",
+				"to": "00:12:15,580"
+			},
+			"offsets": {
+				"from": 729580,
+				"to": 735580
+			},
+			"text": " And you can say that it's used to explain and operationalize the category of objects the taxonomy is."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,580",
+				"to": "00:12:20,580"
+			},
+			"offsets": {
+				"from": 735580,
+				"to": 740580
+			},
+			"text": " So this means that it shouldn't necessarily be perceived as an ontology."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,580",
+				"to": "00:12:24,580"
+			},
+			"offsets": {
+				"from": 740580,
+				"to": 744580
+			},
+			"text": " It could be used to produce an ontology, but mainly, and throughout the research paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,580",
+				"to": "00:12:27,580"
+			},
+			"offsets": {
+				"from": 744580,
+				"to": 747580
+			},
+			"text": " it says what's a useful taxonomy, what's a good taxonomy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,580",
+				"to": "00:12:31,580"
+			},
+			"offsets": {
+				"from": 747580,
+				"to": 751580
+			},
+			"text": " And the tautological definition is that it's one that is used."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,580",
+				"to": "00:12:35,580"
+			},
+			"offsets": {
+				"from": 751580,
+				"to": 755580
+			},
+			"text": " So we don't see this as necessarily a finite kind of description of a static field,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,580",
+				"to": "00:12:41,580"
+			},
+			"offsets": {
+				"from": 755580,
+				"to": 761580
+			},
+			"text": " but one that's put into use to produce new language to produce to also highlight where there are gaps currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,580",
+				"to": "00:12:43,580"
+			},
+			"offsets": {
+				"from": 762580,
+				"to": 763580
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,580",
+				"to": "00:12:52,580"
+			},
+			"offsets": {
+				"from": 763580,
+				"to": 772580
+			},
+			"text": " So this diagram or a flow chart that we're going to go through is in that paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,580",
+				"to": "00:12:54,580"
+			},
+			"offsets": {
+				"from": 772580,
+				"to": 774580
+			},
+			"text": " and it basically describes the process."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,580",
+				"to": "00:12:59,580"
+			},
+			"offsets": {
+				"from": 774580,
+				"to": 779580
+			},
+			"text": " So first to begin with, you'll determine the Medicare characteristics."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,580",
+				"to": "00:13:08,580"
+			},
+			"offsets": {
+				"from": 779580,
+				"to": 788580
+			},
+			"text": " So it's a high level interaction between, for our cases, the high level interaction between a user and a decentralized autonomous organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,580",
+				"to": "00:13:13,580"
+			},
+			"offsets": {
+				"from": 788580,
+				"to": 793580
+			},
+			"text": " And then the ultimate, what are our ending conditions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,580",
+				"to": "00:13:18,580"
+			},
+			"offsets": {
+				"from": 793580,
+				"to": 798580
+			},
+			"text": " And it's to conclude an initial taxonomy, you will map a set of dows"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,580",
+				"to": "00:13:22,580"
+			},
+			"offsets": {
+				"from": 798580,
+				"to": 802580
+			},
+			"text": " and mutually exclusive and collectively exhaustive characteristics."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,580",
+				"to": "00:13:25,580"
+			},
+			"offsets": {
+				"from": 802580,
+				"to": 805580
+			},
+			"text": " So that's essentially what Kia just went over."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,580",
+				"to": "00:13:31,580"
+			},
+			"offsets": {
+				"from": 805580,
+				"to": 811580
+			},
+			"text": " So this is like the diagram of the different paths you can take."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,580",
+				"to": "00:13:36,580"
+			},
+			"offsets": {
+				"from": 811580,
+				"to": 816580
+			},
+			"text": " You can either start with conceptual to empirical."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,580",
+				"to": "00:13:41,580"
+			},
+			"offsets": {
+				"from": 816580,
+				"to": 821580
+			},
+			"text": " Basically, you can conceptualize new characteristics and dimensions of dows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,580",
+				"to": "00:13:47,580"
+			},
+			"offsets": {
+				"from": 821580,
+				"to": 827580
+			},
+			"text": " examine the objects for these characteristics and dimensions, and then create or revise your taxonomy."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,580",
+				"to": "00:13:53,580"
+			},
+			"offsets": {
+				"from": 827580,
+				"to": 833580
+			},
+			"text": " And then for empirical to conceptualize, identify a subset of dows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,580",
+				"to": "00:14:02,580"
+			},
+			"offsets": {
+				"from": 833580,
+				"to": 842580
+			},
+			"text": " identify common characteristics and group the dows, and then group these characteristics into dimensions to create or revise your taxonomy."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,580",
+				"to": "00:14:06,580"
+			},
+			"offsets": {
+				"from": 842580,
+				"to": 846580
+			},
+			"text": " As you're going through this process, we did exercises before we're talking about dows."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,580",
+				"to": "00:14:11,580"
+			},
+			"offsets": {
+				"from": 846580,
+				"to": 851580
+			},
+			"text": " We're figuring out the characteristics, and then that's just flowing into other dows."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,580",
+				"to": "00:14:19,580"
+			},
+			"offsets": {
+				"from": 851580,
+				"to": 859580
+			},
+			"text": " And it's just this loop until you come up with the best terms to create the taxonomy."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,580",
+				"to": "00:14:26,580"
+			},
+			"offsets": {
+				"from": 859580,
+				"to": 866580
+			},
+			"text": " So as we said in the definition of taxonomy, it's a set of dimensions used to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,580",
+				"to": "00:14:32,580"
+			},
+			"offsets": {
+				"from": 866580,
+				"to": 872580
+			},
+			"text": " consist of mutually exclusive and collectively exhaustive characteristics."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,580",
+				"to": "00:14:36,580"
+			},
+			"offsets": {
+				"from": 872580,
+				"to": 876580
+			},
+			"text": " So what is the dimension? What is the characteristic?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,580",
+				"to": "00:14:40,580"
+			},
+			"offsets": {
+				"from": 876580,
+				"to": 880580
+			},
+			"text": " So you have one dimension and you can have multiple characteristics."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,580",
+				"to": "00:14:46,580"
+			},
+			"offsets": {
+				"from": 880580,
+				"to": 886580
+			},
+			"text": " So one example is, like she just said, membership entrance, permissioned, permissionless, closed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,580",
+				"to": "00:14:49,580"
+			},
+			"offsets": {
+				"from": 886580,
+				"to": 889580
+			},
+			"text": " We can talk more about what closed might be."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,580",
+				"to": "00:14:53,580"
+			},
+			"offsets": {
+				"from": 889580,
+				"to": 893580
+			},
+			"text": " I don't know if we want to talk about that now, but that's kind of like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,580",
+				"to": "00:14:59,580"
+			},
+			"offsets": {
+				"from": 893580,
+				"to": 899580
+			},
+			"text": " for permissioned, there's a clear way encoded in the smart contracts for how you can enter."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,580",
+				"to": "00:15:05,580"
+			},
+			"offsets": {
+				"from": 899580,
+				"to": 905580
+			},
+			"text": " For permissionless, that's also in the smart contracts, but you don't have to apply to join."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,580",
+				"to": "00:15:07,580"
+			},
+			"offsets": {
+				"from": 905580,
+				"to": 907580
+			},
+			"text": " You can buy the token on the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,580",
+				"to": "00:15:11,580"
+			},
+			"offsets": {
+				"from": 907580,
+				"to": 911580
+			},
+			"text": " And then for closed, it's a decentralized autonomous organization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,580",
+				"to": "00:15:15,580"
+			},
+			"offsets": {
+				"from": 911580,
+				"to": 915580
+			},
+			"text": " but it could be something like with 10 people."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,580",
+				"to": "00:15:20,580"
+			},
+			"offsets": {
+				"from": 915580,
+				"to": 920580
+			},
+			"text": " You're in a good group of friends and you just kind of decide when to add people to the dows or not,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,580",
+				"to": "00:15:23,580"
+			},
+			"offsets": {
+				"from": 920580,
+				"to": 923580
+			},
+			"text": " just based on the people that are in the organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,580",
+				"to": "00:15:29,580"
+			},
+			"offsets": {
+				"from": 923580,
+				"to": 929580
+			},
+			"text": " So that's more of a dow in the technical sense of like, people are creating an organization on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,580",
+				"to": "00:15:35,580"
+			},
+			"offsets": {
+				"from": 929580,
+				"to": 935580
+			},
+			"text": " but it doesn't really have like easy entry paths or, yeah, essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,580",
+				"to": "00:15:41,580"
+			},
+			"offsets": {
+				"from": 935580,
+				"to": 941580
+			},
+			"text": " So then basically what we're going to do in developing the taxonomy is we come up with more dimensions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,580",
+				"to": "00:15:44,580"
+			},
+			"offsets": {
+				"from": 941580,
+				"to": 944580
+			},
+			"text": " and we come up with more characteristics."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,580",
+				"to": "00:15:47,580"
+			},
+			"offsets": {
+				"from": 944580,
+				"to": 947580
+			},
+			"text": " Like whenever we went through the example with Moloch and Genesis before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,580",
+				"to": "00:15:52,580"
+			},
+			"offsets": {
+				"from": 947580,
+				"to": 952580
+			},
+			"text": " we also define something like exit process, et cetera, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,580",
+				"to": "00:16:00,580"
+			},
+			"offsets": {
+				"from": 952580,
+				"to": 960580
+			},
+			"text": " So after this presentation is done, we're going to do some of these exercises ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,580",
+				"to": "00:16:05,580"
+			},
+			"offsets": {
+				"from": 960580,
+				"to": 965580
+			},
+			"text": " But basically in the worksheets, what we're going to be doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,580",
+				"to": "00:16:08,580"
+			},
+			"offsets": {
+				"from": 965580,
+				"to": 968580
+			},
+			"text": " do you want to untie the legs here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,580",
+				"to": "00:16:11,580"
+			},
+			"offsets": {
+				"from": 968580,
+				"to": 971580
+			},
+			"text": " Yeah, so that was our kind of brief presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,580",
+				"to": "00:16:16,580"
+			},
+			"offsets": {
+				"from": 971580,
+				"to": 976580
+			},
+			"text": " And to give an overview of dows and taxonomy design, so do we feel like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,580",
+				"to": "00:16:20,580"
+			},
+			"offsets": {
+				"from": 976580,
+				"to": 980580
+			},
+			"text": " well, okay, so I'll say what we're going to do first and then we'll see how clear it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,580",
+				"to": "00:16:24,580"
+			},
+			"offsets": {
+				"from": 980580,
+				"to": 984580
+			},
+			"text": " So what we would like to do is actually have people break into groups of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,580",
+				"to": "00:16:29,580"
+			},
+			"offsets": {
+				"from": 984580,
+				"to": 989580
+			},
+			"text": " it's quite a lot of us, so it's maybe five to six people with the people around you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,580",
+				"to": "00:16:35,580"
+			},
+			"offsets": {
+				"from": 989580,
+				"to": 995580
+			},
+			"text": " And we are going to pass out worksheets where we've actually predefined"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,580",
+				"to": "00:16:41,580"
+			},
+			"offsets": {
+				"from": 995580,
+				"to": 1001580
+			},
+			"text": " dimensions and characteristics for the taxonomy, such as membership entrance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,580",
+				"to": "00:16:45,580"
+			},
+			"offsets": {
+				"from": 1001580,
+				"to": 1005580
+			},
+			"text": " membership exit, the number of active participants, legal entity, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,580",
+				"to": "00:16:50,580"
+			},
+			"offsets": {
+				"from": 1005580,
+				"to": 1010580
+			},
+			"text": " And so it's a kind of gridded row like this, and all of these that are on the slide right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,580",
+				"to": "00:16:56,580"
+			},
+			"offsets": {
+				"from": 1010580,
+				"to": 1016580
+			},
+			"text": " So, and we've suggested several example dows for you to evaluate in your group."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,580",
+				"to": "00:17:02,580"
+			},
+			"offsets": {
+				"from": 1016580,
+				"to": 1022580
+			},
+			"text": " So we've suggested mollock, genesis, the dow, maker dow, and ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,580",
+				"to": "00:17:08,580"
+			},
+			"offsets": {
+				"from": 1022580,
+				"to": 1028580
+			},
+			"text": " And of course some of these may or may not be what we come to define as dows in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,580",
+				"to": "00:17:12,580"
+			},
+			"offsets": {
+				"from": 1028580,
+				"to": 1032580
+			},
+			"text": " But you're also welcome, because there are blank rows and columns in the worksheet"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,580",
+				"to": "00:17:16,580"
+			},
+			"offsets": {
+				"from": 1032580,
+				"to": 1036580
+			},
+			"text": " to choose your own dows to evaluate, and also to suggest your own dimensions"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,580",
+				"to": "00:17:21,580"
+			},
+			"offsets": {
+				"from": 1036580,
+				"to": 1041580
+			},
+			"text": " and characteristics that should belong in taxonomy based on the free framework we just laid out."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,580",
+				"to": "00:17:23,580"
+			},
+			"offsets": {
+				"from": 1041580,
+				"to": 1043580
+			},
+			"text": " So we need to go back one slide again."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,580",
+				"to": "00:17:28,580"
+			},
+			"offsets": {
+				"from": 1043580,
+				"to": 1048580
+			},
+			"text": " So for the moment we will take about 15 to 20 minutes in groups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,580",
+				"to": "00:17:32,580"
+			},
+			"offsets": {
+				"from": 1048580,
+				"to": 1052580
+			},
+			"text": " and we ideally have each group evaluate two to three dow instances,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,580",
+				"to": "00:17:36,580"
+			},
+			"offsets": {
+				"from": 1052580,
+				"to": 1056580
+			},
+			"text": " and it is encouraged for you to pick dows that are not on the worksheet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,580",
+				"to": "00:17:41,580"
+			},
+			"offsets": {
+				"from": 1056580,
+				"to": 1061580
+			},
+			"text": " And actually, you know, I'm happy to provide and go around and do a list of dows"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,580",
+				"to": "00:17:45,580"
+			},
+			"offsets": {
+				"from": 1061580,
+				"to": 1065580
+			},
+			"text": " that we are more familiar with, and I'm happy to help you work with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,580",
+				"to": "00:17:49,580"
+			},
+			"offsets": {
+				"from": 1065580,
+				"to": 1069580
+			},
+			"text": " And I think we'll be just roaming to provide any missing information."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,580",
+				"to": "00:17:52,580"
+			},
+			"offsets": {
+				"from": 1069580,
+				"to": 1072580
+			},
+			"text": " Let me just take the dimensions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,580",
+				"to": "00:17:55,580"
+			},
+			"offsets": {
+				"from": 1072580,
+				"to": 1075580
+			},
+			"text": " Yeah, and then, oh, should we do that now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,580",
+				"to": "00:17:58,580"
+			},
+			"offsets": {
+				"from": 1075580,
+				"to": 1078580
+			},
+			"text": " I mean, before that happens, or after loops?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,580",
+				"to": "00:17:59,580"
+			},
+			"offsets": {
+				"from": 1078580,
+				"to": 1079580
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,580",
+				"to": "00:18:00,580"
+			},
+			"offsets": {
+				"from": 1079580,
+				"to": 1080580
+			},
+			"text": " I was going to skip this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,580",
+				"to": "00:18:01,580"
+			},
+			"offsets": {
+				"from": 1080580,
+				"to": 1081580
+			},
+			"text": " We can do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,580",
+				"to": "00:18:02,580"
+			},
+			"offsets": {
+				"from": 1081580,
+				"to": 1082580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,580",
+				"to": "00:18:03,580"
+			},
+			"offsets": {
+				"from": 1082580,
+				"to": 1083580
+			},
+			"text": " One of the bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,580",
+				"to": "00:18:04,580"
+			},
+			"offsets": {
+				"from": 1083580,
+				"to": 1084580
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,580",
+				"to": "00:18:05,580"
+			},
+			"offsets": {
+				"from": 1084580,
+				"to": 1085580
+			},
+			"text": " I'll get to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,580",
+				"to": "00:18:08,580"
+			},
+			"offsets": {
+				"from": 1085580,
+				"to": 1088580
+			},
+			"text": " So maybe then if you bring up a spreadsheet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,580",
+				"to": "00:18:10,580"
+			},
+			"offsets": {
+				"from": 1088580,
+				"to": 1090580
+			},
+			"text": " but I'm very happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,580",
+				"to": "00:18:12,580"
+			},
+			"offsets": {
+				"from": 1090580,
+				"to": 1092580
+			},
+			"text": " Yeah, I guess if we work with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,580",
+				"to": "00:18:15,580"
+			},
+			"offsets": {
+				"from": 1092580,
+				"to": 1095580
+			},
+			"text": " So do you want to facilitate that then?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,580",
+				"to": "00:18:18,580"
+			},
+			"offsets": {
+				"from": 1095580,
+				"to": 1098580
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,580",
+				"to": "00:18:25,580"
+			},
+			"offsets": {
+				"from": 1098580,
+				"to": 1105580
+			},
+			"text": " So another thing that we can do together before we start going through the taxonomy group."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,580",
+				"to": "00:18:29,580"
+			},
+			"offsets": {
+				"from": 1105580,
+				"to": 1109580
+			},
+			"text": " Before we start doing this for the taxonomy or the dimensions that we've defined,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,580",
+				"to": "00:18:33,580"
+			},
+			"offsets": {
+				"from": 1109580,
+				"to": 1113580
+			},
+			"text": " we can also come up with a few as a group that can be written on the sheets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,580",
+				"to": "00:18:39,580"
+			},
+			"offsets": {
+				"from": 1113580,
+				"to": 1119580
+			},
+			"text": " just so we can go through the process of defining the dimensions and characteristics together."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,580",
+				"to": "00:18:44,580"
+			},
+			"offsets": {
+				"from": 1119580,
+				"to": 1124580
+			},
+			"text": " So maybe we can just start off by doing one and see, like, right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,580",
+				"to": "00:18:47,580"
+			},
+			"offsets": {
+				"from": 1124580,
+				"to": 1127580
+			},
+			"text": " if someone wants to raise their hand in for both dimensions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,580",
+				"to": "00:18:51,580"
+			},
+			"offsets": {
+				"from": 1127580,
+				"to": 1131580
+			},
+			"text": " But what we have here is membership entrance, membership exit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,580",
+				"to": "00:18:54,580"
+			},
+			"offsets": {
+				"from": 1131580,
+				"to": 1134580
+			},
+			"text": " number of active participants, legal entity, dispute revolution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,580",
+				"to": "00:18:59,580"
+			},
+			"offsets": {
+				"from": 1134580,
+				"to": 1139580
+			},
+			"text": " liberal resolution, lifecycle phase, human identity, and deliberation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,580",
+				"to": "00:19:03,580"
+			},
+			"offsets": {
+				"from": 1139580,
+				"to": 1143580
+			},
+			"text": " So there are a few more dimensions, and if you have an idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,580",
+				"to": "00:19:07,580"
+			},
+			"offsets": {
+				"from": 1143580,
+				"to": 1147580
+			},
+			"text": " raise your hand right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,580",
+				"to": "00:19:14,580"
+			},
+			"offsets": {
+				"from": 1147580,
+				"to": 1154580
+			},
+			"text": " So when you say legal entity, do you mean the gap itself is wrapped in one or...?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,580",
+				"to": "00:19:15,580"
+			},
+			"offsets": {
+				"from": 1154580,
+				"to": 1155580
+			},
+			"text": " Yes, legal, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,580",
+				"to": "00:19:18,580"
+			},
+			"offsets": {
+				"from": 1155580,
+				"to": 1158580
+			},
+			"text": " Like it has a legal wrapper type."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,580",
+				"to": "00:19:21,580"
+			},
+			"offsets": {
+				"from": 1158580,
+				"to": 1161580
+			},
+			"text": " Like, for example, like, make redoubt."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,580",
+				"to": "00:19:26,580"
+			},
+			"offsets": {
+				"from": 1161580,
+				"to": 1166580
+			},
+			"text": " There are a lot of stakeholders, like, backed by accommodation or aragon that were not worked out."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,580",
+				"to": "00:19:32,580"
+			},
+			"offsets": {
+				"from": 1166580,
+				"to": 1172580
+			},
+			"text": " I didn't put it on that sheet because I don't know how many people are familiar with the operations that we're on down,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,580",
+				"to": "00:19:35,580"
+			},
+			"offsets": {
+				"from": 1172580,
+				"to": 1175580
+			},
+			"text": " but I'd love John to put it on the sheet."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,580",
+				"to": "00:19:39,580"
+			},
+			"offsets": {
+				"from": 1175580,
+				"to": 1179580
+			},
+			"text": " So, yeah, that's kind of what legal entity means."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,580",
+				"to": "00:19:44,580"
+			},
+			"offsets": {
+				"from": 1179580,
+				"to": 1184580
+			},
+			"text": " But for now, we can see if anyone has an idea for another dimension,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,580",
+				"to": "00:19:47,580"
+			},
+			"offsets": {
+				"from": 1184580,
+				"to": 1187580
+			},
+			"text": " and if you don't, we can go through it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,580",
+				"to": "00:19:50,580"
+			},
+			"offsets": {
+				"from": 1187580,
+				"to": 1190580
+			},
+			"text": " Engagement, professional, or desire to engage with a specialist."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,580",
+				"to": "00:20:06,580"
+			},
+			"offsets": {
+				"from": 1190580,
+				"to": 1206580
+			},
+			"text": " And so we have a number of active participants, and the way that we have defined that right now is how many addresses or nodes have participated in governments over the past 12 months."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,580",
+				"to": "00:20:17,580"
+			},
+			"offsets": {
+				"from": 1206580,
+				"to": 1217580
+			},
+			"text": " So we try to define that as, like, engagement, but I guess that the threshold would be, like, how many people are members versus how many people are active."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,580",
+				"to": "00:20:19,580"
+			},
+			"offsets": {
+				"from": 1217580,
+				"to": 1219580
+			},
+			"text": " That might be..."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,580",
+				"to": "00:20:21,580"
+			},
+			"offsets": {
+				"from": 1219580,
+				"to": 1221580
+			},
+			"text": " So, maybe is it better when I'm working on it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,580",
+				"to": "00:20:22,580"
+			},
+			"offsets": {
+				"from": 1221580,
+				"to": 1222580
+			},
+			"text": " Yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,580",
+				"to": "00:20:23,580"
+			},
+			"offsets": {
+				"from": 1222580,
+				"to": 1223580
+			},
+			"text": " I'm thinking, like, sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,580",
+				"to": "00:20:27,580"
+			},
+			"offsets": {
+				"from": 1223580,
+				"to": 1227580
+			},
+			"text": " Is the doubt aims of having a high participation or aims of having a low participation for it, certainly."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,580",
+				"to": "00:20:28,580"
+			},
+			"offsets": {
+				"from": 1227580,
+				"to": 1228580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,580",
+				"to": "00:20:31,580"
+			},
+			"offsets": {
+				"from": 1228580,
+				"to": 1231580
+			},
+			"text": " So it's not related to what's happening, but this design for..."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,580",
+				"to": "00:20:32,580"
+			},
+			"offsets": {
+				"from": 1231580,
+				"to": 1232580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,580",
+				"to": "00:20:33,580"
+			},
+			"offsets": {
+				"from": 1232580,
+				"to": 1233580
+			},
+			"text": " Let's go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,580",
+				"to": "00:20:38,580"
+			},
+			"offsets": {
+				"from": 1233580,
+				"to": 1238580
+			},
+			"text": " No, this will be interesting to see if we can create, like, some dimensions around it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,580",
+				"to": "00:20:43,580"
+			},
+			"offsets": {
+				"from": 1238580,
+				"to": 1243580
+			},
+			"text": " So maybe let's try, should we try, like, five or ten minutes, just talking about this use case?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,580",
+				"to": "00:20:44,580"
+			},
+			"offsets": {
+				"from": 1243580,
+				"to": 1244580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,580",
+				"to": "00:20:45,580"
+			},
+			"offsets": {
+				"from": 1244580,
+				"to": 1245580
+			},
+			"text": " Let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,580",
+				"to": "00:20:50,580"
+			},
+			"offsets": {
+				"from": 1245580,
+				"to": 1250580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,580",
+				"to": "00:21:03,580"
+			},
+			"offsets": {
+				"from": 1250580,
+				"to": 1263580
+			},
+			"text": " So what would you define as the characteristics of this threshold?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,580",
+				"to": "00:21:06,580"
+			},
+			"offsets": {
+				"from": 1263580,
+				"to": 1266580
+			},
+			"text": " Gas paying actions is the first layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,580",
+				"to": "00:21:07,580"
+			},
+			"offsets": {
+				"from": 1266580,
+				"to": 1267580
+			},
+			"text": " Say that again."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,580",
+				"to": "00:21:08,580"
+			},
+			"offsets": {
+				"from": 1267580,
+				"to": 1268580
+			},
+			"text": " Gas paying actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,580",
+				"to": "00:21:09,580"
+			},
+			"offsets": {
+				"from": 1268580,
+				"to": 1269580
+			},
+			"text": " Gas paying actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,580",
+				"to": "00:21:15,580"
+			},
+			"offsets": {
+				"from": 1269580,
+				"to": 1275580
+			},
+			"text": " Yeah, I'm thinking if you're watching the governance participation, but actions that involve these gaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,580",
+				"to": "00:21:18,580"
+			},
+			"offsets": {
+				"from": 1275580,
+				"to": 1278580
+			},
+			"text": " So, it's taking voting and reporting."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,580",
+				"to": "00:21:19,580"
+			},
+			"offsets": {
+				"from": 1278580,
+				"to": 1279580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,580",
+				"to": "00:21:22,580"
+			},
+			"offsets": {
+				"from": 1279580,
+				"to": 1282580
+			},
+			"text": " I'm trying to see where you're going with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,580",
+				"to": "00:21:23,580"
+			},
+			"offsets": {
+				"from": 1282580,
+				"to": 1283580
+			},
+			"text": " Gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,580",
+				"to": "00:21:24,580"
+			},
+			"offsets": {
+				"from": 1283580,
+				"to": 1284580
+			},
+			"text": " Say that again."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,580",
+				"to": "00:21:25,580"
+			},
+			"offsets": {
+				"from": 1284580,
+				"to": 1285580
+			},
+			"text": " Gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,580",
+				"to": "00:21:27,580"
+			},
+			"offsets": {
+				"from": 1285580,
+				"to": 1287580
+			},
+			"text": " Gas paying actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,580",
+				"to": "00:21:28,580"
+			},
+			"offsets": {
+				"from": 1287580,
+				"to": 1288580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,580",
+				"to": "00:21:29,580"
+			},
+			"offsets": {
+				"from": 1288580,
+				"to": 1289580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,580",
+				"to": "00:21:31,580"
+			},
+			"offsets": {
+				"from": 1289580,
+				"to": 1291580
+			},
+			"text": " And then what's the next..."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,580",
+				"to": "00:21:34,580"
+			},
+			"offsets": {
+				"from": 1291580,
+				"to": 1294580
+			},
+			"text": " So now we're going to isolate voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,580",
+				"to": "00:21:42,580"
+			},
+			"offsets": {
+				"from": 1294580,
+				"to": 1302580
+			},
+			"text": " No, what are the other characteristics for an A-check?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,580",
+				"to": "00:21:46,580"
+			},
+			"offsets": {
+				"from": 1302580,
+				"to": 1306580
+			},
+			"text": " How many times a day should you check the data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,580",
+				"to": "00:21:47,580"
+			},
+			"offsets": {
+				"from": 1306580,
+				"to": 1307580
+			},
+			"text": " That would be fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,580",
+				"to": "00:21:48,580"
+			},
+			"offsets": {
+				"from": 1307580,
+				"to": 1308580
+			},
+			"text": " Like, engage and try to help."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,580",
+				"to": "00:21:54,580"
+			},
+			"offsets": {
+				"from": 1308580,
+				"to": 1314580
+			},
+			"text": " Like, how much daily attention is required for, like, looking at the status or seeing what the new votes are or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,580",
+				"to": "00:21:55,580"
+			},
+			"offsets": {
+				"from": 1314580,
+				"to": 1315580
+			},
+			"text": " Would that count?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,580",
+				"to": "00:21:56,580"
+			},
+			"offsets": {
+				"from": 1315580,
+				"to": 1316580
+			},
+			"text": " So nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,580",
+				"to": "00:21:57,580"
+			},
+			"offsets": {
+				"from": 1316580,
+				"to": 1317580
+			},
+			"text": " I know we're defining one."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,580",
+				"to": "00:21:58,580"
+			},
+			"offsets": {
+				"from": 1317580,
+				"to": 1318580
+			},
+			"text": " Yeah, I knew you're a help here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,580",
+				"to": "00:22:01,580"
+			},
+			"offsets": {
+				"from": 1318580,
+				"to": 1321580
+			},
+			"text": " I'm not seeing these as related."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,580",
+				"to": "00:22:02,580"
+			},
+			"offsets": {
+				"from": 1321580,
+				"to": 1322580
+			},
+			"text": " Are you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,580",
+				"to": "00:22:10,580"
+			},
+			"offsets": {
+				"from": 1322580,
+				"to": 1330580
+			},
+			"text": " I was just trying to separate two types of dows ones that once one percent participation and one that once thirty percent participation."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,580",
+				"to": "00:22:13,580"
+			},
+			"offsets": {
+				"from": 1330580,
+				"to": 1333580
+			},
+			"text": " So kind of like, Warren or..."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,580",
+				"to": "00:22:18,580"
+			},
+			"offsets": {
+				"from": 1333580,
+				"to": 1338580
+			},
+			"text": " I'd say attention hungry dows and attention in my dows."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,580",
+				"to": "00:22:20,580"
+			},
+			"offsets": {
+				"from": 1338580,
+				"to": 1340580
+			},
+			"text": " That's what I was trying to separate."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,580",
+				"to": "00:22:21,580"
+			},
+			"offsets": {
+				"from": 1340580,
+				"to": 1341580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,580",
+				"to": "00:22:25,580"
+			},
+			"offsets": {
+				"from": 1341580,
+				"to": 1345580
+			},
+			"text": " So how would you, if you're going to take Molok and Genesis as an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,580",
+				"to": "00:22:26,580"
+			},
+			"offsets": {
+				"from": 1345580,
+				"to": 1346580
+			},
+			"text": " Perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,580",
+				"to": "00:22:28,580"
+			},
+			"offsets": {
+				"from": 1346580,
+				"to": 1348580
+			},
+			"text": " No, so we're saying what it's on the sheet right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,580",
+				"to": "00:22:32,580"
+			},
+			"offsets": {
+				"from": 1348580,
+				"to": 1352580
+			},
+			"text": " So the two options are attention hungry?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,580",
+				"to": "00:22:38,580"
+			},
+			"offsets": {
+				"from": 1352580,
+				"to": 1358580
+			},
+			"text": " Well, ideal governance through low percentage subset of users."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,580",
+				"to": "00:22:42,580"
+			},
+			"offsets": {
+				"from": 1358580,
+				"to": 1362580
+			},
+			"text": " Ideal governance through high percentage subset."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,580",
+				"to": "00:22:43,580"
+			},
+			"offsets": {
+				"from": 1362580,
+				"to": 1363580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,580",
+				"to": "00:22:45,580"
+			},
+			"offsets": {
+				"from": 1363580,
+				"to": 1365580
+			},
+			"text": " Is this that word?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,580",
+				"to": "00:22:52,580"
+			},
+			"offsets": {
+				"from": 1365580,
+				"to": 1372580
+			},
+			"text": " I guess the problem I find with it is it's like a very, it's not defined in any code."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,580",
+				"to": "00:22:53,580"
+			},
+			"offsets": {
+				"from": 1372580,
+				"to": 1373580
+			},
+			"text": " It's not..."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,580",
+				"to": "00:22:55,580"
+			},
+			"offsets": {
+				"from": 1373580,
+				"to": 1375580
+			},
+			"text": " It's not, I said, we'll try to write it better."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,580",
+				"to": "00:22:56,580"
+			},
+			"offsets": {
+				"from": 1375580,
+				"to": 1376580
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,580",
+				"to": "00:23:01,580"
+			},
+			"offsets": {
+				"from": 1376580,
+				"to": 1381580
+			},
+			"text": " So this is something we just ran into a lot when we were setting some of the dimensions ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,580",
+				"to": "00:23:10,580"
+			},
+			"offsets": {
+				"from": 1381580,
+				"to": 1390580
+			},
+			"text": " It's that a lot of them are hard to quantify, but also you would want a significant amount of data to be able to set what that threshold parameter would be."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,580",
+				"to": "00:23:12,580"
+			},
+			"offsets": {
+				"from": 1390580,
+				"to": 1392580
+			},
+			"text": " So you would want to look at all existing codes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,580",
+				"to": "00:23:16,580"
+			},
+			"offsets": {
+				"from": 1392580,
+				"to": 1396580
+			},
+			"text": " And this is why we realized it's kind of like a PAC of works we want to continue it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,580",
+				"to": "00:23:25,580"
+			},
+			"offsets": {
+				"from": 1396580,
+				"to": 1405580
+			},
+			"text": " It's that you would want the data to be able to say like the threshold of activities like thirty percent or like how many transactions interact with a dows smart contracts on a given day."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,580",
+				"to": "00:23:30,580"
+			},
+			"offsets": {
+				"from": 1405580,
+				"to": 1410580
+			},
+			"text": " And you would want to look at all of the operating dows and then time and average there and choose the break points."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,580",
+				"to": "00:23:32,580"
+			},
+			"offsets": {
+				"from": 1410580,
+				"to": 1412580
+			},
+			"text": " So it's really hard to quantify for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,580",
+				"to": "00:23:37,580"
+			},
+			"offsets": {
+				"from": 1412580,
+				"to": 1417580
+			},
+			"text": " I think it is really important to set it as a moving target so we don't necessarily have the data for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,580",
+				"to": "00:23:44,580"
+			},
+			"offsets": {
+				"from": 1417580,
+				"to": 1424580
+			},
+			"text": " So I would say like there's a quorum which is like level of engagement and kind of mandated technical engagement in order for the dows function."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,580",
+				"to": "00:23:50,580"
+			},
+			"offsets": {
+				"from": 1424580,
+				"to": 1430580
+			},
+			"text": " But then there's also just amount of transactions interacting with the smart contracts of the job on a given day."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,580",
+				"to": "00:23:59,580"
+			},
+			"offsets": {
+				"from": 1430580,
+				"to": 1439580
+			},
+			"text": " But also I think that there's a little bit of a chicken and egg problem where you could say that it's optimal governance is for a small amount of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,580",
+				"to": "00:24:05,580"
+			},
+			"offsets": {
+				"from": 1439580,
+				"to": 1445580
+			},
+			"text": " But then it's like what if that optimal or stated objectives change over time and then it becomes for large or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,580",
+				"to": "00:24:07,580"
+			},
+			"offsets": {
+				"from": 1445580,
+				"to": 1447580
+			},
+			"text": " They're both kind of in a recursive piece of message."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,580",
+				"to": "00:24:13,580"
+			},
+			"offsets": {
+				"from": 1447580,
+				"to": 1453580
+			},
+			"text": " Yeah, as we see the feedback also between the taxonomy and the rules that I've reported."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,580",
+				"to": "00:24:20,580"
+			},
+			"offsets": {
+				"from": 1453580,
+				"to": 1460580
+			},
+			"text": " As you put something, let's say that you make in your taxonomy that the dows states their desire to be being professional."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,580",
+				"to": "00:24:25,580"
+			},
+			"offsets": {
+				"from": 1460580,
+				"to": 1465580
+			},
+			"text": " Then actually when we deploy those, we're going to actually think about it because it is in the taxonomy."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,580",
+				"to": "00:24:31,580"
+			},
+			"offsets": {
+				"from": 1465580,
+				"to": 1471580
+			},
+			"text": " So if you think back loop between like how structure shapes agency and agency shape structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,580",
+				"to": "00:24:35,580"
+			},
+			"offsets": {
+				"from": 1471580,
+				"to": 1475580
+			},
+			"text": " I think it would be really cool that we try to figure this one out eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,580",
+				"to": "00:24:44,580"
+			},
+			"offsets": {
+				"from": 1475580,
+				"to": 1484580
+			},
+			"text": " And in that specifically, you're thinking of creating like upgrade your dows buttons and this is actually something easy to deploy on arad."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,580",
+				"to": "00:24:49,580"
+			},
+			"offsets": {
+				"from": 1484580,
+				"to": 1489580
+			},
+			"text": " Then you would have like ideal governance for 15 people when your dows reaches 25 people."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,580",
+				"to": "00:24:57,580"
+			},
+			"offsets": {
+				"from": 1489580,
+				"to": 1497580
+			},
+			"text": " There's a lot of like, hey, do you want to take a moment to reflect on what are different parameters you might want to upload to your dows."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,580",
+				"to": "00:24:59,580"
+			},
+			"offsets": {
+				"from": 1497580,
+				"to": 1499580
+			},
+			"text": " Yeah, that's very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,580",
+				"to": "00:25:05,580"
+			},
+			"offsets": {
+				"from": 1499580,
+				"to": 1505580
+			},
+			"text": " And we can talk more about maybe an example where it might be easier that's not the worksheet."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,580",
+				"to": "00:25:09,580"
+			},
+			"offsets": {
+				"from": 1505580,
+				"to": 1509580
+			},
+			"text": " It could be kind of related just like generally what is the voting process."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,580",
+				"to": "00:25:14,580"
+			},
+			"offsets": {
+				"from": 1509580,
+				"to": 1514580
+			},
+			"text": " Is it based on one person, one vote?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,580",
+				"to": "00:25:19,580"
+			},
+			"offsets": {
+				"from": 1514580,
+				"to": 1519580
+			},
+			"text": " You have some kind of identity mechanism so you can actually use that governance process."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,580",
+				"to": "00:25:22,580"
+			},
+			"offsets": {
+				"from": 1519580,
+				"to": 1522580
+			},
+			"text": " Is it token weighted? Is it like reputation weighted?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,580",
+				"to": "00:25:29,580"
+			},
+			"offsets": {
+				"from": 1522580,
+				"to": 1529580
+			},
+			"text": " So it's like that's an example of something that we could have as how do people engage with the voting process."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,580",
+				"to": "00:25:36,580"
+			},
+			"offsets": {
+				"from": 1529580,
+				"to": 1536580
+			},
+			"text": " Because if you're talking about I guess things upgrade that is introducing another voting mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,580",
+				"to": "00:25:41,580"
+			},
+			"offsets": {
+				"from": 1536580,
+				"to": 1541580
+			},
+			"text": " So then that mechanism can just start to be defined."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,580",
+				"to": "00:25:47,580"
+			},
+			"offsets": {
+				"from": 1541580,
+				"to": 1547580
+			},
+			"text": " So I mean I think that can be an interesting exercise or dimension to think about in this worksheet."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,580",
+				"to": "00:25:51,580"
+			},
+			"offsets": {
+				"from": 1547580,
+				"to": 1551580
+			},
+			"text": " Because that is also one of the most easier ones to grasp."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,580",
+				"to": "00:25:58,580"
+			},
+			"offsets": {
+				"from": 1551580,
+				"to": 1558580
+			},
+			"text": " But yeah, I think the ones that involve data are super interesting but difficult to do in the context of this workshop."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,580",
+				"to": "00:26:05,580"
+			},
+			"offsets": {
+				"from": 1558580,
+				"to": 1565580
+			},
+			"text": " We were even thinking as far as like, okay, how do we, like some of these maybe it's like a Gauss distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,580",
+				"to": "00:26:08,580"
+			},
+			"offsets": {
+				"from": 1565580,
+				"to": 1568580
+			},
+			"text": " And we want to like figure out like what's that number there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,580",
+				"to": "00:26:20,580"
+			},
+			"offsets": {
+				"from": 1568580,
+				"to": 1580580
+			},
+			"text": " Like what's that number there for like average holdings of like average of like current average number of tokens that each like a theorem address has."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,580",
+				"to": "00:26:25,580"
+			},
+			"offsets": {
+				"from": 1580580,
+				"to": 1585580
+			},
+			"text": " It's like, well maybe you have like, you know, a lot of people at the top or maybe it's not like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,580",
+				"to": "00:26:27,580"
+			},
+			"offsets": {
+				"from": 1585580,
+				"to": 1587580
+			},
+			"text": " It's like a different distribution curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,580",
+				"to": "00:26:37,580"
+			},
+			"offsets": {
+				"from": 1587580,
+				"to": 1597580
+			},
+			"text": " So I think there are a lot of like interesting metrics that would be nice to define and then see where the different downs fit."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,580",
+				"to": "00:26:45,580"
+			},
+			"offsets": {
+				"from": 1597580,
+				"to": 1605580
+			},
+			"text": " Another dimension can be in my opinion very easily to manage funds or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,580",
+				"to": "00:26:52,580"
+			},
+			"offsets": {
+				"from": 1605580,
+				"to": 1612580
+			},
+			"text": " And this is connected to another thing that is if the decision is then made on chain or off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,580",
+				"to": "00:26:56,580"
+			},
+			"offsets": {
+				"from": 1612580,
+				"to": 1616580
+			},
+			"text": " Because some downs are just using a decision to release funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,580",
+				"to": "00:27:06,580"
+			},
+			"offsets": {
+				"from": 1620580,
+				"to": 1626580
+			},
+			"text": " Yeah, so just to repeat that so that everybody heard one proposed dimension is does the Dow manage funds or not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,580",
+				"to": "00:27:12,580"
+			},
+			"offsets": {
+				"from": 1626580,
+				"to": 1632580
+			},
+			"text": " Yes or no? And then there will be a corollary to that whereas if the management of funds is directly on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,580",
+				"to": "00:27:18,580"
+			},
+			"offsets": {
+				"from": 1632580,
+				"to": 1638580
+			},
+			"text": " So a Dow could be used just to make decisions about where funds go but it doesn't necessarily facilitate the actual transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,580",
+				"to": "00:27:26,580"
+			},
+			"offsets": {
+				"from": 1638580,
+				"to": 1646580
+			},
+			"text": " The output is something that is not really in funds but that I'm implementing a policy in a company."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,580",
+				"to": "00:27:27,580"
+			},
+			"offsets": {
+				"from": 1646580,
+				"to": 1647580
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,580",
+				"to": "00:27:31,580"
+			},
+			"offsets": {
+				"from": 1647580,
+				"to": 1651580
+			},
+			"text": " So it could also just be implementing a policy."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,580",
+				"to": "00:27:33,580"
+			},
+			"offsets": {
+				"from": 1651580,
+				"to": 1653580
+			},
+			"text": " We can definitely use that one."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,580",
+				"to": "00:27:42,580"
+			},
+			"offsets": {
+				"from": 1653580,
+				"to": 1662580
+			},
+			"text": " So there is certain things of like it does get a little ambiguous here because with Ethereum most interactions involve some sort of funds in some way always."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,580",
+				"to": "00:27:49,580"
+			},
+			"offsets": {
+				"from": 1662580,
+				"to": 1669580
+			},
+			"text": " What we could say is there are smart contracts that holds, manages a common funding pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,580",
+				"to": "00:27:55,580"
+			},
+			"offsets": {
+				"from": 1669580,
+				"to": 1675580
+			},
+			"text": " And is it that funding pool managed on chain through the Dow decision making process?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,580",
+				"to": "00:27:59,580"
+			},
+			"offsets": {
+				"from": 1675580,
+				"to": 1679580
+			},
+			"text": " Great. Is that clear to everybody's potential one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,580",
+				"to": "00:28:00,580"
+			},
+			"offsets": {
+				"from": 1679580,
+				"to": 1680580
+			},
+			"text": " Good."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,580",
+				"to": "00:28:01,580"
+			},
+			"offsets": {
+				"from": 1680580,
+				"to": 1681580
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,580",
+				"to": "00:28:05,580"
+			},
+			"offsets": {
+				"from": 1681580,
+				"to": 1685580
+			},
+			"text": " I like the suggestion you were talking about effectively consenting for a whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,580",
+				"to": "00:28:14,580"
+			},
+			"offsets": {
+				"from": 1685580,
+				"to": 1694580
+			},
+			"text": " So you can look at the economic issues you use to common dimensions that are used for specifying the consenting for a whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,580",
+				"to": "00:28:18,580"
+			},
+			"offsets": {
+				"from": 1694580,
+				"to": 1698580
+			},
+			"text": " Because any voting is right. So is it visible to the whole dollar?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,580",
+				"to": "00:28:25,580"
+			},
+			"offsets": {
+				"from": 1698580,
+				"to": 1705580
+			},
+			"text": " Right. Does it have light?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:25,580",
+				"to": "00:28:26,580"
+			},
+			"offsets": {
+				"from": 1705580,
+				"to": 1706580
+			},
+			"text": " Right. Is it required full-streamed pre-portional-streamed pre- concealed cash?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,580",
+				"to": "00:28:30,580"
+			},
+			"offsets": {
+				"from": 1706580,
+				"to": 1710580
+			},
+			"text": " Right. Are there guarantees? Right. Is there some ones that have attack directors?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,580",
+				"to": "00:28:30,580"
+			},
+			"offsets": {
+				"from": 1710580,
+				"to": 1710580
+			},
+			"text": " Right. What are the different types of extortion, tax freedoms, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,580",
+				"to": "00:29:00,580"
+			},
+			"offsets": {
+				"from": 1710580,
+				"to": 1740580
+			},
+			"text": " Right. What are the different types of conversion, tax readings, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,580",
+				"to": "00:29:07,580"
+			},
+			"offsets": {
+				"from": 1740580,
+				"to": 1747580
+			},
+			"text": " I think it's kind of basically an examination on those lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,580",
+				"to": "00:29:17,580"
+			},
+			"offsets": {
+				"from": 1747580,
+				"to": 1757580
+			},
+			"text": " You could say, \"I'm staking.\" Like this monetary reputation on the hybrid needs to pass by."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:17,580",
+				"to": "00:29:18,580"
+			},
+			"offsets": {
+				"from": 1757580,
+				"to": 1758580
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,580",
+				"to": "00:29:22,580"
+			},
+			"offsets": {
+				"from": 1758580,
+				"to": 1762580
+			},
+			"text": " I think so."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:22,580",
+				"to": "00:29:32,580"
+			},
+			"offsets": {
+				"from": 1762580,
+				"to": 1772580
+			},
+			"text": " There's a recognized as securities in U.S. law."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:32,580",
+				"to": "00:29:39,580"
+			},
+			"offsets": {
+				"from": 1772580,
+				"to": 1779580
+			},
+			"text": " Maybe we'll keep that one off the mercy of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:39,580",
+				"to": "00:29:48,580"
+			},
+			"offsets": {
+				"from": 1779580,
+				"to": 1788580
+			},
+			"text": " Like the approach to profit, whether it pays out to individual shareholders, or equally, or whether it doesn't make it up at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:48,580",
+				"to": "00:29:53,580"
+			},
+			"offsets": {
+				"from": 1788580,
+				"to": 1793580
+			},
+			"text": " Sure. One of the ones we're thinking is a profit or non-profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,580",
+				"to": "00:30:01,580"
+			},
+			"offsets": {
+				"from": 1793580,
+				"to": 1801580
+			},
+			"text": " But I like the distinction of also you could put like for profit hierarchical, for profit cooperative, for profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:01,580",
+				"to": "00:30:05,580"
+			},
+			"offsets": {
+				"from": 1801580,
+				"to": 1805580
+			},
+			"text": " You could make a smaller distinction. I have a more brand new distinction that was I like."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,580",
+				"to": "00:30:12,580"
+			},
+			"offsets": {
+				"from": 1805580,
+				"to": 1812580
+			},
+			"text": " And then for security token we can do like, for the ones that we dealt, like people created them and they never really said what it was."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:12,580",
+				"to": "00:30:17,580"
+			},
+			"offsets": {
+				"from": 1812580,
+				"to": 1817580
+			},
+			"text": " And it's based on exchanges to analyze. Those can be undefined."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:17,580",
+				"to": "00:30:21,580"
+			},
+			"offsets": {
+				"from": 1817580,
+				"to": 1821580
+			},
+			"text": " But I think there are like, you know, queer tokens that say, \"This is a security token.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:30:21,580",
+				"to": "00:30:26,580"
+			},
+			"offsets": {
+				"from": 1821580,
+				"to": 1826580
+			},
+			"text": " Maybe no is going to be harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:26,580",
+				"to": "00:30:29,580"
+			},
+			"offsets": {
+				"from": 1826580,
+				"to": 1829580
+			},
+			"text": " You can also be like utility."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:29,580",
+				"to": "00:30:32,580"
+			},
+			"offsets": {
+				"from": 1829580,
+				"to": 1832580
+			},
+			"text": " Yeah, but people might say it's a utility but it's a security."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,580",
+				"to": "00:30:39,580"
+			},
+			"offsets": {
+				"from": 1832580,
+				"to": 1839580
+			},
+			"text": " So you can say utility token because they say it's one, but maybe not."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:39,580",
+				"to": "00:30:44,580"
+			},
+			"offsets": {
+				"from": 1839580,
+				"to": 1844580
+			},
+			"text": " So that can be like, you know, another branch. It's like, is it no? Because the team said it's no?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:44,580",
+				"to": "00:30:48,580"
+			},
+			"offsets": {
+				"from": 1844580,
+				"to": 1848580
+			},
+			"text": " Or because it was analyzed by someone else that said it was no?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:48,580",
+				"to": "00:30:53,580"
+			},
+			"offsets": {
+				"from": 1848580,
+				"to": 1853580
+			},
+			"text": " Like, yeah, that's really like undefined."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:53,580",
+				"to": "00:30:56,580"
+			},
+			"offsets": {
+				"from": 1853580,
+				"to": 1856580
+			},
+			"text": " But, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:56,580",
+				"to": "00:31:08,580"
+			},
+			"offsets": {
+				"from": 1856580,
+				"to": 1868580
+			},
+			"text": " This might be too low level, but maybe like which framework gets built on."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:08,580",
+				"to": "00:31:12,580"
+			},
+			"offsets": {
+				"from": 1868580,
+				"to": 1872580
+			},
+			"text": " And you could say also, is it how it looks like a framework or not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:12,580",
+				"to": "00:31:15,580"
+			},
+			"offsets": {
+				"from": 1872580,
+				"to": 1875580
+			},
+			"text": " Or is it the one that we're going to have?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:15,580",
+				"to": "00:31:16,580"
+			},
+			"offsets": {
+				"from": 1875580,
+				"to": 1876580
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:16,580",
+				"to": "00:31:25,580"
+			},
+			"offsets": {
+				"from": 1876580,
+				"to": 1885580
+			},
+			"text": " And as you realize, this is also like kind of trickles all the way down because you've been having a framework or whatever, but let's do a kind of basic panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:25,580",
+				"to": "00:31:33,580"
+			},
+			"offsets": {
+				"from": 1885580,
+				"to": 1893580
+			},
+			"text": " Yeah, well, I mean, you can say like, everything based on Eragon OS is either compatible with Eragon OS or it's not."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:33,580",
+				"to": "00:31:59,300"
+			},
+			"offsets": {
+				"from": 1893580,
+				"to": 1919300
+			},
+			"text": " So it's like, and probably the same with, I guess, art or whatever the lowest level of downst"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:59,300",
+				"to": "00:32:06,300"
+			},
+			"offsets": {
+				"from": 1919300,
+				"to": 1926300
+			},
+			"text": " cycle phase, but whether or not it's supposed to be defined differently or whether it has like an in-state in mind for its life."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:06,300",
+				"to": "00:32:09,300"
+			},
+			"offsets": {
+				"from": 1926300,
+				"to": 1929300
+			},
+			"text": " Yep. So, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,300",
+				"to": "00:32:12,300"
+			},
+			"offsets": {
+				"from": 1929300,
+				"to": 1932300
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:12,300",
+				"to": "00:32:20,300"
+			},
+			"offsets": {
+				"from": 1932300,
+				"to": 1940300
+			},
+			"text": " I think it's different than how we define life cycles. That's what we're like, is it supposed to end or something?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:20,300",
+				"to": "00:32:21,300"
+			},
+			"offsets": {
+				"from": 1940300,
+				"to": 1941300
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:21,300",
+				"to": "00:32:22,300"
+			},
+			"offsets": {
+				"from": 1941300,
+				"to": 1942300
+			},
+			"text": " Is the end defined?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:22,300",
+				"to": "00:32:23,300"
+			},
+			"offsets": {
+				"from": 1942300,
+				"to": 1943300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:23,300",
+				"to": "00:32:24,300"
+			},
+			"offsets": {
+				"from": 1943300,
+				"to": 1944300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:24,300",
+				"to": "00:32:25,300"
+			},
+			"offsets": {
+				"from": 1944300,
+				"to": 1945300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:25,300",
+				"to": "00:32:26,300"
+			},
+			"offsets": {
+				"from": 1945300,
+				"to": 1946300
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:26,300",
+				"to": "00:32:27,300"
+			},
+			"offsets": {
+				"from": 1946300,
+				"to": 1947300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:27,300",
+				"to": "00:32:28,300"
+			},
+			"offsets": {
+				"from": 1947300,
+				"to": 1948300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:28,300",
+				"to": "00:32:29,300"
+			},
+			"offsets": {
+				"from": 1948300,
+				"to": 1949300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:29,300",
+				"to": "00:32:30,300"
+			},
+			"offsets": {
+				"from": 1949300,
+				"to": 1950300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:30,300",
+				"to": "00:32:31,300"
+			},
+			"offsets": {
+				"from": 1950300,
+				"to": 1951300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:31,300",
+				"to": "00:32:32,300"
+			},
+			"offsets": {
+				"from": 1951300,
+				"to": 1952300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:32,300",
+				"to": "00:32:33,300"
+			},
+			"offsets": {
+				"from": 1952300,
+				"to": 1953300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:33,300",
+				"to": "00:32:34,300"
+			},
+			"offsets": {
+				"from": 1953300,
+				"to": 1954300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:34,300",
+				"to": "00:32:35,300"
+			},
+			"offsets": {
+				"from": 1954300,
+				"to": 1955300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:35,300",
+				"to": "00:32:36,300"
+			},
+			"offsets": {
+				"from": 1955300,
+				"to": 1956300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:36,300",
+				"to": "00:32:37,300"
+			},
+			"offsets": {
+				"from": 1956300,
+				"to": 1957300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:37,300",
+				"to": "00:32:38,300"
+			},
+			"offsets": {
+				"from": 1957300,
+				"to": 1958300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:38,300",
+				"to": "00:32:39,300"
+			},
+			"offsets": {
+				"from": 1958300,
+				"to": 1959300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:39,300",
+				"to": "00:32:40,300"
+			},
+			"offsets": {
+				"from": 1959300,
+				"to": 1960300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:40,300",
+				"to": "00:32:41,300"
+			},
+			"offsets": {
+				"from": 1960300,
+				"to": 1961300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:41,300",
+				"to": "00:32:42,300"
+			},
+			"offsets": {
+				"from": 1961300,
+				"to": 1962300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:42,300",
+				"to": "00:32:43,300"
+			},
+			"offsets": {
+				"from": 1962300,
+				"to": 1963300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:43,300",
+				"to": "00:32:44,300"
+			},
+			"offsets": {
+				"from": 1963300,
+				"to": 1964300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:44,300",
+				"to": "00:32:45,300"
+			},
+			"offsets": {
+				"from": 1964300,
+				"to": 1965300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:45,300",
+				"to": "00:32:46,300"
+			},
+			"offsets": {
+				"from": 1965300,
+				"to": 1966300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:46,300",
+				"to": "00:32:47,300"
+			},
+			"offsets": {
+				"from": 1966300,
+				"to": 1967300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:47,300",
+				"to": "00:32:48,300"
+			},
+			"offsets": {
+				"from": 1967300,
+				"to": 1968300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:48,300",
+				"to": "00:32:49,300"
+			},
+			"offsets": {
+				"from": 1968300,
+				"to": 1969300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:49,300",
+				"to": "00:32:50,300"
+			},
+			"offsets": {
+				"from": 1969300,
+				"to": 1970300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:50,300",
+				"to": "00:32:51,300"
+			},
+			"offsets": {
+				"from": 1970300,
+				"to": 1971300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:51,300",
+				"to": "00:32:52,300"
+			},
+			"offsets": {
+				"from": 1971300,
+				"to": 1972300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:52,300",
+				"to": "00:32:53,300"
+			},
+			"offsets": {
+				"from": 1972300,
+				"to": 1973300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:53,300",
+				"to": "00:32:54,300"
+			},
+			"offsets": {
+				"from": 1973300,
+				"to": 1974300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:54,300",
+				"to": "00:32:55,300"
+			},
+			"offsets": {
+				"from": 1974300,
+				"to": 1975300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:55,300",
+				"to": "00:32:56,300"
+			},
+			"offsets": {
+				"from": 1975300,
+				"to": 1976300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:56,300",
+				"to": "00:32:57,300"
+			},
+			"offsets": {
+				"from": 1976300,
+				"to": 1977300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:57,300",
+				"to": "00:32:58,300"
+			},
+			"offsets": {
+				"from": 1977300,
+				"to": 1978300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:58,300",
+				"to": "00:32:59,300"
+			},
+			"offsets": {
+				"from": 1978300,
+				"to": 1979300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,300",
+				"to": "00:33:00,300"
+			},
+			"offsets": {
+				"from": 1979300,
+				"to": 1980300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:00,300",
+				"to": "00:33:01,300"
+			},
+			"offsets": {
+				"from": 1980300,
+				"to": 1981300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:01,300",
+				"to": "00:33:02,300"
+			},
+			"offsets": {
+				"from": 1981300,
+				"to": 1982300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:02,300",
+				"to": "00:33:03,300"
+			},
+			"offsets": {
+				"from": 1982300,
+				"to": 1983300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:03,300",
+				"to": "00:33:04,300"
+			},
+			"offsets": {
+				"from": 1983300,
+				"to": 1984300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:04,300",
+				"to": "00:33:05,300"
+			},
+			"offsets": {
+				"from": 1984300,
+				"to": 1985300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:05,300",
+				"to": "00:33:06,300"
+			},
+			"offsets": {
+				"from": 1985300,
+				"to": 1986300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:06,300",
+				"to": "00:33:07,300"
+			},
+			"offsets": {
+				"from": 1986300,
+				"to": 1987300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:07,300",
+				"to": "00:33:08,300"
+			},
+			"offsets": {
+				"from": 1987300,
+				"to": 1988300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:08,300",
+				"to": "00:33:09,300"
+			},
+			"offsets": {
+				"from": 1988300,
+				"to": 1989300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:09,300",
+				"to": "00:33:10,300"
+			},
+			"offsets": {
+				"from": 1989300,
+				"to": 1990300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:10,300",
+				"to": "00:33:11,300"
+			},
+			"offsets": {
+				"from": 1990300,
+				"to": 1991300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:11,300",
+				"to": "00:33:12,300"
+			},
+			"offsets": {
+				"from": 1991300,
+				"to": 1992300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:12,300",
+				"to": "00:33:13,300"
+			},
+			"offsets": {
+				"from": 1992300,
+				"to": 1993300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:13,300",
+				"to": "00:33:14,300"
+			},
+			"offsets": {
+				"from": 1993300,
+				"to": 1994300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:14,300",
+				"to": "00:33:15,300"
+			},
+			"offsets": {
+				"from": 1994300,
+				"to": 1995300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:15,300",
+				"to": "00:33:16,300"
+			},
+			"offsets": {
+				"from": 1995300,
+				"to": 1996300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:16,300",
+				"to": "00:33:17,300"
+			},
+			"offsets": {
+				"from": 1996300,
+				"to": 1997300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:17,300",
+				"to": "00:33:18,300"
+			},
+			"offsets": {
+				"from": 1997300,
+				"to": 1998300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:18,300",
+				"to": "00:33:19,300"
+			},
+			"offsets": {
+				"from": 1998300,
+				"to": 1999300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:19,300",
+				"to": "00:33:20,300"
+			},
+			"offsets": {
+				"from": 1999300,
+				"to": 2000300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,300",
+				"to": "00:33:21,300"
+			},
+			"offsets": {
+				"from": 2000300,
+				"to": 2001300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:21,300",
+				"to": "00:33:22,300"
+			},
+			"offsets": {
+				"from": 2001300,
+				"to": 2002300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:22,300",
+				"to": "00:33:23,300"
+			},
+			"offsets": {
+				"from": 2002300,
+				"to": 2003300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:23,300",
+				"to": "00:33:24,300"
+			},
+			"offsets": {
+				"from": 2003300,
+				"to": 2004300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:24,300",
+				"to": "00:33:25,300"
+			},
+			"offsets": {
+				"from": 2004300,
+				"to": 2005300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:25,300",
+				"to": "00:33:26,300"
+			},
+			"offsets": {
+				"from": 2005300,
+				"to": 2006300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:26,300",
+				"to": "00:33:27,300"
+			},
+			"offsets": {
+				"from": 2006300,
+				"to": 2007300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:27,300",
+				"to": "00:33:28,300"
+			},
+			"offsets": {
+				"from": 2007300,
+				"to": 2008300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:28,300",
+				"to": "00:33:29,300"
+			},
+			"offsets": {
+				"from": 2008300,
+				"to": 2009300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:29,300",
+				"to": "00:33:30,300"
+			},
+			"offsets": {
+				"from": 2009300,
+				"to": 2010300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:30,300",
+				"to": "00:33:31,300"
+			},
+			"offsets": {
+				"from": 2010300,
+				"to": 2011300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:31,300",
+				"to": "00:33:32,300"
+			},
+			"offsets": {
+				"from": 2011300,
+				"to": 2012300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:32,300",
+				"to": "00:33:33,300"
+			},
+			"offsets": {
+				"from": 2012300,
+				"to": 2013300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:33,300",
+				"to": "00:33:34,300"
+			},
+			"offsets": {
+				"from": 2013300,
+				"to": 2014300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:34,300",
+				"to": "00:33:35,300"
+			},
+			"offsets": {
+				"from": 2014300,
+				"to": 2015300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:35,300",
+				"to": "00:33:36,300"
+			},
+			"offsets": {
+				"from": 2015300,
+				"to": 2016300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:36,300",
+				"to": "00:33:37,300"
+			},
+			"offsets": {
+				"from": 2016300,
+				"to": 2017300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:37,300",
+				"to": "00:33:38,300"
+			},
+			"offsets": {
+				"from": 2017300,
+				"to": 2018300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:38,300",
+				"to": "00:33:39,300"
+			},
+			"offsets": {
+				"from": 2018300,
+				"to": 2019300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:39,300",
+				"to": "00:33:40,300"
+			},
+			"offsets": {
+				"from": 2019300,
+				"to": 2020300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:40,300",
+				"to": "00:33:41,300"
+			},
+			"offsets": {
+				"from": 2020300,
+				"to": 2021300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:41,300",
+				"to": "00:33:42,300"
+			},
+			"offsets": {
+				"from": 2021300,
+				"to": 2022300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:42,300",
+				"to": "00:33:43,300"
+			},
+			"offsets": {
+				"from": 2022300,
+				"to": 2023300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:43,300",
+				"to": "00:33:44,300"
+			},
+			"offsets": {
+				"from": 2023300,
+				"to": 2024300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:44,300",
+				"to": "00:33:45,300"
+			},
+			"offsets": {
+				"from": 2024300,
+				"to": 2025300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:45,300",
+				"to": "00:33:46,300"
+			},
+			"offsets": {
+				"from": 2025300,
+				"to": 2026300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:46,300",
+				"to": "00:33:47,300"
+			},
+			"offsets": {
+				"from": 2026300,
+				"to": 2027300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:47,300",
+				"to": "00:33:48,300"
+			},
+			"offsets": {
+				"from": 2027300,
+				"to": 2028300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:48,300",
+				"to": "00:33:49,300"
+			},
+			"offsets": {
+				"from": 2028300,
+				"to": 2029300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:49,300",
+				"to": "00:33:50,300"
+			},
+			"offsets": {
+				"from": 2029300,
+				"to": 2030300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:50,300",
+				"to": "00:33:51,300"
+			},
+			"offsets": {
+				"from": 2030300,
+				"to": 2031300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:51,300",
+				"to": "00:33:52,300"
+			},
+			"offsets": {
+				"from": 2031300,
+				"to": 2032300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:52,300",
+				"to": "00:33:53,300"
+			},
+			"offsets": {
+				"from": 2032300,
+				"to": 2033300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:53,300",
+				"to": "00:33:55,300"
+			},
+			"offsets": {
+				"from": 2033300,
+				"to": 2035300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:55,300",
+				"to": "00:33:56,300"
+			},
+			"offsets": {
+				"from": 2035300,
+				"to": 2036300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:56,300",
+				"to": "00:33:57,300"
+			},
+			"offsets": {
+				"from": 2036300,
+				"to": 2037300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:57,300",
+				"to": "00:33:58,300"
+			},
+			"offsets": {
+				"from": 2037300,
+				"to": 2038300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:58,300",
+				"to": "00:33:59,300"
+			},
+			"offsets": {
+				"from": 2038300,
+				"to": 2039300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:59,300",
+				"to": "00:34:00,300"
+			},
+			"offsets": {
+				"from": 2039300,
+				"to": 2040300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:00,300",
+				"to": "00:34:01,300"
+			},
+			"offsets": {
+				"from": 2040300,
+				"to": 2041300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:01,300",
+				"to": "00:34:02,300"
+			},
+			"offsets": {
+				"from": 2041300,
+				"to": 2042300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:02,300",
+				"to": "00:34:03,300"
+			},
+			"offsets": {
+				"from": 2042300,
+				"to": 2043300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:03,300",
+				"to": "00:34:04,300"
+			},
+			"offsets": {
+				"from": 2043300,
+				"to": 2044300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:04,300",
+				"to": "00:34:05,300"
+			},
+			"offsets": {
+				"from": 2044300,
+				"to": 2045300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:05,300",
+				"to": "00:34:06,300"
+			},
+			"offsets": {
+				"from": 2045300,
+				"to": 2046300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:06,300",
+				"to": "00:34:07,300"
+			},
+			"offsets": {
+				"from": 2046300,
+				"to": 2047300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:07,300",
+				"to": "00:34:08,300"
+			},
+			"offsets": {
+				"from": 2047300,
+				"to": 2048300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:08,300",
+				"to": "00:34:09,300"
+			},
+			"offsets": {
+				"from": 2048300,
+				"to": 2049300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:09,300",
+				"to": "00:34:10,300"
+			},
+			"offsets": {
+				"from": 2049300,
+				"to": 2050300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:10,300",
+				"to": "00:34:11,300"
+			},
+			"offsets": {
+				"from": 2050300,
+				"to": 2051300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:11,300",
+				"to": "00:34:12,300"
+			},
+			"offsets": {
+				"from": 2051300,
+				"to": 2052300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:12,300",
+				"to": "00:34:13,300"
+			},
+			"offsets": {
+				"from": 2052300,
+				"to": 2053300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:13,300",
+				"to": "00:34:14,300"
+			},
+			"offsets": {
+				"from": 2053300,
+				"to": 2054300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:14,300",
+				"to": "00:34:15,300"
+			},
+			"offsets": {
+				"from": 2054300,
+				"to": 2055300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:15,300",
+				"to": "00:34:16,300"
+			},
+			"offsets": {
+				"from": 2055300,
+				"to": 2056300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:16,300",
+				"to": "00:34:17,300"
+			},
+			"offsets": {
+				"from": 2056300,
+				"to": 2057300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:17,300",
+				"to": "00:34:18,300"
+			},
+			"offsets": {
+				"from": 2057300,
+				"to": 2058300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:18,300",
+				"to": "00:34:19,300"
+			},
+			"offsets": {
+				"from": 2058300,
+				"to": 2059300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:19,300",
+				"to": "00:34:20,300"
+			},
+			"offsets": {
+				"from": 2059300,
+				"to": 2060300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:20,300",
+				"to": "00:34:21,300"
+			},
+			"offsets": {
+				"from": 2060300,
+				"to": 2061300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:21,300",
+				"to": "00:34:22,300"
+			},
+			"offsets": {
+				"from": 2061300,
+				"to": 2062300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:22,300",
+				"to": "00:34:23,300"
+			},
+			"offsets": {
+				"from": 2062300,
+				"to": 2063300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:23,300",
+				"to": "00:34:24,300"
+			},
+			"offsets": {
+				"from": 2063300,
+				"to": 2064300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:24,300",
+				"to": "00:34:25,300"
+			},
+			"offsets": {
+				"from": 2064300,
+				"to": 2065300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:25,300",
+				"to": "00:34:26,300"
+			},
+			"offsets": {
+				"from": 2065300,
+				"to": 2066300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:26,300",
+				"to": "00:34:27,300"
+			},
+			"offsets": {
+				"from": 2066300,
+				"to": 2067300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:27,300",
+				"to": "00:34:28,300"
+			},
+			"offsets": {
+				"from": 2067300,
+				"to": 2068300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:28,300",
+				"to": "00:34:29,300"
+			},
+			"offsets": {
+				"from": 2068300,
+				"to": 2069300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:29,300",
+				"to": "00:34:30,300"
+			},
+			"offsets": {
+				"from": 2069300,
+				"to": 2070300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:30,300",
+				"to": "00:34:31,300"
+			},
+			"offsets": {
+				"from": 2070300,
+				"to": 2071300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:31,300",
+				"to": "00:34:32,300"
+			},
+			"offsets": {
+				"from": 2071300,
+				"to": 2072300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:32,300",
+				"to": "00:34:33,300"
+			},
+			"offsets": {
+				"from": 2072300,
+				"to": 2073300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:33,300",
+				"to": "00:34:34,300"
+			},
+			"offsets": {
+				"from": 2073300,
+				"to": 2074300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,300",
+				"to": "00:34:35,300"
+			},
+			"offsets": {
+				"from": 2074300,
+				"to": 2075300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:35,300",
+				"to": "00:34:36,300"
+			},
+			"offsets": {
+				"from": 2075300,
+				"to": 2076300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:36,300",
+				"to": "00:34:37,300"
+			},
+			"offsets": {
+				"from": 2076300,
+				"to": 2077300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:37,300",
+				"to": "00:34:38,300"
+			},
+			"offsets": {
+				"from": 2077300,
+				"to": 2078300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:38,300",
+				"to": "00:34:39,300"
+			},
+			"offsets": {
+				"from": 2078300,
+				"to": 2079300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:39,300",
+				"to": "00:34:40,300"
+			},
+			"offsets": {
+				"from": 2079300,
+				"to": 2080300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:40,300",
+				"to": "00:34:41,300"
+			},
+			"offsets": {
+				"from": 2080300,
+				"to": 2081300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:41,300",
+				"to": "00:34:42,300"
+			},
+			"offsets": {
+				"from": 2081300,
+				"to": 2082300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:42,300",
+				"to": "00:34:43,300"
+			},
+			"offsets": {
+				"from": 2082300,
+				"to": 2083300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:43,300",
+				"to": "00:34:44,300"
+			},
+			"offsets": {
+				"from": 2083300,
+				"to": 2084300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:44,300",
+				"to": "00:34:45,300"
+			},
+			"offsets": {
+				"from": 2084300,
+				"to": 2085300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:45,300",
+				"to": "00:34:46,300"
+			},
+			"offsets": {
+				"from": 2085300,
+				"to": 2086300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:46,300",
+				"to": "00:34:47,300"
+			},
+			"offsets": {
+				"from": 2086300,
+				"to": 2087300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:47,300",
+				"to": "00:34:48,300"
+			},
+			"offsets": {
+				"from": 2087300,
+				"to": 2088300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:48,300",
+				"to": "00:34:49,300"
+			},
+			"offsets": {
+				"from": 2088300,
+				"to": 2089300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:49,300",
+				"to": "00:34:50,300"
+			},
+			"offsets": {
+				"from": 2089300,
+				"to": 2090300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:50,300",
+				"to": "00:34:51,300"
+			},
+			"offsets": {
+				"from": 2090300,
+				"to": 2091300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:51,300",
+				"to": "00:34:52,300"
+			},
+			"offsets": {
+				"from": 2091300,
+				"to": 2092300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:52,300",
+				"to": "00:34:53,300"
+			},
+			"offsets": {
+				"from": 2092300,
+				"to": 2093300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:53,300",
+				"to": "00:34:54,300"
+			},
+			"offsets": {
+				"from": 2093300,
+				"to": 2094300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:54,300",
+				"to": "00:34:55,300"
+			},
+			"offsets": {
+				"from": 2094300,
+				"to": 2095300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:55,300",
+				"to": "00:34:56,300"
+			},
+			"offsets": {
+				"from": 2095300,
+				"to": 2096300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:56,300",
+				"to": "00:34:57,300"
+			},
+			"offsets": {
+				"from": 2096300,
+				"to": 2097300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:57,300",
+				"to": "00:34:58,300"
+			},
+			"offsets": {
+				"from": 2097300,
+				"to": 2098300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:58,300",
+				"to": "00:34:59,300"
+			},
+			"offsets": {
+				"from": 2098300,
+				"to": 2099300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:59,300",
+				"to": "00:35:00,300"
+			},
+			"offsets": {
+				"from": 2099300,
+				"to": 2100300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:00,300",
+				"to": "00:35:01,300"
+			},
+			"offsets": {
+				"from": 2100300,
+				"to": 2101300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:01,300",
+				"to": "00:35:02,300"
+			},
+			"offsets": {
+				"from": 2101300,
+				"to": 2102300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:02,300",
+				"to": "00:35:03,300"
+			},
+			"offsets": {
+				"from": 2102300,
+				"to": 2103300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:03,300",
+				"to": "00:35:04,300"
+			},
+			"offsets": {
+				"from": 2103300,
+				"to": 2104300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:04,300",
+				"to": "00:35:05,300"
+			},
+			"offsets": {
+				"from": 2104300,
+				"to": 2105300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:05,300",
+				"to": "00:35:06,300"
+			},
+			"offsets": {
+				"from": 2105300,
+				"to": 2106300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:06,300",
+				"to": "00:35:07,300"
+			},
+			"offsets": {
+				"from": 2106300,
+				"to": 2107300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:07,300",
+				"to": "00:35:08,300"
+			},
+			"offsets": {
+				"from": 2107300,
+				"to": 2108300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:08,300",
+				"to": "00:35:09,300"
+			},
+			"offsets": {
+				"from": 2108300,
+				"to": 2109300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:09,300",
+				"to": "00:35:10,300"
+			},
+			"offsets": {
+				"from": 2109300,
+				"to": 2110300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,300",
+				"to": "00:35:11,300"
+			},
+			"offsets": {
+				"from": 2110300,
+				"to": 2111300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:11,300",
+				"to": "00:35:12,300"
+			},
+			"offsets": {
+				"from": 2111300,
+				"to": 2112300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:12,300",
+				"to": "00:35:13,300"
+			},
+			"offsets": {
+				"from": 2112300,
+				"to": 2113300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:13,300",
+				"to": "00:35:14,300"
+			},
+			"offsets": {
+				"from": 2113300,
+				"to": 2114300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:14,300",
+				"to": "00:35:15,300"
+			},
+			"offsets": {
+				"from": 2114300,
+				"to": 2115300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:15,300",
+				"to": "00:35:16,300"
+			},
+			"offsets": {
+				"from": 2115300,
+				"to": 2116300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:16,300",
+				"to": "00:35:17,300"
+			},
+			"offsets": {
+				"from": 2116300,
+				"to": 2117300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:17,300",
+				"to": "00:35:18,300"
+			},
+			"offsets": {
+				"from": 2117300,
+				"to": 2118300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:18,300",
+				"to": "00:35:19,300"
+			},
+			"offsets": {
+				"from": 2118300,
+				"to": 2119300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:19,300",
+				"to": "00:35:20,300"
+			},
+			"offsets": {
+				"from": 2119300,
+				"to": 2120300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:20,300",
+				"to": "00:35:21,300"
+			},
+			"offsets": {
+				"from": 2120300,
+				"to": 2121300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:21,300",
+				"to": "00:35:22,300"
+			},
+			"offsets": {
+				"from": 2121300,
+				"to": 2122300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:22,300",
+				"to": "00:35:23,300"
+			},
+			"offsets": {
+				"from": 2122300,
+				"to": 2123300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:23,300",
+				"to": "00:35:24,300"
+			},
+			"offsets": {
+				"from": 2123300,
+				"to": 2124300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:24,300",
+				"to": "00:35:25,300"
+			},
+			"offsets": {
+				"from": 2124300,
+				"to": 2125300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:25,300",
+				"to": "00:35:26,300"
+			},
+			"offsets": {
+				"from": 2125300,
+				"to": 2126300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:26,300",
+				"to": "00:35:27,300"
+			},
+			"offsets": {
+				"from": 2126300,
+				"to": 2127300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:27,300",
+				"to": "00:35:28,300"
+			},
+			"offsets": {
+				"from": 2127300,
+				"to": 2128300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:28,300",
+				"to": "00:35:29,300"
+			},
+			"offsets": {
+				"from": 2128300,
+				"to": 2129300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:29,300",
+				"to": "00:35:30,300"
+			},
+			"offsets": {
+				"from": 2129300,
+				"to": 2130300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:30,300",
+				"to": "00:35:31,300"
+			},
+			"offsets": {
+				"from": 2130300,
+				"to": 2131300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:31,300",
+				"to": "00:35:32,300"
+			},
+			"offsets": {
+				"from": 2131300,
+				"to": 2132300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:32,300",
+				"to": "00:35:33,300"
+			},
+			"offsets": {
+				"from": 2132300,
+				"to": 2133300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:33,300",
+				"to": "00:35:34,300"
+			},
+			"offsets": {
+				"from": 2133300,
+				"to": 2134300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:34,300",
+				"to": "00:35:35,300"
+			},
+			"offsets": {
+				"from": 2134300,
+				"to": 2135300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:35,300",
+				"to": "00:35:36,300"
+			},
+			"offsets": {
+				"from": 2135300,
+				"to": 2136300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:36,300",
+				"to": "00:35:37,300"
+			},
+			"offsets": {
+				"from": 2136300,
+				"to": 2137300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:37,300",
+				"to": "00:35:38,300"
+			},
+			"offsets": {
+				"from": 2137300,
+				"to": 2138300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:38,300",
+				"to": "00:35:39,300"
+			},
+			"offsets": {
+				"from": 2138300,
+				"to": 2139300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:39,300",
+				"to": "00:35:40,300"
+			},
+			"offsets": {
+				"from": 2139300,
+				"to": 2140300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:40,300",
+				"to": "00:35:41,300"
+			},
+			"offsets": {
+				"from": 2140300,
+				"to": 2141300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:41,300",
+				"to": "00:35:42,300"
+			},
+			"offsets": {
+				"from": 2141300,
+				"to": 2142300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:42,300",
+				"to": "00:35:43,300"
+			},
+			"offsets": {
+				"from": 2142300,
+				"to": 2143300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:43,300",
+				"to": "00:35:44,300"
+			},
+			"offsets": {
+				"from": 2143300,
+				"to": 2144300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:44,300",
+				"to": "00:35:45,300"
+			},
+			"offsets": {
+				"from": 2144300,
+				"to": 2145300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:45,300",
+				"to": "00:35:46,300"
+			},
+			"offsets": {
+				"from": 2145300,
+				"to": 2146300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:46,300",
+				"to": "00:35:47,300"
+			},
+			"offsets": {
+				"from": 2146300,
+				"to": 2147300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:47,300",
+				"to": "00:35:48,300"
+			},
+			"offsets": {
+				"from": 2147300,
+				"to": 2148300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:48,300",
+				"to": "00:35:49,300"
+			},
+			"offsets": {
+				"from": 2148300,
+				"to": 2149300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:49,300",
+				"to": "00:35:50,300"
+			},
+			"offsets": {
+				"from": 2149300,
+				"to": 2150300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:50,300",
+				"to": "00:35:51,300"
+			},
+			"offsets": {
+				"from": 2150300,
+				"to": 2151300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:51,300",
+				"to": "00:35:52,300"
+			},
+			"offsets": {
+				"from": 2151300,
+				"to": 2152300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:52,300",
+				"to": "00:35:53,300"
+			},
+			"offsets": {
+				"from": 2152300,
+				"to": 2153300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:53,300",
+				"to": "00:35:54,300"
+			},
+			"offsets": {
+				"from": 2153300,
+				"to": 2154300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:54,300",
+				"to": "00:35:55,300"
+			},
+			"offsets": {
+				"from": 2154300,
+				"to": 2155300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:55,300",
+				"to": "00:35:56,300"
+			},
+			"offsets": {
+				"from": 2155300,
+				"to": 2156300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:56,300",
+				"to": "00:35:57,300"
+			},
+			"offsets": {
+				"from": 2156300,
+				"to": 2157300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:57,300",
+				"to": "00:35:58,300"
+			},
+			"offsets": {
+				"from": 2157300,
+				"to": 2158300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:58,300",
+				"to": "00:35:59,300"
+			},
+			"offsets": {
+				"from": 2158300,
+				"to": 2159300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:59,300",
+				"to": "00:36:00,300"
+			},
+			"offsets": {
+				"from": 2159300,
+				"to": 2160300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:00,300",
+				"to": "00:36:01,300"
+			},
+			"offsets": {
+				"from": 2160300,
+				"to": 2161300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:01,300",
+				"to": "00:36:02,300"
+			},
+			"offsets": {
+				"from": 2161300,
+				"to": 2162300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:02,300",
+				"to": "00:36:03,300"
+			},
+			"offsets": {
+				"from": 2162300,
+				"to": 2163300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:03,300",
+				"to": "00:36:04,300"
+			},
+			"offsets": {
+				"from": 2163300,
+				"to": 2164300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:04,300",
+				"to": "00:36:05,300"
+			},
+			"offsets": {
+				"from": 2164300,
+				"to": 2165300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:05,300",
+				"to": "00:36:06,300"
+			},
+			"offsets": {
+				"from": 2165300,
+				"to": 2166300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:06,300",
+				"to": "00:36:07,300"
+			},
+			"offsets": {
+				"from": 2166300,
+				"to": 2167300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:07,300",
+				"to": "00:36:08,300"
+			},
+			"offsets": {
+				"from": 2167300,
+				"to": 2168300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:08,300",
+				"to": "00:36:09,300"
+			},
+			"offsets": {
+				"from": 2168300,
+				"to": 2169300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:09,300",
+				"to": "00:36:10,300"
+			},
+			"offsets": {
+				"from": 2169300,
+				"to": 2170300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:10,300",
+				"to": "00:36:11,300"
+			},
+			"offsets": {
+				"from": 2170300,
+				"to": 2171300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:11,300",
+				"to": "00:36:12,300"
+			},
+			"offsets": {
+				"from": 2171300,
+				"to": 2172300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:12,300",
+				"to": "00:36:13,300"
+			},
+			"offsets": {
+				"from": 2172300,
+				"to": 2173300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:13,300",
+				"to": "00:36:14,300"
+			},
+			"offsets": {
+				"from": 2173300,
+				"to": 2174300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:14,300",
+				"to": "00:36:15,300"
+			},
+			"offsets": {
+				"from": 2174300,
+				"to": 2175300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:15,300",
+				"to": "00:36:16,300"
+			},
+			"offsets": {
+				"from": 2175300,
+				"to": 2176300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:16,300",
+				"to": "00:36:17,300"
+			},
+			"offsets": {
+				"from": 2176300,
+				"to": 2177300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:17,300",
+				"to": "00:36:18,300"
+			},
+			"offsets": {
+				"from": 2177300,
+				"to": 2178300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:18,300",
+				"to": "00:36:19,300"
+			},
+			"offsets": {
+				"from": 2178300,
+				"to": 2179300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:19,300",
+				"to": "00:36:20,300"
+			},
+			"offsets": {
+				"from": 2179300,
+				"to": 2180300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:20,300",
+				"to": "00:36:21,300"
+			},
+			"offsets": {
+				"from": 2180300,
+				"to": 2181300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:21,300",
+				"to": "00:36:22,300"
+			},
+			"offsets": {
+				"from": 2181300,
+				"to": 2182300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:22,300",
+				"to": "00:36:23,300"
+			},
+			"offsets": {
+				"from": 2182300,
+				"to": 2183300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:23,300",
+				"to": "00:36:24,300"
+			},
+			"offsets": {
+				"from": 2183300,
+				"to": 2184300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:24,300",
+				"to": "00:36:25,300"
+			},
+			"offsets": {
+				"from": 2184300,
+				"to": 2185300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:25,300",
+				"to": "00:36:26,300"
+			},
+			"offsets": {
+				"from": 2185300,
+				"to": 2186300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:26,300",
+				"to": "00:36:27,300"
+			},
+			"offsets": {
+				"from": 2186300,
+				"to": 2187300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:27,300",
+				"to": "00:36:28,300"
+			},
+			"offsets": {
+				"from": 2187300,
+				"to": 2188300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:28,300",
+				"to": "00:36:29,300"
+			},
+			"offsets": {
+				"from": 2188300,
+				"to": 2189300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:29,300",
+				"to": "00:36:30,300"
+			},
+			"offsets": {
+				"from": 2189300,
+				"to": 2190300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:30,300",
+				"to": "00:36:31,300"
+			},
+			"offsets": {
+				"from": 2190300,
+				"to": 2191300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:31,300",
+				"to": "00:36:32,300"
+			},
+			"offsets": {
+				"from": 2191300,
+				"to": 2192300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:32,300",
+				"to": "00:36:33,300"
+			},
+			"offsets": {
+				"from": 2192300,
+				"to": 2193300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:33,300",
+				"to": "00:36:34,300"
+			},
+			"offsets": {
+				"from": 2193300,
+				"to": 2194300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:34,300",
+				"to": "00:36:35,300"
+			},
+			"offsets": {
+				"from": 2194300,
+				"to": 2195300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:35,300",
+				"to": "00:36:36,300"
+			},
+			"offsets": {
+				"from": 2195300,
+				"to": 2196300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:36,300",
+				"to": "00:36:37,300"
+			},
+			"offsets": {
+				"from": 2196300,
+				"to": 2197300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:37,300",
+				"to": "00:36:38,300"
+			},
+			"offsets": {
+				"from": 2197300,
+				"to": 2198300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:38,300",
+				"to": "00:36:39,300"
+			},
+			"offsets": {
+				"from": 2198300,
+				"to": 2199300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:39,300",
+				"to": "00:36:40,300"
+			},
+			"offsets": {
+				"from": 2199300,
+				"to": 2200300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:40,300",
+				"to": "00:36:41,300"
+			},
+			"offsets": {
+				"from": 2200300,
+				"to": 2201300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:41,300",
+				"to": "00:36:42,300"
+			},
+			"offsets": {
+				"from": 2201300,
+				"to": 2202300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:42,300",
+				"to": "00:36:43,300"
+			},
+			"offsets": {
+				"from": 2202300,
+				"to": 2203300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:43,300",
+				"to": "00:36:44,300"
+			},
+			"offsets": {
+				"from": 2203300,
+				"to": 2204300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:44,300",
+				"to": "00:36:45,300"
+			},
+			"offsets": {
+				"from": 2204300,
+				"to": 2205300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:45,300",
+				"to": "00:36:46,300"
+			},
+			"offsets": {
+				"from": 2205300,
+				"to": 2206300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:46,300",
+				"to": "00:36:47,300"
+			},
+			"offsets": {
+				"from": 2206300,
+				"to": 2207300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:47,300",
+				"to": "00:36:48,300"
+			},
+			"offsets": {
+				"from": 2207300,
+				"to": 2208300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:48,300",
+				"to": "00:36:49,300"
+			},
+			"offsets": {
+				"from": 2208300,
+				"to": 2209300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:49,300",
+				"to": "00:36:50,300"
+			},
+			"offsets": {
+				"from": 2209300,
+				"to": 2210300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:50,300",
+				"to": "00:36:51,300"
+			},
+			"offsets": {
+				"from": 2210300,
+				"to": 2211300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:51,300",
+				"to": "00:36:52,300"
+			},
+			"offsets": {
+				"from": 2211300,
+				"to": 2212300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:52,300",
+				"to": "00:36:53,300"
+			},
+			"offsets": {
+				"from": 2212300,
+				"to": 2213300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:53,300",
+				"to": "00:36:54,300"
+			},
+			"offsets": {
+				"from": 2213300,
+				"to": 2214300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:54,300",
+				"to": "00:36:55,300"
+			},
+			"offsets": {
+				"from": 2214300,
+				"to": 2215300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:55,300",
+				"to": "00:36:56,300"
+			},
+			"offsets": {
+				"from": 2215300,
+				"to": 2216300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:56,300",
+				"to": "00:36:57,300"
+			},
+			"offsets": {
+				"from": 2216300,
+				"to": 2217300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:57,300",
+				"to": "00:36:58,300"
+			},
+			"offsets": {
+				"from": 2217300,
+				"to": 2218300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:58,300",
+				"to": "00:36:59,300"
+			},
+			"offsets": {
+				"from": 2218300,
+				"to": 2219300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:59,300",
+				"to": "00:37:00,300"
+			},
+			"offsets": {
+				"from": 2219300,
+				"to": 2220300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:00,300",
+				"to": "00:37:01,300"
+			},
+			"offsets": {
+				"from": 2220300,
+				"to": 2221300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:01,300",
+				"to": "00:37:02,300"
+			},
+			"offsets": {
+				"from": 2221300,
+				"to": 2222300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:02,300",
+				"to": "00:37:03,300"
+			},
+			"offsets": {
+				"from": 2222300,
+				"to": 2223300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:03,300",
+				"to": "00:37:04,300"
+			},
+			"offsets": {
+				"from": 2223300,
+				"to": 2224300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:04,300",
+				"to": "00:37:05,300"
+			},
+			"offsets": {
+				"from": 2224300,
+				"to": 2225300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:05,300",
+				"to": "00:37:06,300"
+			},
+			"offsets": {
+				"from": 2225300,
+				"to": 2226300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:06,300",
+				"to": "00:37:07,300"
+			},
+			"offsets": {
+				"from": 2226300,
+				"to": 2227300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:07,300",
+				"to": "00:37:08,300"
+			},
+			"offsets": {
+				"from": 2227300,
+				"to": 2228300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:08,300",
+				"to": "00:37:09,300"
+			},
+			"offsets": {
+				"from": 2228300,
+				"to": 2229300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:09,300",
+				"to": "00:37:10,300"
+			},
+			"offsets": {
+				"from": 2229300,
+				"to": 2230300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:10,300",
+				"to": "00:37:11,300"
+			},
+			"offsets": {
+				"from": 2230300,
+				"to": 2231300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:11,300",
+				"to": "00:37:12,300"
+			},
+			"offsets": {
+				"from": 2231300,
+				"to": 2232300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:12,300",
+				"to": "00:37:13,300"
+			},
+			"offsets": {
+				"from": 2232300,
+				"to": 2233300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:13,300",
+				"to": "00:37:14,300"
+			},
+			"offsets": {
+				"from": 2233300,
+				"to": 2234300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:14,300",
+				"to": "00:37:15,300"
+			},
+			"offsets": {
+				"from": 2234300,
+				"to": 2235300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:15,300",
+				"to": "00:37:16,300"
+			},
+			"offsets": {
+				"from": 2235300,
+				"to": 2236300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:16,300",
+				"to": "00:37:18,300"
+			},
+			"offsets": {
+				"from": 2236300,
+				"to": 2238300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:18,300",
+				"to": "00:37:19,300"
+			},
+			"offsets": {
+				"from": 2238300,
+				"to": 2239300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:19,300",
+				"to": "00:37:20,300"
+			},
+			"offsets": {
+				"from": 2239300,
+				"to": 2240300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:20,300",
+				"to": "00:37:21,300"
+			},
+			"offsets": {
+				"from": 2240300,
+				"to": 2241300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:21,300",
+				"to": "00:37:22,300"
+			},
+			"offsets": {
+				"from": 2241300,
+				"to": 2242300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:22,300",
+				"to": "00:37:23,300"
+			},
+			"offsets": {
+				"from": 2242300,
+				"to": 2243300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:23,300",
+				"to": "00:37:24,300"
+			},
+			"offsets": {
+				"from": 2243300,
+				"to": 2244300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:24,300",
+				"to": "00:37:25,300"
+			},
+			"offsets": {
+				"from": 2244300,
+				"to": 2245300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:25,300",
+				"to": "00:37:26,300"
+			},
+			"offsets": {
+				"from": 2245300,
+				"to": 2246300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:26,300",
+				"to": "00:37:27,300"
+			},
+			"offsets": {
+				"from": 2246300,
+				"to": 2247300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:27,300",
+				"to": "00:37:28,300"
+			},
+			"offsets": {
+				"from": 2247300,
+				"to": 2248300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:28,300",
+				"to": "00:37:29,300"
+			},
+			"offsets": {
+				"from": 2248300,
+				"to": 2249300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:29,300",
+				"to": "00:37:30,300"
+			},
+			"offsets": {
+				"from": 2249300,
+				"to": 2250300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:30,300",
+				"to": "00:37:31,300"
+			},
+			"offsets": {
+				"from": 2250300,
+				"to": 2251300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:31,300",
+				"to": "00:37:32,300"
+			},
+			"offsets": {
+				"from": 2251300,
+				"to": 2252300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:32,300",
+				"to": "00:37:33,300"
+			},
+			"offsets": {
+				"from": 2252300,
+				"to": 2253300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:33,300",
+				"to": "00:37:34,300"
+			},
+			"offsets": {
+				"from": 2253300,
+				"to": 2254300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:34,300",
+				"to": "00:37:35,300"
+			},
+			"offsets": {
+				"from": 2254300,
+				"to": 2255300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:35,300",
+				"to": "00:37:36,300"
+			},
+			"offsets": {
+				"from": 2255300,
+				"to": 2256300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:36,300",
+				"to": "00:37:37,300"
+			},
+			"offsets": {
+				"from": 2256300,
+				"to": 2257300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:37,300",
+				"to": "00:37:38,300"
+			},
+			"offsets": {
+				"from": 2257300,
+				"to": 2258300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:38,300",
+				"to": "00:37:39,300"
+			},
+			"offsets": {
+				"from": 2258300,
+				"to": 2259300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:39,300",
+				"to": "00:37:40,300"
+			},
+			"offsets": {
+				"from": 2259300,
+				"to": 2260300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:40,300",
+				"to": "00:37:41,300"
+			},
+			"offsets": {
+				"from": 2260300,
+				"to": 2261300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:41,300",
+				"to": "00:37:42,300"
+			},
+			"offsets": {
+				"from": 2261300,
+				"to": 2262300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:42,300",
+				"to": "00:37:43,300"
+			},
+			"offsets": {
+				"from": 2262300,
+				"to": 2263300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:43,300",
+				"to": "00:37:44,300"
+			},
+			"offsets": {
+				"from": 2263300,
+				"to": 2264300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:44,300",
+				"to": "00:37:45,300"
+			},
+			"offsets": {
+				"from": 2264300,
+				"to": 2265300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:45,300",
+				"to": "00:37:46,300"
+			},
+			"offsets": {
+				"from": 2265300,
+				"to": 2266300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:46,300",
+				"to": "00:37:47,300"
+			},
+			"offsets": {
+				"from": 2266300,
+				"to": 2267300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:47,300",
+				"to": "00:37:48,300"
+			},
+			"offsets": {
+				"from": 2267300,
+				"to": 2268300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:48,300",
+				"to": "00:37:49,300"
+			},
+			"offsets": {
+				"from": 2268300,
+				"to": 2269300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:49,300",
+				"to": "00:37:50,300"
+			},
+			"offsets": {
+				"from": 2269300,
+				"to": 2270300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:50,300",
+				"to": "00:37:51,300"
+			},
+			"offsets": {
+				"from": 2270300,
+				"to": 2271300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:51,300",
+				"to": "00:37:52,300"
+			},
+			"offsets": {
+				"from": 2271300,
+				"to": 2272300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:52,300",
+				"to": "00:37:53,300"
+			},
+			"offsets": {
+				"from": 2272300,
+				"to": 2273300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:53,300",
+				"to": "00:37:54,300"
+			},
+			"offsets": {
+				"from": 2273300,
+				"to": 2274300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:54,300",
+				"to": "00:37:55,300"
+			},
+			"offsets": {
+				"from": 2274300,
+				"to": 2275300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:55,300",
+				"to": "00:37:56,300"
+			},
+			"offsets": {
+				"from": 2275300,
+				"to": 2276300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:56,300",
+				"to": "00:37:57,300"
+			},
+			"offsets": {
+				"from": 2276300,
+				"to": 2277300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:57,300",
+				"to": "00:37:58,300"
+			},
+			"offsets": {
+				"from": 2277300,
+				"to": 2278300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:58,300",
+				"to": "00:37:59,300"
+			},
+			"offsets": {
+				"from": 2278300,
+				"to": 2279300
+			},
+			"text": " It's not said."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:59,300",
+				"to": "00:38:00,300"
+			},
+			"offsets": {
+				"from": 2279300,
+				"to": 2280300
+			},
+			"text": " It's not said."
+		}
+	]
+}

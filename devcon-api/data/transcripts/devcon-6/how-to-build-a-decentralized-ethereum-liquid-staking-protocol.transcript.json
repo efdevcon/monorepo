@@ -1,0 +1,3893 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 19000
+			},
+			"text": " Okay, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 20000
+			},
+			"text": " Hello everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 24000
+			},
+			"text": " I am Darren Langley and I work on Rocketpool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 28000
+			},
+			"text": " which is a decentralized liquid staking protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 32000
+			},
+			"text": " So at Rocketpool, we've spent the last six years"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 34000
+			},
+			"text": " building our liquid staking protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 37000
+			},
+			"text": " So today I'm going to take you through some lessons"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 39000
+			},
+			"text": " that we've learned along the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 42000
+			},
+			"text": " So in this talk, we're going to break down"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 44000
+			},
+			"text": " what is a liquid staking protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 46000
+			},
+			"text": " what are some of the design choices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 49000
+			},
+			"text": " what are the challenges of building a truly"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 53000
+			},
+			"text": " decentralized protocol, and then what are the opportunities."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 57000
+			},
+			"text": " So, liquid staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 62000
+			},
+			"text": " So liquid staking is built on a Theorem's proof of stake system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 64000
+			},
+			"text": " A little tangent."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 67000
+			},
+			"text": " I couldn't be more excited that Ethereum is now"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 69000
+			},
+			"text": " a proof of stake chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 71000
+			},
+			"text": " And congratulations to all the researchers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 75000
+			},
+			"text": " core developers, and coordinators"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 77000
+			},
+			"text": " that have made it happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 79000
+			},
+			"text": " It's fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 82000
+			},
+			"text": " So when you stake, you are participating in Ethereum's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 84000
+			},
+			"text": " proof of stake consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 86000
+			},
+			"text": " Why would you want to do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 90000
+			},
+			"text": " So the most important thing is that you're contributing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 92000
+			},
+			"text": " to the security of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 98000
+			},
+			"text": " You also earn staking rewards for being a good node operator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 102000
+			},
+			"text": " So Ethereum has a couple of kind of barriers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 104000
+			},
+			"text": " Sorry, Ethereum staking has a couple of barriers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 107000
+			},
+			"text": " First of all, you need technical experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 109000
+			},
+			"text": " to run like a validating node."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 115000
+			},
+			"text": " You also need a fixed 32 ETH per validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 120000
+			},
+			"text": " The state ETH is actually kind of naturally illiquid."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 123000
+			},
+			"text": " It exists on the beacon chain earning rewards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 125000
+			},
+			"text": " but you can't really use it for anything else,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 129000
+			},
+			"text": " which is by design, but most of the 32 ETH that you stake"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 133000
+			},
+			"text": " is not actually at risk except under the kind of most"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 137000
+			},
+			"text": " dire consequences or situations."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 140000
+			},
+			"text": " Currently, it's also a one-way thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 143000
+			},
+			"text": " So withdrawals are coming soon, but at the moment"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 147000
+			},
+			"text": " you're staking and that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 152000
+			},
+			"text": " So the rewards from staking ETH come in two juicy flavors."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 155000
+			},
+			"text": " The first one is consensus rewards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 159000
+			},
+			"text": " which comes from new ETH inflation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 163000
+			},
+			"text": " And then you get that by kind of performing your node"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 164000
+			},
+			"text": " operator duties."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 167000
+			},
+			"text": " So that's a testing, being part of a sync committee,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170000
+			},
+			"text": " and proposing blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 174000
+			},
+			"text": " As I said before, withdrawals aren't available at the moment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 180000
+			},
+			"text": " but they will be potentially after the Shanghai hard fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 184000
+			},
+			"text": " Execution, the next type of reward is the execution rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 186000
+			},
+			"text": " They come from users."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 189000
+			},
+			"text": " So they come from priority fees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193000
+			},
+			"text": " which are the non-burnt part of a transaction fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 198000
+			},
+			"text": " And then potentially MEV, if you're extracting MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 202000
+			},
+			"text": " That's actually available today and pretty much in real time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 206000
+			},
+			"text": " So how a staking protocol captures and then distributes those fees"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 211000
+			},
+			"text": " or those rewards is key to its design."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 216000
+			},
+			"text": " So how does liquid staking work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 219000
+			},
+			"text": " A liquid staker deposits any amount of ETH into the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 223000
+			},
+			"text": " and in return they receive a liquid staking token."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 227000
+			},
+			"text": " The ETH that they deposited gets matched with the node operator."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 231000
+			},
+			"text": " The node operator interacts with the protocol and deposits the ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 233000
+			},
+			"text": " into the beacon chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 237000
+			},
+			"text": " Node operators then earn rewards by being good node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 242000
+			},
+			"text": " And the liquid staking token accrues the value as yield."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 246000
+			},
+			"text": " So to unstake, a liquid staker burns the liquid staking token"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 252000
+			},
+			"text": " and gets back to the ETH, or actually more ETH than they put in generally."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 256000
+			},
+			"text": " And you can either do it kind of in a primary mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 259000
+			},
+			"text": " or you can do it on a secondary market."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 263000
+			},
+			"text": " So this is the very basic outline of how liquid staking works."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 271000
+			},
+			"text": " But as we'll see, every step has some design choices and trade-offs to be made."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 274000
+			},
+			"text": " So why liquid staking?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 277000
+			},
+			"text": " So it's kind of important to know why you're doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 279000
+			},
+			"text": " What benefit does it serve?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 283000
+			},
+			"text": " So it turns out that there are significant benefits to Ethereum as a whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 287000
+			},
+			"text": " So liquid staking encourages greater participation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 292000
+			},
+			"text": " That in turn provides greater security and decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 296000
+			},
+			"text": " There's a little star there because there are only a contribute to decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 300000
+			},
+			"text": " if the validator set or the node operators are decentralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 302000
+			},
+			"text": " and not just one entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 308000
+			},
+			"text": " Liquid staking facilitates unstaking through a primary mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 312000
+			},
+			"text": " through the protocol itself or on a secondary market."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 316000
+			},
+			"text": " So it reduces validator churn."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 319000
+			},
+			"text": " It also fosters innovation and capital efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 325000
+			},
+			"text": " through the use of these liquid staking tokens in DeFi."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 327000
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 331000
+			},
+			"text": " So on this section I want to focus on liquid token design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 335000
+			},
+			"text": " but there are some equally big design spaces on the node operator side"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 341000
+			},
+			"text": " and some definitely some interesting challenges on that side as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 345000
+			},
+			"text": " So first thing you realize when you're designing a liquid staking token"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 349000
+			},
+			"text": " is that node operators earn rewards at different rates."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 354000
+			},
+			"text": " They may also be penalized, and in worst case scenarios they can be slashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 357000
+			},
+			"text": " So there's a couple of ways of handling this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 362000
+			},
+			"text": " The first way is to have a fungible token that shares rewards and losses"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 365000
+			},
+			"text": " across the entire protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 370000
+			},
+			"text": " Or you can have a non-fungible token where rewards and losses"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 374000
+			},
+			"text": " are specific to each node operator or each validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 377000
+			},
+			"text": " Then you can kind of have this hybrid of the two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 381000
+			},
+			"text": " although you've got to be careful you end up in a worst of both worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 383000
+			},
+			"text": " Each of these approaches have some different trade-offs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 387000
+			},
+			"text": " and you have to kind of weigh up, which ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 389000
+			},
+			"text": " So the next one is safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 393000
+			},
+			"text": " So there is ETH backing the liquid staking token."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 397000
+			},
+			"text": " So what mechanisms are in place to protect that collateral?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 401000
+			},
+			"text": " Ethereum's proof of stake system is a very forgiving protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 405000
+			},
+			"text": " but it is possible to lose your stake either partially"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 409000
+			},
+			"text": " or in like the extreme cases fully."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 413000
+			},
+			"text": " Safety mechanisms built into the protocol need to account for things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 420000
+			},
+			"text": " slashing protection, aligning incentives, and general risk management."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 423000
+			},
+			"text": " So rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 427000
+			},
+			"text": " So how are rewards delivered to token holders?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 432000
+			},
+			"text": " How does the token reflect the yield that the protocol actually is producing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 435000
+			},
+			"text": " So generally there are two approaches to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 438000
+			},
+			"text": " There's rebasing and non-rebasing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 445000
+			},
+			"text": " So a rebasing token, its exchange rate is like a notional one-to-one with ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 448000
+			},
+			"text": " But the quantity increases."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 452000
+			},
+			"text": " So the token increases in quantity over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 456000
+			},
+			"text": " That's how the yield represents itself or gets delivered."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 461000
+			},
+			"text": " With a non-rebasing token, the exchange rate increases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 463000
+			},
+			"text": " but the quantity is the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 465000
+			},
+			"text": " The quantity stays constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 469000
+			},
+			"text": " So the actual token increases in value over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 473000
+			},
+			"text": " and there's definitely some kind of pros and cons of each of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 477000
+			},
+			"text": " Mainly that, so with the rebasing token, it's very simple to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 480000
+			},
+			"text": " You're literally getting more of the token."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 483000
+			},
+			"text": " But it's extremely hard to integrate."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 485000
+			},
+			"text": " So if the quantity is changing all the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 491000
+			},
+			"text": " that's not really compatible with most DeFi protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 495000
+			},
+			"text": " With a non-rebasing token, it's harder to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 500000
+			},
+			"text": " And if you go down that route, you'll spend most of your life explaining to people"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 503000
+			},
+			"text": " what a non-rebasing token is."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 507000
+			},
+			"text": " But it is much easier to integrate."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 512000
+			},
+			"text": " It's just a standard ERC20, and it's supported by most DeFi protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 516000
+			},
+			"text": " It actually turns out that a non-rebasing token is more tax efficient as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 519000
+			},
+			"text": " So it depends on your jurisdiction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 525000
+			},
+			"text": " But with a rebasing token, you have like a taxable event every single day."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 529000
+			},
+			"text": " Whereas with a non-rebasing token, you have a taxable event, a new stake,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 531000
+			},
+			"text": " and when you un-stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 535000
+			},
+			"text": " So liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 541000
+			},
+			"text": " By tokenizing stake teeth, it can be traded on secondary markets, such as exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 545000
+			},
+			"text": " This provides liquidity for people to un-stake their ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 549000
+			},
+			"text": " The price you pay on secondary markets is dictated by the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 556000
+			},
+			"text": " So it may present a liquidity discount or potentially a liquidity like premium."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 558000
+			},
+			"text": " With large orders, there can also be slippage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 562000
+			},
+			"text": " And so staking protocols can offer, like, if they can,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 569000
+			},
+			"text": " offer a primary mechanism for unstaking ETH, so that you can allow liquid-staking token holders"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 574000
+			},
+			"text": " to actually swap back without the discount and without the slippage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 581000
+			},
+			"text": " Both of these mechanisms of unstaking kind of reduce the need for valid data churn."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 582000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 585000
+			},
+			"text": " So now you've got your token out in the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 590000
+			},
+			"text": " So when everyone's going crazy about it, you need to start building utility."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 595000
+			},
+			"text": " These come in the form of integrations with other DeFi protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 600000
+			},
+			"text": " So there's kind of like a Maslow's hierarchy of DeFi integrations."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 602000
+			},
+			"text": " It goes something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 605000
+			},
+			"text": " You integrate into wallets and explorers first."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 607000
+			},
+			"text": " Then you build up some liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 612000
+			},
+			"text": " This is the bit that takes time, a lot of time, to build up liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 617000
+			},
+			"text": " So you need to get breadth of liquidity and depth of liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 620000
+			},
+			"text": " That's important to kind of get to the next phases."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 627000
+			},
+			"text": " You also need to get good liquidity on layer two, because you want to build up support in those ecosystems"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 630000
+			},
+			"text": " and also provide good UX for stakers."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 633000
+			},
+			"text": " So then the next layer is Oracle's."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 636000
+			},
+			"text": " So once you've got some liquidity, you can get Oracle's."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 641000
+			},
+			"text": " The next one is DeFi protocols, particularly lending platforms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 648000
+			},
+			"text": " but also kind of options and index platforms and fixing carbon products and loads of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 650000
+			},
+			"text": " The last one is Vaults."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 655000
+			},
+			"text": " So Vaults are kind of like yield optimization platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 660000
+			},
+			"text": " They sit over top of loads of different DeFi protocols and optimize that yield."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 668000
+			},
+			"text": " So a decentralized staking protocol is a set of smart contracts that mediate between depositors"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 670000
+			},
+			"text": " and node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 675000
+			},
+			"text": " So one of S.Grows funds into the Theorem's proof of stake system and then back again."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 683000
+			},
+			"text": " On withdrawal, the protocol transparently distributes those funds and ensures that each party receives what they expect."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 688000
+			},
+			"text": " In short, withdrawal is aware of most of the action happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 691000
+			},
+			"text": " So at this point in the presentation, I need to give a bit of a disclaimer."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 694000
+			},
+			"text": " The information on this slide is not final."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 700000
+			},
+			"text": " The Capella specification is still being kind of drafted, but at this point, this is what it looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 709000
+			},
+			"text": " So after the Shanghai hard fork, hopefully, consensus rewards will be fully redrawable or partially redrawable."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 713000
+			},
+			"text": " So fully redrawn is a node operator initiated thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 716000
+			},
+			"text": " So a node operator submits an exit message."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 717000
+			},
+			"text": " They get processed by an exit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 719000
+			},
+			"text": " They can chain an exit queue."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 726000
+			},
+			"text": " They come into this withdrawal state and then their funds are returned to a withdrawal credential."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 728000
+			},
+			"text": " At that point, they are no longer validating."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 730000
+			},
+			"text": " They're done as a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 732000
+			},
+			"text": " That's full exit."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 735000
+			},
+			"text": " With partial withdrawal, you're still validating."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 738000
+			},
+			"text": " And in fact, this is like an automatic and ongoing process."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 744000
+			},
+			"text": " So this essentially takes, skims the rewards off the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 748000
+			},
+			"text": " So you have 32 ETH is your initial deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 753000
+			},
+			"text": " And then anything else you make on top of that will be kind of continually skimmed and sent"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 762000
+			},
+			"text": " to your withdrawal credential automatically by the beacon chain and the consensus clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 766000
+			},
+			"text": " So withdrawal credentials are a key element of the Ethereum spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 768000
+			},
+			"text": " And they come in like two types."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:54,560"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 774560
+			},
+			"text": " There's a 0x0 which is this BLS signature credential and 0x01 which is an Ethereum address that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,560",
+				"to": "00:12:57,880"
+			},
+			"offsets": {
+				"from": 774560,
+				"to": 777880
+			},
+			"text": " receives the withdrawn funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,880",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 777880,
+				"to": 781000
+			},
+			"text": " So most credentials in use today are 0x0."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:08,240"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 788240
+			},
+			"text": " And that's because they were introduced first and then much later 0x01 came ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,240",
+				"to": "00:13:15,360"
+			},
+			"offsets": {
+				"from": 788240,
+				"to": 795360
+			},
+			"text": " So in the current plan, 0x0 credentials, we need to be converted into a 0x01 to allow"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,360",
+				"to": "00:13:17,280"
+			},
+			"offsets": {
+				"from": 795360,
+				"to": 797280
+			},
+			"text": " you to withdraw."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,280",
+				"to": "00:13:22,880"
+			},
+			"offsets": {
+				"from": 797280,
+				"to": 802880
+			},
+			"text": " And there'll be this special kind of migration process that will facilitate that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,880",
+				"to": "00:13:29,480"
+			},
+			"offsets": {
+				"from": 802880,
+				"to": 809480
+			},
+			"text": " So 0x01 is important because it facilitates the development of these non-custodial staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,480",
+				"to": "00:13:30,480"
+			},
+			"offsets": {
+				"from": 809480,
+				"to": 810480
+			},
+			"text": " protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,480",
+				"to": "00:13:37,200"
+			},
+			"offsets": {
+				"from": 810480,
+				"to": 817200
+			},
+			"text": " And essentially because the 0x01 address can be a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,200",
+				"to": "00:13:43,280"
+			},
+			"offsets": {
+				"from": 817200,
+				"to": 823280
+			},
+			"text": " And so that smart contract can take custody of funds, it can deposit them into the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,280",
+				"to": "00:13:46,160"
+			},
+			"offsets": {
+				"from": 823280,
+				"to": 826160
+			},
+			"text": " chain, into the deposit contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,160",
+				"to": "00:13:54,240"
+			},
+			"offsets": {
+				"from": 826160,
+				"to": 834240
+			},
+			"text": " And then when it withdraws, it can then distribute the funds to all the parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,240",
+				"to": "00:13:58,360"
+			},
+			"offsets": {
+				"from": 834240,
+				"to": 838360
+			},
+			"text": " So building a decentralized staking protocol is easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,360",
+				"to": "00:14:00,880"
+			},
+			"offsets": {
+				"from": 838360,
+				"to": 840880
+			},
+			"text": " Not so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,880",
+				"to": "00:14:06,960"
+			},
+			"offsets": {
+				"from": 840880,
+				"to": 846960
+			},
+			"text": " There are significant challenges to developing a truly decentralized staking protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,960",
+				"to": "00:14:08,840"
+			},
+			"offsets": {
+				"from": 846960,
+				"to": 848840
+			},
+			"text": " So that's for permissionless."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,840",
+				"to": "00:14:14,040"
+			},
+			"offsets": {
+				"from": 848840,
+				"to": 854040
+			},
+			"text": " Being an open and public piece of infrastructure is key to a protocol's success."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,040",
+				"to": "00:14:17,600"
+			},
+			"offsets": {
+				"from": 854040,
+				"to": 857600
+			},
+			"text": " And it's also important for its alignment with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,600",
+				"to": "00:14:20,280"
+			},
+			"offsets": {
+				"from": 857600,
+				"to": 860280
+			},
+			"text": " Being permissionless is a noble pursuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,280",
+				"to": "00:14:25,080"
+			},
+			"offsets": {
+				"from": 860280,
+				"to": 865080
+			},
+			"text": " And it's critical for Ethereum to retain its incredible neutrality."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,080",
+				"to": "00:14:30,320"
+			},
+			"offsets": {
+				"from": 865080,
+				"to": 870320
+			},
+			"text": " So being permissionless subsequently leads to trustless designs, which I believe are"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,320",
+				"to": "00:14:33,280"
+			},
+			"offsets": {
+				"from": 870320,
+				"to": 873280
+			},
+			"text": " much more resilient in the long term."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,280",
+				"to": "00:14:38,080"
+			},
+			"offsets": {
+				"from": 873280,
+				"to": 878080
+			},
+			"text": " Like Ethereum itself, decentralized staking protocols have to rely on a combination of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,080",
+				"to": "00:14:43,560"
+			},
+			"offsets": {
+				"from": 878080,
+				"to": 883560
+			},
+			"text": " cryptography and cryptoeconomics to balance incentives and penalties, ensuring that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,560",
+				"to": "00:14:46,600"
+			},
+			"offsets": {
+				"from": 883560,
+				"to": 886600
+			},
+			"text": " participants have aligned interests."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,600",
+				"to": "00:14:48,600"
+			},
+			"offsets": {
+				"from": 886600,
+				"to": 888600
+			},
+			"text": " But it is challenging."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,600",
+				"to": "00:14:54,600"
+			},
+			"offsets": {
+				"from": 888600,
+				"to": 894600
+			},
+			"text": " But personally, this is what makes it interesting work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,600",
+				"to": "00:14:56,280"
+			},
+			"offsets": {
+				"from": 894600,
+				"to": 896280
+			},
+			"text": " So scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,280",
+				"to": "00:15:03,800"
+			},
+			"offsets": {
+				"from": 896280,
+				"to": 903800
+			},
+			"text": " Being competitive market participant is important to ensure that Ethereum remains decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,800",
+				"to": "00:15:10,480"
+			},
+			"offsets": {
+				"from": 903800,
+				"to": 910480
+			},
+			"text": " Scaling a decentralized staking protocol is much harder than scaling a centralized provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,480",
+				"to": "00:15:13,680"
+			},
+			"offsets": {
+				"from": 910480,
+				"to": 913680
+			},
+			"text": " The two aren't even really comparable."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,680",
+				"to": "00:15:18,360"
+			},
+			"offsets": {
+				"from": 913680,
+				"to": 918360
+			},
+			"text": " A decentralized staking protocol has to rely on ingenuity to scale, but never lose sight"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,360",
+				"to": "00:15:21,320"
+			},
+			"offsets": {
+				"from": 918360,
+				"to": 921320
+			},
+			"text": " of its core value."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,320",
+				"to": "00:15:24,680"
+			},
+			"offsets": {
+				"from": 921320,
+				"to": 924680
+			},
+			"text": " A decentralized staking protocol is actually a community."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,680",
+				"to": "00:15:31,360"
+			},
+			"offsets": {
+				"from": 924680,
+				"to": 931360
+			},
+			"text": " A community of node operators who are passionate about securing Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,360",
+				"to": "00:15:34,760"
+			},
+			"offsets": {
+				"from": 931360,
+				"to": 934760
+			},
+			"text": " Scaling is certainly a challenge, but it is one that can be overcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,760",
+				"to": "00:15:38,800"
+			},
+			"offsets": {
+				"from": 934760,
+				"to": 938800
+			},
+			"text": " So reliance on oracles."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,800",
+				"to": "00:15:44,400"
+			},
+			"offsets": {
+				"from": 938800,
+				"to": 944400
+			},
+			"text": " So semi-trusted oracles are essential for decentralized staking protocols today."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,400",
+				"to": "00:15:48,440"
+			},
+			"offsets": {
+				"from": 944400,
+				"to": 948440
+			},
+			"text": " The consensus and execution layer are separate concepts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,440",
+				"to": "00:15:51,360"
+			},
+			"offsets": {
+				"from": 948440,
+				"to": 951360
+			},
+			"text": " They have only just been merged together."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,360",
+				"to": "00:15:56,440"
+			},
+			"offsets": {
+				"from": 951360,
+				"to": 956440
+			},
+			"text": " So oracles are required to aggregate and report validator performance information to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,440",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 956440,
+				"to": 960000
+			},
+			"text": " the protocol's smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 966000
+			},
+			"text": " There's actually an EIP that's being considered for Shanghai and it's EIP 478.8."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:12,040"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 972040
+			},
+			"text": " What it does is it adds access to the beacon chain state route to the execution layer so"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,040",
+				"to": "00:16:17,520"
+			},
+			"offsets": {
+				"from": 972040,
+				"to": 977520
+			},
+			"text": " that smart contracts can verify proofs about the beacon chain state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,520",
+				"to": "00:16:23,040"
+			},
+			"offsets": {
+				"from": 977520,
+				"to": 983040
+			},
+			"text": " This is key to reducing the role of the semi-trusted oracles in decentralized staking protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,040",
+				"to": "00:16:29,680"
+			},
+			"offsets": {
+				"from": 983040,
+				"to": 989680
+			},
+			"text": " but it is important generally to combine those two concepts and allow innovation to particularly"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,680",
+				"to": "00:16:33,480"
+			},
+			"offsets": {
+				"from": 989680,
+				"to": 993480
+			},
+			"text": " around validator status and finality on the execution layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,480",
+				"to": "00:16:39,480"
+			},
+			"offsets": {
+				"from": 993480,
+				"to": 999480
+			},
+			"text": " So what are the opportunities?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,480",
+				"to": "00:16:47,960"
+			},
+			"offsets": {
+				"from": 999480,
+				"to": 1007960
+			},
+			"text": " Okay, so this might be a bit counter-intuitive, but Ethereum doesn't need more stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,960",
+				"to": "00:16:50,960"
+			},
+			"offsets": {
+				"from": 1007960,
+				"to": 1010960
+			},
+			"text": " It needs more individual node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,960",
+				"to": "00:16:53,240"
+			},
+			"offsets": {
+				"from": 1010960,
+				"to": 1013240
+			},
+			"text": " So I believe this quote is from Superfizz."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,240",
+				"to": "00:16:57,560"
+			},
+			"offsets": {
+				"from": 1013240,
+				"to": 1017560
+			},
+			"text": " So thanks, Fizz, if you're watching."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,560",
+				"to": "00:17:02,360"
+			},
+			"offsets": {
+				"from": 1017560,
+				"to": 1022360
+			},
+			"text": " Decentralized staking protocols have an opportunity to redress the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,360",
+				"to": "00:17:07,960"
+			},
+			"offsets": {
+				"from": 1022360,
+				"to": 1027960
+			},
+			"text": " So by lowering the collateral requirement for node operators, there are more potential"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,960",
+				"to": "00:17:11,440"
+			},
+			"offsets": {
+				"from": 1027960,
+				"to": 1031440
+			},
+			"text": " node operators available."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,440",
+				"to": "00:17:19,400"
+			},
+			"offsets": {
+				"from": 1031440,
+				"to": 1039400
+			},
+			"text": " By streamlining, setting up a node and running a node, it's easier to onboard new node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,400",
+				"to": "00:17:24,480"
+			},
+			"offsets": {
+				"from": 1039400,
+				"to": 1044480
+			},
+			"text": " And if you lower the barrier to entry for spinning up a staking business, built on top"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,480",
+				"to": "00:17:30,360"
+			},
+			"offsets": {
+				"from": 1044480,
+				"to": 1050360
+			},
+			"text": " of a decentralized staking protocol, this allows a whole ecosystem of niche staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,360",
+				"to": "00:17:37,160"
+			},
+			"offsets": {
+				"from": 1050360,
+				"to": 1057160
+			},
+			"text": " businesses to compete with large providers, more node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,160",
+				"to": "00:17:44,680"
+			},
+			"offsets": {
+				"from": 1057160,
+				"to": 1064680
+			},
+			"text": " The more node operators we have, the more decentralized Ethereum is."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,680",
+				"to": "00:17:49,440"
+			},
+			"offsets": {
+				"from": 1064680,
+				"to": 1069440
+			},
+			"text": " Being a node operator is not as hard as you think."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,440",
+				"to": "00:17:55,200"
+			},
+			"offsets": {
+				"from": 1069440,
+				"to": 1075200
+			},
+			"text": " Okay, so execution reward smoothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,200",
+				"to": "00:18:02,560"
+			},
+			"offsets": {
+				"from": 1075200,
+				"to": 1082560
+			},
+			"text": " So execution rewards, so the ones that come from transaction fees and potentially MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,560",
+				"to": "00:18:05,240"
+			},
+			"offsets": {
+				"from": 1082560,
+				"to": 1085240
+			},
+			"text": " are extremely variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,240",
+				"to": "00:18:10,480"
+			},
+			"offsets": {
+				"from": 1085240,
+				"to": 1090480
+			},
+			"text": " This is because rock proposes are chosen at random."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,480",
+				"to": "00:18:17,080"
+			},
+			"offsets": {
+				"from": 1090480,
+				"to": 1097080
+			},
+			"text": " So at this time, if you have like one validator, you'll receive approximately five proposals"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,080",
+				"to": "00:18:24,280"
+			},
+			"offsets": {
+				"from": 1097080,
+				"to": 1104280
+			},
+			"text": " per year on average, but you could get two or you could get ten."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,280",
+				"to": "00:18:32,280"
+			},
+			"offsets": {
+				"from": 1104280,
+				"to": 1112280
+			},
+			"text": " This variability hits small node operators hard, but harder, actually harder hardest."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,280",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1112280,
+				"to": 1117000
+			},
+			"text": " As a decentralized staking protocol, there's an opportunity to provide a reward smoothing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:43,160"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1123160
+			},
+			"text": " pool that participants pool their proposals to achieve a consistent return, rather than"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,160",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1123160,
+				"to": 1127000
+			},
+			"text": " this highly variable return."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:52,640"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1132640
+			},
+			"text": " So a smoothing pool actually levels a playing field for small node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,640",
+				"to": "00:18:57,560"
+			},
+			"offsets": {
+				"from": 1132640,
+				"to": 1137560
+			},
+			"text": " They can kind of compete with the larger node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,560",
+				"to": "00:19:01,520"
+			},
+			"offsets": {
+				"from": 1137560,
+				"to": 1141520
+			},
+			"text": " This is particularly interesting when you think about MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,520",
+				"to": "00:19:09,320"
+			},
+			"offsets": {
+				"from": 1141520,
+				"to": 1149320
+			},
+			"text": " MEV, you can have, on average, you can earn a decent amount from MEV, but every now and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,320",
+				"to": "00:19:12,360"
+			},
+			"offsets": {
+				"from": 1149320,
+				"to": 1152360
+			},
+			"text": " again, there'll be one of these lottery blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,360",
+				"to": "00:19:16,840"
+			},
+			"offsets": {
+				"from": 1152360,
+				"to": 1156840
+			},
+			"text": " The highest block I think was recorded was a hundred-eath block."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,840",
+				"to": "00:19:20,200"
+			},
+			"offsets": {
+				"from": 1156840,
+				"to": 1160200
+			},
+			"text": " That doesn't happen very often, but that hence why it's a lottery block."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,200",
+				"to": "00:19:28,520"
+			},
+			"offsets": {
+				"from": 1160200,
+				"to": 1168520
+			},
+			"text": " But if you do get one of those blocks, then this is what the smoothing pool helps with."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,520",
+				"to": "00:19:29,280"
+			},
+			"offsets": {
+				"from": 1168520,
+				"to": 1169280
+			},
+			"text": " So I'm Darren Langley."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,280",
+				"to": "00:19:30,280"
+			},
+			"offsets": {
+				"from": 1169280,
+				"to": 1170280
+			},
+			"text": " I'm from Rocketpool."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,280",
+				"to": "00:19:34,440"
+			},
+			"offsets": {
+				"from": 1170280,
+				"to": 1174440
+			},
+			"text": " You can catch me on Twitter, and that's me."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,440",
+				"to": "00:19:37,080"
+			},
+			"offsets": {
+				"from": 1174440,
+				"to": 1177080
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,080",
+				"to": "00:19:39,080"
+			},
+			"offsets": {
+				"from": 1177080,
+				"to": 1179080
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,080",
+				"to": "00:19:46,080"
+			},
+			"offsets": {
+				"from": 1179080,
+				"to": 1186080
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,080",
+				"to": "00:19:55,160"
+			},
+			"offsets": {
+				"from": 1186080,
+				"to": 1195160
+			},
+			"text": " My name is Benjamin with Rubicon.finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,160",
+				"to": "00:20:00,680"
+			},
+			"offsets": {
+				"from": 1195160,
+				"to": 1200680
+			},
+			"text": " I wanted to ask, I understand Rocketpool nodes are collateralized with RPL."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,680",
+				"to": "00:20:05,800"
+			},
+			"offsets": {
+				"from": 1200680,
+				"to": 1205800
+			},
+			"text": " How do you protect against a tail risk scenario where if the price of RPL.eath is dropping"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,800",
+				"to": "00:20:11,400"
+			},
+			"offsets": {
+				"from": 1205800,
+				"to": 1211400
+			},
+			"text": " in the average collateralization of the network starts to fall, and how can the protocol become"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,400",
+				"to": "00:20:17,560"
+			},
+			"offsets": {
+				"from": 1211400,
+				"to": 1217560
+			},
+			"text": " robust in light of basically relying on RPL.eath price to guarantee security?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,560",
+				"to": "00:20:22,280"
+			},
+			"offsets": {
+				"from": 1217560,
+				"to": 1222280
+			},
+			"text": " So in actual fact, RPL is used as a backstop."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,280",
+				"to": "00:20:29,480"
+			},
+			"offsets": {
+				"from": 1222280,
+				"to": 1229480
+			},
+			"text": " The first thing that we, with the Rocketpool node, the node operator supplies 16 ETH, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,480",
+				"to": "00:20:32,240"
+			},
+			"offsets": {
+				"from": 1229480,
+				"to": 1232240
+			},
+			"text": " the liquid stack is supply 16 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,240",
+				"to": "00:20:35,200"
+			},
+			"offsets": {
+				"from": 1232240,
+				"to": 1235200
+			},
+			"text": " And then the node operator also supplies some RPL."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,200",
+				"to": "00:20:40,200"
+			},
+			"offsets": {
+				"from": 1235200,
+				"to": 1240200
+			},
+			"text": " There's minimum of 10%, so it's about 1.6 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,200",
+				"to": "00:20:42,200"
+			},
+			"offsets": {
+				"from": 1240200,
+				"to": 1242200
+			},
+			"text": " But the ETH is hit first."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,200",
+				"to": "00:20:48,720"
+			},
+			"offsets": {
+				"from": 1242200,
+				"to": 1248720
+			},
+			"text": " So if they get slashed, or if they're an absolutely terrible node operator, then it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,720",
+				"to": "00:20:50,920"
+			},
+			"offsets": {
+				"from": 1248720,
+				"to": 1250920
+			},
+			"text": " actually the ETH that gets hit first."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,920",
+				"to": "00:20:54,560"
+			},
+			"offsets": {
+				"from": 1250920,
+				"to": 1254560
+			},
+			"text": " And then RPL is used as a backstop because you can actually lose a little bit more than"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,560",
+				"to": "00:20:57,760"
+			},
+			"offsets": {
+				"from": 1254560,
+				"to": 1257760
+			},
+			"text": " 16 ETH in like the worst case scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,760",
+				"to": "00:21:02,760"
+			},
+			"offsets": {
+				"from": 1257760,
+				"to": 1262760
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,760",
+				"to": "00:21:05,240"
+			},
+			"offsets": {
+				"from": 1262760,
+				"to": 1265240
+			},
+			"text": " Multi-part question."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,240",
+				"to": "00:21:06,240"
+			},
+			"offsets": {
+				"from": 1265240,
+				"to": 1266240
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,240",
+				"to": "00:21:09,680"
+			},
+			"offsets": {
+				"from": 1266240,
+				"to": 1269680
+			},
+			"text": " So first part, how hard is it to run a Rocketpool node?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,680",
+				"to": "00:21:14,040"
+			},
+			"offsets": {
+				"from": 1269680,
+				"to": 1274040
+			},
+			"text": " Like, do you need to know Unix, or can you just run a script and it installs everything?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,040",
+				"to": "00:21:16,040"
+			},
+			"offsets": {
+				"from": 1274040,
+				"to": 1276040
+			},
+			"text": " Second part."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,040",
+				"to": "00:21:19,600"
+			},
+			"offsets": {
+				"from": 1276040,
+				"to": 1279600
+			},
+			"text": " How many nodes can you run on one powerful PC?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,600",
+				"to": "00:21:20,600"
+			},
+			"offsets": {
+				"from": 1279600,
+				"to": 1280600
+			},
+			"text": " Right, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,600",
+				"to": "00:21:22,360"
+			},
+			"offsets": {
+				"from": 1280600,
+				"to": 1282360
+			},
+			"text": " Okay, good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,360",
+				"to": "00:21:24,480"
+			},
+			"offsets": {
+				"from": 1282360,
+				"to": 1284480
+			},
+			"text": " So running a Rocketpool node."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,480",
+				"to": "00:21:28,280"
+			},
+			"offsets": {
+				"from": 1284480,
+				"to": 1288280
+			},
+			"text": " You do need to know probably a little bit about Unix maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,280",
+				"to": "00:21:29,440"
+			},
+			"offsets": {
+				"from": 1288280,
+				"to": 1289440
+			},
+			"text": " You can run it on different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,440",
+				"to": "00:21:33,160"
+			},
+			"offsets": {
+				"from": 1289440,
+				"to": 1293160
+			},
+			"text": " We don't necessarily support Windows, but you can run it on Linux box."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,160",
+				"to": "00:21:36,560"
+			},
+			"offsets": {
+				"from": 1293160,
+				"to": 1296560
+			},
+			"text": " You do need to know a little bit about Linux."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,560",
+				"to": "00:21:41,680"
+			},
+			"offsets": {
+				"from": 1296560,
+				"to": 1301680
+			},
+			"text": " Spinning up a Rocketpool node is, I think, pretty much four commands."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,680",
+				"to": "00:21:46,680"
+			},
+			"offsets": {
+				"from": 1301680,
+				"to": 1306680
+			},
+			"text": " And it's four commands and you've spun up a validating node."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,680",
+				"to": "00:21:49,600"
+			},
+			"offsets": {
+				"from": 1306680,
+				"to": 1309600
+			},
+			"text": " So we've made it, we've streamlined the process."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,600",
+				"to": "00:21:54,080"
+			},
+			"offsets": {
+				"from": 1309600,
+				"to": 1314080
+			},
+			"text": " We have this thing called a smart node stack, and it streamlines the process of actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,080",
+				"to": "00:21:55,360"
+			},
+			"offsets": {
+				"from": 1314080,
+				"to": 1315360
+			},
+			"text": " spinning up a node."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,360",
+				"to": "00:21:57,000"
+			},
+			"offsets": {
+				"from": 1315360,
+				"to": 1317000
+			},
+			"text": " We connect everything up for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,000",
+				"to": "00:21:59,040"
+			},
+			"offsets": {
+				"from": 1317000,
+				"to": 1319040
+			},
+			"text": " We handle upgrades for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,040",
+				"to": "00:22:01,760"
+			},
+			"offsets": {
+				"from": 1319040,
+				"to": 1321760
+			},
+			"text": " It's really easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,760",
+				"to": "00:22:05,960"
+			},
+			"offsets": {
+				"from": 1321760,
+				"to": 1325960
+			},
+			"text": " The other part of that question was, \"Ah, right, that's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,960",
+				"to": "00:22:09,120"
+			},
+			"offsets": {
+				"from": 1325960,
+				"to": 1329120
+			},
+			"text": " Ah, that's, yeah, that is a hard question to answer.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,120",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1329120,
+				"to": 1336000
+			},
+			"text": " So terminology-wise, a node is like the box that's running it, and then you have validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:19,080"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1339080
+			},
+			"text": " So you can have a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,080",
+				"to": "00:22:23,880"
+			},
+			"offsets": {
+				"from": 1339080,
+				"to": 1343880
+			},
+			"text": " Now whether that's a good idea or not is another matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,880",
+				"to": "00:22:29,480"
+			},
+			"offsets": {
+				"from": 1343880,
+				"to": 1349480
+			},
+			"text": " So what you would tend to do is you probably want to distribute across multiple nodes if"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,480",
+				"to": "00:22:31,160"
+			},
+			"offsets": {
+				"from": 1349480,
+				"to": 1351160
+			},
+			"text": " you had a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,160",
+				"to": "00:22:33,800"
+			},
+			"offsets": {
+				"from": 1351160,
+				"to": 1353800
+			},
+			"text": " But you can run a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,800",
+				"to": "00:22:37,320"
+			},
+			"offsets": {
+				"from": 1353800,
+				"to": 1357320
+			},
+			"text": " Different clients, different consensus clients and different execution clients have different"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,320",
+				"to": "00:22:39,360"
+			},
+			"offsets": {
+				"from": 1357320,
+				"to": 1359360
+			},
+			"text": " performance profiles."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,360",
+				"to": "00:22:44,120"
+			},
+			"offsets": {
+				"from": 1359360,
+				"to": 1364120
+			},
+			"text": " But you can run a lot on..."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,120",
+				"to": "00:22:47,360"
+			},
+			"offsets": {
+				"from": 1364120,
+				"to": 1367360
+			},
+			"text": " I don't think we've, I don't think we've, we haven't modeled it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,360",
+				"to": "00:22:50,520"
+			},
+			"offsets": {
+				"from": 1367360,
+				"to": 1370520
+			},
+			"text": " But it is, it's in like the hundreds."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,520",
+				"to": "00:22:52,120"
+			},
+			"offsets": {
+				"from": 1370520,
+				"to": 1372120
+			},
+			"text": " Yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,120",
+				"to": "00:22:53,840"
+			},
+			"offsets": {
+				"from": 1372120,
+				"to": 1373840
+			},
+			"text": " It's depending on the, it also depends on the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,840",
+				"to": "00:22:59,120"
+			},
+			"offsets": {
+				"from": 1373840,
+				"to": 1379120
+			},
+			"text": " If it's a powerful machine, then you can do that, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,120",
+				"to": "00:23:00,120"
+			},
+			"offsets": {
+				"from": 1379120,
+				"to": 1380120
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,120",
+				"to": "00:23:01,120"
+			},
+			"offsets": {
+				"from": 1380120,
+				"to": 1381120
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,120",
+				"to": "00:23:02,120"
+			},
+			"offsets": {
+				"from": 1381120,
+				"to": 1382120
+			},
+			"text": " All right, awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,120",
+				"to": "00:23:04,120"
+			},
+			"offsets": {
+				"from": 1382120,
+				"to": 1384120
+			},
+			"text": " Thank you very much, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,120",
+				"to": "00:23:04,120"
+			},
+			"offsets": {
+				"from": 1384120,
+				"to": 1384120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,120",
+				"to": "00:23:05,120"
+			},
+			"offsets": {
+				"from": 1384120,
+				"to": 1385120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,120",
+				"to": "00:23:06,120"
+			},
+			"offsets": {
+				"from": 1385120,
+				"to": 1386120
+			},
+			"text": " Thank you very much, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,120",
+				"to": "00:23:07,120"
+			},
+			"offsets": {
+				"from": 1386120,
+				"to": 1387120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,120",
+				"to": "00:23:09,120"
+			},
+			"offsets": {
+				"from": 1387120,
+				"to": 1389120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,120",
+				"to": "00:23:10,120"
+			},
+			"offsets": {
+				"from": 1389120,
+				"to": 1390120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,120",
+				"to": "00:23:12,120"
+			},
+			"offsets": {
+				"from": 1390120,
+				"to": 1392120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,120",
+				"to": "00:23:14,120"
+			},
+			"offsets": {
+				"from": 1392120,
+				"to": 1394120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,120",
+				"to": "00:23:16,120"
+			},
+			"offsets": {
+				"from": 1394120,
+				"to": 1396120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,120",
+				"to": "00:23:18,120"
+			},
+			"offsets": {
+				"from": 1396120,
+				"to": 1398120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,120",
+				"to": "00:23:47,120"
+			},
+			"offsets": {
+				"from": 1398120,
+				"to": 1427120
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

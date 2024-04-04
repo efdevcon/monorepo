@@ -1,0 +1,1396 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 19000
+			},
+			"text": " >> Okay, thank you, Ming, and thank you for having me."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 23000
+			},
+			"text": " I'm going to talk about digital identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 32000
+			},
+			"text": " The -- my original topic was to talk about digital identity and public infrastructure, but, you know, there's only 20 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 34000
+			},
+			"text": " Who am I kidding?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 38000
+			},
+			"text": " So, let's launch right in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 41000
+			},
+			"text": " So, what is digital identity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 50000
+			},
+			"text": " So, conceptually, it's a digital object that maps onto a physical entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 60000
+			},
+			"text": " Normally, when we talk about this stuff, we're talking about people, but it can also mean a company, a corporation, or a device."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 66000
+			},
+			"text": " So, the common saying is that on the blockchain, nobody knows you're a fridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 71000
+			},
+			"text": " And so, they're talking about digital identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 75000
+			},
+			"text": " Why do we want digital identity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 81000
+			},
+			"text": " So, we want to tie actors in the physical world to the digital world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 91000
+			},
+			"text": " So, this is, for instance, good because it allows actors with some authority in the physical world to express that authority on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 101000
+			},
+			"text": " So, you can imagine a form of proof of birth or proof of death as a digital attestation or signature by a doctor."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 111000
+			},
+			"text": " Also, digital KYC is a common use case where a bank attests that they've done certain checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 120000
+			},
+			"text": " And now that attestation can be used on a blockchain in a smart contract doing crowdfunding or what have you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 132000
+			},
+			"text": " It also allows mapping of social structures into the digital realm and enhancing social structures through small contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 137000
+			},
+			"text": " So, this is, for instance, community formation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 141000
+			},
+			"text": " We have a tab called Inflect that uses this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 148000
+			},
+			"text": " Also, reputation systems are anchored in this notion of digital identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 153000
+			},
+			"text": " Digital identities say stuff about each other and that's form of reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 156000
+			},
+			"text": " There's also the humanitarian side."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 164000
+			},
+			"text": " A lot of refugees or victims of human trafficking often lack paper documentation altogether."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 170000
+			},
+			"text": " And if we can have a system where you have a digital identity system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 178000
+			},
+			"text": " maybe coupled with biometrics, run by NGOs, etc., this might help other people."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 183000
+			},
+			"text": " How? How do we map from digital to physical?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 192000
+			},
+			"text": " The most common form is by using a secret that only the physical entity knows."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 199000
+			},
+			"text": " So, for instance, on Ethereum, you have an Ethereum account or an address that has an associated private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 205000
+			},
+			"text": " And anyone who has that private key can send transactions, interact with contracts, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 217000
+			},
+			"text": " And so, the assumption is there that the holder of the private key is the physical entity and it maps onto the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 220000
+			},
+			"text": " Another example is in Facebook."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 228000
+			},
+			"text": " If someone has my password to Facebook, they can post on my wall and they can kind of act as me in the context."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " In the context of the Facebook platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 241000
+			},
+			"text": " So, lastly here, a digital signature is proof of knowledge of a secret without revealing the secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 257000
+			},
+			"text": " So, this is why digital signatures are so important for blockchains because it authenticates that you know the secret and that creates the mapping to the physical entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 264000
+			},
+			"text": " So, the most common form of digital identity today is what we call federated identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 272000
+			},
+			"text": " So, this means that you have a third party identity provider that handles this mapping from the digital to the physical."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 286000
+			},
+			"text": " And so, whenever you act as your digital identity on a blockchain or in a digital space, you do so through this centralized intermediary."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 291000
+			},
+			"text": " So, I'm sure you all have seen, log in with Facebook, log in with Google."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 301000
+			},
+			"text": " This is Facebook acting or you are acting through Facebook as a digital identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 308000
+			},
+			"text": " So, what we want to try and move towards is this notion of self-sobering identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 316000
+			},
+			"text": " So, this image came up when I googled self-sobering and isn't it so empowering."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 324000
+			},
+			"text": " So, this is the idea of having the user actually be in control of their own identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 336000
+			},
+			"text": " If we use a platform like Ethereum, then smart contracts can do a lot of what the central identity provider like Facebook does"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 341000
+			},
+			"text": " while being a shared resource owned by no one and everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 350000
+			},
+			"text": " The idea here is that the user controls their private keys when interacting with the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 357000
+			},
+			"text": " but critically, the user can also choose to let a third party control the keys for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 367000
+			},
+			"text": " So, we can have all the benefits of the federated identity model in the self-sobering identity model."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 377000
+			},
+			"text": " So, how do we build a digital identity system with self-sobering at the core?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 385000
+			},
+			"text": " So, the starting point is the notion of a public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 394000
+			},
+			"text": " So, with every public key comes an associated private key, and the public key then becomes this digital object"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 402000
+			},
+			"text": " that is mapped to the private key holder, which lives in the physical realm."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 414000
+			},
+			"text": " So, examples is an Ethereum address, a Bitcoin address, something like a mini-lock idea if anyone has used or heard of mini-lock."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 425000
+			},
+			"text": " This is like a very one-dimensional atomic object, but sometimes this is enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 435000
+			},
+			"text": " If I go on Gujo Music, for instance, and I want to buy \"Imogen Heaps\" latest song,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 444000
+			},
+			"text": " \"Imogen Might Not Even Care\", who I am, she only cares that she gets paid."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 453000
+			},
+			"text": " And so, the only information she needs is that there is some kind of identity here, and I got paid by that identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 458000
+			},
+			"text": " So, sometimes this is all that's needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 464000
+			},
+			"text": " Most of the time, though, you want some more information."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 476000
+			},
+			"text": " So, what we want to try and do is tie some data cryptographically to this key, and we can do so using smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 481000
+			},
+			"text": " or in other systems, you might be able to do it using digital signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 494000
+			},
+			"text": " So, some basic stuff we can attribute to the key is a name, maybe a profile picture, email, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 500000
+			},
+			"text": " In cases of corporations, you might have some tax information, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 511000
+			},
+			"text": " Or for the balance three triple-endary accounting system, you have an accounting ledger that's attached to your digital identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 521000
+			},
+			"text": " Here, we could also bootstrap other services, so you can attribute."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 530000
+			},
+			"text": " You can have an attribute, which is your Twitter account, your Facebook account, GitHub, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 537000
+			},
+			"text": " So, here is kind of what it can look like. Do we have the laser thing? Is this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 540000
+			},
+			"text": " No. Anyway, I'll just point."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 546000
+			},
+			"text": " So, we have this public key, which is kind of the core of the identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 554000
+			},
+			"text": " The corresponding private key can create and control a smart contract that contains the attributes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 562000
+			},
+			"text": " So, the attributes could be stored on the blockchain, but normally we use a system like IPFS, that one mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 572000
+			},
+			"text": " And we can have hashes that corresponds to objects stored in IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 576000
+			},
+			"text": " The second thing that we want to have is attestations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 587000
+			},
+			"text": " So, what this is that we can let other identities attest to the validity of the attributes that you connected to your public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 597000
+			},
+			"text": " This can lend credibility to the attributes while at the same time letting the user have control of their own identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 602000
+			},
+			"text": " So, this could be, for instance, a government verifying your date of birth."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 617000
+			},
+			"text": " So, you yourself claim that your date of birth is January 1, 1980, and the government can come in and say, \"Yes, we verified that this is true because we saw the birth record or something.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 619000
+			},
+			"text": " And they can do a digital signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 632000
+			},
+			"text": " And now you have on the blockchain a very strong certificate, if you will, that this is correct, at least according to this government."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 635000
+			},
+			"text": " Another one is in the banks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 640000
+			},
+			"text": " They can verify that you have an accredited investor status."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 646000
+			},
+			"text": " And so this means you have to have more than $250,000 in account or something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 656000
+			},
+			"text": " More advanced is a reputation attestations, which we'll hear more about later by Andre."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 664000
+			},
+			"text": " So, this would be not just saying that this information is correct or not, but kind of like more fuzzy things."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 671000
+			},
+			"text": " Like I bought socks from this person and it was good, so I gave five stars."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 675000
+			},
+			"text": " So, this is what it can look like in that case."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 688000
+			},
+			"text": " You have two of these identities, and the first one has two attributes, the one has one attribute, and one can do an attestation of the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 700000
+			},
+			"text": " So, it's a very abstract concept, but in general you get things like, you know, certified things by authorities, but you also have the notion of a web of trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 710000
+			},
+			"text": " Where you can build reputation, etc. from the attestation of your friends."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 715000
+			},
+			"text": " So, this is, you know, this sounds pretty good."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 728000
+			},
+			"text": " There is a big problem though, and it's the following that Vitalik brought up during the web of trust conference in San Francisco."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 734000
+			},
+			"text": " And the thing is, you know, what if you lose your private key?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 746000
+			},
+			"text": " And you kind of don't want a system where if you lose your private key, which people do all the time, you don't want to lose your identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 754000
+			},
+			"text": " Because that's, you know, that's too much to, too much power to put in this one thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 763000
+			},
+			"text": " So, we need to be able to recover from key loss, which is, I have my key on my phone, I lose my phone, what do I do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 772000
+			},
+			"text": " And key compromise, which is some attacker gets my key and starts acting in my name."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 790000
+			},
+			"text": " So, how do we do this? Well, the way that we've approached it is we won't allow the user to revoke and replace a key that they suspect might be compromised."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 793000
+			},
+			"text": " So, let's say I lose my phone, but I have a backup."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 803000
+			},
+			"text": " Okay, someone could maybe find my phone and get that key, so I want to make sure I replace that key so they can't start acting in my name."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 818000
+			},
+			"text": " And then if I lose complete control, I could have a small contract that I delegate the authority to regain control for the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 832000
+			},
+			"text": " So, a specific case of this is that you can have a multi-seag setup where you have three of your friends and then two of them are needed to regain control for me."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 847000
+			},
+			"text": " So, they would basically be able to override the current key and say, here is another key that is now in control of this smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 858000
+			},
+			"text": " So, let me talk about what we've been doing at consensus with the UPort initiative."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 869000
+			},
+			"text": " So, this is basically trying to take these ideas and make a functioning product out of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 876000
+			},
+			"text": " So, currently, the current status is the following."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 892000
+			},
+			"text": " We have this kind of core identity model where you have a controlling key that controls your identity, which is attached to attributes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 895000
+			},
+			"text": " We use IPFS to store these attributes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 909000
+			},
+			"text": " We have a registry where you can look up the key in a registry and get the corresponding attributes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 917000
+			},
+			"text": " This is currently used in-house in a number of other consensus projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 934000
+			},
+			"text": " So, Balance 3, the Triple Entry Accounting System, the Registry Builder, I mentioned Inflect, the Event and Community Management Tool, and the Reddit-like discussion platform nonsense."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 940000
+			},
+			"text": " So, here is kind of like a screenshot from Balance 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 958000
+			},
+			"text": " Where we see in the top right corner, kind of the very familiar user badge thing, and that information is stored in IPFS and retrieved via this smart contract system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:09,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 969000
+			},
+			"text": " So, we have a few different types of key types."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 969000,
+				"to": 979000
+			},
+			"text": " So, we have a different type of key, which is a different type of key, which is a different type of key."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 1001000
+			},
+			"text": " We want to be able to have the attributes encrypted so that you can have private attributes and to be able to selectively disclose those to your friends or whoever."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1007000
+			},
+			"text": " Also, integrating our reputation system is also on the roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1016000
+			},
+			"text": " So, this is the team for you port and that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1020000
+			},
+			"text": " I don't know if I have time for questions, but..."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1022000
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1024000
+			},
+			"text": " Sorry, I shouldn't have written that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1026000
+			},
+			"text": " But anyway, thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1036000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:18,580"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1038580
+			},
+			"text": " (bell dings)"
+		}
+	]
+}

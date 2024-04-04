@@ -1,0 +1,1649 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 19000
+			},
+			"text": " >> Using smart contracts to eliminate middlemen in cryptocurrency mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 21000
+			},
+			"text": " >> Okay, thank you very much for the introduction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 24000
+			},
+			"text": " Thank you all for staying here so late."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 26000
+			},
+			"text": " So I'm Aaron Veler."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 32000
+			},
+			"text": " I'm from Kiber Network, but I'm going to talk about an earlier work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 38000
+			},
+			"text": " So this work started as an academic work along with Sloy with here Jason torch from"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 41000
+			},
+			"text": " Trobit Foundation in the Partic."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 45000
+			},
+			"text": " So Patrick Jason and Norel were all from the National University of Singapore."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 50000
+			},
+			"text": " I was in the Hebrew University of Jerusalem, Israel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 54000
+			},
+			"text": " And later, after academic research was done,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 59000
+			},
+			"text": " we started a real project called Smart Pool and then Victor Tran also joined the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 62000
+			},
+			"text": " Smart Pool team."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 70000
+			},
+			"text": " Basically Smart Pool is a mining pool where a smart contact replaces a pull-up operator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 76000
+			},
+			"text": " Okay, so first some introduction on mining pool and mining in general in cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 83000
+			},
+			"text": " So crypto cryptocurrencies are based on a blockchain where blockchain is basically chain of blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 87000
+			},
+			"text": " And in order to add a new blockchain to the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 96000
+			},
+			"text": " miners have a responsibility and perform some computational tasks to build new blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 100000
+			},
+			"text": " So, okay, so more formally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 106000
+			},
+			"text": " all the time miners raise to solve some hard computational problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 112000
+			},
+			"text": " And the first miner who is able to solve this problem gets to add is new block to the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 115000
+			},
+			"text": " and is rewarded for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 121000
+			},
+			"text": " After every block is added, the rice starts over again and this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 123000
+			},
+			"text": " keep going indefinitely."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 127000
+			},
+			"text": " So even more formally, okay, what is the block problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 134000
+			},
+			"text": " So there is some constant D which is the network difficulty which is adjusting all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 137000
+			},
+			"text": " And we have the previous block data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 141000
+			},
+			"text": " And now when we want to add new data, when miner wants to add new data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 145000
+			},
+			"text": " the goal is always to find some integer names."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 152000
+			},
+			"text": " While when you hash all these parameters, the result of the hash function is smaller than some D."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 158000
+			},
+			"text": " Okay, so we say that a block is valid if it is satisfied, this property."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 166000
+			},
+			"text": " And now, on Ethereum for example, and in Bitcoin, things are even worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 177000
+			},
+			"text": " So new, this big D is adjusted every time, so new blocks could be fine on average every 15 or 20 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 183000
+			},
+			"text": " However, every GPU mining rig, if you try to mine independently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 189000
+			},
+			"text": " will take months as a risk to find new block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 194000
+			},
+			"text": " And this is bad because if you are a miner, you want to have some steady income with slow variance."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 202000
+			},
+			"text": " So for this reason, miners form some coalitions, so form into pools in order to get steady income."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 209000
+			},
+			"text": " So with mining pools, they share their computational power and they reduce their variance."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 215000
+			},
+			"text": " And this is also good to the network because if we have steady income, more miners will join."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 221000
+			},
+			"text": " And therefore, the security of the network is also increased."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 229000
+			},
+			"text": " Now, in order to reward every pool member, the following procedure is carried."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 239000
+			},
+			"text": " So miners in the mining pool are asked to submit solutions that relax some lower difficulty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 246000
+			},
+			"text": " the lower case D. And while a wide block has to have a non-satisfied"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 252000
+			},
+			"text": " such that the hard function is smaller than some upper case D."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 258000
+			},
+			"text": " So for a valid share, for a mini pool, for a partial pool, for a minor, it's enough to satisfy"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 262000
+			},
+			"text": " that it is smaller than some lower case D."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 265000
+			},
+			"text": " In particular, every valid block is also a valid share."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 272000
+			},
+			"text": " And on average, if we find the other D, such valid shares, then we will also find some block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 282000
+			},
+			"text": " And then the reward for every such valid share is roughly this lower case D over upper case D."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 292000
+			},
+			"text": " And the main thing to take from this formal description is that all this is very formal"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 295000
+			},
+			"text": " and mathematical process."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 301000
+			},
+			"text": " And it's very natural to assume or to try to have it formalized as a small contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 308000
+			},
+			"text": " Going back to the process, so we have the Ethereum network, some might decide to solo mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 316000
+			},
+			"text": " Actually, there are solo miners, Ethereum is still possible, but the rest will mine with some pool operator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 318000
+			},
+			"text": " or they will submit the shares."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 323000
+			},
+			"text": " If a share is also a real block, so this pool operator will also submit the pool to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 330000
+			},
+			"text": " And all the other solo miners, okay, so in the network I, also the pool operator is a solo miner."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 334000
+			},
+			"text": " All the other solo miners can also submit the full blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 343000
+			},
+			"text": " And eventually the pool operator will pay its members from the full block we found in some middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 351000
+			},
+			"text": " Now, all these pooling give rise to very strong centralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 358000
+			},
+			"text": " So both in Bitcoin and Ethereum and basically in any real blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 371000
+			},
+			"text": " So in Ethereum, at least in the end of this July, so 80% of the hash power was concentrated with six mining pools."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 381000
+			},
+			"text": " And this could give rise to some problems, first and foremost, the censorship problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 388000
+			},
+			"text": " So basically the pool operator is the one who decides on which transactions the miner will work on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 398000
+			},
+			"text": " So it can easily sense or not in here, but the six pool operators that controls 80% of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 402000
+			},
+			"text": " can easily decide which transaction they are going to be at."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 409000
+			},
+			"text": " In Ethereum, they also decide on the gas limit, they can maybe form a cartel of gas prices."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 416000
+			},
+			"text": " Okay, and there was some evidence, not exactly to malicious behavior of pool operators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 421000
+			},
+			"text": " but some undesired behavior or some slow response from pool operator."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 427000
+			},
+			"text": " So a couple of months ago there was, so the foundation asked miners to increase gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 436000
+			},
+			"text": " Technically no one opposed to it, but pool operators from some reason delayed the increase of the limit"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 443000
+			},
+			"text": " and there were many cores, even for miners to increase it, but since the pool operator is the one who controls it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 446000
+			},
+			"text": " there was nothing they could do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 452000
+			},
+			"text": " So censorship is one issue, another issue, this is a single point of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 460000
+			},
+			"text": " So if 80% is controlled by six pool operators, so it's enough to eclipse or deduce these six pool operators"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 466000
+			},
+			"text": " and Ethereum will lose 80% of its ash power, which means 80% of the security."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 473000
+			},
+			"text": " Pool members have to trust the pool operator to pay them and maybe in some smaller currencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 481000
+			},
+			"text": " and tokens, so there were exit scams that were performed by pool operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 490000
+			},
+			"text": " And most notably in Bitcoin, so sometimes they delay or prevent protocol upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 495000
+			},
+			"text": " The famous example was the SegWit saga."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 501000
+			},
+			"text": " So yeah, okay, so pools are good, but centralized pool have disadvantages."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 503000
+			},
+			"text": " So what can we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 509000
+			},
+			"text": " We want to have decentralized pool that is not controlled by anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 515000
+			},
+			"text": " So in Ethereum we have smart contracts and pool operator automation is very mathematical and mechanical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 519000
+			},
+			"text": " so why not replace the pool operator with a smart contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 527000
+			},
+			"text": " And then the architecture is that some local client will give the work to the miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 534000
+			},
+			"text": " The miners will get the transaction from a local client that runs with Intermachine."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 543000
+			},
+			"text": " If they find real block, this local client also submitted to the network and for the partial work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 549000
+			},
+			"text": " they submit shares to the smart contract which reward them for the submission."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 559000
+			},
+			"text": " Now as in standard pools, so the submitted blocks are reward, the block reward of the submitted blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 566000
+			},
+			"text": " is going to the smart contract. Similarly, as in standard pools, simply the client-based address"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 569000
+			},
+			"text": " is associated with the smart pool contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 574000
+			},
+			"text": " Actually, it is the smart pool contract address."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 582000
+			},
+			"text": " So if you would have that, or we do have it with smart pools, so we get a completely decentralized mining pool"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 592000
+			},
+			"text": " with no censorship, depending on the payment scheme, so it doesn't require any infrastructure or servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 601000
+			},
+			"text": " or low cost, all the fees are only Ethereum gas fees, no fees go to the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 604000
+			},
+			"text": " And also the payments are automatic and trustless, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 607000
+			},
+			"text": " There's no way to steal money or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 613000
+			},
+			"text": " But on top of that, it also preserves all the good things from the traditional mining pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 620000
+			},
+			"text": " So we have low variance, it's fair to everybody, anyone can join, everyone can join anonymous."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 626000
+			},
+			"text": " And also what is important for smart pool, no security deposits are needed, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 630000
+			},
+			"text": " You just join and start getting money for your work."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 638000
+			},
+			"text": " So, yeah, okay, surely, let's replace this pool operator with a smart contract. Why not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 645000
+			},
+			"text": " Sounds very simple. So the idea is very simple, but technically very complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 655000
+			},
+			"text": " So in real pools, okay, you basically have to submit a share every minute or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 666000
+			},
+			"text": " And okay, Ethereum cannot handle such big volume, even if it could, okay, the gas fees for submission share would have been bigger than the share reward,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 672000
+			},
+			"text": " so there's no point submitting every share."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 680000
+			},
+			"text": " Okay, so the next naive idea is, okay, let's ask for shares with high difficulty, which in return also have a high reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 690000
+			},
+			"text": " So, okay, but there, but in this case, we are not much better than a standard pool, because then again, we have high variance in the payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 693000
+			},
+			"text": " It's not very attractive to miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 708000
+			},
+			"text": " So in Bitcoin, the centralized mining pool version for Bitcoin, this is roughly what it does, okay, so it limits the number of shares to one share per 30 seconds for the entire pool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 712000
+			},
+			"text": " which is not very not favorable to small miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 720000
+			},
+			"text": " So in Bitcoin, Bitcoin, it somehow works because the pool is very small, but obviously it doesn't scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 723000
+			},
+			"text": " So this solution is also not great."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 729000
+			},
+			"text": " So what we come up to is probabilistic sampling algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 735000
+			},
+			"text": " So the idea is that, okay, let's let miners cheat and submit in valid shares,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 740000
+			},
+			"text": " but as long as they are not expected to gain from it, so who cares?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 748000
+			},
+			"text": " So the idea is that, okay, miners will submit a bulk of six, or maybe six million shares."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 764000
+			},
+			"text": " We will probabilistically sample one of them and check them, but the intuition is, okay, let's consider the case was they submitted six in valid, so they submitted six shares out of them, so 36% are invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 776000
+			},
+			"text": " So we sample one share, so with probability of two shares, we will sample a good share, and actually, so we will pay them six units."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 781000
+			},
+			"text": " But with probability of one third, we will sample a bad share and we will pay zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 793000
+			},
+			"text": " So overall, the expectation of the payment will be four, which is exactly the number of valid shares they have, okay, so they can cheat, but it's not profitable to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 819000
+			},
+			"text": " So we are sure let's do probabilistic sampling, and then another difficult problem, okay, so we can easily detect invalid share, they have invalid proof of work, but what if they submitted the duplication, so this is much harder problem, but we are, okay, so eventually we also tackle this problem and solve it, so we introduce some new data structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 827000
+			},
+			"text": " that allow testing for sortedness of submitted shares, so we call it augmented."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 848000
+			},
+			"text": " It allows us to reduce the number of checks from, sorry, the number of submitted data from log n squared to log n, which, okay, putting concrete numbers was 20 units of 32 bytes as opposed to 400 units, which is very significant for the concrete numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 863000
+			},
+			"text": " Okay, so this was mostly the academic project and then we implemented also, so we raised some donations from the public back in 2017, January 2017 and started implementing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 889000
+			},
+			"text": " So the architecture is a follower, so we have a smart pull contract on the blockchain, of course, but all of this should reside on the miner's local computer, local machine, so Iran parity or gate or its ferret client, and then we have this smart pull client that we in charge of, so parity gives us transaction to mine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 914000
+			},
+			"text": " and the client assign it to the miner or any other favorite miner, okay, and this reside on the mining rigs, so it gives it work, okay, and return to get shares once in a while when we have enough, enough shares to submit, so we commit on these shares to the smart pull contract, so we only give the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 943000
+			},
+			"text": " the market route of the shares, and then in return, so the smart pull contract returned the index of the share it needs to sample, and then in return, okay, so the smart pull client also submit the actual share, the smart pull contract, verify the share, and if everything is okay, it gets the reward for all the batch, otherwise you get nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 970000
+			},
+			"text": " So this is the architecture, another very technical implementation detail, so verifying proof of work is also hard in Ethereum, so Ethereum proof of work requires, so it is memory hard, so it requires a data set of over one gig, so we can obviously not store it on the blockchain, it will cost us 100 or 1000 of dollars, and this data set is changing every three days."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 984000
+			},
+			"text": " Fortunately though, this data set is deterministic, and even more fortunately out of this data set, in every verification, only 64 elements should be fetched from the data set."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 1009000
+			},
+			"text": " So what we did, since everything is deterministic and predictable, we just stored the miracle truth of each pre-computed data set and we can do it for years to come with very low cost, and now miners join us already know what is the miracle route, they can test it, okay, they don't need to trust us, so this is fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1026000
+			},
+			"text": " And now in every proof of work, the miner has to do, you need to prove it's proof of work, to the smart contract, they also attach the 64 elements along with the relevant miracle pass and we verify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1050000
+			},
+			"text": " So, okay, so this is a real project, we actually deployed it, it was running relatively smoothly for two months, it was run in June and July 2017, we found real block on the Ethereum mainnet, the operation cost was very little for the miners,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1062000
+			},
+			"text": " and okay, so in average it was like 2.6%, that went to Gasphese, but technically it could be as low as they want, as long as they are willing to wait to get their payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1077000
+			},
+			"text": " This is still not open to the public and we had five miners out of them, one which was very big, rich something over 30 giga-hosh per second, which was roughly, okay, when we started it was roughly two blocks per day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1091000
+			},
+			"text": " and we had to do it very efficiently, we had to do it very efficiently, we had to do it very efficiently, we had to do it very efficiently, we had to do it very efficiently, we had to do it very efficiently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1109000
+			},
+			"text": " we had to do it very efficiently, we had to do it very efficiently, we had to do it very efficiently, we had to do it very efficiently, we had to do it very efficiently, we had to do it very efficiently, we had to do it very efficiently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1133000
+			},
+			"text": " 2.6 million Gasphese, it's a lot, but it's feasible. Okay, and this is an example for, this is a proof that we actually found blocks, so if you go to this extra data, if you observe it, so we see a smart pool, and here is some details on the miner, etc, so we found over 80 like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1152000
+			},
+			"text": " Okay, but why is the project still not alive? So, actually we had very big ash power all together, but most of them was due to one single miner, which we actually were very grateful for his support,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1167000
+			},
+			"text": " interesting and such, so setting up our system is very technical and hard process, okay, not many of them were either willing or able to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1186000
+			},
+			"text": " And even once after we did it, we found many optimizations that we still have to do on the client, not on the contract side that should support big mining farm, so well as very big mining farm, and we don't have any optimizations for that, so he's now waiting for us to complete optimizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1198000
+			},
+			"text": " Okay, so there's still some work to do before we go live, but not a lot. Okay, so this project is open source, not profit, and we are looking for more people to join us."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1209000
+			},
+			"text": " So in particular, go developers, but in any case we have a GitHub, you're welcome all to fork it, use it or contribute. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1215000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1222000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:24,080"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1224080
+			},
+			"text": " (buzzer)"
+		}
+	]
+}

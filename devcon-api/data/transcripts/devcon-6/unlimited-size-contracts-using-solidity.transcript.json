@@ -1,0 +1,6412 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,420"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2420
+			},
+			"text": " (soft music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,420",
+				"to": "00:00:16,400"
+			},
+			"offsets": {
+				"from": 2420,
+				"to": 16400
+			},
+			"text": " - Buenas tardes, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,400",
+				"to": "00:00:17,720"
+			},
+			"offsets": {
+				"from": 16400,
+				"to": 17720
+			},
+			"text": " My name is Igor Yovoy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,720",
+				"to": "00:00:21,620"
+			},
+			"offsets": {
+				"from": 17720,
+				"to": 21620
+			},
+			"text": " I'm a strategic developer, CEO founder."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,620",
+				"to": "00:00:26,440"
+			},
+			"offsets": {
+				"from": 21620,
+				"to": 26440
+			},
+			"text": " And previously I worked at Open Zeppelin"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,440",
+				"to": "00:00:30,280"
+			},
+			"offsets": {
+				"from": 26440,
+				"to": 30280
+			},
+			"text": " and co-founded a D5 startup called Baby on Finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,280",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 30280,
+				"to": 35000
+			},
+			"text": " Today I'm excited to present you a workshop"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:37,800"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 37800
+			},
+			"text": " titled Unlimited Size Contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,800",
+				"to": "00:00:40,480"
+			},
+			"offsets": {
+				"from": 37800,
+				"to": 40480
+			},
+			"text": " Before we jump into action,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,480",
+				"to": "00:00:45,320"
+			},
+			"offsets": {
+				"from": 40480,
+				"to": 45320
+			},
+			"text": " you might want to download a GitHub repo for this workshop."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,320",
+				"to": "00:00:49,720"
+			},
+			"offsets": {
+				"from": 45320,
+				"to": 49720
+			},
+			"text": " Either use the QR code or just Google GitHub"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,720",
+				"to": "00:00:53,120"
+			},
+			"offsets": {
+				"from": 49720,
+				"to": 53120
+			},
+			"text": " while we -IO workshop and you'll get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,120",
+				"to": "00:00:56,160"
+			},
+			"offsets": {
+				"from": 53120,
+				"to": 56160
+			},
+			"text": " We also will need a Foundry for this workshop."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,160",
+				"to": "00:00:58,160"
+			},
+			"offsets": {
+				"from": 56160,
+				"to": 58160
+			},
+			"text": " If you have it, great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,160",
+				"to": "00:01:01,880"
+			},
+			"offsets": {
+				"from": 58160,
+				"to": 61880
+			},
+			"text": " If you don't have it, just install it using the link"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,880",
+				"to": "00:01:02,800"
+			},
+			"offsets": {
+				"from": 61880,
+				"to": 62800
+			},
+			"text": " in the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,800",
+				"to": "00:01:08,160"
+			},
+			"offsets": {
+				"from": 62800,
+				"to": 68160
+			},
+			"text": " And then run two commands, Foundry Up and Forge Build."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,160",
+				"to": "00:01:12,160"
+			},
+			"offsets": {
+				"from": 68160,
+				"to": 72160
+			},
+			"text": " I know internet is pretty bad here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,160",
+				"to": "00:01:15,880"
+			},
+			"offsets": {
+				"from": 72160,
+				"to": 75880
+			},
+			"text": " And so for some reason you can't download it and install it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,880",
+				"to": "00:01:21,880"
+			},
+			"offsets": {
+				"from": 75880,
+				"to": 81880
+			},
+			"text": " Don't worry, the repository will stay up"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,880",
+				"to": "00:01:24,080"
+			},
+			"offsets": {
+				"from": 81880,
+				"to": 84080
+			},
+			"text": " and you'll have access to it"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,080",
+				"to": "00:01:26,560"
+			},
+			"offsets": {
+				"from": 84080,
+				"to": 86560
+			},
+			"text": " and I'll post the slides tomorrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,560",
+				"to": "00:01:29,040"
+			},
+			"offsets": {
+				"from": 86560,
+				"to": 89040
+			},
+			"text": " And I'll be doing some live demos"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,040",
+				"to": "00:01:33,760"
+			},
+			"offsets": {
+				"from": 89040,
+				"to": 93760
+			},
+			"text": " so you can just watch and get the idea what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,760",
+				"to": "00:01:35,560"
+			},
+			"offsets": {
+				"from": 93760,
+				"to": 95560
+			},
+			"text": " Let's jump right into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,560",
+				"to": "00:01:38,880"
+			},
+			"offsets": {
+				"from": 95560,
+				"to": 98880
+			},
+			"text": " All right, who has ever deployed here"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,880",
+				"to": "00:01:41,840"
+			},
+			"offsets": {
+				"from": 98880,
+				"to": 101840
+			},
+			"text": " and written a smart contract, please raise your hand?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,840",
+				"to": "00:01:45,160"
+			},
+			"offsets": {
+				"from": 101840,
+				"to": 105160
+			},
+			"text": " Yes, I'm a digital developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,160",
+				"to": "00:01:47,920"
+			},
+			"offsets": {
+				"from": 105160,
+				"to": 107920
+			},
+			"text": " Okay, who has ever run into the issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,920",
+				"to": "00:01:50,960"
+			},
+			"offsets": {
+				"from": 107920,
+				"to": 110960
+			},
+			"text": " of a contract size limit here, please raise your hand?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,960",
+				"to": "00:01:55,240"
+			},
+			"offsets": {
+				"from": 110960,
+				"to": 115240
+			},
+			"text": " Wow, it's way more problem than I thought."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,240",
+				"to": "00:01:59,240"
+			},
+			"offsets": {
+				"from": 115240,
+				"to": 119240
+			},
+			"text": " So yeah, this picture, it illustrates my personal pain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,240",
+				"to": "00:02:01,880"
+			},
+			"offsets": {
+				"from": 119240,
+				"to": 121880
+			},
+			"text": " and while working on finance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,880",
+				"to": "00:02:06,720"
+			},
+			"offsets": {
+				"from": 121880,
+				"to": 126720
+			},
+			"text": " we pretty quickly ran at the issue of a contract size limit"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,720",
+				"to": "00:02:10,440"
+			},
+			"offsets": {
+				"from": 126720,
+				"to": 130440
+			},
+			"text": " and it's not easy issue to address."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,440",
+				"to": "00:02:12,920"
+			},
+			"offsets": {
+				"from": 130440,
+				"to": 132920
+			},
+			"text": " And it causes a lot of pain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,920",
+				"to": "00:02:17,480"
+			},
+			"offsets": {
+				"from": 132920,
+				"to": 137480
+			},
+			"text": " And one fellow developer I know in a 32 space"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,480",
+				"to": "00:02:22,480"
+			},
+			"offsets": {
+				"from": 137480,
+				"to": 142480
+			},
+			"text": " called with limitation, I quote, \"Bain of my existence.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,480",
+				"to": "00:02:25,560"
+			},
+			"offsets": {
+				"from": 142480,
+				"to": 145560
+			},
+			"text": " So this is how big this problem is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,560",
+				"to": "00:02:27,400"
+			},
+			"offsets": {
+				"from": 145560,
+				"to": 147400
+			},
+			"text": " And we are going to tackle it today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,400",
+				"to": "00:02:30,280"
+			},
+			"offsets": {
+				"from": 147400,
+				"to": 150280
+			},
+			"text": " So there is a few solutions for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,280",
+				"to": "00:02:34,800"
+			},
+			"offsets": {
+				"from": 150280,
+				"to": 154800
+			},
+			"text": " Well, you can reduce byte code size using various techniques"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,800",
+				"to": "00:02:38,960"
+			},
+			"offsets": {
+				"from": 154800,
+				"to": 158960
+			},
+			"text": " and essentially it's like alternative sport to guess golfing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,960",
+				"to": "00:02:42,080"
+			},
+			"offsets": {
+				"from": 158960,
+				"to": 162080
+			},
+			"text": " I called it byte code golfing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,080",
+				"to": "00:02:43,920"
+			},
+			"offsets": {
+				"from": 162080,
+				"to": 163920
+			},
+			"text": " I certainly do not recommend it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,920",
+				"to": "00:02:47,160"
+			},
+			"offsets": {
+				"from": 163920,
+				"to": 167160
+			},
+			"text": " because it's like a diminishing return sport"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,160",
+				"to": "00:02:49,920"
+			},
+			"offsets": {
+				"from": 167160,
+				"to": 169920
+			},
+			"text": " with each optimization you have like less"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,920",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 169920,
+				"to": 173000
+			},
+			"text": " and less space left for each new function."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:56,760"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 176760
+			},
+			"text": " And it even made compromise the security of your project."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,760",
+				"to": "00:02:59,720"
+			},
+			"offsets": {
+				"from": 176760,
+				"to": 179720
+			},
+			"text": " So I would be very of using this technique."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,720",
+				"to": "00:03:04,720"
+			},
+			"offsets": {
+				"from": 179720,
+				"to": 184720
+			},
+			"text": " And I suggest to try to design your architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,720",
+				"to": "00:03:09,720"
+			},
+			"offsets": {
+				"from": 184720,
+				"to": 189720
+			},
+			"text": " from day zero in the way it supports your contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,720",
+				"to": "00:03:11,880"
+			},
+			"offsets": {
+				"from": 189720,
+				"to": 191880
+			},
+			"text": " to be unlimited size."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,880",
+				"to": "00:03:14,320"
+			},
+			"offsets": {
+				"from": 191880,
+				"to": 194320
+			},
+			"text": " Other solutions are external libraries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,320",
+				"to": "00:03:16,640"
+			},
+			"offsets": {
+				"from": 194320,
+				"to": 196640
+			},
+			"text": " static pre-compiled router"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,640",
+				"to": "00:03:18,480"
+			},
+			"offsets": {
+				"from": 196640,
+				"to": 198480
+			},
+			"text": " and a dynamic router."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,480",
+				"to": "00:03:21,880"
+			},
+			"offsets": {
+				"from": 198480,
+				"to": 201880
+			},
+			"text": " We will cover them in this workshop"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,880",
+				"to": "00:03:25,120"
+			},
+			"offsets": {
+				"from": 201880,
+				"to": 205120
+			},
+			"text": " and hopefully have some time for questions in discussions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,120",
+				"to": "00:03:29,360"
+			},
+			"offsets": {
+				"from": 205120,
+				"to": 209360
+			},
+			"text": " All right, we're gonna use a simple contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,360",
+				"to": "00:03:31,800"
+			},
+			"offsets": {
+				"from": 209360,
+				"to": 211800
+			},
+			"text": " as a baseline contract for this workshop."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,800",
+				"to": "00:03:33,880"
+			},
+			"offsets": {
+				"from": 211800,
+				"to": 213880
+			},
+			"text": " It's called a counter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,880",
+				"to": "00:03:36,360"
+			},
+			"offsets": {
+				"from": 213880,
+				"to": 216360
+			},
+			"text": " It has a few functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,360",
+				"to": "00:03:41,360"
+			},
+			"offsets": {
+				"from": 216360,
+				"to": 221360
+			},
+			"text": " A set function which sets a int variable"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,360",
+				"to": "00:03:45,360"
+			},
+			"offsets": {
+				"from": 221360,
+				"to": 225360
+			},
+			"text": " to a new value, a get functions which you do this variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,360",
+				"to": "00:03:49,080"
+			},
+			"offsets": {
+				"from": 225360,
+				"to": 229080
+			},
+			"text": " And finally, a const functions which is just a constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,080",
+				"to": "00:03:51,960"
+			},
+			"offsets": {
+				"from": 229080,
+				"to": 231960
+			},
+			"text": " These are good functions for a baseline contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,960",
+				"to": "00:03:56,440"
+			},
+			"offsets": {
+				"from": 231960,
+				"to": 236440
+			},
+			"text": " because they essentially utilize one S load operation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,440",
+				"to": "00:04:01,440"
+			},
+			"offsets": {
+				"from": 236440,
+				"to": 241440
+			},
+			"text": " one S store operation and returning the constant value."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,440",
+				"to": "00:04:06,680"
+			},
+			"offsets": {
+				"from": 241440,
+				"to": 246680
+			},
+			"text": " And these examples are quite well spread"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,680",
+				"to": "00:04:08,520"
+			},
+			"offsets": {
+				"from": 246680,
+				"to": 248520
+			},
+			"text": " in real smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,520",
+				"to": "00:04:14,520"
+			},
+			"offsets": {
+				"from": 248520,
+				"to": 254520
+			},
+			"text": " All right, let's jump into the code here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,360",
+				"to": "00:04:18,440"
+			},
+			"offsets": {
+				"from": 255360,
+				"to": 258440
+			},
+			"text": " We have our counter contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,440",
+				"to": "00:04:20,480"
+			},
+			"offsets": {
+				"from": 258440,
+				"to": 260480
+			},
+			"text": " Again, I'm not gonna spend any time on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,480",
+				"to": "00:04:21,760"
+			},
+			"offsets": {
+				"from": 260480,
+				"to": 261760
+			},
+			"text": " It's pretty basic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,760",
+				"to": "00:04:26,160"
+			},
+			"offsets": {
+				"from": 261760,
+				"to": 266160
+			},
+			"text": " What is important about it, it's rather small."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,160",
+				"to": "00:04:28,520"
+			},
+			"offsets": {
+				"from": 266160,
+				"to": 268520
+			},
+			"text": " So if we look at it by code size,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,520",
+				"to": "00:04:31,800"
+			},
+			"offsets": {
+				"from": 268520,
+				"to": 271800
+			},
+			"text": " you can see it's under one QR byte, which is great."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,800",
+				"to": "00:04:33,760"
+			},
+			"offsets": {
+				"from": 271800,
+				"to": 273760
+			},
+			"text": " And we have a lot of space left."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,760",
+				"to": "00:04:38,760"
+			},
+			"offsets": {
+				"from": 273760,
+				"to": 278760
+			},
+			"text": " But let's say a product team says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,760",
+				"to": "00:04:42,600"
+			},
+			"offsets": {
+				"from": 278760,
+				"to": 282600
+			},
+			"text": " oh, actually we need to implement this new code feature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,600",
+				"to": "00:04:44,040"
+			},
+			"offsets": {
+				"from": 282600,
+				"to": 284040
+			},
+			"text": " code, quote, function."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,040",
+				"to": "00:04:46,200"
+			},
+			"offsets": {
+				"from": 284040,
+				"to": 286200
+			},
+			"text": " The code function is a function which returns"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,200",
+				"to": "00:04:50,480"
+			},
+			"offsets": {
+				"from": 286200,
+				"to": 290480
+			},
+			"text": " just like big string, which takes all the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,480",
+				"to": "00:04:53,520"
+			},
+			"offsets": {
+				"from": 290480,
+				"to": 293520
+			},
+			"text": " And then if you look at this big modeler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,520",
+				"to": "00:04:58,520"
+			},
+			"offsets": {
+				"from": 293520,
+				"to": 298520
+			},
+			"text": " it takes almost all the space in the contract with few left."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,520",
+				"to": "00:05:02,640"
+			},
+			"offsets": {
+				"from": 298520,
+				"to": 302640
+			},
+			"text": " And if we try to implement it in very any way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,640",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 302640,
+				"to": 304000
+			},
+			"text": " using solution inheritance."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:06,960"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 306960
+			},
+			"text": " So we just, okay, so we're counter the big modeler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,960",
+				"to": "00:05:08,800"
+			},
+			"offsets": {
+				"from": 306960,
+				"to": 308800
+			},
+			"text": " like done, drop done."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,800",
+				"to": "00:05:10,600"
+			},
+			"offsets": {
+				"from": 308800,
+				"to": 310600
+			},
+			"text": " And then we discover that no,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,600",
+				"to": "00:05:12,880"
+			},
+			"offsets": {
+				"from": 310600,
+				"to": 312880
+			},
+			"text": " we counters over the size of the limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,880",
+				"to": "00:05:15,560"
+			},
+			"offsets": {
+				"from": 312880,
+				"to": 315560
+			},
+			"text": " We can deploy it with nothing can be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,560",
+				"to": "00:05:17,280"
+			},
+			"offsets": {
+				"from": 315560,
+				"to": 317280
+			},
+			"text": " It can be optimized."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,280",
+				"to": "00:05:19,360"
+			},
+			"offsets": {
+				"from": 317280,
+				"to": 319360
+			},
+			"text": " So how we can solve it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,360",
+				"to": "00:05:22,800"
+			},
+			"offsets": {
+				"from": 319360,
+				"to": 322800
+			},
+			"text": " The first solution is external libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,800",
+				"to": "00:05:26,680"
+			},
+			"offsets": {
+				"from": 322800,
+				"to": 326680
+			},
+			"text": " External libraries is a feature of a solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,680",
+				"to": "00:05:31,640"
+			},
+			"offsets": {
+				"from": 326680,
+				"to": 331640
+			},
+			"text": " So how it works is that in your contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,640",
+				"to": "00:05:35,880"
+			},
+			"offsets": {
+				"from": 331640,
+				"to": 335880
+			},
+			"text": " in your methods, you just call a library"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,880",
+				"to": "00:05:39,440"
+			},
+			"offsets": {
+				"from": 335880,
+				"to": 339440
+			},
+			"text": " instead of implementing it in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,440",
+				"to": "00:05:41,200"
+			},
+			"offsets": {
+				"from": 339440,
+				"to": 341200
+			},
+			"text": " In this case, we have a two libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,200",
+				"to": "00:05:43,120"
+			},
+			"offsets": {
+				"from": 341200,
+				"to": 343120
+			},
+			"text": " One is called storage sleep,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,120",
+				"to": "00:05:45,600"
+			},
+			"offsets": {
+				"from": 343120,
+				"to": 345600
+			},
+			"text": " which contains our original counter methods,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,600",
+				"to": "00:05:47,880"
+			},
+			"offsets": {
+				"from": 345600,
+				"to": 347880
+			},
+			"text": " such as set get const."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,880",
+				"to": "00:05:50,040"
+			},
+			"offsets": {
+				"from": 347880,
+				"to": 350040
+			},
+			"text": " And finally, we have a quote leap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,040",
+				"to": "00:05:52,520"
+			},
+			"offsets": {
+				"from": 350040,
+				"to": 352520
+			},
+			"text": " which contains the only quote method,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,520",
+				"to": "00:05:55,200"
+			},
+			"offsets": {
+				"from": 352520,
+				"to": 355200
+			},
+			"text": " which contains this big string."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,200",
+				"to": "00:05:58,280"
+			},
+			"offsets": {
+				"from": 355200,
+				"to": 358280
+			},
+			"text": " And if you look at the implementation details,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,280",
+				"to": "00:06:01,280"
+			},
+			"offsets": {
+				"from": 358280,
+				"to": 361280
+			},
+			"text": " the catch here is that you need to pass this parameter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,280",
+				"to": "00:06:06,280"
+			},
+			"offsets": {
+				"from": 361280,
+				"to": 366280
+			},
+			"text": " which is canonically called self and has a storage type."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,640",
+				"to": "00:06:09,680"
+			},
+			"offsets": {
+				"from": 366640,
+				"to": 369680
+			},
+			"text": " And this like a special syntax in solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,680",
+				"to": "00:06:13,280"
+			},
+			"offsets": {
+				"from": 369680,
+				"to": 373280
+			},
+			"text": " allows you to modify storage in external contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,280",
+				"to": "00:06:16,120"
+			},
+			"offsets": {
+				"from": 373280,
+				"to": 376120
+			},
+			"text": " And essentially external libraries is solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,120",
+				"to": "00:06:20,360"
+			},
+			"offsets": {
+				"from": 376120,
+				"to": 380360
+			},
+			"text": " it's just abstraction layer over delegate call."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,360",
+				"to": "00:06:25,200"
+			},
+			"offsets": {
+				"from": 380360,
+				"to": 385200
+			},
+			"text": " And that's basically it is not much to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,200",
+				"to": "00:06:28,440"
+			},
+			"offsets": {
+				"from": 385200,
+				"to": 388440
+			},
+			"text": " And if we go back to our presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,440",
+				"to": "00:06:34,480"
+			},
+			"offsets": {
+				"from": 388440,
+				"to": 394480
+			},
+			"text": " we can quickly sum up all the apps and downs with approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,840",
+				"to": "00:06:36,720"
+			},
+			"offsets": {
+				"from": 394840,
+				"to": 396720
+			},
+			"text": " So the good part about it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,720",
+				"to": "00:06:40,240"
+			},
+			"offsets": {
+				"from": 396720,
+				"to": 400240
+			},
+			"text": " it comes with some security guarantees by solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,240",
+				"to": "00:06:44,400"
+			},
+			"offsets": {
+				"from": 400240,
+				"to": 404400
+			},
+			"text": " The main important one is library can't call self-destruct."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,400",
+				"to": "00:06:47,840"
+			},
+			"offsets": {
+				"from": 404400,
+				"to": 407840
+			},
+			"text": " So library can't destroy your smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,840",
+				"to": "00:06:49,120"
+			},
+			"offsets": {
+				"from": 407840,
+				"to": 409120
+			},
+			"text": " which is important,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,120",
+				"to": "00:06:52,360"
+			},
+			"offsets": {
+				"from": 409120,
+				"to": 412360
+			},
+			"text": " because it's not the case if you use delegate code directly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,360",
+				"to": "00:06:53,800"
+			},
+			"offsets": {
+				"from": 412360,
+				"to": 413800
+			},
+			"text": " essentially proxies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,800",
+				"to": "00:06:56,560"
+			},
+			"offsets": {
+				"from": 413800,
+				"to": 416560
+			},
+			"text": " where if a proxy contract calls self-destruct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,560",
+				"to": "00:06:58,440"
+			},
+			"offsets": {
+				"from": 416560,
+				"to": 418440
+			},
+			"text": " your contract is done."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,440",
+				"to": "00:07:01,600"
+			},
+			"offsets": {
+				"from": 418440,
+				"to": 421600
+			},
+			"text": " It's somewhat easy to add one more leap."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,600",
+				"to": "00:07:04,520"
+			},
+			"offsets": {
+				"from": 421600,
+				"to": 424520
+			},
+			"text": " You can always reduce one more leap."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,520",
+				"to": "00:07:07,280"
+			},
+			"offsets": {
+				"from": 424520,
+				"to": 427280
+			},
+			"text": " And it's got sufficient to agree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,280",
+				"to": "00:07:09,320"
+			},
+			"offsets": {
+				"from": 427280,
+				"to": 429320
+			},
+			"text": " but a bit later on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,320",
+				"to": "00:07:12,960"
+			},
+			"offsets": {
+				"from": 429320,
+				"to": 432960
+			},
+			"text": " And the main downsides of this is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,960",
+				"to": "00:07:15,760"
+			},
+			"offsets": {
+				"from": 432960,
+				"to": 435760
+			},
+			"text": " it's not truly infinite because to define,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,760",
+				"to": "00:07:17,080"
+			},
+			"offsets": {
+				"from": 435760,
+				"to": 437080
+			},
+			"text": " to add one more function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,080",
+				"to": "00:07:19,200"
+			},
+			"offsets": {
+				"from": 437080,
+				"to": 439200
+			},
+			"text": " you need like external wrapper function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,200",
+				"to": "00:07:21,640"
+			},
+			"offsets": {
+				"from": 439200,
+				"to": 441640
+			},
+			"text": " which stack up quite quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,640",
+				"to": "00:07:24,720"
+			},
+			"offsets": {
+				"from": 441640,
+				"to": 444720
+			},
+			"text": " And eventually you run out of space"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,720",
+				"to": "00:07:26,720"
+			},
+			"offsets": {
+				"from": 444720,
+				"to": 446720
+			},
+			"text": " in your surface contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,720",
+				"to": "00:07:29,840"
+			},
+			"offsets": {
+				"from": 446720,
+				"to": 449840
+			},
+			"text": " and it doesn't matter how many leaps you can write more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,840",
+				"to": "00:07:31,960"
+			},
+			"offsets": {
+				"from": 449840,
+				"to": 451960
+			},
+			"text": " which is normal space."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,960",
+				"to": "00:07:35,120"
+			},
+			"offsets": {
+				"from": 451960,
+				"to": 455120
+			},
+			"text": " And the final downside, maybe for some projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,120",
+				"to": "00:07:37,760"
+			},
+			"offsets": {
+				"from": 455120,
+				"to": 457760
+			},
+			"text": " external libraries can be used,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,760",
+				"to": "00:07:39,480"
+			},
+			"offsets": {
+				"from": 457760,
+				"to": 459480
+			},
+			"text": " can support upgradeable contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,480",
+				"to": "00:07:42,240"
+			},
+			"offsets": {
+				"from": 459480,
+				"to": 462240
+			},
+			"text": " So once you deploy your external libraries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,240",
+				"to": "00:07:44,720"
+			},
+			"offsets": {
+				"from": 462240,
+				"to": 464720
+			},
+			"text": " it's set in stone and you can't change it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,720",
+				"to": "00:07:50,600"
+			},
+			"offsets": {
+				"from": 464720,
+				"to": 470600
+			},
+			"text": " Okay, the next approach is a static pre-compiled router."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,600",
+				"to": "00:07:55,680"
+			},
+			"offsets": {
+				"from": 470600,
+				"to": 475680
+			},
+			"text": " This work was pioneered by Alejandro Santander"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,680",
+				"to": "00:07:57,440"
+			},
+			"offsets": {
+				"from": 475680,
+				"to": 477440
+			},
+			"text": " from Synthetics."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,440",
+				"to": "00:08:00,320"
+			},
+			"offsets": {
+				"from": 477440,
+				"to": 480320
+			},
+			"text": " He also previously worked at Open Zeppelin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,320",
+				"to": "00:08:03,760"
+			},
+			"offsets": {
+				"from": 480320,
+				"to": 483760
+			},
+			"text": " and he's known as a Fernaut and Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,760",
+				"to": "00:08:05,040"
+			},
+			"offsets": {
+				"from": 483760,
+				"to": 485040
+			},
+			"text": " And if you look at,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,040",
+				"to": "00:08:07,160"
+			},
+			"offsets": {
+				"from": 485040,
+				"to": 487160
+			},
+			"text": " if you want to take a look at production ready,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,160",
+				"to": "00:08:08,280"
+			},
+			"offsets": {
+				"from": 487160,
+				"to": 488280
+			},
+			"text": " like stable code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,280",
+				"to": "00:08:11,720"
+			},
+			"offsets": {
+				"from": 488280,
+				"to": 491720
+			},
+			"text": " I suggest you check out Harffhat Rolter package"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,720",
+				"to": "00:08:14,040"
+			},
+			"offsets": {
+				"from": 491720,
+				"to": 494040
+			},
+			"text": " at the Synthetics repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,040",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 494040,
+				"to": 499000
+			},
+			"text": " And what they are gonna take a look at a simplified example."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 504000
+			},
+			"text": " So the idea for the static router is pretty simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:29,440"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 509440
+			},
+			"text": " It's a smart contract which has no external functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,440",
+				"to": "00:08:32,520"
+			},
+			"offsets": {
+				"from": 509440,
+				"to": 512520
+			},
+			"text": " and it only has a fallback and receive functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,520",
+				"to": "00:08:34,360"
+			},
+			"offsets": {
+				"from": 512520,
+				"to": 514360
+			},
+			"text": " And what it does,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,360",
+				"to": "00:08:38,120"
+			},
+			"offsets": {
+				"from": 514360,
+				"to": 518120
+			},
+			"text": " it calls a forward function inside both of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,120",
+				"to": "00:08:41,080"
+			},
+			"offsets": {
+				"from": 518120,
+				"to": 521080
+			},
+			"text": " And the forward function consists of two parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,080",
+				"to": "00:08:46,800"
+			},
+			"offsets": {
+				"from": 521080,
+				"to": 526800
+			},
+			"text": " The lookup part for the implementation address"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,800",
+				"to": "00:08:49,360"
+			},
+			"offsets": {
+				"from": 526800,
+				"to": 529360
+			},
+			"text": " and the assembly part for the legit code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,360",
+				"to": "00:08:50,760"
+			},
+			"offsets": {
+				"from": 529360,
+				"to": 530760
+			},
+			"text": " I'm not gonna spend time on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,760",
+				"to": "00:08:53,600"
+			},
+			"offsets": {
+				"from": 530760,
+				"to": 533600
+			},
+			"text": " I'm just gonna say this is a canonical implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,600",
+				"to": "00:08:56,120"
+			},
+			"offsets": {
+				"from": 533600,
+				"to": 536120
+			},
+			"text": " of a proxy, the legit code in assembly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,120",
+				"to": "00:08:58,280"
+			},
+			"offsets": {
+				"from": 536120,
+				"to": 538280
+			},
+			"text": " which is used by all the proxies."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,280",
+				"to": "00:09:01,200"
+			},
+			"offsets": {
+				"from": 538280,
+				"to": 541200
+			},
+			"text": " And what it does, it basically sends your function code"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,200",
+				"to": "00:09:03,800"
+			},
+			"offsets": {
+				"from": 541200,
+				"to": 543800
+			},
+			"text": " to whatever the implementation contract is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,800",
+				"to": "00:09:06,680"
+			},
+			"offsets": {
+				"from": 543800,
+				"to": 546680
+			},
+			"text": " and then returns its results."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,680",
+				"to": "00:09:08,960"
+			},
+			"offsets": {
+				"from": 546680,
+				"to": 548960
+			},
+			"text": " And the interesting part is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,960",
+				"to": "00:09:11,240"
+			},
+			"offsets": {
+				"from": 548960,
+				"to": 551240
+			},
+			"text": " So in Solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,240",
+				"to": "00:09:13,800"
+			},
+			"offsets": {
+				"from": 551240,
+				"to": 553800
+			},
+			"text": " each function has a signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,800",
+				"to": "00:09:14,960"
+			},
+			"offsets": {
+				"from": 553800,
+				"to": 554960
+			},
+			"text": " And as you can see here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,960",
+				"to": "00:09:19,200"
+			},
+			"offsets": {
+				"from": 554960,
+				"to": 559200
+			},
+			"text": " we have a switch for a signature method."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,200",
+				"to": "00:09:22,880"
+			},
+			"offsets": {
+				"from": 559200,
+				"to": 562880
+			},
+			"text": " And based on the signature called function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,880",
+				"to": "00:09:25,440"
+			},
+			"offsets": {
+				"from": 562880,
+				"to": 565440
+			},
+			"text": " we pick up an implementation address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,440",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 565440,
+				"to": 568000
+			},
+			"text": " which is later used for the legit code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 569000
+			},
+			"text": " And as you can see here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:32,440"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 572440
+			},
+			"text": " we have a four functions registered for a counter modeler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,440",
+				"to": "00:09:34,480"
+			},
+			"offsets": {
+				"from": 572440,
+				"to": 574480
+			},
+			"text": " which is a get set const."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,480",
+				"to": "00:09:38,800"
+			},
+			"offsets": {
+				"from": 574480,
+				"to": 578800
+			},
+			"text": " And one function registered for a quote modeler"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,800",
+				"to": "00:09:40,320"
+			},
+			"offsets": {
+				"from": 578800,
+				"to": 580320
+			},
+			"text": " because it's like so big."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,320",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 580320,
+				"to": 584000
+			},
+			"text": " And based on function signature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:48,200"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 588200
+			},
+			"text": " we do pick up a write implementation address"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,200",
+				"to": "00:09:50,400"
+			},
+			"offsets": {
+				"from": 588200,
+				"to": 590400
+			},
+			"text": " and then use it for a legit code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,400",
+				"to": "00:09:55,080"
+			},
+			"offsets": {
+				"from": 590400,
+				"to": 595080
+			},
+			"text": " And again, if we go to our contract sizes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,080",
+				"to": "00:09:55,920"
+			},
+			"offsets": {
+				"from": 595080,
+				"to": 595920
+			},
+			"text": " why it works?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,920",
+				"to": "00:09:57,600"
+			},
+			"offsets": {
+				"from": 595920,
+				"to": 597600
+			},
+			"text": " Because these are three separate contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,600",
+				"to": "00:10:00,680"
+			},
+			"offsets": {
+				"from": 597600,
+				"to": 600680
+			},
+			"text": " We have a big modeler, which is within the limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,680",
+				"to": "00:10:05,320"
+			},
+			"offsets": {
+				"from": 600680,
+				"to": 605320
+			},
+			"text": " Then we have counter modeler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,320",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 605320,
+				"to": 607000
+			},
+			"text": " which is also within the limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:11,160"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 611160
+			},
+			"text": " And finally, static router itself is pretty small"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,160",
+				"to": "00:10:14,920"
+			},
+			"offsets": {
+				"from": 611160,
+				"to": 614920
+			},
+			"text": " because it just with one function."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,920",
+				"to": "00:10:17,320"
+			},
+			"offsets": {
+				"from": 614920,
+				"to": 617320
+			},
+			"text": " Though the more functions you have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,320",
+				"to": "00:10:19,640"
+			},
+			"offsets": {
+				"from": 617320,
+				"to": 619640
+			},
+			"text": " the more it's by its size grows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,640",
+				"to": "00:10:24,120"
+			},
+			"offsets": {
+				"from": 619640,
+				"to": 624120
+			},
+			"text": " because you have to add each function here as a new line."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,120",
+				"to": "00:10:26,840"
+			},
+			"offsets": {
+				"from": 624120,
+				"to": 626840
+			},
+			"text": " Though it grows way less"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,840",
+				"to": "00:10:29,720"
+			},
+			"offsets": {
+				"from": 626840,
+				"to": 629720
+			},
+			"text": " than external libraries, example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,720",
+				"to": "00:10:34,320"
+			},
+			"offsets": {
+				"from": 629720,
+				"to": 634320
+			},
+			"text": " And if we go back to slides,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,320",
+				"to": "00:10:37,520"
+			},
+			"offsets": {
+				"from": 634320,
+				"to": 637520
+			},
+			"text": " we can see what are the benefits of using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,520",
+				"to": "00:10:39,680"
+			},
+			"offsets": {
+				"from": 637520,
+				"to": 639680
+			},
+			"text": " It's extremely guess efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,680",
+				"to": "00:10:40,520"
+			},
+			"offsets": {
+				"from": 639680,
+				"to": 640520
+			},
+			"text": " Why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,520",
+				"to": "00:10:43,440"
+			},
+			"offsets": {
+				"from": 640520,
+				"to": 643440
+			},
+			"text": " Because it's all pre-compiled in byte code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,440",
+				"to": "00:10:46,680"
+			},
+			"offsets": {
+				"from": 643440,
+				"to": 646680
+			},
+			"text": " so you don't need to waste any expensive operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,680",
+				"to": "00:10:49,240"
+			},
+			"offsets": {
+				"from": 646680,
+				"to": 649240
+			},
+			"text": " as the S load on the router itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,240",
+				"to": "00:10:51,520"
+			},
+			"offsets": {
+				"from": 649240,
+				"to": 651520
+			},
+			"text": " Your function code goes to the router"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,520",
+				"to": "00:10:53,560"
+			},
+			"offsets": {
+				"from": 651520,
+				"to": 653560
+			},
+			"text": " and then immediately calls the legit code."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,560",
+				"to": "00:10:56,520"
+			},
+			"offsets": {
+				"from": 653560,
+				"to": 656520
+			},
+			"text": " So your most guess overhead comes from the legit code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,520",
+				"to": "00:10:59,640"
+			},
+			"offsets": {
+				"from": 656520,
+				"to": 659640
+			},
+			"text": " which is about 2,600 guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,640",
+				"to": "00:11:00,720"
+			},
+			"offsets": {
+				"from": 659640,
+				"to": 660720
+			},
+			"text": " It's almost infinite."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,720",
+				"to": "00:11:02,800"
+			},
+			"offsets": {
+				"from": 660720,
+				"to": 662800
+			},
+			"text": " It will take really a lot of functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,800",
+				"to": "00:11:05,360"
+			},
+			"offsets": {
+				"from": 662800,
+				"to": 665360
+			},
+			"text": " before you run out of space in this router"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,360",
+				"to": "00:11:09,160"
+			},
+			"offsets": {
+				"from": 665360,
+				"to": 669160
+			},
+			"text": " in terms of adding these constant signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,160",
+				"to": "00:11:10,560"
+			},
+			"offsets": {
+				"from": 669160,
+				"to": 670560
+			},
+			"text": " and contract sizes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,560",
+				"to": "00:11:13,040"
+			},
+			"offsets": {
+				"from": 670560,
+				"to": 673040
+			},
+			"text": " It doesn't require external functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,040",
+				"to": "00:11:16,040"
+			},
+			"offsets": {
+				"from": 673040,
+				"to": 676040
+			},
+			"text": " Well, the downsides are pretty expected"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,040",
+				"to": "00:11:17,840"
+			},
+			"offsets": {
+				"from": 676040,
+				"to": 677840
+			},
+			"text": " because it's essentially a proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,840",
+				"to": "00:11:19,520"
+			},
+			"offsets": {
+				"from": 677840,
+				"to": 679520
+			},
+			"text": " You can't use a constructors."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,520",
+				"to": "00:11:22,200"
+			},
+			"offsets": {
+				"from": 679520,
+				"to": 682200
+			},
+			"text": " You have to use initialize methods."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,200",
+				"to": "00:11:25,680"
+			},
+			"offsets": {
+				"from": 682200,
+				"to": 685680
+			},
+			"text": " And cross modular calls can be tricky"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,680",
+				"to": "00:11:28,880"
+			},
+			"offsets": {
+				"from": 685680,
+				"to": 688880
+			},
+			"text": " and you have to use explicit storage slots"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,880",
+				"to": "00:11:32,480"
+			},
+			"offsets": {
+				"from": 688880,
+				"to": 692480
+			},
+			"text": " so you don't, your different model is going to write"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,480",
+				"to": "00:11:33,840"
+			},
+			"offsets": {
+				"from": 692480,
+				"to": 693840
+			},
+			"text": " the same storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,840",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 693840,
+				"to": 696000
+			},
+			"text": " And then finally, develop and maintain"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:39,880"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 699880
+			},
+			"text": " so overhead can be tricky because you need to pre-compute"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,880",
+				"to": "00:11:42,480"
+			},
+			"offsets": {
+				"from": 699880,
+				"to": 702480
+			},
+			"text": " all these signatures and addresses upfront"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,480",
+				"to": "00:11:44,400"
+			},
+			"offsets": {
+				"from": 702480,
+				"to": 704400
+			},
+			"text": " and you don't want to do it by hand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,400",
+				"to": "00:11:46,440"
+			},
+			"offsets": {
+				"from": 704400,
+				"to": 706440
+			},
+			"text": " which is, I recommend check out again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,440",
+				"to": "00:11:48,840"
+			},
+			"offsets": {
+				"from": 706440,
+				"to": 708840
+			},
+			"text": " how the router they built a plugin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,840",
+				"to": "00:11:50,480"
+			},
+			"offsets": {
+				"from": 708840,
+				"to": 710480
+			},
+			"text": " which does that for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,480",
+				"to": "00:11:52,680"
+			},
+			"offsets": {
+				"from": 710480,
+				"to": 712680
+			},
+			"text": " Well, this second approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,680",
+				"to": "00:11:55,080"
+			},
+			"offsets": {
+				"from": 712680,
+				"to": 715080
+			},
+			"text": " how you can achieve infinite size"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,080",
+				"to": "00:11:57,040"
+			},
+			"offsets": {
+				"from": 715080,
+				"to": 717040
+			},
+			"text": " and compare it to libraries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,040",
+				"to": "00:11:58,760"
+			},
+			"offsets": {
+				"from": 717040,
+				"to": 718760
+			},
+			"text": " it's like better in the way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,760",
+				"to": "00:12:02,440"
+			},
+			"offsets": {
+				"from": 718760,
+				"to": 722440
+			},
+			"text": " which gives you like more control using like assembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,440",
+				"to": "00:12:05,760"
+			},
+			"offsets": {
+				"from": 722440,
+				"to": 725760
+			},
+			"text": " and low level language features."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,760",
+				"to": "00:12:09,160"
+			},
+			"offsets": {
+				"from": 725760,
+				"to": 729160
+			},
+			"text": " The next idea is iteration on a static router."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,160",
+				"to": "00:12:10,960"
+			},
+			"offsets": {
+				"from": 729160,
+				"to": 730960
+			},
+			"text": " It's not necessarily better."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,960",
+				"to": "00:12:12,360"
+			},
+			"offsets": {
+				"from": 730960,
+				"to": 732360
+			},
+			"text": " It is a different approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,360",
+				"to": "00:12:14,160"
+			},
+			"offsets": {
+				"from": 732360,
+				"to": 734160
+			},
+			"text": " It depends on your project."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,160",
+				"to": "00:12:15,840"
+			},
+			"offsets": {
+				"from": 734160,
+				"to": 735840
+			},
+			"text": " I call it dynamic router."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,840",
+				"to": "00:12:20,200"
+			},
+			"offsets": {
+				"from": 735840,
+				"to": 740200
+			},
+			"text": " If you're interested in product level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,200",
+				"to": "00:12:23,080"
+			},
+			"offsets": {
+				"from": 740200,
+				"to": 743080
+			},
+			"text": " better tested implementation of this idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,080",
+				"to": "00:12:28,080"
+			},
+			"offsets": {
+				"from": 743080,
+				"to": 748080
+			},
+			"text": " I highly recommend you to check out EAP2535 by Nick Mudge."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,080",
+				"to": "00:12:35,320"
+			},
+			"offsets": {
+				"from": 748080,
+				"to": 755320
+			},
+			"text": " VCP covers far more things than just unlimited contract size,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,320",
+				"to": "00:12:39,280"
+			},
+			"offsets": {
+				"from": 755320,
+				"to": 759280
+			},
+			"text": " but one thing it certainly does achieve"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,280",
+				"to": "00:12:42,920"
+			},
+			"offsets": {
+				"from": 759280,
+				"to": 762920
+			},
+			"text": " is unlimited contract size through a dynamic router."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,920",
+				"to": "00:12:47,200"
+			},
+			"offsets": {
+				"from": 762920,
+				"to": 767200
+			},
+			"text": " I've written a simplified example of this dynamic router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,200",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 767200,
+				"to": 771000
+			},
+			"text": " so let's get to it so we can see how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,440",
+				"to": "00:12:56,360"
+			},
+			"offsets": {
+				"from": 772440,
+				"to": 776360
+			},
+			"text": " It's quite similar to a static router in the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,360",
+				"to": "00:12:58,440"
+			},
+			"offsets": {
+				"from": 776360,
+				"to": 778440
+			},
+			"text": " It has a fallback receipt functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,440",
+				"to": "00:13:03,440"
+			},
+			"offsets": {
+				"from": 778440,
+				"to": 783440
+			},
+			"text": " which just forward every function call to our forward function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,440",
+				"to": "00:13:08,560"
+			},
+			"offsets": {
+				"from": 783440,
+				"to": 788560
+			},
+			"text": " but the difference comes in this line."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,560",
+				"to": "00:13:11,720"
+			},
+			"offsets": {
+				"from": 788560,
+				"to": 791720
+			},
+			"text": " If in a static router function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,720",
+				"to": "00:13:14,400"
+			},
+			"offsets": {
+				"from": 791720,
+				"to": 794400
+			},
+			"text": " we have a switch case, which just goes or have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,400",
+				"to": "00:13:16,960"
+			},
+			"offsets": {
+				"from": 794400,
+				"to": 796960
+			},
+			"text": " for this sequence, I have this address."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,960",
+				"to": "00:13:18,200"
+			},
+			"offsets": {
+				"from": 796960,
+				"to": 798200
+			},
+			"text": " In the dynamic router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,200",
+				"to": "00:13:21,960"
+			},
+			"offsets": {
+				"from": 798200,
+				"to": 801960
+			},
+			"text": " we are using a smart contract storage mapping,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,960",
+				"to": "00:13:23,160"
+			},
+			"offsets": {
+				"from": 801960,
+				"to": 803160
+			},
+			"text": " which is called Modulus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,160",
+				"to": "00:13:25,440"
+			},
+			"offsets": {
+				"from": 803160,
+				"to": 805440
+			},
+			"text": " and as you can see here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,440",
+				"to": "00:13:31,400"
+			},
+			"offsets": {
+				"from": 805440,
+				"to": 811400
+			},
+			"text": " we pick up an implementation address using a message signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,400",
+				"to": "00:13:36,080"
+			},
+			"offsets": {
+				"from": 811400,
+				"to": 816080
+			},
+			"text": " And then the rest of the relation is functions the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,080",
+				"to": "00:13:40,680"
+			},
+			"offsets": {
+				"from": 816080,
+				"to": 820680
+			},
+			"text": " We just provide this implementation to the legit call,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,680",
+				"to": "00:13:43,200"
+			},
+			"offsets": {
+				"from": 820680,
+				"to": 823200
+			},
+			"text": " and essentially it works in the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,200",
+				"to": "00:13:46,920"
+			},
+			"offsets": {
+				"from": 823200,
+				"to": 826920
+			},
+			"text": " The essential difference between static router and dynamic"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,920",
+				"to": "00:13:48,440"
+			},
+			"offsets": {
+				"from": 826920,
+				"to": 828440
+			},
+			"text": " is the static router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,440",
+				"to": "00:13:50,960"
+			},
+			"offsets": {
+				"from": 828440,
+				"to": 830960
+			},
+			"text": " has all the signatures and all the implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,960",
+				"to": "00:13:53,880"
+			},
+			"offsets": {
+				"from": 830960,
+				"to": 833880
+			},
+			"text": " and races hard-coded in its bytecode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,880",
+				"to": "00:13:58,640"
+			},
+			"offsets": {
+				"from": 833880,
+				"to": 838640
+			},
+			"text": " where the dynamic router use mapping on the storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,640",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 838640,
+				"to": 842000
+			},
+			"text": " of a smart contract to track them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:06,040"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 846040
+			},
+			"text": " and that adds pluses and minuses to its approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,040",
+				"to": "00:14:08,920"
+			},
+			"offsets": {
+				"from": 846040,
+				"to": 848920
+			},
+			"text": " So the pluses is once you deploy your dynamic router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,920",
+				"to": "00:14:12,600"
+			},
+			"offsets": {
+				"from": 848920,
+				"to": 852600
+			},
+			"text": " you can add Modulus, even it's already deployed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,600",
+				"to": "00:14:16,040"
+			},
+			"offsets": {
+				"from": 852600,
+				"to": 856040
+			},
+			"text": " or you can like fix bugs by updating it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,040",
+				"to": "00:14:18,040"
+			},
+			"offsets": {
+				"from": 856040,
+				"to": 858040
+			},
+			"text": " Here I have this function update modulus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,040",
+				"to": "00:14:21,080"
+			},
+			"offsets": {
+				"from": 858040,
+				"to": 861080
+			},
+			"text": " and it's also pretty straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,080",
+				"to": "00:14:23,040"
+			},
+			"offsets": {
+				"from": 861080,
+				"to": 863040
+			},
+			"text": " As you can see, we just iterate"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,040",
+				"to": "00:14:26,480"
+			},
+			"offsets": {
+				"from": 863040,
+				"to": 866480
+			},
+			"text": " and add selectors to implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,480",
+				"to": "00:14:30,440"
+			},
+			"offsets": {
+				"from": 866480,
+				"to": 870440
+			},
+			"text": " The downside of this approach is you have to manage access rights."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,440",
+				"to": "00:14:35,320"
+			},
+			"offsets": {
+				"from": 870440,
+				"to": 875320
+			},
+			"text": " You can't allow anyone to update functions of your router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,320",
+				"to": "00:14:37,200"
+			},
+			"offsets": {
+				"from": 875320,
+				"to": 877200
+			},
+			"text": " that would be disastrous,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,200",
+				"to": "00:14:40,400"
+			},
+			"offsets": {
+				"from": 877200,
+				"to": 880400
+			},
+			"text": " a critical issue in security terms."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,400",
+				"to": "00:14:42,480"
+			},
+			"offsets": {
+				"from": 880400,
+				"to": 882480
+			},
+			"text": " And there are different ways to use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,480",
+				"to": "00:14:45,640"
+			},
+			"offsets": {
+				"from": 882480,
+				"to": 885640
+			},
+			"text": " You can use Open Zeppelin access roles"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,640",
+				"to": "00:14:47,440"
+			},
+			"offsets": {
+				"from": 885640,
+				"to": 887440
+			},
+			"text": " or some like other techniques,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,440",
+				"to": "00:14:50,360"
+			},
+			"offsets": {
+				"from": 887440,
+				"to": 890360
+			},
+			"text": " but that's like out of the scope of this workshop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,360",
+				"to": "00:14:53,160"
+			},
+			"offsets": {
+				"from": 890360,
+				"to": 893160
+			},
+			"text": " but you just have to keep this in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,160",
+				"to": "00:14:57,480"
+			},
+			"offsets": {
+				"from": 893160,
+				"to": 897480
+			},
+			"text": " And if we go back to presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,480",
+				"to": "00:14:59,360"
+			},
+			"offsets": {
+				"from": 897480,
+				"to": 899360
+			},
+			"text": " dynamic router is the first router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,360",
+				"to": "00:15:01,040"
+			},
+			"offsets": {
+				"from": 899360,
+				"to": 901040
+			},
+			"text": " which is truly infinite,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,040",
+				"to": "00:15:05,040"
+			},
+			"offsets": {
+				"from": 901040,
+				"to": 905040
+			},
+			"text": " because all the mappings between function signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,040",
+				"to": "00:15:07,800"
+			},
+			"offsets": {
+				"from": 905040,
+				"to": 907800
+			},
+			"text": " and implementations are inside the storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,800",
+				"to": "00:15:10,360"
+			},
+			"offsets": {
+				"from": 907800,
+				"to": 910360
+			},
+			"text": " which is, as we all know, very big and solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,360",
+				"to": "00:15:15,640"
+			},
+			"offsets": {
+				"from": 910360,
+				"to": 915640
+			},
+			"text": " then you can literally add infinite amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,640",
+				"to": "00:15:17,360"
+			},
+			"offsets": {
+				"from": 915640,
+				"to": 917360
+			},
+			"text": " of functions to this router."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,360",
+				"to": "00:15:20,800"
+			},
+			"offsets": {
+				"from": 917360,
+				"to": 920800
+			},
+			"text": " So it's very good for a complex system"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,800",
+				"to": "00:15:22,880"
+			},
+			"offsets": {
+				"from": 920800,
+				"to": 922880
+			},
+			"text": " which would require upgrades"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,880",
+				"to": "00:15:27,360"
+			},
+			"offsets": {
+				"from": 922880,
+				"to": 927360
+			},
+			"text": " and have like long expected lifetime."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,360",
+				"to": "00:15:29,680"
+			},
+			"offsets": {
+				"from": 927360,
+				"to": 929680
+			},
+			"text": " Then another option, another plus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,680",
+				"to": "00:15:32,480"
+			},
+			"offsets": {
+				"from": 929680,
+				"to": 932480
+			},
+			"text": " I just mentioned it can be updated anytime."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,480",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 932480,
+				"to": 935000
+			},
+			"text": " Well, I mean, it can be a minus if you're getting hacked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:37,680"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 937680
+			},
+			"text": " but generally it's a plus."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,680",
+				"to": "00:15:39,840"
+			},
+			"offsets": {
+				"from": 937680,
+				"to": 939840
+			},
+			"text": " Has no external functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,840",
+				"to": "00:15:43,360"
+			},
+			"offsets": {
+				"from": 939840,
+				"to": 943360
+			},
+			"text": " So the main downside of this is it's like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,360",
+				"to": "00:15:48,360"
+			},
+			"offsets": {
+				"from": 943360,
+				"to": 948360
+			},
+			"text": " gas expensive, risk function is essentially here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,360",
+				"to": "00:15:52,480"
+			},
+			"offsets": {
+				"from": 948360,
+				"to": 952480
+			},
+			"text": " is reading a storage, which is extra S load,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,480",
+				"to": "00:15:55,360"
+			},
+			"offsets": {
+				"from": 952480,
+				"to": 955360
+			},
+			"text": " which is about 2,000 gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,360",
+				"to": "00:16:00,360"
+			},
+			"offsets": {
+				"from": 955360,
+				"to": 960360
+			},
+			"text": " and the set part you have to pay it for every contract call."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,360",
+				"to": "00:16:04,800"
+			},
+			"offsets": {
+				"from": 960360,
+				"to": 964800
+			},
+			"text": " And then another downside is you have to manage access rights,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,800",
+				"to": "00:16:06,840"
+			},
+			"offsets": {
+				"from": 964800,
+				"to": 966840
+			},
+			"text": " who can update this router."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,840",
+				"to": "00:16:09,560"
+			},
+			"offsets": {
+				"from": 966840,
+				"to": 969560
+			},
+			"text": " If you want to build a truly unstoppable contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,560",
+				"to": "00:16:11,880"
+			},
+			"offsets": {
+				"from": 969560,
+				"to": 971880
+			},
+			"text": " maybe you don't want to have any upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,720",
+				"to": "00:16:16,280"
+			},
+			"offsets": {
+				"from": 972720,
+				"to": 976280
+			},
+			"text": " And can be many solutions like governments and multi-sick,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,280",
+				"to": "00:16:20,520"
+			},
+			"offsets": {
+				"from": 976280,
+				"to": 980520
+			},
+			"text": " but you eventually have to figure it out for yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,520",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 980520,
+				"to": 984000
+			},
+			"text": " We saw the three main approaches,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:29,000"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 989000
+			},
+			"text": " which you can use to tackle infinite size contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,000",
+				"to": "00:16:36,280"
+			},
+			"offsets": {
+				"from": 989000,
+				"to": 996280
+			},
+			"text": " And then what's the difference between infinite size contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,280",
+				"to": "00:16:38,800"
+			},
+			"offsets": {
+				"from": 996280,
+				"to": 998800
+			},
+			"text": " and normal conduct is this approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,800",
+				"to": "00:16:41,840"
+			},
+			"offsets": {
+				"from": 998800,
+				"to": 1001840
+			},
+			"text": " It comes down to a gas overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,840",
+				"to": "00:16:44,960"
+			},
+			"offsets": {
+				"from": 1001840,
+				"to": 1004960
+			},
+			"text": " Essentially, here in this table,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,960",
+				"to": "00:16:46,760"
+			},
+			"offsets": {
+				"from": 1004960,
+				"to": 1006760
+			},
+			"text": " we are comparing our base contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,760",
+				"to": "00:16:49,960"
+			},
+			"offsets": {
+				"from": 1006760,
+				"to": 1009960
+			},
+			"text": " with three approaches in terms of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,960",
+				"to": "00:16:54,400"
+			},
+			"offsets": {
+				"from": 1009960,
+				"to": 1014400
+			},
+			"text": " And why I guess is important, like a short story."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,400",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1014400,
+				"to": 1018000
+			},
+			"text": " When was like a bull run and gas prices were high,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:01,760"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1021760
+			},
+			"text": " we were seeing the function calls for the users"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,760",
+				"to": "00:17:05,520"
+			},
+			"offsets": {
+				"from": 1021760,
+				"to": 1025520
+			},
+			"text": " in the price ranges of $100, $200,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,520",
+				"to": "00:17:08,640"
+			},
+			"offsets": {
+				"from": 1025520,
+				"to": 1028640
+			},
+			"text": " and even $300 for some projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,640",
+				"to": "00:17:12,880"
+			},
+			"offsets": {
+				"from": 1028640,
+				"to": 1032880
+			},
+			"text": " And a lot of these guests were coming from using proxies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,880",
+				"to": "00:17:17,160"
+			},
+			"offsets": {
+				"from": 1032880,
+				"to": 1037160
+			},
+			"text": " because proxies has a gas overhead, a dish function call."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,160",
+				"to": "00:17:19,960"
+			},
+			"offsets": {
+				"from": 1037160,
+				"to": 1039960
+			},
+			"text": " And if you really have a complex device system"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,960",
+				"to": "00:17:22,200"
+			},
+			"offsets": {
+				"from": 1039960,
+				"to": 1042200
+			},
+			"text": " where protocols call each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,200",
+				"to": "00:17:25,200"
+			},
+			"offsets": {
+				"from": 1042200,
+				"to": 1045200
+			},
+			"text": " and they all have, they are all proxies"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,200",
+				"to": "00:17:28,800"
+			},
+			"offsets": {
+				"from": 1045200,
+				"to": 1048800
+			},
+			"text": " with amount of overhead stacks pretty heavily,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,800",
+				"to": "00:17:31,360"
+			},
+			"offsets": {
+				"from": 1048800,
+				"to": 1051360
+			},
+			"text": " even within your own protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,360",
+				"to": "00:17:35,680"
+			},
+			"offsets": {
+				"from": 1051360,
+				"to": 1055680
+			},
+			"text": " And it's like important to keep an eye"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,680",
+				"to": "00:17:37,840"
+			},
+			"offsets": {
+				"from": 1055680,
+				"to": 1057840
+			},
+			"text": " on these gas overhead calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,840",
+				"to": "00:17:40,560"
+			},
+			"offsets": {
+				"from": 1057840,
+				"to": 1060560
+			},
+			"text": " So let's dig down a bit in these numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,560",
+				"to": "00:17:45,240"
+			},
+			"offsets": {
+				"from": 1060560,
+				"to": 1065240
+			},
+			"text": " The first base contract are the numbers for our base calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,240",
+				"to": "00:17:48,880"
+			},
+			"offsets": {
+				"from": 1065240,
+				"to": 1068880
+			},
+			"text": " So it's like no delete rate code involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,880",
+				"to": "00:17:51,080"
+			},
+			"offsets": {
+				"from": 1068880,
+				"to": 1071080
+			},
+			"text": " And then if you look at that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,080",
+				"to": "00:17:53,480"
+			},
+			"offsets": {
+				"from": 1071080,
+				"to": 1073480
+			},
+			"text": " the base call for a constant call,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,480",
+				"to": "00:17:54,600"
+			},
+			"offsets": {
+				"from": 1073480,
+				"to": 1074600
+			},
+			"text": " it just returns a number."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,600",
+				"to": "00:17:56,560"
+			},
+			"offsets": {
+				"from": 1074600,
+				"to": 1076560
+			},
+			"text": " It's very small."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,560",
+				"to": "00:17:59,560"
+			},
+			"offsets": {
+				"from": 1076560,
+				"to": 1079560
+			},
+			"text": " And the first number in red is just,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,560",
+				"to": "00:18:01,160"
+			},
+			"offsets": {
+				"from": 1079560,
+				"to": 1081160
+			},
+			"text": " what's the overhead and gas?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,160",
+				"to": "00:18:04,400"
+			},
+			"offsets": {
+				"from": 1081160,
+				"to": 1084400
+			},
+			"text": " And the second number in red is in percentage."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,400",
+				"to": "00:18:08,320"
+			},
+			"offsets": {
+				"from": 1084400,
+				"to": 1088320
+			},
+			"text": " And you can see for like a simple return call"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,320",
+				"to": "00:18:09,920"
+			},
+			"offsets": {
+				"from": 1088320,
+				"to": 1089920
+			},
+			"text": " of a constant value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,920",
+				"to": "00:18:14,920"
+			},
+			"offsets": {
+				"from": 1089920,
+				"to": 1094920
+			},
+			"text": " the overhead is actually around 2,000%, which is insane."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,920",
+				"to": "00:18:18,520"
+			},
+			"offsets": {
+				"from": 1094920,
+				"to": 1098520
+			},
+			"text": " And you may say, oh, it's not practical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,520",
+				"to": "00:18:20,520"
+			},
+			"offsets": {
+				"from": 1098520,
+				"to": 1100520
+			},
+			"text": " you know, to return a constant value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,520",
+				"to": "00:18:22,640"
+			},
+			"offsets": {
+				"from": 1100520,
+				"to": 1102640
+			},
+			"text": " but you will be far from the truth"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,640",
+				"to": "00:18:27,640"
+			},
+			"offsets": {
+				"from": 1102640,
+				"to": 1107640
+			},
+			"text": " because the famous VC20 token has a function called decimals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,640",
+				"to": "00:18:32,120"
+			},
+			"offsets": {
+				"from": 1107640,
+				"to": 1112120
+			},
+			"text": " which returns how many decimals a token has."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,120",
+				"to": "00:18:33,920"
+			},
+			"offsets": {
+				"from": 1112120,
+				"to": 1113920
+			},
+			"text": " And you have to call this function"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,920",
+				"to": "00:18:35,240"
+			},
+			"offsets": {
+				"from": 1113920,
+				"to": 1115240
+			},
+			"text": " if you're a DeFi developer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,240",
+				"to": "00:18:37,960"
+			},
+			"offsets": {
+				"from": 1115240,
+				"to": 1117960
+			},
+			"text": " because in order to handle VC20 token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,960",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1117960,
+				"to": 1122000
+			},
+			"text": " you have to know how many decimals we stock in half."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:46,800"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1126800
+			},
+			"text": " And one of the most common use it when you tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,800",
+				"to": "00:18:49,200"
+			},
+			"offsets": {
+				"from": 1126800,
+				"to": 1129200
+			},
+			"text": " like you see the approximate contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,200",
+				"to": "00:18:51,680"
+			},
+			"offsets": {
+				"from": 1129200,
+				"to": 1131680
+			},
+			"text": " So every time you call decimals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,680",
+				"to": "00:18:55,880"
+			},
+			"offsets": {
+				"from": 1131680,
+				"to": 1135880
+			},
+			"text": " you overpaying roughly 2,000% or probably more."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,880",
+				"to": "00:18:59,360"
+			},
+			"offsets": {
+				"from": 1135880,
+				"to": 1139360
+			},
+			"text": " But anyway, let's take a high level look at this approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,360",
+				"to": "00:19:01,680"
+			},
+			"offsets": {
+				"from": 1139360,
+				"to": 1141680
+			},
+			"text": " So as you can see, indeed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,680",
+				"to": "00:19:05,080"
+			},
+			"offsets": {
+				"from": 1141680,
+				"to": 1145080
+			},
+			"text": " static router is the most gas-sufficient approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,080",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1145080,
+				"to": 1150000
+			},
+			"text": " So if you have to build a gas-efficient infinite contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:13,520"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1153520
+			},
+			"text": " and you know what kind of functions you're gonna have"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,520",
+				"to": "00:19:17,080"
+			},
+			"offsets": {
+				"from": 1153520,
+				"to": 1157080
+			},
+			"text": " and don't want to upgrade, then it's like a great solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,080",
+				"to": "00:19:22,160"
+			},
+			"offsets": {
+				"from": 1157080,
+				"to": 1162160
+			},
+			"text": " And then dynamic router is more expensive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,160",
+				"to": "00:19:24,360"
+			},
+			"offsets": {
+				"from": 1162160,
+				"to": 1164360
+			},
+			"text": " even more expensive than external library."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,360",
+				"to": "00:19:27,840"
+			},
+			"offsets": {
+				"from": 1164360,
+				"to": 1167840
+			},
+			"text": " The reason I wouldn't recommend external library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,840",
+				"to": "00:19:32,840"
+			},
+			"offsets": {
+				"from": 1167840,
+				"to": 1172840
+			},
+			"text": " as you can see, it has unusually high overhead for quote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,840",
+				"to": "00:19:35,120"
+			},
+			"offsets": {
+				"from": 1172840,
+				"to": 1175120
+			},
+			"text": " more than double than it should."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,120",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1175120,
+				"to": 1179000
+			},
+			"text": " And I think it has something to do with how solidity pass"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:41,960"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1181960
+			},
+			"text": " with like big amounts of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,960",
+				"to": "00:19:43,720"
+			},
+			"offsets": {
+				"from": 1181960,
+				"to": 1183720
+			},
+			"text": " But I haven't deep-tibed the byte code yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,720",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1183720,
+				"to": 1186000
+			},
+			"text": " but just be very if using external libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:19:49,120"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1189120
+			},
+			"text": " and you pass or return the big amounts of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,120",
+				"to": "00:19:53,520"
+			},
+			"offsets": {
+				"from": 1189120,
+				"to": 1193520
+			},
+			"text": " then your gas expenses may surprise you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,520",
+				"to": "00:19:57,360"
+			},
+			"offsets": {
+				"from": 1193520,
+				"to": 1197360
+			},
+			"text": " And to take a look at these,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,360",
+				"to": "00:20:02,840"
+			},
+			"offsets": {
+				"from": 1197360,
+				"to": 1202840
+			},
+			"text": " what would be the high level conclusions of this overview"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,840",
+				"to": "00:20:06,960"
+			},
+			"offsets": {
+				"from": 1202840,
+				"to": 1206960
+			},
+			"text": " is that your gas overhead obviously"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,960",
+				"to": "00:20:11,960"
+			},
+			"offsets": {
+				"from": 1206960,
+				"to": 1211960
+			},
+			"text": " is more significant for low functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,960",
+				"to": "00:20:15,120"
+			},
+			"offsets": {
+				"from": 1211960,
+				"to": 1215120
+			},
+			"text": " which are low in gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,120",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1215120,
+				"to": 1219000
+			},
+			"text": " Essentially, if your function has only a single S load,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:21,640"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1221640
+			},
+			"text": " then you would pay a lot of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,640",
+				"to": "00:20:23,480"
+			},
+			"offsets": {
+				"from": 1221640,
+				"to": 1223480
+			},
+			"text": " So what it means in practical terms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,480",
+				"to": "00:20:25,680"
+			},
+			"offsets": {
+				"from": 1223480,
+				"to": 1225680
+			},
+			"text": " which I also encountered,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,680",
+				"to": "00:20:27,800"
+			},
+			"offsets": {
+				"from": 1225680,
+				"to": 1227800
+			},
+			"text": " is that if you need to build a function"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,800",
+				"to": "00:20:30,680"
+			},
+			"offsets": {
+				"from": 1227800,
+				"to": 1230680
+			},
+			"text": " which returns some data around your protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,680",
+				"to": "00:20:34,080"
+			},
+			"offsets": {
+				"from": 1230680,
+				"to": 1234080
+			},
+			"text": " smart contract, you may want to bulk them"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,080",
+				"to": "00:20:35,880"
+			},
+			"offsets": {
+				"from": 1234080,
+				"to": 1235880
+			},
+			"text": " all these data in one function calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,880",
+				"to": "00:20:39,760"
+			},
+			"offsets": {
+				"from": 1235880,
+				"to": 1239760
+			},
+			"text": " So you don't need to call five functions in a row"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,760",
+				"to": "00:20:42,480"
+			},
+			"offsets": {
+				"from": 1239760,
+				"to": 1242480
+			},
+			"text": " because you would pay a gas overhead on each call."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,480",
+				"to": "00:20:47,560"
+			},
+			"offsets": {
+				"from": 1242480,
+				"to": 1247560
+			},
+			"text": " Essentially batching a view functions might be a good idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,560",
+				"to": "00:20:51,960"
+			},
+			"offsets": {
+				"from": 1247560,
+				"to": 1251960
+			},
+			"text": " Then again, the bigger the baseline gas cost"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,960",
+				"to": "00:20:54,240"
+			},
+			"offsets": {
+				"from": 1251960,
+				"to": 1254240
+			},
+			"text": " for your function, the less you care about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,240",
+				"to": "00:20:58,040"
+			},
+			"offsets": {
+				"from": 1254240,
+				"to": 1258040
+			},
+			"text": " So let's say you have a function which is quite expensive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,040",
+				"to": "00:21:02,880"
+			},
+			"offsets": {
+				"from": 1258040,
+				"to": 1262880
+			},
+			"text": " let's say 300K, then suddenly 5K overhead"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,880",
+				"to": "00:21:04,120"
+			},
+			"offsets": {
+				"from": 1262880,
+				"to": 1264120
+			},
+			"text": " doesn't look that bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,120",
+				"to": "00:21:07,840"
+			},
+			"offsets": {
+				"from": 1264120,
+				"to": 1267840
+			},
+			"text": " There is a catch to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,840",
+				"to": "00:21:11,360"
+			},
+			"offsets": {
+				"from": 1267840,
+				"to": 1271360
+			},
+			"text": " In many protocols, not all functions are equal."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,360",
+				"to": "00:21:14,920"
+			},
+			"offsets": {
+				"from": 1271360,
+				"to": 1274920
+			},
+			"text": " Essentially, if you look at like typical world functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,920",
+				"to": "00:21:16,640"
+			},
+			"offsets": {
+				"from": 1274920,
+				"to": 1276640
+			},
+			"text": " such as deposit of withdrawal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,640",
+				"to": "00:21:18,120"
+			},
+			"offsets": {
+				"from": 1276640,
+				"to": 1278120
+			},
+			"text": " which are mostly called by the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,120",
+				"to": "00:21:21,920"
+			},
+			"offsets": {
+				"from": 1278120,
+				"to": 1281920
+			},
+			"text": " So you won't achieve the maximum gas efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,920",
+				"to": "00:21:23,400"
+			},
+			"offsets": {
+				"from": 1281920,
+				"to": 1283400
+			},
+			"text": " on these functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,400",
+				"to": "00:21:26,520"
+			},
+			"offsets": {
+				"from": 1283400,
+				"to": 1286520
+			},
+			"text": " And some like admin functions which are rarely called,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,520",
+				"to": "00:21:30,880"
+			},
+			"offsets": {
+				"from": 1286520,
+				"to": 1290880
+			},
+			"text": " you may want to keep optimizing gas for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,880",
+				"to": "00:21:36,880"
+			},
+			"offsets": {
+				"from": 1290880,
+				"to": 1296880
+			},
+			"text": " And because the gas is so important,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,880",
+				"to": "00:21:40,120"
+			},
+			"offsets": {
+				"from": 1296880,
+				"to": 1300120
+			},
+			"text": " I spend some time thinking and trying to figure out the trick,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,120",
+				"to": "00:21:42,040"
+			},
+			"offsets": {
+				"from": 1300120,
+				"to": 1302040
+			},
+			"text": " how we can improve this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,040",
+				"to": "00:21:43,640"
+			},
+			"offsets": {
+				"from": 1302040,
+				"to": 1303640
+			},
+			"text": " And I came up with a solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,640",
+				"to": "00:21:45,920"
+			},
+			"offsets": {
+				"from": 1303640,
+				"to": 1305920
+			},
+			"text": " which we use successfully in production"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,920",
+				"to": "00:21:48,840"
+			},
+			"offsets": {
+				"from": 1305920,
+				"to": 1308840
+			},
+			"text": " to reduce the gas cost of our contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,840",
+				"to": "00:21:53,840"
+			},
+			"offsets": {
+				"from": 1308840,
+				"to": 1313840
+			},
+			"text": " We never found anyone using it somewhere on the internet"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,840",
+				"to": "00:21:59,360"
+			},
+			"offsets": {
+				"from": 1313840,
+				"to": 1319360
+			},
+			"text": " or on GitHub, which is why I had to coin the term"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,360",
+				"to": "00:22:02,080"
+			},
+			"offsets": {
+				"from": 1319360,
+				"to": 1322080
+			},
+			"text": " for this approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,080",
+				"to": "00:22:04,840"
+			},
+			"offsets": {
+				"from": 1322080,
+				"to": 1324840
+			},
+			"text": " So I'm calling it's like loaded router."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,840",
+				"to": "00:22:08,080"
+			},
+			"offsets": {
+				"from": 1324840,
+				"to": 1328080
+			},
+			"text": " And so the approach is pretty simple"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,080",
+				"to": "00:22:11,240"
+			},
+			"offsets": {
+				"from": 1328080,
+				"to": 1331240
+			},
+			"text": " because like if you go back to a static router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,240",
+				"to": "00:22:13,460"
+			},
+			"offsets": {
+				"from": 1331240,
+				"to": 1333460
+			},
+			"text": " to a static router, in our case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,480",
+				"to": "00:22:16,800"
+			},
+			"offsets": {
+				"from": 1335480,
+				"to": 1336800
+			},
+			"text": " it doesn't take much space."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,800",
+				"to": "00:22:20,200"
+			},
+			"offsets": {
+				"from": 1336800,
+				"to": 1340200
+			},
+			"text": " And even if it grows, we still a lot of space left."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,200",
+				"to": "00:22:23,840"
+			},
+			"offsets": {
+				"from": 1340200,
+				"to": 1343840
+			},
+			"text": " And what you can do essentially is again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,840",
+				"to": "00:22:25,880"
+			},
+			"offsets": {
+				"from": 1343840,
+				"to": 1345880
+			},
+			"text": " using saluting inheritance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,880",
+				"to": "00:22:29,000"
+			},
+			"offsets": {
+				"from": 1345880,
+				"to": 1349000
+			},
+			"text": " you can inherit some functions of your contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,000",
+				"to": "00:22:30,160"
+			},
+			"offsets": {
+				"from": 1349000,
+				"to": 1350160
+			},
+			"text": " to a static router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,160",
+				"to": "00:22:34,960"
+			},
+			"offsets": {
+				"from": 1350160,
+				"to": 1354960
+			},
+			"text": " which allows them to be as gas efficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,960",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1354960,
+				"to": 1356000
+			},
+			"text": " as a contract itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:38,520"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1358520
+			},
+			"text": " because it's essentially a contract itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,520",
+				"to": "00:22:41,560"
+			},
+			"offsets": {
+				"from": 1358520,
+				"to": 1361560
+			},
+			"text": " So in the other ways, every some space"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,560",
+				"to": "00:22:44,800"
+			},
+			"offsets": {
+				"from": 1361560,
+				"to": 1364800
+			},
+			"text": " in terms of byte code size left in your static router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,800",
+				"to": "00:22:47,560"
+			},
+			"offsets": {
+				"from": 1364800,
+				"to": 1367560
+			},
+			"text": " you can put the functions there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,560",
+				"to": "00:22:51,240"
+			},
+			"offsets": {
+				"from": 1367560,
+				"to": 1371240
+			},
+			"text": " which either people use the most in your system"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,240",
+				"to": "00:22:55,880"
+			},
+			"offsets": {
+				"from": 1371240,
+				"to": 1375880
+			},
+			"text": " or the functions which has the highest gas overhead,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,880",
+				"to": "00:22:57,920"
+			},
+			"offsets": {
+				"from": 1375880,
+				"to": 1377920
+			},
+			"text": " like calling decimals."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,920",
+				"to": "00:23:01,400"
+			},
+			"offsets": {
+				"from": 1377920,
+				"to": 1381400
+			},
+			"text": " And this allows you to save quite a bit of gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,400",
+				"to": "00:23:06,400"
+			},
+			"offsets": {
+				"from": 1381400,
+				"to": 1386400
+			},
+			"text": " because to give bad explanation of this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,400",
+				"to": "00:23:12,320"
+			},
+			"offsets": {
+				"from": 1386400,
+				"to": 1392320
+			},
+			"text": " if you combine static router with a counter-modular,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,320",
+				"to": "00:23:15,080"
+			},
+			"offsets": {
+				"from": 1392320,
+				"to": 1395080
+			},
+			"text": " we don't get to this forward function"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,080",
+				"to": "00:23:18,120"
+			},
+			"offsets": {
+				"from": 1395080,
+				"to": 1398120
+			},
+			"text": " because static router now is counter-modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,120",
+				"to": "00:23:23,560"
+			},
+			"offsets": {
+				"from": 1398120,
+				"to": 1403560
+			},
+			"text": " And that results in a quite significant gas savings."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,560",
+				"to": "00:23:26,680"
+			},
+			"offsets": {
+				"from": 1403560,
+				"to": 1406680
+			},
+			"text": " And the same approach can be applied to the NAMIC router."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,680",
+				"to": "00:23:28,800"
+			},
+			"offsets": {
+				"from": 1406680,
+				"to": 1408800
+			},
+			"text": " I'm just gonna show you the code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,800",
+				"to": "00:23:32,440"
+			},
+			"offsets": {
+				"from": 1408800,
+				"to": 1412440
+			},
+			"text": " but it's pretty straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,440",
+				"to": "00:23:34,280"
+			},
+			"offsets": {
+				"from": 1412440,
+				"to": 1414280
+			},
+			"text": " You again can hit counter-moder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,280",
+				"to": "00:23:37,720"
+			},
+			"offsets": {
+				"from": 1414280,
+				"to": 1417720
+			},
+			"text": " but here this is the catch with the NAMIC router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,720",
+				"to": "00:23:39,120"
+			},
+			"offsets": {
+				"from": 1417720,
+				"to": 1419120
+			},
+			"text": " because in the NAMIC router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,120",
+				"to": "00:23:42,840"
+			},
+			"offsets": {
+				"from": 1419120,
+				"to": 1422840
+			},
+			"text": " we can update implementations of a function."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,840",
+				"to": "00:23:47,080"
+			},
+			"offsets": {
+				"from": 1422840,
+				"to": 1427080
+			},
+			"text": " If you place a function like get a set on a router itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,080",
+				"to": "00:23:49,000"
+			},
+			"offsets": {
+				"from": 1427080,
+				"to": 1429000
+			},
+			"text": " you will never be able to update it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,000",
+				"to": "00:23:52,480"
+			},
+			"offsets": {
+				"from": 1429000,
+				"to": 1432480
+			},
+			"text": " So that is why it's a rather risky,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,480",
+				"to": "00:23:55,760"
+			},
+			"offsets": {
+				"from": 1432480,
+				"to": 1435760
+			},
+			"text": " and you should be very mindful of which functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,760",
+				"to": "00:23:57,080"
+			},
+			"offsets": {
+				"from": 1435760,
+				"to": 1437080
+			},
+			"text": " you put in the NAMIC router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,080",
+				"to": "00:23:59,320"
+			},
+			"offsets": {
+				"from": 1437080,
+				"to": 1439320
+			},
+			"text": " because you don't want to be in a situation"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,320",
+				"to": "00:24:02,680"
+			},
+			"offsets": {
+				"from": 1439320,
+				"to": 1442680
+			},
+			"text": " where a critical bug was found in the function"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,680",
+				"to": "00:24:04,080"
+			},
+			"offsets": {
+				"from": 1442680,
+				"to": 1444080
+			},
+			"text": " and you can't update it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,080",
+				"to": "00:24:07,680"
+			},
+			"offsets": {
+				"from": 1444080,
+				"to": 1447680
+			},
+			"text": " and it's just like a terrible situation to be in."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,680",
+				"to": "00:24:11,880"
+			},
+			"offsets": {
+				"from": 1447680,
+				"to": 1451880
+			},
+			"text": " And with this approach, we can crunch some gas numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,880",
+				"to": "00:24:16,680"
+			},
+			"offsets": {
+				"from": 1451880,
+				"to": 1456680
+			},
+			"text": " So now here we're using a router themselves as a baseline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,680",
+				"to": "00:24:21,680"
+			},
+			"offsets": {
+				"from": 1456680,
+				"to": 1461680
+			},
+			"text": " and then they are loaded version essentially as improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,680",
+				"to": "00:24:23,520"
+			},
+			"offsets": {
+				"from": 1461680,
+				"to": 1463520
+			},
+			"text": " And as you would expect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,520",
+				"to": "00:24:25,800"
+			},
+			"offsets": {
+				"from": 1463520,
+				"to": 1465800
+			},
+			"text": " because we move a constant function"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,800",
+				"to": "00:24:29,880"
+			},
+			"offsets": {
+				"from": 1465800,
+				"to": 1469880
+			},
+			"text": " from sitting behind the delegate code back on the router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,880",
+				"to": "00:24:33,360"
+			},
+			"offsets": {
+				"from": 1469880,
+				"to": 1473360
+			},
+			"text": " it results either to 95% improvement"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,360",
+				"to": "00:24:37,360"
+			},
+			"offsets": {
+				"from": 1473360,
+				"to": 1477360
+			},
+			"text": " or 97% improvement for a constant function."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,360",
+				"to": "00:24:41,880"
+			},
+			"offsets": {
+				"from": 1477360,
+				"to": 1481880
+			},
+			"text": " It results around 54 or 68% improvement"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,880",
+				"to": "00:24:45,520"
+			},
+			"offsets": {
+				"from": 1481880,
+				"to": 1485520
+			},
+			"text": " for a get function, which is a single S load."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,520",
+				"to": "00:24:48,120"
+			},
+			"offsets": {
+				"from": 1485520,
+				"to": 1488120
+			},
+			"text": " A single S load function is not that uncommon"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,120",
+				"to": "00:24:51,160"
+			},
+			"offsets": {
+				"from": 1488120,
+				"to": 1491160
+			},
+			"text": " as you might think, because for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,160",
+				"to": "00:24:55,080"
+			},
+			"offsets": {
+				"from": 1491160,
+				"to": 1495080
+			},
+			"text": " you see 20 bytes of function is just a single S load."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,080",
+				"to": "00:24:57,760"
+			},
+			"offsets": {
+				"from": 1495080,
+				"to": 1497760
+			},
+			"text": " And again, this function is called a lot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,760",
+				"to": "00:25:00,840"
+			},
+			"offsets": {
+				"from": 1497760,
+				"to": 1500840
+			},
+			"text": " and I don't really expect it to be changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,840",
+				"to": "00:25:04,960"
+			},
+			"offsets": {
+				"from": 1500840,
+				"to": 1504960
+			},
+			"text": " And then finally, for a single S store operation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,160",
+				"to": "00:25:09,600"
+			},
+			"offsets": {
+				"from": 1506160,
+				"to": 1509600
+			},
+			"text": " the savings amount is about 11 or 18%."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,600",
+				"to": "00:25:14,600"
+			},
+			"offsets": {
+				"from": 1509600,
+				"to": 1514600
+			},
+			"text": " So it's not that much, but still sizable."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,600",
+				"to": "00:25:20,280"
+			},
+			"offsets": {
+				"from": 1514600,
+				"to": 1520280
+			},
+			"text": " And what you, like looking at these numbers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,280",
+				"to": "00:25:25,840"
+			},
+			"offsets": {
+				"from": 1520280,
+				"to": 1525840
+			},
+			"text": " my suggestion would be is to move"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,840",
+				"to": "00:25:29,800"
+			},
+			"offsets": {
+				"from": 1525840,
+				"to": 1529800
+			},
+			"text": " log as function on the router if they use a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,800",
+				"to": "00:25:31,480"
+			},
+			"offsets": {
+				"from": 1529800,
+				"to": 1531480
+			},
+			"text": " So this is the most best saving,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,480",
+				"to": "00:25:35,680"
+			},
+			"offsets": {
+				"from": 1531480,
+				"to": 1535680
+			},
+			"text": " or just the functions you expect user fate"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,680",
+				"to": "00:25:36,560"
+			},
+			"offsets": {
+				"from": 1535680,
+				"to": 1536560
+			},
+			"text": " to be user facing."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,560",
+				"to": "00:25:39,880"
+			},
+			"offsets": {
+				"from": 1536560,
+				"to": 1539880
+			},
+			"text": " So the functions people will use the most,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,880",
+				"to": "00:25:41,800"
+			},
+			"offsets": {
+				"from": 1539880,
+				"to": 1541800
+			},
+			"text": " again, as a transfer function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,800",
+				"to": "00:25:44,760"
+			},
+			"offsets": {
+				"from": 1541800,
+				"to": 1544760
+			},
+			"text": " a deposit of withdrawal or claim revert."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,760",
+				"to": "00:25:47,080"
+			},
+			"offsets": {
+				"from": 1544760,
+				"to": 1547080
+			},
+			"text": " And then finally, the pure functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,080",
+				"to": "00:25:51,040"
+			},
+			"offsets": {
+				"from": 1547080,
+				"to": 1551040
+			},
+			"text": " which is just a constant, have the biggest impact on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,040",
+				"to": "00:25:54,720"
+			},
+			"offsets": {
+				"from": 1551040,
+				"to": 1554720
+			},
+			"text": " And just to give you some practical meaning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,720",
+				"to": "00:25:59,720"
+			},
+			"offsets": {
+				"from": 1554720,
+				"to": 1559720
+			},
+			"text": " let's take a look at the two most common contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,720",
+				"to": "00:26:03,160"
+			},
+			"offsets": {
+				"from": 1559720,
+				"to": 1563160
+			},
+			"text": " Essentially, you see 20 talking and you see seven to one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,160",
+				"to": "00:26:04,320"
+			},
+			"offsets": {
+				"from": 1563160,
+				"to": 1564320
+			},
+			"text": " which is an NFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,320",
+				"to": "00:26:09,400"
+			},
+			"offsets": {
+				"from": 1565320,
+				"to": 1569400
+			},
+			"text": " We can see surprisingly many functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,400",
+				"to": "00:26:12,440"
+			},
+			"offsets": {
+				"from": 1569400,
+				"to": 1572440
+			},
+			"text": " of pre-c20 function, 20 talking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,440",
+				"to": "00:26:17,040"
+			},
+			"offsets": {
+				"from": 1572440,
+				"to": 1577040
+			},
+			"text": " such as name and symbol in decimals."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,040",
+				"to": "00:26:20,240"
+			},
+			"offsets": {
+				"from": 1577040,
+				"to": 1580240
+			},
+			"text": " In most implementations, they really return a constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,240",
+				"to": "00:26:22,800"
+			},
+			"offsets": {
+				"from": 1580240,
+				"to": 1582800
+			},
+			"text": " Just like name is like my great token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,800",
+				"to": "00:26:25,040"
+			},
+			"offsets": {
+				"from": 1582800,
+				"to": 1585040
+			},
+			"text": " symbol with like three letters and decimals"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,040",
+				"to": "00:26:27,440"
+			},
+			"offsets": {
+				"from": 1585040,
+				"to": 1587440
+			},
+			"text": " like 18 number, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,440",
+				"to": "00:26:30,400"
+			},
+			"offsets": {
+				"from": 1587440,
+				"to": 1590400
+			},
+			"text": " And in most projects really with functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,400",
+				"to": "00:26:31,760"
+			},
+			"offsets": {
+				"from": 1590400,
+				"to": 1591760
+			},
+			"text": " we will never change."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,760",
+				"to": "00:26:36,600"
+			},
+			"offsets": {
+				"from": 1591760,
+				"to": 1596600
+			},
+			"text": " And literally, if you write in your C20 token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,600",
+				"to": "00:26:37,880"
+			},
+			"offsets": {
+				"from": 1596600,
+				"to": 1597880
+			},
+			"text": " which has decimals functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,880",
+				"to": "00:26:40,280"
+			},
+			"offsets": {
+				"from": 1597880,
+				"to": 1600280
+			},
+			"text": " which will return different values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,280",
+				"to": "00:26:42,160"
+			},
+			"offsets": {
+				"from": 1600280,
+				"to": 1602160
+			},
+			"text": " I might have a problem with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,160",
+				"to": "00:26:43,240"
+			},
+			"offsets": {
+				"from": 1602160,
+				"to": 1603240
+			},
+			"text": " Please let me know."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,240",
+				"to": "00:26:48,800"
+			},
+			"offsets": {
+				"from": 1603240,
+				"to": 1608800
+			},
+			"text": " And even going back, even going later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,800",
+				"to": "00:26:51,200"
+			},
+			"offsets": {
+				"from": 1608800,
+				"to": 1611200
+			},
+			"text": " so total supply, many of C20 tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,200",
+				"to": "00:26:52,800"
+			},
+			"offsets": {
+				"from": 1611200,
+				"to": 1612800
+			},
+			"text": " has a fixed total supply, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,800",
+				"to": "00:26:54,880"
+			},
+			"offsets": {
+				"from": 1612800,
+				"to": 1614880
+			},
+			"text": " So there is again, no reason for this function"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,880",
+				"to": "00:26:59,600"
+			},
+			"offsets": {
+				"from": 1614880,
+				"to": 1619600
+			},
+			"text": " to be upgradable or to be sitting behind the deligee call."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,800",
+				"to": "00:27:04,680"
+			},
+			"offsets": {
+				"from": 1620800,
+				"to": 1624680
+			},
+			"text": " And then things get streaky, so I can see how transfer allowance"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,680",
+				"to": "00:27:08,880"
+			},
+			"offsets": {
+				"from": 1624680,
+				"to": 1628880
+			},
+			"text": " or proof can be changed in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:08,880",
+				"to": "00:27:13,240"
+			},
+			"offsets": {
+				"from": 1628880,
+				"to": 1633240
+			},
+			"text": " maybe standards changed, but it's like up to every developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,240",
+				"to": "00:27:15,640"
+			},
+			"offsets": {
+				"from": 1633240,
+				"to": 1635640
+			},
+			"text": " You have to make call on yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,640",
+				"to": "00:27:19,960"
+			},
+			"offsets": {
+				"from": 1635640,
+				"to": 1639960
+			},
+			"text": " Whenever your project view,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,960",
+				"to": "00:27:22,280"
+			},
+			"offsets": {
+				"from": 1639960,
+				"to": 1642280
+			},
+			"text": " encounter these issues in the future or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,280",
+				"to": "00:27:28,680"
+			},
+			"offsets": {
+				"from": 1642280,
+				"to": 1648680
+			},
+			"text": " And the same logic more or less applies to EC721."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:28,680",
+				"to": "00:27:31,960"
+			},
+			"offsets": {
+				"from": 1648680,
+				"to": 1651960
+			},
+			"text": " But these are just two common contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,960",
+				"to": "00:27:35,400"
+			},
+			"offsets": {
+				"from": 1651960,
+				"to": 1655400
+			},
+			"text": " I really wanted to show on them kind of logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,400",
+				"to": "00:27:39,040"
+			},
+			"offsets": {
+				"from": 1655400,
+				"to": 1659040
+			},
+			"text": " I would for if I would build a complex system"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,040",
+				"to": "00:27:42,400"
+			},
+			"offsets": {
+				"from": 1659040,
+				"to": 1662400
+			},
+			"text": " where I would just sit down and look at my contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,400",
+				"to": "00:27:47,240"
+			},
+			"offsets": {
+				"from": 1662400,
+				"to": 1667240
+			},
+			"text": " and look at which methods are not going to change for sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,240",
+				"to": "00:27:50,080"
+			},
+			"offsets": {
+				"from": 1667240,
+				"to": 1670080
+			},
+			"text": " in which I'm safe to put on the router itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,080",
+				"to": "00:27:53,880"
+			},
+			"offsets": {
+				"from": 1670080,
+				"to": 1673880
+			},
+			"text": " to save the guess in which makes the most sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,880",
+				"to": "00:27:56,480"
+			},
+			"offsets": {
+				"from": 1673880,
+				"to": 1676480
+			},
+			"text": " Because, for example, at Babylon Finance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,480",
+				"to": "00:28:01,480"
+			},
+			"offsets": {
+				"from": 1676480,
+				"to": 1681480
+			},
+			"text": " we had this admin model, which had a lot of admin functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,480",
+				"to": "00:28:04,000"
+			},
+			"offsets": {
+				"from": 1681480,
+				"to": 1684000
+			},
+			"text": " but it's pretty much only us or governments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,000",
+				"to": "00:28:06,560"
+			},
+			"offsets": {
+				"from": 1684000,
+				"to": 1686560
+			},
+			"text": " we're calling them, so we really didn't care"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,560",
+				"to": "00:28:09,520"
+			},
+			"offsets": {
+				"from": 1686560,
+				"to": 1689520
+			},
+			"text": " about the guess cost of this, so I was confident"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,520",
+				"to": "00:28:13,600"
+			},
+			"offsets": {
+				"from": 1689520,
+				"to": 1693600
+			},
+			"text": " just putting them behind the deligee call and being upgradable."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,600",
+				"to": "00:28:17,960"
+			},
+			"offsets": {
+				"from": 1693600,
+				"to": 1697960
+			},
+			"text": " And let's jump back to the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,960",
+				"to": "00:28:22,960"
+			},
+			"offsets": {
+				"from": 1697960,
+				"to": 1702960
+			},
+			"text": " So here you would see once we put these functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,960",
+				"to": "00:28:25,120"
+			},
+			"offsets": {
+				"from": 1702960,
+				"to": 1705120
+			},
+			"text": " on our routers, they do grow in size,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:25,120",
+				"to": "00:28:29,680"
+			},
+			"offsets": {
+				"from": 1705120,
+				"to": 1709680
+			},
+			"text": " so a loaded static router is slightly bigger"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:29,680",
+				"to": "00:28:33,520"
+			},
+			"offsets": {
+				"from": 1709680,
+				"to": 1713520
+			},
+			"text": " than just a static router."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,520",
+				"to": "00:28:36,200"
+			},
+			"offsets": {
+				"from": 1713520,
+				"to": 1716200
+			},
+			"text": " That's because we merged all these functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:36,200",
+				"to": "00:28:41,240"
+			},
+			"offsets": {
+				"from": 1716200,
+				"to": 1721240
+			},
+			"text": " on this contract, and eventually you hit the size"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,240",
+				"to": "00:28:45,680"
+			},
+			"offsets": {
+				"from": 1721240,
+				"to": 1725680
+			},
+			"text": " of how many functions you can put on your router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,680",
+				"to": "00:28:50,360"
+			},
+			"offsets": {
+				"from": 1725680,
+				"to": 1730360
+			},
+			"text": " which we did, and that is why you also should be mindful"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,360",
+				"to": "00:28:54,040"
+			},
+			"offsets": {
+				"from": 1730360,
+				"to": 1734040
+			},
+			"text": " that you have to put the functions on the router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,040",
+				"to": "00:28:57,200"
+			},
+			"offsets": {
+				"from": 1734040,
+				"to": 1737200
+			},
+			"text": " which you're absolutely top priority in terms of guess,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:57,200",
+				"to": "00:28:59,960"
+			},
+			"offsets": {
+				"from": 1737200,
+				"to": 1739960
+			},
+			"text": " so if it's questionable, don't do it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,960",
+				"to": "00:29:03,280"
+			},
+			"offsets": {
+				"from": 1739960,
+				"to": 1743280
+			},
+			"text": " and the same applies to the animocrotor, so it's higher."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,280",
+				"to": "00:29:07,520"
+			},
+			"offsets": {
+				"from": 1743280,
+				"to": 1747520
+			},
+			"text": " But to repeat, secure my security concern once again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,520",
+				"to": "00:29:12,560"
+			},
+			"offsets": {
+				"from": 1747520,
+				"to": 1752560
+			},
+			"text": " dynamic router is a different from static router"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:12,560",
+				"to": "00:29:16,560"
+			},
+			"offsets": {
+				"from": 1752560,
+				"to": 1756560
+			},
+			"text": " in that sense that if you put a function on the router itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,560",
+				"to": "00:29:18,480"
+			},
+			"offsets": {
+				"from": 1756560,
+				"to": 1758480
+			},
+			"text": " then it can be upgraded later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,480",
+				"to": "00:29:22,320"
+			},
+			"offsets": {
+				"from": 1758480,
+				"to": 1762320
+			},
+			"text": " and you should be super careful doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:22,320",
+				"to": "00:29:27,320"
+			},
+			"offsets": {
+				"from": 1762320,
+				"to": 1767320
+			},
+			"text": " So the code, the repo, is already public,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:27,320",
+				"to": "00:29:32,040"
+			},
+			"offsets": {
+				"from": 1767320,
+				"to": 1772040
+			},
+			"text": " and it has always examples as well as the test,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:32,040",
+				"to": "00:29:37,040"
+			},
+			"offsets": {
+				"from": 1772040,
+				"to": 1777040
+			},
+			"text": " which actually makes sure that all we discussed is worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:37,040",
+				"to": "00:29:41,440"
+			},
+			"offsets": {
+				"from": 1777040,
+				"to": 1781440
+			},
+			"text": " So here you can see that creating static router"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:41,440",
+				"to": "00:29:45,400"
+			},
+			"offsets": {
+				"from": 1781440,
+				"to": 1785400
+			},
+			"text": " as a simple because it has everything in quality in it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,400",
+				"to": "00:29:48,240"
+			},
+			"offsets": {
+				"from": 1785400,
+				"to": 1788240
+			},
+			"text": " while to create dynamic router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:48,240",
+				"to": "00:29:51,840"
+			},
+			"offsets": {
+				"from": 1788240,
+				"to": 1791840
+			},
+			"text": " we need to build always modulus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,840",
+				"to": "00:29:54,560"
+			},
+			"offsets": {
+				"from": 1791840,
+				"to": 1794560
+			},
+			"text": " so we need to dynamically fetch all the selectors"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:54,560",
+				"to": "00:29:58,080"
+			},
+			"offsets": {
+				"from": 1794560,
+				"to": 1798080
+			},
+			"text": " for the methods, and then we create a model definition,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:58,080",
+				"to": "00:30:01,880"
+			},
+			"offsets": {
+				"from": 1798080,
+				"to": 1801880
+			},
+			"text": " which is an array of selectors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:01,880",
+				"to": "00:30:05,120"
+			},
+			"offsets": {
+				"from": 1801880,
+				"to": 1805120
+			},
+			"text": " bind it to a certain implementation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,120",
+				"to": "00:30:10,120"
+			},
+			"offsets": {
+				"from": 1805120,
+				"to": 1810120
+			},
+			"text": " and finally, we can use this modulus to initialize our,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:10,120",
+				"to": "00:30:14,520"
+			},
+			"offsets": {
+				"from": 1810120,
+				"to": 1814520
+			},
+			"text": " dynamic router with update modulus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,520",
+				"to": "00:30:18,760"
+			},
+			"offsets": {
+				"from": 1814520,
+				"to": 1818760
+			},
+			"text": " and this is the same way you can update existing functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,760",
+				"to": "00:30:21,600"
+			},
+			"offsets": {
+				"from": 1818760,
+				"to": 1821600
+			},
+			"text": " or add new even after the deployment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:21,600",
+				"to": "00:30:25,120"
+			},
+			"offsets": {
+				"from": 1821600,
+				"to": 1825120
+			},
+			"text": " and here we have tests to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:25,120",
+				"to": "00:30:27,800"
+			},
+			"offsets": {
+				"from": 1825120,
+				"to": 1827800
+			},
+			"text": " that always functions work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:27,800",
+				"to": "00:30:31,680"
+			},
+			"offsets": {
+				"from": 1827800,
+				"to": 1831680
+			},
+			"text": " and if you will be checking out this repo later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:31,680",
+				"to": "00:30:35,840"
+			},
+			"offsets": {
+				"from": 1831680,
+				"to": 1835840
+			},
+			"text": " you can run the following command test,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:35,840",
+				"to": "00:30:40,840"
+			},
+			"offsets": {
+				"from": 1835840,
+				"to": 1840840
+			},
+			"text": " guess report to see all the guess numbers we just looked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:40,840",
+				"to": "00:30:44,080"
+			},
+			"offsets": {
+				"from": 1840840,
+				"to": 1844080
+			},
+			"text": " and speaking of these guess numbers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:44,080",
+				"to": "00:30:48,640"
+			},
+			"offsets": {
+				"from": 1844080,
+				"to": 1848640
+			},
+			"text": " these numbers are produced on a 0.8 solidity compiler"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:48,640",
+				"to": "00:30:50,880"
+			},
+			"offsets": {
+				"from": 1848640,
+				"to": 1850880
+			},
+			"text": " with optimization set on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:50,880",
+				"to": "00:30:54,320"
+			},
+			"offsets": {
+				"from": 1850880,
+				"to": 1854320
+			},
+			"text": " and about 200 optimizations run on."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:54,320",
+				"to": "00:30:57,360"
+			},
+			"offsets": {
+				"from": 1854320,
+				"to": 1857360
+			},
+			"text": " Let's get back to our presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:57,360",
+				"to": "00:31:01,040"
+			},
+			"offsets": {
+				"from": 1857360,
+				"to": 1861040
+			},
+			"text": " and that will be it, thank you for your time."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:01,040",
+				"to": "00:31:02,640"
+			},
+			"offsets": {
+				"from": 1861040,
+				"to": 1862640
+			},
+			"text": " I hope you find it useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:02,640",
+				"to": "00:31:05,560"
+			},
+			"offsets": {
+				"from": 1862640,
+				"to": 1865560
+			},
+			"text": " I hope you built unlimited contracts successfully"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:05,560",
+				"to": "00:31:08,200"
+			},
+			"offsets": {
+				"from": 1865560,
+				"to": 1868200
+			},
+			"text": " and never experienced the pain I did."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:08,200",
+				"to": "00:31:12,480"
+			},
+			"offsets": {
+				"from": 1868200,
+				"to": 1872480
+			},
+			"text": " Please follow my Twitter, I do post development stuff there."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:12,480",
+				"to": "00:31:38,320"
+			},
+			"offsets": {
+				"from": 1872480,
+				"to": 1898320
+			},
+			"text": " ("
+		}
+	]
+}

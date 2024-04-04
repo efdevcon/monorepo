@@ -1,0 +1,2661 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,600"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15600
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,600",
+				"to": "00:00:19,600"
+			},
+			"offsets": {
+				"from": 15600,
+				"to": 19600
+			},
+			"text": " >> Okay. So today I'm going to talk about validating"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,600",
+				"to": "00:00:26,640"
+			},
+			"offsets": {
+				"from": 19600,
+				"to": 26640
+			},
+			"text": " particles and the E1 and where the E2 level using AI agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,640",
+				"to": "00:00:30,240"
+			},
+			"offsets": {
+				"from": 26640,
+				"to": 30240
+			},
+			"text": " So we focused on the AI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,240",
+				"to": "00:00:35,480"
+			},
+			"offsets": {
+				"from": 30240,
+				"to": 35480
+			},
+			"text": " the LMS, reinforced learning and we may be wondering why are we looking at this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,480",
+				"to": "00:00:37,120"
+			},
+			"offsets": {
+				"from": 35480,
+				"to": 37120
+			},
+			"text": " How does it fit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,120",
+				"to": "00:00:39,240"
+			},
+			"offsets": {
+				"from": 37120,
+				"to": 39240
+			},
+			"text": " Why are we looking at machine learning?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,240",
+				"to": "00:00:45,760"
+			},
+			"offsets": {
+				"from": 39240,
+				"to": 45760
+			},
+			"text": " And I'm going to explain all of this and talk you through why we decided to go that properly."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,760",
+				"to": "00:00:49,600"
+			},
+			"offsets": {
+				"from": 45760,
+				"to": 49600
+			},
+			"text": " So in the past we've looked at something called selfish learning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,600",
+				"to": "00:00:55,120"
+			},
+			"offsets": {
+				"from": 49600,
+				"to": 55120
+			},
+			"text": " which is a strategy and attack on the DN theorem one by next vertical."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,120",
+				"to": "00:00:58,160"
+			},
+			"offsets": {
+				"from": 55120,
+				"to": 58160
+			},
+			"text": " We're essentially trying to attack the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,160",
+				"to": "00:01:01,080"
+			},
+			"offsets": {
+				"from": 58160,
+				"to": 61080
+			},
+			"text": " manipulate the difficulty calculation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,080",
+				"to": "00:01:04,680"
+			},
+			"offsets": {
+				"from": 61080,
+				"to": 64680
+			},
+			"text": " And you do this by essentially keeping"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,680",
+				"to": "00:01:07,640"
+			},
+			"offsets": {
+				"from": 64680,
+				"to": 67640
+			},
+			"text": " a target chain that it's ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,640",
+				"to": "00:01:11,240"
+			},
+			"offsets": {
+				"from": 67640,
+				"to": 71240
+			},
+			"text": " So essentially you don't send your blocks as soon as you receive them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,240",
+				"to": "00:01:17,080"
+			},
+			"offsets": {
+				"from": 71240,
+				"to": 77080
+			},
+			"text": " but you will hold them and send them strategically as you keep getting heads from other minors."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,080",
+				"to": "00:01:23,280"
+			},
+			"offsets": {
+				"from": 77080,
+				"to": 83280
+			},
+			"text": " And so the idea is that you're going to make them waste their time by looking at the blocks that you just sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,280",
+				"to": "00:01:27,840"
+			},
+			"offsets": {
+				"from": 83280,
+				"to": 87840
+			},
+			"text": " And you always keep ahead so that you're unsure of your winning."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,840",
+				"to": "00:01:31,760"
+			},
+			"offsets": {
+				"from": 87840,
+				"to": 91760
+			},
+			"text": " And so this is a problem that's been studied in different papers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,760",
+				"to": "00:01:33,960"
+			},
+			"offsets": {
+				"from": 91760,
+				"to": 93960
+			},
+			"text": " and there's different algorithms that you can follow."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,960",
+				"to": "00:01:38,920"
+			},
+			"offsets": {
+				"from": 93960,
+				"to": 98920
+			},
+			"text": " As I described before, you can hold the number of blocks and whatever you have a lead,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,920",
+				"to": "00:01:43,240"
+			},
+			"offsets": {
+				"from": 98920,
+				"to": 103240
+			},
+			"text": " if someone sends you a block, then increasing the general height,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,240",
+				"to": "00:01:46,280"
+			},
+			"offsets": {
+				"from": 103240,
+				"to": 106280
+			},
+			"text": " you publish a block that you have already in mind for that height."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,280",
+				"to": "00:01:51,560"
+			},
+			"offsets": {
+				"from": 106280,
+				"to": 111560
+			},
+			"text": " And essentially always keeping a head so that you're unsure that you can maximize the order you get in."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,560",
+				"to": "00:01:56,720"
+			},
+			"offsets": {
+				"from": 111560,
+				"to": 116720
+			},
+			"text": " Because when you send them, you either get a main chain reward or an uncle reward,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,720",
+				"to": "00:02:00,080"
+			},
+			"offsets": {
+				"from": 116720,
+				"to": 120080
+			},
+			"text": " which are almost essentially the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,080",
+				"to": "00:02:04,240"
+			},
+			"offsets": {
+				"from": 120080,
+				"to": 124240
+			},
+			"text": " And so I work with the Pegasus T-Vec consensus and we focus on research."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,240",
+				"to": "00:02:09,040"
+			},
+			"offsets": {
+				"from": 124240,
+				"to": 129040
+			},
+			"text": " So we developed a framework to build simulations for different types of protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,040",
+				"to": "00:02:11,520"
+			},
+			"offsets": {
+				"from": 129040,
+				"to": 131520
+			},
+			"text": " So we looked at proof of warrant, proof of state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,520",
+				"to": "00:02:16,960"
+			},
+			"offsets": {
+				"from": 131520,
+				"to": 136960
+			},
+			"text": " And so we decided it would be pretty interesting to implement a selfish attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,960",
+				"to": "00:02:20,360"
+			},
+			"offsets": {
+				"from": 136960,
+				"to": 140360
+			},
+			"text": " and look at the data that would have returned."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,360",
+				"to": "00:02:23,160"
+			},
+			"offsets": {
+				"from": 140360,
+				"to": 143160
+			},
+			"text": " So this is a bit of a code that it looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,160",
+				"to": "00:02:25,760"
+			},
+			"offsets": {
+				"from": 143160,
+				"to": 145760
+			},
+			"text": " We actually took the calculation of the difficulty."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,760",
+				"to": "00:02:28,320"
+			},
+			"offsets": {
+				"from": 145760,
+				"to": 148320
+			},
+			"text": " We're looking at how it's done in theory and really just again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,320",
+				"to": "00:02:29,960"
+			},
+			"offsets": {
+				"from": 148320,
+				"to": 149960
+			},
+			"text": " I sense of what the rewards are."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,960",
+				"to": "00:02:32,800"
+			},
+			"offsets": {
+				"from": 149960,
+				"to": 152800
+			},
+			"text": " And so depending on what you're doing, as I mentioned before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,800",
+				"to": "00:02:38,400"
+			},
+			"offsets": {
+				"from": 152800,
+				"to": 158400
+			},
+			"text": " you can get a reward from mining a block, which is right now to e with the transactions included."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,400",
+				"to": "00:02:41,400"
+			},
+			"offsets": {
+				"from": 158400,
+				"to": 161400
+			},
+			"text": " And if you include any angles that you receive."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,400",
+				"to": "00:02:48,480"
+			},
+			"offsets": {
+				"from": 161400,
+				"to": 168480
+			},
+			"text": " So you're a reward with theory to 175, 125 or two."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,480",
+				"to": "00:02:52,560"
+			},
+			"offsets": {
+				"from": 168480,
+				"to": 172560
+			},
+			"text": " And since the transaction fees that you receive is quite small,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,560",
+				"to": "00:02:57,400"
+			},
+			"offsets": {
+				"from": 172560,
+				"to": 177400
+			},
+			"text": " sometimes we decided to not include this in our own simulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,400",
+				"to": "00:03:03,040"
+			},
+			"offsets": {
+				"from": 177400,
+				"to": 183040
+			},
+			"text": " And so we decided to build a test case where you only have an artwork of nine miners"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,040",
+				"to": "00:03:08,200"
+			},
+			"offsets": {
+				"from": 183040,
+				"to": 188200
+			},
+			"text": " who are always farmers and then you have an honest miner that is selfishly minor."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,200",
+				"to": "00:03:14,120"
+			},
+			"offsets": {
+				"from": 188200,
+				"to": 194120
+			},
+			"text": " And so what happens is that there's some variation and we decided not to include the rewards"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,120",
+				"to": "00:03:18,280"
+			},
+			"offsets": {
+				"from": 194120,
+				"to": 198280
+			},
+			"text": " of transactions and some of the results are this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,280",
+				"to": "00:03:23,080"
+			},
+			"offsets": {
+				"from": 198280,
+				"to": 203080
+			},
+			"text": " So essentially what we found is that once you have to buy percent of the hashing power"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,080",
+				"to": "00:03:26,840"
+			},
+			"offsets": {
+				"from": 203080,
+				"to": 206840
+			},
+			"text": " in the network, you can start attacking it and delete selfish mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,840",
+				"to": "00:03:29,520"
+			},
+			"offsets": {
+				"from": 206840,
+				"to": 209520
+			},
+			"text": " And this is more beneficial for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,520",
+				"to": "00:03:33,880"
+			},
+			"offsets": {
+				"from": 209520,
+				"to": 213880
+			},
+			"text": " Because this manipulates the difficulty calculation and increases your reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,880",
+				"to": "00:03:37,920"
+			},
+			"offsets": {
+				"from": 213880,
+				"to": 217920
+			},
+			"text": " So the more hashing power you have, the better for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,920",
+				"to": "00:03:43,440"
+			},
+			"offsets": {
+				"from": 217920,
+				"to": 223440
+			},
+			"text": " And so we wanted to test how would this prove if we were giving it to a real force"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,440",
+				"to": "00:03:48,040"
+			},
+			"offsets": {
+				"from": 223440,
+				"to": 228040
+			},
+			"text": " not only agent and since we have actual data to back it up, we could compare the results"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,040",
+				"to": "00:03:51,320"
+			},
+			"offsets": {
+				"from": 228040,
+				"to": 231320
+			},
+			"text": " and see what we would get with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,320",
+				"to": "00:03:54,680"
+			},
+			"offsets": {
+				"from": 231320,
+				"to": 234680
+			},
+			"text": " And so that's why you might be wondering why are we doing reinforcement learning when"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,680",
+				"to": "00:03:57,360"
+			},
+			"offsets": {
+				"from": 234680,
+				"to": 237360
+			},
+			"text": " we're focused on blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,360",
+				"to": "00:04:01,240"
+			},
+			"offsets": {
+				"from": 237360,
+				"to": 241240
+			},
+			"text": " But just to give you a sense of what reinforcement learning is in case you haven't heard it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,240",
+				"to": "00:04:05,600"
+			},
+			"offsets": {
+				"from": 241240,
+				"to": 245600
+			},
+			"text": " it's the concept where you have a piece of software, it's an agent that's interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,600",
+				"to": "00:04:06,600"
+			},
+			"offsets": {
+				"from": 245600,
+				"to": 246600
+			},
+			"text": " with an environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,600",
+				"to": "00:04:14,640"
+			},
+			"offsets": {
+				"from": 246600,
+				"to": 254640
+			},
+			"text": " One of the most famous ones is DeepMind where they implemented a deep Q network and essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,640",
+				"to": "00:04:17,800"
+			},
+			"offsets": {
+				"from": 254640,
+				"to": 257800
+			},
+			"text": " it's interacting with different antenna gains and it learns how to solve them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,800",
+				"to": "00:04:22,320"
+			},
+			"offsets": {
+				"from": 257800,
+				"to": 262320
+			},
+			"text": " So we thought, okay, we can take this concept and implement it into different protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,320",
+				"to": "00:04:24,280"
+			},
+			"offsets": {
+				"from": 262320,
+				"to": 264280
+			},
+			"text": " and just see what happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,280",
+				"to": "00:04:30,480"
+			},
+			"offsets": {
+				"from": 264280,
+				"to": 270480
+			},
+			"text": " And then we'll just do like make a sense of why we chose that too is because it's an"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,480",
+				"to": "00:04:35,240"
+			},
+			"offsets": {
+				"from": 270480,
+				"to": 275240
+			},
+			"text": " automated system that essentially has proven to be humans and many other algorithms and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,240",
+				"to": "00:04:36,240"
+			},
+			"offsets": {
+				"from": 275240,
+				"to": 276240
+			},
+			"text": " strategies."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,240",
+				"to": "00:04:38,920"
+			},
+			"offsets": {
+				"from": 276240,
+				"to": 278920
+			},
+			"text": " And that's made sense to go that route."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,920",
+				"to": "00:04:40,600"
+			},
+			"offsets": {
+				"from": 278920,
+				"to": 280600
+			},
+			"text": " So how does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,600",
+				"to": "00:04:45,720"
+			},
+			"offsets": {
+				"from": 280600,
+				"to": 285720
+			},
+			"text": " You have this loop where you have an agent that is collecting those observations in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,720",
+				"to": "00:04:46,720"
+			},
+			"offsets": {
+				"from": 285720,
+				"to": 286720
+			},
+			"text": " environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,720",
+				"to": "00:04:52,040"
+			},
+			"offsets": {
+				"from": 286720,
+				"to": 292040
+			},
+			"text": " So it's partial information on different states and then you have actions that you can take"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,040",
+				"to": "00:04:55,360"
+			},
+			"offsets": {
+				"from": 292040,
+				"to": 295360
+			},
+			"text": " which will return a reward based on those actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,360",
+				"to": "00:05:00,400"
+			},
+			"offsets": {
+				"from": 295360,
+				"to": 300400
+			},
+			"text": " And so the process continues in some loop where you just keep iterating to different"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,400",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 300400,
+				"to": 304000
+			},
+			"text": " actions in different states."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:08,960"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 308960
+			},
+			"text": " And so whatever different observations that you can get in terms of our protocol, we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,960",
+				"to": "00:05:12,720"
+			},
+			"offsets": {
+				"from": 308960,
+				"to": 312720
+			},
+			"text": " looking at the number of blocks to mine, the number of blocks to see, the percentage of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,720",
+				"to": "00:05:17,280"
+			},
+			"offsets": {
+				"from": 312720,
+				"to": 317280
+			},
+			"text": " encodes, the different things that you're actually doing in the network and feeding that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,280",
+				"to": "00:05:23,760"
+			},
+			"offsets": {
+				"from": 317280,
+				"to": 323760
+			},
+			"text": " information into the agent so they can learn the impact of their actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,760",
+				"to": "00:05:27,560"
+			},
+			"offsets": {
+				"from": 323760,
+				"to": 327560
+			},
+			"text": " And so to really just go to the last thing, we didn't want to be too broad in terms of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,560",
+				"to": "00:05:28,920"
+			},
+			"offsets": {
+				"from": 327560,
+				"to": 328920
+			},
+			"text": " what a minor can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,920",
+				"to": "00:05:37,480"
+			},
+			"offsets": {
+				"from": 328920,
+				"to": 337480
+			},
+			"text": " So we decided that you could only mine up to 10 blocks hidden in your own private chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,480",
+				"to": "00:05:42,280"
+			},
+			"offsets": {
+				"from": 337480,
+				"to": 342280
+			},
+			"text": " and you should be able to publish up to three blocks in a row so you could publish one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,280",
+				"to": "00:05:46,320"
+			},
+			"offsets": {
+				"from": 342280,
+				"to": 346320
+			},
+			"text": " two or three based on one of our strategy scenes the best."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,320",
+				"to": "00:05:50,080"
+			},
+			"offsets": {
+				"from": 346320,
+				"to": 350080
+			},
+			"text": " And then you would get a cell reward based on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,080",
+				"to": "00:05:55,120"
+			},
+			"offsets": {
+				"from": 350080,
+				"to": 355120
+			},
+			"text": " And so I think the most part of the part of setting this up is strength to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,120",
+				"to": "00:05:58,880"
+			},
+			"offsets": {
+				"from": 355120,
+				"to": 358880
+			},
+			"text": " what is the best reward you can give to an agent because you want to give reward to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,880",
+				"to": "00:06:04,280"
+			},
+			"offsets": {
+				"from": 358880,
+				"to": 364280
+			},
+			"text": " such that it understands what's the optimal strategy to pick and also how to discover"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,280",
+				"to": "00:06:09,840"
+			},
+			"offsets": {
+				"from": 364280,
+				"to": 369840
+			},
+			"text": " selfish mining without necessarily implementing the entire sort of actions that you need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,840",
+				"to": "00:06:10,840"
+			},
+			"offsets": {
+				"from": 369840,
+				"to": 370840
+			},
+			"text": " do."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,840",
+				"to": "00:06:15,840"
+			},
+			"offsets": {
+				"from": 370840,
+				"to": 375840
+			},
+			"text": " And so what we decided to do in our case is to incentivize staying ahead, just mining"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,840",
+				"to": "00:06:20,040"
+			},
+			"offsets": {
+				"from": 375840,
+				"to": 380040
+			},
+			"text": " as many blocks as possible faster than the other minors."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,040",
+				"to": "00:06:22,960"
+			},
+			"offsets": {
+				"from": 380040,
+				"to": 382960
+			},
+			"text": " But there's other strategies that you can take."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,960",
+				"to": "00:06:26,880"
+			},
+			"offsets": {
+				"from": 382960,
+				"to": 386880
+			},
+			"text": " We try and test it a few to see what was the most optimal result."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,880",
+				"to": "00:06:34,600"
+			},
+			"offsets": {
+				"from": 386880,
+				"to": 394600
+			},
+			"text": " And eventually just decided that using the metric of staying ahead was probably the best."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,600",
+				"to": "00:06:39,920"
+			},
+			"offsets": {
+				"from": 394600,
+				"to": 399920
+			},
+			"text": " And so going back to what this loop looks like, we have this agent that has been implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,920",
+				"to": "00:06:45,280"
+			},
+			"offsets": {
+				"from": 399920,
+				"to": 405280
+			},
+			"text": " in Python and it's calling code that is implemented in a job not this not simulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,280",
+				"to": "00:06:48,760"
+			},
+			"offsets": {
+				"from": 405280,
+				"to": 408760
+			},
+			"text": " And it's essentially going through this loop over and over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,760",
+				"to": "00:06:55,960"
+			},
+			"offsets": {
+				"from": 408760,
+				"to": 415960
+			},
+			"text": " So like the actions and then collecting the information that it gets from the simulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,960",
+				"to": "00:06:59,720"
+			},
+			"offsets": {
+				"from": 415960,
+				"to": 419720
+			},
+			"text": " And so there's a number of different algorithms that you can use as I mentioned before, like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,720",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 419720,
+				"to": 422000
+			},
+			"text": " one of the most famous is the two networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:07,400"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 427400
+			},
+			"text": " But you can also do one of three Q learning algorithms, policy grading based algorithms."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,400",
+				"to": "00:07:12,800"
+			},
+			"offsets": {
+				"from": 427400,
+				"to": 432800
+			},
+			"text": " They all play a different set of statistics and modeling and use of Mark and chains as"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,800",
+				"to": "00:07:18,160"
+			},
+			"offsets": {
+				"from": 432800,
+				"to": 438160
+			},
+			"text": " the back of how they calculate different states and awards."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,160",
+				"to": "00:07:23,640"
+			},
+			"offsets": {
+				"from": 438160,
+				"to": 443640
+			},
+			"text": " And so we decided that probably the simplest one to go for was Q learning."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,640",
+				"to": "00:07:28,560"
+			},
+			"offsets": {
+				"from": 443640,
+				"to": 448560
+			},
+			"text": " And so I'm just going to explain a little bit what Q learning is essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,560",
+				"to": "00:07:30,480"
+			},
+			"offsets": {
+				"from": 448560,
+				"to": 450480
+			},
+			"text": " So we use this Python framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,480",
+				"to": "00:07:35,080"
+			},
+			"offsets": {
+				"from": 450480,
+				"to": 455080
+			},
+			"text": " It's developed by OpenAI and it allows you to create your own environment and interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,080",
+				"to": "00:07:36,480"
+			},
+			"offsets": {
+				"from": 455080,
+				"to": 456480
+			},
+			"text": " that you can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,480",
+				"to": "00:07:41,880"
+			},
+			"offsets": {
+				"from": 456480,
+				"to": 461880
+			},
+			"text": " And so we developed that calling the Java code and then we tested for many different scenarios."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,880",
+				"to": "00:07:47,720"
+			},
+			"offsets": {
+				"from": 461880,
+				"to": 467720
+			},
+			"text": " So we wanted to see what was the best strategy when you have 10% of the hash and power, 40%"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,720",
+				"to": "00:07:53,960"
+			},
+			"offsets": {
+				"from": 467720,
+				"to": 473960
+			},
+			"text": " and 60% and then we set some hydropairimeters that are related to these Q tables and how"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,960",
+				"to": "00:07:55,560"
+			},
+			"offsets": {
+				"from": 473960,
+				"to": 475560
+			},
+			"text": " you calculate the reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,560",
+				"to": "00:08:01,480"
+			},
+			"offsets": {
+				"from": 475560,
+				"to": 481480
+			},
+			"text": " So you look at the learning rate, which essentially is just telling you how much you value and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,480",
+				"to": "00:08:06,560"
+			},
+			"offsets": {
+				"from": 481480,
+				"to": 486560
+			},
+			"text": " new information that you receive versus information that you've recorded in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,560",
+				"to": "00:08:10,720"
+			},
+			"offsets": {
+				"from": 486560,
+				"to": 490720
+			},
+			"text": " And we also have a discount factor, which also pertains to the reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,720",
+				"to": "00:08:16,080"
+			},
+			"offsets": {
+				"from": 490720,
+				"to": 496080
+			},
+			"text": " You want to look at the current reward that you get for an action plus the reward for"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,080",
+				"to": "00:08:20,560"
+			},
+			"offsets": {
+				"from": 496080,
+				"to": 500560
+			},
+			"text": " making an action because you're trying to discover what is the most optimal path."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,560",
+				"to": "00:08:26,200"
+			},
+			"offsets": {
+				"from": 500560,
+				"to": 506200
+			},
+			"text": " And so it's something that you have to tune in terms of how you value a future reward because"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,200",
+				"to": "00:08:31,120"
+			},
+			"offsets": {
+				"from": 506200,
+				"to": 511120
+			},
+			"text": " you could think, okay, I can mine a blog right now, just send it as soon as possible and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,120",
+				"to": "00:08:32,120"
+			},
+			"offsets": {
+				"from": 511120,
+				"to": 512120
+			},
+			"text": " I get a reward of two."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,120",
+				"to": "00:08:38,080"
+			},
+			"offsets": {
+				"from": 512120,
+				"to": 518080
+			},
+			"text": " Then if I decide to wait a couple of blocks ahead to publish it, there's time that goes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,080",
+				"to": "00:08:44,080"
+			},
+			"offsets": {
+				"from": 518080,
+				"to": 524080
+			},
+			"text": " by and so money might cost less because of things like completion or you can just think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,080",
+				"to": "00:08:49,400"
+			},
+			"offsets": {
+				"from": 524080,
+				"to": 529400
+			},
+			"text": " well, I'd mine the four blocks in one minute, that's negligible, it's worth the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,400",
+				"to": "00:08:53,320"
+			},
+			"offsets": {
+				"from": 529400,
+				"to": 533320
+			},
+			"text": " So based on what you value most, you will tune on this parrotator."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,320",
+				"to": "00:08:57,040"
+			},
+			"offsets": {
+				"from": 533320,
+				"to": 537040
+			},
+			"text": " And then finally you have epsilon, which is just related to randomness."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,040",
+				"to": "00:09:01,720"
+			},
+			"offsets": {
+				"from": 537040,
+				"to": 541720
+			},
+			"text": " How many choices do you do that are random versus how many choices do you do that you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,720",
+				"to": "00:09:07,320"
+			},
+			"offsets": {
+				"from": 541720,
+				"to": 547320
+			},
+			"text": " maximizing your strategy by taking the biggest reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,320",
+				"to": "00:09:12,680"
+			},
+			"offsets": {
+				"from": 547320,
+				"to": 552680
+			},
+			"text": " And so there's two states, as I mentioned before, the first one is driven by epsilon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,680",
+				"to": "00:09:17,440"
+			},
+			"offsets": {
+				"from": 552680,
+				"to": 557440
+			},
+			"text": " where you're just trying to make random choices so that different actions you can take and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,440",
+				"to": "00:09:20,880"
+			},
+			"offsets": {
+				"from": 557440,
+				"to": 560880
+			},
+			"text": " recording the results that you get in this table."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,880",
+				"to": "00:09:25,920"
+			},
+			"offsets": {
+				"from": 560880,
+				"to": 565920
+			},
+			"text": " And then this will allow you to generate the different values so that you can reach an"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,920",
+				"to": "00:09:31,800"
+			},
+			"offsets": {
+				"from": 565920,
+				"to": 571800
+			},
+			"text": " optimal and deciding what is the best action at each state that you reach."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,800",
+				"to": "00:09:37,320"
+			},
+			"offsets": {
+				"from": 571800,
+				"to": 577320
+			},
+			"text": " And so there's some theory behind this that you use something called Bellman equations"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,320",
+				"to": "00:09:43,480"
+			},
+			"offsets": {
+				"from": 577320,
+				"to": 583480
+			},
+			"text": " and it just says that basically by maximizing at each state that you find yourself, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,480",
+				"to": "00:09:49,920"
+			},
+			"offsets": {
+				"from": 583480,
+				"to": 589920
+			},
+			"text": " is the optimal action, you will maximize for the entirety of your decision process."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,920",
+				"to": "00:09:54,080"
+			},
+			"offsets": {
+				"from": 589920,
+				"to": 594080
+			},
+			"text": " And so you're just looking, as I mentioned before, at the reward and then you're also"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,080",
+				"to": "00:09:59,440"
+			},
+			"offsets": {
+				"from": 594080,
+				"to": 599440
+			},
+			"text": " adding the value of the future reward of a next state in action but with a discounted"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,440",
+				"to": "00:10:00,440"
+			},
+			"offsets": {
+				"from": 599440,
+				"to": 600440
+			},
+			"text": " factor."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,440",
+				"to": "00:10:05,200"
+			},
+			"offsets": {
+				"from": 600440,
+				"to": 605200
+			},
+			"text": " So that's what I was talking about before, that's your point and value."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,200",
+				"to": "00:10:09,200"
+			},
+			"offsets": {
+				"from": 605200,
+				"to": 609200
+			},
+			"text": " And so just to make this a little bit more concrete because it can be very extract, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,200",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 609200,
+				"to": 615000
+			},
+			"text": " can think about this Q matrix being something like this where you have four different actions"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:19,880"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 619880
+			},
+			"text": " so you can hold your block and not publish it, just keep it in the private chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,880",
+				"to": "00:10:23,800"
+			},
+			"offsets": {
+				"from": 619880,
+				"to": 623800
+			},
+			"text": " You can publish one block two or three, as I mentioned before, this is a different set"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,800",
+				"to": "00:10:25,960"
+			},
+			"offsets": {
+				"from": 623800,
+				"to": 625960
+			},
+			"text": " so of actions you can take."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,960",
+				"to": "00:10:30,320"
+			},
+			"offsets": {
+				"from": 625960,
+				"to": 630320
+			},
+			"text": " And then you can hold one, two, three, four and more but for simplicity in this example"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,320",
+				"to": "00:10:32,200"
+			},
+			"offsets": {
+				"from": 630320,
+				"to": 632200
+			},
+			"text": " in class of three."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,200",
+				"to": "00:10:37,480"
+			},
+			"offsets": {
+				"from": 632200,
+				"to": 637480
+			},
+			"text": " And so when you start to initialize it and all the values are in zero and as you keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,480",
+				"to": "00:10:40,560"
+			},
+			"offsets": {
+				"from": 637480,
+				"to": 640560
+			},
+			"text": " where you end up with the actions, you will change the values."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,560",
+				"to": "00:10:43,200"
+			},
+			"offsets": {
+				"from": 640560,
+				"to": 643200
+			},
+			"text": " So let's just walk through one of these examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,200",
+				"to": "00:10:48,720"
+			},
+			"offsets": {
+				"from": 643200,
+				"to": 648720
+			},
+			"text": " So let's say that you started in action, you decide to hold and so you're going to calculate"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,720",
+				"to": "00:10:53,880"
+			},
+			"offsets": {
+				"from": 648720,
+				"to": 653880
+			},
+			"text": " what happens when you hold and then maybe the next step you want to publish it so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,880",
+				"to": "00:10:56,720"
+			},
+			"offsets": {
+				"from": 653880,
+				"to": 656720
+			},
+			"text": " will generate an award, let's say two e."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,720",
+				"to": "00:11:02,280"
+			},
+			"offsets": {
+				"from": 656720,
+				"to": 662280
+			},
+			"text": " And so you continue doing this through random paths until you generate enough values."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,280",
+				"to": "00:11:06,360"
+			},
+			"offsets": {
+				"from": 662280,
+				"to": 666360
+			},
+			"text": " This is like random values, you know, the actual ones but just to give you an idea of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,360",
+				"to": "00:11:11,440"
+			},
+			"offsets": {
+				"from": 666360,
+				"to": 671440
+			},
+			"text": " what happens and then after a certain point what you start doing is that okay, I find"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,440",
+				"to": "00:11:17,200"
+			},
+			"offsets": {
+				"from": 671440,
+				"to": 677200
+			},
+			"text": " myself as a holding two so I have two blocks, what is my next best action?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,200",
+				"to": "00:11:18,200"
+			},
+			"offsets": {
+				"from": 677200,
+				"to": 678200
+			},
+			"text": " Change."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,200",
+				"to": "00:11:19,200"
+			},
+			"offsets": {
+				"from": 678200,
+				"to": 679200
+			},
+			"text": " Publish them or should I hold them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,200",
+				"to": "00:11:23,800"
+			},
+			"offsets": {
+				"from": 679200,
+				"to": 683800
+			},
+			"text": " And so you can make the maximum value for each action and that's how you can find them"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,800",
+				"to": "00:11:26,680"
+			},
+			"offsets": {
+				"from": 683800,
+				"to": 686680
+			},
+			"text": " and how to hold that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,680",
+				"to": "00:11:32,840"
+			},
+			"offsets": {
+				"from": 686680,
+				"to": 692840
+			},
+			"text": " And so as I mentioned briefly, there's the marker chain that passes that that's all"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,840",
+				"to": "00:11:37,400"
+			},
+			"offsets": {
+				"from": 692840,
+				"to": 697400
+			},
+			"text": " of this information and ensures that this equation holds true and it's just an idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,400",
+				"to": "00:11:40,680"
+			},
+			"offsets": {
+				"from": 697400,
+				"to": 700680
+			},
+			"text": " so that you can also visualize this in a different way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,680",
+				"to": "00:11:44,480"
+			},
+			"offsets": {
+				"from": 700680,
+				"to": 704480
+			},
+			"text": " You can have a chain where you're mining and then you can serve your own private chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,480",
+				"to": "00:11:49,200"
+			},
+			"offsets": {
+				"from": 704480,
+				"to": 709200
+			},
+			"text": " and keep switching between one and the other and then essentially because of the properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,200",
+				"to": "00:11:53,760"
+			},
+			"offsets": {
+				"from": 709200,
+				"to": 713760
+			},
+			"text": " of all the market chain, you reach this steady state and that's why this table is used"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,760",
+				"to": "00:11:58,240"
+			},
+			"offsets": {
+				"from": 713760,
+				"to": 718240
+			},
+			"text": " to hold because you can assume that after a certain number of steps you reach the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,240",
+				"to": "00:12:04,320"
+			},
+			"offsets": {
+				"from": 718240,
+				"to": 724320
+			},
+			"text": " if you were opto infinity and so that's how you can maximize the values."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,320",
+				"to": "00:12:08,320"
+			},
+			"offsets": {
+				"from": 724320,
+				"to": 728320
+			},
+			"text": " And so there's a lot of potential challenges when we get this approach because you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,320",
+				"to": "00:12:11,720"
+			},
+			"offsets": {
+				"from": 728320,
+				"to": 731720
+			},
+			"text": " to understand what's the best data that you need to feed, you need to test for all these"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,720",
+				"to": "00:12:16,800"
+			},
+			"offsets": {
+				"from": 731720,
+				"to": 736800
+			},
+			"text": " time prepared meters and keep changing them until you can find something optimal."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,800",
+				"to": "00:12:20,840"
+			},
+			"offsets": {
+				"from": 736800,
+				"to": 740840
+			},
+			"text": " And it's also a consideration of how do you build this, what are the behaviors that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,840",
+				"to": "00:12:25,040"
+			},
+			"offsets": {
+				"from": 740840,
+				"to": 745040
+			},
+			"text": " want to incentivize, how do you define something that's Byzantine and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,040",
+				"to": "00:12:29,720"
+			},
+			"offsets": {
+				"from": 745040,
+				"to": 749720
+			},
+			"text": " There's a lot of things that you can find challenges with."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,720",
+				"to": "00:12:34,920"
+			},
+			"offsets": {
+				"from": 749720,
+				"to": 754920
+			},
+			"text": " And so if just to go back to our example of proof of work, we took observations, we were"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,920",
+				"to": "00:12:40,400"
+			},
+			"offsets": {
+				"from": 754920,
+				"to": 760400
+			},
+			"text": " just tracking what is the number of blocks and you've published and the public chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,400",
+				"to": "00:12:45,600"
+			},
+			"offsets": {
+				"from": 760400,
+				"to": 765600
+			},
+			"text": " private chain, computing track of outfalls and floors and then letting it know so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,600",
+				"to": "00:12:49,240"
+			},
+			"offsets": {
+				"from": 765600,
+				"to": 769240
+			},
+			"text": " they can make the best actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,240",
+				"to": "00:12:55,360"
+			},
+			"offsets": {
+				"from": 769240,
+				"to": 775360
+			},
+			"text": " And so we ran this similar to what we ran in the self-contained simulation, nine honest"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,360",
+				"to": "00:13:00,400"
+			},
+			"offsets": {
+				"from": 775360,
+				"to": 780400
+			},
+			"text": " miners and then one of the 17 miners that is opting through the reinforcements learning"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,400",
+				"to": "00:13:01,400"
+			},
+			"offsets": {
+				"from": 780400,
+				"to": 781400
+			},
+			"text": " agent."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,400",
+				"to": "00:13:10,320"
+			},
+			"offsets": {
+				"from": 781400,
+				"to": 790320
+			},
+			"text": " So we measured it at 10, 40, 60 percent hashing power and we collected the results."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,320",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 790320,
+				"to": 794000
+			},
+			"text": " And so as I mentioned before, we used the simulator and job lab, we used the spring"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:18,640"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 798640
+			},
+			"text": " morning company, I had Python, some of the typical machine learning libraries and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,640",
+				"to": "00:13:27,240"
+			},
+			"offsets": {
+				"from": 798640,
+				"to": 807240
+			},
+			"text": " we ran all of these tests in the US so that we could test and collect all the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,240",
+				"to": "00:13:31,760"
+			},
+			"offsets": {
+				"from": 807240,
+				"to": 811760
+			},
+			"text": " And so this is just again an overview of what we were doing and the different hashing rates."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,760",
+				"to": "00:13:35,040"
+			},
+			"offsets": {
+				"from": 811760,
+				"to": 815040
+			},
+			"text": " We collected the reward over a total of one hour mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,040",
+				"to": "00:13:41,160"
+			},
+			"offsets": {
+				"from": 815040,
+				"to": 821160
+			},
+			"text": " We also collected it over a total of 10,000 episodes or simulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,160",
+				"to": "00:13:48,400"
+			},
+			"offsets": {
+				"from": 821160,
+				"to": 828400
+			},
+			"text": " So essentially all that mining agent run for an hour or until it has mined 1,000 blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,400",
+				"to": "00:13:49,400"
+			},
+			"offsets": {
+				"from": 828400,
+				"to": 829400
+			},
+			"text": " and record that behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,400",
+				"to": "00:13:56,400"
+			},
+			"offsets": {
+				"from": 829400,
+				"to": 836400
+			},
+			"text": " And I run it for 10,000 episodes while you're changing the actions that you select."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,400",
+				"to": "00:13:58,560"
+			},
+			"offsets": {
+				"from": 836400,
+				"to": 838560
+			},
+			"text": " And we also measured for three different strategies."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,560",
+				"to": "00:14:03,320"
+			},
+			"offsets": {
+				"from": 838560,
+				"to": 843320
+			},
+			"text": " We just wanted to make sure that we were performing better, that you were just mining"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,320",
+				"to": "00:14:10,920"
+			},
+			"offsets": {
+				"from": 843320,
+				"to": 850920
+			},
+			"text": " honestly or if that you were mining just randomly and we wanted to prepare the results."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,920",
+				"to": "00:14:12,920"
+			},
+			"offsets": {
+				"from": 850920,
+				"to": 852920
+			},
+			"text": " So what did the results look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,920",
+				"to": "00:14:21,920"
+			},
+			"offsets": {
+				"from": 852920,
+				"to": 861920
+			},
+			"text": " We found it when you ran it for even just like a thousand episodes, the agent that was incentivized"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,920",
+				"to": "00:14:26,240"
+			},
+			"offsets": {
+				"from": 861920,
+				"to": 866240
+			},
+			"text": " to hold his chain at 10 percent is actually performing worse because the reality is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,240",
+				"to": "00:14:29,800"
+			},
+			"offsets": {
+				"from": 866240,
+				"to": 869800
+			},
+			"text": " at 10 percent you're never going to be ahead of all the other miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,800",
+				"to": "00:14:31,360"
+			},
+			"offsets": {
+				"from": 869800,
+				"to": 871360
+			},
+			"text": " You don't have enough power."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,360",
+				"to": "00:14:33,880"
+			},
+			"offsets": {
+				"from": 871360,
+				"to": 873880
+			},
+			"text": " So you're just end up losing more."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,880",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 873880,
+				"to": 881000
+			},
+			"text": " However, 40 percent you already start hitting an increasing your reward after maybe like"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:45,760"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 885760
+			},
+			"text": " 500 episodes you've got to see a little bit of an improvement in terms of what you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,760",
+				"to": "00:14:50,200"
+			},
+			"offsets": {
+				"from": 885760,
+				"to": 890200
+			},
+			"text": " doing and then at 60 percent it's just like taking over the malware."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,200",
+				"to": "00:14:56,160"
+			},
+			"offsets": {
+				"from": 890200,
+				"to": 896160
+			},
+			"text": " So the results, we summarized that here and we're also looking at this metric which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,160",
+				"to": "00:14:58,040"
+			},
+			"offsets": {
+				"from": 896160,
+				"to": 898040
+			},
+			"text": " the ratio of blocks in mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,040",
+				"to": "00:15:03,560"
+			},
+			"offsets": {
+				"from": 898040,
+				"to": 903560
+			},
+			"text": " So this is how many blocks that you mined versus the number of total blocks mined."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,560",
+				"to": "00:15:10,800"
+			},
+			"offsets": {
+				"from": 903560,
+				"to": 910800
+			},
+			"text": " So what you see here is that for 10 percent you're doing worse than if you were just being"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,800",
+				"to": "00:15:11,800"
+			},
+			"offsets": {
+				"from": 910800,
+				"to": 911800
+			},
+			"text": " honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,800",
+				"to": "00:15:15,560"
+			},
+			"offsets": {
+				"from": 911800,
+				"to": 915560
+			},
+			"text": " Like 40 percent though you started improving."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,560",
+				"to": "00:15:23,400"
+			},
+			"offsets": {
+				"from": 915560,
+				"to": 923400
+			},
+			"text": " We set two different reward systems just to test things and for one of them it was starting"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,400",
+				"to": "00:15:29,760"
+			},
+			"offsets": {
+				"from": 923400,
+				"to": 929760
+			},
+			"text": " to be better at 40 percent while acting selfishly so he's getting like almost 50 percent of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,760",
+				"to": "00:15:32,160"
+			},
+			"offsets": {
+				"from": 929760,
+				"to": 932160
+			},
+			"text": " the blocks which is in a slight increase."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,160",
+				"to": "00:15:38,080"
+			},
+			"offsets": {
+				"from": 932160,
+				"to": 938080
+			},
+			"text": " And at 60 percent is just mining all of the blocks because you get such a huge advantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,080",
+				"to": "00:15:42,400"
+			},
+			"offsets": {
+				"from": 938080,
+				"to": 942400
+			},
+			"text": " from selfish mining that essentially you're publishing most of the blocks because nobody"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,400",
+				"to": "00:15:48,280"
+			},
+			"offsets": {
+				"from": 942400,
+				"to": 948280
+			},
+			"text": " can catch up to you and what happens is that you're also decreasing the difficulty of blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,280",
+				"to": "00:15:54,080"
+			},
+			"offsets": {
+				"from": 948280,
+				"to": 954080
+			},
+			"text": " so you can mine faster with the same hashing rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,080",
+				"to": "00:16:00,160"
+			},
+			"offsets": {
+				"from": 954080,
+				"to": 960160
+			},
+			"text": " And so what are some of the key takeaways of all of this is that at 60 percent you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,160",
+				"to": "00:16:04,160"
+			},
+			"offsets": {
+				"from": 960160,
+				"to": 964160
+			},
+			"text": " doing a lot of damage but we all know that even like a lot of people should be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,160",
+				"to": "00:16:06,160"
+			},
+			"offsets": {
+				"from": 964160,
+				"to": 966160
+			},
+			"text": " move a lot of damage."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,160",
+				"to": "00:16:12,240"
+			},
+			"offsets": {
+				"from": 966160,
+				"to": 972240
+			},
+			"text": " 40 percent you started achieving some interesting results but one of our homes was the buy-in"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,240",
+				"to": "00:16:13,800"
+			},
+			"offsets": {
+				"from": 972240,
+				"to": 973800
+			},
+			"text": " for making this automated weight."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,800",
+				"to": "00:16:18,680"
+			},
+			"offsets": {
+				"from": 973800,
+				"to": 978680
+			},
+			"text": " We would find perhaps other flaws something different than selfish mining a different"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,680",
+				"to": "00:16:23,800"
+			},
+			"offsets": {
+				"from": 978680,
+				"to": 983800
+			},
+			"text": " strategy and then at 10 percent is just doing very poorly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,800",
+				"to": "00:16:28,920"
+			},
+			"offsets": {
+				"from": 983800,
+				"to": 988920
+			},
+			"text": " And so like I mentioned before at 60 percent you're producing over 90 percent of the blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,920",
+				"to": "00:16:33,240"
+			},
+			"offsets": {
+				"from": 988920,
+				"to": 993240
+			},
+			"text": " but what's interesting is that you're not actually making any more money if anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,240",
+				"to": "00:16:37,320"
+			},
+			"offsets": {
+				"from": 993240,
+				"to": 997320
+			},
+			"text": " you'll be making around the same amount of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,320",
+				"to": "00:16:43,360"
+			},
+			"offsets": {
+				"from": 997320,
+				"to": 1003360
+			},
+			"text": " And so I mean you're just attacking the difficulty but it's not necessarily beneficial."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,360",
+				"to": "00:16:48,720"
+			},
+			"offsets": {
+				"from": 1003360,
+				"to": 1008720
+			},
+			"text": " And yeah we couldn't find a better strategy than selfish mining but it's interesting because"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,720",
+				"to": "00:16:54,800"
+			},
+			"offsets": {
+				"from": 1008720,
+				"to": 1014800
+			},
+			"text": " then what you can do is use these types of systems to test different protocols and understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,800",
+				"to": "00:16:56,440"
+			},
+			"offsets": {
+				"from": 1014800,
+				"to": 1016440
+			},
+			"text": " if there's something going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,440",
+				"to": "00:17:02,160"
+			},
+			"offsets": {
+				"from": 1016440,
+				"to": 1022160
+			},
+			"text": " So perhaps you can see it as a signal detection system that there's something wrong with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,160",
+				"to": "00:17:06,160"
+			},
+			"offsets": {
+				"from": 1022160,
+				"to": 1026160
+			},
+			"text": " protocol because if you don't follow the normal strategy you're doing better."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,160",
+				"to": "00:17:11,560"
+			},
+			"offsets": {
+				"from": 1026160,
+				"to": 1031560
+			},
+			"text": " And so this can help you know understand and evaluate in different ways what's happening"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,560",
+				"to": "00:17:17,240"
+			},
+			"offsets": {
+				"from": 1031560,
+				"to": 1037240
+			},
+			"text": " and you shouldn't just think that this is a wholesome solution but rather a good indicator"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,240",
+				"to": "00:17:20,760"
+			},
+			"offsets": {
+				"from": 1037240,
+				"to": 1040760
+			},
+			"text": " of what can happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,760",
+				"to": "00:17:25,320"
+			},
+			"offsets": {
+				"from": 1040760,
+				"to": 1045320
+			},
+			"text": " And so this is an open source project it's all I can have so if anyone feels like they"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,320",
+				"to": "00:17:30,120"
+			},
+			"offsets": {
+				"from": 1045320,
+				"to": 1050120
+			},
+			"text": " want to test their own protocols you're welcome to do it and yeah that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,120",
+				"to": "00:17:35,120"
+			},
+			"offsets": {
+				"from": 1051120,
+				"to": 1055120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,120",
+				"to": "00:17:42,120"
+			},
+			"offsets": {
+				"from": 1055120,
+				"to": 1062120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,120",
+				"to": "00:17:49,120"
+			},
+			"offsets": {
+				"from": 1062120,
+				"to": 1069120
+			},
+			"text": " [Music]"
+		}
+	]
+}

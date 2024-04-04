@@ -1,0 +1,571 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7000
+			},
+			"text": " Thank you for the introduction and mostly thank you for having us as a key here to help"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:12,080"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 12080
+			},
+			"text": " the Ethereum Foundation and the development of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,080",
+				"to": "00:00:17,760"
+			},
+			"offsets": {
+				"from": 12080,
+				"to": 17760
+			},
+			"text": " We are a mobile development studio from Czech Republic, Prague, so our office is somewhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,760",
+				"to": "00:00:19,040"
+			},
+			"offsets": {
+				"from": 17760,
+				"to": 19040
+			},
+			"text": " over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,040",
+				"to": "00:00:26,400"
+			},
+			"offsets": {
+				"from": 19040,
+				"to": 26400
+			},
+			"text": " And we are one of the grantees and we have developed the library, which I will speak"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,400",
+				"to": "00:00:33,120"
+			},
+			"offsets": {
+				"from": 26400,
+				"to": 33120
+			},
+			"text": " about later on, just some of our background, like I said, we are here from Prague and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,120",
+				"to": "00:00:41,480"
+			},
+			"offsets": {
+				"from": 33120,
+				"to": 41480
+			},
+			"text": " are quite a big company, no startup anymore, we have over 50 members."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,480",
+				"to": "00:00:45,840"
+			},
+			"offsets": {
+				"from": 41480,
+				"to": 45840
+			},
+			"text": " Basically we develop mobile apps, but by mobile app there is also some backend on VixLiketis"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,840",
+				"to": "00:00:51,320"
+			},
+			"offsets": {
+				"from": 45840,
+				"to": 51320
+			},
+			"text": " and we have quite a strong research background as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,320",
+				"to": "00:00:57,840"
+			},
+			"offsets": {
+				"from": 51320,
+				"to": 57840
+			},
+			"text": " That's why we try to connect two worlds together, the world of blockchain and the world of mobile"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,840",
+				"to": "00:01:01,280"
+			},
+			"offsets": {
+				"from": 57840,
+				"to": 61280
+			},
+			"text": " apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,280",
+				"to": "00:01:10,600"
+			},
+			"offsets": {
+				"from": 61280,
+				"to": 70600
+			},
+			"text": " And besides this cool stuff with blockchain, our regular work, our applications like new"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,600",
+				"to": "00:01:17,880"
+			},
+			"offsets": {
+				"from": 70600,
+				"to": 77880
+			},
+			"text": " application for a Buddhist stack, but this is another topic what we did here is this"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,880",
+				"to": "00:01:23,920"
+			},
+			"offsets": {
+				"from": 77880,
+				"to": 83920
+			},
+			"text": " project which I will introduce Friday so I will not speak about it too much now, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,920",
+				"to": "00:01:32,840"
+			},
+			"offsets": {
+				"from": 83920,
+				"to": 92840
+			},
+			"text": " it's the library and code again for Ethereum for iOS and basically it allows mobile developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,840",
+				"to": "00:01:39,840"
+			},
+			"offsets": {
+				"from": 92840,
+				"to": 99840
+			},
+			"text": " who are developing native mobile apps on iOS to work with Ethereum smart contracts like"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,840",
+				"to": "00:01:46,760"
+			},
+			"offsets": {
+				"from": 99840,
+				"to": 106760
+			},
+			"text": " if it was an SDK so there is no need to parse the web interface anymore, it's already released"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,760",
+				"to": "00:01:53,960"
+			},
+			"offsets": {
+				"from": 106760,
+				"to": 113960
+			},
+			"text": " as an open source, if you are interested in this stuff you can come to my Friday talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,960",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 113960,
+				"to": 120000
+			},
+			"text": " and besides that I will just mention two other projects that we do and I've asked James if"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:06,280"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 126280
+			},
+			"text": " it's okay to work here, Tezos about blockchain is one big family as I was told so that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,280",
+				"to": "00:02:12,080"
+			},
+			"offsets": {
+				"from": 126280,
+				"to": 132080
+			},
+			"text": " not a problem, we also do similar stuff for Tezos Commons Foundation and we also have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,080",
+				"to": "00:02:20,080"
+			},
+			"offsets": {
+				"from": 132080,
+				"to": 140080
+			},
+			"text": " one our own app which is fun to go I was sitting near Tom and he presented here rock paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,080",
+				"to": "00:02:25,480"
+			},
+			"offsets": {
+				"from": 140080,
+				"to": 145480
+			},
+			"text": " scissors which we have as well but our use case is completely different, this is an"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,480",
+				"to": "00:02:31,240"
+			},
+			"offsets": {
+				"from": 145480,
+				"to": 151240
+			},
+			"text": " app we had in store for about two years, it was just a result of our weekend hackathon"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,240",
+				"to": "00:02:39,920"
+			},
+			"offsets": {
+				"from": 151240,
+				"to": 159920
+			},
+			"text": " and it was it was very centralized, you can send these messages over not blockchain but"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,920",
+				"to": "00:02:48,280"
+			},
+			"offsets": {
+				"from": 159920,
+				"to": 168280
+			},
+			"text": " Facebook messenger and lately we have implemented an option to make bets in tokens which we"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,280",
+				"to": "00:02:55,720"
+			},
+			"offsets": {
+				"from": 168280,
+				"to": 175720
+			},
+			"text": " have used in tokens for because it works quite well as well and it's based on Ethereum so"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,720",
+				"to": "00:03:00,800"
+			},
+			"offsets": {
+				"from": 175720,
+				"to": 180800
+			},
+			"text": " this app will be in the store in about two weeks so rock paper scissors is really a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,800",
+				"to": "00:03:08,640"
+			},
+			"offsets": {
+				"from": 180800,
+				"to": 188640
+			},
+			"text": " good use case for blockchain and besides that I would like to invite you for some events"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,640",
+				"to": "00:03:14,120"
+			},
+			"offsets": {
+				"from": 188640,
+				"to": 194120
+			},
+			"text": " that will be occurring this week so at Thursday if you would be more interested in the dev"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,120",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 194120,
+				"to": 201000
+			},
+			"text": " kit we have developed for Ethereum Foundation we will have some kind of hands-on workshop"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:28,720"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 208720
+			},
+			"text": " for developers in our office you can freely come there, it's listed on amnibrite so just"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,720",
+				"to": "00:03:35,200"
+			},
+			"offsets": {
+				"from": 208720,
+				"to": 215200
+			},
+			"text": " register there, it's called Ethereum's IOS DevKit hands-on workshop hosted by Ekki and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,200",
+				"to": "00:03:42,080"
+			},
+			"offsets": {
+				"from": 215200,
+				"to": 222080
+			},
+			"text": " there we will demonstrate how to create a native mobile app that calls Ethereum smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,080",
+				"to": "00:03:46,760"
+			},
+			"offsets": {
+				"from": 222080,
+				"to": 226760
+			},
+			"text": " contracts in less than one hour at least this is what our developers promised and of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,760",
+				"to": "00:03:53,920"
+			},
+			"offsets": {
+				"from": 226760,
+				"to": 233920
+			},
+			"text": " course there will be discussion so you are invited to come and I guess at Friday I will"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,920",
+				"to": "00:04:01,960"
+			},
+			"offsets": {
+				"from": 233920,
+				"to": 241960
+			},
+			"text": " officially announce it here in the ultra violet room and I would also like to invite you because"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,960",
+				"to": "00:04:08,160"
+			},
+			"offsets": {
+				"from": 241960,
+				"to": 248160
+			},
+			"text": " the whole week there is a series of site events which is called Prague blockchain week so you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,160",
+				"to": "00:04:13,480"
+			},
+			"offsets": {
+				"from": 248160,
+				"to": 253480
+			},
+			"text": " can check on Prague blockchain week.com and there is plenty of events for each night and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,480",
+				"to": "00:04:18,160"
+			},
+			"offsets": {
+				"from": 253480,
+				"to": 258160
+			},
+			"text": " it's not during the day during the conference and some of them take place in our office"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,160",
+				"to": "00:04:26,440"
+			},
+			"offsets": {
+				"from": 258160,
+				"to": 266440
+			},
+			"text": " so if you would be interested these events happen in our office which you will find looks"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,440",
+				"to": "00:04:31,880"
+			},
+			"offsets": {
+				"from": 266440,
+				"to": 271880
+			},
+			"text": " like this we are in the very top of this building this is how it looks like and this is our"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,880",
+				"to": "00:04:35,840"
+			},
+			"offsets": {
+				"from": 271880,
+				"to": 275840
+			},
+			"text": " team and we will be happy to meet with you thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,840",
+				"to": "00:04:37,840"
+			},
+			"offsets": {
+				"from": 275840,
+				"to": 277840
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,840",
+				"to": "00:04:39,840"
+			},
+			"offsets": {
+				"from": 277840,
+				"to": 279840
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,840",
+				"to": "00:04:41,840"
+			},
+			"offsets": {
+				"from": 279840,
+				"to": 281840
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,840",
+				"to": "00:04:43,840"
+			},
+			"offsets": {
+				"from": 281840,
+				"to": 283840
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,840",
+				"to": "00:04:45,840"
+			},
+			"offsets": {
+				"from": 283840,
+				"to": 285840
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,840",
+				"to": "00:05:07,840"
+			},
+			"offsets": {
+				"from": 285840,
+				"to": 307840
+			},
+			"text": " [Music]"
+		}
+	]
+}

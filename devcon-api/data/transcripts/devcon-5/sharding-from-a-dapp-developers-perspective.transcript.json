@@ -1,0 +1,1913 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:08,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 8480
+			},
+			"text": " I wanted to talk a little bit today about what it's like as a DAP developer to think"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,480",
+				"to": "00:00:14,600"
+			},
+			"offsets": {
+				"from": 8480,
+				"to": 14600
+			},
+			"text": " about sharded blockchains, in particular asynchronous communication between smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,600",
+				"to": "00:00:18,820"
+			},
+			"offsets": {
+				"from": 14600,
+				"to": 18820
+			},
+			"text": " So from the introduction you know that I'm one of the co-creators of CryptoKitties, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,820",
+				"to": "00:00:21,440"
+			},
+			"offsets": {
+				"from": 18820,
+				"to": 21440
+			},
+			"text": " was also the original author of ERC721."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,440",
+				"to": "00:00:25,960"
+			},
+			"offsets": {
+				"from": 21440,
+				"to": 25960
+			},
+			"text": " I contributed quite a bit on the upcoming Cheese Wizards game and we'll actually have"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,960",
+				"to": "00:00:29,520"
+			},
+			"offsets": {
+				"from": 25960,
+				"to": 29520
+			},
+			"text": " a little bit more information about that in the middle of this presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,520",
+				"to": "00:00:34,680"
+			},
+			"offsets": {
+				"from": 29520,
+				"to": 34680
+			},
+			"text": " And then I'm the chief architect of the upcoming Flow Blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,680",
+				"to": "00:00:39,080"
+			},
+			"offsets": {
+				"from": 34680,
+				"to": 39080
+			},
+			"text": " In computer science we like to have these toy versions of abstract problems because it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,080",
+				"to": "00:00:41,040"
+			},
+			"offsets": {
+				"from": 39080,
+				"to": 41040
+			},
+			"text": " makes it easier for us to think through them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,040",
+				"to": "00:00:45,280"
+			},
+			"offsets": {
+				"from": 41040,
+				"to": 45280
+			},
+			"text": " I'm sure everyone in this room is familiar with the Byzantine Generals problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,280",
+				"to": "00:00:51,480"
+			},
+			"offsets": {
+				"from": 45280,
+				"to": 51480
+			},
+			"text": " It's probably the most famous one is the traveling salesman problem as a way of thinking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,480",
+				"to": "00:00:57,120"
+			},
+			"offsets": {
+				"from": 51480,
+				"to": 57120
+			},
+			"text": " how to build a spanning path through an arbitrary weighted graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,120",
+				"to": "00:01:01,680"
+			},
+			"offsets": {
+				"from": 57120,
+				"to": 61680
+			},
+			"text": " And then my personal favorite is the dining philosophers problem that asks you to imagine"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,680",
+				"to": "00:01:05,680"
+			},
+			"offsets": {
+				"from": 61680,
+				"to": 65680
+			},
+			"text": " that a group of philosophers is eating dinner together and not only can they not eat unless"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,680",
+				"to": "00:01:09,880"
+			},
+			"offsets": {
+				"from": 65680,
+				"to": 69880
+			},
+			"text": " they're holding a fork in each hand, but they're actually sharing their forks after they've"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,880",
+				"to": "00:01:11,320"
+			},
+			"offsets": {
+				"from": 69880,
+				"to": 71320
+			},
+			"text": " gone into each other's mouths."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,320",
+				"to": "00:01:12,800"
+			},
+			"offsets": {
+				"from": 71320,
+				"to": 72800
+			},
+			"text": " It's quite amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,800",
+				"to": "00:01:17,400"
+			},
+			"offsets": {
+				"from": 72800,
+				"to": 77400
+			},
+			"text": " But we have these problems because the problems themselves are so abstract that they're hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,400",
+				"to": "00:01:20,240"
+			},
+			"offsets": {
+				"from": 77400,
+				"to": 80240
+			},
+			"text": " for us to reason about."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,240",
+				"to": "00:01:26,840"
+			},
+			"offsets": {
+				"from": 80240,
+				"to": 86840
+			},
+			"text": " And so we create these toys stories that are maybe a little bit disconnected from reality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,840",
+				"to": "00:01:30,960"
+			},
+			"offsets": {
+				"from": 86840,
+				"to": 90960
+			},
+			"text": " but they let us use our human intuition about how to solve them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,960",
+				"to": "00:01:33,800"
+			},
+			"offsets": {
+				"from": 90960,
+				"to": 93800
+			},
+			"text": " And there's a common one that comes up in the Ethereum community, or at least that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,800",
+				"to": "00:01:37,280"
+			},
+			"offsets": {
+				"from": 93800,
+				"to": 97280
+			},
+			"text": " where I saw it first, and it's called the train and hotel problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,280",
+				"to": "00:01:42,200"
+			},
+			"offsets": {
+				"from": 97280,
+				"to": 102200
+			},
+			"text": " And if you search on ETH researchers, there's a bunch of great articles about people having"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,200",
+				"to": "00:01:45,800"
+			},
+			"offsets": {
+				"from": 102200,
+				"to": 105800
+			},
+			"text": " ideas on how to solve the train and hotel problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,800",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 105800,
+				"to": 110000
+			},
+			"text": " And it's fundamentally how to solve the problem of asynchronous communications between smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:52,400"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 112400
+			},
+			"text": " contracts that live on different shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,400",
+				"to": "00:01:56,720"
+			},
+			"offsets": {
+				"from": 112400,
+				"to": 116720
+			},
+			"text": " And so the toy version of the problem says, \"Hey, you're traveling to a city and you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,720",
+				"to": "00:02:02,120"
+			},
+			"offsets": {
+				"from": 116720,
+				"to": 122120
+			},
+			"text": " a train ticket in order to get there, and you need a hotel room when you get there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,120",
+				"to": "00:02:05,960"
+			},
+			"offsets": {
+				"from": 122120,
+				"to": 125960
+			},
+			"text": " And you don't want to pay for a train ticket until you know that you've got a hotel room"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,960",
+				"to": "00:02:09,840"
+			},
+			"offsets": {
+				"from": 125960,
+				"to": 129840
+			},
+			"text": " and you don't want to book a hotel room unless you're going to be able to get a train ticket.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,840",
+				"to": "00:02:15,680"
+			},
+			"offsets": {
+				"from": 129840,
+				"to": 135680
+			},
+			"text": " And so if the train was on a smart contract on one shard, and the hotel was a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,680",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 135680,
+				"to": 142000
+			},
+			"text": " on another shard, how do you go about solving the problem of booking both of those things"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:28,320"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 148320
+			},
+			"text": " without potentially being in a situation where you've got one without the other?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,320",
+				"to": "00:02:31,440"
+			},
+			"offsets": {
+				"from": 148320,
+				"to": 151440
+			},
+			"text": " And there's a few interesting solutions to this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,440",
+				"to": "00:02:36,560"
+			},
+			"offsets": {
+				"from": 151440,
+				"to": 156560
+			},
+			"text": " Some of the more interesting are the ability to actually move smart contracts from one"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,560",
+				"to": "00:02:43,160"
+			},
+			"offsets": {
+				"from": 156560,
+				"to": 163160
+			},
+			"text": " shard to another, which has the potential problem of leading denial of service attacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,160",
+				"to": "00:02:49,720"
+			},
+			"offsets": {
+				"from": 163160,
+				"to": 169720
+			},
+			"text": " the idea of mining two shards or synchronizing two shards so that the validators are trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,720",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 169720,
+				"to": 174000
+			},
+			"text": " to solve the two blocks on two shards at the same time to allow synchronous communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:59,360"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 179360
+			},
+			"text": " between the smart contracts on those two shards, which doesn't scale if you want to have three"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,360",
+				"to": "00:03:02,320"
+			},
+			"offsets": {
+				"from": 179360,
+				"to": 182320
+			},
+			"text": " smart contracts talking to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,320",
+				"to": "00:03:06,120"
+			},
+			"offsets": {
+				"from": 182320,
+				"to": 186120
+			},
+			"text": " And so usually most people think that the best way to solve this is just to have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,120",
+				"to": "00:03:10,960"
+			},
+			"offsets": {
+				"from": 186120,
+				"to": 190960
+			},
+			"text": " sort of state locking mechanism where you can more or less put a reservation in for"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,960",
+				"to": "00:03:16,160"
+			},
+			"offsets": {
+				"from": 190960,
+				"to": 196160
+			},
+			"text": " the train that is cancelable and then you go and you book the hotel and if that's successful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,160",
+				"to": "00:03:19,640"
+			},
+			"offsets": {
+				"from": 196160,
+				"to": 199640
+			},
+			"text": " you follow through on the train reservation, if it's unsuccessful, then you can cancel"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,640",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 199640,
+				"to": 204000
+			},
+			"text": " the train reservation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:29,320"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 209320
+			},
+			"text": " So that toy problem I think is useful, but I think it's limited because it's so simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,320",
+				"to": "00:03:33,640"
+			},
+			"offsets": {
+				"from": 209320,
+				"to": 213640
+			},
+			"text": " And so I want to talk about something that maybe seems even more simple, but it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,640",
+				"to": "00:03:36,640"
+			},
+			"offsets": {
+				"from": 213640,
+				"to": 216640
+			},
+			"text": " a little bit more basis in reality and that's kitty hats."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,640",
+				"to": "00:03:41,960"
+			},
+			"offsets": {
+				"from": 216640,
+				"to": 221960
+			},
+			"text": " So kitty hats is a project that was created outside of Dapper as an extension to crypto"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,960",
+				"to": "00:03:46,760"
+			},
+			"offsets": {
+				"from": 221960,
+				"to": 226760
+			},
+			"text": " kitties and it let you put cool hats and other paraphernalia on your cats."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,760",
+				"to": "00:03:51,040"
+			},
+			"offsets": {
+				"from": 226760,
+				"to": 231040
+			},
+			"text": " And it was a set of smart contracts that leveraged our smart contracts, but we didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,040",
+				"to": "00:03:56,200"
+			},
+			"offsets": {
+				"from": 231040,
+				"to": 236200
+			},
+			"text": " even know they were doing it, let alone have any special hooks for them to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,200",
+				"to": "00:03:57,520"
+			},
+			"offsets": {
+				"from": 236200,
+				"to": 237520
+			},
+			"text": " do this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,520",
+				"to": "00:04:03,840"
+			},
+			"offsets": {
+				"from": 237520,
+				"to": 243840
+			},
+			"text": " And it really showed the team and how one of the properties of blockchain that we weren't"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,840",
+				"to": "00:04:07,800"
+			},
+			"offsets": {
+				"from": 243840,
+				"to": 247800
+			},
+			"text": " really expecting when we started building crypto kitties and that's this idea of extensibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,800",
+				"to": "00:04:10,160"
+			},
+			"offsets": {
+				"from": 247800,
+				"to": 250160
+			},
+			"text": " or composability."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,160",
+				"to": "00:04:15,320"
+			},
+			"offsets": {
+				"from": 250160,
+				"to": 255320
+			},
+			"text": " So this is sort of what a kitty hats implementation would look like if you imagine that kitty hats"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,320",
+				"to": "00:04:17,800"
+			},
+			"offsets": {
+				"from": 255320,
+				"to": 257800
+			},
+			"text": " used a stable coin instead of just ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,800",
+				"to": "00:04:24,120"
+			},
+			"offsets": {
+				"from": 257800,
+				"to": 264120
+			},
+			"text": " So if a user wants to go and buy a hat to put on their cat, they go through this single"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,120",
+				"to": "00:04:30,720"
+			},
+			"offsets": {
+				"from": 264120,
+				"to": 270720
+			},
+			"text": " transaction where they send a request to the kitty hat sales contract and that contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,720",
+				"to": "00:04:35,320"
+			},
+			"offsets": {
+				"from": 270720,
+				"to": 275320
+			},
+			"text": " through a series of synchronous calls to other smart contracts is able to verify that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,320",
+				"to": "00:04:38,520"
+			},
+			"offsets": {
+				"from": 275320,
+				"to": 278520
+			},
+			"text": " all the things that need to happen can happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,520",
+				"to": "00:04:42,600"
+			},
+			"offsets": {
+				"from": 278520,
+				"to": 282600
+			},
+			"text": " So the first thing it does is it checks the crypto kitty smart contract to ensure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,600",
+				"to": "00:04:45,840"
+			},
+			"offsets": {
+				"from": 282600,
+				"to": 285840
+			},
+			"text": " the kitty exists and that the person who's trying to put a hat on it is actually the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,840",
+				"to": "00:04:51,080"
+			},
+			"offsets": {
+				"from": 285840,
+				"to": 291080
+			},
+			"text": " owner of it because you can't put a hat on somebody else's kitty, that would just be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,080",
+				"to": "00:04:52,080"
+			},
+			"offsets": {
+				"from": 291080,
+				"to": 292080
+			},
+			"text": " absurd."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,080",
+				"to": "00:04:58,240"
+			},
+			"offsets": {
+				"from": 292080,
+				"to": 298240
+			},
+			"text": " It transfers the stable coin over which will fail if the funds are not available."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,240",
+				"to": "00:05:04,280"
+			},
+			"offsets": {
+				"from": 298240,
+				"to": 304280
+			},
+			"text": " And then finally it will put the hat on the cat which also could fail potentially if"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,280",
+				"to": "00:05:08,800"
+			},
+			"offsets": {
+				"from": 304280,
+				"to": 308800
+			},
+			"text": " the kitty already had a hat and there was a conflict there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,800",
+				"to": "00:05:13,640"
+			},
+			"offsets": {
+				"from": 308800,
+				"to": 313640
+			},
+			"text": " But the nice thing about a single atomic transaction is even if that last part fails,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,640",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313640,
+				"to": 318000
+			},
+			"text": " everything just seamlessly gets unwound as the transaction reverse."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:23,240"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 323240
+			},
+			"text": " But what if we had that same scenario where we had these four smart contracts working"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,240",
+				"to": "00:05:27,880"
+			},
+			"offsets": {
+				"from": 323240,
+				"to": 327880
+			},
+			"text": " together but each of them was on a different shard?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,880",
+				"to": "00:05:31,080"
+			},
+			"offsets": {
+				"from": 327880,
+				"to": 331080
+			},
+			"text": " It suddenly becomes a much more complicated solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,080",
+				"to": "00:05:37,160"
+			},
+			"offsets": {
+				"from": 331080,
+				"to": 337160
+			},
+			"text": " So in this solution that I've shown here and it's not necessarily the only solution but"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,160",
+				"to": "00:05:42,600"
+			},
+			"offsets": {
+				"from": 337160,
+				"to": 342600
+			},
+			"text": " it was frankly the best I could come up with, it involved locking up the assets that were"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,600",
+				"to": "00:05:45,800"
+			},
+			"offsets": {
+				"from": 342600,
+				"to": 345800
+			},
+			"text": " involved in the transaction before the transaction took place."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,800",
+				"to": "00:05:50,080"
+			},
+			"offsets": {
+				"from": 345800,
+				"to": 350080
+			},
+			"text": " So you'll see they're in block one, the user is locking up their cat making sure that that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,080",
+				"to": "00:05:54,720"
+			},
+			"offsets": {
+				"from": 350080,
+				"to": 354720
+			},
+			"text": " cat can't be transferred while the rest of the transaction is, or the rest of the interaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,720",
+				"to": "00:05:55,920"
+			},
+			"offsets": {
+				"from": 354720,
+				"to": 355920
+			},
+			"text": " is taking place."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,920",
+				"to": "00:05:59,720"
+			},
+			"offsets": {
+				"from": 355920,
+				"to": 359720
+			},
+			"text": " They're locking up their stable coin and they're locking up that hat."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,720",
+				"to": "00:06:04,360"
+			},
+			"offsets": {
+				"from": 359720,
+				"to": 364360
+			},
+			"text": " And then once they have sort of a receipt from each of those other shards saying hey,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,360",
+				"to": "00:06:09,360"
+			},
+			"offsets": {
+				"from": 364360,
+				"to": 369360
+			},
+			"text": " these things are locked up, they can't change their state or change their ownership, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,360",
+				"to": "00:06:14,400"
+			},
+			"offsets": {
+				"from": 369360,
+				"to": 374400
+			},
+			"text": " it can go to the sales contract and say okay it's safe to send a message to all these other"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,400",
+				"to": "00:06:18,640"
+			},
+			"offsets": {
+				"from": 374400,
+				"to": 378640
+			},
+			"text": " contracts and allow these transfers to go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,640",
+				"to": "00:06:22,160"
+			},
+			"offsets": {
+				"from": 378640,
+				"to": 382160
+			},
+			"text": " And you'll see here, and I haven't explained all of the bits and bobs here, but what was"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,160",
+				"to": "00:06:28,520"
+			},
+			"offsets": {
+				"from": 382160,
+				"to": 388520
+			},
+			"text": " the single transaction on a single shard is when it's across four shards, it's now 11 transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,520",
+				"to": "00:06:34,920"
+			},
+			"offsets": {
+				"from": 388520,
+				"to": 394920
+			},
+			"text": " and it's taking seven blocks, possibly much more if those cross shard interaction calls"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,920",
+				"to": "00:06:40,840"
+			},
+			"offsets": {
+				"from": 394920,
+				"to": 400840
+			},
+			"text": " can't happen in subsequent blocks which many designs don't allow."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,840",
+				"to": "00:06:44,560"
+			},
+			"offsets": {
+				"from": 400840,
+				"to": 404560
+			},
+			"text": " And this kind of interaction between smart contracts is hardly theoretical."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,560",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 404560,
+				"to": 409000
+			},
+			"text": " You know, I'm sure everyone in this room is familiar with all of the awesome projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:53,640"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 413640
+			},
+			"text": " in the DeFi space and Compound can't exist without die."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,640",
+				"to": "00:06:58,200"
+			},
+			"offsets": {
+				"from": 413640,
+				"to": 418200
+			},
+			"text": " Zero X is not interesting unless it's talking to a bunch of ERC20 tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,200",
+				"to": "00:07:03,640"
+			},
+			"offsets": {
+				"from": 418200,
+				"to": 423640
+			},
+			"text": " And all of these projects are building on top of each other and most of them would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,640",
+				"to": "00:07:09,040"
+			},
+			"offsets": {
+				"from": 423640,
+				"to": 429040
+			},
+			"text": " difficult if not intractable to build if they had to deal with asynchronous communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,040",
+				"to": "00:07:13,720"
+			},
+			"offsets": {
+				"from": 429040,
+				"to": 433720
+			},
+			"text": " with those other smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,720",
+				"to": "00:07:18,600"
+			},
+			"offsets": {
+				"from": 433720,
+				"to": 438600
+			},
+			"text": " So I want to talk about another revolution that happened and sort of the peak of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,600",
+				"to": "00:07:23,080"
+			},
+			"offsets": {
+				"from": 438600,
+				"to": 443080
+			},
+			"text": " revolution, the open source revolution was in the year 2000."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,080",
+				"to": "00:07:27,800"
+			},
+			"offsets": {
+				"from": 443080,
+				"to": 447800
+			},
+			"text": " In 2000, everyone was really excited about open source and it was going to completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,800",
+				"to": "00:07:31,680"
+			},
+			"offsets": {
+				"from": 447800,
+				"to": 451680
+			},
+			"text": " transform software and it did but not the way people thought."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,680",
+				"to": "00:07:38,280"
+			},
+			"offsets": {
+				"from": 451680,
+				"to": 458280
+			},
+			"text": " In 2000, people expected that Linux on the desktop was going to replace Windows and software"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,280",
+				"to": "00:07:43,400"
+			},
+			"offsets": {
+				"from": 458280,
+				"to": 463400
+			},
+			"text": " like OpenOffice and the GIMP was going to replace Microsoft Office and Photoshop."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,400",
+				"to": "00:07:45,080"
+			},
+			"offsets": {
+				"from": 463400,
+				"to": 465080
+			},
+			"text": " And that's not what happened at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,080",
+				"to": "00:07:48,760"
+			},
+			"offsets": {
+				"from": 465080,
+				"to": 468760
+			},
+			"text": " The open source revolution was real and it completely changed the way that we think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,760",
+				"to": "00:07:50,560"
+			},
+			"offsets": {
+				"from": 468760,
+				"to": 470560
+			},
+			"text": " and make software."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,560",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 470560,
+				"to": 472000
+			},
+			"text": " But it looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:54,960"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 474960
+			},
+			"text": " It's a bunch of little tiny components that are built on top of each other and some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,960",
+				"to": "00:07:56,800"
+			},
+			"offsets": {
+				"from": 474960,
+				"to": 476800
+			},
+			"text": " those components aren't so tiny, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,800",
+				"to": "00:07:58,200"
+			},
+			"offsets": {
+				"from": 476800,
+				"to": 478200
+			},
+			"text": " They're significant."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,200",
+				"to": "00:08:03,200"
+			},
+			"offsets": {
+				"from": 478200,
+				"to": 483200
+			},
+			"text": " But the power of them is that they're not solving a particular user problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,200",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 483200,
+				"to": 489000
+			},
+			"text": " It's that they're consists of a set of tools that different people can create different"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:11,160"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 491160
+			},
+			"text": " solutions out of."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,160",
+				"to": "00:08:16,960"
+			},
+			"offsets": {
+				"from": 491160,
+				"to": 496960
+			},
+			"text": " And I believe that the real power of smart contracts, if we think of them in that way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,960",
+				"to": "00:08:23,040"
+			},
+			"offsets": {
+				"from": 496960,
+				"to": 503040
+			},
+			"text": " as building blocks that are each building on the next and working together to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,040",
+				"to": "00:08:27,880"
+			},
+			"offsets": {
+				"from": 503040,
+				"to": 507880
+			},
+			"text": " lots of solutions and not just these monolithic things that are just replacing one institution"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,880",
+				"to": "00:08:33,480"
+			},
+			"offsets": {
+				"from": 507880,
+				"to": 513480
+			},
+			"text": " at a time with replacing one institution with one smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,480",
+				"to": "00:08:38,200"
+			},
+			"offsets": {
+				"from": 513480,
+				"to": 518200
+			},
+			"text": " And so if you ever see people talking about the train in hotel problem, I want you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,200",
+				"to": "00:08:42,040"
+			},
+			"offsets": {
+				"from": 518200,
+				"to": 522040
+			},
+			"text": " imagine in your head, well, you know, maybe they've solved the train in hotel problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,040",
+				"to": "00:08:49,400"
+			},
+			"offsets": {
+				"from": 522040,
+				"to": 529400
+			},
+			"text": " have they solved the train hotel, restaurant reservation, movie tickets, tour bus problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,400",
+				"to": "00:08:54,200"
+			},
+			"offsets": {
+				"from": 529400,
+				"to": 534200
+			},
+			"text": " Because I think that in reality, smart contracts, it's very rarely one smart contract needing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,200",
+				"to": "00:08:55,680"
+			},
+			"offsets": {
+				"from": 534200,
+				"to": 535680
+			},
+			"text": " to talk to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,680",
+				"to": "00:08:58,520"
+			},
+			"offsets": {
+				"from": 535680,
+				"to": 538520
+			},
+			"text": " It's a multiple."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,520",
+				"to": "00:09:04,320"
+			},
+			"offsets": {
+				"from": 538520,
+				"to": 544320
+			},
+			"text": " And that term that has come to express this is is composability."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,320",
+				"to": "00:09:10,960"
+			},
+			"offsets": {
+				"from": 544320,
+				"to": 550960
+			},
+			"text": " And I truly believe that composability is the superpower of smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,960",
+				"to": "00:09:14,400"
+			},
+			"offsets": {
+				"from": 550960,
+				"to": 554400
+			},
+			"text": " You see here a quote from Jesse Walden of Andreessen Horowitz, and he wrote a great"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,400",
+				"to": "00:09:16,120"
+			},
+			"offsets": {
+				"from": 554400,
+				"to": 556120
+			},
+			"text": " piece talking about composability."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,120",
+				"to": "00:09:20,680"
+			},
+			"offsets": {
+				"from": 556120,
+				"to": 560680
+			},
+			"text": " And I think the key phrase in there is compounding innovation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,680",
+				"to": "00:09:24,680"
+			},
+			"offsets": {
+				"from": 560680,
+				"to": 564680
+			},
+			"text": " The fact that it's not one person or one team that needs to make one giant step of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,680",
+				"to": "00:09:29,200"
+			},
+			"offsets": {
+				"from": 564680,
+				"to": 569200
+			},
+			"text": " innovation, it's that everybody can contribute a little bit and that compounds over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,200",
+				"to": "00:09:33,680"
+			},
+			"offsets": {
+				"from": 569200,
+				"to": 573680
+			},
+			"text": " And as we all know, compounding growth is exponential and there's no more powerful force"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,680",
+				"to": "00:09:34,840"
+			},
+			"offsets": {
+				"from": 573680,
+				"to": 574840
+			},
+			"text": " in the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,840",
+				"to": "00:09:41,840"
+			},
+			"offsets": {
+				"from": 574840,
+				"to": 581840
+			},
+			"text": " Rated R, 40-lit kilos."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,840",
+				"to": "00:09:48,840"
+			},
+			"offsets": {
+				"from": 581840,
+				"to": 588840
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,840",
+				"to": "00:10:14,120"
+			},
+			"offsets": {
+				"from": 588840,
+				"to": 614120
+			},
+			"text": " Cheese with us."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,120",
+				"to": "00:10:24,120"
+			},
+			"offsets": {
+				"from": 614120,
+				"to": 624120
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,120",
+				"to": "00:10:28,520"
+			},
+			"offsets": {
+				"from": 624120,
+				"to": 628520
+			},
+			"text": " That was cool and all, but what the heck does it have to do with smart contracts and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,520",
+				"to": "00:10:31,160"
+			},
+			"offsets": {
+				"from": 628520,
+				"to": 631160
+			},
+			"text": " composability?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,160",
+				"to": "00:10:36,320"
+			},
+			"offsets": {
+				"from": 631160,
+				"to": 636320
+			},
+			"text": " The team at Dapper Labs was so inspired by the example of Kitty Hats that when we built"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,320",
+				"to": "00:10:41,120"
+			},
+			"offsets": {
+				"from": 636320,
+				"to": 641120
+			},
+			"text": " our new game, Cheese Wizards, we were bought into the notion of composability and extensibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,120",
+				"to": "00:10:44,880"
+			},
+			"offsets": {
+				"from": 641120,
+				"to": 644880
+			},
+			"text": " on day one."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,880",
+				"to": "00:10:50,920"
+			},
+			"offsets": {
+				"from": 644880,
+				"to": 650920
+			},
+			"text": " Over the last six weeks or so, we've been running a hackathon with a bunch of community support"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,920",
+				"to": "00:10:59,040"
+			},
+			"offsets": {
+				"from": 650920,
+				"to": 659040
+			},
+			"text": " and prizes because we wanted to kickstart the community's creation of some amazing tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,040",
+				"to": "00:11:00,040"
+			},
+			"offsets": {
+				"from": 659040,
+				"to": 660040
+			},
+			"text": " And there's a couple of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,040",
+				"to": "00:11:01,600"
+			},
+			"offsets": {
+				"from": 660040,
+				"to": 661600
+			},
+			"text": " I just wanted to highlight right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,600",
+				"to": "00:11:08,040"
+			},
+			"offsets": {
+				"from": 661600,
+				"to": 668040
+			},
+			"text": " So on the right, Mark Perera did a mobile version of our battle game."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,040",
+				"to": "00:11:12,080"
+			},
+			"offsets": {
+				"from": 668040,
+				"to": 672080
+			},
+			"text": " It's a, you know, Cheese Wizards is a game where you buy wizards and you fight them and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,080",
+				"to": "00:11:14,840"
+			},
+			"offsets": {
+				"from": 672080,
+				"to": 674840
+			},
+			"text": " there's, you know, it's the land of Highlander."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,840",
+				"to": "00:11:20,200"
+			},
+			"offsets": {
+				"from": 674840,
+				"to": 680200
+			},
+			"text": " There can be only one and whoever wins the big cheese will take home a big old pot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,200",
+				"to": "00:11:21,200"
+			},
+			"offsets": {
+				"from": 680200,
+				"to": 681200
+			},
+			"text": " ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,200",
+				"to": "00:11:26,440"
+			},
+			"offsets": {
+				"from": 681200,
+				"to": 686440
+			},
+			"text": " And, you know, our team didn't have the time to build a native mobile app and so Mark took"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,440",
+				"to": "00:11:29,400"
+			},
+			"offsets": {
+				"from": 686440,
+				"to": 689400
+			},
+			"text": " it upon himself to build one, which is amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,400",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 689400,
+				"to": 693000
+			},
+			"text": " There's Cheese Dow over there, which I think is incredible."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:35,880"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 695880
+			},
+			"text": " I don't know if we would have thought of that ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,880",
+				"to": "00:11:40,440"
+			},
+			"offsets": {
+				"from": 695880,
+				"to": 700440
+			},
+			"text": " It's the ability for anyone to create a Dow, multiple Dows, if they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,440",
+				"to": "00:11:44,800"
+			},
+			"offsets": {
+				"from": 700440,
+				"to": 704800
+			},
+			"text": " And it's an interesting sort of Dow where the voting power in those Dows is not based"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,800",
+				"to": "00:11:49,600"
+			},
+			"offsets": {
+				"from": 704800,
+				"to": 709600
+			},
+			"text": " on who's contributed the most tokens, but who's been the most successful in the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,600",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 709600,
+				"to": 717000
+			},
+			"text": " And so this is the kind of thing that is possible when you are building platforms that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:11:58,360"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 718360
+			},
+			"text": " don't have platform risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,360",
+				"to": "00:12:05,320"
+			},
+			"offsets": {
+				"from": 718360,
+				"to": 725320
+			},
+			"text": " And that's what I think is the real power of smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,320",
+				"to": "00:12:10,360"
+			},
+			"offsets": {
+				"from": 725320,
+				"to": 730360
+			},
+			"text": " And so I think we've seen this in a bunch of places and I think that this is going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,360",
+				"to": "00:12:15,520"
+			},
+			"offsets": {
+				"from": 730360,
+				"to": 735520
+			},
+			"text": " be the story of smart contract platforms in the future if we let it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,520",
+				"to": "00:12:22,320"
+			},
+			"offsets": {
+				"from": 735520,
+				"to": 742320
+			},
+			"text": " But I get real worried because I fear that if composability is the superpower of blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,320",
+				"to": "00:12:27,040"
+			},
+			"offsets": {
+				"from": 742320,
+				"to": 747040
+			},
+			"text": " that's sharding and in particular, forcing asynchronous communications between smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,040",
+				"to": "00:12:30,920"
+			},
+			"offsets": {
+				"from": 747040,
+				"to": 750920
+			},
+			"text": " contracts could be its script tonight."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,920",
+				"to": "00:12:31,920"
+			},
+			"offsets": {
+				"from": 750920,
+				"to": 751920
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,920",
+				"to": "00:12:35,920"
+			},
+			"offsets": {
+				"from": 751920,
+				"to": 755920
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,920",
+				"to": "00:12:45,920"
+			},
+			"offsets": {
+				"from": 755920,
+				"to": 765920
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,920",
+				"to": "00:12:55,920"
+			},
+			"offsets": {
+				"from": 765920,
+				"to": 775920
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,920",
+				"to": "00:13:05,920"
+			},
+			"offsets": {
+				"from": 775920,
+				"to": 785920
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,920",
+				"to": "00:13:10,920"
+			},
+			"offsets": {
+				"from": 785920,
+				"to": 790920
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

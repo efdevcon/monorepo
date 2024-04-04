@@ -1,0 +1,780 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " >> I'm Luja from layer X and University of Tokyo."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 15000
+			},
+			"text": " Today I will talk about what we want to do in this Eastern Foundation grant."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 19000
+			},
+			"text": " So let's start with a quick introduction over our team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 23000
+			},
+			"text": " layer X is a blockchain startup based on Tokyo."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 26000
+			},
+			"text": " We have two research projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 34000
+			},
+			"text": " The other one is Zero Chain features zero knowledge blockchain based on substrate."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 41000
+			},
+			"text": " The customer research is supported by the same foundation and Zero Chain is supported by the university foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 44000
+			},
+			"text": " So I'm working on the customer project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 54000
+			},
+			"text": " So I will talk about what we have done so far in this year and what we want to do from today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 61000
+			},
+			"text": " So we started to get involved in customer research from the former replication project."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 71000
+			},
+			"text": " So we verified very fundamental lemurs and theorem of the CVC Casper including a synchronous safety state transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 78000
+			},
+			"text": " And very recently we finally finished the verification of finality detection rule of CVC Casper."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 86000
+			},
+			"text": " It is similar to the six confirmation rule in Bitcoin but in CVC Casper it is much more complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 92000
+			},
+			"text": " So we think it is important to verify that it is actually correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 102000
+			},
+			"text": " And then we eventually started to work on an academic paper of CVC Casper where we tried to systemize the knowledge of the current research of the Casper"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 107000
+			},
+			"text": " and try to fix some mistakes in the white papers which is accepted in small academic conferences."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 118000
+			},
+			"text": " And these days I am more working on theory side including an analysis about attack on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 121000
+			},
+			"text": " and live analysis of Casper."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 128000
+			},
+			"text": " I will talk about these results tomorrow at 1pm so please join us if you are interested."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 134000
+			},
+			"text": " So what is our mission of this international foundation grant?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 139000
+			},
+			"text": " The first mission is to continue to publish academic papers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 147000
+			},
+			"text": " I think the current program in the Casper research process is the resources scattered over the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 159000
+			},
+			"text": " So when you want to run about the Casper you should read white papers, research posts, YouTube videos, medium posts and even Twitter sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 171000
+			},
+			"text": " So this results in an illustration that to catch up Casper research is very hard and there is a very very high entry barrier into the research community"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 175000
+			},
+			"text": " especially for a bit separated community like Japan."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 181000
+			},
+			"text": " And also there is very very little voluntary work by academia."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 191000
+			},
+			"text": " I mean Casper is like a consensus in the wild for academic people so there are really few people working on Casper for their academic work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 200000
+			},
+			"text": " So in my opinion, yes Casper research is ongoing but we need some systemized papers for the checkpoints of the research."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 211000
+			},
+			"text": " I think the biggest merit of publishing academic papers is simply that we can get more people working on the research."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 219000
+			},
+			"text": " You know, top conference publication get attention of the professors, PhD students, masters, postdoc."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 223000
+			},
+			"text": " So they might get interested in Casper and they might want to work on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 230000
+			},
+			"text": " Currently, Casper research is mostly from inside of the research community so there is no academic work on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 242000
+			},
+			"text": " And another merit I think is the peer review system in academia encourages you to write a paper in a super, super understandable way"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 249000
+			},
+			"text": " because in most cases the labors of conferences does not exactly work on the same topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 256000
+			},
+			"text": " So this allows you to write a paper which is understandable without interaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 266000
+			},
+			"text": " This is I think super important for people who are not confident in their English conversations like Japanese communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 274000
+			},
+			"text": " Another mission of us is to be a layer one research hub in Japan."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 285000
+			},
+			"text": " So the current status of the research community in Japan is a bit, it's not that big and there's only a few quadrants and researchers in Japan."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 294000
+			},
+			"text": " I think there's two reasons. One reason is in Japan there's no crypto giants like Polkadot, definitive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 305000
+			},
+			"text": " is through likely to give money to developers and researchers. As a result, in Japan there's a little opportunity to work as a blockchain researcher through time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 310000
+			},
+			"text": " And there's no Eastern 2.0 team in Japan."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 318000
+			},
+			"text": " Another problem is there's no top conference publication from Japanese universities about the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 324000
+			},
+			"text": " So this does not encourage students to work on the blockchain research."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 332000
+			},
+			"text": " And when I say this to my friend, everyone say to me that you should organize a hackathon in Japan."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 338000
+			},
+			"text": " It's kind of true, but I do not think hackathon and the meetup is a complete solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 347000
+			},
+			"text": " So the AIX has organized the blockchain meetup in Tokyo called \"Broxen Tokyo\" for more than two years every month."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 358000
+			},
+			"text": " It was great to expand the community, but it does not grow them to the quality researchers because there's no job in Japan as a blockchain researchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 372000
+			},
+			"text": " So yes, we continue to do some hostile meetups, but I think the fundamental solution is to simply hire researchers as through time and to collaborate with universities."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 377000
+			},
+			"text": " And the chief, Jan, what is the problem to be solved in the public blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 382000
+			},
+			"text": " Yeah, it's pretty much the end of the talk. Thanks so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 385000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 387000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 389000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 391000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 393000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 395000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 397000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 399000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 401000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 403000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 405000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 407000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 409000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 411000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 413000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 415000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 417000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 446000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

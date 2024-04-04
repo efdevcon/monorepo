@@ -1,0 +1,3981 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 15000
+			},
+			"text": " What are privacy layers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17000
+			},
+			"text": " Why do we need privacy layers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:19,500"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 19500
+			},
+			"text": " And how are we going to get privacy layers that people need?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,500",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 19500,
+				"to": 24000
+			},
+			"text": " So first, let me state the why for privacy layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 29000
+			},
+			"text": " Obviously, the reason why we need privacy is because we don't have it right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 33000
+			},
+			"text": " If you go into Easter's Cen, every single transaction is public."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 37000
+			},
+			"text": " You're able to see the entire history of all the wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 43000
+			},
+			"text": " So the second reason why we need privacy is that if we want mainstream adoption"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 47000
+			},
+			"text": " of our logic technologies, we really need privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 53000
+			},
+			"text": " It's one of the main hurdles alongside scalability and, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 55000
+			},
+			"text": " identity and other issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 60000
+			},
+			"text": " And finally, I would like to just quickly address on, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 63000
+			},
+			"text": " privacy and regulation issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 67000
+			},
+			"text": " And there's effectively a spectrum of solutions, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 69000
+			},
+			"text": " when you build privacy technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 74000
+			},
+			"text": " Where on one side, you build fully self-submarine solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 78000
+			},
+			"text": " where only the individual controlled information and assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 82000
+			},
+			"text": " And on the other side, you could give, you know, a lot of control to the entity"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 84000
+			},
+			"text": " actually controlling this ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 86000
+			},
+			"text": " While preserving privacy between individuals."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 89000
+			},
+			"text": " And so on the right side, you have something like CPDCs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 92000
+			},
+			"text": " The last side has something like general cash, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 96000
+			},
+			"text": " And perhaps, actually, in the middle, we'll have something that's more or less,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 100000
+			},
+			"text": " maybe, you know, best of both worlds, where we could have a privacy-preserving system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 105000
+			},
+			"text": " yet give some limited form of control to, you know, some of those vulnerabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 107000
+			},
+			"text": " Okay, so enough on the why."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 112000
+			},
+			"text": " Let's talk about what I mean by privacy layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 117000
+			},
+			"text": " So, just reiterate, everything on Ethereum is public."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 120000
+			},
+			"text": " So you're able to see everything on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 124000
+			},
+			"text": " And first, what I want to find is the notion called anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 129000
+			},
+			"text": " So anonymity is the inability to tell who is doing transaction, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 134000
+			},
+			"text": " So if somehow you're going to Ethereum, and you look at transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 139000
+			},
+			"text": " and you can't really tell who the address, you know, who's the initially address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 141000
+			},
+			"text": " then we say that this system has the anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 145000
+			},
+			"text": " And second is the notion of confidentiality."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 150000
+			},
+			"text": " If you're going to eat sushi, and you can't see exactly what the trades are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154000
+			},
+			"text": " then we say this system is confidential."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 158000
+			},
+			"text": " And it turns out confidentiality is really, really hard on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 164000
+			},
+			"text": " It's pretty much impossible unless you want to redesign the entirety of Ethereum, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 170000
+			},
+			"text": " So on the other hand, anonymity is actually quite easy, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 178000
+			},
+			"text": " We can use any mixer to mix the funds, and every single time we want to do an operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 181000
+			},
+			"text": " However, this is very, very unusable, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 188000
+			},
+			"text": " To the extent that only, you know, only when you're very much need this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 190000
+			},
+			"text": " would you do such a thing, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 197000
+			},
+			"text": " Normal users would not do this for every single person that would do defap protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 201000
+			},
+			"text": " So the goal is really to make this very usable, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 205000
+			},
+			"text": " How do we get usable anonymity for Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 211000
+			},
+			"text": " So, um, so what do we mean by, again, so just to reiterate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 214000
+			},
+			"text": " this system will have anonymity if you go to Etherscan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 217000
+			},
+			"text": " and you cannot see, you know, who's already,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 219000
+			},
+			"text": " or is it actually all these contract calls, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 222000
+			},
+			"text": " So the question is, can we get something like this for Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 224000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 230000
+			},
+			"text": " So, and, you know, we don't want privacy, uh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 232000
+			},
+			"text": " anonymity just for payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 234000
+			},
+			"text": " We want this type of anonymity for any type of smartphone protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 237000
+			},
+			"text": " So you can see, you know, Ethereum can do many, many different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 242000
+			},
+			"text": " Um, you know, it's an ecosystem of Dapps, not just payments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 246000
+			},
+			"text": " not just, you know, peer-to-peer swapping of assets, not just in FTS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 249000
+			},
+			"text": " is whatever you can imagine on top of token standards, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 252000
+			},
+			"text": " We want to have anonymity by default for all Dapps."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 254000
+			},
+			"text": " So that's the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 257000
+			},
+			"text": " Um, and that's also what I mean by privacy layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 262000
+			},
+			"text": " A privacy layer for Ethereum should have the following, um, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 266000
+			},
+			"text": " set of features, but let us look at, um, what are the current solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 268000
+			},
+			"text": " for privacy layers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 272000
+			},
+			"text": " Um, if you look at the entire ecosystem, we'll have many, many different EVM chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 275000
+			},
+			"text": " that's, you know, more or less, uh, you know, you can run a D app"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 277000
+			},
+			"text": " and it will go to, you know, any of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 280000
+			},
+			"text": " And we'll have many, many, uh, applications, sometimes, um,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 282000
+			},
+			"text": " one popular chain, sometimes some many chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 284000
+			},
+			"text": " And what are the privacy solutions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 289000
+			},
+			"text": " Well, we have some mixtures, and we'll have, uh, you know, some solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 291000
+			},
+			"text": " that offer some type of D5 compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 296000
+			},
+			"text": " And we have solutions that more or less act as a layer two with privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 300000
+			},
+			"text": " So for instance, Aztec and Zico-Opru are good examples of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 304000
+			},
+			"text": " And on the other hand, we also have out privacy all ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 308000
+			},
+			"text": " Uh, and the examples are, like, for example, Alio and Manta,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 312000
+			},
+			"text": " where, uh, you know, it's a separate chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 316000
+			},
+			"text": " It might be a different ecosystem, and you had to bootstrap all the liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 321000
+			},
+			"text": " And so it turns out, you know, there's no single solution that works"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 322000
+			},
+			"text": " with all the D apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 325000
+			},
+			"text": " So if you look at what these solutions do, uh, so real guys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 328000
+			},
+			"text": " Zico-Opru actually all need to support some limits on the form of swaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 333000
+			},
+			"text": " And, uh, approximately, Aztec connects, uh, allow, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 337000
+			},
+			"text": " actually pretty good defense interoperability, but it's not completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 339000
+			},
+			"text": " compatible with every single D app, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 343000
+			},
+			"text": " So for Aztec Connect, you need to write custom bridge contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 347000
+			},
+			"text": " Uh, and in fact, you know, that's basically, if you go to every single Aztec hackathon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 351000
+			},
+			"text": " like, that's what people do, you know, that build bridge contract for every single D app."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 353000
+			},
+			"text": " Uh, you know, and that's not scalable if you want to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 356000
+			},
+			"text": " want this to support every single D5 projects out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 359000
+			},
+			"text": " So, uh, you know, this is not observation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 363000
+			},
+			"text": " We don't have a privacy solution that, um, you know, it's default,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 365000
+			},
+			"text": " and really usable, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 371000
+			},
+			"text": " So, um, so yeah, so let's look at, um, what would I mean by privacy layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 373000
+			},
+			"text": " and what we should get in this privacy layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 375000
+			},
+			"text": " So first of all, it should be feature complete."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 376000
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 378000
+			},
+			"text": " So, uh, so what would I mean by that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 380000
+			},
+			"text": " You should have two features."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 384000
+			},
+			"text": " You should be able to use this, you know, privacy layer exactly the same way"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 386000
+			},
+			"text": " you would use, you know, Ethereum, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 391000
+			},
+			"text": " So you should be able to use, um, privacy, privacy, privacy, privacy solution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 394000
+			},
+			"text": " or any D app that you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 398000
+			},
+			"text": " Um, any, ideally, you know, with basically the same interface, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 403000
+			},
+			"text": " You go into a D app front end, you click on buttons, uh, and you, you know, you do a swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 408000
+			},
+			"text": " And second, um, you should be able to disclose what you have done."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 410000
+			},
+			"text": " Okay, so if you look at, you know, existing privacy solutions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 414000
+			},
+			"text": " is this actually really hard to tell someone else that you did something?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 416000
+			},
+			"text": " Um, you know, the interface is not intuitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 420000
+			},
+			"text": " Whereas right now, for the transparent solution, if you give someone your address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 423000
+			},
+			"text": " they know, you know, they can see you in entire history, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 426000
+			},
+			"text": " So we want some type of form of information disclosure, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 430000
+			},
+			"text": " So if you own set of NFTs and you want to prove to your friends that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 434000
+			},
+			"text": " I own this NFTs and I authorize a message, uh, you can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 437000
+			},
+			"text": " You should be able to do that really, really easily, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 439000
+			},
+			"text": " Um, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 443000
+			},
+			"text": " And the second thing you should, you should do is be backwards compatible, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 447000
+			},
+			"text": " Because we'll have all this amazing ecosystem out there, all this D apps that people use."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 452000
+			},
+			"text": " Um, we don't want to, you know, throw it out to waste and build something completely brand new."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 455000
+			},
+			"text": " We want to use existing ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 460000
+			},
+			"text": " So the ecosystem should be, should support your 220, 721, 1155 standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 466000
+			},
+			"text": " Um, and, you know, you should more or less work with existing applications, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 471000
+			},
+			"text": " And finally, most importantly, you should actually offer some form of privacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 473000
+			},
+			"text": " which in this case, NFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 476000
+			},
+			"text": " Right, so we'll call it back to the previous slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 481000
+			},
+			"text": " Um, you will be the form, you know, use this thing and everybody will use this privacy layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 486000
+			},
+			"text": " and you're going to easily scan, no one can figure out who did what action, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 491000
+			},
+			"text": " So the question for my talk is, you know, can we build such a thing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 499000
+			},
+			"text": " And actually the goal of my talk is to convince you that we could build such a privacy layer for Ethereum today."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 501000
+			},
+			"text": " And we're building one."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 502000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 505000
+			},
+			"text": " So, so let's look at how we're going to do this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 510000
+			},
+			"text": " So, um, so let's look at this, you know, set of three things that we want for our privacy layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 515000
+			},
+			"text": " And it, you know, if you kind of categorize them, the first two, you know, two features"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 518000
+			},
+			"text": " are basically what a smart contract wallet gives you, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 523000
+			},
+			"text": " So if you're familiar with the kind of abstraction where, you know, any type of smart contract wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 525000
+			},
+			"text": " this is the two thing that this should offer you, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 529000
+			},
+			"text": " You should, you should be able to use it on any single application and it's back work as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 532000
+			},
+			"text": " And the second thing, second feature that's, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 536000
+			},
+			"text": " it's really what a mixer offers you, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 538000
+			},
+			"text": " What a, uh, should it pull gives you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 542000
+			},
+			"text": " So I realize, you know, some of you might not know what a should it pull or, you know, mixer is."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 545000
+			},
+			"text": " So let me just reintroduce the two, two concepts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:07,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 547000
+			},
+			"text": " So first of all, what is a should it pull?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 547000,
+				"to": 550000
+			},
+			"text": " A should it pull allows you to unlink deposits withdrawals, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 555000
+			},
+			"text": " So this is the most basic form of private solution that, you know, we've had since the Bitcoin days, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 560000
+			},
+			"text": " So it allows you any user to deposit and later on, you should read a withdrawal."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 565000
+			},
+			"text": " But by the time that you withdraw, nobody else should know who's actually withdrawing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 568000
+			},
+			"text": " So you withdraw to a fresh UAA address."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 571000
+			},
+			"text": " So that's the no-shover-shover to it pull or mixer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 579000
+			},
+			"text": " And second, let's recall no-shover-shover, actually, this should save contract, contract wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 582000
+			},
+			"text": " Let's recall no-shover contract wallet. What is your contract wallet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 586000
+			},
+			"text": " Well, for a contract wallet, the users actually do not own a UAA anymore, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 592000
+			},
+			"text": " So for, for instance, for account abstraction, you will have different address that would use."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 598000
+			},
+			"text": " And, you know, but basically, you know, for your, for your contract wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 602000
+			},
+			"text": " you should be able to do the exact same things that you would do with, you know, your MetaMask, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 606000
+			},
+			"text": " You should be able to submit arbitrary smart contract calls and get executed, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 612000
+			},
+			"text": " And this is done in the form of intermediary contract wallets that verify some signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 614000
+			},
+			"text": " and carry out the calls for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 616000
+			},
+			"text": " Okay, so that's no-shover contract wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 620000
+			},
+			"text": " And recall we wanted to do before, you know, we said that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 625000
+			},
+			"text": " the thing we want to build is basically a shielded pool plus a smart contract wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 627000
+			},
+			"text": " So, so, so here's what we're actually going to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 632000
+			},
+			"text": " We're going to take the two and just put them together, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 636000
+			},
+			"text": " So it's going to be a shielded contract wallet, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 637000
+			},
+			"text": " So what can I do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 641000
+			},
+			"text": " You should be able to use anything that is on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 646000
+			},
+			"text": " And every single time you use the wallets, nobody should actually know who's actually using the wallet, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 652000
+			},
+			"text": " So there's one single shielded contract wallet that's shared by all the users in the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 657000
+			},
+			"text": " Okay, so, you know, that's on a very high level, but how does this actually work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 665000
+			},
+			"text": " Right, so for shielded pools, like we said before, it supports deposits and withdrawals."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 668000
+			},
+			"text": " For contract wallets, you'll support arbitrary calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 672000
+			},
+			"text": " And when we put them together, you'll support, again, deposits and withdrawals."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 678000
+			},
+			"text": " But also, crucially, something that you can use to call any DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 680000
+			},
+			"text": " You know, DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 683000
+			},
+			"text": " All right, so, so here's the picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 685000
+			},
+			"text": " Here's how it's going to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 690000
+			},
+			"text": " It's going to be a smart contract in Ethereum where it allows any user to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 692000
+			},
+			"text": " enter this ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 697000
+			},
+			"text": " And once they enter, they're able to use it as if it's, you know, a metamask wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 702000
+			},
+			"text": " And when different users have been able to get transactions, they will, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 705000
+			},
+			"text": " they'll be reflected on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 709000
+			},
+			"text": " So if you want to call Uniswap, you want to call OpenSea, you should just work."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 715000
+			},
+			"text": " And furthermore, on Etherscan, you have no idea who's actually behind the scene doing this operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 716000
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 722000
+			},
+			"text": " And as a bonus, actually, we can make this smart contract wallet compatible with account"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 725000
+			},
+			"text": " abstraction or EIP 4337."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 731000
+			},
+			"text": " Okay, so, as it turns out, like, there's two problems, you know, if you want to build this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 736000
+			},
+			"text": " If you want to build this, you know, just combine and show the pool with the smart contract wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 742000
+			},
+			"text": " The first problem is that when user subnets a transaction that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 746000
+			},
+			"text": " contains arbitrary calls, you can actually just steal the funds of the entire contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 747000
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 752000
+			},
+			"text": " So here, if the user only owns, supposed to own one Ethereum in the pool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 757000
+			},
+			"text": " but it constructs a call that consumes 20 Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 760000
+			},
+			"text": " You know, this is, we shouldn't let this happen, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 766000
+			},
+			"text": " Because, you know, people would be able to steal the entirety of the funds of the entire portal call."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 767000
+			},
+			"text": " So, what's the solution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 771000
+			},
+			"text": " Well, the solution for this problem is that we actually just separate out of two contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 780000
+			},
+			"text": " into a contract that actually holds the other funds, what we call a vault contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 785000
+			},
+			"text": " and the wallet contract, which will actually carry out the calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 791000
+			},
+			"text": " So, in this way, users will unwrap the tokens that they have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 797000
+			},
+			"text": " and only the tokens that they have is inside the wallet when they're extra-unical."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 803000
+			},
+			"text": " This is actually kind of equivalent to the other way of doing it, which is you also have a router"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 808000
+			},
+			"text": " and have the wallet holding out the funds and putting the things into the router."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 811000
+			},
+			"text": " So, there's kind of two equivalent solutions to solve the same problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 816000
+			},
+			"text": " And the second problem that, you know, you feel to do this, which I think is the main reason why"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 821000
+			},
+			"text": " we don't have these things before, you know, is that for this type of privacy-preserving,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 828000
+			},
+			"text": " sure that pools, you need to know the exact amount of tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 834000
+			},
+			"text": " what is called, you know, that's encoded in the notes, before you insert it into the portal call."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 836000
+			},
+			"text": " So, everything has to be known in advance."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 840000
+			},
+			"text": " Whereas in D-Fab portal calls, you have no idea how much tokens you're getting back, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 844000
+			},
+			"text": " So, there's this uncertainty of this smart contract decides how much you get back."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 849000
+			},
+			"text": " But traditionally, for sure, the pools, you know, everything has been known in advance."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 855000
+			},
+			"text": " And so, this is like, you know, one feature that we didn't really know a whole lot before."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 862000
+			},
+			"text": " And there's a solution for this, which is that we have this notion of refunding to anonymous address."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 866000
+			},
+			"text": " So, we have to be able to re-randomize addresses and refund to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 872000
+			},
+			"text": " I realized I actually, you know, basically sped through my entire deck and ended up talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 875000
+			},
+			"text": " So, let's recap."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 877000
+			},
+			"text": " We'll have it learned in this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 879000
+			},
+			"text": " So, first off, privacy is really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 881000
+			},
+			"text": " We do not have privacy on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 887000
+			},
+			"text": " We need some type of privacy solution for Ethereum that's really usable before Ethereum can go mainstream."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 898000
+			},
+			"text": " And a shielded contract wallet, combining a shielded pool and a contract wallet, is our bad shot at this backwards compatible feature complete privacy layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 901000
+			},
+			"text": " And finally, we're building this out."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 905000
+			},
+			"text": " We, you know, hope to put something in the public."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 916000
+			},
+			"text": " And the hope is that, you know, long-term for this ecosystem, most people will actually be inside, you know, a privacy layer instead of the standard UOA layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 920000
+			},
+			"text": " And if you're interested in contributing to this effort, please come talk to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 923000
+			},
+			"text": " And I realized I didn't do a self-introduction at the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 927000
+			},
+			"text": " My name is Wei Dai, a research partner at Inkapra Quiptel."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 930000
+			},
+			"text": " And come ask me if I have more questions about this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 932000
+			},
+			"text": " I'll take any questions from here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 933000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 934000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 935000
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 936000
+			},
+			"text": " Congrats for the work."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 938000
+			},
+			"text": " I think privacy is very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 945000
+			},
+			"text": " I've worked for a few years on having, trying to make users have smart contract wallets by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 955000
+			},
+			"text": " And the big problem is the gas costs of just having to onboard someone and already having to spend, like, ten dollars, five dollars, sometimes a hundred dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 958000
+			},
+			"text": " How do you think that that can be solved?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 960000
+			},
+			"text": " Yeah, very good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 962000
+			},
+			"text": " I think two things."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 973000
+			},
+			"text": " One is the, you know, actual cost of gas over time as we build this scalability layers should go down, right, as we build more roll-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 979000
+			},
+			"text": " And the second is we could use batching to amortize the gas cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 993000
+			},
+			"text": " So usually, you know, actually, in 4.27, there's a notion of bond owners and aggregators where, you know, you compress authentication information, you know, from multiple transactions into a single authorization for all the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 997000
+			},
+			"text": " And, you know, there's different tricks to kind of further optimize the gas cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1012000
+			},
+			"text": " So over time, through these two avenues, the hope is that the additional cost incurred to get a contract wallet with privacy is not prohibitive for users, for vast majority of users."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1013000
+			},
+			"text": " Great talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1020000
+			},
+			"text": " I'm interested in how you figure out OFEC and tornado cache because if this is like an opt-in impression coming from."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1021000
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1022000
+			},
+			"text": " Over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1023000
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1033000
+			},
+			"text": " No, how do you think about, because if you look at tornado cache and the OFEC sanctions, how do you think about avoiding that kind of thing with, because my understanding is that this would be like an opt-in smart counter wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1036000
+			},
+			"text": " So how can you avoid that and kind of a diverse selection and these types of things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1037000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1042000
+			},
+			"text": " So, so referring back to my slides, we're actually all the special solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1050000
+			},
+			"text": " You, you know, I think as a builder, which would be flexible in kind of, so, okay, what is privacy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1053000
+			},
+			"text": " Privacy is appropriate full of information."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1059000
+			},
+			"text": " I don't think privacy is absolute notion where everything should be private to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1066000
+			},
+			"text": " You know, there's, there's some societal like consensus on what is appropriate full of information, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1070000
+			},
+			"text": " And everybody can have their own interpretation of that, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1073000
+			},
+			"text": " Government agencies can have their own interpretation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1078000
+			},
+			"text": " Individuals in the T-worm community can have, you know, you know, our interpretation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1081000
+			},
+			"text": " And they might be incompatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1089000
+			},
+			"text": " But I think as builders, we should be open to different versions of, you know, what is appropriate for all of information."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1092000
+			},
+			"text": " Because technology is really flexible."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1100000
+			},
+			"text": " And, you know, over time, there will be communities that might be incompatible, but like, you know, we should work towards the solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:27,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1107000
+			},
+			"text": " That's more toward the center, I would say, where we include as many users in our ecosystem as possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1107000,
+				"to": 1116000
+			},
+			"text": " yet give some sort of control, perhaps, maybe, to some set of people, to be able to prevent illicit activities."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1121000
+			},
+			"text": " So, when you say you're, we're building this already. How far have you got?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1125000
+			},
+			"text": " We have prototype contracts, you know, it's very early stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1134000
+			},
+			"text": " Yeah, so, the idea has been, been there for, you know, a while, but the building is just, just picking up traction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1138000
+			},
+			"text": " and, you know, we'll have basically two people full-time on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1144000
+			},
+			"text": " Why not embed these innovations into an existing contract wallet, like, Arjun or something?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1149000
+			},
+			"text": " So, this, well, there's many, many different contract wallets out there with different focus."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1152000
+			},
+			"text": " It's, this is a contract wallet with privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1159000
+			},
+			"text": " You know, I think it doesn't make sense to, I mean, we could take existing, you know, for, we'll take the existing 4.3.7, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1164000
+			},
+			"text": " standard reference code base, and just, you know, fit this into there."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1169000
+			},
+			"text": " The main difficulty is actually not being a contract wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1174000
+			},
+			"text": " I'll show you, like, how do I have privacy? I think, because when you also change the front-end APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1180000
+			},
+			"text": " So, I mean, every single smart contract wallet, I have to do this, but, like, I think, for privacy is more important,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1180000,
+				"to": 1183000
+			},
+			"text": " because the lot of semantics is going to change, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1188000
+			},
+			"text": " So, if you think about how, currently, you pull balances, ready accounts, you first connect your wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1193000
+			},
+			"text": " you pull, like, you know, what is connected wallet address, and you, like, go to the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1198000
+			},
+			"text": " and pull, okay, what is actually my balance? That cannot be made privacy preserving, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:02,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1202000
+			},
+			"text": " Because you get who it is. So, you have to change that into something like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1202000,
+				"to": 1209000
+			},
+			"text": " connect to wallets, connect at the USDC balance, you know, so, so, a lot of things to change."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:14,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1214000
+			},
+			"text": " When something needs to be, you know, you want to imagine a privacy preserving system."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,000",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1214000,
+				"to": 1219000
+			},
+			"text": " So, we'll have to collaborate with, you know, contract wallet projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:23,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1223000
+			},
+			"text": " And that's also another reason why we're trying to stay compatible for 37,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1223000,
+				"to": 1228000
+			},
+			"text": " because we can reuse, you know, have the same bundleer infrastructure, and this, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:35,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1235000
+			},
+			"text": " account abstraction manual. So, we'll be part of that ecosystem, and contribute to the efforts as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,000",
+				"to": "00:20:41,000"
+			},
+			"offsets": {
+				"from": 1235000,
+				"to": 1241000
+			},
+			"text": " Great talk, thanks. What kind of, what kind of zero-knowledge protocol you decided to use?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,000",
+				"to": "00:20:46,000"
+			},
+			"offsets": {
+				"from": 1241000,
+				"to": 1246000
+			},
+			"text": " Yeah, so, you know, as it turns out, the easiest way to prototype something like this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1246000,
+				"to": 1250000
+			},
+			"text": " sort of gone still. Like, there's nothing better out there that you can, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:20:55,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1255000
+			},
+			"text": " drive it in a circuit and have, like, solidity, modifier, and, like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,000",
+				"to": "00:20:59,000"
+			},
+			"offsets": {
+				"from": 1255000,
+				"to": 1259000
+			},
+			"text": " a prover that's rather than, like, a browser. Sort of convinced only ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1259000,
+				"to": 1264000
+			},
+			"text": " So, this is, like, another rank. I would use, you know, the, like, most efficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:09,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1269000
+			},
+			"text": " proof system out there, like, probably more, like, plunk, but that tooling's not there."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,000",
+				"to": "00:21:13,000"
+			},
+			"offsets": {
+				"from": 1269000,
+				"to": 1273000
+			},
+			"text": " And also, like, over time, it sounds like you're familiar with the subsystems, but, like, over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,000",
+				"to": "00:21:18,000"
+			},
+			"offsets": {
+				"from": 1273000,
+				"to": 1278000
+			},
+			"text": " there'll be, like, kind of two separate proof systems, right? So, one is on the user side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,000",
+				"to": "00:21:23,000"
+			},
+			"offsets": {
+				"from": 1278000,
+				"to": 1283000
+			},
+			"text": " where you essentially want zero-knowledge property only for privacy. So, you know, what is this thing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,000",
+				"to": "00:21:27,000"
+			},
+			"offsets": {
+				"from": 1283000,
+				"to": 1287000
+			},
+			"text": " You know, it's a, the overall design is very similar to, like, any other sort of pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,000",
+				"to": "00:21:33,000"
+			},
+			"offsets": {
+				"from": 1287000,
+				"to": 1293000
+			},
+			"text": " You have a Merkle tree of notes, right? You're referring to a note and spinning it without revealing"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,000",
+				"to": "00:21:38,000"
+			},
+			"offsets": {
+				"from": 1293000,
+				"to": 1298000
+			},
+			"text": " which note you're referring to, right? And that, for that, you need zero-knowledge to preserve your privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1298000,
+				"to": 1303000
+			},
+			"text": " And you actually don't really need a stickness. And we're going to have this, like, aggregation layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1308000
+			},
+			"text": " that roll out these user-spending proofs. And for that, you really want a stickness, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:53,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1313000
+			},
+			"text": " You want to be able to verify on the contracts that really efficiently, right? And so, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,000",
+				"to": "00:21:57,000"
+			},
+			"offsets": {
+				"from": 1313000,
+				"to": 1317000
+			},
+			"text": " I think this is something that I've been discussing a lot in DevCon in the past couple days,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,000",
+				"to": "00:22:01,000"
+			},
+			"offsets": {
+				"from": 1317000,
+				"to": 1321000
+			},
+			"text": " which is you have the notion of an inner proof and outer proof, right? So, for us, this inner proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,000",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1321000,
+				"to": 1327000
+			},
+			"text": " will basically be the user proof that's, have zero-knowledge, right? We can use, I think, over time, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:12,000"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1332000
+			},
+			"text": " which will probably evaluate things that are really fast in the browser as to your knowledge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,000",
+				"to": "00:22:17,000"
+			},
+			"offsets": {
+				"from": 1332000,
+				"to": 1337000
+			},
+			"text": " and maybe some type of compression, you know, like maybe smarts or something. And then, on the outer proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,000",
+				"to": "00:22:23,000"
+			},
+			"offsets": {
+				"from": 1337000,
+				"to": 1343000
+			},
+			"text": " we'll have, you know, probably gross-asting or plunk that really compresses the other proofs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,000",
+				"to": "00:22:31,000"
+			},
+			"offsets": {
+				"from": 1343000,
+				"to": 1351000
+			},
+			"text": " Yeah. So, one approach to solving this problem would be to make backwards compatible contracts on"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,000",
+				"to": "00:22:39,000"
+			},
+			"offsets": {
+				"from": 1351000,
+				"to": 1359000
+			},
+			"text": " Ethereum. Other approaches might be to wait until there's an L2 that has more primitives built in"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,000",
+				"to": "00:22:46,000"
+			},
+			"offsets": {
+				"from": 1359000,
+				"to": 1366000
+			},
+			"text": " that support this. And I'm just curious to learn more about your thinking of, if it ever makes sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,000",
+				"to": "00:22:52,000"
+			},
+			"offsets": {
+				"from": 1366000,
+				"to": 1372000
+			},
+			"text": " that privacy will be in one place and non-private things can exist in another."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,000",
+				"to": "00:22:58,000"
+			},
+			"offsets": {
+				"from": 1372000,
+				"to": 1378000
+			},
+			"text": " I think, yeah. So, yeah, the question is, you know, do we build privacy resources on top of existing things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,000",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1378000,
+				"to": 1384000
+			},
+			"text": " Or do we build new ecosystem to build privacy-preserving solutions? And I think the key question is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1391000
+			},
+			"text": " what are the privacy supported? And what are the features of those applications? And so, it turns out"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:17,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1397000
+			},
+			"text": " that the short answer is, there's no privacy-preserving ecosystem right now out there that actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,000",
+				"to": "00:23:24,000"
+			},
+			"offsets": {
+				"from": 1397000,
+				"to": 1404000
+			},
+			"text": " support more features than anonymity. Okay? So, if you look at like, like, Alio or like Mina, it's really"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,000",
+				"to": "00:23:30,000"
+			},
+			"offsets": {
+				"from": 1404000,
+				"to": 1410000
+			},
+			"text": " just a solution to build roll-ups. Like, you know, with zero knowledge, you cannot get privacy for"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,000",
+				"to": "00:23:35,000"
+			},
+			"offsets": {
+				"from": 1410000,
+				"to": 1415000
+			},
+			"text": " shared states. So, I actually discuss this in another talk online. So, if you think about the features"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,000",
+				"to": "00:23:40,000"
+			},
+			"offsets": {
+				"from": 1415000,
+				"to": 1420000
+			},
+			"text": " we can support, I think unless you have vastly more capabilities to support privacy-preserving"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,000",
+				"to": "00:23:46,000"
+			},
+			"offsets": {
+				"from": 1420000,
+				"to": 1426000
+			},
+			"text": " solutions, which I think is actually, you know, privacy of shared states, it doesn't make sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,000",
+				"to": "00:23:51,000"
+			},
+			"offsets": {
+				"from": 1426000,
+				"to": 1431000
+			},
+			"text": " to have a complete brand new ecosystem because the privacy that's achievable is the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,000",
+				"to": "00:23:58,000"
+			},
+			"offsets": {
+				"from": 1431000,
+				"to": 1438000
+			},
+			"text": " So, there's no benefit to building a new ecosystem that do the same thing, right? So, therefore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,000",
+				"to": "00:24:03,000"
+			},
+			"offsets": {
+				"from": 1438000,
+				"to": 1443000
+			},
+			"text": " if that's the case, we should build on top of existing ecosystems because everyone's there"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,000",
+				"to": "00:24:09,000"
+			},
+			"offsets": {
+				"from": 1443000,
+				"to": 1449000
+			},
+			"text": " with desperately new privacy solutions and it's possible to build it. So, you know, let's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,000",
+				"to": "00:24:16,000"
+			},
+			"offsets": {
+				"from": 1449000,
+				"to": 1456000
+			},
+			"text": " reinvent the wheel. Is it working? So, it sounds like you need a sequence of maintaining the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,000",
+				"to": "00:24:21,000"
+			},
+			"offsets": {
+				"from": 1456000,
+				"to": 1461000
+			},
+			"text": " mark or tree if you've got thoughts on how you're going to decentralize that or whether you will?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,000",
+				"to": "00:24:27,000"
+			},
+			"offsets": {
+				"from": 1461000,
+				"to": 1467000
+			},
+			"text": " Yeah. So, this is actually kind of two different things. So, 4.33.7, you have the notion of"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,000",
+				"to": "00:24:37,000"
+			},
+			"offsets": {
+				"from": 1467000,
+				"to": 1477000
+			},
+			"text": " bundlers. And we could basically use that. So, we could actually -- so, bundlers -- so, I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,000",
+				"to": "00:24:41,000"
+			},
+			"offsets": {
+				"from": 1477000,
+				"to": 1481000
+			},
+			"text": " it's here to determine exactly what's in the standards, but it seems that for every single"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1481000,
+				"to": 1485000
+			},
+			"text": " contract wallet, bundler needs to run custom code to be able to compress different user"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:51,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1491000
+			},
+			"text": " operations to one. So, we could -- it's interesting to put up the standards when it's more finalized"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,000",
+				"to": "00:24:57,000"
+			},
+			"offsets": {
+				"from": 1491000,
+				"to": 1497000
+			},
+			"text": " to be able to have essentially to plug into that ecosystem, right? So, it could be like"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,000",
+				"to": "00:25:01,000"
+			},
+			"offsets": {
+				"from": 1497000,
+				"to": 1501000
+			},
+			"text": " different for the deserving bundlers that's supporting different smart contract wallets and it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,000",
+				"to": "00:25:07,000"
+			},
+			"offsets": {
+				"from": 1501000,
+				"to": 1507000
+			},
+			"text": " be one of them. And in that way, we can decentralize bundling. And the second is, yeah, so, exactly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,000",
+				"to": "00:25:14,000"
+			},
+			"offsets": {
+				"from": 1507000,
+				"to": 1514000
+			},
+			"text": " so, there might be this management of Merkle trees that separates to compressing multiple user"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,000",
+				"to": "00:25:19,000"
+			},
+			"offsets": {
+				"from": 1514000,
+				"to": 1519000
+			},
+			"text": " operations and improves into one. And we can make that permission, like, it thinks of"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,000",
+				"to": "00:25:26,000"
+			},
+			"offsets": {
+				"from": 1519000,
+				"to": 1526000
+			},
+			"text": " current thinking, right? So, okay, what is the overall story? Is that -- so, because we"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,000",
+				"to": "00:25:31,000"
+			},
+			"offsets": {
+				"from": 1526000,
+				"to": 1531000
+			},
+			"text": " support -- we're backwards and portable. We support exact same set of operations. We -- like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,000",
+				"to": "00:25:35,000"
+			},
+			"offsets": {
+				"from": 1531000,
+				"to": 1535000
+			},
+			"text": " you should need to pay more gas, right? Like, that's the -- you're paying the same amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,000",
+				"to": "00:25:40,000"
+			},
+			"offsets": {
+				"from": 1535000,
+				"to": 1540000
+			},
+			"text": " of gas by default. And the additional things, that's, you know, the overhead to, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,000",
+				"to": "00:25:45,000"
+			},
+			"offsets": {
+				"from": 1540000,
+				"to": 1545000
+			},
+			"text": " maintain everything. And the idea is to, like, make it as small as possible. And the only"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,000",
+				"to": "00:25:50,000"
+			},
+			"offsets": {
+				"from": 1545000,
+				"to": 1550000
+			},
+			"text": " way to do that is to -- and all sources aggregate the work into some sequence or bundler."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,000",
+				"to": "00:25:55,000"
+			},
+			"offsets": {
+				"from": 1550000,
+				"to": 1555000
+			},
+			"text": " So, it's basically necessary if you want to make this user usable. And so, yeah, so, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,000",
+				"to": "00:26:00,000"
+			},
+			"offsets": {
+				"from": 1555000,
+				"to": 1560000
+			},
+			"text": " to decentralize, I think, you know, make it permissionless and really design incentives around"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:00,000",
+				"to": "00:26:04,000"
+			},
+			"offsets": {
+				"from": 1560000,
+				"to": 1564000
+			},
+			"text": " this, right? That's -- because these are bundlers, sequins are providing a service."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,000",
+				"to": "00:26:09,000"
+			},
+			"offsets": {
+				"from": 1564000,
+				"to": 1569000
+			},
+			"text": " And we should instant -- send it as a behavior and make it permissionless. And design kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,000",
+				"to": "00:26:16,000"
+			},
+			"offsets": {
+				"from": 1569000,
+				"to": 1576000
+			},
+			"text": " of this ecosystem that's so sustainable, right? Because I think, like, users will pay for"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,000",
+				"to": "00:26:21,000"
+			},
+			"offsets": {
+				"from": 1576000,
+				"to": 1581000
+			},
+			"text": " privacy if it's cheap enough. And you can get this network effect, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,000",
+				"to": "00:26:23,000"
+			},
+			"offsets": {
+				"from": 1581000,
+				"to": 1583000
+			},
+			"text": " >> Thank you so much. [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,000",
+				"to": "00:26:38,000"
+			},
+			"offsets": {
+				"from": 1583000,
+				"to": 1598000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,4344 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 20000
+			},
+			"text": " So subtitle here is Vision and Roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 26000
+			},
+			"text": " However, the slides will be more somewhat technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 35000
+			},
+			"text": " and maybe philosophical, but the vision is simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 40000
+			},
+			"text": " It's to create a protocol that multiple applications can run"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 47000
+			},
+			"text": " over that is encrypted and provides certain guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 51000
+			},
+			"text": " And this has become more apparent over this week"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 59000
+			},
+			"text": " that this is an interest and it's in demand from many people."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 66000
+			},
+			"text": " So people who are building DAPs, we saw a few on Monday"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 68000
+			},
+			"text": " and Ethereum itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 75000
+			},
+			"text": " So in turning complete flash fashion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 79000
+			},
+			"text": " we are doing a similar thing with the network protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 87000
+			},
+			"text": " in that it can be used for more than just Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 93000
+			},
+			"text": " So a little bit about me, I was born and raised in Texas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 98000
+			},
+			"text": " so the YAGNY thing that's been pointed out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 103000
+			},
+			"text": " we would say, \"Y'all ain't going to need that.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 107000
+			},
+			"text": " Which is important in networking because we don't want to put things"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 109000
+			},
+			"text": " on the network that we don't need."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 114000
+			},
+			"text": " It adds complexity and that's not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 118000
+			},
+			"text": " So before I started programming, I worked in networking"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 122000
+			},
+			"text": " at a strong interest in networking and network security"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 128000
+			},
+			"text": " and helped build Internet service providers, that kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 133000
+			},
+			"text": " Got into programming, wrote, helped write a C++ bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 143000
+			},
+			"text": " to our tracker that was, so bit to our itself, was controversial."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 150000
+			},
+			"text": " And the reason that I mention this is because it's important"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154000
+			},
+			"text": " to remember that we're adding encryption here"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 158000
+			},
+			"text": " and this can be a double edged sword."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 164000
+			},
+			"text": " So our objective is to build what we need for the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 170000
+			},
+			"text": " to have integrity and that includes encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 177000
+			},
+			"text": " Anything beyond that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 182000
+			},
+			"text": " we would like anything beyond that to be able to be built"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 185000
+			},
+			"text": " on this protocol if it's feasible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 187000
+			},
+			"text": " Something else could come along that's better."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 191000
+			},
+			"text": " There can be other protocols out there already"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 197000
+			},
+			"text": " that have the potential to facilitate this role."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 204000
+			},
+			"text": " So what we would like is a multi-protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 206000
+			},
+			"text": " peer-to-peer protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 209000
+			},
+			"text": " So right now, if you use BitTorrent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 212000
+			},
+			"text": " the peer network that you're connected to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 214000
+			},
+			"text": " and the things that you can do with that network"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 220000
+			},
+			"text": " and those code bases is to send and receive files."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 225000
+			},
+			"text": " And it's really efficient because of how it's done."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 229000
+			},
+			"text": " So now, if we want to allow multiple protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 233000
+			},
+			"text": " to use a similar peer-to-peer network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 236000
+			},
+			"text": " we're starting to layer things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 242000
+			},
+			"text": " And if you have two layers, that's usually not too difficult to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 245000
+			},
+			"text": " Something just needs to be lighter than the other different properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 248000
+			},
+			"text": " whatever, or you just go back and forth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 250000
+			},
+			"text": " it keeps it really simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 253000
+			},
+			"text": " We want to start adding more layers to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 256000
+			},
+			"text": " It gets really complicated, really fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 263000
+			},
+			"text": " So with the protocol, for Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 269000
+			},
+			"text": " scalability, efficiency, and usability are really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 274000
+			},
+			"text": " If the network is slow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 279000
+			},
+			"text": " I think we can all agree that that would be a good thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 282000
+			},
+			"text": " Faster network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 286000
+			},
+			"text": " That's not the goal, that's not the most important thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 291000
+			},
+			"text": " But between the two, this helps with robustness."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 296000
+			},
+			"text": " So the network can respond to events faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 301000
+			},
+			"text": " DHT tables can be kept more up to date."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 310000
+			},
+			"text": " So the general status of the network can be more robust and stable if it's quick,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 315000
+			},
+			"text": " if it's efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 323000
+			},
+			"text": " Privacy will talk a little bit about privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 334000
+			},
+			"text": " And so, for me, to me, I think that encryption is a form of privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 344000
+			},
+			"text": " So if we are encrypting traffic, we are automatically adding some form of privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 357000
+			},
+			"text": " So the Internet, as most applications developers know it, can be laid out simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 365000
+			},
+			"text": " So a lot of networks run on ethernet, or perhaps they run a cell phone or ADSL,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 366000
+			},
+			"text": " these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 373000
+			},
+			"text": " A lot of those, so for example, most DSL connections use a form of ethernet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 379000
+			},
+			"text": " Internet protocol, TCP, and UDP."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 391000
+			},
+			"text": " So an interesting thing about these protocols is they have their own sort of forms of how"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 393000
+			},
+			"text": " you use the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 400000
+			},
+			"text": " So if you want to build an application that uses TCP, there's a lot of things that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 405000
+			},
+			"text": " going on in the background to allow that to work to begin with."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 411000
+			},
+			"text": " So if you just took TCP and you put it on a small network, you're fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 419000
+			},
+			"text": " If you take TCP, IP, and you put it on the Internet with just the simplest ethernet"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 425000
+			},
+			"text": " IP and TCP IP, it won't really -- there's a lot of problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 435000
+			},
+			"text": " So an important part also, each of these -- well, these two have an address resolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 440000
+			},
+			"text": " So ethernet has addresses, and we have an address resolution protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 448000
+			},
+			"text": " IP has addresses, which some kind -- there's ways that you can have discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 455000
+			},
+			"text": " So on the routing side of things, we have protocols that are used for infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 460000
+			},
+			"text": " Notably, NPLS is on all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 473000
+			},
+			"text": " So the interesting thing is that a lot of problems that large peer-to-peer networks need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 485000
+			},
+			"text": " solve to be robust are really problems that engineers working on keeping the Internet"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 494000
+			},
+			"text": " up, they are problems that these engineers are also researching that solution for."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 502000
+			},
+			"text": " So to give an example of this, here's a diagram of just a network diagram from a -- like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 507000
+			},
+			"text": " test thing, and it gets complex really quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 512000
+			},
+			"text": " We don't have cell phones in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 518000
+			},
+			"text": " There's a lot of things going on with the Internet, so this isn't here, but there could"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 525000
+			},
+			"text": " be a solid ring here, so that if one part of the fiber gets cut, everything just goes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 529000
+			},
+			"text": " the other direction around the ring."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 534000
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 540000
+			},
+			"text": " What's the data grammar and the hot time reading it from here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 546000
+			},
+			"text": " So this is an example of different kinds of networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 555000
+			},
+			"text": " So Fred really switched, and then for other connectivity, just imagine that every single"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 565000
+			},
+			"text": " one of these connections is a different way of the connection routes, messages differently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 572000
+			},
+			"text": " but yet they all get along on the Internet most of the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 575000
+			},
+			"text": " So can I ask very similar questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 576000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 579000
+			},
+			"text": " For software developers, like why do I care?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 584000
+			},
+			"text": " I'm going to get to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 589000
+			},
+			"text": " So do we have solutions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 597000
+			},
+			"text": " So considering privacy as well as the scalability of the Internet, there's a lot of people working"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 598000
+			},
+			"text": " on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 613000
+			},
+			"text": " IPv6 is -- there's a part of IPv6 that tries to help with privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 621000
+			},
+			"text": " Now, one interesting thing about IPv6 is they're 128-bit addresses, so they're not quite large"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 634000
+			},
+			"text": " enough to use on a peer-to-peer network that depends on cryptographic properties for shaping"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 640000
+			},
+			"text": " the network or for peers connecting, and we'll get to that later."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:50,160"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 650160
+			},
+			"text": " So recent issue, this is a blog post from an engineer at MIT, and IPv6 has this really"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,160",
+				"to": "00:10:57,440"
+			},
+			"offsets": {
+				"from": 650160,
+				"to": 657440
+			},
+			"text": " interesting thing where everybody who actually gets an address doesn't get a full address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,440",
+				"to": "00:11:03,880"
+			},
+			"offsets": {
+				"from": 657440,
+				"to": 663880
+			},
+			"text": " and they can generate their own private addresses, just ad hoc out of nowhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,880",
+				"to": "00:11:11,440"
+			},
+			"offsets": {
+				"from": 663880,
+				"to": 671440
+			},
+			"text": " And so it's kind of like an ephemeral address, but the problem is that routing equipment"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,440",
+				"to": "00:11:20,880"
+			},
+			"offsets": {
+				"from": 671440,
+				"to": 680880
+			},
+			"text": " relies on addresses that don't change because it can do so quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,880",
+				"to": "00:11:28,680"
+			},
+			"offsets": {
+				"from": 680880,
+				"to": 688680
+			},
+			"text": " So if every computer in the world changed its address every five minutes, it would be really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,680",
+				"to": "00:11:36,040"
+			},
+			"offsets": {
+				"from": 688680,
+				"to": 696040
+			},
+			"text": " really difficult to scale that so that every message can go from its source to its destination."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,040",
+				"to": "00:11:42,880"
+			},
+			"offsets": {
+				"from": 696040,
+				"to": 702880
+			},
+			"text": " The amount of memory and processing power for core network equipment would have to change"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,880",
+				"to": "00:11:47,080"
+			},
+			"offsets": {
+				"from": 702880,
+				"to": 707080
+			},
+			"text": " or our limbs have to change."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,080",
+				"to": "00:12:01,320"
+			},
+			"offsets": {
+				"from": 707080,
+				"to": 721320
+			},
+			"text": " Yes, so if you're interested in IPv6 and how there is a project that's trying to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,320",
+				"to": "00:12:05,720"
+			},
+			"offsets": {
+				"from": 721320,
+				"to": 725720
+			},
+			"text": " on IPv6 for privacy and encryption, it's called CJDNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,720",
+				"to": "00:12:11,720"
+			},
+			"offsets": {
+				"from": 725720,
+				"to": 731720
+			},
+			"text": " That's pretty cool if you want to cut that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,720",
+				"to": "00:12:20,800"
+			},
+			"offsets": {
+				"from": 731720,
+				"to": 740800
+			},
+			"text": " So, a lot of what I'm covering here is the internet as we know it today for most application"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,800",
+				"to": "00:12:22,960"
+			},
+			"offsets": {
+				"from": 740800,
+				"to": 742960
+			},
+			"text": " developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,960",
+				"to": "00:12:33,440"
+			},
+			"offsets": {
+				"from": 742960,
+				"to": 753440
+			},
+			"text": " So all major browsers today should be using TLS, which is like version 4 of SSL or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,440",
+				"to": "00:12:34,440"
+			},
+			"offsets": {
+				"from": 753440,
+				"to": 754440
+			},
+			"text": " like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,440",
+				"to": "00:12:36,280"
+			},
+			"offsets": {
+				"from": 754440,
+				"to": 756280
+			},
+			"text": " They changed the name of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,280",
+				"to": "00:12:37,280"
+			},
+			"offsets": {
+				"from": 756280,
+				"to": 757280
+			},
+			"text": " TCP encrypted."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,280",
+				"to": "00:12:39,640"
+			},
+			"offsets": {
+				"from": 757280,
+				"to": 759640
+			},
+			"text": " It doesn't seem to be good."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,640",
+				"to": "00:12:44,800"
+			},
+			"offsets": {
+				"from": 759640,
+				"to": 764800
+			},
+			"text": " Yeah, so TLS is a protocol that runs on TCP/IP."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,800",
+				"to": "00:12:54,280"
+			},
+			"offsets": {
+				"from": 764800,
+				"to": 774280
+			},
+			"text": " So it's similar to HTTP or IMAP or POP or any application protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,280",
+				"to": "00:13:01,360"
+			},
+			"offsets": {
+				"from": 774280,
+				"to": 781360
+			},
+			"text": " Except TLS is to say, well, use TLS, so start your connection with TLS and then it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,360",
+				"to": "00:13:07,360"
+			},
+			"offsets": {
+				"from": 781360,
+				"to": 787360
+			},
+			"text": " be encrypted and then just start sending messages once you know that it's encrypted."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,360",
+				"to": "00:13:15,400"
+			},
+			"offsets": {
+				"from": 787360,
+				"to": 795400
+			},
+			"text": " So a few of the things with TLS is that TLS itself is pretty good."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,400",
+				"to": "00:13:17,200"
+			},
+			"offsets": {
+				"from": 795400,
+				"to": 797200
+			},
+			"text": " It's well researched."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,200",
+				"to": "00:13:26,680"
+			},
+			"offsets": {
+				"from": 797200,
+				"to": 806680
+			},
+			"text": " The attacks against TLS are often edge cases and rely on attacks on other cryptographic"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,680",
+				"to": "00:13:28,920"
+			},
+			"offsets": {
+				"from": 806680,
+				"to": 808920
+			},
+			"text": " algorithms."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,920",
+				"to": "00:13:33,600"
+			},
+			"offsets": {
+				"from": 808920,
+				"to": 813600
+			},
+			"text": " Or at the end of the day, the issue is the implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,600",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 813600,
+				"to": 824000
+			},
+			"text": " So TLS used by everyone today, everybody uses root certificate authorities."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:49,080"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 829080
+			},
+			"text": " And this is centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,080",
+				"to": "00:13:53,680"
+			},
+			"offsets": {
+				"from": 829080,
+				"to": 833680
+			},
+			"text": " That works for certain use cases, but Ethereum is decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,680",
+				"to": "00:14:03,440"
+			},
+			"offsets": {
+				"from": 833680,
+				"to": 843440
+			},
+			"text": " So the usability of TLS is also somewhat of a black box because if you're a developer and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,440",
+				"to": "00:14:09,240"
+			},
+			"offsets": {
+				"from": 843440,
+				"to": 849240
+			},
+			"text": " you write JavaScript, web applications or something, there's no way for your web application"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,240",
+				"to": "00:14:14,800"
+			},
+			"offsets": {
+				"from": 849240,
+				"to": 854800
+			},
+			"text": " to determine if it's running on an encrypted connection or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,800",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 854800,
+				"to": 860000
+			},
+			"text": " And if your web application wanted to determine if it's running on an encrypted connection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:27,040"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 867040
+			},
+			"text": " they couldn't find out who it's connected to over this encrypted connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,040",
+				"to": "00:14:32,160"
+			},
+			"offsets": {
+				"from": 867040,
+				"to": 872160
+			},
+			"text": " The only way that we could do this right now is to actually implement TLS inside of TLS"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,160",
+				"to": "00:14:37,920"
+			},
+			"offsets": {
+				"from": 872160,
+				"to": 877920
+			},
+			"text": " with JavaScript or something, which would just be not fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,920",
+				"to": "00:14:47,160"
+			},
+			"offsets": {
+				"from": 877920,
+				"to": 887160
+			},
+			"text": " So on a more concerning level, TLS, most of its problems have had to do with browsers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,160",
+				"to": "00:14:51,240"
+			},
+			"offsets": {
+				"from": 887160,
+				"to": 891240
+			},
+			"text": " implementing it and making it really easy to downgrade the connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,240",
+				"to": "00:14:59,800"
+			},
+			"offsets": {
+				"from": 891240,
+				"to": 899800
+			},
+			"text": " And so this has been used as an attack vector to basically when the browser goes to connect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,800",
+				"to": "00:15:07,400"
+			},
+			"offsets": {
+				"from": 899800,
+				"to": 907400
+			},
+			"text": " you intercept a packet and you quickly get the browser to connect with a lower security,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,400",
+				"to": "00:15:18,120"
+			},
+			"offsets": {
+				"from": 907400,
+				"to": 918120
+			},
+			"text": " so say 56-bit encryption instead of AS and downgrading the line."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,120",
+				"to": "00:15:26,840"
+			},
+			"offsets": {
+				"from": 918120,
+				"to": 926840
+			},
+			"text": " And implementations are really geared towards running HTTP over it, not other protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,840",
+				"to": "00:15:39,800"
+			},
+			"offsets": {
+				"from": 926840,
+				"to": 939800
+			},
+			"text": " So one last thing, maybe some of us here have seen this slide before and again to your question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,800",
+				"to": "00:15:45,240"
+			},
+			"offsets": {
+				"from": 939800,
+				"to": 945240
+			},
+			"text": " I'll cover what this stuff is about and why."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,240",
+				"to": "00:15:54,520"
+			},
+			"offsets": {
+				"from": 945240,
+				"to": 954520
+			},
+			"text": " So this is an image from a paper from researchers I think at Harvard and they're basically saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,520",
+				"to": "00:16:02,840"
+			},
+			"offsets": {
+				"from": 954520,
+				"to": 962840
+			},
+			"text": " okay, you can use a net flow analysis to figure out what's going on with Tor."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,840",
+				"to": "00:16:12,520"
+			},
+			"offsets": {
+				"from": 962840,
+				"to": 972520
+			},
+			"text": " And the reason that I present this is because, so this isn't necessarily a problem, but it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,520",
+				"to": "00:16:22,480"
+			},
+			"offsets": {
+				"from": 972520,
+				"to": 982480
+			},
+			"text": " something that I guess you could say, freedom fighters and people interested in privacy and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,480",
+				"to": "00:16:26,880"
+			},
+			"offsets": {
+				"from": 982480,
+				"to": 986880
+			},
+			"text": " freedom, there's ongoing research here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,880",
+				"to": "00:16:31,320"
+			},
+			"offsets": {
+				"from": 986880,
+				"to": 991320
+			},
+			"text": " So how do we actually have privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,320",
+				"to": "00:16:36,040"
+			},
+			"offsets": {
+				"from": 991320,
+				"to": 996040
+			},
+			"text": " Like how can we send and receive information over the internet and there's no way for somebody"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,040",
+				"to": "00:16:41,520"
+			},
+			"offsets": {
+				"from": 996040,
+				"to": 1001520
+			},
+			"text": " to figure out what is being sent and received."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,520",
+				"to": "00:16:48,240"
+			},
+			"offsets": {
+				"from": 1001520,
+				"to": 1008240
+			},
+			"text": " So what's important here is really not the attack or it's Tor or anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,240",
+				"to": "00:16:55,600"
+			},
+			"offsets": {
+				"from": 1008240,
+				"to": 1015600
+			},
+			"text": " What's important to know is that in data centers all over the world there's equipment for net"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,600",
+				"to": "00:16:57,080"
+			},
+			"offsets": {
+				"from": 1015600,
+				"to": 1017080
+			},
+			"text": " flow analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,080",
+				"to": "00:17:03,080"
+			},
+			"offsets": {
+				"from": 1017080,
+				"to": 1023080
+			},
+			"text": " And what this does is this equipment reads every packet that comes into the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,080",
+				"to": "00:17:08,720"
+			},
+			"offsets": {
+				"from": 1023080,
+				"to": 1028720
+			},
+			"text": " Some of them do this based on sampling, so they'll read 5% of every packet that comes"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,720",
+				"to": "00:17:12,520"
+			},
+			"offsets": {
+				"from": 1028720,
+				"to": 1032520
+			},
+			"text": " onto the network and extrapolate information from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,520",
+				"to": "00:17:19,400"
+			},
+			"offsets": {
+				"from": 1032520,
+				"to": 1039400
+			},
+			"text": " So the purpose of this equipment is to help their network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,400",
+				"to": "00:17:25,120"
+			},
+			"offsets": {
+				"from": 1039400,
+				"to": 1045120
+			},
+			"text": " They don't install this equipment to eavesdrop on traffic or figure out what people are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,120",
+				"to": "00:17:30,160"
+			},
+			"offsets": {
+				"from": 1045120,
+				"to": 1050160
+			},
+			"text": " They oftentimes they install this equipment because it helps figure out where denial of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,160",
+				"to": "00:17:32,160"
+			},
+			"offsets": {
+				"from": 1050160,
+				"to": 1052160
+			},
+			"text": " service attacks are coming from."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,160",
+				"to": "00:17:46,880"
+			},
+			"offsets": {
+				"from": 1052160,
+				"to": 1066880
+			},
+			"text": " So back to the double edged sword thing there's a lot of cases where there's a balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,880",
+				"to": "00:18:00,040"
+			},
+			"offsets": {
+				"from": 1066880,
+				"to": 1080040
+			},
+			"text": " So when I started working on the networking stuff, yeah I was like yeah so we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,040",
+				"to": "00:18:03,800"
+			},
+			"offsets": {
+				"from": 1080040,
+				"to": 1083800
+			},
+			"text": " to run everything on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,800",
+				"to": "00:18:05,800"
+			},
+			"offsets": {
+				"from": 1083800,
+				"to": 1085800
+			},
+			"text": " No question."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,800",
+				"to": "00:18:13,720"
+			},
+			"offsets": {
+				"from": 1085800,
+				"to": 1093720
+			},
+			"text": " This is actually really really really applicable and I'll get to that in a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,720",
+				"to": "00:18:26,680"
+			},
+			"offsets": {
+				"from": 1093720,
+				"to": 1106680
+			},
+			"text": " So yeah so the Ethereum network protocol as we have it today is Ethereum relays transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,680",
+				"to": "00:18:33,680"
+			},
+			"offsets": {
+				"from": 1106680,
+				"to": 1113680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,680",
+				"to": "00:18:40,680"
+			},
+			"offsets": {
+				"from": 1113680,
+				"to": 1120680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,680",
+				"to": "00:18:47,680"
+			},
+			"offsets": {
+				"from": 1120680,
+				"to": 1127680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,680",
+				"to": "00:18:54,680"
+			},
+			"offsets": {
+				"from": 1127680,
+				"to": 1134680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,680",
+				"to": "00:19:01,680"
+			},
+			"offsets": {
+				"from": 1134680,
+				"to": 1141680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,680",
+				"to": "00:19:08,680"
+			},
+			"offsets": {
+				"from": 1141680,
+				"to": 1148680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,680",
+				"to": "00:19:15,680"
+			},
+			"offsets": {
+				"from": 1148680,
+				"to": 1155680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,680",
+				"to": "00:19:22,680"
+			},
+			"offsets": {
+				"from": 1155680,
+				"to": 1162680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,680",
+				"to": "00:19:29,680"
+			},
+			"offsets": {
+				"from": 1162680,
+				"to": 1169680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,680",
+				"to": "00:19:36,680"
+			},
+			"offsets": {
+				"from": 1169680,
+				"to": 1176680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,680",
+				"to": "00:19:43,680"
+			},
+			"offsets": {
+				"from": 1176680,
+				"to": 1183680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,680",
+				"to": "00:19:50,680"
+			},
+			"offsets": {
+				"from": 1183680,
+				"to": 1190680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,680",
+				"to": "00:19:57,680"
+			},
+			"offsets": {
+				"from": 1190680,
+				"to": 1197680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,680",
+				"to": "00:20:04,680"
+			},
+			"offsets": {
+				"from": 1197680,
+				"to": 1204680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,680",
+				"to": "00:20:09,680"
+			},
+			"offsets": {
+				"from": 1204680,
+				"to": 1209680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,680",
+				"to": "00:20:11,680"
+			},
+			"offsets": {
+				"from": 1209680,
+				"to": 1211680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,680",
+				"to": "00:20:12,680"
+			},
+			"offsets": {
+				"from": 1211680,
+				"to": 1212680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,680",
+				"to": "00:20:13,680"
+			},
+			"offsets": {
+				"from": 1212680,
+				"to": 1213680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,680",
+				"to": "00:20:14,680"
+			},
+			"offsets": {
+				"from": 1213680,
+				"to": 1214680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,680",
+				"to": "00:20:15,680"
+			},
+			"offsets": {
+				"from": 1214680,
+				"to": 1215680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,680",
+				"to": "00:20:16,680"
+			},
+			"offsets": {
+				"from": 1215680,
+				"to": 1216680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,680",
+				"to": "00:20:17,680"
+			},
+			"offsets": {
+				"from": 1216680,
+				"to": 1217680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,680",
+				"to": "00:20:18,680"
+			},
+			"offsets": {
+				"from": 1217680,
+				"to": 1218680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1218680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:20,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1220680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,680",
+				"to": "00:20:50,680"
+			},
+			"offsets": {
+				"from": 1220680,
+				"to": 1250680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,680",
+				"to": "00:21:20,680"
+			},
+			"offsets": {
+				"from": 1250680,
+				"to": 1280680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,680",
+				"to": "00:21:50,680"
+			},
+			"offsets": {
+				"from": 1280680,
+				"to": 1310680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,680",
+				"to": "00:22:20,680"
+			},
+			"offsets": {
+				"from": 1310680,
+				"to": 1340680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,680",
+				"to": "00:22:50,680"
+			},
+			"offsets": {
+				"from": 1340680,
+				"to": 1370680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,680",
+				"to": "00:23:20,680"
+			},
+			"offsets": {
+				"from": 1370680,
+				"to": 1400680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,680",
+				"to": "00:23:50,680"
+			},
+			"offsets": {
+				"from": 1400680,
+				"to": 1430680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,680",
+				"to": "00:24:20,680"
+			},
+			"offsets": {
+				"from": 1430680,
+				"to": 1460680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,680",
+				"to": "00:24:50,680"
+			},
+			"offsets": {
+				"from": 1460680,
+				"to": 1490680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,680",
+				"to": "00:25:20,680"
+			},
+			"offsets": {
+				"from": 1490680,
+				"to": 1520680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,680",
+				"to": "00:25:50,680"
+			},
+			"offsets": {
+				"from": 1520680,
+				"to": 1550680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,680",
+				"to": "00:26:20,680"
+			},
+			"offsets": {
+				"from": 1550680,
+				"to": 1580680
+			},
+			"text": " and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and boxes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,680",
+				"to": "00:26:26,680"
+			},
+			"offsets": {
+				"from": 1580680,
+				"to": 1586680
+			},
+			"text": " And so this network protocol is is is authenticating the traffic rather than rather than the the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,680",
+				"to": "00:26:26,680"
+			},
+			"offsets": {
+				"from": 1586680,
+				"to": 1586680
+			},
+			"text": " the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,680",
+				"to": "00:26:56,680"
+			},
+			"offsets": {
+				"from": 1586680,
+				"to": 1616680
+			},
+			"text": " the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,680",
+				"to": "00:27:16,680"
+			},
+			"offsets": {
+				"from": 1616680,
+				"to": 1636680
+			},
+			"text": " small small instant significant changes and protocols can result in invalidating the guarantees of such crews. So a lot of factors in here in this paper were about key sizes and parameters and this was released by"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,680",
+				"to": "00:27:45,680"
+			},
+			"offsets": {
+				"from": 1636680,
+				"to": 1665680
+			},
+			"text": " e and ISA. So with encryption we are not changing any parameters. We are using the cryptographic primitives as they are expected to be used. However we are combining a few things because we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,680",
+				"to": "00:28:05,680"
+			},
+			"offsets": {
+				"from": 1665680,
+				"to": 1685680
+			},
+			"text": " multiplexing application traffic over a cryptographic channel. So we are basically changing the time in which we are processing information about authentication."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,680",
+				"to": "00:28:24,680"
+			},
+			"offsets": {
+				"from": 1685680,
+				"to": 1704680
+			},
+			"text": " So we are using encryption. So we are using encryption. So we are using encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:24,680",
+				"to": "00:28:54,680"
+			},
+			"offsets": {
+				"from": 1704680,
+				"to": 1734680
+			},
+			"text": " The first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version of the first version"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,680",
+				"to": "00:29:13,680"
+			},
+			"offsets": {
+				"from": 1734680,
+				"to": 1753680
+			},
+			"text": " So we are using encryption. So we are using encryption. So we are using encryption. So we are using encryption. So we are using encryption. So we are using encryption. So we are using encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:13,680",
+				"to": "00:29:32,680"
+			},
+			"offsets": {
+				"from": 1753680,
+				"to": 1772680
+			},
+			"text": " So when the connection is started the first message that is sent by the by the side that initiates the connection is they using ECIS. They use the remote public key to encrypt their address"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:32,680",
+				"to": "00:29:58,680"
+			},
+			"offsets": {
+				"from": 1772680,
+				"to": 1798680
+			},
+			"text": " and then the address is concatenated by a signature of information. So Ethereum in general is relying on our ability to recover public keys from ECDSA signatures. And so what we are doing here is we can extract, we can recover the public key from the signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:58,680",
+				"to": "00:30:14,680"
+			},
+			"offsets": {
+				"from": 1798680,
+				"to": 1814680
+			},
+			"text": " So when the connection is started I am sending my public key encrypted with their public key. So this also means that if I send this to the wrong person they are not going to be able to decrypt it."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,680",
+				"to": "00:30:43,680"
+			},
+			"offsets": {
+				"from": 1814680,
+				"to": 1843680
+			},
+			"text": " And they won't know my address. This is signing with ECDSA and the private key is used to sign the ticket. So the ticket is essentially the previous, based on the previous session."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:43,680",
+				"to": "00:31:06,680"
+			},
+			"offsets": {
+				"from": 1843680,
+				"to": 1866680
+			},
+			"text": " And then can contaminate a random value which is used to do a femoral diffi helmet. So this part and how this works, this is similar to TLS."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,680",
+				"to": "00:31:25,680"
+			},
+			"offsets": {
+				"from": 1866680,
+				"to": 1885680
+			},
+			"text": " We are doing a lot of things in one message and we are relying on the fact that we know the other side's public key. With web browsers today you have to connect and find out what the public key is and they have to tell you the public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:25,680",
+				"to": "00:31:43,680"
+			},
+			"offsets": {
+				"from": 1885680,
+				"to": 1903680
+			},
+			"text": " So we are not doing that as a part of starting the connection. And then this knots. The details of this knots is in the proposal and it could move into the encrypted payload or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:43,680",
+				"to": "00:32:11,680"
+			},
+			"offsets": {
+				"from": 1903680,
+				"to": 1931680
+			},
+			"text": " So this needs to be reviewed as to whether it's better to do one way or the other. And I'm open at the end of afterwards of getting together with anyone who's interested in helping determine what the best thing to do is because this potentially changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:11,680",
+				"to": "00:32:30,680"
+			},
+			"offsets": {
+				"from": 1931680,
+				"to": 1950680
+			},
+			"text": " based on where it's at. So what is that homestoom? It's used for changing for updating the session. So after every successful connection, you update the session."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:30,680",
+				"to": "00:32:57,680"
+			},
+			"offsets": {
+				"from": 1950680,
+				"to": 1977680
+			},
+			"text": " So when that is combined with using a femoral public keys, then if somebody steals your laptop or they steal your server and they have your private keys, they could have packet logged everything coming out of your server and they won't be able to decrypt it."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:57,680",
+				"to": "00:33:05,680"
+			},
+			"offsets": {
+				"from": 1977680,
+				"to": 1985680
+			},
+			"text": " So that's a part of that. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:05,680",
+				"to": "00:33:11,680"
+			},
+			"offsets": {
+				"from": 1985680,
+				"to": 1991680
+			},
+			"text": " So can you just say again what the nonsense thing that they are using?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:11,680",
+				"to": "00:33:14,680"
+			},
+			"offsets": {
+				"from": 1991680,
+				"to": 1994680
+			},
+			"text": " They are used as..."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:14,680",
+				"to": "00:33:19,680"
+			},
+			"offsets": {
+				"from": 1994680,
+				"to": 1999680
+			},
+			"text": " The signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:19,680",
+				"to": "00:33:20,680"
+			},
+			"offsets": {
+				"from": 1999680,
+				"to": 2000680
+			},
+			"text": " That this one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,680",
+				"to": "00:33:23,680"
+			},
+			"offsets": {
+				"from": 2000680,
+				"to": 2003680
+			},
+			"text": " Yeah, the thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:23,680",
+				"to": "00:33:32,680"
+			},
+			"offsets": {
+				"from": 2003680,
+				"to": 2012680
+			},
+			"text": " So the ticket is a value that you have stored from a previous session, from a previous connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:32,680",
+				"to": "00:33:36,680"
+			},
+			"offsets": {
+				"from": 2012680,
+				"to": 2016680
+			},
+			"text": " And the knots is because there is no value."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:36,680",
+				"to": "00:33:43,680"
+			},
+			"offsets": {
+				"from": 2016680,
+				"to": 2023680
+			},
+			"text": " And so this establishes a new value."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:43,680",
+				"to": "00:33:57,680"
+			},
+			"offsets": {
+				"from": 2023680,
+				"to": 2037680
+			},
+			"text": " So this is similar to what's being done with TLS. So TLS uses this for driving key material for the shared secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:57,680",
+				"to": "00:34:03,680"
+			},
+			"offsets": {
+				"from": 2037680,
+				"to": 2043680
+			},
+			"text": " And that's what we're using that for as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:03,680",
+				"to": "00:34:18,680"
+			},
+			"offsets": {
+				"from": 2043680,
+				"to": 2058680
+			},
+			"text": " As I said, and I want to reiterate, the purpose here is to create something that we can use. This needs to be reviewed."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:18,680",
+				"to": "00:34:37,680"
+			},
+			"offsets": {
+				"from": 2058680,
+				"to": 2077680
+			},
+			"text": " Because while we're not doing anything that's not by the book, there's implications on how we use this information to derive shared secrets and to update them."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:37,680",
+				"to": "00:34:50,680"
+			},
+			"offsets": {
+				"from": 2077680,
+				"to": 2090680
+			},
+			"text": " So, multiplexing is really simple because we already have it."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:50,680",
+				"to": "00:35:03,680"
+			},
+			"offsets": {
+				"from": 2090680,
+				"to": 2103680
+			},
+			"text": " Right now the way that we're doing it is each sub protocol has like 10 packets or five or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:03,680",
+				"to": "00:35:08,680"
+			},
+			"offsets": {
+				"from": 2103680,
+				"to": 2108680
+			},
+			"text": " And we're stacking those into one packet type."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:08,680",
+				"to": "00:35:19,680"
+			},
+			"offsets": {
+				"from": 2108680,
+				"to": 2119680
+			},
+			"text": " And then based on what protocols both connections agree on is how we determine which packet type is which packet type."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:19,680",
+				"to": "00:35:25,680"
+			},
+			"offsets": {
+				"from": 2119680,
+				"to": 2125680
+			},
+			"text": " When we receive it, I think the networking guys are familiar with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:25,680",
+				"to": "00:35:33,680"
+			},
+			"offsets": {
+				"from": 2125680,
+				"to": 2133680
+			},
+			"text": " And that's called adaptive message IDs. And there's a wiki article page on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:33,680",
+				"to": "00:35:36,680"
+			},
+			"offsets": {
+				"from": 2133680,
+				"to": 2136680
+			},
+			"text": " Actually for last night, why do we cancel it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:36,680",
+				"to": "00:35:41,680"
+			},
+			"offsets": {
+				"from": 2136680,
+				"to": 2141680
+			},
+			"text": " Well, so this is the question marks."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:41,680",
+				"to": "00:35:53,680"
+			},
+			"offsets": {
+				"from": 2141680,
+				"to": 2153680
+			},
+			"text": " So it's been proposed that we go to a system where we have a protocol type and a packet type."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:53,680",
+				"to": "00:35:59,680"
+			},
+			"offsets": {
+				"from": 2153680,
+				"to": 2159680
+			},
+			"text": " And it's just two values instead of stacking one."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:59,680",
+				"to": "00:36:04,680"
+			},
+			"offsets": {
+				"from": 2159680,
+				"to": 2164680
+			},
+			"text": " So whether we do that or not, we have to get together."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:04,680",
+				"to": "00:36:08,680"
+			},
+			"offsets": {
+				"from": 2164680,
+				"to": 2168680
+			},
+			"text": " We have to decide maybe tomorrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:08,680",
+				"to": "00:36:12,680"
+			},
+			"offsets": {
+				"from": 2168680,
+				"to": 2172680
+			},
+			"text": " But it's an implementation thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:12,680",
+				"to": "00:36:19,680"
+			},
+			"offsets": {
+				"from": 2172680,
+				"to": 2179680
+			},
+			"text": " So I think the idea behind the adaptive message IDs was to make it harder for filters to filter out."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:19,680",
+				"to": "00:36:25,680"
+			},
+			"offsets": {
+				"from": 2179680,
+				"to": 2185680
+			},
+			"text": " So this is not one of the ones we've seen in the text."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:25,680",
+				"to": "00:36:27,680"
+			},
+			"offsets": {
+				"from": 2185680,
+				"to": 2187680
+			},
+			"text": " Yeah, it's one of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:27,680",
+				"to": "00:36:29,680"
+			},
+			"offsets": {
+				"from": 2187680,
+				"to": 2189680
+			},
+			"text": " I've had to like it was smart."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:29,680",
+				"to": "00:36:31,680"
+			},
+			"offsets": {
+				"from": 2189680,
+				"to": 2191680
+			},
+			"text": " Yeah, I mean, I like it too."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:31,680",
+				"to": "00:36:33,680"
+			},
+			"offsets": {
+				"from": 2191680,
+				"to": 2193680
+			},
+			"text": " Who they did?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:33,680",
+				"to": "00:36:35,680"
+			},
+			"offsets": {
+				"from": 2193680,
+				"to": 2195680
+			},
+			"text": " Who's there to control the data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:35,680",
+				"to": "00:36:39,680"
+			},
+			"offsets": {
+				"from": 2195680,
+				"to": 2199680
+			},
+			"text": " Well, there are people that don't like it. I don't think that they hated it."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:39,680",
+				"to": "00:36:43,680"
+			},
+			"offsets": {
+				"from": 2199680,
+				"to": 2203680
+			},
+			"text": " I'm 50/50. I like both."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:43,680",
+				"to": "00:36:49,680"
+			},
+			"offsets": {
+				"from": 2203680,
+				"to": 2209680
+			},
+			"text": " But the adaptive message ID, I think, is sort of a little artistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:49,680",
+				"to": "00:36:50,680"
+			},
+			"offsets": {
+				"from": 2209680,
+				"to": 2210680
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:50,680",
+				"to": "00:36:52,680"
+			},
+			"offsets": {
+				"from": 2210680,
+				"to": 2212680
+			},
+			"text": " Four-clock is five-clock is."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:52,680",
+				"to": "00:36:54,680"
+			},
+			"offsets": {
+				"from": 2212680,
+				"to": 2214680
+			},
+			"text": " It's very much like RLP."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:54,680",
+				"to": "00:36:55,680"
+			},
+			"offsets": {
+				"from": 2214680,
+				"to": 2215680
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:55,680",
+				"to": "00:36:56,680"
+			},
+			"offsets": {
+				"from": 2215680,
+				"to": 2216680
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:56,680",
+				"to": "00:37:01,680"
+			},
+			"offsets": {
+				"from": 2216680,
+				"to": 2221680
+			},
+			"text": " It's like to say, \"Hey, we have tomorrow.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:37:01,680",
+				"to": "00:37:05,680"
+			},
+			"offsets": {
+				"from": 2221680,
+				"to": 2225680
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:05,680",
+				"to": "00:37:09,680"
+			},
+			"offsets": {
+				"from": 2225680,
+				"to": 2229680
+			},
+			"text": " So, phone control."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:09,680",
+				"to": "00:37:15,680"
+			},
+			"offsets": {
+				"from": 2229680,
+				"to": 2235680
+			},
+			"text": " So we're not actually going to do this, but I think it's funny that"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:15,680",
+				"to": "00:37:25,680"
+			},
+			"offsets": {
+				"from": 2235680,
+				"to": 2245680
+			},
+			"text": " messages on the Internet are obviously information on a journey through space and time."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:25,680",
+				"to": "00:37:34,680"
+			},
+			"offsets": {
+				"from": 2245680,
+				"to": 2254680
+			},
+			"text": " So what's interesting is these vehicles can operate differently when mixed together in"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:34,680",
+				"to": "00:37:36,680"
+			},
+			"offsets": {
+				"from": 2254680,
+				"to": 2256680
+			},
+			"text": " the same environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:36,680",
+				"to": "00:37:43,680"
+			},
+			"offsets": {
+				"from": 2256680,
+				"to": 2263680
+			},
+			"text": " And with running multiple protocols over a single line, we have a very similar thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:43,680",
+				"to": "00:37:50,680"
+			},
+			"offsets": {
+				"from": 2263680,
+				"to": 2270680
+			},
+			"text": " In Berlin, there's a lot of cyclists, which is really interesting because I can ride my"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:50,680",
+				"to": "00:37:55,680"
+			},
+			"offsets": {
+				"from": 2270680,
+				"to": 2275680
+			},
+			"text": " bicycle to this office faster than I can drive a car here."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:55,680",
+				"to": "00:38:01,680"
+			},
+			"offsets": {
+				"from": 2275680,
+				"to": 2281680
+			},
+			"text": " So, usually five minutes faster, and it takes ten minutes to cycle here."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:01,680",
+				"to": "00:38:16,680"
+			},
+			"offsets": {
+				"from": 2281680,
+				"to": 2296680
+			},
+			"text": " So, also applicable buses, planes, mass transportation are carrying a lot of people from point A to point B."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:16,680",
+				"to": "00:38:30,680"
+			},
+			"offsets": {
+				"from": 2296680,
+				"to": 2310680
+			},
+			"text": " And in most cases, it's economical to maximize how the vehicles are built and how they travel."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:30,680",
+				"to": "00:38:37,680"
+			},
+			"offsets": {
+				"from": 2310680,
+				"to": 2317680
+			},
+			"text": " Flying around an empty plane across the ocean is not a good idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:37,680",
+				"to": "00:38:54,680"
+			},
+			"offsets": {
+				"from": 2317680,
+				"to": 2334680
+			},
+			"text": " And so, for the same reason, flow control helps ensure that the bandwidth that we have available is used as backflights."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:54,680",
+				"to": "00:39:09,680"
+			},
+			"offsets": {
+				"from": 2334680,
+				"to": 2349680
+			},
+			"text": " So, one of the most similar implementations to this is Speedy, which is for HTTP over TLS."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:09,680",
+				"to": "00:39:14,680"
+			},
+			"offsets": {
+				"from": 2349680,
+				"to": 2354680
+			},
+			"text": " This should really maybe say Google's data centers instead of Google Plex."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:14,680",
+				"to": "00:39:25,680"
+			},
+			"offsets": {
+				"from": 2354680,
+				"to": 2365680
+			},
+			"text": " And I haven't read the latest draft, but prior drafts, essentially, the flow control for Speedy is for infinite space and time."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:25,680",
+				"to": "00:39:38,680"
+			},
+			"offsets": {
+				"from": 2365680,
+				"to": 2378680
+			},
+			"text": " So, my understanding of Speedy is that you can have as many applications or channels as you want, and each channel does its own flow control,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:38,680",
+				"to": "00:39:53,680"
+			},
+			"offsets": {
+				"from": 2378680,
+				"to": 2393680
+			},
+			"text": " which that can work really well in an environment where I have a browser, and my browser connects using Speedy to an application server running a certificate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:53,680",
+				"to": "00:39:57,680"
+			},
+			"offsets": {
+				"from": 2393680,
+				"to": 2397680
+			},
+			"text": " which matches who I'm talking to."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:57,680",
+				"to": "00:40:06,680"
+			},
+			"offsets": {
+				"from": 2397680,
+				"to": 2406680
+			},
+			"text": " So, in a peer-to-peer network, we are connecting to peers, and we don't know who they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:06,680",
+				"to": "00:40:25,680"
+			},
+			"offsets": {
+				"from": 2406680,
+				"to": 2425680
+			},
+			"text": " So, where this is relevant is that it might not make sense for us to go this route, because what Google can do with this under the assumption that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:25,680",
+				"to": "00:40:38,680"
+			},
+			"offsets": {
+				"from": 2425680,
+				"to": 2438680
+			},
+			"text": " of how browsers are working, is that Google can optimize their systems from the browser all the way to the source of the, to the multiple sources of data within their own system."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:38,680",
+				"to": "00:40:51,680"
+			},
+			"offsets": {
+				"from": 2438680,
+				"to": 2451680
+			},
+			"text": " So, for Google, Speedy is multiplexing their entire operations, which is mostly web applications, search, and Gmail and Maps."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:51,680",
+				"to": "00:41:01,680"
+			},
+			"offsets": {
+				"from": 2451680,
+				"to": 2461680
+			},
+			"text": " And this works great for that. It also works good for browsers, because browsers are, you hit the page, it downloads, and it's done."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:01,680",
+				"to": "00:41:07,680"
+			},
+			"offsets": {
+				"from": 2461680,
+				"to": 2467680
+			},
+			"text": " And so, the goal of Speedy is that, so that that happens as fast as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:07,680",
+				"to": "00:41:20,680"
+			},
+			"offsets": {
+				"from": 2467680,
+				"to": 2480680
+			},
+			"text": " And while the protocol itself allows for all of these channels, a web browser, when you click and you open a page, only has a finite amount of information."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:20,680",
+				"to": "00:41:31,680"
+			},
+			"offsets": {
+				"from": 2480680,
+				"to": 2491680
+			},
+			"text": " And so, the web browser will only, you know, nothing out there is going to, it's going to exploit that."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:31,680",
+				"to": "00:41:42,680"
+			},
+			"offsets": {
+				"from": 2491680,
+				"to": 2502680
+			},
+			"text": " So, with RLPX, we have the Ethereum protocol, as it is, with just a slight change on the packet type."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:42,680",
+				"to": "00:41:52,680"
+			},
+			"offsets": {
+				"from": 2502680,
+				"to": 2512680
+			},
+			"text": " It's encrypted, and the flow control is simple and deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:52,680",
+				"to": "00:42:09,680"
+			},
+			"offsets": {
+				"from": 2512680,
+				"to": 2529680
+			},
+			"text": " So, for the flow control, what I want to do is talk about that with the whiteboard as sort of a part of the Q&A."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:09,680",
+				"to": "00:42:16,680"
+			},
+			"offsets": {
+				"from": 2529680,
+				"to": 2536680
+			},
+			"text": " By the way, how many people by chance have read the Speedy white paper?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:16,680",
+				"to": "00:42:19,680"
+			},
+			"offsets": {
+				"from": 2536680,
+				"to": 2539680
+			},
+			"text": " Okay, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:19,680",
+				"to": "00:42:29,680"
+			},
+			"offsets": {
+				"from": 2539680,
+				"to": 2549680
+			},
+			"text": " Okay, so how does this work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:29,680",
+				"to": "00:42:37,680"
+			},
+			"offsets": {
+				"from": 2549680,
+				"to": 2557680
+			},
+			"text": " So, the application uses some data, so it sends a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:37,680",
+				"to": "00:42:39,680"
+			},
+			"offsets": {
+				"from": 2557680,
+				"to": 2559680
+			},
+			"text": " Compression, I'm sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:39,680",
+				"to": "00:42:44,680"
+			},
+			"offsets": {
+				"from": 2559680,
+				"to": 2564680
+			},
+			"text": " There's some questions on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:44,680",
+				"to": "00:42:55,680"
+			},
+			"offsets": {
+				"from": 2564680,
+				"to": 2575680
+			},
+			"text": " The other thing is added, so these three steps, so the header may be first."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:55,680",
+				"to": "00:43:03,680"
+			},
+			"offsets": {
+				"from": 2575680,
+				"to": 2583680
+			},
+			"text": " The authentication is done based on the byte stream, not on the messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:03,680",
+				"to": "00:43:16,680"
+			},
+			"offsets": {
+				"from": 2583680,
+				"to": 2596680
+			},
+			"text": " What we say is that every 8 kilobytes, we insert a SHA-3 hash of the previous 8 kilobytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:16,680",
+				"to": "00:43:24,680"
+			},
+			"offsets": {
+				"from": 2596680,
+				"to": 2604680
+			},
+			"text": " And then so our overhead for authenticating the traffic is reduced substantially."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:24,680",
+				"to": "00:43:41,680"
+			},
+			"offsets": {
+				"from": 2604680,
+				"to": 2621680
+			},
+			"text": " And in addition to that, it operates on the same signal that's used for framing."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:41,680",
+				"to": "00:43:52,680"
+			},
+			"offsets": {
+				"from": 2621680,
+				"to": 2632680
+			},
+			"text": " Then encrypt the bytes, send it out, and then we get out the other side."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:52,680",
+				"to": "00:44:00,680"
+			},
+			"offsets": {
+				"from": 2632680,
+				"to": 2640680
+			},
+			"text": " So why is flow control important?"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:00,680",
+				"to": "00:44:09,680"
+			},
+			"offsets": {
+				"from": 2640680,
+				"to": 2649680
+			},
+			"text": " So, a network connection has a limited bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:09,680",
+				"to": "00:44:14,680"
+			},
+			"offsets": {
+				"from": 2649680,
+				"to": 2654680
+			},
+			"text": " So in many cases, network connections have a fixed bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:14,680",
+				"to": "00:44:18,680"
+			},
+			"offsets": {
+				"from": 2654680,
+				"to": 2658680
+			},
+			"text": " Ethernet typically does."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:18,680",
+				"to": "00:44:26,680"
+			},
+			"offsets": {
+				"from": 2658680,
+				"to": 2666680
+			},
+			"text": " Although to a single application, you don't know how much bandwidth is available."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:26,680",
+				"to": "00:44:34,680"
+			},
+			"offsets": {
+				"from": 2666680,
+				"to": 2674680
+			},
+			"text": " It's an unknown factor that changes over time, and it can change substantially."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:34,680",
+				"to": "00:44:39,680"
+			},
+			"offsets": {
+				"from": 2674680,
+				"to": 2679680
+			},
+			"text": " And only the operating system has control over this."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:39,680",
+				"to": "00:44:55,680"
+			},
+			"offsets": {
+				"from": 2679680,
+				"to": 2695680
+			},
+			"text": " So with Ethereum, we want to allow DAPs to run over the same peer protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:55,680",
+				"to": "00:44:59,680"
+			},
+			"offsets": {
+				"from": 2695680,
+				"to": 2699680
+			},
+			"text": " And sometimes you have to make decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:59,680",
+				"to": "00:45:08,680"
+			},
+			"offsets": {
+				"from": 2699680,
+				"to": 2708680
+			},
+			"text": " So if you have a network connection that is only 1 megabit per second, and you need to send 10 megabytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:08,680",
+				"to": "00:45:11,680"
+			},
+			"offsets": {
+				"from": 2708680,
+				"to": 2711680
+			},
+			"text": " you're going to have to wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:11,680",
+				"to": "00:45:17,680"
+			},
+			"offsets": {
+				"from": 2711680,
+				"to": 2717680
+			},
+			"text": " And if your application needs that 10 megabytes in a certain amount of time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:17,680",
+				"to": "00:45:22,680"
+			},
+			"offsets": {
+				"from": 2717680,
+				"to": 2722680
+			},
+			"text": " you need to do something about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:22,680",
+				"to": "00:45:28,680"
+			},
+			"offsets": {
+				"from": 2722680,
+				"to": 2728680
+			},
+			"text": " At least be able to tell your application the data is not going to get there in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:28,680",
+				"to": "00:45:34,680"
+			},
+			"offsets": {
+				"from": 2728680,
+				"to": 2734680
+			},
+			"text": " More importantly, when you're running multiple applications over one connection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:34,680",
+				"to": "00:45:40,680"
+			},
+			"offsets": {
+				"from": 2734680,
+				"to": 2740680
+			},
+			"text": " we don't want one application to be able to take up all of the bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:40,680",
+				"to": "00:45:49,680"
+			},
+			"offsets": {
+				"from": 2740680,
+				"to": 2749680
+			},
+			"text": " So when the network connection gets to the point to where it's full,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:49,680",
+				"to": "00:45:52,680"
+			},
+			"offsets": {
+				"from": 2749680,
+				"to": 2752680
+			},
+			"text": " you can't make the network connection bigger."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:52,680",
+				"to": "00:45:57,680"
+			},
+			"offsets": {
+				"from": 2752680,
+				"to": 2757680
+			},
+			"text": " And in fact, it's quite likely that if the network connection gets full,"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:57,680",
+				"to": "00:46:01,680"
+			},
+			"offsets": {
+				"from": 2757680,
+				"to": 2761680
+			},
+			"text": " congestion actually goes up and it's going to even get smaller."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:01,680",
+				"to": "00:46:07,680"
+			},
+			"offsets": {
+				"from": 2761680,
+				"to": 2767680
+			},
+			"text": " And your choices are to drop the packets that you're wanting to send,"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:07,680",
+				"to": "00:46:17,680"
+			},
+			"offsets": {
+				"from": 2767680,
+				"to": 2777680
+			},
+			"text": " or the other option is to block the application from sending more packets."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:17,680",
+				"to": "00:46:22,680"
+			},
+			"offsets": {
+				"from": 2777680,
+				"to": 2782680
+			},
+			"text": " In order to do this, the application, our networking layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:22,680",
+				"to": "00:46:30,680"
+			},
+			"offsets": {
+				"from": 2782680,
+				"to": 2790680
+			},
+			"text": " needs more information about the connection, because as is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:30,680",
+				"to": "00:46:34,680"
+			},
+			"offsets": {
+				"from": 2790680,
+				"to": 2794680
+			},
+			"text": " if I want to relay 100 megabytes of blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:34,680",
+				"to": "00:46:39,680"
+			},
+			"offsets": {
+				"from": 2794680,
+				"to": 2799680
+			},
+			"text": " I can tell the OS to send 100 megabytes of blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:39,680",
+				"to": "00:46:45,680"
+			},
+			"offsets": {
+				"from": 2799680,
+				"to": 2805680
+			},
+			"text": " And the OS might stop me at 2 megabytes or 4 megabytes or 16 megabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:45,680",
+				"to": "00:46:49,680"
+			},
+			"offsets": {
+				"from": 2805680,
+				"to": 2809680
+			},
+			"text": " It's different for every operating system."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:49,680",
+				"to": "00:46:58,680"
+			},
+			"offsets": {
+				"from": 2809680,
+				"to": 2818680
+			},
+			"text": " So we want to employ a mechanism so that --"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:58,680",
+				"to": "00:47:01,680"
+			},
+			"offsets": {
+				"from": 2818680,
+				"to": 2821680
+			},
+			"text": " so there's essentially a pipe."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:01,680",
+				"to": "00:47:06,680"
+			},
+			"offsets": {
+				"from": 2821680,
+				"to": 2826680
+			},
+			"text": " There's bandwidth for each sub protocol that's running on the line."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:06,680",
+				"to": "00:47:11,680"
+			},
+			"offsets": {
+				"from": 2826680,
+				"to": 2831680
+			},
+			"text": " And we want to do so in a way that there's enough information at exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:11,680",
+				"to": "00:47:16,680"
+			},
+			"offsets": {
+				"from": 2831680,
+				"to": 2836680
+			},
+			"text": " between the two peers that they know when it's overflowing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:16,680",
+				"to": "00:47:24,680"
+			},
+			"offsets": {
+				"from": 2836680,
+				"to": 2844680
+			},
+			"text": " or we can also use this to know when there's more bandwidth available."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:24,680",
+				"to": "00:47:27,680"
+			},
+			"offsets": {
+				"from": 2844680,
+				"to": 2847680
+			},
+			"text": " And if there's more bandwidth available, maybe we can use this for swarm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:27,680",
+				"to": "00:47:31,680"
+			},
+			"offsets": {
+				"from": 2847680,
+				"to": 2851680
+			},
+			"text": " maybe we can use this for something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:31,680",
+				"to": "00:47:35,680"
+			},
+			"offsets": {
+				"from": 2851680,
+				"to": 2855680
+			},
+			"text": " That's not a part of the protocol right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:35,680",
+				"to": "00:47:41,680"
+			},
+			"offsets": {
+				"from": 2855680,
+				"to": 2861680
+			},
+			"text": " because that's an implementation detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:41,680",
+				"to": "00:47:56,680"
+			},
+			"offsets": {
+				"from": 2861680,
+				"to": 2876680
+			},
+			"text": " So this is the raw spec, and this part was not in the etherpad or on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:56,680",
+				"to": "00:48:01,680"
+			},
+			"offsets": {
+				"from": 2876680,
+				"to": 2881680
+			},
+			"text": " This is currently on both."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:01,680",
+				"to": "00:48:07,680"
+			},
+			"offsets": {
+				"from": 2881680,
+				"to": 2887680
+			},
+			"text": " And as can be seen, it needs to be cleaned up and formalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:07,680",
+				"to": "00:48:18,680"
+			},
+			"offsets": {
+				"from": 2887680,
+				"to": 2898680
+			},
+			"text": " And I think it would be helpful to have some diagrams so that the implementations are similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:18,680",
+				"to": "00:48:27,680"
+			},
+			"offsets": {
+				"from": 2898680,
+				"to": 2907680
+			},
+			"text": " So next steps, in addition to implementing this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:27,680",
+				"to": "00:48:34,680"
+			},
+			"offsets": {
+				"from": 2907680,
+				"to": 2914680
+			},
+			"text": " is peer discovery constraints on the way the flow control system works."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:34,680",
+				"to": "00:48:47,680"
+			},
+			"offsets": {
+				"from": 2914680,
+				"to": 2927680
+			},
+			"text": " And that will imply guarantees, and that will also imply that we will have some insight into what's happening on the network at scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:47,680",
+				"to": "00:48:53,680"
+			},
+			"offsets": {
+				"from": 2927680,
+				"to": 2933680
+			},
+			"text": " when we're doing testing and simulations and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:53,680",
+				"to": "00:49:03,680"
+			},
+			"offsets": {
+				"from": 2933680,
+				"to": 2943680
+			},
+			"text": " Because we can log what's happening with flow control and change some parameters and then see what happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:03,680",
+				"to": "00:49:14,680"
+			},
+			"offsets": {
+				"from": 2943680,
+				"to": 2954680
+			},
+			"text": " And so essentially, we can actually work over a long period of time to optimize the throughput of the entire network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:14,680",
+				"to": "00:49:20,680"
+			},
+			"offsets": {
+				"from": 2954680,
+				"to": 2960680
+			},
+			"text": " to optimize the throughput and the latency of the entire network."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:20,680",
+				"to": "00:49:32,680"
+			},
+			"offsets": {
+				"from": 2960680,
+				"to": 2972680
+			},
+			"text": " And what RLPX does is it just says that we have framing and that there's information that the peers will send"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:32,680",
+				"to": "00:49:38,680"
+			},
+			"offsets": {
+				"from": 2972680,
+				"to": 2978680
+			},
+			"text": " and the Delta window updates back and forth with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:38,680",
+				"to": "00:49:47,680"
+			},
+			"offsets": {
+				"from": 2978680,
+				"to": 2987680
+			},
+			"text": " And then the peer rating system, which is definitely an implementation detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:47,680",
+				"to": "00:49:58,680"
+			},
+			"offsets": {
+				"from": 2987680,
+				"to": 2998680
+			},
+			"text": " That's not a part of this, but it's a part of libp2p so that an application that is actually a peer-to-peer application"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:58,680",
+				"to": "00:50:10,680"
+			},
+			"offsets": {
+				"from": 2998680,
+				"to": 3010680
+			},
+			"text": " and depends on an exchange of peer-to-peer messages can ensure that it's connecting to good peers for what it needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:10,680",
+				"to": "00:50:19,680"
+			},
+			"offsets": {
+				"from": 3010680,
+				"to": 3019680
+			},
+			"text": " So maybe your needs are swarmed right now and you aren't mining Ethereum and you don't need to download all of the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:19,680",
+				"to": "00:50:27,680"
+			},
+			"offsets": {
+				"from": 3019680,
+				"to": 3027680
+			},
+			"text": " you're just doing transactions and swarm because you're using simple payment verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:27,680",
+				"to": "00:50:37,680"
+			},
+			"offsets": {
+				"from": 3027680,
+				"to": 3037680
+			},
+			"text": " And so you'll want good peers that provide responsive simple payment verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:37,680",
+				"to": "00:50:44,680"
+			},
+			"offsets": {
+				"from": 3037680,
+				"to": 3044680
+			},
+			"text": " and obviously however swarm works, that could be another protocol or another implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:44,680",
+				"to": "00:50:49,680"
+			},
+			"offsets": {
+				"from": 3044680,
+				"to": 3049680
+			},
+			"text": " But yeah, so peer-to-peer."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:49,680",
+				"to": "00:50:50,680"
+			},
+			"offsets": {
+				"from": 3049680,
+				"to": 3050680
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:50,680",
+				"to": "00:50:55,680"
+			},
+			"offsets": {
+				"from": 3050680,
+				"to": 3055680
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:55,680",
+				"to": "00:51:00,680"
+			},
+			"offsets": {
+				"from": 3055680,
+				"to": 3060680
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:00,680",
+				"to": "00:51:26,680"
+			},
+			"offsets": {
+				"from": 3060680,
+				"to": 3086680
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

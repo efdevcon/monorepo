@@ -1,0 +1,2243 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 17000
+			},
+			"text": " Hi everyone. Today I'm going to be talking about snacks and this talk is going to be fairly high level."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 22000
+			},
+			"text": " I'm going to start by just giving an overview of what they are and why you might want to use them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 29000
+			},
+			"text": " And then I'm going to run through a selection of options which are currently available, which I can call for for various reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 30000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 32000
+			},
+			"text": " Okay. Can you hear me better now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 33000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 35000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 37000
+			},
+			"text": " So what is a zero knowledge snack?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 44000
+			},
+			"text": " It is a subset of zero knowledge proofs which have additional properties such as being very small and easy to verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 48000
+			},
+			"text": " And it stands for zero knowledge to see non-interactive argument of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 50000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 54000
+			},
+			"text": " And I claim that they are useful for blockchain applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 57000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 59000
+			},
+			"text": " What does it allow you to do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 65000
+			},
+			"text": " A zero knowledge proof allows you to demonstrate that you have run some protocol correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 69000
+			},
+			"text": " And precisely what that protocol is, it might be a way of saying that you have done your task."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 72000
+			},
+			"text": " You can pretend correctly, it might be a way of saying that you have encrypted a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 74000
+			},
+			"text": " Correctly, it doesn't really matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 80000
+			},
+			"text": " What's important is that there is a protocol and you have run the protocol as actually as it is specified."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 86000
+			},
+			"text": " And then what to verify what we'll do is it will just take your proof and say, \"Yes, I agree\" or \"No, I don't agree.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 93000
+			},
+			"text": " The other nice thing about them is that they allow the user to keep some of their inputs to the critical confidential."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 100000
+			},
+			"text": " So for example, if I have a encrypted message example, you could do that without reading what the message actually was."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 110000
+			},
+			"text": " So the example we've just seen, the roll-up example is a classic thing which starts good because the verification is cheaper than the actual computation itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 120000
+			},
+			"text": " So what it essentially means is that you can have a, I'm saying, minor, it probably wouldn't be a minor, but let's say that it's a minor."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 124000
+			},
+			"text": " He receives lots and lots of transactions and all of these transactions have been signed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 134000
+			},
+			"text": " The minor can then create a proof that it has run the verification algorithm for each of these signatures and these transactions and the verification has returned to true."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 143000
+			},
+			"text": " And then when it broadcasts the transaction to all of the other nodes, rather than having to compute this verification themselves, they can just check the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 147000
+			},
+			"text": " And this is much, much cheaper for them to do, so that's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 153000
+			},
+			"text": " The other nice thing that's nice about you to do is they allow you to achieve some level of privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 163000
+			},
+			"text": " So if you're wanting to hide the contents of the transaction, for example, suppose you have a bias, suppose you have a merchant, and your buyer wants to buy some produce,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 167000
+			},
+			"text": " but they don't necessarily want you to know exactly what they're buying."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 174000
+			},
+			"text": " So in case I have given it as a plot, apples, but actually if you're talking in the business situation, if you have companies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 182000
+			},
+			"text": " and the chances of them wanting to broadcast to the world, to the competitors, precisely what they're buying, every single time they use blockchain is quite small."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 185000
+			},
+			"text": " So this is quite a realistic application."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 192000
+			},
+			"text": " So what would happen? You'd have a transaction which would say, \"Searn's 10 apples to buy an A, and you can prep that transaction, put it on the blockchain.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 209000
+			},
+			"text": " But the thing is, you now need to additionally prove that you actually do have 10 apples to send to buy an A, because otherwise this would be something which would completely break the integrity of the blockchain, and that would be a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 221000
+			},
+			"text": " So if you rent a snack, the snack hides precisely what merchandise you're sending, and all you can see is that, yes, I do actually have a merchandise that I'm sending in this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 233000
+			},
+			"text": " So for developers, if you're wanting to use these things, but you don't want to get into the details of how they work, then at great tool you can use a piece of properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 244000
+			},
+			"text": " And you will need to learn precisely how to encode the programs, that is a barrier to entry, but you don't need to learn how they're approving the algorithm works for the snacks you can list to take as given."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 250000
+			},
+			"text": " Can you speak up more? Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 260000
+			},
+			"text": " So just to summarize what these things are, they are an interaction between a prover and a verifier where the prover is showing that they've followed a protocol and a verifier is saying whether or not they believe you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 267000
+			},
+			"text": " They need to be correct, an honest prover can always convince an honest verifier, they need to be zero knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 273000
+			},
+			"text": " The verifier learns nothing from the prover, apart from the fact that the statement is true."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 279000
+			},
+			"text": " And most importantly, and actually most difficult to achieve, zero knowledge is quite easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 283000
+			},
+			"text": " Samness, it's not easy, we've spent 30 years trying to get Samness sufficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 294000
+			},
+			"text": " And this is the idea that only a prover who has actually followed the protocol can convince an honest verifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 309000
+			},
+			"text": " So before I run through a Pering by Snarks, which is sort of what I'm mostly focusing on, I'm going to talk about some situations where you would perhaps not want to use a Pering by Snark, where there would be better solutions in the literature that you could use."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 315000
+			},
+			"text": " The first one being if you're only trying, intending to run your computation once."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 333000
+			},
+			"text": " So the thing with Snarks is kind of the way they work, kind of the way they get their efficiency, is they have this big pre-processing phase right at the start, where the verifier is going to do a ton of work just to get a string of information which you can later refer to in order to massively speed up this verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 345000
+			},
+			"text": " And this means that if you're later verifying 100 proofs or 1000 proofs, it's really good. But if you're only going to use it once, and that's as a total waste of time, you'd be better off using something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 359000
+			},
+			"text": " And in particular things that are good for this, tend to be the Gary Starks, Aria Aurora, these are designed for one of computations, and another nice benefit of them is that they have typically quantum secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 363000
+			},
+			"text": " Also they have very fast grovers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 370000
+			},
+			"text": " Another situation where you would not use Snarks is the program that you're trying to prove is very, very small."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 382000
+			},
+			"text": " So to put a couple examples of this would be range proofs. If you're trying to prove that something is between 0 and 2 to 64, we can represent that program very efficiently across this 120k gakes or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 393000
+			},
+			"text": " So in this situation, Snark is actually going to give you some concrete overhead which means that the great asymptotic, so you would be benefiting from in a more large computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 404000
+			},
+			"text": " You wouldn't see the benefits of this in that situation if you'd better off using something like bulletproofs which, well, practically, asymptotic leads, perhaps less good."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 413000
+			},
+			"text": " The very small statements that actual concrete overhead is so small that that's not going to come into effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 422000
+			},
+			"text": " And one last situation is when the thing that you're not proving is a very specific computation for which we have a very specific solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 429000
+			},
+			"text": " Okay, so Snarks are quite powerful. They cover in P, you can do general purpose computations with them, but sometimes you don't need that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 439000
+			},
+			"text": " Sometimes, for example, with Schnark proofs, if you're trying to say, \"I know what a secret key you could run a Schnark proof and that would be far better than running a Snark.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 442000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 452000
+			},
+			"text": " The time when you do want to use a Snark is when you are proving the same program, the same application, the same set of constraints, many, many, many, many times."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 465000
+			},
+			"text": " Okay, because this is really the situation where that pre-processing stage that you don't start is going to benefit you. You're going to reap the rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 473000
+			},
+			"text": " So, the benefits, they tend to have very small criticises, and by small, I mean a couple of hundred bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 481000
+			},
+			"text": " Likewise, a verification tends to be really fast, but they do often need trust access up, which is a downside."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 486000
+			},
+			"text": " Also, they rely on some funky assumptions, and by funky assumptions, I do not mean wrong assumptions, we can't break them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 492000
+			},
+			"text": " What they mean is that we don't understand them very well, and that makes us uncomfortable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 497000
+			},
+			"text": " And finally, and this is also a pretty important point, the Provers are not cheap."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 503000
+			},
+			"text": " The Provers can be a big barrier to actually using these things in practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 506000
+			},
+			"text": " So, now to run through a few schemes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 509000
+			},
+			"text": " The first one, if all you need is speed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 512000
+			},
+			"text": " Grub 16 is the fastest snark in the literature."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 517000
+			},
+			"text": " It has the smallest precise, fastest verification time, the fastest proof of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 520000
+			},
+			"text": " It's generally great."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 526000
+			},
+			"text": " It wasn't just sort of made up out of thin air, it's actually the result of a huge line of works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 532000
+			},
+			"text": " starting from Genaro and others who found a really nice way to encode the programs that we're trying to prove,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 538000
+			},
+			"text": " which was later then, people found a way to turn that into rank 1 constraints systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 542000
+			},
+			"text": " which are the don't stand up that they would tend to use now, or encoding constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 545000
+			},
+			"text": " And then there was a line of papers that were each optimising,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 548000
+			},
+			"text": " nothing little group elements that were needed, nothing really perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 555000
+			},
+			"text": " The processes that were needed are finishing with cross-scheme, which is in the generic green model."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 559000
+			},
+			"text": " The downside here is that there is a trusted setup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 564000
+			},
+			"text": " and I'm going to do a very, very quick explanation of what they mean by that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 569000
+			},
+			"text": " but if you don't understand me then it would be great, because it would be quite good, I promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 575000
+			},
+			"text": " So before the proof that I'm the verified congruent, I was saying that there's this expensive trusted setup process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 578000
+			},
+			"text": " sorry, this expensive prepressing step,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 581000
+			},
+			"text": " but in pairing those snacks it's actually worse than that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 588000
+			},
+			"text": " because the start we do at the start, some of the inputs to this prepressing have to be secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 591000
+			},
+			"text": " in order for you to have a secure scheme at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 596000
+			},
+			"text": " And worse than that, the secrets are very structured,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 602000
+			},
+			"text": " and we actually don't know how to generate them without somebody knowing what they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 609000
+			},
+			"text": " So we can get around this, but largely the way we get around this is we have many, many participants,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 617000
+			},
+			"text": " all having a little bit of the secret, and working together to output the parameters that the actual creever and verify use."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 627000
+			},
+			"text": " And this is kind of nice in the sense that if all of the parties collude, then sure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 632000
+			},
+			"text": " you don't get any guarantees whatsoever, but if a single one of those parties is honest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 636000
+			},
+			"text": " then sure there could be other points of failure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 642000
+			},
+			"text": " but you're not going to have the point of failure being that the trusted setup had colluding parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 650000
+			},
+			"text": " Okay? And sometimes this is enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 657000
+			},
+			"text": " For example, if you have a closed set of participants where you don't have people joining and leaving at any point in time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 661000
+			},
+			"text": " but you just say you have 100 people, that's always the same,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 664000
+			},
+			"text": " then they can just rather trust the setup process themselves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 668000
+			},
+			"text": " and because they have run it, been part of the process, they know that it's okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 673000
+			},
+			"text": " they know that they themselves are honest, and that's great, and then they can use cross 16,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 676000
+			},
+			"text": " which is the fastest scheme in the literature."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 684000
+			},
+			"text": " Likewise, if you have a way to actually verify that any given computation that has been proven is wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 687000
+			},
+			"text": " then at least you would know something that has happened,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 690000
+			},
+			"text": " and this can be the case, for example, you have these things called sharks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 694000
+			},
+			"text": " which is where you have your proof being like a bulletproof thing, which doesn't have trusted setup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 698000
+			},
+			"text": " but then you also run a snark on top of it in order to get the verification costs down,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 704000
+			},
+			"text": " but you still have the original proof, so you can still at least check that the original proof holds."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 708000
+			},
+			"text": " Also, very rare situation for decentralized technologies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 716000
+			},
+			"text": " but if you do have a central trusted party, then no problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 720000
+			},
+			"text": " One nice thing about snark is that they are very highly paralysed for,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 723000
+			},
+			"text": " and there's a work called Disick, which explains exactly how to do this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 727000
+			},
+			"text": " not just for the group exponentiations, but also for the fast Fourier transforms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 732000
+			},
+			"text": " so if you're looking to paralysed snacks, then I definitely recommend taking that one out."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 737000
+			},
+			"text": " Another really cool thing you can do with snacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 742000
+			},
+			"text": " you can have a snark of a snark of a snark, and a snark is that it's verifies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 748000
+			},
+			"text": " and every single time you run another step in the recursion, run another snack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 751000
+			},
+			"text": " you get something which is smaller and cheaper to verify,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 756000
+			},
+			"text": " meaning that the full system will be really small and really fast to verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 761000
+			},
+			"text": " This isn't as simple as it sounds, in particular,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 766000
+			},
+			"text": " the security assumptions which your basing your snacks on can blow up in size if you do this wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 770000
+			},
+			"text": " so there have been works which have looked into precisely how you should"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 775000
+			},
+			"text": " lay out the format of your recursion such that your security assumptions still hold."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 781000
+			},
+			"text": " Also, important in the case of snacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 785000
+			},
+			"text": " you have this specific way of representing your programme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 788000
+			},
+			"text": " you need to be able to represent your snark verifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 793000
+			},
+			"text": " and this is what Ben Sussman and others did when they introduced something called MNT curves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 797000
+			},
+			"text": " which are basically a specific type of pairing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 800000
+			},
+			"text": " which you are able to represent inside a snark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 806000
+			},
+			"text": " which means that if you want to do layers of recursion, you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 814000
+			},
+			"text": " Another situation you might come across is if you cannot do a setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 817000
+			},
+			"text": " I mean, this is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 820000
+			},
+			"text": " you're still going to need to have some kind of setup process, to be honest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 824000
+			},
+			"text": " but you can have a situation where you have an updatable setup"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 827000
+			},
+			"text": " where at any point in time a new person can come along,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 832000
+			},
+			"text": " add some new randomness to the system, and then be part of that setup process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 837000
+			},
+			"text": " so it doesn't need to be a fixed thing with a fixed setup, cut-up point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 843000
+			},
+			"text": " and this basically means that it's much easier to actually run an interested setup process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 847000
+			},
+			"text": " which is secure, much easier to audit, much easier to help people take you apart,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 850000
+			},
+			"text": " much easier to just generally manage."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 857000
+			},
+			"text": " But probably more importantly, you can have a universal setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 862000
+			},
+			"text": " So typically when you're doing snark setups, you would have one setup per application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 867000
+			},
+			"text": " so if you're doing range proof, you need a setup, if you're doing a z-cash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 870000
+			},
+			"text": " you need a setup, if you're doing cole, you need a setup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 875000
+			},
+			"text": " and also if you do your setup and then you happen to learn"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 878000
+			},
+			"text": " that something you did in your protocol is actually wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 883000
+			},
+			"text": " and you missed a minus sign, then you have to do the whole process again."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 888000
+			},
+			"text": " Whereas with an updatable setup, you don't need to do that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:53,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 893000
+			},
+			"text": " you have just a single setup, a fixed setup, and this is quite nice"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 893000,
+				"to": 898000
+			},
+			"text": " because it means that you can coordinate it, you can make sure that there's lots of companies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 903000
+			},
+			"text": " lots of participants, lots of governments, lots of individual people taking part in just that one setup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 907000
+			},
+			"text": " and that would be the only setup that you would need to audit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:12,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 912000
+			},
+			"text": " So this is what sonic proofs do."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 912000,
+				"to": 919000
+			},
+			"text": " They design zero-knowledge proofs, which are very nice if you want a universal setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 924000
+			},
+			"text": " The catch with these is that they are actually only efficient if you're in a position where you can aggregate."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 928000
+			},
+			"text": " So if you have an aggregation party, you can put all the proofs together"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 933000
+			},
+			"text": " and tell how to have the verifiers, then they're really efficient and they're great."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 938000
+			},
+			"text": " And these have also been improved by Gapsen."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 942000
+			},
+			"text": " If you cannot aggregate, then there have been a couple of works recently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 947000
+			},
+			"text": " one called Planck, the Euchode Marlin, which do not need any verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 950000
+			},
+			"text": " They do have the downside that the proof sizes are a bit larger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 954000
+			},
+			"text": " we're not looking like a kilobyte draft, then a couple hundred bytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 960000
+			},
+			"text": " but they don't need an aggregator."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 965000
+			},
+			"text": " If you want to have your proofs speak a bit bigger, there's also quite a nice line of works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 974000
+			},
+			"text": " which is also universal and updated book, which is called Libra, not the Facebook currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 981000
+			},
+			"text": " And the nice thing about this, I mean what they were focusing on is getting down the proof of computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 987000
+			},
+			"text": " but what I think is really cool about it is that they do not need very large fast Fourier transforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 992000
+			},
+			"text": " So, we've just very little ones. And this means that if you're actually trying to represent the program"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 997000
+			},
+			"text": " and then you can use a field, which doesn't need to have a large device or two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1003000
+			},
+			"text": " and this gives us a lot more flexibility when we're actually using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1008000
+			},
+			"text": " So, to summarize, pairing base snacks can be small and fast verifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1013000
+			},
+			"text": " they can't be paralyzed, they can't be fitly, they can be in vessel and updateable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1019000
+			},
+			"text": " and they can be made quite proof but slower to verify if that's what you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1021000
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1028000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1033000
+			},
+			"text": " Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1043000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1051000
+			},
+			"text": " So, yeah, this one has larger proof and smaller proof of computation, that's why you get larger proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1055000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1060000
+			},
+			"text": " You mentioned shuffle arguments when you said that Jen's graph and the accumulators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1063000
+			},
+			"text": " who wrote that paper?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1066000
+			},
+			"text": " I wish it's been kind of a shuffle argument."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1071000
+			},
+			"text": " You know, by a general scene, research of the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1073000
+			},
+			"text": " It can't answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1080000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1089000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1097000
+			},
+			"text": " So, one recent one was, if you use the product argument, then you get to put in an incrementing scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1100000
+			},
+			"text": " and this is actually about how they work released by C.Cash does,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1105000
+			},
+			"text": " they use the product argument, which has a downside that you have in the verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1108000
+			},
+			"text": " if you just run it as a run off."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1116000
+			},
+			"text": " But if you're aggregating, then you have a situation where you can have the linear verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1121000
+			},
+			"text": " be your one of the cost, and then just have a logarithmic factor on top of it for each of the proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1126000
+			},
+			"text": " which means that you can get something that's way faster in the situation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1131000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1145000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:08,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1148000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1148000,
+				"to": 1150000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1165000
+			},
+			"text": " [music]"
+		}
+	]
+}

@@ -1,0 +1,857 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,900"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5900
+			},
+			"text": " Good afternoon everyone and my name is Han Liu and I'm currently a postdoc researcher from"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,900",
+				"to": "00:00:11,640"
+			},
+			"offsets": {
+				"from": 5900,
+				"to": 11640
+			},
+			"text": " Chinghua University in China and I will be talking about a research work on statistical"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,640",
+				"to": "00:00:17,240"
+			},
+			"offsets": {
+				"from": 11640,
+				"to": 17240
+			},
+			"text": " linkeder for study smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,240",
+				"to": "00:00:31,340"
+			},
+			"offsets": {
+				"from": 17240,
+				"to": 31340
+			},
+			"text": " So as a normal computer program, smart contracts have smells such like unused function parameters"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,340",
+				"to": "00:00:37,360"
+			},
+			"offsets": {
+				"from": 31340,
+				"to": 37360
+			},
+			"text": " or unprotected message cores and maybe a delayed update which is vulnerable to re-entrance"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,360",
+				"to": "00:00:38,520"
+			},
+			"offsets": {
+				"from": 37360,
+				"to": 38520
+			},
+			"text": " your attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,520",
+				"to": "00:00:45,080"
+			},
+			"offsets": {
+				"from": 38520,
+				"to": 45080
+			},
+			"text": " So these smiles are not necessarily causing any catastrophes but these are something"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,080",
+				"to": "00:00:53,540"
+			},
+			"offsets": {
+				"from": 45080,
+				"to": 53540
+			},
+			"text": " that you're trying to avoid in your smart contracts because they can be statistical errors or"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,540",
+				"to": "00:00:55,800"
+			},
+			"offsets": {
+				"from": 53540,
+				"to": 55800
+			},
+			"text": " maybe they are not following the best practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,800",
+				"to": "00:00:59,920"
+			},
+			"offsets": {
+				"from": 55800,
+				"to": 59920
+			},
+			"text": " Some of them are bugs and even security issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,920",
+				"to": "00:01:06,760"
+			},
+			"offsets": {
+				"from": 59920,
+				"to": 66760
+			},
+			"text": " So the most straightforward way to capture and remove these smells would be when the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,760",
+				"to": "00:01:11,800"
+			},
+			"offsets": {
+				"from": 66760,
+				"to": 71800
+			},
+			"text": " developer finished their code we can use a bunch of analyzers for example form of air"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,800",
+				"to": "00:01:17,800"
+			},
+			"offsets": {
+				"from": 71800,
+				"to": 77800
+			},
+			"text": " fires, static analyzers to check this code and see if the bad code is there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,800",
+				"to": "00:01:23,200"
+			},
+			"offsets": {
+				"from": 77800,
+				"to": 83200
+			},
+			"text": " And if you're doing this commonly you will need your code to be compatible in most cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,200",
+				"to": "00:01:28,880"
+			},
+			"offsets": {
+				"from": 83200,
+				"to": 88880
+			},
+			"text": " and you should be aware of the predefined rules which tell the analyzer what kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,880",
+				"to": "00:01:31,160"
+			},
+			"offsets": {
+				"from": 88880,
+				"to": 91160
+			},
+			"text": " thing they should be searching for."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,160",
+				"to": "00:01:36,960"
+			},
+			"offsets": {
+				"from": 91160,
+				"to": 96960
+			},
+			"text": " And what we're trying to do is that we want to make these checks earlier in the development"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,960",
+				"to": "00:01:42,920"
+			},
+			"offsets": {
+				"from": 96960,
+				"to": 102920
+			},
+			"text": " life cycle and we want it to be an interactive way which means that the developers can check"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,920",
+				"to": "00:01:49,080"
+			},
+			"offsets": {
+				"from": 102920,
+				"to": 109080
+			},
+			"text": " their code even if they haven't finished it or even if they have no clue what the patterns"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,080",
+				"to": "00:01:50,520"
+			},
+			"offsets": {
+				"from": 109080,
+				"to": 110520
+			},
+			"text": " look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,520",
+				"to": "00:01:56,920"
+			},
+			"offsets": {
+				"from": 110520,
+				"to": 116920
+			},
+			"text": " And to realize this idea we have proposed the S-gram framework which exploits the natural"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,920",
+				"to": "00:01:58,640"
+			},
+			"offsets": {
+				"from": 116920,
+				"to": 118640
+			},
+			"text": "ness of smart contract code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,640",
+				"to": "00:02:03,840"
+			},
+			"offsets": {
+				"from": 118640,
+				"to": 123840
+			},
+			"text": " So the naturalness notion is actually coming from the software engineering community which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,840",
+				"to": "00:02:10,040"
+			},
+			"offsets": {
+				"from": 123840,
+				"to": 130040
+			},
+			"text": " tells you how natural or irregular your code is with respect to a large collection of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,040",
+				"to": "00:02:11,800"
+			},
+			"offsets": {
+				"from": 130040,
+				"to": 131800
+			},
+			"text": " other code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,800",
+				"to": "00:02:19,200"
+			},
+			"offsets": {
+				"from": 131800,
+				"to": 139200
+			},
+			"text": " And so what do we do with this nationalist notion in S-gram is that given the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,200",
+				"to": "00:02:25,960"
+			},
+			"offsets": {
+				"from": 139200,
+				"to": 145960
+			},
+			"text": " code we will use a parser to pass it into a token sequence and based on this token sequence"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,960",
+				"to": "00:02:31,640"
+			},
+			"offsets": {
+				"from": 145960,
+				"to": 151640
+			},
+			"text": " we will build this statistical language model which captures the regularity of all the tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,640",
+				"to": "00:02:37,040"
+			},
+			"offsets": {
+				"from": 151640,
+				"to": 157040
+			},
+			"text": " and the language model will be able to answer the question whether the token sequence is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,040",
+				"to": "00:02:43,600"
+			},
+			"offsets": {
+				"from": 157040,
+				"to": 163600
+			},
+			"text": " likely to occur in a specific context and then we can identify irregular code in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,600",
+				"to": "00:02:47,480"
+			},
+			"offsets": {
+				"from": 163600,
+				"to": 167480
+			},
+			"text": " smart contract and flag potential problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,480",
+				"to": "00:02:51,320"
+			},
+			"offsets": {
+				"from": 167480,
+				"to": 171320
+			},
+			"text": " So more specifically the S-gram from framework works in a two-phase manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,320",
+				"to": "00:02:56,920"
+			},
+			"offsets": {
+				"from": 171320,
+				"to": 176920
+			},
+			"text": " In the first phase we will need a large collection of smart contracts to train the model."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,920",
+				"to": "00:03:03,480"
+			},
+			"offsets": {
+				"from": 176920,
+				"to": 183480
+			},
+			"text": " To do that we will use a static analyzer to extract the semantic metadata out of your"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,480",
+				"to": "00:03:04,480"
+			},
+			"offsets": {
+				"from": 183480,
+				"to": 184480
+			},
+			"text": " contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,480",
+				"to": "00:03:08,800"
+			},
+			"offsets": {
+				"from": 184480,
+				"to": 188800
+			},
+			"text": " Basically we are trying to do two types of things and we can focus on the access on"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,800",
+				"to": "00:03:11,680"
+			},
+			"offsets": {
+				"from": 188800,
+				"to": 191680
+			},
+			"text": " the storage data and also the flow sensitivity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,680",
+				"to": "00:03:17,200"
+			},
+			"offsets": {
+				"from": 191680,
+				"to": 197200
+			},
+			"text": " So if we take a look at this simple smart contract, these two lines of code, the analyzer"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,200",
+				"to": "00:03:23,760"
+			},
+			"offsets": {
+				"from": 197200,
+				"to": 203760
+			},
+			"text": " will tell you that oh there are two lines of code are accessing on the same storage data"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,760",
+				"to": "00:03:28,160"
+			},
+			"offsets": {
+				"from": 203760,
+				"to": 208160
+			},
+			"text": " called user balance and one of them is rate operation and the other is right and these"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,160",
+				"to": "00:03:34,200"
+			},
+			"offsets": {
+				"from": 208160,
+				"to": 214200
+			},
+			"text": " two operations are dependent on each other because they are from different public functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,200",
+				"to": "00:03:39,400"
+			},
+			"offsets": {
+				"from": 214200,
+				"to": 219400
+			},
+			"text": " and are not commutative to each other and in terms of flow sensitivity if we look at"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,400",
+				"to": "00:03:46,240"
+			},
+			"offsets": {
+				"from": 219400,
+				"to": 226240
+			},
+			"text": " this kind of code the flow condition of this line of code includes constraints from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,240",
+				"to": "00:03:54,040"
+			},
+			"offsets": {
+				"from": 226240,
+				"to": 234040
+			},
+			"text": " modifier and also the each statements and the way we model this flow is by using the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,040",
+				"to": "00:03:58,440"
+			},
+			"offsets": {
+				"from": 234040,
+				"to": 238440
+			},
+			"text": " addresses and the operators involving these flow conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,440",
+				"to": "00:04:03,720"
+			},
+			"offsets": {
+				"from": 238440,
+				"to": 243720
+			},
+			"text": " In this case we will be using message standard and the two operators as specified here and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,720",
+				"to": "00:04:10,520"
+			},
+			"offsets": {
+				"from": 243720,
+				"to": 250520
+			},
+			"text": " then we will use a tokenizer to generate a token sequence from this contract and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,520",
+				"to": "00:04:15,520"
+			},
+			"offsets": {
+				"from": 250520,
+				"to": 255520
+			},
+			"text": " generation is basically done by traversing the abstract syntax tree in a type-based manner"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,520",
+				"to": "00:04:21,760"
+			},
+			"offsets": {
+				"from": 255520,
+				"to": 261760
+			},
+			"text": " which means that we generate a corresponding token for a specific type of ST node and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,760",
+				"to": "00:04:27,200"
+			},
+			"offsets": {
+				"from": 261760,
+				"to": 267200
+			},
+			"text": " we will be training the model using an underlying engrum model engine and to build this statistical"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,200",
+				"to": "00:04:32,360"
+			},
+			"offsets": {
+				"from": 267200,
+				"to": 272360
+			},
+			"text": " language model and in the second phase we pretty much do the same thing and given the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,360",
+				"to": "00:04:38,120"
+			},
+			"offsets": {
+				"from": 272360,
+				"to": 278120
+			},
+			"text": " smart contract we generate the token sequences and then we can use the detector to curate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,120",
+				"to": "00:04:43,280"
+			},
+			"offsets": {
+				"from": 278120,
+				"to": 283280
+			},
+			"text": " the language model before and then calculate the calculate the regularity or perplexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,280",
+				"to": "00:04:52,240"
+			},
+			"offsets": {
+				"from": 283280,
+				"to": 292240
+			},
+			"text": " scores of sub-sequences and then we will highlight top candidates of these smart contracts with"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,240",
+				"to": "00:04:57,840"
+			},
+			"offsets": {
+				"from": 292240,
+				"to": 297840
+			},
+			"text": " the highest perplexity scores and if you are trying to use this candidate's information"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,840",
+				"to": "00:05:04,840"
+			},
+			"offsets": {
+				"from": 297840,
+				"to": 304840
+			},
+			"text": " to help optimize existing smart contract analyzes for example a symbolic execution engines what"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,840",
+				"to": "00:05:09,240"
+			},
+			"offsets": {
+				"from": 304840,
+				"to": 309240
+			},
+			"text": " you can do is to design this ranker which takes the candidate information and generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,240",
+				"to": "00:05:15,120"
+			},
+			"offsets": {
+				"from": 309240,
+				"to": 315120
+			},
+			"text": " scores for all the information or all the functions in the contract and then these scores will"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,120",
+				"to": "00:05:20,920"
+			},
+			"offsets": {
+				"from": 315120,
+				"to": 320920
+			},
+			"text": " tell the somebody as a tutor which function is more buggy than the others and then this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,920",
+				"to": "00:05:27,600"
+			},
+			"offsets": {
+				"from": 320920,
+				"to": 327600
+			},
+			"text": " money as a tutor can prioritize the exploration of a specific function with high scores so"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,600",
+				"to": "00:05:36,280"
+			},
+			"offsets": {
+				"from": 327600,
+				"to": 336280
+			},
+			"text": " as to detect vulnerabilities more efficiently and in the future we plan to work on optimizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,280",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 336280,
+				"to": 342000
+			},
+			"text": " on the language models for example we are trying to figure out more efficient way to encode"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:46,720"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 346720
+			},
+			"text": " both syntactic and semantic regularities and also we are considering porting S-gram to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,720",
+				"to": "00:05:51,600"
+			},
+			"offsets": {
+				"from": 346720,
+				"to": 351600
+			},
+			"text": " more existing techniques for example form verifications static analysis random fuzzing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,600",
+				"to": "00:05:57,920"
+			},
+			"offsets": {
+				"from": 351600,
+				"to": 357920
+			},
+			"text": " something like that and also to create a better developer experience we are planning"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,920",
+				"to": "00:06:03,720"
+			},
+			"offsets": {
+				"from": 357920,
+				"to": 363720
+			},
+			"text": " a integrity S-gram with IDE so that we can capture and model developers feedback and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,720",
+				"to": "00:06:10,520"
+			},
+			"offsets": {
+				"from": 363720,
+				"to": 370520
+			},
+			"text": " optimize the S-gram itself and we actually have published an academic paper about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,520",
+				"to": "00:06:15,640"
+			},
+			"offsets": {
+				"from": 370520,
+				"to": 375640
+			},
+			"text": " S-gram if you guys are interested you can look into the details and I will be around"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,640",
+				"to": "00:06:22,080"
+			},
+			"offsets": {
+				"from": 375640,
+				"to": 382080
+			},
+			"text": " the offline around here for offline discussions and that will conclude my talk thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,080",
+				"to": "00:06:24,080"
+			},
+			"offsets": {
+				"from": 382080,
+				"to": 384080
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,080",
+				"to": "00:06:26,080"
+			},
+			"offsets": {
+				"from": 384080,
+				"to": 386080
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,080",
+				"to": "00:06:28,080"
+			},
+			"offsets": {
+				"from": 386080,
+				"to": 388080
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,080",
+				"to": "00:06:30,080"
+			},
+			"offsets": {
+				"from": 388080,
+				"to": 390080
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,080",
+				"to": "00:06:52,080"
+			},
+			"offsets": {
+				"from": 390080,
+				"to": 412080
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,080",
+				"to": "00:07:21,080"
+			},
+			"offsets": {
+				"from": 412080,
+				"to": 441080
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

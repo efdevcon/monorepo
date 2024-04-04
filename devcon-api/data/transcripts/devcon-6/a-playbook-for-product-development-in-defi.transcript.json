@@ -1,0 +1,2892 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:14,440"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 14440
+			},
+			"text": " So my name is Aleem Camisa."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,440",
+				"to": "00:00:16,240"
+			},
+			"offsets": {
+				"from": 14440,
+				"to": 16240
+			},
+			"text": " I work at Element Finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,240",
+				"to": "00:00:17,920"
+			},
+			"offsets": {
+				"from": 16240,
+				"to": 17920
+			},
+			"text": " I'm a product manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,920",
+				"to": "00:00:23,160"
+			},
+			"offsets": {
+				"from": 17920,
+				"to": 23160
+			},
+			"text": " Element Finance is a DFI protocol for fixed and variable yields."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,160",
+				"to": "00:00:25,800"
+			},
+			"offsets": {
+				"from": 23160,
+				"to": 25800
+			},
+			"text": " And I'm really excited to be here today"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,800",
+				"to": "00:00:28,640"
+			},
+			"offsets": {
+				"from": 25800,
+				"to": 28640
+			},
+			"text": " to talk to you about product development in DFI."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,640",
+				"to": "00:00:31,800"
+			},
+			"offsets": {
+				"from": 28640,
+				"to": 31800
+			},
+			"text": " And let's get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,800",
+				"to": "00:00:34,860"
+			},
+			"offsets": {
+				"from": 31800,
+				"to": 34860
+			},
+			"text": " So first off, I kind of wanted a level set on what"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,860",
+				"to": "00:00:36,520"
+			},
+			"offsets": {
+				"from": 34860,
+				"to": 36520
+			},
+			"text": " does a product manager do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,520",
+				"to": "00:00:40,760"
+			},
+			"offsets": {
+				"from": 36520,
+				"to": 40760
+			},
+			"text": " And there's lots of different definitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,760",
+				"to": "00:00:44,040"
+			},
+			"offsets": {
+				"from": 40760,
+				"to": 44040
+			},
+			"text": " And oftentimes, people will think they do one thing or another."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,040",
+				"to": "00:00:46,320"
+			},
+			"offsets": {
+				"from": 44040,
+				"to": 46320
+			},
+			"text": " Oftentimes, a PM does a lot of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,320",
+				"to": "00:00:48,480"
+			},
+			"offsets": {
+				"from": 46320,
+				"to": 48480
+			},
+			"text": " It's everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,480",
+				"to": "00:00:50,160"
+			},
+			"offsets": {
+				"from": 48480,
+				"to": 50160
+			},
+			"text": " So the core area of responsibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,160",
+				"to": "00:00:53,240"
+			},
+			"offsets": {
+				"from": 50160,
+				"to": 53240
+			},
+			"text": " is shaping the product, shipping the product,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,240",
+				"to": "00:00:55,120"
+			},
+			"offsets": {
+				"from": 53240,
+				"to": 55120
+			},
+			"text": " measuring product success."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,120",
+				"to": "00:00:57,040"
+			},
+			"offsets": {
+				"from": 55120,
+				"to": 57040
+			},
+			"text": " And these are things I'm going to kind of loosely"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,040",
+				"to": "00:00:59,440"
+			},
+			"offsets": {
+				"from": 57040,
+				"to": 59440
+			},
+			"text": " talk about throughout the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,440",
+				"to": "00:01:02,800"
+			},
+			"offsets": {
+				"from": 59440,
+				"to": 62800
+			},
+			"text": " But synchronizing the team is really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,800",
+				"to": "00:01:06,640"
+			},
+			"offsets": {
+				"from": 62800,
+				"to": 66640
+			},
+			"text": " The product person will interface with the rest of the team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,640",
+				"to": "00:01:10,560"
+			},
+			"offsets": {
+				"from": 66640,
+				"to": 70560
+			},
+			"text": " kind of a line on timelines, hash out kind of product"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,560",
+				"to": "00:01:13,320"
+			},
+			"offsets": {
+				"from": 70560,
+				"to": 73320
+			},
+			"text": " requirements, and ensure everyone is on the same page"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,320",
+				"to": "00:01:15,360"
+			},
+			"offsets": {
+				"from": 73320,
+				"to": 75360
+			},
+			"text": " and kind of working in the same direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,360",
+				"to": "00:01:21,080"
+			},
+			"offsets": {
+				"from": 75360,
+				"to": 81080
+			},
+			"text": " So I want to talk about building the product roadmap"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,080",
+				"to": "00:01:25,600"
+			},
+			"offsets": {
+				"from": 81080,
+				"to": 85600
+			},
+			"text": " and how I want to kind of place a little bit of emphasis"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,600",
+				"to": "00:01:29,080"
+			},
+			"offsets": {
+				"from": 85600,
+				"to": 89080
+			},
+			"text": " on R&D and how that's really important to kind of creating"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,080",
+				"to": "00:01:32,320"
+			},
+			"offsets": {
+				"from": 89080,
+				"to": 92320
+			},
+			"text": " new product opportunities."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,320",
+				"to": "00:01:35,600"
+			},
+			"offsets": {
+				"from": 92320,
+				"to": 95600
+			},
+			"text": " So DFI research teams really need to focus--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,600",
+				"to": "00:01:38,480"
+			},
+			"offsets": {
+				"from": 95600,
+				"to": 98480
+			},
+			"text": " sorry, DFI teams really need to focus on research"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,480",
+				"to": "00:01:42,160"
+			},
+			"offsets": {
+				"from": 98480,
+				"to": 102160
+			},
+			"text": " and development in order to succeed in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,160",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 102160,
+				"to": 104000
+			},
+			"text": " They got to commit to experimentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:47,320"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 107320
+			},
+			"text": " It's not just about rehashing existing solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,320",
+				"to": "00:01:49,360"
+			},
+			"offsets": {
+				"from": 107320,
+				"to": 109360
+			},
+			"text": " And it's important to take an additive approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,360",
+				"to": "00:01:52,640"
+			},
+			"offsets": {
+				"from": 109360,
+				"to": 112640
+			},
+			"text": " where you're building new DFI primitives"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,640",
+				"to": "00:01:54,040"
+			},
+			"offsets": {
+				"from": 112640,
+				"to": 114040
+			},
+			"text": " and contributing those primitives"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,040",
+				"to": "00:01:57,680"
+			},
+			"offsets": {
+				"from": 114040,
+				"to": 117680
+			},
+			"text": " to the open source DFI ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,680",
+				"to": "00:02:01,960"
+			},
+			"offsets": {
+				"from": 117680,
+				"to": 121960
+			},
+			"text": " And at the same time, you're leveraging DFI LEGO pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,960",
+				"to": "00:02:05,760"
+			},
+			"offsets": {
+				"from": 121960,
+				"to": 125760
+			},
+			"text": " And this, again, fits within the whole idea or ethos"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,760",
+				"to": "00:02:08,760"
+			},
+			"offsets": {
+				"from": 125760,
+				"to": 128760
+			},
+			"text": " of composability within the DFI space."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,760",
+				"to": "00:02:11,040"
+			},
+			"offsets": {
+				"from": 128760,
+				"to": 131040
+			},
+			"text": " So having a pipeline of research projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,040",
+				"to": "00:02:12,360"
+			},
+			"offsets": {
+				"from": 131040,
+				"to": 132360
+			},
+			"text": " is really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,360",
+				"to": "00:02:15,120"
+			},
+			"offsets": {
+				"from": 132360,
+				"to": 135120
+			},
+			"text": " It could really guide the evolution of the product or DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,120",
+				"to": "00:02:17,280"
+			},
+			"offsets": {
+				"from": 135120,
+				"to": 137280
+			},
+			"text": " You're working on within the DFI space."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,280",
+				"to": "00:02:20,480"
+			},
+			"offsets": {
+				"from": 137280,
+				"to": 140480
+			},
+			"text": " And it could potentially lead to entirely new products."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,480",
+				"to": "00:02:24,400"
+			},
+			"offsets": {
+				"from": 140480,
+				"to": 144400
+			},
+			"text": " And so with that, the pipeline of research projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,400",
+				"to": "00:02:28,440"
+			},
+			"offsets": {
+				"from": 144400,
+				"to": 148440
+			},
+			"text": " can really form the basis of the R&D roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,440",
+				"to": "00:02:32,640"
+			},
+			"offsets": {
+				"from": 148440,
+				"to": 152640
+			},
+			"text": " And the R&D roadmap is a critical input,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,640",
+				"to": "00:02:35,480"
+			},
+			"offsets": {
+				"from": 152640,
+				"to": 155480
+			},
+			"text": " a very important input, into the product roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,480",
+				"to": "00:02:38,280"
+			},
+			"offsets": {
+				"from": 155480,
+				"to": 158280
+			},
+			"text": " Mind you, it's not the only input into the product roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,280",
+				"to": "00:02:40,800"
+			},
+			"offsets": {
+				"from": 158280,
+				"to": 160800
+			},
+			"text": " There's lots of other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,800",
+				"to": "00:02:43,720"
+			},
+			"offsets": {
+				"from": 160800,
+				"to": 163720
+			},
+			"text": " But it is really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,720",
+				"to": "00:02:47,360"
+			},
+			"offsets": {
+				"from": 163720,
+				"to": 167360
+			},
+			"text": " I want to talk about how do we structure the product roadmap"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,360",
+				"to": "00:02:48,160"
+			},
+			"offsets": {
+				"from": 167360,
+				"to": 168160
+			},
+			"text": " or lay it out?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,160",
+				"to": "00:02:50,280"
+			},
+			"offsets": {
+				"from": 168160,
+				"to": 170280
+			},
+			"text": " Because oftentimes, we think about it from a timing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,280",
+				"to": "00:02:54,720"
+			},
+			"offsets": {
+				"from": 170280,
+				"to": 174720
+			},
+			"text": " perspective, by month, by quarter."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,720",
+				"to": "00:02:57,160"
+			},
+			"offsets": {
+				"from": 174720,
+				"to": 177160
+			},
+			"text": " I think the now-next-later approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,160",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 177160,
+				"to": 180000
+			},
+			"text": " works really, really well, especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:02,840"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 182840
+			},
+			"text": " in the fast-paced environment of DFI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,840",
+				"to": "00:03:06,920"
+			},
+			"offsets": {
+				"from": 182840,
+				"to": 186920
+			},
+			"text": " or for teams that are working on a new product development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,920",
+				"to": "00:03:10,240"
+			},
+			"offsets": {
+				"from": 186920,
+				"to": 190240
+			},
+			"text": " V1 of a protocol, where there's a lot of uncertainty"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,240",
+				"to": "00:03:12,720"
+			},
+			"offsets": {
+				"from": 190240,
+				"to": 192720
+			},
+			"text": " and things are changing really fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,720",
+				"to": "00:03:14,560"
+			},
+			"offsets": {
+				"from": 192720,
+				"to": 194560
+			},
+			"text": " So everything you're working on in flight"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,560",
+				"to": "00:03:16,120"
+			},
+			"offsets": {
+				"from": 194560,
+				"to": 196120
+			},
+			"text": " is kind of in the now bucket."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,120",
+				"to": "00:03:18,440"
+			},
+			"offsets": {
+				"from": 196120,
+				"to": 198440
+			},
+			"text": " Everything that's coming up is a next."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,440",
+				"to": "00:03:20,080"
+			},
+			"offsets": {
+				"from": 198440,
+				"to": 200080
+			},
+			"text": " And anything that is low priority"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,080",
+				"to": "00:03:22,520"
+			},
+			"offsets": {
+				"from": 200080,
+				"to": 202520
+			},
+			"text": " kind of gets shifted into the later bucket,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,520",
+				"to": "00:03:24,560"
+			},
+			"offsets": {
+				"from": 202520,
+				"to": 204560
+			},
+			"text": " this kind of gives DFI teams the ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,560",
+				"to": "00:03:29,240"
+			},
+			"offsets": {
+				"from": 204560,
+				"to": 209240
+			},
+			"text": " to not be kind of handcuffed to specific timelines"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,240",
+				"to": "00:03:33,720"
+			},
+			"offsets": {
+				"from": 209240,
+				"to": 213720
+			},
+			"text": " when you're developing a V1 and kind of develop it right"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,720",
+				"to": "00:03:36,240"
+			},
+			"offsets": {
+				"from": 213720,
+				"to": 216240
+			},
+			"text": " and not necessarily take the shortcuts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,240",
+				"to": "00:03:37,440"
+			},
+			"offsets": {
+				"from": 216240,
+				"to": 217440
+			},
+			"text": " And it just gives them the ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,440",
+				"to": "00:03:40,600"
+			},
+			"offsets": {
+				"from": 217440,
+				"to": 220600
+			},
+			"text": " to have more flexibility in terms of how they're developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,600",
+				"to": "00:03:41,640"
+			},
+			"offsets": {
+				"from": 220600,
+				"to": 221640
+			},
+			"text": " and timelines overall."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,480",
+				"to": "00:03:46,840"
+			},
+			"offsets": {
+				"from": 224480,
+				"to": 226840
+			},
+			"text": " So this is actually one of my favorite sections"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,840",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 226840,
+				"to": 230000
+			},
+			"text": " of the presentation, and I want to get into,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:52,840"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 232840
+			},
+			"text": " how do we find a product development process that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,840",
+				"to": "00:03:55,960"
+			},
+			"offsets": {
+				"from": 232840,
+				"to": 235960
+			},
+			"text": " works for your team?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,960",
+				"to": "00:03:58,600"
+			},
+			"offsets": {
+				"from": 235960,
+				"to": 238600
+			},
+			"text": " I have to say that I'm going to caveat this with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,600",
+				"to": "00:04:01,560"
+			},
+			"offsets": {
+				"from": 238600,
+				"to": 241560
+			},
+			"text": " there are lots of nuances across different teams--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,560",
+				"to": "00:04:03,920"
+			},
+			"offsets": {
+				"from": 241560,
+				"to": 243920
+			},
+			"text": " team size, culture."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,920",
+				"to": "00:04:06,400"
+			},
+			"offsets": {
+				"from": 243920,
+				"to": 246400
+			},
+			"text": " If you're working on a DFI protocol versus a DAP that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,400",
+				"to": "00:04:08,480"
+			},
+			"offsets": {
+				"from": 246400,
+				"to": 248480
+			},
+			"text": " being built on top of a protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,480",
+				"to": "00:04:12,640"
+			},
+			"offsets": {
+				"from": 248480,
+				"to": 252640
+			},
+			"text": " all of these things kind of play into the specific custom product"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,640",
+				"to": "00:04:14,960"
+			},
+			"offsets": {
+				"from": 252640,
+				"to": 254960
+			},
+			"text": " process that you should develop for your team."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,960",
+				"to": "00:04:16,760"
+			},
+			"offsets": {
+				"from": 254960,
+				"to": 256760
+			},
+			"text": " So this is something that's worked really well"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,760",
+				"to": "00:04:20,560"
+			},
+			"offsets": {
+				"from": 256760,
+				"to": 260560
+			},
+			"text": " for Element Finance, and with that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,560",
+				"to": "00:04:23,480"
+			},
+			"offsets": {
+				"from": 260560,
+				"to": 263480
+			},
+			"text": " we are still evolving the process as we should be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,480",
+				"to": "00:04:26,240"
+			},
+			"offsets": {
+				"from": 263480,
+				"to": 266240
+			},
+			"text": " to suit our needs as we kind of evolve as a team."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,240",
+				"to": "00:04:30,640"
+			},
+			"offsets": {
+				"from": 266240,
+				"to": 270640
+			},
+			"text": " So stage zero is kind of the concept vision stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,640",
+				"to": "00:04:33,520"
+			},
+			"offsets": {
+				"from": 270640,
+				"to": 273520
+			},
+			"text": " And this is where our smart contract leads in our founders."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,520",
+				"to": "00:04:37,040"
+			},
+			"offsets": {
+				"from": 273520,
+				"to": 277040
+			},
+			"text": " Both of our founders are previously"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,040",
+				"to": "00:04:40,120"
+			},
+			"offsets": {
+				"from": 277040,
+				"to": 280120
+			},
+			"text": " through researchers and come from a very intensive research"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,120",
+				"to": "00:04:41,080"
+			},
+			"offsets": {
+				"from": 280120,
+				"to": 281080
+			},
+			"text": " background."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,080",
+				"to": "00:04:45,280"
+			},
+			"offsets": {
+				"from": 281080,
+				"to": 285280
+			},
+			"text": " So they'll usually kind of come up with a new feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,280",
+				"to": "00:04:48,560"
+			},
+			"offsets": {
+				"from": 285280,
+				"to": 288560
+			},
+			"text": " or something new, whether it's a new product concept altogether."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,560",
+				"to": "00:04:50,400"
+			},
+			"offsets": {
+				"from": 288560,
+				"to": 290400
+			},
+			"text": " And then the smart contract team leads"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,400",
+				"to": "00:04:54,400"
+			},
+			"offsets": {
+				"from": 290400,
+				"to": 294400
+			},
+			"text": " will usually try to crystallize that with our founders."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,400",
+				"to": "00:04:56,320"
+			},
+			"offsets": {
+				"from": 294400,
+				"to": 296320
+			},
+			"text": " And then in stage one, the formative stage"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,320",
+				"to": "00:04:58,880"
+			},
+			"offsets": {
+				"from": 296320,
+				"to": 298880
+			},
+			"text": " will have our smart contract teams, our front end teams,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,880",
+				"to": "00:05:02,320"
+			},
+			"offsets": {
+				"from": 298880,
+				"to": 302320
+			},
+			"text": " product and design kind of working together"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,320",
+				"to": "00:05:06,040"
+			},
+			"offsets": {
+				"from": 302320,
+				"to": 306040
+			},
+			"text": " to really hash out and understand the core functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,040",
+				"to": "00:05:09,400"
+			},
+			"offsets": {
+				"from": 306040,
+				"to": 309400
+			},
+			"text": " And then in stage two, the smart contract team"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,400",
+				"to": "00:05:11,040"
+			},
+			"offsets": {
+				"from": 309400,
+				"to": 311040
+			},
+			"text": " usually takes a little bit of a step back"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,040",
+				"to": "00:05:14,400"
+			},
+			"offsets": {
+				"from": 311040,
+				"to": 314400
+			},
+			"text": " and they take on a little bit more of a consultative role."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,400",
+				"to": "00:05:17,400"
+			},
+			"offsets": {
+				"from": 314400,
+				"to": 317400
+			},
+			"text": " And our front end design teams and our product teams"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,400",
+				"to": "00:05:19,480"
+			},
+			"offsets": {
+				"from": 317400,
+				"to": 319480
+			},
+			"text": " will kind of do the scoping and prototyping."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,480",
+				"to": "00:05:22,720"
+			},
+			"offsets": {
+				"from": 319480,
+				"to": 322720
+			},
+			"text": " So hashing out the UI UX, the requirements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,720",
+				"to": "00:05:24,680"
+			},
+			"offsets": {
+				"from": 322720,
+				"to": 324680
+			},
+			"text": " and of course also kind of creating the project plan"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,680",
+				"to": "00:05:26,560"
+			},
+			"offsets": {
+				"from": 324680,
+				"to": 326560
+			},
+			"text": " for what's to come."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,560",
+				"to": "00:05:29,240"
+			},
+			"offsets": {
+				"from": 326560,
+				"to": 329240
+			},
+			"text": " And then in stage three, we get into our development sprints."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,240",
+				"to": "00:05:32,360"
+			},
+			"offsets": {
+				"from": 329240,
+				"to": 332360
+			},
+			"text": " Many of you, if you work on product teams today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,360",
+				"to": "00:05:35,200"
+			},
+			"offsets": {
+				"from": 332360,
+				"to": 335200
+			},
+			"text": " sprints can be typically two weeks, but it could be a week."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,200",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 335200,
+				"to": 336000
+			},
+			"text": " It could be a month."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:38,240"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 338240
+			},
+			"text": " It really depends on the team."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,240",
+				"to": "00:05:40,800"
+			},
+			"offsets": {
+				"from": 338240,
+				"to": 340800
+			},
+			"text": " And this is where we get into the execution cycle."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,800",
+				"to": "00:05:45,360"
+			},
+			"offsets": {
+				"from": 340800,
+				"to": 345360
+			},
+			"text": " Important to note that we're actually running two sprints"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,360",
+				"to": "00:05:46,520"
+			},
+			"offsets": {
+				"from": 345360,
+				"to": 346520
+			},
+			"text": " in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,520",
+				"to": "00:05:49,440"
+			},
+			"offsets": {
+				"from": 346520,
+				"to": 349440
+			},
+			"text": " So the smart contract team is developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,440",
+				"to": "00:05:52,040"
+			},
+			"offsets": {
+				"from": 349440,
+				"to": 352040
+			},
+			"text": " all of the Solidity code, their unit testing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,040",
+				"to": "00:05:54,240"
+			},
+			"offsets": {
+				"from": 352040,
+				"to": 354240
+			},
+			"text": " they're doing their fuzz testing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,240",
+				"to": "00:05:56,600"
+			},
+			"offsets": {
+				"from": 354240,
+				"to": 356600
+			},
+			"text": " formal verification and audits."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,600",
+				"to": "00:06:03,800"
+			},
+			"offsets": {
+				"from": 356600,
+				"to": 363800
+			},
+			"text": " And then the front end team is working with product and design"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,800",
+				"to": "00:06:09,040"
+			},
+			"offsets": {
+				"from": 363800,
+				"to": 369040
+			},
+			"text": " to kind of execute the development of the UI and the UX."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,040",
+				"to": "00:06:11,440"
+			},
+			"offsets": {
+				"from": 369040,
+				"to": 371440
+			},
+			"text": " And of course, we're doing a lot of internal and external"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,440",
+				"to": "00:06:14,600"
+			},
+			"offsets": {
+				"from": 371440,
+				"to": 374600
+			},
+			"text": " stakeholder feedback throughout that entire process"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,600",
+				"to": "00:06:16,840"
+			},
+			"offsets": {
+				"from": 374600,
+				"to": 376840
+			},
+			"text": " to ensure we're validating assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,840",
+				"to": "00:06:19,960"
+			},
+			"offsets": {
+				"from": 376840,
+				"to": 379960
+			},
+			"text": " So when we get into the sprint cycle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,960",
+				"to": "00:06:22,960"
+			},
+			"offsets": {
+				"from": 379960,
+				"to": 382960
+			},
+			"text": " one thing that's really, really difficult for product teams"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,960",
+				"to": "00:06:25,640"
+			},
+			"offsets": {
+				"from": 382960,
+				"to": 385640
+			},
+			"text": " to do-- this is something I found personally very difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,640",
+				"to": "00:06:29,440"
+			},
+			"offsets": {
+				"from": 385640,
+				"to": 389440
+			},
+			"text": " to do-- is agile estimation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,440",
+				"to": "00:06:33,080"
+			},
+			"offsets": {
+				"from": 389440,
+				"to": 393080
+			},
+			"text": " So estimating the work effort that goes into your tasks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,080",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 393080,
+				"to": 395000
+			},
+			"text": " And that's really important to velocity."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:37,160"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 397160
+			},
+			"text": " And velocity is really important to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,160",
+				"to": "00:06:38,880"
+			},
+			"offsets": {
+				"from": 397160,
+				"to": 398880
+			},
+			"text": " how is the team performing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,880",
+				"to": "00:06:40,440"
+			},
+			"offsets": {
+				"from": 398880,
+				"to": 400440
+			},
+			"text": " Are they able to deliver on time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,440",
+				"to": "00:06:43,440"
+			},
+			"offsets": {
+				"from": 400440,
+				"to": 403440
+			},
+			"text": " Are they able to complete all of the tasks in the sprint"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,440",
+				"to": "00:06:44,960"
+			},
+			"offsets": {
+				"from": 403440,
+				"to": 404960
+			},
+			"text": " on time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,960",
+				"to": "00:06:49,280"
+			},
+			"offsets": {
+				"from": 404960,
+				"to": 409280
+			},
+			"text": " Poor task estimation often leads to sub-optimal velocity"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,280",
+				"to": "00:06:51,440"
+			},
+			"offsets": {
+				"from": 409280,
+				"to": 411440
+			},
+			"text": " and timeline slipping."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,440",
+				"to": "00:06:53,320"
+			},
+			"offsets": {
+				"from": 411440,
+				"to": 413320
+			},
+			"text": " So I got to give a shout out to my front end team."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,320",
+				"to": "00:06:55,240"
+			},
+			"offsets": {
+				"from": 413320,
+				"to": 415240
+			},
+			"text": " I don't know if I have any of them here today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,240",
+				"to": "00:06:57,160"
+			},
+			"offsets": {
+				"from": 415240,
+				"to": 417160
+			},
+			"text": " but shout out to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,160",
+				"to": "00:07:00,880"
+			},
+			"offsets": {
+				"from": 417160,
+				"to": 420880
+			},
+			"text": " Because we came up with this really interesting framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,880",
+				"to": "00:07:04,040"
+			},
+			"offsets": {
+				"from": 420880,
+				"to": 424040
+			},
+			"text": " for estimation that I think works really well."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,040",
+				"to": "00:07:06,360"
+			},
+			"offsets": {
+				"from": 424040,
+				"to": 426360
+			},
+			"text": " So we kind of look at time, rough estimate"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,360",
+				"to": "00:07:08,680"
+			},
+			"offsets": {
+				"from": 426360,
+				"to": 428680
+			},
+			"text": " of the time to complete that user story,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,680",
+				"to": "00:07:11,880"
+			},
+			"offsets": {
+				"from": 428680,
+				"to": 431880
+			},
+			"text": " or if it's broken down into the development tasks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,880",
+				"to": "00:07:13,360"
+			},
+			"offsets": {
+				"from": 431880,
+				"to": 433360
+			},
+			"text": " We look at collaboration costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,360",
+				"to": "00:07:14,520"
+			},
+			"offsets": {
+				"from": 433360,
+				"to": 434520
+			},
+			"text": " And I think this might be something"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,520",
+				"to": "00:07:17,360"
+			},
+			"offsets": {
+				"from": 434520,
+				"to": 437360
+			},
+			"text": " you might be new to many of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,360",
+				"to": "00:07:19,480"
+			},
+			"offsets": {
+				"from": 437360,
+				"to": 439480
+			},
+			"text": " The level of collaboration with other teams,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,480",
+				"to": "00:07:21,720"
+			},
+			"offsets": {
+				"from": 439480,
+				"to": 441720
+			},
+			"text": " for example, if my design team needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,720",
+				"to": "00:07:27,400"
+			},
+			"offsets": {
+				"from": 441720,
+				"to": 447400
+			},
+			"text": " to provide new components, if the product requirements"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,400",
+				"to": "00:07:30,160"
+			},
+			"offsets": {
+				"from": 447400,
+				"to": 450160
+			},
+			"text": " are really intensive and require a ton of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,160",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 450160,
+				"to": 452000
+			},
+			"text": " and require lots of working sessions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:34,880"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 454880
+			},
+			"text": " all of those things are going to take away development time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,880",
+				"to": "00:07:36,920"
+			},
+			"offsets": {
+				"from": 454880,
+				"to": 456920
+			},
+			"text": " And that needs to be factored in."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,920",
+				"to": "00:07:39,320"
+			},
+			"offsets": {
+				"from": 456920,
+				"to": 459320
+			},
+			"text": " So that's part of the collaboration cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,320",
+				"to": "00:07:43,080"
+			},
+			"offsets": {
+				"from": 459320,
+				"to": 463080
+			},
+			"text": " The confidence is really a score for the confidence"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,080",
+				"to": "00:07:46,840"
+			},
+			"offsets": {
+				"from": 463080,
+				"to": 466840
+			},
+			"text": " on the time estimate, which also includes complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,840",
+				"to": "00:07:48,680"
+			},
+			"offsets": {
+				"from": 466840,
+				"to": 468680
+			},
+			"text": " and the collaboration cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,680",
+				"to": "00:07:50,920"
+			},
+			"offsets": {
+				"from": 468680,
+				"to": 470920
+			},
+			"text": " And the key takeaway here is you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,920",
+				"to": "00:07:52,880"
+			},
+			"offsets": {
+				"from": 470920,
+				"to": 472880
+			},
+			"text": " to avoid your timelines from blowing up"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,880",
+				"to": "00:07:57,760"
+			},
+			"offsets": {
+				"from": 472880,
+				"to": 477760
+			},
+			"text": " by having too many high-collab and too many low-confidence"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,760",
+				"to": "00:08:00,200"
+			},
+			"offsets": {
+				"from": 477760,
+				"to": 480200
+			},
+			"text": " scoring tasks in the same sprint."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,200",
+				"to": "00:08:01,840"
+			},
+			"offsets": {
+				"from": 480200,
+				"to": 481840
+			},
+			"text": " That's going to allow the development team"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,840",
+				"to": "00:08:05,480"
+			},
+			"offsets": {
+				"from": 481840,
+				"to": 485480
+			},
+			"text": " to have enough time to be able to execute the tasks"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,480",
+				"to": "00:08:07,920"
+			},
+			"offsets": {
+				"from": 485480,
+				"to": 487920
+			},
+			"text": " without getting bogged down on a lot of working sessions"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,920",
+				"to": "00:08:11,600"
+			},
+			"offsets": {
+				"from": 487920,
+				"to": 491600
+			},
+			"text": " and too many meetings and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,600",
+				"to": "00:08:13,840"
+			},
+			"offsets": {
+				"from": 491600,
+				"to": 493840
+			},
+			"text": " I don't know if I have enough time for simulation modeling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,840",
+				"to": "00:08:14,920"
+			},
+			"offsets": {
+				"from": 493840,
+				"to": 494920
+			},
+			"text": " so I'm going to skip this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,920",
+				"to": "00:08:18,880"
+			},
+			"offsets": {
+				"from": 494920,
+				"to": 498880
+			},
+			"text": " But this is a topic that's very near and dear to my heart."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,880",
+				"to": "00:08:21,320"
+			},
+			"offsets": {
+				"from": 498880,
+				"to": 501320
+			},
+			"text": " So if you have questions, we can address them"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,320",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 501320,
+				"to": 503000
+			},
+			"text": " a little bit later."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:25,280"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 505280
+			},
+			"text": " But I'll just quickly touch on tools like Cat, Cat,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,280",
+				"to": "00:08:27,640"
+			},
+			"offsets": {
+				"from": 505280,
+				"to": 507640
+			},
+			"text": " Gauntlet, Token Spice, all of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,640",
+				"to": "00:08:30,520"
+			},
+			"offsets": {
+				"from": 507640,
+				"to": 510520
+			},
+			"text": " I do encourage everyone to take a look at it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,520",
+				"to": "00:08:32,600"
+			},
+			"offsets": {
+				"from": 510520,
+				"to": 512600
+			},
+			"text": " and explore on their own."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,600",
+				"to": "00:08:35,720"
+			},
+			"offsets": {
+				"from": 512600,
+				"to": 515720
+			},
+			"text": " Product market fit in KPIs, really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,720",
+				"to": "00:08:38,640"
+			},
+			"offsets": {
+				"from": 515720,
+				"to": 518640
+			},
+			"text": " This is something my team has been spending a lot of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,640",
+				"to": "00:08:40,760"
+			},
+			"offsets": {
+				"from": 518640,
+				"to": 520760
+			},
+			"text": " on lately."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,760",
+				"to": "00:08:43,920"
+			},
+			"offsets": {
+				"from": 520760,
+				"to": 523920
+			},
+			"text": " And what's the common metric across DeFi right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,920",
+				"to": "00:08:47,560"
+			},
+			"offsets": {
+				"from": 523920,
+				"to": 527560
+			},
+			"text": " It's TVL, total value locked."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,560",
+				"to": "00:08:48,640"
+			},
+			"offsets": {
+				"from": 527560,
+				"to": 528640
+			},
+			"text": " It's a good metric."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,640",
+				"to": "00:08:49,840"
+			},
+			"offsets": {
+				"from": 528640,
+				"to": 529840
+			},
+			"text": " Is it a great metric?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,840",
+				"to": "00:08:51,520"
+			},
+			"offsets": {
+				"from": 529840,
+				"to": 531520
+			},
+			"text": " I don't think so."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,520",
+				"to": "00:08:53,880"
+			},
+			"offsets": {
+				"from": 531520,
+				"to": 533880
+			},
+			"text": " It's a good metric when it's taken in concert"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,880",
+				"to": "00:08:56,040"
+			},
+			"offsets": {
+				"from": 533880,
+				"to": 536040
+			},
+			"text": " with other metrics alone."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,040",
+				"to": "00:08:57,680"
+			},
+			"offsets": {
+				"from": 536040,
+				"to": 537680
+			},
+			"text": " I don't think it's sufficient to give you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,680",
+				"to": "00:09:00,080"
+			},
+			"offsets": {
+				"from": 537680,
+				"to": 540080
+			},
+			"text": " a good idea of product market fit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,080",
+				"to": "00:09:02,960"
+			},
+			"offsets": {
+				"from": 540080,
+				"to": 542960
+			},
+			"text": " So TVL is not really sticky."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,960",
+				"to": "00:09:05,400"
+			},
+			"offsets": {
+				"from": 542960,
+				"to": 545400
+			},
+			"text": " Traders often look for the best yields across DeFi,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,400",
+				"to": "00:09:07,200"
+			},
+			"offsets": {
+				"from": 545400,
+				"to": 547200
+			},
+			"text": " so loyalty is fickle."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,200",
+				"to": "00:09:10,520"
+			},
+			"offsets": {
+				"from": 547200,
+				"to": 550520
+			},
+			"text": " And that can cause a lot of volatility in the TVL."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,520",
+				"to": "00:09:16,880"
+			},
+			"offsets": {
+				"from": 550520,
+				"to": 556880
+			},
+			"text": " TVL is also subject to a lot of market cyclicality, bull,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,880",
+				"to": "00:09:18,640"
+			},
+			"offsets": {
+				"from": 556880,
+				"to": 558640
+			},
+			"text": " bear."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,640",
+				"to": "00:09:21,880"
+			},
+			"offsets": {
+				"from": 558640,
+				"to": 561880
+			},
+			"text": " And it's just not a good long-term metric"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,880",
+				"to": "00:09:23,720"
+			},
+			"offsets": {
+				"from": 561880,
+				"to": 563720
+			},
+			"text": " to measure long-term sustainability, health,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,720",
+				"to": "00:09:25,280"
+			},
+			"offsets": {
+				"from": 563720,
+				"to": 565280
+			},
+			"text": " and success of a protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,280",
+				"to": "00:09:27,280"
+			},
+			"offsets": {
+				"from": 565280,
+				"to": 567280
+			},
+			"text": " So again, it's not a bad metric,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,280",
+				"to": "00:09:31,480"
+			},
+			"offsets": {
+				"from": 567280,
+				"to": 571480
+			},
+			"text": " but it should be taken alongside other key metrics, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,480",
+				"to": "00:09:33,520"
+			},
+			"offsets": {
+				"from": 571480,
+				"to": 573520
+			},
+			"text": " I'll touch on very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,520",
+				"to": "00:09:37,320"
+			},
+			"offsets": {
+				"from": 573520,
+				"to": 577320
+			},
+			"text": " Ecosystem engagement metrics are crucial."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,320",
+				"to": "00:09:40,560"
+			},
+			"offsets": {
+				"from": 577320,
+				"to": 580560
+			},
+			"text": " Understanding community engagement and frequency,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,560",
+				"to": "00:09:42,800"
+			},
+			"offsets": {
+				"from": 580560,
+				"to": 582800
+			},
+			"text": " developer activity, are there other developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,800",
+				"to": "00:09:45,960"
+			},
+			"offsets": {
+				"from": 582800,
+				"to": 585960
+			},
+			"text": " building on top of your protocol?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,960",
+				"to": "00:09:46,880"
+			},
+			"offsets": {
+				"from": 585960,
+				"to": 586880
+			},
+			"text": " Integrations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,880",
+				"to": "00:09:49,600"
+			},
+			"offsets": {
+				"from": 586880,
+				"to": 589600
+			},
+			"text": " Are there other protocols integrating with your protocol?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,600",
+				"to": "00:09:52,680"
+			},
+			"offsets": {
+				"from": 589600,
+				"to": 592680
+			},
+			"text": " Those are really strong indicators of product market fit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,680",
+				"to": "00:09:54,720"
+			},
+			"offsets": {
+				"from": 592680,
+				"to": 594720
+			},
+			"text": " And the number of unique token holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,720",
+				"to": "00:09:58,360"
+			},
+			"offsets": {
+				"from": 594720,
+				"to": 598360
+			},
+			"text": " So if the token distribution is really high"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,360",
+				"to": "00:10:02,200"
+			},
+			"offsets": {
+				"from": 598360,
+				"to": 602200
+			},
+			"text": " and you have a very decentralized token economy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,200",
+				"to": "00:10:05,400"
+			},
+			"offsets": {
+				"from": 602200,
+				"to": 605400
+			},
+			"text": " you might have more participation in governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,400",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 605400,
+				"to": 610000
+			},
+			"text": " And you just have more participation in the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:12,320"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 612320
+			},
+			"text": " That's also a really good sign as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,320",
+				"to": "00:10:16,200"
+			},
+			"offsets": {
+				"from": 612320,
+				"to": 616200
+			},
+			"text": " Product engagement metrics, like daily active users"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,200",
+				"to": "00:10:20,040"
+			},
+			"offsets": {
+				"from": 616200,
+				"to": 620040
+			},
+			"text": " or daily active addresses, churn and retention metrics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,040",
+				"to": "00:10:22,040"
+			},
+			"offsets": {
+				"from": 620040,
+				"to": 622040
+			},
+			"text": " user actions, like in a DeFi protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,040",
+				"to": "00:10:26,320"
+			},
+			"offsets": {
+				"from": 622040,
+				"to": 626320
+			},
+			"text": " you often have users depositing, trading, redeeming,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,320",
+				"to": "00:10:30,640"
+			},
+			"offsets": {
+				"from": 626320,
+				"to": 630640
+			},
+			"text": " and other types of metrics are really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,640",
+				"to": "00:10:33,360"
+			},
+			"offsets": {
+				"from": 630640,
+				"to": 633360
+			},
+			"text": " I'm going to skip over this for time"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,360",
+				"to": "00:10:35,160"
+			},
+			"offsets": {
+				"from": 633360,
+				"to": 635160
+			},
+			"text": " because I'm down to a minute and a half."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,160",
+				"to": "00:10:39,320"
+			},
+			"offsets": {
+				"from": 635160,
+				"to": 639320
+			},
+			"text": " But how do we measure some of these metrics?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,320",
+				"to": "00:10:40,560"
+			},
+			"offsets": {
+				"from": 639320,
+				"to": 640560
+			},
+			"text": " It's really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,560",
+				"to": "00:10:43,200"
+			},
+			"offsets": {
+				"from": 640560,
+				"to": 643200
+			},
+			"text": " So first of all, you may not know this or maybe you do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,200",
+				"to": "00:10:44,960"
+			},
+			"offsets": {
+				"from": 643200,
+				"to": 644960
+			},
+			"text": " but a lot of DeFi projects out there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,960",
+				"to": "00:10:49,800"
+			},
+			"offsets": {
+				"from": 644960,
+				"to": 649800
+			},
+			"text": " like Maker of a Uniswap DYDX, are collecting user data."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,800",
+				"to": "00:10:53,200"
+			},
+			"offsets": {
+				"from": 649800,
+				"to": 653200
+			},
+			"text": " Mind you, most of them have the privacy flag turned on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,200",
+				"to": "00:10:55,040"
+			},
+			"offsets": {
+				"from": 653200,
+				"to": 655040
+			},
+			"text": " which is something you can do in Google Analytics"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,040",
+				"to": "00:10:58,240"
+			},
+			"offsets": {
+				"from": 655040,
+				"to": 658240
+			},
+			"text": " and other tools like Mixpanel."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,240",
+				"to": "00:10:59,640"
+			},
+			"offsets": {
+				"from": 658240,
+				"to": 659640
+			},
+			"text": " But they are collecting user data."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,640",
+				"to": "00:11:00,680"
+			},
+			"offsets": {
+				"from": 659640,
+				"to": 660680
+			},
+			"text": " It's anonymized data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,680",
+				"to": "00:11:05,600"
+			},
+			"offsets": {
+				"from": 660680,
+				"to": 665600
+			},
+			"text": " It's really important for informing product decisions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,600",
+				"to": "00:11:09,120"
+			},
+			"offsets": {
+				"from": 665600,
+				"to": 669120
+			},
+			"text": " app and protocol evolution, and optimizing marketing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,120",
+				"to": "00:11:10,440"
+			},
+			"offsets": {
+				"from": 669120,
+				"to": 670440
+			},
+			"text": " efforts as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,440",
+				"to": "00:11:12,440"
+			},
+			"offsets": {
+				"from": 670440,
+				"to": 672440
+			},
+			"text": " What's really important is that you've"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,440",
+				"to": "00:11:14,240"
+			},
+			"offsets": {
+				"from": 672440,
+				"to": 674240
+			},
+			"text": " integrated consent management."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,240",
+				"to": "00:11:16,680"
+			},
+			"offsets": {
+				"from": 674240,
+				"to": 676680
+			},
+			"text": " This kind of fits within the ethos of Web3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,680",
+				"to": "00:11:19,640"
+			},
+			"offsets": {
+				"from": 676680,
+				"to": 679640
+			},
+			"text": " where users have full control over their data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,640",
+				"to": "00:11:22,800"
+			},
+			"offsets": {
+				"from": 679640,
+				"to": 682800
+			},
+			"text": " If they want to opt out of anonymous data collection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,800",
+				"to": "00:11:26,560"
+			},
+			"offsets": {
+				"from": 682800,
+				"to": 686560
+			},
+			"text": " you need to give them that opportunity to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,560",
+				"to": "00:11:30,680"
+			},
+			"offsets": {
+				"from": 686560,
+				"to": 690680
+			},
+			"text": " And then open source tooling is better, then close source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,680",
+				"to": "00:11:31,160"
+			},
+			"offsets": {
+				"from": 690680,
+				"to": 691160
+			},
+			"text": " of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,160",
+				"to": "00:11:38,240"
+			},
+			"offsets": {
+				"from": 691160,
+				"to": 698240
+			},
+			"text": " And the kind of the tech stack that I've outlined here"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,240",
+				"to": "00:11:41,720"
+			},
+			"offsets": {
+				"from": 698240,
+				"to": 701720
+			},
+			"text": " is a typical product marketing analytics tech stack"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,720",
+				"to": "00:11:45,720"
+			},
+			"offsets": {
+				"from": 701720,
+				"to": 705720
+			},
+			"text": " that we could use that includes all open source tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,720",
+				"to": "00:11:48,600"
+			},
+			"offsets": {
+				"from": 705720,
+				"to": 708600
+			},
+			"text": " And I'm happy to chat about that a little bit more later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,600",
+				"to": "00:11:52,080"
+			},
+			"offsets": {
+				"from": 708600,
+				"to": 712080
+			},
+			"text": " because I know I'm just down to a couple seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,080",
+				"to": "00:11:54,640"
+			},
+			"offsets": {
+				"from": 712080,
+				"to": 714640
+			},
+			"text": " But yeah, feel free to follow me on Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,640",
+				"to": "00:11:57,080"
+			},
+			"offsets": {
+				"from": 714640,
+				"to": 717080
+			},
+			"text": " Elements, underscore phi, on Twitter as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,080",
+				"to": "00:11:58,600"
+			},
+			"offsets": {
+				"from": 717080,
+				"to": 718600
+			},
+			"text": " I'll have a blog post coming out, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,600",
+				"to": "00:12:01,600"
+			},
+			"offsets": {
+				"from": 718600,
+				"to": 721600
+			},
+			"text": " will be very comprehensive, and cover all of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,600",
+				"to": "00:12:03,160"
+			},
+			"offsets": {
+				"from": 721600,
+				"to": 723160
+			},
+			"text": " in much, much more detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,160",
+				"to": "00:12:04,880"
+			},
+			"offsets": {
+				"from": 723160,
+				"to": 724880
+			},
+			"text": " So stay tuned for that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,880",
+				"to": "00:12:08,040"
+			},
+			"offsets": {
+				"from": 724880,
+				"to": 728040
+			},
+			"text": " And happy to take any questions, if we have any time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,040",
+				"to": "00:12:11,040"
+			},
+			"offsets": {
+				"from": 728040,
+				"to": 731040
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,040",
+				"to": "00:12:14,040"
+			},
+			"offsets": {
+				"from": 731040,
+				"to": 734040
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,040",
+				"to": "00:12:17,040"
+			},
+			"offsets": {
+				"from": 734040,
+				"to": 737040
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,040",
+				"to": "00:12:46,040"
+			},
+			"offsets": {
+				"from": 737040,
+				"to": 766040
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

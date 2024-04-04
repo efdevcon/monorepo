@@ -1,0 +1,6258 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:17,820"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 17820
+			},
+			"text": " New Zero Knowledge AirDrop, in which you enable anonymous governance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,820",
+				"to": "00:00:21,060"
+			},
+			"offsets": {
+				"from": 17820,
+				"to": 21060
+			},
+			"text": " where people's votes aren't impacted by other people's votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,060",
+				"to": "00:00:22,720"
+			},
+			"offsets": {
+				"from": 21060,
+				"to": 22720
+			},
+			"text": " Where people can vote independently and they're only"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,720",
+				"to": "00:00:26,780"
+			},
+			"offsets": {
+				"from": 22720,
+				"to": 26780
+			},
+			"text": " revealed once you want to tally the votes or once the voting period is over."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,780",
+				"to": "00:00:28,980"
+			},
+			"offsets": {
+				"from": 26780,
+				"to": 28980
+			},
+			"text": " In order to do this, to do a Zero Knowledge AirDrop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,980",
+				"to": "00:00:31,340"
+			},
+			"offsets": {
+				"from": 28980,
+				"to": 31340
+			},
+			"text": " you need a way to avoid double claiming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,340",
+				"to": "00:00:33,960"
+			},
+			"offsets": {
+				"from": 31340,
+				"to": 33960
+			},
+			"text": " That is, people can anonymously claim their tokens to an on-link"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,960",
+				"to": "00:00:37,860"
+			},
+			"offsets": {
+				"from": 33960,
+				"to": 37860
+			},
+			"text": " to count, but still there's some identifier that represents them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,860",
+				"to": "00:00:40,560"
+			},
+			"offsets": {
+				"from": 37860,
+				"to": 40560
+			},
+			"text": " that prevents them from claiming the same AirDrop twice."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,560",
+				"to": "00:00:42,880"
+			},
+			"offsets": {
+				"from": 40560,
+				"to": 42880
+			},
+			"text": " Or maybe we want to do an anonymous message board,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,880",
+				"to": "00:00:46,820"
+			},
+			"offsets": {
+				"from": 42880,
+				"to": 46820
+			},
+			"text": " in which we know that each of the people cannot be identified."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,820",
+				"to": "00:00:51,020"
+			},
+			"offsets": {
+				"from": 46820,
+				"to": 51020
+			},
+			"text": " But we know, for instance, that maybe the first poster is the same as the third poster."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,020",
+				"to": "00:00:54,780"
+			},
+			"offsets": {
+				"from": 51020,
+				"to": 54780
+			},
+			"text": " Or imagine we want to do anonymous voting within a large anonymity set,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,780",
+				"to": "00:00:56,700"
+			},
+			"offsets": {
+				"from": 54780,
+				"to": 56700
+			},
+			"text": " such that the very first person to vote"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,700",
+				"to": "00:01:00,380"
+			},
+			"offsets": {
+				"from": 56700,
+				"to": 60380
+			},
+			"text": " has the full power of every single person in this anonymity set."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,380",
+				"to": "00:01:03,380"
+			},
+			"offsets": {
+				"from": 60380,
+				"to": 63380
+			},
+			"text": " Or really, any civil-resistant anonymous application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,380",
+				"to": "00:01:09,540"
+			},
+			"offsets": {
+				"from": 63380,
+				"to": 69540
+			},
+			"text": " So we thought about what we could use to be this kind of tool that stops us"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,540",
+				"to": "00:01:13,420"
+			},
+			"offsets": {
+				"from": 69540,
+				"to": 73420
+			},
+			"text": " from double spending and is this kind of unique identifier of someone on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,420",
+				"to": "00:01:18,300"
+			},
+			"offsets": {
+				"from": 73420,
+				"to": 78300
+			},
+			"text": " And after talking a bunch on Discord, we decided to create a new Zee Canullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,300",
+				"to": "00:01:20,180"
+			},
+			"offsets": {
+				"from": 78300,
+				"to": 80180
+			},
+			"text": " scheme on ECDSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,180",
+				"to": "00:01:23,580"
+			},
+			"offsets": {
+				"from": 80180,
+				"to": 83580
+			},
+			"text": " This is joint work with Persona Labs, Geometry Research,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,580",
+				"to": "00:01:26,380"
+			},
+			"offsets": {
+				"from": 83580,
+				"to": 86380
+			},
+			"text": " and originally done at Xerox Park in MIT."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,380",
+				"to": "00:01:30,020"
+			},
+			"offsets": {
+				"from": 86380,
+				"to": 90020
+			},
+			"text": " So to kind of clarify what exactly this nullifier is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,020",
+				"to": "00:01:32,340"
+			},
+			"offsets": {
+				"from": 90020,
+				"to": 92340
+			},
+			"text": " let's try to maybe go through some properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,340",
+				"to": "00:01:35,100"
+			},
+			"offsets": {
+				"from": 92340,
+				"to": 95100
+			},
+			"text": " So if you want to avoid people from double spending"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,100",
+				"to": "00:01:37,820"
+			},
+			"offsets": {
+				"from": 95100,
+				"to": 97820
+			},
+			"text": " and you want each person to claim only once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,820",
+				"to": "00:01:40,500"
+			},
+			"offsets": {
+				"from": 97820,
+				"to": 100500
+			},
+			"text": " then we need this property, this identifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,500",
+				"to": "00:01:42,420"
+			},
+			"offsets": {
+				"from": 100500,
+				"to": 102420
+			},
+			"text": " outputted by this account to be unique."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,420",
+				"to": "00:01:44,340"
+			},
+			"offsets": {
+				"from": 102420,
+				"to": 104340
+			},
+			"text": " That is, everyone should have a different one."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,340",
+				"to": "00:01:46,580"
+			},
+			"offsets": {
+				"from": 104340,
+				"to": 106580
+			},
+			"text": " We also want this value to be deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,580",
+				"to": "00:01:49,380"
+			},
+			"offsets": {
+				"from": 106580,
+				"to": 109380
+			},
+			"text": " That is, if I have some Ethereum public private key pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,380",
+				"to": "00:01:52,260"
+			},
+			"offsets": {
+				"from": 109380,
+				"to": 112260
+			},
+			"text": " I should only be able to generate one of these signals."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,260",
+				"to": "00:01:55,700"
+			},
+			"offsets": {
+				"from": 112260,
+				"to": 115700
+			},
+			"text": " Finally, the signal I generate should be verifiable without access"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,700",
+				"to": "00:01:56,900"
+			},
+			"offsets": {
+				"from": 115700,
+				"to": 116900
+			},
+			"text": " to my secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,900",
+				"to": "00:02:00,100"
+			},
+			"offsets": {
+				"from": 116900,
+				"to": 120100
+			},
+			"text": " This is because an ledger wallet or a secure enclave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,100",
+				"to": "00:02:02,220"
+			},
+			"offsets": {
+				"from": 120100,
+				"to": 122220
+			},
+			"text": " it's not possible to even read the secret key"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,220",
+				"to": "00:02:04,060"
+			},
+			"offsets": {
+				"from": 122220,
+				"to": 124060
+			},
+			"text": " or take it out of the secure enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,060",
+				"to": "00:02:09,180"
+			},
+			"offsets": {
+				"from": 124060,
+				"to": 129180
+			},
+			"text": " We also don't want users copy-pasting their private keys all over the place."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,180",
+				"to": "00:02:11,900"
+			},
+			"offsets": {
+				"from": 129180,
+				"to": 131900
+			},
+			"text": " And finally, we want this number, this scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,900",
+				"to": "00:02:13,420"
+			},
+			"offsets": {
+				"from": 131900,
+				"to": 133420
+			},
+			"text": " to be completely non-interactive."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,420",
+				"to": "00:02:14,940"
+			},
+			"offsets": {
+				"from": 133420,
+				"to": 134940
+			},
+			"text": " If you've heard of nullifiers before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,940",
+				"to": "00:02:17,540"
+			},
+			"offsets": {
+				"from": 134940,
+				"to": 137540
+			},
+			"text": " you might have heard of something like TornadoCache or Semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,540",
+				"to": "00:02:19,780"
+			},
+			"offsets": {
+				"from": 137540,
+				"to": 139780
+			},
+			"text": " And the way that works is that as people sign up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,780",
+				"to": "00:02:22,140"
+			},
+			"offsets": {
+				"from": 139780,
+				"to": 142140
+			},
+			"text": " the anonymity set grows bigger and bigger and bigger."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,140",
+				"to": "00:02:24,020"
+			},
+			"offsets": {
+				"from": 142140,
+				"to": 144020
+			},
+			"text": " However, the first person to use TornadoCache"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,020",
+				"to": "00:02:26,220"
+			},
+			"offsets": {
+				"from": 144020,
+				"to": 146220
+			},
+			"text": " or the first person to sign up for a Semaphore group"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,220",
+				"to": "00:02:29,060"
+			},
+			"offsets": {
+				"from": 146220,
+				"to": 149060
+			},
+			"text": " has zero anonymity until more people join."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,060",
+				"to": "00:02:31,900"
+			},
+			"offsets": {
+				"from": 149060,
+				"to": 151900
+			},
+			"text": " But if we want the full power of the entire anonymity set"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,900",
+				"to": "00:02:35,300"
+			},
+			"offsets": {
+				"from": 151900,
+				"to": 155300
+			},
+			"text": " for the very first person, we need the scheme to be non-interactive."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,300",
+				"to": "00:02:37,740"
+			},
+			"offsets": {
+				"from": 155300,
+				"to": 157740
+			},
+			"text": " That is, there shouldn't be two phases, like a sign-up phase"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,740",
+				"to": "00:02:38,940"
+			},
+			"offsets": {
+				"from": 157740,
+				"to": 158940
+			},
+			"text": " and a utility phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,940",
+				"to": "00:02:41,140"
+			},
+			"offsets": {
+				"from": 158940,
+				"to": 161140
+			},
+			"text": " So to understand these properties a little bit more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,140",
+				"to": "00:02:44,020"
+			},
+			"offsets": {
+				"from": 161140,
+				"to": 164020
+			},
+			"text": " one useful exercise is to go through some examples of schemes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,020",
+				"to": "00:02:45,780"
+			},
+			"offsets": {
+				"from": 164020,
+				"to": 165780
+			},
+			"text": " that may work or may not work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,780",
+				"to": "00:02:49,860"
+			},
+			"offsets": {
+				"from": 165780,
+				"to": 169860
+			},
+			"text": " So imagine when we wanted someone to post this deterministic value"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,860",
+				"to": "00:02:52,460"
+			},
+			"offsets": {
+				"from": 169860,
+				"to": 172460
+			},
+			"text": " that identified themselves, that stopped them from double-claiming"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,460",
+				"to": "00:02:54,060"
+			},
+			"offsets": {
+				"from": 172460,
+				"to": 174060
+			},
+			"text": " or stopped them from double-voting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,060",
+				"to": "00:02:57,980"
+			},
+			"offsets": {
+				"from": 174060,
+				"to": 177980
+			},
+			"text": " that they used the hash of a deterministic ECDA say signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,980",
+				"to": "00:03:00,620"
+			},
+			"offsets": {
+				"from": 177980,
+				"to": 180620
+			},
+			"text": " Now, you might guess that this has all the properties we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,620",
+				"to": "00:03:01,460"
+			},
+			"offsets": {
+				"from": 180620,
+				"to": 181460
+			},
+			"text": " It's unique."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,460",
+				"to": "00:03:04,220"
+			},
+			"offsets": {
+				"from": 181460,
+				"to": 184220
+			},
+			"text": " If you're assigning a message, a deterministic signature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,220",
+				"to": "00:03:06,820"
+			},
+			"offsets": {
+				"from": 184220,
+				"to": 186820
+			},
+			"text": " there should only be one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,820",
+				"to": "00:03:08,020"
+			},
+			"offsets": {
+				"from": 186820,
+				"to": 188020
+			},
+			"text": " It's non-interactive."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,020",
+				"to": "00:03:09,740"
+			},
+			"offsets": {
+				"from": 188020,
+				"to": 189740
+			},
+			"text": " Anyone could generate a signature and blend"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,740",
+				"to": "00:03:11,580"
+			},
+			"offsets": {
+				"from": 189740,
+				"to": 191580
+			},
+			"text": " into the anonymity set."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,580",
+				"to": "00:03:14,420"
+			},
+			"offsets": {
+				"from": 191580,
+				"to": 194420
+			},
+			"text": " You don't need people to interact and sign up for the scheme first."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,420",
+				"to": "00:03:16,900"
+			},
+			"offsets": {
+				"from": 194420,
+				"to": 196900
+			},
+			"text": " However, the issue of deterministic ECDA say signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,900",
+				"to": "00:03:19,700"
+			},
+			"offsets": {
+				"from": 196900,
+				"to": 199700
+			},
+			"text": " is that you cannot verify that a deterministic ECDA say signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,700",
+				"to": "00:03:23,060"
+			},
+			"offsets": {
+				"from": 199700,
+				"to": 203060
+			},
+			"text": " was generated with the correct deterministic randomness"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,060",
+				"to": "00:03:25,260"
+			},
+			"offsets": {
+				"from": 203060,
+				"to": 205260
+			},
+			"text": " unless you have access to the private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,260",
+				"to": "00:03:27,340"
+			},
+			"offsets": {
+				"from": 205260,
+				"to": 207340
+			},
+			"text": " That is, deterministic ECDA say signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,340",
+				"to": "00:03:29,780"
+			},
+			"offsets": {
+				"from": 207340,
+				"to": 209780
+			},
+			"text": " are identical to non-interministic ECDA say signatures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,780",
+				"to": "00:03:32,660"
+			},
+			"offsets": {
+				"from": 209780,
+				"to": 212660
+			},
+			"text": " because the randomness is like the hash of the private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,660",
+				"to": "00:03:35,300"
+			},
+			"offsets": {
+				"from": 212660,
+				"to": 215300
+			},
+			"text": " And so if you're trying to verify this on chain or in a ZK"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,300",
+				"to": "00:03:36,860"
+			},
+			"offsets": {
+				"from": 215300,
+				"to": 216860
+			},
+			"text": " snark, you would need the private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,860",
+				"to": "00:03:39,220"
+			},
+			"offsets": {
+				"from": 216860,
+				"to": 219220
+			},
+			"text": " So it doesn't quite achieve what we want it to achieve."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,220",
+				"to": "00:03:41,980"
+			},
+			"offsets": {
+				"from": 219220,
+				"to": 221980
+			},
+			"text": " A second idea is this idea called a verifiable, unpredictable"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,980",
+				"to": "00:03:44,420"
+			},
+			"offsets": {
+				"from": 221980,
+				"to": 224420
+			},
+			"text": " function, or a unique signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,420",
+				"to": "00:03:46,820"
+			},
+			"offsets": {
+				"from": 224420,
+				"to": 226820
+			},
+			"text": " Now, the vast majority of the schemes for these"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,820",
+				"to": "00:03:48,500"
+			},
+			"offsets": {
+				"from": 226820,
+				"to": 228500
+			},
+			"text": " are on pairing friendly curves."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,500",
+				"to": "00:03:53,340"
+			},
+			"offsets": {
+				"from": 228500,
+				"to": 233340
+			},
+			"text": " And Ethereum, which is on ECDA say on secb, 256K1,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,340",
+				"to": "00:03:55,140"
+			},
+			"offsets": {
+				"from": 233340,
+				"to": 235140
+			},
+			"text": " is not a pairing friendly curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,140",
+				"to": "00:03:56,420"
+			},
+			"offsets": {
+				"from": 235140,
+				"to": 236420
+			},
+			"text": " So the vast majority of this literature"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,420",
+				"to": "00:03:58,220"
+			},
+			"offsets": {
+				"from": 236420,
+				"to": 238220
+			},
+			"text": " is fairly inaccessible to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,220",
+				"to": "00:04:01,180"
+			},
+			"offsets": {
+				"from": 238220,
+				"to": 241180
+			},
+			"text": " We could try something like hash of message come a public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,180",
+				"to": "00:04:02,820"
+			},
+			"offsets": {
+				"from": 241180,
+				"to": 242820
+			},
+			"text": " You'd imagine this is unique."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,820",
+				"to": "00:04:05,700"
+			},
+			"offsets": {
+				"from": 242820,
+				"to": 245700
+			},
+			"text": " Every account, every public key, has a different value of this hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,700",
+				"to": "00:04:06,540"
+			},
+			"offsets": {
+				"from": 245700,
+				"to": 246540
+			},
+			"text": " It's deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,540",
+				"to": "00:04:09,620"
+			},
+			"offsets": {
+				"from": 246540,
+				"to": 249620
+			},
+			"text": " If you have a public key and there's some message, say the app ID,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,620",
+				"to": "00:04:11,420"
+			},
+			"offsets": {
+				"from": 249620,
+				"to": 251420
+			},
+			"text": " then this hash is deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,420",
+				"to": "00:04:13,940"
+			},
+			"offsets": {
+				"from": 251420,
+				"to": 253940
+			},
+			"text": " It's verifiable without your private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,940",
+				"to": "00:04:14,900"
+			},
+			"offsets": {
+				"from": 253940,
+				"to": 254900
+			},
+			"text": " And it's non-interactive."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,900",
+				"to": "00:04:17,620"
+			},
+			"offsets": {
+				"from": 254900,
+				"to": 257620
+			},
+			"text": " You can give this hash without signing up in advance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,620",
+				"to": "00:04:20,860"
+			},
+			"offsets": {
+				"from": 257620,
+				"to": 260860
+			},
+			"text": " Now, the issue with this is that it's a little bit subtle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,860",
+				"to": "00:04:23,340"
+			},
+			"offsets": {
+				"from": 260860,
+				"to": 263340
+			},
+			"text": " but it's actually possible to de-anonymize people who"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,340",
+				"to": "00:04:25,340"
+			},
+			"offsets": {
+				"from": 263340,
+				"to": 265340
+			},
+			"text": " are using this for anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,340",
+				"to": "00:04:28,820"
+			},
+			"offsets": {
+				"from": 265340,
+				"to": 268820
+			},
+			"text": " The way you do that is you can take the list of all 200,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,820",
+				"to": "00:04:30,980"
+			},
+			"offsets": {
+				"from": 268820,
+				"to": 270980
+			},
+			"text": " 400 million private keys on Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,980",
+				"to": "00:04:33,620"
+			},
+			"offsets": {
+				"from": 270980,
+				"to": 273620
+			},
+			"text": " calculate the hash values for every single one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,620",
+				"to": "00:04:36,340"
+			},
+			"offsets": {
+				"from": 273620,
+				"to": 276340
+			},
+			"text": " and match it up with this nullifier value on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,340",
+				"to": "00:04:37,820"
+			},
+			"offsets": {
+				"from": 276340,
+				"to": 277820
+			},
+			"text": " And boom, de-anonymize a person who"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,820",
+				"to": "00:04:40,180"
+			},
+			"offsets": {
+				"from": 277820,
+				"to": 280180
+			},
+			"text": " tried to use this as their unique identifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,180",
+				"to": "00:04:41,700"
+			},
+			"offsets": {
+				"from": 280180,
+				"to": 281700
+			},
+			"text": " Maybe kind of getting inspired by this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,700",
+				"to": "00:04:45,140"
+			},
+			"offsets": {
+				"from": 281700,
+				"to": 285140
+			},
+			"text": " you can try something like hash of message comma secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,140",
+				"to": "00:04:49,340"
+			},
+			"offsets": {
+				"from": 285140,
+				"to": 289340
+			},
+			"text": " You'd imagine this is similar to the public key case, except you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,340",
+				"to": "00:04:50,820"
+			},
+			"offsets": {
+				"from": 289340,
+				"to": 290820
+			},
+			"text": " can't take everyone's secret key on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,820",
+				"to": "00:04:52,180"
+			},
+			"offsets": {
+				"from": 290820,
+				"to": 292180
+			},
+			"text": " because you don't know everyone's secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,180",
+				"to": "00:04:54,860"
+			},
+			"offsets": {
+				"from": 292180,
+				"to": 294860
+			},
+			"text": " So it's not possible to de-anonymize people in the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,860",
+				"to": "00:04:57,460"
+			},
+			"offsets": {
+				"from": 294860,
+				"to": 297460
+			},
+			"text": " But the issue is to verify something that's behind a hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,460",
+				"to": "00:04:59,980"
+			},
+			"offsets": {
+				"from": 297460,
+				"to": 299980
+			},
+			"text": " You have to calculate the entire hash function inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,980",
+				"to": "00:05:02,060"
+			},
+			"offsets": {
+				"from": 299980,
+				"to": 302060
+			},
+			"text": " the zero-knowledge proof or inside whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,060",
+				"to": "00:05:03,540"
+			},
+			"offsets": {
+				"from": 302060,
+				"to": 303540
+			},
+			"text": " any primitive you're using."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,540",
+				"to": "00:05:06,500"
+			},
+			"offsets": {
+				"from": 303540,
+				"to": 306500
+			},
+			"text": " And we don't want users to copy around the secret key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,500",
+				"to": "00:05:09,060"
+			},
+			"offsets": {
+				"from": 306500,
+				"to": 309060
+			},
+			"text": " and so this scheme isn't quite it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,060",
+				"to": "00:05:11,780"
+			},
+			"offsets": {
+				"from": 309060,
+				"to": 311780
+			},
+			"text": " So finally, we resolve it on this scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,780",
+				"to": "00:05:14,100"
+			},
+			"offsets": {
+				"from": 311780,
+				"to": 314100
+			},
+			"text": " We use a hash of message comma public key"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,100",
+				"to": "00:05:15,660"
+			},
+			"offsets": {
+				"from": 314100,
+				"to": 315660
+			},
+			"text": " to the power of secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,660",
+				"to": "00:05:17,540"
+			},
+			"offsets": {
+				"from": 315660,
+				"to": 317540
+			},
+			"text": " It's kind of similar to the other schemes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,540",
+				"to": "00:05:19,740"
+			},
+			"offsets": {
+				"from": 317540,
+				"to": 319740
+			},
+			"text": " but it turns out that it has this nice property that it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,740",
+				"to": "00:05:22,260"
+			},
+			"offsets": {
+				"from": 319740,
+				"to": 322260
+			},
+			"text": " a DDH VRF or a decisional, difficult,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,260",
+				"to": "00:05:24,500"
+			},
+			"offsets": {
+				"from": 322260,
+				"to": 324500
+			},
+			"text": " hellman, verifiable random function."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,500",
+				"to": "00:05:26,100"
+			},
+			"offsets": {
+				"from": 324500,
+				"to": 326100
+			},
+			"text": " And specifically, what this means"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,100",
+				"to": "00:05:28,300"
+			},
+			"offsets": {
+				"from": 326100,
+				"to": 328300
+			},
+			"text": " is that we can verify that this is actually calculated"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,300",
+				"to": "00:05:30,980"
+			},
+			"offsets": {
+				"from": 328300,
+				"to": 330980
+			},
+			"text": " correctly without access to the secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,980",
+				"to": "00:05:34,620"
+			},
+			"offsets": {
+				"from": 330980,
+				"to": 334620
+			},
+			"text": " So to maybe summarize what exactly the properties we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,620",
+				"to": "00:05:37,780"
+			},
+			"offsets": {
+				"from": 334620,
+				"to": 337780
+			},
+			"text": " that we want so far is that we want this deterministic function"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,780",
+				"to": "00:05:40,580"
+			},
+			"offsets": {
+				"from": 337780,
+				"to": 340580
+			},
+			"text": " of a user's secret key that can be verified with only"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,580",
+				"to": "00:05:43,620"
+			},
+			"offsets": {
+				"from": 340580,
+				"to": 343620
+			},
+			"text": " their public key and keeps them anonymous."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,620",
+				"to": "00:05:46,580"
+			},
+			"offsets": {
+				"from": 343620,
+				"to": 346580
+			},
+			"text": " And the way we do this is we define a new deterministic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,580",
+				"to": "00:05:48,500"
+			},
+			"offsets": {
+				"from": 346580,
+				"to": 348500
+			},
+			"text": " signature scheme on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,500",
+				"to": "00:05:50,180"
+			},
+			"offsets": {
+				"from": 348500,
+				"to": 350180
+			},
+			"text": " So I'm going to try to go through what"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,180",
+				"to": "00:05:51,980"
+			},
+			"offsets": {
+				"from": 350180,
+				"to": 351980
+			},
+			"text": " exactly the signature scheme is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,980",
+				"to": "00:05:54,020"
+			},
+			"offsets": {
+				"from": 351980,
+				"to": 354020
+			},
+			"text": " And so this is going to get a little bit mappy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,020",
+				"to": "00:05:56,500"
+			},
+			"offsets": {
+				"from": 354020,
+				"to": 356500
+			},
+			"text": " And I've tried to slightly color code the numbers that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,500",
+				"to": "00:05:59,820"
+			},
+			"offsets": {
+				"from": 356500,
+				"to": 359820
+			},
+			"text": " are the same so that you can kind of correlate them across."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,820",
+				"to": "00:06:01,460"
+			},
+			"offsets": {
+				"from": 359820,
+				"to": 361460
+			},
+			"text": " And although the math is a little bit difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,460",
+				"to": "00:06:02,940"
+			},
+			"offsets": {
+				"from": 361460,
+				"to": 362940
+			},
+			"text": " to understand on first glance, I'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,940",
+				"to": "00:06:05,460"
+			},
+			"offsets": {
+				"from": 362940,
+				"to": 365460
+			},
+			"text": " try to give you an intuition for why it achieves"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,460",
+				"to": "00:06:07,700"
+			},
+			"offsets": {
+				"from": 365460,
+				"to": 367700
+			},
+			"text": " the properties that we want it to achieve."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,700",
+				"to": "00:06:10,100"
+			},
+			"offsets": {
+				"from": 367700,
+				"to": 370100
+			},
+			"text": " So remember our nullifier was the hash of message"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,100",
+				"to": "00:06:12,460"
+			},
+			"offsets": {
+				"from": 370100,
+				"to": 372460
+			},
+			"text": " from a public key to the power of secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,460",
+				"to": "00:06:13,860"
+			},
+			"offsets": {
+				"from": 372460,
+				"to": 373860
+			},
+			"text": " And so this value will be public."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,860",
+				"to": "00:06:15,900"
+			},
+			"offsets": {
+				"from": 373860,
+				"to": 375900
+			},
+			"text": " It will be calculated inside the user's wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,900",
+				"to": "00:06:18,620"
+			},
+			"offsets": {
+				"from": 375900,
+				"to": 378620
+			},
+			"text": " whether it's their MetaMask or their ledger or anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,620",
+				"to": "00:06:20,660"
+			},
+			"offsets": {
+				"from": 378620,
+				"to": 380660
+			},
+			"text": " And this value will stay public the entire time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,660",
+				"to": "00:06:23,500"
+			},
+			"offsets": {
+				"from": 380660,
+				"to": 383500
+			},
+			"text": " It will be posted on chain eventually for everyone to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,500",
+				"to": "00:06:26,260"
+			},
+			"offsets": {
+				"from": 383500,
+				"to": 386260
+			},
+			"text": " These private outputs will be created by the wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,260",
+				"to": "00:06:27,900"
+			},
+			"offsets": {
+				"from": 386260,
+				"to": 387900
+			},
+			"text": " and given to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,900",
+				"to": "00:06:30,820"
+			},
+			"offsets": {
+				"from": 387900,
+				"to": 390820
+			},
+			"text": " These outputs, if they were seen by the external world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,820",
+				"to": "00:06:32,500"
+			},
+			"offsets": {
+				"from": 390820,
+				"to": 392500
+			},
+			"text": " could de-anonymize a user."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,500",
+				"to": "00:06:33,940"
+			},
+			"offsets": {
+				"from": 392500,
+				"to": 393940
+			},
+			"text": " For instance, if you saw their public key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,940",
+				"to": "00:06:37,180"
+			},
+			"offsets": {
+				"from": 393940,
+				"to": 397180
+			},
+			"text": " you would obviously know who they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,180",
+				"to": "00:06:40,460"
+			},
+			"offsets": {
+				"from": 397180,
+				"to": 400460
+			},
+			"text": " And so the idea is that these signals are kept to the user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,460",
+				"to": "00:06:43,620"
+			},
+			"offsets": {
+				"from": 400460,
+				"to": 403620
+			},
+			"text": " and the user can use them to generate a ZK snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,620",
+				"to": "00:06:45,700"
+			},
+			"offsets": {
+				"from": 403620,
+				"to": 405700
+			},
+			"text": " So what the user does is once they have these signals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,700",
+				"to": "00:06:48,620"
+			},
+			"offsets": {
+				"from": 405700,
+				"to": 408620
+			},
+			"text": " you can think of this as splitting the signature scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,620",
+				"to": "00:06:50,740"
+			},
+			"offsets": {
+				"from": 408620,
+				"to": 410740
+			},
+			"text": " into a deterministic part, the nullifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,740",
+				"to": "00:06:52,940"
+			},
+			"offsets": {
+				"from": 410740,
+				"to": 412940
+			},
+			"text": " and the non-deterministic part, the private part."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,940",
+				"to": "00:06:56,620"
+			},
+			"offsets": {
+				"from": 412940,
+				"to": 416620
+			},
+			"text": " The verifier simply checks these values are calculated correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,620",
+				"to": "00:07:00,020"
+			},
+			"offsets": {
+				"from": 416620,
+				"to": 420020
+			},
+			"text": " Now, it's a little bit hard to drive through all this math,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,020",
+				"to": "00:07:02,700"
+			},
+			"offsets": {
+				"from": 420020,
+				"to": 422700
+			},
+			"text": " so I'm going to try to give a high-level overview of why"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,700",
+				"to": "00:07:05,820"
+			},
+			"offsets": {
+				"from": 422700,
+				"to": 425820
+			},
+			"text": " we have this kind of C value floating around."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,820",
+				"to": "00:07:07,980"
+			},
+			"offsets": {
+				"from": 425820,
+				"to": 427980
+			},
+			"text": " Now, the reason we have this C value floating around"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,980",
+				"to": "00:07:10,580"
+			},
+			"offsets": {
+				"from": 427980,
+				"to": 430580
+			},
+			"text": " is that when you're taking a hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,580",
+				"to": "00:07:12,980"
+			},
+			"offsets": {
+				"from": 430580,
+				"to": 432980
+			},
+			"text": " it's impossible to brute force the output of the hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,980",
+				"to": "00:07:15,820"
+			},
+			"offsets": {
+				"from": 432980,
+				"to": 435820
+			},
+			"text": " So you must know all the inputs that went into the hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,820",
+				"to": "00:07:18,020"
+			},
+			"offsets": {
+				"from": 435820,
+				"to": 438020
+			},
+			"text": " This means that the person-- you can kind of think"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,020",
+				"to": "00:07:20,980"
+			},
+			"offsets": {
+				"from": 438020,
+				"to": 440980
+			},
+			"text": " of this C commitment as a hash commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,980",
+				"to": "00:07:23,700"
+			},
+			"offsets": {
+				"from": 440980,
+				"to": 443700
+			},
+			"text": " to these values of G to the R to our nullifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,700",
+				"to": "00:07:25,100"
+			},
+			"offsets": {
+				"from": 443700,
+				"to": 445100
+			},
+			"text": " to our public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,100",
+				"to": "00:07:27,100"
+			},
+			"offsets": {
+				"from": 445100,
+				"to": 447100
+			},
+			"text": " Then we calculate this value, which is S, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,100",
+				"to": "00:07:29,460"
+			},
+			"offsets": {
+				"from": 447100,
+				"to": 449460
+			},
+			"text": " is based on the C value, which we know"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,460",
+				"to": "00:07:32,540"
+			},
+			"offsets": {
+				"from": 449460,
+				"to": 452540
+			},
+			"text": " must have been calculated after C. And notice"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,540",
+				"to": "00:07:35,420"
+			},
+			"offsets": {
+				"from": 452540,
+				"to": 455420
+			},
+			"text": " that this S value does not reveal the user's secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,420",
+				"to": "00:07:37,020"
+			},
+			"offsets": {
+				"from": 455420,
+				"to": 457020
+			},
+			"text": " Although it has secret key in it, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,020",
+				"to": "00:07:39,100"
+			},
+			"offsets": {
+				"from": 457020,
+				"to": 459100
+			},
+			"text": " blinded by a completely random number."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,100",
+				"to": "00:07:40,700"
+			},
+			"offsets": {
+				"from": 459100,
+				"to": 460700
+			},
+			"text": " The check in the snark, you'll also"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,700",
+				"to": "00:07:42,460"
+			},
+			"offsets": {
+				"from": 460700,
+				"to": 462460
+			},
+			"text": " notice, has no secret keys in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,460",
+				"to": "00:07:44,580"
+			},
+			"offsets": {
+				"from": 462460,
+				"to": 464580
+			},
+			"text": " We only pass in these signals, none of which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,580",
+				"to": "00:07:46,940"
+			},
+			"offsets": {
+				"from": 464580,
+				"to": 466940
+			},
+			"text": " you can use to derive the user's original secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,940",
+				"to": "00:07:49,020"
+			},
+			"offsets": {
+				"from": 466940,
+				"to": 469020
+			},
+			"text": " And the check that we do is effectively,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,020",
+				"to": "00:07:51,220"
+			},
+			"offsets": {
+				"from": 469020,
+				"to": 471220
+			},
+			"text": " did the user calculate C in the correct order?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,220",
+				"to": "00:07:53,460"
+			},
+			"offsets": {
+				"from": 471220,
+				"to": 473460
+			},
+			"text": " Did they commit to their secret key, their public key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,460",
+				"to": "00:07:56,220"
+			},
+			"offsets": {
+				"from": 473460,
+				"to": 476220
+			},
+			"text": " and calculate the signature in a way that would have actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,220",
+				"to": "00:07:58,100"
+			},
+			"offsets": {
+				"from": 476220,
+				"to": 478100
+			},
+			"text": " proved that they owned that secret key?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,100",
+				"to": "00:08:00,020"
+			},
+			"offsets": {
+				"from": 478100,
+				"to": 480020
+			},
+			"text": " And finally, the ZK snark, apart from checking"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,020",
+				"to": "00:08:01,660"
+			},
+			"offsets": {
+				"from": 480020,
+				"to": 481660
+			},
+			"text": " that the nullifier was calculated correctly"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,660",
+				"to": "00:08:05,140"
+			},
+			"offsets": {
+				"from": 481660,
+				"to": 485140
+			},
+			"text": " in a termistic fashion on the correct curve,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,140",
+				"to": "00:08:07,500"
+			},
+			"offsets": {
+				"from": 485140,
+				"to": 487500
+			},
+			"text": " we also check whatever public key check we want to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,500",
+				"to": "00:08:09,180"
+			},
+			"offsets": {
+				"from": 487500,
+				"to": 489180
+			},
+			"text": " This allows us to verify that the public key is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,180",
+				"to": "00:08:12,060"
+			},
+			"offsets": {
+				"from": 489180,
+				"to": 492060
+			},
+			"text": " in fact, acting correctly and has some unique identifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,060",
+				"to": "00:08:14,220"
+			},
+			"offsets": {
+				"from": 492060,
+				"to": 494220
+			},
+			"text": " But now I have to verify that the public key is, in fact,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,220",
+				"to": "00:08:15,380"
+			},
+			"offsets": {
+				"from": 494220,
+				"to": 495380
+			},
+			"text": " allowed to interact with this protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,380",
+				"to": "00:08:16,620"
+			},
+			"offsets": {
+				"from": 495380,
+				"to": 496620
+			},
+			"text": " Maybe they're in a Merkle proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,620",
+				"to": "00:08:19,300"
+			},
+			"offsets": {
+				"from": 496620,
+				"to": 499300
+			},
+			"text": " Maybe they submit a Merkle tribe, Patricia proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,300",
+				"to": "00:08:21,900"
+			},
+			"offsets": {
+				"from": 499300,
+				"to": 501900
+			},
+			"text": " that they satisfy some condition on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,900",
+				"to": "00:08:24,700"
+			},
+			"offsets": {
+				"from": 501900,
+				"to": 504700
+			},
+			"text": " And the idea that we would also lump this in with the verifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,700",
+				"to": "00:08:26,100"
+			},
+			"offsets": {
+				"from": 504700,
+				"to": 506100
+			},
+			"text": " check in the ZK snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,100",
+				"to": "00:08:28,380"
+			},
+			"offsets": {
+				"from": 506100,
+				"to": 508380
+			},
+			"text": " So to summarize, the wallet generates these signals."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,380",
+				"to": "00:08:30,580"
+			},
+			"offsets": {
+				"from": 508380,
+				"to": 510580
+			},
+			"text": " The user plugs them into a ZK snark"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,580",
+				"to": "00:08:33,260"
+			},
+			"offsets": {
+				"from": 510580,
+				"to": 513260
+			},
+			"text": " and posts the ZK snark with the public nullifier output"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,260",
+				"to": "00:08:35,020"
+			},
+			"offsets": {
+				"from": 513260,
+				"to": 515020
+			},
+			"text": " on chain, proving that they are allowed"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,020",
+				"to": "00:08:37,220"
+			},
+			"offsets": {
+				"from": 515020,
+				"to": 517220
+			},
+			"text": " to interact with this protocol and a unique user who"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,220",
+				"to": "00:08:39,100"
+			},
+			"offsets": {
+				"from": 517220,
+				"to": 519100
+			},
+			"text": " is still going to be kept anonymous."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,100",
+				"to": "00:08:41,540"
+			},
+			"offsets": {
+				"from": 519100,
+				"to": 521540
+			},
+			"text": " Now, interestingly, when we were doing this work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,540",
+				"to": "00:08:44,140"
+			},
+			"offsets": {
+				"from": 521540,
+				"to": 524140
+			},
+			"text": " we discovered this quantum secrecy interactivity trade-off."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,140",
+				"to": "00:08:47,780"
+			},
+			"offsets": {
+				"from": 524140,
+				"to": 527780
+			},
+			"text": " Now, it turns out that semaphore is extremely quantum secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,780",
+				"to": "00:08:49,300"
+			},
+			"offsets": {
+				"from": 527780,
+				"to": 529300
+			},
+			"text": " because it uses hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,300",
+				"to": "00:08:52,620"
+			},
+			"offsets": {
+				"from": 529300,
+				"to": 532620
+			},
+			"text": " But it is interactive, meaning that you have two phases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,620",
+				"to": "00:08:54,820"
+			},
+			"offsets": {
+				"from": 532620,
+				"to": 534820
+			},
+			"text": " and the first people that interact with the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,820",
+				"to": "00:08:56,780"
+			},
+			"offsets": {
+				"from": 534820,
+				"to": 536780
+			},
+			"text": " have no anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,780",
+				"to": "00:08:59,700"
+			},
+			"offsets": {
+				"from": 536780,
+				"to": 539700
+			},
+			"text": " Our scheme, on the other hand, is fully non-interactive."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,700",
+				"to": "00:09:01,300"
+			},
+			"offsets": {
+				"from": 539700,
+				"to": 541300
+			},
+			"text": " The very first person to use nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,300",
+				"to": "00:09:03,620"
+			},
+			"offsets": {
+				"from": 541300,
+				"to": 543620
+			},
+			"text": " will have the full anonymity of the entire anonymity set."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,620",
+				"to": "00:09:06,380"
+			},
+			"offsets": {
+				"from": 543620,
+				"to": 546380
+			},
+			"text": " However, it is not quantum secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,380",
+				"to": "00:09:09,100"
+			},
+			"offsets": {
+				"from": 546380,
+				"to": 549100
+			},
+			"text": " And the way that you can think about quantum adversaries"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,100",
+				"to": "00:09:12,500"
+			},
+			"offsets": {
+				"from": 549100,
+				"to": 552500
+			},
+			"text": " in the situation is that a quantum adversary can effectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,500",
+				"to": "00:09:14,660"
+			},
+			"offsets": {
+				"from": 552500,
+				"to": 554660
+			},
+			"text": " take discrete log and prime factorizations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,660",
+				"to": "00:09:16,700"
+			},
+			"offsets": {
+				"from": 554660,
+				"to": 556700
+			},
+			"text": " but it can't undo hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,700",
+				"to": "00:09:19,300"
+			},
+			"offsets": {
+				"from": 556700,
+				"to": 559300
+			},
+			"text": " You can imagine that when we have a quantum computer with 2,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,300",
+				"to": "00:09:24,220"
+			},
+			"offsets": {
+				"from": 559300,
+				"to": 564220
+			},
+			"text": " signal qubits that can break all of Ethereum's public keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,220",
+				"to": "00:09:27,540"
+			},
+			"offsets": {
+				"from": 564220,
+				"to": 567540
+			},
+			"text": " and derive their private keys, in the actual situation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,540",
+				"to": "00:09:29,660"
+			},
+			"offsets": {
+				"from": 567540,
+				"to": 569660
+			},
+			"text": " of the chain continuing, this is completely fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,660",
+				"to": "00:09:33,260"
+			},
+			"offsets": {
+				"from": 569660,
+				"to": 573260
+			},
+			"text": " Users can sign their new key with their old key"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,260",
+				"to": "00:09:35,820"
+			},
+			"offsets": {
+				"from": 573260,
+				"to": 575820
+			},
+			"text": " before quantum supremacy occurs, and the entire chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,820",
+				"to": "00:09:39,060"
+			},
+			"offsets": {
+				"from": 575820,
+				"to": 579060
+			},
+			"text": " can move seamlessly to a new quantum resistance system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,060",
+				"to": "00:09:41,900"
+			},
+			"offsets": {
+				"from": 579060,
+				"to": 581900
+			},
+			"text": " However, if you can derive all the user's secret keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,900",
+				"to": "00:09:44,700"
+			},
+			"offsets": {
+				"from": 581900,
+				"to": 584700
+			},
+			"text": " then if you remember the trick we did in the very beginning"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,700",
+				"to": "00:09:46,780"
+			},
+			"offsets": {
+				"from": 584700,
+				"to": 586780
+			},
+			"text": " where we calculate the has to measure to become a public key"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,780",
+				"to": "00:09:48,580"
+			},
+			"offsets": {
+				"from": 586780,
+				"to": 588580
+			},
+			"text": " for all the users and de-anonymized people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,580",
+				"to": "00:09:50,740"
+			},
+			"offsets": {
+				"from": 588580,
+				"to": 590740
+			},
+			"text": " we can do the exact same thing with this quantum adversary"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,740",
+				"to": "00:09:52,180"
+			},
+			"offsets": {
+				"from": 590740,
+				"to": 592180
+			},
+			"text": " calculated secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,180",
+				"to": "00:09:54,220"
+			},
+			"offsets": {
+				"from": 592180,
+				"to": 594220
+			},
+			"text": " Quantum adversary simply calculates every secret key"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,220",
+				"to": "00:09:57,460"
+			},
+			"offsets": {
+				"from": 594220,
+				"to": 597460
+			},
+			"text": " for every public key on Ethereum, calculates the nullifiers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,460",
+				"to": "00:09:58,820"
+			},
+			"offsets": {
+				"from": 597460,
+				"to": 598820
+			},
+			"text": " for every single one of these keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,820",
+				"to": "00:10:00,540"
+			},
+			"offsets": {
+				"from": 598820,
+				"to": 600540
+			},
+			"text": " and matches them up with the anonymous signal."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,540",
+				"to": "00:10:03,820"
+			},
+			"offsets": {
+				"from": 600540,
+				"to": 603820
+			},
+			"text": " And so, interestingly, any future quantum adversary"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,820",
+				"to": "00:10:07,140"
+			},
+			"offsets": {
+				"from": 603820,
+				"to": 607140
+			},
+			"text": " can break past anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,140",
+				"to": "00:10:10,260"
+			},
+			"offsets": {
+				"from": 607140,
+				"to": 610260
+			},
+			"text": " And the issue is that actually any deterministic nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,260",
+				"to": "00:10:12,660"
+			},
+			"offsets": {
+				"from": 610260,
+				"to": 612660
+			},
+			"text": " scheme that has the properties that I defined in the beginning"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,660",
+				"to": "00:10:15,740"
+			},
+			"offsets": {
+				"from": 612660,
+				"to": 615740
+			},
+			"text": " has its vulnerability, because if you source randomness"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,740",
+				"to": "00:10:17,020"
+			},
+			"offsets": {
+				"from": 615740,
+				"to": 617020
+			},
+			"text": " from only the secret key, that means"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,020",
+				"to": "00:10:19,220"
+			},
+			"offsets": {
+				"from": 617020,
+				"to": 619220
+			},
+			"text": " that a quantum adversary can derive it as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,220",
+				"to": "00:10:21,620"
+			},
+			"offsets": {
+				"from": 619220,
+				"to": 621620
+			},
+			"text": " And so you have to source randomness beyond the secret key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,620",
+				"to": "00:10:23,260"
+			},
+			"offsets": {
+				"from": 621620,
+				"to": 623260
+			},
+			"text": " which requires a user to remember that value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,260",
+				"to": "00:10:24,660"
+			},
+			"offsets": {
+				"from": 623260,
+				"to": 624660
+			},
+			"text": " which means you need to have a password."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,660",
+				"to": "00:10:26,260"
+			},
+			"offsets": {
+				"from": 624660,
+				"to": 626260
+			},
+			"text": " So to kind of get a better intuition"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,260",
+				"to": "00:10:29,500"
+			},
+			"offsets": {
+				"from": 626260,
+				"to": 629500
+			},
+			"text": " for whether this actually matters or not,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,500",
+				"to": "00:10:31,700"
+			},
+			"offsets": {
+				"from": 629500,
+				"to": 631700
+			},
+			"text": " the predictions of quantum researchers"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,700",
+				"to": "00:10:33,460"
+			},
+			"offsets": {
+				"from": 631700,
+				"to": 633460
+			},
+			"text": " vary extremely widely."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,460",
+				"to": "00:10:34,860"
+			},
+			"offsets": {
+				"from": 633460,
+				"to": 634860
+			},
+			"text": " Some researchers have mentioned they"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,860",
+				"to": "00:10:36,980"
+			},
+			"offsets": {
+				"from": 634860,
+				"to": 636980
+			},
+			"text": " think it's going to come as soon as 30 years signal"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,980",
+				"to": "00:10:38,660"
+			},
+			"offsets": {
+				"from": 636980,
+				"to": 638660
+			},
+			"text": " cubits that can break ECDSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,660",
+				"to": "00:10:41,180"
+			},
+			"offsets": {
+				"from": 638660,
+				"to": 641180
+			},
+			"text": " Some researchers think somewhere around 100 years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,180",
+				"to": "00:10:43,060"
+			},
+			"offsets": {
+				"from": 641180,
+				"to": 643060
+			},
+			"text": " and some think that because of the noise problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,060",
+				"to": "00:10:45,460"
+			},
+			"offsets": {
+				"from": 643060,
+				"to": 645460
+			},
+			"text": " it's theoretically impossible and it will never happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,460",
+				"to": "00:10:49,220"
+			},
+			"offsets": {
+				"from": 645460,
+				"to": 649220
+			},
+			"text": " It's a little unclear."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,220",
+				"to": "00:10:51,260"
+			},
+			"offsets": {
+				"from": 649220,
+				"to": 651260
+			},
+			"text": " As of right now, we have about 20 signal cubits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,260",
+				"to": "00:10:54,580"
+			},
+			"offsets": {
+				"from": 651260,
+				"to": 654580
+			},
+			"text": " and we need over 2,000 to break ECDSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,580",
+				"to": "00:10:56,220"
+			},
+			"offsets": {
+				"from": 654580,
+				"to": 656220
+			},
+			"text": " So I've written a short mental model"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,220",
+				"to": "00:10:58,540"
+			},
+			"offsets": {
+				"from": 656220,
+				"to": 658540
+			},
+			"text": " that you can read once you look at the link on the slides,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,540",
+				"to": "00:11:00,900"
+			},
+			"offsets": {
+				"from": 658540,
+				"to": 660900
+			},
+			"text": " which describes kind of how I think about this quantum"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,900",
+				"to": "00:11:03,580"
+			},
+			"offsets": {
+				"from": 660900,
+				"to": 663580
+			},
+			"text": " mental model of how these systems are going to evolve"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,580",
+				"to": "00:11:05,340"
+			},
+			"offsets": {
+				"from": 663580,
+				"to": 665340
+			},
+			"text": " and whether or not we should be worried about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,340",
+				"to": "00:11:07,380"
+			},
+			"offsets": {
+				"from": 665340,
+				"to": 667380
+			},
+			"text": " But I think for now, the decision that we made"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,380",
+				"to": "00:11:09,780"
+			},
+			"offsets": {
+				"from": 667380,
+				"to": 669780
+			},
+			"text": " is that it makes more sense to not be"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,780",
+				"to": "00:11:13,020"
+			},
+			"offsets": {
+				"from": 669780,
+				"to": 673020
+			},
+			"text": " worried about quantum oracles, because as long as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,020",
+				"to": "00:11:14,540"
+			},
+			"offsets": {
+				"from": 673020,
+				"to": 674540
+			},
+			"text": " protocols are transparent, that you will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,540",
+				"to": "00:11:17,700"
+			},
+			"offsets": {
+				"from": 674540,
+				"to": 677700
+			},
+			"text": " de-animized in something between 30 and 100 years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,700",
+				"to": "00:11:19,220"
+			},
+			"offsets": {
+				"from": 677700,
+				"to": 679220
+			},
+			"text": " the idea is that most people probably won't care,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,220",
+				"to": "00:11:21,900"
+			},
+			"offsets": {
+				"from": 679220,
+				"to": 681900
+			},
+			"text": " because by that time, for instance, even governments"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,900",
+				"to": "00:11:25,940"
+			},
+			"offsets": {
+				"from": 681900,
+				"to": 685940
+			},
+			"text": " de-classify their secret documents in this kind of timeframe."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,940",
+				"to": "00:11:27,980"
+			},
+			"offsets": {
+				"from": 685940,
+				"to": 687980
+			},
+			"text": " So to understand more, how does an allifier scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,980",
+				"to": "00:11:29,980"
+			},
+			"offsets": {
+				"from": 687980,
+				"to": 689980
+			},
+			"text": " is going, and if you can use it yourself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,980",
+				"to": "00:11:32,300"
+			},
+			"offsets": {
+				"from": 689980,
+				"to": 692300
+			},
+			"text": " we have a paper in which we've proved all the security"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,300",
+				"to": "00:11:35,180"
+			},
+			"offsets": {
+				"from": 692300,
+				"to": 695180
+			},
+			"text": " properties of this nullifier scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,180",
+				"to": "00:11:36,620"
+			},
+			"offsets": {
+				"from": 695180,
+				"to": 696620
+			},
+			"text": " We have a blog post that's going to be coming up"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,620",
+				"to": "00:11:38,780"
+			},
+			"offsets": {
+				"from": 696620,
+				"to": 698780
+			},
+			"text": " on the Persona Labs blog soon, and we also"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,780",
+				"to": "00:11:41,620"
+			},
+			"offsets": {
+				"from": 698780,
+				"to": 701620
+			},
+			"text": " have a proof of concept in Rust and in a MetaMask"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,620",
+				"to": "00:11:44,100"
+			},
+			"offsets": {
+				"from": 701620,
+				"to": 704100
+			},
+			"text": " map finished."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,100",
+				"to": "00:11:46,540"
+			},
+			"offsets": {
+				"from": 704100,
+				"to": 706540
+			},
+			"text": " The next step is to put it into a ton of other wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,540",
+				"to": "00:11:50,380"
+			},
+			"offsets": {
+				"from": 706540,
+				"to": 710380
+			},
+			"text": " into Ledger, into Burner wallets, into MetaMask Core,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,380",
+				"to": "00:11:52,700"
+			},
+			"offsets": {
+				"from": 710380,
+				"to": 712700
+			},
+			"text": " create an ERC standard for people to use this scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,700",
+				"to": "00:11:55,500"
+			},
+			"offsets": {
+				"from": 712700,
+				"to": 715500
+			},
+			"text": " so that we can have unique anonymity across the board,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,500",
+				"to": "00:11:58,940"
+			},
+			"offsets": {
+				"from": 715500,
+				"to": 718940
+			},
+			"text": " and to potentially write an appendix for an IETF RFC"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,940",
+				"to": "00:12:02,740"
+			},
+			"offsets": {
+				"from": 718940,
+				"to": 722740
+			},
+			"text": " to make it a complete standard across all of cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,740",
+				"to": "00:12:05,060"
+			},
+			"offsets": {
+				"from": 722740,
+				"to": 725060
+			},
+			"text": " If you're interested in seeing more about the code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,060",
+				"to": "00:12:06,700"
+			},
+			"offsets": {
+				"from": 725060,
+				"to": 726700
+			},
+			"text": " this link will link you to our GitHub repo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,700",
+				"to": "00:12:08,220"
+			},
+			"offsets": {
+				"from": 726700,
+				"to": 728220
+			},
+			"text": " where we have all the open source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,220",
+				"to": "00:12:10,620"
+			},
+			"offsets": {
+				"from": 728220,
+				"to": 730620
+			},
+			"text": " We'll be linking to all the slides here as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,620",
+				"to": "00:12:13,820"
+			},
+			"offsets": {
+				"from": 730620,
+				"to": 733820
+			},
+			"text": " along with a quantum mental model, and our Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,820",
+				"to": "00:12:16,660"
+			},
+			"offsets": {
+				"from": 733820,
+				"to": 736660
+			},
+			"text": " if you want to learn more."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,660",
+				"to": "00:12:19,900"
+			},
+			"offsets": {
+				"from": 736660,
+				"to": 739900
+			},
+			"text": " You guys are interested in this, want to use a scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,900",
+				"to": "00:12:22,700"
+			},
+			"offsets": {
+				"from": 739900,
+				"to": 742700
+			},
+			"text": " or are curious about speed anonymity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,700",
+				"to": "00:12:24,500"
+			},
+			"offsets": {
+				"from": 742700,
+				"to": 744500
+			},
+			"text": " I'd be happy to talk, and it would be really fun"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,500",
+				"to": "00:12:26,100"
+			},
+			"offsets": {
+				"from": 744500,
+				"to": 746100
+			},
+			"text": " to see where this scheme can go."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,100",
+				"to": "00:12:29,020"
+			},
+			"offsets": {
+				"from": 746100,
+				"to": 749020
+			},
+			"text": " If anyone has any questions about understanding the scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,020",
+				"to": "00:12:32,060"
+			},
+			"offsets": {
+				"from": 749020,
+				"to": 752060
+			},
+			"text": " or thoughts on where a can or can't be used,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,060",
+				"to": "00:12:33,900"
+			},
+			"offsets": {
+				"from": 752060,
+				"to": 753900
+			},
+			"text": " I'd be happy to take any questions for the next five"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,900",
+				"to": "00:12:35,500"
+			},
+			"offsets": {
+				"from": 753900,
+				"to": 755500
+			},
+			"text": " or 10 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,500",
+				"to": "00:12:36,300"
+			},
+			"offsets": {
+				"from": 755500,
+				"to": 756300
+			},
+			"text": " - Test, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,300",
+				"to": "00:12:38,460"
+			},
+			"offsets": {
+				"from": 756300,
+				"to": 758460
+			},
+			"text": " How is this scheme called?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,460",
+				"to": "00:12:40,940"
+			},
+			"offsets": {
+				"from": 758460,
+				"to": 760940
+			},
+			"text": " - So right now the scheme is called just as EK nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,940",
+				"to": "00:12:43,860"
+			},
+			"offsets": {
+				"from": 760940,
+				"to": 763860
+			},
+			"text": " because we think this is the kind of most straightforward way"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,860",
+				"to": "00:12:46,700"
+			},
+			"offsets": {
+				"from": 763860,
+				"to": 766700
+			},
+			"text": " to describe what is going on, but I'm open to any other name"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,700",
+				"to": "00:12:47,980"
+			},
+			"offsets": {
+				"from": 766700,
+				"to": 767980
+			},
+			"text": " suggestions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,980",
+				"to": "00:12:50,660"
+			},
+			"offsets": {
+				"from": 767980,
+				"to": 770660
+			},
+			"text": " I think there's a question in the front."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,660",
+				"to": "00:12:54,420"
+			},
+			"offsets": {
+				"from": 770660,
+				"to": 774420
+			},
+			"text": " - Can you explain, probably maybe using an example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,420",
+				"to": "00:12:59,420"
+			},
+			"offsets": {
+				"from": 774420,
+				"to": 779420
+			},
+			"text": " how this non-interactive is seen in practice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,420",
+				"to": "00:13:04,540"
+			},
+			"offsets": {
+				"from": 779420,
+				"to": 784540
+			},
+			"text": " in terms of using the scheme?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,540",
+				"to": "00:13:09,020"
+			},
+			"offsets": {
+				"from": 784540,
+				"to": 789020
+			},
+			"text": " Like maybe an airdrop, can you explain how that system"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,020",
+				"to": "00:13:11,060"
+			},
+			"offsets": {
+				"from": 789020,
+				"to": 791060
+			},
+			"text": " would work, how user would interact,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,060",
+				"to": "00:13:14,180"
+			},
+			"offsets": {
+				"from": 791060,
+				"to": 794180
+			},
+			"text": " and maintain that property?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,180",
+				"to": "00:13:15,300"
+			},
+			"offsets": {
+				"from": 794180,
+				"to": 795300
+			},
+			"text": " - Yeah, that's a great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,300",
+				"to": "00:13:18,100"
+			},
+			"offsets": {
+				"from": 795300,
+				"to": 798100
+			},
+			"text": " I can maybe go through the whole airdrop scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,100",
+				"to": "00:13:20,580"
+			},
+			"offsets": {
+				"from": 798100,
+				"to": 800580
+			},
+			"text": " and try to describe why it wouldn't be practical"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,580",
+				"to": "00:13:22,260"
+			},
+			"offsets": {
+				"from": 800580,
+				"to": 802260
+			},
+			"text": " with something like semaphore, but why it could be practical"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,260",
+				"to": "00:13:23,860"
+			},
+			"offsets": {
+				"from": 802260,
+				"to": 803860
+			},
+			"text": " with something like the nullifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,860",
+				"to": "00:13:26,020"
+			},
+			"offsets": {
+				"from": 803860,
+				"to": 806020
+			},
+			"text": " So if you imagine the semaphore scheme for the airdrop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,020",
+				"to": "00:13:27,740"
+			},
+			"offsets": {
+				"from": 806020,
+				"to": 807740
+			},
+			"text": " the way it would look is that people would first"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,740",
+				"to": "00:13:29,860"
+			},
+			"offsets": {
+				"from": 807740,
+				"to": 809860
+			},
+			"text": " have to sign up to receive the airdrop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,860",
+				"to": "00:13:32,340"
+			},
+			"offsets": {
+				"from": 809860,
+				"to": 812340
+			},
+			"text": " and this is the people who have to submit their semaphore"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,340",
+				"to": "00:13:36,820"
+			},
+			"offsets": {
+				"from": 812340,
+				"to": 816820
+			},
+			"text": " commitment to some either like an on-chain directory"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,820",
+				"to": "00:13:38,100"
+			},
+			"offsets": {
+				"from": 816820,
+				"to": 818100
+			},
+			"text": " or an off-chain list."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,100",
+				"to": "00:13:40,100"
+			},
+			"offsets": {
+				"from": 818100,
+				"to": 820100
+			},
+			"text": " And the issue with this is that people can then"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,100",
+				"to": "00:13:42,540"
+			},
+			"offsets": {
+				"from": 820100,
+				"to": 822540
+			},
+			"text": " still attack this airdrop very easily because they know"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,540",
+				"to": "00:13:43,980"
+			},
+			"offsets": {
+				"from": 822540,
+				"to": 823980
+			},
+			"text": " that an airdrop is going to be coming,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,980",
+				"to": "00:13:46,020"
+			},
+			"offsets": {
+				"from": 823980,
+				"to": 826020
+			},
+			"text": " and this is the way to gain eligibility for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,020",
+				"to": "00:13:48,700"
+			},
+			"offsets": {
+				"from": 826020,
+				"to": 828700
+			},
+			"text": " And so because they have this two-step process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,700",
+				"to": "00:13:51,580"
+			},
+			"offsets": {
+				"from": 828700,
+				"to": 831580
+			},
+			"text": " people can spam whatever mechanism it is that they're using"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,580",
+				"to": "00:13:54,060"
+			},
+			"offsets": {
+				"from": 831580,
+				"to": 834060
+			},
+			"text": " to determine who is eligible and who is not,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,060",
+				"to": "00:13:56,740"
+			},
+			"offsets": {
+				"from": 834060,
+				"to": 836740
+			},
+			"text": " resulting as being a somewhat impractical solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,740",
+				"to": "00:13:59,220"
+			},
+			"offsets": {
+				"from": 836740,
+				"to": 839220
+			},
+			"text": " You can also imagine that if you didn't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,220",
+				"to": "00:14:01,300"
+			},
+			"offsets": {
+				"from": 839220,
+				"to": 841300
+			},
+			"text": " a two-phase process, where I said people could sign up"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,300",
+				"to": "00:14:03,700"
+			},
+			"offsets": {
+				"from": 841300,
+				"to": 843700
+			},
+			"text": " for the semaphore keys whenever and claim whenever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,700",
+				"to": "00:14:05,380"
+			},
+			"offsets": {
+				"from": 843700,
+				"to": 845380
+			},
+			"text": " and the very first person to claim the airdrop"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,380",
+				"to": "00:14:06,940"
+			},
+			"offsets": {
+				"from": 845380,
+				"to": 846940
+			},
+			"text": " would sign up for the semaphore key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,940",
+				"to": "00:14:08,940"
+			},
+			"offsets": {
+				"from": 846940,
+				"to": 848940
+			},
+			"text": " you would see only one semaphore key"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,940",
+				"to": "00:14:11,140"
+			},
+			"offsets": {
+				"from": 848940,
+				"to": 851140
+			},
+			"text": " in the list of all semaphore keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,140",
+				"to": "00:14:12,820"
+			},
+			"offsets": {
+				"from": 851140,
+				"to": 852820
+			},
+			"text": " and then that person would claim their airdrop"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,820",
+				"to": "00:14:15,260"
+			},
+			"offsets": {
+				"from": 852820,
+				"to": 855260
+			},
+			"text": " and see you would know that the person who posted that proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,260",
+				"to": "00:14:17,780"
+			},
+			"offsets": {
+				"from": 855260,
+				"to": 857780
+			},
+			"text": " must have been the person who claimed the airdrop."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,780",
+				"to": "00:14:20,180"
+			},
+			"offsets": {
+				"from": 857780,
+				"to": 860180
+			},
+			"text": " And so there's a lot of this small anonymity set"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,180",
+				"to": "00:14:23,260"
+			},
+			"offsets": {
+				"from": 860180,
+				"to": 863260
+			},
+			"text": " is not ideal if you're trying to maintain perfect anonymity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,260",
+				"to": "00:14:24,620"
+			},
+			"offsets": {
+				"from": 863260,
+				"to": 864620
+			},
+			"text": " for everyone in the set."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,620",
+				"to": "00:14:26,020"
+			},
+			"offsets": {
+				"from": 864620,
+				"to": 866020
+			},
+			"text": " The way that nullifier scheme would work"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,020",
+				"to": "00:14:27,500"
+			},
+			"offsets": {
+				"from": 866020,
+				"to": 867500
+			},
+			"text": " is that when you claim the airdrop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,500",
+				"to": "00:14:30,260"
+			},
+			"offsets": {
+				"from": 867500,
+				"to": 870260
+			},
+			"text": " you prove that you have an nullifier for a message"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,260",
+				"to": "00:14:32,620"
+			},
+			"offsets": {
+				"from": 870260,
+				"to": 872620
+			},
+			"text": " like I am claiming the ZK airdrop."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,620",
+				"to": "00:14:35,220"
+			},
+			"offsets": {
+				"from": 872620,
+				"to": 875220
+			},
+			"text": " And the verifier would prove that you in fact signed"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,220",
+				"to": "00:14:37,380"
+			},
+			"offsets": {
+				"from": 875220,
+				"to": 877380
+			},
+			"text": " that message, that you created your deterministic nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,380",
+				"to": "00:14:40,020"
+			},
+			"offsets": {
+				"from": 877380,
+				"to": 880020
+			},
+			"text": " correctly, and would allow you to claim the airdrop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,020",
+				"to": "00:14:41,740"
+			},
+			"offsets": {
+				"from": 880020,
+				"to": 881740
+			},
+			"text": " and then add that nullifier to a block list"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,740",
+				"to": "00:14:43,220"
+			},
+			"offsets": {
+				"from": 881740,
+				"to": 883220
+			},
+			"text": " from ever claiming again."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,220",
+				"to": "00:14:45,340"
+			},
+			"offsets": {
+				"from": 883220,
+				"to": 885340
+			},
+			"text": " And so what would happen is the very first person to claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,340",
+				"to": "00:14:47,660"
+			},
+			"offsets": {
+				"from": 885340,
+				"to": 887660
+			},
+			"text": " no one would know who they are to the entire set of all"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,660",
+				"to": "00:14:49,980"
+			},
+			"offsets": {
+				"from": 887660,
+				"to": 889980
+			},
+			"text": " the keys that are eligible for the airdrop."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,980",
+				"to": "00:14:52,500"
+			},
+			"offsets": {
+				"from": 889980,
+				"to": 892500
+			},
+			"text": " - Where does the like NFT eventually end?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,500",
+				"to": "00:14:56,380"
+			},
+			"offsets": {
+				"from": 892500,
+				"to": 896380
+			},
+			"text": " Like it's an ethereum address versus like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,380",
+				"to": "00:14:58,380"
+			},
+			"offsets": {
+				"from": 896380,
+				"to": 898380
+			},
+			"text": " is it like the things are happening on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,380",
+				"to": "00:14:59,820"
+			},
+			"offsets": {
+				"from": 898380,
+				"to": 899820
+			},
+			"text": " or it's like an off-chain process"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,820",
+				"to": "00:15:02,700"
+			},
+			"offsets": {
+				"from": 899820,
+				"to": 902700
+			},
+			"text": " or like trying to understand that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,700",
+				"to": "00:15:04,540"
+			},
+			"offsets": {
+				"from": 902700,
+				"to": 904540
+			},
+			"text": " - Yeah, that's a great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,540",
+				"to": "00:15:05,580"
+			},
+			"offsets": {
+				"from": 904540,
+				"to": 905580
+			},
+			"text": " For those who didn't hear the beginning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,580",
+				"to": "00:15:07,740"
+			},
+			"offsets": {
+				"from": 905580,
+				"to": 907740
+			},
+			"text": " the question was basically how does ZK airdrop"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,740",
+				"to": "00:15:09,060"
+			},
+			"offsets": {
+				"from": 907740,
+				"to": 909060
+			},
+			"text": " actually implemented?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,060",
+				"to": "00:15:10,740"
+			},
+			"offsets": {
+				"from": 909060,
+				"to": 910740
+			},
+			"text": " And the idea is that what you would do"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,740",
+				"to": "00:15:13,060"
+			},
+			"offsets": {
+				"from": 910740,
+				"to": 913060
+			},
+			"text": " is you would prove that you own an account that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,060",
+				"to": "00:15:14,740"
+			},
+			"offsets": {
+				"from": 913060,
+				"to": 914740
+			},
+			"text": " is in the Merkle tree of eligible addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,740",
+				"to": "00:15:16,140"
+			},
+			"offsets": {
+				"from": 914740,
+				"to": 916140
+			},
+			"text": " for this ZK airdrop."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,140",
+				"to": "00:15:20,100"
+			},
+			"offsets": {
+				"from": 916140,
+				"to": 920100
+			},
+			"text": " You would generate a semaphorn nullifier for that scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,100",
+				"to": "00:15:22,180"
+			},
+			"offsets": {
+				"from": 920100,
+				"to": 922180
+			},
+			"text": " in the original case, and then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,180",
+				"to": "00:15:24,620"
+			},
+			"offsets": {
+				"from": 922180,
+				"to": 924620
+			},
+			"text": " would claim it to a completely unlinked, unused account"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,620",
+				"to": "00:15:28,460"
+			},
+			"offsets": {
+				"from": 924620,
+				"to": 928460
+			},
+			"text": " that has never had any transaction on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,460",
+				"to": "00:15:30,180"
+			},
+			"offsets": {
+				"from": 928460,
+				"to": 930180
+			},
+			"text": " And then all the fires can you do a similar thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,180",
+				"to": "00:15:32,540"
+			},
+			"offsets": {
+				"from": 930180,
+				"to": 932540
+			},
+			"text": " to prove you have an account in this Merkle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,540",
+				"to": "00:15:34,020"
+			},
+			"offsets": {
+				"from": 932540,
+				"to": 934020
+			},
+			"text": " You would prove ownership without account."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,020",
+				"to": "00:15:35,780"
+			},
+			"offsets": {
+				"from": 934020,
+				"to": 935780
+			},
+			"text": " You would prove the nullifier via the semaphornic nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,780",
+				"to": "00:15:37,380"
+			},
+			"offsets": {
+				"from": 935780,
+				"to": 937380
+			},
+			"text": " scheme, and similarly the tokens would"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,380",
+				"to": "00:15:39,660"
+			},
+			"offsets": {
+				"from": 937380,
+				"to": 939660
+			},
+			"text": " go to a completely new fresh ethereum account"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,660",
+				"to": "00:15:43,380"
+			},
+			"offsets": {
+				"from": 939660,
+				"to": 943380
+			},
+			"text": " and there's no history on it and it's effectively anonymous."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,380",
+				"to": "00:15:44,660"
+			},
+			"offsets": {
+				"from": 943380,
+				"to": 944660
+			},
+			"text": " That's a great question though."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,660",
+				"to": "00:15:49,940"
+			},
+			"offsets": {
+				"from": 944660,
+				"to": 949940
+			},
+			"text": " - So just to expand on the previous question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,940",
+				"to": "00:15:52,740"
+			},
+			"offsets": {
+				"from": 949940,
+				"to": 952740
+			},
+			"text": " like a concrete example, say you wanted to like airdrop"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,740",
+				"to": "00:15:57,940"
+			},
+			"offsets": {
+				"from": 952740,
+				"to": 957940
+			},
+			"text": " and an NFT to anyone who has a crypto-punk."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,940",
+				"to": "00:15:59,420"
+			},
+			"offsets": {
+				"from": 957940,
+				"to": 959420
+			},
+			"text": " But you want people to be able to claim it"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,420",
+				"to": "00:16:01,780"
+			},
+			"offsets": {
+				"from": 959420,
+				"to": 961780
+			},
+			"text": " without revealing which punk they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,780",
+				"to": "00:16:05,380"
+			},
+			"offsets": {
+				"from": 961780,
+				"to": 965380
+			},
+			"text": " With a semaphore or anything that's like a two step,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,380",
+				"to": "00:16:07,380"
+			},
+			"offsets": {
+				"from": 965380,
+				"to": 967380
+			},
+			"text": " anonymity side is only gonna be the amount of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,380",
+				"to": "00:16:09,740"
+			},
+			"offsets": {
+				"from": 967380,
+				"to": 969740
+			},
+			"text": " who like sign up for this M4."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,740",
+				"to": "00:16:12,540"
+			},
+			"offsets": {
+				"from": 969740,
+				"to": 972540
+			},
+			"text": " And with this, even if it's just two people"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,540",
+				"to": "00:16:15,380"
+			},
+			"offsets": {
+				"from": 972540,
+				"to": 975380
+			},
+			"text": " that end up claiming this NFT, they have the full anonymity"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,380",
+				"to": "00:16:18,620"
+			},
+			"offsets": {
+				"from": 975380,
+				"to": 978620
+			},
+			"text": " set of all punk holders, if that makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,620",
+				"to": "00:16:20,380"
+			},
+			"offsets": {
+				"from": 978620,
+				"to": 980380
+			},
+			"text": " And it's going to like a new address"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,380",
+				"to": "00:16:21,900"
+			},
+			"offsets": {
+				"from": 980380,
+				"to": 981900
+			},
+			"text": " not to the one that has the punk."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,900",
+				"to": "00:16:24,100"
+			},
+			"offsets": {
+				"from": 981900,
+				"to": 984100
+			},
+			"text": " - Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,100",
+				"to": "00:16:29,100"
+			},
+			"offsets": {
+				"from": 984100,
+				"to": 989100
+			},
+			"text": " - All right, so I'm wondering, can you expand a bit upon"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,100",
+				"to": "00:16:35,660"
+			},
+			"offsets": {
+				"from": 989100,
+				"to": 995660
+			},
+			"text": " if you use this scheme for a sort of a multi-step protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,700",
+				"to": "00:16:39,100"
+			},
+			"offsets": {
+				"from": 996700,
+				"to": 999100
+			},
+			"text": " where it's not just maybe a tornado cache,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,100",
+				"to": "00:16:41,180"
+			},
+			"offsets": {
+				"from": 999100,
+				"to": 1001180
+			},
+			"text": " deposit and withdrawal or a claim scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,180",
+				"to": "00:16:45,700"
+			},
+			"offsets": {
+				"from": 1001180,
+				"to": 1005700
+			},
+			"text": " but you continue where you maybe have some sort of transfer"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,700",
+				"to": "00:16:48,980"
+			},
+			"offsets": {
+				"from": 1005700,
+				"to": 1008980
+			},
+			"text": " of private assets within the anonymity set."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,980",
+				"to": "00:16:51,980"
+			},
+			"offsets": {
+				"from": 1008980,
+				"to": 1011980
+			},
+			"text": " Do you keep that anonymity and how does that work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,980",
+				"to": "00:16:55,620"
+			},
+			"offsets": {
+				"from": 1011980,
+				"to": 1015620
+			},
+			"text": " - Yeah, so the way darkpool transfers"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,620",
+				"to": "00:16:57,860"
+			},
+			"offsets": {
+				"from": 1015620,
+				"to": 1017860
+			},
+			"text": " would kind of work with this nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,860",
+				"to": "00:17:00,500"
+			},
+			"offsets": {
+				"from": 1017860,
+				"to": 1020500
+			},
+			"text": " is that the way most people enter darkpool"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,500",
+				"to": "00:17:03,020"
+			},
+			"offsets": {
+				"from": 1020500,
+				"to": 1023020
+			},
+			"text": " is they send their assets to like a specific smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,020",
+				"to": "00:17:05,660"
+			},
+			"offsets": {
+				"from": 1023020,
+				"to": 1025660
+			},
+			"text": " And so you already know that the anonymity side"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,660",
+				"to": "00:17:07,060"
+			},
+			"offsets": {
+				"from": 1025660,
+				"to": 1027060
+			},
+			"text": " is limited to everyone who has ever interacted"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,060",
+				"to": "00:17:08,420"
+			},
+			"offsets": {
+				"from": 1027060,
+				"to": 1028420
+			},
+			"text": " with this smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,420",
+				"to": "00:17:09,940"
+			},
+			"offsets": {
+				"from": 1028420,
+				"to": 1029940
+			},
+			"text": " And one thing you could do is you could use something"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,940",
+				"to": "00:17:12,900"
+			},
+			"offsets": {
+				"from": 1029940,
+				"to": 1032900
+			},
+			"text": " like Semaphore, and if you interact with the smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,900",
+				"to": "00:17:16,180"
+			},
+			"offsets": {
+				"from": 1032900,
+				"to": 1036180
+			},
+			"text": " the guarantee that you have to sign up for a Semaphore key."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,180",
+				"to": "00:17:17,740"
+			},
+			"offsets": {
+				"from": 1036180,
+				"to": 1037740
+			},
+			"text": " So because the end new set is already limited"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,740",
+				"to": "00:17:19,860"
+			},
+			"offsets": {
+				"from": 1037740,
+				"to": 1039860
+			},
+			"text": " by something like an on-chain interaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,860",
+				"to": "00:17:22,500"
+			},
+			"offsets": {
+				"from": 1039860,
+				"to": 1042500
+			},
+			"text": " the nullifier wouldn't add additional anonymity"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,500",
+				"to": "00:17:25,220"
+			},
+			"offsets": {
+				"from": 1042500,
+				"to": 1045220
+			},
+			"text": " because it's already limited by the chain interactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,220",
+				"to": "00:17:27,220"
+			},
+			"offsets": {
+				"from": 1045220,
+				"to": 1047220
+			},
+			"text": " However, what it could do is prevent you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,220",
+				"to": "00:17:29,020"
+			},
+			"offsets": {
+				"from": 1047220,
+				"to": 1049020
+			},
+			"text": " from having to memorize secret notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,020",
+				"to": "00:17:30,020"
+			},
+			"offsets": {
+				"from": 1049020,
+				"to": 1050020
+			},
+			"text": " So for instance, with tornado cache,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,020",
+				"to": "00:17:32,620"
+			},
+			"offsets": {
+				"from": 1050020,
+				"to": 1052620
+			},
+			"text": " you have to download a string and remember it forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,620",
+				"to": "00:17:35,100"
+			},
+			"offsets": {
+				"from": 1052620,
+				"to": 1055100
+			},
+			"text": " And if you lose that string, then you lose your money."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,100",
+				"to": "00:17:37,420"
+			},
+			"offsets": {
+				"from": 1055100,
+				"to": 1057420
+			},
+			"text": " But what you could do with this scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,420",
+				"to": "00:17:39,380"
+			},
+			"offsets": {
+				"from": 1057420,
+				"to": 1059380
+			},
+			"text": " is that instead of having to memorize a tornado cache note,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,380",
+				"to": "00:17:41,380"
+			},
+			"offsets": {
+				"from": 1059380,
+				"to": 1061380
+			},
+			"text": " you just remember the amount of money you got."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,380",
+				"to": "00:17:43,580"
+			},
+			"offsets": {
+				"from": 1061380,
+				"to": 1063580
+			},
+			"text": " And then you could say, okay, I got one eath,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,580",
+				"to": "00:17:45,740"
+			},
+			"offsets": {
+				"from": 1063580,
+				"to": 1065740
+			},
+			"text": " so I'm gonna sign a message saying tornado cache one eath."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,740",
+				"to": "00:17:47,140"
+			},
+			"offsets": {
+				"from": 1065740,
+				"to": 1067140
+			},
+			"text": " And I know that the nullifier that it creates"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,140",
+				"to": "00:17:49,340"
+			},
+			"offsets": {
+				"from": 1067140,
+				"to": 1069340
+			},
+			"text": " will be a valid note for my deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,340",
+				"to": "00:17:50,660"
+			},
+			"offsets": {
+				"from": 1069340,
+				"to": 1070660
+			},
+			"text": " And the contract can simply validate that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,660",
+				"to": "00:17:54,460"
+			},
+			"offsets": {
+				"from": 1070660,
+				"to": 1074460
+			},
+			"text": " And so it can help saving memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,460",
+				"to": "00:17:57,100"
+			},
+			"offsets": {
+				"from": 1074460,
+				"to": 1077100
+			},
+			"text": " or losing strings for anonymous money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,100",
+				"to": "00:17:59,180"
+			},
+			"offsets": {
+				"from": 1077100,
+				"to": 1079180
+			},
+			"text": " but it wouldn't add significant additional anonymity"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,180",
+				"to": "00:18:01,460"
+			},
+			"offsets": {
+				"from": 1079180,
+				"to": 1081460
+			},
+			"text": " if the original scheme was implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,460",
+				"to": "00:18:04,380"
+			},
+			"offsets": {
+				"from": 1081460,
+				"to": 1084380
+			},
+			"text": " with the darkpool correctly sending to the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,380",
+				"to": "00:18:05,980"
+			},
+			"offsets": {
+				"from": 1084380,
+				"to": 1085980
+			},
+			"text": " Yeah, that's a great question now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,980",
+				"to": "00:18:08,700"
+			},
+			"offsets": {
+				"from": 1085980,
+				"to": 1088700
+			},
+			"text": " - Hey, hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,700",
+				"to": "00:18:10,940"
+			},
+			"offsets": {
+				"from": 1088700,
+				"to": 1090940
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,940",
+				"to": "00:18:14,620"
+			},
+			"offsets": {
+				"from": 1090940,
+				"to": 1094620
+			},
+			"text": " I'm pretty sure like many of us would have read about nullifiers"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,620",
+				"to": "00:18:17,380"
+			},
+			"offsets": {
+				"from": 1094620,
+				"to": 1097380
+			},
+			"text": " for the first time in Vitalix article,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,380",
+				"to": "00:18:19,740"
+			},
+			"offsets": {
+				"from": 1097380,
+				"to": 1099740
+			},
+			"text": " the one with like privacy applications for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,740",
+				"to": "00:18:20,940"
+			},
+			"offsets": {
+				"from": 1099740,
+				"to": 1100940
+			},
+			"text": " - Right. - She case now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,940",
+				"to": "00:18:23,980"
+			},
+			"offsets": {
+				"from": 1100940,
+				"to": 1103980
+			},
+			"text": " And like I did not understand it completely,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,980",
+				"to": "00:18:26,740"
+			},
+			"offsets": {
+				"from": 1103980,
+				"to": 1106740
+			},
+			"text": " but I thought it was Vitalik who wrote it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,740",
+				"to": "00:18:28,180"
+			},
+			"offsets": {
+				"from": 1106740,
+				"to": 1108180
+			},
+			"text": " so it must be true."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,180",
+				"to": "00:18:29,020"
+			},
+			"offsets": {
+				"from": 1108180,
+				"to": 1109020
+			},
+			"text": " So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,700",
+				"to": "00:18:34,060"
+			},
+			"offsets": {
+				"from": 1110700,
+				"to": 1114060
+			},
+			"text": " can you like just give a brief difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,060",
+				"to": "00:18:36,820"
+			},
+			"offsets": {
+				"from": 1114060,
+				"to": 1116820
+			},
+			"text": " between that nullifier technique"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,820",
+				"to": "00:18:40,060"
+			},
+			"offsets": {
+				"from": 1116820,
+				"to": 1120060
+			},
+			"text": " and your nullifier technique for us to compare?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,060",
+				"to": "00:18:40,900"
+			},
+			"offsets": {
+				"from": 1120060,
+				"to": 1120900
+			},
+			"text": " - Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,900",
+				"to": "00:18:43,020"
+			},
+			"offsets": {
+				"from": 1120900,
+				"to": 1123020
+			},
+			"text": " So the nullifier technique that is classically referred"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,020",
+				"to": "00:18:45,900"
+			},
+			"offsets": {
+				"from": 1123020,
+				"to": 1125900
+			},
+			"text": " to in mostly ZK snark posts is another far technique"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,900",
+				"to": "00:18:48,780"
+			},
+			"offsets": {
+				"from": 1125900,
+				"to": 1128780
+			},
+			"text": " that exists, which is kind of why Halo 2 defined"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,780",
+				"to": "00:18:50,260"
+			},
+			"offsets": {
+				"from": 1128780,
+				"to": 1130260
+			},
+			"text": " a number of years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,260",
+				"to": "00:18:53,820"
+			},
+			"offsets": {
+				"from": 1130260,
+				"to": 1133820
+			},
+			"text": " And it's kind of evolved into being this semaphore type scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,820",
+				"to": "00:18:56,740"
+			},
+			"offsets": {
+				"from": 1133820,
+				"to": 1136740
+			},
+			"text": " in which nullifier just represents that you can't double claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,740",
+				"to": "00:18:58,700"
+			},
+			"offsets": {
+				"from": 1136740,
+				"to": 1138700
+			},
+			"text": " or double interact with a specific protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,700",
+				"to": "00:19:02,260"
+			},
+			"offsets": {
+				"from": 1138700,
+				"to": 1142260
+			},
+			"text": " because that nullifier nullifies your ability to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,260",
+				"to": "00:19:04,500"
+			},
+			"offsets": {
+				"from": 1142260,
+				"to": 1144500
+			},
+			"text": " That usually adds to a smart contract or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,500",
+				"to": "00:19:06,900"
+			},
+			"offsets": {
+				"from": 1144500,
+				"to": 1146900
+			},
+			"text": " And then when you interact with that in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,900",
+				"to": "00:19:08,820"
+			},
+			"offsets": {
+				"from": 1146900,
+				"to": 1148820
+			},
+			"text": " it would notice that you've already interacted with it before"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,820",
+				"to": "00:19:10,580"
+			},
+			"offsets": {
+				"from": 1148820,
+				"to": 1150580
+			},
+			"text": " and then stop the transaction from going through."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,580",
+				"to": "00:19:14,060"
+			},
+			"offsets": {
+				"from": 1150580,
+				"to": 1154060
+			},
+			"text": " So the scheme that likely is being referred to that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,060",
+				"to": "00:19:16,100"
+			},
+			"offsets": {
+				"from": 1154060,
+				"to": 1156100
+			},
+			"text": " in that post is likely a semaphore type scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,100",
+				"to": "00:19:18,620"
+			},
+			"offsets": {
+				"from": 1156100,
+				"to": 1158620
+			},
+			"text": " or a signup type scheme in which the smellifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,620",
+				"to": "00:19:20,980"
+			},
+			"offsets": {
+				"from": 1158620,
+				"to": 1160980
+			},
+			"text": " is like a hash of some string,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,980",
+				"to": "00:19:23,260"
+			},
+			"offsets": {
+				"from": 1160980,
+				"to": 1163260
+			},
+			"text": " which again would have to be interactively generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,260",
+				"to": "00:19:25,220"
+			},
+			"offsets": {
+				"from": 1163260,
+				"to": 1165220
+			},
+			"text": " And so when I say this kind of semaphore side"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,220",
+				"to": "00:19:26,580"
+			},
+			"offsets": {
+				"from": 1165220,
+				"to": 1166580
+			},
+			"text": " or this like interactive side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,580",
+				"to": "00:19:29,740"
+			},
+			"offsets": {
+				"from": 1166580,
+				"to": 1169740
+			},
+			"text": " that's largely the classical nullifier that I'm referring to."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,740",
+				"to": "00:19:30,580"
+			},
+			"offsets": {
+				"from": 1169740,
+				"to": 1170580
+			},
+			"text": " - Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,580",
+				"to": "00:19:31,580"
+			},
+			"offsets": {
+				"from": 1170580,
+				"to": 1171580
+			},
+			"text": " Thank you for the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,580",
+				"to": "00:19:34,540"
+			},
+			"offsets": {
+				"from": 1171580,
+				"to": 1174540
+			},
+			"text": " I had a general question kind of about coming back"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,540",
+				"to": "00:19:36,540"
+			},
+			"offsets": {
+				"from": 1174540,
+				"to": 1176540
+			},
+			"text": " to the example of the token gated out job."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,540",
+				"to": "00:19:39,700"
+			},
+			"offsets": {
+				"from": 1176540,
+				"to": 1179700
+			},
+			"text": " So if you either use like a ZK nullifier or semaphore"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,700",
+				"to": "00:19:42,740"
+			},
+			"offsets": {
+				"from": 1179700,
+				"to": 1182740
+			},
+			"text": " to generate a proof that an address is eligible"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,740",
+				"to": "00:19:46,500"
+			},
+			"offsets": {
+				"from": 1182740,
+				"to": 1186500
+			},
+			"text": " for an out job based on owning an NFT in a set, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,500",
+				"to": "00:19:48,500"
+			},
+			"offsets": {
+				"from": 1186500,
+				"to": 1188500
+			},
+			"text": " how does that respond to updates, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,500",
+				"to": "00:19:50,180"
+			},
+			"offsets": {
+				"from": 1188500,
+				"to": 1190180
+			},
+			"text": " when you transfer the NFT afterwards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,180",
+				"to": "00:19:52,420"
+			},
+			"offsets": {
+				"from": 1190180,
+				"to": 1192420
+			},
+			"text": " since the nullifier is only tied to the address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,420",
+				"to": "00:19:54,740"
+			},
+			"offsets": {
+				"from": 1192420,
+				"to": 1194740
+			},
+			"text": " could you then transfer that NFT to different address"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,740",
+				"to": "00:19:56,380"
+			},
+			"offsets": {
+				"from": 1194740,
+				"to": 1196380
+			},
+			"text": " and create another nullifier?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,380",
+				"to": "00:19:57,980"
+			},
+			"offsets": {
+				"from": 1196380,
+				"to": 1197980
+			},
+			"text": " And again, qualify for the out job?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,980",
+				"to": "00:20:00,060"
+			},
+			"offsets": {
+				"from": 1197980,
+				"to": 1200060
+			},
+			"text": " - Yeah, so it's a great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,060",
+				"to": "00:20:02,780"
+			},
+			"offsets": {
+				"from": 1200060,
+				"to": 1202780
+			},
+			"text": " So the way that you would solve this kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,780",
+				"to": "00:20:05,260"
+			},
+			"offsets": {
+				"from": 1202780,
+				"to": 1205260
+			},
+			"text": " multiple qualifying for the out job problem is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,260",
+				"to": "00:20:08,100"
+			},
+			"offsets": {
+				"from": 1205260,
+				"to": 1208100
+			},
+			"text": " when you define, when you release this out drop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,100",
+				"to": "00:20:09,740"
+			},
+			"offsets": {
+				"from": 1208100,
+				"to": 1209740
+			},
+			"text": " you define like a strict set of keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,740",
+				"to": "00:20:11,100"
+			},
+			"offsets": {
+				"from": 1209740,
+				"to": 1211100
+			},
+			"text": " that are eligible for this out drop."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,100",
+				"to": "00:20:13,660"
+			},
+			"offsets": {
+				"from": 1211100,
+				"to": 1213660
+			},
+			"text": " It can be say like people who own a certain NFT"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,660",
+				"to": "00:20:16,100"
+			},
+			"offsets": {
+				"from": 1213660,
+				"to": 1216100
+			},
+			"text": " at a certain block, in which case there's a finite number"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,100",
+				"to": "00:20:17,780"
+			},
+			"offsets": {
+				"from": 1216100,
+				"to": 1217780
+			},
+			"text": " of addresses that can claim that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,780",
+				"to": "00:20:19,820"
+			},
+			"offsets": {
+				"from": 1217780,
+				"to": 1219820
+			},
+			"text": " or it can be, so anything you could prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,820",
+				"to": "00:20:22,580"
+			},
+			"offsets": {
+				"from": 1219820,
+				"to": 1222580
+			},
+			"text": " in the Ethereum storage, Merkle-Perticia-Try,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,580",
+				"to": "00:20:24,500"
+			},
+			"offsets": {
+				"from": 1222580,
+				"to": 1224500
+			},
+			"text": " or it could be like just a list of addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,500",
+				"to": "00:20:27,180"
+			},
+			"offsets": {
+				"from": 1224500,
+				"to": 1227180
+			},
+			"text": " in a Merkle tree like a standard airdrop is done."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,180",
+				"to": "00:20:30,060"
+			},
+			"offsets": {
+				"from": 1227180,
+				"to": 1230060
+			},
+			"text": " So the idea is that even the reason the nullifier uses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,060",
+				"to": "00:20:32,380"
+			},
+			"offsets": {
+				"from": 1230060,
+				"to": 1232380
+			},
+			"text": " it would only suffice for this claiming step,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,380",
+				"to": "00:20:35,260"
+			},
+			"offsets": {
+				"from": 1232380,
+				"to": 1235260
+			},
+			"text": " because once you've claimed the nullifier to an account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,260",
+				"to": "00:20:37,260"
+			},
+			"offsets": {
+				"from": 1235260,
+				"to": 1237260
+			},
+			"text": " and you've claimed this NFT or airdrop or whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,260",
+				"to": "00:20:39,420"
+			},
+			"offsets": {
+				"from": 1237260,
+				"to": 1239420
+			},
+			"text": " to this account, that account can do whatever it wants"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,420",
+				"to": "00:20:40,660"
+			},
+			"offsets": {
+				"from": 1239420,
+				"to": 1240660
+			},
+			"text": " with that information."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,660",
+				"to": "00:20:42,900"
+			},
+			"offsets": {
+				"from": 1240660,
+				"to": 1242900
+			},
+			"text": " Now it's come from a completely anonymous source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,900",
+				"to": "00:20:44,620"
+			},
+			"offsets": {
+				"from": 1242900,
+				"to": 1244620
+			},
+			"text": " and so it can go wherever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,620",
+				"to": "00:20:46,940"
+			},
+			"offsets": {
+				"from": 1244620,
+				"to": 1246940
+			},
+			"text": " and it'll continue to maintain the anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,940",
+				"to": "00:20:50,380"
+			},
+			"offsets": {
+				"from": 1246940,
+				"to": 1250380
+			},
+			"text": " So you can continue to transact the NFT or EOC20,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,380",
+				"to": "00:20:51,500"
+			},
+			"offsets": {
+				"from": 1250380,
+				"to": 1251500
+			},
+			"text": " but you just wouldn't be interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,500",
+				"to": "00:20:53,020"
+			},
+			"offsets": {
+				"from": 1251500,
+				"to": 1253020
+			},
+			"text": " with the original airdrop contract ever again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,020",
+				"to": "00:20:55,860"
+			},
+			"offsets": {
+				"from": 1253020,
+				"to": 1255860
+			},
+			"text": " so you wouldn't need a nullifier in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,860",
+				"to": "00:20:57,300"
+			},
+			"offsets": {
+				"from": 1255860,
+				"to": 1257300
+			},
+			"text": " - Yep, okay, good."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,300",
+				"to": "00:20:59,580"
+			},
+			"offsets": {
+				"from": 1257300,
+				"to": 1259580
+			},
+			"text": " So this is probably a silly question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,580",
+				"to": "00:21:04,700"
+			},
+			"offsets": {
+				"from": 1259580,
+				"to": 1264700
+			},
+			"text": " When people redeem it, they have to provide some guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,700",
+				"to": "00:21:07,540"
+			},
+			"offsets": {
+				"from": 1264700,
+				"to": 1267540
+			},
+			"text": " So the guess must be coming from some account."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,540",
+				"to": "00:21:10,340"
+			},
+			"offsets": {
+				"from": 1267540,
+				"to": 1270340
+			},
+			"text": " But even though we have all these anonymous"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,340",
+				"to": "00:21:15,340"
+			},
+			"offsets": {
+				"from": 1270340,
+				"to": 1275340
+			},
+			"text": " is probably hide the address that's going to receive it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,340",
+				"to": "00:21:18,020"
+			},
+			"offsets": {
+				"from": 1275340,
+				"to": 1278020
+			},
+			"text": " but when people provide the guess,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,020",
+				"to": "00:21:22,340"
+			},
+			"offsets": {
+				"from": 1278020,
+				"to": 1282340
+			},
+			"text": " this transaction actually links the account"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,340",
+				"to": "00:21:26,700"
+			},
+			"offsets": {
+				"from": 1282340,
+				"to": 1286700
+			},
+			"text": " that's receiving the NFT versus the account having the guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,700",
+				"to": "00:21:30,420"
+			},
+			"offsets": {
+				"from": 1286700,
+				"to": 1290420
+			},
+			"text": " So it's still revealing some information."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,420",
+				"to": "00:21:31,300"
+			},
+			"offsets": {
+				"from": 1290420,
+				"to": 1291300
+			},
+			"text": " - Yeah, that's a great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,300",
+				"to": "00:21:32,340"
+			},
+			"offsets": {
+				"from": 1291300,
+				"to": 1292340
+			},
+			"text": " The question was basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,340",
+				"to": "00:21:35,500"
+			},
+			"offsets": {
+				"from": 1292340,
+				"to": 1295500
+			},
+			"text": " how do you pay for the guess without de-anonymizing yourself?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,500",
+				"to": "00:21:37,700"
+			},
+			"offsets": {
+				"from": 1295500,
+				"to": 1297700
+			},
+			"text": " And there's kind of two main ways to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,700",
+				"to": "00:21:41,660"
+			},
+			"offsets": {
+				"from": 1297700,
+				"to": 1301660
+			},
+			"text": " One is the airdrop contract itself will pay for the guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,660",
+				"to": "00:21:43,700"
+			},
+			"offsets": {
+				"from": 1301660,
+				"to": 1303700
+			},
+			"text": " So the way this would work is when you claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,700",
+				"to": "00:21:45,660"
+			},
+			"offsets": {
+				"from": 1303700,
+				"to": 1305660
+			},
+			"text": " the airdrop contract would record the amount of gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,660",
+				"to": "00:21:46,980"
+			},
+			"offsets": {
+				"from": 1305660,
+				"to": 1306980
+			},
+			"text": " being used in the transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,980",
+				"to": "00:21:49,100"
+			},
+			"offsets": {
+				"from": 1306980,
+				"to": 1309100
+			},
+			"text": " there would be a certain bank inside the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,100",
+				"to": "00:21:52,300"
+			},
+			"offsets": {
+				"from": 1309100,
+				"to": 1312300
+			},
+			"text": " to pay for that guess, plus a little bit extra."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,300",
+				"to": "00:21:54,820"
+			},
+			"offsets": {
+				"from": 1312300,
+				"to": 1314820
+			},
+			"text": " And the idea is that you could send your claim transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,820",
+				"to": "00:21:58,740"
+			},
+			"offsets": {
+				"from": 1314820,
+				"to": 1318740
+			},
+			"text": " on chain or to a private mempool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,740",
+				"to": "00:22:00,980"
+			},
+			"offsets": {
+				"from": 1318740,
+				"to": 1320980
+			},
+			"text": " and MEV searcher would actually be incentivized"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,980",
+				"to": "00:22:03,340"
+			},
+			"offsets": {
+				"from": 1320980,
+				"to": 1323340
+			},
+			"text": " to claim this transaction, act as your relayer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,340",
+				"to": "00:22:04,580"
+			},
+			"offsets": {
+				"from": 1323340,
+				"to": 1324580
+			},
+			"text": " and de-centralize manner,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,580",
+				"to": "00:22:06,820"
+			},
+			"offsets": {
+				"from": 1324580,
+				"to": 1326820
+			},
+			"text": " because they're getting compensated for it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,820",
+				"to": "00:22:09,260"
+			},
+			"offsets": {
+				"from": 1326820,
+				"to": 1329260
+			},
+			"text": " because the contract is calculating"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,260",
+				"to": "00:22:10,780"
+			},
+			"offsets": {
+				"from": 1329260,
+				"to": 1330780
+			},
+			"text": " and reimbursing them more than they would have paid"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,780",
+				"to": "00:22:11,700"
+			},
+			"offsets": {
+				"from": 1330780,
+				"to": 1331700
+			},
+			"text": " for the guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,700",
+				"to": "00:22:12,700"
+			},
+			"offsets": {
+				"from": 1331700,
+				"to": 1332700
+			},
+			"text": " There's one way to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,700",
+				"to": "00:22:14,860"
+			},
+			"offsets": {
+				"from": 1332700,
+				"to": 1334860
+			},
+			"text": " Second way to do it is something like account abstraction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,860",
+				"to": "00:22:17,700"
+			},
+			"offsets": {
+				"from": 1334860,
+				"to": 1337700
+			},
+			"text": " where you can again, have a third party pay for the guess,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,700",
+				"to": "00:22:18,940"
+			},
+			"offsets": {
+				"from": 1337700,
+				"to": 1338940
+			},
+			"text": " usually out of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,940",
+				"to": "00:22:21,420"
+			},
+			"offsets": {
+				"from": 1338940,
+				"to": 1341420
+			},
+			"text": " This can happen with say the contract doing an atomic swap"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,420",
+				"to": "00:22:23,300"
+			},
+			"offsets": {
+				"from": 1341420,
+				"to": 1343300
+			},
+			"text": " with say the token that is giving you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,300",
+				"to": "00:22:24,780"
+			},
+			"offsets": {
+				"from": 1343300,
+				"to": 1344780
+			},
+			"text": " and ETH to pay for the guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,780",
+				"to": "00:22:30,780"
+			},
+			"offsets": {
+				"from": 1344780,
+				"to": 1350780
+			},
+			"text": " Similarly, reimbursing the front running relayer effectively,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,780",
+				"to": "00:22:34,820"
+			},
+			"offsets": {
+				"from": 1350780,
+				"to": 1354820
+			},
+			"text": " or you could send it to something like a keeper network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,820",
+				"to": "00:22:35,940"
+			},
+			"offsets": {
+				"from": 1354820,
+				"to": 1355940
+			},
+			"text": " which would incentivize,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,940",
+				"to": "00:22:39,420"
+			},
+			"offsets": {
+				"from": 1355940,
+				"to": 1359420
+			},
+			"text": " which is basically a place where MEV searchers can post,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,420",
+				"to": "00:22:40,700"
+			},
+			"offsets": {
+				"from": 1359420,
+				"to": 1360700
+			},
+			"text": " or people can post MEV ideas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,700",
+				"to": "00:22:42,260"
+			},
+			"offsets": {
+				"from": 1360700,
+				"to": 1362260
+			},
+			"text": " and MEV searchers can take them."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,260",
+				"to": "00:22:43,100"
+			},
+			"offsets": {
+				"from": 1362260,
+				"to": 1363100
+			},
+			"text": " You could use a mempool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,100",
+				"to": "00:22:46,540"
+			},
+			"offsets": {
+				"from": 1363100,
+				"to": 1366540
+			},
+			"text": " or you could use a kind of a private centralizer de-centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,540",
+				"to": "00:22:48,020"
+			},
+			"offsets": {
+				"from": 1366540,
+				"to": 1368020
+			},
+			"text": " method to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,020",
+				"to": "00:22:48,980"
+			},
+			"offsets": {
+				"from": 1368020,
+				"to": 1368980
+			},
+			"text": " Yeah, that's a great transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,980",
+				"to": "00:22:50,340"
+			},
+			"offsets": {
+				"from": 1368980,
+				"to": 1370340
+			},
+			"text": " That's a great question though."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,340",
+				"to": "00:22:52,860"
+			},
+			"offsets": {
+				"from": 1371340,
+				"to": 1372860
+			},
+			"text": " Thank you so much, Hajush."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,860",
+				"to": "00:22:54,100"
+			},
+			"offsets": {
+				"from": 1372860,
+				"to": 1374100
+			},
+			"text": " Big round of applause."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,100",
+				"to": "00:22:56,340"
+			},
+			"offsets": {
+				"from": 1374100,
+				"to": 1376340
+			},
+			"text": " (applause)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,340",
+				"to": "00:22:58,340"
+			},
+			"offsets": {
+				"from": 1376340,
+				"to": 1378340
+			},
+			"text": " (music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,340",
+				"to": "00:23:00,340"
+			},
+			"offsets": {
+				"from": 1378340,
+				"to": 1380340
+			},
+			"text": " (music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,340",
+				"to": "00:23:02,340"
+			},
+			"offsets": {
+				"from": 1380340,
+				"to": 1382340
+			},
+			"text": " (music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,340",
+				"to": "00:23:04,340"
+			},
+			"offsets": {
+				"from": 1382340,
+				"to": 1384340
+			},
+			"text": " (music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,340",
+				"to": "00:23:06,340"
+			},
+			"offsets": {
+				"from": 1384340,
+				"to": 1386340
+			},
+			"text": " (music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,340",
+				"to": "00:23:35,340"
+			},
+			"offsets": {
+				"from": 1386340,
+				"to": 1415340
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

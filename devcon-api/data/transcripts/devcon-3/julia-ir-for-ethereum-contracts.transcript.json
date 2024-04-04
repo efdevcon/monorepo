@@ -1,0 +1,3530 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,400"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18400
+			},
+			"text": " >> Yeah, hello everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,400",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 18400,
+				"to": 23000
+			},
+			"text": " So I'm going to talk about Julia, which is an intermediate"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:25,520"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 25520
+			},
+			"text": " representation or an intermediate language"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,520",
+				"to": "00:00:27,160"
+			},
+			"offsets": {
+				"from": 25520,
+				"to": 27160
+			},
+			"text": " for Ethereum contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,060",
+				"to": "00:00:31,660"
+			},
+			"offsets": {
+				"from": 28060,
+				"to": 31660
+			},
+			"text": " You know, let's just first see what are the problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,660",
+				"to": "00:00:35,140"
+			},
+			"offsets": {
+				"from": 31660,
+				"to": 35140
+			},
+			"text": " why would we need a new language, or am I just crazy"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,140",
+				"to": "00:00:36,220"
+			},
+			"offsets": {
+				"from": 35140,
+				"to": 36220
+			},
+			"text": " that we need a new language?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,220",
+				"to": "00:00:40,260"
+			},
+			"offsets": {
+				"from": 36220,
+				"to": 40260
+			},
+			"text": " In fact, we do have a couple of problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,260",
+				"to": "00:00:42,860"
+			},
+			"offsets": {
+				"from": 40260,
+				"to": 42860
+			},
+			"text": " and most of these problems are actually related"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,860",
+				"to": "00:00:44,580"
+			},
+			"offsets": {
+				"from": 42860,
+				"to": 44580
+			},
+			"text": " to the Solidity compiler itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,580",
+				"to": "00:00:47,140"
+			},
+			"offsets": {
+				"from": 44580,
+				"to": 47140
+			},
+			"text": " The first problem is, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,140",
+				"to": "00:00:51,300"
+			},
+			"offsets": {
+				"from": 47140,
+				"to": 51300
+			},
+			"text": " auditing contracts written in Solidity is not that simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,300",
+				"to": "00:00:52,780"
+			},
+			"offsets": {
+				"from": 51300,
+				"to": 52780
+			},
+			"text": " I will explain that in a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,780",
+				"to": "00:00:57,260"
+			},
+			"offsets": {
+				"from": 52780,
+				"to": 57260
+			},
+			"text": " Then, the Solidity compiler is written in C++,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,720",
+				"to": "00:01:01,160"
+			},
+			"offsets": {
+				"from": 57720,
+				"to": 61160
+			},
+			"text": " and a lot of things, a lot of helpers, a lot of code"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,160",
+				"to": "00:01:04,740"
+			},
+			"offsets": {
+				"from": 61160,
+				"to": 64740
+			},
+			"text": " generators are of course between C++, and they are quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,740",
+				"to": "00:01:08,240"
+			},
+			"offsets": {
+				"from": 64740,
+				"to": 68240
+			},
+			"text": " complex, and with time they can become even more complex"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,240",
+				"to": "00:01:09,880"
+			},
+			"offsets": {
+				"from": 68240,
+				"to": 69880
+			},
+			"text": " as more features are added."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,880",
+				"to": "00:01:13,800"
+			},
+			"offsets": {
+				"from": 69880,
+				"to": 73800
+			},
+			"text": " The next problem is optimizations, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,800",
+				"to": "00:01:16,940"
+			},
+			"offsets": {
+				"from": 73800,
+				"to": 76940
+			},
+			"text": " different optimization steps on the compilation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,940",
+				"to": "00:01:19,320"
+			},
+			"offsets": {
+				"from": 76940,
+				"to": 79320
+			},
+			"text": " That can become very complex as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,320",
+				"to": "00:01:25,980"
+			},
+			"offsets": {
+				"from": 79320,
+				"to": 85980
+			},
+			"text": " This one so far hasn't been an issue because Solidity can only"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,180",
+				"to": "00:01:30,080"
+			},
+			"offsets": {
+				"from": 86180,
+				"to": 90080
+			},
+			"text": " put EVM bytecode, but you know, in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,080",
+				"to": "00:01:32,980"
+			},
+			"offsets": {
+				"from": 90080,
+				"to": 92980
+			},
+			"text": " we might move on to new virtual machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,980",
+				"to": "00:01:36,680"
+			},
+			"offsets": {
+				"from": 92980,
+				"to": 96680
+			},
+			"text": " So one such virtual machine is called EVM 1.5,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,680",
+				"to": "00:01:38,540"
+			},
+			"offsets": {
+				"from": 96680,
+				"to": 98540
+			},
+			"text": " and that one is called E WASM."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,540",
+				"to": "00:01:43,100"
+			},
+			"offsets": {
+				"from": 98540,
+				"to": 103100
+			},
+			"text": " In the current state of Solidity, there would be a quiet"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,100",
+				"to": "00:01:46,300"
+			},
+			"offsets": {
+				"from": 103100,
+				"to": 106300
+			},
+			"text": " big change to rewrite the compiler supporting any of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,300",
+				"to": "00:01:51,980"
+			},
+			"offsets": {
+				"from": 106300,
+				"to": 111980
+			},
+			"text": " And lastly, creating DSLs or domain-specific languages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,980",
+				"to": "00:01:54,620"
+			},
+			"offsets": {
+				"from": 111980,
+				"to": 114620
+			},
+			"text": " it doesn't really exist at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,060",
+				"to": "00:01:59,620"
+			},
+			"offsets": {
+				"from": 115060,
+				"to": 119620
+			},
+			"text": " And the most practical way to do that is to compile your domain-specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,620",
+				"to": "00:02:02,420"
+			},
+			"offsets": {
+				"from": 119620,
+				"to": 122420
+			},
+			"text": " language to Solidity or to Serpent."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,420",
+				"to": "00:02:06,020"
+			},
+			"offsets": {
+				"from": 122420,
+				"to": 126020
+			},
+			"text": " And by doing that, you will be exposed to the very same problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,020",
+				"to": "00:02:07,740"
+			},
+			"offsets": {
+				"from": 126020,
+				"to": 127740
+			},
+			"text": " Solidity is exposed to."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,740",
+				"to": "00:02:12,900"
+			},
+			"offsets": {
+				"from": 127740,
+				"to": 132900
+			},
+			"text": " So this is one of the examples for O-diting, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,900",
+				"to": "00:02:14,380"
+			},
+			"offsets": {
+				"from": 132900,
+				"to": 134380
+			},
+			"text": " There are multiple parts to O-diting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,380",
+				"to": "00:02:18,460"
+			},
+			"offsets": {
+				"from": 134380,
+				"to": 138460
+			},
+			"text": " First of all, one needs to make sure that the contract written in Solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,460",
+				"to": "00:02:21,180"
+			},
+			"offsets": {
+				"from": 138460,
+				"to": 141180
+			},
+			"text": " does what a function of specification says."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,820",
+				"to": "00:02:27,780"
+			},
+			"offsets": {
+				"from": 141820,
+				"to": 147780
+			},
+			"text": " In this case, the intention was to being able to redeem the money once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,780",
+				"to": "00:02:29,820"
+			},
+			"offsets": {
+				"from": 147780,
+				"to": 149820
+			},
+			"text": " but I don't think the contract does that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,820",
+				"to": "00:02:35,420"
+			},
+			"offsets": {
+				"from": 149820,
+				"to": 155420
+			},
+			"text": " The second problem with O-diting, which might not be done in every single case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,420",
+				"to": "00:02:42,140"
+			},
+			"offsets": {
+				"from": 155420,
+				"to": 162140
+			},
+			"text": " is verifying that the compiler creates bytecode accordingly to the source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,140",
+				"to": "00:02:44,420"
+			},
+			"offsets": {
+				"from": 162140,
+				"to": 164420
+			},
+			"text": " So there are two examples there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,420",
+				"to": "00:02:51,580"
+			},
+			"offsets": {
+				"from": 164420,
+				"to": 171580
+			},
+			"text": " The top one is a assembly call in functional representation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,780",
+				"to": "00:02:53,140"
+			},
+			"offsets": {
+				"from": 171780,
+				"to": 173140
+			},
+			"text": " So functional inline assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,140",
+				"to": "00:02:56,700"
+			},
+			"offsets": {
+				"from": 173140,
+				"to": 176700
+			},
+			"text": " And there you see four variables in the call."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,700",
+				"to": "00:02:58,460"
+			},
+			"offsets": {
+				"from": 176700,
+				"to": 178460
+			},
+			"text": " That is quite readable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,460",
+				"to": "00:03:02,700"
+			},
+			"offsets": {
+				"from": 178460,
+				"to": 182700
+			},
+			"text": " In the bottom, there is the EVM bytecode counterpart."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,700",
+				"to": "00:03:05,980"
+			},
+			"offsets": {
+				"from": 182700,
+				"to": 185980
+			},
+			"text": " And it doesn't really look readable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,980",
+				"to": "00:03:07,900"
+			},
+			"offsets": {
+				"from": 185980,
+				"to": 187900
+			},
+			"text": " That don't have swabs and dupes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,900",
+				"to": "00:03:15,420"
+			},
+			"offsets": {
+				"from": 187900,
+				"to": 195420
+			},
+			"text": " The reason for that is in Solidity, every variable has a life cycle of existence"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,420",
+				"to": "00:03:16,980"
+			},
+			"offsets": {
+				"from": 195420,
+				"to": 196980
+			},
+			"text": " until the end of the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,980",
+				"to": "00:03:20,980"
+			},
+			"offsets": {
+				"from": 196980,
+				"to": 200980
+			},
+			"text": " So in that case, they still exist after the call."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,380",
+				"to": "00:03:23,060"
+			},
+			"offsets": {
+				"from": 201380,
+				"to": 203060
+			},
+			"text": " So they have to be kept on the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,060",
+				"to": "00:03:25,380"
+			},
+			"offsets": {
+				"from": 203060,
+				"to": 205380
+			},
+			"text": " And therefore, we need to swap them around,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,380",
+				"to": "00:03:27,380"
+			},
+			"offsets": {
+				"from": 205380,
+				"to": 207380
+			},
+			"text": " and we need to make the applications of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,380",
+				"to": "00:03:32,380"
+			},
+			"offsets": {
+				"from": 207380,
+				"to": 212380
+			},
+			"text": " I guess you can agree that it's quite hard to verify that EVM bytecode"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,380",
+				"to": "00:03:35,580"
+			},
+			"offsets": {
+				"from": 212380,
+				"to": 215580
+			},
+			"text": " actually corresponds to that assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,580",
+				"to": "00:03:39,900"
+			},
+			"offsets": {
+				"from": 215580,
+				"to": 219900
+			},
+			"text": " And this is one example for helpers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,900",
+				"to": "00:03:46,220"
+			},
+			"offsets": {
+				"from": 219900,
+				"to": 226220
+			},
+			"text": " This actually is the code for pushing a value to an array."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,220",
+				"to": "00:03:50,980"
+			},
+			"offsets": {
+				"from": 226220,
+				"to": 230980
+			},
+			"text": " First we retrieve the length, we increase the length of the array,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,300",
+				"to": "00:03:54,580"
+			},
+			"offsets": {
+				"from": 231300,
+				"to": 234580
+			},
+			"text": " and we resize it, then we get to reference."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,580",
+				"to": "00:03:58,180"
+			},
+			"offsets": {
+				"from": 234580,
+				"to": 238180
+			},
+			"text": " In this example, we get to reference of a storage slot"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,180",
+				"to": "00:03:59,620"
+			},
+			"offsets": {
+				"from": 238180,
+				"to": 239620
+			},
+			"text": " and a storage offset."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,620",
+				"to": "00:04:03,180"
+			},
+			"offsets": {
+				"from": 239620,
+				"to": 243180
+			},
+			"text": " And then finally, we can interact with that array."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,180",
+				"to": "00:04:07,340"
+			},
+			"offsets": {
+				"from": 243180,
+				"to": 247340
+			},
+			"text": " So there must be a way to improve this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,340",
+				"to": "00:04:11,860"
+			},
+			"offsets": {
+				"from": 247340,
+				"to": 251860
+			},
+			"text": " Let's just take a step back and look at other compilers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,860",
+				"to": "00:04:13,940"
+			},
+			"offsets": {
+				"from": 251860,
+				"to": 253940
+			},
+			"text": " you know, outside of the Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,940",
+				"to": "00:04:18,140"
+			},
+			"offsets": {
+				"from": 253940,
+				"to": 258140
+			},
+			"text": " So basically, for many years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,620",
+				"to": "00:04:22,620"
+			},
+			"offsets": {
+				"from": 258620,
+				"to": 262620
+			},
+			"text": " compilers, traditional compilers, have been working in different stages."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,620",
+				"to": "00:04:26,220"
+			},
+			"offsets": {
+				"from": 262620,
+				"to": 266220
+			},
+			"text": " The first stage is the front end, which parses the source code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,220",
+				"to": "00:04:29,020"
+			},
+			"offsets": {
+				"from": 266220,
+				"to": 269020
+			},
+			"text": " does analysis, checks several things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,020",
+				"to": "00:04:33,780"
+			},
+			"offsets": {
+				"from": 269020,
+				"to": 273780
+			},
+			"text": " and finally creates an intermediate representation of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,780",
+				"to": "00:04:36,380"
+			},
+			"offsets": {
+				"from": 273780,
+				"to": 276380
+			},
+			"text": " The next stage is the middle end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,380",
+				"to": "00:04:39,380"
+			},
+			"offsets": {
+				"from": 276380,
+				"to": 279380
+			},
+			"text": " which can apply different optimizations on the front,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,380",
+				"to": "00:04:41,860"
+			},
+			"offsets": {
+				"from": 279380,
+				"to": 281860
+			},
+			"text": " on the intermediate representation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,860",
+				"to": "00:04:44,900"
+			},
+			"offsets": {
+				"from": 281860,
+				"to": 284900
+			},
+			"text": " And the last one is the back end, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,900",
+				"to": "00:04:48,020"
+			},
+			"offsets": {
+				"from": 284900,
+				"to": 288020
+			},
+			"text": " which generates bytecode for the target machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,580",
+				"to": "00:04:50,540"
+			},
+			"offsets": {
+				"from": 288580,
+				"to": 290540
+			},
+			"text": " and again, it can do optimizations there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,540",
+				"to": "00:04:55,140"
+			},
+			"offsets": {
+				"from": 290540,
+				"to": 295140
+			},
+			"text": " Compared to that, solidity only has two stages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,140",
+				"to": "00:04:57,140"
+			},
+			"offsets": {
+				"from": 295140,
+				"to": 297140
+			},
+			"text": " or more like 1.5 stages."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,140",
+				"to": "00:04:59,340"
+			},
+			"offsets": {
+				"from": 297140,
+				"to": 299340
+			},
+			"text": " There's one stage which does everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,340",
+				"to": "00:05:02,620"
+			},
+			"offsets": {
+				"from": 299340,
+				"to": 302620
+			},
+			"text": " and there's another one which optimizes the Ethereum bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,620",
+				"to": "00:05:06,780"
+			},
+			"offsets": {
+				"from": 302620,
+				"to": 306780
+			},
+			"text": " At this stage, it has no idea what the source code was."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,780",
+				"to": "00:05:11,860"
+			},
+			"offsets": {
+				"from": 306780,
+				"to": 311860
+			},
+			"text": " Now, introducing an intermediate language will change it to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,860",
+				"to": "00:05:15,500"
+			},
+			"offsets": {
+				"from": 311860,
+				"to": 315500
+			},
+			"text": " all the other compilers work."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,300",
+				"to": "00:05:18,540"
+			},
+			"offsets": {
+				"from": 316300,
+				"to": 318540
+			},
+			"text": " However, there is a big difference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,540",
+				"to": "00:05:21,580"
+			},
+			"offsets": {
+				"from": 318540,
+				"to": 321580
+			},
+			"text": " because the reason most compilers work that way"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,580",
+				"to": "00:05:23,780"
+			},
+			"offsets": {
+				"from": 321580,
+				"to": 323780
+			},
+			"text": " is they target multiple machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,780",
+				"to": "00:05:28,860"
+			},
+			"offsets": {
+				"from": 323780,
+				"to": 328860
+			},
+			"text": " So if you look at GCC or LLVM, they support a, like C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,860",
+				"to": "00:05:32,620"
+			},
+			"offsets": {
+				"from": 328860,
+				"to": 332620
+			},
+			"text": " and you can compile the same C code to multiple computers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,620",
+				"to": "00:05:37,740"
+			},
+			"offsets": {
+				"from": 332620,
+				"to": 337740
+			},
+			"text": " And with compiler toolkits, they also support multiple languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,740",
+				"to": "00:05:41,660"
+			},
+			"offsets": {
+				"from": 337740,
+				"to": 341660
+			},
+			"text": " on the input side, and they can utilize the same back end written."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,660",
+				"to": "00:05:44,340"
+			},
+			"offsets": {
+				"from": 341660,
+				"to": 344340
+			},
+			"text": " Of course, this applies to solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,940",
+				"to": "00:05:48,300"
+			},
+			"offsets": {
+				"from": 344940,
+				"to": 348300
+			},
+			"text": " but the main reason this makes sense for solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,300",
+				"to": "00:05:52,060"
+			},
+			"offsets": {
+				"from": 348300,
+				"to": 352060
+			},
+			"text": " is verification of what happens within the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,060",
+				"to": "00:05:55,620"
+			},
+			"offsets": {
+				"from": 352060,
+				"to": 355620
+			},
+			"text": " Well, actually, I just said these there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,620",
+				"to": "00:05:59,500"
+			},
+			"offsets": {
+				"from": 355620,
+				"to": 359500
+			},
+			"text": " Yeah, like the last point, even a bytecode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,500",
+				"to": "00:06:03,580"
+			},
+			"offsets": {
+				"from": 359500,
+				"to": 363580
+			},
+			"text": " since this intermediate representation, this language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,580",
+				"to": "00:06:08,540"
+			},
+			"offsets": {
+				"from": 363580,
+				"to": 368540
+			},
+			"text": " by definition has to be a much simpler language than solidity is."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,540",
+				"to": "00:06:11,900"
+			},
+			"offsets": {
+				"from": 368540,
+				"to": 371900
+			},
+			"text": " And that, of course, means the bytecode generation of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,900",
+				"to": "00:06:13,420"
+			},
+			"offsets": {
+				"from": 371900,
+				"to": 373420
+			},
+			"text": " should be much more simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,420",
+				"to": "00:06:16,780"
+			},
+			"offsets": {
+				"from": 374420,
+				"to": 376780
+			},
+			"text": " So what does the language look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,780",
+				"to": "00:06:19,460"
+			},
+			"offsets": {
+				"from": 376780,
+				"to": 379460
+			},
+			"text": " Here's a simple contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,460",
+				"to": "00:06:21,660"
+			},
+			"offsets": {
+				"from": 379460,
+				"to": 381660
+			},
+			"text": " It just returns a string."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,660",
+				"to": "00:06:27,420"
+			},
+			"offsets": {
+				"from": 381660,
+				"to": 387420
+			},
+			"text": " And this is an incomplete example of that contract in Julia."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,420",
+				"to": "00:06:30,740"
+			},
+			"offsets": {
+				"from": 387420,
+				"to": 390740
+			},
+			"text": " The important part is the one highlighted on the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,740",
+				"to": "00:06:33,900"
+			},
+			"offsets": {
+				"from": 390740,
+				"to": 393900
+			},
+			"text": " So you create the, if you look at the string,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,900",
+				"to": "00:06:37,860"
+			},
+			"offsets": {
+				"from": 393900,
+				"to": 397860
+			},
+			"text": " that string is encoded there in hexadecimal."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,860",
+				"to": "00:06:40,220"
+			},
+			"offsets": {
+				"from": 397860,
+				"to": 400220
+			},
+			"text": " It is assigned to a variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,220",
+				"to": "00:06:42,380"
+			},
+			"offsets": {
+				"from": 400220,
+				"to": 402380
+			},
+			"text": " It is ABI encoded into memory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,740",
+				"to": "00:06:44,100"
+			},
+			"offsets": {
+				"from": 402740,
+				"to": 404100
+			},
+			"text": " and that memory is returned."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,100",
+				"to": "00:06:47,700"
+			},
+			"offsets": {
+				"from": 404100,
+				"to": 407700
+			},
+			"text": " The part on the bottom is a helper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,700",
+				"to": "00:06:50,740"
+			},
+			"offsets": {
+				"from": 407700,
+				"to": 410740
+			},
+			"text": " a compiler real output, into the contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,740",
+				"to": "00:06:55,060"
+			},
+			"offsets": {
+				"from": 410740,
+				"to": 415060
+			},
+			"text": " What that helper does is it receives a control"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,060",
+				"to": "00:06:56,300"
+			},
+			"offsets": {
+				"from": 415060,
+				"to": 416300
+			},
+			"text": " when the contract is called,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,300",
+				"to": "00:07:00,660"
+			},
+			"offsets": {
+				"from": 416300,
+				"to": 420660
+			},
+			"text": " and it decides which function within the contract should be executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,660",
+				"to": "00:07:03,060"
+			},
+			"offsets": {
+				"from": 420660,
+				"to": 423060
+			},
+			"text": " Or in the case none of them matched,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,060",
+				"to": "00:07:06,100"
+			},
+			"offsets": {
+				"from": 423060,
+				"to": 426100
+			},
+			"text": " it just ensures that the contract hasn't received any money."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,100",
+				"to": "00:07:10,900"
+			},
+			"offsets": {
+				"from": 426100,
+				"to": 430900
+			},
+			"text": " And you can extend this with the missing parts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,060",
+				"to": "00:07:14,220"
+			},
+			"offsets": {
+				"from": 431060,
+				"to": 434220
+			},
+			"text": " because you see there's an ABI encode string,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,220",
+				"to": "00:07:18,340"
+			},
+			"offsets": {
+				"from": 434220,
+				"to": 438340
+			},
+			"text": " ensure no where you transfer, extract call signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,340",
+				"to": "00:07:20,540"
+			},
+			"offsets": {
+				"from": 438340,
+				"to": 440540
+			},
+			"text": " So these are in this slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,540",
+				"to": "00:07:23,300"
+			},
+			"offsets": {
+				"from": 440540,
+				"to": 443300
+			},
+			"text": " Of course, not all of them are implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,300",
+				"to": "00:07:25,900"
+			},
+			"offsets": {
+				"from": 443300,
+				"to": 445900
+			},
+			"text": " But you can see they're fairly simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,900",
+				"to": "00:07:30,820"
+			},
+			"offsets": {
+				"from": 445900,
+				"to": 450820
+			},
+			"text": " These are all helpers, which will be outputted into each of the contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,820",
+				"to": "00:07:34,020"
+			},
+			"offsets": {
+				"from": 450820,
+				"to": 454020
+			},
+			"text": " And that happens already, but all of this is written in C++,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,020",
+				"to": "00:07:35,540"
+			},
+			"offsets": {
+				"from": 454020,
+				"to": 455540
+			},
+			"text": " and is hidden from the I."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,540",
+				"to": "00:07:40,500"
+			},
+			"offsets": {
+				"from": 455540,
+				"to": 460500
+			},
+			"text": " There's one thing which one can notice here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,980",
+				"to": "00:07:43,580"
+			},
+			"offsets": {
+				"from": 460980,
+				"to": 463580
+			},
+			"text": " extract call signature is a one-liner."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,580",
+				"to": "00:07:46,260"
+			},
+			"offsets": {
+				"from": 463580,
+				"to": 466260
+			},
+			"text": " That's why optimizations make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,260",
+				"to": "00:07:48,220"
+			},
+			"offsets": {
+				"from": 466260,
+				"to": 468220
+			},
+			"text": " This one should be inlined."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,220",
+				"to": "00:07:49,900"
+			},
+			"offsets": {
+				"from": 468220,
+				"to": 469900
+			},
+			"text": " It shouldn't be a function call,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,900",
+				"to": "00:07:53,180"
+			},
+			"offsets": {
+				"from": 469900,
+				"to": 473180
+			},
+			"text": " it should be just those few instructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,180",
+				"to": "00:07:58,220"
+			},
+			"offsets": {
+				"from": 473180,
+				"to": 478220
+			},
+			"text": " Now, here's the helper you have seen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,220",
+				"to": "00:08:01,420"
+			},
+			"offsets": {
+				"from": 478220,
+				"to": 481420
+			},
+			"text": " and here's a possible way to write it in Julia."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,420",
+				"to": "00:08:03,180"
+			},
+			"offsets": {
+				"from": 481420,
+				"to": 483180
+			},
+			"text": " I think it's much more readable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,180",
+				"to": "00:08:09,980"
+			},
+			"offsets": {
+				"from": 483180,
+				"to": 489980
+			},
+			"text": " So, you know, by moving most of the compiler into Julia from C++,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,100",
+				"to": "00:08:11,660"
+			},
+			"offsets": {
+				"from": 490100,
+				"to": 491660
+			},
+			"text": " it gives us a couple of benefits."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,660",
+				"to": "00:08:13,420"
+			},
+			"offsets": {
+				"from": 491660,
+				"to": 493420
+			},
+			"text": " It should help auditing efforts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,420",
+				"to": "00:08:17,580"
+			},
+			"offsets": {
+				"from": 493420,
+				"to": 497580
+			},
+			"text": " because one can just review this much more simple language, Julia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,580",
+				"to": "00:08:19,580"
+			},
+			"offsets": {
+				"from": 497580,
+				"to": 499580
+			},
+			"text": " and all the helpers written in them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,580",
+				"to": "00:08:25,060"
+			},
+			"offsets": {
+				"from": 499580,
+				"to": 505060
+			},
+			"text": " as opposed to finding someone who's happy to review C++."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,060",
+				"to": "00:08:27,740"
+			},
+			"offsets": {
+				"from": 505060,
+				"to": 507740
+			},
+			"text": " I mean, I wouldn't want to review C++."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,740",
+				"to": "00:08:33,740"
+			},
+			"offsets": {
+				"from": 507740,
+				"to": 513740
+			},
+			"text": " And it also allows a simple framework for optimizations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,740",
+				"to": "00:08:38,100"
+			},
+			"offsets": {
+				"from": 513740,
+				"to": 518100
+			},
+			"text": " because basically, here you will just optimize Julia code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,180",
+				"to": "00:08:40,100"
+			},
+			"offsets": {
+				"from": 518180,
+				"to": 520100
+			},
+			"text": " Right now, if you want to optimize contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,100",
+				"to": "00:08:43,380"
+			},
+			"offsets": {
+				"from": 520100,
+				"to": 523380
+			},
+			"text": " you should also do optimization steps in Solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,380",
+				"to": "00:08:46,860"
+			},
+			"offsets": {
+				"from": 523380,
+				"to": 526860
+			},
+			"text": " in the Solidity part before it gets converted to EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,860",
+				"to": "00:08:49,980"
+			},
+			"offsets": {
+				"from": 526860,
+				"to": 529980
+			},
+			"text": " And in fact, we only have one single,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,980",
+				"to": "00:08:53,460"
+			},
+			"offsets": {
+				"from": 529980,
+				"to": 533460
+			},
+			"text": " tiny, simple optimization step in Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,460",
+				"to": "00:08:55,420"
+			},
+			"offsets": {
+				"from": 533460,
+				"to": 535420
+			},
+			"text": " Everything else is in EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,420",
+				"to": "00:09:00,180"
+			},
+			"offsets": {
+				"from": 535420,
+				"to": 540180
+			},
+			"text": " And, you know, if we have all these helpers written in Julia"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,180",
+				"to": "00:09:01,780"
+			},
+			"offsets": {
+				"from": 540180,
+				"to": 541780
+			},
+			"text": " and they are verified,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,780",
+				"to": "00:09:05,100"
+			},
+			"offsets": {
+				"from": 541780,
+				"to": 545100
+			},
+			"text": " they could be used by other languages as well in the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,980",
+				"to": "00:09:08,220"
+			},
+			"offsets": {
+				"from": 545980,
+				"to": 548220
+			},
+			"text": " So where do we stand right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,220",
+				"to": "00:09:13,860"
+			},
+			"offsets": {
+				"from": 548220,
+				"to": 553860
+			},
+			"text": " Julia, I guess, looked familiar to those who use Solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,860",
+				"to": "00:09:17,300"
+			},
+			"offsets": {
+				"from": 553860,
+				"to": 557300
+			},
+			"text": " because it looked kind of like the inline assembly Solidity has."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,300",
+				"to": "00:09:21,580"
+			},
+			"offsets": {
+				"from": 557300,
+				"to": 561580
+			},
+			"text": " And that's, of course, because it is an evolutionary step"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,580",
+				"to": "00:09:22,980"
+			},
+			"offsets": {
+				"from": 561580,
+				"to": 562980
+			},
+			"text": " from inline assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,980",
+				"to": "00:09:25,580"
+			},
+			"offsets": {
+				"from": 562980,
+				"to": 565580
+			},
+			"text": " So inline assembly was introduced last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,580",
+				"to": "00:09:29,420"
+			},
+			"offsets": {
+				"from": 565580,
+				"to": 569420
+			},
+			"text": " It supported jumps, instructions, and functional instructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,420",
+				"to": "00:09:32,660"
+			},
+			"offsets": {
+				"from": 569420,
+				"to": 572660
+			},
+			"text": " But over time, we have restricted that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,380",
+				"to": "00:09:37,300"
+			},
+			"offsets": {
+				"from": 573380,
+				"to": 577300
+			},
+			"text": " We removed the, you know, more risky parts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,300",
+				"to": "00:09:40,140"
+			},
+			"offsets": {
+				"from": 577300,
+				"to": 580140
+			},
+			"text": " and we added a couple of new features, like functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,140",
+				"to": "00:09:41,860"
+			},
+			"offsets": {
+				"from": 580140,
+				"to": 581860
+			},
+			"text": " for loops, switch statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,860",
+				"to": "00:09:45,900"
+			},
+			"offsets": {
+				"from": 581860,
+				"to": 585900
+			},
+			"text": " And, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,900",
+				"to": "00:09:48,740"
+			},
+			"offsets": {
+				"from": 585900,
+				"to": 588740
+			},
+			"text": " Okay, so one question there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,740",
+				"to": "00:09:52,820"
+			},
+			"offsets": {
+				"from": 588740,
+				"to": 592820
+			},
+			"text": " I guess those people doing Serpent of Wiper would ask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,820",
+				"to": "00:09:54,660"
+			},
+			"offsets": {
+				"from": 592820,
+				"to": 594660
+			},
+			"text": " why not do it with LLL?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,660",
+				"to": "00:09:55,860"
+			},
+			"offsets": {
+				"from": 594660,
+				"to": 595860
+			},
+			"text": " Do ZLLL exist,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,860",
+				"to": "00:09:59,100"
+			},
+			"offsets": {
+				"from": 595860,
+				"to": 599100
+			},
+			"text": " and Serpent actually use LLL as an intermediate language."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,900",
+				"to": "00:10:04,020"
+			},
+			"offsets": {
+				"from": 599900,
+				"to": 604020
+			},
+			"text": " So the two main reasons is LLL is really based on EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,020",
+				"to": "00:10:05,780"
+			},
+			"offsets": {
+				"from": 604020,
+				"to": 605780
+			},
+			"text": " It's based on the EVM opcode."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,780",
+				"to": "00:10:07,500"
+			},
+			"offsets": {
+				"from": 605780,
+				"to": 607500
+			},
+			"text": " It has a couple of extensions on top,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,500",
+				"to": "00:10:11,980"
+			},
+			"offsets": {
+				"from": 607500,
+				"to": 611980
+			},
+			"text": " but it really is just EVM assembly in a list-like language."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,980",
+				"to": "00:10:16,260"
+			},
+			"offsets": {
+				"from": 611980,
+				"to": 616260
+			},
+			"text": " And, of course, we had this organic evolution of inline assembly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,260",
+				"to": "00:10:17,540"
+			},
+			"offsets": {
+				"from": 616260,
+				"to": 617540
+			},
+			"text": " which was already used."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,540",
+				"to": "00:10:21,020"
+			},
+			"offsets": {
+				"from": 617540,
+				"to": 621020
+			},
+			"text": " So the language features we have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,020",
+				"to": "00:10:24,180"
+			},
+			"offsets": {
+				"from": 621020,
+				"to": 624180
+			},
+			"text": " we have variables which can be typed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,180",
+				"to": "00:10:28,900"
+			},
+			"offsets": {
+				"from": 624180,
+				"to": 628900
+			},
+			"text": " Well, in fact, there's Julia, which is the intermediate language"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,500",
+				"to": "00:10:30,500"
+			},
+			"offsets": {
+				"from": 629500,
+				"to": 630500
+			},
+			"text": " that must be typed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,500",
+				"to": "00:10:32,660"
+			},
+			"offsets": {
+				"from": 630500,
+				"to": 632660
+			},
+			"text": " And then we have inline assembly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,660",
+				"to": "00:10:35,780"
+			},
+			"offsets": {
+				"from": 632660,
+				"to": 635780
+			},
+			"text": " which you can already use, that is not typed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,780",
+				"to": "00:10:38,820"
+			},
+			"offsets": {
+				"from": 635780,
+				"to": 638820
+			},
+			"text": " The functions with statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,820",
+				"to": "00:10:42,620"
+			},
+			"offsets": {
+				"from": 638820,
+				"to": 642620
+			},
+			"text": " And I guess soon we will have an if statement as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,620",
+				"to": "00:10:44,580"
+			},
+			"offsets": {
+				"from": 642620,
+				"to": 644580
+			},
+			"text": " without any else condition,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,580",
+				"to": "00:10:46,380"
+			},
+			"offsets": {
+				"from": 644580,
+				"to": 646380
+			},
+			"text": " and the for loops."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,380",
+				"to": "00:10:48,140"
+			},
+			"offsets": {
+				"from": 646380,
+				"to": 648140
+			},
+			"text": " Then the important part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,140",
+				"to": "00:10:49,900"
+			},
+			"offsets": {
+				"from": 648140,
+				"to": 649900
+			},
+			"text": " we don't have instructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,900",
+				"to": "00:10:53,380"
+			},
+			"offsets": {
+				"from": 649900,
+				"to": 653380
+			},
+			"text": " EVM opcodes behave just like functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,380",
+				"to": "00:10:57,140"
+			},
+			"offsets": {
+				"from": 653380,
+				"to": 657140
+			},
+			"text": " they're not a separate kind of expression."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,980",
+				"to": "00:11:00,980"
+			},
+			"offsets": {
+				"from": 658980,
+				"to": 660980
+			},
+			"text": " So variables and functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,980",
+				"to": "00:11:03,100"
+			},
+			"offsets": {
+				"from": 660980,
+				"to": 663100
+			},
+			"text": " these support multiple assignments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,100",
+				"to": "00:11:06,100"
+			},
+			"offsets": {
+				"from": 663100,
+				"to": 666100
+			},
+			"text": " they are initialized to the default value of zero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,100",
+				"to": "00:11:09,380"
+			},
+			"offsets": {
+				"from": 666100,
+				"to": 669380
+			},
+			"text": " and functions can have multiple inputs and multiple outputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,380",
+				"to": "00:11:11,820"
+			},
+			"offsets": {
+				"from": 669380,
+				"to": 671820
+			},
+			"text": " So here are a couple of examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,820",
+				"to": "00:11:15,100"
+			},
+			"offsets": {
+				"from": 671820,
+				"to": 675100
+			},
+			"text": " On top, you just have a simple assignment."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,100",
+				"to": "00:11:19,420"
+			},
+			"offsets": {
+				"from": 675100,
+				"to": 679420
+			},
+			"text": " If there's no value specified, it is assigned a zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,420",
+				"to": "00:11:25,060"
+			},
+			"offsets": {
+				"from": 679420,
+				"to": 685060
+			},
+			"text": " Oh, actually, the third line is invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,060",
+				"to": "00:11:27,700"
+			},
+			"offsets": {
+				"from": 685060,
+				"to": 687700
+			},
+			"text": " I just missed to market."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,700",
+				"to": "00:11:31,380"
+			},
+			"offsets": {
+				"from": 688700,
+				"to": 691380
+			},
+			"text": " Because right inside has to be a single expression,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,380",
+				"to": "00:11:33,220"
+			},
+			"offsets": {
+				"from": 691380,
+				"to": 693220
+			},
+			"text": " it cannot be a tuple expression."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,220",
+				"to": "00:11:36,420"
+			},
+			"offsets": {
+				"from": 693220,
+				"to": 696420
+			},
+			"text": " And that is a simple function, and that's how you call it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,420",
+				"to": "00:11:43,300"
+			},
+			"offsets": {
+				"from": 696420,
+				"to": 703300
+			},
+			"text": " Now, the switch statement is the core of the entire language."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,300",
+				"to": "00:11:46,940"
+			},
+			"offsets": {
+				"from": 703300,
+				"to": 706940
+			},
+			"text": " It can have multiple cases, it can have a default value."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,940",
+				"to": "00:11:49,460"
+			},
+			"offsets": {
+				"from": 706940,
+				"to": 709460
+			},
+			"text": " At least one case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,460",
+				"to": "00:11:53,500"
+			},
+			"offsets": {
+				"from": 709460,
+				"to": 713500
+			},
+			"text": " either a specified case or the default case, has to be present."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,500",
+				"to": "00:11:55,580"
+			},
+			"offsets": {
+				"from": 713500,
+				"to": 715580
+			},
+			"text": " One major difference here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,060",
+				"to": "00:11:59,340"
+			},
+			"offsets": {
+				"from": 716060,
+				"to": 719340
+			},
+			"text": " for anyone used to normal languages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,340",
+				"to": "00:12:02,140"
+			},
+			"offsets": {
+				"from": 719340,
+				"to": 722140
+			},
+			"text": " is a switch statement would support Fold True,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,140",
+				"to": "00:12:04,740"
+			},
+			"offsets": {
+				"from": 722140,
+				"to": 724740
+			},
+			"text": " and you would have a keyboard break to stop it"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,740",
+				"to": "00:12:06,060"
+			},
+			"offsets": {
+				"from": 724740,
+				"to": 726060
+			},
+			"text": " at a given point of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,060",
+				"to": "00:12:07,780"
+			},
+			"offsets": {
+				"from": 726060,
+				"to": 727780
+			},
+			"text": " Natulia doesn't have that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,780",
+				"to": "00:12:10,940"
+			},
+			"offsets": {
+				"from": 727780,
+				"to": 730940
+			},
+			"text": " Every part of a switch statement"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,940",
+				"to": "00:12:15,420"
+			},
+			"offsets": {
+				"from": 730940,
+				"to": 735420
+			},
+			"text": " will be executed entirely, there's no break,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,420",
+				"to": "00:12:17,020"
+			},
+			"offsets": {
+				"from": 735420,
+				"to": 737020
+			},
+			"text": " and there's no Fold True."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,020",
+				"to": "00:12:21,620"
+			},
+			"offsets": {
+				"from": 737020,
+				"to": 741620
+			},
+			"text": " That's a very important thing, but it might not look obvious"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,620",
+				"to": "00:12:22,780"
+			},
+			"offsets": {
+				"from": 741620,
+				"to": 742780
+			},
+			"text": " from these examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,260",
+				"to": "00:12:30,700"
+			},
+			"offsets": {
+				"from": 745260,
+				"to": 750700
+			},
+			"text": " So basically, how this gets compiled into bytecode is an EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,700",
+				"to": "00:12:32,700"
+			},
+			"offsets": {
+				"from": 750700,
+				"to": 752700
+			},
+			"text": " it will do a couple of comparisons."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,700",
+				"to": "00:12:34,300"
+			},
+			"offsets": {
+				"from": 752700,
+				"to": 754300
+			},
+			"text": " Does it equal zero?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,300",
+				"to": "00:12:35,980"
+			},
+			"offsets": {
+				"from": 754300,
+				"to": 755980
+			},
+			"text": " If not, do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,980",
+				"to": "00:12:37,980"
+			},
+			"offsets": {
+				"from": 755980,
+				"to": 757980
+			},
+			"text": " Does it equal zero? Does it equal one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,980",
+				"to": "00:12:40,820"
+			},
+			"offsets": {
+				"from": 757980,
+				"to": 760820
+			},
+			"text": " Does it equal those? If not, else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,820",
+				"to": "00:12:45,260"
+			},
+			"offsets": {
+				"from": 760820,
+				"to": 765260
+			},
+			"text": " And the last feature we have is for loops,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,260",
+				"to": "00:12:48,580"
+			},
+			"offsets": {
+				"from": 765260,
+				"to": 768580
+			},
+			"text": " which has an initializer, has a condition,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,580",
+				"to": "00:12:50,060"
+			},
+			"offsets": {
+				"from": 768580,
+				"to": 770060
+			},
+			"text": " has a post-block and a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,060",
+				"to": "00:12:54,820"
+			},
+			"offsets": {
+				"from": 770060,
+				"to": 774820
+			},
+			"text": " Now, one interesting part here is in an initializer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,260",
+				"to": "00:12:58,140"
+			},
+			"offsets": {
+				"from": 775260,
+				"to": 778140
+			},
+			"text": " so actually all the blocks, initializer, block and post-block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,140",
+				"to": "00:13:00,140"
+			},
+			"offsets": {
+				"from": 778140,
+				"to": 780140
+			},
+			"text": " they are the same scope."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,140",
+				"to": "00:13:04,740"
+			},
+			"offsets": {
+				"from": 780140,
+				"to": 784740
+			},
+			"text": " So any variable created in the initializer is valid in the for loop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,740",
+				"to": "00:13:06,260"
+			},
+			"offsets": {
+				"from": 784740,
+				"to": 786260
+			},
+			"text": " but it's not valid outside."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,260",
+				"to": "00:13:07,980"
+			},
+			"offsets": {
+				"from": 786260,
+				"to": 787980
+			},
+			"text": " It does support break."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,980",
+				"to": "00:13:10,180"
+			},
+			"offsets": {
+				"from": 787980,
+				"to": 790180
+			},
+			"text": " A couple of examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,180",
+				"to": "00:13:16,740"
+			},
+			"offsets": {
+				"from": 790180,
+				"to": 796740
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,740",
+				"to": "00:13:19,860"
+			},
+			"offsets": {
+				"from": 796740,
+				"to": 799860
+			},
+			"text": " So we do actually have different backends"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,860",
+				"to": "00:13:22,340"
+			},
+			"offsets": {
+				"from": 799860,
+				"to": 802340
+			},
+			"text": " in Solidity for Julia."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,140",
+				"to": "00:13:26,780"
+			},
+			"offsets": {
+				"from": 803140,
+				"to": 806780
+			},
+			"text": " Right now, EVM, the normal EVM we have, is of course working,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,780",
+				"to": "00:13:29,620"
+			},
+			"offsets": {
+				"from": 806780,
+				"to": 809620
+			},
+			"text": " and we have EVM 1.5 implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,620",
+				"to": "00:13:33,820"
+			},
+			"offsets": {
+				"from": 809620,
+				"to": 813820
+			},
+			"text": " The interesting part about EVM 1.5 is that it supports"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,820",
+				"to": "00:13:37,740"
+			},
+			"offsets": {
+				"from": 813820,
+				"to": 817740
+			},
+			"text": " basically functions and stack frames."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,740",
+				"to": "00:13:40,740"
+			},
+			"offsets": {
+				"from": 817740,
+				"to": 820740
+			},
+			"text": " So that's the main improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,740",
+				"to": "00:13:46,020"
+			},
+			"offsets": {
+				"from": 820740,
+				"to": 826020
+			},
+			"text": " What it means, we can really easily translate Julia functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,020",
+				"to": "00:13:51,580"
+			},
+			"offsets": {
+				"from": 826020,
+				"to": 831580
+			},
+			"text": " into EVM 1.5 functions, and that makes it really easy to verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,580",
+				"to": "00:13:56,580"
+			},
+			"offsets": {
+				"from": 832580,
+				"to": 836580
+			},
+			"text": " EVM is a different backend, which is in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,580",
+				"to": "00:13:58,580"
+			},
+			"offsets": {
+				"from": 836580,
+				"to": 838580
+			},
+			"text": " It already works, but it's not finished,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,580",
+				"to": "00:14:00,580"
+			},
+			"offsets": {
+				"from": 838580,
+				"to": 840580
+			},
+			"text": " so it's not really part of the tree yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,580",
+				"to": "00:14:07,580"
+			},
+			"offsets": {
+				"from": 840580,
+				"to": 847580
+			},
+			"text": " And the last backend, I think, possible is even doing a JavaScript backend."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,580",
+				"to": "00:14:11,580"
+			},
+			"offsets": {
+				"from": 847580,
+				"to": 851580
+			},
+			"text": " The use case there would be someone is writing"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,580",
+				"to": "00:14:16,580"
+			},
+			"offsets": {
+				"from": 851580,
+				"to": 856580
+			},
+			"text": " more parts of the application, the DAP in Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,580",
+				"to": "00:14:20,580"
+			},
+			"offsets": {
+				"from": 856580,
+				"to": 860580
+			},
+			"text": " Right now, you have to only write the on-chain part"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,580",
+				"to": "00:14:24,580"
+			},
+			"offsets": {
+				"from": 860580,
+				"to": 864580
+			},
+			"text": " in Solidity, but you could, in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,580",
+				"to": "00:14:29,580"
+			},
+			"offsets": {
+				"from": 864580,
+				"to": 869580
+			},
+			"text": " write off-chain parts in Solidity and compile those parts into JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,580",
+				"to": "00:14:34,580"
+			},
+			"offsets": {
+				"from": 869580,
+				"to": 874580
+			},
+			"text": " If anyone volunteers, I'm happy to help to get that back and done."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,580",
+				"to": "00:14:39,580"
+			},
+			"offsets": {
+				"from": 874580,
+				"to": 879580
+			},
+			"text": " And we already have a tiny bit of third-party support for Julia."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,580",
+				"to": "00:14:43,580"
+			},
+			"offsets": {
+				"from": 879580,
+				"to": 883580
+			},
+			"text": " There is a Julia interpreter in MLEM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,580",
+				"to": "00:14:45,580"
+			},
+			"offsets": {
+				"from": 883580,
+				"to": 885580
+			},
+			"text": " and that's the URL for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,580",
+				"to": "00:14:47,580"
+			},
+			"offsets": {
+				"from": 885580,
+				"to": 887580
+			},
+			"text": " I think it was written in less than a week,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,580",
+				"to": "00:14:51,580"
+			},
+			"offsets": {
+				"from": 887580,
+				"to": 891580
+			},
+			"text": " so that probably shows that the language is quite simple to deal with."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,580",
+				"to": "00:14:56,580"
+			},
+			"offsets": {
+				"from": 891580,
+				"to": 896580
+			},
+			"text": " I did a toy LLL to Julia compiler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,580",
+				"to": "00:14:58,580"
+			},
+			"offsets": {
+				"from": 896580,
+				"to": 898580
+			},
+			"text": " just to see how much effort would it take."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,580",
+				"to": "00:15:01,580"
+			},
+			"offsets": {
+				"from": 898580,
+				"to": 901580
+			},
+			"text": " It takes a couple of hours to write that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,580",
+				"to": "00:15:04,580"
+			},
+			"offsets": {
+				"from": 901580,
+				"to": 904580
+			},
+			"text": " even less if you have a parser ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,580",
+				"to": "00:15:07,580"
+			},
+			"offsets": {
+				"from": 904580,
+				"to": 907580
+			},
+			"text": " And then lastly, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,580",
+				"to": "00:15:11,580"
+			},
+			"offsets": {
+				"from": 907580,
+				"to": 911580
+			},
+			"text": " with Julia, it should be easy enough to create domain-specific languages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,580",
+				"to": "00:15:13,580"
+			},
+			"offsets": {
+				"from": 911580,
+				"to": 913580
+			},
+			"text": " because Julia is quite low-level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,580",
+				"to": "00:15:17,580"
+			},
+			"offsets": {
+				"from": 913580,
+				"to": 917580
+			},
+			"text": " but at the same time, it does have a lot of convenient features,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,580",
+				"to": "00:15:19,580"
+			},
+			"offsets": {
+				"from": 917580,
+				"to": 919580
+			},
+			"text": " like functions and switch statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,580",
+				"to": "00:15:25,580"
+			},
+			"offsets": {
+				"from": 919580,
+				"to": 925580
+			},
+			"text": " That is actually an example of compiling LLL to Julia."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,580",
+				"to": "00:15:28,580"
+			},
+			"offsets": {
+				"from": 925580,
+				"to": 928580
+			},
+			"text": " And as you can see, most of those parts"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,580",
+				"to": "00:15:31,580"
+			},
+			"offsets": {
+				"from": 928580,
+				"to": 931580
+			},
+			"text": " entirely resemble LLL counterparts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,580",
+				"to": "00:15:36,580"
+			},
+			"offsets": {
+				"from": 931580,
+				"to": 936580
+			},
+			"text": " And this also highlights the need for optimizations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,580",
+				"to": "00:15:40,580"
+			},
+			"offsets": {
+				"from": 936580,
+				"to": 940580
+			},
+			"text": " because the first step in using Julia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,580",
+				"to": "00:15:43,580"
+			},
+			"offsets": {
+				"from": 940580,
+				"to": 943580
+			},
+			"text": " converting from any language to Julia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,580",
+				"to": "00:15:48,580"
+			},
+			"offsets": {
+				"from": 943580,
+				"to": 948580
+			},
+			"text": " is to be able to ensure the code is correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,580",
+				"to": "00:15:50,580"
+			},
+			"offsets": {
+				"from": 948580,
+				"to": 950580
+			},
+			"text": " So it will be verbose."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,580",
+				"to": "00:15:52,580"
+			},
+			"offsets": {
+				"from": 950580,
+				"to": 952580
+			},
+			"text": " There won't be any optimization at that level."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,580",
+				"to": "00:15:57,580"
+			},
+			"offsets": {
+				"from": 952580,
+				"to": 957580
+			},
+			"text": " And the next step, one can apply simple optimizations step by step."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,580",
+				"to": "00:15:59,580"
+			},
+			"offsets": {
+				"from": 957580,
+				"to": 959580
+			},
+			"text": " So in this case here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,580",
+				"to": "00:16:02,580"
+			},
+			"offsets": {
+				"from": 959580,
+				"to": 962580
+			},
+			"text": " I would want the LLL to Julia compiler to output this code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,580",
+				"to": "00:16:04,580"
+			},
+			"offsets": {
+				"from": 962580,
+				"to": 964580
+			},
+			"text": " but it's not really optimized."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,580",
+				"to": "00:16:09,580"
+			},
+			"offsets": {
+				"from": 964580,
+				"to": 969580
+			},
+			"text": " So it's the next step, I would want an optimizer to inline a node."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,580",
+				"to": "00:16:13,580"
+			},
+			"offsets": {
+				"from": 969580,
+				"to": 973580
+			},
+			"text": " So below get owner wouldn't call node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,580",
+				"to": "00:16:15,580"
+			},
+			"offsets": {
+				"from": 973580,
+				"to": 975580
+			},
+			"text": " it would just have call data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,580",
+				"to": "00:16:19,580"
+			},
+			"offsets": {
+				"from": 975580,
+				"to": 979580
+			},
+			"text": " call data load as an instruction."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,580",
+				"to": "00:16:26,580"
+			},
+			"offsets": {
+				"from": 979580,
+				"to": 986580
+			},
+			"text": " So that's just an overview of what happened in the last couple of months,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,580",
+				"to": "00:16:28,580"
+			},
+			"offsets": {
+				"from": 986580,
+				"to": 988580
+			},
+			"text": " regarding Solidity and Julia."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,580",
+				"to": "00:16:31,580"
+			},
+			"offsets": {
+				"from": 988580,
+				"to": 991580
+			},
+			"text": " And as you can see, in .12,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,580",
+				"to": "00:16:34,580"
+			},
+			"offsets": {
+				"from": 991580,
+				"to": 994580
+			},
+			"text": " we have released support for functions for loops,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,580",
+				"to": "00:16:38,580"
+			},
+			"offsets": {
+				"from": 994580,
+				"to": 998580
+			},
+			"text": " and .17, which was recently the added support"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,580",
+				"to": "00:16:41,580"
+			},
+			"offsets": {
+				"from": 998580,
+				"to": 1001580
+			},
+			"text": " for a new ABI encoder."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,580",
+				"to": "00:16:47,580"
+			},
+			"offsets": {
+				"from": 1001580,
+				"to": 1007580
+			},
+			"text": " So many people who were complaining the lack of support for structs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,580",
+				"to": "00:16:53,580"
+			},
+			"offsets": {
+				"from": 1007580,
+				"to": 1013580
+			},
+			"text": " that new ABI encoder enables support for passing structs between functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,580",
+				"to": "00:16:55,580"
+			},
+			"offsets": {
+				"from": 1013580,
+				"to": 1015580
+			},
+			"text": " Now, that's already in the compiler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,580",
+				"to": "00:16:59,580"
+			},
+			"offsets": {
+				"from": 1015580,
+				"to": 1019580
+			},
+			"text": " but it has to be enabled by a special experimental switch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,580",
+				"to": "00:17:04,580"
+			},
+			"offsets": {
+				"from": 1019580,
+				"to": 1024580
+			},
+			"text": " because we're not really confident yet that it should be used in production."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,580",
+				"to": "00:17:06,580"
+			},
+			"offsets": {
+				"from": 1024580,
+				"to": 1026580
+			},
+			"text": " But if someone wants to try out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,580",
+				"to": "00:17:09,580"
+			},
+			"offsets": {
+				"from": 1026580,
+				"to": 1029580
+			},
+			"text": " it's certainly possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,580",
+				"to": "00:17:11,580"
+			},
+			"offsets": {
+				"from": 1029580,
+				"to": 1031580
+			},
+			"text": " Hopefully in the next release,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,580",
+				"to": "00:17:15,580"
+			},
+			"offsets": {
+				"from": 1031580,
+				"to": 1035580
+			},
+			"text": " we will have a new ABI decoder merge at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,580",
+				"to": "00:17:19,580"
+			},
+			"offsets": {
+				"from": 1035580,
+				"to": 1039580
+			},
+			"text": " And that will enable functions to receive structs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,580",
+				"to": "00:17:24,580"
+			},
+			"offsets": {
+				"from": 1039580,
+				"to": 1044580
+			},
+			"text": " because right now you can send structs, but you cannot receive structs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,580",
+				"to": "00:17:27,580"
+			},
+			"offsets": {
+				"from": 1044580,
+				"to": 1047580
+			},
+			"text": " And then hopefully, two releases from now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,580",
+				"to": "00:17:34,580"
+			},
+			"offsets": {
+				"from": 1047580,
+				"to": 1054580
+			},
+			"text": " we will have a first version of Solidity to Julia compiler as part of Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,580",
+				"to": "00:17:37,580"
+			},
+			"offsets": {
+				"from": 1054580,
+				"to": 1057580
+			},
+			"text": " And then in the future, you wasn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,580",
+				"to": "00:17:40,580"
+			},
+			"offsets": {
+				"from": 1057580,
+				"to": 1060580
+			},
+			"text": " So it can be already tried out if you dare."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,580",
+				"to": "00:17:46,580"
+			},
+			"offsets": {
+				"from": 1060580,
+				"to": 1066580
+			},
+			"text": " Those are the common line options to use the Solidity compiler to compile assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,580",
+				"to": "00:17:49,580"
+			},
+			"offsets": {
+				"from": 1066580,
+				"to": 1069580
+			},
+			"text": " And you can also switch to Julia mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,580",
+				"to": "00:17:52,580"
+			},
+			"offsets": {
+				"from": 1069580,
+				"to": 1072580
+			},
+			"text": " The only difference there is using types."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,580",
+				"to": "00:17:57,580"
+			},
+			"offsets": {
+				"from": 1072580,
+				"to": 1077580
+			},
+			"text": " And the last line is changing the output machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,580",
+				"to": "00:18:02,580"
+			},
+			"offsets": {
+				"from": 1077580,
+				"to": 1082580
+			},
+			"text": " If you're interested in Julia or Solidity development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,580",
+				"to": "00:18:07,580"
+			},
+			"offsets": {
+				"from": 1082580,
+				"to": 1087580
+			},
+			"text": " you can join the Solidity-dev channel on Gitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,580",
+				"to": "00:18:10,580"
+			},
+			"offsets": {
+				"from": 1087580,
+				"to": 1090580
+			},
+			"text": " or you can just talk to me directly at Axxic on Gitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,580",
+				"to": "00:18:12,580"
+			},
+			"offsets": {
+				"from": 1090580,
+				"to": 1092580
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,580",
+				"to": "00:18:22,580"
+			},
+			"offsets": {
+				"from": 1092580,
+				"to": 1102580
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,580",
+				"to": "00:18:24,820"
+			},
+			"offsets": {
+				"from": 1102580,
+				"to": 1104820
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

@@ -1,0 +1,2331 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:12,800"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 12800
+			},
+			"text": " >> The Mellon security approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,800",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 12800,
+				"to": 15000
+			},
+			"text": " >> Okay. So."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:20,200"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 20200
+			},
+			"text": " >> Hello everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,200",
+				"to": "00:00:21,500"
+			},
+			"offsets": {
+				"from": 20200,
+				"to": 21500
+			},
+			"text": " My name is Rita Trinkler."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,500",
+				"to": "00:00:23,300"
+			},
+			"offsets": {
+				"from": 21500,
+				"to": 23300
+			},
+			"text": " I'm the chairman and co-founder"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,300",
+				"to": "00:00:25,500"
+			},
+			"offsets": {
+				"from": 23300,
+				"to": 25500
+			},
+			"text": " of the Gatherite Mona Lisa of Mellon port."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,500",
+				"to": "00:00:30,500"
+			},
+			"offsets": {
+				"from": 25500,
+				"to": 30500
+			},
+			"text": " And we are doing technology regulated investment funds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,500",
+				"to": "00:00:33,500"
+			},
+			"offsets": {
+				"from": 30500,
+				"to": 33500
+			},
+			"text": " completely with ERC 20 tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,500",
+				"to": "00:00:36,500"
+			},
+			"offsets": {
+				"from": 33500,
+				"to": 36500
+			},
+			"text": " and obviously security is paramount for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,500",
+				"to": "00:00:40,500"
+			},
+			"offsets": {
+				"from": 36500,
+				"to": 40500
+			},
+			"text": " So I'd like to talk a bit about the Mellon approach to security."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,500",
+				"to": "00:00:47,500"
+			},
+			"offsets": {
+				"from": 40500,
+				"to": 47500
+			},
+			"text": " And I hope you're all going to see that we try to have a really holistic approach to security."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,500",
+				"to": "00:00:53,500"
+			},
+			"offsets": {
+				"from": 47500,
+				"to": 53500
+			},
+			"text": " So, holistic means are like to give a short overview."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,500",
+				"to": "00:00:59,500"
+			},
+			"offsets": {
+				"from": 53500,
+				"to": 59500
+			},
+			"text": " I'm going to talk shortly about what is Mellon, what are our values."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,500",
+				"to": "00:01:06,500"
+			},
+			"offsets": {
+				"from": 59500,
+				"to": 66500
+			},
+			"text": " Then a bit theoretical part of it, like how we design the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,500",
+				"to": "00:01:08,500"
+			},
+			"offsets": {
+				"from": 66500,
+				"to": 68500
+			},
+			"text": " After that we go into code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,500",
+				"to": "00:01:13,500"
+			},
+			"offsets": {
+				"from": 68500,
+				"to": 73500
+			},
+			"text": " So how we develop our code, like from smart contracts to front end."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,500",
+				"to": "00:01:18,500"
+			},
+			"offsets": {
+				"from": 73500,
+				"to": 78500
+			},
+			"text": " How we approach the auditing process."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,500",
+				"to": "00:01:25,500"
+			},
+			"offsets": {
+				"from": 78500,
+				"to": 85500
+			},
+			"text": " And how we go in even beyond technology and try to shape regulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,500",
+				"to": "00:01:29,500"
+			},
+			"offsets": {
+				"from": 85500,
+				"to": 89500
+			},
+			"text": " So, Mellon port."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,500",
+				"to": "00:01:32,500"
+			},
+			"offsets": {
+				"from": 89500,
+				"to": 92500
+			},
+			"text": " We're doing technology regulated investment funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,500",
+				"to": "00:01:36,500"
+			},
+			"offsets": {
+				"from": 92500,
+				"to": 96500
+			},
+			"text": " So this concept of technology regulation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,500",
+				"to": "00:01:40,500"
+			},
+			"offsets": {
+				"from": 96500,
+				"to": 100500
+			},
+			"text": " it's really this concept of contracts enforced by technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,500",
+				"to": "00:01:45,500"
+			},
+			"offsets": {
+				"from": 100500,
+				"to": 105500
+			},
+			"text": " So if you're doing a smart contracts, then you don't necessarily need to have a lawyer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,500",
+				"to": "00:01:48,500"
+			},
+			"offsets": {
+				"from": 105500,
+				"to": 108500
+			},
+			"text": " or an auditor or an enforcer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,500",
+				"to": "00:01:50,500"
+			},
+			"offsets": {
+				"from": 108500,
+				"to": 110500
+			},
+			"text": " The technology is actually sufficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,500",
+				"to": "00:01:52,500"
+			},
+			"offsets": {
+				"from": 110500,
+				"to": 112500
+			},
+			"text": " The technology enforces itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,500",
+				"to": "00:01:56,500"
+			},
+			"offsets": {
+				"from": 112500,
+				"to": 116500
+			},
+			"text": " So we're using this concept of technology regulation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,500",
+				"to": "00:01:59,500"
+			},
+			"offsets": {
+				"from": 116500,
+				"to": 119500
+			},
+			"text": " and build investment funds on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,500",
+				"to": "00:02:03,500"
+			},
+			"offsets": {
+				"from": 119500,
+				"to": 123500
+			},
+			"text": " So investment funds is really just a set of assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,500",
+				"to": "00:02:07,500"
+			},
+			"offsets": {
+				"from": 123500,
+				"to": 127500
+			},
+			"text": " usually from a set of people, the investors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,500",
+				"to": "00:02:14,500"
+			},
+			"offsets": {
+				"from": 127500,
+				"to": 134500
+			},
+			"text": " given to a manager and are holding in one place, the custodian."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,500",
+				"to": "00:02:20,500"
+			},
+			"offsets": {
+				"from": 134500,
+				"to": 140500
+			},
+			"text": " The manager then can take those assets and trade them against other assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,500",
+				"to": "00:02:25,500"
+			},
+			"offsets": {
+				"from": 140500,
+				"to": 145500
+			},
+			"text": " preferably in a way that is beneficial to the investors."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,500",
+				"to": "00:02:28,500"
+			},
+			"offsets": {
+				"from": 145500,
+				"to": 148500
+			},
+			"text": " So what are our values?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,500",
+				"to": "00:02:30,500"
+			},
+			"offsets": {
+				"from": 148500,
+				"to": 150500
+			},
+			"text": " How do we want to design this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,500",
+				"to": "00:02:33,500"
+			},
+			"offsets": {
+				"from": 150500,
+				"to": 153500
+			},
+			"text": " We want to design it in a way that is reliable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,500",
+				"to": "00:02:39,500"
+			},
+			"offsets": {
+				"from": 153500,
+				"to": 159500
+			},
+			"text": " Reliable really means that it can't be undone."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,500",
+				"to": "00:02:43,500"
+			},
+			"offsets": {
+				"from": 159500,
+				"to": 163500
+			},
+			"text": " So since we're doing an alternative way of asset management,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,500",
+				"to": "00:02:46,500"
+			},
+			"offsets": {
+				"from": 163500,
+				"to": 166500
+			},
+			"text": " I think it's important to build it in a way that it can't be undone."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,500",
+				"to": "00:02:49,500"
+			},
+			"offsets": {
+				"from": 166500,
+				"to": 169500
+			},
+			"text": " So it's arguably what made Bitcoin to what it is today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,500",
+				"to": "00:02:52,500"
+			},
+			"offsets": {
+				"from": 169500,
+				"to": 172500
+			},
+			"text": " the fact that it couldn't be undone."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,500",
+				"to": "00:02:56,500"
+			},
+			"offsets": {
+				"from": 172500,
+				"to": 176500
+			},
+			"text": " The second aspect of reliability is that it's secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,500",
+				"to": "00:02:59,500"
+			},
+			"offsets": {
+				"from": 176500,
+				"to": 179500
+			},
+			"text": " So obviously if it isn't secure, then it's not very useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,500",
+				"to": "00:03:03,500"
+			},
+			"offsets": {
+				"from": 179500,
+				"to": 183500
+			},
+			"text": " I think that's why we're all here today as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,500",
+				"to": "00:03:07,500"
+			},
+			"offsets": {
+				"from": 183500,
+				"to": 187500
+			},
+			"text": " So the second value is it should be permissionless."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,500",
+				"to": "00:03:11,500"
+			},
+			"offsets": {
+				"from": 187500,
+				"to": 191500
+			},
+			"text": " So permissionless really means that it's not for us to decide"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,500",
+				"to": "00:03:13,500"
+			},
+			"offsets": {
+				"from": 191500,
+				"to": 193500
+			},
+			"text": " and cannot use melon."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,500",
+				"to": "00:03:16,500"
+			},
+			"offsets": {
+				"from": 193500,
+				"to": 196500
+			},
+			"text": " The same way it wasn't up for Tim Baners-Lee to decide who can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,500",
+				"to": "00:03:19,500"
+			},
+			"offsets": {
+				"from": 196500,
+				"to": 199500
+			},
+			"text": " and cannot use the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,500",
+				"to": "00:03:23,500"
+			},
+			"offsets": {
+				"from": 199500,
+				"to": 203500
+			},
+			"text": " And the third one is it should be oneless."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,500",
+				"to": "00:03:28,500"
+			},
+			"offsets": {
+				"from": 203500,
+				"to": 208500
+			},
+			"text": " So oneless just means not controlled by central party."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,500",
+				"to": "00:03:34,500"
+			},
+			"offsets": {
+				"from": 208500,
+				"to": 214500
+			},
+			"text": " Melon should be a common good, the same way the internet is a common good."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,500",
+				"to": "00:03:37,500"
+			},
+			"offsets": {
+				"from": 214500,
+				"to": 217500
+			},
+			"text": " So melon."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,500",
+				"to": "00:03:42,500"
+			},
+			"offsets": {
+				"from": 217500,
+				"to": 222500
+			},
+			"text": " This is a short overview of the design of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,500",
+				"to": "00:03:46,500"
+			},
+			"offsets": {
+				"from": 222500,
+				"to": 226500
+			},
+			"text": " In the middle you see a melon font."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,500",
+				"to": "00:03:51,500"
+			},
+			"offsets": {
+				"from": 226500,
+				"to": 231500
+			},
+			"text": " A melon font or like the core aspect of it is really just a set of smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,500",
+				"to": "00:03:56,500"
+			},
+			"offsets": {
+				"from": 231500,
+				"to": 236500
+			},
+			"text": " This set of smart contracts acts as the font custodian."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,500",
+				"to": "00:04:01,500"
+			},
+			"offsets": {
+				"from": 236500,
+				"to": 241500
+			},
+			"text": " So as I'm sure you all know, smart contracts don't have private keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,500",
+				"to": "00:04:04,500"
+			},
+			"offsets": {
+				"from": 241500,
+				"to": 244500
+			},
+			"text": " so they can't spend assets themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,500",
+				"to": "00:04:09,500"
+			},
+			"offsets": {
+				"from": 244500,
+				"to": 249500
+			},
+			"text": " They need to have custom code on how to spend those assets again."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,500",
+				"to": "00:04:14,500"
+			},
+			"offsets": {
+				"from": 249500,
+				"to": 254500
+			},
+			"text": " It's really a core aspect of our security approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,500",
+				"to": "00:04:24,500"
+			},
+			"offsets": {
+				"from": 254500,
+				"to": 264500
+			},
+			"text": " The second thing those smart contracts act for is they are supposed to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,500",
+				"to": "00:04:27,500"
+			},
+			"offsets": {
+				"from": 264500,
+				"to": 267500
+			},
+			"text": " or they are the font accountant."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,500",
+				"to": "00:04:31,500"
+			},
+			"offsets": {
+				"from": 267500,
+				"to": 271500
+			},
+			"text": " Meaning they calculate the performance of the manager,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,500",
+				"to": "00:04:35,500"
+			},
+			"offsets": {
+				"from": 271500,
+				"to": 275500
+			},
+			"text": " they calculate the share price, they calculate the management fees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,500",
+				"to": "00:04:39,500"
+			},
+			"offsets": {
+				"from": 275500,
+				"to": 279500
+			},
+			"text": " the performance fees, like the incentive layer for the manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,500",
+				"to": "00:04:42,500"
+			},
+			"offsets": {
+				"from": 279500,
+				"to": 282500
+			},
+			"text": " And to do so they need to have data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,500",
+				"to": "00:04:47,500"
+			},
+			"offsets": {
+				"from": 282500,
+				"to": 287500
+			},
+			"text": " So they need to have data of the prices of the assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,500",
+				"to": "00:04:50,500"
+			},
+			"offsets": {
+				"from": 287500,
+				"to": 290500
+			},
+			"text": " And that's where the data feed module comes in."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,500",
+				"to": "00:04:55,500"
+			},
+			"offsets": {
+				"from": 290500,
+				"to": 295500
+			},
+			"text": " So the data feed module is essentially just another set of smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,500",
+				"to": "00:04:58,500"
+			},
+			"offsets": {
+				"from": 295500,
+				"to": 298500
+			},
+			"text": " which deliver data to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,500",
+				"to": "00:05:03,500"
+			},
+			"offsets": {
+				"from": 298500,
+				"to": 303500
+			},
+			"text": " We were very lucky with having Oracleize together with Crypto Compare,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,500",
+				"to": "00:05:08,500"
+			},
+			"offsets": {
+				"from": 303500,
+				"to": 308500
+			},
+			"text": " building a data feed module for us that uses native proofs to validate data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,500",
+				"to": "00:05:17,500"
+			},
+			"offsets": {
+				"from": 308500,
+				"to": 317500
+			},
+			"text": " which means that data from its source to the blockchain is almost impossible to manipulate."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,500",
+				"to": "00:05:24,500"
+			},
+			"offsets": {
+				"from": 317500,
+				"to": 324500
+			},
+			"text": " Another great data feed module just recently announced is the one from Thomson Reuters."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,500",
+				"to": "00:05:32,500"
+			},
+			"offsets": {
+				"from": 324500,
+				"to": 332500
+			},
+			"text": " So you can have your Mellon fund now evaluated against data delivered from Thomson Reuters."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,500",
+				"to": "00:05:43,500"
+			},
+			"offsets": {
+				"from": 332500,
+				"to": 343500
+			},
+			"text": " So we have font custodian, we have font accountant."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,500",
+				"to": "00:05:46,500"
+			},
+			"offsets": {
+				"from": 343500,
+				"to": 346500
+			},
+			"text": " If you look at what font administration does,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,500",
+				"to": "00:05:50,500"
+			},
+			"offsets": {
+				"from": 346500,
+				"to": 350500
+			},
+			"text": " then we see font administration does font custodian,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,500",
+				"to": "00:05:55,500"
+			},
+			"offsets": {
+				"from": 350500,
+				"to": 355500
+			},
+			"text": " font accountant, KVC AML, and risk management."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,500",
+				"to": "00:06:00,500"
+			},
+			"offsets": {
+				"from": 355500,
+				"to": 360500
+			},
+			"text": " So we just seen that we can solve two of them, font custodian and font accountant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,500",
+				"to": "00:06:01,500"
+			},
+			"offsets": {
+				"from": 360500,
+				"to": 361500
+			},
+			"text": " with smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,500",
+				"to": "00:06:06,500"
+			},
+			"offsets": {
+				"from": 361500,
+				"to": 366500
+			},
+			"text": " So how do we tackle KVC AML and risk management?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,500",
+				"to": "00:06:11,500"
+			},
+			"offsets": {
+				"from": 366500,
+				"to": 371500
+			},
+			"text": " So that's where the participation module comes in and the risk management module."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,500",
+				"to": "00:06:19,500"
+			},
+			"offsets": {
+				"from": 371500,
+				"to": 379500
+			},
+			"text": " So for those that don't know, like font administration, they handle a trillion dollar industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,500",
+				"to": "00:06:24,500"
+			},
+			"offsets": {
+				"from": 379500,
+				"to": 384500
+			},
+			"text": " So participation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,500",
+				"to": "00:06:29,500"
+			},
+			"offsets": {
+				"from": 384500,
+				"to": 389500
+			},
+			"text": " So the way participation works is really if someone wants to invest in a Mellon fund,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,500",
+				"to": "00:06:36,500"
+			},
+			"offsets": {
+				"from": 389500,
+				"to": 396500
+			},
+			"text": " on smart contract level it's like a phone call to another set of smart contracts with a set of parameters"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,500",
+				"to": "00:06:42,500"
+			},
+			"offsets": {
+				"from": 396500,
+				"to": 402500
+			},
+			"text": " and essentially asks the participation module, is this person allowed to invest or not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,500",
+				"to": "00:06:57,500"
+			},
+			"offsets": {
+				"from": 402500,
+				"to": 417500
+			},
+			"text": " So for example, we're working with the government of TUKE that essentially they work with Uport to have registered citizens."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,500",
+				"to": "00:07:05,500"
+			},
+			"offsets": {
+				"from": 417500,
+				"to": 425500
+			},
+			"text": " So this participation module will be then like Thomson's smart contract level to the government of TUKE"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,500",
+				"to": "00:07:09,500"
+			},
+			"offsets": {
+				"from": 425500,
+				"to": 429500
+			},
+			"text": " and asks, is this person registered with us?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,500",
+				"to": "00:07:14,500"
+			},
+			"offsets": {
+				"from": 429500,
+				"to": 434500
+			},
+			"text": " If yes, this person is allowed to invest, if no, then not."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,500",
+				"to": "00:07:18,500"
+			},
+			"offsets": {
+				"from": 434500,
+				"to": 438500
+			},
+			"text": " So but this really extends to just government of TUKE."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,500",
+				"to": "00:07:30,500"
+			},
+			"offsets": {
+				"from": 438500,
+				"to": 450500
+			},
+			"text": " It's essentially every jurisdiction or every certain need can be implemented in such a module."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,500",
+				"to": "00:07:34,500"
+			},
+			"offsets": {
+				"from": 450500,
+				"to": 454500
+			},
+			"text": " And the fourth aspect of fund administration is risk management."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,500",
+				"to": "00:07:36,500"
+			},
+			"offsets": {
+				"from": 454500,
+				"to": 456500
+			},
+			"text": " So risk management is similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,500",
+				"to": "00:07:41,500"
+			},
+			"offsets": {
+				"from": 456500,
+				"to": 461500
+			},
+			"text": " If the manager wants to make a trade, it's like calling the risk management module."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,500",
+				"to": "00:07:49,500"
+			},
+			"offsets": {
+				"from": 461500,
+				"to": 469500
+			},
+			"text": " Before the trade happens, is this trade allowed? Yes or no?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,500",
+				"to": "00:08:00,500"
+			},
+			"offsets": {
+				"from": 469500,
+				"to": 480500
+			},
+			"text": " So for example, one example for risk management is only trades are allowed that are above the current market price."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,500",
+				"to": "00:08:06,500"
+			},
+			"offsets": {
+				"from": 480500,
+				"to": 486500
+			},
+			"text": " Trading that is not beneficial for investor becomes really hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,500",
+				"to": "00:08:12,500"
+			},
+			"offsets": {
+				"from": 486500,
+				"to": 492500
+			},
+			"text": " And really leads to a system where the manager and the investor don't actually have to know each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,500",
+				"to": "00:08:17,500"
+			},
+			"offsets": {
+				"from": 492500,
+				"to": 497500
+			},
+			"text": " The same way if you make a Bitcoin transaction, you don't actually need to know who's behind the public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,500",
+				"to": "00:08:19,500"
+			},
+			"offsets": {
+				"from": 497500,
+				"to": 499500
+			},
+			"text": " It's sufficient to trust in the technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,500",
+				"to": "00:08:26,500"
+			},
+			"offsets": {
+				"from": 499500,
+				"to": 506500
+			},
+			"text": " That's technology regulated funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,500",
+				"to": "00:08:31,500"
+			},
+			"offsets": {
+				"from": 506500,
+				"to": 511500
+			},
+			"text": " What happens if this set of small contracts now needs to be upgraded?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,500",
+				"to": "00:08:39,500"
+			},
+			"offsets": {
+				"from": 511500,
+				"to": 519500
+			},
+			"text": " So essentially we have this concept of version which is like protocol version similar to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,500",
+				"to": "00:08:45,500"
+			},
+			"offsets": {
+				"from": 519500,
+				"to": 525500
+			},
+			"text": " All of the Mellon funds are identical in each version."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,500",
+				"to": "00:08:55,500"
+			},
+			"offsets": {
+				"from": 525500,
+				"to": 535500
+			},
+			"text": " And if a version now needs to be upgraded, then it's essentially just a governance layer that will be most likely just a set of people that are kind of voted in by that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,500",
+				"to": "00:09:08,500"
+			},
+			"offsets": {
+				"from": 535500,
+				"to": 548500
+			},
+			"text": " The token holder, so it's a small set of people, thus they can act efficiently and fast if needed, yet they're still legitimized by all of the token holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,500",
+				"to": "00:09:17,500"
+			},
+			"offsets": {
+				"from": 548500,
+				"to": 557500
+			},
+			"text": " So yeah, those set of people then can add or remove versions effectively operating."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,500",
+				"to": "00:09:25,500"
+			},
+			"offsets": {
+				"from": 557500,
+				"to": 565500
+			},
+			"text": " Great, so now a bit about how we actually cut these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,500",
+				"to": "00:09:27,500"
+			},
+			"offsets": {
+				"from": 565500,
+				"to": 567500
+			},
+			"text": " So we currently use that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,500",
+				"to": "00:09:32,500"
+			},
+			"offsets": {
+				"from": 567500,
+				"to": 572500
+			},
+			"text": " So for those that don't know that suite is really a great tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,500",
+				"to": "00:09:39,500"
+			},
+			"offsets": {
+				"from": 572500,
+				"to": 579500
+			},
+			"text": " It's really nice for solid unit tests and they have like a Haskell implementation of the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,500",
+				"to": "00:09:50,500"
+			},
+			"offsets": {
+				"from": 579500,
+				"to": 590500
+			},
+			"text": " So it allows developers to really dig deep into the lowest level of the EVM to see where the buck is, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,500",
+				"to": "00:09:54,500"
+			},
+			"offsets": {
+				"from": 590500,
+				"to": 594500
+			},
+			"text": " A second great tool that we use is Oiente."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,500",
+				"to": "00:09:58,500"
+			},
+			"offsets": {
+				"from": 594500,
+				"to": 598500
+			},
+			"text": " So we're currently funding the development of Oiente."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,500",
+				"to": "00:10:01,500"
+			},
+			"offsets": {
+				"from": 598500,
+				"to": 601500
+			},
+			"text": " It's essentially a smart contract analyzing tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,500",
+				"to": "00:10:05,500"
+			},
+			"offsets": {
+				"from": 601500,
+				"to": 605500
+			},
+			"text": " It allows to test your contracts against certain properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,500",
+				"to": "00:10:12,500"
+			},
+			"offsets": {
+				"from": 605500,
+				"to": 612500
+			},
+			"text": " So for example, re-entrancy can be checked automatically with this tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,500",
+				"to": "00:10:17,500"
+			},
+			"offsets": {
+				"from": 612500,
+				"to": 617500
+			},
+			"text": " Another really, really great tool is you can build in custom assertions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,500",
+				"to": "00:10:26,500"
+			},
+			"offsets": {
+				"from": 617500,
+				"to": 626500
+			},
+			"text": " So for example, you know, assert that the accounting jacks out of each function call, then you can apply Oiente and try to violate that assertion."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,500",
+				"to": "00:10:37,500"
+			},
+			"offsets": {
+				"from": 626500,
+				"to": 637500
+			},
+			"text": " So if that assertion isn't violated, that's a good sign that's actually not possible to ever violate that assertion."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,500",
+				"to": "00:10:39,500"
+			},
+			"offsets": {
+				"from": 637500,
+				"to": 639500
+			},
+			"text": " And we integrated that now with Travis CI."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,500",
+				"to": "00:10:44,500"
+			},
+			"offsets": {
+				"from": 639500,
+				"to": 644500
+			},
+			"text": " So every time you make a commit, Oiente gets run."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,500",
+				"to": "00:10:46,500"
+			},
+			"offsets": {
+				"from": 644500,
+				"to": 646500
+			},
+			"text": " Then we use just one test."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,500",
+				"to": "00:10:50,500"
+			},
+			"offsets": {
+				"from": 646500,
+				"to": 650500
+			},
+			"text": " Just one test is really useful for us for this holistic approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,500",
+				"to": "00:10:57,500"
+			},
+			"offsets": {
+				"from": 650500,
+				"to": 657500
+			},
+			"text": " So with JustMind we can build like expectation sets and then share them across GitHub repositories."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,500",
+				"to": "00:11:07,500"
+			},
+			"offsets": {
+				"from": 657500,
+				"to": 667500
+			},
+			"text": " So for example, we have the same expectation sets on a smart contract level as we have in Melanchase our JavaScript library."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,500",
+				"to": "00:11:16,500"
+			},
+			"offsets": {
+				"from": 667500,
+				"to": 676500
+			},
+			"text": " And we also just recently switched to Parity.js, so we have the Parity.dev chain instead of testRPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,500",
+				"to": "00:11:18,500"
+			},
+			"offsets": {
+				"from": 676500,
+				"to": 678500
+			},
+			"text": " So how do we approach front end?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,500",
+				"to": "00:11:21,500"
+			},
+			"offsets": {
+				"from": 678500,
+				"to": 681500
+			},
+			"text": " So maybe a short explanation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,500",
+				"to": "00:11:28,500"
+			},
+			"offsets": {
+				"from": 681500,
+				"to": 688500
+			},
+			"text": " Like if you build smart contracts and if like 99% of your users end up using a front end to those contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,500",
+				"to": "00:11:39,500"
+			},
+			"offsets": {
+				"from": 688500,
+				"to": 699500
+			},
+			"text": " then arguably the front end is similar as important as, but the security of the front end is similar to as important as the smart contracts itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,500",
+				"to": "00:11:42,500"
+			},
+			"offsets": {
+				"from": 699500,
+				"to": 702500
+			},
+			"text": " So that's why we use IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,500",
+				"to": "00:11:47,500"
+			},
+			"offsets": {
+				"from": 702500,
+				"to": 707500
+			},
+			"text": " IPFS is really great for security because it has this content addressed nature."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,500",
+				"to": "00:11:56,500"
+			},
+			"offsets": {
+				"from": 707500,
+				"to": 716500
+			},
+			"text": " So content addressed really means that the content that you view on IPFS is addressed by its hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,500",
+				"to": "00:12:06,500"
+			},
+			"offsets": {
+				"from": 716500,
+				"to": 726500
+			},
+			"text": " So you can verify in our GitHub that in our build folder that the hash that we create is actually the hash that you access on IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,500",
+				"to": "00:12:16,500"
+			},
+			"offsets": {
+				"from": 726500,
+				"to": 736500
+			},
+			"text": " So there's no way to build in any malicious code that for example tracks you or tries to steal your hands."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,500",
+				"to": "00:12:21,500"
+			},
+			"offsets": {
+				"from": 736500,
+				"to": 741500
+			},
+			"text": " So tries to steal your private keys or collect some data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,500",
+				"to": "00:12:29,500"
+			},
+			"offsets": {
+				"from": 741500,
+				"to": 749500
+			},
+			"text": " So it's really transparent and really reliable as well because it's hosted on essentially a bit torrent form."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,500",
+				"to": "00:12:34,500"
+			},
+			"offsets": {
+				"from": 749500,
+				"to": 754500
+			},
+			"text": " So yeah, makes it really reliable."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,500",
+				"to": "00:12:38,500"
+			},
+			"offsets": {
+				"from": 754500,
+				"to": 758500
+			},
+			"text": " Obviously permissionless and nonetheless as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,500",
+				"to": "00:12:40,500"
+			},
+			"offsets": {
+				"from": 758500,
+				"to": 760500
+			},
+			"text": " Then we have Melanchale."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,500",
+				"to": "00:12:46,500"
+			},
+			"offsets": {
+				"from": 760500,
+				"to": 766500
+			},
+			"text": " Melanchale is essentially a messaging service that is secure as your crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,500",
+				"to": "00:12:49,500"
+			},
+			"offsets": {
+				"from": 766500,
+				"to": 769500
+			},
+			"text": " By the way, if you want to see the front end, it's melon.fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,500",
+				"to": "00:12:53,500"
+			},
+			"offsets": {
+				"from": 769500,
+				"to": 773500
+			},
+			"text": " If you want to see the mail service, it's melon.email."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,500",
+				"to": "00:12:58,500"
+			},
+			"offsets": {
+				"from": 773500,
+				"to": 778500
+			},
+			"text": " It uses your private key to encrypt your communication and then stores it on IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,500",
+				"to": "00:13:09,500"
+			},
+			"offsets": {
+				"from": 778500,
+				"to": 789500
+			},
+			"text": " So the reason why this is important, so imagine you work for Jamie Diamond and he threatens you to fire you if you ever trade with crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,500",
+				"to": "00:13:13,500"
+			},
+			"offsets": {
+				"from": 789500,
+				"to": 793500
+			},
+			"text": " But with melon, melon still can have a melon font."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,500",
+				"to": "00:13:31,500"
+			},
+			"offsets": {
+				"from": 793500,
+				"to": 811500
+			},
+			"text": " And having essentially just your public key exposed, your investors can still communicate with you and you never share anything more than your public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,500",
+				"to": "00:13:48,500"
+			},
+			"offsets": {
+				"from": 811500,
+				"to": 828500
+			},
+			"text": " So how we approach audits and bug bounties, so we start with audits from well-known and well-respected individuals and companies and then open it up to a general bug bounty so that everyone can participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,500",
+				"to": "00:13:58,500"
+			},
+			"offsets": {
+				"from": 828500,
+				"to": 838500
+			},
+			"text": " And eventually we deploy a live melon font that is funded and whoever can hack it can have the amount that it was funded with."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,500",
+				"to": "00:14:01,500"
+			},
+			"offsets": {
+				"from": 838500,
+				"to": 841500
+			},
+			"text": " By the way, we always incentivize people."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,500",
+				"to": "00:14:09,500"
+			},
+			"offsets": {
+				"from": 841500,
+				"to": 849500
+			},
+			"text": " So if you found a vulnerability in our codes, no matter if the bug bounty started already, you will get incentivized for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,500",
+				"to": "00:14:27,500"
+			},
+			"offsets": {
+				"from": 856500,
+				"to": 867500
+			},
+			"text": " So as technologists we love what we do and technology is really important for us, but I think a holistic approach to security goes beyond just technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,500",
+				"to": "00:14:44,500"
+			},
+			"offsets": {
+				"from": 867500,
+				"to": 884500
+			},
+			"text": " So that's why we created MAMA, it's the multi-chain asset managers association, which is essentially a trade body that tries to get innovative companies together at a table and allows them to give a voice."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,500",
+				"to": "00:15:06,500"
+			},
+			"offsets": {
+				"from": 884500,
+				"to": 906500
+			},
+			"text": " So that the conversation isn't just dominated by the big banks or the traditional asset managers, but that innovative people and companies can organize and have their voice as well in order to shape legislation and regulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,500",
+				"to": "00:15:21,500"
+			},
+			"offsets": {
+				"from": 906500,
+				"to": 921500
+			},
+			"text": " So lastly, check out melon.fund. It's a completely an IPFS has a beautiful interface to it. Check out melon.email, go to oriented.melon.fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,500",
+				"to": "00:15:30,500"
+			},
+			"offsets": {
+				"from": 921500,
+				"to": 930500
+			},
+			"text": " Check out github.com/melonproject. We love pull requests, we love issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,500",
+				"to": "00:15:39,500"
+			},
+			"offsets": {
+				"from": 930500,
+				"to": 939500
+			},
+			"text": " For us on Twitter at Melonport and join MAMA if you're here representing an institution."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,500",
+				"to": "00:15:50,500"
+			},
+			"offsets": {
+				"from": 939500,
+				"to": 950500
+			},
+			"text": " So lastly, the reason why it's good to go to melon.fund and start practicing it a bit is that we just recently announced that we're going to issue 500,000 melon."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,500",
+				"to": "00:15:58,500"
+			},
+			"offsets": {
+				"from": 950500,
+				"to": 958500
+			},
+			"text": " I think it's worth like 30, 35 million right now, just in the context of fund management competitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,500",
+				"to": "00:16:07,500"
+			},
+			"offsets": {
+				"from": 958500,
+				"to": 967500
+			},
+			"text": " So you can participate those and if you're good at it, you get a lot of melons. If you're not so good, you'll get still a little, but not that much."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,500",
+				"to": "00:16:12,500"
+			},
+			"offsets": {
+				"from": 967500,
+				"to": 972500
+			},
+			"text": " So that's essentially how we're going to issue those remaining melons."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,500",
+				"to": "00:16:24,500"
+			},
+			"offsets": {
+				"from": 972500,
+				"to": 984500
+			},
+			"text": " And by the way, also on GitHub, if you're an Alga trader as developers, we already have an open source trading bot that you can use and modify and you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,500",
+				"to": "00:16:34,500"
+			},
+			"offsets": {
+				"from": 984500,
+				"to": 994500
+			},
+			"text": " you can buy trade manually if you can build a trading bot."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,500",
+				"to": "00:16:41,500"
+			},
+			"offsets": {
+				"from": 994500,
+				"to": 1001500
+			},
+			"text": " Great. Yeah. Thanks very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,500",
+				"to": "00:16:49,500"
+			},
+			"offsets": {
+				"from": 1001500,
+				"to": 1009500
+			},
+			"text": " We have time for one or two questions. Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,500",
+				"to": "00:16:59,500"
+			},
+			"offsets": {
+				"from": 1009500,
+				"to": 1019500
+			},
+			"text": " Hello, Professor. Congratulations. About MAMA, you're just working on Switzerland legislation or working with other countries like US or Singapore."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,500",
+				"to": "00:17:09,500"
+			},
+			"offsets": {
+				"from": 1019500,
+				"to": 1029500
+			},
+			"text": " So we would like to make this available for everyone, but obviously our time is very limited and we can't make this compliant to every single jurisdiction."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,500",
+				"to": "00:17:26,500"
+			},
+			"offsets": {
+				"from": 1029500,
+				"to": 1046500
+			},
+			"text": " So we kind of started with government of two just to have like, you know, I guess a signaling effect, a signaling effect that this is actually possible that the governance and government and jurisdictions actually want this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,500",
+				"to": "00:17:42,500"
+			},
+			"offsets": {
+				"from": 1046500,
+				"to": 1062500
+			},
+			"text": " And yeah, but actually, like with the participation module, anyone can build those and be intent to incentivize like the people that built good participation modules and good risk management modules will get incentivized for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,500",
+				"to": "00:17:50,500"
+			},
+			"offsets": {
+				"from": 1062500,
+				"to": 1070500
+			},
+			"text": " Yeah, I have a second on my own question. Probably this was a similar question, but the requirements to KYC."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,500",
+				"to": "00:18:02,500"
+			},
+			"offsets": {
+				"from": 1070500,
+				"to": 1082500
+			},
+			"text": " So whose requirement is it the fund manager who is only allowed to serve KYC customers or is it you as a software developer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,500",
+				"to": "00:18:11,500"
+			},
+			"offsets": {
+				"from": 1082500,
+				"to": 1091500
+			},
+			"text": " No, it's investors essentially like it's requirements that are like what is required for an investor to invest."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,500",
+				"to": "00:18:29,500"
+			},
+			"offsets": {
+				"from": 1091500,
+				"to": 1109500
+			},
+			"text": " Okay, so if you want to attract regular investors, they need to prove to their, I mean, the people watch over them that they let the money manage by identifying managers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,500",
+				"to": "00:18:31,500"
+			},
+			"offsets": {
+				"from": 1109500,
+				"to": 1111500
+			},
+			"text": " Is that requirement?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,500",
+				"to": "00:18:38,500"
+			},
+			"offsets": {
+				"from": 1111500,
+				"to": 1118500
+			},
+			"text": " So it's because I thought the KIC requirement was for the investors so the investors need to be KYC."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,500",
+				"to": "00:18:45,500"
+			},
+			"offsets": {
+				"from": 1118500,
+				"to": 1125500
+			},
+			"text": " Yeah, that's not their requirement. So it's not their need that there is KYC because I mean, I can be an investor."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,500",
+				"to": "00:18:51,500"
+			},
+			"offsets": {
+				"from": 1125500,
+				"to": 1131500
+			},
+			"text": " I mean, there are investors want to remain anonymous, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,500",
+				"to": "00:19:00,500"
+			},
+			"offsets": {
+				"from": 1131500,
+				"to": 1140500
+			},
+			"text": " But in a similar way that there might, there are probably a lot of managers that don't want to have anonymous investors."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,500",
+				"to": "00:19:04,500"
+			},
+			"offsets": {
+				"from": 1140500,
+				"to": 1144500
+			},
+			"text": " Okay, yeah, sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,500",
+				"to": "00:19:05,500"
+			},
+			"offsets": {
+				"from": 1144500,
+				"to": 1145500
+			},
+			"text": " Hi, Rato."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,500",
+				"to": "00:19:06,500"
+			},
+			"offsets": {
+				"from": 1145500,
+				"to": 1146500
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,500",
+				"to": "00:19:16,500"
+			},
+			"offsets": {
+				"from": 1146500,
+				"to": 1156500
+			},
+			"text": " The initial roadmap was the product to be delivered in two years, but it was early one year. Why was that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,500",
+				"to": "00:19:25,500"
+			},
+			"offsets": {
+				"from": 1156500,
+				"to": 1165500
+			},
+			"text": " Yeah, so we're well ahead of schedule, so we're aiming to have this life with a basic form of governance next February, 2018."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,500",
+				"to": "00:19:27,500"
+			},
+			"offsets": {
+				"from": 1165500,
+				"to": 1167500
+			},
+			"text": " So that's one year ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,500",
+				"to": "00:19:33,500"
+			},
+			"offsets": {
+				"from": 1167500,
+				"to": 1173500
+			},
+			"text": " Yeah, but what happened that you could make it so fast as you faster than your plan?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,500",
+				"to": "00:19:42,500"
+			},
+			"offsets": {
+				"from": 1173500,
+				"to": 1182500
+			},
+			"text": " So we really like, like I think in all our communications, we're really not typing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,500",
+				"to": "00:19:49,500"
+			},
+			"offsets": {
+				"from": 1182500,
+				"to": 1189500
+			},
+			"text": " It's just in the same concept. Like we didn't want to hype and say, okay, we have this in two weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,500",
+				"to": "00:19:56,500"
+			},
+			"offsets": {
+				"from": 1189500,
+				"to": 1196500
+			},
+			"text": " But we wanted to be very conservative. If you're faster and it's great for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,500",
+				"to": "00:20:00,500"
+			},
+			"offsets": {
+				"from": 1196500,
+				"to": 1200500
+			},
+			"text": " If you're a bit slower, then we still have some cushions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,500",
+				"to": "00:20:01,500"
+			},
+			"offsets": {
+				"from": 1200500,
+				"to": 1201500
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,500",
+				"to": "00:20:05,500"
+			},
+			"offsets": {
+				"from": 1201500,
+				"to": 1205500
+			},
+			"text": " Okay, one last question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,500",
+				"to": "00:20:14,500"
+			},
+			"offsets": {
+				"from": 1205500,
+				"to": 1214500
+			},
+			"text": " Hi, I'm wondering how mature is the integration with the exchanges so far and what's your roadmap on integrating with them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,500",
+				"to": "00:20:22,500"
+			},
+			"offsets": {
+				"from": 1214500,
+				"to": 1222500
+			},
+			"text": " Yeah, that's a great question. So for now we are using the exchange of Wasis text, which is like a fully decentralized exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,500",
+				"to": "00:20:28,500"
+			},
+			"offsets": {
+				"from": 1222500,
+				"to": 1228500
+			},
+			"text": " But we're working hard on integrating other exchanges as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,500",
+				"to": "00:20:36,500"
+			},
+			"offsets": {
+				"from": 1228500,
+				"to": 1236500
+			},
+			"text": " But also this, it's all a matter of time resources. And we want to have a working product as a life working product as soon as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,500",
+				"to": "00:20:41,500"
+			},
+			"offsets": {
+				"from": 1236500,
+				"to": 1241500
+			},
+			"text": " And from then on, continue integrating other exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,500",
+				"to": "00:20:42,500"
+			},
+			"offsets": {
+				"from": 1241500,
+				"to": 1242500
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,500",
+				"to": "00:20:43,500"
+			},
+			"offsets": {
+				"from": 1242500,
+				"to": 1243500
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,500",
+				"to": "00:20:44,500"
+			},
+			"offsets": {
+				"from": 1243500,
+				"to": 1244500
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,500",
+				"to": "00:20:45,500"
+			},
+			"offsets": {
+				"from": 1244500,
+				"to": 1245500
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,500",
+				"to": "00:20:46,500"
+			},
+			"offsets": {
+				"from": 1245500,
+				"to": 1246500
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,500",
+				"to": "00:20:51,500"
+			},
+			"offsets": {
+				"from": 1246500,
+				"to": 1251500
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,500",
+				"to": "00:20:58,500"
+			},
+			"offsets": {
+				"from": 1251500,
+				"to": 1258500
+			},
+			"text": " [Music]"
+		}
+	]
+}

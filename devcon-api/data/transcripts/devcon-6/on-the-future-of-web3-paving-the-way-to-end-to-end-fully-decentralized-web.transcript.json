@@ -1,0 +1,1638 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:14,760"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 14760
+			},
+			"text": " Yeah, hello everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,760",
+				"to": "00:00:15,840"
+			},
+			"offsets": {
+				"from": 14760,
+				"to": 15840
+			},
+			"text": " My name is Chijo."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,840",
+				"to": "00:00:17,520"
+			},
+			"offsets": {
+				"from": 15840,
+				"to": 17520
+			},
+			"text": " I'm the founder of ESA Storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,520",
+				"to": "00:00:19,320"
+			},
+			"offsets": {
+				"from": 17520,
+				"to": 19320
+			},
+			"text": " Today I will be going to present our talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,320",
+				"to": "00:00:21,720"
+			},
+			"offsets": {
+				"from": 19320,
+				"to": 21720
+			},
+			"text": " on the future of the three, paving the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,720",
+				"to": "00:00:24,960"
+			},
+			"offsets": {
+				"from": 21720,
+				"to": 24960
+			},
+			"text": " to the fully and to fully decentralized web."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,960",
+				"to": "00:00:27,880"
+			},
+			"offsets": {
+				"from": 24960,
+				"to": 27880
+			},
+			"text": " So what is the current status of decentralized web?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,880",
+				"to": "00:00:31,320"
+			},
+			"offsets": {
+				"from": 27880,
+				"to": 31320
+			},
+			"text": " So we have a decentralized access protocol like IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,320",
+				"to": "00:00:34,120"
+			},
+			"offsets": {
+				"from": 31320,
+				"to": 34120
+			},
+			"text": " And we also have a mature P2P network layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,120",
+				"to": "00:00:36,680"
+			},
+			"offsets": {
+				"from": 34120,
+				"to": 36680
+			},
+			"text": " in which we are able to retrieve the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,680",
+				"to": "00:00:39,200"
+			},
+			"offsets": {
+				"from": 36680,
+				"to": 39200
+			},
+			"text": " And we also have the incentivized storage layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,200",
+				"to": "00:00:44,280"
+			},
+			"offsets": {
+				"from": 39200,
+				"to": 44280
+			},
+			"text": " that has to keep the data consistency."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,280",
+				"to": "00:00:46,160"
+			},
+			"offsets": {
+				"from": 44280,
+				"to": 46160
+			},
+			"text": " However, there are still great limitations"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,160",
+				"to": "00:00:49,200"
+			},
+			"offsets": {
+				"from": 46160,
+				"to": 49200
+			},
+			"text": " of current decentralized storage solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,200",
+				"to": "00:00:53,200"
+			},
+			"offsets": {
+				"from": 49200,
+				"to": 53200
+			},
+			"text": " First, those storage solution has a great limit"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,200",
+				"to": "00:00:57,240"
+			},
+			"offsets": {
+				"from": 53200,
+				"to": 57240
+			},
+			"text": " on the semantics in many workforce static files, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,240",
+				"to": "00:01:00,400"
+			},
+			"offsets": {
+				"from": 57240,
+				"to": 60400
+			},
+			"text": " means that it's very inefficient to update and delete"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,400",
+				"to": "00:01:04,280"
+			},
+			"offsets": {
+				"from": 60400,
+				"to": 64280
+			},
+			"text": " those existing files, even just a single byte that is changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,280",
+				"to": "00:01:07,880"
+			},
+			"offsets": {
+				"from": 64280,
+				"to": 67880
+			},
+			"text": " And further, there's no way to compose this data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,880",
+				"to": "00:01:10,040"
+			},
+			"offsets": {
+				"from": 67880,
+				"to": 70040
+			},
+			"text": " in a decentralized way."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,040",
+				"to": "00:01:13,160"
+			},
+			"offsets": {
+				"from": 70040,
+				"to": 73160
+			},
+			"text": " So sometimes we have to rely on centralized storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,160",
+				"to": "00:01:15,240"
+			},
+			"offsets": {
+				"from": 73160,
+				"to": 75240
+			},
+			"text": " Second is that all these projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,240",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 75240,
+				"to": 77000
+			},
+			"text": " they have their ecosystem, which means"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 81000
+			},
+			"text": " their users has to use their wallets, tokens, and addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:25,480"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 85480
+			},
+			"text": " in order to be able to upload those files to their systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,480",
+				"to": "00:01:27,560"
+			},
+			"offsets": {
+				"from": 85480,
+				"to": 87560
+			},
+			"text": " So with this problems, we are projecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,560",
+				"to": "00:01:30,920"
+			},
+			"offsets": {
+				"from": 87560,
+				"to": 90920
+			},
+			"text": " what the features that we need in the future web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,920",
+				"to": "00:01:33,880"
+			},
+			"offsets": {
+				"from": 90920,
+				"to": 93880
+			},
+			"text": " First, we need rich storage semantics"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,880",
+				"to": "00:01:37,760"
+			},
+			"offsets": {
+				"from": 93880,
+				"to": 97760
+			},
+			"text": " in a decentralized storage, which can support great,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,760",
+				"to": "00:01:41,680"
+			},
+			"offsets": {
+				"from": 97760,
+				"to": 101680
+			},
+			"text": " update, delete, blobs for very large amount,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,680",
+				"to": "00:01:43,720"
+			},
+			"offsets": {
+				"from": 101680,
+				"to": 103720
+			},
+			"text": " potentially petabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,720",
+				"to": "00:01:46,120"
+			},
+			"offsets": {
+				"from": 103720,
+				"to": 106120
+			},
+			"text": " Further, it can be programmed by smart conscious,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,120",
+				"to": "00:01:49,840"
+			},
+			"offsets": {
+				"from": 106120,
+				"to": 109840
+			},
+			"text": " so that can easily compose all this data with the logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,840",
+				"to": "00:01:52,840"
+			},
+			"offsets": {
+				"from": 109840,
+				"to": 112840
+			},
+			"text": " of the smart conscious running on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,840",
+				"to": "00:01:54,800"
+			},
+			"offsets": {
+				"from": 112840,
+				"to": 114800
+			},
+			"text": " And second is that we want to simplify"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,800",
+				"to": "00:01:57,520"
+			},
+			"offsets": {
+				"from": 114800,
+				"to": 117520
+			},
+			"text": " the user's body, which means that the user, just"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,520",
+				"to": "00:01:59,720"
+			},
+			"offsets": {
+				"from": 117520,
+				"to": 119720
+			},
+			"text": " using the Ethereum wallet, pay Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,720",
+				"to": "00:02:03,880"
+			},
+			"offsets": {
+				"from": 119720,
+				"to": 123880
+			},
+			"text": " and is able to upload and basically store a large amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,880",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 123880,
+				"to": 127000
+			},
+			"text": " of data on top of the whole Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:10,240"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 130240
+			},
+			"text": " And lastly, we need to have a new access protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,240",
+				"to": "00:02:15,280"
+			},
+			"offsets": {
+				"from": 130240,
+				"to": 135280
+			},
+			"text": " that is able to render those dynamic data from end"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,280",
+				"to": "00:02:18,440"
+			},
+			"offsets": {
+				"from": 135280,
+				"to": 138440
+			},
+			"text": " to the blockchain and the storage without any centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,440",
+				"to": "00:02:20,280"
+			},
+			"offsets": {
+				"from": 138440,
+				"to": 140280
+			},
+			"text": " identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,280",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 140280,
+				"to": 142000
+			},
+			"text": " So what's the solution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:24,880"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 144880
+			},
+			"text": " Thanks to the latest development of Ethereum technologies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,880",
+				"to": "00:02:27,080"
+			},
+			"offsets": {
+				"from": 144880,
+				"to": 147080
+			},
+			"text": " we believe that we are now at a position"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,080",
+				"to": "00:02:30,280"
+			},
+			"offsets": {
+				"from": 147080,
+				"to": 150280
+			},
+			"text": " that we can achieve these goals in a near future."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,280",
+				"to": "00:02:32,960"
+			},
+			"offsets": {
+				"from": 150280,
+				"to": 152960
+			},
+			"text": " First of all, we have data availability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,960",
+				"to": "00:02:35,920"
+			},
+			"offsets": {
+				"from": 152960,
+				"to": 155920
+			},
+			"text": " which thanks to thanks chatting, which greatly"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,920",
+				"to": "00:02:39,360"
+			},
+			"offsets": {
+				"from": 155920,
+				"to": 159360
+			},
+			"text": " increased the data upload speed using advanced"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,360",
+				"to": "00:02:41,680"
+			},
+			"offsets": {
+				"from": 159360,
+				"to": 161680
+			},
+			"text": " cryptographic primitives."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,680",
+				"to": "00:02:45,640"
+			},
+			"offsets": {
+				"from": 161680,
+				"to": 165640
+			},
+			"text": " And second is that we are able to build external data"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,640",
+				"to": "00:02:49,080"
+			},
+			"offsets": {
+				"from": 165640,
+				"to": 169080
+			},
+			"text": " retention network so that we only store corresponding metadata"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,080",
+				"to": "00:02:52,440"
+			},
+			"offsets": {
+				"from": 169080,
+				"to": 172440
+			},
+			"text": " on Ethereum and be able to store large amount of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,440",
+				"to": "00:02:54,640"
+			},
+			"offsets": {
+				"from": 172440,
+				"to": 174640
+			},
+			"text": " in this layer-toed network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,640",
+				"to": "00:02:58,840"
+			},
+			"offsets": {
+				"from": 174640,
+				"to": 178840
+			},
+			"text": " And we just periodically submit the proof of storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,840",
+				"to": "00:03:00,240"
+			},
+			"offsets": {
+				"from": 178840,
+				"to": 180240
+			},
+			"text": " into the Ethereum Menad."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,240",
+				"to": "00:03:03,760"
+			},
+			"offsets": {
+				"from": 180240,
+				"to": 183760
+			},
+			"text": " So it tells that everybody can check the actual data"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,760",
+				"to": "00:03:06,400"
+			},
+			"offsets": {
+				"from": 183760,
+				"to": 186400
+			},
+			"text": " that the latest data is keeping the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,400",
+				"to": "00:03:08,800"
+			},
+			"offsets": {
+				"from": 186400,
+				"to": 188800
+			},
+			"text": " with high replication."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,800",
+				"to": "00:03:12,320"
+			},
+			"offsets": {
+				"from": 188800,
+				"to": 192320
+			},
+			"text": " And lastly, we also developed a Web3 access protocol, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,320",
+				"to": "00:03:16,640"
+			},
+			"offsets": {
+				"from": 192320,
+				"to": 196640
+			},
+			"text": " is able to decentralized access those web objects caused"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,640",
+				"to": "00:03:18,520"
+			},
+			"offsets": {
+				"from": 196640,
+				"to": 198520
+			},
+			"text": " by smart conscious."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,520",
+				"to": "00:03:21,080"
+			},
+			"offsets": {
+				"from": 198520,
+				"to": 201080
+			},
+			"text": " So this is Web3 access protocol, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,080",
+				"to": "00:03:25,560"
+			},
+			"offsets": {
+				"from": 201080,
+				"to": 205560
+			},
+			"text": " is defined by ERC4A04, which is a way to render"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,560",
+				"to": "00:03:28,080"
+			},
+			"offsets": {
+				"from": 205560,
+				"to": 208080
+			},
+			"text": " rabbit objects hosted by smart conscious."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,080",
+				"to": "00:03:30,200"
+			},
+			"offsets": {
+				"from": 208080,
+				"to": 210200
+			},
+			"text": " It's very similar to HTTP so that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,200",
+				"to": "00:03:34,160"
+			},
+			"offsets": {
+				"from": 210200,
+				"to": 214160
+			},
+			"text": " can inherit all the good benefits of HTTP"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,160",
+				"to": "00:03:37,080"
+			},
+			"offsets": {
+				"from": 214160,
+				"to": 217080
+			},
+			"text": " while we are able to identify a resource that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,080",
+				"to": "00:03:39,920"
+			},
+			"offsets": {
+				"from": 217080,
+				"to": 219920
+			},
+			"text": " hosted by smart conscious and further access"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,920",
+				"to": "00:03:43,440"
+			},
+			"offsets": {
+				"from": 219920,
+				"to": 223440
+			},
+			"text": " the underlying storage layer that we built."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,440",
+				"to": "00:03:46,680"
+			},
+			"offsets": {
+				"from": 223440,
+				"to": 226680
+			},
+			"text": " And the user storage is a layer two solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,680",
+				"to": "00:03:50,640"
+			},
+			"offsets": {
+				"from": 226680,
+				"to": 230640
+			},
+			"text": " that aims to scale Ethereum storage rather than computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,640",
+				"to": "00:03:52,920"
+			},
+			"offsets": {
+				"from": 230640,
+				"to": 232920
+			},
+			"text": " And so here is a quick comparison of what"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,920",
+				"to": "00:03:56,520"
+			},
+			"offsets": {
+				"from": 232920,
+				"to": 236520
+			},
+			"text": " storage can do versus Filecoin, or E,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,520",
+				"to": "00:04:00,080"
+			},
+			"offsets": {
+				"from": 236520,
+				"to": 240080
+			},
+			"text": " and the default storage solutions of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,080",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 240080,
+				"to": 242000
+			},
+			"text": " And with this infrastructure, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:05,720"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 245720
+			},
+			"text": " believe that we are able to enable a lot of new applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,720",
+				"to": "00:04:07,560"
+			},
+			"offsets": {
+				"from": 245720,
+				"to": 247560
+			},
+			"text": " For example, trusty website hosting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,560",
+				"to": "00:04:13,320"
+			},
+			"offsets": {
+				"from": 247560,
+				"to": 253320
+			},
+			"text": " like Uniswap curve, or dynamic NFT, which we are able to change"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,320",
+				"to": "00:04:16,400"
+			},
+			"offsets": {
+				"from": 253320,
+				"to": 256400
+			},
+			"text": " the presentation of image dynamically."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,400",
+				"to": "00:04:19,440"
+			},
+			"offsets": {
+				"from": 256400,
+				"to": 259440
+			},
+			"text": " And we are also be able to build decentralized social network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,440",
+				"to": "00:04:23,120"
+			},
+			"offsets": {
+				"from": 259440,
+				"to": 263120
+			},
+			"text": " such as decentralized tutor, media, or even decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,120",
+				"to": "00:04:25,560"
+			},
+			"offsets": {
+				"from": 263120,
+				"to": 265560
+			},
+			"text": " job box."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,560",
+				"to": "00:04:27,960"
+			},
+			"offsets": {
+				"from": 265560,
+				"to": 267960
+			},
+			"text": " So here I will give a demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,960",
+				"to": "00:04:29,920"
+			},
+			"offsets": {
+				"from": 267960,
+				"to": 269920
+			},
+			"text": " Let me see."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,920",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 269920,
+				"to": 273000
+			},
+			"text": " This is my Firefox browser that supports the 3.0 VLL."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:34,920"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 274920
+			},
+			"text": " So now it's time for the 3.0 VLL."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,920",
+				"to": "00:04:38,800"
+			},
+			"offsets": {
+				"from": 274920,
+				"to": 278800
+			},
+			"text": " Let's restore the image that we registered at UNIS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,800",
+				"to": "00:04:43,280"
+			},
+			"offsets": {
+				"from": 278800,
+				"to": 283280
+			},
+			"text": " that points to the smart conscious that holds our product."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,280",
+				"to": "00:04:47,600"
+			},
+			"offsets": {
+				"from": 283280,
+				"to": 287600
+			},
+			"text": " So all the images HTML, CSS JavaScript,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,600",
+				"to": "00:04:49,880"
+			},
+			"offsets": {
+				"from": 287600,
+				"to": 289880
+			},
+			"text": " now hosted by the smart conscious,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,880",
+				"to": "00:04:53,120"
+			},
+			"offsets": {
+				"from": 289880,
+				"to": 293120
+			},
+			"text": " returned by this web straight access protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,120",
+				"to": "00:04:55,880"
+			},
+			"offsets": {
+				"from": 293120,
+				"to": 295880
+			},
+			"text": " So there are also a couple of interesting examples,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,880",
+				"to": "00:04:58,320"
+			},
+			"offsets": {
+				"from": 295880,
+				"to": 298320
+			},
+			"text": " for example, decentralized job box."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,320",
+				"to": "00:05:01,240"
+			},
+			"offsets": {
+				"from": 298320,
+				"to": 301240
+			},
+			"text": " So this is also home-aged to return a smart conscious,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,240",
+				"to": "00:05:02,640"
+			},
+			"offsets": {
+				"from": 301240,
+				"to": 302640
+			},
+			"text": " another smart conscious."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,640",
+				"to": "00:05:06,640"
+			},
+			"offsets": {
+				"from": 302640,
+				"to": 306640
+			},
+			"text": " And we can see the list, all the current"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,640",
+				"to": "00:05:09,080"
+			},
+			"offsets": {
+				"from": 306640,
+				"to": 309080
+			},
+			"text": " file being uploaded before."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,080",
+				"to": "00:05:11,480"
+			},
+			"offsets": {
+				"from": 309080,
+				"to": 311480
+			},
+			"text": " And in order to upload a new file,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,480",
+				"to": "00:05:15,040"
+			},
+			"offsets": {
+				"from": 311480,
+				"to": 315040
+			},
+			"text": " what I should do is just check the file."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,040",
+				"to": "00:05:18,880"
+			},
+			"offsets": {
+				"from": 315040,
+				"to": 318880
+			},
+			"text": " And then it will ask me to sign a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,880",
+				"to": "00:05:20,520"
+			},
+			"offsets": {
+				"from": 318880,
+				"to": 320520
+			},
+			"text": " via my mask."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,520",
+				"to": "00:05:22,960"
+			},
+			"offsets": {
+				"from": 320520,
+				"to": 322960
+			},
+			"text": " So during the whole procedure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,960",
+				"to": "00:05:26,680"
+			},
+			"offsets": {
+				"from": 322960,
+				"to": 326680
+			},
+			"text": " I don't need to require any additional"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,680",
+				"to": "00:05:30,120"
+			},
+			"offsets": {
+				"from": 326680,
+				"to": 330120
+			},
+			"text": " social cell, CLI."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,120",
+				"to": "00:05:34,400"
+			},
+			"offsets": {
+				"from": 330120,
+				"to": 334400
+			},
+			"text": " And once the transaction is confirmed by the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,400",
+				"to": "00:05:40,320"
+			},
+			"offsets": {
+				"from": 334400,
+				"to": 340320
+			},
+			"text": " I can access the file, also via web straight access protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,320",
+				"to": "00:05:43,360"
+			},
+			"offsets": {
+				"from": 340320,
+				"to": 343360
+			},
+			"text": " So the file has been uploaded, so we are able to access."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,360",
+				"to": "00:05:46,960"
+			},
+			"offsets": {
+				"from": 343360,
+				"to": 346960
+			},
+			"text": " So it's still going, but we can still use the web straight access"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,960",
+				"to": "00:05:48,040"
+			},
+			"offsets": {
+				"from": 346960,
+				"to": 348040
+			},
+			"text": " protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,040",
+				"to": "00:05:52,840"
+			},
+			"offsets": {
+				"from": 348040,
+				"to": 352840
+			},
+			"text": " And the corresponding file is also updated according to it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,840",
+				"to": "00:05:55,240"
+			},
+			"offsets": {
+				"from": 352840,
+				"to": 355240
+			},
+			"text": " thanks to smart conscious."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,240",
+				"to": "00:05:58,560"
+			},
+			"offsets": {
+				"from": 355240,
+				"to": 358560
+			},
+			"text": " So this is an example for decentralized job box."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,560",
+				"to": "00:06:00,760"
+			},
+			"offsets": {
+				"from": 358560,
+				"to": 360760
+			},
+			"text": " There are also a couple other examples,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,760",
+				"to": "00:06:03,320"
+			},
+			"offsets": {
+				"from": 360760,
+				"to": 363320
+			},
+			"text": " like web straight, decentralized work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,320",
+				"to": "00:06:05,320"
+			},
+			"offsets": {
+				"from": 363320,
+				"to": 365320
+			},
+			"text": " that make IT, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,320",
+				"to": "00:06:07,760"
+			},
+			"offsets": {
+				"from": 365320,
+				"to": 367760
+			},
+			"text": " So welcome to play."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,760",
+				"to": "00:06:11,560"
+			},
+			"offsets": {
+				"from": 367760,
+				"to": 371560
+			},
+			"text": " Yeah, so there are a lot of more details of our technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,560",
+				"to": "00:06:12,560"
+			},
+			"offsets": {
+				"from": 371560,
+				"to": 372560
+			},
+			"text": " that are built."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,560",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 372560,
+				"to": 377000
+			},
+			"text": " So we have after party in this afternoon in the nearby Hooten"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:18,920"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 378920
+			},
+			"text": " Hotel, and for it to come."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,920",
+				"to": "00:06:21,320"
+			},
+			"offsets": {
+				"from": 378920,
+				"to": 381320
+			},
+			"text": " And I'm happy to answer any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,320",
+				"to": "00:06:26,160"
+			},
+			"offsets": {
+				"from": 381320,
+				"to": 386160
+			},
+			"text": " Yes, you listed four-- you've made comparison for systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,160",
+				"to": "00:06:28,280"
+			},
+			"offsets": {
+				"from": 386160,
+				"to": 388280
+			},
+			"text": " but you forgot to mention SWORM."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,280",
+				"to": "00:06:31,880"
+			},
+			"offsets": {
+				"from": 388280,
+				"to": 391880
+			},
+			"text": " Yeah, actually I talked to SWORM people a few days ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,880",
+				"to": "00:06:34,120"
+			},
+			"offsets": {
+				"from": 391880,
+				"to": 394120
+			},
+			"text": " SWORM actually has a similar architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,120",
+				"to": "00:06:37,080"
+			},
+			"offsets": {
+				"from": 394120,
+				"to": 397080
+			},
+			"text": " as FFS, which is using content addressing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,080",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 397080,
+				"to": 400000
+			},
+			"text": " to basically a locating file."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:42,760"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 402760
+			},
+			"text": " And also it has a way to basically call dynamic hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,760",
+				"to": "00:06:45,480"
+			},
+			"offsets": {
+				"from": 402760,
+				"to": 405480
+			},
+			"text": " to be able to locate the latest version of file."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,480",
+				"to": "00:06:46,880"
+			},
+			"offsets": {
+				"from": 405480,
+				"to": 406880
+			},
+			"text": " But at the same time, right now I"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,880",
+				"to": "00:06:48,520"
+			},
+			"offsets": {
+				"from": 406880,
+				"to": 408520
+			},
+			"text": " don't think it has the probability"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,520",
+				"to": "00:06:52,600"
+			},
+			"offsets": {
+				"from": 408520,
+				"to": 412600
+			},
+			"text": " with the smart counter, which is able to modify and able to compose"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,600",
+				"to": "00:06:54,720"
+			},
+			"offsets": {
+				"from": 412600,
+				"to": 414720
+			},
+			"text": " all the data purely on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,720",
+				"to": "00:06:56,560"
+			},
+			"offsets": {
+				"from": 414720,
+				"to": 416560
+			},
+			"text": " And there's something we really want to enable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,560",
+				"to": "00:06:59,520"
+			},
+			"offsets": {
+				"from": 416560,
+				"to": 419520
+			},
+			"text": " And second is that all the design is using easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,520",
+				"to": "00:07:03,200"
+			},
+			"offsets": {
+				"from": 419520,
+				"to": 423200
+			},
+			"text": " So basically the data providers will be paid by the user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,200",
+				"to": "00:07:06,680"
+			},
+			"offsets": {
+				"from": 423200,
+				"to": 426680
+			},
+			"text": " and also the users will pay the user to storage those content."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,680",
+				"to": "00:07:08,760"
+			},
+			"offsets": {
+				"from": 426680,
+				"to": 428760
+			},
+			"text": " So it's highly coupled with the design"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,760",
+				"to": "00:07:12,560"
+			},
+			"offsets": {
+				"from": 428760,
+				"to": 432560
+			},
+			"text": " with basically native support."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,560",
+				"to": "00:07:15,920"
+			},
+			"offsets": {
+				"from": 432560,
+				"to": 435920
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,920",
+				"to": "00:07:19,280"
+			},
+			"offsets": {
+				"from": 435920,
+				"to": 439280
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,280",
+				"to": "00:07:22,640"
+			},
+			"offsets": {
+				"from": 439280,
+				"to": 442640
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,640",
+				"to": "00:07:51,640"
+			},
+			"offsets": {
+				"from": 442640,
+				"to": 471640
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

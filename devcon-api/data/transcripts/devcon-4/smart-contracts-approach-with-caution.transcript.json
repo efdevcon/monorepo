@@ -1,0 +1,2914 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,080"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4080
+			},
+			"text": " >> So yeah, my name is Jake and we're going to talk about smart contracts and in particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,080",
+				"to": "00:00:08,440"
+			},
+			"offsets": {
+				"from": 4080,
+				"to": 8440
+			},
+			"text": " how to sort of detect what Etherscan calls internal transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,440",
+				"to": "00:00:12,040"
+			},
+			"offsets": {
+				"from": 8440,
+				"to": 12040
+			},
+			"text": " This is notoriously hard sort of thing to do and we've heard from lots of people that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,040",
+				"to": "00:00:15,640"
+			},
+			"offsets": {
+				"from": 12040,
+				"to": 15640
+			},
+			"text": " it's challenging so we just want to kind of present our experiences with it issues we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,640",
+				"to": "00:00:19,520"
+			},
+			"offsets": {
+				"from": 15640,
+				"to": 19520
+			},
+			"text": " seen and how to sort of handle these safely and how to prevent you from having similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,520",
+				"to": "00:00:21,080"
+			},
+			"offsets": {
+				"from": 19520,
+				"to": 21080
+			},
+			"text": " sorts of problems in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,080",
+				"to": "00:00:23,920"
+			},
+			"offsets": {
+				"from": 21080,
+				"to": 23920
+			},
+			"text": " Like you said, I'm on the cryptocurrency team at Coinbase."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,920",
+				"to": "00:00:27,920"
+			},
+			"offsets": {
+				"from": 23920,
+				"to": 27920
+			},
+			"text": " We are the team that runs our blockchain integrations for all the currencies, hot wallet, cold storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,920",
+				"to": "00:00:31,520"
+			},
+			"offsets": {
+				"from": 27920,
+				"to": 31520
+			},
+			"text": " sends, receives, we're hiring if that's interesting to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,520",
+				"to": "00:00:33,120"
+			},
+			"offsets": {
+				"from": 31520,
+				"to": 33120
+			},
+			"text": " Just come talk to me afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,120",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 33120,
+				"to": 38000
+			},
+			"text": " So yeah, we get started though and so who should care about this stuff?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:42,280"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 42280
+			},
+			"text": " These are kind of the primary three we see here is like exchanges, wallets and explorers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,280",
+				"to": "00:00:46,320"
+			},
+			"offsets": {
+				"from": 42280,
+				"to": 46320
+			},
+			"text": " The highest risk comes to exchanges which we'll talk about but really matters for everybody"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,320",
+				"to": "00:00:49,760"
+			},
+			"offsets": {
+				"from": 46320,
+				"to": 49760
+			},
+			"text": " and anybody building on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,760",
+				"to": "00:00:53,920"
+			},
+			"offsets": {
+				"from": 49760,
+				"to": 53920
+			},
+			"text": " And the reason is because if you're sort of accepting deposits of any sorts of Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,920",
+				"to": "00:00:55,760"
+			},
+			"offsets": {
+				"from": 53920,
+				"to": 55760
+			},
+			"text": " there's different ways it can happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,760",
+				"to": "00:01:00,200"
+			},
+			"offsets": {
+				"from": 55760,
+				"to": 60200
+			},
+			"text": " And so your primary responsibility is to take a transaction and sort of turn that into a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,200",
+				"to": "00:01:04,560"
+			},
+			"offsets": {
+				"from": 60200,
+				"to": 64560
+			},
+			"text": " set of debits and credits to accounts or to update balances or whatever you're trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,560",
+				"to": "00:01:05,560"
+			},
+			"offsets": {
+				"from": 64560,
+				"to": 65560
+			},
+			"text": " to do here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,560",
+				"to": "00:01:10,240"
+			},
+			"offsets": {
+				"from": 65560,
+				"to": 70240
+			},
+			"text": " And so if we take a transaction like this, we're going to go here and inspect it and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,240",
+				"to": "00:01:13,560"
+			},
+			"offsets": {
+				"from": 70240,
+				"to": 73560
+			},
+			"text": " okay, we should credit Alice one ETH and we do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,560",
+				"to": "00:01:16,920"
+			},
+			"offsets": {
+				"from": 73560,
+				"to": 76920
+			},
+			"text": " But the risk here is what if that's not actually what happened?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,920",
+				"to": "00:01:20,800"
+			},
+			"offsets": {
+				"from": 76920,
+				"to": 80800
+			},
+			"text": " What if we shouldn't have credit as Alice's ETH and there's some sort of bug in our code?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,800",
+				"to": "00:01:24,160"
+			},
+			"offsets": {
+				"from": 80800,
+				"to": 84160
+			},
+			"text": " This is what comes up with contracts because it's not a straightforward thing to do and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,160",
+				"to": "00:01:26,480"
+			},
+			"offsets": {
+				"from": 84160,
+				"to": 86480
+			},
+			"text": " there's a lot of nuance to how to handle it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,480",
+				"to": "00:01:30,360"
+			},
+			"offsets": {
+				"from": 86480,
+				"to": 90360
+			},
+			"text": " And so what this can lead to is a couple of different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,360",
+				"to": "00:01:32,520"
+			},
+			"offsets": {
+				"from": 90360,
+				"to": 92520
+			},
+			"text": " In valid data is sort of the first one here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,520",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 92520,
+				"to": 97000
+			},
+			"text": " Just having bad data, showing a wrong account balance is not ideal."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:39,800"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 99800
+			},
+			"text": " It's not the worst but it can lead to pretty bad experiences."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,800",
+				"to": "00:01:42,760"
+			},
+			"offsets": {
+				"from": 99800,
+				"to": 102760
+			},
+			"text": " If somebody thinks they have 10 ETH and they try and send that and then it just consistently"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,760",
+				"to": "00:01:45,960"
+			},
+			"offsets": {
+				"from": 102760,
+				"to": 105960
+			},
+			"text": " fails, they might switch to a different wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,960",
+				"to": "00:01:49,400"
+			},
+			"offsets": {
+				"from": 105960,
+				"to": 109400
+			},
+			"text": " And if you have systems building on top of this, if it's some sort of API and you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,400",
+				"to": "00:01:52,600"
+			},
+			"offsets": {
+				"from": 109400,
+				"to": 112600
+			},
+			"text": " downstream customers, then they're going to get bad data and they're going to have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,600",
+				"to": "00:01:56,400"
+			},
+			"offsets": {
+				"from": 112600,
+				"to": 116400
+			},
+			"text": " update accordingly their database and that's going to be pretty challenging and there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,400",
+				"to": "00:01:57,760"
+			},
+			"offsets": {
+				"from": 116400,
+				"to": 117760
+			},
+			"text": " not really good ways to handle that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,760",
+				"to": "00:02:00,360"
+			},
+			"offsets": {
+				"from": 117760,
+				"to": 120360
+			},
+			"text": " So you want to avoid this sort of as much as you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,360",
+				"to": "00:02:04,040"
+			},
+			"offsets": {
+				"from": 120360,
+				"to": 124040
+			},
+			"text": " And like I said, the real risk is actually to exchanges here with lost funds because"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,040",
+				"to": "00:02:09,360"
+			},
+			"offsets": {
+				"from": 124040,
+				"to": 129360
+			},
+			"text": " what they can do is this type of attack where you send in ETH or you don't really, it just"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,360",
+				"to": "00:02:10,360"
+			},
+			"offsets": {
+				"from": 129360,
+				"to": 130360
+			},
+			"text": " kind of looks like it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,360",
+				"to": "00:02:13,960"
+			},
+			"offsets": {
+				"from": 130360,
+				"to": 133960
+			},
+			"text": " You can trick the system and then they can sell that for some other currency and send"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,960",
+				"to": "00:02:19,200"
+			},
+			"offsets": {
+				"from": 133960,
+				"to": 139200
+			},
+			"text": " it off somewhere else or they can just send off ETH or and in exchange cases, a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,200",
+				"to": "00:02:21,840"
+			},
+			"offsets": {
+				"from": 139200,
+				"to": 141840
+			},
+			"text": " them have pooled wallets where everybody's funds are together."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,840",
+				"to": "00:02:25,760"
+			},
+			"offsets": {
+				"from": 141840,
+				"to": 145760
+			},
+			"text": " So if you send in and you send back out, it's probably not going to be the same ETH or it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,760",
+				"to": "00:02:26,760"
+			},
+			"offsets": {
+				"from": 145760,
+				"to": 146760
+			},
+			"text": " going to be something different."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,760",
+				"to": "00:02:32,160"
+			},
+			"offsets": {
+				"from": 146760,
+				"to": 152160
+			},
+			"text": " And so you can actually just steal a Ethereum that way and continue this until you're caught."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,160",
+				"to": "00:02:35,360"
+			},
+			"offsets": {
+				"from": 152160,
+				"to": 155360
+			},
+			"text": " And so if you have these types of mistakes, this is the types of headlines you might see"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,360",
+				"to": "00:02:37,200"
+			},
+			"offsets": {
+				"from": 155360,
+				"to": 157200
+			},
+			"text": " written about you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,200",
+				"to": "00:02:38,200"
+			},
+			"offsets": {
+				"from": 157200,
+				"to": 158200
+			},
+			"text": " It's not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,200",
+				"to": "00:02:42,840"
+			},
+			"offsets": {
+				"from": 158200,
+				"to": 162840
+			},
+			"text": " If you see Hacker One reports like this, you also don't want to see these kinds of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,840",
+				"to": "00:02:49,040"
+			},
+			"offsets": {
+				"from": 162840,
+				"to": 169040
+			},
+			"text": " And this is what we sort of saw at some point in the year and yeah, you don't want that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,040",
+				"to": "00:02:53,240"
+			},
+			"offsets": {
+				"from": 169040,
+				"to": 173240
+			},
+			"text": " And so what can go wrong here and how do we fix it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,240",
+				"to": "00:02:55,960"
+			},
+			"offsets": {
+				"from": 173240,
+				"to": 175960
+			},
+			"text": " To start that, we need to talk about how Ethereum moves."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,960",
+				"to": "00:02:59,400"
+			},
+			"offsets": {
+				"from": 175960,
+				"to": 179400
+			},
+			"text": " So as I'm sure most of us are familiar with, everything happens in a block, then you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,400",
+				"to": "00:03:03,160"
+			},
+			"offsets": {
+				"from": 179400,
+				"to": 183160
+			},
+			"text": " a set of transactions and in those transactions Ethereum can move."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,160",
+				"to": "00:03:05,800"
+			},
+			"offsets": {
+				"from": 183160,
+				"to": 185800
+			},
+			"text": " But within the transaction, it's not just one way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,800",
+				"to": "00:03:07,920"
+			},
+			"offsets": {
+				"from": 185800,
+				"to": 187920
+			},
+			"text": " You sort of have two different types here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,920",
+				"to": "00:03:09,680"
+			},
+			"offsets": {
+				"from": 187920,
+				"to": 189680
+			},
+			"text": " You've got what we can call account transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,680",
+				"to": "00:03:13,240"
+			},
+			"offsets": {
+				"from": 189680,
+				"to": 193240
+			},
+			"text": " It's just a standard transaction sending from one account to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,240",
+				"to": "00:03:16,080"
+			},
+			"offsets": {
+				"from": 193240,
+				"to": 196080
+			},
+			"text": " And you can also have this other bucket here which is like contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,080",
+				"to": "00:03:21,280"
+			},
+			"offsets": {
+				"from": 196080,
+				"to": 201280
+			},
+			"text": " And contracts can do pretty clever things which we'll talk about here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,280",
+				"to": "00:03:23,440"
+			},
+			"offsets": {
+				"from": 201280,
+				"to": 203440
+			},
+			"text": " But the account transfers, like I said, are pretty straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,440",
+				"to": "00:03:24,920"
+			},
+			"offsets": {
+				"from": 203440,
+				"to": 204920
+			},
+			"text": " This is what you'll see on Etherscan."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,920",
+				"to": "00:03:27,600"
+			},
+			"offsets": {
+				"from": 204920,
+				"to": 207600
+			},
+			"text": " And this is kind of what you'll get back from your like node if you're just asking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,600",
+				"to": "00:03:29,080"
+			},
+			"offsets": {
+				"from": 207600,
+				"to": 209080
+			},
+			"text": " \"Hey, give me a transaction.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,080",
+				"to": "00:03:33,240"
+			},
+			"offsets": {
+				"from": 209080,
+				"to": 213240
+			},
+			"text": " It's going to look a lot like this and calculating, you know, how much value you went to where."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,240",
+				"to": "00:03:35,040"
+			},
+			"offsets": {
+				"from": 213240,
+				"to": 215040
+			},
+			"text": " There's a from, there's a two."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,040",
+				"to": "00:03:36,440"
+			},
+			"offsets": {
+				"from": 215040,
+				"to": 216440
+			},
+			"text": " All that's pretty easy to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,440",
+				"to": "00:03:37,600"
+			},
+			"offsets": {
+				"from": 216440,
+				"to": 217600
+			},
+			"text": " And there's not really much risk here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,600",
+				"to": "00:03:42,440"
+			},
+			"offsets": {
+				"from": 217600,
+				"to": 222440
+			},
+			"text": " If it says a transaction happened in this format, it did and you're pretty good to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,440",
+				"to": "00:03:44,360"
+			},
+			"offsets": {
+				"from": 222440,
+				"to": 224360
+			},
+			"text": " But where it gets complicated is contract transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,360",
+				"to": "00:03:45,600"
+			},
+			"offsets": {
+				"from": 224360,
+				"to": 225600
+			},
+			"text": " They might look like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,600",
+				"to": "00:03:50,120"
+			},
+			"offsets": {
+				"from": 225600,
+				"to": 230120
+			},
+			"text": " So now instead of just sending to one user, you can send to sort of n amounts of accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,120",
+				"to": "00:03:51,280"
+			},
+			"offsets": {
+				"from": 230120,
+				"to": 231280
+			},
+			"text": " and it scales up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,280",
+				"to": "00:03:55,800"
+			},
+			"offsets": {
+				"from": 231280,
+				"to": 235800
+			},
+			"text": " And then what's really sort of difficult about these is that this is custom code people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,800",
+				"to": "00:03:56,800"
+			},
+			"offsets": {
+				"from": 235800,
+				"to": 236800
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,800",
+				"to": "00:04:00,360"
+			},
+			"offsets": {
+				"from": 236800,
+				"to": 240360
+			},
+			"text": " So they have a lot of room outside of just what the protocol allows to trick you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,360",
+				"to": "00:04:05,960"
+			},
+			"offsets": {
+				"from": 240360,
+				"to": 245960
+			},
+			"text": " And it's specifically target issues in your system and pack you because of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,960",
+				"to": "00:04:09,040"
+			},
+			"offsets": {
+				"from": 245960,
+				"to": 249040
+			},
+			"text": " And so there's not a great API for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,040",
+				"to": "00:04:13,360"
+			},
+			"offsets": {
+				"from": 249040,
+				"to": 253360
+			},
+			"text": " What you have to use is this API called the tracing API which is fairly low level and not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,360",
+				"to": "00:04:14,880"
+			},
+			"offsets": {
+				"from": 253360,
+				"to": 254880
+			},
+			"text": " that easy to parse."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,880",
+				"to": "00:04:15,880"
+			},
+			"offsets": {
+				"from": 254880,
+				"to": 255880
+			},
+			"text": " It looks a bit like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,880",
+				"to": "00:04:18,320"
+			},
+			"offsets": {
+				"from": 255880,
+				"to": 258320
+			},
+			"text": " You're not going to be able to read it, but it's pretty complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,320",
+				"to": "00:04:19,760"
+			},
+			"offsets": {
+				"from": 258320,
+				"to": 259760
+			},
+			"text": " And this is actually a simple one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,760",
+				"to": "00:04:23,520"
+			},
+			"offsets": {
+				"from": 259760,
+				"to": 263520
+			},
+			"text": " This is basically one of those sends where I showed like 10 in the previous slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,520",
+				"to": "00:04:24,720"
+			},
+			"offsets": {
+				"from": 263520,
+				"to": 264720
+			},
+			"text": " So it gets more complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,720",
+				"to": "00:04:26,480"
+			},
+			"offsets": {
+				"from": 264720,
+				"to": 266480
+			},
+			"text": " There's a lot of nuance here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,480",
+				"to": "00:04:30,360"
+			},
+			"offsets": {
+				"from": 266480,
+				"to": 270360
+			},
+			"text": " But if we started to think about inspecting these and seeing what it looks like, if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,360",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 270360,
+				"to": 275000
+			},
+			"text": " zoom in, you'll see there's a from and a gas and a two similar to a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:39,680"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 279680
+			},
+			"text": " But if you were to take it and just treat this as such, you'd be in for not a good"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,680",
+				"to": "00:04:41,160"
+			},
+			"offsets": {
+				"from": 279680,
+				"to": 281160
+			},
+			"text": " time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,160",
+				"to": "00:04:45,920"
+			},
+			"offsets": {
+				"from": 281160,
+				"to": 285920
+			},
+			"text": " And so we'll go over a few examples of different types of problems that can happen and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,920",
+				"to": "00:04:47,880"
+			},
+			"offsets": {
+				"from": 285920,
+				"to": 287880
+			},
+			"text": " right ways to handle this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,880",
+				"to": "00:04:51,360"
+			},
+			"offsets": {
+				"from": 287880,
+				"to": 291360
+			},
+			"text": " And so on this left side we have what we're going to call traces here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,360",
+				"to": "00:04:53,400"
+			},
+			"offsets": {
+				"from": 291360,
+				"to": 293400
+			},
+			"text": " There's different types of calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,400",
+				"to": "00:04:54,400"
+			},
+			"offsets": {
+				"from": 293400,
+				"to": 294400
+			},
+			"text": " And we see one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,400",
+				"to": "00:04:56,720"
+			},
+			"offsets": {
+				"from": 294400,
+				"to": 296720
+			},
+			"text": " We send Alice one, another to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,720",
+				"to": "00:05:01,440"
+			},
+			"offsets": {
+				"from": 296720,
+				"to": 301440
+			},
+			"text": " And if we just turn that into credits and debits accordingly, we would do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,440",
+				"to": "00:05:05,720"
+			},
+			"offsets": {
+				"from": 301440,
+				"to": 305720
+			},
+			"text": " And the issue here is like I presented earlier, it doesn't actually happen that way in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,720",
+				"to": "00:05:06,720"
+			},
+			"offsets": {
+				"from": 305720,
+				"to": 306720
+			},
+			"text": " transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,720",
+				"to": "00:05:08,480"
+			},
+			"offsets": {
+				"from": 306720,
+				"to": 308480
+			},
+			"text": " And it's because we're missing something."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,480",
+				"to": "00:05:11,240"
+			},
+			"offsets": {
+				"from": 308480,
+				"to": 311240
+			},
+			"text": " So not everything's going to be on the slides here and we're going to sort of bring those"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,240",
+				"to": "00:05:12,520"
+			},
+			"offsets": {
+				"from": 311240,
+				"to": 312520
+			},
+			"text": " in over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,520",
+				"to": "00:05:18,240"
+			},
+			"offsets": {
+				"from": 312520,
+				"to": 318240
+			},
+			"text": " And so in this case, what you actually need to look at is this thing called the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,240",
+				"to": "00:05:20,680"
+			},
+			"offsets": {
+				"from": 318240,
+				"to": 320680
+			},
+			"text": " status, which we'll see here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,680",
+				"to": "00:05:25,280"
+			},
+			"offsets": {
+				"from": 320680,
+				"to": 325280
+			},
+			"text": " So this came with an upgrade, I believe last year, I think of the Byzantium upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,280",
+				"to": "00:05:28,760"
+			},
+			"offsets": {
+				"from": 325280,
+				"to": 328760
+			},
+			"text": " They added this new opcode and they also added the status to this thing called the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,760",
+				"to": "00:05:29,840"
+			},
+			"offsets": {
+				"from": 328760,
+				"to": 329840
+			},
+			"text": " receipt."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,840",
+				"to": "00:05:33,960"
+			},
+			"offsets": {
+				"from": 329840,
+				"to": 333960
+			},
+			"text": " And so when a transaction is included in a block, the blockchain will generate this thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,960",
+				"to": "00:05:36,920"
+			},
+			"offsets": {
+				"from": 333960,
+				"to": 336920
+			},
+			"text": " called the receipt, which tells you it's similar to like a store receipt."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,920",
+				"to": "00:05:39,600"
+			},
+			"offsets": {
+				"from": 336920,
+				"to": 339600
+			},
+			"text": " It's just, you know, here's the final state of what happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,600",
+				"to": "00:05:43,840"
+			},
+			"offsets": {
+				"from": 339600,
+				"to": 343840
+			},
+			"text": " And so if you didn't use all the gas or it failed for some reason, that kind of information"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,840",
+				"to": "00:05:45,280"
+			},
+			"offsets": {
+				"from": 343840,
+				"to": 345280
+			},
+			"text": " will be there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,280",
+				"to": "00:05:47,840"
+			},
+			"offsets": {
+				"from": 345280,
+				"to": 347840
+			},
+			"text": " And so in this case, we see that the receipt is a failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,840",
+				"to": "00:05:51,360"
+			},
+			"offsets": {
+				"from": 347840,
+				"to": 351360
+			},
+			"text": " And so what that means is actually none of the transfers that we might have, that might"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,360",
+				"to": "00:05:55,600"
+			},
+			"offsets": {
+				"from": 351360,
+				"to": 355600
+			},
+			"text": " have happened if it didn't fail, can actually happen or didn't happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,600",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 355600,
+				"to": 360000
+			},
+			"text": " And so accounting for that in this example, we see here that nobody received any and we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:01,040"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 361040
+			},
+			"text": " good to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,040",
+				"to": "00:06:07,400"
+			},
+			"offsets": {
+				"from": 361040,
+				"to": 367400
+			},
+			"text": " So for example two, this is the same sort of scenario here, except we do see this thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,400",
+				"to": "00:06:10,080"
+			},
+			"offsets": {
+				"from": 367400,
+				"to": 370080
+			},
+			"text": " that says fail on one of these calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,080",
+				"to": "00:06:14,200"
+			},
+			"offsets": {
+				"from": 370080,
+				"to": 374200
+			},
+			"text": " And I didn't really describe the calls yet, but a call is this sort of, it's this type"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,200",
+				"to": "00:06:16,840"
+			},
+			"offsets": {
+				"from": 374200,
+				"to": 376840
+			},
+			"text": " of a trace, there's a few different types."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,840",
+				"to": "00:06:20,680"
+			},
+			"offsets": {
+				"from": 376840,
+				"to": 380680
+			},
+			"text": " And so these sends are also calls, but these ones are other ones that may just like call"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,680",
+				"to": "00:06:24,720"
+			},
+			"offsets": {
+				"from": 380680,
+				"to": 384720
+			},
+			"text": " some function to, you know, log something or that doesn't actually transfer anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,720",
+				"to": "00:06:26,400"
+			},
+			"offsets": {
+				"from": 384720,
+				"to": 386400
+			},
+			"text": " anywhere, just, you know, calling a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,400",
+				"to": "00:06:30,520"
+			},
+			"offsets": {
+				"from": 386400,
+				"to": 390520
+			},
+			"text": " And so generally you might ignore these if you just care about sort of your customer's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,520",
+				"to": "00:06:32,760"
+			},
+			"offsets": {
+				"from": 390520,
+				"to": 392760
+			},
+			"text": " information."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,760",
+				"to": "00:06:36,400"
+			},
+			"offsets": {
+				"from": 392760,
+				"to": 396400
+			},
+			"text": " And so learning what we just learned, we do check the transaction receipt status and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,400",
+				"to": "00:06:41,880"
+			},
+			"offsets": {
+				"from": 396400,
+				"to": 401880
+			},
+			"text": " try and parse this and we see it's a success, so we credit Alice and Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,880",
+				"to": "00:06:46,360"
+			},
+			"offsets": {
+				"from": 401880,
+				"to": 406360
+			},
+			"text": " And if you sort of caught on from the previous example, it didn't actually happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,360",
+				"to": "00:06:49,880"
+			},
+			"offsets": {
+				"from": 406360,
+				"to": 409880
+			},
+			"text": " But what's interesting about this scenario is it's not that nobody received any, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,880",
+				"to": "00:06:51,640"
+			},
+			"offsets": {
+				"from": 409880,
+				"to": 411640
+			},
+			"text": " that only some did."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,640",
+				"to": "00:06:54,280"
+			},
+			"offsets": {
+				"from": 411640,
+				"to": 414280
+			},
+			"text": " So this transaction receipt status doesn't tell you everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,280",
+				"to": "00:06:58,360"
+			},
+			"offsets": {
+				"from": 414280,
+				"to": 418360
+			},
+			"text": " There's this possibility of like a full failure where the transaction receipt is a failure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,360",
+				"to": "00:07:02,240"
+			},
+			"offsets": {
+				"from": 418360,
+				"to": 422240
+			},
+			"text": " but there's this partial failure states as well and these can get more complicated than"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,240",
+				"to": "00:07:03,240"
+			},
+			"offsets": {
+				"from": 422240,
+				"to": 423240
+			},
+			"text": " this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,240",
+				"to": "00:07:07,120"
+			},
+			"offsets": {
+				"from": 423240,
+				"to": 427120
+			},
+			"text": " And so in this example, what we really need to do when we're looking at these traces"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,120",
+				"to": "00:07:09,440"
+			},
+			"offsets": {
+				"from": 427120,
+				"to": 429440
+			},
+			"text": " is turn it into a tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,440",
+				"to": "00:07:12,960"
+			},
+			"offsets": {
+				"from": 429440,
+				"to": 432960
+			},
+			"text": " So it's actually, if we can see this like hierarchy here, we have this call at the root"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,960",
+				"to": "00:07:16,560"
+			},
+			"offsets": {
+				"from": 432960,
+				"to": 436560
+			},
+			"text": " and then we have, you know, Alice receives one and then a few nested calls and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,560",
+				"to": "00:07:17,720"
+			},
+			"offsets": {
+				"from": 436560,
+				"to": 437720
+			},
+			"text": " one of them is a failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,720",
+				"to": "00:07:20,600"
+			},
+			"offsets": {
+				"from": 437720,
+				"to": 440600
+			},
+			"text": " And what this looks like in the traces, there's this thing called, there's an error"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,600",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 440600,
+				"to": 444000
+			},
+			"text": " on it and if it has an error, that means it failed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:27,520"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 447520
+			},
+			"text": " And so when you put it into this tree format, you can see that the send of Bob is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,520",
+				"to": "00:07:29,800"
+			},
+			"offsets": {
+				"from": 447520,
+				"to": 449800
+			},
+			"text": " within that part of the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,800",
+				"to": "00:07:33,280"
+			},
+			"offsets": {
+				"from": 449800,
+				"to": 453280
+			},
+			"text": " And when it's there, what that means is that that doesn't actually happen and you shouldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,280",
+				"to": "00:07:35,160"
+			},
+			"offsets": {
+				"from": 453280,
+				"to": 455160
+			},
+			"text": " create any credits or debits."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,160",
+				"to": "00:07:41,240"
+			},
+			"offsets": {
+				"from": 455160,
+				"to": 461240
+			},
+			"text": " And so accounting for that, we give Alice the one, and we're good to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,240",
+				"to": "00:07:46,760"
+			},
+			"offsets": {
+				"from": 461240,
+				"to": 466760
+			},
+			"text": " So the last example here looks entirely the same as the former one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,760",
+				"to": "00:07:49,720"
+			},
+			"offsets": {
+				"from": 466760,
+				"to": 469720
+			},
+			"text": " So there's even more here to kind of look at."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,720",
+				"to": "00:07:55,440"
+			},
+			"offsets": {
+				"from": 469720,
+				"to": 475440
+			},
+			"text": " And so in this example, if we did the same thing, we credit Alice and then that's wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,440",
+				"to": "00:07:59,320"
+			},
+			"offsets": {
+				"from": 475440,
+				"to": 479320
+			},
+			"text": " And in this time, nobody should receive anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,320",
+				"to": "00:08:01,120"
+			},
+			"offsets": {
+				"from": 479320,
+				"to": 481120
+			},
+			"text": " And so there's another thing missing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,120",
+				"to": "00:08:03,520"
+			},
+			"offsets": {
+				"from": 481120,
+				"to": 483520
+			},
+			"text": " So when we look at these calls, there's different types of calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,520",
+				"to": "00:08:06,680"
+			},
+			"offsets": {
+				"from": 483520,
+				"to": 486680
+			},
+			"text": " There's not just one, there's all sorts of different ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,680",
+				"to": "00:08:13,120"
+			},
+			"offsets": {
+				"from": 486680,
+				"to": 493120
+			},
+			"text": " But in particular, in this example, I'm using one called a delegate call."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,120",
+				"to": "00:08:18,160"
+			},
+			"offsets": {
+				"from": 493120,
+				"to": 498160
+			},
+			"text": " So we need to pick out the specific types of calls that can actually transfer a theorem"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,160",
+				"to": "00:08:22,200"
+			},
+			"offsets": {
+				"from": 498160,
+				"to": 502200
+			},
+			"text": " around and sort of either ignore the other ones or retreat them differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,200",
+				"to": "00:08:25,880"
+			},
+			"offsets": {
+				"from": 502200,
+				"to": 505880
+			},
+			"text": " So in this case, a delegate call, without going into sort of details of what exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,880",
+				"to": "00:08:30,280"
+			},
+			"offsets": {
+				"from": 505880,
+				"to": 510280
+			},
+			"text": " it does, it looks identical to just sending a theorem somewhere except it doesn't actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,280",
+				"to": "00:08:31,760"
+			},
+			"offsets": {
+				"from": 510280,
+				"to": 511760
+			},
+			"text": " do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,760",
+				"to": "00:08:39,080"
+			},
+			"offsets": {
+				"from": 511760,
+				"to": 519080
+			},
+			"text": " And so in this example, when we account for that, we do see that nothing happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,080",
+				"to": "00:08:41,440"
+			},
+			"offsets": {
+				"from": 519080,
+				"to": 521440
+			},
+			"text": " So that was a little bit of like how to handle these."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,440",
+				"to": "00:08:44,360"
+			},
+			"offsets": {
+				"from": 521440,
+				"to": 524360
+			},
+			"text": " And it's a tricky thing, and it could get more complicated in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,360",
+				"to": "00:08:47,560"
+			},
+			"offsets": {
+				"from": 524360,
+				"to": 527560
+			},
+			"text": " That's like it today, but a lot of really clever things are happening, a lot of cool"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,560",
+				"to": "00:08:49,280"
+			},
+			"offsets": {
+				"from": 527560,
+				"to": 529280
+			},
+			"text": " stuff people want to work on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,280",
+				"to": "00:08:50,780"
+			},
+			"offsets": {
+				"from": 529280,
+				"to": 530780
+			},
+			"text": " And it's really hard to get this right."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,780",
+				"to": "00:08:53,860"
+			},
+			"offsets": {
+				"from": 530780,
+				"to": 533860
+			},
+			"text": " And these things aren't that documented either."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,860",
+				"to": "00:08:58,400"
+			},
+			"offsets": {
+				"from": 533860,
+				"to": 538400
+			},
+			"text": " So we got to figure out a way that even if we don't know the answer, how do we sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,400",
+				"to": "00:09:00,740"
+			},
+			"offsets": {
+				"from": 538400,
+				"to": 540740
+			},
+			"text": " make sure we're not exposing ourselves to these issues?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,740",
+				"to": "00:09:04,920"
+			},
+			"offsets": {
+				"from": 540740,
+				"to": 544920
+			},
+			"text": " Because if you've been in many of the talks today, so many of them are based around contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,920",
+				"to": "00:09:05,920"
+			},
+			"offsets": {
+				"from": 544920,
+				"to": 545920
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,920",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 545920,
+				"to": 548000
+			},
+			"text": " Identity and all sorts of things are just contracts sending everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 552000
+			},
+			"text": " And so you have to be able to support these, but many exchanges are many while it's don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:16,520"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 556520
+			},
+			"text": " because of the complexity around this, and because of the risk in particular to exchanges"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,520",
+				"to": "00:09:19,560"
+			},
+			"offsets": {
+				"from": 556520,
+				"to": 559560
+			},
+			"text": " of getting hacked and actually losing money."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,560",
+				"to": "00:09:24,500"
+			},
+			"offsets": {
+				"from": 559560,
+				"to": 564500
+			},
+			"text": " And so the kind of answer here is this type of sort of detection and response."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,500",
+				"to": "00:09:28,700"
+			},
+			"offsets": {
+				"from": 564500,
+				"to": 568700
+			},
+			"text": " And the first step of that is just acknowledging that you don't know everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,700",
+				"to": "00:09:31,460"
+			},
+			"offsets": {
+				"from": 568700,
+				"to": 571460
+			},
+			"text": " Things are going to change, and especially if you're working with multiple blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,460",
+				"to": "00:09:35,100"
+			},
+			"offsets": {
+				"from": 571460,
+				"to": 575100
+			},
+			"text": " and multiple currencies, that kind of stuff is just some of it's going to slip by."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,100",
+				"to": "00:09:38,300"
+			},
+			"offsets": {
+				"from": 575100,
+				"to": 578300
+			},
+			"text": " Some little note in a release notes of some upgrade of your software is going to change"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,300",
+				"to": "00:09:40,460"
+			},
+			"offsets": {
+				"from": 578300,
+				"to": 580460
+			},
+			"text": " something, and you may not realize it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,460",
+				"to": "00:09:44,460"
+			},
+			"offsets": {
+				"from": 580460,
+				"to": 584460
+			},
+			"text": " And so you just want to take a step back and say, you know, I might not know everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,460",
+				"to": "00:09:46,780"
+			},
+			"offsets": {
+				"from": 584460,
+				"to": 586780
+			},
+			"text": " And if you don't, well, like how do you do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,780",
+				"to": "00:09:48,740"
+			},
+			"offsets": {
+				"from": 586780,
+				"to": 588740
+			},
+			"text": " Like how do you make an answer here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,740",
+				"to": "00:09:51,760"
+			},
+			"offsets": {
+				"from": 588740,
+				"to": 591760
+			},
+			"text": " And so one way to do this is sort of cross check your data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,760",
+				"to": "00:09:54,980"
+			},
+			"offsets": {
+				"from": 591760,
+				"to": 594980
+			},
+			"text": " There's a lot of people building, there's a lot of people you can talk to you about this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,980",
+				"to": "00:09:58,080"
+			},
+			"offsets": {
+				"from": 594980,
+				"to": 598080
+			},
+			"text": " but really if you can automate this, that's sort of the ideal here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,080",
+				"to": "00:10:01,480"
+			},
+			"offsets": {
+				"from": 598080,
+				"to": 601480
+			},
+			"text": " If you can cross check your data and say, oh, well, I think this happened, and then this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,480",
+				"to": "00:10:06,420"
+			},
+			"offsets": {
+				"from": 601480,
+				"to": 606420
+			},
+			"text": " other thing says it doesn't, and it's a source you trust, then maybe you shouldn't do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,420",
+				"to": "00:10:10,420"
+			},
+			"offsets": {
+				"from": 606420,
+				"to": 610420
+			},
+			"text": " And so what you should do there is actually like fail securely."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,420",
+				"to": "00:10:14,520"
+			},
+			"offsets": {
+				"from": 610420,
+				"to": 614520
+			},
+			"text": " So rather than failing like open and letting some sort of payment go through and you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,520",
+				"to": "00:10:18,320"
+			},
+			"offsets": {
+				"from": 614520,
+				"to": 618320
+			},
+			"text": " credit an account and allow that to be hacked, just set it aside, like put it in a queue,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,320",
+				"to": "00:10:21,660"
+			},
+			"offsets": {
+				"from": 618320,
+				"to": 621660
+			},
+			"text": " alert somebody on your team, they can investigate it and see what's going on, and then they"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,660",
+				"to": "00:10:24,500"
+			},
+			"offsets": {
+				"from": 621660,
+				"to": 624500
+			},
+			"text": " can determine if it's actually a bug or if it's not."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,500",
+				"to": "00:10:27,800"
+			},
+			"offsets": {
+				"from": 624500,
+				"to": 627800
+			},
+			"text": " And so this is actually, this is the kind of stuff we've done now, and it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,800",
+				"to": "00:10:30,240"
+			},
+			"offsets": {
+				"from": 627800,
+				"to": 630240
+			},
+			"text": " really helpful even outside of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,240",
+				"to": "00:10:33,720"
+			},
+			"offsets": {
+				"from": 630240,
+				"to": 633720
+			},
+			"text": " Like since we've implemented, we actually haven't seen anything like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,720",
+				"to": "00:10:36,440"
+			},
+			"offsets": {
+				"from": 633720,
+				"to": 636440
+			},
+			"text": " But what we have seen is just little things being off here and there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,440",
+				"to": "00:10:40,400"
+			},
+			"offsets": {
+				"from": 636440,
+				"to": 640400
+			},
+			"text": " You know, some calculation of a balance is slightly wrong or some type of send we didn't,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,400",
+				"to": "00:10:43,320"
+			},
+			"offsets": {
+				"from": 640400,
+				"to": 643320
+			},
+			"text": " or some type of receive we didn't support."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,320",
+				"to": "00:10:44,320"
+			},
+			"offsets": {
+				"from": 643320,
+				"to": 644320
+			},
+			"text": " And it's just like, oh, it's off."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,320",
+				"to": "00:10:47,780"
+			},
+			"offsets": {
+				"from": 644320,
+				"to": 647780
+			},
+			"text": " And it's like, cool, it's like it's alert just that something's wrong and we get to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,780",
+				"to": "00:10:51,200"
+			},
+			"offsets": {
+				"from": 647780,
+				"to": 651200
+			},
+			"text": " and fix it and figure out why and improve our systems without ever affecting any of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,200",
+				"to": "00:10:54,880"
+			},
+			"offsets": {
+				"from": 651200,
+				"to": 654880
+			},
+			"text": " our customers, which is even better that you get alerted of things that are wrong and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,880",
+				"to": "00:10:58,760"
+			},
+			"offsets": {
+				"from": 654880,
+				"to": 658760
+			},
+			"text": " you're just like, oh, cool, I can fix that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,760",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 658760,
+				"to": 665000
+			},
+			"text": " And so we'll kind of put things in to takeaways here and sort of sum all this up."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:06,720"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 666720
+			},
+			"text": " So the first step is to check the receipt status."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,720",
+				"to": "00:11:08,160"
+			},
+			"offsets": {
+				"from": 666720,
+				"to": 668160
+			},
+			"text": " It's easy to check."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,160",
+				"to": "00:11:09,420"
+			},
+			"offsets": {
+				"from": 668160,
+				"to": 669420
+			},
+			"text": " There's APIs for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,420",
+				"to": "00:11:10,420"
+			},
+			"offsets": {
+				"from": 669420,
+				"to": 670420
+			},
+			"text": " It's a Boolean field."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,420",
+				"to": "00:11:12,060"
+			},
+			"offsets": {
+				"from": 670420,
+				"to": 672060
+			},
+			"text": " You know, it's true or false, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,060",
+				"to": "00:11:14,420"
+			},
+			"offsets": {
+				"from": 672060,
+				"to": 674420
+			},
+			"text": " It's numbers, but so just check that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,420",
+				"to": "00:11:18,880"
+			},
+			"offsets": {
+				"from": 674420,
+				"to": 678880
+			},
+			"text": " If it says it failed, then not that the transfers happened, the nuance here is like, you do still"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,880",
+				"to": "00:11:20,160"
+			},
+			"offsets": {
+				"from": 678880,
+				"to": 680160
+			},
+			"text": " pay for the gas here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,160",
+				"to": "00:11:24,360"
+			},
+			"offsets": {
+				"from": 680160,
+				"to": 684360
+			},
+			"text": " Like failed transactions are still included in blocks because somebody had to execute"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,360",
+				"to": "00:11:25,360"
+			},
+			"offsets": {
+				"from": 684360,
+				"to": 685360
+			},
+			"text": " it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,360",
+				"to": "00:11:28,080"
+			},
+			"offsets": {
+				"from": 685360,
+				"to": 688080
+			},
+			"text": " All the miners and nodes need to execute the transaction to the failure to validate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,080",
+				"to": "00:11:29,920"
+			},
+			"offsets": {
+				"from": 688080,
+				"to": 689920
+			},
+			"text": " So it still costs like resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,920",
+				"to": "00:11:33,600"
+			},
+			"offsets": {
+				"from": 689920,
+				"to": 693600
+			},
+			"text": " So even though it failed, you still need to check it and they still do actually pay the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,600",
+				"to": "00:11:37,560"
+			},
+			"offsets": {
+				"from": 693600,
+				"to": 697560
+			},
+			"text": " gas for it, but none of the transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,560",
+				"to": "00:11:43,120"
+			},
+			"offsets": {
+				"from": 697560,
+				"to": 703120
+			},
+			"text": " And the second one here is to parse the trace as the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,120",
+				"to": "00:11:45,700"
+			},
+			"offsets": {
+				"from": 703120,
+				"to": 705700
+			},
+			"text": " There's information in the way the trace is formatted."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,700",
+				"to": "00:11:49,180"
+			},
+			"offsets": {
+				"from": 705700,
+				"to": 709180
+			},
+			"text": " And the traces I sort of showed here that I'm describing are parodies."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,180",
+				"to": "00:11:52,420"
+			},
+			"offsets": {
+				"from": 709180,
+				"to": 712420
+			},
+			"text": " Geth has a tracing API like this too now, but they're not the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,420",
+				"to": "00:11:53,660"
+			},
+			"offsets": {
+				"from": 712420,
+				"to": 713660
+			},
+			"text": " It's not a standardized thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,660",
+				"to": "00:11:57,700"
+			},
+			"offsets": {
+				"from": 713660,
+				"to": 717700
+			},
+			"text": " And so you need to reference sort of Geth's documentation for how it works there."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,700",
+				"to": "00:12:00,780"
+			},
+			"offsets": {
+				"from": 717700,
+				"to": 720780
+			},
+			"text": " I imagine it's similar, but you need to take this flat list."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,780",
+				"to": "00:12:03,340"
+			},
+			"offsets": {
+				"from": 720780,
+				"to": 723340
+			},
+			"text": " They provide you and sort of structure it into some sort of tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,340",
+				"to": "00:12:08,820"
+			},
+			"offsets": {
+				"from": 723340,
+				"to": 728820
+			},
+			"text": " And then once you do that, you can inspect these sort of arid subtrees and you filter"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,820",
+				"to": "00:12:12,660"
+			},
+			"offsets": {
+				"from": 728820,
+				"to": 732660
+			},
+			"text": " them out or mark them failed or whatever you want to do there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,660",
+				"to": "00:12:18,220"
+			},
+			"offsets": {
+				"from": 732660,
+				"to": 738220
+			},
+			"text": " Thirdly, we want to reject these delegate and call code calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,220",
+				"to": "00:12:21,180"
+			},
+			"offsets": {
+				"from": 738220,
+				"to": 741180
+			},
+			"text": " These are two different types of ones that kind of look like they transferring things"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,180",
+				"to": "00:12:23,380"
+			},
+			"offsets": {
+				"from": 741180,
+				"to": 743380
+			},
+			"text": " and but they actually don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,380",
+				"to": "00:12:28,160"
+			},
+			"offsets": {
+				"from": 743380,
+				"to": 748160
+			},
+			"text": " And then if you kind of take the earlier point about failing safely here, what you really"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,160",
+				"to": "00:12:30,840"
+			},
+			"offsets": {
+				"from": 748160,
+				"to": 750840
+			},
+			"text": " should do here is actually just select the ones you know do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,840",
+				"to": "00:12:31,840"
+			},
+			"offsets": {
+				"from": 750840,
+				"to": 751840
+			},
+			"text": " So this is similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,840",
+				"to": "00:12:32,840"
+			},
+			"offsets": {
+				"from": 751840,
+				"to": 752840
+			},
+			"text": " If there's an upgrade you don't know about."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,840",
+				"to": "00:12:35,600"
+			},
+			"offsets": {
+				"from": 752840,
+				"to": 755600
+			},
+			"text": " If there's some sort of change, at least you know these ones work."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,600",
+				"to": "00:12:38,840"
+			},
+			"offsets": {
+				"from": 755600,
+				"to": 758840
+			},
+			"text": " I didn't mention these other ones, but these are like creatives for creating contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,840",
+				"to": "00:12:42,180"
+			},
+			"offsets": {
+				"from": 758840,
+				"to": 762180
+			},
+			"text": " self-destruct for destroying one, and rewards for like block awards."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,180",
+				"to": "00:12:45,860"
+			},
+			"offsets": {
+				"from": 762180,
+				"to": 765860
+			},
+			"text": " These are the kind of things that can you know credit, eth, in like other ways or like"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,860",
+				"to": "00:12:46,860"
+			},
+			"offsets": {
+				"from": 765860,
+				"to": 766860
+			},
+			"text": " send it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,860",
+				"to": "00:12:50,220"
+			},
+			"offsets": {
+				"from": 766860,
+				"to": 770220
+			},
+			"text": " And so if you select those and handle those cases appropriately, you know you're sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,220",
+				"to": "00:12:52,140"
+			},
+			"offsets": {
+				"from": 770220,
+				"to": 772140
+			},
+			"text": " of at least reasonably safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,140",
+				"to": "00:12:57,700"
+			},
+			"offsets": {
+				"from": 772140,
+				"to": 777700
+			},
+			"text": " And then if you implement this next point, don't trust until verified, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,700",
+				"to": "00:12:59,140"
+			},
+			"offsets": {
+				"from": 777700,
+				"to": 779140
+			},
+			"text": " Verify your data, check with other sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,140",
+				"to": "00:13:03,060"
+			},
+			"offsets": {
+				"from": 779140,
+				"to": 783060
+			},
+			"text": " You don't have to like trust it completely, but at least it's sort of a signal that something's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,060",
+				"to": "00:13:04,060"
+			},
+			"offsets": {
+				"from": 783060,
+				"to": 784060
+			},
+			"text": " wrong, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,060",
+				"to": "00:13:05,540"
+			},
+			"offsets": {
+				"from": 784060,
+				"to": 785540
+			},
+			"text": " Don't just take that and write it to your database."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,540",
+				"to": "00:13:07,020"
+			},
+			"offsets": {
+				"from": 785540,
+				"to": 787020
+			},
+			"text": " You're like, that's the truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,020",
+				"to": "00:13:09,380"
+			},
+			"offsets": {
+				"from": 787020,
+				"to": 789380
+			},
+			"text": " But what you should do is at least look at it and be like, all right, something's weird"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,380",
+				"to": "00:13:10,380"
+			},
+			"offsets": {
+				"from": 789380,
+				"to": 790380
+			},
+			"text": " here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,380",
+				"to": "00:13:13,820"
+			},
+			"offsets": {
+				"from": 790380,
+				"to": 793820
+			},
+			"text": " And then you're like, I'm going to do a lot of false positives, you know, maybe pick some"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,820",
+				"to": "00:13:16,580"
+			},
+			"offsets": {
+				"from": 793820,
+				"to": 796580
+			},
+			"text": " other source."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,580",
+				"to": "00:13:17,940"
+			},
+			"offsets": {
+				"from": 796580,
+				"to": 797940
+			},
+			"text": " And yeah, that's it for today."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,940",
+				"to": "00:13:21,820"
+			},
+			"offsets": {
+				"from": 797940,
+				"to": 801820
+			},
+			"text": " So I hope you all stay safe out there and hope everybody we learned something here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,820",
+				"to": "00:13:25,620"
+			},
+			"offsets": {
+				"from": 801820,
+				"to": 805620
+			},
+			"text": " And we've got I think some time for questions about form interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,620",
+				"to": "00:13:26,140"
+			},
+			"offsets": {
+				"from": 805620,
+				"to": 806140
+			},
+			"text": " So if you have any."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,140",
+				"to": "00:13:36,140"
+			},
+			"offsets": {
+				"from": 806140,
+				"to": 816140
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,140",
+				"to": "00:13:46,140"
+			},
+			"offsets": {
+				"from": 816140,
+				"to": 826140
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,140",
+				"to": "00:13:56,140"
+			},
+			"offsets": {
+				"from": 826140,
+				"to": 836140
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,140",
+				"to": "00:14:00,140"
+			},
+			"offsets": {
+				"from": 836140,
+				"to": 840140
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

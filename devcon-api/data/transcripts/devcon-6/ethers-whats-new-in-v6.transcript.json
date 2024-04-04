@@ -1,0 +1,2826 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 17000
+			},
+			"text": " How's Steph Hung going?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 19000
+			},
+			"text": " Yeah, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 21000
+			},
+			"text": " So my name is Richard Moore."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 22000
+			},
+			"text": " I go by Rick New online."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 27000
+			},
+			"text": " And so I write an ethereum library called ether's JS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 30000
+			},
+			"text": " So what is ether's?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:34,600"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 34600
+			},
+			"text": " It aims to be a complete, compact and friendly ethereum library that developers can use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,600",
+				"to": "00:00:39,200"
+			},
+			"offsets": {
+				"from": 34600,
+				"to": 39200
+			},
+			"text": " but also part of user friendliness is safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,200",
+				"to": "00:00:44,760"
+			},
+			"offsets": {
+				"from": 39200,
+				"to": 44760
+			},
+			"text": " Like don't let the developer do things that like bites in the ass without realizing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,760",
+				"to": "00:00:46,600"
+			},
+			"offsets": {
+				"from": 44760,
+				"to": 46600
+			},
+			"text": " So one of the cool things is the default provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,600",
+				"to": "00:00:48,840"
+			},
+			"offsets": {
+				"from": 46600,
+				"to": 48840
+			},
+			"text": " I don't know if we should stand."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,840",
+				"to": "00:00:52,840"
+			},
+			"offsets": {
+				"from": 48840,
+				"to": 52840
+			},
+			"text": " So the default provider, a whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,840",
+				"to": "00:00:55,760"
+			},
+			"offsets": {
+				"from": 52840,
+				"to": 55760
+			},
+			"text": " Basically it lets you just connect to ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,760",
+				"to": "00:01:02,760"
+			},
+			"offsets": {
+				"from": 55760,
+				"to": 62760
+			},
+			"text": " Historically you had to either run a node or you had to sign up for an ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,760",
+				"to": "00:01:08,760"
+			},
+			"offsets": {
+				"from": 62760,
+				"to": 68760
+			},
+			"text": " So we've got a bunch of relationships with these third-party providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,760",
+				"to": "00:01:11,760"
+			},
+			"offsets": {
+				"from": 68760,
+				"to": 71760
+			},
+			"text": " And right off the bat you can connect to ethereum and start doing simple things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,760",
+				"to": "00:01:16,760"
+			},
+			"offsets": {
+				"from": 71760,
+				"to": 76760
+			},
+			"text": " It's heavily throttled, but you can do something before deciding whether you want to get your"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,760",
+				"to": "00:01:17,760"
+			},
+			"offsets": {
+				"from": 76760,
+				"to": 77760
+			},
+			"text": " own ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,760",
+				"to": "00:01:18,760"
+			},
+			"offsets": {
+				"from": 77760,
+				"to": 78760
+			},
+			"text": " This is all the old stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,760",
+				"to": "00:01:19,760"
+			},
+			"offsets": {
+				"from": 78760,
+				"to": 79760
+			},
+			"text": " So I'm going to go over quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,760",
+				"to": "00:01:21,760"
+			},
+			"offsets": {
+				"from": 79760,
+				"to": 81760
+			},
+			"text": " It's written in TypeScript now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,760",
+				"to": "00:01:29,600"
+			},
+			"offsets": {
+				"from": 81760,
+				"to": 89600
+			},
+			"text": " Very few dependencies, 26,000 growing test cases, ENS is a first-class citizen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,600",
+				"to": "00:01:32,600"
+			},
+			"offsets": {
+				"from": 89600,
+				"to": 92600
+			},
+			"text": " Everything including all dependencies are MIT licensed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,600",
+				"to": "00:01:37,880"
+			},
+			"offsets": {
+				"from": 92600,
+				"to": 97880
+			},
+			"text": " And there's extensive documentation and V6, the documentation is getting much better."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,880",
+				"to": "00:01:41,640"
+			},
+			"offsets": {
+				"from": 97880,
+				"to": 101640
+			},
+			"text": " And an important thing is to understand like I made ether's because something I needed"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,640",
+				"to": "00:01:43,120"
+			},
+			"offsets": {
+				"from": 101640,
+				"to": 103120
+			},
+			"text": " and something that I use a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,120",
+				"to": "00:01:48,080"
+			},
+			"offsets": {
+				"from": 103120,
+				"to": 108080
+			},
+			"text": " And so I mean it's in my best interest to keep it getting better over time and that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,080",
+				"to": "00:01:49,080"
+			},
+			"offsets": {
+				"from": 108080,
+				"to": 109080
+			},
+			"text": " sort of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,080",
+				"to": "00:01:54,080"
+			},
+			"offsets": {
+				"from": 109080,
+				"to": 114080
+			},
+			"text": " So I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,080",
+				"to": "00:02:00,080"
+			},
+			"offsets": {
+				"from": 114080,
+				"to": 120080
+			},
+			"text": " not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,080",
+				"to": "00:02:05,080"
+			},
+			"offsets": {
+				"from": 120080,
+				"to": 125080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,080",
+				"to": "00:02:12,080"
+			},
+			"offsets": {
+				"from": 125080,
+				"to": 132080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,080",
+				"to": "00:02:16,080"
+			},
+			"offsets": {
+				"from": 132080,
+				"to": 136080
+			},
+			"text": " not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,080",
+				"to": "00:02:21,080"
+			},
+			"offsets": {
+				"from": 136080,
+				"to": 141080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,080",
+				"to": "00:02:26,080"
+			},
+			"offsets": {
+				"from": 141080,
+				"to": 146080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,080",
+				"to": "00:02:33,080"
+			},
+			"offsets": {
+				"from": 146080,
+				"to": 153080
+			},
+			"text": " I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,080",
+				"to": "00:02:40,080"
+			},
+			"offsets": {
+				"from": 153080,
+				"to": 160080
+			},
+			"text": " not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,080",
+				"to": "00:02:43,080"
+			},
+			"offsets": {
+				"from": 160080,
+				"to": 163080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,080",
+				"to": "00:02:48,080"
+			},
+			"offsets": {
+				"from": 163080,
+				"to": 168080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,080",
+				"to": "00:02:53,080"
+			},
+			"offsets": {
+				"from": 168080,
+				"to": 173080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,080",
+				"to": "00:02:57,080"
+			},
+			"offsets": {
+				"from": 173080,
+				"to": 177080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,080",
+				"to": "00:03:02,080"
+			},
+			"offsets": {
+				"from": 177080,
+				"to": 182080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,080",
+				"to": "00:03:06,080"
+			},
+			"offsets": {
+				"from": 182080,
+				"to": 186080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,080",
+				"to": "00:03:10,080"
+			},
+			"offsets": {
+				"from": 186080,
+				"to": 190080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,080",
+				"to": "00:03:15,080"
+			},
+			"offsets": {
+				"from": 190080,
+				"to": 195080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,080",
+				"to": "00:03:18,080"
+			},
+			"offsets": {
+				"from": 195080,
+				"to": 198080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,080",
+				"to": "00:03:21,080"
+			},
+			"offsets": {
+				"from": 198080,
+				"to": 201080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,080",
+				"to": "00:03:25,080"
+			},
+			"offsets": {
+				"from": 201080,
+				"to": 205080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,080",
+				"to": "00:03:30,080"
+			},
+			"offsets": {
+				"from": 205080,
+				"to": 210080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,080",
+				"to": "00:03:33,080"
+			},
+			"offsets": {
+				"from": 210080,
+				"to": 213080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,080",
+				"to": "00:03:36,080"
+			},
+			"offsets": {
+				"from": 213080,
+				"to": 216080
+			},
+			"text": " not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,080",
+				"to": "00:03:41,080"
+			},
+			"offsets": {
+				"from": 216080,
+				"to": 221080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,080",
+				"to": "00:03:44,080"
+			},
+			"offsets": {
+				"from": 221080,
+				"to": 224080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,080",
+				"to": "00:03:47,080"
+			},
+			"offsets": {
+				"from": 224080,
+				"to": 227080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,080",
+				"to": "00:03:50,080"
+			},
+			"offsets": {
+				"from": 227080,
+				"to": 230080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,080",
+				"to": "00:03:54,080"
+			},
+			"offsets": {
+				"from": 230080,
+				"to": 234080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,080",
+				"to": "00:03:59,080"
+			},
+			"offsets": {
+				"from": 234080,
+				"to": 239080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,080",
+				"to": "00:04:02,080"
+			},
+			"offsets": {
+				"from": 239080,
+				"to": 242080
+			},
+			"text": " not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,080",
+				"to": "00:04:05,080"
+			},
+			"offsets": {
+				"from": 242080,
+				"to": 245080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,080",
+				"to": "00:04:07,080"
+			},
+			"offsets": {
+				"from": 245080,
+				"to": 247080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,080",
+				"to": "00:04:09,080"
+			},
+			"offsets": {
+				"from": 247080,
+				"to": 249080
+			},
+			"text": " not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,080",
+				"to": "00:04:11,080"
+			},
+			"offsets": {
+				"from": 249080,
+				"to": 251080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,080",
+				"to": "00:04:13,080"
+			},
+			"offsets": {
+				"from": 251080,
+				"to": 253080
+			},
+			"text": " not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,080",
+				"to": "00:04:16,080"
+			},
+			"offsets": {
+				"from": 253080,
+				"to": 256080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,080",
+				"to": "00:04:19,080"
+			},
+			"offsets": {
+				"from": 256080,
+				"to": 259080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,080",
+				"to": "00:04:23,080"
+			},
+			"offsets": {
+				"from": 259080,
+				"to": 263080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,080",
+				"to": "00:04:25,080"
+			},
+			"offsets": {
+				"from": 263080,
+				"to": 265080
+			},
+			"text": " not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,080",
+				"to": "00:04:31,080"
+			},
+			"offsets": {
+				"from": 265080,
+				"to": 271080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,080",
+				"to": "00:04:35,080"
+			},
+			"offsets": {
+				"from": 271080,
+				"to": 275080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,080",
+				"to": "00:04:39,080"
+			},
+			"offsets": {
+				"from": 275080,
+				"to": 279080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,080",
+				"to": "00:04:43,080"
+			},
+			"offsets": {
+				"from": 279080,
+				"to": 283080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,080",
+				"to": "00:04:45,080"
+			},
+			"offsets": {
+				"from": 283080,
+				"to": 285080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,080",
+				"to": "00:04:49,080"
+			},
+			"offsets": {
+				"from": 285080,
+				"to": 289080
+			},
+			"text": " not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,080",
+				"to": "00:04:51,080"
+			},
+			"offsets": {
+				"from": 289080,
+				"to": 291080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,080",
+				"to": "00:04:53,080"
+			},
+			"offsets": {
+				"from": 291080,
+				"to": 293080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,080",
+				"to": "00:04:57,080"
+			},
+			"offsets": {
+				"from": 293080,
+				"to": 297080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,080",
+				"to": "00:04:59,080"
+			},
+			"offsets": {
+				"from": 297080,
+				"to": 299080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,080",
+				"to": "00:05:01,080"
+			},
+			"offsets": {
+				"from": 299080,
+				"to": 301080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,080",
+				"to": "00:05:05,080"
+			},
+			"offsets": {
+				"from": 301080,
+				"to": 305080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,080",
+				"to": "00:05:11,080"
+			},
+			"offsets": {
+				"from": 305080,
+				"to": 311080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,080",
+				"to": "00:05:13,080"
+			},
+			"offsets": {
+				"from": 311080,
+				"to": 313080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,080",
+				"to": "00:05:17,080"
+			},
+			"offsets": {
+				"from": 313080,
+				"to": 317080
+			},
+			"text": " not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,080",
+				"to": "00:05:19,080"
+			},
+			"offsets": {
+				"from": 317080,
+				"to": 319080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,080",
+				"to": "00:05:23,080"
+			},
+			"offsets": {
+				"from": 319080,
+				"to": 323080
+			},
+			"text": " sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,080",
+				"to": "00:05:23,080"
+			},
+			"offsets": {
+				"from": 323080,
+				"to": 323080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,080",
+				"to": "00:05:53,080"
+			},
+			"offsets": {
+				"from": 323080,
+				"to": 353080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,080",
+				"to": "00:06:23,080"
+			},
+			"offsets": {
+				"from": 353080,
+				"to": 383080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,080",
+				"to": "00:06:53,080"
+			},
+			"offsets": {
+				"from": 383080,
+				"to": 413080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,080",
+				"to": "00:07:23,080"
+			},
+			"offsets": {
+				"from": 413080,
+				"to": 443080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,080",
+				"to": "00:07:53,080"
+			},
+			"offsets": {
+				"from": 443080,
+				"to": 473080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,080",
+				"to": "00:08:23,080"
+			},
+			"offsets": {
+				"from": 473080,
+				"to": 503080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,080",
+				"to": "00:08:53,080"
+			},
+			"offsets": {
+				"from": 503080,
+				"to": 533080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,080",
+				"to": "00:09:23,080"
+			},
+			"offsets": {
+				"from": 533080,
+				"to": 563080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,080",
+				"to": "00:09:53,080"
+			},
+			"offsets": {
+				"from": 563080,
+				"to": 593080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,080",
+				"to": "00:10:23,080"
+			},
+			"offsets": {
+				"from": 593080,
+				"to": 623080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,080",
+				"to": "00:10:53,080"
+			},
+			"offsets": {
+				"from": 623080,
+				"to": 653080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,080",
+				"to": "00:11:23,080"
+			},
+			"offsets": {
+				"from": 653080,
+				"to": 683080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,080",
+				"to": "00:11:53,080"
+			},
+			"offsets": {
+				"from": 683080,
+				"to": 713080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,080",
+				"to": "00:12:23,080"
+			},
+			"offsets": {
+				"from": 713080,
+				"to": 743080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,080",
+				"to": "00:12:53,080"
+			},
+			"offsets": {
+				"from": 743080,
+				"to": 773080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,080",
+				"to": "00:13:23,080"
+			},
+			"offsets": {
+				"from": 773080,
+				"to": 803080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,080",
+				"to": "00:13:53,080"
+			},
+			"offsets": {
+				"from": 803080,
+				"to": 833080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,080",
+				"to": "00:14:23,080"
+			},
+			"offsets": {
+				"from": 833080,
+				"to": 863080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,080",
+				"to": "00:14:53,080"
+			},
+			"offsets": {
+				"from": 863080,
+				"to": 893080
+			},
+			"text": " if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not sure if I'm not"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,080",
+				"to": "00:15:09,080"
+			},
+			"offsets": {
+				"from": 893080,
+				"to": 909080
+			},
+			"text": " Microsoft writes TS lib it's a tiny little thing it just helps save some space"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,080",
+				"to": "00:15:13,080"
+			},
+			"offsets": {
+				"from": 909080,
+				"to": 913080
+			},
+			"text": " and it saves me a lot of work as well because there's so many times where like"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,080",
+				"to": "00:15:17,080"
+			},
+			"offsets": {
+				"from": 913080,
+				"to": 917080
+			},
+			"text": " Elliptic has some bug in it and I'm trying to track down him to get him to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,080",
+				"to": "00:15:21,080"
+			},
+			"offsets": {
+				"from": 917080,
+				"to": 921080
+			},
+			"text": " update things and once that's fixed I now update everything and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,080",
+				"to": "00:15:25,080"
+			},
+			"offsets": {
+				"from": 921080,
+				"to": 925080
+			},
+			"text": " put a new build out so the fewer dependencies the happier my life is as"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,080",
+				"to": "00:15:31,080"
+			},
+			"offsets": {
+				"from": 925080,
+				"to": 931080
+			},
+			"text": " well and that's all I've got I've got nine minutes for questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,080",
+				"to": "00:15:35,800"
+			},
+			"offsets": {
+				"from": 931080,
+				"to": 935800
+			},
+			"text": " if I waste questions oh and come find me afterwards I've got these little like"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,800",
+				"to": "00:15:41,960"
+			},
+			"offsets": {
+				"from": 935800,
+				"to": 941960
+			},
+			"text": " a high but I brought one up for anyone who's like curious about v6 I've actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,960",
+				"to": "00:15:45,960"
+			},
+			"offsets": {
+				"from": 941960,
+				"to": 945960
+			},
+			"text": " started to write oh I should explain that so yes basically I'm trying to write a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,960",
+				"to": "00:15:50,840"
+			},
+			"offsets": {
+				"from": 945960,
+				"to": 950840
+			},
+			"text": " bunch of little apps right now against v6 to help test it so this one's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,840",
+				"to": "00:15:54,600"
+			},
+			"offsets": {
+				"from": 950840,
+				"to": 954600
+			},
+			"text": " actually found quite a few bugs already it's an NFT it's got a little scratch"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,600",
+				"to": "00:15:59,720"
+			},
+			"offsets": {
+				"from": 954600,
+				"to": 959720
+			},
+			"text": " off hologram when you scratch it off you can scan it and claim it and you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,720",
+				"to": "00:16:03,560"
+			},
+			"offsets": {
+				"from": 959720,
+				"to": 963560
+			},
+			"text": " you know fold your little papercraft robot up and like do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,560",
+				"to": "00:16:06,760"
+			},
+			"offsets": {
+				"from": 963560,
+				"to": 966760
+			},
+			"text": " and then take pictures of him and post it into the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,760",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 966760,
+				"to": 971000
+			},
+			"text": " and you can like I'm thinking of it more of like that little gnome from"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:13,800"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 973800
+			},
+			"text": " Amalie you know you can take it around and show you that things visited"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,800",
+				"to": "00:16:18,200"
+			},
+			"offsets": {
+				"from": 973800,
+				"to": 978200
+			},
+			"text": " different places right now it's my deploy to D'Gorley"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,200",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 978200,
+				"to": 981000
+			},
+			"text": " for anyone who actually like goes through the effort of like submitting this I will"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:24,600"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 984600
+			},
+			"text": " be migrating your tokens to mainnet if you want to wait till main version"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,600",
+				"to": "00:16:27,080"
+			},
+			"offsets": {
+				"from": 984600,
+				"to": 987080
+			},
+			"text": " launches the same QR codes will work on mainnet and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,080",
+				"to": "00:16:30,760"
+			},
+			"offsets": {
+				"from": 987080,
+				"to": 990760
+			},
+			"text": " then claim it there so that's just like a little demo I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,760",
+				"to": "00:16:35,720"
+			},
+			"offsets": {
+				"from": 990760,
+				"to": 995720
+			},
+			"text": " flooring together to to test and make sure v6 works and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,720",
+				"to": "00:16:38,520"
+			},
+			"offsets": {
+				"from": 995720,
+				"to": 998520
+			},
+			"text": " it's definitely not ready for production as it stands right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,520",
+				"to": "00:16:41,160"
+			},
+			"offsets": {
+				"from": 998520,
+				"to": 1001160
+			},
+			"text": " but it's getting closer and I'll probably be doing a few more little"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,160",
+				"to": "00:16:44,600"
+			},
+			"offsets": {
+				"from": 1001160,
+				"to": 1004600
+			},
+			"text": " weird projects like this just to kind of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,600",
+				"to": "00:16:48,760"
+			},
+			"offsets": {
+				"from": 1004600,
+				"to": 1008760
+			},
+			"text": " find those little foibles and and things that happened during the last"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,760",
+				"to": "00:16:52,200"
+			},
+			"offsets": {
+				"from": 1008760,
+				"to": 1012200
+			},
+			"text": " two years worth of rewriting and rewriting and rewriting"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,200",
+				"to": "00:16:56,280"
+			},
+			"offsets": {
+				"from": 1012200,
+				"to": 1016280
+			},
+			"text": " so I've got seven minutes 49 seconds left for if there's any questions out"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,280",
+				"to": "00:16:59,320"
+			},
+			"offsets": {
+				"from": 1016280,
+				"to": 1019320
+			},
+			"text": " there I don't know where we'd be without you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,320",
+				"to": "00:17:07,960"
+			},
+			"offsets": {
+				"from": 1019320,
+				"to": 1027960
+			},
+			"text": " like open source hero thank you at this point in the state of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,960",
+				"to": "00:17:12,120"
+			},
+			"offsets": {
+				"from": 1027960,
+				"to": 1032120
+			},
+			"text": " ethereum at this point in the state of ethers what kind of support are you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,120",
+				"to": "00:17:16,680"
+			},
+			"offsets": {
+				"from": 1032120,
+				"to": 1036680
+			},
+			"text": " getting in terms of like audit help especially as we see more like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,680",
+				"to": "00:17:19,080"
+			},
+			"offsets": {
+				"from": 1036680,
+				"to": 1039080
+			},
+			"text": " front-end attacks and things like that right where it's like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,080",
+				"to": "00:17:22,200"
+			},
+			"offsets": {
+				"from": 1039080,
+				"to": 1042200
+			},
+			"text": " you know smart contract auditing is important but the interaction layer is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,200",
+				"to": "00:17:26,040"
+			},
+			"offsets": {
+				"from": 1042200,
+				"to": 1046040
+			},
+			"text": " equally as important especially now it's people are getting more clever like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,040",
+				"to": "00:17:31,080"
+			},
+			"offsets": {
+				"from": 1046040,
+				"to": 1051080
+			},
+			"text": " like you know not to not to throw shade but you know like when I saw"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,080",
+				"to": "00:17:34,440"
+			},
+			"offsets": {
+				"from": 1051080,
+				"to": 1054440
+			},
+			"text": " you know that's string normalization for for for"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,440",
+				"to": "00:17:38,280"
+			},
+			"offsets": {
+				"from": 1054440,
+				"to": 1058280
+			},
+			"text": " for a bi calls you know I instantly thought like just made me like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,280",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1058280,
+				"to": 1061000
+			},
+			"text": " uncomfortable in my gut of like different things that could happen so"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:45,720"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1065720
+			},
+			"text": " just curious like like who's helping you audit who's helping you kind of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,720",
+				"to": "00:17:48,920"
+			},
+			"offsets": {
+				"from": 1065720,
+				"to": 1068920
+			},
+			"text": " comb through this code and go through different edge cases and things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,920",
+				"to": "00:17:53,080"
+			},
+			"offsets": {
+				"from": 1068920,
+				"to": 1073080
+			},
+			"text": " that right so basically auditing is all done by me"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,080",
+				"to": "00:17:55,800"
+			},
+			"offsets": {
+				"from": 1073080,
+				"to": 1075800
+			},
+			"text": " which is terrible right now one of the cool things though is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,800",
+				"to": "00:18:00,440"
+			},
+			"offsets": {
+				"from": 1075800,
+				"to": 1080440
+			},
+			"text": " between I've got like oh sorry the the af helps sponsor me"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,440",
+				"to": "00:18:04,120"
+			},
+			"offsets": {
+				"from": 1080440,
+				"to": 1084120
+			},
+			"text": " i get github grants get get coin get coin grants"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,120",
+				"to": "00:18:06,200"
+			},
+			"offsets": {
+				"from": 1084120,
+				"to": 1086200
+			},
+			"text": " a few sponsors and so now i'm starting to develop an"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,200",
+				"to": "00:18:09,080"
+			},
+			"offsets": {
+				"from": 1086200,
+				"to": 1089080
+			},
+			"text": " downwind so i am hoping to be able to get like a proper"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,080",
+				"to": "00:18:13,320"
+			},
+			"offsets": {
+				"from": 1089080,
+				"to": 1093320
+			},
+			"text": " audit at some point there was one team at one point that was going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,320",
+				"to": "00:18:17,880"
+			},
+			"offsets": {
+				"from": 1093320,
+				"to": 1097880
+			},
+			"text": " formally verify a bunch of things close to i haven't heard from them in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,880",
+				"to": "00:18:20,120"
+			},
+			"offsets": {
+				"from": 1097880,
+				"to": 1100120
+			},
+			"text": " while so i don't know if that's still a thing but"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,120",
+				"to": "00:18:24,440"
+			},
+			"offsets": {
+				"from": 1100120,
+				"to": 1104440
+			},
+			"text": " i think formal i don't i don't i'm on the fact of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,440",
+				"to": "00:18:28,120"
+			},
+			"offsets": {
+				"from": 1104440,
+				"to": 1108120
+			},
+			"text": " normal verification like it helps in some regards but it's not a magic bullet"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,120",
+				"to": "00:18:31,960"
+			},
+			"offsets": {
+				"from": 1108120,
+				"to": 1111960
+			},
+			"text": " i think absolutely like proper auditing would work and i'm also a big that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,960",
+				"to": "00:18:35,960"
+			},
+			"offsets": {
+				"from": 1111960,
+				"to": 1115960
+			},
+			"text": " why i'm a big fan of tests i don't want issues to happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,960",
+				"to": "00:18:39,960"
+			},
+			"offsets": {
+				"from": 1115960,
+				"to": 1119960
+			},
+			"text": " um so i feel like test i mean tests can only find the presence of bugs not the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,960",
+				"to": "00:18:44,920"
+			},
+			"offsets": {
+				"from": 1119960,
+				"to": 1124920
+			},
+			"text": " absence of bugs um so i mean it's a great question"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,920",
+				"to": "00:18:47,080"
+			},
+			"offsets": {
+				"from": 1124920,
+				"to": 1127080
+			},
+			"text": " talk to me afterwards if you've got some ideas uh"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,080",
+				"to": "00:18:50,120"
+			},
+			"offsets": {
+				"from": 1127080,
+				"to": 1130120
+			},
+			"text": " i'm starting to get some money off to the side now that i can actually start"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,120",
+				"to": "00:18:52,360"
+			},
+			"offsets": {
+				"from": 1130120,
+				"to": 1132360
+			},
+			"text": " throwing if you know any like auditing firms that do"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,360",
+				"to": "00:18:58,040"
+			},
+			"offsets": {
+				"from": 1132360,
+				"to": 1138040
+			},
+			"text": " typescript um what you mean should definitely pay for"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,040",
+				"to": "00:19:01,640"
+			},
+			"offsets": {
+				"from": 1138040,
+				"to": 1141640
+			},
+			"text": " auditing those those people are so skilled and valuable"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,640",
+				"to": "00:19:04,600"
+			},
+			"offsets": {
+				"from": 1141640,
+				"to": 1144600
+			},
+			"text": " oh okay sure well i mean that you kind of are i mean thank you get coin"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,600",
+				"to": "00:19:11,880"
+			},
+			"offsets": {
+				"from": 1144600,
+				"to": 1151880
+			},
+			"text": " uh get coins been awesome so i was wondering if you are gonna"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,880",
+				"to": "00:19:17,720"
+			},
+			"offsets": {
+				"from": 1151880,
+				"to": 1157720
+			},
+			"text": " add um batch transactions in this version"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,720",
+				"to": "00:19:20,440"
+			},
+			"offsets": {
+				"from": 1157720,
+				"to": 1160440
+			},
+			"text": " do you sorry it's a little bit harder here with the echo are you actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,440",
+				"to": "00:19:25,080"
+			},
+			"offsets": {
+				"from": 1160440,
+				"to": 1165080
+			},
+			"text": " about batch JSON RPC batch transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,080",
+				"to": "00:19:28,920"
+			},
+			"offsets": {
+				"from": 1165080,
+				"to": 1168920
+			},
+			"text": " sorry oh batch transactions um what should be about batch transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,920",
+				"to": "00:19:34,040"
+			},
+			"offsets": {
+				"from": 1168920,
+				"to": 1174040
+			},
+			"text": " like via smart contract wallets like by you being through smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,040",
+				"to": "00:19:38,680"
+			},
+			"offsets": {
+				"from": 1174040,
+				"to": 1178680
+			},
+			"text": " or yes yeah yeah i mean that already works uh you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,680",
+				"to": "00:19:42,760"
+			},
+			"offsets": {
+				"from": 1178680,
+				"to": 1182760
+			},
+			"text": " need the abi for it um there's not currently in ethereum an"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,760",
+				"to": "00:19:48,200"
+			},
+			"offsets": {
+				"from": 1182760,
+				"to": 1188200
+			},
+			"text": " official like batch standard um but you can do it with smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,200",
+				"to": "00:19:51,240"
+			},
+			"offsets": {
+				"from": 1188200,
+				"to": 1191240
+			},
+			"text": " like smart contract wallets like a like anosis safe for example allows you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,240",
+				"to": "00:19:53,560"
+			},
+			"offsets": {
+				"from": 1191240,
+				"to": 1193560
+			},
+			"text": " send mobile is that i'm sorry is that what you mean like being able to send"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,560",
+				"to": "00:19:59,240"
+			},
+			"offsets": {
+				"from": 1193560,
+				"to": 1199240
+			},
+			"text": " multiple transactions at once anatomically i have an application and i was i i"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,240",
+				"to": "00:20:06,120"
+			},
+			"offsets": {
+				"from": 1199240,
+				"to": 1206120
+			},
+			"text": " want to to send a batch of structures in my note application"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,120",
+				"to": "00:20:10,120"
+			},
+			"offsets": {
+				"from": 1206120,
+				"to": 1210120
+			},
+			"text": " not through contracts oh through contracts um so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,120",
+				"to": "00:20:14,440"
+			},
+			"offsets": {
+				"from": 1210120,
+				"to": 1214440
+			},
+			"text": " you can't currently in ethereum in general send multiple transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,440",
+				"to": "00:20:18,680"
+			},
+			"offsets": {
+				"from": 1214440,
+				"to": 1218680
+			},
+			"text": " atomically or at once um you basically if you will have a bunch of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,680",
+				"to": "00:20:22,440"
+			},
+			"offsets": {
+				"from": 1218680,
+				"to": 1222440
+			},
+			"text": " transactions you're trying to send serially um so the non-manager already"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,440",
+				"to": "00:20:24,840"
+			},
+			"offsets": {
+				"from": 1222440,
+				"to": 1224840
+			},
+			"text": " does that uh basically it's a wrapper that goes around a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,840",
+				"to": "00:20:28,280"
+			},
+			"offsets": {
+				"from": 1224840,
+				"to": 1228280
+			},
+			"text": " signer and you can just quickly fire off transactions and it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,280",
+				"to": "00:20:30,360"
+			},
+			"offsets": {
+				"from": 1228280,
+				"to": 1230360
+			},
+			"text": " automatically bump up the knots from the initial knots"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,360",
+				"to": "00:20:35,880"
+			},
+			"offsets": {
+				"from": 1230360,
+				"to": 1235880
+			},
+			"text": " at fetched um there are some issues with that as well if you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,880",
+				"to": "00:20:39,720"
+			},
+			"offsets": {
+				"from": 1235880,
+				"to": 1239720
+			},
+			"text": " you know flood the mempool with a bunch of transactions from the same address"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,720",
+				"to": "00:20:43,640"
+			},
+			"offsets": {
+				"from": 1239720,
+				"to": 1243640
+			},
+			"text": " that are all serialized uh it could be seen from the network's point of view as"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,640",
+				"to": "00:20:47,320"
+			},
+			"offsets": {
+				"from": 1243640,
+				"to": 1247320
+			},
+			"text": " a dos attack and so it might drop them so that's a feature i want to add to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,320",
+				"to": "00:20:50,520"
+			},
+			"offsets": {
+				"from": 1247320,
+				"to": 1250520
+			},
+			"text": " non-manager in v6 as well is kind of the ability to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,520",
+				"to": "00:20:55,000"
+			},
+			"offsets": {
+				"from": 1250520,
+				"to": 1255000
+			},
+			"text": " rebroadcast or whenever something succeeds kind of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,000",
+				"to": "00:20:58,120"
+			},
+			"offsets": {
+				"from": 1255000,
+				"to": 1258120
+			},
+			"text": " have a call back that lets you know something succeeds"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,120",
+				"to": "00:21:01,720"
+			},
+			"offsets": {
+				"from": 1258120,
+				"to": 1261720
+			},
+			"text": " succeeded and so you can kind of nudge or tell it to rebroadcast the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,720",
+				"to": "00:21:06,280"
+			},
+			"offsets": {
+				"from": 1261720,
+				"to": 1266280
+			},
+			"text": " transactions that are still around ericher uh can't understate how useful"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,280",
+				"to": "00:21:09,560"
+			},
+			"offsets": {
+				"from": 1266280,
+				"to": 1269560
+			},
+			"text": " what you did for the whole ethereum community we use what you do every"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,560",
+				"to": "00:21:13,320"
+			},
+			"offsets": {
+				"from": 1269560,
+				"to": 1273320
+			},
+			"text": " single day back in front of them everywhere so uh thanks for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,320",
+				"to": "00:21:20,840"
+			},
+			"offsets": {
+				"from": 1273320,
+				"to": 1280840
+			},
+			"text": " really that's so"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,160",
+				"to": "00:21:27,080"
+			},
+			"offsets": {
+				"from": 1283160,
+				"to": 1287080
+			},
+			"text": " so yeah more than deserved um one question about philosophy and this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,080",
+				"to": "00:21:31,240"
+			},
+			"offsets": {
+				"from": 1287080,
+				"to": 1291240
+			},
+			"text": " this is going very specific i'm being that guy um but one thing that ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,240",
+				"to": "00:21:35,080"
+			},
+			"offsets": {
+				"from": 1291240,
+				"to": 1295080
+			},
+			"text": " has a philosophy is really the how it returns undefined and actually it"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,080",
+				"to": "00:21:38,680"
+			},
+			"offsets": {
+				"from": 1295080,
+				"to": 1298680
+			},
+			"text": " doesn't return undefined for waiting for transactions and we actually talked"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,680",
+				"to": "00:21:42,840"
+			},
+			"offsets": {
+				"from": 1298680,
+				"to": 1302840
+			},
+			"text": " once in one of the pr's of typescript really giving the option of"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,840",
+				"to": "00:21:47,000"
+			},
+			"offsets": {
+				"from": 1302840,
+				"to": 1307000
+			},
+			"text": " of returning undefined when a transaction you wait on it and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,000",
+				"to": "00:21:50,360"
+			},
+			"offsets": {
+				"from": 1307000,
+				"to": 1310360
+			},
+			"text": " doesn't return anything for example um and you mentioned that that's not really"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,360",
+				"to": "00:21:53,800"
+			},
+			"offsets": {
+				"from": 1310360,
+				"to": 1313800
+			},
+			"text": " part of the philosophy of how you're building the types for for ether's"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,800",
+				"to": "00:21:57,000"
+			},
+			"offsets": {
+				"from": 1313800,
+				"to": 1317000
+			},
+			"text": " so as you're i miss that last part so you mean when you sign a transaction and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,000",
+				"to": "00:22:00,760"
+			},
+			"offsets": {
+				"from": 1317000,
+				"to": 1320760
+			},
+			"text": " get back null or um well let's say let's say it's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,760",
+				"to": "00:22:05,080"
+			},
+			"offsets": {
+				"from": 1320760,
+				"to": 1325080
+			},
+			"text": " hash that doesn't exist okay um what what is a philosophy of"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,080",
+				"to": "00:22:07,640"
+			},
+			"offsets": {
+				"from": 1325080,
+				"to": 1327640
+			},
+			"text": " ether's returning that would it be undefined because in their case the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,640",
+				"to": "00:22:11,800"
+			},
+			"offsets": {
+				"from": 1327640,
+				"to": 1331800
+			},
+			"text": " typescript for that doesn't contain undefined it always says oh oh i know"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,800",
+				"to": "00:22:15,080"
+			},
+			"offsets": {
+				"from": 1331800,
+				"to": 1335080
+			},
+			"text": " you're talking about now okay so that's okay that's a big thing in v6 as well i"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,080",
+				"to": "00:22:17,240"
+			},
+			"offsets": {
+				"from": 1335080,
+				"to": 1337240
+			},
+			"text": " should probably put on the the odds and ends"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,240",
+				"to": "00:22:20,920"
+			},
+			"offsets": {
+				"from": 1337240,
+				"to": 1340920
+			},
+			"text": " okay uh so we four came for exactly that so"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,920",
+				"to": "00:22:23,560"
+			},
+			"offsets": {
+				"from": 1340920,
+				"to": 1343560
+			},
+			"text": " right okay so for a quick background um basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,560",
+				"to": "00:22:27,800"
+			},
+			"offsets": {
+				"from": 1343560,
+				"to": 1347800
+			},
+			"text": " ether's v5 was started two years ago i was still kind of learning typescript"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,800",
+				"to": "00:22:32,840"
+			},
+			"offsets": {
+				"from": 1347800,
+				"to": 1352840
+			},
+			"text": " it did not have strict null checks enabled which basically means anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,840",
+				"to": "00:22:37,080"
+			},
+			"offsets": {
+				"from": 1352840,
+				"to": 1357080
+			},
+			"text": " that returns anything i'll return that anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,080",
+				"to": "00:22:40,680"
+			},
+			"offsets": {
+				"from": 1357080,
+				"to": 1360680
+			},
+			"text": " or null and so in v6 i've got strict null"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,680",
+				"to": "00:22:45,160"
+			},
+			"offsets": {
+				"from": 1360680,
+				"to": 1365160
+			},
+			"text": " typing and strict null check type whatever you that what the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,160",
+				"to": "00:22:48,920"
+			},
+			"offsets": {
+				"from": 1365160,
+				"to": 1368920
+			},
+			"text": " leg is it's enabled and so um for example"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,920",
+				"to": "00:22:52,680"
+			},
+			"offsets": {
+				"from": 1368920,
+				"to": 1372680
+			},
+			"text": " the provider's method for get transaction it will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,680",
+				"to": "00:22:56,840"
+			},
+			"offsets": {
+				"from": 1372680,
+				"to": 1376840
+			},
+			"text": " the return type is null or transaction response whereas in v5 it was just"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,840",
+				"to": "00:23:00,120"
+			},
+			"offsets": {
+				"from": 1376840,
+				"to": 1380120
+			},
+			"text": " transaction response and i just trusted people knew"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,120",
+				"to": "00:23:05,480"
+			},
+			"offsets": {
+				"from": 1380120,
+				"to": 1385480
+			},
+			"text": " that uh it could be null but yeah don't worry about it so yes uh yes v6 that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,480",
+				"to": "00:23:09,000"
+			},
+			"offsets": {
+				"from": 1385480,
+				"to": 1389000
+			},
+			"text": " been fixed um it helps fix a lot of other people's libraries as well that"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,000",
+				"to": "00:23:12,920"
+			},
+			"offsets": {
+				"from": 1389000,
+				"to": 1392920
+			},
+			"text": " are like dependent on it and are kind of crawling into the ether's tree to like"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,920",
+				"to": "00:23:15,880"
+			},
+			"offsets": {
+				"from": 1392920,
+				"to": 1395880
+			},
+			"text": " run their linting rules so yes that's absolutely changed"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,880",
+				"to": "00:23:19,560"
+			},
+			"offsets": {
+				"from": 1395880,
+				"to": 1399560
+			},
+			"text": " and will there be backwards compatibility between those new"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,560",
+				"to": "00:23:25,480"
+			},
+			"offsets": {
+				"from": 1399560,
+				"to": 1405480
+			},
+			"text": " big in type and the old big number type like will big in be big numberish"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,480",
+				"to": "00:23:29,800"
+			},
+			"offsets": {
+				"from": 1405480,
+				"to": 1409800
+			},
+			"text": " sir will will what be big numberish add the new big in type oh yes big i mean"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,800",
+				"to": "00:23:32,520"
+			},
+			"offsets": {
+				"from": 1409800,
+				"to": 1412520
+			},
+			"text": " for input types you mean yeah yes there's still there's still a big"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,520",
+				"to": "00:23:36,840"
+			},
+			"offsets": {
+				"from": 1412520,
+				"to": 1416840
+			},
+			"text": " numberish type because uh like so for example the the slide up there that"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,840",
+				"to": "00:23:42,760"
+			},
+			"offsets": {
+				"from": 1416840,
+				"to": 1422760
+			},
+			"text": " demonstrated i lost the clicker um the slide that shows you"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,760",
+				"to": "00:23:47,400"
+			},
+			"offsets": {
+				"from": 1422760,
+				"to": 1427400
+			},
+			"text": " uh like the transaction dot max gas equals uh so that takes in a big numberish so"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,400",
+				"to": "00:23:50,840"
+			},
+			"offsets": {
+				"from": 1427400,
+				"to": 1430840
+			},
+			"text": " you can pass in a big int you can pass in a string that happens to be decimal"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,840",
+				"to": "00:23:53,080"
+			},
+			"offsets": {
+				"from": 1430840,
+				"to": 1433080
+			},
+			"text": " number you can pass in a string that's a hex number"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,080",
+				"to": "00:23:58,440"
+			},
+			"offsets": {
+				"from": 1433080,
+				"to": 1438440
+			},
+			"text": " um that'll all be munged into a big int type but you can still pass anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,440",
+				"to": "00:24:02,360"
+			},
+			"offsets": {
+				"from": 1438440,
+				"to": 1442360
+			},
+			"text": " anything that's not ambiguous ethers will accept it will not accept"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,360",
+				"to": "00:24:08,600"
+			},
+			"offsets": {
+				"from": 1442360,
+				"to": 1448600
+			},
+			"text": " things that it can't possibly interpret like uh for example non zero x pre-fixed"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,600",
+				"to": "00:24:12,120"
+			},
+			"offsets": {
+				"from": 1448600,
+				"to": 1452120
+			},
+			"text": " things because if it did that it wouldn't know whether one one"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,120",
+				"to": "00:24:18,040"
+			},
+			"offsets": {
+				"from": 1452120,
+				"to": 1458040
+			},
+			"text": " was hexadecimal 17 or binary 11 and so it requires you to be complete"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,040",
+				"to": "00:24:21,640"
+			},
+			"offsets": {
+				"from": 1458040,
+				"to": 1461640
+			},
+			"text": " non ambiguous um so if you pass in a string that's one one it's going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,640",
+				"to": "00:24:25,080"
+			},
+			"offsets": {
+				"from": 1461640,
+				"to": 1465080
+			},
+			"text": " assume it's decimal um but yes it's uh it's still big"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,080",
+				"to": "00:24:29,720"
+			},
+			"offsets": {
+				"from": 1465080,
+				"to": 1469720
+			},
+			"text": " num it's still a big numberish um and there's functions as well for your"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,720",
+				"to": "00:24:35,400"
+			},
+			"offsets": {
+				"from": 1469720,
+				"to": 1475400
+			},
+			"text": " own purposes that will uh convert any big numberish into a big number um"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,400",
+				"to": "00:24:40,680"
+			},
+			"offsets": {
+				"from": 1475400,
+				"to": 1480680
+			},
+			"text": " or any numeric which is another type that it now has into a um"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,680",
+				"to": "00:24:44,120"
+			},
+			"offsets": {
+				"from": 1480680,
+				"to": 1484120
+			},
+			"text": " a number thank you thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,120",
+				"to": "00:24:46,200"
+			},
+			"offsets": {
+				"from": 1484120,
+				"to": 1486200
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,200",
+				"to": "00:24:48,200"
+			},
+			"offsets": {
+				"from": 1486200,
+				"to": 1488200
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,200",
+				"to": "00:24:50,200"
+			},
+			"offsets": {
+				"from": 1488200,
+				"to": 1490200
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,200",
+				"to": "00:24:52,200"
+			},
+			"offsets": {
+				"from": 1490200,
+				"to": 1492200
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,200",
+				"to": "00:24:56,200"
+			},
+			"offsets": {
+				"from": 1492200,
+				"to": 1496200
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

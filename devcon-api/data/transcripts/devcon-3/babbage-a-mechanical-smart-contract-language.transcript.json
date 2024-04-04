@@ -1,0 +1,2001 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:23,360"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 23360
+			},
+			"text": " >> Okay. I'd like to present to you a proposal for a smart contract programming language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,360",
+				"to": "00:00:26,840"
+			},
+			"offsets": {
+				"from": 23360,
+				"to": 26840
+			},
+			"text": " which is radically different from everything we've seen so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,380",
+				"to": "00:00:31,940"
+			},
+			"offsets": {
+				"from": 27380,
+				"to": 31940
+			},
+			"text": " The main drawback is that it's still just a proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,940",
+				"to": "00:00:43,300"
+			},
+			"offsets": {
+				"from": 31940,
+				"to": 43300
+			},
+			"text": " And the main goal here is not necessarily to create a programming language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,300",
+				"to": "00:00:48,240"
+			},
+			"offsets": {
+				"from": 43300,
+				"to": 48240
+			},
+			"text": " which makes it easy to write smart contracts, but more a programming language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,240",
+				"to": "00:00:53,400"
+			},
+			"offsets": {
+				"from": 48240,
+				"to": 53400
+			},
+			"text": " which makes it possible to write smart contracts, which are easy to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,200",
+				"to": "00:00:59,840"
+			},
+			"offsets": {
+				"from": 54200,
+				"to": 59840
+			},
+			"text": " Okay? So let's take a look at how smart contracts are written nowadays in a language"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,840",
+				"to": "00:01:00,740"
+			},
+			"offsets": {
+				"from": 59840,
+				"to": 60740
+			},
+			"text": " called Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,740",
+				"to": "00:01:07,760"
+			},
+			"offsets": {
+				"from": 60740,
+				"to": 67760
+			},
+			"text": " Yeah, we have, as an example here, a smart contract that does some kind of crowd funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,760",
+				"to": "00:01:10,800"
+			},
+			"offsets": {
+				"from": 67760,
+				"to": 70800
+			},
+			"text": " It's simplified, so some aspects are missing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,800",
+				"to": "00:01:18,220"
+			},
+			"offsets": {
+				"from": 70800,
+				"to": 78220
+			},
+			"text": " And so it starts with a mapping that stores the balances of the participants,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,220",
+				"to": "00:01:21,560"
+			},
+			"offsets": {
+				"from": 78220,
+				"to": 81560
+			},
+			"text": " so participants can send ether to this smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,560",
+				"to": "00:01:24,440"
+			},
+			"offsets": {
+				"from": 81560,
+				"to": 84440
+			},
+			"text": " and it just registers who contributed to how much."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,440",
+				"to": "00:01:30,680"
+			},
+			"offsets": {
+				"from": 84440,
+				"to": 90680
+			},
+			"text": " And then there is a Boolean flag called locked, which can be set to true"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,680",
+				"to": "00:01:32,740"
+			},
+			"offsets": {
+				"from": 90680,
+				"to": 92740
+			},
+			"text": " when the function lock is called."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,740",
+				"to": "00:01:37,200"
+			},
+			"offsets": {
+				"from": 92740,
+				"to": 97200
+			},
+			"text": " So this function lock usually probably needs some more checking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,200",
+				"to": "00:01:40,760"
+			},
+			"offsets": {
+				"from": 97200,
+				"to": 100760
+			},
+			"text": " so that not everyone can call it, but yeah, there is a way --"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,760",
+				"to": "00:01:46,280"
+			},
+			"offsets": {
+				"from": 100760,
+				"to": 106280
+			},
+			"text": " so the flag is initially set to false, and there is a way to set it to true at some point"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,280",
+				"to": "00:01:47,960"
+			},
+			"offsets": {
+				"from": 106280,
+				"to": 107960
+			},
+			"text": " in the lifetime of the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,660",
+				"to": "00:01:55,340"
+			},
+			"offsets": {
+				"from": 108660,
+				"to": 115340
+			},
+			"text": " And while the smart contract is still unlocked, you can send money to it using this function"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,340",
+				"to": "00:01:59,260"
+			},
+			"offsets": {
+				"from": 115340,
+				"to": 119260
+			},
+			"text": " called fund, and your contribution will be registered."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,260",
+				"to": "00:02:05,380"
+			},
+			"offsets": {
+				"from": 119260,
+				"to": 125380
+			},
+			"text": " And still, while this contract is unlocked, you can also call withdraw."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,380",
+				"to": "00:02:08,280"
+			},
+			"offsets": {
+				"from": 125380,
+				"to": 128280
+			},
+			"text": " If you change your mind, I said, \"Oh, yeah, I don't want to contribute money there.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,280",
+				"to": "00:02:14,500"
+			},
+			"offsets": {
+				"from": 128280,
+				"to": 134500
+			},
+			"text": " And it will just, yeah, send you back everything you contributed to."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,340",
+				"to": "00:02:20,540"
+			},
+			"offsets": {
+				"from": 135340,
+				"to": 140540
+			},
+			"text": " Okay, and now because this would not be useful like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,540",
+				"to": "00:02:25,060"
+			},
+			"offsets": {
+				"from": 140540,
+				"to": 145060
+			},
+			"text": " there's of course more code below, which is a little complicated, but yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,060",
+				"to": "00:02:26,780"
+			},
+			"offsets": {
+				"from": 145060,
+				"to": 146780
+			},
+			"text": " I mean, we saw that everything works."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,780",
+				"to": "00:02:33,700"
+			},
+			"offsets": {
+				"from": 146780,
+				"to": 153700
+			},
+			"text": " I can send my money there, and I can also withdraw for some time until the point"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,700",
+				"to": "00:02:36,500"
+			},
+			"offsets": {
+				"from": 153700,
+				"to": 156500
+			},
+			"text": " where someone locks the smart contract, and then the money is there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,500",
+				"to": "00:02:43,460"
+			},
+			"offsets": {
+				"from": 156500,
+				"to": 163460
+			},
+			"text": " But it turns out if you take a deeper look at the stuff that does something complicated there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,940",
+				"to": "00:02:47,500"
+			},
+			"offsets": {
+				"from": 163940,
+				"to": 167500
+			},
+			"text": " there is a tiny line of code that says \"locked equals false.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,500",
+				"to": "00:02:56,580"
+			},
+			"offsets": {
+				"from": 167500,
+				"to": 176580
+			},
+			"text": " So it turns out there actually is a way to unlock the smart contract at a later point"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,580",
+				"to": "00:03:03,140"
+			},
+			"offsets": {
+				"from": 176580,
+				"to": 183140
+			},
+			"text": " in time, which means people could actually withdraw their money even though the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,140",
+				"to": "00:03:03,940"
+			},
+			"offsets": {
+				"from": 183140,
+				"to": 183940
+			},
+			"text": " has been locked before."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,940",
+				"to": "00:03:06,820"
+			},
+			"offsets": {
+				"from": 183940,
+				"to": 186820
+			},
+			"text": " Okay, is that kind of clear?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,660",
+				"to": "00:03:14,940"
+			},
+			"offsets": {
+				"from": 188660,
+				"to": 194940
+			},
+			"text": " So, and the problem here is of course that anywhere in the smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,940",
+				"to": "00:03:18,460"
+			},
+			"offsets": {
+				"from": 194940,
+				"to": 198460
+			},
+			"text": " you can hide this tiny line that says \"locked equals false.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,460",
+				"to": "00:03:24,700"
+			},
+			"offsets": {
+				"from": 198460,
+				"to": 204700
+			},
+			"text": " And then somehow, yeah, so if you want to find out whether it is possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,700",
+				"to": "00:03:28,380"
+			},
+			"offsets": {
+				"from": 204700,
+				"to": 208380
+			},
+			"text": " to only lock the smart contract once and unlock it later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,380",
+				"to": "00:03:33,020"
+			},
+			"offsets": {
+				"from": 208380,
+				"to": 213020
+			},
+			"text": " you have to analyze the full thing and find every occurrence of the word \"locked\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,020",
+				"to": "00:03:34,140"
+			},
+			"offsets": {
+				"from": 213020,
+				"to": 214140
+			},
+			"text": " inside the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,660",
+				"to": "00:03:41,420"
+			},
+			"offsets": {
+				"from": 214660,
+				"to": 221420
+			},
+			"text": " And I would say that this is a general problem of any text-based programming language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,420",
+				"to": "00:03:46,300"
+			},
+			"offsets": {
+				"from": 221420,
+				"to": 226300
+			},
+			"text": " that variables can be referenced just by stating their name from anywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,300",
+				"to": "00:03:50,260"
+			},
+			"offsets": {
+				"from": 226300,
+				"to": 230260
+			},
+			"text": " I mean, that's not 100% true for all programming languages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,260",
+				"to": "00:03:54,540"
+			},
+			"offsets": {
+				"from": 230260,
+				"to": 234540
+			},
+			"text": " but I guess the idea is there in all text-based programming languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,540",
+				"to": "00:03:58,700"
+			},
+			"offsets": {
+				"from": 234540,
+				"to": 238700
+			},
+			"text": " And the problem by this is weird is people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,700",
+				"to": "00:04:04,740"
+			},
+			"offsets": {
+				"from": 239700,
+				"to": 244740
+			},
+			"text": " when people deal with abstract concepts like programming languages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,740",
+				"to": "00:04:10,580"
+			},
+			"offsets": {
+				"from": 244740,
+				"to": 250580
+			},
+			"text": " they are still able to understand it because there is some kind of analogy to the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,580",
+				"to": "00:04:17,380"
+			},
+			"offsets": {
+				"from": 250580,
+				"to": 257380
+			},
+			"text": " And I would say this referencing kind of breaks the analogy for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,380",
+				"to": "00:04:21,780"
+			},
+			"offsets": {
+				"from": 257380,
+				"to": 261780
+			},
+			"text": " So, I don't know, imagine walking the streets of Cancun"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,780",
+				"to": "00:04:27,780"
+			},
+			"offsets": {
+				"from": 261780,
+				"to": 267780
+			},
+			"text": " and shouting Vitalik buttering and Vitalik pops up next to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,780",
+				"to": "00:04:28,820"
+			},
+			"offsets": {
+				"from": 267780,
+				"to": 268820
+			},
+			"text": " That's weird, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,820",
+				"to": "00:04:30,140"
+			},
+			"offsets": {
+				"from": 268820,
+				"to": 270140
+			},
+			"text": " That doesn't really work in the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,140",
+				"to": "00:04:32,140"
+			},
+			"offsets": {
+				"from": 270140,
+				"to": 272140
+			},
+			"text": " Why should it work in programming languages?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,140",
+				"to": "00:04:36,060"
+			},
+			"offsets": {
+				"from": 272140,
+				"to": 276060
+			},
+			"text": " So, and the problem is you don't see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,060",
+				"to": "00:04:38,540"
+			},
+			"offsets": {
+				"from": 276060,
+				"to": 278540
+			},
+			"text": " there's no visible connection between the declaration of something"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,540",
+				"to": "00:04:40,980"
+			},
+			"offsets": {
+				"from": 278540,
+				"to": 280980
+			},
+			"text": " and the referencing something."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,980",
+				"to": "00:04:49,500"
+			},
+			"offsets": {
+				"from": 280980,
+				"to": 289500
+			},
+			"text": " There are tools that do that, so in most IDEs when you click on a name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,500",
+				"to": "00:04:53,460"
+			},
+			"offsets": {
+				"from": 289500,
+				"to": 293460
+			},
+			"text": " it highlights where this is referenced, where this is used,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,460",
+				"to": "00:04:57,380"
+			},
+			"offsets": {
+				"from": 293460,
+				"to": 297380
+			},
+			"text": " or you can right-click and say find usages and something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,380",
+				"to": "00:05:00,100"
+			},
+			"offsets": {
+				"from": 297380,
+				"to": 300100
+			},
+			"text": " But why do we need these tools?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,100",
+				"to": "00:05:03,500"
+			},
+			"offsets": {
+				"from": 300100,
+				"to": 303500
+			},
+			"text": " Why don't we actually fix the programming languages?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,500",
+				"to": "00:05:10,260"
+			},
+			"offsets": {
+				"from": 303500,
+				"to": 310260
+			},
+			"text": " And so, other things people usually do is enforce modularity of software"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,260",
+				"to": "00:05:16,540"
+			},
+			"offsets": {
+				"from": 310260,
+				"to": 316540
+			},
+			"text": " or encapsulation which kind of helps limit the consequences of their problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,540",
+				"to": "00:05:18,140"
+			},
+			"offsets": {
+				"from": 316540,
+				"to": 318140
+			},
+			"text": " but it doesn't eliminate the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,140",
+				"to": "00:05:25,460"
+			},
+			"offsets": {
+				"from": 318140,
+				"to": 325460
+			},
+			"text": " And yeah, this is one problem of text-based programming languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,460",
+				"to": "00:05:32,180"
+			},
+			"offsets": {
+				"from": 325460,
+				"to": 332180
+			},
+			"text": " and another problem of text-based programming languages is that they always..."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,180",
+				"to": "00:05:36,540"
+			},
+			"offsets": {
+				"from": 332180,
+				"to": 336540
+			},
+			"text": " Oh yeah, they always have to use a certain natural language."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,540",
+				"to": "00:05:40,980"
+			},
+			"offsets": {
+				"from": 336540,
+				"to": 340980
+			},
+			"text": " And I'm not talking about syntactic elements here like for loop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,980",
+				"to": "00:05:44,580"
+			},
+			"offsets": {
+				"from": 340980,
+				"to": 344580
+			},
+			"text": " you have this English word for there or function, the English word function."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,580",
+				"to": "00:05:50,020"
+			},
+			"offsets": {
+				"from": 344580,
+				"to": 350020
+			},
+			"text": " I'm talking about the names of identifiers, so variables and functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,020",
+				"to": "00:05:51,540"
+			},
+			"offsets": {
+				"from": 350020,
+				"to": 351540
+			},
+			"text": " always have to have a name."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,540",
+				"to": "00:05:57,860"
+			},
+			"offsets": {
+				"from": 351540,
+				"to": 357860
+			},
+			"text": " And this name is always a word in a certain natural language."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,860",
+				"to": "00:06:00,900"
+			},
+			"offsets": {
+				"from": 357860,
+				"to": 360900
+			},
+			"text": " And if you're not too proficient in that language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,900",
+				"to": "00:06:03,780"
+			},
+			"offsets": {
+				"from": 360900,
+				"to": 363780
+			},
+			"text": " it's hard for you to understand the software."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,780",
+				"to": "00:06:10,740"
+			},
+			"offsets": {
+				"from": 363780,
+				"to": 370740
+			},
+			"text": " And the humans all speak different languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,740",
+				"to": "00:06:16,420"
+			},
+			"offsets": {
+				"from": 370740,
+				"to": 376420
+			},
+			"text": " and the way this is solved is that most people agree to use English."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,420",
+				"to": "00:06:23,140"
+			},
+			"offsets": {
+				"from": 376420,
+				"to": 383140
+			},
+			"text": " But yeah, this kind of makes it hard for people who are not that good in English."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,140",
+				"to": "00:06:28,020"
+			},
+			"offsets": {
+				"from": 383140,
+				"to": 388020
+			},
+			"text": " And so imagine you're such a person, you don't speak English very well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,020",
+				"to": "00:06:32,100"
+			},
+			"offsets": {
+				"from": 388020,
+				"to": 392100
+			},
+			"text": " and then a software or a smart contract will look like this to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,100",
+				"to": "00:06:41,700"
+			},
+			"offsets": {
+				"from": 392100,
+				"to": 401700
+			},
+			"text": " This is an actual language, so bonus points for anyone who can find out which language it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,700",
+				"to": "00:06:47,700"
+			},
+			"offsets": {
+				"from": 401700,
+				"to": 407700
+			},
+			"text": " and even more bonus points for someone who can tell me what the smart contract does."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,700",
+				"to": "00:06:48,660"
+			},
+			"offsets": {
+				"from": 407700,
+				"to": 408660
+			},
+			"text": " I already heard."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,660",
+				"to": "00:06:53,460"
+			},
+			"offsets": {
+				"from": 408660,
+				"to": 413460
+			},
+			"text": " Yes, it's scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,460",
+				"to": "00:06:56,900"
+			},
+			"offsets": {
+				"from": 413460,
+				"to": 416900
+			},
+			"text": " So, and what does it do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,900",
+				"to": "00:07:00,180"
+			},
+			"offsets": {
+				"from": 416900,
+				"to": 420180
+			},
+			"text": " Oh yeah, sorry, I forgot."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,180",
+				"to": "00:07:03,220"
+			},
+			"offsets": {
+				"from": 420180,
+				"to": 423220
+			},
+			"text": " Of course, you can't say what it does without actually seeing some functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,220",
+				"to": "00:07:05,060"
+			},
+			"offsets": {
+				"from": 423220,
+				"to": 425060
+			},
+			"text": " So here's some more code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,060",
+				"to": "00:07:05,700"
+			},
+			"offsets": {
+				"from": 425060,
+				"to": 425700
+			},
+			"text": " Does that help?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,660",
+				"to": "00:07:13,700"
+			},
+			"offsets": {
+				"from": 430660,
+				"to": 433700
+			},
+			"text": " Yeah, I guess you get the point."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,700",
+				"to": "00:07:28,580"
+			},
+			"offsets": {
+				"from": 433700,
+				"to": 448580
+			},
+			"text": " When I explain Ethereum to people, I often use the analogy of a soda vending machine, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,580",
+				"to": "00:07:34,340"
+			},
+			"offsets": {
+				"from": 448580,
+				"to": 454340
+			},
+			"text": " So imagine you have a soda vending machine that is somewhere in the public."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,340",
+				"to": "00:07:37,540"
+			},
+			"offsets": {
+				"from": 454340,
+				"to": 457540
+			},
+			"text": " Anyone can walk up to it and buy soda from it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,540",
+				"to": "00:07:39,700"
+			},
+			"offsets": {
+				"from": 457540,
+				"to": 459700
+			},
+			"text": " Anyone can go there and use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,700",
+				"to": "00:07:44,500"
+			},
+			"offsets": {
+				"from": 459700,
+				"to": 464500
+			},
+			"text": " And even more so, this soda vending machine is made out of glass."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,500",
+				"to": "00:07:49,700"
+			},
+			"offsets": {
+				"from": 464500,
+				"to": 469700
+			},
+			"text": " And this means everyone, which is common for soda machines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,700",
+				"to": "00:07:54,020"
+			},
+			"offsets": {
+				"from": 469700,
+				"to": 474020
+			},
+			"text": " you can see whether there are actually still drinks inside before interacting with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,020",
+				"to": "00:07:57,220"
+			},
+			"offsets": {
+				"from": 474020,
+				"to": 477220
+			},
+			"text": " But even more, you can also, because it's fully made out of glass,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,220",
+				"to": "00:08:02,020"
+			},
+			"offsets": {
+				"from": 477220,
+				"to": 482020
+			},
+			"text": " you can even see whether there is still change inside the machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,020",
+				"to": "00:08:07,300"
+			},
+			"offsets": {
+				"from": 482020,
+				"to": 487300
+			},
+			"text": " So you see whether it makes sense to pay with large coins or small coins and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,300",
+				"to": "00:08:13,940"
+			},
+			"offsets": {
+				"from": 487300,
+				"to": 493940
+			},
+			"text": " And you can even try to find out how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,940",
+				"to": "00:08:16,900"
+			},
+			"offsets": {
+				"from": 493940,
+				"to": 496900
+			},
+			"text": " Because you can see every part that moves."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,900",
+				"to": "00:08:22,100"
+			},
+			"offsets": {
+				"from": 496900,
+				"to": 502100
+			},
+			"text": " It's a little difficult probably, but it's a possible principle."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,100",
+				"to": "00:08:33,780"
+			},
+			"offsets": {
+				"from": 502100,
+				"to": 513780
+			},
+			"text": " And this is unprecedented software and we have a kind of similar thing with open source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,780",
+				"to": "00:08:39,300"
+			},
+			"offsets": {
+				"from": 513780,
+				"to": 519300
+			},
+			"text": " because you can actually see how software is written."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,300",
+				"to": "00:08:42,180"
+			},
+			"offsets": {
+				"from": 519300,
+				"to": 522180
+			},
+			"text": " But that doesn't help you if some software runs on a server."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,180",
+				"to": "00:08:46,420"
+			},
+			"offsets": {
+				"from": 522180,
+				"to": 526420
+			},
+			"text": " And you actually don't know whether that software was compiled from this host code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,420",
+				"to": "00:08:50,420"
+			},
+			"offsets": {
+				"from": 526420,
+				"to": 530420
+			},
+			"text": " But with Ethereum, you may actually can be sure about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,420",
+				"to": "00:08:54,340"
+			},
+			"offsets": {
+				"from": 530420,
+				"to": 534340
+			},
+			"text": " I think I'm running a little bit late, so let me try to speed up."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,340",
+				"to": "00:08:59,540"
+			},
+			"offsets": {
+				"from": 534340,
+				"to": 539540
+			},
+			"text": " And I would like to use this machine analogy and extend it into a programming language."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,060",
+				"to": "00:09:04,340"
+			},
+			"offsets": {
+				"from": 541060,
+				"to": 544340
+			},
+			"text": " Okay, this is a beverage smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,340",
+				"to": "00:09:05,540"
+			},
+			"offsets": {
+				"from": 544340,
+				"to": 545540
+			},
+			"text": " It's very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,540",
+				"to": "00:09:14,980"
+			},
+			"offsets": {
+				"from": 545540,
+				"to": 554980
+			},
+			"text": " So you always have these dashed lines, which are basically the casing of the machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,980",
+				"to": "00:09:18,340"
+			},
+			"offsets": {
+				"from": 554980,
+				"to": 558340
+			},
+			"text": " And you can only manipulate it from outside of these dashed lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,340",
+				"to": "00:09:22,900"
+			},
+			"offsets": {
+				"from": 558340,
+				"to": 562900
+			},
+			"text": " And what you can do is you can send Ether inside that machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,900",
+				"to": "00:09:27,540"
+			},
+			"offsets": {
+				"from": 562900,
+				"to": 567540
+			},
+			"text": " We all know that Ether is a liquid that flows through pipes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,540",
+				"to": "00:09:31,060"
+			},
+			"offsets": {
+				"from": 567540,
+				"to": 571060
+			},
+			"text": " So you can pour Ether inside that pipe."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,060",
+				"to": "00:09:35,700"
+			},
+			"offsets": {
+				"from": 571060,
+				"to": 575700
+			},
+			"text": " It will follow the direction of the error or it will always flow downwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,700",
+				"to": "00:09:40,980"
+			},
+			"offsets": {
+				"from": 575700,
+				"to": 580980
+			},
+			"text": " And then it enters this gadget here, which is a so-called splitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,980",
+				"to": "00:09:46,580"
+			},
+			"offsets": {
+				"from": 580980,
+				"to": 586580
+			},
+			"text": " And it moves half of the Ether that enters the gadget to the left and the other half to the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,580",
+				"to": "00:09:48,500"
+			},
+			"offsets": {
+				"from": 586580,
+				"to": 588500
+			},
+			"text": " because the setting is 50/50."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,500",
+				"to": "00:09:51,460"
+			},
+			"offsets": {
+				"from": 588500,
+				"to": 591460
+			},
+			"text": " And then Ether continues flowing in that pipe."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,460",
+				"to": "00:09:55,860"
+			},
+			"offsets": {
+				"from": 591460,
+				"to": 595860
+			},
+			"text": " And at the end, it's sent to that, the Ether that comes out to the left side is sent to this address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,860",
+				"to": "00:09:58,100"
+			},
+			"offsets": {
+				"from": 595860,
+				"to": 598100
+			},
+			"text": " and the Ether that comes out of the right side is sent to that address."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,100",
+				"to": "00:10:00,740"
+			},
+			"offsets": {
+				"from": 598100,
+				"to": 600740
+			},
+			"text": " Quite simple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,740",
+				"to": "00:10:04,020"
+			},
+			"offsets": {
+				"from": 600740,
+				"to": 604020
+			},
+			"text": " Concept doesn't do much, unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,020",
+				"to": "00:10:07,060"
+			},
+			"offsets": {
+				"from": 604020,
+				"to": 607060
+			},
+			"text": " So let's take a look at a more complicated example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,060",
+				"to": "00:10:14,980"
+			},
+			"offsets": {
+				"from": 607060,
+				"to": 614980
+			},
+			"text": " We can add a lever to this splitter, which allows that account here on the right to modify"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,980",
+				"to": "00:10:16,180"
+			},
+			"offsets": {
+				"from": 614980,
+				"to": 616180
+			},
+			"text": " the splitting ratio."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,180",
+				"to": "00:10:18,980"
+			},
+			"offsets": {
+				"from": 616180,
+				"to": 618980
+			},
+			"text": " Currently, it's set to 25/74."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,980",
+				"to": "00:10:25,060"
+			},
+			"offsets": {
+				"from": 618980,
+				"to": 625060
+			},
+			"text": " But at any point in time, this person behind the account on the right side can modify this ratio."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,860",
+				"to": "00:10:29,860"
+			},
+			"offsets": {
+				"from": 625860,
+				"to": 629860
+			},
+			"text": " OK, still not very useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,860",
+				"to": "00:10:33,620"
+			},
+			"offsets": {
+				"from": 629860,
+				"to": 633620
+			},
+			"text": " Let's take a look at a little more complicated example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,620",
+				"to": "00:10:39,140"
+			},
+			"offsets": {
+				"from": 633620,
+				"to": 639140
+			},
+			"text": " People have been to DEFCON1."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,140",
+				"to": "00:10:41,620"
+			},
+			"offsets": {
+				"from": 639140,
+				"to": 641620
+			},
+			"text": " Might recognize this again."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,620",
+				"to": "00:10:47,380"
+			},
+			"offsets": {
+				"from": 641620,
+				"to": 647380
+			},
+			"text": " So I did a live coding session there back then, and I wrote a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,380",
+				"to": "00:10:50,580"
+			},
+			"offsets": {
+				"from": 647380,
+				"to": 650580
+			},
+			"text": " which does exactly the same thing as this Babbage machine here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,420",
+				"to": "00:10:55,620"
+			},
+			"offsets": {
+				"from": 652420,
+				"to": 655620
+			},
+			"text": " OK, there are two sides."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,620",
+				"to": "00:11:01,060"
+			},
+			"offsets": {
+				"from": 655620,
+				"to": 661060
+			},
+			"text": " The left side can only be used by this account, and the right side can only be used by that account."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,060",
+				"to": "00:11:03,540"
+			},
+			"offsets": {
+				"from": 661060,
+				"to": 663540
+			},
+			"text": " So there's a-- I call it seller and buyer."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,540",
+				"to": "00:11:10,020"
+			},
+			"offsets": {
+				"from": 663540,
+				"to": 670020
+			},
+			"text": " I know I use the English language again, but the difference here is that the fact that this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,020",
+				"to": "00:11:14,420"
+			},
+			"offsets": {
+				"from": 670020,
+				"to": 674420
+			},
+			"text": " address is called seller is not an inherent part of the language."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,420",
+				"to": "00:11:18,660"
+			},
+			"offsets": {
+				"from": 674420,
+				"to": 678660
+			},
+			"text": " It's just a-- it's basically just a comment, and you could have comments in different languages at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,140",
+				"to": "00:11:29,220"
+			},
+			"offsets": {
+				"from": 681140,
+				"to": 689220
+			},
+			"text": " So both seller and buyer can send Ether into this Ether tank, and both sides of the tank can hold up to 10 Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,220",
+				"to": "00:11:38,580"
+			},
+			"offsets": {
+				"from": 689220,
+				"to": 698580
+			},
+			"text": " And they can also press this Abort button, which opens the valve here, and lets the Ether flow out of the tank,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,580",
+				"to": "00:11:42,340"
+			},
+			"offsets": {
+				"from": 698580,
+				"to": 702340
+			},
+			"text": " and send it back to the person that put it in."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,340",
+				"to": "00:11:50,820"
+			},
+			"offsets": {
+				"from": 702340,
+				"to": 710820
+			},
+			"text": " And the interesting thing now is that as soon as-- so these things on the top here are floating switches,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,820",
+				"to": "00:12:00,180"
+			},
+			"offsets": {
+				"from": 710820,
+				"to": 720180
+			},
+			"text": " they are currently off, but as soon as both parties send the full 10 Ether into the tank,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,180",
+				"to": "00:12:04,900"
+			},
+			"offsets": {
+				"from": 720180,
+				"to": 724900
+			},
+			"text": " the floating switch activates and opens the valve here at the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,900",
+				"to": "00:12:14,020"
+			},
+			"offsets": {
+				"from": 724900,
+				"to": 734020
+			},
+			"text": " And if both valves are open at the same time, which means if both seller and buyer deposit 10 Ether,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,020",
+				"to": "00:12:18,740"
+			},
+			"offsets": {
+				"from": 734020,
+				"to": 738740
+			},
+			"text": " then the combined 20 Ether will flow into the bottom tank."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,700",
+				"to": "00:12:26,100"
+			},
+			"offsets": {
+				"from": 739700,
+				"to": 746100
+			},
+			"text": " And at that point, it's visually clear, I would say, at that point if the Ether is in the bottom tank,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,100",
+				"to": "00:12:29,620"
+			},
+			"offsets": {
+				"from": 746100,
+				"to": 749620
+			},
+			"text": " there's no-- this Abort button doesn't have any function anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,620",
+				"to": "00:12:36,020"
+			},
+			"offsets": {
+				"from": 749620,
+				"to": 756020
+			},
+			"text": " And this is something which is very easy to see in this visual-- yeah, using this visual programming language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,020",
+				"to": "00:12:40,020"
+			},
+			"offsets": {
+				"from": 756020,
+				"to": 760020
+			},
+			"text": " but it's probably quite hard to see in a text-based programming language."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,020",
+				"to": "00:12:49,060"
+			},
+			"offsets": {
+				"from": 760020,
+				"to": 769060
+			},
+			"text": " Another thing you can easily see in this diagram is that the upper part is fully symmetric with regards to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,060",
+				"to": "00:12:52,820"
+			},
+			"offsets": {
+				"from": 769060,
+				"to": 772820
+			},
+			"text": " seller and buyer. And only the lower part is asymmetric."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,820",
+				"to": "00:12:56,820"
+			},
+			"offsets": {
+				"from": 772820,
+				"to": 776820
+			},
+			"text": " This is also something you can't really see in text-based programming languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,820",
+				"to": "00:13:02,340"
+			},
+			"offsets": {
+				"from": 776820,
+				"to": 782340
+			},
+			"text": " Okay, let's continue how this works. We have two other buttons that operate the bottom tank."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,340",
+				"to": "00:13:11,700"
+			},
+			"offsets": {
+				"from": 782340,
+				"to": 791700
+			},
+			"text": " The buyer can release the payment to the seller and the seller can refund the buyer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,700",
+				"to": "00:13:20,660"
+			},
+			"offsets": {
+				"from": 791700,
+				"to": 800660
+			},
+			"text": " which moves the Ether into a splitter and moves half of the Ether back to the seller and half of it back to the buyer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,660",
+				"to": "00:13:26,660"
+			},
+			"offsets": {
+				"from": 800660,
+				"to": 806660
+			},
+			"text": " Okay, that's how the smart contract works. What's the idea behind?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,660",
+				"to": "00:13:32,740"
+			},
+			"offsets": {
+				"from": 806660,
+				"to": 812740
+			},
+			"text": " This is an ISCO smart contract. So the seller sells something, has to put up a deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,740",
+				"to": "00:13:40,340"
+			},
+			"offsets": {
+				"from": 812740,
+				"to": 820340
+			},
+			"text": " And when the Ether flows into the lower tank, then the seller sends the item to the buyer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,980",
+				"to": "00:13:46,980"
+			},
+			"offsets": {
+				"from": 820980,
+				"to": 826980
+			},
+			"text": " And when the buyer receives the item, she presses the release payment button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,980",
+				"to": "00:13:50,820"
+			},
+			"offsets": {
+				"from": 826980,
+				"to": 830820
+			},
+			"text": " which pays the seller. And if the item does not arrive, they have to kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,820",
+				"to": "00:13:56,180"
+			},
+			"offsets": {
+				"from": 830820,
+				"to": 836180
+			},
+			"text": " come to an agreement. And one of the outcomes of the agreement might be that the seller just"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,180",
+				"to": "00:14:03,140"
+			},
+			"offsets": {
+				"from": 836180,
+				"to": 843140
+			},
+			"text": " refunds the buyer, which results in the seller retrieving the deposit again and the buyer also retrieving the deposit again."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,540",
+				"to": "00:14:17,860"
+			},
+			"offsets": {
+				"from": 845540,
+				"to": 857860
+			},
+			"text": " Okay. Yeah, so as I said, this is for now just a common concept. Unfortunately, there's not much more than this talk here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,860",
+				"to": "00:14:26,020"
+			},
+			"offsets": {
+				"from": 857860,
+				"to": 866020
+			},
+			"text": " but I welcome everyone to join the discussion. We have a Google group here. And if you have any ideas about"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,460",
+				"to": "00:14:37,460"
+			},
+			"offsets": {
+				"from": 867460,
+				"to": 877460
+			},
+			"text": " more gadgets, please propose that in this discussion group. And of course, I mean, the idea is also"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,460",
+				"to": "00:14:42,660"
+			},
+			"offsets": {
+				"from": 877460,
+				"to": 882660
+			},
+			"text": " to have a graphical IDE where you can select these gadgets and snap them together and connect them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,660",
+				"to": "00:14:49,300"
+			},
+			"offsets": {
+				"from": 882660,
+				"to": 889300
+			},
+			"text": " Of course, you can also create smart contracts, which have very complicated pipes running"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,300",
+				"to": "00:14:55,940"
+			},
+			"offsets": {
+				"from": 889300,
+				"to": 895940
+			},
+			"text": " all across the screen. The language doesn't prevent you from doing that, but you immediately see that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,940",
+				"to": "00:15:00,900"
+			},
+			"offsets": {
+				"from": 895940,
+				"to": 900900
+			},
+			"text": " it looks really, really messy if you do that. And so you're encouraged to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,900",
+				"to": "00:15:10,100"
+			},
+			"offsets": {
+				"from": 900900,
+				"to": 910100
+			},
+			"text": " machines that look simple and are easy to explain. Okay, that's about it. Thanks for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,100",
+				"to": "00:15:14,100"
+			},
+			"offsets": {
+				"from": 910100,
+				"to": 914100
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,100",
+				"to": "00:15:24,100"
+			},
+			"offsets": {
+				"from": 914100,
+				"to": 924100
+			},
+			"text": " [Music]"
+		}
+	]
+}
